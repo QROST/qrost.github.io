@@ -1,5 +1,12 @@
 document.addEventListener('DOMContentLoaded', () => {
 
+            function tr(key, en) {
+                if (typeof window.ChinaBizI18n !== 'undefined' && window.ChinaBizI18n.getLang() === 'zh' && window.ChinaBizI18n.zh[key]) {
+                    return window.ChinaBizI18n.zh[key];
+                }
+                return en;
+            }
+
             // WFOE vs SAR Process Toggle Logic
             const steps = document.querySelectorAll('.step-item');
             const contents = document.querySelectorAll('.step-content');
@@ -41,31 +48,38 @@ document.addEventListener('DOMContentLoaded', () => {
                Rent: officeRentAnnualRMB = 10 m2 x Grade A/B effective RMB/m2/mo x 12 (CIH, JLL, Savills, Knight Frank, Colliers, DTZ, local gov - mostly Q3-Q4 2024).
                Utilities: allocated HVAC, power, cleaning (higher north/heating; coastal humidity/summer). */
             const cityData = {
-                beijing: { name: "Beijing", type: "mainland", juniorAnnual: 118000, seniorAnnual: 270000, contribPct: 0.38, officeRentAnnualRMB: 30240, utilitiesAnnualRMB: 8300 },
-                shanghai: { name: "Shanghai", type: "mainland", juniorAnnual: 118000, seniorAnnual: 258000, contribPct: 0.38, officeRentAnnualRMB: 24000, utilitiesAnnualRMB: 7600 },
-                shenzhen: { name: "Shenzhen", type: "mainland", juniorAnnual: 112000, seniorAnnual: 252000, contribPct: 0.35, officeRentAnnualRMB: 19560, utilitiesAnnualRMB: 6900 },
-                guangzhou: { name: "Guangzhou", type: "mainland", juniorAnnual: 102000, seniorAnnual: 234000, contribPct: 0.35, officeRentAnnualRMB: 15540, utilitiesAnnualRMB: 7100 },
-                hangzhou: { name: "Hangzhou", type: "mainland", juniorAnnual: 108000, seniorAnnual: 246000, contribPct: 0.36, officeRentAnnualRMB: 13800, utilitiesAnnualRMB: 7300 },
-                nanjing: { name: "Nanjing", type: "mainland", juniorAnnual: 100000, seniorAnnual: 220000, contribPct: 0.38, officeRentAnnualRMB: 11880, utilitiesAnnualRMB: 7700 },
-                tianjin: { name: "Tianjin", type: "mainland", juniorAnnual: 88000, seniorAnnual: 198000, contribPct: 0.40, officeRentAnnualRMB: 12120, utilitiesAnnualRMB: 8100 },
-                wuhan: { name: "Wuhan", type: "mainland", juniorAnnual: 88000, seniorAnnual: 190000, contribPct: 0.38, officeRentAnnualRMB: 9480, utilitiesAnnualRMB: 7300 },
-                chengdu: { name: "Chengdu", type: "mainland", juniorAnnual: 82000, seniorAnnual: 178000, contribPct: 0.36, officeRentAnnualRMB: 11520, utilitiesAnnualRMB: 6900 },
-                zhuhai: { name: "Zhuhai", type: "mainland", juniorAnnual: 82000, seniorAnnual: 176000, contribPct: 0.35, officeRentAnnualRMB: 4680, utilitiesAnnualRMB: 6600 },
-                xian: { name: "Xi'an", type: "mainland", juniorAnnual: 76000, seniorAnnual: 166000, contribPct: 0.36, officeRentAnnualRMB: 8400, utilitiesAnnualRMB: 7600 },
-                hefei: { name: "Hefei", type: "mainland", juniorAnnual: 70000, seniorAnnual: 154000, contribPct: 0.35, officeRentAnnualRMB: 5760, utilitiesAnnualRMB: 6800 },
-                harbin: { name: "Harbin", type: "mainland", juniorAnnual: 58000, seniorAnnual: 128000, contribPct: 0.35, officeRentAnnualRMB: 8160, utilitiesAnnualRMB: 9000 },
-                haikou: { name: "Haikou", type: "mainland", juniorAnnual: 82000, seniorAnnual: 182000, contribPct: 0.35, officeRentAnnualRMB: 6600, utilitiesAnnualRMB: 6300 },
-                sanya: { name: "Sanya", type: "mainland", juniorAnnual: 86000, seniorAnnual: 194000, contribPct: 0.35, officeRentAnnualRMB: 9600, utilitiesAnnualRMB: 6500 },
-                hongkong: { name: "Hong Kong", type: "sar", juniorAnnual: 216000, seniorAnnual: 432000, contribPct: 0.05, officeRentAnnualRMB: 156000, utilitiesAnnualRMB: 9200 },
-                macau: { name: "Macau", type: "sar", juniorAnnual: 180000, seniorAnnual: 360000, contribPct: 0.01, officeRentAnnualRMB: 102000, utilitiesAnnualRMB: 7600 },
-                suzhou: { name: "Suzhou", type: "mainland", juniorAnnual: 102000, seniorAnnual: 228000, contribPct: 0.38, officeRentAnnualRMB: 8640, utilitiesAnnualRMB: 7100 },
-                changsha: { name: "Changsha", type: "mainland", juniorAnnual: 80000, seniorAnnual: 174000, contribPct: 0.36, officeRentAnnualRMB: 9420, utilitiesAnnualRMB: 7300 },
-                chongqing: { name: "Chongqing", type: "mainland", juniorAnnual: 84000, seniorAnnual: 180000, contribPct: 0.36, officeRentAnnualRMB: 9000, utilitiesAnnualRMB: 7900 },
-                kunming: { name: "Kunming", type: "mainland", juniorAnnual: 70000, seniorAnnual: 154000, contribPct: 0.35, officeRentAnnualRMB: 8580, utilitiesAnnualRMB: 6400 },
-                qingdao: { name: "Qingdao", type: "mainland", juniorAnnual: 92000, seniorAnnual: 206000, contribPct: 0.38, officeRentAnnualRMB: 12720, utilitiesAnnualRMB: 7900 },
-                zhengzhou: { name: "Zhengzhou", type: "mainland", juniorAnnual: 76000, seniorAnnual: 164000, contribPct: 0.35, officeRentAnnualRMB: 6480, utilitiesAnnualRMB: 6900 },
-                dalian: { name: "Dalian", type: "mainland", juniorAnnual: 80000, seniorAnnual: 176000, contribPct: 0.38, officeRentAnnualRMB: 8160, utilitiesAnnualRMB: 8900 }
+                beijing: { name: "Beijing", nameZh: "北京", type: "mainland", juniorAnnual: 118000, seniorAnnual: 270000, contribPct: 0.38, officeRentAnnualRMB: 30240, utilitiesAnnualRMB: 8300 },
+                shanghai: { name: "Shanghai", nameZh: "上海", type: "mainland", juniorAnnual: 118000, seniorAnnual: 258000, contribPct: 0.38, officeRentAnnualRMB: 24000, utilitiesAnnualRMB: 7600 },
+                shenzhen: { name: "Shenzhen", nameZh: "深圳", type: "mainland", juniorAnnual: 112000, seniorAnnual: 252000, contribPct: 0.35, officeRentAnnualRMB: 19560, utilitiesAnnualRMB: 6900 },
+                guangzhou: { name: "Guangzhou", nameZh: "广州", type: "mainland", juniorAnnual: 102000, seniorAnnual: 234000, contribPct: 0.35, officeRentAnnualRMB: 15540, utilitiesAnnualRMB: 7100 },
+                hangzhou: { name: "Hangzhou", nameZh: "杭州", type: "mainland", juniorAnnual: 108000, seniorAnnual: 246000, contribPct: 0.36, officeRentAnnualRMB: 13800, utilitiesAnnualRMB: 7300 },
+                nanjing: { name: "Nanjing", nameZh: "南京", type: "mainland", juniorAnnual: 100000, seniorAnnual: 220000, contribPct: 0.38, officeRentAnnualRMB: 11880, utilitiesAnnualRMB: 7700 },
+                tianjin: { name: "Tianjin", nameZh: "天津", type: "mainland", juniorAnnual: 88000, seniorAnnual: 198000, contribPct: 0.40, officeRentAnnualRMB: 12120, utilitiesAnnualRMB: 8100 },
+                wuhan: { name: "Wuhan", nameZh: "武汉", type: "mainland", juniorAnnual: 88000, seniorAnnual: 190000, contribPct: 0.38, officeRentAnnualRMB: 9480, utilitiesAnnualRMB: 7300 },
+                chengdu: { name: "Chengdu", nameZh: "成都", type: "mainland", juniorAnnual: 82000, seniorAnnual: 178000, contribPct: 0.36, officeRentAnnualRMB: 11520, utilitiesAnnualRMB: 6900 },
+                zhuhai: { name: "Zhuhai", nameZh: "珠海", type: "mainland", juniorAnnual: 82000, seniorAnnual: 176000, contribPct: 0.35, officeRentAnnualRMB: 4680, utilitiesAnnualRMB: 6600 },
+                xian: { name: "Xi'an", nameZh: "西安", type: "mainland", juniorAnnual: 76000, seniorAnnual: 166000, contribPct: 0.36, officeRentAnnualRMB: 8400, utilitiesAnnualRMB: 7600 },
+                hefei: { name: "Hefei", nameZh: "合肥", type: "mainland", juniorAnnual: 70000, seniorAnnual: 154000, contribPct: 0.35, officeRentAnnualRMB: 5760, utilitiesAnnualRMB: 6800 },
+                harbin: { name: "Harbin", nameZh: "哈尔滨", type: "mainland", juniorAnnual: 58000, seniorAnnual: 128000, contribPct: 0.35, officeRentAnnualRMB: 8160, utilitiesAnnualRMB: 9000 },
+                haikou: { name: "Haikou", nameZh: "海口", type: "mainland", juniorAnnual: 82000, seniorAnnual: 182000, contribPct: 0.35, officeRentAnnualRMB: 6600, utilitiesAnnualRMB: 6300 },
+                sanya: { name: "Sanya", nameZh: "三亚", type: "mainland", juniorAnnual: 86000, seniorAnnual: 194000, contribPct: 0.35, officeRentAnnualRMB: 9600, utilitiesAnnualRMB: 6500 },
+                hongkong: { name: "Hong Kong", nameZh: "香港", type: "sar", juniorAnnual: 216000, seniorAnnual: 432000, contribPct: 0.05, officeRentAnnualRMB: 156000, utilitiesAnnualRMB: 9200 },
+                macau: { name: "Macau", nameZh: "澳门", type: "sar", juniorAnnual: 180000, seniorAnnual: 360000, contribPct: 0.01, officeRentAnnualRMB: 102000, utilitiesAnnualRMB: 7600 },
+                suzhou: { name: "Suzhou", nameZh: "苏州", type: "mainland", juniorAnnual: 102000, seniorAnnual: 228000, contribPct: 0.38, officeRentAnnualRMB: 8640, utilitiesAnnualRMB: 7100 },
+                changsha: { name: "Changsha", nameZh: "长沙", type: "mainland", juniorAnnual: 80000, seniorAnnual: 174000, contribPct: 0.36, officeRentAnnualRMB: 9420, utilitiesAnnualRMB: 7300 },
+                chongqing: { name: "Chongqing", nameZh: "重庆", type: "mainland", juniorAnnual: 84000, seniorAnnual: 180000, contribPct: 0.36, officeRentAnnualRMB: 9000, utilitiesAnnualRMB: 7900 },
+                kunming: { name: "Kunming", nameZh: "昆明", type: "mainland", juniorAnnual: 70000, seniorAnnual: 154000, contribPct: 0.35, officeRentAnnualRMB: 8580, utilitiesAnnualRMB: 6400 },
+                qingdao: { name: "Qingdao", nameZh: "青岛", type: "mainland", juniorAnnual: 92000, seniorAnnual: 206000, contribPct: 0.38, officeRentAnnualRMB: 12720, utilitiesAnnualRMB: 7900 },
+                zhengzhou: { name: "Zhengzhou", nameZh: "郑州", type: "mainland", juniorAnnual: 76000, seniorAnnual: 164000, contribPct: 0.35, officeRentAnnualRMB: 6480, utilitiesAnnualRMB: 6900 },
+                dalian: { name: "Dalian", nameZh: "大连", type: "mainland", juniorAnnual: 80000, seniorAnnual: 176000, contribPct: 0.38, officeRentAnnualRMB: 8160, utilitiesAnnualRMB: 8900 }
             };
+
+            function cityDisplayName(key) {
+                const c = cityData[key];
+                if (!c) return '';
+                if (typeof window.ChinaBizI18n !== 'undefined' && window.ChinaBizI18n.getLang() === 'zh' && c.nameZh) return c.nameZh;
+                return c.name;
+            }
 
             function overheadAnnualTotalRMB(c) {
                 return (c.officeRentAnnualRMB || 0) + OVERHEAD_HARDWARE_ANNUAL_RMB + (c.utilitiesAnnualRMB || 0) + OVERHEAD_SOFTWARE_ANNUAL_RMB;
@@ -146,8 +160,10 @@ document.addEventListener('DOMContentLoaded', () => {
                                 const dataIndex = elements[0].index;
                                 // Find the corresponding city name from the chart labels
                                 const clickedCityName = barChart.data.labels[dataIndex];
-                                // Match the name back to our cityData object keys
-                                const cityKey = Object.keys(cityData).find(key => cityData[key].name === clickedCityName);
+                                const cityKey = Object.keys(cityData).find(key => {
+                                    const c = cityData[key];
+                                    return c.name === clickedCityName || c.nameZh === clickedCityName;
+                                });
 
                                 // Update state and visuals if it's a new city
                                 if (cityKey && state.city !== cityKey) {
@@ -185,7 +201,7 @@ document.addEventListener('DOMContentLoaded', () => {
                                             if (tooltipItem.datasetIndex === 2 && !state.includeOverhead) return;
                                             total += tooltipItem.parsed.x;
                                         });
-                                        return '\nTotal Annual: ' + getSymbol() + total.toLocaleString();
+                                        return '\n' + tr('chart.tooltip_total', 'Total Annual: ') + getSymbol() + total.toLocaleString();
                                     }
                                 }
                             }
@@ -244,8 +260,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 const macroLabel = document.getElementById('macro-cost-label');
                 if (macroLabel) {
                     macroLabel.textContent = state.includeOverhead
-                        ? 'Total Annual Cost (Base + Contributions + modeled overhead)'
-                        : 'Total Annual Cost (Base + Contributions)';
+                        ? tr('dash.macro.cost_oh', 'Total Annual Cost (Base + Contributions + modeled overhead)')
+                        : tr('dash.macro.cost_base', 'Total Annual Cost (Base + Contributions)');
                 }
 
                 // Update Master Bar Chart
@@ -263,7 +279,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
 
                 sortedCityKeys.forEach(key => {
-                    labels.push(cityData[key].name);
+                    labels.push(cityDisplayName(key));
                     const cost = getCostData(key, state.role);
                     baseData.push(cost.base);
                     contribData.push(cost.contrib);
@@ -288,6 +304,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 barChart.data.datasets[1].backgroundColor = contribColors;
                 barChart.data.datasets[2].data = overheadData;
                 barChart.data.datasets[2].backgroundColor = overheadColors;
+                barChart.data.datasets[0].label = tr('chart.base', 'Annual Base Salary');
+                barChart.data.datasets[1].label = tr('chart.contrib', 'Employer Contributions');
+                barChart.data.datasets[2].label = tr('chart.overhead', 'Overhead (modeled)');
                 if (barChart.options.plugins.legend.labels) {
                     barChart.options.plugins.legend.labels.filter = function (legendItem) {
                         if (legendItem.datasetIndex === 2 && !state.includeOverhead) return false;
@@ -312,12 +331,12 @@ document.addEventListener('DOMContentLoaded', () => {
                     const hPct = selectedCityObj.contribPct - (pPct + mPct + uPct + iPct);
 
                     donutLabels = [
-                        'Annual Base Salary',
-                        '1. Pension (16%)',
-                        '2. Medical & Maternity (10%)',
-                        '3. Unemployment (0.5%)',
-                        '4. Work Injury (0.5%)',
-                        `5. Housing Fund (${(hPct * 100).toFixed(1)}%)`
+                        tr('donut.base', 'Annual Base Salary'),
+                        tr('donut.pension', '1. Pension (16%)'),
+                        tr('donut.medical', '2. Medical & Maternity (10%)'),
+                        tr('donut.unemp', '3. Unemployment (0.5%)'),
+                        tr('donut.injury', '4. Work Injury (0.5%)'),
+                        tr('donut.housing', '5. Housing Fund ({pct}%)').replace(/\{pct\}/g, (hPct * 100).toFixed(1))
                     ];
 
                     donutData = [
@@ -334,10 +353,10 @@ document.addEventListener('DOMContentLoaded', () => {
                     if (state.includeOverhead) {
                         const p = overheadPartsForCity(state.city);
                         donutLabels.push(
-                            'Office rent (allocated)',
-                            'Hardware & furniture (workstation, desk, chair)',
-                            'Utilities, cleaning & climate (allocated)',
-                            'Software (AEC Collection + Rhino, modeled seat-year)'
+                            tr('donut.rent', 'Office rent (allocated)'),
+                            tr('donut.hardware', 'Hardware & furniture (workstation, desk, chair)'),
+                            tr('donut.utilities', 'Utilities, cleaning & climate (allocated)'),
+                            tr('donut.software', 'Software (AEC Collection + Rhino, modeled seat-year)')
                         );
                         donutData.push(
                             convert(p.rent),
@@ -349,16 +368,16 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
 
                 } else if (state.city === 'hongkong') {
-                    donutLabels = ['Annual Base Salary', 'MPF (Mandatory Retirement)'];
+                    donutLabels = [tr('donut.base', 'Annual Base Salary'), tr('donut.mpf', 'MPF (Mandatory Retirement)')];
                     donutData = [selectedCost.base, selectedCost.contrib];
                     donutColors = ['#0f172a', '#f59e0b'];
                     if (state.includeOverhead) {
                         const p = overheadPartsForCity(state.city);
                         donutLabels.push(
-                            'Office rent (allocated)',
-                            'Hardware & furniture (workstation, desk, chair)',
-                            'Utilities, cleaning & climate (allocated)',
-                            'Software (AEC Collection + Rhino, modeled seat-year)'
+                            tr('donut.rent', 'Office rent (allocated)'),
+                            tr('donut.hardware', 'Hardware & furniture (workstation, desk, chair)'),
+                            tr('donut.utilities', 'Utilities, cleaning & climate (allocated)'),
+                            tr('donut.software', 'Software (AEC Collection + Rhino, modeled seat-year)')
                         );
                         donutData.push(
                             convert(p.rent),
@@ -369,16 +388,16 @@ document.addEventListener('DOMContentLoaded', () => {
                         donutColors.push('#6366f1', '#64748b', '#d97706', '#0284c7');
                     }
                 } else if (state.city === 'macau') {
-                    donutLabels = ['Annual Base Salary', 'Social Security (FSS)'];
+                    donutLabels = [tr('donut.base', 'Annual Base Salary'), tr('donut.fss', 'Social Security (FSS)')];
                     donutData = [selectedCost.base, selectedCost.contrib];
                     donutColors = ['#0f172a', '#f59e0b'];
                     if (state.includeOverhead) {
                         const p = overheadPartsForCity(state.city);
                         donutLabels.push(
-                            'Office rent (allocated)',
-                            'Hardware & furniture (workstation, desk, chair)',
-                            'Utilities, cleaning & climate (allocated)',
-                            'Software (AEC Collection + Rhino, modeled seat-year)'
+                            tr('donut.rent', 'Office rent (allocated)'),
+                            tr('donut.hardware', 'Hardware & furniture (workstation, desk, chair)'),
+                            tr('donut.utilities', 'Utilities, cleaning & climate (allocated)'),
+                            tr('donut.software', 'Software (AEC Collection + Rhino, modeled seat-year)')
                         );
                         donutData.push(
                             convert(p.rent),
@@ -415,7 +434,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 // Add Total Row
                 listHTML += `
                     <div class="flex justify-between items-center pt-3 mt-1 border-t-2 border-slate-200">
-                        <span class="font-bold text-slate-800 text-sm">Total Annual Cost</span>
+                        <span class="font-bold text-slate-800 text-sm">${tr('chart.total_annual_cost', 'Total Annual Cost')}</span>
                         <span class="font-bold text-emerald-600 text-sm">${getSymbol()}${totalAnnualAmt.toLocaleString()}</span>
                     </div>
                 `;
@@ -423,16 +442,16 @@ document.addEventListener('DOMContentLoaded', () => {
                 document.getElementById('micro-detail-list').innerHTML = listHTML;
 
                 // Update Text Elements
-                document.getElementById('macro-title-role').textContent = state.role === 'junior' ? 'Junior CAD' : 'Senior Modeler';
-                document.getElementById('micro-title-city').textContent = cityData[state.city].name;
+                document.getElementById('macro-title-role').textContent = state.role === 'junior' ? tr('role.junior_short', 'Junior CAD') : tr('role.senior_short', 'Senior Modeler');
+                document.getElementById('micro-title-city').textContent = cityDisplayName(state.city);
                 const pctEl = document.getElementById('micro-contrib-pct');
                 const pctWrap = document.getElementById('micro-contrib-pct-wrap');
                 const breakdownLbl = document.getElementById('micro-breakdown-label');
                 if (state.includeOverhead) {
-                    if (breakdownLbl) breakdownLbl.textContent = 'Annual breakdown: employment + overhead (rent, kit, utilities, software)';
+                    if (breakdownLbl) breakdownLbl.textContent = tr('dash.micro.sub1', 'Annual breakdown: employment + overhead (rent, kit, utilities, software)');
                     if (pctWrap) pctWrap.style.display = 'none';
                 } else {
-                    if (breakdownLbl) breakdownLbl.textContent = 'Annual Base vs. Employer "5 Insurances & 1 Fund"';
+                    if (breakdownLbl) breakdownLbl.textContent = tr('dash.micro.sub2', 'Annual Base vs. Employer "5 Insurances & 1 Fund"');
                     if (pctWrap) pctWrap.style.display = 'inline';
                     if (pctEl) pctEl.textContent = (cityData[state.city].contribPct * 100).toFixed(0) + '%';
                 }
@@ -444,19 +463,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 if (cityData[state.city].type === 'sar') {
                     alertBox.classList.remove('hidden');
-                    let sarHtml = `<strong>SAR Framework:</strong> The ~${(cityData[state.city].contribPct * 100).toFixed(0)}% statutory contribution represents approximate limits for localized retirement funds (like Hong Kong's MPF) rather than mainland social insurance.`;
+                    const pct = (cityData[state.city].contribPct * 100).toFixed(0);
+                    let sarHtml = tr('desc.sar_strong', '<strong>SAR Framework:</strong> ') + tr('desc.sar_line', 'The ~{pct}% statutory contribution represents approximate limits for localized retirement funds (like Hong Kong\'s MPF) rather than mainland social insurance.').replace(/\{pct\}/g, pct);
                     if (state.includeOverhead) {
-                        sarHtml += ` <strong>Overhead:</strong> SAR rent uses prime-office bands in RMB; hardware/software use the same global license model as mainland for comparison.`;
+                        sarHtml += tr('desc.sar_oh_append', ' <strong>Overhead:</strong> SAR rent uses prime-office bands in RMB; hardware/software use the same global license model as mainland for comparison.');
                     }
                     descText.innerHTML = sarHtml;
                 } else {
                     alertBox.classList.add('hidden');
-                    let mainlandDesc = `<strong>Mainland Contributions:</strong> Employer statutory contributions include the mandatory "5 Insurances & 1 Fund" (Pension, Medical, Unemployment, Injury, Maternity, and Housing Fund). Rates fluctuate based on selected municipal policies.`;
+                    let mainlandDesc = tr('desc.mainland', '<strong>Mainland Contributions:</strong> Employer statutory contributions include the mandatory "5 Insurances & 1 Fund" (Pension, Medical, Unemployment, Injury, Maternity, and Housing Fund). Rates fluctuate based on selected municipal policies.');
                     if (state.includeOverhead) {
-                        mainlandDesc += ` <strong>Overhead:</strong> Rent, utilities, hardware amortization, and AEC software stack are modeled per employee-year (see methodology above).`;
+                        mainlandDesc += ' ' + tr('desc.mainland_oh', '<strong>Overhead:</strong> Rent, utilities, hardware amortization, and AEC software stack are modeled per employee-year (see methodology above).');
                     }
                     if (state.city === 'haikou' || state.city === 'sanya') {
-                        mainlandDesc += ` <strong>Hainan FTP:</strong> Qualifying companies may access a <strong>15% corporate income tax</strong> rate (encouraged industries; substantive operations). Eligible talent may benefit from the <strong>15% personal income tax</strong> cap on qualifying Hainan-sourced income. Island-wide import treatment and “second line” rules apply for goods moving to the mainland—verify with local counsel.`;
+                        mainlandDesc += ' ' + tr('desc.hainan_extra', '<strong>Hainan FTP:</strong> Qualifying companies may access a <strong>15% corporate income tax</strong> rate (encouraged industries; substantive operations). Eligible talent may benefit from the <strong>15% personal income tax</strong> cap on qualifying Hainan-sourced income. Island-wide import treatment and “second line” rules apply for goods moving to the mainland—verify with local counsel.');
                     }
                     descText.innerHTML = mainlandDesc;
                 }
@@ -525,6 +545,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 updateVisuals();
             });
             syncOverheadToggleUI();
+
+            window.addEventListener('china-biz-lang-change', function () {
+                updateVisuals();
+            });
 
             initCharts();
         });

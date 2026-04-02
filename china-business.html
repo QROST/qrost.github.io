@@ -17,12 +17,15 @@
 
     <nav class="site-nav fixed top-0 w-full z-50 border-b border-slate-200/90 bg-white/85 backdrop-blur-md">
         <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between h-14 items-center">
+            <div class="flex justify-between h-14 items-center gap-4">
                 <a href="#" class="text-[0.65rem] font-semibold tracking-[0.35em] text-slate-900 uppercase">Qrost</a>
-                <div class="hidden md:flex items-center gap-10">
-                    <a href="#process" class="text-sm text-slate-500 hover:text-slate-900 transition-colors">Setup</a>
-                    <a href="#regions" class="text-sm text-slate-500 hover:text-slate-900 transition-colors">Regions</a>
-                    <a href="#costs" class="text-sm text-slate-500 hover:text-slate-900 transition-colors">Financials</a>
+                <div class="flex items-center gap-4 md:gap-10">
+                    <div class="hidden md:flex items-center gap-10">
+                        <a href="#process" class="text-sm text-slate-500 hover:text-slate-900 transition-colors" data-i18n="nav.setup">Setup</a>
+                        <a href="#regions" class="text-sm text-slate-500 hover:text-slate-900 transition-colors" data-i18n="nav.regions">Regions</a>
+                        <a href="#costs" class="text-sm text-slate-500 hover:text-slate-900 transition-colors" data-i18n="nav.financials">Financials</a>
+                    </div>
+                    <button type="button" id="lang-toggle" class="text-xs font-medium text-slate-600 border border-slate-200 rounded px-2.5 py-1 hover:bg-slate-50 transition-colors shrink-0" aria-label="Switch language">中文</button>
                 </div>
             </div>
         </div>
@@ -31,10 +34,10 @@
     <header class="pt-28 pb-16 md:pb-20 border-b border-slate-100 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="max-w-2xl">
-                <h1 class="text-4xl md:text-[2.75rem] font-semibold tracking-tight text-slate-900 leading-[1.15]">
+                <h1 class="text-4xl md:text-[2.75rem] font-semibold tracking-tight text-slate-900 leading-[1.15]" data-i18n="hero.h1">
                     How I open a company in China
                 </h1>
-                <p class="mt-6 text-lg text-slate-600 leading-relaxed">
+                <p class="mt-6 text-lg text-slate-600 leading-relaxed" data-i18n="hero.lead">
                     Setting up a <strong class="font-medium text-slate-800">foreign-owned company</strong> in China—most often a <strong class="font-medium text-slate-800">WFOE</strong>
                     (wholly foreign-owned enterprise)—where the money goes, and real hiring math across 24 cities—for
                     <strong class="font-medium text-slate-800">US citizens</strong> building an AEC practice (architecture, engineering &amp; construction)
@@ -49,8 +52,8 @@
         <!-- Setup Process Section -->
         <section id="process" class="mb-20">
             <div class="mb-8">
-                <h2 class="text-3xl font-bold text-slate-800 mb-4">The Setup Process: Step-by-Step</h2>
-                <p class="text-slate-600 text-lg">
+                <h2 class="text-3xl font-bold text-slate-800 mb-4" data-i18n="process.h2">The Setup Process: Step-by-Step</h2>
+                <p class="text-slate-600 text-lg" data-i18n="process.intro">
                     For mainland China, read each row left-to-right: <strong>one minimal move</strong>, then
                     <strong>Money &amp; accounts</strong>. Hosting cost vs.
                     <strong>registered capital</strong> is covered in steps 7–8; use
@@ -62,12 +65,12 @@
             <div class="mb-6 flex border-b border-slate-200 overflow-x-auto">
                 <button
                     class="step-item step-active px-5 py-3 text-base font-medium border-b-2 focus:outline-none transition-colors duration-200 text-slate-900 whitespace-nowrap"
-                    data-target="step-mainland" style="border-bottom-color: #0f172a;">
+                    data-target="step-mainland" style="border-bottom-color: #0f172a;" data-i18n="process.tab_mainland">
                     Mainland China (WFOE)
                 </button>
                 <button
                     class="step-item px-5 py-3 text-base font-medium border-b-2 border-transparent text-slate-500 hover:text-slate-800 focus:outline-none transition-colors duration-200 whitespace-nowrap"
-                    data-target="step-sar">
+                    data-target="step-sar" data-i18n="process.tab_sar">
                     Hong Kong &amp; Macau (SAR)
                 </button>
             </div>
@@ -76,7 +79,7 @@
 
                 <!-- MAINLAND STEP-BY-STEP -->
                 <div id="step-mainland" class="step-content block">
-                    <p class="text-slate-500 mb-6 font-medium">Form a <strong>WFOE</strong> in order below. Each
+                    <p class="text-slate-500 mb-6 font-medium" data-i18n="process.mainland_intro">Form a <strong>WFOE</strong> in order below. Each
                         line is one move; optional context is folded below. Budget
                         <strong>registered capital</strong> (steps 7–8) and <strong>hosting cost</strong> before you file.
                     </p>
@@ -89,17 +92,17 @@
                             <div
                                 class="bg-emerald-600 text-white flex items-center justify-center py-3 lg:py-0 lg:min-h-[72px] text-lg font-bold tabular-nums">1</div>
                             <div class="p-4 lg:p-5 border-t lg:border-t-0 lg:border-r border-slate-100">
-                                <p class="text-sm font-semibold text-slate-900 leading-snug">Draft a company name
+                                <p class="text-sm font-semibold text-slate-900 leading-snug" data-i18n="s01.title">Draft a company name
                                     using the pattern <em>[City] + [Brand] + [Industry] + Co., Ltd.</em></p>
                                 <details class="wfoe-details mt-2">
                                     <summary
                                         class="cursor-pointer flex items-center gap-1.5 mt-1 w-fit text-emerald-700 hover:text-emerald-600 select-none">
-                                        <span class="sr-only">Show or hide additional detail for this step</span>
+                                        <span class="sr-only" data-i18n="common.sr.toggle">Show or hide additional detail for this step</span>
                                         <svg class="wfoe-disclosure-icon h-4 w-4 shrink-0" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                                             <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
                                         </svg>
                                     </summary>
-                                    <ul class="list-disc pl-4 text-sm text-slate-600 space-y-1.5 mt-3">
+                                    <ul class="list-disc pl-4 text-sm text-slate-600 space-y-1.5 mt-3" data-i18n="s01.detail">
                                         <li>The legal format is strict—e.g. Shanghai Acme CAD Design Co., Ltd.</li>
                                         <li>Final name approval is part of filing; your agent can pre-check availability.
                                         </li>
@@ -107,9 +110,9 @@
                                 </details>
                             </div>
                             <div class="p-4 lg:p-5 bg-emerald-50/90 border-t lg:border-t-0 lg:border-l border-emerald-100">
-                                <p class="text-xs font-bold uppercase tracking-wide text-emerald-900 mb-1">Money &amp;
+                                <p class="text-xs font-bold uppercase tracking-wide text-emerald-900 mb-1" data-i18n="common.money_accounts">Money &amp;
                                     accounts</p>
-                                <p class="text-sm text-slate-700 leading-relaxed"><strong>No WFOE account.</strong> No
+                                <p class="text-sm text-slate-700 leading-relaxed" data-i18n="s01.money"><strong>No WFOE account.</strong> No
                                     spend required yet.</p>
                             </div>
                         </div>
@@ -120,24 +123,24 @@
                             <div
                                 class="bg-emerald-600 text-white flex items-center justify-center py-3 lg:py-0 lg:min-h-[72px] text-lg font-bold tabular-nums">2</div>
                             <div class="p-4 lg:p-5 border-t lg:border-t-0 lg:border-r border-slate-100">
-                                <p class="text-sm font-semibold text-slate-900 leading-snug">Find only commercial
+                                <p class="text-sm font-semibold text-slate-900 leading-snug" data-i18n="s02.title">Find only commercial
                                     office space—residential units cannot be a WFOE address.</p>
                                 <details class="wfoe-details mt-2">
                                     <summary
                                         class="cursor-pointer flex items-center gap-1.5 mt-1 w-fit text-emerald-700 hover:text-emerald-600 select-none">
-                                        <span class="sr-only">Show or hide additional detail for this step</span>
+                                        <span class="sr-only" data-i18n="common.sr.toggle">Show or hide additional detail for this step</span>
                                         <svg class="wfoe-disclosure-icon h-4 w-4 shrink-0" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                                             <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
                                         </svg>
                                     </summary>
-                                    <p class="text-sm text-slate-600 mt-3">Zoning must allow business registration;
+                                    <p class="text-sm text-slate-600 mt-3" data-i18n="s02.detail">Zoning must allow business registration;
                                         verify with your agent before you sign.</p>
                                 </details>
                             </div>
                             <div class="p-4 lg:p-5 bg-emerald-50/90 border-t lg:border-t-0 lg:border-l border-emerald-100">
-                                <p class="text-xs font-bold uppercase tracking-wide text-emerald-900 mb-1">Money &amp;
+                                <p class="text-xs font-bold uppercase tracking-wide text-emerald-900 mb-1" data-i18n="common.money_accounts">Money &amp;
                                     accounts</p>
-                                <p class="text-sm text-slate-700 leading-relaxed"><strong>No WFOE account.</strong></p>
+                                <p class="text-sm text-slate-700 leading-relaxed" data-i18n="s02.money"><strong>No WFOE account.</strong></p>
                             </div>
                         </div>
 
@@ -147,24 +150,24 @@
                             <div
                                 class="bg-emerald-600 text-white flex items-center justify-center py-3 lg:py-0 lg:min-h-[72px] text-lg font-bold tabular-nums">3</div>
                             <div class="p-4 lg:p-5 border-t lg:border-t-0 lg:border-r border-slate-100">
-                                <p class="text-sm font-semibold text-slate-900 leading-snug">Get the landlord’s red
+                                <p class="text-sm font-semibold text-slate-900 leading-snug" data-i18n="s03.title">Get the landlord’s red
                                     Property Ownership Certificate (or equivalent) for the filing.</p>
                                 <details class="wfoe-details mt-2">
                                     <summary
                                         class="cursor-pointer flex items-center gap-1.5 mt-1 w-fit text-emerald-700 hover:text-emerald-600 select-none">
-                                        <span class="sr-only">Show or hide additional detail for this step</span>
+                                        <span class="sr-only" data-i18n="common.sr.toggle">Show or hide additional detail for this step</span>
                                         <svg class="wfoe-disclosure-icon h-4 w-4 shrink-0" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                                             <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
                                         </svg>
                                     </summary>
-                                    <p class="text-sm text-slate-600 mt-3">Without this document, the AMR typically
+                                    <p class="text-sm text-slate-600 mt-3" data-i18n="s03.detail">Without this document, the AMR typically
                                         rejects the application.</p>
                                 </details>
                             </div>
                             <div class="p-4 lg:p-5 bg-emerald-50/90 border-t lg:border-t-0 lg:border-l border-emerald-100">
-                                <p class="text-xs font-bold uppercase tracking-wide text-emerald-900 mb-1">Money &amp;
+                                <p class="text-xs font-bold uppercase tracking-wide text-emerald-900 mb-1" data-i18n="common.money_accounts">Money &amp;
                                     accounts</p>
-                                <p class="text-sm text-slate-700 leading-relaxed"><strong>No WFOE account.</strong></p>
+                                <p class="text-sm text-slate-700 leading-relaxed" data-i18n="s03.money"><strong>No WFOE account.</strong></p>
                             </div>
                         </div>
 
@@ -174,25 +177,25 @@
                             <div
                                 class="bg-emerald-600 text-white flex items-center justify-center py-3 lg:py-0 lg:min-h-[72px] text-lg font-bold tabular-nums">4</div>
                             <div class="p-4 lg:p-5 border-t lg:border-t-0 lg:border-r border-slate-100">
-                                <p class="text-sm font-semibold text-slate-900 leading-snug">Sign the commercial lease
+                                <p class="text-sm font-semibold text-slate-900 leading-snug" data-i18n="s04.title">Sign the commercial lease
                                     (deposits often paid personally or by your offshore parent).</p>
                                 <details class="wfoe-details mt-2">
                                     <summary
                                         class="cursor-pointer flex items-center gap-1.5 mt-1 w-fit text-emerald-700 hover:text-emerald-600 select-none">
-                                        <span class="sr-only">Show or hide additional detail for this step</span>
+                                        <span class="sr-only" data-i18n="common.sr.toggle">Show or hide additional detail for this step</span>
                                         <svg class="wfoe-disclosure-icon h-4 w-4 shrink-0" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                                             <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
                                         </svg>
                                     </summary>
-                                    <p class="text-sm text-slate-600 mt-3">The tenant may not exist on paper yet; after
+                                    <p class="text-sm text-slate-600 mt-3" data-i18n="s04.detail">The tenant may not exist on paper yet; after
                                         incorporation and chops, the WFOE may reimburse allowable pre-establishment
                                         costs—confirm with your agent and accountant.</p>
                                 </details>
                             </div>
                             <div class="p-4 lg:p-5 bg-emerald-50/90 border-t lg:border-t-0 lg:border-l border-emerald-100">
-                                <p class="text-xs font-bold uppercase tracking-wide text-emerald-900 mb-1">Money &amp;
+                                <p class="text-xs font-bold uppercase tracking-wide text-emerald-900 mb-1" data-i18n="common.money_accounts">Money &amp;
                                     accounts</p>
-                                <p class="text-sm text-slate-700 leading-relaxed"><strong>Personal /</strong> offshore
+                                <p class="text-sm text-slate-700 leading-relaxed" data-i18n="s04.money"><strong>Personal /</strong> offshore
                                     parent funds for deposit and early rent.</p>
                             </div>
                         </div>
@@ -203,24 +206,24 @@
                             <div
                                 class="bg-emerald-600 text-white flex items-center justify-center py-3 lg:py-0 lg:min-h-[72px] text-lg font-bold tabular-nums">5</div>
                             <div class="p-4 lg:p-5 border-t lg:border-t-0 lg:border-r border-slate-100">
-                                <p class="text-sm font-semibold text-slate-900 leading-snug">Notarize your US passport
+                                <p class="text-sm font-semibold text-slate-900 leading-snug" data-i18n="s05.title">Notarize your US passport
                                     or parent-company documents at a US Notary Public.</p>
                                 <details class="wfoe-details mt-2">
                                     <summary
                                         class="cursor-pointer flex items-center gap-1.5 mt-1 w-fit text-emerald-700 hover:text-emerald-600 select-none">
-                                        <span class="sr-only">Show or hide additional detail for this step</span>
+                                        <span class="sr-only" data-i18n="common.sr.toggle">Show or hide additional detail for this step</span>
                                         <svg class="wfoe-disclosure-icon h-4 w-4 shrink-0" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                                             <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
                                         </svg>
                                     </summary>
-                                    <p class="text-sm text-slate-600 mt-3">Individual investor = passport; corporate
+                                    <p class="text-sm text-slate-600 mt-3" data-i18n="s05.detail">Individual investor = passport; corporate
                                         parent = entity docs—your agent will list exactly what is needed.</p>
                                 </details>
                             </div>
                             <div class="p-4 lg:p-5 bg-emerald-50/90 border-t lg:border-t-0 lg:border-l border-emerald-100">
-                                <p class="text-xs font-bold uppercase tracking-wide text-emerald-900 mb-1">Money &amp;
+                                <p class="text-xs font-bold uppercase tracking-wide text-emerald-900 mb-1" data-i18n="common.money_accounts">Money &amp;
                                     accounts</p>
-                                <p class="text-sm text-slate-700 leading-relaxed">Notary fees: <strong>personal</strong>
+                                <p class="text-sm text-slate-700 leading-relaxed" data-i18n="s05.money">Notary fees: <strong>personal</strong>
                                     or parent.</p>
                             </div>
                         </div>
@@ -231,24 +234,24 @@
                             <div
                                 class="bg-emerald-600 text-white flex items-center justify-center py-3 lg:py-0 lg:min-h-[72px] text-lg font-bold tabular-nums">6</div>
                             <div class="p-4 lg:p-5 border-t lg:border-t-0 lg:border-r border-slate-100">
-                                <p class="text-sm font-semibold text-slate-900 leading-snug">Obtain an Apostille from
+                                <p class="text-sm font-semibold text-slate-900 leading-snug" data-i18n="s06.title">Obtain an Apostille from
                                     your state’s Secretary of State.</p>
                                 <details class="wfoe-details mt-2">
                                     <summary
                                         class="cursor-pointer flex items-center gap-1.5 mt-1 w-fit text-emerald-700 hover:text-emerald-600 select-none">
-                                        <span class="sr-only">Show or hide additional detail for this step</span>
+                                        <span class="sr-only" data-i18n="common.sr.toggle">Show or hide additional detail for this step</span>
                                         <svg class="wfoe-disclosure-icon h-4 w-4 shrink-0" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                                             <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
                                         </svg>
                                     </summary>
-                                    <p class="text-sm text-slate-600 mt-3">You no longer need Chinese Embassy
+                                    <p class="text-sm text-slate-600 mt-3" data-i18n="s06.detail">You no longer need Chinese Embassy
                                         legalization for this path—the Apostille is the standard certification.</p>
                                 </details>
                             </div>
                             <div class="p-4 lg:p-5 bg-emerald-50/90 border-t lg:border-t-0 lg:border-l border-emerald-100">
-                                <p class="text-xs font-bold uppercase tracking-wide text-emerald-900 mb-1">Money &amp;
+                                <p class="text-xs font-bold uppercase tracking-wide text-emerald-900 mb-1" data-i18n="common.money_accounts">Money &amp;
                                     accounts</p>
-                                <p class="text-sm text-slate-700 leading-relaxed">State fees: <strong>personal</strong>
+                                <p class="text-sm text-slate-700 leading-relaxed" data-i18n="s06.money">State fees: <strong>personal</strong>
                                     or parent.</p>
                             </div>
                         </div>
@@ -259,17 +262,17 @@
                             <div
                                 class="bg-emerald-600 text-white flex items-center justify-center py-3 lg:py-0 lg:min-h-[72px] text-lg font-bold tabular-nums">7</div>
                             <div class="p-4 lg:p-5 border-t lg:border-t-0 lg:border-r border-slate-100">
-                                <p class="text-sm font-semibold text-slate-900 leading-snug">Set registered capital and
+                                <p class="text-sm font-semibold text-slate-900 leading-snug" data-i18n="s07.title">Set registered capital and
                                     pay-in schedule in the articles—<strong>do not wire equity yet</strong>.</p>
                                 <details class="wfoe-details mt-2">
                                     <summary
                                         class="cursor-pointer flex items-center gap-1.5 mt-1 w-fit text-emerald-700 hover:text-emerald-600 select-none">
-                                        <span class="sr-only">Show or hide additional detail for this step</span>
+                                        <span class="sr-only" data-i18n="common.sr.toggle">Show or hide additional detail for this step</span>
                                         <svg class="wfoe-disclosure-icon h-4 w-4 shrink-0" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                                             <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
                                         </svg>
                                     </summary>
-                                    <ul class="list-disc pl-4 text-sm text-slate-600 space-y-1.5 mt-3">
+                                    <ul class="list-disc pl-4 text-sm text-slate-600 space-y-1.5 mt-3" data-i18n="s07.detail">
                                         <li>Registered capital (注册资本) is the subscribed total on the license; it is
                                             not the same as annual rent or payroll.</li>
                                         <li>Under PRC Company Law (revised 1 Jul 2024), full pay-in within
@@ -284,9 +287,9 @@
                                 </details>
                             </div>
                             <div class="p-4 lg:p-5 bg-emerald-50/90 border-t lg:border-t-0 lg:border-l border-emerald-100">
-                                <p class="text-xs font-bold uppercase tracking-wide text-emerald-900 mb-1">Money &amp;
+                                <p class="text-xs font-bold uppercase tracking-wide text-emerald-900 mb-1" data-i18n="common.money_accounts">Money &amp;
                                     accounts</p>
-                                <p class="text-sm text-slate-700 leading-relaxed"><strong>Paper only.</strong> No inbound
+                                <p class="text-sm text-slate-700 leading-relaxed" data-i18n="s07.money"><strong>Paper only.</strong> No inbound
                                     equity until the license, chops, and bank accounts exist (steps 13–17).</p>
                             </div>
                         </div>
@@ -297,17 +300,17 @@
                             <div
                                 class="bg-emerald-600 text-white flex items-center justify-center py-3 lg:py-0 lg:min-h-[72px] text-lg font-bold tabular-nums">8</div>
                             <div class="p-4 lg:p-5 border-t lg:border-t-0 lg:border-r border-slate-100">
-                                <p class="text-sm font-semibold text-slate-900 leading-snug">Model a 12-month budget:
+                                <p class="text-sm font-semibold text-slate-900 leading-snug" data-i18n="s08.title">Model a 12-month budget:
                                     rent, agents, payroll, and statutory “five insurances + fund.”</p>
                                 <details class="wfoe-details mt-2">
                                     <summary
                                         class="cursor-pointer flex items-center gap-1.5 mt-1 w-fit text-emerald-700 hover:text-emerald-600 select-none">
-                                        <span class="sr-only">Show or hide additional detail for this step</span>
+                                        <span class="sr-only" data-i18n="common.sr.toggle">Show or hide additional detail for this step</span>
                                         <svg class="wfoe-disclosure-icon h-4 w-4 shrink-0" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                                             <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
                                         </svg>
                                     </summary>
-                                    <ul class="list-disc pl-4 text-sm text-slate-600 space-y-1.5 mt-3">
+                                    <ul class="list-disc pl-4 text-sm text-slate-600 space-y-1.5 mt-3" data-i18n="s08.detail">
                                         <li>Pre-WFOE costs (lease, travel) often come from personal or parent funds;
                                             reimbursement after setup may be possible—confirm with your agent.</li>
                                         <li>Payroll + statutory is usually the largest variable for a CAD shop—use the
@@ -319,9 +322,9 @@
                                 </details>
                             </div>
                             <div class="p-4 lg:p-5 bg-emerald-50/90 border-t lg:border-t-0 lg:border-l border-emerald-100">
-                                <p class="text-xs font-bold uppercase tracking-wide text-emerald-900 mb-1">Money &amp;
+                                <p class="text-xs font-bold uppercase tracking-wide text-emerald-900 mb-1" data-i18n="common.money_accounts">Money &amp;
                                     accounts</p>
-                                <p class="text-sm text-slate-700 leading-relaxed"><strong>Spreadsheet only.</strong> No
+                                <p class="text-sm text-slate-700 leading-relaxed" data-i18n="s08.money"><strong>Spreadsheet only.</strong> No
                                     WFOE equity cash onshore yet.</p>
                             </div>
                         </div>
@@ -332,24 +335,24 @@
                             <div
                                 class="bg-emerald-600 text-white flex items-center justify-center py-3 lg:py-0 lg:min-h-[72px] text-lg font-bold tabular-nums">9</div>
                             <div class="p-4 lg:p-5 border-t lg:border-t-0 lg:border-r border-slate-100">
-                                <p class="text-sm font-semibold text-slate-900 leading-snug">Name Legal Rep, Executive
+                                <p class="text-sm font-semibold text-slate-900 leading-snug" data-i18n="s09.title">Name Legal Rep, Executive
                                     Director, and Supervisor—two roles cannot be the same person.</p>
                                 <details class="wfoe-details mt-2">
                                     <summary
                                         class="cursor-pointer flex items-center gap-1.5 mt-1 w-fit text-emerald-700 hover:text-emerald-600 select-none">
-                                        <span class="sr-only">Show or hide additional detail for this step</span>
+                                        <span class="sr-only" data-i18n="common.sr.toggle">Show or hide additional detail for this step</span>
                                         <svg class="wfoe-disclosure-icon h-4 w-4 shrink-0" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                                             <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
                                         </svg>
                                     </summary>
-                                    <p class="text-sm text-slate-600 mt-3">The Supervisor cannot be the Legal
+                                    <p class="text-sm text-slate-600 mt-3" data-i18n="s09.detail">The Supervisor cannot be the Legal
                                         Representative or Director. These names go into articles and bank mandates.</p>
                                 </details>
                             </div>
                             <div class="p-4 lg:p-5 bg-emerald-50/90 border-t lg:border-t-0 lg:border-l border-emerald-100">
-                                <p class="text-xs font-bold uppercase tracking-wide text-emerald-900 mb-1">Money &amp;
+                                <p class="text-xs font-bold uppercase tracking-wide text-emerald-900 mb-1" data-i18n="common.money_accounts">Money &amp;
                                     accounts</p>
-                                <p class="text-sm text-slate-700 leading-relaxed"><strong>Paper only.</strong></p>
+                                <p class="text-sm text-slate-700 leading-relaxed" data-i18n="s09.money"><strong>Paper only.</strong></p>
                             </div>
                         </div>
 
@@ -359,25 +362,25 @@
                             <div
                                 class="bg-emerald-600 text-white flex items-center justify-center py-3 lg:py-0 lg:min-h-[72px] text-lg font-bold tabular-nums">10</div>
                             <div class="p-4 lg:p-5 border-t lg:border-t-0 lg:border-r border-slate-100">
-                                <p class="text-sm font-semibold text-slate-900 leading-snug">File the incorporation
+                                <p class="text-sm font-semibold text-slate-900 leading-snug" data-i18n="s10.title">File the incorporation
                                     package with the AMR (lease + apostille + articles).</p>
                                 <details class="wfoe-details mt-2">
                                     <summary
                                         class="cursor-pointer flex items-center gap-1.5 mt-1 w-fit text-emerald-700 hover:text-emerald-600 select-none">
-                                        <span class="sr-only">Show or hide additional detail for this step</span>
+                                        <span class="sr-only" data-i18n="common.sr.toggle">Show or hide additional detail for this step</span>
                                         <svg class="wfoe-disclosure-icon h-4 w-4 shrink-0" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                                             <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
                                         </svg>
                                     </summary>
-                                    <p class="text-sm text-slate-600 mt-3">Submit to the local Administration for Market
+                                    <p class="text-sm text-slate-600 mt-3" data-i18n="s10.detail">Submit to the local Administration for Market
                                         Regulation (AMR): lease, apostilled identity/parent docs, articles (capital,
                                         pay-in schedule, roles), and other required company rules.</p>
                                 </details>
                             </div>
                             <div class="p-4 lg:p-5 bg-emerald-50/90 border-t lg:border-t-0 lg:border-l border-emerald-100">
-                                <p class="text-xs font-bold uppercase tracking-wide text-emerald-900 mb-1">Money &amp;
+                                <p class="text-xs font-bold uppercase tracking-wide text-emerald-900 mb-1" data-i18n="common.money_accounts">Money &amp;
                                     accounts</p>
-                                <p class="text-sm text-slate-700 leading-relaxed">Agent/filing fees: <strong>personal</strong>
+                                <p class="text-sm text-slate-700 leading-relaxed" data-i18n="s10.money">Agent/filing fees: <strong>personal</strong>
                                     or parent until the WFOE can pay.</p>
                             </div>
                         </div>
@@ -388,24 +391,24 @@
                             <div
                                 class="bg-emerald-600 text-white flex items-center justify-center py-3 lg:py-0 lg:min-h-[72px] text-lg font-bold tabular-nums">11</div>
                             <div class="p-4 lg:p-5 border-t lg:border-t-0 lg:border-r border-slate-100">
-                                <p class="text-sm font-semibold text-slate-900 leading-snug">Collect your Business
+                                <p class="text-sm font-semibold text-slate-900 leading-snug" data-i18n="s11.title">Collect your Business
                                     License (营业执照)—the company legally exists.</p>
                                 <details class="wfoe-details mt-2">
                                     <summary
                                         class="cursor-pointer flex items-center gap-1.5 mt-1 w-fit text-emerald-700 hover:text-emerald-600 select-none">
-                                        <span class="sr-only">Show or hide additional detail for this step</span>
+                                        <span class="sr-only" data-i18n="common.sr.toggle">Show or hide additional detail for this step</span>
                                         <svg class="wfoe-disclosure-icon h-4 w-4 shrink-0" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                                             <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
                                         </svg>
                                     </summary>
-                                    <p class="text-sm text-slate-600 mt-3">You still have no operational corporate bank
+                                    <p class="text-sm text-slate-600 mt-3" data-i18n="s11.detail">You still have no operational corporate bank
                                         accounts until steps 13–14.</p>
                                 </details>
                             </div>
                             <div class="p-4 lg:p-5 bg-emerald-50/90 border-t lg:border-t-0 lg:border-l border-emerald-100">
-                                <p class="text-xs font-bold uppercase tracking-wide text-emerald-900 mb-1">Money &amp;
+                                <p class="text-xs font-bold uppercase tracking-wide text-emerald-900 mb-1" data-i18n="common.money_accounts">Money &amp;
                                     accounts</p>
-                                <p class="text-sm text-slate-700 leading-relaxed">Not yet receiving inbound investment
+                                <p class="text-sm text-slate-700 leading-relaxed" data-i18n="s11.money">Not yet receiving inbound investment
                                     as the WFOE.</p>
                             </div>
                         </div>
@@ -416,25 +419,25 @@
                             <div
                                 class="bg-emerald-600 text-white flex items-center justify-center py-3 lg:py-0 lg:min-h-[72px] text-lg font-bold tabular-nums">12</div>
                             <div class="p-4 lg:p-5 border-t lg:border-t-0 lg:border-r border-slate-100">
-                                <p class="text-sm font-semibold text-slate-900 leading-snug">Register and carve your
+                                <p class="text-sm font-semibold text-slate-900 leading-snug" data-i18n="s12.title">Register and carve your
                                     company chops (official + financial seals).</p>
                                 <details class="wfoe-details mt-2">
                                     <summary
                                         class="cursor-pointer flex items-center gap-1.5 mt-1 w-fit text-emerald-700 hover:text-emerald-600 select-none">
-                                        <span class="sr-only">Show or hide additional detail for this step</span>
+                                        <span class="sr-only" data-i18n="common.sr.toggle">Show or hide additional detail for this step</span>
                                         <svg class="wfoe-disclosure-icon h-4 w-4 shrink-0" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                                             <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
                                         </svg>
                                     </summary>
-                                    <p class="text-sm text-slate-600 mt-3">PSB + licensed vendor. A red chop on a
+                                    <p class="text-sm text-slate-600 mt-3" data-i18n="s12.detail">PSB + licensed vendor. A red chop on a
                                         contract is often decisive—secure storage; whoever holds chops controls signing.
                                     </p>
                                 </details>
                             </div>
                             <div class="p-4 lg:p-5 bg-emerald-50/90 border-t lg:border-t-0 lg:border-l border-emerald-100">
-                                <p class="text-xs font-bold uppercase tracking-wide text-emerald-900 mb-1">Money &amp;
+                                <p class="text-xs font-bold uppercase tracking-wide text-emerald-900 mb-1" data-i18n="common.money_accounts">Money &amp;
                                     accounts</p>
-                                <p class="text-sm text-slate-700 leading-relaxed">Vendor fees; still <strong>no</strong>
+                                <p class="text-sm text-slate-700 leading-relaxed" data-i18n="s12.money">Vendor fees; still <strong>no</strong>
                                     WFOE operating cash flow.</p>
                             </div>
                         </div>
@@ -445,24 +448,24 @@
                             <div
                                 class="bg-emerald-600 text-white flex items-center justify-center py-3 lg:py-0 lg:min-h-[72px] text-lg font-bold tabular-nums">13</div>
                             <div class="p-4 lg:p-5 border-t lg:border-t-0 lg:border-r border-slate-100">
-                                <p class="text-sm font-semibold text-slate-900 leading-snug">Open the RMB basic
+                                <p class="text-sm font-semibold text-slate-900 leading-snug" data-i18n="s13.title">Open the RMB basic
                                     deposit account (基本户) with license + chops.</p>
                                 <details class="wfoe-details mt-2">
                                     <summary
                                         class="cursor-pointer flex items-center gap-1.5 mt-1 w-fit text-emerald-700 hover:text-emerald-600 select-none">
-                                        <span class="sr-only">Show or hide additional detail for this step</span>
+                                        <span class="sr-only" data-i18n="common.sr.toggle">Show or hide additional detail for this step</span>
                                         <svg class="wfoe-disclosure-icon h-4 w-4 shrink-0" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                                             <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
                                         </svg>
                                     </summary>
-                                    <p class="text-sm text-slate-600 mt-3">Main RMB account for salaries, rent, and
+                                    <p class="text-sm text-slate-600 mt-3" data-i18n="s13.detail">Main RMB account for salaries, rent, and
                                         tax—often the only account that can pay cash salaries. KYC applies.</p>
                                 </details>
                             </div>
                             <div class="p-4 lg:p-5 bg-emerald-50/90 border-t lg:border-t-0 lg:border-l border-emerald-100">
-                                <p class="text-xs font-bold uppercase tracking-wide text-emerald-900 mb-1">Money &amp;
+                                <p class="text-xs font-bold uppercase tracking-wide text-emerald-900 mb-1" data-i18n="common.money_accounts">Money &amp;
                                     accounts</p>
-                                <p class="text-sm text-slate-700 leading-relaxed"><strong>First WFOE accounts</strong>;
+                                <p class="text-sm text-slate-700 leading-relaxed" data-i18n="s13.money"><strong>First WFOE accounts</strong>;
                                     may open empty.</p>
                             </div>
                         </div>
@@ -473,24 +476,24 @@
                             <div
                                 class="bg-emerald-600 text-white flex items-center justify-center py-3 lg:py-0 lg:min-h-[72px] text-lg font-bold tabular-nums">14</div>
                             <div class="p-4 lg:p-5 border-t lg:border-t-0 lg:border-r border-slate-100">
-                                <p class="text-sm font-semibold text-slate-900 leading-snug">Open the foreign-investment
+                                <p class="text-sm font-semibold text-slate-900 leading-snug" data-i18n="s14.title">Open the foreign-investment
                                     capital account for inbound equity (FCY).</p>
                                 <details class="wfoe-details mt-2">
                                     <summary
                                         class="cursor-pointer flex items-center gap-1.5 mt-1 w-fit text-emerald-700 hover:text-emerald-600 select-none">
-                                        <span class="sr-only">Show or hide additional detail for this step</span>
+                                        <span class="sr-only" data-i18n="common.sr.toggle">Show or hide additional detail for this step</span>
                                         <svg class="wfoe-disclosure-icon h-4 w-4 shrink-0" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                                             <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
                                         </svg>
                                     </summary>
-                                    <p class="text-sm text-slate-600 mt-3">Name varies by bank (FDI / capital account).
+                                    <p class="text-sm text-slate-600 mt-3" data-i18n="s14.detail">Name varies by bank (FDI / capital account).
                                         Pairs with SAFE registration of the foreign-invested enterprise.</p>
                                 </details>
                             </div>
                             <div class="p-4 lg:p-5 bg-emerald-50/90 border-t lg:border-t-0 lg:border-l border-emerald-100">
-                                <p class="text-xs font-bold uppercase tracking-wide text-emerald-900 mb-1">Money &amp;
+                                <p class="text-xs font-bold uppercase tracking-wide text-emerald-900 mb-1" data-i18n="common.money_accounts">Money &amp;
                                     accounts</p>
-                                <p class="text-sm text-slate-700 leading-relaxed">Ready to <strong>receive</strong>
+                                <p class="text-sm text-slate-700 leading-relaxed" data-i18n="s14.money">Ready to <strong>receive</strong>
                                     investment wires—not the same as personal remittance.</p>
                             </div>
                         </div>
@@ -501,24 +504,24 @@
                             <div
                                 class="bg-emerald-600 text-white flex items-center justify-center py-3 lg:py-0 lg:min-h-[72px] text-lg font-bold tabular-nums">15</div>
                             <div class="p-4 lg:p-5 border-t lg:border-t-0 lg:border-r border-slate-100">
-                                <p class="text-sm font-semibold text-slate-900 leading-snug">Prepare the bank’s
+                                <p class="text-sm font-semibold text-slate-900 leading-snug" data-i18n="s15.title">Prepare the bank’s
                                     capital-contribution / FX forms with your agent (投资款 wording).</p>
                                 <details class="wfoe-details mt-2">
                                     <summary
                                         class="cursor-pointer flex items-center gap-1.5 mt-1 w-fit text-emerald-700 hover:text-emerald-600 select-none">
-                                        <span class="sr-only">Show or hide additional detail for this step</span>
+                                        <span class="sr-only" data-i18n="common.sr.toggle">Show or hide additional detail for this step</span>
                                         <svg class="wfoe-disclosure-icon h-4 w-4 shrink-0" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                                             <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
                                         </svg>
                                     </summary>
-                                    <p class="text-sm text-slate-600 mt-3">The remittance must be coded as registered
+                                    <p class="text-sm text-slate-600 mt-3" data-i18n="s15.detail">The remittance must be coded as registered
                                         capital—not an informal “transfer.” Codes differ by bank.</p>
                                 </details>
                             </div>
                             <div class="p-4 lg:p-5 bg-emerald-50/90 border-t lg:border-t-0 lg:border-l border-emerald-100">
-                                <p class="text-xs font-bold uppercase tracking-wide text-emerald-900 mb-1">Money &amp;
+                                <p class="text-xs font-bold uppercase tracking-wide text-emerald-900 mb-1" data-i18n="common.money_accounts">Money &amp;
                                     accounts</p>
-                                <p class="text-sm text-slate-700 leading-relaxed"><strong>No wire yet</strong>—paperwork
+                                <p class="text-sm text-slate-700 leading-relaxed" data-i18n="s15.money"><strong>No wire yet</strong>—paperwork
                                     first.</p>
                             </div>
                         </div>
@@ -529,25 +532,25 @@
                             <div
                                 class="bg-emerald-600 text-white flex items-center justify-center py-3 lg:py-0 lg:min-h-[72px] text-lg font-bold tabular-nums">16</div>
                             <div class="p-4 lg:p-5 border-t lg:border-t-0 lg:border-r border-slate-100">
-                                <p class="text-sm font-semibold text-slate-900 leading-snug">Wire registered capital from
+                                <p class="text-sm font-semibold text-slate-900 leading-snug" data-i18n="s16.title">Wire registered capital from
                                     abroad in foreign currency to the designated inbound account.</p>
                                 <details class="wfoe-details mt-2">
                                     <summary
                                         class="cursor-pointer flex items-center gap-1.5 mt-1 w-fit text-emerald-700 hover:text-emerald-600 select-none">
-                                        <span class="sr-only">Show or hide additional detail for this step</span>
+                                        <span class="sr-only" data-i18n="common.sr.toggle">Show or hide additional detail for this step</span>
                                         <svg class="wfoe-disclosure-icon h-4 w-4 shrink-0" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                                             <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
                                         </svg>
                                     </summary>
-                                    <p class="text-sm text-slate-600 mt-3">Bank records paid-in capital (实缴) toward SAFE
+                                    <p class="text-sm text-slate-600 mt-3" data-i18n="s16.detail">Bank records paid-in capital (实缴) toward SAFE
                                         filing; obtain FX settlement documents. Multiple tranches allowed within five-year
                                         pay-in (step 7).</p>
                                 </details>
                             </div>
                             <div class="p-4 lg:p-5 bg-emerald-50/90 border-t lg:border-t-0 lg:border-l border-emerald-100">
-                                <p class="text-xs font-bold uppercase tracking-wide text-emerald-900 mb-1">Money &amp;
+                                <p class="text-xs font-bold uppercase tracking-wide text-emerald-900 mb-1" data-i18n="common.money_accounts">Money &amp;
                                     accounts</p>
-                                <p class="text-sm text-slate-700 leading-relaxed"><strong>Equity lands onshore.</strong>
+                                <p class="text-sm text-slate-700 leading-relaxed" data-i18n="s16.money"><strong>Equity lands onshore.</strong>
                                 </p>
                             </div>
                         </div>
@@ -558,24 +561,24 @@
                             <div
                                 class="bg-emerald-600 text-white flex items-center justify-center py-3 lg:py-0 lg:min-h-[72px] text-lg font-bold tabular-nums">17</div>
                             <div class="p-4 lg:p-5 border-t lg:border-t-0 lg:border-r border-slate-100">
-                                <p class="text-sm font-semibold text-slate-900 leading-snug">Settle FX (资本金结汇) and
+                                <p class="text-sm font-semibold text-slate-900 leading-snug" data-i18n="s17.title">Settle FX (资本金结汇) and
                                     move RMB into the basic account for operations.</p>
                                 <details class="wfoe-details mt-2">
                                     <summary
                                         class="cursor-pointer flex items-center gap-1.5 mt-1 w-fit text-emerald-700 hover:text-emerald-600 select-none">
-                                        <span class="sr-only">Show or hide additional detail for this step</span>
+                                        <span class="sr-only" data-i18n="common.sr.toggle">Show or hide additional detail for this step</span>
                                         <svg class="wfoe-disclosure-icon h-4 w-4 shrink-0" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                                             <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
                                         </svg>
                                     </summary>
-                                    <p class="text-sm text-slate-600 mt-3">Follow the bank’s process; this is company
+                                    <p class="text-sm text-slate-600 mt-3" data-i18n="s17.detail">Follow the bank’s process; this is company
                                         capital settlement, not personal remittance.</p>
                                 </details>
                             </div>
                             <div class="p-4 lg:p-5 bg-emerald-50/90 border-t lg:border-t-0 lg:border-l border-emerald-100">
-                                <p class="text-xs font-bold uppercase tracking-wide text-emerald-900 mb-1">Money &amp;
+                                <p class="text-xs font-bold uppercase tracking-wide text-emerald-900 mb-1" data-i18n="common.money_accounts">Money &amp;
                                     accounts</p>
-                                <p class="text-sm text-slate-700 leading-relaxed"><strong>Usable company cash</strong> in
+                                <p class="text-sm text-slate-700 leading-relaxed" data-i18n="s17.money"><strong>Usable company cash</strong> in
                                     China.</p>
                             </div>
                         </div>
@@ -586,24 +589,24 @@
                             <div
                                 class="bg-emerald-600 text-white flex items-center justify-center py-3 lg:py-0 lg:min-h-[72px] text-lg font-bold tabular-nums">18</div>
                             <div class="p-4 lg:p-5 border-t lg:border-t-0 lg:border-r border-slate-100">
-                                <p class="text-sm font-semibold text-slate-900 leading-snug">Register with the tax bureau
+                                <p class="text-sm font-semibold text-slate-900 leading-snug" data-i18n="s18.title">Register with the tax bureau
                                     and obtain fapiao (official invoicing) capability.</p>
                                 <details class="wfoe-details mt-2">
                                     <summary
                                         class="cursor-pointer flex items-center gap-1.5 mt-1 w-fit text-emerald-700 hover:text-emerald-600 select-none">
-                                        <span class="sr-only">Show or hide additional detail for this step</span>
+                                        <span class="sr-only" data-i18n="common.sr.toggle">Show or hide additional detail for this step</span>
                                         <svg class="wfoe-disclosure-icon h-4 w-4 shrink-0" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                                             <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
                                         </svg>
                                     </summary>
-                                    <p class="text-sm text-slate-600 mt-3">You need this to bill customers compliantly on
+                                    <p class="text-sm text-slate-600 mt-3" data-i18n="s18.detail">You need this to bill customers compliantly on
                                         the mainland.</p>
                                 </details>
                             </div>
                             <div class="p-4 lg:p-5 bg-emerald-50/90 border-t lg:border-t-0 lg:border-l border-emerald-100">
-                                <p class="text-xs font-bold uppercase tracking-wide text-emerald-900 mb-1">Money &amp;
+                                <p class="text-xs font-bold uppercase tracking-wide text-emerald-900 mb-1" data-i18n="common.money_accounts">Money &amp;
                                     accounts</p>
-                                <p class="text-sm text-slate-700 leading-relaxed">Pay from <strong>RMB basic</strong>
+                                <p class="text-sm text-slate-700 leading-relaxed" data-i18n="s18.money">Pay from <strong>RMB basic</strong>
                                     account.</p>
                             </div>
                         </div>
@@ -614,26 +617,26 @@
                             <div
                                 class="bg-emerald-600 text-white flex items-center justify-center py-3 lg:py-0 lg:min-h-[72px] text-lg font-bold tabular-nums">19</div>
                             <div class="p-4 lg:p-5 border-t lg:border-t-0 lg:border-r border-slate-100">
-                                <p class="text-sm font-semibold text-slate-900 leading-snug">Register for social
+                                <p class="text-sm font-semibold text-slate-900 leading-snug" data-i18n="s19.title">Register for social
                                     insurance—then you can hire and run payroll.</p>
                                 <details class="wfoe-details mt-2">
                                     <summary
                                         class="cursor-pointer flex items-center gap-1.5 mt-1 w-fit text-emerald-700 hover:text-emerald-600 select-none">
-                                        <span class="sr-only">Show or hide additional detail for this step</span>
+                                        <span class="sr-only" data-i18n="common.sr.toggle">Show or hide additional detail for this step</span>
                                         <svg class="wfoe-disclosure-icon h-4 w-4 shrink-0" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                                             <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
                                         </svg>
                                     </summary>
-                                    <p class="text-sm text-slate-600 mt-3">Mandatory contributions are paid from the RMB
+                                    <p class="text-sm text-slate-600 mt-3" data-i18n="s19.detail">Mandatory contributions are paid from the RMB
                                         basic account, funded by capital (steps 16–17) and revenue. Compare cities
                                         on the <a href="#costs" class="text-emerald-600 font-semibold underline">dashboard</a>.
                                     </p>
                                 </details>
                             </div>
                             <div class="p-4 lg:p-5 bg-emerald-50/90 border-t lg:border-t-0 lg:border-l border-emerald-100">
-                                <p class="text-xs font-bold uppercase tracking-wide text-emerald-900 mb-1">Money &amp;
+                                <p class="text-xs font-bold uppercase tracking-wide text-emerald-900 mb-1" data-i18n="common.money_accounts">Money &amp;
                                     accounts</p>
-                                <p class="text-sm text-slate-700 leading-relaxed"><strong>Payroll + statutory</strong>
+                                <p class="text-sm text-slate-700 leading-relaxed" data-i18n="s19.money"><strong>Payroll + statutory</strong>
                                     from the basic account.</p>
                             </div>
                         </div>
@@ -643,7 +646,7 @@
 
                 <!-- SAR BRIEF -->
                 <div id="step-sar" class="step-content hidden">
-                    <p class="text-slate-500 mb-6 font-medium">Because Hong Kong and Macau operate under separate legal
+                    <p class="text-slate-500 mb-6 font-medium" data-i18n="sar.intro">Because Hong Kong and Macau operate under separate legal
                         systems, the setup process is entirely different and vastly simplified compared to the mainland
                         WFOE.</p>
 
@@ -652,21 +655,21 @@
                         <div class="border border-slate-200 p-6 rounded-lg bg-slate-50">
                             <div class="flex items-center gap-2 mb-4">
                                 <div class="text-2xl">&#127469;&#127472;</div>
-                                <h3 class="font-bold text-xl text-slate-800">Hong Kong Setup</h3>
+                                <h3 class="font-bold text-xl text-slate-800" data-i18n="sar.hk_title">Hong Kong Setup</h3>
                             </div>
                             <ol class="list-decimal pl-5 space-y-3 text-sm text-slate-700">
-                                <li><strong>Hire a Company Secretary:</strong> By law, you must hire a local HK
+                                <li data-i18n="sar.hk1"><strong>Hire a Company Secretary:</strong> By law, you must hire a local HK
                                     individual or agency to act as your Company Secretary and provide a registered
                                     office address.</li>
-                                <li><strong>Provide KYC Docs:</strong> Give the agency a copy of your US Passport and a
+                                <li data-i18n="sar.hk2"><strong>Provide KYC Docs:</strong> Give the agency a copy of your US Passport and a
                                     recent utility bill (proof of address).</li>
-                                <li><strong>File Online:</strong> The agency will file Form NNC1 (Incorporation Form)
+                                <li data-i18n="sar.hk3"><strong>File Online:</strong> The agency will file Form NNC1 (Incorporation Form)
                                     with the Companies Registry.</li>
-                                <li><strong>Receive Certificate:</strong> The company is usually incorporated within
+                                <li data-i18n="sar.hk4"><strong>Receive Certificate:</strong> The company is usually incorporated within
                                     <strong>24 to 48 hours</strong>. No "chops" or complex government visits are
                                     required.
                                 </li>
-                                <li><strong>Bank Account (The Hard Part):</strong> Opening a corporate bank account in
+                                <li data-i18n="sar.hk5"><strong>Bank Account (The Hard Part):</strong> Opening a corporate bank account in
                                     HK is notoriously strict due to anti-money laundering laws. Expect this to take
                                     weeks and require an in-person visit or video interview.</li>
                             </ol>
@@ -676,17 +679,17 @@
                         <div class="border border-slate-200 p-6 rounded-lg bg-slate-50">
                             <div class="flex items-center gap-2 mb-4">
                                 <div class="text-2xl">&#127474;&#127473;</div>
-                                <h3 class="font-bold text-xl text-slate-800">Macau Setup</h3>
+                                <h3 class="font-bold text-xl text-slate-800" data-i18n="sar.mo_title">Macau Setup</h3>
                             </div>
                             <ol class="list-decimal pl-5 space-y-3 text-sm text-slate-700">
-                                <li><strong>Name Approval:</strong> Submit an application to the Macau Commercial and
+                                <li data-i18n="sar.mo1"><strong>Name Approval:</strong> Submit an application to the Macau Commercial and
                                     Movable Property Registry (CRCBM) to reserve a company name.</li>
-                                <li><strong>Draft Articles:</strong> Prepare the Memorandum and Articles of Association.
+                                <li data-i18n="sar.mo2"><strong>Draft Articles:</strong> Prepare the Memorandum and Articles of Association.
                                     Most foreign businesses form a "Limitada" (Lda.).</li>
-                                <li><strong>Notary Signature:</strong> The founders must sign the incorporation
+                                <li data-i18n="sar.mo3"><strong>Notary Signature:</strong> The founders must sign the incorporation
                                     documents in front of a Macanese Notary Public.</li>
-                                <li><strong>Registration:</strong> File the notarized documents with the CRCBM.</li>
-                                <li><strong>Tax Bureau:</strong> Submit a Declaration of Commencement of Operations to
+                                <li data-i18n="sar.mo4"><strong>Registration:</strong> File the notarized documents with the CRCBM.</li>
+                                <li data-i18n="sar.mo5"><strong>Tax Bureau:</strong> Submit a Declaration of Commencement of Operations to
                                     the Macau Finance Services Bureau. <em>Total time: roughly 2 to 3 weeks.</em></li>
                             </ol>
                         </div>
@@ -699,8 +702,8 @@
         <!-- Regions Section -->
         <section id="regions" class="mb-20">
             <div class="mb-8">
-                <h2 class="text-3xl font-bold text-slate-800 mb-4">Expanded Engineering Talent Hubs</h2>
-                <p class="text-slate-600 text-lg">
+                <h2 class="text-3xl font-bold text-slate-800 mb-4" data-i18n="regions.h2">Expanded Engineering Talent Hubs</h2>
+                <p class="text-slate-600 text-lg" data-i18n="regions.intro">
                     This section categorizes 24 distinct markets across Greater China—the Greater Bay Area, East China,
                     the northern coast, inland &amp; Central Plains cities, <strong>Southwest China</strong> (Sichuan,
                     Chongqing, Yunnan), and Hainan—so you can compare salary and cost patterns without mixing geography.
@@ -711,23 +714,23 @@
 
                 <!-- GBA -->
                 <div>
-                    <h3 class="text-xl font-bold text-slate-800 mb-4 border-b border-slate-200 pb-2">Greater Bay Area
+                    <h3 class="text-xl font-bold text-slate-800 mb-4 border-b border-slate-200 pb-2" data-i18n="gba.h3">Greater Bay Area
                         (GBA) & South</h3>
                     <details class="hub-region-details mb-4 rounded-lg border border-slate-200 bg-slate-50/60">
                         <summary
                             class="cursor-pointer flex items-center gap-2 px-4 py-3 text-sm font-semibold text-slate-800 select-none">
-                            <span class="sr-only">Show or hide regional context for the Greater Bay Area</span>
+                            <span class="sr-only" data-i18n="regions.sr.gba">Show or hide regional context for the Greater Bay Area</span>
                             <svg class="hub-region-chevron h-4 w-4 shrink-0 text-slate-600" viewBox="0 0 20 20"
                                 fill="currentColor" aria-hidden="true">
                                 <path fill-rule="evenodd"
                                     d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
                                     clip-rule="evenodd" />
                             </svg>
-                            <span>Special about the GBA for AEC teams</span>
+                            <span data-i18n="gba.fold_title">Special about the GBA for AEC teams</span>
                         </summary>
                         <div
                             class="text-sm text-slate-600 leading-relaxed px-4 pb-4 pt-0 border-t border-slate-100 space-y-2">
-                            <p>The Pearl River Delta ties manufacturing, finance, and design: <strong>Shenzhen</strong>
+                            <p data-i18n="gba.fold">The Pearl River Delta ties manufacturing, finance, and design: <strong>Shenzhen</strong>
                                 and <strong>Guangzhou</strong> anchor large engineering talent pools, while
                                 <strong>Hong Kong</strong> and <strong>Macau</strong> (SARs) offer different pay and
                                 contribution profiles. <strong>Zhuhai</strong> is a lower-cost GBA entry point at the
@@ -739,40 +742,40 @@
                             class="bg-white p-4 rounded-lg shadow-sm border border-slate-200 hover:border-sky-400 transition">
                             <span
                                 class="text-[10px] font-bold badge-gba px-2 py-1 rounded uppercase tracking-wide">GBA</span>
-                            <h4 class="font-bold text-lg mt-2">Shenzhen</h4>
-                            <p class="text-xs text-slate-500 mt-1">Hardware & Tech capital. High demand, fast-paced CAD
+                            <h4 class="font-bold text-lg mt-2" data-i18n="hub.shenzhen">Shenzhen</h4>
+                            <p class="text-xs text-slate-500 mt-1" data-i18n="gba.sz">Hardware & Tech capital. High demand, fast-paced CAD
                                 talent.</p>
                         </div>
                         <div
                             class="bg-white p-4 rounded-lg shadow-sm border border-slate-200 hover:border-sky-400 transition">
                             <span
                                 class="text-[10px] font-bold badge-gba px-2 py-1 rounded uppercase tracking-wide">GBA</span>
-                            <h4 class="font-bold text-lg mt-2">Guangzhou</h4>
-                            <p class="text-xs text-slate-500 mt-1">Traditional trade/manufacturing hub. Excellent
+                            <h4 class="font-bold text-lg mt-2" data-i18n="hub.guangzhou">Guangzhou</h4>
+                            <p class="text-xs text-slate-500 mt-1" data-i18n="gba.gz">Traditional trade/manufacturing hub. Excellent
                                 engineering base.</p>
                         </div>
                         <div
                             class="bg-white p-4 rounded-lg shadow-sm border border-slate-200 hover:border-sky-400 transition">
                             <span class="text-[10px] font-bold badge-gba px-2 py-1 rounded uppercase tracking-wide">GBA
                                 / SAR</span>
-                            <h4 class="font-bold text-lg mt-2">Hong Kong</h4>
-                            <p class="text-xs text-slate-500 mt-1">Global finance/design. Highest base pay, lowest
+                            <h4 class="font-bold text-lg mt-2" data-i18n="hub.hongkong">Hong Kong</h4>
+                            <p class="text-xs text-slate-500 mt-1" data-i18n="gba.hk">Global finance/design. Highest base pay, lowest
                                 employer tax burden.</p>
                         </div>
                         <div
                             class="bg-white p-4 rounded-lg shadow-sm border border-slate-200 hover:border-sky-400 transition">
                             <span class="text-[10px] font-bold badge-gba px-2 py-1 rounded uppercase tracking-wide">GBA
                                 / SAR</span>
-                            <h4 class="font-bold text-lg mt-2">Macau</h4>
-                            <p class="text-xs text-slate-500 mt-1">Hospitality/Architecture focus. Unique labor market,
+                            <h4 class="font-bold text-lg mt-2" data-i18n="hub.macau">Macau</h4>
+                            <p class="text-xs text-slate-500 mt-1" data-i18n="gba.mo">Hospitality/Architecture focus. Unique labor market,
                                 very low tax.</p>
                         </div>
                         <div
                             class="bg-white p-4 rounded-lg shadow-sm border border-slate-200 hover:border-sky-400 transition">
                             <span
                                 class="text-[10px] font-bold badge-gba px-2 py-1 rounded uppercase tracking-wide">GBA</span>
-                            <h4 class="font-bold text-lg mt-2">Zhuhai</h4>
-                            <p class="text-xs text-slate-500 mt-1">Bordering Macau. Beautiful coastal city,
+                            <h4 class="font-bold text-lg mt-2" data-i18n="hub.zhuhai">Zhuhai</h4>
+                            <p class="text-xs text-slate-500 mt-1" data-i18n="gba.zh">Bordering Macau. Beautiful coastal city,
                                 cost-effective GBA access.</p>
                         </div>
                     </div>
@@ -780,23 +783,23 @@
 
                 <!-- East -->
                 <div>
-                    <h3 class="text-xl font-bold text-slate-800 mb-4 border-b border-slate-200 pb-2">East China Hubs
+                    <h3 class="text-xl font-bold text-slate-800 mb-4 border-b border-slate-200 pb-2" data-i18n="east.h3">East China Hubs
                     </h3>
                     <details class="hub-region-details mb-4 rounded-lg border border-slate-200 bg-slate-50/60">
                         <summary
                             class="cursor-pointer flex items-center gap-2 px-4 py-3 text-sm font-semibold text-slate-800 select-none">
-                            <span class="sr-only">Show or hide regional context for East China hubs</span>
+                            <span class="sr-only" data-i18n="regions.sr.east">Show or hide regional context for East China hubs</span>
                             <svg class="hub-region-chevron h-4 w-4 shrink-0 text-slate-600" viewBox="0 0 20 20"
                                 fill="currentColor" aria-hidden="true">
                                 <path fill-rule="evenodd"
                                     d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
                                     clip-rule="evenodd" />
                             </svg>
-                            <span>Special about East China hubs</span>
+                            <span data-i18n="east.fold_title">Special about East China hubs</span>
                         </summary>
                         <div
                             class="text-sm text-slate-600 leading-relaxed px-4 pb-4 pt-0 border-t border-slate-100 space-y-2">
-                            <p>The Yangtze corridor combines <strong>Shanghai</strong>’s international practices,
+                            <p data-i18n="east.fold">The Yangtze corridor combines <strong>Shanghai</strong>’s international practices,
                                 <strong>Hangzhou</strong>’s digital economy, <strong>Nanjing</strong>’s civil-engineering
                                 depth, <strong>Hefei</strong>’s advanced manufacturing, and <strong>Suzhou</strong>’s
                                 industrial-park and manufacturing-adjacent design talent—often the most competitive
@@ -808,40 +811,40 @@
                             class="bg-white p-4 rounded-lg shadow-sm border border-slate-200 hover:border-purple-400 transition">
                             <span
                                 class="text-[10px] font-bold badge-east px-2 py-1 rounded uppercase tracking-wide">East</span>
-                            <h4 class="font-bold text-lg mt-2">Shanghai</h4>
-                            <p class="text-xs text-slate-500 mt-1">Premium international hub. Tongji Univ. architecture
+                            <h4 class="font-bold text-lg mt-2" data-i18n="hub.shanghai">Shanghai</h4>
+                            <p class="text-xs text-slate-500 mt-1" data-i18n="east.sh">Premium international hub. Tongji Univ. architecture
                                 talent.</p>
                         </div>
                         <div
                             class="bg-white p-4 rounded-lg shadow-sm border border-slate-200 hover:border-purple-400 transition">
                             <span
                                 class="text-[10px] font-bold badge-east px-2 py-1 rounded uppercase tracking-wide">East</span>
-                            <h4 class="font-bold text-lg mt-2">Hangzhou</h4>
-                            <p class="text-xs text-slate-500 mt-1">E-commerce/Tech hub (Alibaba). Highly competitive,
+                            <h4 class="font-bold text-lg mt-2" data-i18n="hub.hangzhou">Hangzhou</h4>
+                            <p class="text-xs text-slate-500 mt-1" data-i18n="east.hz">E-commerce/Tech hub (Alibaba). Highly competitive,
                                 modern skills.</p>
                         </div>
                         <div
                             class="bg-white p-4 rounded-lg shadow-sm border border-slate-200 hover:border-purple-400 transition">
                             <span
                                 class="text-[10px] font-bold badge-east px-2 py-1 rounded uppercase tracking-wide">East</span>
-                            <h4 class="font-bold text-lg mt-2">Nanjing</h4>
-                            <p class="text-xs text-slate-500 mt-1">Historical capital. Elite civil engineering talent
+                            <h4 class="font-bold text-lg mt-2" data-i18n="hub.nanjing">Nanjing</h4>
+                            <p class="text-xs text-slate-500 mt-1" data-i18n="east.nj">Historical capital. Elite civil engineering talent
                                 (Southeast Univ).</p>
                         </div>
                         <div
                             class="bg-white p-4 rounded-lg shadow-sm border border-slate-200 hover:border-purple-400 transition">
                             <span
                                 class="text-[10px] font-bold badge-east px-2 py-1 rounded uppercase tracking-wide">East</span>
-                            <h4 class="font-bold text-lg mt-2">Hefei</h4>
-                            <p class="text-xs text-slate-500 mt-1">Rapidly rising EV & tech manufacturing center.
+                            <h4 class="font-bold text-lg mt-2" data-i18n="hub.hefei">Hefei</h4>
+                            <p class="text-xs text-slate-500 mt-1" data-i18n="east.hf">Rapidly rising EV & tech manufacturing center.
                                 Excellent value.</p>
                         </div>
                         <div
                             class="bg-white p-4 rounded-lg shadow-sm border border-slate-200 hover:border-purple-400 transition">
                             <span
                                 class="text-[10px] font-bold badge-east px-2 py-1 rounded uppercase tracking-wide">East</span>
-                            <h4 class="font-bold text-lg mt-2">Suzhou</h4>
-                            <p class="text-xs text-slate-500 mt-1">SIP &amp; manufacturing belt; strong BIM/CAD demand,
+                            <h4 class="font-bold text-lg mt-2" data-i18n="hub.suzhou">Suzhou</h4>
+                            <p class="text-xs text-slate-500 mt-1" data-i18n="east.sz2">SIP &amp; manufacturing belt; strong BIM/CAD demand,
                                 salaries often just below Shanghai.</p>
                         </div>
                     </div>
@@ -849,23 +852,23 @@
 
                 <!-- North, Inland & Central Plains (north coast + northeast + 中原 / 华中 inland) -->
                 <div>
-                    <h3 class="text-xl font-bold text-slate-800 mb-4 border-b border-slate-200 pb-2">North, Inland &amp;
+                    <h3 class="text-xl font-bold text-slate-800 mb-4 border-b border-slate-200 pb-2" data-i18n="north.h3">North, Inland &amp;
                         Central Plains</h3>
                     <details class="hub-region-details mb-4 rounded-lg border border-slate-200 bg-slate-50/60">
                         <summary
                             class="cursor-pointer flex items-center gap-2 px-4 py-3 text-sm font-semibold text-slate-800 select-none">
-                            <span class="sr-only">Show or hide regional context for north, inland and central plains hubs</span>
+                            <span class="sr-only" data-i18n="regions.sr.north">Show or hide regional context for north, inland and central plains hubs</span>
                             <svg class="hub-region-chevron h-4 w-4 shrink-0 text-slate-600" viewBox="0 0 20 20"
                                 fill="currentColor" aria-hidden="true">
                                 <path fill-rule="evenodd"
                                     d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
                                     clip-rule="evenodd" />
                             </svg>
-                            <span>Special about north, inland &amp; central plains</span>
+                            <span data-i18n="north.fold_title">Special about north, inland &amp; central plains</span>
                         </summary>
                         <div
                             class="text-sm text-slate-600 leading-relaxed px-4 pb-4 pt-0 border-t border-slate-100 space-y-2">
-                            <p><strong>North &amp; northeast coast:</strong> <strong>Beijing</strong>, <strong>Tianjin</strong>,
+                            <p data-i18n="north.fold"><strong>North &amp; northeast coast:</strong> <strong>Beijing</strong>, <strong>Tianjin</strong>,
                                 <strong>Harbin</strong>, <strong>Qingdao</strong>, and <strong>Dalian</strong>—policy hubs,
                                 Bohai/Yellow Sea ports, and the lowest salary bands in this row. <strong>Inland &amp;
                                     plains:</strong> <strong>Zhengzhou</strong> (Henan / Central Plains),
@@ -879,40 +882,40 @@
                             class="bg-white p-4 rounded-lg shadow-sm border border-slate-200 hover:border-amber-400 transition">
                             <span
                                 class="text-[10px] font-bold badge-north px-2 py-1 rounded uppercase tracking-wide">North</span>
-                            <h4 class="font-bold text-lg mt-2">Beijing</h4>
-                            <p class="text-xs text-slate-500 mt-1">Political & educational center. Premium salaries,
+                            <h4 class="font-bold text-lg mt-2" data-i18n="hub.beijing">Beijing</h4>
+                            <p class="text-xs text-slate-500 mt-1" data-i18n="north.bj">Political & educational center. Premium salaries,
                                 top-tier engineering talent.</p>
                         </div>
                         <div
                             class="bg-white p-4 rounded-lg shadow-sm border border-slate-200 hover:border-amber-400 transition">
                             <span
                                 class="text-[10px] font-bold badge-north px-2 py-1 rounded uppercase tracking-wide">North</span>
-                            <h4 class="font-bold text-lg mt-2">Tianjin</h4>
-                            <p class="text-xs text-slate-500 mt-1">Major port, 30 mins from Beijing. Heavy industrial
+                            <h4 class="font-bold text-lg mt-2" data-i18n="hub.tianjin">Tianjin</h4>
+                            <p class="text-xs text-slate-500 mt-1" data-i18n="north.tj">Major port, 30 mins from Beijing. Heavy industrial
                                 design focus.</p>
                         </div>
                         <div
                             class="bg-white p-4 rounded-lg shadow-sm border border-slate-200 hover:border-amber-400 transition">
                             <span
                                 class="text-[10px] font-bold badge-north px-2 py-1 rounded uppercase tracking-wide">North</span>
-                            <h4 class="font-bold text-lg mt-2">Harbin</h4>
-                            <p class="text-xs text-slate-500 mt-1">Northeast industrial base. Lowest costs, legendary
+                            <h4 class="font-bold text-lg mt-2" data-i18n="hub.harbin">Harbin</h4>
+                            <p class="text-xs text-slate-500 mt-1" data-i18n="north.hrb">Northeast industrial base. Lowest costs, legendary
                                 technical university.</p>
                         </div>
                         <div
                             class="bg-white p-4 rounded-lg shadow-sm border border-slate-200 hover:border-amber-400 transition">
                             <span
                                 class="text-[10px] font-bold badge-north px-2 py-1 rounded uppercase tracking-wide">North</span>
-                            <h4 class="font-bold text-lg mt-2">Qingdao</h4>
-                            <p class="text-xs text-slate-500 mt-1">Shandong coastal port; manufacturing &amp; marine
+                            <h4 class="font-bold text-lg mt-2" data-i18n="hub.qingdao">Qingdao</h4>
+                            <p class="text-xs text-slate-500 mt-1" data-i18n="north.qd">Shandong coastal port; manufacturing &amp; marine
                                 engineering; Grade A office costs above inland peers.</p>
                         </div>
                         <div
                             class="bg-white p-4 rounded-lg shadow-sm border border-slate-200 hover:border-amber-400 transition">
                             <span
                                 class="text-[10px] font-bold badge-north px-2 py-1 rounded uppercase tracking-wide">North</span>
-                            <h4 class="font-bold text-lg mt-2">Dalian</h4>
-                            <p class="text-xs text-slate-500 mt-1">Liaoning port &amp; shipbuilding heritage; heating
+                            <h4 class="font-bold text-lg mt-2" data-i18n="hub.dalian">Dalian</h4>
+                            <p class="text-xs text-slate-500 mt-1" data-i18n="north.dl">Liaoning port &amp; shipbuilding heritage; heating
                                 season lifts utility load versus south coast.</p>
                         </div>
                         <div
@@ -927,45 +930,45 @@
                             class="bg-white p-4 rounded-lg shadow-sm border border-slate-200 hover:border-emerald-400 transition">
                             <span
                                 class="text-[10px] font-bold badge-inland px-2 py-1 rounded uppercase tracking-wide">Inland</span>
-                            <h4 class="font-bold text-lg mt-2">Wuhan</h4>
-                            <p class="text-xs text-slate-500 mt-1">Yangtze middle hub; huge graduate pipeline.</p>
+                            <h4 class="font-bold text-lg mt-2" data-i18n="hub.wuhan">Wuhan</h4>
+                            <p class="text-xs text-slate-500 mt-1" data-i18n="north.wh">Yangtze middle hub; huge graduate pipeline.</p>
                         </div>
                         <div
                             class="bg-white p-4 rounded-lg shadow-sm border border-slate-200 hover:border-emerald-400 transition">
                             <span
                                 class="text-[10px] font-bold badge-inland px-2 py-1 rounded uppercase tracking-wide">Inland</span>
-                            <h4 class="font-bold text-lg mt-2">Changsha</h4>
-                            <p class="text-xs text-slate-500 mt-1">Hunan capital; engineering &amp; media; central-south
+                            <h4 class="font-bold text-lg mt-2" data-i18n="hub.changsha">Changsha</h4>
+                            <p class="text-xs text-slate-500 mt-1" data-i18n="north.cs">Hunan capital; engineering &amp; media; central-south
                                 inland.</p>
                         </div>
                         <div
                             class="bg-white p-4 rounded-lg shadow-sm border border-slate-200 hover:border-emerald-400 transition">
                             <span
                                 class="text-[10px] font-bold badge-inland px-2 py-1 rounded uppercase tracking-wide">Inland</span>
-                            <h4 class="font-bold text-lg mt-2">Xi'an</h4>
-                            <p class="text-xs text-slate-500 mt-1">Northwest interior; aerospace/defense; 3D skills.</p>
+                            <h4 class="font-bold text-lg mt-2" data-i18n="hub.xian">Xi'an</h4>
+                            <p class="text-xs text-slate-500 mt-1" data-i18n="north.xa">Northwest interior; aerospace/defense; 3D skills.</p>
                         </div>
                     </div>
                 </div>
 
                 <!-- Southwest China (川渝滇) -->
                 <div>
-                    <h3 class="text-xl font-bold text-slate-800 mb-4 border-b border-slate-200 pb-2">Southwest China</h3>
+                    <h3 class="text-xl font-bold text-slate-800 mb-4 border-b border-slate-200 pb-2" data-i18n="sw.h3">Southwest China</h3>
                     <details class="hub-region-details mb-4 rounded-lg border border-slate-200 bg-slate-50/60">
                         <summary
                             class="cursor-pointer flex items-center gap-2 px-4 py-3 text-sm font-semibold text-slate-800 select-none">
-                            <span class="sr-only">Show or hide regional context for Southwest China</span>
+                            <span class="sr-only" data-i18n="regions.sr.sw">Show or hide regional context for Southwest China</span>
                             <svg class="hub-region-chevron h-4 w-4 shrink-0 text-slate-600" viewBox="0 0 20 20"
                                 fill="currentColor" aria-hidden="true">
                                 <path fill-rule="evenodd"
                                     d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
                                     clip-rule="evenodd" />
                             </svg>
-                            <span>Special about Southwest China</span>
+                            <span data-i18n="sw.fold_title">Special about Southwest China</span>
                         </summary>
                         <div
                             class="text-sm text-slate-600 leading-relaxed px-4 pb-4 pt-0 border-t border-slate-100 space-y-2">
-                            <p><strong>Southwest</strong> here means <strong>Sichuan</strong> (<strong>Chengdu</strong>),
+                            <p data-i18n="sw.fold"><strong>Southwest</strong> here means <strong>Sichuan</strong> (<strong>Chengdu</strong>),
                                 <strong>Chongqing</strong> municipality, and <strong>Yunnan</strong> (<strong>Kunming</strong>)—the
                                 western/southwestern cluster, separate from “Central Plains” (e.g. Zhengzhou) or the
                                 Yangtze-middle inland hubs (e.g. Wuhan) above.</p>
@@ -976,24 +979,24 @@
                             class="bg-white p-4 rounded-lg shadow-sm border border-slate-200 hover:border-emerald-500 transition">
                             <span
                                 class="text-[10px] font-bold badge-southwest px-2 py-1 rounded uppercase tracking-wide">Southwest</span>
-                            <h4 class="font-bold text-lg mt-2">Chengdu</h4>
-                            <p class="text-xs text-slate-500 mt-1">Sichuan basin hub; high quality of life; strong BIM
+                            <h4 class="font-bold text-lg mt-2" data-i18n="hub.chengdu">Chengdu</h4>
+                            <p class="text-xs text-slate-500 mt-1" data-i18n="sw.cd">Sichuan basin hub; high quality of life; strong BIM
                                 talent.</p>
                         </div>
                         <div
                             class="bg-white p-4 rounded-lg shadow-sm border border-slate-200 hover:border-emerald-500 transition">
                             <span
                                 class="text-[10px] font-bold badge-southwest px-2 py-1 rounded uppercase tracking-wide">Southwest</span>
-                            <h4 class="font-bold text-lg mt-2">Chongqing</h4>
-                            <p class="text-xs text-slate-500 mt-1">Mountain megacity; huge talent pool; inland delivery
+                            <h4 class="font-bold text-lg mt-2" data-i18n="hub.chongqing">Chongqing</h4>
+                            <p class="text-xs text-slate-500 mt-1" data-i18n="sw.cq">Mountain megacity; huge talent pool; inland delivery
                                 base.</p>
                         </div>
                         <div
                             class="bg-white p-4 rounded-lg shadow-sm border border-slate-200 hover:border-emerald-500 transition">
                             <span
                                 class="text-[10px] font-bold badge-southwest px-2 py-1 rounded uppercase tracking-wide">Southwest</span>
-                            <h4 class="font-bold text-lg mt-2">Kunming</h4>
-                            <p class="text-xs text-slate-500 mt-1">Yunnan gateway; mild climate; smaller AEC market than
+                            <h4 class="font-bold text-lg mt-2" data-i18n="hub.kunming">Kunming</h4>
+                            <p class="text-xs text-slate-500 mt-1" data-i18n="sw.km">Yunnan gateway; mild climate; smaller AEC market than
                                 Chengdu/Chongqing.</p>
                         </div>
                     </div>
@@ -1001,37 +1004,37 @@
 
                 <!-- Hainan FTP -->
                 <div>
-                    <h3 class="text-xl font-bold text-slate-800 mb-4 border-b border-slate-200 pb-2">Hainan Free Trade
+                    <h3 class="text-xl font-bold text-slate-800 mb-4 border-b border-slate-200 pb-2" data-i18n="hn.h3">Hainan Free Trade
                         Port (Island)</h3>
                     <details
                         class="hub-region-details hub-region-details--hainan mb-6 rounded-lg border border-cyan-200 bg-cyan-50/80">
                         <summary
                             class="cursor-pointer flex items-center gap-2 px-4 py-3 text-sm font-semibold text-cyan-900 select-none">
-                            <span class="sr-only">Show or hide Hainan Free Trade Port policy context</span>
+                            <span class="sr-only" data-i18n="regions.sr.hainan">Show or hide Hainan Free Trade Port policy context</span>
                             <svg class="hub-region-chevron h-4 w-4 shrink-0 text-cyan-800" viewBox="0 0 20 20"
                                 fill="currentColor" aria-hidden="true">
                                 <path fill-rule="evenodd"
                                     d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
                                     clip-rule="evenodd" />
                             </svg>
-                            <span>Special about Hainan</span>
+                            <span data-i18n="hn.fold_title">Special about Hainan</span>
                         </summary>
                         <div class="text-sm text-slate-700 leading-relaxed px-4 pb-4 pt-0 border-t border-cyan-100/80">
-                            <p class="mb-2">The whole province operates as the <strong>Hainan Free Trade Port</strong>.
+                            <p class="mb-2" data-i18n="hn.fold_p1">The whole province operates as the <strong>Hainan Free Trade Port</strong>.
                                 Under current rules, <strong>“special customs operations”</strong> apply island-wide: many goods
                                 imported from abroad enter with <strong>zero import duties, VAT, and consumption tax</strong>
                                 (with mainland-bound shipments generally taxed at the “second line” unless substantially
                                 transformed on-island). This is aimed at tourism, modern services, high-tech, healthcare, and
                                 logistics.</p>
                             <ul class="list-disc pl-5 space-y-1 text-slate-600">
-                                <li><strong>Corporate income tax:</strong> <strong>15%</strong> for qualifying enterprises in
+                                <li data-i18n="hn.fold_li1"><strong>Corporate income tax:</strong> <strong>15%</strong> for qualifying enterprises in
                                     encouraged industries with substantive operations (policy extended in phases under
                                     current central notices; verify end dates with counsel).</li>
-                                <li><strong>Personal income tax:</strong> Eligible high-end and urgently-needed talent may
+                                <li data-i18n="hn.fold_li2"><strong>Personal income tax:</strong> Eligible high-end and urgently-needed talent may
                                     cap the effective burden at <strong>15%</strong> on qualifying Hainan-sourced income
                                     (rules for residency and recognition apply; confirm active frameworks with counsel).</li>
                             </ul>
-                            <p class="mt-2 text-xs text-slate-500">Figures below use typical employer social-insurance +
+                            <p class="mt-2 text-xs text-slate-500" data-i18n="hn.fold_note">Figures below use typical employer social-insurance +
                                 housing-fund burdens for Haikou/Sanya; they do not replace tax or legal advice.</p>
                         </div>
                     </details>
@@ -1041,8 +1044,8 @@
                             <span
                                 class="text-[10px] font-bold badge-hainan px-2 py-1 rounded uppercase tracking-wide">Hainan
                                 FTP</span>
-                            <h4 class="font-bold text-lg mt-2">Haikou</h4>
-                            <p class="text-xs text-slate-500 mt-1">Provincial capital and main policy/admin hub. Stronger
+                            <h4 class="font-bold text-lg mt-2" data-i18n="hub.haikou">Haikou</h4>
+                            <p class="text-xs text-slate-500 mt-1" data-i18n="hn.hk">Provincial capital and main policy/admin hub. Stronger
                                 pool for corporate, infrastructure, and design roles than smaller island cities; lower
                                 typical engineering base pay than tier-1 coastal cities but improving with FTP
                                 investment.</p>
@@ -1052,8 +1055,8 @@
                             <span
                                 class="text-[10px] font-bold badge-hainan px-2 py-1 rounded uppercase tracking-wide">Hainan
                                 FTP</span>
-                            <h4 class="font-bold text-lg mt-2">Sanya</h4>
-                            <p class="text-xs text-slate-500 mt-1">Tourism and hospitality economy; higher cost of living
+                            <h4 class="font-bold text-lg mt-2" data-i18n="hub.sanya">Sanya</h4>
+                            <p class="text-xs text-slate-500 mt-1" data-i18n="hn.sy">Tourism and hospitality economy; higher cost of living
                                 and smaller technical labour market, so CAD/engineering packages often include a
                                 retention premium versus Haikou for comparable seniority.</p>
                         </div>
@@ -1065,8 +1068,8 @@
         <!-- Financial Dashboard -->
         <section id="costs" class="mb-20 bg-white p-8 rounded-xl border border-slate-200 shadow-sm">
             <div class="mb-8 border-b border-slate-100 pb-6">
-                <h2 class="text-3xl font-bold text-slate-800 mb-4">Annual Financial Modeling Dashboard</h2>
-                <p class="text-slate-600 text-lg">
+                <h2 class="text-3xl font-bold text-slate-800 mb-4" data-i18n="costs.h2">Annual Financial Modeling Dashboard</h2>
+                <p class="text-slate-600 text-lg" data-i18n="costs.intro">
                     This interactive dashboard calculates the <strong>Annual Total Cost of Employment</strong>. It
                     automatically multiplies base salaries by 12 and calculates the localized employer statutory
                     contributions (5 Insurances & 1 Fund / MPF) for all 24 cities. Base salaries follow 2024–2025 hiring
@@ -1078,7 +1081,7 @@
                     For setup context, see <a href="#process"
                         class="text-emerald-600 font-semibold underline underline-offset-2">Setup Steps 7–8</a>.
                 </p>
-                <p id="overhead-method" class="text-slate-500 text-sm mt-3 leading-relaxed hidden">
+                <p id="overhead-method" class="text-slate-500 text-sm mt-3 leading-relaxed hidden" data-i18n="costs.overhead_method">
                     <strong>Overhead model (per employee-year, illustrative):</strong>
                     <strong>Rent</strong>—Grade A/B effective average (RMB/m²/mo) × ~10 m² × 12, aligned to published
                     market indices; SARs use prime-office RMB equivalents.
@@ -1097,42 +1100,42 @@
             <div class="flex flex-wrap justify-start items-center mb-10 gap-6 bg-slate-50 p-4 rounded-lg">
                 <div class="flex flex-wrap gap-6 w-full md:w-auto items-end">
                     <div>
-                        <label class="text-xs font-bold text-slate-500 uppercase tracking-wider mb-2 block">Role</label>
+                        <label class="text-xs font-bold text-slate-500 uppercase tracking-wider mb-2 block" data-i18n="dash.role">Role</label>
                         <div class="flex space-x-1 bg-slate-200 p-1 rounded-lg">
                             <button id="btn-junior"
-                                class="px-4 py-2 text-sm rounded-md bg-white shadow-sm font-semibold text-slate-800 transition">Junior
+                                class="px-4 py-2 text-sm rounded-md bg-white shadow-sm font-semibold text-slate-800 transition" data-i18n="dash.junior">Junior
                                 CAD</button>
                             <button id="btn-senior"
-                                class="px-4 py-2 text-sm rounded-md text-slate-600 hover:text-slate-800 transition">Senior
+                                class="px-4 py-2 text-sm rounded-md text-slate-600 hover:text-slate-800 transition" data-i18n="dash.senior">Senior
                                 Modeler</button>
                         </div>
                     </div>
                     <div>
                         <label
-                            class="text-xs font-bold text-slate-500 uppercase tracking-wider mb-2 block">Currency</label>
+                            class="text-xs font-bold text-slate-500 uppercase tracking-wider mb-2 block" data-i18n="dash.currency">Currency</label>
                         <div class="flex space-x-1 bg-slate-200 p-1 rounded-lg">
                             <button id="btn-usd"
-                                class="px-4 py-2 text-sm rounded-md bg-white shadow-sm font-semibold text-slate-800 transition">USD
+                                class="px-4 py-2 text-sm rounded-md bg-white shadow-sm font-semibold text-slate-800 transition" data-i18n="dash.usd">USD
                                 ($)</button>
                             <button id="btn-rmb"
-                                class="px-4 py-2 text-sm rounded-md text-slate-600 hover:text-slate-800 transition">RMB
+                                class="px-4 py-2 text-sm rounded-md text-slate-600 hover:text-slate-800 transition" data-i18n="dash.rmb">RMB
                                 (¥)</button>
                         </div>
                     </div>
                     <div>
                         <label
-                            class="text-xs font-bold text-slate-500 uppercase tracking-wider mb-2 block">Headcount</label>
+                            class="text-xs font-bold text-slate-500 uppercase tracking-wider mb-2 block" data-i18n="dash.headcount">Headcount</label>
                         <input type="number" id="headcount-input" value="1" min="1" step="1"
                             class="px-4 py-2 text-sm rounded-md border border-slate-300 font-semibold text-slate-800 focus:outline-none focus:ring-2 focus:ring-emerald-500 w-24">
                     </div>
                     <div>
-                        <label class="text-xs font-bold text-slate-500 uppercase tracking-wider mb-2 block">Overhead
+                        <label class="text-xs font-bold text-slate-500 uppercase tracking-wider mb-2 block" data-i18n="dash.overhead">Overhead
                             (per employee)</label>
                         <div class="flex space-x-1 bg-slate-200 p-1 rounded-lg">
                             <button id="btn-overhead-exclude" type="button"
-                                class="px-3 py-2 text-sm rounded-md bg-white shadow-sm font-semibold text-slate-800 transition">Exclude</button>
+                                class="px-3 py-2 text-sm rounded-md bg-white shadow-sm font-semibold text-slate-800 transition" data-i18n="dash.exclude">Exclude</button>
                             <button id="btn-overhead-include" type="button"
-                                class="px-3 py-2 text-sm rounded-md text-slate-600 hover:text-slate-800 transition">Include</button>
+                                class="px-3 py-2 text-sm rounded-md text-slate-600 hover:text-slate-800 transition" data-i18n="dash.include">Include</button>
                         </div>
                     </div>
                 </div>
@@ -1144,9 +1147,9 @@
                         <span class="text-amber-500 text-xl">&#9888;</span>
                     </div>
                     <div class="ml-3">
-                        <h3 class="text-sm font-medium text-amber-800">SAR Legal Structure Notice</h3>
+                        <h3 class="text-sm font-medium text-amber-800" data-i18n="dash.sar_title">SAR Legal Structure Notice</h3>
                         <div class="mt-2 text-sm text-amber-700">
-                            <p>You have selected a Special Administrative Region. While Base Salaries are generally
+                            <p data-i18n="dash.sar_body">You have selected a Special Administrative Region. While Base Salaries are generally
                                 higher, the employer statutory contributions are drastically lower because SARs do not
                                 utilize the mainland Social Insurance/Housing Fund system (e.g., Hong Kong uses MPF,
                                 capped at a very low fixed amount). Values are shown in RMB/USD equivalents for
@@ -1160,11 +1163,11 @@
 
                 <!-- Master Chart (Horizontal Bar for readability) -->
                 <div class="bg-slate-50 p-6 rounded-xl border border-slate-100 w-full">
-                    <h3 class="text-xl font-bold text-center mb-2 text-slate-800">Annual Macro Comparison: <span
+                    <h3 class="text-xl font-bold text-center mb-2 text-slate-800"><span data-i18n="dash.macro_prefix">Annual Macro Comparison:</span> <span
                             id="macro-title-role" class="text-emerald-600">Junior CAD</span></h3>
                     <p class="text-xs text-center text-slate-500 mb-6"><span id="macro-cost-label">Total Annual Cost
-                            (Base + Contributions)</span> for
-                        <span id="hc-display">1</span> employee(s).</p>
+                            (Base + Contributions)</span> <span data-i18n="dash.macro_connector">for</span>
+                        <span id="hc-display">1</span> <span data-i18n="dash.macro_emp_suffix">employee(s).</span></p>
                     <div class="chart-container-tall">
                         <canvas id="barChartAllCities"></canvas>
                     </div>
@@ -1172,7 +1175,7 @@
 
                 <!-- Detail Chart (Doughnut) -->
                 <div class="bg-slate-50 p-6 rounded-xl border border-slate-100 sticky top-24">
-                    <h3 class="text-xl font-bold text-center mb-2 text-slate-800">Annual Micro Breakdown: <span
+                    <h3 class="text-xl font-bold text-center mb-2 text-slate-800"><span data-i18n="dash.micro_prefix">Annual Micro Breakdown:</span> <span
                             id="micro-title-city" class="text-emerald-600">Shanghai</span></h3>
                     <p class="text-xs text-center text-slate-500 mb-6"><span id="micro-breakdown-label">Annual Base vs.
                             Employer "5 Insurances & 1 Fund"</span> <span id="micro-contrib-pct-wrap">(<span
@@ -1199,11 +1202,11 @@
 
     <footer class="bg-slate-900 text-slate-400 py-10 text-center text-sm border-t border-slate-800">
         <div class="max-w-4xl mx-auto px-4 space-y-4">
-            <p class="text-slate-300 font-semibold">&copy; 2026 QROST. All rights reserved.</p>
-            <p>This report was generated using Gemini 3.1 Pro in April 2026; data, processes, and cost estimates rely on
+            <p class="text-slate-300 font-semibold" data-i18n="footer.rights">&copy; 2026 QROST. All rights reserved.</p>
+            <p data-i18n="footer.ai">This report was generated using Gemini 3.1 Pro in April 2026; data, processes, and cost estimates rely on
                 its knowledge base. The exchange rate is calculated at roughly 1 USD = 7.1 RMB. HKD and MOP are
                 converted to RMB equivalents for charting continuity.</p>
-            <p class="text-slate-500 italic text-xs leading-relaxed">
+            <p class="text-slate-500 italic text-xs leading-relaxed" data-i18n="footer.disclaimer">
                 Disclaimer: The information provided in this portal is for educational and strategic planning purposes
                 only. We make no promises or guarantees regarding its absolute accuracy, completeness, or current
                 validity. QROST assumes no liability for any business, legal, or financial decisions made based on this
@@ -1213,6 +1216,7 @@
         </div>
     </footer>
 
+    <script src="assets/js/i18n-china-business.js"></script>
     <script src="assets/js/china-business.js"></script>
 </body>
 
