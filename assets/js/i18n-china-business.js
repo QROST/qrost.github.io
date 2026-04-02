@@ -21,6 +21,7 @@
         'process.tab_mainland': '中国大陆（外商独资）',
         'process.tab_sar': '香港与澳门（特别行政区）',
         'process.mainland_intro': '按顺序完成<strong>WFOE</strong>设立。每一行是一个动作；更多说明可展开查看。在递交前请预算<strong>注册资本</strong>（第8–9步）与<strong>运营成本</strong>。',
+        'process.fee_note': '右侧栏：各步<strong>大致现金影响</strong>（2024–2025 常见区间示意）。非报价——城市、银行与代理机构不同，结果会有差异。',
 
         'common.sr.toggle': '显示或隐藏本步补充说明',
 
@@ -189,83 +190,83 @@
 
         's01.title': '按<em>「城市 + 品牌 + 行业 + 有限公司」</em>模式拟定公司名称。',
         's01.detail': '<ul class="list-disc pl-4 text-sm text-slate-600 space-y-1.5 mt-3"><li>法律格式严格——例如上海某某 CAD 设计有限公司。</li><li>最终名称核准在注册环节完成；代理机构可预审可用性。</li></ul>',
-        's01.money': '<strong>尚无WFOE账户。</strong>此时尚无需支出。',
+        's01.money': '<strong>尚无WFOE账户。</strong><strong class="text-slate-800">示意：</strong>本步约<strong>$0 / ¥0</strong>；名称预审通常含于代理合同（第5步）。',
 
         's02.title': '仅可选择<strong>商业办公</strong>地址——住宅不能作为WFOE注册地址。',
         's02.detail': '<p class="text-sm text-slate-600 mt-3">用途须允许工商登记；签约前请与代理机构核实规划用途。</p>',
-        's02.money': '<strong>尚无WFOE账户。</strong>',
+        's02.money': '<strong>尚无WFOE账户。</strong><strong class="text-slate-800">示意：</strong>约<strong>$0</strong>；仅看房差旅等软成本。',
 
         's03.title': '向房东索取红色<strong>不动产权证书</strong>（或同等权属证明）供递交材料使用。',
         's03.detail': '<p class="text-sm text-slate-600 mt-3">缺少该文件，市场监管部门通常会驳回申请。</p>',
-        's03.money': '<strong>尚无WFOE账户。</strong>',
+        's03.money': '<strong>尚无WFOE账户。</strong><strong class="text-slate-800">示意：</strong>约<strong>$0 / ¥0</strong>（由房东提供权证）。',
 
         's04.title': '签署商业租赁合同（押金与前期租金常由个人或境外母公司垫付）。',
         's04.detail': '<p class="text-sm text-slate-600 mt-3">承租人可能尚未在册成立；取得执照与公章后，WFOE可对符合条件的设立前费用进行报销——请与代理机构及会计师确认。</p>',
-        's04.money': '<strong>个人 /</strong> 境外母公司资金支付押金与前期租金。',
+        's04.money': '<strong>个人 /</strong>境外母公司。<strong class="text-slate-800">现金示意：</strong>押金（常<strong>1–3 个月租金</strong>）+ 首期租金 + 杂费——一线城市小面积示意<strong>约 ¥3 万–25 万+</strong>，因城市差异大。',
 
         's05.title': '书面委托<strong>企业登记代理服务机构</strong>（工商代办/咨询公司），约定服务范围：设立、刻章及可选的开户与记账。',
         's05.detail': '<ul class="list-disc pl-4 text-sm text-slate-600 space-y-1.5 mt-3"><li>法律并未要求外商投资企业<strong>必须</strong>聘请代理，但市监网上申报、材料模板与口径多依赖中文且因城市而异，<strong>境外投资者实务上几乎均委托</strong>本地机构办理。</li><li>典型服务：拟定章程与高管安排、向 AMR 递交设立登记、协调刻章；部分套餐含开户陪同或首年代账，须在合同中写明。</li><li>建议在<strong>寄出公证/海牙认证文件前</strong>取得书面报价；比较“仅设立”与“设立+银行+财税”全包价差。</li></ul>',
-        's05.money': '<strong>代理服务费</strong>（示意区间，因城市与范围差异很大）：常见<strong>约 USD 1,500–5,000</strong>（或约 <strong>人民币 1.1 万–3.6 万</strong>，按约 7.1 汇率）对应常规外商独资设立；仅递交型可更低；含银行、人事与长期合规的<strong>全包</strong>常更高。政府市监规费通常不高。WFOE 尚未成立——<strong>个人</strong>或<strong>境外母公司</strong>垫付。',
+        's05.money': '<strong>代理服务费</strong>（市场区间）：常见<strong>USD 1,500–5,000</strong>（≈ <strong>¥1.1 万–3.6 万</strong> @7.1）；<strong>~USD 500–1,500</strong> 仅递交；<strong>全包</strong>（银行+账）常<strong>&gt;USD 5,000</strong>。市监<strong>政府性收费</strong>另常<strong>¥0–800</strong>。<strong>个人/母公司</strong>垫付——尚无 WFOE。',
 
         's06.title': '在美国由公证员对美国护照或母公司文件进行公证。',
         's06.detail': '<p class="text-sm text-slate-600 mt-3">自然人投资者提交护照；法人股东提交主体资格文件——代理机构会列明清单。</p>',
-        's06.money': '公证费：<strong>个人</strong>或母公司承担。',
+        's06.money': '<strong>个人</strong>/母公司。<strong class="text-slate-800">示意：</strong>常见材料包<strong>约 $10–150</strong>；单次公证多<strong>$5–25</strong>；法人全套更高。',
 
         's07.title': '向所在州州务卿申请<strong>海牙认证（Apostille）</strong>。',
         's07.detail': '<p class="text-sm text-slate-600 mt-3">此路径一般不再要求中国驻外使领馆领事认证；海牙认证为标准手续。</p>',
-        's07.money': '州务卿费用：<strong>个人</strong>或母公司承担。',
+        's07.money': '<strong>个人</strong>/母公司。<strong class="text-slate-800">示意：</strong>每份海牙约<strong>$10–50</strong>（州务卿费常<strong>$5–30</strong>/份；加急/快递另计）。',
 
         's08.title': '在章程中确定<strong>注册资本</strong>与缴付安排——<strong>此时尚不要汇出资本金</strong>。',
         's08.detail': '<ul class="list-disc pl-4 text-sm text-slate-600 space-y-1.5 mt-3"><li><strong>注册资本</strong>是执照上登记的认缴总额，不同于年租金或工资总额。</li><li>依2024年7月修订的《公司法》，原则上须自成立之日起<strong>五年内</strong>缴足（存量公司有过渡规则）。</li><li>金额应结合行业许可最低要求、商业计划、银行资信与利润汇出安排，与会计师对齐。</li><li>雇主社保与公积金为独立科目——见第9步与仪表盘。</li></ul>',
-        's08.money': '<strong>仅纸面。</strong>在取得执照、公章与银行账户（第14–18步）之前，勿汇入股权投资款。',
+        's08.money': '<strong>仅纸面</strong>—勿汇资本金。<strong class="text-slate-800">示意：</strong>增量约<strong>$0</strong>（章程多在第5步代理范围内）。待第<strong>14–18</strong>步后再汇入。',
 
         's09.title': '编制12个月预算：租金、代理费、工资与法定“五险一金”。',
         's09.detail': '<ul class="list-disc pl-4 text-sm text-slate-600 space-y-1.5 mt-3"><li>设立前费用（租约、差旅）多由个人或母公司垫付；设立后或可报销——与代理确认。</li><li>对CAD类企业，工资与法定缴费通常是最大变量——请使用<a href="#costs" class="text-emerald-600 font-semibold underline">仪表盘</a>测算。</li><li>资本金注入并产生收入后，再规划在岸营运现金。</li></ul>',
-        's09.money': '<strong>仅表格测算。</strong>此时尚不向WFOE汇入股权投资款。',
+        's09.money': '<strong>仅表格测算。</strong><strong class="text-slate-800">示意：</strong>约<strong>$0</strong>；若外包财务建模<strong>约 $200–2,000+</strong>。',
 
         's10.title': '指定<strong>法定代表人</strong>、<strong>执行董事</strong>与<strong>监事</strong>——其中两职不得为同一人。',
         's10.detail': '<p class="text-sm text-slate-600 mt-3">监事不得兼任法定代表人或执行董事；上述人选将写入章程与银行印鉴授权。</p>',
-        's10.money': '<strong>仅纸面。</strong>',
+        's10.money': '<strong>仅纸面。</strong><strong class="text-slate-800">示意：</strong>工商填报高管约<strong>¥0</strong>规费。',
 
         's11.title': '向市场监管部门（AMR）递交设立全套材料（租约、海牙认证文件、章程等）。',
         's11.detail': '<p class="text-sm text-slate-600 mt-3">向当地市场监督管理局提交：租约、经认证的身份/母公司文件、章程（资本、缴付计划、高管安排）及其他必备公司治理文件。</p>',
-        's11.money': '代理/递交费用：<strong>个人</strong>或母公司垫付，直至WFOE可对外付款。',
+        's11.money': '<strong>个人</strong>/母公司垫付。<strong class="text-slate-800">示意：</strong>市监<strong>政府收费</strong>常<strong>¥0–500</strong>；若已含于第5步代理，增量约<strong>$0</strong>。',
 
         's12.title': '领取<strong>营业执照</strong>——公司依法成立。',
         's12.detail': '<p class="text-sm text-slate-600 mt-3">此时尚未开立可日常运营的企业银行账户（见第14–15步）。</p>',
-        's12.money': '尚不能以WFOE名义接收境外股东投资款。',
+        's12.money': '尚未收投资款。<strong class="text-slate-800">示意：</strong>领照多数城市<strong>约 ¥0</strong>另收工本费。',
 
         's13.title': '刻制并备案公司印章（公章、财务章等）。',
         's13.detail': '<p class="text-sm text-slate-600 mt-3">公安备案 + 有资质刻章单位。红章对合同效力至关重要——妥善保管；持章人即对外签署权的核心。</p>',
-        's13.money': '刻章费用；此时尚无<strong>WFOE</strong>日常经营现金流。',
+        's13.money': '尚无日常现金流。<strong class="text-slate-800">示意：</strong>公章+财务章+发票章+法人章一套常<strong>¥400–2,000</strong>（因城而异）。',
 
         's14.title': '凭执照与印章开立<strong>人民币基本存款账户（基本户）</strong>。',
         's14.detail': '<p class="text-sm text-slate-600 mt-3">主要用于工资、租金与纳税等——多为唯一能发放现金工资的账户；银行会执行KYC。</p>',
-        's14.money': '<strong>首批WFOE账户</strong>；可先开立为空户。',
+        's14.money': '<strong>首批企业账户</strong>，可空户开。<strong class="text-slate-800">示意：</strong>开户费<strong>¥0–800</strong>（多可减免）；注意最低余额要求。',
 
         's15.title': '开立<strong>外商投资资本金账户</strong>用于接收境外股权投资（外币）。',
         's15.detail': '<p class="text-sm text-slate-600 mt-3">各银行名称不一（FDI/资本金专户等），并配合外汇局对外商投资企业登记。</p>',
-        's15.money': '已具备<strong>接收</strong>投资汇款的条件——不同于个人境外汇款路径。',
+        's15.money': '可收 FDI。<strong class="text-slate-800">示意：</strong>第二账户若收费常<strong>¥0–500</strong>，多<strong>¥0</strong>。',
 
         's16.title': '与代理机构准备银行要求的资本金入账及结汇申报文件（投资款用途表述）。',
         's16.detail': '<p class="text-sm text-slate-600 mt-3">汇款须明确为<strong>注册资本</strong>性质，而非随意“转账”；各银行编码要求不同。</p>',
-        's16.money': '<strong>尚未实际汇出</strong>——先完成纸质材料。',
+        's16.money': '<strong>尚未汇出。</strong><strong class="text-slate-800">示意：</strong>纸面<strong>约 $0</strong>；代理超时工时或<strong>约 $50–200</strong>/小时。',
 
         's17.title': '自境外以外币汇入<strong>注册资本</strong>至指定入账账户。',
         's17.detail': '<p class="text-sm text-slate-600 mt-3">银行登记实缴出资并配合外汇手续；可在五年缴付期内分次缴纳（见第8步）。</p>',
-        's17.money': '<strong>资本金到账。</strong>',
+        's17.money': '<strong>资本金到账。</strong><strong class="text-slate-800">示意：</strong>汇出行<strong>约 $15–50+</strong>；入账行可能有<strong>汇差</strong>（非固定“手续费”行）。',
 
         's18.title': '办理资本金<strong>结汇</strong>并将人民币划入基本户用于经营。',
         's18.detail': '<p class="text-sm text-slate-600 mt-3">按银行流程办理；属公司资本金结汇，不同于个人换汇。</p>',
-        's18.money': '<strong>可在中国境内使用的公司资金。</strong>',
+        's18.money': '<strong>基本户可用人民币。</strong><strong class="text-slate-800">示意：</strong>结汇常<strong>¥0–300</strong>或含在套餐；少见单独规费。',
 
         's19.title': '办理税务登记并开通<strong>发票（fapiao）</strong>开具能力。',
         's19.detail': '<p class="text-sm text-slate-600 mt-3">在中国大陆向客户合规开票所必需。</p>',
-        's19.money': '自<strong>人民币基本户</strong>支付相关费用。',
+        's19.money': '自<strong>基本户</strong>支付。<strong class="text-slate-800">示意：</strong>税务登记<strong>¥0–400</strong>；税控/开票设备（若需）<strong>¥0–1,500</strong>一次性。',
 
         's20.title': '办理<strong>社会保险</strong>登记——之后方可聘用员工并发放工资。',
         's20.detail': '<p class="text-sm text-slate-600 mt-3">法定缴费自人民币基本户支付，资金来自资本金与经营收入。城市对比见<a href="#costs" class="text-emerald-600 font-semibold underline">仪表盘</a>。</p>',
-        's20.money': '<strong>工资 + 法定缴费</strong>自基本户列支。',
+        's20.money': '<strong>工资+法定缴费</strong>自基本户。<strong class="text-slate-800">示意：</strong>登记<strong>¥0–300</strong>；<strong>持续</strong>缴费见<a href="#costs" class="text-emerald-700 font-semibold underline">仪表盘</a>。',
 
         'regions.sr.gba': '显示或隐藏粤港澳大湾区背景说明',
         'regions.sr.east': '显示或隐藏华东热点背景说明',
