@@ -777,15 +777,23 @@
                 <p class="text-slate-600 text-lg">
                     This interactive dashboard calculates the <strong>Annual Total Cost of Employment</strong>. It
                     automatically multiplies base salaries by 12 and calculates the localized employer statutory
-                    contributions (5 Insurances & 1 Fund / MPF) for all 17 cities. <strong>Click on any
-                        city's bar in the chart below to view its detailed micro breakdown.</strong> For how this fits
-                    beside rent, agents, and registered capital, see <a href="#process"
+                    contributions (5 Insurances & 1 Fund / MPF) for all 17 cities. Optionally add
+                    <strong>modeled office rent per employee</strong> (see methodology below) to compare total
+                    “desk” cost by city. <strong>Click any city's bar</strong> for the micro breakdown.
+                    For setup context, see <a href="#process"
                         class="text-emerald-600 font-semibold underline underline-offset-2">Setup Steps 3–4</a>.
+                </p>
+                <p id="office-rent-method" class="text-slate-500 text-sm mt-3 leading-relaxed hidden">
+                    <strong>Office rent model:</strong> Annual RMB per employee is estimated from 2024–2025 market reports
+                    (average Grade A/B CBD-style office rent, RMB/m²/month) × <strong>10 m²</strong> allocated desk
+                    space × 12 months, then city-adjusted. SARs use HKD/MOP-based prime office benchmarks converted at
+                    ~7.1 RMB/USD cross-rate context. Figures are illustrative—actual leases vary by building, floor, and
+                    negotiation.
                 </p>
             </div>
 
             <div class="flex flex-wrap justify-start items-center mb-10 gap-6 bg-slate-50 p-4 rounded-lg">
-                <div class="flex flex-wrap gap-6 w-full md:w-auto">
+                <div class="flex flex-wrap gap-6 w-full md:w-auto items-end">
                     <div>
                         <label class="text-xs font-bold text-slate-500 uppercase tracking-wider mb-2 block">Role</label>
                         <div class="flex space-x-1 bg-slate-200 p-1 rounded-lg">
@@ -815,6 +823,16 @@
                         <input type="number" id="headcount-input" value="1" min="1" step="1"
                             class="px-4 py-2 text-sm rounded-md border border-slate-300 font-semibold text-slate-800 focus:outline-none focus:ring-2 focus:ring-emerald-500 w-24">
                     </div>
+                    <div>
+                        <label class="text-xs font-bold text-slate-500 uppercase tracking-wider mb-2 block">Office rent
+                            (per employee)</label>
+                        <div class="flex space-x-1 bg-slate-200 p-1 rounded-lg">
+                            <button id="btn-office-exclude" type="button"
+                                class="px-3 py-2 text-sm rounded-md bg-white shadow-sm font-semibold text-slate-800 transition">Exclude</button>
+                            <button id="btn-office-include" type="button"
+                                class="px-3 py-2 text-sm rounded-md text-slate-600 hover:text-slate-800 transition">Include</button>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -842,8 +860,9 @@
                 <div class="bg-slate-50 p-6 rounded-xl border border-slate-100 w-full">
                     <h3 class="text-xl font-bold text-center mb-2 text-slate-800">Annual Macro Comparison: <span
                             id="macro-title-role" class="text-emerald-600">Junior CAD</span></h3>
-                    <p class="text-xs text-center text-slate-500 mb-6">Total Annual Cost (Base + Contributions) for
-                        <span id="hc-display">1</span> Employees.</p>
+                    <p class="text-xs text-center text-slate-500 mb-6"><span id="macro-cost-label">Total Annual Cost
+                            (Base + Contributions)</span> for
+                        <span id="hc-display">1</span> employee(s).</p>
                     <div class="chart-container-tall">
                         <canvas id="barChartAllCities"></canvas>
                     </div>
@@ -853,8 +872,9 @@
                 <div class="bg-slate-50 p-6 rounded-xl border border-slate-100 sticky top-24">
                     <h3 class="text-xl font-bold text-center mb-2 text-slate-800">Annual Micro Breakdown: <span
                             id="micro-title-city" class="text-emerald-600">Shanghai</span></h3>
-                    <p class="text-xs text-center text-slate-500 mb-6">Annual Base vs. Employer "5 Insurances & 1 Fund"
-                        (<span id="micro-contrib-pct"></span>)</p>
+                    <p class="text-xs text-center text-slate-500 mb-6"><span id="micro-breakdown-label">Annual Base vs.
+                            Employer "5 Insurances & 1 Fund"</span> <span id="micro-contrib-pct-wrap">(<span
+                                id="micro-contrib-pct"></span>)</span></p>
                     <div class="chart-container">
                         <canvas id="doughnutCityDetail"></canvas>
                     </div>
@@ -926,31 +946,34 @@
             // Data Setup (All base numbers are ANNUAL in RMB or RMB equivalent)
             const exchangeRate = 7.1;
 
+            /* officeRentAnnualRMB: modeled employer desk cost per employee-year (~10 m² × city avg Grade A/B RMB/m²/mo × 12;
+               HK/Macau from prime-office HKD/MOP benchmarks, RMB equiv., 2024–2025 market band) */
             const cityData = {
-                beijing: { name: "Beijing", type: "mainland", juniorAnnual: 120000, seniorAnnual: 276000, contribPct: 0.38 },
-                shanghai: { name: "Shanghai", type: "mainland", juniorAnnual: 120000, seniorAnnual: 264000, contribPct: 0.38 },
-                shenzhen: { name: "Shenzhen", type: "mainland", juniorAnnual: 115000, seniorAnnual: 260000, contribPct: 0.35 },
-                guangzhou: { name: "Guangzhou", type: "mainland", juniorAnnual: 105000, seniorAnnual: 240000, contribPct: 0.35 },
-                hangzhou: { name: "Hangzhou", type: "mainland", juniorAnnual: 110000, seniorAnnual: 250000, contribPct: 0.36 },
-                nanjing: { name: "Nanjing", type: "mainland", juniorAnnual: 102000, seniorAnnual: 222000, contribPct: 0.38 },
-                tianjin: { name: "Tianjin", type: "mainland", juniorAnnual: 90000, seniorAnnual: 204000, contribPct: 0.40 },
-                wuhan: { name: "Wuhan", type: "mainland", juniorAnnual: 90000, seniorAnnual: 192000, contribPct: 0.38 },
-                chengdu: { name: "Chengdu", type: "mainland", juniorAnnual: 84000, seniorAnnual: 180000, contribPct: 0.36 },
-                zhuhai: { name: "Zhuhai", type: "mainland", juniorAnnual: 84000, seniorAnnual: 180000, contribPct: 0.35 },
-                xian: { name: "Xi'an", type: "mainland", juniorAnnual: 78000, seniorAnnual: 168000, contribPct: 0.36 },
-                hefei: { name: "Hefei", type: "mainland", juniorAnnual: 72000, seniorAnnual: 156000, contribPct: 0.35 },
-                harbin: { name: "Harbin", type: "mainland", juniorAnnual: 60000, seniorAnnual: 132000, contribPct: 0.35 },
-                haikou: { name: "Haikou", type: "mainland", juniorAnnual: 84000, seniorAnnual: 186000, contribPct: 0.35 },
-                sanya: { name: "Sanya", type: "mainland", juniorAnnual: 88000, seniorAnnual: 198000, contribPct: 0.35 },
-                hongkong: { name: "Hong Kong", type: "sar", juniorAnnual: 220000, seniorAnnual: 440000, contribPct: 0.05 },
-                macau: { name: "Macau", type: "sar", juniorAnnual: 185000, seniorAnnual: 370000, contribPct: 0.01 }
+                beijing: { name: "Beijing", type: "mainland", juniorAnnual: 120000, seniorAnnual: 276000, contribPct: 0.38, officeRentAnnualRMB: 36000 },
+                shanghai: { name: "Shanghai", type: "mainland", juniorAnnual: 120000, seniorAnnual: 264000, contribPct: 0.38, officeRentAnnualRMB: 36000 },
+                shenzhen: { name: "Shenzhen", type: "mainland", juniorAnnual: 115000, seniorAnnual: 260000, contribPct: 0.35, officeRentAnnualRMB: 19200 },
+                guangzhou: { name: "Guangzhou", type: "mainland", juniorAnnual: 105000, seniorAnnual: 240000, contribPct: 0.35, officeRentAnnualRMB: 18000 },
+                hangzhou: { name: "Hangzhou", type: "mainland", juniorAnnual: 110000, seniorAnnual: 250000, contribPct: 0.36, officeRentAnnualRMB: 16800 },
+                nanjing: { name: "Nanjing", type: "mainland", juniorAnnual: 102000, seniorAnnual: 222000, contribPct: 0.38, officeRentAnnualRMB: 13800 },
+                tianjin: { name: "Tianjin", type: "mainland", juniorAnnual: 90000, seniorAnnual: 204000, contribPct: 0.40, officeRentAnnualRMB: 11400 },
+                wuhan: { name: "Wuhan", type: "mainland", juniorAnnual: 90000, seniorAnnual: 192000, contribPct: 0.38, officeRentAnnualRMB: 10800 },
+                chengdu: { name: "Chengdu", type: "mainland", juniorAnnual: 84000, seniorAnnual: 180000, contribPct: 0.36, officeRentAnnualRMB: 12000 },
+                zhuhai: { name: "Zhuhai", type: "mainland", juniorAnnual: 84000, seniorAnnual: 180000, contribPct: 0.35, officeRentAnnualRMB: 9600 },
+                xian: { name: "Xi'an", type: "mainland", juniorAnnual: 78000, seniorAnnual: 168000, contribPct: 0.36, officeRentAnnualRMB: 10200 },
+                hefei: { name: "Hefei", type: "mainland", juniorAnnual: 72000, seniorAnnual: 156000, contribPct: 0.35, officeRentAnnualRMB: 7800 },
+                harbin: { name: "Harbin", type: "mainland", juniorAnnual: 60000, seniorAnnual: 132000, contribPct: 0.35, officeRentAnnualRMB: 6600 },
+                haikou: { name: "Haikou", type: "mainland", juniorAnnual: 84000, seniorAnnual: 186000, contribPct: 0.35, officeRentAnnualRMB: 7800 },
+                sanya: { name: "Sanya", type: "mainland", juniorAnnual: 88000, seniorAnnual: 198000, contribPct: 0.35, officeRentAnnualRMB: 10600 },
+                hongkong: { name: "Hong Kong", type: "sar", juniorAnnual: 220000, seniorAnnual: 440000, contribPct: 0.05, officeRentAnnualRMB: 168000 },
+                macau: { name: "Macau", type: "sar", juniorAnnual: 185000, seniorAnnual: 370000, contribPct: 0.01, officeRentAnnualRMB: 108000 }
             };
 
             const state = {
                 city: 'shanghai',
                 role: 'junior',
                 currency: 'usd',
-                headcount: 1
+                headcount: 1,
+                includeOfficeRent: false
             };
 
             let barChart, doughnutChart;
@@ -968,12 +991,19 @@
                 const c = cityData[cityKey];
                 const base = role === 'junior' ? c.juniorAnnual : c.seniorAnnual;
                 const contrib = base * c.contribPct;
+                const officeAnnual = c.officeRentAnnualRMB || 0;
+                const empTotalRMB = base + contrib;
+                const officeTotalRMB = state.includeOfficeRent ? officeAnnual * state.headcount : 0;
+                const totalRMB = empTotalRMB + officeTotalRMB;
                 return {
                     baseRMB: base,
-                    totalRMB: base + contrib,
+                    contribRMB: contrib,
+                    officeAnnualRMB: officeAnnual,
+                    totalRMB,
                     base: convert(base),
                     contrib: convert(contrib),
-                    total: convert(base + contrib)
+                    office: state.includeOfficeRent ? convert(officeAnnual) : 0,
+                    total: convert(base) + convert(contrib) + (state.includeOfficeRent ? convert(officeAnnual) : 0)
                 };
             }
 
@@ -989,7 +1019,8 @@
                         labels: [],
                         datasets: [
                             { label: 'Annual Base Salary', data: [], backgroundColor: [], borderRadius: 0 },
-                            { label: 'Employer Contributions', data: [], backgroundColor: [], borderRadius: { topRight: 4, bottomRight: 4 } }
+                            { label: 'Employer Contributions', data: [], backgroundColor: [], borderRadius: 0 },
+                            { label: 'Office rent (modeled)', data: [], backgroundColor: [], borderRadius: { topRight: 4, bottomRight: 4 } }
                         ]
                     },
                     options: {
@@ -1017,17 +1048,28 @@
                             event.native.target.style.cursor = chartElement[0] ? 'pointer' : 'default';
                         },
                         plugins: {
-                            legend: { display: true, position: 'top' },
+                            legend: {
+                                display: true,
+                                position: 'top',
+                                labels: {
+                                    filter: function (legendItem) {
+                                        if (legendItem.datasetIndex === 2 && !state.includeOfficeRent) return false;
+                                        return true;
+                                    }
+                                }
+                            },
                             tooltip: {
                                 mode: 'index',
                                 intersect: false,
                                 callbacks: {
                                     label: function (context) {
+                                        if (context.datasetIndex === 2 && !state.includeOfficeRent) return null;
                                         return context.dataset.label + ': ' + getSymbol() + context.parsed.x.toLocaleString();
                                     },
                                     footer: function (tooltipItems) {
                                         let total = 0;
                                         tooltipItems.forEach(function (tooltipItem) {
+                                            if (tooltipItem.datasetIndex === 2 && !state.includeOfficeRent) return;
                                             total += tooltipItem.parsed.x;
                                         });
                                         return '\nTotal Annual: ' + getSymbol() + total.toLocaleString();
@@ -1083,12 +1125,24 @@
             }
 
             function updateVisuals() {
+                const methodEl = document.getElementById('office-rent-method');
+                if (methodEl) methodEl.classList.toggle('hidden', !state.includeOfficeRent);
+
+                const macroLabel = document.getElementById('macro-cost-label');
+                if (macroLabel) {
+                    macroLabel.textContent = state.includeOfficeRent
+                        ? 'Total Annual Cost (Base + Contributions + modeled office rent)'
+                        : 'Total Annual Cost (Base + Contributions)';
+                }
+
                 // Update Master Bar Chart
                 const labels = [];
                 const baseData = [];
                 const contribData = [];
+                const officeData = [];
                 const baseColors = [];
                 const contribColors = [];
+                const officeColors = [];
 
                 // Sort all cities by total cost descending
                 const sortedCityKeys = Object.keys(cityData).sort((a, b) => {
@@ -1100,14 +1154,17 @@
                     const cost = getCostData(key, state.role);
                     baseData.push(cost.base);
                     contribData.push(cost.contrib);
+                    officeData.push(state.includeOfficeRent ? cost.office : 0);
 
                     // Highlight selected city with solid colors, fade out the others
                     if (key === state.city) {
-                        baseColors.push('#334155');   // Solid slate for Base
-                        contribColors.push('#10b981'); // Solid emerald for Contributions
+                        baseColors.push('#334155');
+                        contribColors.push('#10b981');
+                        officeColors.push('#4f46e5');
                     } else {
-                        baseColors.push('#94a3b8');   // Faded slate
-                        contribColors.push('#6ee7b7'); // Faded emerald
+                        baseColors.push('#94a3b8');
+                        contribColors.push('#6ee7b7');
+                        officeColors.push('#a5b4fc');
                     }
                 });
 
@@ -1116,6 +1173,14 @@
                 barChart.data.datasets[0].backgroundColor = baseColors;
                 barChart.data.datasets[1].data = contribData;
                 barChart.data.datasets[1].backgroundColor = contribColors;
+                barChart.data.datasets[2].data = officeData;
+                barChart.data.datasets[2].backgroundColor = officeColors;
+                if (barChart.options.plugins.legend.labels) {
+                    barChart.options.plugins.legend.labels.filter = function (legendItem) {
+                        if (legendItem.datasetIndex === 2 && !state.includeOfficeRent) return false;
+                        return true;
+                    };
+                }
                 barChart.update();
 
                 // Update Doughnut Chart Detail (5 Insurances & 1 Fund Breakdown)
@@ -1127,13 +1192,6 @@
                 let donutColors = [];
 
                 if (selectedCityObj.type === 'mainland') {
-                    // RESEARCH-BASED RATIOS (Employer portions)
-                    // 1. Pension: 16%
-                    // 2. Medical & Maternity: 10% (Commonly merged)
-                    // 3. Unemployment: 0.5%
-                    // 4. Work Injury: 0.2% - 0.5% (Office work baseline)
-                    // 5. Housing Fund: Variable (Filling the gap to match city total contribPct)
-
                     const pPct = 0.16;
                     const mPct = 0.10;
                     const uPct = 0.005;
@@ -1158,17 +1216,32 @@
                         convert(selectedCost.baseRMB * hPct)
                     ];
 
-                    // Slate for base, emerald range for the 5+1 components
                     donutColors = ['#0f172a', '#047857', '#065f46', '#059669', '#10b981', '#34d399'];
+
+                    if (state.includeOfficeRent) {
+                        donutLabels.push('Office rent (modeled per employee-year)');
+                        donutData.push(selectedCost.office);
+                        donutColors.push('#6366f1');
+                    }
 
                 } else if (state.city === 'hongkong') {
                     donutLabels = ['Annual Base Salary', 'MPF (Mandatory Retirement)'];
                     donutData = [selectedCost.base, selectedCost.contrib];
                     donutColors = ['#0f172a', '#f59e0b'];
+                    if (state.includeOfficeRent) {
+                        donutLabels.push('Office rent (modeled per employee-year)');
+                        donutData.push(selectedCost.office);
+                        donutColors.push('#6366f1');
+                    }
                 } else if (state.city === 'macau') {
                     donutLabels = ['Annual Base Salary', 'Social Security (FSS)'];
                     donutData = [selectedCost.base, selectedCost.contrib];
                     donutColors = ['#0f172a', '#f59e0b'];
+                    if (state.includeOfficeRent) {
+                        donutLabels.push('Office rent (modeled per employee-year)');
+                        donutData.push(selectedCost.office);
+                        donutColors.push('#6366f1');
+                    }
                 }
 
                 doughnutChart.data.labels = donutLabels;
@@ -1206,7 +1279,17 @@
                 // Update Text Elements
                 document.getElementById('macro-title-role').textContent = state.role === 'junior' ? 'Junior CAD' : 'Senior Modeler';
                 document.getElementById('micro-title-city').textContent = cityData[state.city].name;
-                document.getElementById('micro-contrib-pct').textContent = (cityData[state.city].contribPct * 100).toFixed(0) + '%';
+                const pctEl = document.getElementById('micro-contrib-pct');
+                const pctWrap = document.getElementById('micro-contrib-pct-wrap');
+                const breakdownLbl = document.getElementById('micro-breakdown-label');
+                if (state.includeOfficeRent) {
+                    if (breakdownLbl) breakdownLbl.textContent = 'Annual breakdown: base + statutory contributions + modeled office rent';
+                    if (pctWrap) pctWrap.style.display = 'none';
+                } else {
+                    if (breakdownLbl) breakdownLbl.textContent = 'Annual Base vs. Employer "5 Insurances & 1 Fund"';
+                    if (pctWrap) pctWrap.style.display = 'inline';
+                    if (pctEl) pctEl.textContent = (cityData[state.city].contribPct * 100).toFixed(0) + '%';
+                }
                 document.getElementById('hc-display').textContent = state.headcount;
 
                 // Handle SAR Alerts
@@ -1215,10 +1298,17 @@
 
                 if (cityData[state.city].type === 'sar') {
                     alertBox.classList.remove('hidden');
-                    descText.innerHTML = `<strong>SAR Framework:</strong> The ~${(cityData[state.city].contribPct * 100).toFixed(0)}% statutory contribution represents approximate limits for localized retirement funds (like Hong Kong's MPF) rather than mainland social insurance.`;
+                    let sarHtml = `<strong>SAR Framework:</strong> The ~${(cityData[state.city].contribPct * 100).toFixed(0)}% statutory contribution represents approximate limits for localized retirement funds (like Hong Kong's MPF) rather than mainland social insurance.`;
+                    if (state.includeOfficeRent) {
+                        sarHtml += ` <strong>Office rent:</strong> SAR figures use prime-office market bands converted to RMB for comparison.`;
+                    }
+                    descText.innerHTML = sarHtml;
                 } else {
                     alertBox.classList.add('hidden');
                     let mainlandDesc = `<strong>Mainland Contributions:</strong> Employer statutory contributions include the mandatory "5 Insurances & 1 Fund" (Pension, Medical, Unemployment, Injury, Maternity, and Housing Fund). Rates fluctuate based on selected municipal policies.`;
+                    if (state.includeOfficeRent) {
+                        mainlandDesc += ` <strong>Office rent:</strong> Allocated cost per employee-year from city-average Grade A/B office rent (see methodology above).`;
+                    }
                     if (state.city === 'haikou' || state.city === 'sanya') {
                         mainlandDesc += ` <strong>Hainan FTP:</strong> Qualifying companies may access a <strong>15% corporate income tax</strong> rate (encouraged industries; substantive operations). Eligible talent may benefit from the <strong>15% personal income tax</strong> cap on qualifying Hainan-sourced income. Island-wide import treatment and “second line” rules apply for goods moving to the mainland—verify with local counsel.`;
                     }
@@ -1260,6 +1350,35 @@
             toggleBtnActive('btn-senior', 'btn-junior', 'role', 'senior');
             toggleBtnActive('btn-usd', 'btn-rmb', 'currency', 'usd');
             toggleBtnActive('btn-rmb', 'btn-usd', 'currency', 'rmb');
+
+            function syncOfficeRentToggleUI() {
+                const ex = document.getElementById('btn-office-exclude');
+                const inc = document.getElementById('btn-office-include');
+                if (!ex || !inc) return;
+                if (state.includeOfficeRent) {
+                    ex.classList.remove('bg-white', 'shadow-sm', 'font-semibold', 'text-slate-800');
+                    ex.classList.add('text-slate-600');
+                    inc.classList.add('bg-white', 'shadow-sm', 'font-semibold', 'text-slate-800');
+                    inc.classList.remove('text-slate-600');
+                } else {
+                    inc.classList.remove('bg-white', 'shadow-sm', 'font-semibold', 'text-slate-800');
+                    inc.classList.add('text-slate-600');
+                    ex.classList.add('bg-white', 'shadow-sm', 'font-semibold', 'text-slate-800');
+                    ex.classList.remove('text-slate-600');
+                }
+            }
+
+            document.getElementById('btn-office-exclude').addEventListener('click', () => {
+                state.includeOfficeRent = false;
+                syncOfficeRentToggleUI();
+                updateVisuals();
+            });
+            document.getElementById('btn-office-include').addEventListener('click', () => {
+                state.includeOfficeRent = true;
+                syncOfficeRentToggleUI();
+                updateVisuals();
+            });
+            syncOfficeRentToggleUI();
 
             initCharts();
         });
