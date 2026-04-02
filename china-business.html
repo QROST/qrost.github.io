@@ -1,11 +1,10 @@
-```html
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>China Market Entry & Regional Hiring Guide (2025-2026)</title>
+    <title>Greater China Market Entry & Regional Hiring Guide (2025-2026)</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -28,15 +27,49 @@
             max-height: 400px;
         }
 
+        .chart-container-tall {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 500px;
+            /* Taller to accommodate 15 horizontal bars */
+        }
+
         @media (min-width: 768px) {
             .chart-container {
                 height: 400px;
+            }
+
+            .chart-container-tall {
+                height: 600px;
             }
         }
 
         .step-active {
             border-left-color: #10b981;
             background-color: #f1f5f9;
+        }
+
+        .badge-gba {
+            background-color: #0ea5e9;
+            color: white;
+        }
+
+        .badge-east {
+            background-color: #8b5cf6;
+            color: white;
+        }
+
+        .badge-north {
+            background-color: #f59e0b;
+            color: white;
+        }
+
+        .badge-inland {
+            background-color: #10b981;
+            color: white;
         }
     </style>
 </head>
@@ -47,26 +80,25 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between h-16 items-center">
                 <div class="flex-shrink-0 font-bold text-xl tracking-wide">
-                    &#127980; SinoSetup Pro
+                    &#127980; SinoSetup Pro: Expanded
                 </div>
                 <div class="hidden md:flex space-x-8">
-                    <a href="#overview" class="hover:text-emerald-400 transition">Overview</a>
-                    <a href="#process" class="hover:text-emerald-400 transition">Setup Process</a>
-                    <a href="#regions" class="hover:text-emerald-400 transition">Talent Hubs</a>
-                    <a href="#costs" class="hover:text-emerald-400 transition">Financial Modeling</a>
+                    <a href="#process" class="hover:text-emerald-400 transition">Setup</a>
+                    <a href="#regions" class="hover:text-emerald-400 transition">Regional Hubs</a>
+                    <a href="#costs" class="hover:text-emerald-400 transition">Annual Financials</a>
                 </div>
             </div>
         </div>
     </nav>
 
-    <header id="overview" class="pt-24 pb-12 bg-slate-800 text-white">
+    <header class="pt-24 pb-12 bg-slate-800 text-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight mb-4">
-                Strategic Expansion & Hiring in China
+                Greater China Talent & Expansion Guide
             </h1>
             <p class="text-xl text-slate-300 max-w-3xl mx-auto mb-8">
-                A 2025-2026 data-driven guide for establishing a WFOE and analyzing CAD/Engineering talent costs across
-                Tier 1, 2, and 3 Chinese cities.
+                Analyzing annual CAD/Engineering talent costs across 15 major hubs, including Mainland Tiers 1-3 and the
+                Greater Bay Area (Hong Kong & Macau).
             </p>
         </div>
     </header>
@@ -75,10 +107,12 @@
 
         <section id="process" class="mb-20">
             <div class="mb-8">
-                <h2 class="text-3xl font-bold text-slate-800 mb-4">The WFOE Setup Process</h2>
+                <h2 class="text-3xl font-bold text-slate-800 mb-4">The Setup Process (Mainland vs. SAR)</h2>
                 <p class="text-slate-600 text-lg">
-                    The legal framework for establishing a Wholly Foreign-Owned Enterprise (WFOE) remains consistent
-                    nationwide. Click through the phases to understand the timeline.
+                    This section outlines the legal framework for establishing your business entity. While mainland
+                    China utilizes the WFOE structure, Special Administrative Regions (SARs) like Hong Kong and Macau
+                    operate under distinct common law or civil law frameworks, drastically altering the setup and tax
+                    timeline.
                 </p>
             </div>
 
@@ -86,82 +120,42 @@
                 <div class="lg:w-1/3 border-l-2 border-slate-200" id="step-list">
                     <div class="pl-4 py-3 cursor-pointer border-l-4 border-transparent hover:bg-slate-50 transition step-item step-active"
                         data-target="step1">
-                        <div class="font-bold text-slate-800">&#9312; Pre-Licensing & Planning</div>
-                        <div class="text-sm text-slate-500">Weeks 1-3</div>
+                        <div class="font-bold text-slate-800">&#9312; Mainland WFOE Setup</div>
+                        <div class="text-sm text-slate-500">Standard 5-Phase Process</div>
                     </div>
                     <div class="pl-4 py-3 cursor-pointer border-l-4 border-transparent hover:bg-slate-50 transition step-item"
                         data-target="step2">
-                        <div class="font-bold text-slate-800">&#9313; Document Legalization</div>
-                        <div class="text-sm text-slate-500">Weeks 3-6</div>
-                    </div>
-                    <div class="pl-4 py-3 cursor-pointer border-l-4 border-transparent hover:bg-slate-50 transition step-item"
-                        data-target="step3">
-                        <div class="font-bold text-slate-800">&#9314; Business License App.</div>
-                        <div class="text-sm text-slate-500">Weeks 6-8</div>
-                    </div>
-                    <div class="pl-4 py-3 cursor-pointer border-l-4 border-transparent hover:bg-slate-50 transition step-item"
-                        data-target="step4">
-                        <div class="font-bold text-slate-800">&#9315; Post-Licensing & Chops</div>
-                        <div class="text-sm text-slate-500">Weeks 8-10</div>
-                    </div>
-                    <div class="pl-4 py-3 cursor-pointer border-l-4 border-transparent hover:bg-slate-50 transition step-item"
-                        data-target="step5">
-                        <div class="font-bold text-slate-800">&#9316; Bank & Tax Registration</div>
-                        <div class="text-sm text-slate-500">Weeks 10-12</div>
+                        <div class="font-bold text-slate-800">&#127758; Hong Kong / Macau SARs</div>
+                        <div class="text-sm text-slate-500">Alternative Frameworks</div>
                     </div>
                 </div>
 
                 <div class="lg:w-2/3 bg-white p-8 rounded-xl shadow-sm border border-slate-100 min-h-[300px]">
                     <div id="step1" class="step-content block">
-                        <h3 class="text-2xl font-bold text-slate-800 mb-4">Phase 1: Pre-Licensing & Planning</h3>
-                        <p class="text-slate-600 mb-4">Before applying, define the company's structure and secure a
-                            physical location. Virtual offices are not permitted.</p>
+                        <h3 class="text-2xl font-bold text-slate-800 mb-4">Mainland WFOE Standard Process</h3>
+                        <p class="text-slate-600 mb-4">Applies to cities like Shanghai, Shenzhen, Beijing, Chengdu, etc.
+                        </p>
                         <ul class="list-disc pl-5 text-slate-700 space-y-2">
-                            <li><strong>Business Scope:</strong> Must be explicitly defined (e.g., "Engineering Design",
-                                "CAD Drafting").</li>
-                            <li><strong>Registered Capital:</strong> Declare an amount sufficient to cover initial
-                                operations.</li>
-                            <li><strong>Lease Agreement:</strong> Sign a commercial lease with valid property ownership
-                                certificates.</li>
+                            <li><strong>Weeks 1-3:</strong> Pre-Licensing & Lease Signing.</li>
+                            <li><strong>Weeks 3-6:</strong> Document Legalization (Apostille of US documents).</li>
+                            <li><strong>Weeks 6-8:</strong> Business License Application via AMR.</li>
+                            <li><strong>Weeks 8-10:</strong> Carving of official Company Chops (Seals).</li>
+                            <li><strong>Weeks 10-12:</strong> Tax, Bank, and Social Security Registration.</li>
                         </ul>
                     </div>
                     <div id="step2" class="step-content hidden">
-                        <h3 class="text-2xl font-bold text-slate-800 mb-4">Phase 2: Document Legalization</h3>
-                        <p class="text-slate-600 mb-4">Chinese authorities require authenticated proof of the foreign
-                            investor's identity.</p>
+                        <h3 class="text-2xl font-bold text-slate-800 mb-4">SAR Setup: Hong Kong & Macau</h3>
+                        <p class="text-slate-600 mb-4">SARs do not use the WFOE structure. They are separate customs and
+                            tax territories.</p>
                         <ul class="list-disc pl-5 text-slate-700 space-y-2">
-                            <li>US Passports or Corporate Documents (LLC/Corp) must be notarized and authenticated by
-                                the state.</li>
-                            <li>With the Apostille Convention in effect, state-issued Apostilles streamline this
-                                previously complex consular process.</li>
-                        </ul>
-                    </div>
-                    <div id="step3" class="step-content hidden">
-                        <h3 class="text-2xl font-bold text-slate-800 mb-4">Phase 3: Business License Application</h3>
-                        <p class="text-slate-600 mb-4">Formal registration via the "Five-in-One" online portal.</p>
-                        <ul class="list-disc pl-5 text-slate-700 space-y-2">
-                            <li>Submit Articles of Association and appoint the Legal Representative.</li>
-                            <li>The Administration for Market Regulation (AMR) issues the Business License. The company
-                                now legally exists.</li>
-                        </ul>
-                    </div>
-                    <div id="step4" class="step-content hidden">
-                        <h3 class="text-2xl font-bold text-slate-800 mb-4">Phase 4: Post-Licensing & Company Chops</h3>
-                        <p class="text-slate-600 mb-4">Physical stamps (chops) hold supreme legal weight in China.</p>
-                        <ul class="list-disc pl-5 text-slate-700 space-y-2">
-                            <li>Register with the Public Security Bureau to carve Official, Financial, Legal
-                                Representative, and Invoice chops.</li>
-                        </ul>
-                    </div>
-                    <div id="step5" class="step-content hidden">
-                        <h3 class="text-2xl font-bold text-slate-800 mb-4">Phase 5: Bank Accounts & Tax Registration
-                        </h3>
-                        <p class="text-slate-600 mb-4">Finalizing operational setup to hire and transact.</p>
-                        <ul class="list-disc pl-5 text-slate-700 space-y-2">
-                            <li>Open an RMB Basic Account and a Foreign Currency Capital Account.</li>
-                            <li>Register with the State Taxation Administration for "Fapiao" (VAT invoice) issuance.
-                            </li>
-                            <li>Open social security and housing fund accounts for future employees.</li>
+                            <li><strong>Hong Kong:</strong> Setup is incredibly fast (often 1-2 weeks). Form a Private
+                                Limited Company via the Companies Registry. English is an official legal language. No
+                                "Chop" system required for basic validity.</li>
+                            <li><strong>Macau:</strong> Form a "Limitada" (Lda.). Requires interactions with the
+                                Commercial Registry. Portuguese and Chinese are official.</li>
+                            <li><strong>Labor Law Distinction:</strong> Neither uses the heavy mainland Social Insurance
+                                system. HK uses MPF (Mandatory Provident Fund, capped low). Macau uses a very low
+                                fixed-rate social security contribution.</li>
                         </ul>
                     </div>
                 </div>
@@ -170,121 +164,207 @@
 
         <section id="regions" class="mb-20">
             <div class="mb-8">
-                <h2 class="text-3xl font-bold text-slate-800 mb-4">Engineering Talent Hubs</h2>
+                <h2 class="text-3xl font-bold text-slate-800 mb-4">Expanded Engineering Talent Hubs</h2>
                 <p class="text-slate-600 text-lg">
-                    Moving beyond Tier 1 cities unlocks massive geographic arbitrage. Tier 2 and 3 cities house elite
-                    technical universities, providing highly skilled drafters and modelers at a fraction of coastal
-                    costs.
+                    This section categorizes 15 distinct markets across Greater China. From the tech-heavy Greater Bay
+                    Area in the south to the massive industrial and educational bases in the north and inland, exploring
+                    these regions is vital for optimizing your annual talent budget.
                 </p>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-                <div class="bg-slate-50 p-5 rounded-lg border border-slate-200">
-                    <div class="flex justify-between items-center mb-2">
-                        <h3 class="font-bold text-slate-800 text-lg">Shanghai</h3>
-                        <span class="text-xs font-bold bg-slate-800 text-white px-2 py-1 rounded">Tier 1</span>
+            <div class="space-y-8">
+
+                <div>
+                    <h3 class="text-xl font-bold text-slate-800 mb-4 border-b border-slate-200 pb-2">Greater Bay Area
+                        (GBA) & South</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
+                        <div
+                            class="bg-white p-4 rounded-lg shadow-sm border border-slate-200 hover:border-sky-400 transition">
+                            <span class="text-[10px] font-bold badge-gba px-2 py-1 rounded uppercase tracking-wide">GBA
+                                / T1</span>
+                            <h4 class="font-bold text-lg mt-2">Shenzhen</h4>
+                            <p class="text-xs text-slate-500 mt-1">Hardware & Tech capital. High demand, fast-paced CAD
+                                talent.</p>
+                        </div>
+                        <div
+                            class="bg-white p-4 rounded-lg shadow-sm border border-slate-200 hover:border-sky-400 transition">
+                            <span class="text-[10px] font-bold badge-gba px-2 py-1 rounded uppercase tracking-wide">GBA
+                                / T1</span>
+                            <h4 class="font-bold text-lg mt-2">Guangzhou</h4>
+                            <p class="text-xs text-slate-500 mt-1">Traditional trade/manufacturing hub. Excellent
+                                engineering base.</p>
+                        </div>
+                        <div
+                            class="bg-white p-4 rounded-lg shadow-sm border border-slate-200 hover:border-sky-400 transition">
+                            <span class="text-[10px] font-bold badge-gba px-2 py-1 rounded uppercase tracking-wide">GBA
+                                / SAR</span>
+                            <h4 class="font-bold text-lg mt-2">Hong Kong</h4>
+                            <p class="text-xs text-slate-500 mt-1">Global finance/design. Highest base pay, lowest
+                                employer tax burden.</p>
+                        </div>
+                        <div
+                            class="bg-white p-4 rounded-lg shadow-sm border border-slate-200 hover:border-sky-400 transition">
+                            <span class="text-[10px] font-bold badge-gba px-2 py-1 rounded uppercase tracking-wide">GBA
+                                / SAR</span>
+                            <h4 class="font-bold text-lg mt-2">Macau</h4>
+                            <p class="text-xs text-slate-500 mt-1">Hospitality/Architecture focus. Unique labor market,
+                                very low tax.</p>
+                        </div>
+                        <div
+                            class="bg-white p-4 rounded-lg shadow-sm border border-slate-200 hover:border-sky-400 transition">
+                            <span class="text-[10px] font-bold badge-gba px-2 py-1 rounded uppercase tracking-wide">GBA
+                                / T2</span>
+                            <h4 class="font-bold text-lg mt-2">Zhuhai</h4>
+                            <p class="text-xs text-slate-500 mt-1">Bordering Macau. Beautiful coastal city,
+                                cost-effective GBA access.</p>
+                        </div>
                     </div>
-                    <p class="text-sm text-slate-600 mb-3">Premium coastal hub. Highest English proficiency, highest
-                        costs.</p>
-                    <div class="text-xs font-semibold text-emerald-600">Universities: Tongji Univ., SJTU</div>
                 </div>
 
-                <div class="bg-slate-50 p-5 rounded-lg border border-slate-200">
-                    <div class="flex justify-between items-center mb-2">
-                        <h3 class="font-bold text-slate-800 text-lg">Nanjing</h3>
-                        <span class="text-xs font-bold bg-indigo-600 text-white px-2 py-1 rounded">New Tier 1</span>
+                <div>
+                    <h3 class="text-xl font-bold text-slate-800 mb-4 border-b border-slate-200 pb-2">East China Hubs
+                    </h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                        <div
+                            class="bg-white p-4 rounded-lg shadow-sm border border-slate-200 hover:border-purple-400 transition">
+                            <span
+                                class="text-[10px] font-bold badge-east px-2 py-1 rounded uppercase tracking-wide">East
+                                / T1</span>
+                            <h4 class="font-bold text-lg mt-2">Shanghai</h4>
+                            <p class="text-xs text-slate-500 mt-1">Premium international hub. Tongji Univ. architecture
+                                talent.</p>
+                        </div>
+                        <div
+                            class="bg-white p-4 rounded-lg shadow-sm border border-slate-200 hover:border-purple-400 transition">
+                            <span
+                                class="text-[10px] font-bold badge-east px-2 py-1 rounded uppercase tracking-wide">East
+                                / New T1</span>
+                            <h4 class="font-bold text-lg mt-2">Hangzhou</h4>
+                            <p class="text-xs text-slate-500 mt-1">E-commerce/Tech hub (Alibaba). Highly competitive,
+                                modern skills.</p>
+                        </div>
+                        <div
+                            class="bg-white p-4 rounded-lg shadow-sm border border-slate-200 hover:border-purple-400 transition">
+                            <span
+                                class="text-[10px] font-bold badge-east px-2 py-1 rounded uppercase tracking-wide">East
+                                / New T1</span>
+                            <h4 class="font-bold text-lg mt-2">Nanjing</h4>
+                            <p class="text-xs text-slate-500 mt-1">Historical capital. Elite civil engineering talent
+                                (Southeast Univ).</p>
+                        </div>
+                        <div
+                            class="bg-white p-4 rounded-lg shadow-sm border border-slate-200 hover:border-purple-400 transition">
+                            <span
+                                class="text-[10px] font-bold badge-east px-2 py-1 rounded uppercase tracking-wide">East
+                                / T2</span>
+                            <h4 class="font-bold text-lg mt-2">Hefei</h4>
+                            <p class="text-xs text-slate-500 mt-1">Rapidly rising EV & tech manufacturing center.
+                                Excellent value.</p>
+                        </div>
                     </div>
-                    <p class="text-sm text-slate-600 mb-3">Wealthy hub near Shanghai. Elite architectural and civil
-                        talent.</p>
-                    <div class="text-xs font-semibold text-emerald-600">Universities: Southeast Univ. (SEU)</div>
                 </div>
 
-                <div class="bg-slate-50 p-5 rounded-lg border border-slate-200">
-                    <div class="flex justify-between items-center mb-2">
-                        <h3 class="font-bold text-slate-800 text-lg">Wuhan</h3>
-                        <span class="text-xs font-bold bg-indigo-600 text-white px-2 py-1 rounded">New Tier 1</span>
+                <div>
+                    <h3 class="text-xl font-bold text-slate-800 mb-4 border-b border-slate-200 pb-2">North & Inland Hubs
+                    </h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-4">
+                        <div
+                            class="bg-white p-4 rounded-lg shadow-sm border border-slate-200 hover:border-amber-400 transition col-span-1 md:col-span-1 lg:col-span-2">
+                            <span
+                                class="text-[10px] font-bold badge-north px-2 py-1 rounded uppercase tracking-wide">North
+                                / T1</span>
+                            <h4 class="font-bold text-lg mt-2">Beijing</h4>
+                            <p class="text-xs text-slate-500 mt-1">Political & educational center. Premium salaries,
+                                top-tier engineering talent.</p>
+                        </div>
+                        <div
+                            class="bg-white p-4 rounded-lg shadow-sm border border-slate-200 hover:border-amber-400 transition">
+                            <span
+                                class="text-[10px] font-bold badge-north px-2 py-1 rounded uppercase tracking-wide">North
+                                / New T1</span>
+                            <h4 class="font-bold text-lg mt-2">Tianjin</h4>
+                            <p class="text-xs text-slate-500 mt-1">Major port, 30 mins from Beijing. Heavy industrial
+                                design focus.</p>
+                        </div>
+                        <div
+                            class="bg-white p-4 rounded-lg shadow-sm border border-slate-200 hover:border-emerald-400 transition">
+                            <span
+                                class="text-[10px] font-bold badge-inland px-2 py-1 rounded uppercase tracking-wide">Inland
+                                / New T1</span>
+                            <h4 class="font-bold text-lg mt-2">Chengdu</h4>
+                            <p class="text-xs text-slate-500 mt-1">High quality of life, massive talent retention. Great
+                                BIM talent.</p>
+                        </div>
+                        <div
+                            class="bg-white p-4 rounded-lg shadow-sm border border-slate-200 hover:border-emerald-400 transition">
+                            <span
+                                class="text-[10px] font-bold badge-inland px-2 py-1 rounded uppercase tracking-wide">Inland
+                                / New T1</span>
+                            <h4 class="font-bold text-lg mt-2">Wuhan</h4>
+                            <p class="text-xs text-slate-500 mt-1">Central mega-hub. Incredible volume of university
+                                graduates.</p>
+                        </div>
+                        <div
+                            class="bg-white p-4 rounded-lg shadow-sm border border-slate-200 hover:border-emerald-400 transition">
+                            <span
+                                class="text-[10px] font-bold badge-inland px-2 py-1 rounded uppercase tracking-wide">Inland
+                                / T2</span>
+                            <h4 class="font-bold text-lg mt-2">Xi'an</h4>
+                            <p class="text-xs text-slate-500 mt-1">Aerospace/defense hub. Deep mechanical 3D modeling
+                                skills.</p>
+                        </div>
+                        <div
+                            class="bg-white p-4 rounded-lg shadow-sm border border-slate-200 hover:border-amber-400 transition">
+                            <span
+                                class="text-[10px] font-bold badge-north px-2 py-1 rounded uppercase tracking-wide">North
+                                / T3</span>
+                            <h4 class="font-bold text-lg mt-2">Harbin</h4>
+                            <p class="text-xs text-slate-500 mt-1">Northeast industrial base. Lowest costs, legendary
+                                technical university.</p>
+                        </div>
                     </div>
-                    <p class="text-sm text-slate-600 mb-3">Massive student population. Deep mechanical & civil CAD
-                        pools.</p>
-                    <div class="text-xs font-semibold text-emerald-600">Universities: HUST, Wuhan Univ.</div>
-                </div>
-
-                <div class="bg-slate-50 p-5 rounded-lg border border-slate-200">
-                    <div class="flex justify-between items-center mb-2">
-                        <h3 class="font-bold text-slate-800 text-lg">Chengdu</h3>
-                        <span class="text-xs font-bold bg-indigo-600 text-white px-2 py-1 rounded">New Tier 1</span>
-                    </div>
-                    <p class="text-sm text-slate-600 mb-3">High retention rates, exceptional lifestyle. Strong
-                        BIM/Software.</p>
-                    <div class="text-xs font-semibold text-emerald-600">Universities: Sichuan Univ., UESTC</div>
-                </div>
-
-                <div class="bg-slate-50 p-5 rounded-lg border border-slate-200">
-                    <div class="flex justify-between items-center mb-2">
-                        <h3 class="font-bold text-slate-800 text-lg">Tianjin</h3>
-                        <span class="text-xs font-bold bg-indigo-600 text-white px-2 py-1 rounded">New Tier 1</span>
-                    </div>
-                    <p class="text-sm text-slate-600 mb-3">Bordering Beijing. Historical excellence in chemical/civil
-                        engineering.</p>
-                    <div class="text-xs font-semibold text-emerald-600">Universities: Tianjin Univ.</div>
-                </div>
-
-                <div class="bg-slate-50 p-5 rounded-lg border border-slate-200">
-                    <div class="flex justify-between items-center mb-2">
-                        <h3 class="font-bold text-slate-800 text-lg">Xi'an</h3>
-                        <span class="text-xs font-bold bg-sky-600 text-white px-2 py-1 rounded">Tier 2</span>
-                    </div>
-                    <p class="text-sm text-slate-600 mb-3">Inland aerospace and heavy engineering capital. Great
-                        cost-to-skill ratio.</p>
-                    <div class="text-xs font-semibold text-emerald-600">Universities: XJTU, NWPU</div>
-                </div>
-
-                <div class="bg-slate-50 p-5 rounded-lg border border-slate-200">
-                    <div class="flex justify-between items-center mb-2">
-                        <h3 class="font-bold text-slate-800 text-lg">Hefei</h3>
-                        <span class="text-xs font-bold bg-sky-600 text-white px-2 py-1 rounded">Tier 2</span>
-                    </div>
-                    <p class="text-sm text-slate-600 mb-3">Rapidly growing tech and manufacturing hub. Highly
-                        competitive rates.</p>
-                    <div class="text-xs font-semibold text-emerald-600">Universities: USTC, HFUT</div>
-                </div>
-
-                <div class="bg-slate-50 p-5 rounded-lg border border-slate-200">
-                    <div class="flex justify-between items-center mb-2">
-                        <h3 class="font-bold text-slate-800 text-lg">Harbin</h3>
-                        <span class="text-xs font-bold bg-teal-700 text-white px-2 py-1 rounded">Tier 3</span>
-                    </div>
-                    <p class="text-sm text-slate-600 mb-3">Northern industrial base. Lowest costs, legendary engineering
-                        school.</p>
-                    <div class="text-xs font-semibold text-emerald-600">Universities: Harbin Inst. of Tech (HIT)</div>
                 </div>
             </div>
         </section>
 
         <section id="costs" class="mb-20 bg-white p-8 rounded-xl border border-slate-200 shadow-sm">
             <div class="mb-8 border-b border-slate-100 pb-6">
-                <h2 class="text-3xl font-bold text-slate-800 mb-4">Interactive Financial Modeling</h2>
+                <h2 class="text-3xl font-bold text-slate-800 mb-4">Annual Financial Modeling Dashboard</h2>
                 <p class="text-slate-600 text-lg">
-                    Compare the Total Cost of Employment (Base Salary + Employer Mandatory Contributions) across
-                    regions. Select your parameters below to update the visualizations.
+                    This interactive dashboard calculates the <strong>Annual Total Cost of Employment</strong>. It
+                    automatically multiplies base salaries by 12 and calculates the localized employer burden (Social
+                    Insurances / MPF) for all 15 cities.
                 </p>
             </div>
 
             <div
                 class="flex flex-col md:flex-row justify-between items-start md:items-center mb-10 gap-6 bg-slate-50 p-4 rounded-lg">
                 <div class="flex flex-col w-full md:w-auto">
-                    <label class="text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Select Target
-                        City</label>
+                    <label class="text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Analyze City
+                        Detail</label>
                     <select id="city-selector"
                         class="bg-white border border-slate-300 text-slate-900 text-sm rounded-lg focus:ring-emerald-500 focus:border-emerald-500 block w-full p-2.5 shadow-sm font-semibold">
-                        <option value="shanghai">Shanghai (Tier 1)</option>
-                        <option value="nanjing">Nanjing (New Tier 1)</option>
-                        <option value="wuhan">Wuhan (New Tier 1)</option>
-                        <option value="tianjin">Tianjin (New Tier 1)</option>
-                        <option value="chengdu">Chengdu (New Tier 1)</option>
-                        <option value="xian">Xi'an (Tier 2)</option>
-                        <option value="hefei">Hefei (Tier 2)</option>
-                        <option value="harbin">Harbin (Tier 3)</option>
+                        <optgroup label="Greater Bay Area">
+                            <option value="hongkong">Hong Kong (SAR)</option>
+                            <option value="macau">Macau (SAR)</option>
+                            <option value="shenzhen">Shenzhen (Tier 1)</option>
+                            <option value="guangzhou">Guangzhou (Tier 1)</option>
+                            <option value="zhuhai">Zhuhai (Tier 2)</option>
+                        </optgroup>
+                        <optgroup label="East China">
+                            <option value="shanghai" selected>Shanghai (Tier 1)</option>
+                            <option value="hangzhou">Hangzhou (New Tier 1)</option>
+                            <option value="nanjing">Nanjing (New Tier 1)</option>
+                            <option value="hefei">Hefei (Tier 2)</option>
+                        </optgroup>
+                        <optgroup label="North & Inland">
+                            <option value="beijing">Beijing (Tier 1)</option>
+                            <option value="tianjin">Tianjin (New Tier 1)</option>
+                            <option value="chengdu">Chengdu (New Tier 1)</option>
+                            <option value="wuhan">Wuhan (New Tier 1)</option>
+                            <option value="xian">Xi'an (Tier 2)</option>
+                            <option value="harbin">Harbin (Tier 3)</option>
+                        </optgroup>
                     </select>
                 </div>
 
@@ -309,7 +389,24 @@
                                 ($)</button>
                             <button id="btn-rmb"
                                 class="px-4 py-2 text-sm rounded-md text-slate-600 hover:text-slate-800 transition">RMB
-                                (¥)</button>
+                                (¥) / Eqv.</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="sar-alert" class="hidden mb-8 bg-amber-50 border-l-4 border-amber-500 p-4 rounded">
+                <div class="flex">
+                    <div class="flex-shrink-0">
+                        <span class="text-amber-500 text-xl">&#9888;</span>
+                    </div>
+                    <div class="ml-3">
+                        <h3 class="text-sm font-medium text-amber-800">SAR Legal Structure Notice</h3>
+                        <div class="mt-2 text-sm text-amber-700">
+                            <p>You have selected a Special Administrative Region. While Base Salaries are generally
+                                higher, the employer "Burden" is drastically lower because SARs do not utilize the
+                                mainland Social Insurance/Housing Fund system (e.g., Hong Kong uses MPF, capped at a
+                                very low fixed amount). Values are shown in RMB/USD equivalents for comparison.</p>
                         </div>
                     </div>
                 </div>
@@ -317,27 +414,28 @@
 
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
 
-                <div class="bg-slate-50 p-6 rounded-xl border border-slate-100">
-                    <h3 class="text-xl font-bold text-center mb-2 text-slate-800">Macro Comparison: <span
+                <div class="bg-slate-50 p-6 rounded-xl border border-slate-100 w-full">
+                    <h3 class="text-xl font-bold text-center mb-2 text-slate-800">Annual Macro Comparison: <span
                             id="macro-title-role" class="text-emerald-600">Junior CAD</span></h3>
-                    <p class="text-xs text-center text-slate-500 mb-6">Total Monthly Cost across all surveyed hubs.</p>
-                    <div class="chart-container">
+                    <p class="text-xs text-center text-slate-500 mb-6">Total Annual Cost (Base + Burden) ranked highest
+                        to lowest.</p>
+                    <div class="chart-container-tall">
                         <canvas id="barChartAllCities"></canvas>
                     </div>
                 </div>
 
-                <div class="bg-slate-50 p-6 rounded-xl border border-slate-100">
-                    <h3 class="text-xl font-bold text-center mb-2 text-slate-800">Micro Breakdown: <span
+                <div class="bg-slate-50 p-6 rounded-xl border border-slate-100 sticky top-24">
+                    <h3 class="text-xl font-bold text-center mb-2 text-slate-800">Annual Micro Breakdown: <span
                             id="micro-title-city" class="text-emerald-600">Shanghai</span></h3>
-                    <p class="text-xs text-center text-slate-500 mb-6">Base Salary vs. Local Employer Burden (<span
+                    <p class="text-xs text-center text-slate-500 mb-6">Annual Base vs. Annual Employer Burden (<span
                             id="micro-burden-pct"></span>)</p>
                     <div class="chart-container">
                         <canvas id="doughnutCityDetail"></canvas>
                     </div>
                     <div class="mt-6 text-sm text-slate-600 bg-white p-4 rounded border border-slate-200">
-                        <p><strong>Note:</strong> Employer burdens include mandatory Pension, Medical, Unemployment,
-                            Injury, Maternity, and Housing Fund contributions. Rates fluctuate based on the selected
-                            municipal policies.</p>
+                        <p id="micro-desc-text"><strong>Mainland Burden:</strong> Employer burdens include mandatory
+                            Pension, Medical, Unemployment, Injury, Maternity, and Housing Fund contributions. Rates
+                            fluctuate based on selected municipal policies.</p>
                     </div>
                 </div>
             </div>
@@ -347,15 +445,16 @@
 
     <footer class="bg-slate-900 text-slate-400 py-8 text-center">
         <div class="max-w-7xl mx-auto px-4">
-            <p>&copy; 2026 SinoSetup Pro. Interactive Market Analysis SPA.</p>
-            <p class="text-sm mt-2">Data represents aggregate estimates assuming an exchange rate of 1 USD = 7.1 RMB.
-            </p>
+            <p>&copy; 2026 SinoSetup Pro: Expanded. Interactive Market Analysis SPA.</p>
+            <p class="text-sm mt-2">Data represents 2025/2026 annual aggregate estimates. Exchange rate roughly 1 USD =
+                7.1 RMB. HKD and MOP are converted to RMB equivalents for charting continuity.</p>
         </div>
     </footer>
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
 
+            // WFOE vs SAR Process Toggle Logic
             const steps = document.querySelectorAll('.step-item');
             const contents = document.querySelectorAll('.step-content');
 
@@ -372,17 +471,29 @@
                 });
             });
 
+            // Data Setup (All base numbers are ANNUAL in RMB or RMB equivalent)
             const exchangeRate = 7.1;
 
             const cityData = {
-                shanghai: { name: "Shanghai", tier: "Tier 1", juniorBase: 10000, seniorBase: 22000, burdenPct: 0.38 },
-                nanjing: { name: "Nanjing", tier: "New Tier 1", juniorBase: 8500, seniorBase: 18500, burdenPct: 0.38 },
-                wuhan: { name: "Wuhan", tier: "New Tier 1", juniorBase: 7500, seniorBase: 16000, burdenPct: 0.38 },
-                tianjin: { name: "Tianjin", tier: "New Tier 1", juniorBase: 7500, seniorBase: 17000, burdenPct: 0.40 },
-                chengdu: { name: "Chengdu", tier: "New Tier 1", juniorBase: 7000, seniorBase: 15000, burdenPct: 0.36 },
-                xian: { name: "Xi'an", tier: "Tier 2", juniorBase: 6500, seniorBase: 14000, burdenPct: 0.36 },
-                hefei: { name: "Hefei", tier: "Tier 2", juniorBase: 6000, seniorBase: 13000, burdenPct: 0.35 },
-                harbin: { name: "Harbin", tier: "Tier 3", juniorBase: 5000, seniorBase: 11000, burdenPct: 0.35 }
+                // T1 & T2 Main
+                beijing: { name: "Beijing", type: "mainland", juniorAnnual: 120000, seniorAnnual: 276000, burdenPct: 0.38 },
+                shanghai: { name: "Shanghai", type: "mainland", juniorAnnual: 120000, seniorAnnual: 264000, burdenPct: 0.38 },
+                shenzhen: { name: "Shenzhen", type: "mainland", juniorAnnual: 115000, seniorAnnual: 260000, burdenPct: 0.35 },
+                guangzhou: { name: "Guangzhou", type: "mainland", juniorAnnual: 105000, seniorAnnual: 240000, burdenPct: 0.35 },
+                // New T1
+                hangzhou: { name: "Hangzhou", type: "mainland", juniorAnnual: 110000, seniorAnnual: 250000, burdenPct: 0.36 },
+                nanjing: { name: "Nanjing", type: "mainland", juniorAnnual: 102000, seniorAnnual: 222000, burdenPct: 0.38 },
+                tianjin: { name: "Tianjin", type: "mainland", juniorAnnual: 90000, seniorAnnual: 204000, burdenPct: 0.40 },
+                wuhan: { name: "Wuhan", type: "mainland", juniorAnnual: 90000, seniorAnnual: 192000, burdenPct: 0.38 },
+                chengdu: { name: "Chengdu", type: "mainland", juniorAnnual: 84000, seniorAnnual: 180000, burdenPct: 0.36 },
+                // T2 & T3
+                zhuhai: { name: "Zhuhai", type: "mainland", juniorAnnual: 84000, seniorAnnual: 180000, burdenPct: 0.35 },
+                xian: { name: "Xi'an", type: "mainland", juniorAnnual: 78000, seniorAnnual: 168000, burdenPct: 0.36 },
+                hefei: { name: "Hefei", type: "mainland", juniorAnnual: 72000, seniorAnnual: 156000, burdenPct: 0.35 },
+                harbin: { name: "Harbin", type: "mainland", juniorAnnual: 60000, seniorAnnual: 132000, burdenPct: 0.35 },
+                // SARs (Converted to RMB equivalent for math, very low burden due to MPF/Lda rules)
+                hongkong: { name: "Hong Kong", type: "sar", juniorAnnual: 220000, seniorAnnual: 440000, burdenPct: 0.05 },
+                macau: { name: "Macau", type: "sar", juniorAnnual: 185000, seniorAnnual: 370000, burdenPct: 0.01 }
             };
 
             const state = {
@@ -403,11 +514,10 @@
 
             function getCostData(cityKey, role) {
                 const c = cityData[cityKey];
-                const base = role === 'junior' ? c.juniorBase : c.seniorBase;
+                const base = role === 'junior' ? c.juniorAnnual : c.seniorAnnual;
                 const burden = base * c.burdenPct;
                 return {
                     baseRMB: base,
-                    burdenRMB: burden,
                     totalRMB: base + burden,
                     base: convert(base),
                     burden: convert(burden),
@@ -419,11 +529,13 @@
                 Chart.defaults.font.family = "'Inter', sans-serif";
                 Chart.defaults.color = '#475569';
 
+                // Initialize Horizontal Bar Chart
                 const ctxBar = document.getElementById('barChartAllCities').getContext('2d');
                 barChart = new Chart(ctxBar, {
                     type: 'bar',
-                    data: { labels: [], datasets: [{ label: 'Total Cost', data: [], backgroundColor: [], borderRadius: 4 }] },
+                    data: { labels: [], datasets: [{ label: 'Total Annual Cost', data: [], backgroundColor: [], borderRadius: 4 }] },
                     options: {
+                        indexAxis: 'y', // CRITICAL: Makes it horizontal for 15 cities readability
                         responsive: true,
                         maintainAspectRatio: false,
                         plugins: {
@@ -431,19 +543,28 @@
                             tooltip: {
                                 callbacks: {
                                     label: function (context) {
-                                        return 'Total: ' + getSymbol() + context.parsed.y.toLocaleString();
+                                        return 'Total Annual: ' + getSymbol() + context.parsed.x.toLocaleString();
                                     }
                                 }
                             }
                         },
-                        scales: { y: { beginAtZero: true, ticks: { callback: function (v) { return getSymbol() + v.toLocaleString(); } } } }
+                        scales: {
+                            x: {
+                                beginAtZero: true,
+                                ticks: { callback: function (v) { return getSymbol() + v.toLocaleString(); } }
+                            },
+                            y: {
+                                ticks: { autoSkip: false, font: { size: 11 } }
+                            }
+                        }
                     }
                 });
 
+                // Initialize Doughnut Chart
                 const ctxDoughnut = document.getElementById('doughnutCityDetail').getContext('2d');
                 doughnutChart = new Chart(ctxDoughnut, {
                     type: 'doughnut',
-                    data: { labels: ['Base Gross Salary', 'Employer Burden'], datasets: [{ data: [0, 0], backgroundColor: ['#0f172a', '#10b981'], borderWidth: 0, hoverOffset: 4 }] },
+                    data: { labels: ['Annual Base Salary', 'Annual Employer Burden'], datasets: [{ data: [0, 0], backgroundColor: ['#0f172a', '#10b981'], borderWidth: 0, hoverOffset: 4 }] },
                     options: {
                         responsive: true,
                         maintainAspectRatio: false,
@@ -464,11 +585,12 @@
             }
 
             function updateVisuals() {
-
+                // Update Master Bar Chart
                 const labels = [];
                 const totals = [];
                 const bgColors = [];
 
+                // Sort all 15 cities by total cost descending
                 const sortedCityKeys = Object.keys(cityData).sort((a, b) => {
                     return getCostData(b, state.role).totalRMB - getCostData(a, state.role).totalRMB;
                 });
@@ -484,18 +606,32 @@
                 barChart.data.datasets[0].backgroundColor = bgColors;
                 barChart.update();
 
-
+                // Update Doughnut Chart Detail
                 const selectedData = getCostData(state.city, state.role);
                 doughnutChart.data.datasets[0].data = [selectedData.base, selectedData.burden];
+                // Change color for SAR to indicate different tax structure
+                doughnutChart.data.datasets[0].backgroundColor = cityData[state.city].type === 'sar' ? ['#0f172a', '#f59e0b'] : ['#0f172a', '#10b981'];
                 doughnutChart.update();
 
-
+                // Update Text Elements
                 document.getElementById('macro-title-role').textContent = state.role === 'junior' ? 'Junior CAD' : 'Senior Modeler';
                 document.getElementById('micro-title-city').textContent = cityData[state.city].name;
                 document.getElementById('micro-burden-pct').textContent = (cityData[state.city].burdenPct * 100).toFixed(0) + '%';
+
+                // Handle SAR Alerts
+                const alertBox = document.getElementById('sar-alert');
+                const descText = document.getElementById('micro-desc-text');
+
+                if (cityData[state.city].type === 'sar') {
+                    alertBox.classList.remove('hidden');
+                    descText.innerHTML = `<strong>SAR Framework:</strong> The ~${(cityData[state.city].burdenPct * 100).toFixed(0)}% burden represents approximate statutory limits for localized retirement funds (like Hong Kong's MPF) rather than mainland social insurance.`;
+                } else {
+                    alertBox.classList.add('hidden');
+                    descText.innerHTML = `<strong>Mainland Burden:</strong> Employer burdens include mandatory Pension, Medical, Unemployment, Injury, Maternity, and Housing Fund contributions. Rates fluctuate based on selected municipal policies.`;
+                }
             }
 
-
+            // Event Listeners
             document.getElementById('city-selector').addEventListener('change', (e) => {
                 state.city = e.target.value;
                 updateVisuals();
@@ -524,4 +660,3 @@
 </body>
 
 </html>
-```
