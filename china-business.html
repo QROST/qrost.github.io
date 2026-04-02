@@ -78,6 +78,13 @@
             color: white;
         }
 
+        details.wfoe-details>summary {
+            list-style: none;
+        }
+
+        details.wfoe-details>summary::-webkit-details-marker {
+            display: none;
+        }
     </style>
 </head>
 
@@ -117,14 +124,11 @@
             <div class="mb-8">
                 <h2 class="text-3xl font-bold text-slate-800 mb-4">The Setup Process: Step-by-Step</h2>
                 <p class="text-slate-600 text-lg">
-                    Follow these exact, actionable steps to legally establish your business. For mainland China, the
-                    biggest strategic question is usually <strong>not</strong> the filing sequence alone—it is whether
-                    the <strong>ongoing cost of hosting</strong> the entity (office, compliance, payroll, and statutory
-                    contributions) fits your budget. Each step below is <strong>one row</strong>: left = what to do;
-                    right = <strong>Money &amp; accounts</strong> (where cash sits at that moment). Steps 3–5 separate
-                    <strong>registered capital</strong> from <strong>operating burn</strong>; the <a href="#costs"
-                        class="text-emerald-600 font-semibold underline underline-offset-2">Annual Financial Modeling
-                        Dashboard</a> later on this page helps you quantify the largest variable: engineering payroll.
+                    For mainland China, read each row left-to-right: <strong>one minimal move</strong>, then
+                    <strong>Money &amp; accounts</strong>. Open <strong>Full explanation</strong> under any step for the
+                    detailed version. Hosting cost vs. <strong>registered capital</strong> is covered in steps 7–8; use
+                    the <a href="#costs" class="text-emerald-600 font-semibold underline underline-offset-2">Annual
+                        Financial Modeling Dashboard</a> for payroll modeling.
                 </p>
             </div>
 
@@ -145,362 +149,489 @@
 
                 <!-- MAINLAND STEP-BY-STEP -->
                 <div id="step-mainland" class="step-content block">
-                    <p class="text-slate-500 mb-6 font-medium">To hire talent in cities like Shanghai, Chengdu, or
-                        Shenzhen, you must form a Wholly Foreign-Owned Enterprise (WFOE). Follow the <strong>ten steps
-                            below</strong> in order. Registered capital is what you commit to contributing to the company;
-                        <strong>hosting cost</strong> is what you spend every year to keep the company alive and
-                        compliant—budget both before you file.
+                    <p class="text-slate-500 mb-6 font-medium">Form a <strong>WFOE</strong> in order below. Each
+                        line is one move; expand <strong>Full explanation</strong> only when you need depth. Budget
+                        <strong>registered capital</strong> (steps 7–8) and <strong>hosting cost</strong> before you file.
                     </p>
 
-                    <div class="space-y-5 lg:space-y-4">
+                    <div class="space-y-3">
 
-                        <!-- Step 1 -->
+                        <!-- 1 -->
                         <div
-                            class="rounded-xl border border-slate-200 bg-white shadow-sm overflow-hidden grid grid-cols-1 lg:grid-cols-[4.5rem_minmax(0,1fr)_minmax(260px,340px)]">
+                            class="rounded-xl border border-slate-200 bg-white shadow-sm overflow-hidden grid grid-cols-1 lg:grid-cols-[3.25rem_minmax(0,1fr)_minmax(220px,300px)]">
                             <div
-                                class="bg-emerald-600 text-white flex items-center justify-center py-3 lg:py-0 lg:min-h-[120px] text-2xl font-bold tabular-nums">
-                                1</div>
-                            <div class="p-5 lg:p-7 border-t lg:border-t-0 lg:border-r border-slate-100">
-                                <h3 class="font-bold text-slate-800 text-lg mb-2">The Name &amp; The Lease</h3>
-                                <ul class="list-disc pl-4 text-sm text-slate-600 space-y-1.5">
-                                    <li><strong>Action:</strong> Pick a company name. The legal format is strict:
-                                        <em>[City] + [Your Name] + [Industry] + Co., Ltd.</em> (e.g., Shanghai Acme CAD
-                                        Design Co., Ltd.).
-                                    </li>
-                                    <li><strong>Action:</strong> Sign a lease for a <strong>commercial</strong> office.
-                                        You cannot use a residential apartment.</li>
-                                    <li><strong>CRITICAL:</strong> You must get a copy of the landlord's red "Property
-                                        Ownership Certificate" with the lease, or the government will reject your
-                                        application.</li>
-                                </ul>
+                                class="bg-emerald-600 text-white flex items-center justify-center py-3 lg:py-0 lg:min-h-[72px] text-lg font-bold tabular-nums">1</div>
+                            <div class="p-4 lg:p-5 border-t lg:border-t-0 lg:border-r border-slate-100">
+                                <p class="text-sm font-semibold text-slate-900 leading-snug">Draft a company name
+                                    using the pattern <em>[City] + [Brand] + [Industry] + Co., Ltd.</em></p>
+                                <details class="wfoe-details mt-2">
+                                    <summary
+                                        class="cursor-pointer text-xs font-semibold uppercase tracking-wide text-emerald-700 hover:text-emerald-600">Full
+                                        explanation</summary>
+                                    <ul class="list-disc pl-4 text-sm text-slate-600 space-y-1.5 mt-3">
+                                        <li>The legal format is strict—e.g. Shanghai Acme CAD Design Co., Ltd.</li>
+                                        <li>Final name approval is part of filing; your agent can pre-check availability.
+                                        </li>
+                                    </ul>
+                                </details>
                             </div>
-                            <div class="p-5 lg:p-7 bg-emerald-50/90 border-t lg:border-t-0 lg:border-l border-emerald-100">
-                                <p class="text-xs font-bold uppercase tracking-wide text-emerald-900 mb-2">Money &amp;
+                            <div class="p-4 lg:p-5 bg-emerald-50/90 border-t lg:border-t-0 lg:border-l border-emerald-100">
+                                <p class="text-xs font-bold uppercase tracking-wide text-emerald-900 mb-1">Money &amp;
                                     accounts</p>
-                                <p class="text-sm text-slate-700 leading-relaxed"><strong>No WFOE bank account yet.</strong>
-                                    Lease deposits and early rent are often paid <strong>personally</strong> or by your
-                                    <strong>offshore parent</strong> because the tenant may not exist on paper. After
-                                    incorporation (Steps 6–8), the WFOE may <strong>reimburse</strong> allowable
-                                    pre-establishment costs—confirm with your agent and accountant.</p>
+                                <p class="text-sm text-slate-700 leading-relaxed"><strong>No WFOE account.</strong> No
+                                    spend required yet.</p>
                             </div>
                         </div>
 
-                        <!-- Step 2 -->
+                        <!-- 2 -->
                         <div
-                            class="rounded-xl border border-slate-200 bg-white shadow-sm overflow-hidden grid grid-cols-1 lg:grid-cols-[4.5rem_minmax(0,1fr)_minmax(260px,340px)]">
+                            class="rounded-xl border border-slate-200 bg-white shadow-sm overflow-hidden grid grid-cols-1 lg:grid-cols-[3.25rem_minmax(0,1fr)_minmax(220px,300px)]">
                             <div
-                                class="bg-emerald-600 text-white flex items-center justify-center py-3 lg:py-0 lg:min-h-[120px] text-2xl font-bold tabular-nums">
-                                2</div>
-                            <div class="p-5 lg:p-7 border-t lg:border-t-0 lg:border-r border-slate-100">
-                                <h3 class="font-bold text-slate-800 text-lg mb-2">US Paperwork (Apostille)</h3>
-                                <ul class="list-disc pl-4 text-sm text-slate-600 space-y-1.5">
-                                    <li><strong>Action:</strong> Take your US Passport (if applying as an individual) or
-                                        your US LLC paperwork (if a company is the parent) to a local US Notary Public.
-                                    </li>
-                                    <li><strong>Action:</strong> Send the notarized document to your US state's
-                                        Secretary of State to get an <strong>Apostille</strong> (an international
-                                        certification).</li>
-                                    <li><em>Good News:</em> As of recently, you no longer need to mail things to the
-                                        Chinese Embassy. The Apostille is all China requires.</li>
-                                </ul>
+                                class="bg-emerald-600 text-white flex items-center justify-center py-3 lg:py-0 lg:min-h-[72px] text-lg font-bold tabular-nums">2</div>
+                            <div class="p-4 lg:p-5 border-t lg:border-t-0 lg:border-r border-slate-100">
+                                <p class="text-sm font-semibold text-slate-900 leading-snug">Find only commercial
+                                    office space—residential units cannot be a WFOE address.</p>
+                                <details class="wfoe-details mt-2">
+                                    <summary
+                                        class="cursor-pointer text-xs font-semibold uppercase tracking-wide text-emerald-700 hover:text-emerald-600">Full
+                                        explanation</summary>
+                                    <p class="text-sm text-slate-600 mt-3">Zoning must allow business registration;
+                                        verify with your agent before you sign.</p>
+                                </details>
                             </div>
-                            <div class="p-5 lg:p-7 bg-emerald-50/90 border-t lg:border-t-0 lg:border-l border-emerald-100">
-                                <p class="text-xs font-bold uppercase tracking-wide text-emerald-900 mb-2">Money &amp;
+                            <div class="p-4 lg:p-5 bg-emerald-50/90 border-t lg:border-t-0 lg:border-l border-emerald-100">
+                                <p class="text-xs font-bold uppercase tracking-wide text-emerald-900 mb-1">Money &amp;
                                     accounts</p>
-                                <p class="text-sm text-slate-700 leading-relaxed">Still <strong>no corporate account</strong>.
-                                    Apostille fees, notary costs, and travel: pay from <strong>personal</strong> or
-                                    <strong>parent company</strong> funds offshore.</p>
+                                <p class="text-sm text-slate-700 leading-relaxed"><strong>No WFOE account.</strong></p>
                             </div>
                         </div>
 
-                        <!-- Step 3 -->
+                        <!-- 3 -->
                         <div
-                            class="rounded-xl border border-slate-200 bg-white shadow-sm overflow-hidden grid grid-cols-1 lg:grid-cols-[4.5rem_minmax(0,1fr)_minmax(260px,340px)]">
+                            class="rounded-xl border border-slate-200 bg-white shadow-sm overflow-hidden grid grid-cols-1 lg:grid-cols-[3.25rem_minmax(0,1fr)_minmax(220px,300px)]">
                             <div
-                                class="bg-emerald-600 text-white flex items-center justify-center py-3 lg:py-0 lg:min-h-[120px] text-2xl font-bold tabular-nums">
-                                3</div>
-                            <div class="p-5 lg:p-7 border-t lg:border-t-0 lg:border-r border-slate-100">
-                                <h3 class="font-bold text-slate-800 text-lg mb-2">Pick Registered Capital (Strategic
-                                    Amount)</h3>
-                                <ul class="list-disc pl-4 text-sm text-slate-600 space-y-2">
-                                    <li><strong>What it is:</strong> Registered capital (注册资本) is the total amount
-                                        shareholders <strong>subscribe</strong> to contribute to the company. It is
-                                        listed on the Business License and caps shareholder liability in the
-                                        limited-liability sense—it is <strong>not</strong> the same as your annual rent,
-                                        payroll, or tax bill.</li>
-                                    <li><strong>Law (2024 onward):</strong> For a WFOE as a limited liability company,
-                                        shareholders must <strong>pay in the full subscribed amount within five
-                                            years</strong> of establishment, per the articles of association (PRC
-                                        Company Law revised, effective 1 July 2024). Schedule tranches inside that window;
-                                        pre-2024 companies may have <strong>transition</strong> rules—confirm with
-                                        counsel.</li>
-                                    <li><strong>How to choose a number:</strong> (1) <strong>Minimum viable</strong>—many
-                                        small services WFOEs use a modest figure (e.g. RMB 100k–500k or a foreign-currency
-                                        equivalent) if there is no sector-specific minimum; (2) <strong>Business
-                                            plan</strong>—enough paid-in capital over time to fund initial operations
-                                        before revenue stabilizes (rent, salaries, software); (3) <strong>License /
-                                            sector</strong>—some activities (e.g. certain construction, freight, or
-                                        value-added telecom) require higher minimums or proof of funds; (4)
-                                        <strong>Banking &amp; partners</strong>—very low capital can complicate credit or
-                                        large contracts; (5) <strong>Future repatriation</strong>—dividends and capital
-                                        reduction follow rules tied to paid-in capital and profits; your accountant
-                                        should align the amount with how you intend to move money in and out.</li>
-                                    <li><strong>What it is not:</strong> It does <strong>not</strong> replace budgeting
-                                        for <strong>employer social insurance and housing fund</strong> on top of
-                                        salaries (those are separate statutory costs—see Step 4 and the dashboard
-                                        below).</li>
-                                </ul>
+                                class="bg-emerald-600 text-white flex items-center justify-center py-3 lg:py-0 lg:min-h-[72px] text-lg font-bold tabular-nums">3</div>
+                            <div class="p-4 lg:p-5 border-t lg:border-t-0 lg:border-r border-slate-100">
+                                <p class="text-sm font-semibold text-slate-900 leading-snug">Get the landlord’s red
+                                    Property Ownership Certificate (or equivalent) for the filing.</p>
+                                <details class="wfoe-details mt-2">
+                                    <summary
+                                        class="cursor-pointer text-xs font-semibold uppercase tracking-wide text-emerald-700 hover:text-emerald-600">Full
+                                        explanation</summary>
+                                    <p class="text-sm text-slate-600 mt-3">Without this document, the AMR typically
+                                        rejects the application.</p>
+                                </details>
                             </div>
-                            <div class="p-5 lg:p-7 bg-emerald-50/90 border-t lg:border-t-0 lg:border-l border-emerald-100">
-                                <p class="text-xs font-bold uppercase tracking-wide text-emerald-900 mb-2">Money &amp;
+                            <div class="p-4 lg:p-5 bg-emerald-50/90 border-t lg:border-t-0 lg:border-l border-emerald-100">
+                                <p class="text-xs font-bold uppercase tracking-wide text-emerald-900 mb-1">Money &amp;
                                     accounts</p>
-                                <p class="text-sm text-slate-700 leading-relaxed"><strong>Paper only.</strong> You fix
-                                    the subscribed amount in the articles. <strong>Do not wire registered capital to
-                                        China yet</strong>—the WFOE cannot receive your equity injection until after the
-                                    license, chops, and bank accounts (Steps 8–9).</p>
+                                <p class="text-sm text-slate-700 leading-relaxed"><strong>No WFOE account.</strong></p>
                             </div>
                         </div>
 
-                        <!-- Step 4 -->
+                        <!-- 4 -->
                         <div
-                            class="rounded-xl border border-slate-200 bg-white shadow-sm overflow-hidden grid grid-cols-1 lg:grid-cols-[4.5rem_minmax(0,1fr)_minmax(260px,340px)]">
+                            class="rounded-xl border border-slate-200 bg-white shadow-sm overflow-hidden grid grid-cols-1 lg:grid-cols-[3.25rem_minmax(0,1fr)_minmax(220px,300px)]">
                             <div
-                                class="bg-emerald-600 text-white flex items-center justify-center py-3 lg:py-0 lg:min-h-[120px] text-2xl font-bold tabular-nums">
-                                4</div>
-                            <div class="p-5 lg:p-7 border-t lg:border-t-0 lg:border-r border-slate-100">
-                                <h3 class="font-bold text-slate-800 text-lg mb-2">Model Annual Hosting Costs (Operating
-                                    Burn)</h3>
-                                <p class="text-sm text-slate-600 mt-1 mb-2">Stress-test whether you can afford to
-                                    <strong>keep</strong> the entity running—still <strong>planning</strong>; no operating
-                                    cash into a WFOE account until <strong>Step 9</strong> (capital injection) and
-                                    revenue later.</p>
-                                <ul class="list-disc pl-4 text-sm text-slate-600 space-y-2">
-                                    <li><strong>Who pays before the WFOE account exists:</strong> Early lease deposits,
-                                        agents, and travel come from <strong>personal or offshore parent</strong> funds
-                                        (Steps 1–2). After incorporation, the company may <strong>reimburse</strong>
-                                        allowable pre-establishment costs—your agent must align this with local practice
-                                        and tax rules.</li>
-                                    <li><strong>Commercial real estate:</strong> Rent and property management for the
-                                        licensed address (often your largest fixed line after headcount).</li>
-                                    <li><strong>Corporate services:</strong> Bookkeeping, monthly/quarterly tax
-                                        filing, annual audit (where required), agent for compliance—budget as a
-                                        retainer, not a one-time fee.</li>
-                                    <li><strong>Payroll &amp; HR:</strong> Salaries plus employer <strong>“five insurances
-                                            and one fund”</strong> (and any local surcharges). This is usually the
-                                        <strong>dominant variable cost</strong> for a CAD/engineering shop—use the
-                                        <a href="#costs" class="text-emerald-600 font-semibold underline">Annual
-                                            Financial Modeling Dashboard</a> on this page to compare cities and roles.
-                                    </li>
-                                    <li><strong>Banking &amp; FX:</strong> Account maintenance, remittance fees, and
-                                        documentation for inbound capital and outbound payments.</li>
-                                    <li><strong>One-time setup:</strong> Chops, license-related fees, and initial IT
-                                        (fapiao equipment) are small versus the first-year operating total—do not
-                                        optimize registered capital based on chop cost alone.</li>
-                                    <li><strong>Action:</strong> Build a simple 12-month cash-flow: sum the lines above
-                                        and compare to your pay-in plan for registered capital plus expected revenue.
-                                        Assume operating cash in China becomes available <strong>after Step 9</strong>
-                                        (and revenue later). If the model fails, reduce headcount or city tier before
-                                        you commit a large subscribed capital figure.</li>
-                                </ul>
+                                class="bg-emerald-600 text-white flex items-center justify-center py-3 lg:py-0 lg:min-h-[72px] text-lg font-bold tabular-nums">4</div>
+                            <div class="p-4 lg:p-5 border-t lg:border-t-0 lg:border-r border-slate-100">
+                                <p class="text-sm font-semibold text-slate-900 leading-snug">Sign the commercial lease
+                                    (deposits often paid personally or by your offshore parent).</p>
+                                <details class="wfoe-details mt-2">
+                                    <summary
+                                        class="cursor-pointer text-xs font-semibold uppercase tracking-wide text-emerald-700 hover:text-emerald-600">Full
+                                        explanation</summary>
+                                    <p class="text-sm text-slate-600 mt-3">The tenant may not exist on paper yet; after
+                                        incorporation and chops, the WFOE may reimburse allowable pre-establishment
+                                        costs—confirm with your agent and accountant.</p>
+                                </details>
                             </div>
-                            <div class="p-5 lg:p-7 bg-emerald-50/90 border-t lg:border-t-0 lg:border-l border-emerald-100">
-                                <p class="text-xs font-bold uppercase tracking-wide text-emerald-900 mb-2">Money &amp;
+                            <div class="p-4 lg:p-5 bg-emerald-50/90 border-t lg:border-t-0 lg:border-l border-emerald-100">
+                                <p class="text-xs font-bold uppercase tracking-wide text-emerald-900 mb-1">Money &amp;
                                     accounts</p>
-                                <p class="text-sm text-slate-700 leading-relaxed"><strong>Spreadsheet / budget.</strong>
-                                    You are sizing future burn; the WFOE still has <strong>no onshore equity cash</strong>
-                                    until Step 9. The dashboard below models payroll + statutory contributions once you
-                                    hire.</p>
+                                <p class="text-sm text-slate-700 leading-relaxed"><strong>Personal /</strong> offshore
+                                    parent funds for deposit and early rent.</p>
                             </div>
                         </div>
 
-                        <!-- Step 5 -->
+                        <!-- 5 -->
                         <div
-                            class="rounded-xl border border-slate-200 bg-white shadow-sm overflow-hidden grid grid-cols-1 lg:grid-cols-[4.5rem_minmax(0,1fr)_minmax(260px,340px)]">
+                            class="rounded-xl border border-slate-200 bg-white shadow-sm overflow-hidden grid grid-cols-1 lg:grid-cols-[3.25rem_minmax(0,1fr)_minmax(220px,300px)]">
                             <div
-                                class="bg-emerald-600 text-white flex items-center justify-center py-3 lg:py-0 lg:min-h-[120px] text-2xl font-bold tabular-nums">
-                                5</div>
-                            <div class="p-5 lg:p-7 border-t lg:border-t-0 lg:border-r border-slate-100">
-                                <h3 class="font-bold text-slate-800 text-lg mb-2">Appoint Leadership Structure</h3>
-                                <ul class="list-disc pl-4 text-sm text-slate-600 space-y-1.5">
-                                    <li><strong>Action:</strong> Name three mandatory roles: a <strong>Legal
-                                            Representative</strong> (ultimate legal face of the company), an
-                                        <strong>Executive Director</strong> (or a board), and a <strong>Supervisor</strong>.
-                                    </li>
-                                    <li><strong>Rule:</strong> The Supervisor cannot be the same person as the Director
-                                        or Legal Rep—at least two distinct individuals on paper.</li>
-                                    <li><strong>Tip:</strong> These names go into the articles filed with the
-                                        registration authority; align them with who will actually sign contracts and
-                                        bank mandates.</li>
-                                </ul>
+                                class="bg-emerald-600 text-white flex items-center justify-center py-3 lg:py-0 lg:min-h-[72px] text-lg font-bold tabular-nums">5</div>
+                            <div class="p-4 lg:p-5 border-t lg:border-t-0 lg:border-r border-slate-100">
+                                <p class="text-sm font-semibold text-slate-900 leading-snug">Notarize your US passport
+                                    or parent-company documents at a US Notary Public.</p>
+                                <details class="wfoe-details mt-2">
+                                    <summary
+                                        class="cursor-pointer text-xs font-semibold uppercase tracking-wide text-emerald-700 hover:text-emerald-600">Full
+                                        explanation</summary>
+                                    <p class="text-sm text-slate-600 mt-3">Individual investor = passport; corporate
+                                        parent = entity docs—your agent will list exactly what is needed.</p>
+                                </details>
                             </div>
-                            <div class="p-5 lg:p-7 bg-emerald-50/90 border-t lg:border-t-0 lg:border-l border-emerald-100">
-                                <p class="text-xs font-bold uppercase tracking-wide text-emerald-900 mb-2">Money &amp;
+                            <div class="p-4 lg:p-5 bg-emerald-50/90 border-t lg:border-t-0 lg:border-l border-emerald-100">
+                                <p class="text-xs font-bold uppercase tracking-wide text-emerald-900 mb-1">Money &amp;
                                     accounts</p>
-                                <p class="text-sm text-slate-700 leading-relaxed"><strong>Paper only.</strong> Roles and
-                                    signatures are set for articles and banking—<strong>no movement of registered
-                                        capital</strong> at this step.</p>
+                                <p class="text-sm text-slate-700 leading-relaxed">Notary fees: <strong>personal</strong>
+                                    or parent.</p>
                             </div>
                         </div>
 
-                        <!-- Step 6 -->
+                        <!-- 6 -->
                         <div
-                            class="rounded-xl border border-slate-200 bg-white shadow-sm overflow-hidden grid grid-cols-1 lg:grid-cols-[4.5rem_minmax(0,1fr)_minmax(260px,340px)]">
+                            class="rounded-xl border border-slate-200 bg-white shadow-sm overflow-hidden grid grid-cols-1 lg:grid-cols-[3.25rem_minmax(0,1fr)_minmax(220px,300px)]">
                             <div
-                                class="bg-emerald-600 text-white flex items-center justify-center py-3 lg:py-0 lg:min-h-[120px] text-2xl font-bold tabular-nums">
-                                6</div>
-                            <div class="p-5 lg:p-7 border-t lg:border-t-0 lg:border-r border-slate-100">
-                                <h3 class="font-bold text-slate-800 text-lg mb-2">The Government Filing</h3>
-                                <ul class="list-disc pl-4 text-sm text-slate-600 space-y-1.5">
-                                    <li><strong>Action:</strong> Submit your lease, apostilled passport, articles of
-                                        association (capital, pay-in schedule, roles), and other company rules to the
-                                        local Administration for Market Regulation (AMR).</li>
-                                    <li><strong>Result:</strong> If approved, they hand you a physical paper document
-                                        called the <strong>Business License (营业执照)</strong>. Congratulations, your
-                                        company officially exists!</li>
-                                </ul>
+                                class="bg-emerald-600 text-white flex items-center justify-center py-3 lg:py-0 lg:min-h-[72px] text-lg font-bold tabular-nums">6</div>
+                            <div class="p-4 lg:p-5 border-t lg:border-t-0 lg:border-r border-slate-100">
+                                <p class="text-sm font-semibold text-slate-900 leading-snug">Obtain an Apostille from
+                                    your state’s Secretary of State.</p>
+                                <details class="wfoe-details mt-2">
+                                    <summary
+                                        class="cursor-pointer text-xs font-semibold uppercase tracking-wide text-emerald-700 hover:text-emerald-600">Full
+                                        explanation</summary>
+                                    <p class="text-sm text-slate-600 mt-3">You no longer need Chinese Embassy
+                                        legalization for this path—the Apostille is the standard certification.</p>
+                                </details>
                             </div>
-                            <div class="p-5 lg:p-7 bg-emerald-50/90 border-t lg:border-t-0 lg:border-l border-emerald-100">
-                                <p class="text-xs font-bold uppercase tracking-wide text-emerald-900 mb-2">Money &amp;
+                            <div class="p-4 lg:p-5 bg-emerald-50/90 border-t lg:border-t-0 lg:border-l border-emerald-100">
+                                <p class="text-xs font-bold uppercase tracking-wide text-emerald-900 mb-1">Money &amp;
                                     accounts</p>
-                                <p class="text-sm text-slate-700 leading-relaxed">The <strong>legal person</strong> exists,
-                                    but you still have <strong>no usable corporate bank accounts</strong> for operations
-                                    until Step 8. You cannot yet receive inbound investment as the WFOE.</p>
+                                <p class="text-sm text-slate-700 leading-relaxed">State fees: <strong>personal</strong>
+                                    or parent.</p>
                             </div>
                         </div>
 
-                        <!-- Step 7 -->
+                        <!-- 7 -->
                         <div
-                            class="rounded-xl border border-slate-200 bg-white shadow-sm overflow-hidden grid grid-cols-1 lg:grid-cols-[4.5rem_minmax(0,1fr)_minmax(260px,340px)]">
+                            class="rounded-xl border border-slate-200 bg-white shadow-sm overflow-hidden grid grid-cols-1 lg:grid-cols-[3.25rem_minmax(0,1fr)_minmax(220px,300px)]">
                             <div
-                                class="bg-emerald-600 text-white flex items-center justify-center py-3 lg:py-0 lg:min-h-[120px] text-2xl font-bold tabular-nums">
-                                7</div>
-                            <div class="p-5 lg:p-7 border-t lg:border-t-0 lg:border-r border-slate-100">
-                                <h3 class="font-bold text-slate-800 text-lg mb-2">Carve the "Chops" (Stamps)</h3>
-                                <ul class="list-disc pl-4 text-sm text-slate-600 space-y-1.5">
-                                    <li><strong>Action:</strong> Take your new Business License to the Public Security
-                                        Bureau (PSB).</li>
-                                    <li><strong>Action:</strong> Hire a licensed vendor to carve your official company
-                                        stamps, known as "Chops".</li>
-                                    <li><strong>CRITICAL:</strong> In China, a red stamp on a contract is legally more
-                                        powerful than your signature. Keep the Official Chop and Financial Chop locked
-                                        in a safe. Whoever holds them controls the company.</li>
-                                </ul>
+                                class="bg-emerald-600 text-white flex items-center justify-center py-3 lg:py-0 lg:min-h-[72px] text-lg font-bold tabular-nums">7</div>
+                            <div class="p-4 lg:p-5 border-t lg:border-t-0 lg:border-r border-slate-100">
+                                <p class="text-sm font-semibold text-slate-900 leading-snug">Set registered capital and
+                                    pay-in schedule in the articles—<strong>do not wire equity yet</strong>.</p>
+                                <details class="wfoe-details mt-2">
+                                    <summary
+                                        class="cursor-pointer text-xs font-semibold uppercase tracking-wide text-emerald-700 hover:text-emerald-600">Full
+                                        explanation</summary>
+                                    <ul class="list-disc pl-4 text-sm text-slate-600 space-y-1.5 mt-3">
+                                        <li>Registered capital (注册资本) is the subscribed total on the license; it is
+                                            not the same as annual rent or payroll.</li>
+                                        <li>Under PRC Company Law (revised 1 Jul 2024), full pay-in within
+                                            <strong>five years</strong> of establishment unless transition rules apply for
+                                            older companies.</li>
+                                        <li>Choose amount using: minimum viable for your sector, business plan, license
+                                            minimums, banking credibility, and repatriation plans—align with your
+                                            accountant.</li>
+                                        <li>Employer social insurance + housing fund is separate from this line—see step 8
+                                            and the dashboard.</li>
+                                    </ul>
+                                </details>
                             </div>
-                            <div class="p-5 lg:p-7 bg-emerald-50/90 border-t lg:border-t-0 lg:border-l border-emerald-100">
-                                <p class="text-xs font-bold uppercase tracking-wide text-emerald-900 mb-2">Money &amp;
+                            <div class="p-4 lg:p-5 bg-emerald-50/90 border-t lg:border-t-0 lg:border-l border-emerald-100">
+                                <p class="text-xs font-bold uppercase tracking-wide text-emerald-900 mb-1">Money &amp;
                                     accounts</p>
-                                <p class="text-sm text-slate-700 leading-relaxed">Chops are required for <strong>bank
-                                        KYC</strong> and contracts. <strong>Still no operating cash</strong> through
-                                    WFOE accounts until those accounts are opened in Step 8.</p>
+                                <p class="text-sm text-slate-700 leading-relaxed"><strong>Paper only.</strong> No inbound
+                                    equity until the license, chops, and bank accounts exist (steps 13–17).</p>
                             </div>
                         </div>
 
-                        <!-- Step 8 -->
+                        <!-- 8 -->
                         <div
-                            class="rounded-xl border border-slate-200 bg-white shadow-sm overflow-hidden grid grid-cols-1 lg:grid-cols-[4.5rem_minmax(0,1fr)_minmax(260px,340px)]">
+                            class="rounded-xl border border-slate-200 bg-white shadow-sm overflow-hidden grid grid-cols-1 lg:grid-cols-[3.25rem_minmax(0,1fr)_minmax(220px,300px)]">
                             <div
-                                class="bg-emerald-600 text-white flex items-center justify-center py-3 lg:py-0 lg:min-h-[120px] text-2xl font-bold tabular-nums">
-                                8</div>
-                            <div class="p-5 lg:p-7 border-t lg:border-t-0 lg:border-r border-slate-100">
-                                <h3 class="font-bold text-slate-800 text-lg mb-2">Open Bank Accounts (Empty Accounts)</h3>
-                                <p class="text-sm text-slate-600 mt-1 mb-2">The <strong>first</strong> time the WFOE can
-                                    hold money in its own name. Until now, funds stayed with you or your offshore
-                                    parent.</p>
-                                <ul class="list-disc pl-4 text-sm text-slate-600 space-y-2">
-                                    <li><strong>Action:</strong> With the Business License and chops, visit a major bank
-                                        (e.g. ICBC, Bank of China, China Construction Bank). Expect KYC: purpose of the
-                                        entity, ownership structure, and signatories.</li>
-                                    <li><strong>Action:</strong> Open the <strong>RMB basic deposit account (基本户)</strong>
-                                        —this is the main account for day-to-day RMB operations (salaries, rent, tax) and
-                                        is usually the only account that can pay cash salaries.</li>
-                                    <li><strong>Action:</strong> Open the <strong>foreign investor / capital account</strong>
-                                        (names vary: e.g. capital account, FDI account) used to <strong>receive inbound
-                                            foreign-currency investment</strong> from the shareholder abroad. The bank
-                                        explains how it pairs with SAFE registration of your foreign-invested enterprise.
-                                    </li>
-                                    <li><strong>Important:</strong> Accounts may be opened with <strong>zero or minimal
-                                            balance</strong>. You do <strong>not</strong> need to have already wired
-                                        registered capital from the US—<strong>that is Step 9</strong>.</li>
-                                </ul>
+                                class="bg-emerald-600 text-white flex items-center justify-center py-3 lg:py-0 lg:min-h-[72px] text-lg font-bold tabular-nums">8</div>
+                            <div class="p-4 lg:p-5 border-t lg:border-t-0 lg:border-r border-slate-100">
+                                <p class="text-sm font-semibold text-slate-900 leading-snug">Model a 12-month budget:
+                                    rent, agents, payroll, and statutory “five insurances + fund.”</p>
+                                <details class="wfoe-details mt-2">
+                                    <summary
+                                        class="cursor-pointer text-xs font-semibold uppercase tracking-wide text-emerald-700 hover:text-emerald-600">Full
+                                        explanation</summary>
+                                    <ul class="list-disc pl-4 text-sm text-slate-600 space-y-1.5 mt-3">
+                                        <li>Pre-WFOE costs (lease, travel) often come from personal or parent funds;
+                                            reimbursement after setup may be possible—confirm with your agent.</li>
+                                        <li>Payroll + statutory is usually the largest variable for a CAD shop—use the
+                                            <a href="#costs" class="text-emerald-600 font-semibold underline">dashboard</a>.
+                                        </li>
+                                        <li>Assume onshore operating cash in China after capital injection (steps 16–17)
+                                            and revenue.</li>
+                                    </ul>
+                                </details>
                             </div>
-                            <div class="p-5 lg:p-7 bg-emerald-50/90 border-t lg:border-t-0 lg:border-l border-emerald-100">
-                                <p class="text-xs font-bold uppercase tracking-wide text-emerald-900 mb-2">Money &amp;
+                            <div class="p-4 lg:p-5 bg-emerald-50/90 border-t lg:border-t-0 lg:border-l border-emerald-100">
+                                <p class="text-xs font-bold uppercase tracking-wide text-emerald-900 mb-1">Money &amp;
                                     accounts</p>
-                                <p class="text-sm text-slate-700 leading-relaxed"><strong>Accounts exist but may be
-                                        empty</strong> (aside from any bank minimum). You now have a place to
-                                    <strong>receive</strong> inbound investment—next step is the actual wire.</p>
+                                <p class="text-sm text-slate-700 leading-relaxed"><strong>Spreadsheet only.</strong> No
+                                    WFOE equity cash onshore yet.</p>
                             </div>
                         </div>
 
-                        <!-- Step 9 -->
+                        <!-- 9 -->
                         <div
-                            class="rounded-xl border border-slate-200 bg-white shadow-sm overflow-hidden grid grid-cols-1 lg:grid-cols-[4.5rem_minmax(0,1fr)_minmax(260px,340px)]">
+                            class="rounded-xl border border-slate-200 bg-white shadow-sm overflow-hidden grid grid-cols-1 lg:grid-cols-[3.25rem_minmax(0,1fr)_minmax(220px,300px)]">
                             <div
-                                class="bg-emerald-600 text-white flex items-center justify-center py-3 lg:py-0 lg:min-h-[120px] text-2xl font-bold tabular-nums">
-                                9</div>
-                            <div class="p-5 lg:p-7 border-t lg:border-t-0 lg:border-r border-slate-100">
-                                <h3 class="font-bold text-slate-800 text-lg mb-2">Remit Registered Capital (Paid-In
-                                    Equity)</h3>
-                                <p class="text-sm text-slate-600 mt-1 mb-2">The shareholder sends money <strong>from
-                                        abroad into the WFOE’s accounts</strong>. Your <strong>subscribed</strong> capital
-                                    starts becoming <strong>paid-in (实缴)</strong> onshore.</p>
-                                <ul class="list-disc pl-4 text-sm text-slate-600 space-y-2">
-                                    <li><strong>Action:</strong> Work with your bank and corporate agent to prepare the
-                                        <strong>foreign investment / capital contribution</strong> paperwork (forms and
-                                        remittance purpose codes differ by bank; the wire must reference <strong>registered
-                                            capital / 投资款</strong> or the bank’s required wording—not a casual
-                                        “transfer.”).</li>
-                                    <li><strong>Action:</strong> The foreign parent (or you as individual investor) wires
-                                        <strong>foreign currency</strong> (e.g. USD) to the WFOE’s designated inbound
-                                        account. The bank records the amount toward your <strong>paid-in capital</strong>
-                                        and SAFE filing; obtain <strong>FX settlement</strong> documents.</li>
-                                    <li><strong>Action:</strong> Convert currency and move funds into the
-                                        <strong>RMB basic account</strong> as needed for rent, salaries, and taxes—follow
-                                        the bank’s process for <strong>capital-account settlement</strong> (资本金结汇);
-                                        do not treat this like personal remittance.</li>
-                                    <li><strong>Tranches:</strong> You may inject in <strong>multiple wires</strong>
-                                        within your articles’ schedule, as long as you meet the <strong>five-year
-                                            full pay-in</strong> rule (Step 3).</li>
-                                    <li><strong>After this step:</strong> The WFOE has <strong>cash in China</strong> to
-                                        fund operations. Steps 3–4 were budgets; Step 9 is when that equity actually
-                                        arrives.</li>
-                                </ul>
+                                class="bg-emerald-600 text-white flex items-center justify-center py-3 lg:py-0 lg:min-h-[72px] text-lg font-bold tabular-nums">9</div>
+                            <div class="p-4 lg:p-5 border-t lg:border-t-0 lg:border-r border-slate-100">
+                                <p class="text-sm font-semibold text-slate-900 leading-snug">Name Legal Rep, Executive
+                                    Director, and Supervisor—two roles cannot be the same person.</p>
+                                <details class="wfoe-details mt-2">
+                                    <summary
+                                        class="cursor-pointer text-xs font-semibold uppercase tracking-wide text-emerald-700 hover:text-emerald-600">Full
+                                        explanation</summary>
+                                    <p class="text-sm text-slate-600 mt-3">The Supervisor cannot be the Legal
+                                        Representative or Director. These names go into articles and bank mandates.</p>
+                                </details>
                             </div>
-                            <div class="p-5 lg:p-7 bg-emerald-50/90 border-t lg:border-t-0 lg:border-l border-emerald-100">
-                                <p class="text-xs font-bold uppercase tracking-wide text-emerald-900 mb-2">Money &amp;
+                            <div class="p-4 lg:p-5 bg-emerald-50/90 border-t lg:border-t-0 lg:border-l border-emerald-100">
+                                <p class="text-xs font-bold uppercase tracking-wide text-emerald-900 mb-1">Money &amp;
                                     accounts</p>
-                                <p class="text-sm text-slate-700 leading-relaxed"><strong>Equity cash lands onshore.</strong>
-                                    FCY arrives, bank records <strong>实缴</strong> per SAFE; settle to RMB for operations.
-                                    This is when subscribed capital becomes <strong>usable company money</strong> in
+                                <p class="text-sm text-slate-700 leading-relaxed"><strong>Paper only.</strong></p>
+                            </div>
+                        </div>
+
+                        <!-- 10 -->
+                        <div
+                            class="rounded-xl border border-slate-200 bg-white shadow-sm overflow-hidden grid grid-cols-1 lg:grid-cols-[3.25rem_minmax(0,1fr)_minmax(220px,300px)]">
+                            <div
+                                class="bg-emerald-600 text-white flex items-center justify-center py-3 lg:py-0 lg:min-h-[72px] text-lg font-bold tabular-nums">10</div>
+                            <div class="p-4 lg:p-5 border-t lg:border-t-0 lg:border-r border-slate-100">
+                                <p class="text-sm font-semibold text-slate-900 leading-snug">File the incorporation
+                                    package with the AMR (lease + apostille + articles).</p>
+                                <details class="wfoe-details mt-2">
+                                    <summary
+                                        class="cursor-pointer text-xs font-semibold uppercase tracking-wide text-emerald-700 hover:text-emerald-600">Full
+                                        explanation</summary>
+                                    <p class="text-sm text-slate-600 mt-3">Submit to the local Administration for Market
+                                        Regulation (AMR): lease, apostilled identity/parent docs, articles (capital,
+                                        pay-in schedule, roles), and other required company rules.</p>
+                                </details>
+                            </div>
+                            <div class="p-4 lg:p-5 bg-emerald-50/90 border-t lg:border-t-0 lg:border-l border-emerald-100">
+                                <p class="text-xs font-bold uppercase tracking-wide text-emerald-900 mb-1">Money &amp;
+                                    accounts</p>
+                                <p class="text-sm text-slate-700 leading-relaxed">Agent/filing fees: <strong>personal</strong>
+                                    or parent until the WFOE can pay.</p>
+                            </div>
+                        </div>
+
+                        <!-- 11 -->
+                        <div
+                            class="rounded-xl border border-slate-200 bg-white shadow-sm overflow-hidden grid grid-cols-1 lg:grid-cols-[3.25rem_minmax(0,1fr)_minmax(220px,300px)]">
+                            <div
+                                class="bg-emerald-600 text-white flex items-center justify-center py-3 lg:py-0 lg:min-h-[72px] text-lg font-bold tabular-nums">11</div>
+                            <div class="p-4 lg:p-5 border-t lg:border-t-0 lg:border-r border-slate-100">
+                                <p class="text-sm font-semibold text-slate-900 leading-snug">Collect your Business
+                                    License (营业执照)—the company legally exists.</p>
+                                <details class="wfoe-details mt-2">
+                                    <summary
+                                        class="cursor-pointer text-xs font-semibold uppercase tracking-wide text-emerald-700 hover:text-emerald-600">Full
+                                        explanation</summary>
+                                    <p class="text-sm text-slate-600 mt-3">You still have no operational corporate bank
+                                        accounts until steps 13–14.</p>
+                                </details>
+                            </div>
+                            <div class="p-4 lg:p-5 bg-emerald-50/90 border-t lg:border-t-0 lg:border-l border-emerald-100">
+                                <p class="text-xs font-bold uppercase tracking-wide text-emerald-900 mb-1">Money &amp;
+                                    accounts</p>
+                                <p class="text-sm text-slate-700 leading-relaxed">Not yet receiving inbound investment
+                                    as the WFOE.</p>
+                            </div>
+                        </div>
+
+                        <!-- 12 -->
+                        <div
+                            class="rounded-xl border border-slate-200 bg-white shadow-sm overflow-hidden grid grid-cols-1 lg:grid-cols-[3.25rem_minmax(0,1fr)_minmax(220px,300px)]">
+                            <div
+                                class="bg-emerald-600 text-white flex items-center justify-center py-3 lg:py-0 lg:min-h-[72px] text-lg font-bold tabular-nums">12</div>
+                            <div class="p-4 lg:p-5 border-t lg:border-t-0 lg:border-r border-slate-100">
+                                <p class="text-sm font-semibold text-slate-900 leading-snug">Register and carve your
+                                    company chops (official + financial seals).</p>
+                                <details class="wfoe-details mt-2">
+                                    <summary
+                                        class="cursor-pointer text-xs font-semibold uppercase tracking-wide text-emerald-700 hover:text-emerald-600">Full
+                                        explanation</summary>
+                                    <p class="text-sm text-slate-600 mt-3">PSB + licensed vendor. A red chop on a
+                                        contract is often decisive—secure storage; whoever holds chops controls signing.
+                                    </p>
+                                </details>
+                            </div>
+                            <div class="p-4 lg:p-5 bg-emerald-50/90 border-t lg:border-t-0 lg:border-l border-emerald-100">
+                                <p class="text-xs font-bold uppercase tracking-wide text-emerald-900 mb-1">Money &amp;
+                                    accounts</p>
+                                <p class="text-sm text-slate-700 leading-relaxed">Vendor fees; still <strong>no</strong>
+                                    WFOE operating cash flow.</p>
+                            </div>
+                        </div>
+
+                        <!-- 13 -->
+                        <div
+                            class="rounded-xl border border-slate-200 bg-white shadow-sm overflow-hidden grid grid-cols-1 lg:grid-cols-[3.25rem_minmax(0,1fr)_minmax(220px,300px)]">
+                            <div
+                                class="bg-emerald-600 text-white flex items-center justify-center py-3 lg:py-0 lg:min-h-[72px] text-lg font-bold tabular-nums">13</div>
+                            <div class="p-4 lg:p-5 border-t lg:border-t-0 lg:border-r border-slate-100">
+                                <p class="text-sm font-semibold text-slate-900 leading-snug">Open the RMB basic
+                                    deposit account (基本户) with license + chops.</p>
+                                <details class="wfoe-details mt-2">
+                                    <summary
+                                        class="cursor-pointer text-xs font-semibold uppercase tracking-wide text-emerald-700 hover:text-emerald-600">Full
+                                        explanation</summary>
+                                    <p class="text-sm text-slate-600 mt-3">Main RMB account for salaries, rent, and
+                                        tax—often the only account that can pay cash salaries. KYC applies.</p>
+                                </details>
+                            </div>
+                            <div class="p-4 lg:p-5 bg-emerald-50/90 border-t lg:border-t-0 lg:border-l border-emerald-100">
+                                <p class="text-xs font-bold uppercase tracking-wide text-emerald-900 mb-1">Money &amp;
+                                    accounts</p>
+                                <p class="text-sm text-slate-700 leading-relaxed"><strong>First WFOE accounts</strong>;
+                                    may open empty.</p>
+                            </div>
+                        </div>
+
+                        <!-- 14 -->
+                        <div
+                            class="rounded-xl border border-slate-200 bg-white shadow-sm overflow-hidden grid grid-cols-1 lg:grid-cols-[3.25rem_minmax(0,1fr)_minmax(220px,300px)]">
+                            <div
+                                class="bg-emerald-600 text-white flex items-center justify-center py-3 lg:py-0 lg:min-h-[72px] text-lg font-bold tabular-nums">14</div>
+                            <div class="p-4 lg:p-5 border-t lg:border-t-0 lg:border-r border-slate-100">
+                                <p class="text-sm font-semibold text-slate-900 leading-snug">Open the foreign-investment
+                                    capital account for inbound equity (FCY).</p>
+                                <details class="wfoe-details mt-2">
+                                    <summary
+                                        class="cursor-pointer text-xs font-semibold uppercase tracking-wide text-emerald-700 hover:text-emerald-600">Full
+                                        explanation</summary>
+                                    <p class="text-sm text-slate-600 mt-3">Name varies by bank (FDI / capital account).
+                                        Pairs with SAFE registration of the foreign-invested enterprise.</p>
+                                </details>
+                            </div>
+                            <div class="p-4 lg:p-5 bg-emerald-50/90 border-t lg:border-t-0 lg:border-l border-emerald-100">
+                                <p class="text-xs font-bold uppercase tracking-wide text-emerald-900 mb-1">Money &amp;
+                                    accounts</p>
+                                <p class="text-sm text-slate-700 leading-relaxed">Ready to <strong>receive</strong>
+                                    investment wires—not the same as personal remittance.</p>
+                            </div>
+                        </div>
+
+                        <!-- 15 -->
+                        <div
+                            class="rounded-xl border border-slate-200 bg-white shadow-sm overflow-hidden grid grid-cols-1 lg:grid-cols-[3.25rem_minmax(0,1fr)_minmax(220px,300px)]">
+                            <div
+                                class="bg-emerald-600 text-white flex items-center justify-center py-3 lg:py-0 lg:min-h-[72px] text-lg font-bold tabular-nums">15</div>
+                            <div class="p-4 lg:p-5 border-t lg:border-t-0 lg:border-r border-slate-100">
+                                <p class="text-sm font-semibold text-slate-900 leading-snug">Prepare the bank’s
+                                    capital-contribution / FX forms with your agent (投资款 wording).</p>
+                                <details class="wfoe-details mt-2">
+                                    <summary
+                                        class="cursor-pointer text-xs font-semibold uppercase tracking-wide text-emerald-700 hover:text-emerald-600">Full
+                                        explanation</summary>
+                                    <p class="text-sm text-slate-600 mt-3">The remittance must be coded as registered
+                                        capital—not an informal “transfer.” Codes differ by bank.</p>
+                                </details>
+                            </div>
+                            <div class="p-4 lg:p-5 bg-emerald-50/90 border-t lg:border-t-0 lg:border-l border-emerald-100">
+                                <p class="text-xs font-bold uppercase tracking-wide text-emerald-900 mb-1">Money &amp;
+                                    accounts</p>
+                                <p class="text-sm text-slate-700 leading-relaxed"><strong>No wire yet</strong>—paperwork
+                                    first.</p>
+                            </div>
+                        </div>
+
+                        <!-- 16 -->
+                        <div
+                            class="rounded-xl border border-slate-200 bg-white shadow-sm overflow-hidden grid grid-cols-1 lg:grid-cols-[3.25rem_minmax(0,1fr)_minmax(220px,300px)]">
+                            <div
+                                class="bg-emerald-600 text-white flex items-center justify-center py-3 lg:py-0 lg:min-h-[72px] text-lg font-bold tabular-nums">16</div>
+                            <div class="p-4 lg:p-5 border-t lg:border-t-0 lg:border-r border-slate-100">
+                                <p class="text-sm font-semibold text-slate-900 leading-snug">Wire registered capital from
+                                    abroad in foreign currency to the designated inbound account.</p>
+                                <details class="wfoe-details mt-2">
+                                    <summary
+                                        class="cursor-pointer text-xs font-semibold uppercase tracking-wide text-emerald-700 hover:text-emerald-600">Full
+                                        explanation</summary>
+                                    <p class="text-sm text-slate-600 mt-3">Bank records paid-in capital (实缴) toward SAFE
+                                        filing; obtain FX settlement documents. Multiple tranches allowed within five-year
+                                        pay-in (step 7).</p>
+                                </details>
+                            </div>
+                            <div class="p-4 lg:p-5 bg-emerald-50/90 border-t lg:border-t-0 lg:border-l border-emerald-100">
+                                <p class="text-xs font-bold uppercase tracking-wide text-emerald-900 mb-1">Money &amp;
+                                    accounts</p>
+                                <p class="text-sm text-slate-700 leading-relaxed"><strong>Equity lands onshore.</strong>
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- 17 -->
+                        <div
+                            class="rounded-xl border border-slate-200 bg-white shadow-sm overflow-hidden grid grid-cols-1 lg:grid-cols-[3.25rem_minmax(0,1fr)_minmax(220px,300px)]">
+                            <div
+                                class="bg-emerald-600 text-white flex items-center justify-center py-3 lg:py-0 lg:min-h-[72px] text-lg font-bold tabular-nums">17</div>
+                            <div class="p-4 lg:p-5 border-t lg:border-t-0 lg:border-r border-slate-100">
+                                <p class="text-sm font-semibold text-slate-900 leading-snug">Settle FX (资本金结汇) and
+                                    move RMB into the basic account for operations.</p>
+                                <details class="wfoe-details mt-2">
+                                    <summary
+                                        class="cursor-pointer text-xs font-semibold uppercase tracking-wide text-emerald-700 hover:text-emerald-600">Full
+                                        explanation</summary>
+                                    <p class="text-sm text-slate-600 mt-3">Follow the bank’s process; this is company
+                                        capital settlement, not personal remittance.</p>
+                                </details>
+                            </div>
+                            <div class="p-4 lg:p-5 bg-emerald-50/90 border-t lg:border-t-0 lg:border-l border-emerald-100">
+                                <p class="text-xs font-bold uppercase tracking-wide text-emerald-900 mb-1">Money &amp;
+                                    accounts</p>
+                                <p class="text-sm text-slate-700 leading-relaxed"><strong>Usable company cash</strong> in
                                     China.</p>
                             </div>
                         </div>
 
-                        <!-- Step 10 -->
+                        <!-- 18 -->
                         <div
-                            class="rounded-xl border border-slate-200 bg-white shadow-sm overflow-hidden grid grid-cols-1 lg:grid-cols-[4.5rem_minmax(0,1fr)_minmax(260px,340px)]">
+                            class="rounded-xl border border-slate-200 bg-white shadow-sm overflow-hidden grid grid-cols-1 lg:grid-cols-[3.25rem_minmax(0,1fr)_minmax(220px,300px)]">
                             <div
-                                class="bg-emerald-600 text-white flex items-center justify-center py-3 lg:py-0 lg:min-h-[120px] text-2xl font-bold tabular-nums">
-                                10</div>
-                            <div class="p-5 lg:p-7 border-t lg:border-t-0 lg:border-r border-slate-100">
-                                <h3 class="font-bold text-slate-800 text-lg mb-2">Tax &amp; HR Ready</h3>
-                                <ul class="list-disc pl-4 text-sm text-slate-600 space-y-1.5">
-                                    <li><strong>Action:</strong> Go to the local Tax Bureau to register and receive your
-                                        "Fapiao" machine (the official government invoicing system).</li>
-                                    <li><strong>Action:</strong> Register your company with the local Social Security
-                                        Bureau. You are now legally ready to hire CAD drafters and pay their mandatory
-                                        benefits from the <strong>RMB basic account</strong> (funded by Step 9 capital
-                                        and/or operating revenue).</li>
-                                </ul>
+                                class="bg-emerald-600 text-white flex items-center justify-center py-3 lg:py-0 lg:min-h-[72px] text-lg font-bold tabular-nums">18</div>
+                            <div class="p-4 lg:p-5 border-t lg:border-t-0 lg:border-r border-slate-100">
+                                <p class="text-sm font-semibold text-slate-900 leading-snug">Register with the tax bureau
+                                    and obtain fapiao (official invoicing) capability.</p>
+                                <details class="wfoe-details mt-2">
+                                    <summary
+                                        class="cursor-pointer text-xs font-semibold uppercase tracking-wide text-emerald-700 hover:text-emerald-600">Full
+                                        explanation</summary>
+                                    <p class="text-sm text-slate-600 mt-3">You need this to bill customers compliantly on
+                                        the mainland.</p>
+                                </details>
                             </div>
-                            <div class="p-5 lg:p-7 bg-emerald-50/90 border-t lg:border-t-0 lg:border-l border-emerald-100">
-                                <p class="text-xs font-bold uppercase tracking-wide text-emerald-900 mb-2">Money &amp;
+                            <div class="p-4 lg:p-5 bg-emerald-50/90 border-t lg:border-t-0 lg:border-l border-emerald-100">
+                                <p class="text-xs font-bold uppercase tracking-wide text-emerald-900 mb-1">Money &amp;
                                     accounts</p>
-                                <p class="text-sm text-slate-700 leading-relaxed"><strong>Run payroll</strong> and
-                                    statutory contributions from the <strong>RMB basic account</strong>, funded by Step 9
-                                    and/or customer revenue. Align with the <a href="#costs"
-                                        class="text-emerald-700 font-semibold underline">dashboard</a> for total
-                                    employment cost.</p>
+                                <p class="text-sm text-slate-700 leading-relaxed">Pay from <strong>RMB basic</strong>
+                                    account.</p>
+                            </div>
+                        </div>
+
+                        <!-- 19 -->
+                        <div
+                            class="rounded-xl border border-slate-200 bg-white shadow-sm overflow-hidden grid grid-cols-1 lg:grid-cols-[3.25rem_minmax(0,1fr)_minmax(220px,300px)]">
+                            <div
+                                class="bg-emerald-600 text-white flex items-center justify-center py-3 lg:py-0 lg:min-h-[72px] text-lg font-bold tabular-nums">19</div>
+                            <div class="p-4 lg:p-5 border-t lg:border-t-0 lg:border-r border-slate-100">
+                                <p class="text-sm font-semibold text-slate-900 leading-snug">Register for social
+                                    insurance—then you can hire and run payroll.</p>
+                                <details class="wfoe-details mt-2">
+                                    <summary
+                                        class="cursor-pointer text-xs font-semibold uppercase tracking-wide text-emerald-700 hover:text-emerald-600">Full
+                                        explanation</summary>
+                                    <p class="text-sm text-slate-600 mt-3">Mandatory contributions are paid from the RMB
+                                        basic account, funded by capital (steps 16–17) and revenue. Compare cities
+                                        on the <a href="#costs" class="text-emerald-600 font-semibold underline">dashboard</a>.
+                                    </p>
+                                </details>
+                            </div>
+                            <div class="p-4 lg:p-5 bg-emerald-50/90 border-t lg:border-t-0 lg:border-l border-emerald-100">
+                                <p class="text-xs font-bold uppercase tracking-wide text-emerald-900 mb-1">Money &amp;
+                                    accounts</p>
+                                <p class="text-sm text-slate-700 leading-relaxed"><strong>Payroll + statutory</strong>
+                                    from the basic account.</p>
                             </div>
                         </div>
 
@@ -781,7 +912,7 @@
                     <strong>modeled office rent per employee</strong> (see methodology below) to compare total
                     “desk” cost by city. <strong>Click any city's bar</strong> for the micro breakdown.
                     For setup context, see <a href="#process"
-                        class="text-emerald-600 font-semibold underline underline-offset-2">Setup Steps 3–4</a>.
+                        class="text-emerald-600 font-semibold underline underline-offset-2">Setup Steps 7–8</a>.
                 </p>
                 <p id="office-rent-method" class="text-slate-500 text-sm mt-3 leading-relaxed hidden">
                     <strong>Office rent model:</strong> Annual RMB per employee is estimated from 2024–2025 market reports
