@@ -732,27 +732,44 @@
                 const ctxBar = document.getElementById('barChartAllCities').getContext('2d');
                 barChart = new Chart(ctxBar, {
                     type: 'bar',
-                    data: { labels: [], datasets: [{ label: 'Total Annual Cost', data: [], backgroundColor: [], borderRadius: 4 }] },
+                    data: {
+                        labels: [],
+                        datasets: [
+                            { label: 'Annual Base Salary', data: [], backgroundColor: [], borderRadius: 0 },
+                            { label: 'Employer Burden', data: [], backgroundColor: [], borderRadius: { topRight: 4, bottomRight: 4 } }
+                        ]
+                    },
                     options: {
                         indexAxis: 'y', // CRITICAL: Makes it horizontal for 15 cities readability
                         responsive: true,
                         maintainAspectRatio: false,
                         plugins: {
-                            legend: { display: false },
+                            legend: { display: true, position: 'top' },
                             tooltip: {
+                                mode: 'index',
+                                intersect: false,
                                 callbacks: {
                                     label: function (context) {
-                                        return 'Total Annual: ' + getSymbol() + context.parsed.x.toLocaleString();
+                                        return context.dataset.label + ': ' + getSymbol() + context.parsed.x.toLocaleString();
+                                    },
+                                    footer: function (tooltipItems) {
+                                        let total = 0;
+                                        tooltipItems.forEach(function (tooltipItem) {
+                                            total += tooltipItem.parsed.x;
+                                        });
+                                        return '\nTotal Annual: ' + getSymbol() + total.toLocaleString();
                                     }
                                 }
                             }
                         },
                         scales: {
                             x: {
+                                stacked: true,
                                 beginAtZero: true,
                                 ticks: { callback: function (v) { return getSymbol() + v.toLocaleString(); } }
                             },
                             y: {
+                                stacked: true,
                                 ticks: { autoSkip: false, font: { size: 11 } }
                             }
                         }
@@ -763,16 +780,25 @@
                 const ctxDoughnut = document.getElementById('doughnutCityDetail').getContext('2d');
                 doughnutChart = new Chart(ctxDoughnut, {
                     type: 'doughnut',
-                    data: { labels: ['Annual Base Salary', 'Annual Employer Burden'], datasets: [{ data: [0, 0], backgroundColor: ['#0f172a', '#10b981'], borderWidth: 0, hoverOffset: 4 }] },
+                    data: {
+                        labels: [], // Will be populated dynamically by updateVisuals
+                        datasets: [{
+                            data: [],
+                            backgroundColor: [],
+                            borderWidth: 1,
+                            borderColor: '#ffffff',
+                            hoverOffset: 4
+                        }]
+                    },
                     options: {
                         responsive: true,
                         maintainAspectRatio: false,
                         plugins: {
-                            legend: { position: 'bottom' },
+                            legend: { position: 'right', labels: { boxWidth: 12, font: { size: 11 } } },
                             tooltip: {
                                 callbacks: {
                                     label: function (context) {
-                                        return context.label + ': ' + getSymbol() + context.parsed.toLocaleString();
+                                        return ' ' + context.label + ': ' + getSymbol() + context.parsed.toLocaleString();
                                     }
                                 }
                             }
@@ -786,8 +812,10 @@
             function updateVisuals() {
                 // Update Master Bar Chart
                 const labels = [];
-                const totals = [];
-                const bgColors = [];
+                const baseData = [];
+                const burdenData = [];
+                const baseColors = [];
+                const burdenColors = [];
 
                 // Sort all 15 cities by total cost descending
                 const sortedCityKeys = Object.keys(cityData).sort((a, b) => {
@@ -796,20 +824,73 @@
 
                 sortedCityKeys.forEach(key => {
                     labels.push(cityData[key].name);
-                    totals.push(getCostData(key, state.role).total);
-                    bgColors.push(key === state.city ? '#10b981' : '#cbd5e1');
+                    const cost = getCostData(key, state.role);
+                    baseData.push(cost.base);
+                    burdenData.push(cost.burden);
+
+                    // Highlight selected city with solid colors, fade out the others
+                    if (key === state.city) {
+                        baseColors.push('#334155');   // Solid slate for Base
+                        burdenColors.push('#10b981'); // Solid emerald for Burden
+                    } else {
+                        baseColors.push('#94a3b8');   // Faded slate
+                        burdenColors.push('#6ee7b7'); // Faded emerald
+                    }
                 });
 
                 barChart.data.labels = labels;
-                barChart.data.datasets[0].data = totals;
-                barChart.data.datasets[0].backgroundColor = bgColors;
+                barChart.data.datasets[0].data = baseData;
+                barChart.data.datasets[0].backgroundColor = baseColors;
+                barChart.data.datasets[1].data = burdenData;
+                barChart.data.datasets[1].backgroundColor = burdenColors;
                 barChart.update();
 
-                // Update Doughnut Chart Detail
-                const selectedData = getCostData(state.city, state.role);
-                doughnutChart.data.datasets[0].data = [selectedData.base, selectedData.burden];
-                // Change color for SAR to indicate different tax structure
-                doughnutChart.data.datasets[0].backgroundColor = cityData[state.city].type === 'sar' ? ['#0f172a', '#f59e0b'] : ['#0f172a', '#10b981'];
+                // Update Doughnut Chart Detail (Specific Burden Breakdown)
+                const selectedCityObj = cityData[state.city];
+                const selectedCost = getCostData(state.city, state.role);
+
+                let donutLabels = [];
+                let donutData = [];
+                let donutColors = [];
+
+                if (selectedCityObj.type === 'mainland') {
+                    // Standard mainland breakdown approximations
+                    const pensionPct = 0.16;
+                    const medicalPct = 0.10;
+                    const unempPct = 0.01;
+                    const housingPct = selectedCityObj.burdenPct - (pensionPct + medicalPct + unempPct);
+
+                    // Calculate amounts, using remainder for housing to prevent rounding issues
+                    const baseAmt = selectedCost.base;
+                    const pensionAmt = convert(selectedCost.baseRMB * pensionPct);
+                    const medicalAmt = convert(selectedCost.baseRMB * medicalPct);
+                    const unempAmt = convert(selectedCost.baseRMB * unempPct);
+                    const housingAmt = selectedCost.burden - (pensionAmt + medicalAmt + unempAmt);
+
+                    donutLabels = [
+                        'Annual Base Salary',
+                        'Pension (16%)',
+                        'Medical & Maternity (10%)',
+                        'Unemployment & Injury (1%)',
+                        `Housing Fund (${(housingPct * 100).toFixed(0)}%)`
+                    ];
+                    donutData = [baseAmt, pensionAmt, medicalAmt, unempAmt, housingAmt];
+                    // Slate for base, gradient of Emerald/Teal for the burden components
+                    donutColors = ['#0f172a', '#047857', '#10b981', '#34d399', '#6ee7b7'];
+
+                } else if (state.city === 'hongkong') {
+                    donutLabels = ['Annual Base Salary', 'MPF (Retirement Fund)'];
+                    donutData = [selectedCost.base, selectedCost.burden];
+                    donutColors = ['#0f172a', '#f59e0b']; // Amber for SARs
+                } else if (state.city === 'macau') {
+                    donutLabels = ['Annual Base Salary', 'Social Security (FSS)'];
+                    donutData = [selectedCost.base, selectedCost.burden];
+                    donutColors = ['#0f172a', '#f59e0b']; // Amber for SARs
+                }
+
+                doughnutChart.data.labels = donutLabels;
+                doughnutChart.data.datasets[0].data = donutData;
+                doughnutChart.data.datasets[0].backgroundColor = donutColors;
                 doughnutChart.update();
 
                 // Update Text Elements
