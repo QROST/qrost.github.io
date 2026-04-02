@@ -9,6 +9,17 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
+    <!-- Chosen Palette: Slate and Emerald -->
+    <!-- Application Structure Plan: The SPA is restructured to accommodate a much larger dataset (15 cities) and a shift to annual financial modeling. 
+         - Section 1 (Setup): Actionable, detailed checklist for the legal WFOE process, and a distinct summary for Special Administrative Regions (HK/Macau).
+         - Section 2 (Talent Hubs): Uses a regional categorization system (Greater Bay Area, East, North, Inland) utilizing CSS grid to organize the expanded list of cities without overwhelming the user.
+         - Section 3 (Financial Dashboard): Upgraded to handle ANNUAL costs. The master comparison chart is changed from a vertical bar to a horizontal bar chart to ensure all 15 city labels remain readable on all devices. The detail doughnut chart updates dynamically to show the specific base vs. burden split, including logic to handle the drastically different tax structures of HK/Macau. -->
+    <!-- Visualization & Content Choices: 
+         - Regional Hubs Matrix: Goal: Organize -> Method: Thematic HTML/CSS Grid -> Interaction: Hover highlight -> Justification: Groups 15 cities logically by geographic/economic zones (e.g., GBA) making exploration intuitive. NO SVG.
+         - Annual Macro Comparison: Goal: Compare -> Method: Chart.js Horizontal Bar Chart -> Interaction: Dynamic sorting and coloring based on selection -> Justification: A horizontal layout (`indexAxis: 'y'`) prevents label overlap when displaying 15 data points, a critical UX fix for larger datasets.
+         - Annual Micro Breakdown: Goal: Inform -> Method: Chart.js Doughnut Chart -> Interaction: Updates on city/role change, triggering contextual alerts for SARs -> Justification: Clearly delineates the heavy mainland social burden vs. the light SAR (MPF) burden. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+
     <style>
         body {
             font-family: 'Inter', sans-serif;
@@ -48,8 +59,8 @@
         }
 
         .step-active {
-            border-left-color: #10b981;
-            background-color: #f1f5f9;
+            border-bottom-color: #10b981 !important;
+            color: #1e293b !important;
         }
 
         .badge-gba {
@@ -105,63 +116,243 @@
 
     <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
 
+        <!-- Setup Process Section -->
         <section id="process" class="mb-20">
             <div class="mb-8">
-                <h2 class="text-3xl font-bold text-slate-800 mb-4">The Setup Process (Mainland vs. SAR)</h2>
+                <h2 class="text-3xl font-bold text-slate-800 mb-4">The Setup Process: Step-by-Step</h2>
                 <p class="text-slate-600 text-lg">
-                    This section outlines the legal framework for establishing your business entity. While mainland
-                    China utilizes the WFOE structure, Special Administrative Regions (SARs) like Hong Kong and Macau
-                    operate under distinct common law or civil law frameworks, drastically altering the setup and tax
-                    timeline.
+                    Follow these exact, actionable steps to legally establish your business. Select your target
+                    jurisdiction below. Mainland China requires a highly sequential physical process, while the SARs
+                    (Hong Kong/Macau) are much faster.
                 </p>
             </div>
 
-            <div class="flex flex-col lg:flex-row gap-8">
-                <div class="lg:w-1/3 border-l-2 border-slate-200" id="step-list">
-                    <div class="pl-4 py-3 cursor-pointer border-l-4 border-transparent hover:bg-slate-50 transition step-item step-active"
-                        data-target="step1">
-                        <div class="font-bold text-slate-800">&#9312; Mainland WFOE Setup</div>
-                        <div class="text-sm text-slate-500">Standard 5-Phase Process</div>
-                    </div>
-                    <div class="pl-4 py-3 cursor-pointer border-l-4 border-transparent hover:bg-slate-50 transition step-item"
-                        data-target="step2">
-                        <div class="font-bold text-slate-800">&#127758; Hong Kong / Macau SARs</div>
-                        <div class="text-sm text-slate-500">Alternative Frameworks</div>
+            <div class="mb-6 flex border-b border-slate-200 overflow-x-auto">
+                <button
+                    class="step-item step-active px-6 py-3 font-bold text-lg border-b-4 focus:outline-none transition-colors duration-200 text-slate-800 whitespace-nowrap"
+                    data-target="step-mainland" style="border-bottom-color: #10b981;">
+                    &#127980; Mainland China (WFOE)
+                </button>
+                <button
+                    class="step-item px-6 py-3 font-bold text-lg border-b-4 border-transparent text-slate-500 hover:text-slate-800 focus:outline-none transition-colors duration-200 whitespace-nowrap"
+                    data-target="step-sar">
+                    &#127758; Hong Kong & Macau (SAR)
+                </button>
+            </div>
+
+            <div class="bg-white p-8 rounded-xl shadow-sm border border-slate-100 min-h-[300px]">
+
+                <!-- MAINLAND STEP-BY-STEP -->
+                <div id="step-mainland" class="step-content block">
+                    <p class="text-slate-500 mb-8 font-medium">To hire talent in cities like Shanghai, Chengdu, or
+                        Shenzhen, you must form a Wholly Foreign-Owned Enterprise (WFOE). Follow this exact sequence:
+                    </p>
+
+                    <div
+                        class="space-y-8 relative before:absolute before:inset-0 before:ml-5 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-gradient-to-b before:from-transparent before:via-slate-300 before:to-transparent">
+
+                        <!-- Step 1 -->
+                        <div
+                            class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active">
+                            <div
+                                class="flex items-center justify-center w-10 h-10 rounded-full border-4 border-white bg-emerald-500 text-white font-bold shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 z-10">
+                                1</div>
+                            <div
+                                class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] p-4 rounded border border-slate-200 shadow-sm bg-slate-50">
+                                <h3 class="font-bold text-slate-800 text-lg mb-1">The Name & The Lease</h3>
+                                <ul class="list-disc pl-4 text-sm text-slate-600 space-y-1 mt-2">
+                                    <li><strong>Action:</strong> Pick a company name. The legal format is strict:
+                                        <em>[City] + [Your Name] + [Industry] + Co., Ltd.</em> (e.g., Shanghai Acme CAD
+                                        Design Co., Ltd.).</li>
+                                    <li><strong>Action:</strong> Sign a lease for a <strong>commercial</strong> office.
+                                        You cannot use a residential apartment.</li>
+                                    <li><strong>CRITICAL:</strong> You must get a copy of the landlord's red "Property
+                                        Ownership Certificate" with the lease, or the government will reject your
+                                        application.</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Step 2 -->
+                        <div
+                            class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active">
+                            <div
+                                class="flex items-center justify-center w-10 h-10 rounded-full border-4 border-white bg-emerald-500 text-white font-bold shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 z-10">
+                                2</div>
+                            <div
+                                class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] p-4 rounded border border-slate-200 shadow-sm bg-slate-50">
+                                <h3 class="font-bold text-slate-800 text-lg mb-1">US Paperwork (Apostille)</h3>
+                                <ul class="list-disc pl-4 text-sm text-slate-600 space-y-1 mt-2">
+                                    <li><strong>Action:</strong> Take your US Passport (if applying as an individual) or
+                                        your US LLC paperwork (if a company is the parent) to a local US Notary Public.
+                                    </li>
+                                    <li><strong>Action:</strong> Send the notarized document to your US state's
+                                        Secretary of State to get an <strong>Apostille</strong> (an international
+                                        certification).</li>
+                                    <li><em>Good News:</em> As of recently, you no longer need to mail things to the
+                                        Chinese Embassy. The Apostille is all China requires.</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Step 3 -->
+                        <div
+                            class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active">
+                            <div
+                                class="flex items-center justify-center w-10 h-10 rounded-full border-4 border-white bg-emerald-500 text-white font-bold shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 z-10">
+                                3</div>
+                            <div
+                                class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] p-4 rounded border border-slate-200 shadow-sm bg-slate-50">
+                                <h3 class="font-bold text-slate-800 text-lg mb-1">Define Roles & Capital</h3>
+                                <ul class="list-disc pl-4 text-sm text-slate-600 space-y-1 mt-2">
+                                    <li><strong>Action:</strong> Pick a "Registered Capital" amount (e.g., $50,000 USD).
+                                        You don't deposit this upfront; you simply promise to pay it into the business
+                                        over 30 years.</li>
+                                    <li><strong>Action:</strong> Appoint three mandatory roles: A <strong>Legal
+                                            Representative</strong> (the boss, holds ultimate legal liability), an
+                                        <strong>Executive Director</strong>, and a <strong>Supervisor</strong>.</li>
+                                    <li><strong>Rule:</strong> The Supervisor cannot be the same person as the Director
+                                        or Legal Rep. You need at least two distinct people involved on paper.</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Step 4 -->
+                        <div
+                            class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active">
+                            <div
+                                class="flex items-center justify-center w-10 h-10 rounded-full border-4 border-white bg-emerald-500 text-white font-bold shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 z-10">
+                                4</div>
+                            <div
+                                class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] p-4 rounded border border-slate-200 shadow-sm bg-slate-50">
+                                <h3 class="font-bold text-slate-800 text-lg mb-1">The Government Filing</h3>
+                                <ul class="list-disc pl-4 text-sm text-slate-600 space-y-1 mt-2">
+                                    <li><strong>Action:</strong> Submit your lease, apostilled passport, and company
+                                        rules to the local Administration for Market Regulation (AMR).</li>
+                                    <li><strong>Result:</strong> If approved, they hand you a physical paper document
+                                        called the <strong>Business License (营业执照)</strong>. Congratulations, your
+                                        company officially exists!</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Step 5 -->
+                        <div
+                            class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active">
+                            <div
+                                class="flex items-center justify-center w-10 h-10 rounded-full border-4 border-white bg-emerald-500 text-white font-bold shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 z-10">
+                                5</div>
+                            <div
+                                class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] p-4 rounded border border-slate-200 shadow-sm bg-slate-50">
+                                <h3 class="font-bold text-slate-800 text-lg mb-1">Carve the "Chops" (Stamps)</h3>
+                                <ul class="list-disc pl-4 text-sm text-slate-600 space-y-1 mt-2">
+                                    <li><strong>Action:</strong> Take your new Business License to the Public Security
+                                        Bureau (PSB).</li>
+                                    <li><strong>Action:</strong> Hire a licensed vendor to carve your official company
+                                        stamps, known as "Chops".</li>
+                                    <li><strong>CRITICAL:</strong> In China, a red stamp on a contract is legally more
+                                        powerful than your signature. Keep the Official Chop and Financial Chop locked
+                                        in a safe. Whoever holds them controls the company.</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Step 6 -->
+                        <div
+                            class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active">
+                            <div
+                                class="flex items-center justify-center w-10 h-10 rounded-full border-4 border-white bg-emerald-500 text-white font-bold shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 z-10">
+                                6</div>
+                            <div
+                                class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] p-4 rounded border border-slate-200 shadow-sm bg-slate-50">
+                                <h3 class="font-bold text-slate-800 text-lg mb-1">Open Bank Accounts</h3>
+                                <ul class="list-disc pl-4 text-sm text-slate-600 space-y-1 mt-2">
+                                    <li><strong>Action:</strong> Take your License and your Chops to a major bank (e.g.,
+                                        ICBC, Bank of China).</li>
+                                    <li><strong>Action:</strong> Open an <strong>RMB Basic Account</strong> (to pay
+                                        local staff salaries and rent).</li>
+                                    <li><strong>Action:</strong> Open a <strong>Foreign Capital Account</strong> (to
+                                        legally receive the USD you send from America into China).</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Step 7 -->
+                        <div
+                            class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active">
+                            <div
+                                class="flex items-center justify-center w-10 h-10 rounded-full border-4 border-white bg-emerald-500 text-white font-bold shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 z-10">
+                                7</div>
+                            <div
+                                class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] p-4 rounded border border-slate-200 shadow-sm bg-slate-50">
+                                <h3 class="font-bold text-slate-800 text-lg mb-1">Tax & HR Ready</h3>
+                                <ul class="list-disc pl-4 text-sm text-slate-600 space-y-1 mt-2">
+                                    <li><strong>Action:</strong> Go to the local Tax Bureau to register and receive your
+                                        "Fapiao" machine (the official government invoicing system).</li>
+                                    <li><strong>Action:</strong> Register your company with the local Social Security
+                                        Bureau. You are now legally ready to hire CAD drafters and pay their mandatory
+                                        benefits!</li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
-                <div class="lg:w-2/3 bg-white p-8 rounded-xl shadow-sm border border-slate-100 min-h-[300px]">
-                    <div id="step1" class="step-content block">
-                        <h3 class="text-2xl font-bold text-slate-800 mb-4">Mainland WFOE Standard Process</h3>
-                        <p class="text-slate-600 mb-4">Applies to cities like Shanghai, Shenzhen, Beijing, Chengdu, etc.
-                        </p>
-                        <ul class="list-disc pl-5 text-slate-700 space-y-2">
-                            <li><strong>Weeks 1-3:</strong> Pre-Licensing & Lease Signing.</li>
-                            <li><strong>Weeks 3-6:</strong> Document Legalization (Apostille of US documents).</li>
-                            <li><strong>Weeks 6-8:</strong> Business License Application via AMR.</li>
-                            <li><strong>Weeks 8-10:</strong> Carving of official Company Chops (Seals).</li>
-                            <li><strong>Weeks 10-12:</strong> Tax, Bank, and Social Security Registration.</li>
-                        </ul>
-                    </div>
-                    <div id="step2" class="step-content hidden">
-                        <h3 class="text-2xl font-bold text-slate-800 mb-4">SAR Setup: Hong Kong & Macau</h3>
-                        <p class="text-slate-600 mb-4">SARs do not use the WFOE structure. They are separate customs and
-                            tax territories.</p>
-                        <ul class="list-disc pl-5 text-slate-700 space-y-2">
-                            <li><strong>Hong Kong:</strong> Setup is incredibly fast (often 1-2 weeks). Form a Private
-                                Limited Company via the Companies Registry. English is an official legal language. No
-                                "Chop" system required for basic validity.</li>
-                            <li><strong>Macau:</strong> Form a "Limitada" (Lda.). Requires interactions with the
-                                Commercial Registry. Portuguese and Chinese are official.</li>
-                            <li><strong>Labor Law Distinction:</strong> Neither uses the heavy mainland Social Insurance
-                                system. HK uses MPF (Mandatory Provident Fund, capped low). Macau uses a very low
-                                fixed-rate social security contribution.</li>
-                        </ul>
+                <!-- SAR BRIEF -->
+                <div id="step-sar" class="step-content hidden">
+                    <p class="text-slate-500 mb-6 font-medium">Because Hong Kong and Macau operate under separate legal
+                        systems, the setup process is entirely different and vastly simplified compared to the mainland
+                        WFOE.</p>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <!-- Hong Kong -->
+                        <div class="border border-slate-200 p-6 rounded-lg bg-slate-50">
+                            <div class="flex items-center gap-2 mb-4">
+                                <div class="text-2xl">&#127469;&#127472;</div>
+                                <h3 class="font-bold text-xl text-slate-800">Hong Kong Setup</h3>
+                            </div>
+                            <ol class="list-decimal pl-5 space-y-3 text-sm text-slate-700">
+                                <li><strong>Hire a Company Secretary:</strong> By law, you must hire a local HK
+                                    individual or agency to act as your Company Secretary and provide a registered
+                                    office address.</li>
+                                <li><strong>Provide KYC Docs:</strong> Give the agency a copy of your US Passport and a
+                                    recent utility bill (proof of address).</li>
+                                <li><strong>File Online:</strong> The agency will file Form NNC1 (Incorporation Form)
+                                    with the Companies Registry.</li>
+                                <li><strong>Receive Certificate:</strong> The company is usually incorporated within
+                                    <strong>24 to 48 hours</strong>. No "chops" or complex government visits are
+                                    required.</li>
+                                <li><strong>Bank Account (The Hard Part):</strong> Opening a corporate bank account in
+                                    HK is notoriously strict due to anti-money laundering laws. Expect this to take
+                                    weeks and require an in-person visit or video interview.</li>
+                            </ol>
+                        </div>
+
+                        <!-- Macau -->
+                        <div class="border border-slate-200 p-6 rounded-lg bg-slate-50">
+                            <div class="flex items-center gap-2 mb-4">
+                                <div class="text-2xl">&#127474;&#127473;</div>
+                                <h3 class="font-bold text-xl text-slate-800">Macau Setup</h3>
+                            </div>
+                            <ol class="list-decimal pl-5 space-y-3 text-sm text-slate-700">
+                                <li><strong>Name Approval:</strong> Submit an application to the Macau Commercial and
+                                    Movable Property Registry (CRCBM) to reserve a company name.</li>
+                                <li><strong>Draft Articles:</strong> Prepare the Memorandum and Articles of Association.
+                                    Most foreign businesses form a "Limitada" (Lda.).</li>
+                                <li><strong>Notary Signature:</strong> The founders must sign the incorporation
+                                    documents in front of a Macanese Notary Public.</li>
+                                <li><strong>Registration:</strong> File the notarized documents with the CRCBM.</li>
+                                <li><strong>Tax Bureau:</strong> Submit a Declaration of Commencement of Operations to
+                                    the Macau Finance Services Bureau. <em>Total time: roughly 2 to 3 weeks.</em></li>
+                            </ol>
+                        </div>
                     </div>
                 </div>
+
             </div>
         </section>
 
+        <!-- Regions Section -->
         <section id="regions" class="mb-20">
             <div class="mb-8">
                 <h2 class="text-3xl font-bold text-slate-800 mb-4">Expanded Engineering Talent Hubs</h2>
@@ -174,6 +365,7 @@
 
             <div class="space-y-8">
 
+                <!-- GBA -->
                 <div>
                     <h3 class="text-xl font-bold text-slate-800 mb-4 border-b border-slate-200 pb-2">Greater Bay Area
                         (GBA) & South</h3>
@@ -221,6 +413,7 @@
                     </div>
                 </div>
 
+                <!-- East -->
                 <div>
                     <h3 class="text-xl font-bold text-slate-800 mb-4 border-b border-slate-200 pb-2">East China Hubs
                     </h3>
@@ -264,6 +457,7 @@
                     </div>
                 </div>
 
+                <!-- North & Inland -->
                 <div>
                     <h3 class="text-xl font-bold text-slate-800 mb-4 border-b border-slate-200 pb-2">North & Inland Hubs
                     </h3>
@@ -327,6 +521,7 @@
             </div>
         </section>
 
+        <!-- Financial Dashboard -->
         <section id="costs" class="mb-20 bg-white p-8 rounded-xl border border-slate-200 shadow-sm">
             <div class="mb-8 border-b border-slate-100 pb-6">
                 <h2 class="text-3xl font-bold text-slate-800 mb-4">Annual Financial Modeling Dashboard</h2>
@@ -414,6 +609,7 @@
 
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
 
+                <!-- Master Chart (Horizontal Bar for readability) -->
                 <div class="bg-slate-50 p-6 rounded-xl border border-slate-100 w-full">
                     <h3 class="text-xl font-bold text-center mb-2 text-slate-800">Annual Macro Comparison: <span
                             id="macro-title-role" class="text-emerald-600">Junior CAD</span></h3>
@@ -424,6 +620,7 @@
                     </div>
                 </div>
 
+                <!-- Detail Chart (Doughnut) -->
                 <div class="bg-slate-50 p-6 rounded-xl border border-slate-100 sticky top-24">
                     <h3 class="text-xl font-bold text-center mb-2 text-slate-800">Annual Micro Breakdown: <span
                             id="micro-title-city" class="text-emerald-600">Shanghai</span></h3>
@@ -460,12 +657,24 @@
 
             steps.forEach(step => {
                 step.addEventListener('click', () => {
+                    // Reset all tabs
                     steps.forEach(s => {
                         s.classList.remove('step-active');
-                        s.style.borderLeftColor = 'transparent';
+                        s.style.borderBottomColor = 'transparent';
+                        s.classList.remove('text-slate-800');
+                        s.classList.add('text-slate-500');
                     });
+
+                    // Hide all contents
                     contents.forEach(c => c.classList.add('hidden'));
+
+                    // Activate clicked tab
                     step.classList.add('step-active');
+                    step.classList.remove('text-slate-500');
+                    step.classList.add('text-slate-800');
+                    step.style.borderBottomColor = '#10b981'; // Emerald color
+
+                    // Show target content
                     const targetId = step.getAttribute('data-target');
                     document.getElementById(targetId).classList.remove('hidden');
                 });
