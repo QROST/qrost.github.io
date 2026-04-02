@@ -98,8 +98,8 @@
                 Greater China Talent & Expansion Guide
             </h1>
             <p class="text-xl text-slate-300 max-w-3xl mx-auto mb-8">
-                Analyzing annual CAD/Engineering talent costs across 15 major hubs, including major Mainland cities and
-                the Greater Bay Area (Hong Kong & Macau).
+                Analyzing annual CAD/Engineering talent costs across 15 major hubs, including the "5 Insurances and 1
+                Fund" statutory system (2025-2026).
             </p>
         </div>
     </header>
@@ -153,7 +153,8 @@
                                 <ul class="list-disc pl-4 text-sm text-slate-600 space-y-1 mt-2">
                                     <li><strong>Action:</strong> Pick a company name. The legal format is strict:
                                         <em>[City] + [Your Name] + [Industry] + Co., Ltd.</em> (e.g., Shanghai Acme CAD
-                                        Design Co., Ltd.).</li>
+                                        Design Co., Ltd.).
+                                    </li>
                                     <li><strong>Action:</strong> Sign a lease for a <strong>commercial</strong> office.
                                         You cannot use a residential apartment.</li>
                                     <li><strong>CRITICAL:</strong> You must get a copy of the landlord's red "Property
@@ -200,7 +201,8 @@
                                         over 30 years.</li>
                                     <li><strong>Action:</strong> Appoint three mandatory roles: A <strong>Legal
                                             Representative</strong> (the boss, holds ultimate legal liability), an
-                                        <strong>Executive Director</strong>, and a <strong>Supervisor</strong>.</li>
+                                        <strong>Executive Director</strong>, and a <strong>Supervisor</strong>.
+                                    </li>
                                     <li><strong>Rule:</strong> The Supervisor cannot be the same person as the Director
                                         or Legal Rep. You need at least two distinct people involved on paper.</li>
                                 </ul>
@@ -311,7 +313,8 @@
                                     with the Companies Registry.</li>
                                 <li><strong>Receive Certificate:</strong> The company is usually incorporated within
                                     <strong>24 to 48 hours</strong>. No "chops" or complex government visits are
-                                    required.</li>
+                                    required.
+                                </li>
                                 <li><strong>Bank Account (The Hard Part):</strong> Opening a corporate bank account in
                                     HK is notoriously strict due to anti-money laundering laws. Expect this to take
                                     weeks and require an in-person visit or video interview.</li>
@@ -508,14 +511,13 @@
                 <p class="text-slate-600 text-lg">
                     This interactive dashboard calculates the <strong>Annual Total Cost of Employment</strong>. It
                     automatically multiplies base salaries by 12 and calculates the localized employer statutory
-                    contributions (Social Insurances / Housing Fund / MPF) for all 15 cities. <strong>Click on any
+                    contributions (5 Insurances & 1 Fund / MPF) for all 15 cities. <strong>Click on any
                         city's bar in the chart below to view its detailed micro breakdown.</strong>
                 </p>
             </div>
 
-            <div
-                class="flex flex-col md:flex-row justify-start items-start md:items-center mb-10 gap-6 bg-slate-50 p-4 rounded-lg">
-                <div class="flex flex-col gap-4 sm:flex-row w-full md:w-auto">
+            <div class="flex flex-wrap justify-start items-center mb-10 gap-6 bg-slate-50 p-4 rounded-lg">
+                <div class="flex flex-wrap gap-6 w-full md:w-auto">
                     <div>
                         <label class="text-xs font-bold text-slate-500 uppercase tracking-wider mb-2 block">Role</label>
                         <div class="flex space-x-1 bg-slate-200 p-1 rounded-lg">
@@ -536,8 +538,14 @@
                                 ($)</button>
                             <button id="btn-rmb"
                                 class="px-4 py-2 text-sm rounded-md text-slate-600 hover:text-slate-800 transition">RMB
-                                (¥) / Eqv.</button>
+                                (¥)</button>
                         </div>
+                    </div>
+                    <div>
+                        <label
+                            class="text-xs font-bold text-slate-500 uppercase tracking-wider mb-2 block">Headcount</label>
+                        <input type="number" id="headcount-input" value="1" min="1" step="1"
+                            class="px-4 py-2 text-sm rounded-md border border-slate-300 font-semibold text-slate-800 focus:outline-none focus:ring-2 focus:ring-emerald-500 w-24">
                     </div>
                 </div>
             </div>
@@ -566,8 +574,8 @@
                 <div class="bg-slate-50 p-6 rounded-xl border border-slate-100 w-full">
                     <h3 class="text-xl font-bold text-center mb-2 text-slate-800">Annual Macro Comparison: <span
                             id="macro-title-role" class="text-emerald-600">Junior CAD</span></h3>
-                    <p class="text-xs text-center text-slate-500 mb-6">Total Annual Cost (Base + Contributions) ranked
-                        highest to lowest.</p>
+                    <p class="text-xs text-center text-slate-500 mb-6">Total Annual Cost (Base + Contributions) for
+                        <span id="hc-display">1</span> Employees.</p>
                     <div class="chart-container-tall">
                         <canvas id="barChartAllCities"></canvas>
                     </div>
@@ -577,7 +585,7 @@
                 <div class="bg-slate-50 p-6 rounded-xl border border-slate-100 sticky top-24">
                     <h3 class="text-xl font-bold text-center mb-2 text-slate-800">Annual Micro Breakdown: <span
                             id="micro-title-city" class="text-emerald-600">Shanghai</span></h3>
-                    <p class="text-xs text-center text-slate-500 mb-6">Annual Base vs. Annual Employer Contributions
+                    <p class="text-xs text-center text-slate-500 mb-6">Annual Base vs. Employer "5 Insurances & 1 Fund"
                         (<span id="micro-contrib-pct"></span>)</p>
                     <div class="chart-container">
                         <canvas id="doughnutCityDetail"></canvas>
@@ -651,23 +659,19 @@
             const exchangeRate = 7.1;
 
             const cityData = {
-                // T1 & T2 Main
                 beijing: { name: "Beijing", type: "mainland", juniorAnnual: 120000, seniorAnnual: 276000, contribPct: 0.38 },
                 shanghai: { name: "Shanghai", type: "mainland", juniorAnnual: 120000, seniorAnnual: 264000, contribPct: 0.38 },
                 shenzhen: { name: "Shenzhen", type: "mainland", juniorAnnual: 115000, seniorAnnual: 260000, contribPct: 0.35 },
                 guangzhou: { name: "Guangzhou", type: "mainland", juniorAnnual: 105000, seniorAnnual: 240000, contribPct: 0.35 },
-                // New T1
                 hangzhou: { name: "Hangzhou", type: "mainland", juniorAnnual: 110000, seniorAnnual: 250000, contribPct: 0.36 },
                 nanjing: { name: "Nanjing", type: "mainland", juniorAnnual: 102000, seniorAnnual: 222000, contribPct: 0.38 },
                 tianjin: { name: "Tianjin", type: "mainland", juniorAnnual: 90000, seniorAnnual: 204000, contribPct: 0.40 },
                 wuhan: { name: "Wuhan", type: "mainland", juniorAnnual: 90000, seniorAnnual: 192000, contribPct: 0.38 },
                 chengdu: { name: "Chengdu", type: "mainland", juniorAnnual: 84000, seniorAnnual: 180000, contribPct: 0.36 },
-                // T2 & T3
                 zhuhai: { name: "Zhuhai", type: "mainland", juniorAnnual: 84000, seniorAnnual: 180000, contribPct: 0.35 },
                 xian: { name: "Xi'an", type: "mainland", juniorAnnual: 78000, seniorAnnual: 168000, contribPct: 0.36 },
                 hefei: { name: "Hefei", type: "mainland", juniorAnnual: 72000, seniorAnnual: 156000, contribPct: 0.35 },
                 harbin: { name: "Harbin", type: "mainland", juniorAnnual: 60000, seniorAnnual: 132000, contribPct: 0.35 },
-                // SARs (Converted to RMB equivalent for math, very low contribution due to MPF/Lda rules)
                 hongkong: { name: "Hong Kong", type: "sar", juniorAnnual: 220000, seniorAnnual: 440000, contribPct: 0.05 },
                 macau: { name: "Macau", type: "sar", juniorAnnual: 185000, seniorAnnual: 370000, contribPct: 0.01 }
             };
@@ -675,13 +679,15 @@
             const state = {
                 city: 'shanghai',
                 role: 'junior',
-                currency: 'usd'
+                currency: 'usd',
+                headcount: 1
             };
 
             let barChart, doughnutChart;
 
             function convert(rmbValue) {
-                return state.currency === 'usd' ? Math.round(rmbValue / exchangeRate) : Math.round(rmbValue);
+                const scaledValue = rmbValue * state.headcount;
+                return state.currency === 'usd' ? Math.round(scaledValue / exchangeRate) : Math.round(scaledValue);
             }
 
             function getSymbol() {
@@ -842,7 +848,7 @@
                 barChart.data.datasets[1].backgroundColor = contribColors;
                 barChart.update();
 
-                // Update Doughnut Chart Detail (Specific Contribution Breakdown)
+                // Update Doughnut Chart Detail (5 Insurances & 1 Fund Breakdown)
                 const selectedCityObj = cityData[state.city];
                 const selectedCost = getCostData(state.city, state.role);
 
@@ -851,38 +857,48 @@
                 let donutColors = [];
 
                 if (selectedCityObj.type === 'mainland') {
-                    // Standard mainland breakdown approximations
-                    const pensionPct = 0.16;
-                    const medicalPct = 0.10;
-                    const unempPct = 0.01;
-                    const housingPct = selectedCityObj.contribPct - (pensionPct + medicalPct + unempPct);
+                    // RESEARCH-BASED RATIOS (Employer portions)
+                    // 1. Pension: 16%
+                    // 2. Medical & Maternity: 10% (Commonly merged)
+                    // 3. Unemployment: 0.5%
+                    // 4. Work Injury: 0.2% - 0.5% (Office work baseline)
+                    // 5. Housing Fund: Variable (Filling the gap to match city total contribPct)
 
-                    // Calculate amounts, using remainder for housing to prevent rounding issues
-                    const baseAmt = selectedCost.base;
-                    const pensionAmt = convert(selectedCost.baseRMB * pensionPct);
-                    const medicalAmt = convert(selectedCost.baseRMB * medicalPct);
-                    const unempAmt = convert(selectedCost.baseRMB * unempPct);
-                    const housingAmt = selectedCost.contrib - (pensionAmt + medicalAmt + unempAmt);
+                    const pPct = 0.16;
+                    const mPct = 0.10;
+                    const uPct = 0.005;
+                    const iPct = 0.005;
+                    const hPct = selectedCityObj.contribPct - (pPct + mPct + uPct + iPct);
 
                     donutLabels = [
                         'Annual Base Salary',
-                        'Pension (16%)',
-                        'Medical & Maternity (10%)',
-                        'Unemployment & Injury (1%)',
-                        `Housing Fund (${(housingPct * 100).toFixed(0)}%)`
+                        '1. Pension (16%)',
+                        '2. Medical & Maternity (10%)',
+                        '3. Unemployment (0.5%)',
+                        '4. Work Injury (0.5%)',
+                        `5. Housing Fund (${(hPct * 100).toFixed(1)}%)`
                     ];
-                    donutData = [baseAmt, pensionAmt, medicalAmt, unempAmt, housingAmt];
-                    // Slate for base, gradient of Emerald/Teal for the contribution components
-                    donutColors = ['#0f172a', '#047857', '#10b981', '#34d399', '#6ee7b7'];
+
+                    donutData = [
+                        selectedCost.base,
+                        convert(selectedCost.baseRMB * pPct),
+                        convert(selectedCost.baseRMB * mPct),
+                        convert(selectedCost.baseRMB * uPct),
+                        convert(selectedCost.baseRMB * iPct),
+                        convert(selectedCost.baseRMB * hPct)
+                    ];
+
+                    // Slate for base, emerald range for the 5+1 components
+                    donutColors = ['#0f172a', '#047857', '#065f46', '#059669', '#10b981', '#34d399'];
 
                 } else if (state.city === 'hongkong') {
-                    donutLabels = ['Annual Base Salary', 'MPF (Retirement Fund)'];
+                    donutLabels = ['Annual Base Salary', 'MPF (Mandatory Retirement)'];
                     donutData = [selectedCost.base, selectedCost.contrib];
-                    donutColors = ['#0f172a', '#f59e0b']; // Amber for SARs
+                    donutColors = ['#0f172a', '#f59e0b'];
                 } else if (state.city === 'macau') {
                     donutLabels = ['Annual Base Salary', 'Social Security (FSS)'];
                     donutData = [selectedCost.base, selectedCost.contrib];
-                    donutColors = ['#0f172a', '#f59e0b']; // Amber for SARs
+                    donutColors = ['#0f172a', '#f59e0b'];
                 }
 
                 doughnutChart.data.labels = donutLabels;
@@ -899,9 +915,9 @@
                         <div class="flex justify-between items-center py-2 ${i !== donutLabels.length - 1 ? 'border-b border-slate-100' : ''}">
                             <div class="flex items-center gap-2">
                                 <span class="w-3 h-3 rounded-full inline-block shadow-sm" style="background-color: ${donutColors[i]}"></span>
-                                <span class="text-slate-700 text-sm">${donutLabels[i]}</span>
+                                <span class="text-slate-700 text-xs">${donutLabels[i]}</span>
                             </div>
-                            <span class="font-medium text-slate-900 text-sm">${getSymbol()}${donutData[i].toLocaleString()}</span>
+                            <span class="font-medium text-slate-900 text-xs">${getSymbol()}${donutData[i].toLocaleString()}</span>
                         </div>
                     `;
                     totalAnnualAmt += donutData[i];
@@ -911,7 +927,7 @@
                 listHTML += `
                     <div class="flex justify-between items-center pt-3 mt-1 border-t-2 border-slate-200">
                         <span class="font-bold text-slate-800 text-sm">Total Annual Cost</span>
-                        <span class="font-bold text-emerald-600">${getSymbol()}${totalAnnualAmt.toLocaleString()}</span>
+                        <span class="font-bold text-emerald-600 text-sm">${getSymbol()}${totalAnnualAmt.toLocaleString()}</span>
                     </div>
                 `;
 
@@ -921,6 +937,7 @@
                 document.getElementById('macro-title-role').textContent = state.role === 'junior' ? 'Junior CAD' : 'Senior Modeler';
                 document.getElementById('micro-title-city').textContent = cityData[state.city].name;
                 document.getElementById('micro-contrib-pct').textContent = (cityData[state.city].contribPct * 100).toFixed(0) + '%';
+                document.getElementById('hc-display').textContent = state.headcount;
 
                 // Handle SAR Alerts
                 const alertBox = document.getElementById('sar-alert');
@@ -931,9 +948,18 @@
                     descText.innerHTML = `<strong>SAR Framework:</strong> The ~${(cityData[state.city].contribPct * 100).toFixed(0)}% statutory contribution represents approximate limits for localized retirement funds (like Hong Kong's MPF) rather than mainland social insurance.`;
                 } else {
                     alertBox.classList.add('hidden');
-                    descText.innerHTML = `<strong>Mainland Contributions:</strong> Employer statutory contributions include mandatory Pension, Medical, Unemployment, Injury, Maternity, and Housing Fund. Rates fluctuate based on selected municipal policies.`;
+                    descText.innerHTML = `<strong>Mainland Contributions:</strong> Employer statutory contributions include the mandatory "5 Insurances & 1 Fund" (Pension, Medical, Unemployment, Injury, Maternity, and Housing Fund). Rates fluctuate based on selected municipal policies.`;
                 }
             }
+
+            // Headcount listener
+            const hcInput = document.getElementById('headcount-input');
+            hcInput.addEventListener('input', (e) => {
+                let val = parseInt(e.target.value);
+                if (isNaN(val) || val < 1) val = 1;
+                state.headcount = val;
+                updateVisuals();
+            });
 
             // Event Listeners
             function toggleBtnActive(btnId, otherBtnId, updateStateKey, updateStateVal) {
@@ -941,12 +967,15 @@
                 if (btn) {
                     btn.addEventListener('click', (e) => {
                         state[updateStateKey] = updateStateVal;
-                        e.target.classList.add('bg-white', 'shadow-sm', 'text-slate-800');
-                        e.target.classList.remove('text-slate-600');
-                        const otherBtn = document.getElementById(otherBtnId);
-                        if (otherBtn) {
-                            otherBtn.classList.remove('bg-white', 'shadow-sm', 'text-slate-800');
-                            otherBtn.classList.add('text-slate-600');
+                        // Correctly target the button if a child was clicked
+                        const target = e.currentTarget;
+                        const other = document.getElementById(otherBtnId);
+
+                        target.classList.add('bg-white', 'shadow-sm', 'text-slate-800');
+                        target.classList.remove('text-slate-600');
+                        if (other) {
+                            other.classList.remove('bg-white', 'shadow-sm', 'text-slate-800');
+                            other.classList.add('text-slate-600');
                         }
                         updateVisuals();
                     });
