@@ -517,8 +517,8 @@
                 <h2 class="text-3xl font-bold text-slate-800 mb-4">Annual Financial Modeling Dashboard</h2>
                 <p class="text-slate-600 text-lg">
                     This interactive dashboard calculates the <strong>Annual Total Cost of Employment</strong>. It
-                    automatically multiplies base salaries by 12 and calculates the localized employer burden (Social
-                    Insurances / MPF) for all 15 cities.
+                    automatically multiplies base salaries by 12 and calculates the localized employer statutory
+                    contributions (Social Insurances / Housing Fund / MPF) for all 15 cities.
                 </p>
             </div>
 
@@ -589,9 +589,10 @@
                         <h3 class="text-sm font-medium text-amber-800">SAR Legal Structure Notice</h3>
                         <div class="mt-2 text-sm text-amber-700">
                             <p>You have selected a Special Administrative Region. While Base Salaries are generally
-                                higher, the employer "Burden" is drastically lower because SARs do not utilize the
-                                mainland Social Insurance/Housing Fund system (e.g., Hong Kong uses MPF, capped at a
-                                very low fixed amount). Values are shown in RMB/USD equivalents for comparison.</p>
+                                higher, the employer statutory contributions are drastically lower because SARs do not
+                                utilize the mainland Social Insurance/Housing Fund system (e.g., Hong Kong uses MPF,
+                                capped at a very low fixed amount). Values are shown in RMB/USD equivalents for
+                                comparison.</p>
                         </div>
                     </div>
                 </div>
@@ -603,8 +604,8 @@
                 <div class="bg-slate-50 p-6 rounded-xl border border-slate-100 w-full">
                     <h3 class="text-xl font-bold text-center mb-2 text-slate-800">Annual Macro Comparison: <span
                             id="macro-title-role" class="text-emerald-600">Junior CAD</span></h3>
-                    <p class="text-xs text-center text-slate-500 mb-6">Total Annual Cost (Base + Burden) ranked highest
-                        to lowest.</p>
+                    <p class="text-xs text-center text-slate-500 mb-6">Total Annual Cost (Base + Contributions) ranked
+                        highest to lowest.</p>
                     <div class="chart-container-tall">
                         <canvas id="barChartAllCities"></canvas>
                     </div>
@@ -614,14 +615,14 @@
                 <div class="bg-slate-50 p-6 rounded-xl border border-slate-100 sticky top-24">
                     <h3 class="text-xl font-bold text-center mb-2 text-slate-800">Annual Micro Breakdown: <span
                             id="micro-title-city" class="text-emerald-600">Shanghai</span></h3>
-                    <p class="text-xs text-center text-slate-500 mb-6">Annual Base vs. Annual Employer Burden (<span
-                            id="micro-burden-pct"></span>)</p>
+                    <p class="text-xs text-center text-slate-500 mb-6">Annual Base vs. Annual Employer Contributions
+                        (<span id="micro-contrib-pct"></span>)</p>
                     <div class="chart-container">
                         <canvas id="doughnutCityDetail"></canvas>
                     </div>
                     <div class="mt-6 text-sm text-slate-600 bg-white p-4 rounded border border-slate-200">
-                        <p id="micro-desc-text"><strong>Mainland Burden:</strong> Employer burdens include mandatory
-                            Pension, Medical, Unemployment, Injury, Maternity, and Housing Fund contributions. Rates
+                        <p id="micro-desc-text"><strong>Mainland Contributions:</strong> Employer contributions include
+                            mandatory Pension, Medical, Unemployment, Injury, Maternity, and Housing Fund. Rates
                             fluctuate based on selected municipal policies.</p>
                     </div>
                 </div>
@@ -675,24 +676,24 @@
 
             const cityData = {
                 // T1 & T2 Main
-                beijing: { name: "Beijing", type: "mainland", juniorAnnual: 120000, seniorAnnual: 276000, burdenPct: 0.38 },
-                shanghai: { name: "Shanghai", type: "mainland", juniorAnnual: 120000, seniorAnnual: 264000, burdenPct: 0.38 },
-                shenzhen: { name: "Shenzhen", type: "mainland", juniorAnnual: 115000, seniorAnnual: 260000, burdenPct: 0.35 },
-                guangzhou: { name: "Guangzhou", type: "mainland", juniorAnnual: 105000, seniorAnnual: 240000, burdenPct: 0.35 },
+                beijing: { name: "Beijing", type: "mainland", juniorAnnual: 120000, seniorAnnual: 276000, contribPct: 0.38 },
+                shanghai: { name: "Shanghai", type: "mainland", juniorAnnual: 120000, seniorAnnual: 264000, contribPct: 0.38 },
+                shenzhen: { name: "Shenzhen", type: "mainland", juniorAnnual: 115000, seniorAnnual: 260000, contribPct: 0.35 },
+                guangzhou: { name: "Guangzhou", type: "mainland", juniorAnnual: 105000, seniorAnnual: 240000, contribPct: 0.35 },
                 // New T1
-                hangzhou: { name: "Hangzhou", type: "mainland", juniorAnnual: 110000, seniorAnnual: 250000, burdenPct: 0.36 },
-                nanjing: { name: "Nanjing", type: "mainland", juniorAnnual: 102000, seniorAnnual: 222000, burdenPct: 0.38 },
-                tianjin: { name: "Tianjin", type: "mainland", juniorAnnual: 90000, seniorAnnual: 204000, burdenPct: 0.40 },
-                wuhan: { name: "Wuhan", type: "mainland", juniorAnnual: 90000, seniorAnnual: 192000, burdenPct: 0.38 },
-                chengdu: { name: "Chengdu", type: "mainland", juniorAnnual: 84000, seniorAnnual: 180000, burdenPct: 0.36 },
+                hangzhou: { name: "Hangzhou", type: "mainland", juniorAnnual: 110000, seniorAnnual: 250000, contribPct: 0.36 },
+                nanjing: { name: "Nanjing", type: "mainland", juniorAnnual: 102000, seniorAnnual: 222000, contribPct: 0.38 },
+                tianjin: { name: "Tianjin", type: "mainland", juniorAnnual: 90000, seniorAnnual: 204000, contribPct: 0.40 },
+                wuhan: { name: "Wuhan", type: "mainland", juniorAnnual: 90000, seniorAnnual: 192000, contribPct: 0.38 },
+                chengdu: { name: "Chengdu", type: "mainland", juniorAnnual: 84000, seniorAnnual: 180000, contribPct: 0.36 },
                 // T2 & T3
-                zhuhai: { name: "Zhuhai", type: "mainland", juniorAnnual: 84000, seniorAnnual: 180000, burdenPct: 0.35 },
-                xian: { name: "Xi'an", type: "mainland", juniorAnnual: 78000, seniorAnnual: 168000, burdenPct: 0.36 },
-                hefei: { name: "Hefei", type: "mainland", juniorAnnual: 72000, seniorAnnual: 156000, burdenPct: 0.35 },
-                harbin: { name: "Harbin", type: "mainland", juniorAnnual: 60000, seniorAnnual: 132000, burdenPct: 0.35 },
-                // SARs (Converted to RMB equivalent for math, very low burden due to MPF/Lda rules)
-                hongkong: { name: "Hong Kong", type: "sar", juniorAnnual: 220000, seniorAnnual: 440000, burdenPct: 0.05 },
-                macau: { name: "Macau", type: "sar", juniorAnnual: 185000, seniorAnnual: 370000, burdenPct: 0.01 }
+                zhuhai: { name: "Zhuhai", type: "mainland", juniorAnnual: 84000, seniorAnnual: 180000, contribPct: 0.35 },
+                xian: { name: "Xi'an", type: "mainland", juniorAnnual: 78000, seniorAnnual: 168000, contribPct: 0.36 },
+                hefei: { name: "Hefei", type: "mainland", juniorAnnual: 72000, seniorAnnual: 156000, contribPct: 0.35 },
+                harbin: { name: "Harbin", type: "mainland", juniorAnnual: 60000, seniorAnnual: 132000, contribPct: 0.35 },
+                // SARs (Converted to RMB equivalent for math, very low contribution due to MPF/Lda rules)
+                hongkong: { name: "Hong Kong", type: "sar", juniorAnnual: 220000, seniorAnnual: 440000, contribPct: 0.05 },
+                macau: { name: "Macau", type: "sar", juniorAnnual: 185000, seniorAnnual: 370000, contribPct: 0.01 }
             };
 
             const state = {
@@ -714,13 +715,13 @@
             function getCostData(cityKey, role) {
                 const c = cityData[cityKey];
                 const base = role === 'junior' ? c.juniorAnnual : c.seniorAnnual;
-                const burden = base * c.burdenPct;
+                const contrib = base * c.contribPct;
                 return {
                     baseRMB: base,
-                    totalRMB: base + burden,
+                    totalRMB: base + contrib,
                     base: convert(base),
-                    burden: convert(burden),
-                    total: convert(base + burden)
+                    contrib: convert(contrib),
+                    total: convert(base + contrib)
                 };
             }
 
@@ -736,7 +737,7 @@
                         labels: [],
                         datasets: [
                             { label: 'Annual Base Salary', data: [], backgroundColor: [], borderRadius: 0 },
-                            { label: 'Employer Burden', data: [], backgroundColor: [], borderRadius: { topRight: 4, bottomRight: 4 } }
+                            { label: 'Employer Contributions', data: [], backgroundColor: [], borderRadius: { topRight: 4, bottomRight: 4 } }
                         ]
                     },
                     options: {
@@ -813,9 +814,9 @@
                 // Update Master Bar Chart
                 const labels = [];
                 const baseData = [];
-                const burdenData = [];
+                const contribData = [];
                 const baseColors = [];
-                const burdenColors = [];
+                const contribColors = [];
 
                 // Sort all 15 cities by total cost descending
                 const sortedCityKeys = Object.keys(cityData).sort((a, b) => {
@@ -826,26 +827,26 @@
                     labels.push(cityData[key].name);
                     const cost = getCostData(key, state.role);
                     baseData.push(cost.base);
-                    burdenData.push(cost.burden);
+                    contribData.push(cost.contrib);
 
                     // Highlight selected city with solid colors, fade out the others
                     if (key === state.city) {
                         baseColors.push('#334155');   // Solid slate for Base
-                        burdenColors.push('#10b981'); // Solid emerald for Burden
+                        contribColors.push('#10b981'); // Solid emerald for Contributions
                     } else {
                         baseColors.push('#94a3b8');   // Faded slate
-                        burdenColors.push('#6ee7b7'); // Faded emerald
+                        contribColors.push('#6ee7b7'); // Faded emerald
                     }
                 });
 
                 barChart.data.labels = labels;
                 barChart.data.datasets[0].data = baseData;
                 barChart.data.datasets[0].backgroundColor = baseColors;
-                barChart.data.datasets[1].data = burdenData;
-                barChart.data.datasets[1].backgroundColor = burdenColors;
+                barChart.data.datasets[1].data = contribData;
+                barChart.data.datasets[1].backgroundColor = contribColors;
                 barChart.update();
 
-                // Update Doughnut Chart Detail (Specific Burden Breakdown)
+                // Update Doughnut Chart Detail (Specific Contribution Breakdown)
                 const selectedCityObj = cityData[state.city];
                 const selectedCost = getCostData(state.city, state.role);
 
@@ -858,14 +859,14 @@
                     const pensionPct = 0.16;
                     const medicalPct = 0.10;
                     const unempPct = 0.01;
-                    const housingPct = selectedCityObj.burdenPct - (pensionPct + medicalPct + unempPct);
+                    const housingPct = selectedCityObj.contribPct - (pensionPct + medicalPct + unempPct);
 
                     // Calculate amounts, using remainder for housing to prevent rounding issues
                     const baseAmt = selectedCost.base;
                     const pensionAmt = convert(selectedCost.baseRMB * pensionPct);
                     const medicalAmt = convert(selectedCost.baseRMB * medicalPct);
                     const unempAmt = convert(selectedCost.baseRMB * unempPct);
-                    const housingAmt = selectedCost.burden - (pensionAmt + medicalAmt + unempAmt);
+                    const housingAmt = selectedCost.contrib - (pensionAmt + medicalAmt + unempAmt);
 
                     donutLabels = [
                         'Annual Base Salary',
@@ -875,16 +876,16 @@
                         `Housing Fund (${(housingPct * 100).toFixed(0)}%)`
                     ];
                     donutData = [baseAmt, pensionAmt, medicalAmt, unempAmt, housingAmt];
-                    // Slate for base, gradient of Emerald/Teal for the burden components
+                    // Slate for base, gradient of Emerald/Teal for the contribution components
                     donutColors = ['#0f172a', '#047857', '#10b981', '#34d399', '#6ee7b7'];
 
                 } else if (state.city === 'hongkong') {
                     donutLabels = ['Annual Base Salary', 'MPF (Retirement Fund)'];
-                    donutData = [selectedCost.base, selectedCost.burden];
+                    donutData = [selectedCost.base, selectedCost.contrib];
                     donutColors = ['#0f172a', '#f59e0b']; // Amber for SARs
                 } else if (state.city === 'macau') {
                     donutLabels = ['Annual Base Salary', 'Social Security (FSS)'];
-                    donutData = [selectedCost.base, selectedCost.burden];
+                    donutData = [selectedCost.base, selectedCost.contrib];
                     donutColors = ['#0f172a', '#f59e0b']; // Amber for SARs
                 }
 
@@ -896,7 +897,7 @@
                 // Update Text Elements
                 document.getElementById('macro-title-role').textContent = state.role === 'junior' ? 'Junior CAD' : 'Senior Modeler';
                 document.getElementById('micro-title-city').textContent = cityData[state.city].name;
-                document.getElementById('micro-burden-pct').textContent = (cityData[state.city].burdenPct * 100).toFixed(0) + '%';
+                document.getElementById('micro-contrib-pct').textContent = (cityData[state.city].contribPct * 100).toFixed(0) + '%';
 
                 // Handle SAR Alerts
                 const alertBox = document.getElementById('sar-alert');
@@ -904,10 +905,10 @@
 
                 if (cityData[state.city].type === 'sar') {
                     alertBox.classList.remove('hidden');
-                    descText.innerHTML = `<strong>SAR Framework:</strong> The ~${(cityData[state.city].burdenPct * 100).toFixed(0)}% burden represents approximate statutory limits for localized retirement funds (like Hong Kong's MPF) rather than mainland social insurance.`;
+                    descText.innerHTML = `<strong>SAR Framework:</strong> The ~${(cityData[state.city].contribPct * 100).toFixed(0)}% statutory contribution represents approximate limits for localized retirement funds (like Hong Kong's MPF) rather than mainland social insurance.`;
                 } else {
                     alertBox.classList.add('hidden');
-                    descText.innerHTML = `<strong>Mainland Burden:</strong> Employer burdens include mandatory Pension, Medical, Unemployment, Injury, Maternity, and Housing Fund contributions. Rates fluctuate based on selected municipal policies.`;
+                    descText.innerHTML = `<strong>Mainland Contributions:</strong> Employer statutory contributions include mandatory Pension, Medical, Unemployment, Injury, Maternity, and Housing Fund. Rates fluctuate based on selected municipal policies.`;
                 }
             }
 
