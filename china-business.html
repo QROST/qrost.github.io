@@ -1,22 +1,23 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>China Market Entry & Hiring Guide (2025-2026)</title>
+    <title>China Market Entry & Regional Hiring Guide (2025-2026)</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
-    <!-- Chosen Palette: Slate and Emerald (Professional, Trustworthy, Growth-oriented) -->
-    <!-- Application Structure Plan: The SPA is structured as a linear, guided dashboard. It begins with an executive summary, transitions into an interactive step-by-step process for establishing a WFOE (Wholly Foreign-Owned Enterprise), and concludes with dynamic financial modeling for CAD hiring costs. This structure was chosen because market entry is a sequential process; users need to understand the legal steps before analyzing the financial commitment. Interactive elements like the process accordion and dynamic charts allow users to drill down into specifics without overwhelming them with text upfront. -->
-    <!-- Visualization & Content Choices: 
-         - Process Timeline: Goal: Organize -> Method: Interactive HTML/CSS list -> Interaction: Click to reveal details -> Justification: Breaks down complex legal steps into digestible chunks. 
-         - Cost Breakdown: Goal: Inform/Compare -> Method: Chart.js Doughnut & Bar Charts -> Interaction: Toggle between roles (Junior/Senior) and currencies (USD/RMB) -> Justification: Provides immediate, customized financial clarity for the 2025-2026 hiring landscape without SVG. Library: Chart.js. -->
-    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
 
     <style>
-        body { font-family: 'Inter', sans-serif; background-color: #f8fafc; color: #0f172a; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc;
+            color: #0f172a;
+            overflow-x: hidden;
+        }
+
         .chart-container {
             position: relative;
             width: 100%;
@@ -26,13 +27,20 @@
             height: 350px;
             max-height: 400px;
         }
+
         @media (min-width: 768px) {
-            .chart-container { height: 400px; }
+            .chart-container {
+                height: 400px;
+            }
         }
-        .step-active { border-left-color: #10b981; background-color: #f1f5f9; }
-        .tab-active { border-bottom: 2px solid #10b981; color: #10b981; font-weight: 600; }
+
+        .step-active {
+            border-left-color: #10b981;
+            background-color: #f1f5f9;
+        }
     </style>
 </head>
+
 <body class="antialiased scroll-smooth">
 
     <nav class="fixed w-full bg-slate-900 text-white z-50 shadow-md">
@@ -44,8 +52,8 @@
                 <div class="hidden md:flex space-x-8">
                     <a href="#overview" class="hover:text-emerald-400 transition">Overview</a>
                     <a href="#process" class="hover:text-emerald-400 transition">Setup Process</a>
-                    <a href="#costs" class="hover:text-emerald-400 transition">CAD Hiring Costs</a>
-                    <a href="#hiring" class="hover:text-emerald-400 transition">Employment Guide</a>
+                    <a href="#regions" class="hover:text-emerald-400 transition">Talent Hubs</a>
+                    <a href="#costs" class="hover:text-emerald-400 transition">Financial Modeling</a>
                 </div>
             </div>
         </div>
@@ -54,61 +62,51 @@
     <header id="overview" class="pt-24 pb-12 bg-slate-800 text-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight mb-4">
-                Opening a Company & Hiring in China
+                Strategic Expansion & Hiring in China
             </h1>
             <p class="text-xl text-slate-300 max-w-3xl mx-auto mb-8">
-                A comprehensive guide for US citizens to establish a WFOE and hire CAD Drafters & Modelers in the 2025-2026 market.
+                A 2025-2026 data-driven guide for establishing a WFOE and analyzing CAD/Engineering talent costs across
+                Tier 1, 2, and 3 Chinese cities.
             </p>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12 text-left">
-                <div class="bg-slate-700 p-6 rounded-lg shadow-lg">
-                    <div class="text-3xl mb-3">&#128188;</div>
-                    <h3 class="text-lg font-semibold mb-2">Entity Type</h3>
-                    <p class="text-slate-300 text-sm">As an American, the standard vehicle is a WFOE (Wholly Foreign-Owned Enterprise). It gives you 100% control without a local partner.</p>
-                </div>
-                <div class="bg-slate-700 p-6 rounded-lg shadow-lg">
-                    <div class="text-3xl mb-3">&#128200;</div>
-                    <h3 class="text-lg font-semibold mb-2">Market Outlook (2025-2026)</h3>
-                    <p class="text-slate-300 text-sm">China remains highly competitive for architectural and engineering drafting, balancing high technical skill with favorable currency exchange rates.</p>
-                </div>
-                <div class="bg-slate-700 p-6 rounded-lg shadow-lg">
-                    <div class="text-3xl mb-3">&#128104;&#8205;&#128187;</div>
-                    <h3 class="text-lg font-semibold mb-2">Target Talent</h3>
-                    <p class="text-slate-300 text-sm">CAD Drafters and 3D Modelers. Readily available in Tier 1 and Tier 2 cities, proficient in AutoCAD, Revit, SolidWorks, and Rhino.</p>
-                </div>
-            </div>
         </div>
     </header>
 
     <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        
+
         <section id="process" class="mb-20">
             <div class="mb-8">
                 <h2 class="text-3xl font-bold text-slate-800 mb-4">The WFOE Setup Process</h2>
                 <p class="text-slate-600 text-lg">
-                    This section outlines the chronological steps required for an American citizen or entity to legally establish a business presence in China. Click on each step to view the specific requirements and estimated timelines.
+                    The legal framework for establishing a Wholly Foreign-Owned Enterprise (WFOE) remains consistent
+                    nationwide. Click through the phases to understand the timeline.
                 </p>
             </div>
 
             <div class="flex flex-col lg:flex-row gap-8">
                 <div class="lg:w-1/3 border-l-2 border-slate-200" id="step-list">
-                    <div class="pl-4 py-3 cursor-pointer border-l-4 border-transparent hover:bg-slate-50 transition step-item step-active" data-target="step1">
+                    <div class="pl-4 py-3 cursor-pointer border-l-4 border-transparent hover:bg-slate-50 transition step-item step-active"
+                        data-target="step1">
                         <div class="font-bold text-slate-800">&#9312; Pre-Licensing & Planning</div>
                         <div class="text-sm text-slate-500">Weeks 1-3</div>
                     </div>
-                    <div class="pl-4 py-3 cursor-pointer border-l-4 border-transparent hover:bg-slate-50 transition step-item" data-target="step2">
+                    <div class="pl-4 py-3 cursor-pointer border-l-4 border-transparent hover:bg-slate-50 transition step-item"
+                        data-target="step2">
                         <div class="font-bold text-slate-800">&#9313; Document Legalization</div>
                         <div class="text-sm text-slate-500">Weeks 3-6</div>
                     </div>
-                    <div class="pl-4 py-3 cursor-pointer border-l-4 border-transparent hover:bg-slate-50 transition step-item" data-target="step3">
-                        <div class="font-bold text-slate-800">&#9314; Business License Application</div>
+                    <div class="pl-4 py-3 cursor-pointer border-l-4 border-transparent hover:bg-slate-50 transition step-item"
+                        data-target="step3">
+                        <div class="font-bold text-slate-800">&#9314; Business License App.</div>
                         <div class="text-sm text-slate-500">Weeks 6-8</div>
                     </div>
-                    <div class="pl-4 py-3 cursor-pointer border-l-4 border-transparent hover:bg-slate-50 transition step-item" data-target="step4">
+                    <div class="pl-4 py-3 cursor-pointer border-l-4 border-transparent hover:bg-slate-50 transition step-item"
+                        data-target="step4">
                         <div class="font-bold text-slate-800">&#9315; Post-Licensing & Chops</div>
                         <div class="text-sm text-slate-500">Weeks 8-10</div>
                     </div>
-                    <div class="pl-4 py-3 cursor-pointer border-l-4 border-transparent hover:bg-slate-50 transition step-item" data-target="step5">
-                        <div class="font-bold text-slate-800">&#9316; Bank Accounts & Tax Reg.</div>
+                    <div class="pl-4 py-3 cursor-pointer border-l-4 border-transparent hover:bg-slate-50 transition step-item"
+                        data-target="step5">
+                        <div class="font-bold text-slate-800">&#9316; Bank & Tax Registration</div>
                         <div class="text-sm text-slate-500">Weeks 10-12</div>
                     </div>
                 </div>
@@ -116,139 +114,231 @@
                 <div class="lg:w-2/3 bg-white p-8 rounded-xl shadow-sm border border-slate-100 min-h-[300px]">
                     <div id="step1" class="step-content block">
                         <h3 class="text-2xl font-bold text-slate-800 mb-4">Phase 1: Pre-Licensing & Planning</h3>
-                        <p class="text-slate-600 mb-4">Before applying, you must define the company's structure and secure a physical location. Virtual offices are generally not permitted for WFOEs.</p>
+                        <p class="text-slate-600 mb-4">Before applying, define the company's structure and secure a
+                            physical location. Virtual offices are not permitted.</p>
                         <ul class="list-disc pl-5 text-slate-700 space-y-2">
-                            <li><strong>Determine Business Scope:</strong> Must be explicitly defined (e.g., "Engineering Design Services", "CAD Drafting", "Technology Consulting"). You can only issue invoices for services listed here.</li>
-                            <li><strong>Registered Capital:</strong> While statutory minimums have been abolished, you must declare an amount sufficient to cover initial operations (e.g., $50,000 - $100,000 USD). This money must actually be injected over a stated period.</li>
-                            <li><strong>Lease Agreement:</strong> You must sign a commercial lease. The landlord must provide specific property ownership certificates.</li>
-                            <li><strong>Name Approval:</strong> Submit proposed Chinese names to the local Administration for Market Regulation (AMR).</li>
+                            <li><strong>Business Scope:</strong> Must be explicitly defined (e.g., "Engineering Design",
+                                "CAD Drafting").</li>
+                            <li><strong>Registered Capital:</strong> Declare an amount sufficient to cover initial
+                                operations.</li>
+                            <li><strong>Lease Agreement:</strong> Sign a commercial lease with valid property ownership
+                                certificates.</li>
                         </ul>
                     </div>
                     <div id="step2" class="step-content hidden">
                         <h3 class="text-2xl font-bold text-slate-800 mb-4">Phase 2: Document Legalization</h3>
-                        <p class="text-slate-600 mb-4">Chinese authorities require proof of the foreign investor's identity and standing, which must be authenticated.</p>
+                        <p class="text-slate-600 mb-4">Chinese authorities require authenticated proof of the foreign
+                            investor's identity.</p>
                         <ul class="list-disc pl-5 text-slate-700 space-y-2">
-                            <li><strong>If investing as an Individual (US Citizen):</strong> Your US Passport must be notarized, authenticated by the state, and then legalized by the Chinese Embassy/Consulate in the US.</li>
-                            <li><strong>If investing via a US LLC/Corp:</strong> Certificate of Incorporation, Articles of Organization, and a Bank Reference Letter must go through the same notarization and Chinese consular legalization process.</li>
-                            <li><em>Note for 2025/2026:</em> With the Apostille Convention in effect for China, the process is streamlined compared to previous years, often bypassing the final consular legalization step if the US state issues an Apostille.</li>
+                            <li>US Passports or Corporate Documents (LLC/Corp) must be notarized and authenticated by
+                                the state.</li>
+                            <li>With the Apostille Convention in effect, state-issued Apostilles streamline this
+                                previously complex consular process.</li>
                         </ul>
                     </div>
                     <div id="step3" class="step-content hidden">
                         <h3 class="text-2xl font-bold text-slate-800 mb-4">Phase 3: Business License Application</h3>
-                        <p class="text-slate-600 mb-4">This is the formal registration with the government. Most applications are now processed through a "Five-in-One" online portal.</p>
+                        <p class="text-slate-600 mb-4">Formal registration via the "Five-in-One" online portal.</p>
                         <ul class="list-disc pl-5 text-slate-700 space-y-2">
-                            <li>Submit Articles of Association, Feasibility Study, Lease Agreement, Legalized IDs, and forms appointing the Legal Representative, Executive Director, and Supervisor.</li>
-                            <li><strong>The Legal Representative:</strong> A crucial role with significant legal power and liability. Does not need to reside in China or be Chinese, but holds the primary responsibility for the company.</li>
-                            <li>Upon approval, the Administration for Market Regulation (AMR) issues the physical Business License. <strong>The company officially exists.</strong></li>
+                            <li>Submit Articles of Association and appoint the Legal Representative.</li>
+                            <li>The Administration for Market Regulation (AMR) issues the Business License. The company
+                                now legally exists.</li>
                         </ul>
                     </div>
                     <div id="step4" class="step-content hidden">
                         <h3 class="text-2xl font-bold text-slate-800 mb-4">Phase 4: Post-Licensing & Company Chops</h3>
-                        <p class="text-slate-600 mb-4">In China, physical stamps (chops) hold more legal weight than a signature.</p>
+                        <p class="text-slate-600 mb-4">Physical stamps (chops) hold supreme legal weight in China.</p>
                         <ul class="list-disc pl-5 text-slate-700 space-y-2">
-                            <li>Register with the Public Security Bureau (PSB) to carve the official company chops.</li>
-                            <li><strong>Required Chops:</strong>
-                                <ul>
-                                    <li>Official Company Chop (for binding contracts)</li>
-                                    <li>Financial Chop (for banking)</li>
-                                    <li>Legal Representative Chop (personal stamp of the LR)</li>
-                                    <li>Invoice (Fapiao) Chop (for tax receipts)</li>
-                                </ul>
-                            </li>
-                            <li>Security of these chops is paramount; whoever holds them controls the company.</li>
+                            <li>Register with the Public Security Bureau to carve Official, Financial, Legal
+                                Representative, and Invoice chops.</li>
                         </ul>
                     </div>
                     <div id="step5" class="step-content hidden">
-                        <h3 class="text-2xl font-bold text-slate-800 mb-4">Phase 5: Bank Accounts & Tax Registration</h3>
-                        <p class="text-slate-600 mb-4">Finalizing the operational setup allows you to inject capital, pay employees, and issue invoices.</p>
+                        <h3 class="text-2xl font-bold text-slate-800 mb-4">Phase 5: Bank Accounts & Tax Registration
+                        </h3>
+                        <p class="text-slate-600 mb-4">Finalizing operational setup to hire and transact.</p>
                         <ul class="list-disc pl-5 text-slate-700 space-y-2">
-                            <li><strong>Open Bank Accounts:</strong>
-                                <ul>
-                                    <li>RMB Basic Account: For daily operations, payroll, and local tax payments.</li>
-                                    <li>Foreign Currency Capital Account: Required to receive the Registered Capital from the US investor.</li>
-                                </ul>
+                            <li>Open an RMB Basic Account and a Foreign Currency Capital Account.</li>
+                            <li>Register with the State Taxation Administration for "Fapiao" (VAT invoice) issuance.
                             </li>
-                            <li><strong>Tax Registration:</strong> Register with the State Taxation Administration. Apply for General Taxpayer status if required, and obtain the system to issue "Fapiao" (official VAT invoices).</li>
-                            <li><strong>Social Security Registration:</strong> Open accounts with the local housing fund and social security bureaus to process employee benefits.</li>
+                            <li>Open social security and housing fund accounts for future employees.</li>
                         </ul>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="costs" class="mb-20 bg-slate-50 p-8 rounded-xl border border-slate-200">
+        <section id="regions" class="mb-20">
             <div class="mb-8">
-                <h2 class="text-3xl font-bold text-slate-800 mb-4">CAD Hiring Costs (2025-2026 Estimates)</h2>
+                <h2 class="text-3xl font-bold text-slate-800 mb-4">Engineering Talent Hubs</h2>
                 <p class="text-slate-600 text-lg">
-                    This section models the estimated financial commitment per employee. In China, employers must pay mandatory social insurances and a housing fund on top of the base salary. Explore the data below to understand the Total Cost of Employment.
+                    Moving beyond Tier 1 cities unlocks massive geographic arbitrage. Tier 2 and 3 cities house elite
+                    technical universities, providing highly skilled drafters and modelers at a fraction of coastal
+                    costs.
                 </p>
             </div>
 
-            <div class="flex flex-col sm:flex-row justify-between items-center mb-8 gap-4">
-                <div class="flex space-x-2 bg-slate-200 p-1 rounded-lg">
-                    <button id="btn-junior" class="px-4 py-2 rounded-md bg-white shadow-sm font-semibold text-slate-800 transition">Junior CAD Drafter</button>
-                    <button id="btn-senior" class="px-4 py-2 rounded-md text-slate-600 hover:text-slate-800 transition">Senior 3D Modeler</button>
-                </div>
-                <div class="flex space-x-2 bg-slate-200 p-1 rounded-lg">
-                    <button id="btn-usd" class="px-4 py-2 rounded-md bg-white shadow-sm font-semibold text-slate-800 transition">USD ($)</button>
-                    <button id="btn-rmb" class="px-4 py-2 rounded-md text-slate-600 hover:text-slate-800 transition">RMB (¥)</button>
-                </div>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
-                <div>
-                    <h3 class="text-xl font-bold text-center mb-4 text-slate-700" id="chart-title-breakdown">Monthly Cost Breakdown</h3>
-                    <div class="chart-container">
-                        <canvas id="costDoughnut"></canvas>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                <div class="bg-slate-50 p-5 rounded-lg border border-slate-200">
+                    <div class="flex justify-between items-center mb-2">
+                        <h3 class="font-bold text-slate-800 text-lg">Shanghai</h3>
+                        <span class="text-xs font-bold bg-slate-800 text-white px-2 py-1 rounded">Tier 1</span>
                     </div>
-                    <div class="mt-6 text-sm text-slate-600 text-center">
-                        <p><strong>Note:</strong> Employer mandatory contributions (Pension, Medical, Unemployment, Injury, Maternity, and Housing Fund) typically add 35-40% to the base gross salary depending on the specific city (e.g., Shanghai vs. Chengdu).</p>
-                    </div>
+                    <p class="text-sm text-slate-600 mb-3">Premium coastal hub. Highest English proficiency, highest
+                        costs.</p>
+                    <div class="text-xs font-semibold text-emerald-600">Universities: Tongji Univ., SJTU</div>
                 </div>
 
-                <div>
-                    <h3 class="text-xl font-bold text-center mb-4 text-slate-700">Salary Comparison</h3>
-                    <div class="chart-container">
-                        <canvas id="salaryBar"></canvas>
+                <div class="bg-slate-50 p-5 rounded-lg border border-slate-200">
+                    <div class="flex justify-between items-center mb-2">
+                        <h3 class="font-bold text-slate-800 text-lg">Nanjing</h3>
+                        <span class="text-xs font-bold bg-indigo-600 text-white px-2 py-1 rounded">New Tier 1</span>
                     </div>
-                    <div class="mt-8 bg-white p-6 rounded-lg shadow-sm border border-slate-100">
-                        <h4 class="font-bold text-slate-800 mb-2">Role Overview: <span id="role-name-text" class="text-emerald-600">Junior CAD Drafter</span></h4>
-                        <p id="role-desc-text" class="text-slate-600 text-sm">
-                            Typically 1-3 years experience. Proficient in 2D drafting (AutoCAD). Executes markups, creates standard architectural or mechanical detailing. Focus is on speed and adherence to provided standards.
-                        </p>
+                    <p class="text-sm text-slate-600 mb-3">Wealthy hub near Shanghai. Elite architectural and civil
+                        talent.</p>
+                    <div class="text-xs font-semibold text-emerald-600">Universities: Southeast Univ. (SEU)</div>
+                </div>
+
+                <div class="bg-slate-50 p-5 rounded-lg border border-slate-200">
+                    <div class="flex justify-between items-center mb-2">
+                        <h3 class="font-bold text-slate-800 text-lg">Wuhan</h3>
+                        <span class="text-xs font-bold bg-indigo-600 text-white px-2 py-1 rounded">New Tier 1</span>
                     </div>
+                    <p class="text-sm text-slate-600 mb-3">Massive student population. Deep mechanical & civil CAD
+                        pools.</p>
+                    <div class="text-xs font-semibold text-emerald-600">Universities: HUST, Wuhan Univ.</div>
+                </div>
+
+                <div class="bg-slate-50 p-5 rounded-lg border border-slate-200">
+                    <div class="flex justify-between items-center mb-2">
+                        <h3 class="font-bold text-slate-800 text-lg">Chengdu</h3>
+                        <span class="text-xs font-bold bg-indigo-600 text-white px-2 py-1 rounded">New Tier 1</span>
+                    </div>
+                    <p class="text-sm text-slate-600 mb-3">High retention rates, exceptional lifestyle. Strong
+                        BIM/Software.</p>
+                    <div class="text-xs font-semibold text-emerald-600">Universities: Sichuan Univ., UESTC</div>
+                </div>
+
+                <div class="bg-slate-50 p-5 rounded-lg border border-slate-200">
+                    <div class="flex justify-between items-center mb-2">
+                        <h3 class="font-bold text-slate-800 text-lg">Tianjin</h3>
+                        <span class="text-xs font-bold bg-indigo-600 text-white px-2 py-1 rounded">New Tier 1</span>
+                    </div>
+                    <p class="text-sm text-slate-600 mb-3">Bordering Beijing. Historical excellence in chemical/civil
+                        engineering.</p>
+                    <div class="text-xs font-semibold text-emerald-600">Universities: Tianjin Univ.</div>
+                </div>
+
+                <div class="bg-slate-50 p-5 rounded-lg border border-slate-200">
+                    <div class="flex justify-between items-center mb-2">
+                        <h3 class="font-bold text-slate-800 text-lg">Xi'an</h3>
+                        <span class="text-xs font-bold bg-sky-600 text-white px-2 py-1 rounded">Tier 2</span>
+                    </div>
+                    <p class="text-sm text-slate-600 mb-3">Inland aerospace and heavy engineering capital. Great
+                        cost-to-skill ratio.</p>
+                    <div class="text-xs font-semibold text-emerald-600">Universities: XJTU, NWPU</div>
+                </div>
+
+                <div class="bg-slate-50 p-5 rounded-lg border border-slate-200">
+                    <div class="flex justify-between items-center mb-2">
+                        <h3 class="font-bold text-slate-800 text-lg">Hefei</h3>
+                        <span class="text-xs font-bold bg-sky-600 text-white px-2 py-1 rounded">Tier 2</span>
+                    </div>
+                    <p class="text-sm text-slate-600 mb-3">Rapidly growing tech and manufacturing hub. Highly
+                        competitive rates.</p>
+                    <div class="text-xs font-semibold text-emerald-600">Universities: USTC, HFUT</div>
+                </div>
+
+                <div class="bg-slate-50 p-5 rounded-lg border border-slate-200">
+                    <div class="flex justify-between items-center mb-2">
+                        <h3 class="font-bold text-slate-800 text-lg">Harbin</h3>
+                        <span class="text-xs font-bold bg-teal-700 text-white px-2 py-1 rounded">Tier 3</span>
+                    </div>
+                    <p class="text-sm text-slate-600 mb-3">Northern industrial base. Lowest costs, legendary engineering
+                        school.</p>
+                    <div class="text-xs font-semibold text-emerald-600">Universities: Harbin Inst. of Tech (HIT)</div>
                 </div>
             </div>
         </section>
 
-        <section id="hiring" class="mb-12">
-            <div class="mb-8">
-                <h2 class="text-3xl font-bold text-slate-800 mb-4">Employment & Hiring Guide</h2>
+        <section id="costs" class="mb-20 bg-white p-8 rounded-xl border border-slate-200 shadow-sm">
+            <div class="mb-8 border-b border-slate-100 pb-6">
+                <h2 class="text-3xl font-bold text-slate-800 mb-4">Interactive Financial Modeling</h2>
                 <p class="text-slate-600 text-lg">
-                    Navigating Chinese labor law requires precision. The legal framework heavily protects employees, making proper documentation crucial.
+                    Compare the Total Cost of Employment (Base Salary + Employer Mandatory Contributions) across
+                    regions. Select your parameters below to update the visualizations.
                 </p>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                <div class="bg-white p-6 border border-slate-200 rounded-lg shadow-sm hover:shadow-md transition">
-                    <div class="text-emerald-500 text-2xl mb-3">&#128196;</div>
-                    <h3 class="font-bold text-slate-800 mb-2">Written Contracts</h3>
-                    <p class="text-sm text-slate-600">A written employment contract must be signed within one month of the start date. Failure to do so requires the employer to pay double salary for up to 11 months.</p>
+            <div
+                class="flex flex-col md:flex-row justify-between items-start md:items-center mb-10 gap-6 bg-slate-50 p-4 rounded-lg">
+                <div class="flex flex-col w-full md:w-auto">
+                    <label class="text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Select Target
+                        City</label>
+                    <select id="city-selector"
+                        class="bg-white border border-slate-300 text-slate-900 text-sm rounded-lg focus:ring-emerald-500 focus:border-emerald-500 block w-full p-2.5 shadow-sm font-semibold">
+                        <option value="shanghai">Shanghai (Tier 1)</option>
+                        <option value="nanjing">Nanjing (New Tier 1)</option>
+                        <option value="wuhan">Wuhan (New Tier 1)</option>
+                        <option value="tianjin">Tianjin (New Tier 1)</option>
+                        <option value="chengdu">Chengdu (New Tier 1)</option>
+                        <option value="xian">Xi'an (Tier 2)</option>
+                        <option value="hefei">Hefei (Tier 2)</option>
+                        <option value="harbin">Harbin (Tier 3)</option>
+                    </select>
                 </div>
-                <div class="bg-white p-6 border border-slate-200 rounded-lg shadow-sm hover:shadow-md transition">
-                    <div class="text-emerald-500 text-2xl mb-3">&#128337;</div>
-                    <h3 class="font-bold text-slate-800 mb-2">Probation Periods</h3>
-                    <p class="text-sm text-slate-600">Statutory limits apply. A 1-year contract allows a max 2-month probation. A 3-year contract allows up to 6 months. Salary during probation cannot be less than 80% of the standard wage.</p>
+
+                <div class="flex flex-col gap-4 sm:flex-row w-full md:w-auto">
+                    <div>
+                        <label class="text-xs font-bold text-slate-500 uppercase tracking-wider mb-2 block">Role</label>
+                        <div class="flex space-x-1 bg-slate-200 p-1 rounded-lg">
+                            <button id="btn-junior"
+                                class="px-4 py-2 text-sm rounded-md bg-white shadow-sm font-semibold text-slate-800 transition">Junior
+                                CAD</button>
+                            <button id="btn-senior"
+                                class="px-4 py-2 text-sm rounded-md text-slate-600 hover:text-slate-800 transition">Senior
+                                Modeler</button>
+                        </div>
+                    </div>
+                    <div>
+                        <label
+                            class="text-xs font-bold text-slate-500 uppercase tracking-wider mb-2 block">Currency</label>
+                        <div class="flex space-x-1 bg-slate-200 p-1 rounded-lg">
+                            <button id="btn-usd"
+                                class="px-4 py-2 text-sm rounded-md bg-white shadow-sm font-semibold text-slate-800 transition">USD
+                                ($)</button>
+                            <button id="btn-rmb"
+                                class="px-4 py-2 text-sm rounded-md text-slate-600 hover:text-slate-800 transition">RMB
+                                (¥)</button>
+                        </div>
+                    </div>
                 </div>
-                <div class="bg-white p-6 border border-slate-200 rounded-lg shadow-sm hover:shadow-md transition">
-                    <div class="text-emerald-500 text-2xl mb-3">&#10060;</div>
-                    <h3 class="font-bold text-slate-800 mb-2">Termination</h3>
-                    <p class="text-sm text-slate-600">"At-will" employment does not exist in China. You can only terminate an employee based on specific statutory grounds. Severance pay (usually 1 month per year of service) is standard.</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+
+                <div class="bg-slate-50 p-6 rounded-xl border border-slate-100">
+                    <h3 class="text-xl font-bold text-center mb-2 text-slate-800">Macro Comparison: <span
+                            id="macro-title-role" class="text-emerald-600">Junior CAD</span></h3>
+                    <p class="text-xs text-center text-slate-500 mb-6">Total Monthly Cost across all surveyed hubs.</p>
+                    <div class="chart-container">
+                        <canvas id="barChartAllCities"></canvas>
+                    </div>
                 </div>
-                <div class="bg-white p-6 border border-slate-200 rounded-lg shadow-sm hover:shadow-md transition">
-                    <div class="text-emerald-500 text-2xl mb-3">&#127891;</div>
-                    <h3 class="font-bold text-slate-800 mb-2">Finding Talent</h3>
-                    <p class="text-sm text-slate-600">Use local platforms like Liepin, Zhaopin, or Boss Zhipin. LinkedIn is less effective for local drafters. English proficiency commands a premium in salary.</p>
+
+                <div class="bg-slate-50 p-6 rounded-xl border border-slate-100">
+                    <h3 class="text-xl font-bold text-center mb-2 text-slate-800">Micro Breakdown: <span
+                            id="micro-title-city" class="text-emerald-600">Shanghai</span></h3>
+                    <p class="text-xs text-center text-slate-500 mb-6">Base Salary vs. Local Employer Burden (<span
+                            id="micro-burden-pct"></span>)</p>
+                    <div class="chart-container">
+                        <canvas id="doughnutCityDetail"></canvas>
+                    </div>
+                    <div class="mt-6 text-sm text-slate-600 bg-white p-4 rounded border border-slate-200">
+                        <p><strong>Note:</strong> Employer burdens include mandatory Pension, Medical, Unemployment,
+                            Injury, Maternity, and Housing Fund contributions. Rates fluctuate based on the selected
+                            municipal policies.</p>
+                    </div>
                 </div>
             </div>
         </section>
@@ -258,13 +348,14 @@
     <footer class="bg-slate-900 text-slate-400 py-8 text-center">
         <div class="max-w-7xl mx-auto px-4">
             <p>&copy; 2026 SinoSetup Pro. Interactive Market Analysis SPA.</p>
-            <p class="text-sm mt-2">Data represents aggregate estimates for Tier 1 & Tier 2 Chinese cities (Shanghai, Shenzhen, Chengdu) assuming exchange rate of 1 USD = 7.1 RMB.</p>
+            <p class="text-sm mt-2">Data represents aggregate estimates assuming an exchange rate of 1 USD = 7.1 RMB.
+            </p>
         </div>
     </footer>
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            
+
             const steps = document.querySelectorAll('.step-item');
             const contents = document.querySelectorAll('.step-content');
 
@@ -274,65 +365,85 @@
                         s.classList.remove('step-active');
                         s.style.borderLeftColor = 'transparent';
                     });
-                    
                     contents.forEach(c => c.classList.add('hidden'));
-
                     step.classList.add('step-active');
-                    
                     const targetId = step.getAttribute('data-target');
                     document.getElementById(targetId).classList.remove('hidden');
                 });
             });
 
-            
             const exchangeRate = 7.1;
-            
-            const dataState = {
-                role: 'junior', 
-                currency: 'usd' 
+
+            const cityData = {
+                shanghai: { name: "Shanghai", tier: "Tier 1", juniorBase: 10000, seniorBase: 22000, burdenPct: 0.38 },
+                nanjing: { name: "Nanjing", tier: "New Tier 1", juniorBase: 8500, seniorBase: 18500, burdenPct: 0.38 },
+                wuhan: { name: "Wuhan", tier: "New Tier 1", juniorBase: 7500, seniorBase: 16000, burdenPct: 0.38 },
+                tianjin: { name: "Tianjin", tier: "New Tier 1", juniorBase: 7500, seniorBase: 17000, burdenPct: 0.40 },
+                chengdu: { name: "Chengdu", tier: "New Tier 1", juniorBase: 7000, seniorBase: 15000, burdenPct: 0.36 },
+                xian: { name: "Xi'an", tier: "Tier 2", juniorBase: 6500, seniorBase: 14000, burdenPct: 0.36 },
+                hefei: { name: "Hefei", tier: "Tier 2", juniorBase: 6000, seniorBase: 13000, burdenPct: 0.35 },
+                harbin: { name: "Harbin", tier: "Tier 3", juniorBase: 5000, seniorBase: 11000, burdenPct: 0.35 }
             };
 
-            const employmentData = {
-                junior: {
-                    baseRMB: 10000,
-                    benefitsRMB: 3800, 
-                    desc: "Typically 1-3 years experience. Proficient in 2D drafting (AutoCAD). Executes markups, creates standard architectural or mechanical detailing. Focus is on speed and adherence to provided standards."
-                },
-                senior: {
-                    baseRMB: 22000,
-                    benefitsRMB: 8360,
-                    desc: "5+ years experience. Expert in 3D modeling (Revit, SolidWorks, Rhino). Capable of independent design problem-solving, BIM management, and leading project sub-sections."
-                }
+            const state = {
+                city: 'shanghai',
+                role: 'junior',
+                currency: 'usd'
             };
 
-            let doughnutChart, barChart;
+            let barChart, doughnutChart;
 
             function convert(rmbValue) {
-                return dataState.currency === 'usd' ? Math.round(rmbValue / exchangeRate) : rmbValue;
+                return state.currency === 'usd' ? Math.round(rmbValue / exchangeRate) : Math.round(rmbValue);
             }
 
-            function getCurrencySymbol() {
-                return dataState.currency === 'usd' ? '$' : '¥';
+            function getSymbol() {
+                return state.currency === 'usd' ? '$' : '¥';
+            }
+
+            function getCostData(cityKey, role) {
+                const c = cityData[cityKey];
+                const base = role === 'junior' ? c.juniorBase : c.seniorBase;
+                const burden = base * c.burdenPct;
+                return {
+                    baseRMB: base,
+                    burdenRMB: burden,
+                    totalRMB: base + burden,
+                    base: convert(base),
+                    burden: convert(burden),
+                    total: convert(base + burden)
+                };
             }
 
             function initCharts() {
-                const ctxDoughnut = document.getElementById('costDoughnut').getContext('2d');
-                const ctxBar = document.getElementById('salaryBar').getContext('2d');
-
                 Chart.defaults.font.family = "'Inter', sans-serif";
                 Chart.defaults.color = '#475569';
 
+                const ctxBar = document.getElementById('barChartAllCities').getContext('2d');
+                barChart = new Chart(ctxBar, {
+                    type: 'bar',
+                    data: { labels: [], datasets: [{ label: 'Total Cost', data: [], backgroundColor: [], borderRadius: 4 }] },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: { display: false },
+                            tooltip: {
+                                callbacks: {
+                                    label: function (context) {
+                                        return 'Total: ' + getSymbol() + context.parsed.y.toLocaleString();
+                                    }
+                                }
+                            }
+                        },
+                        scales: { y: { beginAtZero: true, ticks: { callback: function (v) { return getSymbol() + v.toLocaleString(); } } } }
+                    }
+                });
+
+                const ctxDoughnut = document.getElementById('doughnutCityDetail').getContext('2d');
                 doughnutChart = new Chart(ctxDoughnut, {
                     type: 'doughnut',
-                    data: {
-                        labels: ['Base Gross Salary', 'Employer Social Contributions'],
-                        datasets: [{
-                            data: [0, 0],
-                            backgroundColor: ['#0f172a', '#10b981'],
-                            borderWidth: 0,
-                            hoverOffset: 4
-                        }]
-                    },
+                    data: { labels: ['Base Gross Salary', 'Employer Burden'], datasets: [{ data: [0, 0], backgroundColor: ['#0f172a', '#10b981'], borderWidth: 0, hoverOffset: 4 }] },
                     options: {
                         responsive: true,
                         maintainAspectRatio: false,
@@ -340,50 +451,8 @@
                             legend: { position: 'bottom' },
                             tooltip: {
                                 callbacks: {
-                                    label: function(context) {
-                                        let label = context.label || '';
-                                        if (label) label += ': ';
-                                        if (context.parsed !== null) {
-                                            label += getCurrencySymbol() + context.parsed.toLocaleString();
-                                        }
-                                        return label;
-                                    }
-                                }
-                            }
-                        }
-                    }
-                });
-
-                barChart = new Chart(ctxBar, {
-                    type: 'bar',
-                    data: {
-                        labels: ['Junior Drafter', 'Senior Modeler'],
-                        datasets: [{
-                            label: 'Total Monthly Cost (Base + Benefits)',
-                            data: [0, 0],
-                            backgroundColor: '#38bdf8',
-                            borderRadius: 4
-                        }]
-                    },
-                    options: {
-                        responsive: true,
-                        maintainAspectRatio: false,
-                        scales: {
-                            y: {
-                                beginAtZero: true,
-                                ticks: {
-                                    callback: function(value) {
-                                        return getCurrencySymbol() + value.toLocaleString();
-                                    }
-                                }
-                            }
-                        },
-                        plugins: {
-                            legend: { display: false },
-                            tooltip: {
-                                callbacks: {
-                                    label: function(context) {
-                                        return 'Total Cost: ' + getCurrencySymbol() + context.parsed.y.toLocaleString();
+                                    label: function (context) {
+                                        return context.label + ': ' + getSymbol() + context.parsed.toLocaleString();
                                     }
                                 }
                             }
@@ -395,75 +464,64 @@
             }
 
             function updateVisuals() {
-                
-                const currentData = employmentData[dataState.role];
-                
-                doughnutChart.data.datasets[0].data = [
-                    convert(currentData.baseRMB),
-                    convert(currentData.benefitsRMB)
-                ];
-                doughnutChart.update();
 
-                barChart.data.datasets[0].data = [
-                    convert(employmentData.junior.baseRMB + employmentData.junior.benefitsRMB),
-                    convert(employmentData.senior.baseRMB + employmentData.senior.benefitsRMB)
-                ];
+                const labels = [];
+                const totals = [];
+                const bgColors = [];
+
+                const sortedCityKeys = Object.keys(cityData).sort((a, b) => {
+                    return getCostData(b, state.role).totalRMB - getCostData(a, state.role).totalRMB;
+                });
+
+                sortedCityKeys.forEach(key => {
+                    labels.push(cityData[key].name);
+                    totals.push(getCostData(key, state.role).total);
+                    bgColors.push(key === state.city ? '#10b981' : '#cbd5e1');
+                });
+
+                barChart.data.labels = labels;
+                barChart.data.datasets[0].data = totals;
+                barChart.data.datasets[0].backgroundColor = bgColors;
                 barChart.update();
 
-                const roleNameObj = document.getElementById('role-name-text');
-                const roleDescObj = document.getElementById('role-desc-text');
-                
-                if (dataState.role === 'junior') {
-                    roleNameObj.textContent = 'Junior CAD Drafter';
-                    roleDescObj.textContent = employmentData.junior.desc;
-                } else {
-                    roleNameObj.textContent = 'Senior 3D Modeler';
-                    roleDescObj.textContent = employmentData.senior.desc;
-                }
+
+                const selectedData = getCostData(state.city, state.role);
+                doughnutChart.data.datasets[0].data = [selectedData.base, selectedData.burden];
+                doughnutChart.update();
+
+
+                document.getElementById('macro-title-role').textContent = state.role === 'junior' ? 'Junior CAD' : 'Senior Modeler';
+                document.getElementById('micro-title-city').textContent = cityData[state.city].name;
+                document.getElementById('micro-burden-pct').textContent = (cityData[state.city].burdenPct * 100).toFixed(0) + '%';
             }
 
-            document.getElementById('btn-junior').addEventListener('click', (e) => {
-                dataState.role = 'junior';
-                e.target.classList.add('bg-white', 'shadow-sm', 'text-slate-800');
-                e.target.classList.remove('text-slate-600');
-                const otherBtn = document.getElementById('btn-senior');
-                otherBtn.classList.remove('bg-white', 'shadow-sm', 'text-slate-800');
-                otherBtn.classList.add('text-slate-600');
+
+            document.getElementById('city-selector').addEventListener('change', (e) => {
+                state.city = e.target.value;
                 updateVisuals();
             });
 
-            document.getElementById('btn-senior').addEventListener('click', (e) => {
-                dataState.role = 'senior';
-                e.target.classList.add('bg-white', 'shadow-sm', 'text-slate-800');
-                e.target.classList.remove('text-slate-600');
-                const otherBtn = document.getElementById('btn-junior');
-                otherBtn.classList.remove('bg-white', 'shadow-sm', 'text-slate-800');
-                otherBtn.classList.add('text-slate-600');
-                updateVisuals();
-            });
+            function toggleBtnActive(btnId, otherBtnId, updateStateKey, updateStateVal) {
+                document.getElementById(btnId).addEventListener('click', (e) => {
+                    state[updateStateKey] = updateStateVal;
+                    e.target.classList.add('bg-white', 'shadow-sm', 'text-slate-800');
+                    e.target.classList.remove('text-slate-600');
+                    const otherBtn = document.getElementById(otherBtnId);
+                    otherBtn.classList.remove('bg-white', 'shadow-sm', 'text-slate-800');
+                    otherBtn.classList.add('text-slate-600');
+                    updateVisuals();
+                });
+            }
 
-            document.getElementById('btn-usd').addEventListener('click', (e) => {
-                dataState.currency = 'usd';
-                e.target.classList.add('bg-white', 'shadow-sm', 'text-slate-800');
-                e.target.classList.remove('text-slate-600');
-                const otherBtn = document.getElementById('btn-rmb');
-                otherBtn.classList.remove('bg-white', 'shadow-sm', 'text-slate-800');
-                otherBtn.classList.add('text-slate-600');
-                updateVisuals();
-            });
-
-            document.getElementById('btn-rmb').addEventListener('click', (e) => {
-                dataState.currency = 'rmb';
-                e.target.classList.add('bg-white', 'shadow-sm', 'text-slate-800');
-                e.target.classList.remove('text-slate-600');
-                const otherBtn = document.getElementById('btn-usd');
-                otherBtn.classList.remove('bg-white', 'shadow-sm', 'text-slate-800');
-                otherBtn.classList.add('text-slate-600');
-                updateVisuals();
-            });
+            toggleBtnActive('btn-junior', 'btn-senior', 'role', 'junior');
+            toggleBtnActive('btn-senior', 'btn-junior', 'role', 'senior');
+            toggleBtnActive('btn-usd', 'btn-rmb', 'currency', 'usd');
+            toggleBtnActive('btn-rmb', 'btn-usd', 'currency', 'rmb');
 
             initCharts();
         });
     </script>
 </body>
+
 </html>
+```
