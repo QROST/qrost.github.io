@@ -7,6 +7,11 @@ body {
     overflow-x: hidden;
 }
 
+/* Minimal top bar: no heavy shadow; relies on border + blur */
+.site-nav {
+    box-shadow: none;
+}
+
 .chart-container {
     position: relative;
     width: 100%;
@@ -38,8 +43,8 @@ body {
 }
 
 .step-active {
-    border-bottom-color: #10b981 !important;
-    color: #1e293b !important;
+    border-bottom-color: #0f172a !important;
+    color: #0f172a !important;
 }
 
 .badge-gba {

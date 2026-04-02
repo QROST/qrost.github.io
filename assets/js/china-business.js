@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     step.classList.add('step-active');
                     step.classList.remove('text-slate-500');
                     step.classList.add('text-slate-800');
-                    step.style.borderBottomColor = '#10b981'; // Emerald color
+                    step.style.borderBottomColor = '#0f172a';
 
                     // Show target content
                     const targetId = step.getAttribute('data-target');
