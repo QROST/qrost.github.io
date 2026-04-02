@@ -37,24 +37,34 @@ document.addEventListener('DOMContentLoaded', () => {
             const OVERHEAD_HARDWARE_ANNUAL_RMB = 13800;
             const OVERHEAD_SOFTWARE_ANNUAL_RMB = 36000;
 
+            /* Salaries: AEC CAD/BIM junior vs senior modeler, annual base (12x monthly bands from Liepin, 51job, i人事, city HR releases, 2024-2025).
+               Rent: officeRentAnnualRMB = 10 m2 x Grade A/B effective RMB/m2/mo x 12 (CIH, JLL, Savills, Knight Frank, Colliers, DTZ, local gov - mostly Q3-Q4 2024).
+               Utilities: allocated HVAC, power, cleaning (higher north/heating; coastal humidity/summer). */
             const cityData = {
-                beijing: { name: "Beijing", type: "mainland", juniorAnnual: 120000, seniorAnnual: 276000, contribPct: 0.38, officeRentAnnualRMB: 36000, utilitiesAnnualRMB: 8200 },
-                shanghai: { name: "Shanghai", type: "mainland", juniorAnnual: 120000, seniorAnnual: 264000, contribPct: 0.38, officeRentAnnualRMB: 36000, utilitiesAnnualRMB: 7500 },
-                shenzhen: { name: "Shenzhen", type: "mainland", juniorAnnual: 115000, seniorAnnual: 260000, contribPct: 0.35, officeRentAnnualRMB: 19200, utilitiesAnnualRMB: 6800 },
-                guangzhou: { name: "Guangzhou", type: "mainland", juniorAnnual: 105000, seniorAnnual: 240000, contribPct: 0.35, officeRentAnnualRMB: 18000, utilitiesAnnualRMB: 7000 },
-                hangzhou: { name: "Hangzhou", type: "mainland", juniorAnnual: 110000, seniorAnnual: 250000, contribPct: 0.36, officeRentAnnualRMB: 16800, utilitiesAnnualRMB: 7200 },
-                nanjing: { name: "Nanjing", type: "mainland", juniorAnnual: 102000, seniorAnnual: 222000, contribPct: 0.38, officeRentAnnualRMB: 13800, utilitiesAnnualRMB: 7600 },
-                tianjin: { name: "Tianjin", type: "mainland", juniorAnnual: 90000, seniorAnnual: 204000, contribPct: 0.40, officeRentAnnualRMB: 11400, utilitiesAnnualRMB: 8000 },
-                wuhan: { name: "Wuhan", type: "mainland", juniorAnnual: 90000, seniorAnnual: 192000, contribPct: 0.38, officeRentAnnualRMB: 10800, utilitiesAnnualRMB: 7200 },
-                chengdu: { name: "Chengdu", type: "mainland", juniorAnnual: 84000, seniorAnnual: 180000, contribPct: 0.36, officeRentAnnualRMB: 12000, utilitiesAnnualRMB: 6800 },
-                zhuhai: { name: "Zhuhai", type: "mainland", juniorAnnual: 84000, seniorAnnual: 180000, contribPct: 0.35, officeRentAnnualRMB: 9600, utilitiesAnnualRMB: 6500 },
-                xian: { name: "Xi'an", type: "mainland", juniorAnnual: 78000, seniorAnnual: 168000, contribPct: 0.36, officeRentAnnualRMB: 10200, utilitiesAnnualRMB: 7800 },
-                hefei: { name: "Hefei", type: "mainland", juniorAnnual: 72000, seniorAnnual: 156000, contribPct: 0.35, officeRentAnnualRMB: 7800, utilitiesAnnualRMB: 7000 },
-                harbin: { name: "Harbin", type: "mainland", juniorAnnual: 60000, seniorAnnual: 132000, contribPct: 0.35, officeRentAnnualRMB: 6600, utilitiesAnnualRMB: 8800 },
-                haikou: { name: "Haikou", type: "mainland", juniorAnnual: 84000, seniorAnnual: 186000, contribPct: 0.35, officeRentAnnualRMB: 7800, utilitiesAnnualRMB: 6200 },
-                sanya: { name: "Sanya", type: "mainland", juniorAnnual: 88000, seniorAnnual: 198000, contribPct: 0.35, officeRentAnnualRMB: 10600, utilitiesAnnualRMB: 6400 },
-                hongkong: { name: "Hong Kong", type: "sar", juniorAnnual: 220000, seniorAnnual: 440000, contribPct: 0.05, officeRentAnnualRMB: 168000, utilitiesAnnualRMB: 9000 },
-                macau: { name: "Macau", type: "sar", juniorAnnual: 185000, seniorAnnual: 370000, contribPct: 0.01, officeRentAnnualRMB: 108000, utilitiesAnnualRMB: 7500 }
+                beijing: { name: "Beijing", type: "mainland", juniorAnnual: 118000, seniorAnnual: 270000, contribPct: 0.38, officeRentAnnualRMB: 30240, utilitiesAnnualRMB: 8300 },
+                shanghai: { name: "Shanghai", type: "mainland", juniorAnnual: 118000, seniorAnnual: 258000, contribPct: 0.38, officeRentAnnualRMB: 24000, utilitiesAnnualRMB: 7600 },
+                shenzhen: { name: "Shenzhen", type: "mainland", juniorAnnual: 112000, seniorAnnual: 252000, contribPct: 0.35, officeRentAnnualRMB: 19560, utilitiesAnnualRMB: 6900 },
+                guangzhou: { name: "Guangzhou", type: "mainland", juniorAnnual: 102000, seniorAnnual: 234000, contribPct: 0.35, officeRentAnnualRMB: 15540, utilitiesAnnualRMB: 7100 },
+                hangzhou: { name: "Hangzhou", type: "mainland", juniorAnnual: 108000, seniorAnnual: 246000, contribPct: 0.36, officeRentAnnualRMB: 13800, utilitiesAnnualRMB: 7300 },
+                nanjing: { name: "Nanjing", type: "mainland", juniorAnnual: 100000, seniorAnnual: 220000, contribPct: 0.38, officeRentAnnualRMB: 11880, utilitiesAnnualRMB: 7700 },
+                tianjin: { name: "Tianjin", type: "mainland", juniorAnnual: 88000, seniorAnnual: 198000, contribPct: 0.40, officeRentAnnualRMB: 12120, utilitiesAnnualRMB: 8100 },
+                wuhan: { name: "Wuhan", type: "mainland", juniorAnnual: 88000, seniorAnnual: 190000, contribPct: 0.38, officeRentAnnualRMB: 9480, utilitiesAnnualRMB: 7300 },
+                chengdu: { name: "Chengdu", type: "mainland", juniorAnnual: 82000, seniorAnnual: 178000, contribPct: 0.36, officeRentAnnualRMB: 11520, utilitiesAnnualRMB: 6900 },
+                zhuhai: { name: "Zhuhai", type: "mainland", juniorAnnual: 82000, seniorAnnual: 176000, contribPct: 0.35, officeRentAnnualRMB: 4680, utilitiesAnnualRMB: 6600 },
+                xian: { name: "Xi'an", type: "mainland", juniorAnnual: 76000, seniorAnnual: 166000, contribPct: 0.36, officeRentAnnualRMB: 8400, utilitiesAnnualRMB: 7600 },
+                hefei: { name: "Hefei", type: "mainland", juniorAnnual: 70000, seniorAnnual: 154000, contribPct: 0.35, officeRentAnnualRMB: 5760, utilitiesAnnualRMB: 6800 },
+                harbin: { name: "Harbin", type: "mainland", juniorAnnual: 58000, seniorAnnual: 128000, contribPct: 0.35, officeRentAnnualRMB: 8160, utilitiesAnnualRMB: 9000 },
+                haikou: { name: "Haikou", type: "mainland", juniorAnnual: 82000, seniorAnnual: 182000, contribPct: 0.35, officeRentAnnualRMB: 6600, utilitiesAnnualRMB: 6300 },
+                sanya: { name: "Sanya", type: "mainland", juniorAnnual: 86000, seniorAnnual: 194000, contribPct: 0.35, officeRentAnnualRMB: 9600, utilitiesAnnualRMB: 6500 },
+                hongkong: { name: "Hong Kong", type: "sar", juniorAnnual: 216000, seniorAnnual: 432000, contribPct: 0.05, officeRentAnnualRMB: 156000, utilitiesAnnualRMB: 9200 },
+                macau: { name: "Macau", type: "sar", juniorAnnual: 180000, seniorAnnual: 360000, contribPct: 0.01, officeRentAnnualRMB: 102000, utilitiesAnnualRMB: 7600 },
+                suzhou: { name: "Suzhou", type: "mainland", juniorAnnual: 102000, seniorAnnual: 228000, contribPct: 0.38, officeRentAnnualRMB: 8640, utilitiesAnnualRMB: 7100 },
+                changsha: { name: "Changsha", type: "mainland", juniorAnnual: 80000, seniorAnnual: 174000, contribPct: 0.36, officeRentAnnualRMB: 9420, utilitiesAnnualRMB: 7300 },
+                chongqing: { name: "Chongqing", type: "mainland", juniorAnnual: 84000, seniorAnnual: 180000, contribPct: 0.36, officeRentAnnualRMB: 9000, utilitiesAnnualRMB: 7900 },
+                kunming: { name: "Kunming", type: "mainland", juniorAnnual: 70000, seniorAnnual: 154000, contribPct: 0.35, officeRentAnnualRMB: 8580, utilitiesAnnualRMB: 6400 },
+                qingdao: { name: "Qingdao", type: "mainland", juniorAnnual: 92000, seniorAnnual: 206000, contribPct: 0.38, officeRentAnnualRMB: 12720, utilitiesAnnualRMB: 7900 },
+                zhengzhou: { name: "Zhengzhou", type: "mainland", juniorAnnual: 76000, seniorAnnual: 164000, contribPct: 0.35, officeRentAnnualRMB: 6480, utilitiesAnnualRMB: 6900 },
+                dalian: { name: "Dalian", type: "mainland", juniorAnnual: 80000, seniorAnnual: 176000, contribPct: 0.38, officeRentAnnualRMB: 8160, utilitiesAnnualRMB: 8900 }
             };
 
             function overheadAnnualTotalRMB(c) {
@@ -127,7 +137,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         ]
                     },
                     options: {
-                        indexAxis: 'y', // CRITICAL: Makes it horizontal for 17 cities readability
+                        indexAxis: 'y', // Horizontal bars for many cities (24 mainland + SAR)
                         responsive: true,
                         maintainAspectRatio: false,
                         onClick: (e, elements) => {

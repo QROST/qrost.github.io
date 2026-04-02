@@ -23,8 +23,8 @@ body {
     max-width: 800px;
     margin-left: auto;
     margin-right: auto;
-    height: 560px;
-    /* Taller to accommodate 17 horizontal bars */
+    height: 720px;
+    /* Taller for ~24 horizontal bars */
 }
 
 @media (min-width: 768px) {
@@ -33,7 +33,7 @@ body {
     }
 
     .chart-container-tall {
-        height: 680px;
+        height: 920px;
     }
 }
 
@@ -64,6 +64,11 @@ body {
 
 .badge-hainan {
     background-color: #0e7490;
+    color: white;
+}
+
+.badge-central {
+    background-color: #0d9488;
     color: white;
 }
 
