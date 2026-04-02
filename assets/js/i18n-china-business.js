@@ -18,12 +18,10 @@
         'hero.lead': '在中国设立<strong class="font-medium text-slate-800">外商投资公司</strong>——通常是<strong class="font-medium text-slate-800">外商独资企业（WFOE）</strong>——资金如何安排，以及24个城市的真实用工成本测算——面向在中国开展<strong class="font-medium text-slate-800">美国公民</strong>的AEC（建筑、工程与施工）业务并承接<strong class="font-medium text-slate-800">国际项目工作</strong>的团队。',
 
         'process.h2': '设立流程：分步说明',
-        'process.intro': '在中国大陆，请从左到右阅读每一行：<strong>一个最小动作</strong>，然后是<strong>资金与账户</strong>。第7–8步涉及<strong>注册资本</strong>与运营成本；请使用<a href="#costs" class="text-emerald-600 font-semibold underline underline-offset-2">年度财务建模仪表盘</a>进行薪酬测算。',
         'process.tab_mainland': '中国大陆（外商独资）',
         'process.tab_sar': '香港与澳门（特别行政区）',
         'process.mainland_intro': '按顺序完成<strong>WFOE</strong>设立。每一行是一个动作；更多说明可展开查看。在递交前请预算<strong>注册资本</strong>（第7–8步）与<strong>运营成本</strong>。',
 
-        'common.money_accounts': '资金与账户',
         'common.sr.toggle': '显示或隐藏本步补充说明',
 
         'sar.intro': '香港与澳门适用不同法律体系，设立流程与大陆外商独资企业相比更简单、差异很大。',
