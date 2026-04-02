@@ -1,0 +1,84 @@
+/* China AEC Playbook — Slate & Emerald palette, chart + WFOE step UI */
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #f8fafc;
+    color: #0f172a;
+    overflow-x: hidden;
+}
+
+.chart-container {
+    position: relative;
+    width: 100%;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    height: 350px;
+    max-height: 400px;
+}
+
+.chart-container-tall {
+    position: relative;
+    width: 100%;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    height: 560px;
+    /* Taller to accommodate 17 horizontal bars */
+}
+
+@media (min-width: 768px) {
+    .chart-container {
+        height: 400px;
+    }
+
+    .chart-container-tall {
+        height: 680px;
+    }
+}
+
+.step-active {
+    border-bottom-color: #10b981 !important;
+    color: #1e293b !important;
+}
+
+.badge-gba {
+    background-color: #0ea5e9;
+    color: white;
+}
+
+.badge-east {
+    background-color: #8b5cf6;
+    color: white;
+}
+
+.badge-north {
+    background-color: #f59e0b;
+    color: white;
+}
+
+.badge-inland {
+    background-color: #10b981;
+    color: white;
+}
+
+.badge-hainan {
+    background-color: #0e7490;
+    color: white;
+}
+
+details.wfoe-details>summary {
+    list-style: none;
+}
+
+details.wfoe-details>summary::-webkit-details-marker {
+    display: none;
+}
+
+details.wfoe-details .wfoe-disclosure-icon {
+    transition: transform 0.2s ease;
+}
+
+details.wfoe-details[open] .wfoe-disclosure-icon {
+    transform: rotate(180deg);
+}
