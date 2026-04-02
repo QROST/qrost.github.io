@@ -34,8 +34,8 @@
             max-width: 800px;
             margin-left: auto;
             margin-right: auto;
-            height: 500px;
-            /* Taller to accommodate 15 horizontal bars */
+            height: 560px;
+            /* Taller to accommodate 17 horizontal bars */
         }
 
         @media (min-width: 768px) {
@@ -44,7 +44,7 @@
             }
 
             .chart-container-tall {
-                height: 600px;
+                height: 680px;
             }
         }
 
@@ -70,6 +70,11 @@
 
         .badge-inland {
             background-color: #10b981;
+            color: white;
+        }
+
+        .badge-hainan {
+            background-color: #0e7490;
             color: white;
         }
     </style>
@@ -98,7 +103,7 @@
                 Greater China Talent & Expansion Guide
             </h1>
             <p class="text-xl text-slate-300 max-w-3xl mx-auto mb-8">
-                Analyzing annual CAD/Engineering talent costs across 15 major hubs, including the "5 Insurances and 1
+                Analyzing annual CAD/Engineering talent costs across 17 major hubs, including the "5 Insurances and 1
                 Fund" statutory system (2025-2026).
             </p>
         </div>
@@ -350,8 +355,8 @@
             <div class="mb-8">
                 <h2 class="text-3xl font-bold text-slate-800 mb-4">Expanded Engineering Talent Hubs</h2>
                 <p class="text-slate-600 text-lg">
-                    This section categorizes 15 distinct markets across Greater China. From the tech-heavy Greater Bay
-                    Area in the south to the massive industrial and educational bases in the north and inland, exploring
+                    This section categorizes 17 distinct markets across Greater China. From the tech-heavy Greater Bay
+                    Area and the Hainan Free Trade Port in the south to the massive industrial and educational bases in the north and inland, exploring
                     these regions is vital for optimizing your annual talent budget.
                 </p>
             </div>
@@ -402,6 +407,55 @@
                             <h4 class="font-bold text-lg mt-2">Zhuhai</h4>
                             <p class="text-xs text-slate-500 mt-1">Bordering Macau. Beautiful coastal city,
                                 cost-effective GBA access.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Hainan FTP -->
+                <div>
+                    <h3 class="text-xl font-bold text-slate-800 mb-4 border-b border-slate-200 pb-2">Hainan Free Trade
+                        Port (Island)</h3>
+                    <div class="mb-6 p-4 rounded-lg border border-cyan-200 bg-cyan-50/80 text-sm text-slate-700 leading-relaxed">
+                        <p class="font-semibold text-cyan-900 mb-2">Why Hainan matters in 2025–2027</p>
+                        <p class="mb-2">The whole province operates as the <strong>Hainan Free Trade Port</strong>. As of
+                            late 2025, <strong>“special customs operations”</strong> apply island-wide: many goods
+                            imported from abroad enter with <strong>zero import duties, VAT, and consumption tax</strong>
+                            (with mainland-bound shipments generally taxed at the “second line” unless substantially
+                            transformed on-island). This is aimed at tourism, modern services, high-tech, healthcare, and
+                            logistics.</p>
+                        <ul class="list-disc pl-5 space-y-1 text-slate-600">
+                            <li><strong>Corporate income tax:</strong> <strong>15%</strong> for qualifying enterprises in
+                                encouraged industries with substantive operations (policy extended in phases, including
+                                through <strong>31 Dec 2027</strong> under current central notices).</li>
+                            <li><strong>Personal income tax:</strong> Eligible high-end and urgently-needed talent may
+                                cap the effective burden at <strong>15%</strong> on qualifying Hainan-sourced income
+                                (rules for residency and recognition apply; current frameworks run through
+                                <strong>31 Dec 2027</strong>).</li>
+                        </ul>
+                        <p class="mt-2 text-xs text-slate-500">Figures below use typical employer social-insurance +
+                            housing-fund burdens for Haikou/Sanya; they do not replace tax or legal advice.</p>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div
+                            class="bg-white p-4 rounded-lg shadow-sm border border-slate-200 hover:border-cyan-400 transition">
+                            <span
+                                class="text-[10px] font-bold badge-hainan px-2 py-1 rounded uppercase tracking-wide">Hainan
+                                FTP</span>
+                            <h4 class="font-bold text-lg mt-2">Haikou</h4>
+                            <p class="text-xs text-slate-500 mt-1">Provincial capital and main policy/admin hub. Stronger
+                                pool for corporate, infrastructure, and design roles than smaller island cities; lower
+                                typical engineering base pay than tier-1 coastal cities but improving with FTP
+                                investment.</p>
+                        </div>
+                        <div
+                            class="bg-white p-4 rounded-lg shadow-sm border border-slate-200 hover:border-cyan-400 transition">
+                            <span
+                                class="text-[10px] font-bold badge-hainan px-2 py-1 rounded uppercase tracking-wide">Hainan
+                                FTP</span>
+                            <h4 class="font-bold text-lg mt-2">Sanya</h4>
+                            <p class="text-xs text-slate-500 mt-1">Tourism and hospitality economy; higher cost of living
+                                and smaller technical labour market, so CAD/engineering packages often include a
+                                retention premium versus Haikou for comparable seniority.</p>
                         </div>
                     </div>
                 </div>
@@ -511,7 +565,7 @@
                 <p class="text-slate-600 text-lg">
                     This interactive dashboard calculates the <strong>Annual Total Cost of Employment</strong>. It
                     automatically multiplies base salaries by 12 and calculates the localized employer statutory
-                    contributions (5 Insurances & 1 Fund / MPF) for all 15 cities. <strong>Click on any
+                    contributions (5 Insurances & 1 Fund / MPF) for all 17 cities. <strong>Click on any
                         city's bar in the chart below to view its detailed micro breakdown.</strong>
                 </p>
             </div>
@@ -672,6 +726,8 @@
                 xian: { name: "Xi'an", type: "mainland", juniorAnnual: 78000, seniorAnnual: 168000, contribPct: 0.36 },
                 hefei: { name: "Hefei", type: "mainland", juniorAnnual: 72000, seniorAnnual: 156000, contribPct: 0.35 },
                 harbin: { name: "Harbin", type: "mainland", juniorAnnual: 60000, seniorAnnual: 132000, contribPct: 0.35 },
+                haikou: { name: "Haikou", type: "mainland", juniorAnnual: 84000, seniorAnnual: 186000, contribPct: 0.35 },
+                sanya: { name: "Sanya", type: "mainland", juniorAnnual: 88000, seniorAnnual: 198000, contribPct: 0.35 },
                 hongkong: { name: "Hong Kong", type: "sar", juniorAnnual: 220000, seniorAnnual: 440000, contribPct: 0.05 },
                 macau: { name: "Macau", type: "sar", juniorAnnual: 185000, seniorAnnual: 370000, contribPct: 0.01 }
             };
@@ -723,7 +779,7 @@
                         ]
                     },
                     options: {
-                        indexAxis: 'y', // CRITICAL: Makes it horizontal for 15 cities readability
+                        indexAxis: 'y', // CRITICAL: Makes it horizontal for 17 cities readability
                         responsive: true,
                         maintainAspectRatio: false,
                         onClick: (e, elements) => {
@@ -820,7 +876,7 @@
                 const baseColors = [];
                 const contribColors = [];
 
-                // Sort all 15 cities by total cost descending
+                // Sort all cities by total cost descending
                 const sortedCityKeys = Object.keys(cityData).sort((a, b) => {
                     return getCostData(b, state.role).totalRMB - getCostData(a, state.role).totalRMB;
                 });
@@ -948,7 +1004,11 @@
                     descText.innerHTML = `<strong>SAR Framework:</strong> The ~${(cityData[state.city].contribPct * 100).toFixed(0)}% statutory contribution represents approximate limits for localized retirement funds (like Hong Kong's MPF) rather than mainland social insurance.`;
                 } else {
                     alertBox.classList.add('hidden');
-                    descText.innerHTML = `<strong>Mainland Contributions:</strong> Employer statutory contributions include the mandatory "5 Insurances & 1 Fund" (Pension, Medical, Unemployment, Injury, Maternity, and Housing Fund). Rates fluctuate based on selected municipal policies.`;
+                    let mainlandDesc = `<strong>Mainland Contributions:</strong> Employer statutory contributions include the mandatory "5 Insurances & 1 Fund" (Pension, Medical, Unemployment, Injury, Maternity, and Housing Fund). Rates fluctuate based on selected municipal policies.`;
+                    if (state.city === 'haikou' || state.city === 'sanya') {
+                        mainlandDesc += ` <strong>Hainan FTP:</strong> Qualifying companies may access a <strong>15% corporate income tax</strong> rate (encouraged industries; substantive operations). Eligible talent may benefit from the <strong>15% personal income tax</strong> cap on qualifying Hainan-sourced income. Island-wide import treatment and “second line” rules apply for goods moving to the mainland—verify with local counsel.`;
+                    }
+                    descText.innerHTML = mainlandDesc;
                 }
             }
 
