@@ -82,3 +82,20 @@ details.wfoe-details .wfoe-disclosure-icon {
 details.wfoe-details[open] .wfoe-disclosure-icon {
     transform: rotate(180deg);
 }
+
+/* Regional hub snapshots (under each hubs h3) */
+details.hub-region-details>summary {
+    list-style: none;
+}
+
+details.hub-region-details>summary::-webkit-details-marker {
+    display: none;
+}
+
+details.hub-region-details .hub-region-chevron {
+    transition: transform 0.2s ease;
+}
+
+details.hub-region-details[open] .hub-region-chevron {
+    transform: rotate(180deg);
+}
