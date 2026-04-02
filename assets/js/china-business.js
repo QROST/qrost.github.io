@@ -37,7 +37,56 @@ document.addEventListener('DOMContentLoaded', () => {
             });
 
             // Data Setup (All base numbers are ANNUAL in RMB or RMB equivalent)
-            const exchangeRate = 7.1;
+            const FALLBACK_USD_CNY = 6.8;
+            let exchangeRate = FALLBACK_USD_CNY;
+            let exchangeRateIsLive = false;
+
+            function updateFxLabel() {
+                const el = document.getElementById('fx-rate-display');
+                if (!el) return;
+                const r = exchangeRate.toFixed(2);
+                const mode = exchangeRateIsLive
+                    ? tr('chart.fx_mode_live', 'live')
+                    : tr('chart.fx_mode_fallback', 'offline default (6.8)');
+                let line = tr('chart.fx_line', 'USD column uses 1 USD ≈ {rate} CNY ({mode}).');
+                line = line.replace(/\{rate\}/g, r).replace(/\{mode\}/g, mode);
+                el.textContent = line;
+            }
+
+            async function loadExchangeRate() {
+                const tryFetch = async function (url, getCny) {
+                    try {
+                        const ctrl = new AbortController();
+                        const tid = setTimeout(function () { ctrl.abort(); }, 8000);
+                        const res = await fetch(url, { signal: ctrl.signal });
+                        clearTimeout(tid);
+                        if (!res.ok) return null;
+                        const data = await res.json();
+                        const v = getCny(data);
+                        if (typeof v === 'number' && v >= 5 && v <= 12) return v;
+                    } catch (e) { /* use fallback */ }
+                    return null;
+                };
+
+                let v = await tryFetch('https://api.exchangerate.host/latest?base=USD&symbols=CNY', function (d) {
+                    return d.rates && typeof d.rates.CNY === 'number' ? d.rates.CNY : null;
+                });
+                if (v == null) {
+                    v = await tryFetch('https://open.er-api.com/v6/latest/USD', function (d) {
+                        return d.rates && typeof d.rates.CNY === 'number' ? d.rates.CNY : null;
+                    });
+                }
+
+                if (v != null) {
+                    exchangeRate = v;
+                    exchangeRateIsLive = true;
+                } else {
+                    exchangeRate = FALLBACK_USD_CNY;
+                    exchangeRateIsLive = false;
+                }
+                updateFxLabel();
+                updateVisuals();
+            }
 
             /* Per city: officeRentAnnualRMB (10 m² × avg office RMB/m²/mo × 12), utilitiesAnnualRMB (power + heat/cool + cleaning alloc.).
                Global: OVERHEAD_HARDWARE_ANNUAL_RMB, OVERHEAD_SOFTWARE_ANNUAL_RMB (AEC Collection + Rhino modeled seat-year). */
@@ -573,8 +622,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (lang === 'zh') state.currency = 'rmb';
                 else if (lang === 'en') state.currency = 'usd';
                 syncCurrencyButtons();
+                updateFxLabel();
                 updateVisuals();
             });
 
             initCharts();
+            updateFxLabel();
+            loadExchangeRate();
         });

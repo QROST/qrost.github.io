@@ -220,7 +220,7 @@
                             </div>
                             <div class="p-4 lg:p-5 bg-emerald-50/90 border-t lg:border-t-0 lg:border-l border-emerald-100">
                                 <p class="text-sm text-slate-700 leading-relaxed" data-i18n="s05.money"><strong>Agency service fees</strong> (market bands):
-                                    often <strong>USD 1,500–5,000</strong> (≈ <strong>¥11k–¥36k</strong> @7.1) for a standard WFOE; <strong>~USD 500–1,500</strong> lean filing;
+                                    often <strong>USD 1,500–5,000</strong> (≈ <strong>¥11k–¥36k</strong> at ~6.8–7.2 RMB/USD) for a standard WFOE; <strong>~USD 500–1,500</strong> lean filing;
                                     <strong>full-service</strong> (bank + books) often <strong>&gt;USD 5,000</strong>. AMR <strong>government</strong> charges commonly
                                     <strong>¥0–¥800</strong> extra. <strong>Personal</strong> / <strong>parent</strong> pays—no WFOE yet.</p>
                             </div>
@@ -1097,7 +1097,7 @@
                     <strong>Software</strong>—Autodesk <em>AEC Collection</em> annual subscription (Revit, AutoCAD,
                     etc.; public US list pricing ~USD 3,560–3,795/user/year in 2025–2026) plus
                     <em>Rhino</em> commercial seat (perpetual USD ~995; modeled as ~3-year amortization + maintenance
-                    allowance); converted at ~7.1 RMB/USD. Reseller, regional, and negotiated license terms differ—treat as
+                    allowance); USD prices are translated to RMB using the same USD/CNY rate as the chart (live when the feed loads, otherwise 6.8). Reseller, regional, and negotiated license terms differ—treat as
                     order-of-magnitude.
                 </p>
             </div>
@@ -1126,6 +1126,7 @@
                                 class="px-4 py-2 text-sm rounded-md text-slate-600 hover:text-slate-800 transition" data-i18n="dash.rmb">RMB
                                 (¥)</button>
                         </div>
+                        <p id="fx-rate-display" class="text-[10px] text-slate-400 mt-1.5 max-w-[14rem] leading-snug" aria-live="polite"></p>
                     </div>
                     <div>
                         <label
@@ -1209,7 +1210,7 @@
         <div class="max-w-4xl mx-auto px-4 space-y-4">
             <p class="text-slate-300 font-semibold" data-i18n="footer.rights">&copy; 2026 QROST. All rights reserved.</p>
             <p data-i18n="footer.ai">This report was generated using Gemini 3.1 Pro in April 2026; data, processes, and cost estimates rely on
-                its knowledge base. The exchange rate is calculated at roughly 1 USD = 7.1 RMB. HKD and MOP are
+                its knowledge base. USD amounts in charts use a live USD/CNY rate when the feed succeeds; if the feed fails, 1 USD = 6.8 RMB. HKD and MOP are
                 converted to RMB equivalents for charting continuity.</p>
             <p class="text-slate-500 italic text-xs leading-relaxed" data-i18n="footer.disclaimer">
                 Disclaimer: The information provided in this portal is for educational and strategic planning purposes

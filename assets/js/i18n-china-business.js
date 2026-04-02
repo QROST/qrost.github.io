@@ -93,7 +93,7 @@
 
         'costs.h2': '年度财务建模仪表盘',
         'costs.intro': '本交互表计算<strong>年度用工总成本</strong>。将底薪按12个月计，并按各地雇主法定缴费（大陆“五险一金”/港澳强积金等）测算24个城市。底薪参考2024–2025招聘与薪酬调研（如猎聘、前程无忧、i人事等）；写字楼租金采用中指、仲量联行、戴德梁行等机构公布的各地甲级/优质办公<strong>有效租金</strong>（多为2024年三、四季度），公用事业按气候与供暖分摊。均为<strong>规划用示意</strong>，非报价。可选<strong>人均模拟间接成本</strong>——租金、工位设备、公用事业与AEC软件（见下方方法）。<strong>点击任意城市条形</strong>查看细分。设立背景见<a href="#process" class="text-emerald-600 font-semibold underline underline-offset-2">设置第8–9步</a>。',
-        'costs.overhead_method': '<strong>间接成本模型（人均·年，示意）：</strong><strong>租金</strong>——甲级/优质办公有效租金（人民币/平方米/月）×约10平方米工位 ×12；特别行政区按核心写字楼人民币等价。<strong>硬件与家具</strong>——工程类工作站（含BIM用内存/显卡）、双显示器、桌椅按约3年摊销（约¥1.38万/年）。<strong>公用事业与物业</strong>——电费、集中供暖/供冷或空调、燃气及公区分摊（因城市气候而异）。<strong>软件</strong>——Autodesk <em>AEC Collection</em>年费（Revit、AutoCAD等；美国公开标价约每用户每年3,560–3,795美元，2025–2026）及<em>Rhino</em>商业许可（永久约995美元；按约3年摊销+维护估算）；汇率约7.1人民币/美元。经销商与谈判条款不同——数量级参考即可。',
+        'costs.overhead_method': '<strong>间接成本模型（人均·年，示意）：</strong><strong>租金</strong>——甲级/优质办公有效租金（人民币/平方米/月）×约10平方米工位 ×12；特别行政区按核心写字楼人民币等价。<strong>硬件与家具</strong>——工程类工作站（含BIM用内存/显卡）、双显示器、桌椅按约3年摊销（约¥1.38万/年）。<strong>公用事业与物业</strong>——电费、集中供暖/供冷或空调、燃气及公区分摊（因城市气候而异）。<strong>软件</strong>——Autodesk <em>AEC Collection</em>年费（Revit、AutoCAD等；美国公开标价约每用户每年3,560–3,795美元，2025–2026）及<em>Rhino</em>商业许可（永久约995美元；按约3年摊销+维护估算）；美元标价按与图表相同的美元/人民币汇率折算（在线拉取成功则用实时汇率，否则 6.8）。经销商与谈判条款不同——数量级参考即可。',
 
         'dash.role': '岗位',
         'dash.junior': '初级CAD',
@@ -120,8 +120,12 @@
         'dash.sar_body': '您选择的是特别行政区。底薪通常更高，但雇主法定缴费远低于大陆，因为特别行政区不使用大陆社保/公积金体系（例如香港强积金有较低上限）。为便于比较，数值以人民币/美元等价展示。',
 
         'footer.rights': '© 2026 QROST. 保留所有权利。',
-        'footer.ai': '本页内容由 Gemini 3.1 Pro 于2026年4月辅助生成；流程与成本为知识库时点信息。汇率按约1美元=7.1人民币估算。港币与澳门元按人民币等价计入图表。',
+        'footer.ai': '本页内容由 Gemini 3.1 Pro 于2026年4月辅助生成；流程与成本为知识库时点信息。图表中美元金额优先使用在线美元/人民币汇率；若接口失败则按 1 美元 = 6.8 人民币。港币与澳门元按人民币等价计入图表。',
         'footer.disclaimer': '免责声明：本站信息仅供教育与战略规划参考，不对绝对准确性、完整性或时效作任何保证。QROST 对基于本内容的商业、法律或财务决策不承担责任。跨境扩张前请咨询当地持牌律师与会计师。',
+
+        'chart.fx_line': '美元展示换算：1 美元 ≈ {rate} 人民币（{mode}）。',
+        'chart.fx_mode_live': '在线汇率',
+        'chart.fx_mode_fallback': '离线默认 6.8',
 
         'chart.base': '年度底薪',
         'chart.contrib': '雇主缴费',
@@ -206,7 +210,7 @@
 
         's05.title': '书面委托<strong>企业登记代理服务机构</strong>（工商代办/咨询公司），约定服务范围：设立、刻章及可选的开户与记账。',
         's05.detail': '<ul class="list-disc pl-4 text-sm text-slate-600 space-y-1.5 mt-3"><li>法律并未要求外商投资企业<strong>必须</strong>聘请代理，但市监网上申报、材料模板与口径多依赖中文且因城市而异，<strong>境外投资者实务上几乎均委托</strong>本地机构办理。</li><li>典型服务：拟定章程与高管安排、向 AMR 递交设立登记、协调刻章；部分套餐含开户陪同或首年代账，须在合同中写明。</li><li>建议在<strong>寄出公证/海牙认证文件前</strong>取得书面报价；比较“仅设立”与“设立+银行+财税”全包价差。</li></ul>',
-        's05.money': '<strong>代理服务费</strong>（市场区间）：常见<strong>USD 1,500–5,000</strong>（≈ <strong>¥1.1 万–3.6 万</strong> @7.1）；<strong>~USD 500–1,500</strong> 仅递交；<strong>全包</strong>（银行+账）常<strong>&gt;USD 5,000</strong>。市监<strong>政府性收费</strong>另常<strong>¥0–800</strong>。<strong>个人/母公司</strong>垫付——尚无 WFOE。',
+        's05.money': '<strong>代理服务费</strong>（市场区间）：常见<strong>USD 1,500–5,000</strong>（≈ <strong>¥1.1 万–3.6 万</strong>，按约 6.8–7.2 人民币/美元示意）；<strong>~USD 500–1,500</strong> 仅递交；<strong>全包</strong>（银行+账）常<strong>&gt;USD 5,000</strong>。市监<strong>政府性收费</strong>另常<strong>¥0–800</strong>。<strong>个人/母公司</strong>垫付——尚无 WFOE。',
 
         's06.title': '在美国由公证员对美国护照或母公司文件进行公证。',
         's06.detail': '<p class="text-sm text-slate-600 mt-3">自然人投资者提交护照；法人股东提交主体资格文件——代理机构会列明清单。</p>',
