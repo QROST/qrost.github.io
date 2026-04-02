@@ -23,8 +23,8 @@
         'process.tab_sar': '香港与澳门（特别行政区）',
         'process.mainland_intro': '以<strong>美国籍创始人</strong>或境外母公司投资视角，按顺序完成<strong>WFOE</strong>设立。每一行是一个动作；更多说明可展开查看。在递交前请预算<strong>注册资本</strong>（第8–9步）与<strong>运营成本</strong>。',
         'process.domestic_intro': '<strong>中国公民</strong>（或股东均为境内主体）常见路径为通过当地<strong>「企业开办一窗通」</strong>等渠道设立<strong>有限责任公司</strong>——无需境外公证、海牙认证或外商投资资本金专户。具体步骤与时效因城市而异，以下为常见顺序。',
-        'process.fee_note_domestic': '右侧栏：各步<strong>大致现金影响</strong>（2024–2025 常见预估区间）。非报价——城市与银行政策不同。',
-        'process.fee_note': '右侧栏：各步<strong>大致现金影响</strong>（2024–2025 常见预估区间）。非报价——城市、银行与代理机构不同，结果会有差异。',
+        'process.fee_note_domestic': '右侧栏：各步<strong>大致现金影响</strong>（2024–2025 常见预估区间）。非报价——城市与银行政策不同。<strong>与仪表盘一致：</strong>以<strong>人民币</strong>为锚；<strong>美元</strong> = 人民币 ÷ 美元/人民币汇率（在线成功则用实时汇率，否则 6.8）。',
+        'process.fee_note': '右侧栏：各步<strong>大致现金影响</strong>（2024–2025 常见预估区间）。非报价——城市、银行与代理机构不同，结果会有差异。<strong>货币规则：</strong><strong>财务仪表盘</strong>与<strong>大陆（内资有限责任公司）</strong>费用栏以<strong>人民币</strong>为锚；<strong>美元</strong> = 人民币 ÷ 美元/人民币汇率（与财务区控件下所示一致，在线成功则用实时汇率，否则 6.8）。<strong>WFOE</strong>栏混有以<strong>美元</strong>表述的美国侧费用与以<strong>¥</strong>表述的境内费用——为示意性文字，非实时换算器。',
 
         'common.sr.toggle': '显示或隐藏本步补充说明',
 
@@ -123,7 +123,7 @@
         'dash.sar_body': '您选择的是特别行政区。底薪通常更高，但雇主法定缴费远低于大陆，因为特别行政区不使用大陆社保/公积金体系（例如香港强积金有较低上限）。为便于比较，数值以人民币/美元等价展示。',
 
         'footer.rights': '© 2026 QROST. 保留所有权利。',
-        'footer.ai': '本页内容由 Gemini 3.1 Pro 于2026年4月辅助生成；流程与成本为知识库时点信息。图表中美元金额优先使用在线美元/人民币汇率；若接口失败则按 1 美元 = 6.8 人民币。港币与澳门元按人民币等价计入图表。',
+        'footer.ai': '本页内容由 Gemini 3.1 Pro 于2026年4月辅助生成；流程与成本为知识库时点信息。<strong>建模规则：</strong>图表中薪酬、租金、缴费与间接成本均以<strong>人民币</strong>为底层；美元展示为人民币<strong>除以</strong>美元/人民币汇率（优先在线汇率；若接口失败则 1 美元 = 6.8 人民币）。港币与澳门元按人民币等价计入图表。',
         'footer.disclaimer': '免责声明：本站信息仅供教育与战略规划参考，不对绝对准确性、完整性或时效作任何保证。QROST 对基于本内容的商业、法律或财务决策不承担责任。跨境扩张前请咨询当地持牌律师与会计师。',
 
         'chart.fx_line': '美元展示换算：1 美元 ≈ {rate} 人民币（{mode}）。',
@@ -277,43 +277,33 @@
 
         'd01.title': '确定<strong>股东</strong>、<strong>法定代表人</strong>、<strong>监事</strong>及（如需）<strong>财务负责人</strong>；准备身份证与用于实名的手机号。',
         'd01.detail': '常见一人有限公司结构下，执行董事与监事不得为同一人；网上填报系统会对冲突项提示。',
-        'd01.money': '<strong>预估：</strong>政府规费<strong>¥0</strong>；主要为时间成本。',
 
         'd02.title': '准备<strong>3–5 个备选名称</strong>并落实<strong>合规注册地址</strong>——租赁合同 + 产权证明，或在允许情形下使用政府/园区<strong>集中登记地址</strong>。',
         'd02.detail': '多数城市在同一政务平台内做名称查重；最终名称以市场监管部门核准为准。',
-        'd02.money': '<strong>预估：</strong>名称查询常<strong>¥0</strong>；地址成本为<strong>租金或园区费用</strong>——预估<strong>¥0–2 万+</strong>起，因城市与面积而异。',
 
         'd03.title': '确定<strong>认缴注册资本</strong>、<strong>股权比例</strong>、缴付安排与<strong>经营范围</strong>（注意是否触发许可审批）。',
         'd03.detail': '依 2024 年修订《公司法》，认缴出资原则上须自成立之日起<strong>五年内</strong>缴足（存量公司有过渡规则）——须在章程中写明缴付计划。',
-        'd03.money': '<strong>预估：</strong>填报认缴<strong>¥0</strong>规费；认缴制下设立当日<strong>不强制</strong>实缴到位。',
 
         'd04.title': '通过省级<strong>政务服务网</strong> / <strong>企业开办一窗通</strong>在线填报——上传身份证明、地址材料、系统生成的章程等，并以人脸识别等方式<strong>电子签名</strong>。',
         'd04.detail': '可选：委托本地<strong>代办/代理记账</strong>机构（首次创业者较常见）；合同应列明设立、刻章与税务报到范围。',
-        'd04.money': '<strong>自助：</strong>市监侧政府性收费常<strong>¥0–500</strong>。<strong>代办：</strong>仅递交常见<strong>¥800–3,000</strong>；「设立+银行+首年记账」全包常<strong>¥3,000–1 万+</strong>。',
 
         'd05.title': '市场监管部门审核通过后领取<strong>营业执照</strong>（多数城市可先领电子执照，纸质可选）。',
         'd05.detail': '材料齐备时，审核周期常见约<strong>1–3 个工作日</strong>；名称或经营范围补正则可能延长。',
-        'd05.money': '<strong>预估：</strong>执照工本费多地<strong>¥0</strong>；邮寄纸质可选<strong>¥0–30</strong>。',
 
         'd06.title': '刻制并备案<strong>公章、财务章、法人章、发票专用章</strong>等（按公安刻章备案要求）。',
         'd06.detail': '部分地区对新设主体提供<strong>首套印章免费</strong>政策——可在同一「一窗通」渠道查询。',
-        'd06.money': '<strong>预估：</strong>若不免费，全套常<strong>¥300–1,200</strong>；加急或材质另计。',
 
         'd07.title': '凭执照与印章开立<strong>人民币基本存款账户（基本户）</strong>——银行会执行 KYC，但通常较外商投资企业简便。',
         'd07.detail': '股东可按认缴安排自个人账户向公司注资，<strong>无需</strong>外商投资资本金专户。',
-        'd07.money': '<strong>预估：</strong>开户费多地<strong>¥0</strong>；U 盾/网银工具<strong>¥0–500</strong>。',
 
         'd08.title': '完成<strong>税务登记</strong>并开通<strong>数电发票</strong>等开票能力——不少地区与开办流程并联。',
         'd08.detail': '在对外开票前，与代理或税务顾问确认<strong>小规模纳税人</strong>与<strong>一般纳税人</strong>路径。',
-        'd08.money': '<strong>预估：</strong>税务侧工本多<strong>¥0–200</strong>；税控设备若仍涉及硬件<strong>¥0–1,000</strong>——多地已全电票、无盘化。',
 
         'd09.title': '办理<strong>社会保险</strong>与<strong>住房公积金</strong>单位登记，以便后续用工与发薪合规。',
         'd09.detail': '缴费比例依地方规则——规划时可对照本站<a href="#costs" class="text-emerald-600 font-semibold underline">仪表盘</a>的城市假设。',
-        'd09.money': '<strong>预估：</strong>开户登记常<strong>¥0–300</strong>；实际缴费自用工起发生。',
 
         'd10.title': '建立<strong>账务与按期纳税申报</strong>（增值税、企业所得税预缴、代扣代缴等）——自聘或委托<strong>代理记账</strong>。',
         'd10.detail': '逾期申报会产生滞纳金与处罚——建议在首笔收入前进线财税安排。',
-        'd10.money': '<strong>预估：</strong>代理记账小微企业常见<strong>¥200–800+/月</strong>；业务复杂或进出口另议。',
 
         'regions.sr.gba': '显示或隐藏粤港澳大湾区背景说明',
         'regions.sr.east': '显示或隐藏华东热点背景说明',

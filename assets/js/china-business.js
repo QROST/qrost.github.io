@@ -36,15 +36,24 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
             });
 
-            // Data Setup (All base numbers are ANNUAL in RMB or RMB equivalent)
+            /* Data setup: all mainland / dashboard economics are modeled in RMB first (salaries, employer contributions,
+               office rent, utilities, modeled overhead). USD display = RMB ÷ USD/CNY (live API when available, else FALLBACK_USD_CNY).
+               Exceptions: text that quotes US-market fees (e.g. notary, US wire) or USD vendor list prices is labeled in USD;
+               RMB equivalents for those are derived when shown in ¥. */
             const FALLBACK_USD_CNY = 6.8;
             let exchangeRate = FALLBACK_USD_CNY;
             let exchangeRateIsLive = false;
 
+            function effectiveExchangeRate() {
+                return typeof exchangeRate === 'number' && exchangeRate > 0 && exchangeRate < 100
+                    ? exchangeRate
+                    : FALLBACK_USD_CNY;
+            }
+
             function updateFxLabel() {
                 const el = document.getElementById('fx-rate-display');
                 if (!el) return;
-                const r = exchangeRate.toFixed(2);
+                const r = effectiveExchangeRate().toFixed(2);
                 const mode = exchangeRateIsLive
                     ? tr('chart.fx_mode_live', 'live')
                     : tr('chart.fx_mode_fallback', 'offline default (6.8)');
@@ -173,7 +182,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             function convert(rmbValue) {
                 const scaledValue = rmbValue * state.headcount;
-                return state.currency === 'usd' ? Math.round(scaledValue / exchangeRate) : Math.round(scaledValue);
+                return state.currency === 'usd' ? Math.round(scaledValue / effectiveExchangeRate()) : Math.round(scaledValue);
             }
 
             function getSymbol() {
@@ -546,7 +555,95 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
                     descText.innerHTML = mainlandDesc;
                 }
+
+                refreshDomesticFees();
             }
+
+            function buildDomesticFeeHtml(stepId, lang, cur) {
+                const r = effectiveExchangeRate();
+                const u = function (n) { return Math.max(0, Math.round(n / r)); };
+                const sb = function (n) {
+                    if (cur === 'rmb') return '<strong>¥' + (n === 0 ? '0' : String(Math.round(n))) + '</strong>';
+                    if (n === 0) return '<strong>$0</strong>';
+                    return '<strong>$' + u(n) + '</strong>';
+                };
+                const sr = function (lo, hi, plus) {
+                    if (cur === 'rmb') {
+                        return '<strong>¥' + lo + '–' + hi + (plus ? '+' : '') + '</strong>';
+                    }
+                    return '<strong>$' + u(lo) + '–' + u(hi) + (plus ? '+' : '') + '</strong>';
+                };
+                const addrBand = function () {
+                    if (lang === 'zh') {
+                        if (cur === 'rmb') return '<strong>¥0–2 万+</strong>';
+                        return '<strong>$0–' + u(20000) + '+</strong>';
+                    }
+                    if (cur === 'rmb') return '<strong>¥0–20k+</strong>';
+                    return '<strong>$0–' + u(20000) + '+</strong>';
+                };
+
+                if (lang === 'zh') {
+                    switch (stepId) {
+                        case 'd01':
+                            return '<strong>预估：</strong>政府规费' + sb(0) + '；主要为时间成本。';
+                        case 'd02':
+                            return '<strong>预估：</strong>名称查询常' + sb(0) + '；地址成本为<strong>租金或园区费用</strong>——预估' + addrBand() + '起，因城市与面积而异。';
+                        case 'd03':
+                            return '<strong>预估：</strong>填报认缴' + sb(0) + '规费；认缴制下设立当日<strong>不强制</strong>实缴到位。';
+                        case 'd04':
+                            return '<strong>自助：</strong>市监侧政府性收费常' + sr(0, 500, false) + '。<strong>代办：</strong>仅递交常见' + sr(800, 3000, false) + '；「设立+银行+首年记账」全包常' + sr(3000, 10000, true) + '。';
+                        case 'd05':
+                            return '<strong>预估：</strong>执照工本费多地' + sb(0) + '；邮寄纸质可选' + sr(0, 30, false) + '。';
+                        case 'd06':
+                            return '<strong>预估：</strong>若不免费，全套常' + sr(300, 1200, false) + '；加急或材质另计。';
+                        case 'd07':
+                            return '<strong>预估：</strong>开户费多地' + sb(0) + '；U 盾/网银工具' + sr(0, 500, false) + '。';
+                        case 'd08':
+                            return '<strong>预估：</strong>税务侧工本多' + sr(0, 200, false) + '；税控设备若仍涉及硬件' + sr(0, 1000, false) + '——多地已全电票、无盘化。';
+                        case 'd09':
+                            return '<strong>预估：</strong>开户登记常' + sr(0, 300, false) + '；实际缴费自用工起发生。';
+                        case 'd10':
+                            return '<strong>预估：</strong>代理记账小微企业常见' + sr(200, 800, true) + '/月；业务复杂或进出口另议。';
+                        default:
+                            return '';
+                    }
+                }
+
+                switch (stepId) {
+                    case 'd01':
+                        return '<strong>Est.:</strong> ' + sb(0) + ' government fee for prep; only time cost.';
+                    case 'd02':
+                        return '<strong>Est.:</strong> name search often ' + sb(0) + '; address cost is <strong>rent or park fee</strong>—illustrative ' + addrBand() + ' upfront depending on city and size.';
+                    case 'd03':
+                        return '<strong>Est.:</strong> ' + sb(0) + ' filing fee to declare amounts; no mandatory day-one cash injection under subscription rules.';
+                    case 'd04':
+                        return '<strong>DIY:</strong> AMR side often ' + sr(0, 500, false) + ' government charges. <strong>Agent:</strong> lean packages often ' + sr(800, 3000, false) + '; full “setup + bank + first-year books” often ' + sr(3000, 10000, true) + '.';
+                    case 'd05':
+                        return '<strong>Est.:</strong> license fee commonly ' + sb(0) + ' in many regions; courier ' + sr(0, 30, false) + ' if mailing paper.';
+                    case 'd06':
+                        return '<strong>Est.:</strong> if not free, a full set often ' + sr(300, 1200, false) + '; express/specialty materials extra.';
+                    case 'd07':
+                        return '<strong>Est.:</strong> many banks ' + sb(0) + ' opening fee; U-key / cash-management tools ' + sr(0, 500, false) + '.';
+                    case 'd08':
+                        return '<strong>Est.:</strong> bureau-side fees often ' + sr(0, 200, false) + '; legacy hardware (if any) ' + sr(0, 1000, false) + '—many regions are fully digital now.';
+                    case 'd09':
+                        return '<strong>Est.:</strong> opening registrations often ' + sr(0, 300, false) + '; actual contributions begin once you hire.';
+                    case 'd10':
+                        return '<strong>Est.:</strong> agency bookkeeping often ' + sr(200, 800, true) + '/month for a micro company; complex invoicing or export adds fees.';
+                    default:
+                        return '';
+                }
+            }
+
+            function refreshDomesticFees() {
+                document.querySelectorAll('[data-domestic-fee]').forEach(function (el) {
+                    const id = el.getAttribute('data-domestic-fee');
+                    if (!id) return;
+                    const lang = typeof window.ChinaBizI18n !== 'undefined' && window.ChinaBizI18n.getLang() === 'zh' ? 'zh' : 'en';
+                    el.innerHTML = buildDomesticFeeHtml(id, lang, state.currency);
+                });
+            }
+            window.refreshDomesticFees = refreshDomesticFees;
 
             // Headcount listener
             const hcInput = document.getElementById('headcount-input');

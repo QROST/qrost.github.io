@@ -83,7 +83,8 @@
                         <strong>registered capital</strong> (steps 8–9) and <strong>hosting cost</strong> before you file.
                     </p>
                     <p class="text-xs text-slate-500 mb-6 leading-relaxed border-l-2 border-slate-200 pl-3" data-i18n="process.fee_note">Right column:
-                        rough cash-impact hints (2024–2025 style ranges). Not quotes—city, bank, and agent change outcomes.</p>
+                        rough cash-impact hints (2024–2025 style ranges). Not quotes—city, bank, and agent change outcomes.
+                        <strong>Currency rule:</strong> The <strong>dashboard</strong> and <strong>Mainland (domestic LLC)</strong> fee column use <strong>RMB</strong> as the anchor; <strong>USD</strong> = RMB ÷ USD/CNY (same rate as under Financials—live when the feed loads, otherwise 6.8). The <strong>WFOE</strong> column mixes US-market fees in <strong>USD</strong> with China fees in <strong>¥</strong>—illustrative text, not a live converter.</p>
 
                     <div class="space-y-3">
 
@@ -660,7 +661,7 @@
                     <p class="text-slate-500 mb-6 font-medium" data-i18n="process.domestic_intro">For a <strong>Chinese citizen</strong> (or all-domestic shareholders), a typical path is a
                         <strong>有限责任公司</strong> via the local <strong>“one-stop” / 一窗通</strong> enterprise-registration channel—no foreign notarization or
                         capital-injection account. Steps and timing vary by city; below is a common sequence.</p>
-                    <p class="text-xs text-slate-500 mb-6 leading-relaxed border-l-2 border-slate-200 pl-3" data-i18n="process.fee_note_domestic">Right column: rough cash-impact hints (2024–2025 style). Not quotes—city and bank policies differ.</p>
+                    <p class="text-xs text-slate-500 mb-6 leading-relaxed border-l-2 border-slate-200 pl-3" data-i18n="process.fee_note_domestic">Right column: rough cash-impact hints (2024–2025 style). Not quotes—city and bank policies differ. <strong>Same rule as the dashboard:</strong> <strong>RMB</strong> is the anchor; <strong>USD</strong> = divide by USD/CNY (live or 6.8).</p>
 
                     <div class="space-y-3">
 
@@ -677,7 +678,7 @@
                                 </details>
                             </div>
                             <div class="p-4 lg:p-5 bg-emerald-50/90 border-t lg:border-t-0 lg:border-l border-emerald-100">
-                                <p class="text-sm text-slate-700 leading-relaxed" data-i18n="d01.money"><strong>Est.:</strong> <strong>¥0</strong> government fee for prep; only time cost.</p>
+                                <p class="text-sm text-slate-700 leading-relaxed domestic-fee" data-domestic-fee="d01"></p>
                             </div>
                         </div>
 
@@ -694,7 +695,7 @@
                                 </details>
                             </div>
                             <div class="p-4 lg:p-5 bg-emerald-50/90 border-t lg:border-t-0 lg:border-l border-emerald-100">
-                                <p class="text-sm text-slate-700 leading-relaxed" data-i18n="d02.money"><strong>Est.:</strong> name search often <strong>¥0</strong>; address cost is <strong>rent or park fee</strong>—illustrative <strong>¥0–20k+</strong> upfront depending on city and size.</p>
+                                <p class="text-sm text-slate-700 leading-relaxed domestic-fee" data-domestic-fee="d02"></p>
                             </div>
                         </div>
 
@@ -711,7 +712,7 @@
                                 </details>
                             </div>
                             <div class="p-4 lg:p-5 bg-emerald-50/90 border-t lg:border-t-0 lg:border-l border-emerald-100">
-                                <p class="text-sm text-slate-700 leading-relaxed" data-i18n="d03.money"><strong>Est.:</strong> <strong>¥0</strong> filing fee to declare amounts; no mandatory day-one cash injection under subscription rules.</p>
+                                <p class="text-sm text-slate-700 leading-relaxed domestic-fee" data-domestic-fee="d03"></p>
                             </div>
                         </div>
 
@@ -728,7 +729,7 @@
                                 </details>
                             </div>
                             <div class="p-4 lg:p-5 bg-emerald-50/90 border-t lg:border-t-0 lg:border-l border-emerald-100">
-                                <p class="text-sm text-slate-700 leading-relaxed" data-i18n="d04.money"><strong>DIY:</strong> AMR side often <strong>¥0–500</strong> government charges. <strong>Agent:</strong> lean packages often <strong>¥800–3,000</strong>; full “setup + bank + first-year books” often <strong>¥3,000–10,000+</strong>.</p>
+                                <p class="text-sm text-slate-700 leading-relaxed domestic-fee" data-domestic-fee="d04"></p>
                             </div>
                         </div>
 
@@ -745,7 +746,7 @@
                                 </details>
                             </div>
                             <div class="p-4 lg:p-5 bg-emerald-50/90 border-t lg:border-t-0 lg:border-l border-emerald-100">
-                                <p class="text-sm text-slate-700 leading-relaxed" data-i18n="d05.money"><strong>Est.:</strong> license fee commonly <strong>¥0</strong> in many regions; courier <strong>¥0–30</strong> if mailing paper.</p>
+                                <p class="text-sm text-slate-700 leading-relaxed domestic-fee" data-domestic-fee="d05"></p>
                             </div>
                         </div>
 
@@ -779,7 +780,7 @@
                                 </details>
                             </div>
                             <div class="p-4 lg:p-5 bg-emerald-50/90 border-t lg:border-t-0 lg:border-l border-emerald-100">
-                                <p class="text-sm text-slate-700 leading-relaxed" data-i18n="d07.money"><strong>Est.:</strong> many banks <strong>¥0</strong> opening fee; U-key / cash-management tools <strong>¥0–500</strong>.</p>
+                                <p class="text-sm text-slate-700 leading-relaxed domestic-fee" data-domestic-fee="d07"></p>
                             </div>
                         </div>
 
@@ -796,7 +797,7 @@
                                 </details>
                             </div>
                             <div class="p-4 lg:p-5 bg-emerald-50/90 border-t lg:border-t-0 lg:border-l border-emerald-100">
-                                <p class="text-sm text-slate-700 leading-relaxed" data-i18n="d08.money"><strong>Est.:</strong> bureau-side fees often <strong>¥0–200</strong>; legacy hardware (if any) <strong>¥0–1,000</strong>—many regions are fully digital now.</p>
+                                <p class="text-sm text-slate-700 leading-relaxed domestic-fee" data-domestic-fee="d08"></p>
                             </div>
                         </div>
 
@@ -813,7 +814,7 @@
                                 </details>
                             </div>
                             <div class="p-4 lg:p-5 bg-emerald-50/90 border-t lg:border-t-0 lg:border-l border-emerald-100">
-                                <p class="text-sm text-slate-700 leading-relaxed" data-i18n="d09.money"><strong>Est.:</strong> opening registrations often <strong>¥0–300</strong>; actual contributions begin once you hire.</p>
+                                <p class="text-sm text-slate-700 leading-relaxed domestic-fee" data-domestic-fee="d09"></p>
                             </div>
                         </div>
 
@@ -830,7 +831,7 @@
                                 </details>
                             </div>
                             <div class="p-4 lg:p-5 bg-emerald-50/90 border-t lg:border-t-0 lg:border-l border-emerald-100">
-                                <p class="text-sm text-slate-700 leading-relaxed" data-i18n="d10.money"><strong>Est.:</strong> agency bookkeeping often <strong>¥200–800+/month</strong> for a micro company; complex invoicing or export adds fees.</p>
+                                <p class="text-sm text-slate-700 leading-relaxed domestic-fee" data-domestic-fee="d10"></p>
                             </div>
                         </div>
 
@@ -1268,7 +1269,7 @@
                     contributions (5 Insurances & 1 Fund / MPF) for all 24 cities. Base salaries follow 2024–2025 hiring
                     surveys (e.g. Liepin, 51job, i人事); office rent uses citywide Grade A/B effective averages from CIH,
                     JLL, Savills, Knight Frank, Colliers (mostly Q3–Q4 2024), with utilities scaled for climate/heating.
-                    All figures remain planning estimates, not quotes. Optionally add
+                    All figures remain planning estimates, not quotes. <strong>Currency rule:</strong> City and overhead inputs are stored in <strong>RMB</strong>; when you pick <strong>USD</strong>, the chart divides by USD/CNY (live when the feed loads, otherwise 6.8)—never the other way around. Optionally add
                     <strong>modeled overhead per employee</strong>—rent, workspace kit, utilities, and AEC software
                     (see methodology below). <strong>Click any city's bar</strong> for the micro breakdown.
                     For setup context, see <a href="#process"
@@ -1398,7 +1399,7 @@
         <div class="max-w-4xl mx-auto px-4 space-y-4">
             <p class="text-slate-300 font-semibold" data-i18n="footer.rights">&copy; 2026 QROST. All rights reserved.</p>
             <p data-i18n="footer.ai">This report was generated using Gemini 3.1 Pro in April 2026; data, processes, and cost estimates rely on
-                its knowledge base. USD amounts in charts use a live USD/CNY rate when the feed succeeds; if the feed fails, 1 USD = 6.8 RMB. HKD and MOP are
+                its knowledge base. <strong>Modeling rule:</strong> Salaries, rent, contributions, and overhead for the charts are <strong>RMB-first</strong>; USD display always divides those RMB totals by USD/CNY (live when the feed succeeds; if the feed fails, 1 USD = 6.8 RMB). HKD and MOP are
                 converted to RMB equivalents for charting continuity.</p>
             <p class="text-slate-500 italic text-xs leading-relaxed" data-i18n="footer.disclaimer">
                 Disclaimer: The information provided in this portal is for educational and strategic planning purposes
