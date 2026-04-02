@@ -105,6 +105,23 @@ document.addEventListener('DOMContentLoaded', () => {
 
             let barChart, doughnutChart;
 
+            function syncCurrencyButtons() {
+                const usd = document.getElementById('btn-usd');
+                const rmb = document.getElementById('btn-rmb');
+                if (!usd || !rmb) return;
+                if (state.currency === 'usd') {
+                    usd.classList.add('bg-white', 'shadow-sm', 'font-semibold', 'text-slate-800');
+                    usd.classList.remove('text-slate-600');
+                    rmb.classList.remove('bg-white', 'shadow-sm', 'font-semibold', 'text-slate-800');
+                    rmb.classList.add('text-slate-600');
+                } else {
+                    rmb.classList.add('bg-white', 'shadow-sm', 'text-slate-800');
+                    rmb.classList.remove('text-slate-600');
+                    usd.classList.remove('bg-white', 'shadow-sm', 'font-semibold', 'text-slate-800');
+                    usd.classList.add('text-slate-600');
+                }
+            }
+
             function convert(rmbValue) {
                 const scaledValue = rmbValue * state.headcount;
                 return state.currency === 'usd' ? Math.round(scaledValue / exchangeRate) : Math.round(scaledValue);
@@ -517,6 +534,11 @@ document.addEventListener('DOMContentLoaded', () => {
             toggleBtnActive('btn-usd', 'btn-rmb', 'currency', 'usd');
             toggleBtnActive('btn-rmb', 'btn-usd', 'currency', 'rmb');
 
+            if (typeof window.ChinaBizI18n !== 'undefined') {
+                state.currency = window.ChinaBizI18n.getLang() === 'zh' ? 'rmb' : 'usd';
+            }
+            syncCurrencyButtons();
+
             function syncOverheadToggleUI() {
                 const ex = document.getElementById('btn-overhead-exclude');
                 const inc = document.getElementById('btn-overhead-include');
@@ -546,7 +568,11 @@ document.addEventListener('DOMContentLoaded', () => {
             });
             syncOverheadToggleUI();
 
-            window.addEventListener('china-biz-lang-change', function () {
+            window.addEventListener('china-biz-lang-change', function (e) {
+                const lang = e.detail && e.detail.lang;
+                if (lang === 'zh') state.currency = 'rmb';
+                else if (lang === 'en') state.currency = 'usd';
+                syncCurrencyButtons();
                 updateVisuals();
             });
 
