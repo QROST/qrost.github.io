@@ -10,82 +10,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
     <!-- Chosen Palette: Slate and Emerald -->
-    <style>
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #f8fafc;
-            color: #0f172a;
-            overflow-x: hidden;
-        }
-
-        .chart-container {
-            position: relative;
-            width: 100%;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-            height: 350px;
-            max-height: 400px;
-        }
-
-        .chart-container-tall {
-            position: relative;
-            width: 100%;
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
-            height: 560px;
-            /* Taller to accommodate 17 horizontal bars */
-        }
-
-        @media (min-width: 768px) {
-            .chart-container {
-                height: 400px;
-            }
-
-            .chart-container-tall {
-                height: 680px;
-            }
-        }
-
-        .step-active {
-            border-bottom-color: #10b981 !important;
-            color: #1e293b !important;
-        }
-
-        .badge-gba {
-            background-color: #0ea5e9;
-            color: white;
-        }
-
-        .badge-east {
-            background-color: #8b5cf6;
-            color: white;
-        }
-
-        .badge-north {
-            background-color: #f59e0b;
-            color: white;
-        }
-
-        .badge-inland {
-            background-color: #10b981;
-            color: white;
-        }
-
-        .badge-hainan {
-            background-color: #0e7490;
-            color: white;
-        }
-
-        details.wfoe-details>summary {
-            list-style: none;
-        }
-
-        details.wfoe-details>summary::-webkit-details-marker {
-            display: none;
-        }
-    </style>
+    <link rel="stylesheet" href="assets/css/china-business.css">
 </head>
 
 <body class="antialiased scroll-smooth">
@@ -126,8 +51,8 @@
                 <h2 class="text-3xl font-bold text-slate-800 mb-4">The Setup Process: Step-by-Step</h2>
                 <p class="text-slate-600 text-lg">
                     For mainland China, read each row left-to-right: <strong>one minimal move</strong>, then
-                    <strong>Money &amp; accounts</strong>. Open <strong>Full explanation</strong> under any step for the
-                    detailed version. Hosting cost vs. <strong>registered capital</strong> is covered in steps 7–8; use
+                    <strong>Money &amp; accounts</strong>. Hosting cost vs.
+                    <strong>registered capital</strong> is covered in steps 7–8; use
                     the <a href="#costs" class="text-emerald-600 font-semibold underline underline-offset-2">Annual
                         Financial Modeling Dashboard</a> for payroll modeling.
                 </p>
@@ -151,7 +76,7 @@
                 <!-- MAINLAND STEP-BY-STEP -->
                 <div id="step-mainland" class="step-content block">
                     <p class="text-slate-500 mb-6 font-medium">Form a <strong>WFOE</strong> in order below. Each
-                        line is one move; expand <strong>Full explanation</strong> only when you need depth. Budget
+                        line is one move; optional context is folded below. Budget
                         <strong>registered capital</strong> (steps 7–8) and <strong>hosting cost</strong> before you file.
                     </p>
 
@@ -167,8 +92,12 @@
                                     using the pattern <em>[City] + [Brand] + [Industry] + Co., Ltd.</em></p>
                                 <details class="wfoe-details mt-2">
                                     <summary
-                                        class="cursor-pointer text-xs font-semibold uppercase tracking-wide text-emerald-700 hover:text-emerald-600">Full
-                                        explanation</summary>
+                                        class="cursor-pointer flex items-center gap-1.5 mt-1 w-fit text-emerald-700 hover:text-emerald-600 select-none">
+                                        <span class="sr-only">Show or hide additional detail for this step</span>
+                                        <svg class="wfoe-disclosure-icon h-4 w-4 shrink-0" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                            <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                                        </svg>
+                                    </summary>
                                     <ul class="list-disc pl-4 text-sm text-slate-600 space-y-1.5 mt-3">
                                         <li>The legal format is strict—e.g. Shanghai Acme CAD Design Co., Ltd.</li>
                                         <li>Final name approval is part of filing; your agent can pre-check availability.
@@ -194,8 +123,12 @@
                                     office space—residential units cannot be a WFOE address.</p>
                                 <details class="wfoe-details mt-2">
                                     <summary
-                                        class="cursor-pointer text-xs font-semibold uppercase tracking-wide text-emerald-700 hover:text-emerald-600">Full
-                                        explanation</summary>
+                                        class="cursor-pointer flex items-center gap-1.5 mt-1 w-fit text-emerald-700 hover:text-emerald-600 select-none">
+                                        <span class="sr-only">Show or hide additional detail for this step</span>
+                                        <svg class="wfoe-disclosure-icon h-4 w-4 shrink-0" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                            <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                                        </svg>
+                                    </summary>
                                     <p class="text-sm text-slate-600 mt-3">Zoning must allow business registration;
                                         verify with your agent before you sign.</p>
                                 </details>
@@ -217,8 +150,12 @@
                                     Property Ownership Certificate (or equivalent) for the filing.</p>
                                 <details class="wfoe-details mt-2">
                                     <summary
-                                        class="cursor-pointer text-xs font-semibold uppercase tracking-wide text-emerald-700 hover:text-emerald-600">Full
-                                        explanation</summary>
+                                        class="cursor-pointer flex items-center gap-1.5 mt-1 w-fit text-emerald-700 hover:text-emerald-600 select-none">
+                                        <span class="sr-only">Show or hide additional detail for this step</span>
+                                        <svg class="wfoe-disclosure-icon h-4 w-4 shrink-0" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                            <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                                        </svg>
+                                    </summary>
                                     <p class="text-sm text-slate-600 mt-3">Without this document, the AMR typically
                                         rejects the application.</p>
                                 </details>
@@ -240,8 +177,12 @@
                                     (deposits often paid personally or by your offshore parent).</p>
                                 <details class="wfoe-details mt-2">
                                     <summary
-                                        class="cursor-pointer text-xs font-semibold uppercase tracking-wide text-emerald-700 hover:text-emerald-600">Full
-                                        explanation</summary>
+                                        class="cursor-pointer flex items-center gap-1.5 mt-1 w-fit text-emerald-700 hover:text-emerald-600 select-none">
+                                        <span class="sr-only">Show or hide additional detail for this step</span>
+                                        <svg class="wfoe-disclosure-icon h-4 w-4 shrink-0" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                            <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                                        </svg>
+                                    </summary>
                                     <p class="text-sm text-slate-600 mt-3">The tenant may not exist on paper yet; after
                                         incorporation and chops, the WFOE may reimburse allowable pre-establishment
                                         costs—confirm with your agent and accountant.</p>
@@ -265,8 +206,12 @@
                                     or parent-company documents at a US Notary Public.</p>
                                 <details class="wfoe-details mt-2">
                                     <summary
-                                        class="cursor-pointer text-xs font-semibold uppercase tracking-wide text-emerald-700 hover:text-emerald-600">Full
-                                        explanation</summary>
+                                        class="cursor-pointer flex items-center gap-1.5 mt-1 w-fit text-emerald-700 hover:text-emerald-600 select-none">
+                                        <span class="sr-only">Show or hide additional detail for this step</span>
+                                        <svg class="wfoe-disclosure-icon h-4 w-4 shrink-0" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                            <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                                        </svg>
+                                    </summary>
                                     <p class="text-sm text-slate-600 mt-3">Individual investor = passport; corporate
                                         parent = entity docs—your agent will list exactly what is needed.</p>
                                 </details>
@@ -289,8 +234,12 @@
                                     your state’s Secretary of State.</p>
                                 <details class="wfoe-details mt-2">
                                     <summary
-                                        class="cursor-pointer text-xs font-semibold uppercase tracking-wide text-emerald-700 hover:text-emerald-600">Full
-                                        explanation</summary>
+                                        class="cursor-pointer flex items-center gap-1.5 mt-1 w-fit text-emerald-700 hover:text-emerald-600 select-none">
+                                        <span class="sr-only">Show or hide additional detail for this step</span>
+                                        <svg class="wfoe-disclosure-icon h-4 w-4 shrink-0" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                            <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                                        </svg>
+                                    </summary>
                                     <p class="text-sm text-slate-600 mt-3">You no longer need Chinese Embassy
                                         legalization for this path—the Apostille is the standard certification.</p>
                                 </details>
@@ -313,8 +262,12 @@
                                     pay-in schedule in the articles—<strong>do not wire equity yet</strong>.</p>
                                 <details class="wfoe-details mt-2">
                                     <summary
-                                        class="cursor-pointer text-xs font-semibold uppercase tracking-wide text-emerald-700 hover:text-emerald-600">Full
-                                        explanation</summary>
+                                        class="cursor-pointer flex items-center gap-1.5 mt-1 w-fit text-emerald-700 hover:text-emerald-600 select-none">
+                                        <span class="sr-only">Show or hide additional detail for this step</span>
+                                        <svg class="wfoe-disclosure-icon h-4 w-4 shrink-0" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                            <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                                        </svg>
+                                    </summary>
                                     <ul class="list-disc pl-4 text-sm text-slate-600 space-y-1.5 mt-3">
                                         <li>Registered capital (注册资本) is the subscribed total on the license; it is
                                             not the same as annual rent or payroll.</li>
@@ -347,8 +300,12 @@
                                     rent, agents, payroll, and statutory “five insurances + fund.”</p>
                                 <details class="wfoe-details mt-2">
                                     <summary
-                                        class="cursor-pointer text-xs font-semibold uppercase tracking-wide text-emerald-700 hover:text-emerald-600">Full
-                                        explanation</summary>
+                                        class="cursor-pointer flex items-center gap-1.5 mt-1 w-fit text-emerald-700 hover:text-emerald-600 select-none">
+                                        <span class="sr-only">Show or hide additional detail for this step</span>
+                                        <svg class="wfoe-disclosure-icon h-4 w-4 shrink-0" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                            <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                                        </svg>
+                                    </summary>
                                     <ul class="list-disc pl-4 text-sm text-slate-600 space-y-1.5 mt-3">
                                         <li>Pre-WFOE costs (lease, travel) often come from personal or parent funds;
                                             reimbursement after setup may be possible—confirm with your agent.</li>
@@ -378,8 +335,12 @@
                                     Director, and Supervisor—two roles cannot be the same person.</p>
                                 <details class="wfoe-details mt-2">
                                     <summary
-                                        class="cursor-pointer text-xs font-semibold uppercase tracking-wide text-emerald-700 hover:text-emerald-600">Full
-                                        explanation</summary>
+                                        class="cursor-pointer flex items-center gap-1.5 mt-1 w-fit text-emerald-700 hover:text-emerald-600 select-none">
+                                        <span class="sr-only">Show or hide additional detail for this step</span>
+                                        <svg class="wfoe-disclosure-icon h-4 w-4 shrink-0" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                            <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                                        </svg>
+                                    </summary>
                                     <p class="text-sm text-slate-600 mt-3">The Supervisor cannot be the Legal
                                         Representative or Director. These names go into articles and bank mandates.</p>
                                 </details>
@@ -401,8 +362,12 @@
                                     package with the AMR (lease + apostille + articles).</p>
                                 <details class="wfoe-details mt-2">
                                     <summary
-                                        class="cursor-pointer text-xs font-semibold uppercase tracking-wide text-emerald-700 hover:text-emerald-600">Full
-                                        explanation</summary>
+                                        class="cursor-pointer flex items-center gap-1.5 mt-1 w-fit text-emerald-700 hover:text-emerald-600 select-none">
+                                        <span class="sr-only">Show or hide additional detail for this step</span>
+                                        <svg class="wfoe-disclosure-icon h-4 w-4 shrink-0" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                            <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                                        </svg>
+                                    </summary>
                                     <p class="text-sm text-slate-600 mt-3">Submit to the local Administration for Market
                                         Regulation (AMR): lease, apostilled identity/parent docs, articles (capital,
                                         pay-in schedule, roles), and other required company rules.</p>
@@ -426,8 +391,12 @@
                                     License (营业执照)—the company legally exists.</p>
                                 <details class="wfoe-details mt-2">
                                     <summary
-                                        class="cursor-pointer text-xs font-semibold uppercase tracking-wide text-emerald-700 hover:text-emerald-600">Full
-                                        explanation</summary>
+                                        class="cursor-pointer flex items-center gap-1.5 mt-1 w-fit text-emerald-700 hover:text-emerald-600 select-none">
+                                        <span class="sr-only">Show or hide additional detail for this step</span>
+                                        <svg class="wfoe-disclosure-icon h-4 w-4 shrink-0" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                            <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                                        </svg>
+                                    </summary>
                                     <p class="text-sm text-slate-600 mt-3">You still have no operational corporate bank
                                         accounts until steps 13–14.</p>
                                 </details>
@@ -450,8 +419,12 @@
                                     company chops (official + financial seals).</p>
                                 <details class="wfoe-details mt-2">
                                     <summary
-                                        class="cursor-pointer text-xs font-semibold uppercase tracking-wide text-emerald-700 hover:text-emerald-600">Full
-                                        explanation</summary>
+                                        class="cursor-pointer flex items-center gap-1.5 mt-1 w-fit text-emerald-700 hover:text-emerald-600 select-none">
+                                        <span class="sr-only">Show or hide additional detail for this step</span>
+                                        <svg class="wfoe-disclosure-icon h-4 w-4 shrink-0" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                            <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                                        </svg>
+                                    </summary>
                                     <p class="text-sm text-slate-600 mt-3">PSB + licensed vendor. A red chop on a
                                         contract is often decisive—secure storage; whoever holds chops controls signing.
                                     </p>
@@ -475,8 +448,12 @@
                                     deposit account (基本户) with license + chops.</p>
                                 <details class="wfoe-details mt-2">
                                     <summary
-                                        class="cursor-pointer text-xs font-semibold uppercase tracking-wide text-emerald-700 hover:text-emerald-600">Full
-                                        explanation</summary>
+                                        class="cursor-pointer flex items-center gap-1.5 mt-1 w-fit text-emerald-700 hover:text-emerald-600 select-none">
+                                        <span class="sr-only">Show or hide additional detail for this step</span>
+                                        <svg class="wfoe-disclosure-icon h-4 w-4 shrink-0" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                            <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                                        </svg>
+                                    </summary>
                                     <p class="text-sm text-slate-600 mt-3">Main RMB account for salaries, rent, and
                                         tax—often the only account that can pay cash salaries. KYC applies.</p>
                                 </details>
@@ -499,8 +476,12 @@
                                     capital account for inbound equity (FCY).</p>
                                 <details class="wfoe-details mt-2">
                                     <summary
-                                        class="cursor-pointer text-xs font-semibold uppercase tracking-wide text-emerald-700 hover:text-emerald-600">Full
-                                        explanation</summary>
+                                        class="cursor-pointer flex items-center gap-1.5 mt-1 w-fit text-emerald-700 hover:text-emerald-600 select-none">
+                                        <span class="sr-only">Show or hide additional detail for this step</span>
+                                        <svg class="wfoe-disclosure-icon h-4 w-4 shrink-0" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                            <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                                        </svg>
+                                    </summary>
                                     <p class="text-sm text-slate-600 mt-3">Name varies by bank (FDI / capital account).
                                         Pairs with SAFE registration of the foreign-invested enterprise.</p>
                                 </details>
@@ -523,8 +504,12 @@
                                     capital-contribution / FX forms with your agent (投资款 wording).</p>
                                 <details class="wfoe-details mt-2">
                                     <summary
-                                        class="cursor-pointer text-xs font-semibold uppercase tracking-wide text-emerald-700 hover:text-emerald-600">Full
-                                        explanation</summary>
+                                        class="cursor-pointer flex items-center gap-1.5 mt-1 w-fit text-emerald-700 hover:text-emerald-600 select-none">
+                                        <span class="sr-only">Show or hide additional detail for this step</span>
+                                        <svg class="wfoe-disclosure-icon h-4 w-4 shrink-0" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                            <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                                        </svg>
+                                    </summary>
                                     <p class="text-sm text-slate-600 mt-3">The remittance must be coded as registered
                                         capital—not an informal “transfer.” Codes differ by bank.</p>
                                 </details>
@@ -547,8 +532,12 @@
                                     abroad in foreign currency to the designated inbound account.</p>
                                 <details class="wfoe-details mt-2">
                                     <summary
-                                        class="cursor-pointer text-xs font-semibold uppercase tracking-wide text-emerald-700 hover:text-emerald-600">Full
-                                        explanation</summary>
+                                        class="cursor-pointer flex items-center gap-1.5 mt-1 w-fit text-emerald-700 hover:text-emerald-600 select-none">
+                                        <span class="sr-only">Show or hide additional detail for this step</span>
+                                        <svg class="wfoe-disclosure-icon h-4 w-4 shrink-0" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                            <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                                        </svg>
+                                    </summary>
                                     <p class="text-sm text-slate-600 mt-3">Bank records paid-in capital (实缴) toward SAFE
                                         filing; obtain FX settlement documents. Multiple tranches allowed within five-year
                                         pay-in (step 7).</p>
@@ -572,8 +561,12 @@
                                     move RMB into the basic account for operations.</p>
                                 <details class="wfoe-details mt-2">
                                     <summary
-                                        class="cursor-pointer text-xs font-semibold uppercase tracking-wide text-emerald-700 hover:text-emerald-600">Full
-                                        explanation</summary>
+                                        class="cursor-pointer flex items-center gap-1.5 mt-1 w-fit text-emerald-700 hover:text-emerald-600 select-none">
+                                        <span class="sr-only">Show or hide additional detail for this step</span>
+                                        <svg class="wfoe-disclosure-icon h-4 w-4 shrink-0" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                            <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                                        </svg>
+                                    </summary>
                                     <p class="text-sm text-slate-600 mt-3">Follow the bank’s process; this is company
                                         capital settlement, not personal remittance.</p>
                                 </details>
@@ -596,8 +589,12 @@
                                     and obtain fapiao (official invoicing) capability.</p>
                                 <details class="wfoe-details mt-2">
                                     <summary
-                                        class="cursor-pointer text-xs font-semibold uppercase tracking-wide text-emerald-700 hover:text-emerald-600">Full
-                                        explanation</summary>
+                                        class="cursor-pointer flex items-center gap-1.5 mt-1 w-fit text-emerald-700 hover:text-emerald-600 select-none">
+                                        <span class="sr-only">Show or hide additional detail for this step</span>
+                                        <svg class="wfoe-disclosure-icon h-4 w-4 shrink-0" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                            <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                                        </svg>
+                                    </summary>
                                     <p class="text-sm text-slate-600 mt-3">You need this to bill customers compliantly on
                                         the mainland.</p>
                                 </details>
@@ -620,8 +617,12 @@
                                     insurance—then you can hire and run payroll.</p>
                                 <details class="wfoe-details mt-2">
                                     <summary
-                                        class="cursor-pointer text-xs font-semibold uppercase tracking-wide text-emerald-700 hover:text-emerald-600">Full
-                                        explanation</summary>
+                                        class="cursor-pointer flex items-center gap-1.5 mt-1 w-fit text-emerald-700 hover:text-emerald-600 select-none">
+                                        <span class="sr-only">Show or hide additional detail for this step</span>
+                                        <svg class="wfoe-disclosure-icon h-4 w-4 shrink-0" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                            <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                                        </svg>
+                                    </summary>
                                     <p class="text-sm text-slate-600 mt-3">Mandatory contributions are paid from the RMB
                                         basic account, funded by capital (steps 16–17) and revenue. Compare cities
                                         on the <a href="#costs" class="text-emerald-600 font-semibold underline">dashboard</a>.
@@ -1050,528 +1051,7 @@
         </div>
     </footer>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-
-            // WFOE vs SAR Process Toggle Logic
-            const steps = document.querySelectorAll('.step-item');
-            const contents = document.querySelectorAll('.step-content');
-
-            steps.forEach(step => {
-                step.addEventListener('click', () => {
-                    // Reset all tabs
-                    steps.forEach(s => {
-                        s.classList.remove('step-active');
-                        s.style.borderBottomColor = 'transparent';
-                        s.classList.remove('text-slate-800');
-                        s.classList.add('text-slate-500');
-                    });
-
-                    // Hide all contents
-                    contents.forEach(c => c.classList.add('hidden'));
-
-                    // Activate clicked tab
-                    step.classList.add('step-active');
-                    step.classList.remove('text-slate-500');
-                    step.classList.add('text-slate-800');
-                    step.style.borderBottomColor = '#10b981'; // Emerald color
-
-                    // Show target content
-                    const targetId = step.getAttribute('data-target');
-                    document.getElementById(targetId).classList.remove('hidden');
-                });
-            });
-
-            // Data Setup (All base numbers are ANNUAL in RMB or RMB equivalent)
-            const exchangeRate = 7.1;
-
-            /* Per city: officeRentAnnualRMB (10 m² × avg office RMB/m²/mo × 12), utilitiesAnnualRMB (power + heat/cool + cleaning alloc.).
-               Global: OVERHEAD_HARDWARE_ANNUAL_RMB, OVERHEAD_SOFTWARE_ANNUAL_RMB (AEC Collection + Rhino modeled seat-year). */
-            const OVERHEAD_HARDWARE_ANNUAL_RMB = 13800;
-            const OVERHEAD_SOFTWARE_ANNUAL_RMB = 36000;
-
-            const cityData = {
-                beijing: { name: "Beijing", type: "mainland", juniorAnnual: 120000, seniorAnnual: 276000, contribPct: 0.38, officeRentAnnualRMB: 36000, utilitiesAnnualRMB: 8200 },
-                shanghai: { name: "Shanghai", type: "mainland", juniorAnnual: 120000, seniorAnnual: 264000, contribPct: 0.38, officeRentAnnualRMB: 36000, utilitiesAnnualRMB: 7500 },
-                shenzhen: { name: "Shenzhen", type: "mainland", juniorAnnual: 115000, seniorAnnual: 260000, contribPct: 0.35, officeRentAnnualRMB: 19200, utilitiesAnnualRMB: 6800 },
-                guangzhou: { name: "Guangzhou", type: "mainland", juniorAnnual: 105000, seniorAnnual: 240000, contribPct: 0.35, officeRentAnnualRMB: 18000, utilitiesAnnualRMB: 7000 },
-                hangzhou: { name: "Hangzhou", type: "mainland", juniorAnnual: 110000, seniorAnnual: 250000, contribPct: 0.36, officeRentAnnualRMB: 16800, utilitiesAnnualRMB: 7200 },
-                nanjing: { name: "Nanjing", type: "mainland", juniorAnnual: 102000, seniorAnnual: 222000, contribPct: 0.38, officeRentAnnualRMB: 13800, utilitiesAnnualRMB: 7600 },
-                tianjin: { name: "Tianjin", type: "mainland", juniorAnnual: 90000, seniorAnnual: 204000, contribPct: 0.40, officeRentAnnualRMB: 11400, utilitiesAnnualRMB: 8000 },
-                wuhan: { name: "Wuhan", type: "mainland", juniorAnnual: 90000, seniorAnnual: 192000, contribPct: 0.38, officeRentAnnualRMB: 10800, utilitiesAnnualRMB: 7200 },
-                chengdu: { name: "Chengdu", type: "mainland", juniorAnnual: 84000, seniorAnnual: 180000, contribPct: 0.36, officeRentAnnualRMB: 12000, utilitiesAnnualRMB: 6800 },
-                zhuhai: { name: "Zhuhai", type: "mainland", juniorAnnual: 84000, seniorAnnual: 180000, contribPct: 0.35, officeRentAnnualRMB: 9600, utilitiesAnnualRMB: 6500 },
-                xian: { name: "Xi'an", type: "mainland", juniorAnnual: 78000, seniorAnnual: 168000, contribPct: 0.36, officeRentAnnualRMB: 10200, utilitiesAnnualRMB: 7800 },
-                hefei: { name: "Hefei", type: "mainland", juniorAnnual: 72000, seniorAnnual: 156000, contribPct: 0.35, officeRentAnnualRMB: 7800, utilitiesAnnualRMB: 7000 },
-                harbin: { name: "Harbin", type: "mainland", juniorAnnual: 60000, seniorAnnual: 132000, contribPct: 0.35, officeRentAnnualRMB: 6600, utilitiesAnnualRMB: 8800 },
-                haikou: { name: "Haikou", type: "mainland", juniorAnnual: 84000, seniorAnnual: 186000, contribPct: 0.35, officeRentAnnualRMB: 7800, utilitiesAnnualRMB: 6200 },
-                sanya: { name: "Sanya", type: "mainland", juniorAnnual: 88000, seniorAnnual: 198000, contribPct: 0.35, officeRentAnnualRMB: 10600, utilitiesAnnualRMB: 6400 },
-                hongkong: { name: "Hong Kong", type: "sar", juniorAnnual: 220000, seniorAnnual: 440000, contribPct: 0.05, officeRentAnnualRMB: 168000, utilitiesAnnualRMB: 9000 },
-                macau: { name: "Macau", type: "sar", juniorAnnual: 185000, seniorAnnual: 370000, contribPct: 0.01, officeRentAnnualRMB: 108000, utilitiesAnnualRMB: 7500 }
-            };
-
-            function overheadAnnualTotalRMB(c) {
-                return (c.officeRentAnnualRMB || 0) + OVERHEAD_HARDWARE_ANNUAL_RMB + (c.utilitiesAnnualRMB || 0) + OVERHEAD_SOFTWARE_ANNUAL_RMB;
-            }
-
-            function overheadPartsForCity(cityKey) {
-                const c = cityData[cityKey];
-                return {
-                    rent: c.officeRentAnnualRMB || 0,
-                    hardware: OVERHEAD_HARDWARE_ANNUAL_RMB,
-                    utilities: c.utilitiesAnnualRMB || 0,
-                    software: OVERHEAD_SOFTWARE_ANNUAL_RMB
-                };
-            }
-
-            const state = {
-                city: 'shanghai',
-                role: 'junior',
-                currency: 'usd',
-                headcount: 1,
-                includeOverhead: false
-            };
-
-            let barChart, doughnutChart;
-
-            function convert(rmbValue) {
-                const scaledValue = rmbValue * state.headcount;
-                return state.currency === 'usd' ? Math.round(scaledValue / exchangeRate) : Math.round(scaledValue);
-            }
-
-            function getSymbol() {
-                return state.currency === 'usd' ? '$' : '¥';
-            }
-
-            function getCostData(cityKey, role) {
-                const c = cityData[cityKey];
-                const base = role === 'junior' ? c.juniorAnnual : c.seniorAnnual;
-                const contrib = base * c.contribPct;
-                const overheadAnnual = overheadAnnualTotalRMB(c);
-                const empTotalRMB = base + contrib;
-                const overheadTotalRMB = state.includeOverhead ? overheadAnnual * state.headcount : 0;
-                const totalRMB = empTotalRMB + overheadTotalRMB;
-                return {
-                    baseRMB: base,
-                    contribRMB: contrib,
-                    overheadAnnualRMB: overheadAnnual,
-                    totalRMB,
-                    base: convert(base),
-                    contrib: convert(contrib),
-                    overhead: state.includeOverhead ? convert(overheadAnnual) : 0,
-                    total: convert(base) + convert(contrib) + (state.includeOverhead ? convert(overheadAnnual) : 0)
-                };
-            }
-
-            function initCharts() {
-                Chart.defaults.font.family = "'Inter', sans-serif";
-                Chart.defaults.color = '#475569';
-
-                // Initialize Horizontal Bar Chart
-                const ctxBar = document.getElementById('barChartAllCities').getContext('2d');
-                barChart = new Chart(ctxBar, {
-                    type: 'bar',
-                    data: {
-                        labels: [],
-                        datasets: [
-                            { label: 'Annual Base Salary', data: [], backgroundColor: [], borderRadius: 0 },
-                            { label: 'Employer Contributions', data: [], backgroundColor: [], borderRadius: 0 },
-                            { label: 'Overhead (modeled)', data: [], backgroundColor: [], borderRadius: { topRight: 4, bottomRight: 4 } }
-                        ]
-                    },
-                    options: {
-                        indexAxis: 'y', // CRITICAL: Makes it horizontal for 17 cities readability
-                        responsive: true,
-                        maintainAspectRatio: false,
-                        onClick: (e, elements) => {
-                            if (elements && elements.length > 0) {
-                                // Get the index of the clicked bar
-                                const dataIndex = elements[0].index;
-                                // Find the corresponding city name from the chart labels
-                                const clickedCityName = barChart.data.labels[dataIndex];
-                                // Match the name back to our cityData object keys
-                                const cityKey = Object.keys(cityData).find(key => cityData[key].name === clickedCityName);
-
-                                // Update state and visuals if it's a new city
-                                if (cityKey && state.city !== cityKey) {
-                                    state.city = cityKey;
-                                    updateVisuals();
-                                }
-                            }
-                        },
-                        onHover: (event, chartElement) => {
-                            // Turn cursor to pointer when hovering over bars to indicate clickability
-                            event.native.target.style.cursor = chartElement[0] ? 'pointer' : 'default';
-                        },
-                        plugins: {
-                            legend: {
-                                display: true,
-                                position: 'top',
-                                labels: {
-                                    filter: function (legendItem) {
-                                        if (legendItem.datasetIndex === 2 && !state.includeOverhead) return false;
-                                        return true;
-                                    }
-                                }
-                            },
-                            tooltip: {
-                                mode: 'index',
-                                intersect: false,
-                                callbacks: {
-                                    label: function (context) {
-                                        if (context.datasetIndex === 2 && !state.includeOverhead) return null;
-                                        return context.dataset.label + ': ' + getSymbol() + context.parsed.x.toLocaleString();
-                                    },
-                                    footer: function (tooltipItems) {
-                                        let total = 0;
-                                        tooltipItems.forEach(function (tooltipItem) {
-                                            if (tooltipItem.datasetIndex === 2 && !state.includeOverhead) return;
-                                            total += tooltipItem.parsed.x;
-                                        });
-                                        return '\nTotal Annual: ' + getSymbol() + total.toLocaleString();
-                                    }
-                                }
-                            }
-                        },
-                        scales: {
-                            x: {
-                                stacked: true,
-                                beginAtZero: true,
-                                ticks: { callback: function (v) { return getSymbol() + v.toLocaleString(); } }
-                            },
-                            y: {
-                                stacked: true,
-                                ticks: { autoSkip: false, font: { size: 11 } }
-                            }
-                        }
-                    }
-                });
-
-                // Initialize Doughnut Chart
-                const ctxDoughnut = document.getElementById('doughnutCityDetail').getContext('2d');
-                doughnutChart = new Chart(ctxDoughnut, {
-                    type: 'doughnut',
-                    data: {
-                        labels: [], // Will be populated dynamically by updateVisuals
-                        datasets: [{
-                            data: [],
-                            backgroundColor: [],
-                            borderWidth: 1,
-                            borderColor: '#ffffff',
-                            hoverOffset: 4
-                        }]
-                    },
-                    options: {
-                        responsive: true,
-                        maintainAspectRatio: false,
-                        plugins: {
-                            legend: { position: 'right', labels: { boxWidth: 12, font: { size: 11 } } },
-                            tooltip: {
-                                callbacks: {
-                                    label: function (context) {
-                                        return ' ' + context.label + ': ' + getSymbol() + context.parsed.toLocaleString();
-                                    }
-                                }
-                            }
-                        }
-                    }
-                });
-
-                updateVisuals();
-            }
-
-            function updateVisuals() {
-                const methodEl = document.getElementById('overhead-method');
-                if (methodEl) methodEl.classList.toggle('hidden', !state.includeOverhead);
-
-                const macroLabel = document.getElementById('macro-cost-label');
-                if (macroLabel) {
-                    macroLabel.textContent = state.includeOverhead
-                        ? 'Total Annual Cost (Base + Contributions + modeled overhead)'
-                        : 'Total Annual Cost (Base + Contributions)';
-                }
-
-                // Update Master Bar Chart
-                const labels = [];
-                const baseData = [];
-                const contribData = [];
-                const overheadData = [];
-                const baseColors = [];
-                const contribColors = [];
-                const overheadColors = [];
-
-                // Sort all cities by total cost descending
-                const sortedCityKeys = Object.keys(cityData).sort((a, b) => {
-                    return getCostData(b, state.role).totalRMB - getCostData(a, state.role).totalRMB;
-                });
-
-                sortedCityKeys.forEach(key => {
-                    labels.push(cityData[key].name);
-                    const cost = getCostData(key, state.role);
-                    baseData.push(cost.base);
-                    contribData.push(cost.contrib);
-                    overheadData.push(state.includeOverhead ? cost.overhead : 0);
-
-                    // Highlight selected city with solid colors, fade out the others
-                    if (key === state.city) {
-                        baseColors.push('#334155');
-                        contribColors.push('#10b981');
-                        overheadColors.push('#4f46e5');
-                    } else {
-                        baseColors.push('#94a3b8');
-                        contribColors.push('#6ee7b7');
-                        overheadColors.push('#a5b4fc');
-                    }
-                });
-
-                barChart.data.labels = labels;
-                barChart.data.datasets[0].data = baseData;
-                barChart.data.datasets[0].backgroundColor = baseColors;
-                barChart.data.datasets[1].data = contribData;
-                barChart.data.datasets[1].backgroundColor = contribColors;
-                barChart.data.datasets[2].data = overheadData;
-                barChart.data.datasets[2].backgroundColor = overheadColors;
-                if (barChart.options.plugins.legend.labels) {
-                    barChart.options.plugins.legend.labels.filter = function (legendItem) {
-                        if (legendItem.datasetIndex === 2 && !state.includeOverhead) return false;
-                        return true;
-                    };
-                }
-                barChart.update();
-
-                // Update Doughnut Chart Detail (5 Insurances & 1 Fund Breakdown)
-                const selectedCityObj = cityData[state.city];
-                const selectedCost = getCostData(state.city, state.role);
-
-                let donutLabels = [];
-                let donutData = [];
-                let donutColors = [];
-
-                if (selectedCityObj.type === 'mainland') {
-                    const pPct = 0.16;
-                    const mPct = 0.10;
-                    const uPct = 0.005;
-                    const iPct = 0.005;
-                    const hPct = selectedCityObj.contribPct - (pPct + mPct + uPct + iPct);
-
-                    donutLabels = [
-                        'Annual Base Salary',
-                        '1. Pension (16%)',
-                        '2. Medical & Maternity (10%)',
-                        '3. Unemployment (0.5%)',
-                        '4. Work Injury (0.5%)',
-                        `5. Housing Fund (${(hPct * 100).toFixed(1)}%)`
-                    ];
-
-                    donutData = [
-                        selectedCost.base,
-                        convert(selectedCost.baseRMB * pPct),
-                        convert(selectedCost.baseRMB * mPct),
-                        convert(selectedCost.baseRMB * uPct),
-                        convert(selectedCost.baseRMB * iPct),
-                        convert(selectedCost.baseRMB * hPct)
-                    ];
-
-                    donutColors = ['#0f172a', '#047857', '#065f46', '#059669', '#10b981', '#34d399'];
-
-                    if (state.includeOverhead) {
-                        const p = overheadPartsForCity(state.city);
-                        donutLabels.push(
-                            'Office rent (allocated)',
-                            'Hardware & furniture (workstation, desk, chair)',
-                            'Utilities, cleaning & climate (allocated)',
-                            'Software (AEC Collection + Rhino, modeled seat-year)'
-                        );
-                        donutData.push(
-                            convert(p.rent),
-                            convert(p.hardware),
-                            convert(p.utilities),
-                            convert(p.software)
-                        );
-                        donutColors.push('#6366f1', '#64748b', '#d97706', '#0284c7');
-                    }
-
-                } else if (state.city === 'hongkong') {
-                    donutLabels = ['Annual Base Salary', 'MPF (Mandatory Retirement)'];
-                    donutData = [selectedCost.base, selectedCost.contrib];
-                    donutColors = ['#0f172a', '#f59e0b'];
-                    if (state.includeOverhead) {
-                        const p = overheadPartsForCity(state.city);
-                        donutLabels.push(
-                            'Office rent (allocated)',
-                            'Hardware & furniture (workstation, desk, chair)',
-                            'Utilities, cleaning & climate (allocated)',
-                            'Software (AEC Collection + Rhino, modeled seat-year)'
-                        );
-                        donutData.push(
-                            convert(p.rent),
-                            convert(p.hardware),
-                            convert(p.utilities),
-                            convert(p.software)
-                        );
-                        donutColors.push('#6366f1', '#64748b', '#d97706', '#0284c7');
-                    }
-                } else if (state.city === 'macau') {
-                    donutLabels = ['Annual Base Salary', 'Social Security (FSS)'];
-                    donutData = [selectedCost.base, selectedCost.contrib];
-                    donutColors = ['#0f172a', '#f59e0b'];
-                    if (state.includeOverhead) {
-                        const p = overheadPartsForCity(state.city);
-                        donutLabels.push(
-                            'Office rent (allocated)',
-                            'Hardware & furniture (workstation, desk, chair)',
-                            'Utilities, cleaning & climate (allocated)',
-                            'Software (AEC Collection + Rhino, modeled seat-year)'
-                        );
-                        donutData.push(
-                            convert(p.rent),
-                            convert(p.hardware),
-                            convert(p.utilities),
-                            convert(p.software)
-                        );
-                        donutColors.push('#6366f1', '#64748b', '#d97706', '#0284c7');
-                    }
-                }
-
-                doughnutChart.data.labels = donutLabels;
-                doughnutChart.data.datasets[0].data = donutData;
-                doughnutChart.data.datasets[0].backgroundColor = donutColors;
-                doughnutChart.update();
-
-                // Populate the detailed itemized list below the pie chart
-                let listHTML = '';
-                let totalAnnualAmt = 0;
-
-                for (let i = 0; i < donutLabels.length; i++) {
-                    listHTML += `
-                        <div class="flex justify-between items-center py-2 ${i !== donutLabels.length - 1 ? 'border-b border-slate-100' : ''}">
-                            <div class="flex items-center gap-2">
-                                <span class="w-3 h-3 rounded-full inline-block shadow-sm" style="background-color: ${donutColors[i]}"></span>
-                                <span class="text-slate-700 text-xs">${donutLabels[i]}</span>
-                            </div>
-                            <span class="font-medium text-slate-900 text-xs">${getSymbol()}${donutData[i].toLocaleString()}</span>
-                        </div>
-                    `;
-                    totalAnnualAmt += donutData[i];
-                }
-
-                // Add Total Row
-                listHTML += `
-                    <div class="flex justify-between items-center pt-3 mt-1 border-t-2 border-slate-200">
-                        <span class="font-bold text-slate-800 text-sm">Total Annual Cost</span>
-                        <span class="font-bold text-emerald-600 text-sm">${getSymbol()}${totalAnnualAmt.toLocaleString()}</span>
-                    </div>
-                `;
-
-                document.getElementById('micro-detail-list').innerHTML = listHTML;
-
-                // Update Text Elements
-                document.getElementById('macro-title-role').textContent = state.role === 'junior' ? 'Junior CAD' : 'Senior Modeler';
-                document.getElementById('micro-title-city').textContent = cityData[state.city].name;
-                const pctEl = document.getElementById('micro-contrib-pct');
-                const pctWrap = document.getElementById('micro-contrib-pct-wrap');
-                const breakdownLbl = document.getElementById('micro-breakdown-label');
-                if (state.includeOverhead) {
-                    if (breakdownLbl) breakdownLbl.textContent = 'Annual breakdown: employment + overhead (rent, kit, utilities, software)';
-                    if (pctWrap) pctWrap.style.display = 'none';
-                } else {
-                    if (breakdownLbl) breakdownLbl.textContent = 'Annual Base vs. Employer "5 Insurances & 1 Fund"';
-                    if (pctWrap) pctWrap.style.display = 'inline';
-                    if (pctEl) pctEl.textContent = (cityData[state.city].contribPct * 100).toFixed(0) + '%';
-                }
-                document.getElementById('hc-display').textContent = state.headcount;
-
-                // Handle SAR Alerts
-                const alertBox = document.getElementById('sar-alert');
-                const descText = document.getElementById('micro-desc-text');
-
-                if (cityData[state.city].type === 'sar') {
-                    alertBox.classList.remove('hidden');
-                    let sarHtml = `<strong>SAR Framework:</strong> The ~${(cityData[state.city].contribPct * 100).toFixed(0)}% statutory contribution represents approximate limits for localized retirement funds (like Hong Kong's MPF) rather than mainland social insurance.`;
-                    if (state.includeOverhead) {
-                        sarHtml += ` <strong>Overhead:</strong> SAR rent uses prime-office bands in RMB; hardware/software use the same global license model as mainland for comparison.`;
-                    }
-                    descText.innerHTML = sarHtml;
-                } else {
-                    alertBox.classList.add('hidden');
-                    let mainlandDesc = `<strong>Mainland Contributions:</strong> Employer statutory contributions include the mandatory "5 Insurances & 1 Fund" (Pension, Medical, Unemployment, Injury, Maternity, and Housing Fund). Rates fluctuate based on selected municipal policies.`;
-                    if (state.includeOverhead) {
-                        mainlandDesc += ` <strong>Overhead:</strong> Rent, utilities, hardware amortization, and AEC software stack are modeled per employee-year (see methodology above).`;
-                    }
-                    if (state.city === 'haikou' || state.city === 'sanya') {
-                        mainlandDesc += ` <strong>Hainan FTP:</strong> Qualifying companies may access a <strong>15% corporate income tax</strong> rate (encouraged industries; substantive operations). Eligible talent may benefit from the <strong>15% personal income tax</strong> cap on qualifying Hainan-sourced income. Island-wide import treatment and “second line” rules apply for goods moving to the mainland—verify with local counsel.`;
-                    }
-                    descText.innerHTML = mainlandDesc;
-                }
-            }
-
-            // Headcount listener
-            const hcInput = document.getElementById('headcount-input');
-            hcInput.addEventListener('input', (e) => {
-                let val = parseInt(e.target.value);
-                if (isNaN(val) || val < 1) val = 1;
-                state.headcount = val;
-                updateVisuals();
-            });
-
-            // Event Listeners
-            function toggleBtnActive(btnId, otherBtnId, updateStateKey, updateStateVal) {
-                const btn = document.getElementById(btnId);
-                if (btn) {
-                    btn.addEventListener('click', (e) => {
-                        state[updateStateKey] = updateStateVal;
-                        // Correctly target the button if a child was clicked
-                        const target = e.currentTarget;
-                        const other = document.getElementById(otherBtnId);
-
-                        target.classList.add('bg-white', 'shadow-sm', 'text-slate-800');
-                        target.classList.remove('text-slate-600');
-                        if (other) {
-                            other.classList.remove('bg-white', 'shadow-sm', 'text-slate-800');
-                            other.classList.add('text-slate-600');
-                        }
-                        updateVisuals();
-                    });
-                }
-            }
-
-            toggleBtnActive('btn-junior', 'btn-senior', 'role', 'junior');
-            toggleBtnActive('btn-senior', 'btn-junior', 'role', 'senior');
-            toggleBtnActive('btn-usd', 'btn-rmb', 'currency', 'usd');
-            toggleBtnActive('btn-rmb', 'btn-usd', 'currency', 'rmb');
-
-            function syncOverheadToggleUI() {
-                const ex = document.getElementById('btn-overhead-exclude');
-                const inc = document.getElementById('btn-overhead-include');
-                if (!ex || !inc) return;
-                if (state.includeOverhead) {
-                    ex.classList.remove('bg-white', 'shadow-sm', 'font-semibold', 'text-slate-800');
-                    ex.classList.add('text-slate-600');
-                    inc.classList.add('bg-white', 'shadow-sm', 'font-semibold', 'text-slate-800');
-                    inc.classList.remove('text-slate-600');
-                } else {
-                    inc.classList.remove('bg-white', 'shadow-sm', 'font-semibold', 'text-slate-800');
-                    inc.classList.add('text-slate-600');
-                    ex.classList.add('bg-white', 'shadow-sm', 'font-semibold', 'text-slate-800');
-                    ex.classList.remove('text-slate-600');
-                }
-            }
-
-            document.getElementById('btn-overhead-exclude').addEventListener('click', () => {
-                state.includeOverhead = false;
-                syncOverheadToggleUI();
-                updateVisuals();
-            });
-            document.getElementById('btn-overhead-include').addEventListener('click', () => {
-                state.includeOverhead = true;
-                syncOverheadToggleUI();
-                updateVisuals();
-            });
-            syncOverheadToggleUI();
-
-            initCharts();
-        });
-    </script>
+    <script src="assets/js/china-business.js"></script>
 </body>
 
 </html>
