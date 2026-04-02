@@ -3,86 +3,65 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>QROST | Global Playbooks for US Firms</title>
+    <meta name="description" content="Qrost — personal site: AEC software, research, and occasional long-form notes.">
+    <title>Qrost</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         body { font-family: 'Inter', sans-serif; background-color: #f8fafc; color: #0f172a; }
-        .gradient-text {
-            background-clip: text;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
     </style>
 </head>
 <body class="antialiased min-h-screen flex flex-col">
 
-    <!-- Navigation -->
-    <nav class="bg-white border-b border-slate-200">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between h-16 items-center">
-                <div class="flex-shrink-0 font-bold text-xl tracking-wide text-slate-800">
-                    QROST
-                </div>
-                <div class="hidden md:flex space-x-8 text-sm font-medium text-slate-600">
-                    <a href="#" class="hover:text-emerald-600 transition">Home</a>
-                    <a href="#" class="hover:text-emerald-600 transition">About</a>
-                    <a href="#" class="hover:text-emerald-600 transition">Contact</a>
-                </div>
+    <nav class="bg-white/90 border-b border-slate-200/90 backdrop-blur-sm">
+        <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-14 items-center">
+                <a href="index.html" class="text-[0.65rem] font-semibold tracking-[0.35em] text-slate-900 uppercase">Qrost</a>
+                <a href="#projects" class="text-sm text-slate-500 hover:text-slate-900 transition-colors">Projects</a>
             </div>
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <header class="py-20 bg-slate-50 border-b border-slate-200">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h1 class="text-5xl md:text-6xl font-extrabold tracking-tight text-slate-900 mb-6">
-                Your <span class="bg-gradient-to-r from-emerald-500 to-teal-500 gradient-text">playbook</span>, not a PDF
+    <header class="py-16 md:py-20 border-b border-slate-100 bg-white">
+        <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+            <p class="text-xs font-medium uppercase tracking-[0.2em] text-slate-400 mb-4">Personal site</p>
+            <h1 class="text-3xl md:text-4xl font-semibold tracking-tight text-slate-900 leading-tight">
+                I build and write about tools for architecture, engineering, and construction—plugins, automation, and the occasional deep dive into how teams actually work across borders.
             </h1>
-            <p class="text-xl text-slate-500 max-w-2xl mx-auto">
-                Interactive expansion guides for <strong>US founders</strong>—first stop: <strong>China</strong> for
-                architecture, engineering &amp; construction teams doing international work. Pick a portal below.
+            <p class="mt-6 text-slate-600 leading-relaxed">
+                This site is a small public shelf: one living research page today, room for more later. Nothing here is legal or tax advice.
             </p>
         </div>
     </header>
 
-    <!-- Project Directory -->
-    <main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 w-full">
-        <h2 class="text-2xl font-bold text-slate-800 mb-8">Portals</h2>
-        
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            
-            <!-- Link to the China Business Subpage -->
-            <a href="china-business.html" class="block group h-full">
-                <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-8 h-full transition duration-300 ease-in-out transform group-hover:-translate-y-1 group-hover:shadow-xl group-hover:border-emerald-200 flex flex-col justify-between">
-                    <div>
-                        <div class="text-4xl mb-4">&#127980;</div>
-                        <h3 class="text-xl font-bold text-slate-900 mb-2 group-hover:text-emerald-600 transition">How I open a company in China</h3>
-                        <p class="text-slate-500 text-sm leading-relaxed mb-6">
-                            A comprehensive, interactive 2025-2026 guide for US citizens to establish a WFOE and analyze CAD drafter hiring costs.
-                        </p>
-                    </div>
-                    <div class="flex items-center text-emerald-600 font-semibold text-sm">
-                        Open playbook 
-                        <svg class="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
-                    </div>
-                </div>
-            </a>
+    <main id="projects" class="flex-grow max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-14 w-full">
+        <h2 class="text-xs font-semibold uppercase tracking-[0.15em] text-slate-400 mb-6">Projects &amp; notes</h2>
 
-            <!-- Placeholder for future pages -->
-            <div class="bg-slate-50 rounded-2xl border border-dashed border-slate-300 p-8 h-full flex flex-col items-center justify-center text-center opacity-70">
-                <div class="text-3xl mb-3 grayscale">&#128640;</div>
-                <h3 class="text-lg font-semibold text-slate-600 mb-1">More Regions Coming Soon</h3>
-                <p class="text-slate-400 text-sm">New interactive guides are in development.</p>
-            </div>
-
-        </div>
+        <ul class="space-y-4">
+            <li>
+                <a href="china-business.html" class="group block rounded-lg border border-slate-200 bg-white p-5 transition hover:border-slate-300 hover:bg-slate-50/80">
+                    <div class="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1">
+                        <span class="font-medium text-slate-900 group-hover:text-slate-700">China WFOE &amp; hiring costs (AEC)</span>
+                        <span class="text-xs text-slate-400 shrink-0">Research · interactive</span>
+                    </div>
+                    <p class="mt-2 text-sm text-slate-500 leading-relaxed">
+                        A step-by-step mainland setup outline and a city-level cost model for CAD roles—written for US AEC founders exploring China. One focused page, not the whole story of what I work on.
+                    </p>
+                    <span class="mt-3 inline-flex items-center text-xs font-medium text-slate-600 group-hover:text-slate-900">
+                        Open page
+                        <svg class="w-3.5 h-3.5 ml-1 opacity-70 group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                    </span>
+                </a>
+            </li>
+            <li class="rounded-lg border border-dashed border-slate-200 bg-slate-50/50 p-5 text-sm text-slate-400">
+                More soon—tools, posts, or experiments will show up here when they are ready to share.
+            </li>
+        </ul>
     </main>
 
-    <!-- Footer -->
-    <footer class="bg-white border-t border-slate-200 py-8">
-        <div class="max-w-7xl mx-auto px-4 text-center text-slate-500 text-sm">
-            &copy; 2026 QROST. All rights reserved.
+    <footer class="mt-auto border-t border-slate-100 py-8 bg-white">
+        <div class="max-w-3xl mx-auto px-4 text-center text-slate-400 text-xs">
+            &copy; 2026 Qrost
         </div>
     </footer>
 
