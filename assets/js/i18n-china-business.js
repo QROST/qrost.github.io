@@ -6,7 +6,7 @@
     const STORAGE_KEY = 'china-biz-lang';
 
     const ZH = {
-        'meta.title': '如何在中国开公司——美国AEC创业者',
+        'meta.title': '如何在中国开公司——国际AEC创业者',
 
         'nav.setup': '设置',
         'nav.regions': '区域',
@@ -15,13 +15,13 @@
         'lang.to_en': 'English',
 
         'hero.h1': '如何在中国开公司',
-        'hero.lead': '本页对比不同路径：下方<strong class="font-medium text-slate-800">WFOE</strong>流程面向<strong class="font-medium text-slate-800">美国籍</strong>在境内设立<strong class="font-medium text-slate-800">外商投资公司</strong>；另有标签页概括<strong class="font-medium text-slate-800">中国公民</strong>设立<strong class="font-medium text-slate-800">内资有限责任公司</strong>的常见步骤。财务板块覆盖<strong class="font-medium text-slate-800">资金去向</strong>与<strong class="font-medium text-slate-800">24 个城市</strong>的 AEC（建筑、工程与施工）用工成本，服务承接<strong class="font-medium text-slate-800">国际项目工作</strong>的团队。',
+        'hero.lead': '关于<strong class="font-medium text-slate-800">在中国开公司</strong>与<strong class="font-medium text-slate-800">大致成本预期</strong>的整理性研究。请用各标签查看不同地区设立流程，在财务板块做<strong class="font-medium text-slate-800">24 个城市</strong>量级的粗略成本测算——仅为示意，不构成法律或税务意见。',
 
         'process.h2': '设立流程：分步说明',
-        'process.tab_mainland': '大陆（外商独资·美国籍）',
+        'process.tab_mainland': '大陆（外商独资·国际）',
         'process.tab_domestic': '大陆（内资有限责任公司）',
         'process.tab_sar': '香港与澳门（特别行政区）',
-        'process.mainland_intro': '以<strong>美国籍创始人</strong>或境外母公司投资视角，按顺序完成<strong>WFOE</strong>设立。每一行是一个动作；更多说明可展开查看。在递交前请预算<strong>注册资本</strong>（第8–9步）与<strong>运营成本</strong>。',
+        'process.mainland_intro': '本标签面向<strong>境外投资者</strong>——境外<strong>自然人</strong>（国籍不限，<strong>美国籍</strong>为常见示例之一）或<strong>境外母公司</strong>——说明如何设立<strong>WFOE</strong>（<strong>外商独资企业</strong>，Wholly Foreign-Owned Enterprise），即境外投资者在内地常用的组织形式。按顺序完成各步；更多说明可展开查看。在递交前请预算<strong>注册资本</strong>（第8–9步）与<strong>运营成本</strong>。',
         'process.domestic_intro': '<strong>中国公民</strong>（或股东均为境内主体）常见路径为通过当地<strong>「企业开办一窗通」</strong>等渠道设立<strong>有限责任公司</strong>——无需境外公证、海牙认证或外商投资资本金专户。具体步骤与时效因城市而异，以下为常见顺序。',
         'process.fee_note_domestic': '右侧栏：各步<strong>大致现金影响</strong>（2024–2025 常见预估区间）。非报价——城市与银行政策不同。<strong>与仪表盘一致：</strong>以<strong>人民币</strong>为锚；<strong>美元</strong> = 人民币 ÷ 美元/人民币汇率（在线成功则用实时汇率，否则 6.8）。',
         'process.fee_note': '右侧栏：各步<strong>大致现金影响</strong>（2024–2025 常见预估区间）。非报价——城市、银行与代理机构不同，结果会有差异。<strong>货币规则：</strong><strong>财务仪表盘</strong>与<strong>大陆（内资有限责任公司）</strong>费用栏以<strong>人民币</strong>为锚；<strong>美元</strong> = 人民币 ÷ 美元/人民币汇率（与财务区控件下所示一致，在线成功则用实时汇率，否则 6.8）。<strong>WFOE</strong>栏混有以<strong>美元</strong>表述的美国侧费用与以<strong>¥</strong>表述的境内费用——为示意性文字，非实时换算器。',
@@ -32,7 +32,7 @@
         'sar.hk_title': '香港设立',
         'sar.mo_title': '澳门设立',
         'sar.hk1': '<strong>聘请公司秘书：</strong>法律规定须聘请本地个人或机构担任公司秘书并提供注册地址。',
-        'sar.hk2': '<strong>提供KYC资料：</strong>向代理机构提供美国护照复印件及近期水电账单（地址证明）。',
+        'sar.hk2': '<strong>提供KYC资料：</strong>向代理机构提供护照复印件及近期水电账单（地址证明）。',
         'sar.hk3': '<strong>网上递交：</strong>代理机构向公司注册处递交NNC1等表格。',
         'sar.hk4': '<strong>领取证书：</strong>公司通常在<strong>24–48小时内</strong>成立。一般无需公章或复杂政府现场手续。',
         'sar.hk5': '<strong>银行账户（难点）：</strong>在港开立企业账户反洗钱审查严格，往往需数周，并可能要求面签或视频面谈。',
@@ -215,11 +215,11 @@
         's05.detail': '<ul class="list-disc pl-4 text-sm text-slate-600 space-y-1.5 mt-3"><li>法律并未要求外商投资企业<strong>必须</strong>聘请代理，但市监网上申报、材料模板与口径多依赖中文且因城市而异，<strong>境外投资者实务上几乎均委托</strong>本地机构办理。</li><li>典型服务：拟定章程与高管安排、向 AMR 递交设立登记、协调刻章；部分套餐含开户陪同或首年代账，须在合同中写明。</li><li>建议在<strong>寄出公证/海牙认证文件前</strong>取得书面报价；比较“仅设立”与“设立+银行+财税”全包价差。</li></ul>',
         's05.money': '<strong>代理服务费</strong>（市场区间）：常见<strong>USD 1,500–5,000</strong>（≈ <strong>¥1.1 万–3.6 万</strong>，按约 6.8–7.2 人民币/美元预估）；<strong>~USD 500–1,500</strong> 仅递交；<strong>全包</strong>（银行+账）常<strong>&gt;USD 5,000</strong>。市监<strong>政府性收费</strong>另常<strong>¥0–800</strong>。<strong>个人/母公司</strong>垫付——尚无 WFOE。',
 
-        's06.title': '在美国由公证员对美国护照或母公司文件进行公证。',
+        's06.title': '在<strong>本国</strong>由公证机构对<strong>护照</strong>或母公司文件进行公证（例如<strong>美国护照</strong>持有人常见由美国公证员办理；具体以代理机构清单为准）。',
         's06.detail': '<p class="text-sm text-slate-600 mt-3">自然人投资者提交护照；法人股东提交主体资格文件——代理机构会列明清单。</p>',
         's06.money': '<strong>个人</strong>/母公司。<strong class="text-slate-800">预估：</strong>常见材料包<strong>约 $10–150</strong>；单次公证多<strong>$5–25</strong>；法人全套更高。',
 
-        's07.title': '向所在州州务卿申请<strong>海牙认证（Apostille）</strong>。',
+        's07.title': '向本国指定的海牙公约主管机关申请<strong>海牙认证（Apostille）</strong>（例如<strong>美国</strong>为各州<strong>州务卿</strong>；其他国家依当地规则）。',
         's07.detail': '<p class="text-sm text-slate-600 mt-3">此路径一般不再要求中国驻外使领馆领事认证；海牙认证为标准手续。</p>',
         's07.money': '<strong>个人</strong>/母公司。<strong class="text-slate-800">预估：</strong>每份海牙约<strong>$10–50</strong>（州务卿费常<strong>$5–30</strong>/份；加急/快递另计）。',
 
@@ -341,7 +341,7 @@
         if (isZh && ZH[titleKey]) {
             document.title = ZH[titleKey];
         } else {
-            document.title = 'How I open a company in China — US AEC founders';
+            document.title = 'How I open a company in China — international AEC founders';
         }
 
         const btn = document.getElementById('lang-toggle');
