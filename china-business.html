@@ -82,7 +82,7 @@
                     </p>
                     <p class="text-xs text-slate-500 mb-6 leading-relaxed border-l-2 border-slate-200 pl-3" data-i18n="process.fee_note">Right column:
                         rough cash-impact hints (2024–2025 style ranges). Not quotes—city, bank, and agent change outcomes.
-                        <strong>Currency rule:</strong> The <strong>dashboard</strong> and <strong>Mainland (domestic LLC)</strong> fee column use <strong>RMB</strong> as the anchor; <strong>USD</strong> = RMB ÷ USD/CNY (same rate as under Financials—live when the feed loads, otherwise 6.8). The <strong>WFOE</strong> column mixes <strong>foreign-side</strong> fees often quoted in <strong>USD</strong> (e.g. home-country notary, wire) with China fees in <strong>¥</strong>—illustrative text, not a live converter.</p>
+                        <strong>Currency rule:</strong> All amounts below are <strong>estimated in RMB first</strong> (what you pay onshore in China, or planning equivalents for overseas bank/notary lines); <strong>USD</strong> = RMB ÷ USD/CNY using the same rate as under Financials (live when the feed loads, otherwise 6.8). The <strong>dashboard</strong> chart still follows the same RMB→USD rule when you pick USD.</p>
 
                     <div class="space-y-3">
 
@@ -110,8 +110,7 @@
                                 </details>
                             </div>
                             <div class="p-4 lg:p-5 bg-emerald-50/90 border-t lg:border-t-0 lg:border-l border-emerald-100">
-                                <p class="text-sm text-slate-700 leading-relaxed" data-i18n="s01.money"><strong>No WFOE account.</strong>
-                                    <strong class="text-slate-800">Est.:</strong> ~<strong>$0 / ¥0</strong> at this step; name pre-check is usually folded into your agent agreement (step 5).</p>
+                                <p class="text-sm text-slate-700 leading-relaxed" data-wfoe-money="s01"></p>
                             </div>
                         </div>
 
@@ -136,8 +135,7 @@
                                 </details>
                             </div>
                             <div class="p-4 lg:p-5 bg-emerald-50/90 border-t lg:border-t-0 lg:border-l border-emerald-100">
-                                <p class="text-sm text-slate-700 leading-relaxed" data-i18n="s02.money"><strong>No WFOE account.</strong>
-                                    <strong class="text-slate-800">Est.:</strong> ~<strong>$0</strong> for registration prep; only soft costs (travel to view space).</p>
+                                <p class="text-sm text-slate-700 leading-relaxed" data-wfoe-money="s02"></p>
                             </div>
                         </div>
 
@@ -162,8 +160,7 @@
                                 </details>
                             </div>
                             <div class="p-4 lg:p-5 bg-emerald-50/90 border-t lg:border-t-0 lg:border-l border-emerald-100">
-                                <p class="text-sm text-slate-700 leading-relaxed" data-i18n="s03.money"><strong>No WFOE account.</strong>
-                                    <strong class="text-slate-800">Est.:</strong> ~<strong>$0 / ¥0</strong> (landlord provides the certificate).</p>
+                                <p class="text-sm text-slate-700 leading-relaxed" data-wfoe-money="s03"></p>
                             </div>
                         </div>
 
@@ -189,8 +186,7 @@
                                 </details>
                             </div>
                             <div class="p-4 lg:p-5 bg-emerald-50/90 border-t lg:border-t-0 lg:border-l border-emerald-100">
-                                <p class="text-sm text-slate-700 leading-relaxed" data-i18n="s04.money"><strong>Personal /</strong> offshore parent.
-                                    <strong class="text-slate-800">Est. cash:</strong> deposit (often <strong>1–3× monthly rent</strong>) + first month + fees—illustrative <strong>¥30k–¥250k+</strong> for a small tier‑1 office; wide by city.</p>
+                                <p class="text-sm text-slate-700 leading-relaxed" data-wfoe-money="s04"></p>
                             </div>
                         </div>
 
@@ -224,10 +220,7 @@
                                 </details>
                             </div>
                             <div class="p-4 lg:p-5 bg-emerald-50/90 border-t lg:border-t-0 lg:border-l border-emerald-100">
-                                <p class="text-sm text-slate-700 leading-relaxed" data-i18n="s05.money"><strong>Agency service fees</strong> (market bands):
-                                    often <strong>USD 1,500–5,000</strong> (≈ <strong>¥11k–¥36k</strong> at ~6.8–7.2 RMB/USD) for a standard WFOE; <strong>~USD 500–1,500</strong> lean filing;
-                                    <strong>full-service</strong> (bank + books) often <strong>&gt;USD 5,000</strong>. AMR <strong>government</strong> charges commonly
-                                    <strong>¥0–¥800</strong> extra. <strong>Personal</strong> / <strong>parent</strong> pays—no WFOE yet.</p>
+                                <p class="text-sm text-slate-700 leading-relaxed" data-wfoe-money="s05"></p>
                             </div>
                         </div>
 
@@ -252,9 +245,7 @@
                                 </details>
                             </div>
                             <div class="p-4 lg:p-5 bg-emerald-50/90 border-t lg:border-t-0 lg:border-l border-emerald-100">
-                                <p class="text-sm text-slate-700 leading-relaxed" data-i18n="s06.money"><strong>Personal</strong> / parent.
-                                    <strong class="text-slate-800">Est.:</strong> <strong>~$10–$150</strong> per typical pack (passport + parent docs);
-                                    many notaries <strong>$5–$25</strong>/acknowledgment; corporate stacks higher.</p>
+                                <p class="text-sm text-slate-700 leading-relaxed" data-wfoe-money="s06"></p>
                             </div>
                         </div>
 
@@ -278,9 +269,7 @@
                                 </details>
                             </div>
                             <div class="p-4 lg:p-5 bg-emerald-50/90 border-t lg:border-t-0 lg:border-l border-emerald-100">
-                                <p class="text-sm text-slate-700 leading-relaxed" data-i18n="s07.money"><strong>Personal</strong> / parent.
-                                    <strong class="text-slate-800">Est.:</strong> SOS apostille <strong>~$10–$50</strong>/doc (state fee often <strong>$5–$30</strong>;
-                                    courier/expedite extra).</p>
+                                <p class="text-sm text-slate-700 leading-relaxed" data-wfoe-money="s07"></p>
                             </div>
                         </div>
 
@@ -315,9 +304,7 @@
                                 </details>
                             </div>
                             <div class="p-4 lg:p-5 bg-emerald-50/90 border-t lg:border-t-0 lg:border-l border-emerald-100">
-                                <p class="text-sm text-slate-700 leading-relaxed" data-i18n="s08.money"><strong>Paper only</strong>—no equity wired.
-                                    <strong class="text-slate-800">Est.:</strong> ~<strong>$0</strong> incremental (articles drafting usually inside step 5).
-                                    Wait for steps <strong>14–18</strong> before inbound capital.</p>
+                                <p class="text-sm text-slate-700 leading-relaxed" data-wfoe-money="s08"></p>
                             </div>
                         </div>
 
@@ -349,8 +336,7 @@
                                 </details>
                             </div>
                             <div class="p-4 lg:p-5 bg-emerald-50/90 border-t lg:border-t-0 lg:border-l border-emerald-100">
-                                <p class="text-sm text-slate-700 leading-relaxed" data-i18n="s09.money"><strong>Spreadsheet only.</strong>
-                                    <strong class="text-slate-800">Est.:</strong> ~<strong>$0</strong>; optional accountant review <strong>~$200–$2,000+</strong> if you outsource the model.</p>
+                                <p class="text-sm text-slate-700 leading-relaxed" data-wfoe-money="s09"></p>
                             </div>
                         </div>
 
@@ -375,8 +361,7 @@
                                 </details>
                             </div>
                             <div class="p-4 lg:p-5 bg-emerald-50/90 border-t lg:border-t-0 lg:border-l border-emerald-100">
-                                <p class="text-sm text-slate-700 leading-relaxed" data-i18n="s10.money"><strong>Paper only.</strong>
-                                    <strong class="text-slate-800">Est.:</strong> ~<strong>$0</strong> government fee for naming officers in the file.</p>
+                                <p class="text-sm text-slate-700 leading-relaxed" data-wfoe-money="s10"></p>
                             </div>
                         </div>
 
@@ -402,9 +387,7 @@
                                 </details>
                             </div>
                             <div class="p-4 lg:p-5 bg-emerald-50/90 border-t lg:border-t-0 lg:border-l border-emerald-100">
-                                <p class="text-sm text-slate-700 leading-relaxed" data-i18n="s11.money"><strong>Personal</strong> / parent until the WFOE can pay.
-                                    <strong class="text-slate-800">Est.:</strong> AMR <strong>government</strong> fee often <strong>¥0–¥500</strong>; if your agent (step 5) already
-                                    included filing, incremental <strong>~$0</strong>.</p>
+                                <p class="text-sm text-slate-700 leading-relaxed" data-wfoe-money="s11"></p>
                             </div>
                         </div>
 
@@ -429,8 +412,7 @@
                                 </details>
                             </div>
                             <div class="p-4 lg:p-5 bg-emerald-50/90 border-t lg:border-t-0 lg:border-l border-emerald-100">
-                                <p class="text-sm text-slate-700 leading-relaxed" data-i18n="s12.money">Not receiving investment yet.
-                                    <strong class="text-slate-800">Est.:</strong> license pickup usually <strong>~¥0</strong> (no separate fee in many cities).</p>
+                                <p class="text-sm text-slate-700 leading-relaxed" data-wfoe-money="s12"></p>
                             </div>
                         </div>
 
@@ -456,9 +438,7 @@
                                 </details>
                             </div>
                             <div class="p-4 lg:p-5 bg-emerald-50/90 border-t lg:border-t-0 lg:border-l border-emerald-100">
-                                <p class="text-sm text-slate-700 leading-relaxed" data-i18n="s13.money">Still <strong>no</strong> operating cash flow.
-                                    <strong class="text-slate-800">Est.:</strong> seal set (official + financial + invoice + legal-person) often <strong>¥400–¥2,000</strong> all-in,
-                                    city-dependent.</p>
+                                <p class="text-sm text-slate-700 leading-relaxed" data-wfoe-money="s13"></p>
                             </div>
                         </div>
 
@@ -483,8 +463,7 @@
                                 </details>
                             </div>
                             <div class="p-4 lg:p-5 bg-emerald-50/90 border-t lg:border-t-0 lg:border-l border-emerald-100">
-                                <p class="text-sm text-slate-700 leading-relaxed" data-i18n="s14.money"><strong>First WFOE accounts</strong>—may open empty.
-                                    <strong class="text-slate-800">Est.:</strong> bank account-opening <strong>¥0–¥800</strong> (often waived); minimum balance rules vary.</p>
+                                <p class="text-sm text-slate-700 leading-relaxed" data-wfoe-money="s14"></p>
                             </div>
                         </div>
 
@@ -509,8 +488,7 @@
                                 </details>
                             </div>
                             <div class="p-4 lg:p-5 bg-emerald-50/90 border-t lg:border-t-0 lg:border-l border-emerald-100">
-                                <p class="text-sm text-slate-700 leading-relaxed" data-i18n="s15.money">Ready to <strong>receive</strong> FDI wires.
-                                    <strong class="text-slate-800">Est.:</strong> <strong>¥0–¥500</strong> if the bank charges a second account-setup fee (often <strong>¥0</strong>).</p>
+                                <p class="text-sm text-slate-700 leading-relaxed" data-wfoe-money="s15"></p>
                             </div>
                         </div>
 
@@ -535,8 +513,7 @@
                                 </details>
                             </div>
                             <div class="p-4 lg:p-5 bg-emerald-50/90 border-t lg:border-t-0 lg:border-l border-emerald-100">
-                                <p class="text-sm text-slate-700 leading-relaxed" data-i18n="s16.money"><strong>No wire yet</strong>—paperwork first.
-                                    <strong class="text-slate-800">Est.:</strong> ~<strong>$0</strong> filing; agent time beyond package <strong>~$50–$200</strong>/hr if billable.</p>
+                                <p class="text-sm text-slate-700 leading-relaxed" data-wfoe-money="s16"></p>
                             </div>
                         </div>
 
@@ -562,9 +539,7 @@
                                 </details>
                             </div>
                             <div class="p-4 lg:p-5 bg-emerald-50/90 border-t lg:border-t-0 lg:border-l border-emerald-100">
-                                <p class="text-sm text-slate-700 leading-relaxed" data-i18n="s17.money"><strong>Equity lands onshore.</strong>
-                                    <strong class="text-slate-800">Est.:</strong> outgoing wire <strong>~$15–$50+</strong> from sender bank; receiving side may embed <strong>FX spread</strong>
-                                    (not a fixed “fee” line).</p>
+                                <p class="text-sm text-slate-700 leading-relaxed" data-wfoe-money="s17"></p>
                             </div>
                         </div>
 
@@ -589,8 +564,7 @@
                                 </details>
                             </div>
                             <div class="p-4 lg:p-5 bg-emerald-50/90 border-t lg:border-t-0 lg:border-l border-emerald-100">
-                                <p class="text-sm text-slate-700 leading-relaxed" data-i18n="s18.money"><strong>Usable RMB</strong> in the basic account.
-                                    <strong class="text-slate-800">Est.:</strong> settlement often <strong>¥0–¥300</strong> or included; rare separate government charge.</p>
+                                <p class="text-sm text-slate-700 leading-relaxed" data-wfoe-money="s18"></p>
                             </div>
                         </div>
 
@@ -615,9 +589,7 @@
                                 </details>
                             </div>
                             <div class="p-4 lg:p-5 bg-emerald-50/90 border-t lg:border-t-0 lg:border-l border-emerald-100">
-                                <p class="text-sm text-slate-700 leading-relaxed" data-i18n="s19.money">Pay from <strong>RMB basic</strong>.
-                                    <strong class="text-slate-800">Est.:</strong> tax registration often <strong>¥0–¥400</strong>; fapiao / golden-tax device (if required)
-                                    <strong>¥0–¥1,500</strong> one-time in some setups.</p>
+                                <p class="text-sm text-slate-700 leading-relaxed" data-wfoe-money="s19"></p>
                             </div>
                         </div>
 
@@ -644,9 +616,7 @@
                                 </details>
                             </div>
                             <div class="p-4 lg:p-5 bg-emerald-50/90 border-t lg:border-t-0 lg:border-l border-emerald-100">
-                                <p class="text-sm text-slate-700 leading-relaxed" data-i18n="s20.money"><strong>Payroll + statutory</strong> from basic.
-                                    <strong class="text-slate-800">Est.:</strong> bureau registration often <strong>¥0–¥300</strong>; <strong>ongoing</strong> contributions per
-                                    <a href="#costs" class="text-emerald-700 font-semibold underline">dashboard</a> once you hire.</p>
+                                <p class="text-sm text-slate-700 leading-relaxed" data-wfoe-money="s20"></p>
                             </div>
                         </div>
 
@@ -658,7 +628,7 @@
                     <p class="text-slate-500 mb-6 font-medium" data-i18n="process.domestic_intro">For a <strong>Chinese citizen</strong> (or all-domestic shareholders), a typical path is a
                         <strong>有限责任公司</strong> via the local <strong>“one-stop” / 一窗通</strong> enterprise-registration channel—no foreign notarization or
                         capital-injection account. Steps and timing vary by city; below is a common sequence.</p>
-                    <p class="text-xs text-slate-500 mb-6 leading-relaxed border-l-2 border-slate-200 pl-3" data-i18n="process.fee_note_domestic">Right column: rough cash-impact hints (2024–2025 style). Not quotes—city and bank policies differ. <strong>Same rule as the dashboard:</strong> <strong>RMB</strong> is the anchor; <strong>USD</strong> = divide by USD/CNY (live or 6.8).</p>
+                    <p class="text-xs text-slate-500 mb-6 leading-relaxed border-l-2 border-slate-200 pl-3" data-i18n="process.fee_note_domestic">Right column: rough cash-impact hints (2024–2025 style). Not quotes—city and bank policies differ. <strong>RMB</strong> is the anchor; each line shows <strong>¥…</strong> with <strong>USD in parentheses</strong> as RMB ÷ USD/CNY (same rate as under Financials—live when the feed loads, otherwise 6.8).</p>
 
                     <div class="space-y-3">
 

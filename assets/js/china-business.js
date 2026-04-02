@@ -36,10 +36,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
             });
 
-            /* Data setup: all mainland / dashboard economics are modeled in RMB first (salaries, employer contributions,
-               office rent, utilities, modeled overhead). USD display = RMB ÷ USD/CNY (live API when available, else FALLBACK_USD_CNY).
-               Exceptions: text that quotes US-market fees (e.g. notary, US wire) or USD vendor list prices is labeled in USD;
-               RMB equivalents for those are derived when shown in ¥. */
+            /* Data setup: all mainland / dashboard economics are modeled in RMB first. USD = RMB ÷ USD/CNY (live API when
+               available, else FALLBACK_USD_CNY). WFOE + domestic process “money” columns: RMB bands are fixed anchors;
+               overseas-only costs (notary, wire) use planning RMB equivalents; USD shown as derived. */
             const FALLBACK_USD_CNY = 6.8;
             let exchangeRate = FALLBACK_USD_CNY;
             let exchangeRateIsLive = false;
@@ -557,29 +556,145 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
 
                 refreshDomesticFees();
+                refreshWfoeMoney();
             }
 
-            function buildDomesticFeeHtml(stepId, lang, cur) {
+            /** RMB-first fee bands; USD = RMB ÷ rate (same as Financials). */
+            function buildWfoeStepMoneyHtml(stepId, lang) {
+                const r = effectiveExchangeRate();
+                const u = function (n) { return Math.max(0, Math.round(n / r)); };
+                const pr = function (lo, hi) {
+                    return '<strong>¥' + lo.toLocaleString() + '–¥' + hi.toLocaleString() + '</strong> (≈ <strong>$' + u(lo) + '–$' + u(hi) + '</strong>)';
+                };
+                const prPlus = function (lo, hi) {
+                    return '<strong>¥' + lo.toLocaleString() + '–¥' + hi.toLocaleString() + '+</strong> (≈ <strong>$' + u(lo) + '–$' + u(hi) + '+</strong>)';
+                };
+                const pgt = function (lo) {
+                    return '<strong>&gt;¥' + lo.toLocaleString() + '</strong> (≈ <strong>&gt;$' + u(lo) + '</strong>)';
+                };
+                const z = function () { return '<strong>¥0</strong> (≈ <strong>$0</strong>)'; };
+                const rateFmt = r.toFixed(2);
+                let fxNote = tr('s05.fee_fx_note', 'RMB is the planning anchor; USD = RMB ÷ rate. Same as Financials: <strong>1 USD ≈ {rate} CNY</strong> (live when the feed loads, otherwise 6.8).');
+                fxNote = fxNote.replace(/\{rate\}/g, rateFmt);
+                const foot = '<span class="text-slate-500 text-xs block mt-1.5">' + fxNote + '</span>';
+
+                if (lang === 'zh') {
+                    switch (stepId) {
+                        case 's01':
+                            return '<strong>尚无 WFOE 账户。</strong><strong class="text-slate-800">预估：</strong>本步' + z() + '；名称预审通常含于第5步代理合同。';
+                        case 's02':
+                            return '<strong>尚无 WFOE 账户。</strong><strong class="text-slate-800">预估：</strong>' + z() + '；仅看房差旅等软成本。';
+                        case 's03':
+                            return '<strong>尚无 WFOE 账户。</strong><strong class="text-slate-800">预估：</strong>' + z() + '（房东提供权证）。';
+                        case 's04':
+                            return '<strong>个人 /</strong>境外母公司。<strong class="text-slate-800">现金预估：</strong>押金（常<strong>1–3 个月租金</strong>）+ 首期租金 + 杂费——一线城市小面积示意 ' + prPlus(30000, 250000) + '，因城市差异大。';
+                        case 's05':
+                            return '<strong>代理服务费</strong>（本地机构、人民币报价常见）：标准 WFOE 常 ' + pr(10000, 35000) + '；仅递交常 ' + pr(3500, 10500) + '；全包（银行+账）常 ' + pgt(35000) + '。市监<strong>政府性收费</strong>另常 ' + pr(0, 800) + '。<strong>个人/母公司</strong>垫付——尚无 WFOE。' + foot;
+                        case 's06':
+                            return '<strong>个人</strong>/母公司。<strong class="text-slate-800">预估：</strong>境外公证以当地货币计价——此处用人民币<strong>规划等价</strong>：常见材料包 ' + pr(70, 1050) + '；单次签署/确认约 ' + pr(35, 175) + '；法人全套更高。';
+                        case 's07':
+                            return '<strong>个人</strong>/母公司。<strong class="text-slate-800">预估：</strong>海牙认证每份 ' + pr(70, 350) + '；主管机关规费（如州务卿）常 ' + pr(35, 210) + '（加急/快递另计）。';
+                        case 's08':
+                            return '<strong>仅纸面</strong>—勿汇资本金。<strong class="text-slate-800">预估：</strong>增量 ' + z() + '（章程多在第5步代理范围内）。待第<strong>14–18</strong>步后再汇入。';
+                        case 's09':
+                            return '<strong>仅表格测算。</strong><strong class="text-slate-800">预估：</strong>' + z() + '；若外包财务建模<strong>约</strong> ' + pr(1400, 14000) + '+。';
+                        case 's10':
+                            return '<strong>仅纸面。</strong><strong class="text-slate-800">预估：</strong>工商填报高管规费 ' + z() + '。';
+                        case 's11':
+                            return '<strong>个人</strong>/母公司垫付。<strong class="text-slate-800">预估：</strong>市监<strong>政府收费</strong>常 ' + pr(0, 500) + '；若已含于第5步代理，增量 ' + z() + '。';
+                        case 's12':
+                            return '尚未收投资款。<strong class="text-slate-800">预估：</strong>领照多数城市另收工本费约 ' + z() + '。';
+                        case 's13':
+                            return '尚无日常现金流。<strong class="text-slate-800">预估：</strong>公章+财务章+发票章+法人章一套常 ' + pr(400, 2000) + '（因城而异）。';
+                        case 's14':
+                            return '<strong>首批企业账户</strong>，可空户开。<strong class="text-slate-800">预估：</strong>开户费 ' + pr(0, 800) + '（多可减免）；注意最低余额要求。';
+                        case 's15':
+                            return '可收 FDI。<strong class="text-slate-800">预估：</strong>第二账户若收费常 ' + pr(0, 500) + '，多 ' + z() + '。';
+                        case 's16':
+                            return '<strong>尚未汇出。</strong><strong class="text-slate-800">预估：</strong>纸面 ' + z() + '；代理超出套餐工时按 <strong>约</strong> ' + pr(350, 1400) + '/小时。';
+                        case 's17':
+                            return '<strong>资本金到账。</strong><strong class="text-slate-800">预估：</strong>境外汇出行费用（规划等价）约 ' + pr(100, 350) + '+；入账行可能有<strong>汇差</strong>（非固定手续费行）。';
+                        case 's18':
+                            return '<strong>基本户可用人民币。</strong><strong class="text-slate-800">预估：</strong>结汇常 ' + pr(0, 300) + ' 或含在套餐；少见单独规费。';
+                        case 's19':
+                            return '自<strong>基本户</strong>支付。<strong class="text-slate-800">预估：</strong>税务登记 ' + pr(0, 400) + '；税控/开票设备（若需）<strong>一次性</strong> ' + pr(0, 1500) + '。';
+                        case 's20':
+                            return '<strong>工资+法定缴费</strong>自基本户。<strong class="text-slate-800">预估：</strong>登记 ' + pr(0, 300) + '；<strong>持续</strong>缴费见<a href="#costs" class="text-emerald-700 font-semibold underline">仪表盘</a>。';
+                        default:
+                            return '';
+                    }
+                }
+
+                switch (stepId) {
+                    case 's01':
+                        return '<strong>No WFOE account.</strong> <strong class="text-slate-800">Est.:</strong> ' + z() + ' at this step; name pre-check is usually folded into your agent agreement (step 5).';
+                    case 's02':
+                        return '<strong>No WFOE account.</strong> <strong class="text-slate-800">Est.:</strong> ' + z() + ' for registration prep; only soft costs (travel to view space).';
+                    case 's03':
+                        return '<strong>No WFOE account.</strong> <strong class="text-slate-800">Est.:</strong> ' + z() + ' (landlord provides the certificate).';
+                    case 's04':
+                        return '<strong>Personal /</strong> offshore parent. <strong class="text-slate-800">Est. cash:</strong> deposit (often <strong>1–3× monthly rent</strong>) + first month + fees—illustrative ' + prPlus(30000, 250000) + ' for a small tier‑1 office; wide by city.';
+                    case 's05':
+                        return '<strong>Agency service fees</strong> (local firms, usually quoted in <strong>RMB</strong>): standard WFOE often ' + pr(10000, 35000) + '; lean filing often ' + pr(3500, 10500) + '; full-service (bank + books) often ' + pgt(35000) + '. AMR <strong>government</strong> charges commonly ' + pr(0, 800) + ' on top. <strong>Personal</strong> / <strong>parent</strong> pays—no WFOE yet.' + foot;
+                    case 's06':
+                        return '<strong>Personal</strong> / parent. <strong class="text-slate-800">Est.:</strong> home-country notary is paid abroad—<strong>planning RMB equivalents</strong>: typical pack ' + pr(70, 1050) + '; many acknowledgments ' + pr(35, 175) + ' each; corporate stacks higher.';
+                    case 's07':
+                        return '<strong>Personal</strong> / parent. <strong class="text-slate-800">Est.:</strong> apostille per document ' + pr(70, 350) + '; authority fee (e.g. Secretary of State) often ' + pr(35, 210) + ' (courier/expedite extra).';
+                    case 's08':
+                        return '<strong>Paper only</strong>—no equity wired. <strong class="text-slate-800">Est.:</strong> ' + z() + ' incremental (articles drafting usually inside step 5). Wait for steps <strong>14–18</strong> before inbound capital.';
+                    case 's09':
+                        return '<strong>Spreadsheet only.</strong> <strong class="text-slate-800">Est.:</strong> ' + z() + '; optional outsourced model <strong>~</strong> ' + pr(1400, 14000) + '+.';
+                    case 's10':
+                        return '<strong>Paper only.</strong> <strong class="text-slate-800">Est.:</strong> ' + z() + ' government fee for naming officers in the file.';
+                    case 's11':
+                        return '<strong>Personal</strong> / parent until the WFOE can pay. <strong class="text-slate-800">Est.:</strong> AMR <strong>government</strong> fee often ' + pr(0, 500) + '; if your agent (step 5) already included filing, incremental ' + z() + '.';
+                    case 's12':
+                        return 'Not receiving investment yet. <strong class="text-slate-800">Est.:</strong> license pickup usually ' + z() + ' (no separate fee in many cities).';
+                    case 's13':
+                        return 'Still <strong>no</strong> operating cash flow. <strong class="text-slate-800">Est.:</strong> seal set (official + financial + invoice + legal-person) often ' + pr(400, 2000) + ' all-in, city-dependent.';
+                    case 's14':
+                        return '<strong>First WFOE accounts</strong>—may open empty. <strong class="text-slate-800">Est.:</strong> account-opening fee ' + pr(0, 800) + ' (often waived); minimum balance rules vary.';
+                    case 's15':
+                        return 'Ready to <strong>receive</strong> FDI wires. <strong class="text-slate-800">Est.:</strong> ' + pr(0, 500) + ' if the bank charges a second account-setup fee (often ' + z() + ').';
+                    case 's16':
+                        return '<strong>No wire yet</strong>—paperwork first. <strong class="text-slate-800">Est.:</strong> ' + z() + ' filing; agent time beyond package <strong>~</strong> ' + pr(350, 1400) + '/hr if billable.';
+                    case 's17':
+                        return '<strong>Equity lands onshore.</strong> <strong class="text-slate-800">Est.:</strong> sender-bank charges (planning <strong>RMB equivalent</strong>) often ' + pr(100, 350) + '+; receiving side may embed <strong>FX spread</strong> (not a fixed “fee” line).';
+                    case 's18':
+                        return '<strong>Usable RMB</strong> in the basic account. <strong class="text-slate-800">Est.:</strong> settlement often ' + pr(0, 300) + ' or included; rare separate government charge.';
+                    case 's19':
+                        return 'Pay from <strong>RMB basic</strong>. <strong class="text-slate-800">Est.:</strong> tax registration often ' + pr(0, 400) + '; fapiao / golden-tax device (if required) ' + pr(0, 1500) + ' one-time in some setups.';
+                    case 's20':
+                        return '<strong>Payroll + statutory</strong> from basic. <strong class="text-slate-800">Est.:</strong> bureau registration often ' + pr(0, 300) + '; <strong>ongoing</strong> contributions per <a href="#costs" class="text-emerald-700 font-semibold underline">dashboard</a> once you hire.';
+                    default:
+                        return '';
+                }
+            }
+
+            function refreshWfoeMoney() {
+                document.querySelectorAll('[data-wfoe-money]').forEach(function (el) {
+                    const id = el.getAttribute('data-wfoe-money');
+                    if (!id) return;
+                    const lang = typeof window.ChinaBizI18n !== 'undefined' && window.ChinaBizI18n.getLang() === 'zh' ? 'zh' : 'en';
+                    el.innerHTML = buildWfoeStepMoneyHtml(id, lang);
+                });
+            }
+
+            function buildDomesticFeeHtml(stepId, lang) {
                 const r = effectiveExchangeRate();
                 const u = function (n) { return Math.max(0, Math.round(n / r)); };
                 const sb = function (n) {
-                    if (cur === 'rmb') return '<strong>¥' + (n === 0 ? '0' : String(Math.round(n))) + '</strong>';
-                    if (n === 0) return '<strong>$0</strong>';
-                    return '<strong>$' + u(n) + '</strong>';
+                    if (n === 0) return '<strong>¥0</strong> (≈ <strong>$0</strong>)';
+                    return '<strong>¥' + String(Math.round(n)) + '</strong> (≈ <strong>$' + u(n) + '</strong>)';
                 };
                 const sr = function (lo, hi, plus) {
-                    if (cur === 'rmb') {
-                        return '<strong>¥' + lo + '–' + hi + (plus ? '+' : '') + '</strong>';
-                    }
-                    return '<strong>$' + u(lo) + '–' + u(hi) + (plus ? '+' : '') + '</strong>';
+                    return '<strong>¥' + lo + '–' + hi + (plus ? '+' : '') + '</strong> (≈ <strong>$' + u(lo) + '–$' + u(hi) + (plus ? '+' : '') + '</strong>)';
                 };
                 const addrBand = function () {
                     if (lang === 'zh') {
-                        if (cur === 'rmb') return '<strong>¥0–2 万+</strong>';
-                        return '<strong>$0–' + u(20000) + '+</strong>';
+                        return '<strong>¥0–2 万+</strong> (≈ <strong>$0–$' + u(20000) + '+</strong>)';
                     }
-                    if (cur === 'rmb') return '<strong>¥0–20k+</strong>';
-                    return '<strong>$0–' + u(20000) + '+</strong>';
+                    return '<strong>¥0–20k+</strong> (≈ <strong>$0–$' + u(20000) + '+</strong>)';
                 };
 
                 if (lang === 'zh') {
@@ -640,7 +755,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     const id = el.getAttribute('data-domestic-fee');
                     if (!id) return;
                     const lang = typeof window.ChinaBizI18n !== 'undefined' && window.ChinaBizI18n.getLang() === 'zh' ? 'zh' : 'en';
-                    el.innerHTML = buildDomesticFeeHtml(id, lang, state.currency);
+                    el.innerHTML = buildDomesticFeeHtml(id, lang);
                 });
             }
             window.refreshDomesticFees = refreshDomesticFees;
