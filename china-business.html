@@ -10,16 +10,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
     <!-- Chosen Palette: Slate and Emerald -->
-    <!-- Application Structure Plan: The SPA is restructured to accommodate a much larger dataset (15 cities) and a shift to annual financial modeling. 
-         - Section 1 (Setup): Actionable, detailed checklist for the legal WFOE process, and a distinct summary for Special Administrative Regions (HK/Macau).
-         - Section 2 (Talent Hubs): Uses a regional categorization system (Greater Bay Area, East, North, Inland) utilizing CSS grid to organize the expanded list of cities without overwhelming the user.
-         - Section 3 (Financial Dashboard): Upgraded to handle ANNUAL costs. The master comparison chart is changed from a vertical bar to a horizontal bar chart to ensure all 15 city labels remain readable on all devices. The detail doughnut chart updates dynamically to show the specific base vs. burden split, including logic to handle the drastically different tax structures of HK/Macau. -->
-    <!-- Visualization & Content Choices: 
-         - Regional Hubs Matrix: Goal: Organize -> Method: Thematic HTML/CSS Grid -> Interaction: Hover highlight -> Justification: Groups 15 cities logically by geographic/economic zones (e.g., GBA) making exploration intuitive. NO SVG.
-         - Annual Macro Comparison: Goal: Compare -> Method: Chart.js Horizontal Bar Chart -> Interaction: Dynamic sorting and coloring based on selection -> Justification: A horizontal layout (`indexAxis: 'y'`) prevents label overlap when displaying 15 data points, a critical UX fix for larger datasets.
-         - Annual Micro Breakdown: Goal: Inform -> Method: Chart.js Doughnut Chart -> Interaction: Updates on city/role change, triggering contextual alerts for SARs -> Justification: Clearly delineates the heavy mainland social burden vs. the light SAR (MPF) burden. -->
-    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
-
     <style>
         body {
             font-family: 'Inter', sans-serif;
@@ -599,9 +589,9 @@
                     </div>
 
                     <div class="mt-6 text-sm text-slate-600 bg-white p-4 rounded border border-slate-200">
-                        <p id="micro-desc-text"><strong>Mainland Contributions:</strong> Employer contributions include
-                            mandatory Pension, Medical, Unemployment, Injury, Maternity, and Housing Fund. Rates
-                            fluctuate based on selected municipal policies.</p>
+                        <p id="micro-desc-text"><strong>Mainland Contributions:</strong> Employer statutory
+                            contributions include mandatory Pension, Medical, Unemployment, Injury, Maternity, and
+                            Housing Fund. Rates fluctuate based on selected municipal policies.</p>
                     </div>
                 </div>
             </div>
@@ -609,11 +599,19 @@
 
     </main>
 
-    <footer class="bg-slate-900 text-slate-400 py-8 text-center">
-        <div class="max-w-7xl mx-auto px-4">
-            <p>&copy; 2026 Interactive Market Analysis.</p>
-            <p class="text-sm mt-2">Data represents 2025/2026 annual aggregate estimates. Exchange rate roughly 1 USD =
-                7.1 RMB. HKD and MOP are converted to RMB equivalents for charting continuity.</p>
+    <footer class="bg-slate-900 text-slate-400 py-10 text-center text-sm border-t border-slate-800">
+        <div class="max-w-4xl mx-auto px-4 space-y-4">
+            <p class="text-slate-300 font-semibold">&copy; 2026 QROST. All rights reserved.</p>
+            <p>This report was generated using Gemini 3.1 Pro in April 2026; data, processes, and cost estimates rely on
+                its knowledge base. The exchange rate is calculated at roughly 1 USD = 7.1 RMB. HKD and MOP are
+                converted to RMB equivalents for charting continuity.</p>
+            <p class="text-slate-500 italic text-xs leading-relaxed">
+                Disclaimer: The information provided in this portal is for educational and strategic planning purposes
+                only. We make no promises or guarantees regarding its absolute accuracy, completeness, or current
+                validity. QROST assumes no liability for any business, legal, or financial decisions made based on this
+                content. Always consult with certified local legal counsel and accounting professionals before expanding
+                international operations.
+            </p>
         </div>
     </footer>
 
@@ -939,15 +937,20 @@
 
             // Event Listeners
             function toggleBtnActive(btnId, otherBtnId, updateStateKey, updateStateVal) {
-                document.getElementById(btnId).addEventListener('click', (e) => {
-                    state[updateStateKey] = updateStateVal;
-                    e.target.classList.add('bg-white', 'shadow-sm', 'text-slate-800');
-                    e.target.classList.remove('text-slate-600');
-                    const otherBtn = document.getElementById(otherBtnId);
-                    otherBtn.classList.remove('bg-white', 'shadow-sm', 'text-slate-800');
-                    otherBtn.classList.add('text-slate-600');
-                    updateVisuals();
-                });
+                const btn = document.getElementById(btnId);
+                if (btn) {
+                    btn.addEventListener('click', (e) => {
+                        state[updateStateKey] = updateStateVal;
+                        e.target.classList.add('bg-white', 'shadow-sm', 'text-slate-800');
+                        e.target.classList.remove('text-slate-600');
+                        const otherBtn = document.getElementById(otherBtnId);
+                        if (otherBtn) {
+                            otherBtn.classList.remove('bg-white', 'shadow-sm', 'text-slate-800');
+                            otherBtn.classList.add('text-slate-600');
+                        }
+                        updateVisuals();
+                    });
+                }
             }
 
             toggleBtnActive('btn-junior', 'btn-senior', 'role', 'junior');
