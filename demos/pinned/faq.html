@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en"><head>
 <meta charset="utf-8"><title>Pinned — FAQ</title>
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="description" content="Shipping times, how pins attach, AI preview, returns, DMV legality, and more—answers about Pinned license plate frames.">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="apple-touch-icon" href="favicon.svg">
@@ -26,6 +26,10 @@
   details[open] summary::after{content:"−"}
   details p{margin-top:12px;color:var(--ink-soft);line-height:1.6;font-size:15px}
   .group-label{font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin:32px 0 12px}
+  @media (max-width: 720px) {
+    .wrap{padding-left:max(20px, env(safe-area-inset-left, 0));padding-right:max(20px, env(safe-area-inset-right, 0));padding-bottom:calc(80px + env(safe-area-inset-bottom, 0))}
+    .hero h1{word-break:keep-all;overflow-wrap:anywhere}
+  }
 </style></head><body>
 <div data-topbar class="topbar"></div>
 <div class="wrap">

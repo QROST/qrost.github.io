@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en"><head>
 <meta charset="utf-8"><title>Pinned — Cart</title>
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="description" content="Review your Pinned custom license frame design, choose shipping, and complete checkout securely.">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="apple-touch-icon" href="favicon.svg">
@@ -42,6 +42,18 @@
   .video-thumb { aspect-ratio: 16/9; background: radial-gradient(ellipse at top,#3049FF 0%,#0A0B2E 60%,#000 100%); border-radius: 12px; position: relative; overflow: hidden; border: var(--border); }
   .video-thumb::after { content: "▶"; position: absolute; inset:0; display:flex; align-items:center; justify-content:center; color: #fff; font-size: 40px; text-shadow: 0 4px 20px rgba(0,0,0,.7); }
   @media(max-width:900px){.shell{grid-template-columns:1fr}}
+  @media (max-width: 720px) {
+    .wrap { padding-left: max(20px, env(safe-area-inset-left, 0)); padding-right: max(20px, env(safe-area-inset-right, 0)); padding-bottom: calc(80px + env(safe-area-inset-bottom, 0px)); }
+    .stepper { flex-wrap: wrap; }
+    .two { grid-template-columns: 1fr; }
+    .pay-methods { grid-template-columns: 1fr; }
+    .pay { min-height: 48px; }
+    .cart-item { grid-template-columns: 100px 1fr; }
+  }
+  @media (max-width: 500px) {
+    .cart-item { grid-template-columns: 1fr; text-align: left; }
+    .cart-item > div:nth-child(3) { text-align: left; }
+  }
 </style></head><body>
 <div data-topbar class="topbar"></div>
 <div class="wrap">

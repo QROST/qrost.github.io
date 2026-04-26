@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <title>Pinned — Site Map</title>
-<meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
 <meta name="description" content="Map of Pinned pages: landing, designer, pin catalog, AI preview, cart, account, order tracking, FAQ, and the operator console." />
 <link rel="icon" type="image/svg+xml" href="favicon.svg" />
 <link rel="apple-touch-icon" href="favicon.svg" />
@@ -38,6 +38,9 @@
   .paper { background: var(--paper); }
   .dark { background: var(--ink); color: var(--bg); }
   .dark p { color: rgba(245,240,227,.7); }
+  @media (max-width: 720px) {
+    .wrap { padding-left: max(20px, env(safe-area-inset-left, 0)); padding-right: max(20px, env(safe-area-inset-right, 0)); padding-bottom: calc(80px + env(safe-area-inset-bottom, 0px)); }
+  }
 </style>
 </head>
 <body>

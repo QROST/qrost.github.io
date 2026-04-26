@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8"><title>Pinned — Catalog</title>
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="description" content="Browse 100+ metal pins for the Pinned frame—letters, numbers, emoji, flags, and four finishes: silver, gold, black chrome, and rose gold.">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="apple-touch-icon" href="favicon.svg">
@@ -21,6 +21,7 @@
   .head h1 { font-size: clamp(40px,6vw,80px); line-height: .95; }
   .head p { color: var(--muted); margin-top: 8px; max-width: 480px; }
   .toolbar { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; padding: 12px; background: var(--paper); border: var(--border-thick); border-radius: 999px; margin-bottom: 20px; }
+  .toolbar #cats { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
   .toolbar input { border: none; outline: none; flex: 1; background: transparent; font-size: 15px; padding: 6px 14px; min-width: 160px; }
   .toolbar .cat-btn { padding: 6px 14px; border: 1.5px solid var(--ink); border-radius: 999px; background: transparent; font-family: 'JetBrains Mono',monospace; font-size: 11px; text-transform: uppercase; cursor: pointer; }
   .toolbar .cat-btn.active { background: var(--ink); color: var(--bg); }
@@ -37,6 +38,15 @@
   .section-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
   .section-head h2 { font-size: 32px; }
   .section-head .count { font-family: 'JetBrains Mono',monospace; color: var(--muted); font-size: 12px; }
+  @media (max-width: 720px) {
+    .wrap { padding-left: max(20px, env(safe-area-inset-left, 0)); padding-right: max(20px, env(safe-area-inset-right, 0)); padding-bottom: calc(80px + env(safe-area-inset-bottom, 0px)); }
+    .head { grid-template-columns: 1fr; gap: 16px; }
+    .head .btn { width: 100%; justify-content: center; }
+    .toolbar { border-radius: 20px; flex-direction: column; align-items: stretch; }
+    .toolbar input { min-width: 0; width: 100%; }
+    .toolbar #cats, .toolbar .finish-toggle { width: 100%; justify-content: center; }
+    .toolbar .finish-toggle { border-left: none; padding-left: 0; border-top: 2px solid var(--ink); padding-top: 8px; }
+  }
 </style>
 </head>
 <body>

@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <title>Pinned — Designer</title>
-<meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
 <meta name="description" content="Design a custom Pinned plate frame: pick metal pins and finishes, place them in 20 holes, generate an AI car preview, then add to cart." />
 <link rel="icon" type="image/svg+xml" href="favicon.svg" />
 <link rel="apple-touch-icon" href="favicon.svg" />
@@ -45,6 +45,9 @@
   .pin-item:active { cursor: grabbing; }
   .pin-item .label { position: absolute; bottom: -2px; left: 50%; transform: translateX(-50%); font-size: 9px; font-family: 'JetBrains Mono', monospace; color: var(--muted); background: var(--paper); padding: 1px 4px; border-radius: 3px; opacity: 0; transition: opacity .15s; white-space: nowrap; }
   .pin-item:hover .label { opacity: 1; }
+  @media (pointer: coarse) {
+    .pin-item .label { opacity: 1; }
+  }
 
   /* Stage / center canvas */
   .stage {
@@ -53,9 +56,9 @@
     padding: 24px; overflow: hidden;
   }
   .stage-toolbar {
-    display: flex; align-items: center; gap: 12px;
+    display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 8px 12px;
     margin-bottom: 16px; background: var(--paper);
-    border: var(--border); border-radius: 999px; padding: 6px 8px 6px 18px;
+    border: var(--border); border-radius: 999px; padding: 8px 10px 8px 14px;
     font-family: 'JetBrains Mono', monospace; font-size: 12px;
   }
   .stage-toolbar .stat { padding: 4px 10px; background: var(--bg-2); border-radius: 999px; }
@@ -165,14 +168,15 @@
       border: none;
       border-right: 2px solid var(--ink);
       background: var(--bg-2);
-      padding: 10px 6px;
+      padding: 12px 8px;
+      min-height: 48px;
       font-family: 'JetBrains Mono', monospace;
-      font-size: 10px;
+      font-size: clamp(10px, 2.8vw, 12px);
       text-transform: uppercase;
       letter-spacing: 0.04em;
       cursor: pointer;
       color: var(--ink);
-      line-height: 1.2;
+      line-height: 1.25;
     }
     .dmt:last-child { border-right: none; }
     .dmt.active { background: var(--ink); color: var(--bg); }
@@ -207,6 +211,13 @@
       min-height: 0;
       display: flex;
     }
+    .help-callout {
+      position: static;
+      margin-top: 16px;
+      max-width: none;
+      align-self: stretch;
+    }
+    .stage { padding-bottom: max(16px, env(safe-area-inset-bottom, 0px)); }
   }
 </style>
 </head>
