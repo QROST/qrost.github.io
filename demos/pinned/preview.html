@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8"><title>Pinned — AI Preview</title>
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="description" content="Generate an AI video preview of your Pinned custom plate frame on your vehicle—set make, model, year, color, and scene.">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="apple-touch-icon" href="favicon.svg">
@@ -59,6 +59,11 @@
   .video-overlay-info.right { left: auto; right: 14px; }
 
   @media(max-width:900px){ .shell { grid-template-columns: 1fr; } }
+  @media (max-width: 720px) {
+    .wrap { padding-left: max(20px, env(safe-area-inset-left, 0)); padding-right: max(20px, env(safe-area-inset-right, 0)); padding-bottom: calc(80px + env(safe-area-inset-bottom, 0px)); }
+    .color-grid { grid-template-columns: repeat(3, 1fr); }
+    .color-grid .cc { min-height: 44px; }
+  }
 </style>
 </head>
 <body>

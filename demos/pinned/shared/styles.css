@@ -35,7 +35,14 @@
 
 * { box-sizing: border-box; }
 html, body { margin: 0; padding: 0; background: var(--bg); color: var(--ink); font-family: 'Inter', system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
-body { min-height: 100vh; }
+body { min-height: 100vh; min-height: 100dvh; }
+
+/* iOS: avoid page zoom on focus; keep desktop sizes unchanged */
+@media (max-width: 720px) {
+  input, select, textarea, .field input, .field select, .search-box input, .promo input {
+    font-size: 16px !important;
+  }
+}
 
 h1,h2,h3,h4 { font-family: 'Space Grotesk', sans-serif; letter-spacing: -0.02em; margin: 0; }
 .mono { font-family: 'JetBrains Mono', monospace; }
@@ -80,18 +87,59 @@ h1,h2,h3,h4 { font-family: 'Space Grotesk', sans-serif; letter-spacing: -0.02em;
 .topbar {
   position: sticky; top: 0; z-index: 50;
   background: var(--bg); border-bottom: var(--border-thick);
-  padding: 12px 24px; display: flex; align-items: center; gap: 18px;
+  padding:
+    max(12px, env(safe-area-inset-top, 0px))
+    max(24px, env(safe-area-inset-right, 0px))
+    12px
+    max(24px, env(safe-area-inset-left, 0px));
+  display: flex; align-items: center; gap: 18px;
+  flex-wrap: nowrap;
 }
 .topbar .logo { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 22px; letter-spacing: -0.03em; display: flex; align-items: center; gap: 8px; text-decoration: none; color: var(--ink); }
 .topbar .logo::before { content: ""; width: 18px; height: 18px; background: var(--lime); border: var(--border-thick); border-radius: 50%; display: inline-block; }
-.topbar nav { display: flex; gap: 4px; margin-left: 16px; }
+.topbar nav { display: flex; flex-wrap: nowrap; gap: 4px; margin-left: 16px; min-width: 0; }
 .topbar nav a {
   color: var(--ink); text-decoration: none; padding: 8px 14px; border-radius: 999px;
-  font-weight: 500; font-size: 14px;
+  font-weight: 500; font-size: 14px; flex: 0 0 auto;
+  display: inline-flex; align-items: center; justify-content: center;
+  min-height: 40px;
 }
 .topbar nav a:hover { background: var(--ink); color: var(--bg); }
 .topbar nav a.active { background: var(--ink); color: var(--bg); }
-.topbar .right { margin-left: auto; display: flex; gap: 8px; align-items: center; }
+.topbar .right { margin-left: auto; display: flex; flex-wrap: nowrap; gap: 8px; align-items: center; flex: 0 0 auto; max-width: 100%; }
+
+@media (max-width: 900px) {
+  .topbar {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    column-gap: 10px;
+    row-gap: 4px;
+    align-items: center;
+  }
+  .topbar .logo { grid-column: 1; grid-row: 1; min-width: 0; }
+  .topbar .right { grid-column: 2; grid-row: 1; margin-left: 0; }
+  .topbar nav {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    margin-left: 0;
+    width: 100%;
+    max-width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    padding-bottom: 2px;
+    border-bottom: 1px solid rgba(15, 15, 15, 0.08);
+  }
+  .topbar nav::-webkit-scrollbar { display: none; }
+  .topbar nav a { min-height: 44px; }
+}
+@media (max-width: 420px) {
+  .topbar .right { max-width: 100%; justify-content: center; flex-wrap: wrap; row-gap: 6px; }
+  .topbar { justify-items: stretch; }
+  .topbar .logo { grid-column: 1 / -1; }
+  .topbar .right { grid-column: 1 / -1; grid-row: 2; justify-content: center; }
+  .topbar nav { grid-row: 3; }
+}
 
 .lang {
   font-family: 'JetBrains Mono', monospace; font-size: 12px;
@@ -150,7 +198,20 @@ h1,h2,h3,h4 { font-family: 'Space Grotesk', sans-serif; letter-spacing: -0.02em;
 .topbar nav a:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; border-radius: 999px; }
 .chip:focus-visible, .lang-btn:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
 
-/* index.html — marquee: respect system “reduce motion” */
+/* reduce motion: marquee + any decorative page animations (e.g. preview streak) */
 @media (prefers-reduced-motion: reduce) {
   .marquee-track { animation: none !important; }
+  .light-streak { animation: none !important; }
+}
+
+.topbar .lang-btn {
+  min-height: 36px;
+  min-width: 2rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+@media (max-width: 900px) {
+  .topbar .right .lang-btn { min-height: 40px; padding-left: 10px; padding-right: 10px; }
+  .topbar .right .btn { min-height: 44px; }
 }

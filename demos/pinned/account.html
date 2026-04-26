@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en"><head>
 <meta charset="utf-8"><title>Pinned — Account</title>
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="description" content="View your Pinned orders, saved custom designs, and account settings in one place.">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="apple-touch-icon" href="favicon.svg">
@@ -35,6 +35,15 @@
   .saved-card{padding:16px;display:flex;flex-direction:column;gap:10px}
   .profile-card{padding:20px;display:grid;grid-template-columns:80px 1fr;gap:18px;align-items:center;margin-bottom:20px}
   .avatar{width:80px;height:80px;border-radius:50%;background:var(--lime);border:var(--border-thick);display:flex;align-items:center;justify-content:center;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:32px}
+  @media (max-width: 720px) {
+    .wrap{padding-left:max(20px, env(safe-area-inset-left, 0));padding-right:max(20px, env(safe-area-inset-right, 0));padding-bottom:calc(80px + env(safe-area-inset-bottom, 0))}
+    .head{grid-template-columns:1fr;gap:16px}
+    .head .btn{width:100%;justify-content:center}
+    .order{grid-template-columns:1fr;gap:12px;justify-items:stretch}
+    .order .mini-plate{justify-self:center;max-width:200px}
+    .order .status-pill{justify-self:start}
+    .order .btn.ghost{width:100%;justify-content:center}
+  }
 </style></head><body>
 <div data-topbar class="topbar"></div>
 <div class="wrap">
