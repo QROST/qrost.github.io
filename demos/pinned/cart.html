@@ -1,0 +1,258 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><title>Pinned — Cart</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Review your Pinned custom license frame design, choose shipping, and complete checkout securely.">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="apple-touch-icon" href="favicon.svg">
+<meta name="theme-color" content="#F5F0E3">
+<meta property="og:site_name" content="Pinned">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="en_US">
+<meta property="og:title" content="Pinned — Cart">
+<meta property="og:description" content="Review your Pinned custom license frame design, choose shipping, and complete checkout securely.">
+<meta property="og:image" content="favicon.svg">
+<meta name="twitter:card" content="summary">
+<link rel="stylesheet" href="shared/styles.css">
+<style>
+  .wrap { max-width: 1200px; margin: 0 auto; padding: 32px 24px 80px; }
+  .shell { display: grid; grid-template-columns: 1.5fr 1fr; gap: 24px; align-items: start; }
+  .stepper { display: flex; gap: 8px; margin-bottom: 24px; font-family: 'JetBrains Mono',monospace; font-size: 12px; }
+  .stepper .s { padding: 6px 12px; border: 1.5px solid var(--ink); border-radius: 999px; background: var(--paper); }
+  .stepper .s.active { background: var(--ink); color: var(--bg); }
+  .section { padding: 22px; margin-bottom: 20px; }
+  .section h2 { font-size: 22px; margin-bottom: 14px; }
+  .field { margin-bottom: 12px; }
+  .field label { display:block; font-family: 'JetBrains Mono',monospace; font-size: 11px; text-transform: uppercase; color: var(--muted); margin-bottom: 4px; }
+  .field input, .field select { width: 100%; padding: 10px 14px; border: var(--border); border-radius: 10px; background: var(--bg); font-size: 14px; }
+  .two { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .pay-methods { display: grid; grid-template-columns: repeat(2,1fr); gap: 8px; }
+  .pay { padding: 14px; border: var(--border); border-radius: 12px; background: var(--paper); cursor: pointer; display: flex; align-items: center; justify-content: space-between; font-weight: 600; }
+  .pay.active { background: var(--ink); color: var(--bg); }
+  .pay .logo { font-family: 'Space Grotesk',sans-serif; font-weight: 700; }
+  .cart-item { display: grid; grid-template-columns: 110px 1fr auto; gap: 14px; padding: 14px 0; border-bottom: 1px dashed var(--muted); align-items: center; }
+  .cart-item:last-child { border: none; }
+  .mini-plate { width: 110px; aspect-ratio: 2/1; background: #111; border-radius: 6px; padding: 10%; position: relative; }
+  .mini-plate .inner { background: linear-gradient(180deg,#F8F5E8,#EADFBE); width:100%;height:100%;border-radius:3px;display:flex;align-items:center;justify-content:center;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:13px;color:#1F3A8A;letter-spacing:.05em }
+  .price { font-family: 'Space Grotesk',sans-serif; font-weight: 700; }
+  .summary .line { display: flex; justify-content: space-between; padding: 8px 0; font-size: 14px; }
+  .summary .line.total { font-family: 'Space Grotesk',sans-serif; font-size: 26px; font-weight: 700; border-top: 2px solid var(--ink); margin-top: 8px; padding-top: 14px; }
+  .promo { display: flex; gap: 8px; margin: 14px 0; }
+  .promo input { flex: 1; padding: 10px 14px; border: var(--border); border-radius: 999px; background: var(--bg); }
+  .video-thumb { aspect-ratio: 16/9; background: radial-gradient(ellipse at top,#3049FF 0%,#0A0B2E 60%,#000 100%); border-radius: 12px; position: relative; overflow: hidden; border: var(--border); }
+  .video-thumb::after { content: "▶"; position: absolute; inset:0; display:flex; align-items:center; justify-content:center; color: #fff; font-size: 40px; text-shadow: 0 4px 20px rgba(0,0,0,.7); }
+  @media(max-width:900px){.shell{grid-template-columns:1fr}}
+</style></head><body>
+<div data-topbar class="topbar"></div>
+<div class="wrap">
+  <div class="stepper">
+    <div class="s" data-i18n="step_design">1. DESIGN</div><div class="s" data-i18n="step_preview">2. PREVIEW</div><div class="s active" data-i18n="step_checkout">3. CHECKOUT</div><div class="s" data-i18n="step_ship">4. SHIP</div>
+  </div>
+  <h1 style="font-size:clamp(36px,5vw,56px);margin-bottom:20px" data-i18n="cart_title">Your cart</h1>
+
+  <div class="shell">
+    <div>
+      <div class="card section">
+        <h2>1 <span data-i18n="in_cart">design in cart</span></h2>
+        <div class="cart-item" id="cart-item">
+          <div class="mini-plate" id="cart-mini-plate"><div class="inner" id="cart-plate-text">BRIAN</div></div>
+          <div>
+            <div style="font-weight:700;font-size:17px" data-i18n="custom_frame">Custom Pinned Frame</div>
+            <div class="mono" id="cart-desc" style="font-size:12px;color:var(--muted);margin-top:4px">Black silicone · AI preview included</div>
+            <div class="row" id="cart-tags" style="gap:6px;margin-top:8px;flex-wrap:wrap">
+              <span class="tag" id="cart-pin-tag">0 PINS</span><span class="tag" id="cart-frame-tag">BLACK FRAME</span><span class="tag" id="cart-finish-tag">SILVER</span>
+            </div>
+          </div>
+          <div style="text-align:right">
+            <div class="price" id="cart-item-price">$39.00</div>
+            <a href="designer.html" class="mono" style="font-size:12px;color:var(--muted)" data-i18n="edit">edit</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card section">
+        <h2 data-i18n="ship_to">Ship to</h2>
+        <div class="two">
+          <div class="field"><label data-i18n="full_name">Full name</label><input value="Brian Chen"></div>
+          <div class="field"><label data-i18n="phone">Phone</label><input value="(415) 555-0142"></div>
+        </div>
+        <div class="field"><label data-i18n="address">Address</label><input value="2814 Sunset Blvd"></div>
+        <div class="two">
+          <div class="field"><label data-i18n="city">City</label><input value="Los Angeles"></div>
+          <div class="field"><label data-i18n="state_zip">State / ZIP</label><input value="CA 90026"></div>
+        </div>
+        <div class="field"><label data-i18n="shipping">Shipping</label>
+          <select><option data-i18n="shipping_std">Standard — free · 3–5 business days</option><option data-i18n="shipping_exp">Express — $12 · 2 days</option><option data-i18n="shipping_intl">International DHL — $28 · 5–10 days</option></select>
+        </div>
+      </div>
+
+      <div class="card section">
+        <h2 data-i18n="payment">Payment</h2>
+        <div class="pay-methods">
+          <div class="pay active"><span class="logo">Stripe — card</span><span>●●●● 4242</span></div>
+          <div class="pay"><span class="logo">PayPal</span><span>→</span></div>
+          <div class="pay"><span class="logo"> Pay</span><span>→</span></div>
+          <div class="pay"><span class="logo">G Pay</span><span>→</span></div>
+        </div>
+        <div class="mono" style="font-size:11px;color:var(--muted);margin-top:10px" data-i18n="pay_note">Processed via Shopify · PCI-DSS compliant · card details never touch our servers.</div>
+      </div>
+    </div>
+
+    <div>
+      <div class="card section" style="position:sticky;top:80px">
+        <div class="video-thumb" style="margin-bottom:14px"></div>
+        <div class="mono" style="font-size:11px;color:var(--muted);margin-bottom:10px">AI PREVIEW · 2024 HONDA CIVIC SI · ELECTRIC BLUE</div>
+        <div class="summary">
+          <div class="line"><span data-i18n="price_frame">Frame</span><span>$39.00</span></div>
+          <div class="line"><span><span data-i18n="pins_x">Pins ×</span> <span id="sum-pin-count">0</span></span><span id="sum-pin-price">$0.00</span></div>
+          <div class="line"><span data-i18n="price_video">AI preview video</span><span data-i18n="included">included</span></div>
+          <div class="line"><span data-i18n="shipping">Shipping</span><span data-i18n="free">free</span></div>
+          <div class="line"><span data-i18n="tax">Tax</span><span id="sum-tax">$3.12</span></div>
+          <div class="promo"><input data-i18n-placeholder="promo_ph" placeholder="Promo code"><button class="btn ghost" data-i18n="apply">Apply</button></div>
+          <div class="line total"><span data-i18n="total">Total</span><span id="sum-total">$42.12</span></div>
+        </div>
+        <button class="btn primary" id="place-order-btn" style="width:100%;margin-top:12px;justify-content:center" data-i18n="place_order">Place order →</button>
+        <div id="order-result" class="mono" style="font-size:12px;color:var(--muted);margin-top:8px;text-align:center;min-height:18px"></div>
+        <div class="mono" style="font-size:11px;color:var(--muted);margin-top:10px;text-align:center" data-i18n="cart_note">We'll send the AI preview within 2 min and order confirmation right after.</div>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="shared/i18n.js?v=5"></script>
+<script src="shared/pins.js?v=5"></script>
+<script src="shared/api.js?v=1"></script>
+<script>
+  renderTopbar('cart');
+
+  // Collected during hydrateCart and re-used when placing an order.
+  let _cartSummary = { subtotal_cents: 3900, tax_cents: 312, shipping_cents: 0, design_id_local: null };
+
+  // Load saved design from localStorage and reflect it in the cart summary.
+  function hydrateCart() {
+    let saved;
+    try { saved = JSON.parse(localStorage.getItem('pinned_design') || 'null'); } catch(e) { saved = null; }
+    if (!saved || !saved.placements) return;
+
+    // Filter out "<idx>_finish" keys used by designer.html
+    const pinKeys = Object.keys(saved.placements).filter(k => !k.endsWith('_finish'));
+    const pinCount = pinKeys.length;
+    const finishes = new Set();
+    let pinPriceCents = 0;
+    pinKeys.forEach(k => {
+      const pinId = saved.placements[k];
+      const finish = saved.placements[k + '_finish'] || saved.finish || 'silver';
+      finishes.add(finish);
+      const pin = (window.PinnedCatalog && PinnedCatalog.pins.find(p => p.id === pinId));
+      if (pin) pinPriceCents += Math.round(pin.price * 100);
+    });
+
+    const plate = (saved.plateText || 'BRIAN').toUpperCase();
+    const frame = saved.frameColor || 'black';
+
+    document.getElementById('cart-plate-text').textContent = plate;
+    document.getElementById('cart-pin-tag').textContent = pinCount + ' PIN' + (pinCount === 1 ? '' : 'S');
+    document.getElementById('cart-frame-tag').textContent = frame.toUpperCase() + ' FRAME';
+    const primaryFinish = saved.finish || [...finishes][0] || 'silver';
+    document.getElementById('cart-finish-tag').textContent = ([...finishes].join('+') || primaryFinish).toUpperCase();
+    document.getElementById('cart-desc').textContent =
+      frame[0].toUpperCase() + frame.slice(1) + ' silicone · ' + pinCount + ' pin' + (pinCount===1?'':'s') + ' · AI preview included';
+
+    const miniStyle = document.getElementById('cart-mini-plate').style;
+    const frameMap = { black:'#111', white:'#EFEAE0', pink:'#FF4D8D', lime:'#C6F24E', cobalt:'#2E4CFF' };
+    miniStyle.background = frameMap[frame] || '#111';
+
+    const frameCents = 3900;
+    const itemCents = frameCents + pinPriceCents;
+    const taxCents = Math.round(itemCents * 0.08);
+    const totalCents = itemCents + taxCents;
+    const fmt = (c) => '$' + (c / 100).toFixed(2);
+    document.getElementById('cart-item-price').textContent = fmt(itemCents);
+    document.getElementById('sum-pin-count').textContent = pinCount;
+    document.getElementById('sum-pin-price').textContent = fmt(pinPriceCents);
+    document.getElementById('sum-tax').textContent = fmt(taxCents);
+    document.getElementById('sum-total').textContent = fmt(totalCents);
+
+    _cartSummary = { subtotal_cents: itemCents, tax_cents: taxCents, shipping_cents: 0, design_id_local: null };
+  }
+
+  hydrateCart();
+  if (window.PinnedAssetsLoaded && typeof window.PinnedAssetsLoaded.then === 'function') {
+    window.PinnedAssetsLoaded.then(hydrateCart);
+  }
+
+  // ---------- Place order ----------
+  function readFormAddress() {
+    const inputs = document.querySelectorAll('.card.section:nth-of-type(2) input, .card.section:nth-of-type(2) select');
+    const vals = [...inputs].map(i => i.value.trim());
+    // Order of fields in cart.html: Full name, Phone, Address, City, State/ZIP, Shipping method.
+    const [name, phone, street1, city, stateZip] = vals;
+    const parts = (stateZip || '').split(/\s+/);
+    const state = parts[0] || 'CA';
+    const postal_code = parts.slice(1).join(' ') || '90026';
+    return { name: name || 'Guest', phone, street1: street1 || '—', city: city || '—', state, postal_code, country: 'US' };
+  }
+
+  async function ensureCloudDesign() {
+    // Prefer cloud id if already saved; otherwise try to save the current local design to the backend.
+    if (!window.PinnedAPI) return null;
+    const existing = localStorage.getItem('pinned_design_id');
+    if (existing) {
+      try { await window.PinnedAPI.getDesign(existing); return existing; } catch (_) { /* fallthrough */ }
+    }
+    let local;
+    try { local = JSON.parse(localStorage.getItem('pinned_design') || 'null'); } catch(_) { local = null; }
+    if (!local || !local.placements || !Object.keys(local.placements).length) return null;
+    if (!(await window.PinnedAPI.health())) return null;
+    const saved = await window.PinnedAPI.saveDesign(local);
+    if (saved && saved.id) { try { localStorage.setItem('pinned_design_id', saved.id); } catch(_){} return saved.id; }
+    return null;
+  }
+
+  async function placeOrder() {
+    const btn = document.getElementById('place-order-btn');
+    const result = document.getElementById('order-result');
+    btn.disabled = true;
+    btn.style.opacity = .6;
+    result.style.color = 'var(--muted)';
+    result.textContent = 'Processing…';
+
+    try {
+      if (!window.PinnedAPI) throw new Error('no_api_client');
+      if (!(await window.PinnedAPI.health())) {
+        result.style.color = 'var(--muted)';
+        result.textContent = 'Backend offline — order kept as a local draft (no charge).';
+        return;
+      }
+      const design_id = await ensureCloudDesign();
+      if (!design_id) {
+        result.style.color = 'var(--pink)';
+        result.textContent = 'Design is empty — design something first.';
+        return;
+      }
+      const ship = readFormAddress();
+      const email = document.querySelector('[data-i18n="ship_to"]')?.closest('.section')?.querySelector('input[type="email"]')?.value || 'brian@example.com';
+      const out = await window.PinnedAPI.createOrderStub({
+        design_id,
+        customer_email: email,
+        customer_name: ship.name,
+        ship_address: ship,
+        subtotal_cents: _cartSummary.subtotal_cents,
+        tax_cents: _cartSummary.tax_cents,
+        shipping_cents: _cartSummary.shipping_cents,
+      });
+      result.style.color = 'var(--ink)';
+      result.innerHTML = 'Order placed · <b>' + (out.id || 'unknown') + '</b>. Check <a href="account.html">your account</a>.';
+      try { localStorage.setItem('pinned_last_order', out.id); } catch(_){}
+    } catch (e) {
+      console.warn('[cart] place-order failed:', e);
+      result.style.color = 'var(--pink)';
+      result.textContent = 'Could not place order: ' + (e.message || 'unknown error');
+    } finally {
+      btn.disabled = false;
+      btn.style.opacity = 1;
+    }
+  }
+
+  document.getElementById('place-order-btn').addEventListener('click', placeOrder);
+</script>
+</body></html>

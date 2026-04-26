@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Pinned — Site Map</title>
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta name="description" content="Map of Pinned pages: landing, designer, pin catalog, AI preview, cart, account, order tracking, FAQ, and the operator console." />
+<link rel="icon" type="image/svg+xml" href="favicon.svg" />
+<link rel="apple-touch-icon" href="favicon.svg" />
+<meta name="theme-color" content="#F5F0E3" />
+<meta property="og:site_name" content="Pinned" />
+<meta property="og:type" content="website" />
+<meta property="og:locale" content="en_US" />
+<meta property="og:title" content="Pinned — Site Map" />
+<meta property="og:description" content="Map of Pinned pages: landing, designer, pin catalog, AI preview, cart, account, order tracking, FAQ, and the operator console." />
+<meta property="og:image" content="favicon.svg" />
+<meta name="twitter:card" content="summary" />
+<link rel="stylesheet" href="shared/styles.css" />
+<style>
+  .wrap { max-width: 1200px; margin: 0 auto; padding: 40px 24px 80px; }
+  .hero { padding: 32px; border: 3px solid var(--ink); border-radius: 22px; background: var(--lime); box-shadow: var(--shadow-hard-lg); margin-bottom: 32px; position: relative; overflow: hidden; }
+  .hero h1 { font-size: clamp(40px, 6vw, 80px); line-height: .95; }
+  .hero p { font-size: 18px; max-width: 620px; margin-top: 12px; }
+  .hero::after { content: "PROTOTYPE"; position: absolute; top: 20px; right: 24px; font-family: 'JetBrains Mono', monospace; font-size: 12px; padding: 6px 12px; background: var(--ink); color: var(--lime); border-radius: 999px; letter-spacing: .1em; }
+  .sections { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px,1fr)); gap: 20px; }
+  .tile { padding: 22px; text-decoration: none; color: inherit; display: flex; flex-direction: column; gap: 8px; min-height: 180px; position: relative; transition: transform .12s ease, box-shadow .12s ease; }
+  .tile:hover { transform: translate(-2px,-2px); box-shadow: 8px 8px 0 0 var(--ink); }
+  .tile .num { font-family: 'JetBrains Mono', monospace; font-size: 11px; opacity: .6; }
+  .tile h3 { font-size: 22px; }
+  .tile p { margin: 0; color: var(--muted); font-size: 14px; }
+  .tile .arrow { position: absolute; right: 18px; bottom: 18px; font-size: 24px; }
+  .group-label { font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); margin: 28px 0 10px; }
+  .lime { background: var(--lime); }
+  .pink { background: var(--pink); color: var(--paper); }
+  .pink p { color: rgba(255,255,255,.8); }
+  .cobalt { background: var(--cobalt); color: var(--paper); }
+  .cobalt p { color: rgba(255,255,255,.8); }
+  .paper { background: var(--paper); }
+  .dark { background: var(--ink); color: var(--bg); }
+  .dark p { color: rgba(245,240,227,.7); }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="hero">
+      <div class="chip" style="margin-bottom:16px">PINNED · Site Map</div>
+      <h1>Custom license-plate<br/>frame, configured.</h1>
+      <p>This prototype covers the full customer + ops flow for Pinned — a made-to-order silicone plate frame with pinnable metal icons. Open any page below.</p>
+    </div>
+
+    <div class="group-label">Customer-facing</div>
+    <div class="sections">
+      <a class="card tile lime" href="index.html"><div class="num">01</div><h3>Landing page</h3><p>Hero, how-it-works, social proof, pricing. Entry to the configurator.</p><span class="arrow">→</span></a>
+      <a class="card tile pink" href="designer.html"><div class="num">02</div><h3>The Designer</h3><p>Core tool. Drag pins onto the 20-hole frame. Finish picker, live price, undo, save.</p><span class="arrow">→</span></a>
+      <a class="card tile paper" href="catalog.html"><div class="num">03</div><h3>Pin catalog</h3><p>Browse all pins by category. Letters, emoji, flags, cars, sports.</p><span class="arrow">→</span></a>
+      <a class="card tile cobalt" href="preview.html"><div class="num">04</div><h3>AI preview</h3><p>Generate a cinematic render of your frame on your exact car, year & color.</p><span class="arrow">→</span></a>
+      <a class="card tile paper" href="cart.html"><div class="num">05</div><h3>Cart & checkout</h3><p>Review design, shipping, payment (Shopify / Stripe / Apple Pay).</p><span class="arrow">→</span></a>
+      <a class="card tile paper" href="account.html"><div class="num">06</div><h3>Account & orders</h3><p>Past orders, reorder, edit saved designs, tracking.</p><span class="arrow">→</span></a>
+      <a class="card tile paper" href="tracking.html"><div class="num">07</div><h3>Order tracking</h3><p>Status timeline: queued → packed → shipped → delivered.</p><span class="arrow">→</span></a>
+      <a class="card tile paper" href="faq.html"><div class="num">08</div><h3>About & FAQ</h3><p>Shipping, installation, warranty, returns.</p><span class="arrow">→</span></a>
+    </div>
+
+    <div class="group-label">Operations</div>
+    <div class="sections">
+      <a class="card tile dark" href="admin.html"><div class="num">09</div><h3>Operator console</h3><p>Live orders, inventory control, AI render queue, design gallery, settings. Architecture docs folded in. Talks to <code>backend/</code> API service.</p><span class="arrow">→</span></a>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><title>Pinned — Account</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="View your Pinned orders, saved custom designs, and account settings in one place.">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="apple-touch-icon" href="favicon.svg">
+<meta name="theme-color" content="#F5F0E3">
+<meta property="og:site_name" content="Pinned">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="en_US">
+<meta property="og:title" content="Pinned — Account">
+<meta property="og:description" content="View your Pinned orders, saved custom designs, and account settings in one place.">
+<meta property="og:image" content="favicon.svg">
+<meta name="twitter:card" content="summary">
+<link rel="stylesheet" href="shared/styles.css">
+<style>
+  .wrap{max-width:1200px;margin:0 auto;padding:32px 24px 80px}
+  .head{display:grid;grid-template-columns:1fr auto;gap:20px;align-items:end;margin-bottom:24px}
+  .head h1{font-size:clamp(40px,6vw,72px);line-height:.95}
+  .tabs{display:flex;gap:6px;margin-bottom:20px;border-bottom:2px solid var(--ink)}
+  .tabs button{border:none;background:transparent;padding:10px 18px;font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:15px;cursor:pointer;border-radius:12px 12px 0 0}
+  .tabs button.active{background:var(--ink);color:var(--bg)}
+  .orders{display:grid;gap:14px}
+  .order{padding:18px;display:grid;grid-template-columns:120px 1fr auto auto;gap:18px;align-items:center}
+  .status-pill{padding:5px 11px;border-radius:999px;font-family:'JetBrains Mono',monospace;font-size:11px;text-transform:uppercase;border:1.5px solid var(--ink)}
+  .status-pill.shipped{background:var(--lime)}
+  .status-pill.assembling{background:var(--tangerine);color:var(--paper)}
+  .status-pill.delivered{background:var(--ink);color:var(--bg)}
+  .status-pill.queued{background:var(--paper)}
+  .mini-plate{width:120px;aspect-ratio:2/1;background:#111;border-radius:6px;padding:10%}
+  .mini-plate.pink{background:#FF4D8D}.mini-plate.white{background:#EFEAE0}.mini-plate.lime{background:#C6F24E}
+  .mini-plate .inner{background:linear-gradient(180deg,#F8F5E8,#EADFBE);width:100%;height:100%;border-radius:3px;display:flex;align-items:center;justify-content:center;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:16px;color:#1F3A8A;letter-spacing:.05em}
+  .saved-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:16px}
+  .saved-card{padding:16px;display:flex;flex-direction:column;gap:10px}
+  .profile-card{padding:20px;display:grid;grid-template-columns:80px 1fr;gap:18px;align-items:center;margin-bottom:20px}
+  .avatar{width:80px;height:80px;border-radius:50%;background:var(--lime);border:var(--border-thick);display:flex;align-items:center;justify-content:center;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:32px}
+</style></head><body>
+<div data-topbar class="topbar"></div>
+<div class="wrap">
+  <div class="head">
+    <div>
+      <span class="chip" data-i18n="member_since">Member since Jan 2026</span>
+      <h1><span data-i18n="hey">Hey</span>, Brian.</h1>
+    </div>
+    <a class="btn primary" href="designer.html" data-i18n="design_another">Design another →</a>
+  </div>
+
+  <div class="card profile-card">
+    <div class="avatar">BC</div>
+    <div>
+      <div style="font-size:20px;font-weight:700">Brian Chen</div>
+      <div class="mono" style="font-size:12px;color:var(--muted)">brian@example.com · 3 orders · $328 spent</div>
+    </div>
+  </div>
+
+  <div class="tabs">
+    <button class="active" data-tab="orders" data-i18n="tab_orders">Orders</button>
+    <button data-tab="saved" data-i18n="tab_saved">Saved designs</button>
+    <button data-tab="addresses" data-i18n="tab_addresses">Addresses</button>
+    <button data-tab="settings" data-i18n="tab_settings">Settings</button>
+  </div>
+
+  <div id="tab-orders">
+    <div class="orders">
+      <div class="card order">
+        <div class="mini-plate"><div class="inner">BRIAN</div></div>
+        <div>
+          <div style="font-weight:700">#PIN-2026-0042 · 18 pins · black frame</div>
+          <div class="mono" style="font-size:12px;color:var(--muted);margin-top:4px">Placed Apr 14 · $121.55 · UPS 1Z999AA10123456784</div>
+        </div>
+        <div class="status-pill assembling" data-i18n="status_assembling">ASSEMBLING</div>
+        <a class="btn ghost" href="tracking.html" data-i18n="track">Track →</a>
+      </div>
+      <div class="card order">
+        <div class="mini-plate pink"><div class="inner" style="color:#fff;background:linear-gradient(180deg,#ff88ad,#ff4d8d)">EMMA</div></div>
+        <div>
+          <div style="font-weight:700">#PIN-2026-0031 · 24 pins · pink frame</div>
+          <div class="mono" style="font-size:12px;color:var(--muted);margin-top:4px">Placed Mar 02 · $134.20 · delivered Mar 06</div>
+        </div>
+        <div class="status-pill delivered" data-i18n="status_delivered">DELIVERED</div>
+        <a class="btn ghost" href="#" data-i18n="reorder">Reorder</a>
+      </div>
+      <div class="card order">
+        <div class="mini-plate lime"><div class="inner">GT-R</div></div>
+        <div>
+          <div style="font-weight:700">#PIN-2026-0018 · 12 pins · lime frame</div>
+          <div class="mono" style="font-size:12px;color:var(--muted);margin-top:4px">Placed Feb 08 · $72.40 · delivered Feb 12</div>
+        </div>
+        <div class="status-pill delivered" data-i18n="status_delivered">DELIVERED</div>
+        <a class="btn ghost" href="#" data-i18n="reorder">Reorder</a>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="shared/i18n.js?v=5"></script><script>renderTopbar('account');</script>
+</body></html>
