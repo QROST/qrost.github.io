@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><title>Pinned — Catalog</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Browse 100+ metal pins for the Pinned frame—letters, numbers, emoji, flags, and four finishes: silver, gold, black chrome, and rose gold.">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="apple-touch-icon" href="favicon.svg">
+<meta name="theme-color" content="#F5F0E3">
+<meta property="og:site_name" content="Pinned">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="en_US">
+<meta property="og:title" content="Pinned — Catalog">
+<meta property="og:description" content="Browse 100+ metal pins for the Pinned frame—letters, numbers, emoji, flags, and four finishes: silver, gold, black chrome, and rose gold.">
+<meta property="og:image" content="favicon.svg">
+<meta name="twitter:card" content="summary">
+<link rel="stylesheet" href="shared/styles.css">
+<style>
+  .wrap { max-width: 1280px; margin: 0 auto; padding: 32px 24px 80px; }
+  .head { display: grid; grid-template-columns: 1fr auto; gap: 20px; align-items: end; margin-bottom: 24px; }
+  .head h1 { font-size: clamp(40px,6vw,80px); line-height: .95; }
+  .head p { color: var(--muted); margin-top: 8px; max-width: 480px; }
+  .toolbar { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; padding: 12px; background: var(--paper); border: var(--border-thick); border-radius: 999px; margin-bottom: 20px; }
+  .toolbar input { border: none; outline: none; flex: 1; background: transparent; font-size: 15px; padding: 6px 14px; min-width: 160px; }
+  .toolbar .cat-btn { padding: 6px 14px; border: 1.5px solid var(--ink); border-radius: 999px; background: transparent; font-family: 'JetBrains Mono',monospace; font-size: 11px; text-transform: uppercase; cursor: pointer; }
+  .toolbar .cat-btn.active { background: var(--ink); color: var(--bg); }
+  .toolbar .finish-toggle { display: flex; gap: 6px; align-items: center; padding-left: 8px; border-left: 2px solid var(--ink); }
+  .toolbar .fchip { width: 28px; height: 28px; border-radius: 50%; border: 2px solid var(--ink); cursor: pointer; }
+  .toolbar .fchip.active { box-shadow: 0 0 0 2px var(--bg), 0 0 0 4px var(--ink); }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 14px; }
+  .pin-card { aspect-ratio: 1/1.15; padding: 14px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; background: var(--paper); border: var(--border-thick); border-radius: 18px; transition: transform .12s; cursor: pointer; position: relative; }
+  .pin-card:hover { transform: translate(-2px,-2px); box-shadow: var(--shadow-hard); }
+  .pin-card .label { font-family: 'JetBrains Mono',monospace; font-size: 11px; color: var(--muted); text-transform: uppercase; text-align: center; }
+  .pin-card .price { position: absolute; top: 8px; right: 10px; font-family: 'JetBrains Mono',monospace; font-size: 11px; color: var(--muted); }
+  .pin-card .tag { position: absolute; top: 8px; left: 10px; font-size: 9px; }
+  .section-kicker { font-family: 'JetBrains Mono',monospace; font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); margin: 32px 0 8px; }
+  .section-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
+  .section-head h2 { font-size: 32px; }
+  .section-head .count { font-family: 'JetBrains Mono',monospace; color: var(--muted); font-size: 12px; }
+</style>
+</head>
+<body>
+<div data-topbar class="topbar"></div>
+<div class="wrap">
+  <div class="head">
+    <div>
+      <span class="chip" data-i18n="catalog_chip">CATALOG · 100+ PINS</span>
+      <h1 data-i18n="catalog_title">Pin catalog</h1>
+      <p data-i18n="catalog_sub">All pins come in silver, gold, black chrome and rose gold. Click to add to your design.</p>
+    </div>
+    <a class="btn primary" href="designer.html" data-i18n="open_designer">Open designer →</a>
+  </div>
+
+  <div class="toolbar">
+    <span style="font-size:14px;padding:0 4px">⌕</span>
+    <input id="search" data-i18n-placeholder="search_ph" placeholder="Search names, letters, emoji…">
+    <div id="cats"></div>
+    <div class="finish-toggle" id="finish-toggle"></div>
+  </div>
+
+  <div id="sections"></div>
+</div>
+
+<script src="shared/i18n.js?v=5"></script>
+<script src="shared/pins.js?v=5"></script>
+<script>
+  renderTopbar('catalog');
+  const state = { cat: 'all', q: '', finish: 'silver' };
+
+  function renderCats() {
+    const el = document.getElementById('cats');
+    const cats = [['all', t('filter_all')]].concat(Object.entries(PinnedCatalog.cats).map(([k,v])=>[k, t('filter_'+k) || v.label]));
+    el.innerHTML = cats.map(([k,l]) => `<button class="cat-btn ${state.cat===k?'active':''}" data-cat="${k}">${l}</button>`).join('');
+    el.querySelectorAll('.cat-btn').forEach(b => b.onclick = () => { state.cat = b.dataset.cat; renderCats(); renderSections(); });
+  }
+  function renderFinish() {
+    document.getElementById('finish-toggle').innerHTML = PINNED_FINISHES.map(f => `<div class="fchip ${state.finish===f.key?'active':''}" data-finish="${f.key}" style="background:${f.swatch}" title="${f.label}"></div>`).join('');
+    document.querySelectorAll('.fchip').forEach(c => c.onclick = () => { state.finish = c.dataset.finish; renderFinish(); renderSections(); });
+  }
+
+  function renderSections() {
+    const container = document.getElementById('sections');
+    const catsToShow = state.cat === 'all' ? Object.keys(PinnedCatalog.cats) : [state.cat];
+    const q = state.q.toLowerCase();
+    container.innerHTML = catsToShow.map(cat => {
+      const pins = PinnedCatalog.pins.filter(p => p.category === cat && (!q || p.label.toLowerCase().includes(q) || p.glyph.includes(q)));
+      if (!pins.length) return '';
+      return `
+        <div class="section-head"><h2>${t('filter_'+cat) || PinnedCatalog.cats[cat].label}</h2><div class="count">${pins.length} <span data-i18n="placed">pins</span></div></div>
+        <div class="grid">${pins.map(p => `
+          <div class="pin-card" onclick="window.location.href='designer.html'">
+            <span class="tag">$${p.price}</span>
+            ${renderPinVisual(p, state.finish, 72)}
+            <div class="label">${p.label}</div>
+          </div>
+        `).join('')}</div>
+      `;
+    }).join('');
+  }
+
+  document.getElementById('search').oninput = (e) => { state.q = e.target.value; renderSections(); };
+  window.addEventListener('pinned:langchange', () => { renderCats(); renderSections(); });
+  renderCats(); renderFinish(); renderSections();
+</script>
+</body></html>

@@ -1,0 +1,722 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Pinned — Designer</title>
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta name="description" content="Design a custom Pinned plate frame: pick metal pins and finishes, place them in 20 holes, generate an AI car preview, then add to cart." />
+<link rel="icon" type="image/svg+xml" href="favicon.svg" />
+<link rel="apple-touch-icon" href="favicon.svg" />
+<meta name="theme-color" content="#F5F0E3" />
+<meta property="og:site_name" content="Pinned" />
+<meta property="og:type" content="website" />
+<meta property="og:locale" content="en_US" />
+<meta property="og:title" content="Pinned — Designer" />
+<meta property="og:description" content="Design a custom Pinned plate frame: pick metal pins and finishes, place them in 20 holes, generate an AI car preview, then add to cart." />
+<meta property="og:image" content="favicon.svg" />
+<meta name="twitter:card" content="summary" />
+<link rel="stylesheet" href="shared/styles.css" />
+<style>
+  body { background: var(--bg); overflow: hidden; height: 100vh; display: flex; flex-direction: column; }
+  .topbar { flex: 0 0 auto; }
+
+  .designer-mobile-nav { display: none; }
+
+  .designer-shell {
+    display: grid; grid-template-columns: 340px 1fr 320px;
+    flex: 1; min-height: 0;
+  }
+
+  /* Left palette */
+  .palette-panel {
+    border-right: var(--border-thick); background: var(--paper);
+    display: flex; flex-direction: column; min-height: 0;
+  }
+  .palette-header { padding: 16px; border-bottom: var(--border-thick); }
+  .palette-header h2 { font-size: 22px; margin-bottom: 10px; }
+  .search-box { display: flex; align-items: center; gap: 8px; border: var(--border); border-radius: 999px; padding: 8px 14px; background: var(--bg); }
+  .search-box input { border: none; outline: none; background: transparent; font-family: inherit; font-size: 14px; flex: 1; }
+  .cat-tabs { display: flex; gap: 6px; padding: 12px 16px; overflow-x: auto; border-bottom: var(--border-thick); background: var(--bg-2); }
+  .cat-tabs button { flex: 0 0 auto; padding: 6px 12px; border: 1.5px solid var(--ink); border-radius: 999px; background: transparent; font-family: 'JetBrains Mono', monospace; font-size: 11px; text-transform: uppercase; cursor: pointer; white-space: nowrap; }
+  .cat-tabs button.active { background: var(--ink); color: var(--bg); }
+  .pin-grid { flex: 1; overflow-y: auto; padding: 14px; display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; align-content: start; }
+  .pin-item { aspect-ratio: 1/1; border: 2px solid transparent; border-radius: 12px; display: flex; align-items: center; justify-content: center; cursor: grab; position: relative; background: var(--bg); transition: transform .1s ease, border-color .1s ease; }
+  .pin-item:hover { transform: translateY(-2px); border-color: var(--ink); }
+  .pin-item:active { cursor: grabbing; }
+  .pin-item .label { position: absolute; bottom: -2px; left: 50%; transform: translateX(-50%); font-size: 9px; font-family: 'JetBrains Mono', monospace; color: var(--muted); background: var(--paper); padding: 1px 4px; border-radius: 3px; opacity: 0; transition: opacity .15s; white-space: nowrap; }
+  .pin-item:hover .label { opacity: 1; }
+
+  /* Stage / center canvas */
+  .stage {
+    position: relative; min-width: 0; min-height: 0;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    padding: 24px; overflow: hidden;
+  }
+  .stage-toolbar {
+    display: flex; align-items: center; gap: 12px;
+    margin-bottom: 16px; background: var(--paper);
+    border: var(--border); border-radius: 999px; padding: 6px 8px 6px 18px;
+    font-family: 'JetBrains Mono', monospace; font-size: 12px;
+  }
+  .stage-toolbar .stat { padding: 4px 10px; background: var(--bg-2); border-radius: 999px; }
+  .stage-toolbar .ttl-btn { border: none; background: transparent; padding: 6px 10px; border-radius: 999px; cursor: pointer; font-family: inherit; font-size: 12px; }
+  .stage-toolbar .ttl-btn:hover { background: var(--bg-2); }
+  .stage-toolbar .ttl-btn.danger:hover { background: var(--pink); color: var(--paper); }
+
+  .frame-scene {
+    position: relative; width: min(760px, 92%); aspect-ratio: 2/1;
+    filter: drop-shadow(0 20px 40px rgba(0,0,0,.25));
+  }
+
+  /* The silicone frame: a thick ring around a plate */
+  .silicone {
+    position: absolute; inset: 0; border-radius: 14px;
+    background: #111; /* silicone color (dynamic) */
+    padding: 11%; /* the ring width */
+    box-shadow: inset 0 0 0 2px #222, inset 0 4px 8px rgba(0,0,0,.4);
+  }
+  .silicone[data-color="white"] { background: #EFEAE0; box-shadow: inset 0 0 0 2px #d4cfc3, inset 0 4px 8px rgba(0,0,0,.1); }
+  .silicone[data-color="pink"] { background: #FF4D8D; box-shadow: inset 0 0 0 2px #c9366c, inset 0 4px 8px rgba(0,0,0,.2); }
+  .silicone[data-color="lime"] { background: #C6F24E; box-shadow: inset 0 0 0 2px #9fc33a, inset 0 4px 8px rgba(0,0,0,.15); }
+  .silicone[data-color="cobalt"] { background: #2E4CFF; box-shadow: inset 0 0 0 2px #1c2f99, inset 0 4px 8px rgba(0,0,0,.25); }
+
+  .plate-window {
+    position: relative; width: 100%; height: 100%;
+    background: linear-gradient(180deg,#F8F5E8,#EADFBE);
+    border-radius: 4px; overflow: visible;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Space Grotesk', sans-serif; font-weight: 700;
+    color: #1F3A8A; letter-spacing: .08em; border: 1.5px solid rgba(0,0,0,.4);
+  }
+  .plate-text { font-size: clamp(20px, 5vw, 52px); text-transform: uppercase; white-space: nowrap; }
+
+  /* The hole layout — absolutely positioned on the silicone ring */
+  .hole {
+    position: absolute; width: 7%; aspect-ratio: 1/1; border-radius: 50%;
+    background: transparent; box-shadow: none;
+    transform: translate(-50%, -50%);
+    transition: background .15s, box-shadow .15s, opacity .15s;
+    display: flex; align-items: center; justify-content: center;
+  }
+  /* Slots normally invisible. Visible while dragging OR while hovering a placed pin. */
+  .stage.mode-place .hole:not(.has-pin) {
+    background: rgba(255,255,255,.08); box-shadow: inset 0 0 0 1.5px rgba(255,255,255,.35);
+  }
+  .hole.drag-over { background: var(--lime) !important; box-shadow: 0 0 0 3px var(--ink) !important; }
+  .hole.has-pin { background: transparent; box-shadow: none; }
+  .hole .placed-pin {
+    width: 150%; height: 150%;
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer;
+  }
+  .hole .placed-pin .pin-visual { width:100% !important; height:100% !important; }
+  .hole .placed-pin.remove-hint::after { content: "×"; position: absolute; top: -6px; right: -6px; width: 18px; height: 18px; background: var(--pink); color: var(--paper); border-radius: 50%; font-size: 14px; display: flex; align-items: center; justify-content: center; border: 1.5px solid var(--ink); }
+
+  /* Drag ghost */
+  .drag-ghost {
+    position: fixed; pointer-events: none; z-index: 100;
+    width: 44px; height: 44px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: inset 0 2px 3px rgba(255,255,255,.6), inset 0 -2px 4px rgba(0,0,0,.4), 0 8px 20px rgba(0,0,0,.5);
+    font-family: 'Space Grotesk', sans-serif; font-weight: 700; line-height: 1;
+    transform: translate(-50%,-50%) scale(1.2); transition: transform .1s;
+  }
+
+  /* Right panel */
+  .props-panel {
+    border-left: var(--border-thick); background: var(--paper);
+    display: flex; flex-direction: column; min-height: 0;
+  }
+  .props-panel h3 { font-size: 14px; font-family: 'JetBrains Mono', monospace; text-transform: uppercase; letter-spacing: .1em; color: var(--muted); margin-bottom: 10px; }
+  .props-section { padding: 16px; border-bottom: 2px solid var(--ink); }
+  .finish-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+  .finish-chip { border: 2px solid var(--ink); border-radius: 10px; padding: 10px 4px; cursor: pointer; text-align: center; font-size: 11px; font-family: 'JetBrains Mono', monospace; background: var(--bg); }
+  .finish-chip .swatch { width: 100%; aspect-ratio: 1/1; border-radius: 50%; margin-bottom: 4px; box-shadow: inset 0 2px 3px rgba(255,255,255,.6), inset 0 -2px 4px rgba(0,0,0,.4); }
+  .finish-chip.active { background: var(--lime); box-shadow: var(--shadow-hard); }
+  .color-row { display: flex; gap: 8px; }
+  .color-chip { width: 40px; height: 40px; border-radius: 50%; border: 2px solid var(--ink); cursor: pointer; }
+  .color-chip.active { box-shadow: 0 0 0 3px var(--ink), 0 0 0 5px var(--lime); }
+
+  .plate-input { width: 100%; border: var(--border); border-radius: 10px; padding: 10px 14px; font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 20px; text-transform: uppercase; letter-spacing: .08em; background: var(--bg); color: #1F3A8A; }
+
+  .cart-summary { flex: 1; display: flex; flex-direction: column; padding: 16px; overflow-y: auto; }
+  .cart-summary .line { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px dashed var(--muted); font-size: 14px; }
+  .cart-summary .line.total { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 20px; border: none; margin-top: 8px; padding-top: 16px; border-top: 2px solid var(--ink); }
+  .cart-summary .cta { margin-top: auto; display: flex; flex-direction: column; gap: 8px; padding-top: 16px; }
+
+
+  /* Help callout */
+  .help-callout { position: absolute; bottom: 16px; left: 16px; padding: 10px 14px; background: var(--paper); border: var(--border); border-radius: 12px; font-size: 12px; color: var(--muted); font-family: 'JetBrains Mono', monospace; box-shadow: var(--shadow-hard); max-width: 260px; }
+
+  @media (max-width: 1100px) {
+    .designer-shell { grid-template-columns: 280px 1fr 280px; }
+  }
+  @media (max-width: 900px) {
+    body { overflow: auto; height: auto; min-height: 100vh; min-height: 100dvh; }
+    .designer-mobile-nav {
+      display: flex;
+      flex: 0 0 auto;
+      width: 100%;
+      border-bottom: var(--border-thick);
+      background: var(--paper);
+    }
+    .dmt {
+      flex: 1;
+      border: none;
+      border-right: 2px solid var(--ink);
+      background: var(--bg-2);
+      padding: 10px 6px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      cursor: pointer;
+      color: var(--ink);
+      line-height: 1.2;
+    }
+    .dmt:last-child { border-right: none; }
+    .dmt.active { background: var(--ink); color: var(--bg); }
+    .dmt:focus-visible { outline: 2px solid var(--cobalt); outline-offset: -2px; }
+
+    .designer-shell {
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      min-height: 0;
+      grid-template-columns: unset;
+    }
+    .designer-shell[data-mobile-tab="stage"] .palette-panel,
+    .designer-shell[data-mobile-tab="stage"] .props-panel { display: none !important; }
+    .designer-shell[data-mobile-tab="palette"] .stage,
+    .designer-shell[data-mobile-tab="palette"] .props-panel { display: none !important; }
+    .designer-shell[data-mobile-tab="props"] .palette-panel,
+    .designer-shell[data-mobile-tab="props"] .stage { display: none !important; }
+
+    .designer-shell[data-mobile-tab="stage"] .stage {
+      flex: 1;
+      min-height: 0;
+      display: flex;
+    }
+    .designer-shell[data-mobile-tab="palette"] .palette-panel {
+      flex: 1;
+      min-height: 0;
+      display: flex;
+    }
+    .designer-shell[data-mobile-tab="props"] .props-panel {
+      flex: 1;
+      min-height: 0;
+      display: flex;
+    }
+  }
+</style>
+</head>
+<body>
+  <div data-topbar class="topbar"></div>
+
+  <nav class="designer-mobile-nav" role="tablist" aria-label="Designer" id="designer-mobile-nav">
+    <button type="button" class="dmt" role="tab" data-mtab="palette" id="dmt-palette" aria-selected="false" data-i18n="pin_library">Pin library</button>
+    <button type="button" class="dmt active" role="tab" data-mtab="stage" id="dmt-stage" aria-selected="true" data-i18n="layout">Layout</button>
+    <button type="button" class="dmt" role="tab" data-mtab="props" id="dmt-props" aria-selected="false" data-i18n="summary">Summary</button>
+  </nav>
+
+  <div class="designer-shell" data-mobile-tab="stage">
+    <!-- LEFT: pin palette -->
+    <aside class="palette-panel">
+      <div class="palette-header">
+        <h2 data-i18n="pin_library">Pin library</h2>
+        <div class="search-box">
+          <span style="font-size:14px">⌕</span>
+          <input id="search" data-i18n-placeholder="search_ph" placeholder="Search name, letter, emoji…" />
+        </div>
+      </div>
+      <div class="cat-tabs" id="cat-tabs"></div>
+      <div class="pin-grid" id="pin-grid"></div>
+    </aside>
+
+    <!-- CENTER: plate stage -->
+    <main class="stage" id="stage">
+      <div class="stage-toolbar">
+        <span class="stat"><span id="placed-count">0</span>/20 <span data-i18n="placed">pins</span></span>
+        <button type="button" class="ttl-btn" id="undo-btn">↶ <span data-i18n="undo">Undo</span></button>
+        <button type="button" class="ttl-btn" id="redo-btn">↷ <span data-i18n="redo">Redo</span></button>
+        <button type="button" class="ttl-btn" id="auto-btn">✨ <span data-i18n="autofill">Auto-fill</span></button>
+        <button type="button" class="ttl-btn danger" id="clear-btn" data-i18n="clear">Clear</button>
+        <span id="save-status" class="stat" style="background:transparent;color:var(--muted);font-size:11px">● offline</span>
+      </div>
+
+      <div class="frame-scene">
+        <div class="silicone" data-color="black" id="silicone">
+          <div class="plate-window">
+            <div class="plate-text" id="plate-text" contenteditable="true" spellcheck="false">BRIAN</div>
+          </div>
+          <!-- holes rendered by JS -->
+        </div>
+      </div>
+
+      <div class="help-callout">
+        <div data-i18n="tip_drag">Tip: drag pins from the library onto a hole. Click a placed pin to remove.</div>
+        <div data-i18n="tip_count" style="margin-top:4px">There are 20 holes total around the plate.</div>
+      </div>
+    </main>
+
+    <!-- RIGHT: properties + cart -->
+    <aside class="props-panel">
+      <div class="props-section">
+        <h3 data-i18n="finish">Finish</h3>
+        <div class="finish-row" id="finish-row"></div>
+      </div>
+      <!-- Frame color picker hidden — only black silicone available right now.
+           Code preserved for when more colors ship. -->
+      <div class="props-section hidden">
+        <h3 data-i18n="frame_color">Frame color</h3>
+        <div class="color-row">
+          <div class="color-chip active" data-frame-color="black" style="background:#111"></div>
+          <div class="color-chip" data-frame-color="white" style="background:#EFEAE0"></div>
+          <div class="color-chip" data-frame-color="pink" style="background:#FF4D8D"></div>
+          <div class="color-chip" data-frame-color="lime" style="background:#C6F24E"></div>
+          <div class="color-chip" data-frame-color="cobalt" style="background:#2E4CFF"></div>
+        </div>
+      </div>
+      <div class="props-section">
+        <h3 data-i18n="plate_text_label">Plate text (preview only)</h3>
+        <input id="plate-input" class="plate-input" maxlength="7" value="BRIAN" />
+        <div class="mono" data-i18n="plate_text_hint" style="font-size:11px;color:var(--muted);margin-top:6px">Your actual plate stays the same — this is for AI preview.</div>
+      </div>
+      <div class="cart-summary">
+        <h3 data-i18n="summary">Summary</h3>
+        <div class="line"><span data-i18n="price_frame">Frame</span><span>$39.00</span></div>
+        <div class="line"><span><span data-i18n="pins_x">Pins ×</span> <span id="pin-count-line">0</span></span><span id="pin-total">$0.00</span></div>
+        <div class="line"><span data-i18n="price_video">AI preview video</span><span data-i18n="included">included</span></div>
+        <div class="line total"><span data-i18n="total">Total</span><span id="grand-total">$39.00</span></div>
+        <div class="cta">
+          <a class="btn primary" href="preview.html" id="preview-btn" data-i18n="ai_preview_cta">AI preview → $0 extra</a>
+          <a class="btn ghost" href="cart.html" data-i18n="add_to_cart">Add to cart</a>
+        </div>
+      </div>
+    </aside>
+  </div>
+
+  <div id="drag-ghost" class="drag-ghost" style="display:none"></div>
+
+<script src="shared/i18n.js?v=5"></script>
+<script src="shared/pins.js?v=5"></script>
+<script src="shared/api.js?v=1"></script>
+<script>
+  renderTopbar('design');
+
+  (function initDesignerMobileNav() {
+    const shell = document.querySelector('.designer-shell');
+    const nav = document.getElementById('designer-mobile-nav');
+    if (!shell || !nav) return;
+    function setTab(mtab) {
+      const t = mtab && ['palette', 'stage', 'props'].includes(mtab) ? mtab : 'stage';
+      shell.setAttribute('data-mobile-tab', t);
+      nav.querySelectorAll('.dmt').forEach((b) => {
+        const on = b.getAttribute('data-mtab') === t;
+        b.classList.toggle('active', on);
+        b.setAttribute('aria-selected', on ? 'true' : 'false');
+      });
+    }
+    nav.querySelectorAll('.dmt').forEach((b) => {
+      b.addEventListener('click', () => setTab(b.getAttribute('data-mtab')));
+    });
+    setTab(shell.getAttribute('data-mobile-tab') || 'stage');
+  })();
+
+  // ---------- Hole geometry ----------
+  // 20 holes total: 6 top + 6 bottom + 4 each side.
+  const HOLES = (() => {
+    const holes = [];
+    const inset = 5;
+    const top = inset, bottom = 100 - inset;
+    const left = inset, right = 100 - inset;
+    const T = 6, B = 6, S = 4;
+    for (let i = 0; i < T; i++) {
+      const x = left + (right - left) * (i / (T - 1));
+      holes.push({ x, y: top, side: 'top', i });
+    }
+    for (let i = 0; i < S; i++) {
+      const y = top + (bottom - top) * ((i + 1) / (S + 1));
+      holes.push({ x: right, y, side: 'right', i });
+    }
+    for (let i = 0; i < B; i++) {
+      const x = right - (right - left) * (i / (B - 1));
+      holes.push({ x, y: bottom, side: 'bottom', i });
+    }
+    for (let i = 0; i < S; i++) {
+      const y = bottom - (bottom - top) * ((i + 1) / (S + 1));
+      holes.push({ x: left, y, side: 'left', i });
+    }
+    return holes;
+  })();
+
+
+  const state = {
+    frameColor: 'black',
+    finish: 'silver',
+    placements: {}, // { holeIdx: pinId }
+    history: [], future: [],
+    category: 'all',
+    search: '',
+  };
+
+  function pushHistory() {
+    state.history.push(JSON.stringify(state.placements));
+    if (state.history.length > 50) state.history.shift();
+    state.future = [];
+  }
+  function undo() {
+    if (!state.history.length) return;
+    state.future.push(JSON.stringify(state.placements));
+    state.placements = JSON.parse(state.history.pop());
+    renderHoles(); updateSummary();
+  }
+  function redo() {
+    if (!state.future.length) return;
+    state.history.push(JSON.stringify(state.placements));
+    state.placements = JSON.parse(state.future.pop());
+    renderHoles(); updateSummary();
+  }
+
+  // ---------- Render holes ----------
+  const silicone = document.getElementById('silicone');
+  function renderHoles() {
+    // Remove existing
+    silicone.querySelectorAll('.hole').forEach(h => h.remove());
+    HOLES.forEach((h, idx) => {
+      const el = document.createElement('div');
+      el.className = 'hole';
+      el.style.left = h.x + '%';
+      el.style.top = h.y + '%';
+      el.dataset.idx = idx;
+      // inject placed pin
+      const pid = state.placements[idx];
+      if (pid) {
+        const pin = PinnedCatalog.pins.find(p => p.id === pid);
+        if (pin) {
+          el.classList.add('has-pin');
+          const finish = state.placements[idx+'_finish'] || state.finish;
+          const wrap = document.createElement('div');
+          wrap.className = 'placed-pin';
+          wrap.dataset.hole = idx;
+          wrap.innerHTML = renderPinVisual(pin, finish, 40);
+          const inner = wrap.querySelector('.pin-visual');
+          if (inner) inner.style.pointerEvents = 'none';
+          wrap.addEventListener('click', (e) => {
+            e.stopPropagation();
+            pushHistory();
+            delete state.placements[idx];
+            delete state.placements[idx+'_finish'];
+            renderHoles(); updateSummary();
+          });
+          el.appendChild(wrap);
+        }
+      }
+      silicone.appendChild(el);
+    });
+  }
+
+  // ---------- Palette ----------
+  function renderCats() {
+    const tabs = document.getElementById('cat-tabs');
+    const cats = [['all', t('filter_all')||'All']].concat(
+      Object.entries(PinnedCatalog.cats).map(([k,v]) => [k, t('filter_'+k) || v.label])
+    );
+    tabs.innerHTML = cats.map(([k,l]) => `<button type="button" data-cat="${k}" class="${state.category===k?'active':''}">${l}</button>`).join('');
+    tabs.querySelectorAll('button').forEach(b => b.addEventListener('click', () => {
+      state.category = b.dataset.cat;
+      renderCats(); renderPalette();
+    }));
+  }
+  function renderPalette() {
+    const grid = document.getElementById('pin-grid');
+    const filtered = PinnedCatalog.pins.filter(p => {
+      if (state.category !== 'all' && p.category !== state.category) return false;
+      if (state.search && !(p.label.toLowerCase().includes(state.search.toLowerCase()) || p.glyph.includes(state.search))) return false;
+      return true;
+    });
+    grid.innerHTML = filtered.map(p => `
+      <div class="pin-item" data-pin="${p.id}" draggable="false">
+        ${renderPinVisual(p, state.finish, 38)}
+        <div class="label">${p.label}</div>
+      </div>
+    `).join('');
+    // attach drag handlers
+    grid.querySelectorAll('.pin-item').forEach(el => {
+      el.addEventListener('mousedown', (e) => startDrag(e, el.dataset.pin));
+      el.addEventListener('touchstart', (e) => startDrag(e, el.dataset.pin), { passive: false });
+    });
+  }
+
+  // ---------- Drag-and-drop (custom, works with touch) ----------
+  const ghost = document.getElementById('drag-ghost');
+  let dragPinId = null;
+  function startDrag(e, pinId) {
+    e.preventDefault();
+    dragPinId = pinId;
+    const pin = PinnedCatalog.pins.find(p => p.id === pinId);
+    if (!pin) return;
+    const fgrad = { silver:'var(--silver)', gold:'var(--gold)', black:'var(--black-chrome)', rose:'var(--rose)' }[state.finish];
+    const color = state.finish === 'gold' ? '#3A2400' : state.finish === 'rose' ? '#4A1A15' : state.finish === 'black' ? '#E8E8E8' : '#1A1A1A';
+    const textLen = (pin.glyph||'').length;
+    const fs = textLen <= 1 ? 18 : textLen <= 2 ? 14 : 10;
+    ghost.style.background = fgrad;
+    ghost.style.color = color;
+    ghost.style.fontSize = fs + 'px';
+    ghost.innerHTML = pin.glyph;
+    ghost.style.display = 'flex';
+    document.body.classList.add('dragging');
+    document.getElementById('stage').classList.add('mode-place');
+    moveGhost(e);
+    window.addEventListener('mousemove', moveGhost);
+    window.addEventListener('touchmove', moveGhost, { passive: false });
+    window.addEventListener('mouseup', endDrag);
+    window.addEventListener('touchend', endDrag);
+  }
+  function moveGhost(e) {
+    if (e.cancelable) e.preventDefault();
+    const pt = e.touches ? e.touches[0] : e;
+    ghost.style.left = pt.clientX + 'px';
+    ghost.style.top = pt.clientY + 'px';
+    // highlight nearest hole
+    document.querySelectorAll('.hole').forEach(h => h.classList.remove('drag-over'));
+    const target = document.elementFromPoint(pt.clientX, pt.clientY);
+    const hole = target && target.closest && target.closest('.hole');
+    if (hole) hole.classList.add('drag-over');
+  }
+  function endDrag(e) {
+    const pt = e.changedTouches ? e.changedTouches[0] : e;
+    const target = document.elementFromPoint(pt.clientX, pt.clientY);
+    const hole = target && target.closest && target.closest('.hole');
+    if (hole && dragPinId) {
+      pushHistory();
+      state.placements[hole.dataset.idx] = dragPinId;
+      state.placements[hole.dataset.idx + '_finish'] = state.finish;
+      renderHoles(); updateSummary();
+    }
+    ghost.style.display = 'none';
+    document.body.classList.remove('dragging');
+    document.getElementById('stage').classList.remove('mode-place');
+    dragPinId = null;
+    window.removeEventListener('mousemove', moveGhost);
+    window.removeEventListener('touchmove', moveGhost);
+    window.removeEventListener('mouseup', endDrag);
+    window.removeEventListener('touchend', endDrag);
+  }
+
+  // ---------- Finish picker ----------
+  function renderFinishes() {
+    document.getElementById('finish-row').innerHTML = PINNED_FINISHES.map(f => `
+      <div class="finish-chip ${state.finish===f.key?'active':''}" data-finish="${f.key}">
+        <div class="swatch" style="background:${f.swatch}"></div>
+        ${f.label}
+      </div>
+    `).join('');
+    document.querySelectorAll('[data-finish]').forEach(el => el.addEventListener('click', () => {
+      state.finish = el.dataset.finish;
+      renderFinishes(); renderPalette(); renderHoles();
+    }));
+  }
+
+  // ---------- Frame color ----------
+  document.querySelectorAll('[data-frame-color]').forEach(el => el.addEventListener('click', () => {
+    document.querySelectorAll('[data-frame-color]').forEach(c => c.classList.remove('active'));
+    el.classList.add('active');
+    state.frameColor = el.dataset.frameColor;
+    silicone.setAttribute('data-color', state.frameColor);
+  }));
+
+  // ---------- Summary ----------
+  function updateSummary() {
+    const pinKeys = Object.keys(state.placements).filter(k => !k.endsWith('_finish'));
+    const count = pinKeys.length;
+    let total = 0;
+    pinKeys.forEach(k => { const p = PinnedCatalog.pins.find(px => px.id === state.placements[k]); if (p) total += p.price; });
+    document.getElementById('placed-count').textContent = count;
+    document.getElementById('pin-count-line').textContent = count;
+    document.getElementById('pin-total').textContent = '$' + total.toFixed(2);
+    document.getElementById('grand-total').textContent = '$' + (39 + total).toFixed(2);
+    const snapshot = {
+      placements: state.placements, finish: state.finish, frameColor: state.frameColor,
+      plateText: document.getElementById('plate-text').textContent,
+    };
+    localStorage.setItem('pinned_design', JSON.stringify(snapshot));
+    scheduleCloudSave(snapshot);
+  }
+
+  // ---------- Cloud autosave (debounced) ----------
+  let _saveTimer = null;
+  let _lastSerialized = null;
+  const _existingCloudId = (() => { try { return localStorage.getItem('pinned_design_id'); } catch(_) { return null; } })();
+  function setSaveStatus(text, color) {
+    const el = document.getElementById('save-status');
+    if (!el) return;
+    el.textContent = text;
+    el.style.color = color || 'var(--muted)';
+  }
+  function scheduleCloudSave(snapshot) {
+    if (!window.PinnedAPI) return;
+    const ser = JSON.stringify(snapshot);
+    if (ser === _lastSerialized) return;
+    _lastSerialized = ser;
+    clearTimeout(_saveTimer);
+    _saveTimer = setTimeout(async () => {
+      if (!window.PINNED_API_ALIVE) { setSaveStatus('● offline — saved locally', 'var(--muted)'); return; }
+      setSaveStatus('● saving…', 'var(--cobalt)');
+      try {
+        const payload = Object.assign({}, snapshot);
+        if (_existingCloudId) payload.id = _existingCloudId;
+        const res = await window.PinnedAPI.saveDesign(payload);
+        if (res && res.id) {
+          try { localStorage.setItem('pinned_design_id', res.id); } catch(_){}
+          setSaveStatus('● saved to cloud · v' + (res.version || 1), 'var(--ink)');
+        } else {
+          setSaveStatus('● saved locally', 'var(--muted)');
+        }
+      } catch (e) {
+        console.warn('[designer] cloud save failed:', e);
+        setSaveStatus('● cloud save failed', 'var(--pink)');
+      }
+    }, 600);
+  }
+  window.addEventListener('pinned:api-status', (ev) => {
+    setSaveStatus(ev.detail.ok ? '● ready to sync' : '● offline — saving locally', ev.detail.ok ? 'var(--ink)' : 'var(--muted)');
+  });
+
+  // ---------- Load from ?design=ID (cloud → localStorage) ----------
+  async function hydrateFromCloudIfRequested() {
+    const qs = new URLSearchParams(location.search);
+    const designId = qs.get('design');
+    if (!designId || !window.PinnedAPI) return;
+    if (!(await window.PinnedAPI.health())) return;
+    try {
+      const d = await window.PinnedAPI.getDesign(designId);
+      if (!d || !d.placements) return;
+      // Convert nested {pin, finish} → flat placements for renderHoles compatibility.
+      const flat = {};
+      for (const [idx, v] of Object.entries(d.placements)) {
+        flat[idx] = v.pin;
+        flat[idx + '_finish'] = v.finish;
+      }
+      state.placements = flat;
+      state.finish = d.finish || 'silver';
+      state.frameColor = d.frame_color || 'black';
+      silicone.setAttribute('data-color', state.frameColor);
+      document.querySelectorAll('[data-frame-color]').forEach(c => c.classList.toggle('active', c.dataset.frameColor === state.frameColor));
+      const pt = d.plate_text || 'BRIAN';
+      document.getElementById('plate-text').textContent = pt;
+      document.getElementById('plate-input').value = pt;
+      try { localStorage.setItem('pinned_design_id', d.id); } catch(_){}
+      renderHoles(); renderFinishes(); renderPalette(); updateSummary();
+      setSaveStatus('● loaded from cloud', 'var(--ink)');
+    } catch (e) {
+      console.warn('[designer] cloud load failed:', e);
+    }
+  }
+
+  // ---------- Plate text sync ----------
+  const plateInput = document.getElementById('plate-input');
+  const plateText = document.getElementById('plate-text');
+  const PLATE_MAX = 7;
+  const sanitizePlate = (s) => (s || '').replace(/[\r\n]/g, '').toUpperCase().slice(0, PLATE_MAX);
+  plateInput.addEventListener('input', () => {
+    const v = sanitizePlate(plateInput.value);
+    if (plateInput.value !== v) plateInput.value = v;
+    plateText.textContent = v;
+    updateSummary();
+  });
+  plateText.addEventListener('input', () => {
+    const v = sanitizePlate(plateText.textContent);
+    if (plateText.textContent !== v) {
+      plateText.textContent = v;
+      // Move caret to end after rewrite
+      const range = document.createRange();
+      range.selectNodeContents(plateText); range.collapse(false);
+      const sel = window.getSelection(); sel.removeAllRanges(); sel.addRange(range);
+    }
+    plateInput.value = v;
+    updateSummary();
+  });
+  plateText.addEventListener('keydown', (e) => { if (e.key === 'Enter') e.preventDefault(); });
+  plateText.addEventListener('paste', (e) => {
+    e.preventDefault();
+    const txt = sanitizePlate((e.clipboardData || window.clipboardData).getData('text'));
+    document.execCommand('insertText', false, txt);
+  });
+
+  // ---------- Toolbar actions ----------
+  document.getElementById('undo-btn').addEventListener('click', undo);
+  document.getElementById('redo-btn').addEventListener('click', redo);
+  document.getElementById('clear-btn').addEventListener('click', () => {
+    pushHistory();
+    state.placements = {};
+    renderHoles(); updateSummary();
+  });
+  // Auto-fill uses meaningful word+accents: a name or good-vibes word spelled with letter pins,
+  // padded by thematically matched icons/emoji on the sides.
+  const AUTOFILL_WORDS = [
+    { word: 'LOVE',    accents: ['heart-fill','heart-outline','star','sparkle'] },
+    { word: 'LUCKY',   accents: ['star','sparkle','diamond','heart-fill'] },
+    { word: 'DREAM',   accents: ['star','moon','sparkle','heart-fill'] },
+    { word: 'SHINE',   accents: ['sparkle','star','sun','diamond'] },
+    { word: 'BRAVE',   accents: ['fire','star','lightning','crown'] },
+    { word: 'HAPPY',   accents: ['smiley','sun','heart-fill','sparkle'] },
+    { word: 'EMMA',    accents: ['heart-fill','sparkle','star','diamond'] },
+    { word: 'KAI',     accents: ['fire','lightning','star','moon'] },
+    { word: 'NOAH',    accents: ['star','rocket','fire','lightning'] },
+    { word: 'ZOE',     accents: ['sparkle','heart-fill','star','sun'] },
+    { word: 'HOPE',    accents: ['sparkle','star','heart-fill','sun'] },
+    { word: 'VIBES',   accents: ['music','sparkle','fire','heart-fill'] },
+  ];
+  document.getElementById('auto-btn').addEventListener('click', () => {
+    pushHistory();
+    state.placements = {};
+    const pick = AUTOFILL_WORDS[Math.floor(Math.random()*AUTOFILL_WORDS.length)];
+    const letterPins = pick.word.split('').map(ch => PinnedCatalog.pins.find(p => p.id === 'L_'+ch)).filter(Boolean);
+    const accentPins = pick.accents.map(k => PinnedCatalog.pins.find(p => p.id === 'E_'+k || p.id === 'I_'+k)).filter(Boolean);
+    // Top row holes are 0..5; place letters centered there.
+    const topHoles = HOLES.map((h,i) => ({h,i})).filter(x => x.h.side === 'top').map(x => x.i);
+    const bottomHoles = HOLES.map((h,i) => ({h,i})).filter(x => x.h.side === 'bottom').map(x => x.i);
+    const sideHoles  = HOLES.map((h,i) => ({h,i})).filter(x => x.h.side === 'left' || x.h.side === 'right').map(x => x.i);
+    const centerStart = Math.max(0, Math.floor((topHoles.length - letterPins.length) / 2));
+    letterPins.forEach((pin, k) => {
+      const idx = topHoles[centerStart + k];
+      if (idx !== undefined) {
+        state.placements[idx] = pin.id;
+        state.placements[idx+'_finish'] = 'silver';
+      }
+    });
+    // fill bottoms + sides with accents, sparingly
+    const fillTargets = [...bottomHoles, ...sideHoles];
+    const finishes = ['silver','gold','rose'];
+    fillTargets.forEach((idx, k) => {
+      if (Math.random() < 0.6 && accentPins.length) {
+        const pin = accentPins[k % accentPins.length];
+        state.placements[idx] = pin.id;
+        state.placements[idx+'_finish'] = finishes[k % finishes.length];
+      }
+    });
+    renderHoles(); updateSummary();
+  });
+
+  document.getElementById('search').addEventListener('input', (e) => { state.search = e.target.value; renderPalette(); });
+
+  // ---------- Restore ----------
+  try {
+    const saved = JSON.parse(localStorage.getItem('pinned_design') || 'null');
+    if (saved) {
+      state.placements = saved.placements || {};
+      state.finish = saved.finish || 'silver';
+      state.frameColor = saved.frameColor || 'black';
+      silicone.setAttribute('data-color', state.frameColor);
+      document.querySelectorAll('[data-frame-color]').forEach(c => c.classList.toggle('active', c.dataset.frameColor === state.frameColor));
+      if (saved.plateText) { plateText.textContent = saved.plateText; plateInput.value = saved.plateText; }
+    }
+  } catch(e){}
+
+  // ---------- Initial render ----------
+  renderCats(); renderPalette(); renderFinishes(); renderHoles(); updateSummary();
+  hydrateFromCloudIfRequested();
+</script>
+</body>
+</html>

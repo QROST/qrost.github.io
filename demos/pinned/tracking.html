@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><title>Pinned — Tracking</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Track your Pinned order from production through shipping to delivery, with a live status timeline.">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="apple-touch-icon" href="favicon.svg">
+<meta name="theme-color" content="#F5F0E3">
+<meta property="og:site_name" content="Pinned">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="en_US">
+<meta property="og:title" content="Pinned — Tracking">
+<meta property="og:description" content="Track your Pinned order from production through shipping to delivery, with a live status timeline.">
+<meta property="og:image" content="favicon.svg">
+<meta name="twitter:card" content="summary">
+<link rel="stylesheet" href="shared/styles.css">
+<style>
+  .wrap{max-width:1100px;margin:0 auto;padding:32px 24px 80px}
+  .hero-card{padding:26px;background:var(--lime);margin-bottom:24px;display:grid;grid-template-columns:1fr auto;gap:18px;align-items:center}
+  .timeline{position:relative;padding:20px 0;margin:20px 0}
+  .timeline::before{content:"";position:absolute;left:27px;top:30px;bottom:30px;width:3px;background:var(--ink);border-radius:3px}
+  .t-step{display:grid;grid-template-columns:60px 1fr auto;gap:16px;padding:14px 0;align-items:start;position:relative}
+  .t-dot{width:56px;height:56px;border-radius:50%;border:var(--border-thick);background:var(--paper);display:flex;align-items:center;justify-content:center;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:20px;position:relative;z-index:1}
+  .t-step.done .t-dot{background:var(--lime)}
+  .t-step.current .t-dot{background:var(--pink);color:var(--paper);animation:pulse 2s infinite}
+  @keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(255,77,141,.5)}50%{box-shadow:0 0 0 12px rgba(255,77,141,0)}}
+  .t-body h3{font-size:18px;margin-bottom:4px}
+  .t-body p{color:var(--muted);font-size:14px;margin:0}
+  .t-time{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--muted);white-space:nowrap}
+  .order-card{display:grid;grid-template-columns:140px 1fr;gap:18px;padding:18px;margin-bottom:20px}
+  .mp{width:140px;aspect-ratio:2/1;background:#111;border-radius:6px;padding:10%}
+  .mp .inner{background:linear-gradient(180deg,#F8F5E8,#EADFBE);width:100%;height:100%;border-radius:3px;display:flex;align-items:center;justify-content:center;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:18px;color:#1F3A8A;letter-spacing:.05em}
+</style></head><body>
+<div data-topbar class="topbar"></div>
+<div class="wrap">
+  <div class="card hero-card">
+    <div>
+      <div class="mono" style="font-size:12px">ORDER #PIN-2026-0042</div>
+      <h1 style="font-size:42px;margin-top:6px"><span data-i18n="tracking_arriving">Arriving</span> Tuesday, Apr 21</h1>
+      <p style="margin-top:6px">UPS Ground · 1Z999AA10123456784</p>
+    </div>
+    <div style="text-align:right">
+      <div class="mono" style="font-size:12px;color:var(--ink-soft)">3 of 5 steps</div>
+      <div style="font-family:'Space Grotesk',sans-serif;font-size:56px;font-weight:700;line-height:1">60%</div>
+    </div>
+  </div>
+
+  <div class="card order-card">
+    <div class="mp"><div class="inner">BRIAN</div></div>
+    <div>
+      <div style="font-weight:700;font-size:17px">Custom Pinned Frame · black silicone</div>
+      <div class="mono" style="font-size:12px;color:var(--muted);margin:6px 0">18 pins: B-R-I-A-N + ★ ♥ 🔥 🇺🇸 GT + 8 more · silver & gold finishes</div>
+      <div class="row" style="gap:8px;margin-top:8px"><span class="chip">$121.55</span><span class="chip">Paid · Stripe</span><span class="chip">Ship to LA 90026</span></div>
+    </div>
+  </div>
+
+  <div class="card" style="padding:20px">
+    <h2 style="font-size:22px;margin-bottom:4px" data-i18n="timeline">Timeline</h2>
+    <p class="mono" style="font-size:12px;color:var(--muted)" data-i18n="timeline_sub">Live updates from our fulfillment system.</p>
+    <div class="timeline">
+      <div class="t-step done"><div class="t-dot">✓</div><div class="t-body"><h3 data-i18n="t_placed">Order placed</h3><p data-i18n="t_placed_d">Payment confirmed via Stripe.</p></div><div class="t-time">Apr 14 · 2:14 PM</div></div>
+      <div class="t-step done"><div class="t-dot">✓</div><div class="t-body"><h3 data-i18n="t_ai">AI preview delivered</h3><p data-i18n="t_ai_d">Sent to your email · 8s cinematic render.</p></div><div class="t-time">Apr 14 · 2:16 PM</div></div>
+      <div class="t-step done"><div class="t-dot">✓</div><div class="t-body"><h3 data-i18n="t_pick">Pins picked from inventory</h3><p data-i18n="t_pick_d">in stock · bay A-14.</p></div><div class="t-time">Apr 15 · 9:30 AM</div></div>
+      <div class="t-step current"><div class="t-dot">▲</div><div class="t-body"><h3 data-i18n="t_asm">Packing your order</h3><p data-i18n="t_asm_d">Frame + selected pins boxed up in the LA studio, ready to ship.</p></div><div class="t-time">Apr 18 · 11:02 AM</div></div>
+      <div class="t-step"><div class="t-dot">→</div><div class="t-body"><h3 data-i18n="t_ship">Shipped via UPS</h3><p data-i18n="t_ship_d">Ground · 2–3 days transit.</p></div><div class="t-time">ETA Apr 19</div></div>
+      <div class="t-step"><div class="t-dot">🏠</div><div class="t-body"><h3 data-i18n="t_del">Delivered</h3><p data-i18n="t_del_d">Signature not required.</p></div><div class="t-time">ETA Apr 21</div></div>
+    </div>
+  </div>
+</div>
+<script src="shared/i18n.js?v=5"></script><script>renderTopbar('');</script>
+</body></html>
