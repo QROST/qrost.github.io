@@ -4,7 +4,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>How I open a company in China — international AEC founders</title>
+    <title>How to open a company in China — WFOE setup &amp; AEC hiring costs | QROST</title>
+    <meta name="description" content="Step-by-step setup workflows (mainland WFOE, domestic LLC, HK/Macau SAR) and an interactive city-level annual cost model for CAD roles across 24 talent hubs. Research notes for international AEC founders.">
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230f172a'/%3E%3Ctext x='16' y='21' font-family='Inter,system-ui,sans-serif' font-size='13' font-weight='700' text-anchor='middle' fill='white' letter-spacing='1'%3EQ%3C/text%3E%3C/svg%3E">
+
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="How to open a company in China — WFOE setup & AEC hiring costs">
+    <meta property="og:description" content="Setup workflows and city-level cost model across 24 Chinese AEC talent hubs. Bilingual EN/中文.">
+    <meta property="og:url" content="https://qrost.github.io/demos/wfoe-china/">
+    <meta property="og:site_name" content="QROST">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="How to open a company in China — WFOE & AEC hiring">
+    <meta name="twitter:description" content="Setup workflows and city-level cost model across 24 Chinese AEC talent hubs.">
+
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -18,7 +30,7 @@
     <nav class="site-nav fixed top-0 w-full z-50 border-b border-slate-200/90 bg-white/85 backdrop-blur-md">
         <div class="max-w-[90rem] mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between h-14 items-center gap-4">
-                <a href="#" class="text-[0.65rem] font-semibold tracking-[0.35em] text-slate-900 uppercase">QROST</a>
+                <a href="../../index.html" class="text-[0.65rem] font-semibold tracking-[0.35em] text-slate-900 uppercase" aria-label="Back to QROST home">QROST</a>
                 <div class="flex items-center gap-4 md:gap-10">
                     <div class="hidden md:flex items-center gap-10">
                         <a href="#process" class="text-sm text-slate-500 hover:text-slate-900 transition-colors" data-i18n="nav.setup">Setup</a>
@@ -35,12 +47,15 @@
         <div class="max-w-[90rem] mx-auto px-4 sm:px-6 lg:px-8">
             <div class="max-w-2xl">
                 <h1 class="text-4xl md:text-[2.75rem] font-semibold tracking-tight text-slate-900 leading-[1.15]" data-i18n="hero.h1">
-                    How I open a company in China
+                    How to open a company in China
                 </h1>
                 <p class="mt-6 text-lg text-slate-600 leading-relaxed" data-i18n="hero.lead">
-                    General research on <strong class="font-medium text-slate-800">opening a company in China</strong> and
+                    Research notes on <strong class="font-medium text-slate-800">opening a company in China</strong> and
                     <strong class="font-medium text-slate-800">what costs to expect</strong>. Use the tabs for regional setup workflows and the
                     financials for rough, city-level cost modeling across <strong class="font-medium text-slate-800">24 cities</strong>—illustrative only, not legal or tax advice.
+                </p>
+                <p class="mt-4 text-sm text-slate-500" data-i18n="hero.timestamp">
+                    Data as of <strong class="font-medium text-slate-700">2024 Q4</strong>; last reviewed <strong class="font-medium text-slate-700">2026-04</strong>. See <a href="#methodology" class="text-emerald-700 underline underline-offset-2 hover:text-emerald-600">methodology</a> for sources.
                 </p>
             </div>
         </div>
@@ -82,7 +97,7 @@
                     </p>
                     <p class="text-xs text-slate-500 mb-6 leading-relaxed border-l-2 border-slate-200 pl-3" data-i18n="process.fee_note">Right column:
                         rough cash-impact hints (2024–2025 style ranges). Not quotes—city, bank, and agent change outcomes.
-                        <strong>Currency rule:</strong> All amounts below are <strong>estimated in RMB first</strong> (what you pay onshore in China, or planning equivalents for overseas bank/notary lines); <strong>USD</strong> = RMB ÷ USD/CNY using the same rate as under Financials (live when the feed loads, otherwise 6.8). The <strong>dashboard</strong> chart still follows the same RMB→USD rule when you pick USD.</p>
+                        <strong>Currency rule:</strong> All amounts below are <strong>estimated in RMB first</strong> (what you pay onshore in China, or planning equivalents for overseas bank/notary lines); <strong>USD</strong> = RMB ÷ USD/CNY using the same rate as under Financials (live when the feed loads, otherwise a 2024-avg fallback of 7.2). The <strong>dashboard</strong> chart still follows the same RMB→USD rule when you pick USD.</p>
 
                     <div class="space-y-3">
 
@@ -628,7 +643,7 @@
                     <p class="text-slate-500 mb-6 font-medium" data-i18n="process.domestic_intro">For a <strong>Chinese citizen</strong> (or all-domestic shareholders), a typical path is a
                         <strong>有限责任公司</strong> via the local <strong>“one-stop” / 一窗通</strong> enterprise-registration channel—no foreign notarization or
                         capital-injection account. Steps and timing vary by city; below is a common sequence.</p>
-                    <p class="text-xs text-slate-500 mb-6 leading-relaxed border-l-2 border-slate-200 pl-3" data-i18n="process.fee_note_domestic">Right column: rough cash-impact hints (2024–2025 style). Not quotes—city and bank policies differ. <strong>RMB</strong> is the anchor; each line shows <strong>¥…</strong> with <strong>USD in parentheses</strong> as RMB ÷ USD/CNY (same rate as under Financials—live when the feed loads, otherwise 6.8).</p>
+                    <p class="text-xs text-slate-500 mb-6 leading-relaxed border-l-2 border-slate-200 pl-3" data-i18n="process.fee_note_domestic">Right column: rough cash-impact hints (2024–2025 style). Not quotes—city and bank policies differ. <strong>RMB</strong> is the anchor; each line shows <strong>¥…</strong> with <strong>USD in parentheses</strong> as RMB ÷ USD/CNY (same rate as under Financials—live when the feed loads, otherwise a 2024-avg fallback of 7.2).</p>
 
                     <div class="space-y-3">
 
@@ -1236,7 +1251,7 @@
                     contributions (5 Insurances & 1 Fund / MPF) for all 24 cities. Base salaries follow 2024–2025 hiring
                     surveys (e.g. Liepin, 51job, i人事); office rent uses citywide Grade A/B effective averages from CIH,
                     JLL, Savills, Knight Frank, Colliers (mostly Q3–Q4 2024), with utilities scaled for climate/heating.
-                    All figures remain planning estimates, not quotes. <strong>Currency rule:</strong> City and overhead inputs are stored in <strong>RMB</strong>; when you pick <strong>USD</strong>, the chart divides by USD/CNY (live when the feed loads, otherwise 6.8)—never the other way around. Optionally add
+                    All figures remain planning estimates, not quotes. <strong>Currency rule:</strong> City and overhead inputs are stored in <strong>RMB</strong>; when you pick <strong>USD</strong>, the chart divides by USD/CNY (live when the feed loads, otherwise a 2024-avg fallback of 7.2)—never the other way around. Optionally add
                     <strong>modeled overhead per employee</strong>—rent, workspace kit, utilities, and AEC software
                     (see methodology below). <strong>Click any city's bar</strong> for the micro breakdown.
                     For setup context, see <a href="#process"
@@ -1253,7 +1268,7 @@
                     <strong>Software</strong>—Autodesk <em>AEC Collection</em> annual subscription (Revit, AutoCAD,
                     etc.; public US list pricing ~USD 3,560–3,795/user/year in 2025–2026) plus
                     <em>Rhino</em> commercial seat (perpetual USD ~995; modeled as ~3-year amortization + maintenance
-                    allowance); USD prices are translated to RMB using the same USD/CNY rate as the chart (live when the feed loads, otherwise 6.8). Reseller, regional, and negotiated license terms differ—treat as
+                    allowance); USD prices are translated to RMB using the same USD/CNY rate as the chart (live when the feed loads, otherwise a 2024-avg fallback of 7.2). Reseller, regional, and negotiated license terms differ—treat as
                     order-of-magnitude.
                 </p>
             </div>
@@ -1360,12 +1375,41 @@
             </div>
         </section>
 
+        <!-- Methodology & disclosure (folded; non-load-bearing for first-paint) -->
+        <section id="methodology" class="mb-20">
+            <details class="rounded-xl border border-slate-200 bg-slate-50/60 group">
+                <summary class="cursor-pointer flex items-center gap-2 px-5 py-4 text-base font-semibold text-slate-800 select-none">
+                    <svg class="h-4 w-4 shrink-0 text-slate-600 transition-transform group-open:rotate-180" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                        <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                    </svg>
+                    <span data-i18n="method.h2">Methodology, sources &amp; disclosure</span>
+                </summary>
+                <div class="px-5 pb-6 pt-0 border-t border-slate-200 space-y-4 text-sm text-slate-600 leading-relaxed">
+                    <div>
+                        <h3 class="text-xs font-bold uppercase tracking-wider text-slate-500 mt-4 mb-2" data-i18n="method.sources_h">Data sources</h3>
+                        <p data-i18n="method.sources_body">Base salaries follow <strong>2024–2025</strong> hiring surveys (Liepin, 51job, i人事); office rent uses citywide Grade A/B effective averages from <strong>CIH, JLL, Savills, Knight Frank, Colliers</strong> (mostly Q3–Q4 2024), with utilities scaled for climate/heating. Software pricing uses Autodesk AEC Collection public US list (~USD 3,560–3,795/user/year, 2025–2026) and Rhino commercial (~USD 995 perpetual). All figures are <strong>planning estimates, not quotes</strong>.</p>
+                    </div>
+                    <div>
+                        <h3 class="text-xs font-bold uppercase tracking-wider text-slate-500 mt-4 mb-2" data-i18n="method.modeling_h">Modeling rule</h3>
+                        <p data-i18n="method.modeling_body">Salaries, rent, contributions, and overhead are stored <strong>RMB-first</strong>; USD display always divides RMB totals by USD/CNY (live feed when available, otherwise a <strong>2024-avg fallback rate of 7.2</strong>). HKD and MOP are converted to RMB equivalents for charting continuity.</p>
+                    </div>
+                    <div>
+                        <h3 class="text-xs font-bold uppercase tracking-wider text-slate-500 mt-4 mb-2" data-i18n="method.timestamp_h">Last reviewed</h3>
+                        <p data-i18n="method.timestamp_body"><strong>Data as of 2024 Q4</strong>; last reviewed <strong>2026-04</strong>. Regulatory references (e.g. PRC Company Law revised 1 Jul 2024) are noted inline at the relevant step.</p>
+                    </div>
+                    <div>
+                        <h3 class="text-xs font-bold uppercase tracking-wider text-slate-500 mt-4 mb-2" data-i18n="method.ai_h">AI assistance</h3>
+                        <p data-i18n="method.ai_body">This page was compiled with <strong>AI assistance (Gemini 3.1 Pro, April 2026)</strong> from the public sources listed above and reviewed by the author. Treat as a starting outline, not as authoritative legal or tax advice.</p>
+                    </div>
+                </div>
+            </details>
+        </section>
+
     </main>
 
     <footer class="bg-slate-900 text-slate-400 py-10 text-center text-sm border-t border-slate-800">
-        <div class="max-w-4xl mx-auto px-4 space-y-4">
+        <div class="max-w-4xl mx-auto px-4 space-y-3">
             <p class="text-slate-300 font-semibold" data-i18n="footer.rights">&copy; 2026 QROST. All rights reserved.</p>
-            <p data-i18n="footer.ai">This report was generated using Gemini 3.1 Pro in April 2026; data, processes, and cost estimates rely on its knowledge base. <strong>Modeling rule:</strong> Salaries, rent, contributions, and overhead for the charts are <strong>RMB-first</strong>; USD display always divides those RMB totals by USD/CNY. HKD and MOP are converted to RMB equivalents for charting continuity.</p>
             <p class="text-slate-500 italic text-xs leading-relaxed" data-i18n="footer.disclaimer">
                 Disclaimer: The information provided in this portal is for educational and strategic planning purposes only. We make no promises or guarantees regarding its absolute accuracy, completeness, or current validity. QROST assumes no liability for any business, legal, or financial decisions made based on this content. Always consult with certified local legal counsel and accounting professionals before any operations.
             </p>

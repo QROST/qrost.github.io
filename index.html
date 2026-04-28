@@ -3,8 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="QROST — personal site.">
-    <title>Qrost</title>
+    <title>QROST — research notes & build logs on AEC, China & tooling</title>
+    <meta name="description" content="QROST is a personal shelf of research notes and build logs — China WFOE setup & AEC hiring costs, plus interactive product demos.">
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230f172a'/%3E%3Ctext x='16' y='21' font-family='Inter,system-ui,sans-serif' font-size='13' font-weight='700' text-anchor='middle' fill='white' letter-spacing='1'%3EQ%3C/text%3E%3C/svg%3E">
+
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="QROST — research notes & build logs">
+    <meta property="og:description" content="Personal shelf: China WFOE & AEC hiring research, plus interactive product demos.">
+    <meta property="og:url" content="https://qrost.github.io/">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="QROST — research notes & build logs">
+    <meta name="twitter:description" content="Personal shelf: China WFOE & AEC hiring research, plus interactive product demos.">
+
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
@@ -16,8 +26,11 @@
     <nav class="bg-white/90 border-b border-slate-200/90 backdrop-blur-sm">
         <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between h-14 items-center">
-                <a href="index.html" class="text-[0.65rem] font-semibold tracking-[0.35em] text-slate-900 uppercase">Qrost</a>
-                <a href="#projects" class="text-sm text-slate-500 hover:text-slate-900 transition-colors">Projects</a>
+                <a href="/" class="text-[0.65rem] font-semibold tracking-[0.35em] text-slate-900 uppercase">Qrost</a>
+                <div class="flex items-center gap-6 text-sm text-slate-500">
+                    <a href="#research" class="hover:text-slate-900 transition-colors">Research</a>
+                    <a href="#demos" class="hover:text-slate-900 transition-colors">Demos</a>
+                </div>
             </div>
         </div>
     </nav>
@@ -29,53 +42,63 @@
                 I build and write.
             </h1>
             <p class="mt-6 text-slate-600 leading-relaxed">
-                This site is a small public shelf. Nothing here is financial, legal or tax advice.
+                Notes and build logs around <strong class="font-medium text-slate-800">AEC tooling</strong>, the
+                <strong class="font-medium text-slate-800">China side of doing engineering business</strong>, and the occasional product prototype.
+                A small public shelf — pick what's useful, ignore the rest.
             </p>
         </div>
     </header>
 
-    <main id="projects" class="flex-grow max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-14 w-full">
-        <h2 class="text-xs font-semibold uppercase tracking-[0.15em] text-slate-400 mb-6">Projects &amp; notes</h2>
+    <main class="flex-grow max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-14 w-full space-y-14">
 
-        <ul class="space-y-4">
-            <li>
-                <a href="demos/wfoe-china/index.html" class="group block rounded-lg border border-slate-200 bg-white p-5 transition hover:border-slate-300 hover:bg-slate-50/80">
-                    <div class="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1">
-                        <span class="font-medium text-slate-900 group-hover:text-slate-700">China WFOE &amp; hiring costs (AEC)</span>
-                        <span class="text-xs text-slate-400 shrink-0">Research · interactive</span>
-                    </div>
-                    <p class="mt-2 text-sm text-slate-500 leading-relaxed">
-                        A step-by-step Chinese company setup outline and a city-level cost model for CAD roles. 
-                        Written for international AEC founders exploring China.
-                    </p>
-                    <span class="mt-3 inline-flex items-center text-xs font-medium text-slate-600 group-hover:text-slate-900">
-                        Open page
-                        <svg class="w-3.5 h-3.5 ml-1 opacity-70 group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
-                    </span>
-                </a>
-            </li>
-            <li>
-                <a href="demos/pinned/index.html" class="group block rounded-lg border border-slate-200 bg-white p-5 transition hover:border-slate-300 hover:bg-slate-50/80">
-                    <div class="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1">
-                        <span class="font-medium text-slate-900 group-hover:text-slate-700">Pinned — custom plate frame demo</span>
-                        <span class="text-xs text-slate-400 shrink-0">Product · interactive</span>
-                    </div>
-                    <p class="mt-2 text-sm text-slate-500 leading-relaxed">
-                        A multi-page prototype for designing a silicone license-plate frame with draggable metal pins,
-                        AI preview, cart, account, and admin views.
-                    </p>
-                    <span class="mt-3 inline-flex items-center text-xs font-medium text-slate-600 group-hover:text-slate-900">
-                        Open page
-                        <svg class="w-3.5 h-3.5 ml-1 opacity-70 group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
-                    </span>
-                </a>
-            </li>
-        </ul>
+        <section id="research">
+            <h2 class="text-xs font-semibold uppercase tracking-[0.15em] text-slate-400 mb-6">Research &amp; notes</h2>
+            <ul class="space-y-4">
+                <li>
+                    <a href="demos/wfoe-china/index.html" class="group block rounded-lg border border-slate-200 bg-white p-5 transition hover:border-slate-300 hover:bg-slate-50/80">
+                        <div class="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1">
+                            <span class="font-medium text-slate-900 group-hover:text-slate-700">How to open a company in China — WFOE setup &amp; AEC hiring costs</span>
+                            <span class="text-xs text-slate-400 shrink-0">Research · interactive</span>
+                        </div>
+                        <p class="mt-2 text-sm text-slate-500 leading-relaxed">
+                            Step-by-step setup workflows (mainland WFOE, domestic LLC, HK/Macau SAR) and an interactive city-level cost model for CAD roles across 24 talent hubs. Bilingual EN/中文.
+                        </p>
+                        <span class="mt-3 inline-flex items-center text-xs font-medium text-slate-600 group-hover:text-slate-900">
+                            Open page
+                            <svg class="w-3.5 h-3.5 ml-1 opacity-70 group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                        </span>
+                    </a>
+                </li>
+            </ul>
+        </section>
+
+        <section id="demos">
+            <h2 class="text-xs font-semibold uppercase tracking-[0.15em] text-slate-400 mb-6">Product demos</h2>
+            <ul class="space-y-4">
+                <li>
+                    <a href="demos/pinned/index.html" class="group block rounded-lg border border-slate-200 bg-white p-5 transition hover:border-slate-300 hover:bg-slate-50/80">
+                        <div class="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1">
+                            <span class="font-medium text-slate-900 group-hover:text-slate-700">Pinned — custom plate frame</span>
+                            <span class="text-xs text-slate-400 shrink-0">Prototype · interactive</span>
+                        </div>
+                        <p class="mt-2 text-sm text-slate-500 leading-relaxed">
+                            Multi-page prototype for designing a silicone license-plate frame: draggable metal pins, AI preview, cart, account, and admin views.
+                        </p>
+                        <span class="mt-3 inline-flex items-center text-xs font-medium text-slate-600 group-hover:text-slate-900">
+                            Open page
+                            <svg class="w-3.5 h-3.5 ml-1 opacity-70 group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                        </span>
+                    </a>
+                </li>
+            </ul>
+        </section>
+
     </main>
 
     <footer class="mt-auto border-t border-slate-100 py-8 bg-white">
-        <div class="max-w-3xl mx-auto px-4 text-center text-slate-400 text-xs">
-            &copy; 2026 QROST. All rights reserved.
+        <div class="max-w-3xl mx-auto px-4 text-center text-slate-400 text-xs space-y-2">
+            <p>Last updated 2026-04. Nothing here is financial, legal or tax advice.</p>
+            <p>&copy; 2026 QROST. All rights reserved.</p>
         </div>
     </footer>
 
