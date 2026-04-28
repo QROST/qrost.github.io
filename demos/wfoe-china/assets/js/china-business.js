@@ -39,7 +39,7 @@ document.addEventListener('DOMContentLoaded', () => {
             /* Data setup: all mainland / dashboard economics are modeled in RMB first. USD = RMB ÷ USD/CNY (live API when
                available, else FALLBACK_USD_CNY). WFOE + domestic process “money” columns: RMB bands are fixed anchors;
                overseas-only costs (notary, wire) use planning RMB equivalents; USD shown as derived. */
-            const FALLBACK_USD_CNY = 6.8;
+            const FALLBACK_USD_CNY = 7.2;
             let exchangeRate = FALLBACK_USD_CNY;
             let exchangeRateIsLive = false;
 
@@ -55,7 +55,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const r = effectiveExchangeRate().toFixed(2);
                 const mode = exchangeRateIsLive
                     ? tr('chart.fx_mode_live', 'live')
-                    : tr('chart.fx_mode_fallback', 'offline default (6.8)');
+                    : tr('chart.fx_mode_fallback', '2024-avg fallback (7.2)');
                 let line = tr('chart.fx_line', 'USD column uses 1 USD ≈ {rate} CNY ({mode}).');
                 line = line.replace(/\{rate\}/g, r).replace(/\{mode\}/g, mode);
                 el.textContent = line;
@@ -574,7 +574,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 };
                 const z = function () { return '<strong>¥0</strong> (≈ <strong>$0</strong>)'; };
                 const rateFmt = r.toFixed(2);
-                let fxNote = tr('s05.fee_fx_note', 'RMB is the planning anchor; USD = RMB ÷ rate. Same as Financials: <strong>1 USD ≈ {rate} CNY</strong> (live when the feed loads, otherwise 6.8).');
+                let fxNote = tr('s05.fee_fx_note', 'RMB is the planning anchor; USD = RMB ÷ rate. Same as Financials: <strong>1 USD ≈ {rate} CNY</strong> (live when the feed loads, otherwise a 2024-avg fallback of 7.2).');
                 fxNote = fxNote.replace(/\{rate\}/g, rateFmt);
                 const foot = '<span class="text-slate-500 text-xs block mt-1.5">' + fxNote + '</span>';
 

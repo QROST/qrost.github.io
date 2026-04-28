@@ -6,7 +6,7 @@
     const STORAGE_KEY = 'china-biz-lang';
 
     const ZH = {
-        'meta.title': '如何在中国开公司——国际AEC创业者',
+        'meta.title': '如何在中国开公司 — WFOE 设立与 AEC 用工成本 | QROST',
 
         'nav.setup': '设置',
         'nav.regions': '区域',
@@ -16,6 +16,7 @@
 
         'hero.h1': '如何在中国开公司',
         'hero.lead': '关于<strong class="font-medium text-slate-800">在中国开公司</strong>与<strong class="font-medium text-slate-800">大致成本预期</strong>的整理性研究。请用各标签查看不同地区设立流程，在财务板块做<strong class="font-medium text-slate-800">24 个城市</strong>量级的粗略成本测算——仅为示意，不构成法律或税务意见。',
+        'hero.timestamp': '数据时点：<strong class="font-medium text-slate-700">2024 年第四季度</strong>；最近复核：<strong class="font-medium text-slate-700">2026-04</strong>。来源详见<a href="#methodology" class="text-emerald-700 underline underline-offset-2 hover:text-emerald-600">方法论</a>。',
 
         'process.h2': '设立流程：分步说明',
         'process.tab_mainland': '大陆（外商独资·国际）',
@@ -23,8 +24,8 @@
         'process.tab_sar': '香港与澳门（特别行政区）',
         'process.mainland_intro': '本标签面向<strong>境外投资者</strong>——境外<strong>自然人</strong>（国籍不限，<strong>美国籍</strong>为常见示例之一）或<strong>境外母公司</strong>——说明如何设立<strong>WFOE</strong>（<strong>外商独资企业</strong>，Wholly Foreign-Owned Enterprise），即境外投资者在内地常用的组织形式。按顺序完成各步；更多说明可展开查看。在递交前请预算<strong>注册资本</strong>（第8–9步）与<strong>运营成本</strong>。',
         'process.domestic_intro': '<strong>中国公民</strong>（或股东均为境内主体）常见路径为通过当地<strong>「企业开办一窗通」</strong>等渠道设立<strong>有限责任公司</strong>——无需境外公证、海牙认证或外商投资资本金专户。具体步骤与时效因城市而异，以下为常见顺序。',
-        'process.fee_note_domestic': '右侧栏：各步<strong>大致现金影响</strong>（2024–2025 常见预估区间）。非报价——城市与银行政策不同。<strong>与仪表盘一致：</strong>以<strong>人民币</strong>为锚；括号内<strong>美元</strong> = 人民币 ÷ 美元/人民币汇率（在线成功则用实时汇率，否则 6.8）。',
-        'process.fee_note': '右侧栏：各步<strong>大致现金影响</strong>（2024–2025 常见预估区间）。非报价——城市、银行与代理机构不同，结果会有差异。<strong>货币规则：</strong>流程栏金额均以<strong>人民币</strong>为<strong>预估锚</strong>（境内支付或境外费用的规划等价）；<strong>美元</strong> = 人民币 ÷ 美元/人民币汇率（与财务区一致，在线成功则用实时汇率，否则 6.8）。<strong>财务仪表盘</strong>在选美元时同样按此规则。',
+        'process.fee_note_domestic': '右侧栏：各步<strong>大致现金影响</strong>（2024–2025 常见预估区间）。非报价——城市与银行政策不同。<strong>与仪表盘一致：</strong>以<strong>人民币</strong>为锚；括号内<strong>美元</strong> = 人民币 ÷ 美元/人民币汇率（在线成功则用实时汇率，若接口失败则按 2024 年均值兜底 7.2）。',
+        'process.fee_note': '右侧栏：各步<strong>大致现金影响</strong>（2024–2025 常见预估区间）。非报价——城市、银行与代理机构不同，结果会有差异。<strong>货币规则：</strong>流程栏金额均以<strong>人民币</strong>为<strong>预估锚</strong>（境内支付或境外费用的规划等价）；<strong>美元</strong> = 人民币 ÷ 美元/人民币汇率（与财务区一致，在线成功则用实时汇率，若接口失败则按 2024 年均值兜底 7.2）。<strong>财务仪表盘</strong>在选美元时同样按此规则。',
 
         'common.sr.toggle': '显示或隐藏本步补充说明',
 
@@ -96,7 +97,7 @@
 
         'costs.h2': '年度财务建模仪表盘',
         'costs.intro': '本交互表计算<strong>年度用工总成本</strong>。将底薪按12个月计，并按各地雇主法定缴费（大陆“五险一金”/港澳强积金等）测算24个城市。底薪参考2024–2025招聘与薪酬调研（如猎聘、前程无忧、i人事等）；写字楼租金采用中指、仲量联行、戴德梁行等机构公布的各地甲级/优质办公<strong>有效租金</strong>（多为2024年三、四季度），公用事业按气候与供暖分摊。均为<strong>规划用预估</strong>，非报价。可选<strong>人均模拟间接成本</strong>——租金、工位设备、公用事业与AEC软件（见下方方法）。<strong>点击任意城市条形</strong>查看细分。设立背景见<a href="#process" class="text-emerald-600 font-semibold underline underline-offset-2">设置第8–9步</a>。',
-        'costs.overhead_method': '<strong>间接成本模型（人均·年，预估）：</strong><strong>租金</strong>——甲级/优质办公有效租金（人民币/平方米/月）×约10平方米工位 ×12；特别行政区按核心写字楼人民币等价。<strong>硬件与家具</strong>——工程类工作站（含BIM用内存/显卡）、双显示器、桌椅按约3年摊销（约¥1.38万/年）。<strong>公用事业与物业</strong>——电费、集中供暖/供冷或空调、燃气及公区分摊（因城市气候而异）。<strong>软件</strong>——Autodesk <em>AEC Collection</em>年费（Revit、AutoCAD等；美国公开标价约每用户每年3,560–3,795美元，2025–2026）及<em>Rhino</em>商业许可（永久约995美元；按约3年摊销+维护估算）；美元标价按与图表相同的美元/人民币汇率折算（在线拉取成功则用实时汇率，否则 6.8）。经销商与谈判条款不同——数量级参考即可。',
+        'costs.overhead_method': '<strong>间接成本模型（人均·年，预估）：</strong><strong>租金</strong>——甲级/优质办公有效租金（人民币/平方米/月）×约10平方米工位 ×12；特别行政区按核心写字楼人民币等价。<strong>硬件与家具</strong>——工程类工作站（含BIM用内存/显卡）、双显示器、桌椅按约3年摊销（约¥1.38万/年）。<strong>公用事业与物业</strong>——电费、集中供暖/供冷或空调、燃气及公区分摊（因城市气候而异）。<strong>软件</strong>——Autodesk <em>AEC Collection</em>年费（Revit、AutoCAD等；美国公开标价约每用户每年3,560–3,795美元，2025–2026）及<em>Rhino</em>商业许可（永久约995美元；按约3年摊销+维护估算）；美元标价按与图表相同的美元/人民币汇率折算（在线拉取成功则用实时汇率，若接口失败则按 2024 年均值兜底 7.2）。经销商与谈判条款不同——数量级参考即可。',
 
         'dash.role': '岗位',
         'dash.junior': '初级CAD',
@@ -123,12 +124,21 @@
         'dash.sar_body': '您选择的是特别行政区。底薪通常更高，但雇主法定缴费远低于大陆，因为特别行政区不使用大陆社保/公积金体系（例如香港强积金有较低上限）。为便于比较，数值以人民币/美元等价展示。',
 
         'footer.rights': '© 2026 QROST. 保留所有权利。',
-        'footer.ai': '本页内容由 Gemini 3.1 Pro 于2026年4月辅助生成；流程与成本为知识库时点信息。<strong>建模规则：</strong>图表中薪酬、租金、缴费与间接成本均以<strong>人民币</strong>为底层；美元展示为人民币<strong>除以</strong>美元/人民币汇率（优先在线汇率；若接口失败则 1 美元 = 6.8 人民币）。港币与澳门元按人民币等价计入图表。',
         'footer.disclaimer': '免责声明：本站信息仅供教育与战略规划参考，不对绝对准确性、完整性或时效作任何保证。QROST 对基于本内容的商业、法律或财务决策不承担责任。跨境扩张前请咨询当地持牌律师与会计师。',
+
+        'method.h2': '方法论、数据来源与披露',
+        'method.sources_h': '数据来源',
+        'method.sources_body': '底薪参考 <strong>2024–2025</strong> 招聘与薪酬调研（猎聘、前程无忧、i人事）；写字楼租金采用 <strong>中指院、JLL、戴德梁行、莱坊、高力国际</strong>等机构发布的甲级/优质办公有效租金（多为 2024 年三、四季度），公用事业按气候与供暖分摊。软件价格用 Autodesk AEC Collection 美国公开标价（约每用户每年 3,560–3,795 美元，2025–2026）与 Rhino 商业许可（约 995 美元永久授权）。所有数字均为<strong>规划用预估，非报价</strong>。',
+        'method.modeling_h': '建模规则',
+        'method.modeling_body': '图表中薪酬、租金、缴费与间接成本均以<strong>人民币</strong>为底层；美元展示为人民币除以美元/人民币汇率（优先在线汇率；若接口失败则按 <strong>2024 年均值兜底 7.2</strong>）。港币与澳门元按人民币等价计入图表。',
+        'method.timestamp_h': '最近复核',
+        'method.timestamp_body': '<strong>数据时点 2024 年第四季度</strong>；最近复核 <strong>2026-04</strong>。法规引用（如 2024 年 7 月修订《公司法》）在对应步骤就地标注。',
+        'method.ai_h': 'AI 协助说明',
+        'method.ai_body': '本页内容在<strong>AI 协助（Gemini 3.1 Pro，2026 年 4 月）</strong>下，基于上述公开来源整理并经作者复核。仅作为参考起点，不构成法律或税务意见。',
 
         'chart.fx_line': '美元展示换算：1 美元 ≈ {rate} 人民币（{mode}）。',
         'chart.fx_mode_live': '在线汇率',
-        'chart.fx_mode_fallback': '离线默认 6.8',
+        'chart.fx_mode_fallback': '2024 年均值兜底 7.2',
 
         'chart.base': '年度底薪',
         'chart.contrib': '雇主缴费',
@@ -208,7 +218,7 @@
 
         's05.title': '书面委托<strong>企业登记代理服务机构</strong>（工商代办/咨询公司），约定服务范围：设立、刻章及可选的开户与记账。',
         's05.detail': '<ul class="list-disc pl-4 text-sm text-slate-600 space-y-1.5 mt-3"><li>法律并未要求外商投资企业<strong>必须</strong>聘请代理，但市监网上申报、材料模板与口径多依赖中文且因城市而异，<strong>境外投资者实务上几乎均委托</strong>本地机构办理。</li><li>典型服务：拟定章程与高管安排、向 AMR 递交设立登记、协调刻章；部分套餐含开户陪同或首年代账，须在合同中写明。</li><li>建议在<strong>寄出公证/海牙认证文件前</strong>取得书面报价；比较“仅设立”与“设立+银行+财税”全包价差。</li></ul>',
-        's05.fee_fx_note': '人民币为锚；美元由 ÷ 汇率得出。与下方财务区一致：当前约 <strong>1 USD ≈ {rate} CNY</strong>（在线成功则为实时汇率，否则 6.8）。',
+        's05.fee_fx_note': '人民币为锚；美元由 ÷ 汇率得出。与下方财务区一致：当前约 <strong>1 USD ≈ {rate} CNY</strong>（在线成功则为实时汇率，若接口失败则按 2024 年均值兜底 7.2）。',
 
         's06.title': '在<strong>本国</strong>由公证机构对<strong>护照</strong>或母公司文件进行公证（例如<strong>美国护照</strong>持有人常见由美国公证员办理；具体以代理机构清单为准）。',
         's06.detail': '<p class="text-sm text-slate-600 mt-3">自然人投资者提交护照；法人股东提交主体资格文件——代理机构会列明清单。</p>',
@@ -323,7 +333,7 @@
         if (isZh && ZH[titleKey]) {
             document.title = ZH[titleKey];
         } else {
-            document.title = 'How I open a company in China — international AEC founders';
+            document.title = 'How to open a company in China — WFOE setup & AEC hiring costs | QROST';
         }
 
         const btn = document.getElementById('lang-toggle');
