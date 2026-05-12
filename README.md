@@ -3,7 +3,7 @@
 ## Demo structure
 
 - `demos/wfoe-china/` contains the China WFOE + hiring costs interactive page.
-- `demos/pinned/` is reserved for the BrianWebsite frontend snapshot.
+- `demos/makoauto/` is reserved for the BrianWebsite frontend snapshot.
 
 ## URL note
 
