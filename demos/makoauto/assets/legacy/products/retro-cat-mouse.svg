@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <pattern id="dots-retro-cat-mouse" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
+      <circle cx="20" cy="20" r="1.2" fill="#1A1A1A" opacity="0.07"></circle>
+    </pattern>
+    <linearGradient id="frame-retro-cat-mouse" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1A1A1A" stop-opacity="0.08"></stop>
+      <stop offset="100%" stop-color="#1A1A1A" stop-opacity="0.18"></stop>
+    </linearGradient>
+  </defs>
+
+  
+  <rect width="1200" height="900" fill="#FF9F1C"></rect>
+  <rect width="1200" height="900" fill="url(#dots-retro-cat-mouse)"></rect>
+
+  
+  <g>
+    <rect x="48" y="48" width="68" height="40" rx="20" fill="#FFFFFF" stroke="#1A1A1A" stroke-width="2"></rect>
+    <text x="82" y="73" font-family="JetBrains Mono, monospace" font-size="14" font-weight="700" fill="#1A1A1A" text-anchor="middle" letter-spacing="1.5">TOM</text>
+  </g>
+
+  
+  <text x="1152" y="78" font-family="Space Grotesk, sans-serif" font-size="24" font-weight="700" fill="#1A1A1A" text-anchor="end" opacity="0.6" letter-spacing="-1">Makoauto</text>
+
+  
+  <text x="600" y="560" font-family="Space Grotesk, sans-serif" font-size="640" font-weight="700" fill="#FFFFFF" text-anchor="middle" opacity="0.18">◢</text>
+
+  
+  <g transform="translate(240, 250)">
+    
+    <rect x="0" y="0" width="720" height="360" rx="18" fill="url(#frame-retro-cat-mouse)" stroke="#1A1A1A" stroke-width="3" opacity="0.9"></rect>
+    
+    <rect x="60" y="50" width="600" height="260" rx="10" fill="#FF9F1C" stroke="#1A1A1A" stroke-width="1.5" opacity="0.5"></rect>
+    
+    <circle cx="60" cy="22" r="6" fill="none" stroke="#1A1A1A" stroke-width="1.5" opacity="0.4"></circle>
+    <circle cx="60" cy="338" r="11" fill="#FFFFFF" stroke="#1A1A1A" stroke-width="2.5" opacity="1"></circle>
+    <circle cx="180" cy="22" r="11" fill="#FFFFFF" stroke="#1A1A1A" stroke-width="2.5" opacity="1"></circle>
+    <circle cx="180" cy="338" r="6" fill="none" stroke="#1A1A1A" stroke-width="1.5" opacity="0.4"></circle>
+    <circle cx="300" cy="22" r="6" fill="none" stroke="#1A1A1A" stroke-width="1.5" opacity="0.4"></circle>
+    <circle cx="300" cy="338" r="11" fill="#FFFFFF" stroke="#1A1A1A" stroke-width="2.5" opacity="1"></circle>
+    <circle cx="420" cy="22" r="11" fill="#FFFFFF" stroke="#1A1A1A" stroke-width="2.5" opacity="1"></circle>
+    <circle cx="420" cy="338" r="11" fill="#FFFFFF" stroke="#1A1A1A" stroke-width="2.5" opacity="1"></circle>
+    <circle cx="540" cy="22" r="11" fill="#FFFFFF" stroke="#1A1A1A" stroke-width="2.5" opacity="1"></circle>
+    <circle cx="540" cy="338" r="6" fill="none" stroke="#1A1A1A" stroke-width="1.5" opacity="0.4"></circle>
+    <circle cx="660" cy="22" r="11" fill="#FFFFFF" stroke="#1A1A1A" stroke-width="2.5" opacity="1"></circle>
+    <circle cx="660" cy="338" r="6" fill="none" stroke="#1A1A1A" stroke-width="1.5" opacity="0.4"></circle>
+  </g>
+
+  
+  <text x="600" y="690" font-family="Space Grotesk, sans-serif" font-size="56" font-weight="700" fill="#1A1A1A" text-anchor="middle" letter-spacing="-1.5">Cat &amp; Mouse</text>
+  
+  <text x="600" y="730" font-family="JetBrains Mono, monospace" font-size="18" fill="#1A1A1A" text-anchor="middle" opacity="0.55" letter-spacing="2">$37 · LOOKBOOK SET</text>
+</svg>

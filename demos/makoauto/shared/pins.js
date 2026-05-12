@@ -1,9 +1,9 @@
-// Pinned — pin catalog.
+// Makoauto — pin catalog.
 // Renders pins as WHITE OUTLINE SILHOUETTES, then recolored in-place to the picked finish
 // via CSS filters + a metallic overlay. PNGs dropped into /assets/pins/ override the default
 // glyph rendering — they should be white on transparent background; the site tints them.
 
-window.PinnedCatalog = (() => {
+window.MakoautoCatalog = (() => {
   const cats = {
     letters: { label: 'Letters', color: 'var(--lime)' },
     numbers: { label: 'Numbers', color: 'var(--cobalt)' },
@@ -66,13 +66,13 @@ window.PinnedCatalog = (() => {
 
 // Async manifest loader — merges /assets/pins/manifest.json into the catalog
 // so backend team just drops PNGs + appends manifest entries. Safely no-ops offline.
-window.PinnedAssetsLoaded = fetch('assets/pins/manifest.json').then(r => r.ok ? r.json() : null).then(manifest => {
+window.MakoautoAssetsLoaded = fetch('assets/pins/manifest.json').then(r => r.ok ? r.json() : null).then(manifest => {
   if (!manifest || !manifest.pins) return;
   manifest.pins.forEach(entry => {
-    const existing = window.PinnedCatalog.pins.find(p => p.id === entry.id);
+    const existing = window.MakoautoCatalog.pins.find(p => p.id === entry.id);
     const record = Object.assign({}, entry, { img: 'assets/pins/' + entry.file });
     if (existing) Object.assign(existing, record);
-    else window.PinnedCatalog.pins.push(record);
+    else window.MakoautoCatalog.pins.push(record);
   });
   window.dispatchEvent(new CustomEvent('pinned:assets-loaded'));
 }).catch(()=>{});

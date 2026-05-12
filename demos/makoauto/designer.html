@@ -2,17 +2,17 @@
 <html lang="en">
 <head>
 <meta charset="utf-8" />
-<title>Pinned — Designer</title>
+<title>Makoauto — Designer</title>
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
-<meta name="description" content="Design a custom Pinned plate frame: pick metal pins and finishes, place them in 20 holes, generate an AI car preview, then add to cart." />
+<meta name="description" content="Design a custom Makoauto plate frame: pick metal pins and finishes, place them in 28 holes, generate an AI car preview, then add to cart." />
 <link rel="icon" type="image/svg+xml" href="favicon.svg" />
 <link rel="apple-touch-icon" href="favicon.svg" />
 <meta name="theme-color" content="#F5F0E3" />
-<meta property="og:site_name" content="Pinned" />
+<meta property="og:site_name" content="Makoauto" />
 <meta property="og:type" content="website" />
 <meta property="og:locale" content="en_US" />
-<meta property="og:title" content="Pinned — Designer" />
-<meta property="og:description" content="Design a custom Pinned plate frame: pick metal pins and finishes, place them in 20 holes, generate an AI car preview, then add to cart." />
+<meta property="og:title" content="Makoauto — Designer" />
+<meta property="og:description" content="Design a custom Makoauto plate frame: pick metal pins and finishes, place them in 28 holes, generate an AI car preview, then add to cart." />
 <meta property="og:image" content="favicon.svg" />
 <meta name="twitter:card" content="summary" />
 <link rel="stylesheet" href="shared/styles.css" />
@@ -54,7 +54,22 @@
     position: relative; min-width: 0; min-height: 0;
     display: flex; flex-direction: column; align-items: center; justify-content: center;
     padding: 24px; overflow: hidden;
+    /* Backdrop tinted so the silicone frame never disappears into the page.
+       --stage-bg is rewritten per data-frame-color below; defaults to the
+       theme's page bg when no frame is selected. */
+    background: var(--stage-bg, transparent);
+    border-radius: 24px;
+    transition: background-color .35s ease;
   }
+  /* Dark frame → warm cream backdrop. Light frame → deep warm charcoal.
+     Pink/red/sky pick a complementary neutral so the color reads cleanly. */
+  .stage[data-frame-color="black"]   { --stage-bg: #EFE7D2; }
+  .stage[data-frame-color="white"]   { --stage-bg: #28231B; }
+  .stage[data-frame-color="clear"]   { --stage-bg: #28231B; }
+  .stage[data-frame-color="pink"]    { --stage-bg: #1F1D17; }
+  .stage[data-frame-color="red"]     { --stage-bg: #F1ECDC; }
+  .stage[data-frame-color="sky"]     { --stage-bg: #1B1F2A; }
+  .stage[data-frame-color="pattern"] { --stage-bg: var(--bg-2); }
   .stage-toolbar {
     display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 8px 12px;
     margin-bottom: 16px; background: var(--paper);
@@ -67,53 +82,115 @@
   .stage-toolbar .ttl-btn.danger:hover { background: var(--pink); color: var(--paper); }
 
   .frame-scene {
-    position: relative; width: min(760px, 92%); aspect-ratio: 2/1;
+    position: relative; width: min(900px, 96%); aspect-ratio: 1419/736;
     filter: drop-shadow(0 20px 40px rgba(0,0,0,.25));
   }
 
-  /* The silicone frame: a thick ring around a plate */
   .silicone {
-    position: absolute; inset: 0; border-radius: 14px;
-    background: #111; /* silicone color (dynamic) */
-    padding: 11%; /* the ring width */
-    box-shadow: inset 0 0 0 2px #222, inset 0 4px 8px rgba(0,0,0,.4);
+    position: absolute; inset: 0;
   }
-  .silicone[data-color="white"] { background: #EFEAE0; box-shadow: inset 0 0 0 2px #d4cfc3, inset 0 4px 8px rgba(0,0,0,.1); }
-  .silicone[data-color="pink"] { background: #FF4D8D; box-shadow: inset 0 0 0 2px #c9366c, inset 0 4px 8px rgba(0,0,0,.2); }
-  .silicone[data-color="lime"] { background: #C6F24E; box-shadow: inset 0 0 0 2px #9fc33a, inset 0 4px 8px rgba(0,0,0,.15); }
-  .silicone[data-color="cobalt"] { background: #2E4CFF; box-shadow: inset 0 0 0 2px #1c2f99, inset 0 4px 8px rgba(0,0,0,.25); }
 
+  /* Plate window — sits inside the PNG frame's clear cutout. Coordinates from
+     pixel-detection of the frame PNG (1419x736). */
   .plate-window {
-    position: relative; width: 100%; height: 100%;
+    position: absolute;
+    left: 7.68%; top: 17.53%; right: 7.40%; bottom: 14.67%;
     background: linear-gradient(180deg,#F8F5E8,#EADFBE);
-    border-radius: 4px; overflow: visible;
     display: flex; align-items: center; justify-content: center;
     font-family: 'Space Grotesk', sans-serif; font-weight: 700;
-    color: #1F3A8A; letter-spacing: .08em; border: 1.5px solid rgba(0,0,0,.4);
+    color: #1F3A8A; letter-spacing: .08em;
   }
-  .plate-text { font-size: clamp(20px, 5vw, 52px); text-transform: uppercase; white-space: nowrap; }
+  .plate-text { font-size: clamp(20px, 5.5vw, 56px); text-transform: uppercase; white-space: nowrap; outline: none; }
 
-  /* The hole layout — absolutely positioned on the silicone ring */
+  /* Frame body — a div masked by the frame silhouette SVG, filled with the
+     user's chosen color or a custom uploaded pattern. The SVG punches out the
+     inner license-plate cutout and the 4 oval screw slots; cross pin holes are
+     drawn separately by the slot-indicator layer on top. */
+  .frame-png {
+    position: absolute; inset: 0; width: 100%; height: 100%;
+    pointer-events: none;
+    user-select: none; -webkit-user-drag: none;
+    --frame-mask: url("assets/frame.svg");
+    -webkit-mask: var(--frame-mask) center/100% 100% no-repeat;
+            mask: var(--frame-mask) center/100% 100% no-repeat;
+    background: #111;
+  }
+  /* Solid silicone colors — picked to match Makoauto's lookbook palette. */
+  .silicone[data-color="black"]  .frame-png { background: #1A1A1A; }
+  .silicone[data-color="pink"]   .frame-png { background: #F5B6B0; }   /* 肉粉色 */
+  .silicone[data-color="red"]    .frame-png { background: #D4252B; }   /* 正红色 */
+  .silicone[data-color="white"]  .frame-png { background: #F4EFE6; }
+  .silicone[data-color="sky"]    .frame-png { background: #8FC8E8; }   /* 天蓝色 */
+  /* Clear silicone — frosted, slightly translucent. */
+  .silicone[data-color="clear"]  .frame-png {
+    background:
+      linear-gradient(135deg, rgba(255,255,255,.55), rgba(220,230,240,.35)),
+      repeating-linear-gradient(45deg, rgba(255,255,255,.08) 0 2px, transparent 2px 4px);
+    backdrop-filter: blur(4px);
+    box-shadow: inset 0 0 30px rgba(0,0,0,.08);
+  }
+  /* Pattern (uploaded image) — rendered via inline style on .frame-png. */
+  .silicone[data-color="pattern"] .frame-png { background-size: cover; background-position: center; }
+
+  /* Subtle inner shadow / highlight to keep the frame from looking flat.
+     Painted on top of the masked color div, also masked to the frame shape. */
+  .frame-shading {
+    position: absolute; inset: 0; pointer-events: none;
+    -webkit-mask: url("assets/frame.svg") center/100% 100% no-repeat;
+            mask: url("assets/frame.svg") center/100% 100% no-repeat;
+    background:
+      radial-gradient(ellipse at 50% 0%, rgba(255,255,255,.20), transparent 55%),
+      radial-gradient(ellipse at 50% 100%, rgba(0,0,0,.28), transparent 60%);
+    mix-blend-mode: overlay;
+  }
+  .silicone[data-color="black"] .frame-shading { mix-blend-mode: screen; opacity: .55; }
+  .silicone[data-color="clear"] .frame-shading { opacity: .25; }
+
+  /* Holes — positioned absolutely on top of PNG cross/oval cutouts.
+     The frame-png is pointer-events:none so click-throughs land on holes. */
+  .hole-layer { position: absolute; inset: 0; pointer-events: none; z-index: 2; }
   .hole {
-    position: absolute; width: 7%; aspect-ratio: 1/1; border-radius: 50%;
-    background: transparent; box-shadow: none;
+    position: absolute; width: 4.5%; aspect-ratio: 1/1;
+    background: transparent;
     transform: translate(-50%, -50%);
-    transition: background .15s, box-shadow .15s, opacity .15s;
+    transition: opacity .15s;
     display: flex; align-items: center; justify-content: center;
+    pointer-events: auto;
   }
-  /* Slots normally invisible. Visible while dragging OR while hovering a placed pin. */
-  .stage.mode-place .hole:not(.has-pin) {
-    background: rgba(255,255,255,.08); box-shadow: inset 0 0 0 1.5px rgba(255,255,255,.35);
+  .hole[data-shape="oval"] { width: 5%; aspect-ratio: 1.7/1; }
+  .hole[data-shape="oval"] .slot-indicator {
+    -webkit-mask: var(--oval-mask) center/100% 100% no-repeat;
+            mask: var(--oval-mask) center/100% 100% no-repeat;
   }
-  .hole.drag-over { background: var(--lime) !important; box-shadow: 0 0 0 3px var(--ink) !important; }
-  .hole.has-pin { background: transparent; box-shadow: none; }
+  /* Slot indicator (normally invisible — a faint cross outline showing on drag).
+     Color flips with frame: black holes on light frames, white holes on black frame. */
+  .hole .slot-indicator {
+    position: absolute; inset: 0;
+    -webkit-mask: var(--cross-mask) center/100% 100% no-repeat;
+            mask: var(--cross-mask) center/100% 100% no-repeat;
+    background-color: rgba(0,0,0,.78);
+    opacity: 0;
+    transition: opacity .15s, background-color .15s;
+    transform: rotate(45deg);
+  }
+  .hole[data-shape="oval"] .slot-indicator { transform: none; }
+  .silicone[data-color="black"] .hole .slot-indicator { background-color: rgba(255,255,255,.85); }
+  /* Cross-hole positions are no longer baked into the frame mask, so the slot
+     indicator is always faintly visible to mark each hole; it brightens during
+     a drag and turns lime when the hole is the drop target. */
+  .hole:not(.has-pin) .slot-indicator { opacity: .55; }
+  .stage.mode-place .hole:not(.has-pin) .slot-indicator { opacity: 1; }
+  .hole.drag-over .slot-indicator,
+  .silicone[data-color="black"] .hole.drag-over .slot-indicator { opacity: 1; background-color: var(--lime); }
+  .hole.has-pin .slot-indicator { opacity: 0; }
   .hole .placed-pin {
-    width: 150%; height: 150%;
+    position: absolute; width: 220%; height: 220%;
+    left: 50%; top: 50%; transform: translate(-50%,-50%);
     display: flex; align-items: center; justify-content: center;
     cursor: pointer;
   }
   .hole .placed-pin .pin-visual { width:100% !important; height:100% !important; }
-  .hole .placed-pin.remove-hint::after { content: "×"; position: absolute; top: -6px; right: -6px; width: 18px; height: 18px; background: var(--pink); color: var(--paper); border-radius: 50%; font-size: 14px; display: flex; align-items: center; justify-content: center; border: 1.5px solid var(--ink); }
+  .hole .placed-pin.remove-hint::after { content: "×"; position: absolute; top: 4px; right: 4px; width: 18px; height: 18px; background: var(--pink); color: var(--paper); border-radius: 50%; font-size: 14px; display: flex; align-items: center; justify-content: center; border: 1.5px solid var(--ink); }
 
   /* Drag ghost */
   .drag-ghost {
@@ -136,9 +213,48 @@
   .finish-chip { border: 2px solid var(--ink); border-radius: 10px; padding: 10px 4px; cursor: pointer; text-align: center; font-size: 11px; font-family: 'JetBrains Mono', monospace; background: var(--bg); }
   .finish-chip .swatch { width: 100%; aspect-ratio: 1/1; border-radius: 50%; margin-bottom: 4px; box-shadow: inset 0 2px 3px rgba(255,255,255,.6), inset 0 -2px 4px rgba(0,0,0,.4); }
   .finish-chip.active { background: var(--lime); box-shadow: var(--shadow-hard); }
-  .color-row { display: flex; gap: 8px; }
-  .color-chip { width: 40px; height: 40px; border-radius: 50%; border: 2px solid var(--ink); cursor: pointer; }
+  .color-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+  .color-cell { display: flex; flex-direction: column; align-items: stretch; gap: 4px; min-width: 0; }
+  .color-chip {
+    width: 100%;
+    aspect-ratio: 1/1;
+    border-radius: 50%;
+    border: 2px solid var(--ink);
+    cursor: pointer;
+    position: relative;
+    background-clip: padding-box;
+    box-shadow: inset 0 2px 4px rgba(255,255,255,.35), inset 0 -3px 6px rgba(0,0,0,.25);
+  }
+  .color-chip[data-frame-color="white"] { background: #F4EFE6; }
+  .color-chip[data-frame-color="clear"] {
+    background:
+      linear-gradient(135deg, rgba(255,255,255,.6), rgba(200,210,220,.4)),
+      repeating-linear-gradient(45deg, #DDD 0 4px, #FFF 4px 8px);
+  }
+  .color-chip[data-frame-color="pattern"] {
+    background:
+      conic-gradient(from 0deg, #F5B6B0, #FFD93D, #8FC8E8, #C6F24E, #F5B6B0);
+    display: flex; align-items: center; justify-content: center;
+    color: var(--ink); font-family: 'JetBrains Mono', monospace; font-size: 18px; font-weight: 700;
+  }
+  .color-chip[data-frame-color="pattern"]::before {
+    content: "+";
+    position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+    background: rgba(255,255,255,.7); border-radius: 50%; margin: 4px;
+    font-size: 22px; font-weight: 700;
+  }
+  .color-chip[data-frame-color="pattern"][data-has-image="true"]::before { display: none; }
   .color-chip.active { box-shadow: 0 0 0 3px var(--ink), 0 0 0 5px var(--lime); }
+  .color-label { font-size: 10px; font-family: 'JetBrains Mono', monospace; color: var(--muted); text-transform: uppercase; letter-spacing: .06em; text-align: center; }
+  .pattern-controls { display: none; margin-top: 10px; padding: 10px; border: 1.5px dashed var(--muted); border-radius: 10px; font-family: 'JetBrains Mono', monospace; font-size: 11px; }
+  .pattern-controls.show { display: block; }
+  .pattern-controls label { display: block; cursor: pointer; padding: 6px 10px; background: var(--bg-2); border-radius: 6px; text-align: center; }
+  .pattern-controls label:hover { background: var(--lime); }
+  .pattern-controls input[type=file] { display: none; }
+  .pattern-controls .pat-row { display: flex; gap: 8px; align-items: center; margin-top: 8px; }
+  .pattern-controls .pat-row span { flex: 1; }
+  .pattern-controls button { border: 1.5px solid var(--ink); background: var(--paper); padding: 4px 10px; border-radius: 6px; cursor: pointer; font-family: inherit; font-size: 11px; }
+  .pattern-controls button:hover { background: var(--pink); color: var(--paper); }
 
   .plate-input { width: 100%; border: var(--border); border-radius: 10px; padding: 10px 14px; font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 20px; text-transform: uppercase; letter-spacing: .08em; background: var(--bg); color: #1F3A8A; }
 
@@ -147,6 +263,23 @@
   .cart-summary .line.total { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 20px; border: none; margin-top: 8px; padding-top: 16px; border-top: 2px solid var(--ink); }
   .cart-summary .cta { margin-top: auto; display: flex; flex-direction: column; gap: 8px; padding-top: 16px; }
 
+
+  /* Inspiration strip */
+  .inspo-section { border-bottom: var(--border-thick); background: var(--bg-2); }
+  .inspo-head { display: flex; justify-content: space-between; align-items: baseline; padding: 14px 16px 8px; }
+  .inspo-head h3 { font-size: 13px; font-family: 'JetBrains Mono', monospace; text-transform: uppercase; letter-spacing: .12em; color: var(--ink); }
+  .inspo-head .hint { font-size: 10px; font-family: 'JetBrains Mono', monospace; color: var(--muted); text-transform: uppercase; letter-spacing: .1em; }
+  .inspo-strip { display: flex; gap: 10px; padding: 0 16px 14px; overflow-x: auto; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; }
+  .inspo-strip::-webkit-scrollbar { height: 4px; }
+  .inspo-strip::-webkit-scrollbar-thumb { background: var(--muted); border-radius: 2px; }
+  .inspo-card { flex: 0 0 auto; width: 110px; cursor: pointer; scroll-snap-align: start; border: 2px solid var(--ink); border-radius: 10px; overflow: hidden; background: var(--paper); box-shadow: var(--shadow-hard); transition: transform .12s ease; }
+  .inspo-card:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0 var(--ink); }
+  .inspo-card.active { background: var(--lime); }
+  .inspo-card .thumb { width: 100%; aspect-ratio: 1/1; background: var(--bg-2) center/cover no-repeat; border-bottom: 2px solid var(--ink); position: relative; }
+  .inspo-card .thumb::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,0) 60%, rgba(0,0,0,.35)); }
+  .inspo-card .meta { padding: 6px 8px; }
+  .inspo-card .name { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 13px; line-height: 1.15; color: var(--ink); }
+  .inspo-card .tag { font-size: 9px; font-family: 'JetBrains Mono', monospace; color: var(--muted); text-transform: uppercase; letter-spacing: .08em; margin-top: 2px; }
 
   /* Help callout */
   .help-callout { position: absolute; bottom: 16px; left: 16px; padding: 10px 14px; background: var(--paper); border: var(--border); border-radius: 12px; font-size: 12px; color: var(--muted); font-family: 'JetBrains Mono', monospace; box-shadow: var(--shadow-hard); max-width: 260px; }
@@ -240,6 +373,13 @@
           <input id="search" data-i18n-placeholder="search_ph" placeholder="Search name, letter, emoji…" />
         </div>
       </div>
+      <section class="inspo-section" aria-label="Inspiration">
+        <div class="inspo-head">
+          <h3 data-i18n="inspo_title">Inspiration</h3>
+          <span class="hint" data-i18n="inspo_hint">Tap to load</span>
+        </div>
+        <div class="inspo-strip" id="inspo-strip" role="list"></div>
+      </section>
       <div class="cat-tabs" id="cat-tabs"></div>
       <div class="pin-grid" id="pin-grid"></div>
     </aside>
@@ -247,7 +387,7 @@
     <!-- CENTER: plate stage -->
     <main class="stage" id="stage">
       <div class="stage-toolbar">
-        <span class="stat"><span id="placed-count">0</span>/20 <span data-i18n="placed">pins</span></span>
+        <span class="stat"><span id="placed-count">0</span>/<span id="hole-total">28</span> <span data-i18n="placed">pins</span></span>
         <button type="button" class="ttl-btn" id="undo-btn">↶ <span data-i18n="undo">Undo</span></button>
         <button type="button" class="ttl-btn" id="redo-btn">↷ <span data-i18n="redo">Redo</span></button>
         <button type="button" class="ttl-btn" id="auto-btn">✨ <span data-i18n="autofill">Auto-fill</span></button>
@@ -260,32 +400,67 @@
           <div class="plate-window">
             <div class="plate-text" id="plate-text" contenteditable="true" spellcheck="false">BRIAN</div>
           </div>
-          <!-- holes rendered by JS -->
+          <div class="frame-png" id="frame-png"></div>
+          <div class="frame-shading"></div>
+          <div class="hole-layer" id="hole-layer">
+            <!-- interactive hole divs rendered by JS -->
+          </div>
         </div>
       </div>
 
       <div class="help-callout">
         <div data-i18n="tip_drag">Tip: drag pins from the library onto a hole. Click a placed pin to remove.</div>
-        <div data-i18n="tip_count" style="margin-top:4px">There are 20 holes total around the plate.</div>
+        <div data-i18n="tip_count" style="margin-top:4px">There are 28 cross holes around the frame. The 4 oval slots are screw mounts for fixing the plate to your car.</div>
       </div>
     </main>
 
     <!-- RIGHT: properties + cart -->
     <aside class="props-panel">
-      <div class="props-section">
+      <!-- Finish picker hidden — all pins are black chrome for now.
+           Code preserved + state.finish kept for future re-introduction. -->
+      <div class="props-section hidden">
         <h3 data-i18n="finish">Finish</h3>
         <div class="finish-row" id="finish-row"></div>
       </div>
-      <!-- Frame color picker hidden — only black silicone available right now.
-           Code preserved for when more colors ship. -->
-      <div class="props-section hidden">
+      <div class="props-section">
         <h3 data-i18n="frame_color">Frame color</h3>
-        <div class="color-row">
-          <div class="color-chip active" data-frame-color="black" style="background:#111"></div>
-          <div class="color-chip" data-frame-color="white" style="background:#EFEAE0"></div>
-          <div class="color-chip" data-frame-color="pink" style="background:#FF4D8D"></div>
-          <div class="color-chip" data-frame-color="lime" style="background:#C6F24E"></div>
-          <div class="color-chip" data-frame-color="cobalt" style="background:#2E4CFF"></div>
+        <div class="color-row" id="frame-color-row">
+          <div class="color-cell">
+            <div class="color-chip active" data-frame-color="black" style="background:#1A1A1A"></div>
+            <div class="color-label" data-i18n="fc_black">Black</div>
+          </div>
+          <div class="color-cell">
+            <div class="color-chip" data-frame-color="pink" style="background:#F5B6B0"></div>
+            <div class="color-label" data-i18n="fc_pink">Pink</div>
+          </div>
+          <div class="color-cell">
+            <div class="color-chip" data-frame-color="red" style="background:#D4252B"></div>
+            <div class="color-label" data-i18n="fc_red">Red</div>
+          </div>
+          <div class="color-cell">
+            <div class="color-chip" data-frame-color="white"></div>
+            <div class="color-label" data-i18n="fc_white">White</div>
+          </div>
+          <div class="color-cell">
+            <div class="color-chip" data-frame-color="clear"></div>
+            <div class="color-label" data-i18n="fc_clear">Clear</div>
+          </div>
+          <div class="color-cell">
+            <div class="color-chip" data-frame-color="sky" style="background:#8FC8E8"></div>
+            <div class="color-label" data-i18n="fc_sky">Sky</div>
+          </div>
+          <div class="color-cell">
+            <div class="color-chip" data-frame-color="pattern" data-has-image="false"></div>
+            <div class="color-label" data-i18n="fc_pattern">Pattern</div>
+          </div>
+        </div>
+        <div class="pattern-controls" id="pattern-controls">
+          <label for="pattern-upload" data-i18n="upload_image">Upload an image →</label>
+          <input id="pattern-upload" type="file" accept="image/*" />
+          <div class="pat-row">
+            <span data-i18n="pattern_hint">Tiles + crops to the frame shape.</span>
+            <button type="button" id="pattern-clear" data-i18n="remove">Remove</button>
+          </div>
         </div>
       </div>
       <div class="props-section">
@@ -309,9 +484,9 @@
 
   <div id="drag-ghost" class="drag-ghost" style="display:none"></div>
 
-<script src="shared/i18n.js?v=5"></script>
-<script src="shared/pins.js?v=5"></script>
-<script src="shared/api.js?v=1"></script>
+<script src="shared/i18n.js?v=13"></script>
+<script src="shared/pins.js?v=13"></script>
+<script src="shared/api.js?v=8"></script>
 <script>
   renderTopbar('design');
 
@@ -334,37 +509,81 @@
     setTab(shell.getAttribute('data-mobile-tab') || 'stage');
   })();
 
-  // ---------- Hole geometry ----------
-  // 20 holes total: 6 top + 6 bottom + 4 each side.
-  const HOLES = (() => {
-    const holes = [];
-    const inset = 5;
-    const top = inset, bottom = 100 - inset;
-    const left = inset, right = 100 - inset;
-    const T = 6, B = 6, S = 4;
-    for (let i = 0; i < T; i++) {
-      const x = left + (right - left) * (i / (T - 1));
-      holes.push({ x, y: top, side: 'top', i });
-    }
-    for (let i = 0; i < S; i++) {
-      const y = top + (bottom - top) * ((i + 1) / (S + 1));
-      holes.push({ x: right, y, side: 'right', i });
-    }
-    for (let i = 0; i < B; i++) {
-      const x = right - (right - left) * (i / (B - 1));
-      holes.push({ x, y: bottom, side: 'bottom', i });
-    }
-    for (let i = 0; i < S; i++) {
-      const y = bottom - (bottom - top) * ((i + 1) / (S + 1));
-      holes.push({ x: left, y, side: 'left', i });
-    }
-    return holes;
-  })();
+  // ---------- Frame & hole geometry ----------
+  // Source: assets/frame-transparent.png (1419x736). Hole positions detected
+  // by pixel-scanning the alpha channel for transparent components inside the
+  // frame body. 28 cross-shaped pin holes (the 4 oval slots are screw mounts
+  // for fixing the plate to the car — visible in the PNG but non-interactive).
+  // Holes are grouped by side so the legacy preset format (which addresses
+  // top/bottom/left/right by index) still works.
+
+  // Cross/plus glyph used for the slot indicator that appears on drag.
+  const CROSS_PATH = "M 38 12 Q 36 12 35 14 L 33 28 Q 33 30 31 31 L 17 33 Q 14 34 14 36 L 14 64 Q 14 66 17 67 L 31 69 Q 33 70 33 72 L 35 86 Q 36 88 38 88 L 62 88 Q 64 88 65 86 L 67 72 Q 67 70 69 69 L 83 67 Q 86 66 86 64 L 86 36 Q 86 34 83 33 L 69 31 Q 67 30 67 28 L 65 14 Q 64 12 62 12 Z";
+  const CROSS_DATAURL = "data:image/svg+xml;utf8," + encodeURIComponent(
+    `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="${CROSS_PATH}" fill="black"/></svg>`
+  );
+  // Oval slot mask (rounded rectangle ~1.7:1).
+  const OVAL_DATAURL = "data:image/svg+xml;utf8," + encodeURIComponent(
+    `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 60"><rect x="6" y="6" width="88" height="48" rx="24" ry="24" fill="black"/></svg>`
+  );
+
+  // Hole positions in % of frame-scene. xPct/yPct from PNG pixel detection.
+  // Order: top L→R (9 crosses), right T→B (4 crosses), bottom R→L (15 crosses,
+  // but split: 11 along the main bottom rim + 4 on the chamfered shoulder),
+  // left T→B (4 crosses), then 4 oval slots (top L, top R, bot L, bot R).
+  // We classify side by hole position so presets that target sides keep working.
+  const RAW_HOLES = [
+    // Top row (y ≈ 0.097)
+    {x:0.0536,y:0.0992,shape:'cross',side:'top'},
+    {x:0.1360,y:0.0978,shape:'cross',side:'top'},
+    {x:0.3242,y:0.0978,shape:'cross',side:'top'},
+    {x:0.4172,y:0.1304,shape:'cross',side:'top'},
+    {x:0.5011,y:0.0951,shape:'cross',side:'top'},
+    {x:0.5856,y:0.1291,shape:'cross',side:'top'},
+    {x:0.6779,y:0.0978,shape:'cross',side:'top'},
+    {x:0.8668,y:0.0978,shape:'cross',side:'top'},
+    {x:0.9493,y:0.0978,shape:'cross',side:'top'},
+    // Right rail (x ≈ 0.949)
+    {x:0.9493,y:0.3057,shape:'cross',side:'right'},
+    {x:0.9493,y:0.5068,shape:'cross',side:'right'},
+    {x:0.9493,y:0.7079,shape:'cross',side:'right'},
+    // Bottom chamfer shoulder (y ≈ 0.845)
+    {x:0.3143,y:0.8451,shape:'cross',side:'bottom'},
+    {x:0.4390,y:0.8451,shape:'cross',side:'bottom'},
+    {x:0.5638,y:0.8451,shape:'cross',side:'bottom'},
+    {x:0.6885,y:0.8451,shape:'cross',side:'bottom'},
+    // Bottom row (y ≈ 0.902) R→L canonical
+    {x:0.9493,y:0.9022,shape:'cross',side:'bottom'},
+    {x:0.8668,y:0.9022,shape:'cross',side:'bottom'},
+    {x:0.7512,y:0.9022,shape:'cross',side:'bottom'},
+    {x:0.6265,y:0.9035,shape:'cross',side:'bottom'},
+    {x:0.5011,y:0.9022,shape:'cross',side:'bottom'},
+    {x:0.3763,y:0.9035,shape:'cross',side:'bottom'},
+    {x:0.2516,y:0.9022,shape:'cross',side:'bottom'},
+    {x:0.1360,y:0.9022,shape:'cross',side:'bottom'},
+    {x:0.0536,y:0.9008,shape:'cross',side:'bottom'},
+    // Left rail (x ≈ 0.054)
+    {x:0.0536,y:0.7079,shape:'cross',side:'left'},
+    {x:0.0536,y:0.5068,shape:'cross',side:'left'},
+    {x:0.0536,y:0.3071,shape:'cross',side:'left'},
+    // Note: the 4 oval slots are screw mounts that fix the plate to the car —
+    // they are NOT pin positions and intentionally have no interactive entry here.
+  ];
+
+  const HOLES = RAW_HOLES.map(h => ({
+    ...h,
+    xPct: h.x * 100,
+    yPct: h.y * 100,
+  }));
+
+  // No-op: the PNG handles all body/glow rendering; nothing to inject.
+  function renderFrame() {}
 
 
   const state = {
     frameColor: 'black',
-    finish: 'silver',
+    framePattern: null, // dataURL when frameColor === 'pattern'
+    finish: 'black',    // black chrome — only finish offered right now
     placements: {}, // { holeIdx: pinId }
     history: [], future: [],
     category: 'all',
@@ -391,19 +610,26 @@
 
   // ---------- Render holes ----------
   const silicone = document.getElementById('silicone');
+  const holeLayer = document.getElementById('hole-layer');
   function renderHoles() {
-    // Remove existing
-    silicone.querySelectorAll('.hole').forEach(h => h.remove());
+    holeLayer.innerHTML = '';
     HOLES.forEach((h, idx) => {
       const el = document.createElement('div');
       el.className = 'hole';
-      el.style.left = h.x + '%';
-      el.style.top = h.y + '%';
+      el.style.left = h.xPct + '%';
+      el.style.top = h.yPct + '%';
+      el.style.setProperty('--cross-mask', `url("${CROSS_DATAURL}")`);
+      el.style.setProperty('--oval-mask', `url("${OVAL_DATAURL}")`);
       el.dataset.idx = idx;
+      el.dataset.shape = h.shape;
+      // Slot indicator (the visible-on-drag cross outline)
+      const ind = document.createElement('div');
+      ind.className = 'slot-indicator';
+      el.appendChild(ind);
       // inject placed pin
       const pid = state.placements[idx];
       if (pid) {
-        const pin = PinnedCatalog.pins.find(p => p.id === pid);
+        const pin = MakoautoCatalog.pins.find(p => p.id === pid);
         if (pin) {
           el.classList.add('has-pin');
           const finish = state.placements[idx+'_finish'] || state.finish;
@@ -423,7 +649,7 @@
           el.appendChild(wrap);
         }
       }
-      silicone.appendChild(el);
+      holeLayer.appendChild(el);
     });
   }
 
@@ -431,7 +657,7 @@
   function renderCats() {
     const tabs = document.getElementById('cat-tabs');
     const cats = [['all', t('filter_all')||'All']].concat(
-      Object.entries(PinnedCatalog.cats).map(([k,v]) => [k, t('filter_'+k) || v.label])
+      Object.entries(MakoautoCatalog.cats).map(([k,v]) => [k, t('filter_'+k) || v.label])
     );
     tabs.innerHTML = cats.map(([k,l]) => `<button type="button" data-cat="${k}" class="${state.category===k?'active':''}">${l}</button>`).join('');
     tabs.querySelectorAll('button').forEach(b => b.addEventListener('click', () => {
@@ -441,7 +667,7 @@
   }
   function renderPalette() {
     const grid = document.getElementById('pin-grid');
-    const filtered = PinnedCatalog.pins.filter(p => {
+    const filtered = MakoautoCatalog.pins.filter(p => {
       if (state.category !== 'all' && p.category !== state.category) return false;
       if (state.search && !(p.label.toLowerCase().includes(state.search.toLowerCase()) || p.glyph.includes(state.search))) return false;
       return true;
@@ -465,7 +691,7 @@
   function startDrag(e, pinId) {
     e.preventDefault();
     dragPinId = pinId;
-    const pin = PinnedCatalog.pins.find(p => p.id === pinId);
+    const pin = MakoautoCatalog.pins.find(p => p.id === pinId);
     if (!pin) return;
     const fgrad = { silver:'var(--silver)', gold:'var(--gold)', black:'var(--black-chrome)', rose:'var(--rose)' }[state.finish];
     const color = state.finish === 'gold' ? '#3A2400' : state.finish === 'rose' ? '#4A1A15' : state.finish === 'black' ? '#E8E8E8' : '#1A1A1A';
@@ -529,20 +755,77 @@
     }));
   }
 
-  // ---------- Frame color ----------
-  document.querySelectorAll('[data-frame-color]').forEach(el => el.addEventListener('click', () => {
-    document.querySelectorAll('[data-frame-color]').forEach(c => c.classList.remove('active'));
-    el.classList.add('active');
-    state.frameColor = el.dataset.frameColor;
+  // ---------- Frame color + pattern upload ----------
+  const framePngEl = document.getElementById('frame-png');
+  const patternControls = document.getElementById('pattern-controls');
+  const patternUpload = document.getElementById('pattern-upload');
+  const patternClear = document.getElementById('pattern-clear');
+
+  function applyFrameColor() {
     silicone.setAttribute('data-color', state.frameColor);
+    // Mirror onto the stage so the backdrop CSS rules tint the area behind
+    // the frame — keeps light frames legible on light pages and vice versa.
+    const stageEl = document.getElementById('stage');
+    if (stageEl) stageEl.setAttribute('data-frame-color', state.frameColor);
+    document.querySelectorAll('[data-frame-color]').forEach(c => {
+      c.classList.toggle('active', c.dataset.frameColor === state.frameColor);
+    });
+    // Pattern: paint the uploaded image onto the masked div as background.
+    if (state.frameColor === 'pattern' && state.framePattern) {
+      framePngEl.style.backgroundImage = `url("${state.framePattern}")`;
+    } else {
+      framePngEl.style.backgroundImage = '';
+    }
+    patternControls.classList.toggle('show', state.frameColor === 'pattern');
+    const patChip = document.querySelector('[data-frame-color="pattern"]');
+    if (patChip) {
+      patChip.dataset.hasImage = state.framePattern ? 'true' : 'false';
+      patChip.style.backgroundImage = state.framePattern ? `url("${state.framePattern}")` : '';
+      patChip.style.backgroundSize = 'cover';
+      patChip.style.backgroundPosition = 'center';
+    }
+  }
+
+  document.querySelectorAll('[data-frame-color]').forEach(el => el.addEventListener('click', () => {
+    state.frameColor = el.dataset.frameColor;
+    if (state.frameColor === 'pattern' && !state.framePattern) {
+      // First click on pattern with no image yet — open file picker.
+      patternUpload.click();
+    }
+    applyFrameColor();
+    updateSummary();
   }));
+
+  patternUpload.addEventListener('change', (e) => {
+    const file = e.target.files && e.target.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = () => {
+      state.framePattern = reader.result;
+      state.frameColor = 'pattern';
+      applyFrameColor();
+      updateSummary();
+    };
+    reader.readAsDataURL(file);
+    e.target.value = '';
+  });
+
+  patternClear.addEventListener('click', () => {
+    state.framePattern = null;
+    state.frameColor = 'black';
+    applyFrameColor();
+    updateSummary();
+  });
+
+  // Initial paint.
+  applyFrameColor();
 
   // ---------- Summary ----------
   function updateSummary() {
     const pinKeys = Object.keys(state.placements).filter(k => !k.endsWith('_finish'));
     const count = pinKeys.length;
     let total = 0;
-    pinKeys.forEach(k => { const p = PinnedCatalog.pins.find(px => px.id === state.placements[k]); if (p) total += p.price; });
+    pinKeys.forEach(k => { const p = MakoautoCatalog.pins.find(px => px.id === state.placements[k]); if (p) total += p.price; });
     document.getElementById('placed-count').textContent = count;
     document.getElementById('pin-count-line').textContent = count;
     document.getElementById('pin-total').textContent = '$' + total.toFixed(2);
@@ -552,6 +835,12 @@
       plateText: document.getElementById('plate-text').textContent,
     };
     localStorage.setItem('pinned_design', JSON.stringify(snapshot));
+    // Pattern dataURL persisted separately (can be ~MB) so main snapshot
+    // stays small and cloud sync stays cheap.
+    try {
+      if (state.framePattern) localStorage.setItem('pinned_frame_pattern', state.framePattern);
+      else localStorage.removeItem('pinned_frame_pattern');
+    } catch(_) {}
     scheduleCloudSave(snapshot);
   }
 
@@ -566,7 +855,7 @@
     el.style.color = color || 'var(--muted)';
   }
   function scheduleCloudSave(snapshot) {
-    if (!window.PinnedAPI) return;
+    if (!window.MakoautoAPI) return;
     const ser = JSON.stringify(snapshot);
     if (ser === _lastSerialized) return;
     _lastSerialized = ser;
@@ -577,7 +866,7 @@
       try {
         const payload = Object.assign({}, snapshot);
         if (_existingCloudId) payload.id = _existingCloudId;
-        const res = await window.PinnedAPI.saveDesign(payload);
+        const res = await window.MakoautoAPI.saveDesign(payload);
         if (res && res.id) {
           try { localStorage.setItem('pinned_design_id', res.id); } catch(_){}
           setSaveStatus('● saved to cloud · v' + (res.version || 1), 'var(--ink)');
@@ -598,10 +887,10 @@
   async function hydrateFromCloudIfRequested() {
     const qs = new URLSearchParams(location.search);
     const designId = qs.get('design');
-    if (!designId || !window.PinnedAPI) return;
-    if (!(await window.PinnedAPI.health())) return;
+    if (!designId || !window.MakoautoAPI) return;
+    if (!(await window.MakoautoAPI.health())) return;
     try {
-      const d = await window.PinnedAPI.getDesign(designId);
+      const d = await window.MakoautoAPI.getDesign(designId);
       if (!d || !d.placements) return;
       // Convert nested {pin, finish} → flat placements for renderHoles compatibility.
       const flat = {};
@@ -610,10 +899,10 @@
         flat[idx + '_finish'] = v.finish;
       }
       state.placements = flat;
-      state.finish = d.finish || 'silver';
+      state.finish = d.finish || 'black';
       state.frameColor = d.frame_color || 'black';
-      silicone.setAttribute('data-color', state.frameColor);
-      document.querySelectorAll('[data-frame-color]').forEach(c => c.classList.toggle('active', c.dataset.frameColor === state.frameColor));
+      state.framePattern = d.frame_pattern || null;
+      applyFrameColor();
       const pt = d.plate_text || 'BRIAN';
       document.getElementById('plate-text').textContent = pt;
       document.getElementById('plate-input').value = pt;
@@ -663,8 +952,198 @@
     state.placements = {};
     renderHoles(); updateSummary();
   });
-  // Auto-fill uses meaningful word+accents: a name or good-vibes word spelled with letter pins,
-  // padded by thematically matched icons/emoji on the sides.
+  // ---------- Inspiration presets ----------
+  // Each preset: photo + name + sidePlacements: array of {side, pos, pin, finish}.
+  // Layout has 28 cross-shaped holes: top=13 (L→R), bottom=9 (R→L), right=3 (T→B), left=3 (B→T).
+  // pos is 0-indexed within the side. Finish defaults to current state.finish if omitted.
+  const PRESETS = [
+    {
+      id: 'love-pink',
+      i18n: 'preset_love',
+      name: 'Love letter',
+      tag: 'Pink • Hearts',
+      photo: 'assets/legacy/photos/4c45f51801d1a588.jpg',
+      sidePlacements: [
+        // L O V E across top center (positions 4..7 of 13)
+        { side: 'top', pos: 4, pin: 'L_L', finish: 'rose' },
+        { side: 'top', pos: 5, pin: 'L_O', finish: 'rose' },
+        { side: 'top', pos: 6, pin: 'L_V', finish: 'rose' },
+        { side: 'top', pos: 7, pin: 'L_E', finish: 'rose' },
+        // bottom: sparkle accents + kiss centered (9 holes)
+        { side: 'bottom', pos: 1, pin: 'I_diamond' },
+        { side: 'bottom', pos: 3, pin: 'I_heart-fill' },
+        { side: 'bottom', pos: 4, pin: 'E_kiss', finish: 'rose' },
+        { side: 'bottom', pos: 5, pin: 'I_heart-fill' },
+        { side: 'bottom', pos: 7, pin: 'I_diamond' },
+        // sides: hearts
+        { side: 'right', pos: 1, pin: 'I_heart-fill' },
+        { side: 'left',  pos: 1, pin: 'I_heart-fill' },
+      ],
+    },
+    {
+      id: 'varsity',
+      i18n: 'preset_varsity',
+      name: 'Varsity',
+      tag: 'Race • Bold',
+      photo: 'assets/legacy/photos/d6dbc8a00f1befce.jpg',
+      sidePlacements: [
+        // M V P centered top with diamond flanks (positions 4..8 of 13)
+        { side: 'top', pos: 4, pin: 'I_diamond', finish: 'gold' },
+        { side: 'top', pos: 5, pin: 'L_M', finish: 'gold' },
+        { side: 'top', pos: 6, pin: 'L_V', finish: 'gold' },
+        { side: 'top', pos: 7, pin: 'L_P', finish: 'gold' },
+        { side: 'top', pos: 8, pin: 'I_diamond', finish: 'gold' },
+        // Bottom: 24 K racing number (positions 3..5 of 9)
+        { side: 'bottom', pos: 3, pin: 'N_2', finish: 'gold' },
+        { side: 'bottom', pos: 4, pin: 'N_4', finish: 'gold' },
+        { side: 'bottom', pos: 5, pin: 'L_K', finish: 'gold' },
+        // Sides: diamond accents
+        { side: 'right', pos: 1, pin: 'I_diamond' },
+        { side: 'left',  pos: 1, pin: 'I_diamond' },
+      ],
+    },
+    {
+      id: 'pet',
+      i18n: 'preset_pet',
+      name: 'Pet parent',
+      tag: 'Paws • Hearts',
+      photo: 'assets/legacy/photos/9ab832020d0050c3.jpg',
+      sidePlacements: [
+        // dog ♥ cat ♥ across top center
+        { side: 'top', pos: 4, pin: 'E_dog' },
+        { side: 'top', pos: 5, pin: 'I_heart-fill', finish: 'rose' },
+        { side: 'top', pos: 6, pin: 'E_cat' },
+        { side: 'top', pos: 7, pin: 'I_heart-fill', finish: 'rose' },
+        // W O O F across bottom center (4 letters in 9 holes → pos 3..6)
+        { side: 'bottom', pos: 3, pin: 'L_W' },
+        { side: 'bottom', pos: 4, pin: 'L_O' },
+        { side: 'bottom', pos: 5, pin: 'L_O' },
+        { side: 'bottom', pos: 6, pin: 'L_F' },
+        // sides: panda + dog accents
+        { side: 'right', pos: 1, pin: 'E_panda' },
+        { side: 'left',  pos: 1, pin: 'E_dog' },
+      ],
+    },
+    {
+      id: 'arcade',
+      i18n: 'preset_arcade',
+      name: 'Arcade',
+      tag: 'Retro • Pixel',
+      photo: 'assets/legacy/photos/ce3a51fa0475e2ce.jpg',
+      sidePlacements: [
+        // P L A Y across top center
+        { side: 'top', pos: 4, pin: 'L_P', finish: 'gold' },
+        { side: 'top', pos: 5, pin: 'L_L', finish: 'gold' },
+        { side: 'top', pos: 6, pin: 'L_A', finish: 'gold' },
+        { side: 'top', pos: 7, pin: 'L_Y', finish: 'gold' },
+        // 1 U P bottom center
+        { side: 'bottom', pos: 3, pin: 'N_1', finish: 'gold' },
+        { side: 'bottom', pos: 4, pin: 'L_U', finish: 'gold' },
+        { side: 'bottom', pos: 5, pin: 'L_P', finish: 'gold' },
+        // sides: S / X
+        { side: 'right', pos: 1, pin: 'L_S', finish: 'gold' },
+        { side: 'left',  pos: 1, pin: 'L_X', finish: 'gold' },
+      ],
+    },
+    {
+      id: 'cyber',
+      i18n: 'preset_cyber',
+      name: 'Cyber',
+      tag: 'Neon • JDM',
+      photo: 'assets/legacy/photos/845adc068950f2f8.jpg',
+      sidePlacements: [
+        // J D M + jdm-tag across top center
+        { side: 'top', pos: 4, pin: 'L_J' },
+        { side: 'top', pos: 5, pin: 'L_D' },
+        { side: 'top', pos: 6, pin: 'L_M' },
+        { side: 'top', pos: 7, pin: 'C_jdm' },
+        // 0666 racing number bottom (4 in 9 → pos 3..6)
+        { side: 'bottom', pos: 3, pin: 'N_0' },
+        { side: 'bottom', pos: 4, pin: 'N_6' },
+        { side: 'bottom', pos: 5, pin: 'N_6' },
+        { side: 'bottom', pos: 6, pin: 'N_6' },
+        // sides
+        { side: 'right', pos: 0, pin: 'C_v8' },
+        { side: 'right', pos: 2, pin: 'C_turbo' },
+        { side: 'left',  pos: 0, pin: 'C_gt' },
+        { side: 'left',  pos: 2, pin: 'I_lightning' },
+      ],
+    },
+    {
+      id: 'classic',
+      i18n: 'preset_classic',
+      name: 'Classic',
+      tag: 'Comic • Pop',
+      photo: 'assets/legacy/photos/bfd9c9691e9d74f6.jpg',
+      // Side-based placement: pinId placed at Nth hole of given side.
+      // Sides: top (13 holes L→R, wide bump), bottom (9 holes R→L, thin rim), right (3 T→B), left (3 B→T)
+      sidePlacements: [
+        // C O O L across top center (positions 4..7 of 13 top holes)
+        { side: 'top', pos: 4, pin: 'L_C', finish: 'gold' },
+        { side: 'top', pos: 5, pin: 'L_O', finish: 'gold' },
+        { side: 'top', pos: 6, pin: 'L_O', finish: 'gold' },
+        { side: 'top', pos: 7, pin: 'L_L', finish: 'gold' },
+        // accents on bottom (9 holes — drop in 3 evenly)
+        { side: 'bottom', pos: 2, pin: 'I_diamond' },
+        { side: 'bottom', pos: 4, pin: 'I_star' },
+        { side: 'bottom', pos: 6, pin: 'I_diamond' },
+        // sides (3 holes each — middle accent)
+        { side: 'right', pos: 1, pin: 'I_sparkle' },
+        { side: 'left',  pos: 1, pin: 'I_sparkle' },
+      ],
+    }
+  ];
+
+  function applyPreset(preset) {
+    pushHistory();
+    state.placements = {};
+    // Helper: get all hole indices for a given side, in canonical order
+    const idxBySide = (side) => HOLES.map((h,i) => ({h,i})).filter(x => x.h.side === side).map(x => x.i);
+    const topIdx = idxBySide('top');     // 13 holes L→R
+    const botIdx = idxBySide('bottom');  // 9 holes R→L
+    const rightIdx = idxBySide('right'); // 3 holes T→B
+    const leftIdx = idxBySide('left');   // 3 holes B→T
+
+    // sidePlacements: {side, pos, pin, finish}
+    const lookup = { top: topIdx, bottom: botIdx, right: rightIdx, left: leftIdx };
+    (preset.sidePlacements || []).forEach(sp => {
+      const idx = (lookup[sp.side] || [])[sp.pos];
+      if (idx === undefined) return;
+      const pin = MakoautoCatalog.pins.find(p => p.id === sp.pin);
+      if (!pin) return;
+      state.placements[idx] = sp.pin;
+      state.placements[idx + '_finish'] = sp.finish || state.finish;
+    });
+    renderHoles(); updateSummary();
+    document.querySelectorAll('.inspo-card').forEach(c => c.classList.toggle('active', c.dataset.preset === preset.id));
+  }
+
+  function renderInspoStrip() {
+    const strip = document.getElementById('inspo-strip');
+    if (!strip) return;
+    strip.innerHTML = '';
+    PRESETS.forEach(p => {
+      const card = document.createElement('button');
+      card.type = 'button';
+      card.className = 'inspo-card';
+      card.dataset.preset = p.id;
+      card.setAttribute('role', 'listitem');
+      card.setAttribute('aria-label', (window.t && window.t(p.i18n)) || p.name);
+      card.innerHTML = `
+        <div class="thumb" style="background-image:url('${p.photo}')"></div>
+        <div class="meta">
+          <div class="name" data-i18n="${p.i18n}">${p.name}</div>
+          <div class="tag">${p.tag}</div>
+        </div>`;
+      card.addEventListener('click', () => applyPreset(p));
+      strip.appendChild(card);
+    });
+    if (window.applyI18N) window.applyI18N();
+  }
+  renderInspoStrip();
+  window.addEventListener('pinned:langchange', renderInspoStrip);
+
+  // ---------- Auto-fill (random word) ----------
   const AUTOFILL_WORDS = [
     { word: 'LOVE',    accents: ['heart-fill','heart-outline','star','sparkle'] },
     { word: 'LUCKY',   accents: ['star','sparkle','diamond','heart-fill'] },
@@ -683,8 +1162,8 @@
     pushHistory();
     state.placements = {};
     const pick = AUTOFILL_WORDS[Math.floor(Math.random()*AUTOFILL_WORDS.length)];
-    const letterPins = pick.word.split('').map(ch => PinnedCatalog.pins.find(p => p.id === 'L_'+ch)).filter(Boolean);
-    const accentPins = pick.accents.map(k => PinnedCatalog.pins.find(p => p.id === 'E_'+k || p.id === 'I_'+k)).filter(Boolean);
+    const letterPins = pick.word.split('').map(ch => MakoautoCatalog.pins.find(p => p.id === 'L_'+ch)).filter(Boolean);
+    const accentPins = pick.accents.map(k => MakoautoCatalog.pins.find(p => p.id === 'E_'+k || p.id === 'I_'+k)).filter(Boolean);
     // Top row holes are 0..5; place letters centered there.
     const topHoles = HOLES.map((h,i) => ({h,i})).filter(x => x.h.side === 'top').map(x => x.i);
     const bottomHoles = HOLES.map((h,i) => ({h,i})).filter(x => x.h.side === 'bottom').map(x => x.i);
@@ -717,17 +1196,21 @@
     const saved = JSON.parse(localStorage.getItem('pinned_design') || 'null');
     if (saved) {
       state.placements = saved.placements || {};
-      state.finish = saved.finish || 'silver';
+      state.finish = saved.finish || 'black';
       state.frameColor = saved.frameColor || 'black';
-      silicone.setAttribute('data-color', state.frameColor);
-      document.querySelectorAll('[data-frame-color]').forEach(c => c.classList.toggle('active', c.dataset.frameColor === state.frameColor));
+      // Pattern dataURL stored separately to keep main snapshot small.
+      try { state.framePattern = localStorage.getItem('pinned_frame_pattern') || null; } catch(_) {}
+      applyFrameColor();
       if (saved.plateText) { plateText.textContent = saved.plateText; plateInput.value = saved.plateText; }
     }
   } catch(e){}
 
   // ---------- Initial render ----------
-  renderCats(); renderPalette(); renderFinishes(); renderHoles(); updateSummary();
+  renderFrame(); renderCats(); renderPalette(); renderFinishes(); renderHoles(); updateSummary();
   hydrateFromCloudIfRequested();
 </script>
 </body>
 </html>
+
+<style id="__om-edit-overrides">
+</style>

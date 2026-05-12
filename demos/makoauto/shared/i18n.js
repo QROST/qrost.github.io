@@ -1,36 +1,52 @@
-// Pinned — i18n dictionary. 5 languages. Loaded by every page.
-window.PinnedI18N = {
+// Makoauto — i18n dictionary. 5 languages. Loaded by every page.
+window.MakoautoI18N = {
   en: {
-    nav_home:"Home", nav_design:"Design", nav_catalog:"Pins", nav_preview:"AI Preview",
-    nav_faq:"FAQ", nav_account:"Account", nav_cart:"Cart",
+    nav_home:"Home", nav_design:"Design", nav_catalog:"Lookbook", nav_preview:"AI Preview",
+    inspo_title:"Inspiration", inspo_hint:"Tap to load",
+    preset_love:"Love letter", preset_varsity:"Varsity", preset_pet:"Pet parent",
+    preset_arcade:"Arcade", preset_cyber:"Cyber", preset_classic:"Classic",
+    nav_faq:"FAQ", nav_account:"Account", nav_cart:"Cart", nav_contact:"Contact",
     cta_start:"Start designing", cta_see_pins:"See all pins",
     hero_line1:"Pin your plate.", hero_line2:"Make it yours.",
     hero_sub:"Personalize a silicone license-plate frame with real metal pins — letters, emoji, flags, team logos and more. Drag, drop, done.",
-    hero_tag:"NEW · 20 pin slots · designed in LA",
+    hero_tag:"NEW · 32 pin slots · designed in LA",
     section_how:"How it works",
     step1_t:"Pick your pins", step1_d:"Search our catalog — names, letters, emoji, icons, flags, cars.",
-    step2_t:"Place them", step2_d:"Drag pins onto the 20 punched holes around your frame.",
+    step2_t:"Place them", step2_d:"Drag pins onto the 32 punched holes around your frame.",
     step3_t:"AI preview", step3_d:"See your frame on your exact car — cinematic render included.",
     step4_t:"We ship, you assemble", step4_d:"Frame + pins arrive in 3–5 days. Screw in pins yourself in minutes — that's the fun part.",
     real_frames:"Real frames, real drivers.",
     pricing_title:"One frame. Your rules.",
     tier_starter:"STARTER", tier_popular:"POPULAR", tier_maxed:"MAXED",
-    starter_sub:"Frame + up to 6 pins", popular_sub:"Frame + up to 12 pins", maxed_sub:"Frame + up to 20 pins",
-    starter_l1:"Silicone frame (5 colors)", starter_l2:"Mix & match any 6 pins", starter_l3:"All finishes included", starter_l4:"AI preview video",
-    popular_l1:"Everything in Starter", popular_l2:"12 pins — more coverage", popular_l3:"Priority shipping", popular_l4:"Extended AI preview (10s)",
+    starter_sub:"Frame + up to 8 pins", popular_sub:"Frame + up to 16 pins", maxed_sub:"Frame + up to 32 pins",
+    starter_l1:"Silicone frame (5 colors)", starter_l2:"Mix & match any 8 pins", starter_l3:"All finishes included", starter_l4:"AI preview video",
+    popular_l1:"Everything in Starter", popular_l2:"16 pins — more coverage", popular_l3:"Priority shipping", popular_l4:"Extended AI preview (10s)",
     maxed_l1:"Every hole pinnable", maxed_l2:"Spare pins included", maxed_l3:"Concierge design help", maxed_l4:"Gift packaging",
     cta_big_t:"Your plate. Your pins.", cta_big_s:"90 seconds to design. 3 days to your door.",
     catalog_title:"Pin catalog", catalog_sub:"All pins come in silver, gold, black chrome and rose gold.",
     catalog_chip:"CATALOG · 100+ PINS",
+    lookbook_chip:"LOOKBOOK · 19 CURATED SETS",
+    lookbook_title:"Lookbook",
+    lookbook_sub:"Pre-loaded combinations of frame and pins. Buy a set as-is, or open it in the designer and remix it into your own.",
+    lookbook_cta_h:"None of these speak to you?",
+    lookbook_cta_p:"Open the designer and pick from 100+ pins — letters, numbers, emoji, flags, more.",
+    origin_h:"It started in the school drop-off line.",
+    origin_p1:"Brian, dad of three, sat behind a gray minivan one Tuesday morning while his kids in the back seat traded the same rubber shoe charms they'd been popping into their clogs all week.",
+    origin_p2:"The thought wouldn't go away: we spend half our lives in our cars. Why do the kids get to express themselves while every car looks like it rolled out of a DMV training video?",
+    origin_p3:"So he made a license plate frame that takes those same charms — except for grown-ups, in real metal, on a soft TPU base that won't rattle on the freeway. Designed in California, made for the rest of us.",
+    origin_sig:"FOUNDER · LOS ANGELES",
+    stories_h:"From the studio.", stories_all:"All stories →", nav_stories:"Stories",
     filter_all:"All", filter_letters:"Letters", filter_numbers:"Numbers",
     filter_emoji:"Emoji", filter_icons:"Icons", filter_flags:"Flags", filter_sports:"Sports", filter_cars:"Cars",
     search_ph:"Search names, letters, emoji…", open_designer:"Open designer →",
     designer_title:"The Designer", pin_library:"Pin library",
     tip_drag:"Tip: drag pins from the library onto a hole. Click a placed pin to remove.",
-    tip_count:"There are 20 holes total around the plate.",
+    tip_count:"There are 28 cross-shaped holes around the frame.",
     palette:"Palette", layout:"Layout", finish:"Finish",
     frame_color:"Frame color", plate_text_label:"Plate text (preview only)",
     plate_text_hint:"Your actual plate stays the same — this is for AI preview.",
+    fc_black:"Black", fc_pink:"Pink", fc_red:"Red", fc_white:"White", fc_clear:"Clear", fc_sky:"Sky", fc_pattern:"Pattern",
+    upload_image:"Upload an image →", pattern_hint:"Tiles + crops to the frame shape.", remove:"Remove",
     summary:"Summary", pins_x:"Pins ×",
     preview:"Preview", add_to_cart:"Add to cart", ai_preview_cta:"AI preview → $0 extra",
     price_frame:"Frame", price_pins:"Pins", price_video:"AI preview video", total:"Total",
@@ -46,7 +62,7 @@ window.PinnedI18N = {
     regenerate:"Regenerate", download_mp4:"Download mp4", add_to_cart_arrow:"Add to cart →",
     prompt_label:"PROMPT (auto-built)",
     cart_title:"Your cart", step_design:"1. DESIGN", step_preview:"2. PREVIEW", step_checkout:"3. CHECKOUT", step_ship:"4. SHIP",
-    in_cart:"design in cart", custom_frame:"Custom Pinned Frame", edit:"edit",
+    in_cart:"design in cart", custom_frame:"Custom Makoauto Frame", edit:"edit",
     ship_to:"Ship to", full_name:"Full name", phone:"Phone", address:"Address", city:"City", state_zip:"State / ZIP",
     shipping:"Shipping", shipping_std:"Standard — free · 3–5 business days", shipping_exp:"Express — $12 · 2 days", shipping_intl:"International DHL — $28 · 5–10 days",
     payment:"Payment", promo_ph:"Promo code", apply:"Apply", place_order:"Place order →",
@@ -66,42 +82,74 @@ window.PinnedI18N = {
     t_ship:"Shipped via UPS", t_ship_d:"Ground · 2–3 days transit.",
     t_del:"Delivered", t_del_d:"Signature not required.",
     faq_kicker:"Help & about", faq_h:"Questions, answered.",
-    faq_sub:"Everything about the frame, pins, AI preview, shipping and returns. Can't find it? Email hi@pinned.com.",
+    faq_sub:"Everything about the frame, pins, AI preview, shipping and returns. Can't find it? Email hi@makoauto.com.",
     g_frame:"The frame & pins", g_ai:"AI preview video", g_ship:"Shipping & returns", g_legal:"Legal & IP",
-    footer_rights:"© 2026 Pinned. Handmade in Los Angeles.",
+    footer_rights:"© 2026 Makoauto. Handmade in Los Angeles.",
     footer_faq:"FAQ", footer_sitemap:"Site map", footer_admin:"Admin",
+    contact_chip:"CONTACT · WE READ EVERY MESSAGE", contact_title:"Hey, it's Brian.",
+    contact_lede:"Makoauto is small. There's no contact-center robot here — emails come to a real human in Los Angeles, usually replied within a working day. Pick whichever channel feels right.",
+    contact_stamp:"DESIGNED IN LA", contact_channels_h:"Pick your channel",
+    contact_general:"General · Support · Returns", contact_general_meta:"Order help, shipping, refunds. Reply within 1 business day.",
+    contact_bespoke:"Bespoke pins", contact_bespoke_meta:"Mail us a trinket, we turn it into a road-ready pin. Send a photo first.",
+    contact_wholesale:"Wholesale · Press", contact_wholesale_meta:"Stockists, collabs, press kit, founder quotes.",
+    contact_social:"Social · DMs open", contact_social_meta:"Show us your build. Tag us, we repost.",
+    contact_form_h:"Or just write to us.", contact_form_sub:"Fastest path. We answer in plain English (or 中 / 日 / es / de).",
+    contact_form_name:"Your name", contact_form_email:"Email", contact_form_topic:"What's this about?",
+    contact_topic_order:"An order I placed", contact_topic_bespoke:"A bespoke pin idea", contact_topic_wholesale:"Wholesale or press", contact_topic_other:"Something else",
+    contact_form_msg:"Message", contact_form_send:"Send →", contact_form_note:"No newsletter. No upsells. Just a reply.",
+    contact_form_success_h:"Got it — message saved locally.", contact_form_success_p:"Once the backend is live this will go straight to Brian's inbox.",
+    contact_hours_h:"Studio hours", contact_hours_v:"Mon–Fri · 9am–5pm PT",
+    contact_ship_h:"Ships from", contact_ship_v:"Los Angeles, California",
+    contact_team_h:"Team size", contact_team_v:"Five humans, one workshop dog",
   },
   zh: {
-    nav_home:"首页", nav_design:"定制", nav_catalog:"图钉库", nav_preview:"AI预览",
-    nav_faq:"常见问题", nav_account:"我的", nav_cart:"购物车",
+    nav_home:"首页", nav_design:"定制", nav_catalog:"造型册", nav_preview:"AI预览",
+    inspo_title:"灵感", inspo_hint:"点击加载",
+    preset_love:"情书", preset_varsity:"校队", preset_pet:"宠物家长",
+    preset_arcade:"街机", preset_cyber:"赛博", preset_classic:"经典",
+    nav_faq:"常见问题", nav_account:"我的", nav_cart:"购物车", nav_contact:"联系",
+    
     cta_start:"开始定制", cta_see_pins:"查看全部图钉",
     hero_line1:"固定你的车牌。", hero_line2:"让它独一无二。",
     hero_sub:"在硅胶黑色车牌框的打孔位置上，放置金属图钉——字母、emoji、国旗、球队、车型，随你搭配。拖拽即可完成。",
-    hero_tag:"新品 · 20个图钉孔位 · 洛杉矶设计",
+    hero_tag:"新品 · 32个图钉孔位 · 洛杉矶设计",
     section_how:"使用流程",
     step1_t:"挑选图钉", step1_d:"搜索名字、字母、emoji、图标、国旗和车型。",
-    step2_t:"放置位置", step2_d:"将图钉拖入车牌框周围的 20 个打孔。",
+    step2_t:"放置位置", step2_d:"将图钉拖入车牌框周围的 32 个打孔。",
     step3_t:"AI 预览", step3_d:"看到车牌框安装在你实际车辆上——电影级渲染。",
     step4_t:"我们快递，你亲手拼装", step4_d:"车牌框和图钉 3–5 天送达，自己几分钟就能拧上——这是最好玩的部分。",
     real_frames:"真实用户，真实车牌。",
     pricing_title:"一款车牌框，任你定义。",
     tier_starter:"入门", tier_popular:"热门", tier_maxed:"顶配",
-    starter_sub:"车牌框 + 最多 6 个图钉", popular_sub:"车牌框 + 最多 12 个图钉", maxed_sub:"车牌框 + 最多 20 个图钉",
-    starter_l1:"硅胶车牌框（5 种颜色）", starter_l2:"任意搭配 6 个图钉", starter_l3:"全部表面处理", starter_l4:"AI 预览视频",
-    popular_l1:"包含入门档全部内容", popular_l2:"12 个图钉 · 覆盖更广", popular_l3:"优先发货", popular_l4:"加长 AI 预览（10 秒）",
+    starter_sub:"车牌框 + 最多 8 个图钉", popular_sub:"车牌框 + 最多 16 个图钉", maxed_sub:"车牌框 + 最多 32 个图钉",
+    starter_l1:"硅胶车牌框（5 种颜色）", starter_l2:"任意搭配 8 个图钉", starter_l3:"全部表面处理", starter_l4:"AI 预览视频",
+    popular_l1:"包含入门档全部内容", popular_l2:"16 个图钉 · 覆盖更广", popular_l3:"优先发货", popular_l4:"加长 AI 预览（10 秒）",
     maxed_l1:"每个孔都可放图钉", maxed_l2:"附赠备用图钉", maxed_l3:"专属设计顾问", maxed_l4:"礼品包装",
     cta_big_t:"你的车牌，你的图钉。", cta_big_s:"90 秒完成设计，3 天送达家门。",
     catalog_title:"图钉库", catalog_sub:"所有图钉可选银色、金色、黑铬、玫瑰金四种表面。",
     catalog_chip:"图钉库 · 100+ 款",
+    lookbook_chip:"造型册 · 19 套精选",
+    lookbook_title:"造型册",
+    lookbook_sub:"我们替你预选好的车牌框 + 图钉组合。可以直接购买，也可以一键带入定制台改成你自己的版本。",
+    lookbook_cta_h:"都不是你想要的？",
+    lookbook_cta_p:"打开定制台，从 100+ 款图钉里挑——字母、数字、emoji、国旗等等。",
+    origin_h:"故事，从送孩子上学的车流里开始。",
+    origin_p1:"Brian 是三个孩子的爸爸。一个普通的星期二早上，他堵在送学的车流里，看着前面那台灰色面包车，后座的孩子们在交换鞋上的橡胶 jibbitz——同样几只用了一整周。",
+    origin_p2:"这念头挥之不去：我们每天大半时间在车上。凭什么孩子们能在自己的鞋上玩花样，而所有车看起来都像 DMV 培训片里出来的？",
+    origin_p3:"于是他做了这款车牌框——能放下孩子们鞋上的同款图样，但换成大人的版本：金属图钉，软 TPU 底座，不会在高速上乒乓响。在加州设计，给我们这群人用的。",
+    origin_sig:"创始人 · 洛杉矶",
+    stories_h:"工作室随笔。", stories_all:"全部随笔 →", nav_stories:"随笔",
     filter_all:"全部", filter_letters:"字母", filter_numbers:"数字",
     filter_emoji:"表情", filter_icons:"图标", filter_flags:"国旗", filter_sports:"球队", filter_cars:"车型",
     search_ph:"搜索名字、字母、emoji…", open_designer:"打开定制台 →",
     designer_title:"定制台", pin_library:"图钉库",
     tip_drag:"提示：从图钉库拖入孔位；点击已放置的图钉可移除。",
-    tip_count:"车牌框一圈共有 20 个孔位。",
+    tip_count:"车牌框一圈共有 28 个十字孔位。",
     palette:"图钉库", layout:"布局", finish:"表面",
     frame_color:"车牌框颜色", plate_text_label:"车牌字母（仅用于预览）",
     plate_text_hint:"实际车牌不会变化，这里仅用于 AI 预览效果。",
+    fc_black:"黑色", fc_pink:"肉粉", fc_red:"正红", fc_white:"白色", fc_clear:"透明", fc_sky:"天蓝", fc_pattern:"自定义",
+    upload_image:"上传图片 →", pattern_hint:"图片会铺满并裁剪到车牌框形状。", remove:"移除",
     summary:"订单明细", pins_x:"图钉 ×",
     preview:"预览", add_to_cart:"加入购物车", ai_preview_cta:"AI 预览 · 免费",
     price_frame:"车牌框", price_pins:"图钉", price_video:"AI 预览视频", total:"合计",
@@ -117,7 +165,7 @@ window.PinnedI18N = {
     regenerate:"重新生成", download_mp4:"下载 MP4", add_to_cart_arrow:"加入购物车 →",
     prompt_label:"提示词（自动生成）",
     cart_title:"购物车", step_design:"1. 定制", step_preview:"2. 预览", step_checkout:"3. 结算", step_ship:"4. 发货",
-    in_cart:"件设计", custom_frame:"定制 Pinned 车牌框", edit:"编辑",
+    in_cart:"件设计", custom_frame:"定制 Makoauto 车牌框", edit:"编辑",
     ship_to:"收货地址", full_name:"姓名", phone:"手机号", address:"详细地址", city:"城市", state_zip:"省/州 · 邮编",
     shipping:"配送方式", shipping_std:"标准 — 免费 · 3–5 个工作日", shipping_exp:"加急 — $12 · 2 天送达", shipping_intl:"DHL 国际 — $28 · 5–10 天",
     payment:"支付方式", promo_ph:"优惠码", apply:"应用", place_order:"下单 →",
@@ -137,42 +185,73 @@ window.PinnedI18N = {
     t_ship:"UPS 已发货", t_ship_d:"陆运 · 2–3 天到达。",
     t_del:"已送达", t_del_d:"无需签收。",
     faq_kicker:"帮助与介绍", faq_h:"常见问题，一一解答。",
-    faq_sub:"关于车牌框、图钉、AI 预览、发货和退换货的一切。没找到？邮件联系 hi@pinned.com。",
+    faq_sub:"关于车牌框、图钉、AI 预览、发货和退换货的一切。没找到？邮件联系 hi@makoauto.com。",
     g_frame:"车牌框与图钉", g_ai:"AI 预览视频", g_ship:"物流与退换", g_legal:"法律与知识产权",
-    footer_rights:"© 2026 Pinned. 洛杉矶手工制作。",
+    footer_rights:"© 2026 Makoauto. 洛杉矶手工制作。",
     footer_faq:"常见问题", footer_sitemap:"站点地图", footer_admin:"后台",
+    contact_chip:"联系我们 · 每一封都会看", contact_title:"你好，我是 Brian。",
+    contact_lede:"Makoauto 是家小公司。这里没有客服机器人——邮件都是洛杉矶的真人在回，通常一个工作日内回复。选个你顺手的渠道就行。",
+    contact_stamp:"加州设计", contact_channels_h:"选个渠道",
+    contact_general:"一般咨询 · 售后 · 退换", contact_general_meta:"订单、物流、退款。一个工作日内回复。",
+    contact_bespoke:"定制图钉", contact_bespoke_meta:"寄一个小东西过来，我们把它变成能上路的图钉。请先发照片。",
+    contact_wholesale:"批发 · 媒体", contact_wholesale_meta:"经销商、联名、媒体包、创始人采访。",
+    contact_social:"社交 · 私信随时打开", contact_social_meta:"拍你的车牌给我们，我们会转发。",
+    contact_form_h:"或者直接给我们写信。", contact_form_sub:"最快的途径。我们会用中文（或 EN / JP / ES / DE）回你。",
+    contact_form_name:"你的名字", contact_form_email:"邮箱", contact_form_topic:"什么事？",
+    contact_topic_order:"我下的订单", contact_topic_bespoke:"定制图钉的点子", contact_topic_wholesale:"批发或媒体", contact_topic_other:"其他事情",
+    contact_form_msg:"留言", contact_form_send:"发送 →", contact_form_note:"不会被加入邮件列表。也不推销。就是个回复。",
+    contact_form_success_h:"收到——信息已本地保存。", contact_form_success_p:"后端上线后会直接进 Brian 的邮箱。",
+    contact_hours_h:"工作日", contact_hours_v:"周一至周五 · 9am–5pm 美西时间",
+    contact_ship_h:"发货地", contact_ship_v:"加州洛杉矶",
+    contact_team_h:"团队规模", contact_team_v:"五个人，一只工作室狗",
   },
   ja: {
-    nav_home:"ホーム", nav_design:"デザイン", nav_catalog:"ピン", nav_preview:"AIプレビュー",
-    nav_faq:"FAQ", nav_account:"アカウント", nav_cart:"カート",
+    nav_home:"ホーム", nav_design:"デザイン", nav_catalog:"ルックブック", nav_preview:"AIプレビュー",
+    inspo_title:"インスピレーション", inspo_hint:"タップして適用",
+    preset_love:"ラブレター", preset_varsity:"バーシティ", preset_pet:"ペット",
+    preset_arcade:"アーケード", preset_cyber:"サイバー", preset_classic:"クラシック",
+    nav_faq:"FAQ", nav_account:"アカウント", nav_cart:"カート", nav_contact:"お問い合わせ",
     cta_start:"デザインを始める", cta_see_pins:"ピン一覧を見る",
     hero_line1:"ナンバープレートを、", hero_line2:"自分だけのものに。",
     hero_sub:"シリコン製の黒いナンバープレートフレームの穴に金属ピンを配置。文字、絵文字、国旗、チームロゴ、車など自由に選べます。",
-    hero_tag:"新作 · 20個のピン穴 · LAデザイン",
+    hero_tag:"新作 · 32個のピン穴 · LAデザイン",
     section_how:"使い方",
     step1_t:"ピンを選ぶ", step1_d:"名前、文字、絵文字、アイコン、国旗、車から検索。",
-    step2_t:"配置する", step2_d:"フレームの20個の穴にドラッグ。",
+    step2_t:"配置する", step2_d:"フレームの32個の穴にドラッグ。",
     step3_t:"AIプレビュー", step3_d:"あなたの車に装着したシネマ風レンダーを確認。",
     step4_t:"発送、お客様が組立", step4_d:"フレームとピンが3〜5日で到着。ピンは数分でネジ込め——それが一番楽しい。",
     real_frames:"実際のフレーム、実際のドライバー。",
     pricing_title:"1つのフレーム、あなたのルール。",
     tier_starter:"スターター", tier_popular:"人気", tier_maxed:"フル装備",
-    starter_sub:"フレーム + ピン最大6個", popular_sub:"フレーム + ピン最大12個", maxed_sub:"フレーム + ピン最大20個",
-    starter_l1:"シリコンフレーム（5色）", starter_l2:"お好みのピン6個", starter_l3:"全仕上げ対応", starter_l4:"AIプレビュー動画",
-    popular_l1:"スターター全内容", popular_l2:"12ピン・より広範囲", popular_l3:"優先発送", popular_l4:"延長AIプレビュー（10秒）",
+    starter_sub:"フレーム + ピン最大8個", popular_sub:"フレーム + ピン最大16個", maxed_sub:"フレーム + ピン最大32個",
+    starter_l1:"シリコンフレーム（5色）", starter_l2:"お好みのピン8個", starter_l3:"全仕上げ対応", starter_l4:"AIプレビュー動画",
+    popular_l1:"スターター全内容", popular_l2:"16ピン・より広範囲", popular_l3:"優先発送", popular_l4:"延長AIプレビュー（10秒）",
     maxed_l1:"全穴にピン可", maxed_l2:"予備ピン付属", maxed_l3:"デザインコンシェルジュ", maxed_l4:"ギフト包装",
     cta_big_t:"あなたのプレート、あなたのピン。", cta_big_s:"90秒でデザイン、3日でお届け。",
     catalog_title:"ピンカタログ", catalog_sub:"全ピン：シルバー・ゴールド・ブラッククローム・ローズゴールド。",
     catalog_chip:"カタログ · 100+ ピン",
+    lookbook_chip:"ルックブック · 19セット",
+    lookbook_title:"ルックブック",
+    lookbook_sub:"フレームとピンの組み合わせ済みセット。そのまま購入するか、デザイナーで開いて自分流にリミックス。",
+    lookbook_cta_h:"ピンとくるのがない？",
+    lookbook_cta_p:"デザイナーで100+のピンから選択 — 文字、数字、絵文字、国旗など。",
+    origin_h:"始まりは、子どもの送り迎えの渋滞。",
+    origin_p1:"Brian は3児の父。ある火曜の朝、目の前の灰色のミニバンを眺めていた。後ろの席では子どもたちが、サンダルから外したラバーのチャームを交換し続けていた。",
+    origin_p2:"頭から離れなかった：人生の半分を車で過ごすのに、子どもたちだけが個性を出せて、車はDMVの教材ビデオみたいに同じ顔をしている。なぜだ？",
+    origin_p3:"だからフレームを作った。子どもたちと同じチャームが挿せる、ただし大人版 — 本物のメタル、柔らかいTPU、高速でガタつかない。カリフォルニアで設計、僕らみたいな人のために。",
+    origin_sig:"創設者 · ロサンゼルス",
+    stories_h:"スタジオから。", stories_all:"すべての記事 →", nav_stories:"ストーリー",
     filter_all:"すべて", filter_letters:"文字", filter_numbers:"数字",
     filter_emoji:"絵文字", filter_icons:"アイコン", filter_flags:"国旗", filter_sports:"スポーツ", filter_cars:"車",
     search_ph:"名前・文字・絵文字で検索…", open_designer:"デザイナーを開く →",
     designer_title:"デザイナー", pin_library:"ピンライブラリ",
     tip_drag:"ヒント：ライブラリからピンを穴にドラッグ。配置済みのピンをクリックで外せます。",
-    tip_count:"フレーム周りには合計20個の穴があります。",
+    tip_count:"フレーム周りには合計28個の十字穴があります。",
     palette:"パレット", layout:"配置", finish:"仕上げ",
     frame_color:"フレームカラー", plate_text_label:"プレート文字（プレビュー用）",
     plate_text_hint:"実際のナンバーは変わりません。AIプレビュー専用です。",
+    fc_black:"ブラック", fc_pink:"ピンク", fc_red:"レッド", fc_white:"ホワイト", fc_clear:"クリア", fc_sky:"スカイ", fc_pattern:"カスタム",
+    upload_image:"画像をアップロード →", pattern_hint:"フレーム形状にトリミングされます。", remove:"削除",
     summary:"概要", pins_x:"ピン ×",
     preview:"プレビュー", add_to_cart:"カートへ", ai_preview_cta:"AIプレビュー · 無料",
     price_frame:"フレーム", price_pins:"ピン", price_video:"AIプレビュー動画", total:"合計",
@@ -188,7 +267,7 @@ window.PinnedI18N = {
     regenerate:"再生成", download_mp4:"MP4ダウンロード", add_to_cart_arrow:"カートへ →",
     prompt_label:"プロンプト（自動生成）",
     cart_title:"カート", step_design:"1.デザイン", step_preview:"2.プレビュー", step_checkout:"3.チェックアウト", step_ship:"4.発送",
-    in_cart:"点のデザイン", custom_frame:"カスタム Pinned フレーム", edit:"編集",
+    in_cart:"点のデザイン", custom_frame:"カスタム Makoauto フレーム", edit:"編集",
     ship_to:"配送先", full_name:"氏名", phone:"電話", address:"住所", city:"市区町村", state_zip:"都道府県 / 郵便",
     shipping:"配送", shipping_std:"標準 — 無料 · 3〜5営業日", shipping_exp:"速達 — $12 · 2日", shipping_intl:"DHL国際 — $28 · 5〜10日",
     payment:"お支払い", promo_ph:"プロモコード", apply:"適用", place_order:"注文確定 →",
@@ -208,42 +287,73 @@ window.PinnedI18N = {
     t_ship:"UPS発送", t_ship_d:"陸送 · 2〜3日。",
     t_del:"配達完了", t_del_d:"署名不要。",
     faq_kicker:"ヘルプと紹介", faq_h:"よくある質問。",
-    faq_sub:"フレーム、ピン、AIプレビュー、配送、返品について。hi@pinned.com までご連絡ください。",
+    faq_sub:"フレーム、ピン、AIプレビュー、配送、返品について。hi@makoauto.com までご連絡ください。",
     g_frame:"フレームとピン", g_ai:"AIプレビュー動画", g_ship:"配送と返品", g_legal:"法務と知財",
-    footer_rights:"© 2026 Pinned. ロサンゼルスで手作り。",
+    footer_rights:"© 2026 Makoauto. ロサンゼルスで手作り。",
     footer_faq:"FAQ", footer_sitemap:"サイトマップ", footer_admin:"管理",
+    contact_chip:"お問い合わせ · すべて読んでいます", contact_title:"やあ、Brian です。",
+    contact_lede:"Makoauto は小さなチーム。センターのボットはいません — メールはロサンゼルスに届き、通常営業日中に返信します。お好きなチャンネルでどうぞ。",
+    contact_stamp:"カリフォルニアで設計", contact_channels_h:"チャンネルを選ぶ",
+    contact_general:"一般 · サポート · 返品", contact_general_meta:"注文、配送、返金。1営業日以内に返信。",
+    contact_bespoke:"ビスポークピン", contact_bespoke_meta:"トリンケットを送っていただければ、車に載せられるピンに加工します。先に写真をどうぞ。",
+    contact_wholesale:"卸 · プレス", contact_wholesale_meta:"取り扱い、コラボ、プレスキット、創設者コメント。",
+    contact_social:"SNS · DM開放", contact_social_meta:"あなたの作品を見せて。タグしてくれたらリポストします。",
+    contact_form_h:"もしくは直接メッセージを。", contact_form_sub:"一番早い方法。日本語OK（or EN / 中 / es / de）。",
+    contact_form_name:"お名前", contact_form_email:"メール", contact_form_topic:"ご用件",
+    contact_topic_order:"注文に関して", contact_topic_bespoke:"ビスポークピンのご相談", contact_topic_wholesale:"卸・プレス", contact_topic_other:"その他",
+    contact_form_msg:"メッセージ", contact_form_send:"送信 →", contact_form_note:"ニュースレターもセールスもなし。ひとつ返信するだけ。",
+    contact_form_success_h:"受領しました — メッセージはローカルに保存されました。", contact_form_success_p:"バックエンド接続後、Brian の受信箱に直送されます。",
+    contact_hours_h:"営業時間", contact_hours_v:"月金 · 9:00–17:00 PT",
+    contact_ship_h:"発送元", contact_ship_v:"ロサンゼルス、カリフォルニア",
+    contact_team_h:"チーム規模", contact_team_v:"5人とスタジオ犬1匹",
   },
   es: {
-    nav_home:"Inicio", nav_design:"Diseñar", nav_catalog:"Pines", nav_preview:"Vista IA",
-    nav_faq:"FAQ", nav_account:"Cuenta", nav_cart:"Carrito",
+    nav_home:"Inicio", nav_design:"Diseñar", nav_catalog:"Lookbook", nav_preview:"Vista IA",
+    inspo_title:"Inspiración", inspo_hint:"Toca para cargar",
+    preset_love:"Carta de amor", preset_varsity:"Universitario", preset_pet:"Pet parent",
+    preset_arcade:"Arcade", preset_cyber:"Cyber", preset_classic:"Clásico",
+    nav_faq:"FAQ", nav_account:"Cuenta", nav_cart:"Carrito", nav_contact:"Contacto",
     cta_start:"Empezar a diseñar", cta_see_pins:"Ver todos los pines",
     hero_line1:"Fija tu matrícula.", hero_line2:"Hazla tuya.",
     hero_sub:"Personaliza un marco de matrícula de silicona con pines metálicos reales: letras, emojis, banderas, logos deportivos y más.",
-    hero_tag:"NUEVO · 20 ranuras · diseñado en LA",
+    hero_tag:"NUEVO · 32 ranuras · diseñado en LA",
     section_how:"Cómo funciona",
     step1_t:"Elige tus pines", step1_d:"Busca nombres, letras, emojis, iconos, banderas, coches.",
-    step2_t:"Colócalos", step2_d:"Arrastra los pines a los 20 orificios del marco.",
+    step2_t:"Colócalos", step2_d:"Arrastra los pines a los 32 orificios del marco.",
     step3_t:"Vista previa IA", step3_d:"Ve tu marco en tu coche exacto — render cinemático incluido.",
     step4_t:"Enviamos, tú ensamblas", step4_d:"El marco y los pines llegan en 3–5 días. Tú los atornillas en minutos — esa es la parte divertida.",
     real_frames:"Marcos reales, conductores reales.",
     pricing_title:"Un marco. Tus reglas.",
     tier_starter:"INICIAL", tier_popular:"POPULAR", tier_maxed:"COMPLETO",
-    starter_sub:"Marco + hasta 6 pines", popular_sub:"Marco + hasta 12 pines", maxed_sub:"Marco + hasta 20 pines",
-    starter_l1:"Marco de silicona (5 colores)", starter_l2:"Cualquier combinación de 6 pines", starter_l3:"Todos los acabados", starter_l4:"Video IA",
-    popular_l1:"Todo lo del Inicial", popular_l2:"12 pines — más cobertura", popular_l3:"Envío prioritario", popular_l4:"Vista IA extendida (10s)",
+    starter_sub:"Marco + hasta 8 pines", popular_sub:"Marco + hasta 16 pines", maxed_sub:"Marco + hasta 32 pines",
+    starter_l1:"Marco de silicona (5 colores)", starter_l2:"Cualquier combinación de 8 pines", starter_l3:"Todos los acabados", starter_l4:"Video IA",
+    popular_l1:"Todo lo del Inicial", popular_l2:"16 pines — más cobertura", popular_l3:"Envío prioritario", popular_l4:"Vista IA extendida (10s)",
     maxed_l1:"Todos los orificios", maxed_l2:"Pines extra incluidos", maxed_l3:"Ayuda de diseño", maxed_l4:"Embalaje de regalo",
     cta_big_t:"Tu matrícula. Tus pines.", cta_big_s:"90 segundos para diseñar. 3 días a tu puerta.",
     catalog_title:"Catálogo de pines", catalog_sub:"Todos los pines en plata, oro, cromo negro y oro rosa.",
     catalog_chip:"CATÁLOGO · 100+ PINES",
+    lookbook_chip:"LOOKBOOK · 19 SETS",
+    lookbook_title:"Lookbook",
+    lookbook_sub:"Combinaciones precargadas de marco y pines. Cómpralas como están o ábrelas en el diseñador para remixearlas.",
+    lookbook_cta_h:"¿Ninguno te late?",
+    lookbook_cta_p:"Abre el diseñador y elige entre 100+ pines: letras, números, emojis, banderas y más.",
+    origin_h:"Empezó en la fila de la escuela.",
+    origin_p1:"Brian, papá de tres, estaba detrás de una minivan gris un martes cualquiera mientras sus hijos atrás intercambiaban los mismos charms de goma que llevaban toda la semana.",
+    origin_p2:"La idea no se iba: pasamos la mitad de la vida en el coche. ¿Por qué los niños pueden expresarse y todos los coches parecen sacados de un video de la DMV?",
+    origin_p3:"Así que hizo un marco de matrícula que acepta esos mismos charms — pero para adultos, en metal real, sobre TPU suave que no traquetea en la autopista. Diseñado en California, hecho para nosotros.",
+    origin_sig:"FUNDADOR · LOS ÁNGELES",
+    stories_h:"Desde el estudio.", stories_all:"Todas las historias →", nav_stories:"Historias",
     filter_all:"Todos", filter_letters:"Letras", filter_numbers:"Números",
     filter_emoji:"Emojis", filter_icons:"Iconos", filter_flags:"Banderas", filter_sports:"Deportes", filter_cars:"Coches",
     search_ph:"Buscar nombres, letras, emojis…", open_designer:"Abrir diseñador →",
     designer_title:"El Diseñador", pin_library:"Biblioteca de pines",
     tip_drag:"Consejo: arrastra pines del catálogo a un orificio. Clic en un pin colocado para quitarlo.",
-    tip_count:"Hay 20 orificios en total alrededor de la placa.",
+    tip_count:"Hay 28 orificios en cruz alrededor del marco.",
     palette:"Paleta", layout:"Diseño", finish:"Acabado",
     frame_color:"Color del marco", plate_text_label:"Texto de placa (vista previa)",
     plate_text_hint:"Tu matrícula real no cambia — esto es para la vista IA.",
+    fc_black:"Negro", fc_pink:"Rosa", fc_red:"Rojo", fc_white:"Blanco", fc_clear:"Transp.", fc_sky:"Cielo", fc_pattern:"Patrón",
+    upload_image:"Subir imagen →", pattern_hint:"Se recorta a la forma del marco.", remove:"Quitar",
     summary:"Resumen", pins_x:"Pines ×",
     preview:"Vista previa", add_to_cart:"Añadir al carrito", ai_preview_cta:"Vista IA · Gratis",
     price_frame:"Marco", price_pins:"Pines", price_video:"Video IA", total:"Total",
@@ -259,7 +369,7 @@ window.PinnedI18N = {
     regenerate:"Regenerar", download_mp4:"Descargar mp4", add_to_cart_arrow:"Al carrito →",
     prompt_label:"PROMPT (auto)",
     cart_title:"Tu carrito", step_design:"1. DISEÑO", step_preview:"2. VISTA", step_checkout:"3. PAGO", step_ship:"4. ENVÍO",
-    in_cart:"diseño en el carrito", custom_frame:"Marco Pinned personalizado", edit:"editar",
+    in_cart:"diseño en el carrito", custom_frame:"Marco Makoauto personalizado", edit:"editar",
     ship_to:"Enviar a", full_name:"Nombre completo", phone:"Teléfono", address:"Dirección", city:"Ciudad", state_zip:"Estado / CP",
     shipping:"Envío", shipping_std:"Estándar — gratis · 3–5 días", shipping_exp:"Express — $12 · 2 días", shipping_intl:"DHL internacional — $28 · 5–10 días",
     payment:"Pago", promo_ph:"Código promocional", apply:"Aplicar", place_order:"Hacer pedido →",
@@ -279,42 +389,73 @@ window.PinnedI18N = {
     t_ship:"Enviado vía UPS", t_ship_d:"Terrestre · 2–3 días.",
     t_del:"Entregado", t_del_d:"Firma no requerida.",
     faq_kicker:"Ayuda y acerca de", faq_h:"Preguntas respondidas.",
-    faq_sub:"Todo sobre marco, pines, IA, envíos y devoluciones. Escríbenos a hi@pinned.com.",
+    faq_sub:"Todo sobre marco, pines, IA, envíos y devoluciones. Escríbenos a hi@makoauto.com.",
     g_frame:"Marco y pines", g_ai:"Video IA", g_ship:"Envío y devoluciones", g_legal:"Legal y PI",
-    footer_rights:"© 2026 Pinned. Hecho a mano en Los Ángeles.",
+    footer_rights:"© 2026 Makoauto. Hecho a mano en Los Ángeles.",
     footer_faq:"FAQ", footer_sitemap:"Mapa del sitio", footer_admin:"Admin",
+    contact_chip:"CONTACTO · LEEMOS TODO", contact_title:"Hola, soy Brian.",
+    contact_lede:"Makoauto es pequeño. No hay un robot atendiendo aquí — los correos llegan a una persona real en Los Ángeles, normalmente respondemos en un día hábil. Elige el canal que más te guste.",
+    contact_stamp:"DISEÑADO EN LA", contact_channels_h:"Elige tu canal",
+    contact_general:"General · Soporte · Devoluciones", contact_general_meta:"Pedidos, envíos, reembolsos. Respuesta en 1 día hábil.",
+    contact_bespoke:"Pines a medida", contact_bespoke_meta:"Manda un objeto, lo convertimos en un pin listo para la carretera. Envía foto antes.",
+    contact_wholesale:"Mayoristas · Prensa", contact_wholesale_meta:"Distribuidores, colabs, kit de prensa, citas del fundador.",
+    contact_social:"Social · DMs abiertos", contact_social_meta:"Muéstranos tu armado. Etiquétanos, te repostamos.",
+    contact_form_h:"O escríbenos directo.", contact_form_sub:"Más rápido. Respondemos en español (o EN / 中 / 日 / de).",
+    contact_form_name:"Nombre", contact_form_email:"Email", contact_form_topic:"¿De qué va?",
+    contact_topic_order:"Un pedido mío", contact_topic_bespoke:"Idea de pin a medida", contact_topic_wholesale:"Mayoristas o prensa", contact_topic_other:"Otra cosa",
+    contact_form_msg:"Mensaje", contact_form_send:"Enviar →", contact_form_note:"Sin newsletter. Sin ventas. Solo respuesta.",
+    contact_form_success_h:"Recibido — mensaje guardado localmente.", contact_form_success_p:"Cuando el backend esté conectado irá directo al inbox de Brian.",
+    contact_hours_h:"Horario", contact_hours_v:"Lun–Vie · 9am–5pm PT",
+    contact_ship_h:"Envíos desde", contact_ship_v:"Los Ángeles, California",
+    contact_team_h:"Equipo", contact_team_v:"Cinco humanos, un perro de taller",
   },
   de: {
-    nav_home:"Start", nav_design:"Designen", nav_catalog:"Pins", nav_preview:"KI-Vorschau",
-    nav_faq:"FAQ", nav_account:"Konto", nav_cart:"Warenkorb",
+    nav_home:"Start", nav_design:"Designen", nav_catalog:"Lookbook", nav_preview:"KI-Vorschau",
+    inspo_title:"Inspiration", inspo_hint:"Antippen zum Laden",
+    preset_love:"Liebesbrief", preset_varsity:"Varsity", preset_pet:"Pet Parent",
+    preset_arcade:"Arcade", preset_cyber:"Cyber", preset_classic:"Klassisch",
+    nav_faq:"FAQ", nav_account:"Konto", nav_cart:"Warenkorb", nav_contact:"Kontakt",
     cta_start:"Jetzt designen", cta_see_pins:"Alle Pins ansehen",
     hero_line1:"Pin dein Kennzeichen.", hero_line2:"Mach es deins.",
     hero_sub:"Personalisiere einen Silikon-Kennzeichenrahmen mit echten Metall-Pins — Buchstaben, Emojis, Flaggen, Team-Logos und mehr.",
-    hero_tag:"NEU · 20 Pin-Slots · designed in LA",
+    hero_tag:"NEU · 32 Pin-Slots · designed in LA",
     section_how:"So funktioniert's",
     step1_t:"Pins wählen", step1_d:"Suche Namen, Buchstaben, Emojis, Icons, Flaggen, Autos.",
-    step2_t:"Platzieren", step2_d:"Ziehe Pins in die 20 Löcher im Rahmen.",
+    step2_t:"Platzieren", step2_d:"Ziehe Pins in die 32 Löcher im Rahmen.",
     step3_t:"KI-Vorschau", step3_d:"Sieh deinen Rahmen an deinem exakten Auto — cinematisch.",
     step4_t:"Wir versenden, du setzt ein", step4_d:"Rahmen und Pins in 3–5 Tagen bei dir. Pins selbst einschrauben — das macht den Spaß.",
     real_frames:"Echte Rahmen, echte Fahrer.",
     pricing_title:"Ein Rahmen. Deine Regeln.",
     tier_starter:"STARTER", tier_popular:"BELIEBT", tier_maxed:"KOMPLETT",
-    starter_sub:"Rahmen + bis zu 6 Pins", popular_sub:"Rahmen + bis zu 12 Pins", maxed_sub:"Rahmen + bis zu 20 Pins",
-    starter_l1:"Silikonrahmen (5 Farben)", starter_l2:"Beliebige 6 Pins", starter_l3:"Alle Finishes", starter_l4:"KI-Vorschauvideo",
-    popular_l1:"Alles aus Starter", popular_l2:"12 Pins — mehr Abdeckung", popular_l3:"Prioritätsversand", popular_l4:"Erweiterte KI-Vorschau (10s)",
+    starter_sub:"Rahmen + bis zu 8 Pins", popular_sub:"Rahmen + bis zu 16 Pins", maxed_sub:"Rahmen + bis zu 32 Pins",
+    starter_l1:"Silikonrahmen (5 Farben)", starter_l2:"Beliebige 8 Pins", starter_l3:"Alle Finishes", starter_l4:"KI-Vorschauvideo",
+    popular_l1:"Alles aus Starter", popular_l2:"16 Pins — mehr Abdeckung", popular_l3:"Prioritätsversand", popular_l4:"Erweiterte KI-Vorschau (10s)",
     maxed_l1:"Alle Löcher nutzbar", maxed_l2:"Ersatz-Pins enthalten", maxed_l3:"Design-Concierge", maxed_l4:"Geschenkverpackung",
     cta_big_t:"Dein Kennzeichen. Deine Pins.", cta_big_s:"90 Sek. designen. 3 Tage zu dir.",
     catalog_title:"Pin-Katalog", catalog_sub:"Alle Pins in Silber, Gold, Schwarzchrom und Roségold.",
     catalog_chip:"KATALOG · 100+ PINS",
+    lookbook_chip:"LOOKBOOK · 19 SETS",
+    lookbook_title:"Lookbook",
+    lookbook_sub:"Vorgefertigte Kombinationen aus Rahmen und Pins. Kauf direkt oder öffne sie im Designer und mach dein eigenes Ding draus.",
+    lookbook_cta_h:"Nichts dabei?",
+    lookbook_cta_p:"Öffne den Designer und wähle aus 100+ Pins — Buchstaben, Zahlen, Emojis, Flaggen, mehr.",
+    origin_h:"Es begann in der Bringschlange vor der Schule.",
+    origin_p1:"Brian, dreifacher Vater, saß an einem Dienstag hinter einem grauen Minivan, während seine Kinder hinten dieselben Gummi-Charms tauschten, die sie die ganze Woche an ihren Clogs hatten.",
+    origin_p2:"Der Gedanke ging nicht weg: Wir verbringen unser halbes Leben im Auto. Warum dürfen die Kinder ihre Persönlichkeit zeigen, und jedes Auto sieht aus wie aus einem DMV-Schulungsvideo?",
+    origin_p3:"Also baute er einen Kennzeichenrahmen, der dieselben Charms aufnimmt — nur für Erwachsene, aus echtem Metall, auf weichem TPU, das auf der Autobahn nicht klappert. In Kalifornien entworfen, für uns alle.",
+    origin_sig:"GRÜNDER · LOS ANGELES",
+    stories_h:"Aus dem Studio.", stories_all:"Alle Stories →", nav_stories:"Stories",
     filter_all:"Alle", filter_letters:"Buchstaben", filter_numbers:"Zahlen",
     filter_emoji:"Emojis", filter_icons:"Icons", filter_flags:"Flaggen", filter_sports:"Sport", filter_cars:"Autos",
     search_ph:"Namen, Buchstaben, Emojis suchen…", open_designer:"Designer öffnen →",
     designer_title:"Der Designer", pin_library:"Pin-Bibliothek",
     tip_drag:"Tipp: Pins aus der Bibliothek auf ein Loch ziehen. Platzierten Pin zum Entfernen anklicken.",
-    tip_count:"Insgesamt 20 Löcher rund um das Kennzeichen.",
+    tip_count:"Insgesamt 28 Kreuzlöcher rund um den Rahmen.",
     palette:"Palette", layout:"Layout", finish:"Finish",
     frame_color:"Rahmenfarbe", plate_text_label:"Kennzeichentext (Vorschau)",
     plate_text_hint:"Dein echtes Kennzeichen bleibt — nur für die KI-Vorschau.",
+    fc_black:"Schwarz", fc_pink:"Rosa", fc_red:"Rot", fc_white:"Weiß", fc_clear:"Klar", fc_sky:"Himmel", fc_pattern:"Muster",
+    upload_image:"Bild hochladen →", pattern_hint:"Wird auf die Rahmenform zugeschnitten.", remove:"Entfernen",
     summary:"Übersicht", pins_x:"Pins ×",
     preview:"Vorschau", add_to_cart:"In den Warenkorb", ai_preview_cta:"KI-Vorschau · kostenlos",
     price_frame:"Rahmen", price_pins:"Pins", price_video:"KI-Vorschauvideo", total:"Gesamt",
@@ -330,7 +471,7 @@ window.PinnedI18N = {
     regenerate:"Neu generieren", download_mp4:"MP4 herunterladen", add_to_cart_arrow:"In den Warenkorb →",
     prompt_label:"PROMPT (automatisch)",
     cart_title:"Dein Warenkorb", step_design:"1. DESIGN", step_preview:"2. VORSCHAU", step_checkout:"3. KASSE", step_ship:"4. VERSAND",
-    in_cart:"Design im Warenkorb", custom_frame:"Individueller Pinned-Rahmen", edit:"bearbeiten",
+    in_cart:"Design im Warenkorb", custom_frame:"Individueller Makoauto-Rahmen", edit:"bearbeiten",
     ship_to:"Lieferung an", full_name:"Vollständiger Name", phone:"Telefon", address:"Adresse", city:"Stadt", state_zip:"Bundesland / PLZ",
     shipping:"Versand", shipping_std:"Standard — kostenlos · 3–5 Tage", shipping_exp:"Express — $12 · 2 Tage", shipping_intl:"DHL International — $28 · 5–10 Tage",
     payment:"Zahlung", promo_ph:"Gutscheincode", apply:"Anwenden", place_order:"Bestellen →",
@@ -350,23 +491,81 @@ window.PinnedI18N = {
     t_ship:"Versand per UPS", t_ship_d:"Ground · 2–3 Tage.",
     t_del:"Zugestellt", t_del_d:"Keine Unterschrift nötig.",
     faq_kicker:"Hilfe & über uns", faq_h:"Fragen, beantwortet.",
-    faq_sub:"Alles zu Rahmen, Pins, KI, Versand, Rückgabe. Schreib an hi@pinned.com.",
+    faq_sub:"Alles zu Rahmen, Pins, KI, Versand, Rückgabe. Schreib an hi@makoauto.com.",
     g_frame:"Rahmen & Pins", g_ai:"KI-Vorschauvideo", g_ship:"Versand & Rückgabe", g_legal:"Recht & IP",
-    footer_rights:"© 2026 Pinned. Handgefertigt in Los Angeles.",
+    footer_rights:"© 2026 Makoauto. Handgefertigt in Los Angeles.",
     footer_faq:"FAQ", footer_sitemap:"Sitemap", footer_admin:"Admin",
+    contact_chip:"KONTAKT · WIR LESEN ALLES", contact_title:"Hi, ich bin Brian.",
+    contact_lede:"Makoauto ist klein. Kein Callcenter-Bot — E-Mails landen bei einem echten Menschen in Los Angeles, Antwort meist innerhalb eines Werktags. Such dir den Kanal aus, der passt.",
+    contact_stamp:"DESIGNED IN LA", contact_channels_h:"Wähle deinen Kanal",
+    contact_general:"Allgemein · Support · Rückgaben", contact_general_meta:"Bestellungen, Versand, Rückerstattungen. Antwort innerhalb 1 Werktag.",
+    contact_bespoke:"Bespoke-Pins", contact_bespoke_meta:"Schick uns ein Stück, wir machen einen straßentauglichen Pin draus. Vorher Foto bitte.",
+    contact_wholesale:"Wholesale · Presse", contact_wholesale_meta:"Händler, Kollabs, Pressekit, Gründer-Quotes.",
+    contact_social:"Social · DMs offen", contact_social_meta:"Zeig uns dein Setup. Tagge uns, wir reposten.",
+    contact_form_h:"Oder schreib uns direkt.", contact_form_sub:"Schnellster Weg. Wir antworten auf Deutsch (oder EN / 中 / 日 / es).",
+    contact_form_name:"Name", contact_form_email:"E-Mail", contact_form_topic:"Worum geht's?",
+    contact_topic_order:"Eine Bestellung von mir", contact_topic_bespoke:"Idee für Bespoke-Pin", contact_topic_wholesale:"Wholesale oder Presse", contact_topic_other:"Anderes",
+    contact_form_msg:"Nachricht", contact_form_send:"Senden →", contact_form_note:"Kein Newsletter. Kein Upsell. Nur Antwort.",
+    contact_form_success_h:"Angekommen — Nachricht lokal gespeichert.", contact_form_success_p:"Sobald das Backend live ist, geht das direkt in Brians Inbox.",
+    contact_hours_h:"Studiozeiten", contact_hours_v:"Mo–Fr · 9–17 Uhr PT",
+    contact_ship_h:"Versand aus", contact_ship_v:"Los Angeles, Kalifornien",
+    contact_team_h:"Teamgröße", contact_team_v:"Fünf Menschen, ein Studiohund",
   },
 };
 
-window.PinnedLangs = [
+window.MakoautoLangs = [
   { code:'en', label:'EN' }, { code:'zh', label:'中文' }, { code:'ja', label:'日本語' },
   { code:'es', label:'ES' }, { code:'de', label:'DE' },
 ];
+
+// ─── Theme (light / dark) ───────────────────────────────────────
+// Applied immediately on script parse so the FOUC is as short as possible.
+// The full no-flash story would require an inline <script> in <head> of every
+// page; since styles.css is in <head> and i18n.js loads at end of <body>, the
+// page paints once in light mode then flips. CSS transitions smooth this.
+window.getTheme = () => {
+  const saved = localStorage.getItem('pinned_theme');
+  if (saved === 'light' || saved === 'dark') return saved;
+  return (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light';
+};
+window.applyTheme = () => {
+  const t = window.getTheme();
+  document.documentElement.setAttribute('data-theme', t);
+  // Keep mobile chrome / address bar in sync
+  let meta = document.querySelector('meta[name="theme-color"]');
+  if (!meta) { meta = document.createElement('meta'); meta.name = 'theme-color'; document.head.appendChild(meta); }
+  meta.setAttribute('content', t === 'dark' ? '#0E0D0A' : '#F5F0E3');
+  // Update all theme-toggle buttons on the page
+  document.querySelectorAll('[data-theme-toggle]').forEach((b) => {
+    b.setAttribute('aria-pressed', t === 'dark' ? 'true' : 'false');
+    b.setAttribute('aria-label', t === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
+    b.setAttribute('title', t === 'dark' ? 'Light mode' : 'Dark mode');
+    const icon = b.querySelector('.theme-icon');
+    if (icon) icon.textContent = t === 'dark' ? '☀' : '☾';
+  });
+};
+window.setTheme = (t) => {
+  if (t !== 'light' && t !== 'dark') return;
+  localStorage.setItem('pinned_theme', t);
+  window.applyTheme();
+  window.dispatchEvent(new CustomEvent('pinned:themechange', { detail: { theme: t } }));
+};
+window.toggleTheme = () => window.setTheme(window.getTheme() === 'dark' ? 'light' : 'dark');
+// Apply right away so the rest of script-driven UI is already in the right theme.
+try { window.applyTheme(); } catch (_) {}
+// Follow OS preference changes when user hasn't manually overridden.
+try {
+  const mq = window.matchMedia('(prefers-color-scheme: dark)');
+  mq.addEventListener && mq.addEventListener('change', () => {
+    if (!localStorage.getItem('pinned_theme')) window.applyTheme();
+  });
+} catch (_) {}
 
 window.getLang = () => localStorage.getItem('pinned_lang') || 'en';
 window.setLang = (l) => { localStorage.setItem('pinned_lang', l); applyI18N(); window.dispatchEvent(new CustomEvent('pinned:langchange')); };
 window.t = (key) => {
   const l = window.getLang();
-  return (window.PinnedI18N[l] && window.PinnedI18N[l][key]) || window.PinnedI18N.en[key] || key;
+  return (window.MakoautoI18N[l] && window.MakoautoI18N[l][key]) || window.MakoautoI18N.en[key] || key;
 };
 window.applyI18N = () => {
   document.querySelectorAll('[data-i18n]').forEach(el => el.textContent = window.t(el.getAttribute('data-i18n')));
@@ -384,29 +583,39 @@ window.renderTopbar = (active) => {
   const tb = document.querySelector('[data-topbar]');
   if (!tb) return;
   tb.innerHTML = `
-    <a class="logo" href="index.html">Pinned</a>
+    <a class="logo" href="index.html">Makoauto</a>
     <nav>
       <a href="index.html" ${active==='home'?'class="active"':''} data-i18n="nav_home">Home</a>
       <a href="designer.html" ${active==='design'?'class="active"':''} data-i18n="nav_design">Design</a>
-      <a href="catalog.html" ${active==='catalog'?'class="active"':''} data-i18n="nav_catalog">Pins</a>
-      <a href="preview.html" ${active==='preview'?'class="active"':''} data-i18n="nav_preview">AI Preview</a>
+      <a href="catalog.html" ${active==='catalog'?'class="active"':''} data-i18n="nav_catalog">Lookbook</a>
+      <a href="blog.html" ${active==='stories'?'class="active"':''} data-i18n="nav_stories">Stories</a>
       <a href="faq.html" ${active==='faq'?'class="active"':''} data-i18n="nav_faq">FAQ</a>
+      <a href="contact.html" ${active==='contact'?'class="active"':''} data-i18n="nav_contact">Contact</a>
     </nav>
     <div class="right">
+      <button type="button" class="theme-toggle" data-theme-toggle aria-pressed="false" title="Toggle theme"><span class="theme-icon" aria-hidden="true">☾</span></button>
       <div class="lang-switcher row" style="gap:0;border:2px solid var(--ink);border-radius:999px;overflow:hidden;background:var(--paper)">
-        ${window.PinnedLangs.map((l) => `<button type="button" class="lang-btn" data-lang-option="${l.code}" aria-pressed="false">${l.label}</button>`).join('')}
+        ${window.MakoautoLangs.map((l) => `<button type="button" class="lang-btn" data-lang-option="${l.code}" aria-pressed="false">${l.label}</button>`).join('')}
       </div>
       <a class="btn ghost" href="account.html" data-i18n="nav_account">Account</a>
       <a class="btn primary" href="cart.html" data-i18n="nav_cart">Cart</a>
     </div>`;
   tb.querySelectorAll('.lang-btn').forEach(b => b.addEventListener('click', () => window.setLang(b.getAttribute('data-lang-option'))));
+  tb.querySelectorAll('[data-theme-toggle]').forEach(b => b.addEventListener('click', () => window.toggleTheme()));
+  window.applyTheme();
   applyI18N();
   // active-style for currently picked language button
   if (!document.getElementById('lang-btn-styles')) {
     const s = document.createElement('style');
     s.id = 'lang-btn-styles';
     s.textContent = `.lang-btn{border:none;background:transparent;padding:6px 10px;font-family:'JetBrains Mono',monospace;font-size:11px;cursor:pointer;font-weight:600;color:var(--ink)}
-.lang-btn.active{background:var(--ink);color:var(--paper)}`;
+.lang-btn.active{background:var(--ink);color:var(--paper)}
+.theme-toggle{width:36px;height:36px;min-height:36px;border-radius:999px;border:2px solid var(--ink);background:var(--paper);color:var(--ink);cursor:pointer;display:inline-flex;align-items:center;justify-content:center;font-size:16px;line-height:1;padding:0;flex:0 0 auto;transition:transform .15s ease, background .2s ease, color .2s ease}
+.theme-toggle:hover{transform:rotate(-12deg) scale(1.05);background:var(--ink);color:var(--bg)}
+.theme-toggle:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+.theme-toggle .theme-icon{display:inline-block;transition:transform .3s ease}
+[data-theme="dark"] .theme-toggle .theme-icon{transform:rotate(180deg)}
+@media(max-width:900px){.theme-toggle{width:40px;height:40px;min-height:40px}}`;
     document.head.appendChild(s);
   }
 };

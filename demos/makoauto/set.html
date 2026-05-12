@@ -1,0 +1,247 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><title>Makoauto — Set</title>
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="description" content="A curated Makoauto set — frame plus themed pins.">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="apple-touch-icon" href="favicon.svg">
+<meta name="theme-color" content="#F5F0E3">
+<link rel="stylesheet" href="shared/styles.css">
+<style>
+  .wrap { max-width: 1200px; margin: 0 auto; padding: 32px 24px 80px; }
+  .crumbs { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--muted); margin-bottom: 16px; display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+  .crumbs a { color: var(--ink); text-decoration: none; }
+  .crumbs a:hover { text-decoration: underline; }
+
+  .pdp { display: grid; grid-template-columns: 1.1fr 1fr; gap: 48px; align-items: start; }
+  .gallery-wrap { position: sticky; top: 80px; display: flex; flex-direction: column; gap: 10px; }
+  .gallery { border: var(--border-thick); border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-hard-lg); background: var(--paper); aspect-ratio: 1/1; position: relative; }
+  .gallery img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .thumbs { display: grid; grid-template-columns: repeat(auto-fill, minmax(70px,1fr)); gap: 8px; }
+  .thumb { aspect-ratio: 1/1; border: 2px solid var(--ink); border-radius: 10px; overflow: hidden; cursor: pointer; background: var(--paper); padding: 0; transition: transform .12s, box-shadow .12s; }
+  .thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .thumb.active { box-shadow: 3px 3px 0 0 var(--ink); transform: translate(-1px,-1px); }
+  .thumb:hover { box-shadow: 3px 3px 0 0 var(--ink); }
+
+  .info h1 { font-size: clamp(28px, 4vw, 44px); line-height: 1.05; margin-bottom: 12px; }
+  .badges { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 16px; }
+  .price-row { display: flex; align-items: baseline; gap: 12px; margin: 18px 0 6px; padding: 18px 0; border-top: 2px dashed var(--ink); border-bottom: 2px dashed var(--ink); }
+  .price-row .price { font-family: 'Space Grotesk', sans-serif; font-size: 36px; font-weight: 700; }
+  .price-row .currency { font-size: 14px; color: var(--muted); font-family: 'JetBrains Mono', monospace; }
+  .price-row .stock { margin-left: auto; font-family: 'JetBrains Mono', monospace; font-size: 12px; padding: 6px 12px; border-radius: 999px; border: 2px solid var(--ink); }
+  .price-row .stock.in { background: var(--lime); }
+  .price-row .stock.out { background: var(--ink); color: var(--bg); }
+
+  .ctas { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 22px; }
+  .ctas .btn { width: 100%; justify-content: center; padding: 16px 20px; font-size: 16px; min-height: 56px; }
+
+  .description { margin-top: 32px; line-height: 1.7; font-size: 15.5px; }
+  .description p { margin: 0 0 14px; }
+  .description ul { padding-left: 0; list-style: none; margin: 14px 0; }
+  .description li { padding: 10px 0 10px 28px; position: relative; border-bottom: 1px solid rgba(15,15,15,0.08); }
+  .description li:before { content: "•"; position: absolute; left: 8px; top: 8px; font-size: 22px; line-height: 1; color: var(--ink); }
+  .description strong, .description b { font-weight: 600; }
+  .description h3 { font-size: 18px; margin: 24px 0 8px; font-family: 'Space Grotesk', sans-serif; font-weight: 600; }
+
+  .also-section { margin-top: 80px; padding-top: 40px; border-top: 2px solid var(--ink); }
+  .also-section h2 { font-size: 28px; margin-bottom: 18px; }
+  .related { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 16px; }
+  .related a { text-decoration: none; color: var(--ink); }
+  .related .card-mini { background: var(--paper); border: var(--border-thick); border-radius: var(--radius-md); overflow: hidden; box-shadow: var(--shadow-hard); transition: transform .12s; }
+  .related .card-mini:hover { transform: translate(-2px,-2px); }
+  .related .card-mini img { width: 100%; aspect-ratio: 1/1; object-fit: cover; display: block; }
+  .related .card-mini .meta { padding: 12px 14px; }
+  .related .card-mini .meta .name { font-size: 14px; font-weight: 600; line-height: 1.2; }
+  .related .card-mini .meta .price { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--muted); margin-top: 4px; }
+
+  .not-found { padding: 60px 24px; text-align: center; }
+  .not-found h1 { font-size: 32px; margin-bottom: 12px; }
+  .not-found a { color: var(--ink); }
+
+  /* Toast */
+  .toast { position: fixed; left: 50%; bottom: 32px; transform: translateX(-50%); background: var(--ink); color: var(--bg); padding: 14px 22px; border-radius: 999px; font-family: 'Space Grotesk', sans-serif; font-weight: 600; box-shadow: var(--shadow-hard-lg); z-index: 100; opacity: 0; transition: opacity .2s, transform .2s; pointer-events: none; }
+  .toast.show { opacity: 1; transform: translateX(-50%) translateY(-4px); }
+
+  @media (max-width: 880px) {
+    .pdp { grid-template-columns: 1fr; gap: 24px; }
+    .gallery-wrap { position: static; }
+  }
+  @media (max-width: 720px) {
+    .wrap { padding-left: max(20px, env(safe-area-inset-left, 0)); padding-right: max(20px, env(safe-area-inset-right, 0)); padding-bottom: calc(80px + env(safe-area-inset-bottom, 0px)); }
+    .ctas { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<div data-topbar class="topbar"></div>
+<div class="wrap" id="root">
+  <div class="not-found"><h1>Loading…</h1></div>
+</div>
+<div class="toast" id="toast">Added to cart</div>
+
+<script src="shared/i18n.js?v=9"></script>
+<script src="shared/placeholders.js?v=8"></script>
+<script>
+  renderTopbar('catalog');
+
+  const params = new URLSearchParams(location.search);
+  const slug = params.get('slug');
+  const root = document.getElementById('root');
+
+  const themeLabels = {
+    streetwear: 'Streetwear', nostalgia: 'Nostalgia', racing: 'Racing',
+    kawaii: 'Kawaii', minimal: 'Minimal', pets: 'Pets',
+    starter: 'Starter', gaming: 'Gaming', anime: 'Anime',
+  };
+
+  function renderDescription(desc) {
+    // Split into paragraphs by blank line; convert lines starting with • or - or numbered into <li>
+    const blocks = desc.split(/\n\s*\n/);
+    let html = '';
+    for (const block of blocks) {
+      const lines = block.split('\n').map(l => l.trim()).filter(Boolean);
+      const isList = lines.length > 1 && lines.every(l => /^[•\-\*]\s|^\(\d+\)\s|^\d+\.\s/.test(l) || /^[\p{Extended_Pictographic}\u2600-\u27BF]/u.test(l));
+      if (isList) {
+        html += '<ul>' + lines.map(l => '<li>' + l.replace(/^[•\-\*]\s+/, '').replace(/^\(\d+\)\s*/, '') + '</li>').join('') + '</ul>';
+      } else {
+        // bold short heading-only lines (no period, ≤6 words, ≤60 chars)
+        const isHeading = lines.length === 1 && lines[0].length < 64 && lines[0].split(' ').length <= 8 && !lines[0].endsWith('.') && !lines[0].endsWith('!') && !lines[0].endsWith('?');
+        const text = lines.join(' ');
+        if (isHeading) html += '<h3>' + text + '</h3>';
+        else html += '<p>' + text + '</p>';
+      }
+    }
+    return html;
+  }
+
+  function showToast(msg) {
+    const t = document.getElementById('toast');
+    t.textContent = msg;
+    t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), 2000);
+  }
+
+  function addToCart(p) {
+    let cart = [];
+    try { cart = JSON.parse(localStorage.getItem('pinned_cart') || '[]'); } catch (e) {}
+    cart.push({
+      type: 'set',
+      slug: p.slug,
+      name: p.name,
+      price: p.price,
+      image: p.image,
+      qty: 1,
+      ts: Date.now(),
+    });
+    localStorage.setItem('pinned_cart', JSON.stringify(cart));
+    showToast('Added to cart →');
+    setTimeout(() => location.href = 'cart.html', 700);
+  }
+
+  function renderRelated(allProducts, current) {
+    // Same theme, exclude current, max 4
+    const related = allProducts
+      .filter(p => p.theme === current.theme && p.slug !== current.slug)
+      .slice(0, 4);
+    if (!related.length) return '';
+    return `
+      <div class="also-section">
+        <h2>More from ${themeLabels[current.theme] || current.theme}</h2>
+        <div class="related">
+          ${related.map(p => `
+            <a href="set.html?slug=${p.slug}">
+              <div class="card-mini">
+                ${p.image ? `<img src="${p.image}" alt="${(p.imageAlt||p.name).replace(/"/g,'&quot;')}" loading="lazy">` : window.MakoautoPlaceholders.render(p.slug, p.price)}
+                <div class="meta">
+                  <div class="name">${p.name.replace(/^Makoauto\s+/i, '').slice(0, 50)}</div>
+                  <div class="price">$${p.price.toFixed(2)}</div>
+                </div>
+              </div>
+            </a>
+          `).join('')}
+        </div>
+      </div>
+    `;
+  }
+
+  async function load() {
+    if (!slug) {
+      root.innerHTML = `<div class="not-found"><h1>No set selected</h1><p><a href="catalog.html">← Back to lookbook</a></p></div>`;
+      return;
+    }
+    const res = await fetch('assets/legacy/products.json');
+    const products = await res.json();
+    const p = products.find(x => x.slug === slug);
+    if (!p) {
+      root.innerHTML = `<div class="not-found"><h1>Set not found</h1><p><a href="catalog.html">← Back to lookbook</a></p></div>`;
+      return;
+    }
+
+    document.title = p.name + ' — Makoauto';
+    const inStock = p.in_stock !== false;
+
+    root.innerHTML = `
+      <div class="crumbs">
+        <a href="catalog.html">Lookbook</a>
+        <span>/</span>
+        <span>${themeLabels[p.theme] || p.theme}</span>
+        <span>/</span>
+        <span style="color:var(--muted)">${p.name.replace(/^Makoauto\s+/i, '').slice(0, 40)}…</span>
+      </div>
+      <div class="pdp">
+        <div class="gallery-wrap">
+          <div class="gallery" id="main-img">
+            ${p.image
+              ? `<img id="hero-img" src="${p.image}" alt="${(p.imageAlt||p.name).replace(/"/g,'&quot;')}">`
+              : window.MakoautoPlaceholders.render(p.slug, p.price)}
+          </div>
+          ${(() => {
+            const all = [{src: p.image, alt: p.imageAlt||p.name}, ...(p.gallery||[])].filter(x => x.src);
+            if (all.length <= 1) return '';
+            return `<div class="thumbs">${all.slice(0, 12).map((g, i) => `
+              <button class="thumb ${i===0?'active':''}" data-src="${g.src}" data-alt="${(g.alt||'').replace(/"/g,'&quot;')}">
+                <img src="${g.src}" alt="${(g.alt||'').replace(/"/g,'&quot;')}" loading="lazy">
+              </button>`).join('')}</div>`;
+          })()}
+        </div>
+        <div class="info">
+          <div class="badges">
+            <span class="chip">${themeLabels[p.theme] || p.theme}</span>
+            <span class="chip">Designed in LA</span>
+            ${p.frame_color ? `<span class="chip">${p.frame_color.replace('-', ' ')} frame</span>` : ''}
+          </div>
+          <h1>${p.name}</h1>
+          <div class="price-row">
+            <span class="price">$${p.price.toFixed(2)}</span>
+            <span class="currency">${p.currency || 'USD'}</span>
+            <span class="stock ${inStock ? 'in' : 'out'}">${inStock ? 'IN STOCK' : 'SOLD OUT'}</span>
+          </div>
+          <div class="ctas">
+            <button class="btn primary" id="buy-btn" ${inStock ? '' : 'disabled style="opacity:.5;cursor:not-allowed"'}>${inStock ? 'Buy this set →' : 'Sold out'}</button>
+            <a class="btn ghost" href="designer.html?from=${p.slug}">Remix in designer</a>
+          </div>
+          <div class="description">${renderDescription(p.description)}</div>
+        </div>
+      </div>
+      ${renderRelated(products, p)}
+    `;
+
+    const buyBtn = document.getElementById('buy-btn');
+    if (buyBtn && inStock) buyBtn.onclick = () => addToCart(p);
+
+    // Thumbnail switcher
+    const heroImg = document.getElementById('hero-img');
+    document.querySelectorAll('.thumb').forEach(btn => {
+      btn.onclick = () => {
+        if (!heroImg) return;
+        heroImg.src = btn.dataset.src;
+        heroImg.alt = btn.dataset.alt || '';
+        document.querySelectorAll('.thumb').forEach(t => t.classList.remove('active'));
+        btn.classList.add('active');
+      };
+    });
+  }
+  load();
+</script>
+</body></html>

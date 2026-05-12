@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><title>Makoauto — Stories</title>
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="description" content="Stories from Makoauto — pin culture, customer rides, behind the scenes from the LA studio.">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="apple-touch-icon" href="favicon.svg">
+<meta name="theme-color" content="#F5F0E3">
+<link rel="stylesheet" href="shared/styles.css">
+<style>
+  .wrap { max-width: 980px; margin: 0 auto; padding: 32px 24px 80px; }
+
+  /* INDEX VIEW */
+  .index-head { margin-bottom: 36px; }
+  .index-head h1 { font-size: clamp(40px,6vw,72px); line-height: .98; margin-top: 8px; }
+  .index-head p { color: var(--muted); margin-top: 12px; max-width: 540px; }
+  .post-list { display: grid; gap: 28px; }
+  .post-card { display: grid; grid-template-columns: 240px 1fr; gap: 28px; padding: 24px; background: var(--paper); border: var(--border-thick); border-radius: var(--radius-lg); box-shadow: var(--shadow-hard); transition: transform .12s, box-shadow .12s; cursor: pointer; }
+  .post-card:hover { transform: translate(-3px,-3px); box-shadow: 7px 7px 0 0 var(--ink); }
+  .post-card .img-wrap { aspect-ratio: 4/3; border-radius: var(--radius-md); overflow: hidden; border: 2px solid var(--ink); background: var(--bg-2); }
+  .post-card .img-wrap img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .post-card .meta { display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+  .post-card .meta .date { font-family: 'JetBrains Mono', monospace; font-size: 11px; text-transform: uppercase; color: var(--muted); }
+  .post-card .meta h2 { font-size: 24px; line-height: 1.15; }
+  .post-card .meta .blurb { font-size: 14px; color: var(--muted); line-height: 1.55; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+  .post-card .meta .read { font-family: 'Space Grotesk', sans-serif; font-weight: 600; font-size: 14px; align-self: flex-start; padding-top: 4px; text-decoration: none; color: var(--ink); }
+
+  /* SINGLE POST VIEW */
+  .post-back { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--muted); text-decoration: none; display: inline-flex; align-items: center; gap: 4px; margin-bottom: 24px; }
+  .post-back:hover { color: var(--ink); }
+  .post-hero { aspect-ratio: 16/9; border-radius: var(--radius-lg); overflow: hidden; border: var(--border-thick); box-shadow: var(--shadow-hard-lg); margin-bottom: 32px; background: var(--bg-2); }
+  .post-hero img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .post-meta { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: .04em; margin-bottom: 8px; }
+  .post-title { font-size: clamp(32px, 5vw, 56px); line-height: 1.02; margin-bottom: 16px; }
+  .post-desc { font-size: 18px; color: var(--muted); line-height: 1.5; margin-bottom: 32px; max-width: 720px; }
+  .post-body { font-size: 17px; line-height: 1.7; max-width: 720px; }
+  .post-body p { margin: 0 0 18px; }
+  .post-body h3 { font-size: 22px; margin: 32px 0 10px; font-family: 'Space Grotesk', sans-serif; font-weight: 600; }
+  .post-body strong { font-weight: 600; }
+
+  .post-cta { margin-top: 60px; padding: 28px; background: var(--ink); color: var(--paper); border-radius: var(--radius-lg); display: grid; grid-template-columns: 1fr auto auto; gap: 14px; align-items: center; }
+  .post-cta h3 { font-size: clamp(20px,2.6vw,28px); color: var(--paper); }
+  .post-cta p { color: rgba(255,251,240,0.65); font-size: 14px; margin-top: 4px; }
+
+  .next-section { margin-top: 60px; padding-top: 32px; border-top: 2px solid var(--ink); }
+  .next-section h2 { font-size: 22px; margin-bottom: 16px; }
+  .next-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 14px; }
+  .next-grid a { text-decoration: none; color: var(--ink); }
+  .next-grid .mini { background: var(--paper); border: var(--border-thick); border-radius: var(--radius-md); overflow: hidden; box-shadow: var(--shadow-hard); transition: transform .12s; }
+  .next-grid .mini:hover { transform: translate(-2px,-2px); }
+  .next-grid .mini img { width: 100%; aspect-ratio: 16/10; object-fit: cover; display: block; }
+  .next-grid .mini .name { padding: 10px 12px; font-size: 13px; font-weight: 600; line-height: 1.2; }
+
+  @media (max-width: 720px) {
+    .wrap { padding-left: max(20px, env(safe-area-inset-left, 0)); padding-right: max(20px, env(safe-area-inset-right, 0)); padding-bottom: calc(80px + env(safe-area-inset-bottom, 0px)); }
+    .post-card { grid-template-columns: 1fr; gap: 16px; }
+    .post-card .img-wrap { aspect-ratio: 16/10; }
+    .post-cta { grid-template-columns: 1fr; text-align: center; }
+    .post-cta .btn { width: 100%; justify-content: center; }
+  }
+</style>
+</head>
+<body>
+<div data-topbar class="topbar"></div>
+<div class="wrap" id="root">
+  <p style="text-align:center;padding:60px;color:var(--muted)">Loading…</p>
+</div>
+
+<script src="shared/i18n.js?v=9"></script>
+<script>
+  renderTopbar();
+
+  const params = new URLSearchParams(location.search);
+  const slug = params.get('slug');
+  const root = document.getElementById('root');
+
+  function fmtDate(iso) {
+    if (!iso) return '';
+    try {
+      const d = new Date(iso);
+      return d.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
+    } catch (e) { return ''; }
+  }
+
+  function escapeHtml(s) { return s.replace(/[<>&]/g, c => ({ '<': '&lt;', '>': '&gt;', '&': '&amp;' }[c])); }
+
+  function renderBody(body) {
+    // Split into paragraphs by blank line. Bold-only-line → h3.
+    const blocks = body.split(/\n\s*\n/);
+    return blocks.map(b => {
+      const t = b.trim();
+      if (!t) return '';
+      // Heading-ish: short single line, no terminal punctuation
+      if (!t.includes('\n') && t.length < 80 && !/[.!?]$/.test(t) && t.split(' ').length <= 10) {
+        return '<h3>' + escapeHtml(t) + '</h3>';
+      }
+      return '<p>' + escapeHtml(t).replace(/\n/g, '<br>') + '</p>';
+    }).join('');
+  }
+
+  async function load() {
+    const res = await fetch('assets/legacy/blogs.json');
+    const blogs = await res.json();
+    if (slug) renderSingle(blogs);
+    else renderIndex(blogs);
+  }
+
+  function renderIndex(blogs) {
+    document.title = 'Makoauto — Stories';
+    const sorted = [...blogs].sort((a, b) => (b.date || '').localeCompare(a.date || ''));
+    root.innerHTML = `
+      <div class="index-head">
+        <span class="chip">STORIES · ${blogs.length} POSTS</span>
+        <h1>Stories</h1>
+        <p>Why we made what we made. Customer rides. Notes from the LA studio. The kind of details that don't fit on a product page.</p>
+      </div>
+      <div class="post-list">
+        ${sorted.map(b => `
+          <article class="post-card" onclick="location.href='blog.html?slug=${b.slug}'">
+            <div class="img-wrap"><img src="${b.image}" alt="${escapeHtml(b.title)}" loading="lazy"></div>
+            <div class="meta">
+              <span class="date">${fmtDate(b.date)}</span>
+              <h2>${escapeHtml(b.title)}</h2>
+              <p class="blurb">${escapeHtml(b.description || b.body.slice(0, 220))}</p>
+              <a class="read" href="blog.html?slug=${b.slug}">Read story →</a>
+            </div>
+          </article>
+        `).join('')}
+      </div>
+    `;
+  }
+
+  function renderSingle(blogs) {
+    const post = blogs.find(b => b.slug === slug);
+    if (!post) {
+      root.innerHTML = `<p style="text-align:center;padding:60px"><strong>Story not found.</strong> <a href="blog.html">← Back to all stories</a></p>`;
+      return;
+    }
+    document.title = post.title + ' — Makoauto';
+    const others = blogs.filter(b => b.slug !== slug).slice(0, 3);
+
+    root.innerHTML = `
+      <a class="post-back" href="blog.html">← All stories</a>
+      <div class="post-hero"><img src="${post.image}" alt="${escapeHtml(post.title)}"></div>
+      <div class="post-meta">${fmtDate(post.date)} · by ${post.author || 'Makoauto'}</div>
+      <h1 class="post-title">${escapeHtml(post.title)}</h1>
+      ${post.description ? `<p class="post-desc">${escapeHtml(post.description)}</p>` : ''}
+      <div class="post-body">${renderBody(post.body)}</div>
+
+      <div class="post-cta">
+        <div>
+          <h3>Like the vibe? Make your own.</h3>
+          <p>90 seconds in the designer. Or grab a curated set as-is.</p>
+        </div>
+        <a class="btn primary" href="designer.html">Start designing →</a>
+        <a class="btn ghost" style="background:var(--paper);color:var(--ink)" href="catalog.html">Shop sets</a>
+      </div>
+
+      ${others.length ? `
+        <div class="next-section">
+          <h2>Read next</h2>
+          <div class="next-grid">
+            ${others.map(b => `
+              <a href="blog.html?slug=${b.slug}">
+                <div class="mini">
+                  <img src="${b.image}" alt="${escapeHtml(b.title)}" loading="lazy">
+                  <div class="name">${escapeHtml(b.title)}</div>
+                </div>
+              </a>
+            `).join('')}
+          </div>
+        </div>
+      ` : ''}
+    `;
+  }
+
+  load();
+</script>
+</body></html>
