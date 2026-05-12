@@ -1,17 +1,17 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8"><title>Pinned — Catalog</title>
+<meta charset="utf-8"><title>Makoauto — Lookbook</title>
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="description" content="Browse 100+ metal pins for the Pinned frame—letters, numbers, emoji, flags, and four finishes: silver, gold, black chrome, and rose gold.">
+<meta name="description" content="Curated Makoauto sets — frames pre-loaded with themed pins. Buy as a set or remix any look in the designer.">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="apple-touch-icon" href="favicon.svg">
 <meta name="theme-color" content="#F5F0E3">
-<meta property="og:site_name" content="Pinned">
+<meta property="og:site_name" content="Makoauto">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="en_US">
-<meta property="og:title" content="Pinned — Catalog">
-<meta property="og:description" content="Browse 100+ metal pins for the Pinned frame—letters, numbers, emoji, flags, and four finishes: silver, gold, black chrome, and rose gold.">
+<meta property="og:title" content="Makoauto — Lookbook">
+<meta property="og:description" content="Curated Makoauto sets — frames pre-loaded with themed pins.">
 <meta property="og:image" content="favicon.svg">
 <meta name="twitter:card" content="summary">
 <link rel="stylesheet" href="shared/styles.css">
@@ -19,33 +19,47 @@
   .wrap { max-width: 1280px; margin: 0 auto; padding: 32px 24px 80px; }
   .head { display: grid; grid-template-columns: 1fr auto; gap: 20px; align-items: end; margin-bottom: 24px; }
   .head h1 { font-size: clamp(40px,6vw,80px); line-height: .95; }
-  .head p { color: var(--muted); margin-top: 8px; max-width: 480px; }
-  .toolbar { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; padding: 12px; background: var(--paper); border: var(--border-thick); border-radius: 999px; margin-bottom: 20px; }
-  .toolbar #cats { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
-  .toolbar input { border: none; outline: none; flex: 1; background: transparent; font-size: 15px; padding: 6px 14px; min-width: 160px; }
-  .toolbar .cat-btn { padding: 6px 14px; border: 1.5px solid var(--ink); border-radius: 999px; background: transparent; font-family: 'JetBrains Mono',monospace; font-size: 11px; text-transform: uppercase; cursor: pointer; }
-  .toolbar .cat-btn.active { background: var(--ink); color: var(--bg); }
-  .toolbar .finish-toggle { display: flex; gap: 6px; align-items: center; padding-left: 8px; border-left: 2px solid var(--ink); }
-  .toolbar .fchip { width: 28px; height: 28px; border-radius: 50%; border: 2px solid var(--ink); cursor: pointer; }
-  .toolbar .fchip.active { box-shadow: 0 0 0 2px var(--bg), 0 0 0 4px var(--ink); }
-  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 14px; }
-  .pin-card { aspect-ratio: 1/1.15; padding: 14px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; background: var(--paper); border: var(--border-thick); border-radius: 18px; transition: transform .12s; cursor: pointer; position: relative; }
-  .pin-card:hover { transform: translate(-2px,-2px); box-shadow: var(--shadow-hard); }
-  .pin-card .label { font-family: 'JetBrains Mono',monospace; font-size: 11px; color: var(--muted); text-transform: uppercase; text-align: center; }
-  .pin-card .price { position: absolute; top: 8px; right: 10px; font-family: 'JetBrains Mono',monospace; font-size: 11px; color: var(--muted); }
-  .pin-card .tag { position: absolute; top: 8px; left: 10px; font-size: 9px; }
-  .section-kicker { font-family: 'JetBrains Mono',monospace; font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); margin: 32px 0 8px; }
-  .section-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
-  .section-head h2 { font-size: 32px; }
-  .section-head .count { font-family: 'JetBrains Mono',monospace; color: var(--muted); font-size: 12px; }
+  .head p { color: var(--muted); margin-top: 8px; max-width: 560px; }
+
+  /* Theme filter row */
+  .filters { display: flex; gap: 8px; flex-wrap: wrap; padding: 14px; background: var(--paper); border: var(--border-thick); border-radius: 999px; margin-bottom: 24px; }
+  .filters .filter-btn { padding: 8px 16px; border: 1.5px solid var(--ink); border-radius: 999px; background: transparent; font-family: 'JetBrains Mono',monospace; font-size: 11px; text-transform: uppercase; letter-spacing: .04em; cursor: pointer; }
+  .filters .filter-btn.active { background: var(--ink); color: var(--bg); }
+  .filters .filter-btn .count { opacity: .55; margin-left: 6px; font-weight: 400; }
+
+  /* Lookbook grid */
+  .lookbook { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; }
+  .set-card { position: relative; background: var(--paper); border: var(--border-thick); border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-hard); transition: transform .14s, box-shadow .14s; display: flex; flex-direction: column; }
+  .set-card:hover { transform: translate(-3px, -3px); box-shadow: 7px 7px 0 0 var(--ink); }
+  .set-card .img-wrap { aspect-ratio: 1/1; overflow: hidden; background: var(--bg-2); position: relative; }
+  .set-card img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .set-card .price-tag { position: absolute; top: 12px; right: 12px; background: var(--lime); border: var(--border-thick); border-radius: 999px; padding: 6px 12px; font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 14px; box-shadow: var(--shadow-hard); display: var(--show-price, flex); }
+  .set-card .ctas a.ghost { display: var(--show-remix, flex); align-items: center; justify-content: center; }
+  .set-card .ctas:has(a.ghost[style*="display: none"]) { grid-template-columns: 1fr; }
+  .set-card .theme-tag { position: absolute; top: 12px; left: 12px; background: var(--paper); border: 1.5px solid var(--ink); border-radius: 999px; padding: 4px 10px; font-family: 'JetBrains Mono', monospace; font-size: 10px; text-transform: uppercase; letter-spacing: .06em; }
+  .set-card .body { padding: 18px 18px 16px; display: flex; flex-direction: column; gap: 10px; flex: 1; }
+  .set-card h3 { font-size: 18px; line-height: 1.2; }
+  .set-card .blurb { font-size: 13px; color: var(--muted); line-height: 1.5; flex: 1; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+  .set-card .ctas { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 4px; }
+  .set-card .ctas a { font-family: 'Space Grotesk', sans-serif; font-weight: 600; font-size: 13px; padding: 10px 12px; border: 2px solid var(--ink); border-radius: 999px; text-align: center; text-decoration: none; color: var(--ink); transition: transform .12s, background .12s; min-height: 44px; display: flex; align-items: center; justify-content: center; }
+  .set-card .ctas a.primary { background: var(--ink); color: var(--bg); }
+  .set-card .ctas a.primary:hover { background: var(--lime); color: var(--ink); }
+  .set-card .ctas a.ghost:hover { background: var(--ink); color: var(--bg); }
+  .set-card .oos { position: absolute; top: 12px; left: 50%; transform: translateX(-50%); background: var(--ink); color: var(--bg); border: var(--border-thick); border-radius: 999px; padding: 4px 12px; font-family: 'JetBrains Mono', monospace; font-size: 10px; text-transform: uppercase; }
+
+  /* Bottom CTA strip */
+  .bottom-cta { margin-top: 60px; padding: 32px; background: var(--ink); color: var(--paper); border-radius: var(--radius-lg); display: grid; grid-template-columns: 1fr auto; gap: 20px; align-items: center; }
+  .bottom-cta h2 { font-size: clamp(24px,3.5vw,40px); color: var(--paper); }
+  .bottom-cta p { color: rgba(255,251,240,0.7); font-size: 15px; margin-top: 6px; }
+
   @media (max-width: 720px) {
     .wrap { padding-left: max(20px, env(safe-area-inset-left, 0)); padding-right: max(20px, env(safe-area-inset-right, 0)); padding-bottom: calc(80px + env(safe-area-inset-bottom, 0px)); }
     .head { grid-template-columns: 1fr; gap: 16px; }
     .head .btn { width: 100%; justify-content: center; }
-    .toolbar { border-radius: 20px; flex-direction: column; align-items: stretch; }
-    .toolbar input { min-width: 0; width: 100%; }
-    .toolbar #cats, .toolbar .finish-toggle { width: 100%; justify-content: center; }
-    .toolbar .finish-toggle { border-left: none; padding-left: 0; border-top: 2px solid var(--ink); padding-top: 8px; }
+    .filters { border-radius: 18px; }
+    .lookbook { grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 14px; }
+    .bottom-cta { grid-template-columns: 1fr; text-align: center; padding: 24px; }
+    .bottom-cta .btn { width: 100%; justify-content: center; }
   }
 </style>
 </head>
@@ -54,62 +68,258 @@
 <div class="wrap">
   <div class="head">
     <div>
-      <span class="chip" data-i18n="catalog_chip">CATALOG · 100+ PINS</span>
-      <h1 data-i18n="catalog_title">Pin catalog</h1>
-      <p data-i18n="catalog_sub">All pins come in silver, gold, black chrome and rose gold. Click to add to your design.</p>
+      <span class="chip" data-i18n="lookbook_chip">LOOKBOOK · 19 CURATED SETS</span>
+      <h1 data-i18n="lookbook_title">Lookbook</h1>
+      <p data-i18n="lookbook_sub">Pre-loaded combinations of frame and pins. Buy a set as-is, or open it in the designer and remix it into your own.</p>
     </div>
     <a class="btn primary" href="designer.html" data-i18n="open_designer">Open designer →</a>
   </div>
 
-  <div class="toolbar">
-    <span style="font-size:14px;padding:0 4px">⌕</span>
-    <input id="search" data-i18n-placeholder="search_ph" placeholder="Search names, letters, emoji…">
-    <div id="cats"></div>
-    <div class="finish-toggle" id="finish-toggle"></div>
+  <div class="filters" id="filters"></div>
+
+  <div class="lookbook" id="lookbook">
+    <!-- cards rendered by JS -->
   </div>
 
-  <div id="sections"></div>
+  <div class="bottom-cta">
+    <div>
+      <h2 data-i18n="lookbook_cta_h">None of these speak to you?</h2>
+      <p data-i18n="lookbook_cta_p">Open the designer and pick from 100+ pins — letters, numbers, emoji, flags, more.</p>
+    </div>
+    <a class="btn primary" href="designer.html" data-i18n="cta_start">Start designing</a>
+  </div>
 </div>
 
-<script src="shared/i18n.js?v=5"></script>
-<script src="shared/pins.js?v=5"></script>
+<script src="shared/i18n.js?v=9"></script>
+<script src="shared/placeholders.js?v=8"></script>
 <script>
+  // ---- Tweaks defaults (read by EDITMODE host; mirrored at runtime) ----
+  const TWEAKS = /*EDITMODE-BEGIN*/{
+    "brand_name": "Makoauto",
+    "lookbook_kicker": "",
+    "lookbook_h1": "",
+    "card_min_width": 280,
+    "show_price_tag": true,
+    "show_remix_btn": true,
+    "show_filters": true,
+    "accent_color": "#D8FF6B"
+  }/*EDITMODE-END*/;
+  window.__catalogTweaks = TWEAKS;
+
+  // Hook window.t so brand-name swap propagates to every i18n string.
+  const _t = window.t;
+  window.t = (key) => {
+    let s = _t(key);
+    const b = window.__catalogTweaks.brand_name || 'Makoauto';
+    if (b !== 'Makoauto') s = s.replace(/Makoauto/g, b);
+    return s;
+  };
+
+  // Patch renderTopbar so the wordmark uses the current brand.
+  const _renderTopbar = window.renderTopbar;
+  window.renderTopbar = (active) => {
+    _renderTopbar(active);
+    const logo = document.querySelector('.topbar .logo');
+    if (logo) logo.textContent = window.__catalogTweaks.brand_name || 'Makoauto';
+  };
+
+  function applyTweaks() {
+    const t = window.__catalogTweaks;
+    // 1. Topbar wordmark
+    const logo = document.querySelector('.topbar .logo');
+    if (logo) logo.textContent = t.brand_name || 'Makoauto';
+    // 2. Document title
+    document.title = `${t.brand_name || 'Makoauto'} \u2014 Lookbook`;
+    // 3. Re-apply i18n strings (which now flow through the patched t())
+    window.applyI18N && window.applyI18N();
+    // 4. Override H1 / kicker if user set custom strings
+    const chip = document.querySelector('[data-i18n="lookbook_chip"]');
+    if (chip && t.lookbook_kicker) chip.textContent = t.lookbook_kicker;
+    const h1 = document.querySelector('[data-i18n="lookbook_title"]');
+    if (h1 && t.lookbook_h1) h1.textContent = t.lookbook_h1;
+    // 5. Grid density
+    document.querySelectorAll('.lookbook').forEach(el => {
+      el.style.gridTemplateColumns = `repeat(auto-fill, minmax(${t.card_min_width}px, 1fr))`;
+    });
+    // 6. Visibility toggles
+    document.documentElement.style.setProperty('--show-price', t.show_price_tag ? 'flex' : 'none');
+    document.documentElement.style.setProperty('--show-remix', t.show_remix_btn ? 'flex' : 'none');
+    const filters = document.getElementById('filters');
+    if (filters) filters.style.display = t.show_filters ? 'flex' : 'none';
+    // 7. Accent color
+    document.documentElement.style.setProperty('--lime', t.accent_color);
+  }
+  window.__applyCatalogTweaks = applyTweaks;
+
   renderTopbar('catalog');
-  const state = { cat: 'all', q: '', finish: 'silver' };
 
-  function renderCats() {
-    const el = document.getElementById('cats');
-    const cats = [['all', t('filter_all')]].concat(Object.entries(PinnedCatalog.cats).map(([k,v])=>[k, t('filter_'+k) || v.label]));
-    el.innerHTML = cats.map(([k,l]) => `<button class="cat-btn ${state.cat===k?'active':''}" data-cat="${k}">${l}</button>`).join('');
-    el.querySelectorAll('.cat-btn').forEach(b => b.onclick = () => { state.cat = b.dataset.cat; renderCats(); renderSections(); });
-  }
-  function renderFinish() {
-    document.getElementById('finish-toggle').innerHTML = PINNED_FINISHES.map(f => `<div class="fchip ${state.finish===f.key?'active':''}" data-finish="${f.key}" style="background:${f.swatch}" title="${f.label}"></div>`).join('');
-    document.querySelectorAll('.fchip').forEach(c => c.onclick = () => { state.finish = c.dataset.finish; renderFinish(); renderSections(); });
+  const state = { theme: 'all' };
+  let products = [];
+
+  const themeLabels = {
+    all: 'All',
+    streetwear: 'Streetwear',
+    nostalgia: 'Nostalgia',
+    racing: 'Racing',
+    kawaii: 'Kawaii',
+    minimal: 'Minimal',
+    pets: 'Pets',
+    starter: 'Starter',
+    gaming: 'Gaming',
+    anime: 'Anime',
+  };
+
+  async function load() {
+    const res = await fetch('assets/legacy/products.json');
+    products = await res.json();
+    renderFilters();
+    renderGrid();
   }
 
-  function renderSections() {
-    const container = document.getElementById('sections');
-    const catsToShow = state.cat === 'all' ? Object.keys(PinnedCatalog.cats) : [state.cat];
-    const q = state.q.toLowerCase();
-    container.innerHTML = catsToShow.map(cat => {
-      const pins = PinnedCatalog.pins.filter(p => p.category === cat && (!q || p.label.toLowerCase().includes(q) || p.glyph.includes(q)));
-      if (!pins.length) return '';
-      return `
-        <div class="section-head"><h2>${t('filter_'+cat) || PinnedCatalog.cats[cat].label}</h2><div class="count">${pins.length} <span data-i18n="placed">pins</span></div></div>
-        <div class="grid">${pins.map(p => `
-          <div class="pin-card" onclick="window.location.href='designer.html'">
-            <span class="tag">$${p.price}</span>
-            ${renderPinVisual(p, state.finish, 72)}
-            <div class="label">${p.label}</div>
+  function renderFilters() {
+    const counts = { all: products.length };
+    products.forEach(p => { counts[p.theme] = (counts[p.theme] || 0) + 1; });
+    const themes = ['all', ...Object.keys(themeLabels).filter(k => k !== 'all' && counts[k])];
+    const el = document.getElementById('filters');
+    el.innerHTML = themes.map(k => `
+      <button class="filter-btn ${state.theme === k ? 'active' : ''}" data-theme="${k}">
+        ${themeLabels[k]}<span class="count">${counts[k] || 0}</span>
+      </button>
+    `).join('');
+    el.querySelectorAll('.filter-btn').forEach(b => b.onclick = () => {
+      state.theme = b.dataset.theme;
+      renderFilters();
+      renderGrid();
+    });
+  }
+
+  function shortenName(name) {
+    // Strip leading brand prefix for card display; swap any other "Makoauto" mentions for the current brand.
+    let n = name.replace(/^Makoauto\s+/i, '').replace(/^The\s+/i, '');
+    // Trim long " | " or " - " tails
+    if (n.length > 60) n = n.split(/\s+[\|\-–]\s+/)[0];
+    if (n.length > 60) n = n.slice(0, 58).replace(/\s+\S*$/, '') + '…';
+    const b = window.__catalogTweaks?.brand_name;
+    if (b && b !== 'Makoauto') n = n.replace(/Makoauto/g, b);
+    return n;
+  }
+
+  function firstSentence(desc) {
+    const lines = desc.split('\n').map(l => l.trim()).filter(Boolean);
+    let s = lines[0] || '';
+    // Drop trailing emoji
+    s = s.replace(/[\p{Extended_Pictographic}\u2600-\u27BF\uFE0F\s]+$/u, '');
+    const b = window.__catalogTweaks?.brand_name;
+    if (b && b !== 'Makoauto') s = s.replace(/Makoauto/g, b);
+    return s;
+  }
+
+  function renderGrid() {
+    const list = state.theme === 'all' ? products : products.filter(p => p.theme === state.theme);
+    const el = document.getElementById('lookbook');
+    el.innerHTML = list.map(p => `
+      <article class="set-card">
+        <a class="img-wrap" href="set.html?slug=${p.slug}">
+          ${p.image ? `<img src="${p.image}" alt="${(p.imageAlt||p.name).replace(/"/g,'&quot;')}" loading="lazy">` : window.MakoautoPlaceholders.render(p.slug, p.price)}
+          <span class="theme-tag">${themeLabels[p.theme] || p.theme}</span>
+          <span class="price-tag">$${p.price.toFixed(2)}</span>
+          ${p.in_stock === false ? `<span class="oos">Sold out</span>` : ''}
+        </a>
+        <div class="body">
+          <h3>${shortenName(p.name)}</h3>
+          <p class="blurb">${firstSentence(p.description)}</p>
+          <div class="ctas" style="${window.__catalogTweaks.show_remix_btn ? '' : 'grid-template-columns:1fr'}">
+            <a class="primary" href="set.html?slug=${p.slug}">View set</a>
+            ${window.__catalogTweaks.show_remix_btn ? `<a class="ghost" href="designer.html?from=${p.slug}">Remix</a>` : ''}
           </div>
-        `).join('')}</div>
-      `;
-    }).join('');
+        </div>
+      </article>
+    `).join('');
   }
 
-  document.getElementById('search').oninput = (e) => { state.q = e.target.value; renderSections(); };
-  window.addEventListener('pinned:langchange', () => { renderCats(); renderSections(); });
-  renderCats(); renderFinish(); renderSections();
+  window.addEventListener('pinned:langchange', () => { renderFilters(); renderGrid(); });
+  window.addEventListener('pinned:tweakschange', () => { renderFilters(); renderGrid(); applyTweaks(); });
+  load().then(() => applyTweaks());
+</script>
+
+<!-- Tweaks panel (React + Babel) -->
+<div id="tweaks-root"></div>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script type="text/babel" src="shared/tweaks-panel.jsx"></script>
+<script type="text/babel">
+  const { useEffect } = React;
+  function CatalogTweaks() {
+    const [tweaks, setTweak] = useTweaks(window.__catalogTweaks);
+    // Mirror to global so render functions can read current values.
+    useEffect(() => {
+      window.__catalogTweaks = tweaks;
+      window.dispatchEvent(new CustomEvent('pinned:tweakschange'));
+    }, [tweaks]);
+
+    return (
+      <TweaksPanel title="Tweaks">
+        <TweakSection title="Brand">
+          <TweakText
+            label="Brand name"
+            hint="Replaces &lsquo;Makoauto&rsquo; everywhere on this page (topbar, copy, page title)."
+            value={tweaks.brand_name}
+            onChange={(v) => setTweak('brand_name', v)}
+            placeholder="Your brand name"
+          />
+          <TweakColor
+            label="Accent color"
+            value={tweaks.accent_color}
+            onChange={(v) => setTweak('accent_color', v)}
+          />
+        </TweakSection>
+
+        <TweakSection title="Hero copy">
+          <TweakText
+            label="Kicker"
+            hint="The small chip above the H1. Leave empty to use the i18n default."
+            value={tweaks.lookbook_kicker}
+            onChange={(v) => setTweak('lookbook_kicker', v)}
+            placeholder="LOOKBOOK · 19 CURATED SETS"
+          />
+          <TweakText
+            label="Headline"
+            hint="The big H1. Leave empty to use the i18n default."
+            value={tweaks.lookbook_h1}
+            onChange={(v) => setTweak('lookbook_h1', v)}
+            placeholder="Lookbook"
+          />
+        </TweakSection>
+
+        <TweakSection title="Grid">
+          <TweakSlider
+            label="Card density"
+            hint="Min card width — smaller = more columns."
+            min={220} max={360} step={10}
+            value={tweaks.card_min_width}
+            onChange={(v) => setTweak('card_min_width', v)}
+          />
+          <TweakToggle
+            label="Show theme filters"
+            value={tweaks.show_filters}
+            onChange={(v) => setTweak('show_filters', v)}
+          />
+          <TweakToggle
+            label="Show price tag"
+            value={tweaks.show_price_tag}
+            onChange={(v) => setTweak('show_price_tag', v)}
+          />
+          <TweakToggle
+            label="Show Remix button"
+            hint="When off, only &lsquo;View set&rsquo; CTA shows on each card."
+            value={tweaks.show_remix_btn}
+            onChange={(v) => setTweak('show_remix_btn', v)}
+          />
+        </TweakSection>
+      </TweaksPanel>
+    );
+  }
+  ReactDOM.createRoot(document.getElementById('tweaks-root')).render(<CatalogTweaks />);
 </script>
 </body></html>

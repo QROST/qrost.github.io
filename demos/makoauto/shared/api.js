@@ -1,4 +1,4 @@
-// Pinned — thin API client.
+// Makoauto — thin API client.
 // Central place to configure the backend base URL + handle offline gracefully.
 // The site is fully usable without a backend (localStorage fallback); these helpers
 // simply no-op / return the cached local copy when the API is unreachable.
@@ -107,7 +107,7 @@
     },
   };
 
-  window.PinnedAPI = API;
+  window.MakoautoAPI = API;
 
   // Emit a DOM event once we know whether the backend is alive, so pages can
   // conditionally show "save to cloud" UI without racing.

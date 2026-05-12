@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><title>Makoauto — Contact</title>
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="description" content="Talk to Makoauto. Bespoke pin requests, wholesale, support, press — written by a real human in Los Angeles.">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="apple-touch-icon" href="favicon.svg">
+<meta name="theme-color" content="#F5F0E3">
+<link rel="stylesheet" href="shared/styles.css">
+<style>
+  .wrap { max-width: 1100px; margin: 0 auto; padding: 32px 24px 80px; }
+  .hero { display: grid; grid-template-columns: 1.1fr .9fr; gap: 48px; align-items: end; margin-bottom: 48px; }
+  .hero h1 { font-size: clamp(40px,6vw,80px); line-height: .95; margin-top: 8px; }
+  .hero .lede { font-size: 18px; color: var(--ink-soft); line-height: 1.55; margin-top: 16px; max-width: 480px; }
+  .hero .visual { aspect-ratio: 1/1; border: var(--border-thick); border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-hard-lg); background: var(--bg-2); position: relative; }
+  .hero .visual img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .hero .visual .stamp { position: absolute; bottom: 12px; left: 12px; background: var(--lime); border: 2px solid var(--ink); border-radius: 999px; padding: 6px 14px; font-family: 'JetBrains Mono', monospace; font-size: 11px; text-transform: uppercase; }
+
+  .grid { display: grid; grid-template-columns: 1.1fr 1fr; gap: 36px; align-items: start; }
+
+  /* Channels list */
+  .channels { display: flex; flex-direction: column; gap: 14px; }
+  .channel { display: grid; grid-template-columns: 56px 1fr auto; gap: 16px; align-items: center; padding: 18px 20px; background: var(--paper); border: var(--border-thick); border-radius: var(--radius-md); box-shadow: var(--shadow-hard); transition: transform .12s; text-decoration: none; color: var(--ink); }
+  .channel:hover { transform: translate(-2px,-2px); box-shadow: 5px 5px 0 0 var(--ink); }
+  .channel .icon { width: 56px; height: 56px; border-radius: 50%; background: var(--lime); border: 2px solid var(--ink); display: flex; align-items: center; justify-content: center; font-size: 26px; }
+  .channel:nth-child(2) .icon { background: var(--pink); color: var(--paper); }
+  .channel:nth-child(3) .icon { background: var(--cobalt); color: var(--paper); }
+  .channel:nth-child(4) .icon { background: var(--paper); }
+  .channel .body .label { font-family: 'JetBrains Mono', monospace; font-size: 10px; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); margin-bottom: 4px; }
+  .channel .body .title { font-family: 'Space Grotesk', sans-serif; font-weight: 600; font-size: 16px; line-height: 1.2; }
+  .channel .body .meta { font-size: 13px; color: var(--muted); margin-top: 4px; }
+  .channel .arrow { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 22px; color: var(--ink); }
+
+  /* Form */
+  .form-card { background: var(--paper); border: var(--border-thick); border-radius: var(--radius-lg); box-shadow: var(--shadow-hard-lg); padding: 28px; }
+  .form-card h2 { font-size: 24px; margin-bottom: 6px; }
+  .form-card .form-sub { color: var(--muted); font-size: 14px; margin-bottom: 20px; }
+  .form-row { display: flex; flex-direction: column; gap: 6px; margin-bottom: 14px; }
+  .form-row label { font-family: 'JetBrains Mono', monospace; font-size: 11px; text-transform: uppercase; letter-spacing: .06em; color: var(--ink-soft); }
+  .form-row input, .form-row select, .form-row textarea { padding: 12px 14px; border: 2px solid var(--ink); border-radius: 12px; background: var(--bg); font: inherit; font-size: 15px; color: var(--ink); min-height: 48px; }
+  .form-row textarea { min-height: 120px; resize: vertical; line-height: 1.5; }
+  .form-row input:focus, .form-row select:focus, .form-row textarea:focus { outline: none; box-shadow: 0 0 0 3px var(--lime); }
+  .form-actions { display: flex; gap: 10px; align-items: center; margin-top: 8px; }
+  .form-actions .btn { flex: 0 0 auto; }
+  .form-actions .note { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--muted); }
+  .form-success { padding: 18px 20px; background: var(--lime); border: var(--border-thick); border-radius: var(--radius-md); font-family: 'Space Grotesk', sans-serif; font-weight: 600; display: none; align-items: flex-start; gap: 12px; }
+  .form-success.show { display: flex; }
+  .form-success .check { font-size: 22px; }
+
+  /* Hours strip */
+  .hours { margin-top: 56px; padding: 28px 32px; background: var(--ink); color: var(--paper); border-radius: var(--radius-lg); display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 24px; align-items: center; }
+  .hours .item .lab { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: rgba(255,251,240,0.55); text-transform: uppercase; letter-spacing: .08em; margin-bottom: 6px; }
+  .hours .item .val { font-family: 'Space Grotesk', sans-serif; font-weight: 600; font-size: 17px; }
+
+  @media (max-width: 880px) {
+    .hero { grid-template-columns: 1fr; gap: 24px; }
+    .grid { grid-template-columns: 1fr; gap: 24px; }
+    .hours { grid-template-columns: 1fr; gap: 16px; }
+  }
+  @media (max-width: 720px) {
+    .wrap { padding-left: max(20px, env(safe-area-inset-left, 0)); padding-right: max(20px, env(safe-area-inset-right, 0)); padding-bottom: calc(80px + env(safe-area-inset-bottom, 0px)); }
+    .channel { grid-template-columns: 48px 1fr auto; padding: 14px 16px; }
+    .channel .icon { width: 48px; height: 48px; font-size: 22px; }
+  }
+</style>
+</head>
+<body>
+<div data-topbar class="topbar"></div>
+
+<div class="wrap">
+  <section class="hero">
+    <div>
+      <span class="chip" data-i18n="contact_chip">CONTACT · WE READ EVERY MESSAGE</span>
+      <h1 data-i18n="contact_title">Hey, it's Brian.</h1>
+      <p class="lede" data-i18n="contact_lede">Makoauto is small. There's no contact-center robot here — emails come to a real human in Los Angeles, usually replied within a working day. Pick whichever channel feels right.</p>
+    </div>
+    <div class="visual">
+      <img src="assets/legacy/photos/f9c7d62d433442fc.jpg" alt="Founder's hand-signed thank-you note tucked into every Makoauto box">
+      <span class="stamp" data-i18n="contact_stamp">DESIGNED IN LA</span>
+    </div>
+  </section>
+
+  <div class="grid">
+    <div>
+      <h2 style="font-size:22px;margin-bottom:14px" data-i18n="contact_channels_h">Pick your channel</h2>
+      <div class="channels">
+        <a class="channel" href="mailto:hi@makoauto.com">
+          <div class="icon">✉</div>
+          <div class="body">
+            <div class="label" data-i18n="contact_general">General · Support · Returns</div>
+            <div class="title">hi@makoauto.com</div>
+            <div class="meta" data-i18n="contact_general_meta">Order help, shipping, refunds. Reply within 1 business day.</div>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a class="channel" href="mailto:bespoke@makoauto.com">
+          <div class="icon">✦</div>
+          <div class="body">
+            <div class="label" data-i18n="contact_bespoke">Bespoke pins</div>
+            <div class="title">bespoke@makoauto.com</div>
+            <div class="meta" data-i18n="contact_bespoke_meta">Mail us a trinket, we turn it into a road-ready pin. Send a photo first.</div>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a class="channel" href="mailto:wholesale@makoauto.com">
+          <div class="icon">⌂</div>
+          <div class="body">
+            <div class="label" data-i18n="contact_wholesale">Wholesale · Press</div>
+            <div class="title">wholesale@makoauto.com</div>
+            <div class="meta" data-i18n="contact_wholesale_meta">Stockists, collabs, press kit, founder quotes.</div>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a class="channel" href="https://instagram.com/makoauto" target="_blank" rel="noopener">
+          <div class="icon">◎</div>
+          <div class="body">
+            <div class="label" data-i18n="contact_social">Social · DMs open</div>
+            <div class="title">@makoauto</div>
+            <div class="meta" data-i18n="contact_social_meta">Show us your build. Tag us, we repost.</div>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+      </div>
+    </div>
+
+    <div class="form-card">
+      <h2 data-i18n="contact_form_h">Or just write to us.</h2>
+      <p class="form-sub" data-i18n="contact_form_sub">Fastest path. We answer in plain English (or 中 / 日 / es / de).</p>
+      <form id="contact-form" novalidate>
+        <div class="form-row">
+          <label for="cf-name" data-i18n="contact_form_name">Your name</label>
+          <input id="cf-name" name="name" type="text" required autocomplete="name">
+        </div>
+        <div class="form-row">
+          <label for="cf-email" data-i18n="contact_form_email">Email</label>
+          <input id="cf-email" name="email" type="email" required autocomplete="email">
+        </div>
+        <div class="form-row">
+          <label for="cf-topic" data-i18n="contact_form_topic">What's this about?</label>
+          <select id="cf-topic" name="topic">
+            <option value="order" data-i18n="contact_topic_order">An order I placed</option>
+            <option value="bespoke" data-i18n="contact_topic_bespoke">A bespoke pin idea</option>
+            <option value="wholesale" data-i18n="contact_topic_wholesale">Wholesale or press</option>
+            <option value="other" data-i18n="contact_topic_other">Something else</option>
+          </select>
+        </div>
+        <div class="form-row">
+          <label for="cf-msg" data-i18n="contact_form_msg">Message</label>
+          <textarea id="cf-msg" name="message" required></textarea>
+        </div>
+        <div class="form-actions">
+          <button type="submit" class="btn primary" data-i18n="contact_form_send">Send →</button>
+          <span class="note" data-i18n="contact_form_note">No newsletter. No upsells. Just a reply.</span>
+        </div>
+        <div class="form-success" id="form-success">
+          <span class="check">✓</span>
+          <div>
+            <strong data-i18n="contact_form_success_h">Got it — message saved locally.</strong>
+            <div style="font-weight:400;margin-top:4px;font-size:13px;color:var(--ink-soft)" data-i18n="contact_form_success_p">Once the backend is live this will go straight to Brian's inbox.</div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="hours">
+    <div class="item">
+      <div class="lab" data-i18n="contact_hours_h">Studio hours</div>
+      <div class="val" data-i18n="contact_hours_v">Mon–Fri · 9am–5pm PT</div>
+    </div>
+    <div class="item">
+      <div class="lab" data-i18n="contact_ship_h">Ships from</div>
+      <div class="val" data-i18n="contact_ship_v">Los Angeles, California</div>
+    </div>
+    <div class="item">
+      <div class="lab" data-i18n="contact_team_h">Team size</div>
+      <div class="val" data-i18n="contact_team_v">Five humans, one workshop dog</div>
+    </div>
+  </div>
+</div>
+
+<script src="shared/i18n.js?v=9"></script>
+<script>
+  renderTopbar('contact');
+  const form = document.getElementById('contact-form');
+  const success = document.getElementById('form-success');
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const data = Object.fromEntries(new FormData(form).entries());
+    if (!data.name || !data.email || !data.message) return;
+    // Store locally — backend not wired yet
+    let inbox = [];
+    try { inbox = JSON.parse(localStorage.getItem('pinned_contact_inbox') || '[]'); } catch (e) {}
+    inbox.push({ ...data, ts: Date.now() });
+    localStorage.setItem('pinned_contact_inbox', JSON.stringify(inbox));
+    success.classList.add('show');
+    form.reset();
+    setTimeout(() => success.scrollIntoView({ block: 'nearest', behavior: 'smooth' }), 50);
+  });
+</script>
+</body></html>

@@ -1,7 +1,8 @@
-/* Pinned — shared design tokens */
+/* Makoauto — shared design tokens */
 @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Zeyada&display=swap');
 
 :root {
+  color-scheme: light;
   --bg: #F5F0E3;
   --bg-2: #EDE6D3;
   --ink: #0F0F0F;
@@ -32,6 +33,147 @@
   --border: 2px solid var(--ink);
   --border-thick: 3px solid var(--ink);
 }
+
+/* ─── Dark mode ────────────────────────────────────────────────
+   Activated by setting data-theme="dark" on <html>. We override the
+   neutral tokens (bg / paper / ink / muted) and let the existing
+   var(--ink) borders + shadows reinterpret as cream-on-dark, which
+   keeps the neobrutalist outlined-block look intact.
+   Brand accents (lime / pink / cobalt) stay identical. */
+[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #0E0D0A;          /* warm near-black, the cream paper hue inverted */
+  --bg-2: #19170F;
+  --ink: #F2EDDC;         /* cream foreground */
+  --ink-soft: #D8D2BD;
+  --muted: #9B9277;
+  --line: #F2EDDC;        /* === --ink, so 1.5px solid var(--line) borders stay visible */
+  --paper: #1A1812;       /* card surface — one notch lighter than --bg */
+
+  /* Constants — colors that should NOT invert. Used for text on colored fills
+     (pink / cobalt / ink buttons + cards) and for the always-dark text on
+     lime/yellow fills. Reference these via the fixed-text overrides below. */
+  --on-color-light: #FFFBF0;
+  --on-color-dark:  #0F0F0F;
+}
+
+/* Text-on-colored-fill: in light mode these read color: var(--paper) or
+   var(--ink). In dark mode --paper flips dark and --ink flips light, so we
+   pin them back to fixed values wherever they sit on a brand-accent fill. */
+[data-theme="dark"] .btn.pink,
+[data-theme="dark"] .btn.cobalt,
+[data-theme="dark"] .step:nth-child(2),
+[data-theme="dark"] .step:nth-child(3),
+[data-theme="dark"] .step:nth-child(2) h3,
+[data-theme="dark"] .step:nth-child(3) h3,
+[data-theme="dark"] .channel:nth-child(2) .icon,
+[data-theme="dark"] .channel:nth-child(3) .icon,
+[data-theme="dark"] .sticker.s1,
+[data-theme="dark"] .sticker.s2,
+[data-theme="dark"] .faq-hero,
+[data-theme="dark"] .faq-hero h1,
+[data-theme="dark"] .faq-hero p,
+[data-theme="dark"] .stage-toolbar .ttl-btn.danger:hover,
+[data-theme="dark"] .pattern-controls button:hover,
+[data-theme="dark"] .hole .placed-pin.remove-hint::after,
+[data-theme="dark"] .t-step.current .t-dot,
+[data-theme="dark"] .status-pill.assembling,
+[data-theme="dark"] .pink,            /* sitemap.html group */
+[data-theme="dark"] .pink h2,
+[data-theme="dark"] .cobalt,           /* sitemap.html group */
+[data-theme="dark"] .cobalt h2 {
+  color: var(--on-color-light) !important;
+}
+[data-theme="dark"] .step:nth-child(2) p,
+[data-theme="dark"] .step:nth-child(3) p,
+[data-theme="dark"] .pink p,
+[data-theme="dark"] .cobalt p {
+  color: rgba(255,251,240,.85) !important;
+}
+
+/* Lime fills: text must STAY dark (cream-on-lime is unreadable). */
+[data-theme="dark"] .step:nth-child(1),
+[data-theme="dark"] .step:nth-child(1) h3,
+[data-theme="dark"] .sticker.s3,
+[data-theme="dark"] .price-card[style*="lime"],
+[data-theme="dark"] .price-card[style*="lime"] .price,
+[data-theme="dark"] .price-card[style*="lime"] li,
+[data-theme="dark"] .lime,
+[data-theme="dark"] .lime h2 {
+  color: var(--on-color-dark) !important;
+}
+[data-theme="dark"] .step:nth-child(1) p,
+[data-theme="dark"] .lime p {
+  color: rgba(15,15,15,.7) !important;
+}
+[data-theme="dark"] .price-card[style*="lime"] .mono { color: rgba(15,15,15,.65) !important; }
+[data-theme="dark"] .price-card[style*="lime"] li { border-bottom-color: rgba(15,15,15,.3) !important; }
+[data-theme="dark"] .price-card[style*="lime"] li::before { color: var(--on-color-dark) !important; }
+/* POPULAR chip on the lime card carries inline color:var(--lime); override
+   because cream bg (inverted --ink) + lime text reads at ~1.1 contrast. */
+[data-theme="dark"] .price-card[style*="lime"] .chip { color: var(--on-color-dark) !important; background: var(--on-color-dark) !important; }
+[data-theme="dark"] .price-card[style*="lime"] .chip { color: var(--lime) !important; background: #0F0F0F !important; border-color: #0F0F0F !important; }
+
+/* .cta-block: bg=var(--ink) flips to cream in dark, color=var(--bg) flips
+   to dark — h2 reads. But its <p> has a hard-coded cream-alpha that becomes
+   cream-on-cream. Re-tone to dark-alpha. */
+[data-theme="dark"] .cta-block p { color: rgba(15,15,15,.65) !important; }
+
+/* Status pills assembled/queued on a cream bg in dark mode — keep dark text */
+[data-theme="dark"] .status-pill.queued { color: var(--on-color-dark) !important; }
+
+/* Sitemap lime card sub-text */
+[data-theme="dark"] .lime p { color: rgba(15,15,15,.7) !important; }
+[data-theme="dark"] .btn.primary {            /* lime fill, always dark text */
+  color: var(--on-color-dark);
+}
+
+/* The lime-filled "POPULAR" pricing card on index.html sets color via inline
+   style on its inner chip; the card body itself inherits from body. Force
+   its inner text to dark since the bg is lime. */
+[data-theme="dark"] .price-card[style*="lime"] { color: var(--on-color-dark); }
+[data-theme="dark"] .price-card[style*="lime"] .mono { color: rgba(15,15,15,.65) !important; }
+
+/* The dark "CTA block" on index.html: in light mode it's dark cream-on-dark
+   already; in dark mode the inverted --bg makes its body bg dark too, but
+   we keep cream text via the rule above. Tighten its inner muted line: */
+[data-theme="dark"] .cta-block p { color: rgba(255,251,240,.7); }
+
+/* Solid-ink fills used as backgrounds in some places (.btn default,
+   .stepper .s.active, etc.) — in dark mode --ink is cream, so any element
+   that originally read "dark bg, light text" now reads correctly as
+   "cream bg, dark text" because color: var(--bg) inverts in parallel. ✓ */
+
+/* Smooth crossfade when toggling */
+html { transition: background-color .25s ease, color .25s ease; }
+body, .card, .topbar, .btn, .chip, .lang,
+.tag, .filters, .set-card, .post-card, .channel, .form-card,
+.story-card, .gallery-card, .price-card, .step, .pay,
+.faq-quick a, details, .promo input,
+.field input, .field select, .form-row input, .form-row select, .form-row textarea {
+  transition: background-color .25s ease, color .25s ease, border-color .25s ease, box-shadow .25s ease;
+}
+
+/* Page-level scoped overrides for spots that hard-code light values
+   (white photo bg on FAQ, etc.) */
+[data-theme="dark"] .faq-hero .photo { background-color: var(--bg-2) !important; }
+[data-theme="dark"] .lang-switcher { background: var(--paper) !important; }
+[data-theme="dark"] ::-webkit-scrollbar-thumb { background: var(--muted); }
+[data-theme="dark"] ::-webkit-scrollbar-track { background: var(--bg-2); }
+
+/* Decorative halftone — invert the dot color so it reads against dark bg */
+[data-theme="dark"] .halftone {
+  background-image: radial-gradient(rgba(255,255,255,.18) 1px, transparent 1.4px);
+}
+
+/* .btn / .btn.ghost already use var(--ink) + var(--bg) for their fill +
+   text — those invert automatically. The shadow uses var(--shadow-hard)
+   which references --ink, so cream offset blocks show against the dark
+   bg. No per-element overrides needed. */
+
+/* CA license-plate demo stays light (it's depicting a real white plate) */
+.demo-plate, .demo-plate .plate-inner { color-scheme: light; }
+
 
 * { box-sizing: border-box; }
 html, body { margin: 0; padding: 0; background: var(--bg); color: var(--ink); font-family: 'Inter', system-ui, sans-serif; -webkit-font-smoothing: antialiased; }

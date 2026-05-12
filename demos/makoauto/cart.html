@@ -1,16 +1,16 @@
 <!doctype html>
 <html lang="en"><head>
-<meta charset="utf-8"><title>Pinned — Cart</title>
+<meta charset="utf-8"><title>Makoauto — Cart</title>
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="description" content="Review your Pinned custom license frame design, choose shipping, and complete checkout securely.">
+<meta name="description" content="Review your Makoauto custom license frame design, choose shipping, and complete checkout securely.">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="apple-touch-icon" href="favicon.svg">
 <meta name="theme-color" content="#F5F0E3">
-<meta property="og:site_name" content="Pinned">
+<meta property="og:site_name" content="Makoauto">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="en_US">
-<meta property="og:title" content="Pinned — Cart">
-<meta property="og:description" content="Review your Pinned custom license frame design, choose shipping, and complete checkout securely.">
+<meta property="og:title" content="Makoauto — Cart">
+<meta property="og:description" content="Review your Makoauto custom license frame design, choose shipping, and complete checkout securely.">
 <meta property="og:image" content="favicon.svg">
 <meta name="twitter:card" content="summary">
 <link rel="stylesheet" href="shared/styles.css">
@@ -69,7 +69,7 @@
         <div class="cart-item" id="cart-item">
           <div class="mini-plate" id="cart-mini-plate"><div class="inner" id="cart-plate-text">BRIAN</div></div>
           <div>
-            <div style="font-weight:700;font-size:17px" data-i18n="custom_frame">Custom Pinned Frame</div>
+            <div style="font-weight:700;font-size:17px" data-i18n="custom_frame">Custom Makoauto Frame</div>
             <div class="mono" id="cart-desc" style="font-size:12px;color:var(--muted);margin-top:4px">Black silicone · AI preview included</div>
             <div class="row" id="cart-tags" style="gap:6px;margin-top:8px;flex-wrap:wrap">
               <span class="tag" id="cart-pin-tag">0 PINS</span><span class="tag" id="cart-frame-tag">BLACK FRAME</span><span class="tag" id="cart-finish-tag">SILVER</span>
@@ -130,9 +130,9 @@
     </div>
   </div>
 </div>
-<script src="shared/i18n.js?v=5"></script>
-<script src="shared/pins.js?v=5"></script>
-<script src="shared/api.js?v=1"></script>
+<script src="shared/i18n.js?v=9"></script>
+<script src="shared/pins.js?v=9"></script>
+<script src="shared/api.js?v=8"></script>
 <script>
   renderTopbar('cart');
 
@@ -154,7 +154,7 @@
       const pinId = saved.placements[k];
       const finish = saved.placements[k + '_finish'] || saved.finish || 'silver';
       finishes.add(finish);
-      const pin = (window.PinnedCatalog && PinnedCatalog.pins.find(p => p.id === pinId));
+      const pin = (window.MakoautoCatalog && MakoautoCatalog.pins.find(p => p.id === pinId));
       if (pin) pinPriceCents += Math.round(pin.price * 100);
     });
 
@@ -188,8 +188,8 @@
   }
 
   hydrateCart();
-  if (window.PinnedAssetsLoaded && typeof window.PinnedAssetsLoaded.then === 'function') {
-    window.PinnedAssetsLoaded.then(hydrateCart);
+  if (window.MakoautoAssetsLoaded && typeof window.MakoautoAssetsLoaded.then === 'function') {
+    window.MakoautoAssetsLoaded.then(hydrateCart);
   }
 
   // ---------- Place order ----------
@@ -206,16 +206,16 @@
 
   async function ensureCloudDesign() {
     // Prefer cloud id if already saved; otherwise try to save the current local design to the backend.
-    if (!window.PinnedAPI) return null;
+    if (!window.MakoautoAPI) return null;
     const existing = localStorage.getItem('pinned_design_id');
     if (existing) {
-      try { await window.PinnedAPI.getDesign(existing); return existing; } catch (_) { /* fallthrough */ }
+      try { await window.MakoautoAPI.getDesign(existing); return existing; } catch (_) { /* fallthrough */ }
     }
     let local;
     try { local = JSON.parse(localStorage.getItem('pinned_design') || 'null'); } catch(_) { local = null; }
     if (!local || !local.placements || !Object.keys(local.placements).length) return null;
-    if (!(await window.PinnedAPI.health())) return null;
-    const saved = await window.PinnedAPI.saveDesign(local);
+    if (!(await window.MakoautoAPI.health())) return null;
+    const saved = await window.MakoautoAPI.saveDesign(local);
     if (saved && saved.id) { try { localStorage.setItem('pinned_design_id', saved.id); } catch(_){} return saved.id; }
     return null;
   }
@@ -229,8 +229,8 @@
     result.textContent = 'Processing…';
 
     try {
-      if (!window.PinnedAPI) throw new Error('no_api_client');
-      if (!(await window.PinnedAPI.health())) {
+      if (!window.MakoautoAPI) throw new Error('no_api_client');
+      if (!(await window.MakoautoAPI.health())) {
         result.style.color = 'var(--muted)';
         result.textContent = 'Backend offline — order kept as a local draft (no charge).';
         return;
@@ -243,7 +243,7 @@
       }
       const ship = readFormAddress();
       const email = document.querySelector('[data-i18n="ship_to"]')?.closest('.section')?.querySelector('input[type="email"]')?.value || 'brian@example.com';
-      const out = await window.PinnedAPI.createOrderStub({
+      const out = await window.MakoautoAPI.createOrderStub({
         design_id,
         customer_email: email,
         customer_name: ship.name,
