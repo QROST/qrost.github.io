@@ -1,0 +1,133 @@
+[
+  {
+    "id": "d01",
+    "num": 1,
+    "title_html": "Decide <strong>shareholders</strong>, <strong>legal representative</strong>, <strong>supervisor</strong>, and (where required) <strong>finance contact</strong>; prepare PRC ID cards and mobile numbers for real-name verification.",
+    "detail": {
+      "kind": "paragraph",
+      "html": "Director and supervisor cannot be the same person in the standard one-shareholder layout; your filing portal will flag conflicts."
+    },
+    "money": {
+      "kind": "data-domestic-fee",
+      "key": "d01"
+    }
+  },
+  {
+    "id": "d02",
+    "num": 2,
+    "title_html": "Reserve <strong>3–5 candidate names</strong> and secure a <strong>compliant registered address</strong>—lease + property certificate, or (where permitted) a government/business-park cluster address.",
+    "detail": {
+      "kind": "paragraph",
+      "html": "Many cities run name checks inside the same “one-stop” website; the AMR must approve the final name before issuance."
+    },
+    "money": {
+      "kind": "data-domestic-fee",
+      "key": "d02"
+    }
+  },
+  {
+    "id": "d03",
+    "num": 3,
+    "title_html": "Set <strong>subscribed capital</strong>, <strong>shareholding ratios</strong>, payment timeline, and <strong>business scope</strong> (and any license-triggering lines).",
+    "detail": {
+      "kind": "paragraph",
+      "html": "Under the 2024 Company Law, subscribed amounts must generally be fully paid within <strong>five years</strong> of incorporation unless transition rules apply—document the schedule in the articles."
+    },
+    "money": {
+      "kind": "data-domestic-fee",
+      "key": "d03"
+    }
+  },
+  {
+    "id": "d04",
+    "num": 4,
+    "title_html": "File online through the provincial <strong>government service portal</strong> / <strong>enterprise “one-stop”</strong> (e.g. 开办企业一窗通)—upload IDs, address proof, generated articles, and e-sign with facial recognition.",
+    "detail": {
+      "kind": "paragraph",
+      "html": "Optional: hire a local bookkeeping/agent firm (<strong>代办</strong>)—common for first-time founders; scope should list filing, chops, and tax onboarding."
+    },
+    "money": {
+      "kind": "data-domestic-fee",
+      "key": "d04"
+    }
+  },
+  {
+    "id": "d05",
+    "num": 5,
+    "title_html": "AMR review → receive the <strong>营业执照</strong> (electronic license immediate in many cities; paper optional).",
+    "detail": {
+      "kind": "paragraph",
+      "html": "Typical review windows are roughly <strong>1–3 working days</strong> when materials are complete—longer if the name or scope needs fixes."
+    },
+    "money": {
+      "kind": "data-domestic-fee",
+      "key": "d05"
+    }
+  },
+  {
+    "id": "d06",
+    "num": 6,
+    "title_html": "Carve and file <strong>official seals</strong> (公章, 财务章, 法人章, 发票章 as needed) with the public-security filing system.",
+    "detail": {
+      "kind": "paragraph",
+      "html": "Some municipalities bundle <strong>free first seals</strong> for new market entrants—check the same one-stop portal."
+    },
+    "money": {
+      "kind": "i18n",
+      "key": "d06.money",
+      "html": "<strong>Est.:</strong> if not free, a full set often <strong>¥300–1,200</strong>; express/specialty materials extra."
+    }
+  },
+  {
+    "id": "d07",
+    "num": 7,
+    "title_html": "Open the <strong>RMB basic bank account</strong> (基本户) with the license and seals—KYC is lighter than a WFOE but still in-person or video per bank policy.",
+    "detail": {
+      "kind": "paragraph",
+      "html": "Shareholder capital can be wired from personal accounts per subscribed amounts—no foreign FDI account required."
+    },
+    "money": {
+      "kind": "data-domestic-fee",
+      "key": "d07"
+    }
+  },
+  {
+    "id": "d08",
+    "num": 8,
+    "title_html": "Complete <strong>tax registration</strong> and enable <strong>digital invoices</strong> (数电票) with the tax bureau—often linked through the one-stop flow.",
+    "detail": {
+      "kind": "paragraph",
+      "html": "Assign accounting rules (small-scale vs. general VAT taxpayer) with your agent or tax advisor before issuing invoices to clients."
+    },
+    "money": {
+      "kind": "data-domestic-fee",
+      "key": "d08"
+    }
+  },
+  {
+    "id": "d09",
+    "num": 9,
+    "title_html": "Register for <strong>social insurance</strong> and <strong>housing fund</strong> accounts so you can hire and run payroll compliantly.",
+    "detail": {
+      "kind": "paragraph",
+      "html": "Contribution rates follow local rules—use the same city assumptions as the <a href=\"#costs\" class=\"text-emerald-600 font-semibold underline\">dashboard</a> for planning."
+    },
+    "money": {
+      "kind": "data-domestic-fee",
+      "key": "d09"
+    }
+  },
+  {
+    "id": "d10",
+    "num": 10,
+    "title_html": "Stand up <strong>bookkeeping and periodic tax filings</strong> (monthly/quarterly VAT, annual CIT prep, payroll withholding)—in-house or via a <strong>代理记账</strong> firm.",
+    "detail": {
+      "kind": "paragraph",
+      "html": "Missing filing deadlines triggers penalties—budget this before you take your first paying client."
+    },
+    "money": {
+      "kind": "data-domestic-fee",
+      "key": "d10"
+    }
+  }
+]
