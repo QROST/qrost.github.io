@@ -1,5 +1,244 @@
 {
   "pins": [
-    { "id": "CUSTOM_placeholder", "category": "icons", "label": "placeholder", "file": "placeholder.png", "price": 5 }
+    {
+      "id": "N_0",
+      "file": "American Flag Number 0.png"
+    },
+    {
+      "id": "N_1",
+      "file": "American Flag Number 1.png"
+    },
+    {
+      "id": "N_2",
+      "file": "American Flag Number 2.png"
+    },
+    {
+      "id": "N_3",
+      "file": "American Flag Number 3.png"
+    },
+    {
+      "id": "N_4",
+      "file": "American Flag Number 4.png"
+    },
+    {
+      "id": "N_5",
+      "file": "American Flag Number 5.png"
+    },
+    {
+      "id": "N_6",
+      "file": "American Flag Number 6.png"
+    },
+    {
+      "id": "N_7",
+      "file": "American Flag Number 7.png"
+    },
+    {
+      "id": "N_8",
+      "file": "American Flag Number 8.png"
+    },
+    {
+      "id": "N_9",
+      "file": "American Flag Number 9.png"
+    },
+    {
+      "id": "L_A",
+      "file": "Black Border Letter A.png"
+    },
+    {
+      "id": "L_B",
+      "file": "Black Border Letter B.png"
+    },
+    {
+      "id": "L_C",
+      "file": "Black Border Letter C.png"
+    },
+    {
+      "id": "L_D",
+      "file": "Black Border Letter D.png"
+    },
+    {
+      "id": "L_E",
+      "file": "Black Border Letter E.png"
+    },
+    {
+      "id": "L_F",
+      "file": "Black Border Letter F.png"
+    },
+    {
+      "id": "L_G",
+      "file": "Black Border Letter G.png"
+    },
+    {
+      "id": "L_H",
+      "file": "Black Border Letter H.png"
+    },
+    {
+      "id": "L_I",
+      "file": "Black Border Letter I.png"
+    },
+    {
+      "id": "L_J",
+      "file": "Black Border Letter J.png"
+    },
+    {
+      "id": "L_K",
+      "file": "Black Border Letter K.png"
+    },
+    {
+      "id": "L_L",
+      "file": "Black Border Letter L.png"
+    },
+    {
+      "id": "L_M",
+      "file": "Black Border Letter M.png"
+    },
+    {
+      "id": "L_N",
+      "file": "Black Border Letter N.png"
+    },
+    {
+      "id": "L_O",
+      "file": "Black Border Letter O.png"
+    },
+    {
+      "id": "L_P",
+      "file": "Black Border Letter P.png"
+    },
+    {
+      "id": "L_Q",
+      "file": "Black Border Letter Q.png"
+    },
+    {
+      "id": "L_R",
+      "file": "Black Border Letter R.png"
+    },
+    {
+      "id": "L_S",
+      "file": "Black Border Letter S.png"
+    },
+    {
+      "id": "L_T",
+      "file": "Black Border Letter T.png"
+    },
+    {
+      "id": "L_U",
+      "file": "Black Border Letter U.png"
+    },
+    {
+      "id": "L_V",
+      "file": "Black Border Letter V.png"
+    },
+    {
+      "id": "L_W",
+      "file": "Black Border Letter W.png"
+    },
+    {
+      "id": "L_X",
+      "file": "Black Border Letter X.png"
+    },
+    {
+      "id": "L_Y",
+      "file": "Black Border Letter Y.png"
+    },
+    {
+      "id": "L_Z",
+      "file": "Black Border Letter Z.png"
+    },
+    {
+      "id": "I_snoopy_chr_1",
+      "category": "icons",
+      "label": "Snoopy charm 1",
+      "glyph": "\ud83d\udc3e",
+      "file": "Snoopy Shoe Charm 1.png",
+      "price": 5
+    },
+    {
+      "id": "I_snoopy_chr_10",
+      "category": "icons",
+      "label": "Snoopy charm 10",
+      "glyph": "\ud83d\udc3e",
+      "file": "Snoopy Shoe Charm 10.png",
+      "price": 5
+    },
+    {
+      "id": "I_snoopy_chr_11",
+      "category": "icons",
+      "label": "Snoopy charm 11",
+      "glyph": "\ud83d\udc3e",
+      "file": "Snoopy Shoe Charm 11.png",
+      "price": 5
+    },
+    {
+      "id": "I_snoopy_chr_12",
+      "category": "icons",
+      "label": "Snoopy charm 12",
+      "glyph": "\ud83d\udc3e",
+      "file": "Snoopy Shoe Charm 12.png",
+      "price": 5
+    },
+    {
+      "id": "I_snoopy_chr_2",
+      "category": "icons",
+      "label": "Snoopy charm 2",
+      "glyph": "\ud83d\udc3e",
+      "file": "Snoopy Shoe Charm 2.png",
+      "price": 5
+    },
+    {
+      "id": "I_snoopy_chr_3",
+      "category": "icons",
+      "label": "Snoopy charm 3",
+      "glyph": "\ud83d\udc3e",
+      "file": "Snoopy Shoe Charm 3.png",
+      "price": 5
+    },
+    {
+      "id": "I_snoopy_chr_4",
+      "category": "icons",
+      "label": "Snoopy charm 4",
+      "glyph": "\ud83d\udc3e",
+      "file": "Snoopy Shoe Charm 4.png",
+      "price": 5
+    },
+    {
+      "id": "I_snoopy_chr_5",
+      "category": "icons",
+      "label": "Snoopy charm 5",
+      "glyph": "\ud83d\udc3e",
+      "file": "Snoopy Shoe Charm 5.png",
+      "price": 5
+    },
+    {
+      "id": "I_snoopy_chr_6",
+      "category": "icons",
+      "label": "Snoopy charm 6",
+      "glyph": "\ud83d\udc3e",
+      "file": "Snoopy Shoe Charm 6.png",
+      "price": 5
+    },
+    {
+      "id": "I_snoopy_chr_7",
+      "category": "icons",
+      "label": "Snoopy charm 7",
+      "glyph": "\ud83d\udc3e",
+      "file": "Snoopy Shoe Charm 7.png",
+      "price": 5
+    },
+    {
+      "id": "I_snoopy_chr_8",
+      "category": "icons",
+      "label": "Snoopy charm 8",
+      "glyph": "\ud83d\udc3e",
+      "file": "Snoopy Shoe Charm 8.png",
+      "price": 5
+    },
+    {
+      "id": "I_snoopy_chr_9",
+      "category": "icons",
+      "label": "Snoopy charm 9",
+      "glyph": "\ud83d\udc3e",
+      "file": "Snoopy Shoe Charm 9.png",
+      "price": 5
+    }
   ]
 }

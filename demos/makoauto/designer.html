@@ -485,7 +485,7 @@
   <div id="drag-ghost" class="drag-ghost" style="display:none"></div>
 
 <script src="shared/i18n.js?v=13"></script>
-<script src="shared/pins.js?v=13"></script>
+<script src="shared/pins.js?v=18"></script>
 <script src="shared/api.js?v=8"></script>
 <script>
   renderTopbar('design');
@@ -656,9 +656,12 @@
   // ---------- Palette ----------
   function renderCats() {
     const tabs = document.getElementById('cat-tabs');
-    const cats = [['all', t('filter_all')||'All']].concat(
-      Object.entries(MakoautoCatalog.cats).map(([k,v]) => [k, t('filter_'+k) || v.label])
+    const usedCats = new Set(MakoautoCatalog.pins.map((p) => p.category));
+    const catEntries = Object.entries(MakoautoCatalog.cats).filter(([k]) => usedCats.has(k));
+    const cats = [['all', t('filter_all') || 'All']].concat(
+      catEntries.map(([k, v]) => [k, t('filter_' + k) || v.label])
     );
+    if (state.category !== 'all' && !usedCats.has(state.category)) state.category = 'all';
     tabs.innerHTML = cats.map(([k,l]) => `<button type="button" data-cat="${k}" class="${state.category===k?'active':''}">${l}</button>`).join('');
     tabs.querySelectorAll('button').forEach(b => b.addEventListener('click', () => {
       state.category = b.dataset.cat;
@@ -669,7 +672,7 @@
     const grid = document.getElementById('pin-grid');
     const filtered = MakoautoCatalog.pins.filter(p => {
       if (state.category !== 'all' && p.category !== state.category) return false;
-      if (state.search && !(p.label.toLowerCase().includes(state.search.toLowerCase()) || p.glyph.includes(state.search))) return false;
+      if (state.search && !(p.label.toLowerCase().includes(state.search.toLowerCase()) || (p.glyph || '').includes(state.search))) return false;
       return true;
     });
     grid.innerHTML = filtered.map(p => `
@@ -693,14 +696,13 @@
     dragPinId = pinId;
     const pin = MakoautoCatalog.pins.find(p => p.id === pinId);
     if (!pin) return;
-    const fgrad = { silver:'var(--silver)', gold:'var(--gold)', black:'var(--black-chrome)', rose:'var(--rose)' }[state.finish];
-    const color = state.finish === 'gold' ? '#3A2400' : state.finish === 'rose' ? '#4A1A15' : state.finish === 'black' ? '#E8E8E8' : '#1A1A1A';
-    const textLen = (pin.glyph||'').length;
-    const fs = textLen <= 1 ? 18 : textLen <= 2 ? 14 : 10;
-    ghost.style.background = fgrad;
-    ghost.style.color = color;
-    ghost.style.fontSize = fs + 'px';
-    ghost.innerHTML = pin.glyph;
+    ghost.style.background = 'transparent';
+    ghost.style.backgroundImage = 'none';
+    ghost.style.color = '';
+    ghost.style.fontSize = '';
+    ghost.innerHTML = renderPinVisual(pin, state.finish, 40);
+    const pv = ghost.querySelector('.pin-visual');
+    if (pv) { pv.style.width = '100%'; pv.style.height = '100%'; pv.style.pointerEvents = 'none'; }
     ghost.style.display = 'flex';
     document.body.classList.add('dragging');
     document.getElementById('stage').classList.add('mode-place');
@@ -749,7 +751,7 @@
         ${f.label}
       </div>
     `).join('');
-    document.querySelectorAll('[data-finish]').forEach(el => el.addEventListener('click', () => {
+    document.getElementById('finish-row').querySelectorAll('[data-finish]').forEach(el => el.addEventListener('click', () => {
       state.finish = el.dataset.finish;
       renderFinishes(); renderPalette(); renderHoles();
     }));
@@ -892,6 +894,9 @@
     try {
       const d = await window.MakoautoAPI.getDesign(designId);
       if (!d || !d.placements) return;
+      if (window.MakoautoAssetsLoaded) {
+        try { await window.MakoautoAssetsLoaded; } catch (_) {}
+      }
       // Convert nested {pin, finish} → flat placements for renderHoles compatibility.
       const flat = {};
       for (const [idx, v] of Object.entries(d.placements)) {
@@ -907,7 +912,7 @@
       document.getElementById('plate-text').textContent = pt;
       document.getElementById('plate-input').value = pt;
       try { localStorage.setItem('pinned_design_id', d.id); } catch(_){}
-      renderHoles(); renderFinishes(); renderPalette(); updateSummary();
+      renderCats(); renderHoles(); renderFinishes(); renderPalette(); updateSummary();
       setSaveStatus('● loaded from cloud', 'var(--ink)');
     } catch (e) {
       console.warn('[designer] cloud load failed:', e);
@@ -961,23 +966,20 @@
       id: 'love-pink',
       i18n: 'preset_love',
       name: 'Love letter',
-      tag: 'Pink • Hearts',
+      tag: 'Letters • Charms',
       photo: 'assets/legacy/photos/4c45f51801d1a588.jpg',
       sidePlacements: [
-        // L O V E across top center (positions 4..7 of 13)
-        { side: 'top', pos: 4, pin: 'L_L', finish: 'rose' },
-        { side: 'top', pos: 5, pin: 'L_O', finish: 'rose' },
-        { side: 'top', pos: 6, pin: 'L_V', finish: 'rose' },
-        { side: 'top', pos: 7, pin: 'L_E', finish: 'rose' },
-        // bottom: sparkle accents + kiss centered (9 holes)
-        { side: 'bottom', pos: 1, pin: 'I_diamond' },
-        { side: 'bottom', pos: 3, pin: 'I_heart-fill' },
-        { side: 'bottom', pos: 4, pin: 'E_kiss', finish: 'rose' },
-        { side: 'bottom', pos: 5, pin: 'I_heart-fill' },
-        { side: 'bottom', pos: 7, pin: 'I_diamond' },
-        // sides: hearts
-        { side: 'right', pos: 1, pin: 'I_heart-fill' },
-        { side: 'left',  pos: 1, pin: 'I_heart-fill' },
+        { side: 'top', pos: 4, pin: 'L_L' },
+        { side: 'top', pos: 5, pin: 'L_O' },
+        { side: 'top', pos: 6, pin: 'L_V' },
+        { side: 'top', pos: 7, pin: 'L_E' },
+        { side: 'bottom', pos: 1, pin: 'I_snoopy_chr_1' },
+        { side: 'bottom', pos: 3, pin: 'I_snoopy_chr_8' },
+        { side: 'bottom', pos: 4, pin: 'I_snoopy_chr_2' },
+        { side: 'bottom', pos: 5, pin: 'I_snoopy_chr_9' },
+        { side: 'bottom', pos: 7, pin: 'I_snoopy_chr_3' },
+        { side: 'right', pos: 1, pin: 'I_snoopy_chr_4' },
+        { side: 'left', pos: 1, pin: 'I_snoopy_chr_5' },
       ],
     },
     {
@@ -987,109 +989,92 @@
       tag: 'Race • Bold',
       photo: 'assets/legacy/photos/d6dbc8a00f1befce.jpg',
       sidePlacements: [
-        // M V P centered top with diamond flanks (positions 4..8 of 13)
-        { side: 'top', pos: 4, pin: 'I_diamond', finish: 'gold' },
-        { side: 'top', pos: 5, pin: 'L_M', finish: 'gold' },
-        { side: 'top', pos: 6, pin: 'L_V', finish: 'gold' },
-        { side: 'top', pos: 7, pin: 'L_P', finish: 'gold' },
-        { side: 'top', pos: 8, pin: 'I_diamond', finish: 'gold' },
-        // Bottom: 24 K racing number (positions 3..5 of 9)
-        { side: 'bottom', pos: 3, pin: 'N_2', finish: 'gold' },
-        { side: 'bottom', pos: 4, pin: 'N_4', finish: 'gold' },
-        { side: 'bottom', pos: 5, pin: 'L_K', finish: 'gold' },
-        // Sides: diamond accents
-        { side: 'right', pos: 1, pin: 'I_diamond' },
-        { side: 'left',  pos: 1, pin: 'I_diamond' },
+        { side: 'top', pos: 4, pin: 'I_snoopy_chr_6' },
+        { side: 'top', pos: 5, pin: 'L_M' },
+        { side: 'top', pos: 6, pin: 'L_V' },
+        { side: 'top', pos: 7, pin: 'L_P' },
+        { side: 'top', pos: 8, pin: 'I_snoopy_chr_7' },
+        { side: 'bottom', pos: 3, pin: 'N_2' },
+        { side: 'bottom', pos: 4, pin: 'N_4' },
+        { side: 'bottom', pos: 5, pin: 'L_K' },
+        { side: 'right', pos: 1, pin: 'I_snoopy_chr_8' },
+        { side: 'left', pos: 1, pin: 'I_snoopy_chr_9' },
       ],
     },
     {
       id: 'pet',
       i18n: 'preset_pet',
       name: 'Pet parent',
-      tag: 'Paws • Hearts',
+      tag: 'Charms • W O O F',
       photo: 'assets/legacy/photos/9ab832020d0050c3.jpg',
       sidePlacements: [
-        // dog ♥ cat ♥ across top center
-        { side: 'top', pos: 4, pin: 'E_dog' },
-        { side: 'top', pos: 5, pin: 'I_heart-fill', finish: 'rose' },
-        { side: 'top', pos: 6, pin: 'E_cat' },
-        { side: 'top', pos: 7, pin: 'I_heart-fill', finish: 'rose' },
-        // W O O F across bottom center (4 letters in 9 holes → pos 3..6)
+        { side: 'top', pos: 4, pin: 'I_snoopy_chr_10' },
+        { side: 'top', pos: 5, pin: 'I_snoopy_chr_11' },
+        { side: 'top', pos: 6, pin: 'I_snoopy_chr_6' },
+        { side: 'top', pos: 7, pin: 'I_snoopy_chr_12' },
         { side: 'bottom', pos: 3, pin: 'L_W' },
         { side: 'bottom', pos: 4, pin: 'L_O' },
         { side: 'bottom', pos: 5, pin: 'L_O' },
         { side: 'bottom', pos: 6, pin: 'L_F' },
-        // sides: panda + dog accents
-        { side: 'right', pos: 1, pin: 'E_panda' },
-        { side: 'left',  pos: 1, pin: 'E_dog' },
+        { side: 'right', pos: 1, pin: 'I_snoopy_chr_1' },
+        { side: 'left', pos: 1, pin: 'I_snoopy_chr_2' },
       ],
     },
     {
       id: 'arcade',
       i18n: 'preset_arcade',
       name: 'Arcade',
-      tag: 'Retro • Pixel',
+      tag: 'Retro • Numbers',
       photo: 'assets/legacy/photos/ce3a51fa0475e2ce.jpg',
       sidePlacements: [
-        // P L A Y across top center
-        { side: 'top', pos: 4, pin: 'L_P', finish: 'gold' },
-        { side: 'top', pos: 5, pin: 'L_L', finish: 'gold' },
-        { side: 'top', pos: 6, pin: 'L_A', finish: 'gold' },
-        { side: 'top', pos: 7, pin: 'L_Y', finish: 'gold' },
-        // 1 U P bottom center
-        { side: 'bottom', pos: 3, pin: 'N_1', finish: 'gold' },
-        { side: 'bottom', pos: 4, pin: 'L_U', finish: 'gold' },
-        { side: 'bottom', pos: 5, pin: 'L_P', finish: 'gold' },
-        // sides: S / X
-        { side: 'right', pos: 1, pin: 'L_S', finish: 'gold' },
-        { side: 'left',  pos: 1, pin: 'L_X', finish: 'gold' },
+        { side: 'top', pos: 4, pin: 'L_P' },
+        { side: 'top', pos: 5, pin: 'L_L' },
+        { side: 'top', pos: 6, pin: 'L_A' },
+        { side: 'top', pos: 7, pin: 'L_Y' },
+        { side: 'bottom', pos: 3, pin: 'N_1' },
+        { side: 'bottom', pos: 4, pin: 'L_U' },
+        { side: 'bottom', pos: 5, pin: 'L_P' },
+        { side: 'right', pos: 1, pin: 'L_S' },
+        { side: 'left', pos: 1, pin: 'L_X' },
       ],
     },
     {
       id: 'cyber',
       i18n: 'preset_cyber',
       name: 'Cyber',
-      tag: 'Neon • JDM',
+      tag: 'JDM • 0666',
       photo: 'assets/legacy/photos/845adc068950f2f8.jpg',
       sidePlacements: [
-        // J D M + jdm-tag across top center
         { side: 'top', pos: 4, pin: 'L_J' },
         { side: 'top', pos: 5, pin: 'L_D' },
         { side: 'top', pos: 6, pin: 'L_M' },
-        { side: 'top', pos: 7, pin: 'C_jdm' },
-        // 0666 racing number bottom (4 in 9 → pos 3..6)
+        { side: 'top', pos: 7, pin: 'I_snoopy_chr_3' },
         { side: 'bottom', pos: 3, pin: 'N_0' },
         { side: 'bottom', pos: 4, pin: 'N_6' },
         { side: 'bottom', pos: 5, pin: 'N_6' },
         { side: 'bottom', pos: 6, pin: 'N_6' },
-        // sides
-        { side: 'right', pos: 0, pin: 'C_v8' },
-        { side: 'right', pos: 2, pin: 'C_turbo' },
-        { side: 'left',  pos: 0, pin: 'C_gt' },
-        { side: 'left',  pos: 2, pin: 'I_lightning' },
+        { side: 'right', pos: 0, pin: 'I_snoopy_chr_11' },
+        { side: 'right', pos: 2, pin: 'I_snoopy_chr_12' },
+        { side: 'left', pos: 0, pin: 'I_snoopy_chr_10' },
+        { side: 'left', pos: 2, pin: 'I_snoopy_chr_7' },
       ],
     },
     {
       id: 'classic',
       i18n: 'preset_classic',
       name: 'Classic',
-      tag: 'Comic • Pop',
+      tag: 'C O O L',
       photo: 'assets/legacy/photos/bfd9c9691e9d74f6.jpg',
-      // Side-based placement: pinId placed at Nth hole of given side.
-      // Sides: top (13 holes L→R, wide bump), bottom (9 holes R→L, thin rim), right (3 T→B), left (3 B→T)
       sidePlacements: [
-        // C O O L across top center (positions 4..7 of 13 top holes)
-        { side: 'top', pos: 4, pin: 'L_C', finish: 'gold' },
-        { side: 'top', pos: 5, pin: 'L_O', finish: 'gold' },
-        { side: 'top', pos: 6, pin: 'L_O', finish: 'gold' },
-        { side: 'top', pos: 7, pin: 'L_L', finish: 'gold' },
-        // accents on bottom (9 holes — drop in 3 evenly)
-        { side: 'bottom', pos: 2, pin: 'I_diamond' },
-        { side: 'bottom', pos: 4, pin: 'I_star' },
-        { side: 'bottom', pos: 6, pin: 'I_diamond' },
-        // sides (3 holes each — middle accent)
-        { side: 'right', pos: 1, pin: 'I_sparkle' },
-        { side: 'left',  pos: 1, pin: 'I_sparkle' },
+        { side: 'top', pos: 4, pin: 'L_C' },
+        { side: 'top', pos: 5, pin: 'L_O' },
+        { side: 'top', pos: 6, pin: 'L_O' },
+        { side: 'top', pos: 7, pin: 'L_L' },
+        { side: 'bottom', pos: 2, pin: 'I_snoopy_chr_4' },
+        { side: 'bottom', pos: 4, pin: 'I_snoopy_chr_3' },
+        { side: 'bottom', pos: 6, pin: 'I_snoopy_chr_5' },
+        { side: 'right', pos: 1, pin: 'I_snoopy_chr_6' },
+        { side: 'left', pos: 1, pin: 'I_snoopy_chr_7' },
       ],
     }
   ];
@@ -1143,50 +1128,286 @@
   renderInspoStrip();
   window.addEventListener('pinned:langchange', renderInspoStrip);
 
-  // ---------- Auto-fill (random word) ----------
+  // ---------- Auto-fill (contiguous words/digits + decoration-only scatter) ----------
+  /** Positive English words (A–Z pins only). */
   const AUTOFILL_WORDS = [
-    { word: 'LOVE',    accents: ['heart-fill','heart-outline','star','sparkle'] },
-    { word: 'LUCKY',   accents: ['star','sparkle','diamond','heart-fill'] },
-    { word: 'DREAM',   accents: ['star','moon','sparkle','heart-fill'] },
-    { word: 'SHINE',   accents: ['sparkle','star','sun','diamond'] },
-    { word: 'BRAVE',   accents: ['fire','star','lightning','crown'] },
-    { word: 'HAPPY',   accents: ['smiley','sun','heart-fill','sparkle'] },
-    { word: 'EMMA',    accents: ['heart-fill','sparkle','star','diamond'] },
-    { word: 'KAI',     accents: ['fire','lightning','star','moon'] },
-    { word: 'NOAH',    accents: ['star','rocket','fire','lightning'] },
-    { word: 'ZOE',     accents: ['sparkle','heart-fill','star','sun'] },
-    { word: 'HOPE',    accents: ['sparkle','star','heart-fill','sun'] },
-    { word: 'VIBES',   accents: ['music','sparkle','fire','heart-fill'] },
+    'JOY', 'HOPE', 'LOVE', 'BLESS', 'LIGHT', 'FAITH', 'PEACE', 'GUARD', 'GRACE', 'CARE', 'STAR',
+    'SUN', 'FREE', 'SAFE', 'HOME', 'UNITY', 'TRUST', 'HEART', 'GLOW', 'GOLD', 'WARM', 'WISE',
+    'FLOW', 'WIN', 'WOW', 'POWER', 'MAGIC', 'CLEAR', 'SUNNY', 'BRAVE', 'FRESH', 'PURE',
+    'SOLID', 'SMILE', 'DREAM', 'SHINE', 'SERVE', 'HAPPY', 'EXTRA', 'GREAT', 'NOBLE', 'HONOR',
+    'ROYAL', 'COZY',
   ];
+  /** Lucky digit blocks (only digits that exist in catalog are used). */
+  const LUCKY_DIGIT_CHUNKS = [
+    '168', '186', '618', '681', '816', '861',
+    '668', '686', '866', '688', '868', '886', '889', '898', '988',
+    '996', '969', '699', '689', '698', '869', '896', '986',
+    '520', '250', '205', '502',
+    '928', '289', '298', '829', '892', '982',
+    '783', '738', '873', '837', '387', '378',
+    '218', '281', '128', '182', '812', '821',
+  ];
+  const BAD_DIGIT_SUBSTRINGS = ['666', '444', '555'];
+  /**
+   * Substrings avoided in digit auto-fill (not exhaustive—extend per market).
+   * Covers: hate symbols / 911, China & WWII mnemonic dates, Falklands anchoring dates,
+   * Lebanon 1982 massacres window, oft-cited Arab–Israel conflict years, Oct 2023 outbreak date.
+   */
+  const SENSITIVE_DIGIT_SUBSTRINGS = [
+    '1488', '8814', // neo-Nazi cipher (internationally recognized)
+    '911',
+    '8964',
+    '1989',
+    '198964', // diaspora mnemonic for Jun 1989 — longer-string guard
+    '19890604',
+    '19890603',
+    '19370707', // Marco Polo Bridge — common WWII China token
+    '918', // Sept 18 / Mukden (East Asian war remembrance)
+    '1213',
+    '19371213',
+    '1937',
+    '1939',
+    '1941',
+    '1945',
+    '731',
+    '19820402', // Falklands / Malvinas — Argentine invasion (Gregorian slug)
+    '19820614', // Falklands / Malvinas — ceasefire endpoint (common citation)
+    '19820916', // Sabra/Shatila — massacre window memorial (intl. discourse)
+    '19820918',
+    '1948', // Anchor year: Nakba / 1948 war (ME product disputes)
+    '1967',
+    '1973',
+    '1979',
+    '2003',
+    '20231007', // Widely diaspora-coded Oct 2023 outbreak day (adjust if policy tightens dates)
+  ];
+  function shuffleArr(items) {
+    const a = items.slice();
+    for (let i = a.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      const t = a[i];
+      a[i] = a[j];
+      a[j] = t;
+    }
+    return a;
+  }
+  function isBlessedDigitString(s) {
+    if (!s || !/^[\d]+$/.test(s)) return false;
+    if (/^[04]+$/.test(s)) return false;
+    if (/^[4]+$/.test(s)) return false;
+    for (let i = 0; i < BAD_DIGIT_SUBSTRINGS.length; i++) {
+      if (s.indexOf(BAD_DIGIT_SUBSTRINGS[i]) >= 0) return false;
+    }
+    for (let i = 0; i < SENSITIVE_DIGIT_SUBSTRINGS.length; i++) {
+      if (s.indexOf(SENSITIVE_DIGIT_SUBSTRINGS[i]) >= 0) return false;
+    }
+    if (/^13|^04|(?:^|[^5])53(?:[^15]|$)/.test(s)) return false;
+    return true;
+  }
+  function blessedDigitString(poolDigits, len) {
+    if (!poolDigits.length || len < 1) return '';
+    const hasSet = {};
+    poolDigits.forEach((d) => {
+      hasSet[d] = true;
+    });
+    const chunks = shuffleArr(
+      LUCKY_DIGIT_CHUNKS.filter((c) => {
+        const arr = String(c).split('');
+        for (let j = 0; j < arr.length; j++) if (!hasSet[arr[j]]) return false;
+        return true;
+      })
+    );
+    function weightBag() {
+      const wmap = [
+        ['8', 6],
+        ['6', 5],
+        ['9', 5],
+        ['1', 4],
+        ['7', 4],
+        ['5', 4],
+        ['3', 4],
+        ['2', 3],
+        ['0', 2],
+      ];
+      const bag = [];
+      poolDigits.forEach((d) => {
+        let w = 1;
+        for (let wi = 0; wi < wmap.length; wi++) if (wmap[wi][0] === d) w = wmap[wi][1];
+        for (let k = 0; k < w; k++) bag.push(d);
+      });
+      return bag.length ? shuffleArr(bag) : shuffleArr(poolDigits.slice());
+    }
+    function joinFromWeighted(lenNeed) {
+      const bag = weightBag();
+      let s = '';
+      for (let i = 0; i < lenNeed; i++) s += bag[Math.floor(Math.random() * bag.length)];
+      return s;
+    }
+    for (let ti = 0; ti < 140; ti++) {
+      let s = '';
+      if (chunks.length) {
+        while (s.length < len) {
+          s += chunks[Math.floor(Math.random() * chunks.length)];
+          if (s.length > len + 16) break;
+        }
+      }
+      if (chunks.length === 0 || s.length === 0) s = joinFromWeighted(len);
+      while (s.length > len) s = s.slice(0, -1);
+      if (s.length < len) {
+        const bag = weightBag();
+        while (s.length < len) s += bag[Math.floor(Math.random() * bag.length)];
+      }
+      s = s.slice(0, len);
+      if (isBlessedDigitString(s)) return s;
+    }
+    for (let li = 0; li < LUCKY_DIGIT_CHUNKS.length; li++) {
+      const raw = String(LUCKY_DIGIT_CHUNKS[li]).split('');
+      const ok = [];
+      for (let r = 0; r < raw.length; r++) if (hasSet[raw[r]]) ok.push(raw[r]);
+      let candidate = ok.join('').slice(0, len);
+      const bag = weightBag();
+      while (candidate.length < len) candidate += bag[Math.floor(Math.random() * bag.length)];
+      candidate = candidate.slice(0, len);
+      if (isBlessedDigitString(candidate)) return candidate;
+    }
+    for (let q = 0; q < 96; q++) {
+      const s = joinFromWeighted(len);
+      if (isBlessedDigitString(s)) return s;
+    }
+    if (poolDigits.includes('8') && isBlessedDigitString('8'.repeat(len))) return '8'.repeat(len).slice(0, len);
+    for (let di = 0; di < poolDigits.length; di++) {
+      const rep = poolDigits[di].repeat(len).slice(0, len);
+      if (isBlessedDigitString(rep)) return rep;
+    }
+    const last = joinFromWeighted(len);
+    return last.slice(0, len);
+  }
+  function holesSortedX(side) {
+    return HOLES.map((h, i) => ({ h, i }))
+      .filter((x) => x.h.side === side)
+      .sort((a, b) => a.h.x - b.h.x)
+      .map((x) => x.i);
+  }
+  function letterPinsFor(chars) {
+    return String(chars || '')
+      .toUpperCase()
+      .replace(/[^A-Z]/g, '')
+      .split('')
+      .map((ch) => MakoautoCatalog.pins.find((p) => p.id === 'L_' + ch))
+      .filter(Boolean);
+  }
+  function digitPinsFor(digitStr) {
+    return String(digitStr || '')
+      .replace(/[^\d]/g, '')
+      .split('')
+      .map((d) => MakoautoCatalog.pins.find((p) => p.id === 'N_' + d))
+      .filter(Boolean);
+  }
+  function placeCenteredOnStrip(stripHoleIds, pins) {
+    if (!stripHoleIds.length || !pins.length) return;
+    const cnt = Math.min(stripHoleIds.length, pins.length);
+    const start = Math.floor((stripHoleIds.length - cnt) / 2);
+    for (let k = 0; k < cnt; k++) {
+      const idx = stripHoleIds[start + k];
+      state.placements[idx] = pins[k].id;
+      state.placements[idx + '_finish'] = state.finish;
+    }
+  }
+
   document.getElementById('auto-btn').addEventListener('click', () => {
     pushHistory();
     state.placements = {};
-    const pick = AUTOFILL_WORDS[Math.floor(Math.random()*AUTOFILL_WORDS.length)];
-    const letterPins = pick.word.split('').map(ch => MakoautoCatalog.pins.find(p => p.id === 'L_'+ch)).filter(Boolean);
-    const accentPins = pick.accents.map(k => MakoautoCatalog.pins.find(p => p.id === 'E_'+k || p.id === 'I_'+k)).filter(Boolean);
-    // Top row holes are 0..5; place letters centered there.
-    const topHoles = HOLES.map((h,i) => ({h,i})).filter(x => x.h.side === 'top').map(x => x.i);
-    const bottomHoles = HOLES.map((h,i) => ({h,i})).filter(x => x.h.side === 'bottom').map(x => x.i);
-    const sideHoles  = HOLES.map((h,i) => ({h,i})).filter(x => x.h.side === 'left' || x.h.side === 'right').map(x => x.i);
-    const centerStart = Math.max(0, Math.floor((topHoles.length - letterPins.length) / 2));
-    letterPins.forEach((pin, k) => {
-      const idx = topHoles[centerStart + k];
-      if (idx !== undefined) {
-        state.placements[idx] = pin.id;
-        state.placements[idx+'_finish'] = 'silver';
+    const pngPool = MakoautoCatalog.pins.filter((p) => p.img);
+    if (!pngPool.length) {
+      renderHoles();
+      updateSummary();
+      return;
+    }
+
+    const topXR = holesSortedX('top');
+    const bottomXR = holesSortedX('bottom');
+    const poolDigits = '0123456789'
+      .split('')
+      .filter((d) => MakoautoCatalog.pins.some((p) => p.id === 'N_' + d));
+
+    const wordRaw = AUTOFILL_WORDS[Math.floor(Math.random() * AUTOFILL_WORDS.length)];
+    const word = String(wordRaw).replace(/[^A-Za-z]/g, '').toUpperCase();
+
+    function pickLayout() {
+      const r = Math.random();
+      if (r < 0.28) return 'top_word_center_x';
+      if (r < 0.52) return 'top_digits_center_x';
+      if (r < 0.72) return 'top_word_split_lr_x';
+      if (r < 0.86) return 'bottom_word_full_row';
+      return 'combo_digits_top_word_bottom';
+    }
+
+    switch (pickLayout()) {
+      case 'top_word_center_x':
+        placeCenteredOnStrip(topXR, letterPinsFor(word));
+        break;
+      case 'top_digits_center_x': {
+        if (!poolDigits.length) placeCenteredOnStrip(topXR, letterPinsFor(word));
+        else {
+          const mx = Math.min(topXR.length, 9);
+          const len = Math.max(3, Math.min(mx, 3 + Math.floor(Math.random() * 5)));
+          placeCenteredOnStrip(topXR, digitPinsFor(blessedDigitString(poolDigits, len)));
+        }
+        break;
       }
-    });
-    // fill bottoms + sides with accents, sparingly
-    const fillTargets = [...bottomHoles, ...sideHoles];
-    const finishes = ['silver','gold','rose'];
-    fillTargets.forEach((idx, k) => {
-      if (Math.random() < 0.6 && accentPins.length) {
-        const pin = accentPins[k % accentPins.length];
-        state.placements[idx] = pin.id;
-        state.placements[idx+'_finish'] = finishes[k % finishes.length];
+      case 'top_word_split_lr_x': {
+        const lp = letterPinsFor(word);
+        if (lp.length >= 2 && topXR.length >= 7) {
+          const mid = Math.max(1, Math.ceil(lp.length / 2));
+          const wing = Math.min(4, topXR.length - 5);
+          const leftSlots = topXR.slice(0, wing);
+          const rightSlots = topXR.slice(topXR.length - wing);
+          placeCenteredOnStrip(leftSlots, lp.slice(0, mid));
+          placeCenteredOnStrip(rightSlots, lp.slice(mid));
+        } else placeCenteredOnStrip(topXR, lp);
+        break;
       }
-    });
-    renderHoles(); updateSummary();
+      case 'bottom_word_full_row':
+        placeCenteredOnStrip(bottomXR, letterPinsFor(word));
+        break;
+      case 'combo_digits_top_word_bottom': {
+        if (poolDigits.length) {
+          const dl = Math.max(3, Math.min(topXR.length, 3 + Math.floor(Math.random() * 3)));
+          placeCenteredOnStrip(topXR, digitPinsFor(blessedDigitString(poolDigits, dl)));
+        } else placeCenteredOnStrip(topXR, letterPinsFor(word.slice(0, Math.min(word.length, topXR.length))));
+        placeCenteredOnStrip(bottomXR, letterPinsFor(word));
+        break;
+      }
+      default:
+        placeCenteredOnStrip(topXR, letterPinsFor(word));
+    }
+
+    const decoPool = pngPool.filter((p) => !/^L_[A-Z]$/.test(p.id) && !/^N_[0-9]$/.test(p.id));
+    const poolOrdered = decoPool.length ? shuffleArr(decoPool) : [];
+    let pick = 0;
+    function pullPin() {
+      if (!poolOrdered.length) return null;
+      const p = poolOrdered[pick % poolOrdered.length];
+      pick += 1;
+      return p;
+    }
+    function scatterInto(indices, fillChance) {
+      shuffleArr(indices).forEach((idx) => {
+        if (state.placements[idx] != null || Math.random() > fillChance) return;
+        const p = pullPin();
+        if (!p) return;
+        state.placements[idx] = p.id;
+        state.placements[idx + '_finish'] = state.finish;
+      });
+    }
+
+    const vacantIndices = HOLES.map((_, i) => i).filter((i) => state.placements[i] == null);
+    scatterInto(vacantIndices.filter((idx) => HOLES[idx].side === 'top'), 0.28);
+    scatterInto(vacantIndices.filter((idx) => HOLES[idx].side === 'bottom'), 0.52);
+    scatterInto(vacantIndices.filter((idx) => HOLES[idx].side === 'left' || HOLES[idx].side === 'right'), 0.48);
+
+    renderHoles();
+    updateSummary();
   });
 
   document.getElementById('search').addEventListener('input', (e) => { state.search = e.target.value; renderPalette(); });
@@ -1207,6 +1428,12 @@
 
   // ---------- Initial render ----------
   renderFrame(); renderCats(); renderPalette(); renderFinishes(); renderHoles(); updateSummary();
+  if (window.MakoautoAssetsLoaded) {
+    window.MakoautoAssetsLoaded.catch(()=>{}).then(() => {
+      renderCats();
+      renderPalette(); renderHoles(); updateSummary();
+    });
+  }
   hydrateFromCloudIfRequested();
 </script>
 </body>
