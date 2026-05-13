@@ -35,7 +35,7 @@ window.MakoautoPlaceholders = (function () {
   };
   const dark = (bg) => ['#0F0F0F','#1A1A1A','#1A0033','#0A0E27','#2D1B69','#1A2E5C','#1E3A5F'].indexOf(bg) >= 0;
 
-  function render(slug, price) {
+  function render(slug, price, setLabel) {
     const p = presets[slug] || { bg:'#F5F0E3', fg:'#1A1A1A', accent:'#D4FF4F', tag:'MAKOAUTO', glyph:'◆' };
     const title = titles[slug] || slug;
     const plateW = 720, plateH = 360, plateX = (1200 - plateW) / 2, plateY = (900 - plateH) / 2 - 20;
@@ -47,7 +47,8 @@ window.MakoautoPlaceholders = (function () {
       pins.push({ cx: 60 + i * (plateW - 120) / 5, cy: plateH - 22, on: rng() > 0.45 });
     }
     const tagW = 20 + p.tag.length * 16;
-    const priceLine = price != null ? `$${Math.round(price)} · LOOKBOOK SET` : 'LOOKBOOK SET';
+    const label = setLabel || 'LOOKBOOK SET';
+    const priceLine = price != null ? `$${Math.round(price)} · ${label}` : label;
     return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" preserveAspectRatio="xMidYMid slice" style="width:100%;height:100%;display:block">
 <defs>
 <pattern id="ph-dots-${slug}" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse"><circle cx="20" cy="20" r="1.2" fill="${p.fg}" opacity="0.07"/></pattern>

@@ -80,20 +80,29 @@
 </div>
 <div class="toast" id="toast">Added to cart</div>
 
-<script src="shared/i18n.js?v=9"></script>
-<script src="shared/placeholders.js?v=8"></script>
+<script src="shared/i18n.js?v=10"></script>
+<script src="shared/i18n-extended.js?v=1"></script>
+<script src="shared/localize-product.js?v=1"></script>
+<script src="shared/placeholders.js?v=9"></script>
 <script>
   renderTopbar('catalog');
 
   const params = new URLSearchParams(location.search);
   const slug = params.get('slug');
   const root = document.getElementById('root');
+  let productPacks = {};
+  let productsCache = null;
 
-  const themeLabels = {
-    streetwear: 'Streetwear', nostalgia: 'Nostalgia', racing: 'Racing',
-    kawaii: 'Kawaii', minimal: 'Minimal', pets: 'Pets',
-    starter: 'Starter', gaming: 'Gaming', anime: 'Anime',
-  };
+  function localizedProduct(p) {
+    const lang = window.getLang();
+    if (lang === 'en' || !productPacks[p.slug]) return p;
+    const row = productPacks[p.slug][lang];
+    return row ? window.localizeProduct(p, row) : p;
+  }
+
+  function themeLabel(key) {
+    return window.t('theme_' + key) || key;
+  }
 
   function renderDescription(desc) {
     // Split into paragraphs by blank line; convert lines starting with • or - or numbered into <li>
@@ -135,31 +144,34 @@
       ts: Date.now(),
     });
     localStorage.setItem('pinned_cart', JSON.stringify(cart));
-    showToast('Added to cart →');
+    showToast(window.t('cart_toast_added'));
     setTimeout(() => location.href = 'cart.html', 700);
   }
 
-  function renderRelated(allProducts, current) {
+  function renderRelated(allProducts, currentLp) {
     // Same theme, exclude current, max 4
     const related = allProducts
-      .filter(p => p.theme === current.theme && p.slug !== current.slug)
+      .filter((p) => p.theme === currentLp.theme && p.slug !== currentLp.slug)
       .slice(0, 4);
     if (!related.length) return '';
     return `
       <div class="also-section">
-        <h2>More from ${themeLabels[current.theme] || current.theme}</h2>
+        <h2>${window.t('set_more_from')}</h2>
         <div class="related">
-          ${related.map(p => `
+          ${related.map((p) => {
+            const lp = localizedProduct(p);
+            return `
             <a href="set.html?slug=${p.slug}">
               <div class="card-mini">
-                ${p.image ? `<img src="${p.image}" alt="${(p.imageAlt||p.name).replace(/"/g,'&quot;')}" loading="lazy">` : window.MakoautoPlaceholders.render(p.slug, p.price)}
+                ${p.image ? `<img src="${p.image}" alt="${(lp.imageAlt || lp.name).replace(/"/g, '&quot;')}" loading="lazy">` : window.MakoautoPlaceholders.render(p.slug, p.price, window.t('lookbook_set_label'))}
                 <div class="meta">
-                  <div class="name">${p.name.replace(/^Makoauto\s+/i, '').slice(0, 50)}</div>
+                  <div class="name">${lp.name.replace(/^Makoauto\s+/i, '').slice(0, 50)}</div>
                   <div class="price">$${p.price.toFixed(2)}</div>
                 </div>
               </div>
             </a>
-          `).join('')}
+          `;
+          }).join('')}
         </div>
       </div>
     `;
@@ -167,81 +179,96 @@
 
   async function load() {
     if (!slug) {
-      root.innerHTML = `<div class="not-found"><h1>No set selected</h1><p><a href="catalog.html">← Back to lookbook</a></p></div>`;
+      root.innerHTML = `<div class="not-found"><h1>${window.t('set_no_slug_h')}</h1><p><a href="catalog.html">${window.t('set_no_slug_a')}</a></p></div>`;
       return;
     }
-    const res = await fetch('assets/legacy/products.json');
-    const products = await res.json();
-    const p = products.find(x => x.slug === slug);
+    if (!productsCache) {
+      const [prods, packs] = await Promise.all([
+        fetch('assets/legacy/products.json').then((r) => r.json()),
+        fetch('assets/legacy/products.i18n.json?v=1').then((r) => r.json()).catch(() => ({})),
+      ]);
+      productsCache = prods;
+      productPacks = packs || {};
+    }
+    const products = productsCache;
+    const p = products.find((x) => x.slug === slug);
     if (!p) {
-      root.innerHTML = `<div class="not-found"><h1>Set not found</h1><p><a href="catalog.html">← Back to lookbook</a></p></div>`;
+      root.innerHTML = `<div class="not-found"><h1>${window.t('set_not_found_h')}</h1><p><a href="catalog.html">${window.t('set_not_found_a')}</a></p></div>`;
       return;
     }
 
-    document.title = p.name + ' — Makoauto';
+    const lp = localizedProduct(p);
+    const b = window.__catalogTweaks?.brand_name;
+    let titleName = lp.name;
+    if (b && b !== 'Makoauto') titleName = titleName.replace(/Makoauto/g, b);
+    document.title = titleName + ' — Makoauto';
     const inStock = p.in_stock !== false;
+
+    const crumbName = lp.name.replace(/^Makoauto\s+/i, '').slice(0, 40);
+    const heroAlt = (lp.imageAlt || lp.name).replace(/"/g, '&quot;');
+    const galleryItems = [{ src: p.image, alt: lp.imageAlt || lp.name }, ...(lp.gallery || [])].filter((x) => x.src);
 
     root.innerHTML = `
       <div class="crumbs">
-        <a href="catalog.html">Lookbook</a>
+        <a href="catalog.html">${window.t('nav_catalog')}</a>
         <span>/</span>
-        <span>${themeLabels[p.theme] || p.theme}</span>
+        <span>${themeLabel(p.theme) || p.theme}</span>
         <span>/</span>
-        <span style="color:var(--muted)">${p.name.replace(/^Makoauto\s+/i, '').slice(0, 40)}…</span>
+        <span style="color:var(--muted)">${crumbName}…</span>
       </div>
       <div class="pdp">
         <div class="gallery-wrap">
           <div class="gallery" id="main-img">
             ${p.image
-              ? `<img id="hero-img" src="${p.image}" alt="${(p.imageAlt||p.name).replace(/"/g,'&quot;')}">`
-              : window.MakoautoPlaceholders.render(p.slug, p.price)}
+              ? `<img id="hero-img" src="${p.image}" alt="${heroAlt}">`
+              : window.MakoautoPlaceholders.render(p.slug, p.price, window.t('lookbook_set_label'))}
           </div>
           ${(() => {
-            const all = [{src: p.image, alt: p.imageAlt||p.name}, ...(p.gallery||[])].filter(x => x.src);
-            if (all.length <= 1) return '';
-            return `<div class="thumbs">${all.slice(0, 12).map((g, i) => `
-              <button class="thumb ${i===0?'active':''}" data-src="${g.src}" data-alt="${(g.alt||'').replace(/"/g,'&quot;')}">
-                <img src="${g.src}" alt="${(g.alt||'').replace(/"/g,'&quot;')}" loading="lazy">
+            if (galleryItems.length <= 1) return '';
+            return `<div class="thumbs">${galleryItems.slice(0, 12).map((g, i) => `
+              <button class="thumb ${i === 0 ? 'active' : ''}" data-src="${g.src}" data-alt="${(g.alt || '').replace(/"/g, '&quot;')}">
+                <img src="${g.src}" alt="${(g.alt || '').replace(/"/g, '&quot;')}" loading="lazy">
               </button>`).join('')}</div>`;
           })()}
         </div>
         <div class="info">
           <div class="badges">
-            <span class="chip">${themeLabels[p.theme] || p.theme}</span>
-            <span class="chip">Designed in LA</span>
-            ${p.frame_color ? `<span class="chip">${p.frame_color.replace('-', ' ')} frame</span>` : ''}
+            <span class="chip">${themeLabel(p.theme) || p.theme}</span>
+            <span class="chip">${window.t('contact_stamp')}</span>
+            ${p.frame_color ? `<span class="chip">${p.frame_color.replace('-', ' ')} ${window.t('set_word_frame')}</span>` : ''}
           </div>
-          <h1>${p.name}</h1>
+          <h1>${lp.name}</h1>
           <div class="price-row">
             <span class="price">$${p.price.toFixed(2)}</span>
             <span class="currency">${p.currency || 'USD'}</span>
-            <span class="stock ${inStock ? 'in' : 'out'}">${inStock ? 'IN STOCK' : 'SOLD OUT'}</span>
+            <span class="stock ${inStock ? 'in' : 'out'}">${inStock ? window.t('stock_in') : window.t('stock_out')}</span>
           </div>
           <div class="ctas">
-            <button class="btn primary" id="buy-btn" ${inStock ? '' : 'disabled style="opacity:.5;cursor:not-allowed"'}>${inStock ? 'Buy this set →' : 'Sold out'}</button>
-            <a class="btn ghost" href="designer.html?from=${p.slug}">Remix in designer</a>
+            <button class="btn primary" id="buy-btn" ${inStock ? '' : 'disabled style="opacity:.5;cursor:not-allowed"'}>${inStock ? window.t('set_buy_set') : window.t('set_sold_out_btn')}</button>
+            <a class="btn ghost" href="designer.html?from=${p.slug}">${window.t('set_remix_designer')}</a>
           </div>
-          <div class="description">${renderDescription(p.description)}</div>
+          <div class="description">${renderDescription(lp.description)}</div>
         </div>
       </div>
-      ${renderRelated(products, p)}
+      ${renderRelated(products, lp)}
     `;
 
     const buyBtn = document.getElementById('buy-btn');
-    if (buyBtn && inStock) buyBtn.onclick = () => addToCart(p);
+    if (buyBtn && inStock) buyBtn.onclick = () => addToCart(lp);
 
     // Thumbnail switcher
     const heroImg = document.getElementById('hero-img');
-    document.querySelectorAll('.thumb').forEach(btn => {
+    document.querySelectorAll('.thumb').forEach((btn) => {
       btn.onclick = () => {
         if (!heroImg) return;
         heroImg.src = btn.dataset.src;
         heroImg.alt = btn.dataset.alt || '';
-        document.querySelectorAll('.thumb').forEach(t => t.classList.remove('active'));
+        document.querySelectorAll('.thumb').forEach((t) => t.classList.remove('active'));
         btn.classList.add('active');
       };
     });
   }
   load();
+  window.addEventListener('pinned:langchange', () => load());
 </script>
 </body></html>

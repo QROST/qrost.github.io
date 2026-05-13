@@ -324,7 +324,7 @@
     <section class="stories">
       <div class="stories-head">
         <div>
-          <span class="section-kicker">— Stories</span>
+          <span class="section-kicker" data-i18n="stories_kicker">— Stories</span>
           <h2 class="section-title" style="font-size:clamp(28px,4vw,48px)" data-i18n="stories_h">From the studio.</h2>
         </div>
         <a class="btn ghost" href="blog.html" data-i18n="stories_all">All stories →</a>
@@ -348,29 +348,72 @@
     </footer>
   </div>
 
-<script src="shared/i18n.js?v=9"></script>
+<script src="shared/i18n.js?v=10"></script>
+<script src="shared/i18n-extended.js?v=1"></script>
 <script src="shared/pins.js?v=18"></script>
 <script>
   renderTopbar('home');
 
-  // Stories strip — load 3 most recent
-  fetch('assets/legacy/blogs.json').then(r => r.json()).then(blogs => {
+  function escapeHtml(s) {
+    return String(s).replace(/[<>&]/g, c => ({ '<': '&lt;', '>': '&gt;', '&': '&amp;' }[c]));
+  }
+  const DATE_LOCALE = { en: 'en-US', zh: 'zh-CN', ja: 'ja-JP', es: 'es-ES', de: 'de-DE' };
+  function fmtStoryDate(iso) {
+    if (!iso) return '';
+    try {
+      const lang = window.getLang();
+      return new Date(iso).toLocaleDateString(DATE_LOCALE[lang] || 'en-US', { year: 'numeric', month: 'short', day: 'numeric' });
+    } catch { return ''; }
+  }
+  function localizeBlogPost(post, packs) {
+    const lang = window.getLang();
+    const row = packs && packs[post.slug];
+    if (!row || !row[lang]) return post;
+    const loc = row[lang];
+    return {
+      ...post,
+      title: loc.title || post.title,
+      description: loc.description !== undefined && String(loc.description).length ? loc.description : post.description,
+      body: loc.body || post.body,
+    };
+  }
+  function renderStoriesStrip(blogs, packs) {
     const sorted = [...blogs].sort((a, b) => (b.date || '').localeCompare(a.date || '')).slice(0, 3);
-    const fmt = (iso) => { try { return new Date(iso).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' }); } catch { return ''; } };
     const el = document.getElementById('stories-grid');
     if (!el) return;
-    el.innerHTML = sorted.map(b => `
+    el.innerHTML = sorted.map(b => {
+      const bp = localizeBlogPost(b, packs);
+      const blurb = bp.description || bp.body.slice(0, 160);
+      return `
       <a class="story-card" href="blog.html?slug=${b.slug}">
-        <div class="img"><img src="${b.image}" alt="${b.title}" loading="lazy"></div>
+        <div class="img"><img src="${b.image}" alt="${escapeHtml(bp.title)}" loading="lazy"></div>
         <div class="body">
-          <span class="date">${fmt(b.date)}</span>
-          <h3>${b.title}</h3>
-          <p class="blurb">${b.description || b.body.slice(0, 160)}</p>
-          <span class="read">Read story →</span>
+          <span class="date">${fmtStoryDate(b.date)}</span>
+          <h3>${escapeHtml(bp.title)}</h3>
+          <p class="blurb">${escapeHtml(blurb)}</p>
+          <span class="read">${escapeHtml(window.t('stories_read_more'))}</span>
         </div>
-      </a>
-    `).join('');
-  }).catch(()=>{});
+      </a>`;
+    }).join('');
+  }
+
+  let homeBlogsCache = null;
+  let homePacksCache = null;
+  function loadStoriesStrip() {
+    Promise.all([
+      fetch('assets/legacy/blogs.json').then(r => r.json()),
+      fetch('assets/legacy/blogs.i18n.json').then(r => r.json()).catch(() => ({})),
+    ]).then(([blogs, packs]) => {
+      homeBlogsCache = blogs;
+      homePacksCache = packs;
+      renderStoriesStrip(blogs, packs);
+    }).catch(() => {});
+  }
+  window.addEventListener('pinned:langchange', () => {
+    if (homeBlogsCache) renderStoriesStrip(homeBlogsCache, homePacksCache || {});
+    window.applyI18N && window.applyI18N();
+  });
+  loadStoriesStrip();
 
   // Gallery showcase: real customer/product photography
   const examples = [
