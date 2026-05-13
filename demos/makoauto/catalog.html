@@ -90,8 +90,10 @@
   </div>
 </div>
 
-<script src="shared/i18n.js?v=9"></script>
-<script src="shared/placeholders.js?v=8"></script>
+<script src="shared/i18n.js?v=10"></script>
+<script src="shared/i18n-extended.js?v=1"></script>
+<script src="shared/localize-product.js?v=1"></script>
+<script src="shared/placeholders.js?v=9"></script>
 <script>
   // ---- Tweaks defaults (read by EDITMODE host; mirrored at runtime) ----
   const TWEAKS = /*EDITMODE-BEGIN*/{
@@ -155,23 +157,27 @@
 
   const state = { theme: 'all' };
   let products = [];
+  let productPacks = {};
 
-  const themeLabels = {
-    all: 'All',
-    streetwear: 'Streetwear',
-    nostalgia: 'Nostalgia',
-    racing: 'Racing',
-    kawaii: 'Kawaii',
-    minimal: 'Minimal',
-    pets: 'Pets',
-    starter: 'Starter',
-    gaming: 'Gaming',
-    anime: 'Anime',
-  };
+  function localizedProduct(p) {
+    const lang = window.getLang();
+    if (lang === 'en' || !productPacks[p.slug]) return p;
+    const row = productPacks[p.slug][lang];
+    return row ? window.localizeProduct(p, row) : p;
+  }
+
+  function themeLabel(key) {
+    if (key === 'all') return window.t('theme_all');
+    return window.t('theme_' + key) || key;
+  }
 
   async function load() {
-    const res = await fetch('assets/legacy/products.json');
-    products = await res.json();
+    const [prods, packs] = await Promise.all([
+      fetch('assets/legacy/products.json').then((r) => r.json()),
+      fetch('assets/legacy/products.i18n.json?v=1').then((r) => r.json()).catch(() => ({})),
+    ]);
+    products = prods;
+    productPacks = packs || {};
     renderFilters();
     renderGrid();
   }
@@ -179,11 +185,12 @@
   function renderFilters() {
     const counts = { all: products.length };
     products.forEach(p => { counts[p.theme] = (counts[p.theme] || 0) + 1; });
-    const themes = ['all', ...Object.keys(themeLabels).filter(k => k !== 'all' && counts[k])];
+    const themeKeys = ['all', 'streetwear', 'nostalgia', 'racing', 'kawaii', 'minimal', 'pets', 'starter', 'gaming', 'anime'];
+    const themes = themeKeys.filter(k => k === 'all' || counts[k]);
     const el = document.getElementById('filters');
     el.innerHTML = themes.map(k => `
       <button class="filter-btn ${state.theme === k ? 'active' : ''}" data-theme="${k}">
-        ${themeLabels[k]}<span class="count">${counts[k] || 0}</span>
+        ${themeLabel(k)}<span class="count">${counts[k] || 0}</span>
       </button>
     `).join('');
     el.querySelectorAll('.filter-btn').forEach(b => b.onclick = () => {
@@ -217,27 +224,30 @@
   function renderGrid() {
     const list = state.theme === 'all' ? products : products.filter(p => p.theme === state.theme);
     const el = document.getElementById('lookbook');
-    el.innerHTML = list.map(p => `
+    el.innerHTML = list.map((p) => {
+      const lp = localizedProduct(p);
+      return `
       <article class="set-card">
         <a class="img-wrap" href="set.html?slug=${p.slug}">
-          ${p.image ? `<img src="${p.image}" alt="${(p.imageAlt||p.name).replace(/"/g,'&quot;')}" loading="lazy">` : window.MakoautoPlaceholders.render(p.slug, p.price)}
-          <span class="theme-tag">${themeLabels[p.theme] || p.theme}</span>
+          ${p.image ? `<img src="${p.image}" alt="${(lp.imageAlt || lp.name).replace(/"/g, '&quot;')}" loading="lazy">` : window.MakoautoPlaceholders.render(p.slug, p.price, window.t('lookbook_set_label'))}
+          <span class="theme-tag">${themeLabel(p.theme) || p.theme}</span>
           <span class="price-tag">$${p.price.toFixed(2)}</span>
-          ${p.in_stock === false ? `<span class="oos">Sold out</span>` : ''}
+          ${p.in_stock === false ? `<span class="oos">${window.t('catalog_sold_out')}</span>` : ''}
         </a>
         <div class="body">
-          <h3>${shortenName(p.name)}</h3>
-          <p class="blurb">${firstSentence(p.description)}</p>
+          <h3>${shortenName(lp.name)}</h3>
+          <p class="blurb">${firstSentence(lp.description)}</p>
           <div class="ctas" style="${window.__catalogTweaks.show_remix_btn ? '' : 'grid-template-columns:1fr'}">
-            <a class="primary" href="set.html?slug=${p.slug}">View set</a>
-            ${window.__catalogTweaks.show_remix_btn ? `<a class="ghost" href="designer.html?from=${p.slug}">Remix</a>` : ''}
+            <a class="primary" href="set.html?slug=${p.slug}">${window.t('catalog_view_set')}</a>
+            ${window.__catalogTweaks.show_remix_btn ? `<a class="ghost" href="designer.html?from=${p.slug}">${window.t('catalog_remix')}</a>` : ''}
           </div>
         </div>
       </article>
-    `).join('');
+    `;
+    }).join('');
   }
 
-  window.addEventListener('pinned:langchange', () => { renderFilters(); renderGrid(); });
+  window.addEventListener('pinned:langchange', () => { renderFilters(); renderGrid(); window.applyI18N && window.applyI18N(); });
   window.addEventListener('pinned:tweakschange', () => { renderFilters(); renderGrid(); applyTweaks(); });
   load().then(() => applyTweaks());
 </script>
