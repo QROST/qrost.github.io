@@ -109,3 +109,131 @@ details.hub-region-details .hub-region-chevron {
 details.hub-region-details[open] .hub-region-chevron {
     transform: rotate(180deg);
 }
+
+/* ============================================================
+   Phase 1: usability additions — skip-link, mobile menu states,
+   FX status badge, focus-visible. Order matters: keep these
+   AFTER the existing rules so Tailwind utilities still win where
+   intended; we only add new selectors / states.
+   ============================================================ */
+
+/* Skip-to-content link: invisible until keyboard-focused */
+.skip-to-content:focus {
+    position: fixed;
+    top: 0.5rem;
+    left: 0.5rem;
+    z-index: 60;
+    background: #0f172a;
+    color: #ffffff;
+    padding: 0.5rem 0.75rem;
+    border-radius: 0.375rem;
+    font-size: 0.8125rem;
+    font-weight: 500;
+    box-shadow: 0 4px 12px rgba(15, 23, 42, 0.25);
+}
+
+/* Restore visible focus where Tailwind defaults / inline classes turned outline off */
+:focus-visible {
+    outline: 2px solid #10b981;
+    outline-offset: 2px;
+    border-radius: 4px;
+}
+.site-nav a:focus-visible,
+.site-nav button:focus-visible {
+    outline-offset: 3px;
+}
+
+/* Mobile menu open/close icon swap, driven by aria-expanded on the toggle */
+#nav-menu-toggle[aria-expanded="true"] .nav-menu-icon-open { display: none; }
+#nav-menu-toggle[aria-expanded="true"] .nav-menu-icon-close { display: block; }
+
+/* Section anchor offset so the fixed nav doesn't cover headings */
+main section[id] { scroll-margin-top: 5rem; }
+
+/* FX status badge variants */
+#fx-status-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 1px 6px;
+    border-radius: 9999px;
+    border: 1px solid transparent;
+    line-height: 1.4;
+}
+#fx-status-badge::before {
+    content: "";
+    width: 6px;
+    height: 6px;
+    border-radius: 9999px;
+    background: currentColor;
+}
+#fx-status-badge.fx-live {
+    color: #047857;
+    background: #ecfdf5;
+    border-color: #a7f3d0;
+}
+#fx-status-badge.fx-fallback {
+    color: #92400e;
+    background: #fffbeb;
+    border-color: #fde68a;
+}
+#fx-status-badge.fx-pending {
+    color: #475569;
+    background: #f1f5f9;
+    border-color: #e2e8f0;
+}
+
+/* ============================================================
+   Phase 1.3 — Print styles. Goal: make the page printable as a
+   readable reference. Constraints from review:
+     - never display:none main subtree
+     - keep all step bodies open so content is not silently hidden
+     - only collapse decoration (fixed nav, mobile menu, charts)
+   ============================================================ */
+@media print {
+    /* Strip fixed/sticky chrome that overlaps content or wastes space */
+    .site-nav {
+        position: static !important;
+        background: #ffffff !important;
+        border-bottom: 1px solid #cbd5e1 !important;
+        backdrop-filter: none !important;
+    }
+    #nav-menu-toggle,
+    #mobile-menu,
+    #lang-toggle,
+    .skip-to-content { display: none !important; }
+
+    /* The header is decorative spacing in print; tighten it */
+    header.pt-28 { padding-top: 1rem !important; padding-bottom: 1rem !important; }
+
+    /* Force every progressive-disclosure block open so all step text prints */
+    details { page-break-inside: avoid; }
+    details.wfoe-details > summary,
+    details.hub-region-details > summary { color: #334155 !important; }
+    details.wfoe-details > summary > svg,
+    details.hub-region-details > summary > svg { display: none !important; }
+
+    /* Avoid awkward cuts inside step cards and city tiles */
+    .grid > div { page-break-inside: avoid; }
+
+    /* Charts are interactive; replace with the printable data table siblings. */
+    .chart-container,
+    .chart-container-tall { display: none !important; }
+
+    /* Make sticky doughnut column flow inline for print */
+    .sticky { position: static !important; top: auto !important; }
+
+    /* Reset page background to plain white for ink */
+    body { background: #ffffff !important; color: #0f172a !important; }
+    main, section, .bg-slate-50, .bg-emerald-50\/90 { background: #ffffff !important; }
+
+    /* Hide the slate footer (decorative); the disclaimer is in the methodology section already */
+    footer.bg-slate-900 { background: #ffffff !important; color: #475569 !important; border-top: 1px solid #cbd5e1 !important; }
+    footer.bg-slate-900 .text-slate-300 { color: #334155 !important; }
+
+    /* Hide the mobile-only menu toggle which can leave a small empty bordered box */
+    #nav-menu-toggle, .skip-to-content { display: none !important; }
+}
+
+/* Force-open helpers used by the "expand all" button and by print pre-pass */
+details.is-force-open { /* utility class; behavior controlled by JS adding the open attribute */ }

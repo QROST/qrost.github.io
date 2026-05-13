@@ -42,6 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const FALLBACK_USD_CNY = 7.2;
             let exchangeRate = FALLBACK_USD_CNY;
             let exchangeRateIsLive = false;
+            let exchangeRateFetchSettled = false; // true after first fetch attempt resolves either way
 
             function effectiveExchangeRate() {
                 return typeof exchangeRate === 'number' && exchangeRate > 0 && exchangeRate < 100
@@ -51,14 +52,33 @@ document.addEventListener('DOMContentLoaded', () => {
 
             function updateFxLabel() {
                 const el = document.getElementById('fx-rate-display');
-                if (!el) return;
-                const r = effectiveExchangeRate().toFixed(2);
-                const mode = exchangeRateIsLive
-                    ? tr('chart.fx_mode_live', 'live')
-                    : tr('chart.fx_mode_fallback', '2024-avg fallback (7.2)');
-                let line = tr('chart.fx_line', 'USD column uses 1 USD ≈ {rate} CNY ({mode}).');
-                line = line.replace(/\{rate\}/g, r).replace(/\{mode\}/g, mode);
-                el.textContent = line;
+                if (el) {
+                    const r = effectiveExchangeRate().toFixed(2);
+                    const mode = exchangeRateIsLive
+                        ? tr('chart.fx_mode_live', 'live')
+                        : tr('chart.fx_mode_fallback', '2024-avg fallback (7.2)');
+                    let line = tr('chart.fx_line', 'USD column uses 1 USD ≈ {rate} CNY ({mode}).');
+                    line = line.replace(/\{rate\}/g, r).replace(/\{mode\}/g, mode);
+                    el.textContent = line;
+                }
+
+                // Status badge sibling — color + label reflect live vs fallback.
+                // Stays in "pending" state until the first fetch settles so the page
+                // does not flash a misleading "Offline" on initial render.
+                const badge = document.getElementById('fx-status-badge');
+                if (badge) {
+                    badge.classList.remove('hidden', 'fx-live', 'fx-fallback', 'fx-pending');
+                    if (!exchangeRateFetchSettled) {
+                        badge.classList.add('fx-pending');
+                        badge.textContent = tr('chart.fx_status_pending', 'Checking FX…');
+                    } else if (exchangeRateIsLive) {
+                        badge.classList.add('fx-live');
+                        badge.textContent = tr('chart.fx_status_live', 'Live FX');
+                    } else {
+                        badge.classList.add('fx-fallback');
+                        badge.textContent = tr('chart.fx_status_fallback', 'Offline · fallback 7.2');
+                    }
+                }
             }
 
             async function loadExchangeRate() {
@@ -92,6 +112,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     exchangeRate = FALLBACK_USD_CNY;
                     exchangeRateIsLive = false;
                 }
+                exchangeRateFetchSettled = true;
                 updateFxLabel();
                 updateVisuals();
             }
@@ -518,6 +539,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 // Update Text Elements
                 document.getElementById('macro-title-role').textContent = state.role === 'junior' ? tr('role.junior_short', 'Junior CAD') : tr('role.senior_short', 'Senior Modeler');
                 document.getElementById('micro-title-city').textContent = cityDisplayName(state.city);
+                // Keep the city-select dropdown's value in sync with state.city so
+                // bar-chart clicks visibly drive the dropdown too. We don't rebuild
+                // options here (the dropdown gets its options once on init and on
+                // language change), only set value.
+                const citySelectSync = document.getElementById('city-nav-select');
+                if (citySelectSync && citySelectSync.value !== state.city) {
+                    citySelectSync.value = state.city;
+                }
                 const pctEl = document.getElementById('micro-contrib-pct');
                 const pctWrap = document.getElementById('micro-contrib-pct-wrap');
                 const breakdownLbl = document.getElementById('micro-breakdown-label');
@@ -679,6 +708,11 @@ document.addEventListener('DOMContentLoaded', () => {
                     el.innerHTML = buildWfoeStepMoneyHtml(id, lang);
                 });
             }
+            // Exposed for steps-render.js's `china-biz-steps-rendered` listener:
+            // the WFOE step DOM may be injected after this script's DOMContentLoaded
+            // path has already filled (or no-op'd) the money cells, so the renderer
+            // needs to retrigger the fill once the data-wfoe-money nodes exist.
+            window.refreshWfoeMoney = refreshWfoeMoney;
 
             function buildDomesticFeeHtml(stepId, lang) {
                 const r = effectiveExchangeRate();
@@ -835,8 +869,175 @@ document.addEventListener('DOMContentLoaded', () => {
                 else if (lang === 'en') state.currency = 'usd';
                 syncCurrencyButtons();
                 updateFxLabel();
+                rebuildCitySelectOptions(); // refresh option text in the new language
                 updateVisuals();
             });
+
+            // Phase 4 — WFOE/domestic step cards are rendered asynchronously by
+            // steps-render.js after fetching JSON. When that completes, re-fill
+            // the money/fee cells (which need data-wfoe-money / data-domestic-fee
+            // nodes to exist) and trigger a single updateVisuals so chart
+            // dependants pick up any change. setLang re-application is handled
+            // inside steps-render.js itself.
+            window.addEventListener('china-biz-steps-rendered', function () {
+                if (typeof refreshWfoeMoney === 'function') refreshWfoeMoney();
+                if (typeof refreshDomesticFees === 'function') refreshDomesticFees();
+            });
+
+            /* ----------------------------------------------------------------
+               Phase 1.2 — City focus dropdown.
+               A keyboard-friendly parallel control for the bar-chart onClick.
+               Builds <option> nodes once from cityData, listens to "change",
+               and rebuilds option labels on language change. state.city is the
+               single source of truth; updateVisuals() keeps select.value in
+               sync after a chart click. We do not change cityData ordering.
+               ---------------------------------------------------------------- */
+            function rebuildCitySelectOptions() {
+                const sel = document.getElementById('city-nav-select');
+                if (!sel) return;
+                const prev = sel.value || state.city;
+                // Sort alphabetically by display name for predictable scanning;
+                // the bar chart sorts by cost descending, which is its own concern.
+                const keys = Object.keys(cityData).slice().sort(function (a, b) {
+                    return cityDisplayName(a).localeCompare(cityDisplayName(b));
+                });
+                sel.innerHTML = '';
+                keys.forEach(function (k) {
+                    const opt = document.createElement('option');
+                    opt.value = k;
+                    opt.textContent = cityDisplayName(k);
+                    sel.appendChild(opt);
+                });
+                sel.value = prev;
+            }
+            rebuildCitySelectOptions();
+            const citySelectEl = document.getElementById('city-nav-select');
+            if (citySelectEl) {
+                citySelectEl.addEventListener('change', function (e) {
+                    const v = e.target.value;
+                    if (v && cityData[v] && state.city !== v) {
+                        state.city = v;
+                        updateVisuals();
+                    }
+                });
+            }
+
+            /* ----------------------------------------------------------------
+               Phase 1.1 — Mobile menu toggle.
+               aria-expanded drives both the panel visibility (via .hidden) and
+               the icon swap (CSS). Closes on: panel link click, Escape key,
+               outside click, or viewport widening past md. Focus moves to the
+               first link on open; back to the toggle on close.
+               ---------------------------------------------------------------- */
+            (function setupMobileMenu() {
+                const toggle = document.getElementById('nav-menu-toggle');
+                const panel = document.getElementById('mobile-menu');
+                if (!toggle || !panel) return;
+
+                function ariaLabelKey(open) {
+                    return open ? 'nav.menu_close' : 'nav.menu_open';
+                }
+                function applyAriaLabel(open) {
+                    const fallback = open ? 'Close menu' : 'Open menu';
+                    toggle.setAttribute('aria-label', tr(ariaLabelKey(open), fallback));
+                }
+                function open() {
+                    panel.classList.remove('hidden');
+                    toggle.setAttribute('aria-expanded', 'true');
+                    applyAriaLabel(true);
+                    const first = panel.querySelector('[data-mobile-nav-link]');
+                    if (first) first.focus({ preventScroll: true });
+                }
+                function close(restoreFocus) {
+                    panel.classList.add('hidden');
+                    toggle.setAttribute('aria-expanded', 'false');
+                    applyAriaLabel(false);
+                    if (restoreFocus) toggle.focus({ preventScroll: true });
+                }
+                toggle.addEventListener('click', function () {
+                    const isOpen = toggle.getAttribute('aria-expanded') === 'true';
+                    if (isOpen) close(true); else open();
+                });
+                // Closing on link tap keeps the panel from obscuring the section it just jumped to.
+                panel.querySelectorAll('[data-mobile-nav-link]').forEach(function (a) {
+                    a.addEventListener('click', function () { close(false); });
+                });
+                document.addEventListener('keydown', function (e) {
+                    if (e.key === 'Escape' && toggle.getAttribute('aria-expanded') === 'true') {
+                        close(true);
+                    }
+                });
+                document.addEventListener('click', function (e) {
+                    if (toggle.getAttribute('aria-expanded') !== 'true') return;
+                    if (panel.contains(e.target) || toggle.contains(e.target)) return;
+                    close(false);
+                });
+                // If user resizes past md, hide panel so it doesn't linger when re-entering mobile.
+                const mq = window.matchMedia('(min-width: 768px)');
+                function syncFromMq() {
+                    if (mq.matches && toggle.getAttribute('aria-expanded') === 'true') {
+                        close(false);
+                    }
+                }
+                if (mq.addEventListener) mq.addEventListener('change', syncFromMq);
+                else if (mq.addListener) mq.addListener(syncFromMq);
+                // Refresh aria-label after each language change.
+                window.addEventListener('china-biz-lang-change', function () {
+                    const isOpen = toggle.getAttribute('aria-expanded') === 'true';
+                    applyAriaLabel(isOpen);
+                });
+                applyAriaLabel(false);
+            })();
+
+            /* ----------------------------------------------------------------
+               Phase 1.3 helper — force every <details> open before printing so
+               the printed copy contains every step body. The original open
+               state is restored on "afterprint" so the on-screen disclosure
+               UI is not affected. Pure progressive enhancement; if the print
+               events aren't supported the original layout still prints.
+               ---------------------------------------------------------------- */
+            (function setupPrintExpansion() {
+                let originalStates = null;
+                function expandAll() {
+                    originalStates = [];
+                    document.querySelectorAll('details').forEach(function (d) {
+                        originalStates.push({ el: d, wasOpen: d.open });
+                        d.open = true;
+                    });
+                }
+                function restoreAll() {
+                    if (!originalStates) return;
+                    originalStates.forEach(function (s) { s.el.open = s.wasOpen; });
+                    originalStates = null;
+                }
+                window.addEventListener('beforeprint', expandAll);
+                window.addEventListener('afterprint', restoreAll);
+            })();
+
+            /* ----------------------------------------------------------------
+               Phase 2.3 safety — if the Chart.js CDN fails (network, SRI
+               mismatch, ad blocker), surface a single inline notice instead
+               of leaving two silent blank canvases. We do not try to swap in
+               an alternative library; the page text + tables still work.
+               ---------------------------------------------------------------- */
+            if (typeof Chart === 'undefined') {
+                const barHost = document.getElementById('barChartAllCities');
+                const donutHost = document.getElementById('doughnutCityDetail');
+                function placeNotice(canvas) {
+                    if (!canvas || !canvas.parentNode) return;
+                    const wrap = canvas.closest('.chart-container, .chart-container-tall') || canvas.parentNode;
+                    const note = document.createElement('div');
+                    note.setAttribute('role', 'status');
+                    note.className = 'text-sm text-amber-800 bg-amber-50 border border-amber-200 rounded p-3';
+                    note.textContent = tr('chart.cdn_unavailable',
+                        'Chart visualisation unavailable (Chart.js failed to load). Salary and contribution numbers are unaffected; refresh to retry.');
+                    wrap.appendChild(note);
+                    canvas.style.display = 'none';
+                }
+                placeNotice(barHost);
+                placeNotice(donutHost);
+                return; // Skip chart init; rest of page (tabs, i18n, fees) still works.
+            }
 
             initCharts();
             updateFxLabel();

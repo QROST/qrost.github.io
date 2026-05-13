@@ -1,0 +1,218 @@
+[
+  {
+    "id": "s01",
+    "num": 1,
+    "title_html": "Draft a company name using the pattern <em>[City] + [Brand] + [Industry] + Co., Ltd.</em>",
+    "detail": {
+      "kind": "list",
+      "items_html": [
+        "The legal format is strict—e.g. Shanghai Acme CAD Design Co., Ltd.",
+        "Final name approval is part of filing; your agent can pre-check availability."
+      ]
+    },
+    "money_key": "s01"
+  },
+  {
+    "id": "s02",
+    "num": 2,
+    "title_html": "Find only commercial office space—residential units cannot be a WFOE address.",
+    "detail": {
+      "kind": "paragraph",
+      "html": "Zoning must allow business registration; verify with your agent before you sign."
+    },
+    "money_key": "s02"
+  },
+  {
+    "id": "s03",
+    "num": 3,
+    "title_html": "Get the landlord’s red Property Ownership Certificate (or equivalent) for the filing.",
+    "detail": {
+      "kind": "paragraph",
+      "html": "Without this document, the AMR typically rejects the application."
+    },
+    "money_key": "s03"
+  },
+  {
+    "id": "s04",
+    "num": 4,
+    "title_html": "Sign the commercial lease (deposits often paid personally or by your offshore parent).",
+    "detail": {
+      "kind": "paragraph",
+      "html": "The tenant may not exist on paper yet; after incorporation and chops, the WFOE may reimburse allowable pre-establishment costs—confirm with your agent and accountant."
+    },
+    "money_key": "s04"
+  },
+  {
+    "id": "s05",
+    "num": 5,
+    "title_html": "Retain a <strong>corporate services firm</strong> (WFOE registration agent) with a written scope—AMR filing, chops, and optional bank / bookkeeping support.",
+    "detail": {
+      "kind": "list",
+      "items_html": [
+        "Chinese law does not universally <strong>require</strong> a foreign founder to use an agent, but AMR online portals, templates, and local practice are almost entirely in Chinese—<strong>most overseas investors hire</strong> a firm to draft articles, run the AMR package, and coordinate chops and bank KYC.",
+        "Compare quotes before you finalize notarized / apostille packs: “incorporation only” vs. full-service (bank onboarding, bookkeeping, annual compliance).",
+        "Government AMR filing charges are usually modest; the main cash outlay here is <strong>professional service fees</strong>."
+      ]
+    },
+    "money_key": "s05"
+  },
+  {
+    "id": "s06",
+    "num": 6,
+    "title_html": "Notarize your passport or parent-company documents with a notary in your home country (e.g. a U.S. Notary Public is typical for U.S. passport holders).",
+    "detail": {
+      "kind": "paragraph",
+      "html": "Individual investor = passport; corporate parent = entity docs—your agent will list exactly what is needed."
+    },
+    "money_key": "s06"
+  },
+  {
+    "id": "s07",
+    "num": 7,
+    "title_html": "Obtain an Apostille from your country’s designated Hague authority (e.g. a U.S. state Secretary of State for documents originating in the United States).",
+    "detail": {
+      "kind": "paragraph",
+      "html": "You no longer need Chinese Embassy legalization for this path—the Apostille is the standard certification."
+    },
+    "money_key": "s07"
+  },
+  {
+    "id": "s08",
+    "num": 8,
+    "title_html": "Set registered capital and pay-in schedule in the articles—<strong>do not wire equity yet</strong>.",
+    "detail": {
+      "kind": "list",
+      "items_html": [
+        "Registered capital (注册资本) is the subscribed total on the license; it is not the same as annual rent or payroll.",
+        "Under PRC Company Law (revised 1 Jul 2024), full pay-in within <strong>five years</strong> of establishment unless transition rules apply for older companies.",
+        "Choose amount using: minimum viable for your sector, business plan, license minimums, banking credibility, and repatriation plans—align with your accountant.",
+        "Employer social insurance + housing fund is separate from this line—see step 9 and the dashboard."
+      ]
+    },
+    "money_key": "s08"
+  },
+  {
+    "id": "s09",
+    "num": 9,
+    "title_html": "Model a 12-month budget: rent, agents, payroll, and statutory “five insurances + fund.”",
+    "detail": {
+      "kind": "list",
+      "items_html": [
+        "Pre-WFOE costs (lease, travel) often come from personal or parent funds; reimbursement after setup may be possible—confirm with your agent.",
+        "Payroll + statutory is usually the largest variable for a CAD shop—use the <a href=\"#costs\" class=\"text-emerald-600 font-semibold underline\">dashboard</a>.",
+        "Assume onshore operating cash in China after capital injection (steps 17–18) and revenue."
+      ]
+    },
+    "money_key": "s09"
+  },
+  {
+    "id": "s10",
+    "num": 10,
+    "title_html": "Name Legal Rep, Executive Director, and Supervisor—two roles cannot be the same person.",
+    "detail": {
+      "kind": "paragraph",
+      "html": "The Supervisor cannot be the Legal Representative or Director. These names go into articles and bank mandates."
+    },
+    "money_key": "s10"
+  },
+  {
+    "id": "s11",
+    "num": 11,
+    "title_html": "File the incorporation package with the AMR (lease + apostille + articles).",
+    "detail": {
+      "kind": "paragraph",
+      "html": "Submit to the local Administration for Market Regulation (AMR): lease, apostilled identity/parent docs, articles (capital, pay-in schedule, roles), and other required company rules."
+    },
+    "money_key": "s11"
+  },
+  {
+    "id": "s12",
+    "num": 12,
+    "title_html": "Collect your Business License (营业执照)—the company legally exists.",
+    "detail": {
+      "kind": "paragraph",
+      "html": "You still have no operational corporate bank accounts until steps 14–15."
+    },
+    "money_key": "s12"
+  },
+  {
+    "id": "s13",
+    "num": 13,
+    "title_html": "Register and carve your company chops (official + financial seals).",
+    "detail": {
+      "kind": "paragraph",
+      "html": "PSB + licensed vendor. A red chop on a contract is often decisive—secure storage; whoever holds chops controls signing."
+    },
+    "money_key": "s13"
+  },
+  {
+    "id": "s14",
+    "num": 14,
+    "title_html": "Open the RMB basic deposit account (基本户) with license + chops.",
+    "detail": {
+      "kind": "paragraph",
+      "html": "Main RMB account for salaries, rent, and tax—often the only account that can pay cash salaries. KYC applies."
+    },
+    "money_key": "s14"
+  },
+  {
+    "id": "s15",
+    "num": 15,
+    "title_html": "Open the foreign-investment capital account for inbound equity (FCY).",
+    "detail": {
+      "kind": "paragraph",
+      "html": "Name varies by bank (FDI / capital account). Pairs with SAFE registration of the foreign-invested enterprise."
+    },
+    "money_key": "s15"
+  },
+  {
+    "id": "s16",
+    "num": 16,
+    "title_html": "Prepare the bank’s capital-contribution / FX forms with your agent (投资款 wording).",
+    "detail": {
+      "kind": "paragraph",
+      "html": "The remittance must be coded as registered capital—not an informal “transfer.” Codes differ by bank."
+    },
+    "money_key": "s16"
+  },
+  {
+    "id": "s17",
+    "num": 17,
+    "title_html": "Wire registered capital from abroad in foreign currency to the designated inbound account.",
+    "detail": {
+      "kind": "paragraph",
+      "html": "Bank records paid-in capital (实缴) toward SAFE filing; obtain FX settlement documents. Multiple tranches allowed within five-year pay-in (step 8)."
+    },
+    "money_key": "s17"
+  },
+  {
+    "id": "s18",
+    "num": 18,
+    "title_html": "Settle FX (资本金结汇) and move RMB into the basic account for operations.",
+    "detail": {
+      "kind": "paragraph",
+      "html": "Follow the bank’s process; this is company capital settlement, not personal remittance."
+    },
+    "money_key": "s18"
+  },
+  {
+    "id": "s19",
+    "num": 19,
+    "title_html": "Register with the tax bureau and obtain fapiao (official invoicing) capability.",
+    "detail": {
+      "kind": "paragraph",
+      "html": "You need this to bill customers compliantly on the mainland."
+    },
+    "money_key": "s19"
+  },
+  {
+    "id": "s20",
+    "num": 20,
+    "title_html": "Register for social insurance—then you can hire and run payroll.",
+    "detail": {
+      "kind": "paragraph",
+      "html": "Mandatory contributions are paid from the RMB basic account, funded by capital (steps 17–18) and revenue. Compare cities on the <a href=\"#costs\" class=\"text-emerald-600 font-semibold underline\">dashboard</a>."
+    },
+    "money_key": "s20"
+  }
+]

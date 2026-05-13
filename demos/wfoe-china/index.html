@@ -6,20 +6,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>How to open a company in China — WFOE setup &amp; AEC hiring costs | QROST</title>
     <meta name="description" content="Step-by-step setup workflows (mainland WFOE, domestic LLC, HK/Macau SAR) and an interactive city-level annual cost model for CAD roles across 24 talent hubs. Research notes for international AEC founders.">
-    <link rel="icon" type="image/svg+xml" href="favicon.svg">
-    <link rel="apple-touch-icon" href="favicon.svg">
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230f172a'/%3E%3Ctext x='16' y='21' font-family='Inter,system-ui,sans-serif' font-size='13' font-weight='700' text-anchor='middle' fill='white' letter-spacing='1'%3EQ%3C/text%3E%3C/svg%3E">
 
     <meta property="og:type" content="article">
     <meta property="og:title" content="How to open a company in China — WFOE setup & AEC hiring costs">
     <meta property="og:description" content="Setup workflows and city-level cost model across 24 Chinese AEC talent hubs. Bilingual EN/中文.">
     <meta property="og:url" content="https://qrost.github.io/demos/wfoe-china/">
     <meta property="og:site_name" content="QROST">
-    <meta name="twitter:card" content="summary">
+    <meta property="og:image" content="https://qrost.github.io/demos/wfoe-china/assets/img/wfoe-china-og.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="QROST — WFOE setup &amp; AEC hiring costs across 24 Chinese cities">
+    <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="How to open a company in China — WFOE & AEC hiring">
     <meta name="twitter:description" content="Setup workflows and city-level cost model across 24 Chinese AEC talent hubs.">
+    <meta name="twitter:image" content="https://qrost.github.io/demos/wfoe-china/assets/img/wfoe-china-og.png">
 
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Tailwind: built from src/tailwind-input.css via local tailwindcss CLI.
+         To regenerate: cd demos/wfoe-china && npm install && npm run build:css
+         The CDN script is intentionally NOT loaded here in production; if you
+         need to rapid-prototype new utility classes, temporarily re-add
+         <script src="https://cdn.tailwindcss.com"></script> below this link,
+         confirm the visual, then re-run npm run build:css and remove it again. -->
+    <link rel="stylesheet" href="assets/css/tailwind-built.css">
+    <!-- Chart.js pinned to 4.4.7 (jsDelivr) with sha384 SRI; bump version + SRI together. -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"
+        integrity="sha384-vsrfeLOOY6KuIYKDlmVH5UiBmgIdB1oEf7p01YgWHuqmOHfZr374+odEv96n9tNC"
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
     <!-- Chosen Palette: Slate and Emerald -->
@@ -27,6 +40,8 @@
 </head>
 
 <body class="antialiased scroll-smooth">
+
+    <a href="#process" class="skip-to-content sr-only focus:not-sr-only" data-i18n="nav.skip">Skip to content</a>
 
     <nav class="site-nav fixed top-0 w-full z-50 border-b border-slate-200/90 bg-white/85 backdrop-blur-md">
         <div class="max-w-[90rem] mx-auto px-4 sm:px-6 lg:px-8">
@@ -38,8 +53,22 @@
                         <a href="#regions" class="text-sm text-slate-500 hover:text-slate-900 transition-colors" data-i18n="nav.regions">Regions</a>
                         <a href="#costs" class="text-sm text-slate-500 hover:text-slate-900 transition-colors" data-i18n="nav.financials">Financials</a>
                     </div>
+                    <button type="button" id="nav-menu-toggle" class="md:hidden inline-flex items-center justify-center w-9 h-9 rounded border border-slate-200 text-slate-700 hover:bg-slate-50 transition-colors shrink-0"
+                        aria-controls="mobile-menu" aria-expanded="false" aria-label="Open menu">
+                        <svg class="nav-menu-icon-open w-4 h-4" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true">
+                            <path stroke-linecap="round" d="M3.5 6h13M3.5 10h13M3.5 14h13" />
+                        </svg>
+                        <svg class="nav-menu-icon-close w-4 h-4 hidden" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true">
+                            <path stroke-linecap="round" d="M5 5l10 10M15 5L5 15" />
+                        </svg>
+                    </button>
                     <button type="button" id="lang-toggle" class="text-xs font-medium text-slate-600 border border-slate-200 rounded px-2.5 py-1 hover:bg-slate-50 transition-colors shrink-0" aria-label="Switch language">中文</button>
                 </div>
+            </div>
+            <div id="mobile-menu" class="md:hidden hidden border-t border-slate-200 -mx-4 sm:-mx-6 lg:-mx-8 px-4 sm:px-6 lg:px-8 py-2 bg-white/95" role="region" aria-label="Section navigation">
+                <a href="#process" class="block py-2.5 text-sm text-slate-700 hover:text-slate-900" data-mobile-nav-link data-i18n="nav.setup">Setup</a>
+                <a href="#regions" class="block py-2.5 text-sm text-slate-700 hover:text-slate-900 border-t border-slate-100" data-mobile-nav-link data-i18n="nav.regions">Regions</a>
+                <a href="#costs" class="block py-2.5 text-sm text-slate-700 hover:text-slate-900 border-t border-slate-100" data-mobile-nav-link data-i18n="nav.financials">Financials</a>
             </div>
         </div>
     </nav>
@@ -100,542 +129,9 @@
                         rough cash-impact hints (2024–2025 style ranges). Not quotes—city, bank, and agent change outcomes.
                         <strong>Currency rule:</strong> All amounts below are <strong>estimated in RMB first</strong> (what you pay onshore in China, or planning equivalents for overseas bank/notary lines); <strong>USD</strong> = RMB ÷ USD/CNY using the same rate as under Financials (live when the feed loads, otherwise a 2024-avg fallback of 7.2). The <strong>dashboard</strong> chart still follows the same RMB→USD rule when you pick USD.</p>
 
-                    <div class="space-y-3">
-
-                        <!-- 1 -->
-                        <div
-                            class="rounded-xl border border-slate-200 bg-white shadow-sm overflow-hidden grid grid-cols-1 lg:grid-cols-[3.25rem_minmax(0,1fr)_minmax(260px,400px)]">
-                            <div
-                                class="bg-emerald-600 text-white flex items-center justify-center py-3 lg:py-0 lg:min-h-[72px] text-lg font-bold tabular-nums">1</div>
-                            <div class="p-4 lg:p-5 border-t lg:border-t-0 lg:border-r border-slate-100">
-                                <p class="text-sm font-semibold text-slate-900 leading-snug" data-i18n="s01.title">Draft a company name
-                                    using the pattern <em>[City] + [Brand] + [Industry] + Co., Ltd.</em></p>
-                                <details class="wfoe-details mt-2">
-                                    <summary
-                                        class="cursor-pointer flex items-center gap-1.5 mt-1 w-fit text-emerald-700 hover:text-emerald-600 select-none">
-                                        <span class="sr-only" data-i18n="common.sr.toggle">Show or hide additional detail for this step</span>
-                                        <svg class="wfoe-disclosure-icon h-4 w-4 shrink-0" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                                            <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
-                                        </svg>
-                                    </summary>
-                                    <ul class="list-disc pl-4 text-sm text-slate-600 space-y-1.5 mt-3" data-i18n="s01.detail">
-                                        <li>The legal format is strict—e.g. Shanghai Acme CAD Design Co., Ltd.</li>
-                                        <li>Final name approval is part of filing; your agent can pre-check availability.
-                                        </li>
-                                    </ul>
-                                </details>
-                            </div>
-                            <div class="p-4 lg:p-5 bg-emerald-50/90 border-t lg:border-t-0 lg:border-l border-emerald-100">
-                                <p class="text-sm text-slate-700 leading-relaxed" data-wfoe-money="s01"></p>
-                            </div>
-                        </div>
-
-                        <!-- 2 -->
-                        <div
-                            class="rounded-xl border border-slate-200 bg-white shadow-sm overflow-hidden grid grid-cols-1 lg:grid-cols-[3.25rem_minmax(0,1fr)_minmax(260px,400px)]">
-                            <div
-                                class="bg-emerald-600 text-white flex items-center justify-center py-3 lg:py-0 lg:min-h-[72px] text-lg font-bold tabular-nums">2</div>
-                            <div class="p-4 lg:p-5 border-t lg:border-t-0 lg:border-r border-slate-100">
-                                <p class="text-sm font-semibold text-slate-900 leading-snug" data-i18n="s02.title">Find only commercial
-                                    office space—residential units cannot be a WFOE address.</p>
-                                <details class="wfoe-details mt-2">
-                                    <summary
-                                        class="cursor-pointer flex items-center gap-1.5 mt-1 w-fit text-emerald-700 hover:text-emerald-600 select-none">
-                                        <span class="sr-only" data-i18n="common.sr.toggle">Show or hide additional detail for this step</span>
-                                        <svg class="wfoe-disclosure-icon h-4 w-4 shrink-0" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                                            <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
-                                        </svg>
-                                    </summary>
-                                    <p class="text-sm text-slate-600 mt-3" data-i18n="s02.detail">Zoning must allow business registration;
-                                        verify with your agent before you sign.</p>
-                                </details>
-                            </div>
-                            <div class="p-4 lg:p-5 bg-emerald-50/90 border-t lg:border-t-0 lg:border-l border-emerald-100">
-                                <p class="text-sm text-slate-700 leading-relaxed" data-wfoe-money="s02"></p>
-                            </div>
-                        </div>
-
-                        <!-- 3 -->
-                        <div
-                            class="rounded-xl border border-slate-200 bg-white shadow-sm overflow-hidden grid grid-cols-1 lg:grid-cols-[3.25rem_minmax(0,1fr)_minmax(260px,400px)]">
-                            <div
-                                class="bg-emerald-600 text-white flex items-center justify-center py-3 lg:py-0 lg:min-h-[72px] text-lg font-bold tabular-nums">3</div>
-                            <div class="p-4 lg:p-5 border-t lg:border-t-0 lg:border-r border-slate-100">
-                                <p class="text-sm font-semibold text-slate-900 leading-snug" data-i18n="s03.title">Get the landlord’s red
-                                    Property Ownership Certificate (or equivalent) for the filing.</p>
-                                <details class="wfoe-details mt-2">
-                                    <summary
-                                        class="cursor-pointer flex items-center gap-1.5 mt-1 w-fit text-emerald-700 hover:text-emerald-600 select-none">
-                                        <span class="sr-only" data-i18n="common.sr.toggle">Show or hide additional detail for this step</span>
-                                        <svg class="wfoe-disclosure-icon h-4 w-4 shrink-0" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                                            <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
-                                        </svg>
-                                    </summary>
-                                    <p class="text-sm text-slate-600 mt-3" data-i18n="s03.detail">Without this document, the AMR typically
-                                        rejects the application.</p>
-                                </details>
-                            </div>
-                            <div class="p-4 lg:p-5 bg-emerald-50/90 border-t lg:border-t-0 lg:border-l border-emerald-100">
-                                <p class="text-sm text-slate-700 leading-relaxed" data-wfoe-money="s03"></p>
-                            </div>
-                        </div>
-
-                        <!-- 4 -->
-                        <div
-                            class="rounded-xl border border-slate-200 bg-white shadow-sm overflow-hidden grid grid-cols-1 lg:grid-cols-[3.25rem_minmax(0,1fr)_minmax(260px,400px)]">
-                            <div
-                                class="bg-emerald-600 text-white flex items-center justify-center py-3 lg:py-0 lg:min-h-[72px] text-lg font-bold tabular-nums">4</div>
-                            <div class="p-4 lg:p-5 border-t lg:border-t-0 lg:border-r border-slate-100">
-                                <p class="text-sm font-semibold text-slate-900 leading-snug" data-i18n="s04.title">Sign the commercial lease
-                                    (deposits often paid personally or by your offshore parent).</p>
-                                <details class="wfoe-details mt-2">
-                                    <summary
-                                        class="cursor-pointer flex items-center gap-1.5 mt-1 w-fit text-emerald-700 hover:text-emerald-600 select-none">
-                                        <span class="sr-only" data-i18n="common.sr.toggle">Show or hide additional detail for this step</span>
-                                        <svg class="wfoe-disclosure-icon h-4 w-4 shrink-0" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                                            <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
-                                        </svg>
-                                    </summary>
-                                    <p class="text-sm text-slate-600 mt-3" data-i18n="s04.detail">The tenant may not exist on paper yet; after
-                                        incorporation and chops, the WFOE may reimburse allowable pre-establishment
-                                        costs—confirm with your agent and accountant.</p>
-                                </details>
-                            </div>
-                            <div class="p-4 lg:p-5 bg-emerald-50/90 border-t lg:border-t-0 lg:border-l border-emerald-100">
-                                <p class="text-sm text-slate-700 leading-relaxed" data-wfoe-money="s04"></p>
-                            </div>
-                        </div>
-
-                        <!-- 5: corporate agent -->
-                        <div
-                            class="rounded-xl border border-slate-200 bg-white shadow-sm overflow-hidden grid grid-cols-1 lg:grid-cols-[3.25rem_minmax(0,1fr)_minmax(260px,400px)]">
-                            <div
-                                class="bg-emerald-600 text-white flex items-center justify-center py-3 lg:py-0 lg:min-h-[72px] text-lg font-bold tabular-nums">5</div>
-                            <div class="p-4 lg:p-5 border-t lg:border-t-0 lg:border-r border-slate-100">
-                                <p class="text-sm font-semibold text-slate-900 leading-snug" data-i18n="s05.title">Retain a <strong>corporate
-                                    services firm</strong> (WFOE registration agent) with a written scope—AMR filing, chops, and optional bank
-                                    / bookkeeping support.</p>
-                                <details class="wfoe-details mt-2">
-                                    <summary
-                                        class="cursor-pointer flex items-center gap-1.5 mt-1 w-fit text-emerald-700 hover:text-emerald-600 select-none">
-                                        <span class="sr-only" data-i18n="common.sr.toggle">Show or hide additional detail for this step</span>
-                                        <svg class="wfoe-disclosure-icon h-4 w-4 shrink-0" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                                            <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
-                                        </svg>
-                                    </summary>
-                                    <ul class="list-disc pl-4 text-sm text-slate-600 space-y-1.5 mt-3" data-i18n="s05.detail">
-                                        <li>Chinese law does not universally <strong>require</strong> a foreign founder to use an agent, but
-                                            AMR online portals, templates, and local practice are almost entirely in Chinese—<strong>most
-                                                overseas investors hire</strong> a firm to draft articles, run the AMR package, and coordinate
-                                            chops and bank KYC.</li>
-                                        <li>Compare quotes before you finalize notarized / apostille packs: “incorporation only” vs.
-                                            full-service (bank onboarding, bookkeeping, annual compliance).</li>
-                                        <li>Government AMR filing charges are usually modest; the main cash outlay here is <strong>professional
-                                                service fees</strong>.</li>
-                                    </ul>
-                                </details>
-                            </div>
-                            <div class="p-4 lg:p-5 bg-emerald-50/90 border-t lg:border-t-0 lg:border-l border-emerald-100">
-                                <p class="text-sm text-slate-700 leading-relaxed" data-wfoe-money="s05"></p>
-                            </div>
-                        </div>
-
-                        <!-- 6 -->
-                        <div
-                            class="rounded-xl border border-slate-200 bg-white shadow-sm overflow-hidden grid grid-cols-1 lg:grid-cols-[3.25rem_minmax(0,1fr)_minmax(260px,400px)]">
-                            <div
-                                class="bg-emerald-600 text-white flex items-center justify-center py-3 lg:py-0 lg:min-h-[72px] text-lg font-bold tabular-nums">6</div>
-                            <div class="p-4 lg:p-5 border-t lg:border-t-0 lg:border-r border-slate-100">
-                                <p class="text-sm font-semibold text-slate-900 leading-snug" data-i18n="s06.title">Notarize your passport
-                                    or parent-company documents with a notary in your home country (e.g. a U.S. Notary Public is typical for U.S. passport holders).</p>
-                                <details class="wfoe-details mt-2">
-                                    <summary
-                                        class="cursor-pointer flex items-center gap-1.5 mt-1 w-fit text-emerald-700 hover:text-emerald-600 select-none">
-                                        <span class="sr-only" data-i18n="common.sr.toggle">Show or hide additional detail for this step</span>
-                                        <svg class="wfoe-disclosure-icon h-4 w-4 shrink-0" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                                            <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
-                                        </svg>
-                                    </summary>
-                                    <p class="text-sm text-slate-600 mt-3" data-i18n="s06.detail">Individual investor = passport; corporate
-                                        parent = entity docs—your agent will list exactly what is needed.</p>
-                                </details>
-                            </div>
-                            <div class="p-4 lg:p-5 bg-emerald-50/90 border-t lg:border-t-0 lg:border-l border-emerald-100">
-                                <p class="text-sm text-slate-700 leading-relaxed" data-wfoe-money="s06"></p>
-                            </div>
-                        </div>
-
-                        <!-- 7 -->
-                        <div
-                            class="rounded-xl border border-slate-200 bg-white shadow-sm overflow-hidden grid grid-cols-1 lg:grid-cols-[3.25rem_minmax(0,1fr)_minmax(260px,400px)]">
-                            <div
-                                class="bg-emerald-600 text-white flex items-center justify-center py-3 lg:py-0 lg:min-h-[72px] text-lg font-bold tabular-nums">7</div>
-                            <div class="p-4 lg:p-5 border-t lg:border-t-0 lg:border-r border-slate-100">
-                                <p class="text-sm font-semibold text-slate-900 leading-snug" data-i18n="s07.title">Obtain an Apostille from your country’s designated Hague authority (e.g. a U.S. state Secretary of State for documents originating in the United States).</p>
-                                <details class="wfoe-details mt-2">
-                                    <summary
-                                        class="cursor-pointer flex items-center gap-1.5 mt-1 w-fit text-emerald-700 hover:text-emerald-600 select-none">
-                                        <span class="sr-only" data-i18n="common.sr.toggle">Show or hide additional detail for this step</span>
-                                        <svg class="wfoe-disclosure-icon h-4 w-4 shrink-0" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                                            <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
-                                        </svg>
-                                    </summary>
-                                    <p class="text-sm text-slate-600 mt-3" data-i18n="s07.detail">You no longer need Chinese Embassy
-                                        legalization for this path—the Apostille is the standard certification.</p>
-                                </details>
-                            </div>
-                            <div class="p-4 lg:p-5 bg-emerald-50/90 border-t lg:border-t-0 lg:border-l border-emerald-100">
-                                <p class="text-sm text-slate-700 leading-relaxed" data-wfoe-money="s07"></p>
-                            </div>
-                        </div>
-
-                        <!-- 8 -->
-                        <div
-                            class="rounded-xl border border-slate-200 bg-white shadow-sm overflow-hidden grid grid-cols-1 lg:grid-cols-[3.25rem_minmax(0,1fr)_minmax(260px,400px)]">
-                            <div
-                                class="bg-emerald-600 text-white flex items-center justify-center py-3 lg:py-0 lg:min-h-[72px] text-lg font-bold tabular-nums">8</div>
-                            <div class="p-4 lg:p-5 border-t lg:border-t-0 lg:border-r border-slate-100">
-                                <p class="text-sm font-semibold text-slate-900 leading-snug" data-i18n="s08.title">Set registered capital and
-                                    pay-in schedule in the articles—<strong>do not wire equity yet</strong>.</p>
-                                <details class="wfoe-details mt-2">
-                                    <summary
-                                        class="cursor-pointer flex items-center gap-1.5 mt-1 w-fit text-emerald-700 hover:text-emerald-600 select-none">
-                                        <span class="sr-only" data-i18n="common.sr.toggle">Show or hide additional detail for this step</span>
-                                        <svg class="wfoe-disclosure-icon h-4 w-4 shrink-0" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                                            <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
-                                        </svg>
-                                    </summary>
-                                    <ul class="list-disc pl-4 text-sm text-slate-600 space-y-1.5 mt-3" data-i18n="s08.detail">
-                                        <li>Registered capital (注册资本) is the subscribed total on the license; it is
-                                            not the same as annual rent or payroll.</li>
-                                        <li>Under PRC Company Law (revised 1 Jul 2024), full pay-in within
-                                            <strong>five years</strong> of establishment unless transition rules apply for
-                                            older companies.</li>
-                                        <li>Choose amount using: minimum viable for your sector, business plan, license
-                                            minimums, banking credibility, and repatriation plans—align with your
-                                            accountant.</li>
-                                        <li>Employer social insurance + housing fund is separate from this line—see step 9
-                                            and the dashboard.</li>
-                                    </ul>
-                                </details>
-                            </div>
-                            <div class="p-4 lg:p-5 bg-emerald-50/90 border-t lg:border-t-0 lg:border-l border-emerald-100">
-                                <p class="text-sm text-slate-700 leading-relaxed" data-wfoe-money="s08"></p>
-                            </div>
-                        </div>
-
-                        <!-- 9 -->
-                        <div
-                            class="rounded-xl border border-slate-200 bg-white shadow-sm overflow-hidden grid grid-cols-1 lg:grid-cols-[3.25rem_minmax(0,1fr)_minmax(260px,400px)]">
-                            <div
-                                class="bg-emerald-600 text-white flex items-center justify-center py-3 lg:py-0 lg:min-h-[72px] text-lg font-bold tabular-nums">9</div>
-                            <div class="p-4 lg:p-5 border-t lg:border-t-0 lg:border-r border-slate-100">
-                                <p class="text-sm font-semibold text-slate-900 leading-snug" data-i18n="s09.title">Model a 12-month budget:
-                                    rent, agents, payroll, and statutory “five insurances + fund.”</p>
-                                <details class="wfoe-details mt-2">
-                                    <summary
-                                        class="cursor-pointer flex items-center gap-1.5 mt-1 w-fit text-emerald-700 hover:text-emerald-600 select-none">
-                                        <span class="sr-only" data-i18n="common.sr.toggle">Show or hide additional detail for this step</span>
-                                        <svg class="wfoe-disclosure-icon h-4 w-4 shrink-0" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                                            <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
-                                        </svg>
-                                    </summary>
-                                    <ul class="list-disc pl-4 text-sm text-slate-600 space-y-1.5 mt-3" data-i18n="s09.detail">
-                                        <li>Pre-WFOE costs (lease, travel) often come from personal or parent funds;
-                                            reimbursement after setup may be possible—confirm with your agent.</li>
-                                        <li>Payroll + statutory is usually the largest variable for a CAD shop—use the
-                                            <a href="#costs" class="text-emerald-600 font-semibold underline">dashboard</a>.
-                                        </li>
-                                        <li>Assume onshore operating cash in China after capital injection (steps 17–18)
-                                            and revenue.</li>
-                                    </ul>
-                                </details>
-                            </div>
-                            <div class="p-4 lg:p-5 bg-emerald-50/90 border-t lg:border-t-0 lg:border-l border-emerald-100">
-                                <p class="text-sm text-slate-700 leading-relaxed" data-wfoe-money="s09"></p>
-                            </div>
-                        </div>
-
-                        <!-- 10 -->
-                        <div
-                            class="rounded-xl border border-slate-200 bg-white shadow-sm overflow-hidden grid grid-cols-1 lg:grid-cols-[3.25rem_minmax(0,1fr)_minmax(260px,400px)]">
-                            <div
-                                class="bg-emerald-600 text-white flex items-center justify-center py-3 lg:py-0 lg:min-h-[72px] text-lg font-bold tabular-nums">10</div>
-                            <div class="p-4 lg:p-5 border-t lg:border-t-0 lg:border-r border-slate-100">
-                                <p class="text-sm font-semibold text-slate-900 leading-snug" data-i18n="s10.title">Name Legal Rep, Executive
-                                    Director, and Supervisor—two roles cannot be the same person.</p>
-                                <details class="wfoe-details mt-2">
-                                    <summary
-                                        class="cursor-pointer flex items-center gap-1.5 mt-1 w-fit text-emerald-700 hover:text-emerald-600 select-none">
-                                        <span class="sr-only" data-i18n="common.sr.toggle">Show or hide additional detail for this step</span>
-                                        <svg class="wfoe-disclosure-icon h-4 w-4 shrink-0" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                                            <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
-                                        </svg>
-                                    </summary>
-                                    <p class="text-sm text-slate-600 mt-3" data-i18n="s10.detail">The Supervisor cannot be the Legal
-                                        Representative or Director. These names go into articles and bank mandates.</p>
-                                </details>
-                            </div>
-                            <div class="p-4 lg:p-5 bg-emerald-50/90 border-t lg:border-t-0 lg:border-l border-emerald-100">
-                                <p class="text-sm text-slate-700 leading-relaxed" data-wfoe-money="s10"></p>
-                            </div>
-                        </div>
-
-                        <!-- 11 -->
-                        <div
-                            class="rounded-xl border border-slate-200 bg-white shadow-sm overflow-hidden grid grid-cols-1 lg:grid-cols-[3.25rem_minmax(0,1fr)_minmax(260px,400px)]">
-                            <div
-                                class="bg-emerald-600 text-white flex items-center justify-center py-3 lg:py-0 lg:min-h-[72px] text-lg font-bold tabular-nums">11</div>
-                            <div class="p-4 lg:p-5 border-t lg:border-t-0 lg:border-r border-slate-100">
-                                <p class="text-sm font-semibold text-slate-900 leading-snug" data-i18n="s11.title">File the incorporation
-                                    package with the AMR (lease + apostille + articles).</p>
-                                <details class="wfoe-details mt-2">
-                                    <summary
-                                        class="cursor-pointer flex items-center gap-1.5 mt-1 w-fit text-emerald-700 hover:text-emerald-600 select-none">
-                                        <span class="sr-only" data-i18n="common.sr.toggle">Show or hide additional detail for this step</span>
-                                        <svg class="wfoe-disclosure-icon h-4 w-4 shrink-0" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                                            <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
-                                        </svg>
-                                    </summary>
-                                    <p class="text-sm text-slate-600 mt-3" data-i18n="s11.detail">Submit to the local Administration for Market
-                                        Regulation (AMR): lease, apostilled identity/parent docs, articles (capital,
-                                        pay-in schedule, roles), and other required company rules.</p>
-                                </details>
-                            </div>
-                            <div class="p-4 lg:p-5 bg-emerald-50/90 border-t lg:border-t-0 lg:border-l border-emerald-100">
-                                <p class="text-sm text-slate-700 leading-relaxed" data-wfoe-money="s11"></p>
-                            </div>
-                        </div>
-
-                        <!-- 12 -->
-                        <div
-                            class="rounded-xl border border-slate-200 bg-white shadow-sm overflow-hidden grid grid-cols-1 lg:grid-cols-[3.25rem_minmax(0,1fr)_minmax(260px,400px)]">
-                            <div
-                                class="bg-emerald-600 text-white flex items-center justify-center py-3 lg:py-0 lg:min-h-[72px] text-lg font-bold tabular-nums">12</div>
-                            <div class="p-4 lg:p-5 border-t lg:border-t-0 lg:border-r border-slate-100">
-                                <p class="text-sm font-semibold text-slate-900 leading-snug" data-i18n="s12.title">Collect your Business
-                                    License (营业执照)—the company legally exists.</p>
-                                <details class="wfoe-details mt-2">
-                                    <summary
-                                        class="cursor-pointer flex items-center gap-1.5 mt-1 w-fit text-emerald-700 hover:text-emerald-600 select-none">
-                                        <span class="sr-only" data-i18n="common.sr.toggle">Show or hide additional detail for this step</span>
-                                        <svg class="wfoe-disclosure-icon h-4 w-4 shrink-0" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                                            <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
-                                        </svg>
-                                    </summary>
-                                    <p class="text-sm text-slate-600 mt-3" data-i18n="s12.detail">You still have no operational corporate bank
-                                        accounts until steps 14–15.</p>
-                                </details>
-                            </div>
-                            <div class="p-4 lg:p-5 bg-emerald-50/90 border-t lg:border-t-0 lg:border-l border-emerald-100">
-                                <p class="text-sm text-slate-700 leading-relaxed" data-wfoe-money="s12"></p>
-                            </div>
-                        </div>
-
-                        <!-- 13 -->
-                        <div
-                            class="rounded-xl border border-slate-200 bg-white shadow-sm overflow-hidden grid grid-cols-1 lg:grid-cols-[3.25rem_minmax(0,1fr)_minmax(260px,400px)]">
-                            <div
-                                class="bg-emerald-600 text-white flex items-center justify-center py-3 lg:py-0 lg:min-h-[72px] text-lg font-bold tabular-nums">13</div>
-                            <div class="p-4 lg:p-5 border-t lg:border-t-0 lg:border-r border-slate-100">
-                                <p class="text-sm font-semibold text-slate-900 leading-snug" data-i18n="s13.title">Register and carve your
-                                    company chops (official + financial seals).</p>
-                                <details class="wfoe-details mt-2">
-                                    <summary
-                                        class="cursor-pointer flex items-center gap-1.5 mt-1 w-fit text-emerald-700 hover:text-emerald-600 select-none">
-                                        <span class="sr-only" data-i18n="common.sr.toggle">Show or hide additional detail for this step</span>
-                                        <svg class="wfoe-disclosure-icon h-4 w-4 shrink-0" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                                            <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
-                                        </svg>
-                                    </summary>
-                                    <p class="text-sm text-slate-600 mt-3" data-i18n="s13.detail">PSB + licensed vendor. A red chop on a
-                                        contract is often decisive—secure storage; whoever holds chops controls signing.
-                                    </p>
-                                </details>
-                            </div>
-                            <div class="p-4 lg:p-5 bg-emerald-50/90 border-t lg:border-t-0 lg:border-l border-emerald-100">
-                                <p class="text-sm text-slate-700 leading-relaxed" data-wfoe-money="s13"></p>
-                            </div>
-                        </div>
-
-                        <!-- 14 -->
-                        <div
-                            class="rounded-xl border border-slate-200 bg-white shadow-sm overflow-hidden grid grid-cols-1 lg:grid-cols-[3.25rem_minmax(0,1fr)_minmax(260px,400px)]">
-                            <div
-                                class="bg-emerald-600 text-white flex items-center justify-center py-3 lg:py-0 lg:min-h-[72px] text-lg font-bold tabular-nums">14</div>
-                            <div class="p-4 lg:p-5 border-t lg:border-t-0 lg:border-r border-slate-100">
-                                <p class="text-sm font-semibold text-slate-900 leading-snug" data-i18n="s14.title">Open the RMB basic
-                                    deposit account (基本户) with license + chops.</p>
-                                <details class="wfoe-details mt-2">
-                                    <summary
-                                        class="cursor-pointer flex items-center gap-1.5 mt-1 w-fit text-emerald-700 hover:text-emerald-600 select-none">
-                                        <span class="sr-only" data-i18n="common.sr.toggle">Show or hide additional detail for this step</span>
-                                        <svg class="wfoe-disclosure-icon h-4 w-4 shrink-0" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                                            <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
-                                        </svg>
-                                    </summary>
-                                    <p class="text-sm text-slate-600 mt-3" data-i18n="s14.detail">Main RMB account for salaries, rent, and
-                                        tax—often the only account that can pay cash salaries. KYC applies.</p>
-                                </details>
-                            </div>
-                            <div class="p-4 lg:p-5 bg-emerald-50/90 border-t lg:border-t-0 lg:border-l border-emerald-100">
-                                <p class="text-sm text-slate-700 leading-relaxed" data-wfoe-money="s14"></p>
-                            </div>
-                        </div>
-
-                        <!-- 15 -->
-                        <div
-                            class="rounded-xl border border-slate-200 bg-white shadow-sm overflow-hidden grid grid-cols-1 lg:grid-cols-[3.25rem_minmax(0,1fr)_minmax(260px,400px)]">
-                            <div
-                                class="bg-emerald-600 text-white flex items-center justify-center py-3 lg:py-0 lg:min-h-[72px] text-lg font-bold tabular-nums">15</div>
-                            <div class="p-4 lg:p-5 border-t lg:border-t-0 lg:border-r border-slate-100">
-                                <p class="text-sm font-semibold text-slate-900 leading-snug" data-i18n="s15.title">Open the foreign-investment
-                                    capital account for inbound equity (FCY).</p>
-                                <details class="wfoe-details mt-2">
-                                    <summary
-                                        class="cursor-pointer flex items-center gap-1.5 mt-1 w-fit text-emerald-700 hover:text-emerald-600 select-none">
-                                        <span class="sr-only" data-i18n="common.sr.toggle">Show or hide additional detail for this step</span>
-                                        <svg class="wfoe-disclosure-icon h-4 w-4 shrink-0" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                                            <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
-                                        </svg>
-                                    </summary>
-                                    <p class="text-sm text-slate-600 mt-3" data-i18n="s15.detail">Name varies by bank (FDI / capital account).
-                                        Pairs with SAFE registration of the foreign-invested enterprise.</p>
-                                </details>
-                            </div>
-                            <div class="p-4 lg:p-5 bg-emerald-50/90 border-t lg:border-t-0 lg:border-l border-emerald-100">
-                                <p class="text-sm text-slate-700 leading-relaxed" data-wfoe-money="s15"></p>
-                            </div>
-                        </div>
-
-                        <!-- 16 -->
-                        <div
-                            class="rounded-xl border border-slate-200 bg-white shadow-sm overflow-hidden grid grid-cols-1 lg:grid-cols-[3.25rem_minmax(0,1fr)_minmax(260px,400px)]">
-                            <div
-                                class="bg-emerald-600 text-white flex items-center justify-center py-3 lg:py-0 lg:min-h-[72px] text-lg font-bold tabular-nums">16</div>
-                            <div class="p-4 lg:p-5 border-t lg:border-t-0 lg:border-r border-slate-100">
-                                <p class="text-sm font-semibold text-slate-900 leading-snug" data-i18n="s16.title">Prepare the bank’s
-                                    capital-contribution / FX forms with your agent (投资款 wording).</p>
-                                <details class="wfoe-details mt-2">
-                                    <summary
-                                        class="cursor-pointer flex items-center gap-1.5 mt-1 w-fit text-emerald-700 hover:text-emerald-600 select-none">
-                                        <span class="sr-only" data-i18n="common.sr.toggle">Show or hide additional detail for this step</span>
-                                        <svg class="wfoe-disclosure-icon h-4 w-4 shrink-0" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                                            <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
-                                        </svg>
-                                    </summary>
-                                    <p class="text-sm text-slate-600 mt-3" data-i18n="s16.detail">The remittance must be coded as registered
-                                        capital—not an informal “transfer.” Codes differ by bank.</p>
-                                </details>
-                            </div>
-                            <div class="p-4 lg:p-5 bg-emerald-50/90 border-t lg:border-t-0 lg:border-l border-emerald-100">
-                                <p class="text-sm text-slate-700 leading-relaxed" data-wfoe-money="s16"></p>
-                            </div>
-                        </div>
-
-                        <!-- 17 -->
-                        <div
-                            class="rounded-xl border border-slate-200 bg-white shadow-sm overflow-hidden grid grid-cols-1 lg:grid-cols-[3.25rem_minmax(0,1fr)_minmax(260px,400px)]">
-                            <div
-                                class="bg-emerald-600 text-white flex items-center justify-center py-3 lg:py-0 lg:min-h-[72px] text-lg font-bold tabular-nums">17</div>
-                            <div class="p-4 lg:p-5 border-t lg:border-t-0 lg:border-r border-slate-100">
-                                <p class="text-sm font-semibold text-slate-900 leading-snug" data-i18n="s17.title">Wire registered capital from
-                                    abroad in foreign currency to the designated inbound account.</p>
-                                <details class="wfoe-details mt-2">
-                                    <summary
-                                        class="cursor-pointer flex items-center gap-1.5 mt-1 w-fit text-emerald-700 hover:text-emerald-600 select-none">
-                                        <span class="sr-only" data-i18n="common.sr.toggle">Show or hide additional detail for this step</span>
-                                        <svg class="wfoe-disclosure-icon h-4 w-4 shrink-0" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                                            <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
-                                        </svg>
-                                    </summary>
-                                    <p class="text-sm text-slate-600 mt-3" data-i18n="s17.detail">Bank records paid-in capital (实缴) toward SAFE
-                                        filing; obtain FX settlement documents. Multiple tranches allowed within five-year
-                                        pay-in (step 8).</p>
-                                </details>
-                            </div>
-                            <div class="p-4 lg:p-5 bg-emerald-50/90 border-t lg:border-t-0 lg:border-l border-emerald-100">
-                                <p class="text-sm text-slate-700 leading-relaxed" data-wfoe-money="s17"></p>
-                            </div>
-                        </div>
-
-                        <!-- 18 -->
-                        <div
-                            class="rounded-xl border border-slate-200 bg-white shadow-sm overflow-hidden grid grid-cols-1 lg:grid-cols-[3.25rem_minmax(0,1fr)_minmax(260px,400px)]">
-                            <div
-                                class="bg-emerald-600 text-white flex items-center justify-center py-3 lg:py-0 lg:min-h-[72px] text-lg font-bold tabular-nums">18</div>
-                            <div class="p-4 lg:p-5 border-t lg:border-t-0 lg:border-r border-slate-100">
-                                <p class="text-sm font-semibold text-slate-900 leading-snug" data-i18n="s18.title">Settle FX (资本金结汇) and
-                                    move RMB into the basic account for operations.</p>
-                                <details class="wfoe-details mt-2">
-                                    <summary
-                                        class="cursor-pointer flex items-center gap-1.5 mt-1 w-fit text-emerald-700 hover:text-emerald-600 select-none">
-                                        <span class="sr-only" data-i18n="common.sr.toggle">Show or hide additional detail for this step</span>
-                                        <svg class="wfoe-disclosure-icon h-4 w-4 shrink-0" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                                            <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
-                                        </svg>
-                                    </summary>
-                                    <p class="text-sm text-slate-600 mt-3" data-i18n="s18.detail">Follow the bank’s process; this is company
-                                        capital settlement, not personal remittance.</p>
-                                </details>
-                            </div>
-                            <div class="p-4 lg:p-5 bg-emerald-50/90 border-t lg:border-t-0 lg:border-l border-emerald-100">
-                                <p class="text-sm text-slate-700 leading-relaxed" data-wfoe-money="s18"></p>
-                            </div>
-                        </div>
-
-                        <!-- 19 -->
-                        <div
-                            class="rounded-xl border border-slate-200 bg-white shadow-sm overflow-hidden grid grid-cols-1 lg:grid-cols-[3.25rem_minmax(0,1fr)_minmax(260px,400px)]">
-                            <div
-                                class="bg-emerald-600 text-white flex items-center justify-center py-3 lg:py-0 lg:min-h-[72px] text-lg font-bold tabular-nums">19</div>
-                            <div class="p-4 lg:p-5 border-t lg:border-t-0 lg:border-r border-slate-100">
-                                <p class="text-sm font-semibold text-slate-900 leading-snug" data-i18n="s19.title">Register with the tax bureau
-                                    and obtain fapiao (official invoicing) capability.</p>
-                                <details class="wfoe-details mt-2">
-                                    <summary
-                                        class="cursor-pointer flex items-center gap-1.5 mt-1 w-fit text-emerald-700 hover:text-emerald-600 select-none">
-                                        <span class="sr-only" data-i18n="common.sr.toggle">Show or hide additional detail for this step</span>
-                                        <svg class="wfoe-disclosure-icon h-4 w-4 shrink-0" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                                            <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
-                                        </svg>
-                                    </summary>
-                                    <p class="text-sm text-slate-600 mt-3" data-i18n="s19.detail">You need this to bill customers compliantly on
-                                        the mainland.</p>
-                                </details>
-                            </div>
-                            <div class="p-4 lg:p-5 bg-emerald-50/90 border-t lg:border-t-0 lg:border-l border-emerald-100">
-                                <p class="text-sm text-slate-700 leading-relaxed" data-wfoe-money="s19"></p>
-                            </div>
-                        </div>
-
-                        <!-- 20 -->
-                        <div
-                            class="rounded-xl border border-slate-200 bg-white shadow-sm overflow-hidden grid grid-cols-1 lg:grid-cols-[3.25rem_minmax(0,1fr)_minmax(260px,400px)]">
-                            <div
-                                class="bg-emerald-600 text-white flex items-center justify-center py-3 lg:py-0 lg:min-h-[72px] text-lg font-bold tabular-nums">20</div>
-                            <div class="p-4 lg:p-5 border-t lg:border-t-0 lg:border-r border-slate-100">
-                                <p class="text-sm font-semibold text-slate-900 leading-snug" data-i18n="s20.title">Register for social
-                                    insurance—then you can hire and run payroll.</p>
-                                <details class="wfoe-details mt-2">
-                                    <summary
-                                        class="cursor-pointer flex items-center gap-1.5 mt-1 w-fit text-emerald-700 hover:text-emerald-600 select-none">
-                                        <span class="sr-only" data-i18n="common.sr.toggle">Show or hide additional detail for this step</span>
-                                        <svg class="wfoe-disclosure-icon h-4 w-4 shrink-0" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                                            <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
-                                        </svg>
-                                    </summary>
-                                    <p class="text-sm text-slate-600 mt-3" data-i18n="s20.detail">Mandatory contributions are paid from the RMB
-                                        basic account, funded by capital (steps 17–18) and revenue. Compare cities
-                                        on the <a href="#costs" class="text-emerald-600 font-semibold underline">dashboard</a>.
-                                    </p>
-                                </details>
-                            </div>
-                            <div class="p-4 lg:p-5 bg-emerald-50/90 border-t lg:border-t-0 lg:border-l border-emerald-100">
-                                <p class="text-sm text-slate-700 leading-relaxed" data-wfoe-money="s20"></p>
-                            </div>
-                        </div>
-
+                    <div class="space-y-3" id="wfoe-steps-mount" aria-busy="true">
+                        <noscript><p class="text-sm text-slate-600">JavaScript is required to display the WFOE step list. See <a href="assets/data/wfoe-steps.json" class="text-emerald-700 underline">assets/data/wfoe-steps.json</a> for the raw data.</p></noscript>
+                    
                     </div>
                 </div>
 
@@ -646,178 +142,9 @@
                         capital-injection account. Steps and timing vary by city; below is a common sequence.</p>
                     <p class="text-xs text-slate-500 mb-6 leading-relaxed border-l-2 border-slate-200 pl-3" data-i18n="process.fee_note_domestic">Right column: rough cash-impact hints (2024–2025 style). Not quotes—city and bank policies differ. <strong>RMB</strong> is the anchor; each line shows <strong>¥…</strong> with <strong>USD in parentheses</strong> as RMB ÷ USD/CNY (same rate as under Financials—live when the feed loads, otherwise a 2024-avg fallback of 7.2).</p>
 
-                    <div class="space-y-3">
-
-                        <div class="rounded-xl border border-slate-200 bg-white shadow-sm overflow-hidden grid grid-cols-1 lg:grid-cols-[3.25rem_minmax(0,1fr)_minmax(260px,400px)]">
-                            <div class="bg-emerald-600 text-white flex items-center justify-center py-3 lg:py-0 lg:min-h-[72px] text-lg font-bold tabular-nums">1</div>
-                            <div class="p-4 lg:p-5 border-t lg:border-t-0 lg:border-r border-slate-100">
-                                <p class="text-sm font-semibold text-slate-900 leading-snug" data-i18n="d01.title">Decide <strong>shareholders</strong>, <strong>legal representative</strong>, <strong>supervisor</strong>, and (where required) <strong>finance contact</strong>; prepare PRC ID cards and mobile numbers for real-name verification.</p>
-                                <details class="wfoe-details mt-2">
-                                    <summary class="cursor-pointer flex items-center gap-1.5 mt-1 w-fit text-emerald-700 hover:text-emerald-600 select-none">
-                                        <span class="sr-only" data-i18n="common.sr.toggle">Show or hide additional detail for this step</span>
-                                        <svg class="wfoe-disclosure-icon h-4 w-4 shrink-0" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" /></svg>
-                                    </summary>
-                                    <p class="text-sm text-slate-600 mt-3" data-i18n="d01.detail">Director and supervisor cannot be the same person in the standard one-shareholder layout; your filing portal will flag conflicts.</p>
-                                </details>
-                            </div>
-                            <div class="p-4 lg:p-5 bg-emerald-50/90 border-t lg:border-t-0 lg:border-l border-emerald-100">
-                                <p class="text-sm text-slate-700 leading-relaxed domestic-fee" data-domestic-fee="d01"></p>
-                            </div>
-                        </div>
-
-                        <div class="rounded-xl border border-slate-200 bg-white shadow-sm overflow-hidden grid grid-cols-1 lg:grid-cols-[3.25rem_minmax(0,1fr)_minmax(260px,400px)]">
-                            <div class="bg-emerald-600 text-white flex items-center justify-center py-3 lg:py-0 lg:min-h-[72px] text-lg font-bold tabular-nums">2</div>
-                            <div class="p-4 lg:p-5 border-t lg:border-t-0 lg:border-r border-slate-100">
-                                <p class="text-sm font-semibold text-slate-900 leading-snug" data-i18n="d02.title">Reserve <strong>3–5 candidate names</strong> and secure a <strong>compliant registered address</strong>—lease + property certificate, or (where permitted) a government/business-park cluster address.</p>
-                                <details class="wfoe-details mt-2">
-                                    <summary class="cursor-pointer flex items-center gap-1.5 mt-1 w-fit text-emerald-700 hover:text-emerald-600 select-none">
-                                        <span class="sr-only" data-i18n="common.sr.toggle">Show or hide additional detail for this step</span>
-                                        <svg class="wfoe-disclosure-icon h-4 w-4 shrink-0" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" /></svg>
-                                    </summary>
-                                    <p class="text-sm text-slate-600 mt-3" data-i18n="d02.detail">Many cities run name checks inside the same “one-stop” website; the AMR must approve the final name before issuance.</p>
-                                </details>
-                            </div>
-                            <div class="p-4 lg:p-5 bg-emerald-50/90 border-t lg:border-t-0 lg:border-l border-emerald-100">
-                                <p class="text-sm text-slate-700 leading-relaxed domestic-fee" data-domestic-fee="d02"></p>
-                            </div>
-                        </div>
-
-                        <div class="rounded-xl border border-slate-200 bg-white shadow-sm overflow-hidden grid grid-cols-1 lg:grid-cols-[3.25rem_minmax(0,1fr)_minmax(260px,400px)]">
-                            <div class="bg-emerald-600 text-white flex items-center justify-center py-3 lg:py-0 lg:min-h-[72px] text-lg font-bold tabular-nums">3</div>
-                            <div class="p-4 lg:p-5 border-t lg:border-t-0 lg:border-r border-slate-100">
-                                <p class="text-sm font-semibold text-slate-900 leading-snug" data-i18n="d03.title">Set <strong>subscribed capital</strong>, <strong>shareholding ratios</strong>, payment timeline, and <strong>business scope</strong> (and any license-triggering lines).</p>
-                                <details class="wfoe-details mt-2">
-                                    <summary class="cursor-pointer flex items-center gap-1.5 mt-1 w-fit text-emerald-700 hover:text-emerald-600 select-none">
-                                        <span class="sr-only" data-i18n="common.sr.toggle">Show or hide additional detail for this step</span>
-                                        <svg class="wfoe-disclosure-icon h-4 w-4 shrink-0" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" /></svg>
-                                    </summary>
-                                    <p class="text-sm text-slate-600 mt-3" data-i18n="d03.detail">Under the 2024 Company Law, subscribed amounts must generally be fully paid within <strong>five years</strong> of incorporation unless transition rules apply—document the schedule in the articles.</p>
-                                </details>
-                            </div>
-                            <div class="p-4 lg:p-5 bg-emerald-50/90 border-t lg:border-t-0 lg:border-l border-emerald-100">
-                                <p class="text-sm text-slate-700 leading-relaxed domestic-fee" data-domestic-fee="d03"></p>
-                            </div>
-                        </div>
-
-                        <div class="rounded-xl border border-slate-200 bg-white shadow-sm overflow-hidden grid grid-cols-1 lg:grid-cols-[3.25rem_minmax(0,1fr)_minmax(260px,400px)]">
-                            <div class="bg-emerald-600 text-white flex items-center justify-center py-3 lg:py-0 lg:min-h-[72px] text-lg font-bold tabular-nums">4</div>
-                            <div class="p-4 lg:p-5 border-t lg:border-t-0 lg:border-r border-slate-100">
-                                <p class="text-sm font-semibold text-slate-900 leading-snug" data-i18n="d04.title">File online through the provincial <strong>government service portal</strong> / <strong>enterprise “one-stop”</strong> (e.g. 开办企业一窗通)—upload IDs, address proof, generated articles, and e-sign with facial recognition.</p>
-                                <details class="wfoe-details mt-2">
-                                    <summary class="cursor-pointer flex items-center gap-1.5 mt-1 w-fit text-emerald-700 hover:text-emerald-600 select-none">
-                                        <span class="sr-only" data-i18n="common.sr.toggle">Show or hide additional detail for this step</span>
-                                        <svg class="wfoe-disclosure-icon h-4 w-4 shrink-0" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" /></svg>
-                                    </summary>
-                                    <p class="text-sm text-slate-600 mt-3" data-i18n="d04.detail">Optional: hire a local bookkeeping/agent firm (<strong>代办</strong>)—common for first-time founders; scope should list filing, chops, and tax onboarding.</p>
-                                </details>
-                            </div>
-                            <div class="p-4 lg:p-5 bg-emerald-50/90 border-t lg:border-t-0 lg:border-l border-emerald-100">
-                                <p class="text-sm text-slate-700 leading-relaxed domestic-fee" data-domestic-fee="d04"></p>
-                            </div>
-                        </div>
-
-                        <div class="rounded-xl border border-slate-200 bg-white shadow-sm overflow-hidden grid grid-cols-1 lg:grid-cols-[3.25rem_minmax(0,1fr)_minmax(260px,400px)]">
-                            <div class="bg-emerald-600 text-white flex items-center justify-center py-3 lg:py-0 lg:min-h-[72px] text-lg font-bold tabular-nums">5</div>
-                            <div class="p-4 lg:p-5 border-t lg:border-t-0 lg:border-r border-slate-100">
-                                <p class="text-sm font-semibold text-slate-900 leading-snug" data-i18n="d05.title">AMR review → receive the <strong>营业执照</strong> (electronic license immediate in many cities; paper optional).</p>
-                                <details class="wfoe-details mt-2">
-                                    <summary class="cursor-pointer flex items-center gap-1.5 mt-1 w-fit text-emerald-700 hover:text-emerald-600 select-none">
-                                        <span class="sr-only" data-i18n="common.sr.toggle">Show or hide additional detail for this step</span>
-                                        <svg class="wfoe-disclosure-icon h-4 w-4 shrink-0" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" /></svg>
-                                    </summary>
-                                    <p class="text-sm text-slate-600 mt-3" data-i18n="d05.detail">Typical review windows are roughly <strong>1–3 working days</strong> when materials are complete—longer if the name or scope needs fixes.</p>
-                                </details>
-                            </div>
-                            <div class="p-4 lg:p-5 bg-emerald-50/90 border-t lg:border-t-0 lg:border-l border-emerald-100">
-                                <p class="text-sm text-slate-700 leading-relaxed domestic-fee" data-domestic-fee="d05"></p>
-                            </div>
-                        </div>
-
-                        <div class="rounded-xl border border-slate-200 bg-white shadow-sm overflow-hidden grid grid-cols-1 lg:grid-cols-[3.25rem_minmax(0,1fr)_minmax(260px,400px)]">
-                            <div class="bg-emerald-600 text-white flex items-center justify-center py-3 lg:py-0 lg:min-h-[72px] text-lg font-bold tabular-nums">6</div>
-                            <div class="p-4 lg:p-5 border-t lg:border-t-0 lg:border-r border-slate-100">
-                                <p class="text-sm font-semibold text-slate-900 leading-snug" data-i18n="d06.title">Carve and file <strong>official seals</strong> (公章, 财务章, 法人章, 发票章 as needed) with the public-security filing system.</p>
-                                <details class="wfoe-details mt-2">
-                                    <summary class="cursor-pointer flex items-center gap-1.5 mt-1 w-fit text-emerald-700 hover:text-emerald-600 select-none">
-                                        <span class="sr-only" data-i18n="common.sr.toggle">Show or hide additional detail for this step</span>
-                                        <svg class="wfoe-disclosure-icon h-4 w-4 shrink-0" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" /></svg>
-                                    </summary>
-                                    <p class="text-sm text-slate-600 mt-3" data-i18n="d06.detail">Some municipalities bundle <strong>free first seals</strong> for new market entrants—check the same one-stop portal.</p>
-                                </details>
-                            </div>
-                            <div class="p-4 lg:p-5 bg-emerald-50/90 border-t lg:border-t-0 lg:border-l border-emerald-100">
-                                <p class="text-sm text-slate-700 leading-relaxed" data-i18n="d06.money"><strong>Est.:</strong> if not free, a full set often <strong>¥300–1,200</strong>; express/specialty materials extra.</p>
-                            </div>
-                        </div>
-
-                        <div class="rounded-xl border border-slate-200 bg-white shadow-sm overflow-hidden grid grid-cols-1 lg:grid-cols-[3.25rem_minmax(0,1fr)_minmax(260px,400px)]">
-                            <div class="bg-emerald-600 text-white flex items-center justify-center py-3 lg:py-0 lg:min-h-[72px] text-lg font-bold tabular-nums">7</div>
-                            <div class="p-4 lg:p-5 border-t lg:border-t-0 lg:border-r border-slate-100">
-                                <p class="text-sm font-semibold text-slate-900 leading-snug" data-i18n="d07.title">Open the <strong>RMB basic bank account</strong> (基本户) with the license and seals—KYC is lighter than a WFOE but still in-person or video per bank policy.</p>
-                                <details class="wfoe-details mt-2">
-                                    <summary class="cursor-pointer flex items-center gap-1.5 mt-1 w-fit text-emerald-700 hover:text-emerald-600 select-none">
-                                        <span class="sr-only" data-i18n="common.sr.toggle">Show or hide additional detail for this step</span>
-                                        <svg class="wfoe-disclosure-icon h-4 w-4 shrink-0" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" /></svg>
-                                    </summary>
-                                    <p class="text-sm text-slate-600 mt-3" data-i18n="d07.detail">Shareholder capital can be wired from personal accounts per subscribed amounts—no foreign FDI account required.</p>
-                                </details>
-                            </div>
-                            <div class="p-4 lg:p-5 bg-emerald-50/90 border-t lg:border-t-0 lg:border-l border-emerald-100">
-                                <p class="text-sm text-slate-700 leading-relaxed domestic-fee" data-domestic-fee="d07"></p>
-                            </div>
-                        </div>
-
-                        <div class="rounded-xl border border-slate-200 bg-white shadow-sm overflow-hidden grid grid-cols-1 lg:grid-cols-[3.25rem_minmax(0,1fr)_minmax(260px,400px)]">
-                            <div class="bg-emerald-600 text-white flex items-center justify-center py-3 lg:py-0 lg:min-h-[72px] text-lg font-bold tabular-nums">8</div>
-                            <div class="p-4 lg:p-5 border-t lg:border-t-0 lg:border-r border-slate-100">
-                                <p class="text-sm font-semibold text-slate-900 leading-snug" data-i18n="d08.title">Complete <strong>tax registration</strong> and enable <strong>digital invoices</strong> (数电票) with the tax bureau—often linked through the one-stop flow.</p>
-                                <details class="wfoe-details mt-2">
-                                    <summary class="cursor-pointer flex items-center gap-1.5 mt-1 w-fit text-emerald-700 hover:text-emerald-600 select-none">
-                                        <span class="sr-only" data-i18n="common.sr.toggle">Show or hide additional detail for this step</span>
-                                        <svg class="wfoe-disclosure-icon h-4 w-4 shrink-0" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" /></svg>
-                                    </summary>
-                                    <p class="text-sm text-slate-600 mt-3" data-i18n="d08.detail">Assign accounting rules (small-scale vs. general VAT taxpayer) with your agent or tax advisor before issuing invoices to clients.</p>
-                                </details>
-                            </div>
-                            <div class="p-4 lg:p-5 bg-emerald-50/90 border-t lg:border-t-0 lg:border-l border-emerald-100">
-                                <p class="text-sm text-slate-700 leading-relaxed domestic-fee" data-domestic-fee="d08"></p>
-                            </div>
-                        </div>
-
-                        <div class="rounded-xl border border-slate-200 bg-white shadow-sm overflow-hidden grid grid-cols-1 lg:grid-cols-[3.25rem_minmax(0,1fr)_minmax(260px,400px)]">
-                            <div class="bg-emerald-600 text-white flex items-center justify-center py-3 lg:py-0 lg:min-h-[72px] text-lg font-bold tabular-nums">9</div>
-                            <div class="p-4 lg:p-5 border-t lg:border-t-0 lg:border-r border-slate-100">
-                                <p class="text-sm font-semibold text-slate-900 leading-snug" data-i18n="d09.title">Register for <strong>social insurance</strong> and <strong>housing fund</strong> accounts so you can hire and run payroll compliantly.</p>
-                                <details class="wfoe-details mt-2">
-                                    <summary class="cursor-pointer flex items-center gap-1.5 mt-1 w-fit text-emerald-700 hover:text-emerald-600 select-none">
-                                        <span class="sr-only" data-i18n="common.sr.toggle">Show or hide additional detail for this step</span>
-                                        <svg class="wfoe-disclosure-icon h-4 w-4 shrink-0" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" /></svg>
-                                    </summary>
-                                    <p class="text-sm text-slate-600 mt-3" data-i18n="d09.detail">Contribution rates follow local rules—use the same city assumptions as the <a href="#costs" class="text-emerald-600 font-semibold underline">dashboard</a> for planning.</p>
-                                </details>
-                            </div>
-                            <div class="p-4 lg:p-5 bg-emerald-50/90 border-t lg:border-t-0 lg:border-l border-emerald-100">
-                                <p class="text-sm text-slate-700 leading-relaxed domestic-fee" data-domestic-fee="d09"></p>
-                            </div>
-                        </div>
-
-                        <div class="rounded-xl border border-slate-200 bg-white shadow-sm overflow-hidden grid grid-cols-1 lg:grid-cols-[3.25rem_minmax(0,1fr)_minmax(260px,400px)]">
-                            <div class="bg-emerald-600 text-white flex items-center justify-center py-3 lg:py-0 lg:min-h-[72px] text-lg font-bold tabular-nums">10</div>
-                            <div class="p-4 lg:p-5 border-t lg:border-t-0 lg:border-r border-slate-100">
-                                <p class="text-sm font-semibold text-slate-900 leading-snug" data-i18n="d10.title">Stand up <strong>bookkeeping and periodic tax filings</strong> (monthly/quarterly VAT, annual CIT prep, payroll withholding)—in-house or via a <strong>代理记账</strong> firm.</p>
-                                <details class="wfoe-details mt-2">
-                                    <summary class="cursor-pointer flex items-center gap-1.5 mt-1 w-fit text-emerald-700 hover:text-emerald-600 select-none">
-                                        <span class="sr-only" data-i18n="common.sr.toggle">Show or hide additional detail for this step</span>
-                                        <svg class="wfoe-disclosure-icon h-4 w-4 shrink-0" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" /></svg>
-                                    </summary>
-                                    <p class="text-sm text-slate-600 mt-3" data-i18n="d10.detail">Missing filing deadlines triggers penalties—budget this before you take your first paying client.</p>
-                                </details>
-                            </div>
-                            <div class="p-4 lg:p-5 bg-emerald-50/90 border-t lg:border-t-0 lg:border-l border-emerald-100">
-                                <p class="text-sm text-slate-700 leading-relaxed domestic-fee" data-domestic-fee="d10"></p>
-                            </div>
-                        </div>
-
+                    <div class="space-y-3" id="domestic-steps-mount" aria-busy="true">
+                        <noscript><p class="text-sm text-slate-600">JavaScript is required to display the domestic LLC step list. See <a href="assets/data/domestic-steps.json" class="text-emerald-700 underline">assets/data/domestic-steps.json</a> for the raw data.</p></noscript>
+                    
                     </div>
                 </div>
 
@@ -1299,12 +626,19 @@
                                 (¥)</button>
                         </div>
                         <p id="fx-rate-display" class="text-[10px] text-slate-400 mt-1.5 max-w-[14rem] leading-snug" aria-live="polite"></p>
+                        <p id="fx-status-badge" class="hidden mt-1 text-[10px] font-medium" aria-live="polite"></p>
                     </div>
                     <div>
                         <label
-                            class="text-xs font-bold text-slate-500 uppercase tracking-wider mb-2 block" data-i18n="dash.headcount">Headcount</label>
+                            class="text-xs font-bold text-slate-500 uppercase tracking-wider mb-2 block" for="headcount-input" data-i18n="dash.headcount">Headcount</label>
                         <input type="number" id="headcount-input" value="1" min="1" step="1"
                             class="px-4 py-2 text-sm rounded-md border border-slate-300 font-semibold text-slate-800 focus:outline-none focus:ring-2 focus:ring-emerald-500 w-24">
+                    </div>
+                    <div>
+                        <label class="text-xs font-bold text-slate-500 uppercase tracking-wider mb-2 block" for="city-nav-select" data-i18n="dash.city_select">City focus</label>
+                        <select id="city-nav-select"
+                            class="px-3 py-2 text-sm rounded-md border border-slate-300 font-semibold text-slate-800 bg-white focus:outline-none focus:ring-2 focus:ring-emerald-500 min-w-[10rem]"
+                            aria-label="Highlight a city in the chart"></select>
                     </div>
                     <div>
                         <label class="text-xs font-bold text-slate-500 uppercase tracking-wider mb-2 block" data-i18n="dash.overhead">Overhead
@@ -1417,6 +751,7 @@
         </div>
     </footer>
 
+    <script src="assets/js/steps-render.js"></script>
     <script src="assets/js/i18n-china-business.js"></script>
     <script src="assets/js/china-business.js"></script>
 </body>

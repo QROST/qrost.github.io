@@ -11,6 +11,9 @@
         'nav.setup': '设置',
         'nav.regions': '区域',
         'nav.financials': '财务',
+        'nav.skip': '跳到正文',
+        'nav.menu_open': '打开菜单',
+        'nav.menu_close': '关闭菜单',
         'lang.to_zh': '中文',
         'lang.to_en': 'English',
 
@@ -106,6 +109,7 @@
         'dash.usd': '美元 ($)',
         'dash.rmb': '人民币 (¥)',
         'dash.headcount': '人数',
+        'dash.city_select': '聚焦城市',
         'dash.overhead': '间接成本（人均）',
         'dash.exclude': '不含',
         'dash.include': '含',
@@ -139,6 +143,10 @@
         'chart.fx_line': '美元展示换算：1 美元 ≈ {rate} 人民币（{mode}）。',
         'chart.fx_mode_live': '在线汇率',
         'chart.fx_mode_fallback': '2024 年均值兜底 7.2',
+        'chart.fx_status_pending': '汇率获取中…',
+        'chart.fx_status_live': '实时汇率',
+        'chart.fx_status_fallback': '离线 · 兜底 7.2',
+        'chart.cdn_unavailable': '图表暂不可用（Chart.js 加载失败）。薪资与缴费数字不受影响；刷新页面可重试。',
 
         'chart.base': '年度底薪',
         'chart.contrib': '雇主缴费',
