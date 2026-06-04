@@ -540,6 +540,52 @@ def merge_research(con, findings, log, move_flag_km=25.0, poi_max_km=60.0):
     return report
 
 
+def refresh_refined_pois(con, log):
+    """A research location refine moves the anchor, so its previously-baked OSM
+    POIs (computed vs the old coords) go stale. Recompute them against the new
+    location: offline airport/coast always; Overpass metro/train/hospital/mall
+    only where the existing row is NOT research-sourced (verified names stay)."""
+    airports, coast = _load_airports(), _load_coast()
+    rows = con.execute("SELECT id, lat, lng FROM listings "
+                       "WHERE geo_source='research' AND lat IS NOT NULL ORDER BY id").fetchall()
+    log(f"refresh: recomputing POIs for {len(rows)} research-refined listing(s)…")
+    for r in rows:
+        lat, lng = r["lat"], r["lng"]
+        ap, apd = nearest_airport(lat, lng, airports)
+        if ap:
+            con.execute("INSERT OR REPLACE INTO poi (listing_id,category,name,lat,lng,dist_km,source) "
+                        "VALUES (?,?,?,?,?,?,'osm')",
+                        (r["id"], "airport", ap["name"] + (f' ({ap["iata"]})' if ap["iata"] else ""),
+                         ap["lat"], ap["lng"], round(apd, 1)))
+        con.execute("INSERT OR REPLACE INTO poi (listing_id,category,name,lat,lng,dist_km,source) "
+                    "VALUES (?,?,?,NULL,NULL,?,'osm')",
+                    (r["id"], "coast", "最近海岸线", round(coast_km(lat, lng, coast), 1)))
+        data = _overpass(lat, lng)
+        if data is not None:
+            nearest = {}
+            for el in data.get("elements", []):
+                cat = _classify(el)
+                if not cat:
+                    continue
+                ce = el.get("center") or {"lat": el.get("lat"), "lon": el.get("lon")}
+                if ce.get("lat") is None:
+                    continue
+                d = haversine(lat, lng, ce["lat"], ce["lon"])
+                if cat not in nearest or d < nearest[cat][3]:
+                    nm = el["tags"].get("name") or el["tags"].get("name:zh") or "(未命名)"
+                    nearest[cat] = (nm, round(ce["lat"], 5), round(ce["lon"], 5), d)
+            for cat, (nm, plat, plng, d) in nearest.items():
+                cur = con.execute("SELECT source FROM poi WHERE listing_id=? AND category=?",
+                                  (r["id"], cat)).fetchone()
+                if cur and cur[0] == "research":   # preserve verified research POI
+                    continue
+                con.execute("INSERT OR REPLACE INTO poi (listing_id,category,name,lat,lng,dist_km,source) "
+                            "VALUES (?,?,?,?,?,?,'osm')", (r["id"], cat, nm, plat, plng, round(d, 1)))
+        time.sleep(1.5)
+    con.commit()
+    log("refresh done")
+
+
 # ---------------------------------------------------------------------------
 # Emit — assemble the enriched JS global from the DB
 # ---------------------------------------------------------------------------

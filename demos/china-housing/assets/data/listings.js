@@ -125,7 +125,7 @@ window.HOUSING_LISTINGS = [
   { id: 99,  prov: "四川",   city: "攀枝花市",        dist: "东区城区",          loc: "望达巷",                   priceWan: 4.9,  area: 49,   rent: 200,  updated: "2026-03" },
   { id: 100, prov: "四川",   city: "自贡市",          dist: "自流井 汇西",       loc: "东碳厂宿舍",               priceWan: 5,    area: 50,   rent: 500,  updated: "2026-03" },
   { id: 101, prov: "四川",   city: "德阳市",          dist: "旌阳区",            loc: "阳光小筑",                 priceWan: 9.5,  area: 40,   rent: 600,  updated: "2026-04" },
-  { id: 102, prov: "四川",   city: "宜宾市",          dist: "高县区",            loc: "南外街12号小区",           priceWan: 9,    area: 86,   rent: 400,  updated: "2026-01" },
+  { id: 102, prov: "四川",   city: "宜宾市",          dist: "江安县 江安镇",     loc: "南外街12号小区",           priceWan: 9,    area: 86,   rent: 400,  updated: "2026-01" },
   { id: 103, prov: "四川",   city: "广元市",          dist: "旺苍城区",          loc: "电厂小区",                 priceWan: 10,   area: 49,   rent: 300,  updated: "2026-03" },
   { id: 104, prov: "云南",   city: "昭通市",          dist: "北片区",            loc: "汇智中心",                 priceWan: 12.8, area: 38,   rent: 700,  updated: "2026-04" },
   { id: 105, prov: "云南",   city: "红河州-弥勒市",   dist: "弥勒 新世界",       loc: "骊都国际",                 priceWan: 11,   area: 44,   rent: 500,  updated: "2026-03" },
