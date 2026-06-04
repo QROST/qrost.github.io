@@ -155,3 +155,27 @@ User-Agent（其使用政策）；Overpass 易 504，已做多镜像重试。新
 
 > ⚠️ 定位精度：小区名常搜不到，多回退到街道/城市级，弹窗顶部会标「定位 城市级」等。
 > 灾害风险是**省级粗略近似**，仅供直观参考。`data/ref/`（机场/海岸线）和 `*.db` 一样可提交。
+
+## 子代理深度调研（research-merge）
+
+API 管线对小城/县城覆盖差（很多小区只到街道/城市级、缺医院/商场）。对这些缺口，用
+**并行子代理 web 调研**补齐——但**绝不**让 agent 直接写坐标（会幻觉）。混合法：
+
+1. **agent 只产可验证的名字/地址**（带 source URL，查不到返回 null、禁猜）。每城一个 agent，
+   按城市分组 fan-out（见生成的 Workflow 脚本；目标 = `geo_level in (city,dist)` 或缺医院的小区）。
+2. **确定性代码换坐标**：`manage.py research-merge <findings.json>` 把每个名字/地址喂 Nominatim，
+   **省 bbox + 距锚点 < 60km** 校验；地址带门牌号会自动去号回退；POI 距离用细化后的坐标重算；
+   风险摘要随之重算。
+3. **provenance**：细化的定位标 `geo_source='research'`、POI 标 `poi.source='research'`，
+   前端「周边」列表对应项显示橙色「调研」微标；能换到坐标的打点，换不到的保留**名字(未定位)**。
+4. **大幅纠正复核**：位置移动 > 25km 的会在报告里列出（agent 调研常能**纠正原 geocode 错误**，
+   但大幅移动需人眼确认）。
+
+```bash
+# findings.json = agent 返回的 [{id, refined_address, hospital_name, mall_name, metro_name, sources, notes}, …]
+python3 tools/manage.py research-merge findings.json
+python3 tools/manage.py build
+```
+
+merge 只**补缺**（不覆盖 OSM 已有 POI），幂等可重跑。findings 可来自任意调研流程，只要符合上面的
+对象结构即可。

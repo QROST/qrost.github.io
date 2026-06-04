@@ -609,11 +609,13 @@
       const m = POI_META[cat], p = pois[cat];
       if (!p) return `<div class="flex items-center gap-2 text-slate-400"><span class="inline-block w-2 h-2 rounded-full shrink-0" style="background:${m.color}"></span>${m.label}：—</div>`;
       const dk = fmtDist(p.distKm);
+      const tag = p.source === 'research' ? ' <span class="text-[10px] text-amber-600" title="子代理调研补充">调研</span>' : '';
       if (p.lat != null && p.lng != null) {
         pts.push([p.lat, p.lng]);
         L.circleMarker([p.lat, p.lng], { radius: 6, color: '#fff', weight: 1.5, fillColor: m.color, fillOpacity: 0.95 }).addTo(lmNearMap).bindPopup(`${m.label}：${p.name || ''}<br/>${dk}`);
       }
-      return `<div class="flex items-center gap-2"><span class="inline-block w-2 h-2 rounded-full shrink-0" style="background:${m.color}"></span><span class="text-slate-700 truncate"><b>${m.label}</b> ${p.name || ''} <span class="text-slate-400">${dk}</span></span></div>`;
+      const noPin = (p.lat == null && p.distKm == null && p.name) ? ' <span class="text-[10px] text-slate-400">名称(未定位)</span>' : '';
+      return `<div class="flex items-center gap-2"><span class="inline-block w-2 h-2 rounded-full shrink-0" style="background:${m.color}"></span><span class="text-slate-700 truncate"><b>${m.label}</b> ${p.name || ''} <span class="text-slate-400">${dk}</span>${tag}${noPin}</span></div>`;
     });
     document.getElementById('lm-near-list').innerHTML = items.join('');
     if (pts.length > 1) lmNearMap.fitBounds(pts, { padding: [28, 28], maxZoom: 13 });
