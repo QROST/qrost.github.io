@@ -22,6 +22,8 @@
          build you can migrate to a local CLI build like demos/wfoe-china. -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Leaflet — only used inside the per-listing satellite / vicinity modal -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="" />
     <style>
         body { font-family: 'Inter', 'PingFang SC', 'Microsoft YaHei', sans-serif; background-color: #f8fafc; color: #0f172a; }
         .tabular-nums { font-variant-numeric: tabular-nums; }
@@ -100,14 +102,16 @@
         <!-- Geo: map + province bar -->
         <section id="geo" class="scroll-mt-20">
             <h2 class="text-xs font-semibold uppercase tracking-[0.15em] text-slate-400 mb-1">省份地图 · By province</h2>
-            <p class="text-slate-600 mb-5 max-w-2xl text-sm leading-relaxed">样本在全国的分布。地图按所选口径着色（仅含样本省份）；右侧柱状图是各省样本均单价排序。</p>
+            <p class="text-slate-600 mb-5 max-w-2xl text-sm leading-relaxed">样本在全国的分布。地图按所选口径<strong class="text-slate-800">着色</strong>（仅含样本省份）；切到<strong class="text-emerald-700">小区位置</strong>可把每个小区<strong class="text-slate-800">打点</strong>到地图上，点击圆点查看该小区的卫星图 / 周边 / 气候。右侧柱状图是各省样本均单价排序。</p>
             <div class="grid lg:grid-cols-2 gap-5">
                 <div class="rounded-xl border border-slate-200 bg-white p-4 md:p-6">
-                    <div class="flex flex-wrap gap-2 mb-4">
+                    <div class="flex flex-wrap items-center gap-2 mb-4">
                         <button data-map="count" class="map-tab"></button>
                         <button data-map="avgUnit" class="map-tab"></button>
                         <button data-map="avgPrice" class="map-tab"></button>
                         <button data-map="avgYield" class="map-tab"></button>
+                        <span class="w-px self-stretch bg-slate-200 mx-0.5"></span>
+                        <button id="pins-toggle" class="px-3 py-1.5 rounded-md text-xs font-medium transition-colors bg-white text-slate-500 border border-slate-200 hover:text-slate-900">📍 小区位置</button>
                     </div>
                     <div id="map-wrap" class="relative" style="height: 480px;"><div id="china-map" class="w-full h-full"></div></div>
                     <div id="map-fallback" class="hidden text-sm text-slate-500 bg-slate-50 border border-slate-200 rounded-lg p-6 text-center items-center justify-center" style="min-height: 240px;"></div>
@@ -158,6 +162,7 @@
                         <li>每行是<strong class="text-slate-700">单一挂牌报价</strong>，多为当地最低价房源，<strong class="text-slate-700">不代表区域均价</strong>。</li>
                         <li>价格含"约"，为整数估值；部分为公寓 / 度假盘，流动性与产权差异大。</li>
                         <li>毛回报未计税费、物业、空置与折旧，<strong class="text-slate-700">实际净回报显著更低</strong>。</li>
+                        <li><strong class="text-slate-700">位置 / 卫星图 / 周边 / 气候</strong>来自 OpenStreetMap、Open-Meteo、Esri 等开放数据：小区名常回退到<strong class="text-slate-700">街道 / 城市级</strong>定位，周边设施在小城可能缺漏，灾害为<strong class="text-slate-700">省级粗略近似</strong>，均仅供直观参考。</li>
                         <li>仅供研究与好奇心，<strong class="text-slate-700">非投资、法律或税务建议</strong>。</li>
                     </ul>
                 </div>
@@ -165,6 +170,43 @@
         </section>
 
     </main>
+
+    <!-- per-listing detail modal: satellite imagery / vicinity POIs / climate -->
+    <div id="listing-modal" class="hidden fixed inset-0 z-50">
+        <div id="lm-backdrop" class="absolute inset-0 bg-slate-900/50 backdrop-blur-sm"></div>
+        <div class="absolute inset-0 flex items-center justify-center p-3 sm:p-4">
+            <div class="relative bg-white rounded-2xl shadow-2xl w-full max-w-3xl max-h-[92vh] flex flex-col overflow-hidden">
+                <div class="flex items-start justify-between gap-4 p-5 border-b border-slate-100">
+                    <div class="min-w-0">
+                        <h3 id="lm-title" class="text-lg font-semibold text-slate-900 truncate"></h3>
+                        <p id="lm-sub" class="text-sm text-slate-500 mt-0.5"></p>
+                    </div>
+                    <button id="lm-close" aria-label="关闭" class="shrink-0 text-slate-400 hover:text-slate-900 text-3xl leading-none -mt-1">&times;</button>
+                </div>
+                <div class="flex gap-1.5 px-5 pt-3">
+                    <button data-lm-tab="sat" class="lm-tab"></button>
+                    <button data-lm-tab="near" class="lm-tab"></button>
+                    <button data-lm-tab="climate" class="lm-tab"></button>
+                </div>
+                <div class="flex-grow overflow-auto p-5 pt-3">
+                    <div data-lm-pane="sat">
+                        <div id="lm-sat-map" class="rounded-lg overflow-hidden border border-slate-200" style="height:58vh;min-height:320px"></div>
+                        <p class="mt-2 text-xs text-slate-400">卫星影像 © Esri World Imagery。定位精度见上方标注。</p>
+                    </div>
+                    <div data-lm-pane="near" class="hidden">
+                        <div id="lm-near-map" class="rounded-lg overflow-hidden border border-slate-200 mb-3" style="height:44vh;min-height:300px"></div>
+                        <div id="lm-near-list" class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-sm"></div>
+                        <p class="mt-2 text-xs text-slate-400">周边设施来自 OpenStreetMap（小城/县城覆盖可能不全）；机场/海岸线为离线计算。</p>
+                    </div>
+                    <div data-lm-pane="climate" class="hidden">
+                        <div class="relative" style="height:300px"><canvas id="lm-climate-chart"></canvas></div>
+                        <div id="lm-risk" class="mt-4 text-sm text-slate-600 leading-relaxed"></div>
+                        <p class="mt-2 text-xs text-slate-400">气候为 2014–2023 月度均值（Open-Meteo ERA5）；灾害为区域级粗略近似，非工程依据。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <footer class="mt-auto border-t border-slate-100 py-8 bg-white">
         <div class="max-w-6xl mx-auto px-4 text-center text-slate-400 text-xs space-y-2">
@@ -177,11 +219,14 @@
     <script src="assets/data/listings.js"></script>
     <!-- China province boundaries, vendored locally (no runtime third-party fetch) -->
     <script src="assets/data/china-geo.js"></script>
+    <!-- Baked enrichment: geocode / climate / POIs / risk (tools/manage.py enrich → build) -->
+    <script src="assets/data/enriched.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"
         integrity="sha384-vsrfeLOOY6KuIYKDlmVH5UiBmgIdB1oEf7p01YgWHuqmOHfZr374+odEv96n9tNC"
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://cdn.jsdelivr.net/npm/echarts@5.5.1/dist/echarts.min.js"
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
     <script src="assets/js/app.js"></script>
 
 </body>

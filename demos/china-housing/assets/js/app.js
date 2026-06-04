@@ -52,6 +52,12 @@
     };
   });
 
+  // Merge baked enrichment (assets/data/enriched.js). Keyed by listing id;
+  // d.enr is null until `manage.py enrich` + `build` have populated it.
+  const ENR = window.HOUSING_ENRICHED || {};
+  DATA.forEach((d) => { d.enr = ENR[d.id] || ENR[String(d.id)] || null; });
+  const GEOCODED = DATA.filter((d) => d.enr && d.enr.lat != null);
+
   // ---- formatting --------------------------------------------------------
   const trim = (s) => s.replace(/\.0+$/, '').replace(/(\.\d*?)0+$/, '$1');
   const fmtWan = (v) => trim(v.toFixed(2)) + '万';
@@ -362,6 +368,7 @@
       echartsMap = echarts.init(document.getElementById('china-map'));
       mapReady = true;
       renderMap();
+      echartsMap.on('click', onMapClick);
       window.addEventListener('resize', () => echartsMap && echartsMap.resize());
     } catch (e) {
       mapFail('地图边界数据加载失败（网络受限），省份对比可见下方柱状图。');
@@ -382,6 +389,9 @@
     { key: 'yieldPct', label: '毛回报', num: true, yield: true, fmt: (d) => fmtPct(d.yieldPct) },
     { key: 'payback', label: '回本(年)', num: true, fmt: (d) => fmtYrs(d.payback) },
     { key: 'updated', label: '更新', fmt: (d) => d.updated },
+    { key: '_act', label: '详情', act: true, fmt: (d) => d.enr
+      ? `<button data-open="${d.id}" class="text-emerald-700 hover:text-emerald-900 font-medium whitespace-nowrap">🛰 查看</button>`
+      : '<span class="text-slate-300" title="暂无定位数据">—</span>' },
   ];
   const tstate = { sortKey: 'yieldPct', sortDir: -1, prov: '', q: '' };
 
@@ -403,12 +413,14 @@
   function renderTable() {
     const rows = tableView();
     const head = TABLE_COLS.map((c) => {
+      if (c.act) return `<th class="px-3 py-2.5 font-medium text-right text-slate-400 whitespace-nowrap">${c.label}</th>`;
       const active = tstate.sortKey === c.key;
       const arrow = active ? (tstate.sortDir === 1 ? '▲' : '▼') : '';
       return `<th data-col="${c.key}" class="px-3 py-2.5 font-medium cursor-pointer select-none whitespace-nowrap ${c.num ? 'text-right' : 'text-left'} ${active ? 'text-slate-900' : 'text-slate-400 hover:text-slate-700'}">${c.label}<span class="ml-0.5 text-[0.6rem]">${arrow}</span></th>`;
     }).join('');
     const body = rows.map((d) => {
       const tds = TABLE_COLS.map((c) => {
+        if (c.act) return `<td class="px-3 py-2 text-right whitespace-nowrap">${c.fmt(d)}</td>`;
         if (c.yield) {
           const t = (d.yieldPct - yMinT) / (yMaxT - yMinT || 1);
           return `<td class="px-3 py-2 text-right tabular-nums"><span class="inline-block rounded px-1.5 py-0.5 text-xs font-medium" style="background:${lerpColor(t)};color:${t > 0.5 ? '#fff' : '#0f172a'}">${c.fmt(d)}</span></td>`;
@@ -445,6 +457,11 @@
     });
     // CSV export
     document.getElementById('csv-export').addEventListener('click', exportCSV);
+    // open the per-listing detail modal from the 查看 button (event delegation)
+    document.getElementById('table-body').addEventListener('click', (e) => {
+      const b = e.target.closest('[data-open]');
+      if (b) openListing(+b.dataset.open);
+    });
   }
 
   function exportCSV() {
@@ -466,6 +483,183 @@
     URL.revokeObjectURL(a.href);
   }
 
+  // ---- map: pin mode (小区位置) ------------------------------------------
+  let mapMode = 'choropleth';
+
+  function stylePinsToggle(on) {
+    const b = document.getElementById('pins-toggle');
+    if (!b) return;
+    b.className = 'px-3 py-1.5 rounded-md text-xs font-medium transition-colors ' +
+      (on ? 'bg-emerald-600 text-white' : 'bg-white text-slate-500 border border-slate-200 hover:text-slate-900');
+    b.textContent = '📍 小区位置' + (GEOCODED.length ? ` (${GEOCODED.length})` : '');
+  }
+
+  // WGS-84 listing points over the GCJ-02 province polygons: at national scale
+  // the ~0.5 km datum offset is sub-pixel, so the overlay reads correctly.
+  function renderPins() {
+    if (!echartsMap) return;
+    const pts = GEOCODED.map((d) => ({ name: d.loc, value: [d.enr.lng, d.enr.lat, d.id], d }));
+    echartsMap.setOption({
+      tooltip: {
+        trigger: 'item',
+        formatter: (p) => {
+          const d = p.data && p.data.d;
+          if (!d) return p.name;
+          return `<b>${cityLabel(d)}</b> · ${d.enr.geoLabel || ''}<br/>总价 ${fmtWan(d.priceWan)} · ${d.area}㎡ · 单价 ${fmtInt(d.unitPrice)}元/㎡<br/>月租 ${fmtInt(d.rent)}元 · 毛回报 ${fmtPct(d.yieldPct)}<br/><span style="color:#10b981">点击查看卫星图 / 周边 / 气候</span>`;
+        },
+      },
+      geo: {
+        map: 'china', roam: false, nameProperty: 'name',
+        itemStyle: { areaColor: '#f1f5f9', borderColor: '#fff', borderWidth: 0.6 },
+        emphasis: { itemStyle: { areaColor: '#e2e8f0' }, label: { show: false } },
+        select: { disabled: true },
+      },
+      series: [{
+        type: 'effectScatter', coordinateSystem: 'geo', zlevel: 2,
+        symbolSize: 8, rippleEffect: { scale: 2.4, brushType: 'stroke' },
+        itemStyle: { color: '#059669', shadowBlur: 4, shadowColor: 'rgba(5,150,105,0.4)' },
+        data: pts,
+      }],
+    }, true);
+  }
+
+  function onMapClick(p) {
+    if (p && p.seriesType === 'effectScatter' && p.data && Array.isArray(p.data.value)) {
+      openListing(p.data.value[2]);
+    }
+  }
+
+  function setMapMode(mode) {
+    mapMode = mode;
+    if (echartsMap) { echartsMap.clear(); if (mode === 'pins') renderPins(); else renderMap(); }
+    document.querySelectorAll('[data-map]').forEach((b) =>
+      styleTab(b, mode === 'choropleth' && b.dataset.map === mapKey, 'map-tab'));
+    stylePinsToggle(mode === 'pins');
+  }
+
+  // ---- per-listing modal: satellite / vicinity / climate -----------------
+  const TILE_SAT = 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}';
+  const TILE_STREET = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
+  const POI_META = {
+    metro: { label: '地铁', color: '#2563eb' }, train: { label: '火车/高铁', color: '#7c3aed' },
+    airport: { label: '机场', color: '#0891b2' }, hospital: { label: '医院', color: '#dc2626' },
+    mall: { label: '商场', color: '#d97706' }, coast: { label: '海边', color: '#0ea5e9' },
+  };
+  const ZOOM_BY_LEVEL = { loc: 16, dist: 14, city: 12, prefecture: 11 };
+  let lmCurrent = null, lmSatMap = null, lmNearMap = null, lmClimateChart = null, lmTabInit = {};
+
+  const fmtDist = (km) => km == null ? '' : (km < 1 ? Math.round(km * 1000) + 'm' : km.toFixed(1) + 'km');
+
+  function lmStyleTabs(active) {
+    document.querySelectorAll('[data-lm-tab]').forEach((b) => {
+      const on = b.dataset.lmTab === active;
+      b.className = 'lm-tab px-3 py-1.5 rounded-md text-sm font-medium transition-colors ' +
+        (on ? 'bg-slate-900 text-white' : 'bg-slate-100 text-slate-500 hover:text-slate-900');
+    });
+    document.querySelectorAll('[data-lm-pane]').forEach((p) =>
+      p.classList.toggle('hidden', p.dataset.lmPane !== active));
+  }
+
+  function openListing(id) {
+    const d = DATA.find((x) => x.id === id);
+    if (!d || !d.enr) return;
+    lmCurrent = d; lmTabInit = {};
+    const e = d.enr;
+    document.getElementById('lm-title').textContent = cityLabel(d);
+    document.getElementById('lm-sub').innerHTML =
+      `${d.prov} · ${d.city}${d.dist ? ' · ' + d.dist : ''} &nbsp;|&nbsp; 总价 ${fmtWan(d.priceWan)} · ${d.area}㎡ · 月租 ${fmtInt(d.rent)}元 ` +
+      `<span class="ml-1 inline-block rounded bg-slate-100 text-slate-500 px-1.5 py-0.5 text-xs">定位 ${e.geoLabel || '?'}</span>`;
+    const tabs = { sat: '🛰 卫星图', near: '📍 周边', climate: '🌡 气候' };
+    document.querySelectorAll('[data-lm-tab]').forEach((b) => { b.textContent = tabs[b.dataset.lmTab]; });
+    document.getElementById('listing-modal').classList.remove('hidden');
+    document.body.style.overflow = 'hidden';
+    lmShowTab('sat');
+  }
+
+  function lmShowTab(tab) {
+    lmStyleTabs(tab);
+    const d = lmCurrent; if (!d) return;
+    const e = d.enr;
+    if (tab === 'sat') {
+      if (!lmTabInit.sat) {
+        lmTabInit.sat = true;
+        setTimeout(() => {
+          lmSatMap = L.map('lm-sat-map', { scrollWheelZoom: true }).setView([e.lat, e.lng], ZOOM_BY_LEVEL[e.geoLevel] || 14);
+          L.tileLayer(TILE_SAT, { maxZoom: 19, attribution: '© Esri World Imagery' }).addTo(lmSatMap);
+          L.circleMarker([e.lat, e.lng], { radius: 9, color: '#fff', weight: 2, fillColor: '#059669', fillOpacity: 1 }).addTo(lmSatMap).bindPopup(d.loc);
+          setTimeout(() => lmSatMap && lmSatMap.invalidateSize(), 180);  // settle after modal layout
+        }, 60);
+      } else { setTimeout(() => lmSatMap && lmSatMap.invalidateSize(), 60); }
+    } else if (tab === 'near') {
+      if (!lmTabInit.near) { lmTabInit.near = true; setTimeout(() => lmInitNear(d), 60); }
+      else { setTimeout(() => lmNearMap && lmNearMap.invalidateSize(), 60); }
+    } else if (tab === 'climate') {
+      lmRenderClimate(d);
+    }
+  }
+
+  function lmInitNear(d) {
+    const e = d.enr;
+    lmNearMap = L.map('lm-near-map', { scrollWheelZoom: true }).setView([e.lat, e.lng], 11);
+    L.tileLayer(TILE_STREET, { maxZoom: 19, attribution: '© OpenStreetMap' }).addTo(lmNearMap);
+    const pts = [[e.lat, e.lng]];
+    L.circleMarker([e.lat, e.lng], { radius: 8, color: '#fff', weight: 2, fillColor: '#059669', fillOpacity: 1 }).addTo(lmNearMap).bindPopup('小区：' + d.loc);
+    const pois = e.pois || {};
+    const items = Object.keys(POI_META).map((cat) => {
+      const m = POI_META[cat], p = pois[cat];
+      if (!p) return `<div class="flex items-center gap-2 text-slate-400"><span class="inline-block w-2 h-2 rounded-full shrink-0" style="background:${m.color}"></span>${m.label}：—</div>`;
+      const dk = fmtDist(p.distKm);
+      if (p.lat != null && p.lng != null) {
+        pts.push([p.lat, p.lng]);
+        L.circleMarker([p.lat, p.lng], { radius: 6, color: '#fff', weight: 1.5, fillColor: m.color, fillOpacity: 0.95 }).addTo(lmNearMap).bindPopup(`${m.label}：${p.name || ''}<br/>${dk}`);
+      }
+      return `<div class="flex items-center gap-2"><span class="inline-block w-2 h-2 rounded-full shrink-0" style="background:${m.color}"></span><span class="text-slate-700 truncate"><b>${m.label}</b> ${p.name || ''} <span class="text-slate-400">${dk}</span></span></div>`;
+    });
+    document.getElementById('lm-near-list').innerHTML = items.join('');
+    if (pts.length > 1) lmNearMap.fitBounds(pts, { padding: [28, 28], maxZoom: 13 });
+    setTimeout(() => lmNearMap.invalidateSize(), 60);
+  }
+
+  function lmRenderClimate(d) {
+    const e = d.enr, risk = e.risk, cl = e.climate;
+    document.getElementById('lm-risk').innerHTML = risk
+      ? `<span class="font-medium text-slate-800">风险与环境（粗略）</span>：${risk.summary}`
+      : '<span class="text-slate-400">暂无风险数据</span>';
+    if (lmClimateChart) { lmClimateChart.destroy(); lmClimateChart = null; }
+    if (!cl || !window.Chart) return;
+    const M = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'];
+    const pick = (i) => M.map((m) => (cl[m] ? cl[m][i] : null));
+    lmClimateChart = new Chart(document.getElementById('lm-climate-chart'), {
+      data: {
+        labels: M.map((m) => m + '月'),
+        datasets: [
+          { type: 'bar', label: '降水(mm)', data: pick(3), yAxisID: 'yP', backgroundColor: 'rgba(14,165,233,0.35)', borderColor: '#0ea5e9', borderWidth: 1, borderRadius: 3, order: 3 },
+          { type: 'line', label: '均温(℃)', data: pick(0), yAxisID: 'yT', borderColor: '#059669', backgroundColor: '#059669', tension: 0.35, pointRadius: 2, order: 1 },
+          { type: 'line', label: '均高温', data: pick(1), yAxisID: 'yT', borderColor: 'rgba(220,38,38,0.5)', borderDash: [4, 3], pointRadius: 0, tension: 0.35, order: 2 },
+          { type: 'line', label: '均低温', data: pick(2), yAxisID: 'yT', borderColor: 'rgba(37,99,235,0.5)', borderDash: [4, 3], pointRadius: 0, tension: 0.35, order: 2 },
+        ],
+      },
+      options: {
+        responsive: true, maintainAspectRatio: false, interaction: { mode: 'index', intersect: false },
+        plugins: { legend: { labels: { boxWidth: 12, font: { size: 11 } } } },
+        scales: {
+          yT: { position: 'left', title: { display: true, text: '℃' }, grid: { color: 'rgba(100,116,139,0.12)' } },
+          yP: { position: 'right', title: { display: true, text: 'mm' }, grid: { display: false }, beginAtZero: true },
+          x: { grid: { display: false } },
+        },
+      },
+    });
+  }
+
+  function closeModal() {
+    document.getElementById('listing-modal').classList.add('hidden');
+    document.body.style.overflow = '';
+    if (lmSatMap) { lmSatMap.remove(); lmSatMap = null; }
+    if (lmNearMap) { lmNearMap.remove(); lmNearMap = null; }
+    if (lmClimateChart) { lmClimateChart.destroy(); lmClimateChart = null; }
+    lmTabInit = {}; lmCurrent = null;
+  }
+
   // ---- boot --------------------------------------------------------------
   function init() {
     chartBase();
@@ -480,7 +674,17 @@
     document.querySelectorAll('[data-rank]').forEach((b) =>
       b.addEventListener('click', () => { rankKey = b.dataset.rank; renderRankings(); }));
     document.querySelectorAll('[data-map]').forEach((b) =>
-      b.addEventListener('click', () => { mapKey = b.dataset.map; renderMap(); }));
+      b.addEventListener('click', () => { mapKey = b.dataset.map; setMapMode('choropleth'); }));
+    const pinsBtn = document.getElementById('pins-toggle');
+    if (pinsBtn) pinsBtn.addEventListener('click', () => setMapMode(mapMode === 'pins' ? 'choropleth' : 'pins'));
+    stylePinsToggle(false);
+
+    // per-listing modal events
+    document.getElementById('lm-close').addEventListener('click', closeModal);
+    document.getElementById('lm-backdrop').addEventListener('click', closeModal);
+    document.querySelectorAll('[data-lm-tab]').forEach((b) =>
+      b.addEventListener('click', () => lmShowTab(b.dataset.lmTab)));
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
 
     initMap();
   }
