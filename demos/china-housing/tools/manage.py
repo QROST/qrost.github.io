@@ -44,6 +44,7 @@ ROOT = Path(__file__).resolve().parent.parent          # demos/china-housing/
 DB_PATH = ROOT / "data" / "housing.db"
 JS_PATH = ROOT / "assets" / "data" / "listings.js"
 ENR_PATH = ROOT / "assets" / "data" / "enriched.js"
+HAZ_PATH = ROOT / "assets" / "data" / "hazards.js"
 CSV_PATH = ROOT / "data" / "listings.csv"
 HTML_PATH = ROOT / "index.html"
 
@@ -233,12 +234,32 @@ def render_enriched(d: dict) -> str:
     return ENR_HEADER + "window.HOUSING_ENRICHED = " + body + ";\n"
 
 
+HAZ_HEADER = '''/**
+ * China small-city housing — province natural-hazard profile (curated, coarse).
+ *
+ * GENERATED FILE — do not hand-edit. Source is tools/enrich.py PROVINCE_HAZARDS;
+ * regenerate with:  python3 tools/manage.py build
+ *
+ * Keyed by province short name. A QUALITATIVE, province-level digest of the
+ * disaster types each area is historically exposed to (公开地理/气候资料 +
+ * 应急管理部 历年灾情 的定性归纳). freq: 3=高频 2=常见 1=偶发 0=罕见.
+ * NOT a point hazard model, NOT engineering input — for side-by-side context only.
+ */
+'''
+
+
+def render_hazards(d: dict) -> str:
+    body = json.dumps(d, ensure_ascii=False, separators=(",", ":"), sort_keys=True)
+    return HAZ_HEADER + "window.HOUSING_HAZARDS = " + body + ";\n"
+
+
 def _enrich_coverage(con) -> str:
     g = con.execute("SELECT COUNT(*) FROM listings WHERE lat IS NOT NULL").fetchone()[0]
     c = con.execute("SELECT COUNT(DISTINCT listing_id) FROM climate").fetchone()[0]
     p = con.execute("SELECT COUNT(*) FROM poi_done").fetchone()[0]
     r = con.execute("SELECT COUNT(*) FROM risk").fetchone()[0]
-    return f"geo {g}, climate {c}, pois {p}, risk {r}"
+    e = con.execute("SELECT COUNT(*) FROM listings WHERE elevation IS NOT NULL").fetchone()[0]
+    return f"geo {g}, climate {c}, pois {p}, risk {r}, elev {e}"
 
 
 # ---------------------------------------------------------------------------
@@ -266,9 +287,9 @@ def sync_html(rows: list[dict]) -> list[str]:
             log.append(f"  {label}: {k} occurrence(s) → synced{flag}")
 
     apply("套 (count)", r"\d+(\s*套)", lambda m: f"{n}{m.group(1)}", expect=4)
-    apply("个省 (provinces)", r"\d+(\s*个省)", lambda m: f"{provs}{m.group(1)}", expect=2)
+    apply("个省 (provinces)", r"\d+(\s*个省)", lambda m: f"{provs}{m.group(1)}", expect=1)
     apply("覆盖N省 (provinces)", r"(覆盖\s*)\d+(\s*省)",
-          lambda m: f"{m.group(1)}{provs}{m.group(2)}", expect=2)
+          lambda m: f"{m.group(1)}{provs}{m.group(2)}", expect=3)
     if lo and hi:
         apply("date range", r"\d{4}-\d{2}(\s*~\s*)\d{4}-\d{2}",
               lambda m: f"{lo}{m.group(1)}{hi}")
@@ -374,10 +395,14 @@ def cmd_build(args):
     JS_PATH.parent.mkdir(parents=True, exist_ok=True)
     JS_PATH.write_text(render_js(rows), encoding="utf-8")
     print(f"✓ build: {len(rows)} rows → {JS_PATH.relative_to(ROOT)}")
-    # emit baked enrichment (geocode / climate / pois / risk) as its own global
+    # emit baked enrichment (geocode / climate / pois / risk / elevation) as its own global
     enriched = enrich.emit_enriched(con)
     ENR_PATH.write_text(render_enriched(enriched), encoding="utf-8")
     print(f"✓ enriched: {len(enriched)} → {ENR_PATH.relative_to(ROOT)} ({_enrich_coverage(con)})")
+    # emit the curated province natural-hazard profile (pure data, no DB rows)
+    hazards = enrich.emit_hazards()
+    HAZ_PATH.write_text(render_hazards(hazards), encoding="utf-8")
+    print(f"✓ hazards: {len(hazards)} province profiles → {HAZ_PATH.relative_to(ROOT)}")
     # keep the human-readable CSV mirror in sync
     args.path = None
     cmd_export_csv(args)
@@ -424,10 +449,15 @@ def cmd_risk(args):
     enrich.risk_all(connect(), print)
 
 
+def cmd_elevation(args):
+    enrich.elevation_all(connect(), print, force=args.force)
+
+
 def cmd_enrich(args):
     con = connect()
     enrich.geocode_all(con, print, force=False)
     enrich.climate_all(con, print)
+    enrich.elevation_all(con, print)   # cheap batched DEM lookup
     enrich.risk_all(con, print)        # only needs coords + climate + coastline
     enrich.pois_all(con, print)        # last: Overpass is the slow / flaky stage
     print("✓ enrich complete — now run `build` to emit assets/data/enriched.js")
@@ -484,6 +514,9 @@ def main(argv=None):
     sp.set_defaults(fn=cmd_geocode)
 
     sub.add_parser("climate", help="bake monthly climate normals via Open-Meteo").set_defaults(fn=cmd_climate)
+    sp = sub.add_parser("elevation", help="bake metres-above-sea-level via Open-Meteo DEM (batched)")
+    sp.add_argument("--force", action="store_true", help="re-fetch rows that already have elevation")
+    sp.set_defaults(fn=cmd_elevation)
     sub.add_parser("pois", help="bake nearest metro/train/airport/hospital/mall/coast").set_defaults(fn=cmd_pois)
     sub.add_parser("risk", help="compute coarse coast/seismic/typhoon risk").set_defaults(fn=cmd_risk)
     sub.add_parser("enrich", help="run geocode + climate + pois + risk (all stages)").set_defaults(fn=cmd_enrich)

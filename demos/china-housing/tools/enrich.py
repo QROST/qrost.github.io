@@ -93,7 +93,8 @@ def migrate(con):
     cols = {r[1] for r in con.execute("PRAGMA table_info(listings)")}
     for col, decl in (("lat", "REAL"), ("lng", "REAL"),
                       ("geo_level", "TEXT"), ("geo_label", "TEXT"),
-                      ("geo_source", "TEXT")):  # 'nominatim' | 'research'
+                      ("geo_source", "TEXT"),   # 'nominatim' | 'research'
+                      ("elevation", "REAL")):   # metres above sea level (Open-Meteo)
         if col not in cols:
             con.execute(f"ALTER TABLE listings ADD COLUMN {col} {decl}")
     con.executescript("""
@@ -282,6 +283,43 @@ def climate_all(con, log):
 
 
 # ---------------------------------------------------------------------------
+# Elevation — Open-Meteo (Copernicus DEM ~90m), batched, no key
+# ---------------------------------------------------------------------------
+def elevation_all(con, log, force=False):
+    """Bake metres-above-sea-level per geocoded listing. The endpoint accepts up
+    to 100 comma-separated coordinates per call, so we batch (one request per
+    chunk) — far cheaper than the per-row climate stage. Resumable."""
+    where = "" if force else "AND elevation IS NULL"
+    rows = con.execute(
+        f"SELECT id, lat, lng FROM listings WHERE lat IS NOT NULL {where} ORDER BY id"
+    ).fetchall()
+    log(f"elevation: {len(rows)} listing(s) to do (Open-Meteo DEM, batched)…")
+    done = 0
+    for i in range(0, len(rows), 90):
+        chunk = rows[i:i + 90]
+        lats = ",".join(f'{r["lat"]:.5f}' for r in chunk)
+        lngs = ",".join(f'{r["lng"]:.5f}' for r in chunk)
+        url = "https://api.open-meteo.com/v1/elevation?" + urllib.parse.urlencode(
+            {"latitude": lats, "longitude": lngs})
+        try:
+            j = json.loads(_get(url, timeout=45, retries=3))
+            elevs = j.get("elevation") or []
+        except Exception as e:  # noqa: BLE001
+            log(f"  ! batch @{i} elevation failed: {repr(e)[:80]}")
+            time.sleep(1.5)
+            continue
+        for r, e in zip(chunk, elevs):
+            if e is not None:
+                con.execute("UPDATE listings SET elevation=? WHERE id=?",
+                            (round(float(e), 1), r["id"]))
+                done += 1
+        con.commit()
+        log(f"  …{done} elevations baked")
+        time.sleep(1.0)
+    log(f"elevation done: {done} listing(s)")
+
+
+# ---------------------------------------------------------------------------
 # Reference datasets (offline): airports + coastline
 # ---------------------------------------------------------------------------
 def _load_airports():
@@ -449,6 +487,90 @@ def risk_all(con, log):
 
 
 # ---------------------------------------------------------------------------
+# Province natural-hazard profile — curated, coarse, province-level.
+#
+# A qualitative digest of the disaster types each province is historically
+# exposed to, compiled from public geography / climatology and 应急管理部 yearly
+# 灾情 patterns. This is NOT a point hazard model and NOT engineering input:
+# frequency is a coarse ordinal tag, scoped to the *province*, meant only to
+# let users compare "what tends to go wrong here" side by side in the table.
+#
+# freq ordinal:  3=高频  2=常见  1=偶发  0=罕见
+# Each hazard:  (type, freq, note).  `headline` is a one-line province summary.
+# ---------------------------------------------------------------------------
+HAZARD_FREQ_LABEL = {3: "高频", 2: "常见", 1: "偶发", 0: "罕见"}
+
+PROVINCE_HAZARDS = {
+    "黑龙江": {"headline": "夏汛+冬季暴雪/低温为主，地震少",
+              "hazards": [("洪涝", 2, "松花江/嫩江流域夏季汛情"), ("暴雪雪灾", 2, "冬季严寒多雪"),
+                          ("低温冻害", 2, "极端低温、冻土"), ("森林火灾", 1, "春秋大兴安岭林区"), ("干旱", 1, "西部春旱")]},
+    "吉林": {"headline": "夏汛、暴雪与低温冻害",
+            "hazards": [("洪涝", 2, "第二松花江流域"), ("暴雪雪灾", 2, "冬季"), ("低温冻害", 2, "东部山区"), ("干旱", 1, "西部")]},
+    "辽宁": {"headline": "夏汛+北上台风外围，海城式中强震",
+            "hazards": [("洪涝", 2, "辽河流域"), ("台风外围", 1, "沿海受北上台风影响"),
+                        ("地震", 2, "海城1975 M7.3 等"), ("暴雪", 2, "冬季"), ("干旱", 1, "辽西")]},
+    "河北": {"headline": "华北强震带+旱涝交替",
+            "hazards": [("地震", 3, "唐山1976/邢台1966，华北强震带"), ("洪涝", 2, "海河流域"),
+                        ("干旱", 2, "春旱常见"), ("暴雨", 1, "太行山前")]},
+    "河南": {"headline": "暴雨洪涝突出，旱涝并存",
+            "hazards": [("洪涝", 3, "2021郑州特大暴雨"), ("暴雨", 2, "夏季强对流"), ("干旱", 2, "黄淮春夏旱"), ("地震", 1, "局部")]},
+    "山东": {"headline": "旱涝+北上台风影响沿海",
+            "hazards": [("洪涝", 2, "黄淮/沂沭河"), ("台风", 1, "利奇马2019等北上台风"),
+                        ("干旱", 2, "春旱"), ("风暴潮", 1, "沿海"), ("地震", 1, "郯庐带局部")]},
+    "安徽": {"headline": "江淮梅雨洪涝为最大风险",
+            "hazards": [("洪涝", 3, "江淮梅雨/2020巢湖"), ("干旱", 1, "伏旱"), ("台风外围", 1, "东部"), ("暴雨", 2, "梅雨季")]},
+    "上海": {"headline": "沿海台风+内涝、缓发地面沉降",
+            "hazards": [("台风", 2, "夏秋登陆/影响"), ("洪涝内涝", 2, "暴雨城市内涝"),
+                        ("风暴潮", 1, "河口沿海"), ("地面沉降", 1, "缓发，长期监测")]},
+    "江苏": {"headline": "台风、洪涝，偶发强龙卷",
+            "hazards": [("洪涝", 2, "淮河下游/太湖"), ("台风", 1, "沿海"),
+                        ("龙卷风", 1, "2016盐城EF4"), ("风暴潮", 1, "沿海")]},
+    "广东": {"headline": "台风+流域性洪涝的双高暴露",
+            "hazards": [("台风", 3, "登陆最频繁省份之一"), ("洪涝", 3, "珠江/西江流域"),
+                        ("暴雨", 2, "前汛期强降水"), ("风暴潮", 2, "沿海")]},
+    "广西": {"headline": "洪涝+台风+喀斯特地质灾害",
+            "hazards": [("洪涝", 3, "西江/郁江流域"), ("台风", 2, "北部湾沿海"),
+                        ("地质灾害", 2, "喀斯特山区滑坡/塌陷"), ("干旱", 1, "桂西季节性")]},
+    "福建": {"headline": "台风高暴露+山区地质灾害",
+            "hazards": [("台风", 3, "正面登陆频繁"), ("洪涝", 2, "闽江流域"),
+                        ("地质灾害", 2, "山区滑坡/崩塌"), ("暴雨", 2, "台风暴雨")]},
+    "重庆": {"headline": "山地滑坡+高温伏旱+江河洪涝",
+            "hazards": [("地质灾害", 3, "三峡库区滑坡/崩塌"), ("洪涝", 2, "长江/嘉陵江"),
+                        ("高温干旱", 2, "夏季伏旱"), ("地震", 1, "局部中小震")]},
+    "贵州": {"headline": "喀斯特地质灾害+凝冻为特色风险",
+            "hazards": [("地质灾害", 3, "喀斯特滑坡/泥石流/塌陷"), ("洪涝", 2, "夏季暴雨"),
+                        ("凝冻", 2, "冬季低温雨雪冰冻"), ("干旱", 1, "夏旱")]},
+    "四川": {"headline": "高烈度地震+山地次生灾害",
+            "hazards": [("地震", 3, "汶川2008/芦山/泸定，龙门山带"), ("地质灾害", 3, "泥石流/滑坡(震后高发)"),
+                        ("洪涝", 2, "盆地暴雨"), ("干旱", 1, "盆地伏旱")]},
+    "云南": {"headline": "多震带+干湿季地质灾害与季节性干旱",
+            "hazards": [("地震", 3, "多条活动断裂带"), ("地质灾害", 3, "雨季泥石流/滑坡"),
+                        ("干旱", 2, "冬春季节性"), ("洪涝", 2, "雨季")]},
+    "甘肃": {"headline": "强震+半干旱区旱灾与黄土滑坡",
+            "hazards": [("地震", 3, "陇南/积石山2023等"), ("干旱", 3, "半干旱气候"),
+                        ("地质灾害", 2, "黄土滑坡/泥石流"), ("沙尘暴", 1, "河西走廊")]},
+    "海南": {"headline": "全国台风登陆最前沿",
+            "hazards": [("台风", 3, "登陆最频繁"), ("洪涝", 2, "台风暴雨"),
+                        ("风暴潮", 2, "沿海"), ("高温", 2, "夏季湿热")]},
+}
+
+
+def emit_hazards():
+    """Province → {headline, hazards:[{type,freq,freqLabel,note}], top}.
+    Pure curated data (no DB / no network). `top` is the highest-frequency hazard
+    type(s), handy as a compact table tag."""
+    out = {}
+    for prov, p in PROVINCE_HAZARDS.items():
+        hs = [{"type": t, "freq": f, "freqLabel": HAZARD_FREQ_LABEL[f], "note": n}
+              for (t, f, n) in p["hazards"]]
+        hs.sort(key=lambda h: -h["freq"])
+        topf = hs[0]["freq"] if hs else 0
+        out[prov] = {"headline": p["headline"], "hazards": hs,
+                     "top": [h["type"] for h in hs if h["freq"] == topf]}
+    return out
+
+
+# ---------------------------------------------------------------------------
 # Research merge — fold subagent findings (names/addresses) into the DB.
 # Agents return *names* (verifiable, with sources); the precise geocoding +
 # distance is done HERE deterministically via Nominatim, with province + radius
@@ -592,10 +714,13 @@ def refresh_refined_pois(con, log):
 def emit_enriched(con):
     """Return {id: {...}} dict of all baked enrichment for build to serialize."""
     out = {}
-    for r in con.execute("SELECT id, lat, lng, geo_level, geo_label, geo_source FROM listings WHERE lat IS NOT NULL"):
-        out[r["id"]] = {"lat": r["lat"], "lng": r["lng"],
-                        "geoLevel": r["geo_level"], "geoLabel": r["geo_label"],
-                        "geoSource": r["geo_source"] or "nominatim"}
+    for r in con.execute("SELECT id, lat, lng, geo_level, geo_label, geo_source, elevation FROM listings WHERE lat IS NOT NULL"):
+        e = {"lat": r["lat"], "lng": r["lng"],
+             "geoLevel": r["geo_level"], "geoLabel": r["geo_label"],
+             "geoSource": r["geo_source"] or "nominatim"}
+        if r["elevation"] is not None:
+            e["elevation"] = r["elevation"]
+        out[r["id"]] = e
     for r in con.execute("SELECT listing_id, month, tmean, tmax, tmin, precip FROM climate ORDER BY listing_id, month"):
         e = out.get(r["listing_id"])
         if e is None:
