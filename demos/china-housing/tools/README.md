@@ -113,3 +113,45 @@ npx -y mapshaper /tmp/china_full.json -filter-fields name -simplify 20% keep-sha
 > 务必继续用 Aliyun DataV 这份（PRC 合规底图：含南海九段线 feature `100000_JD`、
 > 台湾作为省）。**别换** Natural Earth / world-atlas 等国外源——它们多不含九段线、
 > 且把台湾单列。新增省份的着色映射仍在 `app.js` 的 `PROV_FULL`（见上面的警告）。
+
+## 数据增强（地图打点 / 卫星图 / 周边 / 气候）
+
+每个小区的经纬度、气候 normals、周边 POI、灾害风险都在 **build 时离线烘焙**进
+`housing.db`，再随 `build` 吐成静态全局 `assets/data/enriched.js`（按 id 索引）。
+页面因此**不在运行时发地理编码/POI/气候请求**——只有用户点开「🛰 查看」弹窗时才按需
+streaming 地图瓦片（Esri 卫星 / OSM 街道）。逻辑全在 [`tools/enrich.py`](enrich.py)。
+
+数据源（全免费、无 key、全 WGS-84，故无需 GCJ-02 转换）：
+
+| 类别 | 源 | 说明 |
+|------|----|------|
+| 经纬度 | Nominatim (OSM) | 逐级回退：小区→街道/镇→城市；**带省份校验**（拒绝「恒大/碧桂园」这类全国重名的跨省误配）；`geo_label` 记录定位精度。 |
+| 气候 | Open-Meteo Archive (ERA5) | 2014–2023 日值聚合成 12 个月 normals（均温/高/低 + 降水）。 |
+| 周边 | Overpass (OSM) | 最近 地铁 / 火车·高铁 / 医院 / 商场。OSM 小城覆盖差，**搜不到属正常**。 |
+| 机场·海边 | OurAirports + Natural Earth（离线 `data/ref/`） | 离线算最近 CN 机场 / 海岸线距离，不打 API。 |
+| 风险 | 派生 | 距海距离 + 省级地震动概念带（GB18306）+ 台风暴露启发式。**粗略近似，非工程依据**。 |
+
+### 命令
+
+```bash
+python3 tools/manage.py enrich     # 跑全部：geocode → climate → risk → pois（可续跑、限速）
+# 或分阶段：
+python3 tools/manage.py geocode    # 仅经纬度（Nominatim ~1/s；--force 重跑已有坐标）
+python3 tools/manage.py climate    # 仅气候
+python3 tools/manage.py risk       # 仅风险（离线，秒级）
+python3 tools/manage.py pois       # 仅周边（Overpass，最慢/最 flaky）
+python3 tools/manage.py build      # 重新生成 enriched.js（连同 listings.js / csv / index.html）
+```
+
+每个阶段**幂等可续跑**——只补缺失行，中断后重跑即可。Nominatim 限速 1/s 且带真实
+User-Agent（其使用政策）；Overpass 易 504，已做多镜像重试。新增小区后只需再跑一次
+`enrich` + `build`（已编码的行会跳过）。
+
+### 前端
+
+- 地图「📍 小区位置」选项 → 把所有已定位小区 `effectScatter` 打点到省图上（点击圆点开弹窗）。
+- 表格「详情」列「🛰 查看」→ 弹窗三 tab：**卫星图**（Esri）/ **周边**（OSM 街道 + POI 圆点 + 距离）/ **气候**（Chart.js 月度温度·降水 + 风险摘要）。
+- 未定位的行详情列显示 `—`；缺某类 POI 时该项显示「—」。所有缺失都**优雅降级**，不报错。
+
+> ⚠️ 定位精度：小区名常搜不到，多回退到街道/城市级，弹窗顶部会标「定位 城市级」等。
+> 灾害风险是**省级粗略近似**，仅供直观参考。`data/ref/`（机场/海岸线）和 `*.db` 一样可提交。

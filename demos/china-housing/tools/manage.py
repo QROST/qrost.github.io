@@ -28,11 +28,14 @@ from __future__ import annotations
 
 import argparse
 import csv
+import json
 import re
 import sqlite3
 import sys
 import unicodedata
 from pathlib import Path
+
+import enrich  # sibling module (tools/enrich.py) — build-time data enrichment
 
 # ---------------------------------------------------------------------------
 # Paths — resolved relative to this file so the CLI works from any cwd.
@@ -40,6 +43,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent          # demos/china-housing/
 DB_PATH = ROOT / "data" / "housing.db"
 JS_PATH = ROOT / "assets" / "data" / "listings.js"
+ENR_PATH = ROOT / "assets" / "data" / "enriched.js"
 CSV_PATH = ROOT / "data" / "listings.csv"
 HTML_PATH = ROOT / "index.html"
 
@@ -72,6 +76,8 @@ def connect() -> sqlite3.Connection:
     con = sqlite3.connect(DB_PATH)
     con.row_factory = sqlite3.Row
     con.execute("PRAGMA foreign_keys = ON;")
+    con.executescript(SCHEMA)   # base listings table (idempotent)
+    enrich.migrate(con)         # enrichment columns + tables (idempotent)
     return con
 
 
@@ -208,6 +214,33 @@ def render_js(rows: list[dict]) -> str:
     return JS_HEADER + "window.HOUSING_LISTINGS = [\n" + ",\n".join(lines) + "\n];\n"
 
 
+ENR_HEADER = '''/**
+ * China small-city housing — baked enrichment (geocode / climate / POIs / risk).
+ *
+ * GENERATED FILE — do not hand-edit. Source of truth is data/housing.db;
+ * (re)generate with:  python3 tools/manage.py enrich  &&  python3 tools/manage.py build
+ *
+ * Keyed by listing id. All baked at build time from free, no-key, WGS-84
+ * sources (Nominatim / Open-Meteo / Overpass / OurAirports / Natural Earth) so
+ * the page makes no runtime geocoding/POI/climate request — see tools/enrich.py.
+ * climate[m] = [tmean, tmax, tmin, precip] for month m (1-12).
+ */
+'''
+
+
+def render_enriched(d: dict) -> str:
+    body = json.dumps(d, ensure_ascii=False, separators=(",", ":"), sort_keys=True)
+    return ENR_HEADER + "window.HOUSING_ENRICHED = " + body + ";\n"
+
+
+def _enrich_coverage(con) -> str:
+    g = con.execute("SELECT COUNT(*) FROM listings WHERE lat IS NOT NULL").fetchone()[0]
+    c = con.execute("SELECT COUNT(DISTINCT listing_id) FROM climate").fetchone()[0]
+    p = con.execute("SELECT COUNT(*) FROM poi_done").fetchone()[0]
+    r = con.execute("SELECT COUNT(*) FROM risk").fetchone()[0]
+    return f"geo {g}, climate {c}, pois {p}, risk {r}"
+
+
 # ---------------------------------------------------------------------------
 # index.html count/date re-sync (anchored, fail-loud)
 # ---------------------------------------------------------------------------
@@ -341,6 +374,10 @@ def cmd_build(args):
     JS_PATH.parent.mkdir(parents=True, exist_ok=True)
     JS_PATH.write_text(render_js(rows), encoding="utf-8")
     print(f"✓ build: {len(rows)} rows → {JS_PATH.relative_to(ROOT)}")
+    # emit baked enrichment (geocode / climate / pois / risk) as its own global
+    enriched = enrich.emit_enriched(con)
+    ENR_PATH.write_text(render_enriched(enriched), encoding="utf-8")
+    print(f"✓ enriched: {len(enriched)} → {ENR_PATH.relative_to(ROOT)} ({_enrich_coverage(con)})")
     # keep the human-readable CSV mirror in sync
     args.path = None
     cmd_export_csv(args)
@@ -366,6 +403,34 @@ def cmd_list(args):
           f"(missing: {missing or 'none'}) · {len(by_prov)} provinces")
     for prov, c in sorted(by_prov.items(), key=lambda kv: -kv[1]):
         print(f"  {prov:<6} {c}")
+
+
+# ---------------------------------------------------------------------------
+# enrichment sub-commands (delegate to enrich.py; all resumable + rate-limited)
+# ---------------------------------------------------------------------------
+def cmd_geocode(args):
+    enrich.geocode_all(connect(), print, force=args.force)
+
+
+def cmd_climate(args):
+    enrich.climate_all(connect(), print)
+
+
+def cmd_pois(args):
+    enrich.pois_all(connect(), print)
+
+
+def cmd_risk(args):
+    enrich.risk_all(connect(), print)
+
+
+def cmd_enrich(args):
+    con = connect()
+    enrich.geocode_all(con, print, force=False)
+    enrich.climate_all(con, print)
+    enrich.risk_all(con, print)        # only needs coords + climate + coastline
+    enrich.pois_all(con, print)        # last: Overpass is the slow / flaky stage
+    print("✓ enrich complete — now run `build` to emit assets/data/enriched.js")
 
 
 def main(argv=None):
@@ -395,8 +460,17 @@ def main(argv=None):
     sp.add_argument("--updated", required=True, help="YYYY-MM or YYYY.M")
     sp.set_defaults(fn=cmd_add)
 
-    sp = sub.add_parser("build", help="regenerate listings.js + listings.csv + sync index.html")
+    sp = sub.add_parser("build", help="regenerate listings.js + enriched.js + listings.csv + sync index.html")
     sp.set_defaults(fn=cmd_build)
+
+    sp = sub.add_parser("geocode", help="bake lat/lng via Nominatim (resumable, ~1/s)")
+    sp.add_argument("--force", action="store_true", help="re-geocode rows that already have coords")
+    sp.set_defaults(fn=cmd_geocode)
+
+    sub.add_parser("climate", help="bake monthly climate normals via Open-Meteo").set_defaults(fn=cmd_climate)
+    sub.add_parser("pois", help="bake nearest metro/train/airport/hospital/mall/coast").set_defaults(fn=cmd_pois)
+    sub.add_parser("risk", help="compute coarse coast/seismic/typhoon risk").set_defaults(fn=cmd_risk)
+    sub.add_parser("enrich", help="run geocode + climate + pois + risk (all stages)").set_defaults(fn=cmd_enrich)
 
     sp = sub.add_parser("export-csv", help="dump DB → CSV (default data/listings.csv)")
     sp.add_argument("path", nargs="?", default=None)
