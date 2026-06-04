@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>全国小城市住房与租金数据可视化 · China small-city housing | QROST</title>
+    <meta name="description" content="109 套全国小城市 / 县城二手房挂牌样本的可视化：总价、单价、租金、毛租金回报率与回本年限，覆盖 16 个省/市。鹤岗式低价房现象的数据切片，仅供研究参考。">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="apple-touch-icon" href="favicon.svg">
+
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="全国小城市住房与租金数据可视化 · China small-city housing">
+    <meta property="og:description" content="109 套全国小城市二手房挂牌样本：总价 / 单价 / 租金 / 毛回报率 / 回本年限，覆盖 16 省。鹤岗式低价房的数据切片。">
+    <meta property="og:url" content="https://qrost.github.io/demos/china-housing/">
+    <meta property="og:site_name" content="QROST">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="全国小城市住房与租金数据可视化">
+    <meta name="twitter:description" content="109 套小城市二手房样本的总价 / 租金 / 回报率可视化，覆盖 16 省。">
+
+    <!-- Tailwind via CDN, consistent with the root site page. For a production
+         build you can migrate to a local CLI build like demos/wfoe-china. -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', 'PingFang SC', 'Microsoft YaHei', sans-serif; background-color: #f8fafc; color: #0f172a; }
+        .tabular-nums { font-variant-numeric: tabular-nums; }
+        ::-webkit-scrollbar { height: 8px; width: 8px; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+    </style>
+</head>
+
+<body class="antialiased min-h-screen flex flex-col scroll-smooth">
+
+    <a href="#overview" class="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-50 focus:bg-slate-900 focus:text-white focus:px-3 focus:py-1.5 focus:rounded">跳到内容</a>
+
+    <nav class="sticky top-0 z-40 bg-white/90 border-b border-slate-200/90 backdrop-blur-sm">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-14 items-center gap-4">
+                <a href="../../index.html" class="text-[0.65rem] font-semibold tracking-[0.35em] text-slate-900 uppercase shrink-0" aria-label="返回 QROST 首页">QROST</a>
+                <div class="flex items-center gap-4 md:gap-8 text-sm text-slate-500 overflow-x-auto">
+                    <a href="#overview" class="hover:text-slate-900 transition-colors whitespace-nowrap">概览</a>
+                    <a href="#rankings" class="hover:text-slate-900 transition-colors whitespace-nowrap">排行</a>
+                    <a href="#geo" class="hover:text-slate-900 transition-colors whitespace-nowrap">省份地图</a>
+                    <a href="#table" class="hover:text-slate-900 transition-colors whitespace-nowrap">数据表</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <header class="py-14 md:py-20 border-b border-slate-100 bg-white">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <p class="text-xs font-medium uppercase tracking-[0.2em] text-slate-400 mb-4">Data · China housing</p>
+            <h1 class="text-3xl md:text-[2.6rem] font-semibold tracking-tight text-slate-900 leading-tight max-w-3xl">
+                全国小城市住房与租金，<span class="text-emerald-700">一张数据切片</span>
+            </h1>
+            <p class="mt-6 text-slate-600 leading-relaxed max-w-2xl">
+                <strong class="font-medium text-slate-800">109 套</strong>来自全国小城市、县城与度假区的二手房<strong class="font-medium text-slate-800">挂牌样本</strong>，覆盖 <strong class="font-medium text-slate-800">16 个省 / 直辖市</strong>。
+                这是"<strong class="font-medium text-slate-800">鹤岗式</strong>"低价房现象的一个切片——把总价、单价、月租放在一起，再算出
+                <strong class="font-medium text-slate-800">毛租金回报率</strong>与<strong class="font-medium text-slate-800">回本年限</strong>，看看哪里的房子最便宜、租金回报最划算。
+            </p>
+            <p class="mt-4 text-sm text-slate-500 max-w-2xl">
+                数据更新于 <strong class="font-medium text-slate-700">2026-01 ~ 2026-04</strong>。每行是<strong class="font-medium text-slate-700">单一挂牌报价</strong>（往往是当地能找到的最便宜的房子），属轶事样本，
+                <strong class="font-medium text-slate-700">非市场指数</strong>，不构成任何投资建议。算法见<a href="#methodology" class="text-emerald-700 underline underline-offset-2 hover:text-emerald-600">说明</a>。
+            </p>
+        </div>
+    </header>
+
+    <main class="flex-grow max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 w-full space-y-16">
+
+        <!-- KPI -->
+        <section aria-label="关键指标">
+            <div id="kpi-grid" class="grid grid-cols-2 lg:grid-cols-3 gap-3 md:gap-4"></div>
+        </section>
+
+        <!-- Overview / scatter -->
+        <section id="overview" class="scroll-mt-20">
+            <h2 class="text-xs font-semibold uppercase tracking-[0.15em] text-slate-400 mb-1">概览 · Price ↔ Rent</h2>
+            <p class="text-slate-600 mb-6 max-w-2xl text-sm leading-relaxed">每个点是一套房：横轴<strong class="text-slate-800">总价</strong>、纵轴<strong class="text-slate-800">月租</strong>，<strong class="text-emerald-700">颜色越绿 = 毛租金回报率越高</strong>。左下角那批又便宜、回报又高的房子，正是这份清单的主角。</p>
+            <div class="rounded-xl border border-slate-200 bg-white p-4 md:p-6">
+                <div class="relative" style="height: 440px;"><canvas id="scatter-chart"></canvas></div>
+            </div>
+        </section>
+
+        <!-- Rankings -->
+        <section id="rankings" class="scroll-mt-20">
+            <h2 class="text-xs font-semibold uppercase tracking-[0.15em] text-slate-400 mb-1">排行 · Top 15</h2>
+            <p class="text-slate-600 mb-4 max-w-2xl text-sm leading-relaxed">切换不同口径看极值——最便宜、单价最低、回报最高、回本最快。</p>
+            <div class="flex flex-wrap gap-2 mb-5">
+                <button data-rank="cheap" class="rank-tab"></button>
+                <button data-rank="unit" class="rank-tab"></button>
+                <button data-rank="yield" class="rank-tab"></button>
+                <button data-rank="payback" class="rank-tab"></button>
+            </div>
+            <div class="rounded-xl border border-slate-200 bg-white p-4 md:p-6">
+                <div class="relative" style="height: 520px;"><canvas id="rank-chart"></canvas></div>
+            </div>
+        </section>
+
+        <!-- Geo: map + province bar -->
+        <section id="geo" class="scroll-mt-20">
+            <h2 class="text-xs font-semibold uppercase tracking-[0.15em] text-slate-400 mb-1">省份地图 · By province</h2>
+            <p class="text-slate-600 mb-5 max-w-2xl text-sm leading-relaxed">样本在全国的分布。地图按所选口径着色（仅含样本省份）；右侧柱状图是各省样本均单价排序。</p>
+            <div class="grid lg:grid-cols-2 gap-5">
+                <div class="rounded-xl border border-slate-200 bg-white p-4 md:p-6">
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <button data-map="count" class="map-tab"></button>
+                        <button data-map="avgUnit" class="map-tab"></button>
+                        <button data-map="avgPrice" class="map-tab"></button>
+                        <button data-map="avgYield" class="map-tab"></button>
+                    </div>
+                    <div id="map-wrap" class="relative" style="height: 480px;"><div id="china-map" class="w-full h-full"></div></div>
+                    <div id="map-fallback" class="hidden text-sm text-slate-500 bg-slate-50 border border-slate-200 rounded-lg p-6 text-center items-center justify-center" style="min-height: 240px;"></div>
+                </div>
+                <div class="rounded-xl border border-slate-200 bg-white p-4 md:p-6">
+                    <div class="text-sm font-medium text-slate-700 mb-4">各省样本均单价（元/㎡）</div>
+                    <div class="relative" style="height: 480px;"><canvas id="province-chart"></canvas></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Table -->
+        <section id="table" class="scroll-mt-20">
+            <h2 class="text-xs font-semibold uppercase tracking-[0.15em] text-slate-400 mb-1">数据表 · All listings</h2>
+            <p class="text-slate-600 mb-5 max-w-2xl text-sm leading-relaxed">点击表头排序，按省份筛选或搜索城市 / 小区。单价、回报、回本均为实时计算。</p>
+            <div class="flex flex-col sm:flex-row sm:items-center gap-3 mb-4">
+                <select id="prov-filter" class="text-sm border border-slate-200 rounded-lg px-3 py-2 bg-white text-slate-700 focus:outline-none focus:ring-2 focus:ring-emerald-500/40"></select>
+                <input id="table-search" type="search" placeholder="搜索城市 / 区 / 小区…" class="text-sm border border-slate-200 rounded-lg px-3 py-2 bg-white text-slate-700 flex-grow focus:outline-none focus:ring-2 focus:ring-emerald-500/40" />
+                <span id="table-count" class="text-xs text-slate-400 tabular-nums whitespace-nowrap"></span>
+                <button id="csv-export" class="text-xs font-medium text-slate-600 border border-slate-200 rounded-lg px-3 py-2 bg-white hover:bg-slate-50 transition-colors whitespace-nowrap">导出 CSV</button>
+            </div>
+            <div class="rounded-xl border border-slate-200 bg-white overflow-hidden">
+                <div class="overflow-x-auto">
+                    <table class="min-w-full text-sm">
+                        <thead id="table-head"></thead>
+                        <tbody id="table-body"></tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- Methodology -->
+        <section id="methodology" class="scroll-mt-20">
+            <h2 class="text-xs font-semibold uppercase tracking-[0.15em] text-slate-400 mb-5">说明 · Methodology</h2>
+            <div class="grid md:grid-cols-2 gap-5">
+                <div class="rounded-xl border border-slate-200 bg-white p-6 text-sm text-slate-600 leading-relaxed space-y-3">
+                    <p class="font-medium text-slate-800">指标如何计算</p>
+                    <ul class="space-y-2 list-disc list-inside">
+                        <li><strong class="text-slate-700">单价</strong> = 总价 ÷ 面积（元/㎡）</li>
+                        <li><strong class="text-slate-700">年租金</strong> = 月租 × 12</li>
+                        <li><strong class="text-slate-700">毛租金回报率</strong> = 年租金 ÷ 总价（未扣税费、空置、维护）</li>
+                        <li><strong class="text-slate-700">回本年限</strong> = 总价 ÷ 年租金（同样为毛口径）</li>
+                    </ul>
+                </div>
+                <div class="rounded-xl border border-amber-200 bg-amber-50/60 p-6 text-sm text-slate-600 leading-relaxed space-y-3">
+                    <p class="font-medium text-amber-800">务必注意的局限</p>
+                    <ul class="space-y-2 list-disc list-inside">
+                        <li>每行是<strong class="text-slate-700">单一挂牌报价</strong>，多为当地最低价房源，<strong class="text-slate-700">不代表区域均价</strong>。</li>
+                        <li>价格含"约"，为整数估值；部分为公寓 / 度假盘，流动性与产权差异大。</li>
+                        <li>毛回报未计税费、物业、空置与折旧，<strong class="text-slate-700">实际净回报显著更低</strong>。</li>
+                        <li>仅供研究与好奇心，<strong class="text-slate-700">非投资、法律或税务建议</strong>。</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="mt-auto border-t border-slate-100 py-8 bg-white">
+        <div class="max-w-6xl mx-auto px-4 text-center text-slate-400 text-xs space-y-2">
+            <p>数据切片更新于 2026-04 · 来源为社区整理的公开挂牌信息，QROST 仅做可视化整理。</p>
+            <p>&copy; 2026 QROST. 本页不构成任何投资、法律或税务建议。</p>
+        </div>
+    </footer>
+
+    <!-- data + libs + app (load order matters) -->
+    <script src="assets/data/listings.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"
+        integrity="sha384-vsrfeLOOY6KuIYKDlmVH5UiBmgIdB1oEf7p01YgWHuqmOHfZr374+odEv96n9tNC"
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.5.1/dist/echarts.min.js"
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="assets/js/app.js"></script>
+
+</body>
+
+</html>
