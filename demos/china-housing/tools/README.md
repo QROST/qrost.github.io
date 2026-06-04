@@ -95,3 +95,21 @@ python3 tools/manage.py build
 `housing.db` 是二进制，diff 不可读，但小、且让 clone 即得可用库。真正用于 review 的是
 `data/listings.csv`（文本、可 diff）。若不想跟踪二进制，可在 `.gitignore` 忽略
 `*.db`，需要时用 `init` + `import-csv data/listings.csv` 从 CSV 重建。
+
+## 地图省界数据（`assets/data/china-geo.js`）
+
+省份 choropleth 的边界几何**已 vendored 到本地**（`window.CHINA_GEO` 全局），
+`app.js` 本地优先、远程 Aliyun 兜底，所以离线 / `file://` / 断网都能出图，不再依赖
+运行时第三方请求。它和 listings 一样不是手改的——来源与重生成命令写在
+[`assets/data/china-geo.js`](../assets/data/china-geo.js) 文件头：
+
+```bash
+curl -o /tmp/china_full.json https://geo.datav.aliyun.com/areas_v3/bound/100000_full.json
+npx -y mapshaper /tmp/china_full.json -filter-fields name -simplify 20% keep-shapes \
+    -o /tmp/china.json precision=0.001 format=geojson
+# 再包成 `window.CHINA_GEO = <json>;`（见文件头注释）
+```
+
+> 务必继续用 Aliyun DataV 这份（PRC 合规底图：含南海九段线 feature `100000_JD`、
+> 台湾作为省）。**别换** Natural Earth / world-atlas 等国外源——它们多不含九段线、
+> 且把台湾单列。新增省份的着色映射仍在 `app.js` 的 `PROV_FULL`（见上面的警告）。
