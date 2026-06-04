@@ -4,19 +4,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>全国小城市住房与租金数据可视化 · China small-city housing | QROST</title>
-    <meta name="description" content="121 套全国小城市 / 县城二手房挂牌样本的可视化：总价、单价、租金、毛租金回报率与回本年限，覆盖 18 个省/市。鹤岗式低价房现象的数据切片，仅供研究参考。">
+    <title>哪里既宜居又便宜 · 全国小城市住房宜居度可视化 | QROST</title>
+    <meta name="description" content="121 套全国小城市 / 县城二手房样本，把价格与宜居度放在一起：气候舒适度、1月/7月气温、年降水、海拔、到医院/火车站/机场/海岸的距离，以及省级自然灾害概况。覆盖 18 省，帮你找到既便宜又住得舒服的地方。">
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <link rel="apple-touch-icon" href="favicon.svg">
 
     <meta property="og:type" content="article">
-    <meta property="og:title" content="全国小城市住房与租金数据可视化 · China small-city housing">
-    <meta property="og:description" content="121 套全国小城市二手房挂牌样本：总价 / 单价 / 租金 / 毛回报率 / 回本年限，覆盖 18 省。鹤岗式低价房的数据切片。">
+    <meta property="og:title" content="哪里既宜居又便宜 · 全国小城市住房宜居度可视化">
+    <meta property="og:description" content="121 套小城市二手房样本，价格 × 宜居（气候/海拔/基础设施距离/自然灾害风险）横向对比，覆盖 18 省。找到便宜又住得舒服的地方。">
     <meta property="og:url" content="https://qrost.github.io/demos/china-housing/">
     <meta property="og:site_name" content="QROST">
     <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="全国小城市住房与租金数据可视化">
-    <meta name="twitter:description" content="121 套小城市二手房样本的总价 / 租金 / 回报率可视化，覆盖 18 省。">
+    <meta name="twitter:title" content="哪里既宜居又便宜 · 小城市住房宜居度可视化">
+    <meta name="twitter:description" content="121 套小城市二手房样本，价格 × 宜居（气候/海拔/基础设施/灾害风险）横向对比，覆盖 18 省。">
 
     <!-- Tailwind via CDN, consistent with the root site page. For a production
          build you can migrate to a local CLI build like demos/wfoe-china. -->
@@ -41,9 +41,9 @@
             <div class="flex justify-between h-14 items-center gap-4">
                 <a href="../../index.html" class="text-[0.65rem] font-semibold tracking-[0.35em] text-slate-900 uppercase shrink-0" aria-label="返回 QROST 首页">QROST</a>
                 <div class="flex items-center gap-4 md:gap-8 text-sm text-slate-500 overflow-x-auto">
-                    <a href="#overview" class="hover:text-slate-900 transition-colors whitespace-nowrap">概览</a>
+                    <a href="#overview" class="hover:text-slate-900 transition-colors whitespace-nowrap">便宜×宜居</a>
                     <a href="#rankings" class="hover:text-slate-900 transition-colors whitespace-nowrap">排行</a>
-                    <a href="#geo" class="hover:text-slate-900 transition-colors whitespace-nowrap">省份地图</a>
+                    <a href="#geo" class="hover:text-slate-900 transition-colors whitespace-nowrap">宜居地图</a>
                     <a href="#table" class="hover:text-slate-900 transition-colors whitespace-nowrap">数据表</a>
                 </div>
             </div>
@@ -52,18 +52,19 @@
 
     <header class="py-14 md:py-20 border-b border-slate-100 bg-white">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <p class="text-xs font-medium uppercase tracking-[0.2em] text-slate-400 mb-4">Data · China housing</p>
+            <p class="text-xs font-medium uppercase tracking-[0.2em] text-slate-400 mb-4">Data · 宜居 × 便宜</p>
             <h1 class="text-3xl md:text-[2.6rem] font-semibold tracking-tight text-slate-900 leading-tight max-w-3xl">
-                全国小城市住房与租金，<span class="text-emerald-700">一张数据切片</span>
+                哪里既<span class="text-emerald-700">宜居</span>，又<span class="text-emerald-700">便宜</span>？
             </h1>
             <p class="mt-6 text-slate-600 leading-relaxed max-w-2xl">
                 <strong class="font-medium text-slate-800">121 套</strong>来自全国小城市、县城与度假区的二手房<strong class="font-medium text-slate-800">挂牌样本</strong>，覆盖 <strong class="font-medium text-slate-800">18 个省 / 直辖市</strong>。
-                这是"<strong class="font-medium text-slate-800">鹤岗式</strong>"低价房现象的一个切片——把总价、单价、月租放在一起，再算出
-                <strong class="font-medium text-slate-800">毛租金回报率</strong>与<strong class="font-medium text-slate-800">回本年限</strong>，看看哪里的房子最便宜、租金回报最划算。
+                便宜只是起点——这里把每套房的<strong class="font-medium text-slate-800">气候舒适度</strong>、<strong class="font-medium text-slate-800">冬夏气温</strong>、<strong class="font-medium text-slate-800">年降水</strong>、<strong class="font-medium text-slate-800">海拔</strong>、
+                到<strong class="font-medium text-slate-800">医院 / 火车站 / 机场 / 海岸</strong>的距离，以及<strong class="font-medium text-slate-800">省级自然灾害</strong>风险，
+                和价格放进<strong class="font-medium text-slate-800">同一张表</strong>横向对比，帮你挑出住着舒服、风险可接受、又花得起的地方。
             </p>
             <p class="mt-4 text-sm text-slate-500 max-w-2xl">
                 数据更新于 <strong class="font-medium text-slate-700">2026-01 ~ 2026-04</strong>。每行是<strong class="font-medium text-slate-700">单一挂牌报价</strong>（往往是当地能找到的最便宜的房子），属轶事样本，
-                <strong class="font-medium text-slate-700">非市场指数</strong>，不构成任何投资建议。算法见<a href="#methodology" class="text-emerald-700 underline underline-offset-2 hover:text-emerald-600">说明</a>。
+                <strong class="font-medium text-slate-700">非市场指数</strong>；宜居与灾害多为<strong class="font-medium text-slate-700">区域/省级粗略口径</strong>，不构成投资或安家建议。口径见<a href="#methodology" class="text-emerald-700 underline underline-offset-2 hover:text-emerald-600">说明</a>。
             </p>
         </div>
     </header>
@@ -77,8 +78,8 @@
 
         <!-- Overview / scatter -->
         <section id="overview" class="scroll-mt-20">
-            <h2 class="text-xs font-semibold uppercase tracking-[0.15em] text-slate-400 mb-1">概览 · Price ↔ Rent</h2>
-            <p class="text-slate-600 mb-6 max-w-2xl text-sm leading-relaxed">每个点是一套房：横轴<strong class="text-slate-800">总价</strong>、纵轴<strong class="text-slate-800">月租</strong>，<strong class="text-emerald-700">颜色越绿 = 毛租金回报率越高</strong>。左下角那批又便宜、回报又高的房子，正是这份清单的主角。</p>
+            <h2 class="text-xs font-semibold uppercase tracking-[0.15em] text-slate-400 mb-1">便宜 × 宜居 · Cheap ↔ Livable</h2>
+            <p class="text-slate-600 mb-6 max-w-2xl text-sm leading-relaxed">每个点是一套房：横轴<strong class="text-slate-800">总价（越左越便宜）</strong>、纵轴<strong class="text-slate-800">宜居指数（越上越舒适）</strong>，<strong class="text-emerald-700">颜色越绿 = 极端天气越少</strong>。<strong class="text-slate-800">左上角</strong>那批既便宜、气候又舒适的房子，正是这份清单想帮你找到的。</p>
             <div class="rounded-xl border border-slate-200 bg-white p-4 md:p-6">
                 <div class="relative" style="height: 440px;"><canvas id="scatter-chart"></canvas></div>
             </div>
@@ -87,49 +88,71 @@
         <!-- Rankings -->
         <section id="rankings" class="scroll-mt-20">
             <h2 class="text-xs font-semibold uppercase tracking-[0.15em] text-slate-400 mb-1">排行 · Top 15</h2>
-            <p class="text-slate-600 mb-4 max-w-2xl text-sm leading-relaxed">切换不同口径看极值——最便宜、单价最低、回报最高、回本最快。</p>
+            <p class="text-slate-600 mb-4 max-w-2xl text-sm leading-relaxed">切换不同口径看极值——总价 / 单价最低、气候最宜居、极端天气最少，也保留了租金回报口径。</p>
             <div class="flex flex-wrap gap-2 mb-5">
                 <button data-rank="cheap" class="rank-tab"></button>
                 <button data-rank="unit" class="rank-tab"></button>
+                <button data-rank="comfort" class="rank-tab"></button>
+                <button data-rank="mild" class="rank-tab"></button>
                 <button data-rank="yield" class="rank-tab"></button>
-                <button data-rank="payback" class="rank-tab"></button>
             </div>
             <div class="rounded-xl border border-slate-200 bg-white p-4 md:p-6">
                 <div class="relative" style="height: 520px;"><canvas id="rank-chart"></canvas></div>
             </div>
         </section>
 
-        <!-- Geo: map + province bar -->
+        <!-- Geo: full-width zoomable overlay map + province comparison -->
         <section id="geo" class="scroll-mt-20">
-            <h2 class="text-xs font-semibold uppercase tracking-[0.15em] text-slate-400 mb-1">省份地图 · By province</h2>
-            <p class="text-slate-600 mb-5 max-w-2xl text-sm leading-relaxed">样本在全国的分布。地图按所选口径<strong class="text-slate-800">着色</strong>（仅含样本省份）；切到<strong class="text-emerald-700">小区位置</strong>可把每个小区<strong class="text-slate-800">打点</strong>到地图上，点击圆点查看该小区的卫星图 / 周边 / 气候。右侧柱状图是各省样本均单价排序。</p>
-            <div class="grid lg:grid-cols-2 gap-5">
-                <div class="rounded-xl border border-slate-200 bg-white p-4 md:p-6">
-                    <div class="flex flex-wrap items-center gap-2 mb-4">
-                        <button data-map="count" class="map-tab"></button>
-                        <button data-map="avgUnit" class="map-tab"></button>
-                        <button data-map="avgPrice" class="map-tab"></button>
-                        <button data-map="avgYield" class="map-tab"></button>
-                        <span class="w-px self-stretch bg-slate-200 mx-0.5"></span>
-                        <button id="pins-toggle" class="px-3 py-1.5 rounded-md text-xs font-medium transition-colors bg-white text-slate-500 border border-slate-200 hover:text-slate-900">📍 小区位置</button>
+            <h2 class="text-xs font-semibold uppercase tracking-[0.15em] text-slate-400 mb-1">宜居地图 · Livability overlay</h2>
+            <p class="text-slate-600 mb-5 max-w-3xl text-sm leading-relaxed">每个圆点是一套房，<strong class="text-slate-800">越大 = 越便宜</strong>。切换下方<strong class="text-emerald-700">叠加维度</strong>给小区重新着色——宜居指数、单价、<strong class="text-slate-800">冬夏等温</strong>、年降水、<strong class="text-slate-800">海拔</strong>、极端天气，直观找出又便宜又住得舒服的地点。<strong class="text-slate-800">滚轮 / 双指捏合 / 右上角 +−</strong> 可缩放，拖动平移；点击圆点看卫星图 / 周边 / 气候与灾害。</p>
+            <div class="rounded-xl border border-slate-200 bg-white p-4 md:p-6">
+                <div class="flex flex-wrap items-center gap-2 mb-4">
+                    <span class="text-xs font-medium text-slate-400 mr-1 self-center">叠加维度</span>
+                    <button data-dim="comfortScore" class="dim-tab"></button>
+                    <button data-dim="unitPrice" class="dim-tab"></button>
+                    <button data-dim="priceWan" class="dim-tab"></button>
+                    <button data-dim="janTemp" class="dim-tab"></button>
+                    <button data-dim="julTemp" class="dim-tab"></button>
+                    <button data-dim="annualPrecip" class="dim-tab"></button>
+                    <button data-dim="elevation" class="dim-tab"></button>
+                    <button data-dim="extremeMonths" class="dim-tab"></button>
+                </div>
+                <div id="map-wrap" class="relative w-full" style="height: 72vh; min-height: 460px;">
+                    <div id="china-map" class="w-full h-full"></div>
+                    <div class="absolute top-3 right-3 z-[5] flex flex-col gap-1.5">
+                        <button id="map-zoom-in" aria-label="放大" class="w-9 h-9 rounded-lg bg-white/95 border border-slate-200 shadow-sm text-slate-700 text-xl leading-none font-medium hover:bg-slate-50">+</button>
+                        <button id="map-zoom-out" aria-label="缩小" class="w-9 h-9 rounded-lg bg-white/95 border border-slate-200 shadow-sm text-slate-700 text-xl leading-none font-medium hover:bg-slate-50">−</button>
+                        <button id="map-zoom-reset" aria-label="复位" class="w-9 h-9 rounded-lg bg-white/95 border border-slate-200 shadow-sm text-slate-500 text-base leading-none hover:bg-slate-50" title="复位">⤢</button>
                     </div>
-                    <div id="map-wrap" class="relative" style="height: 480px;"><div id="china-map" class="w-full h-full"></div></div>
-                    <div id="map-fallback" class="hidden text-sm text-slate-500 bg-slate-50 border border-slate-200 rounded-lg p-6 text-center items-center justify-center" style="min-height: 240px;"></div>
                 </div>
-                <div class="rounded-xl border border-slate-200 bg-white p-4 md:p-6">
-                    <div class="text-sm font-medium text-slate-700 mb-4">各省样本均单价（元/㎡）</div>
-                    <div class="relative" style="height: 480px;"><canvas id="province-chart"></canvas></div>
+                <div id="map-fallback" class="hidden text-sm text-slate-500 bg-slate-50 border border-slate-200 rounded-lg p-6 text-center items-center justify-center" style="min-height: 240px;"></div>
+            </div>
+            <div class="rounded-xl border border-slate-200 bg-white p-4 md:p-6 mt-5">
+                <div class="flex flex-wrap items-center gap-2 mb-4">
+                    <span class="text-sm font-medium text-slate-700 mr-1 self-center">各省对比</span>
+                    <button data-prov="avgComfort" class="prov-tab"></button>
+                    <button data-prov="avgExtreme" class="prov-tab"></button>
+                    <button data-prov="avgUnit" class="prov-tab"></button>
+                    <button data-prov="avgPrice" class="prov-tab"></button>
                 </div>
+                <div class="relative" style="height: 420px;"><canvas id="province-chart"></canvas></div>
             </div>
         </section>
 
         <!-- Table -->
         <section id="table" class="scroll-mt-20">
-            <h2 class="text-xs font-semibold uppercase tracking-[0.15em] text-slate-400 mb-1">数据表 · All listings</h2>
-            <p class="text-slate-600 mb-5 max-w-2xl text-sm leading-relaxed">点击表头排序，按省份筛选或搜索城市 / 小区。单价、回报、回本均为实时计算。</p>
+            <h2 class="text-xs font-semibold uppercase tracking-[0.15em] text-slate-400 mb-1">数据表 · 总信息源</h2>
+            <p class="text-slate-600 mb-5 max-w-3xl text-sm leading-relaxed">这张表是<strong class="text-slate-800">一切图表与地图的来源</strong>——价格、宜居（气温 / 降水 / 海拔 / 舒适与极端月数）、基础设施距离、省级灾害风险全部并列，便于横向对比。点击表头排序，用下方按钮切换<strong class="text-emerald-700">列分组</strong>，按省份筛选或搜索。所有派生指标实时计算。</p>
+            <div class="flex flex-wrap items-center gap-2 mb-3">
+                <span class="text-xs font-medium text-slate-400 mr-1 self-center">显示列</span>
+                <button data-group="live" class="group-chip">宜居</button>
+                <button data-group="infra" class="group-chip">基础设施</button>
+                <button data-group="risk" class="group-chip">灾害风险</button>
+                <button data-group="invest" class="group-chip">投资口径</button>
+            </div>
             <div class="flex flex-col sm:flex-row sm:items-center gap-3 mb-4">
                 <select id="prov-filter" class="text-sm border border-slate-200 rounded-lg px-3 py-2 bg-white text-slate-700 focus:outline-none focus:ring-2 focus:ring-emerald-500/40"></select>
-                <input id="table-search" type="search" placeholder="搜索城市 / 区 / 小区…" class="text-sm border border-slate-200 rounded-lg px-3 py-2 bg-white text-slate-700 flex-grow focus:outline-none focus:ring-2 focus:ring-emerald-500/40" />
+                <input id="table-search" type="search" placeholder="搜索省 / 城市 / 区 / 小区…" class="text-sm border border-slate-200 rounded-lg px-3 py-2 bg-white text-slate-700 flex-grow focus:outline-none focus:ring-2 focus:ring-emerald-500/40" />
                 <span id="table-count" class="text-xs text-slate-400 tabular-nums whitespace-nowrap"></span>
                 <button id="csv-export" class="text-xs font-medium text-slate-600 border border-slate-200 rounded-lg px-3 py-2 bg-white hover:bg-slate-50 transition-colors whitespace-nowrap">导出 CSV</button>
             </div>
@@ -148,22 +171,23 @@
             <h2 class="text-xs font-semibold uppercase tracking-[0.15em] text-slate-400 mb-5">说明 · Methodology</h2>
             <div class="grid md:grid-cols-2 gap-5">
                 <div class="rounded-xl border border-slate-200 bg-white p-6 text-sm text-slate-600 leading-relaxed space-y-3">
-                    <p class="font-medium text-slate-800">指标如何计算</p>
+                    <p class="font-medium text-slate-800">宜居指标如何得来</p>
                     <ul class="space-y-2 list-disc list-inside">
-                        <li><strong class="text-slate-700">单价</strong> = 总价 ÷ 面积（元/㎡）</li>
-                        <li><strong class="text-slate-700">年租金</strong> = 月租 × 12</li>
-                        <li><strong class="text-slate-700">毛租金回报率</strong> = 年租金 ÷ 总价（未扣税费、空置、维护）</li>
-                        <li><strong class="text-slate-700">回本年限</strong> = 总价 ÷ 年租金（同样为毛口径）</li>
+                        <li><strong class="text-slate-700">气温 / 降水</strong>：Open-Meteo ERA5 <strong>2014–2023</strong> 月度均值；年降水为 12 个月均值之和。</li>
+                        <li><strong class="text-slate-700">舒适月</strong> = 月均温在 <strong>15–26℃</strong> 的月份数；<strong class="text-slate-700">极端月</strong> = 月均温 &lt; 0℃（严寒）或月均高温 ≥ 33℃（酷热）的月份数。</li>
+                        <li><strong class="text-slate-700">宜居指数</strong>（0–100）= 舒适月占比 × 70 + （1 − 极端月占比）× 30，纯气候口径、不含价格，透明可复算。</li>
+                        <li><strong class="text-slate-700">海拔</strong>：Open-Meteo Copernicus DEM；<strong class="text-slate-700">医院/火车/机场/海岸距离</strong>：最近一处的直线距离（OSM Overpass + 离线机场/海岸线）。</li>
+                        <li><strong class="text-slate-700">单价</strong> = 总价 ÷ 面积；<strong class="text-slate-700">毛回报</strong> = 月租×12 ÷ 总价、<strong class="text-slate-700">回本年限</strong> = 总价 ÷ 年租金（毛口径，作参考保留）。</li>
                     </ul>
                 </div>
                 <div class="rounded-xl border border-amber-200 bg-amber-50/60 p-6 text-sm text-slate-600 leading-relaxed space-y-3">
                     <p class="font-medium text-amber-800">务必注意的局限</p>
                     <ul class="space-y-2 list-disc list-inside">
-                        <li>每行是<strong class="text-slate-700">单一挂牌报价</strong>，多为当地最低价房源，<strong class="text-slate-700">不代表区域均价</strong>。</li>
-                        <li>价格含"约"，为整数估值；部分为公寓 / 度假盘，流动性与产权差异大。</li>
-                        <li>毛回报未计税费、物业、空置与折旧，<strong class="text-slate-700">实际净回报显著更低</strong>。</li>
-                        <li><strong class="text-slate-700">位置 / 卫星图 / 周边 / 气候</strong>来自 OpenStreetMap、Open-Meteo、Esri 等开放数据：小区名常回退到<strong class="text-slate-700">街道 / 城市级</strong>定位，周边设施在小城可能缺漏，灾害为<strong class="text-slate-700">省级粗略近似</strong>，均仅供直观参考。部分缺口由<strong class="text-slate-700">子代理联网调研</strong>补充（页内标「调研」，坐标仍由我们自行换算校验）。</li>
-                        <li>仅供研究与好奇心，<strong class="text-slate-700">非投资、法律或税务建议</strong>。</li>
+                        <li>每行是<strong class="text-slate-700">单一挂牌报价</strong>，多为当地最低价房源，<strong class="text-slate-700">不代表区域均价</strong>；价格含"约"，部分为公寓/度假盘，产权与流动性差异大。</li>
+                        <li><strong class="text-slate-700">气候 / 海拔</strong>取自小区的<strong class="text-slate-700">定位坐标</strong>，而小区名常回退到<strong class="text-slate-700">街道 / 城市级</strong>，故为<strong class="text-slate-700">区域近似</strong>；周边设施在小城可能缺漏。</li>
+                        <li><strong class="text-slate-700">地震带 / 台风暴露 / 主要灾害</strong>为<strong class="text-slate-700">省级、定性</strong>口径（公开地理气候资料 + 应急管理部历年灾情的概括，频率分 高频/常见/偶发/罕见），<strong class="text-slate-700">非点位灾害模型、非工程依据</strong>，仅供并排比较"这一带通常会出什么状况"。</li>
+                        <li>部分缺口由<strong class="text-slate-700">子代理联网调研</strong>补充（页内标「调研」，坐标仍由我们自行换算校验）。</li>
+                        <li>仅供研究与好奇心，<strong class="text-slate-700">非投资、安家、法律或税务建议</strong>。</li>
                     </ul>
                 </div>
             </div>
@@ -201,7 +225,7 @@
                     <div data-lm-pane="climate" class="hidden">
                         <div class="relative" style="height:300px"><canvas id="lm-climate-chart"></canvas></div>
                         <div id="lm-risk" class="mt-4 text-sm text-slate-600 leading-relaxed"></div>
-                        <p class="mt-2 text-xs text-slate-400">气候为 2014–2023 月度均值（Open-Meteo ERA5）；灾害为区域级粗略近似，非工程依据。</p>
+                        <p class="mt-2 text-xs text-slate-400">气候为 2014–2023 月度均值（Open-Meteo ERA5）；地震/台风为区域近似、省级灾害为公开资料定性概况，均非工程依据。</p>
                     </div>
                 </div>
             </div>
@@ -219,8 +243,10 @@
     <script src="assets/data/listings.js"></script>
     <!-- China province boundaries, vendored locally (no runtime third-party fetch) -->
     <script src="assets/data/china-geo.js"></script>
-    <!-- Baked enrichment: geocode / climate / POIs / risk (tools/manage.py enrich → build) -->
+    <!-- Baked enrichment: geocode / climate / POIs / risk / elevation (tools/manage.py enrich → build) -->
     <script src="assets/data/enriched.js"></script>
+    <!-- Curated province natural-hazard profile (tools/manage.py build) -->
+    <script src="assets/data/hazards.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"
         integrity="sha384-vsrfeLOOY6KuIYKDlmVH5UiBmgIdB1oEf7p01YgWHuqmOHfZr374+odEv96n9tNC"
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
