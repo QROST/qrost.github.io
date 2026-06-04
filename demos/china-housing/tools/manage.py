@@ -433,6 +433,21 @@ def cmd_enrich(args):
     print("✓ enrich complete — now run `build` to emit assets/data/enriched.js")
 
 
+def cmd_research_merge(args):
+    con = connect()
+    findings = json.load(open(args.path, encoding="utf-8"))
+    print(f"merging {len(findings)} research finding(s) from {args.path} …")
+    rep = enrich.merge_research(con, findings, print)
+    # risk summaries embed coords/coast — recompute for any refined locations
+    enrich.risk_all(con, print)
+    print("=== research merge report ===")
+    print(json.dumps(rep, ensure_ascii=False, indent=1))
+    if rep["moves"]:
+        print(f"⚠ {len(rep['moves'])} location move(s) >25km — review these:")
+        for m in rep["moves"]:
+            print(f"   #{m['id']} {m['loc']}: moved {m['km']}km → {m['to']}")
+
+
 def main(argv=None):
     p = argparse.ArgumentParser(prog="manage.py", description=__doc__,
                                 formatter_class=argparse.RawDescriptionHelpFormatter)
@@ -471,6 +486,10 @@ def main(argv=None):
     sub.add_parser("pois", help="bake nearest metro/train/airport/hospital/mall/coast").set_defaults(fn=cmd_pois)
     sub.add_parser("risk", help="compute coarse coast/seismic/typhoon risk").set_defaults(fn=cmd_risk)
     sub.add_parser("enrich", help="run geocode + climate + pois + risk (all stages)").set_defaults(fn=cmd_enrich)
+
+    sp = sub.add_parser("research-merge", help="fold subagent research findings (JSON) into the DB")
+    sp.add_argument("path", help="JSON array of per-listing finding objects")
+    sp.set_defaults(fn=cmd_research_merge)
 
     sp = sub.add_parser("export-csv", help="dump DB → CSV (default data/listings.csv)")
     sp.add_argument("path", nargs="?", default=None)

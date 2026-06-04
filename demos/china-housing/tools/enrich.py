@@ -92,7 +92,8 @@ def haversine(lat1, lng1, lat2, lng2):
 def migrate(con):
     cols = {r[1] for r in con.execute("PRAGMA table_info(listings)")}
     for col, decl in (("lat", "REAL"), ("lng", "REAL"),
-                      ("geo_level", "TEXT"), ("geo_label", "TEXT")):
+                      ("geo_level", "TEXT"), ("geo_label", "TEXT"),
+                      ("geo_source", "TEXT")):  # 'nominatim' | 'research'
         if col not in cols:
             con.execute(f"ALTER TABLE listings ADD COLUMN {col} {decl}")
     con.executescript("""
@@ -112,6 +113,9 @@ def migrate(con):
         coast_km REAL, seismic_band TEXT, typhoon TEXT, summary TEXT
       );
     """)
+    poicols = {r[1] for r in con.execute("PRAGMA table_info(poi)")}
+    if "source" not in poicols:  # 'osm' | 'research'
+        con.execute("ALTER TABLE poi ADD COLUMN source TEXT")
     con.commit()
 
 
@@ -445,25 +449,119 @@ def risk_all(con, log):
 
 
 # ---------------------------------------------------------------------------
+# Research merge — fold subagent findings (names/addresses) into the DB.
+# Agents return *names* (verifiable, with sources); the precise geocoding +
+# distance is done HERE deterministically via Nominatim, with province + radius
+# validation, so we never bake an agent-asserted coordinate. Provenance is
+# tracked (geo_source / poi.source = 'research'); large location moves are
+# flagged for human review rather than trusted blindly.
+# ---------------------------------------------------------------------------
+def geocode_query(query, prov, limit=5):
+    """Province-validated geocode of an arbitrary name/address. Caller rate-limits."""
+    url = "https://nominatim.openstreetmap.org/search?" + urllib.parse.urlencode(
+        {"q": query, "format": "jsonv2", "limit": limit,
+         "countrycodes": "cn", "addressdetails": 1, "accept-language": "zh"})
+    try:
+        j = json.loads(_get(url, timeout=25, retries=2))
+    except Exception:  # noqa: BLE001
+        return None
+    for hit in j:
+        if _prov_ok(prov, hit):
+            return float(hit["lat"]), float(hit["lon"]), hit.get("display_name", "")
+    return None
+
+
+def merge_research(con, findings, log, move_flag_km=25.0, poi_max_km=60.0):
+    """Fold a list of per-listing finding dicts into the DB. Returns a report.
+
+    finding = {id, refined_address?, hospital_name?, mall_name?, metro_name?,
+               sources?, notes?}  (any field may be null/absent)."""
+    report = {"refined": 0, "moves": [], "poi_filled": {"hospital": 0, "mall": 0, "metro": 0},
+              "poi_name_only": 0, "rejected": [], "skipped": 0}
+    for f in findings:
+        lid = f.get("id")
+        row = con.execute(
+            "SELECT prov, loc, lat, lng, geo_level FROM listings WHERE id=?", (lid,)).fetchone()
+        if not row:
+            report["skipped"] += 1
+            continue
+        prov, anchor = row["prov"], [row["lat"], row["lng"]]
+        # 1) refine an imprecise (city/dist-level) location from a verified address
+        addr = f.get("refined_address")
+        if addr and row["geo_level"] in ("city", "dist"):
+            import re as _re
+            cands = [addr]
+            # Nominatim has no house numbers for most CN streets — retry without 门牌号
+            simpler = _re.sub(r"\d+\s*号?", "", addr).strip(" ,，")
+            if simpler and simpler != addr:
+                cands.append(simpler)
+            g = None
+            for cand in cands:
+                g = geocode_query(f"{cand}, {prov}", prov)
+                time.sleep(1.1)
+                if g:
+                    break
+            if g:
+                mv = (haversine(anchor[0], anchor[1], g[0], g[1])
+                      if anchor[0] is not None else None)
+                con.execute("UPDATE listings SET lat=?, lng=?, geo_level='loc', "
+                            "geo_label='调研细化', geo_source='research' WHERE id=?",
+                            (round(g[0], 5), round(g[1], 5), lid))
+                anchor = [g[0], g[1]]
+                report["refined"] += 1
+                if mv is not None and mv > move_flag_km:
+                    report["moves"].append(
+                        {"id": lid, "loc": row["loc"], "km": round(mv, 1), "to": g[2][:46]})
+        # 2) fill genuinely-missing POIs by verified name (don't overwrite OSM hits)
+        for cat, key in (("hospital", "hospital_name"), ("mall", "mall_name"), ("metro", "metro_name")):
+            name = f.get(key)
+            if not name:
+                continue
+            if con.execute("SELECT 1 FROM poi WHERE listing_id=? AND category=?", (lid, cat)).fetchone():
+                continue
+            g = geocode_query(f"{name}, {prov}", prov)
+            time.sleep(1.1)
+            if g:
+                d = (haversine(anchor[0], anchor[1], g[0], g[1])
+                     if anchor[0] is not None else None)
+                if d is not None and d > poi_max_km:
+                    report["rejected"].append({"id": lid, "cat": cat, "name": name, "km": round(d, 1)})
+                    continue
+                con.execute("INSERT OR REPLACE INTO poi (listing_id,category,name,lat,lng,dist_km,source) "
+                            "VALUES (?,?,?,?,?,?,'research')",
+                            (lid, cat, name, round(g[0], 5), round(g[1], 5), round(d, 1) if d else None))
+                report["poi_filled"][cat] += 1
+            else:
+                # agent-verified name that Nominatim can't place → keep name-only (no pin)
+                con.execute("INSERT OR REPLACE INTO poi (listing_id,category,name,lat,lng,dist_km,source) "
+                            "VALUES (?,?,?,NULL,NULL,NULL,'research')", (lid, cat, name))
+                report["poi_name_only"] += 1
+    con.commit()
+    return report
+
+
+# ---------------------------------------------------------------------------
 # Emit — assemble the enriched JS global from the DB
 # ---------------------------------------------------------------------------
 def emit_enriched(con):
     """Return {id: {...}} dict of all baked enrichment for build to serialize."""
     out = {}
-    for r in con.execute("SELECT id, lat, lng, geo_level, geo_label FROM listings WHERE lat IS NOT NULL"):
+    for r in con.execute("SELECT id, lat, lng, geo_level, geo_label, geo_source FROM listings WHERE lat IS NOT NULL"):
         out[r["id"]] = {"lat": r["lat"], "lng": r["lng"],
-                        "geoLevel": r["geo_level"], "geoLabel": r["geo_label"]}
+                        "geoLevel": r["geo_level"], "geoLabel": r["geo_label"],
+                        "geoSource": r["geo_source"] or "nominatim"}
     for r in con.execute("SELECT listing_id, month, tmean, tmax, tmin, precip FROM climate ORDER BY listing_id, month"):
         e = out.get(r["listing_id"])
         if e is None:
             continue
         e.setdefault("climate", {})[r["month"]] = [r["tmean"], r["tmax"], r["tmin"], r["precip"]]
-    for r in con.execute("SELECT listing_id, category, name, lat, lng, dist_km FROM poi"):
+    for r in con.execute("SELECT listing_id, category, name, lat, lng, dist_km, source FROM poi"):
         e = out.get(r["listing_id"])
         if e is None:
             continue
         e.setdefault("pois", {})[r["category"]] = {
-            "name": r["name"], "lat": r["lat"], "lng": r["lng"], "distKm": r["dist_km"]}
+            "name": r["name"], "lat": r["lat"], "lng": r["lng"],
+            "distKm": r["dist_km"], "source": r["source"] or "osm"}
     for r in con.execute("SELECT listing_id, coast_km, seismic_band, typhoon, summary FROM risk"):
         e = out.get(r["listing_id"])
         if e is None:
