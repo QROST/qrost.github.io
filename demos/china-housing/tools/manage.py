@@ -438,6 +438,7 @@ def cmd_research_merge(args):
     findings = json.load(open(args.path, encoding="utf-8"))
     print(f"merging {len(findings)} research finding(s) from {args.path} …")
     rep = enrich.merge_research(con, findings, print)
+    enrich.refresh_refined_pois(con, print)   # OSM POIs go stale where a location moved
     # risk summaries embed coords/coast — recompute for any refined locations
     enrich.risk_all(con, print)
     print("=== research merge report ===")
