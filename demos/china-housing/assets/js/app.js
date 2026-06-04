@@ -344,12 +344,20 @@
     document.querySelectorAll('[data-map]').forEach((b) => styleTab(b, b.dataset.map === mapKey, 'map-tab'));
   }
 
+  // Province boundaries: prefer the locally-vendored copy (assets/data/china-geo.js,
+  // window.CHINA_GEO) so the map works offline / over file:// with no third-party
+  // request; fall back to the remote Aliyun source only if the vendored file is absent.
+  async function loadChinaGeo() {
+    if (window.CHINA_GEO && Array.isArray(window.CHINA_GEO.features)) return window.CHINA_GEO;
+    const res = await fetch(GEO_URL, { mode: 'cors' });
+    if (!res.ok) throw new Error('geojson http ' + res.status);
+    return res.json();
+  }
+
   async function initMap() {
     if (!window.echarts) { mapFail('地图组件未能加载（ECharts CDN 不可达），其余图表不受影响。'); return; }
     try {
-      const res = await fetch(GEO_URL, { mode: 'cors' });
-      if (!res.ok) throw new Error('geojson http ' + res.status);
-      const geo = await res.json();
+      const geo = await loadChinaGeo();
       echarts.registerMap('china', geo);
       echartsMap = echarts.init(document.getElementById('china-map'));
       mapReady = true;
