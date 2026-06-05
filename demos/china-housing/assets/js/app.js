@@ -281,7 +281,7 @@
         },
         scales: {
           x: { title: { display: true, text: '二手房总价（万元）— 越左越便宜' }, grid: { color: C.grid }, ticks: { callback: (v) => v + '万' } },
-          y: { title: { display: true, text: '舒适月数（月均温 15–26℃ 的月份）— 越上越多' }, grid: { color: C.grid }, min: 0, max: 12 },
+          y: { title: { display: true, text: '舒适月数（月均温 15–26℃；悬停看具体月份范围）— 越上越多' }, grid: { color: C.grid }, min: 0, max: 12 },
         },
       },
     });
