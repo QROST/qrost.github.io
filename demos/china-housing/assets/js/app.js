@@ -841,14 +841,31 @@
     const title = `年均温 ${d.annualMean == null ? '—' : Math.round(d.annualMean) + '℃'} · 年温差 ${d.tempRange}℃ · 最冷月 ${fmtTemp(d.tMin)} / 最热月 ${fmtTemp(d.tMax)}`;
     return `<span class="inline-block rounded px-1.5 py-0.5 text-xs font-medium" style="background:${bg};color:${fg}" title="${title}">${d.climateType}</span>`;
   }
-  // comfort / extreme cells now show WHICH months (a range), coloured by the count
-  // (green = more comfortable, red = more extreme). Sort still keys off the count.
+  // Month-boundary gridlines (shared by the 365-day mini strips).
+  const _MONTH_GRID = (() => {
+    const b = []; let a = 0; for (let i = 0; i < 12; i++) { a += _DIM[i]; b.push(a / 365 * 100); }
+    return 'background-color:#f1f5f9;background-image:' + b.slice(0, 11).map((p) =>
+      `linear-gradient(90deg, transparent calc(${p}% - 0.5px), rgba(100,116,139,0.18) ${p}%, transparent calc(${p}% + 0.5px))`).join(',');
+  })();
+  // Fixed-width 1–12-month strip with coloured blocks at the given day-of-year
+  // ranges ([[s,e],…]; a run wrapping the year-end is split across the Jan–Dec axis).
+  function miniDayStrip(ranges, color, title) {
+    const blocks = (ranges || []).flatMap(([s, e]) => (s <= e ? [[s, e]] : [[s, 365], [1, e]]))
+      .map(([s, e]) => `<div class="absolute top-0 bottom-0" style="left:${(s - 1) / 365 * 100}%;width:${(e - s + 1) / 365 * 100}%;background:${color};border-radius:1px"></div>`).join('');
+    return `<div class="relative h-3.5 rounded-sm" style="width:112px;${_MONTH_GRID}" title="${title}">${blocks}</div>`;
+  }
+
+  // comfort / extreme cells: a mini 365-day strip — green = comfortable days,
+  // red = extreme days (visual beats text; hover shows the exact dates). Falls
+  // back to a coloured text pill where no daily climatology is baked.
   function comfortCell(d) {
+    if (d.daily && d.daily.comfortDays) return miniDayStrip(d.daily.comfortDays, '#059669', '舒适 ' + (d.comfortRange || '无'));
     if (d.comfortMonths == null) return '<span class="text-slate-300">—</span>';
     const t = d.comfortMonths / 12;
     return pill(d.comfortRange || (d.comfortMonths + '月'), comfortColor(t), t > 0.55 ? '#fff' : '#0f172a');
   }
   function extremeCell(d) {
+    if (d.daily && d.daily.extremeDays) return miniDayStrip(d.daily.extremeDays, '#dc2626', d.daily.extremeDays.length ? ('极端 ' + d.extremeRange) : '无极端');
     if (d.extremeMonths == null) return '<span class="text-slate-300">—</span>';
     const t = d.extremeMonths / exMaxT;
     return pill(d.extremeRange || (d.extremeMonths + '月'), badColor(t), t > 0.5 ? '#fff' : '#0f172a');
