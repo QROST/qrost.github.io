@@ -36,6 +36,7 @@ import unicodedata
 from pathlib import Path
 
 import enrich  # sibling module (tools/enrich.py) — build-time data enrichment
+import gridfield  # sibling module (tools/gridfield.py) — gridded climate/elevation field
 
 # ---------------------------------------------------------------------------
 # Paths — resolved relative to this file so the CLI works from any cwd.
@@ -45,6 +46,7 @@ DB_PATH = ROOT / "data" / "housing.db"
 JS_PATH = ROOT / "assets" / "data" / "listings.js"
 ENR_PATH = ROOT / "assets" / "data" / "enriched.js"
 HAZ_PATH = ROOT / "assets" / "data" / "hazards.js"
+FIELD_PATH = ROOT / "assets" / "data" / "field.js"
 CSV_PATH = ROOT / "data" / "listings.csv"
 HTML_PATH = ROOT / "index.html"
 
@@ -253,6 +255,26 @@ def render_hazards(d: dict) -> str:
     return HAZ_HEADER + "window.HOUSING_HAZARDS = " + body + ";\n"
 
 
+FIELD_HEADER = '''/**
+ * China small-city housing — gridded climate / elevation field (basemap).
+ *
+ * GENERATED FILE — do not hand-edit. Source is data/ref/field_grid.json
+ * (sampled by `manage.py field`); isolines re-extracted by `manage.py build`.
+ *
+ * A continuous, land-masked field over China (Open-Meteo ERA5 archive + model
+ * DEM), so the map can draw a real isotherm / rainfall / elevation basemap
+ * under the listings. Per field: heatmap points [lng,lat,value] + marching-
+ * squares isoline segments per level. Coarse (1° grid) — for orientation, not
+ * precision. window.HOUSING_FIELD = {bbox, step, fields:{key:{...}}}.
+ */
+'''
+
+
+def render_field(d: dict) -> str:
+    body = json.dumps(d, ensure_ascii=False, separators=(",", ":"))
+    return FIELD_HEADER + "window.HOUSING_FIELD = " + body + ";\n"
+
+
 def _enrich_coverage(con) -> str:
     g = con.execute("SELECT COUNT(*) FROM listings WHERE lat IS NOT NULL").fetchone()[0]
     c = con.execute("SELECT COUNT(DISTINCT listing_id) FROM climate").fetchone()[0]
@@ -403,6 +425,13 @@ def cmd_build(args):
     hazards = enrich.emit_hazards()
     HAZ_PATH.write_text(render_hazards(hazards), encoding="utf-8")
     print(f"✓ hazards: {len(hazards)} province profiles → {HAZ_PATH.relative_to(ROOT)}")
+    # emit the gridded climate/elevation field (offline isoline gen from cache)
+    field = gridfield.emit_field(lambda m: print("   " + m))
+    if field:
+        FIELD_PATH.write_text(render_field(field), encoding="utf-8")
+        print(f"✓ field: {len(field['fields'])} basemap fields → {FIELD_PATH.relative_to(ROOT)}")
+    else:
+        print(f"  field: no grid cache ({gridfield.CACHE.relative_to(ROOT)}) — run `field` first; basemaps will be absent")
     # keep the human-readable CSV mirror in sync
     args.path = None
     cmd_export_csv(args)
@@ -451,6 +480,11 @@ def cmd_risk(args):
 
 def cmd_elevation(args):
     enrich.elevation_all(connect(), print, force=args.force)
+
+
+def cmd_field(args):
+    gridfield.fetch_field(print, force=args.force)
+    print("✓ field fetch complete — now run `build` to emit assets/data/field.js")
 
 
 def cmd_enrich(args):
@@ -517,6 +551,9 @@ def main(argv=None):
     sp = sub.add_parser("elevation", help="bake metres-above-sea-level via Open-Meteo DEM (batched)")
     sp.add_argument("--force", action="store_true", help="re-fetch rows that already have elevation")
     sp.set_defaults(fn=cmd_elevation)
+    sp = sub.add_parser("field", help="sample the gridded China climate/elevation field (resumable cache)")
+    sp.add_argument("--force", action="store_true", help="ignore cache and re-sample the whole grid")
+    sp.set_defaults(fn=cmd_field)
     sub.add_parser("pois", help="bake nearest metro/train/airport/hospital/mall/coast").set_defaults(fn=cmd_pois)
     sub.add_parser("risk", help="compute coarse coast/seismic/typhoon risk").set_defaults(fn=cmd_risk)
     sub.add_parser("enrich", help="run geocode + climate + pois + risk (all stages)").set_defaults(fn=cmd_enrich)

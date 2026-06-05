@@ -104,10 +104,10 @@
         <!-- Geo: full-width zoomable overlay map + province comparison -->
         <section id="geo" class="scroll-mt-20">
             <h2 class="text-xs font-semibold uppercase tracking-[0.15em] text-slate-400 mb-1">宜居地图 · Livability overlay</h2>
-            <p class="text-slate-600 mb-5 max-w-3xl text-sm leading-relaxed">每个圆点是一套房，<strong class="text-slate-800">越大 = 越便宜</strong>。切换下方<strong class="text-emerald-700">叠加维度</strong>给小区重新着色——宜居指数、单价、<strong class="text-slate-800">冬夏等温</strong>、年降水、<strong class="text-slate-800">海拔</strong>、极端天气，直观找出又便宜又住得舒服的地点。<strong class="text-slate-800">滚轮 / 双指捏合 / 右上角 +−</strong> 可缩放，拖动平移；点击圆点看卫星图 / 周边 / 气候与灾害。</p>
+            <p class="text-slate-600 mb-5 max-w-3xl text-sm leading-relaxed">每个圆点是一套房，<strong class="text-slate-800">越大 = 越便宜</strong>，颜色按<strong class="text-emerald-700">点·叠加维度</strong>变化（宜居指数 / 单价 / 冬夏等温 / 年降水 / 海拔 / 极端天气）。再叠一层<strong class="text-emerald-700">连续底图</strong>——全国<strong class="text-slate-800">等温线 / 降水 / 海拔</strong>栅格场（含等值线），就能直观看到某套便宜房落在什么气温带、海拔带里。<strong class="text-slate-800">滚轮 / 双指捏合 / 右上角 +−</strong> 缩放、拖动平移；点击圆点看卫星图 / 周边 / 气候与灾害。</p>
             <div class="rounded-xl border border-slate-200 bg-white p-4 md:p-6">
-                <div class="flex flex-wrap items-center gap-2 mb-4">
-                    <span class="text-xs font-medium text-slate-400 mr-1 self-center">叠加维度</span>
+                <div class="flex flex-wrap items-center gap-2 mb-3">
+                    <span class="text-xs font-medium text-slate-400 mr-1 self-center">点·叠加维度</span>
                     <button data-dim="comfortScore" class="dim-tab"></button>
                     <button data-dim="unitPrice" class="dim-tab"></button>
                     <button data-dim="priceWan" class="dim-tab"></button>
@@ -116,6 +116,15 @@
                     <button data-dim="annualPrecip" class="dim-tab"></button>
                     <button data-dim="elevation" class="dim-tab"></button>
                     <button data-dim="extremeMonths" class="dim-tab"></button>
+                </div>
+                <div class="flex flex-wrap items-center gap-2 mb-4">
+                    <span class="text-xs font-medium text-slate-400 mr-1 self-center">连续底图</span>
+                    <button data-base="none" class="base-tab"></button>
+                    <button data-base="janTemp" class="base-tab"></button>
+                    <button data-base="julTemp" class="base-tab"></button>
+                    <button data-base="elevation" class="base-tab"></button>
+                    <button data-base="annualPrecip" class="base-tab"></button>
+                    <span id="base-legend" class="hidden items-center gap-2 ml-1 sm:ml-3" style="display:none"></span>
                 </div>
                 <div id="map-wrap" class="relative w-full" style="height: 72vh; min-height: 460px;">
                     <div id="china-map" class="w-full h-full"></div>
@@ -177,6 +186,7 @@
                         <li><strong class="text-slate-700">舒适月</strong> = 月均温在 <strong>15–26℃</strong> 的月份数；<strong class="text-slate-700">极端月</strong> = 月均温 &lt; 0℃（严寒）或月均高温 ≥ 33℃（酷热）的月份数。</li>
                         <li><strong class="text-slate-700">宜居指数</strong>（0–100）= 舒适月占比 × 70 + （1 − 极端月占比）× 30，纯气候口径、不含价格，透明可复算。</li>
                         <li><strong class="text-slate-700">海拔</strong>：Open-Meteo Copernicus DEM；<strong class="text-slate-700">医院/火车/机场/海岸距离</strong>：最近一处的直线距离（OSM Overpass + 离线机场/海岸线）。</li>
+                        <li><strong class="text-slate-700">连续底图</strong>（等温线/降水/海拔）：在中国陆地上按 <strong>1° 网格</strong>采样 ERA5（2019–2023）与模型海拔，等值线由 marching-squares 抽取——<strong class="text-slate-700">粗略定向用</strong>，非精细气候图。</li>
                         <li><strong class="text-slate-700">单价</strong> = 总价 ÷ 面积；<strong class="text-slate-700">毛回报</strong> = 月租×12 ÷ 总价、<strong class="text-slate-700">回本年限</strong> = 总价 ÷ 年租金（毛口径，作参考保留）。</li>
                     </ul>
                 </div>
@@ -247,6 +257,8 @@
     <script src="assets/data/enriched.js"></script>
     <!-- Curated province natural-hazard profile (tools/manage.py build) -->
     <script src="assets/data/hazards.js"></script>
+    <!-- Gridded climate/elevation basemap field — isotherms / rainfall / DEM (tools/manage.py field → build) -->
+    <script src="assets/data/field.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"
         integrity="sha384-vsrfeLOOY6KuIYKDlmVH5UiBmgIdB1oEf7p01YgWHuqmOHfZr374+odEv96n9tNC"
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
