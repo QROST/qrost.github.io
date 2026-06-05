@@ -101,7 +101,9 @@ def migrate(con):
                       ("geo_level", "TEXT"), ("geo_label", "TEXT"),
                       ("geo_source", "TEXT"),       # 'nominatim' | 'research'
                       ("elevation", "REAL"),        # metres above sea level (Open-Meteo)
-                      ("daily_climate", "TEXT")):   # JSON: 365-day curve + comfort/extreme day-ranges
+                      ("daily_climate", "TEXT"),    # JSON: 365-day curve + comfort/extreme day-ranges
+                      ("built_year", "INTEGER"),    # 小区 construction/completion year (web research)
+                      ("built_year_src", "TEXT")):  # provenance: source URL / quoted 建成年代 text
         if col not in cols:
             con.execute(f"ALTER TABLE listings ADD COLUMN {col} {decl}")
     con.executescript("""
@@ -810,6 +812,50 @@ def merge_research(con, findings, log, move_flag_km=25.0, poi_max_km=60.0):
     return report
 
 
+def merge_built_years(con, findings, log, lo=1980, hi=2026):
+    """Fold 建成年代 (construction-year) research findings into listings.built_year.
+
+    finding = {id, builtYear:int|null, source?, yearText?, confidence:'high'|'med'|
+               'low'|'none', note?}. Anti-hallucination gate — a year is stored
+    ONLY if: confidence in {high, med}, a non-empty source/quote is given, the year
+    is in [lo, hi], and it is not after the listing's own update year (+1 slack for
+    pre-sale). Everything else is left NULL (shown as 年代未知 on the front end)."""
+    rep = {"set": 0, "rejected": [], "skipped_no_year": 0, "missing_listing": 0}
+    for f in findings:
+        lid = f.get("id")
+        row = con.execute("SELECT loc, updated FROM listings WHERE id=?", (lid,)).fetchone()
+        if not row:
+            rep["missing_listing"] += 1
+            continue
+        yr = f.get("builtYear", f.get("built_year"))
+        conf = (f.get("confidence") or "").strip().lower()
+        src = (f.get("source") or f.get("yearText") or f.get("note") or "").strip()
+        if yr is None or conf in ("", "none", "low"):
+            rep["skipped_no_year"] += 1
+            continue
+        try:
+            yr = int(yr)
+        except (TypeError, ValueError):
+            rep["rejected"].append({"id": lid, "why": "not-int", "val": yr})
+            continue
+        up = (row["updated"] or "")[:4]
+        up_year = int(up) if up.isdigit() else hi
+        if yr < lo or yr > hi:
+            rep["rejected"].append({"id": lid, "loc": row["loc"], "why": "out-of-range", "yr": yr})
+            continue
+        if yr > up_year + 1:
+            rep["rejected"].append({"id": lid, "loc": row["loc"], "why": "after-listing", "yr": yr, "listed": up_year})
+            continue
+        if not src:
+            rep["rejected"].append({"id": lid, "loc": row["loc"], "why": "no-source", "yr": yr})
+            continue
+        con.execute("UPDATE listings SET built_year=?, built_year_src=? WHERE id=?",
+                    (yr, src[:300], lid))
+        rep["set"] += 1
+    con.commit()
+    return rep
+
+
 def refresh_refined_pois(con, log):
     """A research location refine moves the anchor, so its previously-baked OSM
     POIs (computed vs the old coords) go stale. Recompute them against the new
@@ -864,12 +910,16 @@ def refresh_refined_pois(con, log):
 def emit_enriched(con):
     """Return {id: {...}} dict of all baked enrichment for build to serialize."""
     out = {}
-    for r in con.execute("SELECT id, lat, lng, geo_level, geo_label, geo_source, elevation, daily_climate FROM listings WHERE lat IS NOT NULL"):
+    for r in con.execute("SELECT id, lat, lng, geo_level, geo_label, geo_source, elevation, daily_climate, built_year, built_year_src FROM listings WHERE lat IS NOT NULL"):
         e = {"lat": r["lat"], "lng": r["lng"],
              "geoLevel": r["geo_level"], "geoLabel": r["geo_label"],
              "geoSource": r["geo_source"] or "nominatim"}
         if r["elevation"] is not None:
             e["elevation"] = r["elevation"]
+        if r["built_year"] is not None:
+            e["builtYear"] = r["built_year"]
+            if r["built_year_src"]:
+                e["builtYearSrc"] = r["built_year_src"]
         if r["daily_climate"]:
             try:
                 e["daily"] = json.loads(r["daily_climate"])
