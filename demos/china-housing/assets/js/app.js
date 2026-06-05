@@ -481,16 +481,33 @@
     }
     const bl = baseLayers();
     const ramp = RAMPS[dim.ramp] || RAMPS.range;
-    // series first (merge) — keeps points/lines stable across dim switches
-    echartsMap.setOption({
-      series: [
-        {
-          type: 'scatter', coordinateSystem: 'geo', zlevel: 3,
-          symbolSize: (val, params) => (params.data && params.data.size) || 9,
-          itemStyle: { borderColor: 'rgba(255,255,255,0.9)', borderWidth: 1, shadowBlur: 3, shadowColor: 'rgba(15,23,42,0.3)' },
-          emphasis: { scale: 1.5 },
-          data,
-        },
+    // Build series/visualMap conditionally: a heatmap series REQUIRES its
+    // controlling visualMap, and an EMPTY heatmap (no base layer, the default
+    // baseKey='none') makes ECharts _renderOnGeo crash reading 'targetVisuals'.
+    // So only add the heatmap/isolines/base-visualMap when a base field is
+    // active; replaceMerge drops them cleanly when toggled back to 无底图.
+    const hasBase = bl.heat.length > 0;
+    const series = [
+      {
+        type: 'scatter', coordinateSystem: 'geo', zlevel: 3,
+        symbolSize: (val, params) => (params.data && params.data.size) || 9,
+        itemStyle: { borderColor: 'rgba(255,255,255,0.9)', borderWidth: 1, shadowBlur: 3, shadowColor: 'rgba(15,23,42,0.3)' },
+        emphasis: { scale: 1.5 },
+        data,
+      },
+    ];
+    const visualMap = [
+      { // listing-point dimension (legend bottom-left)
+        type: 'continuous', dimension: 2, seriesIndex: 0,
+        min: vmin, max: vmax, range: [vmin, vmax],
+        left: 'left', bottom: 24, calculable: true,
+        text: dim.text, itemWidth: 14, itemHeight: 120,
+        inRange: { color: ramp }, textStyle: { color: C.slate500 },
+        formatter: (v) => dim.fmt(v),
+      },
+    ];
+    if (hasBase) {
+      series.push(
         {
           type: 'heatmap', coordinateSystem: 'geo', zlevel: 1,
           pointSize: 20, blurSize: 16, minOpacity: 0, maxOpacity: 0.62,
@@ -501,9 +518,14 @@
           lineStyle: { width: 1, opacity: 0.45, join: 'round' },
           data: bl.lines,
         },
-      ],
-    });
+      );
+      visualMap.push({ // basemap field (drives heatmap colour) — legend rendered in HTML
+        type: 'continuous', seriesIndex: 1, show: false,
+        min: bl.vm.min, max: bl.vm.max, inRange: { color: BASE_RAMPS[bl.vm.ramp] || BASE_RAMPS.temp },
+      });
+    }
     echartsMap.setOption({
+      series,
       tooltip: {
         trigger: 'item',
         formatter: (p) => {
@@ -519,21 +541,8 @@
             + `<br/><span style="color:#10b981">点击查看卫星图 / 周边 / 气候 / 灾害</span>`;
         },
       },
-      visualMap: [
-        { // listing-point dimension (legend bottom-left)
-          type: 'continuous', dimension: 2, seriesIndex: 0,
-          min: vmin, max: vmax, range: [vmin, vmax],
-          left: 'left', bottom: 24, calculable: true,
-          text: dim.text, itemWidth: 14, itemHeight: 120,
-          inRange: { color: ramp }, textStyle: { color: C.slate500 },
-          formatter: (v) => dim.fmt(v),
-        },
-        { // basemap field (drives heatmap colour) — legend rendered in HTML instead
-          type: 'continuous', seriesIndex: 1, show: false,
-          min: bl.vm.min, max: bl.vm.max, inRange: { color: BASE_RAMPS[bl.vm.ramp] },
-        },
-      ],
-    }, { replaceMerge: ['visualMap'] });
+      visualMap,
+    }, { replaceMerge: ['series', 'visualMap'] });
     renderBaseLegend();
   }
 
