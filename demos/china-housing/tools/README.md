@@ -182,15 +182,16 @@ merge 只**补缺**（不覆盖 OSM 已有 POI），幂等可重跑。findings �
 
 ## 房龄 / 完工年份（built-merge）
 
-每个小区的**建成年代（完工年份）**同样用子代理联网调研补齐，但因其极易被幻觉，走一条**独立的、带确定性校验门**的合并通道（`listings.built_year` / `built_year_src` 两列）：
+每个小区的**建成年代（完工年份）**同样用子代理联网调研补齐，但因其极易被幻觉，走一条**独立的、带确定性校验门**的合并通道（`listings.built_year` / `built_year_src` / `built_year_approx` 三列）：
 
-1. **agent 只产可验证年份**：联网查 贝壳 / 安居客 / 房天下 的「建成年代 / 建筑年代 / 竣工年限」字段，**核对页面城市/省份防重名**，给出 `source`（URL）+ `yearText`（原文引用）+ `confidence`；查不到返回 `builtYear:null, confidence:"none"`，**禁猜**（搜索摘要里的年份若打开页面核不到即弃用）。多期楼盘取**最早一期**。
-2. **确定性校验门**（`enrich.merge_built_years`）：仅当 `confidence∈{high,med}` **且**有来源 **且** `1980≤year≤2026` **且** 不晚于挂牌年(+1 容差) 才入库；其余一律留空（前端显示「年代未知」）。`rejected` 列表打印所有被拒原因。
+1. **agent 只产可验证年份**：联网查 贝壳 / 安居客 / 房天下 的「建成年代」字段，覆盖不到的（老破小 / 厂矿家属院）再换**老旧小区改造名单 / 地方志 / 厂史 / 政府征收公告 / 楼盘库 / 百度高德**；**核对页面城市/省份防重名**，给出 `source`（URL）+ `yearText`（原文引用）+ `confidence`；查不到返回 `builtYear:null, confidence:"none"`，**禁猜**（搜索摘要里的年份若打开页面核不到即弃用）。多期楼盘取**最早一期**。
+2. **三档置信**：`high`/`med` = 权威页明确年份；`approx` = 仅查到**可信来源的年代级估算**（如改造名单「建于上世纪90年代」、三线厂史「XX年投产、家属楼随建」），`built_year_approx=1`，前端标**「约」**+ 虚线圈以示非精确。
+3. **确定性校验门**（`enrich.merge_built_years`）：仅当 `confidence∈{high,med,approx}` **且**有来源 **且** `1900≤year≤2026` **且** 不晚于挂牌年(+1 容差) 才入库；`approx` **不覆盖**已有精确年份（精确优先）；其余一律留空（前端「年代未知」）。`rejected` 打印所有被拒原因。
 
 ```bash
 # findings.json = [{id, builtYear, yearText, source, confidence, note}, …]（或 {findings:[…]}）
 python3 tools/manage.py built-merge findings.json
-python3 tools/manage.py build   # 把 built_year 吐进 enriched.js（前端「房龄」色条：绿=新→琥珀=老）
+python3 tools/manage.py build   # 把 built_year 吐进 enriched.js（前端「房龄」色条：绿=新→琥珀=老，约=虚线圈）
 ```
 
-幂等可重跑（重跑覆盖同 id 的更优证据）。首轮 21 个并行 agent 覆盖 **47 / 121** 套；其余公开渠道暂无。
+幂等可重跑（重跑覆盖同 id 的更优证据，但 approx 不降级已有精确）。两轮并行 agent（首轮贝壳系，次轮改造名单/厂史等深挖）共覆盖 **71 / 121** 套（58 精确 + 13 约，含 1935 历史街区与 1960s 三线厂宿舍）；其余 50 套公开渠道暂无。
