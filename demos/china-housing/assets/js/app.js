@@ -190,6 +190,8 @@
       priceYuan, unitPrice: priceYuan / d.area, rentYear,
       yieldPct: (rentYear / priceYuan) * 100, payback: priceYuan / rentYear,
       elevation: e && e.elevation != null ? e.elevation : null,
+      builtYear: e && e.builtYear != null ? e.builtYear : null,
+      builtYearSrc: (e && e.builtYearSrc) || null,
       hospitalKm: poiKm(e, 'hospital'), trainKm: poiKm(e, 'train'),
       airportKm: poiKm(e, 'airport'), metroKm: poiKm(e, 'metro'),
       coastKm: e && e.risk ? e.risk.coastKm : poiKm(e, 'coast'),
@@ -235,6 +237,11 @@
   const comfortColor = valueColor;                   // 舒适 = value green (was red→green)
   const badColor = severityColor;                    // 极端天气 = severity red (was green→red)
   const rangeColor = (t) => mix(VIO_LO, VIO_HI, t);  // 年温差 / 季节波动 = violet (small → large)
+  // 房龄 = AGE: 新(0yr)=fresh green → 老(≥45yr)=amber patina. Its own hue (amber),
+  // distinct from value-green / severity-red / swing-violet; green end nods to
+  // value since newer ≈ better condition.
+  const AGE_NEW = [5, 150, 105], AGE_OLD = [180, 83, 9];
+  const NOW_YEAR = new Date().getFullYear();
 
   // ---- KPI cards ---------------------------------------------------------
   function renderKPIs() {
@@ -875,6 +882,16 @@
     const t = clamp(v / rangeMaxT, 0, 1);
     return pill(trim(v.toFixed(1)) + '℃', rangeColor(t), t > 0.45 ? '#fff' : '#0f172a');
   }
+  // 房龄 chip: green(new) → amber(old) by age; tooltip carries 建成年份 + source;
+  // unknown years degrade to a muted「未知」so partial research coverage is honest.
+  function builtCell(d) {
+    const y = d.builtYear;
+    if (y == null) return '<span class="text-slate-300" title="完工年份未知（公开渠道未查到，未编造）">—<span class="ml-0.5 text-[0.6rem]">未知</span></span>';
+    const age = Math.max(0, NOW_YEAR - y);
+    const t = clamp(age / 45, 0, 1);
+    const title = `建成 ${y} 年 · 房龄 ${age} 年` + (d.builtYearSrc ? `\n来源：${d.builtYearSrc}` : '');
+    return `<span class="inline-block rounded px-1.5 py-0.5 text-xs font-medium" style="background:${mix(AGE_NEW, AGE_OLD, t)};color:#fff" title="${title.replace(/"/g, '&quot;')}">${age}年</span>`;
+  }
   function climateCell(d) {
     if (!d.climateType) return '<span class="text-slate-300">—</span>';
     const [bg, fg] = CLIMATE_STYLE[d.climateType] || ['#f1f5f9', '#64748b'];
@@ -922,6 +939,7 @@
     { key: 'city', label: '城市', group: 'core', str: true, get: (d) => d.city, cell: (d) => d.city, dir: 1 },
     { key: 'dist', label: '区/镇', group: 'core', str: true, get: (d) => d.dist, cell: (d) => d.dist, dir: 1 },
     { key: 'loc', label: '小区/位置', group: 'core', str: true, get: (d) => d.loc, cell: (d) => `<span class="font-medium text-slate-900">${d.loc}</span>` , dir: 1 },
+    { key: 'builtAge', label: '房龄', group: 'core', get: (d) => nz(d.builtYear, -1), cell: (d) => builtCell(d) },
     { key: 'priceWan', label: '总价', group: 'price', num: true, get: (d) => d.priceWan, cell: (d) => fmtWan(d.priceWan) },
     { key: 'area', label: '面积㎡', group: 'price', num: true, get: (d) => d.area, cell: (d) => trim(d.area.toFixed(1)) },
     { key: 'unitPrice', label: '单价 元/㎡', group: 'price', num: true, get: (d) => d.unitPrice, cell: (d) => fmtInt(d.unitPrice) },

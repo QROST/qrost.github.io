@@ -517,6 +517,17 @@ def cmd_research_merge(args):
             print(f"   #{m['id']} {m['loc']}: moved {m['km']}km → {m['to']}")
 
 
+def cmd_built_merge(args):
+    con = connect()
+    data = json.load(open(args.path, encoding="utf-8"))
+    findings = data.get("findings", []) if isinstance(data, dict) else data
+    print(f"merging {len(findings)} built-year finding(s) from {args.path} …")
+    rep = enrich.merge_built_years(con, findings, print)
+    print("=== built-year merge report ===")
+    print(json.dumps(rep, ensure_ascii=False, indent=1))
+    print(f"→ {rep['set']} built-year(s) stored; run `build` to regenerate enriched.js")
+
+
 def main(argv=None):
     p = argparse.ArgumentParser(prog="manage.py", description=__doc__,
                                 formatter_class=argparse.RawDescriptionHelpFormatter)
@@ -566,6 +577,10 @@ def main(argv=None):
     sp = sub.add_parser("research-merge", help="fold subagent research findings (JSON) into the DB")
     sp.add_argument("path", help="JSON array of per-listing finding objects")
     sp.set_defaults(fn=cmd_research_merge)
+
+    sp = sub.add_parser("built-merge", help="fold validated 建成年代 (construction-year) findings into the DB")
+    sp.add_argument("path", help="JSON: [{id, builtYear, source, confidence}, …] or {findings:[…]}")
+    sp.set_defaults(fn=cmd_built_merge)
 
     sp = sub.add_parser("export-csv", help="dump DB → CSV (default data/listings.csv)")
     sp.add_argument("path", nargs="?", default=None)
