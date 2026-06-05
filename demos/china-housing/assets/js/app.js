@@ -547,16 +547,23 @@
   }
 
   // ---- big zoomable overlay map (geo + recolourable listing points) ------
+  // Hazard recurrence-interval buckets (FREQUENCY, not severity): 5=几乎年年 …
+  // 1=百年级罕见. Single source of truth for the frequency→colour scale, shared by
+  // the map 灾害频率 dimension + the table hazard column + the modal hazard tab, so
+  // 红=年年 · 橙=数年 · 灰=十年 · 淡灰=数十/百年 mean the same thing everywhere.
+  const FREQ_COLOR = { 5: '#b91c1c', 4: '#ea580c', 3: '#64748b', 2: '#94a3b8', 1: '#94a3b8' };
+  const FREQ_LABEL = { 5: '几乎年年', 4: '数年一次', 3: '约十年一遇', 2: '数十年一遇', 1: '百年级罕见' };
   // Sequential ramps, one per semantic family. VALUE = green only (no red);
   // SEVERITY = red; physical fields = their own conventional spectra.
   const RAMPS = {
     cheapGood: ['#065f46', '#059669', '#34d399', '#a7f3d0', '#cbd5e1'],   // 价值: 便宜/少 = 深绿 → 贵/多 = 中性灰
     comfyHigh: ['#cbd5e1', '#a7f3d0', '#34d399', '#059669', '#065f46'],   // 价值: 高 = 深绿（回报/舒适）
-    severity: ['#cbd5e1', '#fde047', '#fb923c', '#ef4444', '#b91c1c'],    // 严重度: 低=灰 → 高=红（极端天气/灾害）
+    severity: ['#cbd5e1', '#fde047', '#fb923c', '#ef4444', '#b91c1c'],    // 严重度: 低=灰 → 高=红（极端气候时长）
     temp: ['#2563eb', '#38bdf8', '#fde68a', '#fb923c', '#dc2626'],        // 温度: 冷蓝 → 热红
     precip: ['#eef2f7', '#bae6fd', '#38bdf8', '#0284c7', '#1e3a8a'],       // 降水: 干 → 湿
     terrain: ['#dcfce7', '#86efac', '#ca8a04', '#b45309', '#78350f'],     // 海拔: 低 → 高
     range: ['#ddd6fe', '#a78bfa', '#7c3aed', '#5b21b6', '#4c1d95'],       // 季节波动: 小 → 大（紫）
+    freq: [FREQ_COLOR[1], FREQ_COLOR[2], FREQ_COLOR[3], FREQ_COLOR[4], FREQ_COLOR[5]],  // 灾害频率: 罕见淡灰 → 年年红（= FREQ_COLOR，固定 [1,5] 域）
   };
   const MAP_DIMS = {
     tempRange: { label: '年温差·季节波动', get: (d) => d.tempRange, fmt: (v) => fmtInt(v) + '℃', ramp: 'range', text: ['温差大', '温差小'] },
@@ -566,7 +573,7 @@
     julTemp: { label: '7月均温·等温', get: (d) => d.julTemp, fmt: fmtTemp, ramp: 'temp', text: ['热', '冷'] },
     annualPrecip: { label: '年降水', get: (d) => d.annualPrecip, fmt: (v) => fmtInt(v) + 'mm', ramp: 'precip', text: ['湿', '干'] },
     elevation: { label: '海拔', get: (d) => d.elevation, fmt: (v) => fmtInt(v) + 'm', ramp: 'terrain', text: ['高', '低'] },
-    extremeMonths: { label: '极端天气', get: (d) => d.extremeMonths, fmt: (v) => v + '个月', ramp: 'severity', text: ['多', '少'] },
+    hazardFreq: { label: '主要灾害·频率', get: (d) => (d.hazard && d.hazard.hazards.length ? Math.max(...d.hazard.hazards.map((h) => h.freq)) : null), fmt: (v) => FREQ_LABEL[Math.round(v)] || '', ramp: 'freq', text: ['年年', '罕见'], fixedDomain: [1, 5] },
     // legacy keys (stale cached HTML may still reference the removed 宜居指数)
     comfortScore: { label: '年温差·季节波动', get: (d) => d.tempRange, fmt: (v) => fmtInt(v) + '℃', ramp: 'range', text: ['温差大', '温差小'] },
   };
@@ -640,6 +647,9 @@
       vmin = vmin || 0;
       vmax = vmax || vmin + 1;
     }
+    // discrete dims (灾害频率) pin their domain so each bucket keeps its FREQ_COLOR
+    // instead of the ramp auto-stretching to the data's actual min/max
+    if (dim.fixedDomain) { vmin = dim.fixedDomain[0]; vmax = dim.fixedDomain[1]; }
     const bl = baseLayers();
     const ramp = RAMPS[dim.ramp] || RAMPS.range;
     // Only attach the field cells + isolines when a base field is active;
@@ -837,9 +847,6 @@
   // ---- table (master data source) ----------------------------------------
   const SEISMIC_ORD = { '高': 4, '较高': 3, '中': 2, '低': 1 };
   const TYPH_ORD = { '高': 4, '中': 3, '弱': 2, '极低': 1 };
-  // recurrence-interval buckets: 5=几乎年年 … 1=百年级罕见 (frequency, not severity)
-  // 年年=红 · 数年=橙 · 十年=灰 — 拉开主档色差，罕见档用更浅灰
-  const FREQ_COLOR = { 5: '#b91c1c', 4: '#ea580c', 3: '#64748b', 2: '#94a3b8', 1: '#94a3b8' };
   // central-heating tiers (秦岭-淮河线). ord sorts 集中供暖 high → 无·湿冷 low.
   const HEATING_ORD = { '集中供暖': 3, '部分供暖': 2, '无·冬暖': 1, '无·湿冷': 0 };
   const HEATING_STYLE = {
