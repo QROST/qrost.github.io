@@ -1,0 +1,3256 @@
+{
+"findings": [
+{
+"prefKey": "上海|崇明区",
+"headline": "长江口冲积沙岛，台风+风暴潮+暴雨内涝复合灾害为核心风险，历史风潮致灾惨重；并发咸潮入侵与缓发地面沉降。",
+"hazards": [
+{
+"type": "台风",
+"freq": 4,
+"note": "夏秋常受台风登陆/影响，长江口风力显著放大；2024贝碧嘉等致河网潮位普遍超警，2025竹节草陆地阵风8-9级、口区9-11级",
+"source": "https://www.shcm.gov.cn/xwzx/002009/20250729/d79559df-2dc1-47f3-981c-d88c6a3842c4.html"
+},
+{
+"type": "风暴潮",
+"freq": 3,
+"note": "元至民国650年间风灾水灾60-70次；清乾隆1781死1.2万、道光1831死9500、光绪1905死万余、民国1933淹全县2/3，海塘决口型巨灾",
+"source": "https://m.thepaper.cn/newsDetail_forward_7957026"
+},
+{
+"type": "暴雨",
+"freq": 4,
+"note": "台风及强对流带来暴雨城市/农田内涝，2025年7月曾升级暴雨橙色预警",
+"source": "https://www.shcm.gov.cn/xwzx/002009/20250730/0c4ee0a0-ed57-4061-8ba4-651202e27a53.html"
+},
+{
+"type": "高温",
+"freq": 4,
+"note": "夏季极端高温影响蔬菜等农业生产，被列为本区主要农业气象灾害",
+"source": "https://www.shanghai.gov.cn/nw12344/20250224/b773dcb3760c4f84bc6d85ea04b0ae37.html"
+},
+{
+"type": "干旱",
+"freq": 3,
+"note": "河口岛屿水资源敏感脆弱，长江口潮位抬升致咸潮入侵风险加剧，影响淡水供给（咸潮型缺水）",
+"source": "https://www.shanghai.gov.cn/nw12344/20250224/b773dcb3760c4f84bc6d85ea04b0ae37.html"
+},
+{
+"type": "地震",
+"freq": 1,
+"note": "上海地区地震活动微弱，崇明历史无破坏性地震，属低危险性",
+"source": "https://yjglj.sh.gov.cn/cmsres/bb/bb741592b9da4d8784b6352ddfd5bd84/67d552ac6bb7c1b9c780638e4fa8d892.pdf"
+}
+]
+},
+{
+"prefKey": "云南|保山市",
+"headline": "横断山脉怒江/澜沧江两江并流区,山区占92.6%,滑坡泥石流隐患349处(瓦马乡滑坡15死);处滇西活动地震带。",
+"hazards": [
+{
+"type": "地质灾害",
+"freq": 5,
+"note": "隆阳区怒江/澜沧江沿岸重点防治区,威胁村寨隐患点349个;瓦马乡大石房村滑坡89人受灾15人遇难;2023-10赵家寨切坡建房滑坡",
+"source": "https://www.baoshan.gov.cn/info/3514/9977104.htm"
+},
+{
+"type": "地震",
+"freq": 3,
+"note": "2024-07-29隆阳区M3.6;保山处滇西怒江/澜沧江活动地震带,中强震多发",
+"source": "https://www.baoshan.gov.cn/info/1032/10018884.htm"
+},
+{
+"type": "洪涝",
+"freq": 4,
+"note": "隆阳区年均降雨964.2mm,雨季(9月以来)持续降雨是滑坡灾害主因;山区半山区占92.6%易致山洪",
+"source": "https://longyang.gov.cn/info/4325/13674849.htm"
+},
+{
+"type": "干旱",
+"freq": 4,
+"note": "云南2024上半年大范围持续性干旱,保山(隆阳区)在全省16州市受灾范围内;季节性干旱明显",
+"source": "https://yjglt.yn.gov.cn/html/2025/tjfx_0110/4029810.html"
+}
+]
+},
+{
+"prefKey": "云南|昆明市",
+"headline": "小江断裂带核心(1833嵩明杨林M8.0为云南史上最大震,昆明重灾);东川蒋家沟'泥石流天然博物馆';夏季暴雨洪涝+2009-10百年大旱。",
+"hazards": [
+{
+"type": "地震",
+"freq": 3,
+"note": "小江强震带过东川/寻甸/嵩明;1833嵩明杨林M8.0(云南有记录最大,昆明/呈贡/晋宁等10州县严重受灾,压毙6707人);小江带历史10次M6-6.9、4次M7+",
+"source": "https://zh.wikipedia.org/zh-hans/1833%E5%B9%B4%E5%B5%A9%E6%98%8E%E5%9C%B0%E9%9C%87"
+},
+{
+"type": "地质灾害",
+"freq": 5,
+"note": "东川区蒋家沟为世界级'泥石流天然博物馆',暴雨黏性泥石流频发,1960年代以来致187人死亡;小江流域松散物源丰富",
+"source": "http://nsl.imde.ac.cn/kxpj/kpzs/202106/t20210609_643153.html"
+},
+{
+"type": "洪涝",
+"freq": 5,
+"note": "昆明亚热带气候夏季雨量集中多大雨暴雨,降水占全年60%以上;盘龙江主城区段为汛期洪涝重点防范区",
+"source": "https://yjj.km.gov.cn/c/2022-08-30/4495452.shtml"
+},
+{
+"type": "干旱",
+"freq": 3,
+"note": "2009秋—2010春西南大旱(百年一遇),云南降水量创历史最低,昆明在重灾区;季节性旱情常见",
+"source": "https://zh.wikipedia.org/zh-hans/2010%E5%B9%B4%E4%B8%AD%E5%9B%BD%E8%A5%BF%E5%8D%97%E5%A4%A7%E6%97%B1"
+}
+]
+},
+{
+"prefKey": "云南|昭通市",
+"headline": "滇东北昭通地震带（全国地震致灾最重区之一）：2014鲁甸M6.5、2012彝良M5.7；地灾/滑坡泥石流极频，2024镇雄滑坡44死",
+"hazards": [
+{
+"type": "地震",
+"freq": 4,
+"note": "鲁甸-彝良-昭通断裂带。2014-08-03鲁甸M6.5致617死、牛栏江红石岩堰塞湖；2012-09-07彝良M5.7致81死",
+"source": "https://zh.wikipedia.org/zh-hans/2014%E5%B9%B4%E9%B2%81%E7%94%B8%E5%9C%B0%E9%9C%87"
+},
+{
+"type": "地质灾害",
+"freq": 5,
+"note": "昭通地灾众多、与降水高度相关。2024-01-22镇雄山体滑坡致44死、296户1378人受灾、直接损失约1.45亿；地震后隐患点由248增至671",
+"source": "https://yjglt.yn.gov.cn/html/2025/tjfx_0110/4029810.html"
+},
+{
+"type": "洪涝",
+"freq": 4,
+"note": "雨季滑坡泥石流堰塞湖等次生灾害易发；云南2024报告洪涝831起（同比+26.48%）",
+"source": "https://www.mem.gov.cn/xw/yjglbgzdt/202501/t20250117_516032.shtml"
+},
+{
+"type": "干旱",
+"freq": 4,
+"note": "牛栏江河谷半干旱，焦家等乡镇为缺水旱区；云南整体干旱、洪涝、风雹、地震、地质灾害交织",
+"source": "https://zh.wikipedia.org/zh-hans/2012%E5%B9%B4%E5%BD%9D%E8%89%AF%E5%9C%B0%E9%9C%87"
+},
+{
+"type": "冰雹风雹",
+"freq": 4,
+"note": "云南2024风雹/强对流638起（同比+70.13%），滇东北高海拔山区风雹多发",
+"source": "https://yjglt.yn.gov.cn/html/2025/tjfx_0110/4029810.html"
+}
+]
+},
+{
+"prefKey": "云南|普洱市",
+"headline": "云南破坏性地震最频发地市之一（思茅-宁洱强震带）：2007宁洱M6.4、2014景谷M6.6、1979 M6.8，叠加雨季洪涝滑坡泥石流与春旱。",
+"hazards": [
+{
+"type": "地震",
+"freq": 4,
+"note": "思茅-宁洱破坏性强震带，1884-2007年发生10次M6.0-6.9；2007-06-03宁洱M6.4（受灾100.2万人、Ⅷ度、垮塌9万间）、2014-10-07景谷M6.6（1死324伤）、1979-03-15 M6.8；1990年来M5以上20+次",
+"source": "https://www.gov.cn/jrzg/2007-06/06/content_637815.htm"
+},
+{
+"type": "地质灾害",
+"freq": 5,
+"note": "思茅区属地质灾害易发区，多处危险隐患点装普适型监测设备；滑坡/泥石流/地面沉降雨季频发",
+"source": "https://news.qq.com/rain/a/20240801A02LNO00"
+},
+{
+"type": "洪涝",
+"freq": 4,
+"note": "暴雨山洪及地质灾害风险突出，2023/2024多次启动地灾Ⅲ级响应，普洱被列重点监测区",
+"source": "https://m.gmw.cn/2023-08/04/content_1303468173.htm"
+},
+{
+"type": "暴雨",
+"freq": 5,
+"note": "雨季局地强降水频繁，是引发山洪地灾的主因；2025-08云南暴雨Ⅲ级预警含普洱多地",
+"source": "https://www.cnr.cn/yn/gstjyn/20250823/t20250823_527334557.shtml"
+},
+{
+"type": "干旱",
+"freq": 3,
+"note": "普洱北部易发轻到中度、局地中度及以上干旱",
+"source": "https://yjglt.yn.gov.cn/html/2024/tjfx_0930/4029443.html"
+},
+{
+"type": "冰雹风雹",
+"freq": 3,
+"note": "受局地强对流影响发生风雹，损及农作物民房",
+"source": "https://yjglt.yn.gov.cn/html/2025/tjfx_0110/4029810.html"
+}
+]
+},
+{
+"prefKey": "云南|曲靖市",
+"headline": "汛期洪涝/城区内涝突出(2024降雨+50%),2022年2月麒麟区罕见雪灾(11.7万人受灾);周边鲁甸M6.5波及,沾益/会泽M4.4多发。",
+"hazards": [
+{
+"type": "洪涝",
+"freq": 5,
+"note": "2024汛期降雨874.9mm(偏多50.4%),18轮强降水;麒麟/沾益城区5次内涝、74处积水、商铺淹76间、房屋损107间;东山镇卑舍村山体滑坡;南盘江超警戒",
+"source": "https://yjglt.yn.gov.cn/html/2024/zsyj_1121/4029668.html"
+},
+{
+"type": "暴雪雪灾",
+"freq": 3,
+"note": "2022年2月麒麟区10个乡镇(街道)雪灾,116971人受灾,直接经济损失1.16亿元",
+"source": "https://www.qj.gov.cn/html/2024/zrzhsgxx_0531/266138.html"
+},
+{
+"type": "地震",
+"freq": 3,
+"note": "沾益区M4.4(2023-08-01);会泽县M4.4(2025-03-29);2014鲁甸M6.5波及曲靖致伤亡;麒麟区国土空间规划列地震风险控制线",
+"source": "https://baike.baidu.com/item/8%C2%B71%E6%9B%B2%E9%9D%96%E5%9C%B0%E9%9C%87/63265969"
+},
+{
+"type": "地质灾害",
+"freq": 4,
+"note": "麒麟区东山镇卑舍村山体滑坡(2024汛期);强降水诱发山洪地质灾害",
+"source": "https://yjglt.yn.gov.cn/html/2024/zsyj_1121/4029668.html"
+},
+{
+"type": "干旱",
+"freq": 4,
+"note": "曲靖处滇东,2024上半年云南大范围持续干旱波及;气象灾害防御列干旱为主要类型",
+"source": "https://www.mem.gov.cn/xw/yjglbgzdt/202501/t20250117_516032.shtml"
+}
+]
+},
+{
+"prefKey": "云南|楚雄州",
+"headline": "地处南华—楚雄地震带,洪涝/滑坡泥石流/干旱/风雹年年交替;1488年来8次M6+,大姚M6.2(2003),禄丰为暴雨洪涝多发区。",
+"hazards": [
+{
+"type": "地震",
+"freq": 3,
+"note": "南华—楚雄地震带,1488年至今38次M5+(其中8次M6.0-6.9,最大1680年M6.8);大姚6.2级(2003);处1833嵩明M8.0波及区(含禄丰/武定/南华/大姚/牟定)",
+"source": "https://acgnh.ynwd.gov.cn/info/1025/44401.htm"
+},
+{
+"type": "洪涝",
+"freq": 5,
+"note": "十三五期间洪涝灾害频繁;禄丰为暴雨洪涝多发区,2021-06勤丰/和平/中村等乡镇洪涝;2022-09对禄丰等5县市启动防汛Ⅳ级响应",
+"source": "https://acgnh.ynwd.gov.cn/info/1026/36893.htm"
+},
+{
+"type": "地质灾害",
+"freq": 5,
+"note": "十三五期间滑坡、泥石流灾害与洪涝交替发生,频繁而严重(楚雄州十四五综合防灾减灾规划)",
+"source": "https://yjglj.cxz.gov.cn/info/egovinfo/1001/overt_centent/11532300MB19155603-/2022-0901002.htm"
+},
+{
+"type": "干旱",
+"freq": 4,
+"note": "楚雄州入选省水科院'一省一市'干旱灾害风险评估试点;西片区部分乡镇旱情持续(2021);农业干旱/因旱人饮困难风险评估",
+"source": "https://wcb.yn.gov.cn/html/2022/yewuzhuanlan_0422/54576.html"
+},
+{
+"type": "冰雹风雹",
+"freq": 5,
+"note": "十三五期间风雹灾害与洪涝、干旱、低温冷冻交替发生,频繁而严重",
+"source": "https://yjglj.cxz.gov.cn/info/egovinfo/1001/overt_centent/11532300MB19155603-/2022-0901002.htm"
+}
+]
+},
+{
+"prefKey": "云南|玉溪市",
+"headline": "通海地震带高危(1970通海M7.8致15621死,全国第三大震;2018通海M5.0);红塔区季节性干旱/暴雨洪涝/冰雹突出。",
+"hazards": [
+{
+"type": "地震",
+"freq": 3,
+"note": "1970-01-05通海M7.8(矩震级7.1,最大烈度Ⅹ度+,15621人死亡,全国建国以来第三大震);2018-08-13通海M5.0致24伤7.6万受灾;通海紧邻红塔区",
+"source": "https://zh.wikipedia.org/zh-hans/1970%E5%B9%B4%E9%80%9A%E6%B5%B7%E5%9C%B0%E9%9C%87"
+},
+{
+"type": "干旱",
+"freq": 4,
+"note": "红塔区干湿季分明,主要气象灾害含干旱;2024上半年云南大范围持续干旱波及",
+"source": "https://www.hongta.gov.cn/u/cms/htqzfxxgk/202512/031129510obl.pdf"
+},
+{
+"type": "洪涝",
+"freq": 4,
+"note": "红塔区雨季(5-10月)降水占全年85%,暴雨洪涝为主要气象灾害;水土流失面积149.83km²(占14.92%),山洪地质灾害易发分区研究在册",
+"source": "http://www.gcdz.org/cn/article/pdf/preview/10880.pdf"
+},
+{
+"type": "冰雹风雹",
+"freq": 4,
+"note": "红塔区主要气象灾害含大风、冰雹、雷暴(玉溪市山洪地质灾害特征及水保规划报告)",
+"source": "https://www.hongta.gov.cn/u/cms/htqzfxxgk/202512/031129510obl.pdf"
+},
+{
+"type": "地质灾害",
+"freq": 4,
+"note": "玉溪市山洪地质灾害特征及易发程度分区研究覆盖红塔区;水土流失诱发山洪滑坡",
+"source": "http://www.gcdz.org/cn/article/pdf/preview/10880.pdf"
+}
+]
+},
+{
+"prefKey": "云南|红河州",
+"headline": "滇南红河断裂带中南段：地灾频发（2024金平泥石流损失11.93亿），干旱重（2019第4干旱年），山洪+风雹多",
+"hazards": [
+{
+"type": "地质灾害",
+"freq": 5,
+"note": "个旧/元阳/绿春/金平/屏边/河口地灾气象风险常达III级；矿山开采+暴雨叠加。2024-09金平泥石流滑坡致1死1伤、转移19773人次、直接损失11.93亿",
+"source": "https://yjglt.yn.gov.cn/html/2024/tjfx_0108/28018.html"
+},
+{
+"type": "干旱",
+"freq": 4,
+"note": "2019全州均降水1006mm偏少17%、为有记录第4干旱年，4月中旬至6月中旬多地重旱、河口/元阳/个旧/建水/石屏/绿春特旱；2024又破最热年纪录",
+"source": "http://yn.weather.com.cn/tqyw/01/3278842.shtml"
+},
+{
+"type": "洪涝",
+"freq": 4,
+"note": "弥勒市、个旧市列为山洪灾害重点防范县市，弥勒江边为重点危险区；汛期暴雨多发",
+"source": "https://www.hh.gov.cn/info/61381/1185202.htm"
+},
+{
+"type": "暴雨",
+"freq": 4,
+"note": "金平2024-09-07至09暴雨大暴雨局地特大暴雨诱发群发性泥石流滑坡；红河州暴雨预警常发布",
+"source": "https://www.163.com/dy/article/K6MOROIT0550B6VI.html"
+},
+{
+"type": "冰雹风雹",
+"freq": 4,
+"note": "建设人工防雹网，布局蒙自/个旧/开远/建水/石屏/弥勒/泸西/屏边8县市防雹作业点，示该州风雹多发",
+"source": "https://www.hh.gov.cn/info/61381/1185202.htm"
+},
+{
+"type": "地震",
+"freq": 3,
+"note": "红河断裂带过境，北段（弥勒方向）地震较活跃、中南段（个旧）历史强震记录较少；1970-01-05邻近的通海M7.7致1.5万+死，波及建水",
+"source": "http://www.dzkx.org/data/article/geology/preview/pdf/geology_8602.pdf"
+}
+]
+},
+{
+"prefKey": "云南|西双版纳州",
+"headline": "热带季风山区——雨季滑坡泥石流与强对流暴雨年年发，地处滇西南强震带（景洪/勐腊处Ⅷ-Ⅸ度高烈度区），中强震频发。",
+"hazards": [
+{
+"type": "地质灾害",
+"freq": 5,
+"note": "地处横断山纵谷区最南端，地质环境脆弱，滑坡/崩塌/泥石流易发；雨季（5-10月）极易引发，州地灾防治十四五规划列为重点；勐腊、景洪多隐患点",
+"source": "https://www.xsbn.gov.cn/116.news.detail.dhtml?news_id=2907899"
+},
+{
+"type": "暴雨",
+"freq": 5,
+"note": "热带季风气候高温多雨，极端天气多发，暴雨/雷电/大风/冰雹等强对流频发，为雨季致灾主因",
+"source": "https://www.xsbn.gov.cn/116.news.detail.dhtml?news_id=2907899"
+},
+{
+"type": "洪涝",
+"freq": 4,
+"note": "2023年云南洪涝和地质灾害多发频发，全省719县次报送、紧急转移3.5万人次；澜沧江流域低洼地段易涝",
+"source": "https://yjglt.yn.gov.cn/html/2024/tjfx_0108/28018.html"
+},
+{
+"type": "地震",
+"freq": 4,
+"note": "新构造运动强烈、破坏性强震多发；勐腊Ⅶ度以上、景洪Ⅷ度以上、勐海大部Ⅸ度以上烈度区；景洪周边200km内近5年M3+地震58次，2014景洪M4.6、2019勐腊M4.2、2026景洪M4.6",
+"source": "https://www.xsbn.gov.cn/xsbnzdzj/22086.news.detail.dhtml?news_id=2837579"
+},
+{
+"type": "干旱",
+"freq": 3,
+"note": "干湿季分明，春夏旱易发（局地中度及以上）",
+"source": "https://www.xsbn.gov.cn/116.news.detail.dhtml?news_id=2907899"
+},
+{
+"type": "冰雹风雹",
+"freq": 3,
+"note": "强对流天气下风雹时有发生，损及农作物民房",
+"source": "https://www.xsbn.gov.cn/116.news.detail.dhtml?news_id=2907899"
+}
+]
+},
+{
+"prefKey": "吉林|四平市",
+"headline": "吉林中西部半湿润半干旱区，汛期暴雨洪涝与春旱并存，春季多大风风雹、冬季暴雪；地震风险较低。",
+"hazards": [
+{
+"type": "暴雨",
+"freq": 4,
+"note": "夏季潮湿多雨、降雨集中，强降雨易致城市内涝与山洪；四平防汛重点含1座大型水库(二龙山水库)、10座中型水库及9个山洪灾害点。",
+"source": "http://www.siping.gov.cn/zw/dc/dctb/202209/t20220909_632623.html"
+},
+{
+"type": "洪涝",
+"freq": 3,
+"note": "东辽河流经市区/双辽，二龙山(二龙湖)大型水库防洪关键；汛期江河洪水与塘坝险情时有发生(全市设21处塘坝、14处地质灾害点纳入防汛检查)。",
+"source": "http://www.siping.gov.cn/zw/dc/dctb/202209/t20220909_632623.html"
+},
+{
+"type": "干旱",
+"freq": 4,
+"note": "属中温带半湿润半干旱季风气候，年降水约650mm但春季少雨，春旱频发，干旱列入吉林气象灾害预警序列，对玉米主产区影响显著。",
+"source": "http://xxgk.siping.gov.cn/zsts/spsqxj/lzyj/202012/t20201209_545556.html"
+},
+{
+"type": "冰雹风雹",
+"freq": 4,
+"note": "春季多大风天气，夏季强对流伴冰雹；大风、冰雹均列入吉林气象灾害预警信号，四平西部为风雹多发区。",
+"source": "http://xxgk.siping.gov.cn/zsts/spsqxj/lzyj/202012/t20201209_545556.html"
+},
+{
+"type": "暴雪雪灾",
+"freq": 3,
+"note": "暴雪、道路冰雪列入吉林气象灾害预警信号；冬季降水虽不多，但季节性暴雪可致交通与设施受损。",
+"source": "http://xxgk.siping.gov.cn/zsts/spsqxj/lzyj/202012/t20201209_545556.html"
+}
+]
+},
+{
+"prefKey": "吉林|延边州",
+"headline": "图们江—海兰江—嘎呀河流域洪涝频发（2010/2016/2017），东部山区地质灾害与强对流冰雹并存；珲春—汪清为中国唯一深源地震带，震级大但深达300-590km、地表几无破坏。",
+"hazards": [
+{
+"type": "洪涝",
+"freq": 5,
+"note": "图们江水系几乎年年汛情：2010吉林特大洪水、2016台风狮子山致图们江超百年一遇、转移3.3万人，2017暴雨多县受灾",
+"source": "http://news.cnr.cn/native/gd/20160831/t20160831_523102524.shtml"
+},
+{
+"type": "暴雨",
+"freq": 4,
+"note": "强降雨为洪涝主因，2016/2017多次区域性暴雨突破历史水位",
+"source": "https://m.bjnews.com.cn/detail/155150857614112.html"
+},
+{
+"type": "台风",
+"freq": 3,
+"note": "北上台风残涡致灾，2016台风狮子山(Lionrock)直接造成图们江超百年一遇洪水",
+"source": "https://news.cri.cn/2016-9-1/796735cd-ef13-3c39-d92d-1484771918ff.html"
+},
+{
+"type": "地质灾害",
+"freq": 3,
+"note": "延边东部山区为吉林地质灾害重点防范区，强降雨期发布山洪+地质灾害风险预警",
+"source": "http://xxgk.jl.gov.cn/PDFfile/202010/7618791.pdf"
+},
+{
+"type": "地震",
+"freq": 3,
+"note": "珲春—汪清深震区为中国唯一深源地震带、日本海深震带延伸，如2025-10珲春M5.5；但震源深300-590km，地表通常无明显震感与破坏",
+"source": "https://zh.wikipedia.org/zh-hans/%E5%90%89%E6%9E%97%E7%9C%81%E5%9C%B0%E9%9C%87%E5%88%97%E8%A1%A8"
+},
+{
+"type": "冰雹风雹",
+"freq": 4,
+"note": "吉林东部夏季多雷暴大风、冰雹等强对流，气象局常发强对流预警",
+"source": "https://www.163.com/dy/article/K448JBDT0530JPVV.html"
+}
+]
+},
+{
+"prefKey": "吉林|松原市",
+"headline": "吉林高烈度区、国家级地震重点监视防御区(抗震设防8度)，地震为最突出灾害；兼有嫩江/松花江洪涝、西部亚干旱旱灾与风雹。",
+"hazards": [
+{
+"type": "地震",
+"freq": 4,
+"note": "地处松原-肇东(NE)与第二松花江(NW)两断裂交汇带，抗震设防烈度8度、吉林省高烈度区、国务院确定的地震重点监视防御区。历史: 1119前郭卡拉木M6.75–7(松辽盆地史上最大、最大烈度Ⅷ–Ⅸ)；2013-10/11前郭-乾安震群(M5.8/5.5/5.3等连发，受灾5.8万人)；2018-05-28宁江区毛都站M5.7(房屋大量受损)。",
+"source": "https://zh.wikipedia.org/zh-hans/2018%E5%B9%B4%E6%9D%BE%E5%8E%9F%E5%9C%B0%E9%9C%87"
+},
+{
+"type": "洪涝",
+"freq": 3,
+"note": "地处松嫩平原南端、松花江畔、嫩江下游，1998嫩江/松花江全流域特大洪水重灾区之一；汛期7–8月降水集中易致江河洪水。",
+"source": "http://geoscien.neigae.ac.cn/CN/article/downloadArticleFile.do?attachType=PDF&id=16041"
+},
+{
+"type": "干旱",
+"freq": 4,
+"note": "属中温带亚干旱季风气候区，春旱少雨升温快，年降水仅400–500mm且集中7–8月；松嫩平原西部春旱频发，对农业影响大。",
+"source": "https://www.weather.com.cn/cityintro/101060801.shtml"
+},
+{
+"type": "冰雹风雹",
+"freq": 4,
+"note": "风雹列入水旱与气象灾害统计灾种；松嫩平原西部春夏多大风、强对流冰雹，常造成农作物风雹灾。",
+"source": "https://www.mem.gov.cn/gk/zfxxgkpt/fdzdgknr/202403/W020240318718425077200.pdf"
+},
+{
+"type": "暴雪雪灾",
+"freq": 3,
+"note": "冬季漫长寒冷，虽降雪量偏小，但雪灾/风吹雪列入气象灾害统计灾种，偶有暴雪致灾。",
+"source": "https://www.mem.gov.cn/kp/zrzh/"
+},
+{
+"type": "沙尘暴",
+"freq": 3,
+"note": "地处松嫩平原西部半干旱区，春季多大风、沙尘暴列入气象灾害统计灾种，干旱年份扬沙/沙尘天气多发。",
+"source": "https://www.mem.gov.cn/gk/zfxxgkpt/fdzdgknr/202403/W020240318718425077200.pdf"
+}
+]
+},
+{
+"prefKey": "吉林|白山市",
+"headline": "长白山区——2013特大暴雨致全市47乡镇受灾、山洪与地质灾害并发；山区强对流冰雹高发。",
+"hazards": [
+{
+"type": "暴雨",
+"freq": 4,
+"note": "2013-08区域性暴雨发蓝色预警，全市47乡镇受灾、受灾9.15万人、转移2.18万人",
+"source": "https://www.cma.gov.cn/2011xzt/2013zhuant/20130726/202111/t20211104_4199562.html"
+},
+{
+"type": "洪涝",
+"freq": 4,
+"note": "2013暴雨引发中小河流洪水、山洪；浑江(原八道江)沿江汛期受灾",
+"source": "https://www.cma.gov.cn/2011xzt/2013zhuant/20130726/202111/t20211104_4199562.html"
+},
+{
+"type": "地质灾害",
+"freq": 4,
+"note": "长白山区公路高边坡+灾害隐患点多，市级整合自然灾害风险普查成果分段巡查防滑坡崩塌",
+"source": "https://www.cma.gov.cn/2011xzt/2013zhuant/20130726/202111/t20211104_4199562.html"
+},
+{
+"type": "冰雹风雹",
+"freq": 4,
+"note": "吉林东部长白山区夏季多雷暴大风、冰雹、短时强降水等强对流",
+"source": "https://m.gmw.cn/2025-08/01/content_1304099513.htm"
+}
+]
+},
+{
+"prefKey": "吉林|辽源市",
+"headline": "东辽河源头、半湿润大陆性季风区，暴雨洪涝最突出(2010-7-20罕见暴雨)，兼有干旱、冰雹、大风与暴雪；地震风险低。",
+"hazards": [
+{
+"type": "暴雨",
+"freq": 4,
+"note": "降雨主要出现5–9月(占全年81.4%)、90%暴雨集中夏季、7月暴雨天数占全年52.5%，极易引发暴雨灾害；暴雨是辽源常见农业气象灾害之一。",
+"source": "https://m.fx361.com/news/2024/1027/24640722.html"
+},
+{
+"type": "洪涝",
+"freq": 3,
+"note": "辽源是东辽河发源地、东辽河流经市区。2010-7-20起辽源等地遭吉林有气象记录以来罕见特大暴雨洪水，东辽县八一水库因入库洪水大、施工围堰出险，下游1.5万人安全转移。",
+"source": "https://news.sina.com.cn/o/2010-07-23/090917852273s.shtml"
+},
+{
+"type": "干旱",
+"freq": 4,
+"note": "属半湿润温带大陆性季风气候，干旱为辽源常见气象灾害之一(干旱、暴雨、大风、冰雹、低温寒潮、霜冻等)，对农业生产影响较大。",
+"source": "https://m.fx361.com/news/2024/1027/24640722.html"
+},
+{
+"type": "冰雹风雹",
+"freq": 4,
+"note": "冰雹、大风明确列为辽源市常见气象灾害；夏季强对流多发，对农作物造成风雹损失。",
+"source": "https://m.fx361.com/news/2024/1027/24640722.html"
+},
+{
+"type": "暴雪雪灾",
+"freq": 3,
+"note": "暴雪列为辽源市常见气象灾害之一(与霜冻、低温寒潮同列)；冬季季节性暴雪致灾。",
+"source": "https://m.fx361.com/news/2024/1027/24640722.html"
+}
+]
+},
+{
+"prefKey": "吉林|长春市",
+"headline": "松辽平原腹地——夏季暴雨洪涝（2023台风杜苏芮残涡破1951年记录）、春旱多风、夏季冰雹风雹为主要农业气象灾害。",
+"hazards": [
+{
+"type": "暴雨",
+"freq": 4,
+"note": "2023-08台风杜苏芮残涡致公主岭等地过程降水破历史极值，长春小时雨量101.2mm破1951年有记录以来极值",
+"source": "http://m.yunnan.cn/system/2024/01/11/032905980.shtml"
+},
+{
+"type": "洪涝",
+"freq": 4,
+"note": "2023-08公主岭多乡镇暴雨洪涝，玉米水稻受灾、房屋农业设施损毁",
+"source": "https://news.qq.com/rain/a/20230811A017O400"
+},
+{
+"type": "干旱",
+"freq": 4,
+"note": "温带半湿润季风气候，春季干旱多风，干旱为东北平原最主要农业气候灾害之一",
+"source": "https://www.weather.com.cn/cityintro/101060101.shtml"
+},
+{
+"type": "冰雹风雹",
+"freq": 4,
+"note": "夏季多雷暴大风、冰雹强对流，吉林省气象局频发强对流预警",
+"source": "https://www.163.com/dy/article/K448JBDT0530JPVV.html"
+}
+]
+},
+{
+"prefKey": "四川|宜宾市",
+"headline": "金沙江/岷江/长江三江口+川南地震密集区：2019长宁M6.0系列地震近年频发，伏旱、洪涝、强对流叠加",
+"hazards": [
+{
+"type": "地震",
+"freq": 4,
+"note": "川南地震密集区。2019-06-17长宁M6.0（江安红桥镇观测VII度）；2018-12-16兴文M5.7、2019-01-03珙县M5.3，余震丰富",
+"source": "https://zh.wikipedia.org/zh-hans/2019%E5%B9%B4%E9%95%BF%E5%AE%81%E5%9C%B0%E9%9C%87"
+},
+{
+"type": "干旱",
+"freq": 4,
+"note": "伏旱（气象夏旱4/26–7/5）多发，按等级分一般至特重；2025年气候灾害实时监测多期干旱监测",
+"source": "https://www.scnjw.com/.content/myarticle/myarticle/6062cd34-5234-11f0-8231-04d9f5394155/"
+},
+{
+"type": "洪涝",
+"freq": 4,
+"note": "地处金沙江、岷江、长江汇流处；汛期强降雨需防城市内涝、山洪",
+"source": "https://www.weather.com.cn/cityintro/101271101.shtml"
+},
+{
+"type": "暴雨",
+"freq": 4,
+"note": "强对流频发，高温+强降雨+冰雹组合，发布强对流天气预报（含雷暴、大风）",
+"source": "https://www.163.com/dy/article/K29D6EFF0525AIE7.html"
+},
+{
+"type": "地质灾害",
+"freq": 4,
+"note": "川南山地，强降雨期重点防滑坡/山洪/地质灾害；邻近筠连2025山体滑坡",
+"source": "https://www.mem.gov.cn/xw/yjglbgzdt/202503/t20250312_522172.shtml"
+},
+{
+"type": "冰雹风雹",
+"freq": 3,
+"note": "强对流伴冰雹、大风（2025强对流预报明确含冰雹）",
+"source": "https://www.163.com/dy/article/K29D6EFF0525AIE7.html"
+}
+]
+},
+{
+"prefKey": "四川|广元市",
+"headline": "川北龙门山东北端+米仓山：2008汶川地震重灾（青川），地灾/暴雨洪水频发，近年春夏连旱重",
+"hazards": [
+{
+"type": "地质灾害",
+"freq": 5,
+"note": "旺苍南部木门/九龙/张华、北部国华/英萃/盐河等局部强降雨易发滑坡崩塌，沟谷易发山洪泥石流；汛期全省地灾频发高发态势",
+"source": "https://www.scgw.gov.cn/PubDetail.aspx?id=20250703143949-28610-00-000"
+},
+{
+"type": "暴雨",
+"freq": 4,
+"note": "广元降水较常年偏多1–2成；局部短时强降雨诱发灾害性洪水",
+"source": "https://www.scgw.gov.cn/PubDetail.aspx?id=20250703143949-28610-00-000"
+},
+{
+"type": "洪涝",
+"freq": 4,
+"note": "2025-07东河旺苍站最大流量预计2000–3000m³/s、中小河流涨幅3–5m，部分超警戒",
+"source": "https://www.scgw.gov.cn/PubDetail.aspx?id=20250703143949-28610-00-000"
+},
+{
+"type": "干旱",
+"freq": 4,
+"note": "2024–2025连续春夏连旱，部分县区达重度，人畜饮水及农作物受严重影响；苍溪打响抗旱攻坚战",
+"source": "https://www.cngy.gov.cn/govop/show/20250416165120-36060-00-000.html"
+},
+{
+"type": "地震",
+"freq": 3,
+"note": "龙门山断裂带北东端（经江油-广元入陕西宁强）。2008-05-12汶川M8.0，广元青川县极重灾区",
+"source": "https://zh.wikipedia.org/zh-hans/%E9%BE%99%E9%97%A8%E5%B1%B1%E6%96%AD%E5%B1%82"
+}
+]
+},
+{
+"prefKey": "四川|德阳市",
+"headline": "龙门山前缘+沱江上游：洪涝暴雨年年来、地灾频发，2008汶川地震重灾区（绵竹汉旺紧邻震中）",
+"hazards": [
+{
+"type": "洪涝",
+"freq": 5,
+"note": "绵远河/石亭江/凯江穿城；7月下旬旱涝急转、8月暴雨频繁。2020-08-15旌阳黄许镇新太村466.7mm，沱江等31条江河超警超保，全市紧急转移6万余人",
+"source": "https://www.bj148.org/ztk/2020zt/2020hhgk_20689/cxts01/202008/t20200817_1580978.html"
+},
+{
+"type": "暴雨",
+"freq": 5,
+"note": "汛期7次区域性暴雨大暴雨过程；2025什邡一周成功应对2次区域性大暴雨，德阳暴雨预警升级",
+"source": "https://slt.sc.gov.cn/scsslt/dfss/2025/7/7/15f3280c61894c7fb17fd300a792963d.shtml"
+},
+{
+"type": "地质灾害",
+"freq": 4,
+"note": "龙泉山低山深丘+龙门山前缘地灾中易发；土质滑坡崩塌为主。2025核查新增隐患40处其中旌阳区9处",
+"source": "https://dnr.sc.gov.cn/scdnr/scszdt/2025/5/7/09bd6204c99642d7a2f478919b4af6c7.shtml"
+},
+{
+"type": "地震",
+"freq": 3,
+"note": "龙门山地震带经江油、广元一线穿过；2008-05-12汶川M8.0，绵竹汉旺镇紧邻震中、什邡/绵竹/旌阳重灾",
+"source": "https://zh.wikipedia.org/zh-hans/%E9%BE%99%E9%97%A8%E5%B1%B1%E6%96%AD%E5%B1%82"
+},
+{
+"type": "干旱",
+"freq": 4,
+"note": "旌阳区年内冬干重、春旱一般、夏旱（伏旱）严重；四川盆地整体旱重于涝",
+"source": "https://baike.baidu.com/item/%E6%97%8C%E9%98%B3%E5%8C%BA/7240332"
+},
+{
+"type": "冰雹风雹",
+"freq": 3,
+"note": "夏季强对流多发，暴雨常伴雷电+大风+冰雹（罗江等地强降雨预警含大风）",
+"source": "https://www.163.com/dy/article/K298JUUA0514CIKR.html"
+}
+]
+},
+{
+"prefKey": "四川|攀枝花市",
+"headline": "金沙江干热河谷型灾害——崩滑流地质灾害(西昌组易滑地层)频发、季节性冬干春旱与西南大旱重灾、森林火险高;地处石棉-元谋/盐源-洱源地震带,2008-08仁和6.1级地震致5死",
+"hazards": [
+{
+"type": "地质灾害",
+"freq": 5,
+"note": "干热河谷流域地质灾害频繁成灾,西昌组特殊易滑地层+人类活动密切相关,崩塌滑坡泥石流为主、矿山地质灾害突出,雨季诱发",
+"source": "https://www.cgsjournals.com/article/doi/10.19388/j.zgdzdc.2022.04.05"
+},
+{
+"type": "干旱",
+"freq": 5,
+"note": "季节性干旱背景,冬干春旱、蒸发强;2009秋至2010春以攀枝花为代表的西南大旱(持续久、范围广、程度深的极端干旱)",
+"source": "http://dianda.cqvip.com/Qikan/Article/Detail?id=35263434&from=Qikan_Article_Detail"
+},
+{
+"type": "森林火灾",
+"freq": 4,
+"note": "森林火险气象等级偏高,干热河谷气候+长日照+大蒸发,需加强森林草原防灭火",
+"source": "https://www.cma.gov.cn/2011xwzx/2011xmtjj/202407/t20240727_6453704.html"
+},
+{
+"type": "地震",
+"freq": 3,
+"note": "位于石棉-元谋地震带中南段西侧与盐源-洱源地震带北段东侧,大震不多小震不断;2008-08-30仁和区与会理交界6.1级地震,境内5死132伤、房屋受损1.5万余间",
+"source": "https://zh.wikipedia.org/zh-cn/%E6%94%80%E6%9E%9D%E8%8A%B1%E5%B8%82"
+},
+{
+"type": "暴雨",
+"freq": 4,
+"note": "干湿季分明、雨季降水集中,易诱发山洪与泥石流;干热河谷区偶发洪水",
+"source": "https://www.scsqw.cn/scdqs/sxdq/pzhs/content_21413"
+},
+{
+"type": "冰雹风雹",
+"freq": 3,
+"note": "干热河谷区偶发寒潮、霜冻、大风、冰雹",
+"source": "http://www.scyanbian.gov.cn/zjyb/ybgk/dlqh/index.shtml"
+}
+]
+},
+{
+"prefKey": "四川|自贡市",
+"headline": "川南丘陵盐都——汛期旱涝交错(涝重于旱)、釜溪河城区防洪仅5-10年一遇易淹,降雨型滑坡崩塌为主;页岩气/注水诱发地震活跃,2019-02荣县4.9/4.7级地震致2死",
+"hazards": [
+{
+"type": "地震",
+"freq": 4,
+"note": "页岩气开采区,2019-02-24至25荣县高山镇附近4.7/4.3/4.9级三震、2死12伤;2009大安牛佛镇-隆昌交界因废水回注发生ML4.4/ML4.2级注水诱发地震",
+"source": "https://zh.wikipedia.org/zh-hans/2019%E5%B9%B4%E8%87%AA%E8%B4%A1%E5%9C%B0%E9%9C%87"
+},
+{
+"type": "洪涝",
+"freq": 4,
+"note": "沱江流域;釜溪河行洪能力低、防洪基本5-10年一遇,每遇较大洪水自贡主城区十字口大桥附近滨江路常被淹;1981-07四川特大洪水沱江上中游为雨区中心",
+"source": "http://slt.sc.gov.cn/scsslt/gsgg/2023/7/31/85d339495c4848a1a52a3c22ac28b8b8/files/%E9%99%84%E4%BB%B61%EF%BC%9A%E5%9B%9B%E5%B7%9D%E7%9C%81%E6%B2%B1%E6%B1%9F%E6%B5%81%E5%9F%9F%E9%98%B2%E6%B4%AA%E8%A7%84%E5%88%92%EF%BC%88%E5%BE%81%E6%B1%82%E6%84%8F%E8%A7%81%E7%A8%BF%EF%BC%89.pdf"
+},
+{
+"type": "暴雨",
+"freq": 4,
+"note": "汛期5-10月旱涝交错涝重于旱,6月下旬至7月上中旬强降水集中、局部暴雨洪涝偏重;连续降雨>200mm或短时>150mm时崩滑明显增多",
+"source": "http://zgs.sczwfw.gov.cn/art/2023/5/5/art_15773_219436.html"
+},
+{
+"type": "地质灾害",
+"freq": 3,
+"note": "丘陵区降雨型滑坡崩塌为主,易发区含自流井区南部/贡井区/沿滩区西南/大安区及荣县中北部低山深丘;2023汛前排查入库隐患点14个(滑坡8崩塌6)",
+"source": "https://zgs.sczwfw.gov.cn/art/2023/5/4/art_15774_219427.html"
+},
+{
+"type": "干旱",
+"freq": 3,
+"note": "汛期旱涝交错,夏伏旱周期性发生(涝重于旱但旱情仍存)",
+"source": "http://zgs.sczwfw.gov.cn/art/2023/5/5/art_15773_219436.html"
+}
+]
+},
+{
+"prefKey": "安徽|六安市",
+"headline": "大别山区山洪+崩滑流地质灾害（419处隐患）最突出，叠加梅雨洪涝与伏秋旱；霍山-六安为安徽地震最活跃带（1917年6¼级最大）。",
+"hazards": [
+{
+"type": "地质灾害",
+"freq": 4,
+"note": "大别山区共419处隐患点（崩塌149/滑坡261/泥石流9），集中于金寨、霍山、舒城、裕安，强降雨与切坡建房诱发，点多面广高频",
+"source": "https://zrzy.luan.gov.cn/public/content/10178813"
+},
+{
+"type": "洪涝",
+"freq": 4,
+"note": "主要河流源自大别山区，汇流集中、洪峰高大、陡涨陡落，山洪易致灾",
+"source": "https://zrzy.luan.gov.cn/public/content/10178813"
+},
+{
+"type": "暴雨",
+"freq": 5,
+"note": "江淮梅雨季强降水几乎年年，是山洪与地质灾害的主要诱因",
+"source": "https://www.mem.gov.cn/xw/yjglbgzdt/202405/W020240508313655815475.pdf"
+},
+{
+"type": "干旱",
+"freq": 4,
+"note": "2019伏秋连旱，大别山区降雨为有记录历史最少、安徽中部特旱，数十年不遇",
+"source": "http://www.eeo.com.cn/2019/1202/370898.shtml"
+},
+{
+"type": "地震",
+"freq": 2,
+"note": "霍山-六安及合肥为安徽地震最多区，史上≥5级8次；1917霍山6¼级为安徽最大震（烈度8-9度），1652霍山东北6级、1954合肥-六安间5¼级",
+"source": "https://k.sina.com.cn/article_3142725962_bb52314a040001lfy.html"
+}
+]
+},
+{
+"prefKey": "安徽|淮南市",
+"headline": "淮河中游暴雨洪水频发（1991/2003/2007/2024多次），采煤沉陷致地质灾害，旱涝并存；1831凤台6¼级为本带最大历史地震。",
+"hazards": [
+{
+"type": "洪涝",
+"freq": 5,
+"note": "淮河中游，支流多、河道窄、暴雨频繁；1991、2003、2007全流域大水，2024王家坝形成淮河第1号洪水",
+"source": "https://www.weather.com.cn/zt/tqzt/hhby/07/61185.shtml"
+},
+{
+"type": "暴雨",
+"freq": 5,
+"note": "主汛期暴雨频繁，常伴短时强降水，是淮河防汛主要压力来源",
+"source": "https://www.cma.gov.cn/2011xzt/2019zt/20190927/2019092706/202111/t20211103_4137448.html"
+},
+{
+"type": "地质灾害",
+"freq": 4,
+"note": "矿业城市，大规模采煤诱发采空区塌陷/沉陷，潘集、田家庵等为隐患重点，汛期需查矿井塌陷区采空区",
+"source": "https://news.qq.com/rain/a/20230908A09BLF00"
+},
+{
+"type": "干旱",
+"freq": 4,
+"note": "暖季高温干旱复合事件年代际增多、6月最多；2024年5-6月连续18天无降水、连续8天超35℃",
+"source": "https://www.ecologica.cn/html/2024/13/stxb202304120743.htm"
+},
+{
+"type": "冰雹风雹",
+"freq": 3,
+"note": "汛期强对流常伴雷暴大风、局地雷雨大风等致灾天气",
+"source": "https://www.163.com/dy/article/J509KU730545ANR9.html"
+},
+{
+"type": "地震",
+"freq": 2,
+"note": "处淮河中游/许昌-淮南地震带，所辖凤台县1831年发生6¼级地震，为该带有记录最大震，安徽中等地震活动水平",
+"source": "https://www.dzxb.org/cn/article/pdf/preview/00a8440a-8b49-485f-97b5-b005709c58a5.pdf"
+}
+]
+},
+{
+"prefKey": "安徽|滁州市",
+"headline": "皖东江淮之间：滁河圩区洪涝高发(全椒多次分洪)、江淮分水岭旱涝急转，梅雨暴雨与风雹",
+"hazards": [
+{
+"type": "洪涝",
+"freq": 4,
+"note": "滁河流域洪涝频发，全椒荒草二圩/三圩1991/2003/2008/2015/2020/2024多次分洪；2020年滁河干流超历史，2024-07襄河口闸上13.42m超警2.42m、转移792人",
+"source": "https://www.163.com/dy/article/J70AGG0V0514B06N.html"
+},
+{
+"type": "暴雨",
+"freq": 5,
+"note": "北亚热带季风区江淮梅雨强降水年年；2016-06至07连续强降雨198万人受灾、损失9280万元",
+"source": "https://m.thepaper.cn/newsDetail_forward_27890812"
+},
+{
+"type": "干旱",
+"freq": 4,
+"note": "全椒地处江淮分水岭，旱涝界线致旱涝急转、年际降水波动大，伏旱影响突出",
+"source": "https://baike.baidu.com/item/%E6%B1%9F%E6%B7%AE%E5%88%86%E6%B0%B4%E5%B2%AD/7237435"
+},
+{
+"type": "冰雹风雹",
+"freq": 3,
+"note": "季风异常时多强对流大风冰雹；2014-04定远/凤阳雷暴大风7-9级(阵风10级)致4.2万人受灾、损失逾3700万",
+"source": "https://www.weather.com.cn/cityintro/101221101.shtml"
+}
+]
+},
+{
+"prefKey": "安徽|芜湖市",
+"headline": "长江/青弋江与巢湖流域性特大洪涝（1991/1998/2016/2020）为最大风险，梅雨暴雨年年；地震危险性中等偏低。",
+"hazards": [
+{
+"type": "洪涝",
+"freq": 5,
+"note": "官方认定1991、1998、2016、2020均发生持续性暴雨引发的流域特大洪涝；2020长江下游干流及巢湖等39条河湖超历史水位、近200圩口蓄洪",
+"source": "https://www.wuhu.gov.cn/openness/public/6596211/39796117.html"
+},
+{
+"type": "暴雨",
+"freq": 5,
+"note": "灾害性天气频繁，暴雨及其次生灾害对芜湖影响最为明显",
+"source": "https://www.wuhu.gov.cn/openness/public/6596211/39796117.html"
+},
+{
+"type": "干旱",
+"freq": 4,
+"note": "沿江伏旱；2019长江中下游近50年最严重伏秋连旱波及皖中沿江",
+"source": "http://qxqk.nmc.cn/html/2020/12/20201211.html"
+},
+{
+"type": "地震",
+"freq": 2,
+"note": "沿郯庐断裂带区域，安徽中等地震活动水平，本地以中小震为主、无历史强震",
+"source": "https://dzj.tl.gov.cn/tlsdzj/c00032/pc/content/content_1703587814230626304.html"
+}
+]
+},
+{
+"prefKey": "安徽|马鞍山市",
+"headline": "长江下游沿岸洪涝为最大风险，叠加江淮梅雨暴雨与伏秋旱；郯庐带边缘地震危险性中等偏低。",
+"hazards": [
+{
+"type": "洪涝",
+"freq": 4,
+"note": "长江西北岸+境内河流；2020历史罕见大水，长江马鞍山站及主要河流全超警，和县/含山紧急转移上万人、防汛三级响应",
+"source": "https://m.thepaper.cn/newsDetail_forward_27918823"
+},
+{
+"type": "暴雨",
+"freq": 5,
+"note": "江淮梅雨季强降水几乎年年，暴雨及其次生灾害是本地最主要致灾天气",
+"source": "https://www.mem.gov.cn/xw/yjglbgzdt/202405/W020240508313655815475.pdf"
+},
+{
+"type": "干旱",
+"freq": 4,
+"note": "沿江伏旱/伏秋连旱；2019长江中下游近50年最严重伏秋连旱，安徽中部一带特旱",
+"source": "http://www.xinhuanet.com/local/2019-12/09/c_1125322400.htm"
+},
+{
+"type": "地质灾害",
+"freq": 3,
+"note": "含山/和县丘陵区强降雨与切坡建房诱发崩塌、滑坡，规模较小",
+"source": "https://www.ahjd.gov.cn/OpennessContent/show/3080646.html"
+},
+{
+"type": "地震",
+"freq": 2,
+"note": "郯庐断裂带庐江-嘉山段从西侧通过，安徽属中等地震活动水平，本地以中小震/有感为主，无历史强震",
+"source": "https://dzj.tl.gov.cn/tlsdzj/c00032/pc/content/content_1703587814230626304.html"
+}
+]
+},
+{
+"prefKey": "山东|威海市",
+"headline": "胶东半岛最东端：冷流暴雪『雪窝子』几乎年年，叠加北上台风与温带风暴潮、夏汛暴雨洪涝",
+"hazards": [
+{
+"type": "暴雪雪灾",
+"freq": 5,
+"note": "全国唯二『雪窝子』，冷流(冷涡/冷流)雪占冬季降雪日80%+、年均33-39天，几乎每年成灾；2005-12连续暴雪纯降雪93.6mm、损失近4亿，2021-12·16文登积雪74cm破山东全省纪录",
+"source": "https://cj.sina.com.cn/articles/view/7096020433/v1a6f4add106801f2au"
+},
+{
+"type": "台风",
+"freq": 3,
+"note": "半岛尖端受夏秋北上台风及外围影响，大风暴雨频发；与利奇马式北上路径相关",
+"source": "https://zhuanlan.zhihu.com/p/78163415"
+},
+{
+"type": "风暴潮",
+"freq": 3,
+"note": "三面环海，温带及台风风暴潮、海浪致灾；2007-03遭特大风暴潮3人死亡，2023年仍有蓝色温带风暴潮过程及19次海浪",
+"source": "https://www.thepaper.cn/newsDetail_forward_29166736"
+},
+{
+"type": "暴雨",
+"freq": 4,
+"note": "2007年8-9月多次暴雨致洪涝，直接经济损失13.9亿元",
+"source": "https://www.weihai.gov.cn/art/2025/1/24/art_103304_31729.html"
+},
+{
+"type": "干旱",
+"freq": 4,
+"note": "降水年际波动大；1999年降水359.8mm不足常年一半、为历史罕见",
+"source": "https://zhuanlan.zhihu.com/p/78163415"
+},
+{
+"type": "冰雹风雹",
+"freq": 3,
+"note": "市自然灾害救助预案列大风/风雹为常见气象灾害之一",
+"source": "https://www.weihai.gov.cn/art/2025/1/24/art_103304_31729.html"
+}
+]
+},
+{
+"prefKey": "山东|日照市",
+"headline": "鲁东南沿海：夏季暴雨洪涝突出，北上台风外围带来强风暴雨与风暴潮，间有春夏干旱",
+"hazards": [
+{
+"type": "暴雨",
+"freq": 5,
+"note": "暴雨期5-10月、多发7-8月，全市年均暴雨日6.0天，国家站日最大降水298.8mm",
+"source": "http://www.rizhao.gov.cn/art/2022/6/17/art_287343_42791.html"
+},
+{
+"type": "洪涝",
+"freq": 4,
+"note": "台风暴雨引发河道、水库及城市内涝，影响农业与城市运行",
+"source": "http://www.rizhao.gov.cn/art/2022/6/17/art_287343_42791.html"
+},
+{
+"type": "台风",
+"freq": 3,
+"note": "主要受北上台风外围影响，6-9月、8月最频繁，带来强风暴雨",
+"source": "http://www.rizhao.gov.cn/art/2022/6/17/art_287343_42791.html"
+},
+{
+"type": "风暴潮",
+"freq": 3,
+"note": "台风影响时引发风暴潮，威胁海洋渔业、港口与近岸",
+"source": "http://www.rizhao.gov.cn/art/2022/6/17/art_287343_42791.html"
+},
+{
+"type": "干旱",
+"freq": 4,
+"note": "鲁东南春夏旱常见，气象灾害预案列气象干旱为防御对象（莒县等地多次人工增雨）",
+"source": "http://www.rizhao.gov.cn/art/2022/6/17/art_287343_42791.html"
+}
+]
+},
+{
+"prefKey": "山东|泰安市",
+"headline": "鲁中泰山区：大汶河季节性山洪洪涝+泰山周边崩滑流/岩溶塌陷，汛期暴雨冰雹与阶段性干旱",
+"hazards": [
+{
+"type": "洪涝",
+"freq": 4,
+"note": "大汶河为季节性易暴涨河流，水患频繁；1949年以来发生流量≥4000m³洪水12次（1957、1964年近7000m³重灾）",
+"source": "https://blog.sina.com.cn/s/blog_50862ba10102z6lv.html"
+},
+{
+"type": "暴雨",
+"freq": 4,
+"note": "夏季降水占全年65%，汛期降水集中常发暴雨山洪；已立《泰安市暴雨灾害预警与响应条例》",
+"source": "http://sd.cma.gov.cn/gslb/tasqxj/xxgk/tzgg/202402/t20240226_6088083.html"
+},
+{
+"type": "地质灾害",
+"freq": 4,
+"note": "地形地质复杂+开山采石/超采地下水，崩塌/滑坡/泥石流/岩溶塌陷较发育；2020年核查确定隐患点133处",
+"source": "https://m.fx361.com/news/2021/1022/15951377.html"
+},
+{
+"type": "干旱",
+"freq": 4,
+"note": "暖温带半湿润季风区，降水年际波动；曾应对2013-2016年严重干旱",
+"source": "http://www.sdtaishan.gov.cn/art/2022/12/27/art_181324_11765.html"
+},
+{
+"type": "台风",
+"freq": 3,
+"note": "受北上台风外围影响（温比亚、利奇马）；2019利奇马致山东创纪录暴雨",
+"source": "https://rdqxxb.itmm.org.cn/cn/article/doi/10.16032/j.issn.1004-4965.2023.014"
+},
+{
+"type": "冰雹风雹",
+"freq": 3,
+"note": "较大自然灾害调查评估纳入气象灾害（含风雹），汛期强对流时有发生",
+"source": "https://yjglj.taian.gov.cn/art/2024/10/11/art_166305_10322974.html"
+},
+{
+"type": "地震",
+"freq": 1,
+"note": "鲁中、沂沭(郯庐)断裂带西侧外围，距高烈度轴有距离；本地强震百年级罕见",
+"source": "https://zh.wikipedia.org/zh-hans/%E9%83%AF%E5%BA%90%E6%96%AD%E8%A3%82%E5%B8%A6"
+}
+]
+},
+{
+"prefKey": "山东|淄博市",
+"headline": "鲁中：南部博山/淄川/沂源山区崩滑流+采空塌陷与山洪、汛期暴雨冰雹，北部平原旱涝交替",
+"hazards": [
+{
+"type": "地质灾害",
+"freq": 4,
+"note": "崩塌/滑坡/泥石流/采空塌陷主集中淄川区、博山区、沂源县，6-10月（7月底8月初）汛期多发，规模多中小型",
+"source": "https://gtj.zibo.gov.cn/gongkai/channel_61c175c521a04ccab9439e62/doc_61c54e51f32474e90743a110.html"
+},
+{
+"type": "暴雨",
+"freq": 4,
+"note": "南部山区汛期多暴雨常致山洪暴发；2024年强降雨累计发布预警6884条、转移396人",
+"source": "https://m.163.com/dy/article/K55FIUBC0530JPVV.html"
+},
+{
+"type": "洪涝",
+"freq": 4,
+"note": "雨涝主集中桓台、高青及临淄/张店/周村大部；北部平原约三年一遇水涝",
+"source": "https://www.weather.com.cn/cityintro/101120301.shtml"
+},
+{
+"type": "干旱",
+"freq": 4,
+"note": "全省春旱严重地区之一，平均五年一小旱、十年一大旱，夏旱危害尤大",
+"source": "https://www.weather.com.cn/cityintro/101120301.shtml"
+},
+{
+"type": "冰雹风雹",
+"freq": 4,
+"note": "南部山区冰雹较多；2024-06南部曾发布强对流升级预警、局地或有龙卷",
+"source": "https://www.163.com/dy/article/J6C71OK60530JPVV.html"
+},
+{
+"type": "地震",
+"freq": 1,
+"note": "鲁中、沂沭(郯庐)断裂带西侧外围，沂源距带较近但非高烈度轴；本地强震百年级罕见",
+"source": "http://data.geophy.cn/dzdqs-data/cjg/html/2010/3/2010-03-14.htm"
+}
+]
+},
+{
+"prefKey": "山东|烟台市",
+"headline": "胶东半岛北临渤海/黄海——冷流暴雪重灾区(中国雪窝,近年年大雪)、台风风暴潮(莱州湾1969最强/2007年38年最大)、渤海海冰(2010重冰年)、夏旱与强对流风雹;邻郯庐断裂带/渤海地震区,海域地震本底偏高。",
+"hazards": [
+{
+"type": "暴雪雪灾",
+"freq": 5,
+"note": "冷流(大湖效应)暴雪典型区,占总降雪日80%以上,被称中国雪窝;2005·12威海烟台40年最大暴风雪损失3.71亿元(芝罘积雪1.2m),2023·12极端暴雪积雪近1m",
+"source": "https://u.shm.com.cn/2023-12/22/content_5371779.html"
+},
+{
+"type": "台风",
+"freq": 3,
+"note": "2019·8台风利奇马致烟台全市性暴雨(海阳朱吴185.8mm),山东过程降雨创有记录最大;2018温比亚等北上台风数年一遇",
+"source": "https://yantai.dzwww.com/xinwen/ytxw/ytsh/202001/t20200116_17248742.htm"
+},
+{
+"type": "风暴潮",
+"freq": 3,
+"note": "莱州湾为重灾海域;1969·4·23温带风暴潮羊角沟增水3.55m(建国以来渤海沿岸最大潮灾);2007·3黄渤海最高潮位610cm为38年最大/50年罕见",
+"source": "https://news.sina.cn/sa/2007-03-05/detail-ikftssap2843512.d.html"
+},
+{
+"type": "海冰",
+"freq": 3,
+"note": "渤海/莱州湾冬季结冰;2010重冰年海冰近覆盖全渤海、直接经损63.18亿元,莱州湾浮冰外缘线约30海里;1969百年不遇大冰封50天",
+"source": "https://www.chinanews.com.cn/gn/news/2010/01-23/2087849.shtml"
+},
+{
+"type": "干旱",
+"freq": 4,
+"note": "胶东半岛春夏旱常发,影响果业农业(烟台为苹果主产区)",
+"source": "http://yjt.shandong.gov.cn/zwgk/zdly/fzjz/zhjz/202303/t20230320_4267912.html"
+},
+{
+"type": "冰雹风雹",
+"freq": 4,
+"note": "山东风雹为主要灾种;龙口/招远等夏季冰雹多发(2026·6龙口冰雹黄色预警),砸损果园农作物",
+"source": "https://www.weather.com.cn/alarm/newalarmcontent.shtml?file=101120505-20260603230200-1002.html"
+},
+{
+"type": "地震",
+"freq": 3,
+"note": "邻郯庐断裂带及渤海地震区,海域强震活跃;1888渤海M7.5、1969·7·18渤海M7.4、1975海城M7.3均在带上,蓬莱/长岛近海有震",
+"source": "https://www.thepaper.cn/newsDetail_forward_24194173"
+}
+]
+},
+{
+"prefKey": "广东|惠州市",
+"headline": "南海大亚湾沿岸，台风风暴潮为最大海洋灾害(>50cm增水年均2.5次)，暴雨洪涝高发，内陆龙门博罗多地质灾害",
+"hazards": [
+{
+"type": "台风",
+"freq": 5,
+"note": "281km海岸线临南海，台风几乎年年影响；2025桦加沙、米娜带来强风大暴雨，历史荷贝(Hope)等7次破坏性热带气旋影响惠州海域",
+"source": "https://www.hanspub.org/journal/paperinformation?paperid=71771"
+},
+{
+"type": "风暴潮",
+"freq": 4,
+"note": "风暴潮为危害最大海洋灾害，增水>50cm过程年均2.5次；近10年风暴潮海浪致经济损失超20亿元，大亚湾曾在台风荷贝中遭巨浪重灾",
+"source": "https://www.hanspub.org/journal/paperinformation?paperid=71771"
+},
+{
+"type": "暴雨",
+"freq": 5,
+"note": "前汛期+龙舟水+台风雨致暴雨频发；2022龙门/博罗龙舟水为2006以来最强，13条河超警，蓝地累计504.7mm",
+"source": "https://www.gotohui.com/urban/show-279714"
+},
+{
+"type": "洪涝",
+"freq": 4,
+"note": "1979惠阳特大洪灾被定为500年一遇雨、200年一遇洪(西枝江流域3日均732mm)；2022博罗站洪峰6890m³/s，13河超警",
+"source": "https://www.thepaper.cn/newsDetail_forward_8582535"
+},
+{
+"type": "地质灾害",
+"freq": 3,
+"note": "内陆龙门、博罗多山丘陵区，强降雨易诱发滑坡崩塌等地质灾害",
+"source": "https://www.huizhou.gov.cn/zjhz/qyxx/content/mpost_220645.html"
+}
+]
+},
+{
+"prefKey": "广东|清远市",
+"headline": "北江干流首当其冲——龙舟水叠加北江特大洪水几乎年年威胁，2022年近百年一遇、英德百年水患史；连州/阳山/清新山区滑坡泥石流频发，后汛期伴高温秋旱，内陆无台风直击与风暴潮。",
+"hazards": [
+{
+"type": "洪涝",
+"freq": 5,
+"note": "北江干流过境，2022年龙舟水叠加北江特大洪水(近百年一遇)英德全城被淹、累计雨量破1968年纪录；2013年北江支流百年一遇；英德历来水患不断",
+"source": "https://www.cma.gov.cn/2011xzt/2022zt/20220330/2022033005/202206/t20220624_4928932.html"
+},
+{
+"type": "暴雨",
+"freq": 5,
+"note": "开汛偏早、龙舟水强，前汛期降水极端；2022年英德5月21日-6月21日累计雨量全省第一",
+"source": "https://news.sina.cn/gn/2022-06-24/detail-imizirav0255417.d.html"
+},
+{
+"type": "地质灾害",
+"freq": 4,
+"note": "北部山区(英德/阳山/连州/清新)强降雨诱发滑坡、泥石流；2025年6月18日清新太平镇泥石流成功转移避免7人伤亡",
+"source": "https://www.cnr.cn/gd/gstjgd/20250709/t20250709_527252377.shtml"
+},
+{
+"type": "高温",
+"freq": 4,
+"note": "2022年后汛期高温日数多，属粤北夏季常态性高温时段",
+"source": "https://www.gdqy.gov.cn/jjqy/ljqy/jrfc/qyqh/content/post_1675034.html"
+},
+{
+"type": "干旱",
+"freq": 3,
+"note": "2022年秋季气象干旱明显，前涝后旱年景反差大",
+"source": "https://www.gdqy.gov.cn/jjqy/ljqy/jrfc/qyqh/content/post_1675034.html"
+}
+]
+},
+{
+"prefKey": "广东|肇庆市",
+"headline": "西江/北江/贺江汇流的洪涝重灾区——前汛期暴雨与龙舟水几乎年年成灾，1994/1998/2005西江超百年一遇、2025怀集历史最大洪水；北部山区伴生地质灾害，强对流冰雹龙卷偶发，无风暴潮（内陆）。",
+"hazards": [
+{
+"type": "洪涝",
+"freq": 5,
+"note": "西江/北江/贺江/绥江过境，汛期年年涨水；1994、1998、2005西江洪水超百年一遇，2025年6月怀集遭历史最大洪水约30万人受灾、积水最深3米",
+"source": "https://www.cnr.cn/gd/guangdongyaowen/20250618/t20250618_527217920.shtml"
+},
+{
+"type": "暴雨",
+"freq": 5,
+"note": "前汛期(4-6月)每年2-4天暴雨，龙舟水强降水多发；2024-2026年怀集等地多次发布暴雨橙色预警",
+"source": "https://nmc.cn/publish/alarm/44122441600000_20260515203244.html"
+},
+{
+"type": "地质灾害",
+"freq": 4,
+"note": "强降水诱发北部山区(怀集/封开/广宁)崩塌、滑坡、泥石流；市气象局与国土部门联合发布地质灾害气象风险预警",
+"source": "http://gd.cma.gov.cn/zqsqxj_3105/zwgk_3106/jgyzn_3107/201808/t20180823_73306.html"
+},
+{
+"type": "冰雹风雹",
+"freq": 4,
+"note": "前汛期雷雨大风、冰雹等强对流多发；2026年4月16日肇庆市发布冰雹橙色预警信号",
+"source": "https://www.nmc.cn/publish/alarm/44120041600000_20260417090844.html"
+},
+{
+"type": "干旱",
+"freq": 3,
+"note": "后汛期及秋季阶段性气象干旱，属粤西高温少雨时段，影响轻于洪涝",
+"source": "https://gd.weather.com.cn/qxqzt/2013/03/1853788.shtml"
+}
+]
+},
+{
+"prefKey": "广东|阳江市",
+"headline": "广东西南沿海台风最强暴露区(海陵岛/闸坡)，台风风暴潮屡造巨灾，暴雨洪涝高发",
+"hazards": [
+{
+"type": "台风",
+"freq": 5,
+"note": "年年受台风影响；2008黑格比致全市159.63万人受灾、直接损失24.6亿；2016天鸽、2025桦加沙(13级，阳江历史登陆最强台风)海陵岛登陆",
+"source": "http://www.yangjiang.gov.cn/zwgk/yjgl/yjgz/content/post_392036.html"
+},
+{
+"type": "风暴潮",
+"freq": 4,
+"note": "海陵岛/闸坡正面迎风，台风风暴潮巨浪频袭；2008黑格比海陵大堤被冲断成8段、缺口14处、毁损超1137m，岛内10万人被困成孤岛",
+"source": "https://zh.wikipedia.org/zh-hans/%E6%B5%B7%E9%99%B5%E5%A4%A7%E5%A0%A4"
+},
+{
+"type": "暴雨",
+"freq": 5,
+"note": "亚热带沿海，年均降雨约2345mm、夏秋台风雨多，暴雨大暴雨频发",
+"source": "https://www.weather.com.cn/cityintro/101281801.shtml"
+},
+{
+"type": "洪涝",
+"freq": 4,
+"note": "台风暴雨叠加+沿海低地致洪涝内涝，2008黑格比损坏堤防1238处263km、农作物受灾57.13千公顷",
+"source": "http://www.yangjiang.gov.cn/zwgk/yjgl/yjgz/content/post_392036.html"
+}
+]
+},
+{
+"prefKey": "广西|北海市",
+"headline": "北部湾东北岸——台风风暴潮主导，2014超强台风威马逊(有记录以来登陆广西最强)在邻近光坡镇登陆重创北海；汛期洪涝、干旱高温常见，地处华南沿海地震带边缘(1936灵山M6¾在约百公里外)低中等地震风险。",
+"hazards": [
+{
+"type": "台风",
+"freq": 5,
+"note": "西北太平洋/南海台风频繁影响北部湾；2014年7月超强台风威马逊以15级在邻市防城港光坡镇登陆，北海市区树木变压器被掀，建国来最强、广西10市受灾",
+"source": "https://gx.weather.com.cn/tqxw/2159449.shtml"
+},
+{
+"type": "风暴潮",
+"freq": 4,
+"note": "台风常伴风暴潮，2014威马逊国家海洋预报台发布风暴潮红色预警；北部湾顶部增水显著",
+"source": "http://gx.weather.com.cn/zt/gxqxzh/01/2257900.shtml"
+},
+{
+"type": "暴雨",
+"freq": 4,
+"note": "广西南部沿海暴雨日数相对较高、最大连续湿期较长，台风季及汛期强降水集中",
+"source": "https://gx.weather.com.cn/tqxw/4015799.shtml"
+},
+{
+"type": "干旱",
+"freq": 3,
+"note": "2025年1-4月广西气象干旱面积达98.7%、特旱74%；沿海高温日数偏多、秋季阶段性干旱可能性大",
+"source": "https://www.guancha.cn/ChengShi/2025_04_21_773068.shtml"
+},
+{
+"type": "洪涝",
+"freq": 3,
+"note": "台风暴雨引发城乡内涝及南流江等沿海河流洪水",
+"source": "http://yjglt.gxzf.gov.cn/gwgg/P020241012566320797967.pdf"
+},
+{
+"type": "地震",
+"freq": 2,
+"note": "位于华南沿海地震带/北部湾地震区，1936年灵山M6¾(华南内陆最大地震)震中在邻市钦州灵山县约百公里范围内；区域中等地震背景",
+"source": "https://dnr.gxzf.gov.cn/kpyd/kpyd/t16025039.shtml"
+}
+]
+},
+{
+"prefKey": "广西|百色市",
+"headline": "右江流域洪涝/山洪+喀斯特滑坡泥石流+桂西季节性干旱；位于右江(百色)断裂带，中等地震背景",
+"hazards": [
+{
+"type": "洪涝",
+"freq": 5,
+"note": "右江及支流流域性洪水、城乡内涝几乎年年；2025年百色、崇左强降雨致严重洪涝；2024年10月局地洪涝",
+"source": "https://news.qq.com/rain/a/20250902A02DRH00"
+},
+{
+"type": "地质灾害",
+"freq": 4,
+"note": "滇黔桂石漠化喀斯特山区，滑坡/泥石流/塌陷多发；2015年广西致灾地质灾害集中于桂林、百色、贵港、河池，凌云/隆林/西林强对流引发滑坡泥石流",
+"source": "https://dnr.gxzf.gov.cn/zfxxgk/fdzdgknr/tjfx/zhtj/W020230316404622335260.pdf"
+},
+{
+"type": "干旱",
+"freq": 4,
+"note": "广西干旱风险普查中百色为旱灾危险性较高区之一(与玉林、北海并列)；冬春季节性缺水，人畜饮水困难",
+"source": "https://irrigate.whu.edu.cn/jsgg/CN/10.12396/jsgg.2023242"
+},
+{
+"type": "高温",
+"freq": 4,
+"note": "右江河谷为广西著名'火炉'，夏季高温频发",
+"source": "https://news.qq.com/rain/a/20250902A02DRH00"
+},
+{
+"type": "地震",
+"freq": 2,
+"note": "处右江(百色)断裂带，为广西主要活动断裂之一；区域以中小震为主，专家评估广西不具备发生7级以上大震构造条件",
+"source": "https://gx.weather.com.cn/tqxw/1861830.shtml"
+}
+]
+},
+{
+"prefKey": "广西|钦州市",
+"headline": "北部湾顶端——台风暴雨主导(2025桦加沙'五停'、2026.4特大暴雨破纪录271mm)；1936年灵山M6¾震中即在所辖灵山县(华南内陆最大地震、防城-灵山断裂最活跃段)，是三沿海市地震风险最高者，兼有风暴潮与干旱高温。",
+"hazards": [
+{
+"type": "台风",
+"freq": 5,
+"note": "南海台风频繁影响北部湾；2025年9月超强台风桦加沙预警升二级、全市'五停'，沿海最大阵风11-12级",
+"source": "https://news.cnr.cn/native/gd/kx/20250924/t20250924_527374850.shtml"
+},
+{
+"type": "暴雨",
+"freq": 5,
+"note": "2026年4月27日钦州国家站降水271.1毫米，打破当地最早特大暴雨日纪录和4月单日降水量纪录；广西南部沿海暴雨日数高",
+"source": "https://www.gmw.cn/2026-04/27/content_1304435168.htm"
+},
+{
+"type": "洪涝",
+"freq": 4,
+"note": "台风及特大暴雨引发市区及周边乡镇城乡内涝、钦江等流域洪水",
+"source": "http://www.qinzhou.gov.cn/dtxx/bmdt/t27512157.shtml"
+},
+{
+"type": "风暴潮",
+"freq": 4,
+"note": "钦州湾沿海台风期间风暴潮增水，2014威马逊等强台风风暴潮波及；属北部湾风暴潮高风险岸段",
+"source": "http://gx.weather.com.cn/zt/gxqxzh/01/2257900.shtml"
+},
+{
+"type": "地震",
+"freq": 3,
+"note": "1936年4月1日灵山M6¾地震震中在所辖灵山县东北罗阳山，烈度Ⅸ度强，为华南沿海地震带内陆最大地震；防城-灵山断裂灵山段为北部湾经济区地震活动最频繁地区",
+"source": "https://www.dzxb.org/cn/article/pdf/preview/10.11939/jass.20170127.pdf"
+},
+{
+"type": "干旱",
+"freq": 3,
+"note": "2025年广西特大干旱波及钦州；沿海高温日数偏多、秋季阶段性气象干旱",
+"source": "https://www.guancha.cn/ChengShi/2025_04_21_773068.shtml"
+}
+]
+},
+{
+"prefKey": "广西|防城港市",
+"headline": "2014超强台风威马逊登陆点(光坡镇)——有记录以来登陆广西最强台风；气象及次生灾害约占广西沿海自然灾害90%，台风/风暴潮/暴雨洪涝主导，伴生滑坡，位于防城-灵山断裂带低中等地震背景及干旱高温。",
+"hazards": [
+{
+"type": "台风",
+"freq": 5,
+"note": "2014年7月19日超强台风威马逊以15级48米/秒在防城港光坡镇登陆，为有气象记录以来登陆广西最强台风，中心气压950百帕；台风各季均可发生",
+"source": "https://zh.wikipedia.org/zh-hans/%E9%A2%B1%E9%A2%A8%E5%A8%81%E9%A6%AC%E9%81%9C_(2014%E5%B9%B4)"
+},
+{
+"type": "风暴潮",
+"freq": 4,
+"note": "市设风暴潮海浪海啸灾害专项应急预案，海洋部门按台风发布风暴潮/海浪预警；2014威马逊风暴潮红色预警",
+"source": "https://www.fcgs.gov.cn/yjj/zfxxgk/fdzdgknr/zwgk/t16809404.shtml"
+},
+{
+"type": "暴雨",
+"freq": 5,
+"note": "防城港为全国暴雨中心之一，设暴雨重点实验室；台风及夏季强降水频繁，南部沿海暴雨日数高",
+"source": "https://www.sciengine.com/doi/pdfView/42B7C94DF29F40EBA525A1E51713701E"
+},
+{
+"type": "洪涝",
+"freq": 4,
+"note": "台风暴雨引发防城江等流域洪水及城乡内涝，水文部门按台风影响发布洪水预警",
+"source": "https://www.fcgs.gov.cn/yjj/zfxxgk/fdzdgknr/zwgk/t16807559.shtml"
+},
+{
+"type": "地质灾害",
+"freq": 3,
+"note": "台风暴雨常伴滑坡等次生灾害；气象或其衍生灾害约占广西沿海地区自然灾害的90%",
+"source": "https://cj.sina.com.cn/articles/view/1986954045/766e833d02001lmt0"
+},
+{
+"type": "干旱",
+"freq": 3,
+"note": "2025年广西气象干旱波及防城港；沿海高温日数偏多、秋季阶段性干旱",
+"source": "https://www.guancha.cn/ChengShi/2025_04_21_773068.shtml"
+},
+{
+"type": "地震",
+"freq": 2,
+"note": "地处防城-灵山断裂带(钦防结合带)，1936灵山M6¾地震发震构造同属该带；区域低中等地震背景",
+"source": "https://www.sciengine.com/SSTe/doi/10.1360/SSTe-2022-0397"
+}
+]
+},
+{
+"prefKey": "江苏|南通市",
+"headline": "长江口+黄海双临海，台风(含北上/外围)、风暴潮、暴雨洪涝、风雹年年高发，官方定性多灾易灾区，北部平原偶发龙卷风",
+"hazards": [
+{
+"type": "台风",
+"freq": 4,
+"note": "地处江苏沿海，受北上及外围台风影响频繁；2021烟花(In-Fa)华东回旋、2018温比亚、2005麦莎等均带来强风雨；江苏正面登陆台风罕见但外围影响数年一遇",
+"source": "https://www.nantong.gov.cn/ntsrmzf/szfbwj/content/e1a7ef2d-464d-4d61-a8ab-cefc33859e6f.html"
+},
+{
+"type": "暴雨",
+"freq": 5,
+"note": "北亚热带海洋性季风区，梅雨+台风雨致暴雨洪涝几乎年年发生，市综合防灾减灾规划列为频发气象灾害",
+"source": "https://yjgl.nantong.gov.cn/ntaj/bmw/content/cab14af4-7b22-4edf-92cd-8822d6007ed7.html"
+},
+{
+"type": "洪涝",
+"freq": 4,
+"note": "水网密布、南临长江东濒黄海，台风暴雨叠加易内涝；规划明确洪涝为主要灾害，多灾并发、灾害链突出",
+"source": "https://yjgl.nantong.gov.cn/ntaj/bmw/content/cab14af4-7b22-4edf-92cd-8822d6007ed7.html"
+},
+{
+"type": "风暴潮",
+"freq": 3,
+"note": "206km海岸线+166km长江岸线；台风遇天文大潮易成强风暴雨高潮三碰头，启东等沿海岸段为风暴潮承灾区",
+"source": "https://www.cma.gov.cn/2011xwzx/2011xtt/201208/t20120802_180699.html"
+},
+{
+"type": "冰雹风雹",
+"freq": 4,
+"note": "市综合防灾减灾规划将风雹列为频发气象灾害之一，强对流季多发",
+"source": "https://yjgl.nantong.gov.cn/ntaj/bmw/content/cab14af4-7b22-4edf-92cd-8822d6007ed7.html"
+},
+{
+"type": "龙卷风",
+"freq": 2,
+"note": "苏北平原为全国龙卷高发区，2023年盐城/宿迁/南通等地龙卷致14人死亡，南通历史有龙卷记录",
+"source": "https://www.cma.gov.cn/2011xwzx/2011xqxxw/2011xqxyw/202309/t20230920_5787110.html"
+}
+]
+},
+{
+"prefKey": "江苏|连云港市",
+"headline": "江苏唯一有台风登陆点的海港市，台风/风暴潮+暴雨洪涝叠加；位郯庐地震带，设防烈度7度，受1668郯城8.5级波及达Ⅷ度",
+"hazards": [
+{
+"type": "台风",
+"freq": 3,
+"note": "西连岛为业务认定台风登陆点；2012达维(Damrey)经响水登陆后过连云港降格，是1949以来唯一台风级强度登陆江苏沿海者，约数年一遇",
+"source": "https://zh.wikipedia.org/zh-hans/%E9%A2%B1%E9%A2%A8%E9%81%94%E7%B6%AD_(2012%E5%B9%B4)"
+},
+{
+"type": "风暴潮",
+"freq": 3,
+"note": "连云港沿海面临台风风暴潮与海啸双重影响，需高度警惕；台风遇天文大潮易高潮成灾",
+"source": "https://www.cgsjournals.com/article/doi/10.16562/j.cnki.0256-1492.2024031901"
+},
+{
+"type": "暴雨",
+"freq": 4,
+"note": "强对流/台风外围致强降雨频发，2026年5月强降雨启动Ⅲ级防汛应急响应",
+"source": "https://www.chinanews.com.cn/sh/2026/05-26/10628598.shtml"
+},
+{
+"type": "洪涝",
+"freq": 3,
+"note": "沿海低地+山洪河网，暴雨易致洪涝，2026年汛期升级防汛应急响应覆盖海州/连云/东海等区",
+"source": "https://www.chinanews.com.cn/sh/2026/05-26/10628598.shtml"
+},
+{
+"type": "地震",
+"freq": 3,
+"note": "主城区+灌云抗震设防烈度7度(0.10g)；西邻郯庐断裂带，1668郯城8.5级地震波及本区烈度达Ⅷ度，本地1495海州4¾级",
+"source": "https://www.cgsjournals.com/article/doi/10.16562/j.cnki.0256-1492.2024031901"
+}
+]
+},
+{
+"prefKey": "江苏|镇江市",
+"headline": "长江+太湖流域+梅雨带内陆市，暴雨洪涝与梅雨型大水为主灾，旱涝交替，无台风登陆/风暴潮",
+"hazards": [
+{
+"type": "洪涝",
+"freq": 4,
+"note": "地处长江下游+太湖流域上缘；1991江淮特大暴雨太湖水位4.79m破纪录、1998长江流域大水均重创本区域，数年一遇",
+"source": "https://www.weather.com.cn/zt/tqzt/0907hhjhjhby/07/61032.shtml"
+},
+{
+"type": "暴雨",
+"freq": 5,
+"note": "梅雨集中(年均梅雨量263mm)+强对流，暴雨几乎年年发生，江苏为全国暴雨多发省份之一",
+"source": "https://baike.baidu.com/item/%E9%95%87%E6%B1%9F%E5%B8%82/2453214"
+},
+{
+"type": "干旱",
+"freq": 3,
+"note": "盛夏高温伏旱及连续少雨致旱；2025年5月江苏南部特旱，镇江实施人工增雨",
+"source": "https://m.gmw.cn/2025-05/05/content_1304029648.htm"
+},
+{
+"type": "龙卷风",
+"freq": 2,
+"note": "江苏强对流龙卷高发省，2023年宿迁/盐城等地龙卷致多人死亡，镇江所在江淮区有龙卷风险",
+"source": "https://www.cma.gov.cn/2011xwzx/2011xqxxw/2011xqxyw/202309/t20230920_5787110.html"
+},
+{
+"type": "冰雹风雹",
+"freq": 3,
+"note": "江苏主要气象灾害含强对流/雷电/冰雹，春夏之交雷暴大风冰雹多发",
+"source": "https://baike.baidu.com/item/%E6%B1%9F%E8%8B%8F/154268"
+}
+]
+},
+{
+"prefKey": "河北|石家庄",
+"headline": "太行山前+华北平原：极端暴雨洪涝致灾危险性极高（2023「23·7」海河特大洪水），山区冰雹/地质灾害+平原干旱，邻邢台地震带",
+"hazards": [
+{
+"type": "暴雨",
+"freq": 4,
+"note": "致灾危险性极高；2023-07-28至08-02「23·7」华北极端暴雨、2016「7·19」、2012「7·21」特大暴雨过程，历史个例平均直接经济损失超30亿元",
+"source": "http://dqkxxb.cnjournals.org/dqkxxb/article/html/20230608"
+},
+{
+"type": "洪涝",
+"freq": 4,
+"note": "太行山前迎风坡+海河流域，2023「23·7」海河特大洪水石家庄等地受灾，全流域受灾388.86万人、直接经济损失958.11亿元",
+"source": "https://www.mem.gov.cn/xw/yjglbgzdt/202508/t20250822_555887.shtml"
+},
+{
+"type": "冰雹风雹",
+"freq": 4,
+"note": "山区及山前地带强对流多发，平山县等多次发布冰雹橙色预警、雷暴大风伴冰雹",
+"source": "https://www.weather.com.cn/alarm/newalarmcontent.shtml?file=101090111-20260603152258-1003.html"
+},
+{
+"type": "干旱",
+"freq": 4,
+"note": "华北平原半湿润偏旱区，春旱与连旱多发，旱涝并存",
+"source": "https://xbgjxt.swu.edu.cn/article/doi/10.13718/j.cnki.xdzk.2022.05.020"
+},
+{
+"type": "地质灾害",
+"freq": 3,
+"note": "平山等太行山区县列为地质灾害较高风险区，存在崩塌、滑坡、泥石流，强降雨期多发预警",
+"source": "https://heb.hebccw.cn/system/2023/07/31/101187538.shtml"
+},
+{
+"type": "地震",
+"freq": 3,
+"note": "西邻太行山前断裂、东接河北平原地震带；1966邢台7.2级地震震中距石家庄市区约60km，区域有强震背景",
+"source": "https://zhuanlan.zhihu.com/p/570095972"
+}
+]
+},
+{
+"prefKey": "河南|南阳市",
+"headline": "豫西南南襄盆地——旱涝急转典型(2024唐河由严重干旱转特大暴雨)、暴雨洪涝重(近75·8暴雨核心区外缘)、强对流风雹多发；位于豫南地震带，地震本底中等(46AD南阳M6.5)。",
+"hazards": [
+{
+"type": "干旱",
+"freq": 5,
+"note": "南襄盆地十年九旱；2014年63年最重夏旱重旱区含南阳；2024·7唐河震前河床裸露需抽水灌溉",
+"source": "https://www.epochtimes.com/gb/24/7/28/n14300290.htm"
+},
+{
+"type": "洪涝",
+"freq": 4,
+"note": "2024·7·15-16唐河等特大暴雨,上游连续泄洪10小时致唐河一夜暴涨、沿河居民撤离,全市转移5014人;旱涝急转典型",
+"source": "https://www.jiemian.com/article/11424478.html"
+},
+{
+"type": "暴雨",
+"freq": 4,
+"note": "2024·7打破当年河南最强暴雨纪录；1975·8·8特大暴雨(板桥/石漫滩垮坝)核心区即驻马店-南阳一带",
+"source": "https://www.thepaper.cn/newsDetail_forward_28090915"
+},
+{
+"type": "冰雹风雹",
+"freq": 4,
+"note": "豫西南春夏强对流频发，雷暴大风/冰雹多发",
+"source": "https://www.cma.gov.cn/kppd/kppdqxsj/kppdtqqh/202111/t20211103_4159290.html"
+},
+{
+"type": "地震",
+"freq": 3,
+"note": "位于豫南地震活动带，震源浅烈度高破坏大，具中强地震构造背景；公元46年南阳6.5级地震(震中烈度Ⅷ度)，2017·5唐河3.0级",
+"source": "https://www.shangbw.com/news/show-9114.html"
+}
+]
+},
+{
+"prefKey": "河南|洛阳市",
+"headline": "豫西山地丘陵+洛阳盆地——汛期暴雨易引发山区山洪与崩塌滑坡(嵩县/栾川为地质灾害高发县)、干旱常发(十年九旱)，地震本底偏低。",
+"hazards": [
+{
+"type": "地质灾害",
+"freq": 4,
+"note": "豫西山区，嵩县/栾川等县崩塌滑坡泥石流多发，为河南地灾风险评价重点县；2024·7洛阳山区发布山洪/地灾预警",
+"source": "https://www.cgsjournals.com/article/doi/10.16031/j.cnki.issn.1003-8035.202209005"
+},
+{
+"type": "洪涝",
+"freq": 4,
+"note": "2021·7洛阳与郑州等同遭特大暴雨，城市内涝+山区山洪+地灾风险陡增；2024·7再发山洪预警",
+"source": "https://gxt.henan.gov.cn/2021/07-22/2186542.html"
+},
+{
+"type": "暴雨",
+"freq": 4,
+"note": "豫西强降水中心之一，地形抬升致暴雨；2021·7特大暴雨过程受灾市之一",
+"source": "https://www.ndrc.gov.cn/xxgk/zcfb/ghwb/202203/P020220314480103680956.pdf"
+},
+{
+"type": "干旱",
+"freq": 5,
+"note": "豫西十年九旱；2014年63年最重夏旱重旱区明确含洛阳",
+"source": "https://ifi.caas.cn/xwzx/zhxw/97586.htm"
+},
+{
+"type": "冰雹风雹",
+"freq": 4,
+"note": "豫西山区春夏强对流，冰雹/雷暴大风多发",
+"source": "https://www.cma.gov.cn/kppd/kppdqxsj/kppdtqqh/202111/t20211103_4159290.html"
+},
+{
+"type": "地震",
+"freq": 2,
+"note": "洛阳盆地本底中等偏低；市设嵩县/栾川等测震台监测，无近代破坏性大震",
+"source": "https://m.ly.gov.cn/2023/03-17/33474.html"
+}
+]
+},
+{
+"prefKey": "河南|郑州市",
+"headline": "黄河南岸省会——汛期暴雨洪涝极重(2021·7·20千年一遇特大暴雨为近10年全国单城最重城市内涝)、十年九旱、强对流风雹常发，地震本底偏低。",
+"hazards": [
+{
+"type": "暴雨",
+"freq": 5,
+"note": "2021·7·20:7月20日单日622.7mm≈年均降水640.8mm，小时/日降水重现期超千年一遇",
+"source": "https://www.mem.gov.cn/gk/sgcc/tbzdsgdcbg/202201/P020220121639049697767.pdf"
+},
+{
+"type": "洪涝",
+"freq": 5,
+"note": "城市内涝+河流洪水+山洪并发；2021·7郑州死亡失踪380人(占全省95.5%)、直接损失约410亿元，为近10年全国单城最重城市内涝灾害",
+"source": "https://www.mem.gov.cn/xw/bndt/202201/t20220121_407106.shtml"
+},
+{
+"type": "干旱",
+"freq": 5,
+"note": "河南十年九旱、长旱骤涝旱涝交错；2014年近70年最重夏旱波及郑州周边",
+"source": "https://ifi.caas.cn/xwzx/zhxw/97586.htm"
+},
+{
+"type": "冰雹风雹",
+"freq": 4,
+"note": "春夏强对流频发，雷暴大风/冰雹；河南曾现11-12级大风破历史同期最大风速记录",
+"source": "https://www.cma.gov.cn/kppd/kppdqxsj/kppdtqqh/202111/t20211103_4159290.html"
+},
+{
+"type": "高温",
+"freq": 4,
+"note": "夏季高温频发，常与伏旱叠加(2014高温重旱)",
+"source": "https://www.thepaper.cn/newsdetail_forward_27732562"
+},
+{
+"type": "地震",
+"freq": 2,
+"note": "豫中本底中等偏低，无近代破坏性大震记录",
+"source": "https://www.shangbw.com/news/show-9114.html"
+}
+]
+},
+{
+"prefKey": "河南|鹤壁市",
+"headline": "豫北卫河沿岸城市——干旱常发(十年九旱)、汛期暴雨洪涝重灾；浚县/淇县是卫河蓄滞洪区，2021年7·20洪涝几乎全淹，地震本底低。",
+"hazards": [
+{
+"type": "干旱",
+"freq": 5,
+"note": "豫北属南北气候过渡带，十年九旱；1986/1988/1999/2014等多次大旱，2014夏旱为63年最重",
+"source": "https://slt.henan.gov.cn/2019/12-28/1175074.html"
+},
+{
+"type": "洪涝",
+"freq": 4,
+"note": "卫河/淇河沿岸；浚县淇县境内6个蓄滞洪区(占全省13个之半)是行洪必经；2021·7蓄滞洪区启用、浚县58.8万人受灾(占全县94%)、直接损失97.6亿元",
+"source": "http://henan.people.com.cn/n2/2021/0729/c351638-34844060.html"
+},
+{
+"type": "暴雨",
+"freq": 5,
+"note": "2021·7·20特大暴雨：全市累计均降水569.4mm≈常年年降水586.6mm，日降水创历史极值；汛期强降水常发",
+"source": "https://www.mem.gov.cn/xw/bndt/202201/t20220121_407106.shtml"
+},
+{
+"type": "冰雹风雹",
+"freq": 4,
+"note": "豫北春夏强对流多发，雷暴大风+冰雹常见(如2009年6月黄淮罕见强对流，河南多地11-12级大风、冰雹)",
+"source": "https://www.cma.gov.cn/kppd/kppdqxsj/kppdtqqh/202111/t20211103_4159290.html"
+},
+{
+"type": "地震",
+"freq": 2,
+"note": "豫北属华北地震区边缘，本底中等偏低，无近代破坏性大震记录",
+"source": "https://www.shangbw.com/news/show-9114.html"
+}
+]
+},
+{
+"prefKey": "海南|儋州市",
+"headline": "热带海洋季风区：虽属海南受台风影响较小一隅，仍频遭台风暴雨重创（2024超强台风摩羯、2014威马逊），洪涝内涝与旱涝急转突出。",
+"hazards": [
+{
+"type": "台风",
+"freq": 5,
+"note": "热带气旋为主要气象灾害，2024-09超强台风摩羯重创儋州洋浦（累计雨量350-600mm、9-11级大风），2014威马逊；属海南受台风影响相对较小区但仍年年受影响",
+"source": "https://www.danzhou.gov.cn/danzhou/jdhy/xwfbh/202409/t20240908_3728624.html"
+},
+{
+"type": "暴雨",
+"freq": 5,
+"note": "台风及残涡常带暴雨到特大暴雨，如潭美残涡致兰洋/和庆/那大等镇>200mm、兰洋>400mm；年均降雨1823mm",
+"source": "https://c.m.163.com/news/a/JFOIF7I40550I46A.html"
+},
+{
+"type": "洪涝",
+"freq": 4,
+"note": "城乡积涝、低洼易涝区与山洪频发，三防需重点防城市内涝；气象次生灾害含洪涝/山洪/泥石流/滑坡",
+"source": "https://www.danzhou.gov.cn/danzhou/jdhy/xwfbh/202409/t20240909_3728766.html"
+},
+{
+"type": "风暴潮",
+"freq": 4,
+"note": "台风防御重点关注风暴潮影响区域，沿海洋浦等地伴9-11级大风及增水",
+"source": "https://www.danzhou.gov.cn/danzhou/jdhy/xwfbh/202409/t20240908_3728624.html"
+},
+{
+"type": "干旱",
+"freq": 4,
+"note": "气象灾害含干旱，2026年海南遭遇从严重干旱到内涝的旱涝急转",
+"source": "https://www.epochtimes.com/gb/26/4/26/n14750373.htm"
+},
+{
+"type": "冰雹风雹",
+"freq": 3,
+"note": "气象灾害含大风、雷电、冰雹等强对流",
+"source": "https://www.weather.com.cn/cityintro/101310205.shtml"
+}
+]
+},
+{
+"prefKey": "海南|澄迈县",
+"headline": "琼北沿海县：台风+暴雨洪涝几乎年年，风暴潮与北部型干旱多发；地处琼北断陷盆地、马袅—铺前活动断裂经马村，1605琼山7.5级紧邻、1618老城5.5级即在境内，是海南少有的破坏性地震带县之一。",
+"hazards": [
+{
+"type": "台风",
+"freq": 5,
+"note": "琼北迎风县，几乎年年受台风影响。2024超强台风摩羯（建国以来登陆我国最强台风）致澄迈各类经济损失超100亿、公路损毁超300公里；2014威马逊、2018山竹（澄迈3乡镇雨量超200mm）均重创",
+"source": "https://www.hainan.gov.cn/hainan/zxxx/202409/7ec85ac3a9114e188f65214800d0dea5.shtml"
+},
+{
+"type": "暴雨",
+"freq": 5,
+"note": "海南后汛期（9—10月）特大暴雨频发，与台风高度耦合。2024-09-06海南省发布红色山洪灾害气象风险预警明确包含澄迈县；2024-10-27至30潭美残涡致特重度区域性暴雨",
+"source": "https://www.thepaper.cn/newsDetail_forward_28671844"
+},
+{
+"type": "洪涝",
+"freq": 5,
+"note": "台风暴雨叠加致涝灾，2000/2008/2010年后汛期特大暴雨为近40年海南最严重3次洪涝事件，经济损失超百亿；澄迈低洼及南渡江流域易涝",
+"source": "http://qxqk.nmc.cn/html/2015/2/20150202.html"
+},
+{
+"type": "风暴潮",
+"freq": 4,
+"note": "海岸线长89.8公里，老城镇有马村港、新兴港等深水港，面琼州海峡；强台风登陆时风暴潮与天文潮叠加致海水倒灌、沿海水位暴涨",
+"source": "https://zh.wikipedia.org/zh-hans/%E8%80%81%E5%9F%8E%E9%95%87_(%E6%BE%84%E8%BF%88%E5%8E%BF)"
+},
+{
+"type": "干旱",
+"freq": 4,
+"note": "海南北部澄迈、临高一带为全岛最易旱区之一；2004年9—10月起降水严重偏少，2005年上半年SPEI降至极低，海南岛发生重大干旱事件，常伴高温致水稻空秕、作物减产",
+"source": "https://rdswxb.hainanu.edu.cn/cn/article/id/b753ad1c-9020-4ac0-94fc-48dba685740b"
+},
+{
+"type": "地震",
+"freq": 2,
+"note": "地处琼北断陷盆地，近EW向马袅—铺前活动断裂自临高马袅向东经澄迈县马村、长流至铺前（陆上约100km）。1605琼山7.5级（X度、陷没72村成海）紧邻，1618老城5.5级即发生在澄迈老城，属海南破坏性地震带",
+"source": "https://www.dzxb.org/article/id/9d943644-7e6f-4c5d-81f7-7d0a08bcb179"
+},
+{
+"type": "高温",
+"freq": 4,
+"note": "2024年4月澄迈（与昌江）日最高气温打破海南省国家气象观测站历史年极值；旱季高温常与干旱相伴",
+"source": "http://news.hainan.net/hainan/minsheng/minshengliebiao/2025/02/14/4788731.shtml"
+}
+]
+},
+{
+"prefKey": "甘肃|张掖市",
+"headline": "河西绿洲区：旱灾压倒性主灾（公元26-1995年重大旱灾96次，民乐/山丹/甘州最重），冰雹暴雨山洪与沙尘大风频发，祁连山北缘有地震背景。",
+"hazards": [
+{
+"type": "干旱",
+"freq": 5,
+"note": "地区志载公元26-1995年重大旱灾96次（全区性51、局部45），民乐/山丹/甘州最重；特大旱灾如1928-29奇旱、1960/1962-63饥荒；1964肃南30年未遇大旱",
+"source": "https://www.zhangye.gov.cn/szb/dzdt/zsbx/202008/t20200811_468666.html"
+},
+{
+"type": "冰雹风雹",
+"freq": 4,
+"note": "与旱灾交替/并发，如1926山丹大旱复遭雹灾；1995-06民乐南丰乡暴雨冰雹直接经济损失约3500万元",
+"source": "https://www.zhangye.gov.cn/szb/dzdt/zsbx/202008/t20200811_468666.html"
+},
+{
+"type": "洪涝",
+"freq": 4,
+"note": "祁连山区暴雨山洪与洪涝，如1939张掖复遭冰雹洪水灾害；夏季暴雨山洪型水患",
+"source": "https://www.zhangye.gov.cn/szb/dzdt/zsbx/202008/t20200811_468666.html"
+},
+{
+"type": "沙尘暴",
+"freq": 4,
+"note": "河西走廊大风沙尘暴频袭，张掖发黄色预警；甘肃风险普查列沙尘暴为主要致灾因子之一",
+"source": "https://zh.wikipedia.org/zh-hans/%E9%85%92%E6%B3%89%E5%B8%82"
+},
+{
+"type": "地震",
+"freq": 2,
+"note": "处祁连山北缘逆冲走滑地震带，历史有强震记录（如144年张掖等地震180次、山谷裂坏城）",
+"source": "https://www.zhangye.gov.cn/szb/dzdt/zsbx/202008/t20200811_468666.html"
+},
+{
+"type": "高温",
+"freq": 3,
+"note": "甘肃气象灾害风险普查将高温列为9种主要气象致灾因子之一，区内夏季高温干热风时有发生",
+"source": "http://yjgl.gansu.gov.cn/yjgl/c112888/202412/174047692/files/1f7341335a7740faa63a07a9f1eb6bc2.pdf"
+}
+]
+},
+{
+"prefKey": "甘肃|酒泉市",
+"headline": "河西走廊极干旱区：沙尘暴/大风与干旱为主灾，夏季疏勒河山洪、高温突出；地处阿尔金-祁连山活动断裂带，强震背景明显。",
+"hazards": [
+{
+"type": "沙尘暴",
+"freq": 5,
+"note": "敦煌等极干旱区风灾沙尘暴为主灾（年降水仅38.5mm、蒸发2486mm），春季风速最大；2021-07敦煌强沙尘暴百米沙墙，河西7-8级大风多市发黄色预警",
+"source": "http://www.desert.ac.cn/article/2024/1000-694X/1000-694X-2024-44-2-162.shtml"
+},
+{
+"type": "干旱",
+"freq": 5,
+"note": "典型温带干旱半干旱气候，水资源短缺、旱灾长期化，引发上下游争水",
+"source": "https://www.jiuquan.gov.cn/jiuquan/c103372/202111/5a2979eaea744ae192f211177d92e938.shtml"
+},
+{
+"type": "洪涝",
+"freq": 3,
+"note": "夏季山区暴雨引发山洪（如疏勒河/玉门一带），河西走廊西部夏季山洪为主要水患型态",
+"source": "https://www.xsyk021.com/article/app/id/c8cc9b68-468f-465c-ad49-fa0a5a6c0070"
+},
+{
+"type": "高温",
+"freq": 4,
+"note": "极端最高气温43.1℃（敦煌2016-07-30）",
+"source": "https://www.jiuquan.gov.cn/jiuquan/c103372/202111/5a2979eaea744ae192f211177d92e938.shtml"
+},
+{
+"type": "地震",
+"freq": 3,
+"note": "处青藏高原地震区北缘：阿尔金左旋走滑断裂肃北-石包城段滑动率约11mm/a，祁连山北缘逆冲走滑带控制河西走廊，肃北/阿克塞地震活动较强",
+"source": "https://www.dzdz.ac.cn/article/2017/0253-4967-39-2-219.html"
+},
+{
+"type": "冰雹风雹",
+"freq": 3,
+"note": "甘肃风险普查列冰雹、大风为主要气象致灾因子之一，区内时有雹灾",
+"source": "http://yjgl.gansu.gov.cn/yjgl/c112888/202412/174047692/files/1f7341335a7740faa63a07a9f1eb6bc2.pdf"
+}
+]
+},
+{
+"prefKey": "福建|漳州市",
+"headline": "台风正面登陆高暴露(莫兰蒂2016/杜苏芮2023)+台风暴雨洪涝+山区地质灾害+森林火灾",
+"hazards": [
+{
+"type": "台风",
+"freq": 5,
+"note": "闽南沿海台风高暴露区，几乎年年受影响；2016超强台风莫兰蒂、2023杜苏芮(福建63年来最强)均重创厦漳泉",
+"source": "http://www.fujian.gov.cn/xwdt/fjyw/202307/t20230729_6216599.htm"
+},
+{
+"type": "暴雨",
+"freq": 5,
+"note": "前汛期及台风暴雨频繁；福建沿海经济区为暴雨、台风高至次高风险区",
+"source": "https://yjt.fujian.gov.cn/ztzl/xcjyaqscy/zlxz/202308/t20230817_6231499.htm"
+},
+{
+"type": "洪涝",
+"freq": 4,
+"note": "九龙江流域及台风暴雨致洪涝；福建省风险普查认定台风、洪涝为主要灾种",
+"source": "https://yjt.fujian.gov.cn/ztzl/xcjyaqscy/zlxz/202308/t20230817_6231499.htm"
+},
+{
+"type": "地质灾害",
+"freq": 4,
+"note": "山区县(南靖、华安、平和等)滑坡/崩塌/泥石流；2024年7-8月南靖、华安多次橙色地灾预警",
+"source": "https://zrzyt.fujian.gov.cn/zwgk/zcjd/hygq/202407/t20240725_6489747.htm"
+},
+{
+"type": "森林火灾",
+"freq": 3,
+"note": "福建第一次自然灾害综合风险普查认定漳州受森林火灾灾害影响较显著(与南平、三明、龙岩并列)",
+"source": "https://yjt.fujian.gov.cn/ztzl/xcjyaqscy/zlxz/202308/t20230817_6231499.htm"
+}
+]
+},
+{
+"prefKey": "贵州|六盘水市",
+"headline": "六盘水（中国凉都，海拔高）凝冻最重、强对流风雹与暴雨频发，崩滑泥石流灾害严重（邻县水城'7·23'滑坡43死）；西部地震背景为贵州相对最高。",
+"hazards": [
+{
+"type": "凝冻",
+"freq": 5,
+"note": "六盘水居贵州中西部高海拔凝冻最重带（梅花山站海拔2200m+冬季易凝冰），近年屡次启动低温雨雪凝冻应急响应；几乎年年成灾",
+"source": "https://www.gzlps.gov.cn/zzb/tzgg/202501/t20250108_86593045.html"
+},
+{
+"type": "地质灾害",
+"freq": 4,
+"note": "2019-07-23邻县水城鸡场镇坪地村特大滑坡（方量200余万方）致43死9失踪、近1600人受灾；区域崩塌滑坡泥石流分布广、频率高、水土流失重",
+"source": "https://www.mem.gov.cn/xw/bndt/202001/t20200112_343410.shtml"
+},
+{
+"type": "冰雹风雹",
+"freq": 5,
+"note": "汛期雷暴大风、冰雹、强降水多发；2022六盘水因风雹农业损失严重（与安顺毕节并列）；近乎年年",
+"source": "https://drc.guizhou.gov.cn/xxgk/xxgkml/yjgl/202301/t20230131_78046029.html"
+},
+{
+"type": "暴雨",
+"freq": 4,
+"note": "汛期强降水频发，易引发山洪、洪涝及地灾；官方多次发汛期灾害性天气安全提示",
+"source": "https://www.gzlps.gov.cn/ywdt/bmzx/jt/202508/t20250822_88505730.html"
+},
+{
+"type": "洪涝",
+"freq": 4,
+"note": "强降水致城乡内涝与中小河流洪水；纳入贵州洪涝为主灾种省份背景，数年一遇较重",
+"source": "https://www.gzlps.gov.cn/ywdt/bmzx/jt/202508/t20250822_88505730.html"
+},
+{
+"type": "干旱",
+"freq": 3,
+"note": "区域涉及干旱与低温冷害灾种（学术7灾种含干旱）；2009-2010西南大旱及伏旱有影响，约十年一遇较重",
+"source": "http://geoscien.neigae.ac.cn/CN/article/downloadArticleFile.do?attachType=PDF&id=11695"
+},
+{
+"type": "地震",
+"freq": 2,
+"note": "六盘水紧邻西部威宁—晴隆活跃带（贵州地震密度强度最大区，垭都—紫云断裂带曾发6.75级），2022/2026威宁多次4.4-4.5级；本市破坏性地震背景为贵州相对最高，数十年一遇",
+"source": "https://www.thepaper.cn/newsDetail_forward_2529422"
+}
+]
+},
+{
+"prefKey": "贵州|安顺市",
+"headline": "安顺地处云贵高原强对流多发带，干旱、暴雨、冰雹风雹与凝冻俱重，山体滑坡灾害严重（关岭'6·28'99人遇难）；地震背景较低。",
+"hazards": [
+{
+"type": "地质灾害",
+"freq": 4,
+"note": "2010-06-28关岭岗乌镇大寨村特大山体滑坡致99人死亡（连日暴雨累计200mm触发）；安顺为典型滑坡崩塌泥石流易发区",
+"source": "https://zh.wikipedia.org/zh-hans/%E8%B4%B5%E5%B7%9E%E5%85%B3%E5%B2%AD%E5%B1%B1%E4%BD%93%E6%BB%91%E5%9D%A1%E4%BA%8B%E4%BB%B6"
+},
+{
+"type": "干旱",
+"freq": 4,
+"note": "2009-2010西南特大旱及2011/2022伏旱安顺均重灾；2022全省降雨偏少近6成、农作物受灾26.6万公顷；数年一遇",
+"source": "https://drc.guizhou.gov.cn/xxgk/xxgkml/yjgl/202301/t20230131_78046029.html"
+},
+{
+"type": "冰雹风雹",
+"freq": 5,
+"note": "安顺气象灾害以强对流（雷电、短时强降水、冰雹、雷雨大风）频发为特征；2022六盘水安顺毕节因风雹农业损失严重；近乎年年",
+"source": "https://www.anshun.gov.cn/jdhy/h5jd/202603/t20260302_89593869.html"
+},
+{
+"type": "暴雨",
+"freq": 5,
+"note": "云贵高原暴雨频发、短时强降水多，常触发山洪与滑坡（如关岭6·28前期暴雨）；汛期年年成灾",
+"source": "https://www.anshun.gov.cn/jdhy/h5jd/202603/t20260302_89593869.html"
+},
+{
+"type": "洪涝",
+"freq": 4,
+"note": "强降水引发城乡内涝、中小河流洪水与山洪；安顺纳入贵州洪涝为主灾种省份，数年一遇较重",
+"source": "https://drc.guizhou.gov.cn/xxgk/xxgkml/yjgl/202301/t20230131_78046029.html"
+},
+{
+"type": "凝冻",
+"freq": 4,
+"note": "安顺位于贵州中西部较重凝冻带，多次随六盘水/毕节列入凝冻交通管制路段；2008特大凝冻重灾，数年一遇",
+"source": "https://m.163.com/dy/article/JMQHP31M0550CRYL.html"
+},
+{
+"type": "地震",
+"freq": 2,
+"note": "安顺介于西部威宁—晴隆活跃带与中部之间、背景较低；贵州700年无7级，1875罗甸6.5级在邻近黔南；本地破坏性地震数十年一遇",
+"source": "https://www.thepaper.cn/newsDetail_forward_3688333"
+}
+]
+},
+{
+"prefKey": "贵州|贵阳市",
+"headline": "省会贵阳以暴雨城乡内涝+山洪地质灾害和冬季凝冻为主要灾害，叠加伏旱与强对流风雹；地震属中北部中等背景区。",
+"hazards": [
+{
+"type": "暴雨",
+"freq": 5,
+"note": "贵阳北部西部边缘常发暴雨、冰雹、雷暴大风强对流，2025/2026汛期多次启动应急；强降雨年年成灾",
+"source": "https://www.guiyang.gov.cn/jdhy/jdhyzcjd/dhjd/202412/t20241220_86380261.html"
+},
+{
+"type": "洪涝",
+"freq": 4,
+"note": "强对流暴雨引发山洪、中小河流洪水及城乡积涝；贵阳贵安已建气象灾害应急联动机制专防汛涝",
+"source": "https://www.guiyang.gov.cn/jdhy/jdhyzcjd/dhjd/202412/t20241220_86380261.html"
+},
+{
+"type": "凝冻",
+"freq": 4,
+"note": "2008年1-2月特大凝冻贵阳龙洞堡机场跑道全面积冰最厚6mm，全省2736万人次受灾、30死；贵阳居中部较重凝冻带，数年一遇",
+"source": "https://finance.sina.cn/sa/2008-01-30/detail-ikkntiam2342503.d.html"
+},
+{
+"type": "地质灾害",
+"freq": 4,
+"note": "2025-06贵阳发布首个地质灾害红色预警，多区县滑坡崩塌风险高；强降雨期山洪地灾隐患点频繁告警",
+"source": "https://news.qq.com/rain/a/20250625A07YMA00"
+},
+{
+"type": "冰雹风雹",
+"freq": 4,
+"note": "贵阳西北部强对流频发冰雹、雷暴大风；纳入全省年均47次区域性风雹背景",
+"source": "https://m.gmw.cn/2026-06/02/content_1304481076.htm"
+},
+{
+"type": "干旱",
+"freq": 3,
+"note": "2022年全省伏旱（降雨偏少近6成、受灾331.9万人次）贵阳在内；间歇性夏秋干旱，数年一遇",
+"source": "https://drc.guizhou.gov.cn/xxgk/xxgkml/yjgl/202301/t20230131_78046029.html"
+},
+{
+"type": "地震",
+"freq": 2,
+"note": "贵阳属'遵义—贵阳'中北部中等地震区，本地曾有有感小震；贵州700年无7级、历史最大约6级（1819贵定6.0级邻近），破坏性地震数十年一遇",
+"source": "https://www.thepaper.cn/newsDetail_forward_3688333"
+}
+]
+},
+{
+"prefKey": "贵州|遵义市",
+"headline": "遵义是贵州两大灾情最重地市之一，以暴雨洪涝+山洪滑坡泥石流为主，叠加伏旱、风雹与轻度凝冻；地震属中北部中等背景区。",
+"hazards": [
+{
+"type": "洪涝",
+"freq": 5,
+"note": "贵州省应急厅2022核定：遵义为全省灾情最重地市之一（与铜仁、黔东南合占全省直接经济损失52%），汛期16次强降雨、33河47次超警；近乎年年汛期成灾",
+"source": "https://drc.guizhou.gov.cn/xxgk/xxgkml/yjgl/202301/t20230131_78046029.html"
+},
+{
+"type": "暴雨",
+"freq": 5,
+"note": "2020-06正安碧峰镇24h降264.6mm、最大小时163.3mm创贵州历史纪录，致8死5失联；强对流暴雨年年发生",
+"source": "https://zhuanlan.zhihu.com/p/75310553"
+},
+{
+"type": "地质灾害",
+"freq": 4,
+"note": "2023年贵州地质灾害趋势预测将遵义列为危险性较大区；乌江/赤水河流域暴雨频繁触发滑坡、崩塌、泥石流",
+"source": "https://zrzy.guizhou.gov.cn/wzgb/xwzx/xtyw1/202303/t20230306_78372555.html"
+},
+{
+"type": "干旱",
+"freq": 4,
+"note": "2022年7月下旬起全省持续高温少雨、降雨偏少近6成、农作物受灾26.6万公顷，遵义伏旱在内；数年一遇",
+"source": "https://drc.guizhou.gov.cn/xxgk/xxgkml/yjgl/202301/t20230131_78046029.html"
+},
+{
+"type": "冰雹风雹",
+"freq": 4,
+"note": "贵州2022年47次区域性强对流风雹（受灾69.5万人次）；遵义春季强对流冰雹大风多发",
+"source": "https://drc.guizhou.gov.cn/xxgk/xxgkml/yjgl/202301/t20230131_78046029.html"
+},
+{
+"type": "凝冻",
+"freq": 3,
+"note": "贵州凝冻'西多东少、中多北南少'，遵义居北部属较轻区；2008特大凝冻全省受灾仍波及，约十年一遇重灾",
+"source": "https://pdf.hanspub.org/ccrl20220400000_13911835.pdf"
+},
+{
+"type": "地震",
+"freq": 2,
+"note": "遵义属'遵义—贵阳'中北部中等地震区（占全省约60%面积）；贵州700年无7级、历史最大为周边6级级别，遵义本地破坏性地震罕见，数十年一遇",
+"source": "https://www.thepaper.cn/newsDetail_forward_3688333"
+}
+]
+},
+{
+"prefKey": "贵州|铜仁市",
+"headline": "铜仁（碧江区，锦江流域）是贵州灾情最重地市之一，以暴雨洪涝+山洪泥石流为主，叠加伏旱与风雹；凝冻偏轻、地震属东部最弱区。",
+"hazards": [
+{
+"type": "洪涝",
+"freq": 5,
+"note": "锦江'自古多水患'，铜仁为全省灾情最重地市之一（2022与遵义、黔东南合占52%）；2020-07拉响红色预警转移6000余人；近乎年年汛期成灾",
+"source": "https://www.cma.gov.cn/2011xwzx/2011xqxxw/2011xqxyw/202007/t20200714_558315.html"
+},
+{
+"type": "暴雨",
+"freq": 5,
+"note": "2020-06入汛以来最强降雨致碧江坝黄镇木弄村等洪灾财产受损；2024汛期众多强降雨过程；强降水年年发生",
+"source": "https://cn.chinadaily.com.cn/a/202406/24/WS66792e4ea3107cd55d2684d3.html"
+},
+{
+"type": "地质灾害",
+"freq": 4,
+"note": "2025贵州地质灾害防治方案将铜仁东部碧江等列为危险性大区；2023-06碧江暴雨引发泥石流、塌方、内涝；强降水期成灾",
+"source": "https://zrzy.guizhou.gov.cn/wzgb/zwgk/zdlyxxgk/dzkcgl/dzzhfz/202504/t20250410_87501721.html"
+},
+{
+"type": "干旱",
+"freq": 3,
+"note": "2022全省伏旱（降雨偏少近6成、受灾331.9万人次）铜仁在内；间歇性夏秋干旱，约十年一遇较重",
+"source": "https://drc.guizhou.gov.cn/xxgk/xxgkml/yjgl/202301/t20230131_78046029.html"
+},
+{
+"type": "冰雹风雹",
+"freq": 4,
+"note": "2025-05碧江等地发雷暴大风、短时强降水预警；纳入贵州年均47次区域性强对流风雹背景；数年一遇",
+"source": "https://www.yp.gov.cn/contents/2025/05/27/receive-68166af6-0e91-4314-8970-10945f0e74e6.html"
+},
+{
+"type": "凝冻",
+"freq": 3,
+"note": "铜仁居贵州东部'凝冻东少'较轻区；2008特大凝冻全省波及，本地较轻，约十年一遇重灾",
+"source": "https://pdf.hanspub.org/ccrl20220400000_13911835.pdf"
+},
+{
+"type": "地震",
+"freq": 1,
+"note": "铜仁属'铜仁—榕江'东部地震区，为贵州地震强度密度相对最弱区；松桃—独山断裂带经此但活动弱、无显著破坏性地震，百年级罕见",
+"source": "https://www.thepaper.cn/newsDetail_forward_2529422"
+}
+]
+},
+{
+"prefKey": "贵州|黔东南州",
+"headline": "苗侗山区——汛期暴雨洪涝几乎年年(2020-09麻江日雨179mm、榕江191.8mm为标志),地质灾害6-8月高发,冬季凝冻+局地干旱风雹周期性出现",
+"hazards": [
+{
+"type": "暴雨",
+"freq": 5,
+"note": "2020-09-06特重区域性暴雨,麻江县日降雨量179mm居全国之首、凯里周边超100mm;2020-09-06至07凯里等17县73站大暴雨、榕江乐里191.8mm",
+"source": "http://html.rhhz.net/BYZH/html/2701.htm"
+},
+{
+"type": "洪涝",
+"freq": 5,
+"note": "黔东南2022年灾情以洪涝+干旱为主;2020-06-23至24榕江暴雨致713处农村道路路基路面边坡垮塌66万方、直接损失9210万元",
+"source": "https://drc.guizhou.gov.cn/xxgk/xxgkml/yjgl/202301/t20230131_78046029.html"
+},
+{
+"type": "地质灾害",
+"freq": 4,
+"note": "黔东南属地质灾害危险性较大区,复杂地貌+地层岩性+雨季降水易引发崩塌滑坡泥石流,6-8月为高发期",
+"source": "https://zrzy.guizhou.gov.cn/wzgb/xwzx/xtyw1/202303/t20230306_78372555.html"
+},
+{
+"type": "凝冻",
+"freq": 4,
+"note": "贵州凝冻灾害全国频次最高;2022年贵州6次区域性降雪伴低温凝冻致含黔东南等地35.3万人次受灾;2008南方低温雨雪冰冻大部山区受灾",
+"source": "https://drc.guizhou.gov.cn/xxgk/xxgkml/yjgl/202301/t20230131_78046029.html"
+},
+{
+"type": "干旱",
+"freq": 3,
+"note": "黔东南2022/2023灾情含干旱为主要灾种之一,局地夏伏旱",
+"source": "https://drc.guizhou.gov.cn/xxgk/xxgkml/yjgl/202401/t20240119_83581260.html"
+},
+{
+"type": "冰雹风雹",
+"freq": 3,
+"note": "黔东南2022年局地发生风雹灾害、2023仍以风雹为主灾种之一",
+"source": "https://drc.guizhou.gov.cn/xxgk/xxgkml/yjgl/202301/t20230131_78046029.html"
+}
+]
+},
+{
+"prefKey": "贵州|黔南州",
+"headline": "典型贵州山地灾害组合——汛期(5-9月,6-8月高峰)暴雨洪涝几乎年年成灾、山区崩滑流地质灾害多发，冬季凝冻(2008最重)+春夏旱+冰雹风雹周期性出现",
+"hazards": [
+{
+"type": "暴雨",
+"freq": 5,
+"note": "主汛期5-9月、6-8月最集中,多大到暴雨;2020-09-06丹寨-凯里-麻江-都匀-福泉-贵定-开阳强降水带过境,都匀等17县多站大暴雨;2026-05都匀城区河道洪峰过境、启动防汛II级响应",
+"source": "https://zrzy.guizhou.gov.cn/wzgb/xwzx/xtyw1/202303/t20230306_78372555.html"
+},
+{
+"type": "洪涝",
+"freq": 5,
+"note": "省界/河谷交界地带地形起伏大、河谷密集易成集中强降水致城区积水山洪;贵州省2022/2023年度灾情均以干旱+洪涝+风雹为主",
+"source": "https://drc.guizhou.gov.cn/xxgk/xxgkml/yjgl/202301/t20230131_78046029.html"
+},
+{
+"type": "地质灾害",
+"freq": 4,
+"note": "黔南州属地质灾害危险性较大区,复杂地貌+地层岩性+雨季降水易引发崩塌滑坡泥石流,6-8月为高发期",
+"source": "https://zrzy.guizhou.gov.cn/wzgb/xwzx/xtyw1/202303/t20230306_78372555.html"
+},
+{
+"type": "凝冻",
+"freq": 4,
+"note": "贵州凝冻灾害全国频次与影响最高;黔南2008年凝冻日数达15年观测最大(35天),都匀/独山/福泉累计凝冻日多,2008南方低温雨雪冰冻致都匀片区电网解列独立运行",
+"source": "https://image.hanspub.org/Html/10-2320647_40059.htm"
+},
+{
+"type": "干旱",
+"freq": 4,
+"note": "贵州省2022下半年8市州先后遭旱、2023仍以干旱为主要灾种之一,黔南夏伏旱周期性发生",
+"source": "https://drc.guizhou.gov.cn/xxgk/xxgkml/yjgl/202401/t20240119_83581260.html"
+},
+{
+"type": "冰雹风雹",
+"freq": 4,
+"note": "黔南将暴雨/冰雹/干旱/凝冻/雷电列为重点监测预警气象灾害;2026-06贵州局地大暴雨伴冰雹大风、启动省级防汛IV级响应",
+"source": "https://www.qiannan.gov.cn/zwgk/jcxxgk/zcwj/qnff/202305/t20230512_79677095.html"
+}
+]
+},
+{
+"prefKey": "贵州|黔西南州",
+"headline": "贵州山洪泥石流重灾区——望谟一带初夏短时强降水频次全省最高,2011-06望谟百年一遇特大山洪泥石流为标志性灾害;地质灾害危险性大区,叠加干旱与全省占比最高的森林火灾",
+"hazards": [
+{
+"type": "地质灾害",
+"freq": 5,
+"note": "黔西南北部普安晴隆、南部兴义为地质灾害危险性大区,地形切割深、煤矿开采频繁易发滑坡崩塌泥石流;2011-06-06望谟8乡镇2小时降雨>250mm(打易315mm)引发百年不遇特大山洪泥石流",
+"source": "https://zrzy.guizhou.gov.cn/wzgb/xwzx/xtyw1/202303/t20230306_78372555.html"
+},
+{
+"type": "暴雨",
+"freq": 5,
+"note": "黔西南初夏短时强降水空间分布东多北多西南少,发生频次最多的是望谟;2006-2015年短时强降水高发",
+"source": "https://www.byzh.org.cn/article/doi/10.3969/j.issn.1004-9045.2017.05.008"
+},
+{
+"type": "洪涝",
+"freq": 4,
+"note": "望谟河/打尖河/乐旺河流域汛期山洪频发;2011望谟特大山洪为近年贵州最严重泥石流灾害",
+"source": "https://zhuanlan.zhihu.com/p/75310553"
+},
+{
+"type": "干旱",
+"freq": 4,
+"note": "气象干旱出现在望谟、册亨、安龙、晴隆北部、兴仁东部、普安北部、兴义西部等地;2022下半年虽全省干旱但黔西南为例外、2023干旱仍为主灾种",
+"source": "https://drc.guizhou.gov.cn/xxgk/xxgkml/yjgl/202401/t20240119_83581260.html"
+},
+{
+"type": "森林火灾",
+"freq": 4,
+"note": "2023年黔西南州森林火灾占全省93.3%,为全省森林火灾最集中地区",
+"source": "https://drc.guizhou.gov.cn/xxgk/xxgkml/yjgl/202401/t20240119_83581260.html"
+},
+{
+"type": "凝冻",
+"freq": 3,
+"note": "贵州凝冻灾害全国最频,黔西南高海拔晴隆普安一带冬季凝冻周期性发生;2008南方低温雨雪冰冻贵州大部山区受灾",
+"source": "https://image.hanspub.org/html/22-2320878_54185.htm"
+}
+]
+},
+{
+"prefKey": "辽宁|营口市",
+"headline": "渤海辽东湾沿岸：1975海城7.3级地震震区（地震风险显著），风暴潮/台风+洪涝暴雨并存",
+"hazards": [
+{
+"type": "地震",
+"freq": 4,
+"note": "1975-02-04海城7.3级地震震中即海城-营口县一带，郯庐断裂带，辽东半岛人口工业密集区，破坏性强震有实证",
+"source": "https://baike.baidu.com/item/2%C2%B74%E6%B5%B7%E5%9F%8E%E5%9C%B0%E9%9C%87/17194754"
+},
+{
+"type": "风暴潮",
+"freq": 3,
+"note": "西临渤海辽东湾，属风暴潮脆弱区，春秋季温带风暴潮多发；1990-04-05渤海温带风暴潮海水涌入内陆近30公里（建国以来渤海沿岸最大潮灾）",
+"source": "https://www.geog.com.cn/article/2016/1007-6301/1007-6301-35-11-1411.shtml"
+},
+{
+"type": "台风",
+"freq": 3,
+"note": "辽东湾夏秋受北上台风及其外围影响，叠加风暴潮、暴雨；市级专门制定《营口市气象灾害防御条例》",
+"source": "https://www.yingkou.gov.cn/govxxgk/ykszf/2024-12-03/4c309b30-07d7-4810-a5ac-b1e462a0eabc.html"
+},
+{
+"type": "洪涝",
+"freq": 3,
+"note": "大辽河入海口低平区，暴雨+天文大潮顶托易内涝；2024-10渤海沿岸海水倒灌事件波及营口岸段",
+"source": "http://www.hyyb.org.cn/Magazine/GetPDF.aspx?ID=3613"
+},
+{
+"type": "暴雨",
+"freq": 4,
+"note": "辽宁中南部夏季暴雨多发，沿海强降水频繁",
+"source": "https://www.yingkou.gov.cn/govxxgk/ykszf/2024-12-03/4c309b30-07d7-4810-a5ac-b1e462a0eabc.html"
+}
+]
+},
+{
+"prefKey": "辽宁|葫芦岛市",
+"headline": "辽西沿海+丘陵：2024「8·20」绥中/建昌特大暴雨为1951年以来最强（103亿损失），山洪地质灾害突出",
+"hazards": [
+{
+"type": "暴雨",
+"freq": 4,
+"note": "2024「8·20」绥中/建昌/南票特大暴雨，最大过程降水540毫米、最大日降水527.7毫米破全省极值，为1951年有气象记录以来葫芦岛最强降雨",
+"source": "https://baike.baidu.com/item/8%C2%B720%E8%91%AB%E8%8A%A6%E5%B2%9B%E6%9A%B4%E9%9B%A8/64808971"
+},
+{
+"type": "洪涝",
+"freq": 4,
+"note": "2024「8·20」绥中县10乡镇110村受灾、18.52万人受灾、损失约40.86亿元；全市受灾18.8万人、损失103亿元、桥梁损毁187座",
+"source": "https://www.ln.chinanews.com.cn/news/2024/1214/348126.html"
+},
+{
+"type": "地质灾害",
+"freq": 4,
+"note": "辽西丘陵山峦起伏沟壑纵横，暴雨多发易引发山洪与滑坡泥石流；建昌县近十年几乎每年夏季暴雨，2018年28乡镇受灾",
+"source": "https://www.thecover.cn/news/sFCv0iLT6fmH90qSdq8Jkw=="
+},
+{
+"type": "台风",
+"freq": 2,
+"note": "2024「8·20」受台风「云雀」水汽输送叠加东北冷涡、副热带高压；北上台风外围水汽偶发增雨致灾",
+"source": "https://baike.baidu.com/item/8%C2%B720%E8%91%AB%E8%8A%A6%E5%B2%9B%E6%9A%B4%E9%9B%A8/64808971"
+},
+{
+"type": "干旱",
+"freq": 3,
+"note": "辽西半干旱区，旱涝交替，春旱伏旱年份多见",
+"source": "https://www.cnr.cn/ln/gstjln/20250322/t20250322_527108884.shtml"
+},
+{
+"type": "地震",
+"freq": 2,
+"note": "辽西沿海，非主要地震带，历史无破坏性强震记录",
+"source": "https://baike.baidu.com/item/8%C2%B720%E8%91%AB%E8%8A%A6%E5%B2%9B%E6%9A%B4%E9%9B%A8/64808971"
+}
+]
+},
+{
+"prefKey": "辽宁|辽阳市",
+"headline": "太子河流域：洪涝暴雨为主灾（2012「8·4」、2024主汛期破纪录），冰雹风雹突出，邻海城地震带",
+"hazards": [
+{
+"type": "洪涝",
+"freq": 4,
+"note": "太子河流域，2012「8·4」台风暴雨引发辽宁大范围洪水；2024主汛期辽阳降水为1951年以来历史同期最多",
+"source": "https://www.cnr.cn/ln/gstjln/20250322/t20250322_527108884.shtml"
+},
+{
+"type": "暴雨",
+"freq": 5,
+"note": "夏季强对流暴雨频发；2024-07-09局地强对流，最大小时降水99.7毫米",
+"source": "http://ln.cma.gov.cn/zfxxgk/dsqxj/lysqxj_120816/202403/t20240322_6145854.html"
+},
+{
+"type": "冰雹风雹",
+"freq": 4,
+"note": "辽阳县刘二堡镇王家村曾现直径3~4厘米大冰雹（近10年罕见）伴8~10级瞬时大风（25.3m/s）",
+"source": "http://ln.cma.gov.cn/zfxxgk/dsqxj/lysqxj_120816/202403/t20240322_6145854.html"
+},
+{
+"type": "干旱",
+"freq": 3,
+"note": "辽宁中西部，2024年6月辽宁中西部气象干旱；旱涝交替",
+"source": "https://www.cnr.cn/ln/gstjln/20250322/t20250322_527108884.shtml"
+},
+{
+"type": "地震",
+"freq": 3,
+"note": "紧邻1975海城7.3级地震震区（海城属鞍山，与辽阳接壤），处郯庐断裂带影响区",
+"source": "https://zh.wikipedia.org/zh-hans/%E6%B5%B7%E5%9F%8E%E5%A4%A7%E5%9C%B0%E9%9C%87"
+}
+]
+},
+{
+"prefKey": "辽宁|铁岭市",
+"headline": "辽河/浑河中游——2013浑河上游超50年一遇特大洪水、2022辽河干流持续超警；建有山洪防治与抗旱备用水源工程，西部边缘半干旱易旱。",
+"hazards": [
+{
+"type": "暴雨",
+"freq": 4,
+"note": "2013-08辽宁东部暴雨到大暴雨致含铁岭在内15市县受灾、受灾72万人；2005辽宁暴雨破历史极值",
+"source": "http://politics.people.com.cn/n/2013/0817/c70731-22600152.html"
+},
+{
+"type": "洪涝",
+"freq": 4,
+"note": "2013辽河支流浑河上游超50年一遇特大洪水；2022-07辽河干流持续超警、支流绕阳河堤防决口",
+"source": "https://www.gov.cn/zhuanti/2013-08/17/content_2588666.htm"
+},
+{
+"type": "干旱",
+"freq": 4,
+"note": "铁岭'十四五'规划建银州区抗旱应急备用水源工程，反映区域旱情风险；辽宁北部维持北旱格局",
+"source": "http://www.tieling.gov.cn/tieling/zwgk/zfxxgk/fdzdgknr/lzyj/gbmxxgkzd/sslj/2022072515481186333/index.html"
+},
+{
+"type": "地质灾害",
+"freq": 3,
+"note": "铁岭'十四五'投资1200万元建含银州区在内山洪灾害防治项目",
+"source": "http://www.tieling.gov.cn/tieling/zwgk/zfxxgk/fdzdgknr/lzyj/gbmxxgkzd/sslj/2022072515481186333/index.html"
+},
+{
+"type": "冰雹风雹",
+"freq": 3,
+"note": "辽宁中北部夏季强对流多发，暴雨常伴雷暴大风冰雹",
+"source": "https://www.mem.gov.cn/xw/yjglbgzdt/202301/t20230112_440396.shtml"
+},
+{
+"type": "地震",
+"freq": 2,
+"note": "处郯庐断裂带(郯城-营口地震带)辽宁段邻区，1975海城M7.3、1668郯城M8.5为带上历史强震，铁岭属中低烈度",
+"source": "http://www.people.com.cn/24hour/n/2013/0424/c25408-21267225.html"
+}
+]
+},
+{
+"prefKey": "辽宁|锦州市",
+"headline": "辽西南——2022绕阳河决口锦州在内9市54.9万人受灾、2024辽西特强暴雨；西部半干旱易旱；渤海辽东湾温带风暴潮；近郯城-营口地震带。",
+"hazards": [
+{
+"type": "暴雨",
+"freq": 4,
+"note": "2022-07/08辽宁中西部暴雨到大暴雨；2024-08辽西特强暴雨(葫芦岛建昌单点648mm破1951年记录)，锦州同属辽西受灾区",
+"source": "https://cn.chinadaily.com.cn/a/202408/29/WS66d05505a310b35299d3939d.html"
+},
+{
+"type": "洪涝",
+"freq": 4,
+"note": "2022辽河支流绕阳河堤防决口，锦州、阜新、盘锦等9市31县54.9万人受灾、转移3.4万人、直接经济损失76亿元；2024再次转移群众",
+"source": "https://www.mem.gov.cn/xw/yjglbgzdt/202301/t20230112_440396.shtml"
+},
+{
+"type": "干旱",
+"freq": 4,
+"note": "锦州西部历史上属半干旱区，干旱为辽西最主要农业气候灾害，土壤缺水致农作物减产",
+"source": "https://www.progressingeography.com/article/2019/1000-0585/1000-0585-38-4-794.shtml"
+},
+{
+"type": "风暴潮",
+"freq": 3,
+"note": "南临渤海辽东湾，渤黄海以温带风暴潮为主、四季可发；2024我国沿海风暴潮偏强致含辽宁在内5省海水倒灌受灾",
+"source": "http://www.weather.com.cn/zt/kpzt/1096913.shtml"
+},
+{
+"type": "冰雹风雹",
+"freq": 3,
+"note": "辽西夏季强对流多发，暴雨过程常伴雷暴大风、冰雹",
+"source": "https://politics.gmw.cn/2023-01/12/content_36297529.htm"
+},
+{
+"type": "地震",
+"freq": 2,
+"note": "处郯城-营口地震带影响区，1970年代曾将辽阳—锦州—大连—丹东列为地震重点监视区；1975海城M7.3为带上强震",
+"source": "https://baike.baidu.com/item/%E9%83%AF%E5%9F%8E-%E8%90%A5%E5%8F%A3%E5%9C%B0%E9%9C%87%E5%B8%A6/2472620"
+}
+]
+},
+{
+"prefKey": "辽宁|阜新市",
+"headline": "辽西半干旱丘陵：旱灾几乎年年（春旱+伏旱），夏季冰雹风雹与暴雨多发，地震风险低",
+"hazards": [
+{
+"type": "干旱",
+"freq": 5,
+"note": "辽西半干旱区，春旱+伏旱几乎年年；2006特大伏旱致作物干枯减产，2022年4-5月全市无有效降水、干旱范围与程度加剧",
+"source": "https://www.fuxin.gov.cn/content/2024/933782.html"
+},
+{
+"type": "冰雹风雹",
+"freq": 4,
+"note": "地处阜新地区5条主要冰雹路径边缘地带，雹灾多发生在5—9月；2024-05-29曾现11级阵风",
+"source": "https://baike.baidu.com/item/%E6%96%B0%E9%82%B1%E5%8C%BA/4942512"
+},
+{
+"type": "暴雨",
+"freq": 4,
+"note": "雨季短时强降水、雷暴大风多发；2022年全年出现13轮暴雨（雪）过程，年降水量破历史纪录",
+"source": "https://www.fuxin.gov.cn/content/2024/933782.html"
+},
+{
+"type": "洪涝",
+"freq": 3,
+"note": "暴雨期局地山洪内涝，雨季降水偏多年份易发；地处辽河支流流域",
+"source": "https://www.fxqhm.gov.cn/content/2024/958708.html"
+},
+{
+"type": "地质灾害",
+"freq": 2,
+"note": "清河门等区有崩塌、滑坡、泥石流、地面塌陷隐患（含采煤沉陷），强降雨易诱发；隐患点数量少",
+"source": "https://www.fxqhm.gov.cn/content/2024/958708.html"
+},
+{
+"type": "地震",
+"freq": 2,
+"note": "辽西，郯庐断裂带西侧外缘，非主震区，历史无破坏性强震记录",
+"source": "https://baike.baidu.com/item/%E9%98%9C%E6%96%B0%E5%B8%82/2238275"
+}
+]
+},
+{
+"prefKey": "重庆|丰都县",
+"headline": "三峡库区滑坡崩塌高发(红色地灾预警)+极端暴雨洪涝(2024许明寺破纪录)+夏季高温伏旱",
+"hazards": [
+{
+"type": "地质灾害",
+"freq": 5,
+"note": "三峡库区沿江岸坡滑坡/崩塌/不稳定斜坡隐患点众多，属地灾高风险县，多次发布红色(Ⅰ级)地灾气象预警",
+"source": "https://www.cqfd.gov.cn/bm/ghhzrzyj/zwgk_36090/fdzdgknr_36093/yjgl/yjya/202306/t20230615_12069225.html"
+},
+{
+"type": "暴雨",
+"freq": 5,
+"note": "2024年'7·8'丰都许明寺最大24小时降雨量396.1毫米，创多项降雨纪录，为全市最极端降雨地之一",
+"source": "https://yjj.cq.gov.cn/zwgk_230/fdzdgknr/tjxx/202503/t20250310_14387273.html"
+},
+{
+"type": "洪涝",
+"freq": 4,
+"note": "长江干流及中小河流洪水、城乡内涝；2024年'7·8'暴雨洪涝丰都县为31个受灾区县之一",
+"source": "https://yjj.cq.gov.cn/zwgk_230/fdzdgknr/tjxx/202503/t20250310_14387273.html"
+},
+{
+"type": "高温干旱",
+"freq": 5,
+"note": "夏季伏旱几乎年年；2022长江流域大旱、2024连续高温，丰都被列入受灾区县",
+"source": "https://yjj.cq.gov.cn/zwgk_230/fdzdgknr/tjxx/202503/t20250310_14387273.html"
+},
+{
+"type": "地震",
+"freq": 2,
+"note": "库区以局部中小震为主，烈度不高",
+"source": "https://yjj.cq.gov.cn/zwgk_230/fdzdgknr/tjxx/202503/t20250310_14387273.html"
+}
+]
+},
+{
+"prefKey": "重庆|荣昌区",
+"headline": "夏季极端高温伏旱(2022重旱缺水)+暴雨洪涝山洪+局地地质灾害",
+"hazards": [
+{
+"type": "高温干旱",
+"freq": 5,
+"note": "2022长江流域大旱中荣昌缺水严重，政府组织人工送水、管道输水解决人畜饮水；2024年荣昌等35区县遭干旱、2023年等7区县遭干旱",
+"source": "https://www.rmzxw.com.cn/c/2022-08-18/3182637.shtml"
+},
+{
+"type": "暴雨",
+"freq": 4,
+"note": "渝西强对流暴雨频发；2026年5·23荣昌多站大暴雨、邻近永川遭极端特大暴雨引发山洪地质灾害",
+"source": "https://www.rongchang.gov.cn/zwgk_264/zfxxgkml/yjgl_228515/yjxy/202605/t20260524_15698979.html"
+},
+{
+"type": "洪涝",
+"freq": 4,
+"note": "城乡内涝、中小河流洪水、山洪风险；2024年'7·8'暴雨洪涝荣昌区为受灾区县之一，多次启动防汛Ⅳ级响应",
+"source": "https://yjj.cq.gov.cn/zwgk_230/fdzdgknr/tjxx/202503/t20250310_14387273.html"
+},
+{
+"type": "地质灾害",
+"freq": 3,
+"note": "暴雨期间山洪地质灾害风险升高，多次启动地质灾害Ⅳ级应急响应；丘陵地貌地灾烈度低于三峡库区诸县",
+"source": "https://www.rongchang.gov.cn/zwgk_264/zfxxgkml/yjgl_228515/yjxy/202605/t20260524_15698979.html"
+},
+{
+"type": "地震",
+"freq": 2,
+"note": "渝西以局部中小震为主，无强震记录",
+"source": "https://yjj.cq.gov.cn/zwgk_230/fdzdgknr/tjxx/202503/t20250310_14387273.html"
+}
+]
+},
+{
+"prefKey": "重庆|长寿",
+"headline": "长江及支流洪涝+山地坡体地质灾害+夏季极端高温伏旱(2022/2024)",
+"hazards": [
+{
+"type": "高温干旱",
+"freq": 5,
+"note": "夏季伏旱几乎年年；2022长江流域罕见大旱、2024年8-9月连续42天高温(1961年来最长)，长寿区被列入受灾区县",
+"source": "https://yjj.cq.gov.cn/zwgk_230/fdzdgknr/tjxx/202503/t20250310_14387273.html"
+},
+{
+"type": "洪涝",
+"freq": 4,
+"note": "长江及其支流沿岸洪涝；2024年'7·8'暴雨洪涝长寿区为31个受灾区县之一",
+"source": "https://yjj.cq.gov.cn/zwgk_230/fdzdgknr/tjxx/202503/t20250310_14387273.html"
+},
+{
+"type": "地质灾害",
+"freq": 4,
+"note": "铜锣山背斜南翼、明月山/黄草山麓及长江支流两岸斜坡、三峡库区岸坡为主要地灾区，含工程高切坡",
+"source": "https://www.cqcs.gov.cn/hdjl_164/zdjcygk_qzf/yjzj_413133/202411/t20241113_13792542_wap.html"
+},
+{
+"type": "暴雨",
+"freq": 4,
+"note": "主汛期暴雨洪涝偏重、强对流多发",
+"source": "https://cq.gov.cn/zwgk/zfxxgkml/hygq/202405/t20240529_13247450.html"
+},
+{
+"type": "地震",
+"freq": 2,
+"note": "重庆境内以局部中小震为主，烈度不高",
+"source": "https://yjj.cq.gov.cn/zwgk_230/fdzdgknr/tjxx/202503/t20250310_14387273.html"
+}
+]
+},
+{
+"prefKey": "黑龙江|七台河市",
+"headline": "倭肯河中上游煤城：暴雨洪涝(倭肯河/挠力河)+采煤沉陷地质灾害，风雹干旱常发，依兰-伊通弱震带",
+"hazards": [
+{
+"type": "暴雨",
+"freq": 4,
+"note": "2023-08东北洪灾七台河受暴雨；2024-07启动暴雨IV级应急响应、预报累计60-100mm",
+"source": "https://www.hlj.gov.cn/hlj/c107856/202407/c00_31755987.shtml"
+},
+{
+"type": "洪涝",
+"freq": 4,
+"note": "倭肯河(松花江支流)横贯市境、北高南低中部低易汇水内涝；另有挠力河支流；2013黑龙江全流域大洪水",
+"source": "https://zh.wikipedia.org/zh-hans/%E4%B8%83%E5%8F%B0%E6%B2%B3%E5%B8%82"
+},
+{
+"type": "地质灾害",
+"freq": 4,
+"note": "中国重要煤矿基地，采煤沉陷/地面塌陷风险(同鹤岗/双鸭山东部煤城类型)",
+"source": "https://zh.wikipedia.org/zh-hans/%E4%B8%83%E5%8F%B0%E6%B2%B3%E5%B8%82"
+},
+{
+"type": "干旱",
+"freq": 4,
+"note": "中温带半湿润气候、春旱少雨；2025-07监测七台河等地轻旱",
+"source": "https://hlj.weather.com.cn/qxfw/nqfwcp/bzlsaqfwzb/2025/07/4257701.shtml"
+},
+{
+"type": "冰雹风雹",
+"freq": 4,
+"note": "风雹为黑龙江5月最频灾种(十年76次中39次)；强对流季冰雹雷暴大风影响",
+"source": "https://www.gov.cn/gzdt/2011-06/28/content_1894630.htm"
+},
+{
+"type": "暴雪雪灾",
+"freq": 3,
+"note": "市气象台发寒潮蓝色预警；'十二五'黑龙江暴雪列主要灾种",
+"source": "https://gd.weather.com.cn/alarm/zhyj/10/1178283.shtml"
+},
+{
+"type": "地震",
+"freq": 2,
+"note": "近依兰-伊通断裂(郯庐带北段)、密山-敦化断裂区，邻近汤原2018年M3.2/3.8地震；以中小震为主",
+"source": "https://html.rhhz.net/dzdczz/html/62801.htm"
+}
+]
+},
+{
+"prefKey": "黑龙江|伊春市",
+"headline": "小兴安岭林区：森林火灾为标志性历史灾种(1972丰林大火120死)，山地地质灾害+暴雨洪涝，雷击火多发",
+"hazards": [
+{
+"type": "森林火灾",
+"freq": 4,
+"note": "1972-05-06丰林林业局特大火烧红松混交林5000+公顷、烧死职工120人；1970-79共285起含特大14起；1978乌拉嘎大火燃烧11天过火4万公顷；黑龙江雷击火四大多发区之一",
+"source": "https://www.hljszw.org.cn/home/book/info/get_id/267698.html"
+},
+{
+"type": "暴雨",
+"freq": 4,
+"note": "2023-08东北洪灾伊春多条河流发生洪水、发布洪水预警；山区暴雨易致山洪",
+"source": "https://www.cma.gov.cn/wmhd/2011wzbft/2011wftzb/202308/t20230805_5697643.html"
+},
+{
+"type": "洪涝",
+"freq": 3,
+"note": "市设防汛/地质灾害应急预案，水旱灾害为风险普查重点；汤旺河等河谷洪涝",
+"source": "https://www.yc.gov.cn/ycsrmzf/c102069/202504/399934.shtml"
+},
+{
+"type": "地质灾害",
+"freq": 3,
+"note": "小兴安岭山地地形，市设地质灾害应急预案；汛期山区崩塌滑坡风险",
+"source": "https://www.yc.gov.cn/ycsrmzf/c102108/202210/104236.shtml"
+},
+{
+"type": "干旱",
+"freq": 3,
+"note": "1976年天旱地干致全年157起林火(含大面积29起)，全市一度停产；旱情同时加剧火险",
+"source": "https://www.hljszw.org.cn/home/book/info/get_id/267698.html"
+},
+{
+"type": "冰雹风雹",
+"freq": 3,
+"note": "2026-05-31发布大风黄色预警；风雹为黑龙江春季常发灾种",
+"source": "https://www.weather.com.cn/alarm/newalarmcontent.shtml?file=1010508-20260531090300-0502.html"
+},
+{
+"type": "地震",
+"freq": 2,
+"note": "小兴安岭区域东北弱震环境，邻近汤原(依兰-伊通断裂)2018年M3.2/3.8地震；以中小震为主",
+"source": "https://html.rhhz.net/dzdczz/html/62801.htm"
+}
+]
+},
+{
+"prefKey": "黑龙江|佳木斯市",
+"headline": "三江平原腹地、松花江/黑龙江/乌苏里江汇流处，洪涝是头号灾害；松嫩-三江型春旱夏秋涝，地震设防仅6度。",
+"hazards": [
+{
+"type": "洪涝",
+"freq": 4,
+"note": "地处三江平原腹地、松花江干流下游。1998嫩江/松花江全流域特大洪水(松花江哈尔滨段约300年一遇)波及；2013松花江第1号洪水佳木斯水文站涨至警戒水位79.30m；2023松花江第1号洪水佳木斯站再达警戒。",
+"source": "https://www.hlj.gov.cn/hlj/c107856/202308/c00_31657042.shtml"
+},
+{
+"type": "干旱",
+"freq": 3,
+"note": "松嫩平原及其西部春季常发旱灾，三江平原春旱亦时有发生；佳木斯年均降水仅约510mm、季节分配不均。",
+"source": "http://geoscien.neigae.ac.cn/CN/article/downloadArticleFile.do?attachType=PDF&id=16041"
+},
+{
+"type": "暴雨",
+"freq": 4,
+"note": "降水集中于7–8月，常引发城镇内涝与中小河流洪水；佳木斯市曾发布暴雨预警，汛期暴雨多发。",
+"source": "https://m.thepaper.cn/newsDetail_forward_19524690"
+},
+{
+"type": "冰雹风雹",
+"freq": 4,
+"note": "风雹列入黑龙江/佳木斯主要气象灾害，夏季强对流伴随冰雹大风，对三江平原农作物影响明显。",
+"source": "https://www.mem.gov.cn/xw/yjglbgzdt/202501/t20250117_516032.shtml"
+},
+{
+"type": "暴雪雪灾",
+"freq": 4,
+"note": "中温带大陆性季风气候、冬季漫长，暴雪/雪灾属常见气象灾害(列入全国风险普查23类及黑龙江灾种)。",
+"source": "https://www.mem.gov.cn/kp/zrzh/"
+},
+{
+"type": "地震",
+"freq": 2,
+"note": "佳木斯市区(前进/向阳/东风/郊区)抗震设防烈度6度(0.05g)，属低烈度区；2013-11-20桦南-勃利交界发生M4.7地震(震源深9km)，依兰-伊通断裂北段小震活跃。",
+"source": "http://manual.midasuser.com/building/cn/code/08/htm801/fa.htm"
+}
+]
+},
+{
+"prefKey": "黑龙江|双鸭山",
+"headline": "三江平原西缘煤城：暴雨洪涝(2023东北洪灾)+采煤沉陷地质灾害，风雹干旱常发，依兰-伊通弱震带",
+"hazards": [
+{
+"type": "暴雨",
+"freq": 4,
+"note": "2023-08东北洪灾双鸭山受暴雨；2024-07-31至08-01暴雨预报60-100mm；2026-06西部累计降水可达100-130mm伴强对流",
+"source": "https://www.hlj.gov.cn/hlj/c107856/202407/c00_31755987.shtml"
+},
+{
+"type": "洪涝",
+"freq": 4,
+"note": "地处三江平原西部，松花江/挠力河水系，2023年多条河流发生洪水；属流域型洪涝高风险区",
+"source": "http://hlj.people.com.cn/n2/2026/0603/c220005-41600177.html"
+},
+{
+"type": "地质灾害",
+"freq": 4,
+"note": "煤炭基地，城市建设须避让采煤沉陷区，无法避让须先评估安全利用并采取工程防护",
+"source": "http://www.shuangyashan.gov.cn/sys/cd098588c9804d99a0a3ceb135cdc925/202412/c07_218625.shtml"
+},
+{
+"type": "冰雹风雹",
+"freq": 4,
+"note": "2026-06局地伴冰雹、雷暴大风；风雹为黑龙江5月最频灾种(十年39次)；'十二五'风雹列主要灾害",
+"source": "https://www.hlj.gov.cn/hlj/c108013/201710/c00_30645068.shtml"
+},
+{
+"type": "干旱",
+"freq": 3,
+"note": "'十二五'黑龙江干旱多发频发；2025-07监测三江平原南段邻区轻旱",
+"source": "https://hlj.weather.com.cn/qxfw/nqfwcp/bzlsaqfwzb/2025/07/4257701.shtml"
+},
+{
+"type": "暴雪雪灾",
+"freq": 3,
+"note": "'十二五'黑龙江暴雪列主要致灾灾种之一",
+"source": "https://www.hlj.gov.cn/hlj/c108013/201710/c00_30645068.shtml"
+},
+{
+"type": "地震",
+"freq": 2,
+"note": "近依兰-伊通断裂(郯庐带北段)，邻近汤原2018年M3.2/3.8地震；东北区域以中小震为主",
+"source": "https://html.rhhz.net/dzdczz/html/62801.htm"
+}
+]
+},
+{
+"prefKey": "黑龙江|大兴安岭地区",
+"headline": "极北森林区——森林火灾为头号灾害(1987 5·6特大火灾)，呼玛河/黑龙江洪涝与春季凌汛，地震极低",
+"hazards": [
+{
+"type": "森林火灾",
+"freq": 4,
+"note": "1987年5·6特大森林火灾(5月6日-6月2日)过火约101万公顷、死211人、5万余人受灾，为建国以来最严重森林火灾；全区为重点林区，春秋防火期火险极高",
+"source": "https://zh.wikipedia.org/zh-hans/1987%E5%B9%B4%E5%A4%A7%E5%85%B4%E5%AE%89%E5%B2%AD%E7%81%AB%E7%81%BE"
+},
+{
+"type": "洪涝",
+"freq": 3,
+"note": "黑龙江干流及支流呼玛河(干流542km，经塔河、呼玛注入黑龙江)汛期洪水；高纬山区暴雨型洪涝",
+"source": "https://zh.wikipedia.org/zh-hans/%E5%91%BC%E7%8E%9B%E6%B2%B3"
+},
+{
+"type": "暴雪雪灾",
+"freq": 4,
+"note": "中国最北、冬季最长，暴雪/暴风雪频发，黑龙江北部多次暴雪寒潮大风预警",
+"source": "https://www.hlj.gov.cn/hlj/c107856/202411/c00_31787494.shtml"
+},
+{
+"type": "洪涝",
+"freq": 3,
+"note": "春季黑龙江/呼玛河凌汛(冰凌堵塞壅水)型洪水，高纬度封冻河流解冻期典型灾害",
+"source": "https://zh.wikipedia.org/zh-hans/%E5%91%BC%E7%8E%9B%E6%B2%B3"
+},
+{
+"type": "地震",
+"freq": 1,
+"note": "地处大兴安岭隆起，无主要活动断裂，历史几无破坏性地震，区域地震风险极低",
+"source": "https://html.rhhz.net/dzdczz/html/65922.htm"
+}
+]
+},
+{
+"prefKey": "黑龙江|大庆市",
+"headline": "松嫩平原半干旱油城：干旱为标志性灾种，雷暴大风冰雹强(2026-5-31阵风11-12级)，平原内涝+嫩江松花江洪涝",
+"hazards": [
+{
+"type": "干旱",
+"freq": 5,
+"note": "地处松嫩平原半干旱区(年降水仅350-450mm)、苏打盐碱地，春旱频发居全国前列；气象应急平台将干旱列为重点分析灾种",
+"source": "https://www.emerinfo.cn/2023-03/30/c_1211962576.htm"
+},
+{
+"type": "冰雹风雹",
+"freq": 5,
+"note": "2026-05-31大庆等地雷暴大风8-10级局地11-12级伴冰雹(哈尔滨/绥化局地13-14级)；风雹为黑龙江5月最频灾种",
+"source": "http://www.zaihai.cn/html/kepuxuanjiao/anquankepuzhishi/ziranzaihai/20260604/6a210efcc254a9bcdb32015d.html"
+},
+{
+"type": "暴雨",
+"freq": 4,
+"note": "2023-08东北洪灾大庆等157站点降雨超100mm；受杜苏芮残云影响松花江流域严重汛情",
+"source": "https://www.cma.gov.cn/wmhd/2011wzbft/2011wftzb/202308/t20230805_5697643.html"
+},
+{
+"type": "洪涝",
+"freq": 3,
+"note": "嫩江/松花江沿岸，1998年嫩江松花江150年最严重全流域特大洪水(全省受灾483万公顷)；松花江2023年第1号洪水；地势低平易内涝",
+"source": "https://data.cma.cn/site/article/id/41156.html"
+},
+{
+"type": "沙尘暴",
+"freq": 3,
+"note": "松嫩平原西缘，2026-05-31前后伴扬沙/沙尘(哈尔滨'一秒天黑')；北方大风季沙尘影响",
+"source": "https://news.qq.com/rain/a/20260601A085AB00"
+},
+{
+"type": "暴雪雪灾",
+"freq": 3,
+"note": "大庆气象应急平台将雪灾(暴雪)列为分析灾种；冬季暴雪致灾",
+"source": "https://www.emerinfo.cn/2023-03/30/c_1211962576.htm"
+},
+{
+"type": "地震",
+"freq": 2,
+"note": "松辽盆地内部，整体弱震；东北以中小震为主",
+"source": "https://html.rhhz.net/DDCLYDQDLX/html/12358.htm"
+}
+]
+},
+{
+"prefKey": "黑龙江|牡丹江市",
+"headline": "黑龙江东部山区——洪涝(2023镜泊湖)+台风外围暴雨诱发滑坡、强暴雪冻雨，处依兰-伊通断裂带",
+"hazards": [
+{
+"type": "洪涝",
+"freq": 3,
+"note": "2023-08-03形成2023年第1号洪水，镜泊湖水库大坝溢流危及下游瀑布村，防汛响应升至二级；牡丹江干流城市",
+"source": "https://zh.wikipedia.org/zh-hans/2023%E5%B9%B4%E4%B8%AD%E5%9B%BD%E4%B8%9C%E5%8C%97%E6%B4%AA%E7%81%BE"
+},
+{
+"type": "暴雨",
+"freq": 4,
+"note": "2023年7-8月受台风杜苏芮、卡努外围影响连续强降雨；绥芬河等地多次暴雨黄/红色预警",
+"source": "https://m.gmw.cn/2023-08/04/content_1303467658.htm"
+},
+{
+"type": "地质灾害",
+"freq": 3,
+"note": "受台风强降雨影响市区及周边发现滑坡地质灾害及隐患；东部山地丘陵，强降雨诱发滑坡",
+"source": "http://www.mgsnrc.cgs.gov.cn/gzdt/aqsc/202308/t20230816_741153.html"
+},
+{
+"type": "暴雪雪灾",
+"freq": 5,
+"note": "2024年11月强降雪启动重大气象灾害(暴雪)III级应急响应，大到暴雪伴严重湿雪；2023-11多轮暴雪含冻雨、湿雪、暴风雪、道路结冰，几乎年年",
+"source": "https://mdj.gov.cn/mdjsrmzf/c100010/202411/c03_983389.shtml"
+},
+{
+"type": "地震",
+"freq": 3,
+"note": "处依兰-伊通断裂带与敦化-密山断裂影响区，延吉-牡丹江一带有深源地震(震源深度300-590km)，区域中等地震背景",
+"source": "https://html.rhhz.net/dzdczz/html/65922.htm"
+}
+]
+},
+{
+"prefKey": "黑龙江|绥化市",
+"headline": "松嫩平原中部农业区——洪涝(松花江流域)+风雹/干旱+冬季暴雪，地震风险低",
+"hazards": [
+{
+"type": "洪涝",
+"freq": 3,
+"note": "处松花江流域，2023年东北洪灾期间绥化东部强降雨；多次启动强降雨/山洪安全防范；1998松花江流域性大水殃及全省",
+"source": "https://zh.wikipedia.org/zh-hans/2023%E5%B9%B4%E4%B8%AD%E5%9B%BD%E4%B8%9C%E5%8C%97%E6%B4%AA%E7%81%BE"
+},
+{
+"type": "暴雨",
+"freq": 4,
+"note": "夏季温热多雨，多次暴雨红色预警(伴山洪);2024年安委办减灾办联合发强降雨安全防范提示",
+"source": "https://www.163.com/dy/article/K3MO3CIC0514Q2N0.html"
+},
+{
+"type": "冰雹风雹",
+"freq": 4,
+"note": "平原农业区夏季强对流冰雹大风为主要农业灾害；市自然灾害救助应急预案将风雹列为常态应对灾种",
+"source": "https://suihua.gov.cn/sh/qtlm/202412/c12_7676f510f6724b5bab8cd12a0040e503.shtml"
+},
+{
+"type": "干旱",
+"freq": 4,
+"note": "中温带半湿润气候，春旱时有发生，与洪涝交替影响粮食生产(黑龙江中部偏西)",
+"source": "https://www.hlj.gov.cn/hlj/c113707/202208/c00_31454285.shtml"
+},
+{
+"type": "暴雪雪灾",
+"freq": 4,
+"note": "冬季暴雪多发；2021年11月预警绥化东部大雪、2023-11多轮暴雪，伴道路结冰",
+"source": "https://www.hlj.gov.cn/n200/2021/1120/c35-11025386.html"
+},
+{
+"type": "地震",
+"freq": 2,
+"note": "位于松辽盆地，远离主要活动断裂带，历史强震稀少，区域地震风险低",
+"source": "https://html.rhhz.net/dzdczz/html/65922.htm"
+}
+]
+},
+{
+"prefKey": "黑龙江|鸡西市",
+"headline": "三江平原南缘、穆棱河流域，汛期洪涝为主；2023年台风残涡曾引发集中地质灾害，地震设防6度。",
+"hazards": [
+{
+"type": "洪涝",
+"freq": 4,
+"note": "穆棱河贯穿全市，2024-06-24穆棱河梨树镇站(鸡西梨树区)水位达91m形成2024年第1号洪水；市政府专设《鸡西市洪水灾害应急预案》《城镇防汛应急预案》。",
+"source": "https://www.hlj.gov.cn/hlj/c107856/202406/c00_31745628.shtml"
+},
+{
+"type": "暴雨",
+"freq": 4,
+"note": "降雨集中5–9月、年降水约541.8mm，强降雨易致城市洪涝并启动城镇防汛预案；2023年8月初东北强降雨过程波及乌苏里江支流穆棱河流域。",
+"source": "https://zh.wikipedia.org/zh-hans/2023%E5%B9%B4%E4%B8%AD%E5%9B%BD%E4%B8%9C%E5%8C%97%E6%B4%AA%E7%81%BE"
+},
+{
+"type": "地质灾害",
+"freq": 3,
+"note": "2023年8月部分县(市、区)受台风'杜苏芮''卡努'残涡强降雨侵袭，共发生15起地质灾害(崩塌/滑坡/泥石流)；市每年编制地质灾害防治方案。",
+"source": "http://www.jixi.gov.cn/jixi/c100114/202407/c06_301336.shtml"
+},
+{
+"type": "台风",
+"freq": 3,
+"note": "2023年8月台风'杜苏芮''卡努'北上残涡直接影响鸡西，带来强降雨并诱发地质灾害；台风列入鸡西市气象灾害应急预案灾种。",
+"source": "https://www.jixi.gov.cn/jixi/c100398/202204/c06_10969.shtml"
+},
+{
+"type": "冰雹风雹",
+"freq": 4,
+"note": "风雹明确列入鸡西市自然灾害与气象灾害灾种(台风、风雹、低温冷冻、高温、雪灾、沙尘暴等)，夏季强对流多发。",
+"source": "http://www.jixi.gov.cn/jixi/c100398/202501/c06_321010.shtml"
+},
+{
+"type": "干旱",
+"freq": 3,
+"note": "洪涝、干旱等水旱灾害同列鸡西市主要自然灾害；春季易旱，年内降水时空不均。",
+"source": "http://www.jixi.gov.cn/jixi/c100398/202501/c06_321010.shtml"
+},
+{
+"type": "暴雪雪灾",
+"freq": 4,
+"note": "雪灾列入鸡西市气象灾害灾种；冬季寒冷、季节性暴雪可致道路冰雪与农牧设施受损。",
+"source": "https://www.jixi.gov.cn/jixi/c100398/202204/c06_10969.shtml"
+},
+{
+"type": "地震",
+"freq": 2,
+"note": "鸡西市区(鸡冠/恒山/滴道/梨树/城子河/麻山)抗震设防烈度6度(0.05g)，属低烈度区，历史以小震为主。",
+"source": "http://manual.midasuser.com/building/cn/code/08/htm801/fa.htm"
+}
+]
+},
+{
+"prefKey": "黑龙江|鹤岗",
+"headline": "小兴安岭东麓煤城：汛期(6-9月)暴雨内涝+采煤沉陷区地面塌陷为主，干旱风雹常发，处依兰-伊通弱震带",
+"hazards": [
+{
+"type": "暴雨",
+"freq": 4,
+"note": "2023-08东北洪灾鹤岗等地多站点降雨超100mm，城市内涝、河流洪水；属松花江下游支流暴雨高发区",
+"source": "https://www.cma.gov.cn/wmhd/2011wzbft/2011wftzb/202308/t20230805_5697643.html"
+},
+{
+"type": "洪涝",
+"freq": 4,
+"note": "市自然灾害救助应急预案将洪涝列为主要水旱灾害；地质灾害防治重点期为汛期6-9月河流水库防范区",
+"source": "https://www.hegang.gov.cn/hegang/szfbgsgfxwj/202411/64010.shtml"
+},
+{
+"type": "地质灾害",
+"freq": 5,
+"note": "主灾型为地面塌陷/地裂缝/崩塌；采煤沉陷区约60km²占矿区开发范围65%，龙煤鹤岗10座矿区常年监测",
+"source": "https://www.hegang.gov.cn/hegang/hzbf/202507/77503.shtml"
+},
+{
+"type": "干旱",
+"freq": 4,
+"note": "应急预案列旱灾为主要水旱灾害；黑龙江东部夏旱频发(2007全省夏旱受灾712万公顷)",
+"source": "https://www.hegang.gov.cn/hegang/szfbgsgfxwj/202411/64010.shtml"
+},
+{
+"type": "冰雹风雹",
+"freq": 4,
+"note": "风雹为黑龙江5月最频灾种(近十年76次过程中风雹39次)；预案列风雹为主要气象灾害",
+"source": "https://www.gov.cn/gzdt/2011-06/28/content_1894630.htm"
+},
+{
+"type": "暴雪雪灾",
+"freq": 3,
+"note": "预案列雪灾为气象灾害；黑龙江东北部冬季暴雪致灾",
+"source": "https://www.hegang.gov.cn/hegang/szfbgsgfxwj/202411/64010.shtml"
+},
+{
+"type": "地震",
+"freq": 2,
+"note": "近依兰-伊通断裂(郯庐带北段)中小地震多发支，邻近汤原2018年发生M3.2/3.8地震；区域以中小震为主",
+"source": "https://html.rhhz.net/dzdczz/html/62801.htm"
+}
+]
+},
+{
+"prefKey": "黑龙江|黑河市",
+"headline": "黑龙江-嫩江上游森林+平原——汛期洪涝/凌汛、森林火灾风险、五大连池火山，地震偏低",
+"hazards": [
+{
+"type": "洪涝",
+"freq": 3,
+"note": "嫩江、黑龙江干流过境；2023年7月嫩江爱辉、雅鲁河等发布中小河流洪水/山洪风险预警(支流10-20年一遇)；2013嫩江流域大洪水波及百余县区",
+"source": "https://www.hlj.gov.cn/hlj/c107857/202308/c00_31660695.shtml"
+},
+{
+"type": "暴雨",
+"freq": 4,
+"note": "2023年7月黑河南部大雨(过程累计60-80mm)；汛期局地暴雨多发，黑龙江省多次发暴雨/防汛IV级响应",
+"source": "https://www.hlj.gov.cn/hlj/c107856/202307/c00_31649202.shtml"
+},
+{
+"type": "森林火灾",
+"freq": 3,
+"note": "毗邻大兴安岭、属北方重点林区，春秋干燥大风期森林火险高，需常态化防火",
+"source": "https://slcyfh.mem.gov.cn/xxfb/jcjy/202305/t20230525_505855.html"
+},
+{
+"type": "暴雪雪灾",
+"freq": 4,
+"note": "高纬度冬季漫长，暴雪/暴风雪多发，黑龙江北部多次暴雪、寒潮、大风预警",
+"source": "https://www.hlj.gov.cn/hlj/c107856/202411/c00_31787494.shtml"
+},
+{
+"type": "冰雹风雹",
+"freq": 4,
+"note": "夏季强对流带来冰雹大风，对农业有损；东北北部风雹为主要农业气象灾害之一",
+"source": "https://ecoagri.ac.cn/cn/article/doi/10.13930/j.cnki.cjea.170697?viewType=HTML"
+},
+{
+"type": "地震",
+"freq": 2,
+"note": "五大连池为新生代火山区(康熙年间老黑山/火烧山喷发记录，现为监测火山场)；构造地震整体偏低，依兰-伊通北段萝北方向较活跃(1963 M5.8)但距黑河主城较远",
+"source": "https://html.rhhz.net/dzdczz/html/62801.htm"
+}
+]
+},
+{
+"prefKey": "黑龙江|齐齐哈尔市",
+"headline": "松嫩平原西部嫩江畔——洪涝(嫩江)与春旱/风雹交替、冬季暴雪，地震风险低",
+"hazards": [
+{
+"type": "洪涝",
+"freq": 3,
+"note": "嫩江/松花江干流过境；1998年嫩江-松花江150年一遇特大洪水，齐齐哈尔城防仅50年一遇标准，全省受灾县市52个；2013、2023汛期嫩江江桥段超警(5年一遇级)",
+"source": "https://zh.wikipedia.org/zh-hans/1998%E5%B9%B4%E4%B8%AD%E5%9B%BD%E6%B0%B4%E7%81%BE"
+},
+{
+"type": "干旱",
+"freq": 4,
+"note": "温带半干旱季风气候，春季干旱多风；松嫩平原西部农业气象灾害以旱、涝、早霜、风为主，旱年对作物影响显著",
+"source": "https://www.weather.com.cn/cityintro/101050201.shtml"
+},
+{
+"type": "冰雹风雹",
+"freq": 4,
+"note": "西部/西北部为风雹高发区；松嫩平原西部春夏冰雹大风对作物危害大，时有风灾",
+"source": "https://ecoagri.ac.cn/cn/article/doi/10.13930/j.cnki.cjea.170697?viewType=HTML"
+},
+{
+"type": "暴雪雪灾",
+"freq": 4,
+"note": "冬季暴雪频发；2021年11月、2023年11月黑龙江多轮大暴雪/暴风雪预警覆盖齐齐哈尔一带，伴道路结冰",
+"source": "https://www.hlj.gov.cn/n200/2021/1120/c35-11025386.html"
+},
+{
+"type": "暴雨",
+"freq": 4,
+"note": "夏季温热多雨，汛期局地暴雨；近年多次暴雨/山洪气象风险预警",
+"source": "https://app.gjzwfw.gov.cn/jmopen/webapp/html5/zhyjssxx/index.html"
+},
+{
+"type": "地震",
+"freq": 2,
+"note": "位于松辽盆地西缘，远离依兰-伊通断裂主活动带，历史强震少，区域地震风险偏低",
+"source": "https://html.rhhz.net/dzdczz/html/65922.htm"
+}
+]
+}
+]
+}

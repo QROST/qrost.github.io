@@ -528,6 +528,24 @@ def cmd_built_merge(args):
     print(f"→ {rep['set']} built-year(s) stored; run `build` to regenerate enriched.js")
 
 
+def cmd_hazard_merge(args):
+    con = connect()
+    data = json.load(open(args.path, encoding="utf-8"))
+    findings = data.get("findings", []) if isinstance(data, dict) else data
+    by_pref = {}
+    for f in findings:
+        k = f.get("prefKey")
+        if k:
+            by_pref[k] = {"headline": f.get("headline") or "", "hazards": f.get("hazards") or []}
+    print(f"synthesizing per-listing hazards from {len(by_pref)} researched prefecture(s) "
+          "(types × per-coords physical frequency) …")
+    rep = enrich.synth_hazards(con, by_pref, print)
+    print("=== hazard synthesis report ===")
+    print(json.dumps(rep, ensure_ascii=False, indent=1))
+    print(f"→ {rep['listings']} listing hazard profiles ({rep['from_research']} prefecture-research, "
+          f"{rep['from_province']} province-fallback); run `build` to regenerate enriched.js")
+
+
 def main(argv=None):
     p = argparse.ArgumentParser(prog="manage.py", description=__doc__,
                                 formatter_class=argparse.RawDescriptionHelpFormatter)
@@ -581,6 +599,13 @@ def main(argv=None):
     sp = sub.add_parser("built-merge", help="fold validated 建成年代 (construction-year) findings into the DB")
     sp.add_argument("path", help="JSON: [{id, builtYear, source, confidence}, …] or {findings:[…]}")
     sp.set_defaults(fn=cmd_built_merge)
+
+    sub.add_parser("relief", help="bake local terrain relief (DEM ring) for 地质灾害 downscaling").set_defaults(
+        fn=lambda a: (enrich.relief_all(connect(), print)))
+
+    sp = sub.add_parser("hazard-merge", help="synthesize per-listing hazards: prefecture research × physical frequency")
+    sp.add_argument("path", help="JSON: {findings:[{prefKey, headline, hazards:[{type,freq,note,source}]}, …]}")
+    sp.set_defaults(fn=cmd_hazard_merge)
 
     sp = sub.add_parser("export-csv", help="dump DB → CSV (default data/listings.csv)")
     sp.add_argument("path", nargs="?", default=None)

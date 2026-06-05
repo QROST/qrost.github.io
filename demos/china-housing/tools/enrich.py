@@ -104,7 +104,9 @@ def migrate(con):
                       ("daily_climate", "TEXT"),    # JSON: 365-day curve + comfort/extreme day-ranges
                       ("built_year", "INTEGER"),    # 小区 construction/completion year (web research)
                       ("built_year_src", "TEXT"),   # provenance: source URL / quoted 建成年代 text
-                      ("built_year_approx", "INTEGER")):  # 1 = cited decade-level estimate, shown as 约
+                      ("built_year_approx", "INTEGER"),  # 1 = cited decade-level estimate, shown as 约
+                      ("terrain_relief", "REAL"),   # local DEM relief (m, max−min over ~3km ring) — 地质灾害 proxy
+                      ("hazards_local", "TEXT")):   # per-listing hazard array JSON (prefecture types × physical freq)
         if col not in cols:
             con.execute(f"ALTER TABLE listings ADD COLUMN {col} {decl}")
     con.executescript("""
@@ -429,6 +431,57 @@ def elevation_all(con, log, force=False):
     log(f"elevation done: {done} listing(s)")
 
 
+def _ring_points(lat, lng, r_km=3.0, n=8):
+    """n points on a ~r_km ring around (lat,lng), for local relief sampling."""
+    dlat = r_km / 111.0
+    dlng = r_km / (111.0 * max(0.2, math.cos(math.radians(lat))))
+    return [(lat + dlat * math.cos(2 * math.pi * k / n),
+             lng + dlng * math.sin(2 * math.pi * k / n)) for k in range(n)]
+
+
+def relief_all(con, log, force=False):
+    """Bake local terrain relief (max−min elevation over a ~3km ring + centre) per
+    listing — a ruggedness proxy for 地质灾害 (landslide / debris-flow) susceptibility:
+    steep mountains = high relief, flat plain = low. One DEM sample per ring point,
+    all batched through Open-Meteo (90 coords/call). Resumable."""
+    where = "" if force else "AND terrain_relief IS NULL"
+    rows = con.execute(
+        f"SELECT id, lat, lng FROM listings WHERE lat IS NOT NULL {where} ORDER BY id"
+    ).fetchall()
+    log(f"relief: {len(rows)} listing(s) (Open-Meteo DEM, ~3km ring sampling)…")
+    plan, allpts = [], []   # plan = (id, offset, count); allpts = flat [(lat,lng), …]
+    for r in rows:
+        pts = [(r["lat"], r["lng"])] + _ring_points(r["lat"], r["lng"])
+        plan.append((r["id"], len(allpts), len(pts)))
+        allpts.extend(pts)
+    elevs = [None] * len(allpts)
+    for i in range(0, len(allpts), 90):
+        chunk = allpts[i:i + 90]
+        url = "https://api.open-meteo.com/v1/elevation?" + urllib.parse.urlencode({
+            "latitude": ",".join(f"{p[0]:.5f}" for p in chunk),
+            "longitude": ",".join(f"{p[1]:.5f}" for p in chunk)})
+        try:
+            ev = json.loads(_get(url, timeout=45, retries=3)).get("elevation") or []
+        except Exception as e:  # noqa: BLE001
+            log(f"  ! relief batch @{i} failed: {repr(e)[:80]}")
+            time.sleep(1.5)
+            continue
+        for k, v in enumerate(ev):
+            if i + k < len(elevs):
+                elevs[i + k] = v
+        time.sleep(1.0)
+    done = 0
+    for lid, off, cnt in plan:
+        seg = [e for e in elevs[off:off + cnt] if e is not None]
+        if len(seg) < 3:
+            continue
+        con.execute("UPDATE listings SET terrain_relief=? WHERE id=?",
+                    (round(max(seg) - min(seg), 1), lid))
+        done += 1
+    con.commit()
+    log(f"relief done: {done} listing(s)")
+
+
 # ---------------------------------------------------------------------------
 # Reference datasets (offline): airports + coastline
 # ---------------------------------------------------------------------------
@@ -722,6 +775,113 @@ def emit_hazards():
 
 
 # ---------------------------------------------------------------------------
+# Per-listing hazard synthesis — prefecture types (research) × physical frequency.
+# Province profiles are too coarse (every 小区 in a province shares them). Combine
+# the per-地级市 researched hazard TYPES with per-coords PHYSICAL exposure so the
+# FREQUENCY of location-driven hazards varies within a province: 台风/风暴潮 by
+# coastal distance (inland drops it), 地质灾害 by terrain relief (flat plain drops
+# it) — EXCEPT 采煤沉陷-type subsidence, which is mining- not terrain-driven and
+# happens on flat coal cities, so it is kept as researched. Climate/seismic hazards
+# (干旱/暴雨/暴雪/地震/…) stay at their regional (researched/province) frequency.
+# ---------------------------------------------------------------------------
+_COASTAL_HAZ = {"台风", "台风外围", "风暴潮"}
+_TERRAIN_HAZ = {"地质灾害", "滑坡", "泥石流", "崩塌", "山洪"}
+_MINING_KW = ("沉陷", "塌陷", "采煤")   # mining subsidence — NOT terrain-driven (bare 矿 too broad: a mining CITY like 攀枝花 still has terrain landslides)
+
+
+def _coastal_freq(typh, coast_km, htype):
+    """Coastal-driven recurrence for 台风/风暴潮 from typhoon exposure + coast distance.
+    int freq, or None to DROP (genuinely inland / not on the immediate coast)."""
+    if htype == "风暴潮" and (coast_km is None or coast_km > 30):
+        return None
+    return {"高": 5, "中": 4, "弱": 3, "极低": None}.get(typh)
+
+
+def _geohazard_freq(relief):
+    """Terrain-driven recurrence for landslide/debris 地质灾害 from local relief.
+    -1 = no relief data (keep researched freq); 0 = flat → drop."""
+    if relief is None:
+        return -1
+    if relief >= 400:
+        return 5
+    if relief >= 250:
+        return 4
+    if relief >= 120:
+        return 3
+    if relief >= 60:
+        return 2
+    return 0
+
+
+def synth_hazards(con, research_by_pref, log):
+    """Fold per-prefecture hazard research + per-coords physics into a per-listing
+    hazard array (listings.hazards_local JSON = {headline, hazards:[{type,freq,
+    freqLabel,freqShort,note,source?}], top}). Falls back to the province profile
+    where a prefecture has no research."""
+    rows = con.execute("SELECT id, prov, city, terrain_relief FROM listings "
+                       "WHERE lat IS NOT NULL ORDER BY id").fetchall()
+    rep = {"listings": 0, "from_research": 0, "from_province": 0,
+           "dropped_coastal": 0, "dropped_terrain": 0, "downscaled": 0}
+    for r in rows:
+        key = f"{r['prov']}|{r['city'].split('-')[0]}"
+        rf = research_by_pref.get(key)
+        if rf and rf.get("hazards"):
+            base = [{"type": h.get("type"), "freq": h.get("freq"), "note": h.get("note") or "",
+                     "source": h.get("source") or ""} for h in rf["hazards"] if h.get("type")]
+            headline = rf.get("headline") or ""
+            rep["from_research"] += 1
+        else:
+            p = PROVINCE_HAZARDS.get(r["prov"], {})
+            base = [{"type": t, "freq": f, "note": n, "source": ""} for (t, f, n) in p.get("hazards", [])]
+            headline = p.get("headline", "")
+            rep["from_province"] += 1
+        rk = con.execute("SELECT typhoon, coast_km FROM risk WHERE listing_id=?", (r["id"],)).fetchone()
+        typh = rk["typhoon"] if rk else None
+        ckm = rk["coast_km"] if rk else None
+        out = []
+        for h in base:
+            t, f, note = h["type"], h.get("freq"), h.get("note") or ""
+            if t in _COASTAL_HAZ:
+                nf = _coastal_freq(typh, ckm, t)
+                if nf is None:
+                    rep["dropped_coastal"] += 1
+                    continue
+                if f is None or nf != f:
+                    rep["downscaled"] += 1
+                f = nf
+            elif t in _TERRAIN_HAZ and not any(k in note for k in _MINING_KW):
+                nf = _geohazard_freq(r["terrain_relief"])
+                if nf == 0:
+                    rep["dropped_terrain"] += 1
+                    continue
+                if nf != -1:
+                    if f is None or nf != f:
+                        rep["downscaled"] += 1
+                    f = nf
+            if f is None:
+                f = 3   # researched freq missing → default 约十年
+            f = max(1, min(5, int(f)))
+            item = {"type": t, "freq": f, "freqLabel": HAZARD_FREQ_LABEL[f],
+                    "freqShort": HAZARD_FREQ_SHORT[f], "note": note}
+            if h.get("source"):
+                item["source"] = h["source"]
+            out.append(item)
+        bytype = {}   # dedupe by type, keep the highest freq
+        for it in out:
+            if it["type"] not in bytype or it["freq"] > bytype[it["type"]]["freq"]:
+                bytype[it["type"]] = it
+        out = sorted(bytype.values(), key=lambda x: -x["freq"])
+        topf = out[0]["freq"] if out else 0
+        obj = {"headline": headline, "hazards": out,
+               "top": [h["type"] for h in out if h["freq"] == topf]}
+        con.execute("UPDATE listings SET hazards_local=? WHERE id=?",
+                    (json.dumps(obj, ensure_ascii=False), r["id"]))
+        rep["listings"] += 1
+    con.commit()
+    return rep
+
+
+# ---------------------------------------------------------------------------
 # Research merge — fold subagent findings (names/addresses) into the DB.
 # Agents return *names* (verifiable, with sources); the precise geocoding +
 # distance is done HERE deterministically via Nominatim, with province + radius
@@ -923,12 +1083,17 @@ def refresh_refined_pois(con, log):
 def emit_enriched(con):
     """Return {id: {...}} dict of all baked enrichment for build to serialize."""
     out = {}
-    for r in con.execute("SELECT id, lat, lng, geo_level, geo_label, geo_source, elevation, daily_climate, built_year, built_year_src, built_year_approx FROM listings WHERE lat IS NOT NULL"):
+    for r in con.execute("SELECT id, lat, lng, geo_level, geo_label, geo_source, elevation, daily_climate, built_year, built_year_src, built_year_approx, hazards_local FROM listings WHERE lat IS NOT NULL"):
         e = {"lat": r["lat"], "lng": r["lng"],
              "geoLevel": r["geo_level"], "geoLabel": r["geo_label"],
              "geoSource": r["geo_source"] or "nominatim"}
         if r["elevation"] is not None:
             e["elevation"] = r["elevation"]
+        if r["hazards_local"]:
+            try:
+                e["hazard"] = json.loads(r["hazards_local"])
+            except Exception:  # noqa: BLE001
+                pass
         if r["built_year"] is not None:
             e["builtYear"] = r["built_year"]
             if r["built_year_src"]:
