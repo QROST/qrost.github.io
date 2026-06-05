@@ -470,6 +470,10 @@ def cmd_climate(args):
     enrich.climate_all(connect(), print)
 
 
+def cmd_climate_daily(args):
+    enrich.climate_daily_all(connect(), print)
+
+
 def cmd_pois(args):
     enrich.pois_all(connect(), print)
 
@@ -548,6 +552,7 @@ def main(argv=None):
     sp.set_defaults(fn=cmd_geocode)
 
     sub.add_parser("climate", help="bake monthly climate normals via Open-Meteo").set_defaults(fn=cmd_climate)
+    sub.add_parser("climate-daily", help="bake 365-day climatology + comfort/extreme day-ranges").set_defaults(fn=cmd_climate_daily)
     sp = sub.add_parser("elevation", help="bake metres-above-sea-level via Open-Meteo DEM (batched)")
     sp.add_argument("--force", action="store_true", help="re-fetch rows that already have elevation")
     sp.set_defaults(fn=cmd_elevation)
