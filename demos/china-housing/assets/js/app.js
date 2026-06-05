@@ -565,6 +565,10 @@
     range: ['#ddd6fe', '#a78bfa', '#7c3aed', '#5b21b6', '#4c1d95'],       // 季节波动: 小 → 大（紫）
     freq: [FREQ_COLOR[1], FREQ_COLOR[2], FREQ_COLOR[3], FREQ_COLOR[4], FREQ_COLOR[5]],  // 灾害频率: 罕见淡灰 → 年年红（= FREQ_COLOR，固定 [1,5] 域）
   };
+  // 地球物理突发灾害——随精确位置变化（地震带 / 海岸 / 地形），不像慢性气候灾
+  // (暴雨/洪涝/干旱) 那样近乎处处年年。地图按这几类着色，才用得满 FREQ_COLOR 全色域、
+  // 显出地理差异；表格 / 弹窗仍列全部灾害。
+  const GEO_HAZ = new Set(['地震', '台风', '台风外围', '风暴潮', '地质灾害', '滑坡', '泥石流', '崩塌']);
   const MAP_DIMS = {
     tempRange: { label: '年温差·季节波动', get: (d) => d.tempRange, fmt: (v) => fmtInt(v) + '℃', ramp: 'range', text: ['温差大', '温差小'] },
     unitPrice: { label: '单价', get: (d) => d.unitPrice, fmt: (v) => fmtInt(v) + '元/㎡', ramp: 'cheapGood', text: ['贵', '便宜'] },
@@ -573,7 +577,15 @@
     julTemp: { label: '7月均温·等温', get: (d) => d.julTemp, fmt: fmtTemp, ramp: 'temp', text: ['热', '冷'] },
     annualPrecip: { label: '年降水', get: (d) => d.annualPrecip, fmt: (v) => fmtInt(v) + 'mm', ramp: 'precip', text: ['湿', '干'] },
     elevation: { label: '海拔', get: (d) => d.elevation, fmt: (v) => fmtInt(v) + 'm', ramp: 'terrain', text: ['高', '低'] },
-    hazardFreq: { label: '主要灾害·频率', get: (d) => (d.hazard && d.hazard.hazards.length ? Math.max(...d.hazard.hazards.map((h) => h.freq)) : null), fmt: (v) => FREQ_LABEL[Math.round(v)] || '', ramp: 'freq', text: ['年年', '罕见'], fixedDomain: [1, 5] },
+    hazardFreq: {
+      label: '突发灾害·频率',
+      get: (d) => {
+        if (!d.hazard || !d.hazard.hazards) return null;
+        const gs = d.hazard.hazards.filter((h) => GEO_HAZ.has(h.type));
+        return gs.length ? Math.max(...gs.map((h) => h.freq)) : 1;   // 无突发地球物理灾 → 淡灰（非消失）
+      },
+      fmt: (v) => FREQ_LABEL[Math.round(v)] || '', ramp: 'freq', text: ['年年', '罕见'], fixedDomain: [1, 5],
+    },
     // legacy keys (stale cached HTML may still reference the removed 宜居指数)
     comfortScore: { label: '年温差·季节波动', get: (d) => d.tempRange, fmt: (v) => fmtInt(v) + '℃', ramp: 'range', text: ['温差大', '温差小'] },
   };
