@@ -98,15 +98,17 @@
     if (tMax <= 26) return '冬暖夏凉';                     // 夏凉冬不寒
     return '温和过渡';
   }
+  // Climate types are coloured along the TEMPERATURE spectrum (cold blue → hot
+  // red), not by "good/bad" — so green stays reserved for value. Ordered warm→cold.
   const CLIMATE_STYLE = {
-    '四季如春': ['#dcfce7', '#166534'],
-    '常年温暖': ['#fef3c7', '#b45309'],
-    '冬暖夏凉': ['#cffafe', '#0e7490'],
-    '夏热冬暖': ['#ffedd5', '#9a3412'],
-    '长夏无冬': ['#fee2e2', '#b91c1c'],
-    '四季分明': ['#dbeafe', '#1d4ed8'],
-    '常年凉冷': ['#e2e8f0', '#475569'],
-    '温和过渡': ['#f1f5f9', '#64748b'],
+    '长夏无冬': ['#fee2e2', '#b91c1c'],   // hottest → red
+    '夏热冬暖': ['#ffedd5', '#9a3412'],   // hot     → orange
+    '常年温暖': ['#fef3c7', '#b45309'],   // warm    → amber
+    '四季如春': ['#fef9c3', '#a16207'],   // mild    → warm yellow (was green)
+    '温和过渡': ['#f1f5f9', '#64748b'],   // neutral → slate
+    '冬暖夏凉': ['#cffafe', '#0e7490'],   // cool    → cyan
+    '四季分明': ['#dbeafe', '#1d4ed8'],   // cold-ish→ blue
+    '常年凉冷': ['#e0e7ff', '#3730a3'],   // coldest → indigo (was slate)
   };
 
   const DATA = RAW.map((d) => {
@@ -155,12 +157,17 @@
     const c = a.map((x, i) => Math.round(x + (b[i] - x) * t));
     return `rgb(${c[0]},${c[1]},${c[2]})`;
   }
-  const SLATE = [203, 213, 225], EMER = [5, 150, 105], RED = [225, 60, 60], AMB = [245, 158, 11];
-  const TEAL = [20, 184, 166], INDIGO = [67, 56, 202];
-  const lerpColor = (t) => mix(SLATE, EMER, t);                  // legacy yield ramp
-  const comfortColor = (t) => mix(RED, EMER, t);                 // 0=red(bad) → 1=green(good)
-  const badColor = (t) => mix(EMER, RED, t);                     // 0=green(good) → 1=red(bad)
-  const rangeColor = (t) => mix(TEAL, INDIGO, t);               // 年温差: 0=teal(平稳) → 1=indigo(四季分明)
+  // Semantic colour roles (see also RAMPS): VALUE = green (desirable), SEVERITY
+  // = red (worse), SWING = violet (seasonal). Green never means "hot/expensive",
+  // red never means "good" — each hue carries exactly one meaning.
+  const SLATE = [203, 213, 225], EMER = [5, 150, 105], RED = [185, 28, 28];
+  const VIO_LO = [221, 214, 254], VIO_HI = [76, 29, 149];
+  const valueColor = (t) => mix(SLATE, EMER, t);     // neutral → green = more desirable (never red)
+  const severityColor = (t) => mix(SLATE, RED, t);   // neutral → red = worse / more severe
+  const lerpColor = valueColor;                      // 回报 / 价值
+  const comfortColor = valueColor;                   // 舒适 = value green (was red→green)
+  const badColor = severityColor;                    // 极端天气 = severity red (was green→red)
+  const rangeColor = (t) => mix(VIO_LO, VIO_HI, t);  // 年温差 / 季节波动 = violet (small → large)
 
   // ---- KPI cards ---------------------------------------------------------
   function renderKPIs() {
@@ -388,13 +395,16 @@
   }
 
   // ---- big zoomable overlay map (geo + recolourable listing points) ------
+  // Sequential ramps, one per semantic family. VALUE = green only (no red);
+  // SEVERITY = red; physical fields = their own conventional spectra.
   const RAMPS = {
-    cheapGood: ['#10b981', '#a7f3d0', '#fde047', '#fb923c', '#ef4444'],   // low value = green = cheap/few
-    comfyHigh: ['#ef4444', '#fb923c', '#fde047', '#a7f3d0', '#10b981'],   // high value = green = comfortable
-    temp: ['#1d4ed8', '#0ea5e9', '#67e8f9', '#fde047', '#fb923c', '#dc2626'],
-    precip: ['#fef9c3', '#bae6fd', '#38bdf8', '#0284c7', '#1e3a8a'],
-    terrain: ['#166534', '#65a30d', '#ca8a04', '#b45309', '#78350f'],
-    range: ['#5eead4', '#67e8f9', '#60a5fa', '#6366f1', '#4338ca'],   // small swing → large swing
+    cheapGood: ['#065f46', '#059669', '#34d399', '#a7f3d0', '#cbd5e1'],   // 价值: 便宜/少 = 深绿 → 贵/多 = 中性灰
+    comfyHigh: ['#cbd5e1', '#a7f3d0', '#34d399', '#059669', '#065f46'],   // 价值: 高 = 深绿（回报/舒适）
+    severity: ['#cbd5e1', '#fde047', '#fb923c', '#ef4444', '#b91c1c'],    // 严重度: 低=灰 → 高=红（极端天气/灾害）
+    temp: ['#2563eb', '#38bdf8', '#fde68a', '#fb923c', '#dc2626'],        // 温度: 冷蓝 → 热红
+    precip: ['#eef2f7', '#bae6fd', '#38bdf8', '#0284c7', '#1e3a8a'],       // 降水: 干 → 湿
+    terrain: ['#dcfce7', '#86efac', '#ca8a04', '#b45309', '#78350f'],     // 海拔: 低 → 高
+    range: ['#ddd6fe', '#a78bfa', '#7c3aed', '#5b21b6', '#4c1d95'],       // 季节波动: 小 → 大（紫）
   };
   const MAP_DIMS = {
     tempRange: { label: '年温差·季节波动', get: (d) => d.tempRange, fmt: (v) => fmtInt(v) + '℃', ramp: 'range', text: ['温差大', '温差小'] },
@@ -404,7 +414,7 @@
     julTemp: { label: '7月均温·等温', get: (d) => d.julTemp, fmt: fmtTemp, ramp: 'temp', text: ['热', '冷'] },
     annualPrecip: { label: '年降水', get: (d) => d.annualPrecip, fmt: (v) => fmtInt(v) + 'mm', ramp: 'precip', text: ['湿', '干'] },
     elevation: { label: '海拔', get: (d) => d.elevation, fmt: (v) => fmtInt(v) + 'm', ramp: 'terrain', text: ['高', '低'] },
-    extremeMonths: { label: '极端天气', get: (d) => d.extremeMonths, fmt: (v) => v + '个月', ramp: 'cheapGood', text: ['多', '少'] },
+    extremeMonths: { label: '极端天气', get: (d) => d.extremeMonths, fmt: (v) => v + '个月', ramp: 'severity', text: ['多', '少'] },
     // legacy keys (stale cached HTML may still reference the removed 宜居指数)
     comfortScore: { label: '年温差·季节波动', get: (d) => d.tempRange, fmt: (v) => fmtInt(v) + '℃', ramp: 'range', text: ['温差大', '温差小'] },
   };
@@ -415,11 +425,9 @@
   // continuous basemap field (assets/data/field.js) — isotherm / rainfall /
   // elevation raster + isolines, drawn UNDER the listing points.
   const FIELD = window.HOUSING_FIELD || null;
-  const BASE_RAMPS = {
-    temp: ['#1d4ed8', '#0ea5e9', '#67e8f9', '#fde047', '#fb923c', '#dc2626'],
-    terrain: ['#dcfce7', '#86efac', '#ca8a04', '#b45309', '#78350f'],
-    precip: ['#fefce8', '#bae6fd', '#38bdf8', '#0284c7', '#1e3a8a'],
-  };
+  // Basemap field ramps reuse the same physical ramps (no duplicate definitions).
+  // Keys must stay temp/terrain/precip — assets/data/field.js references them.
+  const BASE_RAMPS = { temp: RAMPS.temp, terrain: RAMPS.terrain, precip: RAMPS.precip };
   // available basemaps: 'none' + whatever the baked field provides
   const BASE_LABELS = { none: '无底图', janTemp: '1月等温', julTemp: '7月等温', elevation: '海拔', annualPrecip: '年降水' };
   let baseKey = 'none';
@@ -537,7 +545,7 @@
             + `总价 ${fmtWan(d.priceWan)} · ${d.area}㎡ · 单价 ${fmtInt(d.unitPrice)}元/㎡<br/>`
             + `${d.climateType || '—'} · 年温差${d.tempRange == null ? '—' : d.tempRange + '℃'} · 1月${fmtTemp(d.janTemp)}/7月${fmtTemp(d.julTemp)} · 海拔 ${d.elevation == null ? '—' : fmtInt(d.elevation) + 'm'} · 供暖 ${d.heating || '—'}<br/>`
             + `医院 ${fmtKm(d.hospitalKm)} · 火车 ${fmtKm(d.trainKm)} · 地震 ${d.seismic || '—'} · 台风 ${d.typhoon || '—'}`
-            + (haz ? `<br/><span style="color:#b45309">最频灾害：${haz}</span>` : '')
+            + (haz ? `<br/><span style="color:#b91c1c">最频灾害：${haz}</span>` : '')
             + `<br/><span style="color:#10b981">点击查看卫星图 / 周边 / 气候 / 灾害</span>`;
         },
       },
@@ -844,7 +852,7 @@
   const TILE_STREET = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
   const POI_META = {
     metro: { label: '地铁', color: '#2563eb' }, train: { label: '火车/高铁', color: '#7c3aed' },
-    airport: { label: '机场', color: '#0891b2' }, hospital: { label: '医院', color: '#dc2626' },
+    airport: { label: '机场', color: '#0f766e' }, hospital: { label: '医院', color: '#dc2626' },
     mall: { label: '商场', color: '#d97706' }, coast: { label: '海边', color: '#0ea5e9' },
   };
   const ZOOM_BY_LEVEL = { loc: 16, dist: 14, city: 12, prefecture: 11 };
