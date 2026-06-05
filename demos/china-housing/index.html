@@ -79,7 +79,7 @@
         <!-- Overview / scatter -->
         <section id="overview" class="scroll-mt-20">
             <h2 class="text-xs font-semibold uppercase tracking-[0.15em] text-slate-400 mb-1">便宜 × 宜居 · Cheap ↔ Livable</h2>
-            <p class="text-slate-600 mb-6 max-w-2xl text-sm leading-relaxed">每个点是一套房：横轴<strong class="text-slate-800">总价（越左越便宜）</strong>、纵轴<strong class="text-slate-800">宜居指数（越上越舒适）</strong>，<strong class="text-emerald-700">颜色越绿 = 极端天气越少</strong>。<strong class="text-slate-800">左上角</strong>那批既便宜、气候又舒适的房子，正是这份清单想帮你找到的。</p>
+            <p class="text-slate-600 mb-6 max-w-2xl text-sm leading-relaxed">每个点是一套房：横轴<strong class="text-slate-800">总价（越左越便宜）</strong>、纵轴<strong class="text-slate-800">舒适月数（月均温 15–26℃ 的月份，越上越多）</strong>，<strong class="text-indigo-700">颜色越蓝 = 年温差越大（四季越分明）</strong>、越青 = 全年越平稳。<strong class="text-slate-800">左上角</strong>那批既便宜、舒适月又多的房子，正是这份清单想帮你找到的。</p>
             <div class="rounded-xl border border-slate-200 bg-white p-4 md:p-6">
                 <div class="relative" style="height: 440px;"><canvas id="scatter-chart"></canvas></div>
             </div>
@@ -104,11 +104,11 @@
         <!-- Geo: full-width zoomable overlay map + province comparison -->
         <section id="geo" class="scroll-mt-20">
             <h2 class="text-xs font-semibold uppercase tracking-[0.15em] text-slate-400 mb-1">宜居地图 · Livability overlay</h2>
-            <p class="text-slate-600 mb-5 max-w-3xl text-sm leading-relaxed">每个圆点是一套房，<strong class="text-slate-800">越大 = 越便宜</strong>，颜色按<strong class="text-emerald-700">点·叠加维度</strong>变化（宜居指数 / 单价 / 冬夏等温 / 年降水 / 海拔 / 极端天气）。再叠一层<strong class="text-emerald-700">连续底图</strong>——全国<strong class="text-slate-800">等温线 / 降水 / 海拔</strong>栅格场（含等值线），就能直观看到某套便宜房落在什么气温带、海拔带里。<strong class="text-slate-800">滚轮 / 双指捏合 / 右上角 +−</strong> 缩放、拖动平移；点击圆点看卫星图 / 周边 / 气候与灾害。</p>
+            <p class="text-slate-600 mb-5 max-w-3xl text-sm leading-relaxed">每个圆点是一套房，<strong class="text-slate-800">越大 = 越便宜</strong>，颜色按<strong class="text-emerald-700">点·叠加维度</strong>变化（年温差 / 单价 / 冬夏等温 / 年降水 / 海拔 / 极端天气）。再叠一层<strong class="text-emerald-700">连续底图</strong>——全国<strong class="text-slate-800">等温线 / 降水 / 海拔</strong>栅格场（含等值线），就能直观看到某套便宜房落在什么气温带、海拔带里。<strong class="text-slate-800">滚轮 / 双指捏合 / 右上角 +−</strong> 缩放、拖动平移；点击圆点看卫星图 / 周边 / 气候与灾害。</p>
             <div class="rounded-xl border border-slate-200 bg-white p-4 md:p-6">
                 <div class="flex flex-wrap items-center gap-2 mb-3">
                     <span class="text-xs font-medium text-slate-400 mr-1 self-center">点·叠加维度</span>
-                    <button data-dim="comfortScore" class="dim-tab"></button>
+                    <button data-dim="tempRange" class="dim-tab"></button>
                     <button data-dim="unitPrice" class="dim-tab"></button>
                     <button data-dim="priceWan" class="dim-tab"></button>
                     <button data-dim="janTemp" class="dim-tab"></button>
@@ -139,7 +139,7 @@
             <div class="rounded-xl border border-slate-200 bg-white p-4 md:p-6 mt-5">
                 <div class="flex flex-wrap items-center gap-2 mb-4">
                     <span class="text-sm font-medium text-slate-700 mr-1 self-center">各省对比</span>
-                    <button data-prov="avgComfort" class="prov-tab"></button>
+                    <button data-prov="avgRange" class="prov-tab"></button>
                     <button data-prov="avgExtreme" class="prov-tab"></button>
                     <button data-prov="avgUnit" class="prov-tab"></button>
                     <button data-prov="avgPrice" class="prov-tab"></button>
@@ -184,7 +184,8 @@
                     <ul class="space-y-2 list-disc list-inside">
                         <li><strong class="text-slate-700">气温 / 降水</strong>：Open-Meteo ERA5 <strong>2014–2023</strong> 月度均值；年降水为 12 个月均值之和。</li>
                         <li><strong class="text-slate-700">舒适月</strong> = 月均温在 <strong>15–26℃</strong> 的月份数；<strong class="text-slate-700">极端月</strong> = 月均温 &lt; 0℃（严寒）或月均高温 ≥ 33℃（酷热）的月份数。</li>
-                        <li><strong class="text-slate-700">宜居指数</strong>（0–100）= 舒适月占比 × 70 + （1 − 极端月占比）× 30，纯气候口径、不含价格，透明可复算。</li>
+                        <li><strong class="text-slate-700">年温差</strong>（℃）= 最热月均温 − 最冷月均温，直接反映季节波动幅度；越小越平稳，越大越四季分明。<strong class="text-slate-700">不再使用含糊的"宜居指数"</strong>（口径与单位不透明、易误导，已移除）。</li>
+                        <li><strong class="text-slate-700">气候类型</strong>仅由两个透明数字（年均温 Ta、年温差 R）按公开阈值判定，可复算：<strong>四季分明</strong> R≥20；<strong>长夏无冬</strong>（一直暖）最冷月≥18℃；<strong>常年凉冷</strong>（一直凉）最热月≤18℃；<strong>夏热冬暖</strong> 最热月≥27℃且最冷月≥8℃；<strong>四季如春</strong> R≤12 且 14≤Ta≤22；<strong>常年温暖</strong> R≤14 且最冷月≥12℃；<strong>冬暖夏凉</strong> 最热月≤26℃；其余为<strong>温和过渡</strong>。</li>
                         <li><strong class="text-slate-700">海拔</strong>：Open-Meteo Copernicus DEM；<strong class="text-slate-700">医院/火车/机场/海岸距离</strong>：最近一处的直线距离（OSM Overpass + 离线机场/海岸线）。</li>
                         <li><strong class="text-slate-700">供暖</strong>：按<strong class="text-slate-700">秦岭–淮河集中供暖线</strong>的省级口径——以北为<strong>集中供暖</strong>，江苏/安徽跨线为<strong>部分供暖</strong>，以南分<strong>无·冬暖</strong>（暖和、无需供暖）与<strong>无·湿冷</strong>（冬季湿冷却无集中供暖的"夹心层"）。<strong class="text-slate-700">严寒本身不算灾害</strong>，已由气候指标体现，供暖列只回答"冬天有没有暖气"。</li>
                         <li><strong class="text-slate-700">连续底图</strong>（等温线/降水/海拔）：在中国陆地上按 <strong>1° 网格</strong>采样 ERA5（2019–2023）与模型海拔，等值线由 marching-squares 抽取——<strong class="text-slate-700">粗略定向用</strong>，非精细气候图。</li>
