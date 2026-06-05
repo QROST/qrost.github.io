@@ -197,3 +197,21 @@ python3 tools/manage.py build   # 把 built_year 吐进 enriched.js（前端「�
 幂等可重跑（重跑覆盖同 id 的更优证据，但 approx 不降级已有精确）。三轮并行 agent 共覆盖 **112 / 121** 套（62 精确 + 50 约）：① 首轮贝壳/安居客/房天下「建成年代」字段；② 次轮老旧小区改造名单 / 厂史 / 政府征收深挖（含 1935 历史街区、1960s 三线厂宿舍）；③ 三轮旁敲侧击——社媒讨论（贴吧/知乎/小红书）、小区名最早上网时间（建成上界）、单位史，对最难的村镇/县城/厂宿舍**估算年代级**（全 approx）。其余 9 套确无可引用痕迹、留「未知」。
 
 > ⚠️ 速率：每轮 ≈ 10 个并发 agent + 重度联网，单轮 ~0.8–1.3M subagent tokens，**易撞会话配额（429）**；撞墙的整批不产结构化结果，等配额重置后用同 `scriptPath` 重跑即可（已完成的 agent 会走缓存）。
+
+## 灾害：地市调研 × 坐标物理（per-listing）
+
+省级灾害画像对每个小区太粗（同省同值）。改为**每小区独立**：地市真实灾情史定「有哪些灾害（类型）」+ 坐标物理定「多频繁 / 是否适用（频率）」，存 `listings.hazards_local`（JSON `{headline, hazards:[{type,freq,freqLabel,freqShort,note,source?}], top}`），`emit_enriched` 吐成 `enriched.js` 每条的 `hazard`；前端 `d.hazard = enr.hazard || 省级兜底`，地图/表格/弹窗自动按小区。
+
+1. **地市类型调研**（81 个地级市并行 agent）：查应急部风险普查 / 气象年鉴 / 地方志 / 新闻的**实际灾情史**，标准类型名、排除单纯寒冷、城市核对、带来源；存 `data/hazard_research.json`（可复跑 provenance）。
+2. **坐标物理细化**（确定性，`synth_hazards`）：
+   - **地形起伏** `relief`（`manage.py relief`：Open-Meteo DEM ~3km 环采样 max−min）→ **地质灾害** 频率（≥400m=5…<60m=丢弃）。**例外**：note 含「采煤沉陷/塌陷」的是**采矿沉陷非地形**（平原煤城也有），豁免不降级；裸字「矿」太宽（攀枝花是矿城但灾害是滑坡）不计。
+   - **离海岸 / 台风暴露**（`risk.typhoon`/`coast_km`）→ **台风/台风外围** 频率（高=5…极低=丢弃），**风暴潮** 仅 `coast_km<30` 保留。
+   - **气候 / 地震型**（干旱 / 暴雨 / 暴雪 / 凝冻 / 地震…）保留调研的区域级频率。
+
+```bash
+python3 tools/manage.py relief                              # 一次性烘焙地形起伏
+python3 tools/manage.py hazard-merge data/hazard_research.json   # 合成 per-listing 灾害
+python3 tools/manage.py build
+```
+
+> 注：地图「主要灾害·频率」着色用**最频灾害的复发档**（max freq）。即便细化到小区，**几乎每个中国小城的最频灾害都是慢性气候型**（洪涝 / 暴雨 / 干旱，年年~数年），故地图仍以红 / 橙为主；灰 / 淡灰（十年 / 百年）属稀有灾害（大地震等），在**表格 / 弹窗逐条**才出现，不会是「最频」那个。

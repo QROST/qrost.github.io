@@ -184,7 +184,7 @@
     const e = ENR[d.id] || ENR[String(d.id)] || null;
     const cd = deriveClimate(e);
     return {
-      ...d, enr: e, hazard: HAZ[d.prov] || null,
+      ...d, enr: e, hazard: (e && e.hazard) || HAZ[d.prov] || null,  // per-listing (prefecture×physics) → province fallback
       heating: (HAZ[d.prov] && HAZ[d.prov].heating) || null,
       heatingNote: (HAZ[d.prov] && HAZ[d.prov].heatingNote) || '',
       priceYuan, unitPrice: priceYuan / d.area, rentYear,
