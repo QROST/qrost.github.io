@@ -59,12 +59,12 @@
             <p class="mt-6 text-slate-600 leading-relaxed max-w-2xl">
                 <strong class="font-medium text-slate-800">121 套</strong>来自全国小城市、县城与度假区的二手房<strong class="font-medium text-slate-800">挂牌样本</strong>，覆盖 <strong class="font-medium text-slate-800">18 个省 / 直辖市</strong>。
                 便宜只是起点——这里把每套房的<strong class="font-medium text-slate-800">气候舒适度</strong>、<strong class="font-medium text-slate-800">冬夏气温</strong>、<strong class="font-medium text-slate-800">年降水</strong>、<strong class="font-medium text-slate-800">海拔</strong>、
-                到<strong class="font-medium text-slate-800">医院 / 火车站 / 机场 / 海岸</strong>的距离，以及<strong class="font-medium text-slate-800">省级自然灾害</strong>风险，
+                到<strong class="font-medium text-slate-800">医院 / 火车站 / 机场 / 海岸</strong>的距离，以及<strong class="font-medium text-slate-800">在地自然灾害</strong>风险，
                 和价格放进<strong class="font-medium text-slate-800">同一张表</strong>横向对比，帮你挑出住着舒服、风险可接受、又花得起的地方。
             </p>
             <p class="mt-4 text-sm text-slate-500 max-w-2xl">
                 数据更新于 <strong class="font-medium text-slate-700">2026-01 ~ 2026-04</strong>。每行是<strong class="font-medium text-slate-700">单一挂牌报价</strong>（往往是当地能找到的最便宜的房子），属轶事样本，
-                <strong class="font-medium text-slate-700">非市场指数</strong>；宜居与灾害多为<strong class="font-medium text-slate-700">区域/省级粗略口径</strong>，不构成投资或安家建议。口径见<a href="#methodology" class="text-emerald-700 underline underline-offset-2 hover:text-emerald-600">说明</a>。
+                <strong class="font-medium text-slate-700">非市场指数</strong>；宜居与灾害为<strong class="font-medium text-slate-700">粗略近似口径</strong>（灾害已细化到小区，仍含估算），不构成投资或安家建议。口径见<a href="#methodology" class="text-emerald-700 underline underline-offset-2 hover:text-emerald-600">说明</a>。
             </p>
         </div>
     </header>
@@ -151,7 +151,7 @@
         <!-- Table -->
         <section id="table" class="scroll-mt-20">
             <h2 class="text-xs font-semibold uppercase tracking-[0.15em] text-slate-400 mb-1">数据表 · 总信息源</h2>
-            <p class="text-slate-600 mb-5 max-w-3xl text-sm leading-relaxed">这张表是<strong class="text-slate-800">一切图表与地图的来源</strong>——价格、宜居（气温 / 降水 / 海拔 / 舒适与极端月数）、基础设施距离、省级灾害风险全部并列，便于横向对比。点击表头排序，用下方按钮切换<strong class="text-emerald-700">列分组</strong>，按省份筛选或搜索。所有派生指标实时计算。</p>
+            <p class="text-slate-600 mb-5 max-w-3xl text-sm leading-relaxed">这张表是<strong class="text-slate-800">一切图表与地图的来源</strong>——价格、宜居（气温 / 降水 / 海拔 / 舒适与极端月数）、基础设施距离、在地灾害风险全部并列，便于横向对比。点击表头排序，用下方按钮切换<strong class="text-emerald-700">列分组</strong>，按省份筛选或搜索。所有派生指标实时计算。</p>
             <div class="flex flex-wrap items-center gap-2 mb-3">
                 <span class="text-xs font-medium text-slate-400 mr-1 self-center">显示列</span>
                 <button data-group="live" class="group-chip">宜居</button>
@@ -198,7 +198,7 @@
                     <ul class="space-y-2 list-disc list-inside">
                         <li>每行是<strong class="text-slate-700">单一挂牌报价</strong>，多为当地最低价房源，<strong class="text-slate-700">不代表区域均价</strong>；价格含"约"，部分为公寓/度假盘，产权与流动性差异大。</li>
                         <li><strong class="text-slate-700">气候 / 海拔</strong>取自小区的<strong class="text-slate-700">定位坐标</strong>，而小区名常回退到<strong class="text-slate-700">街道 / 城市级</strong>，故为<strong class="text-slate-700">区域近似</strong>；周边设施在小城可能缺漏。</li>
-                        <li><strong class="text-slate-700">地震带 / 台风暴露 / 主要灾害</strong>为<strong class="text-slate-700">省级、定性</strong>口径（公开地理气候资料 + 应急管理部历年灾情的概括）。每种灾害都标<strong class="text-slate-700">复发频率</strong>——<strong>几乎年年 / 数年一遇 / 约十年一遇 / 数十年一遇 / 百年级罕见</strong>，因为"年年一次的台风"和"数十年一遇的大地震"完全不同；<strong class="text-slate-700">频率非严重度</strong>，严重度见悬浮说明。<strong class="text-slate-700">低温/严寒不计为灾害</strong>（属气候，已由宜居指标体现），仅保留会致灾的离散事件如暴雪、凝冻。此口径<strong class="text-slate-700">非点位灾害模型、非工程依据</strong>，仅供并排比较"这一带通常会出什么状况、多久一次"。</li>
+                        <li><strong class="text-slate-700">主要灾害·频率</strong>已细化到<strong class="text-slate-700">每个小区</strong>：先联网调研各<strong class="text-slate-700">地级市</strong>的真实灾情史（应急部风险普查 / 气象灾害年鉴 / 地方志 / 新闻，<strong class="text-slate-700">带来源</strong>）定「有哪些灾害」，再按小区<strong class="text-slate-700">坐标物理细化频率/适用</strong>——<strong class="text-slate-700">台风 / 风暴潮</strong>按离海岸距离（深内陆自动剔除）、<strong class="text-slate-700">地质灾害</strong>按地形起伏（平原剔除，但<strong>采煤沉陷</strong>型保留），气候型（暴雨 / 洪涝 / 干旱 / 暴雪 / 凝冻）保留区域级。每灾标<strong class="text-slate-700">复发频率</strong>——<strong>几乎年年 / 数年 / 约十年 / 数十年 / 百年级罕见</strong>（"年年的台风"≠"数十年的大地震"）；<strong class="text-slate-700">频率非严重度</strong>。地图着色取<strong class="text-slate-700">突发地球物理灾</strong>（地震 / 台风 / 风暴潮 / 地质灾害，随地点真实变化的那几类）的最频档，故沿海与地震山区偏红、安全内陆平原偏灰，表格 / 弹窗仍列全部灾害。<strong class="text-slate-700">低温严寒不计</strong>（属气候）。频率含估算成分，<strong class="text-slate-700">粗略近似、非点位工程模型</strong>，仅供并排比较"这一带通常出什么、多久一次"。</li>
                         <li>部分缺口由<strong class="text-slate-700">子代理联网调研</strong>补充（页内标「调研」，坐标仍由我们自行换算校验）。</li>
                         <li>仅供研究与好奇心，<strong class="text-slate-700">非投资、安家、法律或税务建议</strong>。</li>
                     </ul>
@@ -238,7 +238,7 @@
                     <div data-lm-pane="climate" class="hidden">
                         <div class="relative" style="height:300px"><canvas id="lm-climate-chart"></canvas></div>
                         <div id="lm-risk" class="mt-4 text-sm text-slate-600 leading-relaxed"></div>
-                        <p class="mt-2 text-xs text-slate-400">气候为 2014–2023 月度均值（Open-Meteo ERA5）；地震/台风为区域近似、省级灾害为公开资料定性概况，均非工程依据。</p>
+                        <p class="mt-2 text-xs text-slate-400">气候为 2014–2023 月度均值（Open-Meteo ERA5）；灾害类型据地市灾情史、频率按坐标物理细化到小区，仍为粗略近似、非工程依据。</p>
                     </div>
                 </div>
             </div>
