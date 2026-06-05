@@ -687,12 +687,16 @@
             const c = cells[params.dataIndex];
             const a = api.coord([c[0] - half, c[1] - half]);
             const b = api.coord([c[0] + half, c[1] + half]);
-            const x = Math.min(a[0], b[0]), y = Math.min(a[1], b[1]);
-            const w = Math.abs(b[0] - a[0]), h = Math.abs(b[1] - a[1]);
-            // +1px overlap masks sub-pixel seams between neighbouring cells
+            // Snap both corners to integer pixels: a cell's right/bottom edge and
+            // its neighbour's left/top edge derive from the SAME lng/lat (so the
+            // same api.coord output), thus round to the SAME integer — cells abut
+            // exactly. No overlap (which double-blends the 0.55 fill into a dark
+            // grid) and no sub-pixel gap (a light grid). Seam-free tiling.
+            const x0 = Math.round(Math.min(a[0], b[0])), y0 = Math.round(Math.min(a[1], b[1]));
+            const x1 = Math.round(Math.max(a[0], b[0])), y1 = Math.round(Math.max(a[1], b[1]));
             return {
               type: 'rect',
-              shape: { x: x - 0.5, y: y - 0.5, width: w + 1, height: h + 1 },
+              shape: { x: x0, y: y0, width: x1 - x0, height: y1 - y0 },
               style: { fill: c[2], opacity: 0.55 },
             };
           },
