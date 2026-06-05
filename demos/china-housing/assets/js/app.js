@@ -192,6 +192,7 @@
       elevation: e && e.elevation != null ? e.elevation : null,
       builtYear: e && e.builtYear != null ? e.builtYear : null,
       builtYearSrc: (e && e.builtYearSrc) || null,
+      builtYearApprox: !!(e && e.builtYearApprox),
       hospitalKm: poiKm(e, 'hospital'), trainKm: poiKm(e, 'train'),
       airportKm: poiKm(e, 'airport'), metroKm: poiKm(e, 'metro'),
       coastKm: e && e.risk ? e.risk.coastKm : poiKm(e, 'coast'),
@@ -889,8 +890,11 @@
     if (y == null) return '<span class="text-slate-300" title="完工年份未知（公开渠道未查到，未编造）">—<span class="ml-0.5 text-[0.6rem]">未知</span></span>';
     const age = Math.max(0, NOW_YEAR - y);
     const t = clamp(age / 45, 0, 1);
-    const title = `建成 ${y} 年 · 房龄 ${age} 年` + (d.builtYearSrc ? `\n来源：${d.builtYearSrc}` : '');
-    return `<span class="inline-block rounded px-1.5 py-0.5 text-xs font-medium" style="background:${mix(AGE_NEW, AGE_OLD, t)};color:#fff" title="${title.replace(/"/g, '&quot;')}">${age}年</span>`;
+    const ap = d.builtYearApprox;  // decade-level estimate → 约, dashed ring, same hue
+    const title = `${ap ? '约' : ''}建成 ${y} 年 · 房龄 ${ap ? '约 ' : ''}${age} 年${ap ? '（年代级估算，非精确）' : ''}`
+      + (d.builtYearSrc ? `\n来源：${d.builtYearSrc}` : '');
+    const ring = ap ? ';outline:1.5px dashed rgba(255,255,255,0.75);outline-offset:-3px' : '';
+    return `<span class="inline-block rounded px-1.5 py-0.5 text-xs font-medium" style="background:${mix(AGE_NEW, AGE_OLD, t)};color:#fff${ring}" title="${title.replace(/"/g, '&quot;')}">${ap ? '约' : ''}${age}年</span>`;
   }
   function climateCell(d) {
     if (!d.climateType) return '<span class="text-slate-300">—</span>';
