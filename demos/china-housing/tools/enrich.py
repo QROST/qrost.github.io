@@ -44,6 +44,12 @@ _SSL = ssl.create_default_context()
 
 POI_CATEGORIES = ["metro", "train", "airport", "hospital", "mall", "coast"]
 
+# Per-category sanity cap (km). The wide railway-station query (90km, for trains)
+# also returns subway-tagged stations that classify as "metro" — a station 90km
+# away is a DIFFERENT city's line, not the listing's metro. Cap metro hard; keep
+# train/airport uncapped (they are legitimately regional).
+_CAT_MAX_KM = {"metro": 12.0, "mall": 30.0, "hospital": 30.0}
+
 
 # ---------------------------------------------------------------------------
 # HTTP helpers (retry + backoff)
@@ -419,6 +425,8 @@ def pois_all(con, log):
                 if c.get("lat") is None:
                     continue
                 d = haversine(lat, lng, c["lat"], c["lon"])
+                if d > _CAT_MAX_KM.get(cat, 1e9):
+                    continue   # too far to be the listing's own metro/mall/hospital
                 if cat not in nearest or d < nearest[cat][3]:
                     nm = el["tags"].get("name") or el["tags"].get("name:zh") or "(未命名)"
                     nearest[cat] = (nm, round(c["lat"], 5), round(c["lon"], 5), d)
@@ -732,6 +740,8 @@ def refresh_refined_pois(con, log):
                 if ce.get("lat") is None:
                     continue
                 d = haversine(lat, lng, ce["lat"], ce["lon"])
+                if d > _CAT_MAX_KM.get(cat, 1e9):
+                    continue   # too far to be the listing's own metro/mall/hospital
                 if cat not in nearest or d < nearest[cat][3]:
                     nm = el["tags"].get("name") or el["tags"].get("name:zh") or "(未命名)"
                     nearest[cat] = (nm, round(ce["lat"], 5), round(ce["lon"], 5), d)
