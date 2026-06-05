@@ -357,6 +357,27 @@
   let echartsMap = null, mapReady = false, baseGeoOpt = null;
   const GEO_URL = 'https://geo.datav.aliyun.com/areas_v3/bound/100000_full.json';
 
+  // continuous basemap field (assets/data/field.js) — isotherm / rainfall /
+  // elevation raster + isolines, drawn UNDER the listing points.
+  const FIELD = window.HOUSING_FIELD || null;
+  const BASE_RAMPS = {
+    temp: ['#1d4ed8', '#0ea5e9', '#67e8f9', '#fde047', '#fb923c', '#dc2626'],
+    terrain: ['#dcfce7', '#86efac', '#ca8a04', '#b45309', '#78350f'],
+    precip: ['#fefce8', '#bae6fd', '#38bdf8', '#0284c7', '#1e3a8a'],
+  };
+  // available basemaps: 'none' + whatever the baked field provides
+  const BASE_LABELS = { none: '无底图', janTemp: '1月等温', julTemp: '7月等温', elevation: '海拔', annualPrecip: '年降水' };
+  let baseKey = 'none';
+
+  const rampColorAt = (ramp, t) => {
+    const cs = BASE_RAMPS[ramp] || BASE_RAMPS.temp;
+    t = clamp(t, 0, 1) * (cs.length - 1);
+    const i = Math.floor(t), f = t - i;
+    if (i >= cs.length - 1) return cs[cs.length - 1];
+    const hex = (h) => [1, 3, 5].map((k) => parseInt(h.slice(k, k + 2), 16));
+    return mix(hex(cs[i]), hex(cs[i + 1]), f);
+  };
+
   // cheaper homes render larger so affordable options pop
   const priceVals = DATA.map((d) => d.priceWan);
   const pMin = Math.min(...priceVals), pMax = Math.max(...priceVals);
@@ -376,16 +397,31 @@
     }));
   }
 
+  // basemap heatmap points + isoline line items for the active field
+  function baseLayers() {
+    const f = (baseKey !== 'none' && FIELD && FIELD.fields) ? FIELD.fields[baseKey] : null;
+    if (!f) return { heat: [], lines: [], vm: { min: 0, max: 1, ramp: 'temp' } };
+    const span = (f.max - f.min) || 1;
+    const lines = [];
+    Object.keys(f.isolines || {}).forEach((lvl) => {
+      const t = (parseFloat(lvl) - f.min) / span;
+      const color = rampColorAt(f.ramp, t);
+      f.isolines[lvl].forEach((seg) => lines.push({ coords: seg, lineStyle: { color } }));
+    });
+    return { heat: f.points, lines, vm: { min: f.min, max: f.max, ramp: f.ramp } };
+  }
+
   function renderMap() {
     if (!mapReady || !echartsMap) return;
     const dim = MAP_DIMS[dimKey];
     const data = mapSeriesData();
     const vals = data.map((p) => p.value[2]);
+    const bl = baseLayers();
     echartsMap.setOption({
       tooltip: {
         trigger: 'item',
         formatter: (p) => {
-          const d = p.data && p.data.d; if (!d) return p.name || '';
+          const d = p.data && p.data.d; if (!d) return '';
           const haz = d.hazard ? d.hazard.top.join('·') : '';
           return `<b>${cityLabel(d)}</b> · ${d.enr.geoLabel || ''}<br/>`
             + `<b style="color:#059669">${dim.label} ${dim.fmt(dim.get(d))}</b><br/>`
@@ -396,21 +432,63 @@
             + `<br/><span style="color:#10b981">点击查看卫星图 / 周边 / 气候 / 灾害</span>`;
         },
       },
-      visualMap: {
-        type: 'continuous', dimension: 2, seriesIndex: 0,
-        min: Math.min(...vals), max: Math.max(...vals),
-        left: 'left', bottom: 24, calculable: true,
-        text: dim.text, itemWidth: 14, itemHeight: 120,
-        inRange: { color: RAMPS[dim.ramp] }, textStyle: { color: C.slate500 },
-        formatter: (v) => dim.fmt(v),
-      },
-      series: [{
-        type: 'scatter', coordinateSystem: 'geo', zlevel: 2,
-        symbolSize: (val, params) => (params.data && params.data.size) || 9,
-        itemStyle: { borderColor: 'rgba(255,255,255,0.85)', borderWidth: 1, shadowBlur: 3, shadowColor: 'rgba(15,23,42,0.25)' },
-        emphasis: { scale: 1.5 },
-        data,
-      }],
+      visualMap: [
+        { // listing-point dimension (legend bottom-left)
+          type: 'continuous', dimension: 2, seriesIndex: 0,
+          min: Math.min(...vals), max: Math.max(...vals),
+          left: 'left', bottom: 24, calculable: true,
+          text: dim.text, itemWidth: 14, itemHeight: 120,
+          inRange: { color: RAMPS[dim.ramp] }, textStyle: { color: C.slate500 },
+          formatter: (v) => dim.fmt(v),
+        },
+        { // basemap field (drives heatmap colour) — legend rendered in HTML instead
+          type: 'continuous', seriesIndex: 1, show: false,
+          min: bl.vm.min, max: bl.vm.max, inRange: { color: BASE_RAMPS[bl.vm.ramp] },
+        },
+      ],
+      series: [
+        {
+          type: 'scatter', coordinateSystem: 'geo', zlevel: 3,
+          symbolSize: (val, params) => (params.data && params.data.size) || 9,
+          itemStyle: { borderColor: 'rgba(255,255,255,0.9)', borderWidth: 1, shadowBlur: 3, shadowColor: 'rgba(15,23,42,0.3)' },
+          emphasis: { scale: 1.5 },
+          data,
+        },
+        {
+          type: 'heatmap', coordinateSystem: 'geo', zlevel: 1,
+          pointSize: 20, blurSize: 16, minOpacity: 0, maxOpacity: 0.62,
+          data: bl.heat,
+        },
+        {
+          type: 'lines', coordinateSystem: 'geo', zlevel: 2, polyline: true, silent: true,
+          lineStyle: { width: 1, opacity: 0.45, join: 'round' },
+          data: bl.lines,
+        },
+      ],
+    });
+    renderBaseLegend();
+  }
+
+  function renderBaseLegend() {
+    const box = document.getElementById('base-legend');
+    if (!box) return;
+    const f = (baseKey !== 'none' && FIELD && FIELD.fields) ? FIELD.fields[baseKey] : null;
+    if (!f) { box.style.display = 'none'; box.innerHTML = ''; return; }
+    box.style.display = 'flex';
+    const grad = (BASE_RAMPS[f.ramp] || BASE_RAMPS.temp).join(',');
+    box.innerHTML = `<span class="text-xs text-slate-500 whitespace-nowrap">${f.label}底图</span>`
+      + `<span class="text-[11px] text-slate-400 tabular-nums">${fmtInt(f.min)}</span>`
+      + `<span class="inline-block h-2.5 w-28 rounded" style="background:linear-gradient(90deg,${grad})"></span>`
+      + `<span class="text-[11px] text-slate-400 tabular-nums">${fmtInt(f.max)}${f.unit}</span>`;
+  }
+
+  function baseTabs() {
+    document.querySelectorAll('[data-base]').forEach((b) => {
+      const k = b.dataset.base;
+      const avail = k === 'none' || (FIELD && FIELD.fields && FIELD.fields[k]);
+      b.textContent = BASE_LABELS[k] || k;
+      b.style.display = avail ? '' : 'none';
+      styleTab(b, k === baseKey, 'base-tab');
     });
   }
 
@@ -463,6 +541,7 @@
       mapReady = true;
       renderMap();
       dimTabs();
+      baseTabs();
       echartsMap.on('click', (p) => {
         if (p && p.data && p.data.d) openListing(p.data.d.id);
       });
@@ -798,6 +877,8 @@
       b.addEventListener('click', () => { provMetric = b.dataset.prov; renderProvinceChart(); }));
     document.querySelectorAll('[data-dim]').forEach((b) =>
       b.addEventListener('click', () => { dimKey = b.dataset.dim; renderMap(); dimTabs(); }));
+    document.querySelectorAll('[data-base]').forEach((b) =>
+      b.addEventListener('click', () => { baseKey = b.dataset.base; renderMap(); baseTabs(); }));
     const zi = document.getElementById('map-zoom-in'), zo = document.getElementById('map-zoom-out'), zr = document.getElementById('map-zoom-reset');
     if (zi) zi.addEventListener('click', () => zoomBy(1.45));
     if (zo) zo.addEventListener('click', () => zoomBy(1 / 1.45));
