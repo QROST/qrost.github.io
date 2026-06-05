@@ -21,7 +21,9 @@
  *   janTemp/julTemp  Jan & Jul mean ℃        annualPrecip  Σ monthly mm
  *   comfortMonths    months with 15≤tmean≤26  coldMonths  tmean<0
  *   hotMonths        tmax≥33                  extremeMonths cold+hot
- *   comfortScore     0–100, transparent (see methodology)
+ *   tempRange        warmest-month mean − coldest-month mean (℃, 年温差)
+ *   climateType      label from (annualMean, tempRange): 四季如春 / 常年温暖 /
+ *                    冬暖夏凉 / 夏热冬暖 / 长夏无冬 / 四季分明 / 常年凉冷 / 温和过渡
  *   hospitalKm/trainKm/airportKm/coastKm   nearest baked POI distance
  */
 (function () {
@@ -68,15 +70,44 @@
     const coldMonths = rows.filter((a) => a[0] != null && a[0] < 0).length;        // freezing average month
     const hotMonths = rows.filter((a) => a[1] != null && a[1] >= 33).length;        // dominantly hot month
     const extremeMonths = coldMonths + hotMonths;
-    // Transparent 0–100: 70% weight on pleasant months, 30% on absence of extremes.
-    const comfortScore = Math.round(clamp(
-      (comfortMonths / 12) * 70 + (1 - extremeMonths / 12) * 30, 0, 100));
+    // 年温差 = warmest-month mean − coldest-month mean (transparent, unit ℃).
+    const monthMeans = rows.map((a) => a[0]).filter((v) => v != null);
+    const tMin = monthMeans.length ? Math.min(...monthMeans) : null;
+    const tMax = monthMeans.length ? Math.max(...monthMeans) : null;
+    const tempRange = (tMin != null && tMax != null) ? Math.round((tMax - tMin) * 10) / 10 : null;
     return {
       janTemp: jan ? jan[0] : null, julTemp: jul ? jul[0] : null,
       annualPrecip: Math.round(annualPrecip), annualMean,
-      comfortMonths, coldMonths, hotMonths, extremeMonths, comfortScore,
+      comfortMonths, coldMonths, hotMonths, extremeMonths,
+      tMin, tMax, tempRange, climateType: climateType(tMin, tMax, annualMean),
     };
   }
+
+  // Climate archetype from two transparent, unit-ed numbers: 年均温 (Ta, ℃) and
+  // 年温差 R = warmest−coldest month mean (℃). Thresholds are published in the
+  // methodology so the label is fully reproducible — no opaque composite score.
+  function climateType(tMin, tMax, Ta) {
+    if (tMin == null || tMax == null || Ta == null) return null;
+    const R = tMax - tMin;
+    if (R >= 20) return '四季分明';                       // 大温差：冷冬热夏
+    if (tMin >= 18) return '长夏无冬';                     // 冬天也暖（一直热）
+    if (tMax <= 18) return '常年凉冷';                     // 夏天也凉（一直冷）
+    if (tMax >= 27 && tMin >= 8) return '夏热冬暖';        // 华南：热夏暖冬
+    if (R <= 12 && Ta >= 14 && Ta <= 22) return '四季如春'; // 温差小且温和（昆明型）
+    if (R <= 14 && tMin >= 12) return '常年温暖';          // 冬不冷、夏不酷的稳定暖区（西双版纳型）
+    if (tMax <= 26) return '冬暖夏凉';                     // 夏凉冬不寒
+    return '温和过渡';
+  }
+  const CLIMATE_STYLE = {
+    '四季如春': ['#dcfce7', '#166534'],
+    '常年温暖': ['#fef3c7', '#b45309'],
+    '冬暖夏凉': ['#cffafe', '#0e7490'],
+    '夏热冬暖': ['#ffedd5', '#9a3412'],
+    '长夏无冬': ['#fee2e2', '#b91c1c'],
+    '四季分明': ['#dbeafe', '#1d4ed8'],
+    '常年凉冷': ['#e2e8f0', '#475569'],
+    '温和过渡': ['#f1f5f9', '#64748b'],
+  };
 
   const DATA = RAW.map((d) => {
     const priceYuan = d.priceWan * 10000;
@@ -125,23 +156,25 @@
     return `rgb(${c[0]},${c[1]},${c[2]})`;
   }
   const SLATE = [203, 213, 225], EMER = [5, 150, 105], RED = [225, 60, 60], AMB = [245, 158, 11];
+  const TEAL = [20, 184, 166], INDIGO = [67, 56, 202];
   const lerpColor = (t) => mix(SLATE, EMER, t);                  // legacy yield ramp
   const comfortColor = (t) => mix(RED, EMER, t);                 // 0=red(bad) → 1=green(good)
   const badColor = (t) => mix(EMER, RED, t);                     // 0=green(good) → 1=red(bad)
+  const rangeColor = (t) => mix(TEAL, INDIGO, t);               // 年温差: 0=teal(平稳) → 1=indigo(四季分明)
 
   // ---- KPI cards ---------------------------------------------------------
   function renderKPIs() {
     const provinces = new Set(DATA.map((d) => d.prov));
     const cheapest = DATA.reduce((a, b) => (b.priceWan < a.priceWan ? b : a));
-    const climD = DATA.filter((d) => d.comfortScore != null);
-    const comfiest = climD.reduce((a, b) => (b.comfortScore > a.comfortScore ? b : a), climD[0]);
+    const climD = DATA.filter((d) => d.tempRange != null);
+    const steadiest = climD.reduce((a, b) => (b.tempRange < a.tempRange ? b : a), climD[0]);
     const mildest = climD.reduce((a, b) => (b.extremeMonths < a.extremeMonths ? b : a), climD[0]);
     const cards = [
       { label: '房源样本', value: DATA.length, unit: '套', sub: '社区级二手房挂牌' },
       { label: '覆盖省份', value: provinces.size, unit: '省/市', sub: '东北 → 华南' },
       { label: '最低总价', value: fmtWan(cheapest.priceWan), sub: cityLabel(cheapest) },
       { label: '单价中位数', value: fmtInt(median(DATA.map((d) => d.unitPrice))), unit: '元/㎡', sub: '挂牌单价中位' },
-      { label: '气候最舒适', value: comfiest ? comfiest.comfortScore : '—', unit: '宜居分', sub: comfiest ? `${cityLabel(comfiest)} · 舒适${comfiest.comfortMonths}个月` : '—' },
+      { label: '气候最平稳', value: steadiest ? steadiest.tempRange : '—', unit: '℃年温差', sub: steadiest ? `${cityLabel(steadiest)} · ${steadiest.climateType || ''}` : '—' },
       { label: '极端天气最少', value: mildest ? mildest.extremeMonths : '—', unit: '个月', sub: mildest ? `${cityLabel(mildest)} · 全年最温和` : '—' },
     ];
     document.getElementById('kpi-grid').innerHTML = cards.map((c) => `
@@ -170,19 +203,20 @@
 
   let scatterChart, rankChart, provChart;
 
-  // ---- overview scatter: 总价(便宜) × 宜居指数, coloured by 极端天气 -----------
+  // ---- overview scatter: 总价(便宜) × 舒适月数, coloured by 年温差(季节波动) ----
   function renderScatter() {
     const ctx = document.getElementById('scatter-chart');
     if (!ctx || !window.Chart) return;
-    const pts = DATA.filter((d) => d.comfortScore != null)
-      .map((d) => ({ x: d.priceWan, y: d.comfortScore, d }));
-    const exMax = Math.max(1, ...pts.map((p) => p.d.extremeMonths));
+    const pts = DATA.filter((d) => d.comfortMonths != null && d.tempRange != null)
+      .map((d) => ({ x: d.priceWan, y: d.comfortMonths, d }));
+    const rMax = Math.max(1, ...pts.map((p) => p.d.tempRange));
     scatterChart = new Chart(ctx, {
       type: 'scatter',
       data: {
         datasets: [{
           data: pts, parsing: false, pointRadius: 5, pointHoverRadius: 8,
-          backgroundColor: pts.map((p) => badColor(p.d.extremeMonths / exMax)),
+          // bluer = 大年温差(四季分明) · tealer = 小年温差(平稳)
+          backgroundColor: pts.map((p) => rangeColor(p.d.tempRange / rMax)),
           borderColor: 'rgba(255,255,255,0.85)', borderWidth: 1,
         }],
       },
@@ -197,7 +231,7 @@
                 const d = it.raw.d;
                 return [
                   `总价 ${fmtWan(d.priceWan)} · ${d.area}㎡ · 单价 ${fmtInt(d.unitPrice)}元/㎡`,
-                  `宜居指数 ${d.comfortScore} · 舒适${d.comfortMonths}月 · 极端${d.extremeMonths}月`,
+                  `${d.climateType || '—'} · 年温差 ${d.tempRange}℃ · 舒适${d.comfortMonths}月 · 极端${d.extremeMonths}月`,
                   `1月 ${fmtTemp(d.janTemp)} · 7月 ${fmtTemp(d.julTemp)} · 海拔 ${d.elevation == null ? '—' : fmtInt(d.elevation) + 'm'}`,
                 ];
               },
@@ -206,7 +240,7 @@
         },
         scales: {
           x: { title: { display: true, text: '二手房总价（万元）— 越左越便宜' }, grid: { color: C.grid }, ticks: { callback: (v) => v + '万' } },
-          y: { title: { display: true, text: '宜居指数（越上越舒适）' }, grid: { color: C.grid }, min: 0, max: 100 },
+          y: { title: { display: true, text: '舒适月数（月均温 15–26℃ 的月份）— 越上越多' }, grid: { color: C.grid }, min: 0, max: 12 },
         },
       },
     });
@@ -216,7 +250,7 @@
   const RANK_METRICS = {
     cheap: { label: '总价最低', key: 'priceWan', dir: 1, axis: '总价（万元）', fmt: fmtWan, color: (v, n) => badColor(v / n) },
     unit: { label: '单价最低', key: 'unitPrice', dir: 1, axis: '单价（元/㎡）', fmt: (v) => fmtInt(v), color: (v, n) => badColor(v / n) },
-    comfort: { label: '最宜居', key: 'comfortScore', dir: -1, axis: '宜居指数（0–100）', fmt: (v) => fmtInt(v), color: (v, n) => comfortColor(v / n) },
+    comfort: { label: '舒适月最多', key: 'comfortMonths', dir: -1, axis: '舒适月数（15–26℃）', fmt: (v) => v + '月', color: (v, n) => comfortColor(v / (n || 1)) },
     mild: { label: '极端天气最少', key: 'extremeMonths', dir: 1, axis: '极端天气月数', fmt: (v) => v + '月', color: (v, n) => comfortColor(1 - v / (n || 1)) },
     yield: { label: '回报率最高', key: 'yieldPct', dir: -1, axis: '毛租金回报率（%）', fmt: fmtPct, color: (v, n) => lerpColor(v / n) },
   };
@@ -251,7 +285,7 @@
               label: (it) => {
                 const d = top[it.dataIndex];
                 return [`${m.label}：${m.fmt(d[m.key])}`,
-                  `总价 ${fmtWan(d.priceWan)} · ${d.area}㎡ · 宜居 ${d.comfortScore} · 1月${fmtTemp(d.janTemp)}/7月${fmtTemp(d.julTemp)}`];
+                  `总价 ${fmtWan(d.priceWan)} · ${d.area}㎡ · ${d.climateType || '—'} · 年温差${d.tempRange}℃ · 1月${fmtTemp(d.janTemp)}/7月${fmtTemp(d.julTemp)}`];
               },
             },
           },
@@ -279,7 +313,7 @@
       return {
         prov, count: rows.length,
         avgPrice: avg('priceWan'), avgUnit: avg('unitPrice'), avgYield: avg('yieldPct'),
-        avgRent: avg('rent'), avgComfort: avg('comfortScore'), avgExtreme: avg('extremeMonths'),
+        avgRent: avg('rent'), avgRange: avg('tempRange'), avgExtreme: avg('extremeMonths'),
       };
     });
   }
@@ -287,10 +321,10 @@
   const PROV_METRICS = {
     avgUnit: { label: '均单价', axis: '样本均单价（元/㎡）', fmt: (v) => fmtInt(v), dir: -1, color: C.emeraldSoft },
     avgPrice: { label: '均总价', axis: '样本均总价（万元）', fmt: fmtWan, dir: -1, color: C.emeraldSoft },
-    avgComfort: { label: '均宜居', axis: '样本均宜居指数', fmt: (v) => fmtInt(v), dir: 1, color: 'rgba(5,150,105,0.55)' },
+    avgRange: { label: '均年温差', axis: '样本均年温差（℃，越小越平稳）', fmt: (v) => fmtInt(v) + '℃', dir: -1, color: 'rgba(67,56,202,0.5)' },
     avgExtreme: { label: '极端月', axis: '样本均极端天气月数', fmt: (v) => v.toFixed(1) + '月', dir: -1, color: 'rgba(225,90,60,0.5)' },
   };
-  let provMetric = 'avgComfort';
+  let provMetric = 'avgRange';
 
   function renderProvinceChart() {
     const ctx = document.getElementById('province-chart');
@@ -318,7 +352,7 @@
                 const a = agg[it.dataIndex];
                 return [`${m.label} ${m.fmt(a[provMetric])}`,
                   `样本 ${a.count}套 · 均总价 ${fmtWan(a.avgPrice)} · 均单价 ${fmtInt(a.avgUnit)}元/㎡`,
-                  `均宜居 ${fmtInt(a.avgComfort)} · 均极端 ${a.avgExtreme.toFixed(1)}月`];
+                  `均年温差 ${fmtInt(a.avgRange)}℃ · 均极端 ${a.avgExtreme.toFixed(1)}月`];
               },
             },
           },
@@ -344,9 +378,10 @@
     temp: ['#1d4ed8', '#0ea5e9', '#67e8f9', '#fde047', '#fb923c', '#dc2626'],
     precip: ['#fef9c3', '#bae6fd', '#38bdf8', '#0284c7', '#1e3a8a'],
     terrain: ['#166534', '#65a30d', '#ca8a04', '#b45309', '#78350f'],
+    range: ['#5eead4', '#67e8f9', '#60a5fa', '#6366f1', '#4338ca'],   // small swing → large swing
   };
   const MAP_DIMS = {
-    comfortScore: { label: '宜居指数', get: (d) => d.comfortScore, fmt: (v) => fmtInt(v), ramp: 'comfyHigh', text: ['宜居', '严苛'] },
+    tempRange: { label: '年温差·季节波动', get: (d) => d.tempRange, fmt: (v) => fmtInt(v) + '℃', ramp: 'range', text: ['温差大', '温差小'] },
     unitPrice: { label: '单价', get: (d) => d.unitPrice, fmt: (v) => fmtInt(v) + '元/㎡', ramp: 'cheapGood', text: ['贵', '便宜'] },
     priceWan: { label: '总价', get: (d) => d.priceWan, fmt: fmtWan, ramp: 'cheapGood', text: ['贵', '便宜'] },
     janTemp: { label: '1月均温·等温', get: (d) => d.janTemp, fmt: fmtTemp, ramp: 'temp', text: ['热', '冷'] },
@@ -355,7 +390,7 @@
     elevation: { label: '海拔', get: (d) => d.elevation, fmt: (v) => fmtInt(v) + 'm', ramp: 'terrain', text: ['高', '低'] },
     extremeMonths: { label: '极端天气', get: (d) => d.extremeMonths, fmt: (v) => v + '个月', ramp: 'cheapGood', text: ['多', '少'] },
   };
-  let dimKey = 'comfortScore';
+  let dimKey = 'tempRange';
   let echartsMap = null, mapReady = false, baseGeoOpt = null;
   const GEO_URL = 'https://geo.datav.aliyun.com/areas_v3/bound/100000_full.json';
 
@@ -430,7 +465,7 @@
           return `<b>${cityLabel(d)}</b> · ${d.enr.geoLabel || ''}<br/>`
             + `<b style="color:#059669">${dim.label} ${dim.fmt(dim.get(d))}</b><br/>`
             + `总价 ${fmtWan(d.priceWan)} · ${d.area}㎡ · 单价 ${fmtInt(d.unitPrice)}元/㎡<br/>`
-            + `宜居 ${d.comfortScore} · 1月${fmtTemp(d.janTemp)}/7月${fmtTemp(d.julTemp)} · 海拔 ${d.elevation == null ? '—' : fmtInt(d.elevation) + 'm'} · 供暖 ${d.heating || '—'}<br/>`
+            + `${d.climateType || '—'} · 年温差${d.tempRange == null ? '—' : d.tempRange + '℃'} · 1月${fmtTemp(d.janTemp)}/7月${fmtTemp(d.julTemp)} · 海拔 ${d.elevation == null ? '—' : fmtInt(d.elevation) + 'm'} · 供暖 ${d.heating || '—'}<br/>`
             + `医院 ${fmtKm(d.hospitalKm)} · 火车 ${fmtKm(d.trainKm)} · 地震 ${d.seismic || '—'} · 台风 ${d.typhoon || '—'}`
             + (haz ? `<br/><span style="color:#b45309">最频灾害：${haz}</span>` : '')
             + `<br/><span style="color:#10b981">点击查看卫星图 / 周边 / 气候 / 灾害</span>`;
@@ -571,8 +606,8 @@
 
   const yMinT = Math.min(...DATA.map((d) => d.yieldPct));
   const yMaxT = Math.max(...DATA.map((d) => d.yieldPct));
-  const csMax = 100;
   const exMaxT = Math.max(1, ...DATA.map((d) => nz(d.extremeMonths, 0)));
+  const rangeMaxT = Math.max(1, ...DATA.map((d) => nz(d.tempRange, 0)));
 
   function pill(html, bg, fg) {
     return `<span class="inline-block rounded px-1.5 py-0.5 text-xs font-medium" style="background:${bg};color:${fg || '#0f172a'}">${html}</span>`;
@@ -599,10 +634,16 @@
     const [bg, fg] = HEATING_STYLE[d.heating] || ['#f1f5f9', '#475569'];
     return `<span class="inline-block rounded px-1.5 py-0.5 text-xs font-medium" style="background:${bg};color:${fg}" title="${d.heatingNote}">${d.heating}</span>`;
   }
-  function scoreCell(v) {
+  function rangeCell(v) {
     if (v == null) return '<span class="text-slate-300">—</span>';
-    const t = v / csMax;
-    return pill(fmtInt(v), comfortColor(t), t > 0.5 ? '#fff' : '#0f172a');
+    const t = clamp(v / rangeMaxT, 0, 1);
+    return pill(trim(v.toFixed(1)) + '℃', rangeColor(t), t > 0.45 ? '#fff' : '#0f172a');
+  }
+  function climateCell(d) {
+    if (!d.climateType) return '<span class="text-slate-300">—</span>';
+    const [bg, fg] = CLIMATE_STYLE[d.climateType] || ['#f1f5f9', '#64748b'];
+    const title = `年均温 ${d.annualMean == null ? '—' : Math.round(d.annualMean) + '℃'} · 年温差 ${d.tempRange}℃ · 最冷月 ${fmtTemp(d.tMin)} / 最热月 ${fmtTemp(d.tMax)}`;
+    return `<span class="inline-block rounded px-1.5 py-0.5 text-xs font-medium" style="background:${bg};color:${fg}" title="${title}">${d.climateType}</span>`;
   }
   function extremeCell(v) {
     if (v == null) return '<span class="text-slate-300">—</span>';
@@ -625,7 +666,8 @@
     { key: 'area', label: '面积㎡', group: 'price', num: true, get: (d) => d.area, cell: (d) => trim(d.area.toFixed(1)) },
     { key: 'unitPrice', label: '单价 元/㎡', group: 'price', num: true, get: (d) => d.unitPrice, cell: (d) => fmtInt(d.unitPrice) },
     { key: 'rent', label: '月租 元', group: 'price', num: true, get: (d) => d.rent, cell: (d) => fmtInt(d.rent) },
-    { key: 'comfortScore', label: '宜居指数', group: 'live', num: true, get: (d) => nz(d.comfortScore, -1), cell: (d) => scoreCell(d.comfortScore) },
+    { key: 'climateType', label: '气候类型', group: 'live', str: true, get: (d) => d.climateType || '', cell: (d) => climateCell(d) },
+    { key: 'tempRange', label: '年温差', group: 'live', num: true, get: (d) => nz(d.tempRange, -1), cell: (d) => rangeCell(d.tempRange) },
     { key: 'janTemp', label: '1月均温', group: 'live', num: true, get: (d) => nz(d.janTemp, -999), cell: (d) => fmtTemp(d.janTemp) },
     { key: 'julTemp', label: '7月均温', group: 'live', num: true, get: (d) => nz(d.julTemp, -999), cell: (d) => fmtTemp(d.julTemp) },
     { key: 'comfortMonths', label: '舒适月', group: 'live', num: true, get: (d) => nz(d.comfortMonths, -1), cell: (d) => d.comfortMonths == null ? '—' : d.comfortMonths + '月' },
@@ -646,7 +688,7 @@
       ? `<button data-open="${d.id}" class="text-emerald-700 hover:text-emerald-900 font-medium whitespace-nowrap">查看</button>`
       : '<span class="text-slate-300" title="暂无定位数据">—</span>' },
   ];
-  const tstate = { sortKey: 'comfortScore', sortDir: -1, prov: '', q: '', groups: new Set(['live', 'infra', 'risk']) };
+  const tstate = { sortKey: 'comfortMonths', sortDir: -1, prov: '', q: '', groups: new Set(['live', 'infra', 'risk']) };
 
   const visibleCols = () => COLS.filter((c) => c.group === 'core' || c.group === 'price' || tstate.groups.has(c.group));
 
@@ -732,7 +774,8 @@
       ['区/镇', (d) => d.dist], ['小区', (d) => d.loc], ['总价(万元)', (d) => d.priceWan],
       ['面积(㎡)', (d) => d.area], ['单价(元/㎡)', (d) => Math.round(d.unitPrice)],
       ['月租(元)', (d) => d.rent],
-      ['宜居指数', (d) => d.comfortScore], ['1月均温(℃)', (d) => d.janTemp], ['7月均温(℃)', (d) => d.julTemp],
+      ['气候类型', (d) => d.climateType || ''], ['年温差(℃)', (d) => d.tempRange],
+      ['1月均温(℃)', (d) => d.janTemp], ['7月均温(℃)', (d) => d.julTemp],
       ['舒适月数', (d) => d.comfortMonths], ['极端月数', (d) => d.extremeMonths],
       ['年降水(mm)', (d) => d.annualPrecip], ['海拔(m)', (d) => d.elevation],
       ['供暖', (d) => d.heating || ''],
@@ -782,7 +825,7 @@
     const e = d.enr;
     document.getElementById('lm-title').textContent = cityLabel(d);
     document.getElementById('lm-sub').innerHTML =
-      `${d.prov} · ${d.city}${d.dist ? ' · ' + d.dist : ''} &nbsp;|&nbsp; 总价 ${fmtWan(d.priceWan)} · ${d.area}㎡ · 宜居 ${d.comfortScore} ` +
+      `${d.prov} · ${d.city}${d.dist ? ' · ' + d.dist : ''} &nbsp;|&nbsp; 总价 ${fmtWan(d.priceWan)} · ${d.area}㎡ · ${d.climateType || ''} ` +
       `<span class="ml-1 inline-block rounded bg-slate-100 text-slate-500 px-1.5 py-0.5 text-xs">定位 ${e.geoLabel || '?'}</span>`;
     const tabs = { sat: '🛰 卫星图', near: '📍 周边', climate: '🌡 气候 / 灾害' };
     document.querySelectorAll('[data-lm-tab]').forEach((b) => { b.textContent = tabs[b.dataset.lmTab]; });
@@ -840,7 +883,7 @@
   function lmRenderClimate(d) {
     const e = d.enr, risk = e.risk, cl = e.climate;
     const riskLine = risk
-      ? `<span class="font-medium text-slate-800">气候与风险（粗略）</span>：${risk.summary} · 宜居指数 ${d.comfortScore}（舒适 ${d.comfortMonths} 月 / 极端 ${d.extremeMonths} 月）`
+      ? `<span class="font-medium text-slate-800">气候与风险（粗略）</span>：${risk.summary} · <strong class="text-slate-700">${d.climateType || '—'}</strong>（年温差 ${d.tempRange == null ? '—' : d.tempRange + '℃'}：最冷月 ${fmtTemp(d.tMin)} / 最热月 ${fmtTemp(d.tMax)}；舒适 ${d.comfortMonths} 月 / 极端 ${d.extremeMonths} 月）`
       : '';
     let heatLine = '';
     if (d.heating) {
