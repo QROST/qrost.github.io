@@ -605,10 +605,10 @@
     }));
   }
 
-  // basemap heatmap points + isoline line items for the active field
+  // basemap value-coloured grid cells + isoline line items for the active field
   function baseLayers() {
     const f = (baseKey !== 'none' && FIELD && FIELD.fields) ? FIELD.fields[baseKey] : null;
-    if (!f) return { heat: [], lines: [], vm: { min: 0, max: 1, ramp: 'temp' } };
+    if (!f) return { cells: [], lines: [], step: 1, vm: { min: 0, max: 1, ramp: 'temp' } };
     const span = (f.max - f.min) || 1;
     const lines = [];
     Object.keys(f.isolines || {}).forEach((lvl) => {
@@ -616,7 +616,13 @@
       const color = rampColorAt(f.ramp, t);
       f.isolines[lvl].forEach((seg) => lines.push({ coords: seg, lineStyle: { color } }));
     });
-    return { heat: f.points, lines, vm: { min: f.min, max: f.max, ramp: f.ramp } };
+    // Each grid sample → a cell coloured by its OWN value (not density):
+    // [lng, lat, fillColour]. Drawn as a geo-projected rect that scales with
+    // zoom — a true scalar field, unlike ECharts heatmap (which colours by
+    // accumulated alpha, painting every isolated point an inner-red→outer-blue
+    // blob and saturating dense areas to red regardless of the real value).
+    const cells = f.points.map((p) => [p[0], p[1], rampColorAt(f.ramp, (p[2] - f.min) / span)]);
+    return { cells, lines, step: FIELD.step || 1, vm: { min: f.min, max: f.max, ramp: f.ramp } };
   }
 
   function renderMap() {
@@ -633,12 +639,12 @@
     }
     const bl = baseLayers();
     const ramp = RAMPS[dim.ramp] || RAMPS.range;
-    // Build series/visualMap conditionally: a heatmap series REQUIRES its
-    // controlling visualMap, and an EMPTY heatmap (no base layer, the default
-    // baseKey='none') makes ECharts _renderOnGeo crash reading 'targetVisuals'.
-    // So only add the heatmap/isolines/base-visualMap when a base field is
-    // active; replaceMerge drops them cleanly when toggled back to 无底图.
-    const hasBase = bl.heat.length > 0;
+    // Only attach the field cells + isolines when a base field is active;
+    // replaceMerge drops them cleanly when toggled back to 无底图. (The old
+    // ECharts heatmap path also needed this guard to dodge an empty-heatmap
+    // 'targetVisuals' crash; the custom value-cell path below doesn't, but the
+    // guard stays correct.)
+    const hasBase = bl.cells.length > 0;
     // Same-quantity unification: when the point dimension and the basemap field
     // encode the SAME variable (both janTemp/julTemp/elevation/annualPrecip),
     // they must share ONE scale — otherwise identical colours map to different
@@ -668,24 +674,36 @@
       },
     ];
     if (hasBase) {
+      const cells = bl.cells, half = bl.step / 2;
       series.push(
         {
-          type: 'heatmap', coordinateSystem: 'geo', zlevel: 1,
-          pointSize: 20, blurSize: 16, minOpacity: 0, maxOpacity: 0.62,
-          data: bl.heat,
+          // Value-coloured field cells: each grid sample → a geo-projected rect
+          // filled with ITS value's colour. api.coord reprojects on every zoom /
+          // pan so cells scale with the map (no fixed-pixel dot artefact), and
+          // the fill encodes the true value directly (computed in baseLayers via
+          // rampColorAt over the field's domain) — no density blur, no blob.
+          type: 'custom', coordinateSystem: 'geo', zlevel: 1, silent: true, animation: false,
+          renderItem: (params, api) => {
+            const c = cells[params.dataIndex];
+            const a = api.coord([c[0] - half, c[1] - half]);
+            const b = api.coord([c[0] + half, c[1] + half]);
+            const x = Math.min(a[0], b[0]), y = Math.min(a[1], b[1]);
+            const w = Math.abs(b[0] - a[0]), h = Math.abs(b[1] - a[1]);
+            // +1px overlap masks sub-pixel seams between neighbouring cells
+            return {
+              type: 'rect',
+              shape: { x: x - 0.5, y: y - 0.5, width: w + 1, height: h + 1 },
+              style: { fill: c[2], opacity: 0.55 },
+            };
+          },
+          data: cells,
         },
         {
           type: 'lines', coordinateSystem: 'geo', zlevel: 2, polyline: true, silent: true,
-          lineStyle: { width: 1, opacity: 0.45, join: 'round' },
+          lineStyle: { width: 1, opacity: 0.5, join: 'round' },
           data: bl.lines,
         },
       );
-      visualMap.push({ // basemap field (drives heatmap colour) — legend rendered in HTML
-        type: 'continuous', seriesIndex: 1, show: false,
-        // share the unified domain when the field matches the point dimension
-        min: sameQuantity ? vmin : bl.vm.min, max: sameQuantity ? vmax : bl.vm.max,
-        inRange: { color: BASE_RAMPS[bl.vm.ramp] || BASE_RAMPS.temp },
-      });
     }
     echartsMap.setOption({
       series,
