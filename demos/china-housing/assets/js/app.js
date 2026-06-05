@@ -105,7 +105,7 @@
     return {
       janTemp: jan ? jan[0] : null, julTemp: jul ? jul[0] : null,
       annualPrecip: Math.round(annualPrecip), annualMean,
-      comfortMonths, coldMonths, hotMonths, extremeMonths,
+      comfortMonths, coldMonths, hotMonths, extremeMonths, comfortSet, extremeSet,
       comfortRange: monthRanges(comfortSet), extremeRange: monthRanges(extremeSet),
       tMin, tMax, tempRange, climateType: classifyClimate(tMin, tMax, annualMean),
     };
@@ -355,10 +355,14 @@
     DATA.forEach((d) => { if (!map.has(d.prov)) map.set(d.prov, []); map.get(d.prov).push(d); });
     return [...map.entries()].map(([prov, rows]) => {
       const avg = (k) => { const xs = rows.map((r) => r[k]).filter((v) => v != null); return xs.length ? xs.reduce((s, v) => s + v, 0) / xs.length : null; };
+      // province-level extreme range = UNION of every listing's extreme months
+      // ("which months are extreme somewhere in this province").
+      const exUnion = [...new Set(rows.flatMap((r) => r.extremeSet || []))].sort((a, b) => a - b);
       return {
         prov, count: rows.length,
         avgPrice: avg('priceWan'), avgUnit: avg('unitPrice'), avgYield: avg('yieldPct'),
         avgRent: avg('rent'), avgRange: avg('tempRange'), avgExtreme: avg('extremeMonths'),
+        extremeRange: monthRanges(exUnion),
       };
     });
   }
@@ -367,7 +371,7 @@
     avgUnit: { label: '均单价', axis: '样本均单价（元/㎡）', fmt: (v) => fmtInt(v), dir: -1, color: C.emeraldSoft },
     avgPrice: { label: '均总价', axis: '样本均总价（万元）', fmt: fmtWan, dir: -1, color: C.emeraldSoft },
     avgRange: { label: '均年温差', axis: '样本均年温差（℃，越小越平稳）', fmt: (v) => fmtInt(v) + '℃', dir: -1, color: 'rgba(67,56,202,0.5)' },
-    avgExtreme: { label: '极端月', axis: '样本均极端天气月数', fmt: (v) => v.toFixed(1) + '月', dir: -1, color: 'rgba(225,90,60,0.5)' },
+    avgExtreme: { label: '极端月', axis: '柱长=样本均极端月数；月份范围（省内并集）标在省名旁', fmt: (v) => v.toFixed(1) + '月', dir: -1, color: 'rgba(185,28,28,0.5)' },
     avgComfort: { label: '均年温差', axis: '样本均年温差（℃，越小越平稳）', fmt: (v) => fmtInt(v) + '℃', dir: -1, color: 'rgba(67,56,202,0.5)' },
   };
   let provMetric = 'avgRange';
@@ -383,7 +387,7 @@
     const cfg = {
       type: 'bar',
       data: {
-        labels: agg.map((a) => a.prov),
+        labels: agg.map((a) => provMetric === 'avgExtreme' ? `${a.prov} ${a.extremeRange}` : a.prov),
         datasets: [{
           data: agg.map((a) => a[metricKey]),
           backgroundColor: m.color, borderColor: C.emerald, borderWidth: 1,
@@ -398,7 +402,10 @@
             callbacks: {
               label: (it) => {
                 const a = agg[it.dataIndex];
-                return [`${m.label} ${m.fmt(a[metricKey])}`,
+                const head = provMetric === 'avgExtreme'
+                  ? `极端月份（省内并集）：${a.extremeRange} · 均 ${a.avgExtreme.toFixed(1)}月/小区`
+                  : `${m.label} ${m.fmt(a[metricKey])}`;
+                return [head,
                   `样本 ${a.count}套 · 均总价 ${fmtWan(a.avgPrice)} · 均单价 ${fmtInt(a.avgUnit)}元/㎡`,
                   `均年温差 ${fmtInt(a.avgRange)}℃ · 均极端 ${a.avgExtreme.toFixed(1)}月`];
               },
