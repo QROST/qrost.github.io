@@ -605,24 +605,19 @@
     }));
   }
 
-  // basemap value-coloured grid cells + isoline line items for the active field
+  // basemap grid samples + isoline segments for the active field — RAW geometry
+  // and values only; fill / line colours are assigned in renderMap so the field
+  // can share the point dimension's domain when the two use the same ramp.
   function baseLayers() {
     const f = (baseKey !== 'none' && FIELD && FIELD.fields) ? FIELD.fields[baseKey] : null;
     if (!f) return { cells: [], lines: [], step: 1, vm: { min: 0, max: 1, ramp: 'temp' } };
-    const span = (f.max - f.min) || 1;
     const lines = [];
     Object.keys(f.isolines || {}).forEach((lvl) => {
-      const t = (parseFloat(lvl) - f.min) / span;
-      const color = rampColorAt(f.ramp, t);
-      f.isolines[lvl].forEach((seg) => lines.push({ coords: seg, lineStyle: { color } }));
+      const level = parseFloat(lvl);
+      f.isolines[lvl].forEach((seg) => lines.push({ coords: seg, level }));
     });
-    // Each grid sample → a cell coloured by its OWN value (not density):
-    // [lng, lat, fillColour]. Drawn as a geo-projected rect that scales with
-    // zoom — a true scalar field, unlike ECharts heatmap (which colours by
-    // accumulated alpha, painting every isolated point an inner-red→outer-blue
-    // blob and saturating dense areas to red regardless of the real value).
-    const cells = f.points.map((p) => [p[0], p[1], rampColorAt(f.ramp, (p[2] - f.min) / span)]);
-    return { cells, lines, step: FIELD.step || 1, vm: { min: f.min, max: f.max, ramp: f.ramp } };
+    // cells = raw [lng, lat, value] grid samples; coloured in renderMap below
+    return { cells: f.points, lines, step: FIELD.step || 1, vm: { min: f.min, max: f.max, ramp: f.ramp } };
   }
 
   function renderMap() {
@@ -645,15 +640,21 @@
     // 'targetVisuals' crash; the custom value-cell path below doesn't, but the
     // guard stays correct.)
     const hasBase = bl.cells.length > 0;
-    // Same-quantity unification: when the point dimension and the basemap field
-    // encode the SAME variable (both janTemp/julTemp/elevation/annualPrecip),
-    // they must share ONE scale — otherwise identical colours map to different
-    // numbers (a 19℃ point is max-red on the listings' own [-21,19] scale while
-    // the field's max-red is 24.6℃). Widen the point domain to the union of both
-    // so colour↔value is identical across layers; the duplicate basemap legend
-    // is then suppressed (renderBaseLegend) and the left visualMap labels both.
-    const sameQuantity = hasBase && baseKey === dimKey;
-    if (sameQuantity) { vmin = Math.min(vmin, bl.vm.min); vmax = Math.max(vmax, bl.vm.max); }
+    // Shared-ramp unification: when the point dimension and the basemap field use
+    // the SAME colour ramp (both temperature / both elevation / both rainfall),
+    // that ramp reads as ONE absolute scale, so identical colours MUST mean
+    // identical values across the two layers. Auto-scaling each to its own range
+    // breaks it — e.g. point=7月 over [19.7,29.3] vs field=1月 over [-29.4,24.6]
+    // paints a 20℃ point deep-blue while a 20℃ field patch is near-red. Widen the
+    // point domain to the union of both and colour the field over that same
+    // domain (fmin/fmax); the duplicate basemap legend is then suppressed.
+    const fieldRamp = bl.vm.ramp;
+    const sameRamp = hasBase && dim.ramp === fieldRamp;
+    let fmin = bl.vm.min, fmax = bl.vm.max;
+    if (sameRamp) {
+      vmin = Math.min(vmin, bl.vm.min); vmax = Math.max(vmax, bl.vm.max);
+      fmin = vmin; fmax = vmax;
+    }
     const series = [
       {
         type: 'scatter', coordinateSystem: 'geo', zlevel: 3,
@@ -674,22 +675,25 @@
       },
     ];
     if (hasBase) {
-      const cells = bl.cells, half = bl.step / 2;
+      const cells = bl.cells, half = bl.step / 2, fspan = (fmax - fmin) || 1;
+      // colour every cell / isoline ONCE over [fmin,fmax] — the shared domain
+      // when sameRamp, otherwise the field's own range
+      const colorAt = (v) => rampColorAt(fieldRamp, (v - fmin) / fspan);
+      const cellColors = cells.map((c) => colorAt(c[2]));
       series.push(
         {
           // Value-coloured field cells: each grid sample → a geo-projected rect
-          // filled with ITS value's colour. api.coord reprojects on every zoom /
-          // pan so cells scale with the map (no fixed-pixel dot artefact), and
-          // the fill encodes the true value directly (computed in baseLayers via
-          // rampColorAt over the field's domain) — no density blur, no blob.
+          // filled with the colour of ITS value. api.coord reprojects on every
+          // zoom / pan so cells scale with the map (no fixed-pixel dot artefact),
+          // and the fill encodes the true value (no density blur, no blob).
           type: 'custom', coordinateSystem: 'geo', zlevel: 1, silent: true, animation: false,
           renderItem: (params, api) => {
             const c = cells[params.dataIndex];
             const a = api.coord([c[0] - half, c[1] - half]);
             const b = api.coord([c[0] + half, c[1] + half]);
-            // Snap both corners to integer pixels: a cell's right/bottom edge and
-            // its neighbour's left/top edge derive from the SAME lng/lat (so the
-            // same api.coord output), thus round to the SAME integer — cells abut
+            // Snap both corners to integer pixels: a cell's far edge and its
+            // neighbour's near edge derive from the SAME lng/lat (so the same
+            // api.coord output), thus round to the SAME integer — cells abut
             // exactly. No overlap (which double-blends the 0.55 fill into a dark
             // grid) and no sub-pixel gap (a light grid). Seam-free tiling.
             const x0 = Math.round(Math.min(a[0], b[0])), y0 = Math.round(Math.min(a[1], b[1]));
@@ -697,7 +701,7 @@
             return {
               type: 'rect',
               shape: { x: x0, y: y0, width: x1 - x0, height: y1 - y0 },
-              style: { fill: c[2], opacity: 0.55 },
+              style: { fill: cellColors[params.dataIndex], opacity: 0.55 },
             };
           },
           data: cells,
@@ -705,7 +709,7 @@
         {
           type: 'lines', coordinateSystem: 'geo', zlevel: 2, polyline: true, silent: true,
           lineStyle: { width: 1, opacity: 0.5, join: 'round' },
-          data: bl.lines,
+          data: bl.lines.map((ln) => ({ coords: ln.coords, lineStyle: { color: colorAt(ln.level) } })),
         },
       );
     }
@@ -735,10 +739,12 @@
     const box = document.getElementById('base-legend');
     if (!box) return;
     const f = (baseKey !== 'none' && FIELD && FIELD.fields) ? FIELD.fields[baseKey] : null;
-    // Hide this 2nd legend when the field matches the active point dimension —
-    // the left visualMap already shows this exact (now unified) scale; two bars
-    // for one quantity with mismatched numbers is the confusion we're removing.
-    if (!f || baseKey === dimKey) { box.style.display = 'none'; box.innerHTML = ''; return; }
+    const dimRamp = (MAP_DIMS[dimKey] || {}).ramp;
+    // Hide this 2nd legend when the field shares the point dimension's colour ramp
+    // — the left visualMap is then the single unified scale for both layers
+    // (sameRamp in renderMap). Two bars for one colour scale with mismatched
+    // numbers is exactly the confusion we're removing.
+    if (!f || (dimRamp && f.ramp === dimRamp)) { box.style.display = 'none'; box.innerHTML = ''; return; }
     box.style.display = 'flex';
     const grad = (BASE_RAMPS[f.ramp] || BASE_RAMPS.temp).join(',');
     box.innerHTML = `<span class="text-xs text-slate-500 whitespace-nowrap">${f.label}底图</span>`
