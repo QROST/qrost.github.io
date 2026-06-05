@@ -358,11 +358,13 @@
       // province-level extreme range = UNION of every listing's extreme months
       // ("which months are extreme somewhere in this province").
       const exUnion = [...new Set(rows.flatMap((r) => r.extremeSet || []))].sort((a, b) => a - b);
+      const extremeByMonth = Array.from({ length: 12 }, (_, i) =>
+        rows.reduce((s, r) => s + ((r.extremeSet || []).includes(i + 1) ? 1 : 0), 0));  // 该省当月有多少小区极端
       return {
         prov, count: rows.length,
         avgPrice: avg('priceWan'), avgUnit: avg('unitPrice'), avgYield: avg('yieldPct'),
         avgRent: avg('rent'), avgRange: avg('tempRange'), avgExtreme: avg('extremeMonths'),
-        extremeRange: monthRanges(exUnion),
+        extremeRange: monthRanges(exUnion), extremeByMonth,
       };
     });
   }
@@ -376,11 +378,55 @@
   };
   let provMetric = 'avgRange';
 
+  // avgExtreme view: a 12-month strip per province (x = 月份 1–12). A cell is
+  // shaded when that month is extreme for some listing — depth = share of the
+  // province's listings affected. Clearer than equal-length bars all from 0.
+  function renderProvinceStrip() {
+    const canvas = document.getElementById('province-chart');
+    if (!canvas) return;
+    if (provChart) { provChart.destroy(); provChart = null; }
+    canvas.style.display = 'none';
+    let strip = document.getElementById('province-strip');
+    if (!strip) {
+      strip = document.createElement('div');
+      strip.id = 'province-strip';
+      strip.className = 'absolute inset-0 overflow-auto';
+      canvas.parentElement.appendChild(strip);
+    }
+    strip.style.display = '';
+    const GT = 'grid-template-columns: 3.4rem repeat(12, 1fr)';
+    const agg = aggregateByProvince()
+      .sort((a, b) => (b.avgExtreme || 0) - (a.avgExtreme || 0) || a.prov.localeCompare(b.prov, 'zh'));
+    const head = `<div class="grid items-center gap-px text-[0.6rem] text-slate-400 sticky top-0 bg-white z-10 pb-1" style="${GT}"><div></div>`
+      + Array.from({ length: 12 }, (_, i) => `<div class="text-center">${i + 1}</div>`).join('') + '</div>';
+    const body = agg.map((a) => {
+      const cells = (a.extremeByMonth || []).map((c, i) => {
+        if (!c) return '<div class="h-5 rounded-sm bg-slate-100/70"></div>';
+        const bg = severityColor(0.4 + 0.6 * (c / a.count));
+        return `<div class="h-5 rounded-sm" style="background:${bg}" title="${a.prov} ${i + 1}月：${c}/${a.count} 套严寒/酷热"></div>`;
+      }).join('');
+      return `<div class="grid items-center gap-px py-px" style="${GT}"><div class="text-xs text-slate-600 truncate pr-1" title="${a.prov} · 极端 ${a.extremeRange}">${a.prov}</div>${cells}</div>`;
+    }).join('');
+    strip.innerHTML = head + body
+      + '<div class="text-[0.62rem] text-slate-400 mt-2 leading-relaxed">横轴=月份；色块=该省当月有小区严寒(月均&lt;0℃)或酷热(月均高温≥33℃)，越深=占比越高，空白=无极端。</div>';
+  }
+
   function renderProvinceChart() {
     const ctx = document.getElementById('province-chart');
     if (!ctx || !window.Chart) return;
     const m = PROV_METRICS[provMetric] || PROV_METRICS.avgRange;
     if (!m) return;
+    if (provMetric === 'avgExtreme') {   // month-strip instead of a 0-based bar
+      renderProvinceStrip();
+      document.querySelectorAll('[data-prov]').forEach((b) => {
+        const pm = PROV_METRICS[b.dataset.prov]; if (!pm) return;
+        b.textContent = pm.label; styleTab(b, b.dataset.prov === provMetric, 'prov-tab');
+      });
+      return;
+    }
+    ctx.style.display = '';
+    const stripEl = document.getElementById('province-strip');
+    if (stripEl) stripEl.style.display = 'none';
     const metricKey = provMetric === 'avgComfort' ? 'avgRange' : provMetric;
     const agg = aggregateByProvince().filter((a) => a[metricKey] != null)
       .sort((a, b) => (b[metricKey] - a[metricKey]) * (m.dir > 0 ? 1 : -1));
