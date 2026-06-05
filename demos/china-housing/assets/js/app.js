@@ -639,6 +639,15 @@
     // So only add the heatmap/isolines/base-visualMap when a base field is
     // active; replaceMerge drops them cleanly when toggled back to 无底图.
     const hasBase = bl.heat.length > 0;
+    // Same-quantity unification: when the point dimension and the basemap field
+    // encode the SAME variable (both janTemp/julTemp/elevation/annualPrecip),
+    // they must share ONE scale — otherwise identical colours map to different
+    // numbers (a 19℃ point is max-red on the listings' own [-21,19] scale while
+    // the field's max-red is 24.6℃). Widen the point domain to the union of both
+    // so colour↔value is identical across layers; the duplicate basemap legend
+    // is then suppressed (renderBaseLegend) and the left visualMap labels both.
+    const sameQuantity = hasBase && baseKey === dimKey;
+    if (sameQuantity) { vmin = Math.min(vmin, bl.vm.min); vmax = Math.max(vmax, bl.vm.max); }
     const series = [
       {
         type: 'scatter', coordinateSystem: 'geo', zlevel: 3,
@@ -673,7 +682,9 @@
       );
       visualMap.push({ // basemap field (drives heatmap colour) — legend rendered in HTML
         type: 'continuous', seriesIndex: 1, show: false,
-        min: bl.vm.min, max: bl.vm.max, inRange: { color: BASE_RAMPS[bl.vm.ramp] || BASE_RAMPS.temp },
+        // share the unified domain when the field matches the point dimension
+        min: sameQuantity ? vmin : bl.vm.min, max: sameQuantity ? vmax : bl.vm.max,
+        inRange: { color: BASE_RAMPS[bl.vm.ramp] || BASE_RAMPS.temp },
       });
     }
     echartsMap.setOption({
@@ -702,7 +713,10 @@
     const box = document.getElementById('base-legend');
     if (!box) return;
     const f = (baseKey !== 'none' && FIELD && FIELD.fields) ? FIELD.fields[baseKey] : null;
-    if (!f) { box.style.display = 'none'; box.innerHTML = ''; return; }
+    // Hide this 2nd legend when the field matches the active point dimension —
+    // the left visualMap already shows this exact (now unified) scale; two bars
+    // for one quantity with mismatched numbers is the confusion we're removing.
+    if (!f || baseKey === dimKey) { box.style.display = 'none'; box.innerHTML = ''; return; }
     box.style.display = 'flex';
     const grad = (BASE_RAMPS[f.ramp] || BASE_RAMPS.temp).join(',');
     box.innerHTML = `<span class="text-xs text-slate-500 whitespace-nowrap">${f.label}底图</span>`
