@@ -338,50 +338,48 @@
   };
   let rankKey = 'comfort';
 
+  // Top-50 ranking as a scrollable HTML list. Climate metrics (comfort / mild)
+  // render a 365-day mini strip; price/yield metrics render a CSS magnitude bar.
   function renderRankings() {
     const ctx = document.getElementById('rank-chart');
-    if (!ctx || !window.Chart) return;
+    if (!ctx) return;
     const m = RANK_METRICS[rankKey] || RANK_METRICS.comfort;
     if (!m) return;
-    const pool = DATA.filter((d) => d[m.key] != null);
-    const top = [...pool].sort((a, b) => (a[m.key] - b[m.key]) * m.dir).slice(0, 15);
-    const labels = top.map((d, i) => `${i + 1}. ${cityLabel(d)}`);
-    const values = top.map((d) => d[m.key]);
-    const maxV = Math.max(...values, 1);
-    const cfg = {
-      type: 'bar',
-      data: {
-        labels,
-        datasets: [{
-          data: values,
-          backgroundColor: values.map((v) => m.color(v, maxV)),
-          borderRadius: 4, barThickness: 'flex', maxBarThickness: 18,
-        }],
-      },
-      options: {
-        indexAxis: 'y', responsive: true, maintainAspectRatio: false,
-        plugins: {
-          legend: { display: false },
-          tooltip: {
-            callbacks: {
-              title: (it) => it[0].label.replace(/^\d+\.\s*/, ''),
-              label: (it) => {
-                const d = top[it.dataIndex];
-                return [`${m.label}：${m.fmt(d[m.key])}`,
-                  `总价 ${fmtWan(d.priceWan)} · ${d.area}㎡ · ${d.climateType || '—'} · 年温差${d.tempRange}℃ · 1月${fmtTemp(d.janTemp)}/7月${fmtTemp(d.julTemp)}`];
-              },
-            },
-          },
-        },
-        scales: {
-          x: { title: { display: true, text: m.axis }, grid: { color: C.grid },
-            ticks: { callback: (v) => { const n = Number(v); return Number.isFinite(n) ? m.fmt(n) : v; } } },
-          y: { grid: { display: false }, ticks: { font: { size: 11 } } },
-        },
-      },
-    };
     if (rankChart) { rankChart.destroy(); rankChart = null; }
-    rankChart = new Chart(ctx, cfg);
+    ctx.style.display = 'none';
+    let host = document.getElementById('rank-strip');
+    if (!host) {
+      host = document.createElement('div');
+      host.id = 'rank-strip';
+      host.className = 'absolute inset-0 overflow-auto';
+      ctx.parentElement.appendChild(host);
+    }
+    host.style.display = '';
+    const isStrip = (rankKey === 'comfort' || rankKey === 'mild');
+    const isC = rankKey === 'comfort';
+    const skey = isStrip ? (isC ? 'comfortDayCount' : 'extremeDayCount') : m.key;
+    const pool = DATA.filter((d) => isStrip ? (d.daily && d[skey] != null) : d[m.key] != null);
+    const top = [...pool].sort((a, b) => (a[skey] - b[skey]) * m.dir).slice(0, 50);
+    const maxV = Math.max(...top.map((d) => d[m.key] || 0), 1);
+    const GT = 'grid-template-columns: 1.6rem minmax(4.5rem, 9rem) 1fr 3.6rem';
+    const colHdr = isStrip ? (isC ? '舒适日段（绿）' : '极端日段（红）') : m.axis.replace(/（.*/, '');
+    const head = `<div class="grid items-center gap-2 text-[0.6rem] text-slate-400 sticky top-0 bg-white z-10 pb-1" style="${GT}"><div>#</div><div>小区</div><div>${colHdr}</div><div class="text-right">${isStrip ? (isC ? '舒适' : '极端') : ''}</div></div>`;
+    const body = top.map((d, i) => {
+      let vis, val;
+      if (isStrip) {
+        vis = miniDayStrip(isC ? d.daily.comfortDays : d.daily.extremeDays, isC ? '#059669' : '#dc2626',
+          (isC ? '舒适 ' : '极端 ') + ((isC ? d.comfortRange : d.extremeRange) || '无'), '100%');
+        val = isC ? d.comfortDayCount + '天' : (d.extremeDayCount === 0 ? '无' : d.extremeDayCount + '天');
+      } else {
+        vis = `<div class="h-3.5 rounded-sm" style="width:${Math.max(2, (d[m.key] / maxV) * 100)}%;background:${m.color(d[m.key], maxV)}"></div>`;
+        val = m.fmt(d[m.key]);
+      }
+      return `<div class="grid items-center gap-2 py-0.5" style="${GT}"><div class="text-xs text-slate-400 tabular-nums">${i + 1}</div>`
+        + `<div class="text-xs text-slate-700 truncate" title="${cityLabel(d)} · ${d.prov}">${cityLabel(d)}</div>`
+        + `<div>${vis}</div>`
+        + `<div class="text-right text-xs text-slate-500 tabular-nums">${val}</div></div>`;
+    }).join('');
+    host.innerHTML = head + body;
     document.querySelectorAll('[data-rank]').forEach((b) => {
       const rm = RANK_METRICS[b.dataset.rank];
       if (!rm) return;
@@ -849,10 +847,10 @@
   })();
   // Fixed-width 1–12-month strip with coloured blocks at the given day-of-year
   // ranges ([[s,e],…]; a run wrapping the year-end is split across the Jan–Dec axis).
-  function miniDayStrip(ranges, color, title) {
+  function miniDayStrip(ranges, color, title, width) {
     const blocks = (ranges || []).flatMap(([s, e]) => (s <= e ? [[s, e]] : [[s, 365], [1, e]]))
       .map(([s, e]) => `<div class="absolute top-0 bottom-0" style="left:${(s - 1) / 365 * 100}%;width:${(e - s + 1) / 365 * 100}%;background:${color};border-radius:1px"></div>`).join('');
-    return `<div class="relative h-3.5 rounded-sm" style="width:112px;${_MONTH_GRID}" title="${title}">${blocks}</div>`;
+    return `<div class="relative h-3.5 rounded-sm" style="width:${width || '112px'};${_MONTH_GRID}" title="${title}">${blocks}</div>`;
   }
 
   // comfort / extreme cells: a mini 365-day strip — green = comfortable days,
