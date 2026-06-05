@@ -58,11 +58,17 @@ setTimeout(() => {
   T('table head', /宜居指数/.test(ids['table-head']._html));
   T('table body', (ids['table-body']._html || '').length > 1000);
   T('table count 121', /显示 121/.test(ids['table-count'].textContent));
+  T('table head heating+freq', /供暖/.test(ids['table-head']._html) && /主要灾害·频率/.test(ids['table-head']._html));
+  const HZ = w.HOUSING_HAZARDS || {};
+  T('heating 4 tiers', new Set(Object.values(HZ).map((p) => p.heating)).size === 4);
+  T('no cold-as-hazard', !Object.values(HZ).some((p) => p.hazards.some((h) => /低温|冻害/.test(h.type))));
+  T('hazard freq explicit', Object.values(HZ).every((p) => p.hazards.every((h) => /^(年年|数年|十年|数十年|百年)$/.test(h.freqShort))));
+  T('table body heating cell', /集中供暖|无·湿冷|无·冬暖|部分供暖/.test(ids['table-body']._html));
   try { selCache['[data-dim]'].forEach((b) => b.fire('click')); T('map dims', true); } catch (e) { T('map dims — ' + e.message, false); }
   try { selCache['[data-base]'].forEach((b) => b.fire('click')); T('basemaps (incl isolines+heatmap)', true); } catch (e) { T('basemaps — ' + e.message, false); }
   try { selCache['[data-prov]'].forEach((b) => b.fire('click')); selCache['[data-rank]'].forEach((b) => b.fire('click')); T('prov+rank', true); } catch (e) { T('prov+rank — ' + e.message, false); }
   try { selCache['[data-group]'].forEach((b) => b.fire('click')); ['janTemp', 'hospitalKm', 'seismic', 'hazard', 'comfortScore', 'prov'].forEach((col) => ids['table-head'].fire('click', { target: { closest: () => ({ dataset: { col } }) } })); T('group+sorts', true); } catch (e) { T('group+sorts — ' + e.message, false); }
-  try { ids['table-body'].fire('click', { target: { closest: () => ({ dataset: { open: '65' } }) } }); selCache['[data-lm-tab]'].find((b) => b.dataset.lmTab === 'climate').fire('click'); T('modal climate+hazard', /历史灾害概况/.test(ids['lm-risk']._html)); } catch (e) { T('modal — ' + e.message, false); }
+  try { ids['table-body'].fire('click', { target: { closest: () => ({ dataset: { open: '65' } }) } }); selCache['[data-lm-tab]'].find((b) => b.dataset.lmTab === 'climate').fire('click'); T('modal climate+hazard+供暖', /历史灾害概况/.test(ids['lm-risk']._html) && /冬季供暖/.test(ids['lm-risk']._html)); } catch (e) { T('modal — ' + e.message, false); }
   let ok = true; for (const [n, p] of checks) { if (!p) ok = false; console.log((p ? 'PASS' : 'FAIL') + ' · ' + n); }
   console.log(ok ? '\nSMOKE_OK' : '\nSMOKE_FAIL'); process.exit(ok ? 0 : 1);
 }, 150);

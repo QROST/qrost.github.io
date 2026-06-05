@@ -85,6 +85,8 @@
     const cd = deriveClimate(e);
     return {
       ...d, enr: e, hazard: HAZ[d.prov] || null,
+      heating: (HAZ[d.prov] && HAZ[d.prov].heating) || null,
+      heatingNote: (HAZ[d.prov] && HAZ[d.prov].heatingNote) || '',
       priceYuan, unitPrice: priceYuan / d.area, rentYear,
       yieldPct: (rentYear / priceYuan) * 100, payback: priceYuan / rentYear,
       elevation: e && e.elevation != null ? e.elevation : null,
@@ -422,13 +424,14 @@
         trigger: 'item',
         formatter: (p) => {
           const d = p.data && p.data.d; if (!d) return '';
-          const haz = d.hazard ? d.hazard.top.join('·') : '';
+          const top0 = d.hazard && d.hazard.hazards[0];
+          const haz = top0 ? `${top0.type}·${top0.freqLabel}` : '';
           return `<b>${cityLabel(d)}</b> · ${d.enr.geoLabel || ''}<br/>`
             + `<b style="color:#059669">${dim.label} ${dim.fmt(dim.get(d))}</b><br/>`
             + `总价 ${fmtWan(d.priceWan)} · ${d.area}㎡ · 单价 ${fmtInt(d.unitPrice)}元/㎡<br/>`
-            + `宜居 ${d.comfortScore} · 1月${fmtTemp(d.janTemp)}/7月${fmtTemp(d.julTemp)} · 海拔 ${d.elevation == null ? '—' : fmtInt(d.elevation) + 'm'}<br/>`
+            + `宜居 ${d.comfortScore} · 1月${fmtTemp(d.janTemp)}/7月${fmtTemp(d.julTemp)} · 海拔 ${d.elevation == null ? '—' : fmtInt(d.elevation) + 'm'} · 供暖 ${d.heating || '—'}<br/>`
             + `医院 ${fmtKm(d.hospitalKm)} · 火车 ${fmtKm(d.trainKm)} · 地震 ${d.seismic || '—'} · 台风 ${d.typhoon || '—'}`
-            + (haz ? `<br/><span style="color:#b45309">主要灾害：${haz}</span>` : '')
+            + (haz ? `<br/><span style="color:#b45309">最频灾害：${haz}</span>` : '')
             + `<br/><span style="color:#10b981">点击查看卫星图 / 周边 / 气候 / 灾害</span>`;
         },
       },
@@ -554,7 +557,16 @@
   // ---- table (master data source) ----------------------------------------
   const SEISMIC_ORD = { '高': 4, '较高': 3, '中': 2, '低': 1 };
   const TYPH_ORD = { '高': 4, '中': 3, '弱': 2, '极低': 1 };
-  const FREQ_COLOR = { 3: '#dc2626', 2: '#ea580c', 1: '#d97706', 0: '#94a3b8' };
+  // recurrence-interval buckets: 5=几乎年年 … 1=百年级罕见 (frequency, not severity)
+  const FREQ_COLOR = { 5: '#dc2626', 4: '#ea580c', 3: '#d97706', 2: '#a16207', 1: '#94a3b8' };
+  // central-heating tiers (秦岭-淮河线). ord sorts 集中供暖 high → 无·湿冷 low.
+  const HEATING_ORD = { '集中供暖': 3, '部分供暖': 2, '无·冬暖': 1, '无·湿冷': 0 };
+  const HEATING_STYLE = {
+    '集中供暖': ['#dcfce7', '#166534'],  // green — heated
+    '部分供暖': ['#fef9c3', '#854d0e'],  // amber — transition
+    '无·冬暖': ['#f1f5f9', '#475569'],   // slate — warm, no need
+    '无·湿冷': ['#fee2e2', '#b91c1c'],   // red — cold-damp, no heating (夹心层)
+  };
 
   const yMinT = Math.min(...DATA.map((d) => d.yieldPct));
   const yMaxT = Math.max(...DATA.map((d) => d.yieldPct));
@@ -572,10 +584,19 @@
   }
   function hazardCell(d) {
     if (!d.hazard) return '<span class="text-slate-300">—</span>';
-    const tags = d.hazard.hazards.slice(0, 3).map((h) =>
-      `<span style="color:${FREQ_COLOR[h.freq]}">${h.type}</span>`).join('<span class="text-slate-300"> · </span>');
-    const full = d.hazard.hazards.map((h) => `${h.type}(${h.freqLabel})`).join('、');
-    return `<span title="${d.hazard.headline}｜${full}">${tags}</span>`;
+    const hs = d.hazard.hazards;
+    // lead with each hazard's recurrence interval so 年年/十年/百年 are explicit
+    const tags = hs.slice(0, 2).map((h) =>
+      `<span style="color:${FREQ_COLOR[h.freq]}">${h.type}<span class="text-[0.65rem] opacity-80">·${h.freqShort}</span></span>`)
+      .join('<span class="text-slate-300"> </span>');
+    const more = hs.length > 2 ? `<span class="text-slate-400 text-[0.65rem]"> +${hs.length - 2}</span>` : '';
+    const full = hs.map((h) => `${h.type}：${h.freqLabel}（${h.note}）`).join('\n');
+    return `<span title="${d.hazard.headline}\n${full}">${tags}${more}</span>`;
+  }
+  function heatingCell(d) {
+    if (!d.heating) return '<span class="text-slate-300">—</span>';
+    const [bg, fg] = HEATING_STYLE[d.heating] || ['#f1f5f9', '#475569'];
+    return `<span class="inline-block rounded px-1.5 py-0.5 text-xs font-medium" style="background:${bg};color:${fg}" title="${d.heatingNote}">${d.heating}</span>`;
   }
   function scoreCell(v) {
     if (v == null) return '<span class="text-slate-300">—</span>';
@@ -610,13 +631,14 @@
     { key: 'extremeMonths', label: '极端月', group: 'live', num: true, get: (d) => nz(d.extremeMonths, 99), cell: (d) => extremeCell(d.extremeMonths) },
     { key: 'annualPrecip', label: '年降水mm', group: 'live', num: true, get: (d) => nz(d.annualPrecip, -1), cell: (d) => d.annualPrecip == null ? '—' : fmtInt(d.annualPrecip) },
     { key: 'elevation', label: '海拔m', group: 'live', num: true, get: (d) => nz(d.elevation, -1), cell: (d) => d.elevation == null ? '—' : fmtInt(d.elevation) },
+    { key: 'heating', label: '供暖', group: 'live', get: (d) => (d.heating != null ? HEATING_ORD[d.heating] : -1), cell: (d) => heatingCell(d) },
     { key: 'hospitalKm', label: '医院km', group: 'infra', num: true, get: (d) => nz(d.hospitalKm, 1e9), cell: (d) => fmtKm(d.hospitalKm) },
     { key: 'trainKm', label: '火车km', group: 'infra', num: true, get: (d) => nz(d.trainKm, 1e9), cell: (d) => fmtKm(d.trainKm) },
     { key: 'airportKm', label: '机场km', group: 'infra', num: true, get: (d) => nz(d.airportKm, 1e9), cell: (d) => fmtKm(d.airportKm) },
     { key: 'coastKm', label: '海岸km', group: 'infra', num: true, get: (d) => nz(d.coastKm, 1e9), cell: (d) => fmtKm(d.coastKm) },
     { key: 'seismic', label: '地震带', group: 'risk', get: (d) => SEISMIC_ORD[d.seismic] || 0, cell: (d) => bandCell(d.seismic, 'seismic') },
     { key: 'typhoon', label: '台风', group: 'risk', get: (d) => TYPH_ORD[d.typhoon] || 0, cell: (d) => bandCell(d.typhoon, 'typhoon') },
-    { key: 'hazard', label: '主要灾害', group: 'risk', get: (d) => d.hazard ? d.hazard.hazards[0].freq * 10 + d.hazard.hazards.length : 0, cell: (d) => hazardCell(d) },
+    { key: 'hazard', label: '主要灾害·频率', group: 'risk', get: (d) => d.hazard ? d.hazard.hazards[0].freq * 10 + d.hazard.hazards.length : 0, cell: (d) => hazardCell(d) },
     { key: 'yieldPct', label: '毛回报', group: 'invest', num: true, get: (d) => d.yieldPct, cell: (d) => yieldCell(d) },
     { key: 'payback', label: '回本年', group: 'invest', num: true, get: (d) => d.payback, cell: (d) => fmtYrs(d.payback) },
     { key: '_act', label: '详情', group: 'core', act: true, cell: (d) => d.enr
@@ -712,10 +734,11 @@
       ['宜居指数', (d) => d.comfortScore], ['1月均温(℃)', (d) => d.janTemp], ['7月均温(℃)', (d) => d.julTemp],
       ['舒适月数', (d) => d.comfortMonths], ['极端月数', (d) => d.extremeMonths],
       ['年降水(mm)', (d) => d.annualPrecip], ['海拔(m)', (d) => d.elevation],
+      ['供暖', (d) => d.heating || ''],
       ['医院(km)', (d) => d.hospitalKm], ['火车站(km)', (d) => d.trainKm],
       ['机场(km)', (d) => d.airportKm], ['海岸(km)', (d) => d.coastKm],
       ['地震带(省级)', (d) => d.seismic], ['台风暴露', (d) => d.typhoon],
-      ['主要灾害', (d) => d.hazard ? d.hazard.hazards.map((h) => `${h.type}(${h.freqLabel})`).join('、') : ''],
+      ['主要灾害(频率)', (d) => d.hazard ? d.hazard.hazards.map((h) => `${h.type}(${h.freqLabel})`).join('、') : ''],
       ['毛回报(%)', (d) => d.yieldPct.toFixed(1)], ['回本(年)', (d) => d.payback.toFixed(1)],
       ['更新', (d) => d.updated],
     ];
@@ -818,6 +841,13 @@
     const riskLine = risk
       ? `<span class="font-medium text-slate-800">气候与风险（粗略）</span>：${risk.summary} · 宜居指数 ${d.comfortScore}（舒适 ${d.comfortMonths} 月 / 极端 ${d.extremeMonths} 月）`
       : '';
+    let heatLine = '';
+    if (d.heating) {
+      const [bg, fg] = HEATING_STYLE[d.heating] || ['#f1f5f9', '#475569'];
+      heatLine = `<div class="mt-2 text-sm"><span class="font-medium text-slate-800">冬季供暖</span>：` +
+        `<span class="inline-block rounded px-1.5 py-0.5 text-xs font-medium" style="background:${bg};color:${fg}">${d.heating}</span>` +
+        `<span class="text-slate-500 ml-1">${d.heatingNote}</span></div>`;
+    }
     let hazLine = '';
     if (d.hazard) {
       const tags = d.hazard.hazards.map((h) =>
@@ -825,7 +855,7 @@
       hazLine = `<div class="mt-3"><span class="font-medium text-slate-800">${d.prov}省级历史灾害概况</span>` +
         `<span class="text-slate-500">（${d.hazard.headline}）</span><div class="mt-1.5 flex flex-wrap gap-1.5">${tags}</div></div>`;
     }
-    document.getElementById('lm-risk').innerHTML = (riskLine || '<span class="text-slate-400">暂无风险数据</span>') + hazLine;
+    document.getElementById('lm-risk').innerHTML = (riskLine || '<span class="text-slate-400">暂无风险数据</span>') + heatLine + hazLine;
     if (lmClimateChart) { lmClimateChart.destroy(); lmClimateChart = null; }
     if (!cl || !window.Chart) return;
     const M = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'];

@@ -491,82 +491,121 @@ def risk_all(con, log):
 #
 # A qualitative digest of the disaster types each province is historically
 # exposed to, compiled from public geography / climatology and 应急管理部 yearly
-# 灾情 patterns. This is NOT a point hazard model and NOT engineering input:
-# frequency is a coarse ordinal tag, scoped to the *province*, meant only to
-# let users compare "what tends to go wrong here" side by side in the table.
+# 灾情 patterns. This is NOT a point hazard model and NOT engineering input.
 #
-# freq ordinal:  3=高频  2=常见  1=偶发  0=罕见
-# Each hazard:  (type, freq, note).  `headline` is a one-line province summary.
+# IMPORTANT: plain cold / 严寒 / 低温冻害 is NOT counted as a hazard here. Winter
+# cold is climate, not disaster, and is already represented honestly by the
+# livability metrics (1月均温 / 极端月 / 宜居指数) — listing it again as a
+# "灾害" would double-penalize cold-but-otherwise-safe provinces (e.g. 黑龙江,
+# which in fact has few earthquakes and no typhoons). Discrete cold-driven
+# DISASTERS that damage infrastructure (暴雪雪灾 snow load, 凝冻 ice storm) are
+# kept — those are events, not just "it's cold".
+#
+# `freq` is an explicit RECURRENCE-INTERVAL bucket (how often a disaster-scale
+# event of this type tends to recur in the province), NOT a severity score:
+#   5=几乎年年  4=数年一遇  3=约十年一遇  2=数十年一遇  1=百年级罕见
+# A 几乎年年 typhoon and a 数十年一遇 great earthquake are very different beasts;
+# severity lives in the `note`. Each hazard: (type, freq, note).
 # ---------------------------------------------------------------------------
-HAZARD_FREQ_LABEL = {3: "高频", 2: "常见", 1: "偶发", 0: "罕见"}
+HAZARD_FREQ_LABEL = {5: "几乎年年", 4: "数年一遇", 3: "约十年一遇", 2: "数十年一遇", 1: "百年级罕见"}
+HAZARD_FREQ_SHORT = {5: "年年", 4: "数年", 3: "十年", 2: "数十年", 1: "百年"}
 
 PROVINCE_HAZARDS = {
-    "黑龙江": {"headline": "夏汛+冬季暴雪/低温为主，地震少",
-              "hazards": [("洪涝", 2, "松花江/嫩江流域夏季汛情"), ("暴雪雪灾", 2, "冬季严寒多雪"),
-                          ("低温冻害", 2, "极端低温、冻土"), ("森林火灾", 1, "春秋大兴安岭林区"), ("干旱", 1, "西部春旱")]},
-    "吉林": {"headline": "夏汛、暴雪与低温冻害",
-            "hazards": [("洪涝", 2, "第二松花江流域"), ("暴雪雪灾", 2, "冬季"), ("低温冻害", 2, "东部山区"), ("干旱", 1, "西部")]},
-    "辽宁": {"headline": "夏汛+北上台风外围，海城式中强震",
-            "hazards": [("洪涝", 2, "辽河流域"), ("台风外围", 1, "沿海受北上台风影响"),
-                        ("地震", 2, "海城1975 M7.3 等"), ("暴雪", 2, "冬季"), ("干旱", 1, "辽西")]},
-    "河北": {"headline": "华北强震带+旱涝交替",
-            "hazards": [("地震", 3, "唐山1976/邢台1966，华北强震带"), ("洪涝", 2, "海河流域"),
-                        ("干旱", 2, "春旱常见"), ("暴雨", 1, "太行山前")]},
+    "黑龙江": {"headline": "夏汛+冬季暴雪为主；无台风、地震少",
+              "hazards": [("暴雪雪灾", 4, "冬季强降雪致灾，数年一遇"), ("洪涝", 4, "松花江/嫩江流域夏季汛情(1998等)"),
+                          ("干旱", 4, "西部春旱"), ("森林火灾", 3, "大兴安岭林区(1987特大火)")]},
+    "吉林": {"headline": "夏汛、暴雪与西部干旱；地震少",
+            "hazards": [("洪涝", 4, "第二松花江流域"), ("暴雪雪灾", 4, "冬季致灾性降雪"), ("干旱", 4, "西部")]},
+    "辽宁": {"headline": "夏汛+北上台风外围，海城式中强震(数十年一遇)",
+            "hazards": [("洪涝", 4, "辽河流域"), ("暴雪", 4, "冬季"), ("干旱", 4, "辽西"),
+                        ("台风外围", 3, "沿海受北上台风影响"), ("地震", 2, "海城1975 M7.3")]},
+    "河北": {"headline": "华北强震带(数十年一遇)+旱涝交替",
+            "hazards": [("洪涝", 4, "海河流域(2023大水)"), ("干旱", 4, "春旱常见"),
+                        ("暴雨", 3, "太行山前极端暴雨"), ("地震", 2, "唐山1976/邢台1966，华北强震带")]},
     "河南": {"headline": "暴雨洪涝突出，旱涝并存",
-            "hazards": [("洪涝", 3, "2021郑州特大暴雨"), ("暴雨", 2, "夏季强对流"), ("干旱", 2, "黄淮春夏旱"), ("地震", 1, "局部")]},
+            "hazards": [("暴雨", 4, "夏季强对流"), ("干旱", 4, "黄淮春夏旱"),
+                        ("洪涝", 3, "流域性洪涝；2021郑州为千年一遇极端"), ("地震", 1, "局部弱震")]},
     "山东": {"headline": "旱涝+北上台风影响沿海",
-            "hazards": [("洪涝", 2, "黄淮/沂沭河"), ("台风", 1, "利奇马2019等北上台风"),
-                        ("干旱", 2, "春旱"), ("风暴潮", 1, "沿海"), ("地震", 1, "郯庐带局部")]},
+            "hazards": [("洪涝", 4, "黄淮/沂沭河"), ("干旱", 4, "春旱"),
+                        ("台风", 3, "利奇马2019等北上台风"), ("风暴潮", 3, "沿海"),
+                        ("地震", 1, "郯庐带，郯城1668历史大震")]},
     "安徽": {"headline": "江淮梅雨洪涝为最大风险",
-            "hazards": [("洪涝", 3, "江淮梅雨/2020巢湖"), ("干旱", 1, "伏旱"), ("台风外围", 1, "东部"), ("暴雨", 2, "梅雨季")]},
-    "上海": {"headline": "沿海台风+内涝、缓发地面沉降",
-            "hazards": [("台风", 2, "夏秋登陆/影响"), ("洪涝内涝", 2, "暴雨城市内涝"),
-                        ("风暴潮", 1, "河口沿海"), ("地面沉降", 1, "缓发，长期监测")]},
+            "hazards": [("暴雨", 5, "梅雨季强降水"), ("洪涝", 4, "江淮梅雨/2020巢湖"),
+                        ("干旱", 4, "伏旱"), ("台风外围", 3, "东部")]},
+    "上海": {"headline": "沿海台风+城市内涝；缓发地面沉降",
+            "hazards": [("洪涝内涝", 4, "暴雨城市内涝"), ("台风", 4, "夏秋登陆/影响"),
+                        ("风暴潮", 3, "河口沿海"), ("地面沉降", 2, "缓发·长期监测累积")]},
     "江苏": {"headline": "台风、洪涝，偶发强龙卷",
-            "hazards": [("洪涝", 2, "淮河下游/太湖"), ("台风", 1, "沿海"),
-                        ("龙卷风", 1, "2016盐城EF4"), ("风暴潮", 1, "沿海")]},
+            "hazards": [("洪涝", 4, "淮河下游/太湖"), ("台风", 3, "沿海"),
+                        ("风暴潮", 3, "沿海"), ("龙卷风", 2, "2016盐城EF4，强龙卷罕见")]},
     "广东": {"headline": "台风+流域性洪涝的双高暴露",
-            "hazards": [("台风", 3, "登陆最频繁省份之一"), ("洪涝", 3, "珠江/西江流域"),
-                        ("暴雨", 2, "前汛期强降水"), ("风暴潮", 2, "沿海")]},
+            "hazards": [("台风", 5, "登陆最频繁省份之一"), ("暴雨", 5, "前汛期强降水"),
+                        ("洪涝", 4, "珠江/西江流域"), ("风暴潮", 4, "沿海")]},
     "广西": {"headline": "洪涝+台风+喀斯特地质灾害",
-            "hazards": [("洪涝", 3, "西江/郁江流域"), ("台风", 2, "北部湾沿海"),
-                        ("地质灾害", 2, "喀斯特山区滑坡/塌陷"), ("干旱", 1, "桂西季节性")]},
+            "hazards": [("洪涝", 4, "西江/郁江流域"), ("台风", 4, "北部湾沿海"),
+                        ("地质灾害", 4, "喀斯特山区滑坡/塌陷"), ("干旱", 4, "桂西季节性")]},
     "福建": {"headline": "台风高暴露+山区地质灾害",
-            "hazards": [("台风", 3, "正面登陆频繁"), ("洪涝", 2, "闽江流域"),
-                        ("地质灾害", 2, "山区滑坡/崩塌"), ("暴雨", 2, "台风暴雨")]},
-    "重庆": {"headline": "山地滑坡+高温伏旱+江河洪涝",
-            "hazards": [("地质灾害", 3, "三峡库区滑坡/崩塌"), ("洪涝", 2, "长江/嘉陵江"),
-                        ("高温干旱", 2, "夏季伏旱"), ("地震", 1, "局部中小震")]},
-    "贵州": {"headline": "喀斯特地质灾害+凝冻为特色风险",
-            "hazards": [("地质灾害", 3, "喀斯特滑坡/泥石流/塌陷"), ("洪涝", 2, "夏季暴雨"),
-                        ("凝冻", 2, "冬季低温雨雪冰冻"), ("干旱", 1, "夏旱")]},
-    "四川": {"headline": "高烈度地震+山地次生灾害",
-            "hazards": [("地震", 3, "汶川2008/芦山/泸定，龙门山带"), ("地质灾害", 3, "泥石流/滑坡(震后高发)"),
-                        ("洪涝", 2, "盆地暴雨"), ("干旱", 1, "盆地伏旱")]},
+            "hazards": [("台风", 5, "正面登陆频繁"), ("暴雨", 5, "台风暴雨"),
+                        ("洪涝", 4, "闽江流域"), ("地质灾害", 4, "山区滑坡/崩塌")]},
+    "重庆": {"headline": "高温伏旱+山地滑坡+江河洪涝",
+            "hazards": [("高温干旱", 5, "夏季伏旱(2022极端)"), ("地质灾害", 4, "三峡库区滑坡/崩塌"),
+                        ("洪涝", 4, "长江/嘉陵江"), ("地震", 2, "局部中小震")]},
+    "贵州": {"headline": "喀斯特地质灾害突出，冬季凝冻为特色风险",
+            "hazards": [("地质灾害", 4, "喀斯特滑坡/泥石流/塌陷"), ("洪涝", 4, "夏季暴雨"),
+                        ("干旱", 4, "夏旱"), ("凝冻", 4, "冬季雨雪冰冻致灾(2008特大为数十年一遇)")]},
+    "四川": {"headline": "高烈度地震(约十年一遇)+山地次生灾害",
+            "hazards": [("地质灾害", 4, "泥石流/滑坡(震后高发)"), ("洪涝", 4, "盆地暴雨"),
+                        ("干旱", 4, "盆地伏旱"), ("地震", 3, "汶川2008/芦山/泸定，龙门山带")]},
     "云南": {"headline": "多震带+干湿季地质灾害与季节性干旱",
-            "hazards": [("地震", 3, "多条活动断裂带"), ("地质灾害", 3, "雨季泥石流/滑坡"),
-                        ("干旱", 2, "冬春季节性"), ("洪涝", 2, "雨季")]},
+            "hazards": [("地质灾害", 4, "雨季泥石流/滑坡"), ("干旱", 4, "冬春季节性"),
+                        ("洪涝", 4, "雨季"), ("地震", 3, "多条活动断裂带，鲁甸2014等")]},
     "甘肃": {"headline": "强震+半干旱区旱灾与黄土滑坡",
-            "hazards": [("地震", 3, "陇南/积石山2023等"), ("干旱", 3, "半干旱气候"),
-                        ("地质灾害", 2, "黄土滑坡/泥石流"), ("沙尘暴", 1, "河西走廊")]},
+            "hazards": [("干旱", 5, "半干旱气候，常年缺水"), ("地质灾害", 4, "黄土滑坡/泥石流"),
+                        ("沙尘暴", 4, "河西走廊春季"), ("地震", 3, "陇南/积石山2023等")]},
     "海南": {"headline": "全国台风登陆最前沿",
-            "hazards": [("台风", 3, "登陆最频繁"), ("洪涝", 2, "台风暴雨"),
-                        ("风暴潮", 2, "沿海"), ("高温", 2, "夏季湿热")]},
+            "hazards": [("台风", 5, "登陆最频繁"), ("高温", 5, "夏季湿热"),
+                        ("洪涝", 4, "台风暴雨"), ("风暴潮", 4, "沿海")]},
+}
+
+# ---------------------------------------------------------------------------
+# Central heating (集中供暖) — province-level, curated. Determined by the
+# 秦岭–淮河 line: north of it gets municipal central heating; south of it does
+# not. The honest livability signal is the southern split between 冬暖 (warm,
+# no heating needed) and 湿冷 (cold-damp winters with NO central heating — the
+# "夹心层" pain). 江苏/安徽 straddle the line (淮河以北部分有), tagged 过渡.
+# Province-level approximation: a few cities within a province differ.
+# ---------------------------------------------------------------------------
+HEAT_HEATED, HEAT_PARTIAL, HEAT_WARM, HEAT_DAMP = "集中供暖", "部分供暖", "无·冬暖", "无·湿冷"
+PROVINCE_HEATING = {
+    "黑龙江": HEAT_HEATED, "吉林": HEAT_HEATED, "辽宁": HEAT_HEATED, "河北": HEAT_HEATED,
+    "山东": HEAT_HEATED, "河南": HEAT_HEATED, "甘肃": HEAT_HEATED,
+    "江苏": HEAT_PARTIAL, "安徽": HEAT_PARTIAL,
+    "广东": HEAT_WARM, "广西": HEAT_WARM, "福建": HEAT_WARM, "海南": HEAT_WARM, "云南": HEAT_WARM,
+    "上海": HEAT_DAMP, "重庆": HEAT_DAMP, "四川": HEAT_DAMP, "贵州": HEAT_DAMP,
+}
+HEATING_NOTE = {
+    HEAT_HEATED: "秦岭-淮河线以北，市政集中供暖",
+    HEAT_PARTIAL: "跨供暖线，淮河以北部分城市有集中供暖",
+    HEAT_WARM: "供暖线以南，冬季温暖、基本无需供暖",
+    HEAT_DAMP: "供暖线以南却冬季湿冷，且无集中供暖（取暖靠自备）",
 }
 
 
 def emit_hazards():
-    """Province → {headline, hazards:[{type,freq,freqLabel,note}], top}.
-    Pure curated data (no DB / no network). `top` is the highest-frequency hazard
-    type(s), handy as a compact table tag."""
+    """Province → {headline, heating, heatingNote, hazards:[{type,freq,freqLabel,
+    freqShort,note}], top}. Pure curated data (no DB / no network). `top` is the
+    most-frequent hazard type(s); `heating` is the 集中供暖 tier."""
     out = {}
     for prov, p in PROVINCE_HAZARDS.items():
-        hs = [{"type": t, "freq": f, "freqLabel": HAZARD_FREQ_LABEL[f], "note": n}
+        hs = [{"type": t, "freq": f, "freqLabel": HAZARD_FREQ_LABEL[f],
+               "freqShort": HAZARD_FREQ_SHORT[f], "note": n}
               for (t, f, n) in p["hazards"]]
         hs.sort(key=lambda h: -h["freq"])
         topf = hs[0]["freq"] if hs else 0
+        heating = PROVINCE_HEATING.get(prov, "—")
         out[prov] = {"headline": p["headline"], "hazards": hs,
-                     "top": [h["type"] for h in hs if h["freq"] == topf]}
+                     "top": [h["type"] for h in hs if h["freq"] == topf],
+                     "heating": heating, "heatingNote": HEATING_NOTE.get(heating, "")}
     return out
 
 
