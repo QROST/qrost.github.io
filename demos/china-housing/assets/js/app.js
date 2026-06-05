@@ -79,14 +79,14 @@
       janTemp: jan ? jan[0] : null, julTemp: jul ? jul[0] : null,
       annualPrecip: Math.round(annualPrecip), annualMean,
       comfortMonths, coldMonths, hotMonths, extremeMonths,
-      tMin, tMax, tempRange, climateType: climateType(tMin, tMax, annualMean),
+      tMin, tMax, tempRange, climateType: classifyClimate(tMin, tMax, annualMean),
     };
   }
 
   // Climate archetype from two transparent, unit-ed numbers: 年均温 (Ta, ℃) and
   // 年温差 R = warmest−coldest month mean (℃). Thresholds are published in the
   // methodology so the label is fully reproducible — no opaque composite score.
-  function climateType(tMin, tMax, Ta) {
+  function classifyClimate(tMin, tMax, Ta) {
     if (tMin == null || tMax == null || Ta == null) return null;
     const R = tMax - tMin;
     if (R >= 20) return '四季分明';                       // 大温差：冷冬热夏
@@ -190,10 +190,16 @@
 
   // ---- Chart.js defaults -------------------------------------------------
   function chartBase() {
-    if (window.Chart) {
-      Chart.defaults.font.family = "'Inter','PingFang SC','Microsoft YaHei',sans-serif";
-      Chart.defaults.color = C.slate500;
-    }
+    if (!window.Chart || !Chart.defaults) return;
+    Chart.defaults.font = Chart.defaults.font || {};
+    Chart.defaults.font.family = "'Inter','PingFang SC','Microsoft YaHei',sans-serif";
+    Chart.defaults.color = C.slate500;
+  }
+
+  // isolate section failures so one broken chart never aborts init (table/map wiring)
+  function safeRun(label, fn) {
+    try { fn(); }
+    catch (e) { console.error('[china-housing]', label, e); }
   }
 
   function styleTab(b, on, base) {
@@ -259,7 +265,8 @@
   function renderRankings() {
     const ctx = document.getElementById('rank-chart');
     if (!ctx || !window.Chart) return;
-    const m = RANK_METRICS[rankKey];
+    const m = RANK_METRICS[rankKey] || RANK_METRICS.comfort;
+    if (!m) return;
     const pool = DATA.filter((d) => d[m.key] != null);
     const top = [...pool].sort((a, b) => (a[m.key] - b[m.key]) * m.dir).slice(0, 15);
     const labels = top.map((d, i) => `${i + 1}. ${cityLabel(d)}`);
@@ -291,15 +298,18 @@
           },
         },
         scales: {
-          x: { title: { display: true, text: m.axis }, grid: { color: C.grid }, ticks: { callback: (v) => m.fmt(v) } },
+          x: { title: { display: true, text: m.axis }, grid: { color: C.grid },
+            ticks: { callback: (v) => { const n = Number(v); return Number.isFinite(n) ? m.fmt(n) : v; } } },
           y: { grid: { display: false }, ticks: { font: { size: 11 } } },
         },
       },
     };
-    if (rankChart) { rankChart.destroy(); }
+    if (rankChart) { rankChart.destroy(); rankChart = null; }
     rankChart = new Chart(ctx, cfg);
     document.querySelectorAll('[data-rank]').forEach((b) => {
-      b.textContent = RANK_METRICS[b.dataset.rank].label;
+      const rm = RANK_METRICS[b.dataset.rank];
+      if (!rm) return;
+      b.textContent = rm.label;
       styleTab(b, b.dataset.rank === rankKey, 'rank-tab');
     });
   }
@@ -323,21 +333,24 @@
     avgPrice: { label: '均总价', axis: '样本均总价（万元）', fmt: fmtWan, dir: -1, color: C.emeraldSoft },
     avgRange: { label: '均年温差', axis: '样本均年温差（℃，越小越平稳）', fmt: (v) => fmtInt(v) + '℃', dir: -1, color: 'rgba(67,56,202,0.5)' },
     avgExtreme: { label: '极端月', axis: '样本均极端天气月数', fmt: (v) => v.toFixed(1) + '月', dir: -1, color: 'rgba(225,90,60,0.5)' },
+    avgComfort: { label: '均年温差', axis: '样本均年温差（℃，越小越平稳）', fmt: (v) => fmtInt(v) + '℃', dir: -1, color: 'rgba(67,56,202,0.5)' },
   };
   let provMetric = 'avgRange';
 
   function renderProvinceChart() {
     const ctx = document.getElementById('province-chart');
     if (!ctx || !window.Chart) return;
-    const m = PROV_METRICS[provMetric];
-    const agg = aggregateByProvince().filter((a) => a[provMetric] != null)
-      .sort((a, b) => (b[provMetric] - a[provMetric]) * (m.dir > 0 ? 1 : -1));
+    const m = PROV_METRICS[provMetric] || PROV_METRICS.avgRange;
+    if (!m) return;
+    const metricKey = provMetric === 'avgComfort' ? 'avgRange' : provMetric;
+    const agg = aggregateByProvince().filter((a) => a[metricKey] != null)
+      .sort((a, b) => (b[metricKey] - a[metricKey]) * (m.dir > 0 ? 1 : -1));
     const cfg = {
       type: 'bar',
       data: {
         labels: agg.map((a) => a.prov),
         datasets: [{
-          data: agg.map((a) => a[provMetric]),
+          data: agg.map((a) => a[metricKey]),
           backgroundColor: m.color, borderColor: C.emerald, borderWidth: 1,
           borderRadius: 4, maxBarThickness: 22,
         }],
@@ -350,7 +363,7 @@
             callbacks: {
               label: (it) => {
                 const a = agg[it.dataIndex];
-                return [`${m.label} ${m.fmt(a[provMetric])}`,
+                return [`${m.label} ${m.fmt(a[metricKey])}`,
                   `样本 ${a.count}套 · 均总价 ${fmtWan(a.avgPrice)} · 均单价 ${fmtInt(a.avgUnit)}元/㎡`,
                   `均年温差 ${fmtInt(a.avgRange)}℃ · 均极端 ${a.avgExtreme.toFixed(1)}月`];
               },
@@ -358,15 +371,18 @@
           },
         },
         scales: {
-          x: { title: { display: true, text: m.axis }, grid: { color: C.grid }, ticks: { callback: (v) => m.fmt(v) } },
+          x: { title: { display: true, text: m.axis }, grid: { color: C.grid },
+            ticks: { callback: (v) => { const n = Number(v); return Number.isFinite(n) ? m.fmt(n) : v; } } },
           y: { grid: { display: false } },
         },
       },
     };
-    if (provChart) { provChart.destroy(); }
+    if (provChart) { provChart.destroy(); provChart = null; }
     provChart = new Chart(ctx, cfg);
     document.querySelectorAll('[data-prov]').forEach((b) => {
-      b.textContent = PROV_METRICS[b.dataset.prov].label;
+      const pm = PROV_METRICS[b.dataset.prov];
+      if (!pm) return;
+      b.textContent = pm.label;
       styleTab(b, b.dataset.prov === provMetric, 'prov-tab');
     });
   }
@@ -389,6 +405,8 @@
     annualPrecip: { label: '年降水', get: (d) => d.annualPrecip, fmt: (v) => fmtInt(v) + 'mm', ramp: 'precip', text: ['湿', '干'] },
     elevation: { label: '海拔', get: (d) => d.elevation, fmt: (v) => fmtInt(v) + 'm', ramp: 'terrain', text: ['高', '低'] },
     extremeMonths: { label: '极端天气', get: (d) => d.extremeMonths, fmt: (v) => v + '个月', ramp: 'cheapGood', text: ['多', '少'] },
+    // legacy keys (stale cached HTML may still reference the removed 宜居指数)
+    comfortScore: { label: '年温差·季节波动', get: (d) => d.tempRange, fmt: (v) => fmtInt(v) + '℃', ramp: 'range', text: ['温差大', '温差小'] },
   };
   let dimKey = 'tempRange';
   let echartsMap = null, mapReady = false, baseGeoOpt = null;
@@ -428,7 +446,8 @@
   }
 
   function mapSeriesData() {
-    const dim = MAP_DIMS[dimKey];
+    const dim = MAP_DIMS[dimKey] || MAP_DIMS.tempRange;
+    if (!dim) return [];
     return GEOCODED.filter((d) => dim.get(d) != null).map((d) => ({
       value: [d.enr.lng, d.enr.lat, dim.get(d)], size: sizeOf(d), d,
     }));
@@ -450,41 +469,20 @@
 
   function renderMap() {
     if (!mapReady || !echartsMap) return;
-    const dim = MAP_DIMS[dimKey];
+    const dim = MAP_DIMS[dimKey] || MAP_DIMS.tempRange;
+    if (!dim) return;
     const data = mapSeriesData();
     const vals = data.map((p) => p.value[2]);
-    const vmin = Math.min(...vals), vmax = Math.max(...vals);
+    if (!vals.length) return;
+    let vmin = Math.min(...vals), vmax = Math.max(...vals);
+    if (!Number.isFinite(vmin) || !Number.isFinite(vmax) || vmin === vmax) {
+      vmin = vmin || 0;
+      vmax = vmax || vmin + 1;
+    }
     const bl = baseLayers();
+    const ramp = RAMPS[dim.ramp] || RAMPS.range;
+    // series first (merge) — keeps points/lines stable across dim switches
     echartsMap.setOption({
-      tooltip: {
-        trigger: 'item',
-        formatter: (p) => {
-          const d = p.data && p.data.d; if (!d) return '';
-          const top0 = d.hazard && d.hazard.hazards[0];
-          const haz = top0 ? `${top0.type}·${top0.freqLabel}` : '';
-          return `<b>${cityLabel(d)}</b> · ${d.enr.geoLabel || ''}<br/>`
-            + `<b style="color:#059669">${dim.label} ${dim.fmt(dim.get(d))}</b><br/>`
-            + `总价 ${fmtWan(d.priceWan)} · ${d.area}㎡ · 单价 ${fmtInt(d.unitPrice)}元/㎡<br/>`
-            + `${d.climateType || '—'} · 年温差${d.tempRange == null ? '—' : d.tempRange + '℃'} · 1月${fmtTemp(d.janTemp)}/7月${fmtTemp(d.julTemp)} · 海拔 ${d.elevation == null ? '—' : fmtInt(d.elevation) + 'm'} · 供暖 ${d.heating || '—'}<br/>`
-            + `医院 ${fmtKm(d.hospitalKm)} · 火车 ${fmtKm(d.trainKm)} · 地震 ${d.seismic || '—'} · 台风 ${d.typhoon || '—'}`
-            + (haz ? `<br/><span style="color:#b45309">最频灾害：${haz}</span>` : '')
-            + `<br/><span style="color:#10b981">点击查看卫星图 / 周边 / 气候 / 灾害</span>`;
-        },
-      },
-      visualMap: [
-        { // listing-point dimension (legend bottom-left)
-          type: 'continuous', dimension: 2, seriesIndex: 0,
-          min: vmin, max: vmax, range: [vmin, vmax],  // always start showing the full range
-          left: 'left', bottom: 24, calculable: true,
-          text: dim.text, itemWidth: 14, itemHeight: 120,
-          inRange: { color: RAMPS[dim.ramp] }, textStyle: { color: C.slate500 },
-          formatter: (v) => dim.fmt(v),
-        },
-        { // basemap field (drives heatmap colour) — legend rendered in HTML instead
-          type: 'continuous', seriesIndex: 1, show: false,
-          min: bl.vm.min, max: bl.vm.max, inRange: { color: BASE_RAMPS[bl.vm.ramp] },
-        },
-      ],
       series: [
         {
           type: 'scatter', coordinateSystem: 'geo', zlevel: 3,
@@ -504,7 +502,38 @@
           data: bl.lines,
         },
       ],
-    }, { replaceMerge: ['visualMap'] });  // recreate visualMap so a prior dragged range never sticks
+    });
+    echartsMap.setOption({
+      tooltip: {
+        trigger: 'item',
+        formatter: (p) => {
+          const d = p.data && p.data.d; if (!d) return '';
+          const top0 = d.hazard && d.hazard.hazards[0];
+          const haz = top0 ? `${top0.type}·${top0.freqLabel}` : '';
+          return `<b>${cityLabel(d)}</b> · ${d.enr.geoLabel || ''}<br/>`
+            + `<b style="color:#059669">${dim.label} ${dim.fmt(dim.get(d))}</b><br/>`
+            + `总价 ${fmtWan(d.priceWan)} · ${d.area}㎡ · 单价 ${fmtInt(d.unitPrice)}元/㎡<br/>`
+            + `${d.climateType || '—'} · 年温差${d.tempRange == null ? '—' : d.tempRange + '℃'} · 1月${fmtTemp(d.janTemp)}/7月${fmtTemp(d.julTemp)} · 海拔 ${d.elevation == null ? '—' : fmtInt(d.elevation) + 'm'} · 供暖 ${d.heating || '—'}<br/>`
+            + `医院 ${fmtKm(d.hospitalKm)} · 火车 ${fmtKm(d.trainKm)} · 地震 ${d.seismic || '—'} · 台风 ${d.typhoon || '—'}`
+            + (haz ? `<br/><span style="color:#b45309">最频灾害：${haz}</span>` : '')
+            + `<br/><span style="color:#10b981">点击查看卫星图 / 周边 / 气候 / 灾害</span>`;
+        },
+      },
+      visualMap: [
+        { // listing-point dimension (legend bottom-left)
+          type: 'continuous', dimension: 2, seriesIndex: 0,
+          min: vmin, max: vmax, range: [vmin, vmax],
+          left: 'left', bottom: 24, calculable: true,
+          text: dim.text, itemWidth: 14, itemHeight: 120,
+          inRange: { color: ramp }, textStyle: { color: C.slate500 },
+          formatter: (v) => dim.fmt(v),
+        },
+        { // basemap field (drives heatmap colour) — legend rendered in HTML instead
+          type: 'continuous', seriesIndex: 1, show: false,
+          min: bl.vm.min, max: bl.vm.max, inRange: { color: BASE_RAMPS[bl.vm.ramp] },
+        },
+      ],
+    }, { replaceMerge: ['visualMap'] });
     renderBaseLegend();
   }
 
@@ -540,7 +569,10 @@
 
   function dimTabs() {
     document.querySelectorAll('[data-dim]').forEach((b) => {
-      b.textContent = MAP_DIMS[b.dataset.dim].label;
+      const dm = MAP_DIMS[b.dataset.dim];
+      if (!dm) { b.style.display = 'none'; return; }
+      b.style.display = '';
+      b.textContent = dm.label;
       styleTab(b, b.dataset.dim === dimKey, 'dim-tab');
     });
   }
@@ -578,7 +610,7 @@
       });
       baseGeoOpt = { center: echartsMap.getOption().geo[0].center };
       mapReady = true;
-      renderMap();
+      safeRun('renderMap', renderMap);
       dimTabs();
       baseTabs();
       echartsMap.on('click', (p) => {
@@ -586,6 +618,7 @@
       });
       window.addEventListener('resize', () => echartsMap && echartsMap.resize());
     } catch (e) {
+      console.error('[china-housing] initMap', e);
       mapFail('地图边界数据加载失败（网络受限），省份对比可见下方柱状图，表格不受影响。');
     }
   }
@@ -938,28 +971,33 @@
   // ---- boot --------------------------------------------------------------
   function init() {
     chartBase();
-    renderKPIs();
-    renderScatter();
-    renderRankings();
-    renderProvinceChart();
-    wireTable();
-    renderTable();
+    // table + interaction wiring first — must survive chart/map failures
+    safeRun('wireTable', wireTable);
+    safeRun('renderTable', renderTable);
 
     document.querySelectorAll('[data-rank]').forEach((b) =>
-      b.addEventListener('click', () => { rankKey = b.dataset.rank; renderRankings(); }));
+      b.addEventListener('click', () => { rankKey = b.dataset.rank; safeRun('renderRankings', renderRankings); }));
     document.querySelectorAll('[data-prov]').forEach((b) =>
-      b.addEventListener('click', () => { provMetric = b.dataset.prov; renderProvinceChart(); }));
+      b.addEventListener('click', () => { provMetric = b.dataset.prov; safeRun('renderProvinceChart', renderProvinceChart); }));
     document.querySelectorAll('[data-dim]').forEach((b) =>
-      b.addEventListener('click', () => { dimKey = b.dataset.dim; renderMap(); dimTabs(); }));
+      b.addEventListener('click', () => { dimKey = b.dataset.dim; safeRun('renderMap', renderMap); dimTabs(); }));
     document.querySelectorAll('[data-base]').forEach((b) =>
-      b.addEventListener('click', () => { baseKey = b.dataset.base; renderMap(); baseTabs(); }));
+      b.addEventListener('click', () => { baseKey = b.dataset.base; safeRun('renderMap', renderMap); baseTabs(); }));
+
+    safeRun('renderKPIs', renderKPIs);
+    safeRun('renderScatter', renderScatter);
+    safeRun('renderRankings', renderRankings);
+    safeRun('renderProvinceChart', renderProvinceChart);
+
     const zi = document.getElementById('map-zoom-in'), zo = document.getElementById('map-zoom-out'), zr = document.getElementById('map-zoom-reset');
     if (zi) zi.addEventListener('click', () => zoomBy(1.45));
     if (zo) zo.addEventListener('click', () => zoomBy(1 / 1.45));
     if (zr) zr.addEventListener('click', zoomReset);
 
-    document.getElementById('lm-close').addEventListener('click', closeModal);
-    document.getElementById('lm-backdrop').addEventListener('click', closeModal);
+    const lmClose = document.getElementById('lm-close');
+    const lmBackdrop = document.getElementById('lm-backdrop');
+    if (lmClose) lmClose.addEventListener('click', closeModal);
+    if (lmBackdrop) lmBackdrop.addEventListener('click', closeModal);
     document.querySelectorAll('[data-lm-tab]').forEach((b) =>
       b.addEventListener('click', () => lmShowTab(b.dataset.lmTab)));
     document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
