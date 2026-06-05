@@ -99,8 +99,9 @@ def migrate(con):
     cols = {r[1] for r in con.execute("PRAGMA table_info(listings)")}
     for col, decl in (("lat", "REAL"), ("lng", "REAL"),
                       ("geo_level", "TEXT"), ("geo_label", "TEXT"),
-                      ("geo_source", "TEXT"),   # 'nominatim' | 'research'
-                      ("elevation", "REAL")):   # metres above sea level (Open-Meteo)
+                      ("geo_source", "TEXT"),       # 'nominatim' | 'research'
+                      ("elevation", "REAL"),        # metres above sea level (Open-Meteo)
+                      ("daily_climate", "TEXT")):   # JSON: 365-day curve + comfort/extreme day-ranges
         if col not in cols:
             con.execute(f"ALTER TABLE listings ADD COLUMN {col} {decl}")
     con.executescript("""
@@ -286,6 +287,106 @@ def climate_all(con, log):
         time.sleep(0.7)
     con.commit()
     log(f"climate done: {done} listing(s)")
+
+
+# ---------------------------------------------------------------------------
+# Daily climate — day-of-year (1-365) climatology, 15-day smoothed, with
+# day-precise comfort / extreme periods. Reuses the same ERA5 daily fetch.
+# ---------------------------------------------------------------------------
+_DAYS_IN_MONTH = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]  # fixed 365-day calendar
+
+
+def _doy_365(month, day):
+    """1-based day-of-year on a fixed non-leap calendar (shared with the front end)."""
+    return sum(_DAYS_IN_MONTH[:month - 1]) + min(day, _DAYS_IN_MONTH[month - 1])
+
+
+def _smooth_circular(arr, win=15):
+    n, half = len(arr), win // 2
+    out = [None] * n
+    for i in range(n):
+        s = c = 0.0
+        for k in range(-half, half + 1):
+            v = arr[(i + k) % n]
+            if v is not None:
+                s += v; c += 1
+        out[i] = (s / c) if c else None
+    return out
+
+
+def _day_ranges(flags):
+    """Cyclic contiguous runs of True → [[start, end], …] (1-based day-of-year;
+    a run wrapping the year-end has start > end)."""
+    n = len(flags)
+    if not any(flags):
+        return []
+    if all(flags):
+        return [[1, n]]
+    start = next(i for i in range(n) if flags[i] and not flags[(i - 1) % n])
+    runs, run0, last = [], None, None
+    for k in range(n):
+        i = (start + k) % n
+        if flags[i]:
+            run0 = i if run0 is None else run0
+            last = i
+        elif run0 is not None:
+            runs.append([run0 + 1, last + 1]); run0 = None
+    if run0 is not None:
+        runs.append([run0 + 1, last + 1])
+    return runs
+
+
+def climate_daily_one(lat, lng, y0=2014, y1=2023):
+    url = "https://archive-api.open-meteo.com/v1/archive?" + urllib.parse.urlencode({
+        "latitude": lat, "longitude": lng,
+        "start_date": f"{y0}-01-01", "end_date": f"{y1}-12-31",
+        "daily": "temperature_2m_mean,temperature_2m_max,temperature_2m_min",
+        "timezone": "auto"})
+    d = json.loads(_get(url, timeout=60, retries=3))["daily"]
+    times = d["time"]
+    series = {"tmean": d["temperature_2m_mean"], "tmax": d["temperature_2m_max"], "tmin": d["temperature_2m_min"]}
+    acc = {k: [[] for _ in range(365)] for k in series}
+    for i, t in enumerate(times):
+        if t[5:10] == "02-29":       # drop the leap day
+            continue
+        doy = _doy_365(int(t[5:7]), int(t[8:10])) - 1
+        for k, vals in series.items():
+            if vals[i] is not None:
+                acc[k][doy].append(vals[i])
+    norm = {k: [(sum(v) / len(v) if v else None) for v in acc[k]] for k in acc}
+    sm = {k: _smooth_circular(norm[k], 15) for k in norm}
+    comfort = [(t is not None and 15 <= t <= 26) for t in sm["tmean"]]
+    extreme = [((tm is not None and tm < 0) or (tx is not None and tx >= 33))
+               for tm, tx in zip(sm["tmean"], sm["tmax"])]
+    q = lambda a: [None if v is None else int(round(v)) for v in a]
+    return {
+        "curve": {"tmean": q(sm["tmean"]), "tmax": q(sm["tmax"]), "tmin": q(sm["tmin"])},
+        "comfortDays": _day_ranges(comfort), "extremeDays": _day_ranges(extreme),
+        "comfortDayCount": sum(comfort), "extremeDayCount": sum(extreme),
+    }
+
+
+def climate_daily_all(con, log):
+    rows = con.execute("""SELECT id, lat, lng FROM listings
+                          WHERE lat IS NOT NULL AND (daily_climate IS NULL OR daily_climate = '')
+                          ORDER BY id""").fetchall()
+    log(f"climate-daily: {len(rows)} listing(s) to do (ERA5 day-of-year, 15-day smoothed)…")
+    done = 0
+    for r in rows:
+        try:
+            dc = climate_daily_one(r["lat"], r["lng"])
+        except Exception as e:  # noqa: BLE001
+            log(f"  ! id{r['id']} daily failed: {repr(e)[:80]}")
+            time.sleep(1.0)
+            continue
+        con.execute("UPDATE listings SET daily_climate=? WHERE id=?",
+                    (json.dumps(dc, separators=(",", ":")), r["id"]))
+        done += 1
+        if done % 10 == 0:
+            con.commit(); log(f"  …{done} daily done")
+        time.sleep(0.7)
+    con.commit()
+    log(f"climate-daily done: {done} listing(s)")
 
 
 # ---------------------------------------------------------------------------
@@ -763,12 +864,17 @@ def refresh_refined_pois(con, log):
 def emit_enriched(con):
     """Return {id: {...}} dict of all baked enrichment for build to serialize."""
     out = {}
-    for r in con.execute("SELECT id, lat, lng, geo_level, geo_label, geo_source, elevation FROM listings WHERE lat IS NOT NULL"):
+    for r in con.execute("SELECT id, lat, lng, geo_level, geo_label, geo_source, elevation, daily_climate FROM listings WHERE lat IS NOT NULL"):
         e = {"lat": r["lat"], "lng": r["lng"],
              "geoLevel": r["geo_level"], "geoLabel": r["geo_label"],
              "geoSource": r["geo_source"] or "nominatim"}
         if r["elevation"] is not None:
             e["elevation"] = r["elevation"]
+        if r["daily_climate"]:
+            try:
+                e["daily"] = json.loads(r["daily_climate"])
+            except Exception:  # noqa: BLE001
+                pass
         out[r["id"]] = e
     for r in con.execute("SELECT listing_id, month, tmean, tmax, tmin, precip FROM climate ORDER BY listing_id, month"):
         e = out.get(r["listing_id"])

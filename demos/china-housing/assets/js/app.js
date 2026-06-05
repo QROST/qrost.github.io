@@ -78,9 +78,43 @@
       a === b ? `${a}月` : (a <= b ? `${a}–${b}月` : `${a}月–次年${b}月`)).join('、');
   }
 
+  // Day-of-year (1-365) helpers, sharing the fixed non-leap calendar with enrich.py.
+  const _DIM = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+  function doyToDate(doy) {
+    let m = 0, x = Math.max(1, Math.min(365, Math.round(doy)));
+    while (x > _DIM[m]) { x -= _DIM[m]; m += 1; }
+    return `${m + 1}月${x}日`;
+  }
+  // [[s,e],…] day-of-year ranges → "4月18日–10月12日"（跨年 → "…–次年…"）.
+  function dayRanges(ranges) {
+    if (!ranges || !ranges.length) return '无';
+    if (ranges.length === 1 && ranges[0][0] === 1 && ranges[0][1] === 365) return '全年';
+    return ranges.map(([s, e]) =>
+      s === e ? doyToDate(s)
+        : (s <= e ? `${doyToDate(s)}–${doyToDate(e)}` : `${doyToDate(s)}–次年${doyToDate(e)}`)
+    ).join('、');
+  }
+  // array[365] of truthy flags → cyclic day ranges → "M月D日…" string.
+  function flagsToDayRange(flags) {
+    const n = 365;
+    if (!flags.some(Boolean)) return '无';
+    if (flags.every(Boolean)) return '全年';
+    let start = 0;
+    for (let i = 0; i < n; i++) { if (flags[i] && !flags[(i - 1 + n) % n]) { start = i; break; } }
+    const runs = []; let r0 = null, last = null;
+    for (let k = 0; k < n; k++) {
+      const i = (start + k) % n;
+      if (flags[i]) { if (r0 == null) r0 = i; last = i; }
+      else if (r0 != null) { runs.push([r0 + 1, last + 1]); r0 = null; }
+    }
+    if (r0 != null) runs.push([r0 + 1, last + 1]);
+    return dayRanges(runs);
+  }
+
   function deriveClimate(e) {
     const cl = e && e.climate;
     if (!cl) return {};
+    const daily = (e && e.daily) || null;   // day-level (curve + comfort/extreme day ranges)
     const rows = [], comfortSet = [], extremeSet = [];
     for (let m = 1; m <= 12; m++) {
       const a = moOf(cl, m);
@@ -106,7 +140,12 @@
       janTemp: jan ? jan[0] : null, julTemp: jul ? jul[0] : null,
       annualPrecip: Math.round(annualPrecip), annualMean,
       comfortMonths, coldMonths, hotMonths, extremeMonths, comfortSet, extremeSet,
-      comfortRange: monthRanges(comfortSet), extremeRange: monthRanges(extremeSet),
+      daily,
+      comfortDayCount: daily ? daily.comfortDayCount : null,
+      extremeDayCount: daily ? daily.extremeDayCount : null,
+      // day-precise ranges when daily climatology is baked, else month-bucketed
+      comfortRange: daily ? dayRanges(daily.comfortDays) : monthRanges(comfortSet),
+      extremeRange: daily ? dayRanges(daily.extremeDays) : monthRanges(extremeSet),
       tMin, tMax, tempRange, climateType: classifyClimate(tMin, tMax, annualMean),
     };
   }
@@ -248,8 +287,10 @@
   function renderScatter() {
     const ctx = document.getElementById('scatter-chart');
     if (!ctx || !window.Chart) return;
-    const pts = DATA.filter((d) => d.comfortMonths != null && d.tempRange != null)
-      .map((d) => ({ x: d.priceWan, y: d.comfortMonths, d }));
+    const cdays = (d) => d.comfortDayCount != null ? d.comfortDayCount
+      : (d.comfortMonths != null ? Math.round(d.comfortMonths * 30.4) : null);
+    const pts = DATA.filter((d) => cdays(d) != null && d.tempRange != null)
+      .map((d) => ({ x: d.priceWan, y: cdays(d), d }));
     const rMax = Math.max(1, ...pts.map((p) => p.d.tempRange));
     scatterChart = new Chart(ctx, {
       type: 'scatter',
@@ -281,7 +322,7 @@
         },
         scales: {
           x: { title: { display: true, text: '二手房总价（万元）— 越左越便宜' }, grid: { color: C.grid }, ticks: { callback: (v) => v + '万' } },
-          y: { title: { display: true, text: '舒适月数（月均温 15–26℃；悬停看具体月份范围）— 越上越多' }, grid: { color: C.grid }, min: 0, max: 12 },
+          y: { title: { display: true, text: '舒适天数（日均温 15–26℃；悬停看具体日期范围）— 越上越多' }, grid: { color: C.grid }, min: 0, max: 365 },
         },
       },
     });
@@ -359,12 +400,23 @@
       // ("which months are extreme somewhere in this province").
       const exUnion = [...new Set(rows.flatMap((r) => r.extremeSet || []))].sort((a, b) => a - b);
       const extremeByMonth = Array.from({ length: 12 }, (_, i) =>
-        rows.reduce((s, r) => s + ((r.extremeSet || []).includes(i + 1) ? 1 : 0), 0));  // 该省当月有多少小区极端
+        rows.reduce((s, r) => s + ((r.extremeSet || []).includes(i + 1) ? 1 : 0), 0));
+      // day-level: how many listings are extreme on each day-of-year (union envelope)
+      const extremeByDay = new Array(365).fill(0);
+      let anyDaily = false;
+      rows.forEach((r) => {
+        const dd = r.daily; if (!dd || !dd.extremeDays) return; anyDaily = true;
+        dd.extremeDays.forEach(([s, e]) => {
+          if (s <= e) { for (let i = s; i <= e; i++) extremeByDay[i - 1] += 1; }
+          else { for (let i = s; i <= 365; i++) extremeByDay[i - 1] += 1; for (let i = 1; i <= e; i++) extremeByDay[i - 1] += 1; }
+        });
+      });
+      const extremeRange = anyDaily ? flagsToDayRange(extremeByDay.map((c) => c > 0)) : monthRanges(exUnion);
       return {
         prov, count: rows.length,
         avgPrice: avg('priceWan'), avgUnit: avg('unitPrice'), avgYield: avg('yieldPct'),
         avgRent: avg('rent'), avgRange: avg('tempRange'), avgExtreme: avg('extremeMonths'),
-        extremeRange: monthRanges(exUnion), extremeByMonth,
+        extremeRange, extremeByMonth, extremeByDay,
       };
     });
   }
@@ -394,21 +446,34 @@
       canvas.parentElement.appendChild(strip);
     }
     strip.style.display = '';
-    const GT = 'grid-template-columns: 3.4rem repeat(12, 1fr)';
+    const GT = 'grid-template-columns: 3.4rem 1fr';
     const agg = aggregateByProvince()
       .sort((a, b) => (b.avgExtreme || 0) - (a.avgExtreme || 0) || a.prov.localeCompare(b.prov, 'zh'));
+    // month boundaries (%) + centres on a 365-day axis
+    const bnd = []; let acc = 0; for (let i = 0; i < 12; i++) { acc += _DIM[i]; bnd.push(acc / 365 * 100); }
+    const ctr = []; let p0 = 0; for (let i = 0; i < 12; i++) { ctr.push((p0 + bnd[i]) / 2); p0 = bnd[i]; }
+    const gridImg = 'background-image:' + bnd.slice(0, 11).map((p) =>
+      `linear-gradient(90deg, transparent calc(${p}% - 0.5px), rgba(100,116,139,0.16) ${p}%, transparent calc(${p}% + 0.5px))`).join(',');
     const head = `<div class="grid items-center gap-px text-[0.6rem] text-slate-400 sticky top-0 bg-white z-10 pb-1" style="${GT}"><div></div>`
-      + Array.from({ length: 12 }, (_, i) => `<div class="text-center">${i + 1}</div>`).join('') + '</div>';
-    const body = agg.map((a) => {
-      const cells = (a.extremeByMonth || []).map((c, i) => {
-        if (!c) return '<div class="h-5 rounded-sm bg-slate-100/70"></div>';
-        const bg = severityColor(0.4 + 0.6 * (c / a.count));
-        return `<div class="h-5 rounded-sm" style="background:${bg}" title="${a.prov} ${i + 1}月：${c}/${a.count} 套严寒/酷热"></div>`;
-      }).join('');
-      return `<div class="grid items-center gap-px py-px" style="${GT}"><div class="text-xs text-slate-600 truncate pr-1" title="${a.prov} · 极端 ${a.extremeRange}">${a.prov}</div>${cells}</div>`;
-    }).join('');
+      + `<div class="relative h-3">${ctr.map((c, i) => `<span style="position:absolute;left:${c}%;transform:translateX(-50%)">${i + 1}</span>`).join('')}</div></div>`;
+    const blocksFor = (a) => {
+      const f = a.extremeByDay || []; const out = []; let s = -1;
+      for (let i = 0; i < 365; i++) {
+        const on = f[i] > 0;
+        if (on && s < 0) s = i;
+        if ((!on || i === 364) && s >= 0) {
+          const e = on ? i : i - 1, maxc = Math.max(...f.slice(s, e + 1));
+          out.push(`<div class="absolute top-0 bottom-0 rounded-sm" style="left:${s / 365 * 100}%;width:${(e - s + 1) / 365 * 100}%;background:${severityColor(0.4 + 0.6 * (maxc / a.count))}" title="${a.prov} ${doyToDate(s + 1)}–${doyToDate(e + 1)}：最多 ${maxc}/${a.count} 套极端"></div>`);
+          s = -1;
+        }
+      }
+      return out.join('');
+    };
+    const body = agg.map((a) =>
+      `<div class="grid items-center gap-px py-px" style="${GT}"><div class="text-xs text-slate-600 truncate pr-1" title="${a.prov} · 极端 ${a.extremeRange}">${a.prov}</div>`
+      + `<div class="relative h-5 rounded-sm bg-slate-100/70" style="${gridImg}">${blocksFor(a)}</div></div>`).join('');
     strip.innerHTML = head + body
-      + '<div class="text-[0.62rem] text-slate-400 mt-2 leading-relaxed">横轴=月份；色块=该省当月有小区严寒(月均&lt;0℃)或酷热(月均高温≥33℃)，越深=占比越高，空白=无极端。</div>';
+      + '<div class="text-[0.62rem] text-slate-400 mt-2 leading-relaxed">横轴=全年（按日，竖线为月界）；红段=该省有小区当天严寒(日均&lt;0℃)或酷热(日均高温≥33℃)，越深=占比越高，空白=无极端。</div>';
   }
 
   function renderProvinceChart() {
@@ -808,8 +873,8 @@
     { key: 'tempRange', label: '年温差', group: 'live', num: true, get: (d) => nz(d.tempRange, -1), cell: (d) => rangeCell(d.tempRange) },
     { key: 'janTemp', label: '1月均温', group: 'live', num: true, get: (d) => nz(d.janTemp, -999), cell: (d) => fmtTemp(d.janTemp) },
     { key: 'julTemp', label: '7月均温', group: 'live', num: true, get: (d) => nz(d.julTemp, -999), cell: (d) => fmtTemp(d.julTemp) },
-    { key: 'comfortMonths', label: '舒适月份', group: 'live', get: (d) => nz(d.comfortMonths, -1), cell: (d) => comfortCell(d) },
-    { key: 'extremeMonths', label: '极端月份', group: 'live', get: (d) => nz(d.extremeMonths, 99), cell: (d) => extremeCell(d) },
+    { key: 'comfortMonths', label: '舒适日期', group: 'live', get: (d) => nz(d.comfortDayCount, nz(d.comfortMonths, -1)), cell: (d) => comfortCell(d) },
+    { key: 'extremeMonths', label: '极端日期', group: 'live', get: (d) => nz(d.extremeDayCount, nz(d.extremeMonths, 99)), cell: (d) => extremeCell(d) },
     { key: 'annualPrecip', label: '年降水mm', group: 'live', num: true, get: (d) => nz(d.annualPrecip, -1), cell: (d) => d.annualPrecip == null ? '—' : fmtInt(d.annualPrecip) },
     { key: 'elevation', label: '海拔m', group: 'live', num: true, get: (d) => nz(d.elevation, -1), cell: (d) => d.elevation == null ? '—' : fmtInt(d.elevation) },
     { key: 'heating', label: '供暖', group: 'live', get: (d) => (d.heating != null ? HEATING_ORD[d.heating] : -1), cell: (d) => heatingCell(d) },
@@ -914,8 +979,10 @@
       ['月租(元)', (d) => d.rent],
       ['气候类型', (d) => d.climateType || ''], ['年温差(℃)', (d) => d.tempRange],
       ['1月均温(℃)', (d) => d.janTemp], ['7月均温(℃)', (d) => d.julTemp],
-      ['舒适月数', (d) => d.comfortMonths], ['舒适月份', (d) => d.comfortRange],
-      ['极端月数', (d) => d.extremeMonths], ['极端月份', (d) => d.extremeRange],
+      ['舒适天数', (d) => d.comfortDayCount != null ? d.comfortDayCount : d.comfortMonths],
+      ['舒适日期', (d) => d.comfortRange],
+      ['极端天数', (d) => d.extremeDayCount != null ? d.extremeDayCount : d.extremeMonths],
+      ['极端日期', (d) => d.extremeRange],
       ['年降水(mm)', (d) => d.annualPrecip], ['海拔(m)', (d) => d.elevation],
       ['供暖', (d) => d.heating || ''],
       ['医院(km)', (d) => d.hospitalKm], ['火车站(km)', (d) => d.trainKm],
@@ -1040,7 +1107,40 @@
     }
     document.getElementById('lm-risk').innerHTML = (riskLine || '<span class="text-slate-400">暂无风险数据</span>') + heatLine + hazLine;
     if (lmClimateChart) { lmClimateChart.destroy(); lmClimateChart = null; }
-    if (!cl || !window.Chart) return;
+    if (!window.Chart) return;
+    const ctxEl = document.getElementById('lm-climate-chart');
+    const dy = d.daily;
+    if (dy && dy.curve && dy.curve.tmean) {
+      // 365-day temperature curve; the 日均温 line is coloured per segment —
+      // green where comfortable, red where extreme, slate otherwise.
+      const flag = new Array(366).fill(0);
+      const fill = (rr, v) => (rr || []).forEach(([s, e]) => {
+        if (s <= e) { for (let i = s; i <= e; i++) flag[i] = v; }
+        else { for (let i = s; i <= 365; i++) flag[i] = v; for (let i = 1; i <= e; i++) flag[i] = v; }
+      });
+      fill(dy.comfortDays, 1); fill(dy.extremeDays, 2);
+      const segColor = (s) => { const f = flag[(s.p1DataIndex || 0) + 1]; return f === 2 ? '#dc2626' : f === 1 ? '#059669' : '#94a3b8'; };
+      const labels = Array.from({ length: 365 }, (_, i) => { let m = 0, x = i + 1; while (x > _DIM[m]) { x -= _DIM[m]; m += 1; } return x === 1 ? (m + 1) + '月' : ''; });
+      lmClimateChart = new Chart(ctxEl, {
+        type: 'line',
+        data: { labels, datasets: [
+          { label: '日高温', data: dy.curve.tmax, borderColor: 'rgba(220,38,38,0.3)', borderWidth: 1, pointRadius: 0, tension: 0.3 },
+          { label: '日低温', data: dy.curve.tmin, borderColor: 'rgba(37,99,235,0.3)', borderWidth: 1, pointRadius: 0, tension: 0.3 },
+          { label: '日均温（绿=舒适·红=极端）', data: dy.curve.tmean, borderColor: '#64748b', borderWidth: 2.5, pointRadius: 0, tension: 0.3, segment: { borderColor: segColor } },
+        ] },
+        options: {
+          responsive: true, maintainAspectRatio: false, interaction: { mode: 'index', intersect: false },
+          plugins: { legend: { labels: { boxWidth: 12, font: { size: 10 } } },
+            tooltip: { callbacks: { title: (it) => doyToDate(((it[0] && it[0].dataIndex) || 0) + 1) } } },
+          scales: {
+            y: { title: { display: true, text: '℃' }, grid: { color: 'rgba(100,116,139,0.12)' } },
+            x: { grid: { display: false }, ticks: { autoSkip: false, maxRotation: 0, font: { size: 10 } } },
+          },
+        },
+      });
+      return;
+    }
+    if (!cl) return;
     const M = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'];
     const pick = (i) => M.map((m) => (cl[m] ? cl[m][i] : (cl[+m] ? cl[+m][i] : null)));
     lmClimateChart = new Chart(document.getElementById('lm-climate-chart'), {
