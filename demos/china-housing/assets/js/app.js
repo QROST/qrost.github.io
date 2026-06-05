@@ -838,7 +838,8 @@
   const SEISMIC_ORD = { '高': 4, '较高': 3, '中': 2, '低': 1 };
   const TYPH_ORD = { '高': 4, '中': 3, '弱': 2, '极低': 1 };
   // recurrence-interval buckets: 5=几乎年年 … 1=百年级罕见 (frequency, not severity)
-  const FREQ_COLOR = { 5: '#dc2626', 4: '#ea580c', 3: '#d97706', 2: '#a16207', 1: '#94a3b8' };
+  // 年年=红 · 数年=橙 · 十年=灰 — 拉开主档色差，罕见档用更浅灰
+  const FREQ_COLOR = { 5: '#b91c1c', 4: '#ea580c', 3: '#64748b', 2: '#94a3b8', 1: '#94a3b8' };
   // central-heating tiers (秦岭-淮河线). ord sorts 集中供暖 high → 无·湿冷 low.
   const HEATING_ORD = { '集中供暖': 3, '部分供暖': 2, '无·冬暖': 1, '无·湿冷': 0 };
   const HEATING_STYLE = {
