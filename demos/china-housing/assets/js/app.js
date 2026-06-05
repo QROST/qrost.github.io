@@ -418,6 +418,7 @@
     const dim = MAP_DIMS[dimKey];
     const data = mapSeriesData();
     const vals = data.map((p) => p.value[2]);
+    const vmin = Math.min(...vals), vmax = Math.max(...vals);
     const bl = baseLayers();
     echartsMap.setOption({
       tooltip: {
@@ -438,7 +439,7 @@
       visualMap: [
         { // listing-point dimension (legend bottom-left)
           type: 'continuous', dimension: 2, seriesIndex: 0,
-          min: Math.min(...vals), max: Math.max(...vals),
+          min: vmin, max: vmax, range: [vmin, vmax],  // always start showing the full range
           left: 'left', bottom: 24, calculable: true,
           text: dim.text, itemWidth: 14, itemHeight: 120,
           inRange: { color: RAMPS[dim.ramp] }, textStyle: { color: C.slate500 },
@@ -468,7 +469,7 @@
           data: bl.lines,
         },
       ],
-    });
+    }, { replaceMerge: ['visualMap'] });  // recreate visualMap so a prior dragged range never sticks
     renderBaseLegend();
   }
 
