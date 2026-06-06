@@ -4,7 +4,7 @@
   "compiled": "2026-06-05",
   "method": "6 路并行调研 agent（恒大 / 碧桂园 / 融创+世茂 / 富力+佳兆业+奥园 / 阳光城+蓝光+中梁+泰禾 / 区域暴跌专题）。反幻觉铁律：cite-or-null、禁猜、每条带 source URL、核实楼盘真实存在且归属对应开发商。",
   "schema_caveat": "当前 DB 无 developer / peak_price / drop / story 字段。入库后默认视图只显示 loc + 当前总价 + 面积 + 租金。开发商已尽量编码进 loc（恒大海花岛 / 碧桂园伯爵 / 融创维多利亚湾 / 世茂滨江新城 / 阳光城未来悦 / 富力湾 / 奥园… 自带品牌名），但「峰值→当前」的腰斩幅度无处展示。若要把暴跌叙事做成可见的数据故事，需加字段或 tag（见 handoff_notes）。本文件即峰值 / 跌幅 / 开发商 / 来源的留存处。",
-  "tier_rule": "隐藏阈值：总价>20万 或 单价>5000元/㎡ → 加进 TIER1_IDS（app.js + manage.py 两处）。注意：多数腰斩盘即便对折仍 >20万 或单价>5000，会落入隐藏「高价参考」。本批中默认可见（便宜小城）的只有：海之缘花苑(7.3万)、富力湾一居室(19万/4040㎡)；其余 16 条建议隐藏。",
+  "tier_rule": "默认视图自动过滤：总价>20万 或 单价>5000元/㎡（见 app.js isDefaultHidden / manage.py is_default_hidden，勿手填 id）。多数腰斩盘即便对折仍超阈值；本批默认可见的便宜样本主要为海之缘花苑(7.3万)等。入库后跑 tier1-check 核对。",
   "new_province_tianjin": {
     "note": "天津是本批唯一新引入的直辖市（首创新北京半岛·武清）。其余省份(山东/海南/广东/辽宁/江苏/湖北/重庆/浙江/河北/四川)均已存在。Cursor 须按 SOP §2 在三处接入天津：",
     "app_js_PROV_FULL": "'天津': '天津市',",
@@ -53,7 +53,7 @@
   "handoff_notes": [
     "SOP 闭环按 tools/SOP-ADD-CITY.md 走；务必跑 hazard-merge（最易漏）。",
     "唯一新直辖市=天津，须按 new_province_tianjin 在三处接入。",
-    "隐藏 tier：18 条里 16 条加进 TIER1_IDS(app.js+manage.py)，仅 海之缘花苑/富力湾 默认可见。",
+    "默认视图：超 20万/5000元㎡ 阈值由 is_default_hidden 自动过滤；入库后 tier1-check。",
     "DB 无 developer/peak 字段——若要把『暴雷腰斩』做成可见数据故事(显示峰值→当前、跌幅徽章)，需加 schema 字段或 tag，再回审。本文件留存了全部峰值/跌幅/来源。",
     "approxTotalWan 多为『当前单价×典型面积』估算；updated 月份对年份级来源做了中性近似。"
   ]
