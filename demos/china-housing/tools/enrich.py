@@ -687,6 +687,10 @@ PROVINCE_HAZARDS = {
     "北京": {"headline": "华北平原旱涝+冬季暴雪；地震风险低于唐山带",
             "hazards": [("洪涝内涝", 4, "海河流域+城区暴雨内涝"), ("干旱", 4, "春旱"),
                         ("暴雪", 4, "冬季强降雪"), ("地震", 2, "华北强震带外围，1976唐山距城较远")]},
+    "天津": {"headline": "华北平原旱涝+滨海风暴潮/海冰；唐山强震带波及",
+            "hazards": [("洪涝内涝", 4, "海河流域+城区暴雨内涝(2012/2016)"), ("干旱", 4, "春旱"),
+                        ("风暴潮", 3, "渤海湾沿海(滨海新区)，内陆武清经物理降尺度自动剔除"),
+                        ("暴雪", 3, "冬季强降雪"), ("地震", 2, "华北强震带，1976唐山距津约100km波及")]},
     "河北": {"headline": "华北强震带(数十年一遇)+旱涝交替",
             "hazards": [("洪涝", 4, "海河流域(2023大水)"), ("干旱", 4, "春旱常见"),
                         ("暴雨", 3, "太行山前极端暴雨"), ("地震", 2, "唐山1976/邢台1966，华北强震带")]},
@@ -751,7 +755,7 @@ PROVINCE_HAZARDS = {
 # ---------------------------------------------------------------------------
 HEAT_HEATED, HEAT_PARTIAL, HEAT_WARM, HEAT_DAMP = "集中供暖", "部分供暖", "无·冬暖", "无·湿冷"
 PROVINCE_HEATING = {
-    "黑龙江": HEAT_HEATED, "吉林": HEAT_HEATED, "辽宁": HEAT_HEATED, "北京": HEAT_HEATED, "河北": HEAT_HEATED,
+    "黑龙江": HEAT_HEATED, "吉林": HEAT_HEATED, "辽宁": HEAT_HEATED, "北京": HEAT_HEATED, "天津": HEAT_HEATED, "河北": HEAT_HEATED,
     "山东": HEAT_HEATED, "河南": HEAT_HEATED, "甘肃": HEAT_HEATED,
     "江苏": HEAT_PARTIAL, "安徽": HEAT_PARTIAL,
     "广东": HEAT_WARM, "广西": HEAT_WARM, "福建": HEAT_WARM, "海南": HEAT_WARM, "云南": HEAT_WARM,
