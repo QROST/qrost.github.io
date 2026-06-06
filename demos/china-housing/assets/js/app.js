@@ -197,15 +197,17 @@
 
   const DATA = RAW.map((d) => {
     const priceYuan = d.priceWan * 10000;
-    const rentYear = d.rent * 12;
+    const rent = d.rent > 0 ? d.rent : null;          // 0 = 未调研/未知（非"免租"）→ 回报率/月租按未知处理
+    const rentYear = rent != null ? rent * 12 : null;
     const e = ENR[d.id] || ENR[String(d.id)] || null;
     const cd = deriveClimate(e);
     return {
       ...d, enr: e, hazard: (e && e.hazard) || HAZ[d.prov] || null,  // per-listing (prefecture×physics) → province fallback
       heating: (HAZ[d.prov] && HAZ[d.prov].heating) || null,
       heatingNote: (HAZ[d.prov] && HAZ[d.prov].heatingNote) || '',
-      priceYuan, unitPrice: priceYuan / d.area, rentYear,
-      yieldPct: (rentYear / priceYuan) * 100, payback: priceYuan / rentYear,
+      priceYuan, unitPrice: priceYuan / d.area, rent, rentYear,
+      yieldPct: rentYear != null ? (rentYear / priceYuan) * 100 : null,
+      payback: rentYear != null ? priceYuan / rentYear : null,
       elevation: e && e.elevation != null ? e.elevation : null,
       builtYear: e && e.builtYear != null ? e.builtYear : null,
       builtYearSrc: (e && e.builtYearSrc) || null,
@@ -222,9 +224,9 @@
   // ---- formatting --------------------------------------------------------
   const trim = (s) => s.replace(/\.0+$/, '').replace(/(\.\d*?)0+$/, '$1');
   const fmtWan = (v) => trim(v.toFixed(2)) + '万';
-  const fmtInt = (v) => Math.round(v).toLocaleString('en-US');
-  const fmtPct = (v) => v.toFixed(1) + '%';
-  const fmtYrs = (v) => v.toFixed(1);
+  const fmtInt = (v) => v == null ? '—' : Math.round(v).toLocaleString('en-US');
+  const fmtPct = (v) => v == null ? '—' : v.toFixed(1) + '%';
+  const fmtYrs = (v) => v == null ? '—' : v.toFixed(1);
   const fmtTemp = (v) => v == null ? '—' : Math.round(v) + '℃';
   const fmtKm = (v) => v == null ? '—' : (v < 1 ? Math.round(v * 1000) + 'm' : (v < 10 ? v.toFixed(1) : Math.round(v)) + 'km');
   const cityLabel = (d) => `${d.city.replace(/市$/, '')}·${d.loc}`;
@@ -363,7 +365,7 @@
     cheap: { label: '总价最低', key: 'priceWan', dir: 1, axis: '总价（万元）', fmt: fmtWan, color: (v, n) => badColor(v / n) },
     unit: { label: '单价最低', key: 'unitPrice', dir: 1, axis: '单价（元/㎡）', fmt: (v) => fmtInt(v), color: (v, n) => badColor(v / n) },
     comfort: { label: '舒适月最多', key: 'comfortMonths', dir: -1, axis: '舒适月数（15–26℃）', fmt: (v) => v + '月', color: (v, n) => comfortColor(v / (n || 1)) },
-    mild: { label: '极端天气最少', key: 'extremeMonths', dir: 1, axis: '极端天气月数', fmt: (v) => v + '月', color: (v, n) => comfortColor(1 - v / (n || 1)) },
+    extreme: { label: '极端天气最多', key: 'extremeMonths', dir: -1, axis: '极端天气月数', fmt: (v) => v + '月', color: (v, n) => comfortColor(1 - v / (n || 1)) },
     yield: { label: '回报率最高', key: 'yieldPct', dir: -1, axis: '毛租金回报率（%）', fmt: fmtPct, color: (v, n) => lerpColor(v / n) },
   };
   let rankKey = 'comfort';
@@ -385,7 +387,7 @@
       ctx.parentElement.appendChild(host);
     }
     host.style.display = '';
-    const isStrip = (rankKey === 'comfort' || rankKey === 'mild');
+    const isStrip = (rankKey === 'comfort' || rankKey === 'extreme');
     const isC = rankKey === 'comfort';
     const skey = isStrip ? (isC ? 'comfortDayCount' : 'extremeDayCount') : m.key;
     const pool = viewData().filter((d) => isStrip ? (d.daily && d[skey] != null) : d[m.key] != null);
@@ -895,8 +897,8 @@
   function viewScales() {
     const vd = viewData();
     return {
-      yMinT: Math.min(...vd.map((d) => d.yieldPct)),
-      yMaxT: Math.max(...vd.map((d) => d.yieldPct)),
+      yMinT: Math.min(...vd.map((d) => d.yieldPct).filter((v) => v != null)),
+      yMaxT: Math.max(...vd.map((d) => d.yieldPct).filter((v) => v != null)),
       exMaxT: Math.max(1, ...vd.map((d) => nz(d.extremeMonths, 0))),
       rangeMaxT: Math.max(1, ...vd.map((d) => nz(d.tempRange, 0))),
     };
@@ -981,6 +983,7 @@
     return pill(d.extremeRange || (d.extremeMonths + '月'), badColor(t), t > 0.5 ? '#fff' : '#0f172a');
   }
   function yieldCell(d) {
+    if (d.yieldPct == null) return '<span class="text-slate-300">—</span>';
     const { yMinT, yMaxT } = viewScales();
     const t = (d.yieldPct - yMinT) / (yMaxT - yMinT || 1);
     return pill(fmtPct(d.yieldPct), lerpColor(t), t > 0.5 ? '#fff' : '#0f172a');
@@ -1139,7 +1142,7 @@
       ['机场(km)', (d) => d.airportKm], ['海岸(km)', (d) => d.coastKm],
       ['地震带(省级)', (d) => d.seismic], ['台风暴露', (d) => d.typhoon],
       ['主要灾害(频率)', (d) => d.hazard ? d.hazard.hazards.map((h) => `${h.type}(${h.freqLabel})`).join('、') : ''],
-      ['毛回报(%)', (d) => d.yieldPct.toFixed(1)], ['回本(年)', (d) => d.payback.toFixed(1)],
+      ['毛回报(%)', (d) => d.yieldPct == null ? '' : d.yieldPct.toFixed(1)], ['回本(年)', (d) => d.payback == null ? '' : d.payback.toFixed(1)],
       ['更新', (d) => d.updated],
     ];
     const esc = (s) => { const v = s == null ? '' : String(s); return /[",\n]/.test(v) ? `"${v.replace(/"/g, '""')}"` : v; };
