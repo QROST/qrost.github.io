@@ -2,7 +2,7 @@
 """
 china-housing gridded climate / elevation field — build-time bake.
 
-Produces a CONTINUOUS field over China (not just the 121 listing points) so the
+Produces a CONTINUOUS field over China (not just the listing sample points) so the
 web map can show a true isotherm / rainfall / elevation basemap underneath the
 listings. Two stages, deliberately split:
 

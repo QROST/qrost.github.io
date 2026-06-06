@@ -29,7 +29,22 @@ function el(dataset) {
   return e;
 }
 const selCache = {}; const ids = {};
+const htmlClass = new Set();
+const documentElement = {
+  classList: {
+    contains(c) { return htmlClass.has(c); },
+    add(c) { htmlClass.add(c); },
+    remove(c) { htmlClass.delete(c); },
+    toggle(c, force) {
+      if (force !== undefined) { force ? htmlClass.add(c) : htmlClass.delete(c); return !!force; }
+      const on = htmlClass.has(c);
+      if (on) htmlClass.delete(c); else htmlClass.add(c);
+      return !on;
+    },
+  },
+};
 const document = {
+  documentElement,
   getElementById(id) { return (ids[id] || (ids[id] = el({ id }))); },
   querySelectorAll(s) { return (selCache[s] || (selCache[s] = (SELS[s] || []).map((d) => el(d)))); },
   querySelector() { return el(); }, addEventListener() {}, createElement() { return el(); },

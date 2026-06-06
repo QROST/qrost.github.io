@@ -144,6 +144,10 @@ python3 tools/manage.py build
 > **页面计数不写死**：hero 的「N套 / N省」既由 build 烘焙进静态 HTML（SEO / 无 JS 兜底），
 > 又由 `app.js` `syncHeroCounts()` **运行时按实际数据动态显示**——所以从任何渠道加了城市，
 > 页面数字都会跟着变，不会卡在某个旧数。
+>
+> **方法论 §房龄不写具体套数**：`index.html` methodology 段的房龄说明只描述口径（精确 /
+> 「约」/ 未知），**禁止**写「已覆盖 N 套」——样本会持续扩充；`build` 的 `sync_html` 亦不会
+> 改写该段（见 `manage.py` 注释）。
 
 ## 7. 验证 + 提交
 
