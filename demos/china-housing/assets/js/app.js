@@ -180,7 +180,7 @@
   };
 
   // Tier-1 reference listings (personal cross-check; hidden unless footer toggle on).
-  const TIER1_IDS = new Set([54, 123, 124, 125, 126, 127]);
+  const TIER1_IDS = new Set([54, 123, 124, 125, 126, 127, 128]);
   let tier1On = false;
   function viewData() {
     return tier1On ? DATA : DATA.filter((d) => !TIER1_IDS.has(d.id));

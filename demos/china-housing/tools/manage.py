@@ -291,7 +291,7 @@ def _enrich_coverage(con) -> str:
 # toggle in app.js; keep this set in sync with TIER1_IDS there. They are EXCLUDED
 # from the headline 套/省 counts because the page's framing is "全国小城市", and
 # these aren't small cities — but the date range still reflects when they landed.
-TIER1_IDS = {54, 123, 124, 125, 126, 127}
+TIER1_IDS = {54, 123, 124, 125, 126, 127, 128}
 
 
 def sync_html(rows: list[dict]) -> list[str]:
