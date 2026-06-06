@@ -318,6 +318,10 @@
     const pts = viewData().filter((d) => cdays(d) != null && d.tempRange != null)
       .map((d) => ({ x: d.priceWan, y: cdays(d), d }));
     const rMax = Math.max(1, ...pts.map((p) => p.d.tempRange));
+    // Chart.js derives x min/max from edge points assuming x-sorted data; our pts are
+    // id-ordered, so it clipped the axis (maxed at 8万 while data ran to ~19万, hiding ~half
+    // the points off-chart). Anchor the price axis explicitly to [0, data-max] regardless of order.
+    const pMax = Math.max(1, ...pts.map((p) => p.x));
     scatterChart = new Chart(ctx, {
       type: 'scatter',
       data: {
@@ -347,7 +351,7 @@
           },
         },
         scales: {
-          x: { title: { display: true, text: '二手房总价（万元）— 越左越便宜' }, grid: { color: C.grid }, ticks: { callback: (v) => v + '万' } },
+          x: { min: 0, suggestedMax: pMax, title: { display: true, text: '二手房总价（万元）— 越左越便宜' }, grid: { color: C.grid }, ticks: { callback: (v) => v + '万' } },
           y: { title: { display: true, text: '舒适天数（日均温 15–26℃；悬停看具体日期范围）— 越上越多' }, grid: { color: C.grid }, min: 0, max: 365 },
         },
       },
