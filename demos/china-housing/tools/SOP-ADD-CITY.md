@@ -104,18 +104,32 @@ python3 tools/manage.py built-merge findings.json     # 校验 1900≤年≤2026
 > `hazard-merge` **不可选**（必须有 `hazards_local`）。调研产物存 `data/research/`、
 > `data/hazard_research.json`（provenance，可复跑）。详见 README 对应小节。
 
-## 5. 隐藏「高价 / 一线参考」房源（默认不显示、不计入标题）
+## 5. 默认视图过滤（**自动判断，勿手填 id 列表**）
 
-某些房源（一线城市、或明显贵于「便宜小城」基调的盘）**不该污染默认视图与标题计数**。
-**经验阈值**：`总价 > 20 万` **或** `单价 > 5000 元/㎡` → 归入隐藏参考集。把它们的 id 加进
-**两处并保持一致**：
+明显贵于「便宜小城」基调的样本，入库后由代码**按阈值自动**从默认表格 / 图表 / 地图与标题
+`N套/N省` 计数中排除：
 
-- `assets/js/app.js` → `const TIER1_IDS = new Set([...])`（前端默认 filter 掉，footer toggle 才显示）
-- `tools/manage.py` → `TIER1_IDS = {...}`（标题 `N套/N省` 计数排除它们）
+| 条件 | 阈值 |
+|------|------|
+| 总价 | `priceWan > 20`（万元） |
+| 单价 | `priceWan × 10000 ÷ area > 5000`（元/㎡） |
 
-> 变量名沿用 `TIER1_IDS`（最初只放一线超豪宅），现已泛化为「**高价参考集**」。footer toggle
-> 文案因此是「**显示高价参考**」——**不要写死「一线」**：隐藏集里多数是高价度假盘 / 改善盘，并非
-> 一线城市。
+满足**任一**即过滤。实现位置（两处常量须一致）：
+
+- `assets/js/app.js` → `isDefaultHidden()`（`TIER1_MAX_PRICE_WAN` / `TIER1_MAX_UNIT_YUAN`）
+- `tools/manage.py` → `is_default_hidden()`（同名常量）
+
+**入库后必跑**（核对本批哪些会被过滤、默认可见套数是否符合预期）：
+
+```bash
+python3 tools/manage.py tier1-check
+```
+
+示例输出：`default visible: 123 / 163`，并逐条列出超阈值样本及触发原因（总价 / 单价）。
+
+> 页脚有「**显示全部**」checkbox（`#tier1-toggle`），**不加解释文案**——公众默认只见小城样本，知情者可自行展开。
+>
+> **禁止**再维护手写 `TIER1_IDS` id 列表；改阈值只改上述两处常量。
 
 ## 6. build（重新生成所有产物 + 同步页面）
 
@@ -124,8 +138,8 @@ python3 tools/manage.py build
 ```
 
 一次性：① 重写 `listings.js / enriched.js / hazards.js / field.js`；② 刷新 `listings.csv` 镜像；
-③ 就地把 `index.html` 的「N套 / N省 / 覆盖N省 / 日期范围 / 页脚更新于」同步到 DB（**tier-1 不计入**
-标题数）。找不到某 token 会打印 `! … update manually` 警告，不静默失败。
+③ 就地把 `index.html` 的「N套 / N省 / 覆盖N省 / 日期范围 / 页脚更新于」同步到 DB（超阈值样本
+不计入标题数，与 `is_default_hidden()` 一致）。找不到某 token 会打印 `! … update manually` 警告，不静默失败。
 
 > **页面计数不写死**：hero 的「N套 / N省」既由 build 烘焙进静态 HTML（SEO / 无 JS 兜底），
 > 又由 `app.js` `syncHeroCounts()` **运行时按实际数据动态显示**——所以从任何渠道加了城市，
@@ -152,6 +166,6 @@ python3 tools/manage.py climate-daily && python3 tools/manage.py elevation && \
 python3 tools/manage.py relief && python3 tools/manage.py risk && python3 tools/manage.py pois && \
 python3 tools/manage.py hazard-merge data/hazard_research.json   # ← 别漏！每小区灾害
 # (新省份? 先改 app.js PROV_FULL + enrich.py PROVINCE_HAZARDS/HEATING)
-# (高价/一线? 把 id 加进 app.js + manage.py 的 TIER1_IDS 两处)
+python3 tools/manage.py tier1-check   # 自动核对超阈值过滤（§5）
 python3 tools/manage.py build
 ```
