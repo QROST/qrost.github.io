@@ -706,6 +706,12 @@ PROVINCE_HAZARDS = {
     "江苏": {"headline": "台风、洪涝，偶发强龙卷",
             "hazards": [("洪涝", 4, "淮河下游/太湖"), ("台风", 3, "沿海"),
                         ("风暴潮", 3, "沿海"), ("龙卷风", 2, "2016盐城EF4，强龙卷罕见")]},
+    "浙江": {"headline": "台风暴雨+梅雨洪涝；沿海风暴潮",
+            "hazards": [("台风", 5, "沿海登陆/影响频繁"), ("暴雨", 5, "梅雨季/台风暴雨"),
+                        ("洪涝", 4, "钱塘江/苕溪流域"), ("风暴潮", 3, "沿海")]},
+    "湖北": {"headline": "长江流域洪涝突出，伏旱与高温并存",
+            "hazards": [("洪涝", 4, "长江/汉江流域(1998/2020)"), ("暴雨", 4, "梅雨/强对流"),
+                        ("干旱", 4, "伏旱"), ("高温", 4, "夏季极端高温")]},
     "广东": {"headline": "台风+流域性洪涝的双高暴露",
             "hazards": [("台风", 5, "登陆最频繁省份之一"), ("暴雨", 5, "前汛期强降水"),
                         ("洪涝", 4, "珠江/西江流域"), ("风暴潮", 4, "沿海")]},
@@ -749,7 +755,8 @@ PROVINCE_HEATING = {
     "山东": HEAT_HEATED, "河南": HEAT_HEATED, "甘肃": HEAT_HEATED,
     "江苏": HEAT_PARTIAL, "安徽": HEAT_PARTIAL,
     "广东": HEAT_WARM, "广西": HEAT_WARM, "福建": HEAT_WARM, "海南": HEAT_WARM, "云南": HEAT_WARM,
-    "上海": HEAT_DAMP, "重庆": HEAT_DAMP, "四川": HEAT_DAMP, "贵州": HEAT_DAMP,
+    "上海": HEAT_DAMP, "浙江": HEAT_DAMP, "湖北": HEAT_DAMP,
+    "重庆": HEAT_DAMP, "四川": HEAT_DAMP, "贵州": HEAT_DAMP,
 }
 HEATING_NOTE = {
     HEAT_HEATED: "秦岭-淮河线以北，市政集中供暖",
