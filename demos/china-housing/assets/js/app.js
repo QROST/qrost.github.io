@@ -36,6 +36,13 @@
     slate300: '#cbd5e1', slate200: '#e2e8f0', grid: 'rgba(100,116,139,0.12)',
   };
 
+  // ---- theme helpers (dark mode) -----------------------------------------
+  const isDark = () => document.documentElement.classList.contains('dark');
+  const themeText  = () => isDark() ? '#94a3b8' : C.slate500;
+  const themeGrid  = () => isDark() ? 'rgba(148,163,184,0.10)' : C.grid;
+  const themeBg    = () => isDark() ? '#1e293b' : '#ffffff';
+  const themeStrip = () => isDark() ? '#1e293b' : '#ffffff'; // sticky headers in strips
+
   // Province short form (as in the data) → full GeoJSON name (DataV / Aliyun).
   const PROV_FULL = {
     '北京': '北京市', '天津': '天津市',
@@ -279,13 +286,13 @@
       { label: '极端天气最少', value: mildest ? mildest.extremeRange : '—', sub: mildest ? `${cityLabel(mildest)} · 全年最温和` : '—' },
     ];
     document.getElementById('kpi-grid').innerHTML = cards.map((c) => `
-      <div class="rounded-xl border border-slate-200 bg-white p-5">
-        <div class="text-[0.7rem] font-medium uppercase tracking-[0.12em] text-slate-400">${c.label}</div>
+      <div class="rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800/60 p-5 transition-colors duration-300">
+        <div class="text-[0.7rem] font-medium uppercase tracking-[0.12em] text-slate-400 dark:text-slate-500">${c.label}</div>
         <div class="mt-2 flex items-baseline gap-1">
-          <span class="text-2xl md:text-3xl font-semibold text-slate-900 tabular-nums">${c.value}</span>
-          ${c.unit ? `<span class="text-sm text-slate-400">${c.unit}</span>` : ''}
+          <span class="text-2xl md:text-3xl font-semibold text-slate-900 dark:text-slate-50 tabular-nums">${c.value}</span>
+          ${c.unit ? `<span class="text-sm text-slate-400 dark:text-slate-500">${c.unit}</span>` : ''}
         </div>
-        <div class="mt-1 text-xs text-slate-500 truncate" title="${c.sub}">${c.sub}</div>
+        <div class="mt-1 text-xs text-slate-500 dark:text-slate-400 truncate" title="${c.sub}">${c.sub}</div>
       </div>`).join('');
   }
 
@@ -294,7 +301,8 @@
     if (!window.Chart || !Chart.defaults) return;
     Chart.defaults.font = Chart.defaults.font || {};
     Chart.defaults.font.family = "'Inter','PingFang SC','Microsoft YaHei',sans-serif";
-    Chart.defaults.color = C.slate500;
+    Chart.defaults.color = themeText();
+    Chart.defaults.borderColor = themeGrid();
   }
 
   // isolate section failures so one broken chart never aborts init (table/map wiring)
@@ -305,7 +313,9 @@
 
   function styleTab(b, on, base) {
     b.className = `${base} px-3 py-1.5 rounded-md text-xs font-medium transition-colors ` +
-      (on ? 'bg-slate-900 text-white' : 'bg-white text-slate-500 border border-slate-200 hover:text-slate-900');
+      (on
+        ? 'bg-slate-900 dark:bg-slate-100 text-white dark:text-slate-900'
+        : 'bg-white dark:bg-slate-800 text-slate-500 dark:text-slate-400 border border-slate-200 dark:border-slate-600 hover:text-slate-900 dark:hover:text-slate-100');
   }
 
   let scatterChart, rankChart, provChart;
@@ -395,7 +405,8 @@
     const maxV = Math.max(...top.map((d) => d[m.key] || 0), 1);
     const GT = 'grid-template-columns: 1.6rem minmax(4.5rem, 9rem) 1fr 3.6rem';
     const colHdr = isStrip ? (isC ? '舒适日段（绿）' : '极端日段（红）') : m.axis.replace(/（.*/, '');
-    const head = `<div class="grid items-center gap-2 text-[0.6rem] text-slate-400 sticky top-0 bg-white z-10 pb-1" style="${GT}"><div>#</div><div>小区</div><div>${colHdr}</div><div class="text-right">${isStrip ? (isC ? '舒适' : '极端') : ''}</div></div>`;
+    const hBg = isDark() ? '#1e293b' : '#ffffff';
+    const head = `<div class="grid items-center gap-2 text-[0.6rem] text-slate-400 sticky top-0 z-10 pb-1" style="${GT};background:${hBg}"><div>#</div><div>小区</div><div>${colHdr}</div><div class="text-right">${isStrip ? (isC ? '舒适' : '极端') : ''}</div></div>`;
     const body = top.map((d, i) => {
       let vis, val;
       if (isStrip) {
@@ -406,10 +417,12 @@
         vis = `<div class="h-3.5 rounded-sm" style="width:${Math.max(2, (d[m.key] / maxV) * 100)}%;background:${m.color(d[m.key], maxV)}"></div>`;
         val = m.fmt(d[m.key]);
       }
-      return `<div class="grid items-center gap-2 py-0.5" style="${GT}"><div class="text-xs text-slate-400 tabular-nums">${i + 1}</div>`
-        + `<div class="text-xs text-slate-700 truncate" title="${cityLabel(d)} · ${d.prov}">${cityLabel(d)}</div>`
+      const rowText = isDark() ? '#94a3b8' : '#374151';
+      const valText = isDark() ? '#64748b' : '#6b7280';
+      return `<div class="grid items-center gap-2 py-0.5" style="${GT}"><div class="text-xs tabular-nums" style="color:${valText}">${i + 1}</div>`
+        + `<div class="text-xs truncate" style="color:${rowText}" title="${cityLabel(d)} · ${d.prov}">${cityLabel(d)}</div>`
         + `<div>${vis}</div>`
-        + `<div class="text-right text-xs text-slate-500 tabular-nums">${val}</div></div>`;
+        + `<div class="text-right text-xs tabular-nums" style="color:${valText}">${val}</div></div>`;
     }).join('');
     host.innerHTML = head + body;
     document.querySelectorAll('[data-rank]').forEach((b) => {
@@ -484,7 +497,8 @@
     const ctr = []; let p0 = 0; for (let i = 0; i < 12; i++) { ctr.push((p0 + bnd[i]) / 2); p0 = bnd[i]; }
     const gridImg = 'background-image:' + bnd.slice(0, 11).map((p) =>
       `linear-gradient(90deg, transparent calc(${p}% - 0.5px), rgba(100,116,139,0.16) ${p}%, transparent calc(${p}% + 0.5px))`).join(',');
-    const head = `<div class="grid items-center gap-px text-[0.6rem] text-slate-400 sticky top-0 bg-white z-10 pb-1" style="${GT}"><div></div>`
+    const sBg = isDark() ? '#1e293b' : '#ffffff';
+    const head = `<div class="grid items-center gap-px text-[0.6rem] text-slate-400 sticky top-0 z-10 pb-1" style="${GT};background:${sBg}"><div></div>`
       + `<div class="relative h-3">${ctr.map((c, i) => `<span style="position:absolute;left:${c}%;transform:translateX(-50%)">${i + 1}</span>`).join('')}</div></div>`;
     const blocksFor = (a) => {
       const f = a.extremeByDay || []; const out = []; let s = -1;
@@ -499,9 +513,11 @@
       }
       return out.join('');
     };
+    const provColor = isDark() ? '#94a3b8' : '#475569';
+    const stripBg = isDark() ? 'rgba(30,41,59,0.7)' : 'rgba(241,245,249,0.7)';
     const body = agg.map((a) =>
-      `<div class="grid items-center gap-px py-px" style="${GT}"><div class="text-xs text-slate-600 truncate pr-1" title="${a.prov} · 极端 ${a.extremeRange}">${a.prov}</div>`
-      + `<div class="relative h-5 rounded-sm bg-slate-100/70" style="${gridImg}">${blocksFor(a)}</div></div>`).join('');
+      `<div class="grid items-center gap-px py-px" style="${GT}"><div class="text-xs truncate pr-1" style="color:${provColor}" title="${a.prov} · 极端 ${a.extremeRange}">${a.prov}</div>`
+      + `<div class="relative h-5 rounded-sm" style="${gridImg};background-color:${stripBg}">${blocksFor(a)}</div></div>`).join('');
     strip.innerHTML = head + body
       + '<div class="text-[0.62rem] text-slate-400 mt-2 leading-relaxed">横轴=全年（按日，竖线为月界）；红段=该省有小区当天严寒(日均&lt;0℃)或酷热(日均高温≥33℃)，越深=占比越高，空白=无极端。</div>';
   }
@@ -858,14 +874,16 @@
       const geo = await loadChinaGeo();
       echarts.registerMap('china', geo);
       echartsMap = echarts.init(document.getElementById('china-map'));
+      const dk = isDark();
       echartsMap.setOption({
         geo: {
           map: 'china', roam: true, zoom: 1, scaleLimit: { min: 1, max: 14 },
           nameProperty: 'name',
-          itemStyle: { areaColor: '#f8fafc', borderColor: '#cbd5e1', borderWidth: 0.6 },
-          emphasis: { itemStyle: { areaColor: '#eef2f7' }, label: { show: false } },
+          itemStyle: { areaColor: dk ? '#1e293b' : '#f8fafc', borderColor: dk ? '#334155' : '#cbd5e1', borderWidth: 0.6 },
+          emphasis: { itemStyle: { areaColor: dk ? '#334155' : '#eef2f7' }, label: { show: false } },
           select: { disabled: true },
         },
+        backgroundColor: dk ? '#0f172a' : 'transparent',
       });
       baseGeoOpt = { center: echartsMap.getOption().geo[0].center };
       mapReady = true;
@@ -1033,6 +1051,11 @@
     const col = COLS.find((c) => c.key === tstate.sortKey) || COLS[0];
     rows.sort((a, b) => {
       const av = col.get(a), bv = col.get(b);
+      // Always push null/undefined to the bottom, regardless of sort direction.
+      const aNul = av == null, bNul = bv == null;
+      if (aNul && bNul) return 0;
+      if (aNul) return 1;
+      if (bNul) return -1;
       const cmp = col.str ? String(av).localeCompare(String(bv), 'zh') : (av - bv);
       return cmp * tstate.sortDir;
     });
@@ -1042,21 +1065,29 @@
   function renderTable() {
     const cols = visibleCols();
     const rows = tableView();
+    const dk = isDark();
+    const thActCls = dk ? 'text-slate-100' : 'text-slate-900';
+    const thIdlCls = dk ? 'text-slate-500 hover:text-slate-300' : 'text-slate-400 hover:text-slate-700';
     const head = cols.map((c) => {
-      if (c.act) return `<th class="px-3 py-2.5 font-medium text-right text-slate-400 whitespace-nowrap">${c.label}</th>`;
+      if (c.act) return `<th class="px-3 py-2.5 font-medium text-right whitespace-nowrap ${dk ? 'text-slate-500' : 'text-slate-400'}">${c.label}</th>`;
       const active = tstate.sortKey === c.key;
       const arrow = active ? (tstate.sortDir === 1 ? '▲' : '▼') : '';
-      return `<th data-col="${c.key}" class="px-3 py-2.5 font-medium cursor-pointer select-none whitespace-nowrap ${c.num ? 'text-right' : 'text-left'} ${active ? 'text-slate-900' : 'text-slate-400 hover:text-slate-700'}">${c.label}<span class="ml-0.5 text-[0.6rem]">${arrow}</span></th>`;
+      return `<th data-col="${c.key}" class="px-3 py-2.5 font-medium cursor-pointer select-none whitespace-nowrap ${c.num ? 'text-right' : 'text-left'} ${active ? thActCls : thIdlCls}">${c.label}<span class="ml-0.5 text-[0.6rem]">${arrow}</span></th>`;
     }).join('');
+    const tdTextCls = dk ? 'text-slate-300' : 'text-slate-700';
     const body = rows.map((d) => {
       const tds = cols.map((c) => {
         if (c.act) return `<td class="px-3 py-2 text-right whitespace-nowrap">${c.cell(d)}</td>`;
-        const cls = c.num ? 'text-right tabular-nums text-slate-700' : 'text-slate-700';
+        const cls = c.num ? `text-right tabular-nums ${tdTextCls}` : tdTextCls;
         return `<td class="px-3 py-2 ${cls} whitespace-nowrap">${c.cell(d)}</td>`;
       }).join('');
-      return `<tr class="border-t border-slate-100 hover:bg-slate-50/70">${tds}</tr>`;
+      const rowCls = dk
+        ? 'border-t border-slate-700/60 hover:bg-slate-700/40'
+        : 'border-t border-slate-100 hover:bg-slate-50/70';
+      return `<tr class="${rowCls}">${tds}</tr>`;
     }).join('');
-    document.getElementById('table-head').innerHTML = `<tr class="bg-slate-50 text-xs uppercase tracking-wider">${head}</tr>`;
+    const headBg = dk ? 'bg-slate-800' : 'bg-slate-50';
+    document.getElementById('table-head').innerHTML = `<tr class="${headBg} text-xs uppercase tracking-wider">${head}</tr>`;
     document.getElementById('table-body').innerHTML = body;
     document.getElementById('table-count').textContent = `显示 ${rows.length} / ${viewData().length} 套`;
   }
@@ -1084,10 +1115,13 @@
   }
 
   function styleGroupChips() {
+    const dk = isDark();
     document.querySelectorAll('[data-group]').forEach((b) => {
       const on = tstate.groups.has(b.dataset.group);
       b.className = 'px-3 py-1.5 rounded-md text-xs font-medium transition-colors ' +
-        (on ? 'bg-emerald-600 text-white' : 'bg-white text-slate-500 border border-slate-200 hover:text-slate-900');
+        (on
+          ? 'bg-emerald-600 dark:bg-emerald-700 text-white'
+          : (dk ? 'bg-slate-800 text-slate-400 border border-slate-600 hover:text-slate-100' : 'bg-white text-slate-500 border border-slate-200 hover:text-slate-900'));
     });
   }
 
@@ -1168,10 +1202,13 @@
   let lmCurrent = null, lmSatMap = null, lmNearMap = null, lmClimateChart = null, lmTabInit = {};
 
   function lmStyleTabs(active) {
+    const dk = isDark();
     document.querySelectorAll('[data-lm-tab]').forEach((b) => {
       const on = b.dataset.lmTab === active;
       b.className = 'lm-tab px-3 py-1.5 rounded-md text-sm font-medium transition-colors ' +
-        (on ? 'bg-slate-900 text-white' : 'bg-slate-100 text-slate-500 hover:text-slate-900');
+        (on
+          ? (dk ? 'bg-slate-100 text-slate-900' : 'bg-slate-900 text-white')
+          : (dk ? 'bg-slate-700 text-slate-400 hover:text-slate-100' : 'bg-slate-100 text-slate-500 hover:text-slate-900'));
     });
     document.querySelectorAll('[data-lm-pane]').forEach((p) =>
       p.classList.toggle('hidden', p.dataset.lmPane !== active));
@@ -1340,6 +1377,48 @@
     if (p) p.textContent = new Set(sc.map((d) => d.prov)).size + ' 个省 / 直辖市';
   }
 
+  // ---- theme toggle (dark mode) ------------------------------------------
+  function applyThemeToCharts() {
+    chartBase();  // refresh Chart.js global color tokens
+    safeRun('renderScatter', renderScatter);
+    safeRun('renderRankings', renderRankings);
+    safeRun('renderProvinceChart', renderProvinceChart);
+    safeRun('renderKPIs', renderKPIs);
+    safeRun('renderTable', renderTable);
+    styleGroupChips();
+    // Re-init ECharts map with new geo colours
+    if (echartsMap && mapReady) {
+      const dk = isDark();
+      echartsMap.setOption({
+        backgroundColor: dk ? '#0f172a' : 'transparent',
+        geo: [{
+          itemStyle: { areaColor: dk ? '#1e293b' : '#f8fafc', borderColor: dk ? '#334155' : '#cbd5e1' },
+          emphasis: { itemStyle: { areaColor: dk ? '#334155' : '#eef2f7' } },
+        }],
+      });
+      safeRun('renderMap', renderMap);
+    }
+  }
+
+  function wireThemeToggle() {
+    const btn = document.getElementById('theme-toggle');
+    if (!btn) return;
+    btn.addEventListener('click', () => {
+      const nowDark = document.documentElement.classList.toggle('dark');
+      try { localStorage.setItem('housing-theme', nowDark ? 'dark' : 'light'); } catch (e) {}
+      applyThemeToCharts();
+    });
+    // Also react to OS-level preference changes
+    try {
+      window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+        if (!localStorage.getItem('housing-theme')) {
+          document.documentElement.classList.toggle('dark', e.matches);
+          applyThemeToCharts();
+        }
+      });
+    } catch (e) {}
+  }
+
   function init() {
     chartBase();
     safeRun('syncHeroCounts', syncHeroCounts);
@@ -1374,6 +1453,7 @@
       b.addEventListener('click', () => lmShowTab(b.dataset.lmTab)));
     document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
 
+    wireThemeToggle();
     initMap();
 
     const tier1Toggle = document.getElementById('tier1-toggle');
