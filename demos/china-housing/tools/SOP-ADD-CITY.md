@@ -61,12 +61,19 @@ python3 tools/manage.py elevation      # 海拔 (Open-Meteo DEM, 批量)
 python3 tools/manage.py relief         # 地形起伏 (DEM 环采样, 地质灾害降尺度用)
 python3 tools/manage.py risk           # 离海岸 / 地震带 / 台风暴露 (离线+派生)
 python3 tools/manage.py pois           # 周边 地铁/火车/医院/商场 (Overpass, 最慢最 flaky)
+python3 tools/manage.py hazard-merge data/hazard_research.json   # ⚠️ 必跑！每小区灾害 = 地市类型 × 坐标物理频率
 ```
+
+> **⚠️ 最易漏的一步是 `hazard-merge`** —— 它把每小区的 `hazards_local` 合成出来（地市真实灾种
+> × 按坐标物理细化频率：台风按离海岸、地质灾害按地形起伏、采煤沉陷豁免）。**即便没为新地市单独
+> 调研灾害，也必须跑**——新地市自动走**省级兜底**（用该省 `PROVINCE_HAZARDS` 类型 + 同样的物理
+> 细化）。漏跑则新房源的「主要灾害·频率」列回退到粗略省级、缺逐小区细化。`relief` + `risk` 是它的
+> 前置（已在上面跑过）。
 
 > **易撞 Open-Meteo / Nominatim 429（限流）**：不是 bug，等几十秒~1 分钟**重跑同一条命令**，
 > 只补没做完的行。小城 / 县城常 geocode 只到街道 / 城市级、查不到周边——属正常，优雅降级。
 
-## 4. 可选：联网调研补 房龄 / 灾害（**反幻觉铁律**）
+## 4. 可选：联网调研补 房龄 / 新地市灾害类型（**反幻觉铁律**）
 
 让 agent 产**可验证**的发现（带 source URL、核对城市防重名、查不到返回 null、**禁猜**），
 再用确定性命令校验入库：
@@ -75,20 +82,26 @@ python3 tools/manage.py pois           # 周边 地铁/火车/医院/商场 (Ove
 # 房龄(建成年代): findings=[{id, builtYear, yearText, source, confidence}, …]
 python3 tools/manage.py built-merge findings.json     # 校验 1900≤年≤2026 / ≤挂牌年 / 有来源；approx 不降级精确
 
-# 灾害(地市真实灾情史): {findings:[{prefKey:"省|地级市", headline, hazards:[{type,freq,note,source}]}]}
-python3 tools/manage.py hazard-merge data/hazard_research.json   # 地市类型 × 坐标物理频率(台风按离海岸、地质灾害按地形)
+# (可选) 新地市的真实灾情史 → 追加进 data/hazard_research.json（{findings:[{prefKey:"省|地级市", headline, hazards:[…]}]}）
+#        然后重跑上面第 3 步的 hazard-merge，新地市就从「省级兜底」升级为「地市调研类型」
 ```
 
-调研产物存 `data/research/`、`data/hazard_research.json`（provenance，可复跑）。详见 README
-对应小节。
+> `built-merge` **可选**（没查到 built_year 就跳过，前端显示「年代未知」）；但第 3 步的
+> `hazard-merge` **不可选**（必须有 `hazards_local`）。调研产物存 `data/research/`、
+> `data/hazard_research.json`（provenance，可复跑）。详见 README 对应小节。
 
-## 5. 隐藏「一线 / 参考」房源（默认不显示、不计入标题）
+## 5. 隐藏「高价 / 一线参考」房源（默认不显示、不计入标题）
 
-若某些房源（如一线对照样本）**不该污染「便宜小城」默认视图与标题计数**，把它们的 id 加进
+某些房源（一线城市、或明显贵于「便宜小城」基调的盘）**不该污染默认视图与标题计数**。
+**经验阈值**：`总价 > 20 万` **或** `单价 > 5000 元/㎡` → 归入隐藏参考集。把它们的 id 加进
 **两处并保持一致**：
 
 - `assets/js/app.js` → `const TIER1_IDS = new Set([...])`（前端默认 filter 掉，footer toggle 才显示）
 - `tools/manage.py` → `TIER1_IDS = {...}`（标题 `N套/N省` 计数排除它们）
+
+> 变量名沿用 `TIER1_IDS`（最初只放一线超豪宅），现已泛化为「**高价参考集**」。footer toggle
+> 文案因此是「**显示高价参考**」——**不要写死「一线」**：隐藏集里多数是高价度假盘 / 改善盘，并非
+> 一线城市。
 
 ## 6. build（重新生成所有产物 + 同步页面）
 
@@ -120,7 +133,9 @@ git push origin master
 python3 tools/manage.py import-csv 新城市.csv
 python3 tools/manage.py geocode && python3 tools/manage.py climate && \
 python3 tools/manage.py climate-daily && python3 tools/manage.py elevation && \
-python3 tools/manage.py relief && python3 tools/manage.py risk && python3 tools/manage.py pois
+python3 tools/manage.py relief && python3 tools/manage.py risk && python3 tools/manage.py pois && \
+python3 tools/manage.py hazard-merge data/hazard_research.json   # ← 别漏！每小区灾害
 # (新省份? 先改 app.js PROV_FULL + enrich.py PROVINCE_HAZARDS/HEATING)
+# (高价/一线? 把 id 加进 app.js + manage.py 的 TIER1_IDS 两处)
 python3 tools/manage.py build
 ```
