@@ -319,7 +319,12 @@ def sync_html(rows: list[dict]) -> list[str]:
         else:
             log.append(f"  {label}: {k} occurrence(s) → synced{flag}")
 
-    apply("套 (count)", r"\d+(\s*套)", lambda m: f"{n}{m.group(1)}", expect=4)
+    # Anchor each match to its specific HTML context so methodology static text
+    # (e.g. "112 / 121 套" "50 套" "9 套") is never touched.
+    # 1. meta description / og / twitter <meta ... content="N 套...">
+    apply("套 meta/og (count)", r'(?<=content=")\d+(?=\s*套)', lambda m: str(n), expect=3)
+    # 2. hero paragraph: <strong …>N 套</strong>
+    apply("套 hero-count (count)", r'(?<=id="hero-count">)\d+(?=\s*套)', lambda m: str(n), expect=1)
     apply("个省 (provinces)", r"\d+(\s*个省)", lambda m: f"{provs}{m.group(1)}", expect=1)
     apply("覆盖N省 (provinces)", r"(覆盖\s*)\d+(\s*省)",
           lambda m: f"{m.group(1)}{provs}{m.group(2)}", expect=3)
