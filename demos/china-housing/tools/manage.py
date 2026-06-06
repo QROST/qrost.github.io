@@ -287,13 +287,21 @@ def _enrich_coverage(con) -> str:
 # ---------------------------------------------------------------------------
 # index.html count/date re-sync (anchored, fail-loud)
 # ---------------------------------------------------------------------------
+# Hidden tier-1 reference listings (北京/上海/深圳) — revealed only by the footer
+# toggle in app.js; keep this set in sync with TIER1_IDS there. They are EXCLUDED
+# from the headline 套/省 counts because the page's framing is "全国小城市", and
+# these aren't small cities — but the date range still reflects when they landed.
+TIER1_IDS = {54, 123, 124, 125, 126, 127}
+
+
 def sync_html(rows: list[dict]) -> list[str]:
     """Re-sync the hard-coded count/date tokens in index.html. Returns log lines."""
     if not HTML_PATH.exists():
         return [f"! index.html not found at {HTML_PATH} — skipped"]
     html = HTML_PATH.read_text(encoding="utf-8")
-    n = len(rows)
-    provs = len({r["prov"] for r in rows})
+    visible = [r for r in rows if r["id"] not in TIER1_IDS]
+    n = len(visible)
+    provs = len({r["prov"] for r in visible})
     months = sorted({r["updated"] for r in rows})
     lo, hi = (months[0], months[-1]) if months else ("", "")
     log = []

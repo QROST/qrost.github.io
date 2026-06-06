@@ -38,6 +38,7 @@
 
   // Province short form (as in the data) → full GeoJSON name (DataV / Aliyun).
   const PROV_FULL = {
+    '北京': '北京市',
     '黑龙江': '黑龙江省', '吉林': '吉林省', '辽宁': '辽宁省', '河北': '河北省',
     '河南': '河南省', '山东': '山东省', '安徽': '安徽省', '上海': '上海市',
     '江苏': '江苏省', '广东': '广东省', '广西': '广西壮族自治区', '福建': '福建省',
@@ -178,6 +179,16 @@
     '常年凉冷': ['#e0e7ff', '#3730a3'],   // coldest → indigo (was slate)
   };
 
+  // Tier-1 reference listings (personal cross-check; hidden unless footer toggle on).
+  const TIER1_IDS = new Set([54, 123, 124, 125, 126, 127]);
+  let tier1On = false;
+  function viewData() {
+    return tier1On ? DATA : DATA.filter((d) => !TIER1_IDS.has(d.id));
+  }
+  function viewGeocoded() {
+    return viewData().filter((d) => d.enr && d.enr.lat != null);
+  }
+
   const DATA = RAW.map((d) => {
     const priceYuan = d.priceWan * 10000;
     const rentYear = d.rent * 12;
@@ -201,7 +212,6 @@
       ...cd,
     };
   });
-  const GEOCODED = DATA.filter((d) => d.enr && d.enr.lat != null);
 
   // ---- formatting --------------------------------------------------------
   const trim = (s) => s.replace(/\.0+$/, '').replace(/(\.\d*?)0+$/, '$1');
@@ -246,16 +256,17 @@
 
   // ---- KPI cards ---------------------------------------------------------
   function renderKPIs() {
-    const provinces = new Set(DATA.map((d) => d.prov));
-    const cheapest = DATA.reduce((a, b) => (b.priceWan < a.priceWan ? b : a));
-    const climD = DATA.filter((d) => d.tempRange != null);
+    const vd = viewData();
+    const provinces = new Set(vd.map((d) => d.prov));
+    const cheapest = vd.reduce((a, b) => (b.priceWan < a.priceWan ? b : a));
+    const climD = vd.filter((d) => d.tempRange != null);
     const steadiest = climD.reduce((a, b) => (b.tempRange < a.tempRange ? b : a), climD[0]);
     const mildest = climD.reduce((a, b) => (b.extremeMonths < a.extremeMonths ? b : a), climD[0]);
     const cards = [
-      { label: '房源样本', value: DATA.length, unit: '套', sub: '社区级二手房挂牌' },
+      { label: '房源样本', value: vd.length, unit: '套', sub: '社区级二手房挂牌' },
       { label: '覆盖省份', value: provinces.size, unit: '省/市', sub: '东北 → 华南' },
       { label: '最低总价', value: fmtWan(cheapest.priceWan), sub: cityLabel(cheapest) },
-      { label: '单价中位数', value: fmtInt(median(DATA.map((d) => d.unitPrice))), unit: '元/㎡', sub: '挂牌单价中位' },
+      { label: '单价中位数', value: fmtInt(median(vd.map((d) => d.unitPrice))), unit: '元/㎡', sub: '挂牌单价中位' },
       { label: '气候最平稳', value: steadiest ? steadiest.tempRange : '—', unit: '℃年温差', sub: steadiest ? `${cityLabel(steadiest)} · ${steadiest.climateType || ''}` : '—' },
       { label: '极端天气最少', value: mildest ? mildest.extremeRange : '—', sub: mildest ? `${cityLabel(mildest)} · 全年最温和` : '—' },
     ];
@@ -295,9 +306,10 @@
   function renderScatter() {
     const ctx = document.getElementById('scatter-chart');
     if (!ctx || !window.Chart) return;
+    if (scatterChart) { scatterChart.destroy(); scatterChart = null; }
     const cdays = (d) => d.comfortDayCount != null ? d.comfortDayCount
       : (d.comfortMonths != null ? Math.round(d.comfortMonths * 30.4) : null);
-    const pts = DATA.filter((d) => cdays(d) != null && d.tempRange != null)
+    const pts = viewData().filter((d) => cdays(d) != null && d.tempRange != null)
       .map((d) => ({ x: d.priceWan, y: cdays(d), d }));
     const rMax = Math.max(1, ...pts.map((p) => p.d.tempRange));
     scatterChart = new Chart(ctx, {
@@ -366,7 +378,7 @@
     const isStrip = (rankKey === 'comfort' || rankKey === 'mild');
     const isC = rankKey === 'comfort';
     const skey = isStrip ? (isC ? 'comfortDayCount' : 'extremeDayCount') : m.key;
-    const pool = DATA.filter((d) => isStrip ? (d.daily && d[skey] != null) : d[m.key] != null);
+    const pool = viewData().filter((d) => isStrip ? (d.daily && d[skey] != null) : d[m.key] != null);
     const top = [...pool].sort((a, b) => (a[skey] - b[skey]) * m.dir).slice(0, 50);
     const maxV = Math.max(...top.map((d) => d[m.key] || 0), 1);
     const GT = 'grid-template-columns: 1.6rem minmax(4.5rem, 9rem) 1fr 3.6rem';
@@ -399,7 +411,7 @@
   // ---- province aggregation ---------------------------------------------
   function aggregateByProvince() {
     const map = new Map();
-    DATA.forEach((d) => { if (!map.has(d.prov)) map.set(d.prov, []); map.get(d.prov).push(d); });
+    viewData().forEach((d) => { if (!map.has(d.prov)) map.set(d.prov, []); map.get(d.prov).push(d); });
     return [...map.entries()].map(([prov, rows]) => {
       const avg = (k) => { const xs = rows.map((r) => r[k]).filter((v) => v != null); return xs.length ? xs.reduce((s, v) => s + v, 0) / xs.length : null; };
       // province-level extreme range = UNION of every listing's extreme months
@@ -612,10 +624,12 @@
     return mix(hex(cs[i]), hex(cs[i + 1]), f);
   };
 
-  // cheaper homes render larger so affordable options pop
-  const priceVals = DATA.map((d) => d.priceWan);
-  const pMin = Math.min(...priceVals), pMax = Math.max(...priceVals);
-  const sizeOf = (d) => 8 + (1 - clamp((d.priceWan - pMin) / (pMax - pMin || 1), 0, 1)) * 12;
+  // cheaper homes render larger so affordable options pop (scale to visible set)
+  function dotSizeOf(d) {
+    const vals = viewGeocoded().map((x) => x.priceWan);
+    const pMin = Math.min(...vals), pMax = Math.max(...vals);
+    return 8 + (1 - clamp((d.priceWan - pMin) / (pMax - pMin || 1), 0, 1)) * 12;
+  }
 
   function mapFail(msg) {
     const wrap = document.getElementById('map-wrap');
@@ -627,8 +641,8 @@
   function mapSeriesData() {
     const dim = MAP_DIMS[dimKey] || MAP_DIMS.tempRange;
     if (!dim) return [];
-    return GEOCODED.filter((d) => dim.get(d) != null).map((d) => ({
-      value: [d.enr.lng, d.enr.lat, dim.get(d)], size: sizeOf(d), d,
+    return viewGeocoded().filter((d) => dim.get(d) != null).map((d) => ({
+      value: [d.enr.lng, d.enr.lat, dim.get(d)], size: dotSizeOf(d), d,
     }));
   }
 
@@ -868,10 +882,15 @@
     '无·湿冷': ['#fee2e2', '#b91c1c'],   // red — cold-damp, no heating (夹心层)
   };
 
-  const yMinT = Math.min(...DATA.map((d) => d.yieldPct));
-  const yMaxT = Math.max(...DATA.map((d) => d.yieldPct));
-  const exMaxT = Math.max(1, ...DATA.map((d) => nz(d.extremeMonths, 0)));
-  const rangeMaxT = Math.max(1, ...DATA.map((d) => nz(d.tempRange, 0)));
+  function viewScales() {
+    const vd = viewData();
+    return {
+      yMinT: Math.min(...vd.map((d) => d.yieldPct)),
+      yMaxT: Math.max(...vd.map((d) => d.yieldPct)),
+      exMaxT: Math.max(1, ...vd.map((d) => nz(d.extremeMonths, 0))),
+      rangeMaxT: Math.max(1, ...vd.map((d) => nz(d.tempRange, 0))),
+    };
+  }
 
   function pill(html, bg, fg) {
     return `<span class="inline-block rounded px-1.5 py-0.5 text-xs font-medium" style="background:${bg};color:${fg || '#0f172a'}">${html}</span>`;
@@ -900,7 +919,7 @@
   }
   function rangeCell(v) {
     if (v == null) return '<span class="text-slate-300">—</span>';
-    const t = clamp(v / rangeMaxT, 0, 1);
+    const t = clamp(v / viewScales().rangeMaxT, 0, 1);
     return pill(trim(v.toFixed(1)) + '℃', rangeColor(t), t > 0.45 ? '#fff' : '#0f172a');
   }
   // 房龄 chip: green(new) → amber(old) by age; tooltip carries 建成年份 + source;
@@ -947,10 +966,12 @@
   function extremeCell(d) {
     if (d.daily && d.daily.extremeDays) return miniDayStrip(d.daily.extremeDays, '#dc2626', d.daily.extremeDays.length ? ('极端 ' + d.extremeRange) : '无极端');
     if (d.extremeMonths == null) return '<span class="text-slate-300">—</span>';
+    const { exMaxT } = viewScales();
     const t = d.extremeMonths / exMaxT;
     return pill(d.extremeRange || (d.extremeMonths + '月'), badColor(t), t > 0.5 ? '#fff' : '#0f172a');
   }
   function yieldCell(d) {
+    const { yMinT, yMaxT } = viewScales();
     const t = (d.yieldPct - yMinT) / (yMaxT - yMinT || 1);
     return pill(fmtPct(d.yieldPct), lerpColor(t), t > 0.5 ? '#fff' : '#0f172a');
   }
@@ -994,7 +1015,7 @@
   const visibleCols = () => COLS.filter((c) => c.group === 'core' || c.group === 'price' || tstate.groups.has(c.group));
 
   function tableView() {
-    const rows = DATA.filter((d) => (!tstate.prov || d.prov === tstate.prov) &&
+    const rows = viewData().filter((d) => (!tstate.prov || d.prov === tstate.prov) &&
       (!tstate.q || (d.city + d.dist + d.loc + d.prov).toLowerCase().includes(tstate.q)));
     const col = COLS.find((c) => c.key === tstate.sortKey) || COLS[0];
     rows.sort((a, b) => {
@@ -1024,7 +1045,29 @@
     }).join('');
     document.getElementById('table-head').innerHTML = `<tr class="bg-slate-50 text-xs uppercase tracking-wider">${head}</tr>`;
     document.getElementById('table-body').innerHTML = body;
-    document.getElementById('table-count').textContent = `显示 ${rows.length} / ${DATA.length} 套`;
+    document.getElementById('table-count').textContent = `显示 ${rows.length} / ${viewData().length} 套`;
+  }
+
+  function updateProvFilter() {
+    const sel = document.getElementById('prov-filter');
+    if (!sel) return;
+    const cur = sel.value;
+    const vd = viewData();
+    const provs = [...new Set(vd.map((d) => d.prov))].sort((a, b) => a.localeCompare(b, 'zh'));
+    sel.innerHTML = `<option value="">全部省份（${vd.length}）</option>` +
+      provs.map((p) => `<option value="${p}">${p}（${vd.filter((d) => d.prov === p).length}）</option>`).join('');
+    if (cur && provs.includes(cur)) sel.value = cur;
+    else { sel.value = ''; tstate.prov = ''; }
+  }
+
+  function refreshViews() {
+    updateProvFilter();
+    safeRun('renderKPIs', renderKPIs);
+    safeRun('renderScatter', renderScatter);
+    safeRun('renderRankings', renderRankings);
+    safeRun('renderProvinceChart', renderProvinceChart);
+    safeRun('renderTable', renderTable);
+    safeRun('renderMap', renderMap);
   }
 
   function styleGroupChips() {
@@ -1036,11 +1079,10 @@
   }
 
   function wireTable() {
-    const sel = document.getElementById('prov-filter');
-    const provs = [...new Set(DATA.map((d) => d.prov))];
-    sel.innerHTML = `<option value="">全部省份（${DATA.length}）</option>` +
-      provs.map((p) => `<option value="${p}">${p}（${DATA.filter((d) => d.prov === p).length}）</option>`).join('');
-    sel.addEventListener('change', () => { tstate.prov = sel.value; renderTable(); });
+    updateProvFilter();
+    document.getElementById('prov-filter').addEventListener('change', (e) => {
+      tstate.prov = e.target.value; renderTable();
+    });
 
     const q = document.getElementById('table-search');
     q.addEventListener('input', () => { tstate.q = q.value.trim().toLowerCase(); renderTable(); });
@@ -1307,7 +1349,20 @@
     document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
 
     initMap();
+
+    const tier1Toggle = document.getElementById('tier1-toggle');
+    if (tier1Toggle) {
+      tier1Toggle.checked = tier1On;
+      tier1Toggle.addEventListener('change', () => {
+        tier1On = tier1Toggle.checked;
+        refreshViews();
+      });
+    }
   }
+
+  // smoke-test hook
+  window.__tier1On = () => tier1On;
+  window.__setTier1On = (v) => { tier1On = !!v; refreshViews(); };
 
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
   else init();

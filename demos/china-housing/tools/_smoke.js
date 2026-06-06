@@ -49,9 +49,9 @@ const run = (f) => vm.runInContext(read(f), sandbox, { filename: f });
 setTimeout(() => {
   const w = sandbox.window; const checks = [];
   const T = (n, p) => checks.push([n, !!p]);
-  T('listings 121', (w.HOUSING_LISTINGS || []).length === 121);
-  T('enriched 121', Object.keys(w.HOUSING_ENRICHED || {}).length === 121);
-  T('hazards 18', Object.keys(w.HOUSING_HAZARDS || {}).length === 18);
+  T('listings 127', (w.HOUSING_LISTINGS || []).length === 127);
+  T('enriched 127', Object.keys(w.HOUSING_ENRICHED || {}).length === 127);
+  T('hazards 19', Object.keys(w.HOUSING_HAZARDS || {}).length === 19);
   T('field 4 fields', w.HOUSING_FIELD && Object.keys(w.HOUSING_FIELD.fields).length === 4);
   T('field elevation 973pts', w.HOUSING_FIELD && w.HOUSING_FIELD.fields.elevation.points.length === 973);
   T('kpi', /房源样本/.test(ids['kpi-grid']._html));
@@ -59,7 +59,14 @@ setTimeout(() => {
   T('no 宜居指数 anywhere', !/宜居指数/.test(ids['table-head']._html) && !/宜居指数/.test(ids['table-body']._html));
   T('climate types rendered', /(四季如春|常年温暖|四季分明|长夏无冬|夏热冬暖|冬暖夏凉|常年凉冷|温和过渡)/.test(ids['table-body']._html));
   T('table body', (ids['table-body']._html || '').length > 1000);
-  T('table count 121', /显示 121/.test(ids['table-count'].textContent));
+  T('table count 121 default', /显示 121 \/ 121/.test(ids['table-count'].textContent));
+  ids['tier1-toggle'] = { checked: false, addEventListener() {} };
+  T('tier1 toggle wired', typeof w.__setTier1On === 'function');
+  try {
+    w.__setTier1On(true);
+    T('table count 127 tier1', /显示 127 \/ 127/.test(ids['table-count'].textContent));
+    w.__setTier1On(false);
+  } catch (e) { T('tier1 toggle — ' + e.message, false); }
   T('table head heating+freq', /供暖/.test(ids['table-head']._html) && /主要灾害·频率/.test(ids['table-head']._html));
   const HZ = w.HOUSING_HAZARDS || {};
   T('heating 4 tiers', new Set(Object.values(HZ).map((p) => p.heating)).size === 4);
