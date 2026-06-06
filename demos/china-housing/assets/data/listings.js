@@ -171,5 +171,21 @@ window.HOUSING_LISTINGS = [
   { id: 144, prov: "江苏",   city: "镇江市-句容市",   dist: "宝华镇",            loc: "恒大雅苑",                 priceWan: 54,    area: 85,     rent: 1200,  updated: "2026-06" },
   { id: 145, prov: "安徽",   city: "滁州市",          dist: "来安县",            loc: "碧桂园城市花园",           priceWan: 24.9,  area: 82,     rent: 787,   updated: "2026-06" },
   { id: 146, prov: "湖北",   city: "鄂州市",          dist: "华容区",            loc: "恒大金碧天下",             priceWan: 18.9,  area: 49.3,   rent: 675,   updated: "2026-06" },
-  { id: 147, prov: "云南",   city: "昆明市-安宁市",   dist: "太平新城",          loc: "恒大金碧天下",             priceWan: 32,    area: 79.6,   rent: 900,   updated: "2026-06" }
+  { id: 147, prov: "云南",   city: "昆明市-安宁市",   dist: "太平新城",          loc: "恒大金碧天下",             priceWan: 32,    area: 79.6,   rent: 900,   updated: "2026-06" },
+  { id: 148, prov: "广东",   city: "惠州市",          dist: "惠东县",            loc: "碧桂园十里银滩海悦湾",     priceWan: 25,    area: 154,    rent: 0,     updated: "2024-03" },
+  { id: 149, prov: "天津",   city: "天津市",          dist: "武清区",            loc: "首创新北京半岛",           priceWan: 39,    area: 83,     rent: 0,     updated: "2024-07" },
+  { id: 150, prov: "山东",   city: "威海市",          dist: "乳山市",            loc: "海之缘花苑",               priceWan: 7.3,   area: 70,     rent: 0,     updated: "2024-11" },
+  { id: 151, prov: "江苏",   city: "镇江市",          dist: "句容市",            loc: "碧桂园大学印象",           priceWan: 56,    area: 88,     rent: 0,     updated: "2024-06" },
+  { id: 152, prov: "山东",   city: "青岛市",          dist: "黄岛区",            loc: "融创维多利亚湾",           priceWan: 60,    area: 118,    rent: 0,     updated: "2024-04" },
+  { id: 153, prov: "江苏",   city: "南京市",          dist: "鼓楼区",            loc: "世茂滨江新城",             priceWan: 275,   area: 110,    rent: 0,     updated: "2025-05" },
+  { id: 154, prov: "河北",   city: "廊坊市",          dist: "三河市",            loc: "首尔甜城",                 priceWan: 133,   area: 76,     rent: 0,     updated: "2024-06" },
+  { id: 155, prov: "江苏",   city: "镇江市",          dist: "句容市",            loc: "碧桂园凤凰城凤仪苑",       priceWan: 40,    area: 94,     rent: 0,     updated: "2026-06" },
+  { id: 156, prov: "广东",   city: "广州市",          dist: "增城区",            loc: "碧桂园凤凰城凤馨苑",       priceWan: 85,    area: 85,     rent: 0,     updated: "2025-06" },
+  { id: 157, prov: "湖北",   city: "宜昌市",          dist: "点军区",            loc: "碧桂园伯爵",               priceWan: 50,    area: 110,    rent: 0,     updated: "2026-05" },
+  { id: 158, prov: "浙江",   city: "杭州市",          dist: "余杭区",            loc: "阳光城未来悦",             priceWan: 350,   area: 89,     rent: 0,     updated: "2023-06" },
+  { id: 159, prov: "广东",   city: "广州市",          dist: "增城区",            loc: "奥园中新誉府",             priceWan: 79,    area: 90,     rent: 0,     updated: "2024-04" },
+  { id: 160, prov: "河北",   city: "廊坊市",          dist: "三河市",            loc: "天洋城",                   priceWan: 56,    area: 40,     rent: 0,     updated: "2021-03" },
+  { id: 161, prov: "江苏",   city: "南通市",          dist: "启东市",            loc: "恒大海上威尼斯",           priceWan: 36,    area: 73,     rent: 1000,  updated: "2024-06" },
+  { id: 162, prov: "湖北",   city: "宜昌市",          dist: "伍家岗区",          loc: "碧桂园凤凰城（宜昌）",     priceWan: 71,    area: 95,     rent: 0,     updated: "2026-05" },
+  { id: 163, prov: "广东",   city: "广州市",          dist: "南沙区",            loc: "南沙奥园",                 priceWan: 95,    area: 100,    rent: 0,     updated: "2024-06" }
 ];

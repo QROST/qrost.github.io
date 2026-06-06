@@ -1,0 +1,60 @@
+{
+  "batch": "crashed-developers-2026-06",
+  "theme": "知名开发商暴雷后二手房价暴跌 / 腰斩楼盘",
+  "compiled": "2026-06-05",
+  "method": "6 路并行调研 agent（恒大 / 碧桂园 / 融创+世茂 / 富力+佳兆业+奥园 / 阳光城+蓝光+中梁+泰禾 / 区域暴跌专题）。反幻觉铁律：cite-or-null、禁猜、每条带 source URL、核实楼盘真实存在且归属对应开发商。",
+  "schema_caveat": "当前 DB 无 developer / peak_price / drop / story 字段。入库后默认视图只显示 loc + 当前总价 + 面积 + 租金。开发商已尽量编码进 loc（恒大海花岛 / 碧桂园伯爵 / 融创维多利亚湾 / 世茂滨江新城 / 阳光城未来悦 / 富力湾 / 奥园… 自带品牌名），但「峰值→当前」的腰斩幅度无处展示。若要把暴跌叙事做成可见的数据故事，需加字段或 tag（见 handoff_notes）。本文件即峰值 / 跌幅 / 开发商 / 来源的留存处。",
+  "tier_rule": "隐藏阈值：总价>20万 或 单价>5000元/㎡ → 加进 TIER1_IDS（app.js + manage.py 两处）。注意：多数腰斩盘即便对折仍 >20万 或单价>5000，会落入隐藏「高价参考」。本批中默认可见（便宜小城）的只有：海之缘花苑(7.3万)、富力湾一居室(19万/4040㎡)；其余 16 条建议隐藏。",
+  "new_province_tianjin": {
+    "note": "天津是本批唯一新引入的直辖市（首创新北京半岛·武清）。其余省份(山东/海南/广东/辽宁/江苏/湖北/重庆/浙江/河北/四川)均已存在。Cursor 须按 SOP §2 在三处接入天津：",
+    "app_js_PROV_FULL": "'天津': '天津市',",
+    "enrich_py_PROVINCE_HAZARDS": "\"天津\": {\"headline\": \"华北平原旱涝+滨海风暴潮/海冰；唐山强震带波及\", \"hazards\": [(\"洪涝内涝\", 4, \"海河流域+城区暴雨内涝(2012/2016)\"), (\"干旱\", 4, \"春旱\"), (\"风暴潮\", 3, \"渤海湾沿海(滨海新区)，内陆武清经物理降尺度自动剔除\"), (\"暴雪\", 3, \"冬季强降雪\"), (\"地震\", 2, \"华北强震带，1976唐山距津约100km波及\")]},",
+    "enrich_py_PROVINCE_HEATING": "\"天津\": HEAT_HEATED,"
+  },
+  "listings": [
+    {"loc": "碧桂园十里银滩海悦湾", "developer": "碧桂园", "prov": "广东", "city": "惠州市", "dist": "惠东县", "peakPerSqm": 9000, "curPerSqm": 1623, "dropPct": 80, "curTotalWan": 25, "area": 154, "rent": null, "priceDate": "2024-03", "tier": "hidden", "story": "154㎡四房海景房总价25万成交、单价仅1623元/㎡，粤东超级大盘海景房崩盘代表。", "sources": ["https://m.thepaper.cn/newsdetail_forward_26565223", "https://finance.sina.cn/2024-03-06/detail-inamisvs9069330.d.html"]},
+    {"loc": "首创新北京半岛", "developer": "首创置业", "prov": "天津", "city": "天津市", "dist": "武清区", "peakPerSqm": 20000, "curPerSqm": 6750, "dropPct": 75, "curTotalWan": 39, "area": 83, "rent": null, "priceDate": "2024-07", "tier": "hidden", "story": "北京外溢炒到2万/㎡的睡城，同一83㎡二居室从160万跌到39万，跌掉四分之三。", "sources": ["https://news.qq.com/rain/a/20240701A08O0100"]},
+    {"loc": "恒大海花岛", "developer": "恒大", "prov": "海南", "city": "儋州市", "dist": "排浦镇", "peakPerSqm": 24000, "curPerSqm": 7000, "dropPct": 71, "curTotalWan": 27, "area": 39, "rent": 1800, "priceDate": "2025-01", "tier": "hidden", "story": "巅峰2.4-2.6万/㎡，如今二手跌破7千、最低5-6千，总价不到15万一套；4万套挂牌。", "sources": ["https://news.qq.com/rain/a/20250113A02F5000", "https://news.qq.com/rain/a/20250129A01Z6X00", "https://haikou.anjuke.com/community/trends/1005205"]},
+    {"loc": "海之缘花苑", "developer": "未知（乳山银滩）", "prov": "山东", "city": "威海市", "dist": "乳山市", "peakPerSqm": 3000, "curPerSqm": 1043, "dropPct": 65, "curTotalWan": 7.3, "area": 70, "rent": null, "priceDate": "2024-11", "tier": "visible", "builtYearHint": 2005, "story": "全国最有名的海边鹤岗，乳山银滩2192套二手挂牌均价仅2187元/㎡，70㎡海景房7万出头、单价跌破千元。", "sources": ["https://finance.sina.com.cn/tech/roll/2024-11-17/doc-incwkiie4157481.shtml", "https://www.163.com/dy/article/FM0430RB0519E14O.html", "https://www.jiemian.com/article/8873135.html"]},
+    {"loc": "碧桂园大学印象", "developer": "碧桂园", "prov": "江苏", "city": "镇江市", "dist": "句容市", "peakPerSqm": 16500, "curPerSqm": 6315, "dropPct": 62, "curTotalWan": 56, "area": 88, "rent": null, "priceDate": "2024-06", "tier": "hidden", "story": "紧邻南京仙林的宝华改善精装盘，前期精装1.55万/㎡，二手参考价跌到6315/㎡，腰斩有余。", "sources": ["https://jr.fang.anjuke.com/loupan/457188.html", "https://news.qq.com/rain/a/20200326A0R82T00"]},
+    {"loc": "融创维多利亚湾", "developer": "融创", "prov": "山东", "city": "青岛市", "dist": "黄岛区", "peakPerSqm": 12300, "curPerSqm": 5084, "dropPct": 59, "curTotalWan": 60, "area": 118, "rent": null, "priceDate": "2024-04", "tier": "hidden", "story": "西海岸瞰海大盘，2019年1.2万+/㎡，2024年二手跌到5千、118㎡套三仅60万成交，跌回十年前。", "sources": ["https://c.m.163.com/news/a/IVBS8H9V0535B55F.html"]},
+    {"loc": "世茂滨江新城", "developer": "世茂", "prov": "江苏", "city": "南京市", "dist": "鼓楼区", "peakPerSqm": 60000, "curPerSqm": 25000, "dropPct": 58, "curTotalWan": 275, "area": 110, "rent": null, "priceDate": "2025-05", "tier": "hidden", "story": "南京一线江景豪宅，2021年峰值6万/㎡，2025年跌到2.5万腰斩，单套市值蒸发约300万。", "sources": ["https://m.163.com/dy/article_cambrian/K0AVHMEL05564S43.html"]},
+    {"loc": "首尔甜城", "developer": "未知", "prov": "河北", "city": "廊坊市", "dist": "三河市", "peakPerSqm": 40000, "curPerSqm": 17500, "dropPct": 56, "curTotalWan": 133, "area": 76, "rent": null, "priceDate": "2024-06", "tier": "hidden", "story": "燕郊，一桥之隔北京通州，2017年初炒到4万+/㎡，如今二手1.7万出头，环京睡城破灭标志盘。", "sources": ["https://www.chinanews.com/house/2017/07-31/8291449.shtml", "https://m.fang.com/fangjia/lf_list_14822_22857/"]},
+    {"loc": "碧桂园凤凰城凤仪苑", "developer": "碧桂园", "prov": "江苏", "city": "镇江市", "dist": "句容市", "peakPerSqm": 9500, "curPerSqm": 4258, "dropPct": 55, "curTotalWan": 40, "area": 94, "rent": null, "priceDate": "2026-06", "tier": "hidden", "story": "环宁都市圈句容县级市大盘，二手均价从约9500/㎡跌到4258/㎡，同比仍-11.6%下行。", "sources": ["https://www.anjuke.com/zhenjiang/cm393821/"]},
+    {"loc": "碧桂园凤凰城凤馨苑", "developer": "碧桂园", "prov": "广东", "city": "广州市", "dist": "增城区", "peakPerSqm": 26900, "curPerSqm": 10000, "dropPct": 54, "curTotalWan": 85, "area": 85, "rent": null, "priceDate": "2025-06", "tier": "hidden", "story": "增城新塘6700户超级大盘，85㎡两房从7年前228万跌到85万，从腰斩到膝斩。", "sources": ["https://guangzhou.anjuke.com/community/trends/184217"]},
+    {"loc": "碧桂园伯爵", "developer": "碧桂园", "prov": "湖北", "city": "宜昌市", "dist": "点军区", "peakPerSqm": 9500, "curPerSqm": 4500, "dropPct": 53, "curTotalWan": 50, "area": 110, "rent": null, "priceDate": "2026-05", "tier": "hidden", "story": "开盘逼近万元，现价仅4000-5000/㎡，被本地媒体称碧桂园在宜昌跌价最狠的楼盘。", "sources": ["https://news.qq.com/rain/a/20260523A063P800"]},
+    {"loc": "阳光城未来悦", "developer": "阳光城", "prov": "浙江", "city": "杭州市", "dist": "余杭区", "peakPerSqm": 84000, "curPerSqm": 40000, "dropPct": 52, "curTotalWan": 350, "area": 89, "rent": null, "priceDate": "2023-06", "tier": "hidden", "story": "阿里总部旁未来科技城红盘，2021年7-8万/㎡抢入的业主，挂牌价腰斩，加税费亏约一半。", "sources": ["https://stcn.com/article/detail/880449.html", "https://finance.sina.com.cn/jjxw/2023-05-28/doc-imyvhzyk6440059.shtml"]},
+    {"loc": "奥园中新誉府", "developer": "奥园", "prov": "广东", "city": "广州市", "dist": "增城区", "peakPerSqm": 20000, "curPerSqm": 8800, "dropPct": 50, "curTotalWan": 79, "area": 90, "rent": null, "priceDate": "2024-04", "tier": "hidden", "story": "拿地价9684/㎡，售价直接贴地价五折甩卖，约100㎡早期业主血亏约100万。", "sources": ["https://news.qq.com/rain/a/20240419A08Q3J00", "https://zhuanlan.zhihu.com/p/632784061"]},
+    {"loc": "天洋城", "developer": "天洋（资金链断裂濒临破产）", "prov": "河北", "city": "廊坊市", "dist": "三河市", "peakPerSqm": 27000, "curPerSqm": 14000, "dropPct": 48, "curTotalWan": 56, "area": 40, "rent": null, "priceDate": "2021-03", "tier": "hidden", "story": "燕郊，业主2016年2.7万/㎡买的小户型，开发商资金链断裂濒临破产、房产证难办，价格腰斩还烂尾双杀。", "sources": ["https://www.jiemian.com/article/5889783.html"]},
+    {"loc": "恒大海上威尼斯", "developer": "恒大", "prov": "江苏", "city": "南通市", "dist": "启东市", "peakPerSqm": 10800, "curPerSqm": 6000, "dropPct": 44, "curTotalWan": 36, "area": 73, "rent": 1000, "priceDate": "2024-06", "tier": "hidden", "builtYearHint": 2016, "story": "沪通一体化炒起的海边大盘，恒大爆雷+配套不成熟，挂牌均价6524、成交5-6千，急售低至2678/㎡。", "sources": ["https://news.qq.com/rain/a/20240119A02BG300", "https://nt.ke.com/xiaoqu/87450000000526/", "https://news.qq.com/rain/a/20240712A0528Y00"]},
+    {"loc": "碧桂园凤凰城", "developer": "碧桂园", "prov": "湖北", "city": "宜昌市", "dist": "伍家岗区", "peakPerSqm": 13500, "curPerSqm": 7500, "dropPct": 44, "curTotalWan": 71, "area": 95, "rent": null, "priceDate": "2026-05", "tier": "hidden", "story": "曾是片区地王、核心中的核心，开盘1.3-1.4万/㎡，如今二手挂牌7500/㎡近乎腰斩。", "sources": ["https://news.qq.com/rain/a/20260523A063P800"]},
+    {"loc": "南沙奥园", "developer": "奥园", "prov": "广东", "city": "广州市", "dist": "南沙区", "peakPerSqm": 18700, "curPerSqm": 9500, "dropPct": 40, "curTotalWan": 95, "area": 100, "rent": null, "priceDate": "2024-06", "tier": "hidden", "story": "南沙湾文旅+地铁概念盘，均价从1.87万腰斩到9500，登上广州全市跌幅榜第6。", "sources": ["https://m.163.com/house/article/JM460D1N0087950J.html"]},
+    {"loc": "富力湾", "developer": "富力", "prov": "广东", "city": "惠州市", "dist": "惠东县", "peakPerSqm": 12000, "curPerSqm": 4040, "dropPct": 40, "curTotalWan": 19, "area": 47, "rent": null, "priceDate": "2025-06", "tier": "visible", "story": "巽寮湾文旅海景大盘，别墅二手同比再跌37.88%，一居室总价已跌到19万一套。", "sources": ["https://hui.fang.anjuke.com/loupan/245290.html", "https://news.qq.com/rain/a/20231225A09EML00"]}
+  ],
+  "optional": [
+    {"loc": "融创文旅城", "developer": "融创", "prov": "重庆", "city": "重庆市", "dist": "沙坪坝区", "peakPerSqm": 10000, "curPerSqm": 7657, "dropPct": 35, "curTotalWan": 107, "area": 140, "priceDate": "2023-02", "tier": "hidden", "note": "跌幅~30-40%（口径=跌回2016开盘价）。原万达文旅城，投资客占2/3。", "sources": ["https://news.qq.com/rain/a/20230201A08NRT00"]},
+    {"loc": "蓝光金悦派", "developer": "蓝光", "prov": "四川", "city": "成都市", "dist": "高新区", "peakPerSqm": 23500, "curPerSqm": 16000, "dropPct": 32, "curTotalWan": 127, "area": 78, "priceDate": "2024-09", "tier": "hidden", "note": "跌幅<40%。蓝光退市后旗下高新区网红盘法拍一月两度流拍。", "sources": ["http://m.fangchan.com/news/1/2024-09-24/7244161922369917352.html"]},
+    {"loc": "佳兆业东戴河", "developer": "佳兆业", "prov": "辽宁", "city": "葫芦岛市", "dist": "绥中县", "peakPerSqm": 7500, "curPerSqm": 4865, "dropPct": 30, "curTotalWan": 18, "area": 37, "priceDate": "2024-12", "tier": "visible", "note": "跌幅~30%但便宜海景(18万)，环渤海空城养老盘，可作便宜可见样本。", "sources": ["https://www.chinanews.com.cn/house/2013/10-15/5379137.shtml", "https://www.jiemian.com/article/736954.html"]},
+    {"loc": "固安孔雀城", "developer": "华夏幸福", "prov": "河北", "city": "廊坊市", "dist": "固安县", "peakPerSqm": 17000, "curPerSqm": 12000, "dropPct": 30, "curTotalWan": 108, "area": 90, "priceDate": "2022-06", "tier": "hidden", "note": "当前价为估算(来源未给精确总价)，需 Cursor 复核。环京标杆大盘，套牢北京外溢客。", "sources": ["https://www.thepaper.cn/newsDetail_forward_18721581"]},
+    {"loc": "佳兆业前海广场二期", "developer": "佳兆业", "prov": "广东", "city": "深圳市", "dist": "南山区", "peakPerSqm": 73600, "curPerSqm": 53000, "dropPct": 28, "curTotalWan": 445, "area": 87, "priceDate": "2022-10", "tier": "hidden", "note": "跌幅<40%(一线核心抗跌)，但有精确买入价/挂牌/亏损额，数据质量高。", "sources": ["https://finance.sina.cn/2022-10-27/detail-imqqsmrp3902404.d.html"]},
+    {"loc": "绿地长岛", "developer": "绿地", "prov": "江苏", "city": "南通市", "dist": "启东市", "peakPerSqm": 10000, "curPerSqm": 7634, "dropPct": 25, "curTotalWan": null, "area": null, "priceDate": "2024-07", "tier": "hidden", "note": "启东海边鬼盘群，入住率仅1%、几乎空城，有价无市。面积/总价需补。", "sources": ["https://news.qq.com/rain/a/20240712A0528Y00"]},
+    {"loc": "世茂锦绣长江", "developer": "世茂", "prov": "湖北", "city": "武汉市", "dist": "汉阳区", "peakPerSqm": 25000, "curPerSqm": 17000, "dropPct": 32, "curTotalWan": null, "area": null, "priceDate": "2025-03", "tier": "hidden", "note": "跌幅<40%，面积/总价缺，来源为知乎专栏(较弱)。汉阳滨江代表盘。", "sources": ["https://zhuanlan.zhihu.com/p/17457650365"]}
+  ],
+  "excluded": [
+    {"name": "泰禾北京中国院子(通州)", "reason": "1.38亿法拍别墅、评估27万/㎡，顶豪非便宜住房，不符主题。来源真实(http://m.fangchan.com/news/1/2023-09-11/7106818798627656295.html)。"},
+    {"name": "泰禾深圳院子(龙华尖岗山)", "reason": "8.2万/㎡顶豪、备案均价13.8万，最贵一套4700万+，非便宜住房。来源真实(https://www.jiemian.com/article/9540168.html)。"},
+    {"name": "北海银滩海景房(广西)", "reason": "区域级均价(7368→4794, -35%)无具体小区名，按禁猜不收录。来源 https://finance.ifeng.com/c/8NkcpZ6yxRm。"},
+    {"name": "中梁(全国)", "reason": "公司层面暴雷有据，但无任何报道把具名中梁楼盘峰值→当前配对给出≥40%跌幅，禁编造。建议人工拉玉环中梁壹号院(安居客 cm1396044)历史价。"},
+    {"name": "恒大文化旅游城(长沙岳麓)", "reason": "有89㎡/60万真实挂牌但缺权威高峰价、跌幅无法核算，证据弱。来源 https://www.xhj.com/ershoufang/117960587.html。"},
+    {"name": "碧桂园i尚豪园(通辽)", "reason": "当前6500-7400/㎡硬数据，但峰值仅~8000、跌幅~14%不足腰斩。"},
+    {"name": "无锡融创文旅城 / 富力红树湾(澄迈)", "reason": "跌幅仅18.5% / 16.5%，远未腰斩；红树湾因环保停售数据有断层。"},
+    {"name": "海南东方 / 陵水清水湾 / 西双版纳景洪 / 嘉善", "reason": "核查为平稳或仅温和下行(非腰斩)，主动排除防错误归因。"}
+  ],
+  "handoff_notes": [
+    "SOP 闭环按 tools/SOP-ADD-CITY.md 走；务必跑 hazard-merge（最易漏）。",
+    "唯一新直辖市=天津，须按 new_province_tianjin 在三处接入。",
+    "隐藏 tier：18 条里 16 条加进 TIER1_IDS(app.js+manage.py)，仅 海之缘花苑/富力湾 默认可见。",
+    "DB 无 developer/peak 字段——若要把『暴雷腰斩』做成可见数据故事(显示峰值→当前、跌幅徽章)，需加 schema 字段或 tag，再回审。本文件留存了全部峰值/跌幅/来源。",
+    "approxTotalWan 多为『当前单价×典型面积』估算；updated 月份对年份级来源做了中性近似。"
+  ]
+}

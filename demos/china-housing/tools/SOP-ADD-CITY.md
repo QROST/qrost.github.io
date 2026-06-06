@@ -39,6 +39,20 @@ python3 tools/manage.py import-csv 新一批.csv
 字段：`priceWan` 总价(万元)、`area` 面积(㎡)、`rent` 月租(元)、`updated` `YYYY-MM`。单价 /
 回报率等派生指标前端实时算，不入库。
 
+> **⚠️ 入库前必做：去重预检**。`import-csv` 的 id 留空＝**新增**，不会跟主库已有的同盘合并——
+> 一不留神就造出「富力湾 19万」和已有「富力湾 12万」两条重复。**导入前**先按 loc 查主库
+> （尤其 恒大 / 碧桂园 / 融创 这类**跨城复用的品牌盘名**）：
+>
+> ```bash
+> # 把每个待加 loc 的关键词查一遍；品牌盘再按品牌扫一遍
+> sqlite3 data/housing.db "SELECT id,city,dist,loc,priceWan FROM listings WHERE loc LIKE '%富力湾%';"
+> sqlite3 data/housing.db "SELECT id,city,loc,priceWan FROM listings WHERE loc LIKE '碧桂园%';"
+> ```
+>
+> 按命中情况处置：① **主库已有同一个盘**（同城同盘）→ 跳过，或若新价更可信就用**相同 id** 覆盖；
+> ② **同品牌不同城**（如贵州 vs 宜昌的「碧桂园凤凰城」）→ **loc 加城市消歧**：`碧桂园凤凰城（宜昌）`，
+> 否则表格里两行同名难辨；③ 主库的同盘更便宜 → 一般**保留更便宜那条、跳过新的**（本数据集主打「最便宜」）。
+
 ## 2. ⚠️ 新省份必做三处（否则地图不着色、灾害 / 供暖缺失）
 
 只在引入了**之前没有的省 / 直辖市**时需要：
@@ -130,6 +144,8 @@ git push origin master
 ## 速查 · 最小闭环
 
 ```bash
+# 先去重预检(见 §1)：品牌盘按 loc LIKE 扫主库，决定 跳过 / 改名消歧 / 覆盖
+sqlite3 data/housing.db "SELECT id,city,loc,priceWan FROM listings WHERE loc LIKE '%关键词%';"
 python3 tools/manage.py import-csv 新城市.csv
 python3 tools/manage.py geocode && python3 tools/manage.py climate && \
 python3 tools/manage.py climate-daily && python3 tools/manage.py elevation && \
