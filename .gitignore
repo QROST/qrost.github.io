@@ -2,3 +2,6 @@ Chat.md
 .DS_Store
 __pycache__/
 *.pyc
+
+# china-housing: local research / audit batches (not for public repo)
+demos/china-housing/data/research/
