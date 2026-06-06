@@ -1315,8 +1315,21 @@
   }
 
   // ---- boot --------------------------------------------------------------
+  // Hero headline counts reflect the actual SMALL-CITY data (tier-1 refs excluded —
+  // the framing is 全国小城市). Runtime-computed from the loaded data so adding cities
+  // updates the page even if `manage.py build` (which also bakes these into the static
+  // HTML + meta tags for SEO/no-JS) wasn't re-run. Not stuck at any literal number.
+  function syncHeroCounts() {
+    const sc = DATA.filter((d) => !TIER1_IDS.has(d.id));
+    const c = document.getElementById('hero-count');
+    const p = document.getElementById('hero-provs');
+    if (c) c.textContent = sc.length + ' 套';
+    if (p) p.textContent = new Set(sc.map((d) => d.prov)).size + ' 个省 / 直辖市';
+  }
+
   function init() {
     chartBase();
+    safeRun('syncHeroCounts', syncHeroCounts);
     // table + interaction wiring first — must survive chart/map failures
     safeRun('wireTable', wireTable);
     safeRun('renderTable', renderTable);

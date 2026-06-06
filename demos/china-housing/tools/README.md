@@ -1,5 +1,8 @@
 # china-housing 数据维护
 
+> 🧭 **要加城市 / 小区？** 直接照 [`SOP-ADD-CITY.md`](SOP-ADD-CITY.md) 这份 runbook 走（给
+> agent / 同事 / Cursor 用的完整闭环）。本 README 是各命令与口径的深度参考。
+
 这个 demo 是 **纯静态站**（GitHub Pages，无后端）。页面读取一个 JS *全局变量*
 `window.HOUSING_LISTINGS`（在 `assets/data/listings.js`）而非 fetch JSON —— 这样
 `file://` 直接打开也能跑。所以那个 `.js` 是**生成产物**，不要手改。
