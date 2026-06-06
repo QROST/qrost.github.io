@@ -151,5 +151,6 @@ window.HOUSING_LISTINGS = [
   { id: 124, prov: "北京",   city: "北京市",          dist: "昌平区",            loc: "静之湖",                   priceWan: 759,   area: 201,  rent: 5700,  updated: "2026-06" },
   { id: 125, prov: "上海",   city: "上海市",          dist: "杨浦区",            loc: "同济新村",                 priceWan: 395,   area: 58,   rent: 5800,  updated: "2026-06" },
   { id: 126, prov: "广东",   city: "深圳市",          dist: "福田区",            loc: "福田村",                   priceWan: 119.6, area: 40,   rent: 1380,  updated: "2026-06" },
-  { id: 127, prov: "广东",   city: "深圳市",          dist: "福田区",            loc: "赤尾村",                   priceWan: 101.5, area: 35,   rent: 4500,  updated: "2026-06" }
+  { id: 127, prov: "广东",   city: "深圳市",          dist: "福田区",            loc: "赤尾村",                   priceWan: 101.5, area: 35,   rent: 4500,  updated: "2026-06" },
+  { id: 128, prov: "北京",   city: "北京市",          dist: "朝阳区",            loc: "紫御华府",                 priceWan: 3430,  area: 352,  rent: 50000, updated: "2026-06" }
 ];
