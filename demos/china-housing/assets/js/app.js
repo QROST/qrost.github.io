@@ -39,9 +39,21 @@
   // ---- theme helpers (dark mode) -----------------------------------------
   const isDark = () => document.documentElement.classList.contains('dark');
   const themeText  = () => isDark() ? '#94a3b8' : C.slate500;
-  const themeGrid  = () => isDark() ? 'rgba(148,163,184,0.10)' : C.grid;
+  const themeGrid  = () => isDark() ? 'rgba(148,163,184,0.12)' : C.grid;
   const themeBg    = () => isDark() ? '#1e293b' : '#ffffff';
   const themeStrip = () => isDark() ? '#1e293b' : '#ffffff'; // sticky headers in strips
+  const themeMuted = () => isDark() ? '#94a3b8' : '#64748b';
+  const themeBody  = () => isDark() ? '#cbd5e1' : '#334155';
+  const themeStrong = () => isDark() ? '#f1f5f9' : '#0f172a';
+  const themeFaint = () => isDark() ? '#64748b' : '#cbd5e1';
+  const tcx = () => ({
+    muted: isDark() ? 'text-slate-400' : 'text-slate-500',
+    body: isDark() ? 'text-slate-300' : 'text-slate-700',
+    strong: isDark() ? 'text-slate-100' : 'text-slate-900',
+    faint: isDark() ? 'text-slate-600' : 'text-slate-300',
+    badge: isDark() ? 'bg-slate-700 text-slate-300' : 'bg-slate-100 text-slate-500',
+    hazardBg: isDark() ? 'rgba(248,250,252,0.06)' : 'rgba(15,23,42,0.04)',
+  });
 
   // Province short form (as in the data) → full GeoJSON name (DataV / Aliyun).
   const PROV_FULL = {
@@ -295,7 +307,7 @@
       { label: '极端天气最少', value: mildest ? mildest.extremeRange : '—', sub: mildest ? `${cityLabel(mildest)} · 全年最温和` : '—' },
     ];
     document.getElementById('kpi-grid').innerHTML = cards.map((c) => `
-      <div class="rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800/60 p-5 transition-colors duration-300">
+      <div class="rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 p-5 transition-colors duration-300">
         <div class="text-[0.7rem] font-medium uppercase tracking-[0.12em] text-slate-400 dark:text-slate-500">${c.label}</div>
         <div class="mt-2 flex items-baseline gap-1">
           <span class="text-2xl md:text-3xl font-semibold text-slate-900 dark:text-slate-50 tabular-nums">${c.value}</span>
@@ -350,7 +362,7 @@
           data: pts, parsing: false, pointRadius: 5, pointHoverRadius: 8,
           // bluer = 大年温差(四季分明) · tealer = 小年温差(平稳)
           backgroundColor: pts.map((p) => rangeColor(p.d.tempRange / rMax)),
-          borderColor: 'rgba(255,255,255,0.85)', borderWidth: 1,
+          borderColor: isDark() ? 'rgba(15,23,42,0.55)' : 'rgba(255,255,255,0.85)', borderWidth: 1,
         }],
       },
       options: {
@@ -372,8 +384,8 @@
           },
         },
         scales: {
-          x: { min: 0, suggestedMax: pMax, title: { display: true, text: '二手房总价（万元）— 越左越便宜' }, grid: { color: C.grid }, ticks: { callback: (v) => v + '万' } },
-          y: { title: { display: true, text: '舒适天数（日均温 15–26℃；悬停看具体日期范围）— 越上越多' }, grid: { color: C.grid }, min: 0, max: 365 },
+          x: { min: 0, suggestedMax: pMax, title: { display: true, text: '二手房总价（万元）— 越左越便宜' }, grid: { color: themeGrid() }, ticks: { callback: (v) => v + '万' } },
+          y: { title: { display: true, text: '舒适天数（日均温 15–26℃；悬停看具体日期范围）— 越上越多' }, grid: { color: themeGrid() }, min: 0, max: 365 },
         },
       },
     });
@@ -415,7 +427,8 @@
     const GT = 'grid-template-columns: 1.6rem minmax(4.5rem, 9rem) 1fr 3.6rem';
     const colHdr = isStrip ? (isC ? '舒适日段（绿）' : '极端日段（红）') : m.axis.replace(/（.*/, '');
     const hBg = isDark() ? '#1e293b' : '#ffffff';
-    const head = `<div class="grid items-center gap-2 text-[0.6rem] text-slate-400 sticky top-0 z-10 pb-1" style="${GT};background:${hBg}"><div>#</div><div>小区</div><div>${colHdr}</div><div class="text-right">${isStrip ? (isC ? '舒适' : '极端') : ''}</div></div>`;
+    const headMuted = isDark() ? '#94a3b8' : '#94a3b8';
+    const head = `<div class="grid items-center gap-2 text-[0.6rem] sticky top-0 z-10 pb-1" style="${GT};background:${hBg};color:${headMuted}"><div>#</div><div>小区</div><div>${colHdr}</div><div class="text-right">${isStrip ? (isC ? '舒适' : '极端') : ''}</div></div>`;
     const body = top.map((d, i) => {
       let vis, val;
       if (isStrip) {
@@ -504,10 +517,11 @@
     // month boundaries (%) + centres on a 365-day axis
     const bnd = []; let acc = 0; for (let i = 0; i < 12; i++) { acc += _DIM[i]; bnd.push(acc / 365 * 100); }
     const ctr = []; let p0 = 0; for (let i = 0; i < 12; i++) { ctr.push((p0 + bnd[i]) / 2); p0 = bnd[i]; }
+    const gridLine = isDark() ? 'rgba(148,163,184,0.22)' : 'rgba(100,116,139,0.16)';
     const gridImg = 'background-image:' + bnd.slice(0, 11).map((p) =>
-      `linear-gradient(90deg, transparent calc(${p}% - 0.5px), rgba(100,116,139,0.16) ${p}%, transparent calc(${p}% + 0.5px))`).join(',');
+      `linear-gradient(90deg, transparent calc(${p}% - 0.5px), ${gridLine} ${p}%, transparent calc(${p}% + 0.5px))`).join(',');
     const sBg = isDark() ? '#1e293b' : '#ffffff';
-    const head = `<div class="grid items-center gap-px text-[0.6rem] text-slate-400 sticky top-0 z-10 pb-1" style="${GT};background:${sBg}"><div></div>`
+    const head = `<div class="grid items-center gap-px text-[0.6rem] sticky top-0 z-10 pb-1" style="${GT};background:${sBg};color:${themeMuted()}"><div></div>`
       + `<div class="relative h-3">${ctr.map((c, i) => `<span style="position:absolute;left:${c}%;transform:translateX(-50%)">${i + 1}</span>`).join('')}</div></div>`;
     const blocksFor = (a) => {
       const f = a.extremeByDay || []; const out = []; let s = -1;
@@ -528,7 +542,7 @@
       `<div class="grid items-center gap-px py-px" style="${GT}"><div class="text-xs truncate pr-1" style="color:${provColor}" title="${a.prov} · 极端 ${a.extremeRange}">${a.prov}</div>`
       + `<div class="relative h-5 rounded-sm" style="${gridImg};background-color:${stripBg}">${blocksFor(a)}</div></div>`).join('');
     strip.innerHTML = head + body
-      + '<div class="text-[0.62rem] text-slate-400 mt-2 leading-relaxed">横轴=全年（按日，竖线为月界）；红段=该省有小区当天严寒(日均&lt;0℃)或酷热(日均高温≥33℃)，越深=占比越高，空白=无极端。</div>';
+      + `<div class="text-[0.62rem] mt-2 leading-relaxed" style="color:${themeMuted()}">横轴=全年（按日，竖线为月界）；红段=该省有小区当天严寒(日均&lt;0℃)或酷热(日均高温≥33℃)，越深=占比越高，空白=无极端。</div>`;
   }
 
   function renderProvinceChart() {
@@ -579,7 +593,7 @@
           },
         },
         scales: {
-          x: { title: { display: true, text: m.axis }, grid: { color: C.grid },
+          x: { title: { display: true, text: m.axis }, grid: { color: themeGrid() },
             ticks: { callback: (v) => { const n = Number(v); return Number.isFinite(n) ? m.fmt(n) : v; } } },
           y: { grid: { display: false } },
         },
@@ -828,10 +842,10 @@
     if (!f || (dimRamp && f.ramp === dimRamp)) { box.style.display = 'none'; box.innerHTML = ''; return; }
     box.style.display = 'flex';
     const grad = (BASE_RAMPS[f.ramp] || BASE_RAMPS.temp).join(',');
-    box.innerHTML = `<span class="text-xs text-slate-500 whitespace-nowrap">${f.label}底图</span>`
-      + `<span class="text-[11px] text-slate-400 tabular-nums">${fmtInt(f.min)}</span>`
+    box.innerHTML = `<span class="text-xs whitespace-nowrap" style="color:${themeBody()}">${f.label}底图</span>`
+      + `<span class="text-[11px] tabular-nums" style="color:${themeMuted()}">${fmtInt(f.min)}</span>`
       + `<span class="inline-block h-2.5 w-28 rounded" style="background:linear-gradient(90deg,${grad})"></span>`
-      + `<span class="text-[11px] text-slate-400 tabular-nums">${fmtInt(f.max)}${f.unit}</span>`;
+      + `<span class="text-[11px] tabular-nums" style="color:${themeMuted()}">${fmtInt(f.max)}${f.unit}</span>`;
   }
 
   function baseTabs() {
@@ -935,29 +949,29 @@
     return `<span class="inline-block rounded px-1.5 py-0.5 text-xs font-medium" style="background:${bg};color:${fg || '#0f172a'}">${html}</span>`;
   }
   function bandCell(level, kind) {
-    if (!level) return '<span class="text-slate-300">—</span>';
+    if (!level) return `<span class="${tcx().faint}">—</span>`;
     const ord = (kind === 'seismic' ? SEISMIC_ORD : TYPH_ORD)[level] || 1;
     const t = (ord - 1) / 3;
     return pill(level, mix([226, 232, 240], [225, 90, 60], t), t > 0.5 ? '#fff' : '#0f172a');
   }
   function hazardCell(d) {
-    if (!d.hazard) return '<span class="text-slate-300">—</span>';
+    if (!d.hazard) return `<span class="${tcx().faint}">—</span>`;
     const hs = d.hazard.hazards;
     // lead with each hazard's recurrence interval so 年年/十年/百年 are explicit
     const tags = hs.slice(0, 2).map((h) =>
       `<span style="color:${FREQ_COLOR[h.freq]}">${h.type}<span class="text-[0.65rem] opacity-80">·${h.freqShort}</span></span>`)
-      .join('<span class="text-slate-300"> </span>');
-    const more = hs.length > 2 ? `<span class="text-slate-400 text-[0.65rem]"> +${hs.length - 2}</span>` : '';
+      .join(`<span class="${tcx().faint}"> </span>`);
+    const more = hs.length > 2 ? `<span class="${tcx().muted} text-[0.65rem]"> +${hs.length - 2}</span>` : '';
     const full = hs.map((h) => `${h.type}：${h.freqLabel}（${h.note}）`).join('\n');
     return `<span title="${d.hazard.headline}\n${full}">${tags}${more}</span>`;
   }
   function heatingCell(d) {
-    if (!d.heating) return '<span class="text-slate-300">—</span>';
+    if (!d.heating) return `<span class="${tcx().faint}">—</span>`;
     const [bg, fg] = HEATING_STYLE[d.heating] || ['#f1f5f9', '#475569'];
     return `<span class="inline-block rounded px-1.5 py-0.5 text-xs font-medium" style="background:${bg};color:${fg}" title="${d.heatingNote}">${d.heating}</span>`;
   }
   function rangeCell(v) {
-    if (v == null) return '<span class="text-slate-300">—</span>';
+    if (v == null) return `<span class="${tcx().faint}">—</span>`;
     const t = clamp(v / viewScales().rangeMaxT, 0, 1);
     return pill(trim(v.toFixed(1)) + '℃', rangeColor(t), t > 0.45 ? '#fff' : '#0f172a');
   }
@@ -965,7 +979,7 @@
   // unknown years degrade to a muted「未知」so partial research coverage is honest.
   function builtCell(d) {
     const y = d.builtYear;
-    if (y == null) return '<span class="text-slate-300" title="完工年份未知（公开渠道未查到，未编造）">—<span class="ml-0.5 text-[0.6rem]">未知</span></span>';
+    if (y == null) return `<span class="${tcx().faint}" title="完工年份未知（公开渠道未查到，未编造）">—<span class="ml-0.5 text-[0.6rem]">未知</span></span>`;
     const age = Math.max(0, NOW_YEAR - y);
     const t = clamp(age / 45, 0, 1);
     const ap = d.builtYearApprox;  // decade-level estimate → 约 prefix only (the 约 carries it)
@@ -974,23 +988,25 @@
     return `<span class="inline-block rounded px-1.5 py-0.5 text-xs font-medium" style="background:${mix(AGE_NEW, AGE_OLD, t)};color:#fff" title="${title.replace(/"/g, '&quot;')}">${ap ? '约' : ''}${age}年</span>`;
   }
   function climateCell(d) {
-    if (!d.climateType) return '<span class="text-slate-300">—</span>';
+    if (!d.climateType) return `<span class="${tcx().faint}">—</span>`;
     const [bg, fg] = CLIMATE_STYLE[d.climateType] || ['#f1f5f9', '#64748b'];
     const title = `年均温 ${d.annualMean == null ? '—' : Math.round(d.annualMean) + '℃'} · 年温差 ${d.tempRange}℃ · 最冷月 ${fmtTemp(d.tMin)} / 最热月 ${fmtTemp(d.tMax)}`;
     return `<span class="inline-block rounded px-1.5 py-0.5 text-xs font-medium" style="background:${bg};color:${fg}" title="${title}">${d.climateType}</span>`;
   }
   // Month-boundary gridlines (shared by the 365-day mini strips).
-  const _MONTH_GRID = (() => {
+  function monthGridStyle() {
+    const bg = isDark() ? '#334155' : '#f1f5f9';
+    const line = isDark() ? 'rgba(148,163,184,0.28)' : 'rgba(100,116,139,0.18)';
     const b = []; let a = 0; for (let i = 0; i < 12; i++) { a += _DIM[i]; b.push(a / 365 * 100); }
-    return 'background-color:#f1f5f9;background-image:' + b.slice(0, 11).map((p) =>
-      `linear-gradient(90deg, transparent calc(${p}% - 0.5px), rgba(100,116,139,0.18) ${p}%, transparent calc(${p}% + 0.5px))`).join(',');
-  })();
+    return `background-color:${bg};background-image:` + b.slice(0, 11).map((p) =>
+      `linear-gradient(90deg, transparent calc(${p}% - 0.5px), ${line} ${p}%, transparent calc(${p}% + 0.5px))`).join(',');
+  }
   // Fixed-width 1–12-month strip with coloured blocks at the given day-of-year
   // ranges ([[s,e],…]; a run wrapping the year-end is split across the Jan–Dec axis).
   function miniDayStrip(ranges, color, title, width) {
     const blocks = (ranges || []).flatMap(([s, e]) => (s <= e ? [[s, e]] : [[s, 365], [1, e]]))
       .map(([s, e]) => `<div class="absolute top-0 bottom-0" style="left:${(s - 1) / 365 * 100}%;width:${(e - s + 1) / 365 * 100}%;background:${color};border-radius:1px"></div>`).join('');
-    return `<div class="relative h-3.5 rounded-sm" style="width:${width || '112px'};${_MONTH_GRID}" title="${title}">${blocks}</div>`;
+    return `<div class="relative h-3.5 rounded-sm" style="width:${width || '112px'};${monthGridStyle()}" title="${title}">${blocks}</div>`;
   }
 
   // comfort / extreme cells: a mini 365-day strip — green = comfortable days,
@@ -998,19 +1014,19 @@
   // back to a coloured text pill where no daily climatology is baked.
   function comfortCell(d) {
     if (d.daily && d.daily.comfortDays) return miniDayStrip(d.daily.comfortDays, '#059669', '舒适 ' + (d.comfortRange || '无'));
-    if (d.comfortMonths == null) return '<span class="text-slate-300">—</span>';
+    if (d.comfortMonths == null) return `<span class="${tcx().faint}">—</span>`;
     const t = d.comfortMonths / 12;
     return pill(d.comfortRange || (d.comfortMonths + '月'), comfortColor(t), t > 0.55 ? '#fff' : '#0f172a');
   }
   function extremeCell(d) {
     if (d.daily && d.daily.extremeDays) return miniDayStrip(d.daily.extremeDays, '#dc2626', d.daily.extremeDays.length ? ('极端 ' + d.extremeRange) : '无极端');
-    if (d.extremeMonths == null) return '<span class="text-slate-300">—</span>';
+    if (d.extremeMonths == null) return `<span class="${tcx().faint}">—</span>`;
     const { exMaxT } = viewScales();
     const t = d.extremeMonths / exMaxT;
     return pill(d.extremeRange || (d.extremeMonths + '月'), badColor(t), t > 0.5 ? '#fff' : '#0f172a');
   }
   function yieldCell(d) {
-    if (d.yieldPct == null) return '<span class="text-slate-300">—</span>';
+    if (d.yieldPct == null) return `<span class="${tcx().faint}">—</span>`;
     const { yMinT, yMaxT } = viewScales();
     const t = (d.yieldPct - yMinT) / (yMaxT - yMinT || 1);
     return pill(fmtPct(d.yieldPct), lerpColor(t), t > 0.5 ? '#fff' : '#0f172a');
@@ -1022,7 +1038,7 @@
     { key: 'prov', label: '省份', group: 'core', str: true, get: (d) => d.prov, cell: (d) => d.prov, dir: 1 },
     { key: 'city', label: '城市', group: 'core', str: true, get: (d) => d.city, cell: (d) => d.city, dir: 1 },
     { key: 'dist', label: '区/镇', group: 'core', str: true, get: (d) => d.dist, cell: (d) => d.dist, dir: 1 },
-    { key: 'loc', label: '小区/位置', group: 'core', str: true, get: (d) => d.loc, cell: (d) => `<span class="font-medium text-slate-900">${d.loc}</span>` , dir: 1 },
+    { key: 'loc', label: '小区/位置', group: 'core', str: true, get: (d) => d.loc, cell: (d) => `<span class="font-medium ${tcx().strong}">${d.loc}</span>` , dir: 1 },
     { key: 'builtAge', label: '房龄', group: 'core', get: (d) => nz(d.builtYear, -1), cell: (d) => builtCell(d) },
     { key: 'priceWan', label: '总价', group: 'price', num: true, get: (d) => d.priceWan, cell: (d) => fmtWan(d.priceWan) },
     { key: 'area', label: '面积㎡', group: 'price', num: true, get: (d) => d.area, cell: (d) => trim(d.area.toFixed(1)) },
@@ -1050,7 +1066,7 @@
     { key: 'payback', label: '回本年', group: 'invest', num: true, get: (d) => d.payback, cell: (d) => fmtYrs(d.payback) },
     { key: '_act', label: '详情', group: 'core', act: true, cell: (d) => d.enr
       ? `<button data-open="${d.id}" class="text-emerald-700 hover:text-emerald-900 font-medium whitespace-nowrap">查看</button>`
-      : '<span class="text-slate-300" title="暂无定位数据">—</span>' },
+      : `<span class="${tcx().faint}" title="暂无定位数据">—</span>` },
   ];
   const tstate = { sortKey: 'comfortMonths', sortDir: -1, prov: '', q: '', groups: new Set(['live', 'infra', 'risk']) };
 
@@ -1211,7 +1227,7 @@
     mall: { label: '商场', color: '#d97706' }, coast: { label: '海边', color: '#0ea5e9' },
   };
   const ZOOM_BY_LEVEL = { loc: 16, dist: 14, city: 12, prefecture: 11 };
-  let lmCurrent = null, lmSatMap = null, lmNearMap = null, lmClimateChart = null, lmTabInit = {};
+  let lmCurrent = null, lmActiveTab = 'sat', lmSatMap = null, lmNearMap = null, lmClimateChart = null, lmTabInit = {};
 
   function lmStyleTabs(active) {
     const dk = isDark();
@@ -1229,12 +1245,12 @@
   function openListing(id) {
     const d = DATA.find((x) => x.id === id);
     if (!d || !d.enr) return;
-    lmCurrent = d; lmTabInit = {};
+    lmCurrent = d; lmActiveTab = 'sat'; lmTabInit = {};
     const e = d.enr;
     document.getElementById('lm-title').textContent = cityLabel(d);
     document.getElementById('lm-sub').innerHTML =
       `${d.prov} · ${d.city}${d.dist ? ' · ' + d.dist : ''} &nbsp;|&nbsp; 总价 ${fmtWan(d.priceWan)} · ${d.area}㎡ · ${d.climateType || ''} ` +
-      `<span class="ml-1 inline-block rounded bg-slate-100 text-slate-500 px-1.5 py-0.5 text-xs">定位 ${e.geoLabel || '?'}</span>`;
+      `<span class="ml-1 inline-block rounded px-1.5 py-0.5 text-xs ${tcx().badge}">定位 ${e.geoLabel || '?'}</span>`;
     const tabs = { sat: '🛰 卫星图', near: '📍 周边', climate: '🌡 气候 / 灾害' };
     document.querySelectorAll('[data-lm-tab]').forEach((b) => { b.textContent = tabs[b.dataset.lmTab]; });
     document.getElementById('listing-modal').classList.remove('hidden');
@@ -1243,6 +1259,7 @@
   }
 
   function lmShowTab(tab) {
+    lmActiveTab = tab;
     lmStyleTabs(tab);
     const d = lmCurrent; if (!d) return;
     const e = d.enr;
@@ -1264,6 +1281,19 @@
     }
   }
 
+  function lmRenderNearList(d) {
+    const e = d.enr, pois = e.pois || {};
+    const items = Object.keys(POI_META).map((cat) => {
+      const m = POI_META[cat], p = pois[cat];
+      if (!p) return `<div class="flex items-center gap-2 ${tcx().muted}"><span class="inline-block w-2 h-2 rounded-full shrink-0" style="background:${m.color}"></span>${m.label}：—</div>`;
+      const dk = fmtKm(p.distKm);
+      const tag = p.source === 'research' ? ' <span class="text-[10px] text-amber-500 dark:text-amber-400" title="子代理调研补充">调研</span>' : '';
+      const noPin = (p.lat == null && p.distKm == null && p.name) ? ` <span class="text-[10px] ${tcx().muted}">名称(未定位)</span>` : '';
+      return `<div class="flex items-center gap-2"><span class="inline-block w-2 h-2 rounded-full shrink-0" style="background:${m.color}"></span><span class="${tcx().body} truncate"><b>${m.label}</b> ${p.name || ''} <span class="${tcx().muted}">${dk}</span>${tag}${noPin}</span></div>`;
+    });
+    document.getElementById('lm-near-list').innerHTML = items.join('');
+  }
+
   function lmInitNear(d) {
     const e = d.enr;
     lmNearMap = L.map('lm-near-map', { scrollWheelZoom: true }).setView([e.lat, e.lng], 11);
@@ -1271,43 +1301,39 @@
     const pts = [[e.lat, e.lng]];
     L.circleMarker([e.lat, e.lng], { radius: 8, color: '#fff', weight: 2, fillColor: '#059669', fillOpacity: 1 }).addTo(lmNearMap).bindPopup('小区：' + d.loc);
     const pois = e.pois || {};
-    const items = Object.keys(POI_META).map((cat) => {
+    Object.keys(POI_META).forEach((cat) => {
       const m = POI_META[cat], p = pois[cat];
-      if (!p) return `<div class="flex items-center gap-2 text-slate-400"><span class="inline-block w-2 h-2 rounded-full shrink-0" style="background:${m.color}"></span>${m.label}：—</div>`;
-      const dk = fmtKm(p.distKm);
-      const tag = p.source === 'research' ? ' <span class="text-[10px] text-amber-600" title="子代理调研补充">调研</span>' : '';
-      if (p.lat != null && p.lng != null) {
+      if (p && p.lat != null && p.lng != null) {
         pts.push([p.lat, p.lng]);
-        L.circleMarker([p.lat, p.lng], { radius: 6, color: '#fff', weight: 1.5, fillColor: m.color, fillOpacity: 0.95 }).addTo(lmNearMap).bindPopup(`${m.label}：${p.name || ''}<br/>${dk}`);
+        L.circleMarker([p.lat, p.lng], { radius: 6, color: '#fff', weight: 1.5, fillColor: m.color, fillOpacity: 0.95 }).addTo(lmNearMap).bindPopup(`${m.label}：${p.name || ''}<br/>${fmtKm(p.distKm)}`);
       }
-      const noPin = (p.lat == null && p.distKm == null && p.name) ? ' <span class="text-[10px] text-slate-400">名称(未定位)</span>' : '';
-      return `<div class="flex items-center gap-2"><span class="inline-block w-2 h-2 rounded-full shrink-0" style="background:${m.color}"></span><span class="text-slate-700 truncate"><b>${m.label}</b> ${p.name || ''} <span class="text-slate-400">${dk}</span>${tag}${noPin}</span></div>`;
     });
-    document.getElementById('lm-near-list').innerHTML = items.join('');
+    lmRenderNearList(d);
     if (pts.length > 1) lmNearMap.fitBounds(pts, { padding: [28, 28], maxZoom: 13 });
     setTimeout(() => lmNearMap.invalidateSize(), 60);
   }
 
   function lmRenderClimate(d) {
     const e = d.enr, risk = e.risk, cl = e.climate;
+    const tc = tcx();
     const riskLine = risk
-      ? `<span class="font-medium text-slate-800">气候与风险（粗略）</span>：${risk.summary} · <strong class="text-slate-700">${d.climateType || '—'}</strong>（年温差 ${d.tempRange == null ? '—' : d.tempRange + '℃'}：最冷月 ${fmtTemp(d.tMin)} / 最热月 ${fmtTemp(d.tMax)}；舒适 ${d.comfortRange} / 极端 ${d.extremeRange}）`
+      ? `<span class="font-medium ${tc.strong}">气候与风险（粗略）</span>：${risk.summary} · <strong class="${tc.body}">${d.climateType || '—'}</strong>（年温差 ${d.tempRange == null ? '—' : d.tempRange + '℃'}：最冷月 ${fmtTemp(d.tMin)} / 最热月 ${fmtTemp(d.tMax)}；舒适 ${d.comfortRange} / 极端 ${d.extremeRange}）`
       : '';
     let heatLine = '';
     if (d.heating) {
       const [bg, fg] = HEATING_STYLE[d.heating] || ['#f1f5f9', '#475569'];
-      heatLine = `<div class="mt-2 text-sm"><span class="font-medium text-slate-800">冬季供暖</span>：` +
+      heatLine = `<div class="mt-2 text-sm"><span class="font-medium ${tc.strong}">冬季供暖</span>：` +
         `<span class="inline-block rounded px-1.5 py-0.5 text-xs font-medium" style="background:${bg};color:${fg}">${d.heating}</span>` +
-        `<span class="text-slate-500 ml-1">${d.heatingNote}</span></div>`;
+        `<span class="${tc.muted} ml-1">${d.heatingNote}</span></div>`;
     }
     let hazLine = '';
     if (d.hazard) {
       const tags = d.hazard.hazards.map((h) =>
-        `<span class="inline-block rounded px-1.5 py-0.5 text-xs" style="background:rgba(15,23,42,0.04);color:${FREQ_COLOR[h.freq]}" title="${h.note}">${h.type} · ${h.freqLabel}</span>`).join(' ');
-      hazLine = `<div class="mt-3"><span class="font-medium text-slate-800">${d.prov}省级历史灾害概况</span>` +
-        `<span class="text-slate-500">（${d.hazard.headline}）</span><div class="mt-1.5 flex flex-wrap gap-1.5">${tags}</div></div>`;
+        `<span class="inline-block rounded px-1.5 py-0.5 text-xs" style="background:${tc.hazardBg};color:${FREQ_COLOR[h.freq]}" title="${h.note}">${h.type} · ${h.freqLabel}</span>`).join(' ');
+      hazLine = `<div class="mt-3"><span class="font-medium ${tc.strong}">${d.prov}省级历史灾害概况</span>` +
+        `<span class="${tc.muted}">（${d.hazard.headline}）</span><div class="mt-1.5 flex flex-wrap gap-1.5">${tags}</div></div>`;
     }
-    document.getElementById('lm-risk').innerHTML = (riskLine || '<span class="text-slate-400">暂无风险数据</span>') + heatLine + hazLine;
+    document.getElementById('lm-risk').innerHTML = (riskLine || `<span class="${tc.muted}">暂无风险数据</span>`) + heatLine + hazLine;
     if (lmClimateChart) { lmClimateChart.destroy(); lmClimateChart = null; }
     if (!window.Chart) return;
     const ctxEl = document.getElementById('lm-climate-chart');
@@ -1335,7 +1361,7 @@
           plugins: { legend: { labels: { boxWidth: 12, font: { size: 10 } } },
             tooltip: { callbacks: { title: (it) => doyToDate(((it[0] && it[0].dataIndex) || 0) + 1) } } },
           scales: {
-            y: { title: { display: true, text: '℃' }, grid: { color: 'rgba(100,116,139,0.12)' } },
+            y: { title: { display: true, text: '℃' }, grid: { color: themeGrid() } },
             x: { grid: { display: false }, ticks: { autoSkip: false, maxRotation: 0, font: { size: 10 } } },
           },
         },
@@ -1359,7 +1385,7 @@
         responsive: true, maintainAspectRatio: false, interaction: { mode: 'index', intersect: false },
         plugins: { legend: { labels: { boxWidth: 12, font: { size: 11 } } } },
         scales: {
-          yT: { position: 'left', title: { display: true, text: '℃' }, grid: { color: 'rgba(100,116,139,0.12)' } },
+          yT: { position: 'left', title: { display: true, text: '℃' }, grid: { color: themeGrid() } },
           yP: { position: 'right', title: { display: true, text: 'mm' }, grid: { display: false }, beginAtZero: true },
           x: { grid: { display: false } },
         },
@@ -1390,14 +1416,28 @@
   }
 
   // ---- theme toggle (dark mode) ------------------------------------------
+  function refreshModalTheme() {
+    if (!lmCurrent) return;
+    const d = lmCurrent, e = d.enr;
+    document.getElementById('lm-sub').innerHTML =
+      `${d.prov} · ${d.city}${d.dist ? ' · ' + d.dist : ''} &nbsp;|&nbsp; 总价 ${fmtWan(d.priceWan)} · ${d.area}㎡ · ${d.climateType || ''} ` +
+      `<span class="ml-1 inline-block rounded px-1.5 py-0.5 text-xs ${tcx().badge}">定位 ${e.geoLabel || '?'}</span>`;
+    lmStyleTabs(lmActiveTab);
+    if (lmActiveTab === 'near' && lmTabInit.near) safeRun('lmRenderNearList', () => lmRenderNearList(d));
+    if (lmActiveTab === 'climate') safeRun('lmRenderClimate', () => lmRenderClimate(d));
+  }
+
   function applyThemeToCharts() {
     chartBase();  // refresh Chart.js global color tokens
+    safeRun('renderKPIs', renderKPIs);
     safeRun('renderScatter', renderScatter);
     safeRun('renderRankings', renderRankings);
     safeRun('renderProvinceChart', renderProvinceChart);
-    safeRun('renderKPIs', renderKPIs);
     safeRun('renderTable', renderTable);
-    styleGroupChips();
+    safeRun('styleGroupChips', styleGroupChips);
+    safeRun('dimTabs', dimTabs);
+    safeRun('baseTabs', baseTabs);
+    safeRun('renderBaseLegend', renderBaseLegend);
     // Re-init ECharts map with new geo colours
     if (echartsMap && mapReady) {
       const dk = isDark();
@@ -1410,6 +1450,7 @@
       });
       safeRun('renderMap', renderMap);
     }
+    safeRun('refreshModalTheme', refreshModalTheme);
   }
 
   function wireThemeToggle() {

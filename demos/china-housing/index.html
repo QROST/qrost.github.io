@@ -42,15 +42,32 @@
     <!-- Leaflet — only used inside the per-listing satellite / vicinity modal -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="" />
     <style>
-        body {
-            font-family: 'Inter', 'PingFang SC', 'Microsoft YaHei', sans-serif;
-            background-color: #f8fafc;
-            color: #0f172a;
+        :root {
+            color-scheme: light;
+            --page-bg: #f1f5f9;
+            --surface: #ffffff;
+            --surface-muted: #f8fafc;
+            --text: #0f172a;
+            --text-muted: #64748b;
+            --border: #e2e8f0;
+        }
+        html.dark {
+            color-scheme: dark;
+            --page-bg: #0f172a;
+            --surface: #1e293b;
+            --surface-muted: #172033;
+            --text: #e2e8f0;
+            --text-muted: #94a3b8;
+            --border: #334155;
+        }
+        html, body {
+            min-height: 100%;
+            background-color: var(--page-bg);
+            color: var(--text);
             transition: background-color 0.3s, color 0.3s;
         }
-        .dark body, body.dark-mode {
-            background-color: #0f172a;
-            color: #e2e8f0;
+        body {
+            font-family: 'Inter', 'PingFang SC', 'Microsoft YaHei', sans-serif;
         }
 
         .tabular-nums {
@@ -58,8 +75,17 @@
         }
 
         ::-webkit-scrollbar { height: 8px; width: 8px; }
+        ::-webkit-scrollbar-track { background: transparent; }
         ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
-        .dark ::-webkit-scrollbar-thumb { background: #334155; }
+        html.dark ::-webkit-scrollbar-thumb { background: #475569; }
+
+        /* Chart.js canvas hosts inherit card surface */
+        #scatter-chart, #rank-chart, #province-chart, #lm-climate-chart {
+            background: transparent;
+        }
+        #rank-strip, #province-strip {
+            background: var(--surface);
+        }
 
         /* Leaflet dark-mode: invert the tile colours to an approximate dark palette */
         .dark .leaflet-container {
@@ -76,12 +102,12 @@
     </style>
 </head>
 
-<body class="antialiased min-h-screen flex flex-col scroll-smooth bg-slate-50 dark:bg-slate-900 transition-colors duration-300">
+<body class="antialiased min-h-screen flex flex-col scroll-smooth bg-[var(--page-bg)] transition-colors duration-300">
 
     <a href="#overview"
         class="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-50 focus:bg-slate-900 focus:text-white focus:px-3 focus:py-1.5 focus:rounded">跳到内容</a>
 
-    <nav class="sticky top-0 z-40 bg-white/90 dark:bg-slate-900/90 border-b border-slate-200/90 dark:border-slate-700/80 backdrop-blur-sm transition-colors duration-300">
+    <nav class="sticky top-0 z-40 bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-700 transition-colors duration-300">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between h-14 items-center gap-4">
                 <a href="../../index.html"
@@ -112,7 +138,7 @@
         </div>
     </nav>
 
-    <header class="py-14 md:py-20 border-b border-slate-100 dark:border-slate-800 bg-white dark:bg-slate-900/60 transition-colors duration-300">
+    <header class="py-14 md:py-20 border-b border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 transition-colors duration-300">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <p class="text-xs font-medium uppercase tracking-[0.2em] text-slate-400 dark:text-slate-500 mb-4">Data · 宜居 × 便宜</p>
             <h1 class="text-3xl md:text-[2.6rem] font-semibold tracking-tight text-slate-900 dark:text-slate-50 leading-tight max-w-3xl">
@@ -156,7 +182,7 @@
                     class="text-slate-800 dark:text-slate-200">总价（越左越便宜）</strong>、纵轴<strong class="text-slate-800 dark:text-slate-200">舒适月数（月均温 15–26℃
                     的月份，越上越多）</strong>，<strong class="text-indigo-700 dark:text-indigo-400">颜色越蓝 = 年温差越大（四季越分明）</strong>、越青 = 全年越平稳。<strong
                     class="text-slate-800 dark:text-slate-200">左上角</strong>那批既便宜、舒适月又多的房子，正是这份清单想帮你找到的。</p>
-            <div class="rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800/60 p-4 md:p-6 transition-colors duration-300">
+            <div class="rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 p-4 md:p-6 transition-colors duration-300">
                 <div class="relative" style="height: 440px;"><canvas id="scatter-chart"></canvas></div>
             </div>
         </section>
@@ -173,7 +199,7 @@
                 <button data-rank="extreme" class="rank-tab"></button>
                 <button data-rank="yield" class="rank-tab"></button>
             </div>
-            <div class="rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800/60 p-4 md:p-6 transition-colors duration-300">
+            <div class="rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 p-4 md:p-6 transition-colors duration-300">
                 <div class="relative" style="height: 520px;"><canvas id="rank-chart"></canvas></div>
             </div>
         </section>
@@ -187,7 +213,7 @@
                 突发灾害频率）。再叠一层<strong class="text-emerald-700 dark:text-emerald-400">连续底图</strong>——全国<strong class="text-slate-800 dark:text-slate-200">等温线 / 降水 /
                     海拔</strong>栅格场（含等值线），就能直观看到某套便宜房落在什么气温带、海拔带里。<strong class="text-slate-800 dark:text-slate-200">滚轮 / 双指捏合 / 右上角
                     +−</strong> 缩放、拖动平移；点击圆点看卫星图 / 周边 / 气候与灾害。</p>
-            <div class="rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800/60 p-4 md:p-6 transition-colors duration-300">
+            <div class="rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 p-4 md:p-6 transition-colors duration-300">
                 <div class="flex flex-wrap items-center gap-2 mb-3">
                     <span class="text-xs font-medium text-slate-400 dark:text-slate-500 mr-1 self-center">点·叠加维度</span>
                     <button data-dim="tempRange" class="dim-tab"></button>
@@ -212,11 +238,11 @@
                     <div id="china-map" class="w-full h-full"></div>
                     <div class="absolute top-3 right-3 z-[5] flex flex-col gap-1.5">
                         <button id="map-zoom-in" aria-label="放大"
-                            class="w-9 h-9 rounded-lg bg-white/95 dark:bg-slate-800/95 border border-slate-200 dark:border-slate-600 shadow-sm text-slate-700 dark:text-slate-200 text-xl leading-none font-medium hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors">+</button>
+                            class="w-9 h-9 rounded-lg bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-600 shadow-sm text-slate-700 dark:text-slate-200 text-xl leading-none font-medium hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors">+</button>
                         <button id="map-zoom-out" aria-label="缩小"
-                            class="w-9 h-9 rounded-lg bg-white/95 dark:bg-slate-800/95 border border-slate-200 dark:border-slate-600 shadow-sm text-slate-700 dark:text-slate-200 text-xl leading-none font-medium hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors">−</button>
+                            class="w-9 h-9 rounded-lg bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-600 shadow-sm text-slate-700 dark:text-slate-200 text-xl leading-none font-medium hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors">−</button>
                         <button id="map-zoom-reset" aria-label="复位"
-                            class="w-9 h-9 rounded-lg bg-white/95 dark:bg-slate-800/95 border border-slate-200 dark:border-slate-600 shadow-sm text-slate-500 dark:text-slate-400 text-base leading-none hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors"
+                            class="w-9 h-9 rounded-lg bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-600 shadow-sm text-slate-500 dark:text-slate-400 text-base leading-none hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors"
                             title="复位">⤢</button>
                     </div>
                 </div>
@@ -224,7 +250,7 @@
                     class="hidden text-sm text-slate-500 dark:text-slate-400 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg p-6 text-center items-center justify-center"
                     style="min-height: 240px;"></div>
             </div>
-            <div class="rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800/60 p-4 md:p-6 mt-5 transition-colors duration-300">
+            <div class="rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 p-4 md:p-6 mt-5 transition-colors duration-300">
                 <div class="flex flex-wrap items-center gap-2 mb-4">
                     <span class="text-sm font-medium text-slate-700 dark:text-slate-300 mr-1 self-center">各省对比</span>
                     <button data-prov="avgRange" class="prov-tab"></button>
@@ -260,7 +286,7 @@
                     class="text-xs font-medium text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-600 rounded-lg px-3 py-2 bg-white dark:bg-slate-800 hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors whitespace-nowrap">导出
                     CSV</button>
             </div>
-            <div class="rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800/60 overflow-hidden transition-colors duration-300">
+            <div class="rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 overflow-hidden transition-colors duration-300">
                 <div class="overflow-x-auto">
                     <table class="min-w-full text-sm">
                         <thead id="table-head"></thead>
@@ -275,7 +301,7 @@
             <h2 class="text-xs font-semibold uppercase tracking-[0.15em] text-slate-400 dark:text-slate-500 mb-5">说明 · Methodology</h2>
             <div class="grid md:grid-cols-2 gap-5">
                 <div
-                    class="rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800/60 p-6 text-sm text-slate-600 dark:text-slate-400 leading-relaxed space-y-3 transition-colors duration-300">
+                    class="rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 p-6 text-sm text-slate-600 dark:text-slate-400 leading-relaxed space-y-3 transition-colors duration-300">
                     <p class="font-medium text-slate-800 dark:text-slate-200">宜居指标如何得来</p>
                     <ul class="space-y-2 list-disc list-inside">
                         <li><strong class="text-slate-700 dark:text-slate-300">气温 / 降水</strong>：Open-Meteo ERA5 <strong>2014–2023</strong>
@@ -395,7 +421,7 @@
         </div>
     </div>
 
-    <footer class="mt-auto border-t border-slate-100 dark:border-slate-800 py-8 bg-white dark:bg-slate-900/60 transition-colors duration-300">
+    <footer class="mt-auto border-t border-slate-200 dark:border-slate-800 py-8 bg-white dark:bg-slate-900 transition-colors duration-300">
         <div class="max-w-6xl mx-auto px-4 text-center text-slate-400 dark:text-slate-500 text-xs space-y-2">
             <p>数据更新于 2026-06 · 项目起步于小红书博主「FIRE规划师」<strong class="font-medium text-slate-500 dark:text-slate-400">无偿分享</strong>的小城挂牌样本；此后
                 QROST 自行联网调研，陆续补充了若干样本。气候 / 海拔 / 基础设施距离 / 灾害频率等宜居维度由 QROST 基于 Open-Meteo、OpenStreetMap 及公开史料独立计算与可视化。
