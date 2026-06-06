@@ -49,6 +49,10 @@ POI_CATEGORIES = ["metro", "train", "airport", "hospital", "mall", "coast"]
 # away is a DIFFERENT city's line, not the listing's metro. Cap metro hard; keep
 # train/airport uncapped (they are legitimately regional).
 _CAT_MAX_KM = {"metro": 12.0, "mall": 30.0, "hospital": 30.0}
+# Ignore OSM hits closer than this — same-node clinic / mis-tagged amenity → 0m noise.
+_CAT_MIN_KM = {"hospital": 0.35, "train": 0.25, "mall": 0.2}
+# Re-fetch / allow research override when existing bake is below these floors.
+_POI_REFIX_KM = {"hospital": 0.5, "train": 0.2, "metro": 0.0}
 
 
 # ---------------------------------------------------------------------------
@@ -552,6 +556,117 @@ def _classify(el):
     return None
 
 
+def _nearest_from_overpass(data, lat, lng):
+    """Pick nearest POI per category, skipping sub-floor OSM noise."""
+    buckets = {}
+    for el in data.get("elements", []):
+        cat = _classify(el)
+        if not cat:
+            continue
+        c = el.get("center") or {"lat": el.get("lat"), "lon": el.get("lon")}
+        if c.get("lat") is None:
+            continue
+        d = haversine(lat, lng, c["lat"], c["lon"])
+        if d > _CAT_MAX_KM.get(cat, 1e9):
+            continue
+        nm = el["tags"].get("name") or el["tags"].get("name:zh") or "(未命名)"
+        buckets.setdefault(cat, []).append((d, nm, round(c["lat"], 5), round(c["lon"], 5)))
+    found = {}
+    for cat, items in buckets.items():
+        items.sort(key=lambda x: x[0])
+        floor = _CAT_MIN_KM.get(cat, 0.0)
+        for d, nm, plat, plng in items:
+            if d < floor:
+                continue
+            found[cat] = (nm, plat, plng, d)
+            break
+    return found
+
+
+def _bake_offline_pois(lat, lng, airports, coast):
+    found = {}
+    ap, apd = nearest_airport(lat, lng, airports)
+    if ap:
+        found["airport"] = (f'{ap["name"]}' + (f' ({ap["iata"]})' if ap["iata"] else ""),
+                            ap["lat"], ap["lng"], apd)
+    found["coast"] = ("最近海岸线", None, None, coast_km(lat, lng, coast))
+    return found
+
+
+def _store_pois(con, lid, found, source="osm"):
+    for cat, (nm, plat, plng, d) in found.items():
+        con.execute(
+            "INSERT OR REPLACE INTO poi (listing_id, category, name, lat, lng, dist_km, source) "
+            "VALUES (?,?,?,?,?,?,?)",
+            (lid, cat, nm, plat, plng, round(d, 1) if d is not None else None, source))
+
+
+def _pois_for_listing(con, r, airports, coast, log, overwrite=()):
+    """Bake POIs for one listing. `overwrite` = categories to replace even if present."""
+    lat, lng = r["lat"], r["lng"]
+    found = _bake_offline_pois(lat, lng, airports, coast)
+    data = _overpass(lat, lng)
+    if data is not None:
+        found.update(_nearest_from_overpass(data, lat, lng))
+    else:
+        log(f"  ! id{r['id']} overpass unavailable (metro/train/hospital/mall skipped)")
+    for cat in overwrite:
+        con.execute("DELETE FROM poi WHERE listing_id=? AND category=?", (r["id"], cat))
+    for cat, (nm, plat, plng, d) in found.items():
+        if cat not in overwrite:
+            if con.execute("SELECT 1 FROM poi WHERE listing_id=? AND category=?",
+                           (r["id"], cat)).fetchone():
+                continue
+        _store_pois(con, r["id"], {cat: (nm, plat, plng, d)})
+    con.execute("INSERT OR REPLACE INTO poi_done (listing_id) VALUES (?)", (r["id"],))
+
+
+def _listing_ids_needing_poi_refix(con):
+    """Listings with suspiciously close POIs or metro-city missing metro."""
+    metro_cities = {r[0] for r in con.execute(
+        "SELECT DISTINCT l.city FROM listings l JOIN poi p ON p.listing_id=l.id "
+        "WHERE p.category='metro' AND p.name IS NOT NULL")}
+    ids = []
+    for r in con.execute("SELECT id, city, dist, prov FROM listings WHERE lat IS NOT NULL"):
+        blob = f"{r['prov']}{r['city']}{r['dist']}"
+        wants_metro = r["city"] in metro_cities or any(
+            k in blob for k in ("北京", "上海", "广州", "深圳", "杭州", "南京", "武汉", "成都",
+                                "重庆", "天津", "苏州", "西安", "郑州", "长沙", "宁波", "青岛",
+                                "无锡", "合肥", "福州", "厦门", "大连", "沈阳", "哈尔滨", "长春",
+                                "昆明", "东莞", "佛山", "惠州", "南通", "宜昌", "镇江", "廊坊",
+                                "鄂州", "茂名", "肇庆", "增城", "余杭", "鼓楼", "黄岛", "武清",
+                                "句容", "南沙", "奉化", "启东"))
+        pois = {p["category"]: p for p in con.execute(
+            "SELECT category, dist_km, name FROM poi WHERE listing_id=?", (r["id"],))}
+        bad = []
+        for cat, floor in _POI_REFIX_KM.items():
+            p = pois.get(cat)
+            if p and p["dist_km"] is not None and p["dist_km"] < floor:
+                bad.append(cat)
+        m = pois.get("metro")
+        if wants_metro and not (m and m["name"]):
+            bad.append("metro")
+        if bad:
+            ids.append((r["id"], sorted(set(bad))))
+    return ids
+
+
+def pois_refix(con, log):
+    """Re-bake POIs for listings with 0m hospitals / missing metro in metro cities."""
+    airports, coast = _load_airports(), _load_coast()
+    todo = _listing_ids_needing_poi_refix(con)
+    log(f"pois-refix: {len(todo)} listing(s) with suspicious/missing POIs…")
+    for lid, cats in todo:
+        row = con.execute("SELECT id, lat, lng FROM listings WHERE id=?", (lid,)).fetchone()
+        if not row:
+            continue
+        log(f"  refix #{lid}: {','.join(cats)}")
+        _pois_for_listing(con, row, airports, coast, log, overwrite=tuple(cats))
+        time.sleep(1.5)
+    con.commit()
+    log(f"pois-refix done: {len(todo)} listing(s)")
+
+
 def pois_all(con, log):
     airports, coast = _load_airports(), _load_coast()
     rows = con.execute("""SELECT id, lat, lng FROM listings
@@ -561,41 +676,7 @@ def pois_all(con, log):
     log(f"pois: {len(rows)} listing(s) to do (Overpass + offline airport/coast)…")
     done = 0
     for r in rows:
-        lat, lng = r["lat"], r["lng"]
-        found = {}
-        # offline categories — always available
-        ap, apd = nearest_airport(lat, lng, airports)
-        if ap:
-            found["airport"] = (f'{ap["name"]}' + (f' ({ap["iata"]})' if ap["iata"] else ""),
-                                ap["lat"], ap["lng"], apd)
-        ckm = coast_km(lat, lng, coast)
-        found["coast"] = ("最近海岸线", None, None, ckm)
-        # online categories — Overpass (best-effort)
-        data = _overpass(lat, lng)
-        if data is not None:
-            nearest = {}
-            for el in data.get("elements", []):
-                cat = _classify(el)
-                if not cat:
-                    continue
-                c = el.get("center") or {"lat": el.get("lat"), "lon": el.get("lon")}
-                if c.get("lat") is None:
-                    continue
-                d = haversine(lat, lng, c["lat"], c["lon"])
-                if d > _CAT_MAX_KM.get(cat, 1e9):
-                    continue   # too far to be the listing's own metro/mall/hospital
-                if cat not in nearest or d < nearest[cat][3]:
-                    nm = el["tags"].get("name") or el["tags"].get("name:zh") or "(未命名)"
-                    nearest[cat] = (nm, round(c["lat"], 5), round(c["lon"], 5), d)
-            found.update(nearest)
-        else:
-            log(f"  ! id{r['id']} overpass unavailable (metro/train/hospital/mall skipped)")
-        for cat, (nm, plat, plng, d) in found.items():
-            con.execute(
-                "INSERT OR REPLACE INTO poi (listing_id, category, name, lat, lng, dist_km) "
-                "VALUES (?,?,?,?,?,?)",
-                (r["id"], cat, nm, plat, plng, round(d, 1)))
-        con.execute("INSERT OR REPLACE INTO poi_done (listing_id) VALUES (?)", (r["id"],))
+        _pois_for_listing(con, r, airports, coast, log)
         done += 1
         if done % 5 == 0:
             con.commit()
@@ -918,24 +999,59 @@ def geocode_query(query, prov, limit=5):
     return None
 
 
+def _listing_city(row) -> str:
+    """Normalise listings.city to a geocoder-friendly city token."""
+    city = (row["city"] or "").strip()
+    if "-" in city:
+        city = city.split("-")[-1].strip()
+    return city
+
+
+def _poi_geocode(name, cat, row, prov):
+    """Geocode a POI name with city-scoped query variants (reduces跨省误配)."""
+    city = _listing_city(row)
+    dist = (row["dist"] or "").strip()
+    locs = [x for x in {city, dist.split()[0] if dist else "", prov} if x]
+    bases = [", ".join(locs), f"{city}, {prov}" if city else prov]
+    if cat == "metro":
+        variants = [f"{name}地铁站", f"地铁{name}站", f"{name}站"]
+    elif cat == "train":
+        variants = [f"{name}站", f"{name}火车站", f"{name}高铁站"]
+    else:
+        variants = [name]
+    queries = []
+    for base in bases:
+        for v in variants:
+            queries.append(f"{v}, {base}")
+    seen = set()
+    for q in queries:
+        if q in seen:
+            continue
+        seen.add(q)
+        g = geocode_query(q, prov)
+        if g:
+            return g
+    return None
+
+
 def merge_research(con, findings, log, move_flag_km=25.0, poi_max_km=60.0):
     """Fold a list of per-listing finding dicts into the DB. Returns a report.
 
     finding = {id, refined_address?, hospital_name?, mall_name?, metro_name?,
                sources?, notes?}  (any field may be null/absent)."""
-    report = {"refined": 0, "moves": [], "poi_filled": {"hospital": 0, "mall": 0, "metro": 0},
+    report = {"refined": 0, "moves": [], "poi_filled": {"hospital": 0, "mall": 0, "metro": 0, "train": 0},
               "poi_name_only": 0, "rejected": [], "skipped": 0}
     for f in findings:
         lid = f.get("id")
         row = con.execute(
-            "SELECT prov, loc, lat, lng, geo_level FROM listings WHERE id=?", (lid,)).fetchone()
+            "SELECT prov, city, dist, loc, lat, lng, geo_level FROM listings WHERE id=?", (lid,)).fetchone()
         if not row:
             report["skipped"] += 1
             continue
         prov, anchor = row["prov"], [row["lat"], row["lng"]]
         # 1) refine an imprecise (city/dist-level) location from a verified address
         addr = f.get("refined_address")
-        if addr and row["geo_level"] in ("city", "dist"):
+        if addr and (row["geo_level"] in ("city", "dist") or f.get("force_refine")):
             import re as _re
             cands = [addr]
             # Nominatim has no house numbers for most CN streets — retry without 门牌号
@@ -959,14 +1075,22 @@ def merge_research(con, findings, log, move_flag_km=25.0, poi_max_km=60.0):
                 if mv is not None and mv > move_flag_km:
                     report["moves"].append(
                         {"id": lid, "loc": row["loc"], "km": round(mv, 1), "to": g[2][:46]})
-        # 2) fill genuinely-missing POIs by verified name (don't overwrite OSM hits)
-        for cat, key in (("hospital", "hospital_name"), ("mall", "mall_name"), ("metro", "metro_name")):
+        # 2) fill / correct POIs by verified name (overwrite suspiciously-close OSM hits)
+        for cat, key in (("hospital", "hospital_name"), ("mall", "mall_name"),
+                         ("metro", "metro_name"), ("train", "train_name")):
             name = f.get(key)
             if not name:
                 continue
-            if con.execute("SELECT 1 FROM poi WHERE listing_id=? AND category=?", (lid, cat)).fetchone():
+            cur = con.execute("SELECT dist_km, source FROM poi WHERE listing_id=? AND category=?",
+                              (lid, cat)).fetchone()
+            floor = _POI_REFIX_KM.get(cat, 0)
+            if cur and cur[1] == "research" and cur[0] is not None and cur[0] >= floor:
                 continue
-            g = geocode_query(f"{name}, {prov}", prov)
+            if cur and cur[0] is not None and cur[0] >= floor:
+                continue
+            if cur and cur[0] is not None and cur[0] < floor:
+                con.execute("DELETE FROM poi WHERE listing_id=? AND category=?", (lid, cat))
+            g = _poi_geocode(name, cat, row, prov)
             time.sleep(1.1)
             if g:
                 d = (haversine(anchor[0], anchor[1], g[0], g[1])
@@ -1065,24 +1189,12 @@ def refresh_refined_pois(con, log):
                     (r["id"], "coast", "最近海岸线", round(coast_km(lat, lng, coast), 1)))
         data = _overpass(lat, lng)
         if data is not None:
-            nearest = {}
-            for el in data.get("elements", []):
-                cat = _classify(el)
-                if not cat:
-                    continue
-                ce = el.get("center") or {"lat": el.get("lat"), "lon": el.get("lon")}
-                if ce.get("lat") is None:
-                    continue
-                d = haversine(lat, lng, ce["lat"], ce["lon"])
-                if d > _CAT_MAX_KM.get(cat, 1e9):
-                    continue   # too far to be the listing's own metro/mall/hospital
-                if cat not in nearest or d < nearest[cat][3]:
-                    nm = el["tags"].get("name") or el["tags"].get("name:zh") or "(未命名)"
-                    nearest[cat] = (nm, round(ce["lat"], 5), round(ce["lon"], 5), d)
-            for cat, (nm, plat, plng, d) in nearest.items():
-                cur = con.execute("SELECT source FROM poi WHERE listing_id=? AND category=?",
+            for cat, (nm, plat, plng, d) in _nearest_from_overpass(data, lat, lng).items():
+                cur = con.execute("SELECT source, dist_km FROM poi WHERE listing_id=? AND category=?",
                                   (r["id"], cat)).fetchone()
                 if cur and cur[0] == "research":   # preserve verified research POI
+                    continue
+                if cur and cur[1] is not None and cur[1] >= _POI_REFIX_KM.get(cat, 0):
                     continue
                 con.execute("INSERT OR REPLACE INTO poi (listing_id,category,name,lat,lng,dist_km,source) "
                             "VALUES (?,?,?,?,?,?,'osm')", (r["id"], cat, nm, plat, plng, round(d, 1)))

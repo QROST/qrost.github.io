@@ -75,6 +75,7 @@ python3 tools/manage.py elevation      # 海拔 (Open-Meteo DEM, 批量)
 python3 tools/manage.py relief         # 地形起伏 (DEM 环采样, 地质灾害降尺度用)
 python3 tools/manage.py risk           # 离海岸 / 地震带 / 台风暴露 (离线+派生)
 python3 tools/manage.py pois           # 周边 地铁/火车/医院/商场 (Overpass, 最慢最 flaky)
+python3 tools/manage.py pois-refix     # 复核：0m 医院 / 轨交城缺地铁 等可疑 POI 重烘焙
 python3 tools/manage.py hazard-merge data/hazard_research.json   # ⚠️ 必跑！每小区灾害 = 地市类型 × 坐标物理频率
 ```
 
@@ -95,6 +96,9 @@ python3 tools/manage.py hazard-merge data/hazard_research.json   # ⚠️ 必跑
 ```bash
 # 房龄(建成年代): findings=[{id, builtYear, yearText, source, confidence}, …]
 python3 tools/manage.py built-merge findings.json     # 校验 1900≤年≤2026 / ≤挂牌年 / 有来源；approx 不降级精确
+
+# 周边 POI 缺口 / 0m 医院：findings=[{id, hospital_name?, metro_name?, train_name?, refined_address?, sources}, …]
+python3 tools/manage.py research-merge findings.json  # 城市限定 geocode；覆盖可疑近距离 OSM 误标
 
 # (可选) 新地市的真实灾情史 → 追加进 data/hazard_research.json（{findings:[{prefKey:"省|地级市", headline, hazards:[…]}]}）
 #        然后重跑上面第 3 步的 hazard-merge，新地市就从「省级兜底」升级为「地市调研类型」

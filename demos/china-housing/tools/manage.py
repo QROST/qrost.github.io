@@ -515,6 +515,11 @@ def cmd_pois(args):
     enrich.pois_all(connect(), print)
 
 
+def cmd_pois_refix(args):
+    enrich.pois_refix(connect(), print)
+    print("✓ pois-refix complete — now run `research-merge` for gaps, then `build`")
+
+
 def cmd_risk(args):
     enrich.risk_all(connect(), print)
 
@@ -626,6 +631,8 @@ def main(argv=None):
     sp.add_argument("--force", action="store_true", help="ignore cache and re-sample the whole grid")
     sp.set_defaults(fn=cmd_field)
     sub.add_parser("pois", help="bake nearest metro/train/airport/hospital/mall/coast").set_defaults(fn=cmd_pois)
+    sub.add_parser("pois-refix", help="re-bake suspicious 0m hospitals / missing metro in metro cities").set_defaults(
+        fn=cmd_pois_refix)
     sub.add_parser("risk", help="compute coarse coast/seismic/typhoon risk").set_defaults(fn=cmd_risk)
     sub.add_parser("enrich", help="run geocode + climate + pois + risk (all stages)").set_defaults(fn=cmd_enrich)
 

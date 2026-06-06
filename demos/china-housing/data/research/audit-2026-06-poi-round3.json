@@ -1,0 +1,27 @@
+[
+  {
+    "id": 8,
+    "force_refine": true,
+    "refined_address": "黑龙江省黑河市北安区电厂小区",
+    "hospital_name": "黑河市第一人民医院",
+    "train_name": "黑河",
+    "sources": ["https://www.haodf.com/hospital/3216426288.html"],
+    "notes": "原坐标误落鸡西；强制细化到黑河"
+  },
+  {
+    "id": 129,
+    "force_refine": true,
+    "refined_address": "北京市西城区长椿街校场口胡同",
+    "hospital_name": "宣武中医医院",
+    "metro_name": "长椿街",
+    "sources": ["https://news.lianjia.com/bj/xiaoqu/1111027380629.html"],
+    "notes": "原坐标误落怀柔"
+  },
+  {
+    "id": 98,
+    "hospital_name": "凯里市人民医院",
+    "train_name": "凯里南",
+    "sources": ["https://www.kl1y.cn/"],
+    "notes": "补全医院距离（上轮仅 name_only）"
+  }
+]
