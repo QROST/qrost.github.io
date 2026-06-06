@@ -180,16 +180,16 @@
     '常年凉冷': ['#e0e7ff', '#3730a3'],   // coldest → indigo (was slate)
   };
 
-  // Tier-1 reference listings (personal cross-check; hidden unless footer toggle on).
-  const TIER1_IDS = new Set([
-    54, 123, 124, 125, 126, 127, 128,
-    129, 130, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143, 144, 145, 147,
-    // crashed-developers-2026-06: >20万 or >5000元/㎡ (海之缘花苑 #150 visible)
-    148, 149, 151, 152, 153, 154, 155, 156, 157, 158, 159, 160, 161, 162, 163,
-  ]);
+  // Default view excludes listings above price thresholds (see SOP §5; tier1-check).
+  const TIER1_MAX_PRICE_WAN = 20;   // 万元
+  const TIER1_MAX_UNIT_YUAN = 5000; // 元/㎡
+  function isDefaultHidden(d) {
+    return d.priceWan > TIER1_MAX_PRICE_WAN
+      || (d.priceWan * 10000 / d.area) > TIER1_MAX_UNIT_YUAN;
+  }
   let tier1On = false;
   function viewData() {
-    return tier1On ? DATA : DATA.filter((d) => !TIER1_IDS.has(d.id));
+    return tier1On ? DATA : DATA.filter((d) => !isDefaultHidden(d));
   }
   function viewGeocoded() {
     return viewData().filter((d) => d.enr && d.enr.lat != null);
@@ -1333,7 +1333,7 @@
   // updates the page even if `manage.py build` (which also bakes these into the static
   // HTML + meta tags for SEO/no-JS) wasn't re-run. Not stuck at any literal number.
   function syncHeroCounts() {
-    const sc = DATA.filter((d) => !TIER1_IDS.has(d.id));
+    const sc = DATA.filter((d) => !isDefaultHidden(d));
     const c = document.getElementById('hero-count');
     const p = document.getElementById('hero-provs');
     if (c) c.textContent = sc.length + ' 套';

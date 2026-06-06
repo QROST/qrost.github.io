@@ -287,17 +287,14 @@ def _enrich_coverage(con) -> str:
 # ---------------------------------------------------------------------------
 # index.html count/date re-sync (anchored, fail-loud)
 # ---------------------------------------------------------------------------
-# Hidden tier-1 reference listings (北京/上海/深圳) — revealed only by the footer
-# toggle in app.js; keep this set in sync with TIER1_IDS there. They are EXCLUDED
-# from the headline 套/省 counts because the page's framing is "全国小城市", and
-# these aren't small cities — but the date range still reflects when they landed.
-TIER1_IDS = {
-    54, 123, 124, 125, 126, 127, 128,
-    # batch-2026-06: >20万 or >5000元/㎡ → hidden reference
-    129, 130, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143, 144, 145, 147,
-    # crashed-developers-2026-06 (#150 海之缘花苑 visible)
-    148, 149, 151, 152, 153, 154, 155, 156, 157, 158, 159, 160, 161, 162, 163,
-}
+# Default-view filter thresholds — must match app.js isDefaultHidden() (SOP §5).
+TIER1_MAX_PRICE_WAN = 20   # 万元
+TIER1_MAX_UNIT_YUAN = 5000  # 元/㎡
+
+
+def is_default_hidden(row: dict) -> bool:
+    unit = row["priceWan"] * 10000 / row["area"]
+    return row["priceWan"] > TIER1_MAX_PRICE_WAN or unit > TIER1_MAX_UNIT_YUAN
 
 
 def sync_html(rows: list[dict]) -> list[str]:
@@ -305,7 +302,7 @@ def sync_html(rows: list[dict]) -> list[str]:
     if not HTML_PATH.exists():
         return [f"! index.html not found at {HTML_PATH} — skipped"]
     html = HTML_PATH.read_text(encoding="utf-8")
-    visible = [r for r in rows if r["id"] not in TIER1_IDS]
+    visible = [r for r in rows if not is_default_hidden(r)]
     n = len(visible)
     provs = len({r["prov"] for r in visible})
     months = sorted({r["updated"] for r in rows})
@@ -453,6 +450,27 @@ def cmd_build(args):
     print("  index.html sync:")
     for line in sync_html(rows):
         print("   " + line)
+
+
+def cmd_tier1_check(args):
+    """Report which listings are auto-excluded from the default view (SOP §5 thresholds)."""
+    con = connect()
+    rows = fetch_all(con)
+    if not rows:
+        print("(empty)")
+        return
+    hidden = [r for r in rows if is_default_hidden(r)]
+    visible = [r for r in rows if not is_default_hidden(r)]
+    print(f"default visible: {len(visible)} / {len(rows)}")
+    print(f"filtered (>{TIER1_MAX_PRICE_WAN}万 or >{TIER1_MAX_UNIT_YUAN}元/㎡): {len(hidden)}")
+    for r in sorted(hidden, key=lambda x: x["id"]):
+        unit = r["priceWan"] * 10000 / r["area"]
+        why = []
+        if r["priceWan"] > TIER1_MAX_PRICE_WAN:
+            why.append(f"总价{_numfmt(r['priceWan'])}万")
+        if unit > TIER1_MAX_UNIT_YUAN:
+            why.append(f"单价{unit:.0f}元/㎡")
+        print(f"  #{r['id']} {r['loc']} ({', '.join(why)})")
 
 
 def cmd_list(args):
@@ -625,6 +643,8 @@ def main(argv=None):
     sp.add_argument("path", nargs="?", default=None)
     sp.set_defaults(fn=cmd_export_csv)
 
+    sub.add_parser("tier1-check", help="list listings auto-excluded from default view (SOP §5)").set_defaults(
+        fn=cmd_tier1_check)
     sub.add_parser("list", help="print a summary of the DB").set_defaults(fn=cmd_list)
 
     args = p.parse_args(argv)
