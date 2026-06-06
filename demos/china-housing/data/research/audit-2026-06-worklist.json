@@ -1,0 +1,2345 @@
+{
+  "built": [
+    {
+      "id": 2,
+      "prov": "黑龙江",
+      "city": "双鸭山",
+      "dist": "集贤县",
+      "loc": "东荣小区",
+      "lat": 46.79831,
+      "lng": 131.17937,
+      "built_year": null
+    },
+    {
+      "id": 20,
+      "prov": "吉林",
+      "city": "长春市-公主岭市",
+      "dist": "公主岭城区",
+      "loc": "温馨家园",
+      "lat": 43.77038,
+      "lng": 124.76567,
+      "built_year": null
+    },
+    {
+      "id": 25,
+      "prov": "辽宁",
+      "city": "辽阳市",
+      "dist": "文圣区",
+      "loc": "窑地兴旺社区",
+      "lat": 41.27112,
+      "lng": 123.23338,
+      "built_year": null
+    },
+    {
+      "id": 59,
+      "prov": "安徽",
+      "city": "芜湖市",
+      "dist": "湾沚区",
+      "loc": "银燕山庄",
+      "lat": 31.20179,
+      "lng": 118.63917,
+      "built_year": null
+    },
+    {
+      "id": 89,
+      "prov": "贵州",
+      "city": "遵义市-赤水市",
+      "dist": "市府路",
+      "loc": "华平玉竹休闲度假村",
+      "lat": 28.48771,
+      "lng": 105.90951,
+      "built_year": null
+    },
+    {
+      "id": 93,
+      "prov": "贵州",
+      "city": "六盘水市",
+      "dist": "钟山区 新世纪广场",
+      "loc": "兴民小区",
+      "lat": 26.59638,
+      "lng": 104.82797,
+      "built_year": null
+    },
+    {
+      "id": 102,
+      "prov": "四川",
+      "city": "宜宾市",
+      "dist": "江安县 江安镇",
+      "loc": "南外街12号小区",
+      "lat": 28.72908,
+      "lng": 105.06379,
+      "built_year": null
+    },
+    {
+      "id": 112,
+      "prov": "云南",
+      "city": "曲靖市-宣威市",
+      "dist": "羊场镇",
+      "loc": "大松树村",
+      "lat": 26.00576,
+      "lng": 104.25116,
+      "built_year": null
+    },
+    {
+      "id": 118,
+      "prov": "甘肃",
+      "city": "酒泉市",
+      "dist": "敦煌市",
+      "loc": "万盛源小区",
+      "lat": 40.1411,
+      "lng": 94.66076,
+      "built_year": null
+    },
+    {
+      "id": 131,
+      "prov": "广东",
+      "city": "茂名市",
+      "dist": "电白区",
+      "loc": "保利奥体大都汇",
+      "lat": 21.68557,
+      "lng": 111.16144,
+      "built_year": null
+    },
+    {
+      "id": 132,
+      "prov": "广东",
+      "city": "茂名市",
+      "dist": "电白区",
+      "loc": "电白碧桂园",
+      "lat": 21.53484,
+      "lng": 111.02295,
+      "built_year": null
+    },
+    {
+      "id": 133,
+      "prov": "广东",
+      "city": "茂名市",
+      "dist": "电白区",
+      "loc": "恒大御湖城",
+      "lat": 21.68557,
+      "lng": 111.16144,
+      "built_year": null
+    },
+    {
+      "id": 134,
+      "prov": "广东",
+      "city": "肇庆市",
+      "dist": "四会市",
+      "loc": "恒大绿洲",
+      "lat": 23.31022,
+      "lng": 112.84093,
+      "built_year": null
+    },
+    {
+      "id": 146,
+      "prov": "湖北",
+      "city": "鄂州市",
+      "dist": "华容区",
+      "loc": "恒大金碧天下",
+      "lat": 30.53734,
+      "lng": 114.72464,
+      "built_year": null
+    },
+    {
+      "id": 148,
+      "prov": "广东",
+      "city": "惠州市",
+      "dist": "惠东县",
+      "loc": "碧桂园十里银滩海悦湾",
+      "lat": 23.13152,
+      "lng": 115.03372,
+      "built_year": null
+    },
+    {
+      "id": 149,
+      "prov": "天津",
+      "city": "天津市",
+      "dist": "武清区",
+      "loc": "首创新北京半岛",
+      "lat": 39.63772,
+      "lng": 116.82525,
+      "built_year": null
+    },
+    {
+      "id": 151,
+      "prov": "江苏",
+      "city": "镇江市",
+      "dist": "句容市",
+      "loc": "碧桂园大学印象",
+      "lat": 31.94782,
+      "lng": 119.1634,
+      "built_year": null
+    },
+    {
+      "id": 152,
+      "prov": "山东",
+      "city": "青岛市",
+      "dist": "黄岛区",
+      "loc": "融创维多利亚湾",
+      "lat": 35.95896,
+      "lng": 120.19309,
+      "built_year": null
+    },
+    {
+      "id": 153,
+      "prov": "江苏",
+      "city": "南京市",
+      "dist": "鼓楼区",
+      "loc": "世茂滨江新城",
+      "lat": 32.06901,
+      "lng": 118.76477,
+      "built_year": null
+    },
+    {
+      "id": 154,
+      "prov": "河北",
+      "city": "廊坊市",
+      "dist": "三河市",
+      "loc": "首尔甜城",
+      "lat": 40.00051,
+      "lng": 116.77616,
+      "built_year": null
+    },
+    {
+      "id": 155,
+      "prov": "江苏",
+      "city": "镇江市",
+      "dist": "句容市",
+      "loc": "碧桂园凤凰城凤仪苑",
+      "lat": 32.01749,
+      "lng": 119.10495,
+      "built_year": null
+    },
+    {
+      "id": 156,
+      "prov": "广东",
+      "city": "广州市",
+      "dist": "增城区",
+      "loc": "碧桂园凤凰城凤馨苑",
+      "lat": 23.12926,
+      "lng": 113.56932,
+      "built_year": null
+    },
+    {
+      "id": 157,
+      "prov": "湖北",
+      "city": "宜昌市",
+      "dist": "点军区",
+      "loc": "碧桂园伯爵",
+      "lat": 30.67467,
+      "lng": 111.27498,
+      "built_year": null
+    },
+    {
+      "id": 158,
+      "prov": "浙江",
+      "city": "杭州市",
+      "dist": "余杭区",
+      "loc": "阳光城未来悦",
+      "lat": 30.27093,
+      "lng": 119.98449,
+      "built_year": null
+    },
+    {
+      "id": 159,
+      "prov": "广东",
+      "city": "广州市",
+      "dist": "增城区",
+      "loc": "奥园中新誉府",
+      "lat": 23.27041,
+      "lng": 113.61298,
+      "built_year": null
+    },
+    {
+      "id": 160,
+      "prov": "河北",
+      "city": "廊坊市",
+      "dist": "三河市",
+      "loc": "天洋城",
+      "lat": 39.96432,
+      "lng": 116.81486,
+      "built_year": null
+    },
+    {
+      "id": 162,
+      "prov": "湖北",
+      "city": "宜昌市",
+      "dist": "伍家岗区",
+      "loc": "碧桂园凤凰城（宜昌）",
+      "lat": 30.64822,
+      "lng": 111.35255,
+      "built_year": null
+    },
+    {
+      "id": 163,
+      "prov": "广东",
+      "city": "广州市",
+      "dist": "南沙区",
+      "loc": "南沙奥园",
+      "lat": 22.75803,
+      "lng": 113.58595,
+      "built_year": null
+    }
+  ],
+  "poi": [
+    {
+      "id": 3,
+      "prov": "黑龙江",
+      "city": "伊春市",
+      "dist": "美溪区",
+      "loc": "水苑小区",
+      "lat": 47.63336,
+      "lng": 129.12344,
+      "built_year": 2000,
+      "issues": [
+        "hospital<0.4km:美溪人民医院"
+      ],
+      "pois": {
+        "airport": {
+          "name": "Yichun Lindu Airport (LDS)",
+          "distKm": 15.3,
+          "source": null
+        },
+        "coast": {
+          "name": "最近海岸线",
+          "distKm": 529.2,
+          "source": null
+        },
+        "train": {
+          "name": "美溪",
+          "distKm": 0.7,
+          "source": null
+        },
+        "hospital": {
+          "name": "美溪人民医院",
+          "distKm": 0.4,
+          "source": null
+        }
+      }
+    },
+    {
+      "id": 5,
+      "prov": "黑龙江",
+      "city": "七台河市",
+      "dist": "桃山区",
+      "loc": "林苑之星",
+      "lat": 45.76379,
+      "lng": 131.01222,
+      "built_year": 2017,
+      "issues": [
+        "hospital<0.4km:男科医院"
+      ],
+      "pois": {
+        "airport": {
+          "name": "Jixi Xingkaihu Airport (JXA)",
+          "distKm": 54.2,
+          "source": null
+        },
+        "coast": {
+          "name": "最近海岸线",
+          "distKm": 283.4,
+          "source": null
+        },
+        "train": {
+          "name": "桃选",
+          "distKm": 0.7,
+          "source": null
+        },
+        "mall": {
+          "name": "新玛特",
+          "distKm": 1.3,
+          "source": null
+        },
+        "hospital": {
+          "name": "男科医院",
+          "distKm": 0.4,
+          "source": null
+        }
+      }
+    },
+    {
+      "id": 8,
+      "prov": "黑龙江",
+      "city": "黑河市",
+      "dist": "北安区",
+      "loc": "电厂小区",
+      "lat": 45.29297,
+      "lng": 130.98404,
+      "built_year": 1985,
+      "issues": [
+        "hospital<0.2km:电力医院"
+      ],
+      "pois": {
+        "airport": {
+          "name": "Jixi Xingkaihu Airport (JXA)",
+          "distKm": 16.3,
+          "source": null
+        },
+        "coast": {
+          "name": "最近海岸线",
+          "distKm": 234.1,
+          "source": null
+        },
+        "train": {
+          "name": "鸡西",
+          "distKm": 1.5,
+          "source": null
+        },
+        "mall": {
+          "name": "老大商",
+          "distKm": 0.8,
+          "source": null
+        },
+        "hospital": {
+          "name": "电力医院",
+          "distKm": 0.2,
+          "source": null
+        }
+      }
+    },
+    {
+      "id": 15,
+      "prov": "吉林",
+      "city": "辽源市",
+      "dist": "西安区",
+      "loc": "仙城小区",
+      "lat": 42.93027,
+      "lng": 125.1474,
+      "built_year": 2000,
+      "issues": [
+        "missing_metro"
+      ],
+      "pois": {
+        "airport": {
+          "name": "Gongzhuling Air Base",
+          "distKm": 72.5,
+          "source": "osm"
+        },
+        "coast": {
+          "name": "最近海岸线",
+          "distKm": 331.2,
+          "source": "osm"
+        },
+        "train": {
+          "name": "辽源",
+          "distKm": 3.7,
+          "source": "osm"
+        },
+        "hospital": {
+          "name": "东辽县人民医院",
+          "distKm": 2.9,
+          "source": "osm"
+        },
+        "mall": {
+          "name": "御峰城市广场",
+          "distKm": 2.5,
+          "source": "osm"
+        }
+      }
+    },
+    {
+      "id": 20,
+      "prov": "吉林",
+      "city": "长春市-公主岭市",
+      "dist": "公主岭城区",
+      "loc": "温馨家园",
+      "lat": 43.77038,
+      "lng": 124.76567,
+      "built_year": null,
+      "issues": [
+        "missing_metro"
+      ],
+      "pois": {
+        "airport": {
+          "name": "Gongzhuling Air Base",
+          "distKm": 27.2,
+          "source": null
+        },
+        "coast": {
+          "name": "最近海岸线",
+          "distKm": 393.2,
+          "source": null
+        },
+        "train": {
+          "name": "陶家屯",
+          "distKm": 22.4,
+          "source": null
+        },
+        "hospital": {
+          "name": "公主岭市中心医院",
+          "distKm": null,
+          "source": "research"
+        },
+        "mall": {
+          "name": "华生购物中心",
+          "distKm": null,
+          "source": "research"
+        }
+      }
+    },
+    {
+      "id": 31,
+      "prov": "河南",
+      "city": "郑州市-荥阳市",
+      "dist": "洞林湖",
+      "loc": "新颖创客公社",
+      "lat": 34.66971,
+      "lng": 113.47615,
+      "built_year": 2016,
+      "issues": [
+        "missing_metro"
+      ],
+      "pois": {
+        "airport": {
+          "name": "Zhengzhou Air Base",
+          "distKm": 31.5,
+          "source": null
+        },
+        "coast": {
+          "name": "最近海岸线",
+          "distKm": 520.0,
+          "source": null
+        },
+        "train": {
+          "name": "郑州西",
+          "distKm": 9.9,
+          "source": null
+        },
+        "hospital": {
+          "name": "郑州澍青医专康复医院",
+          "distKm": 6.1,
+          "source": null
+        },
+        "mall": {
+          "name": "吾悦广场(郑州荥阳店)",
+          "distKm": null,
+          "source": "research"
+        }
+      }
+    },
+    {
+      "id": 37,
+      "prov": "河南",
+      "city": "郑州市",
+      "dist": "上街区",
+      "loc": "百合佳苑",
+      "lat": 34.81297,
+      "lng": 113.2925,
+      "built_year": 2008,
+      "issues": [
+        "missing_metro"
+      ],
+      "pois": {
+        "airport": {
+          "name": "Zhengzhou Air Base",
+          "distKm": 40.3,
+          "source": null
+        },
+        "coast": {
+          "name": "最近海岸线",
+          "distKm": 535.9,
+          "source": null
+        },
+        "train": {
+          "name": "上街",
+          "distKm": 2.5,
+          "source": null
+        },
+        "hospital": {
+          "name": "郑州市第十五人民医院(北院)",
+          "distKm": 0.5,
+          "source": null
+        }
+      }
+    },
+    {
+      "id": 42,
+      "prov": "山东",
+      "city": "威海市-乳山市",
+      "dist": "银滩",
+      "loc": "山海天一区",
+      "lat": 36.82396,
+      "lng": 121.66948,
+      "built_year": 2003,
+      "issues": [
+        "missing_metro"
+      ],
+      "pois": {
+        "airport": {
+          "name": "Weihai Dashuibo Airport (WEH)",
+          "distKm": 64.0,
+          "source": null
+        },
+        "coast": {
+          "name": "最近海岸线",
+          "distKm": 1.3,
+          "source": null
+        },
+        "train": {
+          "name": "乳山南",
+          "distKm": 11.9,
+          "source": null
+        },
+        "hospital": {
+          "name": "乳山市银滩医院",
+          "distKm": 5.1,
+          "source": null
+        },
+        "mall": {
+          "name": "家家悦超市(乳山银滩淮河路店)",
+          "distKm": null,
+          "source": "research"
+        }
+      }
+    },
+    {
+      "id": 53,
+      "prov": "安徽",
+      "city": "滁州市",
+      "dist": "全椒县",
+      "loc": "碧桂园罗马世纪城",
+      "lat": 32.08819,
+      "lng": 118.26875,
+      "built_year": 2017,
+      "issues": [
+        "hospital<0.3km:全椒椒陵医院"
+      ],
+      "pois": {
+        "airport": {
+          "name": "Feidong Air Base",
+          "distKm": 60.8,
+          "source": null
+        },
+        "coast": {
+          "name": "最近海岸线",
+          "distKm": 167.5,
+          "source": null
+        },
+        "train": {
+          "name": "全椒",
+          "distKm": 3.0,
+          "source": null
+        },
+        "hospital": {
+          "name": "全椒椒陵医院",
+          "distKm": 0.3,
+          "source": null
+        },
+        "mall": {
+          "name": "全椒奥康商业步行街",
+          "distKm": 0.8,
+          "source": null
+        }
+      }
+    },
+    {
+      "id": 54,
+      "prov": "北京",
+      "city": "北京市",
+      "dist": "海淀区",
+      "loc": "交大东路56号院",
+      "lat": 39.98945,
+      "lng": 116.30691,
+      "built_year": 1990,
+      "issues": [
+        "hospital<0.4km:(未命名)"
+      ],
+      "pois": {
+        "airport": {
+          "name": "[Duplicate] Beijing Xijiao Airport",
+          "distKm": 5.5,
+          "source": "osm"
+        },
+        "coast": {
+          "name": "最近海岸线",
+          "distKm": 158.4,
+          "source": "osm"
+        },
+        "train": {
+          "name": "巴沟",
+          "distKm": 2.6,
+          "source": "osm"
+        },
+        "metro": {
+          "name": "北京大学东门",
+          "distKm": 0.3,
+          "source": "osm"
+        },
+        "hospital": {
+          "name": "(未命名)",
+          "distKm": 0.4,
+          "source": "osm"
+        },
+        "mall": {
+          "name": "新中关购物中心",
+          "distKm": 1.4,
+          "source": "osm"
+        }
+      }
+    },
+    {
+      "id": 60,
+      "prov": "上海",
+      "city": "崇明区",
+      "dist": "城桥镇",
+      "loc": "南坝新村",
+      "lat": 31.62982,
+      "lng": 121.39337,
+      "built_year": 1983,
+      "issues": [
+        "missing_metro"
+      ],
+      "pois": {
+        "airport": {
+          "name": "Shanghai Dachang Air Base",
+          "distKm": 34.0,
+          "source": null
+        },
+        "coast": {
+          "name": "最近海岸线",
+          "distKm": 5.7,
+          "source": null
+        },
+        "train": {
+          "name": "崇明",
+          "distKm": 4.2,
+          "source": null
+        },
+        "hospital": {
+          "name": "城桥社区卫生服务中心",
+          "distKm": 1.2,
+          "source": null
+        },
+        "mall": {
+          "name": "8壹广场",
+          "distKm": 0.8,
+          "source": null
+        }
+      }
+    },
+    {
+      "id": 61,
+      "prov": "江苏",
+      "city": "南通市",
+      "dist": "启东市",
+      "loc": "绿地长岛",
+      "lat": 31.79108,
+      "lng": 121.45927,
+      "built_year": 2020,
+      "issues": [
+        "missing_metro"
+      ],
+      "pois": {
+        "airport": {
+          "name": "Shanghai Dachang Air Base",
+          "distKm": 52.1,
+          "source": null
+        },
+        "coast": {
+          "name": "最近海岸线",
+          "distKm": 3.9,
+          "source": null
+        },
+        "train": {
+          "name": "启东西",
+          "distKm": 8.7,
+          "source": null
+        },
+        "hospital": {
+          "name": "启东市启隆镇卫生院",
+          "distKm": null,
+          "source": "research"
+        }
+      }
+    },
+    {
+      "id": 62,
+      "prov": "江苏",
+      "city": "南通市",
+      "dist": "启东市",
+      "loc": "恒大海上威尼斯北区",
+      "lat": 31.79515,
+      "lng": 121.65093,
+      "built_year": 2020,
+      "issues": [
+        "hospital<0.4km:启东市卫生局",
+        "missing_metro"
+      ],
+      "pois": {
+        "airport": {
+          "name": "Shanghai Dachang Air Base",
+          "distKm": 57.1,
+          "source": null
+        },
+        "coast": {
+          "name": "最近海岸线",
+          "distKm": 9.7,
+          "source": null
+        },
+        "train": {
+          "name": "启东",
+          "distKm": 7.2,
+          "source": null
+        },
+        "hospital": {
+          "name": "启东市卫生局",
+          "distKm": 0.4,
+          "source": null
+        }
+      }
+    },
+    {
+      "id": 63,
+      "prov": "江苏",
+      "city": "镇江市-句容市",
+      "dist": "中央广场",
+      "loc": "金源商贸城",
+      "lat": 31.96424,
+      "lng": 119.17074,
+      "built_year": 2016,
+      "issues": [
+        "missing_metro"
+      ],
+      "pois": {
+        "airport": {
+          "name": "Nanjing Lukou International Airport (NKG)",
+          "distKm": 38.5,
+          "source": null
+        },
+        "coast": {
+          "name": "最近海岸线",
+          "distKm": 81.7,
+          "source": null
+        },
+        "train": {
+          "name": "句容",
+          "distKm": 4.7,
+          "source": null
+        },
+        "hospital": {
+          "name": "华阳社区卫生服务中心",
+          "distKm": 2.6,
+          "source": null
+        }
+      }
+    },
+    {
+      "id": 65,
+      "prov": "广东",
+      "city": "惠州市",
+      "dist": "大亚湾 澳头",
+      "loc": "唯家大厦",
+      "lat": 22.5726,
+      "lng": 114.89691,
+      "built_year": 2007,
+      "issues": [
+        "missing_metro"
+      ],
+      "pois": {
+        "airport": {
+          "name": "Huizhou Pingtan Airport (HUZ)",
+          "distKm": 61.2,
+          "source": null
+        },
+        "coast": {
+          "name": "最近海岸线",
+          "distKm": 6.6,
+          "source": null
+        },
+        "train": {
+          "name": "惠东南",
+          "distKm": 32.5,
+          "source": null
+        },
+        "hospital": {
+          "name": "平海镇卫生院",
+          "distKm": 5.5,
+          "source": null
+        }
+      }
+    },
+    {
+      "id": 66,
+      "prov": "广东",
+      "city": "惠州市",
+      "dist": "大亚湾 霞涌",
+      "loc": "泡泡海家园",
+      "lat": 22.77685,
+      "lng": 114.67037,
+      "built_year": 2015,
+      "issues": [
+        "missing_metro"
+      ],
+      "pois": {
+        "airport": {
+          "name": "Huizhou Pingtan Airport (HUZ)",
+          "distKm": 31.2,
+          "source": null
+        },
+        "coast": {
+          "name": "最近海岸线",
+          "distKm": 3.1,
+          "source": null
+        },
+        "train": {
+          "name": "纯洲",
+          "distKm": 11.0,
+          "source": null
+        },
+        "hospital": {
+          "name": "中山大学附属第一医院惠亚医院",
+          "distKm": null,
+          "source": "research"
+        },
+        "mall": {
+          "name": "木星购物中心",
+          "distKm": null,
+          "source": "research"
+        }
+      }
+    },
+    {
+      "id": 67,
+      "prov": "广东",
+      "city": "惠州市",
+      "dist": "惠东区 巽寮湾",
+      "loc": "红树湾畔",
+      "lat": 22.69363,
+      "lng": 114.75294,
+      "built_year": 2010,
+      "issues": [
+        "missing_metro"
+      ],
+      "pois": {
+        "airport": {
+          "name": "Huizhou Pingtan Airport (HUZ)",
+          "distKm": 42.6,
+          "source": null
+        },
+        "coast": {
+          "name": "最近海岸线",
+          "distKm": 6.6,
+          "source": null
+        },
+        "train": {
+          "name": "纯洲",
+          "distKm": 17.5,
+          "source": null
+        },
+        "hospital": {
+          "name": "巽寮滨海旅游度假区卫生院",
+          "distKm": null,
+          "source": "research"
+        }
+      }
+    },
+    {
+      "id": 68,
+      "prov": "广东",
+      "city": "惠州市",
+      "dist": "惠东区 稔山",
+      "loc": "富力湾",
+      "lat": 23.10374,
+      "lng": 114.40662,
+      "built_year": 2014,
+      "issues": [
+        "missing_metro"
+      ],
+      "pois": {
+        "airport": {
+          "name": "Huizhou Pingtan Airport (HUZ)",
+          "distKm": 20.7,
+          "source": null
+        },
+        "coast": {
+          "name": "最近海岸线",
+          "distKm": 46.2,
+          "source": null
+        },
+        "train": {
+          "name": "云山",
+          "distKm": 1.2,
+          "source": null
+        },
+        "hospital": {
+          "name": "惠州市第一人民医院",
+          "distKm": 1.4,
+          "source": null
+        },
+        "mall": {
+          "name": "丽日购物广场江北店",
+          "distKm": 0.7,
+          "source": null
+        }
+      }
+    },
+    {
+      "id": 69,
+      "prov": "广东",
+      "city": "阳江市",
+      "dist": "海陵岛",
+      "loc": "阳光水恋",
+      "lat": 23.11223,
+      "lng": 114.45235,
+      "built_year": 2010,
+      "issues": [
+        "hospital<0.3km:惠州卫生职业技术学院附属医院"
+      ],
+      "pois": {
+        "airport": {
+          "name": "Huizhou Pingtan Airport (HUZ)",
+          "distKm": 16.6,
+          "source": null
+        },
+        "coast": {
+          "name": "最近海岸线",
+          "distKm": 44.7,
+          "source": null
+        },
+        "train": {
+          "name": "云山",
+          "distKm": 4.1,
+          "source": null
+        },
+        "hospital": {
+          "name": "惠州卫生职业技术学院附属医院",
+          "distKm": 0.3,
+          "source": null
+        },
+        "mall": {
+          "name": "汇乐城",
+          "distKm": 1.0,
+          "source": null
+        }
+      }
+    },
+    {
+      "id": 72,
+      "prov": "广东",
+      "city": "肇庆市",
+      "dist": "鼎湖区",
+      "loc": "碧桂园幸福里",
+      "lat": 23.14615,
+      "lng": 112.55893,
+      "built_year": 2016,
+      "issues": [
+        "missing_metro"
+      ],
+      "pois": {
+        "airport": {
+          "name": "Foshan Shadi Airport (FUO)",
+          "distKm": 52.8,
+          "source": null
+        },
+        "coast": {
+          "name": "最近海岸线",
+          "distKm": 83.2,
+          "source": null
+        },
+        "train": {
+          "name": "鼎湖",
+          "distKm": 1.6,
+          "source": null
+        },
+        "hospital": {
+          "name": "肇庆复退军人医院",
+          "distKm": 4.5,
+          "source": null
+        },
+        "mall": {
+          "name": "(未命名)",
+          "distKm": 0.3,
+          "source": null
+        }
+      }
+    },
+    {
+      "id": 73,
+      "prov": "广东",
+      "city": "肇庆市",
+      "dist": "高要区",
+      "loc": "恒大世纪梦幻城",
+      "lat": 22.97997,
+      "lng": 112.65695,
+      "built_year": 2019,
+      "issues": [
+        "missing_metro"
+      ],
+      "pois": {
+        "airport": {
+          "name": "Foshan Shadi Airport (FUO)",
+          "distKm": 43.9,
+          "source": null
+        },
+        "coast": {
+          "name": "最近海岸线",
+          "distKm": 69.4,
+          "source": null
+        },
+        "train": {
+          "name": "金利",
+          "distKm": 12.9,
+          "source": null
+        },
+        "hospital": {
+          "name": "回龙医院",
+          "distKm": 5.5,
+          "source": null
+        }
+      }
+    },
+    {
+      "id": 79,
+      "prov": "广西",
+      "city": "北海市",
+      "dist": "银海 金海岸",
+      "loc": "碧雅苑",
+      "lat": 21.43373,
+      "lng": 109.10525,
+      "built_year": 1996,
+      "issues": [
+        "hospital<0.0km:北海市人民医院银滩医院"
+      ],
+      "pois": {
+        "airport": {
+          "name": "Beihai Fucheng Airport (BHY)",
+          "distKm": 22.7,
+          "source": null
+        },
+        "coast": {
+          "name": "最近海岸线",
+          "distKm": 2.5,
+          "source": null
+        },
+        "train": {
+          "name": "北海",
+          "distKm": 3.0,
+          "source": null
+        },
+        "hospital": {
+          "name": "北海市人民医院银滩医院",
+          "distKm": 0.0,
+          "source": null
+        },
+        "mall": {
+          "name": "和佳广场",
+          "distKm": 2.0,
+          "source": null
+        }
+      }
+    },
+    {
+      "id": 81,
+      "prov": "广西",
+      "city": "防城港市",
+      "dist": "港口 桃花湾广场",
+      "loc": "斯壮大厦",
+      "lat": 21.6265,
+      "lng": 108.35314,
+      "built_year": 1998,
+      "issues": [
+        "hospital<0.2km:港口区人民医院凯乐门诊部"
+      ],
+      "pois": {
+        "airport": {
+          "name": "Beihai Fucheng Airport (BHY)",
+          "distKm": 97.7,
+          "source": null
+        },
+        "coast": {
+          "name": "最近海岸线",
+          "distKm": 5.3,
+          "source": null
+        },
+        "train": {
+          "name": "防城港",
+          "distKm": 0.5,
+          "source": null
+        },
+        "hospital": {
+          "name": "港口区人民医院凯乐门诊部",
+          "distKm": 0.2,
+          "source": null
+        },
+        "mall": {
+          "name": "文化特色商业街",
+          "distKm": 7.9,
+          "source": null
+        }
+      }
+    },
+    {
+      "id": 82,
+      "prov": "广西",
+      "city": "百色市",
+      "dist": "田阳区 解放东路",
+      "loc": "城东左侧地产开发东面",
+      "lat": 23.90536,
+      "lng": 106.61488,
+      "built_year": 2002,
+      "issues": [
+        "hospital<0.2km:右江区人民医院"
+      ],
+      "pois": {
+        "airport": {
+          "name": "Baise (Bose) Bama Airport (AEB)",
+          "distKm": 40.7,
+          "source": null
+        },
+        "coast": {
+          "name": "最近海岸线",
+          "distKm": 293.2,
+          "source": null
+        },
+        "train": {
+          "name": "百色",
+          "distKm": 5.0,
+          "source": null
+        },
+        "hospital": {
+          "name": "右江区人民医院",
+          "distKm": 0.2,
+          "source": null
+        },
+        "mall": {
+          "name": "梦之岛购物广场",
+          "distKm": 3.0,
+          "source": null
+        }
+      }
+    },
+    {
+      "id": 85,
+      "prov": "重庆",
+      "city": "长寿",
+      "dist": "长寿湖",
+      "loc": "恒大湖山半岛",
+      "lat": 29.95924,
+      "lng": 107.21009,
+      "built_year": 2021,
+      "issues": [
+        "hospital<0.0km:重庆市长寿区双龙镇卫生院",
+        "missing_metro"
+      ],
+      "pois": {
+        "airport": {
+          "name": "Chongqing Jiangbei International Airport (CKG)",
+          "distKm": 60.4,
+          "source": "osm"
+        },
+        "coast": {
+          "name": "最近海岸线",
+          "distKm": 904.5,
+          "source": "osm"
+        },
+        "train": {
+          "name": "长寿湖",
+          "distKm": 1.4,
+          "source": "osm"
+        },
+        "hospital": {
+          "name": "重庆市长寿区双龙镇卫生院",
+          "distKm": 0.0,
+          "source": "osm"
+        }
+      }
+    },
+    {
+      "id": 86,
+      "prov": "重庆",
+      "city": "长寿",
+      "dist": "凤城街道",
+      "loc": "查家湾",
+      "lat": 29.80203,
+      "lng": 107.01397,
+      "built_year": 1995,
+      "issues": [
+        "missing_metro"
+      ],
+      "pois": {
+        "airport": {
+          "name": "Chongqing Jiangbei International Airport (CKG)",
+          "distKm": 36.3,
+          "source": null
+        },
+        "coast": {
+          "name": "最近海岸线",
+          "distKm": 890.2,
+          "source": null
+        },
+        "train": {
+          "name": "重钢",
+          "distKm": 2.9,
+          "source": null
+        },
+        "hospital": {
+          "name": "长寿区第三人民医院",
+          "distKm": 3.5,
+          "source": null
+        }
+      }
+    },
+    {
+      "id": 87,
+      "prov": "重庆",
+      "city": "荣昌区",
+      "dist": "城区工人村",
+      "loc": "武城家园",
+      "lat": 29.46423,
+      "lng": 105.50171,
+      "built_year": 2009,
+      "issues": [
+        "missing_metro"
+      ],
+      "pois": {
+        "airport": {
+          "name": "Luzhou Yunlong Airport (LZO)",
+          "distKm": 48.3,
+          "source": null
+        },
+        "coast": {
+          "name": "最近海岸线",
+          "distKm": 891.8,
+          "source": null
+        },
+        "train": {
+          "name": "荣昌",
+          "distKm": 10.4,
+          "source": null
+        },
+        "hospital": {
+          "name": "重庆市荣昌区人民医院",
+          "distKm": null,
+          "source": "research"
+        },
+        "mall": {
+          "name": "重百荣昌商场",
+          "distKm": null,
+          "source": "research"
+        }
+      }
+    },
+    {
+      "id": 88,
+      "prov": "重庆",
+      "city": "丰都县",
+      "dist": "南天湖",
+      "loc": "金竹苑森林康养旅游度假区",
+      "lat": 29.70059,
+      "lng": 107.92046,
+      "built_year": 2019,
+      "issues": [
+        "missing_metro"
+      ],
+      "pois": {
+        "airport": {
+          "name": "Chongqing Xiannüshan Airport (CQW)",
+          "distKm": 34.1,
+          "source": null
+        },
+        "coast": {
+          "name": "最近海岸线",
+          "distKm": 868.6,
+          "source": null
+        },
+        "train": {
+          "name": "丰都",
+          "distKm": 28.0,
+          "source": null
+        },
+        "hospital": {
+          "name": "丰都县人民医院",
+          "distKm": 24.7,
+          "source": "research"
+        }
+      }
+    },
+    {
+      "id": 92,
+      "prov": "贵州",
+      "city": "安顺市",
+      "dist": "平坝 白云镇",
+      "loc": "新艺机械厂福利区",
+      "lat": 26.38725,
+      "lng": 106.25342,
+      "built_year": 1968,
+      "issues": [
+        "train<0.0km"
+      ],
+      "pois": {
+        "airport": {
+          "name": "Anshun Huangguoshu Airport (AVA)",
+          "distKm": 40.4,
+          "source": null
+        },
+        "coast": {
+          "name": "最近海岸线",
+          "distKm": 547.2,
+          "source": null
+        },
+        "train": {
+          "name": "平坝南",
+          "distKm": 0.0,
+          "source": null
+        },
+        "hospital": {
+          "name": "(未命名)",
+          "distKm": 11.6,
+          "source": null
+        }
+      }
+    },
+    {
+      "id": 96,
+      "prov": "贵州",
+      "city": "黔南州",
+      "dist": "龙里 兴隆路",
+      "loc": "碧桂园凤凰城",
+      "lat": 26.45071,
+      "lng": 106.96961,
+      "built_year": 2021,
+      "issues": [
+        "train<0.0km"
+      ],
+      "pois": {
+        "airport": {
+          "name": "Guiyang Longdongbao International Airport (KWE)",
+          "distKm": 19.3,
+          "source": null
+        },
+        "coast": {
+          "name": "最近海岸线",
+          "distKm": 528.2,
+          "source": null
+        },
+        "train": {
+          "name": "龙里",
+          "distKm": 0.0,
+          "source": null
+        },
+        "hospital": {
+          "name": "龙里县人民医院",
+          "distKm": 1.5,
+          "source": null
+        }
+      }
+    },
+    {
+      "id": 98,
+      "prov": "贵州",
+      "city": "黔东南州",
+      "dist": "凯里区",
+      "loc": "依云美镇",
+      "lat": 26.55796,
+      "lng": 108.04321,
+      "built_year": 2014,
+      "issues": [
+        "hospital<0.0km:凯里市中医医院(开怀院区)"
+      ],
+      "pois": {
+        "airport": {
+          "name": "Kaili Huangping Airport (KJH)",
+          "distKm": 46.4,
+          "source": null
+        },
+        "coast": {
+          "name": "最近海岸线",
+          "distKm": 519.3,
+          "source": null
+        },
+        "train": {
+          "name": "凯里",
+          "distKm": 8.9,
+          "source": null
+        },
+        "hospital": {
+          "name": "凯里市中医医院(开怀院区)",
+          "distKm": 0.0,
+          "source": null
+        },
+        "mall": {
+          "name": "凯里高铁南站站前商业广场",
+          "distKm": null,
+          "source": "research"
+        }
+      }
+    },
+    {
+      "id": 99,
+      "prov": "四川",
+      "city": "攀枝花市",
+      "dist": "东区城区",
+      "loc": "望达巷",
+      "lat": 26.58601,
+      "lng": 101.71793,
+      "built_year": 1980,
+      "issues": [
+        "hospital<0.2km:爱尔眼科医院"
+      ],
+      "pois": {
+        "airport": {
+          "name": "Panzhihua Bao'anying Airport (PZI)",
+          "distKm": 9.5,
+          "source": null
+        },
+        "coast": {
+          "name": "最近海岸线",
+          "distKm": 800.4,
+          "source": null
+        },
+        "train": {
+          "name": "密地",
+          "distKm": 2.3,
+          "source": null
+        },
+        "hospital": {
+          "name": "爱尔眼科医院",
+          "distKm": 0.2,
+          "source": null
+        },
+        "mall": {
+          "name": "攀枝花万达广场",
+          "distKm": 2.2,
+          "source": "research"
+        }
+      }
+    },
+    {
+      "id": 102,
+      "prov": "四川",
+      "city": "宜宾市",
+      "dist": "江安县 江安镇",
+      "loc": "南外街12号小区",
+      "lat": 28.72908,
+      "lng": 105.06379,
+      "built_year": null,
+      "issues": [
+        "hospital<0.2km:江安县人民医院"
+      ],
+      "pois": {
+        "hospital": {
+          "name": "江安县人民医院",
+          "distKm": 0.2,
+          "source": "research"
+        },
+        "airport": {
+          "name": "Luzhou Yunlong Airport (LZO)",
+          "distKm": 51.7,
+          "source": "osm"
+        },
+        "coast": {
+          "name": "最近海岸线",
+          "distKm": 832.7,
+          "source": "osm"
+        },
+        "train": {
+          "name": "长宁",
+          "distKm": 19.6,
+          "source": "osm"
+        }
+      }
+    },
+    {
+      "id": 107,
+      "prov": "云南",
+      "city": "红河州-蒙自市",
+      "dist": "文澜镇",
+      "loc": "蒙城名州",
+      "lat": 23.36955,
+      "lng": 103.40043,
+      "built_year": 2008,
+      "issues": [
+        "hospital<0.2km:蒙自市第二人民医院"
+      ],
+      "pois": {
+        "airport": {
+          "name": "Honghe Mengzi Airport / Mengzi Air Base",
+          "distKm": 7.4,
+          "source": null
+        },
+        "coast": {
+          "name": "最近海岸线",
+          "distKm": 428.5,
+          "source": null
+        },
+        "train": {
+          "name": "蒙自",
+          "distKm": 3.1,
+          "source": null
+        },
+        "hospital": {
+          "name": "蒙自市第二人民医院",
+          "distKm": 0.2,
+          "source": null
+        },
+        "mall": {
+          "name": "俊豪中央大街",
+          "distKm": 1.7,
+          "source": null
+        }
+      }
+    },
+    {
+      "id": 114,
+      "prov": "云南",
+      "city": "昆明市",
+      "dist": "海口镇",
+      "loc": "军工宿舍楼200号生活区",
+      "lat": 24.99889,
+      "lng": 102.678,
+      "built_year": 1985,
+      "issues": [
+        "hospital<0.4km:圣约翰医院"
+      ],
+      "pois": {
+        "airport": {
+          "name": "Kunming Changshui International Airport (KMG)",
+          "distKm": 28.9,
+          "source": "osm"
+        },
+        "coast": {
+          "name": "最近海岸线",
+          "distKm": 604.7,
+          "source": "osm"
+        },
+        "train": {
+          "name": "昆明",
+          "distKm": 4.8,
+          "source": "osm"
+        },
+        "hospital": {
+          "name": "圣约翰医院",
+          "distKm": 0.4,
+          "source": "osm"
+        },
+        "metro": {
+          "name": "广福路西口",
+          "distKm": 1.1,
+          "source": "osm"
+        },
+        "mall": {
+          "name": "公园1903购物中心",
+          "distKm": 0.9,
+          "source": "osm"
+        }
+      }
+    },
+    {
+      "id": 124,
+      "prov": "北京",
+      "city": "北京市",
+      "dist": "昌平区",
+      "loc": "静之湖",
+      "lat": 40.25061,
+      "lng": 116.42688,
+      "built_year": 1999,
+      "issues": [
+        "missing_metro"
+      ],
+      "pois": {
+        "airport": {
+          "name": "Beijing Shahezhen Air Base",
+          "distKm": 14.4,
+          "source": null
+        },
+        "coast": {
+          "name": "最近海岸线",
+          "distKm": 170.1,
+          "source": null
+        },
+        "hospital": {
+          "name": "崔村社区卫生服务中心",
+          "distKm": 7.4,
+          "source": null
+        },
+        "train": {
+          "name": "兴寿",
+          "distKm": 1.5,
+          "source": null
+        }
+      }
+    },
+    {
+      "id": 128,
+      "prov": "北京",
+      "city": "北京市",
+      "dist": "朝阳区",
+      "loc": "紫御华府",
+      "lat": 40.03963,
+      "lng": 116.40387,
+      "built_year": 2013,
+      "issues": [
+        "hospital<0.4km:北京京顺医院"
+      ],
+      "pois": {
+        "airport": {
+          "name": "Beijing Shahezhen Air Base",
+          "distKm": 14.1,
+          "source": null
+        },
+        "coast": {
+          "name": "最近海岸线",
+          "distKm": 155.4,
+          "source": null
+        },
+        "train": {
+          "name": "黄土店",
+          "distKm": 6.2,
+          "source": null
+        },
+        "metro": {
+          "name": "立水桥南",
+          "distKm": 0.4,
+          "source": null
+        },
+        "hospital": {
+          "name": "北京京顺医院",
+          "distKm": 0.4,
+          "source": null
+        },
+        "mall": {
+          "name": "潮驿178",
+          "distKm": 0.5,
+          "source": null
+        }
+      }
+    },
+    {
+      "id": 129,
+      "prov": "北京",
+      "city": "北京市",
+      "dist": "西城区",
+      "loc": "校场口胡同",
+      "lat": 40.29899,
+      "lng": 116.63845,
+      "built_year": 1985,
+      "issues": [
+        "missing_metro"
+      ],
+      "pois": {
+        "airport": {
+          "name": "Beijing Capital International Airport (PEK)",
+          "distKm": 24.9,
+          "source": null
+        },
+        "coast": {
+          "name": "最近海岸线",
+          "distKm": 161.8,
+          "source": null
+        },
+        "train": {
+          "name": "怀柔",
+          "distKm": 1.9,
+          "source": null
+        },
+        "mall": {
+          "name": "凤翔商厦",
+          "distKm": 1.9,
+          "source": null
+        },
+        "hospital": {
+          "name": "北京世纪兴华医院",
+          "distKm": 1.1,
+          "source": null
+        }
+      }
+    },
+    {
+      "id": 131,
+      "prov": "广东",
+      "city": "茂名市",
+      "dist": "电白区",
+      "loc": "保利奥体大都汇",
+      "lat": 21.68557,
+      "lng": 111.16144,
+      "built_year": null,
+      "issues": [
+        "missing_metro"
+      ],
+      "pois": {
+        "airport": {
+          "name": "Zhanjiang Wuchuan International Airport (ZHA)",
+          "distKm": 63.3,
+          "source": null
+        },
+        "coast": {
+          "name": "最近海岸线",
+          "distKm": 22.0,
+          "source": null
+        },
+        "train": {
+          "name": "电白",
+          "distKm": 3.3,
+          "source": null
+        }
+      }
+    },
+    {
+      "id": 132,
+      "prov": "广东",
+      "city": "茂名市",
+      "dist": "电白区",
+      "loc": "电白碧桂园",
+      "lat": 21.53484,
+      "lng": 111.02295,
+      "built_year": null,
+      "issues": [
+        "hospital<0.2km:茂名市电白区妇幼保健院",
+        "missing_metro"
+      ],
+      "pois": {
+        "airport": {
+          "name": "Zhanjiang Wuchuan International Airport (ZHA)",
+          "distKm": 45.1,
+          "source": null
+        },
+        "coast": {
+          "name": "最近海岸线",
+          "distKm": 2.6,
+          "source": null
+        },
+        "train": {
+          "name": "茂名南",
+          "distKm": 8.6,
+          "source": null
+        },
+        "hospital": {
+          "name": "茂名市电白区妇幼保健院",
+          "distKm": 0.2,
+          "source": null
+        },
+        "mall": {
+          "name": "万达广场（茂名电白店）",
+          "distKm": 1.7,
+          "source": null
+        }
+      }
+    },
+    {
+      "id": 133,
+      "prov": "广东",
+      "city": "茂名市",
+      "dist": "电白区",
+      "loc": "恒大御湖城",
+      "lat": 21.68557,
+      "lng": 111.16144,
+      "built_year": null,
+      "issues": [
+        "missing_metro"
+      ],
+      "pois": {
+        "airport": {
+          "name": "Zhanjiang Wuchuan International Airport (ZHA)",
+          "distKm": 63.3,
+          "source": null
+        },
+        "coast": {
+          "name": "最近海岸线",
+          "distKm": 22.0,
+          "source": null
+        },
+        "train": {
+          "name": "电白",
+          "distKm": 3.3,
+          "source": null
+        }
+      }
+    },
+    {
+      "id": 134,
+      "prov": "广东",
+      "city": "肇庆市",
+      "dist": "四会市",
+      "loc": "恒大绿洲",
+      "lat": 23.31022,
+      "lng": 112.84093,
+      "built_year": null,
+      "issues": [
+        "missing_metro"
+      ],
+      "pois": {
+        "airport": {
+          "name": "Foshan Shadi Airport (FUO)",
+          "distKm": 34.5,
+          "source": null
+        },
+        "coast": {
+          "name": "最近海岸线",
+          "distKm": 66.9,
+          "source": null
+        },
+        "train": {
+          "name": "大旺",
+          "distKm": 6.9,
+          "source": null
+        },
+        "mall": {
+          "name": "大旺广场",
+          "distKm": 3.8,
+          "source": null
+        },
+        "hospital": {
+          "name": "高新区人民医院",
+          "distKm": 2.1,
+          "source": null
+        }
+      }
+    },
+    {
+      "id": 136,
+      "prov": "广东",
+      "city": "惠州市",
+      "dist": "惠东县",
+      "loc": "碧桂园十里银滩海云天",
+      "lat": 23.13152,
+      "lng": 115.03372,
+      "built_year": 2013,
+      "issues": [
+        "missing_metro"
+      ],
+      "pois": {
+        "airport": {
+          "name": "Huizhou Pingtan Airport (HUZ)",
+          "distKm": 45.3,
+          "source": null
+        },
+        "coast": {
+          "name": "最近海岸线",
+          "distKm": 38.7,
+          "source": null
+        },
+        "train": {
+          "name": "深汕",
+          "distKm": 29.2,
+          "source": null
+        }
+      }
+    },
+    {
+      "id": 140,
+      "prov": "福建",
+      "city": "泉州市",
+      "dist": "鲤城区",
+      "loc": "万科悦城",
+      "lat": 24.91057,
+      "lng": 118.54574,
+      "built_year": 2018,
+      "issues": [
+        "hospital<0.1km:泉州市中医联合医院"
+      ],
+      "pois": {
+        "airport": {
+          "name": "Quanzhou Jinjiang International Airport (JJN)",
+          "distKm": 13.5,
+          "source": null
+        },
+        "coast": {
+          "name": "最近海岸线",
+          "distKm": 12.4,
+          "source": null
+        },
+        "train": {
+          "name": "泉州",
+          "distKm": 7.5,
+          "source": null
+        },
+        "hospital": {
+          "name": "泉州市中医联合医院",
+          "distKm": 0.1,
+          "source": null
+        },
+        "mall": {
+          "name": "中闽百汇商场",
+          "distKm": 3.5,
+          "source": null
+        }
+      }
+    },
+    {
+      "id": 141,
+      "prov": "浙江",
+      "city": "宁波市",
+      "dist": "奉化区",
+      "loc": "恒大御海天下",
+      "lat": 29.57863,
+      "lng": 121.70667,
+      "built_year": 2019,
+      "issues": [
+        "missing_metro"
+      ],
+      "pois": {
+        "airport": {
+          "name": "Ningbo Lishe International Airport (NGB)",
+          "distKm": 36.3,
+          "source": null
+        },
+        "coast": {
+          "name": "最近海岸线",
+          "distKm": 2.9,
+          "source": null
+        },
+        "train": {
+          "name": "奉化",
+          "distKm": 24.5,
+          "source": null
+        },
+        "hospital": {
+          "name": "奉化区人民医院医共体松岙分院",
+          "distKm": 2.6,
+          "source": null
+        }
+      }
+    },
+    {
+      "id": 142,
+      "prov": "江苏",
+      "city": "苏州市",
+      "dist": "姑苏区",
+      "loc": "莲花新村(一期)",
+      "lat": 31.33951,
+      "lng": 120.61301,
+      "built_year": 2007,
+      "issues": [
+        "hospital<0.4km:苏州口腔医院"
+      ],
+      "pois": {
+        "airport": {
+          "name": "Chenghu General Airport",
+          "distKm": 21.7,
+          "source": null
+        },
+        "coast": {
+          "name": "最近海岸线",
+          "distKm": 55.1,
+          "source": null
+        },
+        "train": {
+          "name": "苏州",
+          "distKm": 1.0,
+          "source": null
+        },
+        "metro": {
+          "name": "平河路",
+          "distKm": 0.2,
+          "source": null
+        },
+        "hospital": {
+          "name": "苏州口腔医院",
+          "distKm": 0.4,
+          "source": null
+        },
+        "mall": {
+          "name": "长发商厦",
+          "distKm": 3.0,
+          "source": null
+        }
+      }
+    },
+    {
+      "id": 148,
+      "prov": "广东",
+      "city": "惠州市",
+      "dist": "惠东县",
+      "loc": "碧桂园十里银滩海悦湾",
+      "lat": 23.13152,
+      "lng": 115.03372,
+      "built_year": null,
+      "issues": [
+        "missing_metro"
+      ],
+      "pois": {
+        "airport": {
+          "name": "Huizhou Pingtan Airport (HUZ)",
+          "distKm": 45.3,
+          "source": null
+        },
+        "coast": {
+          "name": "最近海岸线",
+          "distKm": 38.7,
+          "source": null
+        },
+        "train": {
+          "name": "深汕",
+          "distKm": 29.2,
+          "source": null
+        }
+      }
+    },
+    {
+      "id": 149,
+      "prov": "天津",
+      "city": "天津市",
+      "dist": "武清区",
+      "loc": "首创新北京半岛",
+      "lat": 39.63772,
+      "lng": 116.82525,
+      "built_year": null,
+      "issues": [
+        "missing_metro"
+      ],
+      "pois": {
+        "airport": {
+          "name": "Beijing Tongxian Air Base",
+          "distKm": 21.7,
+          "source": null
+        },
+        "coast": {
+          "name": "最近海岸线",
+          "distKm": 99.7,
+          "source": null
+        },
+        "train": {
+          "name": "永乐",
+          "distKm": 3.6,
+          "source": null
+        },
+        "hospital": {
+          "name": "高村镇卫生院",
+          "distKm": 4.8,
+          "source": null
+        },
+        "mall": {
+          "name": "金三角商城",
+          "distKm": 9.7,
+          "source": null
+        }
+      }
+    },
+    {
+      "id": 150,
+      "prov": "山东",
+      "city": "威海市",
+      "dist": "乳山市",
+      "loc": "海之缘花苑",
+      "lat": 36.91998,
+      "lng": 121.5347,
+      "built_year": 2005,
+      "issues": [
+        "missing_metro"
+      ],
+      "pois": {
+        "airport": {
+          "name": "Weihai Dashuibo Airport (WEH)",
+          "distKm": 68.4,
+          "source": null
+        },
+        "coast": {
+          "name": "最近海岸线",
+          "distKm": 15.2,
+          "source": null
+        },
+        "train": {
+          "name": "乳山南",
+          "distKm": 5.2,
+          "source": null
+        }
+      }
+    },
+    {
+      "id": 153,
+      "prov": "江苏",
+      "city": "南京市",
+      "dist": "鼓楼区",
+      "loc": "世茂滨江新城",
+      "lat": 32.06901,
+      "lng": 118.76477,
+      "built_year": null,
+      "issues": [
+        "hospital<0.2km:江苏省省级机关医院"
+      ],
+      "pois": {
+        "airport": {
+          "name": "Nanjing Lukou International Airport (NKG)",
+          "distKm": 38.3,
+          "source": null
+        },
+        "coast": {
+          "name": "最近海岸线",
+          "distKm": 120.8,
+          "source": null
+        },
+        "train": {
+          "name": "南京",
+          "distKm": 3.4,
+          "source": null
+        },
+        "hospital": {
+          "name": "江苏省省级机关医院",
+          "distKm": 0.2,
+          "source": null
+        },
+        "mall": {
+          "name": "(未命名)",
+          "distKm": 0.6,
+          "source": null
+        },
+        "metro": {
+          "name": "青春广场",
+          "distKm": 0.3,
+          "source": null
+        }
+      }
+    },
+    {
+      "id": 157,
+      "prov": "湖北",
+      "city": "宜昌市",
+      "dist": "点军区",
+      "loc": "碧桂园伯爵",
+      "lat": 30.67467,
+      "lng": 111.27498,
+      "built_year": null,
+      "issues": [
+        "hospital<0.3km:宜昌市中心人民医院·江南院区",
+        "missing_metro"
+      ],
+      "pois": {
+        "airport": {
+          "name": "Yichang Sanxia Airport (YIH)",
+          "distKm": 24.0,
+          "source": null
+        },
+        "coast": {
+          "name": "最近海岸线",
+          "distKm": 843.8,
+          "source": null
+        },
+        "train": {
+          "name": "宜昌",
+          "distKm": 3.7,
+          "source": null
+        },
+        "hospital": {
+          "name": "宜昌市中心人民医院·江南院区",
+          "distKm": 0.3,
+          "source": null
+        },
+        "mall": {
+          "name": "(未命名)",
+          "distKm": 2.8,
+          "source": null
+        }
+      }
+    },
+    {
+      "id": 158,
+      "prov": "浙江",
+      "city": "杭州市",
+      "dist": "余杭区",
+      "loc": "阳光城未来悦",
+      "lat": 30.27093,
+      "lng": 119.98449,
+      "built_year": null,
+      "issues": [
+        "hospital<0.4km:浙江大学医学院附属第一医院余杭院区"
+      ],
+      "pois": {
+        "airport": {
+          "name": "Hangzhou Jianqiao Airport",
+          "distKm": 25.6,
+          "source": null
+        },
+        "coast": {
+          "name": "最近海岸线",
+          "distKm": 20.5,
+          "source": null
+        },
+        "train": {
+          "name": "杭州西",
+          "distKm": 3.3,
+          "source": null
+        },
+        "metro": {
+          "name": "葛巷",
+          "distKm": 0.9,
+          "source": null
+        },
+        "hospital": {
+          "name": "浙江大学医学院附属第一医院余杭院区",
+          "distKm": 0.4,
+          "source": null
+        },
+        "mall": {
+          "name": "欧美广场",
+          "distKm": 1.7,
+          "source": null
+        }
+      }
+    },
+    {
+      "id": 161,
+      "prov": "江苏",
+      "city": "南通市",
+      "dist": "启东市",
+      "loc": "恒大海上威尼斯",
+      "lat": 31.72159,
+      "lng": 121.92457,
+      "built_year": 2016,
+      "issues": [
+        "missing_metro"
+      ],
+      "pois": {
+        "airport": {
+          "name": "Shanghai Pudong International Airport (PVG)",
+          "distKm": 65.3,
+          "source": null
+        },
+        "coast": {
+          "name": "最近海岸线",
+          "distKm": 5.9,
+          "source": null
+        },
+        "train": {
+          "name": "启东",
+          "distKm": 30.9,
+          "source": null
+        },
+        "hospital": {
+          "name": "启东市第四人民医院",
+          "distKm": 11.9,
+          "source": null
+        }
+      }
+    },
+    {
+      "id": 162,
+      "prov": "湖北",
+      "city": "宜昌市",
+      "dist": "伍家岗区",
+      "loc": "碧桂园凤凰城（宜昌）",
+      "lat": 30.64822,
+      "lng": 111.35255,
+      "built_year": null,
+      "issues": [
+        "missing_metro"
+      ],
+      "pois": {
+        "airport": {
+          "name": "Yichang Sanxia Airport (YIH)",
+          "distKm": 16.3,
+          "source": null
+        },
+        "coast": {
+          "name": "最近海岸线",
+          "distKm": 837.2,
+          "source": null
+        },
+        "train": {
+          "name": "宜昌东",
+          "distKm": 1.8,
+          "source": null
+        },
+        "hospital": {
+          "name": "三峡大学仁和医院",
+          "distKm": 0.6,
+          "source": null
+        },
+        "mall": {
+          "name": "(未命名)",
+          "distKm": 4.2,
+          "source": null
+        }
+      }
+    }
+  ]
+}

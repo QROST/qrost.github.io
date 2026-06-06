@@ -221,6 +221,15 @@
       builtYearApprox: !!(e && e.builtYearApprox),
       hospitalKm: poiKm(e, 'hospital'), trainKm: poiKm(e, 'train'),
       airportKm: poiKm(e, 'airport'), metroKm: poiKm(e, 'metro'),
+      // Prefer metro only when plausibly nearby (matches enrich _CAT_MAX_KM.metro ≈ 12km).
+      transitKm: (() => {
+        const m = poiKm(e, 'metro'), t = poiKm(e, 'train');
+        return m != null && m <= 12 ? m : t;
+      })(),
+      transitKind: (() => {
+        const m = poiKm(e, 'metro');
+        return m != null && m <= 12 ? 'metro' : 'train';
+      })(),
       coastKm: e && e.risk ? e.risk.coastKm : poiKm(e, 'coast'),
       seismic: e && e.risk ? e.risk.seismic : null,
       typhoon: e && e.risk ? e.risk.typhoon : null,
@@ -797,7 +806,7 @@
             + `<b style="color:#059669">${dim.label} ${dim.fmt(dim.get(d))}</b><br/>`
             + `总价 ${fmtWan(d.priceWan)} · ${d.area}㎡ · 单价 ${fmtInt(d.unitPrice)}元/㎡<br/>`
             + `${d.climateType || '—'} · 年温差${d.tempRange == null ? '—' : d.tempRange + '℃'} · 1月${fmtTemp(d.janTemp)}/7月${fmtTemp(d.julTemp)} · 海拔 ${d.elevation == null ? '—' : fmtInt(d.elevation) + 'm'} · 供暖 ${d.heating || '—'}<br/>`
-            + `医院 ${fmtKm(d.hospitalKm)} · 火车 ${fmtKm(d.trainKm)} · 地震 ${d.seismic || '—'} · 台风 ${d.typhoon || '—'}`
+            + `医院 ${fmtKm(d.hospitalKm)} · ${d.transitKind === 'metro' ? '地铁' : '火车'} ${fmtKm(d.transitKm)} · 地震 ${d.seismic || '—'} · 台风 ${d.typhoon || '—'}`
             + (haz ? `<br/><span style="color:#b91c1c">最频灾害：${haz}</span>` : '')
             + `<br/><span style="color:#10b981">点击查看卫星图 / 周边 / 气候 / 灾害</span>`;
         },
@@ -1029,7 +1038,9 @@
     { key: 'elevation', label: '海拔m', group: 'live', num: true, get: (d) => nz(d.elevation, -1), cell: (d) => d.elevation == null ? '—' : fmtInt(d.elevation) },
     { key: 'heating', label: '供暖', group: 'live', get: (d) => (d.heating != null ? HEATING_ORD[d.heating] : -1), cell: (d) => heatingCell(d) },
     { key: 'hospitalKm', label: '医院km', group: 'infra', num: true, get: (d) => nz(d.hospitalKm, 1e9), cell: (d) => fmtKm(d.hospitalKm) },
-    { key: 'trainKm', label: '火车km', group: 'infra', num: true, get: (d) => nz(d.trainKm, 1e9), cell: (d) => fmtKm(d.trainKm) },
+    { key: 'transitKm', label: '地铁/火车km', group: 'infra', num: true,
+      get: (d) => nz(d.transitKm, 1e9),
+      cell: (d) => d.transitKm == null ? '—' : (d.transitKind === 'metro' ? `地铁 ${fmtKm(d.transitKm)}` : `火车 ${fmtKm(d.transitKm)}`) },
     { key: 'airportKm', label: '机场km', group: 'infra', num: true, get: (d) => nz(d.airportKm, 1e9), cell: (d) => fmtKm(d.airportKm) },
     { key: 'coastKm', label: '海岸km', group: 'infra', num: true, get: (d) => nz(d.coastKm, 1e9), cell: (d) => fmtKm(d.coastKm) },
     { key: 'seismic', label: '地震带', group: 'risk', get: (d) => SEISMIC_ORD[d.seismic] || 0, cell: (d) => bandCell(d.seismic, 'seismic') },
@@ -1172,7 +1183,8 @@
       ['极端日期', (d) => d.extremeRange],
       ['年降水(mm)', (d) => d.annualPrecip], ['海拔(m)', (d) => d.elevation],
       ['供暖', (d) => d.heating || ''],
-      ['医院(km)', (d) => d.hospitalKm], ['火车站(km)', (d) => d.trainKm],
+      ['医院(km)', (d) => d.hospitalKm],
+      ['轨交(km)', (d) => d.transitKm == null ? '' : (d.transitKind === 'metro' ? `地铁${d.transitKm}` : `火车${d.transitKm}`)],
       ['机场(km)', (d) => d.airportKm], ['海岸(km)', (d) => d.coastKm],
       ['地震带(省级)', (d) => d.seismic], ['台风暴露', (d) => d.typhoon],
       ['主要灾害(频率)', (d) => d.hazard ? d.hazard.hazards.map((h) => `${h.type}(${h.freqLabel})`).join('、') : ''],

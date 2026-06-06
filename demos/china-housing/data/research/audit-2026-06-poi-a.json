@@ -1,0 +1,356 @@
+[
+  {
+    "id": 3,
+    "hospital_name": "伊美区人民医院",
+    "metro_name": null,
+    "train_name": "美溪",
+    "sources": [
+      "https://health.china.com/yiyuan/mxqrmyy/",
+      "https://shswwhospital.guahao.com/hospital/033C90831F811F26E0530F01A8C0F578000",
+      "https://www.yc.gov.cn/ycsrmzf/c102060/202111/165433.shtml"
+    ],
+    "notes": "原美溪区人民医院；美溪林业职工医院为同级另一机构。伊春无地铁。"
+  },
+  {
+    "id": 5,
+    "hospital_name": "七台河市人民医院",
+    "metro_name": null,
+    "train_name": "七台河",
+    "sources": [
+      "https://qthyy.org.cn/",
+      "https://www.haodf.com/hospital/1424.html"
+    ],
+    "notes": "纠正OSM误标男科医院；三级甲等综合医院。"
+  },
+  {
+    "id": 8,
+    "hospital_name": "黑河市第一人民医院",
+    "metro_name": null,
+    "train_name": "黑河",
+    "sources": [
+      "https://www.yiliao.com/%E9%BB%91%E6%B2%B3%E5%B8%82%E7%AC%AC%E4%B8%80%E4%BA%BA%E6%B0%91%E5%8C%BB%E9%99%A2",
+      "https://www.haodf.com/hospital/3216426288.html"
+    ],
+    "notes": "纠正OSM误配鸡西机场/火车站；电力医院为专科/企业医院非最近综合医院。"
+  },
+  {
+    "id": 15,
+    "hospital_name": "辽源市西安区人民医院",
+    "metro_name": null,
+    "train_name": "辽源",
+    "sources": [
+      "https://yyk.familydoctor.com.cn/15852/",
+      "https://cht.a-hospital.com/w/%E8%BE%BD%E6%BA%90%E5%B8%82%E8%A5%BF%E5%AE%89%E5%8C%BA%E4%BA%BA%E6%B0%91%E5%8C%BB%E9%99%A2"
+    ],
+    "notes": "仙城小区在西安区仙城街；纠正OSM误标东辽县人民医院（跨县）。辽源无地铁。"
+  },
+  {
+    "id": 20,
+    "hospital_name": "公主岭市中心医院",
+    "metro_name": null,
+    "train_name": "公主岭",
+    "sources": [
+      "http://qyiliao.com/hospital/detail/19540",
+      "http://www.gongzhuling.gov.cn/zw/dzxx/bmdt/202503/t20250304_9073439.html"
+    ],
+    "notes": "新院区光明路与金融街交汇处已启用；公主岭无地铁。"
+  },
+  {
+    "id": 31,
+    "hospital_name": "荥阳市人民医院",
+    "metro_name": "洞林湖",
+    "train_name": null,
+    "sources": [
+      "https://yyk.familydoctor.com.cn/12591/",
+      "https://zh.wikipedia.org/wiki/%E6%B4%9E%E6%9E%97%E6%B9%96%E7%AB%99"
+    ],
+    "notes": "坐标近郑州地铁6号线洞林湖站；县域最近二级甲等综合医院为荥阳市人民医院。"
+  },
+  {
+    "id": 37,
+    "hospital_name": "郑州市第十五人民医院",
+    "metro_name": null,
+    "train_name": "上街",
+    "sources": [
+      "https://public.zzsj.gov.cn/D49Y/9260603.jhtml",
+      "https://www.icauto.com.cn/chuxing/d_19093.html"
+    ],
+    "notes": "上街区最近综合医院；郑州地铁10号线二期上街中铝站尚未开通，故不提供metro_name。"
+  },
+  {
+    "id": 42,
+    "hospital_name": "乳山市人民医院滨海新区院区",
+    "metro_name": null,
+    "train_name": "乳山南",
+    "sources": [
+      "https://tititxt.com/news/7641.html",
+      "https://weihai.iqilu.com/whminsheng/2024/0607/5665384.shtml"
+    ],
+    "notes": "银滩区域最近县级综合医院院区；乳山无地铁。"
+  },
+  {
+    "id": 53,
+    "hospital_name": "全椒县人民医院",
+    "metro_name": null,
+    "train_name": "全椒",
+    "sources": [
+      "https://www.qjxyy.com/",
+      "https://www.qjxyy.com/News/showList/588/page_1.html"
+    ],
+    "notes": "纠正0.3km误标民营全椒椒陵医院；三级综合公立医院。"
+  },
+  {
+    "id": 54,
+    "hospital_name": "北京大学人民医院",
+    "metro_name": "北京大学东门",
+    "train_name": null,
+    "sources": [
+      "https://news.lianjia.com/bj/xiaoqu/1111027377045.html",
+      "https://mjt.dushiquan.net/beijing/station_1636/",
+      "https://pkuph.com.cn/jiaotongzhinan.html"
+    ],
+    "notes": "交大东路56号院；最近三甲综合医院为西直门院区北京大学人民医院；地铁4号线北大东门站最近。"
+  },
+  {
+    "id": 60,
+    "hospital_name": "上海健康医学院附属崇明医院",
+    "metro_name": null,
+    "train_name": "崇明",
+    "sources": [
+      "https://www.shcm.gov.cn/govxxgk/qwsjkw/2025-02-11/8e03606a-fa3d-4edb-9048-a28269ad57aa.html",
+      "https://www.shcm.gov.cn/govxxgk/qwsjkw/2025-02-11/d6548b89-fafb-4b30-954d-7b9d5a518a19.html"
+    ],
+    "notes": "城桥南坝新村；崇明岛无地铁，城桥社区卫生服务中心非县级综合医院。"
+  },
+  {
+    "id": 61,
+    "hospital_name": "启东市人民医院",
+    "metro_name": null,
+    "train_name": "启东西",
+    "sources": [
+      "https://qidong.jiwu.com/loupan/274482.html",
+      "https://www.qdsrmyy.com/lxwm/"
+    ],
+    "notes": "启隆镇绿地长岛；启隆镇卫生院为基层机构，县级三甲为启东市人民医院。"
+  },
+  {
+    "id": 62,
+    "hospital_name": "启东市人民医院",
+    "metro_name": null,
+    "train_name": "启东",
+    "sources": [
+      "https://www.qdsrmyy.com/yykk/index.html",
+      "https://zh.wikipedia.org/wiki/%E5%90%AF%E4%B8%9C%E5%B8%82%E4%BA%BA%E6%B0%91%E5%8C%BB%E9%99%A2"
+    ],
+    "notes": "纠正误标启东市卫生局；寅阳镇恒大海上威尼斯最近县级综合医院为市区启东市人民医院。"
+  },
+  {
+    "id": 63,
+    "hospital_name": "句容市人民医院",
+    "metro_name": null,
+    "train_name": "句容",
+    "sources": [
+      "https://y.dxy.cn/hospital/4824/",
+      "https://news.qq.com/rain/a/20211211A07SUQ00"
+    ],
+    "notes": "华阳社区卫生服务中心非县级综合医院；句容无城区地铁。"
+  },
+  {
+    "id": 65,
+    "hospital_name": "中山大学附属第一医院惠亚医院",
+    "metro_name": null,
+    "train_name": "惠州南站",
+    "sources": [
+      "http://www.zdhyyy.com/index_3.aspx",
+      "https://www.bkwk.cn/article/hzatfjyyyl.html"
+    ],
+    "notes": "澳头唯家大厦；澳头社区卫生服务中心为基层机构。惠州大亚湾无地铁。"
+  },
+  {
+    "id": 66,
+    "hospital_name": "中山大学附属第一医院惠亚医院",
+    "metro_name": null,
+    "train_name": "鲘门",
+    "sources": [
+      "http://www.zdhyyy.com/index_3.aspx",
+      "https://www.sysu.edu.cn/news/info/2171/1386031.htm"
+    ],
+    "notes": "霞涌泡泡海家园；三级公立综合医院惠亚医院为大亚湾核心医疗机构。"
+  },
+  {
+    "id": 67,
+    "hospital_name": "惠东县人民医院",
+    "metro_name": null,
+    "train_name": "惠东",
+    "sources": [
+      "http://www.hznews.com/xqrm/hdx/202501/t20250102_1579802.shtml",
+      "https://www.hdph.com/?a=18"
+    ],
+    "notes": "巽寮湾红树湾畔；巽寮卫生院已按二级综合医院标准建设但仍属基层机构，县级综合医院为惠东县人民医院。"
+  },
+  {
+    "id": 68,
+    "hospital_name": "惠东县人民医院",
+    "metro_name": null,
+    "train_name": "惠东南",
+    "sources": [
+      "https://www.rfchina.com/mobile/product.aspx?pid=3524&type=15",
+      "https://www.hdph.com/?a=18"
+    ],
+    "notes": "纠正OSM误配惠州市区第一人民医院/云山站；稔山富力湾距惠东南站约8km。"
+  },
+  {
+    "id": 69,
+    "hospital_name": "阳江市海陵区人民医院",
+    "metro_name": null,
+    "train_name": "阳江",
+    "sources": [
+      "https://y.dxy.cn/hospital/7605",
+      "https://www.thinkdid.com/hospitalInfo/city/hospital/25862.html"
+    ],
+    "notes": "纠正误配惠州卫生职业技术学院附属医院（跨市）；海陵岛最近二级综合医院。"
+  },
+  {
+    "id": 72,
+    "hospital_name": "肇庆市鼎湖区中医院",
+    "metro_name": null,
+    "train_name": "鼎湖",
+    "sources": [
+      "https://y.dxy.cn/hospital/6724",
+      "https://m.jiwu.com/zhaoqing/detail/266061.html"
+    ],
+    "notes": "鼎湖碧桂园幸福里；二级甲等综合医院，鼎湖区120急救中心。"
+  },
+  {
+    "id": 73,
+    "hospital_name": "肇庆市高要区人民医院",
+    "metro_name": null,
+    "train_name": "肇庆",
+    "sources": [
+      "https://m.maigoo.com/citiao/7942.html",
+      "https://zhaoqing.jiwu.com/loupan/355207.html"
+    ],
+    "notes": "回龙镇恒大世纪梦幻城；回龙医院为乡镇医院，县级综合医院为高要区人民医院南岸分院/总院。"
+  },
+  {
+    "id": 79,
+    "hospital_name": "北海市人民医院银滩院区",
+    "metro_name": null,
+    "train_name": "北海",
+    "sources": [
+      "https://www.ngzb.com.cn/news/2021/12/18/jianyuan-shiyong-nanbei-shixian-ziyuan-yiliao-youzhi-touru-135zh.html",
+      "https://www.bohe.cn/hospital/443/"
+    ],
+    "notes": "银滩医院为北海市人民医院三甲院区，非独立民营医院。北海无地铁。"
+  },
+  {
+    "id": 81,
+    "hospital_name": "防城港市第一人民医院",
+    "metro_name": null,
+    "train_name": "防城港北",
+    "sources": [
+      "http://www.fcgs.gov.cn/dyrmyy/jgsz/t14033298.shtml",
+      "https://www.youlai.cn/yyk/hospindex/2402/hospintro.html"
+    ],
+    "notes": "纠正误标港口区人民医院凯乐门诊部；桃花湾最近三甲综合医院。"
+  },
+  {
+    "id": 82,
+    "hospital_name": "百色市田阳区人民医院",
+    "metro_name": null,
+    "train_name": "百色",
+    "sources": [
+      "https://mh.bohe.cn/hospital_37683/yyjs.html",
+      "http://www.gxzf.gov.cn/zwdt/ylws/ejyljg2/bss_1/"
+    ],
+    "notes": "纠正误标右江区人民医院（跨区）；田阳区二级甲等综合医院。"
+  },
+  {
+    "id": 85,
+    "hospital_name": "重庆市长寿区人民医院",
+    "metro_name": null,
+    "train_name": "长寿湖",
+    "sources": [
+      "http://www.cqcsyy.cn/www/index/",
+      "https://baike.baidu.com/item/%E9%95%BF%E5%AF%BF%E6%B9%96%E7%AB%99/15934719"
+    ],
+    "notes": "双龙镇恒大湖山半岛；纠正误标双龙镇卫生院；长寿湖片区无重庆城区地铁。"
+  },
+  {
+    "id": 86,
+    "hospital_name": "重庆市长寿区人民医院",
+    "metro_name": null,
+    "train_name": "长寿",
+    "sources": [
+      "http://www.cqcsyy.cn/www/index/",
+      "http://www.wsjkw.cq.gov.cn/zwgk_242/wsjklymsxx/ylws_266434/yzgl_266435/ymjzd/zsq_213003/202202/t20220218_10410960.html"
+    ],
+    "notes": "凤城街道查家湾；北观院区在凤城街道；长寿城区暂无重庆轨道交通地铁直达。"
+  },
+  {
+    "id": 87,
+    "hospital_name": "重庆市荣昌区人民医院",
+    "metro_name": null,
+    "train_name": "荣昌",
+    "sources": [
+      "https://wsjkw.cq.gov.cn/zwgk_242/wsjklymsxx/ylws_266434/yzgl_266435/ymjzd/rcq_213013/202202/t20220218_10411288_wap.html",
+      "http://bus.xiaoquba.com/busstation/detail/b7f14f3f52544fdf7db0bb58277f62b7"
+    ],
+    "notes": "荣昌城区武城家园；二级甲等综合医院；荣昌区无重庆地铁。"
+  },
+  {
+    "id": 88,
+    "hospital_name": "丰都县人民医院",
+    "metro_name": null,
+    "train_name": "丰都",
+    "sources": [
+      "https://mh.bohe.cn/hospital_33481/yyjs.html",
+      "https://www.cqfd.gov.cn/zwgk_200/zcwj/xzfwj/202405/t20240523_13232074.html"
+    ],
+    "notes": "南天湖金竹苑；景区近处有南天湖医院（县中医院分院），县级人民医院为丰都县人民医院（三合街道，距景区较远）。"
+  },
+  {
+    "id": 92,
+    "hospital_name": "安顺市平坝区人民医院",
+    "metro_name": null,
+    "train_name": "平坝南",
+    "sources": [
+      "https://m.bohe.cn/hospital/37558/",
+      "https://zh.wikipedia.org/wiki/%E5%B9%B3%E5%9D%9D%E5%8D%97%E7%AB%99"
+    ],
+    "notes": "白云镇新艺机械厂福利区；平坝南站为最近高铁站；二级甲等综合医院。"
+  },
+  {
+    "id": 96,
+    "hospital_name": "龙里县人民医院",
+    "metro_name": null,
+    "train_name": "龙里",
+    "sources": [
+      "https://www.youlai.cn/yyk/hospindex/6683/hospintro.html",
+      "https://zh.wikipedia.org/zh-cn/%E9%BE%99%E9%87%8C%E7%AB%99"
+    ],
+    "notes": "碧桂园凤凰城近龙里站；二甲综合医院。"
+  },
+  {
+    "id": 98,
+    "hospital_name": "凯里市中医医院",
+    "metro_name": null,
+    "train_name": "凯里南",
+    "sources": [
+      "http://www.klszyyy.cn/index.php?a=lists&c=index&catid=10&m=content",
+      "https://www.kl1y.cn/"
+    ],
+    "notes": "依云美镇近开怀院区（二甲中医院）；凯里无地铁。"
+  },
+  {
+    "id": 99,
+    "hospital_name": "攀枝花市中心医院",
+    "metro_name": null,
+    "train_name": "攀枝花",
+    "sources": [
+      "https://www.cpch1965.cn/",
+      "https://yyk.99.com.cn/panzhihua/90002/"
+    ],
+    "notes": "纠正误标爱尔眼科医院（专科）；东区望达巷最近三甲综合医院。"
+  }
+]
