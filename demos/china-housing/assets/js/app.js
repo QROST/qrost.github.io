@@ -307,13 +307,13 @@
       { label: '极端天气最少', value: mildest ? mildest.extremeRange : '—', sub: mildest ? `${cityLabel(mildest)} · 全年最温和` : '—' },
     ];
     document.getElementById('kpi-grid').innerHTML = cards.map((c) => `
-      <div class="rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 p-5 transition-colors duration-300">
-        <div class="text-[0.7rem] font-medium uppercase tracking-[0.12em] text-slate-400 dark:text-slate-500">${c.label}</div>
+      <div class="rounded-xl border p-5 transition-colors duration-300">
+        <div class="text-[0.7rem] font-medium uppercase tracking-[0.12em]">${c.label}</div>
         <div class="mt-2 flex items-baseline gap-1">
-          <span class="text-2xl md:text-3xl font-semibold text-slate-900 dark:text-slate-50 tabular-nums">${c.value}</span>
-          ${c.unit ? `<span class="text-sm text-slate-400 dark:text-slate-500">${c.unit}</span>` : ''}
+          <span class="text-2xl md:text-3xl font-semibold tabular-nums">${c.value}</span>
+          ${c.unit ? `<span class="text-sm">${c.unit}</span>` : ''}
         </div>
-        <div class="mt-1 text-xs text-slate-500 dark:text-slate-400 truncate" title="${c.sub}">${c.sub}</div>
+        <div class="mt-1 text-xs truncate" title="${c.sub}">${c.sub}</div>
       </div>`).join('');
   }
 
@@ -333,10 +333,12 @@
   }
 
   function styleTab(b, on, base) {
+    const dk = isDark();
     b.className = `${base} px-3 py-1.5 rounded-md text-xs font-medium transition-colors ` +
       (on
-        ? 'bg-slate-900 dark:bg-slate-100 text-white dark:text-slate-900'
-        : 'bg-white dark:bg-slate-800 text-slate-500 dark:text-slate-400 border border-slate-200 dark:border-slate-600 hover:text-slate-900 dark:hover:text-slate-100');
+        ? (dk ? 'bg-slate-100 text-slate-900' : 'bg-slate-900 text-white')
+        : (dk ? 'bg-slate-800 text-slate-400 border border-slate-600 hover:text-slate-100'
+          : 'bg-white text-slate-500 border border-slate-200 hover:text-slate-900'));
   }
 
   let scatterChart, rankChart, provChart;
@@ -754,7 +756,7 @@
       {
         type: 'scatter', coordinateSystem: 'geo', zlevel: 3,
         symbolSize: (val, params) => (params.data && params.data.size) || 9,
-        itemStyle: { borderColor: 'rgba(255,255,255,0.9)', borderWidth: 1, shadowBlur: 3, shadowColor: 'rgba(15,23,42,0.3)' },
+        itemStyle: { borderColor: isDark() ? 'rgba(15,23,42,0.55)' : 'rgba(255,255,255,0.9)', borderWidth: 1, shadowBlur: 3, shadowColor: isDark() ? 'rgba(0,0,0,0.35)' : 'rgba(15,23,42,0.3)' },
         emphasis: { scale: 1.5 },
         data,
       },
@@ -765,7 +767,7 @@
         min: vmin, max: vmax, range: [vmin, vmax],
         left: 'left', bottom: 24, calculable: true,
         text: dim.text, itemWidth: 14, itemHeight: 120,
-        inRange: { color: ramp }, textStyle: { color: C.slate500 },
+        inRange: { color: ramp }, textStyle: { color: themeMuted() },
         formatter: (v) => dim.fmt(v),
       },
     ];
@@ -1065,7 +1067,7 @@
     { key: 'yieldPct', label: '毛回报', group: 'invest', num: true, get: (d) => d.yieldPct, cell: (d) => yieldCell(d) },
     { key: 'payback', label: '回本年', group: 'invest', num: true, get: (d) => d.payback, cell: (d) => fmtYrs(d.payback) },
     { key: '_act', label: '详情', group: 'core', act: true, cell: (d) => d.enr
-      ? `<button data-open="${d.id}" class="text-emerald-700 hover:text-emerald-900 font-medium whitespace-nowrap">查看</button>`
+      ? `<button data-open="${d.id}" class="text-emerald-700 dark:text-emerald-400 hover:text-emerald-900 dark:hover:text-emerald-300 font-medium whitespace-nowrap">查看</button>`
       : `<span class="${tcx().faint}" title="暂无定位数据">—</span>` },
   ];
   const tstate = { sortKey: 'comfortMonths', sortDir: -1, prov: '', q: '', groups: new Set(['live', 'infra', 'risk']) };
@@ -1147,7 +1149,7 @@
       const on = tstate.groups.has(b.dataset.group);
       b.className = 'px-3 py-1.5 rounded-md text-xs font-medium transition-colors ' +
         (on
-          ? 'bg-emerald-600 dark:bg-emerald-700 text-white'
+          ? (dk ? 'bg-emerald-700 text-white' : 'bg-emerald-600 text-white')
           : (dk ? 'bg-slate-800 text-slate-400 border border-slate-600 hover:text-slate-100' : 'bg-white text-slate-500 border border-slate-200 hover:text-slate-900'));
     });
   }
