@@ -20,7 +20,11 @@ from manage import connect  # noqa: E402
 
 def load_all_gap_findings() -> list[dict]:
     out: list[dict] = []
-    for path in sorted(RESEARCH.glob("gap-batch-*-findings.json")):
+    patterns = ("gap-batch-*-findings.json", "rent-gap-round2-*-findings.json")
+    paths: list[Path] = []
+    for pat in patterns:
+        paths.extend(RESEARCH.glob(pat))
+    for path in sorted(set(paths)):
         data = json.loads(path.read_text(encoding="utf-8"))
         items = data.get("findings", data) if isinstance(data, dict) else data
         if isinstance(items, list):
