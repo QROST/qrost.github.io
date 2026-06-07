@@ -47,6 +47,7 @@ const documentElement = {
 };
 const document = {
   documentElement,
+  title: '',
   getElementById(id) { return (ids[id] || (ids[id] = el({ id }))); },
   querySelectorAll(s) { return (selCache[s] || (selCache[s] = (SELS[s] || []).map((d) => el(d)))); },
   querySelector() { return el(); }, addEventListener() {}, createElement() { return el(); },
@@ -96,7 +97,7 @@ setTimeout(() => {
   T('field elevation 973pts', w.HOUSING_FIELD && w.HOUSING_FIELD.fields.elevation.points.length === 973);
   T('geo-en districts CJK-free', Object.values((w.HOUSING_GEO_EN || {}).district || {}).every((v) => !zhRe.test(v)));
   T('kpi', /房源样本/.test(ids['kpi-grid']._html));
-  T('kpi mild zero-extreme listing', /极端天气最少/.test(ids['kpi-grid']._html) && /无/.test(ids['kpi-grid']._html));
+  T('kpi comfort max listing', /舒适日最多/.test(ids['kpi-grid']._html) && /341天/.test(ids['kpi-grid']._html));
   T('table head', /气候类型/.test(ids['table-head']._html) && /年温差/.test(ids['table-head']._html));
   T('no 宜居指数 anywhere', !/宜居指数/.test(ids['table-head']._html) && !/宜居指数/.test(ids['table-body']._html));
   T('climate types rendered', /(四季如春|常年温暖|四季分明|长夏无冬|夏热冬暖|冬暖夏凉|常年凉冷|温和过渡)/.test(ids['table-body']._html));
@@ -211,6 +212,13 @@ setTimeout(() => {
     const I = w.HOUSING_I18N;
     T('FX fallback ÷7', I.getRateSource() === 'fallback' && Math.abs(I.getRate() - 7) < 0.01);
     T('formatters null-safe', I.formatTemp(null) === '—' && I.formatDist(null) === '—' && I.formatArea(null) === '—');
+    w.__setLang('zh');
+    T('provExtremeUnion zh day-based', I.t('provExtremeUnion') === '极端日段（省内并集）' && I.t('provExtremePerListing') === '天/小区');
+    T('document.title zh', /宜居又便宜/.test(document.title));
+    w.__setLang('en');
+    T('provExtremeUnion en day-based', /extreme-day spans/i.test(I.t('provExtremeUnion')) && I.t('provExtremePerListing') === ' d/listing');
+    T('document.title en', /livable and affordable/i.test(document.title));
+    w.__setLang('zh');
   } catch (e) { T('lang toggle — ' + e.message, false); }
   let ok = true; for (const [n, p] of checks) { if (!p) ok = false; console.log((p ? 'PASS' : 'FAIL') + ' · ' + n); }
   console.log(ok ? '\nSMOKE_OK' : '\nSMOKE_FAIL'); process.exit(ok ? 0 : 1);
