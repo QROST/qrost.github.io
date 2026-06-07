@@ -110,7 +110,11 @@ def migrate(con):
                       ("built_year_src", "TEXT"),   # provenance: source URL / quoted 建成年代 text
                       ("built_year_approx", "INTEGER"),  # 1 = cited decade-level estimate, shown as 约
                       ("terrain_relief", "REAL"),   # local DEM relief (m, max−min over ~3km ring) — 地质灾害 proxy
-                      ("hazards_local", "TEXT")):   # per-listing hazard array JSON (prefecture types × physical freq)
+                      ("hazards_local", "TEXT"),    # per-listing hazard array JSON (prefecture types × physical freq)
+                      ("hist_temp_max", "REAL"), ("hist_temp_min", "REAL"),
+                      ("hist_temp_max_date", "TEXT"), ("hist_temp_min_date", "TEXT"),
+                      ("hist_temp_src", "TEXT"), ("hist_temp_station", "TEXT"),
+                      ("hist_temp_note", "TEXT"), ("hist_temp_level", "TEXT")):   # extrema + granularity
         if col not in cols:
             con.execute(f"ALTER TABLE listings ADD COLUMN {col} {decl}")
     con.executescript("""
@@ -1209,7 +1213,11 @@ def refresh_refined_pois(con, log):
 def emit_enriched(con):
     """Return {id: {...}} dict of all baked enrichment for build to serialize."""
     out = {}
-    for r in con.execute("SELECT id, lat, lng, geo_level, geo_label, geo_source, elevation, daily_climate, built_year, built_year_src, built_year_approx, hazards_local FROM listings WHERE lat IS NOT NULL"):
+    for r in con.execute("""SELECT id, lat, lng, geo_level, geo_label, geo_source, elevation, daily_climate,
+                                   built_year, built_year_src, built_year_approx, hazards_local,
+                                   hist_temp_max, hist_temp_min, hist_temp_max_date, hist_temp_min_date,
+                                   hist_temp_src, hist_temp_station, hist_temp_note, hist_temp_level
+                            FROM listings WHERE lat IS NOT NULL"""):
         e = {"lat": r["lat"], "lng": r["lng"],
              "geoLevel": r["geo_level"], "geoLabel": r["geo_label"],
              "geoSource": r["geo_source"] or "nominatim"}
@@ -1231,6 +1239,22 @@ def emit_enriched(con):
                 e["daily"] = json.loads(r["daily_climate"])
             except Exception:  # noqa: BLE001
                 pass
+        if r["hist_temp_max"] is not None:
+            e["histTempMax"] = r["hist_temp_max"]
+        if r["hist_temp_min"] is not None:
+            e["histTempMin"] = r["hist_temp_min"]
+        if r["hist_temp_max_date"]:
+            e["histTempMaxDate"] = r["hist_temp_max_date"]
+        if r["hist_temp_min_date"]:
+            e["histTempMinDate"] = r["hist_temp_min_date"]
+        if r["hist_temp_src"]:
+            e["histTempSrc"] = r["hist_temp_src"]
+        if r["hist_temp_station"]:
+            e["histTempStation"] = r["hist_temp_station"]
+        if r["hist_temp_note"]:
+            e["histTempNote"] = r["hist_temp_note"]
+        if r["hist_temp_level"]:
+            e["histTempLevel"] = r["hist_temp_level"]
         out[r["id"]] = e
     for r in con.execute("SELECT listing_id, month, tmean, tmax, tmin, precip FROM climate ORDER BY listing_id, month"):
         e = out.get(r["listing_id"])
