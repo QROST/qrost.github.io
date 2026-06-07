@@ -353,7 +353,8 @@
     const cheapest = vd.reduce((a, b) => (b.priceWan < a.priceWan ? b : a));
     const climD = vd.filter((d) => d.tempRange != null);
     const steadiest = climD.reduce((a, b) => (b.tempRange < a.tempRange ? b : a), climD[0]);
-    const mildest = climD.reduce((a, b) => (b.extremeMonths < a.extremeMonths ? b : a), climD[0]);
+    const extremeScore = (d) => (d.extremeDayCount != null ? d.extremeDayCount : d.extremeMonths);
+    const mildest = climD.reduce((a, b) => (extremeScore(b) < extremeScore(a) ? b : a), climD[0]);
     const medUnit = median(vd.map((d) => d.unitPrice));
     const cards = [
       { label: t('kpiListings'), value: vd.length, unit: t('kpiUnit'), sub: t('kpiListingsSub') },
@@ -452,8 +453,8 @@
   const RANK_METRICS = {
     cheap: { labelKey: 'rankCheap', key: 'priceWan', dir: 1, axisKey: 'rankAxisCheap', fmt: fmtWan, color: (v, n) => badColor(v / n) },
     unit: { labelKey: 'rankUnit', key: 'unitPrice', dir: 1, axisKey: 'rankAxisUnit', fmt: (v) => fmtUnit(v), color: (v, n) => badColor(v / n) },
-    comfort: { labelKey: 'rankComfort', key: 'comfortMonths', dir: -1, axisKey: 'rankAxisComfort', fmt: (v) => v + (isEn() ? '' : '月'), color: (v, n) => comfortColor(v / (n || 1)) },
-    extreme: { labelKey: 'rankExtreme', key: 'extremeMonths', dir: -1, axisKey: 'rankAxisExtreme', fmt: (v) => v + (isEn() ? '' : '月'), color: (v, n) => comfortColor(1 - v / (n || 1)) },
+    comfort: { labelKey: 'rankComfort', key: 'comfortDayCount', dir: -1, axisKey: 'rankAxisComfort', fmt: (v) => v + t('daySuffix'), color: (v, n) => comfortColor(v / (n || 1)) },
+    extreme: { labelKey: 'rankExtreme', key: 'extremeDayCount', dir: -1, axisKey: 'rankAxisExtreme', fmt: (v) => v + t('daySuffix'), color: (v, n) => comfortColor(1 - v / (n || 1)) },
     yield: { labelKey: 'rankYield', key: 'yieldPct', dir: -1, axisKey: 'rankAxisYield', fmt: fmtPct, color: (v, n) => lerpColor(v / n) },
   };
   const rankMetric = (k) => {
@@ -481,9 +482,8 @@
     host.style.display = '';
     const isStrip = (rankKey === 'comfort' || rankKey === 'extreme');
     const isC = rankKey === 'comfort';
-    const skey = isStrip ? (isC ? 'comfortDayCount' : 'extremeDayCount') : m.key;
-    const pool = viewData().filter((d) => isStrip ? (d.daily && d[skey] != null) : d[m.key] != null);
-    const top = [...pool].sort((a, b) => (a[skey] - b[skey]) * m.dir).slice(0, 50);
+    const pool = viewData().filter((d) => isStrip ? (d.daily && d[m.key] != null) : d[m.key] != null);
+    const top = [...pool].sort((a, b) => (a[m.key] - b[m.key]) * m.dir).slice(0, 50);
     const maxV = Math.max(...top.map((d) => d[m.key] || 0), 1);
     const GT = 'grid-template-columns: 1.6rem minmax(4.5rem, 9rem) 1fr 3.6rem';
     const colHdr = isStrip ? (isC ? t('rankStripComfort') : t('rankStripExtreme')) : m.axis.replace(/（.*/, '').replace(/ \(.*\)/, '');
@@ -541,7 +541,8 @@
       return {
         prov, count: rows.length,
         avgPrice: avg('priceWan'), avgUnit: avg('unitPrice'), avgYield: avg('yieldPct'),
-        avgRent: avg('rent'), avgRange: avg('tempRange'), avgExtreme: avg('extremeMonths'),
+        avgRent: avg('rent'), avgRange: avg('tempRange'),
+        avgExtreme: avg('extremeMonths'), avgExtremeDays: avg('extremeDayCount'),
         extremeRange, extremeByMonth, extremeByDay,
       };
     });
@@ -551,8 +552,7 @@
     avgUnit: { labelKey: 'provAvgUnit', axisKey: 'provAxisAvgUnit', fmt: (v) => fmtUnit(v), dir: -1, color: C.emeraldSoft },
     avgPrice: { labelKey: 'provAvgPrice', axisKey: 'provAxisAvgPrice', fmt: fmtWan, dir: -1, color: C.emeraldSoft },
     avgRange: { labelKey: 'provAvgRange', axisKey: 'provAxisAvgRange', fmt: fmtSwing, dir: -1, color: 'rgba(67,56,202,0.5)' },
-    avgExtreme: { labelKey: 'provAvgExtreme', axisKey: 'provAxisAvgExtreme', fmt: (v) => v.toFixed(1) + (isEn() ? '' : '月'), dir: -1, color: 'rgba(185,28,28,0.5)' },
-    avgComfort: { labelKey: 'provAvgRange', axisKey: 'provAxisAvgRange', fmt: fmtSwing, dir: -1, color: 'rgba(67,56,202,0.5)' },
+    avgExtreme: { labelKey: 'provAvgExtreme', axisKey: 'provAxisAvgExtreme', fmt: (v) => Math.round(v) + t('daySuffix'), dir: -1, color: 'rgba(185,28,28,0.5)' },
   };
   const provMetricCfg = (k) => {
     const m = PROV_METRICS[k] || PROV_METRICS.avgRange;
@@ -578,7 +578,7 @@
     strip.style.display = '';
     const GT = 'grid-template-columns: 3.4rem 1fr';
     const agg = aggregateByProvince()
-      .sort((a, b) => (b.avgExtreme || 0) - (a.avgExtreme || 0) || a.prov.localeCompare(b.prov, 'zh'));
+      .sort((a, b) => (b.avgExtremeDays ?? b.avgExtreme ?? 0) - (a.avgExtremeDays ?? a.avgExtreme ?? 0) || a.prov.localeCompare(b.prov, 'zh'));
     // month boundaries (%) + centres on a 365-day axis
     const bnd = []; let acc = 0; for (let i = 0; i < 12; i++) { acc += _DIM[i]; bnd.push(acc / 365 * 100); }
     const ctr = []; let p0 = 0; for (let i = 0; i < 12; i++) { ctr.push((p0 + bnd[i]) / 2); p0 = bnd[i]; }
@@ -626,7 +626,7 @@
     ctx.style.display = '';
     const stripEl = document.getElementById('province-strip');
     if (stripEl) stripEl.style.display = 'none';
-    const metricKey = provMetric === 'avgComfort' ? 'avgRange' : provMetric;
+    const metricKey = provMetric;
     const agg = aggregateByProvince().filter((a) => a[metricKey] != null)
       .sort((a, b) => (b[metricKey] - a[metricKey]) * (m.dir > 0 ? 1 : -1));
     const cfg = {
@@ -652,7 +652,7 @@
                   : `${m.label} ${m.fmt(a[metricKey])}`;
                 return [head,
                   `${t('provSample')} ${a.count}${isEn() ? '' : '套'} · ${t('provAvgTotal')} ${fmtWan(a.avgPrice)} · ${t('provAvgUnit')} ${fmtUnit(a.avgUnit)}`,
-                  `${t('provAvgSwing')} ${fmtSwing(a.avgRange)} · ${t('provAvgExtreme')} ${a.avgExtreme.toFixed(1)}${isEn() ? '' : '月'}`];
+                  `${t('provAvgSwing')} ${fmtSwing(a.avgRange)} · ${t('provAvgExtreme')} ${a.avgExtremeDays != null ? Math.round(a.avgExtremeDays) + t('daySuffix') : a.avgExtreme.toFixed(1) + (isEn() ? '' : '月')}`];
               },
             },
           },
@@ -698,7 +698,7 @@
   // 显出地理差异；表格 / 弹窗仍列全部灾害。
   const GEO_HAZ = new Set(['地震', '台风', '台风外围', '风暴潮', '地质灾害', '滑坡', '泥石流', '崩塌']);
   const MAP_DIMS = {
-    tempRange: { labelKey: 'dimTempRange', get: (d) => d.tempRange, fmt: fmtSwing, ramp: 'range', textKeys: ['mapExpensive', 'mapCheaper'] },
+    tempRange: { labelKey: 'dimTempRange', get: (d) => d.tempRange, fmt: fmtSwing, ramp: 'range', textKeys: ['mapSwingLarge', 'mapSwingSteady'] },
     unitPrice: { labelKey: 'dimUnitPrice', get: (d) => d.unitPrice, fmt: (v) => fmtUnit(v), ramp: 'cheapGood', textKeys: ['mapExpensive', 'mapCheaper'] },
     priceWan: { labelKey: 'dimPriceWan', get: (d) => d.priceWan, fmt: fmtWan, ramp: 'cheapGood', textKeys: ['mapExpensive', 'mapCheaper'] },
     janTemp: { labelKey: 'dimJanTemp', get: (d) => d.janTemp, fmt: fmtTemp, ramp: 'temp', textKeys: ['mapHot', 'mapCold'] },
@@ -714,7 +714,6 @@
       },
       fmt: (v) => { const k = {5:'几乎年年',4:'数年一遇',3:'约十年一遇',2:'数十年一遇',1:'百年级罕见'}[Math.round(v)]; return trFl(k) || ''; }, ramp: 'freq', textKeys: ['mapFreqOften', 'mapFreqRare'], fixedDomain: [1, 5],
     },
-    comfortScore: { labelKey: 'dimTempRange', get: (d) => d.tempRange, fmt: fmtSwing, ramp: 'range', textKeys: ['mapExpensive', 'mapCheaper'] },
   };
   const mapDim = (k) => {
     const d = MAP_DIMS[k] || MAP_DIMS.tempRange;
@@ -888,7 +887,7 @@
           return `<b>${cityLabel(d)}</b> · ${trGeo(d.enr.geoLabel) || ''}<br/>`
             + `<b style="color:#059669">${dim.label} ${dim.fmt(dim.get(d))}</b><br/>`
             + `${isEn() ? 'Total' : '总价'} ${fmtWan(d.priceWan)} · ${fmtArea(d.area)} · ${isEn() ? 'Unit' : '单价'} ${fmtUnit(d.unitPrice)}<br/>`
-            + `${trCl(d.climateType) || '—'} · ${t('swingLabel')} ${d.tempRange == null ? '—' : fmtSwing(d.tempRange)} · Jan ${fmtTemp(d.janTemp)}/Jul ${fmtTemp(d.julTemp)} · ${isEn() ? 'Elev' : '海拔'} ${d.elevation == null ? '—' : fmtInt(d.elevation) + 'm'} · ${t('winterHeating')} ${trHeat(d.heating) || '—'}<br/>`
+            + `${trCl(d.climateType) || '—'} · ${t('swingLabel')} ${d.tempRange == null ? '—' : fmtSwing(d.tempRange)} · ${isEn() ? 'Jan' : '1月'} ${fmtTemp(d.janTemp)}/${isEn() ? 'Jul' : '7月'} ${fmtTemp(d.julTemp)} · ${isEn() ? 'Elev' : '海拔'} ${d.elevation == null ? '—' : fmtInt(d.elevation) + 'm'} · ${t('winterHeating')} ${trHeat(d.heating) || '—'}<br/>`
             + `${t('poiHospital')} ${fmtKm(d.hospitalKm)} · ${d.transitKind === 'metro' ? t('poiMetro') : t('poiTrain')} ${fmtKm(d.transitKm)} · ${t('col_seismic')} ${trSeis(d.seismic) || '—'} · ${t('col_typhoon')} ${trTy(d.typhoon) || '—'}`
             + (haz ? `<br/><span style="color:#b91c1c">${isEn() ? 'Top hazard: ' : '最频灾害：'}${haz}</span>` : '')
             + `<br/><span style="color:#10b981">${t('mapClickHint')}</span>`;
@@ -1009,7 +1008,7 @@
     return {
       yMinT: Math.min(...vd.map((d) => d.yieldPct).filter((v) => v != null)),
       yMaxT: Math.max(...vd.map((d) => d.yieldPct).filter((v) => v != null)),
-      exMaxT: Math.max(1, ...vd.map((d) => nz(d.extremeMonths, 0))),
+      exMaxT: Math.max(1, ...vd.map((d) => nz(d.extremeDayCount, nz(d.extremeMonths, 0)))),
       rangeMaxT: Math.max(1, ...vd.map((d) => nz(d.tempRange, 0))),
     };
   }
@@ -1099,8 +1098,9 @@
     if (d.daily && d.daily.extremeDays) return miniDayStrip(d.daily.extremeDays, '#dc2626', d.daily.extremeDays.length ? (t('extremeLabel') + ' ' + extremeRangeOf(d)) : t('noExtreme'));
     if (d.extremeMonths == null) return `<span class="${tcx().faint}">—</span>`;
     const { exMaxT } = viewScales();
-    const frac = d.extremeMonths / exMaxT;
-    return pill(extremeRangeOf(d) || (d.extremeMonths + (isEn() ? '' : '月')), badColor(frac), frac > 0.5 ? '#fff' : '#0f172a');
+    const ex = d.extremeDayCount != null ? d.extremeDayCount : d.extremeMonths;
+    const frac = ex / exMaxT;
+    return pill(extremeRangeOf(d) || (ex + (d.extremeDayCount != null ? t('daySuffix') : (isEn() ? '' : '月'))), badColor(frac), frac > 0.5 ? '#fff' : '#0f172a');
   }
   function yieldCell(d) {
     if (d.yieldPct == null) return `<span class="${tcx().faint}">—</span>`;
@@ -1456,7 +1456,7 @@
             tooltip: {
               callbacks: {
                 title: (it) => doyToDate(((it[0] && it[0].dataIndex) || 0) + 1),
-                label: (it) => `${it.dataset.label}: ${fmtTemp(isEn() ? (it.parsed.y - 32) * 5 / 9 : it.parsed.y)}`,
+                label: (it) => `${it.dataset.label}: ${isEn() ? Math.round(it.parsed.y) + '°F' : fmtTemp(it.parsed.y)}`,
               },
             },
           },

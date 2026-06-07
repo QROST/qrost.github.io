@@ -7,9 +7,9 @@ const DIR = path.resolve(__dirname, '..');
 const read = (p) => fs.readFileSync(path.join(DIR, p), 'utf8');
 
 const SELS = {
-  '[data-rank]': ['cheap', 'unit', 'comfort', 'mild', 'yield'].map((rank) => ({ rank })),
+  '[data-rank]': ['cheap', 'unit', 'comfort', 'extreme', 'yield'].map((rank) => ({ rank })),
   '[data-prov]': ['avgRange', 'avgExtreme', 'avgUnit', 'avgPrice'].map((prov) => ({ prov })),
-  '[data-dim]': ['tempRange', 'unitPrice', 'priceWan', 'janTemp', 'julTemp', 'annualPrecip', 'elevation', 'extremeMonths'].map((dim) => ({ dim })),
+  '[data-dim]': ['tempRange', 'unitPrice', 'priceWan', 'janTemp', 'julTemp', 'annualPrecip', 'elevation', 'hazardFreq'].map((dim) => ({ dim })),
   '[data-base]': ['none', 'janTemp', 'julTemp', 'elevation', 'annualPrecip'].map((base) => ({ base })),
   '[data-group]': ['live', 'infra', 'risk', 'invest'].map((group) => ({ group })),
   '[data-lm-tab]': ['sat', 'near', 'climate'].map((lmTab) => ({ lmTab })),
@@ -54,7 +54,15 @@ const document = {
 };
 function Chart(c, cfg) { JSON.stringify({ t: cfg && cfg.type }); this.destroy = () => {}; }
 Chart.defaults = { font: {}, color: '' };
-const chartStub = { setOption(o) { JSON.parse(JSON.stringify(o, (k, v) => (typeof v === 'function' ? null : v))); return chartStub; }, on() {}, resize() {}, clear() {}, getOption() { return { geo: [{ zoom: 1, center: [104, 36] }] }; } };
+let lastMapVm = null;
+const chartStub = {
+  setOption(o) {
+    if (o && o.visualMap) lastMapVm = o.visualMap;
+    JSON.parse(JSON.stringify(o, (k, v) => (typeof v === 'function' ? null : v)));
+    return chartStub;
+  },
+  on() {}, resize() {}, clear() {}, getOption() { return { geo: [{ zoom: 1, center: [104, 36] }] }; },
+};
 const echarts = { registerMap() {}, init() { return chartStub; } };
 const L = { map() { return { setView() { return this; }, addTo() { return this; }, invalidateSize() {}, fitBounds() {}, remove() {} }; }, tileLayer() { return { addTo() { return this; } }; }, circleMarker() { return { addTo() { return this; }, bindPopup() { return this; } }; } };
 const store = {};
@@ -88,6 +96,7 @@ setTimeout(() => {
   T('field elevation 973pts', w.HOUSING_FIELD && w.HOUSING_FIELD.fields.elevation.points.length === 973);
   T('geo-en districts CJK-free', Object.values((w.HOUSING_GEO_EN || {}).district || {}).every((v) => !zhRe.test(v)));
   T('kpi', /房源样本/.test(ids['kpi-grid']._html));
+  T('kpi mild zero-extreme listing', /极端天气最少/.test(ids['kpi-grid']._html) && /无/.test(ids['kpi-grid']._html));
   T('table head', /气候类型/.test(ids['table-head']._html) && /年温差/.test(ids['table-head']._html));
   T('no 宜居指数 anywhere', !/宜居指数/.test(ids['table-head']._html) && !/宜居指数/.test(ids['table-body']._html));
   T('climate types rendered', /(四季如春|常年温暖|四季分明|长夏无冬|夏热冬暖|冬暖夏凉|常年凉冷|温和过渡)/.test(ids['table-body']._html));
@@ -106,7 +115,31 @@ setTimeout(() => {
   T('no cold-as-hazard', !Object.values(HZ).some((p) => p.hazards.some((h) => /低温|冻害/.test(h.type))));
   T('hazard freq explicit', Object.values(HZ).every((p) => p.hazards.every((h) => /^(年年|数年|十年|数十年|百年)$/.test(h.freqShort))));
   T('table body heating cell', /集中供暖|无·湿冷|无·冬暖|部分供暖/.test(ids['table-body']._html));
-  try { selCache['[data-dim]'].forEach((b) => b.fire('click')); T('map dims', true); } catch (e) { T('map dims — ' + e.message, false); }
+  try {
+    selCache['[data-dim]'].forEach((b) => b.fire('click'));
+    T('map dims', true);
+    selCache['[data-dim]'].find((b) => b.dataset.dim === 'tempRange').fire('click');
+    const vmText = (lastMapVm && lastMapVm[0] && lastMapVm[0].text) || [];
+    T('map tempRange legend zh', vmText[0] === '四季分明' && vmText[1] === '平稳');
+    w.__setLang('en');
+    selCache['[data-dim]'].find((b) => b.dataset.dim === 'tempRange').fire('click');
+    const vmEn = (lastMapVm && lastMapVm[0] && lastMapVm[0].text) || [];
+    T('map tempRange legend en', vmEn[0] === 'large swing' && vmEn[1] === 'steady');
+    selCache['[data-dim]'].find((b) => b.dataset.dim === 'unitPrice').fire('click');
+    const vmPriceEn = (lastMapVm && lastMapVm[0] && lastMapVm[0].text) || [];
+    T('map unitPrice legend en', vmPriceEn[0] === 'dear' && vmPriceEn[1] === 'cheap');
+    w.__setLang('zh');
+    selCache['[data-dim]'].find((b) => b.dataset.dim === 'unitPrice').fire('click');
+    const vmPrice = (lastMapVm && lastMapVm[0] && lastMapVm[0].text) || [];
+    T('map unitPrice legend zh not swing', vmPrice[0] === '贵' && vmPrice[1] === '便宜');
+    selCache['[data-dim]'].find((b) => b.dataset.dim === 'janTemp').fire('click');
+    const vmJan = (lastMapVm && lastMapVm[0] && lastMapVm[0].text) || [];
+    T('map janTemp legend zh', vmJan[0] === '热' && vmJan[1] === '冷');
+    selCache['[data-dim]'].find((b) => b.dataset.dim === 'hazardFreq').fire('click');
+    const vmHz = (lastMapVm && lastMapVm[0] && lastMapVm[0].text) || [];
+    T('map hazardFreq legend zh', vmHz[0] === '年年' && vmHz[1] === '罕见');
+    selCache['[data-dim]'].find((b) => b.dataset.dim === 'tempRange').fire('click');
+  } catch (e) { T('map dims — ' + e.message, false); }
   try { selCache['[data-base]'].forEach((b) => b.fire('click')); T('basemaps (incl isolines+heatmap)', true); } catch (e) { T('basemaps — ' + e.message, false); }
   try { selCache['[data-prov]'].forEach((b) => b.fire('click')); selCache['[data-rank]'].forEach((b) => b.fire('click')); T('prov+rank', true); } catch (e) { T('prov+rank — ' + e.message, false); }
   try {
