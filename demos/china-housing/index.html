@@ -32,12 +32,14 @@
       })();
     </script>
 
-    <!-- ② Tailwind CDN — class-based dark mode strategy -->
-    <script>
-      window.tailwind = window.tailwind || {};
-      tailwind.config = { darkMode: 'class' };
-    </script>
+    <!-- ② Tailwind CDN (dark: utilities follow OS media — shell uses CSS vars + html.dark) -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        darkMode: 'class',
+        content: ['index.html', './assets/js/app.js'],
+      };
+    </script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <!-- Leaflet — only used inside the per-listing satellite / vicinity modal -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="" />
@@ -45,21 +47,93 @@
         :root {
             color-scheme: light;
             --page-bg: #f1f5f9;
+            --shell-bg: #ffffff;
             --surface: #ffffff;
             --surface-muted: #f8fafc;
             --text: #0f172a;
             --text-muted: #64748b;
+            --text-secondary: #475569;
+            --text-body: #334155;
+            --heading: #0f172a;
+            --heading-soft: #1e293b;
+            --accent: #047857;
+            --accent-soft: #4338ca;
+            --control-bg: #ffffff;
+            --control-hover: #f8fafc;
+            --control-text: #334155;
+            --placeholder: #94a3b8;
             --border: #e2e8f0;
         }
         html.dark {
             color-scheme: dark;
             --page-bg: #0f172a;
+            --shell-bg: #0f172a;
             --surface: #1e293b;
             --surface-muted: #172033;
             --text: #e2e8f0;
             --text-muted: #94a3b8;
+            --text-secondary: #94a3b8;
+            --text-body: #cbd5e1;
+            --heading: #f8fafc;
+            --heading-soft: #e2e8f0;
+            --accent: #34d399;
+            --accent-soft: #818cf8;
+            --control-bg: #1e293b;
+            --control-hover: #334155;
+            --control-text: #cbd5e1;
+            --placeholder: #64748b;
             --border: #334155;
         }
+        /* Class-driven shell — overrides Tailwind CDN @media (prefers-color-scheme: dark) */
+        nav.sticky.top-0,
+        body > header,
+        footer {
+            background-color: var(--shell-bg) !important;
+            border-color: var(--border) !important;
+        }
+        #kpi-grid > div,
+        main section .rounded-xl.border,
+        #table > .rounded-xl.border.overflow-hidden,
+        .methodology-details.rounded-xl.border,
+        #listing-modal .relative.rounded-2xl {
+            background-color: var(--surface) !important;
+            border-color: var(--border) !important;
+        }
+        .methodology-details .bg-slate-50 {
+            background-color: var(--surface-muted) !important;
+        }
+        #theme-toggle,
+        #map-zoom-in, #map-zoom-out, #map-zoom-reset,
+        #prov-filter, #table-search, #csv-export {
+            background-color: var(--control-bg) !important;
+            border-color: var(--border) !important;
+            color: var(--control-text) !important;
+        }
+        #theme-toggle:hover,
+        #map-zoom-in:hover, #map-zoom-out:hover, #map-zoom-reset:hover,
+        #csv-export:hover {
+            background-color: var(--control-hover) !important;
+        }
+        #table-search::placeholder { color: var(--placeholder) !important; }
+        nav a[aria-label="返回 QROST 首页"] { color: var(--heading) !important; }
+        nav .flex.items-center.gap-4 { color: var(--text-muted) !important; }
+        nav .flex.items-center.gap-4 a:hover { color: var(--heading) !important; }
+        header h1 { color: var(--heading) !important; }
+        header p { color: var(--text-secondary) !important; }
+        header strong { color: var(--heading-soft) !important; }
+        header a[href="#methodology"] { color: var(--accent) !important; }
+        main section > h2 { color: var(--text-muted) !important; }
+        main section > p { color: var(--text-secondary) !important; }
+        main section > p strong { color: var(--heading-soft) !important; }
+        #kpi-grid > div > div:first-child { color: var(--text-muted) !important; }
+        #kpi-grid > div > div:last-child { color: var(--text-secondary) !important; }
+        #kpi-grid .text-2xl, #kpi-grid .text-3xl { color: var(--heading) !important; }
+        #kpi-grid .text-sm { color: var(--text-muted) !important; }
+        footer, footer p { color: var(--text-muted) !important; }
+        #lm-title { color: var(--heading) !important; }
+        #lm-sub { color: var(--text-muted) !important; }
+        .text-emerald-700, .dark\\:text-emerald-400 { color: var(--accent) !important; }
+        .text-indigo-700, .dark\\:text-indigo-400 { color: var(--accent-soft) !important; }
         html, body {
             min-height: 100%;
             background-color: var(--page-bg);
@@ -320,7 +394,7 @@
                 </summary>
                 <div class="px-5 pb-5 pt-0 space-y-5 border-t border-slate-100 dark:border-slate-700/80">
                     <div
-                        class="rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800/80 p-5 text-sm text-slate-600 dark:text-slate-400 leading-relaxed space-y-2">
+                        class="rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 p-5 text-sm text-slate-600 dark:text-slate-400 leading-relaxed space-y-2">
                         <p class="font-medium text-slate-800 dark:text-slate-200">数据来源与整合</p>
                         <p>挂牌与旅居信息种子来自小红书博主「FIRE规划师」与「包子全是水」<strong
                                 class="font-medium text-slate-700 dark:text-slate-300">无偿分享</strong>的房产 / 旅居笔记——前者主要对应其 <strong

@@ -95,9 +95,21 @@ setTimeout(() => {
   try { ids['table-body'].fire('click', { target: { closest: () => ({ dataset: { open: '65' } }) } }); selCache['[data-lm-tab]'].find((b) => b.dataset.lmTab === 'climate').fire('click'); T('modal climate+hazard+供暖', /历史灾害概况/.test(ids['lm-risk']._html) && /冬季供暖/.test(ids['lm-risk']._html) && /年温差/.test(ids['lm-risk']._html)); } catch (e) { T('modal — ' + e.message, false); }
   try {
     ids['theme-toggle'].fire('click');
-    T('dark theme table cells', /text-slate-100/.test(ids['table-body']._html));
-    T('dark theme kpi card', /dark:bg-slate-800/.test(ids['kpi-grid']._html));
+    T('dark theme table cells', /text-slate-300/.test(ids['table-body']._html));
+    T('dark theme table head', /bg-slate-800/.test(ids['table-head']._html));
+    T('dark theme kpi card', ids['kpi-grid']._html.length > 100 && !/dark:bg-slate-800/.test(ids['kpi-grid']._html));
+    const darkChip = selCache['[data-group]'].find((b) => b.dataset.group === 'live').className;
+    T('dark theme chip explicit bg', /bg-slate-800/.test(darkChip) && !/dark:/.test(darkChip));
     ids['theme-toggle'].fire('click');
+    T('light theme table cells', /text-slate-700/.test(ids['table-body']._html));
+    T('light theme table head', /bg-slate-50/.test(ids['table-head']._html));
+    T('light html no dark class', !htmlClass.has('dark'));
+    const lightChip = selCache['[data-group]'].find((b) => b.dataset.group === 'live').className;
+    T('light theme chip bg-white', /bg-white/.test(lightChip) && !/bg-slate-800/.test(lightChip));
+    const rankTab = selCache['[data-rank]'].find((b) => b.dataset.rank === 'comfort');
+    T('light theme rank tab no dark variant', rankTab && !/dark:/.test(rankTab.className));
+    ids['theme-toggle'].fire('click');
+    T('dark round-trip table', /text-slate-300/.test(ids['table-body']._html));
   } catch (e) { T('theme toggle — ' + e.message, false); }
   let ok = true; for (const [n, p] of checks) { if (!p) ok = false; console.log((p ? 'PASS' : 'FAIL') + ' · ' + n); }
   console.log(ok ? '\nSMOKE_OK' : '\nSMOKE_FAIL'); process.exit(ok ? 0 : 1);
