@@ -30,6 +30,7 @@ import argparse
 import csv
 import json
 import re
+from datetime import datetime
 import sqlite3
 import sys
 import unicodedata
@@ -331,8 +332,9 @@ def sync_html(rows: list[dict]) -> list[str]:
     if lo and hi:
         apply("date range", r"\d{4}-\d{2}(\s*~\s*)\d{4}-\d{2}",
               lambda m: f"{lo}{m.group(1)}{hi}")
-        apply("footer 更新于", r"(更新于\s*)\d{4}-\d{2}",
-              lambda m: f"{m.group(1)}{hi}")
+        built_at = datetime.now().strftime("%Y-%m-%d %H:%M")
+        apply("footer 网页更新于", r'(id="page-built-at" class="tabular-nums">网页更新于\s*)\d{4}-\d{2}-\d{2}\s+\d{2}:\d{2}',
+              lambda m: f"{m.group(1)}{built_at}", expect=1)
 
     HTML_PATH.write_text(html, encoding="utf-8")
     return log

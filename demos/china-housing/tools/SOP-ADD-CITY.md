@@ -142,7 +142,7 @@ python3 tools/manage.py build
 ```
 
 一次性：① 重写 `listings.js / enriched.js / hazards.js / field.js`；② 刷新 `listings.csv` 镜像；
-③ 就地把 `index.html` 的「N套 / N省 / 覆盖N省 / 日期范围 / 页脚更新于」同步到 DB（超阈值样本
+③ 就地把 `index.html` 的「N套 / N省 / 覆盖N省 / 日期范围 / 页脚网页更新于（build 时刻）」同步到 DB（超阈值样本
 不计入标题数，与 `is_default_hidden()` 一致）。找不到某 token 会打印 `! … update manually` 警告，不静默失败。
 
 > **页面计数不写死**：hero 的「N套 / N省」既由 build 烘焙进静态 HTML（SEO / 无 JS 兜底），
