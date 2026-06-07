@@ -1,0 +1,81 @@
+{
+  "findings": [
+    {
+      "id": 175,
+      "area": 60,
+      "source": "data/research/china_low_cost_housing_best_effort_2026.csv",
+      "confidence": "med",
+      "note": "马鞍山雨山新村备注「60平左右老破小」"
+    },
+    {
+      "id": 184,
+      "area": 60,
+      "source": "data/research/china_low_cost_housing_best_effort_2026.csv",
+      "confidence": "med",
+      "note": "亳州万达还原小区备注「3000左右一平、总价约18万」→60㎡"
+    },
+    {
+      "id": 186,
+      "area": 60,
+      "source": "data/research/china_low_cost_housing_best_effort_2026.csv",
+      "confidence": "med",
+      "note": "芜湖碧园小区备注「8.5万一套60平两房」"
+    },
+    {
+      "id": 210,
+      "area": 85,
+      "source": "https://baike.baidu.com/item/%E4%B8%83%E5%BD%A9%E4%BA%91%E5%8D%97%C2%B7%E5%8F%A4%E6%BB%87%E5%90%8D%E5%9F%8E/22113675",
+      "confidence": "med",
+      "note": "七彩云南·古滇名城公开资料高层建面约85、88㎡；同事CSV「3000出头一平×25万」→约83㎡互证"
+    },
+    {
+      "id": 223,
+      "area": 60,
+      "source": "data/research/china_low_cost_housing_best_effort_2026.csv",
+      "confidence": "med",
+      "note": "句容碧桂园凤凰城低价样本为约15万精装复式/小面积公寓；链家大户型123㎡+为另一产品线"
+    },
+    {
+      "id": 226,
+      "area": 60,
+      "source": "data/research/china_low_cost_housing_best_effort_2026.csv",
+      "confidence": "med",
+      "note": "镇江平昌新城备注「13万可以买一套60平」"
+    },
+    {
+      "id": 240,
+      "area": 60,
+      "source": "data/research/china_low_cost_housing_best_effort_2026.csv",
+      "confidence": "med",
+      "note": "清远庙园一街备注「15万可以买60平」"
+    },
+    {
+      "id": 241,
+      "area": 60,
+      "source": "data/research/china_low_cost_housing_best_effort_2026.csv",
+      "confidence": "med",
+      "note": "清远碧桂园清泉城备注「18万可以买60平两室户」"
+    },
+    {
+      "id": 261,
+      "area": 89,
+      "source": "https://xx.loupan.com/loupan/7046464.html",
+      "confidence": "med",
+      "note": "新乡碧桂园；colleague remark 单价2800元/㎡ × priceWan 25 → 89.3㎡；source page 参考均价3000元/㎡ corroborates low-tier band"
+    },
+    {
+      "id": 271,
+      "area": 60,
+      "source": "data/research/china_low_cost_housing_best_effort_2026.csv",
+      "confidence": "med",
+      "note": "洛阳537家属楼低价样本为矿区附近小户型；备注未标面积，按同事15万以内老房样本取60㎡占位修正为市场描述"
+    },
+    {
+      "id": 273,
+      "area": 60,
+      "source": "data/research/china_low_cost_housing_best_effort_2026.csv",
+      "confidence": "med",
+      "note": "湖州长广金桂苑备注「15万60步步梯房」"
+    }
+  ]
+}
