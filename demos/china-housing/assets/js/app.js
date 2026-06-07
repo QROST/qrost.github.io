@@ -289,6 +289,14 @@
       coastKm: e && e.risk ? e.risk.coastKm : poiKm(e, 'coast'),
       seismic: e && e.risk ? e.risk.seismic : null,
       typhoon: e && e.risk ? e.risk.typhoon : null,
+      histTempMax: e && e.histTempMax != null ? e.histTempMax : null,
+      histTempMin: e && e.histTempMin != null ? e.histTempMin : null,
+      histTempMaxDate: (e && e.histTempMaxDate) || null,
+      histTempMinDate: (e && e.histTempMinDate) || null,
+      histTempSrc: (e && e.histTempSrc) || null,
+      histTempStation: (e && e.histTempStation) || null,
+      histTempNote: (e && e.histTempNote) || null,
+      histTempLevel: (e && e.histTempLevel) || null,
       ...cd,
     };
   });
@@ -1063,6 +1071,24 @@
       + (d.builtYearSrc && !isEn() ? `\n${t('builtSource')}: ${d.builtYearSrc}` : '');
     return `<span class="inline-block rounded px-1.5 py-0.5 text-xs font-medium" style="background:${mix(AGE_NEW, AGE_OLD, ageT)};color:#fff" title="${title.replace(/"/g, '&quot;')}">${ap ? t('builtApprox') : ''}${age}${isEn() ? ' yr' : '年'}</span>`;
   }
+  const HIST_LEVEL_EN = { '市': 'city station', '区县': 'county', '区镇/街道': 'district/town' };
+  function trHistLevel(lv) { return isEn() ? (HIST_LEVEL_EN[lv] || lv) : lv; }
+  function histTempNoteDisplay(d) {
+    if (!d || !d.histTempNote) return '';
+    if (!isEn()) return d.histTempNote;
+    const src = d.histTempSrc || '';
+    if (src.startsWith('wikipedia')) return t('histTempNoteWiki');
+    if (src.startsWith('open-meteo')) return t('histTempNoteEra5');
+    if (src.startsWith('climate-monthly')) return t('histTempNoteClimate');
+    return '';
+  }
+  function histTempCell(val, date, station, note, kind, level) {
+    if (val == null) return `<span class="${tcx().faint}">—</span>`;
+    const st = station && (!isEn() || !/[\u4e00-\u9fff]/.test(station)) ? station : '';
+    const tip = [kind === 'high' ? t('histTempMaxTitle') : t('histTempMinTitle'), fmtTemp(val),
+      date ? `(${date})` : '', level ? trHistLevel(level) : '', st, note || ''].filter(Boolean).join(' · ');
+    return `<span class="tabular-nums" title="${tip.replace(/"/g, '&quot;')}">${fmtTemp(val)}</span>`;
+  }
   function climateCell(d) {
     if (!d.climateType) return `<span class="${tcx().faint}">—</span>`;
     const [bg, fg] = CLIMATE_STYLE[d.climateType] || ['#f1f5f9', '#64748b'];
@@ -1126,6 +1152,12 @@
     { key: 'tempRange', label: '年温差', group: 'live', num: true, get: (d) => nz(d.tempRange, -1), cell: (d) => rangeCell(d.tempRange) },
     { key: 'janTemp', label: '1月均温', group: 'live', num: true, get: (d) => nz(d.janTemp, -999), cell: (d) => fmtTemp(d.janTemp) },
     { key: 'julTemp', label: '7月均温', group: 'live', num: true, get: (d) => nz(d.julTemp, -999), cell: (d) => fmtTemp(d.julTemp) },
+    { key: 'histTempMax', label: '历史最高温', group: 'live', num: true,
+      get: (d) => nz(d.histTempMax, -999),
+      cell: (d) => histTempCell(d.histTempMax, d.histTempMaxDate, d.histTempStation, histTempNoteDisplay(d), 'high', d.histTempLevel) },
+    { key: 'histTempMin', label: '历史最低温', group: 'live', num: true,
+      get: (d) => nz(d.histTempMin, 999),
+      cell: (d) => histTempCell(d.histTempMin, d.histTempMinDate, d.histTempStation, histTempNoteDisplay(d), 'low', d.histTempLevel) },
     { key: 'comfortMonths', label: '舒适日期', group: 'live', get: (d) => nz(d.comfortDayCount, nz(d.comfortMonths, -1)), cell: (d) => comfortCell(d) },
     { key: 'extremeMonths', label: '极端日期', group: 'live', get: (d) => nz(d.extremeDayCount, nz(d.extremeMonths, 99)), cell: (d) => extremeCell(d) },
     { key: 'annualPrecip', label: '年降水mm', group: 'live', num: true, get: (d) => nz(d.annualPrecip, -1), cell: (d) => d.annualPrecip == null ? '—' : fmtInt(d.annualPrecip) },
@@ -1272,6 +1304,9 @@
       ['月租(元)', (d) => d.rent],
       ['气候类型', (d) => d.climateType || ''], ['年温差(℃)', (d) => d.tempRange],
       ['1月均温(℃)', (d) => d.janTemp], ['7月均温(℃)', (d) => d.julTemp],
+      ['历史最高温(℃)', (d) => d.histTempMax], ['历史最高温日期', (d) => d.histTempMaxDate || ''],
+      ['历史最低温(℃)', (d) => d.histTempMin], ['历史最低温日期', (d) => d.histTempMinDate || ''],
+      ['历史气温来源', (d) => d.histTempSrc || ''], ['历史气温站址说明', (d) => d.histTempStation || d.histTempNote || ''],
       ['舒适天数', (d) => d.comfortDayCount != null ? d.comfortDayCount : d.comfortMonths],
       ['舒适日期', (d) => d.comfortRange],
       ['极端天数', (d) => d.extremeDayCount != null ? d.extremeDayCount : d.extremeMonths],
@@ -1401,6 +1436,16 @@
   function lmRenderClimate(d) {
     const e = d.enr, risk = e.risk, cl = e.climate;
     const tc = tcx();
+    const histLine = (d.histTempMax != null || d.histTempMin != null)
+      ? `<div class="mt-2 text-sm ${tc.body}"><span class="font-medium ${tc.strong}">${t('histTempTitle')}</span>: `
+        + `${t('histTempMaxTitle')} ${d.histTempMax == null ? '—' : fmtTemp(d.histTempMax)}`
+        + ` · ${t('histTempMinTitle')} ${d.histTempMin == null ? '—' : fmtTemp(d.histTempMin)}`
+        + (d.histTempLevel ? `<span class="${tc.muted}"> · ${trHistLevel(d.histTempLevel)}</span>` : '')
+        + (d.histTempStation && (!isEn() || !/[\u4e00-\u9fff]/.test(d.histTempStation))
+          ? `<span class="${tc.muted}"> · ${d.histTempStation}</span>` : '')
+        + (histTempNoteDisplay(d) ? `<span class="${tc.muted} text-xs block mt-0.5">${histTempNoteDisplay(d)}</span>` : '')
+        + `</div>`
+      : '';
     const riskLine = risk
       ? `<span class="font-medium ${tc.strong}">${t('climateRiskTitle')}</span>: ${trRisk(risk.summary)} · <strong class="${tc.body}">${trCl(d.climateType) || '—'}</strong> (${t('swingLabel')} ${d.tempRange == null ? '—' : fmtSwing(d.tempRange)}: ${t('coldestMonth')} ${fmtTemp(d.tMin)} / ${t('hottestMonth')} ${fmtTemp(d.tMax)}; ${t('comfortLabel')} ${comfortRangeOf(d)} / ${t('extremeLabel')} ${extremeRangeOf(d)})`
       : '';
@@ -1423,7 +1468,7 @@
         + (headEn ? `<span class="${tc.muted}"> (${headEn})</span>` : '')
         + `<div class="mt-1.5 flex flex-wrap gap-1.5">${tags}</div></div>`;
     }
-    document.getElementById('lm-risk').innerHTML = (riskLine || `<span class="${tc.muted}">${t('noRiskData')}</span>`) + heatLine + hazLine;
+    document.getElementById('lm-risk').innerHTML = (riskLine || `<span class="${tc.muted}">${t('noRiskData')}</span>`) + histLine + heatLine + hazLine;
     if (lmClimateChart) { lmClimateChart.destroy(); lmClimateChart = null; }
     if (!window.Chart) return;
     const ctxEl = document.getElementById('lm-climate-chart');

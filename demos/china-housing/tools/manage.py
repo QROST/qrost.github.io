@@ -513,6 +513,16 @@ def cmd_climate_daily(args):
     enrich.climate_daily_all(connect(), print)
 
 
+def cmd_hist_temp(args):
+    import fetch_hist_temp_extremes as hte  # noqa: WPS433 — sibling script
+    cache = hte.load_cache()
+    rep = hte.apply_to_db(connect(), cache, force=args.force, skip_wiki=args.skip_wiki)
+    hte.save_cache(cache)
+    print("=== hist-temp report ===")
+    print(json.dumps(rep, ensure_ascii=False, indent=1))
+    print("→ run `build` to regenerate enriched.js")
+
+
 def cmd_pois(args):
     enrich.pois_all(connect(), print)
 
@@ -626,6 +636,10 @@ def main(argv=None):
 
     sub.add_parser("climate", help="bake monthly climate normals via Open-Meteo").set_defaults(fn=cmd_climate)
     sub.add_parser("climate-daily", help="bake 365-day climatology + comfort/extreme day-ranges").set_defaults(fn=cmd_climate_daily)
+    sp = sub.add_parser("hist-temp", help="bake historical max/min temps (Wikipedia CMA → ERA5 fallback)")
+    sp.add_argument("--force", action="store_true", help="re-fetch even if columns already populated")
+    sp.add_argument("--skip-wiki", action="store_true", help="ERA5 only (faster; no CMA station lookup)")
+    sp.set_defaults(fn=cmd_hist_temp)
     sp = sub.add_parser("elevation", help="bake metres-above-sea-level via Open-Meteo DEM (batched)")
     sp.add_argument("--force", action="store_true", help="re-fetch rows that already have elevation")
     sp.set_defaults(fn=cmd_elevation)

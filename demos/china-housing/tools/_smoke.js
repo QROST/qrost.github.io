@@ -145,7 +145,7 @@ setTimeout(() => {
   try { selCache['[data-prov]'].forEach((b) => b.fire('click')); selCache['[data-rank]'].forEach((b) => b.fire('click')); T('prov+rank', true); } catch (e) { T('prov+rank — ' + e.message, false); }
   try {
     selCache['[data-group]'].forEach((b) => b.fire('click'));
-    ['janTemp', 'hospitalKm', 'transitKm', 'seismic', 'hazard', 'tempRange', 'climateType', 'prov'].forEach((col) => ids['table-head'].fire('click', { target: { closest: () => ({ dataset: { col } }) } }));
+    ['janTemp', 'histTempMax', 'histTempMin', 'hospitalKm', 'transitKm', 'seismic', 'hazard', 'tempRange', 'climateType', 'prov'].forEach((col) => ids['table-head'].fire('click', { target: { closest: () => ({ dataset: { col } }) } }));
     T('group+sorts', true);
   } catch (e) { T('group+sorts — ' + e.message, false); }
   try { ids['table-body'].fire('click', { target: { closest: () => ({ dataset: { open: '65' } }) } }); selCache['[data-lm-tab]'].find((b) => b.dataset.lmTab === 'climate').fire('click'); T('modal climate+hazard+供暖', /历史灾害概况/.test(ids['lm-risk']._html) && /冬季供暖/.test(ids['lm-risk']._html) && /年温差/.test(ids['lm-risk']._html)); } catch (e) { T('modal — ' + e.message, false); }
@@ -176,6 +176,7 @@ setTimeout(() => {
     T('zh hero count', /套/.test(ids['hero-count'].textContent));
     T('zh table has ¥ or 万', /万|¥/.test(ids['table-body']._html));
     T('zh table has ㎡ or km', /㎡|km|°C/.test(ids['table-body']._html));
+    T('zh hist temp columns', /历史最高温/.test(ids['table-head']._html) && /历史最低温/.test(ids['table-head']._html));
     w.__setLang('en');
     T('lang en', w.__getLang() === 'en');
     T('housing-lang persisted', localStorage.getItem('housing-lang') === 'en');
@@ -185,6 +186,8 @@ setTimeout(() => {
     T('en pinyin community', /Jun De Xiao Qu|Dong Rong Xiao Qu/.test(ids['table-body']._html));
     T('en unit sqft', /\$.*\/sqft/.test(ids['table-body']._html));
     T('en table head climate', /Climate/.test(ids['table-head']._html) && /Heating/.test(ids['table-head']._html));
+    T('en hist temp columns', /Record high/.test(ids['table-head']._html) && /Record low/.test(ids['table-head']._html));
+    T('hist temp data baked', (() => { const rows = (sandbox.window.HOUSING_LISTINGS || []).slice(0, 5); return rows.some((r) => { const e = sandbox.window.HOUSING_ENRICHED[r.id] || sandbox.window.HOUSING_ENRICHED[String(r.id)]; return e && e.histTempMax != null && e.histTempMin != null; }); })());
     T('en table head no zh', !zhRe.test(ids['table-head']._html));
     T('en table body no zh', !zhRe.test(ids['table-body']._html));
     T('en climate types', /(Spring-like year-round|Four distinct seasons|Long summer|Mild winter|Cool year-round)/.test(ids['table-body']._html));
