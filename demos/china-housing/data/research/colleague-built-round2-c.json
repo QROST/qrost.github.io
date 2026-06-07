@@ -1,0 +1,72 @@
+{
+  "findings": [
+    {
+      "id": 259,
+      "builtYear": null,
+      "confidence": "none",
+      "note": "新乡比干社区为卫辉比干庙片区村居/社区统称，贝壳/安居客无单一建成年代字段"
+    },
+    {
+      "id": 260,
+      "builtYear": null,
+      "confidence": "none",
+      "note": "比干庙玲珑湾在售新房信息稀少，房天下/安居客未查到权威竣工年份"
+    },
+    {
+      "id": 262,
+      "builtYear": 2016,
+      "yearText": "新乡高铁片区安置/新建小区多集中在2010年代中后期",
+      "source": "data/research/china_low_cost_housing_best_effort_2026.csv",
+      "confidence": "approx",
+      "note": "上乐新村/高铁小区备注指向新乡高铁新城片区，取片区主流交付批次约2016年"
+    },
+    {
+      "id": 277,
+      "builtYear": null,
+      "confidence": "none",
+      "note": "盐边清源社区为县域安置点，盐边县政府公开稿未载明该社区竣工年"
+    },
+    {
+      "id": 183,
+      "builtYear": null,
+      "confidence": "none",
+      "note": "桐城高桥城（龙腾大道）仍无链家/58建成年代；round2-c复核无新权威页"
+    },
+    {
+      "id": 217,
+      "builtYear": null,
+      "confidence": "none",
+      "note": "楚雄元江江东住宅为片区描述，非单一备案小区"
+    },
+    {
+      "id": 174,
+      "builtYear": null,
+      "confidence": "none",
+      "note": "来安高许片区无新增建成年代来源"
+    },
+    {
+      "id": 251,
+      "builtYear": 1992,
+      "yearText": "阳春市区存量多层老宅以八九十年代房为主",
+      "source": "data/research/china_low_cost_housing_best_effort_2026.csv",
+      "confidence": "approx",
+      "note": "阳春市区老住宅备注「老房子、清远城区老小区」；无单盘页，取城区旧宅主流年代"
+    },
+    {
+      "id": 257,
+      "builtYear": 1978,
+      "yearText": "鹤壁山城矿区职工住宅随矿务局建设，批次多为1970年代",
+      "source": "data/research/china_low_cost_housing_best_effort_2026.csv",
+      "confidence": "approx",
+      "note": "山城矿区老房；比照河南油田/矿区家属楼年代档"
+    },
+    {
+      "id": 258,
+      "builtYear": 1985,
+      "yearText": "鹤山区老城工矿多层住宅多为上世纪七八十年代",
+      "source": "data/research/china_low_cost_housing_best_effort_2026.csv",
+      "confidence": "approx",
+      "note": "鹤山老破小；鹤山为鹤壁老工业区"
+    }
+  ]
+}
