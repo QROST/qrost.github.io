@@ -45,7 +45,7 @@ python3 tools/manage.py build
 ```
 
 `build` 会一次性：① 重写 `assets/data/listings.js`；② 刷新 `data/listings.csv` 镜像；
-③ 就地把 `index.html` 里的「N 套 / N 个省 / 日期范围 / 页脚更新于」改成最新值
+③ 就地把 `index.html` 里的「N 套 / N 个省 / 日期范围 / 页脚网页更新于（build 时刻）」改成最新值
 （找不到某个 token 会打印 `! ... update manually` 警告，不会静默失败）。
 
 **提交**（把 DB、生成的 js、csv、改动的 index.html 一起提交）：
