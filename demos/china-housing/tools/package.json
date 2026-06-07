@@ -1,0 +1,13 @@
+{
+  "name": "tools",
+  "version": "1.0.0",
+  "description": "> 🧭 **要加城市 / 小区？** 直接照 [`SOP-ADD-CITY.md`](SOP-ADD-CITY.md) 这份 runbook 走（给 > agent / 同事 / Cursor 用的完整闭环）。本 README 是各命令与口径的深度参考。",
+  "main": "_browser_theme.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs"
+}

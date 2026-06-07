@@ -23,6 +23,8 @@ function el(dataset) {
     addEventListener(t, fn) { (e._l[t] || (e._l[t] = [])).push(fn); },
     fire(t, ev) { (e._l[t] || []).forEach((fn) => fn(ev || {})); },
     appendChild() {}, getContext() { return {}; }, getAttribute() { return null; },
+    setAttribute() {}, set placeholder(v) { e._placeholder = v; },
+    get placeholder() { return e._placeholder || ''; },
     closest() { return null; }, querySelectorAll() { return []; },
   };
   Object.defineProperty(e, 'innerHTML', { get() { return e._html; }, set(v) { e._html = String(v); } });
@@ -55,11 +57,26 @@ Chart.defaults = { font: {}, color: '' };
 const chartStub = { setOption(o) { JSON.parse(JSON.stringify(o, (k, v) => (typeof v === 'function' ? null : v))); return chartStub; }, on() {}, resize() {}, clear() {}, getOption() { return { geo: [{ zoom: 1, center: [104, 36] }] }; } };
 const echarts = { registerMap() {}, init() { return chartStub; } };
 const L = { map() { return { setView() { return this; }, addTo() { return this; }, invalidateSize() {}, fitBounds() {}, remove() {} }; }, tileLayer() { return { addTo() { return this; } }; }, circleMarker() { return { addTo() { return this; }, bindPopup() { return this; } }; } };
-const sandbox = { window: {}, document, Chart, echarts, L, console, setTimeout, JSON, Math, Object, Array, String, Number, Map, Set, parseInt, parseFloat, Blob: function () {}, URL: { createObjectURL() { return ''; }, revokeObjectURL() {} } };
+const store = {};
+const localStorage = { getItem(k) { return store[k] ?? null; }, setItem(k, v) { store[k] = String(v); } };
+const sessionStorage = { getItem() { return null; }, setItem() {} };
+const sandbox = { window: {}, document, Chart, echarts, L, console, setTimeout, JSON, Math, Object, Array, String, Number, Map, Set, parseInt, parseFloat, localStorage, sessionStorage, fetch: () => Promise.reject(new Error('offline')), Blob: function () {}, URL: { createObjectURL() { return ''; }, revokeObjectURL() {} } };
 sandbox.window.Chart = Chart; sandbox.window.echarts = echarts; sandbox.window.L = L; sandbox.window.addEventListener = () => {};
 sandbox.globalThis = sandbox; vm.createContext(sandbox);
 const run = (f) => vm.runInContext(read(f), sandbox, { filename: f });
-['assets/data/listings.js', 'assets/data/china-geo.js', 'assets/data/enriched.js', 'assets/data/hazards.js', 'assets/data/field.js', 'assets/js/app.js'].forEach(run);
+ids['lang-toggle'] = el({ id: 'lang-toggle' });
+['assets/data/listings.js', 'assets/data/china-geo.js', 'assets/data/enriched.js', 'assets/data/hazards.js', 'assets/data/field.js', 'assets/data/loc-pinyin.js', 'assets/data/geo-en.js', 'assets/js/i18n.js', 'assets/js/app.js'].forEach(run);
+const zhRe = /[\u4e00-\u9fff]/;
+
+function ensureGroupsOn() {
+  ['live', 'infra', 'risk'].forEach((g) => {
+    const btn = selCache['[data-group]'].find((b) => b.dataset.group === g);
+    // idempotent: chip uses bg-emerald-* when group is active — do not toggle off
+    if (btn && !/bg-emerald/.test(btn.className)) btn.fire('click');
+  });
+}
+ids['listing-modal'] = el({ id: 'listing-modal' });
+ids['listing-modal'].classList = { _c: new Set(['hidden']), contains(c) { return this._c.has(c); }, add(c) { this._c.add(c); }, remove(c) { this._c.delete(c); }, toggle(c) { this._c.has(c) ? this._c.delete(c) : this._c.add(c); } };
 
 setTimeout(() => {
   const w = sandbox.window; const checks = [];
@@ -69,6 +86,7 @@ setTimeout(() => {
   T('hazards 22', Object.keys(w.HOUSING_HAZARDS || {}).length === 22);
   T('field 4 fields', w.HOUSING_FIELD && Object.keys(w.HOUSING_FIELD.fields).length === 4);
   T('field elevation 973pts', w.HOUSING_FIELD && w.HOUSING_FIELD.fields.elevation.points.length === 973);
+  T('geo-en districts CJK-free', Object.values((w.HOUSING_GEO_EN || {}).district || {}).every((v) => !zhRe.test(v)));
   T('kpi', /房源样本/.test(ids['kpi-grid']._html));
   T('table head', /气候类型/.test(ids['table-head']._html) && /年温差/.test(ids['table-head']._html));
   T('no 宜居指数 anywhere', !/宜居指数/.test(ids['table-head']._html) && !/宜居指数/.test(ids['table-body']._html));
@@ -91,7 +109,11 @@ setTimeout(() => {
   try { selCache['[data-dim]'].forEach((b) => b.fire('click')); T('map dims', true); } catch (e) { T('map dims — ' + e.message, false); }
   try { selCache['[data-base]'].forEach((b) => b.fire('click')); T('basemaps (incl isolines+heatmap)', true); } catch (e) { T('basemaps — ' + e.message, false); }
   try { selCache['[data-prov]'].forEach((b) => b.fire('click')); selCache['[data-rank]'].forEach((b) => b.fire('click')); T('prov+rank', true); } catch (e) { T('prov+rank — ' + e.message, false); }
-  try { selCache['[data-group]'].forEach((b) => b.fire('click')); ['janTemp', 'hospitalKm', 'transitKm', 'seismic', 'hazard', 'tempRange', 'climateType', 'prov'].forEach((col) => ids['table-head'].fire('click', { target: { closest: () => ({ dataset: { col } }) } })); T('group+sorts', true); } catch (e) { T('group+sorts — ' + e.message, false); }
+  try {
+    selCache['[data-group]'].forEach((b) => b.fire('click'));
+    ['janTemp', 'hospitalKm', 'transitKm', 'seismic', 'hazard', 'tempRange', 'climateType', 'prov'].forEach((col) => ids['table-head'].fire('click', { target: { closest: () => ({ dataset: { col } }) } }));
+    T('group+sorts', true);
+  } catch (e) { T('group+sorts — ' + e.message, false); }
   try { ids['table-body'].fire('click', { target: { closest: () => ({ dataset: { open: '65' } }) } }); selCache['[data-lm-tab]'].find((b) => b.dataset.lmTab === 'climate').fire('click'); T('modal climate+hazard+供暖', /历史灾害概况/.test(ids['lm-risk']._html) && /冬季供暖/.test(ids['lm-risk']._html) && /年温差/.test(ids['lm-risk']._html)); } catch (e) { T('modal — ' + e.message, false); }
   try {
     ids['theme-toggle'].fire('click');
@@ -110,7 +132,53 @@ setTimeout(() => {
     T('light theme rank tab no dark variant', rankTab && !/dark:/.test(rankTab.className));
     ids['theme-toggle'].fire('click');
     T('dark round-trip table', /text-slate-300/.test(ids['table-body']._html));
+    ids['theme-toggle'].fire('click');
+    T('theme+lang coexist', true);
   } catch (e) { T('theme toggle — ' + e.message, false); }
+  try {
+    ensureGroupsOn();
+    w.__setLang('zh');
+    T('default lang zh', w.__getLang() === 'zh');
+    T('zh hero count', /套/.test(ids['hero-count'].textContent));
+    T('zh table has ¥ or 万', /万|¥/.test(ids['table-body']._html));
+    T('zh table has ㎡ or km', /㎡|km|°C/.test(ids['table-body']._html));
+    w.__setLang('en');
+    T('lang en', w.__getLang() === 'en');
+    T('housing-lang persisted', localStorage.getItem('housing-lang') === 'en');
+    T('en table count', /Showing \d+ \/ \d+/.test(ids['table-count'].textContent));
+    T('en kpi listings', /Listings/.test(ids['kpi-grid']._html));
+    T('en hero no CJK', !zhRe.test(ids['hero-title'].textContent + ids['hero-body'].innerHTML));
+    T('en pinyin community', /Jun De Xiao Qu|Dong Rong Xiao Qu/.test(ids['table-body']._html));
+    T('en unit sqft', /\$.*\/sqft/.test(ids['table-body']._html));
+    T('en table head climate', /Climate/.test(ids['table-head']._html) && /Heating/.test(ids['table-head']._html));
+    T('en table head no zh', !zhRe.test(ids['table-head']._html));
+    T('en table body no zh', !zhRe.test(ids['table-body']._html));
+    T('en climate types', /(Spring-like year-round|Four distinct seasons|Long summer|Mild winter|Cool year-round)/.test(ids['table-body']._html));
+    T('en heating cell', /Central heating|No heating/.test(ids['table-body']._html));
+    T('en kpi no zh', !zhRe.test(ids['kpi-grid']._html));
+    T('en has °F', /°F/.test(ids['table-body']._html));
+    T('en has mi', /\d+(\.\d+)? mi|\d+ ft/.test(ids['table-body']._html));
+    T('en no °C in table', !/°C/.test(ids['table-body']._html));
+    T('en no km in table cells', !/\bkm\b/.test(ids['table-body']._html));
+    ids['table-body'].fire('click', { target: { closest: () => ({ dataset: { open: '1' } }) } });
+    selCache['[data-lm-tab]'].find((b) => b.dataset.lmTab === 'climate').fire('click');
+    T('en modal no zh', !zhRe.test(ids['lm-risk']._html));
+    T('en modal heating', /Winter heating|Central heating|No heating/.test(ids['lm-risk']._html));
+    T('en modal has °F', /°F/.test(ids['lm-risk']._html));
+    w.__setLang('en');
+    ids['table-body'].fire('click', { target: { closest: () => ({ dataset: { open: '65' } }) } });
+    T('lang change while modal open', !document.getElementById('listing-modal').classList.contains('hidden'));
+    ids['lang-toggle'].fire('click');
+    T('toggle back zh', w.__getLang() === 'zh');
+    T('zh table count', /显示 \d+ \/ \d+ 套/.test(ids['table-count'].textContent));
+    w.__setTier1On(true);
+    w.__setLang('en');
+    T('lang+tier1 en no crash', w.__getLang() === 'en' && /Showing/.test(ids['table-count'].textContent));
+    w.__setTier1On(false);
+    const I = w.HOUSING_I18N;
+    T('FX fallback ÷7', I.getRateSource() === 'fallback' && Math.abs(I.getRate() - 7) < 0.01);
+    T('formatters null-safe', I.formatTemp(null) === '—' && I.formatDist(null) === '—' && I.formatArea(null) === '—');
+  } catch (e) { T('lang toggle — ' + e.message, false); }
   let ok = true; for (const [n, p] of checks) { if (!p) ok = false; console.log((p ? 'PASS' : 'FAIL') + ' · ' + n); }
   console.log(ok ? '\nSMOKE_OK' : '\nSMOKE_FAIL'); process.exit(ok ? 0 : 1);
 }, 150);
