@@ -273,9 +273,8 @@
             <h2 id="sec-overview-h" class="text-xs font-semibold uppercase tracking-[0.15em] text-slate-400 dark:text-slate-500 mb-1">便宜 × 宜居 · Cheap ↔ Livable
             </h2>
             <p id="sec-overview-p" class="text-slate-600 dark:text-slate-400 mb-6 max-w-2xl text-sm leading-relaxed">每个点是一套房：横轴<strong
-                    class="text-slate-800 dark:text-slate-200">总价（越左越便宜）</strong>、纵轴<strong class="text-slate-800 dark:text-slate-200">舒适月数（月均温 15–26℃
-                    的月份，越上越多）</strong>，<strong class="text-indigo-700 dark:text-indigo-400">颜色越蓝 = 年温差越大（四季越分明）</strong>、越青 = 全年越平稳。<strong
-                    class="text-slate-800 dark:text-slate-200">左上角</strong>那批既便宜、舒适月又多的房子，正是这份清单想帮你找到的。</p>
+                    class="text-slate-800 dark:text-slate-200">总价（越左越便宜）</strong>、纵轴<strong class="text-slate-800 dark:text-slate-200">舒适天数（日均温 15–26℃；悬停看具体日期范围，越上越多）</strong>，<strong class="text-indigo-700 dark:text-indigo-400">颜色越蓝 = 年温差越大（四季越分明）</strong>、越青 = 全年越平稳。<strong
+                    class="text-slate-800 dark:text-slate-200">左上角</strong>那批既便宜、舒适日又多的房子，正是这份清单想帮你找到的。</p>
             <div class="rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 p-4 md:p-6 transition-colors duration-300">
                 <div class="relative" style="height: 440px;"><canvas id="scatter-chart"></canvas></div>
             </div>
@@ -285,7 +284,7 @@
         <section id="rankings" class="scroll-mt-20">
             <h2 id="sec-rankings-h" class="text-xs font-semibold uppercase tracking-[0.15em] text-slate-400 dark:text-slate-500 mb-1">排行 · Top 50</h2>
             <p id="sec-rankings-p" class="text-slate-600 dark:text-slate-400 mb-4 max-w-2xl text-sm leading-relaxed">切换不同口径看极值——总价 /
-                单价最低、气候最宜居、极端天气最多（哪些便宜城市气候最恶劣、何时），也保留了租金回报口径。</p>
+                单价最低、舒适日最多、极端日最多，也保留了租金回报口径。</p>
             <div class="flex flex-wrap gap-2 mb-5">
                 <button data-rank="cheap" class="rank-tab"></button>
                 <button data-rank="unit" class="rank-tab"></button>
@@ -361,7 +360,7 @@
             <h2 id="sec-table-h" class="text-xs font-semibold uppercase tracking-[0.15em] text-slate-400 dark:text-slate-500 mb-1">数据表 · 总信息源</h2>
             <p id="sec-table-p" class="text-slate-600 dark:text-slate-400 mb-5 max-w-3xl text-sm leading-relaxed">这张表是<strong
                     class="text-slate-800 dark:text-slate-200">一切图表与地图的来源</strong>——价格、宜居（气温 / 降水 / 海拔 /
-                舒适与极端月数）、基础设施距离、在地灾害风险全部并列，便于横向对比。点击表头排序，用下方按钮切换<strong
+                舒适日 / 极端日、气温 / 降水 / 海拔）、基础设施距离、在地灾害风险全部并列，便于横向对比。点击表头排序，用下方按钮切换<strong
                     class="text-emerald-700 dark:text-emerald-400">列分组</strong>，按省份筛选或搜索。所有派生指标实时计算。</p>
             <div class="flex flex-wrap items-center gap-2 mb-3">
                 <span id="show-cols-label" class="text-xs font-medium text-slate-400 dark:text-slate-500 mr-1 self-center">显示列</span>

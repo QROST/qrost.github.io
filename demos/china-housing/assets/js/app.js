@@ -353,8 +353,10 @@
     const cheapest = vd.reduce((a, b) => (b.priceWan < a.priceWan ? b : a));
     const climD = vd.filter((d) => d.tempRange != null);
     const steadiest = climD.reduce((a, b) => (b.tempRange < a.tempRange ? b : a), climD[0]);
-    const extremeScore = (d) => (d.extremeDayCount != null ? d.extremeDayCount : d.extremeMonths);
-    const mildest = climD.reduce((a, b) => (extremeScore(b) < extremeScore(a) ? b : a), climD[0]);
+    const comfortScore = (d) => (d.comfortDayCount != null ? d.comfortDayCount
+      : (d.comfortMonths != null ? Math.round(d.comfortMonths * 30.4) : null));
+    const comfortD = vd.filter((d) => comfortScore(d) != null);
+    const mostComfort = comfortD.reduce((a, b) => (comfortScore(b) > comfortScore(a) ? b : a), comfortD[0]);
     const medUnit = median(vd.map((d) => d.unitPrice));
     const cards = [
       { label: t('kpiListings'), value: vd.length, unit: t('kpiUnit'), sub: t('kpiListingsSub') },
@@ -362,7 +364,7 @@
       { label: t('kpiCheapest'), value: fmtWan(cheapest.priceWan), sub: cityLabel(cheapest) },
       { label: t('kpiMedianUnit'), value: isEn() ? fmtUnit(medUnit) : fmtInt(medUnit), unit: isEn() ? '' : '元/㎡', sub: t('kpiMedianUnitSub') },
       { label: t('kpiSteady'), value: steadiest ? fmtSwing(steadiest.tempRange) : '—', unit: '', sub: steadiest ? `${cityLabel(steadiest)} · ${trCl(steadiest.climateType) || ''}` : '—' },
-      { label: t('kpiMild'), value: mildest ? extremeRangeOf(mildest) : '—', sub: mildest ? `${cityLabel(mildest)} · ${t('kpiMildSub')}` : '—' },
+      { label: t('kpiComfortMax'), value: mostComfort ? comfortScore(mostComfort) + t('daySuffix') : '—', sub: mostComfort ? `${cityLabel(mostComfort)} · ${t('kpiComfortMaxSub')}` : '—' },
     ];
     document.getElementById('kpi-grid').innerHTML = cards.map((c) => `
       <div class="rounded-xl border p-5 transition-colors duration-300">
@@ -401,7 +403,7 @@
 
   let scatterChart, rankChart, provChart;
 
-  // ---- overview scatter: 总价(便宜) × 舒适月数, coloured by 年温差(季节波动) ----
+  // ---- overview scatter: 总价(便宜) × 舒适天数, coloured by 年温差(季节波动) ----
   function renderScatter() {
     const ctx = document.getElementById('scatter-chart');
     if (!ctx || !window.Chart) return;
@@ -560,9 +562,8 @@
   };
   let provMetric = 'avgRange';
 
-  // avgExtreme view: a 12-month strip per province (x = 月份 1–12). A cell is
-  // shaded when that month is extreme for some listing — depth = share of the
-  // province's listings affected. Clearer than equal-length bars all from 0.
+  // avgExtreme view: a 365-day strip per province (vertical ticks = month boundaries).
+  // Red spans = days when some listing in the province is extreme; depth = share affected.
   function renderProvinceStrip() {
     const canvas = document.getElementById('province-chart');
     if (!canvas) return;
@@ -647,12 +648,13 @@
             callbacks: {
               label: (it) => {
                 const a = agg[it.dataIndex];
+                const avgEx = a.avgExtremeDays ?? a.avgExtreme;
                 const head = provMetric === 'avgExtreme'
-                  ? `${t('provExtremeUnion')}: ${a.extremeRange} · ${a.avgExtreme.toFixed(1)}${t('provExtremePerListing')}`
+                  ? `${t('provExtremeUnion')}: ${a.extremeRange} · ${avgEx != null ? avgEx.toFixed(1) : '—'}${t('provExtremePerListing')}`
                   : `${m.label} ${m.fmt(a[metricKey])}`;
                 return [head,
                   `${t('provSample')} ${a.count}${isEn() ? '' : '套'} · ${t('provAvgTotal')} ${fmtWan(a.avgPrice)} · ${t('provAvgUnit')} ${fmtUnit(a.avgUnit)}`,
-                  `${t('provAvgSwing')} ${fmtSwing(a.avgRange)} · ${t('provAvgExtreme')} ${a.avgExtremeDays != null ? Math.round(a.avgExtremeDays) + t('daySuffix') : a.avgExtreme.toFixed(1) + (isEn() ? '' : '月')}`];
+                  `${t('provAvgSwing')} ${fmtSwing(a.avgRange)} · ${t('provAvgExtreme')} ${avgEx != null ? Math.round(avgEx) + t('daySuffix') : '—'}`];
               },
             },
           },
@@ -685,8 +687,6 @@
   // SEVERITY = red; physical fields = their own conventional spectra.
   const RAMPS = {
     cheapGood: ['#065f46', '#059669', '#34d399', '#a7f3d0', '#cbd5e1'],   // 价值: 便宜/少 = 深绿 → 贵/多 = 中性灰
-    comfyHigh: ['#cbd5e1', '#a7f3d0', '#34d399', '#059669', '#065f46'],   // 价值: 高 = 深绿（回报/舒适）
-    severity: ['#cbd5e1', '#fde047', '#fb923c', '#ef4444', '#b91c1c'],    // 严重度: 低=灰 → 高=红（极端气候时长）
     temp: ['#2563eb', '#38bdf8', '#fde68a', '#fb923c', '#dc2626'],        // 温度: 冷蓝 → 热红
     precip: ['#eef2f7', '#bae6fd', '#38bdf8', '#0284c7', '#1e3a8a'],       // 降水: 干 → 湿
     terrain: ['#dcfce7', '#86efac', '#ca8a04', '#b45309', '#78350f'],     // 海拔: 低 → 高
