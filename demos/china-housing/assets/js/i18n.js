@@ -1,0 +1,774 @@
+/**
+ * China housing demo — zh/en language layer.
+ * Persists to localStorage key `housing-lang` (default zh).
+ * English mode: USD (live FX or ÷7 fallback), sq ft, community names → pinyin.
+ */
+(function () {
+  'use strict';
+
+  const STORAGE_KEY = 'housing-lang';
+  const FX_CACHE_KEY = 'housing-fx';
+  const SQM_TO_SQFT = 10.7639;
+  const KM_TO_MI = 0.621371;
+  const KM_TO_FT = 3280.8399;
+  const FALLBACK_CNY_PER_USD = 7;
+  const FX_API = 'https://api.frankfurter.app/latest?from=USD&to=CNY';
+
+  let lang = 'zh';
+  let cnyPerUsd = FALLBACK_CNY_PER_USD;
+  let rateSource = 'fallback';
+  let onChangeCb = null;
+
+  try {
+    const stored = localStorage.getItem(STORAGE_KEY);
+    if (stored === 'en' || stored === 'zh') lang = stored;
+  } catch (e) { /* private mode */ }
+
+  const PINYIN = () => window.HOUSING_LOC_PINYIN || {};
+
+  const trim = (s) => String(s).replace(/\.0+$/, '').replace(/(\.\d*?)0+$/, '$1');
+
+  const LABELS = {
+    zh: {
+      langToggleAria: '切换中文 / English',
+      skipLink: '跳到内容',
+      navHome: '返回 QROST 首页',
+      navOverview: '便宜×宜居',
+      navRankings: '排行',
+      navGeo: '宜居地图',
+      navTable: '数据表',
+      heroEyebrow: 'Data · 宜居 × 便宜',
+      heroTitle: '哪里既<span class="text-emerald-700 dark:text-emerald-400">宜居</span>，又<span class="text-emerald-700 dark:text-emerald-400">便宜</span>？',
+      heroBody: '<strong class="font-medium text-slate-800 dark:text-slate-200" id="hero-count">234 套</strong>来自全国小城市、县城与度假区的二手房<strong class="font-medium text-slate-800 dark:text-slate-200">挂牌样本</strong>，覆盖 <strong class="font-medium text-slate-800 dark:text-slate-200" id="hero-provs">20 个省 / 直辖市</strong>。便宜只是起点——这里把每套房的<strong class="font-medium text-slate-800 dark:text-slate-200">气候舒适度</strong>、<strong class="font-medium text-slate-800 dark:text-slate-200">冬夏气温</strong>、<strong class="font-medium text-slate-800 dark:text-slate-200">年降水</strong>、<strong class="font-medium text-slate-800 dark:text-slate-200">海拔</strong>、到<strong class="font-medium text-slate-800 dark:text-slate-200">医院 / 火车站 / 机场 / 海岸</strong>的距离，以及<strong class="font-medium text-slate-800 dark:text-slate-200">在地自然灾害</strong>风险，和价格放进<strong class="font-medium text-slate-800 dark:text-slate-200">同一张表</strong>横向对比，帮你挑出住着舒服、风险可接受、又花得起的地方。',
+      heroDisclaimer: '数据更新于 <strong class="font-medium text-slate-700 dark:text-slate-300">2021-03 ~ 2026-06</strong>。每行是<strong class="font-medium text-slate-700 dark:text-slate-300">单一挂牌报价</strong>（往往是当地能找到的最便宜的房子），属轶事样本，<strong class="font-medium text-slate-700 dark:text-slate-300">非市场指数</strong>；宜居与灾害为<strong class="font-medium text-slate-700 dark:text-slate-300">粗略近似口径</strong>（灾害已细化到小区，仍含估算），不构成投资或安家建议。口径见<a href="#methodology" class="text-emerald-700 dark:text-emerald-400 underline underline-offset-2 hover:text-emerald-600 dark:hover:text-emerald-300">说明</a>。',
+      secOverview: '便宜 × 宜居 · Cheap ↔ Livable',
+      secOverviewDesc: '每个点是一套房：横轴<strong class="text-slate-800 dark:text-slate-200">总价（越左越便宜）</strong>、纵轴<strong class="text-slate-800 dark:text-slate-200">舒适月数（月均温 15–26℃ 的月份，越上越多）</strong>，<strong class="text-indigo-700 dark:text-indigo-400">颜色越蓝 = 年温差越大（四季越分明）</strong>、越青 = 全年越平稳。<strong class="text-slate-800 dark:text-slate-200">左上角</strong>那批既便宜、舒适月又多的房子，正是这份清单想帮你找到的。',
+      secRankings: '排行 · Top 50',
+      secRankingsDesc: '切换不同口径看极值——总价 / 单价最低、气候最宜居、极端天气最多（哪些便宜城市气候最恶劣、何时），也保留了租金回报口径。',
+      secGeo: '宜居地图 · Livability overlay',
+      secGeoDesc: '每个圆点是一套房，<strong class="text-slate-800 dark:text-slate-200">越大 = 越便宜</strong>，颜色按<strong class="text-emerald-700 dark:text-emerald-400">点·叠加维度</strong>变化。再叠一层<strong class="text-emerald-700 dark:text-emerald-400">连续底图</strong>——全国<strong class="text-slate-800 dark:text-slate-200">等温线 / 降水 / 海拔</strong>栅格场。<strong class="text-slate-800 dark:text-slate-200">滚轮 / 双指捏合 / 右上角 +−</strong> 缩放、拖动平移；点击圆点看卫星图 / 周边 / 气候与灾害。',
+      dimOverlay: '点·叠加维度',
+      baseOverlay: '连续底图',
+      provCompare: '各省对比',
+      secTable: '数据表 · 总信息源',
+      secTableDesc: '这张表是<strong class="text-slate-800 dark:text-slate-200">一切图表与地图的来源</strong>——价格、宜居、基础设施距离、在地灾害风险全部并列。点击表头排序，用下方按钮切换<strong class="text-emerald-700 dark:text-emerald-400">列分组</strong>，按省份筛选或搜索。',
+      showCols: '显示列',
+      searchPlaceholder: '搜索省 / 城市 / 区 / 小区…',
+      exportCsv: '导出 CSV',
+      methodologySummary: '说明 · Methodology',
+      i18nMethodTitle: '语言与单位换算（English 模式）',
+      i18nMethodBody: '<p><strong class="text-slate-700 dark:text-slate-300">货币</strong>：英文界面将人民币挂牌价换算为美元显示。在线时从 <a href="https://www.frankfurter.app/" class="text-emerald-700 dark:text-emerald-400 underline" target="_blank" rel="noopener">Frankfurter</a> 拉取 USD→CNY 实时汇率；离线或接口不可用时使用 <strong>1 USD ≈ 7 CNY</strong> 的近似值（即 CNY 金额 ÷ 7）。</p><p><strong class="text-slate-700 dark:text-slate-300">面积</strong>：英文界面将 ㎡ 换算为平方英尺（sq ft），系数 <strong>1 ㎡ = 10.7639 sq ft</strong>；单价同步换算为 <strong>USD/sq ft</strong>（总价 USD ÷ 面积 sq ft，等价于 元/㎡ 经汇率与面积系数换算）。</p><p><strong class="text-slate-700 dark:text-slate-300">气温</strong>：英文界面将摄氏温度换算为华氏度显示，<strong>°F = °C × 9/5 + 32</strong>（年温差等差值按 <strong>Δ°F = Δ°C × 9/5</strong>）。</p><p><strong class="text-slate-700 dark:text-slate-300">距离</strong>：英文界面将公里换算为英里，<strong>1 km ≈ 0.621371 mi</strong>；不足约 160 m 时显示英尺。</p><p><strong class="text-slate-700 dark:text-slate-300">地名与小区</strong>：英文界面将省 / 市 / 区显示为常用英文名或全拼；小区名无官方英文时使用<strong>全拼</strong>（无声调，词间空格）。中文界面保持原始中文与 ㎡ / ¥ / °C / km。</p><p id="fx-rate-note" class="text-xs text-slate-500 dark:text-slate-500"></p>',
+      mapZoomIn: '放大', mapZoomOut: '缩小', mapZoomReset: '复位',
+      tier1Label: '显示全部',
+      footerBuilt: '网页更新于 2026-06-06 23:06',
+      footerThanks: '数据来源 · 致谢：感谢 <strong class="font-medium text-slate-500 dark:text-slate-400">小红书 @FIRE规划师</strong>、<strong class="font-medium text-slate-500 dark:text-slate-400">小红书 @包子全是水</strong> 提供的原始信息与样本线索；后续扩充与全部宜居 enrich 由 QROST 独立调研整理，建成年代等附可核查来源（点击表格行查看）。',
+      footerDisclaimer: '© 2026 QROST. 本页不构成任何投资、法律或税务建议。',
+      kpiListings: '房源样本', kpiListingsSub: '社区级二手房挂牌', kpiUnit: '套',
+      kpiProvinces: '覆盖省份', kpiProvincesSub: '东北 → 华南', kpiProvUnit: '省/市',
+      kpiCheapest: '最低总价', kpiMedianUnit: '单价中位数', kpiMedianUnitSub: '挂牌单价中位',
+      kpiSteady: '气候最平稳', kpiSteadyUnit: '℃年温差',
+      kpiMild: '极端天气最少', kpiMildSub: '全年最温和',
+      rankCheap: '总价最低', rankUnit: '单价最低', rankComfort: '舒适月最多',
+      rankExtreme: '极端天气最多', rankYield: '回报率最高',
+      provAvgUnit: '均单价', provAvgPrice: '均总价', provAvgRange: '均年温差', provAvgExtreme: '极端月',
+      dimTempRange: '年温差·季节波动', dimUnitPrice: '单价', dimPriceWan: '总价',
+      dimJanTemp: '1月均温·等温', dimJulTemp: '7月均温·等温', dimAnnualPrecip: '年降水',
+      dimElevation: '海拔', dimHazardFreq: '突发灾害·频率',
+      baseNone: '无底图', baseJanTemp: '1月等温', baseJulTemp: '7月等温',
+      baseElevation: '海拔', baseAnnualPrecip: '年降水',
+      groupLive: '宜居', groupInfra: '基础设施', groupRisk: '灾害风险', groupInvest: '投资口径',
+      provFilterAll: '全部省份',
+      tableCount: '显示 {n} / {total} 套',
+      lmSat: '🛰 卫星图', lmNear: '📍 周边', lmClimate: '🌡 气候 / 灾害',
+      lmClose: '关闭', lmView: '查看', lmGeo: '定位',
+      scatterX: '二手房总价（万元）— 越左越便宜',
+      scatterY: '舒适天数（日均温 15–26℃；悬停看具体日期范围）— 越上越多',
+      rankAxisCheap: '总价（万元）', rankAxisUnit: '单价（元/㎡）',
+      rankAxisComfort: '舒适月数（15–26℃）', rankAxisExtreme: '极端天气月数',
+      rankAxisYield: '毛租金回报率（%）',
+      rankColCommunity: '小区', rankColComfort: '舒适', rankColExtreme: '极端',
+      rankStripComfort: '舒适日段（绿）', rankStripExtreme: '极端日段（红）',
+      provStripNote: '横轴=全年（按日，竖线为月界）；红段=该省有小区当天严寒(日均&lt;0℃)或酷热(日均高温≥33℃)，越深=占比越高，空白=无极端。',
+      provAxisAvgUnit: '样本均单价（元/㎡）', provAxisAvgPrice: '样本均总价（万元）',
+      provAxisAvgRange: '样本均年温差（℃，越小越平稳）',
+      provAxisAvgExtreme: '柱长=样本均极端月数；月份范围（省内并集）标在省名旁',
+      mapFailEcharts: '地图组件未能加载（ECharts CDN 不可达），表格与其余图表不受影响。',
+      mapFailGeo: '地图边界数据加载失败（网络受限），省份对比可见下方柱状图，表格不受影响。',
+      mapClickHint: '点击查看卫星图 / 周边 / 气候 / 灾害',
+      mapCheaper: '便宜', mapExpensive: '贵', mapHot: '热', mapCold: '冷',
+      mapWet: '湿', mapDry: '干', mapHigh: '高', mapLow: '低',
+      mapFreqOften: '年年', mapFreqRare: '罕见',
+      monthNone: '无', monthAll: '全年', monthSuffix: '月',
+      daySuffix: '天', yuanPerSqm: '元/㎡', wan: '万',
+      fxNoteLive: '当前汇率：1 USD = {rate} CNY（Frankfurter 实时）',
+      fxNoteCached: '当前汇率：1 USD = {rate} CNY（缓存，24h 内）',
+      fxNoteFallback: '当前汇率：1 USD ≈ 7 CNY（离线近似）',
+      fxNoteZh: '中文界面显示原始人民币与平方米。',
+      col_id: '#', col_prov: '省份', col_city: '城市', col_dist: '区/镇', col_loc: '小区/位置',
+      col_builtAge: '房龄', col_priceWan: '总价', col_area: '面积㎡', col_unitPrice: '单价 元/㎡',
+      col_rent: '月租 元', col_climateType: '气候类型', col_tempRange: '年温差',
+      col_janTemp: '1月均温', col_julTemp: '7月均温', col_comfortMonths: '舒适日期',
+      col_extremeMonths: '极端日期', col_annualPrecip: '年降水mm', col_elevation: '海拔m',
+      col_heating: '供暖', col_hospitalKm: '医院km', col_transitKm: '地铁/火车km',
+      col_airportKm: '机场km', col_coastKm: '海岸km', col_seismic: '地震带', col_typhoon: '台风',
+      col_hazard: '主要灾害·频率', col_yieldPct: '毛回报', col_payback: '回本年', col__act: '详情',
+methodDataTitle: '数据来源与整合',
+      methodDataBody: '<p>挂牌与旅居信息种子来自小红书博主「FIRE规划师」与「包子全是水」<strong class="font-medium text-slate-700 dark:text-slate-300">无偿分享</strong>的房产 / 旅居笔记——前者主要对应其 <strong class="text-slate-700 dark:text-slate-300">2026-04</strong> 系列帖子，后者主要对应其 <strong class="text-slate-700 dark:text-slate-300">2025-06</strong> 系列帖子。经整合后，QROST 联网补充了若干样本，并独立计算气候 / 海拔 / 基础设施距离 / 灾害频率等宜居维度（Open-Meteo、OpenStreetMap 及公开史料）。</p>',
+      methodMetricsTitle: '宜居指标如何得来',
+      methodMetricsBody: '<li><strong class="text-slate-700 dark:text-slate-300">气温 / 降水</strong>：Open-Meteo ERA5 <strong>2014–2023</strong> 月度均值；年降水为 12 个月均值之和。</li><li><strong class="text-slate-700 dark:text-slate-300">舒适 / 极端按「天」判定</strong>：取 ERA5 <strong>2014–2023</strong> 的<strong class="text-slate-700 dark:text-slate-300">日气候</strong>（年内逐日做 10 年平均，再 15 天平滑去噪），<strong class="text-slate-700 dark:text-slate-300">舒适</strong> = 日均温 15–26℃，<strong class="text-slate-700 dark:text-slate-300">极端</strong> = 日均温 &lt; 0℃（严寒）或日均高温 ≥ 33℃（酷热）。</li><li><strong class="text-slate-700 dark:text-slate-300">年温差</strong>（℃）= 最热月均温 − 最冷月均温。<strong class="text-slate-700 dark:text-slate-300">气候类型</strong>由年均温与年温差按公开阈值判定。</li><li><strong class="text-slate-700 dark:text-slate-300">供暖</strong>：按秦岭–淮河集中供暖线的省级口径。</li><li><strong class="text-slate-700 dark:text-slate-300">单价</strong> = 总价 ÷ 面积；<strong class="text-slate-700 dark:text-slate-300">毛回报</strong> = 月租×12 ÷ 总价。</li>',
+      methodLimitsTitle: '务必注意的局限',
+      methodLimitsBody: '<li>每行是<strong class="text-slate-700 dark:text-slate-300">单一挂牌报价</strong>，<strong class="text-slate-700 dark:text-slate-300">不代表区域均价</strong>。</li><li><strong class="text-slate-700 dark:text-slate-300">气候 / 海拔</strong>为定位坐标近似；灾害频率为粗略近似、非工程模型。</li><li>仅供研究与好奇心，<strong class="text-slate-700 dark:text-slate-300">非投资、安家、法律或税务建议</strong>。</li>',
+      lmSatNote: '卫星影像 © Esri World Imagery。定位精度见上方标注。',
+      lmNearNote: '周边设施来自 OpenStreetMap（小城/县城覆盖可能不全）；机场/海岸线为离线计算。',
+      lmClimateNote: '气候为 2014–2023 月度均值（Open-Meteo ERA5）；灾害类型据地市灾情史、频率按坐标物理细化到小区，仍为粗略近似、非工程依据。',
+      lmCloseAria: '关闭',
+      themeToggleAria: '切换深色/浅色模式',
+      baseMapSuffix: '底图',
+      comfortLabel: '舒适', extremeLabel: '极端', noExtreme: '无极端',
+      builtUnknown: '未知', builtApprox: '约', builtYearTitle: '建成', builtAgeTitle: '房龄',
+      builtUnknownTitle: '完工年份未知（公开渠道未查到，未编造）',
+      builtDecadeNote: '（年代级估算，非精确）', builtSource: '来源',
+      noGeoData: '暂无定位数据', noRiskData: '暂无风险数据',
+      climateRiskTitle: '气候与风险（粗略）', winterHeating: '冬季供暖',
+      hazardOverview: '省级历史灾害概况', swingLabel: '年温差',
+      coldestMonth: '最冷月', hottestMonth: '最热月', annualMean: '年均温',
+      provExtremeTitle: '极端', provExtremeListings: '套极端',
+      provExtremeUnion: '极端月份（省内并集）', provExtremePerListing: '月/小区',
+      provSample: '样本', provAvgTotal: '均总价', provAvgUnit: '均单价',
+      provAvgSwing: '均年温差', provAvgExtreme: '均极端',
+      poiMetro: '地铁', poiTrain: '火车/高铁', poiAirport: '机场', poiHospital: '医院',
+      poiMall: '商场', poiCoast: '海边', poiResearch: '调研', poiUnlocated: '名称(未定位)',
+      poiCommunity: '小区', chartHigh: '日高温', chartLow: '日低温',
+      chartMeanComfort: '日均温（绿=舒适·红=极端）', chartPrecip: '降水(mm)',
+      chartMeanTemp: '均温(℃)', chartMeanHigh: '均高温', chartMeanLow: '均低温',
+      monthNames: ['1月','2月','3月','4月','5月','6月','7月','8月','9月','10月','11月','12月'],
+    },
+    en: {
+      langToggleAria: 'Switch Chinese / English',
+      skipLink: 'Skip to content',
+      navHome: 'Back to QROST home',
+      navOverview: 'Cheap × Livable',
+      navRankings: 'Rankings',
+      navGeo: 'Livability map',
+      navTable: 'Data table',
+      heroEyebrow: 'Data · Livable × Affordable',
+      heroTitle: 'Where is it <span class="text-emerald-700 dark:text-emerald-400">livable</span> and <span class="text-emerald-700 dark:text-emerald-400">affordable</span>?',
+      heroBody: '<strong class="font-medium text-slate-800 dark:text-slate-200" id="hero-count">234 listings</strong> of second-hand homes in small cities, county towns and resort areas across China — <strong class="font-medium text-slate-800 dark:text-slate-200" id="hero-provs">20 provinces / municipalities</strong>. Price is only the start: each listing is compared side-by-side on <strong class="font-medium text-slate-800 dark:text-slate-200">climate comfort</strong>, <strong class="font-medium text-slate-800 dark:text-slate-200">winter/summer temperatures</strong>, <strong class="font-medium text-slate-800 dark:text-slate-200">annual rainfall</strong>, <strong class="font-medium text-slate-800 dark:text-slate-200">elevation</strong>, distance to <strong class="font-medium text-slate-800 dark:text-slate-200">hospitals / rail / airports / coast</strong>, and <strong class="font-medium text-slate-800 dark:text-slate-200">local hazard exposure</strong>.',
+      heroDisclaimer: 'Data span <strong class="font-medium text-slate-700 dark:text-slate-300">2021-03 ~ 2026-06</strong>. Each row is a <strong class="font-medium text-slate-700 dark:text-slate-300">single asking-price observation</strong> (often the cheapest unit found locally) — <strong class="font-medium text-slate-700 dark:text-slate-300">not a market index</strong>. Livability and hazards are <strong class="font-medium text-slate-700 dark:text-slate-300">rough approximations</strong>. See <a href="#methodology" class="text-emerald-700 dark:text-emerald-400 underline underline-offset-2 hover:text-emerald-600 dark:hover:text-emerald-300">methodology</a>.',
+      secOverview: 'Affordable × Livable',
+      secOverviewDesc: 'Each dot is one listing: horizontal axis = <strong class="text-slate-800 dark:text-slate-200">total price (left = cheaper)</strong>; vertical = <strong class="text-slate-800 dark:text-slate-200">comfortable days (daily mean 15–26°C)</strong>. <strong class="text-indigo-700 dark:text-indigo-400">Bluer = larger seasonal swing</strong>; greener = steadier year-round. The <strong class="text-slate-800 dark:text-slate-200">upper-left</strong> cluster is the sweet spot.',
+      secRankings: 'Rankings · Top 50',
+      secRankingsDesc: 'Switch metrics — lowest total / unit price, most comfortable climate, most extreme weather months, or gross rental yield.',
+      secGeo: 'Livability map',
+      secGeoDesc: 'Each dot is a listing; <strong class="text-slate-800 dark:text-slate-200">larger = cheaper</strong>. Colour follows the selected <strong class="text-emerald-700 dark:text-emerald-400">overlay dimension</strong>. Optional <strong class="text-emerald-700 dark:text-emerald-400">continuous basemap</strong> (isotherms / rainfall / elevation). Scroll or pinch to zoom; click a dot for satellite / POIs / climate.',
+      dimOverlay: 'Dot overlay',
+      baseOverlay: 'Basemap',
+      provCompare: 'By province',
+      secTable: 'Master data table',
+      secTableDesc: 'Source of truth for every chart and the map — price, livability, infrastructure distances and hazards in one sortable, filterable table.',
+      showCols: 'Columns',
+      searchPlaceholder: 'Search province / city / district / community…',
+      exportCsv: 'Export CSV',
+      methodologySummary: 'Methodology',
+      i18nMethodTitle: 'Language & unit conversion (English mode)',
+      i18nMethodBody: '<p><strong class="text-slate-700 dark:text-slate-300">Currency</strong>: English UI converts CNY listing prices to USD. When online, the live USD→CNY rate is fetched from <a href="https://www.frankfurter.app/" class="text-emerald-700 dark:text-emerald-400 underline" target="_blank" rel="noopener">Frankfurter</a>; if offline or the API is unavailable, we fall back to <strong>1 USD ≈ 7 CNY</strong> (CNY amount ÷ 7).</p><p><strong class="text-slate-700 dark:text-slate-300">Area</strong>: square metres are shown as <strong>square feet (sq ft)</strong> using <strong>1 m² = 10.7639 sq ft</strong>. Unit prices become <strong>USD/sq ft</strong> (total USD ÷ sq ft area, equivalent to converting ¥/m² via FX and area factor).</p><p><strong class="text-slate-700 dark:text-slate-300">Temperature</strong>: Celsius values are shown as <strong>°F</strong> using <strong>°F = °C × 9/5 + 32</strong> (swing / range deltas use <strong>Δ°F = Δ°C × 9/5</strong>).</p><p><strong class="text-slate-700 dark:text-slate-300">Distance</strong>: kilometres are shown as <strong>miles</strong> using <strong>1 km ≈ 0.621371 mi</strong>; very short hops (&lt; ~160 m) use feet.</p><p><strong class="text-slate-700 dark:text-slate-300">Community names</strong>: where no official English name exists, the Chinese community name is shown in <strong>full pinyin</strong> (no tone marks, space-separated); province / city / district labels are shown in standard English or romanized pinyin.</p><p id="fx-rate-note" class="text-xs text-slate-500 dark:text-slate-500"></p>',
+      mapZoomIn: 'Zoom in', mapZoomOut: 'Zoom out', mapZoomReset: 'Reset',
+      tier1Label: 'Show all listings',
+      footerBuilt: 'Page built 2026-06-06 23:06',
+      footerThanks: 'Data · thanks to <strong class="font-medium text-slate-500 dark:text-slate-400">Xiaohongshu @FIRE规划师</strong> and <strong class="font-medium text-slate-500 dark:text-slate-400">@包子全是水</strong> for seed listings; QROST enriched climate, POIs, hazards and built-year research independently.',
+      footerDisclaimer: '© 2026 QROST. Not investment, legal or tax advice.',
+      kpiListings: 'Listings', kpiListingsSub: 'Community-level asks', kpiUnit: '',
+      kpiProvinces: 'Provinces', kpiProvincesSub: 'NE → South', kpiProvUnit: '',
+      kpiCheapest: 'Lowest total', kpiMedianUnit: 'Median unit price', kpiMedianUnitSub: 'Ask price median',
+      kpiSteady: 'Steadiest climate', kpiSteadyUnit: '°F annual swing',
+      kpiMild: 'Fewest extreme days', kpiMildSub: 'Mildest year-round',
+      rankCheap: 'Lowest total', rankUnit: 'Lowest unit', rankComfort: 'Most comfort',
+      rankExtreme: 'Most extreme', rankYield: 'Highest yield',
+      provAvgUnit: 'Avg unit', provAvgPrice: 'Avg total', provAvgRange: 'Avg swing', provAvgExtreme: 'Extreme mo.',
+      dimTempRange: 'Seasonal swing', dimUnitPrice: 'Unit price', dimPriceWan: 'Total price',
+      dimJanTemp: 'Jan mean', dimJulTemp: 'Jul mean', dimAnnualPrecip: 'Annual rain',
+      dimElevation: 'Elevation', dimHazardFreq: 'Sudden hazards',
+      baseNone: 'No basemap', baseJanTemp: 'Jan isotherm', baseJulTemp: 'Jul isotherm',
+      baseElevation: 'Elevation', baseAnnualPrecip: 'Rainfall',
+      groupLive: 'Livability', groupInfra: 'Infrastructure', groupRisk: 'Hazards', groupInvest: 'Investment',
+      provFilterAll: 'All provinces',
+      tableCount: 'Showing {n} / {total}',
+      lmSat: '🛰 Satellite', lmNear: '📍 Nearby', lmClimate: '🌡 Climate / hazards',
+      lmClose: 'Close', lmView: 'View', lmGeo: 'Geocode',
+      scatterX: 'Total price (USD) — left = cheaper',
+      scatterY: 'Comfortable days (daily mean 15–26°C) — up = more',
+      rankAxisCheap: 'Total price (USD)', rankAxisUnit: 'Unit price (USD/sq ft)',
+      rankAxisComfort: 'Comfort months (15–26°C)', rankAxisExtreme: 'Extreme weather months',
+      rankAxisYield: 'Gross rental yield (%)',
+      rankColCommunity: 'Community', rankColComfort: 'Comfort', rankColExtreme: 'Extreme',
+      rankStripComfort: 'Comfort days (green)', rankStripExtreme: 'Extreme days (red)',
+      provStripNote: 'X-axis = full year (daily; vertical ticks = months). Red = province has listings in extreme cold (&lt;0°C mean) or heat (daily high ≥33°C); darker = higher share.',
+      provAxisAvgUnit: 'Mean unit price (USD/sq ft)', provAxisAvgPrice: 'Mean total (USD)',
+      provAxisAvgRange: 'Mean annual temp swing (°F, lower = steadier)',
+      provAxisAvgExtreme: 'Bar = mean extreme months; range in province label',
+      mapFailEcharts: 'Map failed to load (ECharts CDN unreachable). Table and charts still work.',
+      mapFailGeo: 'Map boundaries failed to load (network). Province chart and table unaffected.',
+      mapClickHint: 'Click for satellite / nearby / climate / hazards',
+      mapCheaper: 'cheap', mapExpensive: 'dear', mapHot: 'warm', mapCold: 'cold',
+      mapWet: 'wet', mapDry: 'dry', mapHigh: 'high', mapLow: 'low',
+      mapFreqOften: 'often', mapFreqRare: 'rare',
+      monthNone: 'none', monthAll: 'year-round', monthSuffix: ' mo',
+      daySuffix: ' d', yuanPerSqm: '/sqft', wan: '',
+      fxNoteLive: 'FX: 1 USD = {rate} CNY (Frankfurter live)',
+      fxNoteCached: 'FX: 1 USD = {rate} CNY (cached, &lt;24h)',
+      fxNoteFallback: 'FX: 1 USD ≈ 7 CNY (offline fallback)',
+      fxNoteZh: 'Chinese UI shows original CNY and m².',
+      col_id: '#', col_prov: 'Province', col_city: 'City', col_dist: 'District',
+      col_loc: 'Community', col_builtAge: 'Age', col_priceWan: 'Total', col_area: 'Area',
+      col_unitPrice: 'Unit $/sqft', col_rent: 'Rent/mo', col_climateType: 'Climate',
+      col_tempRange: 'Temp swing', col_janTemp: 'Jan °F', col_julTemp: 'Jul °F',
+      col_comfortMonths: 'Comfort days', col_extremeMonths: 'Extreme days',
+      col_annualPrecip: 'Rain mm', col_elevation: 'Elev m', col_heating: 'Heating',
+      col_hospitalKm: 'Hospital', col_transitKm: 'Transit', col_airportKm: 'Airport',
+      col_coastKm: 'Coast', col_seismic: 'Seismic', col_typhoon: 'Typhoon',
+      col_hazard: 'Hazards', col_yieldPct: 'Yield', col_payback: 'Payback yr', col__act: 'Detail',
+methodDataTitle: 'Data sources & integration',
+      methodDataBody: '<p>Seed listings and slow-living notes came from Xiaohongshu creators <strong class="font-medium text-slate-700 dark:text-slate-300">@FIRE规划师</strong> and <strong class="font-medium text-slate-500 dark:text-slate-400">@包子全是水</strong> (April 2026 and June 2025 series respectively). QROST added more samples and independently computed climate, elevation, POI distances and hazard exposure (Open-Meteo, OpenStreetMap and public records).</p>',
+      methodMetricsTitle: 'How livability metrics are derived',
+      methodMetricsBody: '<li><strong class="text-slate-700 dark:text-slate-300">Temperature / rainfall</strong>: Open-Meteo ERA5 <strong>2014–2023</strong> monthly means; annual rain = sum of 12 monthly means.</li><li><strong class="text-slate-700 dark:text-slate-300">Comfort / extreme by day</strong>: ERA5 daily climatology (10-year day-of-year mean, 15-day smoothed). Comfort = daily mean 15–26°C; extreme = mean &lt; 0°C or daily high ≥ 33°C.</li><li><strong class="text-slate-700 dark:text-slate-300">Seasonal swing</strong> (°C) = warmest-month mean − coldest-month mean. <strong class="text-slate-700 dark:text-slate-300">Climate archetypes</strong> follow published Ta and swing thresholds.</li><li><strong class="text-slate-700 dark:text-slate-300">Heating</strong>: provincial Qinling–Huaihe district-heating line convention.</li><li><strong class="text-slate-700 dark:text-slate-300">Unit price</strong> = total ÷ area; <strong class="text-slate-700 dark:text-slate-300">gross yield</strong> = rent×12 ÷ total.</li>',
+      methodLimitsTitle: 'Important limitations',
+      methodLimitsBody: '<li>Each row is a <strong class="text-slate-700 dark:text-slate-300">single asking-price observation</strong>, <strong class="text-slate-700 dark:text-slate-300">not a market average</strong>.</li><li><strong class="text-slate-700 dark:text-slate-300">Climate / elevation</strong> are coordinate approximations; hazard recurrence is coarse context, not engineering-grade.</li><li>For curiosity and research only — <strong class="text-slate-700 dark:text-slate-300">not investment, relocation, legal or tax advice</strong>.</li>',
+      lmSatNote: 'Satellite imagery © Esri World Imagery. Geocode precision shown above.',
+      lmNearNote: 'Nearby POIs from OpenStreetMap (coverage may be thin in small towns); airports/coastlines are offline-computed.',
+      lmClimateNote: 'Climate = 2014–2023 monthly means (Open-Meteo ERA5); hazards refined per listing coordinates from prefecture history — still approximate, not engineering input.',
+      lmCloseAria: 'Close',
+      themeToggleAria: 'Toggle dark / light mode',
+      baseMapSuffix: ' basemap',
+      comfortLabel: 'Comfort', extremeLabel: 'Extreme', noExtreme: 'No extreme days',
+      builtUnknown: 'unknown', builtApprox: '~', builtYearTitle: 'Built', builtAgeTitle: 'Age',
+      builtUnknownTitle: 'Completion year unknown (not found in public sources)',
+      builtDecadeNote: ' (decade-level estimate)', builtSource: 'Source',
+      noGeoData: 'No geocode data', noRiskData: 'No risk data',
+      climateRiskTitle: 'Climate & risk (approx.)', winterHeating: 'Winter heating',
+      hazardOverview: 'provincial hazard history', swingLabel: 'seasonal swing',
+      coldestMonth: 'coldest mo.', hottestMonth: 'hottest mo.', annualMean: 'annual mean',
+      provExtremeTitle: 'Extreme', provExtremeListings: ' listings extreme',
+      provExtremeUnion: 'Extreme months (province union)', provExtremePerListing: ' mo./listing',
+      provSample: 'n', provAvgTotal: 'avg total', provAvgUnit: 'avg unit',
+      provAvgSwing: 'avg swing', provAvgExtreme: 'avg extreme',
+      poiMetro: 'Metro', poiTrain: 'Rail / HSR', poiAirport: 'Airport', poiHospital: 'Hospital',
+      poiMall: 'Mall', poiCoast: 'Coast', poiResearch: 'research', poiUnlocated: 'name only',
+      poiCommunity: 'Community', chartHigh: 'Daily high', chartLow: 'Daily low',
+      chartMeanComfort: 'Daily mean (green=comfort, red=extreme)', chartPrecip: 'Rain (mm)',
+      chartMeanTemp: 'Mean temp (°F)', chartMeanHigh: 'Mean high', chartMeanLow: 'Mean low',
+      monthNames: ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],
+    },
+  };
+
+
+  const GEO = () => window.HOUSING_GEO_EN || { province: {}, city: {}, district: {} };
+  const ENUM = {
+  "HAZARD_TYPE_EN": {
+    "凝冻": "Freezing rain/ice",
+    "台风": "Typhoon",
+    "台风外围": "Typhoon outer bands",
+    "地质灾害": "Geohazard",
+    "地震": "Earthquake",
+    "地面沉降": "Land subsidence",
+    "干旱": "Drought",
+    "暴雨": "Heavy rain",
+    "暴雪": "Blizzard",
+    "暴雪雪灾": "Blizzard/snow disaster",
+    "森林火灾": "Forest fire",
+    "沙尘暴": "Sandstorm",
+    "洪涝": "Flood",
+    "洪涝内涝": "Flood/urban waterlogging",
+    "风暴潮": "Storm surge",
+    "高温": "Extreme heat",
+    "高温干旱": "Heat & drought",
+    "龙卷风": "Tornado",
+    "冰雹风雹": "Hail / wind hail",
+    "海冰": "Sea ice",
+    "滑坡": "Landslide",
+    "泥石流": "Debris flow",
+    "崩塌": "Rockfall"
+  },
+  "FREQ_SHORT_EN": {
+    "年年": "annual",
+    "数年": "few-yr",
+    "十年": "~10yr",
+    "数十年": "~decades",
+    "百年": "~century"
+  },
+  "FREQ_LABEL_EN": {
+    "几乎年年": "Nearly annual",
+    "数年一遇": "Every few years",
+    "约十年一遇": "~Once per decade",
+    "数十年一遇": "Every few decades",
+    "百年级罕见": "Century-scale rare"
+  },
+  "CLIMATE_EN": {
+    "四季如春": "Spring-like year-round",
+    "常年温暖": "Warm year-round",
+    "四季分明": "Four distinct seasons",
+    "长夏无冬": "Long summer, no winter",
+    "夏热冬暖": "Hot summer, mild winter",
+    "冬暖夏凉": "Mild winter, cool summer",
+    "常年凉冷": "Cool year-round",
+    "温和过渡": "Mild transitional"
+  },
+  "HEATING_EN": {
+    "集中供暖": "Central heating",
+    "部分供暖": "Partial heating",
+    "无·冬暖": "No heating (mild winter)",
+    "无·湿冷": "No heating (damp cold)"
+  },
+  "SEISMIC_EN": {
+    "高": "High",
+    "较高": "Moderately high",
+    "中": "Moderate",
+    "低": "Low"
+  },
+  "TYPHOON_EN": {
+    "高": "High",
+    "中": "Moderate",
+    "弱": "Weak",
+    "极低": "Very low"
+  },
+  "GEO_LABEL_EN": {
+    "城市级": "City-level",
+    "小区级": "Community-level",
+    "街道/镇级": "Street/town-level",
+    "调研细化": "Research-refined",
+    "邻近双月湾板块": "Near Shuangyue Bay area"
+  },
+  "HEATING_NOTE_EN": {
+    "供暖线以南却冬季湿冷，且无集中供暖（取暖靠自备）": "South of the heating line: damp cold winters without district heating (self-heated).",
+    "供暖线以南，冬季温暖、基本无需供暖": "South of the heating line: mild winters, heating rarely needed.",
+    "秦岭-淮河线以北，市政集中供暖": "North of the Qinling–Huaihe line: municipal district heating.",
+    "跨供暖线，淮河以北部分城市有集中供暖": "Straddles the heating line: some cities north of the Huai have district heating."
+  },
+  "HEADLINE_EN": {
+    "沿海台风+城市内涝；缓发地面沉降": "Coastal typhoons + urban flooding; slow land subsidence",
+    "多震带+干湿季地质灾害与季节性干旱": "Multi-fault seismicity + seasonal geohazards and drought",
+    "华北平原旱涝+冬季暴雪；地震风险低于唐山带": "N. China Plain drought/flood + winter blizzards; lower quake risk than Tangshan belt",
+    "夏汛、暴雪与西部干旱；地震少": "Summer floods, blizzards, western drought; few quakes",
+    "高烈度地震(约十年一遇)+山地次生灾害": "High-intensity quakes (~decadal) + mountain secondary hazards",
+    "华北平原旱涝+滨海风暴潮/海冰；唐山强震带波及": "N. China Plain drought/flood + coastal storm surge/sea ice; Tangshan belt influence",
+    "江淮梅雨洪涝为最大风险": "Yangtze–Huai Meiyu flooding is the top risk",
+    "旱涝+北上台风影响沿海": "Drought/flood + north-tracking typhoons affect the coast",
+    "台风+流域性洪涝的双高暴露": "Dual high exposure: typhoons + basin flooding",
+    "洪涝+台风+喀斯特地质灾害": "Floods + typhoons + karst geohazards",
+    "台风、洪涝，偶发强龙卷": "Typhoons, floods, occasional strong tornadoes",
+    "华北强震带(数十年一遇)+旱涝交替": "N. China strong-quake belt (decadal) + drought/flood alternation",
+    "暴雨洪涝突出，旱涝并存": "Heavy-rain flooding prominent; drought and flood coexist",
+    "台风暴雨+梅雨洪涝；沿海风暴潮": "Typhoon rains + Meiyu floods; coastal storm surge",
+    "全国台风登陆最前沿": "Front line of typhoon landfalls nationwide",
+    "长江流域洪涝突出，伏旱与高温并存": "Yangtze basin floods prominent; summer drought and heat coexist",
+    "强震+半干旱区旱灾与黄土滑坡": "Strong quakes + semi-arid drought and loess landslides",
+    "台风高暴露+山区地质灾害": "High typhoon exposure + mountain geohazards",
+    "喀斯特地质灾害突出，冬季凝冻为特色风险": "Karst geohazards prominent; winter freezing rain a signature risk",
+    "夏汛+北上台风外围，海城式中强震(数十年一遇)": "Summer floods + north-tracking typhoon bands; Haicheng-class moderate quakes (decadal)",
+    "高温伏旱+山地滑坡+江河洪涝": "Summer heat drought + mountain slides + river floods",
+    "夏汛+冬季暴雪为主；无台风、地震少": "Summer floods + winter blizzards dominate; few typhoons/quakes"
+  },
+  "HAZARD_NOTE_EN": {
+    "2016盐城EF4，强龙卷罕见": "2016 Yancheng EF4 — strong tornadoes are rare",
+    "三峡库区滑坡/崩塌": "Three Gorges reservoir landslides/rockfalls",
+    "东部": "Eastern region",
+    "伏旱": "Mid-summer drought",
+    "冬季": "Winter season",
+    "冬季强降雪": "Heavy winter snowfall",
+    "冬季强降雪致灾，数年一遇": "Damaging heavy winter snow, every few years",
+    "冬季致灾性降雪": "Damaging winter snowfall",
+    "冬季雨雪冰冻致灾(2008特大为数十年一遇)": "Winter rain/snow/ice damage (2008 extreme was decadal)",
+    "冬春季节性": "Seasonal spring/winter pattern",
+    "利奇马2019等北上台风": "North-tracking typhoons e.g. Lekima 2019",
+    "前汛期强降水": "Pre-monsoon heavy rain",
+    "北部湾沿海": "Beibu Gulf coast",
+    "半干旱气候，常年缺水": "Semi-arid climate, chronic water shortage",
+    "华北强震带外围，1976唐山距城较远": "Periphery of N. China quake belt; 1976 Tangshan far from city",
+    "华北强震带，1976唐山距津约100km波及": "N. China quake belt; 1976 Tangshan ~100 km from Tianjin",
+    "台风暴雨": "Typhoon rainfall",
+    "唐山1976/邢台1966，华北强震带": "Tangshan 1976 / Xingtai 1966 — N. China quake belt",
+    "喀斯特山区滑坡/塌陷": "Karst mountain landslides/subsidence",
+    "喀斯特滑坡/泥石流/塌陷": "Karst landslides/debris flows/subsidence",
+    "夏季伏旱(2022极端)": "Mid-summer drought (2022 extreme)",
+    "夏季强对流": "Summer severe convection",
+    "夏季暴雨": "Summer heavy rain",
+    "夏季极端高温": "Summer extreme heat",
+    "夏季湿热": "Hot humid summer",
+    "夏旱": "Summer drought",
+    "夏秋登陆/影响": "Late-summer/autumn landfall or influence",
+    "多条活动断裂带，鲁甸2014等": "Multiple active faults; Ludian 2014 etc.",
+    "大兴安岭林区(1987特大火)": "Greater Khingan forests (1987 mega-fire)",
+    "太行山前极端暴雨": "Extreme rain at Taihang piedmont",
+    "局部中小震": "Local moderate/small quakes",
+    "局部弱震": "Local weak quakes",
+    "山区滑坡/崩塌": "Mountain landslides/rockfalls",
+    "春旱": "Spring drought",
+    "春旱常见": "Spring drought common",
+    "暴雨城市内涝": "Downpour urban waterlogging",
+    "松花江/嫩江流域夏季汛情(1998等)": "Songhua/Nen summer floods (1998 etc.)",
+    "桂西季节性": "Western Guangxi seasonal pattern",
+    "梅雨/强对流": "Meiyu / severe convection",
+    "梅雨季/台风暴雨": "Meiyu season / typhoon rains",
+    "梅雨季强降水": "Meiyu season heavy rain",
+    "正面登陆频繁": "Frequent direct landfalls",
+    "江淮梅雨/2020巢湖": "Yangtze–Huai Meiyu / 2020 Chaohu",
+    "汶川2008/芦山/泸定，龙门山带": "Wenchuan 2008 / Lushan / Luding — Longmenshan belt",
+    "河口沿海": "Estuary coast",
+    "河西走廊春季": "Hexi Corridor spring season",
+    "沿海": "Coastal",
+    "沿海受北上台风影响": "Coast affected by north-tracking typhoons",
+    "沿海登陆/影响频繁": "Frequent coastal landfall/influence",
+    "泥石流/滑坡(震后高发)": "Debris flows/landslides (post-quake spike)",
+    "流域性洪涝；2021郑州为千年一遇极端": "Basin flooding; 2021 Zhengzhou was millennial extreme",
+    "海城1975 M7.3": "Haicheng 1975 M7.3",
+    "海河流域(2023大水)": "Hai River basin (2023 major flood)",
+    "海河流域+城区暴雨内涝": "Hai River basin + urban downpour flooding",
+    "海河流域+城区暴雨内涝(2012/2016)": "Hai River basin + urban flooding (2012/2016)",
+    "淮河下游/太湖": "Lower Huai / Taihu",
+    "渤海湾沿海(滨海新区)，内陆武清经物理降尺度自动剔除": "Bohai Bay coast (Binhai); inland Wuqing excluded by downscaling",
+    "珠江/西江流域": "Pearl / Xijiang basin",
+    "登陆最频繁": "Most frequent landfalls",
+    "登陆最频繁省份之一": "Among provinces with most landfalls",
+    "盆地伏旱": "Basin mid-summer drought",
+    "盆地暴雨": "Basin downpours",
+    "第二松花江流域": "Second Songhua basin",
+    "缓发·长期监测累积": "Slow-onset; long-term monitoring accumulation",
+    "西江/郁江流域": "Xijiang / Yujiang basin",
+    "西部": "Western region",
+    "西部春旱": "Western spring drought",
+    "辽河流域": "Liao River basin",
+    "辽西": "Western Liaoning",
+    "郯庐带，郯城1668历史大震": "Tanlu belt; 1668 Tancheng historic mega-quake",
+    "钱塘江/苕溪流域": "Qiantang / Tiaoxi basin",
+    "长江/嘉陵江": "Yangtze / Jialing",
+    "长江/汉江流域(1998/2020)": "Yangtze / Han basin (1998/2020)",
+    "闽江流域": "Min River basin",
+    "陇南/积石山2023等": "Longnan / Jishishan 2023 etc.",
+    "雨季": "Rainy season",
+    "雨季泥石流/滑坡": "Rainy-season debris flows/landslides",
+    "黄土滑坡/泥石流": "Loess landslides/debris flows",
+    "黄淮/沂沭河": "Huang-Huai / Yishu River",
+    "黄淮春夏旱": "Huang-Huai spring/summer drought"
+  },
+  "FIELD_LABEL_EN": {
+    "1月均温": "Jan mean temp",
+    "7月均温": "Jul mean temp",
+    "海拔": "Elevation",
+    "年降水": "Annual rainfall"
+  }
+};
+
+  function pick(map, zh) {
+    if (!zh) return zh;
+    if (!isEn()) return zh;
+    return (map && map[zh]) || null;
+  }
+
+  function displayProvince(zh) { return pick(GEO().province, zh) || zh; }
+  function displayCity(zh) {
+    if (!zh) return zh;
+    if (!isEn()) return zh;
+    return GEO().city[zh] || zh.replace(/市$/, '');
+  }
+  function displayDistrict(zh) {
+    if (!zh) return zh;
+    if (!isEn()) return zh;
+    const en = GEO().district[zh];
+    if (en && !hasChinese(en)) return en;
+    return zh;
+  }
+  function displayClimate(zh) { return pick(ENUM.CLIMATE_EN, zh) || zh; }
+  function displayHeating(zh) { return pick(ENUM.HEATING_EN, zh) || zh; }
+  function displayHazardType(zh) { return pick(ENUM.HAZARD_TYPE_EN, zh) || zh; }
+  function displayFreqShort(zh) { return pick(ENUM.FREQ_SHORT_EN, zh) || zh; }
+  function displayFreqLabel(zh) { return pick(ENUM.FREQ_LABEL_EN, zh) || zh; }
+  function displaySeismic(zh) { return pick(ENUM.SEISMIC_EN, zh) || zh; }
+  function displayTyphoon(zh) { return pick(ENUM.TYPHOON_EN, zh) || zh; }
+  function displayGeoLabel(zh) { return pick(ENUM.GEO_LABEL_EN, zh) || zh; }
+  function displayHeadline(zh) {
+    if (!zh || !isEn()) return zh;
+    return pick(ENUM.HEADLINE_EN, zh) || 'Regional hazard exposure (see tags below)';
+  }
+  function displayHazardNote(zh) {
+    if (!zh || !isEn()) return zh;
+    return pick(ENUM.HAZARD_NOTE_EN, zh) || '';
+  }
+  function displayHeatingNote(zh) { return pick(ENUM.HEATING_NOTE_EN, zh) || ''; }
+  function displayFieldLabel(zh) { return pick(ENUM.FIELD_LABEL_EN, zh) || zh; }
+
+  const MONTH_EN = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+
+  function formatDoy(doy) {
+    let m = 0, x = Math.max(1, Math.min(365, Math.round(doy)));
+    while (x > [31,28,31,30,31,30,31,31,30,31,30,31][m]) { x -= [31,28,31,30,31,30,31,31,30,31,30,31][m]; m += 1; }
+    if (!isEn()) return (m + 1) + '月' + x + '日';
+    return MONTH_EN[m] + ' ' + x;
+  }
+
+  function displayRiskSummary(summary) {
+    if (!summary || !isEn()) return summary;
+    return summary
+      .replace(/深处内陆/g, 'Deep inland')
+      .replace(/距海岸约 (\d+)km/g, (_, km) => {
+        const n = Number(km);
+        if (!Number.isFinite(n)) return `~${km} km from coast`;
+        const mi = n * KM_TO_MI;
+        return mi < 0.1 ? `~${Math.round(n * KM_TO_FT)} ft from coast` : `~${trim(mi.toFixed(1))} mi from coast`;
+      })
+      .replace(/台风暴露 极低/g, 'Typhoon exposure: very low')
+      .replace(/台风暴露 弱/g, 'Typhoon exposure: weak')
+      .replace(/台风暴露 中/g, 'Typhoon exposure: moderate')
+      .replace(/台风暴露 高/g, 'Typhoon exposure: high')
+      .replace(/地震动\(省级近似\) 低/g, 'Seismic hazard (prov. approx.): low')
+      .replace(/地震动\(省级近似\) 中/g, 'Seismic hazard (prov. approx.): moderate')
+      .replace(/地震动\(省级近似\) 较高/g, 'Seismic hazard (prov. approx.): moderately high')
+      .replace(/地震动\(省级近似\) 高/g, 'Seismic hazard (prov. approx.): high')
+      .replace(/1月均温 /g, 'Jan mean ')
+      .replace(/7月均温 /g, 'Jul mean ')
+      .replace(/(\d+(?:\.\d+)?)℃/g, (_, n) => formatTemp(Number(n)))
+      .replace(/[\u4e00-\u9fff]+/g, '').replace(/\s*·\s*·/g, ' · ').replace(/^\s*·\s*|\s*·\s*$/g, '').trim();
+  }
+
+  function hasChinese(s) { return /[\u4e00-\u9fff]/.test(s || ''); }
+
+  function t(key, vars) {
+    const bag = LABELS[lang];
+    let s = (bag && Object.prototype.hasOwnProperty.call(bag, key) ? bag[key] : null);
+    if (s == null) s = LABELS.zh[key] || key;
+    if (vars) Object.keys(vars).forEach((k) => { s = s.replace(`{${k}}`, vars[k]); });
+    return s;
+  }
+
+  function isEn() { return lang === 'en'; }
+  function getLang() { return lang; }
+  function getRate() { return cnyPerUsd; }
+  function getRateSource() { return rateSource; }
+
+  function communityName(loc, nameEn) {
+    if (nameEn) return nameEn;
+    if (!isEn()) return loc;
+    return PINYIN()[loc] || loc;
+  }
+
+  function formatMoneyCny(cny) {
+    if (cny == null || !Number.isFinite(cny)) return '—';
+    if (!isEn()) return '¥' + Math.round(cny).toLocaleString('zh-CN');
+    return '$' + Math.round(cny / cnyPerUsd).toLocaleString('en-US');
+  }
+
+  function formatPriceWan(wan) {
+    if (wan == null || !Number.isFinite(wan)) return '—';
+    if (!isEn()) return trim(wan.toFixed(2)) + '万';
+    return formatMoneyCny(wan * 10000);
+  }
+
+  function priceAxisValue(wan) {
+    if (wan == null) return null;
+    return isEn() ? (wan * 10000) / cnyPerUsd : wan;
+  }
+
+  function formatArea(sqm) {
+    if (sqm == null || !Number.isFinite(sqm)) return '—';
+    if (!isEn()) return trim(sqm.toFixed(1)) + '㎡';
+    return Math.round(sqm * SQM_TO_SQFT).toLocaleString('en-US') + ' sqft';
+  }
+
+  function formatUnitPrice(cnyPerSqm) {
+    if (cnyPerSqm == null || !Number.isFinite(cnyPerSqm)) return '—';
+    if (!isEn()) return Math.round(cnyPerSqm).toLocaleString('zh-CN') + '元/㎡';
+    const usdPerSqft = (cnyPerSqm / cnyPerUsd) / SQM_TO_SQFT;
+    return '$' + Math.round(usdPerSqft).toLocaleString('en-US') + '/sqft';
+  }
+
+  function formatRent(cny) {
+    return formatMoneyCny(cny);
+  }
+
+  function celsiusToF(c) { return c * 9 / 5 + 32; }
+  function celsiusDeltaToF(c) { return c * 9 / 5; }
+
+  function formatTemp(celsius) {
+    if (celsius == null || !Number.isFinite(celsius)) return '—';
+    if (!isEn()) return Math.round(celsius) + '°C';
+    return Math.round(celsiusToF(celsius)) + '°F';
+  }
+
+  function formatTempSwing(celsius) {
+    if (celsius == null || !Number.isFinite(celsius)) return '—';
+    if (!isEn()) return trim(celsius.toFixed(1)) + '°C';
+    return trim(celsiusDeltaToF(celsius).toFixed(1)) + '°F';
+  }
+
+  function formatDist(km) {
+    if (km == null || !Number.isFinite(km)) return '—';
+    if (!isEn()) {
+      return km < 1 ? Math.round(km * 1000) + 'm' : (km < 10 ? trim(km.toFixed(1)) : Math.round(km)) + ' km';
+    }
+    const mi = km * KM_TO_MI;
+    if (mi < 0.1) return Math.round(km * KM_TO_FT) + ' ft';
+    return (mi < 10 ? trim(mi.toFixed(1)) : Math.round(mi)) + ' mi';
+  }
+
+  function tempChartValue(celsius) {
+    if (celsius == null || !Number.isFinite(celsius)) return null;
+    return isEn() ? celsiusToF(celsius) : celsius;
+  }
+
+  function tempAxisLabel() { return isEn() ? '°F' : '°C'; }
+
+  function formatFieldLegend(value, unit) {
+    if (value == null || !Number.isFinite(value)) return '—';
+    if (unit === '℃' || unit === '°C') return formatTemp(value);
+    return Math.round(value).toLocaleString(isEn() ? 'en-US' : 'zh-CN') + unit;
+  }
+
+  function formatInt(v) {
+    if (v == null) return '—';
+    return Math.round(v).toLocaleString(isEn() ? 'en-US' : 'zh-CN');
+  }
+
+  function updateFxNote() {
+    const el = document.getElementById('fx-rate-note');
+    if (!el) return;
+    if (!isEn()) {
+      el.textContent = t('fxNoteZh');
+      return;
+    }
+    const rate = cnyPerUsd.toFixed(2);
+    const key = rateSource === 'live' ? 'fxNoteLive' : rateSource === 'cached' ? 'fxNoteCached' : 'fxNoteFallback';
+    el.innerHTML = t(key, { rate });
+  }
+
+  function applyStaticI18n() {
+    const map = [
+      ['skip-link', 'skipLink', 'text'],
+      ['nav-home', 'navHome', 'aria'],
+      ['nav-overview', 'navOverview', 'text'],
+      ['nav-rankings', 'navRankings', 'text'],
+      ['nav-geo', 'navGeo', 'text'],
+      ['nav-table', 'navTable', 'text'],
+      ['hero-eyebrow', 'heroEyebrow', 'text'],
+      ['hero-title', 'heroTitle', 'html'],
+      ['hero-body', 'heroBody', 'html'],
+      ['hero-disclaimer', 'heroDisclaimer', 'html'],
+      ['sec-overview-h', 'secOverview', 'text'],
+      ['sec-overview-p', 'secOverviewDesc', 'html'],
+      ['sec-rankings-h', 'secRankings', 'text'],
+      ['sec-rankings-p', 'secRankingsDesc', 'text'],
+      ['sec-geo-h', 'secGeo', 'text'],
+      ['sec-geo-p', 'secGeoDesc', 'html'],
+      ['dim-overlay-label', 'dimOverlay', 'text'],
+      ['base-overlay-label', 'baseOverlay', 'text'],
+      ['prov-compare-label', 'provCompare', 'text'],
+      ['sec-table-h', 'secTable', 'text'],
+      ['sec-table-p', 'secTableDesc', 'html'],
+      ['show-cols-label', 'showCols', 'text'],
+      ['methodology-summary', 'methodologySummary', 'text'],
+      ['i18n-method-title', 'i18nMethodTitle', 'text'],
+      ['i18n-method-body', 'i18nMethodBody', 'html'],
+      ['page-built-at', 'footerBuilt', 'text'],
+      ['footer-thanks', 'footerThanks', 'html'],
+      ['footer-disclaimer', 'footerDisclaimer', 'text'],
+      ['tier1-label', 'tier1Label', 'text'],
+      ['method-data-title', 'methodDataTitle', 'text'],
+      ['method-data-body', 'methodDataBody', 'html'],
+      ['method-metrics-title', 'methodMetricsTitle', 'text'],
+      ['method-metrics-body', 'methodMetricsBody', 'html'],
+      ['method-limits-title', 'methodLimitsTitle', 'text'],
+      ['method-limits-body', 'methodLimitsBody', 'html'],
+      ['lm-sat-note', 'lmSatNote', 'text'],
+      ['lm-near-note', 'lmNearNote', 'text'],
+      ['lm-climate-note', 'lmClimateNote', 'text'],
+    ];
+    map.forEach(([id, key, kind]) => {
+      const el = document.getElementById(id);
+      if (!el) return;
+      if (kind === 'html') el.innerHTML = t(key);
+      else if (kind === 'aria') el.setAttribute('aria-label', t(key));
+      else el.textContent = t(key);
+    });
+    const search = document.getElementById('table-search');
+    if (search) search.placeholder = t('searchPlaceholder');
+    const csvBtn = document.getElementById('csv-export');
+    if (csvBtn) csvBtn.textContent = t('exportCsv');
+    document.querySelectorAll('[data-group]').forEach((b) => {
+      const g = b.dataset.group;
+      const keys = { live: 'groupLive', infra: 'groupInfra', risk: 'groupRisk', invest: 'groupInvest' };
+      if (keys[g]) b.textContent = t(keys[g]);
+    });
+    ['map-zoom-in', 'map-zoom-out', 'map-zoom-reset'].forEach((id, i) => {
+      const el = document.getElementById(id);
+      const keys = ['mapZoomIn', 'mapZoomOut', 'mapZoomReset'];
+      if (el) { el.setAttribute('aria-label', t(keys[i])); if (id === 'map-zoom-reset') el.title = t('mapZoomReset'); }
+    });
+    const lmClose = document.getElementById('lm-close');
+    if (lmClose) lmClose.setAttribute('aria-label', t('lmCloseAria'));
+    const themeBtn = document.getElementById('theme-toggle');
+    if (themeBtn) themeBtn.setAttribute('aria-label', t('themeToggleAria'));
+    const langBtn = document.getElementById('lang-toggle');
+    if (langBtn) {
+      langBtn.textContent = lang === 'zh' ? 'EN' : '中';
+      langBtn.setAttribute('aria-label', t('langToggleAria'));
+      langBtn.setAttribute('title', lang === 'zh' ? 'English' : '中文');
+    }
+    document.documentElement.lang = lang === 'en' ? 'en' : 'zh-CN';
+    updateFxNote();
+  }
+
+  async function fetchExchangeRate() {
+    try {
+      const ctrl = typeof AbortController !== 'undefined' ? new AbortController() : null;
+      const timer = ctrl ? setTimeout(() => ctrl.abort(), 5000) : null;
+      const res = await fetch(FX_API, ctrl ? { signal: ctrl.signal } : {});
+      if (timer) clearTimeout(timer);
+      if (!res.ok) throw new Error('http ' + res.status);
+      const data = await res.json();
+      if (data.rates && data.rates.CNY > 0) {
+        cnyPerUsd = data.rates.CNY;
+        rateSource = 'live';
+        try { sessionStorage.setItem(FX_CACHE_KEY, JSON.stringify({ rate: cnyPerUsd, at: Date.now() })); } catch (e) { /* */ }
+        updateFxNote();
+        return;
+      }
+    } catch (e) { /* fall through */ }
+    try {
+      const cached = JSON.parse(sessionStorage.getItem(FX_CACHE_KEY) || 'null');
+      if (cached && cached.rate > 0 && Date.now() - cached.at < 86400000) {
+        cnyPerUsd = cached.rate;
+        rateSource = 'cached';
+        updateFxNote();
+        return;
+      }
+    } catch (e) { /* */ }
+    cnyPerUsd = FALLBACK_CNY_PER_USD;
+    rateSource = 'fallback';
+    updateFxNote();
+  }
+
+  function setLang(l, skipCb) {
+    if (l !== 'zh' && l !== 'en') return;
+    lang = l;
+    try { localStorage.setItem(STORAGE_KEY, l); } catch (e) { /* */ }
+    applyStaticI18n();
+    if (!skipCb && onChangeCb) onChangeCb();
+  }
+
+  function toggleLang() { setLang(lang === 'zh' ? 'en' : 'zh'); }
+
+  function onLangChange(fn) { onChangeCb = fn; }
+
+  window.HOUSING_I18N = {
+    t, isEn, getLang, setLang, toggleLang, onLangChange,
+    applyStaticI18n, fetchExchangeRate,
+    formatMoneyCny, formatPriceWan, formatArea, formatUnitPrice, formatRent,
+    formatTemp, formatTempSwing, formatDist, tempChartValue, tempAxisLabel, formatFieldLegend,
+    formatInt, communityName, priceAxisValue,
+    displayProvince, displayCity, displayDistrict, displayClimate, displayHeating,
+    displayHazardType, displayFreqShort, displayFreqLabel, displaySeismic, displayTyphoon,
+    displayGeoLabel, displayHeadline, displayHazardNote, displayHeatingNote, displayFieldLabel,
+    displayRiskSummary, formatDoy, hasChinese, MONTH_EN,
+    getRate, getRateSource,
+    SQM_TO_SQFT, KM_TO_MI, FALLBACK_CNY_PER_USD, FX_API,
+  };
+
+  document.documentElement.lang = lang === 'en' ? 'en' : 'zh-CN';
+})();
