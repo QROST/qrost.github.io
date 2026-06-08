@@ -45,8 +45,9 @@ python3 tools/manage.py build
 ```
 
 `build` 会一次性：① 重写 `assets/data/listings.js`；② 刷新 `data/listings.csv` 镜像；
-③ 就地把 `index.html` 里的「N 套 / N 个省 / 日期范围 / 页脚网页更新于（build 时刻）」改成最新值
+③ 就地把 `index.html` 里的「N 套 / N 个省 / 挂牌数据日期范围」改成最新值
 （找不到某个 token 会打印 `! ... update manually` 警告，不会静默失败）。
+页脚「网页更新于」在浏览器端从 GitHub API 读取 `demos/china-housing` 路径最近一次 commit 时间，**无需每次 commit 后跑 build**。
 
 **提交**（把 DB、生成的 js、csv、改动的 index.html 一起提交）：
 

@@ -15,10 +15,13 @@
   const MM_TO_IN = 1 / 25.4;
   const FALLBACK_CNY_PER_USD = 7;
   const FX_API = 'https://api.frankfurter.app/latest?from=USD&to=CNY';
+  const GITHUB_COMMITS_API = 'https://api.github.com/repos/QROST/qrost.github.io/commits?path=demos/china-housing&per_page=1';
+  const BUILT_AT_CACHE_KEY = 'housing-built-at';
 
   let lang = 'zh';
   let cnyPerUsd = FALLBACK_CNY_PER_USD;
   let rateSource = 'fallback';
+  let lastCommitIso = null;
   let onChangeCb = null;
 
   try {
@@ -62,7 +65,7 @@
       i18nMethodBody: '<p><strong class="text-slate-700 dark:text-slate-300">货币</strong>：英文界面将人民币挂牌价换算为美元显示。在线时从 <a href="https://www.frankfurter.app/" class="text-emerald-700 dark:text-emerald-400 underline" target="_blank" rel="noopener">Frankfurter</a> 拉取 USD→CNY 实时汇率；离线或接口不可用时使用 <strong>1 USD ≈ 7 CNY</strong> 的近似值（即 CNY 金额 ÷ 7）。</p><p><strong class="text-slate-700 dark:text-slate-300">面积</strong>：英文界面将 ㎡ 换算为平方英尺（sq ft），系数 <strong>1 ㎡ = 10.7639 sq ft</strong>；单价同步换算为 <strong>USD/sq ft</strong>（总价 USD ÷ 面积 sq ft，等价于 元/㎡ 经汇率与面积系数换算）。</p><p><strong class="text-slate-700 dark:text-slate-300">气温</strong>：英文界面将摄氏温度换算为华氏度显示，<strong>°F = °C × 9/5 + 32</strong>（年温差等差值按 <strong>Δ°F = Δ°C × 9/5</strong>）。</p><p><strong class="text-slate-700 dark:text-slate-300">距离</strong>：英文界面将公里换算为英里，<strong>1 km ≈ 0.621371 mi</strong>；不足约 160 m 时显示英尺。</p><p><strong class="text-slate-700 dark:text-slate-300">海拔</strong>：英文界面将米换算为英尺，<strong>1 m = 3.28084 ft</strong>（整数英尺显示）。</p><p><strong class="text-slate-700 dark:text-slate-300">降水</strong>：英文界面将毫米换算为英寸，<strong>1 in = 25.4 mm</strong>（年降水与月降水柱状图保留 1 位小数 in）。</p><p><strong class="text-slate-700 dark:text-slate-300">地名与小区</strong>：英文界面将省 / 市 / 区显示为常用英文名或全拼；小区名无官方英文时使用<strong>全拼</strong>（无声调，词间空格）。中文界面保持原始中文与 ㎡ / ¥ / °C / km / m / mm。</p><p id="fx-rate-note" class="text-xs text-slate-500 dark:text-slate-500"></p>',
       mapZoomIn: '放大', mapZoomOut: '缩小', mapZoomReset: '复位',
       tier1Label: '显示全部',
-      footerBuilt: '网页更新于 2026-06-06 23:06',
+      footerBuiltPrefix: '网页更新于',
       footerThanks: '数据来源 · 致谢：感谢 <strong class="font-medium text-slate-500 dark:text-slate-400">小红书 @FIRE规划师</strong>、<strong class="font-medium text-slate-500 dark:text-slate-400">小红书 @包子全是水</strong> 提供的原始信息与样本线索；后续扩充与全部宜居 enrich 由 QROST 独立调研整理，建成年代等附可核查来源（点击表格行查看）。',
       footerDisclaimer: '© 2026 QROST. 本页不构成任何投资、法律或税务建议。',
       kpiListings: '房源样本', kpiListingsSub: '社区级二手房挂牌', kpiUnit: '套',
@@ -184,7 +187,7 @@ methodDataTitle: '数据来源与整合',
       i18nMethodBody: '<p><strong class="text-slate-700 dark:text-slate-300">Currency</strong>: English UI converts CNY listing prices to USD. When online, the live USD→CNY rate is fetched from <a href="https://www.frankfurter.app/" class="text-emerald-700 dark:text-emerald-400 underline" target="_blank" rel="noopener">Frankfurter</a>; if offline or the API is unavailable, we fall back to <strong>1 USD ≈ 7 CNY</strong> (CNY amount ÷ 7).</p><p><strong class="text-slate-700 dark:text-slate-300">Area</strong>: square metres are shown as <strong>square feet (sq ft)</strong> using <strong>1 m² = 10.7639 sq ft</strong>. Unit prices become <strong>USD/sq ft</strong> (total USD ÷ sq ft area, equivalent to converting ¥/m² via FX and area factor).</p><p><strong class="text-slate-700 dark:text-slate-300">Temperature</strong>: Celsius values are shown as <strong>°F</strong> using <strong>°F = °C × 9/5 + 32</strong> (swing / range deltas use <strong>Δ°F = Δ°C × 9/5</strong>).</p><p><strong class="text-slate-700 dark:text-slate-300">Distance</strong>: kilometres are shown as <strong>miles</strong> using <strong>1 km ≈ 0.621371 mi</strong>; very short hops (&lt; ~160 m) use feet.</p><p><strong class="text-slate-700 dark:text-slate-300">Elevation</strong>: metres are shown as <strong>feet (ft)</strong> using <strong>1 m = 3.28084 ft</strong> (rounded to whole feet in labels).</p><p><strong class="text-slate-700 dark:text-slate-300">Precipitation</strong>: millimetres are shown as <strong>inches (in)</strong> using <strong>1 in = 25.4 mm</strong> (annual totals and monthly chart bars use one decimal place).</p><p><strong class="text-slate-700 dark:text-slate-300">Community names</strong>: where no official English name exists, the Chinese community name is shown in <strong>full pinyin</strong> (no tone marks, space-separated); province / city / district labels are shown in standard English or romanized pinyin.</p><p id="fx-rate-note" class="text-xs text-slate-500 dark:text-slate-500"></p>',
       mapZoomIn: 'Zoom in', mapZoomOut: 'Zoom out', mapZoomReset: 'Reset',
       tier1Label: 'Show all listings',
-      footerBuilt: 'Page built 2026-06-06 23:06',
+      footerBuiltPrefix: 'Page updated',
       footerThanks: 'Data · thanks to <strong class="font-medium text-slate-500 dark:text-slate-400">Xiaohongshu @FIRE规划师</strong> and <strong class="font-medium text-slate-500 dark:text-slate-400">@包子全是水</strong> for seed listings; QROST enriched climate, POIs, hazards and built-year research independently.',
       footerDisclaimer: '© 2026 QROST. Not investment, legal or tax advice.',
       kpiListings: 'Listings', kpiListingsSub: 'Community-level asks', kpiUnit: '',
@@ -677,6 +680,68 @@ methodDataTitle: 'Data sources & integration',
     el.innerHTML = t(key, { rate });
   }
 
+  function formatCommitDate(iso) {
+    if (!iso) return '';
+    const d = new Date(iso);
+    if (Number.isNaN(d.getTime())) return '';
+    if (lang === 'en') {
+      return d.toLocaleString('en-US', {
+        year: 'numeric', month: 'short', day: 'numeric',
+        hour: '2-digit', minute: '2-digit',
+      });
+    }
+    const pad = (n) => String(n).padStart(2, '0');
+    return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())} ${pad(d.getHours())}:${pad(d.getMinutes())}`;
+  }
+
+  function builtAtLabel(iso) {
+    const when = formatCommitDate(iso || lastCommitIso);
+    if (!when) return t('footerBuiltPrefix');
+    return `${t('footerBuiltPrefix')} ${when}`;
+  }
+
+  function updateBuiltAtEl() {
+    const el = document.getElementById('page-built-at');
+    if (!el) return;
+    el.textContent = builtAtLabel();
+  }
+
+  function setLastCommitIso(iso) {
+    if (!iso) return;
+    lastCommitIso = iso;
+    updateBuiltAtEl();
+  }
+
+  async function fetchPageBuiltAt() {
+    if (typeof fetch !== 'function') return;
+    try {
+      const cached = JSON.parse(sessionStorage.getItem(BUILT_AT_CACHE_KEY) || 'null');
+      if (cached && cached.iso && Date.now() - cached.at < 3600000) {
+        lastCommitIso = cached.iso;
+        updateBuiltAtEl();
+      }
+    } catch (e) { /* */ }
+    try {
+      const ctrl = typeof AbortController !== 'undefined' ? new AbortController() : null;
+      const timer = ctrl ? setTimeout(() => ctrl.abort(), 8000) : null;
+      const res = await fetch(GITHUB_COMMITS_API, {
+        headers: { Accept: 'application/vnd.github+json' },
+        ...(ctrl ? { signal: ctrl.signal } : {}),
+      });
+      if (timer) clearTimeout(timer);
+      if (!res.ok) throw new Error('http ' + res.status);
+      const commits = await res.json();
+      const iso = commits && commits[0] && commits[0].commit && commits[0].commit.committer
+        ? commits[0].commit.committer.date : null;
+      if (!iso) return;
+      lastCommitIso = iso;
+      try {
+        sessionStorage.setItem(BUILT_AT_CACHE_KEY, JSON.stringify({ iso, at: Date.now() }));
+      } catch (e) { /* */ }
+      updateBuiltAtEl();
+    } catch (e) { /* keep cached or static HTML fallback */ }
+  }
+
   function applyStaticI18n() {
     const map = [
       ['skip-link', 'skipLink', 'text'],
@@ -704,7 +769,6 @@ methodDataTitle: 'Data sources & integration',
       ['methodology-summary', 'methodologySummary', 'text'],
       ['i18n-method-title', 'i18nMethodTitle', 'text'],
       ['i18n-method-body', 'i18nMethodBody', 'html'],
-      ['page-built-at', 'footerBuilt', 'text'],
       ['footer-thanks', 'footerThanks', 'html'],
       ['footer-disclaimer', 'footerDisclaimer', 'text'],
       ['tier1-label', 'tier1Label', 'text'],
@@ -751,6 +815,7 @@ methodDataTitle: 'Data sources & integration',
     }
     document.documentElement.lang = lang === 'en' ? 'en' : 'zh-CN';
     document.title = t('pageTitle');
+    updateBuiltAtEl();
     updateFxNote();
   }
 
@@ -798,7 +863,8 @@ methodDataTitle: 'Data sources & integration',
 
   window.HOUSING_I18N = {
     t, isEn, getLang, setLang, toggleLang, onLangChange,
-    applyStaticI18n, fetchExchangeRate,
+    applyStaticI18n, fetchExchangeRate, fetchPageBuiltAt,
+    formatCommitDate, builtAtLabel, setLastCommitIso, getLastCommitIso: () => lastCommitIso,
     formatMoneyCny, formatPriceWan, formatArea, formatUnitPrice, formatRent,
     formatTemp, formatTempSwing, formatDist, formatElevation, formatPrecip,
     precipChartValue, precipAxisLabel, tempChartValue, tempAxisLabel, formatFieldLegend,

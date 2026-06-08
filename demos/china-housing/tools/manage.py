@@ -332,9 +332,6 @@ def sync_html(rows: list[dict]) -> list[str]:
     if lo and hi:
         apply("date range", r"\d{4}-\d{2}(\s*~\s*)\d{4}-\d{2}",
               lambda m: f"{lo}{m.group(1)}{hi}")
-        built_at = datetime.now().strftime("%Y-%m-%d %H:%M")
-        apply("footer 网页更新于", r'(id="page-built-at" class="tabular-nums">网页更新于\s*)\d{4}-\d{2}-\d{2}\s+\d{2}:\d{2}',
-              lambda m: f"{m.group(1)}{built_at}", expect=1)
 
     HTML_PATH.write_text(html, encoding="utf-8")
     return log
@@ -516,7 +513,11 @@ def cmd_climate_daily(args):
 def cmd_hist_temp(args):
     import fetch_hist_temp_extremes as hte  # noqa: WPS433 — sibling script
     cache = hte.load_cache()
-    rep = hte.apply_to_db(connect(), cache, force=args.force, skip_wiki=args.skip_wiki)
+    rep = hte.apply_to_db(
+        connect(), cache,
+        force=args.force, skip_wiki=args.skip_wiki,
+        upgrade_city=args.upgrade_city, upgrade_proxy=args.upgrade_proxy,
+    )
     hte.save_cache(cache)
     print("=== hist-temp report ===")
     print(json.dumps(rep, ensure_ascii=False, indent=1))
@@ -639,6 +640,10 @@ def main(argv=None):
     sp = sub.add_parser("hist-temp", help="bake historical max/min temps (Wikipedia CMA → ERA5 fallback)")
     sp.add_argument("--force", action="store_true", help="re-fetch even if columns already populated")
     sp.add_argument("--skip-wiki", action="store_true", help="ERA5 only (faster; no CMA station lookup)")
+    sp.add_argument("--upgrade-city", action="store_true",
+                    help="re-bake rows still at 市 with district-first logic")
+    sp.add_argument("--upgrade-proxy", action="store_true",
+                    help="re-bake climate-monthly-2014-2023 proxy rows via wiki/ERA5")
     sp.set_defaults(fn=cmd_hist_temp)
     sp = sub.add_parser("elevation", help="bake metres-above-sea-level via Open-Meteo DEM (batched)")
     sp.add_argument("--force", action="store_true", help="re-fetch rows that already have elevation")
