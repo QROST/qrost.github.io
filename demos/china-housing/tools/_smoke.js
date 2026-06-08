@@ -53,7 +53,8 @@ const document = {
   querySelector() { return el(); }, addEventListener() {}, createElement() { return el(); },
   readyState: 'complete', body: { style: {} },
 };
-function Chart(c, cfg) { JSON.stringify({ t: cfg && cfg.type }); this.destroy = () => {}; }
+let lastChartCfg = null;
+function Chart(c, cfg) { lastChartCfg = cfg; JSON.stringify({ t: cfg && cfg.type }); this.destroy = () => {}; }
 Chart.defaults = { font: {}, color: '' };
 let lastMapVm = null;
 const chartStub = {
@@ -74,6 +75,14 @@ sandbox.window.Chart = Chart; sandbox.window.echarts = echarts; sandbox.window.L
 sandbox.globalThis = sandbox; vm.createContext(sandbox);
 const run = (f) => vm.runInContext(read(f), sandbox, { filename: f });
 ids['lang-toggle'] = el({ id: 'lang-toggle' });
+const provWrap = el({ id: 'province-chart-wrap' });
+provWrap.style = { height: '420px' };
+const provCanvas = el({ id: 'province-chart' });
+provCanvas.style = {};
+provCanvas.parentElement = provWrap;
+provWrap.appendChild = (c) => { provWrap._child = c; c.parentElement = provWrap; };
+ids['province-chart-wrap'] = provWrap;
+ids['province-chart'] = provCanvas;
 ['assets/data/listings.js', 'assets/data/china-geo.js', 'assets/data/enriched.js', 'assets/data/hazards.js', 'assets/data/field.js', 'assets/data/loc-pinyin.js', 'assets/data/geo-en.js', 'assets/js/i18n.js', 'assets/js/app.js'].forEach(run);
 const zhRe = /[\u4e00-\u9fff]/;
 
@@ -142,7 +151,25 @@ setTimeout(() => {
     selCache['[data-dim]'].find((b) => b.dataset.dim === 'tempRange').fire('click');
   } catch (e) { T('map dims — ' + e.message, false); }
   try { selCache['[data-base]'].forEach((b) => b.fire('click')); T('basemaps (incl isolines+heatmap)', true); } catch (e) { T('basemaps — ' + e.message, false); }
-  try { selCache['[data-prov]'].forEach((b) => b.fire('click')); selCache['[data-rank]'].forEach((b) => b.fire('click')); T('prov+rank', true); } catch (e) { T('prov+rank — ' + e.message, false); }
+  try {
+    selCache['[data-prov]'].forEach((b) => b.fire('click'));
+    selCache['[data-rank]'].forEach((b) => b.fire('click'));
+    T('prov+rank', true);
+    selCache['[data-prov]'].find((b) => b.dataset.prov === 'avgRange').fire('click');
+    const provN = lastChartCfg && lastChartCfg.data.labels.length;
+    T('prov chart dynamic height', parseInt(provWrap.style.height, 10) >= 560);
+    T('prov chart y autoSkip false', lastChartCfg && lastChartCfg.options.scales.y.ticks.autoSkip === false);
+    T('prov chart all provinces', provN >= 18 && provN <= 22);
+    w.__setLang('en');
+    selCache['[data-prov]'].find((b) => b.dataset.prov === 'avgRange').fire('click');
+    T('prov chart en height', parseInt(provWrap.style.height, 10) >= 560);
+    T('prov chart en labels', lastChartCfg && lastChartCfg.data.labels.includes('Heilongjiang'));
+    selCache['[data-prov]'].find((b) => b.dataset.prov === 'avgExtreme').fire('click');
+    const strip = ids['province-strip'];
+    T('prov strip no truncate', strip && strip._html && !/truncate/.test(strip._html) && /Heilongjiang/.test(strip._html));
+    w.__setLang('zh');
+    selCache['[data-prov]'].find((b) => b.dataset.prov === 'avgRange').fire('click');
+  } catch (e) { T('prov+rank — ' + e.message, false); }
   try {
     selCache['[data-group]'].forEach((b) => b.fire('click'));
     ['janTemp', 'histTempMax', 'histTempMin', 'hospitalKm', 'transitKm', 'seismic', 'hazard', 'tempRange', 'climateType', 'prov'].forEach((col) => ids['table-head'].fire('click', { target: { closest: () => ({ dataset: { col } }) } }));
