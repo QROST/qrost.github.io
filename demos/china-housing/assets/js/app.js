@@ -575,6 +575,28 @@
   };
   let provMetric = 'avgRange';
 
+  function provChartWrap() {
+    const wrap = document.getElementById('province-chart-wrap');
+    if (wrap) return wrap;
+    const canvas = document.getElementById('province-chart');
+    return canvas && canvas.parentElement;
+  }
+  const PROV_ROW_H = { zh: 26, en: 28 };
+  const PROV_CHART_PAD = 68;
+  const PROV_CHART_MIN_H = 280;
+  function provChartHeight(n) {
+    const rowH = isEn() ? PROV_ROW_H.en : PROV_ROW_H.zh;
+    const maxH = Math.min(900, Math.max(520, (window.innerHeight || 800) * 0.82));
+    return Math.max(PROV_CHART_MIN_H, Math.min(n * rowH + PROV_CHART_PAD, maxH));
+  }
+  function provLabelCol() { return isEn() ? '8.5rem' : '3.25rem'; }
+  function applyProvChartHeight(n) {
+    const wrap = provChartWrap();
+    if (!wrap) return;
+    wrap.style.height = provChartHeight(n) + 'px';
+    wrap.style.overflowY = '';
+  }
+
   // avgExtreme view: a 365-day strip per province (vertical ticks = month boundaries).
   // Red spans = days when some listing in the province is extreme; depth = share affected.
   function renderProvinceStrip() {
@@ -590,9 +612,10 @@
       canvas.parentElement.appendChild(strip);
     }
     strip.style.display = '';
-    const GT = 'grid-template-columns: 3.4rem 1fr';
     const agg = aggregateByProvince()
       .sort((a, b) => (b.avgExtremeDays ?? b.avgExtreme ?? 0) - (a.avgExtremeDays ?? a.avgExtreme ?? 0) || a.prov.localeCompare(b.prov, 'zh'));
+    applyProvChartHeight(agg.length);
+    const GT = `grid-template-columns: ${provLabelCol()} 1fr`;
     // month boundaries (%) + centres on a 365-day axis
     const bnd = []; let acc = 0; for (let i = 0; i < 12; i++) { acc += _DIM[i]; bnd.push(acc / 365 * 100); }
     const ctr = []; let p0 = 0; for (let i = 0; i < 12; i++) { ctr.push((p0 + bnd[i]) / 2); p0 = bnd[i]; }
@@ -618,7 +641,7 @@
     const provColor = isDark() ? '#94a3b8' : '#475569';
     const stripBg = isDark() ? 'rgba(30,41,59,0.7)' : 'rgba(241,245,249,0.7)';
     const body = agg.map((a) =>
-      `<div class="grid items-center gap-px py-px" style="${GT}"><div class="text-xs truncate pr-1" style="color:${provColor}" title="${trProv(a.prov)} · ${t('provExtremeTitle')} ${a.extremeRange}">${trProv(a.prov)}</div>`
+      `<div class="grid items-center gap-px py-px" style="${GT}"><div class="text-xs pr-1 whitespace-nowrap" style="color:${provColor}" title="${trProv(a.prov)} · ${t('provExtremeTitle')} ${a.extremeRange}">${trProv(a.prov)}</div>`
       + `<div class="relative h-5 rounded-sm" style="${gridImg};background-color:${stripBg}">${blocksFor(a)}</div></div>`).join('');
     strip.innerHTML = head + body
       + `<div class="text-[0.62rem] mt-2 leading-relaxed" style="color:${themeMuted()}">${t('provStripNote')}</div>`;
@@ -643,6 +666,8 @@
     const metricKey = provMetric;
     const agg = aggregateByProvince().filter((a) => a[metricKey] != null)
       .sort((a, b) => (b[metricKey] - a[metricKey]) * (m.dir > 0 ? 1 : -1));
+    applyProvChartHeight(agg.length);
+    const barH = Math.max(12, Math.min(22, Math.floor((provChartHeight(agg.length) - PROV_CHART_PAD) / Math.max(agg.length, 1) * 0.62)));
     const cfg = {
       type: 'bar',
       data: {
@@ -650,11 +675,12 @@
         datasets: [{
           data: agg.map((a) => a[metricKey]),
           backgroundColor: m.color, borderColor: C.emerald, borderWidth: 1,
-          borderRadius: 4, maxBarThickness: 22,
+          borderRadius: 4, maxBarThickness: barH,
         }],
       },
       options: {
         indexAxis: 'y', responsive: true, maintainAspectRatio: false,
+        layout: { padding: { left: 4, right: 12, top: 8, bottom: 8 } },
         plugins: {
           legend: { display: false },
           tooltip: {
@@ -675,7 +701,10 @@
         scales: {
           x: { title: { display: true, text: m.axis }, grid: { color: themeGrid() },
             ticks: { callback: (v) => { const n = Number(v); return Number.isFinite(n) ? m.fmt(n) : v; } } },
-          y: { grid: { display: false } },
+          y: {
+            grid: { display: false },
+            ticks: { autoSkip: false, font: { size: 11 }, color: themeText(), padding: 6 },
+          },
         },
       },
     };
