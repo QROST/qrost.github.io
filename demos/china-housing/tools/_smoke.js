@@ -267,6 +267,12 @@ setTimeout(() => {
     w.__setLang('en');
     T('provExtremeUnion en day-based', /extreme-day spans/i.test(I.t('provExtremeUnion')) && I.t('provExtremePerListing') === ' d/listing');
     T('document.title en', /livable and affordable/i.test(document.title));
+    I.setLastCommitIso('2026-06-07T20:56:01-07:00');
+    w.__setLang('zh');
+    T('builtAt zh', /^网页更新于 \d{4}-\d{2}-\d{2} \d{2}:\d{2}$/.test(document.getElementById('page-built-at').textContent));
+    w.__setLang('en');
+    T('builtAt en prefix', /^Page updated /.test(document.getElementById('page-built-at').textContent));
+    T('formatCommitDate en', /Jun/.test(I.formatCommitDate('2026-06-07T20:56:01-07:00')));
     w.__setLang('zh');
   } catch (e) { T('lang toggle — ' + e.message, false); }
   let ok = true; for (const [n, p] of checks) { if (!p) ok = false; console.log((p ? 'PASS' : 'FAIL') + ' · ' + n); }

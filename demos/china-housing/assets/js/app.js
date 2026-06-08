@@ -1671,6 +1671,7 @@
   function init() {
     chartBase();
     if (I18N().applyStaticI18n) I18N().applyStaticI18n();
+    if (I18N().fetchPageBuiltAt) I18N().fetchPageBuiltAt();
     if (isEn() && I18N().fetchExchangeRate) I18N().fetchExchangeRate();
     safeRun('syncHeroCounts', syncHeroCounts);
     // table + interaction wiring first — must survive chart/map failures
