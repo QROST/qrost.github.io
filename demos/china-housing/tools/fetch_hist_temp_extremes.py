@@ -168,9 +168,9 @@ def _nearest_era5_cache(lat: float, lng: float, cache: dict, max_delta: float = 
     return best
 
 
-def fetch_era5_extremes(lat: float, lng: float, cache: dict, sleep: float = 0.4) -> dict:
+def fetch_era5_extremes(lat: float, lng: float, cache: dict, sleep: float = 1.2) -> dict:
     key = f"era5:{lat:.2f},{lng:.2f}"
-    if key in cache:
+    if key in cache and cache[key]:
         return cache[key]
     near = _nearest_era5_cache(lat, lng, cache)
     if near:
@@ -183,17 +183,24 @@ def fetch_era5_extremes(lat: float, lng: float, cache: dict, sleep: float = 0.4)
         "timezone": "auto",
     })
     last = None
-    for attempt in range(6):
+    for attempt in range(8):
         try:
-            j = json.loads(_get(url, timeout=120, retries=2, backoff=4.0))
+            j = json.loads(_get(url, timeout=180, retries=3, backoff=6.0))
             break
         except Exception as e:  # noqa: BLE001
             last = e
-            if "429" in repr(e):
-                time.sleep(8 * (attempt + 1))
-            else:
-                time.sleep(2 * (attempt + 1))
+            wait = (12 * (attempt + 1)) if "429" in repr(e) else (3 * (attempt + 1))
+            print(f"  era5 retry {attempt + 1}/8 ({lat:.2f},{lng:.2f}): {repr(e)[:80]} — sleep {wait}s")
+            time.sleep(wait)
     else:
+        # Persistent rate-limit / outage: reuse nearest baked ERA5 cell (≤1° ≈ 100 km)
+        wide = _nearest_era5_cache(lat, lng, cache, max_delta=1.0)
+        if wide:
+            wide = dict(wide)
+            wide["histTempNote"] = (wide.get("histTempNote") or "").replace("（邻近格点复用）", "")
+            wide["histTempNote"] += "（API 限流，复用邻近格点 ERA5 极值）"
+            cache[key] = wide
+            return wide
         raise last
     d = j["daily"]
     tmax, tmin = d["temperature_2m_max"], d["temperature_2m_min"]
@@ -231,10 +238,17 @@ def save_cache(cache: dict) -> None:
     CACHE.write_text(json.dumps(cache, ensure_ascii=False, indent=1), encoding="utf-8")
 
 
+_PROXY_SRC = "climate-monthly-2014-2023"
+
+
+def _is_proxy(entry: dict | None) -> bool:
+    return bool(entry and entry.get("histTempSrc") == _PROXY_SRC)
+
+
 def resolve_cluster(prov: str, city: str, dist: str, lat: float, lng: float, cache: dict,
-                    skip_wiki: bool = False) -> dict:
+                    skip_wiki: bool = False, *, allow_proxy_cache: bool = False) -> dict:
     ck = cluster_key(prov, city, dist)
-    if ck in cache and cache[ck]:
+    if ck in cache and cache[ck] and (allow_proxy_cache or not _is_proxy(cache[ck])):
         return cache[ck]
     if not skip_wiki and dist:
         wiki_dist = fetch_wiki_extremes(dist, city, cache, city_only=False)
@@ -258,15 +272,20 @@ def resolve_cluster(prov: str, city: str, dist: str, lat: float, lng: float, cac
 
 
 def apply_to_db(con: sqlite3.Connection, cache: dict, force: bool = False,
-                skip_wiki: bool = False, upgrade_city: bool = False) -> dict:
+                skip_wiki: bool = False, upgrade_city: bool = False,
+                upgrade_proxy: bool = False) -> dict:
     if force:
         where = ""
+    elif upgrade_proxy:
+        where = f"AND hist_temp_src = '{_PROXY_SRC}'"
     elif upgrade_city:
         where = "AND hist_temp_level = '市'"
     else:
         where = "AND (hist_temp_max IS NULL OR hist_temp_min IS NULL)"
     rows = con.execute(f"""
-        SELECT id, prov, city, dist, lat, lng FROM listings
+        SELECT id, prov, city, dist, lat, lng,
+               hist_temp_max, hist_temp_min, hist_temp_src
+        FROM listings
         WHERE lat IS NOT NULL {where}
         ORDER BY prov, city, dist, id
     """).fetchall()
@@ -276,14 +295,17 @@ def apply_to_db(con: sqlite3.Connection, cache: dict, force: bool = False,
         clusters.setdefault(ck, []).append(r)
 
     rep = {"clusters": len(clusters), "listings": 0, "wiki": 0, "era5": 0,
-           "level_dist": 0, "level_county": 0, "level_city": 0, "gaps": 0}
+           "level_dist": 0, "level_county": 0, "level_city": 0, "gaps": 0,
+           "proxy_upgraded": 0, "jumps": []}
     for ck, members in sorted(clusters.items()):
         parts = ck.split("|", 2)
         prov, city = parts[0], parts[1]
         dist = parts[2] if len(parts) > 2 else ""
         lat = sum(m["lat"] for m in members) / len(members)
         lng = sum(m["lng"] for m in members) / len(members)
-        if upgrade_city or force:
+        old_max = members[0]["hist_temp_max"] if upgrade_proxy else None
+        old_min = members[0]["hist_temp_min"] if upgrade_proxy else None
+        if upgrade_city or upgrade_proxy or force:
             cache.pop(ck, None)
         try:
             data = resolve_cluster(prov, city, dist, lat, lng, cache, skip_wiki=skip_wiki)
@@ -292,6 +314,18 @@ def apply_to_db(con: sqlite3.Connection, cache: dict, force: bool = False,
             rep["gaps"] += len(members)
             continue
         src = data.get("histTempSrc", "")
+        if upgrade_proxy and src == _PROXY_SRC:
+            print(f"  ✗ {dist or city} ({city}, {prov}): still proxy — no better source")
+            rep["gaps"] += len(members)
+            continue
+        if upgrade_proxy:
+            rep["proxy_upgraded"] += 1
+            if old_max is not None and abs(data["histTempMax"] - old_max) > 8:
+                rep["jumps"].append({"cluster": ck, "field": "max",
+                                     "old": old_max, "new": data["histTempMax"], "src": src})
+            if old_min is not None and abs(data["histTempMin"] - old_min) > 8:
+                rep["jumps"].append({"cluster": ck, "field": "min",
+                                     "old": old_min, "new": data["histTempMin"], "src": src})
         lvl = data.get("histTempLevel", LEVEL_DIST)
         if src.startswith("wikipedia"):
             rep["wiki"] += 1
@@ -334,6 +368,8 @@ def main() -> None:
     p.add_argument("--skip-wiki", action="store_true", help="ERA5 only (faster batch bake)")
     p.add_argument("--upgrade-city", action="store_true",
                    help="re-bake rows still at 市 with district-first logic")
+    p.add_argument("--upgrade-proxy", action="store_true",
+                   help="re-bake climate-monthly-2014-2023 proxy rows via wiki/ERA5")
     args = p.parse_args()
     cache = load_cache()
     con = sqlite3.connect(DB, timeout=120)
@@ -353,7 +389,7 @@ def main() -> None:
         "SELECT DISTINCT prov,city,dist FROM listings WHERE lat IS NOT NULL").fetchall())
     print(f"hist-temp: {n} district/town cluster(s)…")
     rep = apply_to_db(con, cache, force=args.force, skip_wiki=args.skip_wiki,
-                      upgrade_city=args.upgrade_city)
+                      upgrade_city=args.upgrade_city, upgrade_proxy=args.upgrade_proxy)
     print("=== hist-temp report ===")
     print(json.dumps(rep, ensure_ascii=False, indent=1))
     print("→ run `python3 tools/manage.py build` to regenerate enriched.js")

@@ -46,12 +46,18 @@ def main() -> int:
         errors.append(f"{len(missing)}/{total} listings missing hist_temp_max/min")
 
     level_counts: dict[str, int] = {}
+    source_counts: dict[str, int] = {}
+    proxy_rows = 0
     city_fallback = 0
     for r in rows:
         if r["hist_temp_max"] is None:
             continue
         lvl = r["hist_temp_level"] or "unknown"
+        src = r["hist_temp_src"] or "unknown"
         level_counts[lvl] = level_counts.get(lvl, 0) + 1
+        source_counts[src] = source_counts.get(src, 0) + 1
+        if src == "climate-monthly-2014-2023":
+            proxy_rows += 1
         if lvl == LEVEL_CITY:
             city_fallback += 1
         tmax, tmin = r["hist_temp_max"], r["hist_temp_min"]
@@ -83,6 +89,9 @@ def main() -> int:
     if pct_city > 15:
         warnings.append(f"city-level fallback {pct_city:.1f}% exceeds 15% threshold")
 
+    if proxy_rows:
+        errors.append(f"{proxy_rows}/{total} listings still on climate-monthly-2014-2023 proxy")
+
     # enriched.js bake check
     baked = load_enriched_ids()
     if baked:
@@ -103,8 +112,10 @@ def main() -> int:
         "by_level": level_counts,
         "pct_dist_or_county": round(pct_dist, 1),
         "pct_city_fallback": round(pct_city, 1),
-        "wiki_clusters": sum(1 for r in rows if r["hist_temp_src"] and r["hist_temp_src"].startswith("wikipedia")),
-        "era5_clusters": sum(1 for r in rows if r["hist_temp_src"] and "era5" in (r["hist_temp_src"] or "")),
+        "by_source": source_counts,
+        "proxy_rows": proxy_rows,
+        "wiki_rows": sum(1 for r in rows if r["hist_temp_src"] and r["hist_temp_src"].startswith("wikipedia")),
+        "era5_rows": sum(1 for r in rows if r["hist_temp_src"] and "era5" in (r["hist_temp_src"] or "")),
         "errors": errors,
         "warnings": warnings,
         "ok": len(errors) == 0,
