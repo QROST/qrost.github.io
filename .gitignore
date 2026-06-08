@@ -5,3 +5,7 @@ __pycache__/
 
 # china-housing: local research / audit batches (not for public repo)
 demos/china-housing/data/research/
+
+# SQLite WAL mode sidecars (runtime only; never commit)
+*.db-shm
+*.db-wal
