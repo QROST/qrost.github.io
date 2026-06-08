@@ -11,6 +11,8 @@
   const SQM_TO_SQFT = 10.7639;
   const KM_TO_MI = 0.621371;
   const KM_TO_FT = 3280.8399;
+  const M_TO_FT = 3.28084;
+  const MM_TO_IN = 1 / 25.4;
   const FALLBACK_CNY_PER_USD = 7;
   const FX_API = 'https://api.frankfurter.app/latest?from=USD&to=CNY';
 
@@ -57,7 +59,7 @@
       exportCsv: '导出 CSV',
       methodologySummary: '说明 · Methodology',
       i18nMethodTitle: '语言与单位换算（English 模式）',
-      i18nMethodBody: '<p><strong class="text-slate-700 dark:text-slate-300">货币</strong>：英文界面将人民币挂牌价换算为美元显示。在线时从 <a href="https://www.frankfurter.app/" class="text-emerald-700 dark:text-emerald-400 underline" target="_blank" rel="noopener">Frankfurter</a> 拉取 USD→CNY 实时汇率；离线或接口不可用时使用 <strong>1 USD ≈ 7 CNY</strong> 的近似值（即 CNY 金额 ÷ 7）。</p><p><strong class="text-slate-700 dark:text-slate-300">面积</strong>：英文界面将 ㎡ 换算为平方英尺（sq ft），系数 <strong>1 ㎡ = 10.7639 sq ft</strong>；单价同步换算为 <strong>USD/sq ft</strong>（总价 USD ÷ 面积 sq ft，等价于 元/㎡ 经汇率与面积系数换算）。</p><p><strong class="text-slate-700 dark:text-slate-300">气温</strong>：英文界面将摄氏温度换算为华氏度显示，<strong>°F = °C × 9/5 + 32</strong>（年温差等差值按 <strong>Δ°F = Δ°C × 9/5</strong>）。</p><p><strong class="text-slate-700 dark:text-slate-300">距离</strong>：英文界面将公里换算为英里，<strong>1 km ≈ 0.621371 mi</strong>；不足约 160 m 时显示英尺。</p><p><strong class="text-slate-700 dark:text-slate-300">地名与小区</strong>：英文界面将省 / 市 / 区显示为常用英文名或全拼；小区名无官方英文时使用<strong>全拼</strong>（无声调，词间空格）。中文界面保持原始中文与 ㎡ / ¥ / °C / km。</p><p id="fx-rate-note" class="text-xs text-slate-500 dark:text-slate-500"></p>',
+      i18nMethodBody: '<p><strong class="text-slate-700 dark:text-slate-300">货币</strong>：英文界面将人民币挂牌价换算为美元显示。在线时从 <a href="https://www.frankfurter.app/" class="text-emerald-700 dark:text-emerald-400 underline" target="_blank" rel="noopener">Frankfurter</a> 拉取 USD→CNY 实时汇率；离线或接口不可用时使用 <strong>1 USD ≈ 7 CNY</strong> 的近似值（即 CNY 金额 ÷ 7）。</p><p><strong class="text-slate-700 dark:text-slate-300">面积</strong>：英文界面将 ㎡ 换算为平方英尺（sq ft），系数 <strong>1 ㎡ = 10.7639 sq ft</strong>；单价同步换算为 <strong>USD/sq ft</strong>（总价 USD ÷ 面积 sq ft，等价于 元/㎡ 经汇率与面积系数换算）。</p><p><strong class="text-slate-700 dark:text-slate-300">气温</strong>：英文界面将摄氏温度换算为华氏度显示，<strong>°F = °C × 9/5 + 32</strong>（年温差等差值按 <strong>Δ°F = Δ°C × 9/5</strong>）。</p><p><strong class="text-slate-700 dark:text-slate-300">距离</strong>：英文界面将公里换算为英里，<strong>1 km ≈ 0.621371 mi</strong>；不足约 160 m 时显示英尺。</p><p><strong class="text-slate-700 dark:text-slate-300">海拔</strong>：英文界面将米换算为英尺，<strong>1 m = 3.28084 ft</strong>（整数英尺显示）。</p><p><strong class="text-slate-700 dark:text-slate-300">降水</strong>：英文界面将毫米换算为英寸，<strong>1 in = 25.4 mm</strong>（年降水与月降水柱状图保留 1 位小数 in）。</p><p><strong class="text-slate-700 dark:text-slate-300">地名与小区</strong>：英文界面将省 / 市 / 区显示为常用英文名或全拼；小区名无官方英文时使用<strong>全拼</strong>（无声调，词间空格）。中文界面保持原始中文与 ㎡ / ¥ / °C / km / m / mm。</p><p id="fx-rate-note" class="text-xs text-slate-500 dark:text-slate-500"></p>',
       mapZoomIn: '放大', mapZoomOut: '缩小', mapZoomReset: '复位',
       tier1Label: '显示全部',
       footerBuilt: '网页更新于 2026-06-06 23:06',
@@ -179,7 +181,7 @@ methodDataTitle: '数据来源与整合',
       exportCsv: 'Export CSV',
       methodologySummary: 'Methodology',
       i18nMethodTitle: 'Language & unit conversion (English mode)',
-      i18nMethodBody: '<p><strong class="text-slate-700 dark:text-slate-300">Currency</strong>: English UI converts CNY listing prices to USD. When online, the live USD→CNY rate is fetched from <a href="https://www.frankfurter.app/" class="text-emerald-700 dark:text-emerald-400 underline" target="_blank" rel="noopener">Frankfurter</a>; if offline or the API is unavailable, we fall back to <strong>1 USD ≈ 7 CNY</strong> (CNY amount ÷ 7).</p><p><strong class="text-slate-700 dark:text-slate-300">Area</strong>: square metres are shown as <strong>square feet (sq ft)</strong> using <strong>1 m² = 10.7639 sq ft</strong>. Unit prices become <strong>USD/sq ft</strong> (total USD ÷ sq ft area, equivalent to converting ¥/m² via FX and area factor).</p><p><strong class="text-slate-700 dark:text-slate-300">Temperature</strong>: Celsius values are shown as <strong>°F</strong> using <strong>°F = °C × 9/5 + 32</strong> (swing / range deltas use <strong>Δ°F = Δ°C × 9/5</strong>).</p><p><strong class="text-slate-700 dark:text-slate-300">Distance</strong>: kilometres are shown as <strong>miles</strong> using <strong>1 km ≈ 0.621371 mi</strong>; very short hops (&lt; ~160 m) use feet.</p><p><strong class="text-slate-700 dark:text-slate-300">Community names</strong>: where no official English name exists, the Chinese community name is shown in <strong>full pinyin</strong> (no tone marks, space-separated); province / city / district labels are shown in standard English or romanized pinyin.</p><p id="fx-rate-note" class="text-xs text-slate-500 dark:text-slate-500"></p>',
+      i18nMethodBody: '<p><strong class="text-slate-700 dark:text-slate-300">Currency</strong>: English UI converts CNY listing prices to USD. When online, the live USD→CNY rate is fetched from <a href="https://www.frankfurter.app/" class="text-emerald-700 dark:text-emerald-400 underline" target="_blank" rel="noopener">Frankfurter</a>; if offline or the API is unavailable, we fall back to <strong>1 USD ≈ 7 CNY</strong> (CNY amount ÷ 7).</p><p><strong class="text-slate-700 dark:text-slate-300">Area</strong>: square metres are shown as <strong>square feet (sq ft)</strong> using <strong>1 m² = 10.7639 sq ft</strong>. Unit prices become <strong>USD/sq ft</strong> (total USD ÷ sq ft area, equivalent to converting ¥/m² via FX and area factor).</p><p><strong class="text-slate-700 dark:text-slate-300">Temperature</strong>: Celsius values are shown as <strong>°F</strong> using <strong>°F = °C × 9/5 + 32</strong> (swing / range deltas use <strong>Δ°F = Δ°C × 9/5</strong>).</p><p><strong class="text-slate-700 dark:text-slate-300">Distance</strong>: kilometres are shown as <strong>miles</strong> using <strong>1 km ≈ 0.621371 mi</strong>; very short hops (&lt; ~160 m) use feet.</p><p><strong class="text-slate-700 dark:text-slate-300">Elevation</strong>: metres are shown as <strong>feet (ft)</strong> using <strong>1 m = 3.28084 ft</strong> (rounded to whole feet in labels).</p><p><strong class="text-slate-700 dark:text-slate-300">Precipitation</strong>: millimetres are shown as <strong>inches (in)</strong> using <strong>1 in = 25.4 mm</strong> (annual totals and monthly chart bars use one decimal place).</p><p><strong class="text-slate-700 dark:text-slate-300">Community names</strong>: where no official English name exists, the Chinese community name is shown in <strong>full pinyin</strong> (no tone marks, space-separated); province / city / district labels are shown in standard English or romanized pinyin.</p><p id="fx-rate-note" class="text-xs text-slate-500 dark:text-slate-500"></p>',
       mapZoomIn: 'Zoom in', mapZoomOut: 'Zoom out', mapZoomReset: 'Reset',
       tier1Label: 'Show all listings',
       footerBuilt: 'Page built 2026-06-06 23:06',
@@ -233,7 +235,7 @@ methodDataTitle: '数据来源与整合',
       col_tempRange: 'Temp swing', col_janTemp: 'Jan °F', col_julTemp: 'Jul °F',
       col_histTempMax: 'Record high', col_histTempMin: 'Record low',
       col_comfortMonths: 'Comfort days', col_extremeMonths: 'Extreme days',
-      col_annualPrecip: 'Rain mm', col_elevation: 'Elev m', col_heating: 'Heating',
+      col_annualPrecip: 'Rain (in)', col_elevation: 'Elev (ft)', col_heating: 'Heating',
       col_hospitalKm: 'Hospital', col_transitKm: 'Transit', col_airportKm: 'Airport',
       col_coastKm: 'Coast', col_seismic: 'Seismic', col_typhoon: 'Typhoon',
       col_hazard: 'Hazards', col_yieldPct: 'Yield', col_payback: 'Payback yr', col__act: 'Detail',
@@ -269,7 +271,7 @@ methodDataTitle: 'Data sources & integration',
       poiMetro: 'Metro', poiTrain: 'Rail / HSR', poiAirport: 'Airport', poiHospital: 'Hospital',
       poiMall: 'Mall', poiCoast: 'Coast', poiResearch: 'research', poiUnlocated: 'name only',
       poiCommunity: 'Community', chartHigh: 'Daily high', chartLow: 'Daily low',
-      chartMeanComfort: 'Daily mean (green=comfort, red=extreme)', chartPrecip: 'Rain (mm)',
+      chartMeanComfort: 'Daily mean (green=comfort, red=extreme)', chartPrecip: 'Rain (in)',
       chartMeanTemp: 'Mean temp (°F)', chartMeanHigh: 'Mean high', chartMeanLow: 'Mean low',
       monthNames: ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],
     },
@@ -623,6 +625,26 @@ methodDataTitle: 'Data sources & integration',
     return (mi < 10 ? trim(mi.toFixed(1)) : Math.round(mi)) + ' mi';
   }
 
+  function formatElevation(meters) {
+    if (meters == null || !Number.isFinite(meters)) return '—';
+    if (!isEn()) return Math.round(meters).toLocaleString('zh-CN') + 'm';
+    const ft = meters * M_TO_FT;
+    return Math.round(ft).toLocaleString('en-US') + ' ft';
+  }
+
+  function formatPrecip(mm) {
+    if (mm == null || !Number.isFinite(mm)) return '—';
+    if (!isEn()) return Math.round(mm).toLocaleString('zh-CN') + 'mm';
+    return trim((mm * MM_TO_IN).toFixed(1)) + ' in';
+  }
+
+  function precipChartValue(mm) {
+    if (mm == null || !Number.isFinite(mm)) return null;
+    return isEn() ? mm * MM_TO_IN : mm;
+  }
+
+  function precipAxisLabel() { return isEn() ? 'in' : 'mm'; }
+
   function tempChartValue(celsius) {
     if (celsius == null || !Number.isFinite(celsius)) return null;
     return isEn() ? celsiusToF(celsius) : celsius;
@@ -633,6 +655,8 @@ methodDataTitle: 'Data sources & integration',
   function formatFieldLegend(value, unit) {
     if (value == null || !Number.isFinite(value)) return '—';
     if (unit === '℃' || unit === '°C') return formatTemp(value);
+    if (unit === 'm') return formatElevation(value);
+    if (unit === 'mm') return formatPrecip(value);
     return Math.round(value).toLocaleString(isEn() ? 'en-US' : 'zh-CN') + unit;
   }
 
@@ -776,14 +800,15 @@ methodDataTitle: 'Data sources & integration',
     t, isEn, getLang, setLang, toggleLang, onLangChange,
     applyStaticI18n, fetchExchangeRate,
     formatMoneyCny, formatPriceWan, formatArea, formatUnitPrice, formatRent,
-    formatTemp, formatTempSwing, formatDist, tempChartValue, tempAxisLabel, formatFieldLegend,
+    formatTemp, formatTempSwing, formatDist, formatElevation, formatPrecip,
+    precipChartValue, precipAxisLabel, tempChartValue, tempAxisLabel, formatFieldLegend,
     formatInt, communityName, priceAxisValue,
     displayProvince, displayCity, displayDistrict, displayClimate, displayHeating,
     displayHazardType, displayFreqShort, displayFreqLabel, displaySeismic, displayTyphoon,
     displayGeoLabel, displayHeadline, displayHazardNote, displayHeatingNote, displayFieldLabel,
     displayRiskSummary, formatDoy, hasChinese, MONTH_EN,
     getRate, getRateSource,
-    SQM_TO_SQFT, KM_TO_MI, FALLBACK_CNY_PER_USD, FX_API,
+    SQM_TO_SQFT, KM_TO_MI, M_TO_FT, MM_TO_IN, FALLBACK_CNY_PER_USD, FX_API,
   };
 
   document.documentElement.lang = lang === 'en' ? 'en' : 'zh-CN';

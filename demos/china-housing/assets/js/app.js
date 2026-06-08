@@ -314,9 +314,14 @@
   const fmtTemp = (v) => (I18N().formatTemp ? I18N().formatTemp(v) : (v == null ? '—' : Math.round(v) + '°C'));
   const fmtSwing = (v) => (I18N().formatTempSwing ? I18N().formatTempSwing(v) : (v == null ? '—' : trim(v.toFixed(1)) + '°C'));
   const fmtKm = (v) => (I18N().formatDist ? I18N().formatDist(v) : (v == null ? '—' : (v < 1 ? Math.round(v * 1000) + 'm' : (v < 10 ? v.toFixed(1) : Math.round(v)) + ' km')));
+  const fmtElev = (v) => (I18N().formatElevation ? I18N().formatElevation(v) : (v == null ? '—' : fmtInt(v) + 'm'));
+  const fmtPrecip = (v) => (I18N().formatPrecip ? I18N().formatPrecip(v) : (v == null ? '—' : fmtInt(v) + 'mm'));
   const chartTemp = (v) => (I18N().tempChartValue ? I18N().tempChartValue(v) : v);
   const chartTempArr = (arr) => (arr || []).map((v) => (v == null ? v : chartTemp(v)));
+  const chartPrecip = (v) => (I18N().precipChartValue ? I18N().precipChartValue(v) : v);
+  const chartPrecipArr = (arr) => (arr || []).map((v) => (v == null ? v : chartPrecip(v)));
   const tempAxis = () => (I18N().tempAxisLabel ? I18N().tempAxisLabel() : '°C');
+  const precipAxis = () => (I18N().precipAxisLabel ? I18N().precipAxisLabel() : 'mm');
   const cityLabel = (d) => {
     const city = trCity(d.city).replace(/ City$/, '').replace(/市$/, '');
     const loc = I18N().communityName ? I18N().communityName(d.loc, d.name_en) : d.loc;
@@ -444,7 +449,7 @@
                 return [
                   `${isEn() ? 'Total' : '总价'} ${fmtWan(d.priceWan)} · ${fmtArea(d.area)} · ${isEn() ? 'Unit' : '单价'} ${fmtUnit(d.unitPrice)}`,
                   `${trCl(d.climateType) || '—'} · ${t('swingLabel')} ${fmtSwing(d.tempRange)} · ${t('comfortLabel')} ${comfortRangeOf(d)} · ${t('extremeLabel')} ${extremeRangeOf(d)}`,
-                  `${isEn() ? 'Jan' : '1月'} ${fmtTemp(d.janTemp)} · ${isEn() ? 'Jul' : '7月'} ${fmtTemp(d.julTemp)} · ${isEn() ? 'Elev' : '海拔'} ${d.elevation == null ? '—' : fmtInt(d.elevation) + 'm'}`,
+                  `${isEn() ? 'Jan' : '1月'} ${fmtTemp(d.janTemp)} · ${isEn() ? 'Jul' : '7月'} ${fmtTemp(d.julTemp)} · ${isEn() ? 'Elev' : '海拔'} ${fmtElev(d.elevation)}`,
                 ];
               },
             },
@@ -711,8 +716,8 @@
     priceWan: { labelKey: 'dimPriceWan', get: (d) => d.priceWan, fmt: fmtWan, ramp: 'cheapGood', textKeys: ['mapExpensive', 'mapCheaper'] },
     janTemp: { labelKey: 'dimJanTemp', get: (d) => d.janTemp, fmt: fmtTemp, ramp: 'temp', textKeys: ['mapHot', 'mapCold'] },
     julTemp: { labelKey: 'dimJulTemp', get: (d) => d.julTemp, fmt: fmtTemp, ramp: 'temp', textKeys: ['mapHot', 'mapCold'] },
-    annualPrecip: { labelKey: 'dimAnnualPrecip', get: (d) => d.annualPrecip, fmt: (v) => fmtInt(v) + 'mm', ramp: 'precip', textKeys: ['mapWet', 'mapDry'] },
-    elevation: { labelKey: 'dimElevation', get: (d) => d.elevation, fmt: (v) => fmtInt(v) + 'm', ramp: 'terrain', textKeys: ['mapHigh', 'mapLow'] },
+    annualPrecip: { labelKey: 'dimAnnualPrecip', get: (d) => d.annualPrecip, fmt: (v) => fmtPrecip(v), ramp: 'precip', textKeys: ['mapWet', 'mapDry'] },
+    elevation: { labelKey: 'dimElevation', get: (d) => d.elevation, fmt: (v) => fmtElev(v), ramp: 'terrain', textKeys: ['mapHigh', 'mapLow'] },
     hazardFreq: {
       labelKey: 'dimHazardFreq',
       get: (d) => {
@@ -895,7 +900,7 @@
           return `<b>${cityLabel(d)}</b> · ${trGeo(d.enr.geoLabel) || ''}<br/>`
             + `<b style="color:#059669">${dim.label} ${dim.fmt(dim.get(d))}</b><br/>`
             + `${isEn() ? 'Total' : '总价'} ${fmtWan(d.priceWan)} · ${fmtArea(d.area)} · ${isEn() ? 'Unit' : '单价'} ${fmtUnit(d.unitPrice)}<br/>`
-            + `${trCl(d.climateType) || '—'} · ${t('swingLabel')} ${d.tempRange == null ? '—' : fmtSwing(d.tempRange)} · ${isEn() ? 'Jan' : '1月'} ${fmtTemp(d.janTemp)}/${isEn() ? 'Jul' : '7月'} ${fmtTemp(d.julTemp)} · ${isEn() ? 'Elev' : '海拔'} ${d.elevation == null ? '—' : fmtInt(d.elevation) + 'm'} · ${t('winterHeating')} ${trHeat(d.heating) || '—'}<br/>`
+            + `${trCl(d.climateType) || '—'} · ${t('swingLabel')} ${d.tempRange == null ? '—' : fmtSwing(d.tempRange)} · ${isEn() ? 'Jan' : '1月'} ${fmtTemp(d.janTemp)}/${isEn() ? 'Jul' : '7月'} ${fmtTemp(d.julTemp)} · ${isEn() ? 'Elev' : '海拔'} ${fmtElev(d.elevation)} · ${t('winterHeating')} ${trHeat(d.heating) || '—'}<br/>`
             + `${t('poiHospital')} ${fmtKm(d.hospitalKm)} · ${d.transitKind === 'metro' ? t('poiMetro') : t('poiTrain')} ${fmtKm(d.transitKm)} · ${t('col_seismic')} ${trSeis(d.seismic) || '—'} · ${t('col_typhoon')} ${trTy(d.typhoon) || '—'}`
             + (haz ? `<br/><span style="color:#b91c1c">${isEn() ? 'Top hazard: ' : '最频灾害：'}${haz}</span>` : '')
             + `<br/><span style="color:#10b981">${t('mapClickHint')}</span>`;
@@ -1160,8 +1165,8 @@
       cell: (d) => histTempCell(d.histTempMin, d.histTempMinDate, d.histTempStation, histTempNoteDisplay(d), 'low', d.histTempLevel) },
     { key: 'comfortMonths', label: '舒适日期', group: 'live', get: (d) => nz(d.comfortDayCount, nz(d.comfortMonths, -1)), cell: (d) => comfortCell(d) },
     { key: 'extremeMonths', label: '极端日期', group: 'live', get: (d) => nz(d.extremeDayCount, nz(d.extremeMonths, 99)), cell: (d) => extremeCell(d) },
-    { key: 'annualPrecip', label: '年降水mm', group: 'live', num: true, get: (d) => nz(d.annualPrecip, -1), cell: (d) => d.annualPrecip == null ? '—' : fmtInt(d.annualPrecip) },
-    { key: 'elevation', label: '海拔m', group: 'live', num: true, get: (d) => nz(d.elevation, -1), cell: (d) => d.elevation == null ? '—' : fmtInt(d.elevation) },
+    { key: 'annualPrecip', label: '年降水mm', group: 'live', num: true, get: (d) => nz(d.annualPrecip, -1), cell: (d) => fmtPrecip(d.annualPrecip) },
+    { key: 'elevation', label: '海拔m', group: 'live', num: true, get: (d) => nz(d.elevation, -1), cell: (d) => fmtElev(d.elevation) },
     { key: 'heating', label: '供暖', group: 'live', get: (d) => (d.heating != null ? HEATING_ORD[d.heating] : -1), cell: (d) => heatingCell(d) },
     { key: 'hospitalKm', label: '医院km', group: 'infra', num: true, get: (d) => nz(d.hospitalKm, 1e9), cell: (d) => fmtKm(d.hospitalKm) },
     { key: 'transitKm', label: '地铁/火车km', group: 'infra', num: true,
@@ -1521,7 +1526,7 @@
       data: {
         labels: mNames,
         datasets: [
-          { type: 'bar', label: t('chartPrecip'), data: pick(3), yAxisID: 'yP', backgroundColor: 'rgba(14,165,233,0.35)', borderColor: '#0ea5e9', borderWidth: 1, borderRadius: 3, order: 3 },
+          { type: 'bar', label: t('chartPrecip'), data: chartPrecipArr(pick(3)), yAxisID: 'yP', backgroundColor: 'rgba(14,165,233,0.35)', borderColor: '#0ea5e9', borderWidth: 1, borderRadius: 3, order: 3 },
           { type: 'line', label: t('chartMeanTemp'), data: chartTempArr(pick(0)), yAxisID: 'yT', borderColor: '#059669', backgroundColor: '#059669', tension: 0.35, pointRadius: 2, order: 1 },
           { type: 'line', label: t('chartMeanHigh'), data: chartTempArr(pick(1)), yAxisID: 'yT', borderColor: 'rgba(220,38,38,0.5)', borderDash: [4, 3], pointRadius: 0, tension: 0.35, order: 2 },
           { type: 'line', label: t('chartMeanLow'), data: chartTempArr(pick(2)), yAxisID: 'yT', borderColor: 'rgba(37,99,235,0.5)', borderDash: [4, 3], pointRadius: 0, tension: 0.35, order: 2 },
@@ -1532,7 +1537,7 @@
         plugins: { legend: { labels: { boxWidth: 12, font: { size: 11 } } } },
         scales: {
           yT: { position: 'left', title: { display: true, text: tempAxis() }, grid: { color: themeGrid() } },
-          yP: { position: 'right', title: { display: true, text: 'mm' }, grid: { display: false }, beginAtZero: true },
+          yP: { position: 'right', title: { display: true, text: precipAxis() }, grid: { display: false }, beginAtZero: true },
           x: { grid: { display: false } },
         },
       },
