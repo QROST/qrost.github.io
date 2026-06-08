@@ -3056,5 +3056,116 @@
   "histTempStation": null,
   "histTempNote": "ERA5 再分析格点 1940–2023 日最高/日最低极值（≈25 km 网格，非气象站记录）（邻近格点复用）",
   "histTempLevel": "区镇/街道"
+ },
+ "wiki-dist:城区工人村": null,
+ "era5:29.46,105.50": {
+  "histTempMax": 41.3,
+  "histTempMin": -6.3,
+  "histTempMaxDate": "2022-08-21",
+  "histTempMinDate": "1975-12-14",
+  "histTempSrc": "open-meteo-era5-1940-2023",
+  "histTempStation": null,
+  "histTempNote": "ERA5 再分析格点 1940–2023 日最高/日最低极值（≈25 km 网格，非气象站记录）（API 限流，复用邻近格点 ERA5 极值）"
+ },
+ "重庆|荣昌区|城区工人村": {
+  "histTempMax": 41.3,
+  "histTempMin": -6.3,
+  "histTempMaxDate": "2022-08-21",
+  "histTempMinDate": "1975-12-14",
+  "histTempSrc": "open-meteo-era5-1940-2023",
+  "histTempStation": null,
+  "histTempNote": "ERA5 再分析格点 1940–2023 日最高/日最低极值（≈25 km 网格，非气象站记录）（API 限流，复用邻近格点 ERA5 极值）",
+  "histTempLevel": "区镇/街道"
+ },
+ "wiki-dist:永川区": null,
+ "era5:29.29,105.87": {
+  "histTempMax": 41.3,
+  "histTempMin": -6.3,
+  "histTempMaxDate": "2022-08-21",
+  "histTempMinDate": "1975-12-14",
+  "histTempSrc": "open-meteo-era5-1940-2023",
+  "histTempStation": null,
+  "histTempNote": "ERA5 再分析格点 1940–2023 日最高/日最低极值（≈25 km 网格，非气象站记录）（API 限流，复用邻近格点 ERA5 极值）（API 限流，复用邻近格点 ERA5 极值）"
+ },
+ "重庆|重庆市|永川区": {
+  "histTempMax": 41.3,
+  "histTempMin": -6.3,
+  "histTempMaxDate": "2022-08-21",
+  "histTempMinDate": "1975-12-14",
+  "histTempSrc": "open-meteo-era5-1940-2023",
+  "histTempStation": null,
+  "histTempNote": "ERA5 再分析格点 1940–2023 日最高/日最低极值（≈25 km 网格，非气象站记录）（API 限流，复用邻近格点 ERA5 极值）（API 限流，复用邻近格点 ERA5 极值）",
+  "histTempLevel": "区镇/街道"
+ },
+ "wiki-dist:荣昌区": null,
+ "重庆|重庆市|荣昌区": {
+  "histTempMax": 41.3,
+  "histTempMin": -6.3,
+  "histTempMaxDate": "2022-08-21",
+  "histTempMinDate": "1975-12-14",
+  "histTempSrc": "open-meteo-era5-1940-2023",
+  "histTempStation": null,
+  "histTempNote": "ERA5 再分析格点 1940–2023 日最高/日最低极值（≈25 km 网格，非气象站记录）（API 限流，复用邻近格点 ERA5 极值）",
+  "histTempLevel": "区镇/街道"
+ },
+ "wiki-dist:长寿区": null,
+ "era5:29.96,107.14": {
+  "histTempMax": 33.5,
+  "histTempMin": -15.2,
+  "histTempMaxDate": "2006-08-31",
+  "histTempMinDate": "1980-01-31",
+  "histTempSrc": "open-meteo-era5-1940-2023",
+  "histTempStation": null,
+  "histTempNote": "ERA5 再分析格点 1940–2023 日最高/日最低极值（≈25 km 网格，非气象站记录）（API 限流，复用邻近格点 ERA5 极值）"
+ },
+ "重庆|重庆市|长寿区": {
+  "histTempMax": 33.5,
+  "histTempMin": -15.2,
+  "histTempMaxDate": "2006-08-31",
+  "histTempMinDate": "1980-01-31",
+  "histTempSrc": "open-meteo-era5-1940-2023",
+  "histTempStation": null,
+  "histTempNote": "ERA5 再分析格点 1940–2023 日最高/日最低极值（≈25 km 网格，非气象站记录）（API 限流，复用邻近格点 ERA5 极值）",
+  "histTempLevel": "区镇/街道"
+ },
+ "wiki-dist:凤城街道": null,
+ "era5:29.80,107.01": {
+  "histTempMax": 33.5,
+  "histTempMin": -15.2,
+  "histTempMaxDate": "2006-08-31",
+  "histTempMinDate": "1980-01-31",
+  "histTempSrc": "open-meteo-era5-1940-2023",
+  "histTempStation": null,
+  "histTempNote": "ERA5 再分析格点 1940–2023 日最高/日最低极值（≈25 km 网格，非气象站记录）（API 限流，复用邻近格点 ERA5 极值）（邻近格点复用）"
+ },
+ "重庆|长寿|凤城街道": {
+  "histTempMax": 33.5,
+  "histTempMin": -15.2,
+  "histTempMaxDate": "2006-08-31",
+  "histTempMinDate": "1980-01-31",
+  "histTempSrc": "open-meteo-era5-1940-2023",
+  "histTempStation": null,
+  "histTempNote": "ERA5 再分析格点 1940–2023 日最高/日最低极值（≈25 km 网格，非气象站记录）（API 限流，复用邻近格点 ERA5 极值）（邻近格点复用）",
+  "histTempLevel": "区镇/街道"
+ },
+ "wiki-dist:长寿湖": null,
+ "era5:29.96,107.21": {
+  "histTempMax": 33.5,
+  "histTempMin": -15.2,
+  "histTempMaxDate": "2006-08-31",
+  "histTempMinDate": "1980-01-31",
+  "histTempSrc": "open-meteo-era5-1940-2023",
+  "histTempStation": null,
+  "histTempNote": "ERA5 再分析格点 1940–2023 日最高/日最低极值（≈25 km 网格，非气象站记录）（API 限流，复用邻近格点 ERA5 极值）（邻近格点复用）"
+ },
+ "重庆|长寿|长寿湖": {
+  "histTempMax": 33.5,
+  "histTempMin": -15.2,
+  "histTempMaxDate": "2006-08-31",
+  "histTempMinDate": "1980-01-31",
+  "histTempSrc": "open-meteo-era5-1940-2023",
+  "histTempStation": null,
+  "histTempNote": "ERA5 再分析格点 1940–2023 日最高/日最低极值（≈25 km 网格，非气象站记录）（API 限流，复用邻近格点 ERA5 极值）（邻近格点复用）",
+  "histTempLevel": "区镇/街道"
  }
 }
