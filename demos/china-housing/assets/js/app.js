@@ -269,14 +269,42 @@
     return viewData().filter((d) => inChinaMap(d));
   }
 
+  // Declared BEFORE the DATA map below — both run during DATA construction.
+  const NOW_MONTH = new Date().getMonth() + 1;
+
+  // Comfort days falling inside the CURRENT month (1-12) — drives the seasonal
+  // 「本月最舒适」ranking; computed once at load from the baked 365-day ranges.
+  function monthComfortDaysOf(cd) {
+    const m = NOW_MONTH;
+    let ms = 1; for (let i = 0; i < m - 1; i++) ms += _DIM[i];
+    const me = ms + _DIM[m - 1] - 1;
+    if (cd.daily && cd.daily.comfortDays) {
+      // normalize wrap-around ranges onto the Jan–Dec axis, then overlap
+      return cd.daily.comfortDays
+        .flatMap(([s, e]) => (s <= e ? [[s, e]] : [[s, 365], [1, e]]))
+        .reduce((sum, [s, e]) => sum + Math.max(0, Math.min(e, me) - Math.max(s, ms) + 1), 0);
+    }
+    if (cd.comfortSet) return cd.comfortSet.includes(m) ? _DIM[m - 1] : 0;
+    return null;
+  }
+  // 灾害负担 = Σ 2^(freq−1) over the listing's local hazard types (freq 1-5,
+  // 1 = once a century … 5 = almost annual). Transparent formula — published
+  // verbatim in the ranking note. Lower = fewer / rarer recurring hazards.
+  function hazardBurdenOf(hz) {
+    if (!hz || !hz.hazards || !hz.hazards.length) return null;
+    return hz.hazards.reduce((s, h) => s + Math.pow(2, (h.freq || 1) - 1), 0);
+  }
+
   const DATA = RAW.map((d) => {
     const priceYuan = d.priceWan * 10000;
     const rent = d.rent > 0 ? d.rent : null;          // 0 = 未调研/未知（非"免租"）→ 回报率/月租按未知处理
     const rentYear = rent != null ? rent * 12 : null;
     const e = ENR[d.id] || ENR[String(d.id)] || null;
     const cd = deriveClimate(e);
+    const hz = (e && e.hazard) || HAZ[d.prov] || null;
     return {
-      ...d, enr: e, hazard: (e && e.hazard) || HAZ[d.prov] || null,  // per-listing (prefecture×physics) → province fallback
+      ...d, enr: e, hazard: hz,  // per-listing (prefecture×physics) → province fallback
+      monthComfortDays: monthComfortDaysOf(cd), hazardBurden: hazardBurdenOf(hz),
       heating: (HAZ[d.prov] && HAZ[d.prov].heating) || null,
       heatingNote: (HAZ[d.prov] && HAZ[d.prov].heatingNote) || '',
       priceYuan, unitPrice: priceYuan / d.area, rent, rentYear,
@@ -493,6 +521,8 @@
     comfort: { labelKey: 'rankComfort', key: 'comfortDayCount', dir: -1, axisKey: 'rankAxisComfort', fmt: (v) => v + t('daySuffix'), color: (v, n) => comfortColor(v / (n || 1)) },
     extreme: { labelKey: 'rankExtreme', key: 'extremeDayCount', dir: -1, axisKey: 'rankAxisExtreme', fmt: (v) => v + t('daySuffix'), color: (v, n) => comfortColor(1 - v / (n || 1)) },
     yield: { labelKey: 'rankYield', key: 'yieldPct', dir: -1, axisKey: 'rankAxisYield', fmt: fmtPct, color: (v, n) => lerpColor(v / n) },
+    seasonNow: { labelKey: 'rankSeason', key: 'monthComfortDays', dir: -1, axisKey: 'rankAxisSeason', fmt: (v) => v + t('daySuffix'), color: (v, n) => comfortColor(v / (n || 1)) },
+    burden: { labelKey: 'rankBurden', key: 'hazardBurden', dir: 1, axisKey: 'rankAxisBurden', fmt: (v) => String(v), color: (v, n) => comfortColor(1 - v / (n || 1)) },
   };
   const rankMetric = (k) => {
     const m = RANK_METRICS[k] || RANK_METRICS.comfort;
@@ -508,6 +538,12 @@
       el.classList.remove('hidden');
     } else if (rankKey === 'extreme') {
       el.innerHTML = t('rankNoteExtreme');
+      el.classList.remove('hidden');
+    } else if (rankKey === 'seasonNow') {
+      el.innerHTML = t('rankNoteSeason', { m: NOW_MONTH });
+      el.classList.remove('hidden');
+    } else if (rankKey === 'burden') {
+      el.innerHTML = t('rankNoteBurden');
       el.classList.remove('hidden');
     } else {
       el.innerHTML = '';
@@ -1268,14 +1304,31 @@
     { key: 'yieldPct', label: '毛回报', group: 'invest', num: true, get: (d) => d.yieldPct, cell: (d) => yieldCell(d) },
     { key: 'payback', label: '回本年', group: 'invest', num: true, get: (d) => d.payback, cell: (d) => fmtYrs(d.payback) },
   ];
-  const tstate = { sortKey: 'comfortMonths', sortDir: -1, prov: '', q: '', groups: new Set(['live', 'infra', 'risk']) };
+  // Threshold-transparent quick filters (AND-combined). Each label carries its
+  // literal threshold so the filter is reproducible from the published data —
+  // no opaque "recommended" flag. Null dimension values fail closed (row hidden
+  // when that chip is on) except lowHazard, where no hazard data = no known
+  // annual hazard.
+  const FILTERS = {
+    budget10: { labelKey: 'fcBudget10', pass: (d) => d.priceWan <= 10 },
+    warmWinter: { labelKey: 'fcWarmWinter', pass: (d) => d.janTemp != null && d.janTemp >= 5 },
+    coolSummer: { labelKey: 'fcCoolSummer', pass: (d) => d.julTemp != null && d.julTemp <= 26 },
+    heated: { labelKey: 'fcHeated', pass: (d) => d.heating === '集中供暖' || d.heating === '部分供暖' },
+    coast50: { labelKey: 'fcCoast50', pass: (d) => d.coastKm != null && d.coastKm <= 50 },
+    lowAlt: { labelKey: 'fcLowAlt', pass: (d) => d.elevation != null && d.elevation <= 1500 },
+    lowHazard: { labelKey: 'fcLowHazard', pass: (d) => !(d.hazard && d.hazard.hazards && d.hazard.hazards.some((h) => h.freq >= 5)) },
+    rail20: { labelKey: 'fcRail20', pass: (d) => d.transitKm != null && d.transitKm <= 20 },
+  };
+  const tstate = { sortKey: 'comfortMonths', sortDir: -1, prov: '', q: '', groups: new Set(['live', 'infra', 'risk']), chips: new Set() };
 
   const colLabel = (c) => t('col_' + c.key) || c.label;
   const visibleCols = () => COLS.filter((c) => c.group === 'core' || c.group === 'price' || tstate.groups.has(c.group));
 
   function tableView() {
+    const chips = [...tstate.chips].map((k) => FILTERS[k]).filter(Boolean);
     const rows = viewData().filter((d) => (!tstate.prov || d.prov === tstate.prov) &&
-      (!tstate.q || (d.city + d.dist + d.loc + d.prov).toLowerCase().includes(tstate.q)));
+      (!tstate.q || (d.city + d.dist + d.loc + d.prov).toLowerCase().includes(tstate.q)) &&
+      chips.every((f) => f.pass(d)));
     const col = COLS.find((c) => c.key === tstate.sortKey) || COLS[0];
     rows.sort((a, b) => {
       const av = col.get(a), bv = col.get(b);
@@ -1288,6 +1341,54 @@
       return cmp * tstate.sortDir;
     });
     return rows;
+  }
+
+  // Mobile (<sm) card list: same tableView() rows (filter + sort) as the table,
+  // key facts only — the full dimension set stays one tap away in the modal.
+  // The wide 28-col table needs ~8 viewport-widths of horizontal scroll on a
+  // phone (price/小区 invisible without it), so cards replace it below 640px.
+  const isMobileTable = () => !!(window.matchMedia && window.matchMedia('(max-width: 639px)').matches);
+  function cardRow(d) {
+    const x = tcx();
+    const name = I18N().communityName ? I18N().communityName(d.loc, d.name_en) : d.loc;
+    const sub = [trProv(d.prov), trCity(d.city), trDist(d.dist)].filter(Boolean).join(' · ');
+    const strip = (d.daily && d.daily.comfortDays)
+      ? miniDayStrip(d.daily.comfortDays, '#059669', t('comfortLabel') + ' ' + (comfortRangeOf(d) || t('monthNone')), '100%')
+      : '';
+    const comfortTxt = d.comfortDayCount != null ? `${t('comfortLabel')} ${d.comfortDayCount}${t('daySuffix')}` : '';
+    const extremeTxt = d.extremeDayCount != null ? `${comfortTxt ? ' · ' : ''}${t('extremeLabel')} ${d.extremeDayCount}${t('daySuffix')}` : '';
+    const open = d.enr ? ` data-open="${d.id}" role="button" tabindex="0"` : '';
+    return `<div class="px-4 py-3${d.enr ? ' cursor-pointer active:bg-slate-50 dark:active:bg-slate-700/40' : ''}"${open}>
+      <div class="flex items-baseline justify-between gap-2">
+        <span class="font-medium ${x.strong} truncate">${name}</span>
+        <span class="font-semibold tabular-nums ${x.strong} whitespace-nowrap">${fmtWan(d.priceWan)}</span>
+      </div>
+      <div class="mt-0.5 flex items-baseline justify-between gap-2 text-xs ${x.muted}">
+        <span class="truncate">${sub}</span>
+        <span class="tabular-nums whitespace-nowrap">${fmtUnit(d.unitPrice)} · ${fmtArea(d.area)}</span>
+      </div>
+      <div class="mt-2 flex flex-wrap items-center gap-1.5">${climateCell(d)}${builtCell(d)}${heatingCell(d)}</div>
+      ${strip ? `<div class="mt-2">${strip}</div>` : ''}
+      ${(comfortTxt || extremeTxt) ? `<div class="mt-1 text-[0.65rem] ${x.muted}">${comfortTxt}${extremeTxt}</div>` : ''}
+    </div>`;
+  }
+
+  // Mobile sort <select>: mirrors th-click sorting (option value = "colKey:dir").
+  const SORT_OPTIONS = [
+    ['comfortMonths', -1], ['extremeMonths', 1], ['priceWan', 1],
+    ['unitPrice', 1], ['builtAge', -1], ['rent', 1],
+  ];
+  function syncSortSelect() {
+    const sel = document.getElementById('table-sort');
+    if (!sel) return;
+    const cur = `${tstate.sortKey}:${tstate.sortDir}`;
+    const opt = ([k, dir]) => {
+      const c = COLS.find((c2) => c2.key === k) || COLS[0];
+      return `<option value="${k}:${dir}">${dir === 1 ? '↑' : '↓'} ${colLabel(c)}</option>`;
+    };
+    const known = SORT_OPTIONS.some(([k, dir]) => `${k}:${dir}` === cur);
+    sel.innerHTML = (known ? [] : [[tstate.sortKey, tstate.sortDir]]).concat(SORT_OPTIONS).map(opt).join('');
+    sel.value = cur;
   }
 
   function renderTable() {
@@ -1320,6 +1421,10 @@
     document.getElementById('table-head').innerHTML = `<tr class="text-xs uppercase tracking-wider">${head}</tr>`;
     document.getElementById('table-body').innerHTML = body;
     document.getElementById('table-count').textContent = t('tableCount', { n: rows.length, total: viewData().length });
+    const cardsHost = document.getElementById('table-cards');
+    if (cardsHost) cardsHost.innerHTML = isMobileTable() ? rows.map(cardRow).join('') : '';
+    syncSortSelect();
+    styleFilterChips();  // theme & language both funnel through renderTable
   }
 
   function updateProvFilter() {
@@ -1355,6 +1460,22 @@
     });
   }
 
+  // Filter chips use indigo (vs emerald column-group chips) so "which columns
+  // show" and "which rows show" read as two different controls at a glance.
+  function styleFilterChips() {
+    const dk = isDark();
+    document.querySelectorAll('[data-filter]').forEach((b) => {
+      const f = FILTERS[b.dataset.filter];
+      if (!f) return;
+      b.textContent = t(f.labelKey);
+      const on = tstate.chips.has(b.dataset.filter);
+      b.className = 'px-3 py-1.5 rounded-md text-xs font-medium transition-colors ' +
+        (on
+          ? (dk ? 'bg-indigo-600 text-white' : 'bg-indigo-600 text-white')
+          : (dk ? 'bg-slate-800 text-slate-400 border border-slate-600 hover:text-slate-100' : 'bg-white text-slate-500 border border-slate-200 hover:text-slate-900'));
+    });
+  }
+
   function wireTable() {
     updateProvFilter();
     document.getElementById('prov-filter').addEventListener('change', (e) => {
@@ -1381,11 +1502,38 @@
     }));
     styleGroupChips();
 
+    document.querySelectorAll('[data-filter]').forEach((b) => b.addEventListener('click', () => {
+      const k = b.dataset.filter;
+      if (tstate.chips.has(k)) tstate.chips.delete(k); else tstate.chips.add(k);
+      styleFilterChips(); renderTable();
+    }));
+    styleFilterChips();
+
     document.getElementById('csv-export').addEventListener('click', exportCSV);
     document.getElementById('table-body').addEventListener('click', (e) => {
       const row = e.target.closest('tr[data-open]');
       if (row) openListing(+row.dataset.open);
     });
+
+    const sortSel = document.getElementById('table-sort');
+    if (sortSel) sortSel.addEventListener('change', () => {
+      const [k, dir] = String(sortSel.value).split(':');
+      if (!COLS.some((c) => c.key === k)) return;
+      tstate.sortKey = k; tstate.sortDir = +dir || -1;
+      renderTable();
+    });
+    const cardsHost = document.getElementById('table-cards');
+    if (cardsHost) cardsHost.addEventListener('click', (e) => {
+      const card = e.target.closest('[data-open]');
+      if (card) openListing(+card.dataset.open);
+    });
+    // re-render when crossing the table↔cards breakpoint
+    if (window.matchMedia) {
+      const mq = window.matchMedia('(max-width: 639px)');
+      const onMq = () => renderTable();
+      if (mq.addEventListener) mq.addEventListener('change', onMq);
+      else if (mq.addListener) mq.addListener(onMq);
+    }
   }
 
   function wireListingOpens() {
@@ -1478,6 +1626,10 @@
     document.getElementById('listing-modal').classList.remove('hidden');
     document.body.style.overflow = 'hidden';
     lmShowTab('sat');
+    // shareable deep link (#l=<id>); replaceState keeps section anchors usable
+    try {
+      if (window.history && window.history.replaceState) window.history.replaceState(null, '', '#l=' + id);
+    } catch (e) { /* file:// or sandbox without history */ }
   }
 
   function lmShowTab(tab) {
@@ -1649,6 +1801,11 @@
     if (lmNearMap) { lmNearMap.remove(); lmNearMap = null; }
     if (lmClimateChart) { lmClimateChart.destroy(); lmClimateChart = null; }
     lmTabInit = {}; lmCurrent = null;
+    try {
+      if (window.history && window.history.replaceState && /^#l=\d+$/.test(window.location.hash || '')) {
+        window.history.replaceState(null, '', window.location.pathname + window.location.search);
+      }
+    } catch (e) { /* file:// or sandbox without history */ }
   }
 
   // ---- boot --------------------------------------------------------------
@@ -1789,6 +1946,18 @@
         refreshViews();
       });
     }
+
+    // deep link: #l=<id> opens the listing modal (shareable URLs). Hidden
+    // benchmark rows stay hidden — a deep link must not bypass the tier filter.
+    try {
+      const hm = (window.location && window.location.hash || '').match(/^#l=(\d+)$/);
+      if (hm) {
+        const d = DATA.find((x) => x.id === +hm[1]);
+        if (d && d.enr && (tier1On || !isDefaultHidden(d))) {
+          setTimeout(() => safeRun('deepLinkOpen', () => openListing(d.id)), 80);
+        }
+      }
+    } catch (e) { /* sandbox without location */ }
   }
 
   // smoke-test hooks
