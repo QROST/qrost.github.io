@@ -19,7 +19,7 @@
  *
  * Derived livability metrics (from baked climate / elevation / pois):
  *   janTemp/julTemp  Jan & Jul mean ℃        annualPrecip  Σ monthly mm
- *   comfortMonths    months with tmin≥15 & tmax≤26  coldMonths  tmean<0
+ *   comfortMonths    months with tmin≥8 & tmax≤26  coldMonths  tmean<0
  *   hotMonths        tmax≥30                  extremeMonths cold+hot (tmean<-5 or tmax≥30)
  *   tempRange        warmest-month mean − coldest-month mean (℃, 年温差)
  *   climateType      label from (annualMean, tempRange): 四季如春 / 常年温暖 /
@@ -188,7 +188,7 @@
       if (!a) continue;
       rows.push(a);
       const isExtreme = (a[0] != null && a[0] < -5) || (a[1] != null && a[1] >= 30);
-      if (!isExtreme && a[2] != null && a[1] != null && a[2] >= 15 && a[1] <= 26) comfortSet.push(m); // 舒适: 日最低≥15 且日最高≤26，非极端
+      if (!isExtreme && a[2] != null && a[1] != null && a[2] >= 8 && a[1] <= 26) comfortSet.push(m); // 舒适: 日最低≥8 且日最高≤26，非极端
       if (isExtreme) extremeSet.push(m);
     }
     const jan = moOf(cl, 1), jul = moOf(cl, 7);

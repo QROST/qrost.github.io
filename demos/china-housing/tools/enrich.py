@@ -395,9 +395,9 @@ def climate_daily_one(lat, lng, y0=2014, y1=2023):
     sm = {k: _smooth_circular(norm[k], 15) for k in norm}
     extreme = [((tm is not None and tm < -5) or (tx is not None and tx >= 30))
                for tm, tx in zip(sm["tmean"], sm["tmax"])]
-    # Comfort = full-day band within 15–26°C (tmin ≥ 15 and tmax ≤ 26); mutually
+    # Comfort = full-day band within 8–26°C (tmin ≥ 8 and tmax ≤ 26); mutually
     # exclusive with extreme (extreme wins).
-    comfort = [(tn is not None and tx is not None and tn >= 15 and tx <= 26 and not ex)
+    comfort = [(tn is not None and tx is not None and tn >= 8 and tx <= 26 and not ex)
                for tn, tx, ex in zip(sm["tmin"], sm["tmax"], extreme)]
     q = lambda a: [None if v is None else int(round(v)) for v in a]
     return {
@@ -411,7 +411,7 @@ def climate_daily_flags_from_curve(tmean, tmax, tmin):
     """Re-derive comfort/extreme day flags from baked smoothed daily curves."""
     extreme = [((tm is not None and tm < -5) or (tx is not None and tx >= 30))
                for tm, tx in zip(tmean, tmax)]
-    comfort = [(tn is not None and tx is not None and tn >= 15 and tx <= 26 and not ex)
+    comfort = [(tn is not None and tx is not None and tn >= 8 and tx <= 26 and not ex)
                for tn, tx, ex in zip(tmin, tmax, extreme)]
     return comfort, extreme
 
