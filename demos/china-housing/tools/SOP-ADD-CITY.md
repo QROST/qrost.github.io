@@ -39,19 +39,28 @@ python3 tools/manage.py import-csv 新一批.csv
 字段：`priceWan` 总价(万元)、`area` 面积(㎡)、`rent` 月租(元)、`updated` `YYYY-MM`。单价 /
 回报率等派生指标前端实时算，不入库。
 
-> **⚠️ 入库前必做：去重预检**。`import-csv` 的 id 留空＝**新增**，不会跟主库已有的同盘合并——
-> 一不留神就造出「富力湾 19万」和已有「富力湾 12万」两条重复。**导入前**先按 loc 查主库
-> （尤其 恒大 / 碧桂园 / 融创 这类**跨城复用的品牌盘名**）：
+> **⚠️ 入库前必做：跨时间批次去重预检（cross-temporal-batch）**。`import-csv` 的 id 留空＝**新增**，
+> 不会跟主库已有的同盘合并——一不留神就造出「富力湾 19万」和已有「富力湾 12万」两条重复。
+> **必须扫 `data/housing.db` 全库**（所有历史批次、所有 `updated` 月份），**不能只查本批 CSV**。
+> 典型事故：2026-06 批未查 2026-03 已有「恒大雅苑」→ #144 与 #222 同城同盘重复。
 >
-> ```bash
-> # 把每个待加 loc 的关键词查一遍；品牌盘再按品牌扫一遍
-> sqlite3 data/housing.db "SELECT id,city,dist,loc,priceWan FROM listings WHERE loc LIKE '%富力湾%';"
-> sqlite3 data/housing.db "SELECT id,city,loc,priceWan FROM listings WHERE loc LIKE '碧桂园%';"
-> ```
+> **Checklist（每条待加 loc 都走一遍；品牌盘再按品牌前缀扫一遍）**
 >
-> 按命中情况处置：① **主库已有同一个盘**（同城同盘）→ 跳过，或若新价更可信就用**相同 id** 覆盖；
-> ② **同品牌不同城**（如贵州 vs 宜昌的「碧桂园凤凰城」）→ **loc 加城市消歧**：`碧桂园凤凰城（宜昌）`，
-> 否则表格里两行同名难辨；③ 主库的同盘更便宜 → 一般**保留更便宜那条、跳过新的**（本数据集主打「最便宜」）。
+> 1. **精确 / 模糊查 loc**（不限 `updated`、不限批次）：
+>    ```bash
+>    sqlite3 data/housing.db \
+>      "SELECT id, loc, city, dist, priceWan, area, updated FROM listings WHERE loc LIKE '%恒大雅苑%';"
+>    sqlite3 data/housing.db \
+>      "SELECT id, city, dist, loc, priceWan, area FROM listings WHERE loc LIKE '%富力湾%';"
+>    sqlite3 data/housing.db \
+>      "SELECT id, city, loc, priceWan FROM listings WHERE loc LIKE '碧桂园%';"
+>    ```
+> 2. **同城同盘**（`city` + `loc` 实质相同，或坐标 geocode 后重合）→ **禁止新增**；更可信则**相同 id 覆盖**，
+>    否则跳过本行。
+> 3. **同 loc 不同城**（尤其 恒大 / 碧桂园 / 融创 等**跨城复用品牌盘名**）→ **loc 加城市消歧**：
+>    `碧桂园凤凰城（宜昌）`，否则表格里两行同名难辨。
+> 4. **主库已有更便宜同盘** → 一般**保留更便宜那条、跳过新的**（本数据集主打「最便宜」）。
+> 5. **双户型同盘**（同小区不同面积/总价）→ 用面积后缀消歧：`恒大雅苑（55㎡）`，勿造第二条裸名。
 
 ## 2. ⚠️ 新省份必做三处（否则地图不着色、灾害 / 供暖缺失）
 
@@ -155,6 +164,23 @@ python3 tools/manage.py build
 
 ## 7. 验证 + 提交
 
+**增删 listings 行后必做（顺序固定）：**
+
+```bash
+python3 tools/manage.py build          # ① 重生成 assets/data/*.js + sync index.html 计数
+node tools/_smoke.js                   # ② 无头冒烟（DOM/Chart/表格路径）
+```
+
+若 smoke 报 `listings N` / `table count …` 失败 → **同步 `tools/_smoke.js` 里写死的套数**（与 build 后实际一致）：
+
+| `_smoke.js` 断言 | 含义 |
+|------------------|------|
+| `listings N` / `enriched N` | `HOUSING_LISTINGS` 总行数 |
+| `table count X default` | 默认视图可见套数（`tier1` 过滤后） |
+| `table count N tier1` | 「显示全部」开启后的总行数 |
+
+改完 `_smoke.js` 再跑 `node tools/_smoke.js` 直至 `SMOKE_OK`。`manage.py build` **不会**自动改 `_smoke.js`。
+
 ```bash
 # 浏览器打开 demos/china-housing/index.html（file:// 也行），确认：
 #   新房源出现在 表格 / 地图 / 排行；hero 计数已更新；0 个 console error。
@@ -166,8 +192,8 @@ git push origin master
 ## 速查 · 最小闭环
 
 ```bash
-# 先去重预检(见 §1)：品牌盘按 loc LIKE 扫主库，决定 跳过 / 改名消歧 / 覆盖
-sqlite3 data/housing.db "SELECT id,city,loc,priceWan FROM listings WHERE loc LIKE '%关键词%';"
+# 先去重预检(见 §1)：跨时间批次全库 loc LIKE 扫，决定 跳过 / 改名消歧 / 覆盖
+sqlite3 data/housing.db "SELECT id,loc,city,dist,priceWan,area,updated FROM listings WHERE loc LIKE '%关键词%';"
 python3 tools/manage.py import-csv 新城市.csv
 python3 tools/manage.py geocode && python3 tools/manage.py climate && \
 python3 tools/manage.py climate-daily && python3 tools/manage.py elevation && \
@@ -176,4 +202,5 @@ python3 tools/manage.py hazard-merge data/hazard_research.json   # ← 别漏！
 # (新省份? 先改 app.js PROV_FULL + enrich.py PROVINCE_HAZARDS/HEATING)
 python3 tools/manage.py tier1-check   # 自动核对超阈值过滤（§5）
 python3 tools/manage.py build
+node tools/_smoke.js                  # 失败则同步 _smoke.js 硬编码套数后重跑（§7）
 ```
