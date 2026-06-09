@@ -792,6 +792,83 @@ def risk_all(con, log):
 HAZARD_FREQ_LABEL = {5: "几乎年年", 4: "数年一遇", 3: "约十年一遇", 2: "数十年一遇", 1: "百年级罕见"}
 HAZARD_FREQ_SHORT = {5: "年年", 4: "数年", 3: "十年", 2: "数十年", 1: "百年"}
 
+# 暴雨（致灾降水）与洪涝（江河/城市积水）在灾情口径上常成对出现，对购房者是同一类
+# 水灾暴露；洪涝内涝并入。合成/省级画像统一折叠为暴雨洪涝，频率取较高档、备注合并。
+_RAIN_FLOOD_TYPES = frozenset({"暴雨", "洪涝", "洪涝内涝"})
+_RAIN_FLOOD_CANON = "暴雨洪涝"
+
+
+def _merge_rain_flood_hazards(hazards: list) -> list:
+    """Fold 暴雨 / 洪涝 / 洪涝内涝 into one 暴雨洪涝 row (max freq, joined notes)."""
+    rf = [h for h in hazards if h.get("type") in _RAIN_FLOOD_TYPES]
+    if not rf:
+        return hazards
+    if len(rf) == 1 and rf[0]["type"] == _RAIN_FLOOD_CANON:
+        return hazards
+    rest = [h for h in hazards if h.get("type") not in _RAIN_FLOOD_TYPES]
+    f = max(int(h["freq"]) for h in rf)
+    notes, seen = [], set()
+    for h in rf:
+        n = (h.get("note") or "").strip()
+        if n and n not in seen:
+            notes.append(n)
+            seen.add(n)
+    merged = {"type": _RAIN_FLOOD_CANON, "freq": f,
+              "freqLabel": HAZARD_FREQ_LABEL[f], "freqShort": HAZARD_FREQ_SHORT[f],
+              "note": "；".join(notes) if notes else (rf[0].get("note") or "")}
+    src = next((h.get("source") for h in rf if h.get("source")), None)
+    if src:
+        merged["source"] = src
+    return rest + [merged]
+
+
+# 风暴潮 = 台风/温带风暴把海水推向海岸、水位异常抬升（海水倒灌），与暴雨洪涝（降水
+# 径流）机制不同，但 76/77 沿海样本与台风同行并存 → 并入台风/台风外围；仅温带风暴潮
+# 无台风行时改名为更易懂的「海岸增水」。
+_SURGE_TYPE = "风暴潮"
+_COASTAL_SURGE_LONE = "海岸增水"
+_TYPHOON_TYPES = ("台风", "台风外围")
+
+
+def _merge_storm_surge_into_typhoon(hazards: list) -> list:
+    """Fold 风暴潮 into 台风/台风外围 when co-listed; lone surge → 海岸增水."""
+    surge = [h for h in hazards if h.get("type") == _SURGE_TYPE]
+    if not surge:
+        return hazards
+    ty_rows = [h for h in hazards if h.get("type") in _TYPHOON_TYPES]
+    if not ty_rows:
+        out = []
+        for h in hazards:
+            if h.get("type") == _SURGE_TYPE:
+                out.append({**h, "type": _COASTAL_SURGE_LONE})
+            else:
+                out.append(h)
+        return out
+    def _ty_rank(h):
+        return (0 if h["type"] == "台风" else 1, -int(h["freq"]))
+    primary = sorted(ty_rows, key=_ty_rank)[0]
+    other_ty = [h for h in ty_rows if h is not primary]
+    rest = [h for h in hazards if h.get("type") not in ({_SURGE_TYPE} | set(_TYPHOON_TYPES))]
+    f = max([int(primary["freq"])] + [int(s["freq"]) for s in surge])
+    notes, seen = [], set()
+    for h in [primary] + other_ty + surge:
+        n = (h.get("note") or "").strip()
+        if n and n not in seen:
+            notes.append(n)
+            seen.add(n)
+    merged_ty = {**primary, "freq": f,
+                 "freqLabel": HAZARD_FREQ_LABEL[f], "freqShort": HAZARD_FREQ_SHORT[f],
+                 "note": "；".join(notes)}
+    src = next((h.get("source") for h in [primary] + surge if h.get("source")), None)
+    if src:
+        merged_ty["source"] = src
+    return rest + [merged_ty] + other_ty
+
+
+def _merge_hazard_rows(hazards: list) -> list:
+    return _merge_storm_surge_into_typhoon(_merge_rain_flood_hazards(hazards))
+
+
 PROVINCE_HAZARDS = {
     "黑龙江": {"headline": "夏汛+冬季暴雪为主；无台风、地震少",
               "hazards": [("暴雪雪灾", 4, "冬季强降雪致灾，数年一遇"), ("洪涝", 4, "松花江/嫩江流域夏季汛情(1998等)"),
@@ -896,6 +973,7 @@ def emit_hazards():
         hs = [{"type": t, "freq": f, "freqLabel": HAZARD_FREQ_LABEL[f],
                "freqShort": HAZARD_FREQ_SHORT[f], "note": n}
               for (t, f, n) in p["hazards"]]
+        hs = _merge_hazard_rows(hs)
         hs.sort(key=lambda h: -h["freq"])
         topf = hs[0]["freq"] if hs else 0
         heating = PROVINCE_HEATING.get(prov, "—")
@@ -997,6 +1075,7 @@ def synth_hazards(con, research_by_pref, log):
             if h.get("source"):
                 item["source"] = h["source"]
             out.append(item)
+        out = _merge_hazard_rows(out)
         bytype = {}   # dedupe by type, keep the highest freq
         for it in out:
             if it["type"] not in bytype or it["freq"] > bytype[it["type"]]["freq"]:
