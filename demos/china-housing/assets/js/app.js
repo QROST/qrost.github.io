@@ -323,9 +323,13 @@
   const tempAxis = () => (I18N().tempAxisLabel ? I18N().tempAxisLabel() : '°C');
   const precipAxis = () => (I18N().precipAxisLabel ? I18N().precipAxisLabel() : 'mm');
   const cityLabel = (d) => {
+    const parts = [];
+    if (d.prov) parts.push(trProv(d.prov));
     const city = trCity(d.city).replace(/ City$/, '').replace(/市$/, '');
+    if (city) parts.push(city);
     const loc = I18N().communityName ? I18N().communityName(d.loc, d.name_en) : d.loc;
-    return `${city} · ${loc}`;
+    if (loc) parts.push(loc);
+    return parts.join(isEn() ? ', ' : ' · ');
   };
   // null-safe sort key
   const nz = (v, def) => (v == null ? def : v);
@@ -518,7 +522,7 @@
       const rowText = isDark() ? '#94a3b8' : '#374151';
       const valText = isDark() ? '#64748b' : '#6b7280';
       return `<div class="grid items-center gap-2 py-0.5" style="${GT}"><div class="text-xs tabular-nums" style="color:${valText}">${i + 1}</div>`
-        + `<div class="text-xs truncate" style="color:${rowText}" title="${cityLabel(d)} · ${trProv(d.prov)}">${cityLabel(d)}</div>`
+        + `<div class="text-xs truncate" style="color:${rowText}" title="${cityLabel(d)}">${cityLabel(d)}</div>`
         + `<div>${vis}</div>`
         + `<div class="text-right text-xs tabular-nums" style="color:${valText}">${val}</div></div>`;
     }).join('');
@@ -1724,6 +1728,7 @@
   window.__setTier1On = (v) => { tier1On = !!v; refreshViews(); };
   window.__getLang = () => (I18N().getLang ? I18N().getLang() : 'zh');
   window.__setLang = (l) => { if (I18N().setLang) { I18N().setLang(l, true); applyLangToUI(); } };
+  window.__cityLabel = (d) => cityLabel(d);
 
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
   else init();
