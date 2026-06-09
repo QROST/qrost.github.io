@@ -143,6 +143,9 @@ def migrate(con):
 # ---------------------------------------------------------------------------
 # Geocoding — Nominatim coarse-to-fine ladder
 # ---------------------------------------------------------------------------
+_OVERSEAS_PROV = {"California"}
+
+
 def _geo_ladder(prov, city, dist, loc):
     """Yield (query, level) from most-specific to coarsest."""
     import re
@@ -170,7 +173,26 @@ def _geo_ladder(prov, city, dist, loc):
     return out
 
 
-_GEO_LABELS = {"loc": "小区级", "dist": "街道/镇级", "city": "城市级", "prefecture": "地级市近似"}
+_GEO_LABELS = {"loc": "小区级", "dist": "街道/镇级", "city": "城市级", "prefecture": "地级市近似",
+              "building": "building", "district": "district"}
+
+
+def _geo_ladder_us(prov, city, dist, loc):
+    """US listings — no trailing 中国; countrycodes=us in geocode_one."""
+    out, used = [], set()
+
+    def add(query, level):
+        if query not in used:
+            used.add(query)
+            out.append((query, level))
+
+    if loc:
+        add(f"{loc}, {city}, {prov}, USA", "loc")
+        add(f"{loc}, {city}, CA, USA", "loc")
+    if dist:
+        add(f"{dist}, {city}, {prov}, USA", "dist")
+    add(f"{city}, {prov}, USA", "city")
+    return out
 
 
 def _prov_ok(prov, hit):
@@ -190,10 +212,13 @@ def geocode_one(prov, city, dist, loc):
     For each ladder rung we take the top-5 candidates and keep the first one
     whose address actually lies in the expected province; otherwise we fall to
     the next (coarser) rung. This trades precision for not-wildly-wrong."""
-    for query, level in _geo_ladder(prov, city, dist, loc):
+    ladder = _geo_ladder_us(prov, city, dist, loc) if prov in _OVERSEAS_PROV else _geo_ladder(prov, city, dist, loc)
+    cc = "us" if prov in _OVERSEAS_PROV else "cn"
+    lang = "en" if prov in _OVERSEAS_PROV else "zh"
+    for query, level in ladder:
         url = "https://nominatim.openstreetmap.org/search?" + urllib.parse.urlencode(
             {"q": query, "format": "jsonv2", "limit": 5,
-             "countrycodes": "cn", "addressdetails": 1, "accept-language": "zh"})
+             "countrycodes": cc, "addressdetails": 1, "accept-language": lang})
         try:
             j = json.loads(_get(url, timeout=25, retries=2))
         except Exception:  # noqa: BLE001
@@ -525,11 +550,28 @@ def relief_all(con, log, force=False):
 # ---------------------------------------------------------------------------
 # Reference datasets (offline): airports + coastline
 # ---------------------------------------------------------------------------
-def _load_airports():
+_US_AIRPORTS = [
+    {"name": "Los Angeles International Airport", "iata": "LAX", "lat": 33.941589, "lng": -118.408475},
+    {"name": "John Wayne Airport", "iata": "SNA", "lat": 33.675667, "lng": -117.867667},
+    {"name": "Hollywood Burbank Airport", "iata": "BUR", "lat": 34.200667, "lng": -118.358667},
+    {"name": "Ontario International Airport", "iata": "ONT", "lat": 34.056, "lng": -117.601194},
+]
+# SoCal / central CA coastline sample vertices (lat, lng) — nearest-vertex distance.
+_US_COAST = [
+    (33.958, -118.445), (33.618, -117.929), (33.770, -118.196), (34.008, -118.498),
+    (34.040, -118.677), (32.768, -117.252), (36.620, -121.902), (34.250, -119.264),
+]
+
+
+def _load_airports(prov=None):
+    if prov in _OVERSEAS_PROV:
+        return _US_AIRPORTS
     return json.loads((REF / "airports_cn.json").read_text(encoding="utf-8"))
 
 
-def _load_coast():
+def _load_coast(prov=None):
+    if prov in _OVERSEAS_PROV:
+        return _US_COAST
     return json.loads((REF / "coast_cn.json").read_text(encoding="utf-8"))
 
 
@@ -637,8 +679,20 @@ def _store_pois(con, lid, found, source="osm"):
             (lid, cat, nm, plat, plng, round(d, 1) if d is not None else None, source))
 
 
-def _pois_for_listing(con, r, airports, coast, log, overwrite=()):
+def _listing_prov(con, r):
+    if "prov" in r.keys():
+        return r["prov"]
+    row = con.execute("SELECT prov FROM listings WHERE id=?", (r["id"],)).fetchone()
+    return row["prov"] if row else None
+
+
+def _pois_for_listing(con, r, log, overwrite=(), airports=None, coast=None):
     """Bake POIs for one listing. `overwrite` = categories to replace even if present."""
+    prov = _listing_prov(con, r)
+    if airports is None:
+        airports = _load_airports(prov)
+    if coast is None:
+        coast = _load_coast(prov)
     lat, lng = r["lat"], r["lng"]
     found = _bake_offline_pois(lat, lng, airports, coast)
     data = _overpass(lat, lng)
@@ -689,30 +743,28 @@ def _listing_ids_needing_poi_refix(con):
 
 def pois_refix(con, log):
     """Re-bake POIs for listings with 0m hospitals / missing metro in metro cities."""
-    airports, coast = _load_airports(), _load_coast()
     todo = _listing_ids_needing_poi_refix(con)
     log(f"pois-refix: {len(todo)} listing(s) with suspicious/missing POIs…")
     for lid, cats in todo:
-        row = con.execute("SELECT id, lat, lng FROM listings WHERE id=?", (lid,)).fetchone()
+        row = con.execute("SELECT id, prov, lat, lng FROM listings WHERE id=?", (lid,)).fetchone()
         if not row:
             continue
         log(f"  refix #{lid}: {','.join(cats)}")
-        _pois_for_listing(con, row, airports, coast, log, overwrite=tuple(cats))
+        _pois_for_listing(con, row, log, overwrite=tuple(cats))
         time.sleep(1.5)
     con.commit()
     log(f"pois-refix done: {len(todo)} listing(s)")
 
 
 def pois_all(con, log):
-    airports, coast = _load_airports(), _load_coast()
-    rows = con.execute("""SELECT id, lat, lng FROM listings
+    rows = con.execute("""SELECT id, prov, lat, lng FROM listings
                           WHERE lat IS NOT NULL
                             AND id NOT IN (SELECT listing_id FROM poi_done)
                           ORDER BY id""").fetchall()
     log(f"pois: {len(rows)} listing(s) to do (Overpass + offline airport/coast)…")
     done = 0
     for r in rows:
-        _pois_for_listing(con, r, airports, coast, log)
+        _pois_for_listing(con, r, log)
         done += 1
         if done % 5 == 0:
             con.commit()
@@ -733,18 +785,21 @@ SEISMIC = {
     "吉林": "中", "黑龙江": "中", "河南": "中", "江苏": "中",
     "安徽": "中", "广东": "中", "广西": "中", "重庆": "中", "贵州": "中",
     "上海": "低",
+    "California": "较高",
 }
 
 
 def risk_all(con, log):
-    coast = _load_coast()
     rows = con.execute("SELECT id, prov, lat, lng FROM listings WHERE lat IS NOT NULL ORDER BY id").fetchall()
     log(f"risk: computing for {len(rows)} located listing(s)…")
     for r in rows:
+        coast = _load_coast(r["prov"])
         ckm = round(coast_km(r["lat"], r["lng"], coast), 1)
         band = SEISMIC.get(r["prov"], "中")
-        # typhoon exposure: southern + coastal heuristic
-        if ckm < 60 and r["lat"] < 25:
+        # typhoon exposure: southern + coastal heuristic (CN); US Pacific coast ≈ no typhoon
+        if r["prov"] in _OVERSEAS_PROV:
+            typh = "极低"
+        elif ckm < 60 and r["lat"] < 25:
             typh = "高"
         elif ckm < 120 and r["lat"] < 32:
             typh = "中"
@@ -754,8 +809,8 @@ def risk_all(con, log):
             typh = "极低"
         jan = con.execute("SELECT tmean FROM climate WHERE listing_id=? AND month=1", (r["id"],)).fetchone()
         jul = con.execute("SELECT tmean FROM climate WHERE listing_id=? AND month=7", (r["id"],)).fetchone()
-        bits = [f"距海岸约 {ckm:.0f}km" if ckm < 300 else "深处内陆",
-                f"台风暴露 {typh}", f"地震动(省级近似) {band}"]
+        coast_bit = (f"距海岸约 {ckm:.1f}km" if ckm < 10 else f"距海岸约 {ckm:.0f}km") if ckm < 300 else "深处内陆"
+        bits = [coast_bit, f"台风暴露 {typh}", f"地震动(省级近似) {band}"]
         if jan and jan[0] is not None:
             bits.append(f"1月均温 {jan[0]:.0f}℃")
         if jul and jul[0] is not None:
@@ -937,6 +992,12 @@ PROVINCE_HAZARDS = {
     "海南": {"headline": "全国台风登陆最前沿",
             "hazards": [("台风", 5, "登陆最频繁"), ("高温", 5, "夏季湿热"),
                         ("洪涝", 4, "台风暴雨"), ("风暴潮", 4, "沿海")]},
+    "California": {"headline": "LA basin quake faults + urban flash flood; regional wildfire smoke; heat/drought",
+                   "hazards": [("地震", 4, "Newport-Inglewood/Puente Hills faults under DTLA; Whittier Narrows 1987 M5.9"),
+                               ("森林火灾", 3, "Regional Santa Ana wildfire smoke/air-quality episodes (urban core lower direct risk)"),
+                               ("洪涝", 3, "Urban flash flood / storm-drain overflow during intense winter storms"),
+                               ("高温", 4, "Summer heat waves + downtown heat-island effect"),
+                               ("干旱", 3, "Periodic SoCal multi-year drought cycles")]},
 }
 
 # ---------------------------------------------------------------------------
@@ -955,6 +1016,7 @@ PROVINCE_HEATING = {
     "广东": HEAT_WARM, "广西": HEAT_WARM, "福建": HEAT_WARM, "海南": HEAT_WARM, "云南": HEAT_WARM,
     "上海": HEAT_DAMP, "浙江": HEAT_DAMP, "湖北": HEAT_DAMP,
     "重庆": HEAT_DAMP, "四川": HEAT_DAMP, "贵州": HEAT_DAMP,
+    "California": "无·冬暖",  # SoCal: mild winters, no central heating
 }
 HEATING_NOTE = {
     HEAT_HEATED: "秦岭-淮河线以北，市政集中供暖",
@@ -1101,9 +1163,11 @@ def synth_hazards(con, research_by_pref, log):
 # ---------------------------------------------------------------------------
 def geocode_query(query, prov, limit=5):
     """Province-validated geocode of an arbitrary name/address. Caller rate-limits."""
+    cc = "us" if prov in _OVERSEAS_PROV else "cn"
+    lang = "en" if prov in _OVERSEAS_PROV else "zh"
     url = "https://nominatim.openstreetmap.org/search?" + urllib.parse.urlencode(
         {"q": query, "format": "jsonv2", "limit": limit,
-         "countrycodes": "cn", "addressdetails": 1, "accept-language": "zh"})
+         "countrycodes": cc, "addressdetails": 1, "accept-language": lang})
     try:
         j = json.loads(_get(url, timeout=25, retries=2))
     except Exception:  # noqa: BLE001
@@ -1128,7 +1192,9 @@ def _poi_geocode(name, cat, row, prov):
     dist = (row["dist"] or "").strip()
     locs = [x for x in {city, dist.split()[0] if dist else "", prov} if x]
     bases = [", ".join(locs), f"{city}, {prov}" if city else prov]
-    if cat == "metro":
+    if prov in _OVERSEAS_PROV:
+        variants = [name]
+    elif cat == "metro":
         variants = [f"{name}地铁站", f"地铁{name}站", f"{name}站"]
     elif cat == "train":
         variants = [f"{name}站", f"{name}火车站", f"{name}高铁站"]
@@ -1287,12 +1353,12 @@ def refresh_refined_pois(con, log):
     POIs (computed vs the old coords) go stale. Recompute them against the new
     location: offline airport/coast always; Overpass metro/train/hospital/mall
     only where the existing row is NOT research-sourced (verified names stay)."""
-    airports, coast = _load_airports(), _load_coast()
-    rows = con.execute("SELECT id, lat, lng FROM listings "
+    rows = con.execute("SELECT id, prov, lat, lng FROM listings "
                        "WHERE geo_source='research' AND lat IS NOT NULL ORDER BY id").fetchall()
     log(f"refresh: recomputing POIs for {len(rows)} research-refined listing(s)…")
     for r in rows:
         lat, lng = r["lat"], r["lng"]
+        airports, coast = _load_airports(r["prov"]), _load_coast(r["prov"])
         ap, apd = nearest_airport(lat, lng, airports)
         if ap:
             con.execute("INSERT OR REPLACE INTO poi (listing_id,category,name,lat,lng,dist_km,source) "

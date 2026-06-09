@@ -77,8 +77,10 @@ CREATE TABLE IF NOT EXISTS listings (
 # ---------------------------------------------------------------------------
 def connect() -> sqlite3.Connection:
     DB_PATH.parent.mkdir(parents=True, exist_ok=True)
-    con = sqlite3.connect(DB_PATH)
+    # Wait up to 30s when another manage.py job holds the write lock (e.g. pois-refix).
+    con = sqlite3.connect(DB_PATH, timeout=30)
     con.row_factory = sqlite3.Row
+    con.execute("PRAGMA busy_timeout = 30000;")
     con.execute("PRAGMA foreign_keys = ON;")
     con.executescript(SCHEMA)   # base listings table (idempotent)
     enrich.migrate(con)         # enrichment columns + tables (idempotent)

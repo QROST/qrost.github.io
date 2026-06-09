@@ -113,9 +113,9 @@ ids['listing-modal'].classList = { _c: new Set(['hidden']), contains(c) { return
 setTimeout(() => {
   const w = sandbox.window; const checks = [];
   const T = (n, p) => checks.push([n, !!p]);
-  T('listings 283', (w.HOUSING_LISTINGS || []).length === 283);
-  T('enriched 283', Object.keys(w.HOUSING_ENRICHED || {}).length === 283);
-  T('hazards 22', Object.keys(w.HOUSING_HAZARDS || {}).length === 22);
+  T('listings 287', (w.HOUSING_LISTINGS || []).length === 287);
+  T('enriched 287', Object.keys(w.HOUSING_ENRICHED || {}).length === 287);
+  T('hazards 23', Object.keys(w.HOUSING_HAZARDS || {}).length === 23);
   T('field 4 fields', w.HOUSING_FIELD && Object.keys(w.HOUSING_FIELD.fields).length === 4);
   T('field elevation 973pts', w.HOUSING_FIELD && w.HOUSING_FIELD.fields.elevation.points.length === 973);
   T('geo-en districts CJK-free', Object.values((w.HOUSING_GEO_EN || {}).district || {}).every((v) => !zhRe.test(v)));
@@ -130,7 +130,7 @@ setTimeout(() => {
   T('tier1 toggle wired', typeof w.__setTier1On === 'function');
   try {
     w.__setTier1On(true);
-    T('table count 283 tier1', /显示 283 \/ 283/.test(ids['table-count'].textContent));
+    T('table count 287 tier1', /显示 287 \/ 287/.test(ids['table-count'].textContent));
     w.__setTier1On(false);
   } catch (e) { T('tier1 toggle — ' + e.message, false); }
   T('table head heating+freq', /供暖/.test(ids['table-head']._html) && /当地灾种·常见度/.test(ids['table-head']._html));

@@ -91,6 +91,7 @@
     '广东': '广东省', '广西': '广西壮族自治区', '福建': '福建省',
     '重庆': '重庆市', '贵州': '贵州省', '四川': '四川省', '云南': '云南省',
     '甘肃': '甘肃省', '海南': '海南省',
+    'California': 'California',
   };
 
   // ---- metric derivation -------------------------------------------------
@@ -256,8 +257,16 @@
   function viewData() {
     return tier1On ? DATA : DATA.filter((d) => !isDefaultHidden(d));
   }
+  // China basemap bbox — overseas listings keep coords for climate/POI but skip map dots.
+  const CHINA_MAP_BBOX = { lngMin: 73, lngMax: 136, latMin: 18, latMax: 54 };
+  function inChinaMap(d) {
+    const e = d.enr;
+    return e && e.lat != null && e.lng != null
+      && e.lng >= CHINA_MAP_BBOX.lngMin && e.lng <= CHINA_MAP_BBOX.lngMax
+      && e.lat >= CHINA_MAP_BBOX.latMin && e.lat <= CHINA_MAP_BBOX.latMax;
+  }
   function viewGeocoded() {
-    return viewData().filter((d) => d.enr && d.enr.lat != null);
+    return viewData().filter((d) => inChinaMap(d));
   }
 
   const DATA = RAW.map((d) => {

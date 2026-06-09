@@ -3251,6 +3251,48 @@
 "source": "https://html.rhhz.net/dzdczz/html/65922.htm"
 }
 ]
+},
+{
+"prefKey": "California|Los Angeles",
+"headline": "Coastal West LA: Newport-Inglewood fault; tsunami inundation at Ballona/Playa del Rey; sea-level-rise coastal flood; severe regional earthquake",
+"hazards": [
+{
+"type": "地震",
+"freq": 4,
+"note": "Augurisk severe earthquake score 83 for Playa del Rey; Newport-Inglewood fault offshore; 1994 Northridge M6.7 widely felt; regional San Andreas M7+ decades-scale",
+"source": "https://www.augurisk.com/neighborhood/california/los-angeles/playa-del-rey/33.96044716425574/-118.43663792257371"
+},
+{
+"type": "海岸增水",
+"freq": 3,
+"note": "Playa del Rey and Ballona Wetlands within LA County tsunami hazard areas; strong local shaking → evac inland immediately (5–30 min window for distant-source tsunamis)",
+"source": "https://newsroom.lmu.edu/administrative/tsunami-preparedness-week-do-you-know-what-to-do/"
+},
+{
+"type": "暴雨洪涝",
+"freq": 3,
+"note": "FEMA Zone X (outside 100-yr SFHA) but 500-yr flood exposure; USC City of LA SLR study flags Venice/Playa del Rey coastal flooding; winter storm runoff",
+"source": "https://dornsife.usc.edu/uscseagrant/wp-content/uploads/sites/52/2023/11/Climate_CityofLA_VulnerabilityStudy_SummaryReport.pdf"
+},
+{
+"type": "森林火灾",
+"freq": 3,
+"note": "Very low direct wildfire risk at coast (Augurisk); periodic Santa Ana wind smoke from regional fires",
+"source": "https://www.augurisk.com/neighborhood/california/los-angeles/playa-del-rey/33.96044716425574/-118.43663792257371"
+},
+{
+"type": "高温",
+"freq": 4,
+"note": "Marine layer moderates daily highs but greater LA summer heat waves; coastal humidity",
+"source": "https://www.weather.gov/lox/"
+},
+{
+"type": "干旱",
+"freq": 3,
+"note": "Southern California multi-year drought cycles (2012–2016, 2020–2022) with municipal water restrictions",
+"source": "https://water.ca.gov/Programs/Water-Use-And-Efficiency/Urban-Water-Use-Efficiency"
+}
+]
 }
 ]
 }
