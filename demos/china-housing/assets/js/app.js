@@ -402,6 +402,248 @@
   const AGE_NEW = [5, 150, 105], AGE_OLD = [180, 83, 9];
   const NOW_YEAR = new Date().getFullYear();
 
+  // ---- report-card grades -------------------------------------------------
+  // z-score per dimension against the DEFAULT-VISIBLE population only — hidden
+  // benchmark rows never shift the curve (they still RECEIVE grades against
+  // it). log() on price/distance dims tames the long tails before z-scoring.
+  const GRADE_DIMS = {
+    price:   { labelKey: 'gdPrice',   get: (d) => (d.unitPrice > 0 ? -Math.log(d.unitPrice) : null) },
+    climate: { labelKey: 'gdClimate', get: (d) => d.comfortDayCount },
+    hazard:  { labelKey: 'gdHazard',  get: (d) => (d.hazardBurden == null ? null : -d.hazardBurden) },
+    access:  { labelKey: 'gdAccess',  get: (d) => (d.transitKm == null ? null : -Math.log(1 + d.transitKm)) },
+    medical: { labelKey: 'gdMedical', get: (d) => (d.hospitalKm == null ? null : -Math.log(1 + d.hospitalKm)) },
+    age:     { labelKey: 'gdAge',     get: (d) => d.builtYear },
+  };
+  const VISIBLE_POP = DATA.filter((d) => !isDefaultHidden(d));
+  const GRADE_STATS = (() => {
+    const stats = {};
+    Object.keys(GRADE_DIMS).forEach((k) => {
+      const xs = VISIBLE_POP.map(GRADE_DIMS[k].get).filter((v) => v != null && isFinite(v));
+      const mean = xs.reduce((s, v) => s + v, 0) / (xs.length || 1);
+      const sd = Math.sqrt(xs.reduce((s, v) => s + (v - mean) * (v - mean), 0) / (xs.length || 1)) || 1;
+      stats[k] = { mean, sd };
+    });
+    return stats;
+  })();
+  // z → letter; thresholds published in the methodology note (i18n gradeNote).
+  const GRADE_STEPS = [[1.3, 'A+'], [0.8, 'A'], [0.4, 'A−'], [0.1, 'B+'], [-0.25, 'B'], [-0.6, 'B−'], [-1.1, 'C+'], [-Infinity, 'C']];
+  function gradeOf(d, k) {
+    const v = GRADE_DIMS[k].get(d);
+    if (v == null || !isFinite(v)) return null;
+    const z = (v - GRADE_STATS[k].mean) / GRADE_STATS[k].sd;
+    return GRADE_STEPS.find(([th]) => z >= th)[1];
+  }
+  const gradeStyle = (g) => (g[0] === 'A' ? ['#dcfce7', '#166534'] : g[0] === 'B' ? ['#fef9c3', '#854d0e'] : ['#fee2e2', '#b91c1c']);
+  function gradeChips(d) {
+    return Object.keys(GRADE_DIMS).map((k) => {
+      const g = gradeOf(d, k);
+      if (!g) return '';
+      const [bg, fg] = gradeStyle(g);
+      return `<span class="inline-block rounded px-1.5 py-0.5 text-[0.65rem] font-medium whitespace-nowrap" style="background:${bg};color:${fg}" title="${t('gradeTitle')}">${t(GRADE_DIMS[k].labelKey)} ${g}</span>`;
+    }).filter(Boolean).join(' ');
+  }
+
+  // ---- 值得看 badge: simultaneously in the good quartile on price + climate,
+  // no almost-annual hazard, rail within reach. Checklist is fully explainable.
+  const quantileOf = (xs, p) => { const s = [...xs].sort((a, b) => a - b); return s.length ? s[Math.floor((s.length - 1) * p)] : null; };
+  const WORTH_THRESH = {
+    unitQ1: quantileOf(VISIBLE_POP.map((d) => d.unitPrice), 0.25),
+    comfortQ3: quantileOf(VISIBLE_POP.map((d) => d.comfortDayCount).filter((v) => v != null), 0.75),
+  };
+  function worthChecklist(d) {
+    if (d.comfortDayCount == null || WORTH_THRESH.unitQ1 == null) return null;
+    return [
+      [d.unitPrice <= WORTH_THRESH.unitQ1, t('wcPrice', { v: fmtInt(WORTH_THRESH.unitQ1) })],
+      [d.comfortDayCount >= WORTH_THRESH.comfortQ3, t('wcComfort', { v: WORTH_THRESH.comfortQ3 })],
+      [!(d.hazard && d.hazard.hazards && d.hazard.hazards.some((h) => h.freq >= 5)), t('wcHazard')],
+      [d.transitKm != null && d.transitKm <= 20, t('wcRail')],
+    ];
+  }
+  function worthBadge(d) {
+    const checks = worthChecklist(d);
+    if (!checks || !checks.every((c) => c[0])) return '';
+    const tip = checks.map((c) => '✓ ' + c[1]).join('\n');
+    return `<span class="inline-block rounded px-1.5 py-0.5 text-[0.65rem] font-semibold whitespace-nowrap" style="background:#dc2626;color:#fff" title="${tip.replace(/"/g, '&quot;')}">${t('worthBadge')}</span>`;
+  }
+
+  // ---- one-line climate summary (modal hard-facts + share card) -----------
+  function climateSummary(d) {
+    const bits = [];
+    if (d.climateType) bits.push(trCl(d.climateType));
+    if (d.comfortDayCount != null) bits.push(t('csComfort', { n: d.comfortDayCount }));
+    const cr = comfortRangeOf(d);
+    if (cr && cr !== t('monthNone') && cr !== t('monthAll')) bits.push(t('csBest', { r: cr }));
+    if (d.extremeDayCount != null) bits.push(d.extremeDayCount ? t('csExtreme', { n: d.extremeDayCount }) : t('csNoExtreme'));
+    return bits.join(' · ');
+  }
+
+  // ---- money metrics over existing data ------------------------------------
+  // 70-year land-use estimate anchored on built year (出让时间通常更早 — labeled 估算).
+  function leaseLeftOf(d) {
+    if (d.builtYear == null) return null;
+    return Math.max(0, d.builtYear + 70 - NOW_YEAR);
+  }
+  // unit-price standing within the ±7-year built cohort of visible listings.
+  function cohortCheaperPct(d) {
+    if (d.builtYear == null) return null;
+    const cohort = VISIBLE_POP.filter((x) => x.builtYear != null && Math.abs(x.builtYear - d.builtYear) <= 7);
+    if (cohort.length < 8) return null;
+    const cheaper = cohort.filter((x) => x.unitPrice > d.unitPrice).length;
+    return Math.round((cheaper / cohort.length) * 100);
+  }
+
+  // ---- 找城测验: weighted match scoring over baked dims --------------------
+  // Hard gates (budget / heating / altitude) filter; soft dims score 0-1 and
+  // combine as Σwᵢsᵢ/Σwᵢ×100. Weights are FIXED and published in #qz-formula.
+  // Population is always the default-visible set — hidden benchmark rows never
+  // surface here regardless of the footer tier toggle.
+  const qz = { budget: 0, winter: 1, summer: 1, hazard: 1, heat: false, coast: false, alt: false, rail: false };
+  const QZ_DIM_META = {
+    price: { labelKey: 'qdPrice', color: '#059669' },
+    climate: { labelKey: 'qdClimate', color: '#6366f1' },
+    winter: { labelKey: 'qdWinter', color: '#f59e0b' },
+    summer: { labelKey: 'qdSummer', color: '#0ea5e9' },
+    hazard: { labelKey: 'qdHazard', color: '#94a3b8' },
+    coast: { labelKey: 'qdCoast', color: '#14b8a6' },
+    rail: { labelKey: 'qdRail', color: '#a855f7' },
+  };
+  const QZ_PRICE_RANGE = (() => {
+    const xs = VISIBLE_POP.map((d) => d.unitPrice);
+    return { min: Math.min(...xs), max: Math.max(...xs) };
+  })();
+  const QZ_MAX_BURDEN = Math.max(1, ...VISIBLE_POP.map((d) => d.hazardBurden || 0));
+  function quizScore(d) {
+    if (qz.budget && d.priceWan > qz.budget) return null;
+    if (qz.alt && !(d.elevation != null && d.elevation <= 1500)) return null;
+    if (qz.heat && !(d.heating === '集中供暖' || d.heating === '部分供暖')) return null;
+    const parts = [];   // [dimKey, weight, subscore 0-1]
+    parts.push(['price', 2, clamp((QZ_PRICE_RANGE.max - d.unitPrice) / (QZ_PRICE_RANGE.max - QZ_PRICE_RANGE.min || 1), 0, 1)]);
+    parts.push(['climate', 2, d.comfortDayCount != null ? d.comfortDayCount / 365 : 0]);
+    if (qz.winter) parts.push(['winter', 1.5 * qz.winter, d.janTemp != null ? clamp((d.janTemp + 10) / 28, 0, 1) : 0]);
+    if (qz.summer) parts.push(['summer', 1.5 * qz.summer, d.julTemp != null ? clamp((30 - d.julTemp) / 10, 0, 1) : 0]);
+    if (qz.hazard) parts.push(['hazard', 1 * qz.hazard, d.hazardBurden != null ? 1 - d.hazardBurden / QZ_MAX_BURDEN : 0.5]);
+    if (qz.coast) parts.push(['coast', 2, d.coastKm != null ? Math.exp(-d.coastKm / 40) : 0]);
+    if (qz.rail) parts.push(['rail', 1.5, d.transitKm != null ? Math.exp(-d.transitKm / 15) : 0]);
+    const wSum = parts.reduce((s, p) => s + p[1], 0);
+    const vSum = parts.reduce((s, p) => s + p[1] * p[2], 0);
+    return { score: (vSum / (wSum || 1)) * 100, parts, vSum };
+  }
+  function quizHash() {
+    try {
+      if (!(window.history && window.history.replaceState)) return;
+      const enc = [qz.budget, qz.winter, qz.summer, qz.hazard, +qz.heat, +qz.coast, +qz.alt, +qz.rail].join(',');
+      window.history.replaceState(null, '', '#q=' + enc);
+    } catch (e) { /* sandbox */ }
+  }
+  function quizFromHash() {
+    try {
+      const m = (window.location && window.location.hash || '').match(/^#q=([\d.,]+)$/);
+      if (!m) return;
+      const v = m[1].split(',').map(Number);
+      if (v.length !== 8 || v.some((x) => !isFinite(x))) return;
+      qz.budget = v[0]; qz.winter = clamp(v[1], 0, 2); qz.summer = clamp(v[2], 0, 2); qz.hazard = clamp(v[3], 0, 2);
+      qz.heat = !!v[4]; qz.coast = !!v[5]; qz.alt = !!v[6]; qz.rail = !!v[7];
+    } catch (e) { /* sandbox */ }
+  }
+  function styleQzChips() {
+    const dk = isDark();
+    document.querySelectorAll('[data-qz]').forEach((b) => {
+      const k = b.dataset.qz;
+      b.textContent = t({ heat: 'qzHeat', coast: 'qzCoast', alt: 'qzAlt', rail: 'qzRail' }[k]);
+      const on = !!qz[k];
+      b.className = 'px-3 py-1.5 rounded-md text-xs font-medium transition-colors ' +
+        (on
+          ? 'bg-indigo-600 text-white'
+          : (dk ? 'bg-slate-800 text-slate-400 border border-slate-600 hover:text-slate-100' : 'bg-white text-slate-500 border border-slate-200 hover:text-slate-900'));
+    });
+  }
+  function fillQuizSelects() {
+    const fill = (id, opts, cur) => {
+      const sel = document.getElementById(id);
+      if (!sel) return;
+      sel.innerHTML = opts.map(([v, label]) => `<option value="${v}">${label}</option>`).join('');
+      sel.value = String(cur);
+    };
+    const bLabel = (v) => (isEn() ? `≤¥${v * 10}k` : `≤${v}万`);
+    fill('qz-budget', [[0, t('qzBudgetAny')]].concat([5, 10, 15, 20].map((v) => [v, bLabel(v)])), qz.budget);
+    const deg = (k0, k1, k2) => [[0, t(k0)], [1, t(k1)], [2, t(k2)]];
+    fill('qz-winter', deg('qzDegNo', 'qzDegSome', 'qzDegVery'), qz.winter);
+    fill('qz-summer', deg('qzDegNo', 'qzDegSome', 'qzDegVery'), qz.summer);
+    fill('qz-hazard', deg('qzHzNo', 'qzHzMid', 'qzHzHigh'), qz.hazard);
+  }
+  function renderQuizRent(top1) {
+    const out = document.getElementById('qz-rent-out');
+    const inp = document.getElementById('qz-rent');
+    if (!out || !inp) return;
+    const rent = parseFloat(inp.value);
+    if (!rent || rent <= 0) { out.textContent = t('qzRentHint'); return; }
+    const med = median(VISIBLE_POP.map((d) => d.unitPrice));
+    const yr = rent * 12;
+    const sqmMed = yr / med;
+    if (top1) {
+      out.textContent = t('qzRentOut', { y: fmtInt(yr), a: sqmMed.toFixed(1), c: cityLabel(top1), b: (yr / top1.unitPrice).toFixed(1) });
+    } else {
+      out.textContent = t('qzRentOutNoTop', { y: fmtInt(yr), a: sqmMed.toFixed(1) });
+    }
+  }
+  function renderQuiz() {
+    const host = document.getElementById('qz-result');
+    if (!host) return;
+    fillQuizSelects(); styleQzChips();
+    const scored = VISIBLE_POP.map((d) => ({ d, r: quizScore(d) })).filter((x) => x.r);
+    scored.sort((a, b) => b.r.score - a.r.score);
+    const top = scored.slice(0, 10);
+    const tc = tcx();
+    if (!top.length) {
+      host.innerHTML = `<div class="text-sm ${tc.muted} py-2">${t('qzEmpty')}</div>`;
+    } else {
+      // name column capped at 42% so the 1fr contribution bar survives 375px
+      const GT = 'grid-template-columns: 1.4rem minmax(5rem, 42%) 1fr 2.6rem';
+      const rows = top.map(({ d, r }, i) => {
+        const segs = r.parts.filter((p) => p[2] > 0).map(([k, w, s]) =>
+          `<div class="h-full" style="width:${(w * s / (r.vSum || 1)) * 100}%;background:${QZ_DIM_META[k].color}" title="${t(QZ_DIM_META[k].labelKey)}"></div>`).join('');
+        return `<div class="grid items-center gap-2 py-1 rounded cursor-pointer ${isDark() ? 'hover:bg-slate-700/50' : 'hover:bg-slate-50'}" data-open="${d.id}" role="button" tabindex="0" style="${GT}">`
+          + `<div class="text-xs tabular-nums ${tc.muted}">${i + 1}</div>`
+          + `<div class="text-xs truncate ${tc.body}" title="${cityLabel(d)}">${cityLabel(d)}</div>`
+          + `<div class="flex h-3 rounded-sm overflow-hidden" style="background:${isDark() ? '#334155' : '#f1f5f9'}">${segs}</div>`
+          + `<div class="text-right text-xs tabular-nums font-medium ${tc.strong}">${Math.round(r.score)}</div>`
+          + '</div>';
+      }).join('');
+      const legend = Object.keys(QZ_DIM_META)
+        .filter((k) => top.some(({ r }) => r.parts.some((p) => p[0] === k)))
+        .map((k) => `<span class="inline-flex items-center gap-1 whitespace-nowrap"><span class="inline-block w-2 h-2 rounded-sm" style="background:${QZ_DIM_META[k].color}"></span>${t(QZ_DIM_META[k].labelKey)}</span>`)
+        .join(' ');
+      host.innerHTML = rows + `<div class="mt-2 flex flex-wrap gap-x-2.5 gap-y-1 text-[0.65rem] ${tc.muted}">${legend} <span>· ${t('qzMatchCount', { n: scored.length })}</span></div>`;
+    }
+    renderQuizRent(top.length ? top[0].d : null);
+    const formula = document.getElementById('qz-formula');
+    if (formula) formula.innerHTML = t('qzFormula');
+  }
+  function wireQuiz() {
+    quizFromHash();
+    [['qz-budget', 'budget'], ['qz-winter', 'winter'], ['qz-summer', 'summer'], ['qz-hazard', 'hazard']].forEach(([id, key]) => {
+      const sel = document.getElementById(id);
+      if (sel) sel.addEventListener('change', () => { qz[key] = +sel.value || 0; quizHash(); renderQuiz(); });
+    });
+    document.querySelectorAll('[data-qz]').forEach((b) => b.addEventListener('click', () => {
+      qz[b.dataset.qz] = !qz[b.dataset.qz];
+      quizHash(); styleQzChips(); renderQuiz();
+    }));
+    const rent = document.getElementById('qz-rent');
+    if (rent) {
+      try { const saved = localStorage.getItem('housing-rent'); if (saved) rent.value = saved; } catch (e) {}
+      rent.addEventListener('input', () => {
+        try { localStorage.setItem('housing-rent', rent.value); } catch (e) {}
+        renderQuiz();
+      });
+    }
+    const host = document.getElementById('qz-result');
+    if (host) host.addEventListener('click', (e) => {
+      const row = e.target.closest('[data-open]');
+      if (row) openListing(+row.dataset.open);
+    });
+  }
+
   // ---- KPI cards ---------------------------------------------------------
   function renderKPIs() {
     const vd = viewData();
@@ -1271,7 +1513,8 @@
     { key: 'city', label: '城市', group: 'core', str: true, get: (d) => d.city, cell: (d) => trCity(d.city), dir: 1 },
     { key: 'dist', label: '区/镇', group: 'core', str: true, get: (d) => d.dist, cell: (d) => trDist(d.dist), dir: 1 },
     { key: 'loc', label: '小区/位置', group: 'core', str: true, get: (d) => d.loc,
-      cell: (d) => `<span class="font-medium ${tcx().strong}">${I18N().communityName ? I18N().communityName(d.loc, d.name_en) : d.loc}</span>`, dir: 1 },
+      cell: (d) => `<span class="font-medium ${tcx().strong}">${I18N().communityName ? I18N().communityName(d.loc, d.name_en) : d.loc}</span>`
+        + (worthBadge(d) ? ' ' + worthBadge(d) : ''), dir: 1 },
     { key: 'builtAge', label: '房龄', group: 'core', get: (d) => nz(d.builtYear, -1), cell: (d) => builtCell(d) },
     { key: 'priceWan', label: '总价', group: 'price', num: true, get: (d) => d.priceWan, cell: (d) => fmtWan(d.priceWan) },
     { key: 'area', label: '面积㎡', group: 'price', num: true, get: (d) => d.area, cell: (d) => fmtArea(d.area) },
@@ -1367,7 +1610,11 @@
         <span class="truncate">${sub}</span>
         <span class="tabular-nums whitespace-nowrap">${fmtUnit(d.unitPrice)} · ${fmtArea(d.area)}</span>
       </div>
-      <div class="mt-2 flex flex-wrap items-center gap-1.5">${climateCell(d)}${builtCell(d)}${heatingCell(d)}</div>
+      <div class="mt-2 flex flex-wrap items-center gap-1.5">${climateCell(d)}${builtCell(d)}${heatingCell(d)}${worthBadge(d)}`
+      + (d.enr ? `<button data-cmpadd="${d.id}" class="ml-auto text-[0.65rem] font-medium px-1.5 py-0.5 rounded border transition-colors ${cmp.has(d.id)
+        ? 'bg-emerald-600 border-emerald-600 text-white'
+        : (x.muted + ' ' + (isDark() ? 'border-slate-600' : 'border-slate-200'))}">${cmp.has(d.id) ? t('cmpCardOn') : t('cmpCardAdd')}</button>` : '')
+      + `</div>
       ${strip ? `<div class="mt-2">${strip}</div>` : ''}
       ${(comfortTxt || extremeTxt) ? `<div class="mt-1 text-[0.65rem] ${x.muted}">${comfortTxt}${extremeTxt}</div>` : ''}
     </div>`;
@@ -1524,6 +1771,8 @@
     });
     const cardsHost = document.getElementById('table-cards');
     if (cardsHost) cardsHost.addEventListener('click', (e) => {
+      const add = e.target.closest('[data-cmpadd]');
+      if (add) { cmpToggle(+add.dataset.cmpadd); return; }
       const card = e.target.closest('[data-open]');
       if (card) openListing(+card.dataset.open);
     });
@@ -1623,6 +1872,9 @@
     document.getElementById('lm-sub').innerHTML = lmSubHtml(d, e);
     const tabs = { sat: t('lmSat'), near: t('lmNear'), climate: t('lmClimate') };
     document.querySelectorAll('[data-lm-tab]').forEach((b) => { b.textContent = tabs[b.dataset.lmTab]; });
+    updateCmpModalBtn();
+    const shareBtn = document.getElementById('lm-share');
+    if (shareBtn) shareBtn.textContent = t('lmShare');
     document.getElementById('listing-modal').classList.remove('hidden');
     document.body.style.overflow = 'hidden';
     lmShowTab('sat');
@@ -1688,9 +1940,65 @@
     setTimeout(() => lmNearMap.invalidateSize(), 60);
   }
 
+  // 9-band daily-mean temperature strip (WeatherSpark-style), drawn above the
+  // climate chart in the modal. Bands are fixed °C thresholds so two listings'
+  // strips are directly comparable.
+  const BAND_THRESH = [-9, 0, 7, 13, 18, 24, 28, 33];
+  const BAND_COLORS = ['#312e81', '#3730a3', '#2563eb', '#38bdf8', '#67e8f9', '#34d399', '#fbbf24', '#f97316', '#dc2626'];
+  const bandIdx = (v) => { let i = 0; while (i < BAND_THRESH.length && v >= BAND_THRESH[i]) i++; return i; };
+  function drawBandStrip(d) {
+    const cv = document.getElementById('lm-band-canvas');
+    if (!cv || !cv.getContext || !d.daily || !d.daily.curve || !d.daily.curve.tmean) return;
+    const ctx = cv.getContext('2d');
+    if (!ctx || !ctx.fillRect) return;   // smoke stub: getContext() -> {}
+    const cssW = (cv.parentElement && cv.parentElement.clientWidth) || 640;
+    const dpr = window.devicePixelRatio || 1;
+    cv.width = Math.round(cssW * dpr); cv.height = Math.round(18 * dpr);
+    cv.style.width = cssW + 'px'; cv.style.height = '18px';
+    const tm = d.daily.curve.tmean;
+    const w = cv.width / 365;
+    for (let i = 0; i < 365; i++) {
+      ctx.fillStyle = BAND_COLORS[bandIdx(tm[i])];
+      ctx.fillRect(Math.floor(i * w), 0, Math.ceil(w) + 1, cv.height);
+    }
+    ctx.fillStyle = 'rgba(15,23,42,0.35)';
+    let acc = 0;
+    for (let m = 0; m < 11; m++) { acc += _DIM[m]; ctx.fillRect(Math.round(acc / 365 * cv.width), 0, 1, cv.height); }
+  }
+
+  // hard-facts block at the top of the climate tab: grades, 值得看 checklist
+  // badge, one-line climate summary, money facts, temperature bands.
+  function lmFactsHtml(d) {
+    const tc = tcx();
+    const rows = [];
+    const badges = [gradeChips(d), worthBadge(d)].filter(Boolean).join(' ');
+    if (badges) rows.push(`<div class="flex flex-wrap items-center gap-1.5">${badges}</div>`);
+    const cs = climateSummary(d);
+    if (cs) rows.push(`<div class="${tc.body}">${cs}</div>`);
+    const money = [`${t('lmUnit')} ${fmtUnit(d.unitPrice)}`];
+    const pct = cohortCheaperPct(d);
+    if (pct != null) money.push(t('lmCohort', { p: pct }));
+    const lease = leaseLeftOf(d);
+    if (lease != null) money.push(t('lmLease', { n: lease }) + (d.builtYearApprox ? t('lmLeaseApprox') : ''));
+    rows.push(`<div class="${tc.muted} text-xs">${money.join(' · ')}</div>`);
+    if (d.daily && d.daily.curve && d.daily.curve.tmean) {
+      const names = t('bandNames');
+      const legend = BAND_COLORS.map((c, i) =>
+        `<span class="inline-flex items-center gap-1 whitespace-nowrap"><span class="inline-block w-2 h-2 rounded-sm" style="background:${c}"></span>${names[i]}</span>`).join(' ');
+      rows.push(`<div><div class="text-[0.65rem] ${tc.muted} mb-1">${t('lmBandTitle')}</div><canvas id="lm-band-canvas"></canvas>`
+        + `<div class="mt-1 flex flex-wrap gap-x-2 gap-y-0.5 text-[0.6rem] ${tc.muted}">${legend}</div></div>`);
+    }
+    return rows.join('');
+  }
+
   function lmRenderClimate(d) {
     const e = d.enr, risk = e.risk, cl = e.climate;
     const tc = tcx();
+    const facts = document.getElementById('lm-facts');
+    if (facts) {
+      facts.innerHTML = lmFactsHtml(d);
+      setTimeout(() => safeRun('drawBandStrip', () => drawBandStrip(d)), 0);
+    }
     const histLine = (d.histTempMax != null || d.histTempMin != null)
       ? `<div class="mt-2 text-sm ${tc.body}"><span class="font-medium ${tc.strong}">${t('histTempTitle')}</span>: `
         + `${t('histTempMaxTitle')} ${d.histTempMax == null ? '—' : fmtTemp(d.histTempMax)}`
@@ -1808,6 +2116,218 @@
     } catch (e) { /* file:// or sandbox without history */ }
   }
 
+  // ---- compare drawer (2-3 listings, plain-language deltas) ----------------
+  const cmp = new Set();
+  const CMP_ROW_KEYS = ['priceWan', 'area', 'unitPrice', 'rent', 'climateType', 'janTemp', 'julTemp',
+    'comfortMonths', 'extremeMonths', 'annualPrecip', 'elevation', 'heating',
+    'hospitalKm', 'transitKm', 'airportKm', 'coastKm', 'builtAge', 'hazard'];
+  function cmpItems() {
+    // tier guard: hidden benchmark rows never render in the drawer either
+    return [...cmp].map((id) => DATA.find((d) => d.id === id))
+      .filter((d) => d && d.enr && (tier1On || !isDefaultHidden(d))).slice(0, 3);
+  }
+  function updateCmpFab() {
+    const fab = document.getElementById('cmp-fab');
+    if (!fab) return;
+    fab.textContent = t('cmpFab', { n: cmp.size });
+    fab.title = cmp.size < 2 ? t('cmpNeedTwo') : '';
+    fab.classList.toggle('hidden', cmp.size === 0);
+  }
+  function updateCmpModalBtn() {
+    const b = document.getElementById('lm-compare');
+    if (!b) return;
+    b.textContent = lmCurrent && cmp.has(lmCurrent.id) ? t('cmpRemove') : t('cmpAdd');
+  }
+  function cmpToggle(id) {
+    if (cmp.has(id)) cmp.delete(id);
+    else if (cmp.size < 3) cmp.add(id);
+    updateCmpFab(); updateCmpModalBtn();
+    safeRun('renderTable', renderTable);   // refresh card +对比 button states
+  }
+  function cmpDeltas(items) {
+    if (items.length < 2) return '';
+    const [A, B] = items;
+    const an = cityLabel(A), bn = cityLabel(B);
+    const lines = [];
+    lines.push(t('cmpDeltaBuy', { a: an, x: (100000 / A.unitPrice).toFixed(1), b: bn, y: (100000 / B.unitPrice).toFixed(1) }));
+    if (A.janTemp != null && B.janTemp != null && Math.round(Math.abs(A.janTemp - B.janTemp)) >= 1) {
+      const [w, c] = A.janTemp >= B.janTemp ? [an, bn] : [bn, an];
+      lines.push(t('cmpDeltaWinter', { a: w, b: c, d: Math.abs(A.janTemp - B.janTemp).toFixed(1) }));
+    }
+    if (A.julTemp != null && B.julTemp != null && Math.round(Math.abs(A.julTemp - B.julTemp)) >= 1) {
+      const [w, c] = A.julTemp <= B.julTemp ? [an, bn] : [bn, an];
+      lines.push(t('cmpDeltaSummer', { a: w, b: c, d: Math.abs(A.julTemp - B.julTemp).toFixed(1) }));
+    }
+    if (A.comfortDayCount != null && B.comfortDayCount != null && A.comfortDayCount !== B.comfortDayCount) {
+      const [m, l] = A.comfortDayCount >= B.comfortDayCount ? [an, bn] : [bn, an];
+      lines.push(t('cmpDeltaComfort', { a: m, b: l, d: Math.abs(A.comfortDayCount - B.comfortDayCount) }));
+    }
+    const tc = tcx();
+    return `<div class="mt-4 pt-3 border-t border-slate-100 dark:border-slate-700/80 space-y-1 text-sm ${tc.body}">`
+      + lines.map((l) => `<div>· ${l}</div>`).join('') + '</div>';
+  }
+  function renderCmpDrawer() {
+    const body = document.getElementById('cmp-body');
+    if (!body) return;
+    const items = cmpItems();
+    const tc = tcx();
+    document.getElementById('cmp-title').textContent = t('cmpTitle');
+    document.getElementById('cmp-clear').textContent = t('cmpClear');
+    if (items.length < 2) { body.innerHTML = `<div class="${tc.muted}">${t('cmpNeedTwo')}</div>`; return; }
+    const GT = `grid-template-columns: 6rem repeat(${items.length}, minmax(8.5rem, 1fr))`;
+    const head = `<div class="grid gap-2 items-end pb-2 border-b border-slate-100 dark:border-slate-700/80" style="${GT}"><div></div>`
+      + items.map((d) => `<div class="font-medium ${tc.strong} text-xs leading-snug cursor-pointer" data-open="${d.id}" role="button">${cityLabel(d)}</div>`).join('') + '</div>';
+    const rows = CMP_ROW_KEYS.map((k) => {
+      const c = COLS.find((x) => x.key === k);
+      if (!c) return '';
+      // bold the best value on numeric rows (direction: lower is better for
+      // price/extreme/distances, higher for comfort/built year)
+      const betterDir = { priceWan: 1, unitPrice: 1, extremeMonths: 1, hospitalKm: 1, transitKm: 1, airportKm: 1, coastKm: 1, comfortMonths: -1, builtAge: -1, area: -1 }[k] || 0;
+      let bestIdx = -1;
+      if (betterDir && items.length > 1) {
+        const vals = items.map((d) => c.get(d));
+        if (vals.every((v) => v != null && isFinite(v))) {
+          let best = 0;
+          vals.forEach((v, i) => { if ((v - vals[best]) * betterDir < 0) best = i; });
+          if (vals.some((v) => v !== vals[best])) bestIdx = best;
+        }
+      }
+      return `<div class="grid gap-2 items-center py-1.5 border-b border-slate-50 dark:border-slate-700/40" style="${GT}">`
+        + `<div class="text-[0.65rem] uppercase tracking-wide ${tc.muted}">${colLabel(c)}</div>`
+        + items.map((d, i) => `<div class="text-xs ${tc.body}${i === bestIdx ? ' font-semibold' : ''}">${i === bestIdx ? '✓ ' : ''}${c.cell(d)}</div>`).join('')
+        + '</div>';
+    }).join('');
+    body.innerHTML = head + rows + cmpDeltas(items);
+  }
+  function openCmp() {
+    if (cmpItems().length < 2) return;
+    renderCmpDrawer();
+    const m = document.getElementById('cmp-modal');
+    if (m) m.classList.remove('hidden');
+    document.body.style.overflow = 'hidden';
+    try {
+      if (window.history && window.history.replaceState) window.history.replaceState(null, '', '#c=' + [...cmp].join(','));
+    } catch (e) { /* sandbox */ }
+  }
+  function closeCmp() {
+    const m = document.getElementById('cmp-modal');
+    if (!m || m.classList.contains('hidden')) return;
+    m.classList.add('hidden');
+    document.body.style.overflow = '';
+    try {
+      if (window.history && window.history.replaceState && /^#c=/.test(window.location.hash || '')) {
+        window.history.replaceState(null, '', window.location.pathname + window.location.search);
+      }
+    } catch (e) { /* sandbox */ }
+  }
+
+  // ---- share card: 750×1000 PNG rendered offscreen, downloaded on click ----
+  // Fixed dark branding regardless of page theme; CJK-safe char-level wrap.
+  function scWrap(ctx, text, x, y, maxW, lh, maxLines) {
+    const chars = String(text || '').split('');
+    let line = '', lines = 1;
+    for (let i = 0; i < chars.length; i++) {
+      const ch = chars[i];
+      if (line && ctx.measureText(line + ch).width > maxW) {
+        if (maxLines && lines >= maxLines) { line = line.slice(0, -1) + '…'; break; }
+        ctx.fillText(line, x, y); y += lh; line = ch; lines++;
+      } else line += ch;
+    }
+    if (line) ctx.fillText(line, x, y);
+    return y;
+  }
+  function scRR(ctx, x, y, w, h, r) {
+    ctx.beginPath();
+    ctx.moveTo(x + r, y);
+    ctx.arcTo(x + w, y, x + w, y + h, r); ctx.arcTo(x + w, y + h, x, y + h, r);
+    ctx.arcTo(x, y + h, x, y, r); ctx.arcTo(x, y, x + w, y, r);
+    ctx.closePath();
+  }
+  function scBands(ctx, d, x, y, w, h) {
+    if (!d.daily || !d.daily.curve || !d.daily.curve.tmean) return false;
+    const tm = d.daily.curve.tmean, dw = w / 365;
+    for (let i = 0; i < 365; i++) {
+      ctx.fillStyle = BAND_COLORS[bandIdx(tm[i])];
+      ctx.fillRect(x + Math.floor(i * dw), y, Math.ceil(dw) + 1, h);
+    }
+    ctx.fillStyle = 'rgba(15,23,42,0.45)';
+    let acc = 0;
+    for (let m = 0; m < 11; m++) { acc += _DIM[m]; ctx.fillRect(x + Math.round(acc / 365 * w), y, 1, h); }
+    return true;
+  }
+  function scRanges(ctx, ranges, color, x, y, w, h) {
+    ctx.fillStyle = '#334155'; ctx.fillRect(x, y, w, h);
+    (ranges || []).flatMap(([s, e]) => (s <= e ? [[s, e]] : [[s, 365], [1, e]])).forEach(([s, e]) => {
+      ctx.fillStyle = color;
+      ctx.fillRect(x + (s - 1) / 365 * w, y, Math.max(2, (e - s + 1) / 365 * w), h);
+    });
+  }
+  function shareCard(d) {
+    const cv = document.createElement('canvas');
+    cv.width = 750; cv.height = 1000;
+    const ctx = cv.getContext && cv.getContext('2d');
+    if (!ctx || !ctx.fillRect || !ctx.measureText) return;
+    const W = 750, H = 1000, PAD = 48, F = (wt, s) => `${wt} ${s}px 'PingFang SC','Microsoft YaHei','Inter',sans-serif`;
+    ctx.fillStyle = '#0f172a'; ctx.fillRect(0, 0, W, H);
+    ctx.fillStyle = '#059669'; ctx.fillRect(0, 0, W, 10);
+    ctx.fillStyle = '#94a3b8'; ctx.font = F(500, 22);
+    ctx.fillText(t('shareEyebrow'), PAD, 84);
+    ctx.fillStyle = '#f8fafc'; ctx.font = F(600, 46);
+    const name = I18N().communityName ? I18N().communityName(d.loc, d.name_en) : d.loc;
+    let y = scWrap(ctx, name, PAD, 150, W - PAD * 2, 58, 2);
+    ctx.fillStyle = '#94a3b8'; ctx.font = F(400, 26);
+    ctx.fillText([trProv(d.prov), trCity(d.city), trDist(d.dist)].filter(Boolean).join(' · '), PAD, y + 44);
+    y += 44;
+    ctx.fillStyle = '#34d399'; ctx.font = F(700, 84);
+    ctx.fillText(fmtWan(d.priceWan), PAD, y + 110);
+    ctx.fillStyle = '#cbd5e1'; ctx.font = F(400, 28);
+    ctx.fillText(`${fmtUnit(d.unitPrice)} · ${fmtArea(d.area)}`, PAD, y + 158);
+    y += 158;
+    ctx.fillStyle = '#e2e8f0'; ctx.font = F(400, 26);
+    y = scWrap(ctx, climateSummary(d), PAD, y + 58, W - PAD * 2, 38, 3);
+    // temperature bands + comfort/extreme strips
+    y += 36;
+    ctx.fillStyle = '#64748b'; ctx.font = F(400, 20);
+    if (scBands(ctx, d, PAD, y + 10, W - PAD * 2, 34)) {
+      ctx.fillText(t('lmBandTitle').split('（')[0], PAD, y);
+      y += 10 + 34 + 18;
+    }
+    if (d.daily && d.daily.comfortDays) {
+      ctx.fillStyle = '#64748b'; ctx.fillText(t('shareComfortStrip'), PAD, y + 8);
+      scRanges(ctx, d.daily.comfortDays, '#059669', PAD, y + 16, W - PAD * 2, 20);
+      if (d.daily.extremeDays && d.daily.extremeDays.length) scRanges(ctx, d.daily.extremeDays, '#dc2626', PAD, y + 16, W - PAD * 2, 20);
+      y += 16 + 20 + 20;
+    }
+    // grade chips
+    let gx = PAD; y += 28;
+    Object.keys(GRADE_DIMS).forEach((k) => {
+      const g = gradeOf(d, k);
+      if (!g) return;
+      const [bg, fg] = gradeStyle(g);
+      const label = `${t(GRADE_DIMS[k].labelKey)} ${g}`;
+      ctx.font = F(500, 24);
+      const tw = ctx.measureText(label).width + 28;
+      if (gx + tw > W - PAD) return;
+      ctx.fillStyle = bg; scRR(ctx, gx, y - 26, tw, 40, 9); ctx.fill();
+      ctx.fillStyle = fg; ctx.fillText(label, gx + 14, y + 2);
+      gx += tw + 12;
+    });
+    // top hazards
+    if (d.hazard && d.hazard.hazards && d.hazard.hazards.length) {
+      ctx.fillStyle = '#94a3b8'; ctx.font = F(400, 24);
+      const hz = d.hazard.hazards.slice(0, 3).map((h) => `${trHz(h.type)}(${trFs(h.freqShort) || trFl(h.freqLabel)})`).join(' · ');
+      y = scWrap(ctx, t('shareHazards') + hz, PAD, y + 64, W - PAD * 2, 34, 2);
+    }
+    // footer
+    ctx.fillStyle = '#475569'; ctx.fillRect(PAD, H - 96, W - PAD * 2, 1);
+    ctx.fillStyle = '#64748b'; ctx.font = F(400, 22);
+    ctx.fillText(`qrost.github.io/demos/china-housing/#l=${d.id}`, PAD, H - 52);
+    const a = document.createElement('a');
+    a.download = `china-housing-${d.id}.png`;
+    a.href = cv.toDataURL('image/png');
+    a.click();
+  }
+
   // ---- boot --------------------------------------------------------------
   // Hero headline counts reflect the actual SMALL-CITY data (tier-1 refs excluded —
   // the framing is 全国小城市). Runtime-computed from the loaded data so adding cities
@@ -1845,6 +2365,13 @@
     safeRun('renderRankings', renderRankings);
     safeRun('renderProvinceChart', renderProvinceChart);
     safeRun('renderTable', renderTable);
+    safeRun('renderQuiz', renderQuiz);
+    safeRun('updateCmpFab', updateCmpFab);
+    safeRun('updateCmpModalBtn', updateCmpModalBtn);
+    safeRun('cmpDrawerRefresh', () => {
+      const m = document.getElementById('cmp-modal');
+      if (m && m.classList && !m.classList.contains('hidden')) renderCmpDrawer();
+    });
     safeRun('styleGroupChips', styleGroupChips);
     safeRun('dimTabs', dimTabs);
     safeRun('baseTabs', baseTabs);
@@ -1903,6 +2430,8 @@
     // table + interaction wiring first — must survive chart/map failures
     safeRun('wireTable', wireTable);
     safeRun('renderTable', renderTable);
+    safeRun('wireQuiz', wireQuiz);
+    safeRun('renderQuiz', renderQuiz);
 
     document.querySelectorAll('[data-rank]').forEach((b) =>
       b.addEventListener('click', () => { rankKey = b.dataset.rank; safeRun('renderRankings', renderRankings); }));
@@ -1932,7 +2461,7 @@
     wireListingOpens();
     document.querySelectorAll('[data-lm-tab]').forEach((b) =>
       b.addEventListener('click', () => lmShowTab(b.dataset.lmTab)));
-    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') { closeModal(); closeCmp(); } });
 
     wireThemeToggle();
     wireLangToggle();
@@ -1947,6 +2476,28 @@
       });
     }
 
+    // compare + share wiring
+    const lmCmp = document.getElementById('lm-compare');
+    if (lmCmp) lmCmp.addEventListener('click', () => { if (lmCurrent) cmpToggle(lmCurrent.id); });
+    const lmShare = document.getElementById('lm-share');
+    if (lmShare) lmShare.addEventListener('click', () => { if (lmCurrent) safeRun('shareCard', () => shareCard(lmCurrent)); });
+    const fab = document.getElementById('cmp-fab');
+    if (fab) fab.addEventListener('click', () => openCmp());
+    const cmpClose = document.getElementById('cmp-close');
+    const cmpOverlay = document.getElementById('cmp-overlay');
+    const cmpPanel = document.getElementById('cmp-panel');
+    const cmpClear = document.getElementById('cmp-clear');
+    if (cmpClose) cmpClose.addEventListener('click', closeCmp);
+    if (cmpOverlay) cmpOverlay.addEventListener('click', closeCmp);
+    if (cmpPanel) cmpPanel.addEventListener('click', (e) => e.stopPropagation());
+    if (cmpClear) cmpClear.addEventListener('click', () => { cmp.clear(); updateCmpFab(); updateCmpModalBtn(); closeCmp(); safeRun('renderTable', renderTable); });
+    const cmpBody = document.getElementById('cmp-body');
+    if (cmpBody) cmpBody.addEventListener('click', (e) => {
+      const row = e.target.closest('[data-open]');
+      if (row) { closeCmp(); openListing(+row.dataset.open); }
+    });
+    safeRun('updateCmpFab', updateCmpFab);
+
     // deep link: #l=<id> opens the listing modal (shareable URLs). Hidden
     // benchmark rows stay hidden — a deep link must not bypass the tier filter.
     try {
@@ -1956,6 +2507,16 @@
         if (d && d.enr && (tier1On || !isDefaultHidden(d))) {
           setTimeout(() => safeRun('deepLinkOpen', () => openListing(d.id)), 80);
         }
+      }
+      // deep link: #c=1,2,3 restores a comparison set (tier-guarded in cmpItems)
+      const hc = (window.location && window.location.hash || '').match(/^#c=([\d,]+)$/);
+      if (hc) {
+        hc[1].split(',').map(Number).filter((n) => isFinite(n)).slice(0, 3).forEach((id) => {
+          const d = DATA.find((x) => x.id === id);
+          if (d && d.enr && !isDefaultHidden(d)) cmp.add(id);
+        });
+        updateCmpFab();
+        if (cmpItems().length >= 2) setTimeout(() => safeRun('deepLinkCmp', openCmp), 120);
       }
     } catch (e) { /* sandbox without location */ }
   }
