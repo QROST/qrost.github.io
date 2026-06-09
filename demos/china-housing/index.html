@@ -104,7 +104,7 @@
         }
         #theme-toggle, #lang-toggle,
         #map-zoom-in, #map-zoom-out, #map-zoom-reset,
-        #prov-filter, #table-search, #csv-export {
+        #prov-filter, #table-sort, #table-search, #csv-export {
             background-color: var(--control-bg) !important;
             border-color: var(--border) !important;
             color: var(--control-text) !important;
@@ -218,6 +218,23 @@
             background: var(--border);
             pointer-events: none;
         }
+
+        /* Mobile: nav links scroll without a visible scrollbar; chips get taller tap targets */
+        .nav-links { scrollbar-width: none; }
+        .nav-links::-webkit-scrollbar { display: none; }
+        @media (max-width: 639px) {
+            [data-rank], [data-prov], [data-dim], [data-base], [data-group], .lm-tab {
+                padding-top: 0.5rem;
+                padding-bottom: 0.5rem;
+            }
+        }
+
+        /* Mobile card list replaces the wide table below sm (640px) */
+        #table-cards { display: none; }
+        @media (max-width: 639px) {
+            #table-scroll table { display: none; }
+            #table-cards { display: block; }
+        }
     </style>
 </head>
 
@@ -227,12 +244,12 @@
         class="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-50 focus:bg-slate-900 focus:text-white focus:px-3 focus:py-1.5 focus:rounded">跳到内容</a>
 
     <nav class="sticky top-0 z-40 bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-700 transition-colors duration-300">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between h-14 items-center gap-4">
+        <div class="max-w-6xl mx-auto px-3 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-14 items-center gap-2 sm:gap-4">
                 <a href="../../index.html" id="nav-home"
-                    class="text-[0.65rem] font-semibold tracking-[0.35em] text-slate-900 dark:text-slate-100 uppercase shrink-0 transition-colors duration-300"
+                    class="text-[0.65rem] font-semibold tracking-[0.12em] sm:tracking-[0.35em] text-slate-900 dark:text-slate-100 uppercase shrink-0 transition-colors duration-300"
                     aria-label="返回 QROST 首页">QROST</a>
-                <div class="flex items-center gap-4 md:gap-8 text-sm text-slate-500 dark:text-slate-400 overflow-x-auto">
+                <div class="nav-links flex items-center gap-3 md:gap-8 text-xs sm:text-sm text-slate-500 dark:text-slate-400 overflow-x-auto">
                     <a href="#overview" id="nav-overview" class="hover:text-slate-900 dark:hover:text-slate-100 transition-colors whitespace-nowrap">便宜×宜居</a>
                     <a href="#rankings" id="nav-rankings" class="hover:text-slate-900 dark:hover:text-slate-100 transition-colors whitespace-nowrap">排行</a>
                     <a href="#geo" id="nav-geo" class="hover:text-slate-900 dark:hover:text-slate-100 transition-colors whitespace-nowrap">宜居地图</a>
@@ -319,6 +336,8 @@
                 <button data-rank="unit" class="rank-tab"></button>
                 <button data-rank="comfort" class="rank-tab"></button>
                 <button data-rank="extreme" class="rank-tab"></button>
+                <button data-rank="seasonNow" class="rank-tab"></button>
+                <button data-rank="burden" class="rank-tab"></button>
                 <button data-rank="yield" class="rank-tab"></button>
             </div>
             <p id="rank-climate-note" class="hidden mb-4 max-w-3xl text-sm leading-relaxed text-slate-600 dark:text-slate-400 border-l-2 border-emerald-500/40 pl-3"></p>
@@ -401,9 +420,24 @@
                 <button data-group="risk" class="group-chip">灾害风险</button>
                 <button data-group="invest" class="group-chip">投资口径</button>
             </div>
+            <!-- Row filters (AND-combined, thresholds in the labels; indigo ≠ emerald column-group chips) -->
+            <div class="flex flex-wrap items-center gap-2 mb-3">
+                <span id="filter-chips-label" class="text-xs font-medium text-slate-400 dark:text-slate-500 mr-1 self-center">条件筛选</span>
+                <button data-filter="budget10" class="filter-chip"></button>
+                <button data-filter="warmWinter" class="filter-chip"></button>
+                <button data-filter="coolSummer" class="filter-chip"></button>
+                <button data-filter="heated" class="filter-chip"></button>
+                <button data-filter="coast50" class="filter-chip"></button>
+                <button data-filter="lowAlt" class="filter-chip"></button>
+                <button data-filter="lowHazard" class="filter-chip"></button>
+                <button data-filter="rail20" class="filter-chip"></button>
+            </div>
             <div class="flex flex-col sm:flex-row sm:items-center gap-3 mb-4">
                 <select id="prov-filter"
                     class="text-sm border border-slate-200 dark:border-slate-600 rounded-lg px-3 py-2 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 focus:outline-none focus:ring-2 focus:ring-emerald-500/40 transition-colors duration-200"></select>
+                <!-- Mobile-only sort: the thead (the desktop sort affordance) is hidden below sm -->
+                <select id="table-sort"
+                    class="sm:hidden text-sm border border-slate-200 dark:border-slate-600 rounded-lg px-3 py-2 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 focus:outline-none focus:ring-2 focus:ring-emerald-500/40 transition-colors duration-200"></select>
                 <input id="table-search" type="search" placeholder="搜索省 / 城市 / 区 / 小区…"
                     class="text-sm border border-slate-200 dark:border-slate-600 rounded-lg px-3 py-2 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 placeholder-slate-400 dark:placeholder-slate-500 flex-grow focus:outline-none focus:ring-2 focus:ring-emerald-500/40 transition-colors duration-200" />
                 <span id="table-count" class="text-xs text-slate-400 dark:text-slate-500 tabular-nums whitespace-nowrap"></span>
@@ -417,6 +451,7 @@
                         <thead id="table-head"></thead>
                         <tbody id="table-body"></tbody>
                     </table>
+                    <div id="table-cards" class="divide-y divide-slate-100 dark:divide-slate-700/60"></div>
                 </div>
             </div>
         </section>
