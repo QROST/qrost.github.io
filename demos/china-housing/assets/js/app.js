@@ -1303,7 +1303,7 @@
       const hint = c.key === 'hazard'
         ? `<span class="block text-[0.6rem] font-normal normal-case tracking-normal ${dk ? 'text-slate-500' : 'text-slate-400'}">${t('col_hazardHint')}</span>`
         : '';
-      return `<th data-col="${c.key}" class="sticky top-14 z-20 px-3 py-2.5 font-medium cursor-pointer select-none whitespace-nowrap ${headBg} ${c.num ? 'text-right' : 'text-left'} ${active ? thActCls : thIdlCls}">${colLabel(c)}<span class="ml-0.5 text-[0.6rem]">${arrow}</span>${hint}</th>`;
+      return `<th data-col="${c.key}" class="relative px-3 py-2.5 font-medium cursor-pointer select-none whitespace-nowrap ${headBg} ${c.num ? 'text-right' : 'text-left'} ${active ? thActCls : thIdlCls}">${colLabel(c)}<span class="ml-0.5 text-[0.6rem]">${arrow}</span>${hint}</th>`;
     }).join('');
     const tdTextCls = dk ? 'text-slate-300' : 'text-slate-700';
     const body = rows.map((d) => {

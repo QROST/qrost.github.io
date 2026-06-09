@@ -190,14 +190,22 @@
         }
         .methodology-details[open] > summary::after { transform: rotate(90deg); }
 
-        /* Data table: sticky header below nav (h-14) while page scrolls; horizontal scroll in #table-scroll */
+        /* Data table: scroll inside card; thead sticks to top of #table-scroll (not viewport —
+           overflow on this box is required for horizontal scroll and must be the sticky containing block). */
         #table-scroll {
-            overflow-x: auto;
+            max-height: min(72vh, 44rem);
+            overflow: auto;
             -webkit-overflow-scrolling: touch;
+        }
+        @media (min-width: 1024px) {
+            #table-scroll {
+                /* ~25 visible data rows at ~40px/row + sticky thead (td py-2, th py-2.5, text-sm) */
+                max-height: min(93vh, 72rem);
+            }
         }
         #table-scroll table thead th {
             position: sticky;
-            top: 3.5rem; /* matches nav h-14 */
+            top: 0;
             z-index: 20;
         }
         #table-scroll table thead th::after {
@@ -403,7 +411,7 @@
                     class="text-xs font-medium text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-600 rounded-lg px-3 py-2 bg-white dark:bg-slate-800 hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors whitespace-nowrap">导出
                     CSV</button>
             </div>
-            <div class="rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 transition-colors duration-300">
+            <div class="rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 overflow-hidden transition-colors duration-300">
                 <div id="table-scroll">
                     <table class="min-w-full text-sm border-separate border-spacing-0">
                         <thead id="table-head"></thead>

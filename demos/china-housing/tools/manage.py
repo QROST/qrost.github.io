@@ -618,12 +618,19 @@ def main(argv=None):
     sp.add_argument("path")
     sp.set_defaults(fn=cmd_import_csv)
 
-    sp = sub.add_parser("add", help="add/replace one listing")
+    sp = sub.add_parser(
+        "add",
+        help="add/replace one listing (see SOP §1: cross-batch loc dedup scan before add)",
+    )
     sp.add_argument("--id", type=int, default=None, help="explicit id (default: next free)")
     sp.add_argument("--prov", required=True)
     sp.add_argument("--city", required=True)
     sp.add_argument("--dist", default="")
-    sp.add_argument("--loc", required=True)
+    sp.add_argument(
+        "--loc",
+        required=True,
+        help="community name; run SOP §1 loc LIKE scan across ALL batches in housing.db first",
+    )
     sp.add_argument("--price-wan", required=True, help="total price in 万元")
     sp.add_argument("--area", required=True, help="area in m²")
     sp.add_argument("--rent", required=True, help="monthly rent in 元")

@@ -1,0 +1,10 @@
+# Ad-hoc screenshot scaffolding — NOT part of the tracked toolchain.
+# The committed node_modules carries only `pinyin` (+ commander/keypress) so
+# gen-geo-en.js runs from a single clone. Playwright was installed ad-hoc to
+# screenshot the sticky header; keep it out of git (npm prune to reclaim disk).
+node_modules/playwright/
+node_modules/playwright-core/
+node_modules/.bin/playwright
+node_modules/.bin/playwright-core
+screenshots/
+_screenshot_*.js
