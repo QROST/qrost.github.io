@@ -45,12 +45,20 @@ const documentElement = {
     },
   },
 };
+function makeEl() {
+  const e = el();
+  Object.defineProperty(e, 'id', {
+    set(v) { e._id = v; if (v) ids[v] = e; },
+    get() { return e._id || ''; },
+  });
+  return e;
+}
 const document = {
   documentElement,
   title: '',
   getElementById(id) { return (ids[id] || (ids[id] = el({ id }))); },
   querySelectorAll(s) { return (selCache[s] || (selCache[s] = (SELS[s] || []).map((d) => el(d)))); },
-  querySelector() { return el(); }, addEventListener() {}, createElement() { return el(); },
+  querySelector() { return el(); }, addEventListener() {}, createElement() { return makeEl(); },
   readyState: 'complete', body: { style: {} },
 };
 let lastChartCfg = null;
@@ -83,6 +91,12 @@ provCanvas.parentElement = provWrap;
 provWrap.appendChild = (c) => { provWrap._child = c; c.parentElement = provWrap; };
 ids['province-chart-wrap'] = provWrap;
 ids['province-chart'] = provCanvas;
+const rankWrap = el({ id: 'rank-wrap' });
+rankWrap.appendChild = (c) => { if (c && c.id) ids[c.id] = c; c.parentElement = rankWrap; };
+const rankChart = el({ id: 'rank-chart' });
+rankChart.parentElement = rankWrap;
+rankChart.style = {};
+ids['rank-chart'] = rankChart;
 ['assets/data/listings.js', 'assets/data/china-geo.js', 'assets/data/enriched.js', 'assets/data/hazards.js', 'assets/data/field.js', 'assets/data/loc-pinyin.js', 'assets/data/geo-en.js', 'assets/js/i18n.js', 'assets/js/app.js'].forEach(run);
 const zhRe = /[\u4e00-\u9fff]/;
 
@@ -152,9 +166,22 @@ setTimeout(() => {
   } catch (e) { T('map dims — ' + e.message, false); }
   try { selCache['[data-base]'].forEach((b) => b.fire('click')); T('basemaps (incl isolines+heatmap)', true); } catch (e) { T('basemaps — ' + e.message, false); }
   try {
+    const sample = (w.HOUSING_LISTINGS || []).find((r) => r.id === 1);
+    T('cityLabel zh province', sample && w.__cityLabel && w.__cityLabel(sample) === '黑龙江 · 鹤岗 · 峻德小区');
+    w.__setLang('en');
+    T('cityLabel en province', sample && w.__cityLabel && w.__cityLabel(sample) === 'Heilongjiang, Hegang, Jun De Xiao Qu');
+    w.__setLang('zh');
+    T('kpi cheapest province zh', /河南 · 鹤壁 · 鹤山老破小/.test(ids['kpi-grid']._html));
     selCache['[data-prov]'].forEach((b) => b.fire('click'));
     selCache['[data-rank]'].forEach((b) => b.fire('click'));
     T('prov+rank', true);
+    selCache['[data-rank]'].find((b) => b.dataset.rank === 'comfort').fire('click');
+    const rankStrip = document.getElementById('rank-strip');
+    T('rank strip province zh', rankStrip && /云南 · 西双版纳州 · 南腊小镇/.test(rankStrip._html));
+    w.__setLang('en');
+    selCache['[data-rank]'].find((b) => b.dataset.rank === 'comfort').fire('click');
+    T('rank strip province en', rankStrip && /Yunnan, Xishuangbanna, Nan La Xiao Zhen/.test(rankStrip._html));
+    w.__setLang('zh');
     selCache['[data-prov]'].find((b) => b.dataset.prov === 'avgRange').fire('click');
     const provN = lastChartCfg && lastChartCfg.data.labels.length;
     T('prov chart dynamic height', parseInt(provWrap.style.height, 10) >= 560);
