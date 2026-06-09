@@ -120,7 +120,7 @@ setTimeout(() => {
   T('field elevation 973pts', w.HOUSING_FIELD && w.HOUSING_FIELD.fields.elevation.points.length === 973);
   T('geo-en districts CJK-free', Object.values((w.HOUSING_GEO_EN || {}).district || {}).every((v) => !zhRe.test(v)));
   T('kpi', /房源样本/.test(ids['kpi-grid']._html));
-  T('kpi comfort max listing', /舒适日最多/.test(ids['kpi-grid']._html) && /341天/.test(ids['kpi-grid']._html));
+  T('kpi comfort max listing', /舒适日最多/.test(ids['kpi-grid']._html) && /177天/.test(ids['kpi-grid']._html));
   T('table head', /气候类型/.test(ids['table-head']._html) && /年温差/.test(ids['table-head']._html));
   T('no 宜居指数 anywhere', !/宜居指数/.test(ids['table-head']._html) && !/宜居指数/.test(ids['table-body']._html));
   T('climate types rendered', /(四季如春|常年温暖|四季分明|长夏无冬|夏热冬暖|冬暖夏凉|常年凉冷|温和过渡)/.test(ids['table-body']._html));
@@ -177,10 +177,37 @@ setTimeout(() => {
     T('prov+rank', true);
     selCache['[data-rank]'].find((b) => b.dataset.rank === 'comfort').fire('click');
     const rankStrip = document.getElementById('rank-strip');
-    T('rank strip province zh', rankStrip && /云南 · 西双版纳州 · 南腊小镇/.test(rankStrip._html));
+    const rankNote = document.getElementById('rank-climate-note');
+    T('rank comfort note zh', rankNote && /日最低温 ≥15℃/.test(rankNote._html || rankNote.innerHTML) && /互斥/.test(rankNote._html || rankNote.innerHTML));
+    T('rank strip province zh', rankStrip && /云南 · 红河州-个旧 · 白云新村/.test(rankStrip._html));
+    selCache['[data-rank]'].find((b) => b.dataset.rank === 'extreme').fire('click');
+    T('rank extreme note zh', rankNote && /极端日/.test(rankNote._html || rankNote.innerHTML) && /30℃/.test(rankNote._html || rankNote.innerHTML));
+    selCache['[data-rank]'].find((b) => b.dataset.rank === 'comfort').fire('click');
+    (function () {
+      const daySet = (ranges) => {
+        const s = new Set();
+        (ranges || []).forEach(([a, b]) => {
+          if (a <= b) { for (let i = a; i <= b; i++) s.add(i); }
+          else { for (let i = a; i <= 365; i++) s.add(i); for (let i = 1; i <= b; i++) s.add(i); }
+        });
+        return s;
+      };
+      let overlapAll = 0;
+      for (const id of Object.keys(w.HOUSING_ENRICHED || {})) {
+        const dy = w.HOUSING_ENRICHED[id].daily;
+        if (!dy) continue;
+        const c = daySet(dy.comfortDays), e = daySet(dy.extremeDays);
+        c.forEach((d) => { if (e.has(d)) overlapAll++; });
+      }
+      const n116 = w.HOUSING_ENRICHED && w.HOUSING_ENRICHED['116'];
+      const dy116 = n116 && n116.daily;
+      const ov116 = dy116 ? [...daySet(dy116.comfortDays)].filter((d) => daySet(dy116.extremeDays).has(d)).length : 99;
+      T('comfort/extreme no overlap portfolio', overlapAll === 0);
+      T('comfort/extreme no overlap id116 南腊', ov116 === 0);
+    })();
     w.__setLang('en');
     selCache['[data-rank]'].find((b) => b.dataset.rank === 'comfort').fire('click');
-    T('rank strip province en', rankStrip && /Yunnan, Xishuangbanna, Nan La Xiao Zhen/.test(rankStrip._html));
+    T('rank strip province en', rankStrip && /Yunnan, Honghe-Gejiu, Bai Yun Xin Cun/.test(rankStrip._html));
     w.__setLang('zh');
     selCache['[data-prov]'].find((b) => b.dataset.prov === 'avgRange').fire('click');
     const provN = lastChartCfg && lastChartCfg.data.labels.length;

@@ -273,7 +273,7 @@
             <h2 id="sec-overview-h" class="text-xs font-semibold uppercase tracking-[0.15em] text-slate-400 dark:text-slate-500 mb-1">便宜 × 宜居 · Cheap ↔ Livable
             </h2>
             <p id="sec-overview-p" class="text-slate-600 dark:text-slate-400 mb-6 max-w-2xl text-sm leading-relaxed">每个点是一套房：横轴<strong
-                    class="text-slate-800 dark:text-slate-200">总价（越左越便宜）</strong>、纵轴<strong class="text-slate-800 dark:text-slate-200">舒适天数（日均温 15–26℃；悬停看具体日期范围，越上越多）</strong>，<strong class="text-indigo-700 dark:text-indigo-400">颜色越蓝 = 年温差越大（四季越分明）</strong>、越青 = 全年越平稳。<strong
+                    class="text-slate-800 dark:text-slate-200">总价（越左越便宜）</strong>、纵轴<strong class="text-slate-800 dark:text-slate-200">舒适天数（日最低≥15℃且日最高≤26℃；悬停看具体日期范围，越上越多）</strong>，<strong class="text-indigo-700 dark:text-indigo-400">颜色越蓝 = 年温差越大（四季越分明）</strong>、越青 = 全年越平稳。<strong
                     class="text-slate-800 dark:text-slate-200">左上角</strong>那批既便宜、舒适日又多的房子，正是这份清单想帮你找到的。</p>
             <div class="rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 p-4 md:p-6 transition-colors duration-300">
                 <div class="relative" style="height: 440px;"><canvas id="scatter-chart"></canvas></div>
@@ -285,13 +285,14 @@
             <h2 id="sec-rankings-h" class="text-xs font-semibold uppercase tracking-[0.15em] text-slate-400 dark:text-slate-500 mb-1">排行 · Top 50</h2>
             <p id="sec-rankings-p" class="text-slate-600 dark:text-slate-400 mb-4 max-w-2xl text-sm leading-relaxed">切换不同口径看极值——总价 /
                 单价最低、舒适日最多、极端日最多，也保留了租金回报口径。</p>
-            <div class="flex flex-wrap gap-2 mb-5">
+            <div class="flex flex-wrap gap-2 mb-3">
                 <button data-rank="cheap" class="rank-tab"></button>
                 <button data-rank="unit" class="rank-tab"></button>
                 <button data-rank="comfort" class="rank-tab"></button>
                 <button data-rank="extreme" class="rank-tab"></button>
                 <button data-rank="yield" class="rank-tab"></button>
             </div>
+            <p id="rank-climate-note" class="hidden mb-4 max-w-3xl text-sm leading-relaxed text-slate-600 dark:text-slate-400 border-l-2 border-emerald-500/40 pl-3"></p>
             <div class="rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 p-4 md:p-6 transition-colors duration-300">
                 <div class="relative" style="height: 520px;"><canvas id="rank-chart"></canvas></div>
             </div>
@@ -418,8 +419,10 @@
                             月度均值；年降水为 12 个月均值之和。</li>
                         <li><strong class="text-slate-700 dark:text-slate-300">舒适 / 极端按「天」判定</strong>：取 ERA5 <strong>2014–2023</strong>
                             的<strong class="text-slate-700 dark:text-slate-300">日气候</strong>（年内逐日做 10 年平均，再 15 天平滑去噪），<strong
-                                class="text-slate-700 dark:text-slate-300">舒适</strong> = 日均温 15–26℃，<strong
-                                class="text-slate-700 dark:text-slate-300">极端</strong> = 日均温 &lt; 0℃（严寒）或日均高温 ≥ 33℃（酷热）。表格 / 弹窗 /
+                                class="text-slate-700 dark:text-slate-300">舒适</strong> = 日最低 ≥15℃ 且日最高 ≤26℃，<strong
+                                class="text-slate-700 dark:text-slate-300">极端</strong> = 日均温 &lt; -5℃（严寒；0～-4℃ 干冷不计）或日均高温 ≥ 30℃（酷热，更贴近体感不适而非气象 35℃ 预警线）。<strong
+                                class="text-slate-700 dark:text-slate-300">舒适与极端互斥</strong>（同日若满足两者，计为极端）。为<strong
+                                class="text-slate-700 dark:text-slate-300">宜居口径</strong>，非官方灾害预警。表格 / 弹窗 /
                             散点显示<strong class="text-slate-700 dark:text-slate-300">具体日期范围</strong>（如「11月1日–次年3月20日」，跨年自动环绕）；弹窗温度曲线为 <strong
                                 class="text-slate-700 dark:text-slate-300">365 天日曲线</strong>（绿=舒适段、红=极端段）。<strong
                                 class="text-slate-700 dark:text-slate-300">各省对比</strong>为按日的<strong class="text-slate-700 dark:text-slate-300">连续条</strong>（红段 =
@@ -458,6 +461,14 @@
                                 style="color:#b45309">琥珀=老</strong>，悬停看建成年份与来源；多期楼盘取<strong
                                 class="text-slate-700 dark:text-slate-300">最早一期</strong>。
                         </li>
+                    </ul>
+                    <p id="method-comfort-extreme-title" class="font-medium text-slate-800 dark:text-slate-200 mt-5 pt-4 border-t border-slate-200/80 dark:border-slate-700/80">舒适日 / 极端日判定</p>
+                    <ul id="method-comfort-extreme-body" class="space-y-2 list-disc list-inside mt-2 text-sm">
+                        <li><strong class="text-slate-700 dark:text-slate-300">数据</strong>：Open-Meteo ERA5 <strong>2014–2023</strong> 逐日气温 → 年内同日期做 <strong>10 年平均</strong> → <strong>15 天圆周平滑</strong>（固定 365 天历法）。</li>
+                        <li><strong class="text-slate-700 dark:text-slate-300">舒适日</strong>：平滑后 <strong>日最低温 ≥15℃ 且日最高温 ≤26℃</strong>（全天温区落在舒适带内），且<strong>当天不算极端</strong>。</li>
+                        <li><strong class="text-slate-700 dark:text-slate-300">极端日</strong>：平滑后 <strong>日均温 &lt; -5℃</strong>（严寒；0～-4℃ 干冷不计）或 <strong>日最高温 ≥ 30℃</strong>（酷热；比气象 35℃ 预警线更贴近日常体感不适）。</li>
+                        <li><strong class="text-slate-700 dark:text-slate-300">互斥</strong>：舒适与极端<strong>不重叠</strong>——已标为极端的日子不再计舒适（表格绿/红条、排行天数均如此）。</li>
+                        <li><strong class="text-slate-700 dark:text-slate-300">性质</strong>：<strong>宜居对比口径</strong>，非中国气象局灾害预警；日期边界因平滑约有 <strong>±1 周</strong> 不确定度。</li>
                     </ul>
                 </div>
                 <div

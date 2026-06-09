@@ -368,9 +368,12 @@ def climate_daily_one(lat, lng, y0=2014, y1=2023):
                 acc[k][doy].append(vals[i])
     norm = {k: [(sum(v) / len(v) if v else None) for v in acc[k]] for k in acc}
     sm = {k: _smooth_circular(norm[k], 15) for k in norm}
-    comfort = [(t is not None and 15 <= t <= 26) for t in sm["tmean"]]
-    extreme = [((tm is not None and tm < 0) or (tx is not None and tx >= 33))
+    extreme = [((tm is not None and tm < -5) or (tx is not None and tx >= 30))
                for tm, tx in zip(sm["tmean"], sm["tmax"])]
+    # Comfort = full-day band within 15–26°C (tmin ≥ 15 and tmax ≤ 26); mutually
+    # exclusive with extreme (extreme wins).
+    comfort = [(tn is not None and tx is not None and tn >= 15 and tx <= 26 and not ex)
+               for tn, tx, ex in zip(sm["tmin"], sm["tmax"], extreme)]
     q = lambda a: [None if v is None else int(round(v)) for v in a]
     return {
         "curve": {"tmean": q(sm["tmean"]), "tmax": q(sm["tmax"]), "tmin": q(sm["tmin"])},
@@ -379,15 +382,43 @@ def climate_daily_one(lat, lng, y0=2014, y1=2023):
     }
 
 
-def climate_daily_all(con, log):
-    rows = con.execute("""SELECT id, lat, lng FROM listings
-                          WHERE lat IS NOT NULL AND (daily_climate IS NULL OR daily_climate = '')
-                          ORDER BY id""").fetchall()
-    log(f"climate-daily: {len(rows)} listing(s) to do (ERA5 day-of-year, 15-day smoothed)…")
+def climate_daily_flags_from_curve(tmean, tmax, tmin):
+    """Re-derive comfort/extreme day flags from baked smoothed daily curves."""
+    extreme = [((tm is not None and tm < -5) or (tx is not None and tx >= 30))
+               for tm, tx in zip(tmean, tmax)]
+    comfort = [(tn is not None and tx is not None and tn >= 15 and tx <= 26 and not ex)
+               for tn, tx, ex in zip(tmin, tmax, extreme)]
+    return comfort, extreme
+
+
+def climate_daily_recompute_from_curve(dc):
+    """Re-derive comfort + extreme day-ranges from baked curve (mutually exclusive)."""
+    tmean, tmax, tmin = dc["curve"]["tmean"], dc["curve"]["tmax"], dc["curve"]["tmin"]
+    comfort, extreme = climate_daily_flags_from_curve(tmean, tmax, tmin)
+    dc["comfortDays"] = _day_ranges(comfort)
+    dc["comfortDayCount"] = sum(comfort)
+    dc["extremeDays"] = _day_ranges(extreme)
+    dc["extremeDayCount"] = sum(extreme)
+    return dc
+
+
+def climate_daily_all(con, log, force=False):
+    if force:
+        rows = con.execute("""SELECT id, lat, lng, daily_climate FROM listings
+                              WHERE lat IS NOT NULL ORDER BY id""").fetchall()
+        log(f"climate-daily --force: {len(rows)} listing(s) (re-derive from curve or ERA5 fetch)…")
+    else:
+        rows = con.execute("""SELECT id, lat, lng, daily_climate FROM listings
+                              WHERE lat IS NOT NULL AND (daily_climate IS NULL OR daily_climate = '')
+                              ORDER BY id""").fetchall()
+        log(f"climate-daily: {len(rows)} listing(s) to do (ERA5 day-of-year, 15-day smoothed)…")
     done = 0
     for r in rows:
         try:
-            dc = climate_daily_one(r["lat"], r["lng"])
+            if force and r["daily_climate"]:
+                dc = climate_daily_recompute_from_curve(json.loads(r["daily_climate"]))
+            else:
+                dc = climate_daily_one(r["lat"], r["lng"])
         except Exception as e:  # noqa: BLE001
             log(f"  ! id{r['id']} daily failed: {repr(e)[:80]}")
             time.sleep(1.0)
@@ -397,7 +428,8 @@ def climate_daily_all(con, log):
         done += 1
         if done % 10 == 0:
             con.commit(); log(f"  …{done} daily done")
-        time.sleep(0.7)
+        if not (force and r["daily_climate"]):
+            time.sleep(0.7)
     con.commit()
     log(f"climate-daily done: {done} listing(s)")
 
