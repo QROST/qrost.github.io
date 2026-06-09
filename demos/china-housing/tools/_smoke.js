@@ -9,7 +9,7 @@ const read = (p) => fs.readFileSync(path.join(DIR, p), 'utf8');
 const SELS = {
   '[data-rank]': ['cheap', 'unit', 'comfort', 'extreme', 'yield'].map((rank) => ({ rank })),
   '[data-prov]': ['avgRange', 'avgExtreme', 'avgUnit', 'avgPrice'].map((prov) => ({ prov })),
-  '[data-dim]': ['tempRange', 'unitPrice', 'priceWan', 'janTemp', 'julTemp', 'annualPrecip', 'elevation', 'hazardFreq'].map((dim) => ({ dim })),
+  '[data-dim]': ['tempRange', 'unitPrice', 'priceWan', 'janTemp', 'julTemp', 'annualPrecip', 'elevation', 'hazardFreq', 'builtAge'].map((dim) => ({ dim })),
   '[data-base]': ['none', 'janTemp', 'julTemp', 'elevation', 'annualPrecip'].map((base) => ({ base })),
   '[data-group]': ['live', 'infra', 'risk', 'invest'].map((group) => ({ group })),
   '[data-lm-tab]': ['sat', 'near', 'climate'].map((lmTab) => ({ lmTab })),
@@ -133,11 +133,29 @@ setTimeout(() => {
     T('table count 283 tier1', /显示 283 \/ 283/.test(ids['table-count'].textContent));
     w.__setTier1On(false);
   } catch (e) { T('tier1 toggle — ' + e.message, false); }
-  T('table head heating+freq', /供暖/.test(ids['table-head']._html) && /主要灾害·频率/.test(ids['table-head']._html));
+  T('table head heating+freq', /供暖/.test(ids['table-head']._html) && /当地灾种·常见度/.test(ids['table-head']._html));
+  T('table head col_hazardHint', /复发频率，非严重度/.test(ids['table-head']._html));
   const HZ = w.HOUSING_HAZARDS || {};
   T('heating 4 tiers', new Set(Object.values(HZ).map((p) => p.heating)).size === 4);
   T('no cold-as-hazard', !Object.values(HZ).some((p) => p.hazards.some((h) => /低温|冻害/.test(h.type))));
   T('hazard freq explicit', Object.values(HZ).every((p) => p.hazards.every((h) => /^(年年|数年|十年|数十年|百年)$/.test(h.freqShort))));
+  T('hazard cells commonness labels', /很常见|较常见|偶尔|少见|极少/.test(ids['table-body']._html));
+  T('hazard type 地质灾害 display zh', /滑坡\/泥石流/.test(ids['table-body']._html));
+  T('hazard rain+flood merged', !Object.values(w.HOUSING_ENRICHED || {}).some((e) => {
+    const hz = e.hazard && e.hazard.hazards; if (!hz) return false;
+    const t = hz.map((h) => h.type);
+    return (t.includes('暴雨') && t.includes('洪涝')) || t.includes('洪涝内涝');
+  }));
+  T('hazard 暴雨洪涝 present', /暴雨洪涝/.test(ids['table-body']._html));
+  T('hazard no typhoon+surge split', !Object.values(w.HOUSING_ENRICHED || {}).some((e) => {
+    const hz = e.hazard && e.hazard.hazards; if (!hz) return false;
+    const t = hz.map((h) => h.type);
+    return t.includes('风暴潮') && t.some((x) => x === '台风' || x === '台风外围');
+  }));
+  T('hazard no raw 风暴潮 in data', !Object.values(w.HOUSING_ENRICHED || {}).some((e) => {
+    const hz = e.hazard && e.hazard.hazards; if (!hz) return false;
+    return hz.some((h) => h.type === '风暴潮');
+  }));
   T('table body heating cell', /集中供暖|无·湿冷|无·冬暖|部分供暖/.test(ids['table-body']._html));
   try {
     selCache['[data-dim]'].forEach((b) => b.fire('click'));
@@ -161,7 +179,15 @@ setTimeout(() => {
     T('map janTemp legend zh', vmJan[0] === '热' && vmJan[1] === '冷');
     selCache['[data-dim]'].find((b) => b.dataset.dim === 'hazardFreq').fire('click');
     const vmHz = (lastMapVm && lastMapVm[0] && lastMapVm[0].text) || [];
-    T('map hazardFreq legend zh', vmHz[0] === '年年' && vmHz[1] === '罕见');
+    T('map hazardFreq legend zh', vmHz[0] === '更常见' && vmHz[1] === '更少见');
+    selCache['[data-dim]'].find((b) => b.dataset.dim === 'builtAge').fire('click');
+    const vmAge = (lastMapVm && lastMapVm[0] && lastMapVm[0].text) || [];
+    T('map builtAge legend zh', vmAge[0] === '老' && vmAge[1] === '新');
+    w.__setLang('en');
+    selCache['[data-dim]'].find((b) => b.dataset.dim === 'builtAge').fire('click');
+    const vmAgeEn = (lastMapVm && lastMapVm[0] && lastMapVm[0].text) || [];
+    T('map builtAge legend en', vmAgeEn[0] === 'old' && vmAgeEn[1] === 'new');
+    w.__setLang('zh');
     selCache['[data-dim]'].find((b) => b.dataset.dim === 'tempRange').fire('click');
   } catch (e) { T('map dims — ' + e.message, false); }
   try { selCache['[data-base]'].forEach((b) => b.fire('click')); T('basemaps (incl isolines+heatmap)', true); } catch (e) { T('basemaps — ' + e.message, false); }

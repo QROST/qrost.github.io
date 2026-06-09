@@ -78,7 +78,7 @@
       provAvgUnit: '均单价', provAvgPrice: '均总价', provAvgRange: '均年温差', provAvgExtreme: '极端日',
       dimTempRange: '年温差·季节波动', dimUnitPrice: '单价', dimPriceWan: '总价',
       dimJanTemp: '1月均温·等温', dimJulTemp: '7月均温·等温', dimAnnualPrecip: '年降水',
-      dimElevation: '海拔', dimHazardFreq: '突发灾害·频率',
+      dimElevation: '海拔', dimHazardFreq: '地理灾种背景', dimBuiltAge: '房龄',
       baseNone: '无底图', baseJanTemp: '1月等温', baseJulTemp: '7月等温',
       baseElevation: '海拔', baseAnnualPrecip: '年降水',
       groupLive: '宜居', groupInfra: '基础设施', groupRisk: '灾害风险', groupInvest: '投资口径',
@@ -107,7 +107,9 @@
       mapCheaper: '便宜', mapExpensive: '贵', mapHot: '热', mapCold: '冷',
       mapSwingLarge: '四季分明', mapSwingSteady: '平稳',
       mapWet: '湿', mapDry: '干', mapHigh: '高', mapLow: '低',
-      mapFreqOften: '年年', mapFreqRare: '罕见',
+      mapFreqOften: '更常见', mapFreqRare: '更少见',
+      mapHazardNote: '复发频率，非严重度；多为区域背景信息',
+      mapAgeNew: '新', mapAgeOld: '老',
       monthNone: '无', monthAll: '全年', monthSuffix: '月',
       daySuffix: '天', yuanPerSqm: '元/㎡', wan: '万',
       fxNoteLive: '当前汇率：1 USD = {rate} CNY（Frankfurter 实时）',
@@ -123,7 +125,8 @@
       col_extremeMonths: '极端日期', col_annualPrecip: '年降水mm', col_elevation: '海拔m',
       col_heating: '供暖', col_hospitalKm: '医院km', col_transitKm: '地铁/火车km',
       col_airportKm: '机场km', col_coastKm: '海岸km', col_seismic: '地震带', col_typhoon: '台风',
-      col_hazard: '主要灾害·频率', col_yieldPct: '毛回报', col_payback: '回本年', col__act: '详情',
+      col_hazard: '当地灾种·常见度', col_hazardHint: '复发频率，非严重度；多为区域背景信息',
+      col_yieldPct: '毛回报', col_payback: '回本年', col__act: '详情',
 methodDataTitle: '数据来源与整合',
       methodDataBody: '<p>挂牌与旅居信息种子来自小红书博主「FIRE规划师」与「包子全是水」<strong class="font-medium text-slate-700 dark:text-slate-300">无偿分享</strong>的房产 / 旅居笔记——前者主要对应其 <strong class="text-slate-700 dark:text-slate-300">2026-04</strong> 系列帖子，后者主要对应其 <strong class="text-slate-700 dark:text-slate-300">2025-06</strong> 系列帖子。经整合后，QROST 联网补充了若干样本，并独立计算气候 / 海拔 / 基础设施距离 / 灾害频率等宜居维度（Open-Meteo、OpenStreetMap 及公开史料）。</p>',
       methodMetricsTitle: '宜居指标如何得来',
@@ -204,7 +207,7 @@ methodDataTitle: '数据来源与整合',
       provAvgUnit: 'Avg unit', provAvgPrice: 'Avg total', provAvgRange: 'Avg swing', provAvgExtreme: 'Extreme days',
       dimTempRange: 'Seasonal swing', dimUnitPrice: 'Unit price', dimPriceWan: 'Total price',
       dimJanTemp: 'Jan mean', dimJulTemp: 'Jul mean', dimAnnualPrecip: 'Annual rain',
-      dimElevation: 'Elevation', dimHazardFreq: 'Sudden hazards',
+      dimElevation: 'Elevation', dimHazardFreq: 'Hazard backdrop', dimBuiltAge: 'Building age',
       baseNone: 'No basemap', baseJanTemp: 'Jan isotherm', baseJulTemp: 'Jul isotherm',
       baseElevation: 'Elevation', baseAnnualPrecip: 'Rainfall',
       groupLive: 'Livability', groupInfra: 'Infrastructure', groupRisk: 'Hazards', groupInvest: 'Investment',
@@ -233,7 +236,9 @@ methodDataTitle: '数据来源与整合',
       mapCheaper: 'cheap', mapExpensive: 'dear', mapHot: 'warm', mapCold: 'cold',
       mapSwingLarge: 'large swing', mapSwingSteady: 'steady',
       mapWet: 'wet', mapDry: 'dry', mapHigh: 'high', mapLow: 'low',
-      mapFreqOften: 'often', mapFreqRare: 'rare',
+      mapFreqOften: 'more common', mapFreqRare: 'less common',
+      mapHazardNote: 'Recurrence frequency, not severity; mostly regional backdrop',
+      mapAgeNew: 'new', mapAgeOld: 'old',
       monthNone: 'none', monthAll: 'year-round', monthSuffix: ' mo',
       daySuffix: ' d', yuanPerSqm: '/sqft', wan: '',
       fxNoteLive: 'FX: 1 USD = {rate} CNY (Frankfurter live)',
@@ -249,7 +254,8 @@ methodDataTitle: '数据来源与整合',
       col_annualPrecip: 'Rain (in)', col_elevation: 'Elev (ft)', col_heating: 'Heating',
       col_hospitalKm: 'Hospital', col_transitKm: 'Transit', col_airportKm: 'Airport',
       col_coastKm: 'Coast', col_seismic: 'Seismic', col_typhoon: 'Typhoon',
-      col_hazard: 'Hazards', col_yieldPct: 'Yield', col_payback: 'Payback yr', col__act: 'Detail',
+      col_hazard: 'Local hazards · commonness', col_hazardHint: 'Recurrence frequency, not severity; mostly regional backdrop',
+      col_yieldPct: 'Yield', col_payback: 'Payback yr', col__act: 'Detail',
 methodDataTitle: 'Data sources & integration',
       methodDataBody: '<p>Seed listings and slow-living notes came from Xiaohongshu creators <strong class="font-medium text-slate-700 dark:text-slate-300">@FIRE规划师</strong> and <strong class="font-medium text-slate-500 dark:text-slate-400">@包子全是水</strong> (April 2026 and June 2025 series respectively). QROST added more samples and independently computed climate, elevation, POI distances and hazard exposure (Open-Meteo, OpenStreetMap and public records).</p>',
       methodMetricsTitle: 'How livability metrics are derived',
@@ -291,22 +297,32 @@ methodDataTitle: 'Data sources & integration',
 
   const GEO = () => window.HOUSING_GEO_EN || { province: {}, city: {}, district: {} };
   const ENUM = {
+  "HAZARD_TYPE_ZH": {
+    "地质灾害": "滑坡/泥石流",
+    "暴雨": "暴雨洪涝",
+    "洪涝": "暴雨洪涝",
+    "洪涝内涝": "暴雨洪涝",
+    "风暴潮": "台风（含海岸增水）",
+    "海岸增水": "海岸增水"
+  },
   "HAZARD_TYPE_EN": {
     "凝冻": "Freezing rain/ice",
     "台风": "Typhoon",
     "台风外围": "Typhoon outer bands",
-    "地质灾害": "Geohazard",
+    "地质灾害": "Landslide / debris flow",
     "地震": "Earthquake",
     "地面沉降": "Land subsidence",
     "干旱": "Drought",
-    "暴雨": "Heavy rain",
+    "暴雨洪涝": "Heavy rain & flood",
+    "暴雨": "Heavy rain & flood",
     "暴雪": "Blizzard",
     "暴雪雪灾": "Blizzard/snow disaster",
     "森林火灾": "Forest fire",
     "沙尘暴": "Sandstorm",
-    "洪涝": "Flood",
-    "洪涝内涝": "Flood/urban waterlogging",
-    "风暴潮": "Storm surge",
+    "洪涝": "Heavy rain & flood",
+    "洪涝内涝": "Heavy rain & flood",
+    "风暴潮": "Typhoon (incl. coastal surge)",
+    "海岸增水": "Coastal surge",
     "高温": "Extreme heat",
     "高温干旱": "Heat & drought",
     "龙卷风": "Tornado",
@@ -329,6 +345,20 @@ methodDataTitle: 'Data sources & integration',
     "约十年一遇": "~Once per decade",
     "数十年一遇": "Every few decades",
     "百年级罕见": "Century-scale rare"
+  },
+  "FREQ_COMMONNESS": {
+    "1": "极少",
+    "2": "少见",
+    "3": "偶尔",
+    "4": "较常见",
+    "5": "很常见"
+  },
+  "FREQ_COMMONNESS_EN": {
+    "1": "very rare",
+    "2": "uncommon",
+    "3": "occasional",
+    "4": "fairly common",
+    "5": "very common"
   },
   "CLIMATE_EN": {
     "四季如春": "Spring-like year-round",
@@ -506,9 +536,18 @@ methodDataTitle: 'Data sources & integration',
   }
   function displayClimate(zh) { return pick(ENUM.CLIMATE_EN, zh) || zh; }
   function displayHeating(zh) { return pick(ENUM.HEATING_EN, zh) || zh; }
-  function displayHazardType(zh) { return pick(ENUM.HAZARD_TYPE_EN, zh) || zh; }
+  function displayHazardType(zh) {
+    if (!zh) return zh;
+    if (!isEn()) return (ENUM.HAZARD_TYPE_ZH && ENUM.HAZARD_TYPE_ZH[zh]) || zh;
+    return pick(ENUM.HAZARD_TYPE_EN, zh) || zh;
+  }
   function displayFreqShort(zh) { return pick(ENUM.FREQ_SHORT_EN, zh) || zh; }
   function displayFreqLabel(zh) { return pick(ENUM.FREQ_LABEL_EN, zh) || zh; }
+  function displayFreqCommonness(freq) {
+    const k = String(Math.round(Number(freq)));
+    if (!ENUM.FREQ_COMMONNESS[k]) return '';
+    return isEn() ? (ENUM.FREQ_COMMONNESS_EN[k] || ENUM.FREQ_COMMONNESS[k]) : ENUM.FREQ_COMMONNESS[k];
+  }
   function displaySeismic(zh) { return pick(ENUM.SEISMIC_EN, zh) || zh; }
   function displayTyphoon(zh) { return pick(ENUM.TYPHOON_EN, zh) || zh; }
   function displayGeoLabel(zh) { return pick(ENUM.GEO_LABEL_EN, zh) || zh; }
@@ -880,7 +919,7 @@ methodDataTitle: 'Data sources & integration',
     precipChartValue, precipAxisLabel, tempChartValue, tempAxisLabel, formatFieldLegend,
     formatInt, communityName, priceAxisValue,
     displayProvince, displayCity, displayDistrict, displayClimate, displayHeating,
-    displayHazardType, displayFreqShort, displayFreqLabel, displaySeismic, displayTyphoon,
+    displayHazardType, displayFreqShort, displayFreqLabel, displayFreqCommonness, displaySeismic, displayTyphoon,
     displayGeoLabel, displayHeadline, displayHazardNote, displayHeatingNote, displayFieldLabel,
     displayRiskSummary, formatDoy, hasChinese, MONTH_EN,
     getRate, getRateSource,

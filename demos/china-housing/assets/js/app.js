@@ -62,9 +62,10 @@
   const disp = () => I18N();
   const trCl = (v) => (disp().displayClimate && isEn()) ? disp().displayClimate(v) : v;
   const trHeat = (v) => (disp().displayHeating && isEn()) ? disp().displayHeating(v) : v;
-  const trHz = (v) => (disp().displayHazardType && isEn()) ? disp().displayHazardType(v) : v;
+  const trHz = (v) => (disp().displayHazardType ? disp().displayHazardType(v) : v);
   const trFs = (v) => (disp().displayFreqShort && isEn()) ? disp().displayFreqShort(v) : v;
   const trFl = (v) => (disp().displayFreqLabel && isEn()) ? disp().displayFreqLabel(v) : v;
+  const trFc = (v) => (disp().displayFreqCommonness ? disp().displayFreqCommonness(v) : '');
   const trProv = (v) => (disp().displayProvince && isEn()) ? disp().displayProvince(v) : v;
   const trCity = (v) => (disp().displayCity && isEn()) ? disp().displayCity(v) : v;
   const trDist = (v) => (disp().displayDistrict && isEn()) ? disp().displayDistrict(v) : v;
@@ -741,11 +742,9 @@
 
   // ---- big zoomable overlay map (geo + recolourable listing points) ------
   // Hazard recurrence-interval buckets (FREQUENCY, not severity): 5=几乎年年 …
-  // 1=百年级罕见. Single source of truth for the frequency→colour scale, shared by
-  // the map 灾害频率 dimension + the table hazard column + the modal hazard tab, so
-  // 红=年年 · 橙=数年 · 灰=十年 · 淡灰=数十/百年 mean the same thing everywhere.
-  const FREQ_COLOR = { 5: '#b91c1c', 4: '#ea580c', 3: '#64748b', 2: '#94a3b8', 1: '#94a3b8' };
-  const FREQ_LABEL = { 5: '几乎年年', 4: '数年一次', 3: '约十年一遇', 2: '数十年一遇', 1: '百年级罕见' };
+  // 1=百年级罕见. Neutral slate scale for map/table UI — commonness labels in i18n,
+  // freqLabel/freqShort unchanged in data/tooltips/methodology.
+  const FREQ_COLOR = { 1: '#e2e8f0', 2: '#cbd5e1', 3: '#94a3b8', 4: '#64748b', 5: '#475569' };
   // Sequential ramps, one per semantic family. VALUE = green only (no red);
   // SEVERITY = red; physical fields = their own conventional spectra.
   const RAMPS = {
@@ -754,12 +753,13 @@
     precip: ['#eef2f7', '#bae6fd', '#38bdf8', '#0284c7', '#1e3a8a'],       // 降水: 干 → 湿
     terrain: ['#dcfce7', '#86efac', '#ca8a04', '#b45309', '#78350f'],     // 海拔: 低 → 高
     range: ['#ddd6fe', '#a78bfa', '#7c3aed', '#5b21b6', '#4c1d95'],       // 季节波动: 小 → 大（紫）
-    freq: [FREQ_COLOR[1], FREQ_COLOR[2], FREQ_COLOR[3], FREQ_COLOR[4], FREQ_COLOR[5]],  // 灾害频率: 罕见淡灰 → 年年红（= FREQ_COLOR，固定 [1,5] 域）
+    freq: [FREQ_COLOR[1], FREQ_COLOR[2], FREQ_COLOR[3], FREQ_COLOR[4], FREQ_COLOR[5]],  // 灾害常见度: 极少淡灰 → 很常见深灰（固定 [1,5] 域）
+    age: ['#059669', '#34d399', '#84cc16', '#fde047', '#f59e0b', '#b45309'], // 房龄: 新绿 → 老琥珀
   };
   // 地球物理突发灾害——随精确位置变化（地震带 / 海岸 / 地形），不像慢性气候灾
   // (暴雨/洪涝/干旱) 那样近乎处处年年。地图按这几类着色，才用得满 FREQ_COLOR 全色域、
   // 显出地理差异；表格 / 弹窗仍列全部灾害。
-  const GEO_HAZ = new Set(['地震', '台风', '台风外围', '风暴潮', '地质灾害', '滑坡', '泥石流', '崩塌']);
+  const GEO_HAZ = new Set(['地震', '台风', '台风外围', '海岸增水', '地质灾害', '滑坡', '泥石流', '崩塌']);
   const MAP_DIMS = {
     tempRange: { labelKey: 'dimTempRange', get: (d) => d.tempRange, fmt: fmtSwing, ramp: 'range', textKeys: ['mapSwingLarge', 'mapSwingSteady'] },
     unitPrice: { labelKey: 'dimUnitPrice', get: (d) => d.unitPrice, fmt: (v) => fmtUnit(v), ramp: 'cheapGood', textKeys: ['mapExpensive', 'mapCheaper'] },
@@ -775,7 +775,14 @@
         const gs = d.hazard.hazards.filter((h) => GEO_HAZ.has(h.type));
         return gs.length ? Math.max(...gs.map((h) => h.freq)) : 1;
       },
-      fmt: (v) => { const k = {5:'几乎年年',4:'数年一遇',3:'约十年一遇',2:'数十年一遇',1:'百年级罕见'}[Math.round(v)]; return trFl(k) || ''; }, ramp: 'freq', textKeys: ['mapFreqOften', 'mapFreqRare'], fixedDomain: [1, 5],
+      fmt: (v) => trFc(Math.round(v)), ramp: 'freq', textKeys: ['mapFreqOften', 'mapFreqRare'], fixedDomain: [1, 5],
+    },
+    builtAge: {
+      labelKey: 'dimBuiltAge',
+      get: (d) => (d.builtYear != null ? Math.max(0, NOW_YEAR - d.builtYear) : null),
+      fmt: (v) => (isEn() ? `${v} yr` : `${v}年`),
+      ramp: 'age',
+      textKeys: ['mapAgeOld', 'mapAgeNew'],
     },
   };
   const mapDim = (k) => {
@@ -946,13 +953,16 @@
         formatter: (p) => {
           const d = p.data && p.data.d; if (!d) return '';
           const top0 = d.hazard && d.hazard.hazards[0];
-          const haz = top0 ? `${trHz(top0.type)} · ${trFl(top0.freqLabel)}` : '';
+          const haz = top0 ? `${trHz(top0.type)} · ${trFc(top0.freq)}${top0.freqLabel ? ` (${trFl(top0.freqLabel)})` : ''}` : '';
+          const ageLine = (dimKey === 'builtAge' && d.builtYear != null)
+            ? `<br/>${t('builtYearTitle')} ${d.builtYearApprox ? t('builtApprox') : ''}${d.builtYear}`
+            : '';
           return `<b>${cityLabel(d)}</b> · ${trGeo(d.enr.geoLabel) || ''}<br/>`
-            + `<b style="color:#059669">${dim.label} ${dim.fmt(dim.get(d))}</b><br/>`
+            + `<b style="color:#059669">${dim.label} ${dim.fmt(dim.get(d))}</b>${ageLine}<br/>`
             + `${isEn() ? 'Total' : '总价'} ${fmtWan(d.priceWan)} · ${fmtArea(d.area)} · ${isEn() ? 'Unit' : '单价'} ${fmtUnit(d.unitPrice)}<br/>`
             + `${trCl(d.climateType) || '—'} · ${t('swingLabel')} ${d.tempRange == null ? '—' : fmtSwing(d.tempRange)} · ${isEn() ? 'Jan' : '1月'} ${fmtTemp(d.janTemp)}/${isEn() ? 'Jul' : '7月'} ${fmtTemp(d.julTemp)} · ${isEn() ? 'Elev' : '海拔'} ${fmtElev(d.elevation)} · ${t('winterHeating')} ${trHeat(d.heating) || '—'}<br/>`
             + `${t('poiHospital')} ${fmtKm(d.hospitalKm)} · ${d.transitKind === 'metro' ? t('poiMetro') : t('poiTrain')} ${fmtKm(d.transitKm)} · ${t('col_seismic')} ${trSeis(d.seismic) || '—'} · ${t('col_typhoon')} ${trTy(d.typhoon) || '—'}`
-            + (haz ? `<br/><span style="color:#b91c1c">${isEn() ? 'Top hazard: ' : '最频灾害：'}${haz}</span>` : '')
+            + (haz ? `<br/><span style="color:${themeMuted()}">${isEn() ? 'Top hazard: ' : '最频灾害：'}${haz}</span>` : '')
             + `<br/><span style="color:#10b981">${t('mapClickHint')}</span>`;
         },
       },
@@ -1004,6 +1014,16 @@
       b.textContent = dm.label;
       styleTab(b, b.dataset.dim === dimKey, 'dim-tab');
     });
+    const note = document.getElementById('map-dim-note');
+    if (note) {
+      if (dimKey === 'hazardFreq') {
+        note.textContent = t('mapHazardNote');
+        note.classList.remove('hidden');
+      } else {
+        note.textContent = '';
+        note.classList.add('hidden');
+      }
+    }
   }
 
   // zoom helpers — read current zoom/center from the live option (roam writes
@@ -1088,9 +1108,8 @@
   function hazardCell(d) {
     if (!d.hazard) return `<span class="${tcx().faint}">—</span>`;
     const hs = d.hazard.hazards;
-    // lead with each hazard's recurrence interval so 年年/十年/百年 are explicit
     const tags = hs.slice(0, 2).map((h) =>
-      `<span style="color:${FREQ_COLOR[h.freq]}">${trHz(h.type)}<span class="text-[0.65rem] opacity-80"> · ${trFs(h.freqShort)}</span></span>`)
+      `<span class="${tcx().body}">${trHz(h.type)}<span class="text-[0.65rem] ${tcx().muted}"> · ${trFc(h.freq)}</span></span>`)
       .join(`<span class="${tcx().faint}"> </span>`);
     const more = hs.length > 2 ? `<span class="${tcx().muted} text-[0.65rem]"> +${hs.length - 2}</span>` : '';
     const full = isEn()
@@ -1098,7 +1117,7 @@
         const note = trHNoteEn(h.note);
         return `${trHz(h.type)}: ${trFl(h.freqLabel)}${note ? ' — ' + note : ''}`;
       }).join('\n')
-      : hs.map((h) => `${h.type}：${h.freqLabel}（${h.note}）`).join('\n');
+      : hs.map((h) => `${trHz(h.type)}：${h.freqLabel}（${h.note}）`).join('\n');
     const tip = isEn()
       ? [trHeadEn(d.hazard.headline), full].filter(Boolean).join('\n')
       : `${d.hazard.headline}\n${full}`;
@@ -1226,7 +1245,7 @@
     { key: 'coastKm', label: '海岸km', group: 'infra', num: true, get: (d) => nz(d.coastKm, 1e9), cell: (d) => fmtKm(d.coastKm) },
     { key: 'seismic', label: '地震带', group: 'risk', get: (d) => SEISMIC_ORD[d.seismic] || 0, cell: (d) => bandCell(d.seismic, 'seismic') },
     { key: 'typhoon', label: '台风', group: 'risk', get: (d) => TYPH_ORD[d.typhoon] || 0, cell: (d) => bandCell(d.typhoon, 'typhoon') },
-    { key: 'hazard', label: '主要灾害·频率', group: 'risk', get: (d) => d.hazard ? d.hazard.hazards[0].freq * 10 + d.hazard.hazards.length : 0, cell: (d) => hazardCell(d) },
+    { key: 'hazard', label: '当地灾种·常见度', group: 'risk', get: (d) => d.hazard ? d.hazard.hazards[0].freq * 10 + d.hazard.hazards.length : 0, cell: (d) => hazardCell(d) },
     { key: 'yieldPct', label: '毛回报', group: 'invest', num: true, get: (d) => d.yieldPct, cell: (d) => yieldCell(d) },
     { key: 'payback', label: '回本年', group: 'invest', num: true, get: (d) => d.payback, cell: (d) => fmtYrs(d.payback) },
     { key: '_act', label: '详情', group: 'core', act: true, cell: (d) => d.enr
@@ -1265,7 +1284,10 @@
       if (c.act) return `<th class="px-3 py-2.5 font-medium text-right whitespace-nowrap ${dk ? 'text-slate-500' : 'text-slate-400'}">${colLabel(c)}</th>`;
       const active = tstate.sortKey === c.key;
       const arrow = active ? (tstate.sortDir === 1 ? '▲' : '▼') : '';
-      return `<th data-col="${c.key}" class="px-3 py-2.5 font-medium cursor-pointer select-none whitespace-nowrap ${c.num ? 'text-right' : 'text-left'} ${active ? thActCls : thIdlCls}">${colLabel(c)}<span class="ml-0.5 text-[0.6rem]">${arrow}</span></th>`;
+      const hint = c.key === 'hazard'
+        ? `<span class="block text-[0.6rem] font-normal normal-case tracking-normal ${dk ? 'text-slate-500' : 'text-slate-400'}">${t('col_hazardHint')}</span>`
+        : '';
+      return `<th data-col="${c.key}" class="px-3 py-2.5 font-medium cursor-pointer select-none whitespace-nowrap ${c.num ? 'text-right' : 'text-left'} ${active ? thActCls : thIdlCls}">${colLabel(c)}<span class="ml-0.5 text-[0.6rem]">${arrow}</span>${hint}</th>`;
     }).join('');
     const tdTextCls = dk ? 'text-slate-300' : 'text-slate-700';
     const body = rows.map((d) => {
@@ -1516,7 +1538,7 @@
       const tags = d.hazard.hazards.map((h) => {
         const note = trHNoteEn(h.note);
         const title = note ? ` title="${note.replace(/"/g, '&quot;')}"` : '';
-        return `<span class="inline-block rounded px-1.5 py-0.5 text-xs" style="background:${tc.hazardBg};color:${FREQ_COLOR[h.freq]}"${title}>${trHz(h.type)} · ${trFl(h.freqLabel)}</span>`;
+        return `<span class="inline-block rounded px-1.5 py-0.5 text-xs ${tc.body}" style="background:${tc.hazardBg}"${title}>${trHz(h.type)} · ${trFc(h.freq)}</span>`;
       }).join(' ');
       const headEn = trHeadEn(d.hazard.headline);
       hazLine = `<div class="mt-3"><span class="font-medium ${tc.strong}">${trProv(d.prov)} ${t('hazardOverview')}</span>`

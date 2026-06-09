@@ -318,7 +318,9 @@
                     <button data-dim="annualPrecip" class="dim-tab"></button>
                     <button data-dim="elevation" class="dim-tab"></button>
                     <button data-dim="hazardFreq" class="dim-tab"></button>
+                    <button data-dim="builtAge" class="dim-tab"></button>
                 </div>
+                <p id="map-dim-note" class="hidden text-[0.7rem] text-slate-400 dark:text-slate-500 mb-2 -mt-1"></p>
                 <div class="flex flex-wrap items-center gap-2 mb-4">
                     <span id="base-overlay-label" class="text-xs font-medium text-slate-400 dark:text-slate-500 mr-1 self-center">连续底图</span>
                     <button data-base="none" class="base-tab"></button>
@@ -484,14 +486,14 @@
                                 class="text-slate-700 dark:text-slate-300">每个小区</strong>：先联网调研各<strong
                                 class="text-slate-700 dark:text-slate-300">地级市</strong>的真实灾情史（应急部风险普查 / 气象灾害年鉴 / 地方志 / 新闻，<strong
                                 class="text-slate-700 dark:text-slate-300">带来源</strong>）定「有哪些灾害」，再按小区<strong
-                                class="text-slate-700 dark:text-slate-300">坐标物理细化频率/适用</strong>——<strong class="text-slate-700 dark:text-slate-300">台风 /
-                                风暴潮</strong>按离海岸距离（深内陆自动剔除）、<strong
-                                class="text-slate-700 dark:text-slate-300">地质灾害</strong>按地形起伏（平原剔除，但<strong>采煤沉陷</strong>型保留），气候型（暴雨 / 洪涝 /
-                            干旱 / 暴雪 / 凝冻）保留区域级。每灾标<strong class="text-slate-700 dark:text-slate-300">复发频率</strong>——<strong>几乎年年 / 数年 / 约十年
+                                class="text-slate-700 dark:text-slate-300">坐标物理细化频率/适用</strong>——<strong                                 class="text-slate-700 dark:text-slate-300">台风</strong>（含风暴潮海岸增水，按离海岸距离；深内陆自动剔除）、<strong
+                                class="text-slate-700 dark:text-slate-300">滑坡/泥石流</strong>（灾情口径「地质灾害」，含山体滑坡、泥石流、崩塌；<strong>不含</strong>地震）按地形起伏（平原剔除，但<strong>采煤沉陷</strong>型保留），气候型（暴雨 / 洪涝 /
+                            干旱 / 暴雪 / 凝冻）保留区域级；<strong class="text-slate-700 dark:text-slate-300">暴雨与洪涝</strong>在表内合并为<strong>暴雨洪涝</strong>（频率取较高档）。每灾标<strong class="text-slate-700 dark:text-slate-300">复发频率</strong>——<strong>几乎年年 / 数年 / 约十年
                                 / 数十年 / 百年级罕见</strong>（"年年的台风"≠"数十年的大地震"）；<strong
                                 class="text-slate-700 dark:text-slate-300">频率非严重度</strong>。地图着色取<strong
                                 class="text-slate-700 dark:text-slate-300">突发地球物理灾</strong>（地震 / 台风 / 风暴潮 /
-                            地质灾害，随地点真实变化的那几类）的最频档，故沿海与地震山区偏红、安全内陆平原偏灰，表格 / 弹窗仍列全部灾害。<strong
+                            滑坡/泥石流等，随地点真实变化的那几类）的最频档，地图用<strong
+                                class="text-slate-700 dark:text-slate-300">中性灰阶</strong>表示常见度（更常见→更深灰），非严重度警示色；表格 / 弹窗仍列全部灾害。<strong
                                 class="text-slate-700 dark:text-slate-300">低温严寒不计</strong>（属气候）。频率含估算成分，<strong
                                 class="text-slate-700 dark:text-slate-300">粗略近似、非点位工程模型</strong>，仅供并排比较"这一带通常出什么、多久一次"。</li>
                         <li>部分缺口由<strong class="text-slate-700 dark:text-slate-300">子代理联网调研</strong>补充（页内标「调研」，坐标仍由我们自行换算校验）。</li>
