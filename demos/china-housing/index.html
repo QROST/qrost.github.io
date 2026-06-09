@@ -104,7 +104,8 @@
         }
         #theme-toggle, #lang-toggle,
         #map-zoom-in, #map-zoom-out, #map-zoom-reset,
-        #prov-filter, #table-sort, #table-search, #csv-export {
+        #prov-filter, #table-sort, #table-search, #csv-export,
+        .qz-select, #qz-rent, #lm-compare, #lm-share {
             background-color: var(--control-bg) !important;
             border-color: var(--border) !important;
             color: var(--control-text) !important;
@@ -323,6 +324,45 @@
                     class="text-slate-800 dark:text-slate-200">左上角</strong>那批既便宜、舒适日又多的房子，正是这份清单想帮你找到的。</p>
             <div class="rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 p-4 md:p-6 transition-colors duration-300">
                 <div class="relative" style="height: 440px;"><canvas id="scatter-chart"></canvas></div>
+            </div>
+        </section>
+
+        <!-- Match quiz: weighted scoring over already-baked dims, all client-side -->
+        <section id="quiz" class="scroll-mt-20">
+            <h2 id="sec-quiz-h" class="text-xs font-semibold uppercase tracking-[0.15em] text-slate-400 dark:text-slate-500 mb-1">找城测验 · Match quiz</h2>
+            <p id="sec-quiz-p" class="text-slate-600 dark:text-slate-400 mb-5 max-w-3xl text-sm leading-relaxed">回答几个偏好，按<strong class="text-slate-800 dark:text-slate-200">公开权重</strong>给所有可见房源实时打分。彩条显示每个维度对得分的贡献——<strong class="text-slate-800 dark:text-slate-200">为什么匹配，一眼可查</strong>；权重与公式见卡片底部。</p>
+            <div class="rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 p-4 md:p-6 space-y-4 transition-colors duration-300">
+                <div class="grid grid-cols-2 lg:grid-cols-4 gap-3">
+                    <label class="block">
+                        <span id="qz-budget-label" class="block text-xs font-medium text-slate-400 dark:text-slate-500 mb-1">预算上限（总价）</span>
+                        <select id="qz-budget" class="qz-select w-full text-sm border border-slate-200 dark:border-slate-600 rounded-lg px-2.5 py-2 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 focus:outline-none focus:ring-2 focus:ring-emerald-500/40"></select>
+                    </label>
+                    <label class="block">
+                        <span id="qz-winter-label" class="block text-xs font-medium text-slate-400 dark:text-slate-500 mb-1">冬天怕冷？</span>
+                        <select id="qz-winter" class="qz-select w-full text-sm border border-slate-200 dark:border-slate-600 rounded-lg px-2.5 py-2 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 focus:outline-none focus:ring-2 focus:ring-emerald-500/40"></select>
+                    </label>
+                    <label class="block">
+                        <span id="qz-summer-label" class="block text-xs font-medium text-slate-400 dark:text-slate-500 mb-1">夏天怕热？</span>
+                        <select id="qz-summer" class="qz-select w-full text-sm border border-slate-200 dark:border-slate-600 rounded-lg px-2.5 py-2 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 focus:outline-none focus:ring-2 focus:ring-emerald-500/40"></select>
+                    </label>
+                    <label class="block">
+                        <span id="qz-hazard-label" class="block text-xs font-medium text-slate-400 dark:text-slate-500 mb-1">灾害容忍度</span>
+                        <select id="qz-hazard" class="qz-select w-full text-sm border border-slate-200 dark:border-slate-600 rounded-lg px-2.5 py-2 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 focus:outline-none focus:ring-2 focus:ring-emerald-500/40"></select>
+                    </label>
+                </div>
+                <div class="flex flex-wrap items-center gap-2">
+                    <button data-qz="heat" class="qz-chip"></button>
+                    <button data-qz="coast" class="qz-chip"></button>
+                    <button data-qz="alt" class="qz-chip"></button>
+                    <button data-qz="rail" class="qz-chip"></button>
+                </div>
+                <div id="qz-result" class="pt-1"></div>
+                <div class="flex flex-wrap items-center gap-2 pt-1 border-t border-slate-100 dark:border-slate-700/80">
+                    <input id="qz-rent" type="number" min="0" inputmode="numeric" placeholder="你现在的月租（元）"
+                        class="text-sm border border-slate-200 dark:border-slate-600 rounded-lg px-3 py-2 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 placeholder-slate-400 dark:placeholder-slate-500 w-44 focus:outline-none focus:ring-2 focus:ring-emerald-500/40" />
+                    <span id="qz-rent-out" class="text-xs text-slate-500 dark:text-slate-400"></span>
+                </div>
+                <p id="qz-formula" class="text-[0.7rem] leading-relaxed text-slate-400 dark:text-slate-500"></p>
             </div>
         </section>
 
@@ -574,6 +614,27 @@
 
     </main>
 
+    <!-- compare: floating action button + drawer -->
+    <button id="cmp-fab"
+        class="hidden fixed bottom-5 right-5 z-40 rounded-full shadow-lg px-4 py-2.5 text-sm font-medium bg-emerald-600 text-white hover:bg-emerald-500 transition-colors"></button>
+    <div id="cmp-modal" class="hidden fixed inset-0 z-50">
+        <div id="cmp-overlay" class="absolute inset-0 flex items-center justify-center p-3 sm:p-4 bg-slate-900/50 dark:bg-slate-950/70 backdrop-blur-sm">
+            <div id="cmp-panel"
+                class="relative bg-white dark:bg-slate-800 rounded-2xl shadow-2xl w-full max-w-3xl max-h-[88vh] flex flex-col overflow-hidden border border-slate-100 dark:border-slate-700">
+                <div class="flex items-center justify-between gap-3 p-4 border-b border-slate-100 dark:border-slate-700">
+                    <h3 id="cmp-title" class="text-base font-semibold text-slate-900 dark:text-slate-100"></h3>
+                    <div class="flex items-center gap-2">
+                        <button id="cmp-clear"
+                            class="text-xs font-medium border border-slate-200 dark:border-slate-600 rounded-lg px-2.5 py-1.5 bg-white dark:bg-slate-700 text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-600 transition-colors"></button>
+                        <button id="cmp-close" aria-label="关闭"
+                            class="shrink-0 text-slate-400 dark:text-slate-500 hover:text-slate-900 dark:hover:text-slate-100 text-3xl leading-none -mt-1 transition-colors">×</button>
+                    </div>
+                </div>
+                <div id="cmp-body" class="flex-grow overflow-auto p-4 text-sm"></div>
+            </div>
+        </div>
+    </div>
+
     <!-- per-listing detail modal: satellite imagery / vicinity POIs / climate -->
     <div id="listing-modal" class="hidden fixed inset-0 z-50">
         <div id="lm-overlay"
@@ -585,8 +646,14 @@
                         <h3 id="lm-title" class="text-lg font-semibold text-slate-900 dark:text-slate-100 truncate"></h3>
                         <p id="lm-sub" class="text-sm text-slate-500 dark:text-slate-400 mt-0.5"></p>
                     </div>
-                    <button id="lm-close" aria-label="关闭"
-                        class="shrink-0 text-slate-400 dark:text-slate-500 hover:text-slate-900 dark:hover:text-slate-100 text-3xl leading-none -mt-1 transition-colors">×</button>
+                    <div class="flex items-center gap-2 shrink-0">
+                        <button id="lm-compare"
+                            class="text-xs font-medium border border-slate-200 dark:border-slate-600 rounded-lg px-2.5 py-1.5 bg-white dark:bg-slate-700 text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-600 transition-colors whitespace-nowrap"></button>
+                        <button id="lm-share"
+                            class="text-xs font-medium border border-slate-200 dark:border-slate-600 rounded-lg px-2.5 py-1.5 bg-white dark:bg-slate-700 text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-600 transition-colors whitespace-nowrap"></button>
+                        <button id="lm-close" aria-label="关闭"
+                            class="shrink-0 text-slate-400 dark:text-slate-500 hover:text-slate-900 dark:hover:text-slate-100 text-3xl leading-none -mt-1 transition-colors">×</button>
+                    </div>
                 </div>
                 <div class="flex gap-1.5 px-5 pt-3">
                     <button data-lm-tab="sat" class="lm-tab"></button>
@@ -606,6 +673,8 @@
                         <p id="lm-near-note" class="mt-2 text-xs text-slate-400 dark:text-slate-500">周边设施来自 OpenStreetMap（小城/县城覆盖可能不全）；机场/海岸线为离线计算。</p>
                     </div>
                     <div data-lm-pane="climate" class="hidden">
+                        <!-- hard facts first (贝壳 ordering): grades / 值得看 / summary / money / temp bands -->
+                        <div id="lm-facts" class="mb-4 space-y-2 text-sm"></div>
                         <div class="relative" style="height:300px"><canvas id="lm-climate-chart"></canvas></div>
                         <div id="lm-risk" class="mt-4 text-sm text-slate-600 dark:text-slate-400 leading-relaxed"></div>
                         <p id="lm-climate-note" class="mt-2 text-xs text-slate-400 dark:text-slate-500">气候为 2014–2023 月度均值（Open-Meteo
