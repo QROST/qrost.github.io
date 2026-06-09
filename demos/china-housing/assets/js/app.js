@@ -1296,13 +1296,14 @@
     const dk = isDark();
     const thActCls = dk ? 'text-slate-100' : 'text-slate-900';
     const thIdlCls = dk ? 'text-slate-500 hover:text-slate-300' : 'text-slate-400 hover:text-slate-700';
+    const headBg = dk ? 'bg-slate-800' : 'bg-slate-50';
     const head = cols.map((c) => {
       const active = tstate.sortKey === c.key;
       const arrow = active ? (tstate.sortDir === 1 ? '▲' : '▼') : '';
       const hint = c.key === 'hazard'
         ? `<span class="block text-[0.6rem] font-normal normal-case tracking-normal ${dk ? 'text-slate-500' : 'text-slate-400'}">${t('col_hazardHint')}</span>`
         : '';
-      return `<th data-col="${c.key}" class="px-3 py-2.5 font-medium cursor-pointer select-none whitespace-nowrap ${c.num ? 'text-right' : 'text-left'} ${active ? thActCls : thIdlCls}">${colLabel(c)}<span class="ml-0.5 text-[0.6rem]">${arrow}</span>${hint}</th>`;
+      return `<th data-col="${c.key}" class="sticky top-14 z-20 px-3 py-2.5 font-medium cursor-pointer select-none whitespace-nowrap ${headBg} ${c.num ? 'text-right' : 'text-left'} ${active ? thActCls : thIdlCls}">${colLabel(c)}<span class="ml-0.5 text-[0.6rem]">${arrow}</span>${hint}</th>`;
     }).join('');
     const tdTextCls = dk ? 'text-slate-300' : 'text-slate-700';
     const body = rows.map((d) => {
@@ -1316,8 +1317,7 @@
         : `border-t border-slate-100${d.enr ? ' cursor-pointer hover:bg-slate-50/70' : ''}`;
       return `<tr class="${rowCls}"${open}>${tds}</tr>`;
     }).join('');
-    const headBg = dk ? 'bg-slate-800' : 'bg-slate-50';
-    document.getElementById('table-head').innerHTML = `<tr class="${headBg} text-xs uppercase tracking-wider">${head}</tr>`;
+    document.getElementById('table-head').innerHTML = `<tr class="text-xs uppercase tracking-wider">${head}</tr>`;
     document.getElementById('table-body').innerHTML = body;
     document.getElementById('table-count').textContent = t('tableCount', { n: rows.length, total: viewData().length });
   }
