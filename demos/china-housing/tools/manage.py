@@ -507,7 +507,7 @@ def cmd_climate(args):
 
 
 def cmd_climate_daily(args):
-    enrich.climate_daily_all(connect(), print)
+    enrich.climate_daily_all(connect(), print, force=args.force)
 
 
 def cmd_hist_temp(args):
@@ -636,7 +636,10 @@ def main(argv=None):
     sp.set_defaults(fn=cmd_geocode)
 
     sub.add_parser("climate", help="bake monthly climate normals via Open-Meteo").set_defaults(fn=cmd_climate)
-    sub.add_parser("climate-daily", help="bake 365-day climatology + comfort/extreme day-ranges").set_defaults(fn=cmd_climate_daily)
+    sp = sub.add_parser("climate-daily", help="bake 365-day climatology + comfort/extreme day-ranges")
+    sp.add_argument("--force", action="store_true",
+                    help="re-derive comfort/extreme from baked curves (or ERA5 fetch if missing)")
+    sp.set_defaults(fn=cmd_climate_daily)
     sp = sub.add_parser("hist-temp", help="bake historical max/min temps (Wikipedia CMA → ERA5 fallback)")
     sp.add_argument("--force", action="store_true", help="re-fetch even if columns already populated")
     sp.add_argument("--skip-wiki", action="store_true", help="ERA5 only (faster; no CMA station lookup)")
