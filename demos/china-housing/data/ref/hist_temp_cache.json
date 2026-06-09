@@ -3167,5 +3167,83 @@
   "histTempStation": null,
   "histTempNote": "ERA5 再分析格点 1940–2023 日最高/日最低极值（≈25 km 网格，非气象站记录）（API 限流，复用邻近格点 ERA5 极值）（邻近格点复用）",
   "histTempLevel": "区镇/街道"
+ },
+ "era5:33.96,-118.44": {
+  "histTempMax": 42.8,
+  "histTempMin": -3.1,
+  "histTempMaxDate": "1990-06-26",
+  "histTempMinDate": "1990-12-22",
+  "histTempSrc": "open-meteo-era5-1940-2023",
+  "histTempStation": null,
+  "histTempNote": "ERA5 再分析格点 1940–2023 日最高/日最低极值（≈25 km 网格，非气象站记录）"
+ },
+ "California|Los Angeles|90293": {
+  "histTempMax": 42.8,
+  "histTempMin": -3.1,
+  "histTempMaxDate": "1990-06-26",
+  "histTempMinDate": "1990-12-22",
+  "histTempSrc": "open-meteo-era5-1940-2023",
+  "histTempStation": null,
+  "histTempNote": "ERA5 再分析格点 1940–2023 日最高/日最低极值（≈25 km 网格，非气象站记录）",
+  "histTempLevel": "区镇/街道"
+ },
+ "era5:34.05,-118.24": {
+  "histTempMax": 42.8,
+  "histTempMin": -3.1,
+  "histTempMaxDate": "1990-06-26",
+  "histTempMinDate": "1990-12-22",
+  "histTempSrc": "open-meteo-era5-1940-2023",
+  "histTempStation": null,
+  "histTempNote": "ERA5 再分析格点 1940–2023 日最高/日最低极值（≈25 km 网格，非气象站记录）（邻近格点复用）"
+ },
+ "California|Los Angeles|90012": {
+  "histTempMax": 42.8,
+  "histTempMin": -3.1,
+  "histTempMaxDate": "1990-06-26",
+  "histTempMinDate": "1990-12-22",
+  "histTempSrc": "open-meteo-era5-1940-2023",
+  "histTempStation": null,
+  "histTempNote": "ERA5 再分析格点 1940–2023 日最高/日最低极值（≈25 km 网格，非气象站记录）（邻近格点复用）",
+  "histTempLevel": "区镇/街道"
+ },
+ "wiki-dist:92805": null,
+ "era5:33.83,-117.91": {
+  "histTempMax": 45.0,
+  "histTempMin": -2.5,
+  "histTempMaxDate": "2018-07-06",
+  "histTempMinDate": "1952-01-03",
+  "histTempSrc": "open-meteo-era5-1940-2023",
+  "histTempStation": null,
+  "histTempNote": "ERA5 再分析格点 1940–2023 日最高/日最低极值（≈25 km 网格，非气象站记录）"
+ },
+ "California|Anaheim|92805": {
+  "histTempMax": 45.0,
+  "histTempMin": -2.5,
+  "histTempMaxDate": "2018-07-06",
+  "histTempMinDate": "1952-01-03",
+  "histTempSrc": "open-meteo-era5-1940-2023",
+  "histTempStation": null,
+  "histTempNote": "ERA5 再分析格点 1940–2023 日最高/日最低极值（≈25 km 网格，非气象站记录）",
+  "histTempLevel": "区镇/街道"
+ },
+ "wiki-dist:西工区": null,
+ "era5:34.66,112.39": {
+  "histTempMax": 43.0,
+  "histTempMin": -27.2,
+  "histTempMaxDate": "1942-07-06",
+  "histTempMinDate": "1951-01-13",
+  "histTempSrc": "open-meteo-era5-1940-2023",
+  "histTempStation": null,
+  "histTempNote": "ERA5 再分析格点 1940–2023 日最高/日最低极值（≈25 km 网格，非气象站记录）（邻近格点复用）（邻近格点复用）"
+ },
+ "河南|洛阳市|西工区": {
+  "histTempMax": 43.0,
+  "histTempMin": -27.2,
+  "histTempMaxDate": "1942-07-06",
+  "histTempMinDate": "1951-01-13",
+  "histTempSrc": "open-meteo-era5-1940-2023",
+  "histTempStation": null,
+  "histTempNote": "ERA5 再分析格点 1940–2023 日最高/日最低极值（≈25 km 网格，非气象站记录）（邻近格点复用）（邻近格点复用）",
+  "histTempLevel": "区镇/街道"
  }
 }
