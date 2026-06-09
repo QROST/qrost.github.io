@@ -161,8 +161,8 @@
             background: var(--surface);
         }
 
-        /* Leaflet dark-mode: invert the tile colours to an approximate dark palette */
-        .dark .leaflet-container {
+        /* Leaflet dark-mode: darken OSM street tiles only — satellite imagery keeps true colours */
+        .dark #lm-near-map.leaflet-container {
             filter: invert(92%) hue-rotate(180deg) contrast(92%) brightness(88%);
         }
 
