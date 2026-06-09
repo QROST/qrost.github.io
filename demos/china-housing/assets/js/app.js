@@ -1505,7 +1505,7 @@
     L.tileLayer(TILE_STREET, { maxZoom: 19, attribution: '© OpenStreetMap' }).addTo(lmNearMap);
     const pts = [[e.lat, e.lng]];
     const locName = I18N().communityName ? I18N().communityName(d.loc, d.name_en) : d.loc;
-    L.circleMarker([e.lat, e.lng], { radius: 8, color: '#fff', weight: 2, fillColor: '#059669', fillOpacity: 1 }).addTo(lmNearMap).bindPopup(`${t('poiCommunity')}: ${locName}`);
+    L.circleMarker([e.lat, e.lng], { radius: 8, color: '#334155', weight: 2, fillColor: '#ffffff', fillOpacity: 1 }).addTo(lmNearMap).bindPopup(`${t('poiCommunity')}: ${locName}`);
     const pois = e.pois || {};
     Object.keys(POI_META_KEYS).forEach((cat) => {
       const m = poiMeta(cat), p = pois[cat];
