@@ -454,6 +454,12 @@
       },
       options: {
         responsive: true, maintainAspectRatio: false,
+        onHover: (ev, els) => { if (ev.native?.target) ev.native.target.style.cursor = els.length ? 'pointer' : 'default'; },
+        onClick: (_ev, els) => {
+          if (!els.length || !scatterChart) return;
+          const pt = scatterChart.data.datasets[els[0].datasetIndex].data[els[0].index];
+          if (pt?.d?.enr) openListing(pt.d.id);
+        },
         plugins: {
           legend: { display: false },
           tooltip: {
@@ -467,6 +473,7 @@
                   `${isEn() ? 'Jan' : '1月'} ${fmtTemp(d.janTemp)} · ${isEn() ? 'Jul' : '7月'} ${fmtTemp(d.julTemp)} · ${isEn() ? 'Elev' : '海拔'} ${fmtElev(d.elevation)}`,
                 ];
               },
+              afterBody: () => (isEn() ? 'Click to open details' : '点击打开详情'),
             },
           },
         },
@@ -547,7 +554,10 @@
       }
       const rowText = isDark() ? '#94a3b8' : '#374151';
       const valText = isDark() ? '#64748b' : '#6b7280';
-      return `<div class="grid items-center gap-2 py-0.5" style="${GT}"><div class="text-xs tabular-nums" style="color:${valText}">${i + 1}</div>`
+      const open = d.enr ? ` data-open="${d.id}" role="button" tabindex="0"` : '';
+      const hover = d.enr ? (isDark() ? ' hover:bg-slate-700/50' : ' hover:bg-slate-50') : '';
+      const cur = d.enr ? ' cursor-pointer' : '';
+      return `<div class="grid items-center gap-2 py-0.5 rounded${cur}${hover}"${open} style="${GT}"><div class="text-xs tabular-nums" style="color:${valText}">${i + 1}</div>`
         + `<div class="text-xs truncate" style="color:${rowText}" title="${cityLabel(d)}">${cityLabel(d)}</div>`
         + `<div>${vis}</div>`
         + `<div class="text-right text-xs tabular-nums" style="color:${valText}">${val}</div></div>`;
@@ -1257,9 +1267,6 @@
     { key: 'hazard', label: '当地灾种·常见度', group: 'risk', get: (d) => d.hazard ? d.hazard.hazards[0].freq * 10 + d.hazard.hazards.length : 0, cell: (d) => hazardCell(d) },
     { key: 'yieldPct', label: '毛回报', group: 'invest', num: true, get: (d) => d.yieldPct, cell: (d) => yieldCell(d) },
     { key: 'payback', label: '回本年', group: 'invest', num: true, get: (d) => d.payback, cell: (d) => fmtYrs(d.payback) },
-    { key: '_act', label: '详情', group: 'core', act: true, cell: (d) => d.enr
-      ? `<button data-open="${d.id}" class="text-emerald-700 dark:text-emerald-400 hover:text-emerald-900 dark:hover:text-emerald-300 font-medium whitespace-nowrap">${t('lmView')}</button>`
-      : `<span class="${tcx().faint}" title="${t('noGeoData')}">—</span>` },
   ];
   const tstate = { sortKey: 'comfortMonths', sortDir: -1, prov: '', q: '', groups: new Set(['live', 'infra', 'risk']) };
 
@@ -1290,7 +1297,6 @@
     const thActCls = dk ? 'text-slate-100' : 'text-slate-900';
     const thIdlCls = dk ? 'text-slate-500 hover:text-slate-300' : 'text-slate-400 hover:text-slate-700';
     const head = cols.map((c) => {
-      if (c.act) return `<th class="px-3 py-2.5 font-medium text-right whitespace-nowrap ${dk ? 'text-slate-500' : 'text-slate-400'}">${colLabel(c)}</th>`;
       const active = tstate.sortKey === c.key;
       const arrow = active ? (tstate.sortDir === 1 ? '▲' : '▼') : '';
       const hint = c.key === 'hazard'
@@ -1301,14 +1307,14 @@
     const tdTextCls = dk ? 'text-slate-300' : 'text-slate-700';
     const body = rows.map((d) => {
       const tds = cols.map((c) => {
-        if (c.act) return `<td class="px-3 py-2 text-right whitespace-nowrap">${c.cell(d)}</td>`;
         const cls = c.num ? `text-right tabular-nums ${tdTextCls}` : tdTextCls;
         return `<td class="px-3 py-2 ${cls} whitespace-nowrap">${c.cell(d)}</td>`;
       }).join('');
+      const open = d.enr ? ` data-open="${d.id}"` : '';
       const rowCls = dk
-        ? 'border-t border-slate-700/60 hover:bg-slate-700/40'
-        : 'border-t border-slate-100 hover:bg-slate-50/70';
-      return `<tr class="${rowCls}">${tds}</tr>`;
+        ? `border-t border-slate-700/60${d.enr ? ' cursor-pointer hover:bg-slate-700/40' : ''}`
+        : `border-t border-slate-100${d.enr ? ' cursor-pointer hover:bg-slate-50/70' : ''}`;
+      return `<tr class="${rowCls}"${open}>${tds}</tr>`;
     }).join('');
     const headBg = dk ? 'bg-slate-800' : 'bg-slate-50';
     document.getElementById('table-head').innerHTML = `<tr class="${headBg} text-xs uppercase tracking-wider">${head}</tr>`;
@@ -1377,9 +1383,20 @@
 
     document.getElementById('csv-export').addEventListener('click', exportCSV);
     document.getElementById('table-body').addEventListener('click', (e) => {
-      const b = e.target.closest('[data-open]');
-      if (b) openListing(+b.dataset.open);
+      const row = e.target.closest('tr[data-open]');
+      if (row) openListing(+row.dataset.open);
     });
+  }
+
+  function wireListingOpens() {
+    const rankParent = document.getElementById('rank-chart')?.parentElement;
+    if (rankParent && !rankParent._listingOpen) {
+      rankParent._listingOpen = true;
+      rankParent.addEventListener('click', (e) => {
+        const row = e.target.closest('[data-open]');
+        if (row) openListing(+row.dataset.open);
+      });
+    }
   }
 
   function exportCSV() {
@@ -1750,9 +1767,12 @@
     if (zr) zr.addEventListener('click', zoomReset);
 
     const lmClose = document.getElementById('lm-close');
-    const lmBackdrop = document.getElementById('lm-backdrop');
+    const lmOverlay = document.getElementById('lm-overlay');
+    const lmPanel = document.getElementById('lm-panel');
     if (lmClose) lmClose.addEventListener('click', closeModal);
-    if (lmBackdrop) lmBackdrop.addEventListener('click', closeModal);
+    if (lmOverlay) lmOverlay.addEventListener('click', closeModal);
+    if (lmPanel) lmPanel.addEventListener('click', (e) => e.stopPropagation());
+    wireListingOpens();
     document.querySelectorAll('[data-lm-tab]').forEach((b) =>
       b.addEventListener('click', () => lmShowTab(b.dataset.lmTab)));
     document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });

@@ -512,9 +512,9 @@
 
     <!-- per-listing detail modal: satellite imagery / vicinity POIs / climate -->
     <div id="listing-modal" class="hidden fixed inset-0 z-50">
-        <div id="lm-backdrop" class="absolute inset-0 bg-slate-900/50 dark:bg-slate-950/70 backdrop-blur-sm"></div>
-        <div class="absolute inset-0 flex items-center justify-center p-3 sm:p-4">
-            <div
+        <div id="lm-overlay"
+            class="absolute inset-0 flex items-center justify-center p-3 sm:p-4 bg-slate-900/50 dark:bg-slate-950/70 backdrop-blur-sm">
+            <div id="lm-panel"
                 class="relative bg-white dark:bg-slate-800 rounded-2xl shadow-2xl w-full max-w-3xl max-h-[92vh] flex flex-col overflow-hidden border border-slate-100 dark:border-slate-700 transition-colors duration-300">
                 <div class="flex items-start justify-between gap-4 p-5 border-b border-slate-100 dark:border-slate-700">
                     <div class="min-w-0">
