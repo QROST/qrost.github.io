@@ -1836,12 +1836,19 @@
   const TILE_SAT = 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}';
   const TILE_STREET = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
   const POI_META_KEYS = {
+    community: { labelKey: 'poiCommunity', fill: '#ffffff', stroke: '#334155' },
     metro: { labelKey: 'poiMetro', color: '#2563eb' }, train: { labelKey: 'poiTrain', color: '#7c3aed' },
-    airport: { labelKey: 'poiAirport', color: '#0f766e' }, hospital: { labelKey: 'poiHospital', color: '#dc2626' },
+    airport: { labelKey: 'poiAirport', color: '#059669' }, hospital: { labelKey: 'poiHospital', color: '#dc2626' },
     mall: { labelKey: 'poiMall', color: '#d97706' }, coast: { labelKey: 'poiCoast', color: '#0ea5e9' },
   };
   const poiLabel = (cat) => t(POI_META_KEYS[cat].labelKey);
-  const poiMeta = (cat) => ({ label: poiLabel(cat), color: POI_META_KEYS[cat].color });
+  const poiMeta = (cat) => ({ label: poiLabel(cat), ...POI_META_KEYS[cat] });
+  const nearPoiSwatch = (m) => m.fill
+    ? `<span class="inline-block w-2.5 h-2.5 rounded-full shrink-0" style="background:${m.fill};box-shadow:inset 0 0 0 2px ${m.stroke}"></span>`
+    : `<span class="inline-block w-2 h-2 rounded-full shrink-0" style="background:${m.color}"></span>`;
+  const nearPoiMarkerOpts = (m) => m.fill
+    ? { radius: 8, color: m.stroke, weight: 2, fillColor: m.fill, fillOpacity: 1 }
+    : { radius: 6, color: '#fff', weight: 1.5, fillColor: m.color, fillOpacity: 0.95 };
   const ZOOM_BY_LEVEL = { loc: 16, dist: 14, city: 12, prefecture: 11 };
   let lmCurrent = null, lmActiveTab = 'sat', lmSatMap = null, lmNearMap = null, lmClimateChart = null, lmTabInit = {};
 
@@ -1909,13 +1916,18 @@
 
   function lmRenderNearList(d) {
     const e = d.enr, pois = e.pois || {};
+    const locName = I18N().communityName ? I18N().communityName(d.loc, d.name_en) : d.loc;
     const items = Object.keys(POI_META_KEYS).map((cat) => {
-      const m = poiMeta(cat), p = pois[cat];
-      if (!p) return `<div class="flex items-center gap-2 ${tcx().muted}"><span class="inline-block w-2 h-2 rounded-full shrink-0" style="background:${m.color}"></span>${m.label}: —</div>`;
+      const m = poiMeta(cat);
+      if (cat === 'community') {
+        return `<div class="flex items-center gap-2"><span class="${tcx().body} truncate">${nearPoiSwatch(m)} <b>${m.label}</b> ${locName}</span></div>`;
+      }
+      const p = pois[cat];
+      if (!p) return `<div class="flex items-center gap-2 ${tcx().muted}">${nearPoiSwatch(m)}${m.label}: —</div>`;
       const dk = fmtKm(p.distKm);
       const tag = p.source === 'research' ? ` <span class="text-[10px] text-amber-500 dark:text-amber-400" title="${t('poiResearch')}">${t('poiResearch')}</span>` : '';
       const noPin = (p.lat == null && p.distKm == null && p.name) ? ` <span class="text-[10px] ${tcx().muted}">${t('poiUnlocated')}</span>` : '';
-      return `<div class="flex items-center gap-2"><span class="inline-block w-2 h-2 rounded-full shrink-0" style="background:${m.color}"></span><span class="${tcx().body} truncate"><b>${m.label}</b> ${p.name || ''} <span class="${tcx().muted}">${dk}</span>${tag}${noPin}</span></div>`;
+      return `<div class="flex items-center gap-2"><span class="${tcx().body} truncate">${nearPoiSwatch(m)} <b>${m.label}</b> ${p.name || ''} <span class="${tcx().muted}">${dk}</span>${tag}${noPin}</span></div>`;
     });
     document.getElementById('lm-near-list').innerHTML = items.join('');
   }
@@ -1926,13 +1938,17 @@
     L.tileLayer(TILE_STREET, { maxZoom: 19, attribution: '© OpenStreetMap' }).addTo(lmNearMap);
     const pts = [[e.lat, e.lng]];
     const locName = I18N().communityName ? I18N().communityName(d.loc, d.name_en) : d.loc;
-    L.circleMarker([e.lat, e.lng], { radius: 8, color: '#334155', weight: 2, fillColor: '#ffffff', fillOpacity: 1 }).addTo(lmNearMap).bindPopup(`${t('poiCommunity')}: ${locName}`);
     const pois = e.pois || {};
     Object.keys(POI_META_KEYS).forEach((cat) => {
-      const m = poiMeta(cat), p = pois[cat];
+      const m = poiMeta(cat);
+      if (cat === 'community') {
+        L.circleMarker([e.lat, e.lng], nearPoiMarkerOpts(m)).addTo(lmNearMap).bindPopup(`${m.label}: ${locName}`);
+        return;
+      }
+      const p = pois[cat];
       if (p && p.lat != null && p.lng != null) {
         pts.push([p.lat, p.lng]);
-        L.circleMarker([p.lat, p.lng], { radius: 6, color: '#fff', weight: 1.5, fillColor: m.color, fillOpacity: 0.95 }).addTo(lmNearMap).bindPopup(`${m.label}: ${p.name || ''}<br/>${fmtKm(p.distKm)}`);
+        L.circleMarker([p.lat, p.lng], nearPoiMarkerOpts(m)).addTo(lmNearMap).bindPopup(`${m.label}: ${p.name || ''}<br/>${fmtKm(p.distKm)}`);
       }
     });
     lmRenderNearList(d);
