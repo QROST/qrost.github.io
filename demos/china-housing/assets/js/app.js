@@ -90,7 +90,9 @@
     '江苏': '江苏省', '浙江': '浙江省', '湖北': '湖北省',
     '广东': '广东省', '广西': '广西壮族自治区', '福建': '福建省',
     '重庆': '重庆市', '贵州': '贵州省', '四川': '四川省', '云南': '云南省',
-    '甘肃': '甘肃省', '海南': '海南省',
+    '甘肃': '甘肃省', '海南': '海南省', '内蒙古': '内蒙古自治区',
+    '山西': '山西省', '陕西': '陕西省', '宁夏': '宁夏回族自治区',
+    '新疆': '新疆维吾尔自治区', '湖南': '湖南省', '江西': '江西省',
     'California': 'California',
   };
 
@@ -211,6 +213,12 @@
       daily,
       comfortDayCount: daily ? daily.comfortDayCount : null,
       extremeDayCount: daily ? daily.extremeDayCount : null,
+      humidDayCount: daily ? daily.humidDayCount : null,
+      snowDayCount: daily ? daily.snowDayCount : null,
+      windyDayCount: daily ? daily.windyDayCount : null,
+      sunshineHours: daily ? daily.sunshineHours : null,
+      apparentComfortDayCount: daily ? daily.apparentComfortDayCount : null,
+      meanHumidityPct: daily ? daily.meanHumidityPct : null,
       // day-precise ranges when daily climatology is baked, else month-bucketed
       comfortRange: daily ? dayRanges(daily.comfortDays) : monthRanges(comfortSet),
       extremeRange: daily ? dayRanges(daily.extremeDays) : monthRanges(extremeSet),
@@ -1841,6 +1849,11 @@
     airport: { labelKey: 'poiAirport', color: '#059669' }, hospital: { labelKey: 'poiHospital', color: '#dc2626' },
     mall: { labelKey: 'poiMall', color: '#d97706' }, coast: { labelKey: 'poiCoast', color: '#0ea5e9' },
   };
+  const trainKindTag = (p) => {
+    if (!p || !p.trainKind) return '';
+    const lbl = p.trainKind === 'highspeed' ? t('poiTrainHSR') : t('poiTrainRegular');
+    return ` <span class="text-[10px] rounded px-1 ${p.trainKind === 'highspeed' ? 'bg-violet-100 text-violet-700 dark:bg-violet-900/40 dark:text-violet-300' : 'bg-slate-100 text-slate-600 dark:bg-slate-700 dark:text-slate-300'}">${lbl}</span>`;
+  };
   const poiLabel = (cat) => t(POI_META_KEYS[cat].labelKey);
   const poiMeta = (cat) => ({ label: poiLabel(cat), ...POI_META_KEYS[cat] });
   const nearPoiSwatch = (m) => m.fill
@@ -1926,8 +1939,9 @@
       if (!p) return `<div class="flex items-center gap-2 ${tcx().muted}">${nearPoiSwatch(m)}${m.label}: —</div>`;
       const dk = fmtKm(p.distKm);
       const tag = p.source === 'research' ? ` <span class="text-[10px] text-amber-500 dark:text-amber-400" title="${t('poiResearch')}">${t('poiResearch')}</span>` : '';
+      const tk = cat === 'train' ? trainKindTag(p) : '';
       const noPin = (p.lat == null && p.distKm == null && p.name) ? ` <span class="text-[10px] ${tcx().muted}">${t('poiUnlocated')}</span>` : '';
-      return `<div class="flex items-center gap-2"><span class="${tcx().body} truncate">${nearPoiSwatch(m)} <b>${m.label}</b> ${p.name || ''} <span class="${tcx().muted}">${dk}</span>${tag}${noPin}</span></div>`;
+      return `<div class="flex items-center gap-2"><span class="${tcx().body} truncate">${nearPoiSwatch(m)} <b>${m.label}</b> ${p.name || ''}${tk} <span class="${tcx().muted}">${dk}</span>${tag}${noPin}</span></div>`;
     });
     document.getElementById('lm-near-list').innerHTML = items.join('');
   }
@@ -1948,7 +1962,7 @@
       const p = pois[cat];
       if (p && p.lat != null && p.lng != null) {
         pts.push([p.lat, p.lng]);
-        L.circleMarker([p.lat, p.lng], nearPoiMarkerOpts(m)).addTo(lmNearMap).bindPopup(`${m.label}: ${p.name || ''}<br/>${fmtKm(p.distKm)}`);
+        L.circleMarker([p.lat, p.lng], nearPoiMarkerOpts(m)).addTo(lmNearMap).bindPopup(`${m.label}: ${p.name || ''}${p.trainKind ? ' (' + (p.trainKind === 'highspeed' ? t('poiTrainHSR') : t('poiTrainRegular')) + ')' : ''}<br/>${fmtKm(p.distKm)}`);
       }
     });
     lmRenderNearList(d);
@@ -1997,6 +2011,31 @@
     const lease = leaseLeftOf(d);
     if (lease != null) money.push(t('lmLease', { n: lease }) + (d.builtYearApprox ? t('lmLeaseApprox') : ''));
     rows.push(`<div class="${tc.muted} text-xs">${money.join(' · ')}</div>`);
+    // environment line: PM2.5 (1km satellite bake) + extended daily-climate counts
+    const eo = d.enr || {};
+    const env = [];
+    if (eo.pm25Annual != null) {
+      const tip = (t('lmPm25Tip') + (eo.pm25Src ? ' · ' + eo.pm25Src : '')).replace(/"/g, '&quot;');
+      env.push(`<span title="${tip}">${t('lmPm25', { y: eo.pm25Year || '' })} <b>${eo.pm25Annual}</b> µg/m³`
+        + (eo.pm25Heating != null ? ` · ${t('lmPm25Heating')} <b>${eo.pm25Heating}</b>` : '') + '</span>');
+    }
+    if (d.sunshineHours != null) env.push(`${t('lmSun')} ${fmtInt(d.sunshineHours)}h`);
+    if (d.humidDayCount != null) env.push(`${t('lmHumid')} ${d.humidDayCount}${t('daySuffix')}`);
+    if (d.snowDayCount != null) env.push(`${t('lmSnow')} ${d.snowDayCount}${t('daySuffix')}`);
+    if (d.windyDayCount != null) env.push(`${t('lmWindy')} ${d.windyDayCount}${t('daySuffix')}`);
+    if (env.length) rows.push(`<div class="${tc.muted} text-xs">${env.join(' · ')}</div>`);
+    // demographics line: 七普 vs 六普 population trend + aging (prefecture-level bake)
+    const dg = eo.demographics;
+    if (dg && dg.popChangePct != null) {
+      const tip = ((dg.headline || '') + (dg.notes ? '\n' + dg.notes : '')
+        + (dg.sources && dg.sources.length ? '\n' + dg.sources.join('\n') : '')).replace(/"/g, '&quot;');
+      const badge = dg.popChangePct <= -5
+        ? `<span class="inline-block rounded px-1.5 py-0.5 text-[0.65rem] font-medium mr-1" style="background:#fee2e2;color:#b91c1c">${t('lmShrink')}</span>`
+        : '';
+      const aging = dg.aging65Plus != null ? ` · ${t('lmAging')} ${(dg.aging65Plus * 100).toFixed(1)}%` : '';
+      rows.push(`<div class="${tc.muted} text-xs"><span title="${tip}">${badge}`
+        + `${t('lmPopTrend', { p: (dg.popChangePct > 0 ? '+' : '') + dg.popChangePct })}${aging}</span></div>`);
+    }
     if (d.daily && d.daily.curve && d.daily.curve.tmean) {
       const names = t('bandNames');
       const legend = BAND_COLORS.map((c, i) =>
