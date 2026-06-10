@@ -327,45 +327,6 @@
             </div>
         </section>
 
-        <!-- Match quiz: weighted scoring over already-baked dims, all client-side -->
-        <section id="quiz" class="scroll-mt-20">
-            <h2 id="sec-quiz-h" class="text-xs font-semibold uppercase tracking-[0.15em] text-slate-400 dark:text-slate-500 mb-1">找城测验 · Match quiz</h2>
-            <p id="sec-quiz-p" class="text-slate-600 dark:text-slate-400 mb-5 max-w-3xl text-sm leading-relaxed">回答几个偏好，按<strong class="text-slate-800 dark:text-slate-200">公开权重</strong>给所有可见房源实时打分。彩条显示每个维度对得分的贡献——<strong class="text-slate-800 dark:text-slate-200">为什么匹配，一眼可查</strong>；权重与公式见卡片底部。</p>
-            <div class="rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 p-4 md:p-6 space-y-4 transition-colors duration-300">
-                <div class="grid grid-cols-2 lg:grid-cols-4 gap-3">
-                    <label class="block">
-                        <span id="qz-budget-label" class="block text-xs font-medium text-slate-400 dark:text-slate-500 mb-1">预算上限（总价）</span>
-                        <select id="qz-budget" class="qz-select w-full text-sm border border-slate-200 dark:border-slate-600 rounded-lg px-2.5 py-2 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 focus:outline-none focus:ring-2 focus:ring-emerald-500/40"></select>
-                    </label>
-                    <label class="block">
-                        <span id="qz-winter-label" class="block text-xs font-medium text-slate-400 dark:text-slate-500 mb-1">冬天怕冷？</span>
-                        <select id="qz-winter" class="qz-select w-full text-sm border border-slate-200 dark:border-slate-600 rounded-lg px-2.5 py-2 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 focus:outline-none focus:ring-2 focus:ring-emerald-500/40"></select>
-                    </label>
-                    <label class="block">
-                        <span id="qz-summer-label" class="block text-xs font-medium text-slate-400 dark:text-slate-500 mb-1">夏天怕热？</span>
-                        <select id="qz-summer" class="qz-select w-full text-sm border border-slate-200 dark:border-slate-600 rounded-lg px-2.5 py-2 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 focus:outline-none focus:ring-2 focus:ring-emerald-500/40"></select>
-                    </label>
-                    <label class="block">
-                        <span id="qz-hazard-label" class="block text-xs font-medium text-slate-400 dark:text-slate-500 mb-1">灾害容忍度</span>
-                        <select id="qz-hazard" class="qz-select w-full text-sm border border-slate-200 dark:border-slate-600 rounded-lg px-2.5 py-2 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 focus:outline-none focus:ring-2 focus:ring-emerald-500/40"></select>
-                    </label>
-                </div>
-                <div class="flex flex-wrap items-center gap-2">
-                    <button data-qz="heat" class="qz-chip"></button>
-                    <button data-qz="coast" class="qz-chip"></button>
-                    <button data-qz="alt" class="qz-chip"></button>
-                    <button data-qz="rail" class="qz-chip"></button>
-                </div>
-                <div id="qz-result" class="pt-1"></div>
-                <div class="flex flex-wrap items-center gap-2 pt-1 border-t border-slate-100 dark:border-slate-700/80">
-                    <input id="qz-rent" type="number" min="0" inputmode="numeric" placeholder="你现在的月租（元）"
-                        class="text-sm border border-slate-200 dark:border-slate-600 rounded-lg px-3 py-2 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 placeholder-slate-400 dark:placeholder-slate-500 w-44 focus:outline-none focus:ring-2 focus:ring-emerald-500/40" />
-                    <span id="qz-rent-out" class="text-xs text-slate-500 dark:text-slate-400"></span>
-                </div>
-                <p id="qz-formula" class="text-[0.7rem] leading-relaxed text-slate-400 dark:text-slate-500"></p>
-            </div>
-        </section>
-
         <!-- Rankings -->
         <section id="rankings" class="scroll-mt-20">
             <h2 id="sec-rankings-h" class="text-xs font-semibold uppercase tracking-[0.15em] text-slate-400 dark:text-slate-500 mb-1">排行 · Top 50</h2>
@@ -493,6 +454,45 @@
                     </table>
                     <div id="table-cards" class="divide-y divide-slate-100 dark:divide-slate-700/60"></div>
                 </div>
+            </div>
+        </section>
+
+        <!-- Match quiz: weighted scoring over already-baked dims, all client-side -->
+        <section id="quiz" class="scroll-mt-20">
+            <h2 id="sec-quiz-h" class="text-xs font-semibold uppercase tracking-[0.15em] text-slate-400 dark:text-slate-500 mb-1">找城测验 · Match quiz</h2>
+            <p id="sec-quiz-p" class="text-slate-600 dark:text-slate-400 mb-5 max-w-3xl text-sm leading-relaxed">回答几个偏好，按<strong class="text-slate-800 dark:text-slate-200">公开权重</strong>给所有可见房源实时打分。彩条显示每个维度对得分的贡献——<strong class="text-slate-800 dark:text-slate-200">为什么匹配，一眼可查</strong>；权重与公式见卡片底部。</p>
+            <div class="rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 p-4 md:p-6 space-y-4 transition-colors duration-300">
+                <div class="grid grid-cols-2 lg:grid-cols-4 gap-3">
+                    <label class="block">
+                        <span id="qz-budget-label" class="block text-xs font-medium text-slate-400 dark:text-slate-500 mb-1">预算上限（总价）</span>
+                        <select id="qz-budget" class="qz-select w-full text-sm border border-slate-200 dark:border-slate-600 rounded-lg px-2.5 py-2 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 focus:outline-none focus:ring-2 focus:ring-emerald-500/40"></select>
+                    </label>
+                    <label class="block">
+                        <span id="qz-winter-label" class="block text-xs font-medium text-slate-400 dark:text-slate-500 mb-1">冬天怕冷？</span>
+                        <select id="qz-winter" class="qz-select w-full text-sm border border-slate-200 dark:border-slate-600 rounded-lg px-2.5 py-2 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 focus:outline-none focus:ring-2 focus:ring-emerald-500/40"></select>
+                    </label>
+                    <label class="block">
+                        <span id="qz-summer-label" class="block text-xs font-medium text-slate-400 dark:text-slate-500 mb-1">夏天怕热？</span>
+                        <select id="qz-summer" class="qz-select w-full text-sm border border-slate-200 dark:border-slate-600 rounded-lg px-2.5 py-2 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 focus:outline-none focus:ring-2 focus:ring-emerald-500/40"></select>
+                    </label>
+                    <label class="block">
+                        <span id="qz-hazard-label" class="block text-xs font-medium text-slate-400 dark:text-slate-500 mb-1">灾害容忍度</span>
+                        <select id="qz-hazard" class="qz-select w-full text-sm border border-slate-200 dark:border-slate-600 rounded-lg px-2.5 py-2 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 focus:outline-none focus:ring-2 focus:ring-emerald-500/40"></select>
+                    </label>
+                </div>
+                <div class="flex flex-wrap items-center gap-2">
+                    <button data-qz="heat" class="qz-chip"></button>
+                    <button data-qz="coast" class="qz-chip"></button>
+                    <button data-qz="alt" class="qz-chip"></button>
+                    <button data-qz="rail" class="qz-chip"></button>
+                </div>
+                <div id="qz-result" class="pt-1"></div>
+                <div class="flex flex-wrap items-center gap-2 pt-1 border-t border-slate-100 dark:border-slate-700/80">
+                    <input id="qz-rent" type="number" min="0" inputmode="numeric" placeholder="你现在的月租（元）"
+                        class="text-sm border border-slate-200 dark:border-slate-600 rounded-lg px-3 py-2 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 placeholder-slate-400 dark:placeholder-slate-500 w-44 focus:outline-none focus:ring-2 focus:ring-emerald-500/40" />
+                    <span id="qz-rent-out" class="text-xs text-slate-500 dark:text-slate-400"></span>
+                </div>
+                <p id="qz-formula" class="text-[0.7rem] leading-relaxed text-slate-400 dark:text-slate-500"></p>
             </div>
         </section>
 
