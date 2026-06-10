@@ -1,3 +1,6 @@
+# PM2.5 NetCDF tooling venv (optional dep: netCDF4)
+.venv/
+
 # Ad-hoc screenshot scaffolding — NOT part of the tracked toolchain.
 # The committed node_modules carries only `pinyin` (+ commander/keypress) so
 # gen-geo-en.js runs from a single clone. Playwright was installed ad-hoc to
@@ -8,3 +11,13 @@ node_modules/.bin/playwright
 node_modules/.bin/playwright-core
 screenshots/
 _screenshot_*.js
+
+# Resumable Open-Meteo climate-daily refresh checkpoint (tools/_climate_ext_refresh.py)
+../data/.climate_daily_ext.json
+
+# Ad-hoc one-off climate backfill helpers (quota-window wrappers around the
+# manage.py climate/climate-daily/hist-temp subcommands). Disposable — kept on
+# disk for the overnight quota-reset backfill, not part of the tracked toolchain.
+_climate_ext_refresh.py
+_finish_climate.py
+_finish_climate_light.py

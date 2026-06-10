@@ -9,3 +9,11 @@ demos/china-housing/data/research/
 # SQLite WAL mode sidecars (runtime only; never commit)
 *.db-shm
 *.db-wal
+
+# china-housing: ChinaHighPM2.5 NetCDF/RAR source data (~261MB; local build-time
+# input for tools/pm25.py — GitHub blocks >100MB files; never commit)
+demos/china-housing/data/chinahighpm25/
+# pm25 tooling venv (netCDF4 optional dep — see tools/requirements-pm25.txt)
+.venv/
+# Resumable climate-daily refresh checkpoint (overnight ERA5 backfill cache)
+demos/china-housing/data/.climate_daily_ext.json

@@ -1,0 +1,40 @@
+{
+  "compiled": "2026-06-09",
+  "method": "国家卫健委三级甲等医院名录（子集）+ 官网/医疗目录页地址核实；坐标 WGS-84（Nominatim/OSM 或 GCJ-02 转换）",
+  "note": "Starter seed — not exhaustive. Per-listing distance still via hospital-tier3-merge research batches.",
+  "hospitals": [
+    {
+      "id": "hlj-qth-rmyy",
+      "name": "七台河市人民医院",
+      "address": "黑龙江省七台河市桃山区山湖路49号",
+      "prov": "黑龙江",
+      "city": "七台河市",
+      "lat": 45.77266,
+      "lng": 130.99886,
+      "tier": "三甲",
+      "source": "https://www.qthyy.org.cn/index.php?id=7&lanmu=3&p=about"
+    },
+    {
+      "id": "hlj-yichun-rmyy",
+      "name": "伊美区人民医院",
+      "address": "黑龙江省伊春市伊美区美溪镇胜利社区向阳委15号",
+      "prov": "黑龙江",
+      "city": "伊春市",
+      "lat": 47.6313,
+      "lng": 129.12785,
+      "tier": "三甲",
+      "source": "https://hljcdc.org/pc/index.php?a=index&c=jsfwdetail&id=3328&lid=38"
+    },
+    {
+      "id": "hlj-dxal-rmyy",
+      "name": "大兴安岭地区人民医院",
+      "address": "黑龙江省大兴安岭地区加格达奇区朝阳路11号",
+      "prov": "黑龙江",
+      "city": "大兴安岭",
+      "lat": 50.41959,
+      "lng": 124.11651,
+      "tier": "三甲",
+      "source": "https://wapyyk.39.net/dxald/ea4c9/"
+    }
+  ]
+}

@@ -230,6 +230,9 @@ ENR_HEADER = '''/**
  * sources (Nominatim / Open-Meteo / Overpass / OurAirports / Natural Earth) so
  * the page makes no runtime geocoding/POI/climate request — see tools/enrich.py.
  * climate[m] = [tmean, tmax, tmin, precip] for month m (1-12).
+ * daily = 365-day curve + comfort/extreme day-ranges + extended dims
+ *   (humidDayCount, snowDayCount, windyDayCount, sunshineHours,
+ *    apparentComfortDayCount, meanHumidityPct) — see enrich.py schema.
  */
 '''
 
@@ -284,7 +287,8 @@ def _enrich_coverage(con) -> str:
     p = con.execute("SELECT COUNT(*) FROM poi_done").fetchone()[0]
     r = con.execute("SELECT COUNT(*) FROM risk").fetchone()[0]
     e = con.execute("SELECT COUNT(*) FROM listings WHERE elevation IS NOT NULL").fetchone()[0]
-    return f"geo {g}, climate {c}, pois {p}, risk {r}, elev {e}"
+    pm = con.execute("SELECT COUNT(*) FROM listings WHERE pm25_annual IS NOT NULL").fetchone()[0]
+    return f"geo {g}, climate {c}, pois {p}, risk {r}, elev {e}, pm25 {pm}"
 
 
 # ---------------------------------------------------------------------------
@@ -535,6 +539,12 @@ def cmd_pois_refix(args):
     print("✓ pois-refix complete — now run `research-merge` for gaps, then `build`")
 
 
+def cmd_pois_refresh(args):
+    cats = tuple(c.strip() for c in args.categories.split(",") if c.strip())
+    done, fail = enrich.pois_overpass_refresh(connect(), print, categories=cats or ("train",))
+    print(f"✓ pois-refresh complete — {done} ok, {fail} overpass fail — now run `build`")
+
+
 def cmd_risk(args):
     enrich.risk_all(connect(), print)
 
@@ -548,10 +558,19 @@ def cmd_field(args):
     print("✓ field fetch complete — now run `build` to emit assets/data/field.js")
 
 
+def cmd_pm25(args):
+    import pm25  # noqa: WPS433 — sibling script; optional netCDF4 dep
+    rep = pm25.pm25_all(connect(), print, year=args.year, force=args.force)
+    print("=== pm25 report ===")
+    print(json.dumps(rep, ensure_ascii=False, indent=1))
+    print("→ run `build` to regenerate enriched.js")
+
+
 def cmd_enrich(args):
     con = connect()
     enrich.geocode_all(con, print, force=False)
     enrich.climate_all(con, print)
+    enrich.climate_daily_all(con, print)  # no-op if climate_all co-baked daily
     enrich.elevation_all(con, print)   # cheap batched DEM lookup
     enrich.risk_all(con, print)        # only needs coords + climate + coastline
     enrich.pois_all(con, print)        # last: Overpass is the slow / flaky stage
@@ -603,6 +622,58 @@ def cmd_hazard_merge(args):
           f"{rep['from_province']} province-fallback); run `build` to regenerate enriched.js")
 
 
+def _load_findings(path: Path) -> list:
+    data = json.loads(path.read_text(encoding="utf-8"))
+    items = data.get("findings", data) if isinstance(data, dict) else data
+    return items if isinstance(items, list) else []
+
+
+def cmd_demographics_merge(args):
+    con = connect()
+    findings = _load_findings(Path(args.path))
+    print(f"merging {len(findings)} prefecture demographics finding(s) from {args.path} …")
+    rep = enrich.merge_demographics(con, findings, print, dry_run=args.dry_run)
+    print("=== demographics merge report ===")
+    print(json.dumps(rep, ensure_ascii=False, indent=1))
+    if not args.dry_run:
+        print("→ run `build` to regenerate enriched.js")
+
+
+def cmd_hospital_tier3_merge(args):
+    con = connect()
+    if not args.all_batches and not args.path:
+        sys.exit("✗ hospital-tier3-merge: provide <path> or --all-batches")
+    if args.all_batches:
+        paths = sorted((ROOT / "data" / "research").glob("hospital-dist-batch-*-findings.json"))
+        paths += sorted((ROOT / "data" / "research").glob("hospital-dist-round2-findings.json"))
+        findings = []
+        for p in paths:
+            findings.extend(_load_findings(p))
+        print(f"merging {len(findings)} tier3 finding(s) from {len(paths)} batch file(s) …")
+    else:
+        findings = _load_findings(Path(args.path))
+        print(f"merging {len(findings)} tier3 finding(s) from {args.path} …")
+    rep = enrich.merge_hospital_tier3(con, findings, print, dry_run=args.dry_run)
+    print("=== hospital-tier3 merge report ===")
+    print(json.dumps(rep, ensure_ascii=False, indent=1))
+    if not args.dry_run:
+        print("→ run `build` to regenerate enriched.js (pois.hospital_tier3)")
+
+
+def cmd_property_import(args):
+    con = connect()
+    rows = []
+    with open(args.path, newline="", encoding="utf-8-sig") as fh:
+        for raw in csv.DictReader(fh):
+            rows.append(raw)
+    print(f"importing property fields for {len(rows)} row(s) from {args.path} …")
+    rep = enrich.import_property_rows(con, rows, print, dry_run=args.dry_run)
+    print("=== property import report ===")
+    print(json.dumps(rep, ensure_ascii=False, indent=1))
+    if not args.dry_run:
+        print("→ run `build` to regenerate enriched.js")
+
+
 def main(argv=None):
     p = argparse.ArgumentParser(prog="manage.py", description=__doc__,
                                 formatter_class=argparse.RawDescriptionHelpFormatter)
@@ -647,7 +718,7 @@ def main(argv=None):
     sub.add_parser("climate", help="bake monthly climate normals via Open-Meteo").set_defaults(fn=cmd_climate)
     sp = sub.add_parser("climate-daily", help="bake 365-day climatology + comfort/extreme day-ranges")
     sp.add_argument("--force", action="store_true",
-                    help="re-derive comfort/extreme from baked curves (or ERA5 fetch if missing)")
+                    help="re-fetch ERA5 daily archive for all geocoded rows (extended dims)")
     sp.set_defaults(fn=cmd_climate_daily)
     sp = sub.add_parser("hist-temp", help="bake historical max/min temps (Wikipedia CMA → ERA5 fallback)")
     sp.add_argument("--force", action="store_true", help="re-fetch even if columns already populated")
@@ -663,9 +734,16 @@ def main(argv=None):
     sp = sub.add_parser("field", help="sample the gridded China climate/elevation field (resumable cache)")
     sp.add_argument("--force", action="store_true", help="ignore cache and re-sample the whole grid")
     sp.set_defaults(fn=cmd_field)
+    sp = sub.add_parser("pm25", help="sample ChinaHighPM2.5 annual + heating-season at listing coords")
+    sp.add_argument("--year", type=int, default=2020, help="reference year (default 2020; Y1K + Nov(Y-1)–Mar(Y))")
+    sp.add_argument("--force", action="store_true", help="re-sample rows that already have pm25_annual")
+    sp.set_defaults(fn=cmd_pm25)
     sub.add_parser("pois", help="bake nearest metro/train/airport/hospital/mall/coast").set_defaults(fn=cmd_pois)
     sub.add_parser("pois-refix", help="re-bake suspicious 0m hospitals / missing metro in metro cities").set_defaults(
         fn=cmd_pois_refix)
+    sp = sub.add_parser("pois-refresh", help="re-fetch Overpass for selected POI categories (e.g. train subtype)")
+    sp.add_argument("--categories", default="train", help="comma-separated categories (default: train)")
+    sp.set_defaults(fn=cmd_pois_refresh)
     sub.add_parser("risk", help="compute coarse coast/seismic/typhoon risk").set_defaults(fn=cmd_risk)
     sub.add_parser("enrich", help="run geocode + climate + pois + risk (all stages)").set_defaults(fn=cmd_enrich)
 
@@ -683,6 +761,26 @@ def main(argv=None):
     sp = sub.add_parser("hazard-merge", help="synthesize per-listing hazards: prefecture research × physical frequency")
     sp.add_argument("path", help="JSON: {findings:[{prefKey, headline, hazards:[{type,freq,note,source}]}, …]}")
     sp.set_defaults(fn=cmd_hazard_merge)
+
+    sp = sub.add_parser("demographics-merge",
+                        help="fold prefecture 七普/六普 + 老龄化 research into listings.demographics_local")
+    sp.add_argument("path", help="JSON: {findings:[{prefKey, popCensus7, popChangePct, aging65Plus, …}, …]}")
+    sp.add_argument("--dry-run", action="store_true", help="report only, no DB writes")
+    sp.set_defaults(fn=cmd_demographics_merge)
+
+    sp = sub.add_parser("hospital-tier3-merge",
+                        help="fold 三甲医院 research into poi.category=hospital_tier3")
+    sp.add_argument("path", nargs="?", help="JSON findings file (hospital-dist-batch format)")
+    sp.add_argument("--all-batches", action="store_true",
+                    help="glob data/research/hospital-dist-batch-*-findings.json")
+    sp.add_argument("--dry-run", action="store_true", help="report only, no DB writes")
+    sp.set_defaults(fn=cmd_hospital_tier3_merge)
+
+    sp = sub.add_parser("property-import",
+                        help="upsert 产权/顶楼/物业费 from CSV (id,property_rights,is_top_floor,property_fee_yuan,…)")
+    sp.add_argument("path", help="CSV with id + optional property columns")
+    sp.add_argument("--dry-run", action="store_true", help="validate only, no DB writes")
+    sp.set_defaults(fn=cmd_property_import)
 
     sp = sub.add_parser("export-csv", help="dump DB → CSV (default data/listings.csv)")
     sp.add_argument("path", nargs="?", default=None)
