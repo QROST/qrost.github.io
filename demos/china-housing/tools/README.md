@@ -134,6 +134,7 @@ streaming 地图瓦片（Esri 卫星 / OSM 街道）。逻辑全在 [`tools/enri
 | 周边 | Overpass (OSM) | 最近 地铁 / 火车·高铁 / 医院 / 商场。OSM 小城覆盖差，**搜不到属正常**。 |
 | 机场·海边 | OurAirports + Natural Earth（离线 `data/ref/`） | 离线算最近 CN 机场 / 海岸线距离，不打 API。 |
 | 风险 | 派生 | 距海距离 + 省级地震动概念带（GB18306）+ 台风暴露启发式。**粗略近似，非工程依据**。 |
+| PM2.5 | [ChinaHighPM2.5](https://doi.org/10.5281/zenodo.6398971) (CHAP) | 1 km WGS-84 网格；年均 + 采暖季（Nov(Y−1)–Mar(Y)）最近格点采样；离线缓存于 `data/chinahighpm25/`（gitignore）。 |
 
 ### 命令
 
@@ -144,8 +145,27 @@ python3 tools/manage.py geocode    # 仅经纬度（Nominatim ~1/s；--force 重
 python3 tools/manage.py climate    # 仅气候
 python3 tools/manage.py risk       # 仅风险（离线，秒级）
 python3 tools/manage.py pois       # 仅周边（Overpass，最慢/最 flaky）
+python3 tools/manage.py pm25       # 年均 + 采暖季 PM2.5（需 netCDF4，见下）
 python3 tools/manage.py build      # 重新生成 enriched.js（连同 listings.js / csv / index.html）
 ```
+
+**PM2.5 一次性依赖**（仅 `pm25` 子命令；其余仍 stdlib）：
+
+```bash
+python3 -m venv tools/.venv
+tools/.venv/bin/pip install -r tools/requirements-pm25.txt
+python3 tools/manage.py pm25 --year 2020   # 默认 2020；幂等，缺列才补
+```
+
+缓存路径 `data/chinahighpm25/`：`CHAP_PM2.5_Y1K_{year}_V4.nc`（~6 MB/年）+
+采暖季所需 `CHAP_PM2.5_M1K_{year}_V4.rar` 内按月 nc（`bsdtar` 解压）。
+入库列 `pm25_annual` / `pm25_heating` / `pm25_year` / `pm25_src` → `enriched.js`
+的 `pm25Annual` / `pm25Heating` / `pm25Year` / `pm25Src`。近海/填海盘格点可能为
+null（海域 mask）。加州样本跳过（网格外）。
+
+**方法学 stub**：参考年默认 2020；年均 = Y1K 日历年均值；采暖季 = M1K 五个月
+（上年 11–12 月 + 当年 1–3 月）算术平均；单位 µg/m³；最近 1 km 格点、无插值。
+引用：Wei et al., RSE 2021; Wei et al., ACP 2020。
 
 每个阶段**幂等可续跑**——只补缺失行，中断后重跑即可。Nominatim 限速 1/s 且带真实
 User-Agent（其使用政策）；Overpass 易 504，已做多镜像重试。新增小区后只需再跑一次
