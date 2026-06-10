@@ -19,6 +19,8 @@ const PROVINCE_EN = {
   浙江: 'Zhejiang', 湖北: 'Hubei', 广东: 'Guangdong', 广西: 'Guangxi',
   福建: 'Fujian', 海南: 'Hainan', 四川: 'Sichuan', 贵州: 'Guizhou',
   云南: 'Yunnan', 甘肃: 'Gansu',
+  山西: 'Shanxi', 陕西: 'Shaanxi', 宁夏: 'Ningxia', 新疆: 'Xinjiang',
+  湖南: 'Hunan', 江西: 'Jiangxi', 内蒙古: 'Inner Mongolia',
 };
 
 const CITY_EN = {
@@ -88,6 +90,14 @@ function romanize(name) {
   return (titleCaseSyllables(base) + suf).replace(/\s+/g, ' ').trim();
 }
 
+const cities = [...new Set(L.map((d) => d.city).filter(Boolean))].sort();
+const CITY_OUT = { ...CITY_EN };
+cities.forEach((c) => { if (!CITY_OUT[c]) CITY_OUT[c] = romanize(c); });
+
+const provs = [...new Set(L.map((d) => d.prov).filter((p) => p && p !== 'California'))].sort();
+const PROV_OUT = { ...PROVINCE_EN };
+provs.forEach((p) => { if (!PROV_OUT[p]) PROV_OUT[p] = titleCaseSyllables(p); });
+
 const DISTRICT_EN = {};
 dists.forEach((d) => { DISTRICT_EN[d] = romanize(d); });
 
@@ -100,8 +110,8 @@ if (bad.length) {
 
 const out = `/** Geographic English / romanized labels for EN UI. GENERATED — do not hand-edit. */
 window.HOUSING_GEO_EN = {
-  province: ${JSON.stringify(PROVINCE_EN, null, 2)},
-  city: ${JSON.stringify(CITY_EN, null, 2)},
+  province: ${JSON.stringify(PROV_OUT, null, 2)},
+  city: ${JSON.stringify(CITY_OUT, null, 2)},
   district: ${JSON.stringify(DISTRICT_EN, null, 2)},
 };
 `;

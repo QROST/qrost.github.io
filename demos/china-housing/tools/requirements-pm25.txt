@@ -1,0 +1,4 @@
+# Optional — only for `manage.py pm25` (ChinaHighPM2.5 NetCDF sampling).
+# Install: python3 -m venv tools/.venv && tools/.venv/bin/pip install -r tools/requirements-pm25.txt
+netCDF4>=1.6.0
+numpy>=1.24.0

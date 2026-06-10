@@ -31,10 +31,13 @@ from __future__ import annotations
 
 import json
 import math
+import sqlite3
 import ssl
 import time
+import urllib.error
 import urllib.parse
 import urllib.request
+from datetime import datetime, timezone
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -58,13 +61,31 @@ _POI_REFIX_KM = {"hospital": 0.5, "train": 0.2, "metro": 0.0}
 # ---------------------------------------------------------------------------
 # HTTP helpers (retry + backoff)
 # ---------------------------------------------------------------------------
-def _get(url, timeout=30, retries=3, backoff=2.0):
+def _sleep_until_era5_reset(log=None, pad=75):
+    """Open-Meteo archive quota resets on the UTC calendar hour — wait it out."""
+    now = datetime.now(timezone.utc)
+    wait = (3600 - now.minute * 60 - now.second) % 3600
+    if wait < pad:
+        wait += 3600
+    wait += pad
+    if log:
+        log(f"  …archive 429 — sleeping {wait}s until next UTC hour + buffer")
+    time.sleep(wait)
+
+
+def _get(url, timeout=30, retries=3, backoff=2.0, log=None):
     last = None
     for i in range(retries):
         try:
             req = urllib.request.Request(url, headers={"User-Agent": UA})
             with urllib.request.urlopen(req, timeout=timeout, context=_SSL) as r:
                 return r.read()
+        except urllib.error.HTTPError as e:
+            last = e
+            if e.code == 429:
+                _sleep_until_era5_reset(log)
+                continue
+            time.sleep(backoff * (i + 1))
         except Exception as e:  # noqa: BLE001
             last = e
             time.sleep(backoff * (i + 1))
@@ -114,7 +135,14 @@ def migrate(con):
                       ("hist_temp_max", "REAL"), ("hist_temp_min", "REAL"),
                       ("hist_temp_max_date", "TEXT"), ("hist_temp_min_date", "TEXT"),
                       ("hist_temp_src", "TEXT"), ("hist_temp_station", "TEXT"),
-                      ("hist_temp_note", "TEXT"), ("hist_temp_level", "TEXT")):   # extrema + granularity
+                      ("hist_temp_note", "TEXT"), ("hist_temp_level", "TEXT"),   # extrema + granularity
+                      ("demographics_local", "TEXT"),   # JSON: 七普/六普 + 老龄化 (prefecture research)
+                      ("property_rights", "TEXT"),      # 商品房|小产权|… — manual on ingest
+                      ("is_top_floor", "INTEGER"),      # 1=顶楼 0=非顶楼
+                      ("property_fee_yuan", "REAL"),    # 物业费 元/㎡·月
+                      ("xiaochanquan", "INTEGER"),      # 1=veto (小产权)
+                      ("pm25_annual", "REAL"), ("pm25_heating", "REAL"),
+                      ("pm25_year", "INTEGER"), ("pm25_src", "TEXT")):  # ChinaHighPM2.5 grid
         if col not in cols:
             con.execute(f"ALTER TABLE listings ADD COLUMN {col} {decl}")
     con.executescript("""
@@ -137,6 +165,11 @@ def migrate(con):
     poicols = {r[1] for r in con.execute("PRAGMA table_info(poi)")}
     if "source" not in poicols:  # 'osm' | 'research'
         con.execute("ALTER TABLE poi ADD COLUMN source TEXT")
+    if "subtype" not in poicols:  # train: 'highspeed' | 'regular'
+        con.execute("ALTER TABLE poi ADD COLUMN subtype TEXT")
+    # poi_done rows for un-geocoded / removed listings block retries forever
+    con.execute("DELETE FROM poi_done WHERE listing_id NOT IN "
+                "(SELECT id FROM listings WHERE lat IS NOT NULL)")
     con.commit()
 
 
@@ -256,23 +289,35 @@ def geocode_all(con, log, force=False):
 
 
 # ---------------------------------------------------------------------------
-# Climate — Open-Meteo archive → monthly normals
+# Climate — Open-Meteo archive → monthly normals + daily climatology (one fetch)
 # ---------------------------------------------------------------------------
-def climate_one(lat, lng, y0=2014, y1=2023):
+_ERA5_Y0, _ERA5_Y1 = 2014, 2023
+# Single archive call carries temp/precip plus extended daily dimensions for
+# listings.daily_climate JSON (see _daily_climate_from_archive docstring).
+_ERA5_DAILY = (
+    "temperature_2m_mean,temperature_2m_max,temperature_2m_min,precipitation_sum,"
+    "relative_humidity_2m_mean,apparent_temperature_mean,snowfall_sum,"
+    "sunshine_duration,wind_speed_10m_max"
+)
+
+
+def _fetch_era5_archive_daily(lat, lng, y0=_ERA5_Y0, y1=_ERA5_Y1):
+    """One Open-Meteo archive request → parsed ``daily`` dict (all _ERA5_DAILY series)."""
     url = "https://archive-api.open-meteo.com/v1/archive?" + urllib.parse.urlencode({
         "latitude": lat, "longitude": lng,
         "start_date": f"{y0}-01-01", "end_date": f"{y1}-12-31",
-        "daily": "temperature_2m_mean,temperature_2m_max,temperature_2m_min,precipitation_sum",
+        "daily": _ERA5_DAILY,
+        "wind_speed_unit": "ms",
         "timezone": "auto"})
-    j = json.loads(_get(url, timeout=45, retries=3))
-    d = j["daily"]
+    return json.loads(_get(url, timeout=60, retries=5, log=None))["daily"]
+
+
+def _monthly_normals_from_daily(d, y0=_ERA5_Y0, y1=_ERA5_Y1):
     times = d["time"]
     tmean, tmax, tmin, prcp = (d["temperature_2m_mean"], d["temperature_2m_max"],
                                d["temperature_2m_min"], d["precipitation_sum"])
-    # accumulate per (year, month) then average across years
     acc = {}  # month -> {"tmean":[..daily], "tmax":[..], "tmin":[..], "psum": {year: sum}}
     for i, t in enumerate(times):
-        ym = t[:7]
         m = int(t[5:7])
         y = int(t[:4])
         a = acc.setdefault(m, {"tmean": [], "tmax": [], "tmin": [], "psum": {}})
@@ -300,31 +345,51 @@ def climate_one(lat, lng, y0=2014, y1=2023):
     return out
 
 
+def climate_one(lat, lng, y0=_ERA5_Y0, y1=_ERA5_Y1):
+    """Monthly normals — thin wrapper over the shared archive fetch."""
+    return _monthly_normals_from_daily(_fetch_era5_archive_daily(lat, lng, y0, y1), y0, y1)
+
+
+def _store_climate_months(con, lid, months):
+    con.executemany(
+        "INSERT OR REPLACE INTO climate (listing_id, month, tmean, tmax, tmin, precip) "
+        "VALUES (?,?,?,?,?,?)",
+        [(lid, m, tm, tx, tn, pr) for (m, tm, tx, tn, pr) in months])
+
+
+def _climate_bake_lat_lng(lat, lng):
+    """Single ERA5 archive fetch → (monthly_normals, daily_climate_json)."""
+    d = _fetch_era5_archive_daily(lat, lng)
+    return _monthly_normals_from_daily(d), _daily_climate_from_archive(d)
+
+
 def climate_all(con, log):
-    rows = con.execute("""SELECT l.id, l.lat, l.lng FROM listings l
+    rows = con.execute("""SELECT l.id, l.lat, l.lng, l.daily_climate FROM listings l
                           WHERE l.lat IS NOT NULL
                             AND NOT EXISTS (SELECT 1 FROM climate c WHERE c.listing_id=l.id)
                           ORDER BY l.id""").fetchall()
-    log(f"climate: {len(rows)} listing(s) to do (Open-Meteo ERA5 2014-2023)…")
-    done = 0
+    log(f"climate: {len(rows)} listing(s) to do (Open-Meteo ERA5 {_ERA5_Y0}-{_ERA5_Y1}, "
+        f"1 fetch/listing incl. extended daily dims)…")
+    done = bonus = 0
     for r in rows:
         try:
-            months = climate_one(r["lat"], r["lng"])
+            months, dc = _climate_bake_lat_lng(r["lat"], r["lng"])
         except Exception as e:  # noqa: BLE001
             log(f"  ! id{r['id']} climate failed: {repr(e)[:80]}")
-            time.sleep(1.0)
+            time.sleep(1.5)
             continue
-        con.executemany(
-            "INSERT OR REPLACE INTO climate (listing_id, month, tmean, tmax, tmin, precip) "
-            "VALUES (?,?,?,?,?,?)",
-            [(r["id"], m, tm, tx, tn, pr) for (m, tm, tx, tn, pr) in months])
+        _store_climate_months(con, r["id"], months)
+        if not r["daily_climate"]:
+            con.execute("UPDATE listings SET daily_climate=? WHERE id=?",
+                        (json.dumps(dc, separators=(",", ":")), r["id"]))
+            bonus += 1
         done += 1
         if done % 10 == 0:
             con.commit()
             log(f"  …{done} climate done")
         time.sleep(0.7)
     con.commit()
-    log(f"climate done: {done} listing(s)")
+    log(f"climate done: {done} listing(s)" + (f", +{bonus} daily_climate co-baked" if bonus else ""))
 
 
 # ---------------------------------------------------------------------------
@@ -374,37 +439,71 @@ def _day_ranges(flags):
     return runs
 
 
-def climate_daily_one(lat, lng, y0=2014, y1=2023):
-    url = "https://archive-api.open-meteo.com/v1/archive?" + urllib.parse.urlencode({
-        "latitude": lat, "longitude": lng,
-        "start_date": f"{y0}-01-01", "end_date": f"{y1}-12-31",
-        "daily": "temperature_2m_mean,temperature_2m_max,temperature_2m_min",
-        "timezone": "auto"})
-    d = json.loads(_get(url, timeout=60, retries=3))["daily"]
+def _doy_normals_from_daily(d):
+    """Per day-of-year (365) means for each daily series in an archive response."""
     times = d["time"]
-    series = {"tmean": d["temperature_2m_mean"], "tmax": d["temperature_2m_max"], "tmin": d["temperature_2m_min"]}
-    acc = {k: [[] for _ in range(365)] for k in series}
+    keys = [k for k in d if k != "time"]
+    acc = {k: [[] for _ in range(365)] for k in keys}
     for i, t in enumerate(times):
-        if t[5:10] == "02-29":       # drop the leap day
+        if t[5:10] == "02-29":
             continue
         doy = _doy_365(int(t[5:7]), int(t[8:10])) - 1
-        for k, vals in series.items():
-            if vals[i] is not None:
-                acc[k][doy].append(vals[i])
-    norm = {k: [(sum(v) / len(v) if v else None) for v in acc[k]] for k in acc}
+        for k in keys:
+            v = d[k][i]
+            if v is not None:
+                acc[k][doy].append(v)
+    return {k: [(sum(v) / len(v) if v else None) for v in acc[k]] for k in acc}
+
+
+def _daily_climate_from_archive(d):
+    """Build listings.daily_climate JSON from one ERA5 archive ``daily`` block.
+
+    Schema (stored in listings.daily_climate / enriched ``daily``):
+      curve.tmean|tmax|tmin — 365 ints, 15-day smoothed day-of-year normals (°C)
+      comfortDays / extremeDays — [[start,end],…] 1-based doy ranges (wrap if start>end)
+      comfortDayCount / extremeDayCount — mutually exclusive day counts
+      humidDayCount — smoothed mean RH ≥ 70 %
+      snowDayCount — smoothed mean snowfall > 0.05 cm
+      windyDayCount — smoothed daily max wind ≥ 10 m/s
+      sunshineHours — int, sum of smoothed daily sunshine (seconds→hours) over the year
+      apparentComfortDayCount — smoothed apparent temp mean within 10–28 °C (feels-like proxy)
+      meanHumidityPct — int, annual mean of smoothed RH (%)
+    """
+    norm = _doy_normals_from_daily(d)
     sm = {k: _smooth_circular(norm[k], 15) for k in norm}
     extreme = [((tm is not None and tm < -5) or (tx is not None and tx >= 30))
-               for tm, tx in zip(sm["tmean"], sm["tmax"])]
-    # Comfort = full-day band within 8–26°C (tmin ≥ 8 and tmax ≤ 26); mutually
-    # exclusive with extreme (extreme wins).
+               for tm, tx in zip(sm["temperature_2m_mean"], sm["temperature_2m_max"])]
     comfort = [(tn is not None and tx is not None and tn >= 8 and tx <= 26 and not ex)
-               for tn, tx, ex in zip(sm["tmin"], sm["tmax"], extreme)]
+               for tn, tx, ex in zip(sm["temperature_2m_min"], sm["temperature_2m_max"], extreme)]
+    rh = sm.get("relative_humidity_2m_mean", [None] * 365)
+    humid = [(v is not None and v >= 70) for v in rh]
+    snow = [(v is not None and v > 0.05) for v in sm.get("snowfall_sum", [None] * 365)]
+    windy = [(v is not None and v >= 10) for v in sm.get("wind_speed_10m_max", [None] * 365)]
+    app = sm.get("apparent_temperature_mean", [None] * 365)
+    app_comfort = [(v is not None and 10 <= v <= 28) for v in app]
+    sun_sm = sm.get("sunshine_duration", [None] * 365)
+    sunshine_h = int(round(sum(v for v in sun_sm if v is not None) / 3600.0))
+    rh_vals = [v for v in rh if v is not None]
     q = lambda a: [None if v is None else int(round(v)) for v in a]
     return {
-        "curve": {"tmean": q(sm["tmean"]), "tmax": q(sm["tmax"]), "tmin": q(sm["tmin"])},
+        "curve": {
+            "tmean": q(sm["temperature_2m_mean"]),
+            "tmax": q(sm["temperature_2m_max"]),
+            "tmin": q(sm["temperature_2m_min"]),
+        },
         "comfortDays": _day_ranges(comfort), "extremeDays": _day_ranges(extreme),
         "comfortDayCount": sum(comfort), "extremeDayCount": sum(extreme),
+        "humidDayCount": sum(humid),
+        "snowDayCount": sum(snow),
+        "windyDayCount": sum(windy),
+        "sunshineHours": sunshine_h,
+        "apparentComfortDayCount": sum(app_comfort),
+        "meanHumidityPct": int(round(sum(rh_vals) / len(rh_vals))) if rh_vals else None,
     }
+
+
+def climate_daily_one(lat, lng, y0=_ERA5_Y0, y1=_ERA5_Y1):
+    return _daily_climate_from_archive(_fetch_era5_archive_daily(lat, lng, y0, y1))
 
 
 def climate_daily_flags_from_curve(tmean, tmax, tmin):
@@ -427,35 +526,55 @@ def climate_daily_recompute_from_curve(dc):
     return dc
 
 
+def _daily_has_extended_dims(raw):
+    if not raw:
+        return False
+    try:
+        return "humidDayCount" in json.loads(raw)
+    except Exception:  # noqa: BLE001
+        return False
+
+
 def climate_daily_all(con, log, force=False):
     if force:
-        rows = con.execute("""SELECT id, lat, lng, daily_climate FROM listings
-                              WHERE lat IS NOT NULL ORDER BY id""").fetchall()
-        log(f"climate-daily --force: {len(rows)} listing(s) (re-derive from curve or ERA5 fetch)…")
+        allrows = con.execute("""SELECT id, lat, lng, daily_climate FROM listings
+                                 WHERE lat IS NOT NULL ORDER BY id""").fetchall()
+        rows = [r for r in allrows if not _daily_has_extended_dims(r["daily_climate"])]
+        log(f"climate-daily --force: {len(rows)} listing(s) to re-fetch "
+            f"({len(allrows) - len(rows)} already have extended dims)…")
     else:
-        rows = con.execute("""SELECT id, lat, lng, daily_climate FROM listings
+        rows = con.execute("""SELECT id, lat, lng FROM listings
                               WHERE lat IS NOT NULL AND (daily_climate IS NULL OR daily_climate = '')
                               ORDER BY id""").fetchall()
         log(f"climate-daily: {len(rows)} listing(s) to do (ERA5 day-of-year, 15-day smoothed)…")
     done = 0
     for r in rows:
         try:
-            if force and r["daily_climate"]:
-                dc = climate_daily_recompute_from_curve(json.loads(r["daily_climate"]))
-            else:
-                dc = climate_daily_one(r["lat"], r["lng"])
+            _, dc = _climate_bake_lat_lng(r["lat"], r["lng"])
         except Exception as e:  # noqa: BLE001
-            log(f"  ! id{r['id']} daily failed: {repr(e)[:80]}")
-            time.sleep(1.0)
+            err = repr(e)[:80]
+            log(f"  ! id{r['id']} daily failed: {err}")
+            if "429" in err:
+                _sleep_until_era5_reset(log)
+            else:
+                time.sleep(1.5)
             continue
-        con.execute("UPDATE listings SET daily_climate=? WHERE id=?",
-                    (json.dumps(dc, separators=(",", ":")), r["id"]))
+        payload = json.dumps(dc, separators=(",", ":"))
+        for attempt in range(20):
+            try:
+                con.execute("UPDATE listings SET daily_climate=? WHERE id=?",
+                            (payload, r["id"]))
+                con.commit()
+                break
+            except Exception as e:  # noqa: BLE001
+                if "locked" in str(e).lower() and attempt < 19:
+                    time.sleep(min(30.0, 3.0 * (attempt + 1)))
+                    continue
+                raise
         done += 1
         if done % 10 == 0:
-            con.commit(); log(f"  …{done} daily done")
-        if not (force and r["daily_climate"]):
-            time.sleep(0.7)
-    con.commit()
+            log(f"  …{done} daily done")
+        time.sleep(2.5)   # archive quota: stay well under hourly cap (see PROGRESS.md)
     log(f"climate-daily done: {done} listing(s)")
 
 
@@ -634,6 +753,31 @@ def _classify(el):
     return None
 
 
+def _train_subtype(tags):
+    """高铁 vs 普铁 from OSM tags (highspeed=yes / railway:highspeed / name 高铁 / CN 方位站名)."""
+    if not tags:
+        return None
+    for key in ("highspeed", "railway:highspeed"):
+        v = (tags.get(key) or "").lower()
+        if v in ("yes", "true", "1", "designated"):
+            return "highspeed"
+    tr = (tags.get("train") or "").lower()
+    if tr in ("highspeed", "high_speed"):
+        return "highspeed"
+    if (tags.get("railway:station") or "").lower() in ("high_speed", "highspeed"):
+        return "highspeed"
+    nm = tags.get("name") or tags.get("name:zh") or ""
+    if "高铁" in nm and "普速" not in nm:
+        return "highspeed"
+    # CN HSR hubs often 城市+南/北/东/西(站); e.g. 北京南, 凯里南站, 常州北
+    for suffix in ("南站", "北站", "东站", "西站", "南", "北", "东", "西"):
+        if nm.endswith(suffix) and len(nm) > len(suffix):
+            return "highspeed"
+    if tags.get("railway") == "station" and tags.get("station") != "subway":
+        return "regular"
+    return None
+
+
 def _nearest_from_overpass(data, lat, lng):
     """Pick nearest POI per category, skipping sub-floor OSM noise."""
     buckets = {}
@@ -647,16 +791,18 @@ def _nearest_from_overpass(data, lat, lng):
         d = haversine(lat, lng, c["lat"], c["lon"])
         if d > _CAT_MAX_KM.get(cat, 1e9):
             continue
-        nm = el["tags"].get("name") or el["tags"].get("name:zh") or "(未命名)"
-        buckets.setdefault(cat, []).append((d, nm, round(c["lat"], 5), round(c["lon"], 5)))
+        tags = el.get("tags", {})
+        nm = tags.get("name") or tags.get("name:zh") or "(未命名)"
+        sub = _train_subtype(tags) if cat == "train" else None
+        buckets.setdefault(cat, []).append((d, nm, round(c["lat"], 5), round(c["lon"], 5), sub))
     found = {}
     for cat, items in buckets.items():
         items.sort(key=lambda x: x[0])
         floor = _CAT_MIN_KM.get(cat, 0.0)
-        for d, nm, plat, plng in items:
+        for d, nm, plat, plng, sub in items:
             if d < floor:
                 continue
-            found[cat] = (nm, plat, plng, d)
+            found[cat] = (nm, plat, plng, d, sub)
             break
     return found
 
@@ -671,12 +817,23 @@ def _bake_offline_pois(lat, lng, airports, coast):
     return found
 
 
+def _poi_row(found_item):
+    """Normalise (nm, lat, lng, dist[, subtype]) tuple."""
+    if len(found_item) >= 5:
+        nm, plat, plng, d, sub = found_item[:5]
+    else:
+        nm, plat, plng, d = found_item
+        sub = None
+    return nm, plat, plng, d, sub
+
+
 def _store_pois(con, lid, found, source="osm"):
-    for cat, (nm, plat, plng, d) in found.items():
+    for cat, item in found.items():
+        nm, plat, plng, d, sub = _poi_row(item)
         con.execute(
-            "INSERT OR REPLACE INTO poi (listing_id, category, name, lat, lng, dist_km, source) "
-            "VALUES (?,?,?,?,?,?,?)",
-            (lid, cat, nm, plat, plng, round(d, 1) if d is not None else None, source))
+            "INSERT OR REPLACE INTO poi (listing_id, category, name, lat, lng, dist_km, source, subtype) "
+            "VALUES (?,?,?,?,?,?,?,?)",
+            (lid, cat, nm, plat, plng, round(d, 1) if d is not None else None, source, sub))
 
 
 def _listing_prov(con, r):
@@ -702,13 +859,14 @@ def _pois_for_listing(con, r, log, overwrite=(), airports=None, coast=None):
         log(f"  ! id{r['id']} overpass unavailable (metro/train/hospital/mall skipped)")
     for cat in overwrite:
         con.execute("DELETE FROM poi WHERE listing_id=? AND category=?", (r["id"], cat))
-    for cat, (nm, plat, plng, d) in found.items():
+    for cat, item in found.items():
         if cat not in overwrite:
             if con.execute("SELECT 1 FROM poi WHERE listing_id=? AND category=?",
                            (r["id"], cat)).fetchone():
                 continue
-        _store_pois(con, r["id"], {cat: (nm, plat, plng, d)})
-    con.execute("INSERT OR REPLACE INTO poi_done (listing_id) VALUES (?)", (r["id"],))
+        _store_pois(con, r["id"], {cat: item})
+    if data is not None:
+        con.execute("INSERT OR REPLACE INTO poi_done (listing_id) VALUES (?)", (r["id"],))
 
 
 def _listing_ids_needing_poi_refix(con):
@@ -774,16 +932,63 @@ def pois_all(con, log):
     log(f"pois done: {done} listing(s)")
 
 
+def pois_overpass_refresh(con, log, categories=("train",)):
+    """Re-fetch Overpass for selected categories (e.g. train subtype backfill)."""
+    cats = tuple(categories)
+    rows = con.execute("SELECT id, prov, lat, lng FROM listings WHERE lat IS NOT NULL ORDER BY id").fetchall()
+    log(f"pois-refresh: {len(rows)} listing(s), categories={','.join(cats)}…")
+    done = fail = 0
+    for r in rows:
+        data = _overpass(r["lat"], r["lng"])
+        if data is None:
+            log(f"  ! id{r['id']} overpass unavailable — skipped")
+            fail += 1
+            time.sleep(1.5)
+            continue
+        found = _nearest_from_overpass(data, r["lat"], r["lng"])
+        for cat in cats:
+            if cat not in found:
+                continue
+            cur = con.execute("SELECT source FROM poi WHERE listing_id=? AND category=?",
+                              (r["id"], cat)).fetchone()
+            if cur and cur[0] == "research":
+                continue
+            _store_pois(con, r["id"], {cat: found[cat]})
+        done += 1
+        if done % 10 == 0:
+            for attempt in range(5):
+                try:
+                    con.commit()
+                    break
+                except sqlite3.OperationalError as e:
+                    if "locked" not in str(e).lower() or attempt == 4:
+                        raise
+                    time.sleep(2 * (attempt + 1))
+            log(f"  …{done} refreshed ({fail} overpass fail)")
+        time.sleep(1.5)
+    for attempt in range(5):
+        try:
+            con.commit()
+            break
+        except sqlite3.OperationalError as e:
+            if "locked" not in str(e).lower() or attempt == 4:
+                raise
+            time.sleep(2 * (attempt + 1))
+    log(f"pois-refresh done: {done} ok, {fail} overpass fail")
+    return done, fail
+
+
 # ---------------------------------------------------------------------------
 # Risk — coarse, region-level (honest approximation)
 # ---------------------------------------------------------------------------
 # Province seismic band per the *concept* of GB18306 ground-motion zoning.
 # COARSE province-level approximation only — NOT a point value, NOT engineering.
 SEISMIC = {
-    "云南": "高", "四川": "高", "甘肃": "高", "河北": "高",
-    "辽宁": "较高", "山东": "较高", "福建": "较高", "海南": "较高",
+    "云南": "高", "四川": "高", "甘肃": "高", "河北": "高", "陕西": "高",
+    "辽宁": "较高", "山东": "较高", "福建": "较高", "海南": "较高", "山西": "较高",
     "吉林": "中", "黑龙江": "中", "河南": "中", "江苏": "中",
     "安徽": "中", "广东": "中", "广西": "中", "重庆": "中", "贵州": "中",
+    "湖南": "中", "江西": "中", "宁夏": "中", "新疆": "中",
     "上海": "低",
     "California": "较高",
 }
@@ -992,6 +1197,28 @@ PROVINCE_HAZARDS = {
     "海南": {"headline": "全国台风登陆最前沿",
             "hazards": [("台风", 5, "登陆最频繁"), ("高温", 5, "夏季湿热"),
                         ("洪涝", 4, "台风暴雨"), ("风暴潮", 4, "沿海")]},
+    "山西": {"headline": "华北旱涝+黄土高原地质灾害；地震带外围",
+            "hazards": [("干旱", 4, "春旱/汾渭旱情"), ("洪涝", 4, "汾河/沁河流域"),
+                        ("地质灾害", 3, "黄土滑坡/塌陷"), ("地震", 2, "华北强震带外围")]},
+    "陕西": {"headline": "关中暴雨洪涝+陕北干旱；秦岭南北地质灾害",
+            "hazards": [("洪涝", 4, "渭河/汉江流域"), ("干旱", 4, "陕北/关中伏旱"),
+                        ("地质灾害", 3, "秦岭/黄土滑坡"), ("地震", 2, "南北地震带交汇")]},
+    "宁夏": {"headline": "西北干旱风沙+黄河凌汛；地震风险中低",
+            "hazards": [("干旱", 5, "半干旱区常年缺水"), ("沙尘暴", 4, "春季风沙"),
+                        ("洪涝", 3, "黄河凌汛/局地暴雨"), ("地震", 2, "南北地震带影响")]},
+    "新疆": {"headline": "干旱风沙+融雪型洪涝；天山南北地震带",
+            "hazards": [("干旱", 5, "内陆干旱气候"), ("沙尘暴", 4, "春季风沙"),
+                        ("洪涝", 3, "融雪/局地暴雨"), ("地震", 3, "天山南北活动断裂")]},
+    "湖南": {"headline": "长江流域洪涝+湘南暴雨；夏季高温伏旱",
+            "hazards": [("洪涝", 4, "湘江/资水/沅水"), ("暴雨", 4, "梅雨/台风外围"),
+                        ("干旱", 4, "伏旱"), ("地质灾害", 3, "湘西山地滑坡")]},
+    "江西": {"headline": "鄱阳湖流域洪涝突出；赣南山地地质灾害",
+            "hazards": [("洪涝", 5, "鄱阳湖/赣江流域(1998/2020)"), ("暴雨", 4, "梅雨强降水"),
+                        ("干旱", 4, "伏旱"), ("地质灾害", 3, "赣南山地滑坡")]},
+    "内蒙古": {"headline": "北方干旱风沙+冬季暴雪；大兴安岭林火与融雪型洪涝",
+              "hazards": [("干旱", 5, "半干旱草原区常年缺水"), ("沙尘暴", 4, "春季风沙"),
+                          ("暴雪雪灾", 4, "冬季强降雪致灾"), ("森林火灾", 3, "大兴安岭林区"),
+                          ("洪涝", 3, "融雪/黄河凌汛局地"), ("地震", 2, "华北/天山南北带外围")]},
     "California": {"headline": "LA basin quake faults + urban flash flood; regional wildfire smoke; heat/drought",
                    "hazards": [("地震", 4, "Newport-Inglewood/Puente Hills faults under DTLA; Whittier Narrows 1987 M5.9"),
                                ("森林火灾", 3, "Regional Santa Ana wildfire smoke/air-quality episodes (urban core lower direct risk)"),
@@ -1012,7 +1239,9 @@ HEAT_HEATED, HEAT_PARTIAL, HEAT_WARM, HEAT_DAMP = "集中供暖", "部分供暖"
 PROVINCE_HEATING = {
     "黑龙江": HEAT_HEATED, "吉林": HEAT_HEATED, "辽宁": HEAT_HEATED, "北京": HEAT_HEATED, "天津": HEAT_HEATED, "河北": HEAT_HEATED,
     "山东": HEAT_HEATED, "河南": HEAT_HEATED, "甘肃": HEAT_HEATED,
+    "山西": HEAT_HEATED, "陕西": HEAT_HEATED, "宁夏": HEAT_HEATED, "新疆": HEAT_HEATED, "内蒙古": HEAT_HEATED,
     "江苏": HEAT_PARTIAL, "安徽": HEAT_PARTIAL,
+    "湖南": HEAT_DAMP, "江西": HEAT_DAMP,
     "广东": HEAT_WARM, "广西": HEAT_WARM, "福建": HEAT_WARM, "海南": HEAT_WARM, "云南": HEAT_WARM,
     "上海": HEAT_DAMP, "浙江": HEAT_DAMP, "湖北": HEAT_DAMP,
     "重庆": HEAT_DAMP, "四川": HEAT_DAMP, "贵州": HEAT_DAMP,
@@ -1279,9 +1508,11 @@ def merge_research(con, findings, log, move_flag_km=25.0, poi_max_km=60.0):
                 if d is not None and d > poi_max_km:
                     report["rejected"].append({"id": lid, "cat": cat, "name": name, "km": round(d, 1)})
                     continue
-                con.execute("INSERT OR REPLACE INTO poi (listing_id,category,name,lat,lng,dist_km,source) "
-                            "VALUES (?,?,?,?,?,?,'research')",
-                            (lid, cat, name, round(g[0], 5), round(g[1], 5), round(d, 1) if d else None))
+                con.execute("INSERT OR REPLACE INTO poi (listing_id,category,name,lat,lng,dist_km,source,subtype) "
+                            "VALUES (?,?,?,?,?,?,'research',?)",
+                            (lid, cat, name, round(g[0], 5), round(g[1], 5), round(d, 1) if d else None,
+                             "highspeed" if cat == "train" and "高铁" in name else
+                             ("regular" if cat == "train" else None)))
                 report["poi_filled"][cat] += 1
             else:
                 # agent-verified name that Nominatim can't place → keep name-only (no pin)
@@ -1348,6 +1579,147 @@ def merge_built_years(con, findings, log, lo=1900, hi=2026):
     return rep
 
 
+# ---------------------------------------------------------------------------
+# Demographics merge — prefecture 七普/六普 + 老龄化 → listings.demographics_local
+# ---------------------------------------------------------------------------
+_PROPERTY_RIGHTS = frozenset({
+    "商品房", "共有产权", "集资房", "公房", "房改房", "小产权", "unknown",
+})
+
+
+def _pref_key(prov: str, city: str) -> str:
+    c = (city or "").strip()
+    if "-" in c:
+        c = c.split("-")[0].strip()
+    return f"{prov}|{c}"
+
+
+def merge_demographics(con, findings, log, dry_run=False):
+    """Fold prefecture demographics research into listings.demographics_local.
+
+    finding = {prefKey, popCensus7?, popCensus6?, popChangePct?, outflow?,
+               aging65Plus?, aging60Plus?, headline?, sources?, notes?}"""
+    by_pref = {}
+    for f in findings:
+        k = f.get("prefKey")
+        if k:
+            by_pref[k] = f
+    rows = con.execute("SELECT id, prov, city FROM listings ORDER BY id").fetchall()
+    listing_prefs = {_pref_key(r["prov"], r["city"]) for r in rows}
+    rep = {"prefectures": len(by_pref), "listings": 0, "matched": 0,
+           "unmatched_pref": sorted(set(by_pref) - listing_prefs)}
+    for r in rows:
+        pk = _pref_key(r["prov"], r["city"])
+        f = by_pref.get(pk)
+        if not f:
+            continue
+        obj = {k: f[k] for k in (
+            "prefKey", "popCensus7", "popCensus6", "popChangePct", "outflow",
+            "aging65Plus", "aging60Plus", "headline", "sources", "notes") if k in f}
+        obj["prefKey"] = pk
+        if not dry_run:
+            con.execute("UPDATE listings SET demographics_local=? WHERE id=?",
+                        (json.dumps(obj, ensure_ascii=False), r["id"]))
+        rep["listings"] += 1
+        rep["matched"] += 1
+    if not dry_run:
+        con.commit()
+    log(f"demographics-merge: {rep['listings']} listing(s) ← {rep['prefectures']} prefecture(s)")
+    return rep
+
+
+# ---------------------------------------------------------------------------
+# Tier-3 hospital merge — research findings → poi.category='hospital_tier3'
+# ---------------------------------------------------------------------------
+_TIER3_MAX_KM = 80.0
+
+
+def merge_hospital_tier3(con, findings, log, dry_run=False, max_km=_TIER3_MAX_KM):
+    """Apply per-listing 三甲 hospital research to poi.hospital_tier3.
+
+    finding = {id, hospital_name, hospital_lat, hospital_lng, dist_km?,
+               confidence:'high'|'med', hospital_source?, sources?, notes?}"""
+    rep = {"applied": 0, "skipped": 0, "rejected": 0, "dry_run": dry_run}
+    for f in findings:
+        lid = f.get("id")
+        conf = (f.get("confidence") or "").lower()
+        if lid is None or conf not in ("high", "med"):
+            rep["skipped"] += 1
+            continue
+        row = con.execute("SELECT lat, lng FROM listings WHERE id=?", (lid,)).fetchone()
+        if not row or row["lat"] is None or row["lng"] is None:
+            rep["skipped"] += 1
+            continue
+        hlat, hlng = f.get("hospital_lat"), f.get("hospital_lng")
+        if hlat is None or hlng is None:
+            rep["skipped"] += 1
+            continue
+        hlat, hlng = float(hlat), float(hlng)
+        dist = f.get("dist_km")
+        dist = float(dist) if dist is not None else haversine(row["lat"], row["lng"], hlat, hlng)
+        if dist > max_km:
+            rep["rejected"] += 1
+            log(f"  ! id{lid} reject tier3 {dist:.1f}km > {max_km}km")
+            continue
+        name = f.get("hospital_name") or "三甲医院"
+        if not dry_run:
+            con.execute(
+                "INSERT OR REPLACE INTO poi (listing_id,category,name,lat,lng,dist_km,source,subtype) "
+                "VALUES (?,?,?,?,?,?,'research','tier3')",
+                (lid, "hospital_tier3", name, round(hlat, 5), round(hlng, 5), round(dist, 1)))
+        rep["applied"] += 1
+        log(f"  ✓ id{lid} tier3 {name[:28]} → {dist:.1f}km ({conf})")
+    if not dry_run:
+        con.commit()
+    return rep
+
+
+# ---------------------------------------------------------------------------
+# Property import — manual 产权 / 顶楼 / 物业费 on ingest
+# ---------------------------------------------------------------------------
+def import_property_rows(con, rows, log, dry_run=False):
+    """Upsert property columns from CSV rows. id required."""
+    rep = {"set": 0, "rejected": [], "dry_run": dry_run}
+    for raw in rows:
+        lid = raw.get("id")
+        try:
+            lid = int(lid)
+        except (TypeError, ValueError):
+            rep["rejected"].append({"id": lid, "why": "bad-id"})
+            continue
+        if not con.execute("SELECT 1 FROM listings WHERE id=?", (lid,)).fetchone():
+            rep["rejected"].append({"id": lid, "why": "missing-listing"})
+            continue
+        rights = (raw.get("property_rights") or "").strip() or None
+        if rights and rights not in _PROPERTY_RIGHTS:
+            rep["rejected"].append({"id": lid, "why": "bad-rights", "val": rights})
+            continue
+        top = raw.get("is_top_floor")
+        if top not in (None, "", "null"):
+            top = 1 if str(top).strip() in ("1", "true", "True", "yes") else 0
+        else:
+            top = None
+        fee = raw.get("property_fee_yuan")
+        fee = float(fee) if fee not in (None, "", "null") else None
+        xcq = raw.get("xiaochanquan")
+        if xcq not in (None, "", "null"):
+            xcq = 1 if str(xcq).strip() in ("1", "true", "True", "yes") else 0
+        elif rights == "小产权":
+            xcq = 1
+        else:
+            xcq = None
+        if not dry_run:
+            con.execute(
+                "UPDATE listings SET property_rights=?, is_top_floor=?, "
+                "property_fee_yuan=?, xiaochanquan=? WHERE id=?",
+                (rights, top, fee, xcq, lid))
+        rep["set"] += 1
+    if not dry_run:
+        con.commit()
+    log(f"property-import: {rep['set']} row(s)")
+    return rep
+
+
 def refresh_refined_pois(con, log):
     """A research location refine moves the anchor, so its previously-baked OSM
     POIs (computed vs the old coords) go stale. Recompute them against the new
@@ -1370,15 +1742,16 @@ def refresh_refined_pois(con, log):
                     (r["id"], "coast", "最近海岸线", round(coast_km(lat, lng, coast), 1)))
         data = _overpass(lat, lng)
         if data is not None:
-            for cat, (nm, plat, plng, d) in _nearest_from_overpass(data, lat, lng).items():
+            for cat, item in _nearest_from_overpass(data, lat, lng).items():
                 cur = con.execute("SELECT source, dist_km FROM poi WHERE listing_id=? AND category=?",
                                   (r["id"], cat)).fetchone()
                 if cur and cur[0] == "research":   # preserve verified research POI
                     continue
                 if cur and cur[1] is not None and cur[1] >= _POI_REFIX_KM.get(cat, 0):
                     continue
-                con.execute("INSERT OR REPLACE INTO poi (listing_id,category,name,lat,lng,dist_km,source) "
-                            "VALUES (?,?,?,?,?,?,'osm')", (r["id"], cat, nm, plat, plng, round(d, 1)))
+                nm, plat, plng, d, sub = _poi_row(item)
+                con.execute("INSERT OR REPLACE INTO poi (listing_id,category,name,lat,lng,dist_km,source,subtype) "
+                            "VALUES (?,?,?,?,?,?,'osm',?)", (r["id"], cat, nm, plat, plng, round(d, 1), sub))
         time.sleep(1.5)
     con.commit()
     log("refresh done")
@@ -1393,7 +1766,10 @@ def emit_enriched(con):
     for r in con.execute("""SELECT id, lat, lng, geo_level, geo_label, geo_source, elevation, daily_climate,
                                    built_year, built_year_src, built_year_approx, hazards_local,
                                    hist_temp_max, hist_temp_min, hist_temp_max_date, hist_temp_min_date,
-                                   hist_temp_src, hist_temp_station, hist_temp_note, hist_temp_level
+                                   hist_temp_src, hist_temp_station, hist_temp_note, hist_temp_level,
+                                   demographics_local, property_rights, is_top_floor,
+                                   property_fee_yuan, xiaochanquan,
+                                   pm25_annual, pm25_heating, pm25_year, pm25_src
                             FROM listings WHERE lat IS NOT NULL"""):
         e = {"lat": r["lat"], "lng": r["lng"],
              "geoLevel": r["geo_level"], "geoLabel": r["geo_label"],
@@ -1432,19 +1808,42 @@ def emit_enriched(con):
             e["histTempNote"] = r["hist_temp_note"]
         if r["hist_temp_level"]:
             e["histTempLevel"] = r["hist_temp_level"]
+        if r["demographics_local"]:
+            try:
+                e["demographics"] = json.loads(r["demographics_local"])
+            except Exception:  # noqa: BLE001
+                pass
+        if r["property_rights"]:
+            e["propertyRights"] = r["property_rights"]
+        if r["is_top_floor"] is not None:
+            e["isTopFloor"] = bool(r["is_top_floor"])
+        if r["property_fee_yuan"] is not None:
+            e["propertyFeeYuan"] = r["property_fee_yuan"]
+        if r["xiaochanquan"]:
+            e["xiaochanquan"] = True
+        if r["pm25_annual"] is not None:
+            e["pm25Annual"] = r["pm25_annual"]
+        if r["pm25_heating"] is not None:
+            e["pm25Heating"] = r["pm25_heating"]
+        if r["pm25_year"] is not None:
+            e["pm25Year"] = r["pm25_year"]
+        if r["pm25_src"]:
+            e["pm25Src"] = r["pm25_src"]
         out[r["id"]] = e
     for r in con.execute("SELECT listing_id, month, tmean, tmax, tmin, precip FROM climate ORDER BY listing_id, month"):
         e = out.get(r["listing_id"])
         if e is None:
             continue
         e.setdefault("climate", {})[r["month"]] = [r["tmean"], r["tmax"], r["tmin"], r["precip"]]
-    for r in con.execute("SELECT listing_id, category, name, lat, lng, dist_km, source FROM poi"):
+    for r in con.execute("SELECT listing_id, category, name, lat, lng, dist_km, source, subtype FROM poi"):
         e = out.get(r["listing_id"])
         if e is None:
             continue
-        e.setdefault("pois", {})[r["category"]] = {
-            "name": r["name"], "lat": r["lat"], "lng": r["lng"],
-            "distKm": r["dist_km"], "source": r["source"] or "osm"}
+        row = {"name": r["name"], "lat": r["lat"], "lng": r["lng"],
+               "distKm": r["dist_km"], "source": r["source"] or "osm"}
+        if r["subtype"]:
+            row["trainKind"] = r["subtype"]  # 'highspeed' | 'regular' (train only)
+        e.setdefault("pois", {})[r["category"]] = row
     for r in con.execute("SELECT listing_id, coast_km, seismic_band, typhoon, summary FROM risk"):
         e = out.get(r["listing_id"])
         if e is None:

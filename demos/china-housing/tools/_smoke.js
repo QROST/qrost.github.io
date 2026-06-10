@@ -113,24 +113,31 @@ ids['listing-modal'].classList = { _c: new Set(['hidden']), contains(c) { return
 setTimeout(() => {
   const w = sandbox.window; const checks = [];
   const T = (n, p) => checks.push([n, !!p]);
-  T('listings 281', (w.HOUSING_LISTINGS || []).length === 281);
-  T('enriched 281', Object.keys(w.HOUSING_ENRICHED || {}).length === 281);
-  T('hazards 23', Object.keys(w.HOUSING_HAZARDS || {}).length === 23);
+  T('listings 320', (w.HOUSING_LISTINGS || []).length === 320);
+  T('enriched 320', Object.keys(w.HOUSING_ENRICHED || {}).length === 320);
+  T('hazards 30', Object.keys(w.HOUSING_HAZARDS || {}).length === 30);
   T('field 4 fields', w.HOUSING_FIELD && Object.keys(w.HOUSING_FIELD.fields).length === 4);
   T('field elevation 973pts', w.HOUSING_FIELD && w.HOUSING_FIELD.fields.elevation.points.length === 973);
   T('geo-en districts CJK-free', Object.values((w.HOUSING_GEO_EN || {}).district || {}).every((v) => !zhRe.test(v)));
   T('kpi', /房源样本/.test(ids['kpi-grid']._html));
-  T('kpi comfort max listing', /舒适日最多/.test(ids['kpi-grid']._html) && /321天/.test(ids['kpi-grid']._html));
+  // comfort-max day count drifts with ERA5 re-bakes (boundary-sensitive at mild
+  // climates), so assert a sane floor not an exact number that needs re-syncing.
+  T('kpi comfort max listing', (() => {
+    const h = ids['kpi-grid']._html || '';
+    const m = h.match(/(\d+)天/g) || [];
+    const max = Math.max(0, ...m.map((x) => parseInt(x, 10)));
+    return /舒适日最多/.test(h) && max >= 250;
+  })());
   T('table head', /气候类型/.test(ids['table-head']._html) && /年温差/.test(ids['table-head']._html));
   T('no 宜居指数 anywhere', !/宜居指数/.test(ids['table-head']._html) && !/宜居指数/.test(ids['table-body']._html));
   T('climate types rendered', /(四季如春|常年温暖|四季分明|长夏无冬|夏热冬暖|冬暖夏凉|常年凉冷|温和过渡)/.test(ids['table-body']._html));
   T('table body', (ids['table-body']._html || '').length > 1000);
-  T('table count 228 default', /显示 228 \/ 228/.test(ids['table-count'].textContent));
+  T('table count 247 default', /显示 247 \/ 247/.test(ids['table-count'].textContent));
   ids['tier1-toggle'] = { checked: false, addEventListener() {} };
   T('tier1 toggle wired', typeof w.__setTier1On === 'function');
   try {
     w.__setTier1On(true);
-    T('table count 281 tier1', /显示 281 \/ 281/.test(ids['table-count'].textContent));
+    T('table count 320 tier1', /显示 320 \/ 320/.test(ids['table-count'].textContent));
     w.__setTier1On(false);
   } catch (e) { T('tier1 toggle — ' + e.message, false); }
   T('table head heating+freq', /供暖/.test(ids['table-head']._html) && /当地灾种·常见度/.test(ids['table-head']._html));
@@ -239,7 +246,7 @@ setTimeout(() => {
     const provN = lastChartCfg && lastChartCfg.data.labels.length;
     T('prov chart dynamic height', parseInt(provWrap.style.height, 10) >= 560);
     T('prov chart y autoSkip false', lastChartCfg && lastChartCfg.options.scales.y.ticks.autoSkip === false);
-    T('prov chart all provinces', provN >= 18 && provN <= 22);
+    T('prov chart all provinces', provN >= 24 && provN <= 28);
     w.__setLang('en');
     selCache['[data-prov]'].find((b) => b.dataset.prov === 'avgRange').fire('click');
     T('prov chart en height', parseInt(provWrap.style.height, 10) >= 560);
