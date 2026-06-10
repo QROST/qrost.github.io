@@ -85,6 +85,7 @@ python3 tools/manage.py relief         # 地形起伏 (DEM 环采样, 地质灾�
 python3 tools/manage.py risk           # 离海岸 / 地震带 / 台风暴露 (离线+派生)
 python3 tools/manage.py pois           # 周边 地铁/火车/医院/商场 (Overpass, 最慢最 flaky)
 python3 tools/manage.py pois-refix     # 复核：0m 医院 / 轨交城缺地铁 等可疑 POI 重烘焙
+python3 tools/manage.py pm25           # 年均 + 采暖季 PM2.5（ChinaHighPM2.5；需 tools/.venv + netCDF4）
 python3 tools/manage.py hazard-merge data/hazard_research.json   # ⚠️ 必跑！每小区灾害 = 地市类型 × 坐标物理频率
 ```
 
