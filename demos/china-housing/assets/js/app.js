@@ -104,6 +104,16 @@
   const clamp = (v, lo, hi) => Math.max(lo, Math.min(hi, v));
   const poiKm = (e, cat) => (e && e.pois && e.pois[cat] && e.pois[cat].distKm != null)
     ? e.pois[cat].distKm : null;
+  // Table + modal share one hospital POI: OSM `hospital` (nearby map pin) wins;
+  // fall back to curated `hospital_tier3` only when no OSM hospital is baked.
+  const hospitalPoi = (e) => {
+    if (!e || !e.pois) return null;
+    const h = e.pois.hospital;
+    if (h && h.distKm != null) return h;
+    const t = e.pois.hospital_tier3;
+    return (t && t.distKm != null) ? t : null;
+  };
+  const hospitalKmOf = (e) => { const p = hospitalPoi(e); return p ? p.distKm : null; };
 
   // Pull a [tmean,tmax,tmin,precip] month tuple (climate keys are stringified).
   const moOf = (cl, m) => cl ? (cl[m] || cl[String(m)] || null) : null;
@@ -322,7 +332,8 @@
       builtYear: e && e.builtYear != null ? e.builtYear : null,
       builtYearSrc: (e && e.builtYearSrc) || null,
       builtYearApprox: !!(e && e.builtYearApprox),
-      hospitalKm: poiKm(e, 'hospital'), trainKm: poiKm(e, 'train'),
+      hospitalKm: hospitalKmOf(e),
+      trainKm: poiKm(e, 'train'),
       airportKm: poiKm(e, 'airport'), metroKm: poiKm(e, 'metro'),
       // Prefer metro only when plausibly nearby (matches enrich _CAT_MAX_KM.metro ≈ 12km).
       transitKm: (() => {
@@ -1935,7 +1946,7 @@
       if (cat === 'community') {
         return `<div class="flex items-center gap-2"><span class="${tcx().body} truncate">${nearPoiSwatch(m)} <b>${m.label}</b> ${locName}</span></div>`;
       }
-      const p = pois[cat];
+      const p = cat === 'hospital' ? hospitalPoi(e) : pois[cat];
       if (!p) return `<div class="flex items-center gap-2 ${tcx().muted}">${nearPoiSwatch(m)}${m.label}: —</div>`;
       const dk = fmtKm(p.distKm);
       const tag = p.source === 'research' ? ` <span class="text-[10px] text-amber-500 dark:text-amber-400" title="${t('poiResearch')}">${t('poiResearch')}</span>` : '';
@@ -1959,7 +1970,7 @@
         L.circleMarker([e.lat, e.lng], nearPoiMarkerOpts(m)).addTo(lmNearMap).bindPopup(`${m.label}: ${locName}`);
         return;
       }
-      const p = pois[cat];
+      const p = cat === 'hospital' ? hospitalPoi(e) : pois[cat];
       if (p && p.lat != null && p.lng != null) {
         pts.push([p.lat, p.lng]);
         L.circleMarker([p.lat, p.lng], nearPoiMarkerOpts(m)).addTo(lmNearMap).bindPopup(`${m.label}: ${p.name || ''}${p.trainKind ? ' (' + (p.trainKind === 'highspeed' ? t('poiTrainHSR') : t('poiTrainRegular')) + ')' : ''}<br/>${fmtKm(p.distKm)}`);

@@ -1655,13 +1655,25 @@ def merge_hospital_tier3(con, findings, log, dry_run=False, max_km=_TIER3_MAX_KM
             rep["skipped"] += 1
             continue
         hlat, hlng = float(hlat), float(hlng)
+        name = f.get("hospital_name") or "三甲医院"
         dist = f.get("dist_km")
         dist = float(dist) if dist is not None else haversine(row["lat"], row["lng"], hlat, hlng)
+        osm = con.execute(
+            "SELECT name, lat, lng, dist_km FROM poi WHERE listing_id=? AND category='hospital'",
+            (lid,)).fetchone()
+        if osm and osm["lat"] is not None and osm["lng"] is not None:
+            osm_dist = (float(osm["dist_km"]) if osm["dist_km"] is not None
+                        else haversine(row["lat"], row["lng"], osm["lat"], osm["lng"]))
+            # Tier-3 coords that collapse onto the listing (or beat a nearer OSM pin) are bad geocodes.
+            if dist < _CAT_MIN_KM.get("hospital", 0.35) or osm_dist < dist:
+                hlat, hlng = float(osm["lat"]), float(osm["lng"])
+                dist = osm_dist
+                if osm["name"]:
+                    name = osm["name"]
         if dist > max_km:
             rep["rejected"] += 1
             log(f"  ! id{lid} reject tier3 {dist:.1f}km > {max_km}km")
             continue
-        name = f.get("hospital_name") or "三甲医院"
         if not dry_run:
             con.execute(
                 "INSERT OR REPLACE INTO poi (listing_id,category,name,lat,lng,dist_km,source,subtype) "

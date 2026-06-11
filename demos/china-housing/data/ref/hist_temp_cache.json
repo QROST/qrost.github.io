@@ -3245,5 +3245,103 @@
   "histTempStation": null,
   "histTempNote": "ERA5 再分析格点 1940–2023 日最高/日最低极值（≈25 km 网格，非气象站记录）（邻近格点复用）（邻近格点复用）",
   "histTempLevel": "区镇/街道"
+ },
+ "wiki-dist:瑞丽市": {
+  "histTempMax": 36.4,
+  "histTempMin": 1.4,
+  "histTempSrc": "wikipedia-weatherbox-monthly",
+  "histTempStation": "瑞丽市气象数据（1971年至2000年）",
+  "histTempNote": "维基百科气候数据模板（极端值多源自中国气象局国家站）",
+  "histTempWiki": "Template:瑞丽市气候数据",
+  "histTempLevel": "区镇/街道"
+ },
+ "云南|德宏州-瑞丽市|瑞丽市": {
+  "histTempMax": 36.4,
+  "histTempMin": 1.4,
+  "histTempSrc": "wikipedia-weatherbox-monthly",
+  "histTempStation": "瑞丽市气象数据（1971年至2000年）",
+  "histTempNote": "维基百科气候数据模板（极端值多源自中国气象局国家站）",
+  "histTempWiki": "Template:瑞丽市气候数据",
+  "histTempLevel": "区镇/街道"
+ },
+ "wiki-dist:阿尔山市区": null,
+ "era5:47.17,119.94": {
+  "histTempMax": 36.0,
+  "histTempMin": -43.4,
+  "histTempMaxDate": "2016-08-04",
+  "histTempMinDate": "2001-01-10",
+  "histTempSrc": "open-meteo-era5-1940-2023",
+  "histTempStation": null,
+  "histTempNote": "ERA5 再分析格点 1940–2023 日最高/日最低极值（≈25 km 网格，非气象站记录）"
+ },
+ "内蒙古|兴安盟-阿尔山市|阿尔山市区": {
+  "histTempMax": 36.0,
+  "histTempMin": -43.4,
+  "histTempMaxDate": "2016-08-04",
+  "histTempMinDate": "2001-01-10",
+  "histTempSrc": "open-meteo-era5-1940-2023",
+  "histTempStation": null,
+  "histTempNote": "ERA5 再分析格点 1940–2023 日最高/日最低极值（≈25 km 网格，非气象站记录）",
+  "histTempLevel": "区镇/街道"
+ },
+ "wiki-dist:大武口区": null,
+ "era5:39.02,106.36": {
+  "histTempMax": 40.9,
+  "histTempMin": -24.2,
+  "histTempMaxDate": "1944-07-14",
+  "histTempMinDate": "1949-01-03",
+  "histTempSrc": "open-meteo-era5-1940-2023",
+  "histTempStation": null,
+  "histTempNote": "ERA5 再分析格点 1940–2023 日最高/日最低极值（≈25 km 网格，非气象站记录）"
+ },
+ "宁夏|石嘴山市|大武口区": {
+  "histTempMax": 40.9,
+  "histTempMin": -24.2,
+  "histTempMaxDate": "1944-07-14",
+  "histTempMinDate": "1949-01-03",
+  "histTempSrc": "open-meteo-era5-1940-2023",
+  "histTempStation": null,
+  "histTempNote": "ERA5 再分析格点 1940–2023 日最高/日最低极值（≈25 km 网格，非气象站记录）",
+  "histTempLevel": "区镇/街道"
+ },
+ "wiki-dist:惠农区": null,
+ "era5:39.17,106.64": {
+  "histTempMax": 41.5,
+  "histTempMin": -23.8,
+  "histTempMaxDate": "1944-07-14",
+  "histTempMinDate": "1967-12-09",
+  "histTempSrc": "open-meteo-era5-1940-2023",
+  "histTempStation": null,
+  "histTempNote": "ERA5 再分析格点 1940–2023 日最高/日最低极值（≈25 km 网格，非气象站记录）"
+ },
+ "宁夏|石嘴山市|惠农区": {
+  "histTempMax": 41.5,
+  "histTempMin": -23.8,
+  "histTempMaxDate": "1944-07-14",
+  "histTempMinDate": "1967-12-09",
+  "histTempSrc": "open-meteo-era5-1940-2023",
+  "histTempStation": null,
+  "histTempNote": "ERA5 再分析格点 1940–2023 日最高/日最低极值（≈25 km 网格，非气象站记录）",
+  "histTempLevel": "区镇/街道"
+ },
+ "wiki-dist:市中区": null,
+ "era5:35.09,117.17": {
+  "histTempMax": 40.7,
+  "histTempMin": -23.7,
+  "histTempMaxDate": "1941-07-03",
+  "histTempMinDate": "1955-01-16",
+  "histTempSrc": "open-meteo-era5-1940-2023",
+  "histTempStation": null,
+  "histTempNote": "ERA5 再分析格点 1940–2023 日最高/日最低极值（≈25 km 网格，非气象站记录）"
+ },
+ "山东|枣庄市|市中区": {
+  "histTempMax": 40.7,
+  "histTempMin": -23.7,
+  "histTempMaxDate": "1941-07-03",
+  "histTempMinDate": "1955-01-16",
+  "histTempSrc": "open-meteo-era5-1940-2023",
+  "histTempStation": null,
+  "histTempNote": "ERA5 再分析格点 1940–2023 日最高/日最低极值（≈25 km 网格，非气象站记录）",
+  "histTempLevel": "区镇/街道"
  }
 }
