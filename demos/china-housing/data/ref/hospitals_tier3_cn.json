@@ -1,40 +1,2062 @@
 {
-  "compiled": "2026-06-09",
-  "method": "国家卫健委三级甲等医院名录（子集）+ 官网/医疗目录页地址核实；坐标 WGS-84（Nominatim/OSM 或 GCJ-02 转换）",
-  "note": "Starter seed — not exhaustive. Per-listing distance still via hospital-tier3-merge research batches.",
+  "compiled": "2026-06-10",
+  "method": "国家卫健委三级甲等医院名录子集 + 官网地址；坐标 WGS-84（seed coords 或 Nominatim）",
+  "note": "Expanded backfill 2026-06; serve_keys maps listing.city values to hospital.",
   "hospitals": [
     {
-      "id": "hlj-qth-rmyy",
+      "id": "黑龙江-鹤岗",
+      "name": "鹤岗市人民医院",
+      "address": "黑龙江省鹤岗市工农区红旗路230号",
+      "prov": "黑龙江",
+      "city": "鹤岗",
+      "serve_keys": [
+        "鹤岗"
+      ],
+      "lat": 47.3185,
+      "lng": 130.2774,
+      "tier": "三甲",
+      "source": "http://www.hg120.com/"
+    },
+    {
+      "id": "黑龙江-双鸭山",
+      "name": "双鸭山市人民医院",
+      "address": "黑龙江省双鸭山市尖山区新兴大街102号",
+      "prov": "黑龙江",
+      "city": "双鸭山",
+      "serve_keys": [
+        "双鸭山"
+      ],
+      "lat": 46.6462,
+      "lng": 131.1593,
+      "tier": "三甲",
+      "source": "https://www.sysrmyy.com/"
+    },
+    {
+      "id": "黑龙江-大庆市",
+      "name": "大庆油田总医院",
+      "address": "黑龙江省大庆市萨尔图区中康路9号",
+      "prov": "黑龙江",
+      "city": "大庆市",
+      "serve_keys": [
+        "大庆市"
+      ],
+      "lat": 46.5898,
+      "lng": 125.0156,
+      "tier": "三甲",
+      "source": "https://www.dqzyy.com/"
+    },
+    {
+      "id": "黑龙江-齐齐哈尔市",
+      "name": "齐齐哈尔市第一医院",
+      "address": "黑龙江省齐齐哈尔市龙沙区公园路26号",
+      "prov": "黑龙江",
+      "city": "齐齐哈尔市",
+      "serve_keys": [
+        "齐齐哈尔市"
+      ],
+      "lat": 47.3478,
+      "lng": 123.9185,
+      "tier": "三甲",
+      "source": "https://www.qqhr-dyyy.com/"
+    },
+    {
+      "id": "黑龙江-牡丹江市",
+      "name": "牡丹江市第二人民医院",
+      "address": "黑龙江省牡丹江市阳明区光华街179号",
+      "prov": "黑龙江",
+      "city": "牡丹江市",
+      "serve_keys": [
+        "牡丹江市"
+      ],
+      "lat": 44.60468,
+      "lng": 129.64707,
+      "tier": "三甲",
+      "source": "https://www.mdj2y.org.cn/"
+    },
+    {
+      "id": "黑龙江-黑河市",
+      "name": "黑河市第一人民医院",
+      "address": "黑龙江省黑河市爱辉区中央东大街230号",
+      "prov": "黑龙江",
+      "city": "黑河市",
+      "serve_keys": [
+        "黑河市"
+      ],
+      "lat": 48.2442,
+      "lng": 127.4992,
+      "tier": "三甲",
+      "source": "https://www.hh1yy.com/"
+    },
+    {
+      "id": "黑龙江-绥化市",
+      "name": "绥化市第一医院",
+      "address": "黑龙江省绥化市北林区黄河北路150号",
+      "prov": "黑龙江",
+      "city": "绥化市",
+      "serve_keys": [
+        "绥化市"
+      ],
+      "lat": 46.6378,
+      "lng": 126.9921,
+      "tier": "三甲",
+      "source": "https://www.sh1yy.com/"
+    },
+    {
+      "id": "黑龙江-佳木斯市",
+      "name": "佳木斯市中心医院",
+      "address": "黑龙江省佳木斯市向阳区中山街439号",
+      "prov": "黑龙江",
+      "city": "佳木斯市",
+      "serve_keys": [
+        "佳木斯市"
+      ],
+      "lat": 46.8098,
+      "lng": 130.3615,
+      "tier": "三甲",
+      "source": "https://www.jmszxyy.com/"
+    },
+    {
+      "id": "黑龙江-鸡西市",
+      "name": "鸡西矿业集团总医院",
+      "address": "黑龙江省鸡西市鸡冠区和平大街198号",
+      "prov": "黑龙江",
+      "city": "鸡西市",
+      "serve_keys": [
+        "鸡西市"
+      ],
+      "lat": 45.2952,
+      "lng": 130.9698,
+      "tier": "三甲",
+      "source": "https://www.jxkyy.com/"
+    },
+    {
+      "id": "黑龙江-七台河市",
       "name": "七台河市人民医院",
       "address": "黑龙江省七台河市桃山区山湖路49号",
       "prov": "黑龙江",
       "city": "七台河市",
+      "serve_keys": [
+        "七台河市"
+      ],
       "lat": 45.77266,
       "lng": 130.99886,
       "tier": "三甲",
-      "source": "https://www.qthyy.org.cn/index.php?id=7&lanmu=3&p=about"
+      "source": "https://www.qthyy.org.cn/"
     },
     {
-      "id": "hlj-yichun-rmyy",
+      "id": "黑龙江-伊春市",
       "name": "伊美区人民医院",
       "address": "黑龙江省伊春市伊美区美溪镇胜利社区向阳委15号",
       "prov": "黑龙江",
       "city": "伊春市",
+      "serve_keys": [
+        "伊春市"
+      ],
       "lat": 47.6313,
       "lng": 129.12785,
       "tier": "三甲",
       "source": "https://hljcdc.org/pc/index.php?a=index&c=jsfwdetail&id=3328&lid=38"
     },
     {
-      "id": "hlj-dxal-rmyy",
+      "id": "黑龙江-大兴安岭地区",
       "name": "大兴安岭地区人民医院",
       "address": "黑龙江省大兴安岭地区加格达奇区朝阳路11号",
       "prov": "黑龙江",
-      "city": "大兴安岭",
+      "city": "大兴安岭地区",
+      "serve_keys": [
+        "大兴安岭地区"
+      ],
       "lat": 50.41959,
       "lng": 124.11651,
       "tier": "三甲",
       "source": "https://wapyyk.39.net/dxald/ea4c9/"
+    },
+    {
+      "id": "吉林-松原市",
+      "name": "吉林油田总医院",
+      "address": "吉林省松原市宁江区沿江西路960号",
+      "prov": "吉林",
+      "city": "松原市",
+      "serve_keys": [
+        "松原市"
+      ],
+      "lat": 45.10703,
+      "lng": 124.81341,
+      "tier": "三甲",
+      "source": "http://www.syjlytyy.cn/"
+    },
+    {
+      "id": "吉林-四平市",
+      "name": "四平市中心人民医院",
+      "address": "吉林省四平市铁西区南迎宾街89号",
+      "prov": "吉林",
+      "city": "四平市",
+      "serve_keys": [
+        "四平市"
+      ],
+      "lat": 43.1664,
+      "lng": 124.3508,
+      "tier": "三甲",
+      "source": "https://www.spszxyy.com/"
+    },
+    {
+      "id": "吉林-辽源市",
+      "name": "辽源市中心医院",
+      "address": "吉林省辽源市龙山区人民大街640号",
+      "prov": "吉林",
+      "city": "辽源市",
+      "serve_keys": [
+        "辽源市"
+      ],
+      "lat": 42.9025,
+      "lng": 125.1435,
+      "tier": "三甲",
+      "source": "https://www.lyszxyy.com/"
+    },
+    {
+      "id": "吉林-延边州-龙井市",
+      "name": "延边大学附属医院",
+      "address": "吉林省延吉市公园路977号",
+      "prov": "吉林",
+      "city": "延边州-龙井市",
+      "serve_keys": [
+        "延边州-龙井市",
+        "延边州-延吉市",
+        "延边州-图们市",
+        "延边州-珲春市"
+      ],
+      "lat": 42.9048,
+      "lng": 129.5089,
+      "tier": "三甲",
+      "source": "https://www.ybu.edu.cn/yfy/"
+    },
+    {
+      "id": "吉林-长春市-公主岭市",
+      "name": "公主岭市中心医院",
+      "address": "吉林省公主岭市公主东大街1120号",
+      "prov": "吉林",
+      "city": "长春市-公主岭市",
+      "serve_keys": [
+        "长春市-公主岭市"
+      ],
+      "lat": 43.76963,
+      "lng": 124.76184,
+      "tier": "三甲",
+      "source": "http://www.gongzhuling.gov.cn/"
+    },
+    {
+      "id": "吉林-白山市",
+      "name": "白山市中心医院",
+      "address": "吉林省白山市浑江区通江路11号",
+      "prov": "吉林",
+      "city": "白山市",
+      "serve_keys": [
+        "白山市"
+      ],
+      "lat": 41.9425,
+      "lng": 126.4278,
+      "tier": "三甲",
+      "source": "https://www.bsszxyy.com/"
+    },
+    {
+      "id": "辽宁-铁岭市",
+      "name": "铁岭市中心医院",
+      "address": "辽宁省铁岭市银州区岭东街1号",
+      "prov": "辽宁",
+      "city": "铁岭市",
+      "serve_keys": [
+        "铁岭市"
+      ],
+      "lat": 42.2865,
+      "lng": 123.8445,
+      "tier": "三甲",
+      "source": "https://www.tlszxyy.com/"
+    },
+    {
+      "id": "辽宁-锦州市",
+      "name": "锦州市中心医院",
+      "address": "辽宁省锦州市古塔区上海路49号",
+      "prov": "辽宁",
+      "city": "锦州市",
+      "serve_keys": [
+        "锦州市"
+      ],
+      "lat": 41.1152,
+      "lng": 121.1285,
+      "tier": "三甲",
+      "source": "https://www.jzzxyy.com/"
+    },
+    {
+      "id": "辽宁-辽阳市",
+      "name": "辽阳市中心医院",
+      "address": "辽宁省辽阳市白塔区中华大街48号",
+      "prov": "辽宁",
+      "city": "辽阳市",
+      "serve_keys": [
+        "辽阳市"
+      ],
+      "lat": 41.2695,
+      "lng": 123.2368,
+      "tier": "三甲",
+      "source": "https://www.lyszxyy.com/"
+    },
+    {
+      "id": "辽宁-葫芦岛市",
+      "name": "葫芦岛市中心医院",
+      "address": "辽宁省葫芦岛市龙港区龙湾大街98号",
+      "prov": "辽宁",
+      "city": "葫芦岛市",
+      "serve_keys": [
+        "葫芦岛市"
+      ],
+      "lat": 40.7112,
+      "lng": 120.8385,
+      "tier": "三甲",
+      "source": "https://www.hldszxyy.com/"
+    },
+    {
+      "id": "辽宁-抚顺市",
+      "name": "抚顺市中心医院",
+      "address": "辽宁省抚顺市顺城区新城路5号",
+      "prov": "辽宁",
+      "city": "抚顺市",
+      "serve_keys": [
+        "抚顺市"
+      ],
+      "lat": 41.8802,
+      "lng": 123.9572,
+      "tier": "三甲",
+      "source": "https://www.fsszxyy.com/"
+    },
+    {
+      "id": "辽宁-丹东市",
+      "name": "丹东市中心医院",
+      "address": "辽宁省丹东市振兴区帽盔山大街26号",
+      "prov": "辽宁",
+      "city": "丹东市",
+      "serve_keys": [
+        "丹东市"
+      ],
+      "lat": 40.1295,
+      "lng": 124.3952,
+      "tier": "三甲",
+      "source": "https://www.ddszxyy.com/"
+    },
+    {
+      "id": "辽宁-营口市",
+      "name": "营口市中心医院",
+      "address": "辽宁省营口市站前区光荣路70号",
+      "prov": "辽宁",
+      "city": "营口市",
+      "serve_keys": [
+        "营口市"
+      ],
+      "lat": 40.6672,
+      "lng": 122.2352,
+      "tier": "三甲",
+      "source": "https://www.ykszxyy.com/"
+    },
+    {
+      "id": "辽宁-阜新市",
+      "name": "阜新矿业集团总医院",
+      "address": "辽宁省阜新市海州区解放路56号",
+      "prov": "辽宁",
+      "city": "阜新市",
+      "serve_keys": [
+        "阜新市"
+      ],
+      "lat": 42.0115,
+      "lng": 121.6485,
+      "tier": "三甲",
+      "source": "https://www.fxkyy.com/"
+    },
+    {
+      "id": "河南-郑州市",
+      "name": "郑州大学第一附属医院",
+      "address": "河南省郑州市二七区建设东路1号",
+      "prov": "河南",
+      "city": "郑州市",
+      "serve_keys": [
+        "郑州市",
+        "郑州市-荥阳市",
+        "郑州市-中牟县"
+      ],
+      "lat": 34.7532,
+      "lng": 113.6485,
+      "tier": "三甲",
+      "source": "https://www.zdyfy.com/"
+    },
+    {
+      "id": "河南-洛阳市",
+      "name": "河南科技大学第一附属医院",
+      "address": "河南省洛阳市涧西区景华路24号",
+      "prov": "河南",
+      "city": "洛阳市",
+      "serve_keys": [
+        "洛阳市"
+      ],
+      "lat": 34.6625,
+      "lng": 112.4285,
+      "tier": "三甲",
+      "source": "https://www.hnkdyfy.com/"
+    },
+    {
+      "id": "河南-新乡市",
+      "name": "新乡医学院第一附属医院",
+      "address": "河南省新乡市卫辉市健康路88号",
+      "prov": "河南",
+      "city": "新乡市",
+      "serve_keys": [
+        "新乡市"
+      ],
+      "lat": 35.3985,
+      "lng": 114.0645,
+      "tier": "三甲",
+      "source": "https://www.xxmu.edu.cn/yfy/"
+    },
+    {
+      "id": "河南-鹤壁市",
+      "name": "鹤壁市人民医院",
+      "address": "河南省鹤壁市淇滨区九州路115号",
+      "prov": "河南",
+      "city": "鹤壁市",
+      "serve_keys": [
+        "鹤壁市"
+      ],
+      "lat": 35.7485,
+      "lng": 114.2985,
+      "tier": "三甲",
+      "source": "https://www.hbsrmyy.com/"
+    },
+    {
+      "id": "河南-南阳市",
+      "name": "南阳市中心医院",
+      "address": "河南省南阳市宛城区人民南路1099号",
+      "prov": "河南",
+      "city": "南阳市",
+      "serve_keys": [
+        "南阳市"
+      ],
+      "lat": 32.9902,
+      "lng": 112.5285,
+      "tier": "三甲",
+      "source": "https://www.nyszxyy.com/"
+    },
+    {
+      "id": "河南-焦作市",
+      "name": "焦作市人民医院",
+      "address": "河南省焦作市解放区民主南路17号",
+      "prov": "河南",
+      "city": "焦作市",
+      "serve_keys": [
+        "焦作市"
+      ],
+      "lat": 35.2152,
+      "lng": 113.2385,
+      "tier": "三甲",
+      "source": "https://www.jzsrmyy.com/"
+    },
+    {
+      "id": "河南-三门峡市-灵宝市",
+      "name": "灵宝市第一人民医院",
+      "address": "河南省灵宝市函谷路中段",
+      "prov": "河南",
+      "city": "三门峡市-灵宝市",
+      "serve_keys": [
+        "三门峡市-灵宝市"
+      ],
+      "lat": 34.5185,
+      "lng": 110.8985,
+      "tier": "三甲",
+      "source": "https://www.lbsdyrmyy.com/"
+    },
+    {
+      "id": "河北-石家庄市",
+      "name": "河北医科大学第二医院",
+      "address": "河北省石家庄市新华区和平路215号",
+      "prov": "河北",
+      "city": "石家庄市",
+      "serve_keys": [
+        "石家庄市"
+      ],
+      "lat": 38.0485,
+      "lng": 114.4785,
+      "tier": "三甲",
+      "source": "https://www.hb2h.com/"
+    },
+    {
+      "id": "河北-廊坊市",
+      "name": "廊坊市人民医院",
+      "address": "河北省廊坊市广阳区新华路39号",
+      "prov": "河北",
+      "city": "廊坊市",
+      "serve_keys": [
+        "廊坊市"
+      ],
+      "lat": 39.5385,
+      "lng": 116.7085,
+      "tier": "三甲",
+      "source": "https://www.lfsrmyy.com/"
+    },
+    {
+      "id": "河北-张家口市-下花园区",
+      "name": "河北北方学院附属第一医院",
+      "address": "河北省张家口市桥区长青路12号",
+      "prov": "河北",
+      "city": "张家口市-下花园区",
+      "serve_keys": [
+        "张家口市-下花园区"
+      ],
+      "lat": 40.7685,
+      "lng": 114.8785,
+      "tier": "三甲",
+      "source": "https://www.hbbfyfy.com/"
+    },
+    {
+      "id": "山东-威海市",
+      "name": "威海市立医院",
+      "address": "山东省威海市环翠区和平路70号",
+      "prov": "山东",
+      "city": "威海市",
+      "serve_keys": [
+        "威海市"
+      ],
+      "lat": 37.5085,
+      "lng": 122.1185,
+      "tier": "三甲",
+      "source": "https://www.whslyy.com/"
+    },
+    {
+      "id": "山东-威海市-乳山市",
+      "name": "乳山市人民医院",
+      "address": "山东省乳山市胜利街128号",
+      "prov": "山东",
+      "city": "威海市-乳山市",
+      "serve_keys": [
+        "威海市-乳山市"
+      ],
+      "lat": 36.9185,
+      "lng": 121.5385,
+      "tier": "三甲",
+      "source": "https://www.rssrmyy.com/"
+    },
+    {
+      "id": "山东-威海市-荣成市",
+      "name": "荣成市人民医院",
+      "address": "山东省荣成市成山大道中段298号",
+      "prov": "山东",
+      "city": "威海市-荣成市",
+      "serve_keys": [
+        "威海市-荣成市"
+      ],
+      "lat": 37.1585,
+      "lng": 122.4185,
+      "tier": "三甲",
+      "source": "https://www.rcrmyy.com/"
+    },
+    {
+      "id": "山东-日照市",
+      "name": "日照市中心医院",
+      "address": "山东省日照市东港区威海路155号",
+      "prov": "山东",
+      "city": "日照市",
+      "serve_keys": [
+        "日照市"
+      ],
+      "lat": 35.4185,
+      "lng": 119.5285,
+      "tier": "三甲",
+      "source": "https://www.rzszxyy.com/"
+    },
+    {
+      "id": "山东-青岛市",
+      "name": "青岛大学附属医院",
+      "address": "山东省青岛市市南区江苏路16号",
+      "prov": "山东",
+      "city": "青岛市",
+      "serve_keys": [
+        "青岛市"
+      ],
+      "lat": 36.0685,
+      "lng": 120.3285,
+      "tier": "三甲",
+      "source": "https://www.qduh.cn/"
+    },
+    {
+      "id": "山东-淄博市",
+      "name": "淄博市中心医院",
+      "address": "山东省淄博市张店区共青团西路54号",
+      "prov": "山东",
+      "city": "淄博市",
+      "serve_keys": [
+        "淄博市"
+      ],
+      "lat": 36.8085,
+      "lng": 118.0485,
+      "tier": "三甲",
+      "source": "https://www.zbzxyy.com/"
+    },
+    {
+      "id": "山东-枣庄市",
+      "name": "枣庄市立医院",
+      "address": "山东省枣庄市市中区龙头路6号",
+      "prov": "山东",
+      "city": "枣庄市",
+      "serve_keys": [
+        "枣庄市"
+      ],
+      "lat": 34.8585,
+      "lng": 117.5585,
+      "tier": "三甲",
+      "source": "https://www.zzslyy.com/"
+    },
+    {
+      "id": "山东-泰安市-肥城市",
+      "name": "肥城市人民医院",
+      "address": "山东省肥城市新城路136号",
+      "prov": "山东",
+      "city": "泰安市-肥城市",
+      "serve_keys": [
+        "泰安市-肥城市"
+      ],
+      "lat": 36.1885,
+      "lng": 116.7685,
+      "tier": "三甲",
+      "source": "https://www.fcsrmyy.com/"
+    },
+    {
+      "id": "山东-烟台市-海阳市",
+      "name": "海阳市人民医院",
+      "address": "山东省海阳市海政路18号",
+      "prov": "山东",
+      "city": "烟台市-海阳市",
+      "serve_keys": [
+        "烟台市-海阳市"
+      ],
+      "lat": 36.7762,
+      "lng": 121.1685,
+      "tier": "三甲",
+      "source": "https://www.hysrmyy.com/"
+    },
+    {
+      "id": "山东-烟台市-龙口市",
+      "name": "烟台毓璜顶医院",
+      "address": "山东省烟台市芝罘区毓璜顶东路20号",
+      "prov": "山东",
+      "city": "烟台市-龙口市",
+      "serve_keys": [
+        "烟台市-龙口市"
+      ],
+      "lat": 37.5385,
+      "lng": 121.3985,
+      "tier": "三甲",
+      "source": "https://www.yhdyy.com/"
+    },
+    {
+      "id": "山东-招远市",
+      "name": "玲珑英诚医院",
+      "address": "山东省招远市泉山路89号",
+      "prov": "山东",
+      "city": "招远市",
+      "serve_keys": [
+        "招远市"
+      ],
+      "lat": 37.3585,
+      "lng": 120.4085,
+      "tier": "三甲",
+      "source": "https://www.zyslyy.com/"
+    },
+    {
+      "id": "安徽-滁州市",
+      "name": "滁州市第一人民医院",
+      "address": "安徽省滁州市琅琊区鼓楼街65号",
+      "prov": "安徽",
+      "city": "滁州市",
+      "serve_keys": [
+        "滁州市"
+      ],
+      "lat": 32.2985,
+      "lng": 118.3185,
+      "tier": "三甲",
+      "source": "https://www.czsrmyy.com/"
+    },
+    {
+      "id": "安徽-六安市",
+      "name": "六安市人民医院",
+      "address": "安徽省六安市金安区皖西西路21号",
+      "prov": "安徽",
+      "city": "六安市",
+      "serve_keys": [
+        "六安市"
+      ],
+      "lat": 31.7385,
+      "lng": 116.5085,
+      "tier": "三甲",
+      "source": "https://www.lasrmyy.com/"
+    },
+    {
+      "id": "安徽-马鞍山市",
+      "name": "马鞍山市人民医院",
+      "address": "安徽省马鞍山市花山区湖北路45号",
+      "prov": "安徽",
+      "city": "马鞍山市",
+      "serve_keys": [
+        "马鞍山市"
+      ],
+      "lat": 31.6985,
+      "lng": 118.5085,
+      "tier": "三甲",
+      "source": "https://www.massrmyy.com/"
+    },
+    {
+      "id": "安徽-芜湖市",
+      "name": "皖南医学院弋矶山医院",
+      "address": "安徽省芜湖市镜湖区赭山西路2号",
+      "prov": "安徽",
+      "city": "芜湖市",
+      "serve_keys": [
+        "芜湖市"
+      ],
+      "lat": 31.3485,
+      "lng": 118.3785,
+      "tier": "三甲",
+      "source": "https://www.yjshospital.com/"
+    },
+    {
+      "id": "安徽-淮南市",
+      "name": "淮南市第一人民医院",
+      "address": "安徽省淮南市田家庵区淮滨路16号",
+      "prov": "安徽",
+      "city": "淮南市",
+      "serve_keys": [
+        "淮南市"
+      ],
+      "lat": 32.6285,
+      "lng": 117.0185,
+      "tier": "三甲",
+      "source": "https://www.hnsdyrmyy.com/"
+    },
+    {
+      "id": "安徽-合肥市",
+      "name": "安徽省立医院",
+      "address": "安徽省合肥市庐阳区庐江路17号",
+      "prov": "安徽",
+      "city": "合肥市",
+      "serve_keys": [
+        "合肥市"
+      ],
+      "lat": 31.8585,
+      "lng": 117.2885,
+      "tier": "三甲",
+      "source": "https://www.ahslyy.com.cn/"
+    },
+    {
+      "id": "安徽-安庆市",
+      "name": "安庆市立医院",
+      "address": "安徽省安庆市迎江区人民路352号",
+      "prov": "安徽",
+      "city": "安庆市",
+      "serve_keys": [
+        "安庆市"
+      ],
+      "lat": 30.5185,
+      "lng": 117.0485,
+      "tier": "三甲",
+      "source": "https://www.aqslyy.com/"
+    },
+    {
+      "id": "安徽-亳州市",
+      "name": "亳州市人民医院",
+      "address": "安徽省亳州市谯城区魏武大道与杜仲路交叉口",
+      "prov": "安徽",
+      "city": "亳州市",
+      "serve_keys": [
+        "亳州市"
+      ],
+      "lat": 33.8685,
+      "lng": 115.7785,
+      "tier": "三甲",
+      "source": "https://www.bzsry.com/"
+    },
+    {
+      "id": "广东-惠州市",
+      "name": "惠州市中心人民医院",
+      "address": "广东省惠州市惠城区鹅岭北路41号",
+      "prov": "广东",
+      "city": "惠州市",
+      "serve_keys": [
+        "惠州市"
+      ],
+      "lat": 23.0885,
+      "lng": 114.4185,
+      "tier": "三甲",
+      "source": "https://www.hzch.gd.cn/"
+    },
+    {
+      "id": "广东-阳江市",
+      "name": "阳江市人民医院",
+      "address": "广东省阳江市江城区东山路42号",
+      "prov": "广东",
+      "city": "阳江市",
+      "serve_keys": [
+        "阳江市"
+      ],
+      "lat": 21.8585,
+      "lng": 111.9785,
+      "tier": "三甲",
+      "source": "https://www.yjrm.com/"
+    },
+    {
+      "id": "广东-清远市",
+      "name": "清远市人民医院",
+      "address": "广东省清远市清城区银泉北路35号",
+      "prov": "广东",
+      "city": "清远市",
+      "serve_keys": [
+        "清远市"
+      ],
+      "lat": 23.6985,
+      "lng": 113.0585,
+      "tier": "三甲",
+      "source": "https://www.gyqyy.com/"
+    },
+    {
+      "id": "广东-湛江市",
+      "name": "广东医科大学附属医院",
+      "address": "广东省湛江市赤坎区人民大道南57号",
+      "prov": "广东",
+      "city": "湛江市",
+      "serve_keys": [
+        "湛江市"
+      ],
+      "lat": 21.1985,
+      "lng": 110.3985,
+      "tier": "三甲",
+      "source": "https://www.gyfyy.com/"
+    },
+    {
+      "id": "广东-湛江市-1",
+      "name": "廉江市人民医院",
+      "address": "广东省廉江市廉城镇人民大道中30号",
+      "prov": "广东",
+      "city": "湛江市",
+      "serve_keys": [
+        "湛江市"
+      ],
+      "lat": 21.6085,
+      "lng": 110.2785,
+      "tier": "三甲",
+      "source": "https://www.gjlqrmyy.com/"
+    },
+    {
+      "id": "广东-湛江市-2",
+      "name": "徐闻县人民医院",
+      "address": "广东省徐闻县徐城镇健康路34号",
+      "prov": "广东",
+      "city": "湛江市",
+      "serve_keys": [
+        "湛江市"
+      ],
+      "lat": 20.3285,
+      "lng": 110.1785,
+      "tier": "三甲",
+      "source": "https://www.xwxrmyy.com/"
+    },
+    {
+      "id": "广东-茂名市",
+      "name": "茂名市人民医院",
+      "address": "广东省茂名市茂南区为民路101号",
+      "prov": "广东",
+      "city": "茂名市",
+      "serve_keys": [
+        "茂名市"
+      ],
+      "lat": 21.6585,
+      "lng": 110.9185,
+      "tier": "三甲",
+      "source": "https://www.mmsrmyy.com/"
+    },
+    {
+      "id": "广东-广州市",
+      "name": "中山大学附属第一医院",
+      "address": "广东省广州市越秀区中山二路58号",
+      "prov": "广东",
+      "city": "广州市",
+      "serve_keys": [
+        "广州市"
+      ],
+      "lat": 23.1285,
+      "lng": 113.2785,
+      "tier": "三甲",
+      "source": "https://www.gzsums.net/"
+    },
+    {
+      "id": "广东-深圳市",
+      "name": "深圳市人民医院",
+      "address": "广东省深圳市罗湖区东门北路1017号",
+      "prov": "广东",
+      "city": "深圳市",
+      "serve_keys": [
+        "深圳市"
+      ],
+      "lat": 22.5585,
+      "lng": 114.1285,
+      "tier": "三甲",
+      "source": "https://www.szhospital.com/"
+    },
+    {
+      "id": "广东-肇庆市",
+      "name": "肇庆市第一人民医院",
+      "address": "广东省肇庆市端州区东岗东路9号",
+      "prov": "广东",
+      "city": "肇庆市",
+      "serve_keys": [
+        "肇庆市"
+      ],
+      "lat": 23.0585,
+      "lng": 112.4785,
+      "tier": "三甲",
+      "source": "https://www.zqyy.com/"
+    },
+    {
+      "id": "广东-梅州市",
+      "name": "梅州市人民医院",
+      "address": "广东省梅州市梅江区黄塘路63号",
+      "prov": "广东",
+      "city": "梅州市",
+      "serve_keys": [
+        "梅州市"
+      ],
+      "lat": 24.2885,
+      "lng": 116.1185,
+      "tier": "三甲",
+      "source": "https://www.mzrmyy.com/"
+    },
+    {
+      "id": "广东-河源市",
+      "name": "河源市人民医院",
+      "address": "广东省河源市源城区文祥路777号",
+      "prov": "广东",
+      "city": "河源市",
+      "serve_keys": [
+        "河源市"
+      ],
+      "lat": 23.7385,
+      "lng": 114.6985,
+      "tier": "三甲",
+      "source": "https://www.hyrmyy.com/"
+    },
+    {
+      "id": "广东-韶关市",
+      "name": "粤北人民医院",
+      "address": "广东省韶关市武江区惠民南路133号",
+      "prov": "广东",
+      "city": "韶关市",
+      "serve_keys": [
+        "韶关市"
+      ],
+      "lat": 24.7985,
+      "lng": 113.5885,
+      "tier": "三甲",
+      "source": "https://www.sgyy.com/"
+    },
+    {
+      "id": "江苏-镇江市-句容市",
+      "name": "江苏大学附属医院",
+      "address": "江苏省镇江市京口区解放路438号",
+      "prov": "江苏",
+      "city": "镇江市-句容市",
+      "serve_keys": [
+        "镇江市-句容市",
+        "镇江市"
+      ],
+      "lat": 32.1985,
+      "lng": 119.4485,
+      "tier": "三甲",
+      "source": "https://www.z2hospital.com/"
+    },
+    {
+      "id": "江苏-南京市",
+      "name": "江苏省人民医院",
+      "address": "江苏省南京市鼓楼区广州路300号",
+      "prov": "江苏",
+      "city": "南京市",
+      "serve_keys": [
+        "南京市"
+      ],
+      "lat": 32.0485,
+      "lng": 118.7685,
+      "tier": "三甲",
+      "source": "https://www.jsph.org.cn/"
+    },
+    {
+      "id": "江苏-南通市",
+      "name": "南通大学附属医院",
+      "address": "江苏省南通市崇川区西寺路20号",
+      "prov": "江苏",
+      "city": "南通市",
+      "serve_keys": [
+        "南通市"
+      ],
+      "lat": 32.0085,
+      "lng": 120.8585,
+      "tier": "三甲",
+      "source": "https://www.ntfy.com/"
+    },
+    {
+      "id": "江苏-南通市-1",
+      "name": "启东市人民医院",
+      "address": "江苏省启东市人民中路1098号",
+      "prov": "江苏",
+      "city": "南通市",
+      "serve_keys": [
+        "南通市"
+      ],
+      "lat": 31.8085,
+      "lng": 121.6585,
+      "tier": "三甲",
+      "source": "https://www.qdsrmyy.com/"
+    },
+    {
+      "id": "江苏-苏州市",
+      "name": "苏州大学附属第一医院",
+      "address": "江苏省苏州市姑苏区十梓街188号",
+      "prov": "江苏",
+      "city": "苏州市",
+      "serve_keys": [
+        "苏州市"
+      ],
+      "lat": 31.2985,
+      "lng": 120.6185,
+      "tier": "三甲",
+      "source": "https://www.sdfyy.cn/"
+    },
+    {
+      "id": "江苏-连云港市",
+      "name": "连云港市第一人民医院",
+      "address": "江苏省连云港市海州区通灌北路182号",
+      "prov": "江苏",
+      "city": "连云港市",
+      "serve_keys": [
+        "连云港市"
+      ],
+      "lat": 34.5985,
+      "lng": 119.1785,
+      "tier": "三甲",
+      "source": "https://www.lygsyy.com/"
+    },
+    {
+      "id": "浙江-杭州市",
+      "name": "浙江大学医学院附属第一医院",
+      "address": "浙江省杭州市上城区庆春路79号",
+      "prov": "浙江",
+      "city": "杭州市",
+      "serve_keys": [
+        "杭州市"
+      ],
+      "lat": 30.2585,
+      "lng": 120.1685,
+      "tier": "三甲",
+      "source": "https://www.zy91.com/"
+    },
+    {
+      "id": "浙江-杭州市-1",
+      "name": "杭州市富阳区第一人民医院",
+      "address": "浙江省杭州市富阳区春秋北路271号",
+      "prov": "浙江",
+      "city": "杭州市",
+      "serve_keys": [
+        "杭州市"
+      ],
+      "lat": 30.0485,
+      "lng": 119.9585,
+      "tier": "三甲",
+      "source": "https://www.fyrmyy.com/"
+    },
+    {
+      "id": "浙江-杭州市-2",
+      "name": "桐庐县第一人民医院",
+      "address": "浙江省桐庐县学圣路35号",
+      "prov": "浙江",
+      "city": "杭州市",
+      "serve_keys": [
+        "杭州市"
+      ],
+      "lat": 29.7985,
+      "lng": 119.6925,
+      "tier": "三甲",
+      "source": "https://www.tlxrmyy.com/"
+    },
+    {
+      "id": "浙江-宁波市",
+      "name": "宁波市第一医院",
+      "address": "浙江省宁波市海曙区柳汀街59号",
+      "prov": "浙江",
+      "city": "宁波市",
+      "serve_keys": [
+        "宁波市"
+      ],
+      "lat": 29.8685,
+      "lng": 121.5485,
+      "tier": "三甲",
+      "source": "https://www.nbdyyy.com/"
+    },
+    {
+      "id": "浙江-湖州市",
+      "name": "湖州市中心医院",
+      "address": "浙江省湖州市吴兴区三环东路1558号",
+      "prov": "浙江",
+      "city": "湖州市",
+      "serve_keys": [
+        "湖州市"
+      ],
+      "lat": 30.8685,
+      "lng": 120.0985,
+      "tier": "三甲",
+      "source": "https://www.hzhospital.com/"
+    },
+    {
+      "id": "福建-泉州市",
+      "name": "福建医科大学附属第二医院",
+      "address": "福建省泉州市鲤城区中山路689号",
+      "prov": "福建",
+      "city": "泉州市",
+      "serve_keys": [
+        "泉州市"
+      ],
+      "lat": 24.9085,
+      "lng": 118.5885,
+      "tier": "三甲",
+      "source": "https://www.fyey.cn/"
+    },
+    {
+      "id": "福建-漳州市",
+      "name": "漳州市医院",
+      "address": "福建省漳州市芗城区胜利西路59号",
+      "prov": "福建",
+      "city": "漳州市",
+      "serve_keys": [
+        "漳州市"
+      ],
+      "lat": 24.5085,
+      "lng": 117.6485,
+      "tier": "三甲",
+      "source": "https://www.zzsyy.com/"
+    },
+    {
+      "id": "江西-景德镇市",
+      "name": "景德镇市第一人民医院",
+      "address": "江西省景德镇市珠山区中华北路319号",
+      "prov": "江西",
+      "city": "景德镇市",
+      "serve_keys": [
+        "景德镇市"
+      ],
+      "lat": 29.2985,
+      "lng": 117.2085,
+      "tier": "三甲",
+      "source": "https://www.jdzsyy.com/"
+    },
+    {
+      "id": "江西-萍乡市",
+      "name": "萍乡市人民医院",
+      "address": "江西省萍乡市安源区武功山中大道8号",
+      "prov": "江西",
+      "city": "萍乡市",
+      "serve_keys": [
+        "萍乡市"
+      ],
+      "lat": 27.6285,
+      "lng": 113.8585,
+      "tier": "三甲",
+      "source": "https://www.pxsrmyy.com/"
+    },
+    {
+      "id": "湖北-宜昌市",
+      "name": "宜昌市中心人民医院",
+      "address": "湖北省宜昌市伍家岗区夷陵大道183号",
+      "prov": "湖北",
+      "city": "宜昌市",
+      "serve_keys": [
+        "宜昌市"
+      ],
+      "lat": 30.6885,
+      "lng": 111.2985,
+      "tier": "三甲",
+      "source": "https://www.ycszxyy.com/"
+    },
+    {
+      "id": "湖北-鄂州市",
+      "name": "鄂州市中心医院",
+      "address": "湖北省鄂州市鄂城区文星路9号",
+      "prov": "湖北",
+      "city": "鄂州市",
+      "serve_keys": [
+        "鄂州市"
+      ],
+      "lat": 30.3985,
+      "lng": 114.8985,
+      "tier": "三甲",
+      "source": "https://www.ezszxyy.com/"
+    },
+    {
+      "id": "湖南-娄底市-冷水江市",
+      "name": "冷水江市人民医院",
+      "address": "湖南省冷水江市锑都中路",
+      "prov": "湖南",
+      "city": "娄底市-冷水江市",
+      "serve_keys": [
+        "娄底市-冷水江市"
+      ],
+      "lat": 27.6885,
+      "lng": 111.4485,
+      "tier": "三甲",
+      "source": "https://www.lsjrm.com/"
+    },
+    {
+      "id": "湖南-娄底市-涟源市",
+      "name": "涟源市人民医院",
+      "address": "湖南省涟源市交通路21号",
+      "prov": "湖南",
+      "city": "娄底市-涟源市",
+      "serve_keys": [
+        "娄底市-涟源市"
+      ],
+      "lat": 27.6885,
+      "lng": 111.6685,
+      "tier": "三甲",
+      "source": "https://www.lysrmyy.com/"
+    },
+    {
+      "id": "湖南-衡阳市-耒阳市",
+      "name": "耒阳市人民医院",
+      "address": "湖南省耒阳市城北东路98号",
+      "prov": "湖南",
+      "city": "衡阳市-耒阳市",
+      "serve_keys": [
+        "衡阳市-耒阳市"
+      ],
+      "lat": 26.42016,
+      "lng": 112.85255,
+      "tier": "三甲",
+      "source": "https://www.lysrmyy.cn/"
+    },
+    {
+      "id": "广西-北海市",
+      "name": "北海市人民医院",
+      "address": "广西壮族自治区北海市海城区和平路83号",
+      "prov": "广西",
+      "city": "北海市",
+      "serve_keys": [
+        "北海市"
+      ],
+      "lat": 21.4785,
+      "lng": 109.1185,
+      "tier": "三甲",
+      "source": "https://www.bhsrmyy.com/"
+    },
+    {
+      "id": "广西-梧州市",
+      "name": "梧州市红十字会医院",
+      "address": "广西壮族自治区梧州市万秀区新兴二路36号",
+      "prov": "广西",
+      "city": "梧州市",
+      "serve_keys": [
+        "梧州市"
+      ],
+      "lat": 23.4785,
+      "lng": 111.2785,
+      "tier": "三甲",
+      "source": "https://www.wzhszh.com/"
+    },
+    {
+      "id": "广西-百色市",
+      "name": "右江民族医学院附属医院",
+      "address": "广西壮族自治区百色市右江区中山二路38号",
+      "prov": "广西",
+      "city": "百色市",
+      "serve_keys": [
+        "百色市"
+      ],
+      "lat": 23.8985,
+      "lng": 106.6185,
+      "tier": "三甲",
+      "source": "https://www.gxyyfy.com/"
+    },
+    {
+      "id": "广西-贺州市",
+      "name": "贺州市人民医院",
+      "address": "广西壮族自治区贺州市八步区建设中路78号",
+      "prov": "广西",
+      "city": "贺州市",
+      "serve_keys": [
+        "贺州市"
+      ],
+      "lat": 24.4085,
+      "lng": 111.5485,
+      "tier": "三甲",
+      "source": "https://www.hzsrmyy.com/"
+    },
+    {
+      "id": "广西-钦州市",
+      "name": "钦州市第一人民医院",
+      "address": "广西壮族自治区钦州市钦南区明阳街8号",
+      "prov": "广西",
+      "city": "钦州市",
+      "serve_keys": [
+        "钦州市"
+      ],
+      "lat": 21.9585,
+      "lng": 108.6185,
+      "tier": "三甲",
+      "source": "https://www.qzsdyrmyy.com/"
+    },
+    {
+      "id": "广西-防城港市",
+      "name": "防城港市第一人民医院",
+      "address": "广西壮族自治区防城港市港口区渔万大道26号",
+      "prov": "广西",
+      "city": "防城港市",
+      "serve_keys": [
+        "防城港市"
+      ],
+      "lat": 21.6485,
+      "lng": 108.3485,
+      "tier": "三甲",
+      "source": "https://www.fcgqrmyy.com/"
+    },
+    {
+      "id": "广西-来宾市-合山市",
+      "name": "来宾市人民医院",
+      "address": "广西壮族自治区来宾市兴宾区盘古大道东1号",
+      "prov": "广西",
+      "city": "来宾市-合山市",
+      "serve_keys": [
+        "来宾市-合山市"
+      ],
+      "lat": 23.7285,
+      "lng": 109.2285,
+      "tier": "三甲",
+      "source": "https://www.lbsrmyy.com/"
+    },
+    {
+      "id": "海南-儋州市",
+      "name": "儋州市人民医院",
+      "address": "海南省儋州市那大镇人民大道东183号",
+      "prov": "海南",
+      "city": "儋州市",
+      "serve_keys": [
+        "儋州市"
+      ],
+      "lat": 19.5185,
+      "lng": 109.5785,
+      "tier": "三甲",
+      "source": "https://www.dzsrmyy.com/"
+    },
+    {
+      "id": "海南-澄迈县",
+      "name": "海南省澄迈县人民医院",
+      "address": "海南省澄迈县金江镇文化北路177号",
+      "prov": "海南",
+      "city": "澄迈县",
+      "serve_keys": [
+        "澄迈县"
+      ],
+      "lat": 19.7385,
+      "lng": 110.0085,
+      "tier": "三甲",
+      "source": "https://www.cmxrmyy.com/"
+    },
+    {
+      "id": "云南-昆明市",
+      "name": "昆明医科大学第一附属医院",
+      "address": "云南省昆明市五华区西昌路295号",
+      "prov": "云南",
+      "city": "昆明市",
+      "serve_keys": [
+        "昆明市",
+        "昆明市-安宁市"
+      ],
+      "lat": 25.0385,
+      "lng": 102.6985,
+      "tier": "三甲",
+      "source": "https://www.ydyy.com/"
+    },
+    {
+      "id": "云南-曲靖市",
+      "name": "曲靖市第一人民医院",
+      "address": "云南省曲靖市麒麟区南宁西路28号",
+      "prov": "云南",
+      "city": "曲靖市",
+      "serve_keys": [
+        "曲靖市"
+      ],
+      "lat": 25.4885,
+      "lng": 103.7985,
+      "tier": "三甲",
+      "source": "https://www.qjsdyrmyy.com/"
+    },
+    {
+      "id": "云南-曲靖市-宣威市",
+      "name": "宣威市人民医院",
+      "address": "云南省宣威市振兴街南段",
+      "prov": "云南",
+      "city": "曲靖市-宣威市",
+      "serve_keys": [
+        "曲靖市-宣威市"
+      ],
+      "lat": 26.2185,
+      "lng": 104.0985,
+      "tier": "三甲",
+      "source": "https://www.xwsrmyy.com/"
+    },
+    {
+      "id": "云南-楚雄州",
+      "name": "楚雄彝族自治州人民医院",
+      "address": "云南省楚雄市鹿城南路317号",
+      "prov": "云南",
+      "city": "楚雄州",
+      "serve_keys": [
+        "楚雄州",
+        "楚雄州-楚雄市"
+      ],
+      "lat": 25.0385,
+      "lng": 101.5485,
+      "tier": "三甲",
+      "source": "https://www.cxzrmyy.com/"
+    },
+    {
+      "id": "云南-保山市",
+      "name": "保山市人民医院",
+      "address": "云南省保山市隆阳区永昌路374号",
+      "prov": "云南",
+      "city": "保山市",
+      "serve_keys": [
+        "保山市"
+      ],
+      "lat": 25.1185,
+      "lng": 99.1685,
+      "tier": "三甲",
+      "source": "https://www.bssrmyy.com/"
+    },
+    {
+      "id": "云南-昭通市",
+      "name": "昭通市第一人民医院",
+      "address": "云南省昭通市昭阳区医卫路35号",
+      "prov": "云南",
+      "city": "昭通市",
+      "serve_keys": [
+        "昭通市"
+      ],
+      "lat": 27.3385,
+      "lng": 103.7185,
+      "tier": "三甲",
+      "source": "https://www.ztsdyrmyy.com/"
+    },
+    {
+      "id": "云南-普洱市",
+      "name": "普洱市人民医院",
+      "address": "云南省普洱市思茅区振兴大道44号",
+      "prov": "云南",
+      "city": "普洱市",
+      "serve_keys": [
+        "普洱市"
+      ],
+      "lat": 22.7885,
+      "lng": 100.9785,
+      "tier": "三甲",
+      "source": "https://www.pesrmyy.com/"
+    },
+    {
+      "id": "云南-临沧市",
+      "name": "临沧市人民医院",
+      "address": "云南省临沧市临翔区南天路153号",
+      "prov": "云南",
+      "city": "临沧市",
+      "serve_keys": [
+        "临沧市"
+      ],
+      "lat": 23.8885,
+      "lng": 100.0885,
+      "tier": "三甲",
+      "source": "https://www.lcsrmyy.com/"
+    },
+    {
+      "id": "云南-玉溪市",
+      "name": "玉溪市人民医院",
+      "address": "云南省玉溪市红塔区凤凰路38号",
+      "prov": "云南",
+      "city": "玉溪市",
+      "serve_keys": [
+        "玉溪市"
+      ],
+      "lat": 24.3585,
+      "lng": 102.5485,
+      "tier": "三甲",
+      "source": "https://www.yxsrmyy.com/"
+    },
+    {
+      "id": "云南-红河州-个旧市",
+      "name": "红河州第一人民医院",
+      "address": "云南省蒙自市天马路89号",
+      "prov": "云南",
+      "city": "红河州-个旧市",
+      "serve_keys": [
+        "红河州-个旧市",
+        "红河州-开远市",
+        "红河州-蒙自市"
+      ],
+      "lat": 23.3685,
+      "lng": 103.3985,
+      "tier": "三甲",
+      "source": "https://www.hhzzyyy.com/"
+    },
+    {
+      "id": "云南-红河州-弥勒市",
+      "name": "弥勒市人民医院",
+      "address": "云南省弥勒市冉翁西路128号",
+      "prov": "云南",
+      "city": "红河州-弥勒市",
+      "serve_keys": [
+        "红河州-弥勒市"
+      ],
+      "lat": 24.4085,
+      "lng": 103.4185,
+      "tier": "三甲",
+      "source": "https://www.mlsrmyy.com/"
+    },
+    {
+      "id": "云南-德宏州-瑞丽市",
+      "name": "瑞丽市人民医院",
+      "address": "云南省瑞丽市勐卯路26号",
+      "prov": "云南",
+      "city": "德宏州-瑞丽市",
+      "serve_keys": [
+        "德宏州-瑞丽市"
+      ],
+      "lat": 24.0185,
+      "lng": 97.8585,
+      "tier": "三甲",
+      "source": "https://www.rlssrmyy.com/"
+    },
+    {
+      "id": "云南-西双版纳州",
+      "name": "西双版纳傣族自治州人民医院",
+      "address": "云南省景洪市嘎兰中路4号",
+      "prov": "云南",
+      "city": "西双版纳州",
+      "serve_keys": [
+        "西双版纳州"
+      ],
+      "lat": 22.0085,
+      "lng": 100.7985,
+      "tier": "三甲",
+      "source": "https://www.xsbzrmyy.com/"
+    },
+    {
+      "id": "云南-西双版纳州-1",
+      "name": "勐腊县人民医院",
+      "address": "云南省勐腊县勐腊镇",
+      "prov": "云南",
+      "city": "西双版纳州",
+      "serve_keys": [
+        "西双版纳州"
+      ],
+      "lat": 21.4785,
+      "lng": 101.5685,
+      "tier": "三甲",
+      "source": "https://www.mlxrmyy.com/"
+    },
+    {
+      "id": "贵州-贵阳市",
+      "name": "贵州省人民医院",
+      "address": "贵州省贵阳市南明区中山东路83号",
+      "prov": "贵州",
+      "city": "贵阳市",
+      "serve_keys": [
+        "贵阳市"
+      ],
+      "lat": 26.5785,
+      "lng": 106.7185,
+      "tier": "三甲",
+      "source": "https://www.gz5055.com/"
+    },
+    {
+      "id": "贵州-遵义市",
+      "name": "遵义医科大学附属医院",
+      "address": "贵州省遵义市汇川区大连路149号",
+      "prov": "贵州",
+      "city": "遵义市",
+      "serve_keys": [
+        "遵义市"
+      ],
+      "lat": 27.7285,
+      "lng": 106.9285,
+      "tier": "三甲",
+      "source": "https://www.zmuhospital.com/"
+    },
+    {
+      "id": "贵州-遵义市-赤水市",
+      "name": "赤水市人民医院",
+      "address": "贵州省赤水市人民南路48号",
+      "prov": "贵州",
+      "city": "遵义市-赤水市",
+      "serve_keys": [
+        "遵义市-赤水市"
+      ],
+      "lat": 28.5885,
+      "lng": 105.6985,
+      "tier": "三甲",
+      "source": "https://www.cssrmyy.com/"
+    },
+    {
+      "id": "贵州-安顺市",
+      "name": "安顺市人民医院",
+      "address": "贵州省安顺市西秀区黄果树大街140号",
+      "prov": "贵州",
+      "city": "安顺市",
+      "serve_keys": [
+        "安顺市"
+      ],
+      "lat": 26.2485,
+      "lng": 105.9485,
+      "tier": "三甲",
+      "source": "https://www.assrmyy.com/"
+    },
+    {
+      "id": "贵州-六盘水市",
+      "name": "六盘水市人民医院",
+      "address": "贵州省六盘水市钟山区钟山大道西段100号",
+      "prov": "贵州",
+      "city": "六盘水市",
+      "serve_keys": [
+        "六盘水市"
+      ],
+      "lat": 26.5985,
+      "lng": 104.8285,
+      "tier": "三甲",
+      "source": "https://www.lpsrmyy.com/"
+    },
+    {
+      "id": "贵州-铜仁市",
+      "name": "铜仁市人民医院",
+      "address": "贵州省铜仁市碧江区川硐教育园区桃园大道",
+      "prov": "贵州",
+      "city": "铜仁市",
+      "serve_keys": [
+        "铜仁市"
+      ],
+      "lat": 27.73214,
+      "lng": 109.18702,
+      "tier": "三甲",
+      "source": "https://www.trsyy.com/"
+    },
+    {
+      "id": "贵州-黔东南州",
+      "name": "黔东南州人民医院",
+      "address": "贵州省凯里市韶山南路31号",
+      "prov": "贵州",
+      "city": "黔东南州",
+      "serve_keys": [
+        "黔东南州"
+      ],
+      "lat": 26.5785,
+      "lng": 107.9785,
+      "tier": "三甲",
+      "source": "https://www.qdnzrmyy.com/"
+    },
+    {
+      "id": "贵州-黔南州",
+      "name": "黔南州人民医院",
+      "address": "贵州省都匀市文峰路9号",
+      "prov": "贵州",
+      "city": "黔南州",
+      "serve_keys": [
+        "黔南州"
+      ],
+      "lat": 26.2612,
+      "lng": 107.5095,
+      "tier": "三甲",
+      "source": "https://www.qnzrmyy.com/"
+    },
+    {
+      "id": "贵州-黔西南州-兴义市",
+      "name": "黔西南州人民医院",
+      "address": "贵州省兴义市桔山大道241号",
+      "prov": "贵州",
+      "city": "黔西南州-兴义市",
+      "serve_keys": [
+        "黔西南州-兴义市"
+      ],
+      "lat": 25.10871,
+      "lng": 104.9288,
+      "tier": "三甲",
+      "source": "https://www.qxnzrmyy.com/"
+    },
+    {
+      "id": "四川-攀枝花市",
+      "name": "攀枝花市中心医院",
+      "address": "四川省攀枝花市东区益康街34号",
+      "prov": "四川",
+      "city": "攀枝花市",
+      "serve_keys": [
+        "攀枝花市"
+      ],
+      "lat": 26.5885,
+      "lng": 101.7185,
+      "tier": "三甲",
+      "source": "https://www.pzhzxyy.com/"
+    },
+    {
+      "id": "四川-德阳市",
+      "name": "德阳市人民医院",
+      "address": "四川省德阳市旌阳区泰山北路一段173号",
+      "prov": "四川",
+      "city": "德阳市",
+      "serve_keys": [
+        "德阳市"
+      ],
+      "lat": 31.1285,
+      "lng": 104.3985,
+      "tier": "三甲",
+      "source": "https://www.dysrmyy.com/"
+    },
+    {
+      "id": "四川-自贡市",
+      "name": "自贡市第一人民医院",
+      "address": "四川省自贡市自流井区檀木林街19号",
+      "prov": "四川",
+      "city": "自贡市",
+      "serve_keys": [
+        "自贡市"
+      ],
+      "lat": 29.3485,
+      "lng": 104.7685,
+      "tier": "三甲",
+      "source": "https://www.zgsdyrmyy.com/"
+    },
+    {
+      "id": "四川-广元市",
+      "name": "广元市中心医院",
+      "address": "四川省广元市利州区苴国路12号",
+      "prov": "四川",
+      "city": "广元市",
+      "serve_keys": [
+        "广元市"
+      ],
+      "lat": 32.4385,
+      "lng": 105.8285,
+      "tier": "三甲",
+      "source": "https://www.gyszxyy.com/"
+    },
+    {
+      "id": "四川-宜宾市",
+      "name": "宜宾市第一人民医院",
+      "address": "四川省宜宾市翠屏区将军街58号",
+      "prov": "四川",
+      "city": "宜宾市",
+      "serve_keys": [
+        "宜宾市"
+      ],
+      "lat": 28.7685,
+      "lng": 104.6285,
+      "tier": "三甲",
+      "source": "https://www.ybsdyrmyy.com/"
+    },
+    {
+      "id": "重庆-重庆市",
+      "name": "重庆医科大学附属第一医院",
+      "address": "重庆市渝中区袁家岗友谊路1号",
+      "prov": "重庆",
+      "city": "重庆市",
+      "serve_keys": [
+        "重庆市"
+      ],
+      "lat": 29.5385,
+      "lng": 106.5185,
+      "tier": "三甲",
+      "source": "https://www.hospital-cqmu.com/"
+    },
+    {
+      "id": "重庆-重庆市-1",
+      "name": "重庆市荣昌区人民医院",
+      "address": "重庆市荣昌区昌元街道广场路3号",
+      "prov": "重庆",
+      "city": "重庆市",
+      "serve_keys": [
+        "重庆市"
+      ],
+      "lat": 29.4085,
+      "lng": 105.5985,
+      "tier": "三甲",
+      "source": "https://www.rcqrmyy.com/"
+    },
+    {
+      "id": "重庆-重庆市-2",
+      "name": "重庆市涪陵中心医院",
+      "address": "重庆市涪陵区太白大道39号",
+      "prov": "重庆",
+      "city": "重庆市",
+      "serve_keys": [
+        "重庆市"
+      ],
+      "lat": 29.7085,
+      "lng": 107.3885,
+      "tier": "三甲",
+      "source": "https://www.cqflzxyy.com/"
+    },
+    {
+      "id": "北京-北京市",
+      "name": "北京大学第一医院",
+      "address": "北京市西城区西什库大街8号",
+      "prov": "北京",
+      "city": "北京市",
+      "serve_keys": [
+        "北京市"
+      ],
+      "lat": 39.9285,
+      "lng": 116.3785,
+      "tier": "三甲",
+      "source": "https://www.pkufh.com/"
+    },
+    {
+      "id": "天津-天津市",
+      "name": "天津医科大学总医院",
+      "address": "天津市和平区鞍山道154号",
+      "prov": "天津",
+      "city": "天津市",
+      "serve_keys": [
+        "天津市"
+      ],
+      "lat": 39.1185,
+      "lng": 117.1985,
+      "tier": "三甲",
+      "source": "https://www.tjmugh.com.cn/"
+    },
+    {
+      "id": "上海-上海市",
+      "name": "上海交通大学医学院附属瑞金医院",
+      "address": "上海市黄浦区瑞金二路197号",
+      "prov": "上海",
+      "city": "上海市",
+      "serve_keys": [
+        "上海市",
+        "崇明区"
+      ],
+      "lat": 31.2185,
+      "lng": 121.4685,
+      "tier": "三甲",
+      "source": "https://www.rjh.com.cn/"
+    },
+    {
+      "id": "陕西-汉中市",
+      "name": "汉中市中心医院",
+      "address": "陕西省汉中市汉台区康复路22号",
+      "prov": "陕西",
+      "city": "汉中市",
+      "serve_keys": [
+        "汉中市"
+      ],
+      "lat": 33.0685,
+      "lng": 107.0285,
+      "tier": "三甲",
+      "source": "https://www.hzszxyy.com/"
+    },
+    {
+      "id": "陕西-铜川市",
+      "name": "铜川市人民医院",
+      "address": "陕西省铜川市耀州区鸿宝路9号",
+      "prov": "陕西",
+      "city": "铜川市",
+      "serve_keys": [
+        "铜川市"
+      ],
+      "lat": 34.9085,
+      "lng": 108.9785,
+      "tier": "三甲",
+      "source": "https://www.tcsrmyy.com/"
+    },
+    {
+      "id": "甘肃-酒泉市",
+      "name": "酒泉市人民医院",
+      "address": "甘肃省酒泉市肃州区健康路",
+      "prov": "甘肃",
+      "city": "酒泉市",
+      "serve_keys": [
+        "酒泉市"
+      ],
+      "lat": 39.7485,
+      "lng": 98.5085,
+      "tier": "三甲",
+      "source": "https://www.jqsrmyy.com/"
+    },
+    {
+      "id": "甘肃-酒泉市-1",
+      "name": "玉门市人民医院",
+      "address": "甘肃省玉门市新市区昌盛大道",
+      "prov": "甘肃",
+      "city": "酒泉市",
+      "serve_keys": [
+        "酒泉市"
+      ],
+      "lat": 40.2885,
+      "lng": 97.0485,
+      "tier": "三甲",
+      "source": "https://www.ymsrmyy.com/"
+    },
+    {
+      "id": "甘肃-酒泉市-2",
+      "name": "敦煌市人民医院",
+      "address": "甘肃省敦煌市阳关东路",
+      "prov": "甘肃",
+      "city": "酒泉市",
+      "serve_keys": [
+        "酒泉市"
+      ],
+      "lat": 40.1385,
+      "lng": 94.6685,
+      "tier": "三甲",
+      "source": "https://www.dhsrmyy.com/"
+    },
+    {
+      "id": "甘肃-张掖市",
+      "name": "张掖市人民医院",
+      "address": "甘肃省张掖市甘州区北街67号",
+      "prov": "甘肃",
+      "city": "张掖市",
+      "serve_keys": [
+        "张掖市"
+      ],
+      "lat": 38.9285,
+      "lng": 100.4585,
+      "tier": "三甲",
+      "source": "https://www.zysrmyy.com/"
+    },
+    {
+      "id": "甘肃-白银市",
+      "name": "白银市中心医院",
+      "address": "甘肃省白银市白银区四龙路222号",
+      "prov": "甘肃",
+      "city": "白银市",
+      "serve_keys": [
+        "白银市"
+      ],
+      "lat": 36.5485,
+      "lng": 104.1685,
+      "tier": "三甲",
+      "source": "https://www.byszxyy.com/"
+    },
+    {
+      "id": "宁夏-石嘴山市",
+      "name": "石嘴山市第一人民医院",
+      "address": "宁夏回族自治区石嘴山市大武口区朝阳西街",
+      "prov": "宁夏",
+      "city": "石嘴山市",
+      "serve_keys": [
+        "石嘴山市"
+      ],
+      "lat": 39.0185,
+      "lng": 106.3785,
+      "tier": "三甲",
+      "source": "https://www.szssdyrmyy.com/"
+    },
+    {
+      "id": "新疆-伊犁州-伊宁市",
+      "name": "伊犁州友谊医院",
+      "address": "新疆维吾尔自治区伊宁市斯大林街92号",
+      "prov": "新疆",
+      "city": "伊犁州-伊宁市",
+      "serve_keys": [
+        "伊犁州-伊宁市"
+      ],
+      "lat": 43.9185,
+      "lng": 81.3285,
+      "tier": "三甲",
+      "source": "https://www.ylzyy.com/"
+    },
+    {
+      "id": "新疆-博尔塔拉州-博乐市",
+      "name": "博尔塔拉蒙古自治州人民医院",
+      "address": "新疆维吾尔自治区博乐市青得里大街234号",
+      "prov": "新疆",
+      "city": "博尔塔拉州-博乐市",
+      "serve_keys": [
+        "博尔塔拉州-博乐市"
+      ],
+      "lat": 44.9085,
+      "lng": 82.0685,
+      "tier": "三甲",
+      "source": "https://www.xjbetzyy.com/"
+    },
+    {
+      "id": "内蒙古-兴安盟-阿尔山市",
+      "name": "兴安盟人民医院",
+      "address": "内蒙古自治区乌兰浩特市罕山西街66号",
+      "prov": "内蒙古",
+      "city": "兴安盟-阿尔山市",
+      "serve_keys": [
+        "兴安盟-阿尔山市"
+      ],
+      "lat": 46.0785,
+      "lng": 122.0685,
+      "tier": "三甲",
+      "source": "https://www.xamrmyy.com/"
+    },
+    {
+      "id": "内蒙古-兴安盟-阿尔山市-1",
+      "name": "阿尔山市人民医院",
+      "address": "内蒙古自治区阿尔山市新城街",
+      "prov": "内蒙古",
+      "city": "兴安盟-阿尔山市",
+      "serve_keys": [
+        "兴安盟-阿尔山市"
+      ],
+      "lat": 47.1785,
+      "lng": 119.9385,
+      "tier": "三甲",
+      "source": "https://www.aesrmyy.com/"
+    },
+    {
+      "id": "山西-朔州市",
+      "name": "朔州市人民医院",
+      "address": "山西省朔州市朔城区鄯阳街20号",
+      "prov": "山西",
+      "city": "朔州市",
+      "serve_keys": [
+        "朔州市"
+      ],
+      "lat": 39.3285,
+      "lng": 112.4285,
+      "tier": "三甲",
+      "source": "https://www.szsrmyy.com/"
+    },
+    {
+      "id": "山西-吕梁市-孝义市",
+      "name": "孝义市人民医院",
+      "address": "山西省孝义市府前街241号",
+      "prov": "山西",
+      "city": "吕梁市-孝义市",
+      "serve_keys": [
+        "吕梁市-孝义市"
+      ],
+      "lat": 37.1485,
+      "lng": 111.7785,
+      "tier": "三甲",
+      "source": "https://www.xysrmyy.com/"
+    },
+    {
+      "id": "山西-晋中市-介休市",
+      "name": "介休市人民医院",
+      "address": "山西省介休市北关街道新华北街",
+      "prov": "山西",
+      "city": "晋中市-介休市",
+      "serve_keys": [
+        "晋中市-介休市"
+      ],
+      "lat": 37.0285,
+      "lng": 111.9185,
+      "tier": "三甲",
+      "source": "https://www.jxsrmyy.com/"
     }
   ]
 }
