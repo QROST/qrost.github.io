@@ -714,6 +714,202 @@
       ]
     },
     {
+      "id": "pangus-ims-mes",
+      "name_zh": "盘古 IMS MES",
+      "name_en": "Pangus IMS MES",
+      "vendor_id": "pangus",
+      "category_l1": "生产制造",
+      "category_l2": "MES",
+      "product_type": "mes",
+      "origin": "domestic",
+      "kernel": "自主",
+      "maturity": "high",
+      "localization_depth": "core",
+      "strengths_zh": [
+        "IMS OS 工软底座",
+        "PCB/电子行业套件",
+        "2000+ 数智化车间"
+      ],
+      "strengths_en": [
+        "IMS OS platform",
+        "PCB/electronics suites",
+        "2000+ digital workshops"
+      ],
+      "limitations_zh": [
+        "通用离散行业需二次开发",
+        "品牌弱于国际 MES"
+      ],
+      "limitations_en": [
+        "General discrete needs customization",
+        "Weaker brand vs international MES"
+      ],
+      "industries": [
+        "PCB",
+        "电子",
+        "装备制造"
+      ],
+      "pricing": "high",
+      "confidence": 0.83,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.pangus-ims.com/",
+          "title": "Pangus IMS",
+          "accessed": "2026-06"
+        }
+      ],
+      "international_benchmarks": [
+        "siemens-opcenter",
+        "blacklake-mes"
+      ]
+    },
+    {
+      "id": "orbitmes-orbit-mes",
+      "name_zh": "华磊 OrBit-MES",
+      "name_en": "OrBit OrBit-MES",
+      "vendor_id": "orbitmes",
+      "category_l1": "生产制造",
+      "category_l2": "MES",
+      "product_type": "mes",
+      "origin": "domestic",
+      "kernel": "自主",
+      "maturity": "high",
+      "localization_depth": "core",
+      "strengths_zh": [
+        "注塑/冲压深度适配",
+        "海天震雄机联网",
+        "模具寿命与 OEE"
+      ],
+      "strengths_en": [
+        "Injection/stamping depth",
+        "Haitian/Chen Hsong connectivity",
+        "Mold life and OEE"
+      ],
+      "limitations_zh": [
+        "跨行业扩展需套件",
+        "国际化弱"
+      ],
+      "limitations_en": [
+        "Cross-industry via suites",
+        "Weak internationalization"
+      ],
+      "industries": [
+        "注塑",
+        "冲压",
+        "电子"
+      ],
+      "pricing": "mid",
+      "confidence": 0.78,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.orbitmes.com/Solutions/Plastic.html",
+          "title": "OrBit Plastic MES",
+          "accessed": "2026-06"
+        }
+      ],
+      "international_benchmarks": [
+        "morewis-n2-mes"
+      ]
+    },
+    {
+      "id": "moldbao-moducloud-mes",
+      "name_zh": "模德宝 模云 MES",
+      "name_en": "Moldbao ModuCloud MES",
+      "vendor_id": "moldbao",
+      "category_l1": "生产制造",
+      "category_l2": "MES",
+      "product_type": "mes",
+      "origin": "domestic",
+      "kernel": "自主",
+      "maturity": "high",
+      "localization_depth": "core",
+      "strengths_zh": [
+        "模具全周期 MES",
+        "注塑 SaaS 快部署",
+        "MFMS 柔性自动化"
+      ],
+      "strengths_en": [
+        "Mold lifecycle MES",
+        "Injection SaaS fast deploy",
+        "MFMS flexible automation"
+      ],
+      "limitations_zh": [
+        "行业聚焦模具注塑",
+        "平台化弱于黑湖"
+      ],
+      "limitations_en": [
+        "Mold/injection focus",
+        "Weaker platform vs Blacklake"
+      ],
+      "industries": [
+        "模具",
+        "注塑",
+        "医疗器械"
+      ],
+      "pricing": "mid",
+      "confidence": 0.8,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.moldbao.com/mes_system/index.html",
+          "title": "Moldbao MES",
+          "accessed": "2026-06"
+        }
+      ],
+      "international_benchmarks": [
+        "blacklake-mes"
+      ]
+    },
+    {
+      "id": "yfway-fdm20",
+      "name_zh": "圆方 FDM20 智能制造",
+      "name_en": "YFway FDM20",
+      "vendor_id": "yfway",
+      "category_l1": "生产制造",
+      "category_l2": "MES",
+      "product_type": "mes",
+      "origin": "domestic",
+      "kernel": "自主",
+      "maturity": "high",
+      "localization_depth": "core",
+      "strengths_zh": [
+        "审拆单+APS+MES 一体",
+        "尚品宅配实践验证",
+        "WMS 协同"
+      ],
+      "strengths_en": [
+        "Review/split+APS+MES",
+        "Shangpin practice proven",
+        "WMS synergy"
+      ],
+      "limitations_zh": [
+        "家居行业绑定",
+        "对外中立性弱"
+      ],
+      "limitations_en": [
+        "Furniture-tied",
+        "Weak neutrality for outsiders"
+      ],
+      "industries": [
+        "家具",
+        "全屋定制"
+      ],
+      "pricing": "high",
+      "confidence": 0.82,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.yfway.com/home",
+          "title": "YFway FDM",
+          "accessed": "2026-06"
+        }
+      ],
+      "international_benchmarks": [
+        "blacklake-mes"
+      ]
+    },
+    {
       "id": "dassault-delmia",
       "name_zh": "DELMIA",
       "name_en": "DELMIA",

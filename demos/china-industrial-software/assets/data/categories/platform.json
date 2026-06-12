@@ -679,6 +679,211 @@
       "product_type": "iiot_platform"
     },
     {
+      "id": "neucloud-neuseer-iiot",
+      "name_zh": "寄云 NeuSeer IIoT",
+      "name_en": "NeuCloud NeuSeer IIoT",
+      "vendor_id": "neucloud",
+      "category_l1": "基础平台",
+      "category_l2": "工业互联网",
+      "product_type": "iiot_platform",
+      "origin": "domestic",
+      "kernel": "自主",
+      "maturity": "high",
+      "localization_depth": "partial",
+      "strengths_zh": [
+        "OT+IT 异构接入",
+        "千万点/秒写入",
+        "预测性维护与低代码"
+      ],
+      "strengths_en": [
+        "Heterogeneous OT+IT ingest",
+        "10M points/s write",
+        "Predictive maintenance and low-code"
+      ],
+      "limitations_zh": [
+        "品牌弱于华为/树根",
+        "重项目交付"
+      ],
+      "limitations_en": [
+        "Weaker brand vs Huawei/Rootcloud",
+        "Project-heavy delivery"
+      ],
+      "industries": [
+        "轨道交通",
+        "油气",
+        "先进制造"
+      ],
+      "pricing": "quote",
+      "confidence": 0.8,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.neucloud.cn/product/iiot",
+          "title": "NeuSeer IIoT",
+          "accessed": "2026-06"
+        }
+      ],
+      "international_benchmarks": [
+        "huawei-fusionplant"
+      ]
+    },
+    {
+      "id": "mogulinker-iem",
+      "name_zh": "蘑菇物联 IEM",
+      "name_en": "Mogulinker IEM",
+      "vendor_id": "mogulinker",
+      "category_l1": "基础平台",
+      "category_l2": "工业互联网",
+      "product_type": "iiot_platform",
+      "origin": "domestic",
+      "kernel": "自主",
+      "maturity": "high",
+      "localization_depth": "core",
+      "strengths_zh": [
+        "设备制造企业物联网体系",
+        "公辅能源 AI 云智控",
+        "灵知大模型备案"
+      ],
+      "strengths_en": [
+        "Equipment OEM IoT stack",
+        "Utility AI cloud control",
+        "Lingzhi LLM filing"
+      ],
+      "limitations_zh": [
+        "聚焦空压/制冷等公辅",
+        "非通用 MES"
+      ],
+      "limitations_en": [
+        "Focused on utility plants",
+        "Not general MES"
+      ],
+      "industries": [
+        "装备制造",
+        "食品饮料",
+        "化工"
+      ],
+      "pricing": "quote",
+      "confidence": 0.82,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.mogulinker.com/iem.html",
+          "title": "Mogulinker IEM",
+          "accessed": "2026-06"
+        }
+      ],
+      "international_benchmarks": [
+        "cosmoplat-mes"
+      ]
+    },
+    {
+      "id": "getech-semiconductor-cim",
+      "name_zh": "格创东智 半导体 CIM",
+      "name_en": "Getech Semiconductor CIM",
+      "vendor_id": "getech",
+      "category_l1": "生产制造",
+      "category_l2": "MES",
+      "product_type": "mes",
+      "origin": "domestic",
+      "kernel": "自主",
+      "maturity": "mission_critical",
+      "localization_depth": "core",
+      "strengths_zh": [
+        "MES+EAP+SPC+FDC+YMS 全栈",
+        "晶圆/封测 RTS 排程",
+        "TCL 半导体 know-how"
+      ],
+      "strengths_en": [
+        "Full MES+EAP+SPC+FDC+YMS stack",
+        "Wafer/OSAT RTS scheduling",
+        "TCL semiconductor know-how"
+      ],
+      "limitations_zh": [
+        "行业绑定泛半导体",
+        "与广域铭岛 Geega 易混淆"
+      ],
+      "limitations_en": [
+        "Semiconductor-focused",
+        "Confusable with Geely Geega"
+      ],
+      "industries": [
+        "半导体",
+        "面板",
+        "新能源"
+      ],
+      "pricing": "high",
+      "tags": [
+        "semiconductor"
+      ],
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.getech.cn/newdetail-177.html",
+          "title": "Getech CIM",
+          "accessed": "2026-06"
+        }
+      ],
+      "international_benchmarks": [
+        "siemens-opcenter"
+      ]
+    },
+    {
+      "id": "hancloud-hanyun-os",
+      "name_zh": "徐工汉云 HANYUN OS",
+      "name_en": "XCMG HanCloud HANYUN OS",
+      "vendor_id": "hancloud",
+      "category_l1": "基础平台",
+      "category_l2": "工业互联网",
+      "product_type": "iiot_platform",
+      "origin": "domestic",
+      "kernel": "自主",
+      "maturity": "mission_critical",
+      "localization_depth": "core",
+      "strengths_zh": [
+        "国家级双跨 A 级",
+        "工程机械车联网",
+        "数字孪生与低代码"
+      ],
+      "strengths_en": [
+        "National dual-cross grade A",
+        "Construction machinery IoV",
+        "Digital twin and low-code"
+      ],
+      "limitations_zh": [
+        "行业基因偏装备",
+        "中立性受徐工生态影响"
+      ],
+      "limitations_en": [
+        "Equipment-industry DNA",
+        "Neutrality tied to XCMG ecosystem"
+      ],
+      "industries": [
+        "工程机械",
+        "建筑施工",
+        "有色金属"
+      ],
+      "pricing": "quote",
+      "confidence": 0.87,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.xcmg.com/aboutus/news-detail-1127462.htm",
+          "title": "HANYUN OS 2023",
+          "accessed": "2026-06"
+        },
+        {
+          "url": "https://baike.baidu.com/item/%E5%B9%BF%E4%B8%9C%E5%BE%90%E5%B7%A5%E6%B1%89%E4%BA%91%E5%B7%A5%E4%B8%9A%E4%BA%92%E8%81%94%E7%BD%91%E6%9C%89%E9%99%90%E5%85%AC%E5%8F%B8/51444955",
+          "title": "徐工汉云 百科",
+          "accessed": "2026-06"
+        }
+      ],
+      "international_benchmarks": [
+        "huawei-fusionplant",
+        "cosmoplat-mes"
+      ]
+    },
+    {
       "id": "emqx",
       "name_zh": "EMQX",
       "name_en": "EMQX",

@@ -1047,6 +1047,557 @@
       ]
     },
     {
+      "id": "zhige-smartnest",
+      "name_zh": "智格 SmartNest",
+      "name_en": "Zhige SmartNest",
+      "vendor_id": "zhige",
+      "category_l1": "生产制造",
+      "category_l2": "CAM",
+      "product_type": "cam",
+      "origin": "domestic",
+      "kernel": "自主",
+      "maturity": "mission_critical",
+      "localization_depth": "core",
+      "strengths_zh": [
+        "华科背景真实形状套料",
+        "多切割机厂标配",
+        "机床版+企业版 MES 管控"
+      ],
+      "strengths_en": [
+        "HUST-backed true-shape nesting",
+        "Bundled by many cutter OEMs",
+        "Machine + enterprise MES tiers"
+      ],
+      "limitations_zh": [
+        "品牌弱于柏楚 CypNest",
+        "国际化有限",
+        "UI 偏传统"
+      ],
+      "limitations_en": [
+        "Lower brand vs Bochu CypNest",
+        "Limited export",
+        "Traditional UI"
+      ],
+      "industries": [
+        "激光加工",
+        "钢结构",
+        "金属加工"
+      ],
+      "pricing": "mid",
+      "confidence": 0.88,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "http://www.smartnest.com.cn/Products.asp",
+          "title": "SmartNest",
+          "accessed": "2026-06"
+        }
+      ],
+      "international_benchmarks": [
+        "bochu-cypnest",
+        "lantek-expert"
+      ]
+    },
+    {
+      "id": "zhige-lasercam",
+      "name_zh": "智格 LaserCAM 雷思凯",
+      "name_en": "Zhige LaserCAM",
+      "vendor_id": "zhige",
+      "category_l1": "生产制造",
+      "category_l2": "CAM",
+      "product_type": "cam",
+      "origin": "domestic",
+      "kernel": "自主",
+      "maturity": "high",
+      "localization_depth": "core",
+      "strengths_zh": [
+        "激光专用套料工艺",
+        "板材余料管理",
+        "国内激光 OEM 配套"
+      ],
+      "strengths_en": [
+        "Laser-specific nesting/process",
+        "Remnant management",
+        "Domestic laser OEM bundling"
+      ],
+      "limitations_zh": [
+        "与 SmartNest 产品线重叠",
+        "海外认知低"
+      ],
+      "limitations_en": [
+        "Overlaps SmartNest line",
+        "Low overseas awareness"
+      ],
+      "industries": [
+        "激光加工"
+      ],
+      "pricing": "mid",
+      "confidence": 0.8,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "http://www.smartnest.com.cn/Products.asp?BigClassID=55",
+          "title": "LaserCAM",
+          "accessed": "2026-06"
+        }
+      ],
+      "international_benchmarks": [
+        "bochu-cypcut"
+      ]
+    },
+    {
+      "id": "demark-hinest",
+      "name_zh": "德玛克 HiNest",
+      "name_en": "Demark HiNest",
+      "vendor_id": "demark",
+      "category_l1": "生产制造",
+      "category_l2": "CAM",
+      "product_type": "cam",
+      "origin": "domestic",
+      "kernel": "自主",
+      "maturity": "mid",
+      "localization_depth": "partial",
+      "strengths_zh": [
+        "坡口/复合切割套料",
+        "SinOCAM 钻铣攻",
+        "工业 4.0 排产预算"
+      ],
+      "strengths_en": [
+        "Bevel/compound nesting",
+        "SinOCAM drill-tap-mill",
+        "Industry 4.0 budget module"
+      ],
+      "limitations_zh": [
+        "市占数据少",
+        "主要随 Demark 装备出口"
+      ],
+      "limitations_en": [
+        "Limited share data",
+        "Tied to Demark machine exports"
+      ],
+      "industries": [
+        "激光加工",
+        "金属加工"
+      ],
+      "pricing": "mid",
+      "confidence": 0.75,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.laserdmk.com/hinest-smart-nesting-software-powered-by-industry-40",
+          "title": "HiNest",
+          "accessed": "2026-06"
+        }
+      ],
+      "international_benchmarks": [
+        "zhige-smartnest"
+      ]
+    },
+    {
+      "id": "cutleader-pro",
+      "name_zh": "道软 CutLeader",
+      "name_en": "CutLeader",
+      "vendor_id": "daoruan",
+      "category_l1": "生产制造",
+      "category_l2": "CAM",
+      "product_type": "cam",
+      "origin": "domestic",
+      "kernel": "自主",
+      "maturity": "high",
+      "localization_depth": "core",
+      "strengths_zh": [
+        "真形状套料",
+        "多控制器后置",
+        "激光/等离子/水刀/火焰"
+      ],
+      "strengths_en": [
+        "True-shape nesting",
+        "Multi-controller post",
+        "Laser/plasma/waterjet/flame"
+      ],
+      "limitations_zh": [
+        "企业版 MES 弱于智格",
+        "品牌老化"
+      ],
+      "limitations_en": [
+        "Weaker enterprise MES vs Zhige",
+        "Aging brand perception"
+      ],
+      "industries": [
+        "金属加工",
+        "广告标识",
+        "钢结构"
+      ],
+      "pricing": "low",
+      "confidence": 0.82,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://cutleader.com/np/np/cn/index.php",
+          "title": "CutLeader CN",
+          "accessed": "2026-06"
+        }
+      ],
+      "international_benchmarks": [
+        "fastcam-pro-v9"
+      ]
+    },
+    {
+      "id": "fastcam-pro-v9",
+      "name_zh": "FastCAM V9",
+      "name_en": "FastCAM V9",
+      "vendor_id": "fastcam-cn",
+      "category_l1": "生产制造",
+      "category_l2": "CAM",
+      "product_type": "cam",
+      "origin": "domestic",
+      "kernel": "自主·FastCAM 引擎",
+      "maturity": "mission_critical",
+      "localization_depth": "core",
+      "strengths_zh": [
+        "钢结构/船舶 Tekla NC1",
+        "坡口与文字切割",
+        "无狗 V9 部署灵活"
+      ],
+      "strengths_en": [
+        "Steel/ship Tekla NC1",
+        "Bevel and text cutting",
+        "Dongle-free V9 deployment"
+      ],
+      "limitations_zh": [
+        "3D 钣金弱",
+        "界面传统",
+        "授权模式多样易混淆"
+      ],
+      "limitations_en": [
+        "Weak 3D sheet metal",
+        "Legacy UI",
+        "Confusing license tiers"
+      ],
+      "industries": [
+        "钢结构",
+        "船舶",
+        "工程机械"
+      ],
+      "pricing": "mid",
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.fastcam.cn/pro-v9",
+          "title": "FastCAM V9",
+          "accessed": "2026-06"
+        }
+      ],
+      "international_benchmarks": [
+        "lantek-expert"
+      ]
+    },
+    {
+      "id": "bochu-cypnest",
+      "name_zh": "柏楚 CypNest",
+      "name_en": "Bochu CypNest",
+      "vendor_id": "bochu",
+      "category_l1": "生产制造",
+      "category_l2": "CAM",
+      "product_type": "cam",
+      "origin": "domestic",
+      "kernel": "自主",
+      "maturity": "mission_critical",
+      "localization_depth": "core",
+      "strengths_zh": [
+        "与 CypCut/HypCut 工艺一体",
+        "自动+手动套料",
+        "CloudNest 钢构版"
+      ],
+      "strengths_en": [
+        "Integrated with CypCut/HypCut",
+        "Auto+manual nesting",
+        "CloudNest steel structure"
+      ],
+      "limitations_zh": [
+        "主要服务柏楚生态",
+        "第三方机床需验证"
+      ],
+      "limitations_en": [
+        "Primarily Bochu ecosystem",
+        "Third-party machines need validation"
+      ],
+      "industries": [
+        "激光加工",
+        "金属板材"
+      ],
+      "pricing": "high",
+      "confidence": 0.92,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.bochu.com/ch/soft/cypnest/",
+          "title": "CypNest",
+          "accessed": "2026-06"
+        }
+      ],
+      "international_benchmarks": [
+        "lantek-expert"
+      ],
+      "listed_ticker": "688188.SH"
+    },
+    {
+      "id": "jcz-cutmaker",
+      "name_zh": "金橙子 CutMaker",
+      "name_en": "JCZ CutMaker",
+      "vendor_id": "jcz",
+      "category_l1": "生产制造",
+      "category_l2": "CAM",
+      "product_type": "cam",
+      "origin": "domestic",
+      "kernel": "自主",
+      "maturity": "high",
+      "localization_depth": "core",
+      "strengths_zh": [
+        "振镜+伺服双路线",
+        "飞切/微连/视觉定位",
+        "3C 精密切割"
+      ],
+      "strengths_en": [
+        "Galvo + servo dual path",
+        "Fly cut/micro-joint/vision",
+        "3C precision cutting"
+      ],
+      "limitations_zh": [
+        "高端振镜仍部分进口",
+        "套料弱于专业 nesting 厂商"
+      ],
+      "limitations_en": [
+        "High-end galvo partly imported",
+        "Nesting weaker vs specialists"
+      ],
+      "industries": [
+        "3C电子",
+        "广告",
+        "医疗器械"
+      ],
+      "pricing": "mid",
+      "confidence": 0.88,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "http://static.cninfo.com.cn/finalpage/2026-03-31/1225056946.PDF",
+          "title": "金橙子 2025 年报",
+          "accessed": "2026-06"
+        }
+      ],
+      "international_benchmarks": [
+        "bochu-cypcut",
+        "weihong-nc"
+      ],
+      "listed_ticker": "688291.SH"
+    },
+    {
+      "id": "ruida-rdnest",
+      "name_zh": "睿达 RDNest",
+      "name_en": "Ruida RDNest",
+      "vendor_id": "ruida",
+      "category_l1": "生产制造",
+      "category_l2": "CAM",
+      "product_type": "cam",
+      "origin": "domestic",
+      "kernel": "自主",
+      "maturity": "high",
+      "localization_depth": "core",
+      "strengths_zh": [
+        "独立套料+云授权",
+        "DXF/AI/PLT 导入",
+        "与 RDC 板卡协同"
+      ],
+      "strengths_en": [
+        "Standalone nesting + cloud license",
+        "DXF/AI/PLT import",
+        "RDC board synergy"
+      ],
+      "limitations_zh": [
+        "高端切割弱于柏楚",
+        "企业 MES 弱"
+      ],
+      "limitations_en": [
+        "Weaker high-end cutting vs Bochu",
+        "Weak enterprise MES"
+      ],
+      "industries": [
+        "激光雕刻",
+        "广告",
+        "金属切割"
+      ],
+      "pricing": "low",
+      "confidence": 0.8,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.laserfair.com/m/news/202511/12/89451.html",
+          "title": "RDNest 介绍",
+          "accessed": "2026-06"
+        }
+      ],
+      "international_benchmarks": [
+        "zhige-smartnest"
+      ]
+    },
+    {
+      "id": "lantek-expert",
+      "name_zh": "Lantek Expert",
+      "name_en": "Lantek Expert",
+      "vendor_id": "lantek",
+      "category_l1": "生产制造",
+      "category_l2": "CAM",
+      "product_type": "cam",
+      "origin": "international",
+      "kernel": "自主",
+      "maturity": "mission_critical",
+      "localization_depth": "core",
+      "strengths_zh": [
+        "全球钣金套料标杆",
+        "上海/天津/武汉本地化",
+        "与 ERP/MES 集成"
+      ],
+      "strengths_en": [
+        "Global sheet nesting benchmark",
+        "China offices",
+        "ERP/MES integration"
+      ],
+      "limitations_zh": [
+        "价格高",
+        "信创替代压力大",
+        "服务依赖渠道"
+      ],
+      "limitations_en": [
+        "High price",
+        "Xinchuang pressure",
+        "Channel-dependent support"
+      ],
+      "industries": [
+        "钣金",
+        "工程机械",
+        "电梯"
+      ],
+      "pricing": "high",
+      "confidence": 0.86,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.lantek.com/cn/lantek-china-shanghai",
+          "title": "Lantek China",
+          "accessed": "2026-06"
+        }
+      ],
+      "international_benchmarks": [
+        "zhige-smartnest",
+        "fastcam-pro-v9"
+      ]
+    },
+    {
+      "id": "cntech-ceasiom",
+      "name_zh": "中仿 CEASIOM",
+      "name_en": "CnTech CEASIOM",
+      "vendor_id": "cntech",
+      "category_l1": "研发设计",
+      "category_l2": "CAE",
+      "product_type": "cae_solver",
+      "origin": "domestic",
+      "kernel": "自主",
+      "maturity": "mid",
+      "localization_depth": "partial",
+      "strengths_zh": [
+        "飞机概念设计多学科",
+        "虚拟试飞集成",
+        "航空科研用户 1500+"
+      ],
+      "strengths_en": [
+        "Aircraft conceptual MDO",
+        "Virtual flight test integration",
+        "1500+ aviation users"
+      ],
+      "limitations_zh": [
+        "新三板终止挂牌",
+        "商业化弱于十沣/安世亚太",
+        "国际引用少"
+      ],
+      "limitations_en": [
+        "NEEQ delisting",
+        "Weaker commercialization vs Shifeng/PERA",
+        "Low international citations"
+      ],
+      "industries": [
+        "航空航天",
+        "教育",
+        "国防"
+      ],
+      "pricing": "high",
+      "tags": [
+        "aerospace"
+      ],
+      "confidence": 0.78,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://cntech.com/index-cn.html",
+          "title": "CnTech",
+          "accessed": "2026-06"
+        }
+      ],
+      "international_benchmarks": [
+        "ansys-fluent"
+      ]
+    },
+    {
+      "id": "cntech-femag",
+      "name_zh": "中仿 FEMAG",
+      "name_en": "CnTech FEMAG",
+      "vendor_id": "cntech",
+      "category_l1": "研发设计",
+      "category_l2": "CAE",
+      "product_type": "cae_solver",
+      "origin": "domestic",
+      "kernel": "自主",
+      "maturity": "mid",
+      "localization_depth": "partial",
+      "strengths_zh": [
+        "电机电磁仿真",
+        "比利时 FEMAG SA 技术",
+        "新能源驱动电机"
+      ],
+      "strengths_en": [
+        "Motor electromagnetics",
+        "Belgium FEMAG SA lineage",
+        "EV drive motors"
+      ],
+      "limitations_zh": [
+        "市场声量小于专用电机软件",
+        "与 Maxwell/JMAG 差距"
+      ],
+      "limitations_en": [
+        "Lower mindshare vs motor tools",
+        "Gap vs Maxwell/JMAG"
+      ],
+      "industries": [
+        "新能源",
+        "电机",
+        "汽车"
+      ],
+      "pricing": "high",
+      "confidence": 0.76,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://pitchhub.36kr.com/project/1818806921941124",
+          "title": "36kr CnTech",
+          "accessed": "2026-06"
+        }
+      ],
+      "international_benchmarks": [
+        "comsol"
+      ]
+    },
+    {
       "id": "wolfram-mathematica",
       "name_zh": "Wolfram Mathematica",
       "name_en": "Wolfram Mathematica",

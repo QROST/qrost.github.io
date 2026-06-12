@@ -577,6 +577,60 @@
         "rhino"
       ],
       "kernel_id": "blender-bmesh"
+    },
+    {
+      "id": "eznesting",
+      "name_zh": "EZNESTING",
+      "name_en": "EZNESTING",
+      "vendor_id": "eznesting",
+      "category_l1": "生产制造",
+      "category_l2": "CAM",
+      "product_type": "cam",
+      "origin": "international",
+      "kernel": "SaaS",
+      "maturity": "mid",
+      "localization_depth": "pilot",
+      "strengths_zh": [
+        "浏览器套料优化",
+        "免费层可用",
+        "木工/板材裁切"
+      ],
+      "strengths_en": [
+        "Browser nesting optimizer",
+        "Generous free tier",
+        "Woodworking sheet cutting"
+      ],
+      "limitations_zh": [
+        "非 CNC 后置",
+        "企业功能订阅",
+        "国内访问速度不定"
+      ],
+      "limitations_en": [
+        "No CNC post",
+        "Paid enterprise tiers",
+        "Variable China access speed"
+      ],
+      "industries": [
+        "家具",
+        "木工",
+        "小微钣金"
+      ],
+      "pricing": "free",
+      "tags": [
+        "cloud_native"
+      ],
+      "confidence": 0.7,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://eznesting.com/",
+          "title": "EZNESTING",
+          "accessed": "2026-06"
+        }
+      ],
+      "international_benchmarks": [
+        "yfway-furniture-design"
+      ]
     }
   ]
 }

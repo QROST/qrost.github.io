@@ -840,6 +840,113 @@
       ]
     },
     {
+      "id": "southsurvey-cass",
+      "name_zh": "南方测绘 CASS",
+      "name_en": "South Surveying CASS",
+      "vendor_id": "southsurvey",
+      "category_l1": "研发设计",
+      "category_l2": "GIS",
+      "product_type": "gis",
+      "origin": "domestic",
+      "kernel": "自主",
+      "maturity": "mission_critical",
+      "localization_depth": "core",
+      "strengths_zh": [
+        "大比例尺成图事实标准",
+        "与 RTK/全站仪协同",
+        "信创测评通过"
+      ],
+      "strengths_en": [
+        "De-facto large-scale mapping",
+        "RTK/total station synergy",
+        "Xinchuang evaluations passed"
+      ],
+      "limitations_zh": [
+        "与南方数码易混淆",
+        "BIM 协同弱"
+      ],
+      "limitations_en": [
+        "Confusable with South Digital",
+        "Weak BIM synergy"
+      ],
+      "industries": [
+        "测绘",
+        "基建",
+        "国土"
+      ],
+      "pricing": "mid",
+      "tags": [
+        "xinchuang"
+      ],
+      "confidence": 0.88,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://nc.southsurvey.com/products_view/id/11.html",
+          "title": "SouthMap/CASS",
+          "accessed": "2026-06"
+        },
+        {
+          "url": "https://pm.southsurvey.com/news_view/id/2260.html",
+          "title": "软件测评",
+          "accessed": "2026-06"
+        }
+      ],
+      "international_benchmarks": [
+        "supermap-gis"
+      ]
+    },
+    {
+      "id": "huace-cgo",
+      "name_zh": "华测 CGO",
+      "name_en": "CHC Geomatics Office",
+      "vendor_id": "huace",
+      "category_l1": "研发设计",
+      "category_l2": "GIS",
+      "product_type": "gis",
+      "origin": "domestic",
+      "kernel": "自主",
+      "maturity": "high",
+      "localization_depth": "core",
+      "strengths_zh": [
+        "GNSS 后处理",
+        "无人机 PPK",
+        "多品牌原始数据兼容"
+      ],
+      "strengths_en": [
+        "GNSS post-processing",
+        "UAV PPK",
+        "Multi-brand raw data support"
+      ],
+      "limitations_zh": [
+        "偏测绘内业",
+        "非通用 GIS 平台"
+      ],
+      "limitations_en": [
+        "Survey office focus",
+        "Not general GIS platform"
+      ],
+      "industries": [
+        "测绘",
+        "施工",
+        "无人机"
+      ],
+      "pricing": "mid",
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.huace.cn/download/",
+          "title": "CHC downloads",
+          "accessed": "2026-06"
+        }
+      ],
+      "international_benchmarks": [
+        "southsurvey-cass"
+      ],
+      "listed_ticker": "688592.SH"
+    },
+    {
       "id": "speckle",
       "name_zh": "Speckle",
       "name_en": "Speckle",
