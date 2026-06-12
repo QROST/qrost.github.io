@@ -947,6 +947,376 @@
       "listed_ticker": "688592.SH"
     },
     {
+      "id": "dynamo",
+      "name_zh": "Dynamo",
+      "name_en": "Dynamo",
+      "vendor_id": "autodesk",
+      "category_l1": "研发设计",
+      "category_l2": "CAD 自动化",
+      "product_type": "cad_automation",
+      "tags": [
+        "visual_programming",
+        "open_bim"
+      ],
+      "origin": "international",
+      "kernel": "Revit/Civil 3D 宿主",
+      "maturity": "mission_critical",
+      "localization_depth": "partial",
+      "strengths_zh": [
+        "Revit/BIM 视觉编程事实标准，节点驱动族与模型自动化",
+        "Dynamo Player 支持现场无代码运行图纸/模型批处理",
+        "国内大型设计院 BIM 参数化与幕墙板块广泛采用"
+      ],
+      "strengths_en": [
+        "De-facto visual programming for Revit/BIM; node-driven family and model automation",
+        "Dynamo Player enables no-code batch runs on site",
+        "Widely used in China major design institutes for BIM parametrics and facades"
+      ],
+      "limitations_zh": [
+        "依赖 Autodesk 宿主版本，升级断裂风险",
+        "复杂图性能与可维护性挑战",
+        "与 Rhino/Grasshopper 双向互操作需额外桥接"
+      ],
+      "limitations_en": [
+        "Depends on Autodesk host versions with upgrade breakage risk",
+        "Complex graphs face performance and maintainability challenges",
+        "Rhino/Grasshopper interoperability needs extra bridges"
+      ],
+      "industries": [
+        "建筑",
+        "基础设施",
+        "幕墙",
+        "市政"
+      ],
+      "pricing": "high",
+      "confidence": 0.93,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://dynamobim.org/",
+          "title": "Dynamo BIM",
+          "accessed": "2026-06"
+        },
+        {
+          "url": "https://help.autodesk.com/view/DYN/ENU/",
+          "title": "Dynamo for Revit help",
+          "accessed": "2026-06"
+        }
+      ],
+      "international_benchmarks": [
+        "grasshopper",
+        "generative-components"
+      ],
+      "listed_ticker": "ADSK"
+    },
+    {
+      "id": "pyrevit",
+      "name_zh": "pyRevit",
+      "name_en": "pyRevit",
+      "vendor_id": "pyrevit",
+      "category_l1": "研发设计",
+      "category_l2": "CAD 自动化",
+      "product_type": "cad_automation",
+      "tags": [
+        "cad_scripting",
+        "open_source_stack",
+        "open_bim"
+      ],
+      "origin": "open_source",
+      "kernel": "Revit .NET API 宿主",
+      "maturity": "high",
+      "localization_depth": "partial",
+      "strengths_zh": [
+        "开源 Revit Python 自动化框架与可扩展 Ribbon 工具栏",
+        "国内 BIM 咨询公司与设计院批处理/QC 脚本常用",
+        "比原生 Dynamo 更易版本控制与 CI 集成"
+      ],
+      "strengths_en": [
+        "Open-source Revit Python automation with extensible ribbon toolbar",
+        "Common for China BIM consultancies batch/QC scripting",
+        "Easier version control and CI than native Dynamo alone"
+      ],
+      "limitations_zh": [
+        "非 Autodesk 官方支持，升级适配社区驱动",
+        "视觉编程弱于 Dynamo/Grasshopper",
+        "企业安全审计与签名分发需自建流程"
+      ],
+      "limitations_en": [
+        "Not Autodesk-supported; upgrade fit is community-driven",
+        "Weaker visual programming than Dynamo/Grasshopper",
+        "Enterprise security audit and signed distribution need custom process"
+      ],
+      "industries": [
+        "建筑",
+        "BIM咨询",
+        "施工"
+      ],
+      "pricing": "free",
+      "confidence": 0.9,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://pyrevitlabs.github.io/pyRevit/",
+          "title": "pyRevit",
+          "accessed": "2026-06"
+        },
+        {
+          "url": "https://github.com/pyrevitlabs/pyRevit",
+          "title": "pyRevit GitHub",
+          "accessed": "2026-06"
+        }
+      ],
+      "international_benchmarks": [
+        "dynamo",
+        "revit-api"
+      ]
+    },
+    {
+      "id": "generative-components",
+      "name_zh": "GenerativeComponents",
+      "name_en": "GenerativeComponents",
+      "vendor_id": "bentley",
+      "category_l1": "研发设计",
+      "category_l2": "CAD 自动化",
+      "product_type": "cad_automation",
+      "tags": [
+        "visual_programming"
+      ],
+      "origin": "international",
+      "kernel": "MicroStation/OpenBuildings 宿主",
+      "maturity": "high",
+      "localization_depth": "pilot",
+      "strengths_zh": [
+        "Bentley 基础设施 BIM 节点式参数化设计环境",
+        "交通/市政线性工程与复杂几何规则驱动",
+        "与 iTwin 数字孪生数据流可衔接"
+      ],
+      "strengths_en": [
+        "Bentley node-based parametric design for infrastructure BIM",
+        "Rules-driven geometry for transport/municipal linear projects",
+        "Can connect to iTwin digital twin data flows"
+      ],
+      "limitations_zh": [
+        "国内装机量低于 Revit+Dynamo 组合",
+        "教程与社区资源少于 Grasshopper",
+        "与制造 MCAD 自动化无直接替代"
+      ],
+      "limitations_en": [
+        "Smaller China install base than Revit+Dynamo",
+        "Fewer tutorials and community resources than Grasshopper",
+        "No direct substitute for manufacturing MCAD automation"
+      ],
+      "industries": [
+        "交通",
+        "市政",
+        "能源基建",
+        "建筑"
+      ],
+      "pricing": "high",
+      "confidence": 0.86,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.bentley.com/software/generativecomponents/",
+          "title": "Bentley GenerativeComponents",
+          "accessed": "2026-06"
+        },
+        {
+          "url": "https://docs.bentley.com/LiveContent/web/Generative%20Components%20Help-v1/en/GCOverview.html",
+          "title": "GenerativeComponents overview",
+          "accessed": "2026-06"
+        }
+      ],
+      "international_benchmarks": [
+        "dynamo",
+        "grasshopper"
+      ]
+    },
+    {
+      "id": "archicad-gdl",
+      "name_zh": "Archicad GDL",
+      "name_en": "Archicad GDL",
+      "vendor_id": "graphisoft",
+      "category_l1": "研发设计",
+      "category_l2": "CAD 自动化",
+      "product_type": "cad_automation",
+      "tags": [
+        "cad_scripting"
+      ],
+      "origin": "international",
+      "kernel": "Archicad 宿主",
+      "maturity": "high",
+      "localization_depth": "pilot",
+      "strengths_zh": [
+        "Archicad 参数化对象脚本语言 GDL",
+        "欧洲与部分亚洲建筑师自定义构件库标准",
+        "与 BIMcloud 协同构件分发"
+      ],
+      "strengths_en": [
+        "Archicad parametric object scripting via GDL",
+        "Standard for custom libraries among European and some Asian architects",
+        "Distributes parametric objects via BIMcloud"
+      ],
+      "limitations_zh": [
+        "国内 Archicad 份额低于 Revit",
+        "视觉编程体验弱于 Dynamo/Grasshopper",
+        "与国产 BIM 平台互操作有限"
+      ],
+      "limitations_en": [
+        "Smaller China Archicad share than Revit",
+        "Weaker visual programming UX than Dynamo/Grasshopper",
+        "Limited interoperability with domestic BIM platforms"
+      ],
+      "industries": [
+        "建筑",
+        "室内设计"
+      ],
+      "pricing": "high",
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://graphisoft.com/solutions/archicad",
+          "title": "Graphisoft Archicad",
+          "accessed": "2026-06"
+        },
+        {
+          "url": "https://gdl.graphisoft.com/",
+          "title": "GDL Center",
+          "accessed": "2026-06"
+        }
+      ],
+      "international_benchmarks": [
+        "dynamo",
+        "revit-api"
+      ]
+    },
+    {
+      "id": "revit-api",
+      "name_zh": "Revit API",
+      "name_en": "Revit API",
+      "vendor_id": "autodesk",
+      "category_l1": "研发设计",
+      "category_l2": "CAD 自动化",
+      "product_type": "cad_automation",
+      "tags": [
+        "cad_scripting",
+        "open_bim"
+      ],
+      "origin": "international",
+      "kernel": "Revit 宿主",
+      "maturity": "mission_critical",
+      "localization_depth": "partial",
+      "strengths_zh": [
+        "Revit .NET API 是 BIM 二次开发事实标准",
+        "Dynamo/pyRevit/商业插件底层均依赖此 API",
+        "国内 BIM 软件公司与咨询定制开发基础"
+      ],
+      "strengths_en": [
+        ".NET API is the de-facto standard for Revit BIM customization",
+        "Underpins Dynamo, pyRevit, and commercial add-ins",
+        "Foundation for China BIM software vendors and consultancy custom dev"
+      ],
+      "limitations_zh": [
+        "版本升级 API 断裂与回归测试成本高",
+        "不允许直接修改核心数据库的某些操作",
+        "云 API 需走 Forge/ACC 另线"
+      ],
+      "limitations_en": [
+        "Version upgrades cause API breakage and costly regression",
+        "Some core database mutations are restricted",
+        "Cloud APIs require separate Forge/ACC paths"
+      ],
+      "industries": [
+        "建筑",
+        "基础设施",
+        "施工",
+        "BIM咨询"
+      ],
+      "pricing": "high",
+      "confidence": 0.94,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.revitapidocs.com/",
+          "title": "Revit API Docs",
+          "accessed": "2026-06"
+        },
+        {
+          "url": "https://help.autodesk.com/view/RVT/2025/ENU/?guid=Revit_API_Revit_API_Developers_Guide_html",
+          "title": "Revit API Developers Guide",
+          "accessed": "2026-06"
+        }
+      ],
+      "international_benchmarks": [
+        "pyrevit",
+        "dynamo"
+      ],
+      "listed_ticker": "ADSK"
+    },
+    {
+      "id": "glodon-parametric-library",
+      "name_zh": "广联达参数化构件库",
+      "name_en": "Glodon Parametric Component Library",
+      "vendor_id": "glodon",
+      "category_l1": "研发设计",
+      "category_l2": "CAD 自动化",
+      "product_type": "cad_automation",
+      "tags": [
+        "low_code",
+        "xinchuang"
+      ],
+      "origin": "domestic",
+      "kernel": "广联达 BIM 平台",
+      "maturity": "mid",
+      "localization_depth": "partial",
+      "strengths_zh": [
+        "国产 BIM 参数化构件与族库分发平台",
+        "与广联达算量/造价/协同产品线衔接",
+        "信创与本土定额规则适配"
+      ],
+      "strengths_en": [
+        "Domestic BIM parametric component and family library platform",
+        "Links to Glodon quantity, cost, and collaboration products",
+        "Xinchuang and local cost-rule fit"
+      ],
+      "limitations_zh": [
+        "视觉编程节点生态弱于 Dynamo/Grasshopper",
+        "国际 Open BIM 互操作深度仍在提升",
+        "复杂自由曲面自动化能力有限"
+      ],
+      "limitations_en": [
+        "Weaker node-based visual programming vs Dynamo/Grasshopper",
+        "International Open BIM interoperability still improving",
+        "Limited complex freeform automation"
+      ],
+      "industries": [
+        "建筑",
+        "工程造价",
+        "施工"
+      ],
+      "pricing": "mid",
+      "confidence": 0.8,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.glodon.com/",
+          "title": "Glodon",
+          "accessed": "2026-06"
+        },
+        {
+          "url": "https://www.glodon.com/product/bim/",
+          "title": "Glodon BIM products",
+          "accessed": "2026-06"
+        }
+      ],
+      "international_benchmarks": [
+        "dynamo",
+        "revit-api"
+      ],
+      "listed_ticker": "002410.SZ"
+    },
+    {
       "id": "speckle",
       "name_zh": "Speckle",
       "name_en": "Speckle",

@@ -48,7 +48,8 @@
       "international_benchmarks": [
         "orca-slicer",
         "ultimaker-cura"
-      ]
+      ],
+      "product_type": "slicer"
     },
     {
       "id": "creality-print",
@@ -97,7 +98,8 @@
       "international_benchmarks": [
         "ultimaker-cura",
         "prusaslicer"
-      ]
+      ],
+      "product_type": "slicer"
     },
     {
       "id": "flashprint",
@@ -145,7 +147,8 @@
       "international_benchmarks": [
         "prusaslicer",
         "ultimaker-cura"
-      ]
+      ],
+      "product_type": "slicer"
     },
     {
       "id": "chitubox",
@@ -194,7 +197,8 @@
       ],
       "international_benchmarks": [
         "lychee-slicer"
-      ]
+      ],
+      "product_type": "slicer"
     },
     {
       "id": "elegoo-slicer",
@@ -243,7 +247,8 @@
       "international_benchmarks": [
         "chitubox",
         "lychee-slicer"
-      ]
+      ],
+      "product_type": "slicer"
     },
     {
       "id": "anycubic-photon-workshop",
@@ -292,7 +297,8 @@
       "international_benchmarks": [
         "chitubox",
         "lychee-slicer"
-      ]
+      ],
+      "product_type": "slicer"
     },
     {
       "id": "heygears-hps",
@@ -342,7 +348,8 @@
       "international_benchmarks": [
         "materialise-magics",
         "autodesk-netfabb"
-      ]
+      ],
+      "product_type": "slicer"
     },
     {
       "id": "ankermake-slicer",
@@ -390,7 +397,8 @@
       "international_benchmarks": [
         "bambu-studio",
         "ultimaker-cura"
-      ]
+      ],
+      "product_type": "slicer"
     },
     {
       "id": "ultimaker-cura",
@@ -440,7 +448,8 @@
       "international_benchmarks": [
         "creality-print",
         "prusaslicer"
-      ]
+      ],
+      "product_type": "slicer"
     },
     {
       "id": "prusaslicer",
@@ -490,7 +499,8 @@
       "international_benchmarks": [
         "flashprint",
         "creality-print"
-      ]
+      ],
+      "product_type": "slicer"
     },
     {
       "id": "orca-slicer",
@@ -539,7 +549,8 @@
       "international_benchmarks": [
         "bambu-studio",
         "ultimaker-cura"
-      ]
+      ],
+      "product_type": "slicer"
     },
     {
       "id": "simplify3d",
@@ -587,7 +598,8 @@
       "international_benchmarks": [
         "prusaslicer",
         "orca-slicer"
-      ]
+      ],
+      "product_type": "slicer"
     },
     {
       "id": "ideamaker",
@@ -636,7 +648,8 @@
       "international_benchmarks": [
         "bambu-studio",
         "prusaslicer"
-      ]
+      ],
+      "product_type": "slicer"
     },
     {
       "id": "lychee-slicer",
@@ -686,7 +699,8 @@
       "international_benchmarks": [
         "chitubox",
         "elegoo-slicer"
-      ]
+      ],
+      "product_type": "slicer"
     },
     {
       "id": "materialise-magics",
@@ -736,7 +750,8 @@
       "international_benchmarks": [
         "heygears-hps",
         "autodesk-netfabb"
-      ]
+      ],
+      "product_type": "slicer"
     },
     {
       "id": "autodesk-netfabb",
@@ -786,7 +801,8 @@
       "international_benchmarks": [
         "heygears-hps",
         "materialise-magics"
-      ]
+      ],
+      "product_type": "slicer"
     }
   ]
 }

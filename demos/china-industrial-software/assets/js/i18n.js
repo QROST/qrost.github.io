@@ -379,14 +379,16 @@
       cam: 'CAM', eda: 'EDA', plm: 'PLM', bim: 'BIM 建模', bim_coordination: 'BIM 协同审查',
       reality_capture: '实景捕获/点云', gis: 'GIS', iiot_platform: '工业互联网平台',
       scada: 'SCADA', mes: 'MES', dcs: 'DCS', eam: 'EAM', erp: 'ERP', slicer: '切片',
-      cim: '半导体 CIM', mbse: 'MBSE', cad_interop: 'CAD 互操作', other: '其他',
+      cim: '半导体 CIM', mbse: 'MBSE', cad_interop: 'CAD 互操作',
+      cad_automation: 'CAD 自动化', other: '其他',
     },
     en: {
       mcad: '3D MCAD', '2d_cad': '2D CAD', dcc_mesh: 'DCC mesh', cae_solver: 'CAE solver',
       cam: 'CAM', eda: 'EDA', plm: 'PLM', bim: 'BIM authoring', bim_coordination: 'BIM coordination',
       reality_capture: 'Reality capture', gis: 'GIS', iiot_platform: 'IIoT platform',
       scada: 'SCADA', mes: 'MES', dcs: 'DCS', eam: 'EAM', erp: 'ERP', slicer: 'Slicer',
-      cim: 'Semiconductor CIM', mbse: 'MBSE', cad_interop: 'CAD interop', other: 'Other',
+      cim: 'Semiconductor CIM', mbse: 'MBSE', cad_interop: 'CAD interop',
+      cad_automation: 'CAD automation', other: 'Other',
     },
   };
 
@@ -397,6 +399,7 @@
       cloud_native: '云原生', low_code: '低代码', clash_detection: '碰撞检测',
       federated_bim: '联邦模型集成', point_cloud: '点云', model_checking: '模型检查',
       '4d_simulation': '4D 施工模拟', open_bim: 'Open BIM',
+      visual_programming: '视觉编程', cad_scripting: 'CAD 脚本/API',
     },
     en: {
       digital_twin: 'Digital twin', xinchuang: 'Xinchuang', am_slicing: 'AM slicing',
@@ -405,6 +408,7 @@
       low_code: 'Low-code', clash_detection: 'Clash detection', federated_bim: 'Federated BIM',
       point_cloud: 'Point cloud', model_checking: 'Model checking',
       '4d_simulation': '4D simulation', open_bim: 'Open BIM',
+      visual_programming: 'Visual programming', cad_scripting: 'CAD scripting/API',
     },
   };
 

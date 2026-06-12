@@ -1991,6 +1991,1344 @@
       ]
     },
     {
+      "id": "pkpm-structure",
+      "name_zh": "PKPM结构",
+      "name_en": "PKPM Structure",
+      "vendor_id": "cabr",
+      "origin": "domestic",
+      "kernel": "自主·中国建筑规范",
+      "maturity": "mission_critical",
+      "localization_depth": "core",
+      "strengths_zh": [
+        "国内房屋建筑结构设计市占领先",
+        "建模-分析-施工图一体化",
+        "深度适配 GB 系列规范与审查"
+      ],
+      "strengths_en": [
+        "Leading China building structural market share",
+        "Integrated modeling-analysis-drawing",
+        "Deep GB code and review compliance"
+      ],
+      "limitations_zh": [
+        "复杂非线性与通用 FEA 弱于 midas/Ansys",
+        "工业与桥梁细分需配套其他模块"
+      ],
+      "limitations_en": [
+        "Weaker general nonlinear FEA vs midas/Ansys",
+        "Industrial/bridge niches need other modules"
+      ],
+      "industries": [
+        "建筑",
+        "市政",
+        "工业厂房"
+      ],
+      "pricing": "high",
+      "confidence": 0.92,
+      "sources": [
+        {
+          "url": "https://www.pkpm.cn/about",
+          "title": "构力科技 PKPM",
+          "accessed": "2026-06"
+        }
+      ],
+      "international_benchmarks": [
+        "csi-etabs",
+        "midas-gen"
+      ],
+      "tags": [
+        "xinchuang"
+      ],
+      "category_l1": "研发设计",
+      "category_l2": "CAE",
+      "product_type": "cae_solver",
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "pkpm-cae",
+      "name_zh": "PKPM-CAE",
+      "name_en": "PKPM-CAE",
+      "vendor_id": "cabr",
+      "origin": "domestic",
+      "kernel": "自主·通用仿真云",
+      "maturity": "mid",
+      "localization_depth": "partial",
+      "strengths_zh": [
+        "国产通用 CAE 云计算平台",
+        "对标国际商业多物理场",
+        "与 PKPM 设计链协同"
+      ],
+      "strengths_en": [
+        "Domestic general-purpose CAE cloud",
+        "Benchmarks international multiphysics",
+        "Synergy with PKPM design chain"
+      ],
+      "limitations_zh": [
+        "生态与第三方求解器接口仍在建设",
+        "高端汽车航空案例少于 Ansys"
+      ],
+      "limitations_en": [
+        "Ecosystem and solver interfaces still building",
+        "Fewer auto/aero cases than Ansys"
+      ],
+      "industries": [
+        "建筑",
+        "能源",
+        "工业装备"
+      ],
+      "pricing": "quote",
+      "confidence": 0.82,
+      "sources": [
+        {
+          "url": "https://www.pkpm.cn/about",
+          "title": "构力科技 PKPM-CAE",
+          "accessed": "2026-06"
+        }
+      ],
+      "international_benchmarks": [
+        "ansys-mechanical",
+        "pera-sim"
+      ],
+      "tags": [
+        "cloud_native",
+        "xinchuang"
+      ],
+      "category_l1": "研发设计",
+      "category_l2": "CAE",
+      "product_type": "cae_solver",
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "pkpm-sausg",
+      "name_zh": "PKPM-SAUSG",
+      "name_en": "PKPM-SAUSG",
+      "vendor_id": "cabr",
+      "origin": "domestic",
+      "kernel": "自主·非线性",
+      "maturity": "high",
+      "localization_depth": "partial",
+      "strengths_zh": [
+        "建筑结构非线性分析专精",
+        "弹塑性时程与性能化设计",
+        "服务超限审查与科研"
+      ],
+      "strengths_en": [
+        "Building structural nonlinear specialty",
+        "Elastic-plastic time-history and performance design",
+        "Serves beyond-code review and research"
+      ],
+      "limitations_zh": [
+        "通用显式碰撞弱于 LS-DYNA",
+        "国际学术引用有限"
+      ],
+      "limitations_en": [
+        "Weaker explicit crash vs LS-DYNA",
+        "Limited international citations"
+      ],
+      "industries": [
+        "建筑",
+        "市政",
+        "教育科研"
+      ],
+      "pricing": "high",
+      "confidence": 0.85,
+      "sources": [
+        {
+          "url": "https://www.pkpm.cn/about",
+          "title": "构力科技 PKPM-SAUSG",
+          "accessed": "2026-06"
+        }
+      ],
+      "international_benchmarks": [
+        "csi-perform3d",
+        "ansys-ls-dyna"
+      ],
+      "tags": [
+        "xinchuang"
+      ],
+      "category_l1": "研发设计",
+      "category_l2": "CAE",
+      "product_type": "cae_solver",
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "yjk-structure",
+      "name_zh": "YJK",
+      "name_en": "YJK Structure",
+      "vendor_id": "yjk",
+      "origin": "domestic",
+      "kernel": "自主·通用有限元",
+      "maturity": "mission_critical",
+      "localization_depth": "core",
+      "listed_ticker": "300935.SZ",
+      "strengths_zh": [
+        "新一代建筑结构有限元内核",
+        "大模型高自由度求解",
+        "装配式/减隔震/加固改造模块完整"
+      ],
+      "strengths_en": [
+        "Next-gen building structural FEM core",
+        "Large-model high-DOF solving",
+        "Complete prefab/seismic isolation/retrofit modules"
+      ],
+      "limitations_zh": [
+        "桥梁与工业专用场景弱于 midas",
+        "国际规范版仍在拓展"
+      ],
+      "limitations_en": [
+        "Weaker bridge/industrial niches vs midas",
+        "International codes still expanding"
+      ],
+      "industries": [
+        "建筑",
+        "市政",
+        "装配式"
+      ],
+      "pricing": "high",
+      "confidence": 0.91,
+      "sources": [
+        {
+          "url": "https://www.yjk.cn/",
+          "title": "盈建科 YJK",
+          "accessed": "2026-06"
+        }
+      ],
+      "international_benchmarks": [
+        "csi-etabs",
+        "pkpm-structure"
+      ],
+      "tags": [
+        "xinchuang"
+      ],
+      "category_l1": "研发设计",
+      "category_l2": "CAE",
+      "product_type": "cae_solver",
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "3d3s-design",
+      "name_zh": "3D3S Design",
+      "name_en": "3D3S Design",
+      "vendor_id": "tonglei",
+      "origin": "domestic",
+      "kernel": "自主·钢结构有限元",
+      "maturity": "high",
+      "localization_depth": "core",
+      "strengths_zh": [
+        "钢结构与空间结构分析设计",
+        "网架/门式刚架/索膜/光伏支架",
+        "设计与出图一体化"
+      ],
+      "strengths_en": [
+        "Steel and spatial structure analysis-design",
+        "Truss/portal frame/cable-membrane/solar frames",
+        "Integrated design and detailing"
+      ],
+      "limitations_zh": [
+        "民用混凝土高层弱于 PKPM/YJK",
+        "国际版规范覆盖仍在完善"
+      ],
+      "limitations_en": [
+        "Weaker concrete high-rise vs PKPM/YJK",
+        "International code coverage evolving"
+      ],
+      "industries": [
+        "钢结构",
+        "电力",
+        "新能源"
+      ],
+      "pricing": "high",
+      "confidence": 0.89,
+      "sources": [
+        {
+          "url": "https://www.tj3d3s.com/",
+          "title": "3D3S",
+          "accessed": "2026-06"
+        }
+      ],
+      "international_benchmarks": [
+        "dlubal-rfem",
+        "csi-sap2000"
+      ],
+      "tags": [
+        "xinchuang"
+      ],
+      "category_l1": "研发设计",
+      "category_l2": "CAE",
+      "product_type": "cae_solver",
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "doctor-bridge",
+      "name_zh": "桥梁博士",
+      "name_en": "Dr. Bridge",
+      "vendor_id": "tonghao",
+      "origin": "domestic",
+      "kernel": "自主·桥梁杆系/实体",
+      "maturity": "high",
+      "localization_depth": "core",
+      "strengths_zh": [
+        "国产桥梁空间结构分析标杆",
+        "构件建模与施工阶段仿真",
+        "全面支持公路/城市桥梁规范"
+      ],
+      "strengths_en": [
+        "Domestic bridge spatial analysis benchmark",
+        "Component modeling and construction staging",
+        "Full highway/urban bridge code support"
+      ],
+      "limitations_zh": [
+        "复杂局部非线性细部弱于 midas FEA",
+        "国际市场认知有限"
+      ],
+      "limitations_en": [
+        "Weaker local nonlinear detail vs midas FEA",
+        "Limited international recognition"
+      ],
+      "industries": [
+        "桥梁",
+        "市政",
+        "交通"
+      ],
+      "pricing": "high",
+      "confidence": 0.88,
+      "sources": [
+        {
+          "url": "http://www.doctorbridge.com/721432.html",
+          "title": "桥梁博士 V5",
+          "accessed": "2026-06"
+        }
+      ],
+      "international_benchmarks": [
+        "midas-civil",
+        "csi-sap2000"
+      ],
+      "tags": [
+        "xinchuang",
+        "model_checking"
+      ],
+      "category_l1": "研发设计",
+      "category_l2": "CAE",
+      "product_type": "cae_solver",
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "lizheng-structure-toolbox",
+      "name_zh": "理正结构工具箱",
+      "name_en": "Lizheng Structural Toolbox",
+      "vendor_id": "lizheng",
+      "origin": "domestic",
+      "kernel": "自主·构件计算",
+      "maturity": "high",
+      "localization_depth": "core",
+      "strengths_zh": [
+        "构件/截面级结构设计工具箱",
+        "可导入 PKPM/YJK 整体分析结果",
+        "异形构件与施工图输出"
+      ],
+      "strengths_en": [
+        "Member/section-level structural toolbox",
+        "Imports PKPM/YJK global analysis",
+        "Irregular members and drawing output"
+      ],
+      "limitations_zh": [
+        "非整体建模分析平台",
+        "动力与非线性能力有限"
+      ],
+      "limitations_en": [
+        "Not a global modeling platform",
+        "Limited dynamic/nonlinear capability"
+      ],
+      "industries": [
+        "建筑",
+        "市政",
+        "水利"
+      ],
+      "pricing": "mid",
+      "confidence": 0.86,
+      "sources": [
+        {
+          "url": "https://www.lizheng.com.cn/",
+          "title": "理正结构工具箱",
+          "accessed": "2026-06"
+        }
+      ],
+      "international_benchmarks": [
+        "pkpm-structure"
+      ],
+      "tags": [
+        "xinchuang"
+      ],
+      "category_l1": "研发设计",
+      "category_l2": "CAE",
+      "product_type": "cae_solver",
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "karamba3d",
+      "name_zh": "Karamba3D",
+      "name_en": "Karamba3D",
+      "vendor_id": "karamba3d",
+      "origin": "international",
+      "kernel": "自主·Grasshopper FEA",
+      "maturity": "high",
+      "localization_depth": "partial",
+      "strengths_zh": [
+        "Grasshopper/Rhino 参数化结构 FEA",
+        "方案阶段快速迭代与优化",
+        "与 Galapagos/Octopus 优化联动"
+      ],
+      "strengths_en": [
+        "Grasshopper/Rhino parametric structural FEA",
+        "Rapid early-design iteration and optimization",
+        "Links to Galapagos/Octopus optimizers"
+      ],
+      "limitations_zh": [
+        "非施工图级规范验算平台",
+        "依赖 Rhino 许可与生态"
+      ],
+      "limitations_en": [
+        "Not code-check drawing-grade platform",
+        "Depends on Rhino license ecosystem"
+      ],
+      "industries": [
+        "建筑",
+        "景观",
+        "教育科研"
+      ],
+      "pricing": "mid",
+      "confidence": 0.9,
+      "sources": [
+        {
+          "url": "https://karamba3d.com/",
+          "title": "Karamba3D",
+          "accessed": "2026-06"
+        }
+      ],
+      "international_benchmarks": [
+        "dlubal-rfem",
+        "altair-optistruct"
+      ],
+      "tags": [
+        "open_bim"
+      ],
+      "category_l1": "研发设计",
+      "category_l2": "CAE",
+      "product_type": "cae_solver",
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "csi-sap2000",
+      "name_zh": "SAP2000",
+      "name_en": "SAP2000",
+      "vendor_id": "csi",
+      "origin": "international",
+      "kernel": "自主",
+      "maturity": "mission_critical",
+      "localization_depth": "core",
+      "strengths_zh": [
+        "通用结构有限元行业标准之一",
+        "桥梁局部与复杂节点分析常用",
+        "API 与脚本自动化成熟"
+      ],
+      "strengths_en": [
+        "General structural FEA industry standard",
+        "Common for bridge local and joint analysis",
+        "Mature API and scripting automation"
+      ],
+      "limitations_zh": [
+        "中国规范施工图弱于 PKPM",
+        "许可按版本与模块计费"
+      ],
+      "limitations_en": [
+        "Weak China code drawing vs PKPM",
+        "Version/module-based licensing"
+      ],
+      "industries": [
+        "桥梁",
+        "建筑",
+        "工业结构"
+      ],
+      "pricing": "high",
+      "confidence": 0.93,
+      "sources": [
+        {
+          "url": "https://www.csiamerica.com/products/sap2000",
+          "title": "SAP2000",
+          "accessed": "2026-06"
+        }
+      ],
+      "international_benchmarks": [
+        "midas-gen",
+        "dlubal-rfem"
+      ],
+      "category_l1": "研发设计",
+      "category_l2": "CAE",
+      "product_type": "cae_solver",
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "csi-etabs",
+      "name_zh": "ETABS",
+      "name_en": "ETABS",
+      "vendor_id": "csi",
+      "origin": "international",
+      "kernel": "自主",
+      "maturity": "mission_critical",
+      "localization_depth": "core",
+      "strengths_zh": [
+        "高层建筑结构分析标杆",
+        "弹塑性时程与性能化设计",
+        "全球超高层项目广泛应用"
+      ],
+      "strengths_en": [
+        "High-rise structural analysis benchmark",
+        "Nonlinear time-history and performance design",
+        "Widely used on global supertalls"
+      ],
+      "limitations_zh": [
+        "国内审查出图链弱于 PKPM/YJK",
+        "学习曲线与许可成本较高"
+      ],
+      "limitations_en": [
+        "Weak China review/drawing chain vs PKPM/YJK",
+        "Steep learning curve and license cost"
+      ],
+      "industries": [
+        "建筑",
+        "市政",
+        "商业地产"
+      ],
+      "pricing": "high",
+      "confidence": 0.93,
+      "sources": [
+        {
+          "url": "https://www.csiamerica.com/products/etabs",
+          "title": "ETABS",
+          "accessed": "2026-06"
+        }
+      ],
+      "international_benchmarks": [
+        "pkpm-structure",
+        "yjk-structure"
+      ],
+      "category_l1": "研发设计",
+      "category_l2": "CAE",
+      "product_type": "cae_solver",
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "csi-perform3d",
+      "name_zh": "Perform3D",
+      "name_en": "Perform3D",
+      "vendor_id": "csi",
+      "origin": "international",
+      "kernel": "自主·非线性",
+      "maturity": "high",
+      "localization_depth": "partial",
+      "strengths_zh": [
+        "建筑非线性静力/动力分析",
+        "性能化抗震与构件纤维模型",
+        "与 ETABS/SAP 数据互通"
+      ],
+      "strengths_en": [
+        "Building nonlinear static/dynamic analysis",
+        "Performance-based seismic and fiber models",
+        "Data exchange with ETABS/SAP"
+      ],
+      "limitations_zh": [
+        "国内性能化审查案例少于 SAUSG",
+        "界面偏研究导向"
+      ],
+      "limitations_en": [
+        "Fewer China performance-review cases than SAUSG",
+        "Research-oriented UI"
+      ],
+      "industries": [
+        "建筑",
+        "市政",
+        "教育科研"
+      ],
+      "pricing": "high",
+      "confidence": 0.9,
+      "sources": [
+        {
+          "url": "https://www.csiamerica.com/products/perform3d",
+          "title": "Perform3D",
+          "accessed": "2026-06"
+        }
+      ],
+      "international_benchmarks": [
+        "pkpm-sausg"
+      ],
+      "category_l1": "研发设计",
+      "category_l2": "CAE",
+      "product_type": "cae_solver",
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "csi-safe",
+      "name_zh": "SAFE",
+      "name_en": "SAFE",
+      "vendor_id": "csi",
+      "origin": "international",
+      "kernel": "自主·板壳",
+      "maturity": "high",
+      "localization_depth": "partial",
+      "strengths_zh": [
+        "楼板与基础筏板有限元",
+        "与 ETABS 上部结构协同",
+        "复杂地基-结构相互作用"
+      ],
+      "strengths_en": [
+        "Slab and mat foundation FEA",
+        "Coordinates with ETABS superstructure",
+        "Complex soil-structure interaction"
+      ],
+      "limitations_zh": [
+        "国内筏板设计习惯与 PKPM 基础模块不同",
+        "独立建模工作流学习成本"
+      ],
+      "limitations_en": [
+        "Different China mat design habit vs PKPM foundation",
+        "Standalone workflow learning cost"
+      ],
+      "industries": [
+        "建筑",
+        "市政",
+        "商业地产"
+      ],
+      "pricing": "high",
+      "confidence": 0.89,
+      "sources": [
+        {
+          "url": "https://www.csiamerica.com/products/safe",
+          "title": "SAFE",
+          "accessed": "2026-06"
+        }
+      ],
+      "international_benchmarks": [
+        "csi-etabs"
+      ],
+      "category_l1": "研发设计",
+      "category_l2": "CAE",
+      "product_type": "cae_solver",
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "midas-civil",
+      "name_zh": "midas Civil",
+      "name_en": "midas Civil",
+      "vendor_id": "midas",
+      "origin": "international",
+      "kernel": "自主·桥梁专用",
+      "maturity": "mission_critical",
+      "localization_depth": "core",
+      "strengths_zh": [
+        "复杂桥梁总体分析行业标准",
+        "施工阶段与预应力仿真",
+        "国内大跨桥梁项目广泛装机"
+      ],
+      "strengths_en": [
+        "Complex bridge global analysis standard",
+        "Construction staging and prestress simulation",
+        "Wide install base on China long-span bridges"
+      ],
+      "limitations_zh": [
+        "许可与培训成本高于国产桥梁博士",
+        "施工图链需配套其他软件"
+      ],
+      "limitations_en": [
+        "Higher license/training cost vs Dr. Bridge",
+        "Drawing chain needs companion tools"
+      ],
+      "industries": [
+        "桥梁",
+        "市政",
+        "交通"
+      ],
+      "pricing": "high",
+      "confidence": 0.92,
+      "sources": [
+        {
+          "url": "https://product.midasit.cn/index/products-civil.asp",
+          "title": "midas Civil",
+          "accessed": "2026-06"
+        }
+      ],
+      "international_benchmarks": [
+        "doctor-bridge"
+      ],
+      "category_l1": "研发设计",
+      "category_l2": "CAE",
+      "product_type": "cae_solver",
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "midas-gen",
+      "name_zh": "midas Gen",
+      "name_en": "midas Gen",
+      "vendor_id": "midas",
+      "origin": "international",
+      "kernel": "自主·通用有限元",
+      "maturity": "mission_critical",
+      "localization_depth": "core",
+      "strengths_zh": [
+        "建筑结构通用 FEA 与验算",
+        "弹塑性/施工/隔震减震分析",
+        "重大工程双软件校核常用"
+      ],
+      "strengths_en": [
+        "Building general FEA and code check",
+        "Elastic-plastic/construction/isolation analysis",
+        "Common dual-software check on major projects"
+      ],
+      "limitations_zh": [
+        "中国规范施工图弱于 PKPM",
+        "模块许可组合复杂"
+      ],
+      "limitations_en": [
+        "Weak China drawing vs PKPM",
+        "Complex module licensing"
+      ],
+      "industries": [
+        "建筑",
+        "市政",
+        "工业结构"
+      ],
+      "pricing": "high",
+      "confidence": 0.92,
+      "sources": [
+        {
+          "url": "https://product.midasit.cn/index/products-gen.asp",
+          "title": "midas Gen",
+          "accessed": "2026-06"
+        }
+      ],
+      "international_benchmarks": [
+        "pkpm-structure",
+        "yjk-structure"
+      ],
+      "category_l1": "研发设计",
+      "category_l2": "CAE",
+      "product_type": "cae_solver",
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "dlubal-rfem",
+      "name_zh": "RFEM",
+      "name_en": "RFEM",
+      "vendor_id": "dlubal",
+      "origin": "international",
+      "kernel": "自主",
+      "maturity": "high",
+      "localization_depth": "partial",
+      "strengths_zh": [
+        "钢结构与空间结构欧洲标杆",
+        "多种材料与非线性模块",
+        "与 RSTAB 及欧洲规范深度集成"
+      ],
+      "strengths_en": [
+        "European benchmark for steel/spatial structures",
+        "Multi-material and nonlinear modules",
+        "Deep RSTAB and Eurocode integration"
+      ],
+      "limitations_zh": [
+        "中国规范与国内审查链弱",
+        "国内渠道少于 midas/CSI"
+      ],
+      "limitations_en": [
+        "Weak China codes and review chain",
+        "Smaller China channel than midas/CSI"
+      ],
+      "industries": [
+        "钢结构",
+        "建筑",
+        "桥梁"
+      ],
+      "pricing": "high",
+      "confidence": 0.9,
+      "sources": [
+        {
+          "url": "https://www.dlubal.com/en/products/rfem-and-rstab",
+          "title": "RFEM",
+          "accessed": "2026-06"
+        }
+      ],
+      "international_benchmarks": [
+        "3d3s-design",
+        "csi-sap2000"
+      ],
+      "category_l1": "研发设计",
+      "category_l2": "CAE",
+      "product_type": "cae_solver",
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "siemens-star-ccm-plus",
+      "name_zh": "STAR-CCM+",
+      "name_en": "STAR-CCM+",
+      "vendor_id": "siemens-digital",
+      "origin": "international",
+      "kernel": "自主·CFD",
+      "maturity": "mission_critical",
+      "localization_depth": "partial",
+      "strengths_zh": [
+        "工业 CFD 多物理场标杆",
+        "汽车/能源/船舶湍流与传热",
+        "与 Simcenter 测试数据管理协同"
+      ],
+      "strengths_en": [
+        "Industrial CFD multiphysics benchmark",
+        "Auto/energy/marine turbulence and heat transfer",
+        "Simcenter test data management synergy"
+      ],
+      "limitations_zh": [
+        "许可与 HPC 成本高",
+        "国产 CFD 在特定行业追赶中"
+      ],
+      "limitations_en": [
+        "High license and HPC cost",
+        "Domestic CFD catching up in niches"
+      ],
+      "industries": [
+        "汽车",
+        "能源",
+        "船舶"
+      ],
+      "pricing": "high",
+      "confidence": 0.92,
+      "sources": [
+        {
+          "url": "https://plm.sw.siemens.com/en-US/simcenter/STAR-CCM/",
+          "title": "STAR-CCM+",
+          "accessed": "2026-06"
+        }
+      ],
+      "international_benchmarks": [
+        "ansys-fluent",
+        "suochen-abyss"
+      ],
+      "tags": [
+        "automotive",
+        "aerospace"
+      ],
+      "category_l1": "研发设计",
+      "category_l2": "CAE",
+      "product_type": "cae_solver",
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "openfoam",
+      "name_zh": "OpenFOAM",
+      "name_en": "OpenFOAM",
+      "vendor_id": "openfoam",
+      "origin": "open_source",
+      "kernel": "开源·CFD",
+      "maturity": "high",
+      "localization_depth": "partial",
+      "strengths_zh": [
+        "开源 CFD 事实标准",
+        "可定制求解器与 HPC 扩展",
+        "科研与国产替代验证常用"
+      ],
+      "strengths_en": [
+        "Open-source CFD de-facto standard",
+        "Customizable solvers and HPC scaling",
+        "Common for research and domestic substitution validation"
+      ],
+      "limitations_zh": [
+        "商业支持与 GUI 弱于 Fluent",
+        "企业级流程与培训成本高"
+      ],
+      "limitations_en": [
+        "Weaker commercial support/GUI vs Fluent",
+        "High enterprise workflow/training cost"
+      ],
+      "industries": [
+        "能源",
+        "汽车",
+        "航空航天"
+      ],
+      "pricing": "free",
+      "confidence": 0.91,
+      "sources": [
+        {
+          "url": "https://openfoam.org/",
+          "title": "OpenFOAM",
+          "accessed": "2026-06"
+        }
+      ],
+      "international_benchmarks": [
+        "ansys-fluent"
+      ],
+      "tags": [
+        "open_source_stack"
+      ],
+      "category_l1": "研发设计",
+      "category_l2": "CAE",
+      "product_type": "cae_solver",
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "ansys-cfx",
+      "name_zh": "Ansys CFX",
+      "name_en": "Ansys CFX",
+      "vendor_id": "ansys",
+      "origin": "international",
+      "kernel": "自主·CFD",
+      "maturity": "high",
+      "localization_depth": "partial",
+      "strengths_zh": [
+        "涡轮机械与旋转设备 CFD 强项",
+        "与 Fluent 互补的多相流/燃烧",
+        "能源装备行业装机广泛"
+      ],
+      "strengths_en": [
+        "Turbomachinery and rotating equipment CFD strength",
+        "Complements Fluent multiphase/combustion",
+        "Wide energy equipment install base"
+      ],
+      "limitations_zh": [
+        "许可独立于 Fluent 增加成本",
+        "国产流体软件在特定场景替代试点"
+      ],
+      "limitations_en": [
+        "Separate license from Fluent adds cost",
+        "Domestic CFD pilot substitution in niches"
+      ],
+      "industries": [
+        "能源",
+        "航空航天",
+        "工业装备"
+      ],
+      "pricing": "high",
+      "confidence": 0.9,
+      "sources": [
+        {
+          "url": "https://www.ansys.com/products/fluids/ansys-cfx",
+          "title": "Ansys CFX",
+          "accessed": "2026-06"
+        }
+      ],
+      "international_benchmarks": [
+        "ansys-fluent",
+        "siemens-star-ccm-plus"
+      ],
+      "tags": [
+        "aerospace"
+      ],
+      "category_l1": "研发设计",
+      "category_l2": "CAE",
+      "product_type": "cae_solver",
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "bentley-plaxis",
+      "name_zh": "PLAXIS",
+      "name_en": "PLAXIS",
+      "vendor_id": "bentley",
+      "origin": "international",
+      "kernel": "自主·岩土有限元",
+      "maturity": "high",
+      "localization_depth": "partial",
+      "strengths_zh": [
+        "岩土与地基数值分析标杆",
+        "渗流-变形耦合与隧道开挖",
+        "基建与地铁项目常用"
+      ],
+      "strengths_en": [
+        "Geotechnical and foundation numerical benchmark",
+        "Seepage-deformation coupling and tunneling",
+        "Common in infrastructure and metro projects"
+      ],
+      "limitations_zh": [
+        "国产岩土软件在铁路领域追赶",
+        "许可与高级本构模块昂贵"
+      ],
+      "limitations_en": [
+        "Domestic geotech catching up in rail",
+        "Expensive advanced constitutive modules"
+      ],
+      "industries": [
+        "岩土",
+        "市政",
+        "交通"
+      ],
+      "pricing": "high",
+      "confidence": 0.9,
+      "sources": [
+        {
+          "url": "https://www.bentley.com/software/plaxis/",
+          "title": "PLAXIS",
+          "accessed": "2026-06"
+        }
+      ],
+      "international_benchmarks": [
+        "itasca-flac3d"
+      ],
+      "category_l1": "研发设计",
+      "category_l2": "CAE",
+      "product_type": "cae_solver",
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "itasca-flac3d",
+      "name_zh": "FLAC3D",
+      "name_en": "FLAC3D",
+      "vendor_id": "itasca",
+      "origin": "international",
+      "kernel": "自主·岩土显式/隐式",
+      "maturity": "high",
+      "localization_depth": "partial",
+      "strengths_zh": [
+        "岩土与采矿数值分析经典",
+        "大变形与连续-非连续介质",
+        "地下工程与边坡稳定"
+      ],
+      "strengths_en": [
+        "Classic geotechnical and mining numerical",
+        "Large deformation and continuum-discontinuum",
+        "Underground works and slope stability"
+      ],
+      "limitations_zh": [
+        "建筑地基日常设计使用少于 PLAXIS",
+        "国内培训资源相对集中"
+      ],
+      "limitations_en": [
+        "Less daily building foundation use than PLAXIS",
+        "Concentrated China training resources"
+      ],
+      "industries": [
+        "岩土",
+        "采矿",
+        "能源"
+      ],
+      "pricing": "high",
+      "confidence": 0.89,
+      "sources": [
+        {
+          "url": "https://www.itascacg.com/software/flac3d",
+          "title": "FLAC3D",
+          "accessed": "2026-06"
+        }
+      ],
+      "international_benchmarks": [
+        "bentley-plaxis"
+      ],
+      "category_l1": "研发设计",
+      "category_l2": "CAE",
+      "product_type": "cae_solver",
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "bentley-geostudio",
+      "name_zh": "GeoStudio",
+      "name_en": "GeoStudio",
+      "vendor_id": "bentley",
+      "origin": "international",
+      "kernel": "自主·岩土套件",
+      "maturity": "high",
+      "localization_depth": "partial",
+      "strengths_zh": [
+        "渗流/边坡/固结分析套件",
+        "SEEP/W、SLOPE/W 等行业常用",
+        "与 PLAXIS 互补的边坡工作流"
+      ],
+      "strengths_en": [
+        "Seepage/slope/consolidation suite",
+        "SEEP/W and SLOPE/W industry staples",
+        "Slope workflow complementing PLAXIS"
+      ],
+      "limitations_zh": [
+        "三维复杂岩土弱于 FLAC3D/PLAXIS 3D",
+        "国内高校教材引用多于设计院量产"
+      ],
+      "limitations_en": [
+        "Weaker 3D complex geotech vs FLAC3D/PLAXIS 3D",
+        "More academia than design institute mass production"
+      ],
+      "industries": [
+        "岩土",
+        "水利",
+        "交通"
+      ],
+      "pricing": "high",
+      "confidence": 0.88,
+      "sources": [
+        {
+          "url": "https://www.bentley.com/software/geostudio/",
+          "title": "GeoStudio",
+          "accessed": "2026-06"
+        }
+      ],
+      "international_benchmarks": [
+        "bentley-plaxis"
+      ],
+      "category_l1": "研发设计",
+      "category_l2": "CAE",
+      "product_type": "cae_solver",
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "autodesk-robot-structural",
+      "name_zh": "Robot Structural Analysis",
+      "name_en": "Robot Structural Analysis",
+      "vendor_id": "autodesk",
+      "origin": "international",
+      "kernel": "自主",
+      "maturity": "high",
+      "localization_depth": "partial",
+      "strengths_zh": [
+        "与 Revit 结构 BIM 协同",
+        "钢结构连接与欧洲规范验算",
+        "中欧设计院仍有装机"
+      ],
+      "strengths_en": [
+        "Revit structural BIM coordination",
+        "Steel connection and Eurocode checks",
+        "Still installed in China-EU design firms"
+      ],
+      "limitations_zh": [
+        "国内主流让位于 PKPM/YJK",
+        "云化与更新节奏慢于 ETABS"
+      ],
+      "limitations_en": [
+        "China mainstream shifted to PKPM/YJK",
+        "Slower cloud/update pace vs ETABS"
+      ],
+      "industries": [
+        "建筑",
+        "钢结构",
+        "BIM"
+      ],
+      "pricing": "high",
+      "confidence": 0.87,
+      "sources": [
+        {
+          "url": "https://www.autodesk.com/products/robot-structural-analysis/overview",
+          "title": "Robot Structural Analysis",
+          "accessed": "2026-06"
+        }
+      ],
+      "international_benchmarks": [
+        "csi-etabs"
+      ],
+      "tags": [
+        "open_bim"
+      ],
+      "category_l1": "研发设计",
+      "category_l2": "CAE",
+      "product_type": "cae_solver",
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "hexagon-femap",
+      "name_zh": "Femap",
+      "name_en": "Femap",
+      "vendor_id": "hexagon",
+      "origin": "international",
+      "kernel": "自主·前后处理",
+      "maturity": "high",
+      "localization_depth": "partial",
+      "strengths_zh": [
+        "Nastran 前后处理行业标准",
+        "航空与复杂装配 FEM 建模",
+        "与 NX/MSC 求解器链集成"
+      ],
+      "strengths_en": [
+        "Nastran pre/post industry standard",
+        "Aero and complex assembly FEM modeling",
+        "Integrates with NX/MSC solver chains"
+      ],
+      "limitations_zh": [
+        "国内建筑结构领域使用远少于 PKPM",
+        "许可与 Nastran 求解器绑定"
+      ],
+      "limitations_en": [
+        "Far less China building use than PKPM",
+        "License tied to Nastran solvers"
+      ],
+      "industries": [
+        "航空航天",
+        "汽车",
+        "重工"
+      ],
+      "pricing": "high",
+      "confidence": 0.88,
+      "sources": [
+        {
+          "url": "https://hexagon.com/products/femap",
+          "title": "Femap",
+          "accessed": "2026-06"
+        }
+      ],
+      "international_benchmarks": [
+        "msc-nastran",
+        "ansys-mechanical"
+      ],
+      "tags": [
+        "aerospace",
+        "automotive"
+      ],
+      "category_l1": "研发设计",
+      "category_l2": "CAE",
+      "product_type": "cae_solver",
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "functionbay-recurdyn",
+      "name_zh": "RecurDyn",
+      "name_en": "RecurDyn",
+      "vendor_id": "functionbay",
+      "origin": "international",
+      "kernel": "自主·多体动力学",
+      "maturity": "high",
+      "localization_depth": "partial",
+      "strengths_zh": [
+        "多体动力学与刚柔耦合",
+        "履带/齿轮/机构仿真",
+        "汽车动力总成与机械系统"
+      ],
+      "strengths_en": [
+        "Multibody dynamics and flexible coupling",
+        "Track/gear/mechanism simulation",
+        "Automotive powertrain and mechanisms"
+      ],
+      "limitations_zh": [
+        "品牌认知低于 Adams",
+        "国内渠道小于 Hexagon MSC"
+      ],
+      "limitations_en": [
+        "Lower mindshare than Adams",
+        "Smaller China channel than Hexagon MSC"
+      ],
+      "industries": [
+        "汽车",
+        "机械",
+        "国防"
+      ],
+      "pricing": "high",
+      "confidence": 0.88,
+      "sources": [
+        {
+          "url": "https://www.functionbay.com/",
+          "title": "RecurDyn",
+          "accessed": "2026-06"
+        }
+      ],
+      "international_benchmarks": [
+        "hexagon-adams"
+      ],
+      "tags": [
+        "automotive"
+      ],
+      "category_l1": "研发设计",
+      "category_l2": "CAE",
+      "product_type": "cae_solver",
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "openfast",
+      "name_zh": "OpenFAST",
+      "name_en": "OpenFAST",
+      "vendor_id": "nrel",
+      "origin": "open_source",
+      "kernel": "开源·气弹耦合",
+      "maturity": "high",
+      "localization_depth": "pilot",
+      "strengths_zh": [
+        "海上风电整机气弹仿真开源标杆",
+        "浮式基础与系泊耦合",
+        "FAST.Farm 风场级仿真"
+      ],
+      "strengths_en": [
+        "Open-source aeroelastic wind turbine benchmark",
+        "Floating foundation and mooring coupling",
+        "FAST.Farm wind-farm simulation"
+      ],
+      "limitations_zh": [
+        "工程交付需大量校核与定制",
+        "国内海上风电商业链仍以 Bladed 为主"
+      ],
+      "limitations_en": [
+        "Engineering delivery needs heavy validation/customization",
+        "China offshore wind commercial chain still Bladed-led"
+      ],
+      "industries": [
+        "新能源",
+        "海上风电",
+        "科研"
+      ],
+      "pricing": "free",
+      "confidence": 0.9,
+      "sources": [
+        {
+          "url": "https://openfast.readthedocs.io/",
+          "title": "OpenFAST Documentation",
+          "accessed": "2026-06"
+        }
+      ],
+      "international_benchmarks": [
+        "dnv-bladed"
+      ],
+      "tags": [
+        "open_source_stack"
+      ],
+      "category_l1": "研发设计",
+      "category_l2": "CAE",
+      "product_type": "cae_solver",
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "dnv-bladed",
+      "name_zh": "Bladed",
+      "name_en": "Bladed",
+      "vendor_id": "dnv",
+      "origin": "international",
+      "kernel": "自主·风电载荷",
+      "maturity": "mission_critical",
+      "localization_depth": "core",
+      "strengths_zh": [
+        "风电整机载荷与认证行业标准",
+        "海上浮式与系泊分析",
+        "国内主机厂与设计院认证常用"
+      ],
+      "strengths_en": [
+        "Wind turbine load and certification industry standard",
+        "Offshore floating and mooring analysis",
+        "Common for China OEM and designer certification"
+      ],
+      "limitations_zh": [
+        "许可昂贵且认证流程封闭",
+        "开源 OpenFAST 在科研替代增长"
+      ],
+      "limitations_en": [
+        "Expensive license and closed certification flow",
+        "OpenFAST growing as research alternative"
+      ],
+      "industries": [
+        "新能源",
+        "海上风电",
+        "电力"
+      ],
+      "pricing": "quote",
+      "confidence": 0.91,
+      "sources": [
+        {
+          "url": "https://www.dnv.com/software/services/bladed/",
+          "title": "DNV Bladed",
+          "accessed": "2026-06"
+        }
+      ],
+      "international_benchmarks": [
+        "openfast"
+      ],
+      "category_l1": "研发设计",
+      "category_l2": "CAE",
+      "product_type": "cae_solver",
+      "last_verified": "2026-06"
+    },
+    {
       "id": "gibbscam",
       "name_zh": "GibbsCAM",
       "name_en": "GibbsCAM",
