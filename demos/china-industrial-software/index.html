@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>中国工业软件现状综述 | China Industrial Software Survey | QROST</title>
+    <meta name="description" content="可追溯的中国工业软件调研：EDA、CAD、CAE、PLM、DCS/MES、ERP、BIM/GIS、3D 切片软件与工业互联网平台约 140 款已核验产品。区分国产化广度与深度替代。Bilingual 中文/EN。">
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230f172a'/%3E%3Ctext x='16' y='21' font-family='Inter,system-ui,sans-serif' font-size='13' font-weight='700' text-anchor='middle' fill='white' letter-spacing='1'%3EQ%3C/text%3E%3C/svg%3E">
+
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="中国工业软件现状综述 — China Industrial Software Survey">
+    <meta property="og:description" content="140 verified products across EDA, CAD, CAE, PLM, DCS/MES, ERP, BIM/GIS, 3D slicers and IIoT platforms. Breadth vs depth localization metrics.">
+    <meta property="og:url" content="https://qrost.github.io/demos/china-industrial-software/">
+    <meta property="og:site_name" content="QROST">
+
+    <link rel="stylesheet" href="assets/css/tailwind-built.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"
+        integrity="sha384-vsrfeLOOY6KuIYKDlmVH5UiBmgIdB1oEf7p01YgWHuqmOHfZr374+odEv96n9tNC"
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/industrial-software.css?v=20260612e">
+</head>
+
+<body class="antialiased scroll-smooth">
+
+    <a href="#overview" class="skip-to-content sr-only focus:not-sr-only" data-i18n="skipLink">跳到内容</a>
+    <p id="init-error" class="hidden max-w-[90rem] mx-auto px-4 py-2 text-sm text-amber-800 bg-amber-50 border-b border-amber-200"></p>
+
+    <nav class="site-nav fixed top-0 w-full z-50 border-b border-slate-200/90 bg-white/85 backdrop-blur-md">
+        <div class="max-w-[90rem] mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-14 items-center gap-4">
+                <a href="../../index.html" class="text-[0.65rem] font-semibold tracking-[0.35em] text-slate-900 uppercase">QROST</a>
+                <div class="flex items-center gap-4 md:gap-8">
+                    <div class="hidden md:flex items-center gap-8 text-sm">
+                        <a href="#overview" class="text-slate-500 hover:text-slate-900" data-i18n="navOverview">概览</a>
+                        <a href="#taxonomy" class="text-slate-500 hover:text-slate-900" data-i18n="navTaxonomy">品类</a>
+                        <a href="#kernels" class="text-slate-500 hover:text-slate-900" data-i18n="navKernels">几何内核</a>
+                        <a href="#catalog" class="text-slate-500 hover:text-slate-900" data-i18n="navCatalog">产品目录</a>
+                        <a href="#timeline" class="text-slate-500 hover:text-slate-900" data-i18n="navTimeline">政策突破</a>
+                        <button type="button" id="nav-compare-btn" class="text-slate-500 hover:text-slate-900" data-i18n="navCompare">对标</button>
+                        <a href="#methodology" class="text-slate-500 hover:text-slate-900" data-i18n="navMethodology">方法论</a>
+                    </div>
+                    <button type="button" id="nav-menu-toggle" class="md:hidden inline-flex items-center justify-center w-9 h-9 rounded border border-slate-200 text-slate-700" aria-controls="mobile-menu" aria-expanded="false">
+                        <svg class="w-4 h-4" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.75"><path stroke-linecap="round" d="M3.5 6h13M3.5 10h13M3.5 14h13"/></svg>
+                    </button>
+                    <button type="button" id="lang-toggle" class="text-xs font-medium text-slate-600 border border-slate-200 rounded px-2.5 py-1 hover:bg-slate-50">EN</button>
+                </div>
+            </div>
+            <div id="mobile-menu" class="md:hidden hidden border-t border-slate-200 py-2">
+                <a href="#overview" class="block py-2 text-sm" data-mobile-nav-link data-i18n="navOverview">概览</a>
+                <a href="#taxonomy" class="block py-2 text-sm border-t border-slate-100" data-mobile-nav-link data-i18n="navTaxonomy">品类</a>
+                <a href="#kernels" class="block py-2 text-sm border-t border-slate-100" data-mobile-nav-link data-i18n="navKernels">几何内核</a>
+                <a href="#catalog" class="block py-2 text-sm border-t border-slate-100" data-mobile-nav-link data-i18n="navCatalog">产品目录</a>
+                <a href="#timeline" class="block py-2 text-sm border-t border-slate-100" data-mobile-nav-link data-i18n="navTimeline">政策突破</a>
+                <button type="button" id="nav-compare-btn-mobile" class="block w-full text-left py-2 text-sm border-t border-slate-100" data-mobile-nav-link data-i18n="navCompare">对标</button>
+                <a href="#methodology" class="block py-2 text-sm border-t border-slate-100" data-mobile-nav-link data-i18n="navMethodology">方法论</a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="pt-28 pb-16 border-b border-slate-100 bg-white">
+        <div class="max-w-[90rem] mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="max-w-3xl">
+                <h1 class="text-4xl md:text-[2.75rem] font-semibold tracking-tight text-slate-900 leading-[1.15]" data-i18n="heroH1">中国工业软件现状综述</h1>
+                <p class="mt-6 text-lg text-slate-600 leading-relaxed" data-i18n="heroLead"></p>
+                <p class="mt-4 text-sm text-slate-500">
+                    <span data-i18n="heroDataAsOf"></span>
+                    <span data-i18n="heroLastReviewed"></span>
+                    <span data-i18n="heroMethodLink"></span>
+                </p>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-[90rem] mx-auto px-4 sm:px-6 lg:px-8 py-12">
+
+        <!-- #overview -->
+        <section id="overview" class="mb-20">
+            <h2 class="text-3xl font-bold text-slate-800 mb-2" data-i18n="secOverview">市场概览</h2>
+            <p class="text-slate-500 mb-8 max-w-3xl" data-i18n="secOverviewDesc"></p>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div class="kpi-card">
+                    <div class="text-xs text-slate-500 uppercase tracking-wide" data-i18n="kpiMarket">市场规模</div>
+                    <div id="kpi-market" class="text-3xl font-semibold text-slate-900 mt-1">—</div>
+                    <div class="text-xs text-slate-400 mt-1" data-i18n="kpiMarketSub">亿元</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="text-xs text-slate-500 uppercase tracking-wide" data-i18n="kpiProducts">调研产品</div>
+                    <div id="kpi-products" class="text-3xl font-semibold text-emerald-700 mt-1">—</div>
+                    <div class="text-xs text-slate-400 mt-1" data-i18n="kpiProductsSub">已核验深度条目</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="text-xs text-slate-500 uppercase tracking-wide" data-i18n="kpiDomestic">国产条目</div>
+                    <div id="kpi-domestic" class="text-3xl font-semibold text-slate-900 mt-1">—</div>
+                    <div class="text-xs text-slate-400 mt-1" data-i18n="kpiDomesticSub">含合资/开源</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="text-xs text-slate-500 uppercase tracking-wide" data-i18n="kpiCategories">品类分片</div>
+                    <div id="kpi-categories" class="text-3xl font-semibold text-slate-900 mt-1">—</div>
+                    <div class="text-xs text-slate-400 mt-1" data-i18n="kpiCategoriesSub">JSON 懒加载</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- #taxonomy -->
+        <section id="taxonomy" class="mb-20">
+            <h2 class="text-3xl font-bold text-slate-800 mb-2" data-i18n="secTaxonomy">品类结构</h2>
+            <p class="text-slate-500 mb-8" data-i18n="secTaxonomyDesc"></p>
+            <div class="bg-white rounded-xl border border-slate-100 p-4 chart-box-tall">
+                <div class="flex justify-end mb-1">
+                    <button type="button" id="sunburst-reset" class="text-xs px-2.5 py-1 rounded border border-slate-200 text-slate-600 hover:bg-slate-50 hover:text-slate-900 transition-colors" data-i18n="sunburstReset">重置</button>
+                </div>
+                <div id="taxonomy-sunburst" class="w-full h-full" style="min-height:360px"></div>
+                <p class="text-xs text-slate-400 mt-2 text-center" data-i18n="sunburstHint">点击扇区筛选；点击空白或重置恢复全部</p>
+            </div>
+        </section>
+
+        <!-- #kernels -->
+        <section id="kernels" class="mb-20">
+            <h2 class="text-3xl font-bold text-slate-800 mb-2" data-i18n="secKernels">几何内核</h2>
+            <p class="text-slate-500 mb-6 max-w-3xl" data-i18n="secKernelsDesc"></p>
+            <p class="text-xs text-slate-400 mb-2"><span id="kernels-count">0</span> kernels</p>
+            <div class="overflow-x-auto bg-white rounded-xl border border-slate-100">
+                <table class="kernels-table w-full text-sm">
+                    <thead class="bg-slate-50 text-slate-600">
+                        <tr>
+                            <th class="px-3 py-3 text-left cursor-pointer" data-kernel-sort="name" data-i18n="colKernelName">内核</th>
+                            <th class="px-3 py-3 text-left cursor-pointer" data-kernel-sort="owner" data-i18n="colKernelOwner">所有者</th>
+                            <th class="px-3 py-3 text-left cursor-pointer" data-kernel-sort="origin" data-i18n="colKernelOrigin">来源</th>
+                            <th class="px-3 py-3 text-left cursor-pointer" data-kernel-sort="domestic_count" data-i18n="colKernelDomestic">国产产品数</th>
+                            <th class="px-3 py-3 text-left" data-i18n="colKernelSubstitution">替代状态</th>
+                            <th class="px-3 py-3 no-print"></th>
+                        </tr>
+                    </thead>
+                    <tbody id="kernels-tbody"></tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- #catalog -->
+        <section id="catalog" class="mb-20">
+            <h2 class="text-3xl font-bold text-slate-800 mb-2" data-i18n="secCatalog">产品目录</h2>
+            <p class="text-slate-500 mb-6 max-w-3xl" data-i18n="secCatalogDesc"></p>
+            <div class="flex flex-wrap gap-3 mb-4 no-print items-center">
+                <button type="button" id="catalog-compare-btn" class="text-sm font-medium border border-emerald-200 text-emerald-800 bg-emerald-50 rounded px-3 py-2 hover:bg-emerald-100" data-i18n="compareOpenCta">对标对比</button>
+                <select id="filter-origin" class="text-sm border border-slate-200 rounded px-3 py-2 bg-white">
+                    <option value="" data-i18n="filterAll">全部</option>
+                    <option value="domestic" data-i18n="originDomestic">国产</option>
+                    <option value="international" data-i18n="originInternational">国际</option>
+                    <option value="joint_venture" data-i18n="originJV">合资</option>
+                    <option value="open_source" data-i18n="originOSS">开源</option>
+                </select>
+                <select id="filter-category" class="text-sm border border-slate-200 rounded px-3 py-2 bg-white"></select>
+                <select id="filter-kernel" class="text-sm border border-slate-200 rounded px-3 py-2 bg-white min-w-[10rem]" aria-label="Filter by geometry kernel"></select>
+                <input type="search" id="catalog-search" class="text-sm border border-slate-200 rounded px-3 py-2 flex-1 min-w-[12rem]" data-i18n-placeholder="searchPlaceholder">
+            </div>
+            <p class="text-xs text-slate-400 mb-2"><span id="catalog-count">0</span> rows</p>
+            <div class="overflow-x-auto bg-white rounded-xl border border-slate-100">
+                <table class="catalog-table w-full text-sm">
+                    <thead class="bg-slate-50 text-slate-600">
+                        <tr>
+                            <th class="px-3 py-3 text-left" data-sort="name" data-i18n="colName">产品</th>
+                            <th class="px-3 py-3 text-left" data-sort="vendor_id" data-i18n="colVendor">厂商</th>
+                            <th class="px-3 py-3 text-left" data-sort="category_l2" data-i18n="colCategory">品类</th>
+                            <th class="px-3 py-3 text-left" data-sort="origin" data-i18n="colOrigin">来源</th>
+                            <th class="px-3 py-3 text-left" data-sort="maturity" data-i18n="colMaturity">成熟度</th>
+                            <th class="px-3 py-3 text-left" data-sort="localization_depth" data-i18n="colLocDepth">替代深度</th>
+                            <th class="px-3 py-3 text-left" data-sort="confidence" data-i18n="colConfidence">置信度</th>
+                            <th class="px-3 py-3 no-print"></th>
+                        </tr>
+                    </thead>
+                    <tbody id="catalog-tbody"></tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- #timeline -->
+        <section id="timeline" class="mb-20">
+            <h2 class="text-3xl font-bold text-slate-800 mb-2" data-i18n="secTimeline">突破与政策</h2>
+            <p class="text-slate-500 mb-6 max-w-3xl" data-i18n="secTimelineDesc"></p>
+
+            <div class="flex flex-wrap items-center gap-3 mb-2">
+                <label for="timeline-filter-category" class="text-sm text-slate-600" data-i18n="milestoneFilter">品类筛选</label>
+                <select id="timeline-filter-category" class="text-sm border border-slate-200 rounded px-3 py-2 bg-white min-w-[10rem]"></select>
+                <span class="text-xs text-slate-400"><span data-i18n="milestoneShowing">显示</span> <strong id="milestone-count" class="text-slate-600">—</strong> <span data-i18n="milestoneCards">条里程碑</span></span>
+            </div>
+            <p class="text-xs text-slate-400 mb-6" data-i18n="timelineFlowHint">时间自上而下推进（由早到晚）</p>
+
+            <div id="milestone-list" class="timeline-rail" role="list"></div>
+
+            <div id="timeline-policies" class="timeline-policies">
+                <h3 class="text-xl font-semibold text-slate-800 mb-2" data-i18n="secPolicies">可量化政策节点</h3>
+                <p class="text-sm text-slate-500 mb-6 max-w-3xl" data-i18n="secPoliciesDesc"></p>
+                <div id="policy-list" class="grid gap-4 md:grid-cols-2"></div>
+                <details class="mt-6 hidden">
+                    <summary class="text-sm text-slate-500 cursor-pointer" data-i18n="policyFootnotes">宏观政策背景（无单一 KPI）</summary>
+                    <ul id="policy-footnotes" class="mt-2 space-y-1 list-disc pl-5"></ul>
+                </details>
+            </div>
+        </section>
+
+        <!-- Methodology (collapsed by default) -->
+        <section id="methodology" class="mb-12 scroll-mt-20">
+            <details class="methodology-details rounded-xl border border-slate-200 bg-white transition-colors duration-300">
+                <summary id="methodology-summary" class="px-5 py-4 text-xs font-semibold uppercase tracking-[0.15em] text-slate-400" data-i18n="methodologySummary">
+                    说明 · Methodology
+                </summary>
+                <div class="px-5 pb-5 pt-0 space-y-5 border-t border-slate-100">
+                    <div class="rounded-xl border border-emerald-200 bg-emerald-50/50 p-5 text-sm text-slate-600 leading-relaxed space-y-2">
+                        <p id="method-disclaimer-title" class="font-medium text-slate-800" data-i18n="methodDisclaimerTitle">免责声明</p>
+                        <div id="method-disclaimer-body" class="space-y-2" data-i18n="methodDisclaimerBody"></div>
+                    </div>
+                    <div class="rounded-xl border border-slate-200 bg-slate-50 p-5 text-sm text-slate-600 leading-relaxed space-y-2">
+                        <p id="method-data-title" class="font-medium text-slate-800" data-i18n="methodDataTitle">数据来源与范围</p>
+                        <div id="method-data-body" class="space-y-2" data-i18n="methodDataBody"></div>
+                    </div>
+                    <div class="grid md:grid-cols-2 gap-5">
+                        <div class="rounded-xl border border-slate-200 bg-white p-6 text-sm text-slate-600 leading-relaxed space-y-3">
+                            <p id="method-taxonomy-title" class="font-medium text-slate-800" data-i18n="methodTaxonomyTitle">品类与目录如何组织</p>
+                            <div id="method-taxonomy-body" class="space-y-2" data-i18n="methodTaxonomyBody"></div>
+                        </div>
+                        <div class="rounded-xl border border-slate-200 bg-white p-6 text-sm text-slate-600 leading-relaxed space-y-3">
+                            <p id="method-kernel-title" class="font-medium text-slate-800" data-i18n="methodKernelTitle">几何内核与工业软件</p>
+                            <div id="method-kernel-body" class="space-y-2" data-i18n="methodKernelBody"></div>
+                        </div>
+                    </div>
+                    <div class="grid md:grid-cols-2 gap-5">
+                        <div class="rounded-xl border border-slate-200 bg-slate-50 p-6 text-sm text-slate-600 leading-relaxed space-y-3">
+                            <p id="method-localization-title" class="font-medium text-slate-800" data-i18n="methodLocalizationTitle">国产化：广度与深度</p>
+                            <div id="method-localization-body" class="space-y-2" data-i18n="methodLocalizationBody"></div>
+                        </div>
+                        <div class="rounded-xl border border-amber-200 bg-amber-50/60 p-6 text-sm text-slate-600 leading-relaxed space-y-3">
+                            <p id="method-limits-title" class="font-medium text-amber-800" data-i18n="methodLimitsTitle">务必注意的局限</p>
+                            <div id="method-limits-body" class="space-y-2" data-i18n="methodLimitsBody"></div>
+                        </div>
+                    </div>
+                    <div class="rounded-xl border border-slate-200 bg-white p-5 text-sm text-slate-600 leading-relaxed space-y-2">
+                        <p id="method-ai-title" class="font-medium text-slate-800" data-i18n="methodAiTitle">AI 辅助披露</p>
+                        <div id="method-ai-body" class="space-y-2" data-i18n="methodAiBody"></div>
+                    </div>
+                </div>
+            </details>
+        </section>
+    </main>
+
+    <footer class="border-t border-slate-200 py-8 text-center text-xs text-slate-400">
+        <p><span data-i18n="footerBuilt">数据构建于</span> <span id="footer-built-at">—</span></p>
+        <p class="mt-2" data-i18n="footerDisclaimer"></p>
+    </footer>
+
+    <button type="button" id="compare-fab" class="hidden fixed bottom-5 right-5 z-40 rounded-full shadow-lg px-4 py-2.5 text-sm font-medium bg-emerald-600 text-white hover:bg-emerald-500 transition-colors no-print" data-i18n="compareFab">对标对比</button>
+
+    <div id="product-modal" class="modal-backdrop hidden no-print" role="dialog" aria-modal="true" aria-hidden="true">
+        <div class="modal-panel p-6 mt-8">
+            <div class="flex justify-between items-start gap-4">
+                <h3 id="modal-title" class="text-xl font-semibold text-slate-900"></h3>
+                <div class="flex items-center gap-2 shrink-0">
+                    <button type="button" id="modal-compare-add" class="hidden text-xs font-medium border border-slate-200 rounded-lg px-2.5 py-1.5 text-slate-600 hover:bg-slate-50 whitespace-nowrap" data-i18n="addCompare">加入对比</button>
+                    <button type="button" id="modal-close" class="text-slate-400 hover:text-slate-700 text-2xl leading-none" aria-label="Close">&times;</button>
+                </div>
+            </div>
+            <div id="modal-body" class="mt-4 text-sm"></div>
+        </div>
+    </div>
+
+    <div id="kernel-modal" class="modal-backdrop hidden no-print" role="dialog" aria-modal="true" aria-hidden="true">
+        <div class="modal-panel p-6 mt-8 max-h-[88vh] overflow-y-auto">
+            <div class="flex justify-between items-start gap-4">
+                <h3 id="kernel-modal-title" class="text-xl font-semibold text-slate-900"></h3>
+                <button type="button" id="kernel-modal-close" class="text-slate-400 hover:text-slate-700 text-2xl leading-none" aria-label="Close">&times;</button>
+            </div>
+            <div id="kernel-modal-body" class="mt-4 text-sm"></div>
+        </div>
+    </div>
+
+    <div id="compare-modal" class="modal-backdrop hidden no-print" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="compare-modal-title">
+        <div class="modal-panel modal-panel-wide p-6 mt-4 mb-8 max-h-[88vh] overflow-y-auto">
+            <div class="flex justify-between items-start gap-4 pb-4 border-b border-slate-100">
+                <div class="min-w-0">
+                    <h3 id="compare-modal-title" class="text-xl font-semibold text-slate-900" data-i18n="compareModalTitle">对标对比</h3>
+                    <p class="text-sm text-slate-500 mt-1" data-i18n="compareModalDesc"></p>
+                </div>
+                <div class="flex items-center gap-2 shrink-0">
+                    <button type="button" id="compare-clear" class="text-xs font-medium border border-slate-200 rounded-lg px-2.5 py-1.5 text-slate-600 hover:bg-slate-50" data-i18n="compareClear">清空对比</button>
+                    <button type="button" id="compare-modal-close" class="text-slate-400 hover:text-slate-700 text-2xl leading-none" aria-label="Close">&times;</button>
+                </div>
+            </div>
+            <div id="compare-slots" class="grid grid-cols-2 md:grid-cols-4 gap-3 my-4"></div>
+            <div class="flex flex-wrap gap-3 mb-6 no-print">
+                <select id="compare-search" class="text-sm border border-slate-200 rounded px-3 py-2 bg-white min-w-[16rem] flex-1"></select>
+            </div>
+            <h4 class="font-medium text-slate-800 mb-3" data-i18n="compareRadar">能力雷达</h4>
+            <div class="bg-slate-50 rounded-xl border border-slate-100 p-4 mb-8">
+                <div id="compare-radar-chart" class="w-full" style="min-height:300px;height:320px"></div>
+            </div>
+            <h4 class="font-medium text-slate-800 mb-3" data-i18n="compareTable">字段对比</h4>
+            <div id="compare-table" class="bg-slate-50 rounded-xl border border-slate-100 p-4 overflow-x-auto"></div>
+        </div>
+    </div>
+
+    <script src="assets/js/i18n.js?v=20260612e"></script>
+    <script src="assets/js/catalog-loader.js?v=20260612e"></script>
+    <script src="assets/js/charts.js?v=20260612e"></script>
+    <script src="assets/js/compare.js?v=20260612e"></script>
+    <script src="assets/js/app.js?v=20260612e"></script>
+</body>
+</html>

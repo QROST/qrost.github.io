@@ -1,0 +1,123 @@
+{
+  "build_time": "2026-06-12T14:25:58Z",
+  "total_products": 246,
+  "total_kernels": 43,
+  "category_counts": {
+    "bim-gis": 28,
+    "cad": 34,
+    "cae": 30,
+    "eda": 46,
+    "erp": 13,
+    "mes-dcs": 30,
+    "open-source": 10,
+    "platform": 22,
+    "plm": 17,
+    "slicers": 16
+  },
+  "category_l1_counts": {
+    "研发设计": 148,
+    "生产制造": 85,
+    "经营管理": 13
+  },
+  "category_l2_counts": {
+    "BIM": 22,
+    "GIS": 6,
+    "CAD": 39,
+    "CAD互操作": 5,
+    "CAE": 18,
+    "CAM": 12,
+    "EDA": 41,
+    "半导体CIM": 5,
+    "ERP": 13,
+    "DCS": 9,
+    "SCADA": 7,
+    "MES": 13,
+    "EAM": 1,
+    "工业互联网": 22,
+    "PLM": 15,
+    "MBSE": 2,
+    "切片软件": 16
+  },
+  "origin_counts": {
+    "domestic": 102,
+    "international": 126,
+    "open_source": 18
+  },
+  "kernel_ref_counts": {
+    "zw-overdrive": 2,
+    "gstar-2d-platform": 1,
+    "crowncad-dgm": 1,
+    "caxa-mega-kernel": 2,
+    "hoteam-crux-iv": 1,
+    "thcad-platform-kernel": 1,
+    "pengye-graphic-platform": 1,
+    "autodesk-acad-geometry": 1,
+    "parasolid": 5,
+    "catia-cgm": 1,
+    "siemens-hybrid-stack": 1,
+    "granite": 1,
+    "shape-manager": 2,
+    "acis": 2,
+    "sketchup-geometry": 1,
+    "c3d": 1,
+    "poisson-geoshape": 1,
+    "open-cascade": 7,
+    "cgal": 1,
+    "solvespace-kernel": 1,
+    "librecad-rs-entity-engine": 1,
+    "brl-cad-csg": 1,
+    "blender-bmesh": 1
+  },
+  "categories": [
+    {
+      "id": "bim-gis",
+      "file": "categories/bim-gis.json",
+      "count": 28
+    },
+    {
+      "id": "cad",
+      "file": "categories/cad.json",
+      "count": 34
+    },
+    {
+      "id": "cae",
+      "file": "categories/cae.json",
+      "count": 30
+    },
+    {
+      "id": "eda",
+      "file": "categories/eda.json",
+      "count": 46
+    },
+    {
+      "id": "erp",
+      "file": "categories/erp.json",
+      "count": 13
+    },
+    {
+      "id": "mes-dcs",
+      "file": "categories/mes-dcs.json",
+      "count": 30
+    },
+    {
+      "id": "open-source",
+      "file": "categories/open-source.json",
+      "count": 10
+    },
+    {
+      "id": "platform",
+      "file": "categories/platform.json",
+      "count": 22
+    },
+    {
+      "id": "plm",
+      "file": "categories/plm.json",
+      "count": 17
+    },
+    {
+      "id": "slicers",
+      "file": "categories/slicers.json",
+      "count": 16
+    }
+  ]
+}

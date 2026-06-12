@@ -1,0 +1,1343 @@
+{
+  "category": "mes-dcs",
+  "products": [
+    {
+      "id": "supcon-supos",
+      "name_zh": "中控SUPOS",
+      "name_en": "SUPCON SUPOS",
+      "vendor_id": "supcon",
+      "category_l1": "生产制造",
+      "category_l2": "DCS",
+      "origin": "domestic",
+      "kernel": "自主",
+      "maturity": "mission_critical",
+      "localization_depth": "core",
+      "strengths_zh": [
+        "流程工业DCS市占第一",
+        "PlantMart工业互联网平台"
+      ],
+      "strengths_en": [
+        "#1 process DCS share in China",
+        "PlantMart IIoT platform"
+      ],
+      "limitations_zh": [
+        "化工以外行业拓展仍在进行",
+        "高端仪表仍部分进口"
+      ],
+      "limitations_en": [
+        "Expanding beyond chemicals",
+        "Some high-end instruments imported"
+      ],
+      "industries": [
+        "化工",
+        "石化",
+        "冶金"
+      ],
+      "pricing": "high",
+      "confidence": 0.91,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.supcon.com/",
+          "title": "SUPCON SUPOS",
+          "accessed": "2026-06"
+        }
+      ],
+      "international_benchmarks": [
+        "emerson-deltav"
+      ],
+      "listed_ticker": "688777.SH"
+    },
+    {
+      "id": "hollysys-dcs",
+      "name_zh": "和利时DCS",
+      "name_en": "Hollysys DCS",
+      "vendor_id": "hollysys",
+      "category_l1": "生产制造",
+      "category_l2": "DCS",
+      "origin": "domestic",
+      "kernel": "自主",
+      "maturity": "high",
+      "localization_depth": "core",
+      "strengths_zh": [
+        "电力与轨道自动化背景",
+        "核电DCS国产化突破"
+      ],
+      "strengths_en": [
+        "Power and rail automation heritage",
+        "Nuclear DCS localization"
+      ],
+      "limitations_zh": [
+        "化工市占低于中控",
+        "国际化有限"
+      ],
+      "limitations_en": [
+        "Lower chemical share than SUPCON",
+        "Limited internationalization"
+      ],
+      "industries": [
+        "电力",
+        "核电",
+        "化工"
+      ],
+      "pricing": "high",
+      "confidence": 0.88,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.hollysys.com/",
+          "title": "Hollysys DCS",
+          "accessed": "2026-06"
+        }
+      ],
+      "international_benchmarks": [
+        "honeywell-experion"
+      ],
+      "listed_ticker": "HOLI"
+    },
+    {
+      "id": "nari-dcs",
+      "name_zh": "南瑞DCS/电网自动化",
+      "name_en": "NARI Power Automation",
+      "vendor_id": "nari",
+      "category_l1": "生产制造",
+      "category_l2": "DCS",
+      "origin": "domestic",
+      "kernel": "自主",
+      "maturity": "mission_critical",
+      "localization_depth": "core",
+      "strengths_zh": [
+        "电网调度与变电站自动化龙头",
+        "国网体系深度绑定"
+      ],
+      "strengths_en": [
+        "Grid dispatch and substation leader",
+        "Deep State Grid ties"
+      ],
+      "limitations_zh": [
+        "流程化工DCS非主业",
+        "市场化定价透明度低"
+      ],
+      "limitations_en": [
+        "Process DCS not core",
+        "Opaque market pricing"
+      ],
+      "industries": [
+        "电力",
+        "电网",
+        "新能源"
+      ],
+      "pricing": "high",
+      "confidence": 0.9,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "http://www.nari.cn/",
+          "title": "NARI Power Automation",
+          "accessed": "2026-06"
+        }
+      ],
+      "international_benchmarks": [
+        "abb-800xa"
+      ],
+      "listed_ticker": "600406.SH"
+    },
+    {
+      "id": "sciyon-dcs",
+      "name_zh": "科远DCS",
+      "name_en": "SCIYON DCS",
+      "vendor_id": "sciyon",
+      "category_l1": "生产制造",
+      "category_l2": "DCS",
+      "origin": "domestic",
+      "kernel": "自主",
+      "maturity": "high",
+      "localization_depth": "partial",
+      "strengths_zh": [
+        "热电与建材DCS优势",
+        "智慧电厂整体方案"
+      ],
+      "strengths_en": [
+        "Strength in thermal power DCS",
+        "Smart plant solutions"
+      ],
+      "limitations_zh": [
+        "大型石化全厂级案例少",
+        "品牌全国化进行中"
+      ],
+      "limitations_en": [
+        "Few mega-petrochemical references",
+        "National brand building"
+      ],
+      "industries": [
+        "电力",
+        "建材",
+        "化工"
+      ],
+      "pricing": "mid",
+      "confidence": 0.84,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.sciyon.com/",
+          "title": "SCIYON DCS",
+          "accessed": "2026-06"
+        }
+      ],
+      "international_benchmarks": [
+        "siemens-pcs7"
+      ],
+      "listed_ticker": "002380.SZ"
+    },
+    {
+      "id": "wellintech-kingview",
+      "name_zh": "亚控组态王",
+      "name_en": "Wellintech KingView",
+      "vendor_id": "wellintech",
+      "category_l1": "生产制造",
+      "category_l2": "SCADA",
+      "origin": "domestic",
+      "kernel": "自主",
+      "maturity": "high",
+      "localization_depth": "partial",
+      "strengths_zh": [
+        "国产组态软件老牌",
+        "中小企业SCADA普及"
+      ],
+      "strengths_en": [
+        "Legacy domestic SCADA/HMI",
+        "Wide SME adoption"
+      ],
+      "limitations_zh": [
+        "云原生与安全加固落后",
+        "高端流程行业渗透有限"
+      ],
+      "limitations_en": [
+        "Behind on cloud-native security",
+        "Limited high-end process penetration"
+      ],
+      "industries": [
+        "市政",
+        "水处理",
+        "制造业"
+      ],
+      "pricing": "low",
+      "confidence": 0.86,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.kingview.com/",
+          "title": "Wellintech KingView",
+          "accessed": "2026-06"
+        }
+      ],
+      "international_benchmarks": [
+        "wonderware"
+      ]
+    },
+    {
+      "id": "emerson-deltav",
+      "name_zh": "Emerson DeltaV",
+      "name_en": "Emerson DeltaV",
+      "vendor_id": "emerson",
+      "category_l1": "生产制造",
+      "category_l2": "DCS",
+      "origin": "international",
+      "kernel": "自主",
+      "maturity": "mission_critical",
+      "localization_depth": "core",
+      "strengths_zh": [
+        "化工石化全球标杆DCS",
+        "中国区服务网络成熟"
+      ],
+      "strengths_en": [
+        "Global chemical DCS benchmark",
+        "Mature China service network"
+      ],
+      "limitations_zh": [
+        "国产化替代在大型炼化推进",
+        "硬件供应链风险"
+      ],
+      "limitations_en": [
+        "Localization push in mega refineries",
+        "Hardware supply risk"
+      ],
+      "industries": [
+        "石化",
+        "化工",
+        "制药"
+      ],
+      "pricing": "high",
+      "confidence": 0.9,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.emerson.com/",
+          "title": "Emerson DeltaV",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "honeywell-experion",
+      "name_zh": "Honeywell Experion",
+      "name_en": "Honeywell Experion",
+      "vendor_id": "honeywell",
+      "category_l1": "生产制造",
+      "category_l2": "DCS",
+      "origin": "international",
+      "kernel": "自主",
+      "maturity": "mission_critical",
+      "localization_depth": "core",
+      "strengths_zh": [
+        "炼化一体化DCS强项",
+        "与霍尼韦尔仪表协同"
+      ],
+      "strengths_en": [
+        "Integrated refining DCS strength",
+        "Honeywell instrument synergy"
+      ],
+      "limitations_zh": [
+        "价格与备件成本高",
+        "本土人才竞争加剧"
+      ],
+      "limitations_en": [
+        "High spare parts cost",
+        "Intense local talent competition"
+      ],
+      "industries": [
+        "石化",
+        "化工"
+      ],
+      "pricing": "high",
+      "confidence": 0.89,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://process.honeywell.com/",
+          "title": "Honeywell Experion",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "siemens-pcs7",
+      "name_zh": "Siemens PCS 7",
+      "name_en": "Siemens PCS 7",
+      "vendor_id": "siemens-process",
+      "category_l1": "生产制造",
+      "category_l2": "DCS",
+      "origin": "international",
+      "kernel": "自主",
+      "maturity": "mission_critical",
+      "localization_depth": "core",
+      "strengths_zh": [
+        "制药与精细化工常用",
+        "与TIA Portal集成"
+      ],
+      "strengths_en": [
+        "Common in pharma and fine chemicals",
+        "TIA Portal integration"
+      ],
+      "limitations_zh": [
+        "老版本迁移压力大",
+        "国产化政策下份额承压"
+      ],
+      "limitations_en": [
+        "Legacy migration pressure",
+        "Share pressure under localization policy"
+      ],
+      "industries": [
+        "制药",
+        "化工",
+        "食品"
+      ],
+      "pricing": "high",
+      "confidence": 0.89,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.siemens.com/global/en/products/automation/process-control.html",
+          "title": "Siemens PCS 7",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "abb-800xa",
+      "name_zh": "ABB 800xA",
+      "name_en": "ABB 800xA",
+      "vendor_id": "abb",
+      "category_l1": "生产制造",
+      "category_l2": "DCS",
+      "origin": "international",
+      "kernel": "自主",
+      "maturity": "high",
+      "localization_depth": "partial",
+      "strengths_zh": [
+        "电力与海事自动化",
+        "模块化系统架构"
+      ],
+      "strengths_en": [
+        "Power and marine automation",
+        "Modular system architecture"
+      ],
+      "limitations_zh": [
+        "流程化工在华份额下降",
+        "软件许可模式复杂"
+      ],
+      "limitations_en": [
+        "Declining process share in China",
+        "Complex licensing"
+      ],
+      "industries": [
+        "电力",
+        "海事",
+        "矿业"
+      ],
+      "pricing": "high",
+      "confidence": 0.87,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://new.abb.com/process-automation",
+          "title": "ABB 800xA",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "yokogawa-centum",
+      "name_zh": "Yokogawa CENTUM",
+      "name_en": "Yokogawa CENTUM",
+      "vendor_id": "yokogawa",
+      "category_l1": "生产制造",
+      "category_l2": "DCS",
+      "origin": "international",
+      "kernel": "自主",
+      "maturity": "high",
+      "localization_depth": "partial",
+      "strengths_zh": [
+        "化工仪表与DCS协同",
+        "可靠性口碑好"
+      ],
+      "strengths_en": [
+        "Strong instrument and DCS synergy",
+        "Reliability reputation"
+      ],
+      "limitations_zh": [
+        "数字化平台弱于欧美竞品",
+        "价格敏感市场承压"
+      ],
+      "limitations_en": [
+        "Weaker digital platform",
+        "Price-sensitive market pressure"
+      ],
+      "industries": [
+        "化工",
+        "石化"
+      ],
+      "pricing": "high",
+      "confidence": 0.88,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.yokogawa.com/",
+          "title": "Yokogawa CENTUM",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "baosight-mes",
+      "name_zh": "宝信MES",
+      "name_en": "Baosight MES",
+      "vendor_id": "baosight",
+      "category_l1": "生产制造",
+      "category_l2": "MES",
+      "origin": "domestic",
+      "kernel": "自主",
+      "maturity": "mission_critical",
+      "localization_depth": "core",
+      "strengths_zh": [
+        "钢铁MES绝对龙头",
+        "宝武生态深度绑定"
+      ],
+      "strengths_en": [
+        "Dominant steel MES",
+        "Deep Baowu ecosystem"
+      ],
+      "limitations_zh": [
+        "跨行业复制需定制",
+        "非钢行业案例少于赛意"
+      ],
+      "limitations_en": [
+        "Cross-industry needs customization",
+        "Fewer non-steel refs than SIE"
+      ],
+      "industries": [
+        "钢铁",
+        "有色",
+        "冶金"
+      ],
+      "pricing": "high",
+      "confidence": 0.9,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.baosight.com/",
+          "title": "Baosight MES",
+          "accessed": "2026-06"
+        }
+      ],
+      "international_benchmarks": [
+        "siemens-opcenter"
+      ],
+      "listed_ticker": "600845.SH"
+    },
+    {
+      "id": "sie-mes",
+      "name_zh": "赛意SMOM",
+      "name_en": "SIE SMOM",
+      "vendor_id": "sie",
+      "category_l1": "生产制造",
+      "category_l2": "MES",
+      "origin": "domestic",
+      "kernel": "自主",
+      "maturity": "high",
+      "localization_depth": "partial",
+      "strengths_zh": [
+        "离散制造MES与工业互联网",
+        "华为/美的等案例"
+      ],
+      "strengths_en": [
+        "Discrete MES and IIoT",
+        "Huawei/Midea references"
+      ],
+      "limitations_zh": [
+        "流程行业经验少于宝信",
+        "实施交付质量参差"
+      ],
+      "limitations_en": [
+        "Less process industry depth",
+        "Variable implementation quality"
+      ],
+      "industries": [
+        "电子",
+        "家电",
+        "机械"
+      ],
+      "pricing": "mid",
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.chinasie.com/",
+          "title": "SIE SMOM",
+          "accessed": "2026-06"
+        }
+      ],
+      "international_benchmarks": [
+        "siemens-opcenter"
+      ],
+      "listed_ticker": "300687.SZ"
+    },
+    {
+      "id": "goodsgather-mes",
+      "name_zh": "谷器数据MES",
+      "name_en": "GoodsGather MES",
+      "vendor_id": "goodsgather",
+      "category_l1": "生产制造",
+      "category_l2": "MES",
+      "origin": "domestic",
+      "kernel": "自主",
+      "maturity": "mid",
+      "localization_depth": "partial",
+      "strengths_zh": [
+        "汽车零部件MES专注",
+        "云端部署灵活"
+      ],
+      "strengths_en": [
+        "Automotive parts MES focus",
+        "Flexible cloud deployment"
+      ],
+      "limitations_zh": [
+        "规模小于头部MES厂商",
+        "多工厂集团治理弱"
+      ],
+      "limitations_en": [
+        "Smaller than top MES vendors",
+        "Weak multi-plant governance"
+      ],
+      "industries": [
+        "汽车零部件",
+        "机械"
+      ],
+      "pricing": "mid",
+      "confidence": 0.8,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.goodsgather.com/",
+          "title": "GoodsGather MES",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "cosmoplat-mes",
+      "name_zh": "卡奥斯天智工",
+      "name_en": "COSMOPlat Tianzhigong",
+      "vendor_id": "haier",
+      "category_l1": "生产制造",
+      "category_l2": "MES",
+      "origin": "domestic",
+      "kernel": "自主",
+      "maturity": "high",
+      "localization_depth": "partial",
+      "strengths_zh": [
+        "海尔大规模定制实践外溢",
+        "跨行业复制进行中"
+      ],
+      "strengths_en": [
+        "Haier mass customization export",
+        "Cross-industry replication ongoing"
+      ],
+      "limitations_zh": [
+        "对外交付仍在成熟化",
+        "与海尔生态绑定印象"
+      ],
+      "limitations_en": [
+        "External delivery maturing",
+        "Perceived Haier ecosystem tie"
+      ],
+      "industries": [
+        "家电",
+        "服装",
+        "机械"
+      ],
+      "pricing": "mid",
+      "confidence": 0.83,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.cosmoplat.com/",
+          "title": "COSMOPlat Tianzhigong",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "siemens-opcenter",
+      "name_zh": "Siemens Opcenter",
+      "name_en": "Siemens Opcenter",
+      "vendor_id": "siemens-digital",
+      "category_l1": "生产制造",
+      "category_l2": "MES",
+      "origin": "international",
+      "kernel": "自主",
+      "maturity": "high",
+      "localization_depth": "partial",
+      "strengths_zh": [
+        "MES与Teamcenter/MindSphere衔接",
+        "制药与电子行业深"
+      ],
+      "strengths_en": [
+        "MES links to TC/MindSphere",
+        "Deep pharma and electronics"
+      ],
+      "limitations_zh": [
+        "实施成本高",
+        "国产化竞品在钢铁/离散追赶"
+      ],
+      "limitations_en": [
+        "High implementation cost",
+        "Domestic rivals catching up"
+      ],
+      "industries": [
+        "制药",
+        "电子",
+        "汽车"
+      ],
+      "pricing": "high",
+      "confidence": 0.88,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://plm.sw.siemens.com/",
+          "title": "Siemens Opcenter",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "blacklake-mes",
+      "name_zh": "黑湖智造",
+      "name_en": "BlackLake Manufacturing",
+      "vendor_id": "blacklake",
+      "category_l1": "生产制造",
+      "category_l2": "MES",
+      "origin": "domestic",
+      "kernel": "自主",
+      "maturity": "mid",
+      "localization_depth": "pilot",
+      "strengths_zh": [
+        "云端轻量MES",
+        "中小工厂快速上线"
+      ],
+      "strengths_en": [
+        "Cloud-lite MES",
+        "Fast SME onboarding"
+      ],
+      "limitations_zh": [
+        "复杂工艺路线能力有限",
+        "与ERP深度集成待加强"
+      ],
+      "limitations_en": [
+        "Limited complex routing",
+        "ERP depth needs work"
+      ],
+      "industries": [
+        "电子",
+        "注塑",
+        "五金"
+      ],
+      "pricing": "mid",
+      "confidence": 0.78,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.blacklake.cn/",
+          "title": "BlackLake Manufacturing",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "dassault-delmia",
+      "name_zh": "DELMIA",
+      "name_en": "DELMIA",
+      "vendor_id": "dassault",
+      "category_l1": "生产制造",
+      "category_l2": "MES",
+      "origin": "international",
+      "kernel": "自主",
+      "maturity": "mission_critical",
+      "localization_depth": "partial",
+      "strengths_zh": [
+        "数字化制造与产线仿真",
+        "与CATIA/ENOVIA 3DEXPERIENCE一体"
+      ],
+      "strengths_en": [
+        "Digital manufacturing and line simulation",
+        "Integrated with CATIA/ENOVIA 3DEXPERIENCE"
+      ],
+      "limitations_zh": [
+        "实施成本极高",
+        "离散轻量MES场景过重"
+      ],
+      "limitations_en": [
+        "Very high implementation cost",
+        "Heavy for lite discrete MES"
+      ],
+      "industries": [
+        "汽车",
+        "航空航天",
+        "重工"
+      ],
+      "pricing": "high",
+      "confidence": 0.9,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.3ds.com/products/delmia",
+          "title": "DELMIA",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "sap-dmc",
+      "name_zh": "SAP Digital Manufacturing Cloud",
+      "name_en": "SAP Digital Manufacturing Cloud",
+      "vendor_id": "sap",
+      "category_l1": "生产制造",
+      "category_l2": "MES",
+      "origin": "international",
+      "kernel": "自主",
+      "maturity": "high",
+      "localization_depth": "partial",
+      "strengths_zh": [
+        "与S/4HANA制造执行一体",
+        "云原生MES与质量追溯"
+      ],
+      "strengths_en": [
+        "Integrated with S/4HANA manufacturing",
+        "Cloud-native MES and quality traceability"
+      ],
+      "limitations_zh": [
+        "国内落地案例少于Opcenter",
+        "依赖SAP整体生态"
+      ],
+      "limitations_en": [
+        "Fewer China deployments than Opcenter",
+        "Depends on full SAP stack"
+      ],
+      "industries": [
+        "汽车",
+        "制药",
+        "离散制造"
+      ],
+      "pricing": "high",
+      "confidence": 0.87,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.sap.com/products/scm/digital-manufacturing-cloud.html",
+          "title": "SAP Digital Manufacturing Cloud",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "oracle-manufacturing",
+      "name_zh": "Oracle Cloud Manufacturing",
+      "name_en": "Oracle Cloud Manufacturing",
+      "vendor_id": "oracle",
+      "category_l1": "生产制造",
+      "category_l2": "MES",
+      "origin": "international",
+      "kernel": "自主",
+      "maturity": "high",
+      "localization_depth": "partial",
+      "strengths_zh": [
+        "与Oracle ERP Cloud制造模块一体",
+        "混合云部署选项"
+      ],
+      "strengths_en": [
+        "Integrated Oracle ERP Cloud manufacturing",
+        "Hybrid cloud deployment options"
+      ],
+      "limitations_zh": [
+        "国内制造客户基数小",
+        "MES深度弱于西门子/DELMIA"
+      ],
+      "limitations_en": [
+        "Small China manufacturing base",
+        "Weaker MES depth vs Siemens/DELMIA"
+      ],
+      "industries": [
+        "电子",
+        "医疗",
+        "工业"
+      ],
+      "pricing": "high",
+      "confidence": 0.84,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.oracle.com/scm/manufacturing/",
+          "title": "Oracle Cloud Manufacturing",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "rockwell-factorytalk",
+      "name_zh": "Rockwell FactoryTalk",
+      "name_en": "Rockwell FactoryTalk",
+      "vendor_id": "rockwell",
+      "category_l1": "生产制造",
+      "category_l2": "SCADA",
+      "origin": "international",
+      "kernel": "自主",
+      "maturity": "mission_critical",
+      "localization_depth": "partial",
+      "strengths_zh": [
+        "离散制造SCADA/MES一体化套件",
+        "与Allen-Bradley PLC深度集成"
+      ],
+      "strengths_en": [
+        "Integrated discrete SCADA/MES suite",
+        "Deep Allen-Bradley PLC integration"
+      ],
+      "limitations_zh": [
+        "大型流程化工场景弱于DCS厂商",
+        "许可与升级路径复杂"
+      ],
+      "limitations_en": [
+        "Weaker in large process plants vs DCS vendors",
+        "Complex licensing and upgrade paths"
+      ],
+      "industries": [
+        "汽车",
+        "食品饮料",
+        "制药"
+      ],
+      "pricing": "high",
+      "confidence": 0.89,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.rockwellautomation.com/en-us/products/software/factorytalk.html",
+          "title": "Rockwell FactoryTalk",
+          "accessed": "2026-06"
+        }
+      ],
+      "international_benchmarks": [
+        "aveva-system-platform"
+      ]
+    },
+    {
+      "id": "aveva-system-platform",
+      "name_zh": "AVEVA System Platform",
+      "name_en": "AVEVA System Platform",
+      "vendor_id": "aveva",
+      "category_l1": "生产制造",
+      "category_l2": "SCADA",
+      "origin": "international",
+      "kernel": "自主",
+      "maturity": "mission_critical",
+      "localization_depth": "core",
+      "strengths_zh": [
+        "Wonderware系SCADA/HMI全球标杆",
+        "对象模型与流程行业模板丰富"
+      ],
+      "strengths_en": [
+        "Wonderware-grade SCADA/HMI benchmark",
+        "Rich object model and process templates"
+      ],
+      "limitations_zh": [
+        "国产化替代在炼化项目推进",
+        "云原生架构迁移成本高"
+      ],
+      "limitations_en": [
+        "Localization push in refining projects",
+        "High cost to modernize cloud-native stack"
+      ],
+      "industries": [
+        "石化",
+        "化工",
+        "电力"
+      ],
+      "pricing": "high",
+      "confidence": 0.9,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.aveva.com/en/products/system-platform/",
+          "title": "AVEVA System Platform",
+          "accessed": "2026-06"
+        }
+      ],
+      "international_benchmarks": [
+        "wellintech-kingview"
+      ]
+    },
+    {
+      "id": "schneider-ecostruxure-plant",
+      "name_zh": "Schneider EcoStruxure Plant",
+      "name_en": "Schneider EcoStruxure Plant",
+      "vendor_id": "schneider",
+      "category_l1": "生产制造",
+      "category_l2": "SCADA",
+      "origin": "international",
+      "kernel": "自主",
+      "maturity": "high",
+      "localization_depth": "partial",
+      "strengths_zh": [
+        "EcoStruxure开放自动化架构",
+        "Citect/Vijeo HMI与Modicon PLC协同"
+      ],
+      "strengths_en": [
+        "EcoStruxure open automation architecture",
+        "Citect/Vijeo HMI with Modicon PLC synergy"
+      ],
+      "limitations_zh": [
+        "大型炼化全厂级案例少于霍尼韦尔/艾默生",
+        "软件产品线整合仍在进行"
+      ],
+      "limitations_en": [
+        "Fewer mega-refinery references vs Honeywell/Emerson",
+        "Ongoing software portfolio integration"
+      ],
+      "industries": [
+        "水处理",
+        "矿业",
+        "制造"
+      ],
+      "pricing": "high",
+      "confidence": 0.87,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.se.com/ww/en/work/solutions/industrial-automation/",
+          "title": "Schneider EcoStruxure Plant",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "abb-ability-mom",
+      "name_zh": "ABB Ability MOM",
+      "name_en": "ABB Ability Manufacturing Operations Management",
+      "vendor_id": "abb",
+      "category_l1": "生产制造",
+      "category_l2": "MES",
+      "origin": "international",
+      "kernel": "自主",
+      "maturity": "high",
+      "localization_depth": "partial",
+      "strengths_zh": [
+        "制造运营管理与企业系统衔接",
+        "与800xA/机器人产线协同"
+      ],
+      "strengths_en": [
+        "MOM bridges shop floor and enterprise systems",
+        "Synergy with 800xA and robotics lines"
+      ],
+      "limitations_zh": [
+        "国内离散MES声量弱于西门子/罗克韦尔",
+        "实施依赖ABB系统集成伙伴"
+      ],
+      "limitations_en": [
+        "Lower China discrete MES mindshare vs Siemens/Rockwell",
+        "Deployment depends on ABB integrators"
+      ],
+      "industries": [
+        "汽车",
+        "重工",
+        "流程化工"
+      ],
+      "pricing": "high",
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://new.abb.com/mom",
+          "title": "ABB Ability MOM",
+          "accessed": "2026-06"
+        }
+      ],
+      "international_benchmarks": [
+        "siemens-opcenter"
+      ]
+    },
+    {
+      "id": "morewis-n2-mes",
+      "name_zh": "摩尔元数 N²Cloud MES",
+      "name_en": "Morewis N2Cloud MES",
+      "vendor_id": "morewis",
+      "category_l1": "生产制造",
+      "category_l2": "MES",
+      "origin": "domestic",
+      "kernel": "自主",
+      "maturity": "high",
+      "localization_depth": "partial",
+      "strengths_zh": [
+        "N²Cloud制造运营中台",
+        "电子与装备制造案例丰富"
+      ],
+      "strengths_en": [
+        "N2Cloud manufacturing operations hub",
+        "Strong electronics and equipment cases"
+      ],
+      "limitations_zh": [
+        "流程化工CIM能力弱于赛美特",
+        "大型集团多工厂治理仍在强化"
+      ],
+      "limitations_en": [
+        "Weaker process CIM vs Semitech",
+        "Multi-plant governance still strengthening"
+      ],
+      "industries": [
+        "电子",
+        "装备",
+        "汽车零部件"
+      ],
+      "pricing": "mid",
+      "confidence": 0.84,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.morewis.com/",
+          "title": "Morewis N2Cloud MES",
+          "accessed": "2026-06"
+        }
+      ],
+      "international_benchmarks": [
+        "siemens-opcenter"
+      ]
+    },
+    {
+      "id": "pcitc-smart-refining",
+      "name_zh": "石化盈科 智能炼化MES",
+      "name_en": "PCITC Smart Refining MES",
+      "vendor_id": "pcitc",
+      "category_l1": "生产制造",
+      "category_l2": "MES",
+      "origin": "domestic",
+      "kernel": "自主",
+      "maturity": "mission_critical",
+      "localization_depth": "core",
+      "strengths_zh": [
+        "中石化体系炼化MES主导",
+        "炼化一体化生产调度与物料平衡"
+      ],
+      "strengths_en": [
+        "Dominant Sinopec refining MES stack",
+        "Integrated refining scheduling and material balance"
+      ],
+      "limitations_zh": [
+        "对外市场化复制受体系边界影响",
+        "云原生与开源互操作仍在演进"
+      ],
+      "limitations_en": [
+        "External market replication bounded by ecosystem",
+        "Cloud-native and open interop still evolving"
+      ],
+      "industries": [
+        "石化",
+        "炼化",
+        "化工"
+      ],
+      "pricing": "quote",
+      "confidence": 0.86,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "http://www.pcitc.com/",
+          "title": "PCITC Smart Refining MES",
+          "accessed": "2026-06"
+        }
+      ],
+      "international_benchmarks": [
+        "emerson-deltav"
+      ]
+    },
+    {
+      "id": "ibm-maximo",
+      "name_zh": "IBM Maximo",
+      "name_en": "IBM Maximo",
+      "vendor_id": "ibm",
+      "category_l1": "生产制造",
+      "category_l2": "EAM",
+      "origin": "international",
+      "kernel": "自主",
+      "maturity": "mission_critical",
+      "localization_depth": "partial",
+      "strengths_zh": [
+        "资产维护与可靠性管理全球标杆",
+        "与IBM云及AI运维分析集成"
+      ],
+      "strengths_en": [
+        "Global EAM and reliability benchmark",
+        "IBM cloud and AI ops analytics integration"
+      ],
+      "limitations_zh": [
+        "国内制造客户向国产EAM迁移",
+        "实施与定制成本高昂"
+      ],
+      "limitations_en": [
+        "China manufacturing clients shifting to domestic EAM",
+        "High implementation and customization cost"
+      ],
+      "industries": [
+        "石化",
+        "电力",
+        "轨道交通"
+      ],
+      "pricing": "high",
+      "confidence": 0.9,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.ibm.com/products/maximo",
+          "title": "IBM Maximo",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "aveva-pi-system",
+      "name_zh": "AVEVA PI System",
+      "name_en": "AVEVA PI System",
+      "vendor_id": "aveva",
+      "category_l1": "生产制造",
+      "category_l2": "SCADA",
+      "origin": "international",
+      "kernel": "自主",
+      "maturity": "mission_critical",
+      "localization_depth": "core",
+      "strengths_zh": [
+        "工业实时数据Historian事实标准",
+        "与MES/DCS/AI分析生态广泛对接"
+      ],
+      "strengths_en": [
+        "De-facto industrial real-time data historian",
+        "Broad MES/DCS/AI analytics ecosystem"
+      ],
+      "limitations_zh": [
+        "信创环境需额外中间件适配",
+        "订阅与数据治理成本上升"
+      ],
+      "limitations_en": [
+        "Extra middleware for IT innovation stacks",
+        "Rising subscription and data governance cost"
+      ],
+      "industries": [
+        "石化",
+        "电力",
+        "制药"
+      ],
+      "pricing": "high",
+      "confidence": 0.91,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.aveva.com/en/products/pi-system/",
+          "title": "AVEVA PI System",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "rockwell-ft-plex",
+      "name_zh": "FactoryTalk Plex",
+      "name_en": "FactoryTalk Plex",
+      "vendor_id": "rockwell",
+      "category_l1": "生产制造",
+      "category_l2": "MES",
+      "origin": "international",
+      "kernel": "自主",
+      "maturity": "high",
+      "localization_depth": "pilot",
+      "strengths_zh": [
+        "云原生多工厂MES",
+        "罗克韦尔收购Plex后的SaaS制造执行"
+      ],
+      "strengths_en": [
+        "Cloud-native multi-plant MES",
+        "Rockwell-acquired Plex SaaS manufacturing"
+      ],
+      "limitations_zh": [
+        "中国区本地化与合规交付仍在建设",
+        "与本土轻量MES价格竞争激烈"
+      ],
+      "limitations_en": [
+        "China localization and compliance still building",
+        "Price pressure from domestic lite MES"
+      ],
+      "industries": [
+        "汽车零部件",
+        "工业",
+        "消费品"
+      ],
+      "pricing": "high",
+      "confidence": 0.83,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.plex.com/",
+          "title": "FactoryTalk Plex",
+          "accessed": "2026-06"
+        }
+      ],
+      "international_benchmarks": [
+        "blacklake-mes"
+      ]
+    },
+    {
+      "id": "ge-ifix-scada",
+      "name_zh": "GE iFIX SCADA",
+      "name_en": "GE iFIX SCADA",
+      "vendor_id": "ge-vernova",
+      "category_l1": "生产制造",
+      "category_l2": "SCADA",
+      "origin": "international",
+      "kernel": "自主",
+      "maturity": "high",
+      "localization_depth": "partial",
+      "strengths_zh": [
+        "电力与公用事业HMI/SCADA老牌",
+        "CIMPLICITY与Proficy生态衔接"
+      ],
+      "strengths_en": [
+        "Legacy power and utility HMI/SCADA",
+        "Links to CIMPLICITY and Proficy stack"
+      ],
+      "limitations_zh": [
+        "品牌整合后渠道变动",
+        "云边协同弱于新一代平台"
+      ],
+      "limitations_en": [
+        "Channel shifts after brand consolidation",
+        "Weaker cloud-edge story vs new platforms"
+      ],
+      "industries": [
+        "电力",
+        "市政",
+        "制造"
+      ],
+      "pricing": "mid",
+      "confidence": 0.84,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.gevernova.com/software/products/ifix",
+          "title": "GE iFIX SCADA",
+          "accessed": "2026-06"
+        }
+      ],
+      "international_benchmarks": [
+        "wellintech-kingview"
+      ]
+    },
+    {
+      "id": "yokogawa-fast-tools",
+      "name_zh": "Yokogawa FAST/TOOLS",
+      "name_en": "Yokogawa FAST/TOOLS",
+      "vendor_id": "yokogawa",
+      "category_l1": "生产制造",
+      "category_l2": "SCADA",
+      "origin": "international",
+      "kernel": "自主",
+      "maturity": "high",
+      "localization_depth": "partial",
+      "strengths_zh": [
+        "横河开放SCADA与Historian",
+        "与CENTUM DCS协同部署"
+      ],
+      "strengths_en": [
+        "Yokogawa open SCADA and historian",
+        "Co-deployed with CENTUM DCS"
+      ],
+      "limitations_zh": [
+        "国内市占低于AVEVA/罗克韦尔",
+        "HMI现代化界面落后于新一代平台"
+      ],
+      "limitations_en": [
+        "Lower China share vs AVEVA/Rockwell",
+        "HMI modernization lags new platforms"
+      ],
+      "industries": [
+        "化工",
+        "电力",
+        "水处理"
+      ],
+      "pricing": "high",
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.yokogawa.com/solutions/products-and-services/platform/fast-tools/",
+          "title": "Yokogawa FAST/TOOLS",
+          "accessed": "2026-06"
+        }
+      ],
+      "international_benchmarks": [
+        "aveva-system-platform"
+      ]
+    }
+  ]
+}

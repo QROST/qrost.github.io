@@ -1,0 +1,582 @@
+{
+  "category": "open-source",
+  "products": [
+    {
+      "id": "occt-platform",
+      "name_zh": "Open CASCADE Technology (OCCT)",
+      "name_en": "Open CASCADE Technology (OCCT)",
+      "vendor_id": "open-cascade",
+      "category_l1": "研发设计",
+      "category_l2": "CAD",
+      "origin": "open_source",
+      "kernel": "OCCT 自身",
+      "maturity": "high",
+      "localization_depth": "pilot",
+      "strengths_zh": [
+        "LGPL 2.1 开源工业 B-rep 内核 SDK",
+        "STEP/IGES 交换与 NURBS 曲面完整",
+        "可嵌入 FreeCAD/Salome 等及自研 ISV 产品"
+      ],
+      "strengths_en": [
+        "LGPL 2.1 open industrial B-rep kernel SDK",
+        "Full STEP/IGES exchange and NURBS surfacing",
+        "Embeddable in FreeCAD/Salome and custom ISV stacks"
+      ],
+      "limitations_zh": [
+        "商业 SLA/认证需 Open Cascade SAS 合同",
+        "高端性能弱于 Parasolid/CGM",
+        "国内龙头 CAD 未直接采用"
+      ],
+      "limitations_en": [
+        "Commercial SLA/certification via Open Cascade SAS",
+        "High-end performance below Parasolid/CGM",
+        "Chinese CAD leaders do not embed OCCT directly"
+      ],
+      "industries": [
+        "机械",
+        "教育",
+        "科研",
+        "电子"
+      ],
+      "pricing": "free",
+      "confidence": 0.93,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://dev.opencascade.org/",
+          "title": "Open CASCADE Technology",
+          "accessed": "2026-06"
+        },
+        {
+          "url": "https://dev.opencascade.org/resources/faq",
+          "title": "OCCT FAQ — LGPL commercial use",
+          "accessed": "2026-06"
+        }
+      ],
+      "international_benchmarks": [
+        "solidworks"
+      ],
+      "kernel_id": "open-cascade"
+    },
+    {
+      "id": "freecad",
+      "name_zh": "FreeCAD",
+      "name_en": "FreeCAD",
+      "vendor_id": "freecad",
+      "category_l1": "研发设计",
+      "category_l2": "CAD",
+      "origin": "open_source",
+      "kernel": "开源·OCCT",
+      "maturity": "mid",
+      "localization_depth": "pilot",
+      "strengths_zh": [
+        "开源参数化 MCAD，Part 工作台基于 OCCT",
+        "CAM 工作台（原 Path）支持 CNC G-code 刀路",
+        "FEM/BIM 工作台与 Python 宏生态"
+      ],
+      "strengths_en": [
+        "Open parametric MCAD with OCCT-based Part workbench",
+        "CAM workbench (formerly Path) for CNC G-code toolpaths",
+        "FEM/BIM workbenches and Python macro ecosystem"
+      ],
+      "limitations_zh": [
+        "企业支持与 SLA 弱于 SolidWorks",
+        "大装配与高端曲面稳定性参差",
+        "国内商用装机远小于中望/浩辰"
+      ],
+      "limitations_en": [
+        "Weaker enterprise support/SLA than SolidWorks",
+        "Variable large-assembly and surfacing stability",
+        "Far smaller China commercial install than ZW/Gstar"
+      ],
+      "industries": [
+        "教育",
+        "创客",
+        "机械",
+        "3D打印"
+      ],
+      "pricing": "free",
+      "confidence": 0.88,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.freecad.org/",
+          "title": "FreeCAD",
+          "accessed": "2026-06"
+        },
+        {
+          "url": "https://github.com/FreeCAD/FreeCAD-documentation/blob/main/wiki/OpenCASCADE.md",
+          "title": "FreeCAD OCCT documentation",
+          "accessed": "2026-06"
+        },
+        {
+          "url": "https://github.com/FreeCAD/FreeCAD-documentation/blob/main/wiki/CAM_Workbench.md",
+          "title": "FreeCAD CAM (Path) workbench",
+          "accessed": "2026-06"
+        }
+      ],
+      "international_benchmarks": [
+        "solidworks",
+        "fusion360"
+      ],
+      "kernel_id": "open-cascade"
+    },
+    {
+      "id": "openscad",
+      "name_zh": "OpenSCAD",
+      "name_en": "OpenSCAD",
+      "vendor_id": "openscad",
+      "category_l1": "研发设计",
+      "category_l2": "CAD",
+      "origin": "open_source",
+      "kernel": "CGAL（非 OCCT）",
+      "maturity": "mid",
+      "localization_depth": "pilot",
+      "strengths_zh": [
+        "程序化 CSG 建模，脚本可版本管理",
+        "GPLv2 开源，3D 打印社区广泛使用",
+        "FreeCAD 提供 OpenSCAD 工作台桥接"
+      ],
+      "strengths_en": [
+        "Programmatic CSG modeling with versionable scripts",
+        "GPLv2 OSS widely used in 3D printing",
+        "FreeCAD OpenSCAD workbench bridge available"
+      ],
+      "limitations_zh": [
+        "非 B-rep/NURBS 内核，精密机械曲面弱",
+        "与 OCCT 栈数据模型不同",
+        "交互式直接建模体验弱"
+      ],
+      "limitations_en": [
+        "Not B-rep/NURBS; weak precision surfacing",
+        "Different data model from OCCT stack",
+        "Weak interactive direct modeling UX"
+      ],
+      "industries": [
+        "3D打印",
+        "教育",
+        "创客"
+      ],
+      "pricing": "free",
+      "confidence": 0.87,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://openscad.org/",
+          "title": "OpenSCAD",
+          "accessed": "2026-06"
+        },
+        {
+          "url": "https://github.com/openscad/openscad/blob/master/COPYING",
+          "title": "OpenSCAD GPLv2 + CGAL exception",
+          "accessed": "2026-06"
+        }
+      ],
+      "kernel_id": "cgal"
+    },
+    {
+      "id": "solvespace",
+      "name_zh": "SolveSpace",
+      "name_en": "SolveSpace",
+      "vendor_id": "solvespace",
+      "category_l1": "研发设计",
+      "category_l2": "CAD",
+      "origin": "open_source",
+      "kernel": "自研 B-rep（非 OCCT）",
+      "maturity": "mid",
+      "localization_depth": "pilot",
+      "strengths_zh": [
+        "轻量约束驱动 2D/3D CAD",
+        "自研 NURBS B-rep 内核，GPLv3",
+        "国内创客与小机械设计装机可见"
+      ],
+      "strengths_en": [
+        "Lightweight constraint-driven 2D/3D CAD",
+        "Own NURBS B-rep kernel under GPLv3",
+        "Visible in China maker/small mechanical design"
+      ],
+      "limitations_zh": [
+        "放样/圆角/倒角等高级特征不完整",
+        "生态与 CAM/PLM 集成弱于 FreeCAD",
+        "非 OCCT 栈，与 STEP 工业流互通有限"
+      ],
+      "limitations_en": [
+        "Incomplete lofts/fillets/chamfers",
+        "Weaker CAM/PLM ecosystem than FreeCAD",
+        "Non-OCCT stack; limited industrial STEP workflows"
+      ],
+      "industries": [
+        "教育",
+        "创客",
+        "机械"
+      ],
+      "pricing": "free",
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "http://solvespace.com/",
+          "title": "SolveSpace",
+          "accessed": "2026-06"
+        },
+        {
+          "url": "https://github.com/solvespace/solvespace",
+          "title": "SolveSpace GitHub (GPLv3)",
+          "accessed": "2026-06"
+        }
+      ],
+      "kernel_id": "solvespace-kernel"
+    },
+    {
+      "id": "librecad",
+      "name_zh": "LibreCAD",
+      "name_en": "LibreCAD",
+      "vendor_id": "librecad",
+      "category_l1": "研发设计",
+      "category_l2": "CAD",
+      "origin": "open_source",
+      "kernel": "LibreCAD RS_Entity + libdxfrw",
+      "maturity": "mid",
+      "localization_depth": "pilot",
+      "strengths_zh": [
+        "GPL 开源 2D CAD（QCAD CE 传承）",
+        "RS_Entity 2D 图元 + libdxfrw DXF/DWG 互操作"
+      ],
+      "strengths_en": [
+        "GPL open 2D CAD (QCAD CE lineage)",
+        "RS_Entity 2D primitives + libdxfrw DXF/DWG interop"
+      ],
+      "limitations_zh": [
+        "无 B-rep 实体建模（仅 RS_Entity 2D 图元）",
+        "功能远少于商业 DWG 平台（中望/浩辰）",
+        "国内信创场景多用中望/浩辰替代"
+      ],
+      "limitations_en": [
+        "No B-rep solid modeling (RS_Entity 2D primitives only)",
+        "Far fewer features than commercial DWG platforms (ZW/Gstar)",
+        "China IT-innovation lists favor ZW/Gstar over LibreCAD"
+      ],
+      "industries": [
+        "教育",
+        "测绘"
+      ],
+      "pricing": "free",
+      "confidence": 0.78,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://librecad.org/",
+          "title": "LibreCAD",
+          "accessed": "2026-06"
+        }
+      ],
+      "kernel_id": "librecad-rs-entity-engine"
+    },
+    {
+      "id": "cadquery",
+      "name_zh": "CadQuery",
+      "name_en": "CadQuery",
+      "vendor_id": "cadquery",
+      "category_l1": "研发设计",
+      "category_l2": "CAD",
+      "origin": "open_source",
+      "kernel": "OCCT (OCP)",
+      "maturity": "mid",
+      "localization_depth": "pilot",
+      "strengths_zh": [
+        "Python 参数化 B-rep 建模框架",
+        "直接封装 OCCT，支持 STEP/NURBS",
+        "适合 CAD-as-code 与 LLM 生成模型"
+      ],
+      "strengths_en": [
+        "Python parametric B-rep modeling framework",
+        "Direct OCCT (OCP) wrapper with STEP/NURBS",
+        "CAD-as-code and LLM model generation friendly"
+      ],
+      "limitations_zh": [
+        "非完整 CAD GUI，需配合 FreeCAD/导出",
+        "企业支持与培训生态弱",
+        "OCP 二进制轮子平台依赖"
+      ],
+      "limitations_en": [
+        "Not a full CAD GUI; pairs with FreeCAD/export",
+        "Weak enterprise support/training ecosystem",
+        "OCP binary wheel platform dependencies"
+      ],
+      "industries": [
+        "机械",
+        "3D打印",
+        "科研"
+      ],
+      "pricing": "free",
+      "confidence": 0.88,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://cadquery.readthedocs.io/",
+          "title": "CadQuery documentation",
+          "accessed": "2026-06"
+        },
+        {
+          "url": "https://pypi.org/project/cadquery/",
+          "title": "CadQuery PyPI (Apache 2.0)",
+          "accessed": "2026-06"
+        }
+      ],
+      "international_benchmarks": [
+        "solidworks"
+      ],
+      "kernel_id": "open-cascade"
+    },
+    {
+      "id": "build123d",
+      "name_zh": "build123d",
+      "name_en": "build123d",
+      "vendor_id": "build123d",
+      "category_l1": "研发设计",
+      "category_l2": "CAD",
+      "origin": "open_source",
+      "kernel": "OCCT (OCP)",
+      "maturity": "mid",
+      "localization_depth": "pilot",
+      "strengths_zh": [
+        "从 CadQuery 演进的 Python CAD 框架",
+        "Builder/Algebra 双 API，Apache 2.0",
+        "与 FreeCAD/SolidWorks 导出互通"
+      ],
+      "strengths_en": [
+        "Python CAD framework evolved from CadQuery",
+        "Builder and Algebra dual APIs under Apache 2.0",
+        "Export interop with FreeCAD/SolidWorks"
+      ],
+      "limitations_zh": [
+        "生态年轻，企业案例少",
+        "仍依赖 OCP/OCCT 底层能力边界",
+        "国内文档与社区小于 CadQuery"
+      ],
+      "limitations_en": [
+        "Young ecosystem; few enterprise cases",
+        "Still bounded by OCP/OCCT capabilities",
+        "Smaller China docs/community than CadQuery"
+      ],
+      "industries": [
+        "机械",
+        "3D打印",
+        "科研"
+      ],
+      "pricing": "free",
+      "confidence": 0.86,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://build123d.readthedocs.io/",
+          "title": "build123d documentation",
+          "accessed": "2026-06"
+        },
+        {
+          "url": "https://github.com/gumyr/build123d",
+          "title": "build123d GitHub (Apache 2.0)",
+          "accessed": "2026-06"
+        }
+      ],
+      "international_benchmarks": [
+        "cadquery"
+      ],
+      "kernel_id": "open-cascade"
+    },
+    {
+      "id": "heekscad",
+      "name_zh": "HeeksCAD",
+      "name_en": "HeeksCAD",
+      "vendor_id": "heekscad",
+      "category_l1": "研发设计",
+      "category_l2": "CAD",
+      "origin": "open_source",
+      "kernel": "OCCT（历史）",
+      "maturity": "experimental",
+      "localization_depth": "none",
+      "strengths_zh": [
+        "早期开源 OCCT CAD/CAM 探索项目",
+        "几何约束求解与 CAM 插件原型"
+      ],
+      "strengths_en": [
+        "Early open OCCT CAD/CAM experiment",
+        "Constraint solver and CAM plugin prototypes"
+      ],
+      "limitations_zh": [
+        "开发已停滞（legacy）",
+        "现代替代为 FreeCAD",
+        "安全与维护风险高"
+      ],
+      "limitations_en": [
+        "Development stalled (legacy)",
+        "Modern replacement is FreeCAD",
+        "High security/maintenance risk"
+      ],
+      "industries": [
+        "教育",
+        "科研"
+      ],
+      "pricing": "free",
+      "confidence": 0.72,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://github.com/Heeks/heekscad",
+          "title": "HeeksCAD GitHub",
+          "accessed": "2026-06"
+        }
+      ],
+      "kernel_id": "open-cascade"
+    },
+    {
+      "id": "brl-cad",
+      "name_zh": "BRL-CAD",
+      "name_en": "BRL-CAD",
+      "vendor_id": "brl-cad",
+      "category_l1": "研发设计",
+      "category_l2": "CAD",
+      "origin": "open_source",
+      "kernel": "CSG/NMG + openNURBS B-rep",
+      "maturity": "mid",
+      "localization_depth": "none",
+      "strengths_zh": [
+        "美国军方背景组合实体建模与光线追踪",
+        "1979 年起持续开发，OSI 批准开源许可",
+        "适合弹道/毁伤分析与网格研究"
+      ],
+      "strengths_en": [
+        "US military-heritage CSG modeling and ray tracing",
+        "Developed since 1979 under OSI-approved OSS license",
+        "Suited to ballistics/lethality and mesh research"
+      ],
+      "limitations_zh": [
+        "非 OCCT 栈，MCAD 工作流陌生",
+        "国内装机与培训几乎为零",
+        "GUI 与现代化 UX 落后"
+      ],
+      "limitations_en": [
+        "Non-OCCT stack; unfamiliar MCAD workflows",
+        "Negligible China install/training",
+        "GUI and modern UX lag"
+      ],
+      "industries": [
+        "国防",
+        "科研"
+      ],
+      "pricing": "free",
+      "confidence": 0.8,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://brlcad.org/",
+          "title": "BRL-CAD",
+          "accessed": "2026-06"
+        },
+        {
+          "url": "https://github.com/BRL-CAD/brlcad",
+          "title": "BRL-CAD GitHub",
+          "accessed": "2026-06"
+        }
+      ],
+      "kernel_id": "brl-cad-csg"
+    },
+    {
+      "id": "blender",
+      "name_zh": "Blender",
+      "name_en": "Blender",
+      "vendor_id": "blender-foundation",
+      "category_l1": "研发设计",
+      "category_l2": "CAD",
+      "origin": "open_source",
+      "kernel": "自研·B-mesh 网格内核（非 B-rep 实体 CAD）",
+      "maturity": "high",
+      "localization_depth": "pilot",
+      "strengths_zh": [
+        "网格/DCC 向 CAD（B-mesh 多边形建模），非 B-rep 实体 MCAD",
+        "GPL 免费全功能 DCC：建模、雕刻、UV、动画、合成、渲染（Cycles/Eevee）一体化",
+        "B-mesh 多边形网格内核支持 N-gon、非流形与强大修改器栈",
+        "Geometry Nodes 程序化建模与工业可视化管线（USD/Hydra、glTF）",
+        "CAD Sketcher 等社区插件提供约束草图；STEP/OBJ/FBX 等交换经插件或内置 IO",
+        "国内创客/indie 硬件、B 站教程生态活跃，小团队概念与渲染常用"
+      ],
+      "strengths_en": [
+        "Mesh/DCC-oriented CAD (B-mesh polygon modeling), not B-rep solid MCAD",
+        "GPL all-in-one DCC: modeling, sculpt, UV, animation, compositing, rendering (Cycles/Eevee)",
+        "B-mesh polygon kernel with n-gons, non-manifold support, and rich modifier stack",
+        "Geometry Nodes procedural workflows and industrial viz pipelines (USD/Hydra, glTF)",
+        "Community add-ons (CAD Sketcher) for constrained sketches; STEP/OBJ/FBX via add-ons or built-in IO",
+        "Active China maker/indie hardware and Bilibili tutorial ecosystem for concept and viz"
+      ],
+      "limitations_zh": [
+        "非参数化 B-rep 实体 MCAD：无特征树、公差、PMI 与工程图能力弱于 SolidWorks/FreeCAD",
+        "精密机械设计依赖网格近似，STEP 往返与 CAD 互操作需插件且易丢参数/精度",
+        "企业 PLM/MBD 集成与合规支持远弱于 Fusion 360 等云 MCAD",
+        "NURBS 曲面存在但非工业级 openNURBS/Parasolid 精度与 CAM 刀路主线"
+      ],
+      "limitations_en": [
+        "Not parametric B-rep solid MCAD: weak feature tree, tolerancing, PMI, and drawings vs SolidWorks/FreeCAD",
+        "Precision mechanical design is mesh-centric; STEP round-trip needs add-ons and loses params/precision",
+        "Enterprise PLM/MBD integration and compliance support far below cloud MCAD like Fusion 360",
+        "NURBS surfaces exist but lack industrial openNURBS/Parasolid precision and CAM toolpath focus"
+      ],
+      "breakthroughs": [
+        {
+          "year": 2024,
+          "text_zh": "Blender 4.2 LTS 发布 Extensions 扩展平台，USD 导入导出与 Hydra 视口管线进一步成熟",
+          "text_en": "Blender 4.2 LTS ships Extensions platform with maturing USD IO and Hydra viewport pipeline",
+          "source_url": "https://www.blender.org/download/lts/4-2/"
+        },
+        {
+          "year": 2022,
+          "text_zh": "Geometry Nodes 成为核心模块，支持程序化硬表面与工业可视化工作流",
+          "text_en": "Geometry Nodes matured as core module for procedural hard-surface and industrial viz workflows",
+          "source_url": "https://docs.blender.org/manual/en/latest/modeling/geometry_nodes/index.html"
+        }
+      ],
+      "industries": [
+        "消费电子",
+        "文创",
+        "3D打印",
+        "影视",
+        "工业设计"
+      ],
+      "pricing": "free",
+      "confidence": 0.9,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.blender.org/",
+          "title": "Blender — Official site",
+          "accessed": "2026-06"
+        },
+        {
+          "url": "https://docs.blender.org/manual/en/latest/modeling/meshes/introduction.html",
+          "title": "Blender Manual — Mesh modeling (B-mesh)",
+          "accessed": "2026-06"
+        },
+        {
+          "url": "https://docs.blender.org/manual/en/latest/files/import_export/usd.html",
+          "title": "Blender Manual — USD import/export",
+          "accessed": "2026-06"
+        },
+        {
+          "url": "https://github.com/hlorus/CAD_Sketcher",
+          "title": "CAD Sketcher — constraint-based CAD add-on for Blender",
+          "accessed": "2026-06"
+        },
+        {
+          "url": "https://wiki.blender.org/wiki/Reference/Development/Architecture/BMesh",
+          "title": "Blender Wiki — BMesh architecture",
+          "accessed": "2026-06"
+        }
+      ],
+      "international_benchmarks": [
+        "fusion360",
+        "freecad",
+        "rhino"
+      ],
+      "kernel_id": "blender-bmesh"
+    }
+  ]
+}

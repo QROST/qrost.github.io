@@ -1,0 +1,579 @@
+{
+  "category": "erp",
+  "products": [
+    {
+      "id": "yonyou-bip",
+      "name_zh": "用友BIP",
+      "name_en": "Yonyou BIP",
+      "vendor_id": "yonyou",
+      "category_l1": "经营管理",
+      "category_l2": "ERP",
+      "origin": "domestic",
+      "kernel": "自主",
+      "maturity": "high",
+      "localization_depth": "partial",
+      "strengths_zh": [
+        "大型企业数智化套件",
+        "国产化信创适配完整"
+      ],
+      "strengths_en": [
+        "Large enterprise digital suite",
+        "Complete IT innovation adaptation"
+      ],
+      "limitations_zh": [
+        "高端制造业核心仍部分SAP",
+        "云转型利润率承压"
+      ],
+      "limitations_en": [
+        "Some manufacturing core still SAP",
+        "Cloud transition margin pressure"
+      ],
+      "industries": [
+        "制造",
+        "零售",
+        "金融"
+      ],
+      "pricing": "high",
+      "confidence": 0.9,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.yonyou.com/",
+          "title": "Yonyou BIP",
+          "accessed": "2026-06"
+        }
+      ],
+      "international_benchmarks": [
+        "sap-s4hana"
+      ],
+      "listed_ticker": "600588.SH"
+    },
+    {
+      "id": "kingdee-cosmic",
+      "name_zh": "金蝶云·苍穹",
+      "name_en": "Kingdee Cosmic",
+      "vendor_id": "kingdee",
+      "category_l1": "经营管理",
+      "category_l2": "ERP",
+      "origin": "domestic",
+      "kernel": "自主",
+      "maturity": "high",
+      "localization_depth": "partial",
+      "strengths_zh": [
+        "中小企业云ERP龙头",
+        "低代码PaaS平台"
+      ],
+      "strengths_en": [
+        "SME cloud ERP leader",
+        "Low-code PaaS"
+      ],
+      "limitations_zh": [
+        "大型集团复杂制造弱于用友/SAP",
+        "行业云深度参差"
+      ],
+      "limitations_en": [
+        "Weaker complex manufacturing vs Yonyou/SAP",
+        "Variable industry cloud depth"
+      ],
+      "industries": [
+        "零售",
+        "制造",
+        "服务业"
+      ],
+      "pricing": "mid",
+      "confidence": 0.88,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.kingdee.com/",
+          "title": "Kingdee Cosmic",
+          "accessed": "2026-06"
+        }
+      ],
+      "international_benchmarks": [
+        "sap-business-one"
+      ],
+      "listed_ticker": "0268.HK"
+    },
+    {
+      "id": "digiwin-workflow",
+      "name_zh": "鼎捷T100",
+      "name_en": "Digiwin T100",
+      "vendor_id": "digiwin",
+      "category_l1": "经营管理",
+      "category_l2": "ERP",
+      "origin": "domestic",
+      "kernel": "自主",
+      "maturity": "high",
+      "localization_depth": "partial",
+      "strengths_zh": [
+        "台湾背景深耕制造业ERP",
+        "电子与机械优势"
+      ],
+      "strengths_en": [
+        "Taiwan heritage manufacturing ERP",
+        "Electronics and machinery strength"
+      ],
+      "limitations_zh": [
+        "大陆高端市场声量小于用友",
+        "云产品占比提升中"
+      ],
+      "limitations_en": [
+        "Lower mainland high-end mindshare",
+        "Growing cloud mix"
+      ],
+      "industries": [
+        "电子",
+        "机械",
+        "汽车零部件"
+      ],
+      "pricing": "mid",
+      "confidence": 0.86,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.digiwin.com/",
+          "title": "Digiwin T100",
+          "accessed": "2026-06"
+        }
+      ],
+      "international_benchmarks": [
+        "oracle-netsuite"
+      ],
+      "listed_ticker": "300378.SZ"
+    },
+    {
+      "id": "inspur-gs",
+      "name_zh": "浪潮GS Cloud",
+      "name_en": "Inspur GS Cloud",
+      "vendor_id": "inspur",
+      "category_l1": "经营管理",
+      "category_l2": "ERP",
+      "origin": "domestic",
+      "kernel": "自主",
+      "maturity": "high",
+      "localization_depth": "partial",
+      "strengths_zh": [
+        "国资与集团管控ERP",
+        "信创软硬件一体"
+      ],
+      "strengths_en": [
+        "SOE and group governance ERP",
+        "IT innovation hardware-software bundle"
+      ],
+      "limitations_zh": [
+        "民营市场渗透有限",
+        "用户体验待现代化"
+      ],
+      "limitations_en": [
+        "Limited private sector penetration",
+        "UX modernization needed"
+      ],
+      "industries": [
+        "国资",
+        "集团管控",
+        "政府"
+      ],
+      "pricing": "mid",
+      "confidence": 0.84,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.inspur.com/",
+          "title": "Inspur GS Cloud",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "dcits-erp",
+      "name_zh": "神州数码ERP",
+      "name_en": "DCITS ERP",
+      "vendor_id": "dcits",
+      "category_l1": "经营管理",
+      "category_l2": "ERP",
+      "origin": "domestic",
+      "kernel": "自主",
+      "maturity": "mid",
+      "localization_depth": "pilot",
+      "strengths_zh": [
+        "分销与供应链ERP",
+        "IT服务渠道优势"
+      ],
+      "strengths_en": [
+        "Distribution and supply chain ERP",
+        "IT services channel"
+      ],
+      "limitations_zh": [
+        "自研ERP品牌声量弱",
+        "以集成项目为主"
+      ],
+      "limitations_en": [
+        "Weak own ERP brand",
+        "Integration-project heavy"
+      ],
+      "industries": [
+        "分销",
+        "IT",
+        "零售"
+      ],
+      "pricing": "mid",
+      "confidence": 0.75,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.digitalchina.com/",
+          "title": "DCITS ERP",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "sap-s4hana",
+      "name_zh": "SAP S/4HANA",
+      "name_en": "SAP S/4HANA",
+      "vendor_id": "sap",
+      "category_l1": "经营管理",
+      "category_l2": "ERP",
+      "origin": "international",
+      "kernel": "自主",
+      "maturity": "mission_critical",
+      "localization_depth": "core",
+      "strengths_zh": [
+        "大型制造与跨国集团标准",
+        "中国区客户基础深厚"
+      ],
+      "strengths_en": [
+        "Standard for large manufacturing and multinationals",
+        "Deep China installed base"
+      ],
+      "limitations_zh": [
+        "许可与实施成本极高",
+        "地缘政治与替代压力"
+      ],
+      "limitations_en": [
+        "Very high license and implementation",
+        "Geopolitical displacement pressure"
+      ],
+      "industries": [
+        "汽车",
+        "化工",
+        "消费品"
+      ],
+      "pricing": "high",
+      "confidence": 0.93,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.sap.com/products/erp.html",
+          "title": "SAP S/4HANA",
+          "accessed": "2026-06"
+        }
+      ],
+      "listed_ticker": "SAP"
+    },
+    {
+      "id": "oracle-netsuite",
+      "name_zh": "Oracle NetSuite",
+      "name_en": "Oracle NetSuite",
+      "vendor_id": "oracle",
+      "category_l1": "经营管理",
+      "category_l2": "ERP",
+      "origin": "international",
+      "kernel": "自主",
+      "maturity": "high",
+      "localization_depth": "partial",
+      "strengths_zh": [
+        "云原生中小企业ERP",
+        "跨境电商功能强"
+      ],
+      "strengths_en": [
+        "Cloud-native SME ERP",
+        "Strong cross-border e-commerce"
+      ],
+      "limitations_zh": [
+        "制造深度弱于SAP",
+        "国内本地化支持有限"
+      ],
+      "limitations_en": [
+        "Weaker manufacturing vs SAP",
+        "Limited China localization"
+      ],
+      "industries": [
+        "跨境电商",
+        "服务业",
+        "批发"
+      ],
+      "pricing": "high",
+      "confidence": 0.88,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.netsuite.com/",
+          "title": "Oracle NetSuite",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "microsoft-d365",
+      "name_zh": "Dynamics 365",
+      "name_en": "Microsoft Dynamics 365",
+      "vendor_id": "microsoft",
+      "category_l1": "经营管理",
+      "category_l2": "ERP",
+      "origin": "international",
+      "kernel": "自主",
+      "maturity": "high",
+      "localization_depth": "partial",
+      "strengths_zh": [
+        "与Office/Azure生态集成",
+        "CRM+ERP一体"
+      ],
+      "strengths_en": [
+        "Office/Azure ecosystem",
+        "Unified CRM+ERP"
+      ],
+      "limitations_zh": [
+        "复杂制造MRP弱于SAP",
+        "本地合作伙伴能力参差"
+      ],
+      "limitations_en": [
+        "Weaker complex MRP vs SAP",
+        "Variable partner capability"
+      ],
+      "industries": [
+        "零售",
+        "服务",
+        "制造"
+      ],
+      "pricing": "high",
+      "confidence": 0.87,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://dynamics.microsoft.com/",
+          "title": "Microsoft Dynamics 365",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "infor-cloudsuite",
+      "name_zh": "Infor CloudSuite",
+      "name_en": "Infor CloudSuite",
+      "vendor_id": "infor",
+      "category_l1": "经营管理",
+      "category_l2": "ERP",
+      "origin": "international",
+      "kernel": "自主",
+      "maturity": "high",
+      "localization_depth": "partial",
+      "strengths_zh": [
+        "行业云ERP（汽车/医疗/食品）",
+        "微垂直功能深"
+      ],
+      "strengths_en": [
+        "Industry cloud ERP",
+        "Deep micro-vertical features"
+      ],
+      "limitations_zh": [
+        "品牌在中国弱于SAP/用友",
+        "收购整合历史复杂"
+      ],
+      "limitations_en": [
+        "Weaker China brand than SAP/Yonyou",
+        "Complex acquisition history"
+      ],
+      "industries": [
+        "汽车",
+        "医疗",
+        "食品"
+      ],
+      "pricing": "high",
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.infor.com/",
+          "title": "Infor CloudSuite",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "huawei-metaerp",
+      "name_zh": "华为MetaERP",
+      "name_en": "Huawei MetaERP",
+      "vendor_id": "huawei",
+      "category_l1": "经营管理",
+      "category_l2": "ERP",
+      "origin": "domestic",
+      "kernel": "自主",
+      "maturity": "mid",
+      "localization_depth": "pilot",
+      "strengths_zh": [
+        "华为内部替代Oracle实践外溢",
+        "信创全栈故事"
+      ],
+      "strengths_en": [
+        "Huawei internal Oracle replacement export",
+        "Full-stack IT innovation narrative"
+      ],
+      "limitations_zh": [
+        "对外商业化早期",
+        "生态伙伴仍在招募"
+      ],
+      "limitations_en": [
+        "Early external commercialization",
+        "Partner ecosystem recruiting"
+      ],
+      "industries": [
+        "高科技",
+        "制造",
+        "大型集团"
+      ],
+      "pricing": "quote",
+      "confidence": 0.82,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.huawei.com/",
+          "title": "Huawei MetaERP",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "boke-erp",
+      "name_zh": "博科ERP",
+      "name_en": "Boke ERP",
+      "vendor_id": "boke",
+      "category_l1": "经营管理",
+      "category_l2": "ERP",
+      "origin": "domestic",
+      "kernel": "自主",
+      "maturity": "mid",
+      "localization_depth": "pilot",
+      "strengths_zh": [
+        "元数据驱动可配置ERP",
+        "长三角民营客户"
+      ],
+      "strengths_en": [
+        "Metadata-driven configurable ERP",
+        "Yangtze Delta private clients"
+      ],
+      "limitations_zh": [
+        "全国品牌弱",
+        "云化程度有限"
+      ],
+      "limitations_en": [
+        "Weak national brand",
+        "Limited cloud"
+      ],
+      "industries": [
+        "贸易",
+        "制造",
+        "医药"
+      ],
+      "pricing": "mid",
+      "confidence": 0.72,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.bokesoft.com/",
+          "title": "Boke ERP",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "ygsoft-erp",
+      "name_zh": "远光ERP",
+      "name_en": "YGSOFT ERP",
+      "vendor_id": "ygsoft",
+      "category_l1": "经营管理",
+      "category_l2": "ERP",
+      "origin": "domestic",
+      "kernel": "自主",
+      "maturity": "high",
+      "localization_depth": "core",
+      "strengths_zh": [
+        "电力行业财务与集团管控",
+        "国网南网深度渗透"
+      ],
+      "strengths_en": [
+        "Power industry finance and group control",
+        "Deep State Grid/CSG penetration"
+      ],
+      "limitations_zh": [
+        "行业垂直难跨域",
+        "通用制造ERP弱"
+      ],
+      "limitations_en": [
+        "Hard to cross verticals",
+        "Weak general manufacturing ERP"
+      ],
+      "industries": [
+        "电力",
+        "能源",
+        "国资"
+      ],
+      "pricing": "mid",
+      "confidence": 0.83,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.ygsoft.com/",
+          "title": "YGSOFT ERP",
+          "accessed": "2026-06"
+        }
+      ],
+      "listed_ticker": "002063.SZ"
+    },
+    {
+      "id": "oracle-fusion-cloud-erp",
+      "name_zh": "Oracle Fusion Cloud ERP",
+      "name_en": "Oracle Fusion Cloud ERP",
+      "vendor_id": "oracle",
+      "category_l1": "经营管理",
+      "category_l2": "ERP",
+      "origin": "international",
+      "kernel": "自主",
+      "maturity": "mission_critical",
+      "localization_depth": "partial",
+      "strengths_zh": [
+        "大型集团云ERP",
+        "财务与供应链模块成熟"
+      ],
+      "strengths_en": [
+        "Large-group cloud ERP",
+        "Mature finance and supply chain"
+      ],
+      "limitations_zh": [
+        "制造深度弱于SAP S/4HANA",
+        "国内本地化实施伙伴少"
+      ],
+      "limitations_en": [
+        "Weaker manufacturing vs SAP S/4HANA",
+        "Fewer China SI partners"
+      ],
+      "industries": [
+        "金融",
+        "零售",
+        "高科技"
+      ],
+      "pricing": "high",
+      "confidence": 0.89,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.oracle.com/erp/",
+          "title": "Oracle Fusion Cloud ERP",
+          "accessed": "2026-06"
+        }
+      ],
+      "listed_ticker": "ORCL"
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "name": "qrost-china-industrial-software",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Local Tailwind build for demos/china-industrial-software. Static GitHub Pages page.",
+  "scripts": {
+    "build:css": "tailwindcss -i ./src/tailwind-input.css -o ./assets/css/tailwind-built.css --minify",
+    "watch:css": "tailwindcss -i ./src/tailwind-input.css -o ./assets/css/tailwind-built.css --watch"
+  },
+  "devDependencies": {
+    "tailwindcss": "3.4.17"
+  }
+}

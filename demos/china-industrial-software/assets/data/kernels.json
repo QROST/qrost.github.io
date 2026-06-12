@@ -1,0 +1,3012 @@
+{
+  "kernels": [
+    {
+      "id": "parasolid",
+      "name_zh": "Parasolid",
+      "name_en": "Parasolid",
+      "owner": "Siemens Digital Industries Software",
+      "origin": "international",
+      "license_model": "oem",
+      "first_release_year": 1988,
+      "capabilities_zh": [
+        "B-rep 实体建模",
+        "NURBS 曲面",
+        "布尔运算",
+        "大装配",
+        "Facet 混合建模",
+        "多线程 API"
+      ],
+      "capabilities_en": [
+        "B-rep solid modeling",
+        "NURBS surfaces",
+        "Boolean ops",
+        "large assemblies",
+        "facet hybrid",
+        "multithreaded API"
+      ],
+      "strengths_zh": [
+        "工业界装机量最大的可授权内核之一",
+        "与 NX/Solid Edge 同源",
+        "第三方 ISV 生态成熟"
+      ],
+      "strengths_en": [
+        "Among the most widely licensed kernels",
+        "Same lineage as NX/Solid Edge",
+        "Mature ISV ecosystem"
+      ],
+      "limitations_zh": [
+        "授权费与出口合规约束",
+        "国内无法获得内核源码",
+        "替代需完整重写上层 CAD"
+      ],
+      "limitations_en": [
+        "License cost and export compliance",
+        "No source access in China",
+        "Replacement requires full CAD rewrite"
+      ],
+      "used_by_product_ids": [
+        "ironcad",
+        "onshape",
+        "siemens-nx",
+        "solid-edge",
+        "solidworks",
+        "t-flex-cad",
+        "vectorworks"
+      ],
+      "used_by_international": [
+        "SOLIDWORKS",
+        "Siemens NX",
+        "Siemens Solid Edge",
+        "Onshape",
+        "IronCAD",
+        "Topsolid"
+      ],
+      "chinese_products_using": [],
+      "substitution_status_zh": "不可替代（源码级）— 国产 CAD 普遍避免长期单一依赖；可部分用自主内核+STEP 互通",
+      "substitution_status_en": "Not replaceable at source level — domestic CAD avoids sole dependency; partial via owned kernels + STEP",
+      "domestic_alternatives": [
+        "zw-overdrive",
+        "caxa-mega-kernel",
+        "crowncad-dgm",
+        "poisson-geoshape",
+        "amcax-kernel",
+        "c3d"
+      ],
+      "confidence": 0.94,
+      "sources": [
+        {
+          "url": "https://plm.sw.siemens.com/en-US/plm/components/parasolid/",
+          "title": "Siemens Parasolid",
+          "accessed": "2026-06"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Geometric_modeling_kernel",
+          "title": "Geometric modeling kernel",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "acis",
+      "name_zh": "ACIS",
+      "name_en": "ACIS",
+      "owner": "Spatial Corporation (Dassault Systèmes)",
+      "origin": "international",
+      "license_model": "oem",
+      "first_release_year": 1989,
+      "capabilities_zh": [
+        "B-rep 实体/曲面",
+        "混合建模",
+        "直接建模",
+        "SAT/SAB 交换",
+        "容差建模"
+      ],
+      "capabilities_en": [
+        "B-rep solid/surface",
+        "hybrid modeling",
+        "direct modeling",
+        "SAT/SAB exchange",
+        "tolerant modeling"
+      ],
+      "strengths_zh": [
+        "授权厂商多",
+        "与 AutoCAD 系 ShapeManager 同源",
+        "中端 3D CAD 常见选择"
+      ],
+      "strengths_en": [
+        "Many licensees",
+        "Related to Autodesk ShapeManager fork",
+        "Common in mid-tier 3D CAD"
+      ],
+      "limitations_zh": [
+        "高端曲面与大型装配弱于 Parasolid",
+        "版本碎片化（SAT 版本兼容）",
+        "无法自主可控"
+      ],
+      "limitations_en": [
+        "Weaker high-end surfacing vs Parasolid",
+        "SAT version fragmentation",
+        "Not self-controlled"
+      ],
+      "used_by_product_ids": [
+        "bricscad",
+        "formz",
+        "gstarcad"
+      ],
+      "used_by_international": [
+        "BricsCAD",
+        "GstarCAD Professional",
+        "SpaceClaim",
+        "Cimatron",
+        "TurboCAD",
+        "Rhino (partial)"
+      ],
+      "chinese_products_using": [
+        "浩辰CAD（3D Professional）"
+      ],
+      "substitution_status_zh": "部分可替 — 浩辰等仍授权 ACIS；中望/华天等走自主内核路线",
+      "substitution_status_en": "Partially substitutable — GstarCAD still licenses ACIS; ZWSOFT/Hoteam pursue owned kernels",
+      "domestic_alternatives": [
+        "zw-overdrive",
+        "gstar-2d-platform",
+        "caxa-mega-kernel"
+      ],
+      "confidence": 0.92,
+      "sources": [
+        {
+          "url": "https://www.spatial.com/products/acis",
+          "title": "Spatial ACIS",
+          "accessed": "2026-06"
+        },
+        {
+          "url": "https://www.bricsys.com/blog/what-is-an-acis-solid-and-why-should-you-care",
+          "title": "BricsCAD ACIS blog",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "c3d",
+      "name_zh": "C3D",
+      "name_en": "C3D Modeler",
+      "owner": "C3D Labs (ASCON Group)",
+      "origin": "international",
+      "license_model": "oem",
+      "first_release_year": 2000,
+      "capabilities_zh": [
+        "2D/3D 混合建模",
+        "B-rep 实体",
+        "约束求解（C3D Solver）",
+        "数据转换",
+        "多线程内核"
+      ],
+      "capabilities_en": [
+        "2D/3D hybrid",
+        "B-rep solids",
+        "constraints (C3D Solver)",
+        "data exchange",
+        "multithreaded kernel"
+      ],
+      "strengths_zh": [
+        "俄罗斯完全自主几何栈",
+        "可授权第三方 ISV",
+        "与 KOMPAS-3D 同源持续迭代"
+      ],
+      "strengths_en": [
+        "Fully Russian-owned geometry stack",
+        "Licensed to third-party ISVs",
+        "Co-evolved with KOMPAS-3D"
+      ],
+      "limitations_zh": [
+        "在中国装机量远小于 Parasolid/ACIS",
+        "制裁与供应链风险影响俄方市场",
+        "国内 CAD 直接采用案例少"
+      ],
+      "limitations_en": [
+        "Low China install base vs Parasolid/ACIS",
+        "Sanctions affect Russian market",
+        "Few direct adoptions in China CAD"
+      ],
+      "used_by_product_ids": [
+        "kompas-3d"
+      ],
+      "used_by_international": [
+        "KOMPAS-3D",
+        "Renga",
+        "Esprit CAM (embedded)",
+        "C3D Toolkit ISV customers"
+      ],
+      "chinese_products_using": [],
+      "substitution_status_zh": "理论可引入 — 可作为授权选项，但国内龙头已押注自研",
+      "substitution_status_en": "Could be licensed — viable OEM option, but Chinese leaders bet on in-house R&D",
+      "domestic_alternatives": [
+        "zw-overdrive",
+        "c3d",
+        "poisson-geoshape"
+      ],
+      "confidence": 0.88,
+      "sources": [
+        {
+          "url": "https://c3dlabs.com/products/c3d-toolkit/",
+          "title": "C3D Toolkit",
+          "accessed": "2026-06"
+        },
+        {
+          "url": "https://c3dlabs.com/customers/ascon/",
+          "title": "ASCON / KOMPAS-3D",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "granite",
+      "name_zh": "Granite",
+      "name_en": "Granite",
+      "owner": "PTC",
+      "origin": "international",
+      "license_model": "proprietary_inhouse",
+      "first_release_year": 1988,
+      "capabilities_zh": [
+        "参数化特征树",
+        "B-rep 实体",
+        "装配约束",
+        "与 Windchill 关联",
+        "族表/意图驱动"
+      ],
+      "capabilities_en": [
+        "Parametric feature tree",
+        "B-rep solids",
+        "assembly constraints",
+        "Windchill ties",
+        "family tables"
+      ],
+      "strengths_zh": [
+        "Creo 三十年工业验证",
+        "航空国防客户深厚",
+        "PTC 生态封闭一致"
+      ],
+      "strengths_en": [
+        "Three decades in Creo",
+        "Deep aerospace/defense base",
+        "Consistent PTC ecosystem"
+      ],
+      "limitations_zh": [
+        "不对外授权",
+        "与 Parasolid/ACIS 互通靠 STEP",
+        "云原生能力弱于 Onshape"
+      ],
+      "limitations_en": [
+        "Not licensed externally",
+        "Interop via STEP not native kernel",
+        "Weaker cloud-native than Onshape"
+      ],
+      "used_by_product_ids": [
+        "creo"
+      ],
+      "used_by_international": [
+        "Creo Parametric",
+        "Creo Simulate",
+        "Creo Direct",
+        "Windchill visualization"
+      ],
+      "chinese_products_using": [],
+      "substitution_status_zh": "不可替代（封闭）— 仅能通过产品级替代 Creo，无法嵌入国产 CAD",
+      "substitution_status_en": "Not substitutable (closed) — only product-level Creo replacement, not embeddable",
+      "domestic_alternatives": [
+        "zw-overdrive",
+        "caxa-mega-kernel"
+      ],
+      "confidence": 0.91,
+      "sources": [
+        {
+          "url": "https://www.ptc.com/en/products/creo",
+          "title": "PTC Creo",
+          "accessed": "2026-06"
+        },
+        {
+          "url": "https://www.cadinterop.com/en/formats/neutral-format/granite.html",
+          "title": "Granite format notes",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "open-cascade",
+      "name_zh": "Open CASCADE Technology (OCCT)",
+      "name_en": "Open CASCADE Technology (OCCT)",
+      "owner": "Open Cascade SAS (Open Cascade S.A.S.U.)",
+      "origin": "open_source",
+      "license_model": "open_source",
+      "first_release_year": 1999,
+      "capabilities_zh": [
+        "B-rep 实体/曲面边界表示",
+        "NURBS 曲线与曲面",
+        "布尔运算与特征建模",
+        "STEP/IGES/STL/BREP 数据交换",
+        "网格剖分与可视化",
+        "OCAF 应用框架与 XDE 装配",
+        "C++ SDK 可嵌入 ISV 产品"
+      ],
+      "capabilities_en": [
+        "B-rep solid/surface boundary representation",
+        "NURBS curves and surfaces",
+        "Boolean ops and feature modeling",
+        "STEP/IGES/STL/BREP data exchange",
+        "Meshing and visualization",
+        "OCAF application framework and XDE assemblies",
+        "C++ SDK embeddable in ISV products"
+      ],
+      "strengths_zh": [
+        "LGPL 2.1 + Open CASCADE Exception，可商用嵌入",
+        "全球唯一大规模开源工业 B-rep 内核",
+        "FreeCAD/Salome/CadQuery/KiCad 等生态成熟",
+        "源码可审计，适合信创二次开发与教学"
+      ],
+      "strengths_en": [
+        "LGPL 2.1 + Open CASCADE Exception allows commercial embedding",
+        "Largest open-source industrial B-rep kernel at scale",
+        "Mature ecosystem: FreeCAD, Salome, CadQuery, KiCad",
+        "Auditable source for customization and education"
+      ],
+      "limitations_zh": [
+        "企业级 SLA 与认证支持需 Open Cascade 商业合同",
+        "高端曲面/大装配性能弱于 Parasolid/CGM",
+        "容差建模与模型修复稳定性参差",
+        "国内商用 CAD 龙头未直接采用（多走自研内核）"
+      ],
+      "limitations_en": [
+        "Enterprise SLA/certification needs Open Cascade commercial contract",
+        "High-end surfacing/large assemblies weaker than Parasolid/CGM",
+        "Variable tolerant modeling and healing stability",
+        "Chinese commercial CAD leaders rarely embed OCCT directly"
+      ],
+      "used_by_product_ids": [
+        "build123d",
+        "cadquery",
+        "freecad",
+        "heekscad",
+        "kicad",
+        "occt-platform",
+        "salome-platform"
+      ],
+      "used_by_international": [
+        "FreeCAD",
+        "SALOME",
+        "CadQuery",
+        "build123d",
+        "KiCad",
+        "HeeksCAD (legacy)",
+        "Gmsh",
+        "Open Inventor-based viewers"
+      ],
+      "chinese_products_using": [
+        "FreeCAD/CadQuery 创客与高校教学部署",
+        "KiCad 国内开源硬件 PCB 社区",
+        "高校 Salome+Code_Aster CAE 流水线",
+        "九韶 AMCAX Kernel（OCC 风格 API，非 OCCT 源码分支）",
+        "中望 Overdrive、华天 CRUX IV/DGM、CAXA MEGA Kernel、Geoshape 等为自研内核，非 OCCT 分支"
+      ],
+      "substitution_status_zh": "内核级部分可替 — LGPL 可替代 Parasolid/ACIS OEM 于中端 ISV/教育/科研；航空级商用 CAD 仍需自研或商业内核",
+      "substitution_status_en": "Partial kernel substitute — LGPL OCCT can replace Parasolid/ACIS OEM in mid-tier ISV/education/R&D; aerospace-grade CAD still needs owned or commercial kernels",
+      "domestic_alternatives": [
+        "zw-overdrive",
+        "amcax-kernel",
+        "poisson-geoshape",
+        "c3d"
+      ],
+      "confidence": 0.93,
+      "sources": [
+        {
+          "url": "https://dev.opencascade.org/",
+          "title": "Open CASCADE Technology",
+          "accessed": "2026-06"
+        },
+        {
+          "url": "https://dev.opencascade.org/doc/occt-7.4.0/overview/html/occt_public_license.html",
+          "title": "OCCT LGPL 2.1 license",
+          "accessed": "2026-06"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Open_Cascade_Technology",
+          "title": "Open Cascade Technology (Wikipedia)",
+          "accessed": "2026-06"
+        },
+        {
+          "url": "https://www.freecad.org/",
+          "title": "FreeCAD",
+          "accessed": "2026-06"
+        },
+        {
+          "url": "https://product.amcax.net/",
+          "title": "AMCAX 九韶内核 OCC 风格接口",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "catia-cgm",
+      "name_zh": "CATIA CGM",
+      "name_en": "CATIA Geometric Modeler (CGM)",
+      "owner": "Dassault Systèmes",
+      "origin": "international",
+      "license_model": "proprietary_inhouse",
+      "first_release_year": 1981,
+      "capabilities_zh": [
+        "高端曲面 Class-A",
+        "大型装配",
+        "知识工程",
+        "与 3DEXPERIENCE 一体",
+        "复杂实体/曲面混合"
+      ],
+      "capabilities_en": [
+        "Class-A surfacing",
+        "large assemblies",
+        "knowledge engineering",
+        "3DEXPERIENCE integration",
+        "hybrid solid/surface"
+      ],
+      "strengths_zh": [
+        "汽车/航空曲面标杆",
+        "与 ENOVIA 深度集成",
+        "数十年高端制造验证"
+      ],
+      "strengths_en": [
+        "Auto/aero surfacing benchmark",
+        "Deep ENOVIA integration",
+        "Decades of high-end validation"
+      ],
+      "limitations_zh": [
+        "完全封闭不授权",
+        "成本极高",
+        "国内深度替代难度最大"
+      ],
+      "limitations_en": [
+        "Fully closed, not licensed",
+        "Very high cost",
+        "Hardest depth substitution in China"
+      ],
+      "used_by_product_ids": [
+        "catia"
+      ],
+      "used_by_international": [
+        "CATIA V5/V6",
+        "3DEXPERIENCE CATIA",
+        "some SOLIDWORKS hybrid workflows"
+      ],
+      "chinese_products_using": [],
+      "substitution_status_zh": "不可替代 — 国产高端曲面仍在追赶；中望 Overdrive 等宣称缩小差距",
+      "substitution_status_en": "Not replaceable today — domestic high-end surfacing still catching up; Overdrive claims narrowing gap",
+      "domestic_alternatives": [
+        "zw-overdrive",
+        "crowncad-dgm"
+      ],
+      "confidence": 0.93,
+      "sources": [
+        {
+          "url": "https://www.3ds.com/products/catia",
+          "title": "CATIA",
+          "accessed": "2026-06"
+        },
+        {
+          "url": "https://www.engineering.com/what-is-a-geometric-modeling-kernel/",
+          "title": "Engineering.com kernel overview",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "shape-manager",
+      "name_zh": "ShapeManager",
+      "name_en": "ShapeManager",
+      "owner": "Autodesk",
+      "origin": "international",
+      "license_model": "proprietary_inhouse",
+      "first_release_year": 2001,
+      "capabilities_zh": [
+        "B-rep 实体",
+        "参数化特征",
+        "从 ACIS 7 分支",
+        "与 Vault/Fusion 协同"
+      ],
+      "capabilities_en": [
+        "B-rep solids",
+        "parametric features",
+        "forked from ACIS 7",
+        "Vault/Fusion synergy"
+      ],
+      "strengths_zh": [
+        "Autodesk 中端机械栈统一",
+        "与制造云路线衔接",
+        "ACIS SAT 有限互通"
+      ],
+      "strengths_en": [
+        "Unified Autodesk mid-tier MCAD",
+        "Manufacturing cloud path",
+        "Limited ACIS SAT interop"
+      ],
+      "limitations_zh": [
+        "不对外授权",
+        "SAT 版本冻结在 ACIS 7 衍生",
+        "战略重心转向 Fusion 云"
+      ],
+      "limitations_en": [
+        "Not licensed out",
+        "SAT frozen at ACIS 7 lineage",
+        "Strategic shift to Fusion cloud"
+      ],
+      "used_by_product_ids": [
+        "fusion360",
+        "inventor"
+      ],
+      "used_by_international": [
+        "Autodesk Inventor",
+        "Autodesk Fusion 360"
+      ],
+      "chinese_products_using": [],
+      "substitution_status_zh": "产品级替代 — 用中望/浩辰等替换 Inventor 席位，非内核级嵌入",
+      "substitution_status_en": "Product-level substitution — ZW/Gstar seats replace Inventor, not kernel embed",
+      "domestic_alternatives": [
+        "zw-overdrive",
+        "caxa-mega-kernel"
+      ],
+      "confidence": 0.9,
+      "sources": [
+        {
+          "url": "https://en.wikipedia.org/wiki/Geometric_modeling_kernel",
+          "title": "ShapeManager",
+          "accessed": "2026-06"
+        },
+        {
+          "url": "https://www.autodesk.com/products/inventor",
+          "title": "Autodesk Inventor",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "zw-overdrive",
+      "name_zh": "中望 Overdrive",
+      "name_en": "ZWSOFT Overdrive",
+      "owner": "ZWSOFT (中望软件)",
+      "origin": "domestic",
+      "license_model": "proprietary_inhouse",
+      "first_release_year": 2010,
+      "capabilities_zh": [
+        "B-rep 实体",
+        "NURBS 曲面",
+        "同步/直接建模",
+        "实体-曲面混合",
+        "Linux 信创版"
+      ],
+      "capabilities_en": [
+        "B-rep solids",
+        "NURBS",
+        "sync/direct modeling",
+        "solid-surface hybrid",
+        "Linux IT-innovation builds"
+      ],
+      "strengths_zh": [
+        "国产少数自研 3D 内核之一",
+        "源自 VX 团队与 IP",
+        "ZW3D 大规模商用验证"
+      ],
+      "strengths_en": [
+        "Among few domestic 3D kernels",
+        "VX team/IP lineage",
+        "Proven in ZW3D at scale"
+      ],
+      "limitations_zh": [
+        "高端曲面/大装配仍弱于 CATIA/NX",
+        "国际 ISV 生态小",
+        "与 Parasolid 互通需 STEP/内核转换"
+      ],
+      "limitations_en": [
+        "Weaker vs CATIA/NX at high end",
+        "Small international ISV pool",
+        "Parasolid interop via STEP/conversion"
+      ],
+      "used_by_product_ids": [
+        "zw3d",
+        "zwcad"
+      ],
+      "used_by_international": [],
+      "chinese_products_using": [
+        "中望 ZW3D",
+        "中望 CAD（3D 能力）",
+        "ZWSim 系列"
+      ],
+      "substitution_status_zh": "自主可控 — 可替代部分 Parasolid/ACIS 授权依赖（中高端仍在演进）",
+      "substitution_status_en": "Self-controlled — can replace some Parasolid/ACIS license dependency (mid-high tier still evolving)",
+      "domestic_alternatives": [],
+      "confidence": 0.89,
+      "sources": [
+        {
+          "url": "https://www.zwsoft.com/product/overdrive",
+          "title": "ZWSOFT Overdrive",
+          "accessed": "2026-06"
+        },
+        {
+          "url": "https://www.zwsoft.cn/",
+          "title": "ZWSOFT China",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "crowncad-dgm",
+      "name_zh": "CrownCAD DGM 三维几何建模引擎",
+      "name_en": "CrownCAD DGM geometric modeler",
+      "owner": "Huayun 3D Technology / Hoteam Software (华云三维·华天软件)",
+      "origin": "domestic",
+      "license_model": "proprietary_inhouse",
+      "first_release_year": 2021,
+      "capabilities_zh": [
+        "云原生 B-rep 三维几何建模（DGM）",
+        "DCS 几何约束求解器",
+        "零件/装配/工程图",
+        "多用户在线协同与版本管理",
+        "Web 端跨终端渲染"
+      ],
+      "capabilities_en": [
+        "Cloud-native B-rep geometry (DGM)",
+        "DCS geometric constraint solver",
+        "parts/assemblies/drawings",
+        "multi-user online collaboration and versioning",
+        "cross-terminal web rendering"
+      ],
+      "strengths_zh": [
+        "国内首款完全自主云 CAD 几何栈（DGM+DCS）",
+        "与华天 PLM/SView 协同",
+        "适配国产芯片与操作系统"
+      ],
+      "strengths_en": [
+        "First fully owned domestic cloud CAD geometry stack (DGM+DCS)",
+        "Synergy with Hoteam PLM/SView",
+        "Adapted for domestic CPUs and OS"
+      ],
+      "limitations_zh": [
+        "大客户案例仍在积累",
+        "离线/私有化场景弱于桌面 CAD",
+        "高端 Class-A 曲面能力待验证"
+      ],
+      "limitations_en": [
+        "Enterprise references still building",
+        "Weaker offline vs desktop CAD",
+        "Class-A surfacing TBD"
+      ],
+      "used_by_product_ids": [
+        "crowncad"
+      ],
+      "used_by_international": [],
+      "chinese_products_using": [
+        "皇冠CAD CrownCAD"
+      ],
+      "substitution_status_zh": "自主可控（云场景）— DGM 内核支撑 CrownCAD；适合协同设计试点，非全面替代 NX",
+      "substitution_status_en": "Self-controlled (cloud) — DGM powers CrownCAD; good for collaborative pilots, not full NX replacement",
+      "domestic_alternatives": [],
+      "confidence": 0.86,
+      "sources": [
+        {
+          "url": "https://www.crowncad.com/",
+          "title": "CrownCAD",
+          "accessed": "2026-06"
+        },
+        {
+          "url": "http://www.jhhg.net.cn/4371598/4390469.html",
+          "title": "CrownCAD DGM+DCS 自主云 CAD 发布",
+          "accessed": "2026-06"
+        },
+        {
+          "url": "https://qikan.cmes.org/jxgcxb/EN/PDF/10.3901/JME.2023.23.158",
+          "title": "机械工程学报：国产几何内核综述（DGM）",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "caxa-mega-kernel",
+      "name_zh": "CAXA MEGA Kernel",
+      "name_en": "CAXA MEGA Kernel",
+      "owner": "CAXA Technology (北京数码大方科技股份有限公司)",
+      "origin": "domestic",
+      "license_model": "proprietary_inhouse",
+      "first_release_year": 2003,
+      "capabilities_zh": [
+        "B-rep 实体与 NURBS 曲面",
+        "多内核引擎（MEGA / Parasolid / ACIS 可切换）",
+        "混合建模与参数化特征",
+        "STEP/IGES 等数据交换",
+        "支撑 CAXA 2D/3D/CAPP/CAM 产品线"
+      ],
+      "capabilities_en": [
+        "B-rep solids and NURBS surfaces",
+        "multi-kernel engine (MEGA / Parasolid / ACIS switchable)",
+        "hybrid and parametric feature modeling",
+        "STEP/IGES exchange",
+        "powers CAXA 2D/3D/CAPP/CAM portfolio"
+      ],
+      "strengths_zh": [
+        "2003 年起自研 MEGA Kernel，2027 代持续迭代",
+        "军工航天客户基础深厚",
+        "多内核架构兼顾自主与兼容"
+      ],
+      "strengths_en": [
+        "MEGA Kernel R&D since 2003, 2027 generation ongoing",
+        "Deep defense/aerospace customer base",
+        "Multi-kernel architecture balances ownership and compatibility"
+      ],
+      "limitations_zh": [
+        "高端曲面仍弱于 CATIA/NX",
+        "第三方 ISV 生态老化",
+        "云原生能力弱于 CrownCAD/Geoshape"
+      ],
+      "limitations_en": [
+        "High-end surfacing still behind CATIA/NX",
+        "Aging ISV ecosystem",
+        "Weaker cloud-native vs CrownCAD/Geoshape"
+      ],
+      "used_by_product_ids": [
+        "caxa-3d",
+        "caxa-cad"
+      ],
+      "used_by_international": [],
+      "chinese_products_using": [
+        "CAXA CAD 电子图板",
+        "CAXA 3D 实体设计"
+      ],
+      "substitution_status_zh": "自主可控 — MEGA Kernel 支撑中端装备 MCAD；高端场景可切换 Parasolid/ACIS 模块",
+      "substitution_status_en": "Self-controlled — MEGA Kernel for mid equipment MCAD; Parasolid/ACIS modules at high end",
+      "domestic_alternatives": [],
+      "confidence": 0.88,
+      "sources": [
+        {
+          "url": "https://www.caxa.com/news/2025/48888.html",
+          "title": "CAXA MEGA Kernel 发布",
+          "accessed": "2026-06"
+        },
+        {
+          "url": "http://www.cngyol.com/article/2416.html",
+          "title": "CAXA 多内核引擎架构",
+          "accessed": "2026-06"
+        },
+        {
+          "url": "https://www.caxa.com/",
+          "title": "CAXA",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "gstar-2d-platform",
+      "name_zh": "GstarCAD 2D 平台内核",
+      "name_en": "GstarCAD 2D platform kernel",
+      "owner": "Gstarsoft Co., Ltd. (苏州浩辰软件股份有限公司)",
+      "origin": "domestic",
+      "license_model": "proprietary_inhouse",
+      "first_release_year": 2013,
+      "capabilities_zh": [
+        "2D DWG 平台内核（浩辰 CAD 8 起完全自研）",
+        "ODA DWG 互操作 + GRX 二次开发接口",
+        "多线程图纸解析与渲染",
+        "Linux/信创全栈适配",
+        "3D 实体读写依赖 ACIS 授权模块（非自研 3D 内核）"
+      ],
+      "capabilities_en": [
+        "2D DWG platform kernel (fully owned since GstarCAD 8)",
+        "ODA DWG interop + GRX extension API",
+        "multithreaded drawing parse and render",
+        "Linux/IT-innovation full-stack builds",
+        "3D solid R/W via licensed ACIS module (not owned 3D kernel)"
+      ],
+      "strengths_zh": [
+        "科创板披露：2D 核心技术自主，全球用户超 1 亿",
+        "海外 2D 收入占比高",
+        "信创 CPU/OS 适配完整"
+      ],
+      "strengths_en": [
+        "STAR Market filing: owned 2D core tech, 100M+ global users claimed",
+        "High overseas 2D revenue share",
+        "Complete IT-innovation CPU/OS adaptation"
+      ],
+      "limitations_zh": [
+        "无自研 3D B-rep 内核（ACIS OEM + 西门子 3D 组件授权）",
+        "高端 3D MCAD 弱于中望 ZW3D",
+        "2D/3D 双轨增加维护成本"
+      ],
+      "limitations_en": [
+        "No owned 3D B-rep kernel (ACIS OEM + Siemens 3D component license)",
+        "Weaker high-end 3D MCAD than ZW3D",
+        "2D/3D dual-track maintenance overhead"
+      ],
+      "used_by_product_ids": [
+        "gstarcad"
+      ],
+      "used_by_international": [],
+      "chinese_products_using": [
+        "浩辰 CAD 2D 平台版",
+        "浩辰 CAD 3D（ACIS 模块）",
+        "浩辰 CAD 看图王"
+      ],
+      "substitution_status_zh": "2D 自主可控 — 3D 仍依赖 Spatial ACIS 与西门子 3D 组件授权",
+      "substitution_status_en": "2D self-controlled — 3D still depends on Spatial ACIS and Siemens 3D component licenses",
+      "domestic_alternatives": [
+        "zw-overdrive"
+      ],
+      "confidence": 0.87,
+      "sources": [
+        {
+          "url": "https://www.gstarcad.com/cad/",
+          "title": "GstarCAD 自主 2D 平台",
+          "accessed": "2026-06"
+        },
+        {
+          "url": "http://vip.stock.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=8357331&stockid=688657",
+          "title": "浩辰软件 IPO：ACIS 用于 3D 模块",
+          "accessed": "2026-06"
+        },
+        {
+          "url": "https://cloud.tencent.com.cn/developer/news/643581",
+          "title": "浩辰 CAD 8 自主内核",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "poisson-geoshape",
+      "name_zh": "Geoshape 几何建模引擎",
+      "name_en": "Geoshape Geometric Modeler",
+      "owner": "Poisson Software Co., Ltd. (深圳泊松软件技术有限公司)",
+      "origin": "domestic",
+      "license_model": "proprietary_inhouse",
+      "first_release_year": 2022,
+      "capabilities_zh": [
+        "云原生 B-rep",
+        "HPC 并行",
+        "模型修复",
+        "DISA 几何 API",
+        "AI 辅助建模"
+      ],
+      "capabilities_en": [
+        "Cloud-native B-rep",
+        "HPC parallelism",
+        "model healing",
+        "DISA geometry API",
+        "AI-assisted modeling"
+      ],
+      "strengths_zh": [
+        "新锐全栈自研几何引擎",
+        "DISA 标准参与",
+        "CAD/CAE/PLM 一体化布局"
+      ],
+      "strengths_en": [
+        "New full-stack owned engine",
+        "DISA standard participation",
+        "CAD/CAE/PLM integrated roadmap"
+      ],
+      "limitations_zh": [
+        "商用装机仍在早期",
+        "生态与案例少于中望/华天",
+        "高端客户验证进行中"
+      ],
+      "limitations_en": [
+        "Commercial install base early",
+        "Smaller ecosystem than ZW/Hoteam",
+        "High-end validation ongoing"
+      ],
+      "used_by_product_ids": [
+        "poisson-geoshape-cad"
+      ],
+      "used_by_international": [],
+      "chinese_products_using": [
+        "Geoshape 3D CAD 平台",
+        "Magicsim",
+        "IntePLM"
+      ],
+      "substitution_status_zh": "战略备选 — 信创市场新选项，长期或分流 Parasolid 依赖",
+      "substitution_status_en": "Strategic option — IT-innovation alternative, may reduce Parasolid dependency long-term",
+      "domestic_alternatives": [],
+      "confidence": 0.82,
+      "sources": [
+        {
+          "url": "https://www.poissonsoft.com/page323?_l=zh_CN",
+          "title": "Geoshape engine",
+          "accessed": "2026-06"
+        },
+        {
+          "url": "https://www.poissonsoft.com/page236?article_id=830",
+          "title": "DISA standard statement",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "hoteam-crux-iv",
+      "name_zh": "SINOVATION CRUX IV 几何内核",
+      "name_en": "SINOVATION CRUX IV geometric kernel",
+      "owner": "Hoteam Software (山东山大华天软件有限公司)",
+      "origin": "domestic",
+      "license_model": "proprietary_inhouse",
+      "first_release_year": 2009,
+      "capabilities_zh": [
+        "B-rep 实体与曲面混合建模",
+        "参数化特征与直接建模",
+        "大装配与轻量化",
+        "冲压/注塑/铸造模具专业模块",
+        "DCM 二维约束 + CRUX IV 三维引擎"
+      ],
+      "capabilities_en": [
+        "B-rep solid/surface hybrid modeling",
+        "parametric features and direct modeling",
+        "large assemblies and lightweighting",
+        "stamping/injection/die-casting mold modules",
+        "DCM 2D constraints + CRUX IV 3D engine"
+      ],
+      "strengths_zh": [
+        "SINOVATION 桌面 CAD/CAM 自研内核（源自 UEL CADmeister 消化吸收）",
+        "模具行业客户基础深厚",
+        "与 CrownCAD DGM 云内核形成端云互补"
+      ],
+      "strengths_en": [
+        "Owned SINOVATION desktop CAD/CAM kernel (UEL CADmeister lineage)",
+        "Deep mold-industry customer base",
+        "Complements CrownCAD DGM cloud kernel"
+      ],
+      "limitations_zh": [
+        "全国品牌弱于中望 ZW3D",
+        "高端曲面仍追赶 CATIA",
+        "公开 API 文档少于 Overdrive/AMCAX"
+      ],
+      "limitations_en": [
+        "Lower national brand than ZW3D",
+        "High-end surfacing still behind CATIA",
+        "Less public API docs than Overdrive/AMCAX"
+      ],
+      "used_by_product_ids": [
+        "hoteam-cad"
+      ],
+      "used_by_international": [],
+      "chinese_products_using": [
+        "SINOVATION",
+        "华天 CAD 2020"
+      ],
+      "substitution_status_zh": "自主可控（桌面中端）— CRUX IV 支撑 SINOVATION；云场景由 DGM 承担",
+      "substitution_status_en": "Self-controlled (desktop mid-tier) — CRUX IV powers SINOVATION; cloud by DGM",
+      "domestic_alternatives": [
+        "crowncad-dgm",
+        "zw-overdrive"
+      ],
+      "confidence": 0.84,
+      "sources": [
+        {
+          "url": "https://qikan.cmes.org/jxgcxb/EN/PDF/10.3901/JME.2023.23.158",
+          "title": "机械工程学报：CRUX IV 内核",
+          "accessed": "2026-06"
+        },
+        {
+          "url": "https://blog.csdn.net/weixin_43911798/article/details/108742161",
+          "title": "SINOVATION CRUX IV 历史",
+          "accessed": "2026-06"
+        },
+        {
+          "url": "https://www.hoteamsoft.com/",
+          "title": "Hoteam Software",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "thcad-platform-kernel",
+      "name_zh": "THCAD 平台内核",
+      "name_en": "THCAD platform kernel",
+      "owner": "THSOFT (北京天河软件技术有限公司)",
+      "origin": "domestic",
+      "license_model": "proprietary_inhouse",
+      "first_release_year": 1993,
+      "capabilities_zh": [
+        "2D 机械工程图与国标图框",
+        "3D 直接建模（非完整工业 B-rep 内核）",
+        "AI 辅助参数化与 Blockify 块化",
+        "装备制造行业零件库",
+        "非 ITC 开源代码的独立 DWG 平台"
+      ],
+      "capabilities_en": [
+        "2D mechanical drafting and national drawing standards",
+        "3D direct modeling (not full industrial B-rep kernel)",
+        "AI-assisted parametrics and Blockify blocking",
+        "equipment-industry parts libraries",
+        "independent DWG platform without ITC open-source code"
+      ],
+      "strengths_zh": [
+        "30 年装备制造 CAD 积累",
+        "信创 CPU/OS 全适配",
+        "与天河 CAPP/PLM 一体化"
+      ],
+      "strengths_en": [
+        "30 years equipment-industry CAD heritage",
+        "Full IT-innovation CPU/OS adaptation",
+        "Integrated with THSOFT CAPP/PLM"
+      ],
+      "limitations_zh": [
+        "非 Parasolid 级 B-rep 内核",
+        "通用 MCAD 品牌弱于中望/浩辰",
+        "高端三维能力有限"
+      ],
+      "limitations_en": [
+        "Not Parasolid-class B-rep kernel",
+        "Weaker general MCAD brand than ZW/Gstar",
+        "Limited high-end 3D"
+      ],
+      "used_by_product_ids": [
+        "tianhe-cad"
+      ],
+      "used_by_international": [],
+      "chinese_products_using": [
+        "天河 THCAD 平台版",
+        "THCAD 三维机械版"
+      ],
+      "substitution_status_zh": "行业场景可替 — 装备制造 2D/轻量 3D；非 SolidWorks 级通用 MCAD 替代",
+      "substitution_status_en": "Niche substitution — equipment 2D/light 3D; not SolidWorks-class general MCAD",
+      "domestic_alternatives": [
+        "zw-overdrive",
+        "caxa-mega-kernel",
+        "gstar-2d-platform"
+      ],
+      "confidence": 0.76,
+      "sources": [
+        {
+          "url": "https://www.thsoft.com.cn/Products.html",
+          "title": "THCAD 自主平台",
+          "accessed": "2026-06"
+        },
+        {
+          "url": "https://www.thsoft.com.cn/news_detail/50.html",
+          "title": "THCAD 2026 内核安全可控",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "pengye-graphic-platform",
+      "name_zh": "鹏业自主图形平台",
+      "name_en": "Pengye owned graphic platform",
+      "owner": "Chengdu Pengye Software Co., Ltd. (成都鹏业软件股份有限公司)",
+      "origin": "domestic",
+      "license_model": "proprietary_inhouse",
+      "first_release_year": 2010,
+      "capabilities_zh": [
+        "安装算量专用自主图形平台",
+        "CAD/天正/PDF 图纸智能识别翻模",
+        "三维可视化算量模型（非工业 B-rep MCAD）",
+        "与 Revit BIM 接口",
+        "市政/管网造价联动"
+      ],
+      "capabilities_en": [
+        "owned graphic platform for MEP quantity takeoff",
+        "intelligent CAD/Tianzheng/PDF recognition and 3D modeling",
+        "3D visualization quantity models (not industrial B-rep MCAD)",
+        "Revit BIM interface",
+        "municipal/pipeline cost estimation linkage"
+      ],
+      "strengths_zh": [
+        "2010 年起自主图形平台，安装算量垂直深耕",
+        "一键识别电气/消防/通风等专业",
+        "新三板上市（835287）"
+      ],
+      "strengths_en": [
+        "Owned graphic platform since 2010, MEP quantity vertical depth",
+        "One-click MEP/pipe/duct recognition",
+        "NEEQ listed (835287)"
+      ],
+      "limitations_zh": [
+        "非机械设计 B-rep 内核",
+        "地域性市政客户为主",
+        "通用 MCAD 竞争力弱"
+      ],
+      "limitations_en": [
+        "Not mechanical design B-rep kernel",
+        "Regional municipal customer focus",
+        "Weak general MCAD competitiveness"
+      ],
+      "used_by_product_ids": [
+        "pengye-cad"
+      ],
+      "used_by_international": [],
+      "chinese_products_using": [
+        "鹏业 BIM 三维安装算量",
+        "鹏业 CAD 市政管网"
+      ],
+      "substitution_status_zh": "垂直可替 — 市政安装算量/BIM 翻模；非三维 MCAD 内核替代对象",
+      "substitution_status_en": "Vertical substitution — municipal MEP quantity/BIM; not a 3D MCAD kernel substitute",
+      "domestic_alternatives": [
+        "thcad-platform-kernel",
+        "gstar-2d-platform"
+      ],
+      "confidence": 0.74,
+      "sources": [
+        {
+          "url": "http://www.pengye.com.cn/gclazagent/",
+          "title": "鹏业 BIM 三维安装算量",
+          "accessed": "2026-06"
+        },
+        {
+          "url": "https://developer.cloud.tencent.com/news/499744",
+          "title": "鹏业自主图形平台",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "autodesk-acad-geometry",
+      "name_zh": "AutoCAD 几何引擎",
+      "name_en": "AutoCAD geometry engine",
+      "owner": "Autodesk",
+      "origin": "international",
+      "license_model": "proprietary_inhouse",
+      "first_release_year": 1982,
+      "capabilities_zh": [
+        "2D 精确绘图",
+        "基础 3D",
+        "DWG 生态",
+        "ARX 扩展"
+      ],
+      "capabilities_en": [
+        "2D precision drafting",
+        "basic 3D",
+        "DWG ecosystem",
+        "ARX extensions"
+      ],
+      "strengths_zh": [
+        "2D 事实标准",
+        "全球最大用户基数",
+        "第三方插件生态"
+      ],
+      "strengths_en": [
+        "2D de-facto standard",
+        "Largest global user base",
+        "Third-party plugin ecosystem"
+      ],
+      "limitations_zh": [
+        "3D 机械设计弱于 SW/NX",
+        "订阅成本上升",
+        "国产化政策压力"
+      ],
+      "limitations_en": [
+        "Weaker 3D MCAD vs SW/NX",
+        "Rising subscription cost",
+        "Localization policy pressure"
+      ],
+      "used_by_product_ids": [
+        "autocad"
+      ],
+      "used_by_international": [
+        "AutoCAD",
+        "AutoCAD LT"
+      ],
+      "chinese_products_using": [],
+      "substitution_status_zh": "产品级替代 — 中望/浩辰 DWG 平台可替 2D 席位",
+      "substitution_status_en": "Product-level — ZW/Gstar DWG platforms replace 2D seats",
+      "domestic_alternatives": [
+        "zw-overdrive",
+        "gstar-2d-platform",
+        "caxa-mega-kernel"
+      ],
+      "confidence": 0.92,
+      "sources": [
+        {
+          "url": "https://www.autodesk.com.cn/",
+          "title": "AutoCAD China",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "sketchup-geometry",
+      "name_zh": "SketchUp 几何引擎",
+      "name_en": "SketchUp geometry engine",
+      "owner": "Trimble Inc.",
+      "origin": "international",
+      "license_model": "proprietary_inhouse",
+      "first_release_year": 2000,
+      "capabilities_zh": [
+        "多边形网格建模",
+        "概念设计",
+        "插件生态",
+        "BIM 浅层对接"
+      ],
+      "capabilities_en": [
+        "polygon mesh modeling",
+        "conceptual design",
+        "plugin ecosystem",
+        "shallow BIM tie-in"
+      ],
+      "strengths_zh": [
+        "建筑概念设计流行",
+        "易学",
+        "插件丰富"
+      ],
+      "strengths_en": [
+        "Popular conceptual BIM",
+        "Easy learning curve",
+        "Rich plugins"
+      ],
+      "limitations_zh": [
+        "精密机械不适用",
+        "非精确 B-rep 内核",
+        "BIM 深度不足"
+      ],
+      "limitations_en": [
+        "Not for precision MCAD",
+        "Not exact B-rep kernel",
+        "Shallow BIM"
+      ],
+      "used_by_product_ids": [
+        "sketchup"
+      ],
+      "used_by_international": [
+        "SketchUp",
+        "SketchUp Pro"
+      ],
+      "chinese_products_using": [],
+      "substitution_status_zh": "低优先级 — 建筑概念场景；国产 BIM 工具部分覆盖",
+      "substitution_status_en": "Low priority — conceptual AEC; some domestic BIM tools overlap",
+      "domestic_alternatives": [],
+      "confidence": 0.86,
+      "sources": [
+        {
+          "url": "https://www.sketchup.com/",
+          "title": "SketchUp",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "librecad-rs-entity-engine",
+      "name_zh": "LibreCAD RS_Entity 2D 几何引擎",
+      "name_en": "LibreCAD RS_Entity 2D geometry engine",
+      "owner": "LibreCAD contributors",
+      "origin": "open_source",
+      "license_model": "open_source",
+      "first_release_year": 2011,
+      "capabilities_zh": [
+        "RS_Entity 2D 图元实体系统（源自 QCAD Community Edition）",
+        "libdxfrw DXF 读写 + DWG 导入（DWGSUPPORT 条件编译）",
+        "2D 矢量图元：点/线/圆/弧/椭圆/抛物线/样条",
+        "Qt 跨平台 UI；无 B-rep 三维实体建模"
+      ],
+      "capabilities_en": [
+        "RS_Entity 2D primitive entity system (QCAD Community Edition lineage)",
+        "libdxfrw DXF read/write + DWG import (DWGSUPPORT build flag)",
+        "2D vector primitives: point/line/circle/arc/ellipse/parabola/spline",
+        "Qt cross-platform UI; no B-rep 3D solid modeling"
+      ],
+      "strengths_zh": [
+        "轻量跨平台 GPL 2D CAD",
+        "零授权费，教育/测绘适用",
+        "libdxfrw 独立库可复用"
+      ],
+      "strengths_en": [
+        "Lightweight cross-platform GPL 2D CAD",
+        "Zero license fee; education/surveying friendly",
+        "Reusable standalone libdxfrw library"
+      ],
+      "limitations_zh": [
+        "无 B-rep 实体建模内核（仅 2D 图元，非 DWG 平台内核）",
+        "DWG 仅导入、无导出；功能远少于商业 2D CAD",
+        "无企业 SLA"
+      ],
+      "limitations_en": [
+        "No B-rep solid kernel (2D primitives only; not a DWG platform kernel)",
+        "DWG import-only, no export; far fewer features than commercial 2D CAD",
+        "No enterprise SLA"
+      ],
+      "used_by_product_ids": [
+        "librecad"
+      ],
+      "used_by_international": [
+        "LibreCAD"
+      ],
+      "chinese_products_using": [],
+      "substitution_status_zh": "不适用 — 非高端 MCAD 替代讨论对象；信创 2D 席位对标中望/浩辰 DWG 平台",
+      "substitution_status_en": "N/A — not in high-end MCAD substitution scope; IT-innovation 2D seats benchmark ZW/Gstar DWG platforms",
+      "domestic_alternatives": [
+        "gstar-2d-platform",
+        "zw-overdrive",
+        "autodesk-acad-geometry"
+      ],
+      "confidence": 0.85,
+      "sources": [
+        {
+          "url": "https://librecad.org/",
+          "title": "LibreCAD",
+          "accessed": "2026-06"
+        },
+        {
+          "url": "https://github.com/LibreCAD/LibreCAD/blob/master/README.md",
+          "title": "LibreCAD README — QCAD CE lineage, libdxfrw",
+          "accessed": "2026-06"
+        },
+        {
+          "url": "https://github.com/LibreCAD/libdxfrw",
+          "title": "libdxfrw — DXF/DWG I/O library",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "amcax-kernel",
+      "name_zh": "九韶 AMCAX Kernel",
+      "name_en": "AMCAX Kernel",
+      "owner": "Hefei Jiushao Intelligent Technology (合肥九韶智能科技有限公司)",
+      "origin": "domestic",
+      "license_model": "proprietary_inhouse",
+      "first_release_year": 2021,
+      "capabilities_zh": [
+        "B-rep 实体与 NURBS 自由曲面",
+        "T 网格样条与多边形网格建模",
+        "参数化特征与几何约束求解器",
+        "布尔运算/倒角/偏移/修复",
+        "OCC 风格 C++ API（接口兼容，非 OCCT 源码）"
+      ],
+      "capabilities_en": [
+        "B-rep solids and NURBS freeform surfaces",
+        "T-mesh spline and polygon mesh modeling",
+        "parametric features and geometric constraint solver",
+        "boolean/fillet/offset/healing",
+        "OCC-style C++ API (compatible interface, not OCCT source)"
+      ],
+      "strengths_zh": [
+        "中科大孵化，从 0 到 1 自研几何内核",
+        "AMCAX 5.0 已落地航空航天/工业母机等场景",
+        "可授权 ISV 嵌入（SDK 逐步开放）"
+      ],
+      "strengths_en": [
+        "USTC spin-off, ground-up owned geometry kernel",
+        "AMCAX 5.0 deployed in aerospace/machine-tool scenarios",
+        "Licenseable ISV embedding (SDK gradually opened)"
+      ],
+      "limitations_zh": [
+        "商用装机与生态仍少于 Overdrive/CRUX IV",
+        "与 OCCT 接口兼容但实现独立，迁移需验证",
+        "企业级 SLA 仍在建设"
+      ],
+      "limitations_en": [
+        "Smaller commercial install base than Overdrive/CRUX IV",
+        "OCC-compatible API but independent implementation — migration needs validation",
+        "Enterprise SLA still maturing"
+      ],
+      "used_by_product_ids": [],
+      "used_by_international": [],
+      "chinese_products_using": [
+        "九韶 PowerCAD",
+        "凝光 NEXT CAX 平台",
+        "PowerCAM"
+      ],
+      "substitution_status_zh": "战略备选 — LGPL OCCT 之外的可授权国产 B-rep 内核；航空级场景验证中",
+      "substitution_status_en": "Strategic option — licensable domestic B-rep beyond LGPL OCCT; aerospace validation ongoing",
+      "domestic_alternatives": [
+        "zw-overdrive",
+        "poisson-geoshape",
+        "open-cascade"
+      ],
+      "confidence": 0.85,
+      "sources": [
+        {
+          "url": "https://product.amcax.net/",
+          "title": "AMCAX Kernel 产品页",
+          "accessed": "2026-06"
+        },
+        {
+          "url": "https://docs.amcax.net/v4_7_0/zh_cn/html/index.html",
+          "title": "AMCAX Kernel 文档",
+          "accessed": "2026-06"
+        },
+        {
+          "url": "https://www.amcax.net/nd.jsp?id=1261",
+          "title": "AMCAX 4.0 发布会",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "newdim-parasolid-stack",
+      "name_zh": "新迪天工 Parasolid+DCM 栈",
+      "name_en": "Newdim Tiangong Parasolid+DCM stack",
+      "owner": "Shanghai Newdim Digital (上海新迪数字技术有限公司)",
+      "origin": "domestic",
+      "license_model": "oem",
+      "first_release_year": 2022,
+      "capabilities_zh": [
+        "Solid Edge 源码传承的同步建模 ST",
+        "Parasolid 几何底座（永久授权）",
+        "D-Cubed DCM 约束求解器（永久授权）",
+        "天工云盘/云库协同",
+        "云端架构改造进行中"
+      ],
+      "capabilities_en": [
+        "Synchronous Technology from Solid Edge source lineage",
+        "Parasolid geometry base (perpetual license)",
+        "D-Cubed DCM constraint solver (perpetual license)",
+        "Tiangong cloud drive/parts library synergy",
+        "cloud architecture refactor ongoing"
+      ],
+      "strengths_zh": [
+        "2022 年收购 Solid Edge 全部源码与测试体系",
+        "国内唯一披露 Parasolid+DCM 永久授权的中高端 CAD",
+        "同步建模体验对标 Solid Edge"
+      ],
+      "strengths_en": [
+        "2022 acquisition of full Solid Edge source and test suite",
+        "Only disclosed domestic mid-high CAD with perpetual Parasolid+DCM",
+        "ST direct-edit UX comparable to Solid Edge"
+      ],
+      "limitations_zh": [
+        "几何底座仍为西门子 Parasolid，非自研 B-rep",
+        "企业级案例仍在快速积累",
+        "「高铁模式」自主叙事与内核授权并存"
+      ],
+      "limitations_en": [
+        "Geometry base remains Siemens Parasolid, not owned B-rep",
+        "Enterprise references still ramping",
+        "High-speed-rail narrative coexists with kernel licenses"
+      ],
+      "used_by_product_ids": [
+        "newdim-tiangong-cad"
+      ],
+      "used_by_international": [],
+      "chinese_products_using": [
+        "新迪天工 CAD"
+      ],
+      "substitution_status_zh": "源码可控+内核永久授权 — 非自研内核路线；断供风险低于普通 Parasolid OEM",
+      "substitution_status_en": "Source-controlled + perpetual kernel licenses — not owned-kernel path; lower cut-off risk than typical Parasolid OEM",
+      "domestic_alternatives": [
+        "zw-overdrive",
+        "hoteam-crux-iv",
+        "caxa-mega-kernel"
+      ],
+      "confidence": 0.87,
+      "sources": [
+        {
+          "url": "https://www.newdimchina.com/news/963.html",
+          "title": "新迪收购 Solid Edge 源码",
+          "accessed": "2026-06"
+        },
+        {
+          "url": "https://www.newdimchina.com/news/947.html",
+          "title": "Parasolid+DCM 永久授权说明",
+          "accessed": "2026-06"
+        },
+        {
+          "url": "https://www.newdimchina.com/product/94.html",
+          "title": "新迪天工 CAD",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "kompas-c3d-stack",
+      "name_zh": "KOMPAS-3D / C3D 栈",
+      "name_en": "KOMPAS-3D on C3D stack",
+      "owner": "ASCON Group (Russia)",
+      "origin": "international",
+      "license_model": "proprietary_inhouse",
+      "first_release_year": 2000,
+      "capabilities_zh": [
+        "全栈 C3D Modeler+Solver+Converter",
+        "俄国防工装机",
+        "参数化/直接混合"
+      ],
+      "capabilities_en": [
+        "Full C3D Modeler+Solver+Converter stack",
+        "Russian defense install base",
+        "parametric/direct hybrid"
+      ],
+      "strengths_zh": [
+        "俄方完全自主",
+        "50 万+ 装机宣传",
+        "与 C3D OEM 同源"
+      ],
+      "strengths_en": [
+        "Fully Russian-owned",
+        "500k+ seats claimed",
+        "Same stack as C3D OEM"
+      ],
+      "limitations_zh": [
+        "中国几乎无装机",
+        "地缘政治风险",
+        "与 c3d 条目重叠"
+      ],
+      "limitations_en": [
+        "Negligible China install",
+        "Geopolitical risk",
+        "Overlaps with c3d entry"
+      ],
+      "used_by_product_ids": [
+        "kompas-3d"
+      ],
+      "used_by_international": [
+        "KOMPAS-3D",
+        "KOMPAS-Graph",
+        "Renga"
+      ],
+      "chinese_products_using": [],
+      "substitution_status_zh": "不可引入（当前）— 制裁与生态隔离；参考俄自主路径",
+      "substitution_status_en": "Not viable (today) — sanctions/ecosystem isolation; reference for self-owned path",
+      "domestic_alternatives": [
+        "c3d",
+        "zw-overdrive"
+      ],
+      "confidence": 0.87,
+      "sources": [
+        {
+          "url": "https://c3dlabs.com/customers/ascon/",
+          "title": "KOMPAS-3D / C3D",
+          "accessed": "2026-06"
+        },
+        {
+          "url": "https://ascon.ru/products/kompas-3d/",
+          "title": "ASCON KOMPAS-3D",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "siemens-hybrid-stack",
+      "name_zh": "Siemens NX 内核栈（Parasolid + ST）",
+      "name_en": "Siemens NX kernel stack (Parasolid + ST)",
+      "owner": "Siemens Digital Industries Software",
+      "origin": "international",
+      "license_model": "proprietary_inhouse",
+      "first_release_year": 2007,
+      "capabilities_zh": [
+        "Parasolid 几何底座",
+        "同步技术 ST 应用层",
+        "D-Cubed 约束",
+        "大型装配 MDO"
+      ],
+      "capabilities_en": [
+        "Parasolid geometry base",
+        "Synchronous Technology layer",
+        "D-Cubed constraints",
+        "large-assembly MDO"
+      ],
+      "strengths_zh": [
+        "高端集成 CAD/CAM/CAE",
+        "ST 直接编辑差异化",
+        "自有+授权组件组合"
+      ],
+      "strengths_en": [
+        "High-end integrated CAD/CAM/CAE",
+        "ST direct-edit differentiation",
+        "Owned + licensed component mix"
+      ],
+      "limitations_zh": [
+        "ST 不对外授权",
+        "实施复杂",
+        "国内中小企业过重"
+      ],
+      "limitations_en": [
+        "ST not licensed out",
+        "Complex implementation",
+        "Heavy for local SMEs"
+      ],
+      "used_by_product_ids": [
+        "siemens-nx",
+        "solid-edge"
+      ],
+      "used_by_international": [
+        "Siemens NX",
+        "Solid Edge"
+      ],
+      "chinese_products_using": [],
+      "substitution_status_zh": "不可替代（ST 层）— 几何底座与 Parasolid 条目关联",
+      "substitution_status_en": "ST layer not substitutable — geometry base linked to parasolid entry",
+      "domestic_alternatives": [
+        "zw-overdrive",
+        "poisson-geoshape"
+      ],
+      "confidence": 0.9,
+      "sources": [
+        {
+          "url": "https://tech-clarity.com/nx-cad-vision/3744",
+          "title": "NX CAD vision / Parasolid+ST",
+          "accessed": "2026-06"
+        },
+        {
+          "url": "https://plm.sw.siemens.com/",
+          "title": "Siemens NX",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "opennurbs",
+      "name_zh": "openNURBS",
+      "name_en": "openNURBS",
+      "owner": "Robert McNeel & Associates",
+      "origin": "open_source",
+      "license_model": "open_source",
+      "first_release_year": 2000,
+      "capabilities_zh": [
+        "NURBS 曲线与曲面 B-rep 表示",
+        ".3dm 文件格式读写",
+        "可嵌入第三方 CAD/CAM 应用",
+        "与 Rhino 几何栈同源",
+        "C/C++ SDK（zlib 许可）"
+      ],
+      "capabilities_en": [
+        "NURBS curve/surface B-rep representation",
+        ".3dm file format I/O",
+        "Embeddable in third-party CAD/CAM apps",
+        "Same geometry lineage as Rhinoceros",
+        "C/C++ SDK (zlib license)"
+      ],
+      "strengths_zh": [
+        "工业界最广泛的开源 NURBS 几何库之一",
+        "Rhino 生态与 Grasshopper 参数化底座",
+        "建筑/珠宝/船舶自由曲面事实标准",
+        "BRL-CAD 等国防/科研栈亦采用"
+      ],
+      "strengths_en": [
+        "Among the most widely used open NURBS geometry libraries",
+        "Foundation of Rhino and Grasshopper ecosystems",
+        "De-facto freeform standard in AEC/jewelry/marine",
+        "Also used in BRL-CAD and research stacks"
+      ],
+      "limitations_zh": [
+        "非完整 MCAD 特征树/装配内核",
+        "精密机械 PMI/参数化弱于 Parasolid",
+        "与 OCCT/ACIS 栈数据模型不同，互通靠 STEP/IGES"
+      ],
+      "limitations_en": [
+        "Not a full MCAD feature-tree/assembly kernel",
+        "Weaker mechanical PMI/parametrics vs Parasolid",
+        "Different data model from OCCT/ACIS; interop via STEP/IGES"
+      ],
+      "used_by_product_ids": [
+        "brl-cad",
+        "rhino",
+        "rhino-inside"
+      ],
+      "used_by_international": [
+        "Rhinoceros",
+        "Grasshopper",
+        "BRL-CAD",
+        "Rhino.Inside"
+      ],
+      "chinese_products_using": [
+        "建筑/景观 Rhino 正版与培训装机",
+        "高校参数化设计 Grasshopper 课程"
+      ],
+      "substitution_status_zh": "开源可嵌入 — 自由曲面场景可部分替代 Rhino 宿主；完整 MCAD 仍需 Overdrive/Parasolid",
+      "substitution_status_en": "Open embeddable — can partially substitute Rhino host for surfacing; full MCAD still needs Overdrive/Parasolid",
+      "domestic_alternatives": [
+        "zw-overdrive",
+        "crowncad-dgm"
+      ],
+      "confidence": 0.93,
+      "sources": [
+        {
+          "url": "https://github.com/mcneel/opennurbs",
+          "title": "openNURBS GitHub",
+          "accessed": "2026-06"
+        },
+        {
+          "url": "https://www.rhino3d.com/opennurbs",
+          "title": "McNeel openNURBS",
+          "accessed": "2026-06"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/OpenNURBS",
+          "title": "OpenNURBS (Wikipedia)",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "hoops-exchange-sdk",
+      "name_zh": "HOOPS Exchange（CAD 翻译 SDK）",
+      "name_en": "HOOPS Exchange (CAD translation SDK)",
+      "owner": "Tech Soft 3D",
+      "origin": "international",
+      "license_model": "oem",
+      "first_release_year": 1998,
+      "capabilities_zh": [
+        "CAD/BIM 原生与中性格式读写",
+        "B-rep 与 PMI 翻译（非建模内核）",
+        "100+ 格式含 CATIA/NX/STEP",
+        "C/C++/C# SDK 嵌入 ISV",
+        "与 HOOPS Visualize 可视化栈配套"
+      ],
+      "capabilities_en": [
+        "Native and neutral CAD/BIM format R/W",
+        "B-rep and PMI translation (not a modeling kernel)",
+        "100+ formats incl. CATIA/NX/STEP",
+        "C/C++/C# SDK for ISV embedding",
+        "Pairs with HOOPS Visualize stack"
+      ],
+      "strengths_zh": [
+        "CAD 数据互操作 SDK 事实标准",
+        "汽车/航空供应链广泛嵌入",
+        "持续跟进各版本原生格式"
+      ],
+      "strengths_en": [
+        "De-facto CAD data interoperability SDK",
+        "Embedded across auto/aero supply chains",
+        "Tracks native format versions"
+      ],
+      "limitations_zh": [
+        "高授权费",
+        "是翻译层非 Boolean/特征内核",
+        "国产内核对接需定制桥接"
+      ],
+      "limitations_en": [
+        "High license cost",
+        "Translation layer not Boolean/feature kernel",
+        "Domestic kernels need custom bridges"
+      ],
+      "used_by_product_ids": [
+        "hoops-exchange"
+      ],
+      "used_by_international": [
+        "Siemens Teamcenter visualization",
+        "Dassault 3DEXPERIENCE converters",
+        "Many PLM/CAM ISVs"
+      ],
+      "chinese_products_using": [],
+      "substitution_status_zh": "不可替代（互操作层）— 与建模内核正交；国产需 Datakit 或自研转换器",
+      "substitution_status_en": "Not substitutable as interop layer — orthogonal to modeling kernels; domestic alt is Datakit or owned translators",
+      "domestic_alternatives": [],
+      "confidence": 0.91,
+      "sources": [
+        {
+          "url": "https://www.techsoft3d.com/products/hoops-exchange/",
+          "title": "HOOPS Exchange",
+          "accessed": "2026-06"
+        },
+        {
+          "url": "https://docs.techsoft3d.com/exchange/latest/index.html",
+          "title": "HOOPS Exchange documentation",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "hoops-communicator",
+      "name_zh": "HOOPS Communicator（Web 可视化）",
+      "name_en": "HOOPS Communicator (web visualization)",
+      "owner": "Tech Soft 3D",
+      "origin": "international",
+      "license_model": "oem",
+      "first_release_year": 2015,
+      "capabilities_zh": [
+        "服务器端 CAD 轻量化与流式传输",
+        "Web 端大模型浏览与标注",
+        "非几何建模/布尔内核",
+        "与 Exchange 导入管线配合"
+      ],
+      "capabilities_en": [
+        "Server-side CAD lightweighting and streaming",
+        "Web large-model viewing and markup",
+        "Not a modeling/Boolean kernel",
+        "Pairs with Exchange import pipeline"
+      ],
+      "strengths_zh": [
+        "PLM/MES 云看图标杆",
+        "支持超大装配 Web 浏览",
+        "与 Tech Soft 3D 格式栈一体"
+      ],
+      "strengths_en": [
+        "PLM/MES cloud viewing benchmark",
+        "Very large assembly web viewing",
+        "Integrated with Tech Soft 3D format stack"
+      ],
+      "limitations_zh": [
+        "仅可视化/协作，不能替代 Parasolid",
+        "服务器部署与许可成本高",
+        "与 CrownCAD 云建模内核定位不同"
+      ],
+      "limitations_en": [
+        "Viewing/collab only; cannot replace Parasolid",
+        "Server deployment and license cost",
+        "Different positioning from CrownCAD cloud modeling kernel"
+      ],
+      "used_by_product_ids": [],
+      "used_by_international": [
+        "3DEXPERIENCE web viewers",
+        "Teamcenter Active Workspace integrations"
+      ],
+      "chinese_products_using": [],
+      "substitution_status_zh": "可视化层 — 非内核替代讨论；国产云 CAD 自研渲染（如 CrownCAD WebGPU）",
+      "substitution_status_en": "Visualization layer — not kernel substitution; domestic cloud CAD owns rendering (e.g. CrownCAD WebGPU)",
+      "domestic_alternatives": [
+        "crowncad-dgm"
+      ],
+      "confidence": 0.88,
+      "sources": [
+        {
+          "url": "https://www.techsoft3d.com/products/hoops-communicator/",
+          "title": "HOOPS Communicator",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "polygonica",
+      "name_zh": "Polygonica（网格布尔）",
+      "name_en": "Polygonica (mesh Boolean)",
+      "owner": "MachineWorks Ltd (Siemens Digital Industries Software)",
+      "origin": "international",
+      "license_model": "oem",
+      "first_release_year": 1997,
+      "capabilities_zh": [
+        "三角网格布尔与偏移",
+        "网格修复与简化",
+        "点云/扫描转网格",
+        "增材/医疗网格处理",
+        "非精确 B-rep NURBS 内核"
+      ],
+      "capabilities_en": [
+        "Triangle mesh Boolean and offset",
+        "Mesh healing and simplification",
+        "Point cloud/scan to mesh",
+        "Additive/medical mesh processing",
+        "Not exact B-rep NURBS kernel"
+      ],
+      "strengths_zh": [
+        "网格布尔 OEM 标杆",
+        "嵌入 Magics/Materialise 等",
+        "与 Parasolid 互补（B-rep vs mesh）"
+      ],
+      "strengths_en": [
+        "Mesh Boolean OEM benchmark",
+        "Embedded in Magics/Materialise etc.",
+        "Complements Parasolid (B-rep vs mesh)"
+      ],
+      "limitations_zh": [
+        "非实体 B-rep，机械特征树不适用",
+        "依赖网格精度与法向质量",
+        "国内直接 OEM 案例少"
+      ],
+      "limitations_en": [
+        "Not solid B-rep; no mechanical feature trees",
+        "Depends on mesh quality",
+        "Few direct China OEM cases"
+      ],
+      "used_by_product_ids": [],
+      "used_by_international": [
+        "Siemens NX mesh tools",
+        "Materialise Magics",
+        "Various AM/medical ISVs"
+      ],
+      "chinese_products_using": [],
+      "substitution_status_zh": "网格层 — 3D 打印/扫描场景；国产可自研或采用 Manifold/libigl",
+      "substitution_status_en": "Mesh layer — AM/scan workflows; domestic may use Manifold/libigl",
+      "domestic_alternatives": [
+        "manifold",
+        "libigl"
+      ],
+      "confidence": 0.87,
+      "sources": [
+        {
+          "url": "https://www.siemens.com/global/en/products/services/mbse/polygonica.html",
+          "title": "Polygonica (Siemens)",
+          "accessed": "2026-06"
+        },
+        {
+          "url": "https://www.machineworks.com/",
+          "title": "MachineWorks Polygonica",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "spatial-cgm",
+      "name_zh": "Spatial CGM（Contrast with ACIS）",
+      "name_en": "Spatial CGM (Contrast Geometry Modeler)",
+      "owner": "Spatial Corporation (Dassault Systèmes)",
+      "origin": "international",
+      "license_model": "oem",
+      "first_release_year": 2012,
+      "capabilities_zh": [
+        "新一代 B-rep 内核（ACIS 后继路线）",
+        "多线程与云友好架构",
+        "NURBS 实体/曲面与容差建模",
+        "与 3DEXPERIENCE 云栈协同",
+        "ACIS 与 CGM 并行授权（不同产品线）"
+      ],
+      "capabilities_en": [
+        "Next-gen B-rep kernel (ACIS successor path)",
+        "Multithreaded cloud-friendly architecture",
+        "NURBS solid/surface tolerant modeling",
+        "Synergy with 3DEXPERIENCE cloud stack",
+        "ACIS and CGM licensed in parallel for different products"
+      ],
+      "strengths_zh": [
+        "Dassault 云 CAD 几何底座",
+        "比 ACIS 更适合大模型与多线程",
+        "与 CATIA CGM 命名易混但为 Spatial OEM 产品线"
+      ],
+      "strengths_en": [
+        "Dassault cloud CAD geometry base",
+        "Better than ACIS for large models/multithreading",
+        "Name overlaps CATIA CGM but is Spatial OEM product line"
+      ],
+      "limitations_zh": [
+        "与 CATIA CGM 易混淆",
+        "中国装机以 ACIS/Parasolid 为主",
+        "授权与 ACIS 分开计费"
+      ],
+      "limitations_en": [
+        "Easily confused with CATIA CGM",
+        "China install still ACIS/Parasolid heavy",
+        "Licensed separately from ACIS"
+      ],
+      "used_by_product_ids": [],
+      "used_by_international": [
+        "3DEXPERIENCE xDesign",
+        "Certain Spatial ISV cloud CAD stacks"
+      ],
+      "chinese_products_using": [],
+      "substitution_status_zh": "OEM 可引入 — 云 CAD ISV 选项；国内龙头走自研",
+      "substitution_status_en": "OEM option for cloud CAD ISVs; Chinese leaders pursue owned kernels",
+      "domestic_alternatives": [
+        "zw-overdrive",
+        "crowncad-dgm",
+        "poisson-geoshape"
+      ],
+      "confidence": 0.85,
+      "sources": [
+        {
+          "url": "https://www.spatial.com/products/cgm",
+          "title": "Spatial CGM",
+          "accessed": "2026-06"
+        },
+        {
+          "url": "https://www.spatial.com/products/acis",
+          "title": "Spatial ACIS (lineage contrast)",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "3dexperience-kernel-stack",
+      "name_zh": "3DEXPERIENCE 几何与平台栈",
+      "name_en": "3DEXPERIENCE geometry & platform stack",
+      "owner": "Dassault Systèmes",
+      "origin": "international",
+      "license_model": "proprietary_inhouse",
+      "first_release_year": 2012,
+      "capabilities_zh": [
+        "CATIA CGM 高端曲面与装配",
+        "ENOVIA 数据与协同",
+        "DELMIA 制造仿真",
+        "SIMULIA/ABAQUS CAE 一体",
+        "云原生 3DEXPERIENCE 平台服务"
+      ],
+      "capabilities_en": [
+        "CATIA CGM high-end surfacing and assemblies",
+        "ENOVIA data and collaboration",
+        "DELMIA manufacturing simulation",
+        "SIMULIA/ABAQUS CAE integration",
+        "Cloud-native 3DEXPERIENCE platform services"
+      ],
+      "strengths_zh": [
+        "航空汽车高端数字主线标杆",
+        "知识工程与合规追溯",
+        "全球主机厂深度锁定"
+      ],
+      "strengths_en": [
+        "Aero/auto high-end digital thread benchmark",
+        "Knowledge engineering and compliance",
+        "Deep lock-in at global OEMs"
+      ],
+      "limitations_zh": [
+        "完全封闭不拆售内核",
+        "成本与实施周期极高",
+        "国内深度替代难度最大"
+      ],
+      "limitations_en": [
+        "Fully closed; kernel not licensed separately",
+        "Very high cost and implementation time",
+        "Hardest depth substitution in China"
+      ],
+      "used_by_product_ids": [
+        "catia"
+      ],
+      "used_by_international": [
+        "CATIA V6",
+        "3DEXPERIENCE CATIA",
+        "ENOVIA",
+        "DELMIA"
+      ],
+      "chinese_products_using": [],
+      "substitution_status_zh": "平台级不可替代 — 仅产品/流程级国产化替代",
+      "substitution_status_en": "Platform-level not substitutable — only product/process-level domestic replacement",
+      "domestic_alternatives": [
+        "zw-overdrive",
+        "crowncad-dgm",
+        "caxa-mega-kernel"
+      ],
+      "confidence": 0.9,
+      "sources": [
+        {
+          "url": "https://www.3ds.com/3dexperience",
+          "title": "3DEXPERIENCE platform",
+          "accessed": "2026-06"
+        },
+        {
+          "url": "https://www.3ds.com/products/catia",
+          "title": "CATIA on 3DEXPERIENCE",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "cgal",
+      "name_zh": "CGAL 计算几何库",
+      "name_en": "CGAL (Computational Geometry Algorithms Library)",
+      "owner": "CGAL Project / Inria et al.",
+      "origin": "open_source",
+      "license_model": "open_source",
+      "first_release_year": 1996,
+      "capabilities_zh": [
+        "精确 CSG 与 Nef 多面体",
+        "网格生成与布尔（CGAL::Polygon_mesh_processing）",
+        "2D/3D 算法集合",
+        "非完整工业 B-rep MCAD 内核"
+      ],
+      "capabilities_en": [
+        "Exact CSG and Nef polyhedra",
+        "Mesh generation and Boolean (PMP)",
+        "2D/3D algorithm collection",
+        "Not a full industrial B-rep MCAD kernel"
+      ],
+      "strengths_zh": [
+        "OpenSCAD 等程序化建模底座",
+        "学术与创客生态成熟",
+        "GPL/LGPL 双许可可选"
+      ],
+      "strengths_en": [
+        "Foundation of OpenSCAD-style programmatic modeling",
+        "Mature academic/maker ecosystem",
+        "GPL/LGPL dual licensing"
+      ],
+      "limitations_zh": [
+        "非 Parasolid 级 B-rep 特征建模",
+        "性能与容差建模弱于 OCCT",
+        "企业 MCAD 不直接采用"
+      ],
+      "limitations_en": [
+        "Not Parasolid-class B-rep feature modeling",
+        "Weaker performance/tolerant modeling vs OCCT",
+        "Enterprise MCAD does not embed directly"
+      ],
+      "used_by_product_ids": [
+        "openscad"
+      ],
+      "used_by_international": [
+        "OpenSCAD",
+        "Many research mesh/CSG tools"
+      ],
+      "chinese_products_using": [
+        "创客与高校 OpenSCAD 3D 打印课程"
+      ],
+      "substitution_status_zh": "CSG/网格算法层 — 非高端 MCAD 内核替代",
+      "substitution_status_en": "CSG/mesh algorithm layer — not high-end MCAD kernel substitute",
+      "domestic_alternatives": [
+        "open-cascade"
+      ],
+      "confidence": 0.9,
+      "sources": [
+        {
+          "url": "https://www.cgal.org/",
+          "title": "CGAL",
+          "accessed": "2026-06"
+        },
+        {
+          "url": "https://github.com/openscad/openscad",
+          "title": "OpenSCAD uses CGAL",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "libigl",
+      "name_zh": "libigl 网格几何库",
+      "name_en": "libigl",
+      "owner": "libigl community (NYU et al.)",
+      "origin": "open_source",
+      "license_model": "open_source",
+      "first_release_year": 2012,
+      "capabilities_zh": [
+        "三角网格处理与变形",
+        "网格布尔（依赖 Cork/其他）",
+        "研究级几何算法",
+        "非工业 B-rep 内核"
+      ],
+      "capabilities_en": [
+        "Triangle mesh processing and deformation",
+        "Mesh Boolean (via Cork etc.)",
+        "Research-grade geometry algorithms",
+        "Not industrial B-rep kernel"
+      ],
+      "strengths_zh": [
+        "学术界网格处理标准库",
+        "与 CGAL/Eigen 生态互补",
+        "MIT 许可可嵌入研究产品"
+      ],
+      "strengths_en": [
+        "Academic mesh processing standard",
+        "Complements CGAL/Eigen",
+        "MIT license for research products"
+      ],
+      "limitations_zh": [
+        "非企业 MCAD 内核",
+        "API 稳定性与 SLA 无保障",
+        "国内商用 CAD 未采用"
+      ],
+      "limitations_en": [
+        "Not enterprise MCAD kernel",
+        "No API stability/SLA guarantee",
+        "Not adopted by China commercial CAD"
+      ],
+      "used_by_product_ids": [],
+      "used_by_international": [
+        "Research CAD/graphics tools",
+        "Some mesh processing pipelines"
+      ],
+      "chinese_products_using": [],
+      "substitution_status_zh": "科研/网格层 — 可辅助国产 AM/扫描后处理",
+      "substitution_status_en": "Research/mesh layer — aids domestic AM/scan post-processing",
+      "domestic_alternatives": [
+        "manifold"
+      ],
+      "confidence": 0.86,
+      "sources": [
+        {
+          "url": "https://libigl.github.io/",
+          "title": "libigl",
+          "accessed": "2026-06"
+        },
+        {
+          "url": "https://github.com/libigl/libigl",
+          "title": "libigl GitHub",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "manifold",
+      "name_zh": "Manifold 鲁棒网格布尔",
+      "name_en": "Manifold (robust mesh Boolean)",
+      "owner": "elalish / Google (contributors)",
+      "origin": "open_source",
+      "license_model": "open_source",
+      "first_release_year": 2022,
+      "capabilities_zh": [
+        "封闭流形三角网格布尔",
+        "高性能 WASM/原生实现",
+        "3D 打印与程序化网格 CSG",
+        "非 NURBS B-rep"
+      ],
+      "capabilities_en": [
+        "Closed manifold triangle mesh Boolean",
+        "High-performance WASM/native",
+        "3D printing and programmatic mesh CSG",
+        "Not NURBS B-rep"
+      ],
+      "strengths_zh": [
+        "开源网格布尔新标杆",
+        "Three.js/Web 生态快速采用",
+        "比 Cork 更易集成"
+      ],
+      "strengths_en": [
+        "New open mesh Boolean benchmark",
+        "Rapid Three.js/web adoption",
+        "Easier integration than Cork"
+      ],
+      "limitations_zh": [
+        "仅网格精度",
+        "无机械特征与 PMI",
+        "非传统 CAD 内核"
+      ],
+      "limitations_en": [
+        "Mesh precision only",
+        "No mechanical features or PMI",
+        "Not traditional CAD kernel"
+      ],
+      "used_by_product_ids": [],
+      "used_by_international": [
+        "Web-based 3D printing slicers",
+        "OpenSCAD successors/experiments"
+      ],
+      "chinese_products_using": [],
+      "substitution_status_zh": "网格布尔开源替代 Polygonica/Cork 于创客场景",
+      "substitution_status_en": "Open mesh Boolean alt to Polygonica/Cork in maker scenarios",
+      "domestic_alternatives": [],
+      "confidence": 0.88,
+      "sources": [
+        {
+          "url": "https://github.com/elalish/manifold",
+          "title": "Manifold GitHub",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "cork",
+      "name_zh": "Cork 网格布尔库",
+      "name_en": "Cork mesh Boolean library",
+      "owner": "Gilbert Bernstein et al.",
+      "origin": "open_source",
+      "license_model": "open_source",
+      "first_release_year": 2013,
+      "capabilities_zh": [
+        "鲁棒三角网格布尔",
+        "研究级实现",
+        "被 libigl 等工具链引用",
+        "非 B-rep 内核"
+      ],
+      "capabilities_en": [
+        "Robust triangle mesh Boolean",
+        "Research implementation",
+        "Referenced by libigl toolchain",
+        "Not B-rep kernel"
+      ],
+      "strengths_zh": [
+        "开源网格布尔经典实现",
+        "学术论文可复现"
+      ],
+      "strengths_en": [
+        "Classic open mesh Boolean implementation",
+        "Reproducible in academic papers"
+      ],
+      "limitations_zh": [
+        "维护活跃度低于 Manifold",
+        "非工业 SLA",
+        "精度依赖网格质量"
+      ],
+      "limitations_en": [
+        "Less active than Manifold",
+        "No industrial SLA",
+        "Precision depends on mesh quality"
+      ],
+      "used_by_product_ids": [],
+      "used_by_international": [
+        "Blender modifiers (historical refs)",
+        "Research mesh tools"
+      ],
+      "chinese_products_using": [],
+      "substitution_status_zh": "研究/网格层 — 已被 Manifold 部分取代",
+      "substitution_status_en": "Research/mesh layer — partly superseded by Manifold",
+      "domestic_alternatives": [
+        "manifold"
+      ],
+      "confidence": 0.84,
+      "sources": [
+        {
+          "url": "https://github.com/gilbo/cork",
+          "title": "Cork GitHub",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "carve",
+      "name_zh": "Carve CSG 网格库",
+      "name_en": "Carve CSG mesh library",
+      "owner": "Carve contributors",
+      "origin": "open_source",
+      "license_model": "open_source",
+      "first_release_year": 2008,
+      "capabilities_zh": [
+        "CSG 网格布尔与体素化",
+        "适合扫描重建与可视化",
+        "非精确 B-rep",
+        "BSD 许可"
+      ],
+      "capabilities_en": [
+        "CSG mesh Boolean and voxelization",
+        "Suited to scan reconstruction and viz",
+        "Not exact B-rep",
+        "BSD license"
+      ],
+      "strengths_zh": [
+        "轻量 CSG 网格处理",
+        "建筑/扫描场景历史采用"
+      ],
+      "strengths_en": [
+        "Lightweight CSG mesh processing",
+        "Historical use in AEC/scan workflows"
+      ],
+      "limitations_zh": [
+        "非工业 MCAD 内核",
+        "大模型性能一般",
+        "社区维护有限"
+      ],
+      "limitations_en": [
+        "Not industrial MCAD kernel",
+        "Average performance on large models",
+        "Limited community maintenance"
+      ],
+      "used_by_product_ids": [],
+      "used_by_international": [
+        "MeshLab plugins",
+        "Various scan-to-mesh pipelines"
+      ],
+      "chinese_products_using": [],
+      "substitution_status_zh": "网格 CSG 层 — 非内核替代主线",
+      "substitution_status_en": "Mesh CSG layer — not main kernel substitution path",
+      "domestic_alternatives": [
+        "manifold",
+        "openvdb"
+      ],
+      "confidence": 0.82,
+      "sources": [
+        {
+          "url": "https://github.com/qhduan/carve",
+          "title": "Carve CSG (GitHub mirror)",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "openvdb",
+      "name_zh": "OpenVDB 体素数据结构",
+      "name_en": "OpenVDB",
+      "owner": "Academy Software Foundation / DreamWorks heritage",
+      "origin": "open_source",
+      "license_model": "open_source",
+      "first_release_year": 2012,
+      "capabilities_zh": [
+        "稀疏体积/体素场",
+        "VDB 雕刻与流体/特效",
+        "网格↔体素转换",
+        "非传统 B-rep MCAD 内核"
+      ],
+      "capabilities_en": [
+        "Sparse volume/voxel fields",
+        "VDB sculpting and FX",
+        "Mesh↔voxel conversion",
+        "Not traditional B-rep MCAD kernel"
+      ],
+      "strengths_zh": [
+        "影视/特效体素事实标准",
+        "Houdini/Blender 生态",
+        "适合隐式建模与拓扑优化研究"
+      ],
+      "strengths_en": [
+        "VFX voxel de-facto standard",
+        "Houdini/Blender ecosystem",
+        "Implicit modeling and topology optimization research"
+      ],
+      "limitations_zh": [
+        "非机械 CAD 特征内核",
+        "制造精度与 PMI 不适用",
+        "国内 MCAD 未采用"
+      ],
+      "limitations_en": [
+        "Not mechanical CAD feature kernel",
+        "Manufacturing precision/PMI N/A",
+        "Not adopted in China MCAD"
+      ],
+      "used_by_product_ids": [],
+      "used_by_international": [
+        "Houdini",
+        "Blender (OpenVDB)",
+        "nTopology (historical voxel workflows)"
+      ],
+      "chinese_products_using": [],
+      "substitution_status_zh": "体素/隐式层 — 与 convergent modeling 研究相关，非信创 MCAD 主线",
+      "substitution_status_en": "Voxel/implicit layer — convergent modeling research; not IT-innovation MCAD mainline",
+      "domestic_alternatives": [],
+      "confidence": 0.89,
+      "sources": [
+        {
+          "url": "https://www.openvdb.org/",
+          "title": "OpenVDB",
+          "accessed": "2026-06"
+        },
+        {
+          "url": "https://github.com/AcademySoftwareFoundation/openvdb",
+          "title": "OpenVDB GitHub",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "guorui-geometry-kernel",
+      "name_zh": "国睿信维几何内核",
+      "name_en": "Greo / Guorui geometry kernel",
+      "owner": "Greo Technology (南京国睿信维软件有限公司)",
+      "origin": "domestic",
+      "license_model": "proprietary_inhouse",
+      "first_release_year": 2018,
+      "capabilities_zh": [
+        "国防装备数字化几何建模",
+        "多学科仿真数据关联",
+        "定制化 B-rep/网格混合",
+        "与国产 PLM/MBSE 协同"
+      ],
+      "capabilities_en": [
+        "Defense equipment digital geometry",
+        "Multidisciplinary simulation data ties",
+        "Custom B-rep/mesh hybrid",
+        "Synergy with domestic PLM/MBSE"
+      ],
+      "strengths_zh": [
+        "军工央企供应链定位",
+        "信创与自主可控诉求强",
+        "垂直行业深度定制"
+      ],
+      "strengths_en": [
+        "Defense SOE supply chain positioning",
+        "Strong IT-innovation/self-control narrative",
+        "Deep vertical customization"
+      ],
+      "limitations_zh": [
+        "通用 MCAD 市场声量小",
+        "公开内核技术细节有限",
+        "生态小于中望/华天"
+      ],
+      "limitations_en": [
+        "Small general MCAD market presence",
+        "Limited public kernel technical detail",
+        "Smaller ecosystem than ZW/Hoteam"
+      ],
+      "used_by_product_ids": [],
+      "used_by_international": [],
+      "chinese_products_using": [
+        "国睿信维装备数字化平台",
+        "军工行业定制 CAD/仿真前端"
+      ],
+      "substitution_status_zh": "行业型自主 — 军工 niche，非通用 SolidWorks 替代",
+      "substitution_status_en": "Industry-owned — defense niche, not general SolidWorks replacement",
+      "domestic_alternatives": [
+        "caxa-mega-kernel",
+        "zw-overdrive"
+      ],
+      "confidence": 0.76,
+      "sources": [
+        {
+          "url": "https://www.greo.cn/",
+          "title": "国睿信维",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "farsoon-buildware-mesh",
+      "name_zh": "华曙高科 BuildWare 网格栈",
+      "name_en": "Farsoon BuildWare mesh stack",
+      "owner": "Farsoon Technologies (华曙高科)",
+      "origin": "domestic",
+      "license_model": "proprietary_inhouse",
+      "first_release_year": 2015,
+      "capabilities_zh": [
+        "金属/高分子增材制造准备",
+        "三角网格修复与摆放",
+        "非通用 B-rep MCAD 内核",
+        "与华曙设备深度绑定"
+      ],
+      "capabilities_en": [
+        "Metal/polymer AM build preparation",
+        "Triangle mesh repair and nesting",
+        "Not a general B-rep MCAD kernel",
+        "Tightly coupled to Farsoon hardware"
+      ],
+      "strengths_zh": [
+        "国产工业级 3D 打印软件栈",
+        "设备+材料+工艺一体",
+        "国内装机量大"
+      ],
+      "strengths_en": [
+        "Domestic industrial AM software stack",
+        "Machine+material+process integration",
+        "Large China install base"
+      ],
+      "limitations_zh": [
+        "不适用机械参数化设计",
+        "几何能力限于 AM 网格",
+        "非 CAD 内核替代对象"
+      ],
+      "limitations_en": [
+        "Not for mechanical parametric design",
+        "Geometry limited to AM meshes",
+        "Not a CAD kernel substitute"
+      ],
+      "used_by_product_ids": [],
+      "used_by_international": [],
+      "chinese_products_using": [
+        "华曙高科 BuildWare / MakeStar 系列"
+      ],
+      "substitution_status_zh": "AM 网格层 — 与 Parasolid 讨论正交",
+      "substitution_status_en": "AM mesh layer — orthogonal to Parasolid discussion",
+      "domestic_alternatives": [
+        "manifold",
+        "polygonica"
+      ],
+      "confidence": 0.78,
+      "sources": [
+        {
+          "url": "https://www.farsoon.com/",
+          "title": "Farsoon 华曙高科",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "romulus",
+      "name_zh": "Romulus（遗产内核）",
+      "name_en": "Romulus (legacy kernel)",
+      "owner": "Shape Data Ltd (heritage) / absorbed into Siemens",
+      "origin": "international",
+      "license_model": "proprietary_inhouse",
+      "first_release_year": 1982,
+      "capabilities_zh": [
+        "早期 B-rep 实体建模",
+        "UNIGRAPHICS 前身技术",
+        "已被 Parasolid 取代",
+        "历史档案价值"
+      ],
+      "capabilities_en": [
+        "Early B-rep solid modeling",
+        "UNIGRAPHICS predecessor tech",
+        "Superseded by Parasolid",
+        "Historical archive value"
+      ],
+      "strengths_zh": [
+        "CAD 内核发展史关键节点",
+        "理解 Siemens NX 技术谱系"
+      ],
+      "strengths_en": [
+        "Key node in CAD kernel history",
+        "Context for Siemens NX technology lineage"
+      ],
+      "limitations_zh": [
+        "已停产数十年",
+        "无现代装机",
+        "仅历史参考"
+      ],
+      "limitations_en": [
+        "Discontinued for decades",
+        "No modern install base",
+        "Historical reference only"
+      ],
+      "used_by_product_ids": [],
+      "used_by_international": [
+        "Legacy UNIGRAPHICS (pre-Parasolid)"
+      ],
+      "chinese_products_using": [],
+      "substitution_status_zh": "已淘汰 — 现代替代为 Parasolid/NX 栈",
+      "substitution_status_en": "Obsolete — modern replacement is Parasolid/NX stack",
+      "domestic_alternatives": [
+        "zw-overdrive",
+        "parasolid"
+      ],
+      "confidence": 0.88,
+      "sources": [
+        {
+          "url": "https://en.wikipedia.org/wiki/Geometric_modeling_kernel",
+          "title": "Geometric modeling kernel history",
+          "accessed": "2026-06"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Unigraphics",
+          "title": "Unigraphics history",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "unigraphics-heritage",
+      "name_zh": "EDS/Unigraphics 几何遗产",
+      "name_en": "EDS/Unigraphics geometry heritage",
+      "owner": "Siemens Digital Industries Software (lineage)",
+      "origin": "international",
+      "license_model": "proprietary_inhouse",
+      "first_release_year": 1973,
+      "capabilities_zh": [
+        "UNIGRAPHICS → NX 演进",
+        "Romulus 后转 Parasolid 底座",
+        "同步技术 ST 应用层",
+        "大型装配 MDO 传统"
+      ],
+      "capabilities_en": [
+        "UNIGRAPHICS → NX evolution",
+        "Parasolid base after Romulus",
+        "Synchronous Technology layer",
+        "Large-assembly MDO heritage"
+      ],
+      "strengths_zh": [
+        "高端 CAD 三十年连续客户",
+        "航空发动机与重工深度装机"
+      ],
+      "strengths_en": [
+        "Three decades continuous high-end CAD customers",
+        "Deep aero engine and heavy industry install"
+      ],
+      "limitations_zh": [
+        "遗产品牌已并入 NX",
+        "非独立可授权内核",
+        "国内中小企业过重"
+      ],
+      "limitations_en": [
+        "Legacy brand merged into NX",
+        "Not separately licensable kernel",
+        "Heavy for China SMEs"
+      ],
+      "used_by_product_ids": [
+        "siemens-nx"
+      ],
+      "used_by_international": [
+        "Siemens NX",
+        "Legacy I-deas users migrated"
+      ],
+      "chinese_products_using": [],
+      "substitution_status_zh": "已由 siemens-hybrid-stack 承载 — 历史谱系条目",
+      "substitution_status_en": "Carried by siemens-hybrid-stack — historical lineage entry",
+      "domestic_alternatives": [
+        "zw-overdrive",
+        "siemens-hybrid-stack"
+      ],
+      "confidence": 0.87,
+      "sources": [
+        {
+          "url": "https://plm.sw.siemens.com/en-US/nx/",
+          "title": "Siemens NX lineage",
+          "accessed": "2026-06"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Unigraphics",
+          "title": "Unigraphics",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "ironcad-dual-kernel",
+      "name_zh": "IronCAD 双内核（ACIS + Parasolid）",
+      "name_en": "IronCAD dual-kernel (ACIS + Parasolid)",
+      "owner": "IronCAD LLC",
+      "origin": "international",
+      "license_model": "oem",
+      "first_release_year": 1998,
+      "capabilities_zh": [
+        "同一会话内 ACIS 与 Parasolid 双内核",
+        "拖拽式直觉建模",
+        "有/无历史混合编辑",
+        "中小企业快速设计"
+      ],
+      "capabilities_en": [
+        "ACIS and Parasolid in one session",
+        "Drag-and-drop intuitive modeling",
+        "History/history-free hybrid editing",
+        "Fast SME design"
+      ],
+      "strengths_zh": [
+        "罕见的双内核 OEM 组合",
+        "灵活选用内核优势",
+        "直觉装配差异化"
+      ],
+      "strengths_en": [
+        "Rare dual-kernel OEM combination",
+        "Flexible use of each kernel strength",
+        "Intuitive assembly differentiation"
+      ],
+      "limitations_zh": [
+        "双内核数据一致性复杂",
+        "国内渠道小",
+        "依赖两家 OEM 授权"
+      ],
+      "limitations_en": [
+        "Dual-kernel data consistency complexity",
+        "Small China channel",
+        "Depends on two OEM licenses"
+      ],
+      "used_by_product_ids": [
+        "ironcad"
+      ],
+      "used_by_international": [
+        "IronCAD",
+        "IronCAD Compose"
+      ],
+      "chinese_products_using": [],
+      "substitution_status_zh": "双 OEM 依赖 — 国产需单内核自主（如 Overdrive）",
+      "substitution_status_en": "Dual OEM dependency — domestic needs single owned kernel (e.g. Overdrive)",
+      "domestic_alternatives": [
+        "zw-overdrive",
+        "caxa-mega-kernel"
+      ],
+      "confidence": 0.89,
+      "sources": [
+        {
+          "url": "https://www.ironcad.com/",
+          "title": "IronCAD dual kernel",
+          "accessed": "2026-06"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/IronCAD",
+          "title": "IronCAD (Wikipedia)",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "solvespace-kernel",
+      "name_zh": "SolveSpace 自研 B-rep",
+      "name_en": "SolveSpace own B-rep kernel",
+      "owner": "SolveSpace contributors",
+      "origin": "open_source",
+      "license_model": "open_source",
+      "first_release_year": 2015,
+      "capabilities_zh": [
+        "轻量 NURBS B-rep",
+        "2D/3D 约束求解",
+        "GPLv3 开源",
+        "非 OCCT 分支"
+      ],
+      "capabilities_en": [
+        "Lightweight NURBS B-rep",
+        "2D/3D constraint solving",
+        "GPLv3 open source",
+        "Not OCCT fork"
+      ],
+      "strengths_zh": [
+        "完全自研开源 B-rep",
+        "跨平台单文件可执行",
+        "创客与小机械设计"
+      ],
+      "strengths_en": [
+        "Fully owned open B-rep",
+        "Cross-platform single binary",
+        "Maker and small mechanical design"
+      ],
+      "limitations_zh": [
+        "高级特征不完整",
+        "企业 SLA 无",
+        "STEP 工业流有限"
+      ],
+      "limitations_en": [
+        "Incomplete advanced features",
+        "No enterprise SLA",
+        "Limited industrial STEP workflows"
+      ],
+      "used_by_product_ids": [
+        "solvespace"
+      ],
+      "used_by_international": [
+        "SolveSpace"
+      ],
+      "chinese_products_using": [
+        "创客与小机械设计装机"
+      ],
+      "substitution_status_zh": "教育/创客层 — 非商业 MCAD 内核替代",
+      "substitution_status_en": "Education/maker layer — not commercial MCAD kernel substitute",
+      "domestic_alternatives": [
+        "open-cascade",
+        "zw-overdrive"
+      ],
+      "confidence": 0.87,
+      "sources": [
+        {
+          "url": "https://github.com/solvespace/solvespace",
+          "title": "SolveSpace GitHub",
+          "accessed": "2026-06"
+        },
+        {
+          "url": "http://solvespace.com/",
+          "title": "SolveSpace",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "brl-cad-csg",
+      "name_zh": "BRL-CAD CSG/NMG 几何栈",
+      "name_en": "BRL-CAD CSG/NMG geometry stack",
+      "owner": "U.S. Army / BRL-CAD community",
+      "origin": "open_source",
+      "license_model": "open_source",
+      "first_release_year": 1979,
+      "capabilities_zh": [
+        "组合实体 CSG",
+        "NMG 边界表示",
+        "光线追踪与毁伤分析",
+        "可选 openNURBS B-rep 模块"
+      ],
+      "capabilities_en": [
+        "Constructive solid CSG",
+        "NMG boundary representation",
+        "Ray tracing and lethality analysis",
+        "Optional openNURBS B-rep module"
+      ],
+      "strengths_zh": [
+        "国防开源几何历史最长之一",
+        "OSI 批准许可",
+        "科研与教学价值"
+      ],
+      "strengths_en": [
+        "Among longest defense OSS geometry histories",
+        "OSI-approved license",
+        "Research and education value"
+      ],
+      "limitations_zh": [
+        "非现代 MCAD UX",
+        "国内装机几乎为零",
+        "与 OCCT 工作流陌生"
+      ],
+      "limitations_en": [
+        "Not modern MCAD UX",
+        "Negligible China install",
+        "Unfamiliar vs OCCT workflows"
+      ],
+      "used_by_product_ids": [
+        "brl-cad"
+      ],
+      "used_by_international": [
+        "BRL-CAD"
+      ],
+      "chinese_products_using": [],
+      "substitution_status_zh": "科研/国防开源 — 非信创商用 CAD 主线",
+      "substitution_status_en": "Research/defense OSS — not IT-innovation commercial CAD mainline",
+      "domestic_alternatives": [
+        "open-cascade",
+        "opennurbs"
+      ],
+      "confidence": 0.85,
+      "sources": [
+        {
+          "url": "https://brlcad.org/",
+          "title": "BRL-CAD",
+          "accessed": "2026-06"
+        },
+        {
+          "url": "https://github.com/BRL-CAD/brlcad",
+          "title": "BRL-CAD GitHub",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "keycreator-acis-stack",
+      "name_zh": "Kubotek KeyCreator（ACIS）",
+      "name_en": "Kubotek KeyCreator (ACIS stack)",
+      "owner": "Kubotek3D (Kubotek Corporation)",
+      "origin": "international",
+      "license_model": "oem",
+      "first_release_year": 1984,
+      "capabilities_zh": [
+        "直接建模 MCAD",
+        "ACIS 几何底座",
+        "CADKEY 遗产",
+        "模具与机加工行业"
+      ],
+      "capabilities_en": [
+        "Direct modeling MCAD",
+        "ACIS geometry base",
+        "CADKEY heritage",
+        "Tooling and machining industries"
+      ],
+      "strengths_zh": [
+        "直接编辑差异化",
+        "模具行业老客户",
+        "ACIS SAT 互通"
+      ],
+      "strengths_en": [
+        "Direct edit differentiation",
+        "Legacy tooling customer base",
+        "ACIS SAT interop"
+      ],
+      "limitations_zh": [
+        "国内装机极小",
+        "声量弱于 SolidWorks",
+        "依赖 Spatial ACIS"
+      ],
+      "limitations_en": [
+        "Tiny China install",
+        "Lower mindshare than SolidWorks",
+        "Depends on Spatial ACIS"
+      ],
+      "used_by_product_ids": [],
+      "used_by_international": [
+        "KeyCreator",
+        "CADKEY successors"
+      ],
+      "chinese_products_using": [],
+      "substitution_status_zh": "ACIS OEM 产品 — 与 acis 条目关联",
+      "substitution_status_en": "ACIS OEM product — linked to acis entry",
+      "domestic_alternatives": [
+        "zw-overdrive",
+        "gstar-2d-platform"
+      ],
+      "confidence": 0.84,
+      "sources": [
+        {
+          "url": "https://www.kubotek3d.com/",
+          "title": "Kubotek KeyCreator",
+          "accessed": "2026-06"
+        },
+        {
+          "url": "https://www.spatial.com/products/acis",
+          "title": "Spatial ACIS licensees",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "blender-bmesh",
+      "name_zh": "Blender B-mesh 网格内核",
+      "name_en": "Blender B-mesh mesh kernel",
+      "owner": "Blender Foundation",
+      "origin": "open_source",
+      "license_model": "open_source",
+      "first_release_year": 2012,
+      "capabilities_zh": [
+        "多边形网格（三角/N-gon）拓扑编辑",
+        "非流形与边界表示",
+        "修改器栈与非破坏性工作流",
+        "雕刻、重拓扑、UV 与程序化 Geometry Nodes",
+        "曲线/曲面对象（非工业 B-rep 实体）"
+      ],
+      "capabilities_en": [
+        "Polygon mesh (triangle/n-gon) topology editing",
+        "Non-manifold and boundary representation",
+        "Modifier stack and non-destructive workflows",
+        "Sculpting, retopology, UV, and procedural Geometry Nodes",
+        "Curve/surface objects (not industrial B-rep solids)"
+      ],
+      "strengths_zh": [
+        "开源 DCC 装机量最大的网格建模栈之一",
+        "硬表面/有机造型与实时视口渲染强",
+        "Python API（bpy）与插件生态极丰富"
+      ],
+      "strengths_en": [
+        "Among the most widely installed open mesh modeling stacks",
+        "Strong hard-surface/organic modeling and real-time viewport rendering",
+        "Rich Python API (bpy) and add-on ecosystem"
+      ],
+      "limitations_zh": [
+        "非 B-rep 实体 CAD 内核：无精确布尔实体、特征参数化与 PMI",
+        "工程公差、2D 工程图与 MCAD 交换弱于 OCCT/Parasolid",
+        "STEP 等 CAD 交换依赖插件，网格化后难保持设计意图"
+      ],
+      "limitations_en": [
+        "Not a B-rep solid CAD kernel: no exact solid Booleans, parametric features, or PMI",
+        "Engineering tolerances, 2D drawings, and MCAD exchange weaker than OCCT/Parasolid",
+        "STEP and CAD exchange rely on add-ons; meshing loses design intent"
+      ],
+      "used_by_product_ids": [
+        "blender"
+      ],
+      "used_by_international": [
+        "Blender"
+      ],
+      "chinese_products_using": [],
+      "substitution_status_zh": "不可替代 MCAD 内核 — 属网格/DCC 层；小规模工业可视化与 3D 打印前处理可部分替代商业 DCC，但不能替代 Parasolid/OCCT 实体设计",
+      "substitution_status_en": "Not an MCAD kernel substitute — mesh/DCC layer; viable for small-scale industrial viz and 3D-print prep, not for Parasolid/OCCT solid design",
+      "domestic_alternatives": [
+        "open-cascade",
+        "manifold"
+      ],
+      "confidence": 0.91,
+      "sources": [
+        {
+          "url": "https://wiki.blender.org/wiki/Reference/Development/Architecture/BMesh",
+          "title": "Blender Wiki — BMesh architecture",
+          "accessed": "2026-06"
+        },
+        {
+          "url": "https://docs.blender.org/manual/en/latest/modeling/meshes/introduction.html",
+          "title": "Blender Manual — Mesh modeling",
+          "accessed": "2026-06"
+        },
+        {
+          "url": "https://www.blender.org/about/license/",
+          "title": "Blender GPL license",
+          "accessed": "2026-06"
+        }
+      ]
+    }
+  ]
+}

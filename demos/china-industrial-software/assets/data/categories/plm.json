@@ -1,0 +1,746 @@
+{
+  "category": "plm",
+  "products": [
+    {
+      "id": "hoteam-plm",
+      "name_zh": "华天PLM",
+      "name_en": "Hoteam PLM",
+      "vendor_id": "hoteam",
+      "category_l1": "研发设计",
+      "category_l2": "PLM",
+      "origin": "domestic",
+      "kernel": "自主",
+      "maturity": "high",
+      "localization_depth": "partial",
+      "strengths_zh": [
+        "国产PLM老牌",
+        "与CAD/MES衔接"
+      ],
+      "strengths_en": [
+        "Long-standing domestic PLM",
+        "CAD/MES integration"
+      ],
+      "limitations_zh": [
+        "大型集团复杂部署经验少于Teamcenter",
+        "SaaS化程度一般"
+      ],
+      "limitations_en": [
+        "Fewer mega-enterprise deployments than TC",
+        "Average SaaS maturity"
+      ],
+      "industries": [
+        "机械",
+        "汽车零部件",
+        "军工"
+      ],
+      "pricing": "mid",
+      "confidence": 0.84,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.hoteamsoft.com/",
+          "title": "Hoteam PLM",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "sysware-ipdc",
+      "name_zh": "索为IPDC",
+      "name_en": "Sysware IPDC",
+      "vendor_id": "sysware",
+      "category_l1": "研发设计",
+      "category_l2": "PLM",
+      "origin": "domestic",
+      "kernel": "自主",
+      "maturity": "mid",
+      "localization_depth": "pilot",
+      "strengths_zh": [
+        "航空工业背景PLM",
+        "型号研制流程数字化"
+      ],
+      "strengths_en": [
+        "Aviation-industry PLM heritage",
+        "Program digitalization"
+      ],
+      "limitations_zh": [
+        "民用市场推广慢",
+        "产品现代化待加强"
+      ],
+      "limitations_en": [
+        "Slow commercial market push",
+        "Product modernization needed"
+      ],
+      "industries": [
+        "航空航天",
+        "军工"
+      ],
+      "pricing": "high",
+      "confidence": 0.78,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "http://www.sysware.com.cn/",
+          "title": "Sysware IPDC",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "tongyuan-mworks",
+      "name_zh": "同元MWorks",
+      "name_en": "Tongyuan MWorks",
+      "vendor_id": "tongyuan",
+      "category_l1": "研发设计",
+      "category_l2": "MBSE",
+      "origin": "domestic",
+      "kernel": "自主",
+      "maturity": "high",
+      "localization_depth": "partial",
+      "strengths_zh": [
+        "系统建模与仿真国内领先",
+        "MBSE方法论支撑"
+      ],
+      "strengths_en": [
+        "Leading domestic SysML modeling",
+        "MBSE methodology support"
+      ],
+      "limitations_zh": [
+        "与国际Modelica生态衔接需加强",
+        "汽车行业渗透仍浅"
+      ],
+      "limitations_en": [
+        "Needs tighter Modelica ecosystem",
+        "Shallow automotive penetration"
+      ],
+      "industries": [
+        "航空航天",
+        "车辆",
+        "能源"
+      ],
+      "pricing": "mid",
+      "confidence": 0.82,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.tongyuan.cc/",
+          "title": "Tongyuan MWorks",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "yonyou-plm",
+      "name_zh": "用友PLM Cloud",
+      "name_en": "Yonyou PLM Cloud",
+      "vendor_id": "yonyou",
+      "category_l1": "研发设计",
+      "category_l2": "PLM",
+      "origin": "domestic",
+      "kernel": "自主",
+      "maturity": "mid",
+      "localization_depth": "pilot",
+      "strengths_zh": [
+        "与ERP一体化套件",
+        "云原生交付"
+      ],
+      "strengths_en": [
+        "Integrated with ERP suite",
+        "Cloud-native delivery"
+      ],
+      "limitations_zh": [
+        "高端研发场景深度不足",
+        "复杂BOM变更弱于国际PLM"
+      ],
+      "limitations_en": [
+        "Shallow for advanced R&D",
+        "Weaker complex BOM than global PLM"
+      ],
+      "industries": [
+        "离散制造",
+        "电子"
+      ],
+      "pricing": "mid",
+      "confidence": 0.8,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.yonyou.com/",
+          "title": "Yonyou PLM Cloud",
+          "accessed": "2026-06"
+        }
+      ],
+      "international_benchmarks": [
+        "windchill"
+      ]
+    },
+    {
+      "id": "kingdee-plm",
+      "name_zh": "金蝶PLM",
+      "name_en": "Kingdee PLM",
+      "vendor_id": "kingdee",
+      "category_l1": "研发设计",
+      "category_l2": "PLM",
+      "origin": "domestic",
+      "kernel": "自主",
+      "maturity": "mid",
+      "localization_depth": "pilot",
+      "strengths_zh": [
+        "中小企业PLM切入",
+        "与星空/苍穹ERP协同"
+      ],
+      "strengths_en": [
+        "SME PLM entry",
+        "Synergy with Kingdee ERP"
+      ],
+      "limitations_zh": [
+        "大型集团可扩展性有限",
+        "MBSE能力基础"
+      ],
+      "limitations_en": [
+        "Limited mega-group scalability",
+        "Basic MBSE"
+      ],
+      "industries": [
+        "电子",
+        "机械",
+        "消费品"
+      ],
+      "pricing": "mid",
+      "confidence": 0.78,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.kingdee.com/",
+          "title": "Kingdee PLM",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "avic-plm",
+      "name_zh": "神舟软件AVIDM",
+      "name_en": "AVIC AVIDM",
+      "vendor_id": "avic",
+      "category_l1": "研发设计",
+      "category_l2": "PLM",
+      "origin": "domestic",
+      "kernel": "自主",
+      "maturity": "high",
+      "localization_depth": "core",
+      "strengths_zh": [
+        "航空型号研制PLM",
+        "高安全与合规"
+      ],
+      "strengths_en": [
+        "Aviation program PLM",
+        "High security and compliance"
+      ],
+      "limitations_zh": [
+        "行业封闭难复制到民用",
+        "商业授权不透明"
+      ],
+      "limitations_en": [
+        "Closed vertical hard to replicate commercially",
+        "Opaque commercial licensing"
+      ],
+      "industries": [
+        "航空航天",
+        "军工"
+      ],
+      "pricing": "quote",
+      "confidence": 0.8,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "http://www.avic.com/",
+          "title": "AVIC AVIDM",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "teamcenter",
+      "name_zh": "Teamcenter",
+      "name_en": "Teamcenter",
+      "vendor_id": "siemens-digital",
+      "category_l1": "研发设计",
+      "category_l2": "PLM",
+      "origin": "international",
+      "kernel": "自主",
+      "maturity": "mission_critical",
+      "localization_depth": "core",
+      "strengths_zh": [
+        "大型离散制造PLM标杆",
+        "与NX一体化"
+      ],
+      "strengths_en": [
+        "Large discrete PLM benchmark",
+        "Integrated with NX"
+      ],
+      "limitations_zh": [
+        "实施成本极高",
+        "本地化与数据主权顾虑"
+      ],
+      "limitations_en": [
+        "Very high implementation cost",
+        "Localization and data sovereignty concerns"
+      ],
+      "industries": [
+        "汽车",
+        "航空航天",
+        "重工"
+      ],
+      "pricing": "high",
+      "confidence": 0.92,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://plm.sw.siemens.com/",
+          "title": "Teamcenter",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "enovia",
+      "name_zh": "ENOVIA",
+      "name_en": "ENOVIA",
+      "vendor_id": "dassault",
+      "category_l1": "研发设计",
+      "category_l2": "PLM",
+      "origin": "international",
+      "kernel": "自主",
+      "maturity": "mission_critical",
+      "localization_depth": "core",
+      "strengths_zh": [
+        "复杂产品协同与合规",
+        "与3DEXPERIENCE一体"
+      ],
+      "strengths_en": [
+        "Complex product collaboration",
+        "3DEXPERIENCE integrated"
+      ],
+      "limitations_zh": [
+        "学习曲线与定制成本高",
+        "对中小企过重"
+      ],
+      "limitations_en": [
+        "Steep learning and customization",
+        "Heavy for SMEs"
+      ],
+      "industries": [
+        "航空航天",
+        "汽车",
+        "生命科学"
+      ],
+      "pricing": "high",
+      "confidence": 0.91,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.3ds.com/products/enovia",
+          "title": "ENOVIA",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "windchill",
+      "name_zh": "Windchill",
+      "name_en": "Windchill",
+      "vendor_id": "ptc",
+      "category_l1": "研发设计",
+      "category_l2": "PLM",
+      "origin": "international",
+      "kernel": "自主",
+      "maturity": "high",
+      "localization_depth": "partial",
+      "strengths_zh": [
+        "参数化产品与变更管理",
+        "与Creo/ThingWorx协同"
+      ],
+      "strengths_en": [
+        "Parametric product and change mgmt",
+        "Creo/ThingWorx synergy"
+      ],
+      "limitations_zh": [
+        "云版本推进慢于竞品",
+        "旧版UI体验参差"
+      ],
+      "limitations_en": [
+        "Slower cloud than rivals",
+        "Variable legacy UX"
+      ],
+      "industries": [
+        "电子",
+        "工业",
+        "医疗器械"
+      ],
+      "pricing": "high",
+      "confidence": 0.9,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.ptc.com/en/products/windchill",
+          "title": "Windchill",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "aras-innovator",
+      "name_zh": "Aras Innovator",
+      "name_en": "Aras Innovator",
+      "vendor_id": "aras",
+      "category_l1": "研发设计",
+      "category_l2": "PLM",
+      "origin": "international",
+      "kernel": "自主",
+      "maturity": "high",
+      "localization_depth": "pilot",
+      "strengths_zh": [
+        "开放架构可定制PLM",
+        "订阅模式灵活"
+      ],
+      "strengths_en": [
+        "Open customizable PLM architecture",
+        "Flexible subscription"
+      ],
+      "limitations_zh": [
+        "国内实施伙伴少",
+        "品牌认知低于三巨头"
+      ],
+      "limitations_en": [
+        "Few China implementers",
+        "Lower mindshare than big three"
+      ],
+      "industries": [
+        "汽车",
+        "国防",
+        "工业"
+      ],
+      "pricing": "quote",
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.aras.com/",
+          "title": "Aras Innovator",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "oracle-agile",
+      "name_zh": "Oracle Agile PLM",
+      "name_en": "Oracle Agile PLM",
+      "vendor_id": "oracle",
+      "category_l1": "研发设计",
+      "category_l2": "PLM",
+      "origin": "international",
+      "kernel": "自主",
+      "maturity": "high",
+      "localization_depth": "partial",
+      "strengths_zh": [
+        "电子行业PLM与Oracle ERP集成",
+        "合规与质量模块成熟"
+      ],
+      "strengths_en": [
+        "Electronics PLM with Oracle ERP",
+        "Mature compliance/quality"
+      ],
+      "limitations_zh": [
+        "创新节奏慢",
+        "本地支持资源收缩"
+      ],
+      "limitations_en": [
+        "Slow innovation",
+        "Shrinking local support"
+      ],
+      "industries": [
+        "电子",
+        "医疗",
+        "工业"
+      ],
+      "pricing": "high",
+      "confidence": 0.86,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.oracle.com/scm/product-lifecycle-management/",
+          "title": "Oracle Agile PLM",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "shenzhou-mdm",
+      "name_zh": "华望PLM",
+      "name_en": "Huawang PLM",
+      "vendor_id": "huawang",
+      "category_l1": "研发设计",
+      "category_l2": "PLM",
+      "origin": "domestic",
+      "kernel": "自主",
+      "maturity": "mid",
+      "localization_depth": "pilot",
+      "strengths_zh": [
+        "装备制造PLM",
+        "项目型制造"
+      ],
+      "strengths_en": [
+        "Equipment manufacturing PLM",
+        "Project-based manufacturing"
+      ],
+      "limitations_zh": [
+        "市场声量小",
+        "功能深度待验证"
+      ],
+      "limitations_en": [
+        "Low market visibility",
+        "Depth unverified"
+      ],
+      "industries": [
+        "装备制造",
+        "轨道交通"
+      ],
+      "pricing": "mid",
+      "confidence": 0.72,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "http://www.huawangsoft.com/",
+          "title": "Huawang PLM",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "mathworks-simulink",
+      "name_zh": "Simulink",
+      "name_en": "Simulink",
+      "vendor_id": "mathworks",
+      "category_l1": "研发设计",
+      "category_l2": "MBSE",
+      "origin": "international",
+      "kernel": "自主",
+      "maturity": "mission_critical",
+      "localization_depth": "partial",
+      "strengths_zh": [
+        "模型驱动开发与HIL标准",
+        "汽车/航空控制系统事实标准"
+      ],
+      "strengths_en": [
+        "Model-based design and HIL standard",
+        "De-facto auto/aero control systems"
+      ],
+      "limitations_zh": [
+        "与PLM/ALM深度集成需定制",
+        "信创环境部署受限"
+      ],
+      "limitations_en": [
+        "Deep PLM/ALM integration needs customization",
+        "Limited IT innovation stack deployment"
+      ],
+      "industries": [
+        "汽车",
+        "航空航天",
+        "机器人"
+      ],
+      "pricing": "high",
+      "confidence": 0.92,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.mathworks.com/products/simulink.html",
+          "title": "Simulink",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "autodesk-vault",
+      "name_zh": "Autodesk Vault",
+      "name_en": "Autodesk Vault",
+      "vendor_id": "autodesk",
+      "category_l1": "研发设计",
+      "category_l2": "PLM",
+      "origin": "international",
+      "kernel": "自主",
+      "maturity": "high",
+      "localization_depth": "partial",
+      "strengths_zh": [
+        "Inventor/AutoCAD数据管理",
+        "版本与BOM轻量PLM"
+      ],
+      "strengths_en": [
+        "Inventor/AutoCAD data management",
+        "Lightweight PLM for versions and BOM"
+      ],
+      "limitations_zh": [
+        "复杂跨域PLM弱于Teamcenter",
+        "云版能力有限"
+      ],
+      "limitations_en": [
+        "Weaker complex cross-domain PLM vs Teamcenter",
+        "Limited cloud edition"
+      ],
+      "industries": [
+        "机械",
+        "建筑设备",
+        "制造"
+      ],
+      "pricing": "mid",
+      "confidence": 0.87,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.autodesk.com/products/vault",
+          "title": "Autodesk Vault",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "siemens-polarion",
+      "name_zh": "Siemens Polarion",
+      "name_en": "Siemens Polarion ALM",
+      "vendor_id": "siemens-digital",
+      "category_l1": "研发设计",
+      "category_l2": "PLM",
+      "origin": "international",
+      "kernel": "自主",
+      "maturity": "high",
+      "localization_depth": "partial",
+      "strengths_zh": [
+        "需求与ALM全生命周期",
+        "汽车/医疗合规追溯"
+      ],
+      "strengths_en": [
+        "Requirements and ALM lifecycle",
+        "Auto/medical compliance traceability"
+      ],
+      "limitations_zh": [
+        "与Teamcenter集成需专业服务",
+        "国内案例少于Windchill"
+      ],
+      "limitations_en": [
+        "Teamcenter integration needs SI",
+        "Fewer China cases than Windchill"
+      ],
+      "industries": [
+        "汽车",
+        "医疗",
+        "软件定义产品"
+      ],
+      "pricing": "high",
+      "confidence": 0.88,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://plm.sw.siemens.com/en-US/polarion/",
+          "title": "Siemens Polarion ALM",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "dassault-biovia",
+      "name_zh": "BIOVIA",
+      "name_en": "BIOVIA",
+      "vendor_id": "dassault",
+      "category_l1": "研发设计",
+      "category_l2": "PLM",
+      "origin": "international",
+      "kernel": "自主",
+      "maturity": "high",
+      "localization_depth": "partial",
+      "strengths_zh": [
+        "生命科学研发与合规",
+        "实验室信息管理LIMS集成"
+      ],
+      "strengths_en": [
+        "Life sciences R&D and compliance",
+        "Integrated LIMS capabilities"
+      ],
+      "limitations_zh": [
+        "垂直行业壁垒高",
+        "国内制药客户仍以进口为主"
+      ],
+      "limitations_en": [
+        "High vertical industry barrier",
+        "China pharma still import-led"
+      ],
+      "industries": [
+        "制药",
+        "化工",
+        "材料"
+      ],
+      "pricing": "high",
+      "confidence": 0.86,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.3ds.com/products/biovia",
+          "title": "BIOVIA",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "sipm-plm",
+      "name_zh": "思普 SIPM/PLM",
+      "name_en": "SIPM/PLM",
+      "vendor_id": "sipm",
+      "category_l1": "研发设计",
+      "category_l2": "PLM",
+      "origin": "domestic",
+      "kernel": "自主",
+      "maturity": "high",
+      "localization_depth": "partial",
+      "strengths_zh": [
+        "国家 PLM 行业标准第一起草单位",
+        "复杂产品全生命周期与 V 模型闭环",
+        "17 家世界 500 强在华企业客户"
+      ],
+      "strengths_en": [
+        "Lead drafter of national PLM industry standard",
+        "Complex product lifecycle and V-model closed loop",
+        "17 Fortune Global 500 companies in China as customers"
+      ],
+      "limitations_zh": [
+        "CAD 原生设计能力弱于国际 PLM+CAD 一体",
+        "云原生与 SaaS 化程度一般"
+      ],
+      "limitations_en": [
+        "Weaker native CAD vs integrated international PLM+CAD",
+        "Average cloud-native and SaaS maturity"
+      ],
+      "industries": [
+        "汽车",
+        "军工",
+        "装备制造"
+      ],
+      "pricing": "high",
+      "confidence": 0.86,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.sipm.com.cn/",
+          "title": "SIPM 思普软件",
+          "accessed": "2026-06"
+        },
+        {
+          "url": "https://www.sipm.com.cn/about?lng=zh",
+          "title": "思普关于我们",
+          "accessed": "2026-06"
+        }
+      ],
+      "international_benchmarks": [
+        "teamcenter",
+        "windchill"
+      ]
+    }
+  ]
+}
