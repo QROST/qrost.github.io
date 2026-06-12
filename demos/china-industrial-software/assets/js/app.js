@@ -39,6 +39,7 @@
   let filtered = [];
   let modalProductId = null;
   let modalKernelId = null;
+  let modalPolicyId = null;
   let timelineCategoryFilter = '';
 
   function t(k) { return I18N().t ? I18N().t(k) : k; }
@@ -54,7 +55,8 @@
     const productOpen = !document.getElementById('product-modal')?.classList.contains('hidden');
     const compareOpen = !document.getElementById('compare-modal')?.classList.contains('hidden');
     const kernelOpen = !document.getElementById('kernel-modal')?.classList.contains('hidden');
-    if (!productOpen && !compareOpen && !kernelOpen) document.body.style.overflow = '';
+    const policyOpen = !document.getElementById('policy-modal')?.classList.contains('hidden');
+    if (!productOpen && !compareOpen && !kernelOpen && !policyOpen) document.body.style.overflow = '';
   }
 
   function kernelOriginBadgeClass(o) {
@@ -280,7 +282,7 @@
         const p = CAT().getProductById(pid);
         const name = p ? I18N().productName(p) : pid;
         return p
-          ? `<button type="button" class="text-xs text-emerald-700 underline milestone-product-link" data-product-id="${pid}">${name}</button>`
+          ? `<button type="button" class="text-xs text-link underline milestone-product-link" data-product-id="${pid}">${name}</button>`
           : `<span class="text-xs text-slate-500">${pid}</span>`;
       }).join(' · ');
       const headline = I18N().isEn() ? m.headline_en : m.headline_zh;
@@ -292,7 +294,7 @@
         return `<span class="metric-chip">${label}: <strong>${mt.value}</strong></span>`;
       }).join('');
       const sources = (m.sources || []).map((s, i) =>
-        `<a href="${s.url}" class="text-xs text-emerald-700 underline" target="_blank" rel="noopener">${s.title || `source ${i + 1}`}</a>`).join(' · ');
+        `<a href="${s.url}" class="text-xs text-link underline" target="_blank" rel="noopener">${s.title || `source ${i + 1}`}</a>`).join(' · ');
       return `
       <article class="timeline-node" role="listitem" data-milestone-id="${m.id}" id="milestone-${m.id}">
         <div class="timeline-marker" aria-hidden="true">
@@ -343,40 +345,160 @@
     });
   }
 
+  function parsePolicyYm(ym) {
+    if (!ym) return null;
+    const [y, m] = ym.split('-').map(Number);
+    return y * 12 + (m || 1) - 1;
+  }
+
+  function policyBarState(targetDeadline, nowMonths) {
+    if (!targetDeadline) return 'ongoing';
+    const end = parsePolicyYm(targetDeadline);
+    if (end == null) return 'ongoing';
+    if (end < nowMonths) return 'past';
+    if (end - nowMonths <= 12) return 'nearing';
+    return 'active';
+  }
+
+  function getPolicyById(id) {
+    return (window.__policies?.policies || []).find((p) => p.id === id);
+  }
+
+  function renderPolicyModalBody(p) {
+    const metric = I18N().isEn() ? p.metric_en : p.metric_zh;
+    const unit = I18N().isEn() ? p.target_unit_en : p.target_unit_zh;
+    const note = I18N().isEn() ? p.actual_note_en : p.actual_note_zh;
+    const summary = I18N().isEn() ? p.summary_en : p.summary_zh;
+    const targetStr = p.target_value != null ? `${p.target_value.toLocaleString()} ${unit || ''}` : '—';
+    const actualStr = p.actual_value != null ? `${p.actual_value.toLocaleString()} ${unit || ''}` : '—';
+    const deadlineLabel = p.target_deadline
+      ? `${t('policyGanttDeadline')}: ${p.target_deadline}`
+      : t('policyGanttOngoing');
+    return `
+      <div class="policy-modal-meta text-xs text-slate-500">
+        <span>${t('policyGanttStart')}: <time>${p.date}</time></span>
+        <span>${deadlineLabel}</span>
+      </div>
+      ${summary ? `<p class="text-sm text-slate-600 mt-3">${summary}</p>` : ''}
+      <dl class="policy-modal-metrics text-sm grid grid-cols-1 sm:grid-cols-3 gap-3 mt-4">
+        <div><dt class="text-slate-500 text-xs">${t('policyMetric')}</dt><dd class="text-slate-800">${metric}</dd></div>
+        <div><dt class="text-slate-500 text-xs">${t('policyTarget')}</dt><dd class="text-slate-800 font-medium">${targetStr}</dd></div>
+        <div><dt class="text-slate-500 text-xs">${t('policyActual')} (${p.actual_as_of || '—'})</dt><dd class="text-slate-800">${actualStr}</dd></div>
+      </dl>
+      ${note ? `<p class="text-xs text-slate-500 mt-3">${note}</p>` : ''}
+      ${p.source_url ? `<a href="${p.source_url}" class="text-xs text-link underline mt-3 inline-block" target="_blank" rel="noopener">${t('policySource')} ↗</a>` : ''}`;
+  }
+
+  function openPolicyModal(id) {
+    const p = getPolicyById(id);
+    if (!p) return;
+    const backdrop = document.getElementById('policy-modal');
+    const titleEl = document.getElementById('policy-modal-title');
+    const bodyEl = document.getElementById('policy-modal-body');
+    if (!backdrop || !titleEl || !bodyEl) return;
+    modalPolicyId = id;
+    titleEl.textContent = I18N().isEn() ? p.title_en : p.title_zh;
+    bodyEl.innerHTML = renderPolicyModalBody(p);
+    backdrop.classList.remove('hidden');
+    backdrop.setAttribute('aria-hidden', 'false');
+    lockBodyScroll();
+    document.getElementById('policy-modal-close')?.focus();
+  }
+
+  function closePolicyModal() {
+    const backdrop = document.getElementById('policy-modal');
+    if (!backdrop || backdrop.classList.contains('hidden')) return;
+    backdrop.classList.add('hidden');
+    backdrop.setAttribute('aria-hidden', 'true');
+    modalPolicyId = null;
+    unlockBodyScroll();
+  }
+
   function renderPolicyNodes(policies) {
     const el = document.getElementById('policy-list');
     if (!el || !policies) return;
-    const items = (policies.policies || []).slice().sort((a, b) => (a.date < b.date ? 1 : -1));
-    el.innerHTML = items.map((p) => {
+    const items = (policies.policies || []).slice().sort((a, b) => a.date.localeCompare(b.date));
+    if (!items.length) {
+      el.innerHTML = '';
+      return;
+    }
+
+    const now = new Date();
+    const nowMonths = now.getFullYear() * 12 + now.getMonth();
+
+    const monthValues = [];
+    items.forEach((p) => {
+      const start = parsePolicyYm(p.date);
+      if (start != null) monthValues.push(start);
+      const end = p.target_deadline ? parsePolicyYm(p.target_deadline) : start;
+      if (end != null) monthValues.push(end);
+    });
+    const rangeMin = Math.min(...monthValues) - 3;
+    const rangeMax = Math.max(...monthValues) + 3;
+    const rangeSpan = Math.max(rangeMax - rangeMin, 1);
+    const toPct = (months) => ((months - rangeMin) / rangeSpan) * 100;
+
+    const startYear = Math.floor(rangeMin / 12);
+    const endYear = Math.ceil(rangeMax / 12);
+    const yearSpan = endYear - startYear;
+    const tickStep = yearSpan > 30 ? 5 : yearSpan > 15 ? 3 : 2;
+    const axisTicks = [];
+    for (let y = startYear; y <= endYear; y += 1) {
+      if (y === startYear || y === endYear || (y - startYear) % tickStep === 0) {
+        axisTicks.push({ year: y, left: toPct(y * 12) });
+      }
+    }
+
+    const axisHtml = axisTicks.map((tick) =>
+      `<span class="policy-gantt-axis-tick" style="left:${tick.left.toFixed(2)}%">${tick.year}</span>`
+    ).join('');
+
+    const rowsHtml = items.map((p) => {
       const title = I18N().isEn() ? p.title_en : p.title_zh;
-      const metric = I18N().isEn() ? p.metric_en : p.metric_zh;
-      const unit = I18N().isEn() ? p.target_unit_en : p.target_unit_zh;
-      const note = I18N().isEn() ? p.actual_note_en : p.actual_note_zh;
-      const targetStr = p.target_value != null ? `${p.target_value.toLocaleString()} ${unit || ''}` : '—';
-      const actualStr = p.actual_value != null ? `${p.actual_value.toLocaleString()} ${unit || ''}` : '—';
-      const deadline = p.target_deadline || '—';
+      const startMonths = parsePolicyYm(p.date);
+      const endMonths = p.target_deadline ? parsePolicyYm(p.target_deadline) : null;
+      const state = policyBarState(p.target_deadline, nowMonths);
+      const leftPct = toPct(startMonths);
+      let barHtml;
+      if (endMonths != null && endMonths >= startMonths) {
+        const widthPct = Math.max(toPct(endMonths) - leftPct, 0.6);
+        const rangeLabel = `${p.date} → ${p.target_deadline}`;
+        barHtml = `<button type="button" class="policy-gantt-bar policy-gantt-bar--${state} policy-gantt-trigger" data-policy-id="${p.id}" style="left:${leftPct.toFixed(2)}%;width:${widthPct.toFixed(2)}%" aria-label="${rangeLabel}"></button>`;
+      } else {
+        const rangeLabel = `${p.date} · ${t('policyGanttOngoing')}`;
+        barHtml = `<button type="button" class="policy-gantt-marker policy-gantt-marker--ongoing policy-gantt-trigger" data-policy-id="${p.id}" style="left:${leftPct.toFixed(2)}%" aria-label="${rangeLabel}"><span class="policy-gantt-marker-stub" aria-hidden="true"></span></button>`;
+      }
       return `
-      <div class="policy-node">
-        <div class="flex flex-wrap items-center gap-2 text-xs text-slate-500">
-          <time>${p.date}</time>
-          <span class="text-amber-700 font-medium">${t('policyDeadline')}: ${deadline}</span>
+      <div class="policy-gantt-entry" role="listitem">
+        <div class="policy-gantt-row">
+          <button type="button" class="policy-gantt-label policy-gantt-trigger" data-policy-id="${p.id}" title="${title}">
+            <span class="policy-gantt-label-text">${title}</span>
+            <span class="policy-gantt-label-dates">${p.date}${p.target_deadline ? ` → ${p.target_deadline}` : ''}</span>
+          </button>
+          <div class="policy-gantt-track">
+            <div class="policy-gantt-track-grid" aria-hidden="true"></div>
+            ${barHtml}
+          </div>
         </div>
-        <div class="font-medium text-slate-900 mt-1">${title}</div>
-        <dl class="policy-metrics mt-2 text-sm grid grid-cols-1 sm:grid-cols-3 gap-2">
-          <div><dt class="text-slate-500 text-xs">${t('policyMetric')}</dt><dd class="text-slate-800">${metric}</dd></div>
-          <div><dt class="text-slate-500 text-xs">${t('policyTarget')}</dt><dd class="text-slate-800 font-medium">${targetStr}</dd></div>
-          <div><dt class="text-slate-500 text-xs">${t('policyActual')} (${p.actual_as_of || '—'})</dt><dd class="text-slate-800">${actualStr}</dd></div>
-        </dl>
-        ${note ? `<p class="text-xs text-slate-500 mt-2">${note}</p>` : ''}
-        ${p.source_url ? `<a href="${p.source_url}" class="text-xs text-emerald-700 underline mt-2 inline-block" target="_blank" rel="noopener">${t('policySource')}</a>` : ''}
       </div>`;
     }).join('');
+
+    el.innerHTML = `
+      <div class="policy-gantt-header">
+        <div class="policy-gantt-label-col" aria-hidden="true"></div>
+        <div class="policy-gantt-axis-col">
+          <div class="policy-gantt-axis">${axisHtml}</div>
+        </div>
+      </div>
+      <div class="policy-gantt-body">${rowsHtml}</div>`;
+    el.dataset.rangeMin = `${Math.floor(rangeMin / 12)}-${String((rangeMin % 12) + 1).padStart(2, '0')}`;
+    el.dataset.rangeMax = `${Math.floor(rangeMax / 12)}-${String((rangeMax % 12) + 1).padStart(2, '0')}`;
 
     const footEl = document.getElementById('policy-footnotes');
     if (footEl && policies.footnotes?.length) {
       footEl.innerHTML = policies.footnotes.map((f) => {
         const text = I18N().isEn() ? f.text_en : f.text_zh;
-        return `<li class="text-xs text-slate-500">${f.date}: ${text} ${f.source_url ? `<a href="${f.source_url}" class="text-emerald-700 underline" target="_blank" rel="noopener">↗</a>` : ''}</li>`;
+        return `<li class="text-xs text-slate-500">${f.date}: ${text} ${f.source_url ? `<a href="${f.source_url}" class="text-link underline" target="_blank" rel="noopener">↗</a>` : ''}</li>`;
       }).join('');
       footEl.closest('details')?.classList.remove('hidden');
     }
@@ -407,7 +529,7 @@
     if (!linked.length) return '';
     const items = linked.map((m) => {
       const headline = I18N().isEn() ? m.headline_en : m.headline_zh;
-      return `<li><button type="button" class="text-emerald-700 underline text-left milestone-modal-link" data-milestone-id="${m.id}">${m.date} · ${headline}</button></li>`;
+      return `<li><button type="button" class="text-link underline text-left milestone-modal-link" data-milestone-id="${m.id}">${m.date} · ${headline}</button></li>`;
     }).join('');
     return `<h4 class="font-medium mt-3 text-slate-800">${t('milestoneLinked')}</h4>
       <ul class="list-disc pl-5 text-sm text-slate-600">${items}</ul>`;
@@ -418,7 +540,7 @@
     if (!btn || !modalProductId) return;
     const inCompare = CMP().getSlots().includes(modalProductId);
     btn.textContent = inCompare ? t('removeCompare') : t('addCompare');
-    btn.classList.toggle('text-emerald-700', inCompare);
+    btn.classList.toggle('text-accent', inCompare);
     btn.classList.remove('hidden');
   }
 
@@ -451,7 +573,7 @@
     const strengths = I18N().listField(p, 'strengths_zh', 'strengths_en');
     const limits = I18N().listField(p, 'limitations_zh', 'limitations_en');
     const srcs = (p.sources || []).map((s) =>
-      `<li><a href="${s.url}" class="text-emerald-700 underline" target="_blank" rel="noopener">${s.title || s.url}</a></li>`).join('');
+      `<li><a href="${s.url}" class="text-link underline" target="_blank" rel="noopener">${s.title || s.url}</a></li>`).join('');
     const title = I18N().productName(p);
     if (!title) return;
     titleEl.textContent = title;
@@ -461,7 +583,7 @@
         <div><span class="text-slate-500">${t('colMaturity')}</span>: ${I18N().maturityLabel(p.maturity)}</div>
         <div><span class="text-slate-500">${t('colLocDepth')}</span>: ${I18N().locLabel(p.localization_depth)}</div>
         <div><span class="text-slate-500">${t('colKernel')}</span>: ${p.kernel_id
-    ? `<button type="button" class="text-emerald-700 underline kernel-link-btn" data-kernel-id="${p.kernel_id}">${CAT().productKernelLabel(p)}</button>`
+    ? `<button type="button" class="text-link underline kernel-link-btn" data-kernel-id="${p.kernel_id}">${CAT().productKernelLabel(p)}</button>`
     : (p.kernel || '—')}</div>
         <div><span class="text-slate-500">${t('colConfidence')}</span>: ${(p.confidence * 100).toFixed(0)}%</div>
       </div>
@@ -567,7 +689,7 @@
         <td class="px-3 py-2.5 border-b border-slate-100 text-slate-600 text-center">${domCount}</td>
         <td class="px-3 py-2.5 border-b border-slate-100 text-slate-600 text-sm">${sub}</td>
         <td class="px-3 py-2.5 border-b border-slate-100 no-print">
-          <button type="button" class="text-xs text-emerald-700 hover:underline catalog-filter-kernel-btn" data-id="${k.id}">${t('filterByKernel')}</button>
+          <button type="button" class="text-xs text-link catalog-filter-kernel-btn" data-id="${k.id}">${t('filterByKernel')}</button>
         </td>`;
       tr.addEventListener('click', (e) => {
         if (e.target.closest('.catalog-filter-kernel-btn')) return;
@@ -601,10 +723,10 @@
     const strengths = I18N().listField(k, 'strengths_zh', 'strengths_en');
     const limits = I18N().listField(k, 'limitations_zh', 'limitations_en');
     const srcs = (k.sources || []).map((s) =>
-      `<li><a href="${s.url}" class="text-emerald-700 underline" target="_blank" rel="noopener">${s.title || s.url}</a></li>`).join('');
+      `<li><a href="${s.url}" class="text-link underline" target="_blank" rel="noopener">${s.title || s.url}</a></li>`).join('');
     const catalogProds = CAT().getProductsByKernel(id);
     const prodLinks = catalogProds.map((p) =>
-      `<button type="button" class="text-emerald-700 underline product-link-btn mr-2" data-product-id="${p.id}">${I18N().productName(p)}</button>`).join('') || '—';
+      `<button type="button" class="text-link underline product-link-btn mr-2" data-product-id="${p.id}">${I18N().productName(p)}</button>`).join('') || '—';
     const intl = (k.used_by_international || []).join(', ') || '—';
     const cn = (k.chinese_products_using || []).join(', ') || '—';
     const alts = (k.domestic_alternatives || []).map((aid) => {
@@ -820,6 +942,7 @@
     renderSunburstChart();
     renderKernelsTable();
     refreshCompare();
+    if (modalPolicyId) openPolicyModal(modalPolicyId);
   }
 
   function handleHash() {
@@ -832,11 +955,20 @@
   function bindEvents() {
     document.getElementById('modal-close')?.addEventListener('click', closeModal);
     document.getElementById('kernel-modal-close')?.addEventListener('click', closeKernelModal);
+    document.getElementById('policy-modal-close')?.addEventListener('click', closePolicyModal);
     document.getElementById('product-modal')?.addEventListener('click', (e) => {
       if (e.target.id === 'product-modal') closeModal();
     });
     document.getElementById('kernel-modal')?.addEventListener('click', (e) => {
       if (e.target.id === 'kernel-modal') closeKernelModal();
+    });
+    document.getElementById('policy-modal')?.addEventListener('click', (e) => {
+      if (e.target.id === 'policy-modal') closePolicyModal();
+    });
+    document.getElementById('policy-list')?.addEventListener('click', (e) => {
+      const trigger = e.target.closest('.policy-gantt-trigger');
+      if (!trigger?.dataset.policyId) return;
+      openPolicyModal(trigger.dataset.policyId);
     });
     document.getElementById('modal-compare-add')?.addEventListener('click', () => {
       if (!modalProductId) return;
@@ -858,6 +990,7 @@
     document.addEventListener('keydown', (e) => {
       if (e.key !== 'Escape') return;
       closeCompareModal();
+      closePolicyModal();
       closeKernelModal();
       closeModal();
     });
@@ -987,7 +1120,7 @@
 
   window.INDUSTRIAL_APP = {
     init, refreshCompare, updateVisuals, openModal, closeModal, openKernelModal, closeKernelModal,
-    openCompareModal, closeCompareModal, addToCompare,
+    openPolicyModal, closePolicyModal, openCompareModal, closeCompareModal, addToCompare,
   };
 
   document.addEventListener('DOMContentLoaded', () => {

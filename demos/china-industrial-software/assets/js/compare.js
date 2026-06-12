@@ -48,7 +48,7 @@
 
         const rm = document.createElement('button');
         rm.type = 'button';
-        rm.className = 'ml-2 text-slate-400 hover:text-red-500 font-bold px-1 rounded hover:bg-slate-100 transition-colors no-print';
+        rm.className = 'ml-2 text-slate-400 hover-danger font-bold px-1 rounded hover:bg-slate-100 transition-colors no-print';
         rm.textContent = '×';
         rm.addEventListener('click', (e) => {
           e.stopPropagation();
