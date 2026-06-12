@@ -120,7 +120,7 @@ document.addEventListener('DOMContentLoaded', () => {
             /* Per city: officeRentAnnualRMB (10 m² × avg office RMB/m²/mo × 12), utilitiesAnnualRMB (power + heat/cool + cleaning alloc.).
                Global: OVERHEAD_HARDWARE_ANNUAL_RMB, OVERHEAD_SOFTWARE_ANNUAL_RMB (AEC Collection + Rhino modeled seat-year). */
             const OVERHEAD_HARDWARE_ANNUAL_RMB = 13800;
-            const OVERHEAD_SOFTWARE_ANNUAL_RMB = 36000;
+            const OVERHEAD_SOFTWARE_ANNUAL_RMB = 29000;
 
             /* SAR employer statutory (planning RMB equivalents; not live FX). */
             const HK_MPF_RATE = 0.05;
@@ -514,7 +514,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     donutLabels = [
                         tr('donut.base', 'Annual Base Salary'),
                         tr('donut.pension', '1. Pension (16%)'),
-                        tr('donut.medical', '2. Medical & Maternity (9%)'),
+                        tr('donut.medical', '2. Medical (9%)'),
                         tr('donut.unemp', '3. Unemployment (0.5%)'),
                         tr('donut.injury', '4. Work Injury (0.5%)'),
                         tr('donut.housing', '5. Housing Fund ({pct}%)').replace(/\{pct\}/g, (hPct * 100).toFixed(1))
@@ -706,7 +706,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     descText.innerHTML = intlHtml;
                 } else {
                     alertBox.classList.add('hidden');
-                    let mainlandDesc = tr('desc.mainland', '<strong>Mainland Contributions:</strong> Employer statutory contributions include the mandatory "5 Insurances & 1 Fund" (Pension, Medical, Unemployment, Injury, Maternity, and Housing Fund). Rates fluctuate based on selected municipal policies.');
+                    let mainlandDesc = tr('desc.mainland', '<strong>Mainland Contributions:</strong> Employer statutory contributions include Pension, Medical (9% in this model—maternity often merged into medical in many cities), Unemployment, Work Injury, and Housing Fund. Rates fluctuate by municipality; donut slices are illustrative.');
                     if (state.includeOverhead) {
                         mainlandDesc += ' ' + tr('desc.mainland_oh', '<strong>Overhead:</strong> Rent, utilities, hardware amortization, and AEC software stack are modeled per employee-year (see methodology above).');
                     }
@@ -784,7 +784,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         case 's04':
                             return '<strong>个人 /</strong>境外母公司。<strong class="text-slate-800">现金预估：</strong>押金（常<strong>1–3 个月租金</strong>）+ 首期租金 + 杂费——一线城市小面积示意 ' + prPlus(30000, 250000) + '，因城市差异大。';
                         case 's05':
-                            return '<strong>代理服务费</strong>（本地机构、人民币报价常见）：标准 WFOE 常 ' + pr(10000, 35000) + '（一线城市常更高）；仅递交常 ' + pr(5000, 16000) + '；全包（银行+账）常 ' + pr(35000, 80000) + '+。市监<strong>政府性收费</strong>另常 ' + pr(0, 2500) + '。<strong>个人/母公司</strong>垫付——尚无 WFOE。' + foot;
+                            return '<strong>代理服务费</strong>（本地机构、人民币报价常见）：标准 WFOE 常 ' + pr(12000, 40000) + '（一线城市常更高）；仅递交常 ' + pr(5000, 16000) + '；全包（银行+账）常 ' + pr(35000, 100000) + '+。市监<strong>政府性收费</strong>另常 ' + pr(0, 2500) + '。<strong>个人/母公司</strong>垫付——尚无 WFOE。' + foot;
                         case 's06':
                             return '<strong>个人</strong>/母公司。<strong class="text-slate-800">预估：</strong>境外公证以当地货币计价——此处用人民币<strong>规划等价</strong>：常见材料包 ' + pr(70, 1050) + '；单次签署/确认约 ' + pr(35, 175) + '；法人全套更高。';
                         case 's07':
@@ -830,7 +830,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     case 's04':
                         return '<strong>Personal /</strong> offshore parent. <strong class="text-slate-800">Est. cash:</strong> deposit (often <strong>1–3× monthly rent</strong>) + first month + fees—illustrative ' + prPlus(30000, 250000) + ' for a small tier‑1 office; wide by city.';
                     case 's05':
-                        return '<strong>Agency service fees</strong> (local firms, usually quoted in <strong>RMB</strong>): standard WFOE often ' + pr(10000, 35000) + ' (tier‑1 often higher); lean filing often ' + pr(5000, 16000) + '; full-service (bank + books) often ' + pr(35000, 80000) + '+. AMR <strong>government</strong> charges commonly ' + pr(0, 2500) + ' on top. <strong>Personal</strong> / <strong>parent</strong> pays—no WFOE yet.' + foot;
+                        return '<strong>Agency service fees</strong> (local firms, usually quoted in <strong>RMB</strong>): standard WFOE often ' + pr(12000, 40000) + ' (tier‑1 often higher); lean filing often ' + pr(5000, 16000) + '; full-service (bank + books) often ' + pr(35000, 100000) + '+. AMR <strong>government</strong> charges commonly ' + pr(0, 2500) + ' on top. <strong>Personal</strong> / <strong>parent</strong> pays—no WFOE yet.' + foot;
                     case 's06':
                         return '<strong>Personal</strong> / parent. <strong class="text-slate-800">Est.:</strong> home-country notary is paid abroad—<strong>planning RMB equivalents</strong>: typical pack ' + pr(70, 1050) + '; many acknowledgments ' + pr(35, 175) + ' each; corporate stacks higher.';
                     case 's07':
