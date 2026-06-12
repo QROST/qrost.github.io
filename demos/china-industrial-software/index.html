@@ -37,6 +37,7 @@
                         <a href="#taxonomy" class="text-slate-500 hover:text-slate-900" data-i18n="navTaxonomy">品类</a>
                         <a href="#kernels" class="text-slate-500 hover:text-slate-900" data-i18n="navKernels">几何内核</a>
                         <a href="#catalog" class="text-slate-500 hover:text-slate-900" data-i18n="navCatalog">产品列表</a>
+                        <a href="#matrix" class="text-slate-500 hover:text-slate-900" data-i18n="navMatrix">能力矩阵</a>
                         <a href="#timeline" class="text-slate-500 hover:text-slate-900" data-i18n="navTimeline">政策突破</a>
                         <button type="button" id="nav-compare-btn" class="text-slate-500 hover:text-slate-900" data-i18n="navCompare">对标</button>
                         <a href="#methodology" class="text-slate-500 hover:text-slate-900" data-i18n="navMethodology">方法论</a>
@@ -52,6 +53,7 @@
                 <a href="#taxonomy" class="block py-2 text-sm border-t border-slate-100" data-mobile-nav-link data-i18n="navTaxonomy">品类</a>
                 <a href="#kernels" class="block py-2 text-sm border-t border-slate-100" data-mobile-nav-link data-i18n="navKernels">几何内核</a>
                 <a href="#catalog" class="block py-2 text-sm border-t border-slate-100" data-mobile-nav-link data-i18n="navCatalog">产品列表</a>
+                <a href="#matrix" class="block py-2 text-sm border-t border-slate-100" data-mobile-nav-link data-i18n="navMatrix">能力矩阵</a>
                 <a href="#timeline" class="block py-2 text-sm border-t border-slate-100" data-mobile-nav-link data-i18n="navTimeline">政策突破</a>
                 <button type="button" id="nav-compare-btn-mobile" class="block w-full text-left py-2 text-sm border-t border-slate-100" data-mobile-nav-link data-i18n="navCompare">对标</button>
                 <a href="#methodology" class="block py-2 text-sm border-t border-slate-100" data-mobile-nav-link data-i18n="navMethodology">方法论</a>
@@ -176,6 +178,50 @@
                         </tr>
                     </thead>
                     <tbody id="catalog-tbody"></tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- #matrix -->
+        <section id="matrix" class="mb-20">
+            <h2 class="text-3xl font-bold text-slate-800 mb-2" data-i18n="secMatrix">能力矩阵</h2>
+            <p class="text-slate-500 mb-6 max-w-3xl" data-i18n="secMatrixDesc"></p>
+            <div class="flex flex-wrap gap-3 mb-4 items-center">
+                <select id="matrix-filter-origin" class="text-sm border border-slate-200 rounded px-3 py-2 bg-white">
+                    <option value="" data-i18n="filterAll">全部来源</option>
+                    <option value="domestic" data-i18n="originDomestic">国产</option>
+                    <option value="international" data-i18n="originInternational">国际</option>
+                    <option value="joint_venture" data-i18n="originJV">合资</option>
+                    <option value="open_source" data-i18n="originOSS">开源</option>
+                </select>
+                <select id="matrix-filter-category" class="text-sm border border-slate-200 rounded px-3 py-2 bg-white"></select>
+                <input type="search" id="matrix-search" class="text-sm border border-slate-200 rounded px-3 py-2 flex-1 min-w-[12rem]" data-i18n-placeholder="searchPlaceholder">
+            </div>
+
+            <!-- Legend for matrix -->
+            <div class="flex items-center gap-6 mb-3 text-xs text-slate-500 select-none">
+                <div class="flex items-center gap-1.5">
+                    <span class="text-emerald-600 font-bold">✔</span>
+                    <span data-i18n="matrixLegendFull">支持</span>
+                </div>
+                <div class="flex items-center gap-1.5">
+                    <span class="text-amber-500 font-medium">◌</span>
+                    <span data-i18n="matrixLegendPartial">半支持/正在发展</span>
+                </div>
+                <div class="flex items-center gap-1.5">
+                    <span class="text-slate-200">—</span>
+                    <span data-i18n="matrixLegendNone">不支持/无关</span>
+                </div>
+            </div>
+
+            <div class="matrix-container overflow-auto bg-white rounded-xl border border-slate-100 max-h-[600px] shadow-sm">
+                <table class="matrix-table w-full text-xs text-left border-collapse">
+                    <thead class="bg-slate-50 text-slate-600 sticky top-0 z-20">
+                        <!-- Headers generated dynamically -->
+                    </thead>
+                    <tbody id="matrix-tbody">
+                        <!-- Rows generated dynamically -->
+                    </tbody>
                 </table>
             </div>
         </section>
@@ -321,6 +367,7 @@
     <script src="assets/js/catalog-loader.js?v=20260612v"></script>
     <script src="assets/js/charts.js?v=20260612v"></script>
     <script src="assets/js/compare.js?v=20260612v"></script>
+    <script src="assets/js/matrix.js?v=20260612v"></script>
     <script src="assets/js/app.js?v=20260612v"></script>
 </body>
 </html>

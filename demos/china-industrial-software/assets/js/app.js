@@ -987,6 +987,10 @@
     renderSunburstChart();
     renderKernelsTable();
     refreshCompare();
+
+    if (window.INDUSTRIAL_MATRIX && window.INDUSTRIAL_MATRIX.render) {
+      window.INDUSTRIAL_MATRIX.render();
+    }
     if (modalPolicyId) openPolicyModal(modalPolicyId);
   }
 
@@ -1143,6 +1147,9 @@
     populateKernelFilter();
     populateCompareSelect();
     bindEvents();
+    if (window.INDUSTRIAL_MATRIX && window.INDUSTRIAL_MATRIX.init) {
+      window.INDUSTRIAL_MATRIX.init();
+    }
     I18N().onChange(() => {
       populateCompareSelect();
       populateKernelFilter();

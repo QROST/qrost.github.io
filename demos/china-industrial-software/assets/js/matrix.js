@@ -1,0 +1,384 @@
+/**
+ * China Industrial Software Survey — Capability Matrix
+ */
+(function () {
+  'use strict';
+
+  const CAPABILITIES = [
+    // 几何建模与设计自动化
+    { key: 'drafting_2d', zh: '二维工程图', en: '2D Drafting' },
+    { key: 'solid_modeling_3d', zh: '三维实体建模', en: '3D Solid Modeling' },
+    { key: 'surface_modeling', zh: '高级曲面', en: 'Surfacing' },
+    { key: 'assembly_design', zh: '大型装配', en: 'Assembly' },
+    { key: 'parametric_design', zh: '参数化驱动', en: 'Parametric Design' },
+    { key: 'visual_programming', zh: '视觉编程', en: 'Visual Programming' },
+    { key: 'cad_repair_interop', zh: '几何修复与转换', en: 'Geometry Healing & Interop' },
+
+    // 物理仿真与工程分析
+    { key: 'fea_structure', zh: '结构有限元', en: 'FEA Structure' },
+    { key: 'cfd_fluid', zh: '流体动力学', en: 'CFD Fluid' },
+    { key: 'electromagnetics', zh: '电磁仿真', en: 'Electromagnetics' },
+    { key: 'multi_physics', zh: '多物理场耦合', en: 'Multi-physics' },
+    { key: 'material_injection', zh: '材料注塑分析', en: 'Mold Flow & Material' },
+    { key: 'code_compliance', zh: '规范验算', en: 'Code Compliance' },
+    { key: 'opt_light_acoustics', zh: '光学与声学', en: 'Optics & Acoustics' },
+
+    // 半导体 EDA 与 CIM
+    { key: 'analog_ic_design', zh: '模拟 IC 设计', en: 'Analog IC Design' },
+    { key: 'digital_ic_synthesis', zh: '数字后端与综合', en: 'Digital IC Backend' },
+    { key: 'formal_verification', zh: '形式与功能验证', en: 'Verification & Formal' },
+    { key: 'physical_prototyping', zh: '原型验证与硬件仿真', en: 'Emulation & Prototyping' },
+    { key: 'tcad_device_sim', zh: '器件工艺 TCAD', en: 'TCAD Device Simulation' },
+    { key: 'fab_automation_eap', zh: '设备自动化 EAP', en: 'Fab EAP' },
+    { key: 'yield_yms', zh: '良率管理 YMS', en: 'Yield YMS' },
+
+    // 生命周期与管理
+    { key: 'bom_mgmt', zh: 'BOM与配置管理', en: 'BOM & Configuration' },
+    { key: 'lifecycle_mgmt', zh: '生命周期管理', en: 'Lifecycle' },
+    { key: 'requirements_trace', zh: '需求与合规追溯', en: 'Requirements Traceability' },
+    { key: 'mbse_sys', zh: '系统级建模(MBSE)', en: 'MBSE' },
+    { key: 'finance_ledger', zh: '财务供应链', en: 'SCM & Finance' },
+
+    // 制造执行与控制
+    { key: 'cam_milling_cnc', zh: '数控加工(CAM)', en: 'CAM & CNC Milling' },
+    { key: 'scheduling_ops', zh: '生产排程(APS)', en: 'Scheduling' },
+    { key: 'process_control', zh: '过程控制', en: 'Process Control' },
+    { key: 'data_acquisition', zh: '工业数据采集', en: 'Data Acquisition' },
+
+    // BIM/GIS 与 3D 打印
+    { key: 'bim_clash', zh: 'BIM碰撞检测与协同', en: 'BIM Clash & CDE' },
+    { key: 'gis_spatial', zh: 'GIS空间分析', en: 'Spatial GIS' },
+    { key: 'slicing_algorithm', zh: '切片算法引擎', en: 'Slicing Engine' },
+    { key: 'am_layout', zh: '增材排版与修复', en: 'AM Layout & Healing' },
+
+    // 架构与交付
+    { key: 'cloud_native', zh: '云原生', en: 'Cloud Native' },
+    { key: 'collaboration', zh: '实时协作', en: 'Collaboration' },
+    { key: 'ext_api', zh: 'API/插件', en: 'API & Ext' },
+    { key: 'xinchuang_compat', zh: '信创适配', en: 'IT Innovation' },
+  ];
+
+  const state = {
+    filterOrigin: '',
+    filterCategory: '',
+    search: '',
+  };
+
+  const I18N = () => window.INDUSTRIAL_I18N || {};
+  const CAT = () => window.INDUSTRIAL_CATALOG || {};
+
+  function evaluateCapability(p, capKey) {
+    const name = ((p.name_zh || '') + (p.name_en || '') + (p.id || '')).toLowerCase();
+    const category = p.category_l2 || '';
+    const type = p.product_type || '';
+    const tags = p.tags || [];
+    const strengths = ((p.strengths_zh || []).concat(p.strengths_en || [])).join(' ').toLowerCase();
+    const limitations = ((p.limitations_zh || []).concat(p.limitations_en || [])).join(' ').toLowerCase();
+
+    const hasTerm = (str, term) => str.includes(term.toLowerCase());
+
+    switch (capKey) {
+      case 'drafting_2d':
+        if (category === 'CAD' && type !== 'mcad') return 'full';
+        if (category === 'CAD' || type === 'mcad' || type === '2d_cad') {
+          if (hasTerm(limitations, '二维') || hasTerm(limitations, '2d')) return 'partial';
+          return 'full';
+        }
+        if (category === 'BIM' || category === 'GIS') return 'full';
+        if (category === '切片软件' || category === 'CAM') return 'partial';
+        if (hasTerm(strengths, '二维') || hasTerm(strengths, '2d')) return 'full';
+        return 'none';
+
+      case 'solid_modeling_3d':
+        if (category === 'CAD' && type !== '2d_cad') return 'full';
+        if (category === 'BIM' || category === '切片软件' || type === 'mcad') return 'full';
+        if (category === 'CAD' && type === '2d_cad') return 'partial';
+        if (category === 'GIS' || category === 'CAM') return 'partial';
+        if (hasTerm(strengths, '三维') || hasTerm(strengths, '3d')) return 'full';
+        return 'none';
+
+      case 'surface_modeling':
+        if (category === 'CAD' && (hasTerm(strengths, '曲面') || hasTerm(strengths, '造型') || hasTerm(name, 'alias') || hasTerm(name, 'rhino') || hasTerm(name, 'surfmill'))) return 'full';
+        if (category === 'CAD' && type !== '2d_cad') return 'partial';
+        if (category === 'BIM') return 'partial';
+        return 'none';
+
+      case 'assembly_design':
+        if (category === 'CAD' && (p.maturity === 'high' || p.maturity === 'mission_critical')) return 'full';
+        if (category === 'CAD' && type !== '2d_cad') return 'partial';
+        if (category === 'BIM') return 'partial';
+        return 'none';
+
+      case 'parametric_design':
+        if (hasTerm(strengths, '参数化') || hasTerm(strengths, '约束求解') || hasTerm(strengths, 'constraint') || hasTerm(strengths, 'parametric') || hasTerm(name, 'featurescript') || hasTerm(name, 'mworks') || hasTerm(name, 'generativecomponents') || hasTerm(name, 'ladybug') || hasTerm(name, 'dynamo') || hasTerm(name, 'grasshopper')) return 'full';
+        if (category === 'CAD' && type !== '2d_cad') return 'full';
+        if (category === 'BIM') return 'full';
+        if (type === 'cad_automation') return 'full';
+        return 'none';
+
+      case 'visual_programming':
+        if (type === 'cad_automation' || hasTerm(strengths, '视觉编程') || hasTerm(strengths, '节点') || hasTerm(strengths, 'visual programming') || hasTerm(strengths, 'node-based') || hasTerm(name, 'nodes') || hasTerm(name, 'ladybug') || hasTerm(name, 'dynamo') || hasTerm(name, 'grasshopper') || hasTerm(name, 'generativecomponents')) return 'full';
+        return 'none';
+
+      case 'cad_repair_interop':
+        if (category === 'CAD互操作' || type === 'cad_interop' || hasTerm(strengths, '互操作') || hasTerm(strengths, '修复') || hasTerm(strengths, '转换') || hasTerm(strengths, 'interop') || hasTerm(strengths, 'translation') || hasTerm(strengths, 'healing') || hasTerm(strengths, 'repair') || hasTerm(name, 'cadfix') || hasTerm(name, 'elysium') || hasTerm(name, 'exchanger')) return 'full';
+        return 'none';
+
+      case 'fea_structure':
+        if (category === 'CAE' && (hasTerm(strengths, '结构') || hasTerm(strengths, '力学') || hasTerm(strengths, '有限元') || hasTerm(strengths, 'fea') || hasTerm(name, 'mechanical') || hasTerm(name, 'structure') || hasTerm(name, 'optistruct') || hasTerm(name, 'ansys') || hasTerm(name, 'simscale') || hasTerm(name, 'structure') || hasTerm(name, 'rfem') || hasTerm(name, 'civil') || hasTerm(name, '3d3s') || hasTerm(name, 'perform3d'))) return 'full';
+        if (category === 'CAE' && !hasTerm(strengths, '流体') && !hasTerm(strengths, 'cfd') && !hasTerm(strengths, '电磁')) return 'partial';
+        return 'none';
+
+      case 'cfd_fluid':
+        if (category === 'CAE' && (hasTerm(strengths, '流体') || hasTerm(strengths, 'cfd') || hasTerm(strengths, 'fluent') || hasTerm(name, 'star-ccm') || hasTerm(name, 'abyss') || hasTerm(name, 'cfd') || hasTerm(name, 'openfast'))) return 'full';
+        return 'none';
+
+      case 'electromagnetics':
+        if ((category === 'CAE' || category === 'EDA') && (hasTerm(strengths, '电磁') || hasTerm(strengths, 'hfss') || hasTerm(strengths, '信号完整性') || hasTerm(strengths, 'si') || hasTerm(name, 'electromagnetic') || hasTerm(name, 'virtuoso') || hasTerm(name, 'alextool') || hasTerm(name, 'empyrean'))) return 'full';
+        return 'none';
+
+      case 'multi_physics':
+        if (category === 'CAE' && (hasTerm(strengths, '多物理') || hasTerm(strengths, '多场') || hasTerm(strengths, 'comsol') || hasTerm(name, 'comsol') || hasTerm(name, 'pera-sim'))) return 'full';
+        if (category === 'CAE') return 'partial';
+        return 'none';
+
+      case 'material_injection':
+        if (hasTerm(strengths, '注塑') || hasTerm(strengths, '模流') || hasTerm(strengths, '材料') || hasTerm(strengths, 'injection') || hasTerm(strengths, 'moldflow') || hasTerm(strengths, 'materials') || hasTerm(strengths, 'polymer') || hasTerm(name, 'biovia') || hasTerm(name, 'mold') || hasTerm(name, 'moldflow') || hasTerm(name, 'mold3d')) return 'full';
+        return 'none';
+
+      case 'code_compliance':
+        if (hasTerm(strengths, '规范') || hasTerm(strengths, '验算') || hasTerm(strengths, '出图') || hasTerm(strengths, '合规') || hasTerm(strengths, '国标') || hasTerm(name, 'pkpm') || hasTerm(name, 'yjk') || hasTerm(name, 'doctor-bridge')) return 'full';
+        return 'none';
+
+      case 'opt_light_acoustics':
+        if (hasTerm(strengths, '光学') || hasTerm(strengths, '声学') || hasTerm(strengths, '能耗') || hasTerm(strengths, '日照') || hasTerm(strengths, '光照') || hasTerm(strengths, 'acoustic') || hasTerm(strengths, 'optics') || hasTerm(strengths, 'optical') || hasTerm(name, 'zemax') || hasTerm(name, 'code v') || hasTerm(name, 'ladybug') || hasTerm(name, 'honeybee') || hasTerm(name, 'dragonfly')) return 'full';
+        return 'none';
+
+      case 'analog_ic_design':
+        if (hasTerm(strengths, '模拟ic') || hasTerm(strengths, '模拟设计') || hasTerm(strengths, '模拟芯片') || hasTerm(name, 'virtuoso') || hasTerm(name, 'alextool') || hasTerm(strengths, 'spice') || hasTerm(strengths, 'device modeling') || hasTerm(strengths, '器件建模')) return 'full';
+        if (category === 'EDA' && (hasTerm(strengths, '模拟') || hasTerm(strengths, 'analog'))) return 'full';
+        return 'none';
+
+      case 'digital_ic_synthesis':
+        if (hasTerm(strengths, '数字综合') || hasTerm(strengths, '数字后端') || hasTerm(strengths, '布局布线') || hasTerm(name, 'innovus') || hasTerm(strengths, 'synthesis') || hasTerm(strengths, 'place and route') || hasTerm(name, 'design compiler')) return 'full';
+        if (category === 'EDA' && (hasTerm(strengths, '数字') || hasTerm(strengths, 'digital'))) return 'full';
+        return 'none';
+
+      case 'formal_verification':
+        if (hasTerm(strengths, '形式验证') || hasTerm(strengths, '等价性') || hasTerm(strengths, '验证') || hasTerm(strengths, 'formal') || hasTerm(strengths, 'equivalence') || hasTerm(strengths, 'verification') || hasTerm(name, 'smit eda') || hasTerm(name, 'orca') || hasTerm(name, 'guowei') || hasTerm(name, 'haps')) return 'full';
+        if (category === 'EDA' && hasTerm(strengths, '验证')) return 'full';
+        return 'none';
+
+      case 'physical_prototyping':
+        if (hasTerm(strengths, '原型验证') || hasTerm(strengths, '硬件仿真') || hasTerm(name, 'haps') || hasTerm(name, 'protium') || hasTerm(name, 'zeebu') || hasTerm(strengths, 'prototyping') || hasTerm(strengths, 'emulation')) return 'full';
+        return 'none';
+
+      case 'tcad_device_sim':
+        if (hasTerm(name, 'tcad') || hasTerm(strengths, 'tcad') || hasTerm(strengths, '工艺器件') || hasTerm(name, 'sentaurus') || hasTerm(name, 'silvaco') || hasTerm(strengths, 'device simulation')) return 'full';
+        return 'none';
+
+      case 'fab_automation_eap':
+        if (hasTerm(name, 'eap') || hasTerm(strengths, 'eap') || hasTerm(strengths, '设备自动化') || hasTerm(strengths, 'sec/gem') || hasTerm(name, 'applied e3') || hasTerm(name, 'semitech') || hasTerm(name, 'plantu')) return 'full';
+        return 'none';
+
+      case 'yield_yms':
+        if (hasTerm(strengths, '良率') || hasTerm(name, 'yms') || hasTerm(strengths, 'wat') || hasTerm(name, 'exensio') || hasTerm(strengths, 'yield') || hasTerm(name, 'semitron')) return 'full';
+        return 'none';
+
+      case 'bom_mgmt':
+        if (category === 'PLM' || category === 'ERP') return 'full';
+        if (category === 'CAD' || category === 'MES') return 'partial';
+        return 'none';
+
+      case 'lifecycle_mgmt':
+        if (category === 'PLM') return 'full';
+        if (category === 'ERP' || category === 'EAM') return 'partial';
+        return 'none';
+
+      case 'requirements_trace':
+        if (hasTerm(strengths, '需求') || hasTerm(strengths, '合规') || hasTerm(strengths, '追溯') || hasTerm(strengths, 'lims') || hasTerm(name, 'polarion') || hasTerm(name, 'biovia') || hasTerm(strengths, 'requirements') || hasTerm(strengths, 'traceability') || hasTerm(strengths, 'compliance')) return 'full';
+        return 'none';
+
+      case 'mbse_sys':
+        if (category === 'MBSE' || hasTerm(strengths, 'mbse') || hasTerm(strengths, '系统建模') || hasTerm(name, 'mworks') || hasTerm(name, 'simulink')) return 'full';
+        return 'none';
+
+      case 'finance_ledger':
+        if (category === 'ERP' && (hasTerm(strengths, '财务') || hasTerm(strengths, '账') || hasTerm(strengths, '资') || hasTerm(strengths, 'sap') || hasTerm(strengths, 'oracle') || hasTerm(strengths, 'yonyou') || hasTerm(strengths, 'kingdee') || hasTerm(name, 'erp') || hasTerm(name, 'bip') || hasTerm(name, 'cosmic') || hasTerm(name, 'netsuite'))) return 'full';
+        return 'none';
+
+      case 'cam_milling_cnc':
+        if (category === 'CAM' || hasTerm(strengths, '数控') || hasTerm(strengths, '加工') || hasTerm(strengths, '铣') || hasTerm(strengths, '车削') || hasTerm(strengths, '雕刻') || hasTerm(strengths, 'cam') || hasTerm(strengths, 'cnc') || hasTerm(strengths, 'milling') || hasTerm(name, 'powermill') || hasTerm(name, 'mastercam') || hasTerm(name, 'surfmill') || hasTerm(name, 'cypcut') || hasTerm(name, 'weihong')) return 'full';
+        return 'none';
+
+      case 'scheduling_ops':
+        if (category === 'MES' && (hasTerm(strengths, '排程') || hasTerm(strengths, 'aps') || hasTerm(strengths, 'scheduling'))) return 'full';
+        if (category === 'MES') return 'partial';
+        return 'none';
+
+      case 'process_control':
+        if (category === 'DCS' || category === 'SCADA') return 'full';
+        if (category === 'MES') return 'partial';
+        return 'none';
+
+      case 'data_acquisition':
+        if (category === 'SCADA' || category === '工业互联网' || category === 'MES' || type === 'iiot_platform' || hasTerm(strengths, '数据采集') || hasTerm(strengths, '采集') || hasTerm(strengths, 'iot') || hasTerm(strengths, 'mqtt')) return 'full';
+        return 'none';
+
+      case 'bim_clash':
+        if (category === 'BIM' && (tags.includes('clash_detection') || hasTerm(strengths, '碰撞') || hasTerm(strengths, '协同') || hasTerm(strengths, '联邦') || hasTerm(name, 'navisworks') || hasTerm(name, 'bimface'))) return 'full';
+        if (category === 'BIM') return 'partial';
+        return 'none';
+
+      case 'gis_spatial':
+        if (category === 'GIS' || hasTerm(strengths, '地理') || hasTerm(strengths, '空间') || hasTerm(strengths, '地图') || hasTerm(strengths, 'gis') || hasTerm(name, 'arcgis') || hasTerm(name, 'supermap')) return 'full';
+        return 'none';
+
+      case 'slicing_algorithm':
+        if (category === '切片软件' || tags.includes('am_slicing') || hasTerm(strengths, '切片') || hasTerm(strengths, 'slicing') || hasTerm(strengths, 'slicer') || hasTerm(name, 'cura') || hasTerm(name, 'bambu') || hasTerm(name, 'orca-slicer') || hasTerm(name, 'prusaslicer') || hasTerm(name, 'chitubox') || hasTerm(name, 'flashprint')) return 'full';
+        return 'none';
+
+      case 'am_layout':
+        if (category === '切片软件' && (hasTerm(strengths, '排版') || hasTerm(strengths, '排产') || hasTerm(strengths, '修复') || hasTerm(strengths, '支撑') || hasTerm(name, 'netfabb') || hasTerm(name, 'magics') || hasTerm(name, 'hps') || hasTerm(name, 'nesting'))) return 'full';
+        return 'none';
+
+      case 'cloud_native':
+        if (tags.includes('cloud_native') || hasTerm(strengths, '云原生') || hasTerm(strengths, 'saas') || hasTerm(strengths, '浏览器') || hasTerm(strengths, 'web') || hasTerm(strengths, 'cloud') || hasTerm(name, 'crowncad') || hasTerm(name, 'onshape')) return 'full';
+        if (hasTerm(limitations, '云') || hasTerm(limitations, 'saas化') || hasTerm(limitations, 'cloud')) return 'partial';
+        return 'none';
+
+      case 'collaboration':
+        if (tags.includes('federated_bim') || hasTerm(strengths, '协同') || hasTerm(strengths, '多专业') || hasTerm(strengths, 'cooperation') || hasTerm(strengths, 'collaboration') || hasTerm(strengths, '共享') || hasTerm(strengths, '多用户') || hasTerm(name, 'bimface') || hasTerm(name, 'sview')) return 'full';
+        return 'none';
+
+      case 'ext_api':
+        if (tags.includes('cad_scripting') || hasTerm(strengths, 'api') || hasTerm(strengths, '二次开发') || hasTerm(strengths, '脚本') || hasTerm(strengths, 'sdk') || hasTerm(strengths, 'featurescript') || hasTerm(name, 'featurescript') || hasTerm(name, 'bimface') || hasTerm(strengths, '工具链') || hasTerm(strengths, '编译') || hasTerm(strengths, '开发工具') || hasTerm(strengths, 'toolchain') || hasTerm(strengths, 'compiler')) return 'full';
+        if (hasTerm(limitations, 'api') || hasTerm(limitations, '开发') || hasTerm(limitations, '生态')) return 'partial';
+        return 'none';
+
+      case 'xinchuang_compat':
+        if (tags.includes('xinchuang') || hasTerm(strengths, '信创') || hasTerm(strengths, '适配') || hasTerm(strengths, '国产化') || hasTerm(strengths, '替代') || hasTerm(strengths, '自主')) return 'full';
+        return 'none';
+
+      default:
+        return 'none';
+    }
+  }
+
+  function applyFilters() {
+    let list = CAT().allProducts || [];
+    if (state.filterOrigin) list = list.filter((p) => p.origin === state.filterOrigin);
+    if (state.filterCategory) list = list.filter((p) => p.category_l2 === state.filterCategory);
+    if (state.search) {
+      const q = state.search.toLowerCase();
+      list = list.filter((p) => {
+        const v = CAT().getVendor(p.vendor_id);
+        return (p.name_zh + p.name_en + p.id + (v ? v.name_zh + v.name_en : '')).toLowerCase().includes(q);
+      });
+    }
+    return list;
+  }
+
+  function renderTable() {
+    const thead = document.querySelector('.matrix-table thead');
+    const tbody = document.getElementById('matrix-tbody');
+    if (!thead || !tbody) return;
+
+    const list = applyFilters();
+    const isEn = I18N().isEn && I18N().isEn();
+
+    // 1. Render headers
+    const capHeaders = CAPABILITIES.map((cap) => {
+      const label = isEn ? cap.en : cap.zh;
+      return `<th class="px-2 py-3 text-center min-w-[75px] max-w-[100px] border-b border-slate-200 select-none">${label}</th>`;
+    }).join('');
+
+    thead.innerHTML = `
+      <tr>
+        <th class="px-3 py-3 text-left w-[160px] min-w-[160px] border-b border-slate-200">${isEn ? 'Product' : '产品'}</th>
+        <th class="px-2 py-3 text-center w-[80px] min-w-[80px] border-b border-slate-200">${isEn ? 'Category' : '品类'}</th>
+        ${capHeaders}
+      </tr>
+    `;
+
+    // 2. Render rows
+    tbody.innerHTML = '';
+    if (!list.length) {
+      tbody.innerHTML = `<tr><td colspan="${CAPABILITIES.length + 2}" class="text-center py-8 text-slate-500">${isEn ? 'No products match filters' : '没有匹配的产品'}</td></tr>`;
+      return;
+    }
+
+    list.forEach((p) => {
+      const tr = document.createElement('tr');
+      tr.className = 'border-b border-slate-100 hover:bg-slate-50/80';
+      
+      const prodName = isEn ? p.name_en : p.name_zh;
+      const catLabel = p.category_l2;
+
+      let cells = `
+        <td class="px-3 py-2 text-left font-medium text-slate-900 border-r border-slate-100" title="${prodName}">
+          <a href="#product=${p.id}" class="text-slate-900 hover:text-emerald-700 hover:underline transition-colors">${prodName}</a>
+        </td>
+        <td class="px-2 py-2 text-center text-slate-500 border-r border-slate-100">${catLabel}</td>
+      `;
+
+      CAPABILITIES.forEach((cap) => {
+        const score = evaluateCapability(p, cap.key);
+        let cellContent = '';
+        if (score === 'full') {
+          cellContent = `<span class="matrix-check text-emerald-600 font-bold text-sm" title="${isEn ? 'Supported' : '支持'}">✔</span>`;
+        } else if (score === 'partial') {
+          cellContent = `<span class="matrix-partial text-amber-500 font-medium text-base" style="line-height: 1" title="${isEn ? 'Partial/Developing' : '半支持/正在发展'}">◌</span>`;
+        } else {
+          cellContent = `<span class="matrix-none text-slate-200 select-none">—</span>`;
+        }
+        cells += `<td class="px-2 py-2 text-center border-r border-slate-100">${cellContent}</td>`;
+      });
+
+      tr.innerHTML = cells;
+      tbody.appendChild(tr);
+    });
+  }
+
+  function populateFilters() {
+    const catSel = document.getElementById('matrix-filter-category');
+    if (!catSel) return;
+    const l2s = new Set((CAT().allProducts || []).map((p) => p.category_l2));
+    const isEn = I18N().isEn && I18N().isEn();
+    catSel.innerHTML = `<option value="">${isEn ? 'All Categories' : '全部品类'}</option>`;
+    [...l2s].sort().forEach((l2) => {
+      const opt = document.createElement('option');
+      opt.value = l2;
+      opt.textContent = l2;
+      catSel.appendChild(opt);
+    });
+  }
+
+  function bindEvents() {
+    document.getElementById('matrix-filter-origin')?.addEventListener('change', (e) => {
+      state.filterOrigin = e.target.value;
+      renderTable();
+    });
+    document.getElementById('matrix-filter-category')?.addEventListener('change', (e) => {
+      state.filterCategory = e.target.value;
+      renderTable();
+    });
+    document.getElementById('matrix-search')?.addEventListener('input', (e) => {
+      state.search = e.target.value;
+      renderTable();
+    });
+  }
+
+  function init() {
+    populateFilters();
+    bindEvents();
+    renderTable();
+  }
+
+  window.INDUSTRIAL_MATRIX = {
+    init,
+    render: renderTable,
+    evaluateCapability,
+    CAPABILITIES,
+  };
+})();
