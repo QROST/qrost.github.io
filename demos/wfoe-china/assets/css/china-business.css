@@ -307,12 +307,13 @@ details.wfoe-details>summary::-webkit-details-marker {
     display: none;
 }
 
-details.wfoe-details .step-flow-more {
+/* Chevron via CSS only — avoids Tailwind-preflight SVG blow-up in flex/grid */
+details.wfoe-details>summary.step-flow-more {
     display: inline-flex;
     align-items: center;
-    gap: 0.2rem;
+    gap: 0.3rem;
     margin-top: 0.25rem;
-    width: auto;
+    width: fit-content;
     max-width: 100%;
     padding: 0.125rem 0.375rem 0.125rem 0.25rem;
     border-radius: 0.25rem;
@@ -325,24 +326,36 @@ details.wfoe-details .step-flow-more {
     -webkit-tap-highlight-color: transparent;
 }
 
-details.wfoe-details .step-flow-more:hover {
+details.wfoe-details>summary.step-flow-more::before {
+    content: "";
+    display: inline-block;
+    width: 0.35rem;
+    height: 0.35rem;
+    flex: 0 0 0.35rem;
+    border-right: 1.5px solid currentColor;
+    border-bottom: 1.5px solid currentColor;
+    transform: rotate(45deg);
+    margin-top: -0.1rem;
+    transition: transform 0.2s ease;
+}
+
+details.wfoe-details[open]>summary.step-flow-more::before {
+    transform: rotate(-135deg);
+    margin-top: 0.1rem;
+}
+
+details.wfoe-details>summary.step-flow-more:hover {
     color: #059669;
     background: #ecfdf5;
 }
 
+details.wfoe-details>summary.step-flow-more:focus-visible {
+    outline: 2px solid #10b981;
+    outline-offset: 2px;
+}
+
 details.wfoe-details .step-flow-more-label {
     line-height: 1.2;
-}
-
-details.wfoe-details .wfoe-disclosure-icon {
-    width: 0.75rem;
-    height: 0.75rem;
-    flex: 0 0 0.75rem;
-    transition: transform 0.2s ease;
-}
-
-details.wfoe-details[open] .wfoe-disclosure-icon {
-    transform: rotate(180deg);
 }
 
 /* Regional hub snapshots (under each hubs h3) */
