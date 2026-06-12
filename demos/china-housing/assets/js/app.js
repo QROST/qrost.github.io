@@ -642,11 +642,11 @@
     quizFromHash();
     [['qz-budget', 'budget'], ['qz-winter', 'winter'], ['qz-summer', 'summer'], ['qz-hazard', 'hazard']].forEach(([id, key]) => {
       const sel = document.getElementById(id);
-      if (sel) sel.addEventListener('change', () => { qz[key] = +sel.value || 0; quizHash(); renderQuiz(); });
+      if (sel) sel.addEventListener('change', () => { qz[key] = +sel.value || 0; quizHash(); renderQuiz(); saveUiPrefs(); });
     });
     document.querySelectorAll('[data-qz]').forEach((b) => b.addEventListener('click', () => {
       qz[b.dataset.qz] = !qz[b.dataset.qz];
-      quizHash(); styleQzChips(); renderQuiz();
+      quizHash(); styleQzChips(); renderQuiz(); saveUiPrefs();
     }));
     const rent = document.getElementById('qz-rent');
     if (rent) {
@@ -1696,12 +1696,12 @@
   function updateProvFilter() {
     const sel = document.getElementById('prov-filter');
     if (!sel) return;
-    const cur = sel.value;
+    const want = tstate.prov || sel.value;
     const vd = viewData();
     const provs = [...new Set(vd.map((d) => d.prov))].sort((a, b) => a.localeCompare(b, 'zh'));
     sel.innerHTML = `<option value="">${t('provFilterAll')} (${vd.length})</option>` +
       provs.map((p) => `<option value="${p}">${trProv(p)} (${vd.filter((d) => d.prov === p).length})</option>`).join('');
-    if (cur && provs.includes(cur)) sel.value = cur;
+    if (want && provs.includes(want)) { sel.value = want; tstate.prov = want; }
     else { sel.value = ''; tstate.prov = ''; }
   }
 
@@ -1745,11 +1745,12 @@
   function wireTable() {
     updateProvFilter();
     document.getElementById('prov-filter').addEventListener('change', (e) => {
-      tstate.prov = e.target.value; renderTable();
+      tstate.prov = e.target.value; renderTable(); saveUiPrefs();
     });
 
     const q = document.getElementById('table-search');
-    q.addEventListener('input', () => { tstate.q = q.value.trim().toLowerCase(); renderTable(); });
+    if (tstate.q) q.value = tstate.q;
+    q.addEventListener('input', () => { tstate.q = q.value.trim().toLowerCase(); renderTable(); saveUiPrefs(); });
 
     document.getElementById('table-head').addEventListener('click', (e) => {
       const th = e.target.closest('[data-col]');
@@ -1758,20 +1759,20 @@
       const col = COLS.find((c) => c.key === key);
       if (tstate.sortKey === key) tstate.sortDir *= -1;
       else { tstate.sortKey = key; tstate.sortDir = (col && (col.str || key === 'id')) ? 1 : -1; }
-      renderTable();
+      renderTable(); saveUiPrefs();
     });
 
     document.querySelectorAll('[data-group]').forEach((b) => b.addEventListener('click', () => {
       const g = b.dataset.group;
       if (tstate.groups.has(g)) tstate.groups.delete(g); else tstate.groups.add(g);
-      styleGroupChips(); renderTable();
+      styleGroupChips(); renderTable(); saveUiPrefs();
     }));
     styleGroupChips();
 
     document.querySelectorAll('[data-filter]').forEach((b) => b.addEventListener('click', () => {
       const k = b.dataset.filter;
       if (tstate.chips.has(k)) tstate.chips.delete(k); else tstate.chips.add(k);
-      styleFilterChips(); renderTable();
+      styleFilterChips(); renderTable(); saveUiPrefs();
     }));
     styleFilterChips();
 
@@ -1786,7 +1787,7 @@
       const [k, dir] = String(sortSel.value).split(':');
       if (!COLS.some((c) => c.key === k)) return;
       tstate.sortKey = k; tstate.sortDir = +dir || -1;
-      renderTable();
+      renderTable(); saveUiPrefs();
     });
     const cardsHost = document.getElementById('table-cards');
     if (cardsHost) cardsHost.addEventListener('click', (e) => {
@@ -2209,6 +2210,7 @@
     else if (cmp.size < 3) cmp.add(id);
     updateCmpFab(); updateCmpModalBtn();
     safeRun('renderTable', renderTable);   // refresh card +对比 button states
+    saveUiPrefs();
   }
   function cmpDeltas(items) {
     if (items.length < 2) return '';
@@ -2285,6 +2287,90 @@
         window.history.replaceState(null, '', window.location.pathname + window.location.search);
       }
     } catch (e) { /* sandbox */ }
+  }
+
+  // ---- UI preferences (localStorage housing-ui-prefs) ----------------------
+  // lang / theme / quiz-rent stay on housing-lang, housing-theme, housing-rent.
+  // URL hashes #q= #l= #c= override stored quiz / compare on load.
+  const UI_PREFS_KEY = 'housing-ui-prefs';
+  const UI_GROUP_KEYS = new Set(['live', 'infra', 'risk', 'invest']);
+  const QZ_BUDGETS = new Set([0, 5, 10, 15, 20]);
+
+  function saveUiPrefs() {
+    try {
+      localStorage.setItem(UI_PREFS_KEY, JSON.stringify({
+        tier1On: !!tier1On,
+        sortKey: tstate.sortKey,
+        sortDir: tstate.sortDir,
+        prov: tstate.prov || '',
+        q: tstate.q || '',
+        groups: [...tstate.groups],
+        chips: [...tstate.chips],
+        rankKey,
+        provMetric,
+        dimKey,
+        baseKey,
+        cmp: [...cmp],
+        quiz: {
+          budget: qz.budget, winter: qz.winter, summer: qz.summer, hazard: qz.hazard,
+          heat: !!qz.heat, coast: !!qz.coast, alt: !!qz.alt, rail: !!qz.rail,
+        },
+      }));
+    } catch (e) { /* private mode / quota */ }
+  }
+
+  function loadUiPrefs() {
+    try {
+      const raw = localStorage.getItem(UI_PREFS_KEY);
+      if (!raw) return;
+      const p = JSON.parse(raw);
+      if (!p || typeof p !== 'object') return;
+      const hash = (window.location && window.location.hash) || '';
+
+      if (typeof p.tier1On === 'boolean') tier1On = p.tier1On;
+
+      if (typeof p.sortKey === 'string' && COLS.some((c) => c.key === p.sortKey)) {
+        tstate.sortKey = p.sortKey;
+      }
+      if (p.sortDir === 1 || p.sortDir === -1) tstate.sortDir = p.sortDir;
+      if (typeof p.prov === 'string') tstate.prov = p.prov;
+      if (typeof p.q === 'string') tstate.q = p.q.trim().toLowerCase().slice(0, 200);
+
+      if (Array.isArray(p.groups)) {
+        const gs = p.groups.filter((k) => UI_GROUP_KEYS.has(k));
+        if (gs.length) tstate.groups = new Set(gs);
+      }
+      if (Array.isArray(p.chips)) {
+        tstate.chips = new Set(p.chips.filter((k) => FILTERS[k]));
+      }
+
+      if (typeof p.rankKey === 'string' && RANK_METRICS[p.rankKey]) rankKey = p.rankKey;
+      if (typeof p.provMetric === 'string' && PROV_METRICS[p.provMetric]) provMetric = p.provMetric;
+      if (typeof p.dimKey === 'string' && MAP_DIMS[p.dimKey]) dimKey = p.dimKey;
+      if (typeof p.baseKey === 'string' && BASE_LABEL_KEYS[p.baseKey]) baseKey = p.baseKey;
+
+      if (!/^#c=/.test(hash) && Array.isArray(p.cmp)) {
+        cmp.clear();
+        p.cmp.filter((id) => Number.isFinite(+id)).slice(0, 3).forEach((id) => {
+          const d = DATA.find((x) => x.id === +id);
+          if (d && d.enr) cmp.add(+id);
+        });
+      }
+
+      if (!/^#q=/.test(hash) && p.quiz && typeof p.quiz === 'object') {
+        const u = p.quiz;
+        if (QZ_BUDGETS.has(+u.budget)) qz.budget = +u.budget;
+        [0, 1, 2].forEach((n) => {
+          if (u.winter === n) qz.winter = n;
+          if (u.summer === n) qz.summer = n;
+          if (u.hazard === n) qz.hazard = n;
+        });
+        if (typeof u.heat === 'boolean') qz.heat = u.heat;
+        if (typeof u.coast === 'boolean') qz.coast = u.coast;
+        if (typeof u.alt === 'boolean') qz.alt = u.alt;
+        if (typeof u.rail === 'boolean') qz.rail = u.rail;
+      }
+    } catch (e) { /* corrupt JSON */ }
   }
 
   // ---- share card: 750×1000 PNG rendered offscreen, downloaded on click ----
@@ -2488,6 +2574,7 @@
   }
 
   function init() {
+    loadUiPrefs();
     chartBase();
     if (I18N().applyStaticI18n) I18N().applyStaticI18n();
     if (I18N().fetchPageBuiltAt) I18N().fetchPageBuiltAt();
@@ -2500,13 +2587,13 @@
     safeRun('renderQuiz', renderQuiz);
 
     document.querySelectorAll('[data-rank]').forEach((b) =>
-      b.addEventListener('click', () => { rankKey = b.dataset.rank; safeRun('renderRankings', renderRankings); }));
+      b.addEventListener('click', () => { rankKey = b.dataset.rank; safeRun('renderRankings', renderRankings); saveUiPrefs(); }));
     document.querySelectorAll('[data-prov]').forEach((b) =>
-      b.addEventListener('click', () => { provMetric = b.dataset.prov; safeRun('renderProvinceChart', renderProvinceChart); }));
+      b.addEventListener('click', () => { provMetric = b.dataset.prov; safeRun('renderProvinceChart', renderProvinceChart); saveUiPrefs(); }));
     document.querySelectorAll('[data-dim]').forEach((b) =>
-      b.addEventListener('click', () => { dimKey = b.dataset.dim; safeRun('renderMap', renderMap); dimTabs(); }));
+      b.addEventListener('click', () => { dimKey = b.dataset.dim; safeRun('renderMap', renderMap); dimTabs(); saveUiPrefs(); }));
     document.querySelectorAll('[data-base]').forEach((b) =>
-      b.addEventListener('click', () => { baseKey = b.dataset.base; safeRun('renderMap', renderMap); baseTabs(); }));
+      b.addEventListener('click', () => { baseKey = b.dataset.base; safeRun('renderMap', renderMap); baseTabs(); saveUiPrefs(); }));
 
     safeRun('renderKPIs', renderKPIs);
     safeRun('renderScatter', renderScatter);
@@ -2539,6 +2626,7 @@
       tier1Toggle.addEventListener('change', () => {
         tier1On = tier1Toggle.checked;
         refreshViews();
+        saveUiPrefs();
       });
     }
 
@@ -2556,7 +2644,7 @@
     if (cmpClose) cmpClose.addEventListener('click', closeCmp);
     if (cmpOverlay) cmpOverlay.addEventListener('click', closeCmp);
     if (cmpPanel) cmpPanel.addEventListener('click', (e) => e.stopPropagation());
-    if (cmpClear) cmpClear.addEventListener('click', () => { cmp.clear(); updateCmpFab(); updateCmpModalBtn(); closeCmp(); safeRun('renderTable', renderTable); });
+    if (cmpClear) cmpClear.addEventListener('click', () => { cmp.clear(); updateCmpFab(); updateCmpModalBtn(); closeCmp(); safeRun('renderTable', renderTable); saveUiPrefs(); });
     const cmpBody = document.getElementById('cmp-body');
     if (cmpBody) cmpBody.addEventListener('click', (e) => {
       const row = e.target.closest('[data-open]');
@@ -2585,6 +2673,7 @@
         if (cmpItems().length >= 2) setTimeout(() => safeRun('deepLinkCmp', openCmp), 120);
       }
     } catch (e) { /* sandbox without location */ }
+    saveUiPrefs();
   }
 
   // smoke-test hooks
