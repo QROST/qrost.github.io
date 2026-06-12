@@ -3,7 +3,7 @@
   "products": [
     {
       "id": "bambu-studio",
-      "name_zh": "拓竹 Bambu Studio",
+      "name_zh": "Bambu Studio",
       "name_en": "Bambu Studio",
       "vendor_id": "bambu-lab",
       "category_l1": "生产制造",
@@ -52,7 +52,7 @@
     },
     {
       "id": "creality-print",
-      "name_zh": "创想三维 Creality Print",
+      "name_zh": "Creality Print",
       "name_en": "Creality Print",
       "vendor_id": "creality",
       "category_l1": "生产制造",
@@ -101,7 +101,7 @@
     },
     {
       "id": "flashprint",
-      "name_zh": "闪铸 FlashPrint",
+      "name_zh": "FlashPrint",
       "name_en": "FlashPrint",
       "vendor_id": "flashforge",
       "category_l1": "生产制造",
@@ -247,8 +247,8 @@
     },
     {
       "id": "anycubic-photon-workshop",
-      "name_zh": "纵维立方 Photon Workshop",
-      "name_en": "Anycubic Photon Workshop",
+      "name_zh": "Photon Workshop",
+      "name_en": "Photon Workshop",
       "vendor_id": "anycubic",
       "category_l1": "生产制造",
       "category_l2": "切片软件",
@@ -296,8 +296,8 @@
     },
     {
       "id": "heygears-hps",
-      "name_zh": "黑格 HeyGears HPS",
-      "name_en": "HeyGears HPS Slicing",
+      "name_zh": "HPS 切片",
+      "name_en": "HPS Slicing",
       "vendor_id": "heygears",
       "category_l1": "生产制造",
       "category_l2": "切片软件",
@@ -740,8 +740,8 @@
     },
     {
       "id": "autodesk-netfabb",
-      "name_zh": "Autodesk Netfabb",
-      "name_en": "Autodesk Netfabb",
+      "name_zh": "Netfabb",
+      "name_en": "Netfabb",
       "vendor_id": "autodesk",
       "category_l1": "生产制造",
       "category_l2": "切片软件",

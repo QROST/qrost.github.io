@@ -126,9 +126,6 @@
       if (key === 'name') {
         va = I18N().productName(a);
         vb = I18N().productName(b);
-      } else if (key === 'confidence') {
-        va = a.confidence;
-        vb = b.confidence;
       } else {
         va = a[key] || '';
         vb = b[key] || '';
@@ -191,16 +188,13 @@
       const v = CAT().getVendor(p.vendor_id);
       const tr = document.createElement('tr');
       tr.dataset.productId = p.id;
-      const confBadge = p.confidence < 0.5
-        ? `<span class="text-xs px-1.5 py-0.5 rounded badge-confidence-low ml-1">${t('verifyPending')}</span>` : '';
-      
       const inCompare = currentCompareSlots.includes(p.id);
       const compareBtnText = inCompare ? t('removeCompare') : t('addCompare');
       const compareBtnClass = inCompare ? 'compare-add-btn added' : 'compare-add-btn';
 
       tr.innerHTML = `
         <td class="px-3 py-2.5 border-b border-slate-100">
-          <span class="font-medium text-slate-900">${I18N().productName(p)}</span>${confBadge}
+          <span class="font-medium text-slate-900">${I18N().productName(p)}</span>
         </td>
         <td class="px-3 py-2.5 border-b border-slate-100 text-slate-600">${I18N().vendorName(v) || p.vendor_id}</td>
         <td class="px-3 py-2.5 border-b border-slate-100">
@@ -211,7 +205,6 @@
         </td>
         <td class="px-3 py-2.5 border-b border-slate-100 text-slate-600">${I18N().maturityLabel(p.maturity)}</td>
         <td class="px-3 py-2.5 border-b border-slate-100 text-slate-600">${I18N().locLabel(p.localization_depth)}</td>
-        <td class="px-3 py-2.5 border-b border-slate-100 text-slate-600">${(p.confidence * 100).toFixed(0)}%</td>
         <td class="px-3 py-2.5 border-b border-slate-100 no-print">
           <button type="button" class="text-xs ${compareBtnClass}" data-id="${p.id}">${compareBtnText}</button>
         </td>`;
@@ -240,10 +233,6 @@
     };
     const e = map[level] || map.media;
     return `<span class="text-xs px-2 py-0.5 rounded ${e.cls}">${I18N().isEn() ? e.en : e.zh}</span>`;
-  }
-
-  function formatConfidence(c) {
-    return `${Math.round((c || 0) * 100)}%`;
   }
 
   function getMilestonesForProduct(productId) {
@@ -330,7 +319,6 @@
           </details>
           <footer class="mt-2 flex flex-wrap items-center gap-3 text-xs text-slate-500 pt-2">
             ${evidenceBadge(m.evidence_level)}
-            <span>${t('milestoneConfidence')}: ${formatConfidence(m.confidence)}</span>
             <span class="milestone-sources">${sources}</span>
           </footer>
         </div>
@@ -585,7 +573,6 @@
         <div><span class="text-slate-500">${t('colKernel')}</span>: ${p.kernel_id
     ? `<button type="button" class="text-link underline kernel-link-btn" data-kernel-id="${p.kernel_id}">${CAT().productKernelLabel(p)}</button>`
     : (p.kernel || '—')}</div>
-        <div><span class="text-slate-500">${t('colConfidence')}</span>: ${(p.confidence * 100).toFixed(0)}%</div>
       </div>
       <h4 class="font-medium mt-4 text-slate-800">${t('strengths')}</h4>
       <ul class="list-disc pl-5 text-sm text-slate-600">${strengths.map((s) => `<li>${s}</li>`).join('')}</ul>
@@ -752,8 +739,7 @@
       <h4 class="font-medium mt-3 text-slate-800">${t('kernelDomesticAlts')}</h4>
       <p class="text-sm text-slate-600">${alts}</p>
       <h4 class="font-medium mt-3 text-slate-800">${t('sources')}</h4>
-      <ul class="list-disc pl-5 text-sm">${srcs}</ul>
-      <p class="mt-3 text-xs text-slate-400">${t('colConfidence')}: ${(k.confidence * 100).toFixed(0)}%</p>`;
+      <ul class="list-disc pl-5 text-sm">${srcs}</ul>`;
     bodyEl.querySelectorAll('.product-link-btn').forEach((btn) => {
       btn.addEventListener('click', () => {
         closeKernelModal();

@@ -79,7 +79,6 @@
         const CAT = window.INDUSTRIAL_CATALOG;
         return CAT && CAT.productKernelLabel ? CAT.productKernelLabel(p) : (p.kernel || '');
       } },
-      { label: t('colConfidence'), fn: (p) => (p.confidence * 100).toFixed(0) + '%' },
       { label: t('strengths'), fn: (p) => I18N().listField(p, 'strengths_zh', 'strengths_en').join('；') },
       { label: t('limitations'), fn: (p) => I18N().listField(p, 'limitations_zh', 'limitations_en').join('；') },
       { label: t('industries'), fn: (p) => (p.industries || []).join(', ') },

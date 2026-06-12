@@ -62,11 +62,20 @@ def category_key(path: Path) -> str:
     return stem
 
 
+# Research JSON files that are metadata/summaries — never merge as product categories
+RESEARCH_SKIP_STEMS = frozenset({
+    "vendor-prefix-cleanup-summary",
+    "vendor-prefix-restore-summary",
+})
+
+
 def merge_research() -> dict[str, list[dict]]:
     buckets: dict[str, dict[str, dict]] = {}
     if not RESEARCH.exists():
         return {}
     for path in sorted(RESEARCH.glob("*.json")):
+        if path.stem in RESEARCH_SKIP_STEMS:
+            continue
         key = category_key(path)
         buckets.setdefault(key, {})
         for p in load_products(path):

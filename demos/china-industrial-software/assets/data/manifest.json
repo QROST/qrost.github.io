@@ -1,9 +1,9 @@
 {
-  "build_time": "2026-06-12T14:25:58Z",
-  "total_products": 246,
+  "build_time": "2026-06-12T16:19:15Z",
+  "total_products": 238,
   "total_kernels": 43,
   "category_counts": {
-    "bim-gis": 28,
+    "bim-gis": 20,
     "cad": 34,
     "cae": 30,
     "eda": 46,
@@ -15,12 +15,12 @@
     "slicers": 16
   },
   "category_l1_counts": {
-    "研发设计": 148,
+    "研发设计": 140,
     "生产制造": 85,
     "经营管理": 13
   },
   "category_l2_counts": {
-    "BIM": 22,
+    "BIM": 14,
     "GIS": 6,
     "CAD": 39,
     "CAD互操作": 5,
@@ -39,9 +39,9 @@
     "切片软件": 16
   },
   "origin_counts": {
-    "domestic": 102,
-    "international": 126,
-    "open_source": 18
+    "domestic": 100,
+    "international": 121,
+    "open_source": 17
   },
   "kernel_ref_counts": {
     "zw-overdrive": 2,
@@ -72,7 +72,7 @@
     {
       "id": "bim-gis",
       "file": "categories/bim-gis.json",
-      "count": 28
+      "count": 20
     },
     {
       "id": "cad",

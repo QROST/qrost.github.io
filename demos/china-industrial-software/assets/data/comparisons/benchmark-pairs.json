@@ -47,6 +47,14 @@
     {"domestic_id": "kicad", "international_id": "altium-designer", "dimension": "开源 PCB EDA", "note_zh": "GPL KiCad vs 商业 PCB 设计套件"},
     {"domestic_id": "blender", "international_id": "freecad", "dimension": "开源三维", "note_zh": "B-mesh DCC/可视化 vs OCCT 参数化实体 MCAD"},
     {"domestic_id": "blender", "international_id": "fusion360", "dimension": "创客/小作坊三维", "note_zh": "免费 GPL DCC+渲染 vs Autodesk 云订阅 MCAD/CAM"},
-    {"domestic_id": "blender", "international_id": "rhino", "dimension": "造型/网格工作流", "note_zh": "开源网格硬表面 vs NURBS 精度与 Grasshopper 参数化"}
+    {"domestic_id": "blender", "international_id": "rhino", "dimension": "造型/网格工作流", "note_zh": "开源网格硬表面 vs NURBS 精度与 Grasshopper 参数化"},
+    {"domestic_id": "zw3d", "international_id": "autodesk-alias", "dimension": "国产 MCAD 曲面 vs 专用 CAID", "note_zh": "零部件/模具曲面 vs OEM 造型全流程"},
+    {"domestic_id": "crown-styling", "international_id": "autodesk-alias", "dimension": "汽车工业造型 CAID", "note_zh": "国产云造型 vs Alias Class-A 标杆"},
+    {"domestic_id": "jdsoft-surfmill", "international_id": "powermill", "dimension": "模具五轴 CAM", "note_zh": "精雕 SurfMill vs Delcam/PowerMill"},
+    {"domestic_id": "autodesk-alias", "international_id": "icem-surf", "dimension": "汽车 A 级曲面 CAID", "note_zh": "Alias 造型链 vs ICEM 显式曲面标杆"},
+    {"domestic_id": "glodon-bimface", "international_id": "bentley-itwin", "dimension": "BIM 数字孪生联邦", "note_zh": "国产轻量化引擎 vs 基建 iTwin 联邦"},
+    {"domestic_id": "glodon-bimface", "international_id": "autodesk-acc", "dimension": "云 BIM 协同/CDE", "note_zh": "国产 BIM 平台 vs Autodesk 云施工交付"},
+    {"domestic_id": "hoteam-sview", "international_id": "autodesk-vault", "dimension": "轻量化 3D 协同", "note_zh": "华天 SView vs Autodesk 数据管理"},
+    {"domestic_id": "jiyuan-simulation", "international_id": "autodesk-moldflow", "dimension": "注塑模流分析", "note_zh": "国产模流 vs Moldflow 标杆"}
   ]
 }
