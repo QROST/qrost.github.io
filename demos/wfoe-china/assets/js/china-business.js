@@ -588,24 +588,57 @@ document.addEventListener('DOMContentLoaded', () => {
                 refreshWfoeMoney();
             }
 
-            /** RMB-first fee bands; USD = RMB ÷ rate (same as Financials). */
+            /** RMB-first fee bands; USD = RMB ÷ rate (EN only — ZH cost column is RMB-only). */
+            function makeStepMoneyFormatters(lang, rate) {
+                const dual = lang !== 'zh';
+                const usd = function (n) { return Math.max(0, Math.round(n / rate)); };
+                const fmtN = function (n) { return Number(n).toLocaleString(); };
+                return {
+                    z: function () {
+                        return dual ? '<strong>¥0</strong> (≈ <strong>$0</strong>)' : '<strong>¥0</strong>';
+                    },
+                    pr: function (lo, hi) {
+                        const rmb = '<strong>¥' + fmtN(lo) + '–¥' + fmtN(hi) + '</strong>';
+                        return dual ? rmb + ' (≈ <strong>$' + usd(lo) + '–$' + usd(hi) + '</strong>)' : rmb;
+                    },
+                    prPlus: function (lo, hi) {
+                        const rmb = '<strong>¥' + fmtN(lo) + '–¥' + fmtN(hi) + '+</strong>';
+                        return dual ? rmb + ' (≈ <strong>$' + usd(lo) + '–$' + usd(hi) + '+</strong>)' : rmb;
+                    },
+                    pgt: function (lo) {
+                        const rmb = '<strong>&gt;¥' + fmtN(lo) + '</strong>';
+                        return dual ? rmb + ' (≈ <strong>&gt;$' + usd(lo) + '</strong>)' : rmb;
+                    },
+                    sb: function (n) {
+                        if (n === 0) {
+                            return dual ? '<strong>¥0</strong> (≈ <strong>$0</strong>)' : '<strong>¥0</strong>';
+                        }
+                        const rmb = '<strong>¥' + String(Math.round(n)) + '</strong>';
+                        return dual ? rmb + ' (≈ <strong>$' + usd(n) + '</strong>)' : rmb;
+                    },
+                    sr: function (lo, hi, plus) {
+                        const sfx = plus ? '+' : '';
+                        const rmb = '<strong>¥' + lo + '–' + hi + sfx + '</strong>';
+                        return dual ? rmb + ' (≈ <strong>$' + usd(lo) + '–$' + usd(hi) + sfx + '</strong>)' : rmb;
+                    },
+                    addrBand: function () {
+                        if (!dual) return '<strong>¥0–2 万+</strong>';
+                        return '<strong>¥0–20k+</strong> (≈ <strong>$0–$' + usd(20000) + '+</strong>)';
+                    }
+                };
+            }
+
             function buildWfoeStepMoneyHtml(stepId, lang) {
                 const r = effectiveExchangeRate();
-                const u = function (n) { return Math.max(0, Math.round(n / r)); };
-                const pr = function (lo, hi) {
-                    return '<strong>¥' + lo.toLocaleString() + '–¥' + hi.toLocaleString() + '</strong> (≈ <strong>$' + u(lo) + '–$' + u(hi) + '</strong>)';
-                };
-                const prPlus = function (lo, hi) {
-                    return '<strong>¥' + lo.toLocaleString() + '–¥' + hi.toLocaleString() + '+</strong> (≈ <strong>$' + u(lo) + '–$' + u(hi) + '+</strong>)';
-                };
-                const pgt = function (lo) {
-                    return '<strong>&gt;¥' + lo.toLocaleString() + '</strong> (≈ <strong>&gt;$' + u(lo) + '</strong>)';
-                };
-                const z = function () { return '<strong>¥0</strong> (≈ <strong>$0</strong>)'; };
+                const f = makeStepMoneyFormatters(lang, r);
+                const z = f.z;
+                const pr = f.pr;
+                const prPlus = f.prPlus;
+                const pgt = f.pgt;
                 const rateFmt = r.toFixed(2);
                 let fxNote = tr('s05.fee_fx_note', 'RMB is the planning anchor; USD = RMB ÷ rate. Same as Financials: <strong>1 USD ≈ {rate} CNY</strong> (live when the feed loads, otherwise a 2024-avg fallback of 7.2).');
                 fxNote = fxNote.replace(/\{rate\}/g, rateFmt);
-                const foot = '<span class="text-slate-500 text-xs block mt-1.5">' + fxNote + '</span>';
+                const foot = lang === 'zh' ? '' : '<span class="text-slate-500 text-xs block mt-1.5">' + fxNote + '</span>';
 
                 if (lang === 'zh') {
                     switch (stepId) {
@@ -715,21 +748,10 @@ document.addEventListener('DOMContentLoaded', () => {
             window.refreshWfoeMoney = refreshWfoeMoney;
 
             function buildDomesticFeeHtml(stepId, lang) {
-                const r = effectiveExchangeRate();
-                const u = function (n) { return Math.max(0, Math.round(n / r)); };
-                const sb = function (n) {
-                    if (n === 0) return '<strong>¥0</strong> (≈ <strong>$0</strong>)';
-                    return '<strong>¥' + String(Math.round(n)) + '</strong> (≈ <strong>$' + u(n) + '</strong>)';
-                };
-                const sr = function (lo, hi, plus) {
-                    return '<strong>¥' + lo + '–' + hi + (plus ? '+' : '') + '</strong> (≈ <strong>$' + u(lo) + '–$' + u(hi) + (plus ? '+' : '') + '</strong>)';
-                };
-                const addrBand = function () {
-                    if (lang === 'zh') {
-                        return '<strong>¥0–2 万+</strong> (≈ <strong>$0–$' + u(20000) + '+</strong>)';
-                    }
-                    return '<strong>¥0–20k+</strong> (≈ <strong>$0–$' + u(20000) + '+</strong>)';
-                };
+                const f = makeStepMoneyFormatters(lang, effectiveExchangeRate());
+                const sb = f.sb;
+                const sr = f.sr;
+                const addrBand = f.addrBand;
 
                 if (lang === 'zh') {
                     switch (stepId) {

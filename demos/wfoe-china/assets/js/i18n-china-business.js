@@ -27,8 +27,8 @@
         'process.tab_sar': '香港与澳门（特别行政区）',
         'process.mainland_intro': '本标签面向<strong>境外投资者</strong>——境外<strong>自然人</strong>（国籍不限，<strong>美国籍</strong>为常见示例之一）或<strong>境外母公司</strong>——说明如何设立<strong>WFOE</strong>（<strong>外商独资企业</strong>，Wholly Foreign-Owned Enterprise），即境外投资者在内地常用的组织形式。按顺序完成各步；更多说明可展开查看。在递交前请预算<strong>注册资本</strong>（第8–9步）与<strong>运营成本</strong>。',
         'process.domestic_intro': '<strong>中国公民</strong>（或股东均为境内主体）常见路径为通过当地<strong>「企业开办一窗通」</strong>等渠道设立<strong>有限责任公司</strong>——无需境外公证、海牙认证或外商投资资本金专户。具体步骤与时效因城市而异，以下为常见顺序。',
-        'process.fee_note_domestic': '右侧栏：各步<strong>大致现金影响</strong>（2024–2025 常见预估区间）。非报价——城市与银行政策不同。<strong>与仪表盘一致：</strong>以<strong>人民币</strong>为锚；括号内<strong>美元</strong> = 人民币 ÷ 美元/人民币汇率（在线成功则用实时汇率，若接口失败则按 2024 年均值兜底 7.2）。',
-        'process.fee_note': '右侧栏：各步<strong>大致现金影响</strong>（2024–2025 常见预估区间）。非报价——城市、银行与代理机构不同，结果会有差异。<strong>货币规则：</strong>流程栏金额均以<strong>人民币</strong>为<strong>预估锚</strong>（境内支付或境外费用的规划等价）；<strong>美元</strong> = 人民币 ÷ 美元/人民币汇率（与财务区一致，在线成功则用实时汇率，若接口失败则按 2024 年均值兜底 7.2）。<strong>财务仪表盘</strong>在选美元时同样按此规则。',
+        'process.fee_note_domestic': '右侧栏：各步<strong>大致现金影响</strong>（2024–2025 常见预估区间，<strong>人民币</strong>）。非报价——城市与银行政策不同。切换 English 后同栏会显示人民币与美元对照。',
+        'process.fee_note': '右侧栏：各步<strong>大致现金影响</strong>（2024–2025 常见预估区间，<strong>人民币</strong>）。非报价——城市、银行与代理机构不同，结果会有差异。切换 English 后同栏会显示人民币与美元对照（汇率规则与财务区一致）。',
         'process.col_step': '步骤',
         'process.col_cost': '预估成本',
 
@@ -307,6 +307,8 @@
 
         'd10.title': '建立<strong>账务与按期纳税申报</strong>（增值税、企业所得税预缴、代扣代缴等）——自聘或委托<strong>代理记账</strong>。',
         'd10.detail': '逾期申报会产生滞纳金与处罚——建议在首笔收入前进线财税安排。',
+
+        'd06.money': '<strong>预估：</strong>若不免费，全套常<strong>¥300–1,200</strong>；加急或材质另计。',
 
         'regions.sr.gba': '显示或隐藏粤港澳大湾区背景说明',
         'regions.sr.east': '显示或隐藏华东热点背景说明',
