@@ -1149,6 +1149,176 @@
       ]
     },
     {
+      "id": "zoo-design-studio",
+      "name_zh": "Zoo Design Studio",
+      "name_en": "Zoo Design Studio",
+      "vendor_id": "zoo",
+      "category_l1": "研发设计",
+      "category_l2": "CAD",
+      "product_type": "mcad",
+      "origin": "international",
+      "kernel": "自主·Zoo GPU 几何引擎",
+      "maturity": "mid",
+      "localization_depth": "pilot",
+      "strengths_zh": [
+        "AI 原生 B-rep MCAD",
+        "Zookeeper 对话式建模",
+        "KCL 程序化 + 开放 API"
+      ],
+      "strengths_en": [
+        "AI-native B-rep MCAD",
+        "Zookeeper conversational modeling",
+        "KCL programmatic + open APIs"
+      ],
+      "limitations_zh": [
+        "钣金/CAM 仍在路线图",
+        "中国区无本土实体与信创认证",
+        "英文生态为主"
+      ],
+      "limitations_en": [
+        "Sheet metal/CAM on roadmap",
+        "No China legal entity or xinchuang cert",
+        "English-first ecosystem"
+      ],
+      "industries": [
+        "硬件创业",
+        "机器人",
+        "航空航天研发"
+      ],
+      "pricing": "mid",
+      "tags": [
+        "cloud_native"
+      ],
+      "confidence": 0.88,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://zoo.dev/design-studio",
+          "title": "Zoo Design Studio",
+          "accessed": "2026-06"
+        },
+        {
+          "url": "https://www.morningstar.com/news/pr-newswire/20250528ny98037/zoo-launches-zoo-design-studio",
+          "title": "Zoo launch PR",
+          "accessed": "2026-06"
+        }
+      ],
+      "international_benchmarks": [
+        "onshape",
+        "newdim-tiangong-cad"
+      ]
+    },
+    {
+      "id": "leo-ai-platform",
+      "name_zh": "Leo AI 工程平台",
+      "name_en": "Leo AI Platform",
+      "vendor_id": "leo-ai",
+      "category_l1": "研发设计",
+      "category_l2": "CAD",
+      "product_type": "mcad",
+      "origin": "international",
+      "kernel": "自主·Large Mechanical Model",
+      "maturity": "mid",
+      "localization_depth": "pilot",
+      "strengths_zh": [
+        "CAD/PLM 感知问答与装配生成",
+        "120M+ 供应商零件库",
+        "SOC2 企业安全"
+      ],
+      "strengths_en": [
+        "CAD/PLM-aware Q&A and assembly generation",
+        "120M+ vendor parts",
+        "SOC2 enterprise security"
+      ],
+      "limitations_zh": [
+        "依赖现有 CAD/PLM 环境",
+        "国内案例披露少",
+        "订阅制成本"
+      ],
+      "limitations_en": [
+        "Depends on existing CAD/PLM",
+        "Few disclosed China cases",
+        "Subscription cost"
+      ],
+      "industries": [
+        "机械设计",
+        "汽车",
+        "消费电子"
+      ],
+      "pricing": "high",
+      "tags": [
+        "cloud_native"
+      ],
+      "confidence": 0.82,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.getleo.ai/",
+          "title": "Leo AI",
+          "accessed": "2026-06"
+        },
+        {
+          "url": "https://www.machinedesign.com/automation-iiot/article/55330891/leo-ai-leo-ai-how-cad-aware-ai-is-changing-mechanical-design-and-engineering-workflows",
+          "title": "Machine Design Leo AI",
+          "accessed": "2026-06"
+        }
+      ],
+      "international_benchmarks": [
+        "zoo-design-studio"
+      ]
+    },
+    {
+      "id": "yfway-furniture-design",
+      "name_zh": "圆方家具设计系统",
+      "name_en": "YFway Furniture Design",
+      "vendor_id": "yfway",
+      "category_l1": "研发设计",
+      "category_l2": "CAD",
+      "product_type": "mcad",
+      "origin": "domestic",
+      "kernel": "自主",
+      "maturity": "high",
+      "localization_depth": "core",
+      "strengths_zh": [
+        "泛家居参数化设计",
+        "自动零件图与拆单",
+        "裁板排料指导"
+      ],
+      "strengths_en": [
+        "Furniture parametric design",
+        "Auto part drawings and splitting",
+        "Cutting layout guidance"
+      ],
+      "limitations_zh": [
+        "通用机械 CAD 弱",
+        "深度绑定家居生态",
+        "国际影响小"
+      ],
+      "limitations_en": [
+        "Weak general MCAD",
+        "Tied to furniture ecosystem",
+        "Limited international reach"
+      ],
+      "industries": [
+        "家具",
+        "全屋定制",
+        "装修"
+      ],
+      "pricing": "mid",
+      "confidence": 0.84,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.yfway.com/home",
+          "title": "YFway",
+          "accessed": "2026-06"
+        }
+      ],
+      "international_benchmarks": [
+        "solidworks"
+      ]
+    },
+    {
       "id": "rhino-inside",
       "name_zh": "Rhino.Inside",
       "name_en": "Rhino.Inside",

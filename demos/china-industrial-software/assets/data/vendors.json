@@ -1,246 +1,164 @@
 {
   "vendors": [
     {
-      "id": "empyrean",
-      "name_zh": "华大九天",
-      "name_en": "Empyrean",
-      "origin": "domestic",
-      "hq_city": "北京",
-      "hq_country": "CN",
-      "listed_ticker": "301269.SZ",
-      "website": "https://www.empyrean.com.cn/",
-      "description_zh": "国产EDA龙头，模拟与数字后端工具链",
-      "description_en": "Leading domestic EDA vendor",
-      "categories": [
-        "EDA"
-      ]
-    },
-    {
-      "id": "primarius",
-      "name_zh": "概伦电子",
-      "name_en": "Primarius",
-      "origin": "domestic",
-      "hq_city": "上海",
-      "hq_country": "CN",
-      "listed_ticker": "688206.SH",
-      "website": "https://www.primarius-tech.com/",
-      "description_zh": "器件建模与良率分析",
-      "description_en": "Device modeling and yield analytics",
-      "categories": [
-        "EDA"
-      ]
-    },
-    {
-      "id": "zwcad",
-      "name_zh": "中望软件",
-      "name_en": "ZWSOFT",
-      "origin": "domestic",
-      "hq_city": "广州",
-      "hq_country": "CN",
-      "listed_ticker": "300624.SZ",
-      "website": "https://www.zwsoft.cn/",
-      "description_zh": "国产CAD/BIM软件",
-      "description_en": "Domestic CAD and BIM software",
-      "categories": [
-        "CAD",
-        "BIM"
-      ]
-    },
-    {
-      "id": "gstarcad",
-      "name_zh": "浩辰软件",
-      "name_en": "Gstarsoft",
-      "origin": "domestic",
-      "hq_city": "苏州",
-      "hq_country": "CN",
-      "listed_ticker": "688657.SH",
-      "website": "https://www.gstarcad.com/",
-      "description_zh": "2D/3D CAD与云CAD",
-      "description_en": "2D/3D and cloud CAD",
-      "categories": [
-        "CAD"
-      ]
-    },
-    {
-      "id": "hoteam",
-      "name_zh": "华天软件",
-      "name_en": "Hoteam",
-      "origin": "domestic",
-      "hq_city": "济南",
-      "hq_country": "CN",
-      "website": "https://www.hoteamsoft.com/",
-      "description_zh": "CAD/PLM/MES一体化",
-      "description_en": "Integrated CAD/PLM/MES",
-      "categories": [
-        "CAD",
-        "PLM"
-      ]
-    },
-    {
-      "id": "caxa",
-      "name_zh": "数码大方",
-      "name_en": "CAXA",
-      "origin": "domestic",
-      "hq_city": "北京",
-      "hq_country": "CN",
-      "website": "https://www.caxa.com/",
-      "description_zh": "国产CAD与PLM老牌",
-      "description_en": "Legacy domestic CAD and PLM",
-      "categories": [
-        "CAD",
-        "PLM"
-      ]
-    },
-    {
-      "id": "supcon",
-      "name_zh": "中控技术",
-      "name_en": "SUPCON",
-      "origin": "domestic",
-      "hq_city": "杭州",
-      "hq_country": "CN",
-      "listed_ticker": "688777.SH",
-      "website": "https://www.supcon.com/",
-      "description_zh": "流程工业DCS与工业互联网",
-      "description_en": "Process DCS and IIoT",
+      "id": "abb",
+      "name_zh": "ABB",
+      "name_en": "ABB",
+      "origin": "international",
+      "hq_city": "Zurich",
+      "hq_country": "CH",
+      "listed_ticker": "ABBN.SW",
+      "website": "https://new.abb.com/",
+      "description_zh": "800xA/zenon/Ability 工业自动化",
+      "description_en": "800xA, zenon, and Ability automation",
       "categories": [
         "DCS",
+        "SCADA",
         "Platform"
       ]
     },
     {
-      "id": "hollysys",
-      "name_zh": "和利时",
-      "name_en": "Hollysys",
+      "id": "alibaba",
+      "name_zh": "阿里云",
+      "name_en": "Alibaba Cloud",
       "origin": "domestic",
-      "hq_city": "北京",
+      "hq_city": "杭州",
       "hq_country": "CN",
-      "listed_ticker": "HOLI",
-      "website": "https://www.hollysys.com/",
-      "description_zh": "自动化与DCS",
-      "description_en": "Automation and DCS",
+      "website": "https://www.aliyun.com/",
+      "description_zh": "云计算与工业大脑",
+      "description_en": "Cloud and industrial brain",
       "categories": [
-        "DCS"
+        "Platform"
       ]
     },
     {
-      "id": "baosight",
-      "name_zh": "宝信软件",
-      "name_en": "Baosight",
-      "origin": "domestic",
-      "hq_city": "上海",
-      "hq_country": "CN",
-      "listed_ticker": "600845.SH",
-      "website": "https://www.baosight.com/",
-      "description_zh": "钢铁MES与工业软件",
-      "description_en": "Steel MES and industrial software",
+      "id": "altair",
+      "name_zh": "Altair",
+      "name_en": "Altair",
+      "origin": "international",
+      "hq_city": "Troy",
+      "hq_country": "US",
+      "listed_ticker": "ALTR",
+      "website": "https://altair.com/",
+      "description_zh": "HyperWorks 仿真与优化平台",
+      "description_en": "HyperWorks simulation and optimization",
       "categories": [
-        "MES"
+        "CAE"
       ]
     },
     {
-      "id": "yonyou",
-      "name_zh": "用友网络",
-      "name_en": "Yonyou",
+      "id": "altium",
+      "name_zh": "澳德迈",
+      "name_en": "Altium",
+      "origin": "international",
+      "hq_city": "San Diego",
+      "hq_country": "US",
+      "listed_ticker": "ALU",
+      "website": "https://www.altium.com/",
+      "description_zh": "Altium Designer PCB EDA 与云端协作",
+      "description_en": "Altium Designer PCB EDA and cloud collaboration",
+      "categories": [
+        "EDA"
+      ]
+    },
+    {
+      "id": "ankermake",
+      "name_zh": "安克创新 AnkerMake",
+      "name_en": "AnkerMake",
+      "origin": "domestic",
+      "hq_city": "深圳",
+      "hq_country": "CN",
+      "website": "https://www.ankermake.com/",
+      "description_zh": "Anker 旗下 3D 打印与切片软件",
+      "description_en": "Anker-affiliated 3D printing and slicer software",
+      "categories": [
+        "Slicer"
+      ]
+    },
+    {
+      "id": "ansys",
+      "name_zh": "安世亚太/Ansys",
+      "name_en": "Ansys",
+      "origin": "international",
+      "hq_city": "Canonsburg",
+      "hq_country": "US",
+      "listed_ticker": "ANSS",
+      "website": "https://www.ansys.com/",
+      "description_zh": "仿真CAE标杆",
+      "description_en": "CAE simulation benchmark",
+      "categories": [
+        "CAE"
+      ]
+    },
+    {
+      "id": "anwise",
+      "name_zh": "安怀信科技",
+      "name_en": "Anwise Technology",
       "origin": "domestic",
       "hq_city": "北京",
       "hq_country": "CN",
-      "listed_ticker": "600588.SH",
-      "website": "https://www.yonyou.com/",
-      "description_zh": "企业管理与云ERP",
-      "description_en": "Enterprise management and cloud ERP",
+      "website": "http://www.anwiseglobal.com/",
+      "description_zh": "仿真 V&V 与正向研发软件",
+      "description_en": "Simulation V&V and forward-design software",
       "categories": [
-        "ERP",
+        "CAE"
+      ]
+    },
+    {
+      "id": "anycubic",
+      "name_zh": "纵维立方",
+      "name_en": "Anycubic",
+      "origin": "domestic",
+      "hq_city": "深圳",
+      "hq_country": "CN",
+      "website": "https://www.anycubic.com/",
+      "description_zh": "光固化与 FDM 打印机",
+      "description_en": "Resin and FDM 3D printers",
+      "categories": [
+        "Slicer"
+      ]
+    },
+    {
+      "id": "applied-materials",
+      "name_zh": "应用材料",
+      "name_en": "Applied Materials",
+      "origin": "international",
+      "hq_city": "Santa Clara",
+      "hq_country": "US",
+      "listed_ticker": "AMAT",
+      "website": "https://www.appliedmaterials.com/",
+      "description_zh": "半导体设备与E3 CIM",
+      "description_en": "Semiconductor equipment and E3 CIM",
+      "categories": [
+        "半导体CIM"
+      ]
+    },
+    {
+      "id": "aras",
+      "name_zh": "Aras",
+      "name_en": "Aras Corporation",
+      "origin": "international",
+      "hq_city": "Andover",
+      "hq_country": "US",
+      "website": "https://www.aras.com/",
+      "description_zh": "Aras Innovator 开放 PLM 平台",
+      "description_en": "Aras Innovator open PLM platform",
+      "categories": [
         "PLM"
       ]
     },
     {
-      "id": "kingdee",
-      "name_zh": "金蝶国际",
-      "name_en": "Kingdee",
-      "origin": "domestic",
-      "hq_city": "深圳",
-      "hq_country": "CN",
-      "listed_ticker": "0268.HK",
-      "website": "https://www.kingdee.com/",
-      "description_zh": "中小企业云ERP",
-      "description_en": "SME cloud ERP",
-      "categories": [
-        "ERP"
-      ]
-    },
-    {
-      "id": "glodon",
-      "name_zh": "广联达",
-      "name_en": "Glodon",
-      "origin": "domestic",
-      "hq_city": "北京",
-      "hq_country": "CN",
-      "listed_ticker": "002410.SZ",
-      "website": "https://www.glodon.com/",
-      "description_zh": "建筑数字化与造价",
-      "description_en": "Construction digitalization and cost",
-      "categories": [
-        "BIM"
-      ]
-    },
-    {
-      "id": "supermap",
-      "name_zh": "超图软件",
-      "name_en": "SuperMap",
-      "origin": "domestic",
-      "hq_city": "北京",
-      "hq_country": "CN",
-      "listed_ticker": "300036.SZ",
-      "website": "https://www.supermap.com/",
-      "description_zh": "国产GIS基础平台",
-      "description_en": "Domestic GIS platform",
-      "categories": [
-        "GIS"
-      ]
-    },
-    {
-      "id": "huawei",
-      "name_zh": "华为",
-      "name_en": "Huawei",
-      "origin": "domestic",
-      "hq_city": "深圳",
-      "hq_country": "CN",
-      "website": "https://www.huawei.com/",
-      "description_zh": "ICT与工业互联网平台",
-      "description_en": "ICT and industrial internet platforms",
-      "categories": [
-        "Platform",
-        "ERP"
-      ]
-    },
-    {
-      "id": "synopsys",
-      "name_zh": "新思科技",
-      "name_en": "Synopsys",
+      "id": "ascon",
+      "name_zh": "ASCON 阿斯康",
+      "name_en": "ASCON Group",
       "origin": "international",
-      "hq_city": "Sunnyvale",
-      "hq_country": "US",
-      "listed_ticker": "SNPS",
-      "website": "https://www.synopsys.com/",
-      "description_zh": "全球EDA龙头",
-      "description_en": "Global EDA leader",
+      "hq_city": "Saint Petersburg",
+      "hq_country": "RU",
+      "website": "https://ascon.ru/",
+      "description_zh": "KOMPAS-3D 与 C3D 内核",
+      "description_en": "KOMPAS-3D and C3D kernel",
       "categories": [
-        "EDA"
-      ]
-    },
-    {
-      "id": "cadence",
-      "name_zh": "楷登电子",
-      "name_en": "Cadence",
-      "origin": "international",
-      "hq_city": "San Jose",
-      "hq_country": "US",
-      "listed_ticker": "CDNS",
-      "website": "https://www.cadence.com/",
-      "description_zh": "模拟与数字EDA",
-      "description_en": "Analog and digital EDA",
-      "categories": [
-        "EDA"
+        "CAD"
       ]
     },
     {
@@ -262,489 +180,6 @@
       ]
     },
     {
-      "id": "dassault",
-      "name_zh": "达索系统",
-      "name_en": "Dassault Systèmes",
-      "origin": "international",
-      "hq_city": "Vélizy",
-      "hq_country": "FR",
-      "website": "https://www.3ds.com/",
-      "description_zh": "CATIA/ENOVIA/Abaqus",
-      "description_en": "CATIA, ENOVIA, Abaqus",
-      "categories": [
-        "CAD",
-        "PLM",
-        "CAE"
-      ]
-    },
-    {
-      "id": "siemens-digital",
-      "name_zh": "西门子数字化工业",
-      "name_en": "Siemens Digital Industries",
-      "origin": "international",
-      "hq_city": "Nuremberg",
-      "hq_country": "DE",
-      "website": "https://plm.sw.siemens.com/",
-      "description_zh": "NX/Teamcenter/Opcenter",
-      "description_en": "NX, Teamcenter, Opcenter",
-      "categories": [
-        "CAD",
-        "PLM",
-        "MES",
-        "CAE"
-      ]
-    },
-    {
-      "id": "sap",
-      "name_zh": "思爱普",
-      "name_en": "SAP",
-      "origin": "international",
-      "hq_city": "Walldorf",
-      "hq_country": "DE",
-      "listed_ticker": "SAP",
-      "website": "https://www.sap.com/",
-      "description_zh": "全球ERP龙头",
-      "description_en": "Global ERP leader",
-      "categories": [
-        "ERP"
-      ]
-    },
-    {
-      "id": "ansys",
-      "name_zh": "安世亚太/Ansys",
-      "name_en": "Ansys",
-      "origin": "international",
-      "hq_city": "Canonsburg",
-      "hq_country": "US",
-      "listed_ticker": "ANSS",
-      "website": "https://www.ansys.com/",
-      "description_zh": "仿真CAE标杆",
-      "description_en": "CAE simulation benchmark",
-      "categories": [
-        "CAE"
-      ]
-    },
-    {
-      "id": "emerson",
-      "name_zh": "艾默生",
-      "name_en": "Emerson",
-      "origin": "international",
-      "hq_city": "St. Louis",
-      "hq_country": "US",
-      "website": "https://www.emerson.com/",
-      "description_zh": "流程自动化与DCS",
-      "description_en": "Process automation and DCS",
-      "categories": [
-        "DCS"
-      ]
-    },
-    {
-      "id": "esri",
-      "name_zh": "易智瑞/Esri",
-      "name_en": "Esri",
-      "origin": "international",
-      "hq_city": "Redlands",
-      "hq_country": "US",
-      "website": "https://www.esri.com/",
-      "description_zh": "全球GIS平台",
-      "description_en": "Global GIS platform",
-      "categories": [
-        "GIS"
-      ]
-    },
-    {
-      "id": "ptc",
-      "name_zh": "PTC",
-      "name_en": "PTC",
-      "origin": "international",
-      "hq_city": "Boston",
-      "hq_country": "US",
-      "website": "https://www.ptc.com/",
-      "description_zh": "Creo/Windchill/ThingWorx",
-      "description_en": "Creo, Windchill, ThingWorx",
-      "categories": [
-        "CAD",
-        "PLM",
-        "Platform"
-      ]
-    },
-    {
-      "id": "pera",
-      "name_zh": "安世亚太",
-      "name_en": "PERA Global",
-      "origin": "domestic",
-      "hq_city": "北京",
-      "hq_country": "CN",
-      "website": "https://www.peraglobal.com/",
-      "description_zh": "国产多物理场仿真",
-      "description_en": "Domestic multiphysics simulation",
-      "categories": [
-        "CAE"
-      ]
-    },
-    {
-      "id": "bochu",
-      "name_zh": "柏楚电子",
-      "name_en": "Bochu",
-      "origin": "domestic",
-      "hq_city": "上海",
-      "hq_country": "CN",
-      "listed_ticker": "688188.SH",
-      "website": "https://www.bochu.com/",
-      "description_zh": "激光切割控制系统",
-      "description_en": "Laser cutting control systems",
-      "categories": [
-        "CAM"
-      ]
-    },
-    {
-      "id": "haier",
-      "name_zh": "海尔卡奥斯",
-      "name_en": "Haier COSMOPlat",
-      "origin": "domestic",
-      "hq_city": "青岛",
-      "hq_country": "CN",
-      "website": "https://www.cosmoplat.com/",
-      "description_zh": "工业互联网与大规模定制",
-      "description_en": "IIoT and mass customization",
-      "categories": [
-        "MES",
-        "Platform"
-      ]
-    },
-    {
-      "id": "alibaba",
-      "name_zh": "阿里云",
-      "name_en": "Alibaba Cloud",
-      "origin": "domestic",
-      "hq_city": "杭州",
-      "hq_country": "CN",
-      "website": "https://www.aliyun.com/",
-      "description_zh": "云计算与工业大脑",
-      "description_en": "Cloud and industrial brain",
-      "categories": [
-        "Platform"
-      ]
-    },
-    {
-      "id": "rootcloud",
-      "name_zh": "树根互联",
-      "name_en": "Rootcloud",
-      "origin": "domestic",
-      "hq_city": "广州",
-      "hq_country": "CN",
-      "website": "https://www.rootcloud.com/",
-      "description_zh": "装备工业互联网",
-      "description_en": "Equipment industrial internet",
-      "categories": [
-        "Platform"
-      ]
-    },
-    {
-      "id": "bambu-lab",
-      "name_zh": "拓竹科技",
-      "name_en": "Bambu Lab",
-      "origin": "domestic",
-      "hq_city": "深圳",
-      "hq_country": "CN",
-      "website": "https://bambulab.com/",
-      "description_zh": "高速 FDM 3D 打印机与 Bambu Studio 切片生态",
-      "description_en": "High-speed FDM printers and Bambu Studio slicer stack",
-      "categories": [
-        "Slicer"
-      ]
-    },
-    {
-      "id": "creality",
-      "name_zh": "创想三维",
-      "name_en": "Creality",
-      "origin": "domestic",
-      "hq_city": "深圳",
-      "hq_country": "CN",
-      "listed_ticker": "300866.SZ",
-      "website": "https://www.creality.com/",
-      "description_zh": "消费级 3D 打印机与 Creality Print",
-      "description_en": "Consumer 3D printers and Creality Print",
-      "categories": [
-        "Slicer"
-      ]
-    },
-    {
-      "id": "flashforge",
-      "name_zh": "闪铸科技",
-      "name_en": "Flashforge",
-      "origin": "domestic",
-      "hq_city": "杭州",
-      "hq_country": "CN",
-      "website": "https://www.flashforge.com/",
-      "description_zh": "教育/消费级 3D 打印与 FlashPrint",
-      "description_en": "Education and consumer 3D printing with FlashPrint",
-      "categories": [
-        "Slicer"
-      ]
-    },
-    {
-      "id": "cbd-tech",
-      "name_zh": "CBD 科技",
-      "name_en": "CBD-Tech",
-      "origin": "domestic",
-      "hq_city": "深圳",
-      "hq_country": "CN",
-      "website": "https://www.chitubox.com/",
-      "description_zh": "CHITUBOX 光固化切片软件",
-      "description_en": "CHITUBOX resin slicing software",
-      "categories": [
-        "Slicer"
-      ]
-    },
-    {
-      "id": "elegoo",
-      "name_zh": "智能派科技",
-      "name_en": "ELEGOO",
-      "origin": "domestic",
-      "hq_city": "深圳",
-      "hq_country": "CN",
-      "website": "https://www.elegoo.com/",
-      "description_zh": "树脂/FDM 打印机与 ELEGOO Slicer",
-      "description_en": "Resin/FDM printers and ELEGOO Slicer",
-      "categories": [
-        "Slicer"
-      ]
-    },
-    {
-      "id": "anycubic",
-      "name_zh": "纵维立方",
-      "name_en": "Anycubic",
-      "origin": "domestic",
-      "hq_city": "深圳",
-      "hq_country": "CN",
-      "website": "https://www.anycubic.com/",
-      "description_zh": "光固化与 FDM 打印机",
-      "description_en": "Resin and FDM 3D printers",
-      "categories": [
-        "Slicer"
-      ]
-    },
-    {
-      "id": "heygears",
-      "name_zh": "黑格科技",
-      "name_en": "HeyGears",
-      "origin": "domestic",
-      "hq_city": "广州",
-      "hq_country": "CN",
-      "website": "https://www.heygears.com/",
-      "description_zh": "工业级 DLP 3D 打印与 HPS 切片",
-      "description_en": "Industrial DLP printing and HPS slicing",
-      "categories": [
-        "Slicer"
-      ]
-    },
-    {
-      "id": "ankermake",
-      "name_zh": "安克创新 AnkerMake",
-      "name_en": "AnkerMake",
-      "origin": "domestic",
-      "hq_city": "深圳",
-      "hq_country": "CN",
-      "website": "https://www.ankermake.com/",
-      "description_zh": "Anker 旗下 3D 打印与切片软件",
-      "description_en": "Anker-affiliated 3D printing and slicer software",
-      "categories": [
-        "Slicer"
-      ]
-    },
-    {
-      "id": "ultimaker",
-      "name_zh": "UltiMaker",
-      "name_en": "UltiMaker",
-      "origin": "international",
-      "hq_city": "Utrecht",
-      "hq_country": "NL",
-      "website": "https://ultimaker.com/",
-      "description_zh": "Cura 开源切片与工业 3D 打印",
-      "description_en": "Cura open slicer and industrial 3D printing",
-      "categories": [
-        "Slicer"
-      ]
-    },
-    {
-      "id": "prusa",
-      "name_zh": "Prusa Research",
-      "name_en": "Prusa Research",
-      "origin": "international",
-      "hq_city": "Prague",
-      "hq_country": "CZ",
-      "website": "https://www.prusa3d.com/",
-      "description_zh": "PrusaSlicer 与开源 3D 打印机",
-      "description_en": "PrusaSlicer and open 3D printers",
-      "categories": [
-        "Slicer"
-      ]
-    },
-    {
-      "id": "softfever",
-      "name_zh": "Orca Slicer 社区",
-      "name_en": "SoftFever / Orca Community",
-      "origin": "international",
-      "hq_city": "—",
-      "hq_country": "—",
-      "website": "https://github.com/SoftFever/OrcaSlicer",
-      "description_zh": "Orca Slicer 开源维护社区",
-      "description_en": "Open-source Orca Slicer maintainers",
-      "categories": [
-        "Slicer"
-      ]
-    },
-    {
-      "id": "simplify3d",
-      "name_zh": "Simplify3D",
-      "name_en": "Simplify3D",
-      "origin": "international",
-      "hq_city": "Cincinnati",
-      "hq_country": "US",
-      "website": "https://www.simplify3d.com/",
-      "description_zh": "商业 FDM 切片软件",
-      "description_en": "Commercial FDM slicer",
-      "categories": [
-        "Slicer"
-      ]
-    },
-    {
-      "id": "raise3d",
-      "name_zh": "Raise3D",
-      "name_en": "Raise3D",
-      "origin": "international",
-      "hq_city": "Irvine",
-      "hq_country": "US",
-      "website": "https://www.raise3d.com/",
-      "description_zh": "专业/工业 FDM 与 ideaMaker",
-      "description_en": "Pro/industrial FDM and ideaMaker",
-      "categories": [
-        "Slicer"
-      ]
-    },
-    {
-      "id": "mango3d",
-      "name_zh": "Mango3D",
-      "name_en": "Mango3D",
-      "origin": "international",
-      "hq_city": "Paris",
-      "hq_country": "FR",
-      "website": "https://mango3d.io/",
-      "description_zh": "Lychee Slicer 开发商",
-      "description_en": "Lychee Slicer developer",
-      "categories": [
-        "Slicer"
-      ]
-    },
-    {
-      "id": "materialise",
-      "name_zh": "Materialise",
-      "name_en": "Materialise",
-      "origin": "international",
-      "hq_city": "Leuven",
-      "hq_country": "BE",
-      "listed_ticker": "MTLS",
-      "website": "https://www.materialise.com/",
-      "description_zh": "工业增材制造软件 Magics",
-      "description_en": "Industrial AM software Magics",
-      "categories": [
-        "Slicer"
-      ]
-    },
-    {
-      "id": "hexagon",
-      "name_zh": "海克斯康",
-      "name_en": "Hexagon",
-      "origin": "international",
-      "hq_city": "Stockholm",
-      "hq_country": "SE",
-      "listed_ticker": "HEXA-B",
-      "website": "https://hexagon.com/",
-      "description_zh": "MSC/计量/CAD 组合",
-      "description_en": "MSC, metrology, and CAD portfolio",
-      "categories": [
-        "CAE",
-        "CAD",
-        "CAM"
-      ]
-    },
-    {
-      "id": "altair",
-      "name_zh": "Altair",
-      "name_en": "Altair",
-      "origin": "international",
-      "hq_city": "Troy",
-      "hq_country": "US",
-      "listed_ticker": "ALTR",
-      "website": "https://altair.com/",
-      "description_zh": "HyperWorks 仿真与优化平台",
-      "description_en": "HyperWorks simulation and optimization",
-      "categories": [
-        "CAE"
-      ]
-    },
-    {
-      "id": "oracle",
-      "name_zh": "甲骨文",
-      "name_en": "Oracle",
-      "origin": "international",
-      "hq_city": "Austin",
-      "hq_country": "US",
-      "listed_ticker": "ORCL",
-      "website": "https://www.oracle.com/",
-      "description_zh": "ERP/PLM/制造云",
-      "description_en": "ERP, PLM, and manufacturing cloud",
-      "categories": [
-        "ERP",
-        "PLM",
-        "MES"
-      ]
-    },
-    {
-      "id": "mathworks",
-      "name_zh": "MathWorks",
-      "name_en": "MathWorks",
-      "origin": "international",
-      "hq_city": "Natick",
-      "hq_country": "US",
-      "website": "https://www.mathworks.com/",
-      "description_zh": "MATLAB/Simulink 数值与系统仿真",
-      "description_en": "MATLAB and Simulink numerical and systems simulation",
-      "categories": [
-        "CAE",
-        "MBSE"
-      ]
-    },
-    {
-      "id": "mcneel",
-      "name_zh": "McNeel",
-      "name_en": "McNeel",
-      "origin": "international",
-      "hq_city": "Seattle",
-      "hq_country": "US",
-      "website": "https://www.rhino3d.com/",
-      "description_zh": "Rhino 自由曲面 CAD",
-      "description_en": "Rhino freeform surface CAD",
-      "categories": [
-        "CAD"
-      ]
-    },
-    {
-      "id": "ironcad",
-      "name_zh": "IronCAD",
-      "name_en": "IronCAD",
-      "origin": "international",
-      "hq_city": "Atlanta",
-      "hq_country": "US",
-      "website": "https://www.ironcad.com/",
-      "description_zh": "拖拽式直觉三维 CAD",
-      "description_en": "Drag-and-drop intuitive 3D CAD",
-      "categories": [
-        "CAD"
-      ]
-    },
-    {
       "id": "autodessys",
       "name_zh": "AutoDesSys",
       "name_en": "AutoDesSys",
@@ -756,154 +191,6 @@
       "description_en": "form·Z 3D modeling software",
       "categories": [
         "CAD"
-      ]
-    },
-    {
-      "id": "ascon",
-      "name_zh": "ASCON 阿斯康",
-      "name_en": "ASCON Group",
-      "origin": "international",
-      "hq_city": "Saint Petersburg",
-      "hq_country": "RU",
-      "website": "https://ascon.ru/",
-      "description_zh": "KOMPAS-3D 与 C3D 内核",
-      "description_en": "KOMPAS-3D and C3D kernel",
-      "categories": [
-        "CAD"
-      ]
-    },
-    {
-      "id": "topsystems",
-      "name_zh": "Top Systems",
-      "name_en": "Top Systems",
-      "origin": "international",
-      "hq_city": "Moscow",
-      "hq_country": "RU",
-      "website": "https://www.tflex.com/",
-      "description_zh": "T-FLEX CAD 套件",
-      "description_en": "T-FLEX CAD suite",
-      "categories": [
-        "CAD"
-      ]
-    },
-    {
-      "id": "vectorworks",
-      "name_zh": "Vectorworks",
-      "name_en": "Vectorworks",
-      "origin": "international",
-      "hq_city": "Columbia",
-      "hq_country": "US",
-      "website": "https://www.vectorworks.net/",
-      "description_zh": "建筑/景观 BIM-CAD",
-      "description_en": "Architecture and landscape BIM-CAD",
-      "categories": [
-        "CAD",
-        "BIM"
-      ]
-    },
-    {
-      "id": "newdim",
-      "name_zh": "新迪数字",
-      "name_en": "Newdim Digital",
-      "origin": "domestic",
-      "hq_city": "上海",
-      "hq_country": "CN",
-      "website": "https://www.newdimchina.com/",
-      "description_zh": "天工CAD 国产三维设计",
-      "description_en": "Tiangong CAD domestic 3D design",
-      "categories": [
-        "CAD"
-      ]
-    },
-    {
-      "id": "poisson",
-      "name_zh": "泊松软件",
-      "name_en": "Poisson Software",
-      "origin": "domestic",
-      "hq_city": "深圳",
-      "hq_country": "CN",
-      "website": "https://www.poissonsoft.com/",
-      "description_zh": "Geoshape 自研几何引擎与 CAD",
-      "description_en": "Geoshape owned geometry engine and CAD",
-      "categories": [
-        "CAD",
-        "CAE",
-        "PLM"
-      ]
-    },
-    {
-      "id": "sipm",
-      "name_zh": "思普软件",
-      "name_en": "SIPM Software",
-      "origin": "domestic",
-      "hq_city": "上海",
-      "hq_country": "CN",
-      "website": "https://www.sipm.com.cn/",
-      "description_zh": "国产 PLM 龙头之一",
-      "description_en": "Leading domestic PLM vendor",
-      "categories": [
-        "PLM"
-      ]
-    },
-    {
-      "id": "gibbs",
-      "name_zh": "GibbsCAM",
-      "name_en": "GibbsCAM (3D Systems)",
-      "origin": "international",
-      "hq_city": "Moorpark",
-      "hq_country": "US",
-      "website": "https://www.gibbscam.com/",
-      "description_zh": "车铣复合 CAM",
-      "description_en": "Mill-turn CAM",
-      "categories": [
-        "CAM"
-      ]
-    },
-    {
-      "id": "sprutcam",
-      "name_zh": "SprutCAM Tech",
-      "name_en": "SprutCAM Tech",
-      "origin": "international",
-      "hq_city": "Tbilisi",
-      "hq_country": "GE",
-      "website": "https://sprutcam.com/",
-      "description_zh": "多轴 CAM 与机器人 OLP",
-      "description_en": "Multi-axis CAM and robot OLP",
-      "categories": [
-        "CAM"
-      ]
-    },
-    {
-      "id": "trimble",
-      "name_zh": "天宝",
-      "name_en": "Trimble",
-      "origin": "international",
-      "hq_city": "Westminster",
-      "hq_country": "US",
-      "listed_ticker": "TRMB",
-      "website": "https://www.trimble.com/",
-      "description_zh": "SketchUp/Tekla 建筑与施工软件",
-      "description_en": "SketchUp, Tekla construction software",
-      "categories": [
-        "CAD",
-        "BIM"
-      ]
-    },
-    {
-      "id": "rockwell",
-      "name_zh": "罗克韦尔自动化",
-      "name_en": "Rockwell Automation",
-      "origin": "international",
-      "hq_city": "Milwaukee",
-      "hq_country": "US",
-      "listed_ticker": "ROK",
-      "website": "https://www.rockwellautomation.com/",
-      "description_zh": "FactoryTalk/Logix PLC 离散自动化",
-      "description_en": "FactoryTalk and Logix PLC discrete automation",
-      "categories": [
-        "SCADA",
-        "PLC",
-        "Platform"
       ]
     },
     {
@@ -921,447 +208,43 @@
       ]
     },
     {
-      "id": "ge-vernova",
-      "name_zh": "GE Vernova",
-      "name_en": "GE Vernova",
-      "origin": "international",
-      "hq_city": "Cambridge",
-      "hq_country": "US",
-      "website": "https://www.gevernova.com/",
-      "description_zh": "iFIX SCADA 与能源软件",
-      "description_en": "iFIX SCADA and energy software",
-      "categories": [
-        "SCADA",
-        "Platform"
-      ]
-    },
-    {
-      "id": "ge",
-      "name_zh": "GE Digital",
-      "name_en": "GE Digital",
-      "origin": "international",
-      "hq_city": "San Ramon",
-      "hq_country": "US",
-      "website": "https://www.ge.com/digital/",
-      "description_zh": "Predix 工业互联网",
-      "description_en": "Predix industrial internet",
-      "categories": [
-        "Platform"
-      ]
-    },
-    {
-      "id": "schneider",
-      "name_zh": "施耐德电气",
-      "name_en": "Schneider Electric",
-      "origin": "international",
-      "hq_city": "Rueil-Malmaison",
-      "hq_country": "FR",
-      "listed_ticker": "SU.PA",
-      "website": "https://www.se.com/",
-      "description_zh": "EcoStruxure/Modicon 自动化",
-      "description_en": "EcoStruxure and Modicon automation",
-      "categories": [
-        "SCADA",
-        "PLC",
-        "Platform"
-      ]
-    },
-    {
-      "id": "yokogawa",
-      "name_zh": "横河电机",
-      "name_en": "Yokogawa",
-      "origin": "international",
-      "hq_city": "Tokyo",
-      "hq_country": "JP",
-      "listed_ticker": "6841.T",
-      "website": "https://www.yokogawa.com/",
-      "description_zh": "CENTUM DCS 与 FAST/TOOLS",
-      "description_en": "CENTUM DCS and FAST/TOOLS",
-      "categories": [
-        "DCS",
-        "SCADA"
-      ]
-    },
-    {
-      "id": "abb",
-      "name_zh": "ABB",
-      "name_en": "ABB",
-      "origin": "international",
-      "hq_city": "Zurich",
-      "hq_country": "CH",
-      "listed_ticker": "ABBN.SW",
-      "website": "https://new.abb.com/",
-      "description_zh": "800xA/zenon/Ability 工业自动化",
-      "description_en": "800xA, zenon, and Ability automation",
-      "categories": [
-        "DCS",
-        "SCADA",
-        "Platform"
-      ]
-    },
-    {
-      "id": "plex",
-      "name_zh": "Plex",
-      "name_en": "Plex",
-      "origin": "international",
-      "hq_city": "Troy",
-      "hq_country": "US",
-      "website": "https://www.plex.com/",
-      "description_zh": "云制造 ERP/MES",
-      "description_en": "Cloud manufacturing ERP and MES",
-      "categories": [
-        "MES",
-        "ERP"
-      ]
-    },
-    {
-      "id": "morewis",
-      "name_zh": "摩尔元数",
-      "name_en": "Morewis",
-      "origin": "domestic",
-      "hq_city": "深圳",
-      "hq_country": "CN",
-      "website": "https://www.morewis.com/",
-      "description_zh": "N2Cloud MOM/MES 平台",
-      "description_en": "N2Cloud MOM/MES platform",
-      "categories": [
-        "MES"
-      ]
-    },
-    {
-      "id": "pcitc",
-      "name_zh": "石化盈科",
-      "name_en": "PCITC",
+      "id": "avic",
+      "name_zh": "中国航空工业集团",
+      "name_en": "AVIC",
       "origin": "domestic",
       "hq_city": "北京",
       "hq_country": "CN",
-      "website": "http://www.pcitc.com/",
-      "description_zh": "中石化 IT 与智能炼化",
-      "description_en": "Sinopec IT and smart refining",
+      "website": "http://www.avic.com/",
+      "description_zh": "航空装备研制与神舟软件 AVIDM PLM",
+      "description_en": "Aviation equipment and Shenzhou AVIDM PLM",
       "categories": [
-        "MES",
-        "Platform"
+        "PLM"
       ]
     },
     {
-      "id": "sinopec",
-      "name_zh": "中国石化",
-      "name_en": "Sinopec",
-      "origin": "domestic",
-      "hq_city": "北京",
-      "hq_country": "CN",
-      "listed_ticker": "600028.SH",
-      "website": "https://www.sinopec.com/",
-      "description_zh": "石化智云工业互联网",
-      "description_en": "Sinopec Smart Cloud IIoT",
-      "categories": [
-        "Platform"
-      ]
-    },
-    {
-      "id": "nrec",
-      "name_zh": "国电南自",
-      "name_en": "NREC",
-      "origin": "domestic",
-      "hq_city": "南京",
-      "hq_country": "CN",
-      "listed_ticker": "600268.SH",
-      "website": "https://www.nrec.com/",
-      "description_zh": "电力自动化与 DCS",
-      "description_en": "Power automation and DCS",
-      "categories": [
-        "DCS"
-      ]
-    },
-    {
-      "id": "bonc",
-      "name_zh": "东方国信",
-      "name_en": "BONC",
-      "origin": "domestic",
-      "hq_city": "北京",
-      "hq_country": "CN",
-      "listed_ticker": "300166.SZ",
-      "website": "https://www.bonc.com.cn/",
-      "description_zh": "工业大数据 Cloudiip",
-      "description_en": "Industrial big data Cloudiip",
-      "categories": [
-        "Platform"
-      ]
-    },
-    {
-      "id": "langkun",
-      "name_zh": "朗坤智慧",
-      "name_en": "Luculent",
-      "origin": "domestic",
-      "hq_city": "南京",
-      "hq_country": "CN",
-      "website": "https://www.langkun.com/",
-      "description_zh": "SyncPlant MES 与 LiOM EAM",
-      "description_en": "SyncPlant MES and LiOM EAM",
-      "categories": [
-        "MES",
-        "EAM"
-      ]
-    },
-    {
-      "id": "ibm",
-      "name_zh": "IBM",
-      "name_en": "IBM",
+      "id": "avl",
+      "name_zh": "AVL",
+      "name_en": "AVL",
       "origin": "international",
-      "hq_city": "Armonk",
+      "hq_city": "Graz",
+      "hq_country": "AT",
+      "website": "https://www.avl.com/",
+      "description_zh": "动力总成与GT-SUITE仿真",
+      "description_en": "Powertrain and GT-SUITE simulation",
+      "categories": [
+        "CAE"
+      ]
+    },
+    {
+      "id": "aws",
+      "name_zh": "亚马逊云科技",
+      "name_en": "Amazon Web Services",
+      "origin": "international",
+      "hq_city": "Seattle",
       "hq_country": "US",
-      "listed_ticker": "IBM",
-      "website": "https://www.ibm.com/",
-      "description_zh": "Maximo 资产维护",
-      "description_en": "Maximo asset management",
-      "categories": [
-        "EAM"
-      ]
-    },
-    {
-      "id": "haitian",
-      "name_zh": "海天国际",
-      "name_en": "Haitian International",
-      "origin": "domestic",
-      "hq_city": "宁波",
-      "hq_country": "CN",
-      "listed_ticker": "01882.HK",
-      "website": "https://www.haitian.com/",
-      "description_zh": "注塑机与 X-注塑云工业 AI 工艺平台",
-      "description_en": "Injection molding machines and X-Injection Cloud AI platform",
-      "categories": [
-        "MES"
-      ]
-    },
-    {
-      "id": "blacklake",
-      "name_zh": "黑湖科技",
-      "name_en": "BlackLake",
-      "origin": "domestic",
-      "hq_city": "上海",
-      "hq_country": "CN",
-      "website": "https://www.blacklake.cn/",
-      "description_zh": "云端轻量 MES",
-      "description_en": "Cloud-lite MES",
-      "categories": [
-        "MES"
-      ]
-    },
-    {
-      "id": "honeywell",
-      "name_zh": "霍尼韦尔",
-      "name_en": "Honeywell",
-      "origin": "international",
-      "hq_city": "Charlotte",
-      "hq_country": "US",
-      "listed_ticker": "HON",
-      "website": "https://process.honeywell.com/",
-      "description_zh": "Experion DCS 流程自动化",
-      "description_en": "Experion DCS process automation",
-      "categories": [
-        "DCS"
-      ]
-    },
-    {
-      "id": "siemens-process",
-      "name_zh": "西门子过程自动化",
-      "name_en": "Siemens Process Automation",
-      "origin": "international",
-      "hq_city": "Nuremberg",
-      "hq_country": "DE",
-      "website": "https://www.siemens.com/",
-      "description_zh": "PCS 7/SIMATIC PLC",
-      "description_en": "PCS 7 and SIMATIC PLC",
-      "categories": [
-        "DCS",
-        "PLC"
-      ]
-    },
-    {
-      "id": "wellintech",
-      "name_zh": "北京亚控",
-      "name_en": "Wellintech",
-      "origin": "domestic",
-      "hq_city": "北京",
-      "hq_country": "CN",
-      "website": "https://www.kingview.com/",
-      "description_zh": "组态王 SCADA",
-      "description_en": "KingView SCADA",
-      "categories": [
-        "SCADA"
-      ]
-    },
-    {
-      "id": "nari",
-      "name_zh": "南瑞集团",
-      "name_en": "NARI",
-      "origin": "domestic",
-      "hq_city": "南京",
-      "hq_country": "CN",
-      "listed_ticker": "600406.SH",
-      "website": "http://www.nari.cn/",
-      "description_zh": "电网 DCS/自动化",
-      "description_en": "Grid DCS and automation",
-      "categories": [
-        "DCS"
-      ]
-    },
-    {
-      "id": "sciyon",
-      "name_zh": "科远智慧",
-      "name_en": "SCIYON",
-      "origin": "domestic",
-      "hq_city": "南京",
-      "hq_country": "CN",
-      "listed_ticker": "002380.SZ",
-      "website": "https://www.sciyon.com/",
-      "description_zh": "热电 DCS",
-      "description_en": "Thermal power DCS",
-      "categories": [
-        "DCS"
-      ]
-    },
-    {
-      "id": "sie",
-      "name_zh": "赛意信息",
-      "name_en": "SIE",
-      "origin": "domestic",
-      "hq_city": "广州",
-      "hq_country": "CN",
-      "listed_ticker": "300687.SZ",
-      "website": "https://www.chinasie.com/",
-      "description_zh": "SMOM MES",
-      "description_en": "SMOM MES",
-      "categories": [
-        "MES"
-      ]
-    },
-    {
-      "id": "goodsgather",
-      "name_zh": "谷器数据",
-      "name_en": "GoodsGather",
-      "origin": "domestic",
-      "hq_city": "北京",
-      "hq_country": "CN",
-      "website": "https://www.goodsgather.com/",
-      "description_zh": "汽车零部件 MES",
-      "description_en": "Automotive parts MES",
-      "categories": [
-        "MES"
-      ]
-    },
-    {
-      "id": "ygsoft",
-      "name_zh": "远光软件",
-      "name_en": "YGSOFT",
-      "origin": "domestic",
-      "hq_city": "珠海",
-      "hq_country": "CN",
-      "listed_ticker": "002063.SZ",
-      "website": "https://www.ygsoft.com/",
-      "description_zh": "电力集团 ERP",
-      "description_en": "Power group ERP",
-      "categories": [
-        "ERP"
-      ]
-    },
-    {
-      "id": "infor",
-      "name_zh": "Infor",
-      "name_en": "Infor",
-      "origin": "international",
-      "hq_city": "New York",
-      "hq_country": "US",
-      "website": "https://www.infor.com/",
-      "description_zh": "CloudSuite ERP 与 EAM",
-      "description_en": "CloudSuite ERP and EAM",
-      "categories": [
-        "ERP",
-        "EAM"
-      ]
-    },
-    {
-      "id": "microsoft",
-      "name_zh": "微软",
-      "name_en": "Microsoft",
-      "origin": "international",
-      "hq_city": "Redmond",
-      "hq_country": "US",
-      "listed_ticker": "MSFT",
-      "website": "https://dynamics.microsoft.com/",
-      "description_zh": "Dynamics 365 ERP",
-      "description_en": "Dynamics 365 ERP",
-      "categories": [
-        "ERP"
-      ]
-    },
-    {
-      "id": "digiwin",
-      "name_zh": "鼎捷软件",
-      "name_en": "Digiwin",
-      "origin": "domestic",
-      "hq_city": "上海",
-      "hq_country": "CN",
-      "listed_ticker": "300378.SZ",
-      "website": "https://www.digiwin.com/",
-      "description_zh": "制造业 ERP T100",
-      "description_en": "Manufacturing ERP T100",
-      "categories": [
-        "ERP"
-      ]
-    },
-    {
-      "id": "inspur",
-      "name_zh": "浪潮",
-      "name_en": "Inspur",
-      "origin": "domestic",
-      "hq_city": "济南",
-      "hq_country": "CN",
-      "website": "https://www.inspur.com/",
-      "description_zh": "国资集团 ERP",
-      "description_en": "SOE group ERP",
-      "categories": [
-        "ERP"
-      ]
-    },
-    {
-      "id": "dcits",
-      "name_zh": "神州数码",
-      "name_en": "DCITS",
-      "origin": "domestic",
-      "hq_city": "北京",
-      "hq_country": "CN",
-      "website": "https://www.digitalchina.com/",
-      "description_zh": "分销供应链 ERP",
-      "description_en": "Distribution supply chain ERP",
-      "categories": [
-        "ERP"
-      ]
-    },
-    {
-      "id": "boke",
-      "name_zh": "博科软件",
-      "name_en": "Boke",
-      "origin": "domestic",
-      "hq_city": "上海",
-      "hq_country": "CN",
-      "website": "https://www.bokesoft.com/",
-      "description_zh": "元数据驱动 ERP",
-      "description_en": "Metadata-driven ERP",
-      "categories": [
-        "ERP"
-      ]
-    },
-    {
-      "id": "tencent",
-      "name_zh": "腾讯云",
-      "name_en": "Tencent Cloud",
-      "origin": "domestic",
-      "hq_city": "深圳",
-      "hq_country": "CN",
-      "website": "https://cloud.tencent.com/",
-      "description_zh": "WeMake 工业互联网",
-      "description_en": "WeMake industrial internet",
+      "website": "https://aws.amazon.com/",
+      "description_zh": "IoT SiteWise 工业数据云",
+      "description_en": "IoT SiteWise industrial data cloud",
       "categories": [
         "Platform"
       ]
@@ -1381,606 +264,32 @@
       ]
     },
     {
-      "id": "casicloud",
-      "name_zh": "航天云网",
-      "name_en": "CASIC Cloud",
+      "id": "bambu-lab",
+      "name_zh": "拓竹科技",
+      "name_en": "Bambu Lab",
       "origin": "domestic",
-      "hq_city": "北京",
+      "hq_city": "深圳",
       "hq_country": "CN",
-      "website": "https://www.casicloud.com/",
-      "description_zh": "INDICS 工业互联网",
-      "description_en": "INDICS industrial internet",
+      "website": "https://bambulab.com/",
+      "description_zh": "高速 FDM 3D 打印机与 Bambu Studio 切片生态",
+      "description_en": "High-speed FDM printers and Bambu Studio slicer stack",
       "categories": [
-        "Platform"
+        "Slicer"
       ]
     },
     {
-      "id": "midea",
-      "name_zh": "美云智数",
-      "name_en": "Meicloud",
-      "origin": "domestic",
-      "hq_city": "佛山",
-      "hq_country": "CN",
-      "website": "https://www.meicloud.com/",
-      "description_zh": "美的工业互联网外溢",
-      "description_en": "Midea IIoT spin-off",
-      "categories": [
-        "Platform"
-      ]
-    },
-    {
-      "id": "unigroup",
-      "name_zh": "紫光云",
-      "name_en": "Unigroup Cloud",
-      "origin": "domestic",
-      "hq_city": "天津",
-      "hq_country": "CN",
-      "website": "https://www.unicloud.com/",
-      "description_zh": "信创工业云",
-      "description_en": "IT innovation industrial cloud",
-      "categories": [
-        "Platform"
-      ]
-    },
-    {
-      "id": "avl",
-      "name_zh": "AVL",
-      "name_en": "AVL",
-      "origin": "international",
-      "hq_city": "Graz",
-      "hq_country": "AT",
-      "website": "https://www.avl.com/",
-      "description_zh": "动力总成与GT-SUITE仿真",
-      "description_en": "Powertrain and GT-SUITE simulation",
-      "categories": [
-        "CAE"
-      ]
-    },
-    {
-      "id": "functionbay",
-      "name_zh": "FunctionBay",
-      "name_en": "FunctionBay",
-      "origin": "international",
-      "hq_city": "Seongnam",
-      "hq_country": "KR",
-      "website": "https://www.functionbay.com/",
-      "description_zh": "RecurDyn多体动力学",
-      "description_en": "RecurDyn multibody dynamics",
-      "categories": [
-        "CAE"
-      ]
-    },
-    {
-      "id": "sftc",
-      "name_zh": "SFTC",
-      "name_en": "SFTC",
-      "origin": "international",
-      "hq_city": "Columbus",
-      "hq_country": "US",
-      "website": "https://www.deform.com/",
-      "description_zh": "DEFORM金属成形仿真",
-      "description_en": "DEFORM metal forming simulation",
-      "categories": [
-        "CAE"
-      ]
-    },
-    {
-      "id": "openmodelica",
-      "name_zh": "OpenModelica",
-      "name_en": "OpenModelica",
-      "origin": "open_source",
-      "hq_city": "—",
-      "hq_country": "—",
-      "website": "https://openmodelica.org/",
-      "description_zh": "开源Modelica平台",
-      "description_en": "Open-source Modelica platform",
-      "categories": [
-        "MBSE"
-      ]
-    },
-    {
-      "id": "suochen",
-      "name_zh": "索辰科技",
-      "name_en": "Suochen Tech",
+      "id": "baosight",
+      "name_zh": "宝信软件",
+      "name_en": "Baosight",
       "origin": "domestic",
       "hq_city": "上海",
       "hq_country": "CN",
-      "listed_ticker": "688507.SH",
-      "website": "https://www.suochen.com.cn/",
-      "description_zh": "国产CAE求解器 Aries/Virgo",
-      "description_en": "Domestic CAE solvers Aries and Virgo",
+      "listed_ticker": "600845.SH",
+      "website": "https://www.baosight.com/",
+      "description_zh": "钢铁MES与工业软件",
+      "description_en": "Steel MES and industrial software",
       "categories": [
-        "CAE"
-      ]
-    },
-    {
-      "id": "shifeng",
-      "name_zh": "十沣科技",
-      "name_en": "SimRight",
-      "origin": "domestic",
-      "hq_city": "深圳",
-      "hq_country": "CN",
-      "website": "https://www.simright.com/",
-      "description_zh": "云原生CAE前后处理",
-      "description_en": "Cloud-native CAE pre/post",
-      "categories": [
-        "CAE"
-      ]
-    },
-    {
-      "id": "tongyuan",
-      "name_zh": "同元软控",
-      "name_en": "Tongyuan",
-      "origin": "domestic",
-      "hq_city": "深圳",
-      "hq_country": "CN",
-      "website": "https://www.tongyuan.cc/",
-      "description_zh": "MWORKS Modelica/MBSE",
-      "description_en": "MWORKS Modelica and MBSE",
-      "categories": [
-        "MBSE"
-      ]
-    },
-    {
-      "id": "rainfe",
-      "name_zh": "瑞风协同",
-      "name_en": "Rainfe",
-      "origin": "domestic",
-      "hq_city": "北京",
-      "hq_country": "CN",
-      "website": "https://www.rainfe.com/",
-      "description_zh": "虚拟试验与试验数据管理",
-      "description_en": "Virtual test and test data management",
-      "categories": [
-        "CAE"
-      ]
-    },
-    {
-      "id": "bjsasc",
-      "name_zh": "神舟航天软件",
-      "name_en": "BJSASC",
-      "origin": "domestic",
-      "hq_city": "北京",
-      "hq_country": "CN",
-      "listed_ticker": "688562.SH",
-      "website": "https://www.bjsasc.com/",
-      "description_zh": "航天AVIDM/AVCAE",
-      "description_en": "Aerospace AVIDM and AVCAE",
-      "categories": [
-        "CAE",
-        "PLM"
-      ]
-    },
-    {
-      "id": "huayun",
-      "name_zh": "华云中盛",
-      "name_en": "HuaCloud",
-      "origin": "domestic",
-      "hq_city": "深圳",
-      "hq_country": "CN",
-      "website": "https://www.hua-cloud.com.cn/",
-      "description_zh": "工业数据与信创云底座",
-      "description_en": "Industrial data and xinchuang cloud base",
-      "categories": [
-        "Platform",
-        "CAE"
-      ]
-    },
-    {
-      "id": "comsol",
-      "name_zh": "COMSOL",
-      "name_en": "COMSOL",
-      "origin": "international",
-      "hq_city": "Burlington",
-      "hq_country": "US",
-      "website": "https://www.comsol.com/",
-      "description_zh": "多物理场仿真",
-      "description_en": "Multiphysics simulation",
-      "categories": [
-        "CAE"
-      ]
-    },
-    {
-      "id": "speckle",
-      "name_zh": "Speckle",
-      "name_en": "Speckle",
-      "origin": "open_source",
-      "hq_city": "London",
-      "hq_country": "UK",
-      "website": "https://speckle.systems/",
-      "description_zh": "开源 AEC 数据互操作平台",
-      "description_en": "Open AEC data interoperability platform",
-      "categories": [
-        "BIM"
-      ]
-    },
-    {
-      "id": "nemetschek",
-      "name_zh": "Nemetschek Group",
-      "name_en": "Nemetschek Group",
-      "origin": "international",
-      "hq_city": "Munich",
-      "hq_country": "DE",
-      "listed_ticker": "NEM",
-      "website": "https://www.nemetschek.com/",
-      "description_zh": "Solibri/Graphisoft/Bluebeam 等 AEC 软件集团",
-      "description_en": "AEC software group (Solibri, Graphisoft, Bluebeam)",
-      "categories": [
-        "BIM"
-      ]
-    },
-    {
-      "id": "emqx",
-      "name_zh": "映云科技",
-      "name_en": "EMQ Technologies",
-      "origin": "domestic",
-      "hq_city": "杭州",
-      "hq_country": "CN",
-      "website": "https://www.emqx.com/",
-      "description_zh": "EMQX MQTT 物联网消息平台",
-      "description_en": "EMQX MQTT IoT messaging platform",
-      "categories": [
-        "Platform"
-      ]
-    },
-    {
-      "id": "open62541",
-      "name_zh": "open62541 社区",
-      "name_en": "open62541 Project",
-      "origin": "open_source",
-      "hq_city": "—",
-      "hq_country": "—",
-      "website": "https://open62541.org/",
-      "description_zh": "开源 OPC UA 协议栈",
-      "description_en": "Open-source OPC UA protocol stack",
-      "categories": [
-        "Platform"
-      ]
-    },
-    {
-      "id": "wolfram",
-      "name_zh": "Wolfram Research",
-      "name_en": "Wolfram Research",
-      "origin": "international",
-      "hq_city": "Champaign",
-      "hq_country": "US",
-      "website": "https://www.wolfram.com/",
-      "description_zh": "Mathematica 符号计算与系统建模",
-      "description_en": "Mathematica symbolic computing and system modeling",
-      "categories": [
-        "CAE"
-      ]
-    },
-    {
-      "id": "anwise",
-      "name_zh": "安怀信科技",
-      "name_en": "Anwise Technology",
-      "origin": "domestic",
-      "hq_city": "北京",
-      "hq_country": "CN",
-      "website": "http://www.anwiseglobal.com/",
-      "description_zh": "仿真 V&V 与正向研发软件",
-      "description_en": "Simulation V&V and forward-design software",
-      "categories": [
-        "CAE"
-      ]
-    },
-    {
-      "id": "open-cascade",
-      "name_zh": "Open Cascade SAS",
-      "name_en": "Open Cascade SAS",
-      "origin": "international",
-      "hq_city": "Guyancourt",
-      "hq_country": "FR",
-      "website": "https://www.opencascade.com/",
-      "description_zh": "OCCT 开源几何内核开发商与商业支持",
-      "description_en": "OCCT open geometry kernel vendor and commercial support",
-      "categories": [
-        "CAD",
-        "CAE"
-      ]
-    },
-    {
-      "id": "freecad",
-      "name_zh": "FreeCAD 社区",
-      "name_en": "FreeCAD Community",
-      "origin": "open_source",
-      "hq_city": "—",
-      "hq_country": "—",
-      "website": "https://www.freecad.org/",
-      "description_zh": "开源参数化 MCAD（OCCT）",
-      "description_en": "Open parametric MCAD on OCCT",
-      "categories": [
-        "CAD",
-        "CAM"
-      ]
-    },
-    {
-      "id": "blender-foundation",
-      "name_zh": "Blender 基金会",
-      "name_en": "Blender Foundation",
-      "origin": "open_source",
-      "hq_city": "Amsterdam",
-      "hq_country": "Netherlands",
-      "website": "https://www.blender.org/",
-      "description_zh": "Blender 开源 DCC 与 B-mesh 几何栈；非营利基金会运营",
-      "description_en": "Blender open DCC and B-mesh geometry stack; operated by nonprofit foundation",
-      "categories": [
-        "三维建模",
-        "DCC"
-      ]
-    },
-    {
-      "id": "openscad",
-      "name_zh": "OpenSCAD 社区",
-      "name_en": "OpenSCAD Community",
-      "origin": "open_source",
-      "hq_city": "—",
-      "hq_country": "—",
-      "website": "https://openscad.org/",
-      "description_zh": "程序化 CSG 建模（CGAL）",
-      "description_en": "Programmatic CSG modeling (CGAL)",
-      "categories": [
-        "CAD"
-      ]
-    },
-    {
-      "id": "solvespace",
-      "name_zh": "SolveSpace 社区",
-      "name_en": "SolveSpace Community",
-      "origin": "open_source",
-      "hq_city": "—",
-      "hq_country": "—",
-      "website": "http://solvespace.com/",
-      "description_zh": "约束驱动轻量 CAD",
-      "description_en": "Constraint-driven lightweight CAD",
-      "categories": [
-        "CAD"
-      ]
-    },
-    {
-      "id": "librecad",
-      "name_zh": "LibreCAD 社区",
-      "name_en": "LibreCAD Community",
-      "origin": "open_source",
-      "hq_city": "—",
-      "hq_country": "—",
-      "website": "https://librecad.org/",
-      "description_zh": "开源 2D CAD",
-      "description_en": "Open-source 2D CAD",
-      "categories": [
-        "CAD"
-      ]
-    },
-    {
-      "id": "cadquery",
-      "name_zh": "CadQuery 社区",
-      "name_en": "CadQuery Community",
-      "origin": "open_source",
-      "hq_city": "—",
-      "hq_country": "—",
-      "website": "https://cadquery.readthedocs.io/",
-      "description_zh": "Python OCCT 参数化建模",
-      "description_en": "Python OCCT parametric modeling",
-      "categories": [
-        "CAD"
-      ]
-    },
-    {
-      "id": "build123d",
-      "name_zh": "build123d 社区",
-      "name_en": "build123d Community",
-      "origin": "open_source",
-      "hq_city": "—",
-      "hq_country": "—",
-      "website": "https://build123d.readthedocs.io/",
-      "description_zh": "Python CAD 框架（OCP/OCCT）",
-      "description_en": "Python CAD framework (OCP/OCCT)",
-      "categories": [
-        "CAD"
-      ]
-    },
-    {
-      "id": "heekscad",
-      "name_zh": "HeeksCAD 社区",
-      "name_en": "HeeksCAD Community",
-      "origin": "open_source",
-      "hq_city": "—",
-      "hq_country": "—",
-      "website": "https://github.com/Heeks/heekscad",
-      "description_zh": "遗留 OCCT CAD/CAM 项目",
-      "description_en": "Legacy OCCT CAD/CAM project",
-      "categories": [
-        "CAD",
-        "CAM"
-      ]
-    },
-    {
-      "id": "brl-cad",
-      "name_zh": "BRL-CAD 项目",
-      "name_en": "BRL-CAD Project",
-      "origin": "open_source",
-      "hq_city": "—",
-      "hq_country": "US",
-      "website": "https://brlcad.org/",
-      "description_zh": "组合实体建模与光线追踪",
-      "description_en": "Combinatorial solid modeling and ray tracing",
-      "categories": [
-        "CAD",
-        "CAE"
-      ]
-    },
-    {
-      "id": "kicad",
-      "name_zh": "KiCad 项目",
-      "name_en": "KiCad Project",
-      "origin": "open_source",
-      "hq_city": "—",
-      "hq_country": "—",
-      "website": "https://www.kicad.org/",
-      "description_zh": "开源 PCB EDA（OCCT 3D）",
-      "description_en": "Open PCB EDA (OCCT 3D view)",
-      "categories": [
-        "EDA"
-      ]
-    },
-    {
-      "id": "salome",
-      "name_zh": "SALOME 联盟",
-      "name_en": "SALOME Consortium",
-      "origin": "open_source",
-      "hq_city": "Paris",
-      "hq_country": "FR",
-      "website": "https://www.salome-platform.org/",
-      "description_zh": "CEA/EDF/Open Cascade 开源 CAE 平台",
-      "description_en": "CEA/EDF/Open Cascade open CAE platform",
-      "categories": [
-        "CAE"
-      ]
-    },
-    {
-      "id": "applied-materials",
-      "name_zh": "应用材料",
-      "name_en": "Applied Materials",
-      "origin": "international",
-      "hq_city": "Santa Clara",
-      "hq_country": "US",
-      "listed_ticker": "AMAT",
-      "website": "https://www.appliedmaterials.com/",
-      "description_zh": "半导体设备与E3 CIM",
-      "description_en": "Semiconductor equipment and E3 CIM",
-      "categories": [
-        "半导体CIM"
-      ]
-    },
-    {
-      "id": "pdf-solutions",
-      "name_zh": "PDF Solutions",
-      "name_en": "PDF Solutions",
-      "origin": "international",
-      "hq_city": "San Jose",
-      "hq_country": "US",
-      "listed_ticker": "PDFS",
-      "website": "https://www.pdf.com/",
-      "description_zh": "Exensio良率分析平台",
-      "description_en": "Exensio yield analytics platform",
-      "categories": [
-        "半导体CIM",
-        "EDA"
-      ]
-    },
-    {
-      "id": "semitech",
-      "name_zh": "赛美特",
-      "name_en": "Semitech",
-      "origin": "domestic",
-      "hq_city": "上海",
-      "hq_country": "CN",
-      "website": "https://www.semitech.com.cn/",
-      "description_zh": "半导体CIM/MES PlantU",
-      "description_en": "Semiconductor CIM/MES PlantU suite",
-      "categories": [
-        "半导体CIM",
         "MES"
-      ]
-    },
-    {
-      "id": "techsoft3d",
-      "name_zh": "Tech Soft 3D",
-      "name_en": "Tech Soft 3D",
-      "origin": "international",
-      "hq_city": "Bend",
-      "hq_country": "US",
-      "website": "https://www.techsoft3d.com/",
-      "description_zh": "HOOPS Exchange CAD互操作SDK",
-      "description_en": "HOOPS Exchange CAD interoperability SDK",
-      "categories": [
-        "CAD"
-      ]
-    },
-    {
-      "id": "datakit",
-      "name_zh": "Datakit",
-      "name_en": "Datakit",
-      "origin": "international",
-      "hq_city": "Saint-Cloud",
-      "hq_country": "FR",
-      "website": "https://www.datakit.com/",
-      "description_zh": "CrossCad/Ware CAD数据交换",
-      "description_en": "CrossCad/Ware CAD data exchange",
-      "categories": [
-        "CAD"
-      ]
-    },
-    {
-      "id": "elysium",
-      "name_zh": "Elysium",
-      "name_en": "Elysium",
-      "origin": "international",
-      "hq_city": "Southfield",
-      "hq_country": "US",
-      "website": "https://www.elysiuminc.com/",
-      "description_zh": "CADfix几何修复与转换",
-      "description_en": "CADfix geometry repair and translation",
-      "categories": [
-        "CAD",
-        "CAE"
-      ]
-    },
-    {
-      "id": "iti-transcendata",
-      "name_zh": "ITI TranscenData",
-      "name_en": "ITI TranscenData",
-      "origin": "international",
-      "hq_city": "Milford",
-      "hq_country": "US",
-      "website": "https://www.iti-global.com/",
-      "description_zh": "CADIQ CAD质量检查",
-      "description_en": "CADIQ CAD quality validation",
-      "categories": [
-        "CAD"
-      ]
-    },
-    {
-      "id": "coretechnologie",
-      "name_zh": "CoreTechnologie",
-      "name_en": "CoreTechnologie",
-      "origin": "international",
-      "hq_city": "Frankfurt",
-      "hq_country": "DE",
-      "website": "https://www.coretechnologie.com/",
-      "description_zh": "3D_Evolution CAD转换内核",
-      "description_en": "3D_Evolution CAD conversion kernel",
-      "categories": [
-        "CAD"
-      ]
-    },
-    {
-      "id": "aws",
-      "name_zh": "亚马逊云科技",
-      "name_en": "Amazon Web Services",
-      "origin": "international",
-      "hq_city": "Seattle",
-      "hq_country": "US",
-      "website": "https://aws.amazon.com/",
-      "description_zh": "IoT SiteWise 工业数据云",
-      "description_en": "IoT SiteWise industrial data cloud",
-      "categories": [
-        "Platform"
-      ]
-    },
-    {
-      "id": "shapr3d",
-      "name_zh": "Shapr3D",
-      "name_en": "Shapr3D",
-      "origin": "international",
-      "hq_city": "Budapest",
-      "hq_country": "HU",
-      "website": "https://www.shapr3d.com/",
-      "description_zh": "触控优先直接建模 CAD（Parasolid）",
-      "description_en": "Touch-first direct modeling CAD (Parasolid)",
-      "categories": [
-        "CAD"
       ]
     },
     {
@@ -2013,6 +322,138 @@
       ]
     },
     {
+      "id": "bjsasc",
+      "name_zh": "神舟航天软件",
+      "name_en": "BJSASC",
+      "origin": "domestic",
+      "hq_city": "北京",
+      "hq_country": "CN",
+      "listed_ticker": "688562.SH",
+      "website": "https://www.bjsasc.com/",
+      "description_zh": "航天AVIDM/AVCAE",
+      "description_en": "Aerospace AVIDM and AVCAE",
+      "categories": [
+        "CAE",
+        "PLM"
+      ]
+    },
+    {
+      "id": "blacklake",
+      "name_zh": "黑湖科技",
+      "name_en": "BlackLake",
+      "origin": "domestic",
+      "hq_city": "上海",
+      "hq_country": "CN",
+      "website": "https://www.blacklake.cn/",
+      "description_zh": "云端轻量 MES",
+      "description_en": "Cloud-lite MES",
+      "categories": [
+        "MES"
+      ]
+    },
+    {
+      "id": "blender-foundation",
+      "name_zh": "Blender 基金会",
+      "name_en": "Blender Foundation",
+      "origin": "open_source",
+      "hq_city": "Amsterdam",
+      "hq_country": "Netherlands",
+      "website": "https://www.blender.org/",
+      "description_zh": "Blender 开源 DCC 与 B-mesh 几何栈；非营利基金会运营",
+      "description_en": "Blender open DCC and B-mesh geometry stack; operated by nonprofit foundation",
+      "categories": [
+        "三维建模",
+        "DCC"
+      ]
+    },
+    {
+      "id": "bochu",
+      "name_zh": "柏楚电子",
+      "name_en": "Bochu",
+      "origin": "domestic",
+      "hq_city": "上海",
+      "hq_country": "CN",
+      "listed_ticker": "688188.SH",
+      "website": "https://www.bochu.com/",
+      "description_zh": "激光切割控制系统",
+      "description_en": "Laser cutting control systems",
+      "categories": [
+        "CAM"
+      ]
+    },
+    {
+      "id": "boke",
+      "name_zh": "博科软件",
+      "name_en": "Boke",
+      "origin": "domestic",
+      "hq_city": "上海",
+      "hq_country": "CN",
+      "website": "https://www.bokesoft.com/",
+      "description_zh": "元数据驱动 ERP",
+      "description_en": "Metadata-driven ERP",
+      "categories": [
+        "ERP"
+      ]
+    },
+    {
+      "id": "bonc",
+      "name_zh": "东方国信",
+      "name_en": "BONC",
+      "origin": "domestic",
+      "hq_city": "北京",
+      "hq_country": "CN",
+      "listed_ticker": "300166.SZ",
+      "website": "https://www.bonc.com.cn/",
+      "description_zh": "工业大数据 Cloudiip",
+      "description_en": "Industrial big data Cloudiip",
+      "categories": [
+        "Platform"
+      ]
+    },
+    {
+      "id": "bricsys",
+      "name_zh": "Bricsys",
+      "name_en": "Bricsys (Hexagon)",
+      "origin": "international",
+      "hq_city": "Ghent",
+      "hq_country": "BE",
+      "website": "https://www.bricsys.com/",
+      "description_zh": "BricsCAD 二维/三维 CAD（Hexagon）",
+      "description_en": "BricsCAD 2D/3D CAD (Hexagon)",
+      "categories": [
+        "CAD"
+      ]
+    },
+    {
+      "id": "brl-cad",
+      "name_zh": "BRL-CAD 项目",
+      "name_en": "BRL-CAD Project",
+      "origin": "open_source",
+      "hq_city": "—",
+      "hq_country": "US",
+      "website": "https://brlcad.org/",
+      "description_zh": "组合实体建模与光线追踪",
+      "description_en": "Combinatorial solid modeling and ray tracing",
+      "categories": [
+        "CAD",
+        "CAE"
+      ]
+    },
+    {
+      "id": "build123d",
+      "name_zh": "build123d 社区",
+      "name_en": "build123d Community",
+      "origin": "open_source",
+      "hq_city": "—",
+      "hq_country": "—",
+      "website": "https://build123d.readthedocs.io/",
+      "description_zh": "Python CAD 框架（OCP/OCCT）",
+      "description_en": "Python CAD framework (OCP/OCCT)",
+      "categories": [
+        "CAD"
+      ]
+    },
+    {
       "id": "cabr",
       "name_zh": "中国建筑科学研究院",
       "name_en": "China Academy of Building Research (CABR)",
@@ -2028,119 +469,75 @@
       ]
     },
     {
-      "id": "cloudcompare",
-      "name_zh": "CloudCompare 社区",
-      "name_en": "CloudCompare Project",
-      "origin": "open_source",
-      "hq_city": "—",
-      "hq_country": "—",
-      "website": "https://www.cloudcompare.org/",
-      "description_zh": "开源点云/网格处理",
-      "description_en": "Open-source point cloud and mesh processing",
-      "categories": [
-        "BIM"
-      ]
-    },
-    {
-      "id": "leica-geosystems",
-      "name_zh": "徕卡测量系统",
-      "name_en": "Leica Geosystems (Hexagon)",
+      "id": "cadence",
+      "name_zh": "楷登电子",
+      "name_en": "Cadence",
       "origin": "international",
-      "hq_city": "Heerbrugg",
-      "hq_country": "CH",
-      "website": "https://leica-geosystems.com/",
-      "description_zh": "激光扫描与 Cyclone 点云软件",
-      "description_en": "Laser scanning and Cyclone point cloud software",
-      "categories": [
-        "BIM",
-        "GIS"
-      ]
-    },
-    {
-      "id": "jingdiao",
-      "name_zh": "北京精雕",
-      "name_en": "Jingdiao (JDSoft)",
-      "origin": "domestic",
-      "hq_city": "北京",
-      "hq_country": "CN",
-      "listed_ticker": "300083.SZ",
-      "website": "https://www.jingdiao.com/",
-      "description_zh": "精雕数控机床与 SurfMill CAM 软件",
-      "description_en": "Jingdiao CNC machines and SurfMill CAM software",
-      "categories": [
-        "CAD",
-        "CAM"
-      ]
-    },
-    {
-      "id": "luxion",
-      "name_zh": "Luxion（KeyShot）",
-      "name_en": "Luxion (KeyShot)",
-      "origin": "international",
-      "hq_city": "Tustin",
+      "hq_city": "San Jose",
       "hq_country": "US",
-      "website": "https://www.keyshot.com/",
-      "description_zh": "工业产品实时渲染与 CMF 评审",
-      "description_en": "Real-time industrial product rendering and CMF review",
-      "categories": [
-        "CAD"
-      ]
-    },
-    {
-      "id": "altium",
-      "name_zh": "澳德迈",
-      "name_en": "Altium",
-      "origin": "international",
-      "hq_city": "San Diego",
-      "hq_country": "US",
-      "listed_ticker": "ALU",
-      "website": "https://www.altium.com/",
-      "description_zh": "Altium Designer PCB EDA 与云端协作",
-      "description_en": "Altium Designer PCB EDA and cloud collaboration",
+      "listed_ticker": "CDNS",
+      "website": "https://www.cadence.com/",
+      "description_zh": "模拟与数字EDA",
+      "description_en": "Analog and digital EDA",
       "categories": [
         "EDA"
       ]
     },
     {
-      "id": "aras",
-      "name_zh": "Aras",
-      "name_en": "Aras Corporation",
-      "origin": "international",
-      "hq_city": "Andover",
-      "hq_country": "US",
-      "website": "https://www.aras.com/",
-      "description_zh": "Aras Innovator 开放 PLM 平台",
-      "description_en": "Aras Innovator open PLM platform",
+      "id": "cadquery",
+      "name_zh": "CadQuery 社区",
+      "name_en": "CadQuery Community",
+      "origin": "open_source",
+      "hq_city": "—",
+      "hq_country": "—",
+      "website": "https://cadquery.readthedocs.io/",
+      "description_zh": "Python OCCT 参数化建模",
+      "description_en": "Python OCCT parametric modeling",
       "categories": [
-        "PLM"
+        "CAD"
       ]
     },
     {
-      "id": "avic",
-      "name_zh": "中国航空工业集团",
-      "name_en": "AVIC",
+      "id": "casicloud",
+      "name_zh": "航天云网",
+      "name_en": "CASIC Cloud",
       "origin": "domestic",
       "hq_city": "北京",
       "hq_country": "CN",
-      "website": "http://www.avic.com/",
-      "description_zh": "航空装备研制与神舟软件 AVIDM PLM",
-      "description_en": "Aviation equipment and Shenzhou AVIDM PLM",
+      "website": "https://www.casicloud.com/",
+      "description_zh": "INDICS 工业互联网",
+      "description_en": "INDICS industrial internet",
       "categories": [
+        "Platform"
+      ]
+    },
+    {
+      "id": "caxa",
+      "name_zh": "数码大方",
+      "name_en": "CAXA",
+      "origin": "domestic",
+      "hq_city": "北京",
+      "hq_country": "CN",
+      "website": "https://www.caxa.com/",
+      "description_zh": "国产CAD与PLM老牌",
+      "description_en": "Legacy domestic CAD and PLM",
+      "categories": [
+        "CAD",
         "PLM"
       ]
     },
     {
-      "id": "bricsys",
-      "name_zh": "Bricsys",
-      "name_en": "Bricsys (Hexagon)",
-      "origin": "international",
-      "hq_city": "Ghent",
-      "hq_country": "BE",
-      "website": "https://www.bricsys.com/",
-      "description_zh": "BricsCAD 二维/三维 CAD（Hexagon）",
-      "description_en": "BricsCAD 2D/3D CAD (Hexagon)",
+      "id": "cbd-tech",
+      "name_zh": "CBD 科技",
+      "name_en": "CBD-Tech",
+      "origin": "domestic",
+      "hq_city": "深圳",
+      "hq_country": "CN",
+      "website": "https://www.chitubox.com/",
+      "description_zh": "CHITUBOX 光固化切片软件",
+      "description_en": "CHITUBOX resin slicing software",
       "categories": [
-        "CAD"
+        "Slicer"
       ]
     },
     {
@@ -2173,6 +570,78 @@
       ]
     },
     {
+      "id": "cloudcompare",
+      "name_zh": "CloudCompare 社区",
+      "name_en": "CloudCompare Project",
+      "origin": "open_source",
+      "hq_city": "—",
+      "hq_country": "—",
+      "website": "https://www.cloudcompare.org/",
+      "description_zh": "开源点云/网格处理",
+      "description_en": "Open-source point cloud and mesh processing",
+      "categories": [
+        "BIM"
+      ]
+    },
+    {
+      "id": "cntech",
+      "name_zh": "中仿智能科技",
+      "name_en": "CnTech Intelligent Technology",
+      "origin": "domestic",
+      "hq_city": "上海",
+      "hq_country": "CN",
+      "listed_ticker": "838476.NEEQ",
+      "website": "https://cntech.com/",
+      "description_zh": "航空仿真 CEASIOM 与 FEMAG 电磁",
+      "description_en": "Aerospace CEASIOM and FEMAG electromagnetics",
+      "categories": [
+        "CAE"
+      ]
+    },
+    {
+      "id": "comsol",
+      "name_zh": "COMSOL",
+      "name_en": "COMSOL",
+      "origin": "international",
+      "hq_city": "Burlington",
+      "hq_country": "US",
+      "website": "https://www.comsol.com/",
+      "description_zh": "多物理场仿真",
+      "description_en": "Multiphysics simulation",
+      "categories": [
+        "CAE"
+      ]
+    },
+    {
+      "id": "coretechnologie",
+      "name_zh": "CoreTechnologie",
+      "name_en": "CoreTechnologie",
+      "origin": "international",
+      "hq_city": "Frankfurt",
+      "hq_country": "DE",
+      "website": "https://www.coretechnologie.com/",
+      "description_zh": "3D_Evolution CAD转换内核",
+      "description_en": "3D_Evolution CAD conversion kernel",
+      "categories": [
+        "CAD"
+      ]
+    },
+    {
+      "id": "creality",
+      "name_zh": "创想三维",
+      "name_en": "Creality",
+      "origin": "domestic",
+      "hq_city": "深圳",
+      "hq_country": "CN",
+      "listed_ticker": "300866.SZ",
+      "website": "https://www.creality.com/",
+      "description_zh": "消费级 3D 打印机与 Creality Print",
+      "description_en": "Consumer 3D printers and Creality Print",
+      "categories": [
+        "Slicer"
+      ]
+    },
+    {
       "id": "cscec",
       "name_zh": "中国建筑",
       "name_en": "CSCEC",
@@ -2185,6 +654,193 @@
       "description_en": "CSCEC digital construction and BIM platform",
       "categories": [
         "BIM"
+      ]
+    },
+    {
+      "id": "daoruan",
+      "name_zh": "上海道软信息技术",
+      "name_en": "Shanghai Daoruan IT",
+      "origin": "domestic",
+      "hq_city": "上海",
+      "hq_country": "CN",
+      "website": "https://cutleader.com/",
+      "description_zh": "CutLeader 数控切割套料 CAM",
+      "description_en": "CutLeader CNC cutting nesting CAM",
+      "categories": [
+        "CAM"
+      ]
+    },
+    {
+      "id": "dassault",
+      "name_zh": "达索系统",
+      "name_en": "Dassault Systèmes",
+      "origin": "international",
+      "hq_city": "Vélizy",
+      "hq_country": "FR",
+      "website": "https://www.3ds.com/",
+      "description_zh": "CATIA/ENOVIA/Abaqus",
+      "description_en": "CATIA, ENOVIA, Abaqus",
+      "categories": [
+        "CAD",
+        "PLM",
+        "CAE"
+      ]
+    },
+    {
+      "id": "datakit",
+      "name_zh": "Datakit",
+      "name_en": "Datakit",
+      "origin": "international",
+      "hq_city": "Saint-Cloud",
+      "hq_country": "FR",
+      "website": "https://www.datakit.com/",
+      "description_zh": "CrossCad/Ware CAD数据交换",
+      "description_en": "CrossCad/Ware CAD data exchange",
+      "categories": [
+        "CAD"
+      ]
+    },
+    {
+      "id": "dcits",
+      "name_zh": "神州数码",
+      "name_en": "DCITS",
+      "origin": "domestic",
+      "hq_city": "北京",
+      "hq_country": "CN",
+      "website": "https://www.digitalchina.com/",
+      "description_zh": "分销供应链 ERP",
+      "description_en": "Distribution supply chain ERP",
+      "categories": [
+        "ERP"
+      ]
+    },
+    {
+      "id": "demark",
+      "name_zh": "武汉德玛克科技",
+      "name_en": "Demark (Wuhan) Technology",
+      "origin": "domestic",
+      "hq_city": "武汉",
+      "hq_country": "CN",
+      "website": "https://www.laserdmk.com/",
+      "description_zh": "HiNest 套料软件与激光装备",
+      "description_en": "HiNest nesting and laser equipment",
+      "categories": [
+        "CAM"
+      ]
+    },
+    {
+      "id": "digiwin",
+      "name_zh": "鼎捷软件",
+      "name_en": "Digiwin",
+      "origin": "domestic",
+      "hq_city": "上海",
+      "hq_country": "CN",
+      "listed_ticker": "300378.SZ",
+      "website": "https://www.digiwin.com/",
+      "description_zh": "制造业 ERP T100",
+      "description_en": "Manufacturing ERP T100",
+      "categories": [
+        "ERP"
+      ]
+    },
+    {
+      "id": "elegoo",
+      "name_zh": "智能派科技",
+      "name_en": "ELEGOO",
+      "origin": "domestic",
+      "hq_city": "深圳",
+      "hq_country": "CN",
+      "website": "https://www.elegoo.com/",
+      "description_zh": "树脂/FDM 打印机与 ELEGOO Slicer",
+      "description_en": "Resin/FDM printers and ELEGOO Slicer",
+      "categories": [
+        "Slicer"
+      ]
+    },
+    {
+      "id": "elysium",
+      "name_zh": "Elysium",
+      "name_en": "Elysium",
+      "origin": "international",
+      "hq_city": "Southfield",
+      "hq_country": "US",
+      "website": "https://www.elysiuminc.com/",
+      "description_zh": "CADfix几何修复与转换",
+      "description_en": "CADfix geometry repair and translation",
+      "categories": [
+        "CAD",
+        "CAE"
+      ]
+    },
+    {
+      "id": "emerson",
+      "name_zh": "艾默生",
+      "name_en": "Emerson",
+      "origin": "international",
+      "hq_city": "St. Louis",
+      "hq_country": "US",
+      "website": "https://www.emerson.com/",
+      "description_zh": "流程自动化与DCS",
+      "description_en": "Process automation and DCS",
+      "categories": [
+        "DCS"
+      ]
+    },
+    {
+      "id": "empyrean",
+      "name_zh": "华大九天",
+      "name_en": "Empyrean",
+      "origin": "domestic",
+      "hq_city": "北京",
+      "hq_country": "CN",
+      "listed_ticker": "301269.SZ",
+      "website": "https://www.empyrean.com.cn/",
+      "description_zh": "国产EDA龙头，模拟与数字后端工具链",
+      "description_en": "Leading domestic EDA vendor",
+      "categories": [
+        "EDA"
+      ]
+    },
+    {
+      "id": "emqx",
+      "name_zh": "映云科技",
+      "name_en": "EMQ Technologies",
+      "origin": "domestic",
+      "hq_city": "杭州",
+      "hq_country": "CN",
+      "website": "https://www.emqx.com/",
+      "description_zh": "EMQX MQTT 物联网消息平台",
+      "description_en": "EMQX MQTT IoT messaging platform",
+      "categories": [
+        "Platform"
+      ]
+    },
+    {
+      "id": "esri",
+      "name_zh": "易智瑞/Esri",
+      "name_en": "Esri",
+      "origin": "international",
+      "hq_city": "Redlands",
+      "hq_country": "US",
+      "website": "https://www.esri.com/",
+      "description_zh": "全球GIS平台",
+      "description_en": "Global GIS platform",
+      "categories": [
+        "GIS"
+      ]
+    },
+    {
+      "id": "eznesting",
+      "name_zh": "EZNESTING",
+      "name_en": "EZNESTING",
+      "origin": "international",
+      "hq_city": "",
+      "hq_country": "US",
+      "website": "https://eznesting.com/",
+      "description_zh": "浏览器轻量套料 SaaS",
+      "description_en": "Browser-based lightweight nesting SaaS",
+      "categories": [
+        "CAM"
       ]
     },
     {
@@ -2202,6 +858,20 @@
       ]
     },
     {
+      "id": "fastcam-cn",
+      "name_zh": "发思特软件（上海）",
+      "name_en": "FastCAM China (FST Shanghai)",
+      "origin": "domestic",
+      "hq_city": "上海",
+      "hq_country": "CN",
+      "website": "https://www.fastcam.cn/",
+      "description_zh": "FastCAM 中国运营与技术支持",
+      "description_en": "FastCAM China sales and support",
+      "categories": [
+        "CAM"
+      ]
+    },
+    {
       "id": "feidu",
       "name_zh": "飞渡科技",
       "name_en": "Feidu Technology",
@@ -2214,6 +884,136 @@
       "categories": [
         "GIS",
         "BIM"
+      ]
+    },
+    {
+      "id": "flashforge",
+      "name_zh": "闪铸科技",
+      "name_en": "Flashforge",
+      "origin": "domestic",
+      "hq_city": "杭州",
+      "hq_country": "CN",
+      "website": "https://www.flashforge.com/",
+      "description_zh": "教育/消费级 3D 打印与 FlashPrint",
+      "description_en": "Education and consumer 3D printing with FlashPrint",
+      "categories": [
+        "Slicer"
+      ]
+    },
+    {
+      "id": "freecad",
+      "name_zh": "FreeCAD 社区",
+      "name_en": "FreeCAD Community",
+      "origin": "open_source",
+      "hq_city": "—",
+      "hq_country": "—",
+      "website": "https://www.freecad.org/",
+      "description_zh": "开源参数化 MCAD（OCCT）",
+      "description_en": "Open parametric MCAD on OCCT",
+      "categories": [
+        "CAD",
+        "CAM"
+      ]
+    },
+    {
+      "id": "functionbay",
+      "name_zh": "FunctionBay",
+      "name_en": "FunctionBay",
+      "origin": "international",
+      "hq_city": "Seongnam",
+      "hq_country": "KR",
+      "website": "https://www.functionbay.com/",
+      "description_zh": "RecurDyn多体动力学",
+      "description_en": "RecurDyn multibody dynamics",
+      "categories": [
+        "CAE"
+      ]
+    },
+    {
+      "id": "ge",
+      "name_zh": "GE Digital",
+      "name_en": "GE Digital",
+      "origin": "international",
+      "hq_city": "San Ramon",
+      "hq_country": "US",
+      "website": "https://www.ge.com/digital/",
+      "description_zh": "Predix 工业互联网",
+      "description_en": "Predix industrial internet",
+      "categories": [
+        "Platform"
+      ]
+    },
+    {
+      "id": "ge-vernova",
+      "name_zh": "GE Vernova",
+      "name_en": "GE Vernova",
+      "origin": "international",
+      "hq_city": "Cambridge",
+      "hq_country": "US",
+      "website": "https://www.gevernova.com/",
+      "description_zh": "iFIX SCADA 与能源软件",
+      "description_en": "iFIX SCADA and energy software",
+      "categories": [
+        "SCADA",
+        "Platform"
+      ]
+    },
+    {
+      "id": "getech",
+      "name_zh": "格创东智",
+      "name_en": "Getech (TCL)",
+      "origin": "domestic",
+      "hq_city": "深圳",
+      "hq_country": "CN",
+      "website": "https://www.getech.cn/",
+      "description_zh": "泛半导体 CIM/MES/EAP 工业智能",
+      "description_en": "Semiconductor CIM/MES/EAP industrial intelligence",
+      "categories": [
+        "MES",
+        "Platform"
+      ]
+    },
+    {
+      "id": "gibbs",
+      "name_zh": "GibbsCAM",
+      "name_en": "GibbsCAM (3D Systems)",
+      "origin": "international",
+      "hq_city": "Moorpark",
+      "hq_country": "US",
+      "website": "https://www.gibbscam.com/",
+      "description_zh": "车铣复合 CAM",
+      "description_en": "Mill-turn CAM",
+      "categories": [
+        "CAM"
+      ]
+    },
+    {
+      "id": "glodon",
+      "name_zh": "广联达",
+      "name_en": "Glodon",
+      "origin": "domestic",
+      "hq_city": "北京",
+      "hq_country": "CN",
+      "listed_ticker": "002410.SZ",
+      "website": "https://www.glodon.com/",
+      "description_zh": "建筑数字化与造价",
+      "description_en": "Construction digitalization and cost",
+      "categories": [
+        "BIM"
+      ]
+    },
+    {
+      "id": "goodsgather",
+      "name_zh": "谷器数据",
+      "name_en": "GoodsGather",
+      "origin": "domestic",
+      "hq_city": "北京",
+      "hq_country": "CN",
+      "website": "https://www.goodsgather.com/",
+      "description_zh": "汽车零部件 MES",
+      "description_en": "Automotive parts MES",
+      "categories": [
+        "MES"
       ]
     },
     {
@@ -2246,6 +1046,21 @@
       ]
     },
     {
+      "id": "gstarcad",
+      "name_zh": "浩辰软件",
+      "name_en": "Gstarsoft",
+      "origin": "domestic",
+      "hq_city": "苏州",
+      "hq_country": "CN",
+      "listed_ticker": "688657.SH",
+      "website": "https://www.gstarcad.com/",
+      "description_zh": "2D/3D CAD与云CAD",
+      "description_en": "2D/3D and cloud CAD",
+      "categories": [
+        "CAD"
+      ]
+    },
+    {
       "id": "guowei",
       "name_zh": "国微芯",
       "name_en": "GWX EDA",
@@ -2260,6 +1075,126 @@
       ]
     },
     {
+      "id": "haier",
+      "name_zh": "海尔卡奥斯",
+      "name_en": "Haier COSMOPlat",
+      "origin": "domestic",
+      "hq_city": "青岛",
+      "hq_country": "CN",
+      "website": "https://www.cosmoplat.com/",
+      "description_zh": "工业互联网与大规模定制",
+      "description_en": "IIoT and mass customization",
+      "categories": [
+        "MES",
+        "Platform"
+      ]
+    },
+    {
+      "id": "haitian",
+      "name_zh": "海天国际",
+      "name_en": "Haitian International",
+      "origin": "domestic",
+      "hq_city": "宁波",
+      "hq_country": "CN",
+      "listed_ticker": "01882.HK",
+      "website": "https://www.haitian.com/",
+      "description_zh": "注塑机与 X-注塑云工业 AI 工艺平台",
+      "description_en": "Injection molding machines and X-Injection Cloud AI platform",
+      "categories": [
+        "MES"
+      ]
+    },
+    {
+      "id": "hancloud",
+      "name_zh": "徐工汉云",
+      "name_en": "XCMG HanCloud",
+      "origin": "domestic",
+      "hq_city": "佛山",
+      "hq_country": "CN",
+      "website": "https://www.hanyun.com/",
+      "description_zh": "HANYUN OS 国家级双跨工业互联网平台",
+      "description_en": "HANYUN OS national dual-cross IIoT platform",
+      "categories": [
+        "Platform"
+      ]
+    },
+    {
+      "id": "heekscad",
+      "name_zh": "HeeksCAD 社区",
+      "name_en": "HeeksCAD Community",
+      "origin": "open_source",
+      "hq_city": "—",
+      "hq_country": "—",
+      "website": "https://github.com/Heeks/heekscad",
+      "description_zh": "遗留 OCCT CAD/CAM 项目",
+      "description_en": "Legacy OCCT CAD/CAM project",
+      "categories": [
+        "CAD",
+        "CAM"
+      ]
+    },
+    {
+      "id": "hexagon",
+      "name_zh": "海克斯康",
+      "name_en": "Hexagon",
+      "origin": "international",
+      "hq_city": "Stockholm",
+      "hq_country": "SE",
+      "listed_ticker": "HEXA-B",
+      "website": "https://hexagon.com/",
+      "description_zh": "MSC/计量/CAD 组合",
+      "description_en": "MSC, metrology, and CAD portfolio",
+      "categories": [
+        "CAE",
+        "CAD",
+        "CAM"
+      ]
+    },
+    {
+      "id": "heygears",
+      "name_zh": "黑格科技",
+      "name_en": "HeyGears",
+      "origin": "domestic",
+      "hq_city": "广州",
+      "hq_country": "CN",
+      "website": "https://www.heygears.com/",
+      "description_zh": "工业级 DLP 3D 打印与 HPS 切片",
+      "description_en": "Industrial DLP printing and HPS slicing",
+      "categories": [
+        "Slicer"
+      ]
+    },
+    {
+      "id": "hollysys",
+      "name_zh": "和利时",
+      "name_en": "Hollysys",
+      "origin": "domestic",
+      "hq_city": "北京",
+      "hq_country": "CN",
+      "listed_ticker": "HOLI",
+      "website": "https://www.hollysys.com/",
+      "description_zh": "自动化与DCS",
+      "description_en": "Automation and DCS",
+      "categories": [
+        "DCS"
+      ]
+    },
+    {
+      "id": "honeywell",
+      "name_zh": "霍尼韦尔",
+      "name_en": "Honeywell",
+      "origin": "international",
+      "hq_city": "Charlotte",
+      "hq_country": "US",
+      "listed_ticker": "HON",
+      "website": "https://process.honeywell.com/",
+      "description_zh": "Experion DCS 流程自动化",
+      "description_en": "Experion DCS process automation",
+      "categories": [
+        "DCS"
+      ]
+    },
+    {
       "id": "hongxin",
       "name_zh": "鸿芯微纳",
       "name_en": "Hongxin Technology",
@@ -2271,6 +1206,36 @@
       "description_en": "Domestic digital place-and-route EDA",
       "categories": [
         "EDA"
+      ]
+    },
+    {
+      "id": "hoteam",
+      "name_zh": "华天软件",
+      "name_en": "Hoteam",
+      "origin": "domestic",
+      "hq_city": "济南",
+      "hq_country": "CN",
+      "website": "https://www.hoteamsoft.com/",
+      "description_zh": "CAD/PLM/MES一体化",
+      "description_en": "Integrated CAD/PLM/MES",
+      "categories": [
+        "CAD",
+        "PLM"
+      ]
+    },
+    {
+      "id": "huace",
+      "name_zh": "上海华测导航",
+      "name_en": "CHC Navigation",
+      "origin": "domestic",
+      "hq_city": "上海",
+      "hq_country": "CN",
+      "listed_ticker": "688592.SH",
+      "website": "https://www.huace.cn/",
+      "description_zh": "GNSS 测绘装备与 CGO 后处理软件",
+      "description_en": "GNSS surveying equipment and CGO post-processing",
+      "categories": [
+        "GIS"
       ]
     },
     {
@@ -2305,6 +1270,36 @@
       ]
     },
     {
+      "id": "huawei",
+      "name_zh": "华为",
+      "name_en": "Huawei",
+      "origin": "domestic",
+      "hq_city": "深圳",
+      "hq_country": "CN",
+      "website": "https://www.huawei.com/",
+      "description_zh": "ICT与工业互联网平台",
+      "description_en": "ICT and industrial internet platforms",
+      "categories": [
+        "Platform",
+        "ERP"
+      ]
+    },
+    {
+      "id": "huayun",
+      "name_zh": "华云中盛",
+      "name_en": "HuaCloud",
+      "origin": "domestic",
+      "hq_city": "深圳",
+      "hq_country": "CN",
+      "website": "https://www.hua-cloud.com.cn/",
+      "description_zh": "工业数据与信创云底座",
+      "description_en": "Industrial data and xinchuang cloud base",
+      "categories": [
+        "Platform",
+        "CAE"
+      ]
+    },
+    {
       "id": "huazhong",
       "name_zh": "华中数控",
       "name_en": "Huazhong CNC",
@@ -2316,6 +1311,109 @@
       "description_zh": "国产中高端数控系统与工业机器人",
       "description_en": "Domestic mid-high-end CNC systems and industrial robots",
       "categories": [
+        "CAM"
+      ]
+    },
+    {
+      "id": "ibm",
+      "name_zh": "IBM",
+      "name_en": "IBM",
+      "origin": "international",
+      "hq_city": "Armonk",
+      "hq_country": "US",
+      "listed_ticker": "IBM",
+      "website": "https://www.ibm.com/",
+      "description_zh": "Maximo 资产维护",
+      "description_en": "Maximo asset management",
+      "categories": [
+        "EAM"
+      ]
+    },
+    {
+      "id": "infor",
+      "name_zh": "Infor",
+      "name_en": "Infor",
+      "origin": "international",
+      "hq_city": "New York",
+      "hq_country": "US",
+      "website": "https://www.infor.com/",
+      "description_zh": "CloudSuite ERP 与 EAM",
+      "description_en": "CloudSuite ERP and EAM",
+      "categories": [
+        "ERP",
+        "EAM"
+      ]
+    },
+    {
+      "id": "inspur",
+      "name_zh": "浪潮",
+      "name_en": "Inspur",
+      "origin": "domestic",
+      "hq_city": "济南",
+      "hq_country": "CN",
+      "website": "https://www.inspur.com/",
+      "description_zh": "国资集团 ERP",
+      "description_en": "SOE group ERP",
+      "categories": [
+        "ERP"
+      ]
+    },
+    {
+      "id": "ironcad",
+      "name_zh": "IronCAD",
+      "name_en": "IronCAD",
+      "origin": "international",
+      "hq_city": "Atlanta",
+      "hq_country": "US",
+      "website": "https://www.ironcad.com/",
+      "description_zh": "拖拽式直觉三维 CAD",
+      "description_en": "Drag-and-drop intuitive 3D CAD",
+      "categories": [
+        "CAD"
+      ]
+    },
+    {
+      "id": "iti-transcendata",
+      "name_zh": "ITI TranscenData",
+      "name_en": "ITI TranscenData",
+      "origin": "international",
+      "hq_city": "Milford",
+      "hq_country": "US",
+      "website": "https://www.iti-global.com/",
+      "description_zh": "CADIQ CAD质量检查",
+      "description_en": "CADIQ CAD quality validation",
+      "categories": [
+        "CAD"
+      ]
+    },
+    {
+      "id": "jcz",
+      "name_zh": "北京金橙子科技",
+      "name_en": "Beijing JCZ Technology",
+      "origin": "domestic",
+      "hq_city": "北京",
+      "hq_country": "CN",
+      "listed_ticker": "688291.SH",
+      "website": "http://www.bjjcz.com/",
+      "description_zh": "激光振镜与伺服切割控制系统",
+      "description_en": "Laser galvo and servo cutting control",
+      "categories": [
+        "CAM"
+      ]
+    },
+    {
+      "id": "jingdiao",
+      "name_zh": "北京精雕",
+      "name_en": "Jingdiao (JDSoft)",
+      "origin": "domestic",
+      "hq_city": "北京",
+      "hq_country": "CN",
+      "listed_ticker": "300083.SZ",
+      "website": "https://www.jingdiao.com/",
+      "description_zh": "精雕数控机床与 SurfMill CAM 软件",
+      "description_en": "Jingdiao CNC machines and SurfMill CAM software",
+      "categories": [
+        "CAD",
         "CAM"
       ]
     },
@@ -2363,6 +1461,107 @@
       ]
     },
     {
+      "id": "kicad",
+      "name_zh": "KiCad 项目",
+      "name_en": "KiCad Project",
+      "origin": "open_source",
+      "hq_city": "—",
+      "hq_country": "—",
+      "website": "https://www.kicad.org/",
+      "description_zh": "开源 PCB EDA（OCCT 3D）",
+      "description_en": "Open PCB EDA (OCCT 3D view)",
+      "categories": [
+        "EDA"
+      ]
+    },
+    {
+      "id": "kingdee",
+      "name_zh": "金蝶国际",
+      "name_en": "Kingdee",
+      "origin": "domestic",
+      "hq_city": "深圳",
+      "hq_country": "CN",
+      "listed_ticker": "0268.HK",
+      "website": "https://www.kingdee.com/",
+      "description_zh": "中小企业云ERP",
+      "description_en": "SME cloud ERP",
+      "categories": [
+        "ERP"
+      ]
+    },
+    {
+      "id": "langkun",
+      "name_zh": "朗坤智慧",
+      "name_en": "Luculent",
+      "origin": "domestic",
+      "hq_city": "南京",
+      "hq_country": "CN",
+      "website": "https://www.langkun.com/",
+      "description_zh": "SyncPlant MES 与 LiOM EAM",
+      "description_en": "SyncPlant MES and LiOM EAM",
+      "categories": [
+        "MES",
+        "EAM"
+      ]
+    },
+    {
+      "id": "lantek",
+      "name_zh": "Lantek",
+      "name_en": "Lantek",
+      "origin": "international",
+      "hq_city": "Miñano",
+      "hq_country": "ES",
+      "website": "https://www.lantek.com/cn/",
+      "description_zh": "钣金套料 CAD/CAM 与 MES 集成",
+      "description_en": "Sheet metal nesting CAD/CAM and MES integration",
+      "categories": [
+        "CAM"
+      ]
+    },
+    {
+      "id": "leica-geosystems",
+      "name_zh": "徕卡测量系统",
+      "name_en": "Leica Geosystems (Hexagon)",
+      "origin": "international",
+      "hq_city": "Heerbrugg",
+      "hq_country": "CH",
+      "website": "https://leica-geosystems.com/",
+      "description_zh": "激光扫描与 Cyclone 点云软件",
+      "description_en": "Laser scanning and Cyclone point cloud software",
+      "categories": [
+        "BIM",
+        "GIS"
+      ]
+    },
+    {
+      "id": "leo-ai",
+      "name_zh": "Leo AI",
+      "name_en": "Leo AI",
+      "origin": "international",
+      "hq_city": "Cambridge",
+      "hq_country": "US",
+      "website": "https://www.getleo.ai/",
+      "description_zh": "CAD 感知机械工程大模型与装配生成",
+      "description_en": "CAD-aware mechanical LMM and assembly generation",
+      "categories": [
+        "CAD"
+      ]
+    },
+    {
+      "id": "librecad",
+      "name_zh": "LibreCAD 社区",
+      "name_en": "LibreCAD Community",
+      "origin": "open_source",
+      "hq_city": "—",
+      "hq_country": "—",
+      "website": "https://librecad.org/",
+      "description_zh": "开源 2D CAD",
+      "description_en": "Open-source 2D CAD",
+      "categories": [
+        "CAD"
+      ]
+    },
+    {
       "id": "luban",
       "name_zh": "鲁班软件",
       "name_en": "Lubansoft",
@@ -2374,6 +1573,34 @@
       "description_en": "Construction BIM and cost management",
       "categories": [
         "BIM"
+      ]
+    },
+    {
+      "id": "luxion",
+      "name_zh": "Luxion（KeyShot）",
+      "name_en": "Luxion (KeyShot)",
+      "origin": "international",
+      "hq_city": "Tustin",
+      "hq_country": "US",
+      "website": "https://www.keyshot.com/",
+      "description_zh": "工业产品实时渲染与 CMF 评审",
+      "description_en": "Real-time industrial product rendering and CMF review",
+      "categories": [
+        "CAD"
+      ]
+    },
+    {
+      "id": "mango3d",
+      "name_zh": "Mango3D",
+      "name_en": "Mango3D",
+      "origin": "international",
+      "hq_city": "Paris",
+      "hq_country": "FR",
+      "website": "https://mango3d.io/",
+      "description_zh": "Lychee Slicer 开发商",
+      "description_en": "Lychee Slicer developer",
+      "categories": [
+        "Slicer"
       ]
     },
     {
@@ -2405,6 +1632,224 @@
       ]
     },
     {
+      "id": "materialise",
+      "name_zh": "Materialise",
+      "name_en": "Materialise",
+      "origin": "international",
+      "hq_city": "Leuven",
+      "hq_country": "BE",
+      "listed_ticker": "MTLS",
+      "website": "https://www.materialise.com/",
+      "description_zh": "工业增材制造软件 Magics",
+      "description_en": "Industrial AM software Magics",
+      "categories": [
+        "Slicer"
+      ]
+    },
+    {
+      "id": "mathworks",
+      "name_zh": "MathWorks",
+      "name_en": "MathWorks",
+      "origin": "international",
+      "hq_city": "Natick",
+      "hq_country": "US",
+      "website": "https://www.mathworks.com/",
+      "description_zh": "MATLAB/Simulink 数值与系统仿真",
+      "description_en": "MATLAB and Simulink numerical and systems simulation",
+      "categories": [
+        "CAE",
+        "MBSE"
+      ]
+    },
+    {
+      "id": "mcneel",
+      "name_zh": "McNeel",
+      "name_en": "McNeel",
+      "origin": "international",
+      "hq_city": "Seattle",
+      "hq_country": "US",
+      "website": "https://www.rhino3d.com/",
+      "description_zh": "Rhino 自由曲面 CAD",
+      "description_en": "Rhino freeform surface CAD",
+      "categories": [
+        "CAD"
+      ]
+    },
+    {
+      "id": "microsoft",
+      "name_zh": "微软",
+      "name_en": "Microsoft",
+      "origin": "international",
+      "hq_city": "Redmond",
+      "hq_country": "US",
+      "listed_ticker": "MSFT",
+      "website": "https://dynamics.microsoft.com/",
+      "description_zh": "Dynamics 365 ERP",
+      "description_en": "Dynamics 365 ERP",
+      "categories": [
+        "ERP"
+      ]
+    },
+    {
+      "id": "midea",
+      "name_zh": "美云智数",
+      "name_en": "Meicloud",
+      "origin": "domestic",
+      "hq_city": "佛山",
+      "hq_country": "CN",
+      "website": "https://www.meicloud.com/",
+      "description_zh": "美的工业互联网外溢",
+      "description_en": "Midea IIoT spin-off",
+      "categories": [
+        "Platform"
+      ]
+    },
+    {
+      "id": "mogulinker",
+      "name_zh": "广东蘑菇物联",
+      "name_en": "Mogulinker",
+      "origin": "domestic",
+      "hq_city": "佛山",
+      "hq_country": "CN",
+      "website": "https://www.mogulinker.com/",
+      "description_zh": "工业设备物联网与公辅能源 AI 云智控",
+      "description_en": "Industrial equipment IoT and utility AI cloud control",
+      "categories": [
+        "Platform",
+        "MES"
+      ]
+    },
+    {
+      "id": "moldbao",
+      "name_zh": "深圳模德宝科技",
+      "name_en": "Shenzhen Moldbao Technology",
+      "origin": "domestic",
+      "hq_city": "深圳",
+      "hq_country": "CN",
+      "website": "https://www.moldbao.com/",
+      "description_zh": "模具注塑模云 MES 与柔性自动化",
+      "description_en": "Mold/injection ModuCloud MES and flexible automation",
+      "categories": [
+        "MES"
+      ]
+    },
+    {
+      "id": "morewis",
+      "name_zh": "摩尔元数",
+      "name_en": "Morewis",
+      "origin": "domestic",
+      "hq_city": "深圳",
+      "hq_country": "CN",
+      "website": "https://www.morewis.com/",
+      "description_zh": "N2Cloud MOM/MES 平台",
+      "description_en": "N2Cloud MOM/MES platform",
+      "categories": [
+        "MES"
+      ]
+    },
+    {
+      "id": "nari",
+      "name_zh": "南瑞集团",
+      "name_en": "NARI",
+      "origin": "domestic",
+      "hq_city": "南京",
+      "hq_country": "CN",
+      "listed_ticker": "600406.SH",
+      "website": "http://www.nari.cn/",
+      "description_zh": "电网 DCS/自动化",
+      "description_en": "Grid DCS and automation",
+      "categories": [
+        "DCS"
+      ]
+    },
+    {
+      "id": "nemetschek",
+      "name_zh": "Nemetschek Group",
+      "name_en": "Nemetschek Group",
+      "origin": "international",
+      "hq_city": "Munich",
+      "hq_country": "DE",
+      "listed_ticker": "NEM",
+      "website": "https://www.nemetschek.com/",
+      "description_zh": "Solibri/Graphisoft/Bluebeam 等 AEC 软件集团",
+      "description_en": "AEC software group (Solibri, Graphisoft, Bluebeam)",
+      "categories": [
+        "BIM"
+      ]
+    },
+    {
+      "id": "neucloud",
+      "name_zh": "寄云科技",
+      "name_en": "NeuCloud Technology",
+      "origin": "domestic",
+      "hq_city": "北京",
+      "hq_country": "CN",
+      "website": "https://www.neucloud.cn/",
+      "description_zh": "NeuSeer 工业物联网与预测性维护",
+      "description_en": "NeuSeer industrial IoT and predictive maintenance",
+      "categories": [
+        "Platform"
+      ]
+    },
+    {
+      "id": "newdim",
+      "name_zh": "新迪数字",
+      "name_en": "Newdim Digital",
+      "origin": "domestic",
+      "hq_city": "上海",
+      "hq_country": "CN",
+      "website": "https://www.newdimchina.com/",
+      "description_zh": "天工CAD 国产三维设计",
+      "description_en": "Tiangong CAD domestic 3D design",
+      "categories": [
+        "CAD"
+      ]
+    },
+    {
+      "id": "nrec",
+      "name_zh": "国电南自",
+      "name_en": "NREC",
+      "origin": "domestic",
+      "hq_city": "南京",
+      "hq_country": "CN",
+      "listed_ticker": "600268.SH",
+      "website": "https://www.nrec.com/",
+      "description_zh": "电力自动化与 DCS",
+      "description_en": "Power automation and DCS",
+      "categories": [
+        "DCS"
+      ]
+    },
+    {
+      "id": "open-cascade",
+      "name_zh": "Open Cascade SAS",
+      "name_en": "Open Cascade SAS",
+      "origin": "international",
+      "hq_city": "Guyancourt",
+      "hq_country": "FR",
+      "website": "https://www.opencascade.com/",
+      "description_zh": "OCCT 开源几何内核开发商与商业支持",
+      "description_en": "OCCT open geometry kernel vendor and commercial support",
+      "categories": [
+        "CAD",
+        "CAE"
+      ]
+    },
+    {
+      "id": "open62541",
+      "name_zh": "open62541 社区",
+      "name_en": "open62541 Project",
+      "origin": "open_source",
+      "hq_city": "—",
+      "hq_country": "—",
+      "website": "https://open62541.org/",
+      "description_zh": "开源 OPC UA 协议栈",
+      "description_en": "Open-source OPC UA protocol stack",
+      "categories": [
+        "Platform"
+      ]
+    },
+    {
       "id": "openmind",
       "name_zh": "OPEN MIND",
       "name_en": "OPEN MIND Technologies",
@@ -2416,6 +1861,110 @@
       "description_en": "hyperMILL multi-axis CAM and robot programming",
       "categories": [
         "CAM"
+      ]
+    },
+    {
+      "id": "openmodelica",
+      "name_zh": "OpenModelica",
+      "name_en": "OpenModelica",
+      "origin": "open_source",
+      "hq_city": "—",
+      "hq_country": "—",
+      "website": "https://openmodelica.org/",
+      "description_zh": "开源Modelica平台",
+      "description_en": "Open-source Modelica platform",
+      "categories": [
+        "MBSE"
+      ]
+    },
+    {
+      "id": "openscad",
+      "name_zh": "OpenSCAD 社区",
+      "name_en": "OpenSCAD Community",
+      "origin": "open_source",
+      "hq_city": "—",
+      "hq_country": "—",
+      "website": "https://openscad.org/",
+      "description_zh": "程序化 CSG 建模（CGAL）",
+      "description_en": "Programmatic CSG modeling (CGAL)",
+      "categories": [
+        "CAD"
+      ]
+    },
+    {
+      "id": "oracle",
+      "name_zh": "甲骨文",
+      "name_en": "Oracle",
+      "origin": "international",
+      "hq_city": "Austin",
+      "hq_country": "US",
+      "listed_ticker": "ORCL",
+      "website": "https://www.oracle.com/",
+      "description_zh": "ERP/PLM/制造云",
+      "description_en": "ERP, PLM, and manufacturing cloud",
+      "categories": [
+        "ERP",
+        "PLM",
+        "MES"
+      ]
+    },
+    {
+      "id": "orbitmes",
+      "name_zh": "深圳华磊迅拓",
+      "name_en": "Shenzhen OrBit Technology",
+      "origin": "domestic",
+      "hq_city": "深圳",
+      "hq_country": "CN",
+      "website": "https://www.orbitmes.com/",
+      "description_zh": "OrBit-MES 注塑冲压等行业套件",
+      "description_en": "OrBit-MES for injection molding and stamping",
+      "categories": [
+        "MES"
+      ]
+    },
+    {
+      "id": "pangus",
+      "name_zh": "广东盘古信息",
+      "name_en": "Guangdong Pangus Information",
+      "origin": "domestic",
+      "hq_city": "东莞",
+      "hq_country": "CN",
+      "website": "https://www.pangus-ims.com/",
+      "description_zh": "离散制造 IMS V6 MES/MOM",
+      "description_en": "Discrete manufacturing IMS V6 MES/MOM",
+      "categories": [
+        "MES"
+      ]
+    },
+    {
+      "id": "pcitc",
+      "name_zh": "石化盈科",
+      "name_en": "PCITC",
+      "origin": "domestic",
+      "hq_city": "北京",
+      "hq_country": "CN",
+      "website": "http://www.pcitc.com/",
+      "description_zh": "中石化 IT 与智能炼化",
+      "description_en": "Sinopec IT and smart refining",
+      "categories": [
+        "MES",
+        "Platform"
+      ]
+    },
+    {
+      "id": "pdf-solutions",
+      "name_zh": "PDF Solutions",
+      "name_en": "PDF Solutions",
+      "origin": "international",
+      "hq_city": "San Jose",
+      "hq_country": "US",
+      "listed_ticker": "PDFS",
+      "website": "https://www.pdf.com/",
+      "description_zh": "Exensio良率分析平台",
+      "description_en": "Exensio yield analytics platform",
+      "categories": [
+        "半导体CIM",
+        "EDA"
       ]
     },
     {
@@ -2435,6 +1984,20 @@
       ]
     },
     {
+      "id": "pera",
+      "name_zh": "安世亚太",
+      "name_en": "PERA Global",
+      "origin": "domestic",
+      "hq_city": "北京",
+      "hq_country": "CN",
+      "website": "https://www.peraglobal.com/",
+      "description_zh": "国产多物理场仿真",
+      "description_en": "Domestic multiphysics simulation",
+      "categories": [
+        "CAE"
+      ]
+    },
+    {
       "id": "pinming",
       "name_zh": "品茗科技",
       "name_en": "Pinming Technology",
@@ -2447,6 +2010,82 @@
       "description_en": "Smart construction site and BIM collaboration",
       "categories": [
         "BIM"
+      ]
+    },
+    {
+      "id": "plex",
+      "name_zh": "Plex",
+      "name_en": "Plex",
+      "origin": "international",
+      "hq_city": "Troy",
+      "hq_country": "US",
+      "website": "https://www.plex.com/",
+      "description_zh": "云制造 ERP/MES",
+      "description_en": "Cloud manufacturing ERP and MES",
+      "categories": [
+        "MES",
+        "ERP"
+      ]
+    },
+    {
+      "id": "poisson",
+      "name_zh": "泊松软件",
+      "name_en": "Poisson Software",
+      "origin": "domestic",
+      "hq_city": "深圳",
+      "hq_country": "CN",
+      "website": "https://www.poissonsoft.com/",
+      "description_zh": "Geoshape 自研几何引擎与 CAD",
+      "description_en": "Geoshape owned geometry engine and CAD",
+      "categories": [
+        "CAD",
+        "CAE",
+        "PLM"
+      ]
+    },
+    {
+      "id": "primarius",
+      "name_zh": "概伦电子",
+      "name_en": "Primarius",
+      "origin": "domestic",
+      "hq_city": "上海",
+      "hq_country": "CN",
+      "listed_ticker": "688206.SH",
+      "website": "https://www.primarius-tech.com/",
+      "description_zh": "器件建模与良率分析",
+      "description_en": "Device modeling and yield analytics",
+      "categories": [
+        "EDA"
+      ]
+    },
+    {
+      "id": "prusa",
+      "name_zh": "Prusa Research",
+      "name_en": "Prusa Research",
+      "origin": "international",
+      "hq_city": "Prague",
+      "hq_country": "CZ",
+      "website": "https://www.prusa3d.com/",
+      "description_zh": "PrusaSlicer 与开源 3D 打印机",
+      "description_en": "PrusaSlicer and open 3D printers",
+      "categories": [
+        "Slicer"
+      ]
+    },
+    {
+      "id": "ptc",
+      "name_zh": "PTC",
+      "name_en": "PTC",
+      "origin": "international",
+      "hq_city": "Boston",
+      "hq_country": "US",
+      "website": "https://www.ptc.com/",
+      "description_zh": "Creo/Windchill/ThingWorx",
+      "description_en": "Creo, Windchill, ThingWorx",
+      "categories": [
+        "CAD",
+        "PLM",
+        "Platform"
       ]
     },
     {
@@ -2465,6 +2104,79 @@
       ]
     },
     {
+      "id": "rainfe",
+      "name_zh": "瑞风协同",
+      "name_en": "Rainfe",
+      "origin": "domestic",
+      "hq_city": "北京",
+      "hq_country": "CN",
+      "website": "https://www.rainfe.com/",
+      "description_zh": "虚拟试验与试验数据管理",
+      "description_en": "Virtual test and test data management",
+      "categories": [
+        "CAE"
+      ]
+    },
+    {
+      "id": "raise3d",
+      "name_zh": "Raise3D",
+      "name_en": "Raise3D",
+      "origin": "international",
+      "hq_city": "Irvine",
+      "hq_country": "US",
+      "website": "https://www.raise3d.com/",
+      "description_zh": "专业/工业 FDM 与 ideaMaker",
+      "description_en": "Pro/industrial FDM and ideaMaker",
+      "categories": [
+        "Slicer"
+      ]
+    },
+    {
+      "id": "rockwell",
+      "name_zh": "罗克韦尔自动化",
+      "name_en": "Rockwell Automation",
+      "origin": "international",
+      "hq_city": "Milwaukee",
+      "hq_country": "US",
+      "listed_ticker": "ROK",
+      "website": "https://www.rockwellautomation.com/",
+      "description_zh": "FactoryTalk/Logix PLC 离散自动化",
+      "description_en": "FactoryTalk and Logix PLC discrete automation",
+      "categories": [
+        "SCADA",
+        "PLC",
+        "Platform"
+      ]
+    },
+    {
+      "id": "rootcloud",
+      "name_zh": "树根互联",
+      "name_en": "Rootcloud",
+      "origin": "domestic",
+      "hq_city": "广州",
+      "hq_country": "CN",
+      "website": "https://www.rootcloud.com/",
+      "description_zh": "装备工业互联网",
+      "description_en": "Equipment industrial internet",
+      "categories": [
+        "Platform"
+      ]
+    },
+    {
+      "id": "ruida",
+      "name_zh": "深圳市睿达科技",
+      "name_en": "Shenzhen Ruida Technology",
+      "origin": "domestic",
+      "hq_city": "深圳",
+      "hq_country": "CN",
+      "website": "https://www.rdacs.com/",
+      "description_zh": "激光雕刻切割板卡与 RDNest 套料",
+      "description_en": "Laser engrave/cut control boards and RDNest",
+      "categories": [
+        "CAM"
+      ]
+    },
+    {
       "id": "s2c",
       "name_zh": "思尔芯",
       "name_en": "S2C",
@@ -2476,6 +2188,82 @@
       "description_en": "FPGA prototyping and hardware emulation",
       "categories": [
         "EDA"
+      ]
+    },
+    {
+      "id": "salome",
+      "name_zh": "SALOME 联盟",
+      "name_en": "SALOME Consortium",
+      "origin": "open_source",
+      "hq_city": "Paris",
+      "hq_country": "FR",
+      "website": "https://www.salome-platform.org/",
+      "description_zh": "CEA/EDF/Open Cascade 开源 CAE 平台",
+      "description_en": "CEA/EDF/Open Cascade open CAE platform",
+      "categories": [
+        "CAE"
+      ]
+    },
+    {
+      "id": "sap",
+      "name_zh": "思爱普",
+      "name_en": "SAP",
+      "origin": "international",
+      "hq_city": "Walldorf",
+      "hq_country": "DE",
+      "listed_ticker": "SAP",
+      "website": "https://www.sap.com/",
+      "description_zh": "全球ERP龙头",
+      "description_en": "Global ERP leader",
+      "categories": [
+        "ERP"
+      ]
+    },
+    {
+      "id": "schneider",
+      "name_zh": "施耐德电气",
+      "name_en": "Schneider Electric",
+      "origin": "international",
+      "hq_city": "Rueil-Malmaison",
+      "hq_country": "FR",
+      "listed_ticker": "SU.PA",
+      "website": "https://www.se.com/",
+      "description_zh": "EcoStruxure/Modicon 自动化",
+      "description_en": "EcoStruxure and Modicon automation",
+      "categories": [
+        "SCADA",
+        "PLC",
+        "Platform"
+      ]
+    },
+    {
+      "id": "sciyon",
+      "name_zh": "科远智慧",
+      "name_en": "SCIYON",
+      "origin": "domestic",
+      "hq_city": "南京",
+      "hq_country": "CN",
+      "listed_ticker": "002380.SZ",
+      "website": "https://www.sciyon.com/",
+      "description_zh": "热电 DCS",
+      "description_en": "Thermal power DCS",
+      "categories": [
+        "DCS"
+      ]
+    },
+    {
+      "id": "semitech",
+      "name_zh": "赛美特",
+      "name_en": "Semitech",
+      "origin": "domestic",
+      "hq_city": "上海",
+      "hq_country": "CN",
+      "website": "https://www.semitech.com.cn/",
+      "description_zh": "半导体CIM/MES PlantU",
+      "description_en": "Semiconductor CIM/MES PlantU suite",
+      "categories": [
+        "半导体CIM",
+        "MES"
       ]
     },
     {
@@ -2495,6 +2283,80 @@
       ]
     },
     {
+      "id": "sftc",
+      "name_zh": "SFTC",
+      "name_en": "SFTC",
+      "origin": "international",
+      "hq_city": "Columbus",
+      "hq_country": "US",
+      "website": "https://www.deform.com/",
+      "description_zh": "DEFORM金属成形仿真",
+      "description_en": "DEFORM metal forming simulation",
+      "categories": [
+        "CAE"
+      ]
+    },
+    {
+      "id": "shapr3d",
+      "name_zh": "Shapr3D",
+      "name_en": "Shapr3D",
+      "origin": "international",
+      "hq_city": "Budapest",
+      "hq_country": "HU",
+      "website": "https://www.shapr3d.com/",
+      "description_zh": "触控优先直接建模 CAD（Parasolid）",
+      "description_en": "Touch-first direct modeling CAD (Parasolid)",
+      "categories": [
+        "CAD"
+      ]
+    },
+    {
+      "id": "shifeng",
+      "name_zh": "十沣科技",
+      "name_en": "SimRight",
+      "origin": "domestic",
+      "hq_city": "深圳",
+      "hq_country": "CN",
+      "website": "https://www.simright.com/",
+      "description_zh": "云原生CAE前后处理",
+      "description_en": "Cloud-native CAE pre/post",
+      "categories": [
+        "CAE"
+      ]
+    },
+    {
+      "id": "sie",
+      "name_zh": "赛意信息",
+      "name_en": "SIE",
+      "origin": "domestic",
+      "hq_city": "广州",
+      "hq_country": "CN",
+      "listed_ticker": "300687.SZ",
+      "website": "https://www.chinasie.com/",
+      "description_zh": "SMOM MES",
+      "description_en": "SMOM MES",
+      "categories": [
+        "MES"
+      ]
+    },
+    {
+      "id": "siemens-digital",
+      "name_zh": "西门子数字化工业",
+      "name_en": "Siemens Digital Industries",
+      "origin": "international",
+      "hq_city": "Nuremberg",
+      "hq_country": "DE",
+      "website": "https://plm.sw.siemens.com/",
+      "description_zh": "NX/Teamcenter/Opcenter",
+      "description_en": "NX, Teamcenter, Opcenter",
+      "categories": [
+        "CAD",
+        "PLM",
+        "MES",
+        "CAE"
+      ]
+    },
+    {
       "id": "siemens-eda",
       "name_zh": "西门子EDA",
       "name_en": "Siemens EDA",
@@ -2506,6 +2368,21 @@
       "description_en": "Calibre/Mentor PCB and IC verification EDA",
       "categories": [
         "EDA"
+      ]
+    },
+    {
+      "id": "siemens-process",
+      "name_zh": "西门子过程自动化",
+      "name_en": "Siemens Process Automation",
+      "origin": "international",
+      "hq_city": "Nuremberg",
+      "hq_country": "DE",
+      "website": "https://www.siemens.com/",
+      "description_zh": "PCS 7/SIMATIC PLC",
+      "description_en": "PCS 7 and SIMATIC PLC",
+      "categories": [
+        "DCS",
+        "PLC"
       ]
     },
     {
@@ -2523,6 +2400,77 @@
       ]
     },
     {
+      "id": "simplify3d",
+      "name_zh": "Simplify3D",
+      "name_en": "Simplify3D",
+      "origin": "international",
+      "hq_city": "Cincinnati",
+      "hq_country": "US",
+      "website": "https://www.simplify3d.com/",
+      "description_zh": "商业 FDM 切片软件",
+      "description_en": "Commercial FDM slicer",
+      "categories": [
+        "Slicer"
+      ]
+    },
+    {
+      "id": "sinopec",
+      "name_zh": "中国石化",
+      "name_en": "Sinopec",
+      "origin": "domestic",
+      "hq_city": "北京",
+      "hq_country": "CN",
+      "listed_ticker": "600028.SH",
+      "website": "https://www.sinopec.com/",
+      "description_zh": "石化智云工业互联网",
+      "description_en": "Sinopec Smart Cloud IIoT",
+      "categories": [
+        "Platform"
+      ]
+    },
+    {
+      "id": "sipm",
+      "name_zh": "思普软件",
+      "name_en": "SIPM Software",
+      "origin": "domestic",
+      "hq_city": "上海",
+      "hq_country": "CN",
+      "website": "https://www.sipm.com.cn/",
+      "description_zh": "国产 PLM 龙头之一",
+      "description_en": "Leading domestic PLM vendor",
+      "categories": [
+        "PLM"
+      ]
+    },
+    {
+      "id": "softfever",
+      "name_zh": "Orca Slicer 社区",
+      "name_en": "SoftFever / Orca Community",
+      "origin": "international",
+      "hq_city": "—",
+      "hq_country": "—",
+      "website": "https://github.com/SoftFever/OrcaSlicer",
+      "description_zh": "Orca Slicer 开源维护社区",
+      "description_en": "Open-source Orca Slicer maintainers",
+      "categories": [
+        "Slicer"
+      ]
+    },
+    {
+      "id": "solvespace",
+      "name_zh": "SolveSpace 社区",
+      "name_en": "SolveSpace Community",
+      "origin": "open_source",
+      "hq_city": "—",
+      "hq_country": "—",
+      "website": "http://solvespace.com/",
+      "description_zh": "约束驱动轻量 CAD",
+      "description_en": "Constraint-driven lightweight CAD",
+      "categories": [
+        "CAD"
+      ]
+    },
+    {
       "id": "south",
       "name_zh": "南方数码",
       "name_en": "South Survey Mapping",
@@ -2534,6 +2482,48 @@
       "description_en": "Survey GIS and cadastral informatization",
       "categories": [
         "GIS"
+      ]
+    },
+    {
+      "id": "southsurvey",
+      "name_zh": "广州南方测绘科技",
+      "name_en": "Guangzhou South Surveying & Mapping",
+      "origin": "domestic",
+      "hq_city": "广州",
+      "hq_country": "CN",
+      "website": "https://www.southsurvey.com/",
+      "description_zh": "CASS/SouthMap/iData 测绘成图软件",
+      "description_en": "CASS/SouthMap/iData surveying mapping software",
+      "categories": [
+        "GIS"
+      ]
+    },
+    {
+      "id": "speckle",
+      "name_zh": "Speckle",
+      "name_en": "Speckle",
+      "origin": "open_source",
+      "hq_city": "London",
+      "hq_country": "UK",
+      "website": "https://speckle.systems/",
+      "description_zh": "开源 AEC 数据互操作平台",
+      "description_en": "Open AEC data interoperability platform",
+      "categories": [
+        "BIM"
+      ]
+    },
+    {
+      "id": "sprutcam",
+      "name_zh": "SprutCAM Tech",
+      "name_en": "SprutCAM Tech",
+      "origin": "international",
+      "hq_city": "Tbilisi",
+      "hq_country": "GE",
+      "website": "https://sprutcam.com/",
+      "description_zh": "多轴 CAM 与机器人 OLP",
+      "description_en": "Multi-axis CAM and robot OLP",
+      "categories": [
+        "CAM"
       ]
     },
     {
@@ -2553,6 +2543,67 @@
       ]
     },
     {
+      "id": "suochen",
+      "name_zh": "索辰科技",
+      "name_en": "Suochen Tech",
+      "origin": "domestic",
+      "hq_city": "上海",
+      "hq_country": "CN",
+      "listed_ticker": "688507.SH",
+      "website": "https://www.suochen.com.cn/",
+      "description_zh": "国产CAE求解器 Aries/Virgo",
+      "description_en": "Domestic CAE solvers Aries and Virgo",
+      "categories": [
+        "CAE"
+      ]
+    },
+    {
+      "id": "supcon",
+      "name_zh": "中控技术",
+      "name_en": "SUPCON",
+      "origin": "domestic",
+      "hq_city": "杭州",
+      "hq_country": "CN",
+      "listed_ticker": "688777.SH",
+      "website": "https://www.supcon.com/",
+      "description_zh": "流程工业DCS与工业互联网",
+      "description_en": "Process DCS and IIoT",
+      "categories": [
+        "DCS",
+        "Platform"
+      ]
+    },
+    {
+      "id": "supermap",
+      "name_zh": "超图软件",
+      "name_en": "SuperMap",
+      "origin": "domestic",
+      "hq_city": "北京",
+      "hq_country": "CN",
+      "listed_ticker": "300036.SZ",
+      "website": "https://www.supermap.com/",
+      "description_zh": "国产GIS基础平台",
+      "description_en": "Domestic GIS platform",
+      "categories": [
+        "GIS"
+      ]
+    },
+    {
+      "id": "synopsys",
+      "name_zh": "新思科技",
+      "name_en": "Synopsys",
+      "origin": "international",
+      "hq_city": "Sunnyvale",
+      "hq_country": "US",
+      "listed_ticker": "SNPS",
+      "website": "https://www.synopsys.com/",
+      "description_zh": "全球EDA龙头",
+      "description_en": "Global EDA leader",
+      "categories": [
+        "EDA"
+      ]
+    },
+    {
       "id": "sysware",
       "name_zh": "索为系统",
       "name_en": "Sysware",
@@ -2564,6 +2615,34 @@
       "description_en": "Complex equipment IPDC/PLM and industrial apps",
       "categories": [
         "PLM"
+      ]
+    },
+    {
+      "id": "techsoft3d",
+      "name_zh": "Tech Soft 3D",
+      "name_en": "Tech Soft 3D",
+      "origin": "international",
+      "hq_city": "Bend",
+      "hq_country": "US",
+      "website": "https://www.techsoft3d.com/",
+      "description_zh": "HOOPS Exchange CAD互操作SDK",
+      "description_en": "HOOPS Exchange CAD interoperability SDK",
+      "categories": [
+        "CAD"
+      ]
+    },
+    {
+      "id": "tencent",
+      "name_zh": "腾讯云",
+      "name_en": "Tencent Cloud",
+      "origin": "domestic",
+      "hq_city": "深圳",
+      "hq_country": "CN",
+      "website": "https://cloud.tencent.com/",
+      "description_zh": "WeMake 工业互联网",
+      "description_en": "WeMake industrial internet",
+      "categories": [
+        "Platform"
       ]
     },
     {
@@ -2583,6 +2662,78 @@
       ]
     },
     {
+      "id": "tongyuan",
+      "name_zh": "同元软控",
+      "name_en": "Tongyuan",
+      "origin": "domestic",
+      "hq_city": "深圳",
+      "hq_country": "CN",
+      "website": "https://www.tongyuan.cc/",
+      "description_zh": "MWORKS Modelica/MBSE",
+      "description_en": "MWORKS Modelica and MBSE",
+      "categories": [
+        "MBSE"
+      ]
+    },
+    {
+      "id": "topsystems",
+      "name_zh": "Top Systems",
+      "name_en": "Top Systems",
+      "origin": "international",
+      "hq_city": "Moscow",
+      "hq_country": "RU",
+      "website": "https://www.tflex.com/",
+      "description_zh": "T-FLEX CAD 套件",
+      "description_en": "T-FLEX CAD suite",
+      "categories": [
+        "CAD"
+      ]
+    },
+    {
+      "id": "trimble",
+      "name_zh": "天宝",
+      "name_en": "Trimble",
+      "origin": "international",
+      "hq_city": "Westminster",
+      "hq_country": "US",
+      "listed_ticker": "TRMB",
+      "website": "https://www.trimble.com/",
+      "description_zh": "SketchUp/Tekla 建筑与施工软件",
+      "description_en": "SketchUp, Tekla construction software",
+      "categories": [
+        "CAD",
+        "BIM"
+      ]
+    },
+    {
+      "id": "ultimaker",
+      "name_zh": "UltiMaker",
+      "name_en": "UltiMaker",
+      "origin": "international",
+      "hq_city": "Utrecht",
+      "hq_country": "NL",
+      "website": "https://ultimaker.com/",
+      "description_zh": "Cura 开源切片与工业 3D 打印",
+      "description_en": "Cura open slicer and industrial 3D printing",
+      "categories": [
+        "Slicer"
+      ]
+    },
+    {
+      "id": "unigroup",
+      "name_zh": "紫光云",
+      "name_en": "Unigroup Cloud",
+      "origin": "domestic",
+      "hq_city": "天津",
+      "hq_country": "CN",
+      "website": "https://www.unicloud.com/",
+      "description_zh": "信创工业云",
+      "description_en": "IT innovation industrial cloud",
+      "categories": [
+        "Platform"
+      ]
+    },
+    {
       "id": "univista",
       "name_zh": "合见工软",
       "name_en": "UniVista",
@@ -2594,6 +2745,21 @@
       "description_en": "Domestic EDA verification and signoff tools",
       "categories": [
         "EDA"
+      ]
+    },
+    {
+      "id": "vectorworks",
+      "name_zh": "Vectorworks",
+      "name_en": "Vectorworks",
+      "origin": "international",
+      "hq_city": "Columbia",
+      "hq_country": "US",
+      "website": "https://www.vectorworks.net/",
+      "description_zh": "建筑/景观 BIM-CAD",
+      "description_en": "Architecture and landscape BIM-CAD",
+      "categories": [
+        "CAD",
+        "BIM"
       ]
     },
     {
@@ -2609,6 +2775,34 @@
       "description_en": "Motion control and CNC systems for laser and engraving",
       "categories": [
         "CAM"
+      ]
+    },
+    {
+      "id": "wellintech",
+      "name_zh": "北京亚控",
+      "name_en": "Wellintech",
+      "origin": "domestic",
+      "hq_city": "北京",
+      "hq_country": "CN",
+      "website": "https://www.kingview.com/",
+      "description_zh": "组态王 SCADA",
+      "description_en": "KingView SCADA",
+      "categories": [
+        "SCADA"
+      ]
+    },
+    {
+      "id": "wolfram",
+      "name_zh": "Wolfram Research",
+      "name_en": "Wolfram Research",
+      "origin": "international",
+      "hq_city": "Champaign",
+      "hq_country": "US",
+      "website": "https://www.wolfram.com/",
+      "description_zh": "Mathematica 符号计算与系统建模",
+      "description_en": "Mathematica symbolic computing and system modeling",
+      "categories": [
+        "CAE"
       ]
     },
     {
@@ -2651,6 +2845,113 @@
       "description_en": "SI/PI/EM simulation and packaging analysis EDA",
       "categories": [
         "EDA"
+      ]
+    },
+    {
+      "id": "yfway",
+      "name_zh": "广州圆方计算机软件",
+      "name_en": "Guangzhou YFway Software",
+      "origin": "domestic",
+      "hq_city": "广州",
+      "hq_country": "CN",
+      "website": "https://www.yfway.com/",
+      "description_zh": "泛家居设计拆单与智能制造软件（尚品宅配系）",
+      "description_en": "Furniture design-to-production suite (Shangpin Home Collection group)",
+      "categories": [
+        "CAD",
+        "MES"
+      ]
+    },
+    {
+      "id": "ygsoft",
+      "name_zh": "远光软件",
+      "name_en": "YGSOFT",
+      "origin": "domestic",
+      "hq_city": "珠海",
+      "hq_country": "CN",
+      "listed_ticker": "002063.SZ",
+      "website": "https://www.ygsoft.com/",
+      "description_zh": "电力集团 ERP",
+      "description_en": "Power group ERP",
+      "categories": [
+        "ERP"
+      ]
+    },
+    {
+      "id": "yokogawa",
+      "name_zh": "横河电机",
+      "name_en": "Yokogawa",
+      "origin": "international",
+      "hq_city": "Tokyo",
+      "hq_country": "JP",
+      "listed_ticker": "6841.T",
+      "website": "https://www.yokogawa.com/",
+      "description_zh": "CENTUM DCS 与 FAST/TOOLS",
+      "description_en": "CENTUM DCS and FAST/TOOLS",
+      "categories": [
+        "DCS",
+        "SCADA"
+      ]
+    },
+    {
+      "id": "yonyou",
+      "name_zh": "用友网络",
+      "name_en": "Yonyou",
+      "origin": "domestic",
+      "hq_city": "北京",
+      "hq_country": "CN",
+      "listed_ticker": "600588.SH",
+      "website": "https://www.yonyou.com/",
+      "description_zh": "企业管理与云ERP",
+      "description_en": "Enterprise management and cloud ERP",
+      "categories": [
+        "ERP",
+        "PLM"
+      ]
+    },
+    {
+      "id": "zhige",
+      "name_zh": "武汉智格科技",
+      "name_en": "Wuhan Zhige Technology",
+      "origin": "domestic",
+      "hq_city": "武汉",
+      "hq_country": "CN",
+      "website": "http://www.smartnest.com.cn/",
+      "description_zh": "SmartNest 数控套料与下料生产管控",
+      "description_en": "SmartNest CNC nesting and blanking MES",
+      "categories": [
+        "CAM",
+        "MES"
+      ]
+    },
+    {
+      "id": "zoo",
+      "name_zh": "Zoo（Zoo Corporation）",
+      "name_en": "Zoo",
+      "origin": "international",
+      "hq_city": "Inglewood",
+      "hq_country": "US",
+      "website": "https://zoo.dev/",
+      "description_zh": "AI 原生硬件 CAD 与 KCL 几何 API（原 KittyCAD）",
+      "description_en": "AI-native hardware CAD and KCL geometry APIs (formerly KittyCAD)",
+      "categories": [
+        "CAD"
+      ]
+    },
+    {
+      "id": "zwcad",
+      "name_zh": "中望软件",
+      "name_en": "ZWSOFT",
+      "origin": "domestic",
+      "hq_city": "广州",
+      "hq_country": "CN",
+      "listed_ticker": "300624.SZ",
+      "website": "https://www.zwsoft.cn/",
+      "description_zh": "国产CAD/BIM软件",
+      "description_en": "Domestic CAD and BIM software",
+      "categories": [
+        "CAD",
+        "BIM"
       ]
     }
   ]

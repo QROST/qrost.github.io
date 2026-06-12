@@ -1,46 +1,47 @@
 {
-  "build_time": "2026-06-12T16:35:43Z",
-  "total_products": 253,
+  "build_time": "2026-06-12T16:46:02Z",
+  "total_products": 278,
   "total_kernels": 43,
   "category_counts": {
-    "bim-gis": 24,
-    "cad": 40,
-    "cae": 34,
+    "bim-gis": 26,
+    "cad": 43,
+    "cae": 45,
     "eda": 46,
     "erp": 13,
-    "mes-dcs": 30,
-    "open-source": 10,
-    "platform": 22,
+    "mes-dcs": 34,
+    "open-source": 11,
+    "platform": 26,
     "plm": 18,
     "slicers": 16
   },
   "category_l1_counts": {
-    "研发设计": 154,
-    "生产制造": 86,
-    "经营管理": 13
+    "研发设计": 161,
+    "生产制造": 101,
+    "经营管理": 13,
+    "基础平台": 3
   },
   "category_l2_counts": {
     "BIM": 18,
-    "GIS": 6,
-    "CAD": 45,
+    "GIS": 8,
+    "CAD": 48,
     "CAD互操作": 5,
-    "CAE": 21,
-    "CAM": 13,
+    "CAE": 23,
+    "CAM": 23,
     "EDA": 41,
     "半导体CIM": 5,
     "ERP": 13,
     "DCS": 9,
     "SCADA": 7,
-    "MES": 13,
+    "MES": 18,
     "EAM": 1,
-    "工业互联网": 22,
+    "工业互联网": 25,
     "PLM": 16,
     "MBSE": 2,
     "切片软件": 16
   },
   "origin_counts": {
-    "domestic": 104,
-    "international": 132,
+    "domestic": 125,
+    "international": 136,
     "open_source": 17
   },
   "kernel_ref_counts": {
@@ -72,17 +73,17 @@
     {
       "id": "bim-gis",
       "file": "categories/bim-gis.json",
-      "count": 24
+      "count": 26
     },
     {
       "id": "cad",
       "file": "categories/cad.json",
-      "count": 40
+      "count": 43
     },
     {
       "id": "cae",
       "file": "categories/cae.json",
-      "count": 34
+      "count": 45
     },
     {
       "id": "eda",
@@ -97,17 +98,17 @@
     {
       "id": "mes-dcs",
       "file": "categories/mes-dcs.json",
-      "count": 30
+      "count": 34
     },
     {
       "id": "open-source",
       "file": "categories/open-source.json",
-      "count": 10
+      "count": 11
     },
     {
       "id": "platform",
       "file": "categories/platform.json",
-      "count": 22
+      "count": 26
     },
     {
       "id": "plm",
