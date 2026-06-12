@@ -4,10 +4,17 @@
 
 1. Confirm product name (zh/en), vendor, category L1/L2.
 2. Collect ≥1 authoritative `source.url` (annual report, official site, MIIT/信通院, listed company disclosure).
-3. Set `confidence` 0.0–1.0; use ≤0.3 for skeleton entries without verification.
+3. Set `confidence` 0.0–1.0 (editorial metadata: how sure the catalog entry is given `sources[]`; **not shown on the public page**); use ≤0.3 for skeleton entries without verification.
 4. Distinguish `localization_depth`: `pilot` (POC) vs `core` (production-critical).
 
 ## 2. Author JSON
+
+**Naming rule:** Vendor is shown in a separate column (`vendor_id` → `vendors.json`), but product `name_zh` / `name_en` must remain **disambiguated** when the name alone is generic or duplicated:
+
+- **Keep vendor/company prefix** when: name is a known acronym (ERP, DCS, MES, PLM, BIM, BIP, …), ≤4 chars, or a generic phrase (e.g. 3D实体设计, 制造执行系统).
+- **Domestic products** with generic names: prefer 公司简称 + product (用友 BIP, 中控 SUPOS, 金蝶云·苍穹).
+- **Strip prefix only** for globally unique brands (NX, CATIA, Revit, SolidWorks, Teamcenter, …).
+- Run `python3 tools/validate.py` — duplicate `name_zh` / `name_en` across different `vendor_id` emits **WARN**.
 
 Create or edit `tmp/research/<agent-id>.json`:
 

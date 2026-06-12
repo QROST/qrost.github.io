@@ -252,12 +252,13 @@
       "hq_country": "US",
       "listed_ticker": "ADSK",
       "website": "https://www.autodesk.com.cn/",
-      "description_zh": "CAD/BIM/制造软件（含 Revit、Navisworks、ReCap）",
-      "description_en": "CAD, BIM, make software (Revit, Navisworks, ReCap)",
+      "description_zh": "CAD/BIM/制造/PLM 软件（含 Alias、VRED、Revit、Navisworks、Vault、Moldflow）",
+      "description_en": "CAD, BIM, make, PLM (Alias, VRED, Revit, Navisworks, Vault, Moldflow)",
       "categories": [
         "CAD",
         "BIM",
-        "CAM"
+        "CAM",
+        "PLM"
       ]
     },
     {
@@ -2053,6 +2054,36 @@
       "categories": [
         "BIM",
         "GIS"
+      ]
+    },
+    {
+      "id": "jingdiao",
+      "name_zh": "北京精雕",
+      "name_en": "Jingdiao (JDSoft)",
+      "origin": "domestic",
+      "hq_city": "北京",
+      "hq_country": "CN",
+      "listed_ticker": "300083.SZ",
+      "website": "https://www.jingdiao.com/",
+      "description_zh": "精雕数控机床与 SurfMill CAM 软件",
+      "description_en": "Jingdiao CNC machines and SurfMill CAM software",
+      "categories": [
+        "CAD",
+        "CAM"
+      ]
+    },
+    {
+      "id": "luxion",
+      "name_zh": "Luxion（KeyShot）",
+      "name_en": "Luxion (KeyShot)",
+      "origin": "international",
+      "hq_city": "Tustin",
+      "hq_country": "US",
+      "website": "https://www.keyshot.com/",
+      "description_zh": "工业产品实时渲染与 CMF 评审",
+      "description_en": "Real-time industrial product rendering and CMF review",
+      "categories": [
+        "CAD"
       ]
     }
   ]

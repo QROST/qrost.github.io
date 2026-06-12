@@ -55,8 +55,8 @@
       ],
       "used_by_international": [
         "SOLIDWORKS",
-        "Siemens NX",
-        "Siemens Solid Edge",
+        "NX",
+        "Solid Edge",
         "Onshape",
         "IronCAD",
         "Topsolid"
@@ -84,7 +84,8 @@
           "title": "Geometric modeling kernel",
           "accessed": "2026-06"
         }
-      ]
+      ],
+      "used_by_domestic": []
     },
     {
       "id": "acis",
@@ -142,7 +143,7 @@
         "Rhino (partial)"
       ],
       "chinese_products_using": [
-        "浩辰CAD（3D Professional）"
+        "GstarCAD（3D Professional）"
       ],
       "substitution_status_zh": "部分可替 — 浩辰等仍授权 ACIS；中望/华天等走自主内核路线",
       "substitution_status_en": "Partially substitutable — GstarCAD still licenses ACIS; ZWSOFT/Hoteam pursue owned kernels",
@@ -163,7 +164,8 @@
           "title": "BricsCAD ACIS blog",
           "accessed": "2026-06"
         }
-      ]
+      ],
+      "used_by_domestic": []
     },
     {
       "id": "c3d",
@@ -236,7 +238,8 @@
           "title": "ASCON / KOMPAS-3D",
           "accessed": "2026-06"
         }
-      ]
+      ],
+      "used_by_domestic": []
     },
     {
       "id": "granite",
@@ -308,7 +311,8 @@
           "title": "Granite format notes",
           "accessed": "2026-06"
         }
-      ]
+      ],
+      "used_by_domestic": []
     },
     {
       "id": "open-cascade",
@@ -421,7 +425,8 @@
           "title": "AMCAX 九韶内核 OCC 风格接口",
           "accessed": "2026-06"
         }
-      ]
+      ],
+      "used_by_domestic": []
     },
     {
       "id": "catia-cgm",
@@ -492,7 +497,8 @@
           "title": "Engineering.com kernel overview",
           "accessed": "2026-06"
         }
-      ]
+      ],
+      "used_by_domestic": []
     },
     {
       "id": "shape-manager",
@@ -539,8 +545,8 @@
         "inventor"
       ],
       "used_by_international": [
-        "Autodesk Inventor",
-        "Autodesk Fusion 360"
+        "Inventor",
+        "Fusion 360"
       ],
       "chinese_products_using": [],
       "substitution_status_zh": "产品级替代 — 用中望/浩辰等替换 Inventor 席位，非内核级嵌入",
@@ -561,7 +567,8 @@
           "title": "Autodesk Inventor",
           "accessed": "2026-06"
         }
-      ]
+      ],
+      "used_by_domestic": []
     },
     {
       "id": "zw-overdrive",
@@ -611,8 +618,8 @@
       ],
       "used_by_international": [],
       "chinese_products_using": [
-        "中望 ZW3D",
-        "中望 CAD（3D 能力）",
+        "ZW3D",
+        "ZWCAD（3D 能力）",
         "ZWSim 系列"
       ],
       "substitution_status_zh": "自主可控 — 可替代部分 Parasolid/ACIS 授权依赖（中高端仍在演进）",
@@ -630,7 +637,8 @@
           "title": "ZWSOFT China",
           "accessed": "2026-06"
         }
-      ]
+      ],
+      "used_by_domestic": []
     },
     {
       "id": "crowncad-dgm",
@@ -701,7 +709,8 @@
           "title": "机械工程学报：国产几何内核综述（DGM）",
           "accessed": "2026-06"
         }
-      ]
+      ],
+      "used_by_domestic": []
     },
     {
       "id": "caxa-mega-kernel",
@@ -752,7 +761,7 @@
       "used_by_international": [],
       "chinese_products_using": [
         "CAXA CAD 电子图板",
-        "CAXA 3D 实体设计"
+        "CAXA 3D实体设计"
       ],
       "substitution_status_zh": "自主可控 — MEGA Kernel 支撑中端装备 MCAD；高端场景可切换 Parasolid/ACIS 模块",
       "substitution_status_en": "Self-controlled — MEGA Kernel for mid equipment MCAD; Parasolid/ACIS modules at high end",
@@ -774,7 +783,8 @@
           "title": "CAXA",
           "accessed": "2026-06"
         }
-      ]
+      ],
+      "used_by_domestic": []
     },
     {
       "id": "gstar-2d-platform",
@@ -823,9 +833,9 @@
       ],
       "used_by_international": [],
       "chinese_products_using": [
-        "浩辰 CAD 2D 平台版",
-        "浩辰 CAD 3D（ACIS 模块）",
-        "浩辰 CAD 看图王"
+        "GstarCAD 2D 平台版",
+        "GstarCAD 3D（ACIS 模块）",
+        "GstarCAD 看图王"
       ],
       "substitution_status_zh": "2D 自主可控 — 3D 仍依赖 Spatial ACIS 与西门子 3D 组件授权",
       "substitution_status_en": "2D self-controlled — 3D still depends on Spatial ACIS and Siemens 3D component licenses",
@@ -849,7 +859,8 @@
           "title": "浩辰 CAD 8 自主内核",
           "accessed": "2026-06"
         }
-      ]
+      ],
+      "used_by_domestic": []
     },
     {
       "id": "poisson-geoshape",
@@ -917,7 +928,8 @@
           "title": "DISA standard statement",
           "accessed": "2026-06"
         }
-      ]
+      ],
+      "used_by_domestic": []
     },
     {
       "id": "hoteam-crux-iv",
@@ -967,7 +979,7 @@
       "used_by_international": [],
       "chinese_products_using": [
         "SINOVATION",
-        "华天 CAD 2020"
+        "三维 CAD 2020"
       ],
       "substitution_status_zh": "自主可控（桌面中端）— CRUX IV 支撑 SINOVATION；云场景由 DGM 承担",
       "substitution_status_en": "Self-controlled (desktop mid-tier) — CRUX IV powers SINOVATION; cloud by DGM",
@@ -992,7 +1004,8 @@
           "title": "Hoteam Software",
           "accessed": "2026-06"
         }
-      ]
+      ],
+      "used_by_domestic": []
     },
     {
       "id": "thcad-platform-kernel",
@@ -1063,7 +1076,8 @@
           "title": "THCAD 2026 内核安全可控",
           "accessed": "2026-06"
         }
-      ]
+      ],
+      "used_by_domestic": []
     },
     {
       "id": "pengye-graphic-platform",
@@ -1133,7 +1147,8 @@
           "title": "鹏业自主图形平台",
           "accessed": "2026-06"
         }
-      ]
+      ],
+      "used_by_domestic": []
     },
     {
       "id": "autodesk-acad-geometry",
@@ -1197,7 +1212,8 @@
           "title": "AutoCAD China",
           "accessed": "2026-06"
         }
-      ]
+      ],
+      "used_by_domestic": []
     },
     {
       "id": "sketchup-geometry",
@@ -1257,7 +1273,8 @@
           "title": "SketchUp",
           "accessed": "2026-06"
         }
-      ]
+      ],
+      "used_by_domestic": []
     },
     {
       "id": "librecad-rs-entity-engine",
@@ -1330,7 +1347,8 @@
           "title": "libdxfrw — DXF/DWG I/O library",
           "accessed": "2026-06"
         }
-      ]
+      ],
+      "used_by_domestic": []
     },
     {
       "id": "amcax-kernel",
@@ -1405,7 +1423,8 @@
           "title": "AMCAX 4.0 发布会",
           "accessed": "2026-06"
         }
-      ]
+      ],
+      "used_by_domestic": []
     },
     {
       "id": "newdim-parasolid-stack",
@@ -1480,7 +1499,8 @@
           "title": "新迪天工 CAD",
           "accessed": "2026-06"
         }
-      ]
+      ],
+      "used_by_domestic": []
     },
     {
       "id": "kompas-c3d-stack",
@@ -1547,7 +1567,8 @@
           "title": "ASCON KOMPAS-3D",
           "accessed": "2026-06"
         }
-      ]
+      ],
+      "used_by_domestic": []
     },
     {
       "id": "siemens-hybrid-stack",
@@ -1594,7 +1615,7 @@
         "solid-edge"
       ],
       "used_by_international": [
-        "Siemens NX",
+        "NX",
         "Solid Edge"
       ],
       "chinese_products_using": [],
@@ -1616,7 +1637,8 @@
           "title": "Siemens NX",
           "accessed": "2026-06"
         }
-      ]
+      ],
+      "used_by_domestic": []
     },
     {
       "id": "opennurbs",
@@ -1700,7 +1722,8 @@
           "title": "OpenNURBS (Wikipedia)",
           "accessed": "2026-06"
         }
-      ]
+      ],
+      "used_by_domestic": []
     },
     {
       "id": "hoops-exchange-sdk",
@@ -1768,7 +1791,8 @@
           "title": "HOOPS Exchange documentation",
           "accessed": "2026-06"
         }
-      ]
+      ],
+      "used_by_domestic": []
     },
     {
       "id": "hoops-communicator",
@@ -1828,7 +1852,8 @@
           "title": "HOOPS Communicator",
           "accessed": "2026-06"
         }
-      ]
+      ],
+      "used_by_domestic": []
     },
     {
       "id": "polygonica",
@@ -1897,7 +1922,8 @@
           "title": "MachineWorks Polygonica",
           "accessed": "2026-06"
         }
-      ]
+      ],
+      "used_by_domestic": []
     },
     {
       "id": "spatial-cgm",
@@ -1966,7 +1992,8 @@
           "title": "Spatial ACIS (lineage contrast)",
           "accessed": "2026-06"
         }
-      ]
+      ],
+      "used_by_domestic": []
     },
     {
       "id": "3dexperience-kernel-stack",
@@ -2039,7 +2066,8 @@
           "title": "CATIA on 3DEXPERIENCE",
           "accessed": "2026-06"
         }
-      ]
+      ],
+      "used_by_domestic": []
     },
     {
       "id": "cgal",
@@ -2108,7 +2136,8 @@
           "title": "OpenSCAD uses CGAL",
           "accessed": "2026-06"
         }
-      ]
+      ],
+      "used_by_domestic": []
     },
     {
       "id": "libigl",
@@ -2173,7 +2202,8 @@
           "title": "libigl GitHub",
           "accessed": "2026-06"
         }
-      ]
+      ],
+      "used_by_domestic": []
     },
     {
       "id": "manifold",
@@ -2231,7 +2261,8 @@
           "title": "Manifold GitHub",
           "accessed": "2026-06"
         }
-      ]
+      ],
+      "used_by_domestic": []
     },
     {
       "id": "cork",
@@ -2289,7 +2320,8 @@
           "title": "Cork GitHub",
           "accessed": "2026-06"
         }
-      ]
+      ],
+      "used_by_domestic": []
     },
     {
       "id": "carve",
@@ -2348,7 +2380,8 @@
           "title": "Carve CSG (GitHub mirror)",
           "accessed": "2026-06"
         }
-      ]
+      ],
+      "used_by_domestic": []
     },
     {
       "id": "openvdb",
@@ -2412,7 +2445,8 @@
           "title": "OpenVDB GitHub",
           "accessed": "2026-06"
         }
-      ]
+      ],
+      "used_by_domestic": []
     },
     {
       "id": "guorui-geometry-kernel",
@@ -2473,7 +2507,8 @@
           "title": "国睿信维",
           "accessed": "2026-06"
         }
-      ]
+      ],
+      "used_by_domestic": []
     },
     {
       "id": "farsoon-buildware-mesh",
@@ -2533,7 +2568,8 @@
           "title": "Farsoon 华曙高科",
           "accessed": "2026-06"
         }
-      ]
+      ],
+      "used_by_domestic": []
     },
     {
       "id": "romulus",
@@ -2596,7 +2632,8 @@
           "title": "Unigraphics history",
           "accessed": "2026-06"
         }
-      ]
+      ],
+      "used_by_domestic": []
     },
     {
       "id": "unigraphics-heritage",
@@ -2640,7 +2677,7 @@
         "siemens-nx"
       ],
       "used_by_international": [
-        "Siemens NX",
+        "NX",
         "Legacy I-deas users migrated"
       ],
       "chinese_products_using": [],
@@ -2662,7 +2699,8 @@
           "title": "Unigraphics",
           "accessed": "2026-06"
         }
-      ]
+      ],
+      "used_by_domestic": []
     },
     {
       "id": "ironcad-dual-kernel",
@@ -2730,7 +2768,8 @@
           "title": "IronCAD (Wikipedia)",
           "accessed": "2026-06"
         }
-      ]
+      ],
+      "used_by_domestic": []
     },
     {
       "id": "solvespace-kernel",
@@ -2799,7 +2838,8 @@
           "title": "SolveSpace",
           "accessed": "2026-06"
         }
-      ]
+      ],
+      "used_by_domestic": []
     },
     {
       "id": "brl-cad-csg",
@@ -2866,7 +2906,8 @@
           "title": "BRL-CAD GitHub",
           "accessed": "2026-06"
         }
-      ]
+      ],
+      "used_by_domestic": []
     },
     {
       "id": "keycreator-acis-stack",
@@ -2932,7 +2973,8 @@
           "title": "Spatial ACIS licensees",
           "accessed": "2026-06"
         }
-      ]
+      ],
+      "used_by_domestic": []
     },
     {
       "id": "blender-bmesh",
@@ -3006,7 +3048,8 @@
           "title": "Blender GPL license",
           "accessed": "2026-06"
         }
-      ]
+      ],
+      "used_by_domestic": []
     }
   ]
 }

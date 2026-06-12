@@ -277,7 +277,6 @@
     const mat = { experimental: 2, mid: 5, high: 7, mission_critical: 9 };
     const loc = { none: 1, pilot: 3, partial: 6, core: 9 };
     const price = { free: 9, low: 7, mid: 5, high: 3, quote: 4 };
-    const conf = (p.confidence || 0.5) * 10;
     const eco = Math.min(10, (p.international_benchmarks || []).length * 2 + (p.sources || []).length);
     return {
       function: mat[p.maturity] || 5,
@@ -285,7 +284,6 @@
       maturity: mat[p.maturity] || 5,
       localization: loc[p.localization_depth] || 3,
       price: price[p.pricing] || 5,
-      confidence: conf,
     };
   }
 

@@ -195,6 +195,38 @@ def validate_products_file(path: Path, kernel_ids: set[str] | None = None) -> li
     return issues
 
 
+def warn_duplicate_product_names(paths: list[Path]) -> list[str]:
+    """Warn when name_zh or name_en collides across different vendor_id."""
+    by_zh: dict[str, list[tuple[str, str, str]]] = {}
+    by_en: dict[str, list[tuple[str, str, str]]] = {}
+    for path in paths:
+        data = load_json(path)
+        products = data.get("products") if isinstance(data, dict) else data
+        if not isinstance(products, list):
+            continue
+        for p in products:
+            pid = p.get("id", "?")
+            vid = p.get("vendor_id", "?")
+            zh = (p.get("name_zh") or "").strip()
+            en = (p.get("name_en") or "").strip().lower()
+            if zh:
+                by_zh.setdefault(zh, []).append((pid, vid, path.name))
+            if en:
+                by_en.setdefault(en, []).append((pid, vid, path.name))
+    warnings: list[str] = []
+    for label, groups in (("name_zh", by_zh), ("name_en", by_en)):
+        for name, entries in groups.items():
+            if len(entries) < 2:
+                continue
+            vendors = {e[1] for e in entries}
+            if len(vendors) > 1 or len(entries) > 1:
+                ids = ", ".join(f"{e[0]}({e[1]})" for e in entries)
+                warnings.append(
+                    f"duplicate {label} {name!r} across products: {ids} — add vendor prefix"
+                )
+    return warnings
+
+
 def validate_milestone(m: dict, ctx: str) -> list[str]:
     issues = []
     if not isinstance(m, dict):
@@ -313,6 +345,10 @@ def main() -> int:
     for path in paths:
         issues.extend(validate_products_file(path, kernel_ids or None))
 
+    name_dup_warnings = warn_duplicate_product_names(paths)
+    for w in name_dup_warnings:
+        print(f"WARN: {w}", file=sys.stderr)
+
     vendors_path = ROOT / "assets" / "data" / "vendors.json"
     if vendors_path.exists():
         issues.extend(validate_vendors(vendors_path))
@@ -334,6 +370,8 @@ def main() -> int:
     )
     kcount = len(kernel_ids) if kernel_ids else 0
     print(f"Validation OK: {len(paths)} file(s), ~{total} products, {kcount} kernels checked")
+    if name_dup_warnings:
+        print(f"  ({len(name_dup_warnings)} duplicate-name warning(s) — see stderr)")
     return 0
 
 
