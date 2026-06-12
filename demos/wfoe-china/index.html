@@ -36,7 +36,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
     <!-- Chosen Palette: Slate and Emerald -->
-    <link rel="stylesheet" href="assets/css/china-business.css?v=20260611acc2">
+    <link rel="stylesheet" href="assets/css/china-business.css?v=20260611fx2">
 </head>
 
 <body class="antialiased scroll-smooth">
@@ -702,8 +702,18 @@
                         </div>
                     </div>
                     <div>
-                        <label
-                            class="text-xs font-bold text-slate-500 uppercase tracking-wider mb-2 block" data-i18n="dash.currency">Currency</label>
+                        <div class="flex items-center gap-1.5 mb-2">
+                            <label
+                                class="text-xs font-bold text-slate-500 uppercase tracking-wider" data-i18n="dash.currency">Currency</label>
+                            <span id="fx-status-chip" class="fx-status-chip fx-pending" aria-live="polite"></span>
+                            <button type="button" id="fx-info-trigger" class="fx-info-trigger fx-pending"
+                                aria-describedby="fx-info-tooltip" aria-label="Exchange rate details">
+                                <svg class="fx-info-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+                                    <path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0-9H7v2h1V6zm0 4H7v2h1v-2z" clip-rule="evenodd" />
+                                </svg>
+                                <span id="fx-info-tooltip" class="fx-info-tooltip" role="tooltip" aria-live="polite"></span>
+                            </button>
+                        </div>
                         <div class="flex space-x-1 bg-slate-200 p-1 rounded-lg">
                             <button id="btn-usd"
                                 class="px-4 py-2 text-sm rounded-md bg-white shadow-sm font-semibold text-slate-800 transition" data-i18n="dash.usd">USD
@@ -712,8 +722,6 @@
                                 class="px-4 py-2 text-sm rounded-md text-slate-600 hover:text-slate-800 transition" data-i18n="dash.rmb">RMB
                                 (¥)</button>
                         </div>
-                        <p id="fx-rate-display" class="text-[10px] text-slate-400 mt-1.5 max-w-[14rem] leading-snug" aria-live="polite"></p>
-                        <p id="fx-status-badge" class="hidden mt-1 text-[10px] font-medium" aria-live="polite"></p>
                     </div>
                     <div>
                         <label
@@ -857,9 +865,9 @@
         </div>
     </footer>
 
-    <script src="assets/js/steps-render.js?v=20260611acc2"></script>
-    <script src="assets/js/i18n-china-business.js?v=20260611acc2"></script>
-    <script src="assets/js/china-business.js?v=20260611acc2"></script>
+    <script src="assets/js/steps-render.js?v=20260611fx2"></script>
+    <script src="assets/js/i18n-china-business.js?v=20260611fx2"></script>
+    <script src="assets/js/china-business.js?v=20260611fx2"></script>
 </body>
 
 </html>

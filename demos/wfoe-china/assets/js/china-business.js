@@ -51,34 +51,51 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             function updateFxLabel() {
-                const el = document.getElementById('fx-rate-display');
-                if (el) {
-                    const r = effectiveExchangeRate().toFixed(2);
-                    const mode = exchangeRateIsLive
-                        ? tr('chart.fx_mode_live', 'live')
-                        : tr('chart.fx_mode_fallback', '2024-avg fallback (7.2)');
-                    let line = tr('chart.fx_line', 'USD column uses 1 USD ≈ {rate} CNY ({mode}).');
-                    line = line.replace(/\{rate\}/g, r).replace(/\{mode\}/g, mode);
-                    el.textContent = line;
+                const trigger = document.getElementById('fx-info-trigger');
+                const tooltip = document.getElementById('fx-info-tooltip');
+                const chip = document.getElementById('fx-status-chip');
+                if (!trigger || !tooltip) return;
+
+                const r = effectiveExchangeRate().toFixed(2);
+                const mode = exchangeRateIsLive
+                    ? tr('chart.fx_mode_live', 'live')
+                    : tr('chart.fx_mode_fallback', '2024-avg fallback (7.2)');
+                let line = tr('chart.fx_line', 'USD column uses 1 USD ≈ {rate} CNY ({mode}).');
+                line = line.replace(/\{rate\}/g, r).replace(/\{mode\}/g, mode);
+
+                let status;
+                let statusClass;
+                trigger.classList.remove('fx-live', 'fx-fallback', 'fx-pending');
+                if (!exchangeRateFetchSettled) {
+                    statusClass = 'fx-pending';
+                    status = tr('chart.fx_status_pending', 'Checking FX…');
+                } else if (exchangeRateIsLive) {
+                    statusClass = 'fx-live';
+                    status = tr('chart.fx_status_live', 'Live rate');
+                } else {
+                    statusClass = 'fx-fallback';
+                    status = tr('chart.fx_status_fallback', 'Offline · fallback 7.2');
+                }
+                trigger.classList.add(statusClass);
+
+                tooltip.replaceChildren();
+                const lineEl = document.createElement('span');
+                lineEl.className = 'fx-info-tooltip-line';
+                lineEl.textContent = line;
+                const statusEl = document.createElement('span');
+                statusEl.className = 'fx-info-status ' + statusClass;
+                statusEl.textContent = status;
+                tooltip.appendChild(lineEl);
+                tooltip.appendChild(statusEl);
+
+                if (chip) {
+                    chip.textContent = status;
+                    chip.classList.remove('fx-live', 'fx-fallback', 'fx-pending');
+                    chip.classList.add(statusClass);
                 }
 
-                // Status badge sibling — color + label reflect live vs fallback.
-                // Stays in "pending" state until the first fetch settles so the page
-                // does not flash a misleading "Offline" on initial render.
-                const badge = document.getElementById('fx-status-badge');
-                if (badge) {
-                    badge.classList.remove('hidden', 'fx-live', 'fx-fallback', 'fx-pending');
-                    if (!exchangeRateFetchSettled) {
-                        badge.classList.add('fx-pending');
-                        badge.textContent = tr('chart.fx_status_pending', 'Checking FX…');
-                    } else if (exchangeRateIsLive) {
-                        badge.classList.add('fx-live');
-                        badge.textContent = tr('chart.fx_status_live', 'Live FX');
-                    } else {
-                        badge.classList.add('fx-fallback');
-                        badge.textContent = tr('chart.fx_status_fallback', 'Offline · fallback 7.2');
-                    }
-                }
+                trigger.setAttribute('title', line + ' ' + status);
+                trigger.setAttribute('aria-label', tr('dash.fx_info_aria', 'Exchange rate details') + ': ' + status);
             }
 
             async function loadExchangeRate() {
