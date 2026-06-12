@@ -29,8 +29,11 @@
         'process.domestic_intro': '<strong>中国公民</strong>（或股东均为境内主体）常见路径为通过当地<strong>「企业开办一窗通」</strong>等渠道设立<strong>有限责任公司</strong>——无需境外公证、海牙认证或外商投资资本金专户。具体步骤与时效因城市而异，以下为常见顺序。',
         'process.fee_note_domestic': '右侧栏：各步<strong>大致现金影响</strong>（2024–2025 常见预估区间）。非报价——城市与银行政策不同。<strong>与仪表盘一致：</strong>以<strong>人民币</strong>为锚；括号内<strong>美元</strong> = 人民币 ÷ 美元/人民币汇率（在线成功则用实时汇率，若接口失败则按 2024 年均值兜底 7.2）。',
         'process.fee_note': '右侧栏：各步<strong>大致现金影响</strong>（2024–2025 常见预估区间）。非报价——城市、银行与代理机构不同，结果会有差异。<strong>货币规则：</strong>流程栏金额均以<strong>人民币</strong>为<strong>预估锚</strong>（境内支付或境外费用的规划等价）；<strong>美元</strong> = 人民币 ÷ 美元/人民币汇率（与财务区一致，在线成功则用实时汇率，若接口失败则按 2024 年均值兜底 7.2）。<strong>财务仪表盘</strong>在选美元时同样按此规则。',
+        'process.col_step': '步骤',
+        'process.col_cost': '预估成本',
 
         'common.sr.toggle': '显示或隐藏本步补充说明',
+        'common.sr.more': '更多',
 
         'sar.intro': '香港与澳门适用不同法律体系，设立流程与大陆外商独资企业相比更简单、差异很大。',
         'sar.hk_title': '香港设立',

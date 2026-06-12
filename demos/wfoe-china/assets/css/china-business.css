@@ -77,6 +77,228 @@ body {
     color: white;
 }
 
+/* ============================================================
+   Setup process — horizontal flow rail + compact step rows
+   ============================================================ */
+
+.step-flow-layout {
+    display: flex;
+    flex-direction: column;
+    gap: 0.625rem;
+}
+
+.step-flow-rail {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x proximity;
+    scroll-padding-inline: 1rem;
+    padding: 0.375rem 0.25rem 0.5rem;
+    margin: 0 -0.25rem;
+    scrollbar-width: thin;
+    scrollbar-color: #a7f3d0 transparent;
+}
+
+.step-flow-rail::-webkit-scrollbar {
+    height: 4px;
+}
+
+.step-flow-rail::-webkit-scrollbar-thumb {
+    background: #a7f3d0;
+    border-radius: 9999px;
+}
+
+.step-flow-node {
+    flex: 0 0 auto;
+    scroll-snap-align: center;
+    width: 1.75rem;
+    height: 1.75rem;
+    border-radius: 9999px;
+    border: 2px solid #34d399;
+    background: #fff;
+    color: #047857;
+    font-size: 0.6875rem;
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+    line-height: 1;
+    cursor: pointer;
+    transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease, transform 0.15s ease;
+}
+
+.step-flow-node:hover {
+    background: #ecfdf5;
+    transform: translateY(-1px);
+}
+
+.step-flow-node.is-active {
+    background: #059669;
+    border-color: #059669;
+    color: #fff;
+    box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.25);
+}
+
+.step-flow-connector {
+    flex: 0 0 0.75rem;
+    height: 2px;
+    background: linear-gradient(90deg, #6ee7b7, #a7f3d0);
+    margin: 0 -1px;
+}
+
+@media (min-width: 768px) {
+    .step-flow-node {
+        width: 2rem;
+        height: 2rem;
+        font-size: 0.75rem;
+    }
+
+    .step-flow-connector {
+        flex-basis: 1.25rem;
+    }
+}
+
+.step-flow-header {
+    display: none;
+    grid-template-columns: 2.5rem minmax(0, 1fr) minmax(11rem, 17.5rem);
+    gap: 0.75rem;
+    padding: 0.5rem 1rem;
+    font-size: 0.625rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: #64748b;
+    border: 1px solid #e2e8f0;
+    border-bottom: none;
+    background: #f8fafc;
+    border-radius: 0.625rem 0.625rem 0 0;
+}
+
+@media (min-width: 768px) {
+    .step-flow-header {
+        display: grid;
+    }
+}
+
+.step-flow-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    border: 1px solid #e2e8f0;
+    border-radius: 0.625rem;
+    overflow: hidden;
+    background: #fff;
+}
+
+.step-flow-header + .step-flow-list {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+
+.step-flow-row:not(:last-child) {
+    border-bottom: 1px solid #f1f5f9;
+}
+
+.step-flow-row--flash {
+    animation: step-flow-flash 1.2s ease;
+}
+
+@keyframes step-flow-flash {
+    0%, 100% { background-color: transparent; }
+    15%, 45% { background-color: #ecfdf5; }
+}
+
+.step-flow-row-inner {
+    display: grid;
+    grid-template-columns: 1.75rem minmax(0, 1fr);
+    grid-template-rows: auto auto;
+    gap: 0.375rem 0.625rem;
+    padding: 0.625rem 0.75rem;
+    align-items: start;
+}
+
+.step-flow-num {
+    grid-row: 1 / span 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.75rem;
+    height: 1.75rem;
+    border-radius: 9999px;
+    background: #059669;
+    color: #fff;
+    font-size: 0.75rem;
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+    flex-shrink: 0;
+}
+
+.step-flow-body {
+    min-width: 0;
+    grid-column: 2;
+}
+
+.step-flow-title {
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: #0f172a;
+    line-height: 1.45;
+    margin: 0;
+}
+
+.step-flow-money {
+    grid-column: 2;
+    padding: 0.375rem 0.5rem;
+    background: #f0fdf4;
+    border-radius: 0.375rem;
+    border: 1px solid #d1fae5;
+}
+
+.step-flow-money-text {
+    font-size: 0.75rem;
+    color: #334155;
+    line-height: 1.45;
+    margin: 0;
+}
+
+@media (min-width: 768px) {
+    .step-flow-row-inner {
+        grid-template-columns: 2.5rem minmax(0, 1fr) minmax(11rem, 17.5rem);
+        grid-template-rows: auto;
+        gap: 0.75rem;
+        padding: 0.625rem 1rem;
+    }
+
+    .step-flow-num {
+        width: 2rem;
+        height: 2rem;
+        font-size: 0.8125rem;
+        grid-row: 1;
+    }
+
+    .step-flow-title {
+        font-size: 0.875rem;
+    }
+
+    .step-flow-money {
+        grid-column: 3;
+        grid-row: 1;
+        align-self: stretch;
+        display: flex;
+        align-items: flex-start;
+        padding: 0.375rem 0.625rem;
+        background: linear-gradient(135deg, #f0fdf4 0%, #ffffff 100%);
+        border: none;
+        border-left: 1px solid #d1fae5;
+        border-radius: 0;
+    }
+
+    .step-flow-money-text {
+        font-size: 0.8125rem;
+    }
+}
+
 details.wfoe-details>summary {
     list-style: none;
 }
@@ -85,7 +307,37 @@ details.wfoe-details>summary::-webkit-details-marker {
     display: none;
 }
 
+details.wfoe-details .step-flow-more {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.2rem;
+    margin-top: 0.25rem;
+    width: auto;
+    max-width: 100%;
+    padding: 0.125rem 0.375rem 0.125rem 0.25rem;
+    border-radius: 0.25rem;
+    font-size: 0.6875rem;
+    font-weight: 500;
+    line-height: 1.2;
+    color: #047857;
+    cursor: pointer;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+details.wfoe-details .step-flow-more:hover {
+    color: #059669;
+    background: #ecfdf5;
+}
+
+details.wfoe-details .step-flow-more-label {
+    line-height: 1.2;
+}
+
 details.wfoe-details .wfoe-disclosure-icon {
+    width: 0.75rem;
+    height: 0.75rem;
+    flex: 0 0 0.75rem;
     transition: transform 0.2s ease;
 }
 
@@ -213,8 +465,11 @@ main section[id] { scroll-margin-top: 5rem; }
     details.wfoe-details > summary > svg,
     details.hub-region-details > summary > svg { display: none !important; }
 
-    /* Avoid awkward cuts inside step cards and city tiles */
+    /* Avoid awkward cuts inside step rows and city tiles */
+    .step-flow-row,
     .grid > div { page-break-inside: avoid; }
+
+    .step-flow-rail { display: none !important; }
 
     /* Charts are interactive; replace with the printable data table siblings. */
     .chart-container,
