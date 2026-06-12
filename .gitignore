@@ -17,3 +17,4 @@ demos/china-housing/data/chinahighpm25/
 .venv/
 # Resumable climate-daily refresh checkpoint (overnight ERA5 backfill cache)
 demos/china-housing/data/.climate_daily_ext.json
+demos/wfoe-china/tmp/
