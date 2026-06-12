@@ -35,13 +35,14 @@ VALID_PRODUCT_TYPE = {
     "mcad", "2d_cad", "dcc_mesh", "cae_solver", "cam", "eda", "plm",
     "bim", "bim_coordination", "reality_capture", "gis", "iiot_platform",
     "scada", "mes", "dcs", "eam", "erp", "slicer", "cim", "mbse",
-    "cad_interop", "other",
+    "cad_interop", "cad_automation", "other",
 }
 VALID_TAGS = {
     "digital_twin", "xinchuang", "am_slicing", "cad_interop",
     "open_source_stack", "semiconductor", "aerospace", "automotive",
     "cloud_native", "low_code", "clash_detection", "federated_bim",
     "point_cloud", "model_checking", "4d_simulation", "open_bim",
+    "visual_programming", "cad_scripting",
 }
 VALID_EVIDENCE = {"audited", "case_study", "vendor_claim", "media"}
 MILESTONE_REQUIRED = {

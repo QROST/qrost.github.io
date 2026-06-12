@@ -657,6 +657,20 @@
       ]
     },
     {
+      "id": "csi",
+      "name_zh": "CSI",
+      "name_en": "Computers and Structures Inc.",
+      "origin": "international",
+      "hq_city": "Walnut Creek",
+      "hq_country": "US",
+      "website": "https://www.csiamerica.com/",
+      "description_zh": "SAP2000/ETABS/SAFE 结构分析",
+      "description_en": "SAP2000, ETABS, SAFE structural analysis",
+      "categories": [
+        "CAE"
+      ]
+    },
+    {
       "id": "daoruan",
       "name_zh": "上海道软信息技术",
       "name_en": "Shanghai Daoruan IT",
@@ -741,6 +755,48 @@
       "description_en": "Manufacturing ERP T100",
       "categories": [
         "ERP"
+      ]
+    },
+    {
+      "id": "driveworks",
+      "name_zh": "DriveWorks",
+      "name_en": "DriveWorks",
+      "origin": "international",
+      "hq_city": "Warrington",
+      "hq_country": "GB",
+      "website": "https://www.driveworks.co.uk/",
+      "description_zh": "SolidWorks 设计自动化与 CPQ",
+      "description_en": "SolidWorks design automation and CPQ",
+      "categories": [
+        "CAD"
+      ]
+    },
+    {
+      "id": "dlubal",
+      "name_zh": "Dlubal Software",
+      "name_en": "Dlubal Software",
+      "origin": "international",
+      "hq_city": "Pfaffikon",
+      "hq_country": "CH",
+      "website": "https://www.dlubal.com/",
+      "description_zh": "RFEM/RSTAB 结构有限元",
+      "description_en": "RFEM and RSTAB structural FEA",
+      "categories": [
+        "CAE"
+      ]
+    },
+    {
+      "id": "dnv",
+      "name_zh": "DNV",
+      "name_en": "DNV",
+      "origin": "international",
+      "hq_city": "Høvik",
+      "hq_country": "NO",
+      "website": "https://www.dnv.com/",
+      "description_zh": "Bladed 海上风电载荷仿真",
+      "description_en": "Bladed offshore wind load simulation",
+      "categories": [
+        "CAE"
       ]
     },
     {
@@ -1373,6 +1429,20 @@
       ]
     },
     {
+      "id": "itasca",
+      "name_zh": "Itasca",
+      "name_en": "Itasca Consulting Group",
+      "origin": "international",
+      "hq_city": "Minneapolis",
+      "hq_country": "US",
+      "website": "https://www.itascacg.com/",
+      "description_zh": "FLAC3D/3DEC 岩土数值",
+      "description_en": "FLAC3D and 3DEC geotechnical numerical",
+      "categories": [
+        "CAE"
+      ]
+    },
+    {
       "id": "iti-transcendata",
       "name_zh": "ITI TranscenData",
       "name_en": "ITI TranscenData",
@@ -1446,6 +1516,21 @@
       ]
     },
     {
+      "id": "karamba3d",
+      "name_zh": "Karamba3D",
+      "name_en": "Karamba3D",
+      "origin": "international",
+      "hq_city": "Vienna",
+      "hq_country": "AT",
+      "website": "https://karamba3d.com/",
+      "description_zh": "Grasshopper 参数化结构 FEA 插件",
+      "description_en": "Grasshopper parametric structural FEA plugin",
+      "categories": [
+        "CAE",
+        "CAD"
+      ]
+    },
+    {
       "id": "keysight",
       "name_zh": "是德科技",
       "name_en": "Keysight Technologies",
@@ -1487,6 +1572,21 @@
       "description_en": "SME cloud ERP",
       "categories": [
         "ERP"
+      ]
+    },
+    {
+      "id": "ladybug-tools",
+      "name_zh": "Ladybug Tools",
+      "name_en": "Ladybug Tools",
+      "origin": "international",
+      "hq_city": "Boston",
+      "hq_country": "US",
+      "website": "https://www.ladybug.tools/",
+      "description_zh": "Grasshopper 建筑环境仿真插件套件",
+      "description_en": "Grasshopper environmental simulation plugin suite",
+      "categories": [
+        "CAD",
+        "BIM"
       ]
     },
     {
@@ -1559,6 +1659,20 @@
       "description_en": "Open-source 2D CAD",
       "categories": [
         "CAD"
+      ]
+    },
+    {
+      "id": "lizheng",
+      "name_zh": "北京理正",
+      "name_en": "LeadingSoft (Lizheng)",
+      "origin": "domestic",
+      "hq_city": "北京",
+      "hq_country": "CN",
+      "website": "https://www.lizheng.com.cn/",
+      "description_zh": "理正结构工具箱与岩土设计",
+      "description_en": "Lizheng structural toolbox and geotechnical design",
+      "categories": [
+        "CAE"
       ]
     },
     {
@@ -1669,8 +1783,8 @@
       "hq_city": "Seattle",
       "hq_country": "US",
       "website": "https://www.rhino3d.com/",
-      "description_zh": "Rhino 自由曲面 CAD",
-      "description_en": "Rhino freeform surface CAD",
+      "description_zh": "Rhino 自由曲面 CAD 与 Grasshopper 参数化",
+      "description_en": "Rhino freeform CAD and Grasshopper parametrics",
       "categories": [
         "CAD"
       ]
@@ -1688,6 +1802,20 @@
       "description_en": "Dynamics 365 ERP",
       "categories": [
         "ERP"
+      ]
+    },
+    {
+      "id": "midas",
+      "name_zh": "北京迈达斯",
+      "name_en": "MIDAS IT",
+      "origin": "international",
+      "hq_city": "北京",
+      "hq_country": "CN",
+      "website": "https://www.midasit.cn/",
+      "description_zh": "midas Civil/Gen 建筑桥梁 CAE",
+      "description_en": "midas Civil and Gen building/bridge CAE",
+      "categories": [
+        "CAE"
       ]
     },
     {
@@ -1821,6 +1949,20 @@
       ]
     },
     {
+      "id": "nrel",
+      "name_zh": "NREL",
+      "name_en": "National Renewable Energy Laboratory",
+      "origin": "international",
+      "hq_city": "Golden",
+      "hq_country": "US",
+      "website": "https://www.nrel.gov/",
+      "description_zh": "OpenFAST 风电仿真开源框架",
+      "description_en": "OpenFAST wind turbine simulation framework",
+      "categories": [
+        "CAE"
+      ]
+    },
+    {
       "id": "open-cascade",
       "name_zh": "Open Cascade SAS",
       "name_en": "Open Cascade SAS",
@@ -1847,6 +1989,20 @@
       "description_en": "Open-source OPC UA protocol stack",
       "categories": [
         "Platform"
+      ]
+    },
+    {
+      "id": "openfoam",
+      "name_zh": "OpenFOAM Foundation",
+      "name_en": "OpenFOAM Foundation",
+      "origin": "open_source",
+      "hq_city": "Reading",
+      "hq_country": "GB",
+      "website": "https://openfoam.org/",
+      "description_zh": "开源 CFD 工具箱",
+      "description_en": "Open-source CFD toolbox",
+      "categories": [
+        "CAE"
       ]
     },
     {
@@ -2070,6 +2226,20 @@
       "description_en": "PrusaSlicer and open 3D printers",
       "categories": [
         "Slicer"
+      ]
+    },
+    {
+      "id": "pyrevit",
+      "name_zh": "PyRevit",
+      "name_en": "PyRevit",
+      "origin": "international",
+      "hq_city": "Seattle",
+      "hq_country": "US",
+      "website": "https://pyrevitlabs.github.io/pyRevit/",
+      "description_zh": "Revit Python 自动化开源框架",
+      "description_en": "Open-source Revit Python automation framework",
+      "categories": [
+        "BIM"
       ]
     },
     {
@@ -2354,6 +2524,20 @@
         "PLM",
         "MES",
         "CAE"
+      ]
+    },
+    {
+      "id": "sidefx",
+      "name_zh": "SideFX",
+      "name_en": "SideFX",
+      "origin": "international",
+      "hq_city": "Toronto",
+      "hq_country": "CA",
+      "website": "https://www.sidefx.com/",
+      "description_zh": "Houdini 程序化建模与特效",
+      "description_en": "Houdini procedural modeling and VFX",
+      "categories": [
+        "CAD"
       ]
     },
     {
@@ -2662,6 +2846,35 @@
       ]
     },
     {
+      "id": "tonghao",
+      "name_zh": "上海同豪",
+      "name_en": "Shanghai Tonghao Civil Engineering",
+      "origin": "domestic",
+      "hq_city": "上海",
+      "hq_country": "CN",
+      "website": "http://www.doctorbridge.com/",
+      "description_zh": "桥梁博士桥梁结构分析",
+      "description_en": "Dr. Bridge bridge structural analysis",
+      "categories": [
+        "CAE",
+        "BIM"
+      ]
+    },
+    {
+      "id": "tonglei",
+      "name_zh": "上海同磊",
+      "name_en": "Shanghai Tonglei Civil Engineering",
+      "origin": "domestic",
+      "hq_city": "上海",
+      "hq_country": "CN",
+      "website": "https://www.tj3d3s.com/",
+      "description_zh": "3D3S 钢结构与空间结构 CAE",
+      "description_en": "3D3S steel and spatial structure CAE",
+      "categories": [
+        "CAE"
+      ]
+    },
+    {
       "id": "tongyuan",
       "name_zh": "同元软控",
       "name_en": "Tongyuan",
@@ -2875,6 +3088,22 @@
       "description_en": "Power group ERP",
       "categories": [
         "ERP"
+      ]
+    },
+    {
+      "id": "yjk",
+      "name_zh": "盈建科",
+      "name_en": "YJK",
+      "origin": "domestic",
+      "hq_city": "北京",
+      "hq_country": "CN",
+      "listed_ticker": "300935.SZ",
+      "website": "https://www.yjk.cn/",
+      "description_zh": "YJK 建筑结构 CAE/BIM",
+      "description_en": "YJK building structural CAE and BIM",
+      "categories": [
+        "CAE",
+        "BIM"
       ]
     },
     {

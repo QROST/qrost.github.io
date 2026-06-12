@@ -1319,6 +1319,807 @@
       ]
     },
     {
+      "id": "grasshopper",
+      "name_zh": "Grasshopper",
+      "name_en": "Grasshopper",
+      "vendor_id": "mcneel",
+      "category_l1": "研发设计",
+      "category_l2": "CAD 自动化",
+      "product_type": "cad_automation",
+      "tags": [
+        "visual_programming"
+      ],
+      "origin": "international",
+      "kernel": "Rhino openNURBS 宿主",
+      "maturity": "mission_critical",
+      "localization_depth": "partial",
+      "strengths_zh": [
+        "节点式视觉编程事实标准，AEC/工业造型参数化生态最大",
+        "海量第三方插件（Karamba、Ladybug、Human UI 等）",
+        "国内建筑院校与幕墙/景观设计院广泛教学与应用"
+      ],
+      "strengths_en": [
+        "De-facto node-based visual programming with largest AEC/industrial design ecosystem",
+        "Rich third-party plugins (Karamba, Ladybug, Human UI, etc.)",
+        "Widely taught and used in China architecture schools and facade/landscape firms"
+      ],
+      "limitations_zh": [
+        "需 Rhino 许可，非独立 MCAD/BIM 平台",
+        "版本升级与第三方插件兼容性维护成本高",
+        "国内大型机械 MCAD 主线仍弱于 NX/SolidWorks API"
+      ],
+      "limitations_en": [
+        "Requires Rhino license; not a standalone MCAD/BIM platform",
+        "Version upgrades and third-party plugin compatibility are costly",
+        "Weak adoption on China mechanical MCAD mainline vs NX/SolidWorks APIs"
+      ],
+      "industries": [
+        "建筑",
+        "幕墙",
+        "景观",
+        "工业设计",
+        "珠宝"
+      ],
+      "pricing": "high",
+      "confidence": 0.92,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.grasshopper3d.com/",
+          "title": "Grasshopper community",
+          "accessed": "2026-06"
+        },
+        {
+          "url": "https://docs.mcneel.com/rhino/8/help/en-us/commands/grasshopper.htm",
+          "title": "Rhino 8 Grasshopper",
+          "accessed": "2026-06"
+        }
+      ],
+      "international_benchmarks": [
+        "dynamo",
+        "geometry-nodes"
+      ]
+    },
+    {
+      "id": "marionette",
+      "name_zh": "Marionette",
+      "name_en": "Marionette",
+      "vendor_id": "vectorworks",
+      "category_l1": "研发设计",
+      "category_l2": "CAD 自动化",
+      "product_type": "cad_automation",
+      "tags": [
+        "visual_programming"
+      ],
+      "origin": "international",
+      "kernel": "Vectorworks 宿主",
+      "maturity": "high",
+      "localization_depth": "pilot",
+      "strengths_zh": [
+        "Vectorworks 内置节点式视觉编程，景观/舞台/建筑一体化",
+        "与 Spotlight、Landmark 产品线深度集成",
+        "欧美景观与会展设计行业常用参数化工具"
+      ],
+      "strengths_en": [
+        "Built-in node-based visual programming in Vectorworks for landscape/stage/architecture",
+        "Deep integration with Spotlight and Landmark product lines",
+        "Common parametric tool in Western landscape and event design"
+      ],
+      "limitations_zh": [
+        "国内 Vectorworks 装机量远小于 Revit/Rhino",
+        "生态与教程资源弱于 Grasshopper/Dynamo",
+        "大型基建 BIM 协同深度不足"
+      ],
+      "limitations_en": [
+        "Far smaller China Vectorworks install base than Revit/Rhino",
+        "Smaller ecosystem and tutorials vs Grasshopper/Dynamo",
+        "Insufficient depth for mega-infrastructure BIM collaboration"
+      ],
+      "industries": [
+        "景观",
+        "建筑",
+        "舞台",
+        "会展"
+      ],
+      "pricing": "high",
+      "confidence": 0.88,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.vectorworks.net/en-US/support/customer/new-features/marionette",
+          "title": "Vectorworks Marionette",
+          "accessed": "2026-06"
+        },
+        {
+          "url": "https://app.vectorworks.net/onlinehelp/Marionette/Marionette.htm",
+          "title": "Marionette Help",
+          "accessed": "2026-06"
+        }
+      ],
+      "international_benchmarks": [
+        "grasshopper",
+        "dynamo"
+      ]
+    },
+    {
+      "id": "houdini",
+      "name_zh": "Houdini",
+      "name_en": "Houdini",
+      "vendor_id": "sidefx",
+      "category_l1": "研发设计",
+      "category_l2": "CAD 自动化",
+      "product_type": "cad_automation",
+      "tags": [
+        "visual_programming"
+      ],
+      "origin": "international",
+      "kernel": "自主·程序化几何/SOP",
+      "maturity": "high",
+      "localization_depth": "pilot",
+      "strengths_zh": [
+        "工业级程序化节点网络，硬表面与复杂拓扑生成能力强",
+        "VEX/Python 脚本与 TOP/LOP 管线可对接 USD、渲染与制造可视化",
+        "汽车/消费电子概念造型与特效工业设计中高阶参数化选项"
+      ],
+      "strengths_en": [
+        "Industrial-grade procedural node networks for hard-surface and complex topology",
+        "VEX/Python scripting and TOP/LOP pipelines integrate USD, rendering, and mfg viz",
+        "Advanced parametric option in automotive/consumer concept and VFX-industrial design"
+      ],
+      "limitations_zh": [
+        "非 B-rep MCAD，无工程图/PMI/公差主线",
+        "国内正版培训与制造 CAM 链路弱于 Alias/Rhino",
+        "学习曲线陡峭，企业 MCAD 替换成本高"
+      ],
+      "limitations_en": [
+        "Not B-rep MCAD; no engineering drawing/PMI/tolerancing mainline",
+        "Weaker China licensing/training and manufacturing CAM chain vs Alias/Rhino",
+        "Steep learning curve; high cost to replace enterprise MCAD"
+      ],
+      "industries": [
+        "影视",
+        "游戏",
+        "工业设计",
+        "汽车概念",
+        "科研可视化"
+      ],
+      "pricing": "high",
+      "confidence": 0.9,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.sidefx.com/products/houdini/",
+          "title": "SideFX Houdini",
+          "accessed": "2026-06"
+        },
+        {
+          "url": "https://www.sidefx.com/docs/houdini/nodes/sop/index.html",
+          "title": "Houdini SOP nodes",
+          "accessed": "2026-06"
+        }
+      ],
+      "international_benchmarks": [
+        "grasshopper",
+        "geometry-nodes"
+      ]
+    },
+    {
+      "id": "geometry-nodes",
+      "name_zh": "Geometry Nodes",
+      "name_en": "Geometry Nodes",
+      "vendor_id": "blender-foundation",
+      "category_l1": "研发设计",
+      "category_l2": "CAD 自动化",
+      "product_type": "cad_automation",
+      "tags": [
+        "visual_programming",
+        "open_source_stack"
+      ],
+      "origin": "open_source",
+      "kernel": "Blender B-mesh 宿主",
+      "maturity": "high",
+      "localization_depth": "pilot",
+      "strengths_zh": [
+        "开源节点式程序化建模，硬表面与实例化阵列效率高",
+        "与 Blender 修改器栈、USD/glTF 导出及工业可视化管线衔接",
+        "国内创客/indie 硬件与 B 站教程生态活跃"
+      ],
+      "strengths_en": [
+        "Open-source node-based procedural modeling with efficient instancing",
+        "Ties into Blender modifier stack, USD/glTF export, and industrial viz pipelines",
+        "Active China maker/indie hardware and Bilibili tutorial ecosystem"
+      ],
+      "limitations_zh": [
+        "网格中心，非参数化 B-rep 实体 CAD",
+        "企业 PLM/MBD 与精密机械公差链路弱",
+        "与 Rhino/Revit 宿主互操作需额外插件"
+      ],
+      "limitations_en": [
+        "Mesh-centric, not parametric B-rep solid CAD",
+        "Weak enterprise PLM/MBD and precision mechanical tolerancing chain",
+        "Rhino/Revit host interoperability needs extra add-ons"
+      ],
+      "industries": [
+        "3D打印",
+        "文创",
+        "工业设计",
+        "影视",
+        "科研"
+      ],
+      "pricing": "free",
+      "confidence": 0.9,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://docs.blender.org/manual/en/latest/modeling/geometry_nodes/index.html",
+          "title": "Blender Geometry Nodes manual",
+          "accessed": "2026-06"
+        },
+        {
+          "url": "https://www.blender.org/features/nodes/",
+          "title": "Blender Nodes feature",
+          "accessed": "2026-06"
+        }
+      ],
+      "international_benchmarks": [
+        "grasshopper",
+        "houdini"
+      ]
+    },
+    {
+      "id": "rhino-python",
+      "name_zh": "Rhino.Python",
+      "name_en": "Rhino.Python",
+      "vendor_id": "mcneel",
+      "category_l1": "研发设计",
+      "category_l2": "CAD 自动化",
+      "product_type": "cad_automation",
+      "tags": [
+        "cad_scripting"
+      ],
+      "origin": "international",
+      "kernel": "Rhino openNURBS + IronPython/CPython",
+      "maturity": "high",
+      "localization_depth": "partial",
+      "strengths_zh": [
+        "Rhino 内置 Python/RhinoScript 脚本与 rhino3dm 库",
+        "与 Grasshopper Python 组件及批处理自动化衔接",
+        "国内参数化工作室常用二次开发入口"
+      ],
+      "strengths_en": [
+        "Built-in Python/RhinoScript scripting and rhino3dm libraries",
+        "Connects to Grasshopper Python components and batch automation",
+        "Common customization entry for China parametric studios"
+      ],
+      "limitations_zh": [
+        "非独立产品，依赖 Rhino 许可",
+        "IronPython 2.7 遗留与 CPython 3 迁移需适配",
+        "企业级权限审计弱于 PLM 集成 API"
+      ],
+      "limitations_en": [
+        "Not standalone; requires Rhino license",
+        "Legacy IronPython 2.7 vs CPython 3 migration friction",
+        "Weaker enterprise governance than PLM-integrated APIs"
+      ],
+      "industries": [
+        "建筑",
+        "幕墙",
+        "工业设计",
+        "珠宝"
+      ],
+      "pricing": "high",
+      "confidence": 0.89,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://developer.rhino3d.com/guides/rhinopython/",
+          "title": "Rhino.Python developer guide",
+          "accessed": "2026-06"
+        },
+        {
+          "url": "https://developer.rhino3d.com/api/rhinocommon/",
+          "title": "RhinoCommon API",
+          "accessed": "2026-06"
+        }
+      ],
+      "international_benchmarks": [
+        "pyrevit",
+        "nx-open"
+      ]
+    },
+    {
+      "id": "designscript",
+      "name_zh": "DesignScript",
+      "name_en": "DesignScript",
+      "vendor_id": "autodesk",
+      "category_l1": "研发设计",
+      "category_l2": "CAD 自动化",
+      "product_type": "cad_automation",
+      "tags": [
+        "visual_programming",
+        "cad_scripting"
+      ],
+      "origin": "international",
+      "kernel": "AutoCAD/Revit/Civil 3D 宿主",
+      "maturity": "mid",
+      "localization_depth": "pilot",
+      "strengths_zh": [
+        "Autodesk 参数化脚本语言，Dynamo 底层运行时之一",
+        "可驱动 AutoCAD、Revit 几何与数据流",
+        "学术与早期 AEC 参数化研究仍有存量项目"
+      ],
+      "strengths_en": [
+        "Autodesk parametric scripting language; underpins part of Dynamo runtime",
+        "Drives geometry and data flow in AutoCAD and Revit hosts",
+        "Legacy academic and early AEC parametric research projects"
+      ],
+      "limitations_zh": [
+        "新项目主流已转向 Dynamo/Forge，文档与社区萎缩",
+        "国内新培训案例少",
+        "跨厂商互操作弱"
+      ],
+      "limitations_en": [
+        "New work shifted to Dynamo/Forge; shrinking docs and community",
+        "Few new China training cases",
+        "Weak cross-vendor interoperability"
+      ],
+      "industries": [
+        "建筑",
+        "基础设施",
+        "机械"
+      ],
+      "pricing": "high",
+      "confidence": 0.82,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://dynamobim.org/",
+          "title": "Dynamo BIM (DesignScript lineage)",
+          "accessed": "2026-06"
+        },
+        {
+          "url": "https://help.autodesk.com/view/CIV3D/2025/ENU/?guid=CIV3D-REF-API-DesignScript",
+          "title": "Civil 3D DesignScript API",
+          "accessed": "2026-06"
+        }
+      ],
+      "international_benchmarks": [
+        "dynamo",
+        "grasshopper"
+      ]
+    },
+    {
+      "id": "driveworks",
+      "name_zh": "DriveWorks",
+      "name_en": "DriveWorks",
+      "vendor_id": "driveworks",
+      "category_l1": "研发设计",
+      "category_l2": "CAD 自动化",
+      "product_type": "cad_automation",
+      "tags": [
+        "cad_scripting",
+        "low_code"
+      ],
+      "origin": "international",
+      "kernel": "SolidWorks 宿主",
+      "maturity": "high",
+      "localization_depth": "pilot",
+      "strengths_zh": [
+        "SolidWorks 设计自动化与 CPQ 规则引擎",
+        "表格/表单驱动三维模型、工程图与 BOM 批量生成",
+        "欧美装备制造业选型配置成熟方案"
+      ],
+      "strengths_en": [
+        "SolidWorks design automation and CPQ rules engine",
+        "Table/form-driven 3D models, drawings, and BOM batch generation",
+        "Mature configure-price-quote for Western equipment manufacturing"
+      ],
+      "limitations_zh": [
+        "国内 SolidWorks 自动化案例远少于欧美",
+        "深度绑定 Dassault 生态",
+        "与 BIM 参数化工具链无直接替代关系"
+      ],
+      "limitations_en": [
+        "Far fewer China SolidWorks automation cases than in Europe/US",
+        "Tightly bound to Dassault ecosystem",
+        "No direct substitute for BIM parametric toolchains"
+      ],
+      "industries": [
+        "机械",
+        "装备",
+        "定制设备"
+      ],
+      "pricing": "quote",
+      "confidence": 0.87,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.driveworks.co.uk/",
+          "title": "DriveWorks",
+          "accessed": "2026-06"
+        },
+        {
+          "url": "https://www.driveworks.co.uk/products/driveworkspro/",
+          "title": "DriveWorks Pro",
+          "accessed": "2026-06"
+        }
+      ],
+      "international_benchmarks": [
+        "nx-open",
+        "featurescript"
+      ]
+    },
+    {
+      "id": "nx-open",
+      "name_zh": "NX Open",
+      "name_en": "NX Open",
+      "vendor_id": "siemens-digital",
+      "category_l1": "研发设计",
+      "category_l2": "CAD 自动化",
+      "product_type": "cad_automation",
+      "tags": [
+        "cad_scripting"
+      ],
+      "origin": "international",
+      "kernel": "NX Parasolid 宿主",
+      "kernel_id": "parasolid",
+      "maturity": "mission_critical",
+      "localization_depth": "partial",
+      "strengths_zh": [
+        "NX 官方 C++/C#/Java/Python Journal 二次开发 API",
+        "汽车/航空主机厂定制特征与流程自动化事实标准之一",
+        "与国内 NX 装机及军工航天客户深度绑定"
+      ],
+      "strengths_en": [
+        "Official NX C++/C#/Java/Python Journal customization APIs",
+        "De-facto standard for automotive/aerospace OEM feature and process automation",
+        "Tied to China NX install base and defense/aerospace accounts"
+      ],
+      "limitations_zh": [
+        "许可与开发门槛高，需西门子合作伙伴体系",
+        "视觉编程体验弱于 Grasshopper/Dynamo",
+        "云原生 API 弱于 Onshape FeatureScript"
+      ],
+      "limitations_en": [
+        "High license and development bar; Siemens partner ecosystem expected",
+        "Weaker visual programming UX than Grasshopper/Dynamo",
+        "Weaker cloud-native API story vs Onshape FeatureScript"
+      ],
+      "industries": [
+        "汽车",
+        "航空航天",
+        "模具",
+        "机械"
+      ],
+      "pricing": "quote",
+      "confidence": 0.91,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://docs.plm.automation.siemens.com/data_services/resources/nx/12/nx_api/nxopen_index.html",
+          "title": "NX Open API documentation",
+          "accessed": "2026-06"
+        },
+        {
+          "url": "https://www.plm.automation.siemens.com/global/en/products/nx/cad/nx-open.html",
+          "title": "Siemens NX Open",
+          "accessed": "2026-06"
+        }
+      ],
+      "international_benchmarks": [
+        "driveworks",
+        "featurescript"
+      ]
+    },
+    {
+      "id": "featurescript",
+      "name_zh": "FeatureScript",
+      "name_en": "FeatureScript",
+      "vendor_id": "ptc",
+      "category_l1": "研发设计",
+      "category_l2": "CAD 自动化",
+      "product_type": "cad_automation",
+      "tags": [
+        "cad_scripting",
+        "cloud_native"
+      ],
+      "origin": "international",
+      "kernel": "Onshape 云 CAD 宿主",
+      "maturity": "high",
+      "localization_depth": "pilot",
+      "strengths_zh": [
+        "Onshape 云 CAD 内置参数化建模语言",
+        "版本化特征树与 REST API 适合云原生设计自动化",
+        "教育与国内创客云 CAD 实验场景增长"
+      ],
+      "strengths_en": [
+        "Built-in parametric modeling language for Onshape cloud CAD",
+        "Versioned feature tree and REST API suit cloud-native design automation",
+        "Growing education and China maker cloud-CAD experiments"
+      ],
+      "limitations_zh": [
+        "国内大企业装机弱于 SolidWorks/NX",
+        "离线大型装配与信创环境适配有限",
+        "生态体量小于传统 MCAD API"
+      ],
+      "limitations_en": [
+        "Smaller China enterprise install base than SolidWorks/NX",
+        "Limited offline large-assembly and xinchuang fit",
+        "Ecosystem smaller than legacy MCAD APIs"
+      ],
+      "industries": [
+        "机械",
+        "教育",
+        "硬件创业"
+      ],
+      "pricing": "mid",
+      "confidence": 0.88,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://cad.onshape.com/FsDoc/",
+          "title": "FeatureScript documentation",
+          "accessed": "2026-06"
+        },
+        {
+          "url": "https://www.onshape.com/en/features/featurescript",
+          "title": "Onshape FeatureScript",
+          "accessed": "2026-06"
+        }
+      ],
+      "international_benchmarks": [
+        "nx-open",
+        "crowncad-api"
+      ]
+    },
+    {
+      "id": "ladybug-tools",
+      "name_zh": "Ladybug Tools",
+      "name_en": "Ladybug Tools",
+      "vendor_id": "ladybug-tools",
+      "category_l1": "研发设计",
+      "category_l2": "CAD 自动化",
+      "product_type": "cad_automation",
+      "tags": [
+        "visual_programming",
+        "open_source_stack"
+      ],
+      "origin": "international",
+      "kernel": "Grasshopper/Rhino 插件宿主",
+      "maturity": "high",
+      "localization_depth": "partial",
+      "strengths_zh": [
+        "Grasshopper 环境仿真插件套件（Ladybug、Honeybee、Dragonfly）",
+        "日照、能耗、CFD 与绿色建筑分析可视化节点",
+        "国内绿色建筑设计院与高校参数化课程常用"
+      ],
+      "strengths_en": [
+        "Grasshopper environmental simulation suite (Ladybug, Honeybee, Dragonfly)",
+        "Nodes for solar, energy, CFD, and green-building analysis",
+        "Widely used in China green-building firms and parametric curricula"
+      ],
+      "limitations_zh": [
+        "依赖 Rhino+Grasshopper 许可栈",
+        "精度与认证流程弱于专业 CAE/BEM 单机软件",
+        "大型项目性能受 GH 图复杂度限制"
+      ],
+      "limitations_en": [
+        "Depends on Rhino+Grasshopper license stack",
+        "Weaker certified accuracy vs standalone CAE/BEM tools",
+        "Large-project performance limited by GH graph complexity"
+      ],
+      "industries": [
+        "建筑",
+        "绿色建筑",
+        "城市规划"
+      ],
+      "pricing": "free",
+      "confidence": 0.9,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.ladybug.tools/",
+          "title": "Ladybug Tools",
+          "accessed": "2026-06"
+        },
+        {
+          "url": "https://github.com/ladybug-tools",
+          "title": "Ladybug Tools GitHub",
+          "accessed": "2026-06"
+        }
+      ],
+      "international_benchmarks": [
+        "grasshopper",
+        "dynamo"
+      ]
+    },
+    {
+      "id": "crowncad-api",
+      "name_zh": "CrownCAD Open API",
+      "name_en": "CrownCAD Open API",
+      "vendor_id": "hoteam",
+      "category_l1": "研发设计",
+      "category_l2": "CAD 自动化",
+      "product_type": "cad_automation",
+      "tags": [
+        "cad_scripting",
+        "cloud_native"
+      ],
+      "origin": "domestic",
+      "kernel": "CrownCAD DGM 云几何",
+      "maturity": "mid",
+      "localization_depth": "pilot",
+      "strengths_zh": [
+        "国产云 CAD 开放 API 与二次开发接口",
+        "支持 Web/云端协同场景下的定制特征与流程",
+        "信创与数据驻留诉求下的国产替代探索"
+      ],
+      "strengths_en": [
+        "Domestic cloud CAD open APIs and customization hooks",
+        "Custom features and workflows in web/cloud collaboration",
+        "Domestic alternative exploration under xinchuang and data-residency needs"
+      ],
+      "limitations_zh": [
+        "生态与案例仍少于 SolidWorks/NX Open",
+        "文档与开发者社区仍在建设",
+        "复杂自动化成熟度待验证"
+      ],
+      "limitations_en": [
+        "Smaller ecosystem and references than SolidWorks/NX Open",
+        "Documentation and developer community still maturing",
+        "Complex automation maturity yet to be proven"
+      ],
+      "industries": [
+        "机械",
+        "装备",
+        "教育"
+      ],
+      "pricing": "mid",
+      "confidence": 0.78,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.crowncad.com/",
+          "title": "CrownCAD",
+          "accessed": "2026-06"
+        },
+        {
+          "url": "https://www.hoteamsoft.com/",
+          "title": "Hoteamsoft",
+          "accessed": "2026-06"
+        }
+      ],
+      "international_benchmarks": [
+        "featurescript",
+        "onshape"
+      ]
+    },
+    {
+      "id": "zwcad-api",
+      "name_zh": "ZWCAD .NET API",
+      "name_en": "ZWCAD .NET API",
+      "vendor_id": "zwcad",
+      "category_l1": "研发设计",
+      "category_l2": "CAD 自动化",
+      "product_type": "cad_automation",
+      "tags": [
+        "cad_scripting",
+        "xinchuang"
+      ],
+      "origin": "domestic",
+      "kernel": "ZWCAD Overdrive",
+      "kernel_id": "zw-overdrive",
+      "maturity": "high",
+      "localization_depth": "partial",
+      "strengths_zh": [
+        "国产 DWG 平台 .NET/ZRX 二次开发，AutoCAD 迁移友好",
+        "信创名录与行业插件生态持续扩展",
+        "建筑/机械国产化替代中的脚本与插件入口"
+      ],
+      "strengths_en": [
+        "Domestic DWG platform .NET/ZRX customization with AutoCAD migration path",
+        "Growing xinchuang listings and industry plugin ecosystem",
+        "Scripting and plugin entry for domestic CAD substitution"
+      ],
+      "limitations_zh": [
+        "三维参数化与视觉编程弱于 Grasshopper/Dynamo",
+        "复杂 MCAD 自动化 API 深度仍追赶国际平台",
+        "跨云协同 API 弱于 CrownCAD/Onshape"
+      ],
+      "limitations_en": [
+        "Weaker 3D parametric and visual programming vs Grasshopper/Dynamo",
+        "Complex MCAD automation API depth still catching up",
+        "Weaker cross-cloud collaboration APIs vs CrownCAD/Onshape"
+      ],
+      "industries": [
+        "建筑",
+        "机械",
+        "市政"
+      ],
+      "pricing": "mid",
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.zwsoft.cn/products/zwcad/dev",
+          "title": "ZWCAD secondary development",
+          "accessed": "2026-06"
+        },
+        {
+          "url": "https://www.zwsoft.cn/",
+          "title": "ZWSOFT",
+          "accessed": "2026-06"
+        }
+      ],
+      "international_benchmarks": [
+        "autocad",
+        "revit-api"
+      ]
+    },
+    {
+      "id": "freecad-python-api",
+      "name_zh": "FreeCAD Python API",
+      "name_en": "FreeCAD Python API",
+      "vendor_id": "freecad",
+      "category_l1": "研发设计",
+      "category_l2": "CAD 自动化",
+      "product_type": "cad_automation",
+      "tags": [
+        "cad_scripting",
+        "open_source_stack"
+      ],
+      "origin": "open_source",
+      "kernel": "OpenCASCADE (OCCT)",
+      "kernel_id": "open-cascade",
+      "maturity": "mid",
+      "localization_depth": "pilot",
+      "strengths_zh": [
+        "开源 MCAD Python 宏与 Workbench 扩展 API",
+        "参数化特征树与脚本可版本化管理",
+        "国内高校与创客低成本自动化实验平台"
+      ],
+      "strengths_en": [
+        "Open-source MCAD Python macros and Workbench extension APIs",
+        "Parametric feature tree and versionable scripts",
+        "Low-cost automation lab platform for China schools and makers"
+      ],
+      "limitations_zh": [
+        "企业级性能与大型装配弱于商业 MCAD API",
+        "视觉编程需依赖社区 Addon 而非官方节点编辑器",
+        "信创名录与商业支持弱于中望/浩辰"
+      ],
+      "limitations_en": [
+        "Weaker enterprise performance and large assemblies vs commercial MCAD APIs",
+        "Visual programming relies on community add-ons, not official node editor",
+        "Weaker xinchuang listings and commercial support vs ZWCAD/GstarCAD"
+      ],
+      "industries": [
+        "机械",
+        "3D打印",
+        "教育",
+        "科研"
+      ],
+      "pricing": "free",
+      "confidence": 0.88,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://wiki.freecad.org/Power_users_hub",
+          "title": "FreeCAD Power users hub",
+          "accessed": "2026-06"
+        },
+        {
+          "url": "https://wiki.freecad.org/Python_scripting_tutorial",
+          "title": "FreeCAD Python scripting",
+          "accessed": "2026-06"
+        }
+      ],
+      "international_benchmarks": [
+        "nx-open",
+        "rhino-python"
+      ]
+    },
+    {
       "id": "rhino-inside",
       "name_zh": "Rhino.Inside",
       "name_en": "Rhino.Inside",

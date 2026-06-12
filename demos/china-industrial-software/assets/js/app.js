@@ -13,13 +13,39 @@
     'mcad', '2d_cad', 'dcc_mesh', 'cae_solver', 'cam', 'eda', 'plm',
     'bim', 'bim_coordination', 'reality_capture', 'gis', 'iiot_platform',
     'scada', 'mes', 'dcs', 'eam', 'erp', 'slicer', 'cim', 'mbse',
-    'cad_interop', 'other',
+    'cad_interop', 'cad_automation', 'other',
   ];
+
+  /** L2 buckets with a single canonical product_type (1:1 for filter aliasing). */
+  const L2_CANONICAL_PRODUCT_TYPE = {
+    CAE: 'cae_solver',
+    CAM: 'cam',
+    CAD互操作: 'cad_interop',
+    'CAD 自动化': 'cad_automation',
+    EDA: 'eda',
+    PLM: 'plm',
+    BIM: 'bim',
+    GIS: 'gis',
+    MES: 'mes',
+    DCS: 'dcs',
+    SCADA: 'scada',
+    ERP: 'erp',
+    切片软件: 'slicer',
+    工业互联网: 'iiot_platform',
+    半导体CIM: 'cim',
+    MBSE: 'mbse',
+    EAM: 'eam',
+  };
+
+  const PRODUCT_TYPE_TO_L2 = Object.fromEntries(
+    Object.entries(L2_CANONICAL_PRODUCT_TYPE).map(([l2, pt]) => [pt, l2]),
+  );
   const TAGS = [
     'digital_twin', 'xinchuang', 'am_slicing', 'cad_interop',
     'open_source_stack', 'semiconductor', 'aerospace', 'automotive',
     'cloud_native', 'low_code', 'clash_detection', 'federated_bim',
     'point_cloud', 'model_checking', '4d_simulation', 'open_bim',
+    'visual_programming', 'cad_scripting',
   ];
 
   const state = {
@@ -105,13 +131,36 @@
     return 'badge-international';
   }
 
+  function matchesProductTypeFilter(p, productType) {
+    if (!productType) return true;
+    if (p.product_type === productType) return true;
+    const l2 = p.category_l2;
+    return !!(l2 && L2_CANONICAL_PRODUCT_TYPE[l2] === productType);
+  }
+
+  function matchesCategoryFilter(p, filterL2) {
+    if (!filterL2) return true;
+    if (p.category_l2 === filterL2 || p.category_l1 === filterL2) return true;
+    const canonicalPt = L2_CANONICAL_PRODUCT_TYPE[filterL2];
+    return !!(canonicalPt && p.product_type === canonicalPt);
+  }
+
+  function reconcileTaxonomyFilters() {
+    const { filterL2, filterProductType } = state;
+    if (!filterL2 || !filterProductType) return;
+    const canonicalPt = L2_CANONICAL_PRODUCT_TYPE[filterL2];
+    if (canonicalPt && filterProductType !== canonicalPt) {
+      state.filterProductType = '';
+    }
+  }
+
   function applyFilters() {
     let list = CAT().allProducts || [];
     if (state.filterOrigin) list = list.filter((p) => p.origin === state.filterOrigin);
-    if (state.filterL2) list = list.filter((p) => p.category_l2 === state.filterL2 || p.category_l1 === state.filterL2);
+    if (state.filterL2) list = list.filter((p) => matchesCategoryFilter(p, state.filterL2));
     if (state.filterVendor) list = list.filter((p) => p.vendor_id === state.filterVendor);
     if (state.filterKernel) list = list.filter((p) => p.kernel_id === state.filterKernel);
-    if (state.filterProductType) list = list.filter((p) => p.product_type === state.filterProductType);
+    if (state.filterProductType) list = list.filter((p) => matchesProductTypeFilter(p, state.filterProductType));
     if (state.filterTag) list = list.filter((p) => (p.tags || []).includes(state.filterTag));
     if (state.search) {
       const q = state.search.toLowerCase();
@@ -805,7 +854,16 @@
 
     ptSel.addEventListener('change', (e) => {
       state.filterProductType = e.target.value;
+      const l2ForPt = PRODUCT_TYPE_TO_L2[state.filterProductType];
+      if (l2ForPt) state.filterL2 = l2ForPt;
+      reconcileTaxonomyFilters();
+      syncFilterUI();
       renderCatalogTable();
+      if (state.filterL2) {
+        CHARTS().setSunburstHighlight(state.filterL2);
+      } else {
+        renderSunburstChart();
+      }
     });
     tagSel.addEventListener('change', (e) => {
       state.filterTag = e.target.value;
@@ -897,6 +955,7 @@
   function applySunburstCategoryFilter(name) {
     state.filterL2 = name;
     state.filterVendor = '';
+    reconcileTaxonomyFilters();
     syncFilterUI();
     renderCatalogTable();
     CHARTS().setSunburstHighlight(name);
@@ -986,6 +1045,8 @@
     });
     document.getElementById('filter-category')?.addEventListener('change', (e) => {
       state.filterL2 = e.target.value;
+      reconcileTaxonomyFilters();
+      syncFilterUI();
       renderCatalogTable();
       if (state.filterL2) {
         CHARTS().setSunburstHighlight(state.filterL2);
@@ -1094,6 +1155,8 @@
     window.__industrialSoftwareTest = {
       getProductCount: () => (CAT().allProducts || []).length,
       getFilteredCount: () => filtered.length,
+      countByCategoryL2: (l2) => (CAT().allProducts || []).filter((p) => matchesCategoryFilter(p, l2)).length,
+      countByProductType: (pt) => (CAT().allProducts || []).filter((p) => matchesProductTypeFilter(p, pt)).length,
       getManifest: () => CAT().manifest,
       getCompareSlots: () => CMP().getSlots(),
       addCompare: (id) => { addToCompare(id); },
@@ -1101,6 +1164,15 @@
       closeCompareModal,
       isCompareModalOpen: () => !document.getElementById('compare-modal')?.classList.contains('hidden'),
       getState: () => Object.assign({}, state),
+      matchesCategoryFilter,
+      matchesProductTypeFilter,
+      setFilters: (patch) => {
+        Object.assign(state, patch);
+        reconcileTaxonomyFilters();
+        syncFilterUI();
+        renderCatalogTable();
+        return filtered.length;
+      },
     };
   }
 

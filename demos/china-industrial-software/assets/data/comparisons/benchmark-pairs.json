@@ -55,6 +55,14 @@
     {"domestic_id": "glodon-bimface", "international_id": "bentley-itwin", "dimension": "BIM 数字孪生联邦", "note_zh": "国产轻量化引擎 vs 基建 iTwin 联邦"},
     {"domestic_id": "glodon-bimface", "international_id": "autodesk-acc", "dimension": "云 BIM 协同/CDE", "note_zh": "国产 BIM 平台 vs Autodesk 云施工交付"},
     {"domestic_id": "hoteam-sview", "international_id": "autodesk-vault", "dimension": "轻量化 3D 协同", "note_zh": "华天 SView vs Autodesk 数据管理"},
-    {"domestic_id": "jiyuan-simulation", "international_id": "autodesk-moldflow", "dimension": "注塑模流分析", "note_zh": "国产模流 vs Moldflow 标杆"}
+    {"domestic_id": "jiyuan-simulation", "international_id": "autodesk-moldflow", "dimension": "注塑模流分析", "note_zh": "国产模流 vs Moldflow 标杆"},
+    {"domestic_id": "pkpm-structure", "international_id": "csi-etabs", "dimension": "建筑结构CAE", "note_zh": "国产规范一体化 vs 国际高层分析"},
+    {"domestic_id": "yjk-structure", "international_id": "csi-etabs", "dimension": "建筑结构CAE", "note_zh": "国产新内核 vs ETABS 高层"},
+    {"domestic_id": "3d3s-design", "international_id": "dlubal-rfem", "dimension": "钢结构空间结构", "note_zh": "国产钢结构 CAE vs RFEM"},
+    {"domestic_id": "doctor-bridge", "international_id": "midas-civil", "dimension": "桥梁结构分析", "note_zh": "桥梁博士 vs midas Civil"},
+    {"domestic_id": "pkpm-cae", "international_id": "ansys-mechanical", "dimension": "通用结构仿真", "note_zh": "国产通用 CAE 云 vs Ansys"},
+    {"domestic_id": "pkpm-sausg", "international_id": "csi-perform3d", "dimension": "建筑非线性", "note_zh": "国产非线性 vs Perform3D"},
+    {"domestic_id": "suochen-abyss", "international_id": "siemens-star-ccm-plus", "dimension": "工业CFD", "note_zh": "国产流体 vs STAR-CCM+"},
+    {"domestic_id": "openfast", "international_id": "dnv-bladed", "dimension": "海上风电载荷", "note_zh": "开源气弹 vs 认证级 Bladed"}
   ]
 }
