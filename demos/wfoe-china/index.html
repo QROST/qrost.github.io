@@ -4,13 +4,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>How to open a company in China — WFOE setup &amp; AEC hiring costs | QROST</title>
-    <meta name="description" content="Step-by-step setup workflows (mainland WFOE, domestic LLC, Sino-foreign JV, HK/Macau SAR) and an interactive city-level annual cost model for CAD roles across 24 talent hubs. Research notes for international AEC founders.">
+    <title>China company setup (WFOE, domestic, JV, HK/Macau) &amp; AEC hiring costs | QROST</title>
+    <meta name="description" content="Step-by-step setup workflows (mainland WFOE, domestic LLC, Sino-foreign JV, HK/Macau SAR) plus an interactive cost dashboard across 24 China hubs and optional global cities. Research notes for international AEC founders.">
     <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230f172a'/%3E%3Ctext x='16' y='21' font-family='Inter,system-ui,sans-serif' font-size='13' font-weight='700' text-anchor='middle' fill='white' letter-spacing='1'%3EQ%3C/text%3E%3C/svg%3E">
 
     <meta property="og:type" content="article">
-    <meta property="og:title" content="How to open a company in China — WFOE setup & AEC hiring costs">
-    <meta property="og:description" content="Setup workflows and city-level cost model across 24 Chinese AEC talent hubs. Bilingual EN/中文.">
+    <meta property="og:title" content="China company setup (WFOE, domestic, JV, HK/Macau) &amp; AEC hiring costs">
+    <meta property="og:description" content="Four entity paths (WFOE, domestic LLC, JV, HK/Macau) plus a cost dashboard across 24 China hubs and optional global cities. Bilingual EN/中文.">
     <meta property="og:url" content="https://qrost.github.io/demos/wfoe-china/">
     <meta property="og:site_name" content="QROST">
     <meta property="og:image" content="https://qrost.github.io/demos/wfoe-china/assets/img/wfoe-china-og.png">
@@ -18,8 +18,8 @@
     <meta property="og:image:height" content="630">
     <meta property="og:image:alt" content="QROST — WFOE setup &amp; AEC hiring costs across 24 Chinese cities">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="How to open a company in China — WFOE & AEC hiring">
-    <meta name="twitter:description" content="Setup workflows and city-level cost model across 24 Chinese AEC talent hubs.">
+    <meta name="twitter:title" content="China company setup (WFOE, domestic, JV, HK/Macau) &amp; AEC costs">
+    <meta name="twitter:description" content="Four entity paths plus cost dashboard: 24 China hubs and optional global cities.">
     <meta name="twitter:image" content="https://qrost.github.io/demos/wfoe-china/assets/img/wfoe-china-og.png">
 
     <!-- Tailwind: built from src/tailwind-input.css via local tailwindcss CLI.
@@ -36,7 +36,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
     <!-- Chosen Palette: Slate and Emerald -->
-    <link rel="stylesheet" href="assets/css/china-business.css?v=20260611intl2">
+    <link rel="stylesheet" href="assets/css/china-business.css?v=20260611acc2">
 </head>
 
 <body class="antialiased scroll-smooth">
@@ -82,10 +82,12 @@
                 <p class="mt-6 text-lg text-slate-600 leading-relaxed" data-i18n="hero.lead">
                     Research notes on <strong class="font-medium text-slate-800">opening a company in China</strong> and
                     <strong class="font-medium text-slate-800">what costs to expect</strong>. Use the tabs for regional setup workflows and the
-                    financials for rough, city-level cost modeling across <strong class="font-medium text-slate-800">24 cities</strong>—illustrative only, not legal or tax advice.
+                    financials for rough, city-level cost modeling across <strong class="font-medium text-slate-800">24 China hubs</strong> (optional <strong class="font-medium text-slate-800">global cities</strong> in the dashboard)—illustrative only, not legal or tax advice.
                 </p>
-                <p class="mt-4 text-sm text-slate-500" data-i18n="hero.timestamp">
-                    Data as of <strong class="font-medium text-slate-700">2024 Q4</strong>; last reviewed <strong class="font-medium text-slate-700">2026-04</strong>. See <a href="#methodology" class="text-emerald-700 underline underline-offset-2 hover:text-emerald-600">methodology</a> for sources.
+                <p class="mt-4 text-sm text-slate-500">
+                    <span data-i18n="hero.data_as_of">Data as of <strong class="font-medium text-slate-700">2024 Q4</strong>.</span>
+                    <span data-i18n="hero.last_reviewed"> Last reviewed <strong class="font-medium text-slate-700">2026-06</strong>.</span>
+                    <span data-i18n="hero.method_link"> See <a href="#methodology" class="text-emerald-700 underline underline-offset-2 hover:text-emerald-600">methodology</a> for sources.</span>
                 </p>
             </div>
         </div>
@@ -113,7 +115,7 @@
                 <button
                     class="step-item px-5 py-3 text-base font-medium border-b-2 border-transparent text-slate-500 hover:text-slate-800 focus:outline-none transition-colors duration-200 whitespace-nowrap"
                     data-target="step-jv" data-i18n="process.tab_jv">
-                    Mainland (Sino-foreign JV)
+                    Mainland (Sino-foreign FIE LLC)
                 </button>
                 <button
                     class="step-item px-5 py-3 text-base font-medium border-b-2 border-transparent text-slate-500 hover:text-slate-800 focus:outline-none transition-colors duration-200 whitespace-nowrap"
@@ -130,6 +132,7 @@
                         <strong>wholly foreign-owned enterprise</strong> (外商独资企业), the usual mainland vehicle for foreign investment. Work the steps in order; optional detail is folded below. <strong>Before step 5</strong>, confirm your planned CAD/design activity fits your registered scope, the <strong>2024 FI negative list</strong>, and any sector licence—not a permit-restricted construction-design category. Budget
                         <strong>registered capital</strong> (steps 8–9) and <strong>operating costs</strong> before you file.
                     </p>
+                    <p class="text-xs text-slate-600 mb-4 leading-relaxed border-l-2 border-amber-300 bg-amber-50/60 px-3 py-2 rounded-r" data-i18n="process.foreign_hire_callout"><strong>Foreign hires on the mainland:</strong> payroll generally requires a valid <strong>work permit</strong> (e.g. Z visa / 工作许可) tied to this entity—not a tourist or business visa alone.</p>
                     <p class="text-xs text-slate-500 mb-6 leading-relaxed border-l-2 border-slate-200 pl-3" data-i18n="process.fee_note">Right column:
                         rough cash-impact hints (2024–2025 style ranges). Not quotes—city, bank, and agent change outcomes.
                         <strong>Currency rule:</strong> All amounts below are <strong>estimated in RMB first</strong> (what you pay onshore in China, or planning equivalents for overseas bank/notary lines); switch to <strong>English</strong> to see <strong>USD</strong> = RMB ÷ USD/CNY using the same rate as under Financials (live when the feed loads, otherwise a 2024-avg fallback of 7.2). The <strong>dashboard</strong> chart still follows the same RMB→USD rule when you pick USD.</p>
@@ -140,11 +143,12 @@
                     </div>
                 </div>
 
-                <!-- MAINLAND DOMESTIC LLC (Chinese citizen) -->
+                <!-- MAINLAND DOMESTIC LLC -->
                 <div id="step-domestic" class="step-content hidden">
                     <p class="text-slate-500 mb-6 font-medium" data-i18n="process.domestic_intro">For <strong>domestic shareholders</strong> (natural persons or onshore enterprises/organizations), a typical path is a
                         <strong>有限责任公司</strong> via the local <strong>“one-stop” / 一窗通</strong> enterprise-registration channel—no foreign notarization or
                         capital-injection account. Steps 5–9 are a <strong>logical split</strong>; in many cities they can be <strong>bundled in parallel</strong> in one online application (seals, tax/digital invoicing, social/housing fund). Timing varies by city; below is a common sequence.</p>
+                    <p class="text-xs text-slate-600 mb-4 leading-relaxed border-l-2 border-amber-300 bg-amber-50/60 px-3 py-2 rounded-r" data-i18n="process.foreign_hire_callout"><strong>Foreign hires on the mainland:</strong> payroll generally requires a valid <strong>work permit</strong> (e.g. Z visa / 工作许可) tied to this entity—not a tourist or business visa alone.</p>
                     <p class="text-xs text-slate-500 mb-6 leading-relaxed border-l-2 border-slate-200 pl-3" data-i18n="process.fee_note_domestic">Right column: rough cash-impact hints (2024–2025 style). Not quotes—city and bank policies differ. <strong>RMB-only in 中文</strong>; switch to <strong>English</strong> for <strong>¥… (≈ $…)</strong> dual display as RMB ÷ USD/CNY (same rate as under Financials—live when the feed loads, otherwise a 2024-avg fallback of 7.2).</p>
 
                     <div id="domestic-steps-mount" aria-busy="true">
@@ -155,7 +159,8 @@
 
                 <!-- MAINLAND SINO-FOREIGN JV -->
                 <div id="step-jv" class="step-content hidden">
-                    <p class="text-slate-500 mb-6 font-medium" data-i18n="process.jv_intro">For a <strong>Sino-foreign LLC/JV</strong> (外商投资有限责任公司)—one or more <strong>foreign investors</strong> partnering with a <strong>Chinese shareholder</strong>—the path mirrors a WFOE on registration but adds partner due diligence, a shareholder/JV agreement, equity-ratio rules under the <strong>2024 Negative List</strong>, and bilingual governance. Work the steps in order; budget <strong>legal fees</strong> (typically higher than WFOE) and <strong>registered capital</strong> before you file.</p>
+                    <p class="text-slate-500 mb-6 font-medium" data-i18n="process.jv_intro">For a <strong>Sino-foreign FIE LLC</strong> (外商投资有限责任公司)—one or more <strong>foreign investors</strong> partnering with a <strong>Chinese shareholder</strong>—the path mirrors a WFOE on registration but adds partner due diligence, a shareholder/JV agreement, equity-ratio rules under the <strong>2024 Negative List</strong>, and bilingual governance. Work the steps in order; budget <strong>legal fees</strong> (typically higher than WFOE) and <strong>registered capital</strong> before you file.</p>
+                    <p class="text-xs text-slate-600 mb-4 leading-relaxed border-l-2 border-amber-300 bg-amber-50/60 px-3 py-2 rounded-r" data-i18n="process.foreign_hire_callout"><strong>Foreign hires on the mainland:</strong> payroll generally requires a valid <strong>work permit</strong> (e.g. Z visa / 工作许可) tied to this entity—not a tourist or business visa alone.</p>
                     <p class="text-xs text-slate-500 mb-6 leading-relaxed border-l-2 border-slate-200 pl-3" data-i18n="process.fee_note_jv">Right column: rough cash-impact hints (2024–2026 style ranges, tier-1 city bands). Not quotes—city, bank, partner, and counsel change outcomes. <strong>Currency rule:</strong> All amounts below are <strong>estimated in RMB first</strong>; <strong>USD</strong> = RMB ÷ USD/CNY using the same rate as under Financials (live when the feed loads, otherwise a 2024-avg fallback of 7.2).</p>
 
                     <div id="jv-steps-mount" aria-busy="true">
@@ -166,9 +171,7 @@
 
                 <!-- SAR BRIEF -->
                 <div id="step-sar" class="step-content hidden">
-                    <p class="text-slate-500 mb-6 font-medium" data-i18n="sar.intro">Because Hong Kong and Macau operate under separate legal
-                        systems, the setup process is entirely different and vastly simplified compared to the mainland
-                        WFOE.</p>
+                    <p class="text-slate-500 mb-6 font-medium" data-i18n="sar.intro">Hong Kong and Macau operate under <strong>separate legal systems</strong>—incorporation is faster and lighter than a mainland WFOE, but an HK or Macau company <strong>cannot directly hire staff based on the mainland</strong> or issue <strong>mainland VAT fapiao (数电票)</strong> to mainland clients. For onshore payroll, social insurance, and compliant mainland invoicing you still need a <strong>mainland entity</strong> (WFOE, JV, or branch) or a qualified payroll/PE arrangement—confirm with counsel.</p>
 
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                         <!-- Hong Kong -->
@@ -185,11 +188,10 @@
                                     recent utility bill (proof of address).</li>
                                 <li data-i18n="sar.hk3"><strong>File Online:</strong> The agency will file Form NNC1 (Incorporation Form)
                                     with the Companies Registry.</li>
-                                <li data-i18n="sar.hk4"><strong>Receive Certificate:</strong> Straightforward <strong>e-Services</strong> filings can complete in <strong>~1 hour</strong>; hard-copy submissions about <strong>4 business days</strong>. No "chops" or complex government visits are required; bank KYC may still take weeks.
+                                <li data-i18n="sar.hk4"><strong>Receive Certificate:</strong> Straightforward <strong>e-Services</strong> filings can complete in <strong>~1 hour</strong>; hard-copy submissions about <strong>4 business days</strong>. No common seal is legally required (director signatures suffice), though banks or mainland counterparties may still ask for a <strong>company chop</strong>—<strong>bank KYC</strong> often remains the bottleneck (weeks, in-person or video).
                                 </li>
                                 <li data-i18n="sar.hk5"><strong>Bank Account (The Hard Part):</strong> Opening a corporate bank account in
-                                    HK is notoriously strict due to anti-money laundering laws. Expect this to take
-                                    weeks and require an in-person visit or video interview.</li>
+                                    HK is notoriously strict (AML/KYC). Expect <strong>weeks</strong>; banks may require in-person or video interviews, beneficial-owner disclosures, and sometimes a <strong>company chop</strong> even though a common seal is optional.</li>
                             </ol>
                         </div>
 
@@ -214,6 +216,84 @@
                     </div>
                 </div>
 
+            </div>
+
+            <!-- Entity path comparison (factual planning reference) -->
+            <div class="mt-10 rounded-xl border border-slate-200 bg-slate-50/80 p-6">
+                <h3 class="text-lg font-bold text-slate-800 mb-2" data-i18n="entity.h3">Entity path comparison (at a glance)</h3>
+                <p class="text-xs text-slate-500 mb-4 leading-relaxed" data-i18n="entity.intro">Factual summary for planning—not legal advice. Timelines and fees vary by city, sector, and counsel.</p>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-xs text-left border-collapse min-w-[48rem]">
+                        <thead>
+                            <tr class="border-b border-slate-200 text-slate-600">
+                                <th class="py-2 pr-3 font-semibold" scope="col" data-i18n="entity.col_topic">Topic</th>
+                                <th class="py-2 px-2 font-semibold" scope="col" data-i18n="entity.col_wfoe">WFOE</th>
+                                <th class="py-2 px-2 font-semibold" scope="col" data-i18n="entity.col_domestic">Domestic LLC</th>
+                                <th class="py-2 px-2 font-semibold" scope="col" data-i18n="entity.col_jv">Sino-foreign JV (FIE LLC)</th>
+                                <th class="py-2 px-2 font-semibold" scope="col" data-i18n="entity.col_hk">Hong Kong</th>
+                                <th class="py-2 pl-2 font-semibold" scope="col" data-i18n="entity.col_mo">Macau</th>
+                            </tr>
+                        </thead>
+                        <tbody class="text-slate-700 divide-y divide-slate-100">
+                            <tr>
+                                <th class="py-2 pr-3 font-medium text-slate-800 align-top" scope="row" data-i18n="entity.row_vehicle">Legal vehicle</th>
+                                <td class="py-2 px-2 align-top" data-i18n="entity.wfoe_vehicle">Wholly foreign-owned enterprise (外商独资企业)</td>
+                                <td class="py-2 px-2 align-top" data-i18n="entity.dom_vehicle">内资有限责任公司</td>
+                                <td class="py-2 px-2 align-top" data-i18n="entity.jv_vehicle">外商投资有限责任公司 (post-FIL LLC)</td>
+                                <td class="py-2 px-2 align-top" data-i18n="entity.hk_vehicle">Private company limited by shares</td>
+                                <td class="py-2 pl-2 align-top" data-i18n="entity.mo_vehicle">Lda. (有限公司)</td>
+                            </tr>
+                            <tr>
+                                <th class="py-2 pr-3 font-medium text-slate-800 align-top" scope="row" data-i18n="entity.row_ownership">Foreign ownership</th>
+                                <td class="py-2 px-2 align-top" data-i18n="entity.wfoe_own">100% foreign (non-restricted sectors)</td>
+                                <td class="py-2 px-2 align-top" data-i18n="entity.dom_own">Domestic shareholders only</td>
+                                <td class="py-2 px-2 align-top" data-i18n="entity.jv_own">Foreign + Chinese mix per 2024 negative list</td>
+                                <td class="py-2 px-2 align-top" data-i18n="entity.hk_own">100% foreign allowed</td>
+                                <td class="py-2 pl-2 align-top" data-i18n="entity.mo_own">100% foreign allowed</td>
+                            </tr>
+                            <tr>
+                                <th class="py-2 pr-3 font-medium text-slate-800 align-top" scope="row" data-i18n="entity.row_mainland_hire">Mainland-based staff</th>
+                                <td class="py-2 px-2 align-top" data-i18n="entity.wfoe_hire">Yes — mainland payroll + 五险一金</td>
+                                <td class="py-2 px-2 align-top" data-i18n="entity.dom_hire">Yes — mainland payroll + 五险一金</td>
+                                <td class="py-2 px-2 align-top" data-i18n="entity.jv_hire">Yes — mainland payroll + 五险一金</td>
+                                <td class="py-2 px-2 align-top" data-i18n="entity.hk_hire">No — SAR employment only; mainland staff need mainland entity</td>
+                                <td class="py-2 pl-2 align-top" data-i18n="entity.mo_hire">No — SAR employment only; mainland staff need mainland entity</td>
+                            </tr>
+                            <tr>
+                                <th class="py-2 pr-3 font-medium text-slate-800 align-top" scope="row" data-i18n="entity.row_fapiao">Mainland VAT fapiao (数电票)</th>
+                                <td class="py-2 px-2 align-top" data-i18n="entity.wfoe_fp">Yes — via mainland tax bureau</td>
+                                <td class="py-2 px-2 align-top" data-i18n="entity.dom_fp">Yes — via mainland tax bureau</td>
+                                <td class="py-2 px-2 align-top" data-i18n="entity.jv_fp">Yes — via mainland tax bureau</td>
+                                <td class="py-2 px-2 align-top" data-i18n="entity.hk_fp">No — SAR invoices; mainland clients usually need mainland entity fapiao</td>
+                                <td class="py-2 pl-2 align-top" data-i18n="entity.mo_fp">No — SAR invoices; mainland clients usually need mainland entity fapiao</td>
+                            </tr>
+                            <tr>
+                                <th class="py-2 pr-3 font-medium text-slate-800 align-top" scope="row" data-i18n="entity.row_timeline">Typical registration</th>
+                                <td class="py-2 px-2 align-top" data-i18n="entity.wfoe_time">AMR + FDI report; often 2–8 weeks (bank longer)</td>
+                                <td class="py-2 px-2 align-top" data-i18n="entity.dom_time">一窗通; often 1 business day when complete</td>
+                                <td class="py-2 px-2 align-top" data-i18n="entity.jv_time">AMR + partner docs; often 4–12+ weeks</td>
+                                <td class="py-2 px-2 align-top" data-i18n="entity.hk_time">e-Services ~1 hr to 4 business days</td>
+                                <td class="py-2 pl-2 align-top" data-i18n="entity.mo_time">CRCBM + notary; ~2–3 weeks</td>
+                            </tr>
+                            <tr>
+                                <th class="py-2 pr-3 font-medium text-slate-800 align-top" scope="row" data-i18n="entity.row_capital">Registered capital</th>
+                                <td class="py-2 px-2 align-top" data-i18n="entity.wfoe_cap">Subscribed; 5-year pay-in (2024 Company Law)</td>
+                                <td class="py-2 px-2 align-top" data-i18n="entity.dom_cap">Subscribed; 5-year pay-in (2024 Company Law)</td>
+                                <td class="py-2 px-2 align-top" data-i18n="entity.jv_cap">Subscribed + equity split; 5-year pay-in</td>
+                                <td class="py-2 px-2 align-top" data-i18n="entity.hk_cap">Nominal share capital (often HKD 1+)</td>
+                                <td class="py-2 pl-2 align-top" data-i18n="entity.mo_cap">MOP subscribed per articles (sector rules apply)</td>
+                            </tr>
+                            <tr>
+                                <th class="py-2 pr-3 font-medium text-slate-800 align-top" scope="row" data-i18n="entity.row_cost">Planning setup band (tier-1)</th>
+                                <td class="py-2 px-2 align-top" data-i18n="entity.wfoe_cost">Agency ¥12k–40k+; full-service ¥100k+ (see step fees)</td>
+                                <td class="py-2 px-2 align-top" data-i18n="entity.dom_cost">Agent ¥500–15k+ full-service</td>
+                                <td class="py-2 px-2 align-top" data-i18n="entity.jv_cost">Legal + agency ¥18k–250k+</td>
+                                <td class="py-2 px-2 align-top" data-i18n="entity.hk_cost">Agency ~HKD 3k–10k+ (bank KYC separate)</td>
+                                <td class="py-2 pl-2 align-top" data-i18n="entity.mo_cost">Notary + registration ~MOP 10k+</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </section>
 
@@ -540,8 +620,7 @@
                                 logistics.</p>
                             <ul class="list-disc pl-5 space-y-1 text-slate-600">
                                 <li data-i18n="hn.fold_li1"><strong>Corporate income tax:</strong> <strong>15%</strong> for qualifying enterprises in
-                                    encouraged industries with substantive operations (policy extended in phases under
-                                    current central notices; verify end dates with counsel).</li>
+                                    encouraged industries with <strong>≥60% of revenue</strong> from the encouraged main business plus substantive operations (policy extended in phases; verify end dates with counsel).</li>
                                 <li data-i18n="hn.fold_li2"><strong>Personal income tax:</strong> Eligible high-end and urgently-needed talent may
                                     cap the effective burden at <strong>15%</strong> on qualifying Hainan-sourced income
                                     (rules for residency and recognition apply; confirm active frameworks with counsel).</li>
@@ -595,7 +674,7 @@
                 </p>
                 <p id="overhead-method" class="text-slate-500 text-sm mt-3 leading-relaxed hidden" data-i18n="costs.overhead_method">
                     <strong>Overhead model (per employee-year, illustrative):</strong>
-                    <strong>Rent</strong>—Grade A/B effective average (RMB/m²/mo) × ~10 m² × 12, aligned to published
+                    <strong>Rent</strong>—Grade A/B effective average (RMB/m²/mo) × ~10 m² × 12 per headcount (assumes one desk per employee; shared offices scale down in practice), aligned to published
                     market indices; SARs use prime-office RMB equivalents.
                     <strong>Hardware &amp; furniture</strong>—engineering-class workstation (incl. RAM/GPU for BIM),
                     dual monitors, desk/chair amortized over ~3 years (~¥13.8k/year).
@@ -604,7 +683,7 @@
                     <strong>Software</strong>—Autodesk <em>AEC Collection</em> annual subscription (Revit, AutoCAD,
                     etc.; public US list pricing ~USD 3,560–3,795/user/year in 2025–2026) plus
                     <em>Rhino</em> commercial seat (perpetual USD ~995; modeled as ~3-year amortization + maintenance
-                    allowance); USD prices are translated to RMB using the same USD/CNY rate as the chart (live when the feed loads, otherwise a 2024-avg fallback of 7.2). Reseller, regional, and negotiated license terms differ—treat as
+                    allowance); USD prices are translated to RMB using the same USD/CNY rate as the chart (live when the feed loads, otherwise a 2024-avg fallback of 7.2). Software seat-year modeled at <strong>~¥29k–30k</strong> (list-price derivation ~¥29.7k; small buffer for reseller/regional variance). Reseller, regional, and negotiated license terms differ—treat as
                     order-of-magnitude.
                 </p>
             </div>
@@ -692,11 +771,7 @@
                     <div class="ml-3">
                         <h3 class="text-sm font-medium text-amber-800" data-i18n="dash.sar_title">SAR Legal Structure Notice</h3>
                         <div class="mt-2 text-sm text-amber-700">
-                            <p data-i18n="dash.sar_body">You have selected a Special Administrative Region. While Base Salaries are generally
-                                higher, the employer statutory contributions are drastically lower because SARs do not
-                                utilize the mainland Social Insurance/Housing Fund system (e.g., Hong Kong uses MPF,
-                                capped at a very low fixed amount). Values are shown in RMB/USD equivalents for
-                                comparison.</p>
+                            <p data-i18n="dash.sar_body">You have selected a Special Administrative Region. Base salaries are generally higher, but employer statutory payroll uses <strong>MPF</strong> (HK, capped) or flat <strong>FSS</strong> (MO)—not mainland 五险一金. <strong>An SAR company cannot hire mainland-based staff or issue mainland VAT fapiao (数电票)</strong>; use a mainland WFOE/JV for onshore payroll and invoicing. Chart values are RMB/USD equivalents for comparison only.</p>
                         </div>
                     </div>
                 </div>
@@ -706,6 +781,7 @@
 
                 <!-- Master Chart (Horizontal Bar for readability) -->
                 <div class="bg-slate-50 p-6 rounded-xl border border-slate-100 w-full">
+                    <p class="text-xs text-slate-500 mb-4 leading-relaxed border-l-2 border-amber-300 pl-3" data-i18n="dash.macro_disclaimer">Cross-city bars compare <strong>annual employment cost</strong> under each jurisdiction’s payroll rules—mainland cities use 五险一金-style loads; Hong Kong/Macau use MPF/FSS (not mainland social insurance). SAR and international bars are <strong>not</strong> substitutes for a mainland entity when you need onshore staff or mainland fapiao.</p>
                     <h3 class="text-xl font-bold text-center mb-2 text-slate-800"><span data-i18n="dash.macro_prefix">Annual Macro Comparison:</span> <span
                             id="macro-title-role" class="text-emerald-600">Junior CAD</span></h3>
                     <p class="text-xs text-center text-slate-500 mb-6"><span id="macro-cost-label">Total Annual Cost
@@ -734,8 +810,7 @@
 
                     <div class="mt-6 text-sm text-slate-600 bg-white p-4 rounded border border-slate-200">
                         <p id="micro-desc-text"><strong>Mainland Contributions:</strong> Employer statutory
-                            contributions include mandatory Pension, Medical, Unemployment, Injury, Maternity, and
-                            Housing Fund. Rates fluctuate based on selected municipal policies.</p>
+                            contributions include Pension, Medical (9% in this model—maternity often merged into medical in many cities), Unemployment, Work Injury, and Housing Fund. Rates fluctuate by municipality; donut slices are illustrative.</p>
                     </div>
                 </div>
             </div>
@@ -782,9 +857,9 @@
         </div>
     </footer>
 
-    <script src="assets/js/steps-render.js?v=20260611intl2"></script>
-    <script src="assets/js/i18n-china-business.js?v=20260611intl2"></script>
-    <script src="assets/js/china-business.js?v=20260611intl2"></script>
+    <script src="assets/js/steps-render.js?v=20260611acc2"></script>
+    <script src="assets/js/i18n-china-business.js?v=20260611acc2"></script>
+    <script src="assets/js/china-business.js?v=20260611acc2"></script>
 </body>
 
 </html>
