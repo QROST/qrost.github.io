@@ -122,12 +122,19 @@ document.addEventListener('DOMContentLoaded', () => {
             const OVERHEAD_HARDWARE_ANNUAL_RMB = 13800;
             const OVERHEAD_SOFTWARE_ANNUAL_RMB = 36000;
 
+            /* SAR employer statutory (planning RMB equivalents; not live FX). */
+            const HK_MPF_RATE = 0.05;
+            const HK_MPF_CAP_MONTHLY_HKD = 1500;
+            const HKD_TO_RMB = 0.93;
+            const MO_FSS_EMPLOYER_MONTHLY_MOP = 60;
+            const MOP_TO_RMB = 0.89;
+
             /* Salaries: AEC CAD/BIM junior vs senior modeler, annual base (12x monthly bands from Liepin, 51job, i人事, city HR releases, 2024-2025).
                Rent: officeRentAnnualRMB = 10 m2 x Grade A/B effective RMB/m2/mo x 12 (CIH, JLL, Savills, Knight Frank, Colliers, DTZ, local gov - mostly Q3-Q4 2024).
                Utilities: allocated HVAC, power, cleaning (higher north/heating; coastal humidity/summer). */
             const cityData = {
-                beijing: { name: "Beijing", nameZh: "北京", type: "mainland", juniorAnnual: 118000, seniorAnnual: 270000, contribPct: 0.38, officeRentAnnualRMB: 30240, utilitiesAnnualRMB: 8300 },
-                shanghai: { name: "Shanghai", nameZh: "上海", type: "mainland", juniorAnnual: 118000, seniorAnnual: 258000, contribPct: 0.38, officeRentAnnualRMB: 24000, utilitiesAnnualRMB: 7600 },
+                beijing: { name: "Beijing", nameZh: "北京", type: "mainland", juniorAnnual: 118000, seniorAnnual: 270000, contribPct: 0.33, officeRentAnnualRMB: 30240, utilitiesAnnualRMB: 8300 },
+                shanghai: { name: "Shanghai", nameZh: "上海", type: "mainland", juniorAnnual: 118000, seniorAnnual: 258000, contribPct: 0.33, officeRentAnnualRMB: 24000, utilitiesAnnualRMB: 7600 },
                 shenzhen: { name: "Shenzhen", nameZh: "深圳", type: "mainland", juniorAnnual: 112000, seniorAnnual: 252000, contribPct: 0.35, officeRentAnnualRMB: 19560, utilitiesAnnualRMB: 6900 },
                 guangzhou: { name: "Guangzhou", nameZh: "广州", type: "mainland", juniorAnnual: 102000, seniorAnnual: 234000, contribPct: 0.35, officeRentAnnualRMB: 15540, utilitiesAnnualRMB: 7100 },
                 hangzhou: { name: "Hangzhou", nameZh: "杭州", type: "mainland", juniorAnnual: 108000, seniorAnnual: 246000, contribPct: 0.36, officeRentAnnualRMB: 13800, utilitiesAnnualRMB: 7300 },
@@ -142,14 +149,23 @@ document.addEventListener('DOMContentLoaded', () => {
                 haikou: { name: "Haikou", nameZh: "海口", type: "mainland", juniorAnnual: 82000, seniorAnnual: 182000, contribPct: 0.35, officeRentAnnualRMB: 6600, utilitiesAnnualRMB: 6300 },
                 sanya: { name: "Sanya", nameZh: "三亚", type: "mainland", juniorAnnual: 86000, seniorAnnual: 194000, contribPct: 0.35, officeRentAnnualRMB: 9600, utilitiesAnnualRMB: 6500 },
                 hongkong: { name: "Hong Kong", nameZh: "香港", type: "sar", juniorAnnual: 216000, seniorAnnual: 432000, contribPct: 0.05, officeRentAnnualRMB: 156000, utilitiesAnnualRMB: 9200 },
-                macau: { name: "Macau", nameZh: "澳门", type: "sar", juniorAnnual: 180000, seniorAnnual: 360000, contribPct: 0.01, officeRentAnnualRMB: 102000, utilitiesAnnualRMB: 7600 },
+                macau: { name: "Macau", nameZh: "澳门", type: "sar", juniorAnnual: 180000, seniorAnnual: 360000, contribPct: 0.004, officeRentAnnualRMB: 102000, utilitiesAnnualRMB: 7600 },
                 suzhou: { name: "Suzhou", nameZh: "苏州", type: "mainland", juniorAnnual: 102000, seniorAnnual: 228000, contribPct: 0.38, officeRentAnnualRMB: 8640, utilitiesAnnualRMB: 7100 },
                 changsha: { name: "Changsha", nameZh: "长沙", type: "mainland", juniorAnnual: 80000, seniorAnnual: 174000, contribPct: 0.36, officeRentAnnualRMB: 9420, utilitiesAnnualRMB: 7300 },
                 chongqing: { name: "Chongqing", nameZh: "重庆", type: "mainland", juniorAnnual: 84000, seniorAnnual: 180000, contribPct: 0.36, officeRentAnnualRMB: 9000, utilitiesAnnualRMB: 7900 },
                 kunming: { name: "Kunming", nameZh: "昆明", type: "mainland", juniorAnnual: 70000, seniorAnnual: 154000, contribPct: 0.35, officeRentAnnualRMB: 8580, utilitiesAnnualRMB: 6400 },
                 qingdao: { name: "Qingdao", nameZh: "青岛", type: "mainland", juniorAnnual: 92000, seniorAnnual: 206000, contribPct: 0.38, officeRentAnnualRMB: 12720, utilitiesAnnualRMB: 7900 },
                 zhengzhou: { name: "Zhengzhou", nameZh: "郑州", type: "mainland", juniorAnnual: 76000, seniorAnnual: 164000, contribPct: 0.35, officeRentAnnualRMB: 6480, utilitiesAnnualRMB: 6900 },
-                dalian: { name: "Dalian", nameZh: "大连", type: "mainland", juniorAnnual: 80000, seniorAnnual: 176000, contribPct: 0.38, officeRentAnnualRMB: 8160, utilitiesAnnualRMB: 8900 }
+                dalian: { name: "Dalian", nameZh: "大连", type: "mainland", juniorAnnual: 80000, seniorAnnual: 176000, contribPct: 0.38, officeRentAnnualRMB: 8160, utilitiesAnnualRMB: 8900 },
+                losangeles: { name: "Los Angeles", nameZh: "洛杉矶", type: "international", juniorAnnualUSD: 78000, seniorAnnualUSD: 110000, contribPct: 0.095, officeRentAnnualUSD: 5400, utilitiesAnnualUSD: 280 },
+                sanfrancisco: { name: "San Francisco", nameZh: "旧金山", type: "international", juniorAnnualUSD: 80000, seniorAnnualUSD: 115000, contribPct: 0.095, officeRentAnnualUSD: 7800, utilitiesAnnualUSD: 350 },
+                newyork: { name: "New York", nameZh: "纽约", type: "international", juniorAnnualUSD: 76000, seniorAnnualUSD: 110000, contribPct: 0.098, officeRentAnnualUSD: 9300, utilitiesAnnualUSD: 400 },
+                london: { name: "London", nameZh: "伦敦", type: "international", juniorAnnualUSD: 50200, seniorAnnualUSD: 83800, contribPct: 0.157, officeRentAnnualUSD: 11887, utilitiesAnnualUSD: 572 },
+                sydney: { name: "Sydney", nameZh: "悉尼", type: "international", juniorAnnualUSD: 46200, seniorAnnualUSD: 82500, contribPct: 0.12, officeRentAnnualUSD: 8712, utilitiesAnnualUSD: 1577 },
+                melbourne: { name: "Melbourne", nameZh: "墨尔本", type: "international", juniorAnnualUSD: 44880, seniorAnnualUSD: 77880, contribPct: 0.12, officeRentAnnualUSD: 5128, utilitiesAnnualUSD: 1485 },
+                abudhabi: { name: "Abu Dhabi", nameZh: "阿布扎比", type: "international", juniorAnnualUSD: 33000, seniorAnnualUSD: 115000, contribPct: 0.17, officeRentAnnualUSD: 8600, utilitiesAnnualUSD: 330 },
+                tokyo: { name: "Tokyo", nameZh: "东京", type: "international", juniorAnnualUSD: 28000, seniorAnnualUSD: 48000, contribPct: 0.16, officeRentAnnualUSD: 9100, utilitiesAnnualUSD: 1200 },
+                singapore: { name: "Singapore", nameZh: "新加坡", type: "international", juniorAnnualUSD: 33300, seniorAnnualUSD: 71040, contribPct: 0.17, officeRentAnnualUSD: 10859, utilitiesAnnualUSD: 2664 }
             };
 
             function cityDisplayName(key) {
@@ -159,18 +175,60 @@ document.addEventListener('DOMContentLoaded', () => {
                 return c.name;
             }
 
+            function isInternationalCity(cityKey) {
+                const c = cityData[cityKey];
+                return !!(c && c.type === 'international');
+            }
+
+            function usdToRMB(usdValue) {
+                return Math.round(usdValue * effectiveExchangeRate());
+            }
+
+            function annualBaseRMB(c, role) {
+                if (c.type === 'international') {
+                    const usd = role === 'junior' ? c.juniorAnnualUSD : c.seniorAnnualUSD;
+                    return usdToRMB(usd);
+                }
+                return role === 'junior' ? c.juniorAnnual : c.seniorAnnual;
+            }
+
+            function officeRentAnnualRMB(c) {
+                if (c.type === 'international') return usdToRMB(c.officeRentAnnualUSD || 0);
+                return c.officeRentAnnualRMB || 0;
+            }
+
+            function utilitiesAnnualRMB(c) {
+                if (c.type === 'international') return usdToRMB(c.utilitiesAnnualUSD || 0);
+                return c.utilitiesAnnualRMB || 0;
+            }
+
             function overheadAnnualTotalRMB(c) {
-                return (c.officeRentAnnualRMB || 0) + OVERHEAD_HARDWARE_ANNUAL_RMB + (c.utilitiesAnnualRMB || 0) + OVERHEAD_SOFTWARE_ANNUAL_RMB;
+                return officeRentAnnualRMB(c) + OVERHEAD_HARDWARE_ANNUAL_RMB + utilitiesAnnualRMB(c) + OVERHEAD_SOFTWARE_ANNUAL_RMB;
             }
 
             function overheadPartsForCity(cityKey) {
                 const c = cityData[cityKey];
                 return {
-                    rent: c.officeRentAnnualRMB || 0,
+                    rent: officeRentAnnualRMB(c),
                     hardware: OVERHEAD_HARDWARE_ANNUAL_RMB,
-                    utilities: c.utilitiesAnnualRMB || 0,
+                    utilities: utilitiesAnnualRMB(c),
                     software: OVERHEAD_SOFTWARE_ANNUAL_RMB
                 };
+            }
+
+            function getDashboardCityKeys() {
+                return Object.keys(cityData).filter(function (k) {
+                    const t = cityData[k].type;
+                    if (t === 'international') return state.showInternationalCities;
+                    return t === 'mainland' || t === 'sar';
+                });
+            }
+
+            function ensureValidCitySelection() {
+                const keys = getDashboardCityKeys();
+                if (keys.indexOf(state.city) === -1) {
+                    state.city = 'shanghai';
+                }
             }
 
             const state = {
@@ -178,7 +236,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 role: 'junior',
                 currency: 'usd',
                 headcount: 1,
-                includeOverhead: false
+                includeOverhead: false,
+                showInternationalCities: false
             };
 
             let barChart, doughnutChart;
@@ -209,10 +268,32 @@ document.addEventListener('DOMContentLoaded', () => {
                 return state.currency === 'usd' ? '$' : '¥';
             }
 
+            function employerContribAnnualRMB(cityKey, baseAnnual) {
+                if (isInternationalCity(cityKey)) {
+                    return baseAnnual * cityData[cityKey].contribPct;
+                }
+                if (cityKey === 'hongkong') {
+                    const monthlyBaseRMB = baseAnnual / 12;
+                    const monthlyHKD = monthlyBaseRMB / HKD_TO_RMB;
+                    const relevantMonthlyHKD = Math.min(monthlyHKD, 30000);
+                    const mpfMonthlyHKD = Math.min(relevantMonthlyHKD * HK_MPF_RATE, HK_MPF_CAP_MONTHLY_HKD);
+                    return mpfMonthlyHKD * 12 * HKD_TO_RMB;
+                }
+                if (cityKey === 'macau') {
+                    return MO_FSS_EMPLOYER_MONTHLY_MOP * 12 * MOP_TO_RMB;
+                }
+                return baseAnnual * cityData[cityKey].contribPct;
+            }
+
+            function effectiveContribPct(cityKey, baseAnnual) {
+                if (!baseAnnual) return cityData[cityKey].contribPct;
+                return employerContribAnnualRMB(cityKey, baseAnnual) / baseAnnual;
+            }
+
             function getCostData(cityKey, role) {
                 const c = cityData[cityKey];
-                const base = role === 'junior' ? c.juniorAnnual : c.seniorAnnual;
-                const contrib = base * c.contribPct;
+                const base = annualBaseRMB(c, role);
+                const contrib = employerContribAnnualRMB(cityKey, base);
                 const overheadAnnual = overheadAnnualTotalRMB(c);
                 const empTotalRMB = base + contrib;
                 const overheadTotalRMB = state.includeOverhead ? overheadAnnual * state.headcount : 0;
@@ -254,11 +335,10 @@ document.addEventListener('DOMContentLoaded', () => {
                                 // Get the index of the clicked bar
                                 const dataIndex = elements[0].index;
                                 // Find the corresponding city name from the chart labels
-                                const clickedCityName = barChart.data.labels[dataIndex];
-                                const cityKey = Object.keys(cityData).find(key => {
-                                    const c = cityData[key];
-                                    return c.name === clickedCityName || c.nameZh === clickedCityName;
+                                const sortedKeys = getDashboardCityKeys().slice().sort((a, b) => {
+                                    return getCostData(b, state.role).totalRMB - getCostData(a, state.role).totalRMB;
                                 });
+                                const cityKey = sortedKeys[dataIndex];
 
                                 // Update state and visuals if it's a new city
                                 if (cityKey && state.city !== cityKey) {
@@ -368,8 +448,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 const contribColors = [];
                 const overheadColors = [];
 
-                // Sort all cities by total cost descending
-                const sortedCityKeys = Object.keys(cityData).sort((a, b) => {
+                const chartHost = document.querySelector('.chart-container-tall');
+                if (chartHost) {
+                    const barCount = getDashboardCityKeys().length;
+                    chartHost.style.height = Math.max(720, barCount * 32) + 'px';
+                }
+
+                // Sort dashboard cities by total cost descending
+                const sortedCityKeys = getDashboardCityKeys().slice().sort((a, b) => {
                     return getCostData(b, state.role).totalRMB - getCostData(a, state.role).totalRMB;
                 });
 
@@ -420,7 +506,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 if (selectedCityObj.type === 'mainland') {
                     const pPct = 0.16;
-                    const mPct = 0.10;
+                    const mPct = 0.09;
                     const uPct = 0.005;
                     const iPct = 0.005;
                     const hPct = selectedCityObj.contribPct - (pPct + mPct + uPct + iPct);
@@ -428,7 +514,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     donutLabels = [
                         tr('donut.base', 'Annual Base Salary'),
                         tr('donut.pension', '1. Pension (16%)'),
-                        tr('donut.medical', '2. Medical & Maternity (10%)'),
+                        tr('donut.medical', '2. Medical & Maternity (9%)'),
                         tr('donut.unemp', '3. Unemployment (0.5%)'),
                         tr('donut.injury', '4. Work Injury (0.5%)'),
                         tr('donut.housing', '5. Housing Fund ({pct}%)').replace(/\{pct\}/g, (hPct * 100).toFixed(1))
@@ -502,6 +588,29 @@ document.addEventListener('DOMContentLoaded', () => {
                         );
                         donutColors.push('#6366f1', '#64748b', '#d97706', '#0284c7');
                     }
+                } else if (selectedCityObj.type === 'international') {
+                    donutLabels = [
+                        tr('donut.base', 'Annual Base Salary'),
+                        tr('donut.intl_contrib', 'Employer Statutory (modeled)')
+                    ];
+                    donutData = [selectedCost.base, selectedCost.contrib];
+                    donutColors = ['#0f172a', '#f59e0b'];
+                    if (state.includeOverhead) {
+                        const p = overheadPartsForCity(state.city);
+                        donutLabels.push(
+                            tr('donut.rent', 'Office rent (allocated)'),
+                            tr('donut.hardware', 'Hardware & furniture (workstation, desk, chair)'),
+                            tr('donut.utilities', 'Utilities, cleaning & climate (allocated)'),
+                            tr('donut.software', 'Software (AEC Collection + Rhino, modeled seat-year)')
+                        );
+                        donutData.push(
+                            convert(p.rent),
+                            convert(p.hardware),
+                            convert(p.utilities),
+                            convert(p.software)
+                        );
+                        donutColors.push('#6366f1', '#64748b', '#d97706', '#0284c7');
+                    }
                 }
 
                 doughnutChart.data.labels = donutLabels;
@@ -547,6 +656,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (citySelectSync && citySelectSync.value !== state.city) {
                     citySelectSync.value = state.city;
                 }
+                const selectedType = cityData[state.city].type;
                 const pctEl = document.getElementById('micro-contrib-pct');
                 const pctWrap = document.getElementById('micro-contrib-pct-wrap');
                 const breakdownLbl = document.getElementById('micro-breakdown-label');
@@ -554,24 +664,46 @@ document.addEventListener('DOMContentLoaded', () => {
                     if (breakdownLbl) breakdownLbl.textContent = tr('dash.micro.sub1', 'Annual breakdown: employment + overhead (rent, kit, utilities, software)');
                     if (pctWrap) pctWrap.style.display = 'none';
                 } else {
-                    if (breakdownLbl) breakdownLbl.textContent = tr('dash.micro.sub2', 'Annual Base vs. Employer "5 Insurances & 1 Fund"');
+                    if (breakdownLbl) {
+                        breakdownLbl.textContent = selectedType === 'international'
+                            ? tr('dash.micro.intl_sub2', 'Annual Base vs. local employer statutory load')
+                            : tr('dash.micro.sub2', 'Annual Base vs. Employer "5 Insurances & 1 Fund"');
+                    }
                     if (pctWrap) pctWrap.style.display = 'inline';
-                    if (pctEl) pctEl.textContent = (cityData[state.city].contribPct * 100).toFixed(0) + '%';
+                    if (pctEl) {
+                        const baseRMB = annualBaseRMB(cityData[state.city], state.role);
+                        pctEl.textContent = (effectiveContribPct(state.city, baseRMB) * 100).toFixed(0) + '%';
+                    }
                 }
                 document.getElementById('hc-display').textContent = state.headcount;
 
-                // Handle SAR Alerts
+                // Handle SAR / international alerts
                 const alertBox = document.getElementById('sar-alert');
+                const intlAlertBox = document.getElementById('international-alert');
                 const descText = document.getElementById('micro-desc-text');
 
-                if (cityData[state.city].type === 'sar') {
+                if (intlAlertBox) {
+                    intlAlertBox.classList.toggle('hidden', selectedType !== 'international');
+                }
+
+                if (selectedType === 'sar') {
                     alertBox.classList.remove('hidden');
-                    const pct = (cityData[state.city].contribPct * 100).toFixed(0);
-                    let sarHtml = tr('desc.sar_strong', '<strong>SAR Framework:</strong> ') + tr('desc.sar_line', 'The ~{pct}% statutory contribution represents approximate limits for localized retirement funds (like Hong Kong\'s MPF) rather than mainland social insurance.').replace(/\{pct\}/g, pct);
+                    const baseRMB = annualBaseRMB(cityData[state.city], state.role);
+                    const pct = (effectiveContribPct(state.city, baseRMB) * 100).toFixed(0);
+                    let sarHtml = tr('desc.sar_strong', '<strong>SAR Framework:</strong> ') + tr('desc.sar_line', 'The ~{pct}% statutory contribution represents approximate employer payroll statutory (HK MPF capped at HKD 1,500/mo; Macau FSS MOP 60/mo employer) rather than mainland social insurance.').replace(/\{pct\}/g, pct);
                     if (state.includeOverhead) {
                         sarHtml += tr('desc.sar_oh_append', ' <strong>Overhead:</strong> SAR rent uses prime-office bands in RMB; hardware/software use the same global license model as mainland for comparison.');
                     }
                     descText.innerHTML = sarHtml;
+                } else if (selectedType === 'international') {
+                    alertBox.classList.add('hidden');
+                    const baseRMB = annualBaseRMB(cityData[state.city], state.role);
+                    const pct = (effectiveContribPct(state.city, baseRMB) * 100).toFixed(0);
+                    let intlHtml = tr('desc.international', '<strong>International benchmark:</strong> Salaries and local occupancy are sourced in USD and converted to RMB/USD for comparison using the same USD/CNY rate as the chart. Employer statutory load (~{pct}%) is a planning percentage for payroll taxes, pension/CPF, superannuation, or visa-related employer costs—not mainland social insurance.').replace(/\{pct\}/g, pct);
+                    if (state.includeOverhead) {
+                        intlHtml += ' ' + tr('desc.international_oh', '<strong>Overhead:</strong> Local rent and utilities are USD-native; hardware and AEC software use the same global seat-year model as China cities for apples-to-apples comparison.');
+                    }
+                    descText.innerHTML = intlHtml;
                 } else {
                     alertBox.classList.add('hidden');
                     let mainlandDesc = tr('desc.mainland', '<strong>Mainland Contributions:</strong> Employer statutory contributions include the mandatory "5 Insurances & 1 Fund" (Pension, Medical, Unemployment, Injury, Maternity, and Housing Fund). Rates fluctuate based on selected municipal policies.');
@@ -586,6 +718,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 refreshDomesticFees();
                 refreshWfoeMoney();
+                refreshJvMoney();
             }
 
             /** RMB-first fee bands; USD = RMB ÷ rate (EN only — ZH cost column is RMB-only). */
@@ -651,7 +784,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         case 's04':
                             return '<strong>个人 /</strong>境外母公司。<strong class="text-slate-800">现金预估：</strong>押金（常<strong>1–3 个月租金</strong>）+ 首期租金 + 杂费——一线城市小面积示意 ' + prPlus(30000, 250000) + '，因城市差异大。';
                         case 's05':
-                            return '<strong>代理服务费</strong>（本地机构、人民币报价常见）：标准 WFOE 常 ' + pr(10000, 35000) + '；仅递交常 ' + pr(3500, 10500) + '；全包（银行+账）常 ' + pgt(35000) + '。市监<strong>政府性收费</strong>另常 ' + pr(0, 800) + '。<strong>个人/母公司</strong>垫付——尚无 WFOE。' + foot;
+                            return '<strong>代理服务费</strong>（本地机构、人民币报价常见）：标准 WFOE 常 ' + pr(10000, 35000) + '（一线城市常更高）；仅递交常 ' + pr(5000, 16000) + '；全包（银行+账）常 ' + pr(35000, 80000) + '+。市监<strong>政府性收费</strong>另常 ' + pr(0, 2500) + '。<strong>个人/母公司</strong>垫付——尚无 WFOE。' + foot;
                         case 's06':
                             return '<strong>个人</strong>/母公司。<strong class="text-slate-800">预估：</strong>境外公证以当地货币计价——此处用人民币<strong>规划等价</strong>：常见材料包 ' + pr(70, 1050) + '；单次签署/确认约 ' + pr(35, 175) + '；法人全套更高。';
                         case 's07':
@@ -667,7 +800,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         case 's12':
                             return '尚未收投资款。<strong class="text-slate-800">预估：</strong>领照多数城市另收工本费约 ' + z() + '。';
                         case 's13':
-                            return '尚无日常现金流。<strong class="text-slate-800">预估：</strong>公章+财务章+发票章+法人章一套常 ' + pr(400, 2000) + '（因城而异）。';
+                            return '尚无日常现金流。<strong class="text-slate-800">预估：</strong>公章+财务章+法人章一套常 ' + pr(400, 2000) + '（<strong>数电票</strong>通常不需发票章；部分城市首套免费）。';
                         case 's14':
                             return '<strong>首批企业账户</strong>，可空户开。<strong class="text-slate-800">预估：</strong>开户费 ' + pr(0, 800) + '（多可减免）；注意最低余额要求。';
                         case 's15':
@@ -675,13 +808,13 @@ document.addEventListener('DOMContentLoaded', () => {
                         case 's16':
                             return '<strong>尚未汇出。</strong><strong class="text-slate-800">预估：</strong>纸面 ' + z() + '；代理超出套餐工时按 <strong>约</strong> ' + pr(350, 1400) + '/小时。';
                         case 's17':
-                            return '<strong>资本金到账。</strong><strong class="text-slate-800">预估：</strong>境外汇出行费用（规划等价）约 ' + pr(100, 350) + '+；入账行可能有<strong>汇差</strong>（非固定手续费行）。';
+                            return '<strong>资本金到账。</strong><strong class="text-slate-800">预估：</strong>境外汇出行费用（规划等价）约 ' + pr(200, 1500) + '+（因银行差异大）；入账行完成<strong>货币出资入账登记</strong>后可能有<strong>汇差</strong>（非固定手续费行）。';
                         case 's18':
                             return '<strong>基本户可用人民币。</strong><strong class="text-slate-800">预估：</strong>结汇常 ' + pr(0, 300) + ' 或含在套餐；少见单独规费。';
                         case 's19':
-                            return '自<strong>基本户</strong>支付。<strong class="text-slate-800">预估：</strong>税务登记 ' + pr(0, 400) + '；税控/开票设备（若需）<strong>一次性</strong> ' + pr(0, 1500) + '。';
+                            return '自<strong>基本户</strong>支付。<strong class="text-slate-800">预估：</strong>新办纳税人信息确认多 ' + z() + '；<strong>数电发票</strong>开通 ' + pr(0, 500) + '（如有平台/服务费）；极少数 legacy 税控硬件 ' + pr(0, 500) + '。';
                         case 's20':
-                            return '<strong>工资+法定缴费</strong>自基本户。<strong class="text-slate-800">预估：</strong>登记 ' + pr(0, 300) + '；<strong>持续</strong>缴费见<a href="#costs" class="text-emerald-700 font-semibold underline">仪表盘</a>。';
+                            return '<strong>工资+法定缴费</strong>自基本户。<strong class="text-slate-800">预估：</strong>社保/公积金单位登记常 ' + pr(0, 300) + '（<strong>用工前</strong>须办；一窗通可勾选或后续补办）；<strong>持续</strong>缴费见<a href="#costs" class="text-emerald-700 font-semibold underline">仪表盘</a>。';
                         default:
                             return '';
                     }
@@ -697,7 +830,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     case 's04':
                         return '<strong>Personal /</strong> offshore parent. <strong class="text-slate-800">Est. cash:</strong> deposit (often <strong>1–3× monthly rent</strong>) + first month + fees—illustrative ' + prPlus(30000, 250000) + ' for a small tier‑1 office; wide by city.';
                     case 's05':
-                        return '<strong>Agency service fees</strong> (local firms, usually quoted in <strong>RMB</strong>): standard WFOE often ' + pr(10000, 35000) + '; lean filing often ' + pr(3500, 10500) + '; full-service (bank + books) often ' + pgt(35000) + '. AMR <strong>government</strong> charges commonly ' + pr(0, 800) + ' on top. <strong>Personal</strong> / <strong>parent</strong> pays—no WFOE yet.' + foot;
+                        return '<strong>Agency service fees</strong> (local firms, usually quoted in <strong>RMB</strong>): standard WFOE often ' + pr(10000, 35000) + ' (tier‑1 often higher); lean filing often ' + pr(5000, 16000) + '; full-service (bank + books) often ' + pr(35000, 80000) + '+. AMR <strong>government</strong> charges commonly ' + pr(0, 2500) + ' on top. <strong>Personal</strong> / <strong>parent</strong> pays—no WFOE yet.' + foot;
                     case 's06':
                         return '<strong>Personal</strong> / parent. <strong class="text-slate-800">Est.:</strong> home-country notary is paid abroad—<strong>planning RMB equivalents</strong>: typical pack ' + pr(70, 1050) + '; many acknowledgments ' + pr(35, 175) + ' each; corporate stacks higher.';
                     case 's07':
@@ -713,7 +846,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     case 's12':
                         return 'Not receiving investment yet. <strong class="text-slate-800">Est.:</strong> license pickup usually ' + z() + ' (no separate fee in many cities).';
                     case 's13':
-                        return 'Still <strong>no</strong> operating cash flow. <strong class="text-slate-800">Est.:</strong> seal set (official + financial + invoice + legal-person) often ' + pr(400, 2000) + ' all-in, city-dependent.';
+                        return 'Still <strong>no</strong> operating cash flow. <strong class="text-slate-800">Est.:</strong> seal set (official + financial + legal-person) often ' + pr(400, 2000) + ' all-in (<strong>数电票</strong> usually needs no invoice chop; some cities bundle one free seal).';
                     case 's14':
                         return '<strong>First WFOE accounts</strong>—may open empty. <strong class="text-slate-800">Est.:</strong> account-opening fee ' + pr(0, 800) + ' (often waived); minimum balance rules vary.';
                     case 's15':
@@ -721,13 +854,13 @@ document.addEventListener('DOMContentLoaded', () => {
                     case 's16':
                         return '<strong>No wire yet</strong>—paperwork first. <strong class="text-slate-800">Est.:</strong> ' + z() + ' filing; agent time beyond package <strong>~</strong> ' + pr(350, 1400) + '/hr if billable.';
                     case 's17':
-                        return '<strong>Equity lands onshore.</strong> <strong class="text-slate-800">Est.:</strong> sender-bank charges (planning <strong>RMB equivalent</strong>) often ' + pr(100, 350) + '+; receiving side may embed <strong>FX spread</strong> (not a fixed “fee” line).';
+                        return '<strong>Equity lands onshore.</strong> <strong class="text-slate-800">Est.:</strong> sender-bank charges (planning <strong>RMB equivalent</strong>) often ' + pr(200, 1500) + '+ (highly bank-dependent); bank completes <strong>capital contribution receipt registration</strong> before settlement—receiving side may embed <strong>FX spread</strong>.';
                     case 's18':
                         return '<strong>Usable RMB</strong> in the basic account. <strong class="text-slate-800">Est.:</strong> settlement often ' + pr(0, 300) + ' or included; rare separate government charge.';
                     case 's19':
-                        return 'Pay from <strong>RMB basic</strong>. <strong class="text-slate-800">Est.:</strong> tax registration often ' + pr(0, 400) + '; fapiao / golden-tax device (if required) ' + pr(0, 1500) + ' one-time in some setups.';
+                        return 'Pay from <strong>RMB basic</strong>. <strong class="text-slate-800">Est.:</strong> new-taxpayer onboarding often ' + z() + '; <strong>fully digital e-invoicing (数电发票)</strong> onboarding ' + pr(0, 500) + ' (if any); legacy hardware only in rare setups ' + pr(0, 500) + '.';
                     case 's20':
-                        return '<strong>Payroll + statutory</strong> from basic. <strong class="text-slate-800">Est.:</strong> bureau registration often ' + pr(0, 300) + '; <strong>ongoing</strong> contributions per <a href="#costs" class="text-emerald-700 font-semibold underline">dashboard</a> once you hire.';
+                        return '<strong>Payroll + statutory</strong> from basic. <strong class="text-slate-800">Est.:</strong> social/housing-fund unit registration often ' + pr(0, 300) + ' (<strong>before hiring</strong>; optional at 一窗通 or later); <strong>ongoing</strong> contributions per <a href="#costs" class="text-emerald-700 font-semibold underline">dashboard</a> once you hire.';
                     default:
                         return '';
                 }
@@ -762,7 +895,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         case 'd03':
                             return '<strong>预估：</strong>填报认缴' + sb(0) + '规费；认缴制下设立当日<strong>不强制</strong>实缴到位。';
                         case 'd04':
-                            return '<strong>自助：</strong>市监侧政府性收费常' + sr(0, 500, false) + '。<strong>代办：</strong>仅递交常见' + sr(800, 3000, false) + '；「设立+银行+首年记账」全包常' + sr(3000, 10000, true) + '。';
+                            return '<strong>自助：</strong>市监侧政府性收费常' + sr(0, 500, false) + '。<strong>代办：</strong>仅递交常见' + sr(500, 3000, false) + '；「设立+银行+首年记账」全包常' + sr(3000, 15000, true) + '（一线城市常更高）。';
                         case 'd05':
                             return '<strong>预估：</strong>执照工本费多地' + sb(0) + '；邮寄纸质可选' + sr(0, 30, false) + '。';
                         case 'd06':
@@ -770,7 +903,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         case 'd07':
                             return '<strong>预估：</strong>开户费多地' + sb(0) + '；U 盾/网银工具' + sr(0, 500, false) + '。';
                         case 'd08':
-                            return '<strong>预估：</strong>税务侧工本多' + sr(0, 200, false) + '；税控设备若仍涉及硬件' + sr(0, 1000, false) + '——多地已全电票、无盘化。';
+                            return '<strong>预估：</strong>新办纳税人信息确认多' + sb(0) + '；<strong>数电票</strong>开通' + sr(0, 200, false) + '；legacy 税控设备（如仍被要求）' + sr(0, 500, false) + '——新设多数' + sb(0) + '。';
                         case 'd09':
                             return '<strong>预估：</strong>开户登记常' + sr(0, 300, false) + '；实际缴费自用工起发生。';
                         case 'd10':
@@ -788,7 +921,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     case 'd03':
                         return '<strong>Est.:</strong> ' + sb(0) + ' filing fee to declare amounts; no mandatory day-one cash injection under subscription rules.';
                     case 'd04':
-                        return '<strong>DIY:</strong> AMR side often ' + sr(0, 500, false) + ' government charges. <strong>Agent:</strong> lean packages often ' + sr(800, 3000, false) + '; full “setup + bank + first-year books” often ' + sr(3000, 10000, true) + '.';
+                        return '<strong>DIY:</strong> AMR side often ' + sr(0, 500, false) + ' government charges. <strong>Agent:</strong> lean packages often ' + sr(500, 3000, false) + '; full “setup + bank + first-year books” often ' + sr(3000, 15000, true) + ' (tier‑1 often higher).';
                     case 'd05':
                         return '<strong>Est.:</strong> license fee commonly ' + sb(0) + ' in many regions; courier ' + sr(0, 30, false) + ' if mailing paper.';
                     case 'd06':
@@ -796,7 +929,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     case 'd07':
                         return '<strong>Est.:</strong> many banks ' + sb(0) + ' opening fee; U-key / cash-management tools ' + sr(0, 500, false) + '.';
                     case 'd08':
-                        return '<strong>Est.:</strong> bureau-side fees often ' + sr(0, 200, false) + '; legacy hardware (if any) ' + sr(0, 1000, false) + '—many regions are fully digital now.';
+                        return '<strong>Est.:</strong> new-taxpayer onboarding often ' + sb(0) + '; digital invoicing onboarding ' + sr(0, 200, false) + '; legacy hardware (if still required) ' + sr(0, 500, false) + '—most new entities ' + sb(0) + '.';
                     case 'd09':
                         return '<strong>Est.:</strong> opening registrations often ' + sr(0, 300, false) + '; actual contributions begin once you hire.';
                     case 'd10':
@@ -815,6 +948,89 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
             }
             window.refreshDomesticFees = refreshDomesticFees;
+
+            function buildJvStepMoneyHtml(stepId, lang) {
+                const r = effectiveExchangeRate();
+                const f = makeStepMoneyFormatters(lang, r);
+                const z = f.z;
+                const pr = f.pr;
+                const prPlus = f.prPlus;
+                const pgt = f.pgt;
+                const rateFmt = r.toFixed(2);
+                let fxNote = tr('s05.fee_fx_note', 'RMB is the planning anchor; USD = RMB ÷ rate. Same as Financials: <strong>1 USD ≈ {rate} CNY</strong> (live when the feed loads, otherwise a 2024-avg fallback of 7.2).');
+                fxNote = fxNote.replace(/\{rate\}/g, rateFmt);
+                const foot = lang === 'zh' ? '' : '<span class="text-slate-500 text-xs block mt-1.5">' + fxNote + '</span>';
+
+                if (lang === 'zh') {
+                    switch (stepId) {
+                        case 'jv01':
+                            return '<strong>双方股东</strong>垫付。<strong class="text-slate-800">预估：</strong>第三方尽调/法律 ' + pr(15000, 80000) + '+。';
+                        case 'jv02':
+                            return '<strong>双方股东</strong>垫付。<strong class="text-slate-800">预估：</strong>合资合同+章程律师费 ' + pr(30000, 150000) + '+。';
+                        case 'jv03':
+                            return '<strong>预估：</strong>负面清单对照 ' + pr(5000, 50000) + '+；政府规费 ' + pr(0, 500) + '；行业前置审批另计。';
+                        case 'jv04':
+                            return '<strong>尚无合资公司账户。</strong><strong class="text-slate-800">预估：</strong>名称自主申报 ' + z() + '；多含于代办套餐。';
+                        case 'jv05':
+                            return '<strong>股东垫付。</strong><strong class="text-slate-800">现金预估：</strong>押金+首期租金示意 ' + prPlus(30000, 250000) + '；境外公证海牙 ' + pr(500, 5000) + '+。';
+                        case 'jv06':
+                            return '<strong>股东垫付。</strong><strong class="text-slate-800">预估：</strong>市监<strong>政府收费</strong> ' + pr(0, 2500) + '；合资代办（双股东、双语）常 ' + pr(18000, 55000) + '，多已含于前期律师/代理合同。' + foot;
+                        case 'jv07':
+                            return '尚无日常现金流。<strong class="text-slate-800">预估：</strong>公章+财务章+法人章一套 ' + pr(400, 2000) + '（<strong>数电票</strong>通常不需发票章；部分城市首套免费）。';
+                        case 'jv08':
+                            return '自<strong>基本户</strong>支付。<strong class="text-slate-800">预估：</strong>新办纳税人信息确认多 ' + z() + '；<strong>数电发票</strong>开通 ' + pr(0, 500) + '（如有）；代理协助 ' + pr(0, 3000) + '。';
+                        case 'jv09':
+                            return '<strong>首批企业账户</strong>。<strong class="text-slate-800">预估：</strong>开户+外汇登记 ' + pr(0, 1300) + '；银行协助 ' + pr(3000, 15000) + '。';
+                        case 'jv10':
+                            return '<strong>资本金到账。</strong><strong class="text-slate-800">预估：</strong>境外汇出行费用约 ' + pr(100, 500) + '+；银行杂费 ' + pr(0, 5000) + '。';
+                        case 'jv11':
+                            return '<strong>工资+法定缴费</strong>自基本户。<strong class="text-slate-800">预估：</strong>登记 ' + pr(0, 300) + '；开办杂费 ' + pr(0, 2000) + '；<strong>持续</strong>缴费见<a href="#costs" class="text-emerald-700 font-semibold underline">仪表盘</a>。';
+                        case 'jv12':
+                            return '<strong>预估：</strong>政府规费 ' + pr(0, 5000) + '+；海关/ICP/行业许可代办 ' + prPlus(5000, 100000) + '（视行业）。';
+                        default:
+                            return '';
+                    }
+                }
+
+                switch (stepId) {
+                    case 'jv01':
+                        return '<strong>Both shareholders</strong> pay. <strong class="text-slate-800">Est.:</strong> third-party DD / legal ' + pr(15000, 80000) + '+.';
+                    case 'jv02':
+                        return '<strong>Both shareholders</strong> pay. <strong class="text-slate-800">Est.:</strong> JV agreement + Articles counsel ' + pr(30000, 150000) + '+.';
+                    case 'jv03':
+                        return '<strong>Est.:</strong> Negative List mapping ' + pr(5000, 50000) + '+; government fees ' + pr(0, 500) + '; sector pre-approval extra.';
+                    case 'jv04':
+                        return '<strong>No JV account yet.</strong> <strong class="text-slate-800">Est.:</strong> name self-declaration ' + z() + '; usually folded into agent pack.';
+                    case 'jv05':
+                        return '<strong>Shareholders pay.</strong> <strong class="text-slate-800">Est. cash:</strong> deposit + first rent illustrative ' + prPlus(30000, 250000) + '; overseas notary/apostille ' + pr(500, 5000) + '+.';
+                    case 'jv06':
+                        return '<strong>Shareholders pay</strong> until the JV can reimburse. <strong class="text-slate-800">Est.:</strong> AMR <strong>government</strong> fee ' + pr(0, 2500) + '; JV agency (two shareholders, bilingual) often ' + pr(18000, 55000) + '—may already sit in prior counsel/agent contracts.' + foot;
+                    case 'jv07':
+                        return 'Still <strong>no</strong> operating cash flow. <strong class="text-slate-800">Est.:</strong> seal set (official + financial + legal-person) often ' + pr(400, 2000) + ' all-in (<strong>digital invoicing</strong> setups usually skip invoice chop; some cities waive first set).';
+                    case 'jv08':
+                        return 'Pay from <strong>RMB basic</strong>. <strong class="text-slate-800">Est.:</strong> new-taxpayer onboarding often ' + z() + '; <strong>fully digital e-invoicing (数电发票)</strong> onboarding ' + pr(0, 500) + ' (if any).';
+                    case 'jv09':
+                        return '<strong>First JV accounts</strong>. <strong class="text-slate-800">Est.:</strong> opening + FX registration ' + pr(0, 1300) + '; bank assist ' + pr(3000, 15000) + '.';
+                    case 'jv10':
+                        return '<strong>Equity lands onshore.</strong> <strong class="text-slate-800">Est.:</strong> sender-bank charges often ' + pr(200, 1500) + '+; in-kind/IP appraisal (if any) ' + pr(8000, 50000) + '+.';
+                    case 'jv11':
+                        return '<strong>Payroll + statutory</strong> from basic. <strong class="text-slate-800">Est.:</strong> social insurance + housing fund registration often ' + pr(0, 300) + '; <strong>ongoing</strong> contributions per <a href="#costs" class="text-emerald-700 font-semibold underline">dashboard</a> once you hire.';
+                    case 'jv12':
+                        return '<strong>Est.:</strong> government fees ' + pr(0, 5000) + '+; customs / ICP / sector licence agents ' + prPlus(5000, 100000) + ' (sector-dependent).';
+                    default:
+                        return '';
+                }
+            }
+
+            function refreshJvMoney() {
+                document.querySelectorAll('[data-jv-money]').forEach(function (el) {
+                    const id = el.getAttribute('data-jv-money');
+                    if (!id) return;
+                    const lang = typeof window.ChinaBizI18n !== 'undefined' && window.ChinaBizI18n.getLang() === 'zh' ? 'zh' : 'en';
+                    el.innerHTML = buildJvStepMoneyHtml(id, lang);
+                });
+            }
+            window.refreshJvMoney = refreshJvMoney;
 
             // Headcount listener
             const hcInput = document.getElementById('headcount-input');
@@ -885,6 +1101,38 @@ document.addEventListener('DOMContentLoaded', () => {
             });
             syncOverheadToggleUI();
 
+            function syncInternationalToggleUI() {
+                const hideBtn = document.getElementById('btn-international-hide');
+                const showBtn = document.getElementById('btn-international-show');
+                if (!hideBtn || !showBtn) return;
+                if (state.showInternationalCities) {
+                    hideBtn.classList.remove('bg-white', 'shadow-sm', 'font-semibold', 'text-slate-800');
+                    hideBtn.classList.add('text-slate-600');
+                    showBtn.classList.add('bg-white', 'shadow-sm', 'font-semibold', 'text-slate-800');
+                    showBtn.classList.remove('text-slate-600');
+                } else {
+                    showBtn.classList.remove('bg-white', 'shadow-sm', 'font-semibold', 'text-slate-800');
+                    showBtn.classList.add('text-slate-600');
+                    hideBtn.classList.add('bg-white', 'shadow-sm', 'font-semibold', 'text-slate-800');
+                    hideBtn.classList.remove('text-slate-600');
+                }
+            }
+
+            document.getElementById('btn-international-hide').addEventListener('click', () => {
+                state.showInternationalCities = false;
+                ensureValidCitySelection();
+                syncInternationalToggleUI();
+                rebuildCitySelectOptions();
+                updateVisuals();
+            });
+            document.getElementById('btn-international-show').addEventListener('click', () => {
+                state.showInternationalCities = true;
+                syncInternationalToggleUI();
+                rebuildCitySelectOptions();
+                updateVisuals();
+            });
+            syncInternationalToggleUI();
+
             window.addEventListener('china-biz-lang-change', function (e) {
                 const lang = e.detail && e.detail.lang;
                 if (lang === 'zh') state.currency = 'rmb';
@@ -904,6 +1152,7 @@ document.addEventListener('DOMContentLoaded', () => {
             window.addEventListener('china-biz-steps-rendered', function () {
                 if (typeof refreshWfoeMoney === 'function') refreshWfoeMoney();
                 if (typeof refreshDomesticFees === 'function') refreshDomesticFees();
+                if (typeof refreshJvMoney === 'function') refreshJvMoney();
             });
 
             /* ----------------------------------------------------------------
@@ -917,10 +1166,9 @@ document.addEventListener('DOMContentLoaded', () => {
             function rebuildCitySelectOptions() {
                 const sel = document.getElementById('city-nav-select');
                 if (!sel) return;
-                const prev = sel.value || state.city;
                 // Sort alphabetically by display name for predictable scanning;
                 // the bar chart sorts by cost descending, which is its own concern.
-                const keys = Object.keys(cityData).slice().sort(function (a, b) {
+                const keys = getDashboardCityKeys().slice().sort(function (a, b) {
                     return cityDisplayName(a).localeCompare(cityDisplayName(b));
                 });
                 sel.innerHTML = '';
@@ -930,7 +1178,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     opt.textContent = cityDisplayName(k);
                     sel.appendChild(opt);
                 });
-                sel.value = prev;
+                ensureValidCitySelection();
+                sel.value = keys.indexOf(state.city) !== -1 ? state.city : keys[0];
             }
             rebuildCitySelectOptions();
             const citySelectEl = document.getElementById('city-nav-select');
@@ -1064,4 +1313,10 @@ document.addEventListener('DOMContentLoaded', () => {
             initCharts();
             updateFxLabel();
             loadExchangeRate();
+
+            window.__chinaBizTest = {
+                getDashboardCityCount: function () { return getDashboardCityKeys().length; },
+                getState: function () { return Object.assign({}, state); },
+                getCostData: getCostData
+            };
         });
