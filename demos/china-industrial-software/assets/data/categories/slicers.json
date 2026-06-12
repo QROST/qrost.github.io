@@ -1,0 +1,792 @@
+{
+  "category": "slicers",
+  "products": [
+    {
+      "id": "bambu-studio",
+      "name_zh": "拓竹 Bambu Studio",
+      "name_en": "Bambu Studio",
+      "vendor_id": "bambu-lab",
+      "category_l1": "生产制造",
+      "category_l2": "切片软件",
+      "origin": "domestic",
+      "kernel": "自主（Orca/Cura 分支演进）",
+      "maturity": "high",
+      "localization_depth": "core",
+      "strengths_zh": [
+        "与 X1/P1/A1 系列深度集成，AMS 多色/多材料工作流成熟",
+        "高速打印预设、流量校准与远程监控一体化",
+        "全球消费级 FDM 装机量带动 slicer 生态"
+      ],
+      "strengths_en": [
+        "Deep integration with X1/P1/A1 printers and mature AMS multi-material workflows",
+        "High-speed presets, flow calibration, and remote monitoring in one stack",
+        "Global consumer FDM install base drives slicer ecosystem"
+      ],
+      "limitations_zh": [
+        "非拓竹机型支持依赖社区分支（Orca）",
+        "工业级数据管理与 MES 集成弱于 Netfabb/Magics"
+      ],
+      "limitations_en": [
+        "Third-party printer support relies on community forks (Orca)",
+        "Weak industrial data management vs Netfabb/Magics"
+      ],
+      "industries": [
+        "消费级",
+        "教育",
+        "原型制造"
+      ],
+      "pricing": "free",
+      "confidence": 0.92,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://bambulab.com/en/download/studio",
+          "title": "Bambu Lab Studio Download",
+          "accessed": "2026-06"
+        }
+      ],
+      "international_benchmarks": [
+        "orca-slicer",
+        "ultimaker-cura"
+      ]
+    },
+    {
+      "id": "creality-print",
+      "name_zh": "创想三维 Creality Print",
+      "name_en": "Creality Print",
+      "vendor_id": "creality",
+      "category_l1": "生产制造",
+      "category_l2": "切片软件",
+      "origin": "domestic",
+      "kernel": "Cura 分支",
+      "maturity": "high",
+      "localization_depth": "core",
+      "strengths_zh": [
+        "覆盖创想全系 FDM/光固化机型的一键配置",
+        "中文界面与本土售后文档完善",
+        "与 Creality Cloud 切片/打印队列联动"
+      ],
+      "strengths_en": [
+        "One-click profiles for full Creality FDM and resin lineups",
+        "Chinese UI and local support documentation",
+        "Creality Cloud slicing and print-queue integration"
+      ],
+      "limitations_zh": [
+        "高级支撑/变层厚策略弱于 PrusaSlicer",
+        "跨品牌打印机兼容性一般"
+      ],
+      "limitations_en": [
+        "Advanced supports and adaptive layers trail PrusaSlicer",
+        "Limited cross-brand printer compatibility"
+      ],
+      "industries": [
+        "消费级",
+        "教育",
+        "创客"
+      ],
+      "pricing": "free",
+      "confidence": 0.9,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.creality.com/pages/download-software",
+          "title": "Creality Software Download",
+          "accessed": "2026-06"
+        }
+      ],
+      "international_benchmarks": [
+        "ultimaker-cura",
+        "prusaslicer"
+      ]
+    },
+    {
+      "id": "flashprint",
+      "name_zh": "闪铸 FlashPrint",
+      "name_en": "FlashPrint",
+      "vendor_id": "flashforge",
+      "category_l1": "生产制造",
+      "category_l2": "切片软件",
+      "origin": "domestic",
+      "kernel": "自主/定制",
+      "maturity": "mid",
+      "localization_depth": "core",
+      "strengths_zh": [
+        "闪铸 Adventurer/Guider 系列官方切片工具",
+        "教育市场装机量大，操作门槛低",
+        "支持闪铸光固化部分机型"
+      ],
+      "strengths_en": [
+        "Official slicer for Flashforge Adventurer/Guider lines",
+        "Large education install base with low learning curve",
+        "Supports select Flashforge resin printers"
+      ],
+      "limitations_zh": [
+        "功能更新节奏慢于 Bambu/Prusa 生态",
+        "开源社区与插件生态薄弱"
+      ],
+      "limitations_en": [
+        "Slower feature cadence vs Bambu/Prusa ecosystems",
+        "Thin open-source plugin community"
+      ],
+      "industries": [
+        "消费级",
+        "教育"
+      ],
+      "pricing": "free",
+      "confidence": 0.86,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.flashforge.com/download",
+          "title": "Flashforge Download Center",
+          "accessed": "2026-06"
+        }
+      ],
+      "international_benchmarks": [
+        "prusaslicer",
+        "ultimaker-cura"
+      ]
+    },
+    {
+      "id": "chitubox",
+      "name_zh": "CHITUBOX 光固化切片",
+      "name_en": "CHITUBOX",
+      "vendor_id": "cbd-tech",
+      "category_l1": "生产制造",
+      "category_l2": "切片软件",
+      "origin": "domestic",
+      "kernel": "自主",
+      "maturity": "high",
+      "localization_depth": "core",
+      "strengths_zh": [
+        "国产 LCD/DLP 光固化事实标准切片器",
+        "镂空、打孔、自动支撑与树脂预设丰富",
+        "齿科/珠宝插件与 Pro 版商业功能"
+      ],
+      "strengths_en": [
+        "De-facto standard slicer for domestic LCD/DLP resin printers",
+        "Rich hollowing, drilling, auto-support, and resin presets",
+        "Dental/jewelry plugins and Pro commercial features"
+      ],
+      "limitations_zh": [
+        "Pro 版订阅与功能拆分引发社区争议",
+        "大型工业件 Nesting 弱于 Magics"
+      ],
+      "limitations_en": [
+        "Pro subscription and feature gating draw community pushback",
+        "Large-part nesting weaker than Magics"
+      ],
+      "industries": [
+        "消费级",
+        "齿科",
+        "珠宝",
+        "手办"
+      ],
+      "pricing": "low",
+      "confidence": 0.91,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.chitubox.com/en/download",
+          "title": "CHITUBOX Download",
+          "accessed": "2026-06"
+        }
+      ],
+      "international_benchmarks": [
+        "lychee-slicer"
+      ]
+    },
+    {
+      "id": "elegoo-slicer",
+      "name_zh": "ELEGOO Slicer",
+      "name_en": "ELEGOO Slicer",
+      "vendor_id": "elegoo",
+      "category_l1": "生产制造",
+      "category_l2": "切片软件",
+      "origin": "domestic",
+      "kernel": "CHITUBOX/自研混合",
+      "maturity": "mid",
+      "localization_depth": "core",
+      "strengths_zh": [
+        "ELEGOO Mars/Saturn 光固化与 FDM 机型预置",
+        "与 CHITUBOX 格式兼容，入门门槛低",
+        "跨境电商带动海外用户基数"
+      ],
+      "strengths_en": [
+        "Presets for ELEGOO Mars/Saturn resin and FDM lines",
+        "CHITUBOX-format compatibility for easy onboarding",
+        "Cross-border e-commerce grows overseas user base"
+      ],
+      "limitations_zh": [
+        "高级支撑算法与工业校验弱于 CHITUBOX Pro",
+        "品牌外机型支持有限"
+      ],
+      "limitations_en": [
+        "Advanced supports and industrial checks trail CHITUBOX Pro",
+        "Limited support outside ELEGOO hardware"
+      ],
+      "industries": [
+        "消费级",
+        "创客",
+        "手办"
+      ],
+      "pricing": "free",
+      "confidence": 0.84,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.elegoo.com/pages/download",
+          "title": "ELEGOO Download",
+          "accessed": "2026-06"
+        }
+      ],
+      "international_benchmarks": [
+        "chitubox",
+        "lychee-slicer"
+      ]
+    },
+    {
+      "id": "anycubic-photon-workshop",
+      "name_zh": "纵维立方 Photon Workshop",
+      "name_en": "Anycubic Photon Workshop",
+      "vendor_id": "anycubic",
+      "category_l1": "生产制造",
+      "category_l2": "切片软件",
+      "origin": "domestic",
+      "kernel": "CHITUBOX 兼容栈",
+      "maturity": "mid",
+      "localization_depth": "core",
+      "strengths_zh": [
+        "纵维立方 Photon/Mango 系列官方光固化切片",
+        "自动支撑与一键镂空适合消费级树脂打印",
+        "中英文界面与全球分销渠道"
+      ],
+      "strengths_en": [
+        "Official resin slicer for Anycubic Photon/Mango series",
+        "Auto-support and one-click hollowing for consumer resin",
+        "Bilingual UI with global distribution"
+      ],
+      "limitations_zh": [
+        "功能迭代慢于 CHITUBOX/Lychee",
+        "齿科/工业合规工具链不完整"
+      ],
+      "limitations_en": [
+        "Slower feature iteration vs CHITUBOX/Lychee",
+        "Incomplete dental/industrial compliance toolchain"
+      ],
+      "industries": [
+        "消费级",
+        "创客",
+        "手办"
+      ],
+      "pricing": "free",
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.anycubic.com/pages/download-software",
+          "title": "Anycubic Software Download",
+          "accessed": "2026-06"
+        }
+      ],
+      "international_benchmarks": [
+        "chitubox",
+        "lychee-slicer"
+      ]
+    },
+    {
+      "id": "heygears-hps",
+      "name_zh": "黑格 HeyGears HPS",
+      "name_en": "HeyGears HPS Slicing",
+      "vendor_id": "heygears",
+      "category_l1": "生产制造",
+      "category_l2": "切片软件",
+      "origin": "domestic",
+      "kernel": "自主工业 DLP",
+      "maturity": "high",
+      "localization_depth": "core",
+      "strengths_zh": [
+        "面向工业级 DLP/SLA 产线的专用切片与排版",
+        "齿科、珠宝、鞋模批量生产工作流",
+        "与黑格 UltraCraft 设备深度绑定"
+      ],
+      "strengths_en": [
+        "Dedicated slicing and nesting for industrial DLP/SLA lines",
+        "Dental, jewelry, and footwear mass-production workflows",
+        "Tight integration with HeyGears UltraCraft hardware"
+      ],
+      "limitations_zh": [
+        "封闭生态，难以替代 Magics 通用工业平台",
+        "消费级开源社区几乎为零"
+      ],
+      "limitations_en": [
+        "Closed ecosystem; hard to substitute Magics-class platforms",
+        "Near-zero consumer open-source community"
+      ],
+      "industries": [
+        "工业级",
+        "齿科",
+        "珠宝",
+        "鞋模"
+      ],
+      "pricing": "quote",
+      "confidence": 0.83,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.heygears.com/",
+          "title": "HeyGears Official",
+          "accessed": "2026-06"
+        }
+      ],
+      "international_benchmarks": [
+        "materialise-magics",
+        "autodesk-netfabb"
+      ]
+    },
+    {
+      "id": "ankermake-slicer",
+      "name_zh": "AnkerMake Slicer",
+      "name_en": "AnkerMake Slicer",
+      "vendor_id": "ankermake",
+      "category_l1": "生产制造",
+      "category_l2": "切片软件",
+      "origin": "domestic",
+      "kernel": "Cura 分支",
+      "maturity": "mid",
+      "localization_depth": "partial",
+      "strengths_zh": [
+        "安克创新 AnkerMake M5 系列官方切片与 AI 检测联动",
+        "简洁 UI 面向欧美消费市场",
+        "与 AnkerMake 云监控集成"
+      ],
+      "strengths_en": [
+        "Official slicer for AnkerMake M5 with AI monitoring hooks",
+        "Clean UI targeting Western consumer markets",
+        "AnkerMake cloud monitoring integration"
+      ],
+      "limitations_zh": [
+        "机型覆盖窄，功能深度不及 Bambu Studio",
+        "工业与专业用户采纳有限"
+      ],
+      "limitations_en": [
+        "Narrow printer coverage; less depth than Bambu Studio",
+        "Limited industrial and pro-user adoption"
+      ],
+      "industries": [
+        "消费级",
+        "创客"
+      ],
+      "pricing": "free",
+      "confidence": 0.8,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.ankermake.com/software",
+          "title": "AnkerMake Software",
+          "accessed": "2026-06"
+        }
+      ],
+      "international_benchmarks": [
+        "bambu-studio",
+        "ultimaker-cura"
+      ]
+    },
+    {
+      "id": "ultimaker-cura",
+      "name_zh": "UltiMaker Cura",
+      "name_en": "UltiMaker Cura",
+      "vendor_id": "ultimaker",
+      "category_l1": "生产制造",
+      "category_l2": "切片软件",
+      "origin": "open_source",
+      "kernel": "开源 CuraEngine",
+      "maturity": "mission_critical",
+      "localization_depth": "none",
+      "strengths_zh": [
+        "全球 FDM 装机量最大的开源切片器之一",
+        "庞大打印机配置库与插件生态",
+        "众多国产 OEM 基于 Cura 二次开发"
+      ],
+      "strengths_en": [
+        "One of the world's most deployed open FDM slicers",
+        "Huge printer profile library and plugin ecosystem",
+        "Many Chinese OEMs fork Cura for branded slicers"
+      ],
+      "limitations_zh": [
+        "多材料/高速打印优化弱于 Bambu/Orca 新分支",
+        "企业级审计与合规支持有限"
+      ],
+      "limitations_en": [
+        "Multi-material and high-speed tuning trails Bambu/Orca forks",
+        "Limited enterprise audit and compliance support"
+      ],
+      "industries": [
+        "消费级",
+        "教育",
+        "原型制造",
+        "工业级"
+      ],
+      "pricing": "free",
+      "confidence": 0.94,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://ultimaker.com/software/ultimaker-cura",
+          "title": "UltiMaker Cura",
+          "accessed": "2026-06"
+        }
+      ],
+      "international_benchmarks": [
+        "creality-print",
+        "prusaslicer"
+      ]
+    },
+    {
+      "id": "prusaslicer",
+      "name_zh": "PrusaSlicer",
+      "name_en": "PrusaSlicer",
+      "vendor_id": "prusa",
+      "category_l1": "生产制造",
+      "category_l2": "切片软件",
+      "origin": "open_source",
+      "kernel": "开源（Slic3r 演进）",
+      "maturity": "high",
+      "localization_depth": "none",
+      "strengths_zh": [
+        "支撑生成、变层厚与多材料配置业界口碑好",
+        "支持非 Prusa 第三方打印机",
+        "活跃开源社区与频繁更新"
+      ],
+      "strengths_en": [
+        "Strong reputation for supports, adaptive layers, and MMU profiles",
+        "Third-party printer support beyond Prusa hardware",
+        "Active open-source community and frequent releases"
+      ],
+      "limitations_zh": [
+        "缺少国内厂商官方预置与中文商业支持",
+        "云打印与产线 MES 集成弱"
+      ],
+      "limitations_en": [
+        "Lacks official Chinese OEM presets and local commercial support",
+        "Weak cloud print and MES line integration"
+      ],
+      "industries": [
+        "消费级",
+        "创客",
+        "教育",
+        "原型制造"
+      ],
+      "pricing": "free",
+      "confidence": 0.93,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.prusa3d.com/prusaslicer/",
+          "title": "PrusaSlicer",
+          "accessed": "2026-06"
+        }
+      ],
+      "international_benchmarks": [
+        "flashprint",
+        "creality-print"
+      ]
+    },
+    {
+      "id": "orca-slicer",
+      "name_zh": "Orca Slicer",
+      "name_en": "Orca Slicer",
+      "vendor_id": "softfever",
+      "category_l1": "生产制造",
+      "category_l2": "切片软件",
+      "origin": "open_source",
+      "kernel": "Bambu Studio 分支",
+      "maturity": "high",
+      "localization_depth": "none",
+      "strengths_zh": [
+        "继承 Bambu Studio 高速与校准能力并扩展第三方机型",
+        "社区驱动快速迭代，国内装机口碑高",
+        "开源可审计，适合创客与小型工作室"
+      ],
+      "strengths_en": [
+        "Inherits Bambu Studio speed/calibration and extends third-party printers",
+        "Fast community-driven iteration with strong China adoption",
+        "Open source and auditable for makers and small studios"
+      ],
+      "limitations_zh": [
+        "非官方支持，AMS 等拓竹专有功能可能滞后",
+        "企业 SLA 与长期维护无保障"
+      ],
+      "limitations_en": [
+        "Unofficial support; Bambu-specific features like AMS may lag",
+        "No enterprise SLA or long-term maintenance guarantee"
+      ],
+      "industries": [
+        "消费级",
+        "创客",
+        "原型制造"
+      ],
+      "pricing": "free",
+      "confidence": 0.9,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://github.com/SoftFever/OrcaSlicer",
+          "title": "OrcaSlicer GitHub",
+          "accessed": "2026-06"
+        }
+      ],
+      "international_benchmarks": [
+        "bambu-studio",
+        "ultimaker-cura"
+      ]
+    },
+    {
+      "id": "simplify3d",
+      "name_zh": "Simplify3D",
+      "name_en": "Simplify3D",
+      "vendor_id": "simplify3d",
+      "category_l1": "生产制造",
+      "category_l2": "切片软件",
+      "origin": "international",
+      "kernel": "商业闭源",
+      "maturity": "mid",
+      "localization_depth": "none",
+      "strengths_zh": [
+        "经典双挤出与高级工艺控制（曾为主流付费 slicer）",
+        "自定义 G-code 脚本能力强",
+        "部分工业用户仍有历史存量"
+      ],
+      "strengths_en": [
+        "Legacy dual-extrusion and advanced process control",
+        "Strong custom G-code scripting",
+        "Residual installed base among industrial early adopters"
+      ],
+      "limitations_zh": [
+        "更新停滞多年，社区转向 Prusa/Orca",
+        "订阅/授权模式竞争力下降"
+      ],
+      "limitations_en": [
+        "Years of slow updates; community shifted to Prusa/Orca",
+        "License model less competitive vs free stacks"
+      ],
+      "industries": [
+        "消费级",
+        "原型制造"
+      ],
+      "pricing": "high",
+      "confidence": 0.82,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.simplify3d.com/",
+          "title": "Simplify3D",
+          "accessed": "2026-06"
+        }
+      ],
+      "international_benchmarks": [
+        "prusaslicer",
+        "orca-slicer"
+      ]
+    },
+    {
+      "id": "ideamaker",
+      "name_zh": "Raise3D ideaMaker",
+      "name_en": "ideaMaker",
+      "vendor_id": "raise3d",
+      "category_l1": "生产制造",
+      "category_l2": "切片软件",
+      "origin": "international",
+      "kernel": "自主",
+      "maturity": "high",
+      "localization_depth": "partial",
+      "strengths_zh": [
+        "Raise3D 工业/专业 FDM 官方切片器",
+        "模板化工艺库适合小批量生产",
+        "上海研发中心，中国服务网络完善"
+      ],
+      "strengths_en": [
+        "Official slicer for Raise3D pro/industrial FDM printers",
+        "Template-based process library for small-batch production",
+        "Shanghai R&D center with strong China service network"
+      ],
+      "limitations_zh": [
+        "生态封闭于 Raise3D 硬件",
+        "消费级市场份额小于 Cura/Prusa"
+      ],
+      "limitations_en": [
+        "Ecosystem tied to Raise3D hardware",
+        "Smaller consumer share than Cura/Prusa"
+      ],
+      "industries": [
+        "工业级",
+        "原型制造",
+        "教育"
+      ],
+      "pricing": "free",
+      "confidence": 0.87,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.raise3d.com/ideamaker/",
+          "title": "ideaMaker",
+          "accessed": "2026-06"
+        }
+      ],
+      "international_benchmarks": [
+        "bambu-studio",
+        "prusaslicer"
+      ]
+    },
+    {
+      "id": "lychee-slicer",
+      "name_zh": "Lychee Slicer",
+      "name_en": "Lychee Slicer",
+      "vendor_id": "mango3d",
+      "category_l1": "生产制造",
+      "category_l2": "切片软件",
+      "origin": "international",
+      "kernel": "商业/免费双版本",
+      "maturity": "high",
+      "localization_depth": "none",
+      "strengths_zh": [
+        "树脂打印 UX 与创新支撑算法口碑好",
+        "支持多品牌 LCD/SLA 打印机",
+        "Pro 版 nesting 与自动修复适合小型工厂"
+      ],
+      "strengths_en": [
+        "Strong resin-print UX and innovative support algorithms",
+        "Multi-brand LCD/SLA printer support",
+        "Pro nesting and auto-repair for small factories"
+      ],
+      "limitations_zh": [
+        "法国 Mango3D 出品，非国产；国内官方支持弱于 CHITUBOX",
+        "工业级批量排版仍弱于 Magics"
+      ],
+      "limitations_en": [
+        "From France-based Mango3D — not domestic; weaker China support than CHITUBOX",
+        "Industrial batch nesting still trails Magics"
+      ],
+      "industries": [
+        "消费级",
+        "齿科",
+        "珠宝",
+        "手办"
+      ],
+      "pricing": "low",
+      "confidence": 0.88,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://mango3d.io/downloads/",
+          "title": "Lychee Slicer Download",
+          "accessed": "2026-06"
+        }
+      ],
+      "international_benchmarks": [
+        "chitubox",
+        "elegoo-slicer"
+      ]
+    },
+    {
+      "id": "materialise-magics",
+      "name_zh": "Materialise Magics",
+      "name_en": "Materialise Magics",
+      "vendor_id": "materialise",
+      "category_l1": "生产制造",
+      "category_l2": "切片软件",
+      "origin": "international",
+      "kernel": "商业闭源",
+      "maturity": "mission_critical",
+      "localization_depth": "none",
+      "strengths_zh": [
+        "工业增材制造数据准备与排版标杆",
+        "齿科/航空/模具行业认证工作流丰富",
+        "支撑编辑、晶格与修复工具链完整"
+      ],
+      "strengths_en": [
+        "Benchmark industrial AM data prep and nesting",
+        "Rich certified workflows for dental, aerospace, and tooling",
+        "Complete support editing, lattices, and repair toolchain"
+      ],
+      "limitations_zh": [
+        "授权费用高，中小厂商难以全面部署",
+        "消费级打印机支持非重点"
+      ],
+      "limitations_en": [
+        "High license cost limits SME adoption",
+        "Consumer printer support is not the focus"
+      ],
+      "industries": [
+        "工业级",
+        "齿科",
+        "航空航天",
+        "模具"
+      ],
+      "pricing": "quote",
+      "confidence": 0.9,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.materialise.com/en/industrial/software/magics",
+          "title": "Materialise Magics",
+          "accessed": "2026-06"
+        }
+      ],
+      "international_benchmarks": [
+        "heygears-hps",
+        "autodesk-netfabb"
+      ]
+    },
+    {
+      "id": "autodesk-netfabb",
+      "name_zh": "Autodesk Netfabb",
+      "name_en": "Autodesk Netfabb",
+      "vendor_id": "autodesk",
+      "category_l1": "生产制造",
+      "category_l2": "切片软件",
+      "origin": "international",
+      "kernel": "商业闭源",
+      "maturity": "high",
+      "localization_depth": "none",
+      "strengths_zh": [
+        "工业级 STL 修复、仿真与排产集成",
+        "与 Fusion/制造云工作流衔接",
+        "航空航天与医疗客户案例多"
+      ],
+      "strengths_en": [
+        "Industrial STL repair, simulation, and production planning",
+        "Ties into Fusion and manufacturing cloud workflows",
+        "Strong aerospace and medical customer cases"
+      ],
+      "limitations_zh": [
+        "订阅成本高，国内中小企业渗透有限",
+        "消费级 FDM 场景非主战场"
+      ],
+      "limitations_en": [
+        "High subscription cost limits SME penetration in China",
+        "Consumer FDM is not the primary battlefield"
+      ],
+      "industries": [
+        "工业级",
+        "航空航天",
+        "医疗",
+        "模具"
+      ],
+      "pricing": "high",
+      "confidence": 0.89,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.autodesk.com/products/netfabb/overview",
+          "title": "Autodesk Netfabb",
+          "accessed": "2026-06"
+        }
+      ],
+      "international_benchmarks": [
+        "heygears-hps",
+        "materialise-magics"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1339 @@
+{
+  "category": "cae",
+  "products": [
+    {
+      "id": "pera-sim",
+      "name_zh": "PERA SIM",
+      "name_en": "PERA SIM",
+      "vendor_id": "pera",
+      "category_l1": "研发设计",
+      "category_l2": "CAE",
+      "origin": "domestic",
+      "kernel": "自主",
+      "maturity": "high",
+      "localization_depth": "partial",
+      "strengths_zh": [
+        "多物理场仿真平台",
+        "国防与航空航天案例"
+      ],
+      "strengths_en": [
+        "Multiphysics simulation platform",
+        "Defense and aerospace cases"
+      ],
+      "limitations_zh": [
+        "汽车主机厂核心仍多用Ansys",
+        "国际学术引用少"
+      ],
+      "limitations_en": [
+        "OEM core still often Ansys",
+        "Limited international citations"
+      ],
+      "industries": [
+        "航空航天",
+        "汽车",
+        "能源"
+      ],
+      "pricing": "high",
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.peraglobal.com/",
+          "title": "PERA SIM",
+          "accessed": "2026-06"
+        }
+      ],
+      "international_benchmarks": [
+        "ansys-mechanical"
+      ]
+    },
+    {
+      "id": "suochen-abyss",
+      "name_zh": "索辰 Abyss",
+      "name_en": "Suochen Abyss",
+      "vendor_id": "suochen",
+      "category_l1": "研发设计",
+      "category_l2": "CAE",
+      "origin": "domestic",
+      "kernel": "自主",
+      "maturity": "mid",
+      "localization_depth": "pilot",
+      "strengths_zh": [
+        "国产CAE科创板代表",
+        "流体与结构求解器自研"
+      ],
+      "strengths_en": [
+        "STAR Market CAE representative",
+        "In-house CFD/structural solvers"
+      ],
+      "limitations_zh": [
+        "商业化规模仍小",
+        "生态与培训体系建设中"
+      ],
+      "limitations_en": [
+        "Small commercial scale",
+        "Ecosystem and training building"
+      ],
+      "industries": [
+        "航空航天",
+        "船舶",
+        "能源"
+      ],
+      "pricing": "high",
+      "confidence": 0.82,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.suochen.com.cn/",
+          "title": "Suochen Abyss",
+          "accessed": "2026-06"
+        }
+      ],
+      "international_benchmarks": [
+        "ansys-fluent"
+      ],
+      "listed_ticker": "688507.SH"
+    },
+    {
+      "id": "bochu-cypcut",
+      "name_zh": "柏楚 CypCut",
+      "name_en": "Bochu CypCut",
+      "vendor_id": "bochu",
+      "category_l1": "生产制造",
+      "category_l2": "CAM",
+      "origin": "domestic",
+      "kernel": "自主",
+      "maturity": "mission_critical",
+      "localization_depth": "core",
+      "strengths_zh": [
+        "激光切割控制系统市占领先",
+        "与激光器厂商深度绑定"
+      ],
+      "strengths_en": [
+        "Leading laser cutting control share",
+        "Deep laser OEM partnerships"
+      ],
+      "limitations_zh": [
+        "品类聚焦激光切割",
+        "国际拓展早期"
+      ],
+      "limitations_en": [
+        "Focused on laser cutting",
+        "Early international expansion"
+      ],
+      "industries": [
+        "激光加工",
+        "金属加工"
+      ],
+      "pricing": "high",
+      "confidence": 0.9,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.bochu.com/",
+          "title": "Bochu CypCut",
+          "accessed": "2026-06"
+        }
+      ],
+      "international_benchmarks": [
+        "mastercam"
+      ],
+      "listed_ticker": "688188.SH"
+    },
+    {
+      "id": "weihong-nc",
+      "name_zh": "维宏数控",
+      "name_en": "Weihong NC",
+      "vendor_id": "weihong",
+      "category_l1": "生产制造",
+      "category_l2": "CAM",
+      "origin": "domestic",
+      "kernel": "自主",
+      "maturity": "high",
+      "localization_depth": "core",
+      "strengths_zh": [
+        "雕刻/加工中心数控系统",
+        "性价比与本土化服务"
+      ],
+      "strengths_en": [
+        "Engraving/machining center CNC",
+        "Value and local service"
+      ],
+      "limitations_zh": [
+        "高端五轴与精度仍追赶",
+        "品牌溢价有限"
+      ],
+      "limitations_en": [
+        "Chasing high-end 5-axis precision",
+        "Limited brand premium"
+      ],
+      "industries": [
+        "木工",
+        "金属加工",
+        "广告"
+      ],
+      "pricing": "mid",
+      "confidence": 0.88,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.weihong.com.cn/",
+          "title": "Weihong NC",
+          "accessed": "2026-06"
+        }
+      ],
+      "international_benchmarks": [
+        "fanuc-cnc"
+      ],
+      "listed_ticker": "300508.SZ"
+    },
+    {
+      "id": "huazhong-cnc",
+      "name_zh": "华中数控",
+      "name_en": "Huazhong CNC",
+      "vendor_id": "huazhong",
+      "category_l1": "生产制造",
+      "category_l2": "CAM",
+      "origin": "domestic",
+      "kernel": "自主",
+      "maturity": "high",
+      "localization_depth": "partial",
+      "strengths_zh": [
+        "国产数控系统国家队",
+        "航空航天示范应用"
+      ],
+      "strengths_en": [
+        "National CNC system champion",
+        "Aerospace demonstration"
+      ],
+      "limitations_zh": [
+        "民用市场竞争激烈",
+        "生态与刀具库需加强"
+      ],
+      "limitations_en": [
+        "Fierce civilian competition",
+        "Needs stronger tooling ecosystem"
+      ],
+      "industries": [
+        "航空航天",
+        "汽车",
+        "机床"
+      ],
+      "pricing": "mid",
+      "confidence": 0.86,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "http://www.huazhongcnc.com/",
+          "title": "Huazhong CNC",
+          "accessed": "2026-06"
+        }
+      ],
+      "international_benchmarks": [
+        "siemens-sinumerik"
+      ],
+      "listed_ticker": "300161.SZ"
+    },
+    {
+      "id": "gsk-cnc",
+      "name_zh": "广数数控",
+      "name_en": "GSK CNC",
+      "vendor_id": "gsk",
+      "category_l1": "生产制造",
+      "category_l2": "CAM",
+      "origin": "domestic",
+      "kernel": "自主",
+      "maturity": "high",
+      "localization_depth": "partial",
+      "strengths_zh": [
+        "经济型数控系统市占高",
+        "机床厂商配套广泛"
+      ],
+      "strengths_en": [
+        "High share in economy CNC",
+        "Wide machine tool OEM pairing"
+      ],
+      "limitations_zh": [
+        "高端多轴能力有限",
+        "软件体验待提升"
+      ],
+      "limitations_en": [
+        "Limited high-end multi-axis",
+        "Software UX needs work"
+      ],
+      "industries": [
+        "机床",
+        "模具"
+      ],
+      "pricing": "mid",
+      "confidence": 0.84,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "http://www.gsk.com.cn/",
+          "title": "GSK CNC",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "shifeng-simulation",
+      "name_zh": "十沣科技 SimRight",
+      "name_en": "SimRight CAE Cloud",
+      "vendor_id": "shifeng",
+      "category_l1": "研发设计",
+      "category_l2": "CAE",
+      "origin": "domestic",
+      "kernel": "自主",
+      "maturity": "mid",
+      "localization_depth": "pilot",
+      "strengths_zh": [
+        "云原生CAE前后处理",
+        "与开源求解器结合"
+      ],
+      "strengths_en": [
+        "Cloud-native CAE pre/post",
+        "Pairs with open solvers"
+      ],
+      "limitations_zh": [
+        "求解器自研仍在早期",
+        "大客户案例有限"
+      ],
+      "limitations_en": [
+        "Early in-house solvers",
+        "Limited enterprise references"
+      ],
+      "industries": [
+        "汽车",
+        "机械"
+      ],
+      "pricing": "mid",
+      "confidence": 0.76,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.simright.com/",
+          "title": "SimRight CAE Cloud",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "ansys-mechanical",
+      "name_zh": "Ansys Mechanical",
+      "name_en": "Ansys Mechanical",
+      "vendor_id": "ansys",
+      "category_l1": "研发设计",
+      "category_l2": "CAE",
+      "origin": "international",
+      "kernel": "自主",
+      "maturity": "mission_critical",
+      "localization_depth": "core",
+      "strengths_zh": [
+        "结构仿真事实标准",
+        "与中国车企深度合作"
+      ],
+      "strengths_en": [
+        "Structural simulation standard",
+        "Deep China automotive partnerships"
+      ],
+      "limitations_zh": [
+        "许可昂贵",
+        "云化与数据合规挑战"
+      ],
+      "limitations_en": [
+        "Expensive licensing",
+        "Cloud and data compliance challenges"
+      ],
+      "industries": [
+        "汽车",
+        "航空航天",
+        "电子"
+      ],
+      "pricing": "high",
+      "confidence": 0.93,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.ansys.com/",
+          "title": "Ansys Mechanical",
+          "accessed": "2026-06"
+        }
+      ],
+      "listed_ticker": "ANSS"
+    },
+    {
+      "id": "ansys-fluent",
+      "name_zh": "Ansys Fluent",
+      "name_en": "Ansys Fluent",
+      "vendor_id": "ansys",
+      "category_l1": "研发设计",
+      "category_l2": "CAE",
+      "origin": "international",
+      "kernel": "自主",
+      "maturity": "mission_critical",
+      "localization_depth": "core",
+      "strengths_zh": [
+        "CFD行业标杆",
+        "涡轮与汽车热管理广泛应用"
+      ],
+      "strengths_en": [
+        "CFD industry benchmark",
+        "Wide turbo and automotive thermal use"
+      ],
+      "limitations_zh": [
+        "对国产求解器替代形成壁垒",
+        "高性能计算成本高"
+      ],
+      "limitations_en": [
+        "Barrier to domestic solvers",
+        "High HPC cost"
+      ],
+      "industries": [
+        "汽车",
+        "能源",
+        "航空航天"
+      ],
+      "pricing": "high",
+      "confidence": 0.92,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.ansys.com/products/fluids/ansys-fluent",
+          "title": "Ansys Fluent",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "abaqus",
+      "name_zh": "Abaqus",
+      "name_en": "Abaqus",
+      "vendor_id": "dassault",
+      "category_l1": "研发设计",
+      "category_l2": "CAE",
+      "origin": "international",
+      "kernel": "自主",
+      "maturity": "mission_critical",
+      "localization_depth": "core",
+      "strengths_zh": [
+        "非线性结构仿真强项",
+        "与CATIA工作流集成"
+      ],
+      "strengths_en": [
+        "Nonlinear structural strength",
+        "CATIA workflow integration"
+      ],
+      "limitations_zh": [
+        "价格与求解器封闭",
+        "国内云求解供应少"
+      ],
+      "limitations_en": [
+        "Price and closed solver",
+        "Limited domestic cloud solving"
+      ],
+      "industries": [
+        "汽车",
+        "轨道交通",
+        "消费电子"
+      ],
+      "pricing": "high",
+      "confidence": 0.91,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.3ds.com/products/simulia/abaqus",
+          "title": "Abaqus",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "altair-hyperworks",
+      "name_zh": "Altair HyperWorks",
+      "name_en": "Altair HyperWorks",
+      "vendor_id": "altair",
+      "category_l1": "研发设计",
+      "category_l2": "CAE",
+      "origin": "international",
+      "kernel": "自主",
+      "maturity": "high",
+      "localization_depth": "partial",
+      "strengths_zh": [
+        "多学科优化与轻量化",
+        "许可单元模式灵活"
+      ],
+      "strengths_en": [
+        "MDO and lightweighting",
+        "Flexible unit licensing"
+      ],
+      "limitations_zh": [
+        "国内品牌认知低于Ansys",
+        "部分模块学习曲线陡"
+      ],
+      "limitations_en": [
+        "Lower China mindshare than Ansys",
+        "Steep modules learning curve"
+      ],
+      "industries": [
+        "汽车",
+        "航空航天"
+      ],
+      "pricing": "high",
+      "confidence": 0.89,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://altair.com/hyperworks",
+          "title": "Altair HyperWorks",
+          "accessed": "2026-06"
+        }
+      ],
+      "listed_ticker": "ALTR"
+    },
+    {
+      "id": "comsol",
+      "name_zh": "COMSOL Multiphysics",
+      "name_en": "COMSOL Multiphysics",
+      "vendor_id": "comsol",
+      "category_l1": "研发设计",
+      "category_l2": "CAE",
+      "origin": "international",
+      "kernel": "自主",
+      "maturity": "high",
+      "localization_depth": "partial",
+      "strengths_zh": [
+        "多物理场耦合仿真",
+        "科研与新兴产业常用"
+      ],
+      "strengths_en": [
+        "Multiphysics coupling",
+        "Common in research and emerging industries"
+      ],
+      "limitations_zh": [
+        "大规模工业级求解性能受限",
+        "本地化销售团队小"
+      ],
+      "limitations_en": [
+        "Limited large industrial HPC",
+        "Small local sales team"
+      ],
+      "industries": [
+        "新能源",
+        "半导体",
+        "医疗"
+      ],
+      "pricing": "high",
+      "confidence": 0.88,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.comsol.com/",
+          "title": "COMSOL Multiphysics",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "msc-nastran",
+      "name_zh": "MSC Nastran",
+      "name_en": "MSC Nastran",
+      "vendor_id": "hexagon",
+      "category_l1": "研发设计",
+      "category_l2": "CAE",
+      "origin": "international",
+      "kernel": "自主",
+      "maturity": "high",
+      "localization_depth": "partial",
+      "strengths_zh": [
+        "航空航天线性结构经典求解器",
+        "Nastran格式行业标准"
+      ],
+      "strengths_en": [
+        "Classic aerospace linear solver",
+        "Nastran format standard"
+      ],
+      "limitations_zh": [
+        "产品组合分散在Hexagon",
+        "创新节奏受并购影响"
+      ],
+      "limitations_en": [
+        "Portfolio scattered under Hexagon",
+        "Innovation pace affected by M&A"
+      ],
+      "industries": [
+        "航空航天",
+        "汽车"
+      ],
+      "pricing": "high",
+      "confidence": 0.87,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://hexagon.com/products/msc-nastran",
+          "title": "MSC Nastran",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "mastercam",
+      "name_zh": "Mastercam",
+      "name_en": "Mastercam",
+      "vendor_id": "mastercam",
+      "category_l1": "生产制造",
+      "category_l2": "CAM",
+      "origin": "international",
+      "kernel": "自主",
+      "maturity": "mission_critical",
+      "localization_depth": "core",
+      "strengths_zh": [
+        "数控编程市占领先",
+        "多轴加工策略成熟"
+      ],
+      "strengths_en": [
+        "Leading CAM programming share",
+        "Mature multi-axis strategies"
+      ],
+      "limitations_zh": [
+        "云协同弱",
+        "对国产数控 post 支持参差"
+      ],
+      "limitations_en": [
+        "Weak cloud collaboration",
+        "Variable post support for domestic CNC"
+      ],
+      "industries": [
+        "模具",
+        "航空航天",
+        "医疗"
+      ],
+      "pricing": "high",
+      "confidence": 0.9,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.mastercam.com/",
+          "title": "Mastercam",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "powermill",
+      "name_zh": "PowerMill",
+      "name_en": "PowerMill",
+      "vendor_id": "autodesk",
+      "category_l1": "生产制造",
+      "category_l2": "CAM",
+      "origin": "international",
+      "kernel": "自主",
+      "maturity": "high",
+      "localization_depth": "partial",
+      "strengths_zh": [
+        "模具与五轴加工强项",
+        "与Fusion/Delcam传承"
+      ],
+      "strengths_en": [
+        "Mold and 5-axis strength",
+        "Delcam heritage"
+      ],
+      "limitations_zh": [
+        "并入Autodesk后授权变化",
+        "本土竞品在激光切割领先"
+      ],
+      "limitations_en": [
+        "License changes under Autodesk",
+        "Domestic rivals lead laser cutting"
+      ],
+      "industries": [
+        "模具",
+        "航空航天"
+      ],
+      "pricing": "high",
+      "confidence": 0.88,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.autodesk.com/products/powermill",
+          "title": "PowerMill",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "hypermill",
+      "name_zh": "hyperMILL",
+      "name_en": "hyperMILL",
+      "vendor_id": "openmind",
+      "category_l1": "生产制造",
+      "category_l2": "CAM",
+      "origin": "international",
+      "kernel": "自主",
+      "maturity": "high",
+      "localization_depth": "partial",
+      "strengths_zh": [
+        "五轴联动策略先进",
+        "汽车与精密模具"
+      ],
+      "strengths_en": [
+        "Advanced 5-axis strategies",
+        "Automotive and precision molds"
+      ],
+      "limitations_zh": [
+        "价格高昂",
+        "国内培训资源有限"
+      ],
+      "limitations_en": [
+        "High price",
+        "Limited China training"
+      ],
+      "industries": [
+        "模具",
+        "航空航天",
+        "医疗"
+      ],
+      "pricing": "high",
+      "confidence": 0.86,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.openmind-tech.com/",
+          "title": "hyperMILL",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "cimatron",
+      "name_zh": "Cimatron",
+      "name_en": "Cimatron",
+      "vendor_id": "cimatron",
+      "category_l1": "生产制造",
+      "category_l2": "CAM",
+      "origin": "international",
+      "kernel": "自主",
+      "maturity": "high",
+      "localization_depth": "partial",
+      "strengths_zh": [
+        "模具设计制造一体化",
+        "型腔加工策略成熟"
+      ],
+      "strengths_en": [
+        "Integrated mold design/manufacturing",
+        "Mature cavity strategies"
+      ],
+      "limitations_zh": [
+        "市场份额被NX/CATIA挤压",
+        "品牌更新慢"
+      ],
+      "limitations_en": [
+        "Share squeezed by NX/CATIA",
+        "Slow brand refresh"
+      ],
+      "industries": [
+        "模具",
+        "消费电子"
+      ],
+      "pricing": "high",
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.cimatron.com/",
+          "title": "Cimatron",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "jiyuan-simulation",
+      "name_zh": "积元仿真",
+      "name_en": "Jiyuan Simulation",
+      "vendor_id": "jiyuan",
+      "category_l1": "研发设计",
+      "category_l2": "CAE",
+      "origin": "domestic",
+      "kernel": "自主",
+      "maturity": "experimental",
+      "localization_depth": "pilot",
+      "strengths_zh": [
+        "电磁与热仿真创业团队",
+        "特定行业定制"
+      ],
+      "strengths_en": [
+        "EM/thermal startup solvers",
+        "Industry-specific customization"
+      ],
+      "limitations_zh": [
+        "公开案例与文档少",
+        "成熟度待验证"
+      ],
+      "limitations_en": [
+        "Few public cases",
+        "Maturity unproven"
+      ],
+      "industries": [
+        "电子",
+        "新能源"
+      ],
+      "pricing": "mid",
+      "confidence": 0.65,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.jiyuan-tech.com/",
+          "title": "Jiyuan Simulation",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "salome-platform",
+      "name_zh": "SALOME 平台",
+      "name_en": "SALOME Platform",
+      "vendor_id": "salome",
+      "category_l1": "研发设计",
+      "category_l2": "CAE",
+      "origin": "open_source",
+      "kernel": "OCCT 几何 + 自研网格/FEM",
+      "maturity": "high",
+      "localization_depth": "pilot",
+      "strengths_zh": [
+        "开源 CAE 前后处理集成平台（CEA/EDF/Open Cascade）",
+        "几何/网格/Code_Aster/Code_Saturne 一体",
+        "国内高校与核能科研常用"
+      ],
+      "strengths_en": [
+        "Open CAE pre/post platform (CEA/EDF/Open Cascade)",
+        "Integrated geometry/mesh/Code_Aster/Code_Saturne",
+        "Used in China universities and nuclear R&D"
+      ],
+      "limitations_zh": [
+        "学习曲线陡，GUI 老旧",
+        "商业支持与培训弱于 Ansys/Abaqus",
+        "国内工程公司装机远小于国际 CAE 套件"
+      ],
+      "limitations_en": [
+        "Steep learning curve; dated GUI",
+        "Weaker commercial support than Ansys/Abaqus",
+        "Far smaller China engineering install than commercial CAE"
+      ],
+      "industries": [
+        "核能",
+        "航空航天",
+        "科研"
+      ],
+      "pricing": "free",
+      "confidence": 0.88,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.salome-platform.org/",
+          "title": "SALOME Platform",
+          "accessed": "2026-06"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Open_Cascade_Technology",
+          "title": "OCCT — SALOME listed as dependent",
+          "accessed": "2026-06"
+        }
+      ],
+      "international_benchmarks": [
+        "ansys-mechanical"
+      ],
+      "kernel_id": "open-cascade"
+    },
+    {
+      "id": "wolfram-mathematica",
+      "name_zh": "Wolfram Mathematica",
+      "name_en": "Wolfram Mathematica",
+      "vendor_id": "wolfram",
+      "category_l1": "研发设计",
+      "category_l2": "CAE",
+      "origin": "international",
+      "kernel": "自主",
+      "maturity": "high",
+      "localization_depth": "partial",
+      "strengths_zh": [
+        "符号计算与多物理场建模",
+        "航空航天与科研单位常用"
+      ],
+      "strengths_en": [
+        "Symbolic computation and multiphysics modeling",
+        "Common in aerospace R&D and academia"
+      ],
+      "limitations_zh": [
+        "授权昂贵、国内工业量产案例少于 MATLAB",
+        "与 PLM/MES 集成弱"
+      ],
+      "limitations_en": [
+        "Expensive licenses; fewer China industrial production cases vs MATLAB",
+        "Weak PLM/MES integration"
+      ],
+      "industries": [
+        "科研",
+        "航空航天",
+        "教育"
+      ],
+      "pricing": "high",
+      "confidence": 0.88,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.wolfram.com/mathematica/",
+          "title": "Wolfram Mathematica",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "anwise-simvver",
+      "name_zh": "安怀信 Sim V&Ver",
+      "name_en": "Anwise Sim V&Ver",
+      "vendor_id": "anwise",
+      "category_l1": "研发设计",
+      "category_l2": "CAE",
+      "origin": "domestic",
+      "kernel": "自主",
+      "maturity": "mid",
+      "localization_depth": "partial",
+      "strengths_zh": [
+        "国内首创仿真模型 V&V（验证与确认）工具链",
+        "覆盖结构/流体/电磁多学科验模"
+      ],
+      "strengths_en": [
+        "Pioneer China simulation V&V toolchain",
+        "Covers structural/CFD/EM model accreditation"
+      ],
+      "limitations_zh": [
+        "市场认知度低于安世亚太/十沣",
+        "官网与渠道信息更新不稳定"
+      ],
+      "limitations_en": [
+        "Lower market awareness vs PERA/SimRight",
+        "Website and channel info updates uneven"
+      ],
+      "industries": [
+        "航空航天",
+        "国防",
+        "汽车"
+      ],
+      "pricing": "quote",
+      "confidence": 0.78,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "http://www.anwiseglobal.com/",
+          "title": "北京安怀信科技股份有限公司",
+          "accessed": "2026-06"
+        },
+        {
+          "url": "https://www.maitaonet.com/company/info/230227145617D5960012",
+          "title": "安怀信企业信息",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "mathworks-matlab",
+      "name_zh": "MATLAB",
+      "name_en": "MATLAB",
+      "vendor_id": "mathworks",
+      "category_l1": "研发设计",
+      "category_l2": "CAE",
+      "origin": "international",
+      "kernel": "自主",
+      "maturity": "mission_critical",
+      "localization_depth": "partial",
+      "strengths_zh": [
+        "数值计算与算法开发事实标准",
+        "Simulink与工具箱生态完整"
+      ],
+      "strengths_en": [
+        "De-facto numerical computing standard",
+        "Complete Simulink and toolbox ecosystem"
+      ],
+      "limitations_zh": [
+        "订阅成本高",
+        "工业求解器需额外模块"
+      ],
+      "limitations_en": [
+        "High subscription cost",
+        "Industrial solvers need extra modules"
+      ],
+      "industries": [
+        "汽车",
+        "航空航天",
+        "金融",
+        "科研"
+      ],
+      "pricing": "high",
+      "confidence": 0.93,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.mathworks.com/products/matlab.html",
+          "title": "MATLAB",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "altair-radioss",
+      "name_zh": "Altair Radioss",
+      "name_en": "Altair Radioss",
+      "vendor_id": "altair",
+      "category_l1": "研发设计",
+      "category_l2": "CAE",
+      "origin": "international",
+      "kernel": "自主",
+      "maturity": "high",
+      "localization_depth": "partial",
+      "strengths_zh": [
+        "显式动力学与碰撞仿真强项",
+        "汽车安全法规验证常用"
+      ],
+      "strengths_en": [
+        "Explicit dynamics and crash strength",
+        "Common for automotive safety validation"
+      ],
+      "limitations_zh": [
+        "品牌认知低于LS-DYNA/Abaqus",
+        "HyperWorks许可结构复杂"
+      ],
+      "limitations_en": [
+        "Lower mindshare than LS-DYNA/Abaqus",
+        "Complex HyperWorks licensing"
+      ],
+      "industries": [
+        "汽车",
+        "航空航天",
+        "国防"
+      ],
+      "pricing": "high",
+      "confidence": 0.88,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://altair.com/radioss",
+          "title": "Altair Radioss",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "altair-optistruct",
+      "name_zh": "Altair OptiStruct",
+      "name_en": "Altair OptiStruct",
+      "vendor_id": "altair",
+      "category_l1": "研发设计",
+      "category_l2": "CAE",
+      "origin": "international",
+      "kernel": "自主",
+      "maturity": "high",
+      "localization_depth": "partial",
+      "strengths_zh": [
+        "结构优化与拓扑优化标杆",
+        "与HyperMesh前处理一体"
+      ],
+      "strengths_en": [
+        "Structural and topology optimization benchmark",
+        "Integrated with HyperMesh preprocessing"
+      ],
+      "limitations_zh": [
+        "非线性能力弱于Abaqus",
+        "国内培训资源少于Ansys"
+      ],
+      "limitations_en": [
+        "Weaker nonlinear vs Abaqus",
+        "Less China training than Ansys"
+      ],
+      "industries": [
+        "汽车",
+        "航空航天",
+        "重工"
+      ],
+      "pricing": "high",
+      "confidence": 0.87,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://altair.com/optistruct",
+          "title": "Altair OptiStruct",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "hexagon-adams",
+      "name_zh": "MSC Adams",
+      "name_en": "MSC Adams",
+      "vendor_id": "hexagon",
+      "category_l1": "研发设计",
+      "category_l2": "CAE",
+      "origin": "international",
+      "kernel": "自主",
+      "maturity": "high",
+      "localization_depth": "partial",
+      "strengths_zh": [
+        "多体动力学仿真行业标准",
+        "车辆悬架与机构分析强项"
+      ],
+      "strengths_en": [
+        "Multibody dynamics industry standard",
+        "Strong vehicle suspension and mechanism analysis"
+      ],
+      "limitations_zh": [
+        "与Hexagon其他产品整合仍在推进",
+        "云原生求解弱"
+      ],
+      "limitations_en": [
+        "Hexagon portfolio integration still evolving",
+        "Weak cloud-native solving"
+      ],
+      "industries": [
+        "汽车",
+        "轨道交通",
+        "机械"
+      ],
+      "pricing": "high",
+      "confidence": 0.88,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://hexagon.com/products/adams",
+          "title": "MSC Adams",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "hexagon-pcdmis",
+      "name_zh": "PC-DMIS",
+      "name_en": "PC-DMIS",
+      "vendor_id": "hexagon",
+      "category_l1": "生产制造",
+      "category_l2": "CAM",
+      "origin": "international",
+      "kernel": "自主",
+      "maturity": "mission_critical",
+      "localization_depth": "partial",
+      "strengths_zh": [
+        "三坐标与计量检测软件标杆",
+        "与Leica/Hexagon硬件生态一体"
+      ],
+      "strengths_en": [
+        "CMM metrology software benchmark",
+        "Integrated Hexagon/Leica hardware ecosystem"
+      ],
+      "limitations_zh": [
+        "高端计量硬件仍依赖进口",
+        "国产三坐标软件追赶中"
+      ],
+      "limitations_en": [
+        "High-end CMM hardware still imported",
+        "Domestic CMM software catching up"
+      ],
+      "industries": [
+        "汽车",
+        "航空航天",
+        "精密制造"
+      ],
+      "pricing": "high",
+      "confidence": 0.9,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://hexagon.com/products/pc-dmis",
+          "title": "PC-DMIS",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "siemens-simcenter",
+      "name_zh": "Siemens Simcenter",
+      "name_en": "Siemens Simcenter",
+      "vendor_id": "siemens-digital",
+      "category_l1": "研发设计",
+      "category_l2": "CAE",
+      "origin": "international",
+      "kernel": "自主",
+      "maturity": "mission_critical",
+      "localization_depth": "partial",
+      "strengths_zh": [
+        "NX生态一体化仿真平台",
+        "STAR-CCM+与测试数据管理"
+      ],
+      "strengths_en": [
+        "NX-integrated simulation platform",
+        "STAR-CCM+ and test data management"
+      ],
+      "limitations_zh": [
+        "模块众多实施复杂",
+        "许可成本高于独立CAE"
+      ],
+      "limitations_en": [
+        "Many modules, complex rollout",
+        "Higher license cost than standalone CAE"
+      ],
+      "industries": [
+        "汽车",
+        "航空航天",
+        "能源"
+      ],
+      "pricing": "high",
+      "confidence": 0.91,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://plm.sw.siemens.com/en-US/simcenter/",
+          "title": "Siemens Simcenter",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "autodesk-powershape",
+      "name_zh": "Autodesk PowerShape",
+      "name_en": "Autodesk PowerShape",
+      "vendor_id": "autodesk",
+      "category_l1": "生产制造",
+      "category_l2": "CAM",
+      "origin": "international",
+      "kernel": "自主",
+      "maturity": "high",
+      "localization_depth": "partial",
+      "strengths_zh": [
+        "模具与电极设计专用",
+        "与PowerMill/Fusion制造链衔接"
+      ],
+      "strengths_en": [
+        "Dedicated mold and electrode design",
+        "Links to PowerMill/Fusion manufacturing"
+      ],
+      "limitations_zh": [
+        "通用MCAD弱于Inventor",
+        "国内模具厂更熟UG/Cimatron"
+      ],
+      "limitations_en": [
+        "Weaker general MCAD vs Inventor",
+        "China mold shops prefer UG/Cimatron"
+      ],
+      "industries": [
+        "模具",
+        "注塑",
+        "压铸"
+      ],
+      "pricing": "high",
+      "confidence": 0.86,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.autodesk.com/products/powershape",
+          "title": "Autodesk PowerShape",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "gibbscam",
+      "name_zh": "GibbsCAM",
+      "name_en": "GibbsCAM",
+      "vendor_id": "gibbs",
+      "category_l1": "生产制造",
+      "category_l2": "CAM",
+      "origin": "international",
+      "kernel": "自主",
+      "maturity": "high",
+      "localization_depth": "partial",
+      "strengths_zh": [
+        "车铣复合与多轴加工编程",
+        "13000+ 后处理器库",
+        "界面逻辑面向 NC 程序员"
+      ],
+      "strengths_en": [
+        "Mill-turn and multi-axis programming",
+        "13,000+ post-processor library",
+        "NC-programmer-oriented UI logic"
+      ],
+      "limitations_zh": [
+        "国内培训与渠道弱于 Mastercam",
+        "云协同弱于新一代 CAM"
+      ],
+      "limitations_en": [
+        "Weaker China training and channel vs Mastercam",
+        "Weaker cloud collaboration vs newer CAM"
+      ],
+      "industries": [
+        "模具",
+        "航空航天",
+        "通用机加工"
+      ],
+      "pricing": "high",
+      "confidence": 0.88,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.gibbscam.com/en/explore-gibbscam",
+          "title": "GibbsCAM",
+          "accessed": "2026-06"
+        }
+      ],
+      "international_benchmarks": [
+        "mastercam",
+        "hypermill"
+      ]
+    },
+    {
+      "id": "sprutcam",
+      "name_zh": "SprutCAM X",
+      "name_en": "SprutCAM X",
+      "vendor_id": "sprutcam",
+      "category_l1": "生产制造",
+      "category_l2": "CAM",
+      "origin": "international",
+      "kernel": "自主",
+      "maturity": "high",
+      "localization_depth": "partial",
+      "strengths_zh": [
+        "2.5D/3D/5 轴与车铣复合",
+        "机器人离线编程（OLP）",
+        "与主流 CAD 深度集成"
+      ],
+      "strengths_en": [
+        "2.5D/3D/5-axis and mill-turn",
+        "Robot offline programming (OLP)",
+        "Deep integration with mainstream CAD"
+      ],
+      "limitations_zh": [
+        "国内品牌认知低于 Mastercam/PowerMill",
+        "高端航空叶片策略仍在追赶"
+      ],
+      "limitations_en": [
+        "Lower China mindshare than Mastercam/PowerMill",
+        "Chasing high-end blade strategies"
+      ],
+      "industries": [
+        "模具",
+        "机器人加工",
+        "木工"
+      ],
+      "pricing": "high",
+      "confidence": 0.86,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://sprutcam.com/",
+          "title": "SprutCAM X",
+          "accessed": "2026-06"
+        }
+      ],
+      "international_benchmarks": [
+        "mastercam",
+        "hypermill"
+      ]
+    }
+  ]
+}

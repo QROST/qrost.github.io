@@ -1,0 +1,1584 @@
+{
+  "category": "cad",
+  "products": [
+    {
+      "id": "zwcad",
+      "name_zh": "中望CAD",
+      "name_en": "ZWCAD",
+      "vendor_id": "zwcad",
+      "category_l1": "研发设计",
+      "category_l2": "CAD",
+      "origin": "domestic",
+      "kernel": "自主·Overdrive",
+      "maturity": "high",
+      "localization_depth": "partial",
+      "strengths_zh": [
+        "2D/3D MCAD国产化龙头",
+        "DWG兼容与信创适配"
+      ],
+      "strengths_en": [
+        "Leading domestic MCAD",
+        "DWG compatibility and IT innovation lists"
+      ],
+      "limitations_zh": [
+        "高端曲面与大型装配弱于CATIA/NX",
+        "海外渠道仍在拓展"
+      ],
+      "limitations_en": [
+        "Weaker advanced surfacing vs CATIA/NX",
+        "Global channel still expanding"
+      ],
+      "industries": [
+        "机械",
+        "建筑",
+        "模具"
+      ],
+      "pricing": "mid",
+      "confidence": 0.9,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.zwsoft.cn/",
+          "title": "ZWCAD",
+          "accessed": "2026-06"
+        }
+      ],
+      "international_benchmarks": [
+        "autocad"
+      ],
+      "listed_ticker": "300624.SZ",
+      "kernel_id": "zw-overdrive"
+    },
+    {
+      "id": "gstarcad",
+      "name_zh": "浩辰CAD",
+      "name_en": "GstarCAD",
+      "vendor_id": "gstarcad",
+      "category_l1": "研发设计",
+      "category_l2": "CAD",
+      "origin": "domestic",
+      "kernel": "GstarCAD 2D 平台内核 + ACIS 3D",
+      "maturity": "high",
+      "localization_depth": "partial",
+      "strengths_zh": [
+        "2D CAD海外收入占比高",
+        "移动端与云CAD布局"
+      ],
+      "strengths_en": [
+        "Strong overseas 2D revenue",
+        "Mobile and cloud CAD"
+      ],
+      "limitations_zh": [
+        "3D能力弱于中望",
+        "高端制造业渗透有限"
+      ],
+      "limitations_en": [
+        "Weaker 3D than ZWSOFT",
+        "Limited high-end manufacturing penetration"
+      ],
+      "industries": [
+        "建筑",
+        "机械",
+        "测绘"
+      ],
+      "pricing": "mid",
+      "confidence": 0.88,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.gstarcad.com/",
+          "title": "GstarCAD",
+          "accessed": "2026-06"
+        }
+      ],
+      "international_benchmarks": [
+        "autocad"
+      ],
+      "listed_ticker": "688657.SH",
+      "kernel_id": "gstar-2d-platform"
+    },
+    {
+      "id": "crowncad",
+      "name_zh": "皇冠CAD",
+      "name_en": "CrownCAD",
+      "vendor_id": "hoteam",
+      "category_l1": "研发设计",
+      "category_l2": "CAD",
+      "origin": "domestic",
+      "kernel": "CrownCAD DGM 云几何引擎",
+      "maturity": "mid",
+      "localization_depth": "pilot",
+      "strengths_zh": [
+        "云原生三维CAD",
+        "协同设计差异化"
+      ],
+      "strengths_en": [
+        "Cloud-native 3D CAD",
+        "Collaborative design differentiation"
+      ],
+      "limitations_zh": [
+        "生态与插件少于SolidWorks",
+        "大客户案例仍在积累"
+      ],
+      "limitations_en": [
+        "Smaller ecosystem than SolidWorks",
+        "Enterprise references still building"
+      ],
+      "industries": [
+        "机械",
+        "装备"
+      ],
+      "pricing": "mid",
+      "confidence": 0.82,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.crowncad.com/",
+          "title": "CrownCAD",
+          "accessed": "2026-06"
+        }
+      ],
+      "international_benchmarks": [
+        "onshape"
+      ],
+      "kernel_id": "crowncad-dgm"
+    },
+    {
+      "id": "caxa-cad",
+      "name_zh": "CAXA CAD",
+      "name_en": "CAXA CAD",
+      "vendor_id": "caxa",
+      "category_l1": "研发设计",
+      "category_l2": "CAD",
+      "origin": "domestic",
+      "kernel": "CAXA MEGA Kernel（2D 为主）",
+      "maturity": "high",
+      "localization_depth": "partial",
+      "strengths_zh": [
+        "国产CAD老牌厂商",
+        "军工与航天客户基础厚"
+      ],
+      "strengths_en": [
+        "Long-standing domestic CAD vendor",
+        "Strong defense/aerospace base"
+      ],
+      "limitations_zh": [
+        "界面与第三方生态老化",
+        "云转型较慢"
+      ],
+      "limitations_en": [
+        "Aging UX and third-party ecosystem",
+        "Slower cloud transition"
+      ],
+      "industries": [
+        "航空航天",
+        "机械",
+        "教育"
+      ],
+      "pricing": "mid",
+      "confidence": 0.86,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.caxa.com/",
+          "title": "CAXA CAD",
+          "accessed": "2026-06"
+        }
+      ],
+      "international_benchmarks": [
+        "autocad"
+      ],
+      "kernel_id": "caxa-mega-kernel"
+    },
+    {
+      "id": "caxa-3d",
+      "name_zh": "CAXA 3D实体设计",
+      "name_en": "CAXA 3D Solid Design",
+      "vendor_id": "caxa",
+      "category_l1": "研发设计",
+      "category_l2": "CAD",
+      "origin": "domestic",
+      "kernel": "CAXA MEGA Kernel（多内核可切换）",
+      "maturity": "mid",
+      "localization_depth": "partial",
+      "strengths_zh": [
+        "中端三维机械设计",
+        "与CAXA PLM集成"
+      ],
+      "strengths_en": [
+        "Mid-tier 3D mechanical design",
+        "Integrated with CAXA PLM"
+      ],
+      "limitations_zh": [
+        "复杂曲面与仿真联动弱",
+        "市占低于国际巨头"
+      ],
+      "limitations_en": [
+        "Weak complex surfacing and simulation tie-in",
+        "Share below global leaders"
+      ],
+      "industries": [
+        "机械",
+        "教育"
+      ],
+      "pricing": "mid",
+      "confidence": 0.8,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.caxa.com/",
+          "title": "CAXA 3D Solid Design",
+          "accessed": "2026-06"
+        }
+      ],
+      "kernel_id": "caxa-mega-kernel"
+    },
+    {
+      "id": "hoteam-cad",
+      "name_zh": "华天CAD",
+      "name_en": "Hoteam CAD",
+      "vendor_id": "hoteam",
+      "category_l1": "研发设计",
+      "category_l2": "CAD",
+      "origin": "domestic",
+      "kernel": "SINOVATION CRUX IV",
+      "maturity": "mid",
+      "localization_depth": "pilot",
+      "strengths_zh": [
+        "与华天PLM一体化",
+        "山东工业客户群"
+      ],
+      "strengths_en": [
+        "Integrated with Hoteam PLM",
+        "Shandong industrial customer base"
+      ],
+      "limitations_zh": [
+        "全国品牌声量小于中望浩辰",
+        "3D成熟度中等"
+      ],
+      "limitations_en": [
+        "Lower national brand than ZW/Gstar",
+        "Mid-tier 3D maturity"
+      ],
+      "industries": [
+        "机械",
+        "汽车零部件"
+      ],
+      "pricing": "mid",
+      "confidence": 0.78,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.hoteamsoft.com/",
+          "title": "Hoteam CAD",
+          "accessed": "2026-06"
+        }
+      ],
+      "kernel_id": "hoteam-crux-iv"
+    },
+    {
+      "id": "tianhe-cad",
+      "name_zh": "天河CAD",
+      "name_en": "THSOFT CAD",
+      "vendor_id": "tianhe",
+      "category_l1": "研发设计",
+      "category_l2": "CAD",
+      "origin": "domestic",
+      "kernel": "THCAD 平台内核",
+      "maturity": "mid",
+      "localization_depth": "pilot",
+      "strengths_zh": [
+        "装备制造行业定制",
+        "二维图纸积累深"
+      ],
+      "strengths_en": [
+        "Equipment industry customization",
+        "Deep 2D drawing legacy"
+      ],
+      "limitations_zh": [
+        "产品现代化程度一般",
+        "营销覆盖有限"
+      ],
+      "limitations_en": [
+        "Average product modernization",
+        "Limited marketing reach"
+      ],
+      "industries": [
+        "装备制造",
+        "能源"
+      ],
+      "pricing": "mid",
+      "confidence": 0.74,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "http://www.thsoft.com.cn/",
+          "title": "THSOFT CAD",
+          "accessed": "2026-06"
+        }
+      ],
+      "kernel_id": "thcad-platform-kernel"
+    },
+    {
+      "id": "pengye-cad",
+      "name_zh": "鹏业CAD",
+      "name_en": "Pengye CAD",
+      "vendor_id": "pengye",
+      "category_l1": "研发设计",
+      "category_l2": "CAD",
+      "origin": "domestic",
+      "kernel": "鹏业自主图形平台",
+      "maturity": "mid",
+      "localization_depth": "pilot",
+      "strengths_zh": [
+        "市政与管网行业CAD",
+        "造价与算量联动"
+      ],
+      "strengths_en": [
+        "Municipal and pipeline CAD",
+        "Cost estimation integration"
+      ],
+      "limitations_zh": [
+        "通用机械CAD竞争力弱",
+        "地域性较强"
+      ],
+      "limitations_en": [
+        "Weak general MCAD competitiveness",
+        "Regional focus"
+      ],
+      "industries": [
+        "市政",
+        "管网",
+        "建筑"
+      ],
+      "pricing": "low",
+      "confidence": 0.7,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "http://www.pengyesoftware.com/",
+          "title": "Pengye CAD",
+          "accessed": "2026-06"
+        }
+      ],
+      "kernel_id": "pengye-graphic-platform"
+    },
+    {
+      "id": "autocad",
+      "name_zh": "AutoCAD",
+      "name_en": "AutoCAD",
+      "vendor_id": "autodesk",
+      "category_l1": "研发设计",
+      "category_l2": "CAD",
+      "origin": "international",
+      "kernel": "自主",
+      "maturity": "mission_critical",
+      "localization_depth": "core",
+      "strengths_zh": [
+        "2D/3D通用设计事实标准",
+        "中国区用户基数巨大"
+      ],
+      "strengths_en": [
+        "De-facto general design standard",
+        "Huge China user base"
+      ],
+      "limitations_zh": [
+        "订阅制成本上升",
+        "国产化替代政策压力"
+      ],
+      "limitations_en": [
+        "Rising subscription cost",
+        "Localization policy pressure"
+      ],
+      "industries": [
+        "建筑",
+        "机械",
+        "基础设施"
+      ],
+      "pricing": "high",
+      "confidence": 0.94,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.autodesk.com.cn/",
+          "title": "AutoCAD",
+          "accessed": "2026-06"
+        }
+      ],
+      "listed_ticker": "ADSK",
+      "kernel_id": "autodesk-acad-geometry"
+    },
+    {
+      "id": "solidworks",
+      "name_zh": "SOLIDWORKS",
+      "name_en": "SOLIDWORKS",
+      "vendor_id": "dassault",
+      "category_l1": "研发设计",
+      "category_l2": "CAD",
+      "origin": "international",
+      "kernel": "Parasolid授权",
+      "maturity": "mission_critical",
+      "localization_depth": "core",
+      "strengths_zh": [
+        "中小企业三维CAD首选",
+        "仿真与PDM生态丰富"
+      ],
+      "strengths_en": [
+        "SME 3D CAD default choice",
+        "Rich simulation and PDM ecosystem"
+      ],
+      "limitations_zh": [
+        "高端大装配弱于NX/CATIA",
+        "云版本推进慢"
+      ],
+      "limitations_en": [
+        "Weaker large assembly vs NX/CATIA",
+        "Slow cloud cadence"
+      ],
+      "industries": [
+        "机械",
+        "消费电子",
+        "医疗器械"
+      ],
+      "pricing": "high",
+      "confidence": 0.93,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.solidworks.com/",
+          "title": "SOLIDWORKS",
+          "accessed": "2026-06"
+        }
+      ],
+      "kernel_id": "parasolid"
+    },
+    {
+      "id": "catia",
+      "name_zh": "CATIA",
+      "name_en": "CATIA",
+      "vendor_id": "dassault",
+      "category_l1": "研发设计",
+      "category_l2": "CAD",
+      "origin": "international",
+      "kernel": "自主·CGM",
+      "maturity": "mission_critical",
+      "localization_depth": "core",
+      "strengths_zh": [
+        "航空航天与汽车曲面标杆",
+        "与ENOVIA深度集成"
+      ],
+      "strengths_en": [
+        "Aerospace/auto surfacing benchmark",
+        "Deep ENOVIA integration"
+      ],
+      "limitations_zh": [
+        "学习曲线陡峭",
+        "许可成本极高"
+      ],
+      "limitations_en": [
+        "Steep learning curve",
+        "Very high license cost"
+      ],
+      "industries": [
+        "汽车",
+        "航空航天",
+        "船舶"
+      ],
+      "pricing": "high",
+      "confidence": 0.92,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.3ds.com/products/catia",
+          "title": "CATIA",
+          "accessed": "2026-06"
+        }
+      ],
+      "kernel_id": "catia-cgm"
+    },
+    {
+      "id": "siemens-nx",
+      "name_zh": "Siemens NX",
+      "name_en": "Siemens NX",
+      "vendor_id": "siemens-digital",
+      "category_l1": "研发设计",
+      "category_l2": "CAD",
+      "origin": "international",
+      "kernel": "Parasolid授权",
+      "maturity": "mission_critical",
+      "localization_depth": "core",
+      "strengths_zh": [
+        "高端集成CAD/CAM/CAE",
+        "大型装配与多学科优化"
+      ],
+      "strengths_en": [
+        "High-end integrated CAD/CAM/CAE",
+        "Large assembly and MDO"
+      ],
+      "limitations_zh": [
+        "实施与维护复杂",
+        "对本土中小企业过重"
+      ],
+      "limitations_en": [
+        "Complex implementation",
+        "Heavy for local SMEs"
+      ],
+      "industries": [
+        "汽车",
+        "航空航天",
+        "重工"
+      ],
+      "pricing": "high",
+      "confidence": 0.92,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://plm.sw.siemens.com/",
+          "title": "Siemens NX",
+          "accessed": "2026-06"
+        }
+      ],
+      "kernel_id": "siemens-hybrid-stack"
+    },
+    {
+      "id": "creo",
+      "name_zh": "Creo Parametric",
+      "name_en": "Creo Parametric",
+      "vendor_id": "ptc",
+      "category_l1": "研发设计",
+      "category_l2": "CAD",
+      "origin": "international",
+      "kernel": "自主·Granite",
+      "maturity": "high",
+      "localization_depth": "partial",
+      "strengths_zh": [
+        "参数化设计历史悠久",
+        "Windchill PLM协同"
+      ],
+      "strengths_en": [
+        "Long parametric history",
+        "Windchill PLM synergy"
+      ],
+      "limitations_zh": [
+        "用户体验落后于新竞品",
+        "云原生能力有限"
+      ],
+      "limitations_en": [
+        "UX behind newer rivals",
+        "Limited cloud-native"
+      ],
+      "industries": [
+        "机械",
+        "电子",
+        "工业"
+      ],
+      "pricing": "high",
+      "confidence": 0.9,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.ptc.com/en/products/creo",
+          "title": "Creo Parametric",
+          "accessed": "2026-06"
+        }
+      ],
+      "kernel_id": "granite"
+    },
+    {
+      "id": "inventor",
+      "name_zh": "Autodesk Inventor",
+      "name_en": "Autodesk Inventor",
+      "vendor_id": "autodesk",
+      "category_l1": "研发设计",
+      "category_l2": "CAD",
+      "origin": "international",
+      "kernel": "自主·ShapeManager",
+      "maturity": "high",
+      "localization_depth": "partial",
+      "strengths_zh": [
+        "中端机械三维CAD",
+        "与Vault/ Fusion衔接"
+      ],
+      "strengths_en": [
+        "Mid-tier mechanical 3D",
+        "Vault and Fusion bridge"
+      ],
+      "limitations_zh": [
+        "高端市场被SolidWorks/NX挤压",
+        "发展重心转向Fusion"
+      ],
+      "limitations_en": [
+        "Squeezed at high end",
+        "Focus shifting to Fusion"
+      ],
+      "industries": [
+        "机械",
+        "建筑设备"
+      ],
+      "pricing": "mid",
+      "confidence": 0.88,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.autodesk.com/products/inventor",
+          "title": "Autodesk Inventor",
+          "accessed": "2026-06"
+        }
+      ],
+      "kernel_id": "shape-manager"
+    },
+    {
+      "id": "fusion360",
+      "name_zh": "Fusion 360",
+      "name_en": "Fusion 360",
+      "vendor_id": "autodesk",
+      "category_l1": "研发设计",
+      "category_l2": "CAD",
+      "origin": "international",
+      "kernel": "自主·ShapeManager",
+      "maturity": "high",
+      "localization_depth": "partial",
+      "strengths_zh": [
+        "云原生CAD/CAM一体",
+        "创客与初创友好"
+      ],
+      "strengths_en": [
+        "Cloud-native CAD/CAM",
+        "Maker and startup friendly"
+      ],
+      "limitations_zh": [
+        "企业级数据治理弱",
+        "国内云访问稳定性问题"
+      ],
+      "limitations_en": [
+        "Weak enterprise data governance",
+        "China cloud access variability"
+      ],
+      "industries": [
+        "教育",
+        "创客",
+        "中小企业"
+      ],
+      "pricing": "low",
+      "confidence": 0.87,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.autodesk.com/products/fusion-360",
+          "title": "Fusion 360",
+          "accessed": "2026-06"
+        }
+      ],
+      "kernel_id": "shape-manager"
+    },
+    {
+      "id": "onshape",
+      "name_zh": "Onshape",
+      "name_en": "Onshape",
+      "vendor_id": "ptc",
+      "category_l1": "研发设计",
+      "category_l2": "CAD",
+      "origin": "international",
+      "kernel": "Parasolid授权",
+      "maturity": "mid",
+      "localization_depth": "pilot",
+      "strengths_zh": [
+        "纯浏览器CAD",
+        "版本管理与协作先进"
+      ],
+      "strengths_en": [
+        "Browser-only CAD",
+        "Advanced versioning and collaboration"
+      ],
+      "limitations_zh": [
+        "国内采用率低于SolidWorks",
+        "高级曲面能力有限"
+      ],
+      "limitations_en": [
+        "Lower China adoption than SW",
+        "Limited advanced surfacing"
+      ],
+      "industries": [
+        "机械",
+        "教育"
+      ],
+      "pricing": "mid",
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.onshape.com/",
+          "title": "Onshape",
+          "accessed": "2026-06"
+        }
+      ],
+      "kernel_id": "parasolid"
+    },
+    {
+      "id": "bricscad",
+      "name_zh": "BricsCAD",
+      "name_en": "BricsCAD",
+      "vendor_id": "bricsys",
+      "category_l1": "研发设计",
+      "category_l2": "CAD",
+      "origin": "international",
+      "kernel": "ACIS授权",
+      "maturity": "high",
+      "localization_depth": "partial",
+      "strengths_zh": [
+        "DWG平台兼容性强",
+        "一次性授权选项"
+      ],
+      "strengths_en": [
+        "Strong DWG platform",
+        "Perpetual license option"
+      ],
+      "limitations_zh": [
+        "国内渠道与生态较小",
+        "三维市场声量低"
+      ],
+      "limitations_en": [
+        "Smaller China channel",
+        "Lower 3D mindshare"
+      ],
+      "industries": [
+        "建筑",
+        "机械"
+      ],
+      "pricing": "mid",
+      "confidence": 0.84,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.bricsys.com/",
+          "title": "BricsCAD",
+          "accessed": "2026-06"
+        }
+      ],
+      "kernel_id": "acis"
+    },
+    {
+      "id": "sketchup",
+      "name_zh": "SketchUp",
+      "name_en": "SketchUp",
+      "vendor_id": "trimble",
+      "category_l1": "研发设计",
+      "category_l2": "CAD",
+      "origin": "international",
+      "kernel": "自主",
+      "maturity": "high",
+      "localization_depth": "partial",
+      "strengths_zh": [
+        "建筑概念设计流行",
+        "上手快生态插件多"
+      ],
+      "strengths_en": [
+        "Popular conceptual BIM",
+        "Easy learning curve and plugins"
+      ],
+      "limitations_zh": [
+        "精密机械设计不适用",
+        "BIM深度不足"
+      ],
+      "limitations_en": [
+        "Not for precision MCAD",
+        "Shallow BIM depth"
+      ],
+      "industries": [
+        "建筑",
+        "室内设计",
+        "景观"
+      ],
+      "pricing": "low",
+      "confidence": 0.86,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.sketchup.com/",
+          "title": "SketchUp",
+          "accessed": "2026-06"
+        }
+      ],
+      "kernel_id": "sketchup-geometry"
+    },
+    {
+      "id": "rhino-inside",
+      "name_zh": "Rhino.Inside",
+      "name_en": "Rhino.Inside",
+      "vendor_id": "mcneel",
+      "category_l1": "研发设计",
+      "category_l2": "CAD",
+      "origin": "international",
+      "kernel": "宿主应用嵌入",
+      "maturity": "high",
+      "localization_depth": "partial",
+      "strengths_zh": [
+        "在 Revit/Archicad/Unity 等宿主内运行 Rhino 几何内核",
+        "AEC 参数化与自由曲面桥接"
+      ],
+      "strengths_en": [
+        "Runs Rhino geometry inside Revit/Archicad/Unity hosts",
+        "Bridges AEC parametrics and freeform surfacing"
+      ],
+      "limitations_zh": [
+        "依赖宿主版本与 API 稳定性",
+        "国内大型设计院采用仍有限"
+      ],
+      "limitations_en": [
+        "Depends on host version and API stability",
+        "Limited adoption in large China AEC firms"
+      ],
+      "industries": [
+        "建筑",
+        "幕墙",
+        "工业设计"
+      ],
+      "pricing": "mid",
+      "confidence": 0.86,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.rhino3d.com/inside/",
+          "title": "Rhino.Inside",
+          "accessed": "2026-06"
+        },
+        {
+          "url": "https://www.rhino3d.com/inside/revit",
+          "title": "Rhino.Inside Revit",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "rhino",
+      "name_zh": "Rhinoceros（Rhino）",
+      "name_en": "Rhinoceros (Rhino)",
+      "vendor_id": "mcneel",
+      "category_l1": "研发设计",
+      "category_l2": "CAD",
+      "origin": "international",
+      "kernel": "自主·openNURBS NURBS",
+      "maturity": "high",
+      "localization_depth": "partial",
+      "strengths_zh": [
+        "NURBS 自由曲面与造型标杆",
+        "内置 Grasshopper 参数化/生成式设计模块",
+        "建筑、珠宝、船舶等行业插件生态丰富"
+      ],
+      "strengths_en": [
+        "NURBS freeform surfacing benchmark",
+        "Built-in Grasshopper parametric/generative design module",
+        "Rich plugins for architecture, jewelry, and marine"
+      ],
+      "limitations_zh": [
+        "非机械参数化 MCAD 主线（无完整特征树/PMI）",
+        "国内正版化与培训体系弱于 SolidWorks"
+      ],
+      "limitations_en": [
+        "Not a full mechanical parametric MCAD stack (limited feature tree/PMI)",
+        "Weaker China licensing and training vs SolidWorks"
+      ],
+      "industries": [
+        "建筑",
+        "工业设计",
+        "珠宝",
+        "船舶"
+      ],
+      "pricing": "high",
+      "confidence": 0.91,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.rhino3d.com/",
+          "title": "Rhinoceros 3D",
+          "accessed": "2026-06"
+        },
+        {
+          "url": "https://docs.mcneel.com/rhino/8/help/en-us/commands/grasshopper.htm",
+          "title": "Rhino Grasshopper command",
+          "accessed": "2026-06"
+        }
+      ],
+      "international_benchmarks": [
+        "solidworks",
+        "catia"
+      ]
+    },
+    {
+      "id": "ironcad",
+      "name_zh": "IronCAD",
+      "name_en": "IronCAD",
+      "vendor_id": "ironcad",
+      "category_l1": "研发设计",
+      "category_l2": "CAD",
+      "origin": "international",
+      "kernel": "Parasolid + ACIS 双内核",
+      "kernel_id": "parasolid",
+      "maturity": "mid",
+      "localization_depth": "pilot",
+      "strengths_zh": [
+        "拖拽式三维装配与直觉建模",
+        "有/无历史记录混合编辑",
+        "中小企业快速概念设计"
+      ],
+      "strengths_en": [
+        "Drag-and-drop 3D assembly and intuitive modeling",
+        "History and history-free hybrid editing",
+        "Fast conceptual design for SMEs"
+      ],
+      "limitations_zh": [
+        "国内渠道与生态小于 SolidWorks",
+        "大型装配与 PLM 深度弱于 NX"
+      ],
+      "limitations_en": [
+        "Smaller China channel than SolidWorks",
+        "Weaker large assembly and PLM depth vs NX"
+      ],
+      "industries": [
+        "机械",
+        "模具",
+        "装备"
+      ],
+      "pricing": "mid",
+      "confidence": 0.86,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.ironcad.com/",
+          "title": "IronCAD",
+          "accessed": "2026-06"
+        }
+      ],
+      "international_benchmarks": [
+        "solidworks",
+        "inventor"
+      ]
+    },
+    {
+      "id": "formz",
+      "name_zh": "form·Z Pro",
+      "name_en": "form·Z Pro",
+      "vendor_id": "autodessys",
+      "category_l1": "研发设计",
+      "category_l2": "CAD",
+      "origin": "international",
+      "kernel": "ACIS授权",
+      "kernel_id": "acis",
+      "maturity": "mid",
+      "localization_depth": "none",
+      "strengths_zh": [
+        "实体与曲面混合造型",
+        "建筑与概念设计历史悠久",
+        "Layout 出图与 3D 打印导出"
+      ],
+      "strengths_en": [
+        "Hybrid solid and surface modeling",
+        "Long heritage in architecture and concept design",
+        "Layout drafting and 3D print export"
+      ],
+      "limitations_zh": [
+        "国内装机量极小",
+        "机械工程与 PLM 集成弱"
+      ],
+      "limitations_en": [
+        "Negligible China install base",
+        "Weak mechanical engineering and PLM integration"
+      ],
+      "industries": [
+        "建筑",
+        "室内设计",
+        "产品设计"
+      ],
+      "pricing": "mid",
+      "confidence": 0.82,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://autodessys.com/formz-pro/",
+          "title": "form·Z Pro",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "solid-edge",
+      "name_zh": "Solid Edge",
+      "name_en": "Siemens Solid Edge",
+      "vendor_id": "siemens-digital",
+      "category_l1": "研发设计",
+      "category_l2": "CAD",
+      "origin": "international",
+      "kernel": "Parasolid + 同步技术 ST",
+      "kernel_id": "parasolid",
+      "maturity": "high",
+      "localization_depth": "partial",
+      "strengths_zh": [
+        "同步建模（Synchronous Technology）直接编辑",
+        "与 Teamcenter/NX 数据互通",
+        "中端机械设计性价比"
+      ],
+      "strengths_en": [
+        "Synchronous Technology direct editing",
+        "Data interoperability with Teamcenter/NX",
+        "Mid-tier mechanical design value"
+      ],
+      "limitations_zh": [
+        "国内声量低于 SolidWorks",
+        "高端曲面仍弱于 CATIA"
+      ],
+      "limitations_en": [
+        "Lower China mindshare than SolidWorks",
+        "Weaker high-end surfacing vs CATIA"
+      ],
+      "industries": [
+        "机械",
+        "电子",
+        "模具"
+      ],
+      "pricing": "high",
+      "confidence": 0.9,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://solidedge.siemens.com/",
+          "title": "Siemens Solid Edge",
+          "accessed": "2026-06"
+        }
+      ],
+      "international_benchmarks": [
+        "solidworks",
+        "siemens-nx"
+      ]
+    },
+    {
+      "id": "kompas-3d",
+      "name_zh": "KOMPAS-3D",
+      "name_en": "KOMPAS-3D",
+      "vendor_id": "ascon",
+      "category_l1": "研发设计",
+      "category_l2": "CAD",
+      "origin": "international",
+      "kernel": "C3D 全栈",
+      "kernel_id": "c3d",
+      "maturity": "high",
+      "localization_depth": "none",
+      "strengths_zh": [
+        "俄方自主 C3D 几何栈",
+        "机械参数化与俄国防工装机",
+        "与 KOMPAS-Graph 2D 一体"
+      ],
+      "strengths_en": [
+        "Russian-owned C3D geometry stack",
+        "Mechanical parametrics and Russian defense install base",
+        "Integrated with KOMPAS-Graph 2D"
+      ],
+      "limitations_zh": [
+        "中国几乎无装机与渠道",
+        "地缘政治与制裁风险"
+      ],
+      "limitations_en": [
+        "Negligible China install and channel",
+        "Geopolitical and sanctions risk"
+      ],
+      "industries": [
+        "机械",
+        "军工",
+        "装备制造"
+      ],
+      "pricing": "mid",
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://ascon.ru/products/kompas-3d/",
+          "title": "ASCON KOMPAS-3D",
+          "accessed": "2026-06"
+        },
+        {
+          "url": "https://c3dlabs.com/customers/ascon/",
+          "title": "C3D / KOMPAS-3D",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "t-flex-cad",
+      "name_zh": "T-FLEX CAD",
+      "name_en": "T-FLEX CAD",
+      "vendor_id": "topsystems",
+      "category_l1": "研发设计",
+      "category_l2": "CAD",
+      "origin": "international",
+      "kernel": "Parasolid授权",
+      "kernel_id": "parasolid",
+      "maturity": "mid",
+      "localization_depth": "none",
+      "strengths_zh": [
+        "参数化草图与可变参数设计",
+        "Top Systems 集成 CAE/CAPP/CAM 套件",
+        "俄/东欧机械行业积累"
+      ],
+      "strengths_en": [
+        "Parametric sketches and variational design",
+        "Top Systems integrated CAE/CAPP/CAM suite",
+        "Russia/Eastern Europe mechanical heritage"
+      ],
+      "limitations_zh": [
+        "中国渠道几乎空白",
+        "国际化与生态弱于主流 MCAD"
+      ],
+      "limitations_en": [
+        "Near-zero China channel",
+        "Weaker globalization and ecosystem vs mainstream MCAD"
+      ],
+      "industries": [
+        "机械",
+        "模具",
+        "装备制造"
+      ],
+      "pricing": "mid",
+      "confidence": 0.83,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.tflex.com/",
+          "title": "T-FLEX CAD",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "vectorworks",
+      "name_zh": "Vectorworks",
+      "name_en": "Vectorworks",
+      "vendor_id": "vectorworks",
+      "category_l1": "研发设计",
+      "category_l2": "CAD",
+      "origin": "international",
+      "kernel": "自主",
+      "maturity": "high",
+      "localization_depth": "partial",
+      "strengths_zh": [
+        "建筑/景观/娱乐灯光 BIM 一体化",
+        "OPEN BIM 与 IFC 互操作",
+        "建筑师友好工作流"
+      ],
+      "strengths_en": [
+        "Integrated BIM for architecture, landscape, and entertainment lighting",
+        "OPEN BIM and IFC interoperability",
+        "Architect-friendly workflows"
+      ],
+      "limitations_zh": [
+        "国内市占远低于 Revit",
+        "机械 MCAD 非主战场"
+      ],
+      "limitations_en": [
+        "Far lower China share than Revit",
+        "Not focused on mechanical MCAD"
+      ],
+      "industries": [
+        "建筑",
+        "景观",
+        "娱乐"
+      ],
+      "pricing": "high",
+      "confidence": 0.87,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.vectorworks.net/",
+          "title": "Vectorworks",
+          "accessed": "2026-06"
+        }
+      ],
+      "international_benchmarks": [
+        "revit",
+        "archicad"
+      ]
+    },
+    {
+      "id": "zw3d",
+      "name_zh": "中望3D（ZW3D）",
+      "name_en": "ZW3D",
+      "vendor_id": "zwcad",
+      "category_l1": "研发设计",
+      "category_l2": "CAD",
+      "origin": "domestic",
+      "kernel": "自主·Overdrive",
+      "kernel_id": "zw-overdrive",
+      "maturity": "high",
+      "localization_depth": "partial",
+      "strengths_zh": [
+        "国产高端三维 MCAD 旗舰",
+        "Overdrive 内核一体化 CAD/CAM",
+        "模具与逆向工程模块"
+      ],
+      "strengths_en": [
+        "Flagship domestic 3D MCAD",
+        "Overdrive-kernel integrated CAD/CAM",
+        "Mold and reverse-engineering modules"
+      ],
+      "limitations_zh": [
+        "高端曲面/大装配仍追赶 CATIA/NX",
+        "国际 ISV 生态小于 SolidWorks"
+      ],
+      "limitations_en": [
+        "Still catching up on high-end surfacing and large assemblies vs CATIA/NX",
+        "Smaller international ISV ecosystem than SolidWorks"
+      ],
+      "industries": [
+        "机械",
+        "模具",
+        "汽车零部件"
+      ],
+      "pricing": "mid",
+      "confidence": 0.9,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.zwsoft.cn/product/zw3d",
+          "title": "ZW3D",
+          "accessed": "2026-06"
+        },
+        {
+          "url": "https://www.zwsoft.com/product/overdrive",
+          "title": "ZWSOFT Overdrive",
+          "accessed": "2026-06"
+        }
+      ],
+      "international_benchmarks": [
+        "solidworks",
+        "siemens-nx"
+      ],
+      "listed_ticker": "300624.SZ"
+    },
+    {
+      "id": "newdim-tiangong-cad",
+      "name_zh": "新迪天工CAD",
+      "name_en": "Newdim Tiangong CAD",
+      "vendor_id": "newdim",
+      "category_l1": "研发设计",
+      "category_l2": "CAD",
+      "origin": "domestic",
+      "kernel": "自主（Solid Edge 技术传承）",
+      "maturity": "high",
+      "localization_depth": "partial",
+      "strengths_zh": [
+        "收购 Solid Edge 源码后的国产中高端三维 CAD",
+        "与天工云盘/云库协同",
+        "提供永久免费个人版"
+      ],
+      "strengths_en": [
+        "Domestic mid-high 3D CAD from Solid Edge source acquisition",
+        "Synergy with Tiangong cloud drive and parts library",
+        "Free perpetual personal edition"
+      ],
+      "limitations_zh": [
+        "企业级案例仍在快速积累",
+        "内核自主叙事与西门子技术渊源并存"
+      ],
+      "limitations_en": [
+        "Enterprise references still ramping",
+        "Coexists self-owned narrative with Siemens technology lineage"
+      ],
+      "industries": [
+        "机械",
+        "装备制造",
+        "新能源"
+      ],
+      "pricing": "mid",
+      "confidence": 0.88,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.newdimchina.com/product/94.html",
+          "title": "新迪天工CAD",
+          "accessed": "2026-06"
+        },
+        {
+          "url": "https://www.newdimchina.com/",
+          "title": "上海新迪数字",
+          "accessed": "2026-06"
+        }
+      ],
+      "international_benchmarks": [
+        "solid-edge",
+        "solidworks"
+      ]
+    },
+    {
+      "id": "poisson-geoshape-cad",
+      "name_zh": "泊松 Geoshape 3D CAD",
+      "name_en": "Poisson Geoshape 3D CAD",
+      "vendor_id": "poisson",
+      "category_l1": "研发设计",
+      "category_l2": "CAD",
+      "origin": "domestic",
+      "kernel": "自主·Geoshape",
+      "kernel_id": "poisson-geoshape",
+      "maturity": "mid",
+      "localization_depth": "pilot",
+      "strengths_zh": [
+        "云原生自研 B-rep 几何引擎",
+        "DISA 几何标准参与",
+        "CAD/CAE/PLM 一体化路线"
+      ],
+      "strengths_en": [
+        "Cloud-native owned B-rep geometry engine",
+        "DISA geometry standard participation",
+        "Integrated CAD/CAE/PLM roadmap"
+      ],
+      "limitations_zh": [
+        "商用装机仍在早期",
+        "生态与案例少于中望/华天"
+      ],
+      "limitations_en": [
+        "Commercial install base still early",
+        "Smaller ecosystem than ZWSOFT/Hoteam"
+      ],
+      "industries": [
+        "机械",
+        "航空航天",
+        "汽车"
+      ],
+      "pricing": "quote",
+      "confidence": 0.8,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.poissonsoft.com/page323?_l=zh_CN",
+          "title": "Geoshape engine",
+          "accessed": "2026-06"
+        }
+      ],
+      "international_benchmarks": [
+        "zw3d",
+        "crowncad"
+      ]
+    },
+    {
+      "id": "hoops-exchange",
+      "name_zh": "HOOPS Exchange",
+      "name_en": "HOOPS Exchange",
+      "vendor_id": "techsoft3d",
+      "category_l1": "研发设计",
+      "category_l2": "CAD互操作",
+      "origin": "international",
+      "kernel": "OEM·HOOPS",
+      "maturity": "mission_critical",
+      "localization_depth": "partial",
+      "strengths_zh": [
+        "CAD/BIM格式转换SDK事实标准",
+        "支持CATIA/NX/STEP等上百格式"
+      ],
+      "strengths_en": [
+        "De-facto CAD/BIM translation SDK",
+        "100+ formats including CATIA/NX/STEP"
+      ],
+      "limitations_zh": [
+        "授权费用高且按部署计费",
+        "国产CAD内核对接需二次开发"
+      ],
+      "limitations_en": [
+        "High per-deployment licensing",
+        "Domestic CAD kernels need custom bridges"
+      ],
+      "industries": [
+        "汽车",
+        "航空航天",
+        "机械"
+      ],
+      "pricing": "quote",
+      "confidence": 0.9,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.techsoft3d.com/products/hoops-exchange/",
+          "title": "HOOPS Exchange",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "datakit-crosscad",
+      "name_zh": "Datakit CrossCad/Ware",
+      "name_en": "Datakit CrossCad/Ware",
+      "vendor_id": "datakit",
+      "category_l1": "研发设计",
+      "category_l2": "CAD互操作",
+      "origin": "international",
+      "kernel": "OEM·Datakit",
+      "maturity": "high",
+      "localization_depth": "partial",
+      "strengths_zh": [
+        "欧洲CAD数据交换老牌",
+        "独立软件与SDK双模式"
+      ],
+      "strengths_en": [
+        "European legacy CAD data exchange",
+        "Standalone apps and SDK modes"
+      ],
+      "limitations_zh": [
+        "亚太技术支持网络弱于HOOPS",
+        "部分原生格式版本滞后"
+      ],
+      "limitations_en": [
+        "Weaker APAC support vs HOOPS",
+        "Some native format versions lag"
+      ],
+      "industries": [
+        "模具",
+        "机械",
+        "汽车"
+      ],
+      "pricing": "high",
+      "confidence": 0.86,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.datakit.com/en/",
+          "title": "Datakit CrossCad/Ware",
+          "accessed": "2026-06"
+        }
+      ],
+      "international_benchmarks": [
+        "hoops-exchange"
+      ]
+    },
+    {
+      "id": "elysium-cadfix",
+      "name_zh": "Elysium CADfix",
+      "name_en": "Elysium CADfix",
+      "vendor_id": "elysium",
+      "category_l1": "研发设计",
+      "category_l2": "CAD互操作",
+      "origin": "international",
+      "kernel": "自主",
+      "maturity": "high",
+      "localization_depth": "pilot",
+      "strengths_zh": [
+        "CAE前处理几何修复与简化强项",
+        "支持多CAD到仿真网格桥接"
+      ],
+      "strengths_en": [
+        "Strong CAE prep geometry heal and simplify",
+        "Multi-CAD to simulation mesh bridge"
+      ],
+      "limitations_zh": [
+        "国内渠道与培训资源有限",
+        "批处理自动化需脚本经验"
+      ],
+      "limitations_en": [
+        "Limited China channel and training",
+        "Batch automation needs scripting"
+      ],
+      "industries": [
+        "汽车",
+        "航空航天",
+        "能源"
+      ],
+      "pricing": "high",
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.elysiuminc.com/products/cadfix/",
+          "title": "Elysium CADfix",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "iti-cadiq",
+      "name_zh": "ITI CADIQ",
+      "name_en": "ITI TranscenData CADIQ",
+      "vendor_id": "iti-transcendata",
+      "category_l1": "研发设计",
+      "category_l2": "CAD互操作",
+      "origin": "international",
+      "kernel": "自主",
+      "maturity": "high",
+      "localization_depth": "pilot",
+      "strengths_zh": [
+        "CAD模型质量检查与差异比对",
+        "供应链协同版本验证常用"
+      ],
+      "strengths_en": [
+        "CAD model quality check and diff",
+        "Common for supply-chain revision validation"
+      ],
+      "limitations_zh": [
+        "与国产CAD适配案例较少",
+        "订阅模式对中小企业偏高"
+      ],
+      "limitations_en": [
+        "Few domestic CAD adaptation cases",
+        "Subscription costly for SMEs"
+      ],
+      "industries": [
+        "汽车",
+        "航空航天",
+        "重工"
+      ],
+      "pricing": "high",
+      "confidence": 0.84,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.iti-global.com/products/cadiq/",
+          "title": "ITI TranscenData CADIQ",
+          "accessed": "2026-06"
+        }
+      ],
+      "international_benchmarks": [
+        "hoops-exchange"
+      ]
+    },
+    {
+      "id": "coretechnologie-3d-evolution",
+      "name_zh": "CT 3D_Evolution",
+      "name_en": "CoreTechnologie 3D_Evolution",
+      "vendor_id": "coretechnologie",
+      "category_l1": "研发设计",
+      "category_l2": "CAD互操作",
+      "origin": "international",
+      "kernel": "OEM·3D_Evolution",
+      "maturity": "high",
+      "localization_depth": "pilot",
+      "strengths_zh": [
+        "德国CAD转换与轻量化内核",
+        "JT/STEP批量转换性能优"
+      ],
+      "strengths_en": [
+        "German CAD conversion and lightweight kernel",
+        "Fast JT/STEP batch conversion"
+      ],
+      "limitations_zh": [
+        "在华独立品牌声量小于HOOPS/Datakit",
+        "高端曲面转换偶发容差问题"
+      ],
+      "limitations_en": [
+        "Lower China brand awareness vs HOOPS/Datakit",
+        "Occasional tolerance issues on advanced surfaces"
+      ],
+      "industries": [
+        "汽车",
+        "机械",
+        "模具"
+      ],
+      "pricing": "high",
+      "confidence": 0.82,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.coretechnologie.com/en/products/3d-evolution",
+          "title": "CoreTechnologie 3D_Evolution",
+          "accessed": "2026-06"
+        }
+      ],
+      "international_benchmarks": [
+        "datakit-crosscad"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,582 @@
+{
+  "milestones": [
+    {
+      "id": "supcon-jx100-dcs-1993",
+      "date": "1993-12",
+      "vendor_id": "supcon",
+      "product_ids": [
+        "supcon-supos"
+      ],
+      "category_l2": "DCS",
+      "headline_zh": "中控 JX-100 DCS 在巨化投运，打破外资流程控制垄断",
+      "headline_en": "SUPCON JX-100 DCS commissioned at Juhua — breaks foreign process-control monopoly",
+      "before_gap_zh": "1990年代前流程工业 DCS 由 Emerson/Yokogawa/Honeywell 主导，国产系统市占不足 30%，价格高昂",
+      "before_gap_en": "Before the 1990s, process DCS was Emerson/Yokogawa/Honeywell dominated with <30% domestic share and high import prices",
+      "achievement_zh": "推出国内首套 1:1 热冗余 DCS 架构；1993 年底 JX-100 在浙江巨化锦纶装置投运，实现冗余切换与连续控制，价格约为进口三分之一",
+      "achievement_en": "Shipped China's first 1:1 hot-standby DCS architecture; JX-100 commissioned at Juhua caprolactam unit late 1993 with redundant failover at ~one-third import price",
+      "still_missing_zh": "高端现场仪表、大型乙烯全套集成经验仍部分依赖进口；海外标杆项目少于欧美厂商",
+      "still_missing_en": "High-end field instruments and mega-ethylene integration partly imported; fewer overseas reference projects than US/EU vendors",
+      "metrics": [
+        {
+          "label_zh": "相对进口价格",
+          "label_en": "vs import price",
+          "value": "~33%",
+          "verified": true
+        }
+      ],
+      "evidence_level": "case_study",
+      "sources": [
+        {
+          "url": "https://paper.people.com.cn/zgjjzk/html/2020-12/15/content_2027478.htm",
+          "title": "中控技术发展史",
+          "accessed": "2026-06"
+        }
+      ],
+      "confidence": 0.9,
+      "related_policy_ids": []
+    },
+    {
+      "id": "caxa-eboard-97-1997",
+      "date": "1997-01",
+      "vendor_id": "caxa",
+      "category_l2": "CAD",
+      "headline_zh": "CAXA 发布国产二维 CAD「电子图板97」",
+      "headline_en": "CAXA ships domestic 2D CAD 'Electronic Drawing Board 97'",
+      "before_gap_zh": "1990年代国产二维 CAD 多为科研课题成果，缺少可规模商业化的机械行业 CAD 产品",
+      "before_gap_en": "1990s domestic 2D CAD was mostly research output without scalable commercial mechanical CAD products",
+      "achievement_zh": "北航雷毅团队发布自主二维 CAD「电子图板97」，具备参数化绘图、国标图框与机械图库，成为机械行业最早规模化商用的国产二维 CAD 之一",
+      "achievement_en": "Beihang team led by Lei Yi shipped Electronic Drawing Board 97 with parametric drafting, GB title blocks, and mechanical symbol libraries — among the earliest scaled domestic 2D MCAD products",
+      "still_missing_zh": "三维高端曲面、大型装配与自主几何内核仍落后国际 MCAD；PLM 深度弱于 Siemens Teamcenter",
+      "still_missing_en": "3D Class-A surfaces, large assemblies, owned geometry kernel still trail international MCAD; PLM depth trails Siemens Teamcenter",
+      "evidence_level": "media",
+      "sources": [
+        {
+          "url": "https://news.qq.com/rain/a/20210622A019U100",
+          "title": "CAXA 发展历程",
+          "accessed": "2026-06"
+        }
+      ],
+      "confidence": 0.84,
+      "related_policy_ids": [
+        "cad-application-program-1992"
+      ]
+    },
+    {
+      "id": "bochu-cypcut-2012",
+      "date": "2012-06",
+      "vendor_id": "bochu",
+      "product_ids": [
+        "bochu-cypcut"
+      ],
+      "category_l2": "CAM",
+      "headline_zh": "柏楚发布 FSCUT 激光切割控制系统与 CypCut 工艺软件",
+      "headline_en": "Bochu ships FSCUT laser motion-control stack and CypCut process software",
+      "before_gap_zh": "2012 年前平面激光切割运控由进口板卡与闭源工艺包主导，国产厂商缺少可量产的随动控制+排样+加工闭环方案",
+      "before_gap_en": "Before 2012, flat-bed laser motion control was import board + closed process stacks; no domestic vendor shipped production-grade follow-control, nesting, and machining loop",
+      "achievement_zh": "2012 年进入激光赛道后推出 FSCUT 系列板卡/总线数控系统、BCS100 电容调高器与 CypCut 激光切割软件，形成「控制卡+调高+工艺」一体化国产激光切割运控栈",
+      "achievement_en": "2012 laser pivot: FSCUT board/bus CNC, BCS100 capacitive height follower, and CypCut process software — first integrated domestic laser-cutting motion-control stack",
+      "still_missing_zh": "超高功率厚板五轴轨迹、三维激光切割仍部分依赖进口系统；海外直接收入占比低",
+      "still_missing_en": "Ultra-high-power thick plate and 3D laser paths partly import-dependent; low direct overseas revenue",
+      "evidence_level": "audited",
+      "sources": [
+        {
+          "url": "http://static.sse.com.cn/stock/disclosure/announcement/c/201907/000097_20190716_OI4K.pdf",
+          "title": "柏楚电子招股说明书",
+          "accessed": "2026-06"
+        }
+      ],
+      "confidence": 0.9,
+      "related_policy_ids": []
+    },
+    {
+      "id": "hoteam-crowncad-dgm-2020",
+      "date": "2020-04",
+      "vendor_id": "hoteam",
+      "product_ids": [
+        "crowncad"
+      ],
+      "category_l2": "CAD",
+      "headline_zh": "华天 CrownCAD 公测：国内首款自主云 CAD 几何栈（DGM+DCS）",
+      "headline_en": "Hoteam CrownCAD beta: first owned domestic cloud CAD geometry stack (DGM+DCS)",
+      "before_gap_zh": "国产三维 CAD 长期为桌面单机+第三方内核，缺少可在线协同、源代码可控的云原生 B-rep 建模与约束求解器",
+      "before_gap_en": "Domestic 3D CAD was desktop + third-party kernels with no source-controlled, cloud-native B-rep modeler and constraint solver for online collaboration",
+      "achievement_zh": "2020-04 CrownCAD 公测上线：基于自研 DGM 三维几何建模引擎与 DCS 约束求解器，浏览器端完成零件/装配/工程图建模与多人协同，适配国产芯片与操作系统",
+      "achievement_en": "2020-04 CrownCAD public beta: owned DGM B-rep engine + DCS constraint solver enable browser-based parts/assemblies/drawings and multi-user collaboration on domestic CPUs/OS",
+      "still_missing_zh": "插件生态、离线大型装配性能、企业级权限审计仍弱于 SolidWorks/Onshape 成熟客户群",
+      "still_missing_en": "Plugin ecosystem, offline large-assembly performance, enterprise governance still trail mature SolidWorks/Onshape bases",
+      "evidence_level": "case_study",
+      "sources": [
+        {
+          "url": "http://www.jhhg.net.cn/4371598/4390469.html",
+          "title": "CrownCAD DGM+DCS 自主云 CAD 发布",
+          "accessed": "2026-06"
+        },
+        {
+          "url": "https://qikan.cmes.org/jxgcxb/EN/PDF/10.3901/JME.2023.23.158",
+          "title": "机械工程学报：国产几何内核综述（DGM）",
+          "accessed": "2026-06"
+        }
+      ],
+      "confidence": 0.86,
+      "related_policy_ids": []
+    },
+    {
+      "id": "bambu-ams-studio-2022",
+      "date": "2022-11",
+      "vendor_id": "bambu-lab",
+      "product_ids": [
+        "bambu-studio"
+      ],
+      "category_l2": "切片软件",
+      "headline_zh": "拓竹 X1 + AMS 多色多材料系统与 Bambu Studio 一体化切片上线",
+      "headline_en": "Bambu X1 + AMS multi-material system ships with integrated Bambu Studio slicing",
+      "before_gap_zh": "消费级 FDM 多色换料依赖手动或简陋脚本，国产 slicer 在高速与多材料编排上缺乏标杆产品",
+      "before_gap_en": "Consumer FDM multi-color relied on manual swaps or crude scripts; no domestic slicer benchmark for speed and multi-material orchestration",
+      "achievement_zh": "X1 系列集成 AMS 四料槽自动换料与 RFID 耗材识别；Bambu Studio 原生编排多色/多材料 G-code、远程监控与运动学优化，形成闭环高速 3D 打印软件栈",
+      "achievement_en": "X1 integrates AMS 4-slot auto filament swap + RFID spool ID; Bambu Studio natively orchestrates multi-color/material G-code, remote monitoring, and kinematic optimization — closed high-speed 3D print software stack",
+      "still_missing_zh": "工业级 AM 数据准备（修复/排版/仿真）仍由 Magics/Netfabb 主导；Bambu 生态对第三方硬件依赖 Orca 社区分支",
+      "still_missing_en": "Industrial AM prep (repair/nesting/simulation) still led by Magics/Netfabb; Bambu ecosystem relies on Orca fork for third-party hardware",
+      "metrics": [
+        {
+          "label_zh": "AMS 料槽",
+          "label_en": "AMS slots",
+          "value": "4",
+          "verified": true
+        }
+      ],
+      "evidence_level": "vendor_claim",
+      "sources": [
+        {
+          "url": "https://bambulab.com/en/x1",
+          "title": "Bambu Lab X1 Series",
+          "accessed": "2026-06"
+        }
+      ],
+      "confidence": 0.88,
+      "related_policy_ids": []
+    },
+    {
+      "id": "empyrean-analog-foundry-2022",
+      "date": "2022-06",
+      "vendor_id": "empyrean",
+      "product_ids": [
+        "empyrean-alextool"
+      ],
+      "category_l2": "EDA",
+      "headline_zh": "华大九天模拟全流程工具链通过国内头部晶圆厂验证",
+      "headline_en": "Empyrean analog full-flow toolchain validated at leading China foundries",
+      "before_gap_zh": "模拟/混合信号设计长期由 Cadence Virtuoso 垄断，国产工具缺少可支撑量产流片的完整原理图–版图–验证闭环",
+      "before_gap_en": "Analog/mixed-signal design was Cadence Virtuoso territory; domestic tools lacked schematic–layout–verification loops for production tape-outs",
+      "achievement_zh": "Aether 原理图/版图与 ALPS 电路仿真等工具形成模拟全流程，年报披露已在多家国内头部晶圆厂完成工艺验证并进入客户量产项目",
+      "achievement_en": "Aether schematic/layout plus ALPS circuit simulation form a full analog flow; annual reports cite validation at multiple leading China foundries with production customer projects",
+      "still_missing_zh": "先进节点数字实现（P&R/签核）仍弱于国际三巨头；模拟 IP 生态与海外 EDA 仍有差距",
+      "still_missing_en": "Advanced-node digital implementation (P&R/signoff) still lags the big three; analog IP ecosystem gap vs global EDA",
+      "evidence_level": "audited",
+      "sources": [
+        {
+          "url": "http://static.cninfo.com.cn/finalpage/2025-04-28/1223320656.PDF",
+          "title": "华大九天2024年年度报告",
+          "accessed": "2026-06"
+        },
+        {
+          "url": "https://www.empyrean.com.cn/",
+          "title": "华大九天官网",
+          "accessed": "2026-06"
+        }
+      ],
+      "confidence": 0.86,
+      "related_policy_ids": []
+    },
+    {
+      "id": "empyrean-digital-28nm-2022",
+      "date": "2022-12",
+      "vendor_id": "empyrean",
+      "product_ids": [
+        "empyrean-digital"
+      ],
+      "category_l2": "EDA",
+      "headline_zh": "华大九天数字后端 Argus/Aether 通过 28nm 物理验证里程碑",
+      "headline_en": "Empyrean digital backend hits 28nm physical-verification milestone",
+      "before_gap_zh": "国产数字后端工具此前无法支撑 28nm 级 DRC/LVS 签核，先进数字流片必须采购 Innovus/ICC2",
+      "before_gap_en": "Domestic digital backends could not sign off 28nm DRC/LVS; advanced digital tape-outs required Innovus/ICC2",
+      "achievement_zh": "年报披露物理验证 Argus DRC/LVS 获 Samsung Foundry 28nm 认证，布局布线工具进入成熟工艺验证阶段",
+      "achievement_en": "Annual report: Argus DRC/LVS certified at Samsung Foundry 28nm; place-and-route entering mature-node validation",
+      "still_missing_zh": "7nm 以下 P&R 竞争力有限；客户仍以成熟工艺为主，先进节点市占可忽略",
+      "still_missing_en": "Weak below 7nm P&R; customer base mostly mature nodes with negligible advanced-node share",
+      "metrics": [
+        {
+          "label_zh": "物理验证节点",
+          "label_en": "PV node",
+          "value": "28nm",
+          "verified": true
+        }
+      ],
+      "evidence_level": "audited",
+      "sources": [
+        {
+          "url": "http://static.cninfo.com.cn/finalpage/2025-04-28/1223320656.PDF",
+          "title": "华大九天2024年年度报告",
+          "accessed": "2026-06"
+        }
+      ],
+      "confidence": 0.86,
+      "related_policy_ids": []
+    },
+    {
+      "id": "huawei-metaerp-2023",
+      "date": "2023-04",
+      "vendor_id": "huawei",
+      "product_ids": [
+        "huawei-metaerp"
+      ],
+      "category_l2": "ERP",
+      "headline_zh": "华为 MetaERP 替换 Oracle，覆盖 100% 业务场景",
+      "headline_en": "Huawei MetaERP replaces Oracle across 100% business scenarios",
+      "before_gap_zh": "集团级 ERP 高端市场由 SAP/Oracle 垄断，国产用友/金蝶难以支撑全球化多法人复杂核算",
+      "before_gap_en": "Tier-1 group ERP was SAP/Oracle turf; domestic Yonyou/Kingdee struggled with global multi-entity accounting complexity",
+      "achievement_zh": "2023-04-20 完成 MetaERP 全量切换：基于欧拉 OS + GaussDB 自研数据层重建财务/供应链/制造核心模块，月结/季结/年结零故障运行",
+      "achievement_en": "2023-04-20 full MetaERP cutover: rebuilt finance/supply-chain/manufacturing cores on Euler OS + GaussDB data layer; zero-fault month/quarter/year close",
+      "still_missing_zh": "外部行业复制仍处早期；复杂制造业 MES/PLM 深度集成不如 SAP S/4HANA 成熟生态",
+      "still_missing_en": "External industry replication still early; deep MES/PLM integration trails mature SAP S/4HANA ecosystem",
+      "metrics": [
+        {
+          "label_zh": "业务场景覆盖",
+          "label_en": "Scenario coverage",
+          "value": "100%",
+          "verified": true
+        }
+      ],
+      "evidence_level": "case_study",
+      "sources": [
+        {
+          "url": "https://www.huawei.com/cn/news/2023/4/metaerp-press-release",
+          "title": "华为 MetaERP 新闻稿",
+          "accessed": "2026-06"
+        }
+      ],
+      "confidence": 0.9,
+      "related_policy_ids": [
+        "miit-erp-xinchuang"
+      ]
+    },
+    {
+      "id": "primarius-sdep-samsung-2023",
+      "date": "2023-06",
+      "vendor_id": "primarius",
+      "product_ids": [
+        "primarius-device"
+      ],
+      "category_l2": "EDA",
+      "headline_zh": "概伦 SDEP 器件模型自动提取平台通过三星先进工艺认证",
+      "headline_en": "Primarius SDEP model-extraction platform certified on Samsung advanced nodes",
+      "before_gap_zh": "SPICE 模型交付高度依赖工程师经验，国产平台难以进入国际头部晶圆厂标准工具链",
+      "before_gap_en": "SPICE model delivery relied on senior engineers; few domestic platforms entered top foundry standard flows",
+      "achievement_zh": "三星代工厂采用 SDEP 自动提取平台，官方称模型提取效率提升 50%+，缩短 DTCO 迭代周期；BSIMProPlus 已用于 3nm 级工艺研发",
+      "achievement_en": "Samsung Foundry adopted SDEP with 50%+ extraction efficiency gains per vendor; BSIMProPlus used down to 3nm R&D",
+      "still_missing_zh": "全流程数字 EDA 仍缺位；制造类 EDA 收入规模远小于华大九天/国际巨头",
+      "still_missing_en": "No full digital EDA stack; manufacturing EDA revenue still far below Empyrean and global leaders",
+      "metrics": [
+        {
+          "label_zh": "提取效率提升",
+          "label_en": "Extraction speedup",
+          "value": "≥50%",
+          "verified": true
+        }
+      ],
+      "evidence_level": "vendor_claim",
+      "sources": [
+        {
+          "url": "https://www.primarius-tech.com/aboutus/news/san-xing-dai-gong-chang-cai-yong-gai-lun-dian-zi-SDEP-suo-duan-SPICE-mo-xing-kai-fa-shi-jian.html",
+          "title": "三星代工厂采用概伦 SDEP",
+          "accessed": "2026-06"
+        }
+      ],
+      "confidence": 0.85,
+      "related_policy_ids": []
+    },
+    {
+      "id": "zwcad-overdrive-2024",
+      "date": "2024-03",
+      "vendor_id": "zwcad",
+      "product_ids": [
+        "zwcad"
+      ],
+      "category_l2": "CAD",
+      "headline_zh": "中望发布 Overdrive 几何内核与 ZGS 约束求解器",
+      "headline_en": "ZWSOFT ships Overdrive kernel and ZGS constraint solver",
+      "before_gap_zh": "多数国产三维 CAD 租赁第三方内核（ACIS/Parasolid），源代码不可控，高端装备领域存在断供风险",
+      "before_gap_en": "Most domestic 3D CAD leased third-party kernels (ACIS/Parasolid) without source control — supply-cut risk in high-end equipment",
+      "achievement_zh": "正式发布自主 Overdrive B-rep 几何内核、ZGS 三维约束求解器与 IPX 参数化引擎；Linux 信创版覆盖龙芯/鲲鹏/飞腾，实现源代码级可控的三维 MCAD 底座",
+      "achievement_en": "GA release of owned Overdrive B-rep kernel, ZGS 3D constraint solver, and IPX parametric engine; Linux builds on Loongson/Kunpeng/Phytium — source-level controlled 3D MCAD foundation",
+      "still_missing_zh": "大型装配、曲面 A 级质量、与 PLM/MBD 深度集成仍落后 CATIA/NX；海外高端客户渗透有限",
+      "still_missing_en": "Large assemblies, Class-A surfaces, deep PLM/MBD integration still trail CATIA/NX; limited penetration with overseas tier-1 OEMs",
+      "metrics": [
+        {
+          "label_zh": "内核自主",
+          "label_en": "Kernel ownership",
+          "value": "100% source",
+          "verified": true
+        }
+      ],
+      "evidence_level": "vendor_claim",
+      "sources": [
+        {
+          "url": "https://www.zwsoft.cn/news/16-13855.html",
+          "title": "中望软件2024年度产品发布会",
+          "accessed": "2026-06"
+        }
+      ],
+      "confidence": 0.84,
+      "related_policy_ids": [
+        "miit-xinchuang-cad"
+      ]
+    },
+    {
+      "id": "gstarcad-linux-2024",
+      "date": "2024-04",
+      "vendor_id": "gstarcad",
+      "product_ids": [
+        "gstarcad"
+      ],
+      "category_l2": "CAD",
+      "headline_zh": "浩辰 CAD Linux 版完成主流国产 OS/芯片全适配",
+      "headline_en": "GstarCAD Linux completes mainstream domestic OS/CPU ports",
+      "before_gap_zh": "信创场景缺少可编辑 DWG 的纯国产 Linux CAD，用户只能运行 Windows 虚拟机",
+      "before_gap_en": "IT-innovation stacks lacked native Linux DWG CAD — users ran Windows VMs",
+      "achievement_zh": "浩辰发布 Linux 版 CAD，完成统信 UOS/麒麟 OS 与龙芯/飞腾/鲲鹏 CPU 组合适配，支持 DWG 原生编辑、OFD 国标加密与二次开发 API",
+      "achievement_en": "GstarCAD Linux ports to UOS/Kylin on Loongson/Phytium/Kunpeng with native DWG editing, OFD encryption, and extension APIs",
+      "still_missing_zh": "三维装配、钣金展开、CAM 集成弱于中望/SolidWorks；大企业 PLM 集成案例少",
+      "still_missing_en": "3D assembly, sheet-metal, CAM integration trail ZWSOFT/SolidWorks; few enterprise PLM integrations",
+      "metrics": [],
+      "evidence_level": "vendor_claim",
+      "sources": [
+        {
+          "url": "https://www.gstarcad.com/",
+          "title": "浩辰软件官网",
+          "accessed": "2026-06"
+        }
+      ],
+      "confidence": 0.76,
+      "related_policy_ids": [
+        "miit-xinchuang-cad"
+      ]
+    },
+    {
+      "id": "glodon-ggp-s-grade-2024",
+      "date": "2024-06",
+      "vendor_id": "glodon",
+      "product_ids": [
+        "glodon-bim"
+      ],
+      "category_l2": "BIM",
+      "headline_zh": "广联达 GGP/GSolid 图形平台获信通院自主可控测评 S 级",
+      "headline_en": "Glodon GGP/GSolid graphics platform earns CAICT self-reliance grade S",
+      "before_gap_zh": "建筑 BIM 底层几何/渲染长期依赖国外引擎授权，信创场景无法做到内核级自主",
+      "before_gap_en": "Building BIM relied on licensed foreign geometry/render engines — no kernel-level autonomy for IT-innovation deployments",
+      "achievement_zh": "GGP 图形平台历经 20+ 年研发，几何建模/渲染/参数化/约束求解全栈自主，通过信通院泰尔测评 S 级；适配鸿蒙/麒麟/统信，支撑 BIM 正向设计与造价算量",
+      "achievement_en": "20+ years on GGP with owned geometry, rendering, parametric, and constraint stack; CAICT grade S; HarmonyOS/Kylin/UOS ports for BIM authoring and quantity takeoff",
+      "still_missing_zh": "超大型基建多专业实时协同、国际 IFC 互操作深度、复杂幕墙 Class-A 曲面仍弱于 Revit+Bentley 组合",
+      "still_missing_en": "Mega-infrastructure multi-discipline realtime collab, deep IFC interoperability, complex facade Class-A surfaces still trail Revit+Bentley stacks",
+      "metrics": [
+        {
+          "label_zh": "泰尔测评等级",
+          "label_en": "CAICT grade",
+          "value": "S",
+          "verified": true
+        }
+      ],
+      "evidence_level": "case_study",
+      "sources": [
+        {
+          "url": "https://zfcj.gz.gov.cn/attachment/7/7943/7943479/10589336.pdf",
+          "title": "广州市自主可控应用与发展白皮书",
+          "accessed": "2026-06"
+        }
+      ],
+      "confidence": 0.87,
+      "related_policy_ids": []
+    },
+    {
+      "id": "supcon-tpt-launch-2024",
+      "date": "2024-06",
+      "vendor_id": "supcon",
+      "product_ids": [
+        "supcon-supos"
+      ],
+      "category_l2": "DCS",
+      "headline_zh": "中控发布流程工业时序大模型 TPT，落地百余套装置",
+      "headline_en": "SUPCON launches process-industry time-series model TPT on 100+ units",
+      "before_gap_zh": "流程工业优化依赖人工经验+碎片化 APC 模型，缺少跨装置、跨工况的统一 AI 时序基座",
+      "before_gap_en": "Process optimization relied on expert rules and fragmented APC models — no cross-unit time-series AI foundation",
+      "achievement_zh": "发布流程工业时序大模型 TPT（Time-series Pre-trained Transformer），在氯碱/热电/石化等装置完成闭环优化验证；镇海炼化油品切换由 6–7h 缩至 2h 内",
+      "achievement_en": "Shipped process-industry time-series foundation model TPT (Time-series Pre-trained Transformer) with closed-loop validation in chlor-alkali/thermal/petrochemical units; Zhenhai refinery product switch cut from 6–7h to under 2h",
+      "still_missing_zh": "TPT 2 仍处商业早期；开源 LLM 无法直接替代 OT 级闭环控制的安全认证与确定性",
+      "still_missing_en": "TPT 2 still early commercial; open LLMs cannot replace OT-grade closed-loop safety certification and determinism",
+      "metrics": [
+        {
+          "label_zh": "落地项目数",
+          "label_en": "Deployments",
+          "value": "100+",
+          "verified": true
+        }
+      ],
+      "evidence_level": "vendor_claim",
+      "sources": [
+        {
+          "url": "https://news.ca168.com/202406/132632.html",
+          "title": "中控 TPT 重磅发布",
+          "accessed": "2026-06"
+        }
+      ],
+      "confidence": 0.82,
+      "related_policy_ids": []
+    },
+    {
+      "id": "huazhong-cnc-9-ai-2024",
+      "date": "2024-06",
+      "vendor_id": "huazhong",
+      "product_ids": [
+        "huazhong-cnc"
+      ],
+      "category_l2": "CNC",
+      "headline_zh": "华中 9 型智能数控系统实现 AI 芯片融合，加工精度提升 10–20%",
+      "headline_en": "Huazhong CNC-9 with on-board AI improves machining precision 10–20%",
+      "before_gap_zh": "高档五轴数控系统长期被西门子 840D、发那科 30i 垄断，国产系统市占不足 10%",
+      "before_gap_en": "High-end 5-axis CNC was Siemens 840D / Fanuc 30i dominated; domestic share under ~10%",
+      "achievement_zh": "华中 9 型数控系统集成国产 AI 芯片，在涡旋压缩机零件五轴加工中较国外系统精度提升 10–20%，已配套十余类千台五轴机床",
+      "achievement_en": "CNC-9 integrates domestic AI accelerator; scroll-compressor 5-axis parts 10–20% more precise vs foreign systems; deployed on 1000+ machines across 10+ machine classes",
+      "still_missing_zh": "航空发动机叶片级可靠性累计运行小时、全球 OEM 认证仍落后；数控系统出口规模有限",
+      "still_missing_en": "Aero-engine blade reliability hours and global OEM qualifications still lag; limited CNC export scale",
+      "metrics": [
+        {
+          "label_zh": "精度提升",
+          "label_en": "Precision gain",
+          "value": "10–20%",
+          "verified": true
+        }
+      ],
+      "evidence_level": "case_study",
+      "sources": [
+        {
+          "url": "http://www.moe.gov.cn/jyb_xwfb/moe_2082/2024/2024_zl10/202406/t20240624_1137458.html",
+          "title": "华中9型智能数控系统",
+          "accessed": "2026-06"
+        }
+      ],
+      "confidence": 0.83,
+      "related_policy_ids": [
+        "miit-cnc-substitution"
+      ]
+    },
+    {
+      "id": "empyrean-alps-4nm-2024",
+      "date": "2024-08",
+      "vendor_id": "empyrean",
+      "product_ids": [
+        "empyrean-alextool"
+      ],
+      "category_l2": "EDA",
+      "headline_zh": "华大九天 ALPS 电路仿真获三星晶圆代工 4nm 工艺认证",
+      "headline_en": "Empyrean ALPS SPICE simulator certified on Samsung Foundry 4nm",
+      "before_gap_zh": "国产晶体管级电路仿真工具此前最高仅通过 5nm 认证，4nm 先进节点仍依赖 Synopsys/Cadence 生态",
+      "before_gap_en": "Domestic transistor-level SPICE tools had topped out at 5nm certification; 4nm nodes still relied on Synopsys/Cadence stacks",
+      "achievement_zh": "2024 半年报披露 ALPS 继 8nm、5nm 后获 Samsung Foundry 4nm 工艺认证，并获 ISO 26262 TCL3 / IEC 61508 T2，可支撑 ASIL-D 车规芯片设计",
+      "achievement_en": "2024 interim report: ALPS certified at Samsung Foundry 4nm after 8nm/5nm, plus ISO 26262 TCL3 / IEC 61508 T2 for ASIL-D automotive flows",
+      "still_missing_zh": "数字实现（布局布线/签核）仍弱于国际三巨头；国内先进节点量产流片仍以进口 EDA 为主",
+      "still_missing_en": "Digital implementation (P&R/signoff) still lags the big three; domestic advanced-node tape-outs still run mostly on imported EDA",
+      "metrics": [
+        {
+          "label_zh": "工艺节点认证",
+          "label_en": "Node certification",
+          "value": "4nm",
+          "verified": true
+        },
+        {
+          "label_zh": "车规功能安全",
+          "label_en": "Automotive safety",
+          "value": "ASIL-D capable",
+          "verified": true
+        }
+      ],
+      "evidence_level": "audited",
+      "sources": [
+        {
+          "url": "https://disc.static.szse.cn/disc/disk03/finalpage/2024-08-08/d9808280-8e82-4bda-9cc0-182011f4c4f3.PDF",
+          "title": "华大九天2024年半年度报告",
+          "accessed": "2026-06"
+        }
+      ],
+      "confidence": 0.92,
+      "related_policy_ids": []
+    },
+    {
+      "id": "empyrean-argus-3dic-2025",
+      "date": "2025-05",
+      "vendor_id": "empyrean",
+      "product_ids": [
+        "empyrean-digital"
+      ],
+      "category_l2": "EDA",
+      "headline_zh": "华大九天发布 Argus 3DIC 物理验证平台，覆盖 Chiplet/2.5D/3D 全流程",
+      "headline_en": "Empyrean ships Argus 3DIC PV platform for chiplet / 2.5D / 3D flows",
+      "before_gap_zh": "异构集成三维芯片协同设计到 Signoff 长期由 Calibre 等进口工具垄断，国产 EDA 无全流程方案",
+      "before_gap_en": "Heterogeneous 3DIC co-design-to-signoff was Calibre-led; no domestic full-flow EDA equivalent",
+      "achievement_zh": "发布 Argus 3DIC 物理验证平台，覆盖异构集成三维芯片从协同设计到 Signoff 的 DRC/LVS 流程；3D 数据编织技术将验证周期从约 2 周缩至 1–2 天（厂商披露）",
+      "achievement_en": "Shipped Argus 3DIC PV covering heterogeneous 3DIC co-design-to-signoff DRC/LVS; 3D data-weaving cuts cycle from ~2 weeks to 1–2 days per vendor",
+      "still_missing_zh": "竞争声明需客户量产流片验证；数字实现全流程仍弱于 Synopsys/Cadence",
+      "still_missing_en": "Competitive claims need customer tape-out validation; full digital implementation still trails Synopsys/Cadence",
+      "metrics": [
+        {
+          "label_zh": "验证周期",
+          "label_en": "PV cycle",
+          "value": "1–2 days",
+          "verified": false
+        }
+      ],
+      "evidence_level": "vendor_claim",
+      "sources": [
+        {
+          "url": "https://finance.sina.com.cn/roll/2026-05-26/doc-inhzfmyq1461474.shtml",
+          "title": "华大九天 Argus 3DIC",
+          "accessed": "2026-06"
+        }
+      ],
+      "confidence": 0.85,
+      "related_policy_ids": []
+    },
+    {
+      "id": "caxa-mega-kernel-2026",
+      "date": "2026-03",
+      "vendor_id": "caxa",
+      "category_l2": "CAD",
+      "headline_zh": "数码大方发布 MEGA Kernel 自主 CAD 几何引擎",
+      "headline_en": "CAXA ships MEGA Kernel owned CAD geometry engine",
+      "before_gap_zh": "国产 CAD 厂商长期租赁第三方内核，源代码不可控，高端装备领域存在断供风险",
+      "before_gap_en": "Domestic CAD vendors leased third-party kernels without source control — supply-cut risk in high-end equipment",
+      "achievement_zh": "2026-03-30 发布新一代 MEGA Kernel：支持多几何表达（B-rep/NURBS/网格）与工程级精度约束，作为 CAXA 三维 CAD/PLM 统一几何底座；同步开放 PLM 平台 1000+ API",
+      "achievement_en": "2026-03-30 GA of MEGA Kernel with multi-representation geometry (B-rep/NURBS/mesh) and engineering-grade precision constraints as unified CAXA 3D CAD/PLM foundation; open PLM platform with 1000+ APIs",
+      "still_missing_zh": "大型装配性能、国际 OEM 认证案例仍少于 Siemens NX/CATIA",
+      "still_missing_en": "Large-assembly performance and international OEM qualifications still trail Siemens NX/CATIA",
+      "metrics": [
+        {
+          "label_zh": "几何表达",
+          "label_en": "Geometry reps",
+          "value": "B-rep/NURBS/mesh",
+          "verified": true
+        }
+      ],
+      "evidence_level": "media",
+      "sources": [
+        {
+          "url": "http://ex.chinadaily.com.cn/exchange/partners/82/rss/channel/cn/columns/sz8srm/stories/WS69cb6ec6a310942cc49a5ca7.html",
+          "title": "CAXA 2027 发布会",
+          "accessed": "2026-06"
+        }
+      ],
+      "confidence": 0.88,
+      "related_policy_ids": [
+        "t-cie-311-cad-security-2025"
+      ]
+    }
+  ]
+}

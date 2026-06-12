@@ -3,18 +3,25 @@ Chat.md
 __pycache__/
 *.pyc
 
-# china-housing: local research / audit batches (not for public repo)
-demos/china-housing/data/research/
+# Node.js — per-demo Tailwind/tooling installs (built CSS is committed under assets/css/)
+demos/*/node_modules/
+demos/*/package-lock.json
+
+# Python virtualenv (china-housing pm25 tooling, etc.)
+.venv/
 
 # SQLite WAL mode sidecars (runtime only; never commit)
 *.db-shm
 *.db-wal
 
-# china-housing: ChinaHighPM2.5 NetCDF/RAR source data (~261MB; local build-time
-# input for tools/pm25.py — GitHub blocks >100MB files; never commit)
+# --- china-housing ---
+# Local research / audit batches (not for public repo)
+demos/china-housing/data/research/
+# ChinaHighPM2.5 NetCDF/RAR source (~261MB; GitHub blocks >100MB)
 demos/china-housing/data/chinahighpm25/
-# pm25 tooling venv (netCDF4 optional dep — see tools/requirements-pm25.txt)
-.venv/
-# Resumable climate-daily refresh checkpoint (overnight ERA5 backfill cache)
+# Resumable climate-daily refresh checkpoint
 demos/china-housing/data/.climate_daily_ext.json
+
+# --- Local audit / agent scratch (not for public repo) ---
 demos/wfoe-china/tmp/
+demos/china-industrial-software/tmp/

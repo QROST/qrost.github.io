@@ -1,0 +1,1402 @@
+{
+  "category": "bim-gis",
+  "products": [
+    {
+      "id": "glodon-bim",
+      "name_zh": "广联达BIM",
+      "name_en": "Glodon BIM",
+      "vendor_id": "glodon",
+      "category_l1": "研发设计",
+      "category_l2": "BIM",
+      "origin": "domestic",
+      "kernel": "自主",
+      "maturity": "high",
+      "localization_depth": "partial",
+      "strengths_zh": [
+        "造价与施工BIM龙头",
+        "数字造价云平台"
+      ],
+      "strengths_en": [
+        "Leading cost and construction BIM",
+        "Digital cost cloud"
+      ],
+      "limitations_zh": [
+        "设计端弱于Revit",
+        "国际化仍在早期"
+      ],
+      "limitations_en": [
+        "Weaker design vs Revit",
+        "Early internationalization"
+      ],
+      "industries": [
+        "建筑",
+        "基建",
+        "房地产"
+      ],
+      "pricing": "mid",
+      "confidence": 0.9,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.glodon.com/",
+          "title": "Glodon BIM",
+          "accessed": "2026-06"
+        }
+      ],
+      "international_benchmarks": [
+        "revit"
+      ],
+      "listed_ticker": "002410.SZ",
+      "product_type": "bim"
+    },
+    {
+      "id": "supermap-gis",
+      "name_zh": "超图GIS",
+      "name_en": "SuperMap GIS",
+      "vendor_id": "supermap",
+      "category_l1": "研发设计",
+      "category_l2": "GIS",
+      "origin": "domestic",
+      "kernel": "自主",
+      "maturity": "high",
+      "localization_depth": "partial",
+      "strengths_zh": [
+        "国产GIS基础平台龙头",
+        "二三维一体化"
+      ],
+      "strengths_en": [
+        "Leading domestic GIS platform",
+        "2D/3D integration"
+      ],
+      "limitations_zh": [
+        "全球生态弱于Esri",
+        "高端空间分析案例参差"
+      ],
+      "limitations_en": [
+        "Weaker global ecosystem than Esri",
+        "Variable advanced spatial analytics"
+      ],
+      "industries": [
+        "国土",
+        "智慧城市",
+        "交通"
+      ],
+      "pricing": "mid",
+      "confidence": 0.88,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.supermap.com/",
+          "title": "SuperMap GIS",
+          "accessed": "2026-06"
+        }
+      ],
+      "international_benchmarks": [
+        "arcgis"
+      ],
+      "listed_ticker": "300036.SZ",
+      "taxonomy_note_zh": "P3归并：工信部四类→研发设计（原基础平台，AEC/GIS设计工具）",
+      "taxonomy_note_en": "P3 remap: MIIT quad → 研发设计 (was 基础平台, AEC/GIS design)",
+      "product_type": "gis"
+    },
+    {
+      "id": "luban-bim",
+      "name_zh": "鲁班工程管理",
+      "name_en": "Luban BIM",
+      "vendor_id": "luban",
+      "category_l1": "研发设计",
+      "category_l2": "BIM",
+      "origin": "domestic",
+      "kernel": "自主",
+      "maturity": "mid",
+      "localization_depth": "partial",
+      "strengths_zh": [
+        "施工阶段BIM深化",
+        "钢筋算量优势"
+      ],
+      "strengths_en": [
+        "Construction-phase BIM",
+        "Rebar quantity strength"
+      ],
+      "limitations_zh": [
+        "设计协同弱",
+        "市占受广联达挤压"
+      ],
+      "limitations_en": [
+        "Weak design collaboration",
+        "Share squeezed by Glodon"
+      ],
+      "industries": [
+        "施工",
+        "基建"
+      ],
+      "pricing": "mid",
+      "confidence": 0.8,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "http://www.lubansoft.com/",
+          "title": "Luban BIM",
+          "accessed": "2026-06"
+        }
+      ],
+      "product_type": "bim"
+    },
+    {
+      "id": "pinming-bim",
+      "name_zh": "品茗BIM",
+      "name_en": "Pinming BIM",
+      "vendor_id": "pinming",
+      "category_l1": "研发设计",
+      "category_l2": "BIM",
+      "origin": "domestic",
+      "kernel": "自主",
+      "maturity": "mid",
+      "localization_depth": "partial",
+      "strengths_zh": [
+        "施工安全与物联网",
+        "华东建筑市场强"
+      ],
+      "strengths_en": [
+        "Construction safety and IoT",
+        "Strong East China construction"
+      ],
+      "limitations_zh": [
+        "全国化仍在推进",
+        "与国际标准对接中"
+      ],
+      "limitations_en": [
+        "National expansion ongoing",
+        "International standards alignment"
+      ],
+      "industries": [
+        "施工",
+        "建筑"
+      ],
+      "pricing": "mid",
+      "confidence": 0.78,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.pinming.cn/",
+          "title": "Pinming BIM",
+          "accessed": "2026-06"
+        }
+      ],
+      "listed_ticker": "688109.SH",
+      "product_type": "bim"
+    },
+    {
+      "id": "revit",
+      "name_zh": "Autodesk Revit",
+      "name_en": "Autodesk Revit",
+      "vendor_id": "autodesk",
+      "category_l1": "研发设计",
+      "category_l2": "BIM",
+      "origin": "international",
+      "kernel": "自主",
+      "maturity": "mission_critical",
+      "localization_depth": "core",
+      "strengths_zh": [
+        "建筑信息建模事实标准",
+        "与中国设计院广泛使用"
+      ],
+      "strengths_en": [
+        "BIM de-facto standard",
+        "Widely used by China design institutes"
+      ],
+      "limitations_zh": [
+        "订阅成本高",
+        "大模型协作弱于新兴云BIM"
+      ],
+      "limitations_en": [
+        "High subscription",
+        "Weaker large-model collab vs new cloud BIM"
+      ],
+      "industries": [
+        "建筑",
+        "结构",
+        "MEP"
+      ],
+      "pricing": "high",
+      "confidence": 0.93,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.autodesk.com/products/revit",
+          "title": "Autodesk Revit",
+          "accessed": "2026-06"
+        }
+      ],
+      "product_type": "bim"
+    },
+    {
+      "id": "microstation",
+      "name_zh": "Bentley MicroStation",
+      "name_en": "Bentley MicroStation",
+      "vendor_id": "bentley",
+      "category_l1": "研发设计",
+      "category_l2": "BIM",
+      "origin": "international",
+      "kernel": "自主",
+      "maturity": "high",
+      "localization_depth": "partial",
+      "strengths_zh": [
+        "基础设施BIM强项",
+        "线性工程与数字孪生"
+      ],
+      "strengths_en": [
+        "Infrastructure BIM strength",
+        "Linear engineering and digital twin"
+      ],
+      "limitations_zh": [
+        "房建市场弱于Revit",
+        "学习资源相对少"
+      ],
+      "limitations_en": [
+        "Weaker building vs Revit",
+        "Fewer learning resources"
+      ],
+      "industries": [
+        "交通",
+        "市政",
+        "能源基建"
+      ],
+      "pricing": "high",
+      "confidence": 0.88,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.bentley.com/",
+          "title": "Bentley MicroStation",
+          "accessed": "2026-06"
+        }
+      ],
+      "product_type": "bim"
+    },
+    {
+      "id": "archicad",
+      "name_zh": "Graphisoft ArchiCAD",
+      "name_en": "Graphisoft ArchiCAD",
+      "vendor_id": "graphisoft",
+      "category_l1": "研发设计",
+      "category_l2": "BIM",
+      "origin": "international",
+      "kernel": "自主",
+      "maturity": "high",
+      "localization_depth": "partial",
+      "strengths_zh": [
+        "建筑师友好BIM",
+        "OPEN BIM互操作"
+      ],
+      "strengths_en": [
+        "Architect-friendly BIM",
+        "OPEN BIM interoperability"
+      ],
+      "limitations_zh": [
+        "国内市占低于Revit",
+        "施工阶段工具链弱"
+      ],
+      "limitations_en": [
+        "Lower China share than Revit",
+        "Weaker construction toolchain"
+      ],
+      "industries": [
+        "建筑",
+        "室内设计"
+      ],
+      "pricing": "high",
+      "confidence": 0.86,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://graphisoft.com/solutions/archicad",
+          "title": "Graphisoft ArchiCAD",
+          "accessed": "2026-06"
+        }
+      ],
+      "product_type": "bim"
+    },
+    {
+      "id": "arcgis",
+      "name_zh": "Esri ArcGIS",
+      "name_en": "Esri ArcGIS",
+      "vendor_id": "esri",
+      "category_l1": "研发设计",
+      "category_l2": "GIS",
+      "origin": "international",
+      "kernel": "自主",
+      "maturity": "mission_critical",
+      "localization_depth": "core",
+      "strengths_zh": [
+        "全球GIS平台标杆",
+        "空间分析与生态完善"
+      ],
+      "strengths_en": [
+        "Global GIS platform benchmark",
+        "Rich spatial analytics ecosystem"
+      ],
+      "limitations_zh": [
+        "国产化替代政策压力",
+        "高级模块授权昂贵"
+      ],
+      "limitations_en": [
+        "Localization policy pressure",
+        "Expensive advanced modules"
+      ],
+      "industries": [
+        "政府",
+        "公用事业",
+        "交通"
+      ],
+      "pricing": "high",
+      "confidence": 0.91,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.esri.com/",
+          "title": "Esri ArcGIS",
+          "accessed": "2026-06"
+        }
+      ],
+      "taxonomy_note_zh": "P3归并：工信部四类→研发设计（原基础平台，AEC/GIS设计工具）",
+      "taxonomy_note_en": "P3 remap: MIIT quad → 研发设计 (was 基础平台, AEC/GIS design)",
+      "product_type": "gis"
+    },
+    {
+      "id": "feidu-dt",
+      "name_zh": "飞渡科技数字孪生",
+      "name_en": "Feidu Digital Twin",
+      "vendor_id": "feidu",
+      "category_l1": "研发设计",
+      "category_l2": "GIS",
+      "origin": "domestic",
+      "kernel": "自主",
+      "maturity": "mid",
+      "localization_depth": "pilot",
+      "strengths_zh": [
+        "城市与园区数字孪生（虚实映射能力）",
+        "国产三维 GIS 引擎"
+      ],
+      "strengths_en": [
+        "City/campus digital twin (physical-virtual mapping)",
+        "Domestic 3D GIS engine"
+      ],
+      "limitations_zh": [
+        "产品标准化程度低",
+        "依赖项目交付"
+      ],
+      "limitations_en": [
+        "Low product standardization",
+        "Project delivery heavy"
+      ],
+      "industries": [
+        "智慧城市",
+        "园区"
+      ],
+      "pricing": "mid",
+      "confidence": 0.76,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.feidutech.com/",
+          "title": "Feidu Digital Twin",
+          "accessed": "2026-06"
+        }
+      ],
+      "taxonomy_note_zh": "P3归并：工信部四类→研发设计（原基础平台，AEC/GIS设计工具）",
+      "taxonomy_note_en": "P3 remap: MIIT quad → 研发设计 (was 基础平台, AEC/GIS design)",
+      "product_type": "gis",
+      "tags": [
+        "digital_twin"
+      ]
+    },
+    {
+      "id": "southsurvey-gis",
+      "name_zh": "南方数码GIS",
+      "name_en": "South Survey GIS",
+      "vendor_id": "south",
+      "category_l1": "研发设计",
+      "category_l2": "GIS",
+      "origin": "domestic",
+      "kernel": "自主",
+      "maturity": "mid",
+      "localization_depth": "partial",
+      "strengths_zh": [
+        "测绘地理信息",
+        "国土调查传统优势"
+      ],
+      "strengths_en": [
+        "Surveying and geoinformatics",
+        "Land survey heritage"
+      ],
+      "limitations_zh": [
+        "平台化弱于超图",
+        "软件营收占比提升中"
+      ],
+      "limitations_en": [
+        "Less platform than SuperMap",
+        "Growing software revenue mix"
+      ],
+      "industries": [
+        "测绘",
+        "国土",
+        "水利"
+      ],
+      "pricing": "mid",
+      "confidence": 0.78,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.southgis.com/",
+          "title": "South Survey GIS",
+          "accessed": "2026-06"
+        }
+      ],
+      "taxonomy_note_zh": "P3归并：工信部四类→研发设计（原基础平台，AEC/GIS设计工具）",
+      "taxonomy_note_en": "P3 remap: MIIT quad → 研发设计 (was 基础平台, AEC/GIS design)",
+      "product_type": "gis"
+    },
+    {
+      "id": "sunway-bim",
+      "name_zh": "山维BIM",
+      "name_en": "Sunway BIM",
+      "vendor_id": "sunway",
+      "category_l1": "研发设计",
+      "category_l2": "BIM",
+      "origin": "domestic",
+      "kernel": "自主",
+      "maturity": "mid",
+      "localization_depth": "pilot",
+      "strengths_zh": [
+        "城市规划BIM",
+        "三维城市建模"
+      ],
+      "strengths_en": [
+        "Urban planning BIM",
+        "3D city modeling"
+      ],
+      "limitations_zh": [
+        "全国知名度有限",
+        "施工链条未覆盖"
+      ],
+      "limitations_en": [
+        "Limited national fame",
+        "No construction chain coverage"
+      ],
+      "industries": [
+        "规划",
+        "市政"
+      ],
+      "pricing": "mid",
+      "confidence": 0.72,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "http://www.sunwaysoft.com/",
+          "title": "Sunway BIM",
+          "accessed": "2026-06"
+        }
+      ],
+      "product_type": "bim"
+    },
+    {
+      "id": "cscec-digital",
+      "name_zh": "中建数字建造",
+      "name_en": "CSCEC Digital Construction",
+      "vendor_id": "cscec",
+      "category_l1": "研发设计",
+      "category_l2": "BIM",
+      "origin": "domestic",
+      "kernel": "自主",
+      "maturity": "high",
+      "localization_depth": "partial",
+      "strengths_zh": [
+        "最大承包商数字化实践",
+        "项目级BIM标准输出"
+      ],
+      "strengths_en": [
+        "Largest contractor digital practice",
+        "Project BIM standards export"
+      ],
+      "limitations_zh": [
+        "产品对外商业化有限",
+        "依赖中建体系"
+      ],
+      "limitations_en": [
+        "Limited external productization",
+        "CSCEC ecosystem dependent"
+      ],
+      "industries": [
+        "建筑",
+        "基建"
+      ],
+      "pricing": "quote",
+      "confidence": 0.8,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.cscec.com/",
+          "title": "CSCEC Digital Construction",
+          "accessed": "2026-06"
+        }
+      ],
+      "product_type": "bim"
+    },
+    {
+      "id": "zwsoft-bim",
+      "name_zh": "中望BIM",
+      "name_en": "ZWSOFT BIM",
+      "vendor_id": "zwcad",
+      "category_l1": "研发设计",
+      "category_l2": "BIM",
+      "origin": "domestic",
+      "kernel": "自主",
+      "maturity": "mid",
+      "localization_depth": "pilot",
+      "strengths_zh": [
+        "国产BIM设计尝试",
+        "与中望CAD协同"
+      ],
+      "strengths_en": [
+        "Domestic BIM design attempt",
+        "Synergy with ZWCAD"
+      ],
+      "limitations_zh": [
+        "功能深度远小于Revit",
+        "市场导入早期"
+      ],
+      "limitations_en": [
+        "Far shallower than Revit",
+        "Early market entry"
+      ],
+      "industries": [
+        "建筑",
+        "结构"
+      ],
+      "pricing": "mid",
+      "confidence": 0.75,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.zwsoft.cn/",
+          "title": "ZWSOFT BIM",
+          "accessed": "2026-06"
+        }
+      ],
+      "product_type": "bim"
+    },
+    {
+      "id": "mapbox-cn",
+      "name_zh": "Mapbox GL",
+      "name_en": "Mapbox GL",
+      "vendor_id": "mapbox",
+      "category_l1": "研发设计",
+      "category_l2": "GIS",
+      "origin": "international",
+      "kernel": "自主",
+      "maturity": "high",
+      "localization_depth": "partial",
+      "strengths_zh": [
+        "Web地图可视化",
+        "开发者生态活跃"
+      ],
+      "strengths_en": [
+        "Web map visualization",
+        "Active developer ecosystem"
+      ],
+      "limitations_zh": [
+        "国内合规与底图限制",
+        "政企项目常需国产底图"
+      ],
+      "limitations_en": [
+        "China compliance and basemap limits",
+        "Gov projects need domestic basemaps"
+      ],
+      "industries": [
+        "互联网",
+        "物流",
+        "LBS"
+      ],
+      "pricing": "mid",
+      "confidence": 0.84,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.mapbox.com/",
+          "title": "Mapbox GL",
+          "accessed": "2026-06"
+        }
+      ],
+      "taxonomy_note_zh": "P3归并：工信部四类→研发设计（原基础平台，AEC/GIS设计工具）",
+      "taxonomy_note_en": "P3 remap: MIIT quad → 研发设计 (was 基础平台, AEC/GIS design)",
+      "product_type": "gis"
+    },
+    {
+      "id": "speckle",
+      "name_zh": "Speckle",
+      "name_en": "Speckle",
+      "vendor_id": "speckle",
+      "category_l1": "研发设计",
+      "category_l2": "BIM",
+      "origin": "open_source",
+      "kernel": "自主",
+      "maturity": "mid",
+      "localization_depth": "pilot",
+      "strengths_zh": [
+        "开源 AEC 数据互操作与版本化对象流",
+        "Revit/Rhino/Blender 等连接器生态"
+      ],
+      "strengths_en": [
+        "Open AEC data interoperability and versioned object streams",
+        "Connectors for Revit/Rhino/Blender ecosystem"
+      ],
+      "limitations_zh": [
+        "国内政企项目需自建 Server 与合规审查",
+        "非 buildingSMART 官方 IFC 替代"
+      ],
+      "limitations_en": [
+        "China gov projects need self-hosted server and compliance review",
+        "Not an official buildingSMART IFC replacement"
+      ],
+      "industries": [
+        "建筑",
+        "工程",
+        "施工"
+      ],
+      "pricing": "free",
+      "confidence": 0.84,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://speckle.systems/",
+          "title": "Speckle",
+          "accessed": "2026-06"
+        },
+        {
+          "url": "https://docs.speckle.systems/",
+          "title": "Speckle Docs",
+          "accessed": "2026-06"
+        }
+      ],
+      "product_type": "bim",
+      "tags": [
+        "open_bim",
+        "open_source_stack"
+      ]
+    },
+    {
+      "id": "solibri-model-checker",
+      "name_zh": "Solibri Model Checker",
+      "name_en": "Solibri Model Checker",
+      "vendor_id": "nemetschek",
+      "category_l1": "研发设计",
+      "category_l2": "BIM",
+      "origin": "international",
+      "kernel": "自主",
+      "maturity": "high",
+      "localization_depth": "partial",
+      "strengths_zh": [
+        "IFC 模型质量检查与碰撞规则引擎",
+        "国际大型项目交付标准工具"
+      ],
+      "strengths_en": [
+        "IFC model QA and clash rule engine",
+        "De-facto tool for international project delivery"
+      ],
+      "limitations_zh": [
+        "授权成本高",
+        "国产 BIM 平台原生集成弱"
+      ],
+      "limitations_en": [
+        "High license cost",
+        "Weak native integration with domestic BIM platforms"
+      ],
+      "industries": [
+        "建筑",
+        "基建",
+        "海外工程"
+      ],
+      "pricing": "high",
+      "confidence": 0.88,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.solibri.com/",
+          "title": "Solibri",
+          "accessed": "2026-06"
+        },
+        {
+          "url": "https://www.buildingsmart.org/standards/ifc/",
+          "title": "buildingSMART IFC",
+          "accessed": "2026-06"
+        }
+      ],
+      "product_type": "bim_coordination",
+      "tags": [
+        "clash_detection",
+        "model_checking",
+        "open_bim"
+      ]
+    },
+    {
+      "id": "autodesk-forma",
+      "name_zh": "Autodesk Forma",
+      "name_en": "Autodesk Forma",
+      "vendor_id": "autodesk",
+      "category_l1": "研发设计",
+      "category_l2": "BIM",
+      "origin": "international",
+      "kernel": "云原生",
+      "maturity": "mid",
+      "localization_depth": "partial",
+      "strengths_zh": [
+        "云原生规划设计与环境分析",
+        "与 Revit/CityEngine 数据衔接"
+      ],
+      "strengths_en": [
+        "Cloud-native planning design and environmental analysis",
+        "Data handoff to Revit/CityEngine"
+      ],
+      "limitations_zh": [
+        "国内访问与数据驻留需评估",
+        "功能仍在快速迭代"
+      ],
+      "limitations_en": [
+        "China access and data residency need review",
+        "Rapidly evolving feature set"
+      ],
+      "industries": [
+        "城市规划",
+        "建筑",
+        "地产"
+      ],
+      "pricing": "mid",
+      "confidence": 0.83,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.autodesk.com/products/forma/overview",
+          "title": "Autodesk Forma",
+          "accessed": "2026-06"
+        }
+      ],
+      "product_type": "bim"
+    },
+    {
+      "id": "trimble-connect",
+      "name_zh": "Trimble Connect",
+      "name_en": "Trimble Connect",
+      "vendor_id": "trimble",
+      "category_l1": "研发设计",
+      "category_l2": "BIM",
+      "origin": "international",
+      "kernel": "云原生",
+      "maturity": "high",
+      "localization_depth": "partial",
+      "strengths_zh": [
+        "施工阶段 BIM 协同与问题追踪",
+        "与 SketchUp/Tekla 生态衔接"
+      ],
+      "strengths_en": [
+        "Construction-phase BIM collaboration and issue tracking",
+        "Links SketchUp/Tekla ecosystem"
+      ],
+      "limitations_zh": [
+        "国内大型总包采用率低于广联达/品茗",
+        "离线大模型性能受限"
+      ],
+      "limitations_en": [
+        "Lower adoption vs Glodon/Pinming among China GCs",
+        "Large offline models performance limited"
+      ],
+      "industries": [
+        "施工",
+        "建筑",
+        "市政"
+      ],
+      "pricing": "mid",
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://connect.trimble.com/",
+          "title": "Trimble Connect",
+          "accessed": "2026-06"
+        },
+        {
+          "url": "https://www.trimble.com/en/products/trimble-connect",
+          "title": "Trimble Connect product page",
+          "accessed": "2026-06"
+        }
+      ],
+      "product_type": "bim_coordination",
+      "tags": [
+        "clash_detection",
+        "cloud_native"
+      ]
+    },
+    {
+      "id": "esri-arcgis-pro",
+      "name_zh": "ArcGIS Pro",
+      "name_en": "ArcGIS Pro",
+      "vendor_id": "esri",
+      "category_l1": "研发设计",
+      "category_l2": "GIS",
+      "origin": "international",
+      "kernel": "自主",
+      "maturity": "mission_critical",
+      "localization_depth": "core",
+      "strengths_zh": [
+        "专业桌面GIS分析标杆",
+        "与ArcGIS Enterprise/Online一体"
+      ],
+      "strengths_en": [
+        "Professional desktop GIS benchmark",
+        "Integrated with ArcGIS Enterprise/Online"
+      ],
+      "limitations_zh": [
+        "许可成本高",
+        "信创替代压力与超图竞争"
+      ],
+      "limitations_en": [
+        "High license cost",
+        "Localization pressure vs SuperMap"
+      ],
+      "industries": [
+        "国土",
+        "市政",
+        "自然资源"
+      ],
+      "pricing": "high",
+      "confidence": 0.91,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.esri.com/en-us/arcgis/products/arcgis-pro/overview",
+          "title": "ArcGIS Pro",
+          "accessed": "2026-06"
+        }
+      ],
+      "taxonomy_note_zh": "P3归并：工信部四类→研发设计（原基础平台，AEC/GIS设计工具）",
+      "taxonomy_note_en": "P3 remap: MIIT quad → 研发设计 (was 基础平台, AEC/GIS design)",
+      "product_type": "gis"
+    },
+    {
+      "id": "tekla-structures",
+      "name_zh": "Tekla Structures",
+      "name_en": "Tekla Structures",
+      "vendor_id": "trimble",
+      "category_l1": "研发设计",
+      "category_l2": "BIM",
+      "origin": "international",
+      "kernel": "自主",
+      "maturity": "mission_critical",
+      "localization_depth": "core",
+      "strengths_zh": [
+        "钢结构/混凝土结构深化建模标杆",
+        "加工图与 CNC 数据输出",
+        "与国内大型钢构/EPC 广泛使用"
+      ],
+      "strengths_en": [
+        "Benchmark for steel/concrete detailing",
+        "Shop drawing and CNC data output",
+        "Widely used by large China steel/EPC firms"
+      ],
+      "limitations_zh": [
+        "房建综合 BIM 弱于 Revit",
+        "许可与实施成本较高"
+      ],
+      "limitations_en": [
+        "Weaker general building BIM vs Revit",
+        "High license and implementation cost"
+      ],
+      "industries": [
+        "钢结构",
+        "混凝土",
+        "基建"
+      ],
+      "pricing": "high",
+      "confidence": 0.91,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.tekla.com/products/tekla-structures",
+          "title": "Tekla Structures",
+          "accessed": "2026-06"
+        }
+      ],
+      "international_benchmarks": [
+        "revit",
+        "microstation"
+      ],
+      "product_type": "bim"
+    },
+    {
+      "id": "autodesk-navisworks",
+      "name_zh": "Autodesk Navisworks Manage",
+      "name_en": "Autodesk Navisworks Manage",
+      "vendor_id": "autodesk",
+      "category_l1": "研发设计",
+      "category_l2": "BIM",
+      "origin": "international",
+      "kernel": "自研·NWD/NWC 联邦缓存",
+      "maturity": "mission_critical",
+      "localization_depth": "core",
+      "product_type": "bim_coordination",
+      "tags": [
+        "clash_detection",
+        "federated_bim",
+        "4d_simulation"
+      ],
+      "strengths_zh": [
+        "多专业联邦模型集成审查事实标准",
+        "硬/软/净空碰撞检测与视点批注",
+        "TimeLiner 4D 进度模拟与 NWD 大场景缓存"
+      ],
+      "strengths_en": [
+        "De-facto federated multi-discipline model review",
+        "Hard/soft/clearance clash detection with viewpoints",
+        "TimeLiner 4D simulation and NWD large-scene caching"
+      ],
+      "limitations_zh": [
+        "订阅与项目授权成本高",
+        "国产 BIM 平台原生联邦链路弱于 ACC/BIMFACE"
+      ],
+      "limitations_en": [
+        "High subscription and project license cost",
+        "Weak native federation with domestic BIM platforms vs ACC/BIMFACE"
+      ],
+      "industries": [
+        "建筑",
+        "基建",
+        "能源"
+      ],
+      "pricing": "high",
+      "confidence": 0.92,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.autodesk.com/products/navisworks/overview",
+          "title": "Autodesk Navisworks",
+          "accessed": "2026-06"
+        },
+        {
+          "url": "https://construction.toolsinfo.com/c/bim-coordination/guide",
+          "title": "BIM coordination tools guide",
+          "accessed": "2026-06"
+        }
+      ],
+      "international_benchmarks": [
+        "solibri-model-checker",
+        "glodon-bimface"
+      ]
+    },
+    {
+      "id": "glodon-bimface",
+      "name_zh": "广联达 BIMFACE",
+      "name_en": "Glodon BIMFACE",
+      "vendor_id": "glodon",
+      "category_l1": "研发设计",
+      "category_l2": "BIM",
+      "origin": "domestic",
+      "kernel": "自研·Web 轻量化引擎",
+      "maturity": "high",
+      "localization_depth": "partial",
+      "product_type": "bim_coordination",
+      "tags": [
+        "federated_bim",
+        "xinchuang",
+        "clash_detection"
+      ],
+      "strengths_zh": [
+        "国产 Web 轻量化与模型集成 API",
+        "支持 NWD/IFC 等多格式联邦与在线碰撞",
+        "信创与私有化部署选项"
+      ],
+      "strengths_en": [
+        "Domestic web lightweight engine and integration APIs",
+        "NWD/IFC multi-format federation and online clash",
+        "Xinchuang and private deployment options"
+      ],
+      "limitations_zh": [
+        "桌面级 4D/高级规则引擎弱于 Navisworks",
+        "国际项目 BCF/OpenBIM 生态仍在补齐"
+      ],
+      "limitations_en": [
+        "Weaker desktop 4D/advanced rule engine vs Navisworks",
+        "BCF/OpenBIM ecosystem still maturing for intl projects"
+      ],
+      "industries": [
+        "建筑",
+        "施工",
+        "基建"
+      ],
+      "pricing": "mid",
+      "confidence": 0.87,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://bimface.com/",
+          "title": "Glodon BIMFACE",
+          "accessed": "2026-06"
+        },
+        {
+          "url": "https://bimface.com/docs-center",
+          "title": "BIMFACE Docs",
+          "accessed": "2026-06"
+        }
+      ],
+      "international_benchmarks": [
+        "autodesk-navisworks"
+      ],
+      "listed_ticker": "002410.SZ"
+    },
+    {
+      "id": "autodesk-recap-pro",
+      "name_zh": "Autodesk ReCap Pro",
+      "name_en": "Autodesk ReCap Pro",
+      "vendor_id": "autodesk",
+      "category_l1": "研发设计",
+      "category_l2": "BIM",
+      "origin": "international",
+      "kernel": "自研·点云处理",
+      "maturity": "high",
+      "localization_depth": "partial",
+      "product_type": "reality_capture",
+      "tags": [
+        "point_cloud"
+      ],
+      "strengths_zh": [
+        "激光扫描注册与 RCP/RCS 输出",
+        "与 Revit/Navisworks 实景建模衔接",
+        "国际 scan-to-BIM 事实标准之一"
+      ],
+      "strengths_en": [
+        "Laser scan registration and RCP/RCS output",
+        "Handoff to Revit/Navisworks as-built workflows",
+        "De-facto international scan-to-BIM toolchain"
+      ],
+      "limitations_zh": [
+        "国内政企数据驻留与许可合规需评估",
+        "超大规模点云性能弱于 Cyclone JetStream"
+      ],
+      "limitations_en": [
+        "China data residency and license compliance need review",
+        "Massive point clouds weaker than Cyclone JetStream"
+      ],
+      "industries": [
+        "建筑",
+        "基建",
+        "测绘"
+      ],
+      "pricing": "high",
+      "confidence": 0.89,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.autodesk.com/products/recap/overview",
+          "title": "Autodesk ReCap Pro",
+          "accessed": "2026-06"
+        },
+        {
+          "url": "https://www.thefuture3d.com/blog/best-point-cloud-software-2026/",
+          "title": "Point cloud software comparison",
+          "accessed": "2026-06"
+        }
+      ],
+      "international_benchmarks": [
+        "leica-cyclone"
+      ]
+    },
+    {
+      "id": "bimcollab",
+      "name_zh": "BIMcollab",
+      "name_en": "BIMcollab",
+      "vendor_id": "bimcollab",
+      "category_l1": "研发设计",
+      "category_l2": "BIM",
+      "origin": "international",
+      "kernel": "云原生",
+      "maturity": "high",
+      "localization_depth": "pilot",
+      "product_type": "bim_coordination",
+      "tags": [
+        "open_bim",
+        "clash_detection",
+        "cloud_native"
+      ],
+      "strengths_zh": [
+        "BCF 问题协同枢纽与多工具碰撞同步",
+        "Open BIM 工作流与 Solibri/Revit 等插件",
+        "云端问题追踪与移动端现场访问"
+      ],
+      "strengths_en": [
+        "BCF issue hub with multi-tool clash sync",
+        "Open BIM workflows and plugins for Solibri/Revit",
+        "Cloud issue tracking and mobile field access"
+      ],
+      "limitations_zh": [
+        "国内大型总包采用率低于本土施工 BIM",
+        "SaaS 数据驻留与内网部署需企业版"
+      ],
+      "limitations_en": [
+        "Lower adoption among China GCs vs domestic construction BIM",
+        "SaaS residency and air-gapped deploy need enterprise tier"
+      ],
+      "industries": [
+        "建筑",
+        "施工",
+        "海外工程"
+      ],
+      "pricing": "mid",
+      "confidence": 0.86,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://bimcollab.com/",
+          "title": "BIMcollab",
+          "accessed": "2026-06"
+        },
+        {
+          "url": "https://www.buildingsmart.org/standards/bcf/",
+          "title": "buildingSMART BCF",
+          "accessed": "2026-06"
+        }
+      ],
+      "international_benchmarks": [
+        "trimble-connect",
+        "solibri-model-checker"
+      ]
+    },
+    {
+      "id": "cloudcompare",
+      "name_zh": "CloudCompare",
+      "name_en": "CloudCompare",
+      "vendor_id": "cloudcompare",
+      "category_l1": "研发设计",
+      "category_l2": "BIM",
+      "origin": "open_source",
+      "kernel": "自研·点云/网格处理",
+      "maturity": "high",
+      "localization_depth": "pilot",
+      "product_type": "reality_capture",
+      "tags": [
+        "point_cloud",
+        "open_source_stack"
+      ],
+      "strengths_zh": [
+        "开源点云/网格对比、清理与导出",
+        "AEC 扫描后处理与 as-built 校核常用",
+        "GPL 免费，国内测绘/BIM 团队可自建"
+      ],
+      "strengths_en": [
+        "Open-source point cloud/mesh compare, clean, export",
+        "Common AEC scan post-processing and as-built check",
+        "GPL free; China survey/BIM teams can self-host"
+      ],
+      "limitations_zh": [
+        "非企业级注册/协同平台",
+        "与 Revit/Navisworks 深度集成需插件或中间格式"
+      ],
+      "limitations_en": [
+        "Not an enterprise registration/collab platform",
+        "Deep Revit/Navisworks integration needs plugins or exchange"
+      ],
+      "industries": [
+        "测绘",
+        "建筑",
+        "基建"
+      ],
+      "pricing": "free",
+      "confidence": 0.88,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.cloudcompare.org/",
+          "title": "CloudCompare",
+          "accessed": "2026-06"
+        },
+        {
+          "url": "https://github.com/CloudCompare/CloudCompare",
+          "title": "CloudCompare GitHub",
+          "accessed": "2026-06"
+        }
+      ],
+      "international_benchmarks": [
+        "autodesk-recap-pro",
+        "leica-cyclone"
+      ]
+    },
+    {
+      "id": "pkpm-bim-clash",
+      "name_zh": "PKPM-BIM 管综碰撞",
+      "name_en": "PKPM-BIM MEP Clash",
+      "vendor_id": "cabr",
+      "category_l1": "研发设计",
+      "category_l2": "BIM",
+      "origin": "domestic",
+      "kernel": "自研·BIMBase",
+      "maturity": "high",
+      "localization_depth": "partial",
+      "product_type": "bim_coordination",
+      "tags": [
+        "clash_detection",
+        "xinchuang",
+        "model_checking"
+      ],
+      "strengths_zh": [
+        "建研院 BIMBase 管综碰撞与智能审查",
+        "国内大型设计院管线综合国产标杆",
+        "与 PKPM 结构/建筑链数据同源"
+      ],
+      "strengths_en": [
+        "CABR BIMBase MEP clash and intelligent review",
+        "Domestic benchmark for design-institute coordination",
+        "Same data lineage as PKPM structure/architecture"
+      ],
+      "limitations_zh": [
+        "联邦多格式（NWD/IFC）弱于 Navisworks",
+        "施工阶段云协同与 BCF 生态仍在建设"
+      ],
+      "limitations_en": [
+        "Weaker multi-format federation (NWD/IFC) vs Navisworks",
+        "Construction cloud collab and BCF ecosystem still building"
+      ],
+      "industries": [
+        "建筑",
+        "市政",
+        "设计院"
+      ],
+      "pricing": "mid",
+      "confidence": 0.84,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "http://wap.sasac.gov.cn/n2588025/n2588119/c33133985/content.html",
+          "title": "国资委 — BIMBase 智能审查",
+          "accessed": "2026-06"
+        },
+        {
+          "url": "https://www.pkpm.cn/",
+          "title": "建研院 PKPM",
+          "accessed": "2026-06"
+        }
+      ],
+      "international_benchmarks": [
+        "autodesk-navisworks",
+        "solibri-model-checker"
+      ]
+    },
+    {
+      "id": "bentley-synchro",
+      "name_zh": "Bentley SYNCHRO",
+      "name_en": "Bentley SYNCHRO",
+      "vendor_id": "bentley",
+      "category_l1": "研发设计",
+      "category_l2": "BIM",
+      "origin": "international",
+      "kernel": "自研·4D 调度",
+      "maturity": "high",
+      "localization_depth": "partial",
+      "product_type": "bim_coordination",
+      "tags": [
+        "4d_simulation",
+        "federated_bim"
+      ],
+      "strengths_zh": [
+        "4D 施工进度与联邦模型联动",
+        "基建/EPC 大型项目时间线可视化",
+        "与 MicroStation/iTwin 数据链衔接"
+      ],
+      "strengths_en": [
+        "4D construction schedule linked to federated models",
+        "Timeline visualization for large infra/EPC projects",
+        "Data chain with MicroStation/iTwin"
+      ],
+      "limitations_zh": [
+        "国内房建市场渗透低于 Navisworks TimeLiner",
+        "许可与实施成本较高"
+      ],
+      "limitations_en": [
+        "Lower China building penetration vs Navisworks TimeLiner",
+        "High license and implementation cost"
+      ],
+      "industries": [
+        "交通",
+        "市政",
+        "能源基建"
+      ],
+      "pricing": "high",
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.bentley.com/software/synchro/",
+          "title": "Bentley SYNCHRO",
+          "accessed": "2026-06"
+        }
+      ],
+      "international_benchmarks": [
+        "autodesk-navisworks"
+      ]
+    },
+    {
+      "id": "leica-cyclone",
+      "name_zh": "Leica Cyclone",
+      "name_en": "Leica Cyclone",
+      "vendor_id": "leica-geosystems",
+      "category_l1": "研发设计",
+      "category_l2": "BIM",
+      "origin": "international",
+      "kernel": "自研·点云注册",
+      "maturity": "mission_critical",
+      "localization_depth": "partial",
+      "product_type": "reality_capture",
+      "tags": [
+        "point_cloud"
+      ],
+      "strengths_zh": [
+        "大规模点云注册与 JetStream 数据集",
+        "CloudWorx 插件对接 Revit/Navisworks/CAD",
+        "测绘与 AEC scan-to-BIM 国际标杆"
+      ],
+      "strengths_en": [
+        "Large-scale point cloud registration and JetStream datasets",
+        "CloudWorx plugins for Revit/Navisworks/CAD",
+        "International benchmark for survey and AEC scan-to-BIM"
+      ],
+      "limitations_zh": [
+        "授权与硬件绑定成本高",
+        "国内替代链（真景、四维远见等）在政企项目增长"
+      ],
+      "limitations_en": [
+        "High license and hardware bundle cost",
+        "Domestic alternatives growing in China gov projects"
+      ],
+      "industries": [
+        "测绘",
+        "建筑",
+        "基建"
+      ],
+      "pricing": "high",
+      "confidence": 0.9,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://leica-geosystems.com/products/laser-scanners/software/leica-cyclone",
+          "title": "Leica Cyclone",
+          "accessed": "2026-06"
+        },
+        {
+          "url": "https://bimheroes.com/point-cloud-software/",
+          "title": "Point cloud software ecosystem",
+          "accessed": "2026-06"
+        }
+      ],
+      "international_benchmarks": [
+        "autodesk-recap-pro"
+      ]
+    }
+  ]
+}

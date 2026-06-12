@@ -1,0 +1,213 @@
+#!/usr/bin/env python3
+"""Merge tmp/research/*.json into assets/data/categories/ and regenerate manifest.json."""
+from __future__ import annotations
+
+import argparse
+import json
+import subprocess
+import sys
+from collections import Counter
+from datetime import datetime, timezone
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parent.parent
+RESEARCH = ROOT / "tmp" / "research"
+CAT_DIR = ROOT / "assets" / "data" / "categories"
+DATA_DIR = ROOT / "assets" / "data"
+
+# Map agent output filenames → category bundle keys
+CATEGORY_MAP = {
+    "a1-eda": "eda",
+    "a2-cad": "cad",
+    "a3-cae-cam": "cae",
+    "a4-plm-mbse": "plm",
+    "a5-dcs-scada": "mes-dcs",
+    "a6-mes": "mes-dcs",
+    "a7-erp": "erp",
+    "a8-bim-gis-platform": "bim-gis",
+    "a8-bim-gis": "bim-gis",
+    "a8-platform": "platform",
+    "eda": "eda",
+    "cad": "cad",
+    "cae": "cae",
+    "cae-cam": "cae",
+    "plm": "plm",
+    "mes-dcs": "mes-dcs",
+    "dcs-scada": "mes-dcs",
+    "mes": "mes-dcs",
+    "erp": "erp",
+    "bim-gis": "bim-gis",
+    "platform": "platform",
+    "slicers": "slicers",
+    "a9-slicers": "slicers",
+}
+
+
+def load_products(path: Path) -> list[dict]:
+    data = json.loads(path.read_text(encoding="utf-8"))
+    if isinstance(data, dict):
+        return data.get("products", [])
+    if isinstance(data, list):
+        return data
+    return []
+
+
+def category_key(path: Path) -> str:
+    stem = path.stem.lower()
+    if stem in CATEGORY_MAP:
+        return CATEGORY_MAP[stem]
+    for prefix, key in CATEGORY_MAP.items():
+        if stem.startswith(prefix):
+            return key
+    return stem
+
+
+def merge_research() -> dict[str, list[dict]]:
+    buckets: dict[str, dict[str, dict]] = {}
+    if not RESEARCH.exists():
+        return {}
+    for path in sorted(RESEARCH.glob("*.json")):
+        key = category_key(path)
+        buckets.setdefault(key, {})
+        for p in load_products(path):
+            buckets[key][p["id"]] = p
+    return {k: list(v.values()) for k, v in buckets.items()}
+
+
+def write_categories(buckets: dict[str, list[dict]]) -> None:
+    CAT_DIR.mkdir(parents=True, exist_ok=True)
+    for key, products in sorted(buckets.items()):
+        out = CAT_DIR / f"{key}.json"
+        out.write_text(
+            json.dumps({"category": key, "products": products}, ensure_ascii=False, indent=2) + "\n",
+            encoding="utf-8",
+        )
+        print(f"  wrote {out.name}: {len(products)} products")
+
+
+def read_existing_categories() -> dict[str, list[dict]]:
+    buckets: dict[str, list[dict]] = {}
+    if not CAT_DIR.exists():
+        return buckets
+    for path in sorted(CAT_DIR.glob("*.json")):
+        buckets[path.stem] = load_products(path)
+    return buckets
+
+
+def read_kernel_count() -> int:
+    kernels_path = DATA_DIR / "kernels.json"
+    if not kernels_path.exists():
+        return 0
+    data = json.loads(kernels_path.read_text(encoding="utf-8"))
+    kernels = data.get("kernels", data) if isinstance(data, dict) else data
+    return len(kernels) if isinstance(kernels, list) else 0
+
+
+def build_manifest(buckets: dict[str, list[dict]]) -> dict:
+    counts = {k: len(v) for k, v in buckets.items()}
+    total = sum(counts.values())
+    l1_counts: Counter = Counter()
+    l2_counts: Counter = Counter()
+    origin_counts: Counter = Counter()
+    kernel_ref_counts: Counter = Counter()
+    for prods in buckets.values():
+        for p in prods:
+            l1_counts[p.get("category_l1", "?")] += 1
+            l2_counts[p.get("category_l2", "?")] += 1
+            origin_counts[p.get("origin", "?")] += 1
+            if p.get("kernel_id"):
+                kernel_ref_counts[p["kernel_id"]] += 1
+    kernel_total = read_kernel_count()
+    return {
+        "build_time": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
+        "total_products": total,
+        "total_kernels": kernel_total,
+        "category_counts": counts,
+        "category_l1_counts": dict(l1_counts),
+        "category_l2_counts": dict(l2_counts),
+        "origin_counts": dict(origin_counts),
+        "kernel_ref_counts": dict(kernel_ref_counts),
+        "categories": [
+            {"id": k, "file": f"categories/{k}.json", "count": counts[k]}
+            for k in sorted(counts.keys())
+        ],
+    }
+
+
+def run_validate() -> bool:
+    r = subprocess.run(
+        [sys.executable, str(ROOT / "tools" / "validate.py")],
+        cwd=str(ROOT),
+        capture_output=True,
+        text=True,
+    )
+    print(r.stdout, end="")
+    if r.stderr:
+        print(r.stderr, end="", file=sys.stderr)
+    return r.returncode == 0
+
+
+def _dir_max_mtime(directory: Path, pattern: str = "*.json") -> float:
+    if not directory.exists():
+        return 0.0
+    files = list(directory.glob(pattern))
+    if not files:
+        return 0.0
+    return max(path.stat().st_mtime for path in files)
+
+
+def categories_newer_than_research() -> bool:
+    """True when category bundles are newer than research inputs (merge would regress fixes)."""
+    cat_mtime = _dir_max_mtime(CAT_DIR)
+    research_mtime = _dir_max_mtime(RESEARCH)
+    return cat_mtime > 0 and research_mtime > 0 and cat_mtime > research_mtime
+
+
+def should_skip_research_merge(manifest_only: bool, force_merge: bool) -> bool:
+    if manifest_only:
+        return True
+    if force_merge:
+        return False
+    return categories_newer_than_research()
+
+
+def main() -> int:
+    parser = argparse.ArgumentParser(description="Merge research JSON into categories and build manifest.")
+    parser.add_argument(
+        "--manifest-only",
+        action="store_true",
+        help="Regenerate manifest.json from assets/data/categories/ without merging tmp/research/",
+    )
+    parser.add_argument(
+        "--force-merge",
+        action="store_true",
+        help="Merge tmp/research/ even when categories/ is newer (may overwrite taxonomy fixes).",
+    )
+    args = parser.parse_args()
+
+    if should_skip_research_merge(args.manifest_only, args.force_merge):
+        if args.manifest_only:
+            print("build.py: manifest-only — skipping research merge")
+        else:
+            print("build.py: categories/ newer than tmp/research/ — skipping merge (use --force-merge to override)")
+    else:
+        print("build.py: merging research → categories")
+        merged = merge_research()
+        if merged:
+            write_categories(merged)
+        else:
+            print("  no tmp/research/*.json — keeping existing categories/")
+
+    buckets = read_existing_categories()
+    manifest = build_manifest(buckets)
+    manifest_path = DATA_DIR / "manifest.json"
+    manifest_path.write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    print(f"  wrote manifest.json: {manifest['total_products']} products, {manifest.get('total_kernels', 0)} kernels")
+
+    if not run_validate():
+        return 1
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())

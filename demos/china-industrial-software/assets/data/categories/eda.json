@@ -1,0 +1,2075 @@
+{
+  "category": "eda",
+  "products": [
+    {
+      "id": "empyrean-alextool",
+      "name_zh": "华大九天 Aether",
+      "name_en": "Empyrean Aether",
+      "vendor_id": "empyrean",
+      "category_l1": "研发设计",
+      "category_l2": "EDA",
+      "origin": "domestic",
+      "kernel": "自主",
+      "maturity": "high",
+      "localization_depth": "partial",
+      "strengths_zh": [
+        "模拟全流程覆盖",
+        "国内晶圆厂验证案例增多"
+      ],
+      "strengths_en": [
+        "Full custom analog flow",
+        "Growing foundry validation in China"
+      ],
+      "limitations_zh": [
+        "先进制程数字后端仍弱于国际三巨头",
+        "IP生态与海外EDA仍有差距"
+      ],
+      "limitations_en": [
+        "Digital backend for advanced nodes lags big three",
+        "IP ecosystem gap vs global EDA"
+      ],
+      "industries": [
+        "集成电路",
+        "半导体制造"
+      ],
+      "pricing": "high",
+      "confidence": 0.88,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.empyrean.com.cn/",
+          "title": "Empyrean Aether",
+          "accessed": "2026-06"
+        }
+      ],
+      "international_benchmarks": [
+        "virtuoso"
+      ],
+      "listed_ticker": "301269.SZ",
+      "breakthroughs": [
+        {
+          "year": 2022,
+          "text_zh": "模拟全流程工具链通过多家国内头部晶圆厂验证",
+          "source_url": "https://www.empyrean.com.cn/"
+        }
+      ]
+    },
+    {
+      "id": "empyrean-digital",
+      "name_zh": "华大九天 数字后端",
+      "name_en": "Empyrean Digital Implementation",
+      "vendor_id": "empyrean",
+      "category_l1": "研发设计",
+      "category_l2": "EDA",
+      "origin": "domestic",
+      "kernel": "自主",
+      "maturity": "mid",
+      "localization_depth": "pilot",
+      "strengths_zh": [
+        "布局布线国产化突破",
+        "政策与信创采购推动"
+      ],
+      "strengths_en": [
+        "Place-and-route localization milestone",
+        "Policy-driven procurement"
+      ],
+      "limitations_zh": [
+        "7nm以下竞争力有限",
+        "客户以成熟工艺为主"
+      ],
+      "limitations_en": [
+        "Limited competitiveness below 7nm",
+        "Customers mostly mature nodes"
+      ],
+      "industries": [
+        "集成电路"
+      ],
+      "pricing": "high",
+      "confidence": 0.82,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.empyrean.com.cn/",
+          "title": "Empyrean Digital Implementation",
+          "accessed": "2026-06"
+        }
+      ],
+      "international_benchmarks": [
+        "innovus"
+      ]
+    },
+    {
+      "id": "primarius-device",
+      "name_zh": "概伦器件建模",
+      "name_en": "Primarius Device Modeling",
+      "vendor_id": "primarius",
+      "category_l1": "研发设计",
+      "category_l2": "EDA",
+      "origin": "domestic",
+      "kernel": "自主",
+      "maturity": "high",
+      "localization_depth": "partial",
+      "strengths_zh": [
+        "BSIM/器件模型国际认可度高",
+        "与国内Foundry深度合作"
+      ],
+      "strengths_en": [
+        "BSIM-grade device models",
+        "Deep foundry partnerships"
+      ],
+      "limitations_zh": [
+        "系统级与签核工具链不完整"
+      ],
+      "limitations_en": [
+        "Incomplete signoff and system-level stack"
+      ],
+      "industries": [
+        "集成电路",
+        "半导体"
+      ],
+      "pricing": "high",
+      "confidence": 0.86,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.primarius-tech.com/",
+          "title": "Primarius Device Modeling",
+          "accessed": "2026-06"
+        }
+      ],
+      "international_benchmarks": [
+        "hspice"
+      ],
+      "listed_ticker": "688206.SH"
+    },
+    {
+      "id": "semitron-yield",
+      "name_zh": "广立微 WAT/Yield",
+      "name_en": "Semitron WAT & Yield",
+      "vendor_id": "semitron",
+      "category_l1": "研发设计",
+      "category_l2": "EDA",
+      "origin": "domestic",
+      "kernel": "自主",
+      "maturity": "high",
+      "localization_depth": "partial",
+      "strengths_zh": [
+        "良率分析与测试芯片设计领先",
+        "科创板上市背书"
+      ],
+      "strengths_en": [
+        "Leading yield analytics and test chip",
+        "STAR Market listed"
+      ],
+      "limitations_zh": [
+        "品类偏制造测试分析非全流程EDA"
+      ],
+      "limitations_en": [
+        "Focused on yield/test not full-flow EDA"
+      ],
+      "industries": [
+        "半导体制造",
+        "封测"
+      ],
+      "pricing": "high",
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.semitron.com/",
+          "title": "Semitron WAT & Yield",
+          "accessed": "2026-06"
+        }
+      ],
+      "listed_ticker": "301095.SZ"
+    },
+    {
+      "id": "x-epic-verification",
+      "name_zh": "芯华章 验证平台",
+      "name_en": "X-Epic Verification",
+      "vendor_id": "x-epic",
+      "category_l1": "研发设计",
+      "category_l2": "EDA",
+      "origin": "domestic",
+      "kernel": "自主",
+      "maturity": "mid",
+      "localization_depth": "pilot",
+      "strengths_zh": [
+        "数字验证与形式化工具国产化",
+        "融资与人才储备强"
+      ],
+      "strengths_en": [
+        "Digital verification and formal tools",
+        "Strong funding and talent"
+      ],
+      "limitations_zh": [
+        "商业化规模仍小于Synopsys/Cadence"
+      ],
+      "limitations_en": [
+        "Commercial scale below Synopsys/Cadence"
+      ],
+      "industries": [
+        "集成电路",
+        "芯片设计"
+      ],
+      "pricing": "high",
+      "confidence": 0.8,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.x-epic.com/",
+          "title": "X-Epic Verification",
+          "accessed": "2026-06"
+        }
+      ],
+      "international_benchmarks": [
+        "vcs"
+      ]
+    },
+    {
+      "id": "guowei-eda",
+      "name_zh": "国微芯 EDA",
+      "name_en": "SMIT EDA Tools",
+      "vendor_id": "guowei",
+      "category_l1": "研发设计",
+      "category_l2": "EDA",
+      "origin": "domestic",
+      "kernel": "自主",
+      "maturity": "mid",
+      "localization_depth": "pilot",
+      "strengths_zh": [
+        "FPGA/原型验证与形式验证",
+        "深圳产业政策支持"
+      ],
+      "strengths_en": [
+        "FPGA prototyping and formal verification",
+        "Shenzhen policy support"
+      ],
+      "limitations_zh": [
+        "产品线较窄",
+        "国际客户少"
+      ],
+      "limitations_en": [
+        "Narrow product line",
+        "Few international customers"
+      ],
+      "industries": [
+        "集成电路",
+        "FPGA"
+      ],
+      "pricing": "mid",
+      "confidence": 0.75,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.smit.com.cn/",
+          "title": "SMIT EDA Tools",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "s2c-prototyping",
+      "name_zh": "思尔芯 原型验证",
+      "name_en": "S2C Prototyping",
+      "vendor_id": "s2c",
+      "category_l1": "研发设计",
+      "category_l2": "EDA",
+      "origin": "domestic",
+      "kernel": "自主",
+      "maturity": "high",
+      "localization_depth": "partial",
+      "strengths_zh": [
+        "FPGA原型验证国内市占领先",
+        "大芯片验证场景成熟"
+      ],
+      "strengths_en": [
+        "Leading China FPGA prototyping share",
+        "Mature for large SoC bring-up"
+      ],
+      "limitations_zh": [
+        "依赖海外FPGA硬件",
+        "软件生态国际化不足"
+      ],
+      "limitations_en": [
+        "Depends on foreign FPGA hardware",
+        "Limited global software ecosystem"
+      ],
+      "industries": [
+        "集成电路",
+        "通信",
+        "人工智能"
+      ],
+      "pricing": "high",
+      "confidence": 0.83,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.s2ceda.com/",
+          "title": "S2C Prototyping",
+          "accessed": "2026-06"
+        }
+      ],
+      "international_benchmarks": [
+        "synopsys-haps"
+      ]
+    },
+    {
+      "id": "fangxing-simulation",
+      "name_zh": "九同方 电磁仿真",
+      "name_en": "FangXing EM Simulation",
+      "vendor_id": "fangxing",
+      "category_l1": "研发设计",
+      "category_l2": "EDA",
+      "origin": "domestic",
+      "kernel": "自主",
+      "maturity": "mid",
+      "localization_depth": "pilot",
+      "strengths_zh": [
+        "电磁/热仿真国产化",
+        "国防与航天客户"
+      ],
+      "strengths_en": [
+        "EM/thermal simulation localization",
+        "Defense and aerospace clients"
+      ],
+      "limitations_zh": [
+        "民用市场知名度低",
+        "与HFSS仍有差距"
+      ],
+      "limitations_en": [
+        "Low consumer brand awareness",
+        "Gap vs HFSS"
+      ],
+      "industries": [
+        "航空航天",
+        "电子"
+      ],
+      "pricing": "mid",
+      "confidence": 0.72,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "http://www.fangxing.com/",
+          "title": "FangXing EM Simulation",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "jlceda",
+      "name_zh": "立创EDA",
+      "name_en": "JLCEDA",
+      "vendor_id": "jlc",
+      "category_l1": "研发设计",
+      "category_l2": "EDA",
+      "origin": "domestic",
+      "kernel": "开源",
+      "maturity": "mid",
+      "localization_depth": "partial",
+      "strengths_zh": [
+        "免费在线PCB设计",
+        "与立创商城供应链打通"
+      ],
+      "strengths_en": [
+        "Free online PCB design",
+        "Integrated with JLC supply chain"
+      ],
+      "limitations_zh": [
+        "高速/射频设计能力有限",
+        "企业级功能弱于Altium"
+      ],
+      "limitations_en": [
+        "Limited high-speed/RF",
+        "Weaker enterprise features vs Altium"
+      ],
+      "industries": [
+        "电子制造",
+        "创客",
+        "教育"
+      ],
+      "pricing": "free",
+      "confidence": 0.78,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://lceda.cn/",
+          "title": "JLCEDA",
+          "accessed": "2026-06"
+        }
+      ],
+      "international_benchmarks": [
+        "altium-designer"
+      ],
+      "breakthroughs": [
+        {
+          "year": 2020,
+          "text_zh": "嘉立创推出国产在线EDA并免费开放",
+          "source_url": "https://lceda.cn/"
+        }
+      ]
+    },
+    {
+      "id": "orcafoundry-pdk",
+      "name_zh": "芯华章 Orca 形式验证",
+      "name_en": "X-Epic Formal Verification",
+      "vendor_id": "x-epic",
+      "category_l1": "研发设计",
+      "category_l2": "EDA",
+      "origin": "domestic",
+      "kernel": "自主",
+      "maturity": "mid",
+      "localization_depth": "pilot",
+      "strengths_zh": [
+        "形式验证与等价性检查",
+        "国内主机厂导入试点"
+      ],
+      "strengths_en": [
+        "Formal and equivalence checking",
+        "OEM pilot deployments"
+      ],
+      "limitations_zh": [
+        "工具成熟度仍在迭代",
+        "需要更多PDK适配"
+      ],
+      "limitations_en": [
+        "Tool maturity still iterating",
+        "Needs more PDK ports"
+      ],
+      "industries": [
+        "汽车电子",
+        "集成电路"
+      ],
+      "pricing": "high",
+      "confidence": 0.78,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.x-epic.com/",
+          "title": "X-Epic Formal Verification",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "hongxin-eda",
+      "name_zh": "鸿芯微纳 布局布线",
+      "name_en": "Hongxin Nano Place & Route",
+      "vendor_id": "hongxin",
+      "category_l1": "研发设计",
+      "category_l2": "EDA",
+      "origin": "domestic",
+      "kernel": "自主",
+      "maturity": "mid",
+      "localization_depth": "pilot",
+      "strengths_zh": [
+        "数字IC P&R国产化",
+        "杭州EDA产业集群"
+      ],
+      "strengths_en": [
+        "Digital IC P&R localization",
+        "Hangzhou EDA cluster"
+      ],
+      "limitations_zh": [
+        "先进节点案例公开较少",
+        "生态工具链待完善"
+      ],
+      "limitations_en": [
+        "Few public advanced-node cases",
+        "Ecosystem incomplete"
+      ],
+      "industries": [
+        "集成电路"
+      ],
+      "pricing": "high",
+      "confidence": 0.76,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.hongxintech.com/",
+          "title": "Hongxin Nano Place & Route",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "synopsys-design",
+      "name_zh": "Synopsys Design Compiler",
+      "name_en": "Synopsys Design Compiler",
+      "vendor_id": "synopsys",
+      "category_l1": "研发设计",
+      "category_l2": "EDA",
+      "origin": "international",
+      "kernel": "自主",
+      "maturity": "mission_critical",
+      "localization_depth": "core",
+      "strengths_zh": [
+        "全球数字综合标准工具",
+        "先进工艺PDK覆盖最全"
+      ],
+      "strengths_en": [
+        "De-facto global synthesis standard",
+        "Broadest advanced PDK coverage"
+      ],
+      "limitations_zh": [
+        "出口管制与合规风险",
+        "价格与授权成本高"
+      ],
+      "limitations_en": [
+        "Export control and compliance risk",
+        "High license cost"
+      ],
+      "industries": [
+        "集成电路",
+        "汽车电子",
+        "通信"
+      ],
+      "pricing": "high",
+      "confidence": 0.92,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.synopsys.com/",
+          "title": "Synopsys Design Compiler",
+          "accessed": "2026-06"
+        }
+      ],
+      "listed_ticker": "SNPS"
+    },
+    {
+      "id": "cadence-virtuoso",
+      "name_zh": "Cadence Virtuoso",
+      "name_en": "Cadence Virtuoso",
+      "vendor_id": "cadence",
+      "category_l1": "研发设计",
+      "category_l2": "EDA",
+      "origin": "international",
+      "kernel": "自主",
+      "maturity": "mission_critical",
+      "localization_depth": "core",
+      "strengths_zh": [
+        "模拟/混合信号设计事实标准",
+        "与中国头部设计公司深度绑定"
+      ],
+      "strengths_en": [
+        "Analog/mixed-signal de-facto standard",
+        "Deep ties with China design houses"
+      ],
+      "limitations_zh": [
+        "国产化替代阻力大",
+        "订阅与维护费用昂贵"
+      ],
+      "limitations_en": [
+        "Hard to displace in China",
+        "Expensive subscription"
+      ],
+      "industries": [
+        "集成电路",
+        "半导体"
+      ],
+      "pricing": "high",
+      "confidence": 0.93,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.cadence.com/",
+          "title": "Cadence Virtuoso",
+          "accessed": "2026-06"
+        }
+      ],
+      "listed_ticker": "CDNS"
+    },
+    {
+      "id": "siemens-calibre",
+      "name_zh": "Siemens Calibre",
+      "name_en": "Siemens Calibre DRC/LVS",
+      "vendor_id": "siemens-eda",
+      "category_l1": "研发设计",
+      "category_l2": "EDA",
+      "origin": "international",
+      "kernel": "自主",
+      "maturity": "mission_critical",
+      "localization_depth": "core",
+      "strengths_zh": [
+        "签核与物理验证市占领先",
+        "先进工艺规则成熟"
+      ],
+      "strengths_en": [
+        "Leading signoff market share",
+        "Mature advanced node decks"
+      ],
+      "limitations_zh": [
+        "政治与供应链不确定性",
+        "本地化支持成本"
+      ],
+      "limitations_en": [
+        "Geopolitical supply uncertainty",
+        "Localization support cost"
+      ],
+      "industries": [
+        "集成电路",
+        "半导体制造"
+      ],
+      "pricing": "high",
+      "confidence": 0.9,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://eda.sw.siemens.com/",
+          "title": "Siemens Calibre DRC/LVS",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "keysight-ads",
+      "name_zh": "Keysight ADS",
+      "name_en": "Keysight ADS",
+      "vendor_id": "keysight",
+      "category_l1": "研发设计",
+      "category_l2": "EDA",
+      "origin": "international",
+      "kernel": "自主",
+      "maturity": "high",
+      "localization_depth": "partial",
+      "strengths_zh": [
+        "射频微波仿真标杆",
+        "5G/毫米波生态完善"
+      ],
+      "strengths_en": [
+        "RF/microwave simulation benchmark",
+        "Strong 5G/mmWave ecosystem"
+      ],
+      "limitations_zh": [
+        "国产化替代进展慢",
+        "高端模块授权贵"
+      ],
+      "limitations_en": [
+        "Slow localization displacement",
+        "Premium module pricing"
+      ],
+      "industries": [
+        "通信",
+        "航空航天",
+        "汽车电子"
+      ],
+      "pricing": "high",
+      "confidence": 0.88,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.keysight.com/",
+          "title": "Keysight ADS",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "altium-designer",
+      "name_zh": "Altium Designer",
+      "name_en": "Altium Designer",
+      "vendor_id": "altium",
+      "category_l1": "研发设计",
+      "category_l2": "EDA",
+      "origin": "international",
+      "kernel": "自主",
+      "maturity": "high",
+      "localization_depth": "partial",
+      "strengths_zh": [
+        "PCB设计用户体验好",
+        "中小企业广泛使用"
+      ],
+      "strengths_en": [
+        "Strong PCB UX",
+        "Widely used by SMEs"
+      ],
+      "limitations_zh": [
+        "高端封装与仿真弱于Cadence",
+        "云协同对中国合规考量"
+      ],
+      "limitations_en": [
+        "Weaker advanced packaging vs Cadence",
+        "Cloud compliance considerations"
+      ],
+      "industries": [
+        "电子",
+        "消费电子",
+        "工业"
+      ],
+      "pricing": "high",
+      "confidence": 0.87,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.altium.com/",
+          "title": "Altium Designer",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "silvaco-tcad",
+      "name_zh": "Silvaco TCAD",
+      "name_en": "Silvaco TCAD",
+      "vendor_id": "silvaco",
+      "category_l1": "研发设计",
+      "category_l2": "EDA",
+      "origin": "international",
+      "kernel": "自主",
+      "maturity": "high",
+      "localization_depth": "pilot",
+      "strengths_zh": [
+        "工艺器件仿真TCAD成熟",
+        "教学与研发常用"
+      ],
+      "strengths_en": [
+        "Mature TCAD for process/device",
+        "Common in academia and R&D"
+      ],
+      "limitations_zh": [
+        "国内替代如华大/概伦在追赶",
+        "授权模式传统"
+      ],
+      "limitations_en": [
+        "Domestic alternatives catching up",
+        "Traditional licensing"
+      ],
+      "industries": [
+        "半导体",
+        "科研"
+      ],
+      "pricing": "high",
+      "confidence": 0.84,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://silvaco.com/",
+          "title": "Silvaco TCAD",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "mentor-pads",
+      "name_zh": "Siemens PADS",
+      "name_en": "Siemens PADS",
+      "vendor_id": "siemens-eda",
+      "category_l1": "研发设计",
+      "category_l2": "EDA",
+      "origin": "international",
+      "kernel": "自主",
+      "maturity": "high",
+      "localization_depth": "partial",
+      "strengths_zh": [
+        "中端PCB市场占有率高",
+        "与Mentor生态集成"
+      ],
+      "strengths_en": [
+        "Strong mid-tier PCB share",
+        "Mentor ecosystem integration"
+      ],
+      "limitations_zh": [
+        "向Xpedition迁移压力",
+        "云原生能力一般"
+      ],
+      "limitations_en": [
+        "Migration pressure to Xpedition",
+        "Average cloud-native story"
+      ],
+      "industries": [
+        "电子制造",
+        "工业"
+      ],
+      "pricing": "mid",
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://eda.sw.siemens.com/",
+          "title": "Siemens PADS",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "ansys-hfss",
+      "name_zh": "Ansys HFSS",
+      "name_en": "Ansys HFSS",
+      "vendor_id": "ansys",
+      "category_l1": "研发设计",
+      "category_l2": "EDA",
+      "origin": "international",
+      "kernel": "自主",
+      "maturity": "mission_critical",
+      "localization_depth": "core",
+      "strengths_zh": [
+        "3D全波电磁仿真事实标准",
+        "天线/封装/PCB SI/PI 签核生态成熟"
+      ],
+      "strengths_en": [
+        "De-facto 3D full-wave EM simulation standard",
+        "Mature antenna/package/PCB SI-PI signoff ecosystem"
+      ],
+      "limitations_zh": [
+        "Synopsys收购Ansys后授权与合规路径待观察",
+        "大模型求解算力与许可成本高"
+      ],
+      "limitations_en": [
+        "Licensing path evolving post Synopsys-Ansys merger",
+        "Large-model solves need heavy compute and licenses"
+      ],
+      "industries": [
+        "通信",
+        "航空航天",
+        "半导体",
+        "汽车电子"
+      ],
+      "pricing": "high",
+      "confidence": 0.91,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.ansys.com/products/electronics/ansys-hfss",
+          "title": "Ansys HFSS",
+          "accessed": "2026-06"
+        }
+      ],
+      "international_benchmarks": [
+        "keysight-ads"
+      ]
+    },
+    {
+      "id": "cadence-allegro",
+      "name_zh": "Cadence Allegro",
+      "name_en": "Cadence Allegro PCB Design",
+      "vendor_id": "cadence",
+      "category_l1": "研发设计",
+      "category_l2": "EDA",
+      "origin": "international",
+      "kernel": "自主",
+      "maturity": "mission_critical",
+      "localization_depth": "core",
+      "strengths_zh": [
+        "高端PCB/封装/系统级设计标杆",
+        "与Virtuoso/Sigrity深度集成"
+      ],
+      "strengths_en": [
+        "Benchmark for advanced PCB/package/system design",
+        "Deep integration with Virtuoso and Sigrity"
+      ],
+      "limitations_zh": [
+        "学习曲线陡峭",
+        "订阅与模块授权昂贵"
+      ],
+      "limitations_en": [
+        "Steep learning curve",
+        "Expensive subscription and module licensing"
+      ],
+      "industries": [
+        "集成电路",
+        "通信",
+        "服务器",
+        "汽车电子"
+      ],
+      "pricing": "high",
+      "confidence": 0.92,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.cadence.com/en_US/home/tools/pcb-design-and-analysis/allegro-pcb-designer.html",
+          "title": "Cadence Allegro PCB Designer",
+          "accessed": "2026-06"
+        }
+      ],
+      "international_benchmarks": [
+        "altium-designer"
+      ]
+    },
+    {
+      "id": "cadence-innovus",
+      "name_zh": "Cadence Innovus",
+      "name_en": "Cadence Innovus Implementation System",
+      "vendor_id": "cadence",
+      "category_l1": "研发设计",
+      "category_l2": "EDA",
+      "origin": "international",
+      "kernel": "自主",
+      "maturity": "mission_critical",
+      "localization_depth": "core",
+      "strengths_zh": [
+        "数字IC布局布线全球主流平台",
+        "先进工艺PPA优化能力领先"
+      ],
+      "strengths_en": [
+        "Mainstream digital IC place-and-route platform",
+        "Leading PPA optimization at advanced nodes"
+      ],
+      "limitations_zh": [
+        "国产化替代阻力大",
+        "与Calibre/Tempus签核链绑定深"
+      ],
+      "limitations_en": [
+        "Hard to displace in China advanced flows",
+        "Deep signoff coupling with Calibre/Tempus"
+      ],
+      "industries": [
+        "集成电路",
+        "人工智能",
+        "通信"
+      ],
+      "pricing": "high",
+      "confidence": 0.93,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.cadence.com/en_US/home/tools/digital-design-and-signoff/soc-implementation-and-optimization/innovus-implementation-system.html",
+          "title": "Cadence Innovus Implementation System",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "synopsys-vcs",
+      "name_zh": "Synopsys VCS",
+      "name_en": "Synopsys VCS Functional Verification",
+      "vendor_id": "synopsys",
+      "category_l1": "研发设计",
+      "category_l2": "EDA",
+      "origin": "international",
+      "kernel": "自主",
+      "maturity": "mission_critical",
+      "localization_depth": "core",
+      "strengths_zh": [
+        "RTL仿真市占领先",
+        "UVM/SystemVerilog生态完整"
+      ],
+      "strengths_en": [
+        "Leading RTL simulation market share",
+        "Complete UVM/SystemVerilog ecosystem"
+      ],
+      "limitations_zh": [
+        "大芯片仿真仍依赖高性能算力",
+        "国产验证工具在形式化/性能上追赶"
+      ],
+      "limitations_en": [
+        "Large-chip sim still compute-hungry",
+        "Domestic verification catching up on formal/perf"
+      ],
+      "industries": [
+        "集成电路",
+        "汽车电子",
+        "通信"
+      ],
+      "pricing": "high",
+      "confidence": 0.92,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.synopsys.com/verification/simulation/vcs.html",
+          "title": "Synopsys VCS",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "synopsys-primetime",
+      "name_zh": "Synopsys PrimeTime",
+      "name_en": "Synopsys PrimeTime STA",
+      "vendor_id": "synopsys",
+      "category_l1": "研发设计",
+      "category_l2": "EDA",
+      "origin": "international",
+      "kernel": "自主",
+      "maturity": "mission_critical",
+      "localization_depth": "core",
+      "strengths_zh": [
+        "静态时序分析签核标准",
+        "先进工艺corner/MCMM覆盖全"
+      ],
+      "strengths_en": [
+        "De-facto static timing analysis signoff",
+        "Broad advanced-node corner/MCMM coverage"
+      ],
+      "limitations_zh": [
+        "与Fusion Compiler/ICC2流程强绑定",
+        "替代需重建完整签核链"
+      ],
+      "limitations_en": [
+        "Tightly coupled to Fusion Compiler/ICC2 flows",
+        "Replacement requires full signoff chain rebuild"
+      ],
+      "industries": [
+        "集成电路",
+        "半导体"
+      ],
+      "pricing": "high",
+      "confidence": 0.91,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.synopsys.com/implementation-and-signoff/signoff/primetime.html",
+          "title": "Synopsys PrimeTime",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "synopsys-fusion-compiler",
+      "name_zh": "Synopsys Fusion Compiler",
+      "name_en": "Synopsys Fusion Compiler",
+      "vendor_id": "synopsys",
+      "category_l1": "研发设计",
+      "category_l2": "EDA",
+      "origin": "international",
+      "kernel": "自主",
+      "maturity": "mission_critical",
+      "localization_depth": "core",
+      "strengths_zh": [
+        "统一综合与布局布线平台",
+        "与PrimeTime/StarRC签核一体化"
+      ],
+      "strengths_en": [
+        "Unified synthesis and place-and-route",
+        "Integrated PrimeTime/StarRC signoff"
+      ],
+      "limitations_zh": [
+        "替代Innovus/ICC2迁移成本高",
+        "先进节点license与support费用高"
+      ],
+      "limitations_en": [
+        "High migration cost from Innovus/ICC2",
+        "Premium advanced-node license and support"
+      ],
+      "industries": [
+        "集成电路",
+        "人工智能",
+        "通信"
+      ],
+      "pricing": "high",
+      "confidence": 0.9,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.synopsys.com/implementation-and-signoff/physical-implementation/fusion-compiler.html",
+          "title": "Synopsys Fusion Compiler",
+          "accessed": "2026-06"
+        }
+      ],
+      "international_benchmarks": [
+        "cadence-innovus"
+      ]
+    },
+    {
+      "id": "synopsys-haps",
+      "name_zh": "Synopsys HAPS",
+      "name_en": "Synopsys HAPS FPGA Prototyping",
+      "vendor_id": "synopsys",
+      "category_l1": "研发设计",
+      "category_l2": "EDA",
+      "origin": "international",
+      "kernel": "自主",
+      "maturity": "high",
+      "localization_depth": "core",
+      "strengths_zh": [
+        "FPGA原型验证硬件+软件一体化",
+        "大SoC bring-up与软件早期验证"
+      ],
+      "strengths_en": [
+        "Integrated FPGA prototyping hardware and software",
+        "Large SoC bring-up and early software validation"
+      ],
+      "limitations_zh": [
+        "硬件成本高",
+        "国内S2C等竞品在性价比上追赶"
+      ],
+      "limitations_en": [
+        "High hardware cost",
+        "Domestic rivals like S2C competing on value"
+      ],
+      "industries": [
+        "集成电路",
+        "通信",
+        "人工智能"
+      ],
+      "pricing": "high",
+      "confidence": 0.88,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.synopsys.com/verification/prototyping/haps.html",
+          "title": "Synopsys HAPS",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "synopsys-spyglass",
+      "name_zh": "Synopsys SpyGlass",
+      "name_en": "Synopsys SpyGlass Lint/CDC/RDC",
+      "vendor_id": "synopsys",
+      "category_l1": "研发设计",
+      "category_l2": "EDA",
+      "origin": "international",
+      "kernel": "自主",
+      "maturity": "high",
+      "localization_depth": "core",
+      "strengths_zh": [
+        "RTL Lint/CDC/RDC签核事实标准",
+        "车规与功能安全流程广泛采用"
+      ],
+      "strengths_en": [
+        "De-facto RTL lint/CDC/RDC signoff",
+        "Widely used in automotive and safety flows"
+      ],
+      "limitations_zh": [
+        "规则库维护依赖原厂",
+        "与VCS/VC Formal协同授权复杂"
+      ],
+      "limitations_en": [
+        "Rule decks depend on vendor maintenance",
+        "Complex bundling with VCS/VC Formal"
+      ],
+      "industries": [
+        "集成电路",
+        "汽车电子"
+      ],
+      "pricing": "high",
+      "confidence": 0.89,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.synopsys.com/verification/signoff/spyglass.html",
+          "title": "Synopsys SpyGlass",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "siemens-xpedition",
+      "name_zh": "Siemens Xpedition",
+      "name_en": "Siemens Xpedition Enterprise",
+      "vendor_id": "siemens-eda",
+      "category_l1": "研发设计",
+      "category_l2": "EDA",
+      "origin": "international",
+      "kernel": "自主",
+      "maturity": "mission_critical",
+      "localization_depth": "core",
+      "strengths_zh": [
+        "高端PCB/Mentor企业级设计平台",
+        "与HyperLynx/Calibre协同"
+      ],
+      "strengths_en": [
+        "Enterprise PCB platform from Mentor lineage",
+        "Works with HyperLynx and Calibre"
+      ],
+      "limitations_zh": [
+        "从PADS迁移学习成本",
+        "云协作对中国数据合规需评估"
+      ],
+      "limitations_en": [
+        "Migration learning curve from PADS",
+        "Cloud collaboration needs China data review"
+      ],
+      "industries": [
+        "电子制造",
+        "通信",
+        "航空航天"
+      ],
+      "pricing": "high",
+      "confidence": 0.9,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://eda.sw.siemens.com/en-US/ic/pcb/xpedition-enterprise/",
+          "title": "Siemens Xpedition Enterprise",
+          "accessed": "2026-06"
+        }
+      ],
+      "international_benchmarks": [
+        "cadence-allegro"
+      ]
+    },
+    {
+      "id": "siemens-hyperlynx",
+      "name_zh": "Siemens HyperLynx",
+      "name_en": "Siemens HyperLynx SI/PI",
+      "vendor_id": "siemens-eda",
+      "category_l1": "研发设计",
+      "category_l2": "EDA",
+      "origin": "international",
+      "kernel": "自主",
+      "maturity": "high",
+      "localization_depth": "partial",
+      "strengths_zh": [
+        "PCB信号/电源完整性分析标杆",
+        "与Mentor PCB流程原生集成"
+      ],
+      "strengths_en": [
+        "Benchmark PCB SI/PI analysis",
+        "Native integration with Mentor PCB flows"
+      ],
+      "limitations_zh": [
+        "3D全波仍常需HFSS/ADS补充",
+        "高端模块授权贵"
+      ],
+      "limitations_en": [
+        "3D full-wave often needs HFSS/ADS supplement",
+        "Premium module licensing"
+      ],
+      "industries": [
+        "电子",
+        "通信",
+        "服务器"
+      ],
+      "pricing": "high",
+      "confidence": 0.88,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://eda.sw.siemens.com/en-US/ic/pcb/hyperlynx/",
+          "title": "Siemens HyperLynx",
+          "accessed": "2026-06"
+        }
+      ],
+      "international_benchmarks": [
+        "ansys-hfss"
+      ]
+    },
+    {
+      "id": "siemens-questa",
+      "name_zh": "Siemens Questa",
+      "name_en": "Siemens Questa Simulation",
+      "vendor_id": "siemens-eda",
+      "category_l1": "研发设计",
+      "category_l2": "EDA",
+      "origin": "international",
+      "kernel": "自主",
+      "maturity": "high",
+      "localization_depth": "core",
+      "strengths_zh": [
+        "Mentor ModelSim/Questa仿真传承",
+        "FPGA/ASIC混合验证场景成熟"
+      ],
+      "strengths_en": [
+        "Mentor ModelSim/Questa simulation lineage",
+        "Mature FPGA/ASIC mixed verification"
+      ],
+      "limitations_zh": [
+        "大芯片性能仍弱于VCS",
+        "Veloce emulation需另购"
+      ],
+      "limitations_en": [
+        "Large-chip performance below VCS",
+        "Veloce emulation sold separately"
+      ],
+      "industries": [
+        "集成电路",
+        "FPGA",
+        "汽车电子"
+      ],
+      "pricing": "high",
+      "confidence": 0.87,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://eda.sw.siemens.com/en-US/ic/verification/questa/",
+          "title": "Siemens Questa Simulation",
+          "accessed": "2026-06"
+        }
+      ],
+      "international_benchmarks": [
+        "synopsys-vcs"
+      ]
+    },
+    {
+      "id": "kicad",
+      "name_zh": "KiCad",
+      "name_en": "KiCad EDA",
+      "vendor_id": "kicad",
+      "category_l1": "研发设计",
+      "category_l2": "EDA",
+      "origin": "open_source",
+      "kernel": "OCCT（3D 视图/STEP）",
+      "maturity": "high",
+      "localization_depth": "partial",
+      "strengths_zh": [
+        "GPL 开源 PCB EDA 生态活跃",
+        "3D 板级视图与 STEP 导出依赖 OCCT",
+        "国内开源硬件与创客社区广泛采用"
+      ],
+      "strengths_en": [
+        "Active GPL open PCB EDA ecosystem",
+        "3D board view and STEP export use OCCT",
+        "Widely adopted in China open-hardware/maker community"
+      ],
+      "limitations_zh": [
+        "高速/RF/先进封装弱于 Allegro",
+        "晶圆厂 sign-off 仍以国际三巨头为主"
+      ],
+      "limitations_en": [
+        "Weaker high-speed/RF/advanced packaging vs Allegro",
+        "Foundry sign-off still dominated by big-three EDA"
+      ],
+      "industries": [
+        "电子制造",
+        "创客",
+        "教育",
+        "消费电子"
+      ],
+      "pricing": "free",
+      "confidence": 0.86,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.kicad.org/",
+          "title": "KiCad EDA",
+          "accessed": "2026-06"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Open_Cascade_Technology",
+          "title": "OCCT — KiCad listed as dependent",
+          "accessed": "2026-06"
+        }
+      ],
+      "international_benchmarks": [
+        "altium-designer"
+      ],
+      "kernel_id": "open-cascade"
+    },
+    {
+      "id": "orcad-capture",
+      "name_zh": "OrCAD Capture / PCB Designer",
+      "name_en": "OrCAD Capture / PCB Designer",
+      "vendor_id": "cadence",
+      "category_l1": "研发设计",
+      "category_l2": "EDA",
+      "origin": "international",
+      "kernel": "自主",
+      "maturity": "high",
+      "localization_depth": "partial",
+      "strengths_zh": [
+        "中端PCB/原理图市场占有率高",
+        "与PSpice/PSpice仿真链集成"
+      ],
+      "strengths_en": [
+        "Strong mid-tier schematic/PCB share",
+        "Integrated with PSpice simulation chain"
+      ],
+      "limitations_zh": [
+        "高端能力需升级Allegro",
+        "授权模式向订阅迁移"
+      ],
+      "limitations_en": [
+        "Advanced flows require Allegro upgrade",
+        "Licensing shifting to subscription"
+      ],
+      "industries": [
+        "电子制造",
+        "工业",
+        "消费电子"
+      ],
+      "pricing": "mid",
+      "confidence": 0.87,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.orcad.com/",
+          "title": "OrCAD Capture / PCB Designer",
+          "accessed": "2026-06"
+        }
+      ],
+      "international_benchmarks": [
+        "mentor-pads"
+      ]
+    },
+    {
+      "id": "ceva-dsp-studio",
+      "name_zh": "CEVA DSP 开发工具",
+      "name_en": "CEVA Development Studio",
+      "vendor_id": "ceva",
+      "category_l1": "研发设计",
+      "category_l2": "EDA",
+      "origin": "international",
+      "kernel": "自主",
+      "maturity": "high",
+      "localization_depth": "partial",
+      "strengths_zh": [
+        "DSP/AI核配置与编译工具链",
+        "通信与边缘AI IP生态成熟"
+      ],
+      "strengths_en": [
+        "DSP/AI core configuration and toolchain",
+        "Mature comms and edge-AI IP ecosystem"
+      ],
+      "limitations_zh": [
+        "绑定CEVA IP授权",
+        "国内RISC-V/NPU工具链竞争加剧"
+      ],
+      "limitations_en": [
+        "Tied to CEVA IP licensing",
+        "Domestic RISC-V/NPU toolchains intensifying"
+      ],
+      "industries": [
+        "通信",
+        "物联网",
+        "消费电子",
+        "汽车电子"
+      ],
+      "pricing": "quote",
+      "confidence": 0.84,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.ceva-ip.com/",
+          "title": "CEVA Development Studio",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "xpeedic-siwave",
+      "name_zh": "芯和半导体 Xpeedic",
+      "name_en": "Xpeedic Siwave / Pepi",
+      "vendor_id": "xpeedic",
+      "category_l1": "研发设计",
+      "category_l2": "EDA",
+      "origin": "domestic",
+      "kernel": "自主",
+      "maturity": "high",
+      "localization_depth": "partial",
+      "strengths_zh": [
+        "PCB/封装SI/PI与3D电磁仿真国产化领先",
+        "获主流Foundry与OSAT客户采用"
+      ],
+      "strengths_en": [
+        "Leading domestic PCB/package SI-PI and 3D EM",
+        "Adopted by mainstream foundry/OSAT customers"
+      ],
+      "limitations_zh": [
+        "系统级全波与Ansys HFSS仍有差距",
+        "国际市场认知度有限"
+      ],
+      "limitations_en": [
+        "System-level full-wave gap vs Ansys HFSS",
+        "Limited global brand recognition"
+      ],
+      "industries": [
+        "半导体",
+        "通信",
+        "消费电子"
+      ],
+      "pricing": "high",
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.xpeedic.com/",
+          "title": "Xpeedic Siwave / Pepi",
+          "accessed": "2026-06"
+        }
+      ],
+      "international_benchmarks": [
+        "ansys-hfss",
+        "siemens-hyperlynx"
+      ]
+    },
+    {
+      "id": "xchip-signoff",
+      "name_zh": "行芯科技 Signoff",
+      "name_en": "Phlexing Signoff Platform",
+      "vendor_id": "xchip",
+      "category_l1": "研发设计",
+      "category_l2": "EDA",
+      "origin": "domestic",
+      "kernel": "自主",
+      "maturity": "high",
+      "localization_depth": "partial",
+      "strengths_zh": [
+        "GloryEX/GloryEye 签核工具链覆盖RC/STA/SI/PI",
+        "多个头部晶圆厂与设计公司流片验证"
+      ],
+      "strengths_en": [
+        "GloryEX/GloryEye signoff stack covers RC/STA/SI/PI",
+        "Tape-out validation with leading foundries and designers"
+      ],
+      "limitations_zh": [
+        "与PrimeTime/StarRC/Calibre生态差距仍在",
+        "3DIC签核仍在快速迭代"
+      ],
+      "limitations_en": [
+        "Ecosystem gap vs PrimeTime/StarRC/Calibre",
+        "3DIC signoff still rapidly evolving"
+      ],
+      "industries": [
+        "集成电路",
+        "半导体制造"
+      ],
+      "pricing": "high",
+      "confidence": 0.84,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.phlexing.com/",
+          "title": "Phlexing Signoff Platform",
+          "accessed": "2026-06"
+        }
+      ],
+      "international_benchmarks": [
+        "synopsys-primetime",
+        "siemens-calibre"
+      ]
+    },
+    {
+      "id": "univista-verification",
+      "name_zh": "合见工软 UniVista",
+      "name_en": "UniVista Verification Platform",
+      "vendor_id": "univista",
+      "category_l1": "研发设计",
+      "category_l2": "EDA",
+      "origin": "domestic",
+      "kernel": "自主",
+      "maturity": "mid",
+      "localization_depth": "pilot",
+      "strengths_zh": [
+        "数字仿真/原型验证/形式验证一体化",
+        "上海临港EDA产业政策支持"
+      ],
+      "strengths_en": [
+        "Unified digital sim/prototyping/formal verification",
+        "Shanghai Lingang EDA policy support"
+      ],
+      "limitations_zh": [
+        "商业化规模小于Synopsys/Cadence",
+        "大芯片性能与生态仍在建设"
+      ],
+      "limitations_en": [
+        "Commercial scale below Synopsys/Cadence",
+        "Large-chip performance and ecosystem building"
+      ],
+      "industries": [
+        "集成电路",
+        "汽车电子"
+      ],
+      "pricing": "high",
+      "confidence": 0.78,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.univista-is.com/",
+          "title": "UniVista Verification Platform",
+          "accessed": "2026-06"
+        }
+      ],
+      "international_benchmarks": [
+        "synopsys-vcs",
+        "x-epic-verification"
+      ]
+    },
+    {
+      "id": "empyrean-alps",
+      "name_zh": "华大九天 ALPS",
+      "name_en": "Empyrean ALPS",
+      "vendor_id": "empyrean",
+      "category_l1": "研发设计",
+      "category_l2": "EDA",
+      "origin": "domestic",
+      "kernel": "自主",
+      "maturity": "high",
+      "localization_depth": "partial",
+      "strengths_zh": [
+        "电路仿真器获Samsung 4nm等工艺认证",
+        "车规ISO 26262 TCL3功能安全支撑"
+      ],
+      "strengths_en": [
+        "SPICE simulator certified at Samsung 4nm and beyond",
+        "Automotive ISO 26262 TCL3 support"
+      ],
+      "limitations_zh": [
+        "先进节点全corner签核仍弱于HSPICE/PrimeSim",
+        "与Aether布局协同仍在深化"
+      ],
+      "limitations_en": [
+        "Advanced full-corner signoff below HSPICE/PrimeSim",
+        "Deeper Aether layout co-design still evolving"
+      ],
+      "industries": [
+        "集成电路",
+        "汽车电子",
+        "半导体"
+      ],
+      "pricing": "high",
+      "confidence": 0.87,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.empyrean.com.cn/product/alps",
+          "title": "Empyrean ALPS",
+          "accessed": "2026-06"
+        }
+      ],
+      "international_benchmarks": [
+        "primarius-device"
+      ],
+      "listed_ticker": "301269.SZ"
+    },
+    {
+      "id": "empyrean-qualib",
+      "name_zh": "华大九天 Qualib",
+      "name_en": "Empyrean Qualib DRC/LVS",
+      "vendor_id": "empyrean",
+      "category_l1": "研发设计",
+      "category_l2": "EDA",
+      "origin": "domestic",
+      "kernel": "自主",
+      "maturity": "mid",
+      "localization_depth": "pilot",
+      "strengths_zh": [
+        "物理验证DRC/LVS国产化",
+        "与Aether模拟流程集成"
+      ],
+      "strengths_en": [
+        "Domestic DRC/LVS physical verification",
+        "Integrated with Aether analog flow"
+      ],
+      "limitations_zh": [
+        "先进数字签核仍依赖Calibre",
+        "规则deck生态待扩展"
+      ],
+      "limitations_en": [
+        "Advanced digital signoff still Calibre-dependent",
+        "Rule deck ecosystem expanding"
+      ],
+      "industries": [
+        "集成电路",
+        "半导体制造"
+      ],
+      "pricing": "high",
+      "confidence": 0.8,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.empyrean.com.cn/",
+          "title": "Empyrean Qualib",
+          "accessed": "2026-06"
+        }
+      ],
+      "international_benchmarks": [
+        "siemens-calibre"
+      ],
+      "listed_ticker": "301269.SZ"
+    },
+    {
+      "id": "primarius-nanospice",
+      "name_zh": "概伦电子 NanoSpice",
+      "name_en": "Primarius NanoSpice",
+      "vendor_id": "primarius",
+      "category_l1": "研发设计",
+      "category_l2": "EDA",
+      "origin": "domestic",
+      "kernel": "自主",
+      "maturity": "high",
+      "localization_depth": "partial",
+      "strengths_zh": [
+        "FastSPICE/电路仿真性能领先",
+        "Foundry signoff与BSIM模型协同"
+      ],
+      "strengths_en": [
+        "Leading FastSPICE/circuit simulation performance",
+        "Foundry signoff with BSIM model synergy"
+      ],
+      "limitations_zh": [
+        "全流程数字后端仍缺位",
+        "国际客户以模型合作为主"
+      ],
+      "limitations_en": [
+        "No full digital backend stack",
+        "International clients mostly model partnerships"
+      ],
+      "industries": [
+        "集成电路",
+        "半导体"
+      ],
+      "pricing": "high",
+      "confidence": 0.86,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.primarius-tech.com/product/nanospice",
+          "title": "Primarius NanoSpice",
+          "accessed": "2026-06"
+        }
+      ],
+      "international_benchmarks": [
+        "empyrean-alps"
+      ],
+      "listed_ticker": "688206.SH"
+    },
+    {
+      "id": "primarius-extraction",
+      "name_zh": "概伦电子 RC提取",
+      "name_en": "Primarius RC Extraction",
+      "vendor_id": "primarius",
+      "category_l1": "研发设计",
+      "category_l2": "EDA",
+      "origin": "domestic",
+      "kernel": "自主",
+      "maturity": "mid",
+      "localization_depth": "pilot",
+      "strengths_zh": [
+        "寄生参数提取与器件建模协同",
+        "先进工艺RC精度持续验证"
+      ],
+      "strengths_en": [
+        "Parasitic extraction aligned with device modeling",
+        "Advanced-node RC accuracy under validation"
+      ],
+      "limitations_zh": [
+        "与StarRC/QRC签核生态差距",
+        "数字后端集成有限"
+      ],
+      "limitations_en": [
+        "Signoff gap vs StarRC/QRC ecosystems",
+        "Limited digital backend integration"
+      ],
+      "industries": [
+        "集成电路",
+        "半导体制造"
+      ],
+      "pricing": "high",
+      "confidence": 0.79,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.primarius-tech.com/",
+          "title": "Primarius RC Extraction",
+          "accessed": "2026-06"
+        }
+      ],
+      "listed_ticker": "688206.SH"
+    },
+    {
+      "id": "quanzhi-fab-software",
+      "name_zh": "全芯智造 制造分析",
+      "name_en": "ALLSemi Fab Analytics",
+      "vendor_id": "quanzhi",
+      "category_l1": "研发设计",
+      "category_l2": "EDA",
+      "origin": "domestic",
+      "kernel": "自主",
+      "maturity": "mid",
+      "localization_depth": "pilot",
+      "strengths_zh": [
+        "晶圆厂计算光刻/工艺仿真/智能制造平台",
+        "14nm及以下先进制程量产应用"
+      ],
+      "strengths_en": [
+        "Fab computational lithography/process sim/smart manufacturing",
+        "Applied at 14nm and below production nodes"
+      ],
+      "limitations_zh": [
+        "与Applied/Synopsys制造类EDA生态差距",
+        "与广立微/赛美特场景部分重叠"
+      ],
+      "limitations_en": [
+        "Gap vs Applied/Synopsys manufacturing EDA",
+        "Partial overlap with Semitron/Semitech"
+      ],
+      "industries": [
+        "半导体制造",
+        "集成电路"
+      ],
+      "pricing": "high",
+      "confidence": 0.78,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.amedac.com/",
+          "title": "ALLSemi Fab Analytics",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "semitech-cim",
+      "name_zh": "赛美特 CIM/MES",
+      "name_en": "Semitech Semiconductor CIM",
+      "vendor_id": "semitech",
+      "category_l1": "生产制造",
+      "category_l2": "半导体CIM",
+      "origin": "domestic",
+      "kernel": "自主",
+      "maturity": "high",
+      "localization_depth": "partial",
+      "strengths_zh": [
+        "半导体晶圆厂CIM/MES国产化主力",
+        "12寸产线实施案例增多"
+      ],
+      "strengths_en": [
+        "Leading domestic semiconductor CIM/MES",
+        "Growing 12-inch fab deployments"
+      ],
+      "limitations_zh": [
+        "与Applied/IBM legacy CIM互操作复杂",
+        "先进节点recipe管理仍在追赶"
+      ],
+      "limitations_en": [
+        "Interop with Applied/IBM legacy CIM is complex",
+        "Advanced recipe management still catching up"
+      ],
+      "industries": [
+        "半导体制造",
+        "集成电路"
+      ],
+      "pricing": "quote",
+      "confidence": 0.82,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.semitech.com.cn/",
+          "title": "Semitech Semiconductor CIM",
+          "accessed": "2026-06"
+        }
+      ],
+      "taxonomy_note_zh": "P3：半导体CIM/MES归类生产制造（非研发设计EDA）",
+      "taxonomy_note_en": "P3: semiconductor CIM/MES under 生产制造 (not R&D EDA)",
+      "product_type": "cim"
+    },
+    {
+      "id": "huafeng-ate-software",
+      "name_zh": "华峰测控 测试软件",
+      "name_en": "Huafeng ATE Test Software",
+      "vendor_id": "huafeng",
+      "category_l1": "研发设计",
+      "category_l2": "EDA",
+      "origin": "domestic",
+      "kernel": "自主",
+      "maturity": "high",
+      "localization_depth": "partial",
+      "strengths_zh": [
+        "国产ATE测试程序开发与数据分析软件",
+        "与STS8200/8300/8600机台深度绑定"
+      ],
+      "strengths_en": [
+        "Domestic ATE test program and analytics software",
+        "Tightly coupled to STS8200/8300/8600 testers"
+      ],
+      "limitations_zh": [
+        "跨平台测试程序迁移受限",
+        "与Teradyne/Advantest生态不互通"
+      ],
+      "limitations_en": [
+        "Cross-platform test program migration limited",
+        "Not interoperable with Teradyne/Advantest stacks"
+      ],
+      "industries": [
+        "半导体",
+        "封测",
+        "集成电路"
+      ],
+      "pricing": "high",
+      "confidence": 0.83,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "http://www.hftc.com.cn/",
+          "title": "Huafeng ATE Test Software",
+          "accessed": "2026-06"
+        }
+      ],
+      "listed_ticker": "688200.SH"
+    },
+    {
+      "id": "applied-e3",
+      "name_zh": "Applied E3 晶圆厂自动化",
+      "name_en": "Applied Materials E3",
+      "vendor_id": "applied-materials",
+      "category_l1": "生产制造",
+      "category_l2": "半导体CIM",
+      "origin": "international",
+      "kernel": "自主",
+      "maturity": "mission_critical",
+      "localization_depth": "core",
+      "strengths_zh": [
+        "全球12寸晶圆厂CIM标杆",
+        "与Applied设备群深度耦合"
+      ],
+      "strengths_en": [
+        "Global 12-inch fab CIM benchmark",
+        "Tight coupling with Applied tool fleet"
+      ],
+      "limitations_zh": [
+        "国产化替代与数据出境合规压力",
+        "非Applied设备集成成本高"
+      ],
+      "limitations_en": [
+        "Localization and data-sovereignty pressure",
+        "High integration cost for non-Applied tools"
+      ],
+      "industries": [
+        "半导体制造",
+        "集成电路"
+      ],
+      "pricing": "quote",
+      "confidence": 0.9,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.appliedmaterials.com/us/en/products/software.html",
+          "title": "Applied Materials E3",
+          "accessed": "2026-06"
+        }
+      ],
+      "international_benchmarks": [
+        "semitech-cim"
+      ],
+      "taxonomy_note_zh": "P3：半导体CIM/MES归类生产制造（非研发设计EDA）",
+      "taxonomy_note_en": "P3: semiconductor CIM/MES under 生产制造 (not R&D EDA)",
+      "product_type": "cim"
+    },
+    {
+      "id": "pdf-exensio",
+      "name_zh": "PDF Solutions Exensio",
+      "name_en": "PDF Solutions Exensio",
+      "vendor_id": "pdf-solutions",
+      "category_l1": "生产制造",
+      "category_l2": "半导体CIM",
+      "origin": "international",
+      "kernel": "自主",
+      "maturity": "high",
+      "localization_depth": "partial",
+      "strengths_zh": [
+        "良率管理与大数据分析平台",
+        "先进节点缺陷归因能力强"
+      ],
+      "strengths_en": [
+        "Yield management and big-data analytics",
+        "Strong defect attribution at advanced nodes"
+      ],
+      "limitations_zh": [
+        "国内Fab数据接入合规审查严格",
+        "与国产CIM栈对接需定制"
+      ],
+      "limitations_en": [
+        "Strict China fab data access compliance",
+        "Custom bridges to domestic CIM stacks"
+      ],
+      "industries": [
+        "半导体制造",
+        "封测"
+      ],
+      "pricing": "high",
+      "confidence": 0.87,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.pdf.com/exensio-platform",
+          "title": "PDF Solutions Exensio",
+          "accessed": "2026-06"
+        }
+      ],
+      "international_benchmarks": [
+        "semitech-cim"
+      ],
+      "taxonomy_note_zh": "P3：半导体CIM/MES归类生产制造（非研发设计EDA）",
+      "taxonomy_note_en": "P3: semiconductor CIM/MES under 生产制造 (not R&D EDA)",
+      "product_type": "cim"
+    },
+    {
+      "id": "semitech-plantu-eap",
+      "name_zh": "赛美特 PlantU EAP",
+      "name_en": "Semitech PlantU EAP",
+      "vendor_id": "semitech",
+      "category_l1": "生产制造",
+      "category_l2": "半导体CIM",
+      "origin": "domestic",
+      "kernel": "自主",
+      "maturity": "high",
+      "localization_depth": "partial",
+      "strengths_zh": [
+        "设备自动化程序EAP国产主力",
+        "与PlantU MES/YMS一体交付"
+      ],
+      "strengths_en": [
+        "Leading domestic equipment automation (EAP)",
+        "Delivered with PlantU MES/YMS suite"
+      ],
+      "limitations_zh": [
+        "国际设备SECS/GEM适配仍依赖厂商配合",
+        "先进逻辑厂际复制经验少于Applied E3"
+      ],
+      "limitations_en": [
+        "International tool SECS/GEM still vendor-dependent",
+        "Less advanced-logic replication vs Applied E3"
+      ],
+      "industries": [
+        "半导体制造",
+        "封测"
+      ],
+      "pricing": "quote",
+      "confidence": 0.83,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.semitech.com.cn/",
+          "title": "Semitech PlantU EAP",
+          "accessed": "2026-06"
+        }
+      ],
+      "international_benchmarks": [
+        "applied-e3"
+      ],
+      "taxonomy_note_zh": "P3：半导体CIM/MES归类生产制造（非研发设计EDA）",
+      "taxonomy_note_en": "P3: semiconductor CIM/MES under 生产制造 (not R&D EDA)",
+      "product_type": "cim"
+    },
+    {
+      "id": "semitech-plantu-yms",
+      "name_zh": "赛美特 PlantU YMS",
+      "name_en": "Semitech PlantU YMS",
+      "vendor_id": "semitech",
+      "category_l1": "生产制造",
+      "category_l2": "半导体CIM",
+      "origin": "domestic",
+      "kernel": "自主",
+      "maturity": "high",
+      "localization_depth": "partial",
+      "strengths_zh": [
+        "晶圆厂良率管理系统国产化",
+        "与CIM/MessageBus数据闭环"
+      ],
+      "strengths_en": [
+        "Domestic fab yield management system",
+        "Closed loop with CIM/MessageBus data fabric"
+      ],
+      "limitations_zh": [
+        "与PDF Exensio级大数据算法仍有差距",
+        "跨厂Benchmark对标功能在完善"
+      ],
+      "limitations_en": [
+        "Analytics depth gap vs PDF Exensio",
+        "Cross-fab benchmark features maturing"
+      ],
+      "industries": [
+        "半导体制造",
+        "集成电路"
+      ],
+      "pricing": "quote",
+      "confidence": 0.81,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.semitech.com.cn/",
+          "title": "Semitech PlantU YMS",
+          "accessed": "2026-06"
+        }
+      ],
+      "international_benchmarks": [
+        "pdf-exensio"
+      ],
+      "taxonomy_note_zh": "P3：半导体CIM/MES归类生产制造（非研发设计EDA）",
+      "taxonomy_note_en": "P3: semiconductor CIM/MES under 生产制造 (not R&D EDA)",
+      "product_type": "cim"
+    }
+  ]
+}

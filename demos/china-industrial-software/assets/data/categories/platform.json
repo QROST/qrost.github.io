@@ -1,0 +1,1109 @@
+{
+  "category": "platform",
+  "products": [
+    {
+      "id": "huawei-fusionplant",
+      "name_zh": "华为FusionPlant",
+      "name_en": "Huawei FusionPlant",
+      "vendor_id": "huawei",
+      "category_l1": "生产制造",
+      "category_l2": "工业互联网",
+      "origin": "domestic",
+      "kernel": "自主",
+      "maturity": "high",
+      "localization_depth": "partial",
+      "strengths_zh": [
+        "制造业数字化转型平台",
+        "5G+工业互联网案例"
+      ],
+      "strengths_en": [
+        "Manufacturing digital platform",
+        "5G+IIoT cases"
+      ],
+      "limitations_zh": [
+        "生态依赖华为云与伙伴",
+        "中立性受质疑"
+      ],
+      "limitations_en": [
+        "Huawei Cloud and partner dependent",
+        "Neutrality questions"
+      ],
+      "industries": [
+        "制造",
+        "电子",
+        "矿山"
+      ],
+      "pricing": "quote",
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.huaweicloud.com/product/fusionplant.html",
+          "title": "Huawei FusionPlant",
+          "accessed": "2026-06"
+        }
+      ],
+      "taxonomy_note_zh": "P3归并：工信部四类→生产制造（原基础平台/工业互联网）",
+      "taxonomy_note_en": "P3 remap: MIIT quad → 生产制造 (was 基础平台/工业互联网)",
+      "subsegment": "iiot_platform",
+      "product_type": "iiot_platform"
+    },
+    {
+      "id": "alibaba-industrial-brain",
+      "name_zh": "阿里云工业大脑",
+      "name_en": "Alibaba Industrial Brain",
+      "vendor_id": "alibaba",
+      "category_l1": "生产制造",
+      "category_l2": "工业互联网",
+      "origin": "domestic",
+      "kernel": "自主",
+      "maturity": "high",
+      "localization_depth": "partial",
+      "strengths_zh": [
+        "数据智能与预测性维护",
+        "纺织印染等行业案例"
+      ],
+      "strengths_en": [
+        "Data intelligence and predictive maintenance",
+        "Textile industry cases"
+      ],
+      "limitations_zh": [
+        "OT连接能力依赖伙伴",
+        "重云轻边缘"
+      ],
+      "limitations_en": [
+        "OT connectivity via partners",
+        "Cloud-heavy edge-light"
+      ],
+      "industries": [
+        "纺织",
+        "钢铁",
+        "水泥"
+      ],
+      "pricing": "quote",
+      "confidence": 0.84,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.aliyun.com/solution/manufacturing/industrial_brain",
+          "title": "Alibaba Industrial Brain",
+          "accessed": "2026-06"
+        }
+      ],
+      "taxonomy_note_zh": "P3归并：工信部四类→生产制造（原基础平台/工业互联网）",
+      "taxonomy_note_en": "P3 remap: MIIT quad → 生产制造 (was 基础平台/工业互联网)",
+      "subsegment": "iiot_platform",
+      "product_type": "iiot_platform"
+    },
+    {
+      "id": "tencent-wemake",
+      "name_zh": "腾讯云WeMake",
+      "name_en": "Tencent WeMake",
+      "vendor_id": "tencent",
+      "category_l1": "生产制造",
+      "category_l2": "工业互联网",
+      "origin": "domestic",
+      "kernel": "自主",
+      "maturity": "mid",
+      "localization_depth": "pilot",
+      "strengths_zh": [
+        "消费电子与3C数字化",
+        "小程序生态触达"
+      ],
+      "strengths_en": [
+        "Consumer electronics digitalization",
+        "Mini-program ecosystem reach"
+      ],
+      "limitations_zh": [
+        "流程工业案例少",
+        "平台市占低于阿里华为"
+      ],
+      "limitations_en": [
+        "Few process industry cases",
+        "Lower share than Alibaba/Huawei"
+      ],
+      "industries": [
+        "3C",
+        "消费电子"
+      ],
+      "pricing": "quote",
+      "confidence": 0.78,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://cloud.tencent.com/solution/WeMake",
+          "title": "Tencent WeMake",
+          "accessed": "2026-06"
+        }
+      ],
+      "taxonomy_note_zh": "P3归并：工信部四类→生产制造（原基础平台/工业互联网）",
+      "taxonomy_note_en": "P3 remap: MIIT quad → 生产制造 (was 基础平台/工业互联网)",
+      "subsegment": "iiot_platform",
+      "product_type": "iiot_platform"
+    },
+    {
+      "id": "baidu-industrial",
+      "name_zh": "百度智能云工业",
+      "name_en": "Baidu AI Cloud Industrial",
+      "vendor_id": "baidu",
+      "category_l1": "生产制造",
+      "category_l2": "工业互联网",
+      "origin": "domestic",
+      "kernel": "自主",
+      "maturity": "mid",
+      "localization_depth": "pilot",
+      "strengths_zh": [
+        "AI质检与视觉检测",
+        "大模型+工业场景"
+      ],
+      "strengths_en": [
+        "AI inspection and vision",
+        "LLM plus industrial scenarios"
+      ],
+      "limitations_zh": [
+        "平台完整性弱于头部",
+        "OT落地依赖集成商"
+      ],
+      "limitations_en": [
+        "Less complete platform than leaders",
+        "OT via integrators"
+      ],
+      "industries": [
+        "汽车",
+        "电子",
+        "能源"
+      ],
+      "pricing": "quote",
+      "confidence": 0.76,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://cloud.baidu.com/solution/industry/manufacturing.html",
+          "title": "Baidu AI Cloud Industrial",
+          "accessed": "2026-06"
+        }
+      ],
+      "taxonomy_note_zh": "P3归并：工信部四类→生产制造（原基础平台/工业互联网）",
+      "taxonomy_note_en": "P3 remap: MIIT quad → 生产制造 (was 基础平台/工业互联网)",
+      "subsegment": "cloud_industrial",
+      "product_type": "iiot_platform",
+      "tags": [
+        "cloud_native"
+      ]
+    },
+    {
+      "id": "rootcloud",
+      "name_zh": "树根互联根云",
+      "name_en": "Rootcloud RootCloud",
+      "vendor_id": "rootcloud",
+      "category_l1": "生产制造",
+      "category_l2": "工业互联网",
+      "origin": "domestic",
+      "kernel": "自主",
+      "maturity": "high",
+      "localization_depth": "partial",
+      "strengths_zh": [
+        "工程机械IoT龙头",
+        "跨行业设备互联"
+      ],
+      "strengths_en": [
+        "Construction machinery IoT leader",
+        "Cross-industry equipment connectivity"
+      ],
+      "limitations_zh": [
+        "非装备行业渗透慢",
+        "与三一生态绑定印象"
+      ],
+      "limitations_en": [
+        "Slow non-equipment penetration",
+        "Sany ecosystem perception"
+      ],
+      "industries": [
+        "工程机械",
+        "装备制造"
+      ],
+      "pricing": "mid",
+      "confidence": 0.82,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.rootcloud.com/",
+          "title": "Rootcloud RootCloud",
+          "accessed": "2026-06"
+        }
+      ],
+      "taxonomy_note_zh": "P3归并：工信部四类→生产制造（原基础平台/工业互联网）",
+      "taxonomy_note_en": "P3 remap: MIIT quad → 生产制造 (was 基础平台/工业互联网)",
+      "subsegment": "iiot_platform",
+      "product_type": "iiot_platform"
+    },
+    {
+      "id": "casicloud-indics",
+      "name_zh": "航天云网INDICS",
+      "name_en": "CASIC INDICS",
+      "vendor_id": "casicloud",
+      "category_l1": "生产制造",
+      "category_l2": "工业互联网",
+      "origin": "domestic",
+      "kernel": "自主",
+      "maturity": "high",
+      "localization_depth": "partial",
+      "strengths_zh": [
+        "国家级工业互联网平台",
+        "航天供应链背景"
+      ],
+      "strengths_en": [
+        "National IIoT platform",
+        "Aerospace supply chain heritage"
+      ],
+      "limitations_zh": [
+        "市场化运营能力参差",
+        "用户体验待提升"
+      ],
+      "limitations_en": [
+        "Variable commercial operations",
+        "UX needs improvement"
+      ],
+      "industries": [
+        "航天",
+        "制造",
+        "国资"
+      ],
+      "pricing": "quote",
+      "confidence": 0.8,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.casicloud.com/",
+          "title": "CASIC INDICS",
+          "accessed": "2026-06"
+        }
+      ],
+      "taxonomy_note_zh": "P3归并：工信部四类→生产制造（原基础平台/工业互联网）",
+      "taxonomy_note_en": "P3 remap: MIIT quad → 生产制造 (was 基础平台/工业互联网)",
+      "subsegment": "iiot_platform",
+      "product_type": "iiot_platform"
+    },
+    {
+      "id": "yonyou-iip",
+      "name_zh": "用友精智",
+      "name_en": "Yonyou Industrial Internet",
+      "vendor_id": "yonyou",
+      "category_l1": "生产制造",
+      "category_l2": "工业互联网",
+      "origin": "domestic",
+      "kernel": "自主",
+      "maturity": "high",
+      "localization_depth": "partial",
+      "strengths_zh": [
+        "ERP+IoT一体化",
+        "大型企业集团客户"
+      ],
+      "strengths_en": [
+        "ERP plus IoT integration",
+        "Large enterprise group clients"
+      ],
+      "limitations_zh": [
+        "设备连接协议覆盖参差",
+        "与专业IIoT平台竞争"
+      ],
+      "limitations_en": [
+        "Variable device protocol coverage",
+        "Competes with specialist IIoT"
+      ],
+      "industries": [
+        "制造",
+        "能源",
+        "钢铁"
+      ],
+      "pricing": "mid",
+      "confidence": 0.83,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.yonyou.com/",
+          "title": "Yonyou Industrial Internet",
+          "accessed": "2026-06"
+        }
+      ],
+      "taxonomy_note_zh": "P3归并：工信部四类→生产制造（原基础平台/工业互联网）",
+      "taxonomy_note_en": "P3 remap: MIIT quad → 生产制造 (was 基础平台/工业互联网)",
+      "subsegment": "iiot_platform",
+      "product_type": "iiot_platform"
+    },
+    {
+      "id": "thingworx",
+      "name_zh": "PTC ThingWorx",
+      "name_en": "PTC ThingWorx",
+      "vendor_id": "ptc",
+      "category_l1": "生产制造",
+      "category_l2": "工业互联网",
+      "origin": "international",
+      "kernel": "自主",
+      "maturity": "high",
+      "localization_depth": "partial",
+      "strengths_zh": [
+        "工业物联网应用平台",
+        "与Windchill/Creo协同"
+      ],
+      "strengths_en": [
+        "Industrial IoT application platform",
+        "Windchill/Creo synergy"
+      ],
+      "limitations_zh": [
+        "国内部署与合规成本",
+        "本土竞品性价比压力"
+      ],
+      "limitations_en": [
+        "China deployment and compliance cost",
+        "Local value rivals"
+      ],
+      "industries": [
+        "制造",
+        "服务",
+        "零售"
+      ],
+      "pricing": "high",
+      "confidence": 0.87,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.ptc.com/en/products/thingworx",
+          "title": "PTC ThingWorx",
+          "accessed": "2026-06"
+        }
+      ],
+      "taxonomy_note_zh": "P3归并：工信部四类→生产制造（原基础平台/工业互联网）",
+      "taxonomy_note_en": "P3 remap: MIIT quad → 生产制造 (was 基础平台/工业互联网)",
+      "subsegment": "iiot_platform",
+      "product_type": "iiot_platform"
+    },
+    {
+      "id": "mindsphere",
+      "name_zh": "Siemens MindSphere",
+      "name_en": "Siemens MindSphere",
+      "vendor_id": "siemens-digital",
+      "category_l1": "生产制造",
+      "category_l2": "工业互联网",
+      "origin": "international",
+      "kernel": "自主",
+      "maturity": "high",
+      "localization_depth": "partial",
+      "strengths_zh": [
+        "工业云平台（非MES，与Opcenter衔接）",
+        "工业云与数字孪生",
+        "与Opcenter/Teamcenter集成"
+      ],
+      "strengths_en": [
+        "Industrial cloud platform (not MES; links Opcenter)",
+        "Industrial cloud and digital twin",
+        "Opcenter/Teamcenter integration"
+      ],
+      "limitations_zh": [
+        "在华推广弱于本土平台",
+        "定价与生态开放度争议"
+      ],
+      "limitations_en": [
+        "Weaker China push than local platforms",
+        "Pricing and openness debates"
+      ],
+      "industries": [
+        "制造",
+        "能源",
+        "交通"
+      ],
+      "pricing": "high",
+      "confidence": 0.86,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://plm.sw.siemens.com/",
+          "title": "Siemens MindSphere",
+          "accessed": "2026-06"
+        }
+      ],
+      "taxonomy_note_zh": "P3归并：工信部四类→生产制造（原基础平台/工业互联网）",
+      "taxonomy_note_en": "P3 remap: MIIT quad → 生产制造 (was 基础平台/工业互联网)",
+      "subsegment": "cloud_industrial",
+      "product_type": "iiot_platform",
+      "tags": [
+        "cloud_native"
+      ]
+    },
+    {
+      "id": "ge-predix",
+      "name_zh": "GE Predix",
+      "name_en": "GE Predix",
+      "vendor_id": "ge",
+      "category_l1": "生产制造",
+      "category_l2": "工业互联网",
+      "origin": "international",
+      "kernel": "自主",
+      "maturity": "mid",
+      "localization_depth": "pilot",
+      "strengths_zh": [
+        "资产性能管理云平台（非MES）",
+        "能源与航空资产性能管理",
+        "历史光环大"
+      ],
+      "strengths_en": [
+        "APM cloud platform (not MES)",
+        "Energy and aviation APM heritage",
+        "Large historical brand"
+      ],
+      "limitations_zh": [
+        "战略收缩后在华声量下降",
+        "生态活跃度低于AWS/Azure"
+      ],
+      "limitations_en": [
+        "Reduced China presence after strategy shift",
+        "Less ecosystem than hyperscalers"
+      ],
+      "industries": [
+        "能源",
+        "航空",
+        "医疗"
+      ],
+      "pricing": "high",
+      "confidence": 0.8,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.ge.com/digital/predix",
+          "title": "GE Predix",
+          "accessed": "2026-06"
+        }
+      ],
+      "taxonomy_note_zh": "P3归并：工信部四类→生产制造（原基础平台/工业互联网）",
+      "taxonomy_note_en": "P3 remap: MIIT quad → 生产制造 (was 基础平台/工业互联网)",
+      "subsegment": "cloud_industrial",
+      "product_type": "iiot_platform",
+      "tags": [
+        "cloud_native"
+      ]
+    },
+    {
+      "id": "sap-btp",
+      "name_zh": "SAP Business Technology Platform",
+      "name_en": "SAP BTP",
+      "vendor_id": "sap",
+      "category_l1": "生产制造",
+      "category_l2": "工业互联网",
+      "origin": "international",
+      "kernel": "自主",
+      "maturity": "high",
+      "localization_depth": "partial",
+      "strengths_zh": [
+        "企业集成与扩展平台（非MES/非核心IIoT）",
+        "ERP扩展与集成平台",
+        "大型企业数据治理"
+      ],
+      "strengths_en": [
+        "Enterprise integration platform (not MES/core IIoT)",
+        "ERP extension and integration",
+        "Large enterprise data governance"
+      ],
+      "limitations_zh": [
+        "工业物联非核心强项",
+        "实施复杂度高"
+      ],
+      "limitations_en": [
+        "Industrial IoT not core strength",
+        "High implementation complexity"
+      ],
+      "industries": [
+        "制造",
+        "零售",
+        "化工"
+      ],
+      "pricing": "high",
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.sap.com/products/technology-platform.html",
+          "title": "SAP BTP",
+          "accessed": "2026-06"
+        }
+      ],
+      "taxonomy_note_zh": "P3归并：工信部四类→生产制造（原基础平台/工业互联网）",
+      "taxonomy_note_en": "P3 remap: MIIT quad → 生产制造 (was 基础平台/工业互联网)",
+      "subsegment": "cloud_industrial",
+      "product_type": "iiot_platform",
+      "tags": [
+        "cloud_native"
+      ]
+    },
+    {
+      "id": "meicloud",
+      "name_zh": "美云智数",
+      "name_en": "Meicloud",
+      "vendor_id": "midea",
+      "category_l1": "生产制造",
+      "category_l2": "工业互联网",
+      "origin": "domestic",
+      "kernel": "自主",
+      "maturity": "mid",
+      "localization_depth": "partial",
+      "strengths_zh": [
+        "美的工业互联网外溢",
+        "供应链数字化"
+      ],
+      "strengths_en": [
+        "Midea IIoT export",
+        "Supply chain digitalization"
+      ],
+      "limitations_zh": [
+        "对外品牌弱于卡奥斯",
+        "行业复制仍在验证"
+      ],
+      "limitations_en": [
+        "Weaker external brand than COSMOPlat",
+        "Cross-industry replication proving"
+      ],
+      "industries": [
+        "家电",
+        "供应链",
+        "制造"
+      ],
+      "pricing": "mid",
+      "confidence": 0.79,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.meicloud.com/",
+          "title": "Meicloud",
+          "accessed": "2026-06"
+        }
+      ],
+      "taxonomy_note_zh": "P3归并：工信部四类→生产制造（原基础平台/工业互联网）",
+      "taxonomy_note_en": "P3 remap: MIIT quad → 生产制造 (was 基础平台/工业互联网)",
+      "subsegment": "iiot_platform",
+      "product_type": "iiot_platform"
+    },
+    {
+      "id": "unigroup-cloud",
+      "name_zh": "紫光云工业",
+      "name_en": "Unigroup Industrial Cloud",
+      "vendor_id": "unigroup",
+      "category_l1": "生产制造",
+      "category_l2": "工业互联网",
+      "origin": "domestic",
+      "kernel": "自主",
+      "maturity": "mid",
+      "localization_depth": "pilot",
+      "strengths_zh": [
+        "芯片与ICT背景工业云",
+        "信创算力故事"
+      ],
+      "strengths_en": [
+        "Chip and ICT heritage industrial cloud",
+        "IT innovation compute narrative"
+      ],
+      "limitations_zh": [
+        "经营波动影响市场信心",
+        "工业场景案例有限"
+      ],
+      "limitations_en": [
+        "Business volatility hurts confidence",
+        "Limited industrial cases"
+      ],
+      "industries": [
+        "电子",
+        "政府",
+        "制造"
+      ],
+      "pricing": "quote",
+      "confidence": 0.72,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.unicloud.com/",
+          "title": "Unigroup Industrial Cloud",
+          "accessed": "2026-06"
+        }
+      ],
+      "taxonomy_note_zh": "P3归并：工信部四类→生产制造（原基础平台/工业互联网）",
+      "taxonomy_note_en": "P3 remap: MIIT quad → 生产制造 (was 基础平台/工业互联网)",
+      "subsegment": "cloud_industrial",
+      "product_type": "iiot_platform",
+      "tags": [
+        "cloud_native"
+      ]
+    },
+    {
+      "id": "haier-cosmoplat-platform",
+      "name_zh": "卡奥斯COSMOPlat",
+      "name_en": "COSMOPlat",
+      "vendor_id": "haier",
+      "category_l1": "生产制造",
+      "category_l2": "工业互联网",
+      "origin": "domestic",
+      "kernel": "自主",
+      "maturity": "high",
+      "localization_depth": "partial",
+      "strengths_zh": [
+        "跨行业工业互联网平台",
+        "大规模定制模式输出"
+      ],
+      "strengths_en": [
+        "Cross-industry IIoT platform",
+        "Mass customization export"
+      ],
+      "limitations_zh": [
+        "盈利能力与估值波动",
+        "制造业外复制难度"
+      ],
+      "limitations_en": [
+        "Profitability and valuation swings",
+        "Hard replication outside manufacturing"
+      ],
+      "industries": [
+        "家电",
+        "服装",
+        "机械"
+      ],
+      "pricing": "mid",
+      "confidence": 0.84,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.cosmoplat.com/",
+          "title": "COSMOPlat",
+          "accessed": "2026-06"
+        }
+      ],
+      "taxonomy_note_zh": "P3归并：工信部四类→生产制造（原基础平台/工业互联网）",
+      "taxonomy_note_en": "P3 remap: MIIT quad → 生产制造 (was 基础平台/工业互联网)",
+      "subsegment": "iiot_platform",
+      "product_type": "iiot_platform"
+    },
+    {
+      "id": "emqx",
+      "name_zh": "EMQX",
+      "name_en": "EMQX",
+      "vendor_id": "emqx",
+      "category_l1": "生产制造",
+      "category_l2": "工业互联网",
+      "origin": "domestic",
+      "kernel": "自主",
+      "maturity": "high",
+      "localization_depth": "core",
+      "strengths_zh": [
+        "国产 MQTT 5 消息 broker，高并发物联网接入",
+        "开源社区版 + 企业集群版"
+      ],
+      "strengths_en": [
+        "Domestic MQTT 5 broker with high-concurrency IoT ingress",
+        "Open-source community and enterprise cluster editions"
+      ],
+      "limitations_zh": [
+        "与 OT 协议栈（OPC UA/Modbus）需网关组合",
+        "国际竞品 HiveMQ 在欧美市占更高"
+      ],
+      "limitations_en": [
+        "Needs gateways for OT stacks (OPC UA/Modbus)",
+        "HiveMQ leads in US/EU market share"
+      ],
+      "industries": [
+        "制造",
+        "能源",
+        "车联网"
+      ],
+      "pricing": "mid",
+      "confidence": 0.87,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.emqx.com/",
+          "title": "EMQX",
+          "accessed": "2026-06"
+        },
+        {
+          "url": "https://github.com/emqx/emqx",
+          "title": "EMQX GitHub",
+          "accessed": "2026-06"
+        }
+      ],
+      "taxonomy_note_zh": "P3归并：工信部四类→生产制造（原基础平台/工业互联网）",
+      "taxonomy_note_en": "P3 remap: MIIT quad → 生产制造 (was 基础平台/工业互联网)",
+      "subsegment": "opc_mqtt",
+      "product_type": "other",
+      "tags": [
+        "open_source_stack"
+      ]
+    },
+    {
+      "id": "open62541",
+      "name_zh": "open62541",
+      "name_en": "open62541",
+      "vendor_id": "open62541",
+      "category_l1": "生产制造",
+      "category_l2": "工业互联网",
+      "origin": "open_source",
+      "kernel": "自主",
+      "maturity": "high",
+      "localization_depth": "partial",
+      "strengths_zh": [
+        "开源 OPC UA 协议栈（C 实现）",
+        "嵌入式与边缘网关常用底座"
+      ],
+      "strengths_en": [
+        "Open-source OPC UA stack (C implementation)",
+        "Common base for embedded and edge gateways"
+      ],
+      "limitations_zh": [
+        "需自行集成证书、地址空间与 SCADA 上层",
+        "商业支持弱于 Unified Automation / Prosys"
+      ],
+      "limitations_en": [
+        "Requires self-integration of certs, address space, SCADA layer",
+        "Weaker commercial support vs Unified Automation / Prosys"
+      ],
+      "industries": [
+        "装备制造",
+        "能源",
+        "半导体"
+      ],
+      "pricing": "free",
+      "confidence": 0.86,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://open62541.org/",
+          "title": "open62541",
+          "accessed": "2026-06"
+        },
+        {
+          "url": "https://github.com/open62541/open62541",
+          "title": "open62541 GitHub",
+          "accessed": "2026-06"
+        }
+      ],
+      "taxonomy_note_zh": "P3归并：工信部四类→生产制造（原基础平台/工业互联网）",
+      "taxonomy_note_en": "P3 remap: MIIT quad → 生产制造 (was 基础平台/工业互联网)",
+      "subsegment": "opc_mqtt",
+      "product_type": "other",
+      "tags": [
+        "open_source_stack"
+      ]
+    },
+    {
+      "id": "rainfe-aief",
+      "name_zh": "瑞风协同 aiEF",
+      "name_en": "Rainfe aiEF",
+      "vendor_id": "rainfe",
+      "category_l1": "生产制造",
+      "category_l2": "工业互联网",
+      "origin": "domestic",
+      "kernel": "自主",
+      "maturity": "high",
+      "localization_depth": "core",
+      "strengths_zh": [
+        "AI 工程平台 + 试验数据管理（CAT）",
+        "服务航天/航空/装备重大工程"
+      ],
+      "strengths_en": [
+        "AI engineering platform plus test data management (CAT)",
+        "Serves major aerospace and equipment programs"
+      ],
+      "limitations_zh": [
+        "主要面向军工与高端装备",
+        "民用中小企业渗透有限"
+      ],
+      "limitations_en": [
+        "Focused on defense and high-end equipment",
+        "Limited penetration among civilian SMEs"
+      ],
+      "industries": [
+        "航空航天",
+        "国防",
+        "汽车"
+      ],
+      "pricing": "quote",
+      "confidence": 0.84,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.rainfe.com/",
+          "title": "瑞风协同",
+          "accessed": "2026-06"
+        },
+        {
+          "url": "https://www.rainfe.com/gyrf.html",
+          "title": "瑞风协同公司简介",
+          "accessed": "2026-06"
+        }
+      ],
+      "taxonomy_note_zh": "P3归并：工信部四类→生产制造（原基础平台/工业互联网）",
+      "taxonomy_note_en": "P3 remap: MIIT quad → 生产制造 (was 基础平台/工业互联网)",
+      "subsegment": "iiot_platform",
+      "product_type": "iiot_platform"
+    },
+    {
+      "id": "ptc-vuforia",
+      "name_zh": "PTC Vuforia",
+      "name_en": "PTC Vuforia",
+      "vendor_id": "ptc",
+      "category_l1": "生产制造",
+      "category_l2": "工业互联网",
+      "origin": "international",
+      "kernel": "自主",
+      "maturity": "high",
+      "localization_depth": "partial",
+      "strengths_zh": [
+        "工业AR与数字孪生可视化",
+        "与ThingWorx/Creo生态衔接"
+      ],
+      "strengths_en": [
+        "Industrial AR and digital twin visualization",
+        "Links to ThingWorx/Creo ecosystem"
+      ],
+      "limitations_zh": [
+        "国内工业AR落地案例少",
+        "硬件依赖与网络延迟敏感"
+      ],
+      "limitations_en": [
+        "Few China industrial AR deployments",
+        "Hardware and latency sensitive"
+      ],
+      "industries": [
+        "制造",
+        "服务",
+        "培训"
+      ],
+      "pricing": "high",
+      "confidence": 0.86,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.ptc.com/en/products/vuforia",
+          "title": "PTC Vuforia",
+          "accessed": "2026-06"
+        }
+      ],
+      "taxonomy_note_zh": "P3归并：工信部四类→生产制造（原基础平台/工业互联网）",
+      "taxonomy_note_en": "P3 remap: MIIT quad → 生产制造 (was 基础平台/工业互联网)",
+      "subsegment": "iiot_platform",
+      "product_type": "iiot_platform"
+    },
+    {
+      "id": "siemens-insights-hub",
+      "name_zh": "Siemens Insights Hub",
+      "name_en": "Siemens Insights Hub",
+      "vendor_id": "siemens-digital",
+      "category_l1": "生产制造",
+      "category_l2": "工业互联网",
+      "origin": "international",
+      "kernel": "自主",
+      "maturity": "high",
+      "localization_depth": "partial",
+      "strengths_zh": [
+        "工业物联网云（非MES）",
+        "MindSphere演进版工业物联网云",
+        "与Opcenter/NX数字化线程衔接"
+      ],
+      "strengths_en": [
+        "Industrial IoT cloud (not MES)",
+        "MindSphere successor industrial IoT cloud",
+        "Digital thread with Opcenter/NX"
+      ],
+      "limitations_zh": [
+        "中国区数据驻留与合规需单独评估",
+        "生态开放度受西门子套件绑定"
+      ],
+      "limitations_en": [
+        "China data residency needs separate review",
+        "Ecosystem openness tied to Siemens suite"
+      ],
+      "industries": [
+        "汽车",
+        "电子",
+        "装备"
+      ],
+      "pricing": "high",
+      "confidence": 0.86,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.siemens.com/global/en/products/software/insights-hub.html",
+          "title": "Siemens Insights Hub",
+          "accessed": "2026-06"
+        }
+      ],
+      "international_benchmarks": [
+        "mindsphere"
+      ],
+      "taxonomy_note_zh": "P3归并：工信部四类→生产制造（原基础平台/工业互联网）",
+      "taxonomy_note_en": "P3 remap: MIIT quad → 生产制造 (was 基础平台/工业互联网)",
+      "subsegment": "cloud_industrial",
+      "product_type": "iiot_platform",
+      "tags": [
+        "cloud_native"
+      ]
+    },
+    {
+      "id": "ptc-kepware",
+      "name_zh": "PTC Kepware",
+      "name_en": "PTC Kepware",
+      "vendor_id": "ptc",
+      "category_l1": "生产制造",
+      "category_l2": "工业互联网",
+      "origin": "international",
+      "kernel": "自主",
+      "maturity": "high",
+      "localization_depth": "partial",
+      "strengths_zh": [
+        "工业协议连接与OPC UA中间件标杆",
+        "与ThingWorx/Creo数据打通"
+      ],
+      "strengths_en": [
+        "Industrial connectivity and OPC UA benchmark",
+        "Data bridge to ThingWorx/Creo"
+      ],
+      "limitations_zh": [
+        "驱动授权按协议计费成本高",
+        "国产PLC/DCS原生驱动覆盖待加强"
+      ],
+      "limitations_en": [
+        "Per-driver licensing cost",
+        "Native drivers for domestic PLC/DCS need growth"
+      ],
+      "industries": [
+        "制造",
+        "能源",
+        "市政"
+      ],
+      "pricing": "mid",
+      "confidence": 0.88,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.ptc.com/en/products/kepware",
+          "title": "PTC Kepware",
+          "accessed": "2026-06"
+        }
+      ],
+      "international_benchmarks": [
+        "thingworx"
+      ],
+      "taxonomy_note_zh": "P3归并：工信部四类→生产制造（原基础平台/工业互联网）",
+      "taxonomy_note_en": "P3 remap: MIIT quad → 生产制造 (was 基础平台/工业互联网)",
+      "subsegment": "opc_mqtt",
+      "product_type": "other",
+      "tags": [
+        "open_source_stack"
+      ]
+    },
+    {
+      "id": "aws-iot-sitewise",
+      "name_zh": "AWS IoT SiteWise",
+      "name_en": "AWS IoT SiteWise",
+      "vendor_id": "aws",
+      "category_l1": "生产制造",
+      "category_l2": "工业互联网",
+      "origin": "international",
+      "kernel": "自主",
+      "maturity": "high",
+      "localization_depth": "pilot",
+      "strengths_zh": [
+        "云工业数据Historian平台（非MES）",
+        "云边工业数据建模与Historian",
+        "与AWS分析/AI服务原生集成"
+      ],
+      "strengths_en": [
+        "Cloud industrial data historian (not MES)",
+        "Cloud-edge industrial data modeling historian",
+        "Native AWS analytics and AI integration"
+      ],
+      "limitations_zh": [
+        "国内制造数据上云合规门槛高",
+        "现场OT网络对接依赖合作伙伴"
+      ],
+      "limitations_en": [
+        "High compliance bar for China manufacturing cloud",
+        "OT network integration partner-dependent"
+      ],
+      "industries": [
+        "制造",
+        "能源",
+        "矿业"
+      ],
+      "pricing": "mid",
+      "confidence": 0.82,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://aws.amazon.com/iot-sitewise/",
+          "title": "AWS IoT SiteWise",
+          "accessed": "2026-06"
+        }
+      ],
+      "international_benchmarks": [
+        "mindsphere"
+      ],
+      "taxonomy_note_zh": "P3归并：工信部四类→生产制造（原基础平台/工业互联网）",
+      "taxonomy_note_en": "P3 remap: MIIT quad → 生产制造 (was 基础平台/工业互联网)",
+      "subsegment": "cloud_industrial",
+      "product_type": "iiot_platform",
+      "tags": [
+        "cloud_native"
+      ]
+    },
+    {
+      "id": "azure-iot-operations",
+      "name_zh": "Azure IoT Operations",
+      "name_en": "Azure IoT Operations",
+      "vendor_id": "microsoft",
+      "category_l1": "生产制造",
+      "category_l2": "工业互联网",
+      "origin": "international",
+      "kernel": "自主",
+      "maturity": "mid",
+      "localization_depth": "pilot",
+      "strengths_zh": [
+        "Kubernetes边云工业数据平面（非MES）",
+        "Kubernetes边云工业数据平面",
+        "与Dynamics/M365企业栈集成"
+      ],
+      "strengths_en": [
+        "K8s edge-cloud industrial data plane (not MES)",
+        "Kubernetes edge-cloud industrial data plane",
+        "Integration with Dynamics/M365 stack"
+      ],
+      "limitations_zh": [
+        "国内落地案例少于华为/树根",
+        "OT协议与信创环境适配仍在完善"
+      ],
+      "limitations_en": [
+        "Fewer China deployments vs Huawei/Rootcloud",
+        "OT protocols and IT innovation fit maturing"
+      ],
+      "industries": [
+        "制造",
+        "零售",
+        "物流"
+      ],
+      "pricing": "mid",
+      "confidence": 0.8,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://azure.microsoft.com/en-us/products/iot-operations",
+          "title": "Azure IoT Operations",
+          "accessed": "2026-06"
+        }
+      ],
+      "international_benchmarks": [
+        "huawei-fusionplant"
+      ],
+      "taxonomy_note_zh": "P3归并：工信部四类→生产制造（原基础平台/工业互联网）",
+      "taxonomy_note_en": "P3 remap: MIIT quad → 生产制造 (was 基础平台/工业互联网)",
+      "subsegment": "cloud_industrial",
+      "product_type": "iiot_platform",
+      "tags": [
+        "cloud_native"
+      ]
+    }
+  ]
+}
