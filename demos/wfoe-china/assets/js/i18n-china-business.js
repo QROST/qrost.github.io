@@ -110,6 +110,7 @@
         'dash.junior': '初级CAD',
         'dash.senior': '高级建模',
         'dash.currency': '货币',
+        'dash.fx_info_aria': '汇率说明',
         'dash.usd': '美元 ($)',
         'dash.rmb': '人民币 (¥)',
         'dash.headcount': '人数',
