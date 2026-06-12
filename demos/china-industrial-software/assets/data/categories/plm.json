@@ -3,7 +3,7 @@
   "products": [
     {
       "id": "hoteam-plm",
-      "name_zh": "华天PLM",
+      "name_zh": "华天 PLM",
       "name_en": "Hoteam PLM",
       "vendor_id": "hoteam",
       "category_l1": "研发设计",
@@ -176,7 +176,7 @@
     },
     {
       "id": "kingdee-plm",
-      "name_zh": "金蝶PLM",
+      "name_zh": "金蝶 PLM",
       "name_en": "Kingdee PLM",
       "vendor_id": "kingdee",
       "category_l1": "研发设计",
@@ -514,6 +514,56 @@
           "title": "Huawang PLM",
           "accessed": "2026-06"
         }
+      ]
+    },
+    {
+      "id": "hoteam-sview",
+      "name_zh": "华天 SView",
+      "name_en": "Hoteam SView",
+      "vendor_id": "hoteam",
+      "category_l1": "研发设计",
+      "category_l2": "PLM",
+      "product_type": "plm",
+      "origin": "domestic",
+      "kernel": "自主·轻量化",
+      "maturity": "high",
+      "localization_depth": "partial",
+      "strengths_zh": [
+        "3D 轻量化协同评审",
+        "与 CrownCAD/华天 PLM 一体",
+        "IPO 辅导中生态扩张"
+      ],
+      "strengths_en": [
+        "Lightweight 3D collaboration",
+        "CrownCAD/Hoteam PLM synergy",
+        "Ecosystem expansion pre-IPO"
+      ],
+      "limitations_zh": [
+        "高端 CAD 编辑弱于国际 PLM+CAD",
+        "大模型性能仍在优化"
+      ],
+      "limitations_en": [
+        "Weaker CAD editing vs intl PLM+CAD",
+        "Large model perf still tuning"
+      ],
+      "industries": [
+        "机械",
+        "装备",
+        "汽车"
+      ],
+      "pricing": "mid",
+      "confidence": 0.86,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.sview3d.com/",
+          "title": "SView",
+          "accessed": "2026-06"
+        }
+      ],
+      "international_benchmarks": [
+        "teamcenter",
+        "autodesk-vault"
       ]
     },
     {

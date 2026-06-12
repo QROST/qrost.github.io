@@ -845,6 +845,208 @@
       "kernel_id": "open-cascade"
     },
     {
+      "id": "jdsoft-surfmill",
+      "name_zh": "精雕 SurfMill",
+      "name_en": "JDSoft SurfMill",
+      "vendor_id": "jingdiao",
+      "category_l1": "生产制造",
+      "category_l2": "CAM",
+      "product_type": "cam",
+      "origin": "domestic",
+      "kernel": "自主",
+      "maturity": "mission_critical",
+      "localization_depth": "core",
+      "strengths_zh": [
+        "模具/电极五轴编程国产龙头",
+        "与精雕数控机床深度绑定",
+        "华南模具产业带高渗透"
+      ],
+      "strengths_en": [
+        "Domestic mold/electrode 5-axis CAM leader",
+        "Tight Jingdiao machine integration",
+        "High penetration in South China mold belt"
+      ],
+      "limitations_zh": [
+        "通用铣削品牌认知低于 Mastercam",
+        "国际市场拓展有限"
+      ],
+      "limitations_en": [
+        "Lower general milling mindshare vs Mastercam",
+        "Limited international export"
+      ],
+      "industries": [
+        "模具",
+        "精密加工",
+        "电子结构件"
+      ],
+      "pricing": "mid",
+      "confidence": 0.9,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.jingdiao.com/",
+          "title": "北京精雕",
+          "accessed": "2026-06"
+        }
+      ],
+      "international_benchmarks": [
+        "powermill",
+        "hypermill"
+      ]
+    },
+    {
+      "id": "autodesk-moldflow",
+      "name_zh": "Autodesk Moldflow",
+      "name_en": "Autodesk Moldflow",
+      "vendor_id": "autodesk",
+      "category_l1": "研发设计",
+      "category_l2": "CAE",
+      "product_type": "cae_solver",
+      "origin": "international",
+      "kernel": "自主·注塑模流",
+      "maturity": "mission_critical",
+      "localization_depth": "core",
+      "strengths_zh": [
+        "注塑模流分析行业标准",
+        "与 PowerShape/PowerMill 制造链衔接",
+        "华东注塑模具产业必备"
+      ],
+      "strengths_en": [
+        "Injection moldflow analysis industry standard",
+        "PowerShape/PowerMill manufacturing chain",
+        "Essential in East China mold belt"
+      ],
+      "limitations_zh": [
+        "许可成本高",
+        "国产模流软件在材料模型上仍在追赶"
+      ],
+      "limitations_en": [
+        "High license cost",
+        "Domestic moldflow catching up on material models"
+      ],
+      "industries": [
+        "模具",
+        "汽车",
+        "消费电子"
+      ],
+      "pricing": "high",
+      "tags": [
+        "automotive"
+      ],
+      "confidence": 0.91,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.autodesk.com/products/moldflow/overview",
+          "title": "Autodesk Moldflow",
+          "accessed": "2026-06"
+        }
+      ],
+      "international_benchmarks": [
+        "jiyuan-simulation"
+      ]
+    },
+    {
+      "id": "ansys-ls-dyna",
+      "name_zh": "Ansys LS-DYNA",
+      "name_en": "Ansys LS-DYNA",
+      "vendor_id": "ansys",
+      "category_l1": "研发设计",
+      "category_l2": "CAE",
+      "product_type": "cae_solver",
+      "origin": "international",
+      "kernel": "自主",
+      "maturity": "mission_critical",
+      "localization_depth": "core",
+      "strengths_zh": [
+        "汽车碰撞显式动力学行业标准",
+        "安全法规验证与材料失效",
+        "主机厂碰撞部门必备"
+      ],
+      "strengths_en": [
+        "Automotive crash explicit dynamics standard",
+        "Safety regulation and material failure",
+        "OEM crash department staple"
+      ],
+      "limitations_zh": [
+        "求解器许可昂贵",
+        "国产显式求解仍在追赶"
+      ],
+      "limitations_en": [
+        "Expensive solver licensing",
+        "Domestic explicit solvers still catching up"
+      ],
+      "industries": [
+        "汽车",
+        "航空航天",
+        "国防"
+      ],
+      "pricing": "high",
+      "confidence": 0.93,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.ansys.com/products/structures/ansys-ls-dyna",
+          "title": "Ansys LS-DYNA",
+          "accessed": "2026-06"
+        }
+      ],
+      "international_benchmarks": [
+        "altair-radioss",
+        "abaqus"
+      ]
+    },
+    {
+      "id": "altair-hypermesh",
+      "name_zh": "Altair HyperMesh",
+      "name_en": "Altair HyperMesh",
+      "vendor_id": "altair",
+      "category_l1": "研发设计",
+      "category_l2": "CAE",
+      "product_type": "cae_solver",
+      "origin": "international",
+      "kernel": "自主",
+      "maturity": "mission_critical",
+      "localization_depth": "core",
+      "strengths_zh": [
+        "汽车/航空网格前处理事实标准",
+        "与 OptiStruct/Radioss 一体",
+        "批处理与模板化强"
+      ],
+      "strengths_en": [
+        "Auto/aero meshing de-facto standard",
+        "Integrated with OptiStruct/Radioss",
+        "Strong batch templating"
+      ],
+      "limitations_zh": [
+        "独立前处理许可成本",
+        "云原生弱于新一代 CAE"
+      ],
+      "limitations_en": [
+        "Standalone prep license cost",
+        "Weaker cloud-native vs new CAE"
+      ],
+      "industries": [
+        "汽车",
+        "航空航天",
+        "重工"
+      ],
+      "pricing": "high",
+      "confidence": 0.91,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://altair.com/hypermesh",
+          "title": "Altair HyperMesh",
+          "accessed": "2026-06"
+        }
+      ],
+      "international_benchmarks": [
+        "ansys-mechanical",
+        "altair-optistruct"
+      ]
+    },
+    {
       "id": "wolfram-mathematica",
       "name_zh": "Wolfram Mathematica",
       "name_en": "Wolfram Mathematica",

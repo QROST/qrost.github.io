@@ -586,8 +586,8 @@
     },
     {
       "id": "inventor",
-      "name_zh": "Autodesk Inventor",
-      "name_en": "Autodesk Inventor",
+      "name_zh": "Inventor",
+      "name_en": "Inventor",
       "vendor_id": "autodesk",
       "category_l1": "研发设计",
       "category_l2": "CAD",
@@ -800,6 +800,353 @@
         }
       ],
       "kernel_id": "sketchup-geometry"
+    },
+    {
+      "id": "autodesk-alias",
+      "name_zh": "Alias",
+      "name_en": "Alias",
+      "vendor_id": "autodesk",
+      "category_l1": "研发设计",
+      "category_l2": "CAD",
+      "product_type": "other",
+      "origin": "international",
+      "kernel": "自主·Alias NURBS/Bézier CAID 内核",
+      "maturity": "mission_critical",
+      "localization_depth": "core",
+      "strengths_zh": [
+        "汽车 CAS→Class-A 一体化 CAID 事实标准",
+        "SUBD + NURBS + Dynamo 参数化同平台",
+        "与 VRED 深度互联，中国上汽/东风/江淮等 OEM 公开案例"
+      ],
+      "strengths_en": [
+        "De-facto automotive CAID from CAS to Class-A",
+        "Integrated SUBD, NURBS, and Dynamo parametrics",
+        "Deep VRED link; public China OEM cases (SAIC, Dongfeng, JAC)"
+      ],
+      "limitations_zh": [
+        "非机械参数化 MCAD，工程特征树/PMI 弱",
+        "许可成本极高，无国产直接对标",
+        "Mac 版已停更"
+      ],
+      "limitations_en": [
+        "Not parametric MCAD; weak feature tree and PMI",
+        "Very high license cost; no direct domestic equivalent",
+        "Mac version discontinued"
+      ],
+      "industries": [
+        "汽车",
+        "工业设计",
+        "船舶",
+        "消费电子"
+      ],
+      "pricing": "high",
+      "tags": [
+        "automotive"
+      ],
+      "confidence": 0.93,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.autodesk.com/products/alias-products/overview",
+          "title": "Autodesk Alias",
+          "accessed": "2026-06"
+        },
+        {
+          "url": "https://www.autodesk.com.cn/customer-stories/saic",
+          "title": "Autodesk SAIC case study",
+          "accessed": "2026-06"
+        },
+        {
+          "url": "https://www.autodesk.com.cn/customer-stories/dongfeng-motor",
+          "title": "Autodesk Dongfeng case study",
+          "accessed": "2026-06"
+        }
+      ],
+      "international_benchmarks": [
+        "icem-surf",
+        "rhino"
+      ],
+      "listed_ticker": "ADSK"
+    },
+    {
+      "id": "icem-surf",
+      "name_zh": "CATIA ICEM Surf",
+      "name_en": "CATIA ICEM Surf",
+      "vendor_id": "dassault",
+      "category_l1": "研发设计",
+      "category_l2": "CAD",
+      "product_type": "other",
+      "origin": "international",
+      "kernel": "ICEM 显式 A 级曲面（CATIA 生态）",
+      "kernel_id": "catia-cgm",
+      "maturity": "mission_critical",
+      "localization_depth": "partial",
+      "strengths_zh": [
+        "30+ 年 A 级曲面行业标杆",
+        "显式直接编辑与扫描重建",
+        "汽车外板高品质曲面与法规分析工具"
+      ],
+      "strengths_en": [
+        "30+ years Class-A surfacing benchmark",
+        "Explicit direct edit and scan reconstruction",
+        "High-quality auto body surfaces and compliance tools"
+      ],
+      "limitations_zh": [
+        "与 IDX/ISD 产品线重叠，许可复杂",
+        "学习曲线陡，国内培训生态小于 Alias"
+      ],
+      "limitations_en": [
+        "Overlapping IDX/ISD portfolio and licensing",
+        "Steep learning curve; smaller China training pool than Alias"
+      ],
+      "industries": [
+        "汽车",
+        "航空航天",
+        "消费电子"
+      ],
+      "pricing": "high",
+      "tags": [
+        "automotive",
+        "aerospace"
+      ],
+      "confidence": 0.91,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.3ds.com/products/catia/icem-surf",
+          "title": "ICEM Surf",
+          "accessed": "2026-06"
+        },
+        {
+          "url": "https://www.3ds.com/zh-hans/products/catia/icem-surf",
+          "title": "ICEM Surf 中文",
+          "accessed": "2026-06"
+        }
+      ],
+      "international_benchmarks": [
+        "autodesk-alias",
+        "catia"
+      ]
+    },
+    {
+      "id": "crown-styling",
+      "name_zh": "皇冠 CrownStyling 工业造型",
+      "name_en": "CrownStyling",
+      "vendor_id": "hoteam",
+      "category_l1": "研发设计",
+      "category_l2": "CAD",
+      "product_type": "other",
+      "origin": "domestic",
+      "kernel": "CrownCAD DGM + 造型曲面算法",
+      "kernel_id": "crowncad-dgm",
+      "maturity": "experimental",
+      "localization_depth": "pilot",
+      "strengths_zh": [
+        "国产云原生工业造型软件（2026 发布）",
+        "NURBS/SubD/逆向/曲面质量分析/渲染一体",
+        "与 CrownCAD、SView 浏览编辑协同"
+      ],
+      "strengths_en": [
+        "Domestic cloud-native industrial styling (2026 launch)",
+        "Integrated NURBS/SubD/RE/quality analysis/rendering",
+        "Synergy with CrownCAD and SView"
+      ],
+      "limitations_zh": [
+        "OEM 量产公开案例仍少",
+        "A 级曲面工程交接与 Alias/ICEM 差距待验证"
+      ],
+      "limitations_en": [
+        "Few public OEM production case studies",
+        "Class-A engineering handoff vs Alias/ICEM unproven"
+      ],
+      "industries": [
+        "汽车",
+        "工业设计",
+        "消费电子"
+      ],
+      "pricing": "mid",
+      "tags": [
+        "automotive",
+        "cloud_native",
+        "xinchuang"
+      ],
+      "confidence": 0.78,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://m.chinaz.com/2026/0429/1749656.shtml",
+          "title": "CrownStyling launch",
+          "accessed": "2026-06"
+        },
+        {
+          "url": "https://www.hoteamsoft.com/yuncad",
+          "title": "CrownCAD",
+          "accessed": "2026-06"
+        }
+      ],
+      "international_benchmarks": [
+        "autodesk-alias",
+        "rhino"
+      ]
+    },
+    {
+      "id": "autodesk-vred",
+      "name_zh": "Autodesk VRED",
+      "name_en": "Autodesk VRED",
+      "vendor_id": "autodesk",
+      "category_l1": "研发设计",
+      "category_l2": "CAD",
+      "product_type": "other",
+      "origin": "international",
+      "kernel": "GPU 光线追踪可视化引擎",
+      "maturity": "high",
+      "localization_depth": "partial",
+      "strengths_zh": [
+        "汽车数字样机/VR 评审标杆",
+        "与 Alias 实时曲面联动（2026）",
+        "上汽/华人运通等中国 OEM 案例"
+      ],
+      "strengths_en": [
+        "Automotive digital prototype and VR review benchmark",
+        "Live Alias surface link (2026)",
+        "China OEM cases (SAIC, Human Horizons)"
+      ],
+      "limitations_zh": [
+        "非曲面创作工具，依赖上游 CAID/CAD",
+        "高端 GPU 与许可成本"
+      ],
+      "limitations_en": [
+        "Not a surfacing authoring tool; depends on upstream CAID",
+        "High-end GPU and license cost"
+      ],
+      "industries": [
+        "汽车",
+        "工业设计"
+      ],
+      "pricing": "high",
+      "tags": [
+        "automotive"
+      ],
+      "confidence": 0.9,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.autodesk.com.cn/products/vred/overview",
+          "title": "VRED 中国",
+          "accessed": "2026-06"
+        },
+        {
+          "url": "https://www.autodesk.com.cn/customer-stories/humanhorizons",
+          "title": "HiPhi Z case",
+          "accessed": "2026-06"
+        }
+      ],
+      "international_benchmarks": [
+        "autodesk-alias",
+        "keyshot"
+      ]
+    },
+    {
+      "id": "keyshot",
+      "name_zh": "KeyShot",
+      "name_en": "KeyShot",
+      "vendor_id": "luxion",
+      "category_l1": "研发设计",
+      "category_l2": "CAD",
+      "product_type": "other",
+      "origin": "international",
+      "kernel": "自主·实时渲染",
+      "maturity": "high",
+      "localization_depth": "partial",
+      "strengths_zh": [
+        "工业产品实时渲染",
+        "SolidWorks/Rhino 插件生态",
+        "CMF 评审效率高"
+      ],
+      "strengths_en": [
+        "Real-time industrial product rendering",
+        "SolidWorks/Rhino plugin ecosystem",
+        "Fast CMF design review"
+      ],
+      "limitations_zh": [
+        "非 CAD 建模工具",
+        "云协作弱于新兴平台"
+      ],
+      "limitations_en": [
+        "Not a CAD modeler",
+        "Weaker cloud collab vs newer platforms"
+      ],
+      "industries": [
+        "消费电子",
+        "家电",
+        "汽车造型"
+      ],
+      "pricing": "mid",
+      "confidence": 0.9,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.keyshot.com/",
+          "title": "KeyShot",
+          "accessed": "2026-06"
+        }
+      ],
+      "international_benchmarks": [
+        "autodesk-vred"
+      ]
+    },
+    {
+      "id": "geomagic-design-x",
+      "name_zh": "Geomagic Design X",
+      "name_en": "Geomagic Design X",
+      "vendor_id": "hexagon",
+      "category_l1": "研发设计",
+      "category_l2": "CAD",
+      "product_type": "cad_interop",
+      "origin": "international",
+      "kernel": "扫描网格→参数化 CAD 混合内核",
+      "maturity": "high",
+      "localization_depth": "partial",
+      "strengths_zh": [
+        "行业领先扫描逆向工程",
+        "引导式 NURBS 曲面与 Auto-Surface",
+        "LiveTransfer 至主流 CAD"
+      ],
+      "strengths_en": [
+        "Industry-leading scan reverse engineering",
+        "Guided NURBS and Auto-Surface",
+        "LiveTransfer to major CAD systems"
+      ],
+      "limitations_zh": [
+        "Class-A 需大量手工修面",
+        "许可分层（Go/Plus/Pro）功能切割"
+      ],
+      "limitations_en": [
+        "Class-A needs extensive manual surfacing",
+        "Tiered licensing splits features"
+      ],
+      "industries": [
+        "汽车",
+        "航空航天",
+        "模具"
+      ],
+      "pricing": "high",
+      "tags": [
+        "automotive"
+      ],
+      "confidence": 0.89,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://hexagon.com/products/geomagic-design-x",
+          "title": "Geomagic Design X",
+          "accessed": "2026-06"
+        }
+      ],
+      "international_benchmarks": [
+        "autodesk-powershape",
+        "icem-surf"
+      ]
     },
     {
       "id": "rhino-inside",

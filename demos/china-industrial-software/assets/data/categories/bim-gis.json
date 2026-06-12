@@ -3,7 +3,7 @@
   "products": [
     {
       "id": "glodon-bim",
-      "name_zh": "广联达BIM",
+      "name_zh": "广联达 BIM 算量",
       "name_en": "Glodon BIM",
       "vendor_id": "glodon",
       "category_l1": "研发设计",
@@ -185,8 +185,8 @@
     },
     {
       "id": "revit",
-      "name_zh": "Autodesk Revit",
-      "name_en": "Autodesk Revit",
+      "name_zh": "Revit",
+      "name_en": "Revit",
       "vendor_id": "autodesk",
       "category_l1": "研发设计",
       "category_l2": "BIM",
@@ -359,7 +359,7 @@
     },
     {
       "id": "feidu-dt",
-      "name_zh": "飞渡科技数字孪生",
+      "name_zh": "飞渡数字孪生",
       "name_en": "Feidu Digital Twin",
       "vendor_id": "feidu",
       "category_l1": "研发设计",
@@ -404,7 +404,7 @@
     },
     {
       "id": "southsurvey-gis",
-      "name_zh": "南方数码GIS",
+      "name_zh": "南方数码 GIS",
       "name_en": "South Survey GIS",
       "vendor_id": "south",
       "category_l1": "研发设计",
@@ -534,7 +534,7 @@
     },
     {
       "id": "zwsoft-bim",
-      "name_zh": "中望BIM",
+      "name_zh": "中望 BIM",
       "name_en": "ZWSOFT BIM",
       "vendor_id": "zwcad",
       "category_l1": "研发设计",
@@ -619,6 +619,225 @@
       "taxonomy_note_zh": "P3归并：工信部四类→研发设计（原基础平台，AEC/GIS设计工具）",
       "taxonomy_note_en": "P3 remap: MIIT quad → 研发设计 (was 基础平台, AEC/GIS design)",
       "product_type": "gis"
+    },
+    {
+      "id": "bentley-itwin",
+      "name_zh": "Bentley iTwin Platform",
+      "name_en": "Bentley iTwin Platform",
+      "vendor_id": "bentley",
+      "category_l1": "研发设计",
+      "category_l2": "BIM",
+      "product_type": "bim_coordination",
+      "origin": "international",
+      "kernel": "iModel·联邦",
+      "maturity": "high",
+      "localization_depth": "partial",
+      "strengths_zh": [
+        "基建数字孪生联邦",
+        "与 MicroStation/SYNCHRO 数据链",
+        "大型交通能源项目在华应用"
+      ],
+      "strengths_en": [
+        "Infrastructure digital twin federation",
+        "MicroStation/SYNCHRO data chain",
+        "Large transport/energy projects in China"
+      ],
+      "limitations_zh": [
+        "实施复杂度高",
+        "房建渗透低于 Autodesk 云 CDE"
+      ],
+      "limitations_en": [
+        "Complex implementation",
+        "Lower building penetration vs Autodesk cloud CDE"
+      ],
+      "industries": [
+        "交通",
+        "能源",
+        "市政基建"
+      ],
+      "pricing": "high",
+      "tags": [
+        "federated_bim",
+        "digital_twin"
+      ],
+      "confidence": 0.88,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.bentley.com/software/itwin-platform/",
+          "title": "Bentley iTwin",
+          "accessed": "2026-06"
+        }
+      ],
+      "international_benchmarks": [
+        "glodon-bimface",
+        "autodesk-navisworks"
+      ]
+    },
+    {
+      "id": "autodesk-acc",
+      "name_zh": "Autodesk Construction Cloud",
+      "name_en": "Autodesk Construction Cloud",
+      "vendor_id": "autodesk",
+      "category_l1": "研发设计",
+      "category_l2": "BIM",
+      "product_type": "bim_coordination",
+      "origin": "international",
+      "kernel": "云原生·CDE",
+      "maturity": "high",
+      "localization_depth": "partial",
+      "strengths_zh": [
+        "云通用数据环境（CDE）与模型协同",
+        "外资 EPC 在华项目交付标准",
+        "与 Revit/Navisworks 数据链一体"
+      ],
+      "strengths_en": [
+        "Cloud CDE and model coordination",
+        "Foreign EPC delivery standard in China",
+        "Integrated Revit/Navisworks data chain"
+      ],
+      "limitations_zh": [
+        "国内数据驻留与访问需评估",
+        "国产化替代政策压力"
+      ],
+      "limitations_en": [
+        "China data residency and access need review",
+        "Localization substitution pressure"
+      ],
+      "industries": [
+        "建筑",
+        "基建",
+        "施工"
+      ],
+      "pricing": "high",
+      "tags": [
+        "cloud_native",
+        "federated_bim"
+      ],
+      "confidence": 0.89,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://construction.autodesk.com/",
+          "title": "Autodesk Construction Cloud",
+          "accessed": "2026-06"
+        }
+      ],
+      "international_benchmarks": [
+        "glodon-bimface",
+        "bentley-itwin"
+      ]
+    },
+    {
+      "id": "glodon-bimface",
+      "name_zh": "BIMFACE",
+      "name_en": "BIMFACE",
+      "vendor_id": "glodon",
+      "category_l1": "研发设计",
+      "category_l2": "BIM",
+      "product_type": "bim_coordination",
+      "origin": "domestic",
+      "kernel": "自主·轻量化引擎",
+      "maturity": "high",
+      "localization_depth": "partial",
+      "strengths_zh": [
+        "国产 BIM 轻量化协同与模型集成",
+        "Web API 与碰撞检测能力",
+        "2 亿+三角面片级大模型浏览"
+      ],
+      "strengths_en": [
+        "Domestic BIM lightweight collaboration and federation",
+        "Web API and clash detection",
+        "200M+ triangle large-model viewing"
+      ],
+      "limitations_zh": [
+        "桌面联邦工作流弱于 Navisworks",
+        "国际 EPC 标准仍以 Autodesk 云 CDE 为主"
+      ],
+      "limitations_en": [
+        "Weaker desktop federation vs Navisworks",
+        "International EPC still favors Autodesk cloud CDE"
+      ],
+      "industries": [
+        "建筑",
+        "基建",
+        "施工"
+      ],
+      "pricing": "mid",
+      "tags": [
+        "federated_bim",
+        "clash_detection",
+        "cloud_native"
+      ],
+      "confidence": 0.88,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://bimface.com/",
+          "title": "Glodon BIMFACE",
+          "accessed": "2026-06"
+        }
+      ],
+      "international_benchmarks": [
+        "autodesk-navisworks",
+        "autodesk-acc"
+      ],
+      "listed_ticker": "002410.SZ"
+    },
+    {
+      "id": "autodesk-navisworks",
+      "name_zh": "Navisworks",
+      "name_en": "Navisworks",
+      "vendor_id": "autodesk",
+      "category_l1": "研发设计",
+      "category_l2": "BIM",
+      "product_type": "bim_coordination",
+      "origin": "international",
+      "kernel": "自主·NWD/NWC 联邦",
+      "maturity": "mission_critical",
+      "localization_depth": "core",
+      "strengths_zh": [
+        "多专业 BIM 联邦与碰撞检测事实标准",
+        "NWD/NWC 交付与 4D 模拟",
+        "大型基建/EPC 在华项目标配"
+      ],
+      "strengths_en": [
+        "De-facto multi-discipline BIM federation and clash",
+        "NWD/NWC delivery and 4D simulation",
+        "Staple for mega-projects and EPC in China"
+      ],
+      "limitations_zh": [
+        "云协同弱于 ACC/BIMFACE",
+        "订阅与数据驻留成本"
+      ],
+      "limitations_en": [
+        "Weaker cloud collab vs ACC/BIMFACE",
+        "Subscription and data residency cost"
+      ],
+      "industries": [
+        "建筑",
+        "基建",
+        "能源"
+      ],
+      "pricing": "high",
+      "tags": [
+        "clash_detection",
+        "federated_bim",
+        "4d_simulation"
+      ],
+      "confidence": 0.92,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.autodesk.com/products/navisworks",
+          "title": "Autodesk Navisworks",
+          "accessed": "2026-06"
+        }
+      ],
+      "international_benchmarks": [
+        "glodon-bimface",
+        "solibri-model-checker"
+      ]
     },
     {
       "id": "speckle",
