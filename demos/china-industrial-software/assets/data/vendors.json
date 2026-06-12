@@ -2085,6 +2085,573 @@
       "categories": [
         "CAD"
       ]
+    },
+    {
+      "id": "altium",
+      "name_zh": "澳德迈",
+      "name_en": "Altium",
+      "origin": "international",
+      "hq_city": "San Diego",
+      "hq_country": "US",
+      "listed_ticker": "ALU",
+      "website": "https://www.altium.com/",
+      "description_zh": "Altium Designer PCB EDA 与云端协作",
+      "description_en": "Altium Designer PCB EDA and cloud collaboration",
+      "categories": [
+        "EDA"
+      ]
+    },
+    {
+      "id": "aras",
+      "name_zh": "Aras",
+      "name_en": "Aras Corporation",
+      "origin": "international",
+      "hq_city": "Andover",
+      "hq_country": "US",
+      "website": "https://www.aras.com/",
+      "description_zh": "Aras Innovator 开放 PLM 平台",
+      "description_en": "Aras Innovator open PLM platform",
+      "categories": [
+        "PLM"
+      ]
+    },
+    {
+      "id": "avic",
+      "name_zh": "中国航空工业集团",
+      "name_en": "AVIC",
+      "origin": "domestic",
+      "hq_city": "北京",
+      "hq_country": "CN",
+      "website": "http://www.avic.com/",
+      "description_zh": "航空装备研制与神舟软件 AVIDM PLM",
+      "description_en": "Aviation equipment and Shenzhou AVIDM PLM",
+      "categories": [
+        "PLM"
+      ]
+    },
+    {
+      "id": "bricsys",
+      "name_zh": "Bricsys",
+      "name_en": "Bricsys (Hexagon)",
+      "origin": "international",
+      "hq_city": "Ghent",
+      "hq_country": "BE",
+      "website": "https://www.bricsys.com/",
+      "description_zh": "BricsCAD 二维/三维 CAD（Hexagon）",
+      "description_en": "BricsCAD 2D/3D CAD (Hexagon)",
+      "categories": [
+        "CAD"
+      ]
+    },
+    {
+      "id": "ceva",
+      "name_zh": "CEVA",
+      "name_en": "CEVA Inc.",
+      "origin": "international",
+      "hq_city": "Rockville",
+      "hq_country": "US",
+      "listed_ticker": "CEVA",
+      "website": "https://www.ceva-ip.com/",
+      "description_zh": "DSP/IP 核与开发工具链",
+      "description_en": "DSP IP cores and development tools",
+      "categories": [
+        "EDA"
+      ]
+    },
+    {
+      "id": "cimatron",
+      "name_zh": "Cimatron",
+      "name_en": "Cimatron (3D Systems)",
+      "origin": "international",
+      "hq_city": "Givat Shmuel",
+      "hq_country": "IL",
+      "website": "https://www.cimatron.com/",
+      "description_zh": "模具与型腔 CAM 软件",
+      "description_en": "Tool and die CAM software",
+      "categories": [
+        "CAM"
+      ]
+    },
+    {
+      "id": "cscec",
+      "name_zh": "中国建筑",
+      "name_en": "CSCEC",
+      "origin": "domestic",
+      "hq_city": "北京",
+      "hq_country": "CN",
+      "listed_ticker": "601668.SH",
+      "website": "https://www.cscec.com/",
+      "description_zh": "中建数字建造与 BIM 平台",
+      "description_en": "CSCEC digital construction and BIM platform",
+      "categories": [
+        "BIM"
+      ]
+    },
+    {
+      "id": "fangxing",
+      "name_zh": "九同方微电子",
+      "name_en": "Jiutongfang Microelectronics",
+      "origin": "domestic",
+      "hq_city": "深圳",
+      "hq_country": "CN",
+      "website": "http://www.fangxing.com/",
+      "description_zh": "电磁/热仿真 EDA 工具",
+      "description_en": "EM and thermal simulation EDA tools",
+      "categories": [
+        "EDA"
+      ]
+    },
+    {
+      "id": "feidu",
+      "name_zh": "飞渡科技",
+      "name_en": "Feidu Technology",
+      "origin": "domestic",
+      "hq_city": "北京",
+      "hq_country": "CN",
+      "website": "https://www.feidutech.com/",
+      "description_zh": "数字孪生与三维 GIS 引擎",
+      "description_en": "Digital twin and 3D GIS engine",
+      "categories": [
+        "GIS",
+        "BIM"
+      ]
+    },
+    {
+      "id": "graphisoft",
+      "name_zh": "Graphisoft",
+      "name_en": "Graphisoft",
+      "origin": "international",
+      "hq_city": "Budapest",
+      "hq_country": "HU",
+      "website": "https://graphisoft.com/",
+      "description_zh": "ArchiCAD 建筑 BIM 设计",
+      "description_en": "ArchiCAD architectural BIM design",
+      "categories": [
+        "BIM",
+        "CAD"
+      ]
+    },
+    {
+      "id": "gsk",
+      "name_zh": "广州数控",
+      "name_en": "GSK CNC Equipment",
+      "origin": "domestic",
+      "hq_city": "广州",
+      "hq_country": "CN",
+      "website": "http://www.gsk.com.cn/",
+      "description_zh": "国产数控系统、伺服与工业机器人",
+      "description_en": "Domestic CNC systems, servos, and industrial robots",
+      "categories": [
+        "CAM"
+      ]
+    },
+    {
+      "id": "guowei",
+      "name_zh": "国微芯",
+      "name_en": "GWX EDA",
+      "origin": "domestic",
+      "hq_city": "深圳",
+      "hq_country": "CN",
+      "website": "https://www.gwxeda.com/",
+      "description_zh": "国产数字芯片 EDA 全流程工具",
+      "description_en": "Domestic digital IC full-flow EDA tools",
+      "categories": [
+        "EDA"
+      ]
+    },
+    {
+      "id": "hongxin",
+      "name_zh": "鸿芯微纳",
+      "name_en": "Hongxin Technology",
+      "origin": "domestic",
+      "hq_city": "深圳",
+      "hq_country": "CN",
+      "website": "https://www.hongxintech.com/",
+      "description_zh": "国产数字芯片布局布线 EDA",
+      "description_en": "Domestic digital place-and-route EDA",
+      "categories": [
+        "EDA"
+      ]
+    },
+    {
+      "id": "huafeng",
+      "name_zh": "华峰测控",
+      "name_en": "Huafeng Test & Control",
+      "origin": "domestic",
+      "hq_city": "北京",
+      "hq_country": "CN",
+      "listed_ticker": "688200.SH",
+      "website": "http://www.hftc.com.cn/",
+      "description_zh": "半导体 ATE 测试设备与软件",
+      "description_en": "Semiconductor ATE equipment and software",
+      "categories": [
+        "EDA",
+        "半导体CIM"
+      ]
+    },
+    {
+      "id": "huawang",
+      "name_zh": "华望系统科技",
+      "name_en": "Huawang System Technology",
+      "origin": "domestic",
+      "hq_city": "杭州",
+      "hq_country": "CN",
+      "website": "https://www.mbse.com.cn/",
+      "description_zh": "MBSE 与 M-PLM 模型驱动 PLM",
+      "description_en": "MBSE and M-PLM model-driven PLM",
+      "categories": [
+        "PLM",
+        "MBSE"
+      ]
+    },
+    {
+      "id": "huazhong",
+      "name_zh": "华中数控",
+      "name_en": "Huazhong CNC",
+      "origin": "domestic",
+      "hq_city": "武汉",
+      "hq_country": "CN",
+      "listed_ticker": "300161.SZ",
+      "website": "https://www.huazhongcnc.com/",
+      "description_zh": "国产中高端数控系统与工业机器人",
+      "description_en": "Domestic mid-high-end CNC systems and industrial robots",
+      "categories": [
+        "CAM"
+      ]
+    },
+    {
+      "id": "jiyuan",
+      "name_zh": "积元仿真",
+      "name_en": "Jiyuan Simulation",
+      "origin": "domestic",
+      "hq_city": "深圳",
+      "hq_country": "CN",
+      "website": "https://www.jiyuan-tech.com/",
+      "description_zh": "国产多物理场 CAE 仿真软件",
+      "description_en": "Domestic multiphysics CAE simulation",
+      "categories": [
+        "CAE"
+      ]
+    },
+    {
+      "id": "jlc",
+      "name_zh": "嘉立创",
+      "name_en": "JLC",
+      "origin": "domestic",
+      "hq_city": "深圳",
+      "hq_country": "CN",
+      "website": "https://lceda.cn/",
+      "description_zh": "立创 EDA 免费在线 PCB 设计",
+      "description_en": "JLCEDA free online PCB design",
+      "categories": [
+        "EDA"
+      ]
+    },
+    {
+      "id": "keysight",
+      "name_zh": "是德科技",
+      "name_en": "Keysight Technologies",
+      "origin": "international",
+      "hq_city": "Santa Rosa",
+      "hq_country": "US",
+      "listed_ticker": "KEYS",
+      "website": "https://www.keysight.com/",
+      "description_zh": "ADS 射频/微波 EDA 与测试测量",
+      "description_en": "ADS RF/microwave EDA and test measurement",
+      "categories": [
+        "EDA"
+      ]
+    },
+    {
+      "id": "luban",
+      "name_zh": "鲁班软件",
+      "name_en": "Lubansoft",
+      "origin": "domestic",
+      "hq_city": "上海",
+      "hq_country": "CN",
+      "website": "http://www.lubansoft.com/",
+      "description_zh": "工程建设 BIM 与造价管理",
+      "description_en": "Construction BIM and cost management",
+      "categories": [
+        "BIM"
+      ]
+    },
+    {
+      "id": "mapbox",
+      "name_zh": "Mapbox",
+      "name_en": "Mapbox",
+      "origin": "international",
+      "hq_city": "Washington",
+      "hq_country": "US",
+      "website": "https://www.mapbox.com/",
+      "description_zh": "矢量地图 GL 与位置服务 SDK",
+      "description_en": "Vector map GL and location SDK",
+      "categories": [
+        "GIS"
+      ]
+    },
+    {
+      "id": "mastercam",
+      "name_zh": "Mastercam",
+      "name_en": "Mastercam (CNC Software)",
+      "origin": "international",
+      "hq_city": "Tolland",
+      "hq_country": "US",
+      "website": "https://www.mastercam.com/",
+      "description_zh": "全球广泛使用的 CAM 编程软件",
+      "description_en": "Widely used CAM programming software",
+      "categories": [
+        "CAM"
+      ]
+    },
+    {
+      "id": "openmind",
+      "name_zh": "OPEN MIND",
+      "name_en": "OPEN MIND Technologies",
+      "origin": "international",
+      "hq_city": "Wessling",
+      "hq_country": "DE",
+      "website": "https://www.openmind-tech.com/",
+      "description_zh": "hyperMILL 多轴 CAM 与机器人编程",
+      "description_en": "hyperMILL multi-axis CAM and robot programming",
+      "categories": [
+        "CAM"
+      ]
+    },
+    {
+      "id": "pengye",
+      "name_zh": "鹏业软件",
+      "name_en": "Pengesoft",
+      "origin": "domestic",
+      "hq_city": "成都",
+      "hq_country": "CN",
+      "listed_ticker": "835287",
+      "website": "http://www.pengyesoftware.com/",
+      "description_zh": "住建行业 BIM 算量与信息化",
+      "description_en": "Construction BIM quantity takeoff and informatization",
+      "categories": [
+        "CAD",
+        "BIM"
+      ]
+    },
+    {
+      "id": "pinming",
+      "name_zh": "品茗科技",
+      "name_en": "Pinming Technology",
+      "origin": "domestic",
+      "hq_city": "杭州",
+      "hq_country": "CN",
+      "listed_ticker": "688109.SH",
+      "website": "https://www.pinming.cn/",
+      "description_zh": "智慧工地与施工 BIM 协同",
+      "description_en": "Smart construction site and BIM collaboration",
+      "categories": [
+        "BIM"
+      ]
+    },
+    {
+      "id": "quanzhi",
+      "name_zh": "全芯智造",
+      "name_en": "ALLSemi",
+      "origin": "domestic",
+      "hq_city": "合肥",
+      "hq_country": "CN",
+      "website": "https://www.amedac.com/",
+      "description_zh": "晶圆厂制造端 EDA 与数据分析",
+      "description_en": "Fab-side EDA and manufacturing analytics",
+      "categories": [
+        "EDA",
+        "半导体CIM"
+      ]
+    },
+    {
+      "id": "s2c",
+      "name_zh": "思尔芯",
+      "name_en": "S2C",
+      "origin": "domestic",
+      "hq_city": "上海",
+      "hq_country": "CN",
+      "website": "https://www.s2ceda.com/",
+      "description_zh": "FPGA 原型验证与硬件仿真",
+      "description_en": "FPGA prototyping and hardware emulation",
+      "categories": [
+        "EDA"
+      ]
+    },
+    {
+      "id": "semitron",
+      "name_zh": "广立微",
+      "name_en": "Semitronix",
+      "origin": "domestic",
+      "hq_city": "杭州",
+      "hq_country": "CN",
+      "listed_ticker": "301095.SZ",
+      "website": "https://www.semitronix.com/",
+      "description_zh": "WAT/Yield 分析与晶圆电性测试 EDA",
+      "description_en": "WAT/yield analytics and wafer electrical test EDA",
+      "categories": [
+        "EDA",
+        "半导体CIM"
+      ]
+    },
+    {
+      "id": "siemens-eda",
+      "name_zh": "西门子EDA",
+      "name_en": "Siemens EDA",
+      "origin": "international",
+      "hq_city": "Wilsonville",
+      "hq_country": "US",
+      "website": "https://eda.sw.siemens.com/",
+      "description_zh": "Calibre/Mentor PCB 与 IC 验证 EDA",
+      "description_en": "Calibre/Mentor PCB and IC verification EDA",
+      "categories": [
+        "EDA"
+      ]
+    },
+    {
+      "id": "silvaco",
+      "name_zh": "Silvaco",
+      "name_en": "Silvaco",
+      "origin": "international",
+      "hq_city": "Santa Clara",
+      "hq_country": "US",
+      "website": "https://silvaco.com/",
+      "description_zh": "TCAD 器件仿真与 SPICE 建模",
+      "description_en": "TCAD device simulation and SPICE modeling",
+      "categories": [
+        "EDA"
+      ]
+    },
+    {
+      "id": "south",
+      "name_zh": "南方数码",
+      "name_en": "South Survey Mapping",
+      "origin": "domestic",
+      "hq_city": "广州",
+      "hq_country": "CN",
+      "website": "https://www.southgis.com/",
+      "description_zh": "测绘 GIS 与不动产信息化",
+      "description_en": "Survey GIS and cadastral informatization",
+      "categories": [
+        "GIS"
+      ]
+    },
+    {
+      "id": "sunway",
+      "name_zh": "山维科技",
+      "name_en": "Beijing Sunway Technology",
+      "origin": "domestic",
+      "hq_city": "北京",
+      "hq_country": "CN",
+      "listed_ticker": "836870",
+      "website": "http://www.sunwaysurvey.com.cn/",
+      "description_zh": "测绘地理信息 EPS 与 BIM/GIS 数据处理",
+      "description_en": "Survey GIS EPS and BIM/GIS data processing",
+      "categories": [
+        "BIM",
+        "GIS"
+      ]
+    },
+    {
+      "id": "sysware",
+      "name_zh": "索为系统",
+      "name_en": "Sysware",
+      "origin": "domestic",
+      "hq_city": "北京",
+      "hq_country": "CN",
+      "website": "http://www.sysware.com.cn/",
+      "description_zh": "复杂装备 IPDC/PLM 与工业 APP",
+      "description_en": "Complex equipment IPDC/PLM and industrial apps",
+      "categories": [
+        "PLM"
+      ]
+    },
+    {
+      "id": "tianhe",
+      "name_zh": "天河智造",
+      "name_en": "THSOFT",
+      "origin": "domestic",
+      "hq_city": "北京",
+      "hq_country": "CN",
+      "listed_ticker": "837756",
+      "website": "http://www.thsoft.com.cn/",
+      "description_zh": "天河 CAD/PLM 国产工业软件",
+      "description_en": "THCAD/PLM domestic industrial software",
+      "categories": [
+        "CAD",
+        "PLM"
+      ]
+    },
+    {
+      "id": "univista",
+      "name_zh": "合见工软",
+      "name_en": "UniVista",
+      "origin": "domestic",
+      "hq_city": "上海",
+      "hq_country": "CN",
+      "website": "https://www.univista-is.com/",
+      "description_zh": "国产 EDA 验证与签核工具",
+      "description_en": "Domestic EDA verification and signoff tools",
+      "categories": [
+        "EDA"
+      ]
+    },
+    {
+      "id": "weihong",
+      "name_zh": "维宏股份",
+      "name_en": "Weihong",
+      "origin": "domestic",
+      "hq_city": "上海",
+      "hq_country": "CN",
+      "listed_ticker": "300508.SZ",
+      "website": "https://www.weihong.com.cn/",
+      "description_zh": "运动控制与数控系统（激光/雕刻等）",
+      "description_en": "Motion control and CNC systems for laser and engraving",
+      "categories": [
+        "CAM"
+      ]
+    },
+    {
+      "id": "x-epic",
+      "name_zh": "芯华章",
+      "name_en": "X-Epic",
+      "origin": "domestic",
+      "hq_city": "北京",
+      "hq_country": "CN",
+      "website": "https://www.x-epic.com/",
+      "description_zh": "国产数字验证与形式化 EDA",
+      "description_en": "Domestic digital verification and formal EDA",
+      "categories": [
+        "EDA"
+      ]
+    },
+    {
+      "id": "xchip",
+      "name_zh": "行芯科技",
+      "name_en": "Phlexing Technology",
+      "origin": "domestic",
+      "hq_city": "杭州",
+      "hq_country": "CN",
+      "website": "https://www.phlexing.com/",
+      "description_zh": "国产 EDA 签核与物理验证",
+      "description_en": "Domestic EDA signoff and physical verification",
+      "categories": [
+        "EDA"
+      ]
+    },
+    {
+      "id": "xpeedic",
+      "name_zh": "芯和半导体",
+      "name_en": "Xpeedic",
+      "origin": "domestic",
+      "hq_city": "上海",
+      "hq_country": "CN",
+      "website": "https://www.xpeedic.com/",
+      "description_zh": "SI/PI/EM 仿真与封装分析 EDA",
+      "description_en": "SI/PI/EM simulation and packaging analysis EDA",
+      "categories": [
+        "EDA"
+      ]
     }
   ]
 }
