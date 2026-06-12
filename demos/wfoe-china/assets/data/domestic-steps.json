@@ -2,10 +2,10 @@
   {
     "id": "d01",
     "num": 1,
-    "title_html": "Decide <strong>shareholders</strong>, <strong>legal representative</strong>, <strong>supervisor</strong>, and (where required) <strong>finance contact</strong>; prepare PRC ID cards and mobile numbers for real-name verification.",
+    "title_html": "Decide <strong>shareholders</strong>, <strong>legal representative</strong>, <strong>registration liaison officer</strong> (登记联络员), and (if used) <strong>supervisor</strong>; prepare PRC ID cards and mobile numbers for real-name verification.",
     "detail": {
       "kind": "paragraph",
-      "html": "Director and supervisor cannot be the same person in the standard one-shareholder layout; your filing portal will flag conflicts."
+      "html": "If you appoint a supervisor, a director or senior manager cannot also serve as supervisor. Under the 2024 Company Law, many small LLCs may <strong>omit a supervisor</strong> by unanimous shareholder consent or use a <strong>board audit committee</strong> instead (Arts. 69 &amp; 83). Designate a <strong>registration liaison officer</strong> with phone and email for AMR contact (mandatory since 2025-02-10)."
     },
     "money": {
       "kind": "data-domestic-fee",
@@ -18,7 +18,7 @@
     "title_html": "Reserve <strong>3–5 candidate names</strong> and secure a <strong>compliant registered address</strong>—lease + property certificate, or (where permitted) a government/business-park cluster address.",
     "detail": {
       "kind": "paragraph",
-      "html": "Many cities run name checks inside the same “one-stop” website; the AMR must approve the final name before issuance."
+      "html": "Many cities run name checks inside the same “one-stop” website; the AMR must approve the final name before issuance. Cluster / centralized registration addresses <strong>vary by district</strong>—licensed or high-risk sectors may be barred; note any “集中登记地” label and term limits."
     },
     "money": {
       "kind": "data-domestic-fee",
@@ -44,7 +44,7 @@
     "title_html": "File online through the provincial <strong>government service portal</strong> / <strong>enterprise “one-stop”</strong> (e.g. 开办企业一窗通)—upload IDs, address proof, generated articles, and e-sign with facial recognition.",
     "detail": {
       "kind": "paragraph",
-      "html": "Optional: hire a local bookkeeping/agent firm (<strong>代办</strong>)—common for first-time founders; scope should list filing, chops, and tax onboarding."
+      "html": "Optional: hire a local bookkeeping/agent firm (<strong>代办</strong>)—common for first-time founders; scope should list filing, chops, and tax onboarding. Many cities let you <strong>bundle</strong> seal carving, tax/digital invoicing, and social/housing fund registration in the same online application."
     },
     "money": {
       "kind": "data-domestic-fee",
@@ -57,7 +57,7 @@
     "title_html": "AMR review → receive the <strong>营业执照</strong> (electronic license immediate in many cities; paper optional).",
     "detail": {
       "kind": "paragraph",
-      "html": "Typical review windows are roughly <strong>1–3 working days</strong> when materials are complete—longer if the name or scope needs fixes."
+      "html": "When materials are complete, many cities finish within <strong>one working day</strong> (some <strong>same-day</strong>) under enterprise “one-stop” flows—longer if the name, scope, or a pre-licence needs fixes."
     },
     "money": {
       "kind": "data-domestic-fee",
@@ -67,15 +67,14 @@
   {
     "id": "d06",
     "num": 6,
-    "title_html": "Carve and file <strong>official seals</strong> (公章, 财务章, 法人章, 发票章 as needed) with the public-security filing system.",
+    "title_html": "Carve and file <strong>official seals</strong> (公章, 财务章, 法人章—<strong>invoice chop usually not needed</strong> under nationwide digital invoicing) with the public-security filing system.",
     "detail": {
       "kind": "paragraph",
-      "html": "Some municipalities bundle <strong>free first seals</strong> for new market entrants—check the same one-stop portal."
+      "html": "Some municipalities bundle <strong>free first seals</strong> for new market entrants (count and types <strong>vary by city</strong>)—check the same one-stop portal. Under nationwide <strong>数电发票</strong>, digital invoices generally need no physical invoice seal."
     },
     "money": {
-      "kind": "i18n",
-      "key": "d06.money",
-      "html": "<strong>Est.:</strong> if not free, a full set often <strong>¥300–1,200</strong>; express/specialty materials extra."
+      "kind": "data-domestic-fee",
+      "key": "d06"
     }
   },
   {
@@ -84,7 +83,7 @@
     "title_html": "Open the <strong>RMB basic bank account</strong> (基本户) with the license and seals—KYC is lighter than a WFOE but still in-person or video per bank policy.",
     "detail": {
       "kind": "paragraph",
-      "html": "Shareholder capital can be wired from personal accounts per subscribed amounts—no foreign FDI account required."
+      "html": "Shareholder capital can be wired from personal accounts per subscribed amounts—no foreign FDI account required. Wire within the <strong>five-year</strong> pay-in schedule, keep bank receipts and accounting vouchers; undocumented transfers may be treated as loans, not paid-in capital."
     },
     "money": {
       "kind": "data-domestic-fee",
@@ -94,10 +93,10 @@
   {
     "id": "d08",
     "num": 8,
-    "title_html": "Complete <strong>tax registration</strong> and enable <strong>digital invoices</strong> (数电票) with the tax bureau—often linked through the one-stop flow.",
+    "title_html": "Complete <strong>new-taxpayer onboarding</strong> and enable <strong>fully digital e-invoices</strong> (数电票)—often linked through the one-stop flow after 多证合一.",
     "detail": {
       "kind": "paragraph",
-      "html": "Assign accounting rules (small-scale vs. general VAT taxpayer) with your agent or tax advisor before issuing invoices to clients."
+      "html": "No separate tax registration certificate is issued—the unified social credit code on the license is shared with the tax bureau. Confirm tax categories and assign accounting rules (small-scale vs. general VAT taxpayer) with your agent before issuing invoices."
     },
     "money": {
       "kind": "data-domestic-fee",
@@ -107,10 +106,10 @@
   {
     "id": "d09",
     "num": 9,
-    "title_html": "Register for <strong>social insurance</strong> and <strong>housing fund</strong> accounts so you can hire and run payroll compliantly.",
+    "title_html": "Register for <strong>social insurance</strong> and <strong>housing fund</strong> unit accounts <strong>before hiring</strong>—optional to bundle at setup.",
     "detail": {
       "kind": "paragraph",
-      "html": "Contribution rates follow local rules—use the same city assumptions as the <a href=\"#costs\" class=\"text-emerald-600 font-semibold underline\">dashboard</a> for planning."
+      "html": "In many “one-stop” flows, social insurance and housing fund are <strong>optional</strong> at incorporation—you may defer until you hire. Contribution rates follow local rules—use the same city assumptions as the <a href=\"#costs\" class=\"text-emerald-600 font-semibold underline\">dashboard</a> for planning."
     },
     "money": {
       "kind": "data-domestic-fee",
@@ -120,10 +119,10 @@
   {
     "id": "d10",
     "num": 10,
-    "title_html": "Stand up <strong>bookkeeping and periodic tax filings</strong> (monthly/quarterly VAT, annual CIT prep, payroll withholding)—in-house or via a <strong>代理记账</strong> firm.",
+    "title_html": "Stand up <strong>bookkeeping and periodic tax filings</strong> (VAT—<strong>small-scale taxpayers usually quarterly</strong>; general taxpayers usually monthly; CIT prep; payroll withholding)—in-house or via a <strong>代理记账</strong> firm.",
     "detail": {
       "kind": "paragraph",
-      "html": "Missing filing deadlines triggers penalties—budget this before you take your first paying client."
+      "html": "Even with <strong>no revenue</strong>, file <strong>zero returns</strong> on schedule after licence issuance—missing deadlines triggers penalties and abnormal-listing risk. Budget this before you take your first paying client."
     },
     "money": {
       "kind": "data-domestic-fee",

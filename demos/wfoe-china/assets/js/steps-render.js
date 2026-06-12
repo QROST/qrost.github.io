@@ -1,5 +1,5 @@
 /**
- * Phase 4 renderer — turns assets/data/{wfoe,domestic}-steps.json into the
+ * Phase 4 renderer — turns assets/data/{wfoe,domestic,joint-venture}-steps.json into the
  * step-card DOM that index.html previously hard-coded.
  *
  * Layout (2026-06): horizontal flow rail + compact row list — same i18n/money
@@ -98,6 +98,29 @@
             + '</li>';
     }
 
+    function jvRowHtml(step, idPrefix) {
+        const rowId = idPrefix + step.id;
+        return ''
+            + '<li id="' + rowId + '" class="step-flow-row" data-step-row="' + step.id + '">'
+            + '<div class="step-flow-row-inner">'
+            + '<div class="step-flow-num" aria-hidden="true">' + step.num + '</div>'
+            + '<div class="step-flow-body">'
+            + '<p class="step-flow-title" data-i18n="' + step.id + '.title">' + step.title_html + '</p>'
+            + detailBlockHtml(step)
+            + '</div>'
+            + '<div class="step-flow-money">'
+            + '<p class="step-flow-money-text" data-jv-money="' + step.money_key + '"></p>'
+            + '</div>'
+            + '</div>'
+            + '</li>';
+    }
+
+    var MOUNT_PREFIX = {
+        'wfoe-steps-mount': 'wfoe-',
+        'domestic-steps-mount': 'domestic-',
+        'jv-steps-mount': 'jv-'
+    };
+
     function buildStepFlow(steps, rowRenderer, idPrefix) {
         const list = '<ol class="step-flow-list">' + steps.map(function (s) {
             return rowRenderer(s, idPrefix);
@@ -120,7 +143,7 @@
     }
 
     function wireStepFlow(layout, mountId) {
-        const prefix = mountId === 'wfoe-steps-mount' ? 'wfoe-' : 'domestic-';
+        const prefix = MOUNT_PREFIX[mountId] || '';
         const rail = layout.querySelector('.step-flow-rail');
         const nodes = rail ? rail.querySelectorAll('.step-flow-node') : [];
         const rows = layout.querySelectorAll('.step-flow-row');
@@ -199,7 +222,17 @@
                 renderFailureNotice('domestic-steps-mount', 'domestic LLC steps');
             });
 
-        Promise.all([wfoePromise, domesticPromise]).then(dispatchDone);
+        const jvPromise = fetch('assets/data/joint-venture-steps.json')
+            .then(function (r) { if (!r.ok) throw new Error('joint-venture-steps ' + r.status); return r.json(); })
+            .then(function (steps) {
+                renderInto('jv-steps-mount', buildStepFlow(steps, jvRowHtml, 'jv-'));
+            })
+            .catch(function (e) {
+                console.warn('[steps-render] JV load failed:', e);
+                renderFailureNotice('jv-steps-mount', 'Sino-foreign JV steps');
+            });
+
+        Promise.all([wfoePromise, domesticPromise, jvPromise]).then(dispatchDone);
     }
 
     if (document.readyState === 'loading') {

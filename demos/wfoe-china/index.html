@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>How to open a company in China — WFOE setup &amp; AEC hiring costs | QROST</title>
-    <meta name="description" content="Step-by-step setup workflows (mainland WFOE, domestic LLC, HK/Macau SAR) and an interactive city-level annual cost model for CAD roles across 24 talent hubs. Research notes for international AEC founders.">
+    <meta name="description" content="Step-by-step setup workflows (mainland WFOE, domestic LLC, Sino-foreign JV, HK/Macau SAR) and an interactive city-level annual cost model for CAD roles across 24 talent hubs. Research notes for international AEC founders.">
     <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230f172a'/%3E%3Ctext x='16' y='21' font-family='Inter,system-ui,sans-serif' font-size='13' font-weight='700' text-anchor='middle' fill='white' letter-spacing='1'%3EQ%3C/text%3E%3C/svg%3E">
 
     <meta property="og:type" content="article">
@@ -36,7 +36,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
     <!-- Chosen Palette: Slate and Emerald -->
-    <link rel="stylesheet" href="assets/css/china-business.css?v=20260611">
+    <link rel="stylesheet" href="assets/css/china-business.css?v=20260611intl2">
 </head>
 
 <body class="antialiased scroll-smooth">
@@ -112,6 +112,11 @@
                 </button>
                 <button
                     class="step-item px-5 py-3 text-base font-medium border-b-2 border-transparent text-slate-500 hover:text-slate-800 focus:outline-none transition-colors duration-200 whitespace-nowrap"
+                    data-target="step-jv" data-i18n="process.tab_jv">
+                    Mainland (Sino-foreign JV)
+                </button>
+                <button
+                    class="step-item px-5 py-3 text-base font-medium border-b-2 border-transparent text-slate-500 hover:text-slate-800 focus:outline-none transition-colors duration-200 whitespace-nowrap"
                     data-target="step-sar" data-i18n="process.tab_sar">
                     Hong Kong &amp; Macau (SAR)
                 </button>
@@ -122,12 +127,12 @@
                 <!-- MAINLAND STEP-BY-STEP -->
                 <div id="step-mainland" class="step-content block">
                     <p class="text-slate-500 mb-6 font-medium" data-i18n="process.mainland_intro">This tab is for <strong>international</strong> investors—foreign <strong>individuals</strong> (any nationality; a <strong>U.S. citizen</strong> founder is a common <strong>example</strong>) or a <strong>foreign parent company</strong>—setting up a <strong>WFOE</strong>—a
-                        <strong>wholly foreign-owned enterprise</strong> (外商独资企业), the usual mainland vehicle for foreign investment. Work the steps in order; optional detail is folded below. Budget
-                        <strong>registered capital</strong> (steps 8–9) and <strong>hosting cost</strong> before you file.
+                        <strong>wholly foreign-owned enterprise</strong> (外商独资企业), the usual mainland vehicle for foreign investment. Work the steps in order; optional detail is folded below. <strong>Before step 5</strong>, confirm your planned CAD/design activity fits your registered scope, the <strong>2024 FI negative list</strong>, and any sector licence—not a permit-restricted construction-design category. Budget
+                        <strong>registered capital</strong> (steps 8–9) and <strong>operating costs</strong> before you file.
                     </p>
                     <p class="text-xs text-slate-500 mb-6 leading-relaxed border-l-2 border-slate-200 pl-3" data-i18n="process.fee_note">Right column:
                         rough cash-impact hints (2024–2025 style ranges). Not quotes—city, bank, and agent change outcomes.
-                        <strong>Currency rule:</strong> All amounts below are <strong>estimated in RMB first</strong> (what you pay onshore in China, or planning equivalents for overseas bank/notary lines); <strong>USD</strong> = RMB ÷ USD/CNY using the same rate as under Financials (live when the feed loads, otherwise a 2024-avg fallback of 7.2). The <strong>dashboard</strong> chart still follows the same RMB→USD rule when you pick USD.</p>
+                        <strong>Currency rule:</strong> All amounts below are <strong>estimated in RMB first</strong> (what you pay onshore in China, or planning equivalents for overseas bank/notary lines); switch to <strong>English</strong> to see <strong>USD</strong> = RMB ÷ USD/CNY using the same rate as under Financials (live when the feed loads, otherwise a 2024-avg fallback of 7.2). The <strong>dashboard</strong> chart still follows the same RMB→USD rule when you pick USD.</p>
 
                     <div id="wfoe-steps-mount" aria-busy="true">
                         <noscript><p class="text-sm text-slate-600">JavaScript is required to display the WFOE step list. See <a href="assets/data/wfoe-steps.json" class="text-emerald-700 underline">assets/data/wfoe-steps.json</a> for the raw data.</p></noscript>
@@ -137,13 +142,24 @@
 
                 <!-- MAINLAND DOMESTIC LLC (Chinese citizen) -->
                 <div id="step-domestic" class="step-content hidden">
-                    <p class="text-slate-500 mb-6 font-medium" data-i18n="process.domestic_intro">For a <strong>Chinese citizen</strong> (or all-domestic shareholders), a typical path is a
+                    <p class="text-slate-500 mb-6 font-medium" data-i18n="process.domestic_intro">For <strong>domestic shareholders</strong> (natural persons or onshore enterprises/organizations), a typical path is a
                         <strong>有限责任公司</strong> via the local <strong>“one-stop” / 一窗通</strong> enterprise-registration channel—no foreign notarization or
-                        capital-injection account. Steps and timing vary by city; below is a common sequence.</p>
-                    <p class="text-xs text-slate-500 mb-6 leading-relaxed border-l-2 border-slate-200 pl-3" data-i18n="process.fee_note_domestic">Right column: rough cash-impact hints (2024–2025 style). Not quotes—city and bank policies differ. <strong>RMB</strong> is the anchor; each line shows <strong>¥…</strong> with <strong>USD in parentheses</strong> as RMB ÷ USD/CNY (same rate as under Financials—live when the feed loads, otherwise a 2024-avg fallback of 7.2).</p>
+                        capital-injection account. Steps 5–9 are a <strong>logical split</strong>; in many cities they can be <strong>bundled in parallel</strong> in one online application (seals, tax/digital invoicing, social/housing fund). Timing varies by city; below is a common sequence.</p>
+                    <p class="text-xs text-slate-500 mb-6 leading-relaxed border-l-2 border-slate-200 pl-3" data-i18n="process.fee_note_domestic">Right column: rough cash-impact hints (2024–2025 style). Not quotes—city and bank policies differ. <strong>RMB-only in 中文</strong>; switch to <strong>English</strong> for <strong>¥… (≈ $…)</strong> dual display as RMB ÷ USD/CNY (same rate as under Financials—live when the feed loads, otherwise a 2024-avg fallback of 7.2).</p>
 
                     <div id="domestic-steps-mount" aria-busy="true">
                         <noscript><p class="text-sm text-slate-600">JavaScript is required to display the domestic LLC step list. See <a href="assets/data/domestic-steps.json" class="text-emerald-700 underline">assets/data/domestic-steps.json</a> for the raw data.</p></noscript>
+                    
+                    </div>
+                </div>
+
+                <!-- MAINLAND SINO-FOREIGN JV -->
+                <div id="step-jv" class="step-content hidden">
+                    <p class="text-slate-500 mb-6 font-medium" data-i18n="process.jv_intro">For a <strong>Sino-foreign LLC/JV</strong> (外商投资有限责任公司)—one or more <strong>foreign investors</strong> partnering with a <strong>Chinese shareholder</strong>—the path mirrors a WFOE on registration but adds partner due diligence, a shareholder/JV agreement, equity-ratio rules under the <strong>2024 Negative List</strong>, and bilingual governance. Work the steps in order; budget <strong>legal fees</strong> (typically higher than WFOE) and <strong>registered capital</strong> before you file.</p>
+                    <p class="text-xs text-slate-500 mb-6 leading-relaxed border-l-2 border-slate-200 pl-3" data-i18n="process.fee_note_jv">Right column: rough cash-impact hints (2024–2026 style ranges, tier-1 city bands). Not quotes—city, bank, partner, and counsel change outcomes. <strong>Currency rule:</strong> All amounts below are <strong>estimated in RMB first</strong>; <strong>USD</strong> = RMB ÷ USD/CNY using the same rate as under Financials (live when the feed loads, otherwise a 2024-avg fallback of 7.2).</p>
+
+                    <div id="jv-steps-mount" aria-busy="true">
+                        <noscript><p class="text-sm text-slate-600">JavaScript is required to display the JV step list. See <a href="assets/data/joint-venture-steps.json" class="text-emerald-700 underline">assets/data/joint-venture-steps.json</a> for the raw data.</p></noscript>
                     
                     </div>
                 </div>
@@ -169,9 +185,7 @@
                                     recent utility bill (proof of address).</li>
                                 <li data-i18n="sar.hk3"><strong>File Online:</strong> The agency will file Form NNC1 (Incorporation Form)
                                     with the Companies Registry.</li>
-                                <li data-i18n="sar.hk4"><strong>Receive Certificate:</strong> The company is usually incorporated within
-                                    <strong>24 to 48 hours</strong>. No "chops" or complex government visits are
-                                    required.
+                                <li data-i18n="sar.hk4"><strong>Receive Certificate:</strong> Straightforward <strong>e-Services</strong> filings can complete in <strong>~1 hour</strong>; hard-copy submissions about <strong>4 business days</strong>. No "chops" or complex government visits are required; bank KYC may still take weeks.
                                 </li>
                                 <li data-i18n="sar.hk5"><strong>Bank Account (The Hard Part):</strong> Opening a corporate bank account in
                                     HK is notoriously strict due to anti-money laundering laws. Expect this to take
@@ -263,16 +277,14 @@
                             <span class="text-[10px] font-bold badge-gba px-2 py-1 rounded uppercase tracking-wide">GBA
                                 / SAR</span>
                             <h4 class="font-bold text-lg mt-2" data-i18n="hub.hongkong">Hong Kong</h4>
-                            <p class="text-xs text-slate-500 mt-1" data-i18n="gba.hk">Global finance/design. Highest base pay, lowest
-                                employer tax burden.</p>
+                            <p class="text-xs text-slate-500 mt-1" data-i18n="gba.hk">Global finance/design. Highest base pay; lowest modeled <strong>employer payroll statutory</strong> burden (MPF capped).</p>
                         </div>
                         <div
                             class="bg-white p-4 rounded-lg shadow-sm border border-slate-200 hover:border-sky-400 transition">
                             <span class="text-[10px] font-bold badge-gba px-2 py-1 rounded uppercase tracking-wide">GBA
                                 / SAR</span>
                             <h4 class="font-bold text-lg mt-2" data-i18n="hub.macau">Macau</h4>
-                            <p class="text-xs text-slate-500 mt-1" data-i18n="gba.mo">Hospitality/Architecture focus. Unique labor market,
-                                very low tax.</p>
+                            <p class="text-xs text-slate-500 mt-1" data-i18n="gba.mo">Hospitality/Architecture focus. Unique labor market; very low modeled <strong>employer payroll statutory</strong> (flat FSS).</p>
                         </div>
                         <div
                             class="bg-white p-4 rounded-lg shadow-sm border border-slate-200 hover:border-sky-400 transition">
@@ -395,8 +407,7 @@
                             <span
                                 class="text-[10px] font-bold badge-north px-2 py-1 rounded uppercase tracking-wide">North</span>
                             <h4 class="font-bold text-lg mt-2" data-i18n="hub.tianjin">Tianjin</h4>
-                            <p class="text-xs text-slate-500 mt-1" data-i18n="north.tj">Major port, 30 mins from Beijing. Heavy industrial
-                                design focus.</p>
+                            <p class="text-xs text-slate-500 mt-1" data-i18n="north.tj">Major port, ~30 min from Beijing South by intercity HSR (station to station). Heavy industrial design focus.</p>
                         </div>
                         <div
                             class="bg-white p-4 rounded-lg shadow-sm border border-slate-200 hover:border-amber-400 transition">
@@ -525,10 +536,7 @@
                         </summary>
                         <div class="text-sm text-slate-700 leading-relaxed px-4 pb-4 pt-0 border-t border-cyan-100/80">
                             <p class="mb-2" data-i18n="hn.fold_p1">The whole province operates as the <strong>Hainan Free Trade Port</strong>.
-                                Under current rules, <strong>“special customs operations”</strong> apply island-wide: many goods
-                                imported from abroad enter with <strong>zero import duties, VAT, and consumption tax</strong>
-                                (with mainland-bound shipments generally taxed at the “second line” unless substantially
-                                transformed on-island). This is aimed at tourism, modern services, high-tech, healthcare, and
+                                Since the <strong>18 Dec 2025</strong> island-wide special customs launch, qualifying FTP entities importing from abroad generally receive <strong>zero import tariff</strong> on goods <strong>not on the taxable negative list</strong> (~74% of tariff lines at zero); VAT and consumption tax follow FTP goods-tax rules—not a blanket “zero everything” for every category. Shipments to the mainland remain subject to “second-line” rules unless substantially transformed on-island. This is aimed at tourism, modern services, high-tech, healthcare, and
                                 logistics.</p>
                             <ul class="list-disc pl-5 space-y-1 text-slate-600">
                                 <li data-i18n="hn.fold_li1"><strong>Corporate income tax:</strong> <strong>15%</strong> for qualifying enterprises in
@@ -552,7 +560,7 @@
                             <p class="text-xs text-slate-500 mt-1" data-i18n="hn.hk">Provincial capital and main policy/admin hub. Stronger
                                 pool for corporate, infrastructure, and design roles than smaller island cities; lower
                                 typical engineering base pay than tier-1 coastal cities but improving with FTP
-                                investment.</p>
+                                investment. <strong>15% tax rates</strong> require encouraged-industry + substantive operations—not automatic.</p>
                         </div>
                         <div
                             class="bg-white p-4 rounded-lg shadow-sm border border-slate-200 hover:border-cyan-400 transition">
@@ -562,7 +570,7 @@
                             <h4 class="font-bold text-lg mt-2" data-i18n="hub.sanya">Sanya</h4>
                             <p class="text-xs text-slate-500 mt-1" data-i18n="hn.sy">Tourism and hospitality economy; higher cost of living
                                 and smaller technical labour market, so CAD/engineering packages often include a
-                                retention premium versus Haikou for comparable seniority.</p>
+                                retention premium versus Haikou for comparable seniority. <strong>15% tax rates</strong> require encouraged-industry + substantive operations—not automatic.</p>
                         </div>
                     </div>
                 </div>
@@ -650,6 +658,29 @@
                                 class="px-3 py-2 text-sm rounded-md text-slate-600 hover:text-slate-800 transition" data-i18n="dash.include">Include</button>
                         </div>
                     </div>
+                    <div>
+                        <label class="text-xs font-bold text-slate-500 uppercase tracking-wider mb-2 block" data-i18n="dash.international">Global cities</label>
+                        <div class="flex space-x-1 bg-slate-200 p-1 rounded-lg">
+                            <button id="btn-international-hide" type="button"
+                                class="px-3 py-2 text-sm rounded-md bg-white shadow-sm font-semibold text-slate-800 transition" data-i18n="dash.international_hide">China only</button>
+                            <button id="btn-international-show" type="button"
+                                class="px-3 py-2 text-sm rounded-md text-slate-600 hover:text-slate-800 transition" data-i18n="dash.international_show">Include global</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="international-alert" class="hidden mb-8 bg-sky-50 border-l-4 border-sky-500 p-4 rounded">
+                <div class="flex">
+                    <div class="flex-shrink-0">
+                        <span class="text-sky-500 text-xl">&#8505;</span>
+                    </div>
+                    <div class="ml-3">
+                        <h3 class="text-sm font-medium text-sky-800" data-i18n="dash.intl_title">International benchmark notice</h3>
+                        <div class="mt-2 text-sm text-sky-700">
+                            <p data-i18n="dash.intl_body">You have selected a global city outside Greater China. Salaries and local occupancy are modeled in <strong>USD</strong> and converted to RMB for comparison using the same USD/CNY rate as the chart. Employer statutory loads are planning percentages—not mainland social insurance.</p>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -726,7 +757,7 @@
                     </div>
                     <div>
                         <h3 class="text-xs font-bold uppercase tracking-wider text-slate-500 mt-4 mb-2" data-i18n="method.modeling_h">Modeling rule</h3>
-                        <p data-i18n="method.modeling_body">Salaries, rent, contributions, and overhead are stored <strong>RMB-first</strong>; USD display always divides RMB totals by USD/CNY (live feed when available, otherwise a <strong>2024-avg fallback rate of 7.2</strong>). HKD and MOP are converted to RMB equivalents for charting continuity.</p>
+                        <p data-i18n="method.modeling_body">Salaries, rent, contributions, and overhead are stored <strong>RMB-first</strong>; USD display always divides RMB totals by USD/CNY (live feed when available, otherwise a <strong>2024-avg fallback rate of 7.2</strong>). Hong Kong and Macau figures are stored as <strong>pre-converted RMB planning equivalents</strong> (reviewed Q4 2024)—HK MPF is capped at HKD 1,500/month employer; Macau FSS employer share is a flat MOP 60/month.</p>
                     </div>
                     <div>
                         <h3 class="text-xs font-bold uppercase tracking-wider text-slate-500 mt-4 mb-2" data-i18n="method.timestamp_h">Last reviewed</h3>
@@ -751,9 +782,9 @@
         </div>
     </footer>
 
-    <script src="assets/js/steps-render.js?v=20260611"></script>
-    <script src="assets/js/i18n-china-business.js"></script>
-    <script src="assets/js/china-business.js?v=20260611b"></script>
+    <script src="assets/js/steps-render.js?v=20260611intl2"></script>
+    <script src="assets/js/i18n-china-business.js?v=20260611intl2"></script>
+    <script src="assets/js/china-business.js?v=20260611intl2"></script>
 </body>
 
 </html>

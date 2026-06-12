@@ -15,10 +15,10 @@
   {
     "id": "s02",
     "num": 2,
-    "title_html": "Find only commercial office space—residential units cannot be a WFOE address.",
+    "title_html": "Secure a <strong>business-eligible</strong> registered address (commercial or approved mixed-use)—pure residential addresses are usually rejected.",
     "detail": {
       "kind": "paragraph",
-      "html": "Zoning must allow business registration; verify with your agent before you sign."
+      "html": "AMR requires an address that permits business registration with proper lease/ownership proof. Many cities accept approved <strong>mixed commercial-residential (商住/商办)</strong> properties or compliant centralized registration addresses—verify with AMR before you sign."
     },
     "money_key": "s02"
   },
@@ -49,8 +49,9 @@
     "detail": {
       "kind": "list",
       "items_html": [
+        "<strong>Before you sign</strong>, map your planned CAD/design activity against the <strong>2024 FI negative list</strong> and sector licensing rules (see step 8)—construction engineering design often differs from general technical consulting.",
         "Chinese law does not universally <strong>require</strong> a foreign founder to use an agent, but AMR online portals, templates, and local practice are almost entirely in Chinese—<strong>most overseas investors hire</strong> a firm to draft articles, run the AMR package, and coordinate chops and bank KYC.",
-        "Compare quotes before you finalize notarized / apostille packs: “incorporation only” vs. full-service (bank onboarding, bookkeeping, annual compliance).",
+        "Compare quotes before you finalize notarized / apostille packs: “incorporation only” vs. full-service (bank onboarding, bookkeeping, annual compliance). Tier‑1 cities often sit at the high end of quoted bands.",
         "Government AMR filing charges are usually modest; the main cash outlay here is <strong>professional service fees</strong>."
       ]
     },
@@ -72,7 +73,7 @@
     "title_html": "Obtain an Apostille from your country’s designated Hague authority (e.g. a U.S. state Secretary of State for documents originating in the United States).",
     "detail": {
       "kind": "paragraph",
-      "html": "You no longer need Chinese Embassy legalization for this path—the Apostille is the standard certification."
+      "html": "For <strong>Hague Convention member states</strong>, notarization + apostille replaces PRC embassy legalization (in force for China since 2023-11-07). <strong>Non-Hague countries</strong> still need consular legalization. Provide <strong>certified Chinese translations</strong> of foreign documents—confirm the local AMR checklist."
     },
     "money_key": "s07"
   },
@@ -85,6 +86,7 @@
       "items_html": [
         "Registered capital (注册资本) is the subscribed total on the license; it is not the same as annual rent or payroll.",
         "Under PRC Company Law (revised 1 Jul 2024), full pay-in within <strong>five years</strong> of establishment unless transition rules apply for older companies.",
+        "Before filing: confirm your planned activity against the <strong>2024 foreign-investment negative list</strong> and <strong>market-access negative list</strong>; draft business scope with “（须经批准后方可经营）” where permits apply. <strong>Construction engineering design</strong> is separately regulated and often requires Sino-foreign cooperative design—distinct from general CAD/consulting.",
         "Choose amount using: minimum viable for your sector, business plan, license minimums, banking credibility, and repatriation plans—align with your accountant.",
         "Employer social insurance + housing fund is separate from this line—see step 9 and the dashboard."
       ]
@@ -108,10 +110,10 @@
   {
     "id": "s10",
     "num": 10,
-    "title_html": "Name Legal Rep, Executive Director, and Supervisor—two roles cannot be the same person.",
+    "title_html": "Appoint legal representative, director(s), and (if used) supervisor—<strong>supervisor must be separate from legal rep/director</strong>.",
     "detail": {
       "kind": "paragraph",
-      "html": "The Supervisor cannot be the Legal Representative or Director. These names go into articles and bank mandates."
+      "html": "Legal representative and sole director are commonly the <strong>same person</strong>. If you retain a supervisor, they cannot also be legal representative or director. Under the 2024 Company Law, many small single-shareholder WFOEs may <strong>omit a supervisor</strong> by unanimous shareholder consent or use a <strong>board audit committee</strong> instead—confirm local AMR forms."
     },
     "money_key": "s10"
   },
@@ -121,7 +123,7 @@
     "title_html": "File the incorporation package with the AMR (lease + apostille + articles).",
     "detail": {
       "kind": "paragraph",
-      "html": "Submit to the local Administration for Market Regulation (AMR): lease, apostilled identity/parent docs, articles (capital, pay-in schedule, roles), and other required company rules."
+      "html": "Submit to the local Administration for Market Regulation (AMR): lease, apostilled identity/parent docs, articles (capital, pay-in schedule, roles), and other required company rules. During online establishment, complete the <strong>foreign-investment initial information report</strong> (investor, UBO, investment transaction data) in the registration system."
     },
     "money_key": "s11"
   },
@@ -138,10 +140,10 @@
   {
     "id": "s13",
     "num": 13,
-    "title_html": "Register and carve your company chops (official + financial seals).",
+    "title_html": "Register and carve your company chops (official + financial seals—<strong>invoice chop usually not needed</strong> under nationwide 数电票).",
     "detail": {
       "kind": "paragraph",
-      "html": "PSB + licensed vendor. A red chop on a contract is often decisive—secure storage; whoever holds chops controls signing."
+      "html": "PSB + licensed vendor. A red chop on a contract is often decisive—secure storage; whoever holds chops controls signing. Carve an invoice seal only if you still use legacy paper invoicing or a bank requires it."
     },
     "money_key": "s13"
   },
@@ -151,7 +153,7 @@
     "title_html": "Open the RMB basic deposit account (基本户) with license + chops.",
     "detail": {
       "kind": "paragraph",
-      "html": "Main RMB account for salaries, rent, and tax—often the only account that can pay cash salaries. KYC applies."
+      "html": "Primary operating RMB account; statutory channel for wage/bonus <strong>cash withdrawals</strong>; payroll is normally transferred electronically from this account. KYC applies."
     },
     "money_key": "s14"
   },
@@ -181,7 +183,7 @@
     "title_html": "Wire registered capital from abroad in foreign currency to the designated inbound account.",
     "detail": {
       "kind": "paragraph",
-      "html": "Bank records paid-in capital (实缴) toward SAFE filing; obtain FX settlement documents. Multiple tranches allowed within five-year pay-in (step 8)."
+      "html": "After inbound wire, the bank completes <strong>capital contribution receipt registration (货币出资入账登记)</strong> via SAFE’s capital-project system; obtain FX settlement documents only after receipt registration. Multiple tranches allowed within five-year pay-in (step 8)."
     },
     "money_key": "s17"
   },
@@ -198,20 +200,20 @@
   {
     "id": "s19",
     "num": 19,
-    "title_html": "Register with the tax bureau and obtain fapiao (official invoicing) capability.",
+    "title_html": "Complete tax onboarding and enable <strong>fully digital electronic invoicing (数电发票)</strong>.",
     "detail": {
       "kind": "paragraph",
-      "html": "You need this to bill customers compliantly on the mainland."
+      "html": "After nationwide digital invoicing rollout (Dec 2024), most new entities onboard via the electronic tax bureau—no golden-tax hardware required. You need this to bill customers compliantly on the mainland."
     },
     "money_key": "s19"
   },
   {
     "id": "s20",
     "num": 20,
-    "title_html": "Register for social insurance—then you can hire and run payroll.",
+    "title_html": "Register <strong>social insurance and housing fund</strong> unit accounts <strong>before hiring</strong>—optional to bundle at 一窗通 filing.",
     "detail": {
       "kind": "paragraph",
-      "html": "Mandatory contributions are paid from the RMB basic account, funded by capital (steps 17–18) and revenue. Compare cities on the <a href=\"#costs\" class=\"text-emerald-600 font-semibold underline\">dashboard</a>."
+      "html": "You may tick “no” for社保/公积金 at setup and open later; there is usually <strong>no immediate mandate</strong> with zero employees. Once you hire, mandatory contributions are paid from the RMB basic account, funded by capital (steps 17–18) and revenue. Compare cities on the <a href=\"#costs\" class=\"text-emerald-600 font-semibold underline\">dashboard</a>."
     },
     "money_key": "s20"
   }
