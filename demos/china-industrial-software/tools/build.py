@@ -70,16 +70,21 @@ RESEARCH_SKIP_STEMS = frozenset({
 
 
 def merge_research() -> dict[str, list[dict]]:
+    """Union-merge research shards by category; later files overwrite same id."""
     buckets: dict[str, dict[str, dict]] = {}
     if not RESEARCH.exists():
         return {}
+    merged_from: dict[str, list[str]] = {}
     for path in sorted(RESEARCH.glob("*.json")):
         if path.stem in RESEARCH_SKIP_STEMS:
             continue
         key = category_key(path)
         buckets.setdefault(key, {})
+        merged_from.setdefault(key, []).append(path.name)
         for p in load_products(path):
             buckets[key][p["id"]] = p
+    for key, names in sorted(merged_from.items()):
+        print(f"  merge {key}: {len(buckets[key])} products from {len(names)} shard(s)")
     return {k: list(v.values()) for k, v in buckets.items()}
 
 
@@ -172,20 +177,35 @@ def categories_newer_than_research() -> bool:
     return cat_mtime > 0 and research_mtime > 0 and cat_mtime > research_mtime
 
 
-def should_skip_research_merge(manifest_only: bool, force_merge: bool) -> bool:
-    if manifest_only:
-        return True
-    if force_merge:
+def should_merge_research(merge_research: bool, force_merge: bool) -> bool:
+    """Research merge is opt-in only; default run must not overwrite hand-edited categories/."""
+    if not merge_research and not force_merge:
         return False
-    return categories_newer_than_research()
+    if force_merge:
+        return True
+    if categories_newer_than_research():
+        print(
+            "build.py: WARNING — categories/ newer than tmp/research/; "
+            "merge may overwrite taxonomy fixes (pass --force-merge to override guard)"
+        )
+        return False
+    return True
 
 
 def main() -> int:
-    parser = argparse.ArgumentParser(description="Merge research JSON into categories and build manifest.")
+    parser = argparse.ArgumentParser(
+        description="Regenerate manifest.json from assets/data/categories/ (default). "
+        "Research merge is opt-in via --merge-research.",
+    )
+    parser.add_argument(
+        "--merge-research",
+        action="store_true",
+        help="Merge tmp/research/*.json into assets/data/categories/ (destructive; opt-in).",
+    )
     parser.add_argument(
         "--manifest-only",
         action="store_true",
-        help="Regenerate manifest.json from assets/data/categories/ without merging tmp/research/",
+        help="Explicit alias for default: manifest only, no research merge.",
     )
     parser.add_argument(
         "--force-merge",
@@ -194,18 +214,15 @@ def main() -> int:
     )
     args = parser.parse_args()
 
-    if should_skip_research_merge(args.manifest_only, args.force_merge):
-        if args.manifest_only:
-            print("build.py: manifest-only — skipping research merge")
-        else:
-            print("build.py: categories/ newer than tmp/research/ — skipping merge (use --force-merge to override)")
-    else:
+    if should_merge_research(args.merge_research, args.force_merge):
         print("build.py: merging research → categories")
         merged = merge_research()
         if merged:
             write_categories(merged)
         else:
             print("  no tmp/research/*.json — keeping existing categories/")
+    else:
+        print("build.py: manifest-only — skipping research merge (use --merge-research to opt in)")
 
     buckets = read_existing_categories()
     manifest = build_manifest(buckets)

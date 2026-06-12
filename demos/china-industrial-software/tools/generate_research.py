@@ -482,7 +482,7 @@ def bim_gis_products() -> list[dict]:
           ["施工安全与物联网", "华东建筑市场强"], ["Construction safety and IoT", "Strong East China construction"],
           ["全国化仍在推进", "与国际标准对接中"], ["National expansion ongoing", "International standards alignment"],
           ["施工", "建筑"], "https://www.pinming.cn/", None, "688109.SH"),
-        p("revit", "Autodesk Revit", "Autodesk Revit", "autodesk", L1_RD, "BIM", "international", "自主", "mission_critical", "core", "high", 0.93,
+        p("revit", "Revit", "Revit", "autodesk", L1_RD, "BIM", "international", "自主", "mission_critical", "core", "high", 0.93,
           ["建筑信息建模事实标准", "与中国设计院广泛使用"], ["BIM de-facto standard", "Widely used by China design institutes"],
           ["订阅成本高", "大模型协作弱于新兴云BIM"], ["High subscription", "Weaker large-model collab vs new cloud BIM"],
           ["建筑", "结构", "MEP"], "https://www.autodesk.com/products/revit"),

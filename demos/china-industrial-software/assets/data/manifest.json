@@ -1,31 +1,31 @@
 {
-  "build_time": "2026-06-12T16:19:15Z",
-  "total_products": 238,
+  "build_time": "2026-06-12T16:30:21Z",
+  "total_products": 253,
   "total_kernels": 43,
   "category_counts": {
-    "bim-gis": 20,
-    "cad": 34,
-    "cae": 30,
+    "bim-gis": 24,
+    "cad": 40,
+    "cae": 34,
     "eda": 46,
     "erp": 13,
     "mes-dcs": 30,
     "open-source": 10,
     "platform": 22,
-    "plm": 17,
+    "plm": 18,
     "slicers": 16
   },
   "category_l1_counts": {
-    "研发设计": 140,
-    "生产制造": 85,
+    "研发设计": 154,
+    "生产制造": 86,
     "经营管理": 13
   },
   "category_l2_counts": {
-    "BIM": 14,
+    "BIM": 18,
     "GIS": 6,
-    "CAD": 39,
+    "CAD": 45,
     "CAD互操作": 5,
-    "CAE": 18,
-    "CAM": 12,
+    "CAE": 21,
+    "CAM": 13,
     "EDA": 41,
     "半导体CIM": 5,
     "ERP": 13,
@@ -34,26 +34,26 @@
     "MES": 13,
     "EAM": 1,
     "工业互联网": 22,
-    "PLM": 15,
+    "PLM": 16,
     "MBSE": 2,
     "切片软件": 16
   },
   "origin_counts": {
-    "domestic": 100,
-    "international": 121,
+    "domestic": 104,
+    "international": 132,
     "open_source": 17
   },
   "kernel_ref_counts": {
     "zw-overdrive": 2,
     "gstar-2d-platform": 1,
-    "crowncad-dgm": 1,
+    "crowncad-dgm": 2,
     "caxa-mega-kernel": 2,
     "hoteam-crux-iv": 1,
     "thcad-platform-kernel": 1,
     "pengye-graphic-platform": 1,
     "autodesk-acad-geometry": 1,
     "parasolid": 5,
-    "catia-cgm": 1,
+    "catia-cgm": 2,
     "siemens-hybrid-stack": 1,
     "granite": 1,
     "shape-manager": 2,
@@ -72,17 +72,17 @@
     {
       "id": "bim-gis",
       "file": "categories/bim-gis.json",
-      "count": 20
+      "count": 24
     },
     {
       "id": "cad",
       "file": "categories/cad.json",
-      "count": 34
+      "count": 40
     },
     {
       "id": "cae",
       "file": "categories/cae.json",
-      "count": 30
+      "count": 34
     },
     {
       "id": "eda",
@@ -112,7 +112,7 @@
     {
       "id": "plm",
       "file": "categories/plm.json",
-      "count": 17
+      "count": 18
     },
     {
       "id": "slicers",

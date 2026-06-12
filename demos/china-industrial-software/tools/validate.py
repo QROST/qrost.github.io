@@ -316,6 +316,32 @@ def collect_product_ids(paths: list[Path]) -> set[str]:
     return ids
 
 
+def validate_benchmark_pairs(product_ids: set[str]) -> list[str]:
+    """Fail when benchmark-pairs.json references product ids absent from the catalog."""
+    pairs_path = ROOT / "assets" / "data" / "comparisons" / "benchmark-pairs.json"
+    if not pairs_path.exists():
+        return []
+    data = load_json(pairs_path)
+    pairs = data.get("pairs", []) if isinstance(data, dict) else data
+    if not isinstance(pairs, list):
+        return [f"{pairs_path.name}: expected pairs array"]
+    issues: list[str] = []
+    for i, pair in enumerate(pairs):
+        if not isinstance(pair, dict):
+            issues.append(f"benchmark-pairs[{i}]: not an object")
+            continue
+        for role in ("domestic_id", "international_id"):
+            pid = pair.get(role)
+            if not pid:
+                issues.append(f"benchmark-pairs[{i}]: missing {role}")
+            elif pid not in product_ids:
+                issues.append(
+                    f"benchmark-pairs[{i}]: orphan {role}={pid!r} — "
+                    "add to tmp/research/ and run build.py --force-merge"
+                )
+    return issues
+
+
 def main() -> int:
     issues: list[str] = []
     if not SCHEMA_PATH.exists():
@@ -356,6 +382,8 @@ def main() -> int:
     breakthroughs_path = ROOT / "assets" / "data" / "breakthroughs.json"
     if breakthroughs_path.exists():
         issues.extend(validate_breakthroughs(breakthroughs_path))
+
+    issues.extend(validate_benchmark_pairs(product_ids))
 
     if issues:
         for i in issues:

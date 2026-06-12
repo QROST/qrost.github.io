@@ -192,6 +192,7 @@ VENDOR_IS_BRAND = {
 # Globally unique product brands — vendor prefix may be stripped safely
 KEEP_STRIPPED_IDS = {
     "siemens-nx", "catia", "revit", "solidworks", "autocad", "inventor", "alias",
+    "autodesk-alias",
     "teamcenter", "windchill", "microstation", "archicad", "creo-parametric",
     "solid-edge", "onshape", "fusion-360", "rhino", "sketchup", "freecad",
     "thingworx", "ptc-vuforia", "ptc-kepware", "kepware", "netuite", "delmia",

@@ -16,6 +16,12 @@
 - **Strip prefix only** for globally unique brands (NX, CATIA, Revit, SolidWorks, Teamcenter, …).
 - Run `python3 tools/validate.py` — duplicate `name_zh` / `name_en` across different `vendor_id` emits **WARN**.
 
+**Source of truth:** `tmp/research/*.json` — `build.py` union-merges shards into `assets/data/categories/`.  
+Edits to `categories/` alone are **wiped** on the next `--force-merge`. Always edit research shards first.
+
+Primary shards: `a2-cad.json`, `a3-cae-cam.json`, `a4-plm-mbse.json`, `a8-bim-gis.json`, …  
+After bulk fixes run `python3 tools/sync_research_sources.py` (P0 + prefix-restore sync).
+
 Create or edit `tmp/research/<agent-id>.json`:
 
 ```json
@@ -50,9 +56,14 @@ Create or edit `tmp/research/<agent-id>.json`:
 
 ```bash
 cd demos/china-industrial-software
-python3 tools/validate.py
-python3 tools/build.py
+python3 tools/sync_research_sources.py   # optional: P0 / prefix-restore batch
+python3 tools/build.py --force-merge     # research → categories (required after shard edits)
+python3 tools/validate.py                # also checks benchmark-pairs orphan ids
 ```
+
+`validate.py` fails if `benchmark-pairs.json` references a `domestic_id` or `international_id` missing from the catalog — add the product to the matching research shard before merge.
+
+Default `python3 tools/build.py` (no flags) skips merge when `categories/` is newer than `tmp/research/`; use `--force-merge` after editing research shards.
 
 ## 4. Frontend smoke
 
