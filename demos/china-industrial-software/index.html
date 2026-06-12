@@ -19,13 +19,13 @@
         integrity="sha384-vsrfeLOOY6KuIYKDlmVH5UiBmgIdB1oEf7p01YgWHuqmOHfZr374+odEv96n9tNC"
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="assets/css/industrial-software.css?v=20260612e">
+    <link rel="stylesheet" href="assets/css/industrial-software.css?v=20260612l">
 </head>
 
 <body class="antialiased scroll-smooth">
 
     <a href="#overview" class="skip-to-content sr-only focus:not-sr-only" data-i18n="skipLink">跳到内容</a>
-    <p id="init-error" class="hidden max-w-[90rem] mx-auto px-4 py-2 text-sm text-amber-800 bg-amber-50 border-b border-amber-200"></p>
+    <p id="init-error" class="hidden max-w-[90rem] mx-auto px-4 py-2 text-sm banner-warning"></p>
 
     <nav class="site-nav fixed top-0 w-full z-50 border-b border-slate-200/90 bg-white/85 backdrop-blur-md">
         <div class="max-w-[90rem] mx-auto px-4 sm:px-6 lg:px-8">
@@ -36,7 +36,7 @@
                         <a href="#overview" class="text-slate-500 hover:text-slate-900" data-i18n="navOverview">概览</a>
                         <a href="#taxonomy" class="text-slate-500 hover:text-slate-900" data-i18n="navTaxonomy">品类</a>
                         <a href="#kernels" class="text-slate-500 hover:text-slate-900" data-i18n="navKernels">几何内核</a>
-                        <a href="#catalog" class="text-slate-500 hover:text-slate-900" data-i18n="navCatalog">产品目录</a>
+                        <a href="#catalog" class="text-slate-500 hover:text-slate-900" data-i18n="navCatalog">产品列表</a>
                         <a href="#timeline" class="text-slate-500 hover:text-slate-900" data-i18n="navTimeline">政策突破</a>
                         <button type="button" id="nav-compare-btn" class="text-slate-500 hover:text-slate-900" data-i18n="navCompare">对标</button>
                         <a href="#methodology" class="text-slate-500 hover:text-slate-900" data-i18n="navMethodology">方法论</a>
@@ -51,7 +51,7 @@
                 <a href="#overview" class="block py-2 text-sm" data-mobile-nav-link data-i18n="navOverview">概览</a>
                 <a href="#taxonomy" class="block py-2 text-sm border-t border-slate-100" data-mobile-nav-link data-i18n="navTaxonomy">品类</a>
                 <a href="#kernels" class="block py-2 text-sm border-t border-slate-100" data-mobile-nav-link data-i18n="navKernels">几何内核</a>
-                <a href="#catalog" class="block py-2 text-sm border-t border-slate-100" data-mobile-nav-link data-i18n="navCatalog">产品目录</a>
+                <a href="#catalog" class="block py-2 text-sm border-t border-slate-100" data-mobile-nav-link data-i18n="navCatalog">产品列表</a>
                 <a href="#timeline" class="block py-2 text-sm border-t border-slate-100" data-mobile-nav-link data-i18n="navTimeline">政策突破</a>
                 <button type="button" id="nav-compare-btn-mobile" class="block w-full text-left py-2 text-sm border-t border-slate-100" data-mobile-nav-link data-i18n="navCompare">对标</button>
                 <a href="#methodology" class="block py-2 text-sm border-t border-slate-100" data-mobile-nav-link data-i18n="navMethodology">方法论</a>
@@ -87,7 +87,7 @@
                 </div>
                 <div class="kpi-card">
                     <div class="text-xs text-slate-500 uppercase tracking-wide" data-i18n="kpiProducts">调研产品</div>
-                    <div id="kpi-products" class="text-3xl font-semibold text-emerald-700 mt-1">—</div>
+                    <div id="kpi-products" class="text-3xl font-semibold text-semantic-pass mt-1">—</div>
                     <div class="text-xs text-slate-400 mt-1" data-i18n="kpiProductsSub">已核验深度条目</div>
                 </div>
                 <div class="kpi-card">
@@ -112,6 +112,17 @@
                     <button type="button" id="sunburst-reset" class="text-xs px-2.5 py-1 rounded border border-slate-200 text-slate-600 hover:bg-slate-50 hover:text-slate-900 transition-colors" data-i18n="sunburstReset">重置</button>
                 </div>
                 <div id="taxonomy-sunburst" class="w-full h-full" style="min-height:360px"></div>
+                <ul class="taxonomy-color-legend" aria-label="Category color legend">
+                    <li><span class="taxonomy-legend-swatch taxonomy-legend-swatch--rd" aria-hidden="true"></span><span data-i18n="taxonomyLegendRd">青 · 研发设计</span></li>
+                    <li><span class="taxonomy-legend-swatch taxonomy-legend-swatch--mfg" aria-hidden="true"></span><span data-i18n="taxonomyLegendMfg">橙 · 生产制造</span></li>
+                    <li><span class="taxonomy-legend-swatch taxonomy-legend-swatch--biz" aria-hidden="true"></span><span data-i18n="taxonomyLegendBiz">品红 · 经营管理</span></li>
+                    <li><span class="taxonomy-legend-swatch taxonomy-legend-swatch--ops" aria-hidden="true"></span><span data-i18n="taxonomyLegendOps">灰 · 运维服务</span></li>
+                </ul>
+                <ul class="semantic-color-legend" aria-label="Semantic color legend">
+                    <li><span class="semantic-legend-swatch semantic-legend-swatch--pass" aria-hidden="true"></span><span data-i18n="semanticLegendPass">绿 · 通过</span></li>
+                    <li><span class="semantic-legend-swatch semantic-legend-swatch--forbidden" aria-hidden="true"></span><span data-i18n="semanticLegendForbidden">红 · 困难</span></li>
+                    <li><span class="semantic-legend-swatch semantic-legend-swatch--open" aria-hidden="true"></span><span data-i18n="semanticLegendOpen">蓝 · 开源</span></li>
+                </ul>
                 <p class="text-xs text-slate-400 mt-2 text-center" data-i18n="sunburstHint">点击扇区筛选；点击空白或重置恢复全部</p>
             </div>
         </section>
@@ -140,10 +151,10 @@
 
         <!-- #catalog -->
         <section id="catalog" class="mb-20">
-            <h2 class="text-3xl font-bold text-slate-800 mb-2" data-i18n="secCatalog">产品目录</h2>
+            <h2 class="text-3xl font-bold text-slate-800 mb-2" data-i18n="secCatalog">产品列表</h2>
             <p class="text-slate-500 mb-6 max-w-3xl" data-i18n="secCatalogDesc"></p>
             <div class="flex flex-wrap gap-3 mb-4 no-print items-center">
-                <button type="button" id="catalog-compare-btn" class="text-sm font-medium border border-emerald-200 text-emerald-800 bg-emerald-50 rounded px-3 py-2 hover:bg-emerald-100" data-i18n="compareOpenCta">对标对比</button>
+                <button type="button" id="catalog-compare-btn" class="text-sm font-medium btn-accent-outline rounded px-3 py-2" data-i18n="compareOpenCta">对标对比</button>
                 <select id="filter-origin" class="text-sm border border-slate-200 rounded px-3 py-2 bg-white">
                     <option value="" data-i18n="filterAll">全部</option>
                     <option value="domestic" data-i18n="originDomestic">国产</option>
@@ -185,14 +196,22 @@
                 <select id="timeline-filter-category" class="text-sm border border-slate-200 rounded px-3 py-2 bg-white min-w-[10rem]"></select>
                 <span class="text-xs text-slate-400"><span data-i18n="milestoneShowing">显示</span> <strong id="milestone-count" class="text-slate-600">—</strong> <span data-i18n="milestoneCards">条里程碑</span></span>
             </div>
-            <p class="text-xs text-slate-400 mb-6" data-i18n="timelineFlowHint">时间自上而下推进（由早到晚）</p>
+            <p class="text-xs text-slate-400 mb-3" data-i18n="timelineFlowHint">时间自上而下推进（由早到晚）</p>
+            <ul class="milestone-color-legend" aria-label="Timeline panel colors">
+                <li><span class="milestone-legend-swatch milestone-legend-swatch--before" aria-hidden="true"></span><span data-i18n="milestoneLegendBefore">灰边：此前国产空白</span></li>
+                <li><span class="milestone-legend-swatch milestone-legend-swatch--achieve" aria-hidden="true"></span><span data-i18n="milestoneLegendAchieve">紫边：本次突破</span></li>
+                <li><span class="milestone-legend-swatch milestone-legend-swatch--still" aria-hidden="true"></span><span data-i18n="milestoneLegendStill">红边：仍存差距</span></li>
+            </ul>
 
             <div id="milestone-list" class="timeline-rail" role="list"></div>
 
             <div id="timeline-policies" class="timeline-policies">
                 <h3 class="text-xl font-semibold text-slate-800 mb-2" data-i18n="secPolicies">可量化政策节点</h3>
-                <p class="text-sm text-slate-500 mb-6 max-w-3xl" data-i18n="secPoliciesDesc"></p>
-                <div id="policy-list" class="grid gap-4 md:grid-cols-2"></div>
+                <p class="text-sm text-slate-500 mb-2 max-w-3xl" data-i18n="secPoliciesDesc"></p>
+                <p class="text-xs text-slate-400 mb-4" data-i18n="policyGanttHint"></p>
+                <div class="policy-gantt-scroll">
+                    <div id="policy-list" class="policy-gantt" role="list"></div>
+                </div>
                 <details class="mt-6 hidden">
                     <summary class="text-sm text-slate-500 cursor-pointer" data-i18n="policyFootnotes">宏观政策背景（无单一 KPI）</summary>
                     <ul id="policy-footnotes" class="mt-2 space-y-1 list-disc pl-5"></ul>
@@ -207,7 +226,7 @@
                     说明 · Methodology
                 </summary>
                 <div class="px-5 pb-5 pt-0 space-y-5 border-t border-slate-100">
-                    <div class="rounded-xl border border-emerald-200 bg-emerald-50/50 p-5 text-sm text-slate-600 leading-relaxed space-y-2">
+                    <div class="rounded-xl panel-accent p-5 text-sm text-slate-600 leading-relaxed space-y-2">
                         <p id="method-disclaimer-title" class="font-medium text-slate-800" data-i18n="methodDisclaimerTitle">免责声明</p>
                         <div id="method-disclaimer-body" class="space-y-2" data-i18n="methodDisclaimerBody"></div>
                     </div>
@@ -230,8 +249,8 @@
                             <p id="method-localization-title" class="font-medium text-slate-800" data-i18n="methodLocalizationTitle">国产化：广度与深度</p>
                             <div id="method-localization-body" class="space-y-2" data-i18n="methodLocalizationBody"></div>
                         </div>
-                        <div class="rounded-xl border border-amber-200 bg-amber-50/60 p-6 text-sm text-slate-600 leading-relaxed space-y-3">
-                            <p id="method-limits-title" class="font-medium text-amber-800" data-i18n="methodLimitsTitle">务必注意的局限</p>
+                        <div class="rounded-xl panel-warning p-6 text-sm text-slate-600 leading-relaxed space-y-3">
+                            <p id="method-limits-title" class="font-medium panel-title" data-i18n="methodLimitsTitle">务必注意的局限</p>
                             <div id="method-limits-body" class="space-y-2" data-i18n="methodLimitsBody"></div>
                         </div>
                     </div>
@@ -249,7 +268,7 @@
         <p class="mt-2" data-i18n="footerDisclaimer"></p>
     </footer>
 
-    <button type="button" id="compare-fab" class="hidden fixed bottom-5 right-5 z-40 rounded-full shadow-lg px-4 py-2.5 text-sm font-medium bg-emerald-600 text-white hover:bg-emerald-500 transition-colors no-print" data-i18n="compareFab">对标对比</button>
+    <button type="button" id="compare-fab" class="hidden fixed bottom-5 right-5 z-40 rounded-full shadow-lg px-4 py-2.5 text-sm font-medium bg-accent transition-colors no-print" data-i18n="compareFab">对标对比</button>
 
     <div id="product-modal" class="modal-backdrop hidden no-print" role="dialog" aria-modal="true" aria-hidden="true">
         <div class="modal-panel p-6 mt-8">
@@ -271,6 +290,16 @@
                 <button type="button" id="kernel-modal-close" class="text-slate-400 hover:text-slate-700 text-2xl leading-none" aria-label="Close">&times;</button>
             </div>
             <div id="kernel-modal-body" class="mt-4 text-sm"></div>
+        </div>
+    </div>
+
+    <div id="policy-modal" class="modal-backdrop hidden no-print" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="policy-modal-title">
+        <div class="modal-panel p-6 mt-8 max-h-[88vh] overflow-y-auto">
+            <div class="flex justify-between items-start gap-4">
+                <h3 id="policy-modal-title" class="text-xl font-semibold text-slate-900 pr-4"></h3>
+                <button type="button" id="policy-modal-close" class="text-slate-400 hover:text-slate-700 text-2xl leading-none shrink-0" aria-label="Close">&times;</button>
+            </div>
+            <div id="policy-modal-body" class="mt-4 text-sm"></div>
         </div>
     </div>
 
@@ -299,10 +328,10 @@
         </div>
     </div>
 
-    <script src="assets/js/i18n.js?v=20260612e"></script>
-    <script src="assets/js/catalog-loader.js?v=20260612e"></script>
-    <script src="assets/js/charts.js?v=20260612e"></script>
-    <script src="assets/js/compare.js?v=20260612e"></script>
-    <script src="assets/js/app.js?v=20260612e"></script>
+    <script src="assets/js/i18n.js?v=20260612l"></script>
+    <script src="assets/js/catalog-loader.js?v=20260612l"></script>
+    <script src="assets/js/charts.js?v=20260612l"></script>
+    <script src="assets/js/compare.js?v=20260612l"></script>
+    <script src="assets/js/app.js?v=20260612l"></script>
 </body>
 </html>

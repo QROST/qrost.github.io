@@ -1,5 +1,6 @@
 /**
  * Chart.js + ECharts wrappers for industrial software survey.
+ * Chart colors read from :root CSS variables (industrial-software.css).
  */
 (function () {
   'use strict';
@@ -9,15 +10,24 @@
   const charts = {};
   let echartsReady = false;
 
-  const C = {
-    emerald: '#059669',
-    indigo: '#6366f1',
-    violet: '#8b5cf6',
-    amber: '#f59e0b',
-    cyan: '#06b6d4',
-    slate: '#64748b',
-    grid: 'rgba(100,116,139,0.12)',
-  };
+  function cssVar(name, fallback) {
+    if (typeof document === 'undefined') return fallback || '';
+    const v = getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+    return v || fallback || '';
+  }
+
+  function chartPalette() {
+    return [
+      cssVar('--color-chart-1'),
+      cssVar('--color-chart-2'),
+      cssVar('--color-chart-3'),
+      cssVar('--color-chart-4'),
+      cssVar('--color-chart-5'),
+      cssVar('--color-chart-6'),
+      cssVar('--color-chart-7'),
+      cssVar('--color-chart-8'),
+    ];
+  }
 
   function loadEcharts() {
     if (window.echarts) { echartsReady = true; return Promise.resolve(); }
@@ -50,6 +60,29 @@
     return raw;
   }
 
+  const TAXONOMY_L1_TOKENS = {
+    '研发设计': '--color-taxonomy-rd',
+    '生产制造': '--color-taxonomy-mfg',
+    '经营管理': '--color-taxonomy-biz',
+    '运维服务': '--color-taxonomy-ops',
+  };
+
+  function categoryL1Color(l1) {
+    const mapped = sunburstChartL1(l1);
+    const token = TAXONOMY_L1_TOKENS[mapped] || '--color-taxonomy-ops';
+    return cssVar(token, cssVar('--color-taxonomy-ops'));
+  }
+
+  /** L2 slices inherit parent L1 soft taxonomy hue (not per-L2 hues). */
+  function categoryColorForNode(name, parentL1) {
+    if (TAXONOMY_L1_TOKENS[name]) return categoryL1Color(name);
+    if (parentL1) return categoryL1Color(parentL1);
+    const prods = window.INDUSTRIAL_CATALOG?.allProducts || [];
+    const hit = prods.find((p) => p.category_l2 === name);
+    if (hit) return categoryL1Color(hit.category_l1);
+    return cssVar('--color-taxonomy-ops');
+  }
+
   function buildSunburstTree() {
     const prods = window.INDUSTRIAL_CATALOG.allProducts || [];
     const l1L2 = {};
@@ -65,12 +98,22 @@
       .concat([...present].filter((l1) => !SUNBURST_L1_ORDER.includes(l1)).sort());
     return l1Order
       .map((l1) => {
+        const baseColor = categoryL1Color(l1);
         const children = Object.entries(l1L2[l1] || {})
-          .map(([l2, value]) => ({ name: l2, value }))
+          .map(([l2, value]) => ({
+            name: l2,
+            value,
+            itemStyle: { color: baseColor },
+          }))
           .sort((a, b) => b.value - a.value);
         const value = children.reduce((sum, c) => sum + c.value, 0);
         if (!value) return null;
-        return { name: l1, value, children };
+        return {
+          name: l1,
+          value,
+          itemStyle: { color: baseColor },
+          children,
+        };
       })
       .filter(Boolean);
   }
@@ -147,8 +190,10 @@
 
     const l1Children = buildSunburstTree();
     const countLabel = isEn() ? 'products' : '款产品';
+    const borderColor = cssVar('--color-bg-elevated', '#ffffff');
 
     inst.setOption({
+      color: chartPalette(),
       tooltip: {
         trigger: 'item',
         formatter(params) {
@@ -186,7 +231,7 @@
             label: { fontSize: 10, minAngle: 10, width: 64 },
           },
         ],
-        itemStyle: { borderRadius: 4, borderWidth: 1, borderColor: '#fff' },
+        itemStyle: { borderRadius: 4, borderWidth: 1, borderColor },
       }],
     });
 
@@ -201,12 +246,10 @@
         return;
       }
       onSectorClick(params.name, params);
-      // Clear stale flag when zr click does not pair (e.g. programmatic trigger).
       setTimeout(() => { clickedSeries = false; }, 50);
     });
 
     if (onReset) {
-      // containPixel is unreliable for sunburst — defer blank detection until after series click.
       inst.getZr().on('click', () => {
         setTimeout(() => {
           if (!clickedSeries) onReset();
@@ -269,38 +312,42 @@
         value: dims.map((d) => s[d.key]),
       };
     });
-    const colors = [C.emerald, C.indigo, C.cyan, C.amber];
+    const colors = chartPalette().slice(0, 4);
+    const splitLine = cssVar('--color-chart-split-line', 'rgba(148, 163, 184, 0.15)');
     inst.setOption({
       color: colors,
       tooltip: {
-        trigger: 'item'
+        trigger: 'item',
       },
       radar: {
         indicator,
         radius: '65%',
         splitNumber: 5,
         axisName: {
-          color: '#475569',
+          color: cssVar('--color-chart-axis'),
           fontFamily: 'Inter, system-ui, -apple-system, sans-serif',
           fontWeight: 500,
-          fontSize: 12
+          fontSize: 12,
         },
         splitLine: {
           lineStyle: {
-            color: 'rgba(148, 163, 184, 0.15)',
-            width: 1
-          }
+            color: splitLine,
+            width: 1,
+          },
         },
         splitArea: {
           areaStyle: {
-            color: ['rgba(248, 250, 252, 0.3)', 'rgba(241, 245, 249, 0.3)']
-          }
+            color: [
+              cssVar('--color-chart-split-a'),
+              cssVar('--color-chart-split-b'),
+            ],
+          },
         },
         axisLine: {
           lineStyle: {
-            color: 'rgba(148, 163, 184, 0.15)'
-          }
-        }
+            color: splitLine,
+          },
+        },
       },
       series: [{
         type: 'radar',
@@ -310,28 +357,28 @@
           symbolSize: 6,
           lineStyle: {
             width: 2,
-            color: colors[idx % colors.length]
+            color: colors[idx % colors.length],
           },
           areaStyle: {
             color: colors[idx % colors.length],
-            opacity: 0.08
+            opacity: 0.08,
           },
           itemStyle: {
-            color: colors[idx % colors.length]
-          }
-        }))
+            color: colors[idx % colors.length],
+          },
+        })),
       }],
       legend: {
         bottom: 0,
         type: 'scroll',
         textStyle: {
-          color: '#334155',
+          color: cssVar('--color-chart-legend'),
           fontFamily: 'Inter, system-ui, -apple-system, sans-serif',
-          fontSize: 11
+          fontSize: 11,
         },
         itemWidth: 10,
         itemHeight: 10,
-        itemGap: 16
+        itemGap: 16,
       },
     });
   }
@@ -359,6 +406,11 @@
     resizeAll,
     resizeCompareRadar,
     destroy,
+    chartPalette,
+    categoryL1Color,
+    categoryColorForNode,
+    TAXONOMY_L1_TOKENS,
+    cssVar,
     SUNBURST_EXCLUDE_L2,
     sunburstChartL1,
     buildSunburstTree,
