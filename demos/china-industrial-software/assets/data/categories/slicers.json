@@ -9,7 +9,7 @@
       "category_l1": "生产制造",
       "category_l2": "切片软件",
       "origin": "domestic",
-      "kernel": "自主（Orca/Cura 分支演进）",
+      "kernel": "自主（PrusaSlicer/Slic3r 分支演进）",
       "maturity": "high",
       "localization_depth": "core",
       "strengths_zh": [
@@ -57,7 +57,7 @@
         ],
         "partial": [
           "cloud_native",
-          "ext_api"
+          "am_support_gen"
         ]
       }
     },
@@ -116,7 +116,8 @@
           "am_layout"
         ],
         "partial": [
-          "cloud_native"
+          "cloud_native",
+          "am_support_gen"
         ]
       }
     },
@@ -173,7 +174,9 @@
           "slicing_algorithm",
           "am_layout"
         ],
-        "partial": []
+        "partial": [
+          "am_support_gen"
+        ]
       }
     },
     {
@@ -228,10 +231,10 @@
       "capabilities": {
         "full": [
           "slicing_algorithm",
-          "am_layout"
+          "am_layout",
+          "am_support_gen"
         ],
         "partial": [
-          "solid_modeling_3d",
           "ext_api"
         ]
       }
@@ -291,7 +294,7 @@
           "am_layout"
         ],
         "partial": [
-          "solid_modeling_3d"
+          "am_support_gen"
         ]
       }
     },
@@ -347,11 +350,10 @@
       "capabilities": {
         "full": [
           "slicing_algorithm",
-          "am_layout"
+          "am_layout",
+          "am_support_gen"
         ],
-        "partial": [
-          "solid_modeling_3d"
-        ]
+        "partial": []
       }
     },
     {
@@ -417,7 +419,8 @@
         "partial": [
           "solid_modeling_3d",
           "scheduling_ops",
-          "cloud_native"
+          "cloud_native",
+          "am_support_gen"
         ]
       }
     },
@@ -475,7 +478,8 @@
           "am_layout"
         ],
         "partial": [
-          "cloud_native"
+          "cloud_native",
+          "am_support_gen"
         ]
       }
     },
@@ -536,7 +540,8 @@
           "ext_api"
         ],
         "partial": [
-          "cloud_native"
+          "cloud_native",
+          "am_support_gen"
         ]
       }
     },
@@ -593,7 +598,8 @@
       "capabilities": {
         "full": [
           "slicing_algorithm",
-          "am_layout"
+          "am_layout",
+          "am_support_gen"
         ],
         "partial": [
           "ext_api"
@@ -655,7 +661,8 @@
           "am_layout"
         ],
         "partial": [
-          "ext_api"
+          "ext_api",
+          "am_support_gen"
         ]
       }
     },
@@ -713,7 +720,8 @@
           "am_layout"
         ],
         "partial": [
-          "ext_api"
+          "ext_api",
+          "am_support_gen"
         ]
       }
     },
@@ -773,7 +781,8 @@
         ],
         "partial": [
           "cloud_native",
-          "ext_api"
+          "ext_api",
+          "am_support_gen"
         ]
       }
     },
@@ -835,10 +844,10 @@
       "capabilities": {
         "full": [
           "slicing_algorithm",
-          "am_layout"
+          "am_layout",
+          "am_support_gen"
         ],
         "partial": [
-          "solid_modeling_3d",
           "cloud_native"
         ]
       }
@@ -897,12 +906,14 @@
         "full": [
           "slicing_algorithm",
           "am_layout",
-          "cad_repair_interop"
+          "cad_repair_interop",
+          "am_support_gen"
         ],
         "partial": [
           "solid_modeling_3d",
           "scheduling_ops",
-          "ext_api"
+          "ext_api",
+          "generative_topo_opt"
         ]
       }
     },
@@ -964,9 +975,9 @@
         ],
         "partial": [
           "solid_modeling_3d",
-          "fea_structure",
           "scheduling_ops",
-          "ext_api"
+          "ext_api",
+          "am_support_gen"
         ]
       }
     }

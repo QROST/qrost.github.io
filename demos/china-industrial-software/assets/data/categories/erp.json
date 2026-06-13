@@ -54,7 +54,9 @@
           "scheduling_ops",
           "cloud_native",
           "ext_api",
-          "xinchuang_compat"
+          "xinchuang_compat",
+          "supply_chain_procurement",
+          "group_consolidation_mgmt"
         ],
         "partial": [
           "lifecycle_mgmt",
@@ -74,11 +76,11 @@
       "maturity": "high",
       "localization_depth": "partial",
       "strengths_zh": [
-        "中小企业云ERP龙头",
+        "大型企业云ERP标杆（Cosmic PaaS平台）",
         "低代码PaaS平台"
       ],
       "strengths_en": [
-        "SME cloud ERP leader",
+        "Large enterprise cloud ERP on Cosmic PaaS platform",
         "Low-code PaaS"
       ],
       "limitations_zh": [
@@ -105,7 +107,7 @@
         }
       ],
       "international_benchmarks": [
-        "sap-business-one"
+        "sap-s4hana"
       ],
       "listed_ticker": "0268.HK",
       "capabilities": {
@@ -114,11 +116,13 @@
           "bom_mgmt",
           "cloud_native",
           "ext_api",
-          "xinchuang_compat"
+          "xinchuang_compat",
+          "collaboration"
         ],
         "partial": [
           "scheduling_ops",
-          "collaboration"
+          "supply_chain_procurement",
+          "group_consolidation_mgmt"
         ]
       }
     },
@@ -182,7 +186,8 @@
         "partial": [
           "cloud_native",
           "ext_api",
-          "xinchuang_compat"
+          "xinchuang_compat",
+          "supply_chain_procurement"
         ]
       }
     },
@@ -237,12 +242,14 @@
         "full": [
           "finance_ledger",
           "cloud_native",
-          "xinchuang_compat"
+          "xinchuang_compat",
+          "group_consolidation_mgmt"
         ],
         "partial": [
           "bom_mgmt",
           "scheduling_ops",
-          "ext_api"
+          "ext_api",
+          "supply_chain_procurement"
         ]
       }
     },
@@ -295,7 +302,8 @@
       ],
       "capabilities": {
         "full": [
-          "finance_ledger"
+          "finance_ledger",
+          "supply_chain_procurement"
         ],
         "partial": [
           "bom_mgmt",
@@ -353,11 +361,15 @@
           "finance_ledger",
           "bom_mgmt",
           "scheduling_ops",
-          "ext_api"
+          "ext_api",
+          "supply_chain_procurement"
         ],
         "partial": [
           "lifecycle_mgmt",
-          "cloud_native"
+          "cloud_native",
+          "collaboration",
+          "group_consolidation_mgmt",
+          "enterprise_asset_mgmt"
         ]
       }
     },
@@ -407,10 +419,11 @@
         "full": [
           "finance_ledger",
           "cloud_native",
-          "ext_api"
+          "ext_api",
+          "bom_mgmt",
+          "supply_chain_procurement"
         ],
         "partial": [
-          "bom_mgmt",
           "scheduling_ops"
         ]
       }
@@ -461,12 +474,13 @@
         "full": [
           "finance_ledger",
           "cloud_native",
-          "ext_api"
+          "ext_api",
+          "scheduling_ops"
         ],
         "partial": [
           "bom_mgmt",
-          "scheduling_ops",
-          "collaboration"
+          "collaboration",
+          "supply_chain_procurement"
         ]
       }
     },
@@ -521,7 +535,8 @@
         ],
         "partial": [
           "lifecycle_mgmt",
-          "ext_api"
+          "ext_api",
+          "supply_chain_procurement"
         ]
       }
     },
@@ -581,7 +596,8 @@
           "bom_mgmt",
           "scheduling_ops",
           "cloud_native",
-          "ext_api"
+          "ext_api",
+          "supply_chain_procurement"
         ]
       }
     },
@@ -696,7 +712,8 @@
       "capabilities": {
         "full": [
           "finance_ledger",
-          "xinchuang_compat"
+          "xinchuang_compat",
+          "group_consolidation_mgmt"
         ],
         "partial": [
           "cloud_native",
@@ -751,11 +768,13 @@
         "full": [
           "finance_ledger",
           "cloud_native",
-          "ext_api"
+          "ext_api",
+          "supply_chain_procurement"
         ],
         "partial": [
           "bom_mgmt",
-          "scheduling_ops"
+          "scheduling_ops",
+          "group_consolidation_mgmt"
         ]
       }
     }

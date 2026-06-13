@@ -14,11 +14,11 @@
       "localization_depth": "core",
       "strengths_zh": [
         "流程工业DCS市占第一",
-        "PlantMart工业互联网平台"
+        "supOS工业互联网平台"
       ],
       "strengths_en": [
         "#1 process DCS share in China",
-        "PlantMart IIoT platform"
+        "supOS IIoT platform"
       ],
       "limitations_zh": [
         "化工以外行业拓展仍在进行",
@@ -81,11 +81,13 @@
       ],
       "limitations_zh": [
         "化工市占低于中控",
-        "国际化有限"
+        "国际化有限",
+        "已从纳斯达克退市（2024-07，Ascendent 私有化收购）"
       ],
       "limitations_en": [
         "Lower chemical share than SUPCON",
-        "Limited internationalization"
+        "Limited internationalization",
+        "Delisted from NASDAQ (Jul 2024, taken private by Ascendent)"
       ],
       "industries": [
         "电力",
@@ -605,7 +607,8 @@
         ],
         "partial": [
           "lifecycle_mgmt",
-          "ext_api"
+          "ext_api",
+          "quality_spc_traceability"
         ]
       }
     },
@@ -827,7 +830,8 @@
         "full": [
           "scheduling_ops",
           "data_acquisition",
-          "bom_mgmt"
+          "bom_mgmt",
+          "quality_spc_traceability"
         ],
         "partial": [
           "lifecycle_mgmt",
@@ -1004,7 +1008,8 @@
         "full": [
           "scheduling_ops",
           "data_acquisition",
-          "bom_mgmt"
+          "bom_mgmt",
+          "quality_spc_traceability"
         ],
         "partial": [
           "process_control",
@@ -1181,7 +1186,6 @@
         ],
         "partial": [
           "bom_mgmt",
-          "mbse_sys",
           "ext_api"
         ]
       }
@@ -1232,7 +1236,8 @@
         "full": [
           "scheduling_ops",
           "data_acquisition",
-          "cloud_native"
+          "cloud_native",
+          "quality_spc_traceability"
         ],
         "partial": [
           "bom_mgmt",
@@ -1405,7 +1410,8 @@
         ],
         "partial": [
           "scheduling_ops",
-          "ext_api"
+          "ext_api",
+          "iiot_historian"
         ]
       }
     },
@@ -1690,12 +1696,13 @@
       "capabilities": {
         "full": [
           "data_acquisition",
-          "requirements_trace"
+          "enterprise_asset_mgmt"
         ],
         "partial": [
           "scheduling_ops",
           "lifecycle_mgmt",
-          "ext_api"
+          "ext_api",
+          "predictive_maintenance_apm"
         ]
       }
     },
@@ -1743,7 +1750,8 @@
       ],
       "capabilities": {
         "full": [
-          "data_acquisition"
+          "data_acquisition",
+          "iiot_historian"
         ],
         "partial": [
           "ext_api",
@@ -1800,7 +1808,8 @@
         "full": [
           "scheduling_ops",
           "data_acquisition",
-          "cloud_native"
+          "cloud_native",
+          "quality_spc_traceability"
         ],
         "partial": [
           "bom_mgmt",
@@ -1912,7 +1921,8 @@
       "capabilities": {
         "full": [
           "process_control",
-          "data_acquisition"
+          "data_acquisition",
+          "iiot_historian"
         ],
         "partial": [
           "scheduling_ops",

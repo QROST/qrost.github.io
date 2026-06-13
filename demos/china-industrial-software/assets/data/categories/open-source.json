@@ -145,7 +145,8 @@
         "partial": [
           "surface_modeling",
           "fea_structure",
-          "bim_clash"
+          "bim_clash",
+          "cad_as_code"
         ]
       }
     },
@@ -157,7 +158,7 @@
       "category_l1": "研发设计",
       "category_l2": "CAD",
       "origin": "open_source",
-      "kernel": "CGAL（非 OCCT）",
+      "kernel": "CGAL / Manifold（非 OCCT）",
       "maturity": "mid",
       "localization_depth": "pilot",
       "strengths_zh": [
@@ -204,7 +205,8 @@
       "capabilities": {
         "full": [
           "solid_modeling_3d",
-          "ext_api"
+          "ext_api",
+          "cad_as_code"
         ],
         "partial": [
           "parametric_design"
@@ -388,7 +390,8 @@
           "solid_modeling_3d",
           "parametric_design",
           "ext_api",
-          "cad_repair_interop"
+          "cad_repair_interop",
+          "cad_as_code"
         ],
         "partial": [
           "surface_modeling"
@@ -455,7 +458,8 @@
           "solid_modeling_3d",
           "parametric_design",
           "ext_api",
-          "cad_repair_interop"
+          "cad_repair_interop",
+          "cad_as_code"
         ],
         "partial": [
           "surface_modeling"
@@ -508,8 +512,7 @@
       "kernel_id": "open-cascade",
       "capabilities": {
         "full": [
-          "solid_modeling_3d",
-          "cam_milling_cnc"
+          "solid_modeling_3d"
         ],
         "partial": [
           "parametric_design",
@@ -679,7 +682,8 @@
       "capabilities": {
         "full": [
           "visual_programming",
-          "ext_api"
+          "ext_api",
+          "polygon_mesh_dcc"
         ],
         "partial": [
           "surface_modeling",
@@ -749,9 +753,10 @@
       ],
       "capabilities": {
         "full": [
-          "am_layout",
-          "cloud_native"
-        ]
+          "cloud_native",
+          "sheet_nesting_2d"
+        ],
+        "partial": []
       }
     }
   ]

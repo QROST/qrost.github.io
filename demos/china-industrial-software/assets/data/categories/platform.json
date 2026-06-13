@@ -112,7 +112,8 @@
         "full": [
           "data_acquisition",
           "cloud_native",
-          "ext_api"
+          "ext_api",
+          "predictive_maintenance_apm"
         ],
         "partial": [
           "collaboration",
@@ -294,7 +295,8 @@
         "partial": [
           "lifecycle_mgmt",
           "scheduling_ops",
-          "xinchuang_compat"
+          "xinchuang_compat",
+          "predictive_maintenance_apm"
         ]
       }
     },
@@ -473,7 +475,9 @@
         ],
         "partial": [
           "lifecycle_mgmt",
-          "process_control"
+          "process_control",
+          "predictive_maintenance_apm",
+          "digital_twin"
         ]
       }
     },
@@ -486,7 +490,7 @@
       "category_l2": "工业互联网",
       "origin": "international",
       "kernel": "自主",
-      "maturity": "high",
+      "maturity": "low",
       "localization_depth": "partial",
       "strengths_zh": [
         "工业云平台（非MES，与Opcenter衔接）",
@@ -500,11 +504,13 @@
       ],
       "limitations_zh": [
         "在华推广弱于本土平台",
-        "定价与生态开放度争议"
+        "定价与生态开放度争议",
+        "MindSphere 品牌 2023-06 退役，已更名 Siemens Insights Hub（本表另有独立条目）"
       ],
       "limitations_en": [
         "Weaker China push than local platforms",
-        "Pricing and openness debates"
+        "Pricing and openness debates",
+        "Rebranded as Siemens Insights Hub (brand retired 2023)"
       ],
       "industries": [
         "制造",
@@ -532,11 +538,13 @@
         "full": [
           "data_acquisition",
           "cloud_native",
-          "ext_api"
+          "ext_api",
+          "digital_twin"
         ],
         "partial": [
           "collaboration",
-          "lifecycle_mgmt"
+          "lifecycle_mgmt",
+          "predictive_maintenance_apm"
         ]
       }
     },
@@ -549,7 +557,7 @@
       "category_l2": "工业互联网",
       "origin": "international",
       "kernel": "自主",
-      "maturity": "mid",
+      "maturity": "low",
       "localization_depth": "pilot",
       "strengths_zh": [
         "资产性能管理云平台（非MES）",
@@ -563,11 +571,13 @@
       ],
       "limitations_zh": [
         "战略收缩后在华声量下降",
-        "生态活跃度低于AWS/Azure"
+        "生态活跃度低于AWS/Azure",
+        "Predix 品牌已退役，能力并入 GE Vernova APM"
       ],
       "limitations_en": [
         "Reduced China presence after strategy shift",
-        "Less ecosystem than hyperscalers"
+        "Less ecosystem than hyperscalers",
+        "Predix brand retired; capabilities folded into GE Vernova APM"
       ],
       "industries": [
         "能源",
@@ -595,10 +605,12 @@
         "full": [
           "data_acquisition",
           "cloud_native",
-          "ext_api"
+          "ext_api",
+          "predictive_maintenance_apm"
         ],
         "partial": [
-          "lifecycle_mgmt"
+          "lifecycle_mgmt",
+          "enterprise_asset_mgmt"
         ]
       }
     },
@@ -726,7 +738,8 @@
         "partial": [
           "scheduling_ops",
           "collaboration",
-          "bom_mgmt"
+          "bom_mgmt",
+          "supply_chain_procurement"
         ]
       }
     },
@@ -913,13 +926,15 @@
         "full": [
           "data_acquisition",
           "cloud_native",
-          "ext_api"
+          "ext_api",
+          "predictive_maintenance_apm"
         ],
         "partial": [
           "process_control",
           "collaboration",
           "scheduling_ops",
-          "xinchuang_compat"
+          "xinchuang_compat",
+          "ot_protocol_gateway"
         ]
       }
     },
@@ -1118,7 +1133,8 @@
           "data_acquisition",
           "cloud_native",
           "ext_api",
-          "collaboration"
+          "collaboration",
+          "digital_twin"
         ],
         "partial": [
           "lifecycle_mgmt",
@@ -1185,7 +1201,8 @@
       "capabilities": {
         "full": [
           "data_acquisition",
-          "ext_api"
+          "ext_api",
+          "ot_protocol_gateway"
         ],
         "partial": [
           "cloud_native",
@@ -1251,7 +1268,8 @@
       "capabilities": {
         "full": [
           "data_acquisition",
-          "ext_api"
+          "ext_api",
+          "ot_protocol_gateway"
         ],
         "partial": [
           "process_control"
@@ -1322,8 +1340,7 @@
         ],
         "partial": [
           "requirements_trace",
-          "collaboration",
-          "visual_programming"
+          "collaboration"
         ]
       }
     },
@@ -1377,10 +1394,12 @@
         "full": [
           "cloud_native",
           "collaboration",
-          "ext_api"
+          "ext_api",
+          "industrial_ar_xr"
         ],
         "partial": [
-          "data_acquisition"
+          "data_acquisition",
+          "digital_twin"
         ]
       }
     },
@@ -1442,11 +1461,13 @@
         "full": [
           "data_acquisition",
           "cloud_native",
-          "ext_api"
+          "ext_api",
+          "digital_twin"
         ],
         "partial": [
           "collaboration",
-          "lifecycle_mgmt"
+          "lifecycle_mgmt",
+          "predictive_maintenance_apm"
         ]
       }
     },
@@ -1503,7 +1524,8 @@
       "capabilities": {
         "full": [
           "data_acquisition",
-          "ext_api"
+          "ext_api",
+          "ot_protocol_gateway"
         ],
         "partial": [
           "process_control"
@@ -1568,10 +1590,12 @@
         "full": [
           "data_acquisition",
           "cloud_native",
-          "ext_api"
+          "ext_api",
+          "iiot_historian"
         ],
         "partial": [
-          "collaboration"
+          "collaboration",
+          "ot_protocol_gateway"
         ]
       }
     },
@@ -1637,7 +1661,8 @@
         ],
         "partial": [
           "process_control",
-          "collaboration"
+          "collaboration",
+          "ot_protocol_gateway"
         ]
       }
     }
