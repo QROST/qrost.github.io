@@ -5,6 +5,9 @@
   'use strict';
 
   const BASE = 'assets/data/';
+  // Cache-bust the data shards (manifest, vendors, category JSON, etc.) so that
+  // returning visitors pick up data changes. Bump on any data-file edit.
+  const DATA_VERSION = '20260613a';
   let manifest = null;
   let vendors = null;
   let kernels = null;
@@ -18,7 +21,8 @@
   const kernelMap = {};
 
   async function fetchJson(path) {
-    const r = await fetch(path);
+    const sep = path.indexOf('?') === -1 ? '?' : '&';
+    const r = await fetch(path + sep + 'v=' + DATA_VERSION);
     if (!r.ok) throw new Error(`fetch ${path}: ${r.status}`);
     return r.json();
   }

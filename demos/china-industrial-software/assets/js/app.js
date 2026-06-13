@@ -598,6 +598,210 @@
     return true;
   }
 
+  /* ── Capability domain grouping for tabs (single source of truth in matrix.js) ── */
+  function capDomains() {
+    const M = window.INDUSTRIAL_MATRIX;
+    return (M && M.CAP_DOMAINS) || [];
+  }
+
+  function buildOverviewTab(p, v) {
+    const strengths = I18N().listField(p, 'strengths_zh', 'strengths_en');
+    const limits = I18N().listField(p, 'limitations_zh', 'limitations_en');
+    const srcs = (p.sources || []).map((s) =>
+      `<li><a href="${s.url}" class="text-link underline" target="_blank" rel="noopener">${s.title || s.url}</a></li>`).join('');
+    return `
+      <div class="mt-2 grid grid-cols-2 gap-3 text-sm">
+        <div><span class="text-slate-500">${t('colMaturity')}</span>: ${I18N().maturityLabel(p.maturity)}</div>
+        <div><span class="text-slate-500">${t('colLocDepth')}</span>: ${I18N().locLabel(p.localization_depth)}</div>
+        <div><span class="text-slate-500">${t('kernelLabel')}</span>: ${p.kernel_id
+    ? `<button type="button" class="text-link underline kernel-link-btn" data-kernel-id="${p.kernel_id}">${CAT().productKernelLabel(p)}</button>`
+    : (p.kernel || '—')}</div>
+      </div>
+      <h4 class="font-medium mt-4 text-emerald-800">${t('strengths')}</h4>
+      <ul class="list-disc pl-5 text-sm text-slate-600">${strengths.map((s) => `<li>${s}</li>`).join('')}</ul>
+      <h4 class="font-medium mt-4 text-amber-800">${t('limitations')}</h4>
+      <ul class="list-disc pl-5 text-sm text-slate-600">${limits.map((s) => `<li>${s}</li>`).join('')}</ul>
+      <h4 class="font-medium mt-4 text-slate-800">${t('industries')}</h4>
+      <p class="text-sm text-slate-600">${(p.industries || []).join(', ') || '—'}</p>
+      <h4 class="font-medium mt-4 text-slate-800">${t('sources')}</h4>
+      <ul class="list-disc pl-5 text-sm">${srcs || '<li class="text-slate-400">—</li>'}</ul>`;
+  }
+
+  function buildCapabilitiesTab(p) {
+    const MATRIX = window.INDUSTRIAL_MATRIX;
+    if (!MATRIX) return '<p class="text-sm text-slate-400">Capability matrix not loaded.</p>';
+    const isEn = I18N().isEn && I18N().isEn();
+    const caps = MATRIX.CAPABILITIES;
+    let fullCount = 0;
+    let partialCount = 0;
+    caps.forEach((c) => { const s = MATRIX.evaluateCapability(p, c.key); if (s === 'full') fullCount++; else if (s === 'partial') partialCount++; });
+    let html = `<div class="flex items-center gap-4 mb-4 text-xs">
+      <span class="inline-flex items-center gap-1"><span class="inline-block w-2.5 h-2.5 rounded-full bg-emerald-500"></span> ${t('capStatusFull')}: <strong>${fullCount}</strong></span>
+      <span class="inline-flex items-center gap-1"><span class="inline-block w-2.5 h-2.5 rounded-full bg-amber-400"></span> ${t('capStatusPartial')}: <strong>${partialCount}</strong></span>
+      <span class="inline-flex items-center gap-1"><span class="inline-block w-2.5 h-2.5 rounded-full bg-slate-200"></span> ${t('capStatusNone')}: <strong>${caps.length - fullCount - partialCount}</strong></span>
+    </div>`;
+    capDomains().forEach((dom) => {
+      const domLabel = isEn ? dom.en : dom.zh;
+      const pills = dom.keys.map((key) => {
+        const cap = caps.find((c) => c.key === key);
+        if (!cap) return '';
+        const score = MATRIX.evaluateCapability(p, key);
+        const label = isEn ? cap.en : cap.zh;
+        if (score === 'full') {
+          return `<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-medium border border-emerald-300 bg-emerald-50 text-emerald-700" title="${t('capStatusFull')}">✔ ${label}</span>`;
+        } else if (score === 'partial') {
+          return `<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-medium border border-amber-300 bg-amber-50 text-amber-700" title="${t('capStatusPartial')}">◌ ${label}</span>`;
+        } else {
+          return `<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-medium border border-slate-200 bg-slate-50 text-slate-400">— ${label}</span>`;
+        }
+      }).join(' ');
+      html += `<div class="mb-3"><p class="text-xs font-semibold text-slate-500 uppercase tracking-wide mb-1.5">${domLabel}</p><div class="flex flex-wrap gap-1.5">${pills}</div></div>`;
+    });
+    return html;
+  }
+
+  function buildCompetitorsTab(p) {
+    const allProds = CAT().allProducts || [];
+    const isEn = I18N().isEn && I18N().isEn();
+    const nameOf = (prod) => isEn ? (prod.name_en || prod.name_zh) : (prod.name_zh || prod.name_en);
+    const originBadge = (prod) => {
+      const label = I18N().originLabel(prod.origin);
+      const cls = prod.origin === 'domestic' ? 'text-emerald-700 bg-emerald-50 border-emerald-200'
+        : prod.origin === 'international' ? 'text-blue-700 bg-blue-50 border-blue-200'
+        : prod.origin === 'joint_venture' ? 'text-violet-700 bg-violet-50 border-violet-200'
+        : 'text-slate-600 bg-slate-50 border-slate-200';
+      return `<span class="text-[10px] ml-1.5 px-1.5 py-0.5 rounded border ${cls}">${label}</span>`;
+    };
+    const renderList = (items) => {
+      if (!items.length) return `<p class="text-sm text-slate-400 italic">${t('compNone')}</p>`;
+      return `<div class="flex flex-wrap gap-1">${items.map((prod) =>
+        `<button type="button" class="modal-product-link" data-product-id="${prod.id}">${nameOf(prod)}${originBadge(prod)}</button>`
+      ).join('')}</div>`;
+    };
+
+    // 1. Direct international benchmarks
+    const benchmarkIds = p.international_benchmarks || [];
+    const directBenchmarks = benchmarkIds.map((bid) => CAT().getProductById(bid)).filter(Boolean);
+
+    // 2. Domestic peers (same L2 category, domestic or joint_venture, excluding self)
+    const domesticPeers = allProds.filter((x) =>
+      x.id !== p.id && x.category_l2 === p.category_l2 && (x.origin === 'domestic' || x.origin === 'joint_venture')
+    );
+
+    // 3. International peers (same L2 category, international, excluding self and already-listed benchmarks)
+    const benchmarkIdSet = new Set(benchmarkIds);
+    const intlPeers = allProds.filter((x) =>
+      x.id !== p.id && x.category_l2 === p.category_l2 && x.origin === 'international' && !benchmarkIdSet.has(x.id)
+    );
+
+    return `
+      <h4 class="font-medium text-slate-800 mb-2">${t('compDirect')}</h4>
+      ${renderList(directBenchmarks)}
+      <h4 class="font-medium text-slate-800 mt-5 mb-2">${t('compDomestic')}</h4>
+      ${renderList(domesticPeers)}
+      <h4 class="font-medium text-slate-800 mt-5 mb-2">${t('compIntl')}</h4>
+      ${renderList(intlPeers)}`;
+  }
+
+  /* ── Gap analysis: where this product trails / leads its category peers ── */
+  function buildGapAnalysisTab(p) {
+    const MATRIX = window.INDUSTRIAL_MATRIX;
+    if (!MATRIX) return '<p class="text-sm text-slate-400">Capability matrix not loaded.</p>';
+    const isEn = I18N().isEn && I18N().isEn();
+    const allProds = CAT().allProducts || [];
+    const caps = MATRIX.CAPABILITIES;
+    const capByKey = {};
+    caps.forEach((c) => { capByKey[c.key] = c; });
+    const capLabel = (key) => { const c = capByKey[key]; return c ? (isEn ? c.en : c.zh) : key; };
+    const nameOf = (prod) => (isEn ? (prod.name_en || prod.name_zh) : (prod.name_zh || prod.name_en));
+
+    // Peer set = same L2 category (excl. self) ∪ declared international benchmarks.
+    const benchIds = new Set(p.international_benchmarks || []);
+    const peerMap = new Map();
+    allProds.forEach((x) => {
+      if (x.id === p.id) return;
+      if (x.category_l2 === p.category_l2 || benchIds.has(x.id)) peerMap.set(x.id, x);
+    });
+    const peers = [...peerMap.values()];
+
+    const gaps = [];
+    const leads = [];
+    caps.forEach((c) => {
+      const pScore = MATRIX.evaluateCapability(p, c.key);
+      const peerFull = peers.filter((x) => MATRIX.evaluateCapability(x, c.key) === 'full');
+      if (pScore !== 'full' && peerFull.length > 0) {
+        gaps.push({ key: c.key, pScore, peerFull });
+      } else if (pScore === 'full' && peers.length > 0 && peerFull.length / peers.length <= 0.34) {
+        leads.push({ key: c.key, peerFullCount: peerFull.length, peerTotal: peers.length });
+      }
+    });
+    gaps.sort((a, b) => b.peerFull.length - a.peerFull.length);
+    leads.sort((a, b) => a.peerFullCount - b.peerFullCount);
+
+    const cov = MATRIX.coverage(p);
+    const total = caps.length;
+    const catProds = allProds.filter((x) => x.category_l2 === p.category_l2);
+    const avgFull = catProds.length ? Math.round(catProds.reduce((s, x) => s + MATRIX.coverage(x).full, 0) / catProds.length) : 0;
+    const fullPct = (cov.full / total * 100).toFixed(1);
+    const partPct = (cov.partial / total * 100).toFixed(1);
+
+    let html = `<div class="gap-section">
+      <div class="flex items-center justify-between text-xs text-slate-500 mb-1">
+        <span>${isEn ? 'Capability coverage' : '能力覆盖'}: <strong class="text-emerald-600">${cov.full}</strong>✔ / <strong class="text-amber-500">${cov.partial}</strong>◌ / ${total}</span>
+        <span>${isEn ? 'Category avg' : '同品类均值'}: ${avgFull}✔ · ${peers.length} ${isEn ? 'peers' : '家竞品'}</span>
+      </div>
+      <div class="gap-coverage-bar">
+        <span style="width:${fullPct}%;background:#10b981"></span>
+        <span style="width:${partPct}%;background:#f59e0b"></span>
+      </div>
+    </div>`;
+
+    if (gaps.length) {
+      const rows = gaps.map((g) => {
+        const chips = g.peerFull.slice(0, 8).map((x) =>
+          `<span class="gap-peer-chip modal-product-link" data-product-id="${x.id}">${nameOf(x)}</span>`).join('');
+        const more = g.peerFull.length > 8 ? `<span class="text-slate-400 text-[11px]">+${g.peerFull.length - 8}</span>` : '';
+        const stateTag = g.pScore === 'partial' ? '<span class="text-amber-500" title="' + t('capStatusPartial') + '">◌</span>' : '<span class="text-slate-300">—</span>';
+        return `<div class="gap-row">
+          <span class="gap-cap-label">${stateTag} ${capLabel(g.key)}</span>
+          <span class="gap-cap-peers"><span class="text-slate-400 text-[11px] mr-1">${g.peerFull.length} ${isEn ? 'lead' : '家具备'}:</span>${chips}${more}</span>
+        </div>`;
+      }).join('');
+      html += `<div class="gap-section">
+        <h4 class="font-medium text-amber-800 mb-1">${t('gapShortfall')} <span class="text-xs font-normal text-slate-400">(${gaps.length})</span></h4>
+        <p class="text-xs text-slate-400 mb-2">${t('gapShortfallHint')}</p>${rows}</div>`;
+    } else {
+      html += `<div class="gap-section"><h4 class="font-medium text-amber-800 mb-1">${t('gapShortfall')}</h4><p class="text-sm text-slate-400 italic">${isEn ? 'No capability gaps vs. category peers.' : '相对同品类竞品无明显能力短板。'}</p></div>`;
+    }
+
+    if (leads.length) {
+      const rows = leads.map((l) =>
+        `<div class="gap-row"><span class="gap-cap-label"><span class="text-emerald-600">✔</span> ${capLabel(l.key)}</span><span class="gap-cap-peers text-xs text-slate-400">${isEn ? 'only' : '同品类仅'} ${l.peerFullCount}/${l.peerTotal} ${isEn ? 'peers match' : '家具备'}</span></div>`).join('');
+      html += `<div class="gap-section">
+        <h4 class="font-medium text-emerald-800 mb-1">${t('gapLead')} <span class="text-xs font-normal text-slate-400">(${leads.length})</span></h4>
+        <p class="text-xs text-slate-400 mb-2">${t('gapLeadHint')}</p>${rows}</div>`;
+    }
+    return html;
+  }
+
+  function buildMilestonesTab(id) {
+    const linked = getMilestonesForProduct(id);
+    if (!linked.length) {
+      const isEn = I18N().isEn && I18N().isEn();
+      return `<p class="text-sm text-slate-400 italic">${isEn ? 'No linked milestones for this product.' : '该产品暂无关联突破里程碑。'}</p>`;
+    }
+    const items = linked.map((m) => {
+      const headline = I18N().isEn() ? m.headline_en : m.headline_zh;
+      const detail = I18N().isEn() ? (m.detail_en || '') : (m.detail_zh || '');
+      return `<div class="border-l-4 border-emerald-300 pl-4 py-2 mb-3">
+        <p class="text-sm font-medium text-slate-800">${m.date} · ${headline}</p>
+        ${detail ? `<p class="text-xs text-slate-500 mt-1 line-clamp-3">${detail}</p>` : ''}
+        <button type="button" class="text-xs text-link underline mt-1 milestone-modal-link" data-milestone-id="${m.id}">${I18N().isEn() ? 'View on timeline →' : '查看时间线 →'}</button>
+      </div>`;
+    }).join('');
+    return items;
+  }
+
   function openModal(id) {
     const p = CAT().getProductById(id);
     if (!p || !(CAT().allProducts || []).length) return;
@@ -607,37 +811,59 @@
     if (!backdrop || !titleEl || !bodyEl) return;
     modalProductId = id;
     const v = CAT().getVendor(p.vendor_id);
-    const strengths = I18N().listField(p, 'strengths_zh', 'strengths_en');
-    const limits = I18N().listField(p, 'limitations_zh', 'limitations_en');
-    const srcs = (p.sources || []).map((s) =>
-      `<li><a href="${s.url}" class="text-link underline" target="_blank" rel="noopener">${s.title || s.url}</a></li>`).join('');
     const title = I18N().productName(p);
     if (!title) return;
     titleEl.textContent = title;
-    bodyEl.innerHTML = `
-      <p class="text-sm text-slate-500">${I18N().vendorName(v)} · ${p.category_l2} · ${I18N().originLabel(p.origin)}</p>
-      <div class="mt-4 grid grid-cols-2 gap-3 text-sm">
-        <div><span class="text-slate-500">${t('colMaturity')}</span>: ${I18N().maturityLabel(p.maturity)}</div>
-        <div><span class="text-slate-500">${t('colLocDepth')}</span>: ${I18N().locLabel(p.localization_depth)}</div>
-        <div><span class="text-slate-500">${t('colKernel')}</span>: ${p.kernel_id
-    ? `<button type="button" class="text-link underline kernel-link-btn" data-kernel-id="${p.kernel_id}">${CAT().productKernelLabel(p)}</button>`
-    : (p.kernel || '—')}</div>
-      </div>
-      <h4 class="font-medium mt-4 text-slate-800">${t('strengths')}</h4>
-      <ul class="list-disc pl-5 text-sm text-slate-600">${strengths.map((s) => `<li>${s}</li>`).join('')}</ul>
-      <h4 class="font-medium mt-3 text-slate-800">${t('limitations')}</h4>
-      <ul class="list-disc pl-5 text-sm text-slate-600">${limits.map((s) => `<li>${s}</li>`).join('')}</ul>
-      <h4 class="font-medium mt-3 text-slate-800">${t('industries')}</h4>
-      <p class="text-sm text-slate-600">${(p.industries || []).join(', ')}</p>
-      <h4 class="font-medium mt-3 text-slate-800">${t('sources')}</h4>
-      <ul class="list-disc pl-5 text-sm">${srcs}</ul>
-      ${renderModalMilestones(id)}`;
+
+    // Subtitle
+    const subtitle = `<p class="text-sm text-slate-500">${I18N().vendorName(v)} · ${p.category_l2} · ${I18N().originLabel(p.origin)}</p>`;
+
+    // Tab definitions
+    const tabs = [
+      { id: 'tab-overview', label: t('tabOverview'), content: buildOverviewTab(p, v) },
+      { id: 'tab-capabilities', label: t('tabCapabilities'), content: buildCapabilitiesTab(p) },
+      { id: 'tab-gaps', label: t('tabGaps'), content: buildGapAnalysisTab(p) },
+      { id: 'tab-competitors', label: t('tabCompetitors'), content: buildCompetitorsTab(p) },
+      { id: 'tab-milestones', label: t('tabMilestones'), content: buildMilestonesTab(id) },
+    ];
+
+    const tabBar = `<div class="modal-tabs" role="tablist">${tabs.map((tb, i) =>
+      `<button type="button" role="tab" class="modal-tab-btn${i === 0 ? ' active' : ''}" data-tab="${tb.id}" aria-selected="${i === 0}">${tb.label}</button>`
+    ).join('')}</div>`;
+
+    const tabPanels = tabs.map((tb, i) =>
+      `<div id="${tb.id}" class="modal-tab-panel${i === 0 ? '' : ' hidden'}" role="tabpanel">${tb.content}</div>`
+    ).join('');
+
+    bodyEl.innerHTML = subtitle + tabBar + tabPanels;
+
+    // Tab switching
+    bodyEl.querySelectorAll('.modal-tab-btn').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        bodyEl.querySelectorAll('.modal-tab-btn').forEach((b) => { b.classList.remove('active'); b.setAttribute('aria-selected', 'false'); });
+        bodyEl.querySelectorAll('.modal-tab-panel').forEach((panel) => panel.classList.add('hidden'));
+        btn.classList.add('active');
+        btn.setAttribute('aria-selected', 'true');
+        const target = document.getElementById(btn.dataset.tab);
+        if (target) target.classList.remove('hidden');
+      });
+    });
+
+    // Kernel link handlers
     bodyEl.querySelectorAll('.kernel-link-btn').forEach((btn) => {
       btn.addEventListener('click', (e) => {
         e.stopPropagation();
         openKernelModal(btn.dataset.kernelId);
       });
     });
+
+    // Competitor product link handlers
+    bodyEl.querySelectorAll('.modal-product-link').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        openModal(btn.dataset.productId);
+      });
+    });
+
     updateProductModalCompareBtn();
     backdrop.classList.remove('hidden');
     backdrop.setAttribute('aria-hidden', 'false');

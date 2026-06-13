@@ -1127,3 +1127,117 @@ button.policy-gantt-label:focus-visible {
 .matrix-none {
     color: var(--color-border-default);
 }
+
+/* Product Detail Modal Tabs */
+.modal-tabs {
+    display: flex;
+    border-bottom: 1px solid var(--color-border-default);
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    gap: 1.5rem;
+}
+
+.modal-tab-btn {
+    padding-bottom: 0.5rem;
+    font-weight: 500;
+    font-size: 0.875rem;
+    color: var(--color-text-secondary);
+    border-bottom: 2px solid transparent;
+    transition: all 0.15s ease;
+    cursor: pointer;
+    background: transparent;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+}
+
+.modal-tab-btn:hover {
+    color: var(--color-text-primary);
+}
+
+.modal-tab-btn.active {
+    color: var(--color-accent);
+    border-bottom-color: var(--color-accent);
+}
+
+/* Competitor Product Links */
+.modal-product-link {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.375rem 0.75rem;
+    margin: 0.25rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    border-radius: 0.375rem;
+    border: 1px solid var(--color-border-default);
+    background: var(--color-bg-elevated);
+    color: var(--color-text-primary);
+    transition: all 0.15s ease;
+    cursor: pointer;
+}
+
+.modal-product-link:hover {
+    border-color: var(--color-accent);
+    color: var(--color-accent);
+    background: var(--color-bg-muted);
+}
+
+
+/* ── Matrix: sticky product column + grouped headers + gap analysis ── */
+.matrix-sticky-col {
+    position: sticky;
+    left: 0;
+    background: #ffffff;
+    z-index: 10;
+}
+thead .matrix-sticky-col {
+    /* corner cell: above both the sticky thead (z-20) and sticky body col (z-10) */
+    z-index: 30;
+    background: #f8fafc;
+}
+.matrix-container tbody tr:hover .matrix-sticky-col {
+    background: #f8fafc;
+}
+.matrix-cap-label {
+    display: inline-block;
+    font-weight: 500;
+    line-height: 1.15;
+    word-break: break-word;
+}
+
+/* Gap-analysis tab */
+.gap-section { margin-bottom: 1.25rem; }
+.gap-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+    padding: 0.4rem 0;
+    border-bottom: 1px dashed var(--color-border-default);
+    font-size: 0.8125rem;
+}
+.gap-row:last-child { border-bottom: none; }
+.gap-cap-label {
+    flex: 0 0 9.5rem;
+    font-weight: 500;
+    color: var(--color-text-primary);
+}
+.gap-cap-peers { flex: 1; color: var(--color-text-secondary); }
+.gap-peer-chip {
+    display: inline-block;
+    padding: 0.05rem 0.4rem;
+    margin: 0.1rem 0.15rem 0.1rem 0;
+    border-radius: 0.25rem;
+    font-size: 0.6875rem;
+    background: var(--color-bg-muted);
+    border: 1px solid var(--color-border-default);
+    cursor: pointer;
+}
+.gap-peer-chip:hover { border-color: var(--color-accent); color: var(--color-accent); }
+.gap-coverage-bar {
+    height: 0.5rem;
+    border-radius: 0.25rem;
+    background: var(--color-bg-muted);
+    overflow: hidden;
+    display: flex;
+}
+.gap-coverage-bar > span { display: block; height: 100%; }
