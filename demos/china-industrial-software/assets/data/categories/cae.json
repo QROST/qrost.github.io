@@ -616,7 +616,9 @@
         "partial": [
           "electromagnetics",
           "multi_physics",
-          "ext_api"
+          "ext_api",
+          "generative_topo_opt",
+          "multibody_dynamics"
         ]
       }
     },
@@ -680,7 +682,7 @@
       "id": "msc-nastran",
       "name_zh": "MSC Nastran",
       "name_en": "MSC Nastran",
-      "vendor_id": "hexagon",
+      "vendor_id": "cadence",
       "category_l1": "研发设计",
       "category_l2": "CAE",
       "origin": "international",
@@ -887,7 +889,7 @@
       "id": "cimatron",
       "name_zh": "Cimatron",
       "name_en": "Cimatron",
-      "vendor_id": "cimatron",
+      "vendor_id": "sandvik",
       "category_l1": "生产制造",
       "category_l2": "CAM",
       "origin": "international",
@@ -1355,7 +1357,8 @@
       "capabilities": {
         "full": [
           "cam_milling_cnc",
-          "xinchuang_compat"
+          "xinchuang_compat",
+          "sheet_nesting_2d"
         ],
         "partial": [
           "scheduling_ops",
@@ -1412,7 +1415,8 @@
       "capabilities": {
         "full": [
           "cam_milling_cnc",
-          "xinchuang_compat"
+          "xinchuang_compat",
+          "sheet_nesting_2d"
         ],
         "partial": [
           "scheduling_ops"
@@ -1474,7 +1478,8 @@
       "capabilities": {
         "full": [
           "cam_milling_cnc",
-          "xinchuang_compat"
+          "xinchuang_compat",
+          "sheet_nesting_2d"
         ],
         "partial": [
           "scheduling_ops",
@@ -1533,7 +1538,8 @@
       "capabilities": {
         "full": [
           "cam_milling_cnc",
-          "xinchuang_compat"
+          "xinchuang_compat",
+          "sheet_nesting_2d"
         ],
         "partial": [
           "drafting_2d",
@@ -1653,7 +1659,8 @@
       "capabilities": {
         "full": [
           "cam_milling_cnc",
-          "xinchuang_compat"
+          "xinchuang_compat",
+          "sheet_nesting_2d"
         ],
         "partial": [
           "scheduling_ops",
@@ -1778,7 +1785,8 @@
       "capabilities": {
         "full": [
           "cam_milling_cnc",
-          "xinchuang_compat"
+          "xinchuang_compat",
+          "sheet_nesting_2d"
         ],
         "partial": [
           "cloud_native"
@@ -1838,7 +1846,8 @@
       ],
       "capabilities": {
         "full": [
-          "cam_milling_cnc"
+          "cam_milling_cnc",
+          "sheet_nesting_2d"
         ],
         "partial": [
           "scheduling_ops",
@@ -2076,7 +2085,8 @@
       ],
       "capabilities": {
         "full": [
-          "requirements_trace"
+          "requirements_trace",
+          "simulation_vv"
         ],
         "partial": [
           "fea_structure",
@@ -2132,7 +2142,8 @@
       "capabilities": {
         "full": [
           "mbse_sys",
-          "ext_api"
+          "ext_api",
+          "visual_programming"
         ],
         "partial": [
           "multi_physics",
@@ -2237,7 +2248,8 @@
       ],
       "capabilities": {
         "full": [
-          "fea_structure"
+          "fea_structure",
+          "generative_topo_opt"
         ],
         "partial": [
           "multi_physics",
@@ -2249,7 +2261,7 @@
       "id": "hexagon-adams",
       "name_zh": "MSC Adams",
       "name_en": "MSC Adams",
-      "vendor_id": "hexagon",
+      "vendor_id": "cadence",
       "category_l1": "研发设计",
       "category_l2": "CAE",
       "origin": "international",
@@ -2289,7 +2301,7 @@
       ],
       "capabilities": {
         "full": [
-          "fea_structure"
+          "multibody_dynamics"
         ],
         "partial": [
           "mbse_sys",
@@ -2341,11 +2353,13 @@
       ],
       "capabilities": {
         "full": [
-          "data_acquisition"
+          "data_acquisition",
+          "metrology_cmm_inspection"
         ],
         "partial": [
           "cad_repair_interop",
-          "ext_api"
+          "ext_api",
+          "quality_spc_traceability"
         ]
       }
     },
@@ -2401,7 +2415,9 @@
         "partial": [
           "electromagnetics",
           "ext_api",
-          "requirements_trace"
+          "requirements_trace",
+          "multibody_dynamics",
+          "simulation_vv"
         ]
       }
     },
@@ -3923,7 +3939,8 @@
       "last_verified": "2026-06",
       "capabilities": {
         "full": [
-          "fea_structure"
+          "fea_structure",
+          "multibody_dynamics"
         ],
         "partial": [
           "mbse_sys",
@@ -3984,7 +4001,8 @@
       "last_verified": "2026-06",
       "capabilities": {
         "full": [
-          "fea_structure"
+          "fea_structure",
+          "multibody_dynamics"
         ],
         "partial": [
           "multi_physics",
@@ -4042,7 +4060,8 @@
       "last_verified": "2026-06",
       "capabilities": {
         "full": [
-          "fea_structure"
+          "fea_structure",
+          "multibody_dynamics"
         ],
         "partial": [
           "cfd_fluid",
@@ -4054,7 +4073,7 @@
       "id": "gibbscam",
       "name_zh": "GibbsCAM",
       "name_en": "GibbsCAM",
-      "vendor_id": "gibbs",
+      "vendor_id": "sandvik",
       "category_l1": "生产制造",
       "category_l2": "CAM",
       "origin": "international",
