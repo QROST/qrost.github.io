@@ -7,7 +7,7 @@
   const BASE = 'assets/data/';
   // Cache-bust the data shards (manifest, vendors, category JSON, etc.) so that
   // returning visitors pick up data changes. Bump on any data-file edit.
-  const DATA_VERSION = '20260613a';
+  const DATA_VERSION = '20260613d';
   let manifest = null;
   let vendors = null;
   let kernels = null;
