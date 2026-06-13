@@ -45,7 +45,20 @@
       ],
       "international_benchmarks": [
         "ansys-mechanical"
-      ]
+      ],
+      "capabilities": {
+        "full": [
+          "fea_structure",
+          "cfd_fluid",
+          "multi_physics",
+          "xinchuang_compat"
+        ],
+        "partial": [
+          "electromagnetics",
+          "ext_api",
+          "cloud_native"
+        ]
+      }
     },
     {
       "id": "suochen-abyss",
@@ -92,7 +105,19 @@
       "international_benchmarks": [
         "ansys-fluent"
       ],
-      "listed_ticker": "688507.SH"
+      "listed_ticker": "688507.SH",
+      "capabilities": {
+        "full": [
+          "cfd_fluid",
+          "fea_structure",
+          "xinchuang_compat"
+        ],
+        "partial": [
+          "electromagnetics",
+          "multi_physics",
+          "opt_light_acoustics"
+        ]
+      }
     },
     {
       "id": "bochu-cypcut",
@@ -138,7 +163,18 @@
       "international_benchmarks": [
         "mastercam"
       ],
-      "listed_ticker": "688188.SH"
+      "listed_ticker": "688188.SH",
+      "capabilities": {
+        "full": [
+          "cam_milling_cnc",
+          "process_control",
+          "xinchuang_compat"
+        ],
+        "partial": [
+          "scheduling_ops",
+          "data_acquisition"
+        ]
+      }
     },
     {
       "id": "weihong-nc",
@@ -185,7 +221,17 @@
       "international_benchmarks": [
         "fanuc-cnc"
       ],
-      "listed_ticker": "300508.SZ"
+      "listed_ticker": "300508.SZ",
+      "capabilities": {
+        "full": [
+          "cam_milling_cnc",
+          "process_control",
+          "xinchuang_compat"
+        ],
+        "partial": [
+          "data_acquisition"
+        ]
+      }
     },
     {
       "id": "huazhong-cnc",
@@ -232,7 +278,18 @@
       "international_benchmarks": [
         "siemens-sinumerik"
       ],
-      "listed_ticker": "300161.SZ"
+      "listed_ticker": "300161.SZ",
+      "capabilities": {
+        "full": [
+          "cam_milling_cnc",
+          "process_control",
+          "xinchuang_compat"
+        ],
+        "partial": [
+          "data_acquisition",
+          "scheduling_ops"
+        ]
+      }
     },
     {
       "id": "gsk-cnc",
@@ -274,7 +331,17 @@
           "title": "GSK CNC",
           "accessed": "2026-06"
         }
-      ]
+      ],
+      "capabilities": {
+        "full": [
+          "cam_milling_cnc",
+          "process_control",
+          "xinchuang_compat"
+        ],
+        "partial": [
+          "data_acquisition"
+        ]
+      }
     },
     {
       "id": "shifeng-simulation",
@@ -315,8 +382,30 @@
           "url": "https://www.simright.com/",
           "title": "SimRight CAE Cloud",
           "accessed": "2026-06"
+        },
+        {
+          "url": "https://www.simright.com/zh/simright-platform",
+          "title": "SimRight Platform (云仿真前后处理)",
+          "accessed": "2026-06"
+        },
+        {
+          "url": "https://www.simright.com/apps/simright-converter",
+          "title": "Simright Converter — CAE 模型格式转换",
+          "accessed": "2026-06"
         }
-      ]
+      ],
+      "capabilities": {
+        "full": [
+          "fea_structure",
+          "cloud_native",
+          "cad_repair_interop"
+        ],
+        "partial": [
+          "cfd_fluid",
+          "ext_api",
+          "xinchuang_compat"
+        ]
+      }
     },
     {
       "id": "ansys-mechanical",
@@ -360,7 +449,17 @@
           "accessed": "2026-06"
         }
       ],
-      "listed_ticker": "ANSS"
+      "listed_ticker": "ANSS",
+      "capabilities": {
+        "full": [
+          "fea_structure",
+          "multi_physics"
+        ],
+        "partial": [
+          "opt_light_acoustics",
+          "ext_api"
+        ]
+      }
     },
     {
       "id": "ansys-fluent",
@@ -403,7 +502,17 @@
           "title": "Ansys Fluent",
           "accessed": "2026-06"
         }
-      ]
+      ],
+      "capabilities": {
+        "full": [
+          "cfd_fluid"
+        ],
+        "partial": [
+          "multi_physics",
+          "material_injection",
+          "ext_api"
+        ]
+      }
     },
     {
       "id": "abaqus",
@@ -446,7 +555,16 @@
           "title": "Abaqus",
           "accessed": "2026-06"
         }
-      ]
+      ],
+      "capabilities": {
+        "full": [
+          "fea_structure"
+        ],
+        "partial": [
+          "multi_physics",
+          "ext_api"
+        ]
+      }
     },
     {
       "id": "altair-hyperworks",
@@ -489,7 +607,18 @@
           "accessed": "2026-06"
         }
       ],
-      "listed_ticker": "ALTR"
+      "listed_ticker": "ALTR",
+      "capabilities": {
+        "full": [
+          "fea_structure",
+          "cfd_fluid"
+        ],
+        "partial": [
+          "electromagnetics",
+          "multi_physics",
+          "ext_api"
+        ]
+      }
     },
     {
       "id": "comsol",
@@ -532,7 +661,20 @@
           "title": "COMSOL Multiphysics",
           "accessed": "2026-06"
         }
-      ]
+      ],
+      "capabilities": {
+        "full": [
+          "multi_physics",
+          "electromagnetics",
+          "fea_structure",
+          "cfd_fluid",
+          "opt_light_acoustics"
+        ],
+        "partial": [
+          "material_injection",
+          "ext_api"
+        ]
+      }
     },
     {
       "id": "msc-nastran",
@@ -574,7 +716,16 @@
           "title": "MSC Nastran",
           "accessed": "2026-06"
         }
-      ]
+      ],
+      "capabilities": {
+        "full": [
+          "fea_structure"
+        ],
+        "partial": [
+          "opt_light_acoustics",
+          "ext_api"
+        ]
+      }
     },
     {
       "id": "mastercam",
@@ -617,7 +768,17 @@
           "title": "Mastercam",
           "accessed": "2026-06"
         }
-      ]
+      ],
+      "capabilities": {
+        "full": [
+          "cam_milling_cnc"
+        ],
+        "partial": [
+          "solid_modeling_3d",
+          "surface_modeling",
+          "ext_api"
+        ]
+      }
     },
     {
       "id": "powermill",
@@ -659,7 +820,16 @@
           "title": "PowerMill",
           "accessed": "2026-06"
         }
-      ]
+      ],
+      "capabilities": {
+        "full": [
+          "cam_milling_cnc"
+        ],
+        "partial": [
+          "surface_modeling",
+          "ext_api"
+        ]
+      }
     },
     {
       "id": "hypermill",
@@ -702,7 +872,16 @@
           "title": "hyperMILL",
           "accessed": "2026-06"
         }
-      ]
+      ],
+      "capabilities": {
+        "full": [
+          "cam_milling_cnc"
+        ],
+        "partial": [
+          "surface_modeling",
+          "cad_repair_interop"
+        ]
+      }
     },
     {
       "id": "cimatron",
@@ -744,7 +923,17 @@
           "title": "Cimatron",
           "accessed": "2026-06"
         }
-      ]
+      ],
+      "capabilities": {
+        "full": [
+          "cam_milling_cnc",
+          "solid_modeling_3d"
+        ],
+        "partial": [
+          "surface_modeling",
+          "material_injection"
+        ]
+      }
     },
     {
       "id": "jiyuan-simulation",
@@ -785,8 +974,23 @@
           "url": "https://www.jiyuan-tech.com/",
           "title": "Jiyuan Simulation",
           "accessed": "2026-06"
+        },
+        {
+          "url": "https://www.qcc.com/firm/search?searchKey=积元仿真",
+          "title": "积元仿真 企业信息（启信/企查查检索）",
+          "accessed": "2026-06"
         }
-      ]
+      ],
+      "capabilities": {
+        "full": [
+          "electromagnetics"
+        ],
+        "partial": [
+          "multi_physics",
+          "material_injection",
+          "xinchuang_compat"
+        ]
+      }
     },
     {
       "id": "salome-platform",
@@ -842,7 +1046,19 @@
       "international_benchmarks": [
         "ansys-mechanical"
       ],
-      "kernel_id": "open-cascade"
+      "kernel_id": "open-cascade",
+      "capabilities": {
+        "full": [
+          "fea_structure",
+          "cfd_fluid",
+          "cad_repair_interop"
+        ],
+        "partial": [
+          "multi_physics",
+          "ext_api",
+          "solid_modeling_3d"
+        ]
+      }
     },
     {
       "id": "jdsoft-surfmill",
@@ -892,7 +1108,17 @@
       "international_benchmarks": [
         "powermill",
         "hypermill"
-      ]
+      ],
+      "capabilities": {
+        "full": [
+          "cam_milling_cnc",
+          "xinchuang_compat"
+        ],
+        "partial": [
+          "surface_modeling",
+          "solid_modeling_3d"
+        ]
+      }
     },
     {
       "id": "autodesk-moldflow",
@@ -944,7 +1170,16 @@
       ],
       "international_benchmarks": [
         "jiyuan-simulation"
-      ]
+      ],
+      "capabilities": {
+        "full": [
+          "material_injection"
+        ],
+        "partial": [
+          "fea_structure",
+          "ext_api"
+        ]
+      }
     },
     {
       "id": "ansys-ls-dyna",
@@ -994,7 +1229,17 @@
       "international_benchmarks": [
         "altair-radioss",
         "abaqus"
-      ]
+      ],
+      "capabilities": {
+        "full": [
+          "fea_structure"
+        ],
+        "partial": [
+          "multi_physics",
+          "material_injection",
+          "ext_api"
+        ]
+      }
     },
     {
       "id": "altair-hypermesh",
@@ -1044,7 +1289,17 @@
       "international_benchmarks": [
         "ansys-mechanical",
         "altair-optistruct"
-      ]
+      ],
+      "capabilities": {
+        "full": [
+          "fea_structure",
+          "cad_repair_interop"
+        ],
+        "partial": [
+          "cfd_fluid",
+          "ext_api"
+        ]
+      }
     },
     {
       "id": "zhige-smartnest",
@@ -1096,7 +1351,17 @@
       "international_benchmarks": [
         "bochu-cypnest",
         "lantek-expert"
-      ]
+      ],
+      "capabilities": {
+        "full": [
+          "cam_milling_cnc",
+          "xinchuang_compat"
+        ],
+        "partial": [
+          "scheduling_ops",
+          "bom_mgmt"
+        ]
+      }
     },
     {
       "id": "zhige-lasercam",
@@ -1143,7 +1408,16 @@
       ],
       "international_benchmarks": [
         "bochu-cypcut"
-      ]
+      ],
+      "capabilities": {
+        "full": [
+          "cam_milling_cnc",
+          "xinchuang_compat"
+        ],
+        "partial": [
+          "scheduling_ops"
+        ]
+      }
     },
     {
       "id": "demark-hinest",
@@ -1187,11 +1461,26 @@
           "url": "https://www.laserdmk.com/hinest-smart-nesting-software-powered-by-industry-40",
           "title": "HiNest",
           "accessed": "2026-06"
+        },
+        {
+          "url": "https://www.laserdmk.com/",
+          "title": "Demark 德玛克激光官网",
+          "accessed": "2026-06"
         }
       ],
       "international_benchmarks": [
         "zhige-smartnest"
-      ]
+      ],
+      "capabilities": {
+        "full": [
+          "cam_milling_cnc",
+          "xinchuang_compat"
+        ],
+        "partial": [
+          "scheduling_ops",
+          "drafting_2d"
+        ]
+      }
     },
     {
       "id": "cutleader-pro",
@@ -1240,7 +1529,17 @@
       ],
       "international_benchmarks": [
         "fastcam-pro-v9"
-      ]
+      ],
+      "capabilities": {
+        "full": [
+          "cam_milling_cnc",
+          "xinchuang_compat"
+        ],
+        "partial": [
+          "drafting_2d",
+          "scheduling_ops"
+        ]
+      }
     },
     {
       "id": "fastcam-pro-v9",
@@ -1291,7 +1590,17 @@
       ],
       "international_benchmarks": [
         "lantek-expert"
-      ]
+      ],
+      "capabilities": {
+        "full": [
+          "cam_milling_cnc",
+          "xinchuang_compat"
+        ],
+        "partial": [
+          "bom_mgmt",
+          "drafting_2d"
+        ]
+      }
     },
     {
       "id": "bochu-cypnest",
@@ -1340,7 +1649,17 @@
       "international_benchmarks": [
         "lantek-expert"
       ],
-      "listed_ticker": "688188.SH"
+      "listed_ticker": "688188.SH",
+      "capabilities": {
+        "full": [
+          "cam_milling_cnc",
+          "xinchuang_compat"
+        ],
+        "partial": [
+          "scheduling_ops",
+          "cloud_native"
+        ]
+      }
     },
     {
       "id": "jcz-cutmaker",
@@ -1391,7 +1710,17 @@
         "bochu-cypcut",
         "weihong-nc"
       ],
-      "listed_ticker": "688291.SH"
+      "listed_ticker": "688291.SH",
+      "capabilities": {
+        "full": [
+          "cam_milling_cnc",
+          "process_control",
+          "xinchuang_compat"
+        ],
+        "partial": [
+          "data_acquisition"
+        ]
+      }
     },
     {
       "id": "ruida-rdnest",
@@ -1436,11 +1765,25 @@
           "url": "https://www.laserfair.com/m/news/202511/12/89451.html",
           "title": "RDNest 介绍",
           "accessed": "2026-06"
+        },
+        {
+          "url": "https://www.rdacs.com/download?type=software",
+          "title": "睿达科技 激光软件下载（含 RDNest 套料）",
+          "accessed": "2026-06"
         }
       ],
       "international_benchmarks": [
         "zhige-smartnest"
-      ]
+      ],
+      "capabilities": {
+        "full": [
+          "cam_milling_cnc",
+          "xinchuang_compat"
+        ],
+        "partial": [
+          "cloud_native"
+        ]
+      }
     },
     {
       "id": "lantek-expert",
@@ -1492,7 +1835,17 @@
       "international_benchmarks": [
         "zhige-smartnest",
         "fastcam-pro-v9"
-      ]
+      ],
+      "capabilities": {
+        "full": [
+          "cam_milling_cnc"
+        ],
+        "partial": [
+          "scheduling_ops",
+          "bom_mgmt",
+          "ext_api"
+        ]
+      }
     },
     {
       "id": "cntech-ceasiom",
@@ -1546,7 +1899,17 @@
       ],
       "international_benchmarks": [
         "ansys-fluent"
-      ]
+      ],
+      "capabilities": {
+        "full": [
+          "cfd_fluid",
+          "mbse_sys"
+        ],
+        "partial": [
+          "fea_structure",
+          "xinchuang_compat"
+        ]
+      }
     },
     {
       "id": "cntech-femag",
@@ -1561,32 +1924,37 @@
       "maturity": "mid",
       "localization_depth": "partial",
       "strengths_zh": [
-        "电机电磁仿真",
-        "比利时 FEMAG SA 技术",
-        "新能源驱动电机"
+        "提拉法(CZ)/VB-VGF 法晶体生长多物理场仿真",
+        "比利时 FEMAG SA 技术引进",
+        "单晶硅/蓝宝石热场、热应力与缺陷预测"
       ],
       "strengths_en": [
-        "Motor electromagnetics",
-        "Belgium FEMAG SA lineage",
-        "EV drive motors"
+        "Czochralski/VB-VGF crystal-growth multiphysics",
+        "Belgium FEMAG SA technology transfer",
+        "Mono-Si/sapphire thermal field, stress & defect prediction"
       ],
       "limitations_zh": [
-        "市场声量小于专用电机软件",
-        "与 Maxwell/JMAG 差距"
+        "应用聚焦晶体生长，通用 CAE 覆盖窄",
+        "国内商业化声量较小"
       ],
       "limitations_en": [
-        "Lower mindshare vs motor tools",
-        "Gap vs Maxwell/JMAG"
+        "Focused on crystal growth; narrow general-CAE scope",
+        "Modest commercial mindshare in China"
       ],
       "industries": [
-        "新能源",
-        "电机",
-        "汽车"
+        "半导体",
+        "光伏",
+        "新材料"
       ],
       "pricing": "high",
       "confidence": 0.76,
       "last_verified": "2026-06",
       "sources": [
+        {
+          "url": "http://simulation.cntech.com/femag/femag_cz.html",
+          "title": "中仿科技 FEMAG 提拉法晶体生长模拟软件",
+          "accessed": "2026-06"
+        },
         {
           "url": "https://pitchhub.36kr.com/project/1818806921941124",
           "title": "36kr CnTech",
@@ -1595,7 +1963,16 @@
       ],
       "international_benchmarks": [
         "comsol"
-      ]
+      ],
+      "capabilities": {
+        "full": [
+          "multi_physics"
+        ],
+        "partial": [
+          "electromagnetics",
+          "xinchuang_compat"
+        ]
+      }
     },
     {
       "id": "wolfram-mathematica",
@@ -1638,7 +2015,17 @@
           "title": "Wolfram Mathematica",
           "accessed": "2026-06"
         }
-      ]
+      ],
+      "capabilities": {
+        "full": [
+          "multi_physics",
+          "ext_api"
+        ],
+        "partial": [
+          "fea_structure",
+          "mbse_sys"
+        ]
+      }
     },
     {
       "id": "anwise-simvver",
@@ -1686,7 +2073,18 @@
           "title": "安怀信企业信息",
           "accessed": "2026-06"
         }
-      ]
+      ],
+      "capabilities": {
+        "full": [
+          "requirements_trace"
+        ],
+        "partial": [
+          "fea_structure",
+          "cfd_fluid",
+          "electromagnetics",
+          "xinchuang_compat"
+        ]
+      }
     },
     {
       "id": "mathworks-matlab",
@@ -1730,7 +2128,19 @@
           "title": "MATLAB",
           "accessed": "2026-06"
         }
-      ]
+      ],
+      "capabilities": {
+        "full": [
+          "mbse_sys",
+          "ext_api"
+        ],
+        "partial": [
+          "multi_physics",
+          "fea_structure",
+          "data_acquisition",
+          "process_control"
+        ]
+      }
     },
     {
       "id": "altair-radioss",
@@ -1773,7 +2183,15 @@
           "title": "Altair Radioss",
           "accessed": "2026-06"
         }
-      ]
+      ],
+      "capabilities": {
+        "full": [
+          "fea_structure"
+        ],
+        "partial": [
+          "multi_physics"
+        ]
+      }
     },
     {
       "id": "altair-optistruct",
@@ -1816,7 +2234,16 @@
           "title": "Altair OptiStruct",
           "accessed": "2026-06"
         }
-      ]
+      ],
+      "capabilities": {
+        "full": [
+          "fea_structure"
+        ],
+        "partial": [
+          "multi_physics",
+          "ext_api"
+        ]
+      }
     },
     {
       "id": "hexagon-adams",
@@ -1859,7 +2286,16 @@
           "title": "MSC Adams",
           "accessed": "2026-06"
         }
-      ]
+      ],
+      "capabilities": {
+        "full": [
+          "fea_structure"
+        ],
+        "partial": [
+          "mbse_sys",
+          "ext_api"
+        ]
+      }
     },
     {
       "id": "hexagon-pcdmis",
@@ -1902,7 +2338,16 @@
           "title": "PC-DMIS",
           "accessed": "2026-06"
         }
-      ]
+      ],
+      "capabilities": {
+        "full": [
+          "data_acquisition"
+        ],
+        "partial": [
+          "cad_repair_interop",
+          "ext_api"
+        ]
+      }
     },
     {
       "id": "siemens-simcenter",
@@ -1945,7 +2390,20 @@
           "title": "Siemens Simcenter",
           "accessed": "2026-06"
         }
-      ]
+      ],
+      "capabilities": {
+        "full": [
+          "fea_structure",
+          "cfd_fluid",
+          "multi_physics",
+          "opt_light_acoustics"
+        ],
+        "partial": [
+          "electromagnetics",
+          "ext_api",
+          "requirements_trace"
+        ]
+      }
     },
     {
       "id": "autodesk-powershape",
@@ -1988,7 +2446,17 @@
           "title": "Autodesk PowerShape",
           "accessed": "2026-06"
         }
-      ]
+      ],
+      "capabilities": {
+        "full": [
+          "solid_modeling_3d",
+          "surface_modeling"
+        ],
+        "partial": [
+          "cam_milling_cnc",
+          "cad_repair_interop"
+        ]
+      }
     },
     {
       "id": "pkpm-structure",
@@ -2041,7 +2509,19 @@
       "category_l1": "研发设计",
       "category_l2": "CAE",
       "product_type": "cae_solver",
-      "last_verified": "2026-06"
+      "last_verified": "2026-06",
+      "capabilities": {
+        "full": [
+          "fea_structure",
+          "code_compliance",
+          "drafting_2d",
+          "xinchuang_compat"
+        ],
+        "partial": [
+          "bom_mgmt",
+          "bim_clash"
+        ]
+      }
     },
     {
       "id": "pkpm-cae",
@@ -2095,7 +2575,19 @@
       "category_l1": "研发设计",
       "category_l2": "CAE",
       "product_type": "cae_solver",
-      "last_verified": "2026-06"
+      "last_verified": "2026-06",
+      "capabilities": {
+        "full": [
+          "fea_structure",
+          "multi_physics",
+          "cloud_native",
+          "xinchuang_compat"
+        ],
+        "partial": [
+          "cfd_fluid",
+          "ext_api"
+        ]
+      }
     },
     {
       "id": "pkpm-sausg",
@@ -2148,7 +2640,17 @@
       "category_l1": "研发设计",
       "category_l2": "CAE",
       "product_type": "cae_solver",
-      "last_verified": "2026-06"
+      "last_verified": "2026-06",
+      "capabilities": {
+        "full": [
+          "fea_structure",
+          "code_compliance",
+          "xinchuang_compat"
+        ],
+        "partial": [
+          "multi_physics"
+        ]
+      }
     },
     {
       "id": "yjk-structure",
@@ -2202,7 +2704,19 @@
       "category_l1": "研发设计",
       "category_l2": "CAE",
       "product_type": "cae_solver",
-      "last_verified": "2026-06"
+      "last_verified": "2026-06",
+      "capabilities": {
+        "full": [
+          "fea_structure",
+          "code_compliance",
+          "drafting_2d",
+          "xinchuang_compat"
+        ],
+        "partial": [
+          "bim_clash",
+          "bom_mgmt"
+        ]
+      }
     },
     {
       "id": "3d3s-design",
@@ -2255,7 +2769,18 @@
       "category_l1": "研发设计",
       "category_l2": "CAE",
       "product_type": "cae_solver",
-      "last_verified": "2026-06"
+      "last_verified": "2026-06",
+      "capabilities": {
+        "full": [
+          "fea_structure",
+          "code_compliance",
+          "drafting_2d",
+          "xinchuang_compat"
+        ],
+        "partial": [
+          "solid_modeling_3d"
+        ]
+      }
     },
     {
       "id": "doctor-bridge",
@@ -2309,7 +2834,17 @@
       "category_l1": "研发设计",
       "category_l2": "CAE",
       "product_type": "cae_solver",
-      "last_verified": "2026-06"
+      "last_verified": "2026-06",
+      "capabilities": {
+        "full": [
+          "fea_structure",
+          "code_compliance",
+          "xinchuang_compat"
+        ],
+        "partial": [
+          "drafting_2d"
+        ]
+      }
     },
     {
       "id": "lizheng-structure-toolbox",
@@ -2361,7 +2896,17 @@
       "category_l1": "研发设计",
       "category_l2": "CAE",
       "product_type": "cae_solver",
-      "last_verified": "2026-06"
+      "last_verified": "2026-06",
+      "capabilities": {
+        "full": [
+          "code_compliance",
+          "drafting_2d",
+          "xinchuang_compat"
+        ],
+        "partial": [
+          "fea_structure"
+        ]
+      }
     },
     {
       "id": "karamba3d",
@@ -2414,7 +2959,17 @@
       "category_l1": "研发设计",
       "category_l2": "CAE",
       "product_type": "cae_solver",
-      "last_verified": "2026-06"
+      "last_verified": "2026-06",
+      "capabilities": {
+        "full": [
+          "fea_structure",
+          "visual_programming"
+        ],
+        "partial": [
+          "parametric_design",
+          "ext_api"
+        ]
+      }
     },
     {
       "id": "csi-sap2000",
@@ -2464,7 +3019,17 @@
       "category_l1": "研发设计",
       "category_l2": "CAE",
       "product_type": "cae_solver",
-      "last_verified": "2026-06"
+      "last_verified": "2026-06",
+      "capabilities": {
+        "full": [
+          "fea_structure",
+          "code_compliance"
+        ],
+        "partial": [
+          "ext_api",
+          "drafting_2d"
+        ]
+      }
     },
     {
       "id": "csi-etabs",
@@ -2514,7 +3079,17 @@
       "category_l1": "研发设计",
       "category_l2": "CAE",
       "product_type": "cae_solver",
-      "last_verified": "2026-06"
+      "last_verified": "2026-06",
+      "capabilities": {
+        "full": [
+          "fea_structure",
+          "code_compliance"
+        ],
+        "partial": [
+          "ext_api",
+          "drafting_2d"
+        ]
+      }
     },
     {
       "id": "csi-perform3d",
@@ -2563,7 +3138,15 @@
       "category_l1": "研发设计",
       "category_l2": "CAE",
       "product_type": "cae_solver",
-      "last_verified": "2026-06"
+      "last_verified": "2026-06",
+      "capabilities": {
+        "full": [
+          "fea_structure"
+        ],
+        "partial": [
+          "code_compliance"
+        ]
+      }
     },
     {
       "id": "csi-safe",
@@ -2612,7 +3195,16 @@
       "category_l1": "研发设计",
       "category_l2": "CAE",
       "product_type": "cae_solver",
-      "last_verified": "2026-06"
+      "last_verified": "2026-06",
+      "capabilities": {
+        "full": [
+          "fea_structure",
+          "code_compliance"
+        ],
+        "partial": [
+          "drafting_2d"
+        ]
+      }
     },
     {
       "id": "midas-civil",
@@ -2661,7 +3253,17 @@
       "category_l1": "研发设计",
       "category_l2": "CAE",
       "product_type": "cae_solver",
-      "last_verified": "2026-06"
+      "last_verified": "2026-06",
+      "capabilities": {
+        "full": [
+          "fea_structure",
+          "code_compliance"
+        ],
+        "partial": [
+          "drafting_2d",
+          "ext_api"
+        ]
+      }
     },
     {
       "id": "midas-gen",
@@ -2711,7 +3313,17 @@
       "category_l1": "研发设计",
       "category_l2": "CAE",
       "product_type": "cae_solver",
-      "last_verified": "2026-06"
+      "last_verified": "2026-06",
+      "capabilities": {
+        "full": [
+          "fea_structure",
+          "code_compliance"
+        ],
+        "partial": [
+          "drafting_2d",
+          "ext_api"
+        ]
+      }
     },
     {
       "id": "dlubal-rfem",
@@ -2761,7 +3373,17 @@
       "category_l1": "研发设计",
       "category_l2": "CAE",
       "product_type": "cae_solver",
-      "last_verified": "2026-06"
+      "last_verified": "2026-06",
+      "capabilities": {
+        "full": [
+          "fea_structure",
+          "code_compliance"
+        ],
+        "partial": [
+          "ext_api",
+          "visual_programming"
+        ]
+      }
     },
     {
       "id": "siemens-star-ccm-plus",
@@ -2815,7 +3437,17 @@
       "category_l1": "研发设计",
       "category_l2": "CAE",
       "product_type": "cae_solver",
-      "last_verified": "2026-06"
+      "last_verified": "2026-06",
+      "capabilities": {
+        "full": [
+          "cfd_fluid",
+          "multi_physics"
+        ],
+        "partial": [
+          "fea_structure",
+          "ext_api"
+        ]
+      }
     },
     {
       "id": "openfoam",
@@ -2867,7 +3499,16 @@
       "category_l1": "研发设计",
       "category_l2": "CAE",
       "product_type": "cae_solver",
-      "last_verified": "2026-06"
+      "last_verified": "2026-06",
+      "capabilities": {
+        "full": [
+          "cfd_fluid",
+          "ext_api"
+        ],
+        "partial": [
+          "multi_physics"
+        ]
+      }
     },
     {
       "id": "ansys-cfx",
@@ -2920,7 +3561,16 @@
       "category_l1": "研发设计",
       "category_l2": "CAE",
       "product_type": "cae_solver",
-      "last_verified": "2026-06"
+      "last_verified": "2026-06",
+      "capabilities": {
+        "full": [
+          "cfd_fluid"
+        ],
+        "partial": [
+          "multi_physics",
+          "ext_api"
+        ]
+      }
     },
     {
       "id": "bentley-plaxis",
@@ -2969,7 +3619,16 @@
       "category_l1": "研发设计",
       "category_l2": "CAE",
       "product_type": "cae_solver",
-      "last_verified": "2026-06"
+      "last_verified": "2026-06",
+      "capabilities": {
+        "full": [
+          "fea_structure"
+        ],
+        "partial": [
+          "multi_physics",
+          "code_compliance"
+        ]
+      }
     },
     {
       "id": "itasca-flac3d",
@@ -3018,7 +3677,16 @@
       "category_l1": "研发设计",
       "category_l2": "CAE",
       "product_type": "cae_solver",
-      "last_verified": "2026-06"
+      "last_verified": "2026-06",
+      "capabilities": {
+        "full": [
+          "fea_structure"
+        ],
+        "partial": [
+          "multi_physics",
+          "ext_api"
+        ]
+      }
     },
     {
       "id": "bentley-geostudio",
@@ -3067,7 +3735,15 @@
       "category_l1": "研发设计",
       "category_l2": "CAE",
       "product_type": "cae_solver",
-      "last_verified": "2026-06"
+      "last_verified": "2026-06",
+      "capabilities": {
+        "full": [
+          "fea_structure"
+        ],
+        "partial": [
+          "multi_physics"
+        ]
+      }
     },
     {
       "id": "autodesk-robot-structural",
@@ -3119,7 +3795,17 @@
       "category_l1": "研发设计",
       "category_l2": "CAE",
       "product_type": "cae_solver",
-      "last_verified": "2026-06"
+      "last_verified": "2026-06",
+      "capabilities": {
+        "full": [
+          "fea_structure",
+          "code_compliance"
+        ],
+        "partial": [
+          "bim_clash",
+          "ext_api"
+        ]
+      }
     },
     {
       "id": "hexagon-femap",
@@ -3173,7 +3859,16 @@
       "category_l1": "研发设计",
       "category_l2": "CAE",
       "product_type": "cae_solver",
-      "last_verified": "2026-06"
+      "last_verified": "2026-06",
+      "capabilities": {
+        "full": [
+          "fea_structure",
+          "cad_repair_interop"
+        ],
+        "partial": [
+          "ext_api"
+        ]
+      }
     },
     {
       "id": "functionbay-recurdyn",
@@ -3225,7 +3920,16 @@
       "category_l1": "研发设计",
       "category_l2": "CAE",
       "product_type": "cae_solver",
-      "last_verified": "2026-06"
+      "last_verified": "2026-06",
+      "capabilities": {
+        "full": [
+          "fea_structure"
+        ],
+        "partial": [
+          "mbse_sys",
+          "ext_api"
+        ]
+      }
     },
     {
       "id": "openfast",
@@ -3277,7 +3981,16 @@
       "category_l1": "研发设计",
       "category_l2": "CAE",
       "product_type": "cae_solver",
-      "last_verified": "2026-06"
+      "last_verified": "2026-06",
+      "capabilities": {
+        "full": [
+          "fea_structure"
+        ],
+        "partial": [
+          "multi_physics",
+          "ext_api"
+        ]
+      }
     },
     {
       "id": "dnv-bladed",
@@ -3326,7 +4039,16 @@
       "category_l1": "研发设计",
       "category_l2": "CAE",
       "product_type": "cae_solver",
-      "last_verified": "2026-06"
+      "last_verified": "2026-06",
+      "capabilities": {
+        "full": [
+          "fea_structure"
+        ],
+        "partial": [
+          "cfd_fluid",
+          "ext_api"
+        ]
+      }
     },
     {
       "id": "gibbscam",
@@ -3375,7 +4097,16 @@
       "international_benchmarks": [
         "mastercam",
         "hypermill"
-      ]
+      ],
+      "capabilities": {
+        "full": [
+          "cam_milling_cnc"
+        ],
+        "partial": [
+          "solid_modeling_3d",
+          "ext_api"
+        ]
+      }
     },
     {
       "id": "sprutcam",
@@ -3424,7 +4155,16 @@
       "international_benchmarks": [
         "mastercam",
         "hypermill"
-      ]
+      ],
+      "capabilities": {
+        "full": [
+          "cam_milling_cnc"
+        ],
+        "partial": [
+          "solid_modeling_3d",
+          "ext_api"
+        ]
+      }
     }
   ]
 }

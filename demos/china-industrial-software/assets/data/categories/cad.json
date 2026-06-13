@@ -41,13 +41,32 @@
           "url": "https://www.zwsoft.cn/",
           "title": "ZWCAD",
           "accessed": "2026-06"
+        },
+        {
+          "title": "ZWSOFT 官网",
+          "url": "https://www.zwsoft.com/",
+          "accessed": "2026-06"
         }
       ],
       "international_benchmarks": [
         "autocad"
       ],
       "listed_ticker": "300624.SZ",
-      "kernel_id": "zw-overdrive"
+      "kernel_id": "zw-overdrive",
+      "capabilities": {
+        "full": [
+          "drafting_2d",
+          "cad_repair_interop",
+          "ext_api",
+          "xinchuang_compat"
+        ],
+        "partial": [
+          "solid_modeling_3d",
+          "assembly_design",
+          "parametric_design",
+          "collaboration"
+        ]
+      }
     },
     {
       "id": "gstarcad",
@@ -95,7 +114,20 @@
         "autocad"
       ],
       "listed_ticker": "688657.SH",
-      "kernel_id": "gstar-2d-platform"
+      "kernel_id": "gstar-2d-platform",
+      "capabilities": {
+        "full": [
+          "drafting_2d",
+          "cad_repair_interop",
+          "ext_api",
+          "xinchuang_compat"
+        ],
+        "partial": [
+          "solid_modeling_3d",
+          "cloud_native",
+          "collaboration"
+        ]
+      }
     },
     {
       "id": "crowncad",
@@ -141,7 +173,23 @@
       "international_benchmarks": [
         "onshape"
       ],
-      "kernel_id": "crowncad-dgm"
+      "kernel_id": "crowncad-dgm",
+      "capabilities": {
+        "full": [
+          "solid_modeling_3d",
+          "parametric_design",
+          "assembly_design",
+          "cloud_native",
+          "collaboration",
+          "xinchuang_compat"
+        ],
+        "partial": [
+          "drafting_2d",
+          "surface_modeling",
+          "cad_repair_interop",
+          "ext_api"
+        ]
+      }
     },
     {
       "id": "caxa-cad",
@@ -188,7 +236,18 @@
       "international_benchmarks": [
         "autocad"
       ],
-      "kernel_id": "caxa-mega-kernel"
+      "kernel_id": "caxa-mega-kernel",
+      "capabilities": {
+        "full": [
+          "drafting_2d",
+          "ext_api",
+          "xinchuang_compat"
+        ],
+        "partial": [
+          "cad_repair_interop",
+          "cam_milling_cnc"
+        ]
+      }
     },
     {
       "id": "caxa-3d",
@@ -231,7 +290,21 @@
           "accessed": "2026-06"
         }
       ],
-      "kernel_id": "caxa-mega-kernel"
+      "kernel_id": "caxa-mega-kernel",
+      "capabilities": {
+        "full": [
+          "solid_modeling_3d",
+          "assembly_design",
+          "drafting_2d",
+          "xinchuang_compat"
+        ],
+        "partial": [
+          "parametric_design",
+          "surface_modeling",
+          "cam_milling_cnc",
+          "cad_repair_interop"
+        ]
+      }
     },
     {
       "id": "hoteam-cad",
@@ -274,7 +347,21 @@
           "accessed": "2026-06"
         }
       ],
-      "kernel_id": "hoteam-crux-iv"
+      "kernel_id": "hoteam-crux-iv",
+      "capabilities": {
+        "full": [
+          "solid_modeling_3d",
+          "parametric_design",
+          "assembly_design",
+          "drafting_2d",
+          "xinchuang_compat"
+        ],
+        "partial": [
+          "surface_modeling",
+          "cad_repair_interop",
+          "bom_mgmt"
+        ]
+      }
     },
     {
       "id": "tianhe-cad",
@@ -315,9 +402,24 @@
           "url": "http://www.thsoft.com.cn/",
           "title": "THSOFT CAD",
           "accessed": "2026-06"
+        },
+        {
+          "title": "天河智造 THIT 官网",
+          "url": "https://www.thit.com.cn/",
+          "accessed": "2026-06"
         }
       ],
-      "kernel_id": "thcad-platform-kernel"
+      "kernel_id": "thcad-platform-kernel",
+      "capabilities": {
+        "full": [
+          "drafting_2d",
+          "xinchuang_compat"
+        ],
+        "partial": [
+          "solid_modeling_3d",
+          "ext_api"
+        ]
+      }
     },
     {
       "id": "pengye-cad",
@@ -359,9 +461,24 @@
           "url": "http://www.pengyesoftware.com/",
           "title": "Pengye CAD",
           "accessed": "2026-06"
+        },
+        {
+          "title": "成都鹏业软件 官网",
+          "url": "http://www.pengye.com.cn:8080/",
+          "accessed": "2026-06"
         }
       ],
-      "kernel_id": "pengye-graphic-platform"
+      "kernel_id": "pengye-graphic-platform",
+      "capabilities": {
+        "full": [
+          "drafting_2d",
+          "code_compliance",
+          "xinchuang_compat"
+        ],
+        "partial": [
+          "bom_mgmt"
+        ]
+      }
     },
     {
       "id": "autocad",
@@ -406,7 +523,20 @@
         }
       ],
       "listed_ticker": "ADSK",
-      "kernel_id": "autodesk-acad-geometry"
+      "kernel_id": "autodesk-acad-geometry",
+      "capabilities": {
+        "full": [
+          "drafting_2d",
+          "cad_repair_interop",
+          "ext_api"
+        ],
+        "partial": [
+          "solid_modeling_3d",
+          "surface_modeling",
+          "collaboration",
+          "gis_spatial"
+        ]
+      }
     },
     {
       "id": "solidworks",
@@ -450,7 +580,22 @@
           "accessed": "2026-06"
         }
       ],
-      "kernel_id": "parasolid"
+      "kernel_id": "parasolid",
+      "capabilities": {
+        "full": [
+          "solid_modeling_3d",
+          "parametric_design",
+          "assembly_design",
+          "drafting_2d",
+          "cad_repair_interop"
+        ],
+        "partial": [
+          "surface_modeling",
+          "fea_structure",
+          "ext_api",
+          "bom_mgmt"
+        ]
+      }
     },
     {
       "id": "catia",
@@ -494,7 +639,22 @@
           "accessed": "2026-06"
         }
       ],
-      "kernel_id": "catia-cgm"
+      "kernel_id": "catia-cgm",
+      "capabilities": {
+        "full": [
+          "surface_modeling",
+          "solid_modeling_3d",
+          "parametric_design",
+          "assembly_design",
+          "cad_repair_interop"
+        ],
+        "partial": [
+          "drafting_2d",
+          "ext_api",
+          "mbse_sys",
+          "lifecycle_mgmt"
+        ]
+      }
     },
     {
       "id": "siemens-nx",
@@ -538,7 +698,22 @@
           "accessed": "2026-06"
         }
       ],
-      "kernel_id": "siemens-hybrid-stack"
+      "kernel_id": "siemens-hybrid-stack",
+      "capabilities": {
+        "full": [
+          "solid_modeling_3d",
+          "surface_modeling",
+          "parametric_design",
+          "assembly_design",
+          "cam_milling_cnc",
+          "cad_repair_interop"
+        ],
+        "partial": [
+          "drafting_2d",
+          "fea_structure",
+          "ext_api"
+        ]
+      }
     },
     {
       "id": "creo",
@@ -582,7 +757,21 @@
           "accessed": "2026-06"
         }
       ],
-      "kernel_id": "granite"
+      "kernel_id": "granite",
+      "capabilities": {
+        "full": [
+          "solid_modeling_3d",
+          "parametric_design",
+          "assembly_design",
+          "drafting_2d",
+          "cad_repair_interop"
+        ],
+        "partial": [
+          "surface_modeling",
+          "fea_structure",
+          "ext_api"
+        ]
+      }
     },
     {
       "id": "inventor",
@@ -625,7 +814,20 @@
           "accessed": "2026-06"
         }
       ],
-      "kernel_id": "shape-manager"
+      "kernel_id": "shape-manager",
+      "capabilities": {
+        "full": [
+          "solid_modeling_3d",
+          "parametric_design",
+          "assembly_design",
+          "drafting_2d"
+        ],
+        "partial": [
+          "surface_modeling",
+          "cad_repair_interop",
+          "ext_api"
+        ]
+      }
     },
     {
       "id": "fusion360",
@@ -669,7 +871,23 @@
           "accessed": "2026-06"
         }
       ],
-      "kernel_id": "shape-manager"
+      "kernel_id": "shape-manager",
+      "capabilities": {
+        "full": [
+          "solid_modeling_3d",
+          "parametric_design",
+          "assembly_design",
+          "cam_milling_cnc",
+          "cloud_native"
+        ],
+        "partial": [
+          "surface_modeling",
+          "drafting_2d",
+          "fea_structure",
+          "collaboration",
+          "slicing_algorithm"
+        ]
+      }
     },
     {
       "id": "onshape",
@@ -712,7 +930,21 @@
           "accessed": "2026-06"
         }
       ],
-      "kernel_id": "parasolid"
+      "kernel_id": "parasolid",
+      "capabilities": {
+        "full": [
+          "solid_modeling_3d",
+          "parametric_design",
+          "assembly_design",
+          "cloud_native",
+          "collaboration",
+          "ext_api"
+        ],
+        "partial": [
+          "drafting_2d",
+          "cad_repair_interop"
+        ]
+      }
     },
     {
       "id": "bricscad",
@@ -755,7 +987,19 @@
           "accessed": "2026-06"
         }
       ],
-      "kernel_id": "acis"
+      "kernel_id": "acis",
+      "capabilities": {
+        "full": [
+          "drafting_2d",
+          "cad_repair_interop",
+          "ext_api"
+        ],
+        "partial": [
+          "solid_modeling_3d",
+          "parametric_design",
+          "bim_clash"
+        ]
+      }
     },
     {
       "id": "sketchup",
@@ -799,7 +1043,18 @@
           "accessed": "2026-06"
         }
       ],
-      "kernel_id": "sketchup-geometry"
+      "kernel_id": "sketchup-geometry",
+      "capabilities": {
+        "full": [
+          "solid_modeling_3d"
+        ],
+        "partial": [
+          "surface_modeling",
+          "drafting_2d",
+          "ext_api",
+          "collaboration"
+        ]
+      }
     },
     {
       "id": "autodesk-alias",
@@ -866,7 +1121,17 @@
         "icem-surf",
         "rhino"
       ],
-      "listed_ticker": "ADSK"
+      "listed_ticker": "ADSK",
+      "capabilities": {
+        "full": [
+          "surface_modeling"
+        ],
+        "partial": [
+          "visual_programming",
+          "cad_repair_interop",
+          "ext_api"
+        ]
+      }
     },
     {
       "id": "icem-surf",
@@ -926,7 +1191,14 @@
       "international_benchmarks": [
         "autodesk-alias",
         "catia"
-      ]
+      ],
+      "capabilities": {
+        "full": [
+          "surface_modeling",
+          "cad_repair_interop"
+        ],
+        "partial": []
+      }
     },
     {
       "id": "crown-styling",
@@ -987,7 +1259,18 @@
       "international_benchmarks": [
         "autodesk-alias",
         "rhino"
-      ]
+      ],
+      "capabilities": {
+        "full": [
+          "surface_modeling",
+          "cloud_native",
+          "xinchuang_compat"
+        ],
+        "partial": [
+          "cad_repair_interop",
+          "collaboration"
+        ]
+      }
     },
     {
       "id": "autodesk-vred",
@@ -1044,7 +1327,15 @@
       "international_benchmarks": [
         "autodesk-alias",
         "keyshot"
-      ]
+      ],
+      "capabilities": {
+        "full": [],
+        "partial": [
+          "surface_modeling",
+          "collaboration",
+          "ext_api"
+        ]
+      }
     },
     {
       "id": "keyshot",
@@ -1093,7 +1384,14 @@
       ],
       "international_benchmarks": [
         "autodesk-vred"
-      ]
+      ],
+      "capabilities": {
+        "full": [],
+        "partial": [
+          "cad_repair_interop",
+          "ext_api"
+        ]
+      }
     },
     {
       "id": "geomagic-design-x",
@@ -1146,7 +1444,18 @@
       "international_benchmarks": [
         "autodesk-powershape",
         "icem-surf"
-      ]
+      ],
+      "capabilities": {
+        "full": [
+          "surface_modeling",
+          "cad_repair_interop",
+          "parametric_design"
+        ],
+        "partial": [
+          "solid_modeling_3d",
+          "am_layout"
+        ]
+      }
     },
     {
       "id": "zoo-design-studio",
@@ -1206,7 +1515,20 @@
       "international_benchmarks": [
         "onshape",
         "newdim-tiangong-cad"
-      ]
+      ],
+      "capabilities": {
+        "full": [
+          "solid_modeling_3d",
+          "parametric_design",
+          "cloud_native",
+          "ext_api"
+        ],
+        "partial": [
+          "assembly_design",
+          "surface_modeling",
+          "collaboration"
+        ]
+      }
     },
     {
       "id": "leo-ai-platform",
@@ -1265,7 +1587,19 @@
       ],
       "international_benchmarks": [
         "zoo-design-studio"
-      ]
+      ],
+      "capabilities": {
+        "full": [
+          "ext_api",
+          "cloud_native"
+        ],
+        "partial": [
+          "assembly_design",
+          "bom_mgmt",
+          "lifecycle_mgmt",
+          "requirements_trace"
+        ]
+      }
     },
     {
       "id": "yfway-furniture-design",
@@ -1316,7 +1650,19 @@
       ],
       "international_benchmarks": [
         "solidworks"
-      ]
+      ],
+      "capabilities": {
+        "full": [
+          "parametric_design",
+          "drafting_2d",
+          "xinchuang_compat"
+        ],
+        "partial": [
+          "solid_modeling_3d",
+          "bom_mgmt",
+          "am_layout"
+        ]
+      }
     },
     {
       "id": "grasshopper",
@@ -1378,7 +1724,19 @@
       "international_benchmarks": [
         "dynamo",
         "geometry-nodes"
-      ]
+      ],
+      "capabilities": {
+        "full": [
+          "visual_programming",
+          "parametric_design",
+          "ext_api"
+        ],
+        "partial": [
+          "surface_modeling",
+          "opt_light_acoustics",
+          "fea_structure"
+        ]
+      }
     },
     {
       "id": "marionette",
@@ -1439,7 +1797,17 @@
       "international_benchmarks": [
         "grasshopper",
         "dynamo"
-      ]
+      ],
+      "capabilities": {
+        "full": [
+          "visual_programming",
+          "ext_api"
+        ],
+        "partial": [
+          "parametric_design",
+          "bim_clash"
+        ]
+      }
     },
     {
       "id": "houdini",
@@ -1501,7 +1869,17 @@
       "international_benchmarks": [
         "grasshopper",
         "geometry-nodes"
-      ]
+      ],
+      "capabilities": {
+        "full": [
+          "visual_programming",
+          "ext_api"
+        ],
+        "partial": [
+          "surface_modeling",
+          "parametric_design"
+        ]
+      }
     },
     {
       "id": "geometry-nodes",
@@ -1564,7 +1942,18 @@
       "international_benchmarks": [
         "grasshopper",
         "houdini"
-      ]
+      ],
+      "capabilities": {
+        "full": [
+          "visual_programming",
+          "ext_api"
+        ],
+        "partial": [
+          "parametric_design",
+          "surface_modeling",
+          "am_layout"
+        ]
+      }
     },
     {
       "id": "rhino-python",
@@ -1625,7 +2014,17 @@
       "international_benchmarks": [
         "pyrevit",
         "nx-open"
-      ]
+      ],
+      "capabilities": {
+        "full": [
+          "ext_api"
+        ],
+        "partial": [
+          "visual_programming",
+          "parametric_design",
+          "surface_modeling"
+        ]
+      }
     },
     {
       "id": "designscript",
@@ -1686,7 +2085,17 @@
       "international_benchmarks": [
         "dynamo",
         "grasshopper"
-      ]
+      ],
+      "capabilities": {
+        "full": [
+          "ext_api",
+          "visual_programming"
+        ],
+        "partial": [
+          "parametric_design",
+          "drafting_2d"
+        ]
+      }
     },
     {
       "id": "driveworks",
@@ -1747,7 +2156,18 @@
       "international_benchmarks": [
         "nx-open",
         "featurescript"
-      ]
+      ],
+      "capabilities": {
+        "full": [
+          "ext_api",
+          "parametric_design"
+        ],
+        "partial": [
+          "assembly_design",
+          "drafting_2d",
+          "bom_mgmt"
+        ]
+      }
     },
     {
       "id": "nx-open",
@@ -1809,7 +2229,17 @@
       "international_benchmarks": [
         "driveworks",
         "featurescript"
-      ]
+      ],
+      "capabilities": {
+        "full": [
+          "ext_api"
+        ],
+        "partial": [
+          "parametric_design",
+          "assembly_design",
+          "cam_milling_cnc"
+        ]
+      }
     },
     {
       "id": "featurescript",
@@ -1870,7 +2300,17 @@
       "international_benchmarks": [
         "nx-open",
         "crowncad-api"
-      ]
+      ],
+      "capabilities": {
+        "full": [
+          "ext_api",
+          "parametric_design",
+          "cloud_native"
+        ],
+        "partial": [
+          "solid_modeling_3d"
+        ]
+      }
     },
     {
       "id": "ladybug-tools",
@@ -1931,7 +2371,18 @@
       "international_benchmarks": [
         "grasshopper",
         "dynamo"
-      ]
+      ],
+      "capabilities": {
+        "full": [
+          "opt_light_acoustics",
+          "visual_programming"
+        ],
+        "partial": [
+          "cfd_fluid",
+          "ext_api",
+          "gis_spatial"
+        ]
+      }
     },
     {
       "id": "crowncad-api",
@@ -1992,7 +2443,18 @@
       "international_benchmarks": [
         "featurescript",
         "onshape"
-      ]
+      ],
+      "capabilities": {
+        "full": [
+          "ext_api",
+          "cloud_native",
+          "xinchuang_compat"
+        ],
+        "partial": [
+          "parametric_design",
+          "collaboration"
+        ]
+      }
     },
     {
       "id": "zwcad-api",
@@ -2054,7 +2516,17 @@
       "international_benchmarks": [
         "autocad",
         "revit-api"
-      ]
+      ],
+      "capabilities": {
+        "full": [
+          "ext_api",
+          "xinchuang_compat"
+        ],
+        "partial": [
+          "drafting_2d",
+          "parametric_design"
+        ]
+      }
     },
     {
       "id": "freecad-python-api",
@@ -2117,7 +2589,17 @@
       "international_benchmarks": [
         "nx-open",
         "rhino-python"
-      ]
+      ],
+      "capabilities": {
+        "full": [
+          "ext_api"
+        ],
+        "partial": [
+          "parametric_design",
+          "solid_modeling_3d",
+          "visual_programming"
+        ]
+      }
     },
     {
       "id": "rhino-inside",
@@ -2165,7 +2647,18 @@
           "title": "Rhino.Inside Revit",
           "accessed": "2026-06"
         }
-      ]
+      ],
+      "capabilities": {
+        "full": [
+          "ext_api"
+        ],
+        "partial": [
+          "surface_modeling",
+          "parametric_design",
+          "visual_programming",
+          "cad_repair_interop"
+        ]
+      }
     },
     {
       "id": "rhino",
@@ -2220,7 +2713,20 @@
       "international_benchmarks": [
         "solidworks",
         "catia"
-      ]
+      ],
+      "capabilities": {
+        "full": [
+          "surface_modeling",
+          "solid_modeling_3d",
+          "visual_programming"
+        ],
+        "partial": [
+          "drafting_2d",
+          "cad_repair_interop",
+          "ext_api",
+          "slicing_algorithm"
+        ]
+      }
     },
     {
       "id": "ironcad",
@@ -2270,7 +2776,19 @@
       "international_benchmarks": [
         "solidworks",
         "inventor"
-      ]
+      ],
+      "capabilities": {
+        "full": [
+          "solid_modeling_3d",
+          "assembly_design",
+          "drafting_2d"
+        ],
+        "partial": [
+          "parametric_design",
+          "surface_modeling",
+          "cad_repair_interop"
+        ]
+      }
     },
     {
       "id": "formz",
@@ -2316,7 +2834,17 @@
           "title": "form·Z Pro",
           "accessed": "2026-06"
         }
-      ]
+      ],
+      "capabilities": {
+        "full": [
+          "solid_modeling_3d",
+          "surface_modeling"
+        ],
+        "partial": [
+          "drafting_2d",
+          "slicing_algorithm"
+        ]
+      }
     },
     {
       "id": "solid-edge",
@@ -2366,7 +2894,21 @@
       "international_benchmarks": [
         "solidworks",
         "siemens-nx"
-      ]
+      ],
+      "capabilities": {
+        "full": [
+          "solid_modeling_3d",
+          "parametric_design",
+          "assembly_design",
+          "drafting_2d"
+        ],
+        "partial": [
+          "surface_modeling",
+          "cad_repair_interop",
+          "fea_structure",
+          "ext_api"
+        ]
+      }
     },
     {
       "id": "kompas-3d",
@@ -2417,7 +2959,20 @@
           "title": "C3D / KOMPAS-3D",
           "accessed": "2026-06"
         }
-      ]
+      ],
+      "capabilities": {
+        "full": [
+          "solid_modeling_3d",
+          "parametric_design",
+          "assembly_design",
+          "drafting_2d"
+        ],
+        "partial": [
+          "surface_modeling",
+          "cad_repair_interop",
+          "code_compliance"
+        ]
+      }
     },
     {
       "id": "t-flex-cad",
@@ -2463,7 +3018,20 @@
           "title": "T-FLEX CAD",
           "accessed": "2026-06"
         }
-      ]
+      ],
+      "capabilities": {
+        "full": [
+          "solid_modeling_3d",
+          "parametric_design",
+          "assembly_design",
+          "drafting_2d"
+        ],
+        "partial": [
+          "cam_milling_cnc",
+          "fea_structure",
+          "cad_repair_interop"
+        ]
+      }
     },
     {
       "id": "vectorworks",
@@ -2512,7 +3080,20 @@
       "international_benchmarks": [
         "revit",
         "archicad"
-      ]
+      ],
+      "capabilities": {
+        "full": [
+          "drafting_2d",
+          "solid_modeling_3d",
+          "bim_clash"
+        ],
+        "partial": [
+          "surface_modeling",
+          "parametric_design",
+          "visual_programming",
+          "ext_api"
+        ]
+      }
     },
     {
       "id": "zw3d",
@@ -2568,7 +3149,22 @@
         "solidworks",
         "siemens-nx"
       ],
-      "listed_ticker": "300624.SZ"
+      "listed_ticker": "300624.SZ",
+      "capabilities": {
+        "full": [
+          "solid_modeling_3d",
+          "parametric_design",
+          "assembly_design",
+          "cam_milling_cnc",
+          "xinchuang_compat"
+        ],
+        "partial": [
+          "surface_modeling",
+          "drafting_2d",
+          "cad_repair_interop",
+          "ext_api"
+        ]
+      }
     },
     {
       "id": "newdim-tiangong-cad",
@@ -2622,7 +3218,22 @@
       "international_benchmarks": [
         "solid-edge",
         "solidworks"
-      ]
+      ],
+      "capabilities": {
+        "full": [
+          "solid_modeling_3d",
+          "parametric_design",
+          "assembly_design",
+          "drafting_2d",
+          "xinchuang_compat"
+        ],
+        "partial": [
+          "surface_modeling",
+          "cad_repair_interop",
+          "cloud_native",
+          "collaboration"
+        ]
+      }
     },
     {
       "id": "poisson-geoshape-cad",
@@ -2667,12 +3278,32 @@
           "url": "https://www.poissonsoft.com/page323?_l=zh_CN",
           "title": "Geoshape engine",
           "accessed": "2026-06"
+        },
+        {
+          "title": "Geoshape 3D CAD 平台",
+          "url": "https://www.poissonsoft.com/page2990684913498131984123",
+          "accessed": "2026-06"
         }
       ],
       "international_benchmarks": [
         "zw3d",
         "crowncad"
-      ]
+      ],
+      "capabilities": {
+        "full": [
+          "solid_modeling_3d",
+          "parametric_design",
+          "assembly_design",
+          "cloud_native",
+          "xinchuang_compat"
+        ],
+        "partial": [
+          "drafting_2d",
+          "surface_modeling",
+          "ext_api",
+          "collaboration"
+        ]
+      }
     },
     {
       "id": "hoops-exchange",
@@ -2715,7 +3346,14 @@
           "title": "HOOPS Exchange",
           "accessed": "2026-06"
         }
-      ]
+      ],
+      "capabilities": {
+        "full": [
+          "cad_repair_interop",
+          "ext_api"
+        ],
+        "partial": []
+      }
     },
     {
       "id": "datakit-crosscad",
@@ -2761,7 +3399,14 @@
       ],
       "international_benchmarks": [
         "hoops-exchange"
-      ]
+      ],
+      "capabilities": {
+        "full": [
+          "cad_repair_interop",
+          "ext_api"
+        ],
+        "partial": []
+      }
     },
     {
       "id": "elysium-cadfix",
@@ -2804,7 +3449,16 @@
           "title": "Elysium CADfix",
           "accessed": "2026-06"
         }
-      ]
+      ],
+      "capabilities": {
+        "full": [
+          "cad_repair_interop"
+        ],
+        "partial": [
+          "ext_api",
+          "fea_structure"
+        ]
+      }
     },
     {
       "id": "iti-cadiq",
@@ -2850,7 +3504,15 @@
       ],
       "international_benchmarks": [
         "hoops-exchange"
-      ]
+      ],
+      "capabilities": {
+        "full": [
+          "cad_repair_interop"
+        ],
+        "partial": [
+          "ext_api"
+        ]
+      }
     },
     {
       "id": "coretechnologie-3d-evolution",
@@ -2896,7 +3558,16 @@
       ],
       "international_benchmarks": [
         "datakit-crosscad"
-      ]
+      ],
+      "capabilities": {
+        "full": [
+          "cad_repair_interop"
+        ],
+        "partial": [
+          "ext_api",
+          "am_layout"
+        ]
+      }
     }
   ]
 }

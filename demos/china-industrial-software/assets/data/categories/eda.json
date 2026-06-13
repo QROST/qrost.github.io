@@ -52,7 +52,17 @@
           "text_zh": "模拟全流程工具链通过多家国内头部晶圆厂验证",
           "source_url": "https://www.empyrean.com.cn/"
         }
-      ]
+      ],
+      "capabilities": {
+        "full": [
+          "analog_ic_design",
+          "ext_api"
+        ],
+        "partial": [
+          "formal_verification",
+          "xinchuang_compat"
+        ]
+      }
     },
     {
       "id": "empyrean-digital",
@@ -96,7 +106,16 @@
       ],
       "international_benchmarks": [
         "innovus"
-      ]
+      ],
+      "capabilities": {
+        "full": [
+          "digital_ic_synthesis"
+        ],
+        "partial": [
+          "xinchuang_compat",
+          "ext_api"
+        ]
+      }
     },
     {
       "id": "primarius-device",
@@ -140,7 +159,16 @@
       "international_benchmarks": [
         "hspice"
       ],
-      "listed_ticker": "688206.SH"
+      "listed_ticker": "688206.SH",
+      "capabilities": {
+        "full": [
+          "analog_ic_design",
+          "tcad_device_sim"
+        ],
+        "partial": [
+          "ext_api"
+        ]
+      }
     },
     {
       "id": "semitron-yield",
@@ -181,7 +209,16 @@
           "accessed": "2026-06"
         }
       ],
-      "listed_ticker": "301095.SZ"
+      "listed_ticker": "301095.SZ",
+      "capabilities": {
+        "full": [
+          "yield_yms"
+        ],
+        "partial": [
+          "fab_automation_eap",
+          "data_acquisition"
+        ]
+      }
     },
     {
       "id": "x-epic-verification",
@@ -224,7 +261,16 @@
       ],
       "international_benchmarks": [
         "vcs"
-      ]
+      ],
+      "capabilities": {
+        "full": [
+          "formal_verification"
+        ],
+        "partial": [
+          "physical_prototyping",
+          "xinchuang_compat"
+        ]
+      }
     },
     {
       "id": "guowei-eda",
@@ -266,7 +312,16 @@
           "title": "SMIT EDA Tools",
           "accessed": "2026-06"
         }
-      ]
+      ],
+      "capabilities": {
+        "full": [
+          "physical_prototyping",
+          "formal_verification"
+        ],
+        "partial": [
+          "xinchuang_compat"
+        ]
+      }
     },
     {
       "id": "s2c-prototyping",
@@ -312,7 +367,16 @@
       ],
       "international_benchmarks": [
         "synopsys-haps"
-      ]
+      ],
+      "capabilities": {
+        "full": [
+          "physical_prototyping"
+        ],
+        "partial": [
+          "formal_verification",
+          "ext_api"
+        ]
+      }
     },
     {
       "id": "fangxing-simulation",
@@ -353,8 +417,23 @@
           "url": "http://www.fangxing.com/",
           "title": "FangXing EM Simulation",
           "accessed": "2026-06"
+        },
+        {
+          "url": "http://www.ic9cube.com/proEWave/index.aspx",
+          "title": "NineCube eWave 3D EM Field Solver",
+          "accessed": "2026-06"
         }
-      ]
+      ],
+      "capabilities": {
+        "full": [
+          "electromagnetics"
+        ],
+        "partial": [
+          "analog_ic_design",
+          "tcad_device_sim",
+          "multi_physics"
+        ]
+      }
     },
     {
       "id": "jlceda",
@@ -407,7 +486,17 @@
           "text_zh": "嘉立创推出国产在线EDA并免费开放",
           "source_url": "https://lceda.cn/"
         }
-      ]
+      ],
+      "capabilities": {
+        "full": [
+          "drafting_2d",
+          "cloud_native"
+        ],
+        "partial": [
+          "collaboration",
+          "bom_mgmt"
+        ]
+      }
     },
     {
       "id": "orcafoundry-pdk",
@@ -449,7 +538,15 @@
           "title": "X-Epic Formal Verification",
           "accessed": "2026-06"
         }
-      ]
+      ],
+      "capabilities": {
+        "full": [
+          "formal_verification"
+        ],
+        "partial": [
+          "xinchuang_compat"
+        ]
+      }
     },
     {
       "id": "hongxin-eda",
@@ -489,8 +586,21 @@
           "url": "https://www.hongxintech.com/",
           "title": "Hongxin Nano Place & Route",
           "accessed": "2026-06"
+        },
+        {
+          "url": "https://www.giga-da.com/",
+          "title": "Giga-DA (Hongxin) Digital Implementation",
+          "accessed": "2026-06"
         }
-      ]
+      ],
+      "capabilities": {
+        "full": [
+          "digital_ic_synthesis"
+        ],
+        "partial": [
+          "xinchuang_compat"
+        ]
+      }
     },
     {
       "id": "synopsys-design",
@@ -534,7 +644,15 @@
           "accessed": "2026-06"
         }
       ],
-      "listed_ticker": "SNPS"
+      "listed_ticker": "SNPS",
+      "capabilities": {
+        "full": [
+          "digital_ic_synthesis"
+        ],
+        "partial": [
+          "formal_verification"
+        ]
+      }
     },
     {
       "id": "cadence-virtuoso",
@@ -577,7 +695,15 @@
           "accessed": "2026-06"
         }
       ],
-      "listed_ticker": "CDNS"
+      "listed_ticker": "CDNS",
+      "capabilities": {
+        "full": [
+          "analog_ic_design"
+        ],
+        "partial": [
+          "ext_api"
+        ]
+      }
     },
     {
       "id": "siemens-calibre",
@@ -619,7 +745,16 @@
           "title": "Siemens Calibre DRC/LVS",
           "accessed": "2026-06"
         }
-      ]
+      ],
+      "capabilities": {
+        "full": [
+          "digital_ic_synthesis"
+        ],
+        "partial": [
+          "analog_ic_design",
+          "ext_api"
+        ]
+      }
     },
     {
       "id": "keysight-ads",
@@ -662,7 +797,16 @@
           "title": "Keysight ADS",
           "accessed": "2026-06"
         }
-      ]
+      ],
+      "capabilities": {
+        "full": [
+          "electromagnetics",
+          "analog_ic_design"
+        ],
+        "partial": [
+          "multi_physics"
+        ]
+      }
     },
     {
       "id": "altium-designer",
@@ -705,7 +849,18 @@
           "title": "Altium Designer",
           "accessed": "2026-06"
         }
-      ]
+      ],
+      "capabilities": {
+        "full": [
+          "drafting_2d",
+          "ext_api"
+        ],
+        "partial": [
+          "cloud_native",
+          "collaboration",
+          "bom_mgmt"
+        ]
+      }
     },
     {
       "id": "silvaco-tcad",
@@ -747,7 +902,16 @@
           "title": "Silvaco TCAD",
           "accessed": "2026-06"
         }
-      ]
+      ],
+      "capabilities": {
+        "full": [
+          "tcad_device_sim"
+        ],
+        "partial": [
+          "analog_ic_design",
+          "electromagnetics"
+        ]
+      }
     },
     {
       "id": "mentor-pads",
@@ -789,7 +953,16 @@
           "title": "Siemens PADS",
           "accessed": "2026-06"
         }
-      ]
+      ],
+      "capabilities": {
+        "full": [
+          "drafting_2d"
+        ],
+        "partial": [
+          "electromagnetics",
+          "bom_mgmt"
+        ]
+      }
     },
     {
       "id": "ansys-hfss",
@@ -836,7 +1009,15 @@
       ],
       "international_benchmarks": [
         "keysight-ads"
-      ]
+      ],
+      "capabilities": {
+        "full": [
+          "electromagnetics"
+        ],
+        "partial": [
+          "multi_physics"
+        ]
+      }
     },
     {
       "id": "cadence-allegro",
@@ -883,7 +1064,17 @@
       ],
       "international_benchmarks": [
         "altium-designer"
-      ]
+      ],
+      "capabilities": {
+        "full": [
+          "drafting_2d"
+        ],
+        "partial": [
+          "electromagnetics",
+          "ext_api",
+          "bom_mgmt"
+        ]
+      }
     },
     {
       "id": "cadence-innovus",
@@ -926,7 +1117,15 @@
           "title": "Cadence Innovus Implementation System",
           "accessed": "2026-06"
         }
-      ]
+      ],
+      "capabilities": {
+        "full": [
+          "digital_ic_synthesis"
+        ],
+        "partial": [
+          "ext_api"
+        ]
+      }
     },
     {
       "id": "synopsys-vcs",
@@ -969,7 +1168,15 @@
           "title": "Synopsys VCS",
           "accessed": "2026-06"
         }
-      ]
+      ],
+      "capabilities": {
+        "full": [
+          "formal_verification"
+        ],
+        "partial": [
+          "ext_api"
+        ]
+      }
     },
     {
       "id": "synopsys-primetime",
@@ -1011,7 +1218,15 @@
           "title": "Synopsys PrimeTime",
           "accessed": "2026-06"
         }
-      ]
+      ],
+      "capabilities": {
+        "full": [
+          "digital_ic_synthesis"
+        ],
+        "partial": [
+          "ext_api"
+        ]
+      }
     },
     {
       "id": "synopsys-fusion-compiler",
@@ -1057,7 +1272,15 @@
       ],
       "international_benchmarks": [
         "cadence-innovus"
-      ]
+      ],
+      "capabilities": {
+        "full": [
+          "digital_ic_synthesis"
+        ],
+        "partial": [
+          "ext_api"
+        ]
+      }
     },
     {
       "id": "synopsys-haps",
@@ -1100,7 +1323,15 @@
           "title": "Synopsys HAPS",
           "accessed": "2026-06"
         }
-      ]
+      ],
+      "capabilities": {
+        "full": [
+          "physical_prototyping"
+        ],
+        "partial": [
+          "formal_verification"
+        ]
+      }
     },
     {
       "id": "synopsys-spyglass",
@@ -1142,7 +1373,15 @@
           "title": "Synopsys SpyGlass",
           "accessed": "2026-06"
         }
-      ]
+      ],
+      "capabilities": {
+        "full": [
+          "formal_verification"
+        ],
+        "partial": [
+          "requirements_trace"
+        ]
+      }
     },
     {
       "id": "siemens-xpedition",
@@ -1188,7 +1427,17 @@
       ],
       "international_benchmarks": [
         "cadence-allegro"
-      ]
+      ],
+      "capabilities": {
+        "full": [
+          "drafting_2d"
+        ],
+        "partial": [
+          "electromagnetics",
+          "collaboration",
+          "bom_mgmt"
+        ]
+      }
     },
     {
       "id": "siemens-hyperlynx",
@@ -1234,7 +1483,15 @@
       ],
       "international_benchmarks": [
         "ansys-hfss"
-      ]
+      ],
+      "capabilities": {
+        "full": [
+          "electromagnetics"
+        ],
+        "partial": [
+          "multi_physics"
+        ]
+      }
     },
     {
       "id": "siemens-questa",
@@ -1280,7 +1537,16 @@
       ],
       "international_benchmarks": [
         "synopsys-vcs"
-      ]
+      ],
+      "capabilities": {
+        "full": [
+          "formal_verification"
+        ],
+        "partial": [
+          "physical_prototyping",
+          "ext_api"
+        ]
+      }
     },
     {
       "id": "kicad",
@@ -1335,7 +1601,17 @@
       "international_benchmarks": [
         "altium-designer"
       ],
-      "kernel_id": "open-cascade"
+      "kernel_id": "open-cascade",
+      "capabilities": {
+        "full": [
+          "drafting_2d",
+          "ext_api"
+        ],
+        "partial": [
+          "solid_modeling_3d",
+          "cad_repair_interop"
+        ]
+      }
     },
     {
       "id": "orcad-capture",
@@ -1381,7 +1657,16 @@
       ],
       "international_benchmarks": [
         "mentor-pads"
-      ]
+      ],
+      "capabilities": {
+        "full": [
+          "drafting_2d"
+        ],
+        "partial": [
+          "analog_ic_design",
+          "bom_mgmt"
+        ]
+      }
     },
     {
       "id": "ceva-dsp-studio",
@@ -1425,7 +1710,15 @@
           "title": "CEVA Development Studio",
           "accessed": "2026-06"
         }
-      ]
+      ],
+      "capabilities": {
+        "full": [
+          "ext_api"
+        ],
+        "partial": [
+          "physical_prototyping"
+        ]
+      }
     },
     {
       "id": "xpeedic-siwave",
@@ -1472,7 +1765,16 @@
       "international_benchmarks": [
         "ansys-hfss",
         "siemens-hyperlynx"
-      ]
+      ],
+      "capabilities": {
+        "full": [
+          "electromagnetics"
+        ],
+        "partial": [
+          "multi_physics",
+          "xinchuang_compat"
+        ]
+      }
     },
     {
       "id": "xchip-signoff",
@@ -1518,7 +1820,16 @@
       "international_benchmarks": [
         "synopsys-primetime",
         "siemens-calibre"
-      ]
+      ],
+      "capabilities": {
+        "full": [
+          "digital_ic_synthesis"
+        ],
+        "partial": [
+          "electromagnetics",
+          "xinchuang_compat"
+        ]
+      }
     },
     {
       "id": "univista-verification",
@@ -1564,7 +1875,16 @@
       "international_benchmarks": [
         "synopsys-vcs",
         "x-epic-verification"
-      ]
+      ],
+      "capabilities": {
+        "full": [
+          "formal_verification"
+        ],
+        "partial": [
+          "physical_prototyping",
+          "xinchuang_compat"
+        ]
+      }
     },
     {
       "id": "empyrean-alps",
@@ -1611,7 +1931,16 @@
       "international_benchmarks": [
         "primarius-device"
       ],
-      "listed_ticker": "301269.SZ"
+      "listed_ticker": "301269.SZ",
+      "capabilities": {
+        "full": [
+          "analog_ic_design"
+        ],
+        "partial": [
+          "tcad_device_sim",
+          "xinchuang_compat"
+        ]
+      }
     },
     {
       "id": "empyrean-qualib",
@@ -1657,7 +1986,16 @@
       "international_benchmarks": [
         "siemens-calibre"
       ],
-      "listed_ticker": "301269.SZ"
+      "listed_ticker": "301269.SZ",
+      "capabilities": {
+        "full": [
+          "analog_ic_design"
+        ],
+        "partial": [
+          "digital_ic_synthesis",
+          "xinchuang_compat"
+        ]
+      }
     },
     {
       "id": "primarius-nanospice",
@@ -1703,7 +2041,15 @@
       "international_benchmarks": [
         "empyrean-alps"
       ],
-      "listed_ticker": "688206.SH"
+      "listed_ticker": "688206.SH",
+      "capabilities": {
+        "full": [
+          "analog_ic_design"
+        ],
+        "partial": [
+          "tcad_device_sim"
+        ]
+      }
     },
     {
       "id": "primarius-extraction",
@@ -1746,7 +2092,15 @@
           "accessed": "2026-06"
         }
       ],
-      "listed_ticker": "688206.SH"
+      "listed_ticker": "688206.SH",
+      "capabilities": {
+        "full": [
+          "digital_ic_synthesis"
+        ],
+        "partial": [
+          "analog_ic_design"
+        ]
+      }
     },
     {
       "id": "quanzhi-fab-software",
@@ -1788,7 +2142,17 @@
           "title": "ALLSemi Fab Analytics",
           "accessed": "2026-06"
         }
-      ]
+      ],
+      "capabilities": {
+        "full": [
+          "fab_automation_eap",
+          "tcad_device_sim"
+        ],
+        "partial": [
+          "yield_yms",
+          "xinchuang_compat"
+        ]
+      }
     },
     {
       "id": "semitech-cim",
@@ -1833,7 +2197,18 @@
       ],
       "taxonomy_note_zh": "P3：半导体CIM/MES归类生产制造（非研发设计EDA）",
       "taxonomy_note_en": "P3: semiconductor CIM/MES under 生产制造 (not R&D EDA)",
-      "product_type": "cim"
+      "product_type": "cim",
+      "capabilities": {
+        "full": [
+          "fab_automation_eap",
+          "scheduling_ops"
+        ],
+        "partial": [
+          "yield_yms",
+          "data_acquisition",
+          "xinchuang_compat"
+        ]
+      }
     },
     {
       "id": "huafeng-ate-software",
@@ -1877,7 +2252,16 @@
           "accessed": "2026-06"
         }
       ],
-      "listed_ticker": "688200.SH"
+      "listed_ticker": "688200.SH",
+      "capabilities": {
+        "full": [
+          "yield_yms"
+        ],
+        "partial": [
+          "data_acquisition",
+          "ext_api"
+        ]
+      }
     },
     {
       "id": "applied-e3",
@@ -1925,7 +2309,17 @@
       ],
       "taxonomy_note_zh": "P3：半导体CIM/MES归类生产制造（非研发设计EDA）",
       "taxonomy_note_en": "P3: semiconductor CIM/MES under 生产制造 (not R&D EDA)",
-      "product_type": "cim"
+      "product_type": "cim",
+      "capabilities": {
+        "full": [
+          "fab_automation_eap",
+          "data_acquisition"
+        ],
+        "partial": [
+          "yield_yms",
+          "process_control"
+        ]
+      }
     },
     {
       "id": "pdf-exensio",
@@ -1973,7 +2367,16 @@
       ],
       "taxonomy_note_zh": "P3：半导体CIM/MES归类生产制造（非研发设计EDA）",
       "taxonomy_note_en": "P3: semiconductor CIM/MES under 生产制造 (not R&D EDA)",
-      "product_type": "cim"
+      "product_type": "cim",
+      "capabilities": {
+        "full": [
+          "yield_yms"
+        ],
+        "partial": [
+          "data_acquisition",
+          "fab_automation_eap"
+        ]
+      }
     },
     {
       "id": "semitech-plantu-eap",
@@ -2021,7 +2424,17 @@
       ],
       "taxonomy_note_zh": "P3：半导体CIM/MES归类生产制造（非研发设计EDA）",
       "taxonomy_note_en": "P3: semiconductor CIM/MES under 生产制造 (not R&D EDA)",
-      "product_type": "cim"
+      "product_type": "cim",
+      "capabilities": {
+        "full": [
+          "fab_automation_eap"
+        ],
+        "partial": [
+          "data_acquisition",
+          "process_control",
+          "xinchuang_compat"
+        ]
+      }
     },
     {
       "id": "semitech-plantu-yms",
@@ -2069,7 +2482,17 @@
       ],
       "taxonomy_note_zh": "P3：半导体CIM/MES归类生产制造（非研发设计EDA）",
       "taxonomy_note_en": "P3: semiconductor CIM/MES under 生产制造 (not R&D EDA)",
-      "product_type": "cim"
+      "product_type": "cim",
+      "capabilities": {
+        "full": [
+          "yield_yms"
+        ],
+        "partial": [
+          "data_acquisition",
+          "fab_automation_eap",
+          "xinchuang_compat"
+        ]
+      }
     }
   ]
 }

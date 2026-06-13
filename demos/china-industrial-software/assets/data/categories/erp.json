@@ -46,7 +46,21 @@
       "international_benchmarks": [
         "sap-s4hana"
       ],
-      "listed_ticker": "600588.SH"
+      "listed_ticker": "600588.SH",
+      "capabilities": {
+        "full": [
+          "finance_ledger",
+          "bom_mgmt",
+          "scheduling_ops",
+          "cloud_native",
+          "ext_api",
+          "xinchuang_compat"
+        ],
+        "partial": [
+          "lifecycle_mgmt",
+          "collaboration"
+        ]
+      }
     },
     {
       "id": "kingdee-cosmic",
@@ -93,7 +107,20 @@
       "international_benchmarks": [
         "sap-business-one"
       ],
-      "listed_ticker": "0268.HK"
+      "listed_ticker": "0268.HK",
+      "capabilities": {
+        "full": [
+          "finance_ledger",
+          "bom_mgmt",
+          "cloud_native",
+          "ext_api",
+          "xinchuang_compat"
+        ],
+        "partial": [
+          "scheduling_ops",
+          "collaboration"
+        ]
+      }
     },
     {
       "id": "digiwin-workflow",
@@ -135,12 +162,29 @@
           "url": "https://www.digiwin.com/",
           "title": "Digiwin T100",
           "accessed": "2026-06"
+        },
+        {
+          "url": "https://www.digiwin.com/software/T100/T100.html",
+          "title": "Digiwin T100 企业智能云平台",
+          "accessed": "2026-06"
         }
       ],
       "international_benchmarks": [
         "oracle-netsuite"
       ],
-      "listed_ticker": "300378.SZ"
+      "listed_ticker": "300378.SZ",
+      "capabilities": {
+        "full": [
+          "finance_ledger",
+          "bom_mgmt",
+          "scheduling_ops"
+        ],
+        "partial": [
+          "cloud_native",
+          "ext_api",
+          "xinchuang_compat"
+        ]
+      }
     },
     {
       "id": "inspur-gs",
@@ -182,8 +226,25 @@
           "url": "https://www.inspur.com/",
           "title": "Inspur GS Cloud",
           "accessed": "2026-06"
+        },
+        {
+          "url": "https://www.inspur.com/lcjtww/2315499/2318933/2316107/index.html",
+          "title": "浪潮海岳 GS Cloud 大型企业智能 ERP",
+          "accessed": "2026-06"
         }
-      ]
+      ],
+      "capabilities": {
+        "full": [
+          "finance_ledger",
+          "cloud_native",
+          "xinchuang_compat"
+        ],
+        "partial": [
+          "bom_mgmt",
+          "scheduling_ops",
+          "ext_api"
+        ]
+      }
     },
     {
       "id": "dcits-erp",
@@ -225,8 +286,24 @@
           "url": "https://www.digitalchina.com/",
           "title": "DCITS ERP",
           "accessed": "2026-06"
+        },
+        {
+          "url": "http://www.dcits.com/product-and-solution/",
+          "title": "神州信息 产品与解决方案",
+          "accessed": "2026-06"
         }
-      ]
+      ],
+      "capabilities": {
+        "full": [
+          "finance_ledger"
+        ],
+        "partial": [
+          "bom_mgmt",
+          "scheduling_ops",
+          "xinchuang_compat",
+          "ext_api"
+        ]
+      }
     },
     {
       "id": "sap-s4hana",
@@ -270,7 +347,19 @@
           "accessed": "2026-06"
         }
       ],
-      "listed_ticker": "SAP"
+      "listed_ticker": "SAP",
+      "capabilities": {
+        "full": [
+          "finance_ledger",
+          "bom_mgmt",
+          "scheduling_ops",
+          "ext_api"
+        ],
+        "partial": [
+          "lifecycle_mgmt",
+          "cloud_native"
+        ]
+      }
     },
     {
       "id": "oracle-netsuite",
@@ -313,7 +402,18 @@
           "title": "Oracle NetSuite",
           "accessed": "2026-06"
         }
-      ]
+      ],
+      "capabilities": {
+        "full": [
+          "finance_ledger",
+          "cloud_native",
+          "ext_api"
+        ],
+        "partial": [
+          "bom_mgmt",
+          "scheduling_ops"
+        ]
+      }
     },
     {
       "id": "microsoft-d365",
@@ -356,7 +456,19 @@
           "title": "Microsoft Dynamics 365",
           "accessed": "2026-06"
         }
-      ]
+      ],
+      "capabilities": {
+        "full": [
+          "finance_ledger",
+          "cloud_native",
+          "ext_api"
+        ],
+        "partial": [
+          "bom_mgmt",
+          "scheduling_ops",
+          "collaboration"
+        ]
+      }
     },
     {
       "id": "infor-cloudsuite",
@@ -399,7 +511,19 @@
           "title": "Infor CloudSuite",
           "accessed": "2026-06"
         }
-      ]
+      ],
+      "capabilities": {
+        "full": [
+          "finance_ledger",
+          "bom_mgmt",
+          "scheduling_ops",
+          "cloud_native"
+        ],
+        "partial": [
+          "lifecycle_mgmt",
+          "ext_api"
+        ]
+      }
     },
     {
       "id": "huawei-metaerp",
@@ -441,8 +565,25 @@
           "url": "https://www.huawei.com/",
           "title": "Huawei MetaERP",
           "accessed": "2026-06"
+        },
+        {
+          "url": "https://iot.ofweek.com/2023-05/ART-132216-8120-30597569.html",
+          "title": "华为 MetaERP 全球上线，实现自主可控 ERP 的研发与替换",
+          "accessed": "2026-06"
         }
-      ]
+      ],
+      "capabilities": {
+        "full": [
+          "finance_ledger",
+          "xinchuang_compat"
+        ],
+        "partial": [
+          "bom_mgmt",
+          "scheduling_ops",
+          "cloud_native",
+          "ext_api"
+        ]
+      }
     },
     {
       "id": "boke-erp",
@@ -484,8 +625,25 @@
           "url": "https://www.bokesoft.com/",
           "title": "Boke ERP",
           "accessed": "2026-06"
+        },
+        {
+          "url": "http://www.bokesoft.com/web/erp",
+          "title": "博科资讯 Yigo-ERP 产品",
+          "accessed": "2026-06"
         }
-      ]
+      ],
+      "capabilities": {
+        "full": [
+          "finance_ledger",
+          "ext_api"
+        ],
+        "partial": [
+          "bom_mgmt",
+          "scheduling_ops",
+          "xinchuang_compat",
+          "cloud_native"
+        ]
+      }
     },
     {
       "id": "ygsoft-erp",
@@ -527,9 +685,24 @@
           "url": "https://www.ygsoft.com/",
           "title": "YGSOFT ERP",
           "accessed": "2026-06"
+        },
+        {
+          "url": "https://www.ygsoft.com/contents/news/54262.html",
+          "title": "2024 爱分析·信创 ERP 市场厂商评估报告：远光软件",
+          "accessed": "2026-06"
         }
       ],
-      "listed_ticker": "002063.SZ"
+      "listed_ticker": "002063.SZ",
+      "capabilities": {
+        "full": [
+          "finance_ledger",
+          "xinchuang_compat"
+        ],
+        "partial": [
+          "cloud_native",
+          "ext_api"
+        ]
+      }
     },
     {
       "id": "oracle-fusion-cloud-erp",
@@ -573,7 +746,18 @@
           "accessed": "2026-06"
         }
       ],
-      "listed_ticker": "ORCL"
+      "listed_ticker": "ORCL",
+      "capabilities": {
+        "full": [
+          "finance_ledger",
+          "cloud_native",
+          "ext_api"
+        ],
+        "partial": [
+          "bom_mgmt",
+          "scheduling_ops"
+        ]
+      }
     }
   ]
 }
