@@ -3182,6 +3182,21 @@
         "CAD",
         "BIM"
       ]
+    },
+    {
+      "id": "sandvik",
+      "name_zh": "山特维克",
+      "name_en": "Sandvik",
+      "origin": "international",
+      "hq_city": "Stockholm",
+      "hq_country": "SE",
+      "listed_ticker": "SAND.ST",
+      "website": "https://www.sandvik.com/",
+      "description_zh": "工程集团；经 CAMBRIO 持有 GibbsCAM/Cimatron CAM 资产",
+      "description_en": "Engineering group; owns GibbsCAM/Cimatron CAM (via CAMBRIO)",
+      "categories": [
+        "CAM"
+      ]
     }
   ]
 }

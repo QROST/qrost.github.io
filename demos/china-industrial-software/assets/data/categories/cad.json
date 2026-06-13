@@ -476,7 +476,8 @@
           "xinchuang_compat"
         ],
         "partial": [
-          "bom_mgmt"
+          "bom_mgmt",
+          "bim_quantity_takeoff"
         ]
       }
     },
@@ -593,7 +594,8 @@
           "surface_modeling",
           "fea_structure",
           "ext_api",
-          "bom_mgmt"
+          "bom_mgmt",
+          "visual_programming"
         ]
       }
     },
@@ -610,11 +612,15 @@
       "localization_depth": "core",
       "strengths_zh": [
         "航空航天与汽车曲面标杆",
-        "与ENOVIA深度集成"
+        "Visual Scripting + xGenerative Design 节点式图形化编程",
+        "经 SIMULIA Roles 在同平台做 CFD/结构/多物理 CAE",
+        "3DEXPERIENCE 云原生平台（web app + ENOVIA 数据上云 + 3DSwym 社区协同）"
       ],
       "strengths_en": [
         "Aerospace/auto surfacing benchmark",
-        "Deep ENOVIA integration"
+        "Node-based visual scripting + xGenerative Design",
+        "CFD/structural/multiphysics CAE via integrated SIMULIA Roles",
+        "Cloud-native 3DEXPERIENCE platform (web apps + ENOVIA data + 3DSwym community)"
       ],
       "limitations_zh": [
         "学习曲线陡峭",
@@ -637,6 +643,21 @@
           "url": "https://www.3ds.com/products/catia",
           "title": "CATIA",
           "accessed": "2026-06"
+        },
+        {
+          "url": "https://blog.3ds.com/brands/catia/new-catia-visual-scripting-r2023x-native-app-cloud-or-on-premise/",
+          "title": "CATIA Visual Scripting (R2023x)",
+          "accessed": "2026-06"
+        },
+        {
+          "url": "https://www.3ds.com/products/simulia/3dexperience-simulia",
+          "title": "3DEXPERIENCE SIMULIA (CFD/structural roles)",
+          "accessed": "2026-06"
+        },
+        {
+          "url": "https://www.3ds.com/3dexperience/cloud",
+          "title": "3DEXPERIENCE platform on the Cloud",
+          "accessed": "2026-06"
         }
       ],
       "kernel_id": "catia-cgm",
@@ -646,13 +667,20 @@
           "solid_modeling_3d",
           "parametric_design",
           "assembly_design",
-          "cad_repair_interop"
+          "cad_repair_interop",
+          "visual_programming",
+          "cloud_native",
+          "collaboration",
+          "generative_topo_opt"
         ],
         "partial": [
           "drafting_2d",
           "ext_api",
           "mbse_sys",
-          "lifecycle_mgmt"
+          "lifecycle_mgmt",
+          "fea_structure",
+          "cfd_fluid",
+          "multi_physics"
         ]
       }
     },
@@ -664,7 +692,7 @@
       "category_l1": "研发设计",
       "category_l2": "CAD",
       "origin": "international",
-      "kernel": "Parasolid授权",
+      "kernel": "Parasolid（Siemens 自有内核）",
       "maturity": "mission_critical",
       "localization_depth": "core",
       "strengths_zh": [
@@ -768,7 +796,6 @@
         ],
         "partial": [
           "surface_modeling",
-          "fea_structure",
           "ext_api"
         ]
       }
@@ -878,7 +905,8 @@
           "parametric_design",
           "assembly_design",
           "cam_milling_cnc",
-          "cloud_native"
+          "cloud_native",
+          "generative_topo_opt"
         ],
         "partial": [
           "surface_modeling",
@@ -1129,7 +1157,8 @@
         "partial": [
           "visual_programming",
           "cad_repair_interop",
-          "ext_api"
+          "ext_api",
+          "product_rendering_viz"
         ]
       }
     },
@@ -1195,7 +1224,8 @@
       "capabilities": {
         "full": [
           "surface_modeling",
-          "cad_repair_interop"
+          "cad_repair_interop",
+          "reverse_engineering"
         ],
         "partial": []
       }
@@ -1268,7 +1298,9 @@
         ],
         "partial": [
           "cad_repair_interop",
-          "collaboration"
+          "collaboration",
+          "reverse_engineering",
+          "product_rendering_viz"
         ]
       }
     },
@@ -1329,7 +1361,9 @@
         "keyshot"
       ],
       "capabilities": {
-        "full": [],
+        "full": [
+          "product_rendering_viz"
+        ],
         "partial": [
           "surface_modeling",
           "collaboration",
@@ -1386,7 +1420,9 @@
         "autodesk-vred"
       ],
       "capabilities": {
-        "full": [],
+        "full": [
+          "product_rendering_viz"
+        ],
         "partial": [
           "cad_repair_interop",
           "ext_api"
@@ -1449,7 +1485,8 @@
         "full": [
           "surface_modeling",
           "cad_repair_interop",
-          "parametric_design"
+          "parametric_design",
+          "reverse_engineering"
         ],
         "partial": [
           "solid_modeling_3d",
@@ -1470,14 +1507,16 @@
       "maturity": "mid",
       "localization_depth": "pilot",
       "strengths_zh": [
-        "AI 原生 B-rep MCAD",
-        "Zookeeper 对话式建模",
-        "KCL 程序化 + 开放 API"
+        "CAD 自动化前沿：自建 GPU 几何引擎 + 完整 design API（几何/ML 可编程）",
+        "KCL 代码化 CAD（point-and-click 与 design-as-code 双向无缝）",
+        "Text-to-CAD + Zookeeper 推理式 AI agent（可检视/快照/调试几何）",
+        "AI 原生 B-rep MCAD，跨 Win/macOS/Linux + Web"
       ],
       "strengths_en": [
-        "AI-native B-rep MCAD",
-        "Zookeeper conversational modeling",
-        "KCL programmatic + open APIs"
+        "CAD-automation frontier: own GPU geometry engine + full design API (geometry & ML programmable)",
+        "KCL code-first CAD (seamless point-and-click ↔ design-as-code)",
+        "Text-to-CAD + Zookeeper reasoning AI agent (inspect/snapshot/debug geometry)",
+        "AI-native B-rep MCAD across Win/macOS/Linux + Web"
       ],
       "limitations_zh": [
         "钣金/CAM 仍在路线图",
@@ -1510,6 +1549,16 @@
           "url": "https://www.morningstar.com/news/pr-newswire/20250528ny98037/zoo-launches-zoo-design-studio",
           "title": "Zoo launch PR",
           "accessed": "2026-06"
+        },
+        {
+          "url": "https://zoo.dev/research/introducing-kcl",
+          "title": "KCL: A Programming Language for Parametric CAD",
+          "accessed": "2026-06"
+        },
+        {
+          "url": "https://zoo.dev/zookeeper",
+          "title": "Zookeeper — ML CAD model generator / agent",
+          "accessed": "2026-06"
         }
       ],
       "international_benchmarks": [
@@ -1521,12 +1570,14 @@
           "solid_modeling_3d",
           "parametric_design",
           "cloud_native",
-          "ext_api"
+          "ext_api",
+          "cad_as_code"
         ],
         "partial": [
           "assembly_design",
           "surface_modeling",
-          "collaboration"
+          "collaboration",
+          "cad_repair_interop"
         ]
       }
     },
@@ -1873,11 +1924,13 @@
       "capabilities": {
         "full": [
           "visual_programming",
-          "ext_api"
+          "ext_api",
+          "polygon_mesh_dcc"
         ],
         "partial": [
           "surface_modeling",
-          "parametric_design"
+          "parametric_design",
+          "cad_as_code"
         ]
       }
     },
@@ -1951,7 +2004,8 @@
         "partial": [
           "parametric_design",
           "surface_modeling",
-          "am_layout"
+          "am_layout",
+          "polygon_mesh_dcc"
         ]
       }
     },
@@ -2017,10 +2071,10 @@
       ],
       "capabilities": {
         "full": [
-          "ext_api"
+          "ext_api",
+          "cad_as_code"
         ],
         "partial": [
-          "visual_programming",
           "parametric_design",
           "surface_modeling"
         ]
@@ -2088,12 +2142,12 @@
       ],
       "capabilities": {
         "full": [
-          "ext_api",
-          "visual_programming"
+          "ext_api"
         ],
         "partial": [
           "parametric_design",
-          "drafting_2d"
+          "drafting_2d",
+          "cad_as_code"
         ]
       }
     },
@@ -2305,7 +2359,8 @@
         "full": [
           "ext_api",
           "parametric_design",
-          "cloud_native"
+          "cloud_native",
+          "cad_as_code"
         ],
         "partial": [
           "solid_modeling_3d"
@@ -2592,12 +2647,12 @@
       ],
       "capabilities": {
         "full": [
-          "ext_api"
+          "ext_api",
+          "cad_as_code"
         ],
         "partial": [
           "parametric_design",
-          "solid_modeling_3d",
-          "visual_programming"
+          "solid_modeling_3d"
         ]
       }
     },
@@ -3162,7 +3217,8 @@
           "surface_modeling",
           "drafting_2d",
           "cad_repair_interop",
-          "ext_api"
+          "ext_api",
+          "reverse_engineering"
         ]
       }
     },

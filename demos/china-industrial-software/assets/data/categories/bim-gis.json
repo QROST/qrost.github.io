@@ -52,7 +52,8 @@
           "bim_clash",
           "code_compliance",
           "collaboration",
-          "scheduling_ops"
+          "scheduling_ops",
+          "bim_quantity_takeoff"
         ],
         "partial": [
           "solid_modeling_3d",
@@ -176,7 +177,8 @@
         "full": [
           "bim_clash",
           "collaboration",
-          "code_compliance"
+          "code_compliance",
+          "bim_quantity_takeoff"
         ],
         "partial": [
           "solid_modeling_3d",
@@ -242,7 +244,8 @@
         "full": [
           "bim_clash",
           "collaboration",
-          "data_acquisition"
+          "data_acquisition",
+          "bim_quantity_takeoff"
         ],
         "partial": [
           "code_compliance",
@@ -266,10 +269,12 @@
       "localization_depth": "core",
       "strengths_zh": [
         "建筑信息建模事实标准",
+        "Dynamo 内置节点式可视化编程（另有 Rhino.Inside.Revit/GH）",
         "与中国设计院广泛使用"
       ],
       "strengths_en": [
         "BIM de-facto standard",
+        "Built-in Dynamo node-based visual programming (plus Rhino.Inside.Revit/GH)",
         "Widely used by China design institutes"
       ],
       "limitations_zh": [
@@ -293,6 +298,11 @@
           "url": "https://www.autodesk.com/products/revit",
           "title": "Autodesk Revit",
           "accessed": "2026-06"
+        },
+        {
+          "url": "https://dynamobim.org/",
+          "title": "Dynamo (visual programming for Revit)",
+          "accessed": "2026-06"
         }
       ],
       "capabilities": {
@@ -301,11 +311,11 @@
           "parametric_design",
           "assembly_design",
           "bim_clash",
-          "collaboration"
+          "collaboration",
+          "visual_programming"
         ],
         "partial": [
           "drafting_2d",
-          "visual_programming",
           "ext_api",
           "cloud_native",
           "code_compliance"
@@ -369,8 +379,8 @@
           "surface_modeling",
           "parametric_design",
           "gis_spatial",
-          "visual_programming",
-          "ext_api"
+          "ext_api",
+          "digital_twin"
         ]
       }
     },
@@ -540,7 +550,8 @@
         "full": [
           "gis_spatial",
           "cloud_native",
-          "xinchuang_compat"
+          "xinchuang_compat",
+          "digital_twin"
         ],
         "partial": [
           "bim_clash",
@@ -905,7 +916,9 @@
           "bim_clash",
           "collaboration",
           "cloud_native",
-          "ext_api"
+          "ext_api",
+          "construction_4d_sim",
+          "digital_twin"
         ],
         "partial": [
           "gis_spatial",
@@ -976,7 +989,8 @@
         "partial": [
           "scheduling_ops",
           "ext_api",
-          "data_acquisition"
+          "data_acquisition",
+          "construction_4d_sim"
         ]
       }
     },
@@ -1104,10 +1118,11 @@
       "capabilities": {
         "full": [
           "bim_clash",
-          "collaboration"
+          "collaboration",
+          "scheduling_ops",
+          "construction_4d_sim"
         ],
         "partial": [
-          "scheduling_ops",
           "ext_api"
         ]
       }
@@ -1172,7 +1187,8 @@
         "full": [
           "drafting_2d",
           "gis_spatial",
-          "xinchuang_compat"
+          "xinchuang_compat",
+          "gnss_survey_processing"
         ],
         "partial": [
           "data_acquisition",
@@ -1231,7 +1247,8 @@
       "listed_ticker": "688592.SH",
       "capabilities": {
         "full": [
-          "gis_spatial"
+          "gis_spatial",
+          "gnss_survey_processing"
         ],
         "partial": [
           "drafting_2d",
@@ -1381,8 +1398,8 @@
           "parametric_design"
         ],
         "partial": [
-          "visual_programming",
-          "bim_clash"
+          "bim_clash",
+          "cad_as_code"
         ]
       }
     },
@@ -1519,10 +1536,10 @@
       "capabilities": {
         "full": [
           "parametric_design",
-          "ext_api"
+          "ext_api",
+          "cad_as_code"
         ],
         "partial": [
-          "visual_programming",
           "solid_modeling_3d"
         ]
       }
@@ -1595,7 +1612,6 @@
           "parametric_design"
         ],
         "partial": [
-          "visual_programming",
           "bim_clash",
           "cloud_native"
         ]
@@ -1729,8 +1745,7 @@
         ],
         "partial": [
           "bim_clash",
-          "cloud_native",
-          "visual_programming"
+          "cloud_native"
         ]
       }
     },
@@ -2025,7 +2040,9 @@
           "drafting_2d",
           "code_compliance",
           "collaboration",
-          "ext_api"
+          "ext_api",
+          "scheduling_ops",
+          "bim_quantity_takeoff"
         ]
       }
     }
