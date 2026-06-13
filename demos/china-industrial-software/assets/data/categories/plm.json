@@ -58,7 +58,8 @@
         ],
         "partial": [
           "requirements_trace",
-          "cad_repair_interop"
+          "cad_repair_interop",
+          "change_config_mgmt"
         ]
       }
     },
@@ -121,9 +122,9 @@
         ],
         "partial": [
           "collaboration",
-          "visual_programming",
           "ext_api",
-          "xinchuang_compat"
+          "xinchuang_compat",
+          "change_config_mgmt"
         ]
       }
     },
@@ -182,7 +183,8 @@
         "partial": [
           "requirements_trace",
           "ext_api",
-          "xinchuang_compat"
+          "xinchuang_compat",
+          "codegen_hil"
         ]
       }
     },
@@ -239,7 +241,8 @@
         "full": [
           "lifecycle_mgmt",
           "bom_mgmt",
-          "cloud_native"
+          "cloud_native",
+          "change_config_mgmt"
         ],
         "partial": [
           "finance_ledger",
@@ -298,7 +301,8 @@
       "capabilities": {
         "full": [
           "lifecycle_mgmt",
-          "bom_mgmt"
+          "bom_mgmt",
+          "change_config_mgmt"
         ],
         "partial": [
           "finance_ledger",
@@ -353,7 +357,8 @@
         "full": [
           "lifecycle_mgmt",
           "bom_mgmt",
-          "requirements_trace"
+          "requirements_trace",
+          "change_config_mgmt"
         ],
         "partial": [
           "collaboration",
@@ -409,10 +414,11 @@
           "bom_mgmt",
           "requirements_trace",
           "collaboration",
-          "ext_api"
+          "ext_api",
+          "mbse_sys",
+          "change_config_mgmt"
         ],
         "partial": [
-          "mbse_sys",
           "cad_repair_interop"
         ]
       }
@@ -464,7 +470,8 @@
           "lifecycle_mgmt",
           "bom_mgmt",
           "requirements_trace",
-          "collaboration"
+          "collaboration",
+          "change_config_mgmt"
         ],
         "partial": [
           "mbse_sys",
@@ -519,7 +526,8 @@
           "lifecycle_mgmt",
           "bom_mgmt",
           "requirements_trace",
-          "collaboration"
+          "collaboration",
+          "change_config_mgmt"
         ],
         "partial": [
           "mbse_sys",
@@ -574,7 +582,8 @@
           "lifecycle_mgmt",
           "bom_mgmt",
           "requirements_trace",
-          "ext_api"
+          "ext_api",
+          "change_config_mgmt"
         ],
         "partial": [
           "collaboration",
@@ -603,11 +612,13 @@
       ],
       "limitations_zh": [
         "创新节奏慢",
-        "本地支持资源收缩"
+        "本地支持资源收缩",
+        "Oracle 已宣布 2027-12 停止支持，9.3.6 后无新功能"
       ],
       "limitations_en": [
         "Slow innovation",
-        "Shrinking local support"
+        "Shrinking local support",
+        "End-of-life Dec 2027; no new features after v9.3.6"
       ],
       "industries": [
         "电子",
@@ -627,12 +638,14 @@
       "capabilities": {
         "full": [
           "lifecycle_mgmt",
-          "bom_mgmt"
+          "bom_mgmt",
+          "change_config_mgmt"
         ],
         "partial": [
           "requirements_trace",
           "finance_ledger",
-          "collaboration"
+          "collaboration",
+          "quality_spc_traceability"
         ]
       }
     },
@@ -802,7 +815,9 @@
       ],
       "capabilities": {
         "full": [
-          "mbse_sys"
+          "mbse_sys",
+          "visual_programming",
+          "codegen_hil"
         ],
         "partial": [
           "requirements_trace",
@@ -855,7 +870,8 @@
       "capabilities": {
         "full": [
           "bom_mgmt",
-          "lifecycle_mgmt"
+          "lifecycle_mgmt",
+          "change_config_mgmt"
         ],
         "partial": [
           "collaboration",
@@ -915,7 +931,8 @@
         "partial": [
           "mbse_sys",
           "ext_api",
-          "cloud_native"
+          "cloud_native",
+          "quality_spc_traceability"
         ]
       }
     },
@@ -964,7 +981,8 @@
       "capabilities": {
         "full": [
           "requirements_trace",
-          "lifecycle_mgmt"
+          "lifecycle_mgmt",
+          "lims_lab_data"
         ],
         "partial": [
           "bom_mgmt",
@@ -1029,7 +1047,8 @@
         "full": [
           "lifecycle_mgmt",
           "bom_mgmt",
-          "requirements_trace"
+          "requirements_trace",
+          "change_config_mgmt"
         ],
         "partial": [
           "mbse_sys",

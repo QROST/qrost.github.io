@@ -264,7 +264,8 @@
       ],
       "capabilities": {
         "full": [
-          "formal_verification"
+          "formal_verification",
+          "rtl_simulation"
         ],
         "partial": [
           "physical_prototyping",
@@ -490,7 +491,8 @@
       "capabilities": {
         "full": [
           "drafting_2d",
-          "cloud_native"
+          "cloud_native",
+          "pcb_layout_design"
         ],
         "partial": [
           "collaboration",
@@ -748,7 +750,7 @@
       ],
       "capabilities": {
         "full": [
-          "digital_ic_synthesis"
+          "ic_physical_signoff"
         ],
         "partial": [
           "analog_ic_design",
@@ -853,7 +855,8 @@
       "capabilities": {
         "full": [
           "drafting_2d",
-          "ext_api"
+          "ext_api",
+          "pcb_layout_design"
         ],
         "partial": [
           "cloud_native",
@@ -956,7 +959,8 @@
       ],
       "capabilities": {
         "full": [
-          "drafting_2d"
+          "drafting_2d",
+          "pcb_layout_design"
         ],
         "partial": [
           "electromagnetics",
@@ -1067,7 +1071,8 @@
       ],
       "capabilities": {
         "full": [
-          "drafting_2d"
+          "drafting_2d",
+          "pcb_layout_design"
         ],
         "partial": [
           "electromagnetics",
@@ -1171,7 +1176,7 @@
       ],
       "capabilities": {
         "full": [
-          "formal_verification"
+          "rtl_simulation"
         ],
         "partial": [
           "ext_api"
@@ -1221,7 +1226,7 @@
       ],
       "capabilities": {
         "full": [
-          "digital_ic_synthesis"
+          "ic_physical_signoff"
         ],
         "partial": [
           "ext_api"
@@ -1278,7 +1283,8 @@
           "digital_ic_synthesis"
         ],
         "partial": [
-          "ext_api"
+          "ext_api",
+          "ic_physical_signoff"
         ]
       }
     },
@@ -1430,7 +1436,8 @@
       ],
       "capabilities": {
         "full": [
-          "drafting_2d"
+          "drafting_2d",
+          "pcb_layout_design"
         ],
         "partial": [
           "electromagnetics",
@@ -1489,7 +1496,8 @@
           "electromagnetics"
         ],
         "partial": [
-          "multi_physics"
+          "multi_physics",
+          "pcb_layout_design"
         ]
       }
     },
@@ -1540,7 +1548,8 @@
       ],
       "capabilities": {
         "full": [
-          "formal_verification"
+          "formal_verification",
+          "rtl_simulation"
         ],
         "partial": [
           "physical_prototyping",
@@ -1605,7 +1614,8 @@
       "capabilities": {
         "full": [
           "drafting_2d",
-          "ext_api"
+          "ext_api",
+          "pcb_layout_design"
         ],
         "partial": [
           "solid_modeling_3d",
@@ -1660,7 +1670,8 @@
       ],
       "capabilities": {
         "full": [
-          "drafting_2d"
+          "drafting_2d",
+          "pcb_layout_design"
         ],
         "partial": [
           "analog_ic_design",
@@ -1772,7 +1783,8 @@
         ],
         "partial": [
           "multi_physics",
-          "xinchuang_compat"
+          "xinchuang_compat",
+          "pcb_layout_design"
         ]
       }
     },
@@ -1823,7 +1835,7 @@
       ],
       "capabilities": {
         "full": [
-          "digital_ic_synthesis"
+          "ic_physical_signoff"
         ],
         "partial": [
           "electromagnetics",
@@ -1878,7 +1890,8 @@
       ],
       "capabilities": {
         "full": [
-          "formal_verification"
+          "formal_verification",
+          "rtl_simulation"
         ],
         "partial": [
           "physical_prototyping",
@@ -1938,14 +1951,15 @@
         ],
         "partial": [
           "tcad_device_sim",
-          "xinchuang_compat"
+          "xinchuang_compat",
+          "ic_physical_signoff"
         ]
       }
     },
     {
       "id": "empyrean-qualib",
       "name_zh": "华大九天 Qualib",
-      "name_en": "Empyrean Qualib DRC/LVS",
+      "name_en": "Empyrean Qualib (Standard Cell & IP Validation)",
       "vendor_id": "empyrean",
       "category_l1": "研发设计",
       "category_l2": "EDA",
@@ -1989,7 +2003,7 @@
       "listed_ticker": "301269.SZ",
       "capabilities": {
         "full": [
-          "analog_ic_design"
+          "ic_physical_signoff"
         ],
         "partial": [
           "digital_ic_synthesis",
@@ -2047,7 +2061,8 @@
           "analog_ic_design"
         ],
         "partial": [
-          "tcad_device_sim"
+          "tcad_device_sim",
+          "ic_physical_signoff"
         ]
       }
     },
@@ -2095,7 +2110,7 @@
       "listed_ticker": "688206.SH",
       "capabilities": {
         "full": [
-          "digital_ic_synthesis"
+          "ic_physical_signoff"
         ],
         "partial": [
           "analog_ic_design"
