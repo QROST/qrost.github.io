@@ -58,6 +58,18 @@
     { key: 'xinchuang_compat', zh: '信创适配', en: 'IT Innovation' },
   ];
 
+  // Capability domains — column ordering MUST match CAPABILITIES above.
+  // Shared with app.js (detail-modal tabs) via window.INDUSTRIAL_MATRIX.CAP_DOMAINS.
+  const CAP_DOMAINS = [
+    { zh: '几何建模与设计自动化', en: 'Design & Modeling', keys: ['drafting_2d', 'solid_modeling_3d', 'surface_modeling', 'assembly_design', 'parametric_design', 'visual_programming', 'cad_repair_interop'] },
+    { zh: '物理仿真与工程分析', en: 'Simulation & Analysis', keys: ['fea_structure', 'cfd_fluid', 'electromagnetics', 'multi_physics', 'material_injection', 'code_compliance', 'opt_light_acoustics'] },
+    { zh: '半导体 EDA 与 CIM', en: 'EDA & Semiconductor', keys: ['analog_ic_design', 'digital_ic_synthesis', 'formal_verification', 'physical_prototyping', 'tcad_device_sim', 'fab_automation_eap', 'yield_yms'] },
+    { zh: '生命周期与管理', en: 'Lifecycle & Mgmt', keys: ['bom_mgmt', 'lifecycle_mgmt', 'requirements_trace', 'mbse_sys', 'finance_ledger'] },
+    { zh: '制造执行与控制', en: 'Manufacturing & Control', keys: ['cam_milling_cnc', 'scheduling_ops', 'process_control', 'data_acquisition'] },
+    { zh: 'BIM / GIS / 增材', en: 'BIM / GIS / AM', keys: ['bim_clash', 'gis_spatial', 'slicing_algorithm', 'am_layout'] },
+    { zh: '架构与交付', en: 'Architecture & Delivery', keys: ['cloud_native', 'collaboration', 'ext_api', 'xinchuang_compat'] },
+  ];
+
   const state = {
     filterOrigin: '',
     filterCategory: '',
@@ -68,6 +80,19 @@
   const CAT = () => window.INDUSTRIAL_CATALOG || {};
 
   function evaluateCapability(p, capKey) {
+    // Explicit curated override takes precedence over heuristic inference.
+    // Authored per-product in assets/data/categories/*.json as
+    //   "capabilities": { "full": ["..."], "partial": ["..."] }
+    // When a product is curated (has a non-empty full or partial list) the
+    // override is AUTHORITATIVE: any capability not listed as full/partial is
+    // treated as 'none'. The heuristic below applies only to un-curated products.
+    const ov = p.capabilities;
+    if (ov && ((Array.isArray(ov.full) && ov.full.length) || (Array.isArray(ov.partial) && ov.partial.length))) {
+      if (Array.isArray(ov.full) && ov.full.indexOf(capKey) !== -1) return 'full';
+      if (Array.isArray(ov.partial) && ov.partial.indexOf(capKey) !== -1) return 'partial';
+      return 'none';
+    }
+
     const name = ((p.name_zh || '') + (p.name_en || '') + (p.id || '')).toLowerCase();
     const category = p.category_l2 || '';
     const type = p.product_type || '';
@@ -279,6 +304,18 @@
     return list;
   }
 
+  // Per-product capability coverage tally over the full taxonomy.
+  function coverage(p) {
+    let full = 0;
+    let partial = 0;
+    CAPABILITIES.forEach((cap) => {
+      const s = evaluateCapability(p, cap.key);
+      if (s === 'full') full++;
+      else if (s === 'partial') partial++;
+    });
+    return { full, partial, none: CAPABILITIES.length - full - partial };
+  }
+
   function renderTable() {
     const thead = document.querySelector('.matrix-table thead');
     const tbody = document.getElementById('matrix-tbody');
@@ -287,43 +324,63 @@
     const list = applyFilters();
     const isEn = I18N().isEn && I18N().isEn();
 
-    // 1. Render headers
-    const capHeaders = CAPABILITIES.map((cap) => {
-      const label = isEn ? cap.en : cap.zh;
-      return `<th class="px-2 py-3 text-center min-w-[75px] max-w-[100px] border-b border-slate-200 select-none">${label}</th>`;
+    // Resolve each domain's column span against the live capability order.
+    const keyToCap = {};
+    CAPABILITIES.forEach((c) => { keyToCap[c.key] = c; });
+
+    // Row 1 — domain group headers (3 fixed columns span both header rows).
+    const domainCells = CAP_DOMAINS.map((dom, i) => {
+      const label = isEn ? dom.en : dom.zh;
+      const tone = i % 2 === 0 ? 'bg-slate-100/80' : 'bg-slate-50';
+      return `<th colspan="${dom.keys.length}" class="px-2 py-2 text-center text-[11px] font-semibold uppercase tracking-wide text-slate-500 border-b border-l border-slate-200 ${tone}">${label}</th>`;
     }).join('');
+
+    // Row 2 — individual capability headers (in domain order).
+    const capHeaders = CAP_DOMAINS.map((dom) => dom.keys.map((key) => {
+      const cap = keyToCap[key];
+      if (!cap) return '';
+      const label = isEn ? cap.en : cap.zh;
+      const alt = isEn ? cap.zh : cap.en;
+      return `<th class="px-1.5 py-2 text-center min-w-[64px] max-w-[88px] border-b border-slate-200 select-none align-bottom" title="${label} · ${alt}"><span class="matrix-cap-label">${label}</span></th>`;
+    }).join('')).join('');
 
     thead.innerHTML = `
       <tr>
-        <th class="px-3 py-3 text-left w-[160px] min-w-[160px] border-b border-slate-200">${isEn ? 'Product' : '产品'}</th>
-        <th class="px-2 py-3 text-center w-[80px] min-w-[80px] border-b border-slate-200">${isEn ? 'Category' : '品类'}</th>
-        ${capHeaders}
+        <th rowspan="2" class="matrix-sticky-col px-3 py-2 text-left w-[150px] min-w-[150px] border-b border-r border-slate-200 align-bottom">${isEn ? 'Product' : '产品'}</th>
+        <th rowspan="2" class="px-2 py-2 text-center w-[72px] min-w-[72px] border-b border-r border-slate-200 align-bottom">${isEn ? 'Category' : '品类'}</th>
+        <th rowspan="2" class="px-2 py-2 text-center w-[64px] min-w-[64px] border-b border-r border-slate-200 align-bottom" title="${isEn ? 'Capabilities supported / partial' : '支持 / 半支持能力数'}">${isEn ? 'Cov.' : '覆盖'}</th>
+        ${domainCells}
       </tr>
+      <tr>${capHeaders}</tr>
     `;
 
-    // 2. Render rows
+    // Rows
     tbody.innerHTML = '';
     if (!list.length) {
-      tbody.innerHTML = `<tr><td colspan="${CAPABILITIES.length + 2}" class="text-center py-8 text-slate-500">${isEn ? 'No products match filters' : '没有匹配的产品'}</td></tr>`;
+      tbody.innerHTML = `<tr><td colspan="${CAPABILITIES.length + 3}" class="text-center py-8 text-slate-500">${isEn ? 'No products match filters' : '没有匹配的产品'}</td></tr>`;
       return;
     }
 
     list.forEach((p) => {
       const tr = document.createElement('tr');
       tr.className = 'border-b border-slate-100 hover:bg-slate-50/80';
-      
+
       const prodName = isEn ? p.name_en : p.name_zh;
       const catLabel = p.category_l2;
+      const cov = coverage(p);
 
       let cells = `
-        <td class="px-3 py-2 text-left font-medium text-slate-900 border-r border-slate-100" title="${prodName}">
+        <td class="matrix-sticky-col px-3 py-2 text-left font-medium text-slate-900 border-r border-slate-100" title="${prodName}">
           <a href="#product=${p.id}" class="text-slate-900 hover:text-emerald-700 hover:underline transition-colors">${prodName}</a>
         </td>
-        <td class="px-2 py-2 text-center text-slate-500 border-r border-slate-100">${catLabel}</td>
+        <td class="px-2 py-2 text-center text-slate-500 border-r border-slate-100 whitespace-nowrap">${catLabel}</td>
+        <td class="px-2 py-2 text-center border-r border-slate-100 whitespace-nowrap" title="${isEn ? 'Supported' : '支持'} ${cov.full} · ${isEn ? 'Partial' : '半支持'} ${cov.partial}">
+          <span class="text-emerald-600 font-semibold">${cov.full}</span><span class="text-slate-300">/</span><span class="text-amber-500 font-medium">${cov.partial}</span>
+        </td>
       `;
 
-      CAPABILITIES.forEach((cap) => {
-        const score = evaluateCapability(p, cap.key);
+      CAP_DOMAINS.forEach((dom) => dom.keys.forEach((key) => {
+        const score = evaluateCapability(p, key);
         let cellContent = '';
         if (score === 'full') {
           cellContent = `<span class="matrix-check text-emerald-600 font-bold text-sm" title="${isEn ? 'Supported' : '支持'}">✔</span>`;
@@ -332,8 +389,8 @@
         } else {
           cellContent = `<span class="matrix-none text-slate-200 select-none">—</span>`;
         }
-        cells += `<td class="px-2 py-2 text-center border-r border-slate-100">${cellContent}</td>`;
-      });
+        cells += `<td class="px-1.5 py-2 text-center border-r border-slate-100">${cellContent}</td>`;
+      }));
 
       tr.innerHTML = cells;
       tbody.appendChild(tr);
@@ -379,6 +436,8 @@
     init,
     render: renderTable,
     evaluateCapability,
+    coverage,
     CAPABILITIES,
+    CAP_DOMAINS,
   };
 })();
