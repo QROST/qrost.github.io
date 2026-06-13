@@ -49,7 +49,17 @@
         "orca-slicer",
         "ultimaker-cura"
       ],
-      "product_type": "slicer"
+      "product_type": "slicer",
+      "capabilities": {
+        "full": [
+          "slicing_algorithm",
+          "am_layout"
+        ],
+        "partial": [
+          "cloud_native",
+          "ext_api"
+        ]
+      }
     },
     {
       "id": "creality-print",
@@ -99,7 +109,16 @@
         "ultimaker-cura",
         "prusaslicer"
       ],
-      "product_type": "slicer"
+      "product_type": "slicer",
+      "capabilities": {
+        "full": [
+          "slicing_algorithm",
+          "am_layout"
+        ],
+        "partial": [
+          "cloud_native"
+        ]
+      }
     },
     {
       "id": "flashprint",
@@ -148,7 +167,14 @@
         "prusaslicer",
         "ultimaker-cura"
       ],
-      "product_type": "slicer"
+      "product_type": "slicer",
+      "capabilities": {
+        "full": [
+          "slicing_algorithm",
+          "am_layout"
+        ],
+        "partial": []
+      }
     },
     {
       "id": "chitubox",
@@ -198,7 +224,17 @@
       "international_benchmarks": [
         "lychee-slicer"
       ],
-      "product_type": "slicer"
+      "product_type": "slicer",
+      "capabilities": {
+        "full": [
+          "slicing_algorithm",
+          "am_layout"
+        ],
+        "partial": [
+          "solid_modeling_3d",
+          "ext_api"
+        ]
+      }
     },
     {
       "id": "elegoo-slicer",
@@ -248,7 +284,16 @@
         "chitubox",
         "lychee-slicer"
       ],
-      "product_type": "slicer"
+      "product_type": "slicer",
+      "capabilities": {
+        "full": [
+          "slicing_algorithm",
+          "am_layout"
+        ],
+        "partial": [
+          "solid_modeling_3d"
+        ]
+      }
     },
     {
       "id": "anycubic-photon-workshop",
@@ -298,7 +343,16 @@
         "chitubox",
         "lychee-slicer"
       ],
-      "product_type": "slicer"
+      "product_type": "slicer",
+      "capabilities": {
+        "full": [
+          "slicing_algorithm",
+          "am_layout"
+        ],
+        "partial": [
+          "solid_modeling_3d"
+        ]
+      }
     },
     {
       "id": "heygears-hps",
@@ -343,13 +397,29 @@
           "url": "https://www.heygears.com/",
           "title": "HeyGears Official",
           "accessed": "2026-06"
+        },
+        {
+          "url": "https://www.heygears.com/aboutUs/resources",
+          "title": "HeyGears Streamflow / Software Resources",
+          "accessed": "2026-06"
         }
       ],
       "international_benchmarks": [
         "materialise-magics",
         "autodesk-netfabb"
       ],
-      "product_type": "slicer"
+      "product_type": "slicer",
+      "capabilities": {
+        "full": [
+          "slicing_algorithm",
+          "am_layout"
+        ],
+        "partial": [
+          "solid_modeling_3d",
+          "scheduling_ops",
+          "cloud_native"
+        ]
+      }
     },
     {
       "id": "ankermake-slicer",
@@ -398,7 +468,16 @@
         "bambu-studio",
         "ultimaker-cura"
       ],
-      "product_type": "slicer"
+      "product_type": "slicer",
+      "capabilities": {
+        "full": [
+          "slicing_algorithm",
+          "am_layout"
+        ],
+        "partial": [
+          "cloud_native"
+        ]
+      }
     },
     {
       "id": "ultimaker-cura",
@@ -449,7 +528,17 @@
         "creality-print",
         "prusaslicer"
       ],
-      "product_type": "slicer"
+      "product_type": "slicer",
+      "capabilities": {
+        "full": [
+          "slicing_algorithm",
+          "am_layout",
+          "ext_api"
+        ],
+        "partial": [
+          "cloud_native"
+        ]
+      }
     },
     {
       "id": "prusaslicer",
@@ -500,7 +589,16 @@
         "flashprint",
         "creality-print"
       ],
-      "product_type": "slicer"
+      "product_type": "slicer",
+      "capabilities": {
+        "full": [
+          "slicing_algorithm",
+          "am_layout"
+        ],
+        "partial": [
+          "ext_api"
+        ]
+      }
     },
     {
       "id": "orca-slicer",
@@ -550,7 +648,16 @@
         "bambu-studio",
         "ultimaker-cura"
       ],
-      "product_type": "slicer"
+      "product_type": "slicer",
+      "capabilities": {
+        "full": [
+          "slicing_algorithm",
+          "am_layout"
+        ],
+        "partial": [
+          "ext_api"
+        ]
+      }
     },
     {
       "id": "simplify3d",
@@ -599,7 +706,16 @@
         "prusaslicer",
         "orca-slicer"
       ],
-      "product_type": "slicer"
+      "product_type": "slicer",
+      "capabilities": {
+        "full": [
+          "slicing_algorithm",
+          "am_layout"
+        ],
+        "partial": [
+          "ext_api"
+        ]
+      }
     },
     {
       "id": "ideamaker",
@@ -649,7 +765,17 @@
         "bambu-studio",
         "prusaslicer"
       ],
-      "product_type": "slicer"
+      "product_type": "slicer",
+      "capabilities": {
+        "full": [
+          "slicing_algorithm",
+          "am_layout"
+        ],
+        "partial": [
+          "cloud_native",
+          "ext_api"
+        ]
+      }
     },
     {
       "id": "lychee-slicer",
@@ -694,13 +820,28 @@
           "url": "https://mango3d.io/downloads/",
           "title": "Lychee Slicer Download",
           "accessed": "2026-06"
+        },
+        {
+          "url": "https://lychee.mango3d.io/",
+          "title": "Lychee Slicer - Mango3D Product Page",
+          "accessed": "2026-06"
         }
       ],
       "international_benchmarks": [
         "chitubox",
         "elegoo-slicer"
       ],
-      "product_type": "slicer"
+      "product_type": "slicer",
+      "capabilities": {
+        "full": [
+          "slicing_algorithm",
+          "am_layout"
+        ],
+        "partial": [
+          "solid_modeling_3d",
+          "cloud_native"
+        ]
+      }
     },
     {
       "id": "materialise-magics",
@@ -751,7 +892,19 @@
         "heygears-hps",
         "autodesk-netfabb"
       ],
-      "product_type": "slicer"
+      "product_type": "slicer",
+      "capabilities": {
+        "full": [
+          "slicing_algorithm",
+          "am_layout",
+          "cad_repair_interop"
+        ],
+        "partial": [
+          "solid_modeling_3d",
+          "scheduling_ops",
+          "ext_api"
+        ]
+      }
     },
     {
       "id": "autodesk-netfabb",
@@ -802,7 +955,20 @@
         "heygears-hps",
         "materialise-magics"
       ],
-      "product_type": "slicer"
+      "product_type": "slicer",
+      "capabilities": {
+        "full": [
+          "slicing_algorithm",
+          "am_layout",
+          "cad_repair_interop"
+        ],
+        "partial": [
+          "solid_modeling_3d",
+          "fea_structure",
+          "scheduling_ops",
+          "ext_api"
+        ]
+      }
     }
   ]
 }
