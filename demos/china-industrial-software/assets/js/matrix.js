@@ -83,11 +83,13 @@
     // Explicit curated override takes precedence over heuristic inference.
     // Authored per-product in assets/data/categories/*.json as
     //   "capabilities": { "full": ["..."], "partial": ["..."] }
-    // When a product is curated (has a non-empty full or partial list) the
-    // override is AUTHORITATIVE: any capability not listed as full/partial is
-    // treated as 'none'. The heuristic below applies only to un-curated products.
+    // When a product is curated (carries a `capabilities` object) the override
+    // is AUTHORITATIVE: any capability not listed as full/partial is treated as
+    // 'none' — including the case where both lists are empty (curator asserts the
+    // product matches none of the 38 keys). The heuristic below applies only to
+    // un-curated products, which have no `capabilities` object at all.
     const ov = p.capabilities;
-    if (ov && ((Array.isArray(ov.full) && ov.full.length) || (Array.isArray(ov.partial) && ov.partial.length))) {
+    if (ov && (Array.isArray(ov.full) || Array.isArray(ov.partial))) {
       if (Array.isArray(ov.full) && ov.full.indexOf(capKey) !== -1) return 'full';
       if (Array.isArray(ov.partial) && ov.partial.indexOf(capKey) !== -1) return 'partial';
       return 'none';
