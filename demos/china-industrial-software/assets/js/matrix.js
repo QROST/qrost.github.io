@@ -13,6 +13,10 @@
     { key: 'parametric_design', zh: '参数化驱动', en: 'Parametric Design' },
     { key: 'visual_programming', zh: '视觉编程', en: 'Visual Programming' },
     { key: 'cad_repair_interop', zh: '几何修复与转换', en: 'Geometry Healing & Interop' },
+    { key: 'reverse_engineering', zh: '逆向工程/扫描重建', en: 'Reverse Engineering' },
+    { key: 'cad_as_code', zh: '程序化/脚本CAD', en: 'Programmatic CAD' },
+    { key: 'product_rendering_viz', zh: '渲染与设计评审', en: 'Rendering & Design Review' },
+    { key: 'polygon_mesh_dcc', zh: '网格建模与DCC', en: 'Mesh Modeling & DCC' },
 
     // 物理仿真与工程分析
     { key: 'fea_structure', zh: '结构有限元', en: 'FEA Structure' },
@@ -22,6 +26,10 @@
     { key: 'material_injection', zh: '材料注塑分析', en: 'Mold Flow & Material' },
     { key: 'code_compliance', zh: '规范验算', en: 'Code Compliance' },
     { key: 'opt_light_acoustics', zh: '光学与声学', en: 'Optics & Acoustics' },
+    { key: 'generative_topo_opt', zh: '创成式/拓扑优化', en: 'Generative & Topology Opt' },
+    { key: 'multibody_dynamics', zh: '多体动力学', en: 'Multibody Dynamics' },
+    { key: 'simulation_vv', zh: '仿真验证与确认(V&V)', en: 'Simulation V&V' },
+    { key: 'codegen_hil', zh: '嵌入式代码生成/HIL', en: 'Codegen & HIL' },
 
     // 半导体 EDA 与 CIM
     { key: 'analog_ic_design', zh: '模拟 IC 设计', en: 'Analog IC Design' },
@@ -31,6 +39,9 @@
     { key: 'tcad_device_sim', zh: '器件工艺 TCAD', en: 'TCAD Device Simulation' },
     { key: 'fab_automation_eap', zh: '设备自动化 EAP', en: 'Fab EAP' },
     { key: 'yield_yms', zh: '良率管理 YMS', en: 'Yield YMS' },
+    { key: 'pcb_layout_design', zh: 'PCB原理图/布局', en: 'PCB Layout & Routing' },
+    { key: 'rtl_simulation', zh: 'RTL/功能仿真', en: 'RTL Simulation' },
+    { key: 'ic_physical_signoff', zh: 'IC物理验证与签核', en: 'IC Signoff (DRC/LVS/STA)' },
 
     // 生命周期与管理
     { key: 'bom_mgmt', zh: 'BOM与配置管理', en: 'BOM & Configuration' },
@@ -38,36 +49,53 @@
     { key: 'requirements_trace', zh: '需求与合规追溯', en: 'Requirements Traceability' },
     { key: 'mbse_sys', zh: '系统级建模(MBSE)', en: 'MBSE' },
     { key: 'finance_ledger', zh: '财务供应链', en: 'SCM & Finance' },
+    { key: 'supply_chain_procurement', zh: '供应链与采购', en: 'Supply Chain & Procurement' },
+    { key: 'group_consolidation_mgmt', zh: '集团管控与合并报表', en: 'Group Consolidation' },
+    { key: 'change_config_mgmt', zh: '工程更改管理(ECO/ECN)', en: 'Engineering Change Mgmt' },
+    { key: 'lims_lab_data', zh: '实验室信息管理(LIMS)', en: 'LIMS' },
 
     // 制造执行与控制
     { key: 'cam_milling_cnc', zh: '数控加工(CAM)', en: 'CAM & CNC Milling' },
     { key: 'scheduling_ops', zh: '生产排程(APS)', en: 'Scheduling' },
     { key: 'process_control', zh: '过程控制', en: 'Process Control' },
     { key: 'data_acquisition', zh: '工业数据采集', en: 'Data Acquisition' },
+    { key: 'quality_spc_traceability', zh: '质量管理与SPC', en: 'Quality & SPC' },
+    { key: 'metrology_cmm_inspection', zh: '计量与三坐标检测', en: 'Metrology & CMM' },
+    { key: 'enterprise_asset_mgmt', zh: '企业资产管理(EAM)', en: 'EAM' },
+    { key: 'predictive_maintenance_apm', zh: '预测性维护(APM)', en: 'Predictive Maintenance' },
+    { key: 'iiot_historian', zh: '工业时序Historian', en: 'Industrial Historian' },
+    { key: 'ot_protocol_gateway', zh: 'OT协议网关', en: 'OT Protocol Gateway' },
+    { key: 'sheet_nesting_2d', zh: '2D套料排样', en: '2D Sheet Nesting' },
 
     // BIM/GIS 与 3D 打印
     { key: 'bim_clash', zh: 'BIM碰撞检测与协同', en: 'BIM Clash & CDE' },
     { key: 'gis_spatial', zh: 'GIS空间分析', en: 'Spatial GIS' },
     { key: 'slicing_algorithm', zh: '切片算法引擎', en: 'Slicing Engine' },
     { key: 'am_layout', zh: '增材排版与修复', en: 'AM Layout & Healing' },
+    { key: 'am_support_gen', zh: '增材支撑生成与编辑', en: 'AM Support Generation' },
+    { key: 'bim_quantity_takeoff', zh: 'BIM算量与造价', en: 'BIM Quantity & Cost' },
+    { key: 'construction_4d_sim', zh: '4D施工模拟', en: '4D Construction Sim' },
+    { key: 'gnss_survey_processing', zh: 'GNSS测绘内业', en: 'GNSS Survey Processing' },
 
     // 架构与交付
     { key: 'cloud_native', zh: '云原生', en: 'Cloud Native' },
     { key: 'collaboration', zh: '实时协作', en: 'Collaboration' },
     { key: 'ext_api', zh: 'API/插件', en: 'API & Ext' },
     { key: 'xinchuang_compat', zh: '信创适配', en: 'IT Innovation' },
+    { key: 'digital_twin', zh: '数字孪生(虚实映射)', en: 'Digital Twin' },
+    { key: 'industrial_ar_xr', zh: '工业AR/XR', en: 'Industrial AR/XR' },
   ];
 
   // Capability domains — column ordering MUST match CAPABILITIES above.
   // Shared with app.js (detail-modal tabs) via window.INDUSTRIAL_MATRIX.CAP_DOMAINS.
   const CAP_DOMAINS = [
-    { zh: '几何建模与设计自动化', en: 'Design & Modeling', keys: ['drafting_2d', 'solid_modeling_3d', 'surface_modeling', 'assembly_design', 'parametric_design', 'visual_programming', 'cad_repair_interop'] },
-    { zh: '物理仿真与工程分析', en: 'Simulation & Analysis', keys: ['fea_structure', 'cfd_fluid', 'electromagnetics', 'multi_physics', 'material_injection', 'code_compliance', 'opt_light_acoustics'] },
-    { zh: '半导体 EDA 与 CIM', en: 'EDA & Semiconductor', keys: ['analog_ic_design', 'digital_ic_synthesis', 'formal_verification', 'physical_prototyping', 'tcad_device_sim', 'fab_automation_eap', 'yield_yms'] },
-    { zh: '生命周期与管理', en: 'Lifecycle & Mgmt', keys: ['bom_mgmt', 'lifecycle_mgmt', 'requirements_trace', 'mbse_sys', 'finance_ledger'] },
-    { zh: '制造执行与控制', en: 'Manufacturing & Control', keys: ['cam_milling_cnc', 'scheduling_ops', 'process_control', 'data_acquisition'] },
-    { zh: 'BIM / GIS / 增材', en: 'BIM / GIS / AM', keys: ['bim_clash', 'gis_spatial', 'slicing_algorithm', 'am_layout'] },
-    { zh: '架构与交付', en: 'Architecture & Delivery', keys: ['cloud_native', 'collaboration', 'ext_api', 'xinchuang_compat'] },
+    { zh: '几何建模与设计自动化', en: 'Design & Modeling', keys: ['drafting_2d', 'solid_modeling_3d', 'surface_modeling', 'assembly_design', 'parametric_design', 'visual_programming', 'cad_repair_interop', 'reverse_engineering', 'cad_as_code', 'product_rendering_viz', 'polygon_mesh_dcc'] },
+    { zh: '物理仿真与工程分析', en: 'Simulation & Analysis', keys: ['fea_structure', 'cfd_fluid', 'electromagnetics', 'multi_physics', 'material_injection', 'code_compliance', 'opt_light_acoustics', 'generative_topo_opt', 'multibody_dynamics', 'simulation_vv', 'codegen_hil'] },
+    { zh: '半导体 EDA 与 CIM', en: 'EDA & Semiconductor', keys: ['analog_ic_design', 'digital_ic_synthesis', 'formal_verification', 'physical_prototyping', 'tcad_device_sim', 'fab_automation_eap', 'yield_yms', 'pcb_layout_design', 'rtl_simulation', 'ic_physical_signoff'] },
+    { zh: '生命周期与管理', en: 'Lifecycle & Mgmt', keys: ['bom_mgmt', 'lifecycle_mgmt', 'requirements_trace', 'mbse_sys', 'finance_ledger', 'supply_chain_procurement', 'group_consolidation_mgmt', 'change_config_mgmt', 'lims_lab_data'] },
+    { zh: '制造执行与控制', en: 'Manufacturing & Control', keys: ['cam_milling_cnc', 'scheduling_ops', 'process_control', 'data_acquisition', 'quality_spc_traceability', 'metrology_cmm_inspection', 'enterprise_asset_mgmt', 'predictive_maintenance_apm', 'iiot_historian', 'ot_protocol_gateway', 'sheet_nesting_2d'] },
+    { zh: 'BIM / GIS / 增材', en: 'BIM / GIS / AM', keys: ['bim_clash', 'gis_spatial', 'slicing_algorithm', 'am_layout', 'am_support_gen', 'bim_quantity_takeoff', 'construction_4d_sim', 'gnss_survey_processing'] },
+    { zh: '架构与交付', en: 'Architecture & Delivery', keys: ['cloud_native', 'collaboration', 'ext_api', 'xinchuang_compat', 'digital_twin', 'industrial_ar_xr'] },
   ];
 
   const state = {
