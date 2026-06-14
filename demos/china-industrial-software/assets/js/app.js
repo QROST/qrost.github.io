@@ -9,14 +9,7 @@
   const CHARTS = () => window.INDUSTRIAL_CHARTS || {};
   const CMP = () => window.INDUSTRIAL_COMPARE || {};
 
-  const PRODUCT_TYPES = [
-    'mcad', '2d_cad', 'dcc_mesh', 'cae_solver', 'cam', 'eda', 'plm',
-    'bim', 'bim_coordination', 'reality_capture', 'gis', 'iiot_platform',
-    'scada', 'mes', 'dcs', 'eam', 'erp', 'slicer', 'cim', 'mbse',
-    'cad_interop', 'cad_automation', 'other',
-  ];
-
-  /** L2 buckets with a single canonical product_type (1:1 for filter aliasing). */
+  /** L2 buckets with a single canonical product_type (1:1 for category filter aliasing). */
   const L2_CANONICAL_PRODUCT_TYPE = {
     CAE: 'cae_solver',
     CAM: 'cam',
@@ -37,22 +30,9 @@
     EAM: 'eam',
   };
 
-  const PRODUCT_TYPE_TO_L2 = Object.fromEntries(
-    Object.entries(L2_CANONICAL_PRODUCT_TYPE).map(([l2, pt]) => [pt, l2]),
-  );
-  const TAGS = [
-    'digital_twin', 'xinchuang', 'am_slicing', 'cad_interop',
-    'open_source_stack', 'semiconductor', 'aerospace', 'automotive',
-    'cloud_native', 'low_code', 'clash_detection', 'federated_bim',
-    'point_cloud', 'model_checking', '4d_simulation', 'open_bim',
-    'visual_programming', 'cad_scripting',
-  ];
-
   const state = {
     filterOrigin: '',
     filterL2: '',
-    filterProductType: '',
-    filterTag: '',
     filterVendor: '',
     filterKernel: '',
     search: '',
@@ -156,23 +136,12 @@
     return !!(canonicalPt && p.product_type === canonicalPt);
   }
 
-  function reconcileTaxonomyFilters() {
-    const { filterL2, filterProductType } = state;
-    if (!filterL2 || !filterProductType) return;
-    const canonicalPt = L2_CANONICAL_PRODUCT_TYPE[filterL2];
-    if (canonicalPt && filterProductType !== canonicalPt) {
-      state.filterProductType = '';
-    }
-  }
-
   function applyFilters() {
     let list = CAT().allProducts || [];
     if (state.filterOrigin) list = list.filter((p) => p.origin === state.filterOrigin);
     if (state.filterL2) list = list.filter((p) => matchesCategoryFilter(p, state.filterL2));
     if (state.filterVendor) list = list.filter((p) => p.vendor_id === state.filterVendor);
     if (state.filterKernel) list = list.filter((p) => p.kernel_id === state.filterKernel);
-    if (state.filterProductType) list = list.filter((p) => matchesProductTypeFilter(p, state.filterProductType));
-    if (state.filterTag) list = list.filter((p) => (p.tags || []).includes(state.filterTag));
     if (state.search) {
       const q = state.search.toLowerCase();
       list = list.filter((p) => {
@@ -250,8 +219,7 @@
 
   // Whether any catalog filter (beyond default) is active — drives the clear button.
   function catalogFiltersActive() {
-    return !!(state.filterOrigin || state.filterL2 || state.filterKernel ||
-      state.filterProductType || state.filterTag || state.search);
+    return !!(state.filterOrigin || state.filterL2 || state.filterKernel || state.search);
   }
 
   function updateCatalogClearBtn() {
@@ -264,8 +232,6 @@
     state.filterL2 = '';
     state.filterVendor = '';
     state.filterKernel = '';
-    state.filterProductType = '';
-    state.filterTag = '';
     state.search = '';
     syncFilterUI();
     renderCatalogTable();
@@ -504,7 +470,59 @@
         <div><dt class="text-slate-500 text-xs">${t('policyActual')} (${p.actual_as_of || '—'})</dt><dd class="text-slate-800">${actualStr}</dd></div>
       </dl>
       ${note ? `<p class="text-xs text-slate-500 mt-3">${note}</p>` : ''}
-      ${p.source_url ? `<a href="${p.source_url}" class="text-xs text-link underline mt-3 inline-block" target="_blank" rel="noopener">${t('policySource')} ↗</a>` : ''}`;
+      ${renderPolicyDetail(p)}
+      ${(!p.detail || !(p.detail.sources || []).length) && p.source_url ? `<a href="${p.source_url}" class="text-xs text-link underline mt-3 inline-block" target="_blank" rel="noopener">${t('policySource')} ↗</a>` : ''}`;
+  }
+
+  // Rich directional block (additive): only renders when a node carries `detail`.
+  function renderPolicyDetail(p) {
+    const d = p.detail;
+    if (!d) return '';
+    const en = I18N().isEn();
+    const pick = (zh, ena) => (en ? (ena || zh) : (zh || ena)) || '';
+    const direction = pick(d.direction_zh, d.direction_en);
+    const focus = pick(d.focus_zh, d.focus_en);
+    const implications = pick(d.implications_zh, d.implications_en);
+    const inits = (d.initiatives || []).map((it) => `<li>${pick(it.zh, it.en)}</li>`).join('');
+    const related = (d.related || []).map((rid) => {
+      const rp = getPolicyById(rid);
+      if (!rp) return '';
+      const label = en ? (rp.title_en || rp.title_zh) : (rp.title_zh || rp.title_en);
+      return `<button type="button" class="policy-related-chip" data-policy-link="${rid}">${label}</button>`;
+    }).filter(Boolean).join('');
+    const sources = (d.sources || []).map((s) => {
+      const label = pick(s.label_zh, s.label_en) || s.url;
+      const pub = s.publisher ? `<span class="policy-source-pub">${s.publisher}</span>` : '';
+      return `<li><a href="${s.url}" target="_blank" rel="noopener" class="text-link underline">${label} ↗</a> ${pub}</li>`;
+    }).join('');
+    const confCls = d.confidence ? `policy-conf policy-conf--${d.confidence}` : '';
+    return `
+      <div class="policy-detail mt-4">
+        ${direction ? `<div class="policy-detail-block">
+          <h4 class="policy-detail-h">${t('policyDirection')}</h4>
+          <p class="text-sm text-slate-700">${direction}</p>
+        </div>` : ''}
+        ${inits ? `<div class="policy-detail-block">
+          <h4 class="policy-detail-h">${t('policyInitiatives')}</h4>
+          <ul class="policy-init-list text-sm text-slate-700">${inits}</ul>
+        </div>` : ''}
+        ${focus ? `<div class="policy-detail-block">
+          <h4 class="policy-detail-h">${t('policyFocus')}</h4>
+          <p class="text-sm text-slate-700">${focus}</p>
+        </div>` : ''}
+        ${implications ? `<div class="policy-detail-block policy-impl">
+          <h4 class="policy-detail-h">${t('policyImplications')}</h4>
+          <p class="text-sm text-slate-800">${implications}</p>
+        </div>` : ''}
+        ${related ? `<div class="policy-detail-block">
+          <h4 class="policy-detail-h">${t('policyRelated')}</h4>
+          <div class="policy-related-wrap">${related}</div>
+        </div>` : ''}
+        ${sources ? `<div class="policy-detail-block">
+          <h4 class="policy-detail-h">${t('policySources')} ${d.confidence ? `<span class="${confCls}">${t('policyConf')}: ${t('policyConf_' + d.confidence)}</span>` : ''}</h4>
+          <ul class="policy-source-list text-xs">${sources}</ul>
+        </div>` : ''}
+      </div>`;
   }
 
   function openPolicyModal(id) {
@@ -517,6 +535,9 @@
     modalPolicyId = id;
     titleEl.textContent = I18N().isEn() ? p.title_en : p.title_zh;
     bodyEl.innerHTML = renderPolicyModalBody(p);
+    bodyEl.querySelectorAll('[data-policy-link]').forEach((btn) => {
+      btn.addEventListener('click', () => openPolicyModal(btn.dataset.policyLink));
+    });
     backdrop.classList.remove('hidden');
     backdrop.setAttribute('aria-hidden', 'false');
     lockBodyScroll();
@@ -1172,91 +1193,12 @@
   function syncFilterUI() {
     const oSel = document.getElementById('filter-origin');
     const cSel = document.getElementById('filter-category');
-    const ptSel = document.getElementById('filter-product-type');
-    const tagSel = document.getElementById('filter-tag');
     const kSel = document.getElementById('filter-kernel');
     if (oSel) oSel.value = state.filterOrigin;
     if (cSel) cSel.value = state.filterL2;
-    if (ptSel) ptSel.value = state.filterProductType;
-    if (tagSel) tagSel.value = state.filterTag;
     if (kSel) kSel.value = state.filterKernel;
     const search = document.getElementById('catalog-search');
     if (search) search.value = state.search;
-  }
-
-  function ensureTaxonomyFilterSelects() {
-    const row = document.querySelector('#catalog .flex.flex-wrap');
-    if (!row || document.getElementById('filter-product-type')) return;
-
-    const ptSel = document.createElement('select');
-    ptSel.id = 'filter-product-type';
-    ptSel.className = 'text-sm border border-slate-200 rounded px-3 py-2 bg-white';
-    ptSel.setAttribute('aria-label', t('filterProductType'));
-
-    const tagSel = document.createElement('select');
-    tagSel.id = 'filter-tag';
-    tagSel.className = 'text-sm border border-slate-200 rounded px-3 py-2 bg-white';
-    tagSel.setAttribute('aria-label', t('filterTag'));
-
-    const catSel = document.getElementById('filter-category');
-    if (catSel) {
-      catSel.insertAdjacentElement('afterend', tagSel);
-      catSel.insertAdjacentElement('afterend', ptSel);
-    } else {
-      row.appendChild(ptSel);
-      row.appendChild(tagSel);
-    }
-
-    ptSel.addEventListener('change', (e) => {
-      state.filterProductType = e.target.value;
-      const l2ForPt = PRODUCT_TYPE_TO_L2[state.filterProductType];
-      if (l2ForPt) state.filterL2 = l2ForPt;
-      reconcileTaxonomyFilters();
-      syncFilterUI();
-      renderCatalogTable();
-      if (state.filterL2) {
-        CHARTS().setSunburstHighlight(state.filterL2);
-      } else {
-        renderSunburstChart();
-      }
-    });
-    tagSel.addEventListener('change', (e) => {
-      state.filterTag = e.target.value;
-      renderCatalogTable();
-    });
-  }
-
-  function populateTaxonomyFilters() {
-    ensureTaxonomyFilterSelects();
-    const prods = CAT().allProducts || [];
-    const ptSel = document.getElementById('filter-product-type');
-    const tagSel = document.getElementById('filter-tag');
-    if (!ptSel || !tagSel) return;
-
-    const usedTypes = new Set(prods.map((p) => p.product_type).filter(Boolean));
-    const usedTags = new Set(prods.flatMap((p) => p.tags || []));
-
-    ptSel.innerHTML = `<option value="">${t('filterAllType')}</option>`;
-    PRODUCT_TYPES.filter((pt) => usedTypes.has(pt)).forEach((pt) => {
-      const opt = document.createElement('option');
-      opt.value = pt;
-      opt.textContent = (I18N().productTypeLabel && I18N().productTypeLabel(pt)) || pt;
-      ptSel.appendChild(opt);
-    });
-    ptSel.disabled = ptSel.options.length <= 1;
-    ptSel.classList.toggle('hidden', ptSel.options.length <= 1);
-
-    tagSel.innerHTML = `<option value="">${t('filterAllTag')}</option>`;
-    TAGS.filter((tag) => usedTags.has(tag)).forEach((tag) => {
-      const opt = document.createElement('option');
-      opt.value = tag;
-      opt.textContent = (I18N().tagLabel && I18N().tagLabel(tag)) || tag;
-      tagSel.appendChild(opt);
-    });
-    tagSel.disabled = tagSel.options.length <= 1;
-    tagSel.classList.toggle('hidden', tagSel.options.length <= 1);
-
-    syncFilterUI();
   }
 
   function populateKernelFilter() {
@@ -1341,7 +1283,6 @@
   function applySunburstCategoryFilter(name) {
     state.filterL2 = name;
     state.filterVendor = '';
-    reconcileTaxonomyFilters();
     syncFilterUI();
     renderCatalogTable();
     CHARTS().setSunburstHighlight(name);
@@ -1437,7 +1378,6 @@
     });
     document.getElementById('filter-category')?.addEventListener('change', (e) => {
       state.filterL2 = e.target.value;
-      reconcileTaxonomyFilters();
       syncFilterUI();
       renderCatalogTable();
       if (state.filterL2) {
@@ -1537,7 +1477,6 @@
     window.__breakthroughs = await CAT().loadBreakthroughs();
     populateOriginFilterCounts();
     populateCategoryFilter();
-    populateTaxonomyFilters();
     populateKernelFilter();
     populateCompareSelect();
     bindEvents();
@@ -1549,7 +1488,6 @@
       populateOriginFilterCounts();
       populateCategoryFilter();
       populateKernelFilter();
-      populateTaxonomyFilters();
       syncFilterUI();
       updateVisuals();
     });
@@ -1572,7 +1510,6 @@
       matchesProductTypeFilter,
       setFilters: (patch) => {
         Object.assign(state, patch);
-        reconcileTaxonomyFilters();
         syncFilterUI();
         renderCatalogTable();
         return filtered.length;

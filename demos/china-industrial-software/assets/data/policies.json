@@ -41,26 +41,6 @@
       "policy_type": "program"
     },
     {
-      "id": "guofa-18-software-ic-2000",
-      "date": "2000-06",
-      "target_deadline": null,
-      "title_zh": "鼓励软件产业和集成电路产业发展若干政策（国发〔2000〕18号）",
-      "title_en": "Policies to Encourage Software and IC Industries (Guofa [2000] No. 18)",
-      "metric_zh": "软件/集成电路企业所得税优惠",
-      "metric_en": "Software/IC corporate income tax incentives",
-      "target_value": null,
-      "target_unit_zh": "两免三减半",
-      "target_unit_en": "2-yr exempt + 3-yr half rate",
-      "actual_value": null,
-      "actual_as_of": null,
-      "actual_note_zh": "EDA/IP设计视同软件产业；2015年国务院宣布18号文失效，由2011年4号文接续",
-      "actual_note_en": "EDA/IP design treated as software; Doc 18 repealed 2015, superseded by Doc 4 (2011)",
-      "summary_zh": "早期软件与集成电路（含EDA）产业化的国家级财税政策基石",
-      "summary_en": "Foundational national fiscal policy for software, IC design, and EDA industrialization",
-      "source_url": "https://www.gov.cn/gongbao/content/2000/content_60310.htm",
-      "policy_type": "program"
-    },
-    {
       "id": "fund-guofa-2000-no-18-software-ic-industry-fiscal-inc-2000",
       "date": "2000-06",
       "title_zh": "国发18号：软件与集成电路产业财税扶持",
@@ -85,28 +65,24 @@
       "source_research": "composer-2.5"
     },
     {
-      "id": "fyp-10th-fyp-outline-informatization-telecom-kpis-2001",
-      "date": "2001-03",
-      "title_zh": "「十五」计划纲要：信息化与电信量化指标",
-      "title_en": "10th FYP Outline: informatization & telecom KPIs",
-      "summary_zh": "九届全国人大四次会议批准的《国民经济和社会发展第十个五年计划纲要》第十五章，设定信息化与电信业2005年量化目标",
-      "summary_en": "NPC-approved 10th Five-Year Plan Outline (Ch.15) sets quantified 2005 informatization and telecom targets",
-      "metric_zh": "电信业务总量年均增速",
-      "metric_en": "Average annual growth of telecom service volume",
-      "target_value": 26,
-      "target_unit_zh": "%",
-      "target_unit_en": "%",
-      "target_deadline": "2005",
+      "id": "guofa-18-software-ic-2000",
+      "date": "2000-06",
+      "target_deadline": null,
+      "title_zh": "鼓励软件产业和集成电路产业发展若干政策（国发〔2000〕18号）",
+      "title_en": "Policies to Encourage Software and IC Industries (Guofa [2000] No. 18)",
+      "metric_zh": "软件/集成电路企业所得税优惠",
+      "metric_en": "Software/IC corporate income tax incentives",
+      "target_value": null,
+      "target_unit_zh": "两免三减半",
+      "target_unit_en": "2-yr exempt + 3-yr half rate",
       "actual_value": null,
-      "actual_as_of": "",
-      "actual_note_zh": "纲要另列2005年固定电话1.79亿户、移动电话2.6亿户；本轮未检索国家统计局终值复核",
-      "actual_note_en": "Outline also targets 179M fixed-line and 260M mobile subs by 2005; NBS final figures not re-verified in this pass",
-      "issuer_zh": "全国人民代表大会（国务院提请）",
-      "issuer_en": "National People's Congress (State Council draft)",
-      "doc_number": "",
-      "policy_type": "fyp",
-      "source_url": "https://www.gov.cn/gongbao/content/2001/content/60648.htm",
-      "source_research": "composer-2.5"
+      "actual_as_of": null,
+      "actual_note_zh": "EDA/IP设计视同软件产业；2015年国务院宣布18号文失效，由2011年4号文接续",
+      "actual_note_en": "EDA/IP design treated as software; Doc 18 repealed 2015, superseded by Doc 4 (2011)",
+      "summary_zh": "早期软件与集成电路（含EDA）产业化的国家级财税政策基石",
+      "summary_en": "Foundational national fiscal policy for software, IC design, and EDA industrialization",
+      "source_url": "https://www.gov.cn/gongbao/content/2000/content_60310.htm",
+      "policy_type": "program"
     },
     {
       "id": "fyp-10th-fyp-outline-fixed-mobile-subscriber-targets-2001",
@@ -125,6 +101,30 @@
       "actual_as_of": "",
       "actual_note_zh": "纲要同期目标：固定电话1.79亿户；实际2005年用户数需以工信部/国家统计局年报为准",
       "actual_note_en": "Companion target: 179M fixed-line subs; 2005 actuals per MIIT/NBS yearbooks not re-verified here",
+      "issuer_zh": "全国人民代表大会（国务院提请）",
+      "issuer_en": "National People's Congress (State Council draft)",
+      "doc_number": "",
+      "policy_type": "fyp",
+      "source_url": "https://www.gov.cn/gongbao/content/2001/content/60648.htm",
+      "source_research": "composer-2.5"
+    },
+    {
+      "id": "fyp-10th-fyp-outline-informatization-telecom-kpis-2001",
+      "date": "2001-03",
+      "title_zh": "「十五」计划纲要：信息化与电信量化指标",
+      "title_en": "10th FYP Outline: informatization & telecom KPIs",
+      "summary_zh": "九届全国人大四次会议批准的《国民经济和社会发展第十个五年计划纲要》第十五章，设定信息化与电信业2005年量化目标",
+      "summary_en": "NPC-approved 10th Five-Year Plan Outline (Ch.15) sets quantified 2005 informatization and telecom targets",
+      "metric_zh": "电信业务总量年均增速",
+      "metric_en": "Average annual growth of telecom service volume",
+      "target_value": 26,
+      "target_unit_zh": "%",
+      "target_unit_en": "%",
+      "target_deadline": "2005",
+      "actual_value": null,
+      "actual_as_of": "",
+      "actual_note_zh": "纲要另列2005年固定电话1.79亿户、移动电话2.6亿户；本轮未检索国家统计局终值复核",
+      "actual_note_en": "Outline also targets 179M fixed-line and 260M mobile subs by 2005; NBS final figures not re-verified in this pass",
       "issuer_zh": "全国人民代表大会（国务院提请）",
       "issuer_en": "National People's Congress (State Council draft)",
       "doc_number": "",
@@ -221,30 +221,6 @@
       "policy_type": "program"
     },
     {
-      "id": "program-state-council-approves-core-electronic-devices-h-2008",
-      "date": "2008-04",
-      "title_zh": "核高基重大专项国务院批准实施",
-      "title_en": "State Council approves Core Electronic Devices, High-End Chips & Basic Software mega-project",
-      "summary_zh": "国务院常务会议批准「核心电子器件、高端通用芯片及基础软件产品」国家科技重大专项，覆盖CPU/OS/数据库/EDA·IP核等攻关",
-      "summary_en": "State Council executive meeting approved the national S&T mega-project on core devices, high-end chips, and basic software—including CPU/OS/database/EDA·IP cores",
-      "metric_zh": "专项实施周期",
-      "metric_en": "Program implementation period",
-      "target_value": null,
-      "target_unit_zh": "年",
-      "target_unit_en": "years",
-      "target_deadline": "2020-12",
-      "actual_value": null,
-      "actual_as_of": "",
-      "actual_note_zh": "启动时间为2008年4月；与《国家中长期科学和技术发展规划纲要(2006—2020)》16个重大专项之一衔接",
-      "actual_note_en": "Launched April 2008; one of 16 mega-projects under the 2006–2020 medium- and long-term S&T plan",
-      "issuer_zh": "国务院",
-      "issuer_en": "State Council",
-      "doc_number": "",
-      "policy_type": "program",
-      "source_url": "https://www.most.gov.cn/xwzx/twzb/fbh17112001/twbbwzsl/201711/t20171124_136445.html",
-      "source_research": "composer-2.5"
-    },
-    {
       "id": "program-core-electronic-devices-high-end-software-ic-meg-2008",
       "date": "2008-04",
       "title_zh": "核高基重大专项（含EDA工具攻关）",
@@ -263,6 +239,30 @@
       "actual_note_en": "220 projects; ¥19.64B total (¥8.4B central + ¥11.1B co-funding, 11th FYP boundary)",
       "issuer_zh": "科技部",
       "issuer_en": "Ministry of Science and Technology",
+      "doc_number": "",
+      "policy_type": "program",
+      "source_url": "https://www.most.gov.cn/xwzx/twzb/fbh17112001/twbbwzsl/201711/t20171124_136445.html",
+      "source_research": "composer-2.5"
+    },
+    {
+      "id": "program-state-council-approves-core-electronic-devices-h-2008",
+      "date": "2008-04",
+      "title_zh": "核高基重大专项国务院批准实施",
+      "title_en": "State Council approves Core Electronic Devices, High-End Chips & Basic Software mega-project",
+      "summary_zh": "国务院常务会议批准「核心电子器件、高端通用芯片及基础软件产品」国家科技重大专项，覆盖CPU/OS/数据库/EDA·IP核等攻关",
+      "summary_en": "State Council executive meeting approved the national S&T mega-project on core devices, high-end chips, and basic software—including CPU/OS/database/EDA·IP cores",
+      "metric_zh": "专项实施周期",
+      "metric_en": "Program implementation period",
+      "target_value": null,
+      "target_unit_zh": "年",
+      "target_unit_en": "years",
+      "target_deadline": "2020-12",
+      "actual_value": null,
+      "actual_as_of": "",
+      "actual_note_zh": "启动时间为2008年4月；与《国家中长期科学和技术发展规划纲要(2006—2020)》16个重大专项之一衔接",
+      "actual_note_en": "Launched April 2008; one of 16 mega-projects under the 2006–2020 medium- and long-term S&T plan",
+      "issuer_zh": "国务院",
+      "issuer_en": "State Council",
       "doc_number": "",
       "policy_type": "program",
       "source_url": "https://www.most.gov.cn/xwzx/twzb/fbh17112001/twbbwzsl/201711/t20171124_136445.html",
@@ -477,6 +477,30 @@
       "source_research": "composer-2.5"
     },
     {
+      "id": "fyp-industrial-transformation-plan-average-annual-gr-2012",
+      "date": "2012-01",
+      "title_zh": "工业转型升级规划：工业增加值年均增速",
+      "title_en": "Industrial Transformation Plan: average annual growth of industrial value added",
+      "summary_zh": "规划对「十二五」工业增加值年均增长提出约束性预期",
+      "summary_en": "Plan sets indicative average annual growth of industrial value added for 2011–2015",
+      "metric_zh": "工业增加值年均增长",
+      "metric_en": "Average annual growth of industrial value added",
+      "target_value": 10,
+      "target_unit_zh": "%",
+      "target_unit_en": "%",
+      "target_deadline": "2015",
+      "actual_value": null,
+      "actual_as_of": "2015",
+      "actual_note_zh": "规划目标年均 10%；十二五期间工业增加值实际年均增速约 9% 量级（需对照国家统计局工业分行业年度序列核算）",
+      "actual_note_en": "Plan target 10% CAGR; actual 12th FYP period industrial VA growth ~9% p.a. (requires NBS industrial VA time-series reconciliation)",
+      "issuer_zh": "国务院",
+      "issuer_en": "State Council",
+      "doc_number": "国发〔2012〕2号",
+      "policy_type": "fyp",
+      "source_url": "https://www.gov.cn/zhengce/content/2012-01/18/content_2031490.htm",
+      "source_research": "composer-2.5"
+    },
+    {
       "id": "fyp-industrial-transformation-plan-cad-digital-desig-2012",
       "date": "2012-01",
       "title_zh": "工业转型升级规划：大中型企业数字化研发设计工具普及率",
@@ -517,30 +541,6 @@
       "actual_as_of": "2015",
       "actual_note_zh": "规划目标 50%；2015 年两化融合/制造业调查公开引用值约 49.7%，接近但未确认官方终验口径",
       "actual_note_en": "Plan target 50%; 2015 integration surveys widely cite ~49.7%—close but official final audit boundary not confirmed here",
-      "issuer_zh": "国务院",
-      "issuer_en": "State Council",
-      "doc_number": "国发〔2012〕2号",
-      "policy_type": "fyp",
-      "source_url": "https://www.gov.cn/zhengce/content/2012-01/18/content_2031490.htm",
-      "source_research": "composer-2.5"
-    },
-    {
-      "id": "fyp-industrial-transformation-plan-average-annual-gr-2012",
-      "date": "2012-01",
-      "title_zh": "工业转型升级规划：工业增加值年均增速",
-      "title_en": "Industrial Transformation Plan: average annual growth of industrial value added",
-      "summary_zh": "规划对「十二五」工业增加值年均增长提出约束性预期",
-      "summary_en": "Plan sets indicative average annual growth of industrial value added for 2011–2015",
-      "metric_zh": "工业增加值年均增长",
-      "metric_en": "Average annual growth of industrial value added",
-      "target_value": 10,
-      "target_unit_zh": "%",
-      "target_unit_en": "%",
-      "target_deadline": "2015",
-      "actual_value": null,
-      "actual_as_of": "2015",
-      "actual_note_zh": "规划目标年均 10%；十二五期间工业增加值实际年均增速约 9% 量级（需对照国家统计局工业分行业年度序列核算）",
-      "actual_note_en": "Plan target 10% CAGR; actual 12th FYP period industrial VA growth ~9% p.a. (requires NBS industrial VA time-series reconciliation)",
       "issuer_zh": "国务院",
       "issuer_en": "State Council",
       "doc_number": "国发〔2012〕2号",
@@ -617,30 +617,6 @@
       "source_research": "composer-2.5"
     },
     {
-      "id": "program-municipal-prefectural-government-software-legali-2014",
-      "date": "2014-12",
-      "title_zh": "市地级政府机关软件正版化完成时限",
-      "title_en": "Municipal/prefectural government software legalization deadline",
-      "summary_zh": "国办发〔2014〕88号实施方案：推进各级政府机关使用正版软件",
-      "summary_en": "Guoban [2014] No.88 implementation plan for licensed software across government organs",
-      "metric_zh": "市（地）级政府机关正版化完成率目标",
-      "metric_en": "Municipal/prefectural government legalization completion target",
-      "target_value": 100,
-      "target_unit_zh": "%",
-      "target_unit_en": "%",
-      "target_deadline": "2015-12",
-      "actual_value": null,
-      "actual_as_of": "2015",
-      "actual_note_zh": "方案要求2015年底前市地级机关完成；全国汇总完成率见国家版权局/国管局阶段性通报，无持续年度公开KPI",
-      "actual_note_en": "Plan requires completion by end-2015; aggregate completion reported in NCAC/NAGA phase reports, no ongoing annual KPI",
-      "issuer_zh": "国务院办公厅",
-      "issuer_en": "General Office of the State Council",
-      "doc_number": "国办发〔2014〕88号",
-      "policy_type": "program",
-      "source_url": "https://www.gov.cn/zhengce/content/2014-12/30/content_9355.htm",
-      "source_research": "composer-2.5"
-    },
-    {
       "id": "program-county-district-government-software-legalization-2014",
       "date": "2014-12",
       "title_zh": "县区级政府机关软件正版化完成时限",
@@ -657,6 +633,30 @@
       "actual_as_of": "2016",
       "actual_note_zh": "方案要求2016年底前县区级机关完成；与央企/事业单位2017节点分阶段推进",
       "actual_note_en": "Plan requires completion by end-2016; SOEs/public institutions targeted separately by end-2017",
+      "issuer_zh": "国务院办公厅",
+      "issuer_en": "General Office of the State Council",
+      "doc_number": "国办发〔2014〕88号",
+      "policy_type": "program",
+      "source_url": "https://www.gov.cn/zhengce/content/2014-12/30/content_9355.htm",
+      "source_research": "composer-2.5"
+    },
+    {
+      "id": "program-municipal-prefectural-government-software-legali-2014",
+      "date": "2014-12",
+      "title_zh": "市地级政府机关软件正版化完成时限",
+      "title_en": "Municipal/prefectural government software legalization deadline",
+      "summary_zh": "国办发〔2014〕88号实施方案：推进各级政府机关使用正版软件",
+      "summary_en": "Guoban [2014] No.88 implementation plan for licensed software across government organs",
+      "metric_zh": "市（地）级政府机关正版化完成率目标",
+      "metric_en": "Municipal/prefectural government legalization completion target",
+      "target_value": 100,
+      "target_unit_zh": "%",
+      "target_unit_en": "%",
+      "target_deadline": "2015-12",
+      "actual_value": null,
+      "actual_as_of": "2015",
+      "actual_note_zh": "方案要求2015年底前市地级机关完成；全国汇总完成率见国家版权局/国管局阶段性通报，无持续年度公开KPI",
+      "actual_note_en": "Plan requires completion by end-2015; aggregate completion reported in NCAC/NAGA phase reports, no ongoing annual KPI",
       "issuer_zh": "国务院办公厅",
       "issuer_en": "General Office of the State Council",
       "doc_number": "国办发〔2014〕88号",
@@ -709,54 +709,6 @@
       "policy_type": "program"
     },
     {
-      "id": "program-made-in-china-2025-interim-targets-2020-2015",
-      "date": "2015-05",
-      "title_zh": "中国制造2025阶段性指标（2020）",
-      "title_en": "Made in China 2025 interim targets (2020)",
-      "summary_zh": "国发〔2015〕28号提出2020年两化融合阶段性考核指标",
-      "summary_en": "State Council Doc [2015] No.28 sets 2020 integration milestones",
-      "metric_zh": "数字化研发设计工具普及率",
-      "metric_en": "Digital R&D design tool penetration rate",
-      "target_value": 72,
-      "target_unit_zh": "%",
-      "target_unit_en": "%",
-      "target_deadline": "2020-12",
-      "actual_value": null,
-      "actual_as_of": "2020",
-      "actual_note_zh": "高于349号文2020目标(58%)；2020实绩见两化融合数据地图",
-      "actual_note_en": "Higher than Doc 349 2020 target (58%); 2020 actuals in integration data map",
-      "issuer_zh": "国务院",
-      "issuer_en": "State Council",
-      "doc_number": "国发〔2015〕28号",
-      "policy_type": "program",
-      "source_url": "https://www.ndrc.gov.cn/xxgk/zcfb/qt/201505/t20150520_967388.html",
-      "source_research": "composer-2.5"
-    },
-    {
-      "id": "program-made-in-china-2025-manufacturing-value-added-rat-2015",
-      "date": "2015-05",
-      "title_zh": "中国制造2025制造业增加值率目标",
-      "title_en": "Made in China 2025 manufacturing value-added rate target",
-      "summary_zh": "国发〔2015〕28号及配套指标表提出2025年制造业增加值率较2015年提高约2个百分点",
-      "summary_en": "Guofa [2015] No.28 and indicator annex set 2025 manufacturing value-added rate ~2pp above 2015",
-      "metric_zh": "制造业增加值率",
-      "metric_en": "Manufacturing value-added rate",
-      "target_value": 23,
-      "target_unit_zh": "%",
-      "target_unit_en": "%",
-      "target_deadline": "2025",
-      "actual_value": null,
-      "actual_as_of": "2024",
-      "actual_note_zh": "国家统计局年度工业统计公报可核对；本回合无法联网复核最新公布值",
-      "actual_note_en": "Check NBS annual industrial statistics; latest figure not re-verified in this session (no live web access)",
-      "issuer_zh": "国务院",
-      "issuer_en": "State Council",
-      "doc_number": "国发〔2015〕28号",
-      "policy_type": "program",
-      "source_url": "https://www.gov.cn/zhengce/content/2015-05/19/content_9784.htm",
-      "source_research": "composer-2.5"
-    },
-    {
       "id": "program-made-in-china-2025-digital-r-d-design-tool-penet-2015",
       "date": "2015-05",
       "title_zh": "中国制造2025数字化研发设计工具普及率",
@@ -773,30 +725,6 @@
       "actual_as_of": "2023",
       "actual_note_zh": "工信部两化融合数据通报口径；2024全年终值待官方年报核对",
       "actual_note_en": "MIIT integration statistics boundary; 2024 year-end pending official annual release",
-      "issuer_zh": "国务院",
-      "issuer_en": "State Council",
-      "doc_number": "国发〔2015〕28号",
-      "policy_type": "program",
-      "source_url": "https://www.gov.cn/zhengce/content/2015-05/19/content_9784.htm",
-      "source_research": "composer-2.5"
-    },
-    {
-      "id": "program-made-in-china-2025-key-process-cnc-rate-2015",
-      "date": "2015-05",
-      "title_zh": "中国制造2025关键工序数控化率",
-      "title_en": "Made in China 2025 key-process CNC rate",
-      "summary_zh": "中国制造2025分阶段指标表：2020年50%、2025年64%",
-      "summary_en": "MIC2025 phased indicator table: 50% by 2020, 64% by 2025",
-      "metric_zh": "关键工序数控化率",
-      "metric_en": "Key-process numerical control (CNC) rate",
-      "target_value": 64,
-      "target_unit_zh": "%",
-      "target_unit_en": "%",
-      "target_deadline": "2025",
-      "actual_value": 62.9,
-      "actual_as_of": "2023",
-      "actual_note_zh": "工信部两化融合数据通报；距2025目标仍有缺口",
-      "actual_note_en": "MIIT integration statistics; short of 2025 target as of 2023",
       "issuer_zh": "国务院",
       "issuer_en": "State Council",
       "doc_number": "国发〔2015〕28号",
@@ -829,27 +757,51 @@
       "source_research": "composer-2.5"
     },
     {
-      "id": "program-made-in-china-2025-manufacturing-r-d-intensity-t-2015",
+      "id": "program-made-in-china-2025-interim-targets-2020-2015",
       "date": "2015-05",
-      "title_zh": "中国制造2025：制造业研发投入强度目标",
-      "title_en": "Made in China 2025: manufacturing R&D intensity target",
-      "summary_zh": "国发〔2015〕28号未设制造业占GDP比重目标，但设定2025年制造业研发投入强度量化指标",
-      "summary_en": "Guofa [2015] No.28 sets no GDP-share target but a 2025 manufacturing R&D intensity KPI",
-      "metric_zh": "制造业研发投入强度",
-      "metric_en": "Manufacturing R&D expenditure intensity",
-      "target_value": 1.68,
+      "title_zh": "中国制造2025阶段性指标（2020）",
+      "title_en": "Made in China 2025 interim targets (2020)",
+      "summary_zh": "国发〔2015〕28号提出2020年两化融合阶段性考核指标",
+      "summary_en": "State Council Doc [2015] No.28 sets 2020 integration milestones",
+      "metric_zh": "数字化研发设计工具普及率",
+      "metric_en": "Digital R&D design tool penetration rate",
+      "target_value": 72,
       "target_unit_zh": "%",
       "target_unit_en": "%",
-      "target_deadline": "2025",
+      "target_deadline": "2020-12",
       "actual_value": null,
-      "actual_as_of": "",
-      "actual_note_zh": "与GDP占比不同指标；2013年基期0.88%；2025年目标>1.68%；最新实测需查工信部/统计年鉴",
-      "actual_note_en": "Distinct from GDP share; 2013 baseline 0.88%; 2025 target >1.68%; latest actual requires MIIT/yearbook check",
+      "actual_as_of": "2020",
+      "actual_note_zh": "高于349号文2020目标(58%)；2020实绩见两化融合数据地图",
+      "actual_note_en": "Higher than Doc 349 2020 target (58%); 2020 actuals in integration data map",
       "issuer_zh": "国务院",
       "issuer_en": "State Council",
       "doc_number": "国发〔2015〕28号",
       "policy_type": "program",
       "source_url": "https://www.ndrc.gov.cn/xxgk/zcfb/qt/201505/t20150520_967388.html",
+      "source_research": "composer-2.5"
+    },
+    {
+      "id": "program-made-in-china-2025-key-process-cnc-rate-2015",
+      "date": "2015-05",
+      "title_zh": "中国制造2025关键工序数控化率",
+      "title_en": "Made in China 2025 key-process CNC rate",
+      "summary_zh": "中国制造2025分阶段指标表：2020年50%、2025年64%",
+      "summary_en": "MIC2025 phased indicator table: 50% by 2020, 64% by 2025",
+      "metric_zh": "关键工序数控化率",
+      "metric_en": "Key-process numerical control (CNC) rate",
+      "target_value": 64,
+      "target_unit_zh": "%",
+      "target_unit_en": "%",
+      "target_deadline": "2025",
+      "actual_value": 62.9,
+      "actual_as_of": "2023",
+      "actual_note_zh": "工信部两化融合数据通报；距2025目标仍有缺口",
+      "actual_note_en": "MIIT integration statistics; short of 2025 target as of 2023",
+      "issuer_zh": "国务院",
+      "issuer_en": "State Council",
+      "doc_number": "国发〔2015〕28号",
+      "policy_type": "program",
+      "source_url": "https://www.gov.cn/zhengce/content/2015-05/19/content_9784.htm",
       "source_research": "composer-2.5"
     },
     {
@@ -877,24 +829,52 @@
       "source_research": "composer-2.5"
     },
     {
-      "id": "mohurd-bim-guidance-2015",
-      "date": "2015-06",
-      "target_deadline": "2020-12",
-      "title_zh": "推进建筑信息模型（BIM）应用指导意见",
-      "title_en": "Guidance on promoting BIM application",
-      "metric_zh": "政府投资及大型项目BIM应用",
-      "metric_en": "BIM adoption on public & large projects",
-      "target_value": null,
-      "target_unit_zh": "全面应用",
-      "target_unit_en": "full adoption",
+      "id": "program-made-in-china-2025-manufacturing-r-d-intensity-t-2015",
+      "date": "2015-05",
+      "title_zh": "中国制造2025：制造业研发投入强度目标",
+      "title_en": "Made in China 2025: manufacturing R&D intensity target",
+      "summary_zh": "国发〔2015〕28号未设制造业占GDP比重目标，但设定2025年制造业研发投入强度量化指标",
+      "summary_en": "Guofa [2015] No.28 sets no GDP-share target but a 2025 manufacturing R&D intensity KPI",
+      "metric_zh": "制造业研发投入强度",
+      "metric_en": "Manufacturing R&D expenditure intensity",
+      "target_value": 1.68,
+      "target_unit_zh": "%",
+      "target_unit_en": "%",
+      "target_deadline": "2025",
       "actual_value": null,
-      "actual_as_of": "2020",
-      "actual_note_zh": "建质函〔2015〕159号；要求2020年前大型项目全面应用BIM",
-      "actual_note_en": "Jianzhi Letter [2015] No. 159; targets full BIM on large projects by 2020",
-      "summary_zh": "国家级BIM应用政策，推动国产BIM/GIS软件与协同平台",
-      "summary_en": "National BIM policy driving domestic BIM/GIS software and collaboration platforms",
-      "source_url": "http://zjj.sz.gov.cn/xxgk/zcfgs/zcfg/content/post_9728322.html",
-      "policy_type": "ministry"
+      "actual_as_of": "",
+      "actual_note_zh": "与GDP占比不同指标；2013年基期0.88%；2025年目标>1.68%；最新实测需查工信部/统计年鉴",
+      "actual_note_en": "Distinct from GDP share; 2013 baseline 0.88%; 2025 target >1.68%; latest actual requires MIIT/yearbook check",
+      "issuer_zh": "国务院",
+      "issuer_en": "State Council",
+      "doc_number": "国发〔2015〕28号",
+      "policy_type": "program",
+      "source_url": "https://www.ndrc.gov.cn/xxgk/zcfb/qt/201505/t20150520_967388.html",
+      "source_research": "composer-2.5"
+    },
+    {
+      "id": "program-made-in-china-2025-manufacturing-value-added-rat-2015",
+      "date": "2015-05",
+      "title_zh": "中国制造2025制造业增加值率目标",
+      "title_en": "Made in China 2025 manufacturing value-added rate target",
+      "summary_zh": "国发〔2015〕28号及配套指标表提出2025年制造业增加值率较2015年提高约2个百分点",
+      "summary_en": "Guofa [2015] No.28 and indicator annex set 2025 manufacturing value-added rate ~2pp above 2015",
+      "metric_zh": "制造业增加值率",
+      "metric_en": "Manufacturing value-added rate",
+      "target_value": 23,
+      "target_unit_zh": "%",
+      "target_unit_en": "%",
+      "target_deadline": "2025",
+      "actual_value": null,
+      "actual_as_of": "2024",
+      "actual_note_zh": "国家统计局年度工业统计公报可核对；本回合无法联网复核最新公布值",
+      "actual_note_en": "Check NBS annual industrial statistics; latest figure not re-verified in this session (no live web access)",
+      "issuer_zh": "国务院",
+      "issuer_en": "State Council",
+      "doc_number": "国发〔2015〕28号",
+      "policy_type": "program",
+      "source_url": "https://www.gov.cn/zhengce/content/2015-05/19/content_9784.htm",
+      "source_research": "composer-2.5"
     },
     {
       "id": "ministry-guidance-on-promoting-bim-application-2015",
@@ -919,6 +899,26 @@
       "policy_type": "ministry",
       "source_url": "https://www.mohurd.gov.cn/wjfb/201507/t20150701_226234.html",
       "source_research": "composer-2.5"
+    },
+    {
+      "id": "mohurd-bim-guidance-2015",
+      "date": "2015-06",
+      "target_deadline": "2020-12",
+      "title_zh": "推进建筑信息模型（BIM）应用指导意见",
+      "title_en": "Guidance on promoting BIM application",
+      "metric_zh": "政府投资及大型项目BIM应用",
+      "metric_en": "BIM adoption on public & large projects",
+      "target_value": null,
+      "target_unit_zh": "全面应用",
+      "target_unit_en": "full adoption",
+      "actual_value": null,
+      "actual_as_of": "2020",
+      "actual_note_zh": "建质函〔2015〕159号；要求2020年前大型项目全面应用BIM",
+      "actual_note_en": "Jianzhi Letter [2015] No. 159; targets full BIM on large projects by 2020",
+      "summary_zh": "国家级BIM应用政策，推动国产BIM/GIS软件与协同平台",
+      "summary_en": "National BIM policy driving domestic BIM/GIS software and collaboration platforms",
+      "source_url": "http://zjj.sz.gov.cn/xxgk/zcfgs/zcfg/content/post_9728322.html",
+      "policy_type": "ministry"
     },
     {
       "id": "program-internet-plus-action-plan-mobile-broadband-house-2015",
@@ -965,30 +965,6 @@
       "policy_type": "ministry"
     },
     {
-      "id": "two-sessions-2016-government-work-report-13th-fyp-r-d-intensi-2016",
-      "date": "2016-03",
-      "title_zh": "2016年政府工作报告：十三五全社会研发经费投入强度",
-      "title_en": "2016 Government Work Report: 13th FYP R&D intensity target",
-      "summary_zh": "李克强作政府工作报告，随附《十三五规划纲要（草案）》提出到2020年全社会研发经费投入强度达2.5%",
-      "summary_en": "Premier Li's report with draft 13th FYP sets whole-society R&D/GDP at 2.5% by 2020",
-      "metric_zh": "全社会研发经费投入强度（研发经费支出占国内生产总值比重）",
-      "metric_en": "Whole-society R&D intensity (R&D expenditure as % of GDP)",
-      "target_value": 2.5,
-      "target_unit_zh": "%",
-      "target_unit_en": "%",
-      "target_deadline": "2020",
-      "actual_value": 2.1,
-      "actual_as_of": "2015",
-      "actual_note_zh": "报告披露2015年研究与试验发展经费支出与GDP之比为2.1%；2020年国家统计局终值为2.40%，未达2.5%",
-      "actual_note_en": "Report cites 2.1% for 2015; NBS final 2020 figure 2.40%, below 2.5% target",
-      "issuer_zh": "国务院",
-      "issuer_en": "State Council",
-      "doc_number": "",
-      "policy_type": "two-sessions",
-      "source_url": "https://www.gov.cn/gongbao/content/2016/content_5048.htm",
-      "source_research": "composer-2.5"
-    },
-    {
       "id": "fyp-13th-five-year-plan-outline-r-d-intensity-indica-2016",
       "date": "2016-03",
       "title_zh": "国民经济和社会发展第十三个五年规划纲要：研发强度指标",
@@ -1013,6 +989,30 @@
       "source_research": "composer-2.5"
     },
     {
+      "id": "two-sessions-2016-government-work-report-13th-fyp-r-d-intensi-2016",
+      "date": "2016-03",
+      "title_zh": "2016年政府工作报告：十三五全社会研发经费投入强度",
+      "title_en": "2016 Government Work Report: 13th FYP R&D intensity target",
+      "summary_zh": "李克强作政府工作报告，随附《十三五规划纲要（草案）》提出到2020年全社会研发经费投入强度达2.5%",
+      "summary_en": "Premier Li's report with draft 13th FYP sets whole-society R&D/GDP at 2.5% by 2020",
+      "metric_zh": "全社会研发经费投入强度（研发经费支出占国内生产总值比重）",
+      "metric_en": "Whole-society R&D intensity (R&D expenditure as % of GDP)",
+      "target_value": 2.5,
+      "target_unit_zh": "%",
+      "target_unit_en": "%",
+      "target_deadline": "2020",
+      "actual_value": 2.1,
+      "actual_as_of": "2015",
+      "actual_note_zh": "报告披露2015年研究与试验发展经费支出与GDP之比为2.1%；2020年国家统计局终值为2.40%，未达2.5%",
+      "actual_note_en": "Report cites 2.1% for 2015; NBS final 2020 figure 2.40%, below 2.5% target",
+      "issuer_zh": "国务院",
+      "issuer_en": "State Council",
+      "doc_number": "",
+      "policy_type": "two-sessions",
+      "source_url": "https://www.gov.cn/gongbao/content/2016/content_5048.htm",
+      "source_research": "composer-2.5"
+    },
+    {
       "id": "intelligent-manufacturing-plan-2016",
       "date": "2016-09",
       "target_deadline": "2020-12",
@@ -1031,30 +1031,6 @@
       "summary_en": "13th FYP intelligent manufacturing plan—industrial software as smart-factory backbone",
       "source_url": "http://www.mof.gov.cn/gp/xxgkml/jjjss/201612/t20161208_2512227.htm",
       "policy_type": "program"
-    },
-    {
-      "id": "program-state-council-guideline-on-vigorously-developing-2016",
-      "date": "2016-09",
-      "title_zh": "国务院办公厅关于大力发展装配式建筑的指导意见",
-      "title_en": "State Council Guideline on Vigorously Developing Prefabricated Construction",
-      "summary_zh": "国办文件首次以十年周期设定全国装配式建筑占比30%目标",
-      "summary_en": "State Council sets a 10-year national 30% prefab floor-area share target",
-      "metric_zh": "装配式建筑占新建建筑面积比例（全国）",
-      "metric_en": "Prefabricated buildings as share of new construction floor area (national)",
-      "target_value": 30,
-      "target_unit_zh": "%",
-      "target_unit_en": "%",
-      "target_deadline": "2026",
-      "actual_value": null,
-      "actual_as_of": "",
-      "actual_note_zh": "十年期目标已被“十四五”规划2025年30%目标承接；全国达成率见上条说明",
-      "actual_note_en": "10-year horizon superseded by 14th FYP 2025 30% target; national attainment see prior node note",
-      "issuer_zh": "国务院办公厅",
-      "issuer_en": "General Office of the State Council",
-      "doc_number": "国办发〔2016〕71号",
-      "policy_type": "program",
-      "source_url": "https://www.gov.cn/zhengce/content/2016-09/30/content_5113471.htm",
-      "source_research": "composer-2.5"
     },
     {
       "id": "ministry-intelligent-manufacturing-plan-2020-interim-targ-2016",
@@ -1078,6 +1054,30 @@
       "doc_number": "工信部联规〔2016〕349号",
       "policy_type": "ministry",
       "source_url": "https://www.miit.gov.cn/jgsj/kjs/wjfb/art/2016/art_00000000000000000000000000000000.html",
+      "source_research": "composer-2.5"
+    },
+    {
+      "id": "program-state-council-guideline-on-vigorously-developing-2016",
+      "date": "2016-09",
+      "title_zh": "国务院办公厅关于大力发展装配式建筑的指导意见",
+      "title_en": "State Council Guideline on Vigorously Developing Prefabricated Construction",
+      "summary_zh": "国办文件首次以十年周期设定全国装配式建筑占比30%目标",
+      "summary_en": "State Council sets a 10-year national 30% prefab floor-area share target",
+      "metric_zh": "装配式建筑占新建建筑面积比例（全国）",
+      "metric_en": "Prefabricated buildings as share of new construction floor area (national)",
+      "target_value": 30,
+      "target_unit_zh": "%",
+      "target_unit_en": "%",
+      "target_deadline": "2026",
+      "actual_value": null,
+      "actual_as_of": "",
+      "actual_note_zh": "十年期目标已被“十四五”规划2025年30%目标承接；全国达成率见上条说明",
+      "actual_note_en": "10-year horizon superseded by 14th FYP 2025 30% target; national attainment see prior node note",
+      "issuer_zh": "国务院办公厅",
+      "issuer_en": "General Office of the State Council",
+      "doc_number": "国办发〔2016〕71号",
+      "policy_type": "program",
+      "source_url": "https://www.gov.cn/zhengce/content/2016-09/30/content_5113471.htm",
       "source_research": "composer-2.5"
     },
     {
@@ -1177,30 +1177,6 @@
       "source_research": "composer-2.5"
     },
     {
-      "id": "program-intelligent-manufacturing-plan-key-process-cnc-r-2016",
-      "date": "2016-12",
-      "title_zh": "智能制造发展规划：关键工序数控化率",
-      "title_en": "Intelligent Manufacturing Plan: key-process CNC rate",
-      "summary_zh": "同文件设定十三五期末关键工序数控化率目标",
-      "summary_en": "Same plan sets end-13th-FYP key-process CNC rate target",
-      "metric_zh": "关键工序数控化率",
-      "metric_en": "Key-process numerically controlled (CNC) rate",
-      "target_value": 45,
-      "target_unit_zh": "%",
-      "target_unit_en": "%",
-      "target_deadline": "2020-12",
-      "actual_value": null,
-      "actual_as_of": "2020",
-      "actual_note_zh": "两化融合年度数据通行引用约51–52%；本回复未live核验",
-      "actual_note_en": "Annual integration data commonly cites ~51–52%; not live-verified here",
-      "issuer_zh": "工业和信息化部、财政部",
-      "issuer_en": "MIIT; Ministry of Finance",
-      "doc_number": "工信部联规〔2016〕349号",
-      "policy_type": "program",
-      "source_url": "https://www.gov.cn/zhengce/zhengceku/2016-12/08/content_5148909.htm",
-      "source_research": "composer-2.5"
-    },
-    {
       "id": "program-intelligent-manufacturing-plan-industrial-softwa-2016",
       "date": "2016-12",
       "title_zh": "智能制造发展规划：工业软件市场满足率",
@@ -1217,6 +1193,30 @@
       "actual_as_of": "2020",
       "actual_note_zh": "为2025中期指标非2020考核；2020年无全国统一公开完成率",
       "actual_note_en": "2025 mid-term KPI, not a 2020 assessment; no nationwide published 2020 completion rate",
+      "issuer_zh": "工业和信息化部、财政部",
+      "issuer_en": "MIIT; Ministry of Finance",
+      "doc_number": "工信部联规〔2016〕349号",
+      "policy_type": "program",
+      "source_url": "https://www.gov.cn/zhengce/zhengceku/2016-12/08/content_5148909.htm",
+      "source_research": "composer-2.5"
+    },
+    {
+      "id": "program-intelligent-manufacturing-plan-key-process-cnc-r-2016",
+      "date": "2016-12",
+      "title_zh": "智能制造发展规划：关键工序数控化率",
+      "title_en": "Intelligent Manufacturing Plan: key-process CNC rate",
+      "summary_zh": "同文件设定十三五期末关键工序数控化率目标",
+      "summary_en": "Same plan sets end-13th-FYP key-process CNC rate target",
+      "metric_zh": "关键工序数控化率",
+      "metric_en": "Key-process numerically controlled (CNC) rate",
+      "target_value": 45,
+      "target_unit_zh": "%",
+      "target_unit_en": "%",
+      "target_deadline": "2020-12",
+      "actual_value": null,
+      "actual_as_of": "2020",
+      "actual_note_zh": "两化融合年度数据通行引用约51–52%；本回复未live核验",
+      "actual_note_en": "Annual integration data commonly cites ~51–52%; not live-verified here",
       "issuer_zh": "工业和信息化部、财政部",
       "issuer_en": "MIIT; Ministry of Finance",
       "doc_number": "工信部联规〔2016〕349号",
@@ -1557,24 +1557,172 @@
       "source_research": "composer-2.5"
     },
     {
-      "id": "miit-software-revenue-14tn",
+      "id": "fyp-14th-five-year-plan-for-in-depth-integration-of--2021",
       "date": "2021-11",
+      "title_zh": "「十四五」信息化和工业化深度融合发展规划",
+      "title_en": "14th Five-Year Plan for in-depth integration of informatization and industrialization",
+      "summary_zh": "十四五两化融合顶层规划，设定发展水平指数与贯标企业数等核心量化指标",
+      "summary_en": "14th FYP flagship plan setting the development-level index and certification enterprise KPIs",
+      "metric_zh": "全国两化融合发展水平指数",
+      "metric_en": "National two-integration development level index",
+      "target_value": 85,
+      "target_unit_zh": "指数点",
+      "target_unit_en": "index points",
       "target_deadline": "2025-12",
-      "title_zh": "「十四五」软件业规划：规上软件收入 14 万亿元",
-      "title_en": "14th Five-Year Plan: above-scale software revenue ¥14 trillion",
+      "actual_value": 56.6,
+      "actual_as_of": "2020",
+      "actual_note_zh": "56.6 为规划列示的2020年基线；2021—2024年度指数见中国信通院《两化融合发展数据地图》",
+      "actual_note_en": "56.6 is the 2020 baseline in the plan; annual 2021–2024 indices are in CAICT Data Map reports",
+      "issuer_zh": "工业和信息化部",
+      "issuer_en": "MIIT",
+      "doc_number": "工信部规〔2021〕182号",
+      "policy_type": "fyp",
+      "source_url": "https://www.gov.cn/zhengce/zhengceku/2021-12/30/content_5656771.htm",
+      "source_research": "composer-2.5"
+    },
+    {
+      "id": "fyp-14th-fyp-integration-plan-industrial-equipment-c-2021",
+      "date": "2021-11",
+      "title_zh": "「十四五」两化融合规划：工业设备上云率",
+      "title_en": "14th FYP integration plan: industrial equipment cloud migration rate",
+      "summary_zh": "工信部印发信息化与工业化深度融合发展规划，直接设定制造业工业设备上云量化目标",
+      "summary_en": "MIIT deep integration plan sets explicit industrial equipment cloud-upload target for manufacturing",
+      "metric_zh": "制造业企业工业设备上云率",
+      "metric_en": "Manufacturing enterprise industrial-equipment cloud rate",
+      "target_value": 30,
+      "target_unit_zh": "%",
+      "target_unit_en": "%",
+      "target_deadline": "2025",
+      "actual_value": null,
+      "actual_as_of": "2024",
+      "actual_note_zh": "同文件提出规上制造企业数字化转型比例超55%、关键业务环节全面数字化比例超50%；设备上云分行业进度见工信部两化融合数据地图",
+      "actual_note_en": "Same plan targets >55% above-scale firm digital transformation and >50% full digitalization of key processes; equipment-cloud progress by sector in MIIT integration data map",
+      "issuer_zh": "工业和信息化部",
+      "issuer_en": "MIIT",
+      "doc_number": "工信规〔2021〕182号",
+      "policy_type": "fyp",
+      "source_url": "https://www.gov.cn/zhengce/zhengceku/2021-11/17/content_5643812.htm",
+      "source_research": "composer-2.5"
+    },
+    {
+      "id": "fyp-14th-fyp-it-ii-integration-plan-networked-produc-2021",
+      "date": "2021-11",
+      "title_zh": "「十四五」两化深度融合规划：生产设备联网率",
+      "title_en": "14th FYP IT-II Integration Plan: networked production equipment rate",
+      "summary_zh": "工信部「十四五」信息化和工业化深度融合发展规划主要指标",
+      "summary_en": "Key indicator in MIIT 14th FYP informatization–industrialization integration plan",
+      "metric_zh": "数字化生产设备联网率",
+      "metric_en": "Digital production equipment network connectivity rate",
+      "target_value": 55,
+      "target_unit_zh": "%",
+      "target_unit_en": "%",
+      "target_deadline": "2025",
+      "actual_value": null,
+      "actual_as_of": "",
+      "actual_note_zh": "本环境无法抓取原文核验；与「连接设备台数」为不同统计口径",
+      "actual_note_en": "Source not fetched; differs from 'connected device count' headcount metric",
+      "issuer_zh": "工业和信息化部",
+      "issuer_en": "MIIT",
+      "doc_number": "工信部规〔2021〕225号",
+      "policy_type": "fyp",
+      "source_url": "https://www.gov.cn/zhengce/content/2021-11/17/content_5648833.htm",
+      "source_research": "composer-2.5"
+    },
+    {
+      "id": "fyp-14th-fyp-software-it-services-plan-industry-reve-2021",
+      "date": "2021-11",
+      "title_zh": "「十四五」软件和信息技术服务业发展规划：产业规模",
+      "title_en": "14th FYP software & IT services plan: industry revenue scale",
+      "summary_zh": "工信部软件业「十四五」规划提出规上软件业务收入目标，涵盖工业软件云化/SaaS化发展",
+      "summary_en": "MIIT software-sector 14th FYP sets above-scale software revenue target incl. cloud/SaaS industrial software",
       "metric_zh": "规模以上企业软件业务收入",
-      "metric_en": "Above-scale enterprise software revenue",
+      "metric_en": "Above-scale enterprise software business revenue",
       "target_value": 140000,
       "target_unit_zh": "亿元",
       "target_unit_en": "CNY bn",
+      "target_deadline": "2025",
       "actual_value": null,
       "actual_as_of": "2024",
-      "actual_note_zh": "工信部未单独披露 2024 全年规上软件收入终值；工业软件子市场 2024 约 3197 亿元（第三方测算）",
-      "actual_note_en": "MIIT has not published final 2024 above-scale software revenue; industrial software sub-market ~¥319.7B in 2024 (third-party estimate)",
-      "summary_zh": "工信部《「十四五」软件和信息技术服务业发展规划》量化目标",
-      "summary_en": "MIIT 14th Five-Year software sector quantitative target",
-      "source_url": "http://sh.people.com.cn/n2/2021/1130/c134768-35029719.html",
-      "policy_type": "fyp"
+      "actual_note_zh": "工信部运行监测协调局按季发布软件业收入；2024全年规上总收入终值以官方统计公报为准",
+      "actual_note_en": "MIIT publishes quarterly software revenue; 2024 full-year above-scale total pending official statistical communique",
+      "issuer_zh": "工业和信息化部",
+      "issuer_en": "MIIT",
+      "doc_number": "",
+      "policy_type": "fyp",
+      "source_url": "https://www.miit.gov.cn/jgsj/xxjsfzs/zlgh/art/2021/art_049186d493524ff6a52971dd9a9d043e.html",
+      "source_research": "composer-2.5"
+    },
+    {
+      "id": "fyp-14th-fyp-software-plan-cumulative-industrial-app-2021",
+      "date": "2021-11",
+      "title_zh": "「十四五」软件规划：工业APP累计数量",
+      "title_en": "14th FYP Software Plan: cumulative industrial APPs",
+      "summary_zh": "工信部软件和信息技术服务业「十四五」规划工业互联网相关量化指标",
+      "summary_en": "IIoT-related quantitative target in MIIT 14th FYP software sector plan",
+      "metric_zh": "工业APP累计数量",
+      "metric_en": "Cumulative industrial APP count",
+      "target_value": 100,
+      "target_unit_zh": "万个",
+      "target_unit_en": "10k apps",
+      "target_deadline": "2025",
+      "actual_value": null,
+      "actual_as_of": "",
+      "actual_note_zh": "本环境无法抓取原文核验；与三年行动计划35万个/2023截止目标并存",
+      "actual_note_en": "Source not fetched; coexists with 350k/2023 target in the three-year action plan",
+      "issuer_zh": "工业和信息化部",
+      "issuer_en": "MIIT",
+      "doc_number": "",
+      "policy_type": "fyp",
+      "source_url": "https://www.miit.gov.cn/jgsj/xxjsfzs/zlgh/art/2021/art_049186d493524ff6a52971dd9a9d043e.html",
+      "source_research": "composer-2.5"
+    },
+    {
+      "id": "fyp-14th-fyp-software-plan-international-standards-i-2021",
+      "date": "2021-11",
+      "title_zh": "「十四五」软件规划：软件领域国际标准",
+      "title_en": "14th FYP software plan: international standards in software",
+      "summary_zh": "同一规划提出推动软件领域国际标准制定",
+      "summary_en": "Same plan sets a target for international standards in the software domain",
+      "metric_zh": "软件领域国际标准推动制定数量",
+      "metric_en": "International standards to be advanced in the software domain",
+      "target_value": 20,
+      "target_unit_zh": "项",
+      "target_unit_en": "standards",
+      "target_deadline": "2025",
+      "actual_value": null,
+      "actual_as_of": "",
+      "actual_note_zh": "规划表述为“推动……国际标准20项”；是否计入已发布/在研需按国标委及工信部年度通报口径区分",
+      "actual_note_en": "Plan wording is ‘advance … 20 international standards’; published vs in-progress counts depend on SAC/MIIT annual reporting boundaries",
+      "issuer_zh": "工业和信息化部",
+      "issuer_en": "Ministry of Industry and Information Technology (MIIT)",
+      "doc_number": "工信部规〔2021〕180号",
+      "policy_type": "fyp",
+      "source_url": "https://www.miit.gov.cn/jgsj/xxjsfzs/zlgh/art/2021/art_049186d493524ff6a52971dd9a9d043e.html",
+      "source_research": "composer-2.5"
+    },
+    {
+      "id": "fyp-14th-fyp-software-plan-national-standards-in-key-2021",
+      "date": "2021-11",
+      "title_zh": "「十四五」软件规划：重点领域国家标准",
+      "title_en": "14th FYP software plan: national standards in key domains",
+      "summary_zh": "工信部《「十四五」软件和信息技术服务业发展规划》标准体系优化行动",
+      "summary_en": "MIIT 14th Five-Year software sector plan — standards system optimization action",
+      "metric_zh": "重点领域国家标准制定数量",
+      "metric_en": "National standards to be formulated in key domains",
+      "target_value": 125,
+      "target_unit_zh": "项",
+      "target_unit_en": "standards",
+      "target_deadline": "2025",
+      "actual_value": null,
+      "actual_as_of": "",
+      "actual_note_zh": "规划原文量化目标；十四五期末完成进度需对照工信部/国标委年度标准发布公报核对，本回复未能实时抓取官网终验数据",
+      "actual_note_en": "Quantitative target in the plan text; end-of-FYP completion requires MIIT/SAC annual standard release bulletins; live official progress not re-fetched in this session",
+      "issuer_zh": "工业和信息化部",
+      "issuer_en": "Ministry of Industry and Information Technology (MIIT)",
+      "doc_number": "工信部规〔2021〕180号",
+      "policy_type": "fyp",
+      "source_url": "https://www.miit.gov.cn/jgsj/xxjsfzs/zlgh/art/2021/art_049186d493524ff6a52971dd9a9d043e.html",
+      "source_research": "composer-2.5"
     },
     {
       "id": "miit-industrial-app-1m",
@@ -1617,52 +1765,24 @@
       "policy_type": "fyp"
     },
     {
-      "id": "fyp-14th-fyp-integration-plan-industrial-equipment-c-2021",
+      "id": "miit-software-revenue-14tn",
       "date": "2021-11",
-      "title_zh": "「十四五」两化融合规划：工业设备上云率",
-      "title_en": "14th FYP integration plan: industrial equipment cloud migration rate",
-      "summary_zh": "工信部印发信息化与工业化深度融合发展规划，直接设定制造业工业设备上云量化目标",
-      "summary_en": "MIIT deep integration plan sets explicit industrial equipment cloud-upload target for manufacturing",
-      "metric_zh": "制造业企业工业设备上云率",
-      "metric_en": "Manufacturing enterprise industrial-equipment cloud rate",
-      "target_value": 30,
-      "target_unit_zh": "%",
-      "target_unit_en": "%",
-      "target_deadline": "2025",
-      "actual_value": null,
-      "actual_as_of": "2024",
-      "actual_note_zh": "同文件提出规上制造企业数字化转型比例超55%、关键业务环节全面数字化比例超50%；设备上云分行业进度见工信部两化融合数据地图",
-      "actual_note_en": "Same plan targets >55% above-scale firm digital transformation and >50% full digitalization of key processes; equipment-cloud progress by sector in MIIT integration data map",
-      "issuer_zh": "工业和信息化部",
-      "issuer_en": "MIIT",
-      "doc_number": "工信规〔2021〕182号",
-      "policy_type": "fyp",
-      "source_url": "https://www.gov.cn/zhengce/zhengceku/2021-11/17/content_5643812.htm",
-      "source_research": "composer-2.5"
-    },
-    {
-      "id": "fyp-14th-fyp-software-it-services-plan-industry-reve-2021",
-      "date": "2021-11",
-      "title_zh": "「十四五」软件和信息技术服务业发展规划：产业规模",
-      "title_en": "14th FYP software & IT services plan: industry revenue scale",
-      "summary_zh": "工信部软件业「十四五」规划提出规上软件业务收入目标，涵盖工业软件云化/SaaS化发展",
-      "summary_en": "MIIT software-sector 14th FYP sets above-scale software revenue target incl. cloud/SaaS industrial software",
+      "target_deadline": "2025-12",
+      "title_zh": "「十四五」软件业规划：规上软件收入 14 万亿元",
+      "title_en": "14th Five-Year Plan: above-scale software revenue ¥14 trillion",
       "metric_zh": "规模以上企业软件业务收入",
-      "metric_en": "Above-scale enterprise software business revenue",
+      "metric_en": "Above-scale enterprise software revenue",
       "target_value": 140000,
       "target_unit_zh": "亿元",
       "target_unit_en": "CNY bn",
-      "target_deadline": "2025",
       "actual_value": null,
       "actual_as_of": "2024",
-      "actual_note_zh": "工信部运行监测协调局按季发布软件业收入；2024全年规上总收入终值以官方统计公报为准",
-      "actual_note_en": "MIIT publishes quarterly software revenue; 2024 full-year above-scale total pending official statistical communique",
-      "issuer_zh": "工业和信息化部",
-      "issuer_en": "MIIT",
-      "doc_number": "",
-      "policy_type": "fyp",
-      "source_url": "https://www.miit.gov.cn/jgsj/xxjsfzs/zlgh/art/2021/art_049186d493524ff6a52971dd9a9d043e.html",
-      "source_research": "composer-2.5"
+      "actual_note_zh": "工信部未单独披露 2024 全年规上软件收入终值；工业软件子市场 2024 约 3197 亿元（第三方测算）",
+      "actual_note_en": "MIIT has not published final 2024 above-scale software revenue; industrial software sub-market ~¥319.7B in 2024 (third-party estimate)",
+      "summary_zh": "工信部《「十四五」软件和信息技术服务业发展规划》量化目标",
+      "summary_en": "MIIT 14th Five-Year software sector quantitative target",
+      "source_url": "http://sh.people.com.cn/n2/2021/1130/c134768-35029719.html",
+      "policy_type": "fyp"
     },
     {
       "id": "ministry-14th-fyp-big-data-industry-plan-industry-scale-a-2021",
@@ -1713,147 +1833,27 @@
       "source_research": "composer-2.5"
     },
     {
-      "id": "fyp-14th-fyp-it-ii-integration-plan-networked-produc-2021",
-      "date": "2021-11",
-      "title_zh": "「十四五」两化深度融合规划：生产设备联网率",
-      "title_en": "14th FYP IT-II Integration Plan: networked production equipment rate",
-      "summary_zh": "工信部「十四五」信息化和工业化深度融合发展规划主要指标",
-      "summary_en": "Key indicator in MIIT 14th FYP informatization–industrialization integration plan",
-      "metric_zh": "数字化生产设备联网率",
-      "metric_en": "Digital production equipment network connectivity rate",
-      "target_value": 55,
-      "target_unit_zh": "%",
-      "target_unit_en": "%",
-      "target_deadline": "2025",
-      "actual_value": null,
-      "actual_as_of": "",
-      "actual_note_zh": "本环境无法抓取原文核验；与「连接设备台数」为不同统计口径",
-      "actual_note_en": "Source not fetched; differs from 'connected device count' headcount metric",
-      "issuer_zh": "工业和信息化部",
-      "issuer_en": "MIIT",
-      "doc_number": "工信部规〔2021〕225号",
-      "policy_type": "fyp",
-      "source_url": "https://www.gov.cn/zhengce/content/2021-11/17/content_5648833.htm",
-      "source_research": "composer-2.5"
-    },
-    {
-      "id": "fyp-14th-fyp-software-plan-cumulative-industrial-app-2021",
-      "date": "2021-11",
-      "title_zh": "「十四五」软件规划：工业APP累计数量",
-      "title_en": "14th FYP Software Plan: cumulative industrial APPs",
-      "summary_zh": "工信部软件和信息技术服务业「十四五」规划工业互联网相关量化指标",
-      "summary_en": "IIoT-related quantitative target in MIIT 14th FYP software sector plan",
-      "metric_zh": "工业APP累计数量",
-      "metric_en": "Cumulative industrial APP count",
-      "target_value": 100,
-      "target_unit_zh": "万个",
-      "target_unit_en": "10k apps",
-      "target_deadline": "2025",
-      "actual_value": null,
-      "actual_as_of": "",
-      "actual_note_zh": "本环境无法抓取原文核验；与三年行动计划35万个/2023截止目标并存",
-      "actual_note_en": "Source not fetched; coexists with 350k/2023 target in the three-year action plan",
-      "issuer_zh": "工业和信息化部",
-      "issuer_en": "MIIT",
-      "doc_number": "",
-      "policy_type": "fyp",
-      "source_url": "https://www.miit.gov.cn/jgsj/xxjsfzs/zlgh/art/2021/art_049186d493524ff6a52971dd9a9d043e.html",
-      "source_research": "composer-2.5"
-    },
-    {
-      "id": "fyp-14th-fyp-software-plan-national-standards-in-key-2021",
-      "date": "2021-11",
-      "title_zh": "「十四五」软件规划：重点领域国家标准",
-      "title_en": "14th FYP software plan: national standards in key domains",
-      "summary_zh": "工信部《「十四五」软件和信息技术服务业发展规划》标准体系优化行动",
-      "summary_en": "MIIT 14th Five-Year software sector plan — standards system optimization action",
-      "metric_zh": "重点领域国家标准制定数量",
-      "metric_en": "National standards to be formulated in key domains",
-      "target_value": 125,
-      "target_unit_zh": "项",
-      "target_unit_en": "standards",
-      "target_deadline": "2025",
-      "actual_value": null,
-      "actual_as_of": "",
-      "actual_note_zh": "规划原文量化目标；十四五期末完成进度需对照工信部/国标委年度标准发布公报核对，本回复未能实时抓取官网终验数据",
-      "actual_note_en": "Quantitative target in the plan text; end-of-FYP completion requires MIIT/SAC annual standard release bulletins; live official progress not re-fetched in this session",
-      "issuer_zh": "工业和信息化部",
-      "issuer_en": "Ministry of Industry and Information Technology (MIIT)",
-      "doc_number": "工信部规〔2021〕180号",
-      "policy_type": "fyp",
-      "source_url": "https://www.miit.gov.cn/jgsj/xxjsfzs/zlgh/art/2021/art_049186d493524ff6a52971dd9a9d043e.html",
-      "source_research": "composer-2.5"
-    },
-    {
-      "id": "fyp-14th-fyp-software-plan-international-standards-i-2021",
-      "date": "2021-11",
-      "title_zh": "「十四五」软件规划：软件领域国际标准",
-      "title_en": "14th FYP software plan: international standards in software",
-      "summary_zh": "同一规划提出推动软件领域国际标准制定",
-      "summary_en": "Same plan sets a target for international standards in the software domain",
-      "metric_zh": "软件领域国际标准推动制定数量",
-      "metric_en": "International standards to be advanced in the software domain",
-      "target_value": 20,
-      "target_unit_zh": "项",
-      "target_unit_en": "standards",
-      "target_deadline": "2025",
-      "actual_value": null,
-      "actual_as_of": "",
-      "actual_note_zh": "规划表述为“推动……国际标准20项”；是否计入已发布/在研需按国标委及工信部年度通报口径区分",
-      "actual_note_en": "Plan wording is ‘advance … 20 international standards’; published vs in-progress counts depend on SAC/MIIT annual reporting boundaries",
-      "issuer_zh": "工业和信息化部",
-      "issuer_en": "Ministry of Industry and Information Technology (MIIT)",
-      "doc_number": "工信部规〔2021〕180号",
-      "policy_type": "fyp",
-      "source_url": "https://www.miit.gov.cn/jgsj/xxjsfzs/zlgh/art/2021/art_049186d493524ff6a52971dd9a9d043e.html",
-      "source_research": "composer-2.5"
-    },
-    {
-      "id": "fyp-14th-five-year-plan-for-in-depth-integration-of--2021",
-      "date": "2021-11",
-      "title_zh": "「十四五」信息化和工业化深度融合发展规划",
-      "title_en": "14th Five-Year Plan for in-depth integration of informatization and industrialization",
-      "summary_zh": "十四五两化融合顶层规划，设定发展水平指数与贯标企业数等核心量化指标",
-      "summary_en": "14th FYP flagship plan setting the development-level index and certification enterprise KPIs",
-      "metric_zh": "全国两化融合发展水平指数",
-      "metric_en": "National two-integration development level index",
-      "target_value": 85,
-      "target_unit_zh": "指数点",
-      "target_unit_en": "index points",
-      "target_deadline": "2025-12",
-      "actual_value": 56.6,
-      "actual_as_of": "2020",
-      "actual_note_zh": "56.6 为规划列示的2020年基线；2021—2024年度指数见中国信通院《两化融合发展数据地图》",
-      "actual_note_en": "56.6 is the 2020 baseline in the plan; annual 2021–2024 indices are in CAICT Data Map reports",
-      "issuer_zh": "工业和信息化部",
-      "issuer_en": "MIIT",
-      "doc_number": "工信部规〔2021〕182号",
-      "policy_type": "fyp",
-      "source_url": "https://www.gov.cn/zhengce/zhengceku/2021-12/30/content_5656771.htm",
-      "source_research": "composer-2.5"
-    },
-    {
-      "id": "fyp-14th-fyp-digital-economy-plan-industrial-interne-2021",
+      "id": "fyp-14th-five-year-intelligent-manufacturing-develop-2021",
       "date": "2021-12",
-      "title_zh": "「十四五」数字经济发展规划：工业互联网平台上云普及",
-      "title_en": "14th FYP digital economy plan: Industrial Internet platform cloud adoption",
-      "summary_zh": "国务院印发「十四五」数字经济发展规划，将工业互联网平台应用普及率列为制造业数字化关键指标",
-      "summary_en": "State Council 14th FYP digital economy plan lists II platform application rate as key manufacturing digitization KPI",
-      "metric_zh": "工业互联网平台应用普及率",
-      "metric_en": "Industrial Internet platform application adoption rate",
-      "target_value": 45,
+      "title_zh": "「十四五」智能制造发展规划",
+      "title_en": "14th Five-Year Intelligent Manufacturing Development Plan",
+      "summary_zh": "工信部等八部门十四五智能制造纲领，将装备满足率目标由50%提升至70%",
+      "summary_en": "MIIT-led 14th FYP plan raises equipment domestic satisfaction target from 50% to 70%",
+      "metric_zh": "智能制造装备国内市场满足率",
+      "metric_en": "Domestic market satisfaction rate for intelligent manufacturing equipment",
+      "target_value": 70,
       "target_unit_zh": "%",
       "target_unit_en": "%",
-      "target_deadline": "2025",
+      "target_deadline": "2025-12",
       "actual_value": null,
-      "actual_as_of": "2024",
-      "actual_note_zh": "工信部年度两化融合/工业互联网发展报告披露分年度普及率，全国统一终值需对照最新公报核对",
-      "actual_note_en": "MIIT annual integration/II reports publish yearly rates; nationwide final figure requires latest official bulletin cross-check",
-      "issuer_zh": "国务院",
-      "issuer_en": "State Council",
-      "doc_number": "国发〔2021〕29号",
+      "actual_as_of": "",
+      "actual_note_zh": "2025年终期实测值待工信部收官评估或统计公报披露",
+      "actual_note_en": "End-2025 measured value pending MIIT closing assessment or statistical release",
+      "issuer_zh": "工业和信息化部等八部门",
+      "issuer_en": "MIIT and seven co-issuing ministries/agencies",
+      "doc_number": "工信部联规〔2021〕207号",
       "policy_type": "fyp",
-      "source_url": "https://www.gov.cn/zhengce/content/2022-01/12/content_5665667.htm",
+      "source_url": "https://www.gov.cn/zhengce/zhengceku/2021-12/28/content_5655525.htm",
       "source_research": "composer-2.5"
     },
     {
@@ -1873,6 +1873,30 @@
       "actual_as_of": "2023",
       "actual_note_zh": "工信部公开解读称2023年约64%、2024年约66%（年度口径）；与2025年70%目标对照",
       "actual_note_en": "MIIT public briefings cite ~64% in 2023 and ~66% in 2024 (annual boundary); benchmarked against 70% by 2025",
+      "issuer_zh": "国务院",
+      "issuer_en": "State Council",
+      "doc_number": "国发〔2021〕29号",
+      "policy_type": "fyp",
+      "source_url": "https://www.gov.cn/zhengce/content/2022-01/12/content_5665667.htm",
+      "source_research": "composer-2.5"
+    },
+    {
+      "id": "fyp-14th-fyp-digital-economy-plan-industrial-interne-2021",
+      "date": "2021-12",
+      "title_zh": "「十四五」数字经济发展规划：工业互联网平台上云普及",
+      "title_en": "14th FYP digital economy plan: Industrial Internet platform cloud adoption",
+      "summary_zh": "国务院印发「十四五」数字经济发展规划，将工业互联网平台应用普及率列为制造业数字化关键指标",
+      "summary_en": "State Council 14th FYP digital economy plan lists II platform application rate as key manufacturing digitization KPI",
+      "metric_zh": "工业互联网平台应用普及率",
+      "metric_en": "Industrial Internet platform application adoption rate",
+      "target_value": 45,
+      "target_unit_zh": "%",
+      "target_unit_en": "%",
+      "target_deadline": "2025",
+      "actual_value": null,
+      "actual_as_of": "2024",
+      "actual_note_zh": "工信部年度两化融合/工业互联网发展报告披露分年度普及率，全国统一终值需对照最新公报核对",
+      "actual_note_en": "MIIT annual integration/II reports publish yearly rates; nationwide final figure requires latest official bulletin cross-check",
       "issuer_zh": "国务院",
       "issuer_en": "State Council",
       "doc_number": "国发〔2021〕29号",
@@ -1926,30 +1950,6 @@
       "doc_number": "工信部联规〔2021〕207号",
       "policy_type": "program",
       "source_url": "https://www.gov.cn/zhengce/zhengceku/2021-12/29/content_5664975.htm",
-      "source_research": "composer-2.5"
-    },
-    {
-      "id": "fyp-14th-five-year-intelligent-manufacturing-develop-2021",
-      "date": "2021-12",
-      "title_zh": "「十四五」智能制造发展规划",
-      "title_en": "14th Five-Year Intelligent Manufacturing Development Plan",
-      "summary_zh": "工信部等八部门十四五智能制造纲领，将装备满足率目标由50%提升至70%",
-      "summary_en": "MIIT-led 14th FYP plan raises equipment domestic satisfaction target from 50% to 70%",
-      "metric_zh": "智能制造装备国内市场满足率",
-      "metric_en": "Domestic market satisfaction rate for intelligent manufacturing equipment",
-      "target_value": 70,
-      "target_unit_zh": "%",
-      "target_unit_en": "%",
-      "target_deadline": "2025-12",
-      "actual_value": null,
-      "actual_as_of": "",
-      "actual_note_zh": "2025年终期实测值待工信部收官评估或统计公报披露",
-      "actual_note_en": "End-2025 measured value pending MIIT closing assessment or statistical release",
-      "issuer_zh": "工业和信息化部等八部门",
-      "issuer_en": "MIIT and seven co-issuing ministries/agencies",
-      "doc_number": "工信部联规〔2021〕207号",
-      "policy_type": "fyp",
-      "source_url": "https://www.gov.cn/zhengce/zhengceku/2021-12/28/content_5655525.htm",
       "source_research": "composer-2.5"
     },
     {
@@ -2275,9 +2275,74 @@
       "actual_note_en": "Plan also targets 1,000 data vendors, >20% annual data-industry growth, and doubling data transaction scale; scenario count pending official mid-term assessment",
       "issuer_zh": "国家数据局、国家发展改革委、工业和信息化部等",
       "issuer_en": "National Data Bureau, NDRC, MIIT, et al.",
-      "doc_number": "",
+      "doc_number": "国数政策〔2023〕11号",
       "policy_type": "program",
       "source_url": "https://www.gov.cn/zhengce/content/2024-01/04/content_6923456.htm",
+      "source_research": "composer-2.5",
+      "detail": {
+        "direction_zh": "国家数据局牵头、17部门联合，把数据作为生产要素系统性激活，覆盖工业制造、现代农业、商贸流通、交通运输、金融、科技创新、文旅、医疗健康等12个重点领域；强调高质量数据供给与合规高效流通，到2026年底打造300个以上典型应用场景、数据产业年均增速超20%、数据交易规模倍增。",
+        "direction_en": "Led by the National Data Administration with 17 departments, the plan systematically activates data as a production factor across 12 priority sectors (industrial manufacturing first among them), pushing high-quality data supply and compliant, efficient circulation. By end-2026: 300+ benchmark application scenarios, >20% annual growth in the data industry, and a doubling of data-trading scale.",
+        "initiatives": [
+          {
+            "zh": "工业制造列为12个重点领域之首，以数据放大、叠加、倍增效应提升制造业竞争力与效率",
+            "en": "Industrial manufacturing named first of 12 priority sectors, leveraging the amplifying/superimposing/multiplying effects of data to lift manufacturing competitiveness"
+          },
+          {
+            "zh": "需求场景牵引，强化数据安全保障，建设跨领域互联互通的数据环境",
+            "en": "Demand-/scenario-driven adoption, strengthened data-security safeguards, and cross-domain interconnected data environments"
+          },
+          {
+            "zh": "培育一批优质数据商和第三方专业服务机构",
+            "en": "Cultivate a cohort of quality data vendors and third-party professional service institutions"
+          }
+        ],
+        "focus_zh": "高质量数据供给、合规高效流通、跨行业数据互联互通；以应用场景倍增放大数据要素价值",
+        "focus_en": "High-quality data supply, compliant/efficient circulation, cross-industry data interoperability; multiplying value through application scenarios",
+        "implications_zh": "对工业软件意味着工业数据集与数据互操作性被提升为国家级要素工程：MES/工业互联网平台、PLM/CAD/CAE 产生的设计与制造数据获得流通与确权的政策通道，利好工业数据中台、数据建模与工业APP；但要求软件在数据格式标准化、接口互联互通与数据安全合规上对齐国家要素流通框架。",
+        "implications_en": "For industrial software, industrial datasets and data interoperability are elevated to national factor-engineering: design/manufacturing data from MES, IIoT platforms, and PLM/CAD/CAE gain policy channels for circulation and rights confirmation—favoring industrial data middle-platforms, data modeling, and industrial apps. It also pressures software to standardize data formats, harden interface interoperability, and meet data-security compliance.",
+        "related": [
+          "program-2026-model-data-resonance-action-ai-manufacturin-2026",
+          "miit-ai-manufacturing-2027-kpi"
+        ],
+        "sources": [
+          {
+            "url": "https://www.nda.gov.cn/sjj/xxgk/gknr/ghjh/0909/20240909160155798592998_pc.html",
+            "label_zh": "关于印发数据要素×三年行动计划的通知（国数政策〔2023〕11号）",
+            "label_en": "Notice issuing the Data Elements x Three-Year Action Plan (Guoshu Zhengce [2023] No.11)",
+            "publisher": "国家数据局"
+          },
+          {
+            "url": "https://www.nda.gov.cn/sjj/zhuanti/ztsjysx/qt/0902/20240829161904685377785_pc.html",
+            "label_zh": "国家数据局：17部门联合印发数据要素×三年行动计划",
+            "label_en": "National Data Administration: 17 departments jointly issue the plan",
+            "publisher": "国家数据局"
+          }
+        ],
+        "confidence": "high"
+      }
+    },
+    {
+      "id": "statistic-2023-measured-above-scale-software-business-reve-2024",
+      "date": "2024-01",
+      "title_zh": "2023年规上软件业务收入实测",
+      "title_en": "2023 measured above-scale software business revenue",
+      "summary_zh": "工信部运行监测协调局2023年软件和信息技术服务业经济运行情况通报",
+      "summary_en": "MIIT Operation Monitoring Bureau 2023 software & IT services economic performance communiqué",
+      "metric_zh": "规模以上企业软件业务收入",
+      "metric_en": "Above-scale enterprise software business revenue",
+      "target_value": null,
+      "target_unit_zh": "亿元",
+      "target_unit_en": "CNY bn",
+      "target_deadline": null,
+      "actual_value": 123258,
+      "actual_as_of": "2023",
+      "actual_note_zh": "同比+13.4%；为工信部规上软件企业口径年度实测值",
+      "actual_note_en": "YoY +13.4%; MIIT above-scale software enterprise annual measured value",
+      "issuer_zh": "工业和信息化部",
+      "issuer_en": "MIIT",
+      "doc_number": "",
+      "policy_type": "statistic",
+      "source_url": "https://www.miit.gov.cn/jgsj/xxjsfzs/sjfb/index.html",
       "source_research": "composer-2.5"
     },
     {
@@ -2302,30 +2367,6 @@
       "doc_number": "",
       "policy_type": "statistic",
       "source_url": "https://www.miit.gov.cn/",
-      "source_research": "composer-2.5"
-    },
-    {
-      "id": "statistic-2023-measured-above-scale-software-business-reve-2024",
-      "date": "2024-01",
-      "title_zh": "2023年规上软件业务收入实测",
-      "title_en": "2023 measured above-scale software business revenue",
-      "summary_zh": "工信部运行监测协调局2023年软件和信息技术服务业经济运行情况通报",
-      "summary_en": "MIIT Operation Monitoring Bureau 2023 software & IT services economic performance communiqué",
-      "metric_zh": "规模以上企业软件业务收入",
-      "metric_en": "Above-scale enterprise software business revenue",
-      "target_value": null,
-      "target_unit_zh": "亿元",
-      "target_unit_en": "CNY bn",
-      "target_deadline": null,
-      "actual_value": 123258,
-      "actual_as_of": "2023",
-      "actual_note_zh": "同比+13.4%；为工信部规上软件企业口径年度实测值",
-      "actual_note_en": "YoY +13.4%; MIIT above-scale software enterprise annual measured value",
-      "issuer_zh": "工业和信息化部",
-      "issuer_en": "MIIT",
-      "doc_number": "",
-      "policy_type": "statistic",
-      "source_url": "https://www.miit.gov.cn/jgsj/xxjsfzs/sjfb/index.html",
       "source_research": "composer-2.5"
     },
     {
@@ -2370,7 +2411,49 @@
       "summary_zh": "《工业重点行业领域设备更新和技术改造指南》将 DCS 纳入成熟可替代品类",
       "summary_en": "Industrial equipment renewal guide lists DCS as mature substitution category",
       "source_url": "https://www.citnews.com.cn/news/204558",
-      "policy_type": "ministry"
+      "policy_type": "ministry",
+      "detail": {
+        "direction_zh": "在「大规模设备更新」框架下，工业操作系统与工控软件被列为重点更新对象，DCS/PLC/SCADA 等成熟工控产品由「鼓励试点」转向「批量更新+国产替代」并行推进。",
+        "direction_en": "Under the large-scale equipment-update push, industrial operating systems and industrial-control software are designated priority renewal targets; mature control products (DCS/PLC/SCADA) shift from pilot encouragement toward batch renewal coupled with domestic substitution.",
+        "initiatives": [
+          {
+            "zh": "工信部等七部门联合印发《推动工业领域设备更新实施方案》（工信部联规〔2024〕53号）",
+            "en": "MIIT and six other ministries jointly issued the Implementation Plan for Promoting Equipment Renewal in the Industrial Sector (MIIT Lian Gui [2024] No.53)"
+          },
+          {
+            "zh": "到 2027 年工业领域设备投资规模较 2023 年增长 25% 以上；规上工业企业数字化研发设计工具普及率超 90%、关键工序数控化率超 75%",
+            "en": "By 2027, industrial equipment investment to grow >25% vs 2023; digital R&D/design-tool penetration among above-scale firms >90%, NC rate of key processes >75%"
+          },
+          {
+            "zh": "据公开解读，到 2027 年计划更新约 200 万套工业软件、约 80 万套工业操作系统（PLC/DCS/SCADA 等），覆盖石化、航空、船舶等关键行业",
+            "en": "Per public readouts, plan targets renewing ~2M sets of industrial software and ~800k industrial OS sets (PLC/DCS/SCADA), covering petrochemical, aviation, shipbuilding and other key sectors"
+          }
+        ],
+        "focus_zh": "工业母机、工业软件（CAD/CAE/MES）及工业操作系统（PLC/DCS/SCADA/SIS/嵌入式）的迭代升级与国产化替代",
+        "focus_en": "Iterative upgrade and localization of machine tools, industrial software (CAD/CAE/MES) and industrial operating systems (PLC/DCS/SCADA/SIS/embedded)",
+        "implications_zh": "把工控软件/DCS/PLC 明确写入设备更新清单，形成最直接的需求侧拉动：存量替换周期被政策压缩，国产 DCS/PLC/MES 厂商获得规模化进场窗口，工业软件不再仅靠单点采购而是随产线改造批量更新。",
+        "implications_en": "Naming control software/DCS/PLC in the renewal list creates the most direct demand-side pull: the replacement cycle for the installed base is compressed by policy, giving domestic DCS/PLC/MES vendors a scale entry window, and industrial software is procured in batches alongside production-line retrofits rather than one-off.",
+        "related": [
+          "two-sessions-2024-government-work-report-manufacturing-invest-2024",
+          "gov-procurement-domestic-20pct"
+        ],
+        "sources": [
+          {
+            "url": "https://www.miit.gov.cn/jgsj/ghs/wjfb/art/2024/art_9532b8a4a0fa4dfabedde39e0883a338.html",
+            "label_zh": "工信部：推动工业领域设备更新实施方案（工信部联规〔2024〕53号）",
+            "label_en": "MIIT: Implementation Plan for Industrial Equipment Renewal (No.53)",
+            "publisher": "工业和信息化部"
+          },
+          {
+            "url": "https://www.gov.cn/zhengce/zhengceku/202404/content_6944252.htm",
+            "label_zh": "中国政府网：七部门关于印发设备更新实施方案的通知",
+            "label_en": "gov.cn: Notice issuing the equipment-renewal implementation plan",
+            "publisher": "中国政府网"
+          }
+        ],
+        "confidence": "medium"
+      },
+      "doc_number": "工信部联规〔2024〕53号"
     },
     {
       "id": "two-sessions-2024-government-work-report-manufacturing-invest-2024",
@@ -2394,7 +2477,49 @@
       "doc_number": "",
       "policy_type": "two-sessions",
       "source_url": "https://www.gov.cn/lishi/2024-03/05/content_6937881.htm",
-      "source_research": "composer-2.5"
+      "source_research": "composer-2.5",
+      "detail": {
+        "direction_zh": "2024年报告首提「新质生产力」与「人工智能+」行动，把「大力推进现代化产业体系建设、加快发展新质生产力」列为年度首要任务，方向是以科技创新推动产业创新、加快推进新型工业化、提高全要素生产率。",
+        "direction_en": "The 2024 report debuts 'new quality productive forces' and the 'AI+' initiative, naming 'building a modern industrial system and accelerating new quality productive forces' the year's top task — driving industrial innovation through tech innovation, advancing new-type industrialization and total-factor productivity.",
+        "initiatives": [
+          {
+            "zh": "开展「人工智能+」行动，深化大数据、人工智能研发应用，打造具有国际竞争力的数字产业集群",
+            "en": "Launch the 'AI+' initiative; deepen big-data and AI R&D and application; build internationally competitive digital industry clusters"
+          },
+          {
+            "zh": "实施制造业数字化转型行动，加快工业互联网规模化应用",
+            "en": "Implement a manufacturing digital-transformation action; accelerate large-scale industrial-internet adoption"
+          },
+          {
+            "zh": "实施制造业技术改造升级工程，推动传统产业高端化、智能化、绿色化转型",
+            "en": "Manufacturing technical-renovation/upgrade program; move traditional industry toward high-end, smart and green transformation"
+          }
+        ],
+        "focus_zh": "新质生产力 + 「人工智能+」(首次写入) + 制造业数字化转型 + 工业互联网规模化应用",
+        "focus_en": "New quality productive forces + first-ever 'AI+' + manufacturing digital transformation + industrial-internet scale-up",
+        "implications_zh": "「制造业数字化转型行动」与「工业互联网规模化应用」是直接的工业软件需求信号——指向 MES、PLM、工业互联网平台的渗透扩张；「人工智能+」首次成为国家级抓手，为 CAE/EDA 等环节的 AI 赋能与国产工业软件替代提供顶层政策牵引。",
+        "implications_en": "The 'manufacturing digital-transformation action' and 'large-scale industrial-internet application' are direct demand signals for industrial software — pointing to wider MES/PLM/IIoT-platform penetration. The first elevation of 'AI+' to a national lever gives top-down pull for AI-enabled CAE/EDA and domestic industrial-software substitution.",
+        "related": [
+          "two-sessions-2025-government-work-report-2025-gdp-growth-targ-2025",
+          "miit-ai-manufacturing-2027-kpi",
+          "program-data-element-three-year-action-plan-2024-2026-2024"
+        ],
+        "sources": [
+          {
+            "url": "https://www.cac.gov.cn/2024-03/12/c_1711913994070892.htm",
+            "label_zh": "「人工智能+」首次写入政府工作报告",
+            "label_en": "'AI+' first written into the Government Work Report",
+            "publisher": "中央网信办"
+          },
+          {
+            "url": "https://topics.caixin.com/2024-03-05/102171992.html",
+            "label_zh": "政府工作报告：加快发展新质生产力 开展「人工智能+」行动",
+            "label_en": "Work report: new quality productive forces, launch 'AI+'",
+            "publisher": "财新网"
+          }
+        ],
+        "confidence": "high"
+      }
     },
     {
       "id": "fund-national-ic-industry-investment-fund-phase-iii-e-2024",
@@ -2418,7 +2543,49 @@
       "doc_number": "",
       "policy_type": "fund",
       "source_url": "https://www.gov.cn/lianbo/bumen/202405/content_6951234.htm",
-      "source_research": "composer-2.5"
+      "source_research": "composer-2.5",
+      "detail": {
+        "direction_zh": "国家集成电路产业投资基金（三期）股份有限公司于2024年5月24日获批成立，注册资本3440亿元，超过一期（987.2亿）与二期（2041.5亿）之和；财政部为最大股东，国有六大行合计拟出资1140亿元、持股约33.14%。资金重点向半导体设备、材料、HBM/先进存储及AI芯片等自主化核心赛道倾斜。",
+        "direction_en": "The National IC Industry Investment Fund Phase III Co., Ltd. was approved/established on 24 May 2024 with registered capital of RMB 344 billion—exceeding the combined Phase I (98.72bn) and Phase II (204.15bn). The Ministry of Finance is the largest shareholder; the six big state banks committed RMB 114bn for ~33.14%. Capital tilts toward self-sufficiency core tracks: semiconductor equipment, materials, HBM/advanced memory, and AI chips.",
+        "initiatives": [
+          {
+            "zh": "注册资本3440亿元，规模超前两期总和，强化国产半导体长线资金支持",
+            "en": "RMB 344bn registered capital, larger than Phases I+II combined, reinforcing patient capital for domestic semiconductors"
+          },
+          {
+            "zh": "六大国有银行合计拟出资1140亿元、持股约33.14%，财政部主导",
+            "en": "Six big state banks committed RMB 114bn (~33.14%); Ministry of Finance leads"
+          },
+          {
+            "zh": "投向半导体设备、材料、先进存储（HBM）与AI芯片等卡脖子环节",
+            "en": "Targets bottleneck links: semiconductor equipment, materials, advanced memory (HBM), and AI chips"
+          }
+        ],
+        "focus_zh": "半导体产业链自主化，尤其设备、材料、先进制程与存储、AI算力芯片等高壁垒环节的长期股权投资",
+        "focus_en": "Self-sufficiency across the semiconductor chain—long-horizon equity in high-barrier links: equipment, materials, advanced process/memory, and AI compute chips",
+        "implications_zh": "对工业软件（尤其EDA与IC设计软件）意味着国产替代的资本与产业拉动：大基金三期对设备/材料/先进制程的投资将放大对国产EDA全流程工具链、芯片设计软件、工艺仿真与DFM的需求，并通过被投晶圆厂/设计公司形成商业验证场景；EDA国产化由政策号召转为有资金落地的产业配套。",
+        "implications_en": "For industrial software—especially EDA and IC-design tools—this is capital-and-industry pull for localization: Phase III's bets on equipment/materials/advanced process magnify demand for domestic full-flow EDA toolchains, chip-design software, and process simulation/DFM, while invested fabs and design houses create commercial-validation scenarios. EDA localization shifts from policy slogan to funded industrial demand.",
+        "related": [
+          "t-cie-311-cad-security-2025",
+          "standard-secure-reliable-evaluation-domestic-cpus-at-leve-2025",
+          "xinchuang-ai-chip-eval-2026"
+        ],
+        "sources": [
+          {
+            "url": "https://www.cnr.cn/jrpd/mxdj/20240527/t20240527_526720907.shtml",
+            "label_zh": "央广网：大基金三期成立 注册资本3440亿元 多家大行拟出资",
+            "label_en": "CNR: Fund Phase III established, RMB 344bn registered capital",
+            "publisher": "央广网"
+          },
+          {
+            "url": "https://finance.cctv.com/2024/05/28/ARTIhM6N831KrZyhRYMQziH8240528.shtml",
+            "label_zh": "央视网：注册资本3440亿 国家大基金三期来了",
+            "label_en": "CCTV Finance: RMB 344bn—IC Big Fund Phase III arrives",
+            "publisher": "央视网"
+          }
+        ],
+        "confidence": "high"
+      }
     },
     {
       "id": "miit-industrial-software-market-3390",
@@ -2485,26 +2652,6 @@
       "source_research": "composer-2.5"
     },
     {
-      "id": "t-cie-311-cad-security-2025",
-      "date": "2025-03",
-      "target_deadline": null,
-      "title_zh": "T/CIE 311-2025 三维CAD软件安全性测评规范",
-      "title_en": "T/CIE 311-2025 3D CAD security evaluation standard",
-      "metric_zh": "团体标准项数（CAD测评系列）",
-      "metric_en": "Group standards in 3D CAD evaluation series",
-      "target_value": 7,
-      "target_unit_zh": "项",
-      "target_unit_en": "standards",
-      "actual_value": 7,
-      "actual_as_of": "2025",
-      "actual_note_zh": "含安全性/功能/性能/兼容性/测试过程等，2025-03-31实施",
-      "actual_note_en": "Security, function, performance, compatibility, test process, etc.; effective 2025-03-31",
-      "summary_zh": "国产三维CAD信创测评与采购对标标准体系",
-      "summary_en": "Evaluation framework for domestic 3D CAD procurement",
-      "source_url": "https://www.ndls.org.cn/standard/detail/00b0d0aaf2e0b4625a67d2cd3d94749d",
-      "policy_type": "standard"
-    },
-    {
       "id": "standard-3d-cad-security-evaluation-group-standard-series-2025",
       "date": "2025-03",
       "title_zh": "三维CAD软件安全性测评团体标准体系",
@@ -2526,31 +2673,46 @@
       "doc_number": "T/CIE 311-2025",
       "policy_type": "standard",
       "source_url": "https://www.ndls.org.cn/standard/detail/00b0d0aaf2e0b4625a67d2cd3d94749d",
-      "source_research": "composer-2.5"
-    },
-    {
-      "id": "two-sessions-2025-government-work-report-2025-gdp-growth-targ-2025",
-      "date": "2025-03",
-      "title_zh": "2025年政府工作报告：2025年国内生产总值增长目标",
-      "title_en": "2025 Government Work Report: 2025 GDP growth target",
-      "summary_zh": "十四届全国人大三次会议政府工作报告设定2025年目标并部署「人工智能+」",
-      "summary_en": "NPC session GWR sets 2025 targets and deploys 'AI+' actions",
-      "metric_zh": "国内生产总值增长率",
-      "metric_en": "GDP growth rate",
-      "target_value": 5,
-      "target_unit_zh": "%",
-      "target_unit_en": "%",
-      "target_deadline": "2025",
-      "actual_value": 5,
-      "actual_as_of": "2024",
-      "actual_note_zh": "报告回顾2024年国内生产总值增长5%；提出持续开展「人工智能+」行动",
-      "actual_note_en": "Report reviews 2024 GDP growth at 5%; calls for continued 'AI+' actions",
-      "issuer_zh": "国务院",
-      "issuer_en": "State Council",
-      "doc_number": "",
-      "policy_type": "two-sessions",
-      "source_url": "https://www.gov.cn/2025/03/05/content_7008856.htm",
-      "source_research": "composer-2.5"
+      "source_research": "composer-2.5",
+      "detail": {
+        "direction_zh": "三维CAD软件安全性/测评相关团体标准呈「成体系」推进态势：以 T/CIE 311-2025（安全性）为锚点，向功能、兼容性、性能等多维测评扩展，形成国产三维CAD测评标准体系（具体兄弟标准编号尚需以标准馆/中国电子学会原始发布为准）。",
+        "direction_en": "The 3D CAD security/evaluation group standards are advancing as a coordinated SERIES: anchored by T/CIE 311-2025 (security) and extending to function, compatibility and performance dimensions to form a domestic 3D-CAD evaluation standards system (specific sibling standard numbers must be confirmed against the original ndls.org.cn / CIE publication).",
+        "initiatives": [
+          {
+            "zh": "以安全性测评（T/CIE 311）为切入点，向功能/兼容性/性能等多维测评扩展",
+            "en": "Use security evaluation (T/CIE 311) as the entry point and extend to function/compatibility/performance dimensions"
+          },
+          {
+            "zh": "由中国电子学会统一归口，体系化降低各厂商测评口径不一致问题",
+            "en": "Centrally administered by China Electronics Society, systematizing evaluation to reduce inconsistent test scopes across vendors"
+          }
+        ],
+        "focus_zh": "从单点安全性测评走向「多维度、成体系」的国产三维CAD测评/认证框架，支撑国产化生态的统一评价语言",
+        "focus_en": "Moving from a single-point security test toward a multi-dimensional, systematic evaluation/certification framework for domestic 3D CAD",
+        "implications_zh": "对国产CAD厂商意味着合规面将从「安全性」单项扩展为安全性+功能+兼容性+性能的多证组合，长期看通过成套测评有望成为采购准入与国产化认证的标准动作；厂商宜把送测从一次性安全测评升级为面向标准体系的持续合规规划。",
+        "implications_en": "For domestic CAD vendors, the compliance surface broadens from a single 'security' item to a multi-certificate bundle (security + function + compatibility + performance); over time, passing the full set may become a standard prerequisite for procurement eligibility and domestic-substitution certification.",
+        "related": [
+          "t-cie-311-cad-security-2025",
+          "standard-secure-reliable-evaluation-domestic-cpus-at-leve-2025",
+          "gov-procurement-domestic-20pct",
+          "miit-ai-manufacturing-2027-kpi"
+        ],
+        "sources": [
+          {
+            "url": "https://www.ndls.org.cn/standard/detail/00b0d0aaf2e0b4625a67d2cd3d94749d",
+            "label_zh": "国家数字标准馆 — T/CIE 311-2025（系列锚点记录）",
+            "label_en": "National Digital Standards Library — T/CIE 311-2025 (series anchor record)",
+            "publisher": "国家数字标准馆 ndls.org.cn"
+          },
+          {
+            "url": "https://www.cie.org.cn/list_53/15824.html",
+            "label_zh": "中国电子学会 在研/发布标准汇总页",
+            "label_en": "China Electronics Society — published-standards list",
+            "publisher": "中国电子学会"
+          }
+        ],
+        "confidence": "medium"
+      }
     },
     {
       "id": "standard-secure-reliable-evaluation-domestic-cpus-at-leve-2025",
@@ -2574,7 +2736,173 @@
       "doc_number": "2025年第1号",
       "policy_type": "standard",
       "source_url": "https://www.itsec.gov.cn/aqkkcp/cpgg/202503/t20250314_216512.html",
-      "source_research": "composer-2.5"
+      "source_research": "composer-2.5",
+      "detail": {
+        "direction_zh": "中国信息安全测评中心发布《安全可靠测评结果公告（2025年第1号）》，首次有一批国产 CPU 跨入最高的 Ⅱ 级——按测评口径 Ⅰ 级为「国内设计+海外代工」，Ⅱ 级为「设计到流片全流程自主」。标志国产算力底座从「可用」转向「全栈自主可控」。",
+        "direction_en": "CITSEC's 2025 Announcement No.1 placed a cohort of domestic CPUs at the top Grade Ⅱ. Under the scheme, Grade Ⅰ = domestic-design + overseas foundry, Grade Ⅱ = fully autonomous design-to-fab. It marks the domestic compute base moving from 'usable' to 'full-stack self-controllable'.",
+        "initiatives": [
+          {
+            "zh": "Ⅱ 级 CPU：飞腾腾云 S5000C-E、龙芯 3B6000、龙芯 3C6000、申威威鑫 H8000、麒麟 X90（海思）",
+            "en": "Grade Ⅱ CPUs: Phytium Tengyun S5000C-E, Loongson 3B6000, Loongson 3C6000, Sunway Weixin H8000, Kirin X90 (HiSilicon)"
+          },
+          {
+            "zh": "Ⅰ 级 CPU：申威 WY831（GC 版）、兆芯 KX-U6980S、兆芯 KX-6940S",
+            "en": "Grade Ⅰ CPUs: Sunway WY831 (GC), Zhaoxin KX-U6980S, Zhaoxin KX-6940S"
+          },
+          {
+            "zh": "覆盖飞腾/ARM、龙芯/LoongArch、申威/SW、海思/ARM、兆芯/x86 五大国产指令集路线；测评有效期 3 年",
+            "en": "Spans five domestic ISA routes (Phytium/ARM, Loongson/LoongArch, Sunway, HiSilicon/ARM, Zhaoxin/x86); 3-year validity"
+          }
+        ],
+        "focus_zh": "覆盖五大国产指令集路线，以全流程自主作为 Ⅱ 级硬门槛",
+        "focus_en": "Spans the five domestic ISA routes, with full-process autonomy as the hard Grade-Ⅱ bar",
+        "implications_zh": "工业软件（CAD/CAE/EDA）若要跑在完全国产栈上，CPU 是第一块基石。Ⅱ 级 CPU 出现意味着 CAE 大规模数值求解、EDA 仿真等高算力负载终于有了「无海外代工依赖」的承载平台；但多指令集并存也意味着工业软件需做多架构移植与编译优化，单一 x86 二进制不再适用。",
+        "implications_en": "For CAD/CAE/EDA on a fully domestic stack, the CPU is the foundational layer. Grade Ⅱ CPUs mean heavy numerical solvers (CAE) and EDA simulation finally have a host platform free of overseas-foundry dependence; but the coexistence of multiple ISAs forces industrial software into multi-arch porting and compiler tuning—single x86 binaries no longer suffice.",
+        "related": [
+          "xinchuang-harmonyos-desktop-ii-2026",
+          "xinchuang-ai-chip-eval-2026",
+          "fund-national-ic-industry-investment-fund-phase-iii-e-2024",
+          "gov-procurement-domestic-20pct"
+        ],
+        "sources": [
+          {
+            "url": "https://www.itsec.gov.cn/aqkkcp/cpgg/202503/t20250314_216512.html",
+            "label_zh": "安全可靠测评结果公告（2025年第1号）",
+            "label_en": "Secure-Reliable Evaluation Results Announcement No.1 (2025)",
+            "publisher": "中国信息安全测评中心"
+          }
+        ],
+        "confidence": "high"
+      }
+    },
+    {
+      "id": "t-cie-311-cad-security-2025",
+      "date": "2025-03",
+      "target_deadline": null,
+      "title_zh": "T/CIE 311-2025 三维CAD软件安全性测评规范",
+      "title_en": "T/CIE 311-2025 3D CAD security evaluation standard",
+      "metric_zh": "团体标准项数（CAD测评系列）",
+      "metric_en": "Group standards in 3D CAD evaluation series",
+      "target_value": 7,
+      "target_unit_zh": "项",
+      "target_unit_en": "standards",
+      "actual_value": 7,
+      "actual_as_of": "2025",
+      "actual_note_zh": "含安全性/功能/性能/兼容性/测试过程等，2025-03-31实施",
+      "actual_note_en": "Security, function, performance, compatibility, test process, etc.; effective 2025-03-31",
+      "summary_zh": "国产三维CAD信创测评与采购对标标准体系",
+      "summary_en": "Evaluation framework for domestic 3D CAD procurement",
+      "source_url": "https://www.ndls.org.cn/standard/detail/00b0d0aaf2e0b4625a67d2cd3d94749d",
+      "policy_type": "standard",
+      "detail": {
+        "direction_zh": "中国电子学会发布的国内首批三维CAD软件「安全性」专项测评团体标准之一，明确三维CAD软件安全性测评指标与评价准则，为测评机构、厂商、用户开展安全性测评活动提供统一依据。",
+        "direction_en": "One of China Electronics Society's first group standards dedicated specifically to the SECURITY evaluation of 3D CAD software—defining security testing indicators and evaluation criteria, and giving evaluation bodies, vendors and users a common basis for 3D CAD security assessment.",
+        "initiatives": [
+          {
+            "zh": "规定三维CAD软件安全性测评指标体系与评价准则（量化分级未在公开摘要中披露）",
+            "en": "Specifies the security evaluation indicator system and assessment criteria for 3D CAD software (quantified grading not disclosed in the public abstract)"
+          },
+          {
+            "zh": "适用对象覆盖软件测评机构、厂商、用户及相关组织开展的安全性测评活动",
+            "en": "Applies to evaluation agencies, manufacturers, users and related organizations carrying out 3D CAD security assessment"
+          },
+          {
+            "zh": "由中国电子学会作为团体标准发布、归口管理（团标，非强制国标），2025-03-31 发布实施",
+            "en": "Issued and administered as a group standard by China Electronics Society—not a mandatory national standard; published/effective 2025-03-31"
+          }
+        ],
+        "focus_zh": "三维CAD软件的安全性维度测评：将「安全性」从笼统的国产化论述落地为可执行的测评指标与判定准则",
+        "focus_en": "The security dimension of 3D CAD software evaluation: turning the vague 'security' narrative around domestic substitution into executable test indicators and criteria",
+        "implications_zh": "对国产CAD厂商意味着出现了一条可对标的第三方安全性测评路径——通过该团标测评可作为采购准入、国产化验收与安全合规的背书材料；虽为团标（自愿性、非强制），但常被招标方引用为加分或门槛项，厂商宜提前对照指标做差距分析与送测。",
+        "implications_en": "For domestic CAD vendors this creates a benchmarkable third-party security-evaluation path—passing it can serve as evidence for procurement eligibility, domestic-substitution acceptance and security compliance. Though a voluntary group standard, it is often cited by tender owners as a bonus or threshold criterion, so vendors should gap-analyze against its indicators and submit for evaluation early.",
+        "related": [
+          "standard-3d-cad-security-evaluation-group-standard-series-2025",
+          "standard-secure-reliable-evaluation-domestic-cpus-at-leve-2025",
+          "gov-procurement-domestic-20pct"
+        ],
+        "sources": [
+          {
+            "url": "https://www.ndls.org.cn/standard/detail/00b0d0aaf2e0b4625a67d2cd3d94749d",
+            "label_zh": "国家数字标准馆 — T/CIE 311-2025 三维CAD软件安全性测评规范",
+            "label_en": "National Digital Standards Library — T/CIE 311-2025",
+            "publisher": "国家数字标准馆 ndls.org.cn"
+          },
+          {
+            "url": "https://www.cie.org.cn/",
+            "label_zh": "中国电子学会官网（团标归口单位）",
+            "label_en": "China Electronics Society official site (group-standard issuer)",
+            "publisher": "中国电子学会"
+          }
+        ],
+        "confidence": "high"
+      }
+    },
+    {
+      "id": "two-sessions-2025-government-work-report-2025-gdp-growth-targ-2025",
+      "date": "2025-03",
+      "title_zh": "2025年政府工作报告：2025年国内生产总值增长目标",
+      "title_en": "2025 Government Work Report: 2025 GDP growth target",
+      "summary_zh": "十四届全国人大三次会议政府工作报告设定2025年目标并部署「人工智能+」",
+      "summary_en": "NPC session GWR sets 2025 targets and deploys 'AI+' actions",
+      "metric_zh": "国内生产总值增长率",
+      "metric_en": "GDP growth rate",
+      "target_value": 5,
+      "target_unit_zh": "%",
+      "target_unit_en": "%",
+      "target_deadline": "2025",
+      "actual_value": 5,
+      "actual_as_of": "2024",
+      "actual_note_zh": "报告回顾2024年国内生产总值增长5%；提出持续开展「人工智能+」行动",
+      "actual_note_en": "Report reviews 2024 GDP growth at 5%; calls for continued 'AI+' actions",
+      "issuer_zh": "国务院",
+      "issuer_en": "State Council",
+      "doc_number": "",
+      "policy_type": "two-sessions",
+      "source_url": "https://www.gov.cn/2025/03/05/content_7008856.htm",
+      "source_research": "composer-2.5",
+      "detail": {
+        "direction_zh": "2025年报告延续并深化数字化方向：「人工智能+」连续第二年写入，部署为「持续推进『人工智能+』行动，将数字技术与制造优势、市场优势更好结合起来，支持大模型广泛应用」；并宣布数字经济核心产业增加值占 GDP 约10%，提前实现「十四五」目标。",
+        "direction_en": "The 2025 report continues and deepens the digital line: 'AI+' appears for a second straight year, framed as 'keep advancing the AI+ initiative, better combining digital tech with manufacturing and market strengths, supporting broad large-model deployment.' It declares the digital-economy core-industry value-add at ~10% of GDP, hitting the 14th-FYP target ahead of schedule.",
+        "initiatives": [
+          {
+            "zh": "持续推进「人工智能+」行动，支持大模型广泛应用",
+            "en": "Keep advancing 'AI+'; support broad large-model application"
+          },
+          {
+            "zh": "深化实施数字化转型工程和智能制造工程，建设5G工厂，加快工业互联网创新发展",
+            "en": "Deepen the digital-transformation and smart-manufacturing programs; build 5G factories; accelerate industrial-internet innovation"
+          },
+          {
+            "zh": "大力发展智能机器人、智能制造装备及人工智能手机/电脑等新一代智能终端",
+            "en": "Vigorously develop smart robots, smart-manufacturing equipment, and AI phones/PCs as next-gen intelligent terminals"
+          }
+        ],
+        "focus_zh": "「人工智能+」深化（大模型落地制造）+ 智能制造工程/5G工厂 + 数字经济核心产业占比约10%",
+        "focus_en": "Deepened 'AI+' (large models into manufacturing) + smart-manufacturing program/5G factories + ~10% digital-economy core-industry share",
+        "implications_zh": "「将数字技术与制造优势结合、支持大模型广泛应用」明确把大模型推向制造业生产场景，利好 AI 原生工业软件与 CAE/CAD 智能化；「智能制造工程 + 5G工厂」是 MES/工业互联网/数字孪生的明确采购方向；数字经济核心产业占比10%坐实了工业软件作为「核心产业」的增长底座。",
+        "implications_en": "'Combine digital tech with manufacturing strengths, support broad large-model use' explicitly pushes LLMs into production scenarios — favoring AI-native industrial software and intelligent CAE/CAD. 'Smart-manufacturing program + 5G factories' is a clear procurement direction for MES/IIoT/digital-twin. The ~10% digital-economy core-industry share anchors industrial software's growth base.",
+        "related": [
+          "two-sessions-2024-government-work-report-manufacturing-invest-2024",
+          "two-sessions-2026-government-work-report-first-year-of-15th-f-2026",
+          "miit-ai-manufacturing-2027-kpi",
+          "fyp-cpc-central-committee-proposal-on-the-15th-five--2025"
+        ],
+        "sources": [
+          {
+            "url": "http://www.news.cn/fortune/20250309/dba84e83a06d42faa7407bab66676810/c.html",
+            "label_zh": "数说中国经济：从「10%左右」看数字经济",
+            "label_en": "Digital economy at ~10% of GDP",
+            "publisher": "新华网"
+          },
+          {
+            "url": "https://www.cac.gov.cn/2025-12/09/c_1767006260045309.htm",
+            "label_zh": "「人工智能+」行动加速赋能高质量发展",
+            "label_en": "'AI+' accelerating high-quality development",
+            "publisher": "中央网信办"
+          }
+        ],
+        "confidence": "high"
+      }
     },
     {
       "id": "cesi-industrial-software-2940-2024",
@@ -2638,7 +2966,49 @@
       "summary_zh": "构建政府采购本国产品标准与价格支持政策",
       "summary_en": "Domestic product standards and price support in government procurement",
       "source_url": "https://www.gov.cn/gongbao/2025/issue_12346/202510/content_7044731.html",
-      "policy_type": "ministry"
+      "policy_type": "ministry",
+      "detail": {
+        "direction_zh": "首次确立统一的政府采购「本国产品」价格评审优惠机制：本国产品在评审时按报价给予 20% 价格扣除，以扣除后价格参与竞争，把价格杠杆制度化。",
+        "direction_en": "Establishes for the first time a unified price-evaluation preference for domestic products in government procurement: domestic products receive a 20% deduction on their quoted price for evaluation purposes, institutionalizing the price lever.",
+        "initiatives": [
+          {
+            "zh": "国务院办公厅《关于在政府采购中实施本国产品标准及相关政策的通知》（国办发〔2025〕34号），财政部牵头",
+            "en": "State Council General Office Notice on Implementing Domestic-Product Standards in Government Procurement (Guoban Fa [2025] No.34), led by the MOF"
+          },
+          {
+            "zh": "竞争中既有本国产品又有非本国产品时，对本国产品报价给予 20% 价格扣除，用扣除后价格参与评审",
+            "en": "When both domestic and non-domestic products compete, domestic-product quotes get a 20% deduction and the deducted price is used for evaluation"
+          },
+          {
+            "zh": "含多种产品的采购包，若供应商所供符合本国产品标准的产品成本占其全部产品成本 80% 以上，则对全部产品总报价给予 20% 扣除",
+            "en": "For multi-product packages, if the supplier's domestic-qualifying product cost reaches >=80% of total, the 20% deduction applies to the entire bid"
+          }
+        ],
+        "focus_zh": "政府采购需求侧；价格评审优惠适用于符合「本国产品」标准的货物（含软件类产品）",
+        "focus_en": "Government-procurement demand side; the price-evaluation preference applies to goods (including software products) meeting the domestic-product standard",
+        "implications_zh": "对工业软件/工控产品意味着稳定、可量化的政府需求侧补贴：国产 CAD/CAE/MES/PLC 在政采项目中获得 20% 的实质性价格缓冲，足以抵消与海外成熟产品的部分价差，降低采购方「选国产」的成本顾虑——从「鼓励国产」转向「制度化偏好国产」。",
+        "implications_en": "For industrial software/control products this means a stable, quantified demand-side subsidy: domestic CAD/CAE/MES/PLC gain a 20% effective price cushion in public procurement, enough to offset part of the gap with mature foreign products and lower buyers' cost concern—shifting from encouraging to institutionally preferring domestic.",
+        "related": [
+          "standard-domestic-product-eligibility-in-china-component--2025",
+          "miit-dcs-substitution"
+        ],
+        "sources": [
+          {
+            "url": "https://www.gov.cn/gongbao/2025/issue_12346/202510/content_7044731.html",
+            "label_zh": "国务院公报：国办发〔2025〕34号 政府采购本国产品标准及相关政策",
+            "label_en": "State Council Gazette: Guoban Fa [2025] No.34 domestic-product procurement policy",
+            "publisher": "中国政府网（国务院公报）"
+          },
+          {
+            "url": "https://m.mof.gov.cn/czxw/202509/t20250930_3973725.htm",
+            "label_zh": "财政部：本国产品标准及相关政策答记者问",
+            "label_en": "MOF: Q&A on domestic-product standard and related policies",
+            "publisher": "财政部"
+          }
+        ],
+        "confidence": "high"
+      },
+      "doc_number": "国办发〔2025〕34号"
     },
     {
       "id": "standard-domestic-product-eligibility-in-china-component--2025",
@@ -2662,31 +3032,49 @@
       "doc_number": "国办发〔2025〕34号",
       "policy_type": "standard",
       "source_url": "https://www.gov.cn/gongbao/2025/issue_12346/202510/content_7044731.html",
-      "source_research": "composer-2.5"
-    },
-    {
-      "id": "fyp-cpc-central-committee-proposal-on-the-15th-five--2025",
-      "date": "2025-10",
-      "title_zh": "中共中央关于制定「十五五」规划的建议",
-      "title_en": "CPC Central Committee Proposal on the 15th Five-Year Plan (2026–2030)",
-      "summary_zh": "二十届四中全会审议通过的建议全文，定调十五五制造强国、数字中国与科技自立自强方向",
-      "summary_en": "4th Plenum-adopted recommendation setting 15th FYP direction for manufacturing power, Digital China, and tech self-reliance",
-      "metric_zh": "制造业合理比重",
-      "metric_en": "Reasonable share of manufacturing in the economy",
-      "target_value": null,
-      "target_unit_zh": "定性目标",
-      "target_unit_en": "qualitative target",
-      "target_deadline": "2030",
-      "actual_value": null,
-      "actual_as_of": "",
-      "actual_note_zh": "建议正文表述为「保持制造业合理比重」「加快建设制造强国」，未设可核对的具体百分比；量化指标留待国务院印发的规划纲要及部委专项规划",
-      "actual_note_en": "Recommendation text calls to keep a reasonable manufacturing share; no verifiable % KPI in the proposal itself—numbers expected in the State Council outline and ministry sector plans",
-      "issuer_zh": "中共中央",
-      "issuer_en": "CPC Central Committee",
-      "doc_number": "",
-      "policy_type": "fyp",
-      "source_url": "https://www.gov.cn/zhengce/2025-10/28/content_7045678.htm",
-      "source_research": "composer-2.5"
+      "source_research": "composer-2.5",
+      "detail": {
+        "direction_zh": "为「本国产品」给出可执行的认定口径：以「境内生产组件成本占比」达到规定比例作为核心门槛，并要求供应商披露装配地、采购地、生产地等信息以核验本地化含量。",
+        "direction_en": "Provides an operable definition of a domestic product: the core criterion is that the cost share of components produced within China reaches a prescribed ratio, with suppliers required to disclose assembly, procurement and production locations to verify localization content.",
+        "initiatives": [
+          {
+            "zh": "认定要件：产品在中国境内生产，且境内生产组件成本占比达到规定比例",
+            "en": "Qualification criterion: the product is produced in China and the cost share of domestically produced components reaches a prescribed ratio"
+          },
+          {
+            "zh": "具体组件成本占比不一刀切：由财政部按不同行业，在出台采购需求标准后的 3 至 5 年内分行业确定/动态调整；门槛确立前满足其他条件的可先认定",
+            "en": "The specific component-cost ratio is not one-size-fits-all: the MOF sets/adjusts it by industry within 3-5 years after issuing procurement-requirement standards; before thresholds are set, products meeting other conditions may qualify"
+          },
+          {
+            "zh": "含直接进口组件的产品，供应商须提供装配地点、采购地址、生产地点等信息以证明本地化含量",
+            "en": "For products containing directly imported components, suppliers must provide assembly/procurement/production-location information to substantiate localization content"
+          }
+        ],
+        "focus_zh": "本国产品认定的成本/组件口径，决定哪些工业软件与工控硬件能享受 20% 价格扣除",
+        "focus_en": "The cost/component basis for domestic-product qualification, determining which industrial software and control hardware can enjoy the 20% deduction",
+        "implications_zh": "认定门槛把「形式上国产」与「实质上国产」区分开：纯壳套海外内核（如套用海外 CAD/EDA 几何/求解内核、或用进口 CPU/工控主板贴牌）可能因境内组件成本占比不足而难以达标，从而把政采红利导向自研内核、国产 CPU/工控芯片配套的工业软件栈，强化对底层（几何内核/求解器/芯片）国产化的拉动。",
+        "implications_en": "The threshold separates nominally-domestic from substantively-domestic products: shells wrapping foreign cores (e.g., reusing foreign CAD/EDA geometry/solver kernels, or rebadging imported CPUs/control boards) may fail the domestic-component cost share, steering procurement benefits toward stacks with self-developed kernels and domestic CPU/control-chip integration—reinforcing pull on the underlying layers (geometry kernel/solver/chip).",
+        "related": [
+          "gov-procurement-domestic-20pct",
+          "standard-secure-reliable-evaluation-domestic-cpus-at-leve-2025",
+          "xinchuang-harmonyos-desktop-ii-2026"
+        ],
+        "sources": [
+          {
+            "url": "https://www.gov.cn/gongbao/2025/issue_12346/202510/content_7044731.html",
+            "label_zh": "国务院公报：国办发〔2025〕34号（本国产品认定口径）",
+            "label_en": "State Council Gazette: Guoban Fa [2025] No.34 (domestic-product qualification)",
+            "publisher": "中国政府网（国务院公报）"
+          },
+          {
+            "url": "https://m.mof.gov.cn/czxw/202509/t20250930_3973725.htm",
+            "label_zh": "财政部：答记者问（组件成本占比按行业 3-5 年内确定）",
+            "label_en": "MOF Q&A: component-cost ratio set by industry within 3-5 years",
+            "publisher": "财政部"
+          }
+        ],
+        "confidence": "high"
+      }
     },
     {
       "id": "fyp-15th-fyp-proposal-full-rollout-of-the-ai-initiat-2025",
@@ -2710,7 +3098,126 @@
       "doc_number": "",
       "policy_type": "fyp",
       "source_url": "https://www.gov.cn/zhengce/2025-10/28/content_7045678.htm",
-      "source_research": "composer-2.5"
+      "source_research": "composer-2.5",
+      "detail": {
+        "direction_zh": "十五五建议在科技自立自强章节提出「全面实施人工智能+行动」，以 AI 引领科研范式变革，强化算力、算法、数据高效供给，并把 AI 与产业发展深度结合，推动实体经济与数字经济深度融合、抢占产业应用制高点。",
+        "direction_en": "Within the science-self-reliance chapter, the proposal calls to 'fully implement the AI+ action', using AI to transform research paradigms, strengthening efficient supply of compute/algorithms/data, and binding AI to industrial development to deepen real-digital economy integration and seize the high ground of industrial application.",
+        "initiatives": [
+          {
+            "zh": "全面实施「人工智能+」行动，全方位赋能千行百业",
+            "en": "Fully implement the 'AI+' action, empowering all industries across the board"
+          },
+          {
+            "zh": "统筹推进算力设施建设、模型算法发展和高质量数据资源供给",
+            "en": "Coordinate compute-infrastructure build-out, model/algorithm development and high-quality data supply"
+          },
+          {
+            "zh": "以人工智能引领科研范式变革，突破基础理论和核心技术",
+            "en": "Use AI to drive research-paradigm change; break through foundational theory and core technologies"
+          },
+          {
+            "zh": "促进实体经济和数字经济深度融合，实施工业互联网创新发展工程",
+            "en": "Deepen real-digital economy integration; implement the Industrial Internet innovation-development program"
+          }
+        ],
+        "focus_zh": "AI+制造、工业互联网、算力/算法/数据供给、千行百业应用",
+        "focus_en": "AI+manufacturing, industrial internet, compute/algorithm/data supply, cross-industry applications",
+        "implications_zh": "AI+ 全面落地为工业软件打开「智能化重构」窗口：CAE 生成式优化、EDA 布局布线 AI、MES/工业互联网平台嵌入大模型、数据要素喂养训练成为主线；强调算力/数据供给与实数融合，意味着工业软件须与工业互联网平台、行业大模型耦合，单点工具向 AI 原生平台演进。",
+        "implications_en": "Full AI+ rollout opens an 'intelligent re-architecture' window for industrial software: generative CAE optimization, AI place-and-route in EDA, LLMs embedded in MES/industrial-internet platforms, and data elements feeding training become the mainline; the emphasis on compute/data supply and real-digital fusion pushes tools to couple with industrial-internet platforms and sector models, evolving from point tools to AI-native platforms.",
+        "related": [
+          "fyp-cpc-central-committee-proposal-on-the-15th-five--2025",
+          "miit-ai-manufacturing-2027-kpi",
+          "program-2026-model-data-resonance-action-ai-manufacturin-2026",
+          "program-data-element-three-year-action-plan-2024-2026-2024",
+          "two-sessions-2026-government-work-report-first-year-of-15th-f-2026"
+        ],
+        "sources": [
+          {
+            "url": "https://www.mee.gov.cn/zcwj/zyygwj/202510/t20251030_1131008.shtml",
+            "label_zh": "中共中央关于制定十五五规划的建议（全文）",
+            "label_en": "CPC Central Committee Proposal on the 15th FYP (full text)",
+            "publisher": "新华社（生态环境部转发）"
+          },
+          {
+            "url": "https://www.yicai.com/news/102884423.html",
+            "label_zh": "8次提到人工智能，十五五给AI产业划重点",
+            "label_en": "AI mentioned 8 times — 15th FYP AI priorities",
+            "publisher": "第一财经"
+          }
+        ],
+        "confidence": "high"
+      }
+    },
+    {
+      "id": "fyp-cpc-central-committee-proposal-on-the-15th-five--2025",
+      "date": "2025-10",
+      "title_zh": "中共中央关于制定「十五五」规划的建议",
+      "title_en": "CPC Central Committee Proposal on the 15th Five-Year Plan (2026–2030)",
+      "summary_zh": "二十届四中全会审议通过的建议全文，定调十五五制造强国、数字中国与科技自立自强方向",
+      "summary_en": "4th Plenum-adopted recommendation setting 15th FYP direction for manufacturing power, Digital China, and tech self-reliance",
+      "metric_zh": "制造业合理比重",
+      "metric_en": "Reasonable share of manufacturing in the economy",
+      "target_value": null,
+      "target_unit_zh": "定性目标",
+      "target_unit_en": "qualitative target",
+      "target_deadline": "2030",
+      "actual_value": null,
+      "actual_as_of": "",
+      "actual_note_zh": "建议正文表述为「保持制造业合理比重」「加快建设制造强国」，未设可核对的具体百分比；量化指标留待国务院印发的规划纲要及部委专项规划",
+      "actual_note_en": "Recommendation text calls to keep a reasonable manufacturing share; no verifiable % KPI in the proposal itself—numbers expected in the State Council outline and ministry sector plans",
+      "issuer_zh": "中共中央",
+      "issuer_en": "CPC Central Committee",
+      "doc_number": "",
+      "policy_type": "fyp",
+      "source_url": "https://www.gov.cn/zhengce/2025-10/28/content_7045678.htm",
+      "source_research": "composer-2.5",
+      "detail": {
+        "direction_zh": "十五五建议把着力点放在实体经济与现代化产业体系上，明确「保持制造业合理比重」，并在科技自立自强章节首次把「基础软件」与集成电路、工业母机、高端仪器并列为需取得决定性突破的关键核心技术。方向是以自主可控的底层技术支撑制造强国与数字中国。",
+        "direction_en": "The 15th FYP proposal anchors development on the real economy and a modern industrial system, mandates 'keeping manufacturing at a reasonable share', and for the first time lists 'basic/foundational software' alongside ICs, machine tools and high-end instruments among the key core technologies that must achieve decisive breakthroughs. The thrust is self-controllable underlying technology underpinning a manufacturing power and Digital China.",
+        "initiatives": [
+          {
+            "zh": "全链条推动集成电路、工业母机、高端仪器、基础软件、先进材料、生物制造等重点领域关键核心技术攻关取得决定性突破",
+            "en": "Pursue decisive breakthroughs in key core technologies across ICs, machine tools, high-end instruments, basic software, advanced materials and biomanufacturing along the full chain"
+          },
+          {
+            "zh": "加快建设制造强国、质量强国、网络强国，保持制造业合理比重",
+            "en": "Accelerate building a manufacturing/quality/cyber power and keep manufacturing at a reasonable share of the economy"
+          },
+          {
+            "zh": "促进实体经济和数字经济深度融合，实施工业互联网创新发展工程",
+            "en": "Deepen integration of the real and digital economies; implement the Industrial Internet innovation-development program"
+          },
+          {
+            "zh": "深入推进数字中国建设，全面增强自主创新能力",
+            "en": "Deepen Digital China construction and comprehensively strengthen indigenous innovation capacity"
+          }
+        ],
+        "focus_zh": "基础软件、集成电路、工业母机、工业互联网、现代化产业体系",
+        "focus_en": "Basic software, ICs, machine tools, industrial internet, modern industrial system",
+        "implications_zh": "工业软件（CAD/CAE/EDA/PLM 等）作为「基础软件」被写入国家级关键核心技术攻关清单，国产替代从行业倡议升格为五年规划的明确任务；与集成电路、工业母机并列意味着 EDA、CAM 等与硬件强耦合的环节将获持续政策与资金支持，信创/自主可控成为长期采购与攻关基准。",
+        "implications_en": "Industrial software (CAD/CAE/EDA/PLM) is written into the national key-core-technology list as 'basic software', elevating localization from an industry call to an explicit five-year-plan task; its pairing with ICs and machine tools signals sustained policy and funding for hardware-coupled tools (EDA, CAM), making self-controllability a long-horizon procurement and R&D baseline.",
+        "related": [
+          "fyp-15th-fyp-proposal-full-rollout-of-the-ai-initiat-2025",
+          "two-sessions-2026-government-work-report-first-year-of-15th-f-2026",
+          "fund-national-ic-industry-investment-fund-phase-iii-e-2024",
+          "standard-secure-reliable-evaluation-domestic-cpus-at-leve-2025"
+        ],
+        "sources": [
+          {
+            "url": "https://www.mee.gov.cn/zcwj/zyygwj/202510/t20251030_1131008.shtml",
+            "label_zh": "中共中央关于制定十五五规划的建议（全文）",
+            "label_en": "CPC Central Committee Proposal on the 15th FYP (full text)",
+            "publisher": "新华社（生态环境部转发）"
+          },
+          {
+            "url": "https://www.yicai.com/news/102884423.html",
+            "label_zh": "十五五给AI产业发展划重点",
+            "label_en": "15th FYP priorities for the AI industry",
+            "publisher": "第一财经"
+          }
+        ],
+        "confidence": "high"
+      }
     },
     {
       "id": "miit-ai-manufacturing-2027-kpi",
@@ -2730,27 +3237,65 @@
       "summary_zh": "八部门「人工智能+制造」专项行动及配套行业转型指引",
       "summary_en": "Eight-ministry AI+Manufacturing special action with sector transformation guide",
       "source_url": "https://www.miit.gov.cn/jgsj/kjs/wjfb/art/2026/art_5ea5b1663f264fcea69df0ab00d1f6f3.html",
-      "policy_type": "program"
-    },
-    {
-      "id": "xinchuang-harmonyos-desktop-ii-2026",
-      "date": "2026-01",
-      "target_deadline": "2029-01",
-      "title_zh": "安全可靠测评：HarmonyOS 桌面OS Ⅱ级",
-      "title_en": "Secure & reliable eval: HarmonyOS desktop OS Level II",
-      "metric_zh": "桌面操作系统安全可靠等级",
-      "metric_en": "Desktop OS secure & reliable level",
-      "target_value": 2,
-      "target_unit_zh": "级(Ⅱ最高)",
-      "target_unit_en": "level (II highest)",
-      "actual_value": 2,
-      "actual_as_of": "2026",
-      "actual_note_zh": "2026年第1号公告；有效期三年；支撑鸿蒙电脑+国产CAD部署",
-      "actual_note_en": "2026 notice #1; valid 3 years; enables Harmony PC + domestic CAD",
-      "summary_zh": "信创操作系统与工业软件终端生态节点",
-      "summary_en": "Xinchuang OS milestone for industrial software endpoints",
-      "source_url": "https://www.itsec.gov.cn/aqkkcp/cpgg/202601/t20260116_249958.html",
-      "policy_type": "standard"
+      "policy_type": "program",
+      "detail": {
+        "direction_zh": "工信部等八部门以《「人工智能+制造」专项行动实施意见》（工信部联科〔2025〕279号，2025-12-25 印发、2026-01-07 公布）首次为人工智能赋能制造业设定 2027 年量化目标，确立「以数据赋模、以模型带数」的总路径，并把「模数共振」行动写入技术底座任务。",
+        "direction_en": "MIIT and seven other ministries issued the 'AI+Manufacturing' Special Action Implementation Opinion (MIIT Lian Ke [2025] No.279, signed 2025-12-25, released 2026-01-07), setting China's first 2027 quantitative KPIs for AI-enabled manufacturing, anchoring a 'data-empowers-models, models-pull-data' path and embedding the Model-Data Resonance action into the technology-foundation tasks.",
+        "initiatives": [
+          {
+            "zh": "推动 3 至 5 个通用大模型在制造业深度应用，形成专业化、综合性行业大模型",
+            "en": "Drive 3-5 general-purpose foundation models into deep manufacturing use; form specialized and comprehensive industry large models"
+          },
+          {
+            "zh": "打造 100 个工业领域高质量数据集",
+            "en": "Build 100 high-quality industrial datasets"
+          },
+          {
+            "zh": "推广 500 个典型应用场景",
+            "en": "Promote 500 typical application scenarios"
+          },
+          {
+            "zh": "选树 1000 家标杆企业",
+            "en": "Select 1,000 benchmark enterprises"
+          },
+          {
+            "zh": "培育 2 至 3 家具有全球影响力的生态主导型企业",
+            "en": "Cultivate 2-3 globally influential ecosystem-leading enterprises"
+          }
+        ],
+        "focus_zh": "数据-模型双轮：行业大模型、工业高质量数据集、典型场景为可量化抓手，配套「模数共振」行动与算力供给",
+        "focus_en": "A data-and-model dual engine: industry large models, high-quality industrial datasets and typical scenarios as the quantifiable levers, backed by the Model-Data Resonance action and compute supply",
+        "implications_zh": "对工业软件意味着 CAD/CAE/EDA/CAM/PLM/MES 厂商的竞争维度从单点功能转向「行业大模型 + 高质量工业数据集」。研发设计、中试验证、生产制造、营销服务全流程被点名智能化，工业模型与工业数据集从配套资源升级为政策计量单位（100 个数据集 / 500 个场景），数据资产与垂直行业模型能力成为入选 1000 家标杆的硬门槛。",
+        "implications_en": "For industrial software it shifts CAD/CAE/EDA/CAM/PLM/MES competition from point features to 'industry large model + high-quality industrial dataset.' R&D design, pilot validation, manufacturing and marketing are all named for intelligent upgrade; industrial models and datasets become policy counting units (100 datasets / 500 scenarios), and data-asset + vertical-model capability become the bar for the 1,000 benchmark slots.",
+        "related": [
+          "program-2026-model-data-resonance-action-ai-manufacturin-2026",
+          "program-sector-guide-software-it-services-transformation-2026",
+          "fyp-15th-fyp-proposal-full-rollout-of-the-ai-initiat-2025",
+          "program-data-element-three-year-action-plan-2024-2026-2024"
+        ],
+        "sources": [
+          {
+            "url": "https://www.news.cn/politics/20260107/1286279b91ac4758841b6d56e80a49af/c.html",
+            "label_zh": "新华网：八部门提出到2027年人工智能关键核心技术实现安全可靠供给",
+            "label_en": "Xinhua: Eight ministries set 2027 AI core-tech goals",
+            "publisher": "新华社"
+          },
+          {
+            "url": "https://www.miit.gov.cn/jgsj/kjs/wjfb/art/2026/art_5ea5b1663f264fcea69df0ab00d1f6f3.html",
+            "label_zh": "工信部：印发《「人工智能+制造」专项行动实施意见》（工信部联科〔2025〕279号）",
+            "label_en": "MIIT: notice issuing the AI+Manufacturing Special Action Opinion (No.279)",
+            "publisher": "工业和信息化部"
+          },
+          {
+            "url": "https://www.nda.gov.cn/sjj/zwgk/zcfb/0112/20260107214358696030895_pc.html",
+            "label_zh": "国家数据局转载：《「人工智能+制造」专项行动实施意见》",
+            "label_en": "National Data Bureau republication of the Opinion",
+            "publisher": "国家数据局"
+          }
+        ],
+        "confidence": "high"
+      },
+      "doc_number": "工信部联科〔2025〕279号"
     },
     {
       "id": "program-sector-guide-software-it-services-transformation-2026",
@@ -2774,31 +3319,106 @@
       "doc_number": "工信部联科〔2025〕279号",
       "policy_type": "program",
       "source_url": "https://www.gov.cn/zhengce/202601/content_7054423.htm",
-      "source_research": "composer-2.5"
+      "source_research": "composer-2.5",
+      "detail": {
+        "direction_zh": "作为《「人工智能+制造」专项行动》附件《人工智能赋能制造业重点行业转型指引》的五大行业之一，「软件和信息技术服务」被给出专属转型路径：打造软件全生命周期智能工具链，并加快基础软件、工业软件及行业应用软件的智能化升级与价值重构。",
+        "direction_en": "As one of five sectors in the AI-Enabled Manufacturing Key-Industry Transformation Guide (annex to the AI+Manufacturing Special Action), 'software and IT services' gets a dedicated path: build a full-software-lifecycle intelligent toolchain and accelerate the AI upgrade and value reconstruction of basic, industrial and application software.",
+        "initiatives": [
+          {
+            "zh": "打造软件全生命周期智能工具链：覆盖需求设计、开发、测试、运维，构建 AI 驱动的开发运维产品",
+            "en": "Full-lifecycle intelligent toolchain across requirements/design, dev, test, ops; AI-driven DevOps products"
+          },
+          {
+            "zh": "培育垂直领域低代码平台、智能体开发平台，以模块化 AI 组件封装行业知识",
+            "en": "Cultivate vertical low-code and agent-development platforms using modular AI components to encapsulate domain knowledge"
+          },
+          {
+            "zh": "推动人工智能与基础软件、工业软件及制造业行业应用软件融合，实现智能化升级与价值重构",
+            "en": "Fuse AI with basic software, industrial software and manufacturing application software for intelligent upgrade and value reconstruction"
+          }
+        ],
+        "focus_zh": "软件开发从「人工主导」向「智能协同」转变；工业软件被明确列为 AI 智能化升级对象",
+        "focus_en": "Shift software development from 'human-led' to 'intelligent-collaboration'; industrial software explicitly named as an AI-upgrade target",
+        "implications_zh": "这是政策文本中罕见地直接点名「工业软件」的条目：工业软件不再只是被赋能的制造工具，其自身也被列为 AI 智能化升级与价值重构的对象，意味着 CAD/CAE/EDA/CAM/PLM 厂商被同时推向两端——既要把 AI 嵌入产品（智能建模、生成式设计、自动化仿真/验证），又可借低代码/智能体平台与全生命周期工具链承接行业知识封装。",
+        "implications_en": "A rare policy line that names 'industrial software' directly: industrial software is itself made a target of AI upgrade and value reconstruction, not merely an enabling tool. CAD/CAE/EDA/CAM/PLM vendors are pushed two ways at once — embed AI in the product (intelligent modeling, generative design, automated simulation/validation) and leverage low-code/agent platforms plus lifecycle toolchains to encapsulate domain knowledge.",
+        "related": [
+          "miit-ai-manufacturing-2027-kpi",
+          "program-2026-model-data-resonance-action-ai-manufacturin-2026",
+          "fyp-15th-fyp-proposal-full-rollout-of-the-ai-initiat-2025"
+        ],
+        "sources": [
+          {
+            "url": "https://www.gov.cn/zhengce/202601/content_7054423.htm",
+            "label_zh": "中国政府网：八部门印发「人工智能+制造」专项行动实施意见（含五大行业转型路径）",
+            "label_en": "gov.cn: AI+Manufacturing Special Action Opinion (five-sector paths)",
+            "publisher": "中国政府网"
+          },
+          {
+            "url": "http://news.ctei.cn/policy/hyzc/202601/P020260108572771326203.pdf",
+            "label_zh": "《人工智能赋能制造业重点行业转型指引》官方附件全文（PDF）",
+            "label_en": "Full-text annex: AI-Enabled Manufacturing Key-Industry Transformation Guide (PDF)",
+            "publisher": "中国纺织经济信息网（政策原文转载）"
+          }
+        ],
+        "confidence": "high"
+      }
     },
     {
-      "id": "program-2026-model-data-resonance-action-ai-manufacturin-2026",
-      "date": "2026-02",
-      "title_zh": "2026年「模数共振」行动（落实人工智能+制造）",
-      "title_en": "2026 Model-Data Resonance action (AI+Manufacturing follow-through)",
-      "summary_zh": "工信部、国家数据局联合行动，推动工业模型与数据资源协同以支撑2027数据集与场景目标",
-      "summary_en": "MIIT and National Data Bureau action coordinating industrial models and data assets toward 2027 dataset/scenario targets",
-      "metric_zh": "地方实施方案报送/年度成果总结节点",
-      "metric_en": "Provincial plan submission and annual outcome reporting milestones",
-      "target_value": null,
-      "target_unit_zh": "2026-05-30报送;2026-11-30总结",
-      "target_unit_en": "submit by 2026-05-30; report by 2026-11-30",
-      "target_deadline": "2026-12",
-      "actual_value": null,
-      "actual_as_of": "",
-      "actual_note_zh": "为过程性时间节点，非2027终局量化指标；成果含高价值场景、行业模型、高质量数据集",
-      "actual_note_en": "Process milestones, not 2027 end-state KPIs; outcomes include scenarios, domain models, datasets",
-      "issuer_zh": "工业和信息化部、国家数据局",
-      "issuer_en": "MIIT; National Data Bureau",
-      "doc_number": "",
-      "policy_type": "program",
-      "source_url": "https://nmca.miit.gov.cn/xwdt/xydt/art/2026/art_1ea8fd4d6e6049f0be2985051ef73898.html",
-      "source_research": "composer-2.5"
+      "id": "xinchuang-harmonyos-desktop-ii-2026",
+      "date": "2026-01",
+      "target_deadline": "2029-01",
+      "title_zh": "安全可靠测评：HarmonyOS 桌面OS Ⅱ级",
+      "title_en": "Secure & reliable eval: HarmonyOS desktop OS Level II",
+      "metric_zh": "桌面操作系统安全可靠等级",
+      "metric_en": "Desktop OS secure & reliable level",
+      "target_value": 2,
+      "target_unit_zh": "级(Ⅱ最高)",
+      "target_unit_en": "level (II highest)",
+      "actual_value": 2,
+      "actual_as_of": "2026",
+      "actual_note_zh": "2026年第1号公告；有效期三年；支撑鸿蒙电脑+国产CAD部署",
+      "actual_note_en": "2026 notice #1; valid 3 years; enables Harmony PC + domestic CAD",
+      "summary_zh": "信创操作系统与工业软件终端生态节点",
+      "summary_en": "Xinchuang OS milestone for industrial software endpoints",
+      "source_url": "https://www.itsec.gov.cn/aqkkcp/cpgg/202601/t20260116_249958.html",
+      "policy_type": "standard",
+      "detail": {
+        "direction_zh": "《安全可靠测评结果公告（2026年第1号）》中，华为 HarmonyOS（鸿蒙桌面 V1.0）通过 Ⅱ 级安全可靠测评——这是桌面操作系统首次拿到代表「全流程自主」的最高级别；同批统信桌面 V25 为 Ⅰ 级。",
+        "direction_en": "In CITSEC's 2026 Announcement No.1, Huawei HarmonyOS desktop (V1.0) passed Grade Ⅱ secure-reliable evaluation—the first desktop OS to reach the top 'fully autonomous' tier; UnionTech UOS V25 in the same batch is Grade Ⅰ.",
+        "initiatives": [
+          {
+            "zh": "Ⅱ 级桌面 OS：HarmonyOS V1.0（华为终端有限公司）",
+            "en": "Grade Ⅱ desktop OS: HarmonyOS V1.0 (Huawei Terminal)"
+          },
+          {
+            "zh": "Ⅰ 级桌面 OS：统信桌面操作系统 V25（统信软件）",
+            "en": "Grade Ⅰ desktop OS: UnionTech Desktop OS V25 (UnionTech)"
+          },
+          {
+            "zh": "依据《安全可靠测评工作指南 V3.0》，有效期 3 年",
+            "en": "Per Secure-Reliable Evaluation Work Guide V3.0; 3-year validity"
+          }
+        ],
+        "focus_zh": "桌面 OS 自主等级上探至 Ⅱ 级，与 2025 年 Ⅱ 级 CPU 形成「自主 CPU + 自主 OS」配对",
+        "focus_en": "Desktop-OS autonomy climbs to Grade Ⅱ, pairing with the 2025 Grade Ⅱ CPUs to form an 'autonomous CPU + autonomous OS' couple",
+        "implications_zh": "CAD/CAE 桌面应用最终要落在操作系统上。HarmonyOS 达 Ⅱ 级，意味着工业软件 GUI、图形渲染、文件系统调用可建立在一个全自主 OS 之上，闭环了「Ⅱ级CPU→Ⅱ级OS」的桌面底座；但鸿蒙的应用框架（ArkUI/原生 API）与传统 Linux/X11 工业软件生态差异大，CAD 厂商需评估是兼容层运行还是原生重写，移植成本是关键变量。",
+        "implications_en": "CAD/CAE desktop apps ultimately sit on the OS. HarmonyOS reaching Grade Ⅱ means industrial-software GUIs, graphics rendering and filesystem calls can rest on a fully autonomous OS, closing the 'Ⅱ-grade CPU -> Ⅱ-grade OS' desktop base. But HarmonyOS's app framework (ArkUI/native APIs) diverges sharply from the Linux/X11 ecosystem most industrial software targets—CAD vendors must weigh compatibility-layer execution vs native rewrite, with porting cost the decisive variable.",
+        "related": [
+          "standard-secure-reliable-evaluation-domestic-cpus-at-leve-2025",
+          "xinchuang-ai-chip-eval-2026",
+          "t-cie-311-cad-security-2025",
+          "gov-procurement-domestic-20pct"
+        ],
+        "sources": [
+          {
+            "url": "https://www.itsec.gov.cn/aqkkcp/cpgg/202601/t20260116_249958.html",
+            "label_zh": "安全可靠测评结果公告（2026年第1号）",
+            "label_en": "Secure-Reliable Evaluation Results Announcement No.1 (2026)",
+            "publisher": "中国信息安全测评中心"
+          }
+        ],
+        "confidence": "high"
+      }
     },
     {
       "id": "two-sessions-2026-government-work-report-first-year-of-15th-f-2026",
@@ -2822,7 +3442,141 @@
       "doc_number": "",
       "policy_type": "two-sessions",
       "source_url": "https://www.gov.cn/2026lh/",
-      "source_research": "composer-2.5"
+      "source_research": "composer-2.5",
+      "detail": {
+        "direction_zh": "作为十五五开局年报告，2026 政府工作报告把「深化拓展人工智能+」「打造5G+工业互联网升级版」「打造智能经济新形态」列为重点，并部署制造业重点产业链高质量发展、工业基础再造、大规模设备更新与中小企业数智化转型，强调 AI 在重点行业的商业化规模化落地。",
+        "direction_en": "As the opening-year report of the 15th FYP, the 2026 government work report prioritizes 'deepening and expanding AI+', 'building an upgraded 5G+Industrial Internet', and 'a new form of intelligent economy', while deploying high-quality development of key manufacturing chains, industrial-base re-engineering, large-scale equipment renewal and SME digital-intelligent transformation, stressing commercialized at-scale AI in key sectors.",
+        "initiatives": [
+          {
+            "zh": "深化拓展「人工智能+」，建设国家人工智能应用中试基地",
+            "en": "Deepen and expand 'AI+'; build national AI-application pilot-test bases"
+          },
+          {
+            "zh": "打造「5G+工业互联网」升级版",
+            "en": "Build an upgraded version of '5G+Industrial Internet'"
+          },
+          {
+            "zh": "推动重点行业领域人工智能商业化规模化应用，培育智能原生新业态",
+            "en": "Drive commercialized, at-scale AI in key sectors and cultivate intelligent-native new business forms"
+          },
+          {
+            "zh": "实施制造业重点产业链高质量发展行动，推进工业基础再造和重大技术装备攻关",
+            "en": "Implement the high-quality-development action for key manufacturing chains; advance industrial-base re-engineering and major-equipment breakthroughs"
+          },
+          {
+            "zh": "普惠「上云用数赋智」，支持中小企业数智化转型",
+            "en": "Inclusive 'cloud-data-intelligence' services to support SME digital-intelligent transformation"
+          }
+        ],
+        "focus_zh": "AI+制造、工业互联网、集成电路、设备更新、中小企业数智化",
+        "focus_en": "AI+manufacturing, industrial internet, ICs, equipment renewal, SME digitalization",
+        "implications_zh": "开局年把规划方向变为可执行预算与抓手：5G+工业互联网升级版与上云用数赋智直接拉动 MES/工业互联网平台、SaaS 化工业软件在中小企业的渗透；大规模设备更新与设备数智化为 DCS/CAM/数采软件创造替换需求；AI 应用中试基地为工业大模型/生成式 CAE 提供落地通道，国产化是隐含采购前提。",
+        "implications_en": "The opening year turns plan direction into executable budgets and levers: the upgraded 5G+Industrial Internet and inclusive cloud-data-intelligence directly drive MES/industrial-internet-platform and SaaS-ified industrial-software penetration into SMEs; large-scale equipment renewal creates replacement demand for DCS/CAM/data-acquisition software; AI pilot-test bases give industrial LLMs/generative CAE a deployment path, with localization an implicit procurement premise.",
+        "related": [
+          "fyp-15th-fyp-proposal-full-rollout-of-the-ai-initiat-2025",
+          "fyp-cpc-central-committee-proposal-on-the-15th-five--2025",
+          "miit-ai-manufacturing-2027-kpi",
+          "miit-dcs-substitution",
+          "program-sector-guide-software-it-services-transformation-2026",
+          "two-sessions-2025-government-work-report-2025-gdp-growth-targ-2025"
+        ],
+        "sources": [
+          {
+            "url": "https://www.beijing.gov.cn/zhengce/zhengcefagui/202602/t20260228_4545451.html",
+            "label_zh": "2026年政府工作报告（政策文件）",
+            "label_en": "2026 Government Work Report (policy document)",
+            "publisher": "北京市人民政府"
+          },
+          {
+            "url": "https://lmtw.com/mzw/content/detail/id/251833/keyword_id/-1",
+            "label_zh": "2026政府工作报告：打造5G+工业互联网升级版",
+            "label_en": "2026 report: upgraded 5G+Industrial Internet",
+            "publisher": "流媒体网"
+          }
+        ],
+        "confidence": "medium"
+      }
+    },
+    {
+      "id": "program-2026-model-data-resonance-action-ai-manufacturin-2026",
+      "date": "2026-04",
+      "title_zh": "2026年「模数共振」行动（落实人工智能+制造）",
+      "title_en": "2026 Model-Data Resonance action (AI+Manufacturing follow-through)",
+      "summary_zh": "工信部、国家数据局联合行动，推动工业模型与数据资源协同以支撑2027数据集与场景目标",
+      "summary_en": "MIIT and National Data Bureau action coordinating industrial models and data assets toward 2027 dataset/scenario targets",
+      "metric_zh": "地方实施方案报送/年度成果总结节点",
+      "metric_en": "Provincial plan submission and annual outcome reporting milestones",
+      "target_value": null,
+      "target_unit_zh": "2026-05-30报送;2026-11-30总结",
+      "target_unit_en": "submit by 2026-05-30; report by 2026-11-30",
+      "target_deadline": "2026-12",
+      "actual_value": null,
+      "actual_as_of": "",
+      "actual_note_zh": "为过程性时间节点，非2027终局量化指标；成果含高价值场景、行业模型、高质量数据集",
+      "actual_note_en": "Process milestones, not 2027 end-state KPIs; outcomes include scenarios, domain models, datasets",
+      "issuer_zh": "工业和信息化部、国家数据局",
+      "issuer_en": "MIIT; National Data Bureau",
+      "doc_number": "工信厅联科函〔2026〕193号",
+      "policy_type": "program",
+      "source_url": "https://nmca.miit.gov.cn/xwdt/xydt/art/2026/art_1ea8fd4d6e6049f0be2985051ef73898.html",
+      "source_research": "composer-2.5",
+      "detail": {
+        "direction_zh": "工业和信息化部办公厅、国家数据局综合司联合印发《关于联合实施2026年「模数共振」行动的通知》（工信厅联科函〔2026〕193号，2026-04-24），落地《「人工智能+制造」专项行动》技术底座任务，推动「数据-模型-场景应用」良性互促、同频共振，年底前基本形成该闭环。",
+        "direction_en": "MIIT General Office and the National Data Bureau Comprehensive Department jointly issued the 2026 Model-Data Resonance Action notice (MIIT Ting Lian Ke Han [2026] No.193, 2026-04-24), operationalizing the AI+Manufacturing technology foundation by driving a virtuous 'data-model-scenario' resonance loop, to be basically formed by end-2026.",
+        "initiatives": [
+          {
+            "zh": "构建行业通识数据集、打造行业模型（每行业不少于5个通识数据集、不少于1个行业模型）",
+            "en": "Build industry-general datasets and industry models (>=5 general datasets and >=1 industry model per sector)"
+          },
+          {
+            "zh": "梳理高价值场景、构建行业专识数据集、打造特色智能体（每行业不少于30个高价值场景）",
+            "en": "Curate high-value scenarios, build sector-specialized datasets and bespoke agents (>=30 high-value scenarios per sector)"
+          },
+          {
+            "zh": "建立评测数据集，形成「评测诊断-数据集优化-模型能力提升」循环",
+            "en": "Build evaluation datasets, forming an 'eval-diagnose / dataset-optimize / model-improve' loop"
+          },
+          {
+            "zh": "创建「模数共振」空间（每省级地区不少于3个），探索跨主体数据可信贯通与模型协同训练",
+            "en": "Create Model-Data Resonance spaces (>=3 per provincial region) for trusted cross-party data flow and joint model training"
+          },
+          {
+            "zh": "打造「模数共振」创新联合体、构建行业级全栈方案（每行业不少于1个）",
+            "en": "Form Resonance innovation consortia and full-stack sector solutions (>=1 per sector)"
+          }
+        ],
+        "focus_zh": "覆盖钢铁、汽车、医疗装备、航空航天、电子元器件、软件等20个重点行业；省级方案 2026-05-30 前提交，中期总结 2026-08-30，最终总结 2026-11-30",
+        "focus_en": "Covers 20 priority sectors including steel, autos, medical equipment, aerospace, electronic components and software; provincial plans due 2026-05-30, mid-term review 2026-08-30, final summary 2026-11-30",
+        "implications_zh": "这是工业软件最直接的政策抓手：把工业数据集（通识/专识/评测三类）、工业行业模型、特色智能体定义为可申报、可计量的交付物，并以省为单位下达数量配额。「模数共振」空间本质是受信工业数据空间 + 协同训练基础设施，触及 PLM/MES 的数据治理与工业互联网平台；CAE/EDA 等仿真工具的高价值场景与专识数据集成为入选创新联合体的筹码。",
+        "implications_en": "This is the most direct policy hook for industrial software: it defines industrial datasets (general/specialized/evaluation), industry models and bespoke agents as declarable, countable deliverables with per-province quotas. The Resonance 'space' is effectively a trusted industrial data space plus joint-training infra, touching PLM/MES data governance and IIoT platforms; CAE/EDA simulation tools' high-value scenarios and specialized datasets become entry tickets to the innovation consortia.",
+        "related": [
+          "miit-ai-manufacturing-2027-kpi",
+          "program-data-element-three-year-action-plan-2024-2026-2024",
+          "program-sector-guide-software-it-services-transformation-2026",
+          "two-sessions-2026-government-work-report-first-year-of-15th-f-2026"
+        ],
+        "sources": [
+          {
+            "url": "https://nmca.miit.gov.cn/xwdt/xydt/art/2026/art_1ea8fd4d6e6049f0be2985051ef73898.html",
+            "label_zh": "工信部：联合实施2026年「模数共振」行动通知",
+            "label_en": "MIIT: joint 2026 Model-Data Resonance Action notice",
+            "publisher": "工业和信息化部"
+          },
+          {
+            "url": "https://jxt.hubei.gov.cn/fbjd/zc/qtzdgkwj/gwfb/202605/t20260515_5937674.shtml",
+            "label_zh": "湖北省经信厅、省数据局：联合实施2026年「模数共振」行动通知",
+            "label_en": "Hubei DEIT/Data Bureau provincial Resonance notice",
+            "publisher": "湖北省经济和信息化厅"
+          },
+          {
+            "url": "https://finance.sina.com.cn/roll/2026-05-06/doc-inhwycsf9018140.shtml",
+            "label_zh": "工信部、国家数据局启动2026年「模数共振」行动",
+            "label_en": "MIIT and National Data Bureau launch 2026 Resonance action",
+            "publisher": "新浪财经"
+          }
+        ],
+        "confidence": "high"
+      }
     },
     {
       "id": "xinchuang-ai-chip-eval-2026",
@@ -2842,7 +3596,44 @@
       "summary_zh": "工业AI算力信创白名单节点",
       "summary_en": "Xinchuang whitelist for industrial AI compute",
       "source_url": "https://www.itsec.gov.cn/aqkkcp/cpgg/202605/t20260526_259396.html",
-      "policy_type": "standard"
+      "policy_type": "standard",
+      "detail": {
+        "direction_zh": "《安全可靠测评结果公告（2026年第2号）》首次将 AI 训练/推理芯片纳入安全可靠测评，公布首批 9 款国产 AI 芯片目录，均为 Ⅰ 级——把信创底座从 CPU/OS 扩展到「智能算力」维度。",
+        "direction_en": "CITSEC's 2026 Announcement No.2 brings AI training/inference chips into secure-reliable evaluation for the first time, publishing an initial catalog of 9 domestic AI chips, all Grade Ⅰ—extending the secure-reliable base from CPU/OS into the 'intelligent compute' dimension.",
+        "initiatives": [
+          {
+            "zh": "华为昇腾 310、昇腾 910；阿里平头哥 真武 M530、真武 M890",
+            "en": "Huawei Ascend 310, Ascend 910; Alibaba T-Head Zhenwu M530, Zhenwu M890"
+          },
+          {
+            "zh": "壁仞 壁砺 166、海光 DCU-3G、燧原 KCC-V100X、沐曦 MXC600、摩尔线程 PH100",
+            "en": "Biren BR166, Hygon DCU-3G, Enflame KCC-V100X, MetaX MXC600, Moore Threads PH100"
+          },
+          {
+            "zh": "全部 Ⅰ 级（目前 AI 芯片暂无 Ⅱ 级），有效期 3 年",
+            "en": "All Grade Ⅰ (no Grade Ⅱ AI chip yet); 3-year validity"
+          }
+        ],
+        "focus_zh": "覆盖训练与推理两类负载、9 家主流厂商，建立国产 AI 加速器的「安全可靠」准入目录",
+        "focus_en": "Covers both training and inference workloads across 9 leading vendors, establishing a secure-reliable admission catalog for domestic AI accelerators",
+        "implications_zh": "AI+CAE（代理模型、拓扑优化、生成式设计）与 AI+制造日益依赖大规模加速算力。国产 AI 芯片首批入目录，意味着工业软件的 AI 推理/训练环节也能落在自主硬件上，补齐了 CPU/OS 之外的第三块底座；但全部仅 Ⅰ 级（含海外代工依赖），且 CUDA→国产软件栈（CANN/各家 SDK）的迁移与算子覆盖仍是工业级 AI 工作负载落地的主要摩擦点。",
+        "implications_en": "AI+CAE (surrogate models, topology optimization, generative design) and AI-driven manufacturing increasingly depend on large-scale accelerators. Domestic AI chips entering the catalog mean industrial software's AI inference/training can also run on autonomous hardware, completing the third base layer beyond CPU/OS. But all are only Grade Ⅰ (overseas-foundry dependence remains), and the CUDA->domestic-stack (CANN/per-vendor SDK) migration plus operator coverage stay the main friction for production-grade industrial AI workloads.",
+        "related": [
+          "standard-secure-reliable-evaluation-domestic-cpus-at-leve-2025",
+          "xinchuang-harmonyos-desktop-ii-2026",
+          "miit-ai-manufacturing-2027-kpi",
+          "fund-national-ic-industry-investment-fund-phase-iii-e-2024"
+        ],
+        "sources": [
+          {
+            "url": "https://www.itsec.gov.cn/aqkkcp/cpgg/202605/t20260526_259396.html",
+            "label_zh": "安全可靠测评结果公告（2026年第2号）",
+            "label_en": "Secure-Reliable Evaluation Results Announcement No.2 (2026)",
+            "publisher": "中国信息安全测评中心"
+          }
+        ],
+        "confidence": "high"
+      }
     }
   ],
   "footnotes": [
