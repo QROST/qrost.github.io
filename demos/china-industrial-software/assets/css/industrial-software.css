@@ -1491,6 +1491,17 @@ thead .matrix-sticky-col {
     line-height: 1.15;
     word-break: break-word;
 }
+.matrix-table th.th-sort.matrix-cap-sort::after {
+    display: block;
+    margin-left: 0;
+    margin-top: 0.15em;
+    font-size: 0.65rem;
+    line-height: 1;
+}
+.matrix-table th.th-sort.matrix-cap-sort.sort-asc,
+.matrix-table th.th-sort.matrix-cap-sort.sort-desc {
+    background-color: #ecfdf5;
+}
 
 /* Gap-analysis tab */
 .gap-section { margin-bottom: 1.25rem; }

@@ -102,12 +102,29 @@
     filterOrigin: '',
     filterCategory: '',
     search: '',
-    sortKey: '',   // '' | 'name' | 'coverage'
+    sortKey: '',   // '' | 'name' | 'coverage' | capability key
     sortDir: 1,    // 1 asc, -1 desc
   };
 
   const I18N = () => window.INDUSTRIAL_I18N || {};
   const CAT = () => window.INDUSTRIAL_CATALOG || {};
+  const t = (key) => {
+    const i = I18N();
+    return (i.t && i.t(key)) || key;
+  };
+
+  const CAP_KEY_SET = new Set(CAPABILITIES.map((c) => c.key));
+
+  function isCapabilitySortKey(key) {
+    return CAP_KEY_SET.has(key);
+  }
+
+  /** full > partial > none — used for per-capability column sort. */
+  function capabilityRank(score) {
+    if (score === 'full') return 2;
+    if (score === 'partial') return 1;
+    return 0;
+  }
 
   function evaluateCapability(p, capKey) {
     // Explicit curated override takes precedence over heuristic inference.
@@ -356,17 +373,27 @@
     let list = applyFilters();
     const isEn = I18N().isEn && I18N().isEn();
 
-    // Optional sort by product name or capability coverage (full count, tiebreak partial).
+    const productNameCmp = (a, b) => {
+      const va = (isEn ? a.name_en : a.name_zh) || '';
+      const vb = (isEn ? b.name_en : b.name_zh) || '';
+      return va.localeCompare(vb);
+    };
+
+    // Optional sort: name, coverage tally, or any single capability column.
     if (state.sortKey === 'name') {
-      list = list.slice().sort((a, b) => {
-        const va = (isEn ? a.name_en : a.name_zh) || '';
-        const vb = (isEn ? b.name_en : b.name_zh) || '';
-        return va.localeCompare(vb) * state.sortDir;
-      });
+      list = list.slice().sort((a, b) => productNameCmp(a, b) * state.sortDir);
     } else if (state.sortKey === 'coverage') {
       list = list.slice().sort((a, b) => {
         const ca = coverage(a); const cb = coverage(b);
         return ((ca.full - cb.full) || (ca.partial - cb.partial)) * state.sortDir;
+      });
+    } else if (isCapabilitySortKey(state.sortKey)) {
+      const capKey = state.sortKey;
+      list = list.slice().sort((a, b) => {
+        const diff = capabilityRank(evaluateCapability(a, capKey))
+          - capabilityRank(evaluateCapability(b, capKey));
+        if (diff !== 0) return diff * state.sortDir;
+        return productNameCmp(a, b);
       });
     }
 
@@ -387,20 +414,20 @@
     }).join('');
 
     // Row 2 — individual capability headers (in domain order).
+    const sortCls = (key) => `th-sort matrix-sort${state.sortKey === key ? (state.sortDir < 0 ? ' sort-desc' : ' sort-asc') : ''}`;
+    const capSortHint = t('matrixSortCapTitle');
     const capHeaders = CAP_DOMAINS.map((dom) => dom.keys.map((key) => {
       const cap = keyToCap[key];
       if (!cap) return '';
       const label = isEn ? cap.en : cap.zh;
       const alt = isEn ? cap.zh : cap.en;
-      return `<th class="px-1.5 py-2 text-center min-w-[64px] max-w-[88px] border-b border-slate-200 select-none align-bottom" title="${label} · ${alt}"><span class="matrix-cap-label">${label}</span></th>`;
+      return `<th data-matrix-sort="${key}" class="${sortCls(key)} matrix-cap-sort px-1.5 py-2 text-center min-w-[64px] max-w-[88px] border-b border-slate-200 select-none align-bottom" title="${label} · ${alt} — ${capSortHint}"><span class="matrix-cap-label">${label}</span></th>`;
     }).join('')).join('');
-
-    const sortCls = (key) => `th-sort matrix-sort${state.sortKey === key ? (state.sortDir < 0 ? ' sort-desc' : ' sort-asc') : ''}`;
     thead.innerHTML = `
       <tr>
         <th rowspan="2" data-matrix-sort="name" class="matrix-sticky-col ${sortCls('name')} px-3 py-2 text-left w-[150px] min-w-[150px] border-b border-r border-slate-200 align-bottom">${isEn ? 'Product' : '产品'}</th>
         <th rowspan="2" class="px-2 py-2 text-center w-[72px] min-w-[72px] border-b border-r border-slate-200 align-bottom">${isEn ? 'Category' : '品类'}</th>
-        <th rowspan="2" data-matrix-sort="coverage" class="${sortCls('coverage')} px-2 py-2 text-center w-[64px] min-w-[64px] border-b border-r border-slate-200 align-bottom" title="${isEn ? 'Capabilities supported / partial — click to sort' : '支持 / 半支持能力数 — 点击排序'}">${isEn ? 'Cov.' : '覆盖'}</th>
+        <th rowspan="2" data-matrix-sort="coverage" class="${sortCls('coverage')} px-2 py-2 text-center w-[64px] min-w-[64px] border-b border-r border-slate-200 align-bottom" title="${t('matrixSortCoverageTitle')}">${isEn ? 'Cov.' : '覆盖'}</th>
         ${domainCells}
       </tr>
       <tr>${capHeaders}</tr>
@@ -487,7 +514,11 @@
       if (!th) return;
       const key = th.dataset.matrixSort;
       if (state.sortKey === key) state.sortDir *= -1;
-      else { state.sortKey = key; state.sortDir = 1; }
+      else {
+        state.sortKey = key;
+        // Capability columns: first click surfaces full/partial products (desc).
+        state.sortDir = isCapabilitySortKey(key) ? -1 : 1;
+      }
       renderTable();
     });
     document.getElementById('matrix-clear-filters')?.addEventListener('click', () => {
