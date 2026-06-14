@@ -714,11 +714,24 @@ body {
 
 /* Policy Gantt — horizontal time axis under milestone vertical rail */
 .policy-gantt-scroll {
-    overflow-x: auto;
+    overflow: auto;
+    max-height: max(40rem, 70vh);
     -webkit-overflow-scrolling: touch;
     border: 1px solid var(--color-border-default);
     border-radius: 0.75rem;
     background: var(--color-bg-elevated);
+}
+
+.policy-gantt-scroll::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+.policy-gantt-scroll::-webkit-scrollbar-track {
+    background: var(--color-bg-muted);
+}
+.policy-gantt-scroll::-webkit-scrollbar-thumb {
+    background: var(--color-border-emphasis);
+    border-radius: 3px;
 }
 
 .policy-gantt {
@@ -736,6 +749,13 @@ body {
     margin-bottom: 0.5rem;
     padding-bottom: 0.35rem;
     border-bottom: 1px solid var(--color-border-subtle);
+    /* Keep the time axis visible while the rows scroll vertically. */
+    position: sticky;
+    top: 0;
+    z-index: 6;
+    padding-top: 0.75rem;
+    margin-top: -0.75rem;
+    background: var(--color-bg-elevated);
 }
 
 .policy-gantt-axis-col {
