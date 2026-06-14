@@ -238,12 +238,54 @@
     refreshCompare();
   }
 
+  // Reflect the active sort column/direction onto its header (CSS arrow affordance).
+  function markSortHeaders(selector, attr, activeKey, dir) {
+    document.querySelectorAll(selector).forEach((th) => {
+      th.classList.remove('sort-asc', 'sort-desc');
+      if (th.dataset[attr] === activeKey) {
+        th.classList.add(dir < 0 ? 'sort-desc' : 'sort-asc');
+      }
+    });
+  }
+
+  // Whether any catalog filter (beyond default) is active — drives the clear button.
+  function catalogFiltersActive() {
+    return !!(state.filterOrigin || state.filterL2 || state.filterKernel ||
+      state.filterProductType || state.filterTag || state.search);
+  }
+
+  function updateCatalogClearBtn() {
+    const btn = document.getElementById('catalog-clear-filters');
+    if (btn) btn.hidden = !catalogFiltersActive();
+  }
+
+  function clearCatalogFilters() {
+    state.filterOrigin = '';
+    state.filterL2 = '';
+    state.filterVendor = '';
+    state.filterKernel = '';
+    state.filterProductType = '';
+    state.filterTag = '';
+    state.search = '';
+    syncFilterUI();
+    renderCatalogTable();
+    renderSunburstChart();
+  }
+
   function renderCatalogTable() {
     const tbody = document.getElementById('catalog-tbody');
     if (!tbody) return;
     const list = applyFilters();
+    markSortHeaders('.catalog-table th[data-sort]', 'sort', state.sortKey, state.sortDir);
+    updateCatalogClearBtn();
     tbody.innerHTML = '';
     const currentCompareSlots = CMP().getSlots();
+    if (!list.length) {
+      tbody.innerHTML = `<tr><td colspan="7" class="text-center py-8 text-slate-400">${t('noFilterMatch')}</td></tr>`;
+      const ce = document.getElementById('catalog-count');
+      if (ce) ce.textContent = 0;
+      return;
+    }
     list.forEach((p) => {
       const v = CAT().getVendor(p.vendor_id);
       const tr = document.createElement('tr');
@@ -253,7 +295,7 @@
       const compareBtnClass = inCompare ? 'compare-add-btn added' : 'compare-add-btn';
 
       tr.innerHTML = `
-        <td class="px-3 py-2.5 border-b border-slate-100">
+        <td class="px-3 py-2.5 border-b border-slate-100 col-sticky">
           <span class="font-medium text-slate-900">${I18N().productName(p)}</span>
         </td>
         <td class="px-3 py-2.5 border-b border-slate-100 text-slate-600">${I18N().vendorName(v) || p.vendor_id}</td>
@@ -1022,6 +1064,7 @@
     const tbody = document.getElementById('kernels-tbody');
     if (!tbody) return;
     const list = applyKernelFilters();
+    markSortHeaders('.kernels-table th[data-kernel-sort]', 'kernelSort', state.kernelSortKey, state.kernelSortDir);
     tbody.innerHTML = '';
     list.forEach((k) => {
       const domCount = CAT().countDomesticProductsForKernel(k.id);
@@ -1029,7 +1072,7 @@
       const tr = document.createElement('tr');
       tr.dataset.kernelId = k.id;
       tr.innerHTML = `
-        <td class="px-3 py-2.5 border-b border-slate-100 font-medium text-slate-900">${CAT().kernelDisplayName(k)}</td>
+        <td class="px-3 py-2.5 border-b border-slate-100 font-medium text-slate-900 col-sticky">${CAT().kernelDisplayName(k)}</td>
         <td class="px-3 py-2.5 border-b border-slate-100 text-slate-600">${k.owner}</td>
         <td class="px-3 py-2.5 border-b border-slate-100">
           <span class="badge-origin ${kernelOriginBadgeClass(k.origin)}">${kernelOriginLabel(k.origin)}</span>
@@ -1193,7 +1236,7 @@
     const usedTypes = new Set(prods.map((p) => p.product_type).filter(Boolean));
     const usedTags = new Set(prods.flatMap((p) => p.tags || []));
 
-    ptSel.innerHTML = `<option value="">${t('filterAll')}</option>`;
+    ptSel.innerHTML = `<option value="">${t('filterAllType')}</option>`;
     PRODUCT_TYPES.filter((pt) => usedTypes.has(pt)).forEach((pt) => {
       const opt = document.createElement('option');
       opt.value = pt;
@@ -1203,7 +1246,7 @@
     ptSel.disabled = ptSel.options.length <= 1;
     ptSel.classList.toggle('hidden', ptSel.options.length <= 1);
 
-    tagSel.innerHTML = `<option value="">${t('filterAll')}</option>`;
+    tagSel.innerHTML = `<option value="">${t('filterAllTag')}</option>`;
     TAGS.filter((tag) => usedTags.has(tag)).forEach((tag) => {
       const opt = document.createElement('option');
       opt.value = tag;
@@ -1219,25 +1262,56 @@
   function populateKernelFilter() {
     const sel = document.getElementById('filter-kernel');
     if (!sel) return;
-    sel.innerHTML = `<option value="">${t('filterAll')}</option>`;
+    const prods = CAT().allProducts || [];
+    const counts = {};
+    prods.forEach((p) => { if (p.kernel_id) counts[p.kernel_id] = (counts[p.kernel_id] || 0) + 1; });
+    sel.innerHTML = `<option value="">${t('filterAllKernel')}</option>`;
     (CAT().allKernels || []).slice().sort((a, b) =>
       CAT().kernelDisplayName(a).localeCompare(CAT().kernelDisplayName(b))).forEach((k) => {
       const opt = document.createElement('option');
       opt.value = k.id;
-      opt.textContent = CAT().kernelDisplayName(k);
+      const n = counts[k.id] || 0;
+      opt.textContent = n ? `${CAT().kernelDisplayName(k)} (${n})` : CAT().kernelDisplayName(k);
       sel.appendChild(opt);
+    });
+  }
+
+  // Annotate the static origin <option>s (catalog + matrix) with live counts.
+  // Sets textContent directly (and drops data-i18n) so counts survive language switches,
+  // since this is re-invoked from the i18n onChange handler.
+  function populateOriginFilterCounts() {
+    const prods = CAT().allProducts || [];
+    const counts = { '': prods.length };
+    prods.forEach((p) => { counts[p.origin] = (counts[p.origin] || 0) + 1; });
+    const keyFor = {
+      '': 'filterAllOrigin', domestic: 'originDomestic', international: 'originInternational',
+      joint_venture: 'originJV', open_source: 'originOSS',
+    };
+    ['filter-origin', 'matrix-filter-origin'].forEach((id) => {
+      const sel = document.getElementById(id);
+      if (!sel) return;
+      [...sel.options].forEach((opt) => {
+        const base = t(keyFor[opt.value] || 'filterAllOrigin');
+        opt.removeAttribute('data-i18n');
+        const n = counts[opt.value] || 0;
+        opt.textContent = `${base} (${n})`;
+        // Hide origin buckets with no products (e.g. 合资 when none catalogued).
+        if (opt.value) opt.hidden = n === 0;
+      });
     });
   }
 
   function populateCategoryFilter() {
     const sel = document.getElementById('filter-category');
     if (!sel) return;
-    const l2s = new Set((CAT().allProducts || []).map((p) => p.category_l2));
-    sel.innerHTML = `<option value="">${t('filterAll')}</option>`;
-    [...l2s].sort().forEach((l2) => {
+    const prods = CAT().allProducts || [];
+    const counts = {};
+    prods.forEach((p) => { counts[p.category_l2] = (counts[p.category_l2] || 0) + 1; });
+    sel.innerHTML = `<option value="">${t('filterAllCategory')} (${prods.length})</option>`;
+    Object.keys(counts).sort().forEach((l2) => {
       const opt = document.createElement('option');
       opt.value = l2;
-      opt.textContent = l2;
+      opt.textContent = `${l2} (${counts[l2]})`;
       sel.appendChild(opt);
     });
   }
@@ -1393,6 +1467,7 @@
       state.search = e.target.value;
       renderCatalogTable();
     });
+    document.getElementById('catalog-clear-filters')?.addEventListener('click', clearCatalogFilters);
     document.querySelectorAll('.catalog-table th[data-sort]').forEach((th) => {
       th.addEventListener('click', () => {
         const key = th.dataset.sort;
@@ -1459,6 +1534,7 @@
     window.__marketStats = await CAT().loadMarketStats();
     window.__policies = await CAT().loadPolicies();
     window.__breakthroughs = await CAT().loadBreakthroughs();
+    populateOriginFilterCounts();
     populateCategoryFilter();
     populateTaxonomyFilters();
     populateKernelFilter();
@@ -1469,8 +1545,11 @@
     }
     I18N().onChange(() => {
       populateCompareSelect();
+      populateOriginFilterCounts();
+      populateCategoryFilter();
       populateKernelFilter();
       populateTaxonomyFilters();
+      syncFilterUI();
       updateVisuals();
     });
     updateVisuals();
