@@ -290,6 +290,14 @@
     return (data.milestones || []).filter((m) => (m.product_ids || []).includes(productId));
   }
 
+  // Reverse view: milestones where THIS (international) product was the incumbent
+  // whose capability monopoly a domestic product broke.
+  function getReverseMilestonesForProduct(productId) {
+    const data = window.__breakthroughs;
+    if (!data || !productId) return [];
+    return (data.milestones || []).filter((m) => (m.incumbent_product_ids || []).includes(productId));
+  }
+
   function scrollToMilestone(milestoneId) {
     const node = document.querySelector(`[data-milestone-id="${milestoneId}"]`);
     if (node) {
@@ -333,43 +341,56 @@
       }).join('');
       const sources = (m.sources || []).map((s, i) =>
         `<a href="${s.url}" class="text-xs text-link underline" target="_blank" rel="noopener">${s.title || `source ${i + 1}`}</a>`).join(' · ');
+      const capChip = m.capability_key
+        ? `<span class="ms-cap-chip">${capLabel(m.capability_key)}</span>` : '';
+      const incumbents = (m.incumbent_product_ids || []).map((pid) => {
+        const p = CAT().getProductById(pid);
+        const name = p ? I18N().productName(p) : pid;
+        return p
+          ? `<button type="button" class="text-xs text-link underline milestone-product-link" data-product-id="${pid}">${name}</button>`
+          : `<span class="text-xs text-slate-500">${pid}</span>`;
+      }).join(' · ');
       return `
       <article class="timeline-node" role="listitem" data-milestone-id="${m.id}" id="milestone-${m.id}">
         <div class="timeline-marker" aria-hidden="true">
-          <time class="timeline-date" datetime="${m.date}">${m.date}</time>
           <span class="timeline-dot"></span>
         </div>
         <div class="timeline-node-body">
-          <header class="timeline-node-header">
-            <div class="flex flex-wrap items-center gap-2 text-xs text-slate-500">
+          <details class="timeline-node-details">
+            <summary class="timeline-row">
+              <time class="timeline-row-date" datetime="${m.date}">${m.date}</time>
               <span class="timeline-category-badge">${m.category_l2}</span>
-              <span>${vendorLabel}</span>
-            </div>
-            <h3 class="font-semibold text-slate-900 mt-1.5 leading-snug">${headline}</h3>
-            ${products ? `<p class="text-xs text-slate-500 mt-1">${t('milestoneProducts')}: ${products}</p>` : ''}
-          </header>
-          <details class="timeline-node-details mt-2">
-            <summary class="timeline-node-summary">${t('milestoneExpand')}</summary>
-            <div class="milestone-panels mt-2 grid gap-2">
-              <div class="milestone-panel milestone-panel-gap">
-                <div class="milestone-panel-label">${t('milestoneBefore')}</div>
-                <p class="text-sm text-slate-700">${beforeGap}</p>
+              ${capChip}
+              <span class="ms-row-headline">${headline}</span>
+              <span class="ms-row-caret" aria-hidden="true">▸</span>
+            </summary>
+            <div class="timeline-node-detailbody">
+              <div class="flex flex-wrap items-center gap-2 text-xs text-slate-500 mb-2">
+                <span>${vendorLabel}</span>
+                ${products ? `<span>· ${t('milestoneProducts')}: ${products}</span>` : ''}
+                ${incumbents ? `<span>· ${t('milestoneIncumbent')}: ${incumbents}</span>` : ''}
               </div>
-              <div class="milestone-panel milestone-panel-achieve">
-                <div class="milestone-panel-label">${t('milestoneAchieve')}</div>
-                <p class="text-sm text-slate-800">${achievement}</p>
-                ${metrics ? `<div class="flex flex-wrap gap-2 mt-2">${metrics}</div>` : ''}
+              <div class="milestone-panels grid gap-2">
+                <div class="milestone-panel milestone-panel-gap">
+                  <div class="milestone-panel-label">${t('milestoneBefore')}</div>
+                  <p class="text-sm text-slate-700">${beforeGap || '—'}</p>
+                </div>
+                <div class="milestone-panel milestone-panel-achieve">
+                  <div class="milestone-panel-label">${t('milestoneAchieve')}</div>
+                  <p class="text-sm text-slate-800">${achievement || '—'}</p>
+                  ${metrics ? `<div class="flex flex-wrap gap-2 mt-2">${metrics}</div>` : ''}
+                </div>
+                ${stillMissing ? `<div class="milestone-panel milestone-panel-still">
+                  <div class="milestone-panel-label">${t('milestoneStill')}</div>
+                  <p class="text-sm text-slate-700">${stillMissing}</p>
+                </div>` : ''}
               </div>
-              <div class="milestone-panel milestone-panel-still">
-                <div class="milestone-panel-label">${t('milestoneStill')}</div>
-                <p class="text-sm text-slate-700">${stillMissing}</p>
-              </div>
+              <footer class="mt-2 flex flex-wrap items-center gap-3 text-xs text-slate-500 pt-2">
+                ${evidenceBadge(m.evidence_level)}
+                <span class="milestone-sources">${sources}</span>
+              </footer>
             </div>
           </details>
-          <footer class="mt-2 flex flex-wrap items-center gap-3 text-xs text-slate-500 pt-2">
-            ${evidenceBadge(m.evidence_level)}
-            <span class="milestone-sources">${sources}</span>
-          </footer>
         </div>
       </article>`;
     }).join('');
@@ -604,6 +625,14 @@
     return (M && M.CAP_DOMAINS) || [];
   }
 
+  function capLabel(key) {
+    if (!key) return '';
+    const M = window.INDUSTRIAL_MATRIX;
+    const c = M && M.CAPABILITIES && M.CAPABILITIES.find((x) => x.key === key);
+    if (!c) return key;
+    return I18N().isEn() ? c.en : c.zh;
+  }
+
   function buildOverviewTab(p, v) {
     const strengths = I18N().listField(p, 'strengths_zh', 'strengths_en');
     const limits = I18N().listField(p, 'limitations_zh', 'limitations_en');
@@ -785,21 +814,40 @@
   }
 
   function buildMilestonesTab(id) {
-    const linked = getMilestonesForProduct(id);
-    if (!linked.length) {
-      const isEn = I18N().isEn && I18N().isEn();
+    const isEn = I18N().isEn && I18N().isEn();
+    const forward = getMilestonesForProduct(id);
+    const reverse = getReverseMilestonesForProduct(id);
+    if (!forward.length && !reverse.length) {
       return `<p class="text-sm text-slate-400 italic">${isEn ? 'No linked milestones for this product.' : '该产品暂无关联突破里程碑。'}</p>`;
     }
-    const items = linked.map((m) => {
-      const headline = I18N().isEn() ? m.headline_en : m.headline_zh;
-      const detail = I18N().isEn() ? (m.detail_en || '') : (m.detail_zh || '');
-      return `<div class="border-l-4 border-emerald-300 pl-4 py-2 mb-3">
-        <p class="text-sm font-medium text-slate-800">${m.date} · ${headline}</p>
-        ${detail ? `<p class="text-xs text-slate-500 mt-1 line-clamp-3">${detail}</p>` : ''}
-        <button type="button" class="text-xs text-link underline mt-1 milestone-modal-link" data-milestone-id="${m.id}">${I18N().isEn() ? 'View on timeline →' : '查看时间线 →'}</button>
+    const card = (m, kind) => {
+      const headline = isEn ? m.headline_en : m.headline_zh;
+      const cap = m.capability_key ? capLabel(m.capability_key) : '';
+      // reverse: show which domestic product broke this incumbent
+      const breakers = (m.product_ids || []).map((pid) => {
+        const p = CAT().getProductById(pid);
+        return p ? I18N().productName(p) : pid;
+      }).join(' / ');
+      const border = kind === 'reverse' ? 'border-amber-300' : 'border-emerald-300';
+      const lead = kind === 'reverse'
+        ? `<span class="text-xs text-amber-700">${isEn ? 'Monopoly broken' : '被突破'}${breakers ? ` · ${breakers}` : ''}</span>`
+        : '';
+      return `<div class="border-l-4 ${border} pl-4 py-2 mb-3">
+        <p class="text-sm font-medium text-slate-800">${m.date}${cap ? ` · <span class="ms-cap-chip">${cap}</span>` : ''} · ${headline}</p>
+        ${lead}
+        <button type="button" class="block text-xs text-link underline mt-1 milestone-modal-link" data-milestone-id="${m.id}">${isEn ? 'View on timeline →' : '查看时间线 →'}</button>
       </div>`;
-    }).join('');
-    return items;
+    };
+    let html = '';
+    if (forward.length) {
+      html += `<h4 class="font-medium text-emerald-800 mb-2">${isEn ? 'Breakthroughs achieved' : '本产品的突破'}</h4>`;
+      html += forward.map((m) => card(m, 'forward')).join('');
+    }
+    if (reverse.length) {
+      html += `<h4 class="font-medium text-amber-800 mb-2 ${forward.length ? 'mt-4' : ''}">${isEn ? 'Capabilities where domestic challengers caught up' : '被国产突破的能力'}</h4>`;
+      html += reverse.map((m) => card(m, 'reverse')).join('');
+    }
+    return html;
   }
 
   function openModal(id) {

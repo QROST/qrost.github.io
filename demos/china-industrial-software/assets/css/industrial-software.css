@@ -397,7 +397,7 @@ body {
 
 .timeline-node {
     position: relative;
-    padding-bottom: 1.75rem;
+    padding-bottom: 0.6rem;
 }
 
 .timeline-node:last-child {
@@ -437,10 +437,68 @@ body {
 
 .timeline-node-body {
     border: 1px solid var(--color-border-default);
-    border-radius: 0.625rem;
-    padding: 0.875rem 1rem;
+    border-radius: 0.5rem;
+    padding: 0.5rem 0.75rem;
     background: var(--color-bg-elevated);
     transition: box-shadow 0.2s, border-color 0.2s;
+}
+
+/* Compact clickable summary row — whole row toggles, no separate button */
+.timeline-row {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    cursor: pointer;
+    list-style: none;
+    user-select: none;
+    font-size: 0.8rem;
+}
+
+.timeline-row::-webkit-details-marker {
+    display: none;
+}
+
+.timeline-row-date {
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: var(--color-accent);
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+}
+
+.ms-cap-chip {
+    padding: 0.05rem 0.45rem;
+    border-radius: 0.25rem;
+    background: var(--color-accent-muted, #ecfdf5);
+    color: var(--color-accent, #047857);
+    font-size: 0.68rem;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.ms-row-headline {
+    flex: 1 1 12rem;
+    font-weight: 600;
+    color: var(--color-text-primary, #0f172a);
+    line-height: 1.35;
+}
+
+.ms-row-caret {
+    margin-left: auto;
+    color: var(--color-text-secondary);
+    transition: transform 0.15s ease;
+    font-size: 0.75rem;
+}
+
+.timeline-node-details[open] .ms-row-caret {
+    transform: rotate(90deg);
+}
+
+.timeline-node-detailbody {
+    margin-top: 0.6rem;
+    padding-top: 0.6rem;
+    border-top: 1px dashed var(--color-border-default);
 }
 
 .timeline-node:hover .timeline-node-body {
