@@ -102,6 +102,8 @@
     filterOrigin: '',
     filterCategory: '',
     search: '',
+    sortKey: '',   // '' | 'name' | 'coverage'
+    sortDir: 1,    // 1 asc, -1 desc
   };
 
   const I18N = () => window.INDUSTRIAL_I18N || {};
@@ -351,8 +353,27 @@
     const tbody = document.getElementById('matrix-tbody');
     if (!thead || !tbody) return;
 
-    const list = applyFilters();
+    let list = applyFilters();
     const isEn = I18N().isEn && I18N().isEn();
+
+    // Optional sort by product name or capability coverage (full count, tiebreak partial).
+    if (state.sortKey === 'name') {
+      list = list.slice().sort((a, b) => {
+        const va = (isEn ? a.name_en : a.name_zh) || '';
+        const vb = (isEn ? b.name_en : b.name_zh) || '';
+        return va.localeCompare(vb) * state.sortDir;
+      });
+    } else if (state.sortKey === 'coverage') {
+      list = list.slice().sort((a, b) => {
+        const ca = coverage(a); const cb = coverage(b);
+        return ((ca.full - cb.full) || (ca.partial - cb.partial)) * state.sortDir;
+      });
+    }
+
+    const countEl = document.getElementById('matrix-count');
+    if (countEl) countEl.textContent = list.length;
+    const clearBtn = document.getElementById('matrix-clear-filters');
+    if (clearBtn) clearBtn.hidden = !(state.filterOrigin || state.filterCategory || state.search);
 
     // Resolve each domain's column span against the live capability order.
     const keyToCap = {};
@@ -374,11 +395,12 @@
       return `<th class="px-1.5 py-2 text-center min-w-[64px] max-w-[88px] border-b border-slate-200 select-none align-bottom" title="${label} · ${alt}"><span class="matrix-cap-label">${label}</span></th>`;
     }).join('')).join('');
 
+    const sortCls = (key) => `th-sort matrix-sort${state.sortKey === key ? (state.sortDir < 0 ? ' sort-desc' : ' sort-asc') : ''}`;
     thead.innerHTML = `
       <tr>
-        <th rowspan="2" class="matrix-sticky-col px-3 py-2 text-left w-[150px] min-w-[150px] border-b border-r border-slate-200 align-bottom">${isEn ? 'Product' : '产品'}</th>
+        <th rowspan="2" data-matrix-sort="name" class="matrix-sticky-col ${sortCls('name')} px-3 py-2 text-left w-[150px] min-w-[150px] border-b border-r border-slate-200 align-bottom">${isEn ? 'Product' : '产品'}</th>
         <th rowspan="2" class="px-2 py-2 text-center w-[72px] min-w-[72px] border-b border-r border-slate-200 align-bottom">${isEn ? 'Category' : '品类'}</th>
-        <th rowspan="2" class="px-2 py-2 text-center w-[64px] min-w-[64px] border-b border-r border-slate-200 align-bottom" title="${isEn ? 'Capabilities supported / partial' : '支持 / 半支持能力数'}">${isEn ? 'Cov.' : '覆盖'}</th>
+        <th rowspan="2" data-matrix-sort="coverage" class="${sortCls('coverage')} px-2 py-2 text-center w-[64px] min-w-[64px] border-b border-r border-slate-200 align-bottom" title="${isEn ? 'Capabilities supported / partial — click to sort' : '支持 / 半支持能力数 — 点击排序'}">${isEn ? 'Cov.' : '覆盖'}</th>
         ${domainCells}
       </tr>
       <tr>${capHeaders}</tr>
@@ -430,13 +452,15 @@
   function populateFilters() {
     const catSel = document.getElementById('matrix-filter-category');
     if (!catSel) return;
-    const l2s = new Set((CAT().allProducts || []).map((p) => p.category_l2));
+    const prods = CAT().allProducts || [];
+    const counts = {};
+    prods.forEach((p) => { counts[p.category_l2] = (counts[p.category_l2] || 0) + 1; });
     const isEn = I18N().isEn && I18N().isEn();
-    catSel.innerHTML = `<option value="">${isEn ? 'All Categories' : '全部品类'}</option>`;
-    [...l2s].sort().forEach((l2) => {
+    catSel.innerHTML = `<option value="">${isEn ? 'All categories' : '全部品类'} (${prods.length})</option>`;
+    Object.keys(counts).sort().forEach((l2) => {
       const opt = document.createElement('option');
       opt.value = l2;
-      opt.textContent = l2;
+      opt.textContent = `${l2} (${counts[l2]})`;
       catSel.appendChild(opt);
     });
   }
@@ -452,6 +476,27 @@
     });
     document.getElementById('matrix-search')?.addEventListener('input', (e) => {
       state.search = e.target.value;
+      renderTable();
+    });
+    // Sortable headers (thead is regenerated each render → delegate on the stable table).
+    document.querySelector('.matrix-table')?.addEventListener('click', (e) => {
+      const th = e.target.closest('[data-matrix-sort]');
+      if (!th) return;
+      const key = th.dataset.matrixSort;
+      if (state.sortKey === key) state.sortDir *= -1;
+      else { state.sortKey = key; state.sortDir = 1; }
+      renderTable();
+    });
+    document.getElementById('matrix-clear-filters')?.addEventListener('click', () => {
+      state.filterOrigin = '';
+      state.filterCategory = '';
+      state.search = '';
+      const o = document.getElementById('matrix-filter-origin');
+      const c = document.getElementById('matrix-filter-category');
+      const s = document.getElementById('matrix-search');
+      if (o) o.value = '';
+      if (c) c.value = '';
+      if (s) s.value = '';
       renderTable();
     });
   }

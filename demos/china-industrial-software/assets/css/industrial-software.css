@@ -1187,6 +1187,108 @@ button.policy-gantt-label:focus-visible {
     background-color: var(--color-bg-muted);
 }
 
+/* ============================================================
+   Reusable sticky-scroll table primitives
+   Mirrors .matrix-container pattern; opt-in via .col-sticky /
+   .th-sort classes (contract with HTML/JS authored in parallel).
+   ============================================================ */
+
+/* 1. Generic scroll container */
+.sticky-scroll {
+    max-height: 560px;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+}
+.sticky-scroll--tall { max-height: 70vh; }
+
+.sticky-scroll::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+.sticky-scroll::-webkit-scrollbar-track {
+    background: var(--color-bg-muted);
+}
+.sticky-scroll::-webkit-scrollbar-thumb {
+    background: var(--color-border-emphasis);
+    border-radius: 3px;
+}
+
+/* 2. Sticky header row */
+.sticky-scroll table thead th {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background-color: var(--color-bg-surface);
+    box-shadow: inset 0 -1px 0 var(--color-border-default);
+}
+
+/* 3. Opt-in sticky first column */
+.sticky-scroll table th.col-sticky,
+.sticky-scroll table td.col-sticky {
+    position: sticky;
+    left: 0;
+    z-index: 5;
+    background-color: var(--color-bg-elevated);
+    box-shadow: 2px 0 5px -2px rgba(0, 0, 0, 0.05);
+}
+.sticky-scroll table thead th.col-sticky {
+    z-index: 15;
+    background-color: var(--color-bg-surface);
+}
+.sticky-scroll table tbody tr:hover td.col-sticky {
+    background-color: var(--color-bg-muted);
+}
+
+/* 4. Sortable header affordance */
+.th-sort {
+    cursor: pointer;
+    user-select: none;
+    -webkit-user-select: none;
+    white-space: nowrap;
+}
+.th-sort::after {
+    content: '⇅';
+    opacity: 0.25;
+    margin-left: 0.3em;
+    font-size: 0.85em;
+    color: var(--color-text-secondary);
+}
+.th-sort:hover::after { opacity: 0.55; }
+.th-sort.sort-asc::after {
+    content: '▲';
+    opacity: 0.9;
+    color: var(--color-text-secondary);
+}
+.th-sort.sort-desc::after {
+    content: '▼';
+    opacity: 0.9;
+    color: var(--color-text-secondary);
+}
+
+/* 5. Clear-filters ghost control */
+.clear-filters-btn {
+    font-size: 0.8rem;
+    color: var(--color-text-secondary);
+    background-color: transparent;
+    border: 1px solid var(--color-border-default);
+    border-radius: 0.375rem;
+    padding: 0.25rem 0.625rem;
+    cursor: pointer;
+    transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+}
+.clear-filters-btn:hover {
+    background-color: var(--color-bg-muted);
+    border-color: var(--color-border-emphasis);
+    color: var(--color-text-primary);
+}
+.clear-filters-btn[hidden] { display: none; }
+
+/* 6. Live filter result count */
+.filter-result-count {
+    font-size: 0.72rem;
+    color: var(--color-text-secondary);
+}
+
 .matrix-check {
     font-size: 0.875rem;
 }
