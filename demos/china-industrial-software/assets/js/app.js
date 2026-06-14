@@ -1376,6 +1376,7 @@
     refreshCompare();
 
     if (window.INDUSTRIAL_MATRIX && window.INDUSTRIAL_MATRIX.render) {
+      if (window.INDUSTRIAL_MATRIX.populateFilters) window.INDUSTRIAL_MATRIX.populateFilters();
       window.INDUSTRIAL_MATRIX.render();
     }
     if (modalPolicyId) openPolicyModal(modalPolicyId);
