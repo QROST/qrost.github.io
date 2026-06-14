@@ -67,6 +67,17 @@
   let modalKernelId = null;
   let modalPolicyId = null;
   let timelineCategoryFilter = '';
+  let policyTypeFilter = '';
+
+  const POLICY_TYPE_LABELS = {
+    zh: { fyp: '五年规划', 'two-sessions': '两会', ministry: '部委文件', program: '国家专项', standard: '标准规范', fund: '产业基金', statistic: '统计实测' },
+    en: { fyp: 'Five-Year Plan', 'two-sessions': 'Two Sessions', ministry: 'Ministry doc', program: 'National program', standard: 'Standard', fund: 'Industry fund', statistic: 'Statistic' },
+  };
+  function policyTypeLabel(tp) {
+    if (!tp) return '';
+    const m = POLICY_TYPE_LABELS[I18N().isEn() ? 'en' : 'zh'];
+    return (m && m[tp]) || tp;
+  }
 
   function t(k) { return I18N().t ? I18N().t(k) : k; }
 
@@ -432,11 +443,18 @@
     const deadlineLabel = p.target_deadline
       ? `${t('policyGanttDeadline')}: ${p.target_deadline}`
       : t('policyGanttOngoing');
+    const issuer = I18N().isEn() ? (p.issuer_en || p.issuer_zh) : (p.issuer_zh || p.issuer_en);
+    const tagBits = [
+      p.policy_type ? `<span class="policy-type-chip">${policyTypeLabel(p.policy_type)}</span>` : '',
+      issuer ? `<span>${issuer}</span>` : '',
+      p.doc_number ? `<span class="font-mono text-slate-600">${p.doc_number}</span>` : '',
+    ].filter(Boolean).join(' · ');
     return `
       <div class="policy-modal-meta text-xs text-slate-500">
         <span>${t('policyGanttStart')}: <time>${p.date}</time></span>
         <span>${deadlineLabel}</span>
       </div>
+      ${tagBits ? `<div class="text-xs text-slate-500 mt-1 flex flex-wrap items-center gap-2">${tagBits}</div>` : ''}
       ${summary ? `<p class="text-sm text-slate-600 mt-3">${summary}</p>` : ''}
       <dl class="policy-modal-metrics text-sm grid grid-cols-1 sm:grid-cols-3 gap-3 mt-4">
         <div><dt class="text-slate-500 text-xs">${t('policyMetric')}</dt><dd class="text-slate-800">${metric}</dd></div>
@@ -475,7 +493,10 @@
   function renderPolicyNodes(policies) {
     const el = document.getElementById('policy-list');
     if (!el || !policies) return;
-    const items = (policies.policies || []).slice().sort((a, b) => a.date.localeCompare(b.date));
+    let items = (policies.policies || []).slice().sort((a, b) => a.date.localeCompare(b.date));
+    if (policyTypeFilter) items = items.filter((p) => (p.policy_type || '') === policyTypeFilter);
+    const countEl = document.getElementById('policy-count');
+    if (countEl) countEl.textContent = String(items.length);
     if (!items.length) {
       el.innerHTML = '';
       return;
@@ -530,7 +551,7 @@
       <div class="policy-gantt-entry" role="listitem">
         <div class="policy-gantt-row">
           <button type="button" class="policy-gantt-label policy-gantt-trigger" data-policy-id="${p.id}" title="${title}">
-            <span class="policy-gantt-label-text">${title}</span>
+            <span class="policy-gantt-label-text">${p.policy_type ? `<span class="policy-type-chip">${policyTypeLabel(p.policy_type)}</span>` : ''}${title}</span>
             <span class="policy-gantt-label-dates">${p.date}${p.target_deadline ? ` → ${p.target_deadline}` : ''}</span>
           </button>
           <div class="policy-gantt-track">
@@ -572,6 +593,23 @@
       const opt = document.createElement('option');
       opt.value = c;
       opt.textContent = c;
+      sel.appendChild(opt);
+    });
+    sel.value = prev;
+  }
+
+  function populatePolicyTypeFilter(policies) {
+    const sel = document.getElementById('policy-filter-type');
+    if (!sel || !policies) return;
+    const order = ['fyp', 'two-sessions', 'program', 'ministry', 'fund', 'standard', 'statistic'];
+    const present = new Set((policies.policies || []).map((p) => p.policy_type).filter(Boolean));
+    const types = order.filter((t) => present.has(t)).concat([...present].filter((t) => !order.includes(t)));
+    const prev = policyTypeFilter;
+    sel.innerHTML = `<option value="">${t('filterAll')}</option>`;
+    types.forEach((tp) => {
+      const opt = document.createElement('option');
+      opt.value = tp;
+      opt.textContent = policyTypeLabel(tp);
       sel.appendChild(opt);
     });
     sel.value = prev;
@@ -1258,6 +1296,7 @@
       populateTimelineCategoryFilter(window.__breakthroughs);
       renderTimeline();
     }
+    if (window.__policies) populatePolicyTypeFilter(window.__policies);
     renderSunburstChart();
     renderKernelsTable();
     refreshCompare();
@@ -1365,6 +1404,10 @@
     document.getElementById('timeline-filter-category')?.addEventListener('change', (e) => {
       timelineCategoryFilter = e.target.value;
       renderMilestoneCards(window.__breakthroughs);
+    });
+    document.getElementById('policy-filter-type')?.addEventListener('change', (e) => {
+      policyTypeFilter = e.target.value;
+      renderPolicyNodes(window.__policies);
     });
     document.getElementById('product-modal')?.addEventListener('click', (e) => {
       const link = e.target.closest('.milestone-modal-link');

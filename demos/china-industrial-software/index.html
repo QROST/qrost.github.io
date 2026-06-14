@@ -14,12 +14,12 @@
     <meta property="og:url" content="https://qrost.github.io/demos/china-industrial-software/">
     <meta property="og:site_name" content="QROST">
 
-    <link rel="stylesheet" href="assets/css/tailwind-built.css?v=20260614a">
+    <link rel="stylesheet" href="assets/css/tailwind-built.css?v=20260614b">
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"
         integrity="sha384-vsrfeLOOY6KuIYKDlmVH5UiBmgIdB1oEf7p01YgWHuqmOHfZr374+odEv96n9tNC"
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="assets/css/industrial-software.css?v=20260614a">
+    <link rel="stylesheet" href="assets/css/industrial-software.css?v=20260614b">
 </head>
 
 <body class="antialiased scroll-smooth">
@@ -244,6 +244,11 @@
                 <h3 class="text-xl font-semibold text-slate-800 mb-2" data-i18n="secPolicies">可量化政策节点</h3>
                 <p class="text-sm text-slate-500 mb-2 max-w-3xl" data-i18n="secPoliciesDesc"></p>
                 <p class="text-xs text-slate-400 mb-4" data-i18n="policyGanttHint"></p>
+                <div class="flex flex-wrap items-center gap-2 mb-4">
+                    <label for="policy-filter-type" class="text-sm text-slate-600" data-i18n="policyFilterType">类型筛选</label>
+                    <select id="policy-filter-type" class="text-sm border border-slate-200 rounded px-3 py-2 bg-white min-w-[10rem]"></select>
+                    <span class="text-xs text-slate-400"><span id="policy-count">0</span> <span data-i18n="policyNodesUnit">个节点</span></span>
+                </div>
                 <div class="policy-gantt-scroll">
                     <div id="policy-list" class="policy-gantt" role="list"></div>
                 </div>
@@ -363,11 +368,11 @@
         </div>
     </div>
 
-    <script src="assets/js/i18n.js?v=20260614a"></script>
-    <script src="assets/js/catalog-loader.js?v=20260614a"></script>
-    <script src="assets/js/charts.js?v=20260614a"></script>
-    <script src="assets/js/compare.js?v=20260614a"></script>
-    <script src="assets/js/matrix.js?v=20260614a"></script>
-    <script src="assets/js/app.js?v=20260614a"></script>
+    <script src="assets/js/i18n.js?v=20260614b"></script>
+    <script src="assets/js/catalog-loader.js?v=20260614b"></script>
+    <script src="assets/js/charts.js?v=20260614b"></script>
+    <script src="assets/js/compare.js?v=20260614b"></script>
+    <script src="assets/js/matrix.js?v=20260614b"></script>
+    <script src="assets/js/app.js?v=20260614b"></script>
 </body>
 </html>
