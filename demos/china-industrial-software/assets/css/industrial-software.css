@@ -1199,7 +1199,18 @@ button.policy-gantt-label:focus-visible {
     overflow: auto;
     -webkit-overflow-scrolling: touch;
 }
-.sticky-scroll--tall { max-height: 70vh; }
+/* Floor at 40rem so the pane never collapses if 1vh resolves to 0
+   (some headless/embedded viewports); otherwise grows with the viewport. */
+.sticky-scroll--tall { max-height: max(40rem, 70vh); }
+
+/* Milestone timeline rail inside a scroll pane: breathing room + keep the
+   connecting line/markers clear of the scrollbar gutter. */
+.milestone-scroll {
+    padding: 0.5rem 0.75rem 0.5rem 0;
+}
+.milestone-scroll .timeline-rail {
+    max-width: none;
+}
 
 .sticky-scroll::-webkit-scrollbar {
     width: 6px;

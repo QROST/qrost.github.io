@@ -456,13 +456,16 @@
     const counts = {};
     prods.forEach((p) => { counts[p.category_l2] = (counts[p.category_l2] || 0) + 1; });
     const isEn = I18N().isEn && I18N().isEn();
-    catSel.innerHTML = `<option value="">${isEn ? 'All categories' : '全部品类'} (${prods.length})</option>`;
+    const allLabel = isEn ? 'All categories' : '全部品类';
+    catSel.innerHTML = `<option value="">${allLabel} (${prods.length})</option>`;
     Object.keys(counts).sort().forEach((l2) => {
       const opt = document.createElement('option');
       opt.value = l2;
       opt.textContent = `${l2} (${counts[l2]})`;
       catSel.appendChild(opt);
     });
+    // Preserve the active selection across re-population (e.g. language switch).
+    catSel.value = state.filterCategory || '';
   }
 
   function bindEvents() {
@@ -510,6 +513,7 @@
   window.INDUSTRIAL_MATRIX = {
     init,
     render: renderTable,
+    populateFilters,
     evaluateCapability,
     coverage,
     CAPABILITIES,
