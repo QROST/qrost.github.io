@@ -214,7 +214,7 @@ setTimeout(() => {
     T('rank comfort note zh', rankNote && /日最低温 ≥8℃/.test(rankNote._html || rankNote.innerHTML) && /互斥/.test(rankNote._html || rankNote.innerHTML));
     T('rank strip province zh', rankStrip && /云南 · 红河州-个旧 · 白云新村/.test(rankStrip._html));
     selCache['[data-rank]'].find((b) => b.dataset.rank === 'extreme').fire('click');
-    T('rank extreme note zh', rankNote && /极端日/.test(rankNote._html || rankNote.innerHTML) && /30℃/.test(rankNote._html || rankNote.innerHTML));
+    T('rank extreme note zh', rankNote && /极端日/.test(rankNote._html || rankNote.innerHTML) && /33℃/.test(rankNote._html || rankNote.innerHTML));
     selCache['[data-rank]'].find((b) => b.dataset.rank === 'comfort').fire('click');
     (function () {
       const daySet = (ranges) => {

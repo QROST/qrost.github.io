@@ -20,7 +20,7 @@
  * Derived livability metrics (from baked climate / elevation / pois):
  *   janTemp/julTemp  Jan & Jul mean ℃        annualPrecip  Σ monthly mm
  *   comfortMonths    months with tmin≥8 & tmax≤26  coldMonths  tmean<0
- *   hotMonths        tmax≥30                  extremeMonths cold+hot (tmean<-5 or tmax≥30)
+ *   hotMonths        tmax≥33                  extremeMonths cold+hot (tmean<-5 or tmax≥33)
  *   tempRange        warmest-month mean − coldest-month mean (℃, 年温差)
  *   climateType      label from (annualMean, tempRange): 四季如春 / 常年温暖 /
  *                    冬暖夏凉 / 夏热冬暖 / 长夏无冬 / 四季分明 / 常年凉冷 / 温和过渡
@@ -28,6 +28,8 @@
  */
 (function () {
   'use strict';
+
+  const EXTREME_HEAT_TMAX_C = 33; // livability extreme-heat: smoothed daily high °C
 
   // ---- palette -----------------------------------------------------------
   const C = {
@@ -199,7 +201,7 @@
       const a = moOf(cl, m);
       if (!a) continue;
       rows.push(a);
-      const isExtreme = (a[0] != null && a[0] < -5) || (a[1] != null && a[1] >= 30);
+      const isExtreme = (a[0] != null && a[0] < -5) || (a[1] != null && a[1] >= EXTREME_HEAT_TMAX_C);
       if (!isExtreme && a[2] != null && a[1] != null && a[2] >= 8 && a[1] <= 26) comfortSet.push(m); // 舒适: 日最低≥8 且日最高≤26，非极端
       if (isExtreme) extremeSet.push(m);
     }
@@ -209,7 +211,7 @@
     const annualMean = tmeans.length ? tmeans.reduce((s, v) => s + v, 0) / tmeans.length : null;
     const comfortMonths = comfortSet.length;
     const coldMonths = rows.filter((a) => a[0] != null && a[0] < 0).length;        // freezing average month
-    const hotMonths = rows.filter((a) => a[1] != null && a[1] >= 30).length;        // dominantly hot month
+    const hotMonths = rows.filter((a) => a[1] != null && a[1] >= EXTREME_HEAT_TMAX_C).length;
     const extremeMonths = extremeSet.length;
     // 年温差 = warmest-month mean − coldest-month mean (transparent, unit ℃).
     const monthMeans = rows.map((a) => a[0]).filter((v) => v != null);
