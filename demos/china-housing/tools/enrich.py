@@ -806,6 +806,17 @@ def _nearest_from_overpass(data, lat, lng):
                 continue
             found[cat] = (nm, plat, plng, d, sub)
             break
+    # Nearest 高铁站 (highspeed-only) — may be farther than nearest 普铁 in `train`.
+    if "train" in buckets:
+        hsr = [(d, nm, plat, plng, sub) for d, nm, plat, plng, sub in buckets["train"]
+               if sub == "highspeed"]
+        hsr.sort(key=lambda x: x[0])
+        floor = _CAT_MIN_KM.get("train", 0.0)
+        for d, nm, plat, plng, sub in hsr:
+            if d < floor:
+                continue
+            found["hsr"] = (nm, plat, plng, d, "highspeed")
+            break
     return found
 
 
@@ -1858,6 +1869,13 @@ def emit_enriched(con):
         if r["subtype"]:
             row["trainKind"] = r["subtype"]  # 'highspeed' | 'regular' (train only)
         e.setdefault("pois", {})[r["category"]] = row
+    for e in out.values():
+        pois = e.get("pois")
+        if not pois or pois.get("hsr"):
+            continue
+        t = pois.get("train")
+        if t and t.get("trainKind") == "highspeed" and t.get("distKm") is not None:
+            pois["hsr"] = dict(t)
     for r in con.execute("SELECT listing_id, coast_km, seismic_band, typhoon, summary FROM risk"):
         e = out.get(r["listing_id"])
         if e is None:
