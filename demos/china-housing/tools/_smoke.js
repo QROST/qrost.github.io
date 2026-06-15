@@ -12,6 +12,8 @@ const SELS = {
   '[data-dim]': ['unitPrice', 'priceWan', 'tempRange', 'janTemp', 'julTemp', 'annualPrecip', 'elevation', 'hazardFreq', 'builtAge'].map((dim) => ({ dim })),
   '[data-base]': ['janTemp', 'julTemp', 'elevation', 'annualPrecip', 'none'].map((base) => ({ base })),
   '[data-group]': ['live', 'infra', 'risk', 'invest'].map((group) => ({ group })),
+  '[data-filter]': ['budget10', 'warmWinter', 'coolSummer', 'heated', 'coast50', 'lowAlt', 'lowHazard', 'rail20', 'hsr20'].map((filter) => ({ filter })),
+  '[data-qz]': ['heat', 'coast', 'alt', 'rail', 'hsr', 'airport', 'hospital'].map((qz) => ({ qz })),
   '[data-lm-tab]': ['sat', 'near', 'climate'].map((lmTab) => ({ lmTab })),
   '[data-lm-pane]': ['sat', 'near', 'climate'].map((lmPane) => ({ lmPane })),
   '[data-col]': [], '[data-open]': [],
@@ -113,8 +115,8 @@ ids['listing-modal'].classList = { _c: new Set(['hidden']), contains(c) { return
 setTimeout(() => {
   const w = sandbox.window; const checks = [];
   const T = (n, p) => checks.push([n, !!p]);
-  T('listings 320', (w.HOUSING_LISTINGS || []).length === 320);
-  T('enriched 320', Object.keys(w.HOUSING_ENRICHED || {}).length === 320);
+  T('listings 334', (w.HOUSING_LISTINGS || []).length === 334);
+  T('enriched 334', Object.keys(w.HOUSING_ENRICHED || {}).length === 334);
   T('hazards 30', Object.keys(w.HOUSING_HAZARDS || {}).length === 30);
   T('field 4 fields', w.HOUSING_FIELD && Object.keys(w.HOUSING_FIELD.fields).length === 4);
   T('field elevation 973pts', w.HOUSING_FIELD && w.HOUSING_FIELD.fields.elevation.points.length === 973);
@@ -137,7 +139,7 @@ setTimeout(() => {
   T('tier1 toggle wired', typeof w.__setTier1On === 'function');
   try {
     w.__setTier1On(true);
-    T('table count 320 tier1', /显示 320 \/ 320/.test(ids['table-count'].textContent));
+    T('table count 334 tier1', /显示 334 \/ 334/.test(ids['table-count'].textContent));
     w.__setTier1On(false);
   } catch (e) { T('tier1 toggle — ' + e.message, false); }
   T('table head heating+freq', /供暖/.test(ids['table-head']._html) && /当地灾种·常见度/.test(ids['table-head']._html));
@@ -291,6 +293,15 @@ setTimeout(() => {
     T('zh table has ¥ or 万', /万|¥/.test(ids['table-body']._html));
     T('zh table has ㎡ or km', /㎡|km|°C/.test(ids['table-body']._html));
     T('zh table has mm precip', /\d+mm/.test(ids['table-body']._html));
+    T('zh filter hsr20 chip', selCache['[data-filter]'].some((b) => b.dataset.filter === 'hsr20' && /高铁≤20km/.test(b.textContent)));
+    T('zh quiz hsr chip', selCache['[data-qz]'].some((b) => b.dataset.qz === 'hsr' && /要高铁站/.test(b.textContent)));
+    T('zh quiz airport chip', selCache['[data-qz]'].some((b) => b.dataset.qz === 'airport' && /要近机场/.test(b.textContent)));
+    T('zh quiz hospital chip', selCache['[data-qz]'].some((b) => b.dataset.qz === 'hospital' && /要近医院/.test(b.textContent)));
+    T('hsr poi baked', Object.values(w.HOUSING_ENRICHED || {}).some((e) => {
+      if (e.pois?.hsr?.distKm != null) return true;
+      const t = e.pois?.train;
+      return !!(t && t.trainKind === 'highspeed' && t.distKm != null);
+    }));
     T('zh table has m elev', /\d+m\b/.test(ids['table-body']._html));
     T('zh hist temp columns', /历史最高温/.test(ids['table-head']._html) && /历史最低温/.test(ids['table-head']._html));
     w.__setLang('en');
@@ -305,6 +316,9 @@ setTimeout(() => {
     T('en hist temp columns', /Record high/.test(ids['table-head']._html) && /Record low/.test(ids['table-head']._html));
     T('hist temp data baked', (() => { const rows = (sandbox.window.HOUSING_LISTINGS || []).slice(0, 5); return rows.some((r) => { const e = sandbox.window.HOUSING_ENRICHED[r.id] || sandbox.window.HOUSING_ENRICHED[String(r.id)]; return e && e.histTempMax != null && e.histTempMin != null; }); })());
     T('en table head no zh', !zhRe.test(ids['table-head']._html));
+    T('en filter hsr20 chip', selCache['[data-filter]'].some((b) => b.dataset.filter === 'hsr20' && /HSR ≤20km/.test(b.textContent)));
+    T('en quiz airport chip', selCache['[data-qz]'].some((b) => b.dataset.qz === 'airport' && /Near airport/.test(b.textContent)));
+    T('en quiz hospital chip', selCache['[data-qz]'].some((b) => b.dataset.qz === 'hospital' && /Near hospital/.test(b.textContent)));
     T('en table body no zh', !zhRe.test(ids['table-body']._html));
     T('en climate types', /(Spring-like year-round|Four distinct seasons|Long summer|Mild winter|Cool year-round)/.test(ids['table-body']._html));
     T('en heating cell', /Central heating|No heating/.test(ids['table-body']._html));

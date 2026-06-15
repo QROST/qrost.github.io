@@ -24,7 +24,7 @@
  *   tempRange        warmest-month mean − coldest-month mean (℃, 年温差)
  *   climateType      label from (annualMean, tempRange): 四季如春 / 常年温暖 /
  *                    冬暖夏凉 / 夏热冬暖 / 长夏无冬 / 四季分明 / 常年凉冷 / 温和过渡
- *   hospitalKm/trainKm/airportKm/coastKm   nearest baked POI distance
+ *   hospitalKm/trainKm/hsrKm/airportKm/coastKm   nearest baked POI distance
  */
 (function () {
   'use strict';
@@ -116,6 +116,13 @@
     return (t && t.distKm != null) ? t : null;
   };
   const hospitalKmOf = (e) => { const p = hospitalPoi(e); return p ? p.distKm : null; };
+  // Nearest 高铁站 only (`pois.hsr`); fall back to nearest train when it is tagged highspeed.
+  const hsrKmOf = (e) => {
+    const h = poiKm(e, 'hsr');
+    if (h != null) return h;
+    const t = e && e.pois && e.pois.train;
+    return (t && t.trainKind === 'highspeed' && t.distKm != null) ? t.distKm : null;
+  };
 
   // Pull a [tmean,tmax,tmin,precip] month tuple (climate keys are stringified).
   const moOf = (cl, m) => cl ? (cl[m] || cl[String(m)] || null) : null;
@@ -336,6 +343,7 @@
       builtYearApprox: !!(e && e.builtYearApprox),
       hospitalKm: hospitalKmOf(e),
       trainKm: poiKm(e, 'train'),
+      hsrKm: hsrKmOf(e),
       airportKm: poiKm(e, 'airport'), metroKm: poiKm(e, 'metro'),
       // Prefer metro only when plausibly nearby (matches enrich _CAT_MAX_KM.metro ≈ 12km).
       transitKm: (() => {
@@ -518,7 +526,7 @@
   // combine as Σwᵢsᵢ/Σwᵢ×100. Weights are FIXED and published in #qz-formula.
   // Population is always the default-visible set — hidden benchmark rows never
   // surface here regardless of the footer tier toggle.
-  const qz = { budget: 0, winter: 1, summer: 1, hazard: 1, heat: false, coast: false, alt: false, rail: false };
+  const qz = { budget: 0, winter: 1, summer: 1, hazard: 1, heat: false, coast: false, alt: false, rail: false, hsr: false, airport: false, hospital: false };
   const QZ_DIM_META = {
     price: { labelKey: 'qdPrice', color: '#059669' },
     climate: { labelKey: 'qdClimate', color: '#6366f1' },
@@ -527,6 +535,9 @@
     hazard: { labelKey: 'qdHazard', color: '#94a3b8' },
     coast: { labelKey: 'qdCoast', color: '#14b8a6' },
     rail: { labelKey: 'qdRail', color: '#a855f7' },
+    hsr: { labelKey: 'qdHsr', color: '#7c3aed' },
+    airport: { labelKey: 'qdAirport', color: '#10b981' },
+    hospital: { labelKey: 'qdHospital', color: '#dc2626' },
   };
   const QZ_PRICE_RANGE = (() => {
     const xs = VISIBLE_POP.map((d) => d.unitPrice);
@@ -545,6 +556,9 @@
     if (qz.hazard) parts.push(['hazard', 1 * qz.hazard, d.hazardBurden != null ? 1 - d.hazardBurden / QZ_MAX_BURDEN : 0.5]);
     if (qz.coast) parts.push(['coast', 2, d.coastKm != null ? Math.exp(-d.coastKm / 40) : 0]);
     if (qz.rail) parts.push(['rail', 1.5, d.transitKm != null ? Math.exp(-d.transitKm / 15) : 0]);
+    if (qz.hsr) parts.push(['hsr', 1.5, d.hsrKm != null ? Math.exp(-d.hsrKm / 15) : 0]);
+    if (qz.airport) parts.push(['airport', 1.5, d.airportKm != null ? Math.exp(-d.airportKm / 15) : 0]);
+    if (qz.hospital) parts.push(['hospital', 1.5, d.hospitalKm != null ? Math.exp(-d.hospitalKm / 15) : 0]);
     const wSum = parts.reduce((s, p) => s + p[1], 0);
     const vSum = parts.reduce((s, p) => s + p[1] * p[2], 0);
     return { score: (vSum / (wSum || 1)) * 100, parts, vSum };
@@ -552,7 +566,7 @@
   function quizHash() {
     try {
       if (!(window.history && window.history.replaceState)) return;
-      const enc = [qz.budget, qz.winter, qz.summer, qz.hazard, +qz.heat, +qz.coast, +qz.alt, +qz.rail].join(',');
+      const enc = [qz.budget, qz.winter, qz.summer, qz.hazard, +qz.heat, +qz.coast, +qz.alt, +qz.rail, +qz.hsr, +qz.airport, +qz.hospital].join(',');
       window.history.replaceState(null, '', '#q=' + enc);
     } catch (e) { /* sandbox */ }
   }
@@ -561,16 +575,20 @@
       const m = (window.location && window.location.hash || '').match(/^#q=([\d.,]+)$/);
       if (!m) return;
       const v = m[1].split(',').map(Number);
-      if (v.length !== 8 || v.some((x) => !isFinite(x))) return;
+      if (v.length !== 8 && v.length !== 9 && v.length !== 11) return;
+      if (v.some((x) => !isFinite(x))) return;
       qz.budget = v[0]; qz.winter = clamp(v[1], 0, 2); qz.summer = clamp(v[2], 0, 2); qz.hazard = clamp(v[3], 0, 2);
       qz.heat = !!v[4]; qz.coast = !!v[5]; qz.alt = !!v[6]; qz.rail = !!v[7];
+      qz.hsr = v.length >= 9 ? !!v[8] : false;
+      qz.airport = v.length >= 11 ? !!v[9] : false;
+      qz.hospital = v.length >= 11 ? !!v[10] : false;
     } catch (e) { /* sandbox */ }
   }
   function styleQzChips() {
     const dk = isDark();
     document.querySelectorAll('[data-qz]').forEach((b) => {
       const k = b.dataset.qz;
-      b.textContent = t({ heat: 'qzHeat', coast: 'qzCoast', alt: 'qzAlt', rail: 'qzRail' }[k]);
+      b.textContent = t({ heat: 'qzHeat', coast: 'qzCoast', alt: 'qzAlt', rail: 'qzRail', hsr: 'qzHsr', airport: 'qzAirport', hospital: 'qzHospital' }[k]);
       const on = !!qz[k];
       b.className = 'px-3 py-1.5 rounded-md text-xs font-medium transition-colors ' +
         (on
@@ -1582,6 +1600,7 @@
     lowAlt: { labelKey: 'fcLowAlt', pass: (d) => d.elevation != null && d.elevation <= 1500 },
     lowHazard: { labelKey: 'fcLowHazard', pass: (d) => !(d.hazard && d.hazard.hazards && d.hazard.hazards.some((h) => h.freq >= 5)) },
     rail20: { labelKey: 'fcRail20', pass: (d) => d.transitKm != null && d.transitKm <= 20 },
+    hsr20: { labelKey: 'fcHsr20', pass: (d) => d.hsrKm != null && d.hsrKm <= 20 },
   };
   const tstate = { sortKey: 'comfortMonths', sortDir: -1, prov: '', q: '', groups: new Set(['live', 'infra', 'risk']), chips: new Set() };
 
@@ -2315,7 +2334,8 @@
         cmp: [...cmp],
         quiz: {
           budget: qz.budget, winter: qz.winter, summer: qz.summer, hazard: qz.hazard,
-          heat: !!qz.heat, coast: !!qz.coast, alt: !!qz.alt, rail: !!qz.rail,
+          heat: !!qz.heat, coast: !!qz.coast, alt: !!qz.alt, rail: !!qz.rail, hsr: !!qz.hsr,
+          airport: !!qz.airport, hospital: !!qz.hospital,
         },
       }));
     } catch (e) { /* private mode / quota */ }
@@ -2371,6 +2391,9 @@
         if (typeof u.coast === 'boolean') qz.coast = u.coast;
         if (typeof u.alt === 'boolean') qz.alt = u.alt;
         if (typeof u.rail === 'boolean') qz.rail = u.rail;
+        if (typeof u.hsr === 'boolean') qz.hsr = u.hsr;
+        if (typeof u.airport === 'boolean') qz.airport = u.airport;
+        if (typeof u.hospital === 'boolean') qz.hospital = u.hospital;
       }
     } catch (e) { /* corrupt JSON */ }
   }
