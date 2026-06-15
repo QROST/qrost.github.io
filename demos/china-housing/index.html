@@ -241,7 +241,7 @@
 
 <body class="antialiased min-h-screen flex flex-col scroll-smooth bg-[var(--page-bg)] transition-colors duration-300">
 
-    <a href="#overview" id="skip-link"
+    <a href="#geo" id="skip-link"
         class="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-50 focus:bg-slate-900 focus:text-white focus:px-3 focus:py-1.5 focus:rounded">跳到内容</a>
 
     <nav class="sticky top-0 z-40 bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-700 transition-colors duration-300">
@@ -251,9 +251,9 @@
                     class="text-[0.65rem] font-semibold tracking-[0.12em] sm:tracking-[0.35em] text-slate-900 dark:text-slate-100 uppercase shrink-0 transition-colors duration-300"
                     aria-label="返回 QROST 首页">QROST</a>
                 <div class="nav-links flex items-center gap-3 md:gap-8 text-xs sm:text-sm text-slate-500 dark:text-slate-400 overflow-x-auto">
-                    <a href="#overview" id="nav-overview" class="hover:text-slate-900 dark:hover:text-slate-100 transition-colors whitespace-nowrap">便宜×宜居</a>
-                    <a href="#rankings" id="nav-rankings" class="hover:text-slate-900 dark:hover:text-slate-100 transition-colors whitespace-nowrap">排行</a>
                     <a href="#geo" id="nav-geo" class="hover:text-slate-900 dark:hover:text-slate-100 transition-colors whitespace-nowrap">宜居地图</a>
+                    <a href="#rankings" id="nav-rankings" class="hover:text-slate-900 dark:hover:text-slate-100 transition-colors whitespace-nowrap">排行</a>
+                    <a href="#overview" id="nav-overview" class="hover:text-slate-900 dark:hover:text-slate-100 transition-colors whitespace-nowrap">便宜×宜居</a>
                     <a href="#table" id="nav-table" class="hover:text-slate-900 dark:hover:text-slate-100 transition-colors whitespace-nowrap">数据表</a>
                 </div>
                 <div class="flex items-center gap-2 shrink-0">
@@ -315,53 +315,21 @@
             <div id="kpi-grid" class="grid grid-cols-2 lg:grid-cols-3 gap-3 md:gap-4"></div>
         </section>
 
-        <!-- Overview / scatter -->
-        <section id="overview" class="scroll-mt-20">
-            <h2 id="sec-overview-h" class="text-xs font-semibold uppercase tracking-[0.15em] text-slate-400 dark:text-slate-500 mb-1">便宜 × 宜居 · Cheap ↔ Livable
-            </h2>
-            <p id="sec-overview-p" class="text-slate-600 dark:text-slate-400 mb-6 max-w-2xl text-sm leading-relaxed">每个点是一套房：横轴<strong
-                    class="text-slate-800 dark:text-slate-200">总价（越左越便宜）</strong>、纵轴<strong class="text-slate-800 dark:text-slate-200">舒适天数（日最低≥8℃且日最高≤26℃；悬停看具体日期范围，越上越多）</strong>，<strong class="text-indigo-700 dark:text-indigo-400">颜色越蓝 = 年温差越大（四季越分明）</strong>、越青 = 全年越平稳。<strong
-                    class="text-slate-800 dark:text-slate-200">左上角</strong>那批既便宜、舒适日又多的房子，正是这份清单想帮你找到的。</p>
-            <div class="rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 p-4 md:p-6 transition-colors duration-300">
-                <div class="relative" style="height: 440px;"><canvas id="scatter-chart"></canvas></div>
-            </div>
-        </section>
-
-        <!-- Rankings -->
-        <section id="rankings" class="scroll-mt-20">
-            <h2 id="sec-rankings-h" class="text-xs font-semibold uppercase tracking-[0.15em] text-slate-400 dark:text-slate-500 mb-1">排行 · Top 50</h2>
-            <p id="sec-rankings-p" class="text-slate-600 dark:text-slate-400 mb-4 max-w-2xl text-sm leading-relaxed">切换不同口径看极值——总价 /
-                单价最低、舒适日最多、极端日最多，也保留了租金回报口径。</p>
-            <div class="flex flex-wrap gap-2 mb-3">
-                <button data-rank="cheap" class="rank-tab"></button>
-                <button data-rank="unit" class="rank-tab"></button>
-                <button data-rank="comfort" class="rank-tab"></button>
-                <button data-rank="extreme" class="rank-tab"></button>
-                <button data-rank="seasonNow" class="rank-tab"></button>
-                <button data-rank="burden" class="rank-tab"></button>
-                <button data-rank="yield" class="rank-tab"></button>
-            </div>
-            <p id="rank-climate-note" class="hidden mb-4 max-w-3xl text-sm leading-relaxed text-slate-600 dark:text-slate-400 border-l-2 border-emerald-500/40 pl-3"></p>
-            <div class="rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 p-4 md:p-6 transition-colors duration-300">
-                <div class="relative" style="height: 520px;"><canvas id="rank-chart"></canvas></div>
-            </div>
-        </section>
-
-        <!-- Geo: full-width zoomable overlay map + province comparison -->
+        <!-- Geo: full-width zoomable overlay map -->
         <section id="geo" class="scroll-mt-20">
             <h2 id="sec-geo-h" class="text-xs font-semibold uppercase tracking-[0.15em] text-slate-400 dark:text-slate-500 mb-1">宜居地图 · Livability overlay
             </h2>
             <p id="sec-geo-p" class="text-slate-600 dark:text-slate-400 mb-5 max-w-3xl text-sm leading-relaxed">每个圆点是一套房，<strong class="text-slate-800 dark:text-slate-200">越大
-                    = 越便宜</strong>，颜色按<strong class="text-emerald-700 dark:text-emerald-400">点·叠加维度</strong>变化（年温差 / 单价 / 冬夏等温 / 年降水 / 海拔 /
+                    = 越便宜</strong>，颜色按<strong class="text-emerald-700 dark:text-emerald-400">点·叠加维度</strong>变化（单价 / 总价 / 年温差 / 冬夏等温 / 年降水 / 海拔 /
                 突发灾害频率）。再叠一层<strong class="text-emerald-700 dark:text-emerald-400">连续底图</strong>——全国<strong class="text-slate-800 dark:text-slate-200">等温线 / 降水 /
                     海拔</strong>栅格场（含等值线），就能直观看到某套便宜房落在什么气温带、海拔带里。<strong class="text-slate-800 dark:text-slate-200">滚轮 / 双指捏合 / 右上角
                     +−</strong> 缩放、拖动平移；点击圆点看卫星图 / 周边 / 气候与灾害。</p>
             <div class="rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 p-4 md:p-6 transition-colors duration-300">
                 <div class="flex flex-wrap items-center gap-2 mb-3">
                     <span id="dim-overlay-label" class="text-xs font-medium text-slate-400 dark:text-slate-500 mr-1 self-center">点·叠加维度</span>
-                    <button data-dim="tempRange" class="dim-tab"></button>
                     <button data-dim="unitPrice" class="dim-tab"></button>
                     <button data-dim="priceWan" class="dim-tab"></button>
+                    <button data-dim="tempRange" class="dim-tab"></button>
                     <button data-dim="janTemp" class="dim-tab"></button>
                     <button data-dim="julTemp" class="dim-tab"></button>
                     <button data-dim="annualPrecip" class="dim-tab"></button>
@@ -372,11 +340,11 @@
                 <p id="map-dim-note" class="hidden text-[0.7rem] text-slate-400 dark:text-slate-500 mb-2 -mt-1"></p>
                 <div class="flex flex-wrap items-center gap-2 mb-4">
                     <span id="base-overlay-label" class="text-xs font-medium text-slate-400 dark:text-slate-500 mr-1 self-center">连续底图</span>
-                    <button data-base="none" class="base-tab"></button>
                     <button data-base="janTemp" class="base-tab"></button>
                     <button data-base="julTemp" class="base-tab"></button>
                     <button data-base="elevation" class="base-tab"></button>
                     <button data-base="annualPrecip" class="base-tab"></button>
+                    <button data-base="none" class="base-tab"></button>
                     <span id="base-legend" class="hidden items-center gap-2 ml-1 sm:ml-3" style="display:none"></span>
                 </div>
                 <div id="map-wrap" class="relative w-full" style="height: 72vh; min-height: 460px;">
@@ -395,15 +363,37 @@
                     class="hidden text-sm text-slate-500 dark:text-slate-400 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg p-6 text-center items-center justify-center"
                     style="min-height: 240px;"></div>
             </div>
-            <div class="rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 p-4 md:p-6 mt-5 transition-colors duration-300">
-                <div class="flex flex-wrap items-center gap-2 mb-4">
-                    <span id="prov-compare-label" class="text-sm font-medium text-slate-700 dark:text-slate-300 mr-1 self-center">各省对比</span>
-                    <button data-prov="avgRange" class="prov-tab"></button>
-                    <button data-prov="avgExtreme" class="prov-tab"></button>
-                    <button data-prov="avgUnit" class="prov-tab"></button>
-                    <button data-prov="avgPrice" class="prov-tab"></button>
-                </div>
-                <div id="province-chart-wrap" class="relative" style="height: 420px;"><canvas id="province-chart"></canvas></div>
+        </section>
+
+        <!-- Rankings -->
+        <section id="rankings" class="scroll-mt-20">
+            <h2 id="sec-rankings-h" class="text-xs font-semibold uppercase tracking-[0.15em] text-slate-400 dark:text-slate-500 mb-1">排行 · Top 50</h2>
+            <p id="sec-rankings-p" class="text-slate-600 dark:text-slate-400 mb-4 max-w-2xl text-sm leading-relaxed">切换不同口径看极值——总价 /
+                单价最低、舒适日最多、极端日最多，也保留了租金回报口径。</p>
+            <div class="flex flex-wrap gap-2 mb-3">
+                <button data-rank="comfort" class="rank-tab"></button>
+                <button data-rank="cheap" class="rank-tab"></button>
+                <button data-rank="unit" class="rank-tab"></button>
+                <button data-rank="extreme" class="rank-tab"></button>
+                <button data-rank="seasonNow" class="rank-tab"></button>
+                <button data-rank="burden" class="rank-tab"></button>
+                <button data-rank="yield" class="rank-tab"></button>
+            </div>
+            <p id="rank-climate-note" class="hidden mb-4 max-w-3xl text-sm leading-relaxed text-slate-600 dark:text-slate-400 border-l-2 border-emerald-500/40 pl-3"></p>
+            <div class="rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 p-4 md:p-6 transition-colors duration-300">
+                <div class="relative" style="height: 520px;"><canvas id="rank-chart"></canvas></div>
+            </div>
+        </section>
+
+        <!-- Overview / scatter -->
+        <section id="overview" class="scroll-mt-20">
+            <h2 id="sec-overview-h" class="text-xs font-semibold uppercase tracking-[0.15em] text-slate-400 dark:text-slate-500 mb-1">便宜 × 宜居 · Cheap ↔ Livable
+            </h2>
+            <p id="sec-overview-p" class="text-slate-600 dark:text-slate-400 mb-6 max-w-2xl text-sm leading-relaxed">每个点是一套房：横轴<strong
+                    class="text-slate-800 dark:text-slate-200">总价（越左越便宜）</strong>、纵轴<strong class="text-slate-800 dark:text-slate-200">舒适天数（日最低≥8℃且日最高≤26℃；悬停看具体日期范围，越上越多）</strong>，<strong class="text-indigo-700 dark:text-indigo-400">颜色越蓝 = 年温差越大（四季越分明）</strong>、越青 = 全年越平稳。<strong
+                    class="text-slate-800 dark:text-slate-200">左上角</strong>那批既便宜、舒适日又多的房子，正是这份清单想帮你找到的。</p>
+            <div class="rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 p-4 md:p-6 transition-colors duration-300">
+                <div class="relative" style="height: 440px;"><canvas id="scatter-chart"></canvas></div>
             </div>
         </section>
 
@@ -454,6 +444,20 @@
                     </table>
                     <div id="table-cards" class="divide-y divide-slate-100 dark:divide-slate-700/60"></div>
                 </div>
+            </div>
+        </section>
+
+        <!-- Province comparison -->
+        <section id="province" class="scroll-mt-20">
+            <div class="rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 p-4 md:p-6 transition-colors duration-300">
+                <div class="flex flex-wrap items-center gap-2 mb-4">
+                    <span id="prov-compare-label" class="text-sm font-medium text-slate-700 dark:text-slate-300 mr-1 self-center">各省对比</span>
+                    <button data-prov="avgRange" class="prov-tab"></button>
+                    <button data-prov="avgExtreme" class="prov-tab"></button>
+                    <button data-prov="avgUnit" class="prov-tab"></button>
+                    <button data-prov="avgPrice" class="prov-tab"></button>
+                </div>
+                <div id="province-chart-wrap" class="relative" style="height: 420px;"><canvas id="province-chart"></canvas></div>
             </div>
         </section>
 
