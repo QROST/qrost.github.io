@@ -1105,7 +1105,7 @@
     const d = MAP_DIMS[k] || MAP_DIMS.tempRange;
     return { ...d, label: t(d.labelKey), text: (d.textKeys || []).map((tk) => t(tk)) };
   };
-  let dimKey = 'tempRange';
+  let dimKey = 'unitPrice';
   let echartsMap = null, mapReady = false, baseGeoOpt = null;
   const GEO_URL = 'https://geo.datav.aliyun.com/areas_v3/bound/100000_full.json';
 
@@ -1118,7 +1118,7 @@
   // available basemaps: 'none' + whatever the baked field provides
   const BASE_LABEL_KEYS = { none: 'baseNone', janTemp: 'baseJanTemp', julTemp: 'baseJulTemp', elevation: 'baseElevation', annualPrecip: 'baseAnnualPrecip' };
   const baseLabel = (k) => t(BASE_LABEL_KEYS[k] || k);
-  let baseKey = 'none';
+  let baseKey = 'janTemp';
 
   const rampColorAt = (ramp, t) => {
     const cs = BASE_RAMPS[ramp] || BASE_RAMPS.temp;

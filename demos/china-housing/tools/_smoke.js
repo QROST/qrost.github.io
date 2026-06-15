@@ -9,8 +9,8 @@ const read = (p) => fs.readFileSync(path.join(DIR, p), 'utf8');
 const SELS = {
   '[data-rank]': ['cheap', 'unit', 'comfort', 'extreme', 'yield'].map((rank) => ({ rank })),
   '[data-prov]': ['avgRange', 'avgExtreme', 'avgUnit', 'avgPrice'].map((prov) => ({ prov })),
-  '[data-dim]': ['tempRange', 'unitPrice', 'priceWan', 'janTemp', 'julTemp', 'annualPrecip', 'elevation', 'hazardFreq', 'builtAge'].map((dim) => ({ dim })),
-  '[data-base]': ['none', 'janTemp', 'julTemp', 'elevation', 'annualPrecip'].map((base) => ({ base })),
+  '[data-dim]': ['unitPrice', 'priceWan', 'tempRange', 'janTemp', 'julTemp', 'annualPrecip', 'elevation', 'hazardFreq', 'builtAge'].map((dim) => ({ dim })),
+  '[data-base]': ['janTemp', 'julTemp', 'elevation', 'annualPrecip', 'none'].map((base) => ({ base })),
   '[data-group]': ['live', 'infra', 'risk', 'invest'].map((group) => ({ group })),
   '[data-lm-tab]': ['sat', 'near', 'climate'].map((lmTab) => ({ lmTab })),
   '[data-lm-pane]': ['sat', 'near', 'climate'].map((lmPane) => ({ lmPane })),
