@@ -530,7 +530,7 @@
                         <li><strong class="text-slate-700 dark:text-slate-300">舒适 / 极端按「天」判定</strong>：取 ERA5 <strong>2014–2023</strong>
                             的<strong class="text-slate-700 dark:text-slate-300">日气候</strong>（年内逐日做 10 年平均，再 15 天平滑去噪），<strong
                                 class="text-slate-700 dark:text-slate-300">舒适</strong> = 日最低 ≥8℃ 且日最高 ≤26℃，<strong
-                                class="text-slate-700 dark:text-slate-300">极端</strong> = 日均温 &lt; -5℃（严寒；0～-4℃ 干冷不计）或日均高温 ≥ 30℃（酷热，更贴近体感不适而非气象 35℃ 预警线）。<strong
+                                class="text-slate-700 dark:text-slate-300">极端</strong> = 日均温 &lt; -5℃（严寒；0～-4℃ 干冷不计）或日最高温 ≥ 33℃（酷热，更贴近体感不适而非气象 35℃ 预警线）。<strong
                                 class="text-slate-700 dark:text-slate-300">舒适与极端互斥</strong>（同日若满足两者，计为极端）。为<strong
                                 class="text-slate-700 dark:text-slate-300">宜居口径</strong>，非官方灾害预警。表格 / 弹窗 /
                             散点显示<strong class="text-slate-700 dark:text-slate-300">具体日期范围</strong>（如「11月1日–次年3月20日」，跨年自动环绕）；弹窗温度曲线为 <strong
@@ -582,7 +582,7 @@
                     <ul id="method-comfort-extreme-body" class="space-y-2 list-disc list-inside mt-2 text-sm">
                         <li><strong class="text-slate-700 dark:text-slate-300">数据</strong>：Open-Meteo ERA5 <strong>2014–2023</strong> 逐日气温 → 年内同日期做 <strong>10 年平均</strong> → <strong>15 天圆周平滑</strong>（固定 365 天历法）。</li>
                         <li><strong class="text-slate-700 dark:text-slate-300">舒适日</strong>：平滑后 <strong>日最低温 ≥8℃ 且日最高温 ≤26℃</strong>（全天温区落在舒适带内），且<strong>当天不算极端</strong>。</li>
-                        <li><strong class="text-slate-700 dark:text-slate-300">极端日</strong>：平滑后 <strong>日均温 &lt; -5℃</strong>（严寒；0～-4℃ 干冷不计）或 <strong>日最高温 ≥ 30℃</strong>（酷热；比气象 35℃ 预警线更贴近日常体感不适）。</li>
+                        <li><strong class="text-slate-700 dark:text-slate-300">极端日</strong>：平滑后 <strong>日均温 &lt; -5℃</strong>（严寒；0～-4℃ 干冷不计）或 <strong>日最高温 ≥ 33℃</strong>（酷热；比气象 35℃ 预警线更贴近日常体感不适）。</li>
                         <li><strong class="text-slate-700 dark:text-slate-300">互斥</strong>：舒适与极端<strong>不重叠</strong>——已标为极端的日子不再计舒适（表格绿/红条、排行天数均如此）。</li>
                         <li><strong class="text-slate-700 dark:text-slate-300">性质</strong>：<strong>宜居对比口径</strong>，非中国气象局灾害预警；日期边界因平滑约有 <strong>±1 周</strong> 不确定度。</li>
                     </ul>

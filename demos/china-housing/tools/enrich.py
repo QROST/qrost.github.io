@@ -292,6 +292,8 @@ def geocode_all(con, log, force=False):
 # Climate — Open-Meteo archive → monthly normals + daily climatology (one fetch)
 # ---------------------------------------------------------------------------
 _ERA5_Y0, _ERA5_Y1 = 2014, 2023
+# Livability extreme-heat: smoothed daily high (°C). Below CMA 35°C warning line.
+EXTREME_HEAT_TMAX_C = 33
 # Single archive call carries temp/precip plus extended daily dimensions for
 # listings.daily_climate JSON (see _daily_climate_from_archive docstring).
 _ERA5_DAILY = (
@@ -471,7 +473,7 @@ def _daily_climate_from_archive(d):
     """
     norm = _doy_normals_from_daily(d)
     sm = {k: _smooth_circular(norm[k], 15) for k in norm}
-    extreme = [((tm is not None and tm < -5) or (tx is not None and tx >= 30))
+    extreme = [((tm is not None and tm < -5) or (tx is not None and tx >= EXTREME_HEAT_TMAX_C))
                for tm, tx in zip(sm["temperature_2m_mean"], sm["temperature_2m_max"])]
     comfort = [(tn is not None and tx is not None and tn >= 8 and tx <= 26 and not ex)
                for tn, tx, ex in zip(sm["temperature_2m_min"], sm["temperature_2m_max"], extreme)]
@@ -508,7 +510,7 @@ def climate_daily_one(lat, lng, y0=_ERA5_Y0, y1=_ERA5_Y1):
 
 def climate_daily_flags_from_curve(tmean, tmax, tmin):
     """Re-derive comfort/extreme day flags from baked smoothed daily curves."""
-    extreme = [((tm is not None and tm < -5) or (tx is not None and tx >= 30))
+    extreme = [((tm is not None and tm < -5) or (tx is not None and tx >= EXTREME_HEAT_TMAX_C))
                for tm, tx in zip(tmean, tmax)]
     comfort = [(tn is not None and tx is not None and tn >= 8 and tx <= 26 and not ex)
                for tn, tx, ex in zip(tmin, tmax, extreme)]
