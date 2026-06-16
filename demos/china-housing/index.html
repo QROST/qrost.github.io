@@ -455,8 +455,10 @@
                     <span id="prov-compare-label" class="text-sm font-medium text-slate-700 dark:text-slate-300 mr-1 self-center">各省对比</span>
                     <button data-prov="avgRange" class="prov-tab"></button>
                     <button data-prov="avgExtreme" class="prov-tab"></button>
-                    <button data-prov="avgUnit" class="prov-tab"></button>
-                    <button data-prov="avgPrice" class="prov-tab"></button>
+                    <button data-prov="avgComfort" class="prov-tab"></button>
+                    <button data-prov="avgElev" class="prov-tab"></button>
+                    <button data-prov="avgPrecip" class="prov-tab"></button>
+                    <button data-prov="avgHazard" class="prov-tab"></button>
                 </div>
                 <div id="province-chart-wrap" class="relative" style="height: 420px;"><canvas id="province-chart"></canvas></div>
             </div>
@@ -539,7 +541,8 @@
                                 class="text-slate-700 dark:text-slate-300">宜居口径</strong>，非官方灾害预警。表格 / 弹窗 /
                             散点显示<strong class="text-slate-700 dark:text-slate-300">具体日期范围</strong>（如「11月1日–次年3月20日」，跨年自动环绕）；弹窗温度曲线为 <strong
                                 class="text-slate-700 dark:text-slate-300">365 天日曲线</strong>（绿=舒适段、红=极端段）。<strong
-                                class="text-slate-700 dark:text-slate-300">各省对比</strong>为按日的<strong class="text-slate-700 dark:text-slate-300">连续条</strong>（红段 =
+                                class="text-slate-700 dark:text-slate-300">各省对比</strong>为按日的<strong class="text-slate-700 dark:text-slate-300">连续条</strong>（<strong class="text-slate-700 dark:text-slate-300">绿段</strong> =
+                            该省有小区当天舒适、<strong class="text-slate-700 dark:text-slate-300">红段</strong> =
                             该省有小区当天极端，色深 = 占样本比例，竖线为月界）。日级<strong class="text-slate-700 dark:text-slate-300">呈现</strong>精确，但源自 10
                             年再分析平滑，边界不确定度约 <strong class="text-slate-700 dark:text-slate-300">±1 周</strong>，非逐日预报。</li>
                         <li><strong class="text-slate-700 dark:text-slate-300">历史气温极值</strong>（最高 / 最低）：优先取<strong
@@ -567,7 +570,7 @@
                         <li><strong class="text-slate-700 dark:text-slate-300">单价</strong> = 总价 ÷ 面积；<strong
                                 class="text-slate-700 dark:text-slate-300">毛回报</strong> = 月租×12 ÷ 总价、<strong
                                 class="text-slate-700 dark:text-slate-300">回本年限</strong> = 总价 ÷ 年租金（毛口径，作参考保留）。</li>
-                        <li><strong class="text-slate-700 dark:text-slate-300">美国样本（California）</strong>：挂牌价来自 Compass / Realtor 等公开页面；<strong
+                        <li><strong class="text-slate-700 dark:text-slate-300">美国样本（加州）</strong>：挂牌价来自 Compass / Realtor 等公开页面；<strong
                                 class="text-slate-700 dark:text-slate-300">纯租赁公寓</strong>（如 Mariposa）无二手房成交价时，总价按 <strong
                                 class="text-slate-700 dark:text-slate-300">月租×12 ÷ 4.5% 资本化率</strong> 折算隐含资产价值（便于与可售样本比回报），并在调研 JSON 注明来源；机场/海岸距离用 SoCal 离线顶点而非中国数据集。</li>
                         <li><strong class="text-slate-700 dark:text-slate-300">房龄 / 完工年份</strong>：逐个小区<strong
@@ -578,7 +581,8 @@
                                 class="text-slate-700 dark:text-slate-300">可信来源的年代级估算</strong>时标<strong
                                 style="color:#b45309">「约」</strong>以示非精确；公开渠道无痕的显示「年代未知」。色条
                             <strong class="text-emerald-700 dark:text-emerald-400">绿=新</strong> → <strong
-                                style="color:#b45309">琥珀=老</strong>，悬停看建成年份与来源；多期楼盘取<strong
+                                style="color:#b45309">琥珀=老</strong>；<strong
+                                class="text-slate-500 dark:text-slate-400">浅灰=未交付期房</strong>（负房龄，预计交付年晚于当前年），悬停看建成/交付年份与来源；多期楼盘取<strong
                                 class="text-slate-700 dark:text-slate-300">最早一期</strong>。
                         </li>
                     </ul>

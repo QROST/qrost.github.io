@@ -15,7 +15,7 @@ Sources (all free, no API key, all WGS-84 so no GCJ-02 conversion needed):
                                          town/district/city and record the level.
   climate  Open-Meteo Archive (ERA5)  — 2014-2023 daily → monthly normals.
   poi      Overpass (OSM)             — nearest metro / railway / hospital / mall.
-  airport  OurAirports CSV (offline)  — nearest CN large/medium airport.
+  airport  OurAirports CSV (offline)  — nearest regional airport (CN / HK / TW / US).
   coast    Natural Earth 50m (offline)— distance to nearest coastline vertex.
   risk     derived                    — coast distance + coarse province seismic
                                          band (GB18306 concept) + typhoon exposure.
@@ -58,18 +58,81 @@ _CAT_MIN_KM = {"hospital": 0.35, "train": 0.25, "mall": 0.2}
 _POI_REFIX_KM = {"hospital": 0.5, "train": 0.2, "metro": 0.0}
 
 
+def _built_year_merge_action(existing_year, existing_approx, new_approx):
+    """Whether a built-year finding may write: fill-null | upgrade approx→precise | skip."""
+    if existing_year is None:
+        return "set"
+    if existing_approx and not new_approx:
+        return "upgrade"
+    return "skip"
+
+
+def _poi_should_replace(cur, floor, *, new_dist=None):
+    """Fill-null-only or replace suspiciously-close OSM; never clobber good research."""
+    if cur is None:
+        return True
+    if isinstance(cur, sqlite3.Row):
+        dist, src = cur["dist_km"], cur["source"]
+    elif isinstance(cur, (tuple, list)):
+        dist, src = cur[0], cur[1]
+    else:
+        dist, src = cur["dist_km"], cur["source"]
+    if src == "research":
+        if dist is None:
+            return True   # name-only research → allow geocoded upgrade
+        if dist < floor:
+            return True   # suspiciously close research pin → allow fix
+        return False
+    # OSM (or other non-research)
+    if dist is not None and dist >= floor:
+        if new_dist is not None and new_dist < dist:
+            return True   # better distance wins
+        return False
+    return True
+
+
 # ---------------------------------------------------------------------------
 # HTTP helpers (retry + backoff)
 # ---------------------------------------------------------------------------
-def _sleep_until_era5_reset(log=None, pad=75):
-    """Open-Meteo archive quota resets on the UTC calendar hour — wait it out."""
+def _era5_wait_seconds(pad=75):
+    """Seconds until Open-Meteo archive quota resets (UTC hour + buffer)."""
     now = datetime.now(timezone.utc)
     wait = (3600 - now.minute * 60 - now.second) % 3600
     if wait < pad:
         wait += 3600
-    wait += pad
+    return wait + pad
+
+
+def _parse_open_meteo_429(body):
+    """Classify Open-Meteo 429 JSON → (kind, suggested_wait_sec|None).
+
+    kind ∈ minutely | hourly | daily | concurrent | unknown.
+    """
+    try:
+        raw = body.decode("utf-8", errors="replace") if isinstance(body, bytes) else str(body)
+        obj = json.loads(raw)
+        reason = str(obj.get("reason") or obj.get("error") or "unknown").lower()
+        if "minutely" in reason:
+            return "minutely", 65
+        if "hourly" in reason or "per hour" in reason:
+            return "hourly", _era5_wait_seconds()
+        if "daily" in reason:
+            return "daily", None
+        if "concurrent" in reason:
+            return "concurrent", 45
+        return reason[:40] or "unknown", _era5_wait_seconds()
+    except Exception:  # noqa: BLE001
+        return "unknown", _era5_wait_seconds()
+
+
+def _sleep_until_era5_reset(log=None, pad=75, body=None):
+    """Open-Meteo archive quota — wait per 429 kind (hourly resets UTC hour)."""
+    kind, hint = _parse_open_meteo_429(body) if body else ("unknown", None)
+    wait = hint if hint is not None else _era5_wait_seconds(pad)
+    if kind == "daily":
+        wait = max(wait, _era5_wait_seconds(pad))
     if log:
-        log(f"  …archive 429 — sleeping {wait}s until next UTC hour + buffer")
+        log(f"  …archive 429 ({kind}) — sleeping {wait}s")
     time.sleep(wait)
 
 
@@ -83,7 +146,12 @@ def _get(url, timeout=30, retries=3, backoff=2.0, log=None):
         except urllib.error.HTTPError as e:
             last = e
             if e.code == 429:
-                _sleep_until_era5_reset(log)
+                body = None
+                try:
+                    body = e.read()
+                except Exception:  # noqa: BLE001
+                    pass
+                _sleep_until_era5_reset(log, body=body)
                 continue
             time.sleep(backoff * (i + 1))
         except Exception as e:  # noqa: BLE001
@@ -177,6 +245,8 @@ def migrate(con):
 # Geocoding — Nominatim coarse-to-fine ladder
 # ---------------------------------------------------------------------------
 _OVERSEAS_PROV = {"California"}
+_TAIWAN_PROV = frozenset({"台湾"})
+_HK_PROV = frozenset({"香港"})
 
 
 def _geo_ladder(prov, city, dist, loc):
@@ -228,6 +298,24 @@ def _geo_ladder_us(prov, city, dist, loc):
     return out
 
 
+def _geo_ladder_tw(prov, city, dist, loc):
+    """Taiwan listings — Nominatim countrycodes=tw; no trailing 中国."""
+    out, used = [], set()
+
+    def add(query, level):
+        if query not in used:
+            used.add(query)
+            out.append((query, level))
+
+    if loc:
+        add(f"{loc}, {dist}, {city}, Taiwan", "loc")
+        add(f"{loc}, {city}, Taiwan", "loc")
+    if dist:
+        add(f"{dist}, {city}, Taiwan", "dist")
+    add(f"{city}, Taiwan", "city")
+    return out
+
+
 def _prov_ok(prov, hit):
     """Reject cross-province false positives (Nominatim free-text latches onto
     nationally-reused names like 恒大/碧桂园 and ignores the trailing province)."""
@@ -236,6 +324,9 @@ def _prov_ok(prov, hit):
     disp = hit.get("display_name", "")
     addr = hit.get("address", {})
     state = addr.get("state", "") or addr.get("region", "") or addr.get("province", "")
+    if prov in _TAIWAN_PROV:
+        return (prov in disp or "台湾" in disp or "Taiwan" in disp or "臺灣" in disp
+                or "台灣" in state or "Taiwan" in state)
     return prov in disp or prov in state
 
 
@@ -245,9 +336,12 @@ def geocode_one(prov, city, dist, loc):
     For each ladder rung we take the top-5 candidates and keep the first one
     whose address actually lies in the expected province; otherwise we fall to
     the next (coarser) rung. This trades precision for not-wildly-wrong."""
-    ladder = _geo_ladder_us(prov, city, dist, loc) if prov in _OVERSEAS_PROV else _geo_ladder(prov, city, dist, loc)
-    cc = "us" if prov in _OVERSEAS_PROV else "cn"
-    lang = "en" if prov in _OVERSEAS_PROV else "zh"
+    if prov in _OVERSEAS_PROV:
+        ladder, cc, lang = _geo_ladder_us(prov, city, dist, loc), "us", "en"
+    elif prov in _TAIWAN_PROV:
+        ladder, cc, lang = _geo_ladder_tw(prov, city, dist, loc), "tw", "zh"
+    else:
+        ladder, cc, lang = _geo_ladder(prov, city, dist, loc), "cn", "zh"
     for query, level in ladder:
         url = "https://nominatim.openstreetmap.org/search?" + urllib.parse.urlencode(
             {"q": query, "format": "jsonv2", "limit": 5,
@@ -682,17 +776,38 @@ _US_COAST = [
     (33.958, -118.445), (33.618, -117.929), (33.770, -118.196), (34.008, -118.498),
     (34.040, -118.677), (32.768, -117.252), (36.620, -121.902), (34.250, -119.264),
 ]
+_TW_AIRPORTS = [
+    {"name": "Taiwan Taoyuan International Airport", "iata": "TPE", "lat": 25.0797, "lng": 121.2342},
+    {"name": "Taipei Songshan Airport", "iata": "TSA", "lat": 25.0697, "lng": 121.5525},
+    {"name": "Taichung International Airport", "iata": "RMQ", "lat": 24.2647, "lng": 120.6210},
+    {"name": "Tainan Airport", "iata": "TNN", "lat": 22.9504, "lng": 120.2060},
+]
+# Taiwan island coastline sample (lat, lng) — nearest-vertex distance.
+_TW_COAST = [
+    (25.30, 121.50), (25.10, 121.80), (24.80, 121.90), (24.50, 121.80),
+    (23.50, 121.40), (22.60, 121.00), (22.00, 120.80), (22.30, 120.40),
+    (23.00, 120.20), (24.00, 120.30), (25.00, 120.90), (25.20, 121.30),
+]
+_HK_AIRPORTS = [
+    {"name": "Hong Kong International Airport", "iata": "HKG", "lat": 22.3089, "lng": 113.9146},
+]
 
 
 def _load_airports(prov=None):
     if prov in _OVERSEAS_PROV:
         return _US_AIRPORTS
+    if prov in _TAIWAN_PROV:
+        return _TW_AIRPORTS
+    if prov in _HK_PROV:
+        return _HK_AIRPORTS
     return json.loads((REF / "airports_cn.json").read_text(encoding="utf-8"))
 
 
 def _load_coast(prov=None):
     if prov in _OVERSEAS_PROV:
         return _US_COAST
+    if prov in _TAIWAN_PROV:
+        return _TW_COAST
     return json.loads((REF / "coast_cn.json").read_text(encoding="utf-8"))
 
 
@@ -870,10 +985,18 @@ def _pois_for_listing(con, r, log, overwrite=(), airports=None, coast=None):
         found.update(_nearest_from_overpass(data, lat, lng))
     else:
         log(f"  ! id{r['id']} overpass unavailable (metro/train/hospital/mall skipped)")
+    safe_overwrite = []
     for cat in overwrite:
+        cur = con.execute("SELECT source, dist_km FROM poi WHERE listing_id=? AND category=?",
+                          (r["id"], cat)).fetchone()
+        if cur and cur["source"] == "research":
+            floor = _POI_REFIX_KM.get(cat, 0)
+            if cur["dist_km"] is not None and cur["dist_km"] >= floor:
+                continue   # verified research POI — do not refix
+        safe_overwrite.append(cat)
         con.execute("DELETE FROM poi WHERE listing_id=? AND category=?", (r["id"], cat))
     for cat, item in found.items():
-        if cat not in overwrite:
+        if cat not in safe_overwrite:
             if con.execute("SELECT 1 FROM poi WHERE listing_id=? AND category=?",
                            (r["id"], cat)).fetchone():
                 continue
@@ -991,6 +1114,42 @@ def pois_overpass_refresh(con, log, categories=("train",)):
     return done, fail
 
 
+def pois_offline_refresh(con, log, provs=("香港", "台湾")):
+    """Re-bake offline airport/coast for cross-border provinces (HK/TW airport lists).
+
+    Respects _poi_should_replace — replaces wrong mainland airports (e.g. SZX for HK)
+    when the regional list yields a closer match."""
+    prov_set = tuple(provs)
+    placeholders = ",".join("?" * len(prov_set))
+    rows = con.execute(
+        f"SELECT id, prov, lat, lng FROM listings WHERE lat IS NOT NULL "
+        f"AND prov IN ({placeholders}) ORDER BY id",
+        prov_set,
+    ).fetchall()
+    log(f"pois-offline-refresh: {len(rows)} listing(s) in {','.join(prov_set)}…")
+    updated = 0
+    for r in rows:
+        airports, coast = _load_airports(r["prov"]), _load_coast(r["prov"])
+        found = _bake_offline_pois(r["lat"], r["lng"], airports, coast)
+        for cat in ("airport", "coast"):
+            if cat not in found:
+                continue
+            cur = con.execute(
+                "SELECT dist_km, source FROM poi WHERE listing_id=? AND category=?",
+                (r["id"], cat),
+            ).fetchone()
+            _nm, _plat, _plng, d, _sub = _poi_row(found[cat])
+            new_dist = round(d, 1) if d is not None else None
+            if not _poi_should_replace(cur, _POI_REFIX_KM.get(cat, 0), new_dist=new_dist):
+                continue
+            con.execute("DELETE FROM poi WHERE listing_id=? AND category=?", (r["id"], cat))
+            _store_pois(con, r["id"], {cat: found[cat]})
+            updated += 1
+    con.commit()
+    log(f"pois-offline-refresh done: {updated} airport/coast row(s) updated")
+    return updated
+
+
 # ---------------------------------------------------------------------------
 # Risk — coarse, region-level (honest approximation)
 # ---------------------------------------------------------------------------
@@ -1004,6 +1163,8 @@ SEISMIC = {
     "湖南": "中", "江西": "中", "宁夏": "中", "新疆": "中",
     "上海": "低",
     "California": "较高",
+    "台湾": "高",
+    "香港": "低",
 }
 
 
@@ -1017,6 +1178,8 @@ def risk_all(con, log):
         # typhoon exposure: southern + coastal heuristic (CN); US Pacific coast ≈ no typhoon
         if r["prov"] in _OVERSEAS_PROV:
             typh = "极低"
+        elif r["prov"] in _TAIWAN_PROV or r["prov"] in _HK_PROV:
+            typh = "高" if ckm < 80 else "中"
         elif ckm < 60 and r["lat"] < 25:
             typh = "高"
         elif ckm < 120 and r["lat"] < 32:
@@ -1238,6 +1401,18 @@ PROVINCE_HAZARDS = {
                                ("洪涝", 3, "Urban flash flood / storm-drain overflow during intense winter storms"),
                                ("高温", 4, "Summer heat waves + downtown heat-island effect"),
                                ("干旱", 3, "Periodic SoCal multi-year drought cycles")]},
+    "台湾": {"headline": "台风高暴露+环太平洋地震带；梅雨暴雨与山区土石流",
+            "hazards": [("台风", 5, "夏秋台风登陆/影响频繁，东部走廊尤甚"),
+                        ("暴雨", 4, "梅雨季/台风暴雨"),
+                        ("洪涝", 4, "流域性洪涝与山区泥石流"),
+                        ("地质灾害", 4, "山区崩塌/滑坡/土石流"),
+                        ("地震", 3, "921集集1999 M7.3及花东长滩断层带")]},
+    "香港": {"headline": "台风暴雨高暴露；山地滑坡与暴雨内涝",
+             "hazards": [("台风", 5, "西北太平洋台风路径前沿，夏秋登陆/近距离影响频繁"),
+                         ("暴雨", 5, "黑色暴雨警告与短时极端降水"),
+                         ("洪涝内涝", 4, "山地径流+市区排水系统暴雨内涝"),
+                         ("地质灾害", 4, "半山/郊野斜坡滑坡与崩塌(雨季后)"),
+                         ("风暴潮", 3, "维多利亚港沿岸风暴增水(内陆半山经物理降尺度降低)")]},
 }
 
 # ---------------------------------------------------------------------------
@@ -1259,6 +1434,8 @@ PROVINCE_HEATING = {
     "上海": HEAT_DAMP, "浙江": HEAT_DAMP, "湖北": HEAT_DAMP,
     "重庆": HEAT_DAMP, "四川": HEAT_DAMP, "贵州": HEAT_DAMP,
     "California": "无·冬暖",  # SoCal: mild winters, no central heating
+    "台湾": HEAT_DAMP,  # subtropical north: humid winters, no central heating
+    "香港": HEAT_WARM,  # subtropical: mild dry winters, no central heating
 }
 HEATING_NOTE = {
     HEAT_HEATED: "秦岭-淮河线以北，市政集中供暖",
@@ -1405,8 +1582,12 @@ def synth_hazards(con, research_by_pref, log):
 # ---------------------------------------------------------------------------
 def geocode_query(query, prov, limit=5):
     """Province-validated geocode of an arbitrary name/address. Caller rate-limits."""
-    cc = "us" if prov in _OVERSEAS_PROV else "cn"
-    lang = "en" if prov in _OVERSEAS_PROV else "zh"
+    if prov in _OVERSEAS_PROV:
+        cc, lang = "us", "en"
+    elif prov in _TAIWAN_PROV:
+        cc, lang = "tw", "zh"
+    else:
+        cc, lang = "cn", "zh"
     url = "https://nominatim.openstreetmap.org/search?" + urllib.parse.urlencode(
         {"q": query, "format": "jsonv2", "limit": limit,
          "countrycodes": cc, "addressdetails": 1, "accept-language": lang})
@@ -1436,6 +1617,9 @@ def _poi_geocode(name, cat, row, prov):
     bases = [", ".join(locs), f"{city}, {prov}" if city else prov]
     if prov in _OVERSEAS_PROV:
         variants = [name]
+    elif prov in _TAIWAN_PROV:
+        variants = [name]
+        bases = [f"{city}, Taiwan" if city else "Taiwan"]
     elif cat == "metro":
         variants = [f"{name}地铁站", f"地铁{name}站", f"{name}站"]
     elif cat == "train":
@@ -1457,13 +1641,13 @@ def _poi_geocode(name, cat, row, prov):
     return None
 
 
-def merge_research(con, findings, log, move_flag_km=25.0, poi_max_km=60.0):
+def merge_research(con, findings, log, move_flag_km=25.0, poi_max_km=60.0, dry_run=False):
     """Fold a list of per-listing finding dicts into the DB. Returns a report.
 
     finding = {id, refined_address?, hospital_name?, mall_name?, metro_name?,
                sources?, notes?}  (any field may be null/absent)."""
     report = {"refined": 0, "moves": [], "poi_filled": {"hospital": 0, "mall": 0, "metro": 0, "train": 0},
-              "poi_name_only": 0, "rejected": [], "skipped": 0}
+              "poi_name_only": 0, "rejected": [], "skipped": 0, "kept_existing_poi": 0, "dry_run": dry_run}
     for f in findings:
         lid = f.get("id")
         row = con.execute(
@@ -1490,9 +1674,10 @@ def merge_research(con, findings, log, move_flag_km=25.0, poi_max_km=60.0):
             if g:
                 mv = (haversine(anchor[0], anchor[1], g[0], g[1])
                       if anchor[0] is not None else None)
-                con.execute("UPDATE listings SET lat=?, lng=?, geo_level='loc', "
-                            "geo_label='调研细化', geo_source='research' WHERE id=?",
-                            (round(g[0], 5), round(g[1], 5), lid))
+                if not dry_run:
+                    con.execute("UPDATE listings SET lat=?, lng=?, geo_level='loc', "
+                                "geo_label='调研细化', geo_source='research' WHERE id=?",
+                                (round(g[0], 5), round(g[1], 5), lid))
                 anchor = [g[0], g[1]]
                 report["refined"] += 1
                 if mv is not None and mv > move_flag_km:
@@ -1507,48 +1692,64 @@ def merge_research(con, findings, log, move_flag_km=25.0, poi_max_km=60.0):
             cur = con.execute("SELECT dist_km, source FROM poi WHERE listing_id=? AND category=?",
                               (lid, cat)).fetchone()
             floor = _POI_REFIX_KM.get(cat, 0)
-            if cur and cur[1] == "research" and cur[0] is not None and cur[0] >= floor:
+            if cur and not _poi_should_replace(cur, floor):
+                report["kept_existing_poi"] += 1
                 continue
-            if cur and cur[0] is not None and cur[0] >= floor:
-                continue
-            if cur and cur[0] is not None and cur[0] < floor:
-                con.execute("DELETE FROM poi WHERE listing_id=? AND category=?", (lid, cat))
             g = _poi_geocode(name, cat, row, prov)
-            time.sleep(1.1)
+            if not dry_run:
+                time.sleep(1.1)
+            new_dist = None
+            if g and anchor[0] is not None:
+                new_dist = haversine(anchor[0], anchor[1], g[0], g[1])
+            if cur and not _poi_should_replace(cur, floor, new_dist=new_dist):
+                report["kept_existing_poi"] += 1
+                continue
+            if not dry_run and cur:
+                con.execute("DELETE FROM poi WHERE listing_id=? AND category=?", (lid, cat))
             if g:
-                d = (haversine(anchor[0], anchor[1], g[0], g[1])
-                     if anchor[0] is not None else None)
+                d = new_dist
                 if d is not None and d > poi_max_km:
                     report["rejected"].append({"id": lid, "cat": cat, "name": name, "km": round(d, 1)})
                     continue
-                con.execute("INSERT OR REPLACE INTO poi (listing_id,category,name,lat,lng,dist_km,source,subtype) "
-                            "VALUES (?,?,?,?,?,?,'research',?)",
-                            (lid, cat, name, round(g[0], 5), round(g[1], 5), round(d, 1) if d else None,
-                             "highspeed" if cat == "train" and "高铁" in name else
-                             ("regular" if cat == "train" else None)))
+                if not dry_run:
+                    con.execute("INSERT OR REPLACE INTO poi (listing_id,category,name,lat,lng,dist_km,source,subtype) "
+                                "VALUES (?,?,?,?,?,?,'research',?)",
+                                (lid, cat, name, round(g[0], 5), round(g[1], 5), round(d, 1) if d else None,
+                                 "highspeed" if cat == "train" and "高铁" in name else
+                                 ("regular" if cat == "train" else None)))
                 report["poi_filled"][cat] += 1
             else:
-                # agent-verified name that Nominatim can't place → keep name-only (no pin)
-                con.execute("INSERT OR REPLACE INTO poi (listing_id,category,name,lat,lng,dist_km,source) "
-                            "VALUES (?,?,?,NULL,NULL,NULL,'research')", (lid, cat, name))
+                if not dry_run:
+                    # agent-verified name that Nominatim can't place → keep name-only (no pin)
+                    con.execute("INSERT OR REPLACE INTO poi (listing_id,category,name,lat,lng,dist_km,source) "
+                                "VALUES (?,?,?,NULL,NULL,NULL,'research')", (lid, cat, name))
                 report["poi_name_only"] += 1
-    con.commit()
+    if not dry_run:
+        con.commit()
     return report
 
 
-def merge_built_years(con, findings, log, lo=1900, hi=2026):
+def merge_built_years(con, findings, log, lo=1900, hi=None, dry_run=False):
     """Fold 建成年代 (construction-year) research findings into listings.built_year.
 
     finding = {id, builtYear:int|null, source?, yearText?, confidence:'high'|'med'|
                'approx'|'low'|'none', note?}. Anti-hallucination gate — a year is
     stored ONLY if: confidence in {high, med, approx}, a non-empty source/quote is
-    given, the year is in [lo, hi], and it is not after the listing's own update
-    year (+1 slack for pre-sale). `approx` (a cited decade-level estimate, e.g. from
-    an 老旧小区改造 list or 地方志) is stored with built_year_approx=1 and shown as
-    约 on the front end. Precedence: an approx finding never overwrites a year that
-    is already precise. Everything else stays NULL (shown as 年代未知)."""
-    rep = {"set": 0, "approx": 0, "rejected": [], "skipped_no_year": 0,
-           "missing_listing": 0, "kept_precise": 0}
+    given, the year is in [lo, hi] (hi defaults to current calendar year + 3), and
+    it is not after the listing's own update year (+1 slack for pre-sale) unless the
+    year is a cited future delivery (yr > current year → stored as future_delivery,
+    built_year_approx=1, front end shows negative 房龄 in gray). `approx` (a cited
+    decade-level estimate, e.g. from an 老旧小区改造 list or 地方志) is stored with
+    built_year_approx=1 and shown as 约 on the front end. Precedence: fill-null only,
+    or upgrade approx→precise; never overwrite an existing precise year, never
+    downgrade precise→approx, never write null over a year. Everything else stays
+    NULL (shown as 年代未知)."""
+    current_year = datetime.now(timezone.utc).year
+    if hi is None:
+        hi = current_year + 3
+    rep = {"set": 0, "approx": 0, "future_delivery": 0, "rejected": [],
+           "skipped_no_year": 0, "missing_listing": 0, "kept_existing": 0,
+           "upgraded_approx": 0, "dry_run": dry_run}
     for f in findings:
         lid = f.get("id")
         row = con.execute("SELECT loc, updated, built_year, built_year_approx "
@@ -1568,27 +1769,34 @@ def merge_built_years(con, findings, log, lo=1900, hi=2026):
             rep["rejected"].append({"id": lid, "why": "not-int", "val": yr})
             continue
         up = (row["updated"] or "")[:4]
-        up_year = int(up) if up.isdigit() else hi
+        up_year = int(up) if up.isdigit() else current_year
+        future = yr > current_year
         if yr < lo or yr > hi:
             rep["rejected"].append({"id": lid, "loc": row["loc"], "why": "out-of-range", "yr": yr})
             continue
-        if yr > up_year + 1:
+        if not future and yr > up_year + 1:
             rep["rejected"].append({"id": lid, "loc": row["loc"], "why": "after-listing", "yr": yr, "listed": up_year})
             continue
         if not src:
             rep["rejected"].append({"id": lid, "loc": row["loc"], "why": "no-source", "yr": yr})
             continue
-        approx = 1 if conf == "approx" else 0
-        # never downgrade an already-precise year to an approx estimate
-        if approx and row["built_year"] is not None and not row["built_year_approx"]:
-            rep["kept_precise"] += 1
+        approx = 1 if conf == "approx" or future else 0
+        action = _built_year_merge_action(row["built_year"], row["built_year_approx"], approx)
+        if action == "skip":
+            rep["kept_existing"] += 1
             continue
-        con.execute("UPDATE listings SET built_year=?, built_year_src=?, built_year_approx=? WHERE id=?",
-                    (yr, src[:300], approx, lid))
+        if not dry_run:
+            con.execute("UPDATE listings SET built_year=?, built_year_src=?, built_year_approx=? WHERE id=?",
+                        (yr, src[:300], approx, lid))
         rep["set"] += 1
-        if approx:
+        if action == "upgrade":
+            rep["upgraded_approx"] += 1
+        if future:
+            rep["future_delivery"] += 1
+        elif approx:
             rep["approx"] += 1
-    con.commit()
+    if not dry_run:
+        con.commit()
     return rep
 
 
@@ -1686,6 +1894,11 @@ def merge_hospital_tier3(con, findings, log, dry_run=False, max_km=_TIER3_MAX_KM
         if dist > max_km:
             rep["rejected"] += 1
             log(f"  ! id{lid} reject tier3 {dist:.1f}km > {max_km}km")
+            continue
+        existing = con.execute(
+            "SELECT dist_km FROM poi WHERE listing_id=? AND category='hospital_tier3'", (lid,)).fetchone()
+        if existing and existing["dist_km"] is not None and dist >= float(existing["dist_km"]):
+            rep["skipped"] += 1
             continue
         if not dry_run:
             con.execute(

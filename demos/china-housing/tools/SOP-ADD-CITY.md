@@ -39,6 +39,8 @@ python3 tools/manage.py import-csv 新一批.csv
 字段：`priceWan` 总价(万元)、`area` 面积(㎡)、`rent` 月租(元)、`updated` `YYYY-MM`。单价 /
 回报率等派生指标前端实时算，不入库。
 
+> **⚠️ 月租 `rent` 反幻觉铁律**：**仅当**贝壳/安居客/58/房天下/链家等**无任何当前或历史挂牌月租**时，才允许粗估入库；否则必须联网调研实际租金并附 source URL 写入 `data/research/`。**禁止**用 `priceWan×100/12`（约 1% 年化毛回报）或 cap-rate 公式替代调研。回填：`data/research/rent-backfill-*.json` → `python3 tools/apply_rent_backfill.py <json>` → `build`。
+
 > **⚠️ 入库前必做：跨时间批次去重预检（cross-temporal-batch）**。`import-csv` 的 id 留空＝**新增**，
 > 不会跟主库已有的同盘合并——一不留神就造出「富力湾 19万」和已有「富力湾 12万」两条重复。
 > **必须扫 `data/housing.db` 全库**（所有历史批次、所有 `updated` 月份），**不能只查本批 CSV**。
@@ -62,6 +64,44 @@ python3 tools/manage.py import-csv 新一批.csv
 > 4. **主库已有更便宜同盘** → 一般**保留更便宜那条、跳过新的**（本数据集主打「最便宜」）。
 > 5. **双户型同盘**（同小区不同面积/总价）→ 用面积后缀消歧：`恒大雅苑（55㎡）`，勿造第二条裸名。
 
+## 1.5 并行 agent 工作流（策略 C · 单写者 SQLite）
+
+多 agent 同时加一批房源时，**禁止**多人并行 `manage.py import-csv` / `add` / 任意 enrich 子命令写
+`data/housing.db`。采用 **策略 C**：
+
+| 角色 | 允许 | 禁止 |
+|------|------|------|
+| **调研 agent（可并行 N 个）** | 联网调研；产出 `data/research/*.json`、`data/hazard_research.json` 片段；`built-merge --dry-run` / `research-merge --dry-run` 预演 | 直接 `import-csv`；直接 `built-merge` / `research-merge`（无 dry-run）；并行 `manage.py climate*` |
+| **合并写者（唯一 1 个）** | `import-csv` → 按 §3 顺序串行 enrich → merge 命令 → `build` | 与另一写者同时开 enrich |
+
+**并行阶段产物（只写 JSON，不写 DB）：**
+
+```bash
+# 每 agent 按城市/区县 fan-out，输出到独立文件
+data/research/listing-batch-<slug>-YYYY-MM.json      # 挂牌/租金证据
+data/research/built-year-<slug>-YYYY-MM.json         # 房龄 findings
+data/research/rent-backfill-<slug>-YYYY-MM.json      # 月租 portal 调研
+# 新地市灾害类型 → 追加 prefKey 到 data/hazard_research.json（勿删已有 findings）
+```
+
+**单写者合并顺序（入库后，同一 shell 串行，勿多终端同时跑）：**
+
+```bash
+python3 tools/manage.py import-csv data/batch-<slug>.csv
+# §3 enrich 流水线（见下）— 一次只跑一条 manage.py 气候/geocode 命令
+python3 tools/manage.py built-merge data/research/built-year-<slug>.json --dry-run
+python3 tools/manage.py built-merge data/research/built-year-<slug>.json
+python3 tools/manage.py research-merge data/research/listing-batch-<slug>.json --dry-run
+python3 tools/manage.py research-merge data/research/listing-batch-<slug>.json
+python3 tools/apply_rent_backfill.py data/research/rent-backfill-<slug>.json   # 若有
+python3 tools/check_batch_complete.py --from <id0> --to <idN>   # 全绿再 build
+python3 tools/manage.py tier1-check
+python3 tools/manage.py build
+node tools/_smoke.js
+```
+
+> **SQLite 锁**：WAL 模式下长时间 `climate` 仍可能 `database is locked`——并行写者必炸。调研 agent 撞 429 只影响自己的 JSON 产出，**等配额恢复后重跑调研**，不要抢写者进程去 `climate`。
+
 ## 2. ⚠️ 新省份必做三处（否则地图不着色、灾害 / 供暖缺失）
 
 只在引入了**之前没有的省 / 直辖市**时需要：
@@ -72,9 +112,77 @@ python3 tools/manage.py import-csv 新一批.csv
 | `tools/enrich.py` → `PROVINCE_HAZARDS` | `'西藏': {"headline": "…", "hazards": [("地震", 3, "…"), …]}` |
 | `tools/enrich.py` → `PROVINCE_HEATING` | `'西藏': HEAT_HEATED`（或 PARTIAL / WARM / DAMP） |
 
+## 2.5 境外 / 特殊行政区增补（香港 · 台湾 · 加州）
+
+引入 `prov` 为 **香港** / **台湾** / **California** 时，除 §2 三处外核对：
+
+| 项 | 香港 | 台湾 | California (US) |
+|----|------|------|-------------------|
+| `app.js` → `PROV_FULL` | `'香港': '香港特别行政区'` | `'台湾': '台湾省'` | `'California': 'California'` |
+| `enrich.py` → `PROVINCE_HAZARDS` / `HEATING` | 已有台风/暴雨模板 | 已有台风/地震模板 | 无省级灾害（per-listing 仍跑 `hazard-merge` 物理细化） |
+| Geocode `countrycodes` | `cn`（`_geo_ladder` + 省份校验） | `tw`（`_geo_ladder_tw`） | `us`（`_geo_ladder_us`） |
+| 货币口径 | **港元**（`priceWan` 万港元；`rent` 港元/月）— 在 research JSON `notes` 写明 | **新台币** | **美元**（research JSON 注明） |
+| PM2.5 `pm25` | 跳过（网格外） | 跳过 | 跳过 |
+| 气候 429 兜底 | 同大陆；可 staging JSON | `tools/_tw_climate_fallback.py` + `data/research/tw-climate-cache-*.json` | ERA5 正常；无 CHAP 网格 |
+| Metro POI | 适用（港铁） | 六都适用 | 一般不要求 metro |
+
+**香港 geocode 提示**：查询串用「区 + 香港」阶梯；`prov=香港` 时 `_prov_ok` 走大陆 `cn` 路径——若 Nominatim 误配深圳，用 `research-merge` 细化地址纠正。
+
+**台湾气候并行事故**：多 agent 同时 `manage.py climate` → archive 429 → 用缓存脚本，**禁止**再开第二个 climate 进程：
+
+```bash
+# 写者：ERA5 仍 429 时，先落盘再合并（不 migrate）
+PYTHONUNBUFFERED=1 python3 tools/_tw_climate_fallback.py
+# 或全库 extended dims 补烘焙（30s pacing + 磁盘 cache）
+PYTHONUNBUFFERED=1 python3 tools/_climate_ext_refresh.py
+```
+
 ## 3. enrichment（每步**幂等可续跑**，只补缺失行）
 
-按顺序跑（或挑需要的）。中断 / 限流后**原样重跑**即可：
+### 3.0 串行 enrich 命令顺序（单写者 · 禁止跳步）
+
+**同一时刻只允许一个进程写 DB。** 按下列顺序跑；中断 / 429 后**从失败那条原样重跑**（幂等）：
+
+```bash
+python3 tools/manage.py geocode        # ① 经纬度（Nominatim ~1/s）
+python3 tools/manage.py climate        # ② 月级气候 + 尽量 co-bake daily_climate
+python3 tools/manage.py climate-daily  # ③ 仍缺 comfort/extreme 日曲线时
+python3 tools/manage.py hist-temp      # ④ 历史最高/最低温（wiki → ERA5）
+python3 tools/manage.py elevation      # ⑤ 海拔 DEM
+python3 tools/manage.py relief         # ⑥ 地形起伏（hazard-merge 前置）
+python3 tools/manage.py risk           # ⑦ 海岸/台风/地震暴露
+python3 tools/manage.py pois           # ⑧ Overpass 周边（最慢）
+python3 tools/manage.py pois-refix     # ⑨ 可疑 0m 医院 / 缺地铁城
+python3 tools/manage.py pm25           # ⑩ 可选；大陆 PM2.5（需 tools/.venv）
+python3 tools/manage.py hazard-merge data/hazard_research.json   # ⑪ 必跑
+# 调研 merge（§4）插在 pois 之后、hazard-merge 之前或之后均可
+python3 tools/manage.py built-merge … / research-merge …
+python3 tools/manage.py hazard-merge data/hazard_research.json   # 新地市类型后重跑
+```
+
+> 旧写法 `geocode && climate && …` 一键链仍可用，但**多 agent 场景必须拆成上表逐步执行**，写者不得在 agent 并行调研时后台挂 `climate`。
+
+### 3.1 气候数据获取（ERA5 / Open-Meteo）
+
+| 事实 | 说明 |
+|------|------|
+| **加权配额** | 全库 geocoded 行各跑一遍 `climate` + `climate-daily` ≈ **~235 次** archive 调用/轮（每坐标 1 次全量 daily 块）；同 IP **勿并行** `manage.py climate`。 |
+| **并发限制** | 同一公网 IP 建议 **1 个** archive 消费者；多 agent 各自 `climate` = 必 429。 |
+| **429 类型** | JSON `reason`：`minutely`（~1min）、`hourly`（等到 UTC 整点+75s）、`daily`（日配额，heavy 12 变量先挂）、`concurrent`（同时多连接）— `enrich._parse_open_meteo_429` 自动分流等待。 |
+| **pacing** | 共享 IP 时请求间隔 **≥2.5s**；`_climate_ext_refresh.py` 默认 **30s/req**。 |
+| **cache-first** | 429 或批量补洞：先 `data/.climate_daily_ext.json` / `data/research/tw-climate-cache-*.json`，再 merge 进 DB，**勿**多终端重复 fetch。 |
+| **`climate` vs `climate-daily`** | `climate` 单次 `_fetch_era5_archive_daily` 同时写 `climate` 表 + `daily_climate`；仅缺 comfort 曲线时再 `climate-daily`。 |
+| **light finisher** | 日配额耗尽、heavy 12 变量 429 但 3 变量仍可用时：`PYTHONUNBUFFERED=1 python3 tools/_finish_climate_light.py`（只补月 norm + 轻量 daily，**无** extended dims）。 |
+| **extended dims 次日补** | `PYTHONUNBUFFERED=1 python3 tools/_climate_ext_refresh.py`（雪/湿度/日照等 extended dims）。 |
+
+```bash
+# 429 后恢复模板（写者单进程）
+PYTHONUNBUFFERED=1 python3 tools/_finish_climate_light.py    # 先解 blocking gap
+PYTHONUNBUFFERED=1 python3 tools/_climate_ext_refresh.py     # 再补 extended（慢）
+python3 tools/manage.py climate        # 或重跑幂等主命令
+```
+
+### 3.2 分命令说明（与上表一致）
 
 ```bash
 python3 tools/manage.py geocode        # 经纬度 Nominatim(~1/s, 带省份校验防跨省重名)
@@ -105,10 +213,12 @@ python3 tools/manage.py hazard-merge data/hazard_research.json   # ⚠️ 必跑
 
 ```bash
 # 房龄(建成年代): findings=[{id, builtYear, yearText, source, confidence}, …]
-python3 tools/manage.py built-merge findings.json     # 校验 1900≤年≤2026 / ≤挂牌年 / 有来源；approx 不降级精确
+python3 tools/manage.py built-merge findings.json --dry-run  # 预演：kept_existing = 将被跳过的已有调研
+python3 tools/manage.py built-merge findings.json     # 校验 1900≤年≤(当年+3) / 有来源；仅填空或 approx→精确；禁覆盖已有精确年
 
 # 周边 POI 缺口 / 0m 医院：findings=[{id, hospital_name?, metro_name?, train_name?, refined_address?, sources}, …]
-python3 tools/manage.py research-merge findings.json  # 城市限定 geocode；覆盖可疑近距离 OSM 误标
+python3 tools/manage.py research-merge findings.json --dry-run
+python3 tools/manage.py research-merge findings.json  # 城市限定 geocode；仅填空或替换可疑近距离 OSM；保留 source=research 且距离合格的 POI
 
 # (可选) 新地市的真实灾情史 → 追加进 data/hazard_research.json（{findings:[{prefKey:"省|地级市", headline, hazards:[…]}]}）
 #        然后重跑上面第 3 步的 hazard-merge，新地市就从「省级兜底」升级为「地市调研类型」
@@ -117,6 +227,57 @@ python3 tools/manage.py research-merge findings.json  # 城市限定 geocode；�
 > `built-merge` **可选**（没查到 built_year 就跳过，前端显示「年代未知」）；但第 3 步的
 > `hazard-merge` **不可选**（必须有 `hazards_local`）。调研产物存 `data/research/`、
 > `data/hazard_research.json`（provenance，可复跑）。详见 README 对应小节。
+
+### enrich 不得覆盖已有调研字段（铁律）
+
+**任何 merge 写 DB 前必须先 `--dry-run`**，核对 `kept_existing` / 将跳过行数 > 0 即正常（说明保护生效）。
+
+| 字段 | 合并命令 | 规则 | 预演 |
+|------|----------|------|------|
+| `built_year` | `built-merge` | **仅填空**或 **approx→精确升级**；禁止 null/approx/另一精确年覆盖已有精确年 | `built-merge --dry-run` → `kept_existing` |
+| `poi.hospital` 等 | `research-merge` / `pois-refix` | **仅填空**或替换 **可疑近距离 OSM**；`source=research` 且 `dist_km≥floor` 禁止覆盖 | `research-merge --dry-run` |
+| `poi.hospital_tier3` | `hospital-tier3-merge` | 仅当无 tier3 或新距离**更近**时写入 | — |
+| `rent` | `apply_rent_backfill.py` | 仅当 research JSON 含 portal URL；**估算只允许写在 JSON**（`method:estimate`），禁止 cap-rate 入库 | 人工 diff research JSON |
+| `hazards_local` | `hazard-merge` | 重算物理频率；**不删** `hazard_research.json` 中已有 prefKey 类型 | 对比 `headline` 是否仍为省级兜底 |
+
+实现：`enrich._built_year_merge_action`、`_poi_should_replace`。调研 agent **只追加** JSON；写者 `--dry-run` 通过后再正式 merge。
+
+```bash
+python3 tools/manage.py built-merge data/research/built-year-foo.json --dry-run
+# 输出 kept_existing: N  →  N 条已有精确年将被保护
+python3 tools/manage.py research-merge data/research/listing-batch-foo.json --dry-run
+```
+
+## 4.5 新批次完成定义（build 前 checklist）
+
+**标记本批「完成」前**，写者必须全绿（可用脚本自动验）：
+
+```bash
+python3 tools/check_batch_complete.py --from <首批id> --to <末批id>
+# 输出 BATCH_COMPLETE_OK 方可 build；否则按 missing 字段回 §3 补跑
+```
+
+| # | 门禁项 | 验证方式 |
+|---|--------|----------|
+| 1 | **去重预检** | §1 `loc LIKE` 全库扫描已完成 |
+| 2 | **geocode** `lat`/`lng` | `check_batch_complete` → `geocode_lat_lng` |
+| 3 | **climate 12 月** + **daily_climate**（comfort/extreme） | `climate_12mo` + `daily_climate` |
+| 4 | **elevation** | `elevation` |
+| 5 | **relief** + **risk** + **hazard-merge** | `relief`/`risk`/`hazards_local`；若 `hazard_research.json` 已有该 `prefKey` 则不得 `hazard_merge_prefecture`（省级 headline 兜底） |
+| 6 | **POI** hospital / train / airport / coast / hsr + 轨交城 **metro** | `poi_*`；`poi_done` 行存在 |
+| 7 | **built_year** 有来源 **或** research JSON `confidence:none` 建档 | `built_year_or_documented_unknown` |
+| 8 | **rent** portal 调研 **或** JSON 注明无市场（估算仅 JSON） | `rent_or_research`（`rent>0` 或 rent-backfill 条目） |
+| 9 | **hist_temp_max/min** | `hist_temp_max_min`（`manage.py hist-temp`） |
+| 10 | **tier1-check** | `manage.py tier1-check` 默认可见套数符合预期 |
+| 11 | **build + smoke** | `manage.py build` → `node tools/_smoke.js`；失败则同步 `_smoke.js` 硬编码套数 |
+
+```bash
+python3 tools/manage.py hist-temp
+python3 tools/manage.py tier1-check
+python3 tools/check_batch_complete.py --from 357 --to 359
+python3 tools/manage.py build
+node tools/_smoke.js
+```
 
 ## 5. 默认视图过滤（**自动判断，勿手填 id 列表**）
 
@@ -168,6 +329,8 @@ python3 tools/manage.py build
 **增删 listings 行后必做（顺序固定）：**
 
 ```bash
+python3 tools/check_batch_complete.py --from <id0> --to <idN>   # 或整库；须 BATCH_COMPLETE_OK
+python3 tools/manage.py tier1-check
 python3 tools/manage.py build          # ① 重生成 assets/data/*.js + sync index.html 计数
 node tools/_smoke.js                   # ② 无头冒烟（DOM/Chart/表格路径）
 ```
@@ -193,15 +356,26 @@ git push origin master
 ## 速查 · 最小闭环
 
 ```bash
-# 先去重预检(见 §1)：跨时间批次全库 loc LIKE 扫，决定 跳过 / 改名消歧 / 覆盖
+# ① 调研阶段（多 agent 并行，只写 JSON）
+#    data/research/*.json + hazard_research 追加 prefKey
+
+# ② 写者单进程入库 + enrich（§1 去重 → import → §3 串行 enrich → §4 merge）
 sqlite3 data/housing.db "SELECT id,loc,city,dist,priceWan,area,updated FROM listings WHERE loc LIKE '%关键词%';"
-python3 tools/manage.py import-csv 新城市.csv
-python3 tools/manage.py geocode && python3 tools/manage.py climate && \
-python3 tools/manage.py climate-daily && python3 tools/manage.py elevation && \
-python3 tools/manage.py relief && python3 tools/manage.py risk && python3 tools/manage.py pois && \
-python3 tools/manage.py hazard-merge data/hazard_research.json   # ← 别漏！每小区灾害
-# (新省份? 先改 app.js PROV_FULL + enrich.py PROVINCE_HAZARDS/HEATING)
-python3 tools/manage.py tier1-check   # 自动核对超阈值过滤（§5）
+python3 tools/manage.py import-csv data/batch-<slug>.csv
+python3 tools/manage.py geocode
+python3 tools/manage.py climate && python3 tools/manage.py climate-daily
+python3 tools/manage.py hist-temp
+python3 tools/manage.py elevation && python3 tools/manage.py relief && python3 tools/manage.py risk
+python3 tools/manage.py pois && python3 tools/manage.py pois-refix
+python3 tools/manage.py hazard-merge data/hazard_research.json
+python3 tools/manage.py built-merge data/research/built-year-<slug>.json --dry-run
+python3 tools/manage.py built-merge data/research/built-year-<slug>.json
+python3 tools/manage.py research-merge data/research/listing-batch-<slug>.json --dry-run
+python3 tools/manage.py research-merge data/research/listing-batch-<slug>.json
+# (新省份? §2 PROV_FULL + PROVINCE_HAZARDS/HEATING；境外 §2.5)
+python3 tools/check_batch_complete.py --from <id0> --to <idN>
+python3 tools/manage.py tier1-check
 python3 tools/manage.py build
-node tools/_smoke.js                  # 失败则同步 _smoke.js 硬编码套数后重跑（§7）
+node tools/_smoke.js
+# 429 气候兜底: _finish_climate_light.py → _climate_ext_refresh.py（§3.1）
 ```
