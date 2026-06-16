@@ -290,12 +290,14 @@ setTimeout(() => {
     selCache['[data-prov]'].find((b) => b.dataset.prov === 'avgExtreme').fire('click');
     const strip = ids['province-strip'];
     T('prov strip no truncate', strip && strip._html && !/truncate/.test(strip._html) && /Heilongjiang/.test(strip._html));
+    T('prov extreme strip summary col en', strip && /avg extreme/.test(strip._html) && /\d+\s*d\b/.test(strip._html));
     w.__setLang('zh');
     selCache['[data-prov]'].find((b) => b.dataset.prov === 'avgComfort').fire('click');
     const comfortStrip = ids['province-strip'];
     T('prov comfort strip visible', comfortStrip && comfortStrip.style.display !== 'none' && comfortStrip._html.length > 200);
     T('prov comfort strip zh note', comfortStrip && /绿段/.test(comfortStrip._html));
     T('prov comfort strip green spans', comfortStrip && /套舒适/.test(comfortStrip._html));
+    T('prov comfort strip summary col zh', comfortStrip && /均舒适/.test(comfortStrip._html) && /\d+天/.test(comfortStrip._html));
     T('prov comfort canvas hidden', provCanvas.style.display === 'none');
     selCache['[data-prov]'].find((b) => b.dataset.prov === 'avgHazard').fire('click');
     T('prov hazard chart', lastChartCfg && lastChartCfg.data.datasets[0].data.every((v) => typeof v === 'number'));
