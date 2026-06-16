@@ -984,6 +984,8 @@
     return Math.max(PROV_CHART_MIN_H, Math.min(n * rowH + PROV_CHART_PAD, maxH));
   }
   function provLabelCol() { return isEn() ? '8.5rem' : '3.25rem'; }
+  function provStripSummaryCol() { return isEn() ? '4.25rem' : '3rem'; }
+  function provStripGridCols() { return `${provLabelCol()} 1fr ${provStripSummaryCol()}`; }
   function applyProvChartHeight(n) {
     const wrap = provChartWrap();
     if (!wrap) return;
@@ -1013,7 +1015,13 @@
         : (b.avgExtremeDays ?? b.avgExtreme ?? 0) - (a.avgExtremeDays ?? a.avgExtreme ?? 0))
         || a.prov.localeCompare(b.prov, 'zh'));
     applyProvChartHeight(agg.length);
-    const GT = `grid-template-columns: ${provLabelCol()} 1fr`;
+    const GT = `grid-template-columns: ${provStripGridCols()}`;
+    const mCfg = provMetricCfg(provMetric);
+    const summaryKey = isComfort ? 'provStripColComfort' : 'provStripColExtreme';
+    const summaryDays = (a) => {
+      const v = isComfort ? a.avgComfort : (a.avgExtremeDays ?? a.avgExtreme);
+      return v != null ? mCfg.fmt(v) : '—';
+    };
     // month boundaries (%) + centres on a 365-day axis
     const bnd = []; let acc = 0; for (let i = 0; i < 12; i++) { acc += _DIM[i]; bnd.push(acc / 365 * 100); }
     const ctr = []; let p0 = 0; for (let i = 0; i < 12; i++) { ctr.push((p0 + bnd[i]) / 2); p0 = bnd[i]; }
@@ -1022,7 +1030,8 @@
       `linear-gradient(90deg, transparent calc(${p}% - 0.5px), ${gridLine} ${p}%, transparent calc(${p}% + 0.5px))`).join(',');
     const sBg = isDark() ? '#1e293b' : '#ffffff';
     const head = `<div class="grid items-center gap-px text-[0.6rem] sticky top-0 z-10 pb-1" style="${GT};background:${sBg};color:${themeMuted()}"><div></div>`
-      + `<div class="relative h-3">${ctr.map((c, i) => `<span style="position:absolute;left:${c}%;transform:translateX(-50%)">${i + 1}</span>`).join('')}</div></div>`;
+      + `<div class="relative h-3">${ctr.map((c, i) => `<span style="position:absolute;left:${c}%;transform:translateX(-50%)">${i + 1}</span>`).join('')}</div>`
+      + `<div class="text-right pr-0.5 whitespace-nowrap">${t(summaryKey)}</div></div>`;
     const spanColor = isComfort ? comfortColor : severityColor;
     const listingsKey = isComfort ? 'provComfortListings' : 'provExtremeListings';
     const titleKey = isComfort ? 'provComfortTitle' : 'provExtremeTitle';
@@ -1043,9 +1052,12 @@
     };
     const provColor = isDark() ? '#94a3b8' : '#475569';
     const stripBg = isDark() ? 'rgba(30,41,59,0.7)' : 'rgba(241,245,249,0.7)';
-    const body = agg.map((a) =>
-      `<div class="grid items-center gap-px py-px" style="${GT}"><div class="text-xs pr-1 whitespace-nowrap" style="color:${provColor}" title="${trProv(a.prov)} · ${t(titleKey)} ${a[rangeKey]}">${trProv(a.prov)}</div>`
-      + `<div class="relative h-5 rounded-sm" style="${gridImg};background-color:${stripBg}">${blocksFor(a)}</div></div>`).join('');
+    const body = agg.map((a) => {
+      const days = summaryDays(a);
+      return `<div class="grid items-center gap-px py-px" style="${GT}"><div class="text-xs pr-1 whitespace-nowrap" style="color:${provColor}" title="${trProv(a.prov)} · ${t(titleKey)} ${a[rangeKey]} · ${t(summaryKey)} ${days}">${trProv(a.prov)}</div>`
+        + `<div class="relative h-5 rounded-sm" style="${gridImg};background-color:${stripBg}">${blocksFor(a)}</div>`
+        + `<div class="text-xs text-right tabular-nums whitespace-nowrap pr-0.5" style="color:${provColor}" title="${t(summaryKey)} ${days}">${days}</div></div>`;
+    }).join('');
     strip.innerHTML = head + body
       + `<div class="text-[0.62rem] mt-2 leading-relaxed" style="color:${themeMuted()}">${t(isComfort ? 'provStripNoteComfort' : 'provStripNote')}</div>`;
   }
