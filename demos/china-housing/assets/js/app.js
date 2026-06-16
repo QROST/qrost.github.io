@@ -30,6 +30,9 @@
   'use strict';
 
   const EXTREME_HEAT_TMAX_C = 33; // livability extreme-heat: smoothed daily high °C
+  const EXTREME_COLD_TMEAN_C = -5; // livability extreme-cold: smoothed daily mean °C
+  const COMFORT_TMIN_C = 8;        // comfort-day band: daily low ≥
+  const COMFORT_TMAX_C = 26;       // comfort-day band: daily high ≤
 
   // ---- palette -----------------------------------------------------------
   const C = {
@@ -1476,8 +1479,6 @@
       rangeMaxT: Math.max(1, ...vd.map((d) => nz(d.tempRange, 0))),
     };
   }
-  // Jan/Jul mean + record high/low share one °C domain for table ramp pills.
-  const TEMP_SCALE_KEYS = ['janTemp', 'julTemp', 'histTempMax', 'histTempMin'];
   // Min/max domains for table ramp cells (relative to the visible population).
   function viewTableScales() {
     const vd = viewData();
@@ -1486,11 +1487,7 @@
       if (!xs.length) return { min: 0, max: fallback };
       return { min: Math.min(...xs), max: Math.max(...xs) };
     };
-    const tempXs = vd.flatMap((d) => TEMP_SCALE_KEYS.map((k) => d[k]).filter((v) => v != null && isFinite(v)));
     return {
-      temp: tempXs.length
-        ? { min: Math.min(...tempXs), max: Math.max(...tempXs) }
-        : { min: -20, max: 35 },
       annualPrecip: span('annualPrecip', 2000),
       elevation: span('elevation', 5000),
       hospitalKm: span('hospitalKm', 80),
@@ -1548,11 +1545,30 @@
     const tip = title ? ` title="${String(title).replace(/"/g, '&quot;')}"` : '';
     return `<span class="inline-block rounded px-1.5 py-0.5 text-xs font-medium tabular-nums"${tip} style="background:${bg};color:${fg || '#0f172a'}">${html}</span>`;
   }
+  // Table temp pill colours: fixed °C comfort/extreme bands (same anchors as comfort/extreme
+  // day rules — extreme cold mean < -5°C, comfort 8–26°C, extreme heat high ≥ 33°C).
+  // Five segments, NOT min–max linear over visible rows; English display is °F but colour from °C.
+  const TEMP_COL_EXTREME_COLD = hexRgb('#2563eb');
+  const TEMP_COL_COMFORT = hexRgb('#059669');
+  const TEMP_COL_WARM = hexRgb('#fb923c');
+  const TEMP_COL_EXTREME_HEAT = hexRgb('#dc2626');
+  const TEMP_COL_CYAN = hexRgb('#06b6d4');
+  function tempComfortColor(c) {
+    if (c == null || !isFinite(c)) return null;
+    if (c <= EXTREME_COLD_TMEAN_C) return mix(TEMP_COL_EXTREME_COLD, TEMP_COL_EXTREME_COLD, 0);
+    if (c >= EXTREME_HEAT_TMAX_C) return mix(TEMP_COL_EXTREME_HEAT, TEMP_COL_EXTREME_HEAT, 0);
+    if (c >= COMFORT_TMAX_C) {
+      const t = (c - COMFORT_TMAX_C) / (EXTREME_HEAT_TMAX_C - COMFORT_TMAX_C);
+      return t < 0.5 ? mix(TEMP_COL_COMFORT, TEMP_COL_WARM, t * 2) : mix(TEMP_COL_WARM, TEMP_COL_EXTREME_HEAT, (t - 0.5) * 2);
+    }
+    if (c >= COMFORT_TMIN_C) return mix(TEMP_COL_COMFORT, TEMP_COL_COMFORT, 0);
+    const t = (c - EXTREME_COLD_TMEAN_C) / (COMFORT_TMIN_C - EXTREME_COLD_TMEAN_C);
+    return t < 0.5 ? mix(TEMP_COL_EXTREME_COLD, TEMP_COL_CYAN, t * 2) : mix(TEMP_COL_CYAN, TEMP_COL_COMFORT, (t - 0.5) * 2);
+  }
   // Colour from underlying °C; display via fmtTemp (°F in English).
   function tempCell(val, title) {
     if (val == null) return `<span class="${tcx().faint}">—</span>`;
-    const frac = tableFrac(val, viewTableScales().temp);
-    const bg = tableRampBg('temp', frac);
+    const bg = tempComfortColor(val);
     return pill(fmtTemp(val), bg, pillFgForBg(bg), title);
   }
   function precipCell(d) {
@@ -2853,6 +2869,7 @@
   window.__getLang = () => (I18N().getLang ? I18N().getLang() : 'zh');
   window.__setLang = (l) => { if (I18N().setLang) { I18N().setLang(l, true); applyLangToUI(); } };
   window.__cityLabel = (d) => cityLabel(d);
+  window.__tempComfortColor = (c) => tempComfortColor(c);
 
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
   else init();
