@@ -8,7 +8,7 @@ const read = (p) => fs.readFileSync(path.join(DIR, p), 'utf8');
 
 const SELS = {
   '[data-rank]': ['cheap', 'unit', 'comfort', 'extreme', 'yield'].map((rank) => ({ rank })),
-  '[data-prov]': ['avgRange', 'avgExtreme', 'avgUnit', 'avgPrice'].map((prov) => ({ prov })),
+  '[data-prov]': ['avgRange', 'avgExtreme', 'avgComfort', 'avgElev', 'avgPrecip', 'avgHazard'].map((prov) => ({ prov })),
   '[data-dim]': ['unitPrice', 'priceWan', 'tempRange', 'janTemp', 'julTemp', 'annualPrecip', 'elevation', 'hazardFreq', 'builtAge'].map((dim) => ({ dim })),
   '[data-base]': ['janTemp', 'julTemp', 'elevation', 'annualPrecip', 'none'].map((base) => ({ base })),
   '[data-group]': ['live', 'infra', 'risk', 'invest'].map((group) => ({ group })),
@@ -82,6 +82,7 @@ const localStorage = { getItem(k) { return store[k] ?? null; }, setItem(k, v) { 
 const sessionStorage = { getItem() { return null; }, setItem() {} };
 const sandbox = { window: {}, document, Chart, echarts, L, console, setTimeout, JSON, Math, Object, Array, String, Number, Map, Set, parseInt, parseFloat, localStorage, sessionStorage, fetch: () => Promise.reject(new Error('offline')), Blob: function () {}, URL: { createObjectURL() { return ''; }, revokeObjectURL() {} } };
 sandbox.window.Chart = Chart; sandbox.window.echarts = echarts; sandbox.window.L = L; sandbox.window.addEventListener = () => {};
+sandbox.window.matchMedia = (q) => ({ matches: /max-width:\s*639px/.test(q), media: q, addEventListener() {}, removeEventListener() {}, addListener() {}, removeListener() {} });
 sandbox.globalThis = sandbox; vm.createContext(sandbox);
 const run = (f) => vm.runInContext(read(f), sandbox, { filename: f });
 ids['lang-toggle'] = el({ id: 'lang-toggle' });
@@ -115,9 +116,9 @@ ids['listing-modal'].classList = { _c: new Set(['hidden']), contains(c) { return
 setTimeout(() => {
   const w = sandbox.window; const checks = [];
   const T = (n, p) => checks.push([n, !!p]);
-  T('listings 334', (w.HOUSING_LISTINGS || []).length === 334);
-  T('enriched 334', Object.keys(w.HOUSING_ENRICHED || {}).length === 334);
-  T('hazards 30', Object.keys(w.HOUSING_HAZARDS || {}).length === 30);
+  T('listings 347', (w.HOUSING_LISTINGS || []).length === 347);
+  T('enriched 347', Object.keys(w.HOUSING_ENRICHED || {}).length === 347);
+  T('hazards 32', Object.keys(w.HOUSING_HAZARDS || {}).length === 32);
   T('field 4 fields', w.HOUSING_FIELD && Object.keys(w.HOUSING_FIELD.fields).length === 4);
   T('field elevation 973pts', w.HOUSING_FIELD && w.HOUSING_FIELD.fields.elevation.points.length === 973);
   T('geo-en districts CJK-free', Object.values((w.HOUSING_GEO_EN || {}).district || {}).every((v) => !zhRe.test(v)));
@@ -134,12 +135,23 @@ setTimeout(() => {
   T('no 宜居指数 anywhere', !/宜居指数/.test(ids['table-head']._html) && !/宜居指数/.test(ids['table-body']._html));
   T('climate types rendered', /(四季如春|常年温暖|四季分明|长夏无冬|夏热冬暖|冬暖夏凉|常年凉冷|温和过渡)/.test(ids['table-body']._html));
   T('table body', (ids['table-body']._html || '').length > 1000);
+  T('table precip ramp pills', /style="background:(?:#[0-9a-f]{3,8}|rgb\(\d+,\d+,\d+\));color:#(?:0f172a|f8fafc)">\d+mm/.test(ids['table-body']._html));
+  T('table temp ramp pills', /style="background:(?:#[0-9a-f]{3,8}|rgb\(\d+,\d+,\d+\));color:#(?:0f172a|f8fafc)">-?\d+°C/.test(ids['table-body']._html));
+  T('table elev terrain pills', /style="background:(?:#[0-9a-f]{3,8}|rgb\(\d+,\d+,\d+\));color:#(?:0f172a|f8fafc)">\d+m\b/.test(ids['table-body']._html));
+  T('table dist gray pills', /style="background:rgb\(\d+,\d+,\d+\);color:#(?:0f172a|f8fafc)">[^<]{1,48}(?: km|\d+m\b)/.test(ids['table-body']._html));
   T('table count 247 default', /显示 247 \/ 247/.test(ids['table-count'].textContent));
   ids['tier1-toggle'] = { checked: false, addEventListener() {} };
   T('tier1 toggle wired', typeof w.__setTier1On === 'function');
   try {
     w.__setTier1On(true);
-    T('table count 334 tier1', /显示 334 \/ 334/.test(ids['table-count'].textContent));
+    T('table count 347 tier1', /显示 347 \/ 347/.test(ids['table-count'].textContent));
+    T('prov California zh 加州', w.HOUSING_I18N.displayProvince('California') === '加州');
+    const cal = (w.HOUSING_LISTINGS || []).find((r) => r.id === 284);
+    T('cityLabel California zh 加州', cal && w.__cityLabel && w.__cityLabel(cal).startsWith('加州'));
+    w.__setLang('en');
+    T('prov California en', w.HOUSING_I18N.displayProvince('California') === 'California');
+    T('cityLabel California en', cal && w.__cityLabel && w.__cityLabel(cal).startsWith('California'));
+    w.__setLang('zh');
     w.__setTier1On(false);
   } catch (e) { T('tier1 toggle — ' + e.message, false); }
   T('table head heating+freq', /供暖/.test(ids['table-head']._html) && /当地灾种·常见度/.test(ids['table-head']._html));
@@ -196,6 +208,15 @@ setTimeout(() => {
     selCache['[data-dim]'].find((b) => b.dataset.dim === 'builtAge').fire('click');
     const vmAgeEn = (lastMapVm && lastMapVm[0] && lastMapVm[0].text) || [];
     T('map builtAge legend en', vmAgeEn[0] === 'old' && vmAgeEn[1] === 'new');
+    const e335 = w.HOUSING_ENRICHED && w.HOUSING_ENRICHED['335'];
+    T('future builtYear 335 in enrich', e335 && e335.builtYear === 2027);
+    w.__setTier1On(true);
+    w.__setLang('zh');
+    T('future built cell zh', /未交付/.test(ids['table-body']._html) && /cbd5e1/i.test(ids['table-body']._html));
+    w.__setLang('en');
+    T('future built cell en', /−\d+ yr/.test(ids['table-body']._html));
+    w.__setLang('zh');
+    w.__setTier1On(false);
     w.__setLang('zh');
     selCache['[data-dim]'].find((b) => b.dataset.dim === 'tempRange').fire('click');
   } catch (e) { T('map dims — ' + e.message, false); }
@@ -257,7 +278,16 @@ setTimeout(() => {
     const strip = ids['province-strip'];
     T('prov strip no truncate', strip && strip._html && !/truncate/.test(strip._html) && /Heilongjiang/.test(strip._html));
     w.__setLang('zh');
-    selCache['[data-prov]'].find((b) => b.dataset.prov === 'avgRange').fire('click');
+    selCache['[data-prov]'].find((b) => b.dataset.prov === 'avgComfort').fire('click');
+    const comfortStrip = ids['province-strip'];
+    T('prov comfort strip visible', comfortStrip && comfortStrip.style.display !== 'none' && comfortStrip._html.length > 200);
+    T('prov comfort strip zh note', comfortStrip && /绿段/.test(comfortStrip._html));
+    T('prov comfort strip green spans', comfortStrip && /套舒适/.test(comfortStrip._html));
+    T('prov comfort canvas hidden', provCanvas.style.display === 'none');
+    selCache['[data-prov]'].find((b) => b.dataset.prov === 'avgHazard').fire('click');
+    T('prov hazard chart', lastChartCfg && lastChartCfg.data.datasets[0].data.every((v) => typeof v === 'number'));
+    T('prov no price tabs', !['avgUnit', 'avgPrice'].some((k) => selCache['[data-prov]'].some((b) => b.dataset.prov === k)));
+    w.__setLang('zh');
   } catch (e) { T('prov+rank — ' + e.message, false); }
   try {
     selCache['[data-group]'].forEach((b) => b.fire('click'));
@@ -267,10 +297,16 @@ setTimeout(() => {
   try { ids['table-body'].fire('click', { target: { closest: () => ({ dataset: { open: '65' } }) } }); selCache['[data-lm-tab]'].find((b) => b.dataset.lmTab === 'climate').fire('click'); T('modal climate+hazard+供暖', /历史灾害概况/.test(ids['lm-risk']._html) && /冬季供暖/.test(ids['lm-risk']._html) && /年温差/.test(ids['lm-risk']._html)); } catch (e) { T('modal — ' + e.message, false); }
   try {
     ids['theme-toggle'].fire('click');
+    ensureGroupsOn();
     T('dark theme table cells', /text-slate-300/.test(ids['table-body']._html));
+    T('dark theme precip pills', /style="background:(?:#[0-9a-f]{3,8}|rgb\(\d+,\d+,\d+\));color:#(?:0f172a|f8fafc)">\d+mm/.test(ids['table-body']._html));
+    T('dark theme elev pills', /style="background:(?:#[0-9a-f]{3,8}|rgb\(\d+,\d+,\d+\));color:#(?:0f172a|f8fafc)">\d+m\b/.test(ids['table-body']._html));
+    T('dark theme dist pills', /style="background:rgb\(\d+,\d+,\d+\);color:#(?:0f172a|f8fafc)">[^<]{1,48}(?: km|\d+m\b)/.test(ids['table-body']._html));
     T('dark theme table head', /bg-slate-800/.test(ids['table-head']._html));
     T('dark theme kpi card', ids['kpi-grid']._html.length > 100 && !/dark:bg-slate-800/.test(ids['kpi-grid']._html));
-    const darkChip = selCache['[data-group]'].find((b) => b.dataset.group === 'live').className;
+    const liveGrpBtn = selCache['[data-group]'].find((b) => b.dataset.group === 'live');
+    if (/bg-emerald/.test(liveGrpBtn.className)) liveGrpBtn.fire('click');
+    const darkChip = liveGrpBtn.className;
     T('dark theme chip explicit bg', /bg-slate-800/.test(darkChip) && !/dark:/.test(darkChip));
     ids['theme-toggle'].fire('click');
     T('light theme table cells', /text-slate-700/.test(ids['table-body']._html));
@@ -304,6 +340,7 @@ setTimeout(() => {
     }));
     T('zh table has m elev', /\d+m\b/.test(ids['table-body']._html));
     T('zh hist temp columns', /历史最高温/.test(ids['table-head']._html) && /历史最低温/.test(ids['table-head']._html));
+    T('mobile card temp pills', /style="background:(?:#[0-9a-f]{3,8}|rgb\(\d+,\d+,\d+\));color:#(?:0f172a|f8fafc)">-?\d+°C/.test((ids['table-cards'] && ids['table-cards']._html) || ''));
     w.__setLang('en');
     T('lang en', w.__getLang() === 'en');
     T('housing-lang persisted', localStorage.getItem('housing-lang') === 'en');
@@ -324,6 +361,7 @@ setTimeout(() => {
     T('en heating cell', /Central heating|No heating/.test(ids['table-body']._html));
     T('en kpi no zh', !zhRe.test(ids['kpi-grid']._html));
     T('en has °F', /°F/.test(ids['table-body']._html));
+    T('en table temp pills °F', /style="background:(?:#[0-9a-f]{3,8}|rgb\(\d+,\d+,\d+\));color:#(?:0f172a|f8fafc)">-?\d+°F/.test(ids['table-body']._html));
     T('en has mi', /\d+(\.\d+)? mi|\d+ ft/.test(ids['table-body']._html));
     T('en table elev ft', /\d[\d,]* ft/.test(ids['table-body']._html));
     T('en table precip in', /\d+(\.\d+)? in/.test(ids['table-body']._html));

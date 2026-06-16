@@ -68,7 +68,7 @@
   const trFs = (v) => (disp().displayFreqShort && isEn()) ? disp().displayFreqShort(v) : v;
   const trFl = (v) => (disp().displayFreqLabel && isEn()) ? disp().displayFreqLabel(v) : v;
   const trFc = (v) => (disp().displayFreqCommonness ? disp().displayFreqCommonness(v) : '');
-  const trProv = (v) => (disp().displayProvince && isEn()) ? disp().displayProvince(v) : v;
+  const trProv = (v) => (disp().displayProvince ? disp().displayProvince(v) : v);
   const trCity = (v) => (disp().displayCity && isEn()) ? disp().displayCity(v) : v;
   const trDist = (v) => (disp().displayDistrict && isEn()) ? disp().displayDistrict(v) : v;
   const trSeis = (v) => (disp().displaySeismic && isEn()) ? disp().displaySeismic(v) : v;
@@ -95,7 +95,9 @@
     '甘肃': '甘肃省', '海南': '海南省', '内蒙古': '内蒙古自治区',
     '山西': '山西省', '陕西': '陕西省', '宁夏': '宁夏回族自治区',
     '新疆': '新疆维吾尔自治区', '湖南': '湖南省', '江西': '江西省',
+    '台湾': '台湾省',
     'California': 'California',
+    '香港': '香港特别行政区',
   };
 
   // ---- metric derivation -------------------------------------------------
@@ -429,6 +431,19 @@
   // distinct from value-green / severity-red / swing-violet; green end nods to
   // value since newer ≈ better condition.
   const AGE_NEW = [5, 150, 105], AGE_OLD = [180, 83, 9];
+  const AGE_FUTURE = '#cbd5e1'; // slate-300 — 未交付期房
+  function builtAgeOf(d) {
+    if (d.builtYear == null) return null;
+    return NOW_YEAR - d.builtYear;
+  }
+  function fmtBuiltAgeLabel(age) {
+    if (age == null) return '—';
+    if (age < 0) {
+      const n = -age;
+      return isEn() ? `−${n} yr` : `未交付 · ${n}年后`;
+    }
+    return `${age}${isEn() ? ' yr' : '年'}`;
+  }
   const NOW_YEAR = new Date().getFullYear();
 
   // ---- report-card grades -------------------------------------------------
@@ -911,21 +926,39 @@
         });
       });
       const extremeRange = anyDaily ? flagsToDayRange(extremeByDay.map((c) => c > 0)) : monthRanges(exUnion);
+      const cmUnion = [...new Set(rows.flatMap((r) => r.comfortSet || []))].sort((a, b) => a - b);
+      const comfortByDay = new Array(365).fill(0);
+      let anyComfortDaily = false;
+      rows.forEach((r) => {
+        const dd = r.daily; if (!dd || !dd.comfortDays) return; anyComfortDaily = true;
+        dd.comfortDays.forEach(([s, e]) => {
+          if (s <= e) { for (let i = s; i <= e; i++) comfortByDay[i - 1] += 1; }
+          else { for (let i = s; i <= 365; i++) comfortByDay[i - 1] += 1; for (let i = 1; i <= e; i++) comfortByDay[i - 1] += 1; }
+        });
+      });
+      const comfortRange = anyComfortDaily ? flagsToDayRange(comfortByDay.map((c) => c > 0)) : monthRanges(cmUnion);
       return {
         prov, count: rows.length,
-        avgPrice: avg('priceWan'), avgUnit: avg('unitPrice'), avgYield: avg('yieldPct'),
-        avgRent: avg('rent'), avgRange: avg('tempRange'),
+        avgRange: avg('tempRange'),
+        avgComfort: avg('comfortDayCount'),
+        avgElev: avg('elevation'),
+        avgPrecip: avg('annualPrecip'),
+        avgHospital: avg('hospitalKm'),
+        avgHazard: avg('hazardBurden'),
         avgExtreme: avg('extremeMonths'), avgExtremeDays: avg('extremeDayCount'),
         extremeRange, extremeByMonth, extremeByDay,
+        comfortRange, comfortByDay,
       };
     });
   }
 
   const PROV_METRICS = {
-    avgUnit: { labelKey: 'provAvgUnit', axisKey: 'provAxisAvgUnit', fmt: (v) => fmtUnit(v), dir: -1, color: C.emeraldSoft },
-    avgPrice: { labelKey: 'provAvgPrice', axisKey: 'provAxisAvgPrice', fmt: fmtWan, dir: -1, color: C.emeraldSoft },
     avgRange: { labelKey: 'provAvgRange', axisKey: 'provAxisAvgRange', fmt: fmtSwing, dir: -1, color: 'rgba(67,56,202,0.5)' },
     avgExtreme: { labelKey: 'provAvgExtreme', axisKey: 'provAxisAvgExtreme', fmt: (v) => Math.round(v) + t('daySuffix'), dir: -1, color: 'rgba(185,28,28,0.5)' },
+    avgComfort: { labelKey: 'provAvgComfort', axisKey: 'provAxisAvgComfort', fmt: (v) => Math.round(v) + t('daySuffix'), dir: 1, color: 'rgba(5,150,105,0.55)' },
+    avgElev: { labelKey: 'provAvgElev', axisKey: 'provAxisAvgElev', fmt: fmtElev, dir: 1, color: 'rgba(120,113,108,0.55)' },
+    avgPrecip: { labelKey: 'provAvgPrecip', axisKey: 'provAxisAvgPrecip', fmt: fmtPrecip, dir: 1, color: 'rgba(59,130,246,0.5)' },
+    avgHazard: { labelKey: 'provAvgHazard', axisKey: 'provAxisAvgHazard', fmt: (v) => (v == null ? '—' : v.toFixed(1)), dir: -1, color: 'rgba(217,119,6,0.55)' },
   };
   const provMetricCfg = (k) => {
     const m = PROV_METRICS[k] || PROV_METRICS.avgRange;
@@ -955,11 +988,12 @@
     wrap.style.overflowY = '';
   }
 
-  // avgExtreme view: a 365-day strip per province (vertical ticks = month boundaries).
-  // Red spans = days when some listing in the province is extreme; depth = share affected.
+  // avgExtreme / avgComfort: 365-day strip per province (vertical ticks = month boundaries).
+  // Color spans = days when some listing is extreme (red) or comfortable (green); depth = share.
   function renderProvinceStrip() {
     const canvas = document.getElementById('province-chart');
     if (!canvas) return;
+    const isComfort = provMetric === 'avgComfort';
     if (provChart) { provChart.destroy(); provChart = null; }
     canvas.style.display = 'none';
     let strip = document.getElementById('province-strip');
@@ -971,7 +1005,10 @@
     }
     strip.style.display = '';
     const agg = aggregateByProvince()
-      .sort((a, b) => (b.avgExtremeDays ?? b.avgExtreme ?? 0) - (a.avgExtremeDays ?? a.avgExtreme ?? 0) || a.prov.localeCompare(b.prov, 'zh'));
+      .sort((a, b) => (isComfort
+        ? (b.avgComfort ?? 0) - (a.avgComfort ?? 0)
+        : (b.avgExtremeDays ?? b.avgExtreme ?? 0) - (a.avgExtremeDays ?? a.avgExtreme ?? 0))
+        || a.prov.localeCompare(b.prov, 'zh'));
     applyProvChartHeight(agg.length);
     const GT = `grid-template-columns: ${provLabelCol()} 1fr`;
     // month boundaries (%) + centres on a 365-day axis
@@ -983,14 +1020,19 @@
     const sBg = isDark() ? '#1e293b' : '#ffffff';
     const head = `<div class="grid items-center gap-px text-[0.6rem] sticky top-0 z-10 pb-1" style="${GT};background:${sBg};color:${themeMuted()}"><div></div>`
       + `<div class="relative h-3">${ctr.map((c, i) => `<span style="position:absolute;left:${c}%;transform:translateX(-50%)">${i + 1}</span>`).join('')}</div></div>`;
+    const spanColor = isComfort ? comfortColor : severityColor;
+    const listingsKey = isComfort ? 'provComfortListings' : 'provExtremeListings';
+    const titleKey = isComfort ? 'provComfortTitle' : 'provExtremeTitle';
+    const rangeKey = isComfort ? 'comfortRange' : 'extremeRange';
+    const dayKey = isComfort ? 'comfortByDay' : 'extremeByDay';
     const blocksFor = (a) => {
-      const f = a.extremeByDay || []; const out = []; let s = -1;
+      const f = a[dayKey] || []; const out = []; let s = -1;
       for (let i = 0; i < 365; i++) {
         const on = f[i] > 0;
         if (on && s < 0) s = i;
         if ((!on || i === 364) && s >= 0) {
           const e = on ? i : i - 1, maxc = Math.max(...f.slice(s, e + 1));
-          out.push(`<div class="absolute top-0 bottom-0 rounded-sm" style="left:${s / 365 * 100}%;width:${(e - s + 1) / 365 * 100}%;background:${severityColor(0.4 + 0.6 * (maxc / a.count))}" title="${trProv(a.prov)} ${doyToDate(s + 1)}–${doyToDate(e + 1)}: ${maxc}/${a.count}${t('provExtremeListings')}"></div>`);
+          out.push(`<div class="absolute top-0 bottom-0 rounded-sm" style="left:${s / 365 * 100}%;width:${(e - s + 1) / 365 * 100}%;background:${spanColor(0.4 + 0.6 * (maxc / a.count))}" title="${trProv(a.prov)} ${doyToDate(s + 1)}–${doyToDate(e + 1)}: ${maxc}/${a.count}${t(listingsKey)}"></div>`);
           s = -1;
         }
       }
@@ -999,10 +1041,10 @@
     const provColor = isDark() ? '#94a3b8' : '#475569';
     const stripBg = isDark() ? 'rgba(30,41,59,0.7)' : 'rgba(241,245,249,0.7)';
     const body = agg.map((a) =>
-      `<div class="grid items-center gap-px py-px" style="${GT}"><div class="text-xs pr-1 whitespace-nowrap" style="color:${provColor}" title="${trProv(a.prov)} · ${t('provExtremeTitle')} ${a.extremeRange}">${trProv(a.prov)}</div>`
+      `<div class="grid items-center gap-px py-px" style="${GT}"><div class="text-xs pr-1 whitespace-nowrap" style="color:${provColor}" title="${trProv(a.prov)} · ${t(titleKey)} ${a[rangeKey]}">${trProv(a.prov)}</div>`
       + `<div class="relative h-5 rounded-sm" style="${gridImg};background-color:${stripBg}">${blocksFor(a)}</div></div>`).join('');
     strip.innerHTML = head + body
-      + `<div class="text-[0.62rem] mt-2 leading-relaxed" style="color:${themeMuted()}">${t('provStripNote')}</div>`;
+      + `<div class="text-[0.62rem] mt-2 leading-relaxed" style="color:${themeMuted()}">${t(isComfort ? 'provStripNoteComfort' : 'provStripNote')}</div>`;
   }
 
   function renderProvinceChart() {
@@ -1010,7 +1052,7 @@
     if (!ctx || !window.Chart) return;
     const m = provMetricCfg(provMetric);
     if (!m) return;
-    if (provMetric === 'avgExtreme') {   // month-strip instead of a 0-based bar
+    if (provMetric === 'avgExtreme' || provMetric === 'avgComfort') {
       renderProvinceStrip();
       document.querySelectorAll('[data-prov]').forEach((b) => {
         const pm = provMetricCfg(b.dataset.prov); if (!pm) return;
@@ -1050,8 +1092,8 @@
                   ? `${t('provExtremeUnion')}: ${a.extremeRange} · ${avgEx != null ? avgEx.toFixed(1) : '—'}${t('provExtremePerListing')}`
                   : `${m.label} ${m.fmt(a[metricKey])}`;
                 return [head,
-                  `${t('provSample')} ${a.count}${isEn() ? '' : '套'} · ${t('provAvgTotal')} ${fmtWan(a.avgPrice)} · ${t('provAvgUnit')} ${fmtUnit(a.avgUnit)}`,
-                  `${t('provAvgSwing')} ${fmtSwing(a.avgRange)} · ${t('provAvgExtreme')} ${avgEx != null ? Math.round(avgEx) + t('daySuffix') : '—'}`];
+                  `${t('provSample')} ${a.count}${isEn() ? '' : '套'} · ${t('provAvgComfort')} ${a.avgComfort != null ? Math.round(a.avgComfort) + t('daySuffix') : '—'}`,
+                  `${t('provAvgSwing')} ${fmtSwing(a.avgRange)} · ${t('provAvgExtreme')} ${avgEx != null ? Math.round(avgEx) + t('daySuffix') : '—'} · ${t('provAvgHazard')} ${a.avgHazard != null ? a.avgHazard.toFixed(1) : '—'}`];
               },
             },
           },
@@ -1115,8 +1157,8 @@
     },
     builtAge: {
       labelKey: 'dimBuiltAge',
-      get: (d) => (d.builtYear != null ? Math.max(0, NOW_YEAR - d.builtYear) : null),
-      fmt: (v) => (isEn() ? `${v} yr` : `${v}年`),
+      get: (d) => builtAgeOf(d),
+      fmt: (v) => fmtBuiltAgeLabel(v),
       ramp: 'age',
       textKeys: ['mapAgeOld', 'mapAgeNew'],
     },
@@ -1140,13 +1182,13 @@
   const baseLabel = (k) => t(BASE_LABEL_KEYS[k] || k);
   let baseKey = 'janTemp';
 
+  const hexRgb = (h) => [1, 3, 5].map((k) => parseInt(h.slice(k, k + 2), 16));
   const rampColorAt = (ramp, t) => {
-    const cs = BASE_RAMPS[ramp] || BASE_RAMPS.temp;
+    const cs = RAMPS[ramp] || BASE_RAMPS[ramp] || BASE_RAMPS.temp;
     t = clamp(t, 0, 1) * (cs.length - 1);
     const i = Math.floor(t), f = t - i;
     if (i >= cs.length - 1) return cs[cs.length - 1];
-    const hex = (h) => [1, 3, 5].map((k) => parseInt(h.slice(k, k + 2), 16));
-    return mix(hex(cs[i]), hex(cs[i + 1]), f);
+    return mix(hexRgb(cs[i]), hexRgb(cs[i + 1]), f);
   };
 
   // cheaper homes render larger so affordable options pop (scale to visible set)
@@ -1166,9 +1208,12 @@
   function mapSeriesData() {
     const dim = mapDim(dimKey);
     if (!dim) return [];
-    return viewGeocoded().filter((d) => dim.get(d) != null).map((d) => ({
-      value: [d.enr.lng, d.enr.lat, dim.get(d)], size: dotSizeOf(d), d,
-    }));
+    return viewGeocoded().filter((d) => dim.get(d) != null).map((d) => {
+      const v = dim.get(d);
+      const pt = { value: [d.enr.lng, d.enr.lat, v], size: dotSizeOf(d), d };
+      if (dimKey === 'builtAge' && v < 0) pt.itemStyle = { color: AGE_FUTURE };
+      return pt;
+    });
   }
 
   // basemap grid samples + isoline segments for the active field — RAW geometry
@@ -1431,9 +1476,102 @@
       rangeMaxT: Math.max(1, ...vd.map((d) => nz(d.tempRange, 0))),
     };
   }
+  // Jan/Jul mean + record high/low share one °C domain for table ramp pills.
+  const TEMP_SCALE_KEYS = ['janTemp', 'julTemp', 'histTempMax', 'histTempMin'];
+  // Min/max domains for table ramp cells (relative to the visible population).
+  function viewTableScales() {
+    const vd = viewData();
+    const span = (key, fallback) => {
+      const xs = vd.map((d) => d[key]).filter((v) => v != null && isFinite(v));
+      if (!xs.length) return { min: 0, max: fallback };
+      return { min: Math.min(...xs), max: Math.max(...xs) };
+    };
+    const tempXs = vd.flatMap((d) => TEMP_SCALE_KEYS.map((k) => d[k]).filter((v) => v != null && isFinite(v)));
+    return {
+      temp: tempXs.length
+        ? { min: Math.min(...tempXs), max: Math.max(...tempXs) }
+        : { min: -20, max: 35 },
+      annualPrecip: span('annualPrecip', 2000),
+      elevation: span('elevation', 5000),
+      hospitalKm: span('hospitalKm', 80),
+      transitKm: span('transitKm', 80),
+      airportKm: span('airportKm', 150),
+      coastKm: span('coastKm', 400),
+      hsrKm: span('hsrKm', 80),
+    };
+  }
+  function tableFrac(val, { min, max }) {
+    if (val == null || !isFinite(val)) return null;
+    return clamp((val - min) / (max - min || 1), 0, 1);
+  }
+  function relativeLuminance(rgb) {
+    const lin = (c) => { c /= 255; return c <= 0.03928 ? c / 12.92 : ((c + 0.055) / 1.055) ** 2.4; };
+    return 0.2126 * lin(rgb[0]) + 0.7152 * lin(rgb[1]) + 0.0722 * lin(rgb[2]);
+  }
+  function pillFgForBg(bg) {
+    const s = String(bg);
+    const rm = s.match(/rgb\((\d+),\s*(\d+),\s*(\d+)\)/);
+    let rgb = rm ? [+rm[1], +rm[2], +rm[3]] : null;
+    if (!rgb) {
+      const hm = s.match(/^#([0-9a-f]{6})$/i);
+      if (hm) rgb = [1, 3, 5].map((k) => parseInt(hm[1].slice(k - 1, k + 1), 16));
+    }
+    if (!rgb) return isDark() ? '#f8fafc' : '#0f172a';
+    return relativeLuminance(rgb) > 0.45 ? '#0f172a' : '#f8fafc';
+  }
+  // Table-only physical ramps: reuse map RAMPS (temp / precip / terrain).
+  const TABLE_RAMPS = {
+    temp: RAMPS.temp,
+    precip: RAMPS.precip,
+    terrain: RAMPS.terrain,
+  };
+  function tableRampBg(rampKey, frac) {
+    const cs = TABLE_RAMPS[rampKey];
+    if (!cs) return rampColorAt(rampKey, frac);
+    if (!isDark()) return rampColorAt(rampKey, frac);
+    const dk = rampKey === 'precip'
+      ? ['#1e3a5f', '#1e40af', '#2563eb', '#38bdf8', '#7dd3fc']
+      : ['#14532d', '#166534', '#a16207', '#92400e', '#78350f'];
+    const t = clamp(frac, 0, 1) * (dk.length - 1);
+    const i = Math.floor(t), f = t - i;
+    if (i >= dk.length - 1) return dk[dk.length - 1];
+    return mix(hexRgb(dk[i]), hexRgb(dk[i + 1]), f);
+  }
+  // Distance columns: near = lighter gray, far = darker (WCAG text via pillFgForBg).
+  function distKmBg(frac) {
+    const lo = isDark() ? [71, 85, 105] : [248, 250, 252];
+    const hi = isDark() ? [148, 163, 184] : [148, 163, 184];
+    return mix(lo, hi, frac);
+  }
 
-  function pill(html, bg, fg) {
-    return `<span class="inline-block rounded px-1.5 py-0.5 text-xs font-medium" style="background:${bg};color:${fg || '#0f172a'}">${html}</span>`;
+  function pill(html, bg, fg, title) {
+    const tip = title ? ` title="${String(title).replace(/"/g, '&quot;')}"` : '';
+    return `<span class="inline-block rounded px-1.5 py-0.5 text-xs font-medium tabular-nums"${tip} style="background:${bg};color:${fg || '#0f172a'}">${html}</span>`;
+  }
+  // Colour from underlying °C; display via fmtTemp (°F in English).
+  function tempCell(val, title) {
+    if (val == null) return `<span class="${tcx().faint}">—</span>`;
+    const frac = tableFrac(val, viewTableScales().temp);
+    const bg = tableRampBg('temp', frac);
+    return pill(fmtTemp(val), bg, pillFgForBg(bg), title);
+  }
+  function precipCell(d) {
+    if (d.annualPrecip == null) return `<span class="${tcx().faint}">—</span>`;
+    const frac = tableFrac(d.annualPrecip, viewTableScales().annualPrecip);
+    const bg = tableRampBg('precip', frac);
+    return pill(fmtPrecip(d.annualPrecip), bg, pillFgForBg(bg));
+  }
+  function elevationCell(d) {
+    if (d.elevation == null) return `<span class="${tcx().faint}">—</span>`;
+    const frac = tableFrac(d.elevation, viewTableScales().elevation);
+    const bg = tableRampBg('terrain', frac);
+    return pill(fmtElev(d.elevation), bg, pillFgForBg(bg));
+  }
+  function distKmCell(val, scaleKey, label) {
+    if (val == null) return `<span class="${tcx().faint}">—</span>`;
+    const frac = tableFrac(val, viewTableScales()[scaleKey]);
+    const bg = distKmBg(frac);
+    return pill(label != null ? label : fmtKm(val), bg, pillFgForBg(bg));
   }
   function bandCell(level, kind) {
     if (!level) return `<span class="${tcx().faint}">—</span>`;
@@ -1474,12 +1612,16 @@
   function builtCell(d) {
     const y = d.builtYear;
     if (y == null) return `<span class="${tcx().faint}" title="${t('builtUnknownTitle')}">—<span class="ml-0.5 text-[0.6rem]">${t('builtUnknown')}</span></span>`;
-    const age = Math.max(0, NOW_YEAR - y);
+    const age = builtAgeOf(d);
     const ap = d.builtYearApprox;
-    const ageT = clamp(age / 45, 0, 1);
-    const title = `${ap ? t('builtApprox') : ''}${t('builtYearTitle')} ${y} · ${t('builtAgeTitle')} ${ap ? t('builtApprox') + ' ' : ''}${age}${ap ? t('builtDecadeNote') : ''}`
+    const future = age < 0;
+    const ageT = future ? 0 : clamp(age / 45, 0, 1);
+    const label = future ? fmtBuiltAgeLabel(age) : `${ap ? t('builtApprox') : ''}${age}${isEn() ? ' yr' : '年'}`;
+    const title = `${ap && !future ? t('builtApprox') : ''}${t('builtYearTitle')} ${y} · ${t('builtAgeTitle')} ${fmtBuiltAgeLabel(age)}${ap && !future ? t('builtDecadeNote') : (future ? t('builtFutureNote') : '')}`
       + (d.builtYearSrc && !isEn() ? `\n${t('builtSource')}: ${d.builtYearSrc}` : '');
-    return `<span class="inline-block rounded px-1.5 py-0.5 text-xs font-medium" style="background:${mix(AGE_NEW, AGE_OLD, ageT)};color:#fff" title="${title.replace(/"/g, '&quot;')}">${ap ? t('builtApprox') : ''}${age}${isEn() ? ' yr' : '年'}</span>`;
+    const bg = future ? AGE_FUTURE : mix(AGE_NEW, AGE_OLD, ageT);
+    const fg = future ? '#475569' : '#fff';
+    return `<span class="inline-block rounded px-1.5 py-0.5 text-xs font-medium" style="background:${bg};color:${fg}" title="${title.replace(/"/g, '&quot;')}">${label}</span>`;
   }
   const HIST_LEVEL_EN = { '市': 'city station', '区县': 'county', '区镇/街道': 'district/town' };
   function trHistLevel(lv) { return isEn() ? (HIST_LEVEL_EN[lv] || lv) : lv; }
@@ -1497,7 +1639,7 @@
     const st = station && (!isEn() || !/[\u4e00-\u9fff]/.test(station)) ? station : '';
     const tip = [kind === 'high' ? t('histTempMaxTitle') : t('histTempMinTitle'), fmtTemp(val),
       date ? `(${date})` : '', level ? trHistLevel(level) : '', st, note || ''].filter(Boolean).join(' · ');
-    return `<span class="tabular-nums" title="${tip.replace(/"/g, '&quot;')}">${fmtTemp(val)}</span>`;
+    return tempCell(val, tip);
   }
   function climateCell(d) {
     if (!d.climateType) return `<span class="${tcx().faint}">—</span>`;
@@ -1554,15 +1696,15 @@
     { key: 'loc', label: '小区/位置', group: 'core', str: true, get: (d) => d.loc,
       cell: (d) => `<span class="font-medium ${tcx().strong}">${I18N().communityName ? I18N().communityName(d.loc, d.name_en) : d.loc}</span>`
         + (worthBadge(d) ? ' ' + worthBadge(d) : ''), dir: 1 },
-    { key: 'builtAge', label: '房龄', group: 'core', get: (d) => nz(d.builtYear, -1), cell: (d) => builtCell(d) },
+    { key: 'builtAge', label: '房龄', group: 'core', get: (d) => nz(builtAgeOf(d), -999), cell: (d) => builtCell(d) },
     { key: 'priceWan', label: '总价', group: 'price', num: true, get: (d) => d.priceWan, cell: (d) => fmtWan(d.priceWan) },
     { key: 'area', label: '面积㎡', group: 'price', num: true, get: (d) => d.area, cell: (d) => fmtArea(d.area) },
     { key: 'unitPrice', label: '单价 元/㎡', group: 'price', num: true, get: (d) => d.unitPrice, cell: (d) => fmtUnit(d.unitPrice) },
     { key: 'rent', label: '月租 元', group: 'price', num: true, get: (d) => d.rent, cell: (d) => fmtRent(d.rent) },
     { key: 'climateType', label: '气候类型', group: 'live', str: true, get: (d) => d.climateType || '', cell: (d) => climateCell(d) },
     { key: 'tempRange', label: '年温差', group: 'live', num: true, get: (d) => nz(d.tempRange, -1), cell: (d) => rangeCell(d.tempRange) },
-    { key: 'janTemp', label: '1月均温', group: 'live', num: true, get: (d) => nz(d.janTemp, -999), cell: (d) => fmtTemp(d.janTemp) },
-    { key: 'julTemp', label: '7月均温', group: 'live', num: true, get: (d) => nz(d.julTemp, -999), cell: (d) => fmtTemp(d.julTemp) },
+    { key: 'janTemp', label: '1月均温', group: 'live', num: true, get: (d) => nz(d.janTemp, -999), cell: (d) => tempCell(d.janTemp) },
+    { key: 'julTemp', label: '7月均温', group: 'live', num: true, get: (d) => nz(d.julTemp, -999), cell: (d) => tempCell(d.julTemp) },
     { key: 'histTempMax', label: '历史最高温', group: 'live', num: true,
       get: (d) => nz(d.histTempMax, -999),
       cell: (d) => histTempCell(d.histTempMax, d.histTempMaxDate, d.histTempStation, histTempNoteDisplay(d), 'high', d.histTempLevel) },
@@ -1571,15 +1713,16 @@
       cell: (d) => histTempCell(d.histTempMin, d.histTempMinDate, d.histTempStation, histTempNoteDisplay(d), 'low', d.histTempLevel) },
     { key: 'comfortMonths', label: '舒适日期', group: 'live', get: (d) => nz(d.comfortDayCount, nz(d.comfortMonths, -1)), cell: (d) => comfortCell(d) },
     { key: 'extremeMonths', label: '极端日期', group: 'live', get: (d) => nz(d.extremeDayCount, nz(d.extremeMonths, 99)), cell: (d) => extremeCell(d) },
-    { key: 'annualPrecip', label: '年降水mm', group: 'live', num: true, get: (d) => nz(d.annualPrecip, -1), cell: (d) => fmtPrecip(d.annualPrecip) },
-    { key: 'elevation', label: '海拔m', group: 'live', num: true, get: (d) => nz(d.elevation, -1), cell: (d) => fmtElev(d.elevation) },
+    { key: 'annualPrecip', label: '年降水mm', group: 'live', num: true, get: (d) => nz(d.annualPrecip, -1), cell: (d) => precipCell(d) },
+    { key: 'elevation', label: '海拔m', group: 'live', num: true, get: (d) => nz(d.elevation, -1), cell: (d) => elevationCell(d) },
     { key: 'heating', label: '供暖', group: 'live', get: (d) => (d.heating != null ? HEATING_ORD[d.heating] : -1), cell: (d) => heatingCell(d) },
-    { key: 'hospitalKm', label: '医院km', group: 'infra', num: true, get: (d) => nz(d.hospitalKm, 1e9), cell: (d) => fmtKm(d.hospitalKm) },
+    { key: 'hospitalKm', label: '医院km', group: 'infra', num: true, get: (d) => nz(d.hospitalKm, 1e9), cell: (d) => distKmCell(d.hospitalKm, 'hospitalKm') },
     { key: 'transitKm', label: '地铁/火车km', group: 'infra', num: true,
       get: (d) => nz(d.transitKm, 1e9),
-      cell: (d) => d.transitKm == null ? '—' : (d.transitKind === 'metro' ? `${t('poiMetro')} ${fmtKm(d.transitKm)}` : `${t('poiTrain')} ${fmtKm(d.transitKm)}`) },
-    { key: 'airportKm', label: '机场km', group: 'infra', num: true, get: (d) => nz(d.airportKm, 1e9), cell: (d) => fmtKm(d.airportKm) },
-    { key: 'coastKm', label: '海岸km', group: 'infra', num: true, get: (d) => nz(d.coastKm, 1e9), cell: (d) => fmtKm(d.coastKm) },
+      cell: (d) => distKmCell(d.transitKm, 'transitKm',
+        d.transitKm == null ? null : (d.transitKind === 'metro' ? `${t('poiMetro')} ${fmtKm(d.transitKm)}` : `${t('poiTrain')} ${fmtKm(d.transitKm)}`)) },
+    { key: 'airportKm', label: '机场km', group: 'infra', num: true, get: (d) => nz(d.airportKm, 1e9), cell: (d) => distKmCell(d.airportKm, 'airportKm') },
+    { key: 'coastKm', label: '海岸km', group: 'infra', num: true, get: (d) => nz(d.coastKm, 1e9), cell: (d) => distKmCell(d.coastKm, 'coastKm') },
     { key: 'seismic', label: '地震带', group: 'risk', get: (d) => SEISMIC_ORD[d.seismic] || 0, cell: (d) => bandCell(d.seismic, 'seismic') },
     { key: 'typhoon', label: '台风', group: 'risk', get: (d) => TYPH_ORD[d.typhoon] || 0, cell: (d) => bandCell(d.typhoon, 'typhoon') },
     { key: 'hazard', label: '当地灾种·常见度', group: 'risk', get: (d) => d.hazard ? d.hazard.hazards[0].freq * 10 + d.hazard.hazards.length : 0, cell: (d) => hazardCell(d) },
@@ -1655,6 +1798,9 @@
         ? 'bg-emerald-600 border-emerald-600 text-white'
         : (x.muted + ' ' + (isDark() ? 'border-slate-600' : 'border-slate-200'))}">${cmp.has(d.id) ? t('cmpCardOn') : t('cmpCardAdd')}</button>` : '')
       + `</div>
+      ${(d.janTemp != null || d.julTemp != null || d.histTempMax != null || d.histTempMin != null)
+        ? `<div class="mt-1.5 flex flex-wrap gap-1">${tempCell(d.janTemp)}${tempCell(d.julTemp)}${histTempCell(d.histTempMax, d.histTempMaxDate, d.histTempStation, histTempNoteDisplay(d), 'high', d.histTempLevel)}${histTempCell(d.histTempMin, d.histTempMinDate, d.histTempStation, histTempNoteDisplay(d), 'low', d.histTempLevel)}</div>`
+        : ''}
       ${strip ? `<div class="mt-2">${strip}</div>` : ''}
       ${(comfortTxt || extremeTxt) ? `<div class="mt-1 text-[0.65rem] ${x.muted}">${comfortTxt}${extremeTxt}</div>` : ''}
     </div>`;

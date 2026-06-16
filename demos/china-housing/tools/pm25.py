@@ -27,7 +27,7 @@ ZENODO_BASE = f"https://zenodo.org/api/records/{ZENODO_REC}/files"
 VERSION_TAG = "V4"
 REF_YEAR = 2020
 UA = "qrost-china-housing/1.0 (+https://qrost.github.io; contact czd358121692@gmail.com)"
-_OVERSEAS_PROV = {"California"}
+_OVERSEAS_PROV = {"California", "台湾"}
 # ChinaHighPM2.5 grid extent (approx; listings outside → null)
 _CN_LAT = (15.0, 55.0)
 _CN_LNG = (70.0, 137.0)

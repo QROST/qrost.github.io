@@ -581,16 +581,19 @@ def cmd_research_merge(args):
     con = connect()
     findings = json.load(open(args.path, encoding="utf-8"))
     print(f"merging {len(findings)} research finding(s) from {args.path} …")
-    rep = enrich.merge_research(con, findings, print)
-    enrich.refresh_refined_pois(con, print)   # OSM POIs go stale where a location moved
-    # risk summaries embed coords/coast — recompute for any refined locations
-    enrich.risk_all(con, print)
+    rep = enrich.merge_research(con, findings, print, dry_run=args.dry_run)
+    if not args.dry_run:
+        enrich.refresh_refined_pois(con, print)   # OSM POIs go stale where a location moved
+        # risk summaries embed coords/coast — recompute for any refined locations
+        enrich.risk_all(con, print)
     print("=== research merge report ===")
     print(json.dumps(rep, ensure_ascii=False, indent=1))
     if rep["moves"]:
         print(f"⚠ {len(rep['moves'])} location move(s) >25km — review these:")
         for m in rep["moves"]:
             print(f"   #{m['id']} {m['loc']}: moved {m['km']}km → {m['to']}")
+    if args.dry_run:
+        print("(dry-run — no DB writes; refresh/risk skipped)")
 
 
 def cmd_built_merge(args):
@@ -598,10 +601,13 @@ def cmd_built_merge(args):
     data = json.load(open(args.path, encoding="utf-8"))
     findings = data.get("findings", []) if isinstance(data, dict) else data
     print(f"merging {len(findings)} built-year finding(s) from {args.path} …")
-    rep = enrich.merge_built_years(con, findings, print)
+    rep = enrich.merge_built_years(con, findings, print, dry_run=args.dry_run)
     print("=== built-year merge report ===")
     print(json.dumps(rep, ensure_ascii=False, indent=1))
-    print(f"→ {rep['set']} built-year(s) stored; run `build` to regenerate enriched.js")
+    if args.dry_run:
+        print(f"(dry-run — would store {rep['set']}, kept_existing {rep['kept_existing']})")
+    else:
+        print(f"→ {rep['set']} built-year(s) stored; run `build` to regenerate enriched.js")
 
 
 def cmd_hazard_merge(args):
@@ -749,10 +755,12 @@ def main(argv=None):
 
     sp = sub.add_parser("research-merge", help="fold subagent research findings (JSON) into the DB")
     sp.add_argument("path", help="JSON array of per-listing finding objects")
+    sp.add_argument("--dry-run", action="store_true", help="report only, no DB writes")
     sp.set_defaults(fn=cmd_research_merge)
 
     sp = sub.add_parser("built-merge", help="fold validated 建成年代 (construction-year) findings into the DB")
     sp.add_argument("path", help="JSON: [{id, builtYear, source, confidence}, …] or {findings:[…]}")
+    sp.add_argument("--dry-run", action="store_true", help="report only, no DB writes")
     sp.set_defaults(fn=cmd_built_merge)
 
     sub.add_parser("relief", help="bake local terrain relief (DEM ring) for 地质灾害 downscaling").set_defaults(

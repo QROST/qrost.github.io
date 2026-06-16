@@ -3,6 +3,13 @@
 > 🧭 **要加城市 / 小区？** 直接照 [`SOP-ADD-CITY.md`](SOP-ADD-CITY.md) 这份 runbook 走（给
 > agent / 同事 / Cursor 用的完整闭环）。本 README 是各命令与口径的深度参考。
 
+**策略摘要（2026-06）**：多 agent **并行只产 JSON**（`data/research/`、`hazard_research.json`），
+**唯一写者**串行 `import-csv` → enrich（§3 顺序，气候单 IP 单进程）→ `built-merge` /
+`research-merge`（先 `--dry-run`）→ [`check_batch_complete.py`](check_batch_complete.py) 全绿
+→ `tier1-check` → `build`。气候走 cache-first（`_finish_climate_light` / `_climate_ext_refresh` /
+`_tw_climate_fallback`）；禁止并行 `manage.py climate`。SOP 索引：**§1.5 并行工作流** ·
+**§3.1 气候配额** · **§4 enrich 不覆盖** · **§4.5 批次完成 checklist** · **§2.5 港/台/美**。
+
 这个 demo 是 **纯静态站**（GitHub Pages，无后端）。页面读取一个 JS *全局变量*
 `window.HOUSING_LISTINGS`（在 `assets/data/listings.js`）而非 fetch JSON —— 这样
 `file://` 直接打开也能跑。所以那个 `.js` 是**生成产物**，不要手改。
@@ -71,6 +78,7 @@ git add -A && git commit -m "housing: +N listings"
 | `build` | 重新生成 `listings.js` + `listings.csv` + 同步 `index.html` |
 | `export-csv [路径]` | 仅导出 CSV（默认 `data/listings.csv`） |
 | `list` | 打印汇总：条数、id 区间、缺号、各省分布 |
+| `check_batch_complete.py` | 只读批次完成门禁（见 SOP §4.5）；`--from`/`--to`/`--ids` |
 
 ## 直接用 SQL
 
@@ -210,12 +218,12 @@ merge 只**补缺**（不覆盖 OSM 已有 POI），幂等可重跑。findings �
 
 1. **agent 只产可验证年份**：联网查 贝壳 / 安居客 / 房天下 的「建成年代」字段，覆盖不到的（老破小 / 厂矿家属院）再换**老旧小区改造名单 / 地方志 / 厂史 / 政府征收公告 / 楼盘库 / 百度高德**；**核对页面城市/省份防重名**，给出 `source`（URL）+ `yearText`（原文引用）+ `confidence`；查不到返回 `builtYear:null, confidence:"none"`，**禁猜**（搜索摘要里的年份若打开页面核不到即弃用）。多期楼盘取**最早一期**。
 2. **三档置信**：`high`/`med` = 权威页明确年份；`approx` = 仅查到**可信来源的年代级估算**（如改造名单「建于上世纪90年代」、三线厂史「XX年投产、家属楼随建」），`built_year_approx=1`，前端标**「约」**+ 虚线圈以示非精确。
-3. **确定性校验门**（`enrich.merge_built_years`）：仅当 `confidence∈{high,med,approx}` **且**有来源 **且** `1900≤year≤2026` **且** 不晚于挂牌年(+1 容差) 才入库；`approx` **不覆盖**已有精确年份（精确优先）；其余一律留空（前端「年代未知」）。`rejected` 打印所有被拒原因。
+3. **确定性校验门**（`enrich.merge_built_years`）：仅当 `confidence∈{high,med,approx}` **且**有来源 **且** `1900≤year≤(当年+3)` **且**（已交付年不晚于挂牌年+1 容差，**或** cited 未来交付年）才入库；未来交付标 `future_delivery`、前端浅灰负房龄；**仅填空或 approx→精确升级**——已有精确年/已有 approx 均不覆盖；`--dry-run` 可预演 `kept_existing`。`rejected` 打印所有被拒原因。
 
 ```bash
 # findings.json = [{id, builtYear, yearText, source, confidence, note}, …]（或 {findings:[…]}）
 python3 tools/manage.py built-merge findings.json
-python3 tools/manage.py build   # 把 built_year 吐进 enriched.js（前端「房龄」色条：绿=新→琥珀=老，约=虚线圈）
+python3 tools/manage.py build   # 把 built_year 吐进 enriched.js（前端「房龄」色条：绿=新→琥珀=老，浅灰=未交付期房，约=虚线圈）
 ```
 
 幂等可重跑（重跑覆盖同 id 的更优证据，但 approx 不降级已有精确）。调研分多轮推进：① 贝壳/安居客/房天下「建成年代」字段；② 老旧小区改造名单 / 厂史 / 政府征收深挖；③ 社媒讨论、小区名最早上网时间（建成上界）、单位史等对最难样本做**年代级估算**（approx）。新入库房源按需补跑 `built-merge`；查不到的留「年代未知」。
