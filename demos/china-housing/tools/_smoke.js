@@ -137,6 +137,19 @@ setTimeout(() => {
   T('table body', (ids['table-body']._html || '').length > 1000);
   T('table precip ramp pills', /style="background:(?:#[0-9a-f]{3,8}|rgb\(\d+,\d+,\d+\));color:#(?:0f172a|f8fafc)">\d+mm/.test(ids['table-body']._html));
   T('table temp ramp pills', /style="background:(?:#[0-9a-f]{3,8}|rgb\(\d+,\d+,\d+\));color:#(?:0f172a|f8fafc)">-?\d+°C/.test(ids['table-body']._html));
+  T('tempComfortColor piecewise anchors', (() => {
+    const f = w.__tempComfortColor;
+    if (!f) return false;
+    const cold = f(-10);
+    const comfort = f(15);
+    const hot = f(35);
+    const mid = f(1.5);
+    return /rgb\(37,99,235\)/.test(cold)
+      && /rgb\(5,150,105\)/.test(comfort)
+      && /rgb\(220,38,38\)/.test(hot)
+      && !/rgb\(5,150,105\)/.test(mid);
+  })());
+  T('table temp comfort band green', /style="background:rgb\(5,150,105\);color:/.test(ids['table-body']._html));
   T('table elev terrain pills', /style="background:(?:#[0-9a-f]{3,8}|rgb\(\d+,\d+,\d+\));color:#(?:0f172a|f8fafc)">\d+m\b/.test(ids['table-body']._html));
   T('table dist gray pills', /style="background:rgb\(\d+,\d+,\d+\);color:#(?:0f172a|f8fafc)">[^<]{1,48}(?: km|\d+m\b)/.test(ids['table-body']._html));
   T('table count 247 default', /显示 247 \/ 247/.test(ids['table-count'].textContent));
