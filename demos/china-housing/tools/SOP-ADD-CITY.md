@@ -62,7 +62,27 @@ python3 tools/manage.py import-csv 新一批.csv
 > 3. **同 loc 不同城**（尤其 恒大 / 碧桂园 / 融创 等**跨城复用品牌盘名**）→ **loc 加城市消歧**：
 >    `碧桂园凤凰城（宜昌）`，否则表格里两行同名难辨。
 > 4. **主库已有更便宜同盘** → 一般**保留更便宜那条、跳过新的**（本数据集主打「最便宜」）。
-> 5. **双户型同盘**（同小区不同面积/总价）→ 用面积后缀消歧：`恒大雅苑（55㎡）`，勿造第二条裸名。
+> 5. **双户型同盘**（同小区不同面积/总价）→ 用**户型语义**消歧，**禁止**在 `loc` 写面积数字：`恒大金碧天下（大户型）` / `新田城甲壳虫公寓（小户）`。面积只在 `area` 列；详见 §1.1。
+
+### 1.1 `loc` 小区名命名规范（2026-06-17）
+
+`loc` = 表格「小区」列展示名；**不是**完整地址、户型描述、门户 ID 或计价备注。完整地址进 `data/research/*.json` 的 `refined_address` / `notes`。
+
+| 规则 | ✅ 正确 | ❌ 错误 |
+|------|---------|---------|
+| 单一小区名 | `秋谷阳光里` | `世纪城/秋谷阳光里/名居` |
+| 无面积后缀 | `新田城甲壳虫公寓` | `新田城甲壳虫公寓（28㎡）` |
+| 无计价/装修备注 | `玉门老城旧住宅` | `玉门老城旧住宅（按套计价·非按㎡）` |
+| 跨城品牌盘加城市 | `碧桂园凤凰城（宜昌）` | 裸 `碧桂园凤凰城`（若他城已有） |
+| 同城同盘不同户型 | `恒大金碧天下（大户型）` | `恒大金碧天下（80㎡）` |
+| 裸品牌名加城市 | `富力湾（惠东）` | 裸 `富力湾` |
+| 全角括号 | `莲花新村（一期）` | `莲花新村(一期)` |
+| 加州 zip 展示 | `90293` / `94089` | 把物业英文名塞进 `loc`（用 `name_en` 或 research JSON） |
+| 北京号院小区 | `交大东路56号院` | 把整个街道地址当 loc（无小区名时） |
+
+**入库后**：`python3 tools/manage.py build` → `node tools/gen-loc-pinyin.js` → `node tools/_smoke.js`（含 loc 质量断言）。
+
+审计样例：`data/research/audit-community-names-2026-06.json`。
 
 ## 1.5 并行 agent 工作流（策略 C · 单写者 SQLite）
 
@@ -129,7 +149,7 @@ node tools/_smoke.js
 | PM2.5 `pm25` | 跳过（网格外） | 跳过 | 跳过 |
 | 气候 429 兜底 | 同大陆；可 staging JSON | `tools/_tw_climate_fallback.py` + `data/research/tw-climate-cache-*.json` | ERA5 正常；无 CHAP 网格 |
 | Metro POI | 适用（港铁） | 六都适用 | 一般不要求 metro |
-| 纯租赁公寓 | — | — | `listingType: rental`；`rent` = 美元/月（社区挂牌）；**无单元销售**时 `priceWan` = 月租×12÷4.5% 资本化率（隐含资产，便于比回报）；同 zip **买卖中位数**写入调研 JSON `zipBenchmark`（不进 `priceWan`）；`dist` 用 zip（如 90293） |
+| 纯租赁公寓 | — | — | `listingType: rental`；`rent` = 美元/月（社区挂牌）；**无单元销售**时 `priceWan` = 月租×12÷4.5% 资本化率（隐含资产，便于比回报）；同 zip **买卖/租赁中位数**写入调研 JSON `zipBenchmark`（不进 `priceWan`）；`dist` 与 **`loc` 展示名均用 zip**（如 90293），`city` 保留 Los Angeles；调研 JSON 可保留 `refined_address` / `notes` 中的真实物业名 |
 
 **香港 geocode 提示**：查询串用「区 + 香港」阶梯；`prov=香港` 时 `_prov_ok` 走大陆 `cn` 路径——若 Nominatim 误配深圳，用 `research-merge` 细化地址纠正。
 

@@ -117,6 +117,19 @@ setTimeout(() => {
   const w = sandbox.window; const checks = [];
   const T = (n, p) => checks.push([n, !!p]);
   T('listings 347', (w.HOUSING_LISTINGS || []).length === 347);
+  T('loc no area suffix', (w.HOUSING_LISTINGS || []).every((r) => !/（\d+\.?\d*\s*㎡?）|\(\d+\.?\d*\s*㎡?\)|\d+\s*(m2|m²|㎡)/i.test(r.loc)));
+  T('loc no slash combos', (w.HOUSING_LISTINGS || []).every((r) => !/\//.test(r.loc)));
+  T('loc no pricing notes', (w.HOUSING_LISTINGS || []).every((r) => !/按套计价|非按㎡/.test(r.loc)));
+  T('loc no vague fragments', (w.HOUSING_LISTINGS || []).every((r) => !/左侧地产|开发东面|附近老住宅/.test(r.loc)));
+  T('loc pinyin covers all', (() => {
+    const py = w.HOUSING_LOC_PINYIN || {};
+    return (w.HOUSING_LISTINGS || []).every((r) => py[r.loc] || !/[\u4e00-\u9fff]/.test(r.loc));
+  })());
+  T('甲壳虫 loc cleaned', (() => {
+    const a = w.HOUSING_LISTINGS.find((r) => r.id === 32);
+    const b = w.HOUSING_LISTINGS.find((r) => r.id === 263);
+    return a && a.loc === '新田城甲壳虫公寓' && b && b.loc === '新田城甲壳虫公寓（小户）';
+  })());
   T('enriched 347', Object.keys(w.HOUSING_ENRICHED || {}).length === 347);
   T('hazards 32', Object.keys(w.HOUSING_HAZARDS || {}).length === 32);
   T('field 4 fields', w.HOUSING_FIELD && Object.keys(w.HOUSING_FIELD.fields).length === 4);
@@ -195,6 +208,9 @@ setTimeout(() => {
     w.__setLang('en');
     T('prov California en', w.HOUSING_I18N.displayProvince('California') === 'California');
     T('cityLabel California en', cal && w.__cityLabel && w.__cityLabel(cal).startsWith('California'));
+    T('id284 loc 90293 zh', cal && cal.loc === '90293');
+    T('id284 communityName en 90293', cal && w.HOUSING_I18N.communityName(cal.loc, cal.name_en) === '90293');
+    T('table no Mariposa name', !/Mariposa/.test(ids['table-body']._html));
     w.__setLang('zh');
     w.__setTier1On(false);
   } catch (e) { T('tier1 toggle — ' + e.message, false); }
@@ -360,6 +376,28 @@ setTimeout(() => {
       const ov116 = dy116 ? [...daySet(dy116.comfortDays)].filter((d) => daySet(dy116.extremeDays).has(d)).length : 99;
       T('comfort/extreme no overlap portfolio', overlapAll === 0);
       T('comfort/extreme no overlap id116 南腊', ov116 === 0);
+      T('CA coastal no record-heat supplement', [284, 285, 286, 356].every((id) => {
+        const dy = w.HOUSING_ENRICHED && (w.HOUSING_ENRICHED[id] || w.HOUSING_ENRICHED[String(id)]);
+        return dy && dy.daily && dy.daily.recordHeatSupplement == null && dy.daily.extremeDayCount === 0;
+      }));
+      const hkTwIds = [347, 348, 349, 350, 351, 352, 353, 354, 355, 357, 358, 359];
+      T('HK/TW no record-heat supplement', hkTwIds.every((id) => {
+        const dy = w.HOUSING_ENRICHED && (w.HOUSING_ENRICHED[id] || w.HOUSING_ENRICHED[String(id)]);
+        return dy && dy.daily && dy.daily.recordHeatSupplement == null;
+      }));
+      T('HK/TW extreme strips summer-only', hkTwIds.every((id) => {
+        const dy = w.HOUSING_ENRICHED && (w.HOUSING_ENRICHED[id] || w.HOUSING_ENRICHED[String(id)]);
+        if (!dy || !dy.daily) return false;
+        const ext = daySet(dy.daily.extremeDays);
+        if (!ext.size) return true;
+        const tmax = dy.daily.curve && dy.daily.curve.tmax;
+        if (!tmax) return false;
+        for (const d of ext) {
+          if (d < 135 || d > 275) return false;
+          if (tmax[d - 1] != null && tmax[d - 1] < 28) return false;
+        }
+        return dy.daily.extremeDayCount <= 10;
+      }));
     })();
     w.__setLang('en');
     selCache['[data-rank]'].find((b) => b.dataset.rank === 'comfort').fire('click');
