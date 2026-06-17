@@ -46,23 +46,7 @@
       "international_benchmarks": [
         "revit"
       ],
-      "listed_ticker": "002410.SZ",
-      "capabilities": {
-        "full": [
-          "bim_clash",
-          "code_compliance",
-          "collaboration",
-          "scheduling_ops",
-          "bim_quantity_takeoff"
-        ],
-        "partial": [
-          "solid_modeling_3d",
-          "cloud_native",
-          "xinchuang_compat",
-          "ext_api",
-          "data_acquisition"
-        ]
-      }
+      "listed_ticker": "002410.SZ"
     },
     {
       "id": "supermap-gis",
@@ -112,20 +96,7 @@
       "listed_ticker": "300036.SZ",
       "taxonomy_note_zh": "P3归并：工信部四类→研发设计（原基础平台，AEC/GIS设计工具）",
       "taxonomy_note_en": "P3 remap: MIIT quad → 研发设计 (was 基础平台, AEC/GIS design)",
-      "product_type": "gis",
-      "capabilities": {
-        "full": [
-          "gis_spatial",
-          "ext_api",
-          "xinchuang_compat",
-          "cloud_native"
-        ],
-        "partial": [
-          "bim_clash",
-          "collaboration",
-          "data_acquisition"
-        ]
-      }
+      "product_type": "gis"
     },
     {
       "id": "luban-bim",
@@ -166,27 +137,8 @@
           "url": "http://www.lubansoft.com/",
           "title": "Luban BIM",
           "accessed": "2026-06"
-        },
-        {
-          "url": "https://www.lubansoft.com/product",
-          "title": "鲁班软件 产品中心",
-          "accessed": "2026-06"
         }
-      ],
-      "capabilities": {
-        "full": [
-          "bim_clash",
-          "collaboration",
-          "code_compliance",
-          "bim_quantity_takeoff"
-        ],
-        "partial": [
-          "solid_modeling_3d",
-          "scheduling_ops",
-          "cloud_native",
-          "data_acquisition"
-        ]
-      }
+      ]
     },
     {
       "id": "pinming-bim",
@@ -227,34 +179,9 @@
           "url": "https://www.pinming.cn/",
           "title": "Pinming BIM",
           "accessed": "2026-06"
-        },
-        {
-          "url": "https://www.pinming.cn/product_cont_56.html",
-          "title": "品茗 HiBIM 土建软件",
-          "accessed": "2026-06"
-        },
-        {
-          "url": "https://www.pinming.cn/product_cont_35.html",
-          "title": "品茗第三代智慧工地云平台",
-          "accessed": "2026-06"
         }
       ],
-      "listed_ticker": "688109.SH",
-      "capabilities": {
-        "full": [
-          "bim_clash",
-          "collaboration",
-          "data_acquisition",
-          "bim_quantity_takeoff"
-        ],
-        "partial": [
-          "code_compliance",
-          "scheduling_ops",
-          "solid_modeling_3d",
-          "cloud_native",
-          "xinchuang_compat"
-        ]
-      }
+      "listed_ticker": "688109.SH"
     },
     {
       "id": "revit",
@@ -269,12 +196,10 @@
       "localization_depth": "core",
       "strengths_zh": [
         "建筑信息建模事实标准",
-        "Dynamo 内置节点式可视化编程（另有 Rhino.Inside.Revit/GH）",
         "与中国设计院广泛使用"
       ],
       "strengths_en": [
         "BIM de-facto standard",
-        "Built-in Dynamo node-based visual programming (plus Rhino.Inside.Revit/GH)",
         "Widely used by China design institutes"
       ],
       "limitations_zh": [
@@ -298,29 +223,8 @@
           "url": "https://www.autodesk.com/products/revit",
           "title": "Autodesk Revit",
           "accessed": "2026-06"
-        },
-        {
-          "url": "https://dynamobim.org/",
-          "title": "Dynamo (visual programming for Revit)",
-          "accessed": "2026-06"
         }
-      ],
-      "capabilities": {
-        "full": [
-          "solid_modeling_3d",
-          "parametric_design",
-          "assembly_design",
-          "bim_clash",
-          "collaboration",
-          "visual_programming"
-        ],
-        "partial": [
-          "drafting_2d",
-          "ext_api",
-          "cloud_native",
-          "code_compliance"
-        ]
-      }
+      ]
     },
     {
       "id": "microstation",
@@ -362,27 +266,8 @@
           "url": "https://www.bentley.com/",
           "title": "Bentley MicroStation",
           "accessed": "2026-06"
-        },
-        {
-          "url": "https://www.bentley.com/software/microstation/",
-          "title": "Bentley MicroStation product page",
-          "accessed": "2026-06"
         }
-      ],
-      "capabilities": {
-        "full": [
-          "drafting_2d",
-          "solid_modeling_3d",
-          "bim_clash"
-        ],
-        "partial": [
-          "surface_modeling",
-          "parametric_design",
-          "gis_spatial",
-          "ext_api",
-          "digital_twin"
-        ]
-      }
+      ]
     },
     {
       "id": "archicad",
@@ -424,21 +309,7 @@
           "title": "Graphisoft ArchiCAD",
           "accessed": "2026-06"
         }
-      ],
-      "capabilities": {
-        "full": [
-          "solid_modeling_3d",
-          "parametric_design",
-          "bim_clash",
-          "collaboration"
-        ],
-        "partial": [
-          "drafting_2d",
-          "visual_programming",
-          "ext_api",
-          "cloud_native"
-        ]
-      }
+      ]
     },
     {
       "id": "arcgis",
@@ -484,18 +355,7 @@
       ],
       "taxonomy_note_zh": "P3归并：工信部四类→研发设计（原基础平台，AEC/GIS设计工具）",
       "taxonomy_note_en": "P3 remap: MIIT quad → 研发设计 (was 基础平台, AEC/GIS design)",
-      "product_type": "gis",
-      "capabilities": {
-        "full": [
-          "gis_spatial",
-          "cloud_native",
-          "ext_api"
-        ],
-        "partial": [
-          "collaboration",
-          "data_acquisition"
-        ]
-      }
+      "product_type": "gis"
     },
     {
       "id": "feidu-dt",
@@ -536,30 +396,11 @@
           "url": "https://www.feidutech.com/",
           "title": "Feidu Digital Twin",
           "accessed": "2026-06"
-        },
-        {
-          "url": "https://www.freedoonline.com/dts.html",
-          "title": "飞渡科技 DTS 数字孪生平台",
-          "accessed": "2026-06"
         }
       ],
       "taxonomy_note_zh": "P3归并：工信部四类→研发设计（原基础平台，AEC/GIS设计工具）",
       "taxonomy_note_en": "P3 remap: MIIT quad → 研发设计 (was 基础平台, AEC/GIS design)",
-      "product_type": "gis",
-      "capabilities": {
-        "full": [
-          "gis_spatial",
-          "cloud_native",
-          "xinchuang_compat",
-          "digital_twin"
-        ],
-        "partial": [
-          "bim_clash",
-          "data_acquisition",
-          "ext_api",
-          "collaboration"
-        ]
-      }
+      "product_type": "gis"
     },
     {
       "id": "southsurvey-gis",
@@ -601,27 +442,11 @@
           "url": "https://www.southgis.com/",
           "title": "South Survey GIS",
           "accessed": "2026-06"
-        },
-        {
-          "url": "https://www.southgis.com/zt/iData/",
-          "title": "南方数码 iData 数据工厂",
-          "accessed": "2026-06"
         }
       ],
       "taxonomy_note_zh": "P3归并：工信部四类→研发设计（原基础平台，AEC/GIS设计工具）",
       "taxonomy_note_en": "P3 remap: MIIT quad → 研发设计 (was 基础平台, AEC/GIS design)",
-      "product_type": "gis",
-      "capabilities": {
-        "full": [
-          "gis_spatial",
-          "drafting_2d",
-          "xinchuang_compat"
-        ],
-        "partial": [
-          "data_acquisition",
-          "ext_api"
-        ]
-      }
+      "product_type": "gis"
     },
     {
       "id": "sunway-bim",
@@ -662,25 +487,8 @@
           "url": "http://www.sunwaysoft.com/",
           "title": "Sunway BIM",
           "accessed": "2026-06"
-        },
-        {
-          "url": "https://help.supermap.com/iDesktop/zh/tutorial/ApplicationTheme/EPSDocking/EPSDockingOverview1/",
-          "title": "SuperMap iDesktop 与山维 EPS 对接",
-          "accessed": "2026-06"
         }
-      ],
-      "capabilities": {
-        "full": [
-          "gis_spatial",
-          "drafting_2d",
-          "solid_modeling_3d"
-        ],
-        "partial": [
-          "data_acquisition",
-          "bim_clash",
-          "xinchuang_compat"
-        ]
-      }
+      ]
     },
     {
       "id": "cscec-digital",
@@ -721,26 +529,8 @@
           "url": "https://www.cscec.com/",
           "title": "CSCEC Digital Construction",
           "accessed": "2026-06"
-        },
-        {
-          "url": "https://www.cscec.com.cn/zgjz_new/ztzl_new/zgjzkjz/zlzgjz/znjz/202410/3820591.html",
-          "title": "中建 智能建造/数字产业",
-          "accessed": "2026-06"
         }
-      ],
-      "capabilities": {
-        "full": [
-          "bim_clash",
-          "collaboration",
-          "data_acquisition"
-        ],
-        "partial": [
-          "scheduling_ops",
-          "code_compliance",
-          "cloud_native",
-          "xinchuang_compat"
-        ]
-      }
+      ]
     },
     {
       "id": "zwsoft-bim",
@@ -781,26 +571,8 @@
           "url": "https://www.zwsoft.cn/",
           "title": "ZWSOFT BIM",
           "accessed": "2026-06"
-        },
-        {
-          "url": "https://www.zwsoft.cn/product/zwcad/architecture",
-          "title": "中望建筑 CAD",
-          "accessed": "2026-06"
         }
-      ],
-      "capabilities": {
-        "full": [
-          "drafting_2d",
-          "parametric_design",
-          "xinchuang_compat"
-        ],
-        "partial": [
-          "solid_modeling_3d",
-          "cad_repair_interop",
-          "bim_clash",
-          "ext_api"
-        ]
-      }
+      ]
     },
     {
       "id": "mapbox-cn",
@@ -846,17 +618,7 @@
       ],
       "taxonomy_note_zh": "P3归并：工信部四类→研发设计（原基础平台，AEC/GIS设计工具）",
       "taxonomy_note_en": "P3 remap: MIIT quad → 研发设计 (was 基础平台, AEC/GIS design)",
-      "product_type": "gis",
-      "capabilities": {
-        "full": [
-          "gis_spatial",
-          "cloud_native",
-          "ext_api"
-        ],
-        "partial": [
-          "collaboration"
-        ]
-      }
+      "product_type": "gis"
     },
     {
       "id": "bentley-itwin",
@@ -910,22 +672,7 @@
       "international_benchmarks": [
         "glodon-bimface",
         "autodesk-navisworks"
-      ],
-      "capabilities": {
-        "full": [
-          "bim_clash",
-          "collaboration",
-          "cloud_native",
-          "ext_api",
-          "construction_4d_sim",
-          "digital_twin"
-        ],
-        "partial": [
-          "gis_spatial",
-          "data_acquisition",
-          "scheduling_ops"
-        ]
-      }
+      ]
     },
     {
       "id": "autodesk-acc",
@@ -979,20 +726,7 @@
       "international_benchmarks": [
         "glodon-bimface",
         "bentley-itwin"
-      ],
-      "capabilities": {
-        "full": [
-          "bim_clash",
-          "collaboration",
-          "cloud_native"
-        ],
-        "partial": [
-          "scheduling_ops",
-          "ext_api",
-          "data_acquisition",
-          "construction_4d_sim"
-        ]
-      }
+      ]
     },
     {
       "id": "glodon-bimface",
@@ -1048,18 +782,7 @@
         "autodesk-navisworks",
         "autodesk-acc"
       ],
-      "listed_ticker": "002410.SZ",
-      "capabilities": {
-        "full": [
-          "bim_clash",
-          "collaboration",
-          "cloud_native",
-          "ext_api"
-        ],
-        "partial": [
-          "xinchuang_compat"
-        ]
-      }
+      "listed_ticker": "002410.SZ"
     },
     {
       "id": "autodesk-navisworks",
@@ -1114,18 +837,7 @@
       "international_benchmarks": [
         "glodon-bimface",
         "solibri-model-checker"
-      ],
-      "capabilities": {
-        "full": [
-          "bim_clash",
-          "collaboration",
-          "scheduling_ops",
-          "construction_4d_sim"
-        ],
-        "partial": [
-          "ext_api"
-        ]
-      }
+      ]
     },
     {
       "id": "southsurvey-cass",
@@ -1182,19 +894,7 @@
       ],
       "international_benchmarks": [
         "supermap-gis"
-      ],
-      "capabilities": {
-        "full": [
-          "drafting_2d",
-          "gis_spatial",
-          "xinchuang_compat",
-          "gnss_survey_processing"
-        ],
-        "partial": [
-          "data_acquisition",
-          "ext_api"
-        ]
-      }
+      ]
     },
     {
       "id": "huace-cgo",
@@ -1244,18 +944,7 @@
       "international_benchmarks": [
         "southsurvey-cass"
       ],
-      "listed_ticker": "688592.SH",
-      "capabilities": {
-        "full": [
-          "gis_spatial",
-          "gnss_survey_processing"
-        ],
-        "partial": [
-          "drafting_2d",
-          "cad_repair_interop",
-          "xinchuang_compat"
-        ]
-      }
+      "listed_ticker": "688592.SH"
     },
     {
       "id": "dynamo",
@@ -1318,18 +1007,7 @@
         "grasshopper",
         "generative-components"
       ],
-      "listed_ticker": "ADSK",
-      "capabilities": {
-        "full": [
-          "visual_programming",
-          "parametric_design",
-          "ext_api"
-        ],
-        "partial": [
-          "solid_modeling_3d",
-          "bim_clash"
-        ]
-      }
+      "listed_ticker": "ADSK"
     },
     {
       "id": "pyrevit",
@@ -1391,17 +1069,7 @@
       "international_benchmarks": [
         "dynamo",
         "revit-api"
-      ],
-      "capabilities": {
-        "full": [
-          "ext_api",
-          "parametric_design"
-        ],
-        "partial": [
-          "bim_clash",
-          "cad_as_code"
-        ]
-      }
+      ]
     },
     {
       "id": "generative-components",
@@ -1462,18 +1130,7 @@
       "international_benchmarks": [
         "dynamo",
         "grasshopper"
-      ],
-      "capabilities": {
-        "full": [
-          "visual_programming",
-          "parametric_design",
-          "ext_api"
-        ],
-        "partial": [
-          "surface_modeling",
-          "solid_modeling_3d"
-        ]
-      }
+      ]
     },
     {
       "id": "archicad-gdl",
@@ -1532,17 +1189,7 @@
       "international_benchmarks": [
         "dynamo",
         "revit-api"
-      ],
-      "capabilities": {
-        "full": [
-          "parametric_design",
-          "ext_api",
-          "cad_as_code"
-        ],
-        "partial": [
-          "solid_modeling_3d"
-        ]
-      }
+      ]
     },
     {
       "id": "revit-api",
@@ -1605,17 +1252,7 @@
         "pyrevit",
         "dynamo"
       ],
-      "listed_ticker": "ADSK",
-      "capabilities": {
-        "full": [
-          "ext_api",
-          "parametric_design"
-        ],
-        "partial": [
-          "bim_clash",
-          "cloud_native"
-        ]
-      }
+      "listed_ticker": "ADSK"
     },
     {
       "id": "glodon-parametric-library",
@@ -1677,18 +1314,7 @@
         "dynamo",
         "revit-api"
       ],
-      "listed_ticker": "002410.SZ",
-      "capabilities": {
-        "full": [
-          "parametric_design",
-          "xinchuang_compat"
-        ],
-        "partial": [
-          "visual_programming",
-          "ext_api",
-          "code_compliance"
-        ]
-      }
+      "listed_ticker": "002410.SZ"
     },
     {
       "id": "speckle",
@@ -1736,18 +1362,7 @@
           "title": "Speckle Docs",
           "accessed": "2026-06"
         }
-      ],
-      "capabilities": {
-        "full": [
-          "collaboration",
-          "cad_repair_interop",
-          "ext_api"
-        ],
-        "partial": [
-          "bim_clash",
-          "cloud_native"
-        ]
-      }
+      ]
     },
     {
       "id": "solibri-model-checker",
@@ -1795,17 +1410,7 @@
           "title": "buildingSMART IFC",
           "accessed": "2026-06"
         }
-      ],
-      "capabilities": {
-        "full": [
-          "bim_clash",
-          "code_compliance"
-        ],
-        "partial": [
-          "collaboration",
-          "ext_api"
-        ]
-      }
+      ]
     },
     {
       "id": "autodesk-forma",
@@ -1848,20 +1453,7 @@
           "title": "Autodesk Forma",
           "accessed": "2026-06"
         }
-      ],
-      "capabilities": {
-        "full": [
-          "cloud_native",
-          "collaboration"
-        ],
-        "partial": [
-          "solid_modeling_3d",
-          "gis_spatial",
-          "opt_light_acoustics",
-          "bim_clash",
-          "ext_api"
-        ]
-      }
+      ]
     },
     {
       "id": "trimble-connect",
@@ -1909,18 +1501,7 @@
           "title": "Trimble Connect product page",
           "accessed": "2026-06"
         }
-      ],
-      "capabilities": {
-        "full": [
-          "collaboration",
-          "bim_clash",
-          "cloud_native"
-        ],
-        "partial": [
-          "ext_api",
-          "scheduling_ops"
-        ]
-      }
+      ]
     },
     {
       "id": "esri-arcgis-pro",
@@ -1966,19 +1547,7 @@
       ],
       "taxonomy_note_zh": "P3归并：工信部四类→研发设计（原基础平台，AEC/GIS设计工具）",
       "taxonomy_note_en": "P3 remap: MIIT quad → 研发设计 (was 基础平台, AEC/GIS design)",
-      "product_type": "gis",
-      "capabilities": {
-        "full": [
-          "gis_spatial",
-          "ext_api"
-        ],
-        "partial": [
-          "cloud_native",
-          "collaboration",
-          "data_acquisition",
-          "drafting_2d"
-        ]
-      }
+      "product_type": "gis"
     },
     {
       "id": "tekla-structures",
@@ -2027,24 +1596,7 @@
       "international_benchmarks": [
         "revit",
         "microstation"
-      ],
-      "capabilities": {
-        "full": [
-          "solid_modeling_3d",
-          "parametric_design",
-          "assembly_design",
-          "bim_clash",
-          "cam_milling_cnc"
-        ],
-        "partial": [
-          "drafting_2d",
-          "code_compliance",
-          "collaboration",
-          "ext_api",
-          "scheduling_ops",
-          "bim_quantity_takeoff"
-        ]
-      }
+      ]
     }
   ]
 }

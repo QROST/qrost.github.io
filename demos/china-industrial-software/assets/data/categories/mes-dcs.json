@@ -14,11 +14,11 @@
       "localization_depth": "core",
       "strengths_zh": [
         "流程工业DCS市占第一",
-        "supOS工业互联网平台"
+        "PlantMart工业互联网平台"
       ],
       "strengths_en": [
         "#1 process DCS share in China",
-        "supOS IIoT platform"
+        "PlantMart IIoT platform"
       ],
       "limitations_zh": [
         "化工以外行业拓展仍在进行",
@@ -46,19 +46,7 @@
       "international_benchmarks": [
         "emerson-deltav"
       ],
-      "listed_ticker": "688777.SH",
-      "capabilities": {
-        "full": [
-          "process_control",
-          "data_acquisition",
-          "scheduling_ops",
-          "xinchuang_compat"
-        ],
-        "partial": [
-          "ext_api",
-          "cloud_native"
-        ]
-      }
+      "listed_ticker": "688777.SH"
     },
     {
       "id": "hollysys-dcs",
@@ -81,13 +69,11 @@
       ],
       "limitations_zh": [
         "化工市占低于中控",
-        "国际化有限",
-        "已从纳斯达克退市（2024-07，Ascendent 私有化收购）"
+        "国际化有限"
       ],
       "limitations_en": [
         "Lower chemical share than SUPCON",
-        "Limited internationalization",
-        "Delisted from NASDAQ (Jul 2024, taken private by Ascendent)"
+        "Limited internationalization"
       ],
       "industries": [
         "电力",
@@ -107,18 +93,7 @@
       "international_benchmarks": [
         "honeywell-experion"
       ],
-      "listed_ticker": "HOLI",
-      "capabilities": {
-        "full": [
-          "process_control",
-          "data_acquisition",
-          "xinchuang_compat"
-        ],
-        "partial": [
-          "scheduling_ops",
-          "ext_api"
-        ]
-      }
+      "listed_ticker": "HOLI"
     },
     {
       "id": "nari-dcs",
@@ -165,17 +140,7 @@
       "international_benchmarks": [
         "abb-800xa"
       ],
-      "listed_ticker": "600406.SH",
-      "capabilities": {
-        "full": [
-          "process_control",
-          "data_acquisition",
-          "xinchuang_compat"
-        ],
-        "partial": [
-          "scheduling_ops"
-        ]
-      }
+      "listed_ticker": "600406.SH"
     },
     {
       "id": "sciyon-dcs",
@@ -222,17 +187,7 @@
       "international_benchmarks": [
         "siemens-pcs7"
       ],
-      "listed_ticker": "002380.SZ",
-      "capabilities": {
-        "full": [
-          "process_control",
-          "data_acquisition",
-          "xinchuang_compat"
-        ],
-        "partial": [
-          "scheduling_ops"
-        ]
-      }
+      "listed_ticker": "002380.SZ"
     },
     {
       "id": "wellintech-kingview",
@@ -278,17 +233,7 @@
       ],
       "international_benchmarks": [
         "wonderware"
-      ],
-      "capabilities": {
-        "full": [
-          "process_control",
-          "data_acquisition",
-          "xinchuang_compat"
-        ],
-        "partial": [
-          "ext_api"
-        ]
-      }
+      ]
     },
     {
       "id": "emerson-deltav",
@@ -331,17 +276,7 @@
           "title": "Emerson DeltaV",
           "accessed": "2026-06"
         }
-      ],
-      "capabilities": {
-        "full": [
-          "process_control",
-          "data_acquisition"
-        ],
-        "partial": [
-          "scheduling_ops",
-          "ext_api"
-        ]
-      }
+      ]
     },
     {
       "id": "honeywell-experion",
@@ -383,17 +318,7 @@
           "title": "Honeywell Experion",
           "accessed": "2026-06"
         }
-      ],
-      "capabilities": {
-        "full": [
-          "process_control",
-          "data_acquisition"
-        ],
-        "partial": [
-          "scheduling_ops",
-          "ext_api"
-        ]
-      }
+      ]
     },
     {
       "id": "siemens-pcs7",
@@ -436,17 +361,7 @@
           "title": "Siemens PCS 7",
           "accessed": "2026-06"
         }
-      ],
-      "capabilities": {
-        "full": [
-          "process_control",
-          "data_acquisition"
-        ],
-        "partial": [
-          "scheduling_ops",
-          "ext_api"
-        ]
-      }
+      ]
     },
     {
       "id": "abb-800xa",
@@ -489,17 +404,7 @@
           "title": "ABB 800xA",
           "accessed": "2026-06"
         }
-      ],
-      "capabilities": {
-        "full": [
-          "process_control",
-          "data_acquisition"
-        ],
-        "partial": [
-          "scheduling_ops",
-          "ext_api"
-        ]
-      }
+      ]
     },
     {
       "id": "yokogawa-centum",
@@ -541,16 +446,7 @@
           "title": "Yokogawa CENTUM",
           "accessed": "2026-06"
         }
-      ],
-      "capabilities": {
-        "full": [
-          "process_control",
-          "data_acquisition"
-        ],
-        "partial": [
-          "scheduling_ops"
-        ]
-      }
+      ]
     },
     {
       "id": "baosight-mes",
@@ -597,20 +493,7 @@
       "international_benchmarks": [
         "siemens-opcenter"
       ],
-      "listed_ticker": "600845.SH",
-      "capabilities": {
-        "full": [
-          "scheduling_ops",
-          "data_acquisition",
-          "bom_mgmt",
-          "xinchuang_compat"
-        ],
-        "partial": [
-          "lifecycle_mgmt",
-          "ext_api",
-          "quality_spc_traceability"
-        ]
-      }
+      "listed_ticker": "600845.SH"
     },
     {
       "id": "sie-mes",
@@ -657,19 +540,7 @@
       "international_benchmarks": [
         "siemens-opcenter"
       ],
-      "listed_ticker": "300687.SZ",
-      "capabilities": {
-        "full": [
-          "scheduling_ops",
-          "data_acquisition",
-          "bom_mgmt",
-          "xinchuang_compat"
-        ],
-        "partial": [
-          "lifecycle_mgmt",
-          "cloud_native"
-        ]
-      }
+      "listed_ticker": "300687.SZ"
     },
     {
       "id": "goodsgather-mes",
@@ -710,24 +581,8 @@
           "url": "https://www.goodsgather.com/",
           "title": "GoodsGather MES",
           "accessed": "2026-06"
-        },
-        {
-          "title": "谷器数据 GoodsGather MES / SupplyX 智造运营平台",
-          "url": "http://www.goocidata.com/zhineng.html",
-          "accessed": "2026-06"
         }
-      ],
-      "capabilities": {
-        "full": [
-          "scheduling_ops",
-          "data_acquisition",
-          "bom_mgmt"
-        ],
-        "partial": [
-          "cloud_native",
-          "ext_api"
-        ]
-      }
+      ]
     },
     {
       "id": "cosmoplat-mes",
@@ -770,19 +625,7 @@
           "title": "COSMOPlat Tianzhigong",
           "accessed": "2026-06"
         }
-      ],
-      "capabilities": {
-        "full": [
-          "scheduling_ops",
-          "data_acquisition",
-          "cloud_native",
-          "xinchuang_compat"
-        ],
-        "partial": [
-          "bom_mgmt",
-          "ext_api"
-        ]
-      }
+      ]
     },
     {
       "id": "siemens-opcenter",
@@ -825,20 +668,7 @@
           "title": "Siemens Opcenter",
           "accessed": "2026-06"
         }
-      ],
-      "capabilities": {
-        "full": [
-          "scheduling_ops",
-          "data_acquisition",
-          "bom_mgmt",
-          "quality_spc_traceability"
-        ],
-        "partial": [
-          "lifecycle_mgmt",
-          "requirements_trace",
-          "ext_api"
-        ]
-      }
+      ]
     },
     {
       "id": "blacklake-mes",
@@ -881,18 +711,7 @@
           "title": "BlackLake Manufacturing",
           "accessed": "2026-06"
         }
-      ],
-      "capabilities": {
-        "full": [
-          "scheduling_ops",
-          "data_acquisition",
-          "cloud_native"
-        ],
-        "partial": [
-          "bom_mgmt",
-          "ext_api"
-        ]
-      }
+      ]
     },
     {
       "id": "pangus-ims-mes",
@@ -942,19 +761,7 @@
       "international_benchmarks": [
         "siemens-opcenter",
         "blacklake-mes"
-      ],
-      "capabilities": {
-        "full": [
-          "scheduling_ops",
-          "data_acquisition",
-          "bom_mgmt",
-          "xinchuang_compat"
-        ],
-        "partial": [
-          "lifecycle_mgmt",
-          "ext_api"
-        ]
-      }
+      ]
     },
     {
       "id": "orbitmes-orbit-mes",
@@ -1003,19 +810,7 @@
       ],
       "international_benchmarks": [
         "morewis-n2-mes"
-      ],
-      "capabilities": {
-        "full": [
-          "scheduling_ops",
-          "data_acquisition",
-          "bom_mgmt",
-          "quality_spc_traceability"
-        ],
-        "partial": [
-          "process_control",
-          "ext_api"
-        ]
-      }
+      ]
     },
     {
       "id": "moldbao-moducloud-mes",
@@ -1064,18 +859,7 @@
       ],
       "international_benchmarks": [
         "blacklake-mes"
-      ],
-      "capabilities": {
-        "full": [
-          "scheduling_ops",
-          "data_acquisition",
-          "cloud_native"
-        ],
-        "partial": [
-          "bom_mgmt",
-          "cam_milling_cnc"
-        ]
-      }
+      ]
     },
     {
       "id": "yfway-fdm20",
@@ -1123,18 +907,7 @@
       ],
       "international_benchmarks": [
         "blacklake-mes"
-      ],
-      "capabilities": {
-        "full": [
-          "scheduling_ops",
-          "bom_mgmt",
-          "data_acquisition"
-        ],
-        "partial": [
-          "parametric_design",
-          "ext_api"
-        ]
-      }
+      ]
     },
     {
       "id": "dassault-delmia",
@@ -1177,18 +950,7 @@
           "title": "DELMIA",
           "accessed": "2026-06"
         }
-      ],
-      "capabilities": {
-        "full": [
-          "scheduling_ops",
-          "data_acquisition",
-          "lifecycle_mgmt"
-        ],
-        "partial": [
-          "bom_mgmt",
-          "ext_api"
-        ]
-      }
+      ]
     },
     {
       "id": "sap-dmc",
@@ -1231,20 +993,7 @@
           "title": "SAP Digital Manufacturing Cloud",
           "accessed": "2026-06"
         }
-      ],
-      "capabilities": {
-        "full": [
-          "scheduling_ops",
-          "data_acquisition",
-          "cloud_native",
-          "quality_spc_traceability"
-        ],
-        "partial": [
-          "bom_mgmt",
-          "finance_ledger",
-          "ext_api"
-        ]
-      }
+      ]
     },
     {
       "id": "oracle-manufacturing",
@@ -1287,19 +1036,7 @@
           "title": "Oracle Cloud Manufacturing",
           "accessed": "2026-06"
         }
-      ],
-      "capabilities": {
-        "full": [
-          "scheduling_ops",
-          "data_acquisition",
-          "cloud_native"
-        ],
-        "partial": [
-          "bom_mgmt",
-          "finance_ledger",
-          "ext_api"
-        ]
-      }
+      ]
     },
     {
       "id": "rockwell-factorytalk",
@@ -1345,18 +1082,7 @@
       ],
       "international_benchmarks": [
         "aveva-system-platform"
-      ],
-      "capabilities": {
-        "full": [
-          "process_control",
-          "data_acquisition",
-          "scheduling_ops"
-        ],
-        "partial": [
-          "bom_mgmt",
-          "ext_api"
-        ]
-      }
+      ]
     },
     {
       "id": "aveva-system-platform",
@@ -1402,18 +1128,7 @@
       ],
       "international_benchmarks": [
         "wellintech-kingview"
-      ],
-      "capabilities": {
-        "full": [
-          "process_control",
-          "data_acquisition"
-        ],
-        "partial": [
-          "scheduling_ops",
-          "ext_api",
-          "iiot_historian"
-        ]
-      }
+      ]
     },
     {
       "id": "schneider-ecostruxure-plant",
@@ -1456,17 +1171,7 @@
           "title": "Schneider EcoStruxure Plant",
           "accessed": "2026-06"
         }
-      ],
-      "capabilities": {
-        "full": [
-          "process_control",
-          "data_acquisition"
-        ],
-        "partial": [
-          "scheduling_ops",
-          "ext_api"
-        ]
-      }
+      ]
     },
     {
       "id": "abb-ability-mom",
@@ -1512,18 +1217,7 @@
       ],
       "international_benchmarks": [
         "siemens-opcenter"
-      ],
-      "capabilities": {
-        "full": [
-          "scheduling_ops",
-          "data_acquisition"
-        ],
-        "partial": [
-          "bom_mgmt",
-          "process_control",
-          "ext_api"
-        ]
-      }
+      ]
     },
     {
       "id": "morewis-n2-mes",
@@ -1565,28 +1259,11 @@
           "url": "https://www.morewis.com/",
           "title": "Morewis N2Cloud MES",
           "accessed": "2026-06"
-        },
-        {
-          "title": "摩尔元数 N2云智造 MES 系统",
-          "url": "https://www.morewis.com/mmes.html",
-          "accessed": "2026-06"
         }
       ],
       "international_benchmarks": [
         "siemens-opcenter"
-      ],
-      "capabilities": {
-        "full": [
-          "scheduling_ops",
-          "data_acquisition",
-          "bom_mgmt",
-          "xinchuang_compat"
-        ],
-        "partial": [
-          "cloud_native",
-          "ext_api"
-        ]
-      }
+      ]
     },
     {
       "id": "pcitc-smart-refining",
@@ -1628,28 +1305,11 @@
           "url": "http://www.pcitc.com/",
           "title": "PCITC Smart Refining MES",
           "accessed": "2026-06"
-        },
-        {
-          "title": "石化盈科 ProMACE 调度指挥 / 生产执行应用软件",
-          "url": "http://www.pcitc.com/products_services/product/pro_operation/20200805/news_20200805_381166579786.shtml",
-          "accessed": "2026-06"
         }
       ],
       "international_benchmarks": [
         "emerson-deltav"
-      ],
-      "capabilities": {
-        "full": [
-          "scheduling_ops",
-          "data_acquisition",
-          "xinchuang_compat"
-        ],
-        "partial": [
-          "process_control",
-          "cloud_native",
-          "ext_api"
-        ]
-      }
+      ]
     },
     {
       "id": "ibm-maximo",
@@ -1692,19 +1352,7 @@
           "title": "IBM Maximo",
           "accessed": "2026-06"
         }
-      ],
-      "capabilities": {
-        "full": [
-          "data_acquisition",
-          "enterprise_asset_mgmt"
-        ],
-        "partial": [
-          "scheduling_ops",
-          "lifecycle_mgmt",
-          "ext_api",
-          "predictive_maintenance_apm"
-        ]
-      }
+      ]
     },
     {
       "id": "aveva-pi-system",
@@ -1747,17 +1395,7 @@
           "title": "AVEVA PI System",
           "accessed": "2026-06"
         }
-      ],
-      "capabilities": {
-        "full": [
-          "data_acquisition",
-          "iiot_historian"
-        ],
-        "partial": [
-          "ext_api",
-          "cloud_native"
-        ]
-      }
+      ]
     },
     {
       "id": "rockwell-ft-plex",
@@ -1803,20 +1441,7 @@
       ],
       "international_benchmarks": [
         "blacklake-mes"
-      ],
-      "capabilities": {
-        "full": [
-          "scheduling_ops",
-          "data_acquisition",
-          "cloud_native",
-          "quality_spc_traceability"
-        ],
-        "partial": [
-          "bom_mgmt",
-          "finance_ledger",
-          "ext_api"
-        ]
-      }
+      ]
     },
     {
       "id": "ge-ifix-scada",
@@ -1862,16 +1487,7 @@
       ],
       "international_benchmarks": [
         "wellintech-kingview"
-      ],
-      "capabilities": {
-        "full": [
-          "process_control",
-          "data_acquisition"
-        ],
-        "partial": [
-          "scheduling_ops"
-        ]
-      }
+      ]
     },
     {
       "id": "yokogawa-fast-tools",
@@ -1917,18 +1533,7 @@
       ],
       "international_benchmarks": [
         "aveva-system-platform"
-      ],
-      "capabilities": {
-        "full": [
-          "process_control",
-          "data_acquisition",
-          "iiot_historian"
-        ],
-        "partial": [
-          "scheduling_ops",
-          "ext_api"
-        ]
-      }
+      ]
     }
   ]
 }

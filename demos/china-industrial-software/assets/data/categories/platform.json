@@ -46,21 +46,7 @@
       "taxonomy_note_zh": "P3归并：工信部四类→生产制造（原基础平台/工业互联网）",
       "taxonomy_note_en": "P3 remap: MIIT quad → 生产制造 (was 基础平台/工业互联网)",
       "subsegment": "iiot_platform",
-      "product_type": "iiot_platform",
-      "capabilities": {
-        "full": [
-          "data_acquisition",
-          "cloud_native",
-          "ext_api",
-          "collaboration"
-        ],
-        "partial": [
-          "process_control",
-          "lifecycle_mgmt",
-          "scheduling_ops",
-          "xinchuang_compat"
-        ]
-      }
+      "product_type": "iiot_platform"
     },
     {
       "id": "alibaba-industrial-brain",
@@ -107,20 +93,7 @@
       "taxonomy_note_zh": "P3归并：工信部四类→生产制造（原基础平台/工业互联网）",
       "taxonomy_note_en": "P3 remap: MIIT quad → 生产制造 (was 基础平台/工业互联网)",
       "subsegment": "iiot_platform",
-      "product_type": "iiot_platform",
-      "capabilities": {
-        "full": [
-          "data_acquisition",
-          "cloud_native",
-          "ext_api",
-          "predictive_maintenance_apm"
-        ],
-        "partial": [
-          "collaboration",
-          "process_control",
-          "scheduling_ops"
-        ]
-      }
+      "product_type": "iiot_platform"
     },
     {
       "id": "tencent-wemake",
@@ -166,18 +139,7 @@
       "taxonomy_note_zh": "P3归并：工信部四类→生产制造（原基础平台/工业互联网）",
       "taxonomy_note_en": "P3 remap: MIIT quad → 生产制造 (was 基础平台/工业互联网)",
       "subsegment": "iiot_platform",
-      "product_type": "iiot_platform",
-      "capabilities": {
-        "full": [
-          "data_acquisition",
-          "cloud_native",
-          "ext_api"
-        ],
-        "partial": [
-          "collaboration",
-          "scheduling_ops"
-        ]
-      }
+      "product_type": "iiot_platform"
     },
     {
       "id": "baidu-industrial",
@@ -227,18 +189,7 @@
       "product_type": "iiot_platform",
       "tags": [
         "cloud_native"
-      ],
-      "capabilities": {
-        "full": [
-          "data_acquisition",
-          "cloud_native",
-          "ext_api"
-        ],
-        "partial": [
-          "collaboration",
-          "process_control"
-        ]
-      }
+      ]
     },
     {
       "id": "rootcloud",
@@ -284,21 +235,7 @@
       "taxonomy_note_zh": "P3归并：工信部四类→生产制造（原基础平台/工业互联网）",
       "taxonomy_note_en": "P3 remap: MIIT quad → 生产制造 (was 基础平台/工业互联网)",
       "subsegment": "iiot_platform",
-      "product_type": "iiot_platform",
-      "capabilities": {
-        "full": [
-          "data_acquisition",
-          "cloud_native",
-          "ext_api",
-          "collaboration"
-        ],
-        "partial": [
-          "lifecycle_mgmt",
-          "scheduling_ops",
-          "xinchuang_compat",
-          "predictive_maintenance_apm"
-        ]
-      }
+      "product_type": "iiot_platform"
     },
     {
       "id": "casicloud-indics",
@@ -345,19 +282,7 @@
       "taxonomy_note_zh": "P3归并：工信部四类→生产制造（原基础平台/工业互联网）",
       "taxonomy_note_en": "P3 remap: MIIT quad → 生产制造 (was 基础平台/工业互联网)",
       "subsegment": "iiot_platform",
-      "product_type": "iiot_platform",
-      "capabilities": {
-        "full": [
-          "data_acquisition",
-          "cloud_native",
-          "ext_api"
-        ],
-        "partial": [
-          "collaboration",
-          "scheduling_ops",
-          "xinchuang_compat"
-        ]
-      }
+      "product_type": "iiot_platform"
     },
     {
       "id": "yonyou-iip",
@@ -404,21 +329,7 @@
       "taxonomy_note_zh": "P3归并：工信部四类→生产制造（原基础平台/工业互联网）",
       "taxonomy_note_en": "P3 remap: MIIT quad → 生产制造 (was 基础平台/工业互联网)",
       "subsegment": "iiot_platform",
-      "product_type": "iiot_platform",
-      "capabilities": {
-        "full": [
-          "data_acquisition",
-          "cloud_native",
-          "ext_api",
-          "finance_ledger"
-        ],
-        "partial": [
-          "lifecycle_mgmt",
-          "scheduling_ops",
-          "bom_mgmt",
-          "xinchuang_compat"
-        ]
-      }
+      "product_type": "iiot_platform"
     },
     {
       "id": "thingworx",
@@ -465,21 +376,7 @@
       "taxonomy_note_zh": "P3归并：工信部四类→生产制造（原基础平台/工业互联网）",
       "taxonomy_note_en": "P3 remap: MIIT quad → 生产制造 (was 基础平台/工业互联网)",
       "subsegment": "iiot_platform",
-      "product_type": "iiot_platform",
-      "capabilities": {
-        "full": [
-          "data_acquisition",
-          "cloud_native",
-          "ext_api",
-          "collaboration"
-        ],
-        "partial": [
-          "lifecycle_mgmt",
-          "process_control",
-          "predictive_maintenance_apm",
-          "digital_twin"
-        ]
-      }
+      "product_type": "iiot_platform"
     },
     {
       "id": "mindsphere",
@@ -490,7 +387,7 @@
       "category_l2": "工业互联网",
       "origin": "international",
       "kernel": "自主",
-      "maturity": "low",
+      "maturity": "high",
       "localization_depth": "partial",
       "strengths_zh": [
         "工业云平台（非MES，与Opcenter衔接）",
@@ -504,13 +401,11 @@
       ],
       "limitations_zh": [
         "在华推广弱于本土平台",
-        "定价与生态开放度争议",
-        "MindSphere 品牌 2023-06 退役，已更名 Siemens Insights Hub（本表另有独立条目）"
+        "定价与生态开放度争议"
       ],
       "limitations_en": [
         "Weaker China push than local platforms",
-        "Pricing and openness debates",
-        "Rebranded as Siemens Insights Hub (brand retired 2023)"
+        "Pricing and openness debates"
       ],
       "industries": [
         "制造",
@@ -533,20 +428,7 @@
       "product_type": "iiot_platform",
       "tags": [
         "cloud_native"
-      ],
-      "capabilities": {
-        "full": [
-          "data_acquisition",
-          "cloud_native",
-          "ext_api",
-          "digital_twin"
-        ],
-        "partial": [
-          "collaboration",
-          "lifecycle_mgmt",
-          "predictive_maintenance_apm"
-        ]
-      }
+      ]
     },
     {
       "id": "ge-predix",
@@ -557,7 +439,7 @@
       "category_l2": "工业互联网",
       "origin": "international",
       "kernel": "自主",
-      "maturity": "low",
+      "maturity": "mid",
       "localization_depth": "pilot",
       "strengths_zh": [
         "资产性能管理云平台（非MES）",
@@ -571,13 +453,11 @@
       ],
       "limitations_zh": [
         "战略收缩后在华声量下降",
-        "生态活跃度低于AWS/Azure",
-        "Predix 品牌已退役，能力并入 GE Vernova APM"
+        "生态活跃度低于AWS/Azure"
       ],
       "limitations_en": [
         "Reduced China presence after strategy shift",
-        "Less ecosystem than hyperscalers",
-        "Predix brand retired; capabilities folded into GE Vernova APM"
+        "Less ecosystem than hyperscalers"
       ],
       "industries": [
         "能源",
@@ -600,19 +480,7 @@
       "product_type": "iiot_platform",
       "tags": [
         "cloud_native"
-      ],
-      "capabilities": {
-        "full": [
-          "data_acquisition",
-          "cloud_native",
-          "ext_api",
-          "predictive_maintenance_apm"
-        ],
-        "partial": [
-          "lifecycle_mgmt",
-          "enterprise_asset_mgmt"
-        ]
-      }
+      ]
     },
     {
       "id": "sap-btp",
@@ -664,19 +532,7 @@
       "product_type": "iiot_platform",
       "tags": [
         "cloud_native"
-      ],
-      "capabilities": {
-        "full": [
-          "cloud_native",
-          "ext_api",
-          "finance_ledger"
-        ],
-        "partial": [
-          "data_acquisition",
-          "lifecycle_mgmt",
-          "collaboration"
-        ]
-      }
+      ]
     },
     {
       "id": "meicloud",
@@ -718,30 +574,12 @@
           "url": "https://www.meicloud.com/",
           "title": "Meicloud",
           "accessed": "2026-06"
-        },
-        {
-          "url": "https://www.meicloud.com/product",
-          "title": "美云智数 产品中心",
-          "accessed": "2026-06"
         }
       ],
       "taxonomy_note_zh": "P3归并：工信部四类→生产制造（原基础平台/工业互联网）",
       "taxonomy_note_en": "P3 remap: MIIT quad → 生产制造 (was 基础平台/工业互联网)",
       "subsegment": "iiot_platform",
-      "product_type": "iiot_platform",
-      "capabilities": {
-        "full": [
-          "data_acquisition",
-          "cloud_native",
-          "ext_api"
-        ],
-        "partial": [
-          "scheduling_ops",
-          "collaboration",
-          "bom_mgmt",
-          "supply_chain_procurement"
-        ]
-      }
+      "product_type": "iiot_platform"
     },
     {
       "id": "unigroup-cloud",
@@ -791,18 +629,7 @@
       "product_type": "iiot_platform",
       "tags": [
         "cloud_native"
-      ],
-      "capabilities": {
-        "full": [
-          "data_acquisition",
-          "cloud_native",
-          "xinchuang_compat"
-        ],
-        "partial": [
-          "ext_api",
-          "collaboration"
-        ]
-      }
+      ]
     },
     {
       "id": "haier-cosmoplat-platform",
@@ -844,30 +671,12 @@
           "url": "https://www.cosmoplat.com/",
           "title": "COSMOPlat",
           "accessed": "2026-06"
-        },
-        {
-          "url": "https://www.cosmoplat.com/platform",
-          "title": "卡奥斯 COSMOPlat 工业互联网平台",
-          "accessed": "2026-06"
         }
       ],
       "taxonomy_note_zh": "P3归并：工信部四类→生产制造（原基础平台/工业互联网）",
       "taxonomy_note_en": "P3 remap: MIIT quad → 生产制造 (was 基础平台/工业互联网)",
       "subsegment": "iiot_platform",
-      "product_type": "iiot_platform",
-      "capabilities": {
-        "full": [
-          "data_acquisition",
-          "cloud_native",
-          "ext_api",
-          "collaboration"
-        ],
-        "partial": [
-          "scheduling_ops",
-          "lifecycle_mgmt",
-          "xinchuang_compat"
-        ]
-      }
+      "product_type": "iiot_platform"
     },
     {
       "id": "neucloud-neuseer-iiot",
@@ -912,31 +721,11 @@
           "url": "https://www.neucloud.cn/product/iiot",
           "title": "NeuSeer IIoT",
           "accessed": "2026-06"
-        },
-        {
-          "url": "https://www.neuseer.com/appMarket/app_ycxwh_zhizao",
-          "title": "寄云 NeuSeer 预测性维护应用",
-          "accessed": "2026-06"
         }
       ],
       "international_benchmarks": [
         "huawei-fusionplant"
-      ],
-      "capabilities": {
-        "full": [
-          "data_acquisition",
-          "cloud_native",
-          "ext_api",
-          "predictive_maintenance_apm"
-        ],
-        "partial": [
-          "process_control",
-          "collaboration",
-          "scheduling_ops",
-          "xinchuang_compat",
-          "ot_protocol_gateway"
-        ]
-      }
+      ]
     },
     {
       "id": "mogulinker-iem",
@@ -981,27 +770,11 @@
           "url": "https://www.mogulinker.com/iem.html",
           "title": "Mogulinker IEM",
           "accessed": "2026-06"
-        },
-        {
-          "url": "https://www.mogulinker.com/newsMg/300.html",
-          "title": "蘑菇物联入选工信部特色专业型工业互联网平台",
-          "accessed": "2026-06"
         }
       ],
       "international_benchmarks": [
         "cosmoplat-mes"
-      ],
-      "capabilities": {
-        "full": [
-          "data_acquisition",
-          "cloud_native",
-          "process_control"
-        ],
-        "partial": [
-          "ext_api",
-          "scheduling_ops"
-        ]
-      }
+      ]
     },
     {
       "id": "getech-semiconductor-cim",
@@ -1049,30 +822,11 @@
           "url": "https://www.getech.cn/newdetail-177.html",
           "title": "Getech CIM",
           "accessed": "2026-06"
-        },
-        {
-          "url": "https://www.getech.cn/newdetail-188.html",
-          "title": "格创东智 半导体智能制造 CIM 解决方案",
-          "accessed": "2026-06"
         }
       ],
       "international_benchmarks": [
         "siemens-opcenter"
-      ],
-      "capabilities": {
-        "full": [
-          "fab_automation_eap",
-          "yield_yms",
-          "scheduling_ops",
-          "data_acquisition"
-        ],
-        "partial": [
-          "process_control",
-          "cloud_native",
-          "lifecycle_mgmt",
-          "ext_api"
-        ]
-      }
+      ]
     },
     {
       "id": "hancloud-hanyun-os",
@@ -1127,22 +881,7 @@
       "international_benchmarks": [
         "huawei-fusionplant",
         "cosmoplat-mes"
-      ],
-      "capabilities": {
-        "full": [
-          "data_acquisition",
-          "cloud_native",
-          "ext_api",
-          "collaboration",
-          "digital_twin"
-        ],
-        "partial": [
-          "lifecycle_mgmt",
-          "scheduling_ops",
-          "process_control",
-          "xinchuang_compat"
-        ]
-      }
+      ]
     },
     {
       "id": "emqx",
@@ -1197,19 +936,7 @@
       "product_type": "other",
       "tags": [
         "open_source_stack"
-      ],
-      "capabilities": {
-        "full": [
-          "data_acquisition",
-          "ext_api",
-          "ot_protocol_gateway"
-        ],
-        "partial": [
-          "cloud_native",
-          "xinchuang_compat",
-          "collaboration"
-        ]
-      }
+      ]
     },
     {
       "id": "open62541",
@@ -1264,17 +991,7 @@
       "product_type": "other",
       "tags": [
         "open_source_stack"
-      ],
-      "capabilities": {
-        "full": [
-          "data_acquisition",
-          "ext_api",
-          "ot_protocol_gateway"
-        ],
-        "partial": [
-          "process_control"
-        ]
-      }
+      ]
     },
     {
       "id": "rainfe-aief",
@@ -1321,28 +1038,12 @@
           "url": "https://www.rainfe.com/gyrf.html",
           "title": "瑞风协同公司简介",
           "accessed": "2026-06"
-        },
-        {
-          "url": "https://aief.rainfe.com/",
-          "title": "瑞风协同 aiEF 智能工程平台",
-          "accessed": "2026-06"
         }
       ],
       "taxonomy_note_zh": "P3归并：工信部四类→生产制造（原基础平台/工业互联网）",
       "taxonomy_note_en": "P3 remap: MIIT quad → 生产制造 (was 基础平台/工业互联网)",
       "subsegment": "iiot_platform",
-      "product_type": "iiot_platform",
-      "capabilities": {
-        "full": [
-          "data_acquisition",
-          "cloud_native",
-          "ext_api"
-        ],
-        "partial": [
-          "requirements_trace",
-          "collaboration"
-        ]
-      }
+      "product_type": "iiot_platform"
     },
     {
       "id": "ptc-vuforia",
@@ -1389,19 +1090,7 @@
       "taxonomy_note_zh": "P3归并：工信部四类→生产制造（原基础平台/工业互联网）",
       "taxonomy_note_en": "P3 remap: MIIT quad → 生产制造 (was 基础平台/工业互联网)",
       "subsegment": "iiot_platform",
-      "product_type": "iiot_platform",
-      "capabilities": {
-        "full": [
-          "cloud_native",
-          "collaboration",
-          "ext_api",
-          "industrial_ar_xr"
-        ],
-        "partial": [
-          "data_acquisition",
-          "digital_twin"
-        ]
-      }
+      "product_type": "iiot_platform"
     },
     {
       "id": "siemens-insights-hub",
@@ -1456,20 +1145,7 @@
       "product_type": "iiot_platform",
       "tags": [
         "cloud_native"
-      ],
-      "capabilities": {
-        "full": [
-          "data_acquisition",
-          "cloud_native",
-          "ext_api",
-          "digital_twin"
-        ],
-        "partial": [
-          "collaboration",
-          "lifecycle_mgmt",
-          "predictive_maintenance_apm"
-        ]
-      }
+      ]
     },
     {
       "id": "ptc-kepware",
@@ -1520,17 +1196,9 @@
       "taxonomy_note_en": "P3 remap: MIIT quad → 生产制造 (was 基础平台/工业互联网)",
       "subsegment": "opc_mqtt",
       "product_type": "other",
-      "tags": [],
-      "capabilities": {
-        "full": [
-          "data_acquisition",
-          "ext_api",
-          "ot_protocol_gateway"
-        ],
-        "partial": [
-          "process_control"
-        ]
-      }
+      "tags": [
+        "open_source_stack"
+      ]
     },
     {
       "id": "aws-iot-sitewise",
@@ -1585,19 +1253,7 @@
       "product_type": "iiot_platform",
       "tags": [
         "cloud_native"
-      ],
-      "capabilities": {
-        "full": [
-          "data_acquisition",
-          "cloud_native",
-          "ext_api",
-          "iiot_historian"
-        ],
-        "partial": [
-          "collaboration",
-          "ot_protocol_gateway"
-        ]
-      }
+      ]
     },
     {
       "id": "azure-iot-operations",
@@ -1652,19 +1308,7 @@
       "product_type": "iiot_platform",
       "tags": [
         "cloud_native"
-      ],
-      "capabilities": {
-        "full": [
-          "data_acquisition",
-          "cloud_native",
-          "ext_api"
-        ],
-        "partial": [
-          "process_control",
-          "collaboration",
-          "ot_protocol_gateway"
-        ]
-      }
+      ]
     }
   ]
 }

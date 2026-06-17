@@ -56,19 +56,7 @@
       "international_benchmarks": [
         "solidworks"
       ],
-      "kernel_id": "open-cascade",
-      "capabilities": {
-        "full": [
-          "solid_modeling_3d",
-          "surface_modeling",
-          "cad_repair_interop",
-          "ext_api"
-        ],
-        "partial": [
-          "parametric_design",
-          "assembly_design"
-        ]
-      }
+      "kernel_id": "open-cascade"
     },
     {
       "id": "freecad",
@@ -131,24 +119,7 @@
         "solidworks",
         "fusion360"
       ],
-      "kernel_id": "open-cascade",
-      "capabilities": {
-        "full": [
-          "solid_modeling_3d",
-          "parametric_design",
-          "drafting_2d",
-          "assembly_design",
-          "cad_repair_interop",
-          "cam_milling_cnc",
-          "ext_api"
-        ],
-        "partial": [
-          "surface_modeling",
-          "fea_structure",
-          "bim_clash",
-          "cad_as_code"
-        ]
-      }
+      "kernel_id": "open-cascade"
     },
     {
       "id": "openscad",
@@ -158,7 +129,7 @@
       "category_l1": "研发设计",
       "category_l2": "CAD",
       "origin": "open_source",
-      "kernel": "CGAL / Manifold（非 OCCT）",
+      "kernel": "CGAL（非 OCCT）",
       "maturity": "mid",
       "localization_depth": "pilot",
       "strengths_zh": [
@@ -201,17 +172,7 @@
           "accessed": "2026-06"
         }
       ],
-      "kernel_id": "cgal",
-      "capabilities": {
-        "full": [
-          "solid_modeling_3d",
-          "ext_api",
-          "cad_as_code"
-        ],
-        "partial": [
-          "parametric_design"
-        ]
-      }
+      "kernel_id": "cgal"
     },
     {
       "id": "solvespace",
@@ -264,18 +225,7 @@
           "accessed": "2026-06"
         }
       ],
-      "kernel_id": "solvespace-kernel",
-      "capabilities": {
-        "full": [
-          "drafting_2d",
-          "solid_modeling_3d",
-          "parametric_design"
-        ],
-        "partial": [
-          "assembly_design",
-          "cad_repair_interop"
-        ]
-      }
+      "kernel_id": "solvespace-kernel"
     },
     {
       "id": "librecad",
@@ -320,15 +270,7 @@
           "accessed": "2026-06"
         }
       ],
-      "kernel_id": "librecad-rs-entity-engine",
-      "capabilities": {
-        "full": [
-          "drafting_2d"
-        ],
-        "partial": [
-          "cad_repair_interop"
-        ]
-      }
+      "kernel_id": "librecad-rs-entity-engine"
     },
     {
       "id": "cadquery",
@@ -384,19 +326,7 @@
       "international_benchmarks": [
         "solidworks"
       ],
-      "kernel_id": "open-cascade",
-      "capabilities": {
-        "full": [
-          "solid_modeling_3d",
-          "parametric_design",
-          "ext_api",
-          "cad_repair_interop",
-          "cad_as_code"
-        ],
-        "partial": [
-          "surface_modeling"
-        ]
-      }
+      "kernel_id": "open-cascade"
     },
     {
       "id": "build123d",
@@ -452,19 +382,7 @@
       "international_benchmarks": [
         "cadquery"
       ],
-      "kernel_id": "open-cascade",
-      "capabilities": {
-        "full": [
-          "solid_modeling_3d",
-          "parametric_design",
-          "ext_api",
-          "cad_repair_interop",
-          "cad_as_code"
-        ],
-        "partial": [
-          "surface_modeling"
-        ]
-      }
+      "kernel_id": "open-cascade"
     },
     {
       "id": "heekscad",
@@ -509,17 +427,7 @@
           "accessed": "2026-06"
         }
       ],
-      "kernel_id": "open-cascade",
-      "capabilities": {
-        "full": [
-          "solid_modeling_3d"
-        ],
-        "partial": [
-          "parametric_design",
-          "cad_repair_interop",
-          "drafting_2d"
-        ]
-      }
+      "kernel_id": "open-cascade"
     },
     {
       "id": "brl-cad",
@@ -571,17 +479,7 @@
           "accessed": "2026-06"
         }
       ],
-      "kernel_id": "brl-cad-csg",
-      "capabilities": {
-        "full": [
-          "solid_modeling_3d",
-          "ext_api"
-        ],
-        "partial": [
-          "surface_modeling",
-          "cad_repair_interop"
-        ]
-      }
+      "kernel_id": "brl-cad-csg"
     },
     {
       "id": "blender",
@@ -678,20 +576,7 @@
         "freecad",
         "rhino"
       ],
-      "kernel_id": "blender-bmesh",
-      "capabilities": {
-        "full": [
-          "visual_programming",
-          "ext_api",
-          "polygon_mesh_dcc"
-        ],
-        "partial": [
-          "surface_modeling",
-          "cad_repair_interop",
-          "am_layout",
-          "solid_modeling_3d"
-        ]
-      }
+      "kernel_id": "blender-bmesh"
     },
     {
       "id": "eznesting",
@@ -741,23 +626,11 @@
           "url": "https://eznesting.com/",
           "title": "EZNESTING",
           "accessed": "2026-06"
-        },
-        {
-          "title": "EZNESTING - Cut List Optimizer & Nesting Engine",
-          "url": "https://eznesting.com/nesting-optimizer",
-          "accessed": "2026-06"
         }
       ],
       "international_benchmarks": [
         "yfway-furniture-design"
-      ],
-      "capabilities": {
-        "full": [
-          "cloud_native",
-          "sheet_nesting_2d"
-        ],
-        "partial": []
-      }
+      ]
     }
   ]
 }

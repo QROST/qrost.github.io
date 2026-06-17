@@ -63,6 +63,10 @@
             --control-text: #334155;
             --placeholder: #94a3b8;
             --border: #e2e8f0;
+            --table-sticky-head-bg: #f8fafc;
+            --table-sticky-bg: #ffffff;
+            --table-sticky-hover-bg: rgba(248, 250, 252, 0.85);
+            --table-sticky-shadow: rgba(15, 23, 42, 0.08);
         }
         html.dark {
             color-scheme: dark;
@@ -83,6 +87,10 @@
             --control-text: #cbd5e1;
             --placeholder: #64748b;
             --border: #334155;
+            --table-sticky-head-bg: #1e293b;
+            --table-sticky-bg: #1e293b;
+            --table-sticky-hover-bg: rgba(51, 65, 85, 0.55);
+            --table-sticky-shadow: rgba(0, 0, 0, 0.35);
         }
         /* Class-driven shell — overrides Tailwind CDN @media (prefers-color-scheme: dark) */
         nav.sticky.top-0,
@@ -220,6 +228,30 @@
             pointer-events: none;
         }
 
+        /* Pin province + city on horizontal scroll; # column is rightmost (see displayCols). */
+        #table-scroll th.table-sticky-col,
+        #table-scroll td.table-sticky-col {
+            position: sticky;
+            z-index: 10;
+            background: var(--table-sticky-bg);
+        }
+        #table-scroll thead th.table-sticky-col {
+            z-index: 30;
+            background: var(--table-sticky-head-bg);
+        }
+        #table-scroll th[data-col="prov"],
+        #table-scroll td[data-col="prov"] {
+            left: 0;
+        }
+        #table-scroll th[data-col="city"],
+        #table-scroll td[data-col="city"] {
+            left: var(--table-sticky-city-left, 4.5rem);
+            box-shadow: 2px 0 6px -2px var(--table-sticky-shadow);
+        }
+        #table-scroll tr:hover td.table-sticky-col {
+            background: var(--table-sticky-hover-bg);
+        }
+
         /* Mobile: nav links scroll without a visible scrollbar; chips get taller tap targets */
         .nav-links { scrollbar-width: none; }
         .nav-links::-webkit-scrollbar { display: none; }
@@ -322,7 +354,7 @@
             <p id="sec-geo-p" class="text-slate-600 dark:text-slate-400 mb-5 max-w-3xl text-sm leading-relaxed">每个圆点是一套房，<strong class="text-slate-800 dark:text-slate-200">越大
                     = 越便宜</strong>，颜色按<strong class="text-emerald-700 dark:text-emerald-400">点·叠加维度</strong>变化（单价 / 总价 / 年温差 / 冬夏等温 / 年降水 / 海拔 /
                 突发灾害频率）。再叠一层<strong class="text-emerald-700 dark:text-emerald-400">连续底图</strong>——全国<strong class="text-slate-800 dark:text-slate-200">等温线 / 降水 /
-                    海拔</strong>栅格场（含等值线），就能直观看到某套便宜房落在什么气温带、海拔带里。<strong class="text-slate-800 dark:text-slate-200">滚轮 / 双指捏合 / 右上角
+                    海拔</strong>栅格场（全国 1°，放大到省内自动切换 0.25° ERA5 格点）。<strong class="text-slate-800 dark:text-slate-200">滚轮 / 双指捏合 / 右上角
                     +−</strong> 缩放、拖动平移；点击圆点看卫星图 / 周边 / 气候与灾害。</p>
             <div class="rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 p-4 md:p-6 transition-colors duration-300">
                 <div class="flex flex-wrap items-center gap-2 mb-3">
@@ -564,8 +596,7 @@
                         <li><strong class="text-slate-700 dark:text-slate-300">供暖</strong>：按<strong
                                 class="text-slate-700 dark:text-slate-300">秦岭–淮河集中供暖线</strong>的省级口径——以北为<strong>集中供暖</strong>，江苏/安徽跨线为<strong>部分供暖</strong>，以南分<strong>无·冬暖</strong>（暖和、无需供暖）与<strong>无·湿冷</strong>（冬季湿冷却无集中供暖的"夹心层"）。<strong
                                 class="text-slate-700 dark:text-slate-300">严寒本身不算灾害</strong>，已由气候指标体现，供暖列只回答"冬天有没有暖气"。</li>
-                        <li><strong class="text-slate-700 dark:text-slate-300">连续底图</strong>（等温线/降水/海拔）：在中国陆地上按 <strong>1° 网格</strong>采样
-                            ERA5（2019–2023）与模型海拔，等值线由 marching-squares 抽取——<strong
+                        <li><strong class="text-slate-700 dark:text-slate-300">连续底图</strong>（等温线/降水/海拔）：在中国陆地上按 ERA5 <strong>2014–2023</strong> 采样——全国视图 <strong>1° 网格</strong>（含等值线），放大到省内懒加载 <strong>0.25°（≈25 km）</strong> 格点填色，与小区圆点气候互补；<strong
                                 class="text-slate-700 dark:text-slate-300">粗略定向用</strong>，非精细气候图。</li>
                         <li><strong class="text-slate-700 dark:text-slate-300">单价</strong> = 总价 ÷ 面积；<strong
                                 class="text-slate-700 dark:text-slate-300">毛回报</strong> = 月租×12 ÷ 总价、<strong

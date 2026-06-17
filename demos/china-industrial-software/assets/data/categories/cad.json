@@ -41,32 +41,13 @@
           "url": "https://www.zwsoft.cn/",
           "title": "ZWCAD",
           "accessed": "2026-06"
-        },
-        {
-          "title": "ZWSOFT 官网",
-          "url": "https://www.zwsoft.com/",
-          "accessed": "2026-06"
         }
       ],
       "international_benchmarks": [
         "autocad"
       ],
       "listed_ticker": "300624.SZ",
-      "kernel_id": "zw-overdrive",
-      "capabilities": {
-        "full": [
-          "drafting_2d",
-          "cad_repair_interop",
-          "ext_api",
-          "xinchuang_compat"
-        ],
-        "partial": [
-          "solid_modeling_3d",
-          "assembly_design",
-          "parametric_design",
-          "collaboration"
-        ]
-      }
+      "kernel_id": "zw-overdrive"
     },
     {
       "id": "gstarcad",
@@ -77,23 +58,28 @@
       "category_l2": "CAD",
       "origin": "domestic",
       "kernel": "GstarCAD 2D 平台内核 + ACIS 3D",
+      "kernel_id": "gstar-2d-platform",
       "maturity": "high",
       "localization_depth": "partial",
       "strengths_zh": [
         "2D CAD海外收入占比高",
-        "移动端与云CAD布局"
+        "移动端与云CAD布局",
+        "2D 平台内核自研（GstarCAD 8 起）"
       ],
       "strengths_en": [
         "Strong overseas 2D revenue",
-        "Mobile and cloud CAD"
+        "Mobile and cloud CAD",
+        "Owned 2D platform kernel since GstarCAD 8"
       ],
       "limitations_zh": [
         "3D能力弱于中望",
-        "高端制造业渗透有限"
+        "高端制造业渗透有限",
+        "3D 实体建模依赖 Spatial ACIS OEM 授权（非自研 B-rep）"
       ],
       "limitations_en": [
         "Weaker 3D than ZWSOFT",
-        "Limited high-end manufacturing penetration"
+        "Limited high-end manufacturing penetration",
+        "3D solid modeling depends on licensed Spatial ACIS OEM (not owned B-rep)"
       ],
       "industries": [
         "建筑",
@@ -101,33 +87,25 @@
         "测绘"
       ],
       "pricing": "mid",
-      "confidence": 0.88,
+      "confidence": 0.9,
       "last_verified": "2026-06",
       "sources": [
         {
           "url": "https://www.gstarcad.com/",
           "title": "GstarCAD",
           "accessed": "2026-06"
+        },
+        {
+          "url": "http://vip.stock.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=8357331&stockid=688657",
+          "title": "浩辰软件科创板招股书：3D 模块采用 ACIS",
+          "accessed": "2026-06"
+        },
+        {
+          "url": "https://www.bricsys.com/blog/what-is-an-acis-solid-and-why-should-you-care",
+          "title": "Bricsys：GstarCAD 为 ACIS 系产品",
+          "accessed": "2026-06"
         }
-      ],
-      "international_benchmarks": [
-        "autocad"
-      ],
-      "listed_ticker": "688657.SH",
-      "kernel_id": "gstar-2d-platform",
-      "capabilities": {
-        "full": [
-          "drafting_2d",
-          "cad_repair_interop",
-          "ext_api",
-          "xinchuang_compat"
-        ],
-        "partial": [
-          "solid_modeling_3d",
-          "cloud_native",
-          "collaboration"
-        ]
-      }
+      ]
     },
     {
       "id": "crowncad",
@@ -173,23 +151,7 @@
       "international_benchmarks": [
         "onshape"
       ],
-      "kernel_id": "crowncad-dgm",
-      "capabilities": {
-        "full": [
-          "solid_modeling_3d",
-          "parametric_design",
-          "assembly_design",
-          "cloud_native",
-          "collaboration",
-          "xinchuang_compat"
-        ],
-        "partial": [
-          "drafting_2d",
-          "surface_modeling",
-          "cad_repair_interop",
-          "ext_api"
-        ]
-      }
+      "kernel_id": "crowncad-dgm"
     },
     {
       "id": "caxa-cad",
@@ -236,18 +198,7 @@
       "international_benchmarks": [
         "autocad"
       ],
-      "kernel_id": "caxa-mega-kernel",
-      "capabilities": {
-        "full": [
-          "drafting_2d",
-          "ext_api",
-          "xinchuang_compat"
-        ],
-        "partial": [
-          "cad_repair_interop",
-          "cam_milling_cnc"
-        ]
-      }
+      "kernel_id": "caxa-mega-kernel"
     },
     {
       "id": "caxa-3d",
@@ -257,54 +208,55 @@
       "category_l1": "研发设计",
       "category_l2": "CAD",
       "origin": "domestic",
-      "kernel": "CAXA MEGA Kernel（多内核可切换）",
+      "kernel": "MEGA Kernel + Parasolid/ACIS 可切换",
+      "kernel_id": "caxa-mega-kernel",
       "maturity": "mid",
       "localization_depth": "partial",
       "strengths_zh": [
         "中端三维机械设计",
-        "与CAXA PLM集成"
+        "与CAXA PLM集成",
+        "多引擎机制：自研 MEGA + 商用 Parasolid/ACIS 可切换"
       ],
       "strengths_en": [
         "Mid-tier 3D mechanical design",
-        "Integrated with CAXA PLM"
+        "Integrated with CAXA PLM",
+        "Multi-engine stack: owned MEGA plus switchable Parasolid/ACIS"
       ],
       "limitations_zh": [
         "复杂曲面与仿真联动弱",
-        "市占低于国际巨头"
+        "市占低于国际巨头",
+        "高端场景仍可切换 Parasolid/ACIS 授权模块（非纯自研路线）"
       ],
       "limitations_en": [
         "Weak complex surfacing and simulation tie-in",
-        "Share below global leaders"
+        "Share below global leaders",
+        "High-end flows may still switch to licensed Parasolid/ACIS modules"
       ],
       "industries": [
         "机械",
-        "教育"
+        "教育",
+        "航空航天"
       ],
       "pricing": "mid",
-      "confidence": 0.8,
+      "confidence": 0.89,
       "last_verified": "2026-06",
       "sources": [
         {
           "url": "https://www.caxa.com/",
           "title": "CAXA 3D Solid Design",
           "accessed": "2026-06"
+        },
+        {
+          "url": "http://cad.caxa.com/function3d",
+          "title": "CAXA 3D实体设计：多引擎 MEGA/Parasolid/ACIS",
+          "accessed": "2026-06"
+        },
+        {
+          "url": "https://www.caxa.com/news/2025/48888.html",
+          "title": "CAXA MEGA Kernel 发布",
+          "accessed": "2026-06"
         }
-      ],
-      "kernel_id": "caxa-mega-kernel",
-      "capabilities": {
-        "full": [
-          "solid_modeling_3d",
-          "assembly_design",
-          "drafting_2d",
-          "xinchuang_compat"
-        ],
-        "partial": [
-          "parametric_design",
-          "surface_modeling",
-          "cam_milling_cnc",
-          "cad_repair_interop"
-        ]
-      }
+      ]
     },
     {
       "id": "hoteam-cad",
@@ -347,21 +299,7 @@
           "accessed": "2026-06"
         }
       ],
-      "kernel_id": "hoteam-crux-iv",
-      "capabilities": {
-        "full": [
-          "solid_modeling_3d",
-          "parametric_design",
-          "assembly_design",
-          "drafting_2d",
-          "xinchuang_compat"
-        ],
-        "partial": [
-          "surface_modeling",
-          "cad_repair_interop",
-          "bom_mgmt"
-        ]
-      }
+      "kernel_id": "hoteam-crux-iv"
     },
     {
       "id": "tianhe-cad",
@@ -402,24 +340,9 @@
           "url": "http://www.thsoft.com.cn/",
           "title": "THSOFT CAD",
           "accessed": "2026-06"
-        },
-        {
-          "title": "天河智造 THIT 官网",
-          "url": "https://www.thit.com.cn/",
-          "accessed": "2026-06"
         }
       ],
-      "kernel_id": "thcad-platform-kernel",
-      "capabilities": {
-        "full": [
-          "drafting_2d",
-          "xinchuang_compat"
-        ],
-        "partial": [
-          "solid_modeling_3d",
-          "ext_api"
-        ]
-      }
+      "kernel_id": "thcad-platform-kernel"
     },
     {
       "id": "pengye-cad",
@@ -461,25 +384,9 @@
           "url": "http://www.pengyesoftware.com/",
           "title": "Pengye CAD",
           "accessed": "2026-06"
-        },
-        {
-          "title": "成都鹏业软件 官网",
-          "url": "http://www.pengye.com.cn:8080/",
-          "accessed": "2026-06"
         }
       ],
-      "kernel_id": "pengye-graphic-platform",
-      "capabilities": {
-        "full": [
-          "drafting_2d",
-          "code_compliance",
-          "xinchuang_compat"
-        ],
-        "partial": [
-          "bom_mgmt",
-          "bim_quantity_takeoff"
-        ]
-      }
+      "kernel_id": "pengye-graphic-platform"
     },
     {
       "id": "autocad",
@@ -524,20 +431,7 @@
         }
       ],
       "listed_ticker": "ADSK",
-      "kernel_id": "autodesk-acad-geometry",
-      "capabilities": {
-        "full": [
-          "drafting_2d",
-          "cad_repair_interop",
-          "ext_api"
-        ],
-        "partial": [
-          "solid_modeling_3d",
-          "surface_modeling",
-          "collaboration",
-          "gis_spatial"
-        ]
-      }
+      "kernel_id": "autodesk-acad-geometry"
     },
     {
       "id": "solidworks",
@@ -546,25 +440,31 @@
       "vendor_id": "dassault",
       "category_l1": "研发设计",
       "category_l2": "CAD",
+      "product_type": "mcad",
       "origin": "international",
-      "kernel": "Parasolid授权",
+      "kernel": "Parasolid 授权（Siemens）·非 CGM",
+      "kernel_id": "parasolid",
       "maturity": "mission_critical",
       "localization_depth": "core",
       "strengths_zh": [
-        "中小企业三维CAD首选",
-        "仿真与PDM生态丰富"
+        "中小企业三维 CAD 首选",
+        "仿真与 PDM 生态丰富",
+        "与 3DEXPERIENCE 云连接版可协同"
       ],
       "strengths_en": [
         "SME 3D CAD default choice",
-        "Rich simulation and PDM ecosystem"
+        "Rich simulation and PDM ecosystem",
+        "3DEXPERIENCE-connected desktop edition for cloud collaboration"
       ],
       "limitations_zh": [
-        "高端大装配弱于NX/CATIA",
-        "云版本推进慢"
+        "高端大装配弱于 NX/CATIA",
+        "桌面版几何底座为 Parasolid，与同集团 xDesign（CGM）参数历史不原生互通",
+        "云原生 xDesign 为独立产品线（CGM 内核）"
       ],
       "limitations_en": [
         "Weaker large assembly vs NX/CATIA",
-        "Slow cloud cadence"
+        "Desktop geometry base is Parasolid — no native parametric history with sibling xDesign (CGM)",
+        "Cloud-native xDesign is a separate CGM-kernel product line"
       ],
       "industries": [
         "机械",
@@ -572,32 +472,25 @@
         "医疗器械"
       ],
       "pricing": "high",
-      "confidence": 0.93,
+      "confidence": 0.94,
       "last_verified": "2026-06",
       "sources": [
         {
           "url": "https://www.solidworks.com/",
           "title": "SOLIDWORKS",
           "accessed": "2026-06"
+        },
+        {
+          "url": "https://www.cadinterop.com/en/formats/cad-systems/solidworks.html",
+          "title": "CadInterop — SOLIDWORKS built on Parasolid",
+          "accessed": "2026-06"
+        },
+        {
+          "url": "https://mechanitec.ca/what-is-solidworks-xdesign/",
+          "title": "Mechanitec — xDesign uses CGM vs desktop Parasolid",
+          "accessed": "2026-06"
         }
-      ],
-      "kernel_id": "parasolid",
-      "capabilities": {
-        "full": [
-          "solid_modeling_3d",
-          "parametric_design",
-          "assembly_design",
-          "drafting_2d",
-          "cad_repair_interop"
-        ],
-        "partial": [
-          "surface_modeling",
-          "fea_structure",
-          "ext_api",
-          "bom_mgmt",
-          "visual_programming"
-        ]
-      }
+      ]
     },
     {
       "id": "catia",
@@ -606,8 +499,10 @@
       "vendor_id": "dassault",
       "category_l1": "研发设计",
       "category_l2": "CAD",
+      "product_type": "mcad",
       "origin": "international",
-      "kernel": "自主·CGM",
+      "kernel": "Convergence GM（CATIA CGM）·达索自研",
+      "kernel_id": "catia-cgm",
       "maturity": "mission_critical",
       "localization_depth": "core",
       "strengths_zh": [
@@ -624,11 +519,13 @@
       ],
       "limitations_zh": [
         "学习曲线陡峭",
-        "许可成本极高"
+        "许可成本极高",
+        "与桌面 SOLIDWORKS（Parasolid）原生参数历史不互通"
       ],
       "limitations_en": [
         "Steep learning curve",
-        "Very high license cost"
+        "Very high license cost",
+        "No native parametric history interop with desktop SOLIDWORKS (Parasolid)"
       ],
       "industries": [
         "汽车",
@@ -636,7 +533,7 @@
         "船舶"
       ],
       "pricing": "high",
-      "confidence": 0.92,
+      "confidence": 0.94,
       "last_verified": "2026-06",
       "sources": [
         {
@@ -645,44 +542,16 @@
           "accessed": "2026-06"
         },
         {
-          "url": "https://blog.3ds.com/brands/catia/new-catia-visual-scripting-r2023x-native-app-cloud-or-on-premise/",
-          "title": "CATIA Visual Scripting (R2023x)",
+          "url": "https://www.engineering.com/what-is-a-geometric-modeling-kernel/",
+          "title": "Engineering.com — CGM powers CATIA/3DEXPERIENCE",
           "accessed": "2026-06"
         },
         {
-          "url": "https://www.3ds.com/products/simulia/3dexperience-simulia",
-          "title": "3DEXPERIENCE SIMULIA (CFD/structural roles)",
-          "accessed": "2026-06"
-        },
-        {
-          "url": "https://www.3ds.com/3dexperience/cloud",
-          "title": "3DEXPERIENCE platform on the Cloud",
+          "url": "https://blog.spatial.com/cgm",
+          "title": "Spatial — CGM same engine as CATIA V5/V6",
           "accessed": "2026-06"
         }
-      ],
-      "kernel_id": "catia-cgm",
-      "capabilities": {
-        "full": [
-          "surface_modeling",
-          "solid_modeling_3d",
-          "parametric_design",
-          "assembly_design",
-          "cad_repair_interop",
-          "visual_programming",
-          "cloud_native",
-          "collaboration",
-          "generative_topo_opt"
-        ],
-        "partial": [
-          "drafting_2d",
-          "ext_api",
-          "mbse_sys",
-          "lifecycle_mgmt",
-          "fea_structure",
-          "cfd_fluid",
-          "multi_physics"
-        ]
-      }
+      ]
     },
     {
       "id": "siemens-nx",
@@ -692,7 +561,7 @@
       "category_l1": "研发设计",
       "category_l2": "CAD",
       "origin": "international",
-      "kernel": "Parasolid（Siemens 自有内核）",
+      "kernel": "Parasolid授权",
       "maturity": "mission_critical",
       "localization_depth": "core",
       "strengths_zh": [
@@ -726,22 +595,7 @@
           "accessed": "2026-06"
         }
       ],
-      "kernel_id": "siemens-hybrid-stack",
-      "capabilities": {
-        "full": [
-          "solid_modeling_3d",
-          "surface_modeling",
-          "parametric_design",
-          "assembly_design",
-          "cam_milling_cnc",
-          "cad_repair_interop"
-        ],
-        "partial": [
-          "drafting_2d",
-          "fea_structure",
-          "ext_api"
-        ]
-      }
+      "kernel_id": "siemens-hybrid-stack"
     },
     {
       "id": "creo",
@@ -785,20 +639,7 @@
           "accessed": "2026-06"
         }
       ],
-      "kernel_id": "granite",
-      "capabilities": {
-        "full": [
-          "solid_modeling_3d",
-          "parametric_design",
-          "assembly_design",
-          "drafting_2d",
-          "cad_repair_interop"
-        ],
-        "partial": [
-          "surface_modeling",
-          "ext_api"
-        ]
-      }
+      "kernel_id": "granite"
     },
     {
       "id": "inventor",
@@ -841,20 +682,7 @@
           "accessed": "2026-06"
         }
       ],
-      "kernel_id": "shape-manager",
-      "capabilities": {
-        "full": [
-          "solid_modeling_3d",
-          "parametric_design",
-          "assembly_design",
-          "drafting_2d"
-        ],
-        "partial": [
-          "surface_modeling",
-          "cad_repair_interop",
-          "ext_api"
-        ]
-      }
+      "kernel_id": "shape-manager"
     },
     {
       "id": "fusion360",
@@ -898,24 +726,7 @@
           "accessed": "2026-06"
         }
       ],
-      "kernel_id": "shape-manager",
-      "capabilities": {
-        "full": [
-          "solid_modeling_3d",
-          "parametric_design",
-          "assembly_design",
-          "cam_milling_cnc",
-          "cloud_native",
-          "generative_topo_opt"
-        ],
-        "partial": [
-          "surface_modeling",
-          "drafting_2d",
-          "fea_structure",
-          "collaboration",
-          "slicing_algorithm"
-        ]
-      }
+      "kernel_id": "shape-manager"
     },
     {
       "id": "onshape",
@@ -958,21 +769,7 @@
           "accessed": "2026-06"
         }
       ],
-      "kernel_id": "parasolid",
-      "capabilities": {
-        "full": [
-          "solid_modeling_3d",
-          "parametric_design",
-          "assembly_design",
-          "cloud_native",
-          "collaboration",
-          "ext_api"
-        ],
-        "partial": [
-          "drafting_2d",
-          "cad_repair_interop"
-        ]
-      }
+      "kernel_id": "parasolid"
     },
     {
       "id": "bricscad",
@@ -983,51 +780,53 @@
       "category_l2": "CAD",
       "origin": "international",
       "kernel": "ACIS授权",
+      "kernel_id": "acis",
       "maturity": "high",
       "localization_depth": "partial",
       "strengths_zh": [
         "DWG平台兼容性强",
-        "一次性授权选项"
+        "一次性授权选项",
+        "全产品线（含 BricsCAD Shape）基于 Spatial ACIS"
       ],
       "strengths_en": [
         "Strong DWG platform",
-        "Perpetual license option"
+        "Perpetual license option",
+        "Full product line including BricsCAD Shape built on Spatial ACIS"
       ],
       "limitations_zh": [
         "国内渠道与生态较小",
-        "三维市场声量低"
+        "三维市场声量低",
+        "几何底座依赖 Dassault Spatial ACIS 授权"
       ],
       "limitations_en": [
         "Smaller China channel",
-        "Lower 3D mindshare"
+        "Lower 3D mindshare",
+        "Geometry base depends on Dassault Spatial ACIS license"
       ],
       "industries": [
         "建筑",
         "机械"
       ],
       "pricing": "mid",
-      "confidence": 0.84,
+      "confidence": 0.92,
       "last_verified": "2026-06",
       "sources": [
+        {
+          "url": "https://www.bricsys.com/blog/what-is-an-acis-solid-and-why-should-you-care",
+          "title": "BricsCAD uses ACIS as geometric kernel",
+          "accessed": "2026-06"
+        },
+        {
+          "url": "https://www.spatial.com/products/acis",
+          "title": "Spatial ACIS",
+          "accessed": "2026-06"
+        },
         {
           "url": "https://www.bricsys.com/",
           "title": "BricsCAD",
           "accessed": "2026-06"
         }
-      ],
-      "kernel_id": "acis",
-      "capabilities": {
-        "full": [
-          "drafting_2d",
-          "cad_repair_interop",
-          "ext_api"
-        ],
-        "partial": [
-          "solid_modeling_3d",
-          "parametric_design",
-          "bim_clash"
-        ]
-      }
+      ]
     },
     {
       "id": "sketchup",
@@ -1071,18 +870,7 @@
           "accessed": "2026-06"
         }
       ],
-      "kernel_id": "sketchup-geometry",
-      "capabilities": {
-        "full": [
-          "solid_modeling_3d"
-        ],
-        "partial": [
-          "surface_modeling",
-          "drafting_2d",
-          "ext_api",
-          "collaboration"
-        ]
-      }
+      "kernel_id": "sketchup-geometry"
     },
     {
       "id": "autodesk-alias",
@@ -1149,18 +937,7 @@
         "icem-surf",
         "rhino"
       ],
-      "listed_ticker": "ADSK",
-      "capabilities": {
-        "full": [
-          "surface_modeling"
-        ],
-        "partial": [
-          "visual_programming",
-          "cad_repair_interop",
-          "ext_api",
-          "product_rendering_viz"
-        ]
-      }
+      "listed_ticker": "ADSK"
     },
     {
       "id": "icem-surf",
@@ -1171,7 +948,7 @@
       "category_l2": "CAD",
       "product_type": "other",
       "origin": "international",
-      "kernel": "ICEM 显式 A 级曲面（CATIA 生态）",
+      "kernel": "Convergence GM（CATIA CGM）·A 级显式曲面",
       "kernel_id": "catia-cgm",
       "maturity": "mission_critical",
       "localization_depth": "partial",
@@ -1203,7 +980,7 @@
         "automotive",
         "aerospace"
       ],
-      "confidence": 0.91,
+      "confidence": 0.92,
       "last_verified": "2026-06",
       "sources": [
         {
@@ -1215,20 +992,16 @@
           "url": "https://www.3ds.com/zh-hans/products/catia/icem-surf",
           "title": "ICEM Surf 中文",
           "accessed": "2026-06"
+        },
+        {
+          "url": "https://www.demystifyingplm.com/chapter-3-proprietary-versus-licensed-kernels",
+          "title": "DemystifyingPLM — CATIA CGM lineage",
+          "accessed": "2026-06"
         }
       ],
       "international_benchmarks": [
-        "autodesk-alias",
         "catia"
-      ],
-      "capabilities": {
-        "full": [
-          "surface_modeling",
-          "cad_repair_interop",
-          "reverse_engineering"
-        ],
-        "partial": []
-      }
+      ]
     },
     {
       "id": "crown-styling",
@@ -1289,20 +1062,7 @@
       "international_benchmarks": [
         "autodesk-alias",
         "rhino"
-      ],
-      "capabilities": {
-        "full": [
-          "surface_modeling",
-          "cloud_native",
-          "xinchuang_compat"
-        ],
-        "partial": [
-          "cad_repair_interop",
-          "collaboration",
-          "reverse_engineering",
-          "product_rendering_viz"
-        ]
-      }
+      ]
     },
     {
       "id": "autodesk-vred",
@@ -1359,17 +1119,7 @@
       "international_benchmarks": [
         "autodesk-alias",
         "keyshot"
-      ],
-      "capabilities": {
-        "full": [
-          "product_rendering_viz"
-        ],
-        "partial": [
-          "surface_modeling",
-          "collaboration",
-          "ext_api"
-        ]
-      }
+      ]
     },
     {
       "id": "keyshot",
@@ -1418,16 +1168,7 @@
       ],
       "international_benchmarks": [
         "autodesk-vred"
-      ],
-      "capabilities": {
-        "full": [
-          "product_rendering_viz"
-        ],
-        "partial": [
-          "cad_repair_interop",
-          "ext_api"
-        ]
-      }
+      ]
     },
     {
       "id": "geomagic-design-x",
@@ -1480,19 +1221,7 @@
       "international_benchmarks": [
         "autodesk-powershape",
         "icem-surf"
-      ],
-      "capabilities": {
-        "full": [
-          "surface_modeling",
-          "cad_repair_interop",
-          "parametric_design",
-          "reverse_engineering"
-        ],
-        "partial": [
-          "solid_modeling_3d",
-          "am_layout"
-        ]
-      }
+      ]
     },
     {
       "id": "zoo-design-studio",
@@ -1507,16 +1236,14 @@
       "maturity": "mid",
       "localization_depth": "pilot",
       "strengths_zh": [
-        "CAD 自动化前沿：自建 GPU 几何引擎 + 完整 design API（几何/ML 可编程）",
-        "KCL 代码化 CAD（point-and-click 与 design-as-code 双向无缝）",
-        "Text-to-CAD + Zookeeper 推理式 AI agent（可检视/快照/调试几何）",
-        "AI 原生 B-rep MCAD，跨 Win/macOS/Linux + Web"
+        "AI 原生 B-rep MCAD",
+        "Zookeeper 对话式建模",
+        "KCL 程序化 + 开放 API"
       ],
       "strengths_en": [
-        "CAD-automation frontier: own GPU geometry engine + full design API (geometry & ML programmable)",
-        "KCL code-first CAD (seamless point-and-click ↔ design-as-code)",
-        "Text-to-CAD + Zookeeper reasoning AI agent (inspect/snapshot/debug geometry)",
-        "AI-native B-rep MCAD across Win/macOS/Linux + Web"
+        "AI-native B-rep MCAD",
+        "Zookeeper conversational modeling",
+        "KCL programmatic + open APIs"
       ],
       "limitations_zh": [
         "钣金/CAM 仍在路线图",
@@ -1549,37 +1276,12 @@
           "url": "https://www.morningstar.com/news/pr-newswire/20250528ny98037/zoo-launches-zoo-design-studio",
           "title": "Zoo launch PR",
           "accessed": "2026-06"
-        },
-        {
-          "url": "https://zoo.dev/research/introducing-kcl",
-          "title": "KCL: A Programming Language for Parametric CAD",
-          "accessed": "2026-06"
-        },
-        {
-          "url": "https://zoo.dev/zookeeper",
-          "title": "Zookeeper — ML CAD model generator / agent",
-          "accessed": "2026-06"
         }
       ],
       "international_benchmarks": [
         "onshape",
         "newdim-tiangong-cad"
-      ],
-      "capabilities": {
-        "full": [
-          "solid_modeling_3d",
-          "parametric_design",
-          "cloud_native",
-          "ext_api",
-          "cad_as_code"
-        ],
-        "partial": [
-          "assembly_design",
-          "surface_modeling",
-          "collaboration",
-          "cad_repair_interop"
-        ]
-      }
+      ]
     },
     {
       "id": "leo-ai-platform",
@@ -1638,19 +1340,7 @@
       ],
       "international_benchmarks": [
         "zoo-design-studio"
-      ],
-      "capabilities": {
-        "full": [
-          "ext_api",
-          "cloud_native"
-        ],
-        "partial": [
-          "assembly_design",
-          "bom_mgmt",
-          "lifecycle_mgmt",
-          "requirements_trace"
-        ]
-      }
+      ]
     },
     {
       "id": "yfway-furniture-design",
@@ -1701,19 +1391,7 @@
       ],
       "international_benchmarks": [
         "solidworks"
-      ],
-      "capabilities": {
-        "full": [
-          "parametric_design",
-          "drafting_2d",
-          "xinchuang_compat"
-        ],
-        "partial": [
-          "solid_modeling_3d",
-          "bom_mgmt",
-          "am_layout"
-        ]
-      }
+      ]
     },
     {
       "id": "grasshopper",
@@ -1775,19 +1453,7 @@
       "international_benchmarks": [
         "dynamo",
         "geometry-nodes"
-      ],
-      "capabilities": {
-        "full": [
-          "visual_programming",
-          "parametric_design",
-          "ext_api"
-        ],
-        "partial": [
-          "surface_modeling",
-          "opt_light_acoustics",
-          "fea_structure"
-        ]
-      }
+      ]
     },
     {
       "id": "marionette",
@@ -1848,17 +1514,7 @@
       "international_benchmarks": [
         "grasshopper",
         "dynamo"
-      ],
-      "capabilities": {
-        "full": [
-          "visual_programming",
-          "ext_api"
-        ],
-        "partial": [
-          "parametric_design",
-          "bim_clash"
-        ]
-      }
+      ]
     },
     {
       "id": "houdini",
@@ -1920,19 +1576,7 @@
       "international_benchmarks": [
         "grasshopper",
         "geometry-nodes"
-      ],
-      "capabilities": {
-        "full": [
-          "visual_programming",
-          "ext_api",
-          "polygon_mesh_dcc"
-        ],
-        "partial": [
-          "surface_modeling",
-          "parametric_design",
-          "cad_as_code"
-        ]
-      }
+      ]
     },
     {
       "id": "geometry-nodes",
@@ -1995,19 +1639,7 @@
       "international_benchmarks": [
         "grasshopper",
         "houdini"
-      ],
-      "capabilities": {
-        "full": [
-          "visual_programming",
-          "ext_api"
-        ],
-        "partial": [
-          "parametric_design",
-          "surface_modeling",
-          "am_layout",
-          "polygon_mesh_dcc"
-        ]
-      }
+      ]
     },
     {
       "id": "rhino-python",
@@ -2068,17 +1700,7 @@
       "international_benchmarks": [
         "pyrevit",
         "nx-open"
-      ],
-      "capabilities": {
-        "full": [
-          "ext_api",
-          "cad_as_code"
-        ],
-        "partial": [
-          "parametric_design",
-          "surface_modeling"
-        ]
-      }
+      ]
     },
     {
       "id": "designscript",
@@ -2139,17 +1761,7 @@
       "international_benchmarks": [
         "dynamo",
         "grasshopper"
-      ],
-      "capabilities": {
-        "full": [
-          "ext_api"
-        ],
-        "partial": [
-          "parametric_design",
-          "drafting_2d",
-          "cad_as_code"
-        ]
-      }
+      ]
     },
     {
       "id": "driveworks",
@@ -2210,18 +1822,7 @@
       "international_benchmarks": [
         "nx-open",
         "featurescript"
-      ],
-      "capabilities": {
-        "full": [
-          "ext_api",
-          "parametric_design"
-        ],
-        "partial": [
-          "assembly_design",
-          "drafting_2d",
-          "bom_mgmt"
-        ]
-      }
+      ]
     },
     {
       "id": "nx-open",
@@ -2283,17 +1884,7 @@
       "international_benchmarks": [
         "driveworks",
         "featurescript"
-      ],
-      "capabilities": {
-        "full": [
-          "ext_api"
-        ],
-        "partial": [
-          "parametric_design",
-          "assembly_design",
-          "cam_milling_cnc"
-        ]
-      }
+      ]
     },
     {
       "id": "featurescript",
@@ -2354,18 +1945,7 @@
       "international_benchmarks": [
         "nx-open",
         "crowncad-api"
-      ],
-      "capabilities": {
-        "full": [
-          "ext_api",
-          "parametric_design",
-          "cloud_native",
-          "cad_as_code"
-        ],
-        "partial": [
-          "solid_modeling_3d"
-        ]
-      }
+      ]
     },
     {
       "id": "ladybug-tools",
@@ -2426,18 +2006,7 @@
       "international_benchmarks": [
         "grasshopper",
         "dynamo"
-      ],
-      "capabilities": {
-        "full": [
-          "opt_light_acoustics",
-          "visual_programming"
-        ],
-        "partial": [
-          "cfd_fluid",
-          "ext_api",
-          "gis_spatial"
-        ]
-      }
+      ]
     },
     {
       "id": "crowncad-api",
@@ -2498,18 +2067,7 @@
       "international_benchmarks": [
         "featurescript",
         "onshape"
-      ],
-      "capabilities": {
-        "full": [
-          "ext_api",
-          "cloud_native",
-          "xinchuang_compat"
-        ],
-        "partial": [
-          "parametric_design",
-          "collaboration"
-        ]
-      }
+      ]
     },
     {
       "id": "zwcad-api",
@@ -2571,17 +2129,7 @@
       "international_benchmarks": [
         "autocad",
         "revit-api"
-      ],
-      "capabilities": {
-        "full": [
-          "ext_api",
-          "xinchuang_compat"
-        ],
-        "partial": [
-          "drafting_2d",
-          "parametric_design"
-        ]
-      }
+      ]
     },
     {
       "id": "freecad-python-api",
@@ -2644,17 +2192,7 @@
       "international_benchmarks": [
         "nx-open",
         "rhino-python"
-      ],
-      "capabilities": {
-        "full": [
-          "ext_api",
-          "cad_as_code"
-        ],
-        "partial": [
-          "parametric_design",
-          "solid_modeling_3d"
-        ]
-      }
+      ]
     },
     {
       "id": "rhino-inside",
@@ -2702,18 +2240,189 @@
           "title": "Rhino.Inside Revit",
           "accessed": "2026-06"
         }
+      ]
+    },
+    {
+      "id": "solidworks-xdesign",
+      "name_zh": "3DEXPERIENCE SOLIDWORKS xDesign",
+      "name_en": "3DEXPERIENCE SOLIDWORKS xDesign",
+      "vendor_id": "dassault",
+      "category_l1": "研发设计",
+      "category_l2": "CAD",
+      "product_type": "mcad",
+      "tags": [
+        "cloud_native"
       ],
-      "capabilities": {
-        "full": [
-          "ext_api"
-        ],
-        "partial": [
-          "surface_modeling",
-          "parametric_design",
-          "visual_programming",
-          "cad_repair_interop"
-        ]
-      }
+      "origin": "international",
+      "kernel": "Convergence GM（CGM）·3DEXPERIENCE 云 CAD",
+      "kernel_id": "catia-cgm",
+      "maturity": "high",
+      "localization_depth": "partial",
+      "strengths_zh": [
+        "浏览器端云原生 MCAD，与 CATIA/3DEXPERIENCE 数据一体",
+        "与桌面 SOLIDWORKS（Parasolid）互补：云协同与 xApps 生态",
+        "钣金、模具、曲面等任务导向工具链"
+      ],
+      "strengths_en": [
+        "Browser cloud-native MCAD integrated with CATIA/3DEXPERIENCE data",
+        "Complements desktop SOLIDWORKS (Parasolid) for cloud collaboration and xApps",
+        "Task-oriented tooling for sheet metal, mold/die, surfacing"
+      ],
+      "limitations_zh": [
+        "与桌面 SOLIDWORKS 互导常丢失参数历史（Parasolid↔CGM 翻译）",
+        "国内云部署与合规需企业级 3DEXPERIENCE 订阅",
+        "离线能力弱于桌面 CAD"
+      ],
+      "limitations_en": [
+        "Exchange with desktop SOLIDWORKS often drops parametric history (Parasolid↔CGM translation)",
+        "China cloud deployment needs enterprise 3DEXPERIENCE subscription",
+        "Weaker offline vs desktop CAD"
+      ],
+      "industries": [
+        "机械",
+        "消费电子",
+        "汽车"
+      ],
+      "pricing": "high",
+      "confidence": 0.91,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.goengineer.com/3dexperience/design/solidworks-xdesign",
+          "title": "SOLIDWORKS xDesign — 3DEXPERIENCE cloud CAD",
+          "accessed": "2026-06"
+        },
+        {
+          "url": "https://mechanitec.ca/what-is-solidworks-xdesign/",
+          "title": "xDesign CGM kernel vs desktop Parasolid",
+          "accessed": "2026-06"
+        },
+        {
+          "url": "https://resources.sw.siemens.com/en-US/white-paper-how-to-manage-cad-kernel-data/",
+          "title": "Siemens — CATIA/3DEXPERIENCE use CGM; SOLIDWORKS uses Parasolid",
+          "accessed": "2026-06"
+        }
+      ],
+      "international_benchmarks": [
+        "onshape",
+        "crowncad",
+        "solidworks"
+      ]
+    },
+    {
+      "id": "catia-xgenerative-design",
+      "name_zh": "CATIA xGenerative Design",
+      "name_en": "CATIA xGenerative Design",
+      "vendor_id": "dassault",
+      "category_l1": "研发设计",
+      "category_l2": "CAD",
+      "product_type": "mcad",
+      "tags": [
+        "cloud_native",
+        "visual_programming"
+      ],
+      "origin": "international",
+      "kernel": "Convergence GM（CATIA CGM）·计算化建模",
+      "kernel_id": "catia-cgm",
+      "maturity": "high",
+      "localization_depth": "partial",
+      "strengths_zh": [
+        "浏览器端视觉脚本 + 交互 3D 建模双模",
+        "官方明确基于 CATIA CGM 几何内核",
+        "与 CATIA/3DEXPERIENCE 平台数据连续"
+      ],
+      "strengths_en": [
+        "Browser visual scripting plus interactive 3D modeling",
+        "Vendor-documented CATIA CGM geometry kernel",
+        "Data continuity with CATIA/3DEXPERIENCE platform"
+      ],
+      "limitations_zh": [
+        "面向生成式/样式探索，非通用 MCAD 替代",
+        "国内 OEM 案例公开度低于 Alias/ICEM",
+        "需 3DEXPERIENCE 平台订阅"
+      ],
+      "limitations_en": [
+        "Generative/styling exploration — not a general MCAD replacement",
+        "Fewer public China OEM references than Alias/ICEM",
+        "Requires 3DEXPERIENCE platform subscription"
+      ],
+      "industries": [
+        "汽车",
+        "航空航天",
+        "建筑"
+      ],
+      "pricing": "high",
+      "confidence": 0.9,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://discover.3ds.com/xapps-talks-cloud-based-3d-modeling-applications",
+          "title": "3DS xApps — xGenerative Design powered by CATIA CGM",
+          "accessed": "2026-06"
+        },
+        {
+          "url": "https://www.3ds.com/edu/education/academics/hub/xgenerative-design",
+          "title": "CATIA xGenerative Design",
+          "accessed": "2026-06"
+        }
+      ],
+      "international_benchmarks": [
+        "catia",
+        "alias-autostudio"
+      ]
+    },
+    {
+      "id": "staubli-robotics-suite",
+      "name_zh": "Stäubli Robotics Suite",
+      "name_en": "Stäubli Robotics Suite",
+      "vendor_id": "staubli",
+      "category_l1": "研发设计",
+      "category_l2": "CAD",
+      "product_type": "cad_automation",
+      "origin": "international",
+      "kernel": "OEM·Spatial CGM Modeler",
+      "kernel_id": "spatial-cgm",
+      "maturity": "high",
+      "localization_depth": "none",
+      "strengths_zh": [
+        "2022 版嵌入 Spatial CGM Modeler 实现高保真机器人场景可视化",
+        "与 CATIA V5/3DEXPERIENCE 几何兼容（Spatial OEM 授权）",
+        "集成 3D InterOp、HOOPS Visualize"
+      ],
+      "strengths_en": [
+        "2022 release embeds Spatial CGM Modeler for high-fidelity robot scene visualization",
+        "CATIA V5/3DEXPERIENCE geometry compatibility via Spatial OEM license",
+        "Integrates 3D InterOp and HOOPS Visualize"
+      ],
+      "limitations_zh": [
+        "非通用 MCAD — 工业机器人编程/仿真垂直套件",
+        "国内装机远小于 ABB RobotStudio",
+        "几何内核为 OEM 授权非自研"
+      ],
+      "limitations_en": [
+        "Not general MCAD — industrial robot programming/simulation vertical suite",
+        "Small China install vs ABB RobotStudio",
+        "Geometry base is OEM-licensed, not owned"
+      ],
+      "industries": [
+        "机械",
+        "汽车"
+      ],
+      "pricing": "quote",
+      "confidence": 0.88,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.spatial.com/case-studies/staubli",
+          "title": "Spatial case study — Stäubli Robotics Suite + CGM",
+          "accessed": "2026-06"
+        },
+        {
+          "url": "https://www.demystifyingplm.com/chapter-3-proprietary-versus-licensed-kernels",
+          "title": "DemystifyingPLM — Stäubli CGM OEM adopter",
+          "accessed": "2026-06"
+        }
+      ]
     },
     {
       "id": "rhino",
@@ -2768,20 +2477,7 @@
       "international_benchmarks": [
         "solidworks",
         "catia"
-      ],
-      "capabilities": {
-        "full": [
-          "surface_modeling",
-          "solid_modeling_3d",
-          "visual_programming"
-        ],
-        "partial": [
-          "drafting_2d",
-          "cad_repair_interop",
-          "ext_api",
-          "slicing_algorithm"
-        ]
-      }
+      ]
     },
     {
       "id": "ironcad",
@@ -2792,26 +2488,28 @@
       "category_l2": "CAD",
       "origin": "international",
       "kernel": "Parasolid + ACIS 双内核",
-      "kernel_id": "parasolid",
+      "kernel_id": "ironcad-dual-kernel",
       "maturity": "mid",
       "localization_depth": "pilot",
       "strengths_zh": [
         "拖拽式三维装配与直觉建模",
         "有/无历史记录混合编辑",
-        "中小企业快速概念设计"
+        "同一会话内 ACIS 与 Parasolid 双内核可选"
       ],
       "strengths_en": [
         "Drag-and-drop 3D assembly and intuitive modeling",
         "History and history-free hybrid editing",
-        "Fast conceptual design for SMEs"
+        "ACIS and Parasolid dual kernels selectable in one session"
       ],
       "limitations_zh": [
         "国内渠道与生态小于 SolidWorks",
-        "大型装配与 PLM 深度弱于 NX"
+        "大型装配与 PLM 深度弱于 NX",
+        "依赖 Spatial ACIS 与 Siemens Parasolid 双 OEM 授权"
       ],
       "limitations_en": [
         "Smaller China channel than SolidWorks",
-        "Weaker large assembly and PLM depth vs NX"
+        "Weaker large assembly and PLM depth vs NX",
+        "Depends on dual OEM licenses from Spatial ACIS and Siemens Parasolid"
       ],
       "industries": [
         "机械",
@@ -2819,31 +2517,25 @@
         "装备"
       ],
       "pricing": "mid",
-      "confidence": 0.86,
+      "confidence": 0.9,
       "last_verified": "2026-06",
       "sources": [
         {
           "url": "https://www.ironcad.com/",
           "title": "IronCAD",
           "accessed": "2026-06"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/IronCAD",
+          "title": "IronCAD dual-kernel (Wikipedia)",
+          "accessed": "2026-06"
+        },
+        {
+          "url": "https://www.bricsys.com/blog/what-is-an-acis-solid-and-why-should-you-care",
+          "title": "Bricsys ACIS adopter list includes IronCAD",
+          "accessed": "2026-06"
         }
-      ],
-      "international_benchmarks": [
-        "solidworks",
-        "inventor"
-      ],
-      "capabilities": {
-        "full": [
-          "solid_modeling_3d",
-          "assembly_design",
-          "drafting_2d"
-        ],
-        "partial": [
-          "parametric_design",
-          "surface_modeling",
-          "cad_repair_interop"
-        ]
-      }
+      ]
     },
     {
       "id": "formz",
@@ -2869,37 +2561,33 @@
       ],
       "limitations_zh": [
         "国内装机量极小",
-        "机械工程与 PLM 集成弱"
+        "机械工程与 PLM 集成弱",
+        "几何底座为 Spatial ACIS OEM"
       ],
       "limitations_en": [
         "Negligible China install base",
-        "Weak mechanical engineering and PLM integration"
+        "Weak mechanical engineering and PLM integration",
+        "Geometry base is Spatial ACIS OEM"
       ],
       "industries": [
         "建筑",
-        "室内设计",
-        "产品设计"
+        "概念设计"
       ],
       "pricing": "mid",
-      "confidence": 0.82,
+      "confidence": 0.86,
       "last_verified": "2026-06",
       "sources": [
         {
-          "url": "https://autodessys.com/formz-pro/",
-          "title": "form·Z Pro",
+          "url": "https://en.wikipedia.org/wiki/ACIS",
+          "title": "ACIS licensee list (form·Z)",
+          "accessed": "2026-06"
+        },
+        {
+          "url": "https://www.formz.com/",
+          "title": "form·Z",
           "accessed": "2026-06"
         }
-      ],
-      "capabilities": {
-        "full": [
-          "solid_modeling_3d",
-          "surface_modeling"
-        ],
-        "partial": [
-          "drafting_2d",
-          "slicing_algorithm"
-        ]
-      }
+      ]
     },
     {
       "id": "solid-edge",
@@ -2949,21 +2637,7 @@
       "international_benchmarks": [
         "solidworks",
         "siemens-nx"
-      ],
-      "capabilities": {
-        "full": [
-          "solid_modeling_3d",
-          "parametric_design",
-          "assembly_design",
-          "drafting_2d"
-        ],
-        "partial": [
-          "surface_modeling",
-          "cad_repair_interop",
-          "fea_structure",
-          "ext_api"
-        ]
-      }
+      ]
     },
     {
       "id": "kompas-3d",
@@ -3014,20 +2688,7 @@
           "title": "C3D / KOMPAS-3D",
           "accessed": "2026-06"
         }
-      ],
-      "capabilities": {
-        "full": [
-          "solid_modeling_3d",
-          "parametric_design",
-          "assembly_design",
-          "drafting_2d"
-        ],
-        "partial": [
-          "surface_modeling",
-          "cad_repair_interop",
-          "code_compliance"
-        ]
-      }
+      ]
     },
     {
       "id": "t-flex-cad",
@@ -3073,20 +2734,7 @@
           "title": "T-FLEX CAD",
           "accessed": "2026-06"
         }
-      ],
-      "capabilities": {
-        "full": [
-          "solid_modeling_3d",
-          "parametric_design",
-          "assembly_design",
-          "drafting_2d"
-        ],
-        "partial": [
-          "cam_milling_cnc",
-          "fea_structure",
-          "cad_repair_interop"
-        ]
-      }
+      ]
     },
     {
       "id": "vectorworks",
@@ -3096,26 +2744,29 @@
       "category_l1": "研发设计",
       "category_l2": "CAD",
       "origin": "international",
-      "kernel": "自主",
+      "kernel": "Parasolid授权",
+      "kernel_id": "parasolid",
       "maturity": "high",
       "localization_depth": "partial",
       "strengths_zh": [
         "建筑/景观/娱乐灯光 BIM 一体化",
         "OPEN BIM 与 IFC 互操作",
-        "建筑师友好工作流"
+        "2009 年起全线基于 Siemens Parasolid + D-Cubed DCM"
       ],
       "strengths_en": [
         "Integrated BIM for architecture, landscape, and entertainment lighting",
         "OPEN BIM and IFC interoperability",
-        "Architect-friendly workflows"
+        "Full product line on Siemens Parasolid + D-Cubed DCM since 2009"
       ],
       "limitations_zh": [
         "国内市占远低于 Revit",
-        "机械 MCAD 非主战场"
+        "机械 MCAD 非主战场",
+        "非 ACIS 系；2009 年前自有内核已迁移至 Parasolid"
       ],
       "limitations_en": [
         "Far lower China share than Revit",
-        "Not focused on mechanical MCAD"
+        "Not focused on mechanical MCAD",
+        "Not ACIS-based; pre-2009 owned kernel migrated to Parasolid"
       ],
       "industries": [
         "建筑",
@@ -3123,9 +2774,19 @@
         "娱乐"
       ],
       "pricing": "high",
-      "confidence": 0.87,
+      "confidence": 0.91,
       "last_verified": "2026-06",
       "sources": [
+        {
+          "url": "https://blogs.sw.siemens.com/plm-components/vectorworks-and-siemens-a-shared-vision-to-deliver-continuous-innovation/",
+          "title": "Vectorworks Parasolid partnership",
+          "accessed": "2026-06"
+        },
+        {
+          "url": "https://resources.sw.siemens.com/en-US/case-study-vectorworks/",
+          "title": "Siemens Vectorworks Parasolid case study",
+          "accessed": "2026-06"
+        },
         {
           "url": "https://www.vectorworks.net/",
           "title": "Vectorworks",
@@ -3135,20 +2796,7 @@
       "international_benchmarks": [
         "revit",
         "archicad"
-      ],
-      "capabilities": {
-        "full": [
-          "drafting_2d",
-          "solid_modeling_3d",
-          "bim_clash"
-        ],
-        "partial": [
-          "surface_modeling",
-          "parametric_design",
-          "visual_programming",
-          "ext_api"
-        ]
-      }
+      ]
     },
     {
       "id": "zw3d",
@@ -3204,23 +2852,7 @@
         "solidworks",
         "siemens-nx"
       ],
-      "listed_ticker": "300624.SZ",
-      "capabilities": {
-        "full": [
-          "solid_modeling_3d",
-          "parametric_design",
-          "assembly_design",
-          "cam_milling_cnc",
-          "xinchuang_compat"
-        ],
-        "partial": [
-          "surface_modeling",
-          "drafting_2d",
-          "cad_repair_interop",
-          "ext_api",
-          "reverse_engineering"
-        ]
-      }
+      "listed_ticker": "300624.SZ"
     },
     {
       "id": "newdim-tiangong-cad",
@@ -3274,22 +2906,7 @@
       "international_benchmarks": [
         "solid-edge",
         "solidworks"
-      ],
-      "capabilities": {
-        "full": [
-          "solid_modeling_3d",
-          "parametric_design",
-          "assembly_design",
-          "drafting_2d",
-          "xinchuang_compat"
-        ],
-        "partial": [
-          "surface_modeling",
-          "cad_repair_interop",
-          "cloud_native",
-          "collaboration"
-        ]
-      }
+      ]
     },
     {
       "id": "poisson-geoshape-cad",
@@ -3334,32 +2951,12 @@
           "url": "https://www.poissonsoft.com/page323?_l=zh_CN",
           "title": "Geoshape engine",
           "accessed": "2026-06"
-        },
-        {
-          "title": "Geoshape 3D CAD 平台",
-          "url": "https://www.poissonsoft.com/page2990684913498131984123",
-          "accessed": "2026-06"
         }
       ],
       "international_benchmarks": [
         "zw3d",
         "crowncad"
-      ],
-      "capabilities": {
-        "full": [
-          "solid_modeling_3d",
-          "parametric_design",
-          "assembly_design",
-          "cloud_native",
-          "xinchuang_compat"
-        ],
-        "partial": [
-          "drafting_2d",
-          "surface_modeling",
-          "ext_api",
-          "collaboration"
-        ]
-      }
+      ]
     },
     {
       "id": "hoops-exchange",
@@ -3402,14 +2999,7 @@
           "title": "HOOPS Exchange",
           "accessed": "2026-06"
         }
-      ],
-      "capabilities": {
-        "full": [
-          "cad_repair_interop",
-          "ext_api"
-        ],
-        "partial": []
-      }
+      ]
     },
     {
       "id": "datakit-crosscad",
@@ -3455,14 +3045,7 @@
       ],
       "international_benchmarks": [
         "hoops-exchange"
-      ],
-      "capabilities": {
-        "full": [
-          "cad_repair_interop",
-          "ext_api"
-        ],
-        "partial": []
-      }
+      ]
     },
     {
       "id": "elysium-cadfix",
@@ -3505,16 +3088,7 @@
           "title": "Elysium CADfix",
           "accessed": "2026-06"
         }
-      ],
-      "capabilities": {
-        "full": [
-          "cad_repair_interop"
-        ],
-        "partial": [
-          "ext_api",
-          "fea_structure"
-        ]
-      }
+      ]
     },
     {
       "id": "iti-cadiq",
@@ -3560,15 +3134,7 @@
       ],
       "international_benchmarks": [
         "hoops-exchange"
-      ],
-      "capabilities": {
-        "full": [
-          "cad_repair_interop"
-        ],
-        "partial": [
-          "ext_api"
-        ]
-      }
+      ]
     },
     {
       "id": "coretechnologie-3d-evolution",
@@ -3614,16 +3180,7 @@
       ],
       "international_benchmarks": [
         "datakit-crosscad"
-      ],
-      "capabilities": {
-        "full": [
-          "cad_repair_interop"
-        ],
-        "partial": [
-          "ext_api",
-          "am_layout"
-        ]
-      }
+      ]
     }
   ]
 }

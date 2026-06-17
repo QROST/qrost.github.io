@@ -120,7 +120,17 @@ setTimeout(() => {
   T('enriched 347', Object.keys(w.HOUSING_ENRICHED || {}).length === 347);
   T('hazards 32', Object.keys(w.HOUSING_HAZARDS || {}).length === 32);
   T('field 4 fields', w.HOUSING_FIELD && Object.keys(w.HOUSING_FIELD.fields).length === 4);
+  T('field step 1° coarse', w.HOUSING_FIELD && w.HOUSING_FIELD.step === 1);
   T('field elevation 973pts', w.HOUSING_FIELD && w.HOUSING_FIELD.fields.elevation.points.length === 973);
+  T('field_hi baked on disk', (() => {
+    const p = path.join(DIR, 'assets/data/field_hi.js');
+    if (!fs.existsSync(p)) return false;
+    const box = { window: {} };
+    vm.runInContext(fs.readFileSync(p, 'utf8'), vm.createContext(box));
+    const hi = box.window.HOUSING_FIELD_HI;
+    const n = hi && hi.fields && hi.fields.elevation && hi.fields.elevation.points.length;
+    return hi && hi.step === 0.25 && n >= 80;
+  })());
   T('geo-en districts CJK-free', Object.values((w.HOUSING_GEO_EN || {}).district || {}).every((v) => !zhRe.test(v)));
   T('kpi', /房源样本/.test(ids['kpi-grid']._html));
   // comfort-max day count drifts with ERA5 re-bakes (boundary-sensitive at mild
@@ -132,6 +142,12 @@ setTimeout(() => {
     return /舒适日最多/.test(h) && max >= 250;
   })());
   T('table head', /气候类型/.test(ids['table-head']._html) && /年温差/.test(ids['table-head']._html));
+  T('table col order prov first id last', (() => {
+    const ths = [...(ids['table-head']._html || '').matchAll(/data-col="([^"]+)"/g)].map((m) => m[1]);
+    return ths.length > 2 && ths[0] === 'prov' && ths[ths.length - 1] === 'id';
+  })());
+  T('table sticky prov+city attrs', /data-col="prov"/.test(ids['table-body']._html) && /data-col="city"/.test(ids['table-body']._html) && /table-sticky-col/.test(ids['table-body']._html));
+  T('table sticky css in index', /table-sticky-col/.test(read('index.html')) && /--table-sticky-city-left/.test(read('index.html')));
   T('no 宜居指数 anywhere', !/宜居指数/.test(ids['table-head']._html) && !/宜居指数/.test(ids['table-body']._html));
   T('climate types rendered', /(四季如春|常年温暖|四季分明|长夏无冬|夏热冬暖|冬暖夏凉|常年凉冷|温和过渡)/.test(ids['table-body']._html));
   T('table body', (ids['table-body']._html || '').length > 1000);

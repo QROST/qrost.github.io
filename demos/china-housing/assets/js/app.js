@@ -1186,10 +1186,82 @@
   let echartsMap = null, mapReady = false, baseGeoOpt = null;
   const GEO_URL = 'https://geo.datav.aliyun.com/areas_v3/bound/100000_full.json';
 
-  // continuous basemap field (assets/data/field.js) — isotherm / rainfall /
-  // elevation raster + isolines, drawn UNDER the listing points.
-  const FIELD = window.HOUSING_FIELD || null;
-  // Basemap field ramps reuse the same physical ramps (no duplicate definitions).
+  // continuous basemap field — national 1° (field.js) + province-zoom 0.25° (field_hi.js,
+  // lazy-loaded). Listing dots stay on top; finer cells fill gaps between communities.
+  const FIELD_COARSE = window.HOUSING_FIELD || null;
+  let FIELD_FINE = null;
+  let fieldFinePromise = null;
+  const FIELD_LOD_ZOOM = 2.6;       // switch to 0.25° cells at/above this zoom
+  const FIELD_BBOX_PAD = 1.2;       // degrees padding when viewport-filtering fine cells
+  let fieldLodRoamTimer = null;
+  function fieldFineScriptUrl() {
+    const tag = document.querySelector('script[src*="field.js"]');
+    if (!tag) return 'assets/data/field_hi.js';
+    return tag.getAttribute('src').replace(/field\.js(\?.*)?$/, 'field_hi.js$1');
+  }
+
+  function ensureFieldFine() {
+    if (FIELD_FINE) return Promise.resolve(FIELD_FINE);
+    if (window.HOUSING_FIELD_HI) { FIELD_FINE = window.HOUSING_FIELD_HI; return Promise.resolve(FIELD_FINE); }
+    if (!fieldFinePromise) {
+      fieldFinePromise = new Promise((resolve, reject) => {
+        const s = document.createElement('script');
+        s.src = fieldFineScriptUrl();
+        s.async = true;
+        s.onload = () => {
+          FIELD_FINE = window.HOUSING_FIELD_HI || null;
+          resolve(FIELD_FINE);
+        };
+        s.onerror = () => reject(new Error('field_hi.js load failed'));
+        document.head.appendChild(s);
+      });
+    }
+    return fieldFinePromise;
+  }
+
+  function mapViewportBbox() {
+    if (!echartsMap) return null;
+    const dom = echartsMap.getDom();
+    const w = dom.clientWidth || 1, h = dom.clientHeight || 1;
+    try {
+      const tl = echartsMap.convertFromPixel('geo', [0, 0]);
+      const br = echartsMap.convertFromPixel('geo', [w, h]);
+      if (!tl || !br) return null;
+      const lng0 = Math.min(tl[0], br[0]) - FIELD_BBOX_PAD;
+      const lng1 = Math.max(tl[0], br[0]) + FIELD_BBOX_PAD;
+      const lat0 = Math.min(tl[1], br[1]) - FIELD_BBOX_PAD;
+      const lat1 = Math.max(tl[1], br[1]) + FIELD_BBOX_PAD;
+      return [lng0, lat0, lng1, lat1];
+    } catch (e) { return null; }
+  }
+
+  function activeFieldPack() {
+    const zoom = geoState().zoom;
+    const useFine = zoom >= FIELD_LOD_ZOOM && baseKey !== 'none';
+    const field = useFine && FIELD_FINE ? FIELD_FINE : FIELD_COARSE;
+    const step = (field && field.step) || 1;
+    return { field, step, useFine, fineReady: !!FIELD_FINE };
+  }
+
+  function filterCellsByViewport(cells) {
+    const bbox = mapViewportBbox();
+    if (!bbox) return cells;
+    const [lng0, lat0, lng1, lat1] = bbox;
+    return cells.filter((c) => c[0] >= lng0 && c[0] <= lng1 && c[1] >= lat0 && c[1] <= lat1);
+  }
+
+  function scheduleFieldLodRefresh() {
+    if (fieldLodRoamTimer) clearTimeout(fieldLodRoamTimer);
+    fieldLodRoamTimer = setTimeout(() => {
+      fieldLodRoamTimer = null;
+      const { useFine, fineReady } = activeFieldPack();
+      if (useFine && !fineReady) {
+        ensureFieldFine().then(() => safeRun('renderMap', renderMap)).catch(() => {});
+        return;
+      }
+      if (useFine || fineReady) safeRun('renderMap', renderMap);
+    }, 80);
+  }
   // Keys must stay temp/terrain/precip — assets/data/field.js references them.
   const BASE_RAMPS = { temp: RAMPS.temp, terrain: RAMPS.terrain, precip: RAMPS.precip };
   // available basemaps: 'none' + whatever the baked field provides
@@ -1235,15 +1307,36 @@
   // and values only; fill / line colours are assigned in renderMap so the field
   // can share the point dimension's domain when the two use the same ramp.
   function baseLayers() {
-    const f = (baseKey !== 'none' && FIELD && FIELD.fields) ? FIELD.fields[baseKey] : null;
+    const { field: FIELD, step, useFine, fineReady } = activeFieldPack();
+    const f = (baseKey !== 'none' && activeFieldPack().field && activeFieldPack().field.fields)
+      ? activeFieldPack().field.fields[baseKey] : null;
     if (!f) return { cells: [], lines: [], step: 1, vm: { min: 0, max: 1, ramp: 'temp' } };
     const lines = [];
-    Object.keys(f.isolines || {}).forEach((lvl) => {
-      const level = parseFloat(lvl);
-      f.isolines[lvl].forEach((seg) => lines.push({ coords: seg, level }));
-    });
-    // cells = raw [lng, lat, value] grid samples; coloured in renderMap below
-    return { cells: f.points, lines, step: FIELD.step || 1, vm: { min: f.min, max: f.max, ramp: f.ramp } };
+    // isolines only on coarse national grid — fine grid is cell-only for clarity
+    if (!useFine || !fineReady) {
+      Object.keys(f.isolines || {}).forEach((lvl) => {
+        const level = parseFloat(lvl);
+        f.isolines[lvl].forEach((seg) => lines.push({ coords: seg, level }));
+      });
+    }
+    let cells = f.points;
+    if (useFine && fineReady && step <= 0.5) {
+      cells = filterCellsByViewport(cells);
+      // fill gaps (provinces / corridors not yet in fine bake) with coarse cells
+      const coarseF = FIELD_COARSE && FIELD_COARSE.fields && FIELD_COARSE.fields[baseKey];
+      if (coarseF && coarseF.points) {
+        const coarseInView = filterCellsByViewport(coarseF.points);
+        const fineKeys = new Set(cells.map((c) => `${c[0].toFixed(2)},${c[1].toFixed(2)}`));
+        coarseInView.forEach((c) => {
+          const near = [...fineKeys].some((k) => {
+            const [fl, fa] = k.split(',').map(Number);
+            return Math.abs(fl - c[0]) < step * 0.6 && Math.abs(fa - c[1]) < step * 0.6;
+          });
+          if (!near) cells.push(c);
+        });
+      }
+    }
+    return { cells, lines, step: step || 1, vm: { min: f.min, max: f.max, ramp: f.ramp } };
   }
 
   function renderMap() {
@@ -1370,7 +1463,8 @@
   function renderBaseLegend() {
     const box = document.getElementById('base-legend');
     if (!box) return;
-    const f = (baseKey !== 'none' && FIELD && FIELD.fields) ? FIELD.fields[baseKey] : null;
+    const f = (baseKey !== 'none' && activeFieldPack().field && activeFieldPack().field.fields)
+      ? activeFieldPack().field.fields[baseKey] : null;
     const dimRamp = (MAP_DIMS[dimKey] || MAP_DIMS.tempRange).ramp;
     // Hide this 2nd legend when the field shares the point dimension's colour ramp
     // — the left visualMap is then the single unified scale for both layers
@@ -1388,7 +1482,7 @@
   function baseTabs() {
     document.querySelectorAll('[data-base]').forEach((b) => {
       const k = b.dataset.base;
-      const avail = k === 'none' || (FIELD && FIELD.fields && FIELD.fields[k]);
+      const avail = k === 'none' || (FIELD_COARSE && FIELD_COARSE.fields && FIELD_COARSE.fields[k]);
       b.textContent = baseLabel(k);
       b.style.display = avail ? '' : 'none';
       styleTab(b, k === baseKey, 'base-tab');
@@ -1432,10 +1526,12 @@
     if (!echartsMap) return;
     const s = geoState();
     echartsMap.setOption({ geo: [{ zoom: clamp(s.zoom * f, 1, 14), center: s.center }] });
+    scheduleFieldLodRefresh();
   }
   function zoomReset() {
     if (!echartsMap || !baseGeoOpt) return;
     echartsMap.setOption({ geo: [{ zoom: 1, center: baseGeoOpt.center }] });
+    scheduleFieldLodRefresh();
   }
 
   async function initMap() {
@@ -1463,6 +1559,7 @@
       echartsMap.on('click', (p) => {
         if (p && p.data && p.data.d) openListing(p.data.d.id);
       });
+      echartsMap.on('georoam', scheduleFieldLodRefresh);
       window.addEventListener('resize', () => echartsMap && echartsMap.resize());
     } catch (e) {
       console.error('[china-housing] initMap', e);
@@ -1777,6 +1874,19 @@
 
   const colLabel = (c) => t('col_' + c.key) || c.label;
   const visibleCols = () => COLS.filter((c) => c.group === 'core' || c.group === 'price' || tstate.groups.has(c.group));
+  // Display order: # last; prov/city stay leftmost for horizontal-scroll pinning.
+  const displayCols = () => {
+    const vis = visibleCols();
+    const idCol = vis.find((c) => c.key === 'id');
+    if (!idCol) return vis;
+    return vis.filter((c) => c.key !== 'id').concat(idCol);
+  };
+  const STICKY_LEFT_COLS = new Set(['prov', 'city']);
+  function syncStickyColOffset() {
+    const prov = document.querySelector('#table-scroll th[data-col="prov"]');
+    if (!prov || !prov.offsetWidth) return;
+    document.documentElement.style.setProperty('--table-sticky-city-left', `${prov.offsetWidth}px`);
+  }
 
   function tableView() {
     const chips = [...tstate.chips].map((k) => FILTERS[k]).filter(Boolean);
@@ -1853,7 +1963,7 @@
   }
 
   function renderTable() {
-    const cols = visibleCols();
+    const cols = displayCols();
     const rows = tableView();
     const dk = isDark();
     const thActCls = dk ? 'text-slate-100' : 'text-slate-900';
@@ -1865,13 +1975,15 @@
       const hint = c.key === 'hazard'
         ? `<span class="block text-[0.6rem] font-normal normal-case tracking-normal ${dk ? 'text-slate-500' : 'text-slate-400'}">${t('col_hazardHint')}</span>`
         : '';
-      return `<th data-col="${c.key}" class="relative px-3 py-2.5 font-medium cursor-pointer select-none whitespace-nowrap ${headBg} ${c.num ? 'text-right' : 'text-left'} ${active ? thActCls : thIdlCls}">${colLabel(c)}<span class="ml-0.5 text-[0.6rem]">${arrow}</span>${hint}</th>`;
+      const sticky = STICKY_LEFT_COLS.has(c.key) ? ' table-sticky-col' : '';
+      return `<th data-col="${c.key}" class="relative px-3 py-2.5 font-medium cursor-pointer select-none whitespace-nowrap ${headBg}${sticky} ${c.num ? 'text-right' : 'text-left'} ${active ? thActCls : thIdlCls}">${colLabel(c)}<span class="ml-0.5 text-[0.6rem]">${arrow}</span>${hint}</th>`;
     }).join('');
     const tdTextCls = dk ? 'text-slate-300' : 'text-slate-700';
     const body = rows.map((d) => {
       const tds = cols.map((c) => {
         const cls = c.num ? `text-right tabular-nums ${tdTextCls}` : tdTextCls;
-        return `<td class="px-3 py-2 ${cls} whitespace-nowrap">${c.cell(d)}</td>`;
+        const sticky = STICKY_LEFT_COLS.has(c.key) ? ' table-sticky-col' : '';
+        return `<td data-col="${c.key}" class="px-3 py-2 ${cls} whitespace-nowrap${sticky}">${c.cell(d)}</td>`;
       }).join('');
       const open = d.enr ? ` data-open="${d.id}"` : '';
       const rowCls = dk
@@ -1886,6 +1998,7 @@
     if (cardsHost) cardsHost.innerHTML = isMobileTable() ? rows.map(cardRow).join('') : '';
     syncSortSelect();
     styleFilterChips();  // theme & language both funnel through renderTable
+    syncStickyColOffset();
   }
 
   function updateProvFilter() {

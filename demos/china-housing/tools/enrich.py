@@ -558,6 +558,7 @@ def _daily_climate_from_archive(d):
       curve.tmean|tmax|tmin — 365 ints, 15-day smoothed day-of-year normals (°C)
       comfortDays / extremeDays — [[start,end],…] 1-based doy ranges (wrap if start>end)
       comfortDayCount / extremeDayCount — mutually exclusive day counts
+      recordHeatSupplement — optional int when hist max exceeds curve peak (emit-time)
       humidDayCount — smoothed mean RH ≥ 70 %
       snowDayCount — smoothed mean snowfall > 0.05 cm
       windyDayCount — smoothed daily max wind ≥ 10 m/s
@@ -567,8 +568,9 @@ def _daily_climate_from_archive(d):
     """
     norm = _doy_normals_from_daily(d)
     sm = {k: _smooth_circular(norm[k], 15) for k in norm}
+    # Heat extreme: unsmoothed DOY-normal daily high — 15-day smooth hides coastal peaks.
     extreme = [((tm is not None and tm < -5) or (tx is not None and tx >= EXTREME_HEAT_TMAX_C))
-               for tm, tx in zip(sm["temperature_2m_mean"], sm["temperature_2m_max"])]
+               for tm, tx in zip(sm["temperature_2m_mean"], norm["temperature_2m_max"])]
     comfort = [(tn is not None and tx is not None and tn >= 8 and tx <= 26 and not ex)
                for tn, tx, ex in zip(sm["temperature_2m_min"], sm["temperature_2m_max"], extreme)]
     rh = sm.get("relative_humidity_2m_mean", [None] * 365)
@@ -619,6 +621,49 @@ def climate_daily_recompute_from_curve(dc):
     dc["comfortDayCount"] = sum(comfort)
     dc["extremeDays"] = _day_ranges(extreme)
     dc["extremeDayCount"] = sum(extreme)
+    return dc
+
+
+def _record_heat_supplement_days(hist_max, curve_tmax_peak, existing_extreme):
+    """Extra extreme-heat days when smoothed ERA5 curve peaks below grid-record highs.
+
+    Coastal subtropical listings (HK/TW) often show curve max ~29–31 °C while the
+    baked histTempMax (ERA5 1940–2023 grid extrema) reaches 36–38 °C. Livability
+    rankings should reflect occasional true heat stress, not only mild normals.
+    """
+    if hist_max is None or curve_tmax_peak is None or hist_max < 33:
+        return 0
+    gap = hist_max - curve_tmax_peak
+    if gap < 3:
+        return 0
+    target = min(55, int(round(gap * 4)))
+    return max(0, target - (existing_extreme or 0) // 2)
+
+
+def apply_record_heat_to_daily(dc, hist_max):
+    """Fold record-high heat potential into daily comfort/extreme (mutually exclusive)."""
+    if not dc or not dc.get("curve"):
+        return dc
+    tmax = dc["curve"]["tmax"]
+    peak = max((v for v in tmax if v is not None), default=None)
+    existing = dc.get("extremeDayCount") or 0
+    extra = _record_heat_supplement_days(hist_max, peak, existing)
+    if extra <= 0:
+        dc.pop("recordHeatSupplement", None)
+        return dc
+    tmean = dc["curve"]["tmean"]
+    tmin = dc["curve"]["tmin"]
+    comfort, extreme = climate_daily_flags_from_curve(tmean, tmax, tmin)
+    hot_comfort = sorted((i for i, c in enumerate(comfort) if c),
+                         key=lambda i: -(tmax[i] if tmax[i] is not None else -999))
+    for i in hot_comfort[:extra]:
+        extreme[i] = True
+        comfort[i] = False
+    dc["comfortDays"] = _day_ranges(comfort)
+    dc["comfortDayCount"] = sum(comfort)
+    dc["extremeDays"] = _day_ranges(extreme)
+    dc["extremeDayCount"] = sum(extreme)
+    dc["recordHeatSupplement"] = extra
     return dc
 
 
@@ -2027,7 +2072,9 @@ def emit_enriched(con):
                 e["builtYearApprox"] = True
         if r["daily_climate"]:
             try:
-                e["daily"] = json.loads(r["daily_climate"])
+                daily = json.loads(r["daily_climate"])
+                apply_record_heat_to_daily(daily, r["hist_temp_max"])
+                e["daily"] = daily
             except Exception:  # noqa: BLE001
                 pass
         if r["hist_temp_max"] is not None:
