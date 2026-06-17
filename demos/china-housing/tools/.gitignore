@@ -15,6 +15,9 @@ _screenshot_*.js
 # Resumable Open-Meteo climate-daily refresh checkpoint (tools/_climate_ext_refresh.py)
 ../data/.climate_daily_ext.json
 
+# CDS ERA5 bulk NetCDF cache (tools/era5_bulk.py) — large; gitignore
+../data/ref/era5/
+
 # Ad-hoc one-off climate backfill helpers (quota-window wrappers around the
 # manage.py climate/climate-daily/hist-temp subcommands). Disposable — kept on
 # disk for the overnight quota-reset backfill, not part of the tracked toolchain.

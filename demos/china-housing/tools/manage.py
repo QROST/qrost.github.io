@@ -580,6 +580,7 @@ def cmd_elevation(args):
 
 
 def cmd_field(args):
+    source = getattr(args, "source", "open-meteo")
     steps = gridfield.RESOLUTIONS
     if args.step is not None:
         steps = (float(args.step),)
@@ -588,8 +589,43 @@ def cmd_field(args):
             gridfield.fill_from_coarse_fallback(print, step=step)
         if getattr(args, "coarse_fallback_only", False):
             continue
+        if source in ("cds", "auto"):
+            import era5_bulk  # noqa: WPS433
+            era5_dir = era5_bulk.ERA5_DIR
+            have_nc = any(era5_bulk.era5_year_path(y).exists() for y in era5_bulk.YEARS)
+            if source == "cds" or have_nc:
+                if not have_nc:
+                    print("✗ era5-bulk: no NetCDF in data/ref/era5/ — run `era5-bulk download` first")
+                    sys.exit(1)
+                era5_bulk.sample_grid(print, step=step, force=args.force)
+                continue
         gridfield.fetch_field(print, step=step, force=args.force)
     print("✓ field fetch complete — now run `build` to emit assets/data/field.js (+ field_hi.js)")
+
+
+def cmd_era5_bulk(args):
+    import era5_bulk  # noqa: WPS433
+    if args.era5_cmd == "download":
+        years = tuple(args.year) if args.year else era5_bulk.YEARS
+        if not args.dry_run and not era5_bulk._cds_credentials_ok():
+            print("✗ no ~/.cdsapirc — cannot download.")
+            print("  Register: https://cds.climate.copernicus.eu/")
+            print("  Preview: python3 tools/manage.py era5-bulk download --dry-run")
+            sys.exit(1)
+        era5_bulk.download_all(print, years=years, dry_run=args.dry_run, force=args.force)
+    elif args.era5_cmd == "sample":
+        steps = (float(args.step),) if args.step is not None else (gridfield.STEP_FINE,)
+        for step in steps:
+            try:
+                era5_bulk.sample_grid(print, step=step, force=args.force)
+            except FileNotFoundError as e:
+                print(f"✗ {e}")
+                sys.exit(1)
+    elif args.era5_cmd == "status":
+        era5_bulk.status_report(print, step=gridfield.STEP_FINE)
+        era5_bulk.status_report(print, step=gridfield.STEP_COARSE)
+    elif args.era5_cmd == "self-test":
+        sys.exit(0 if era5_bulk.run_self_test(print) else 1)
 
 
 def cmd_pm25(args):
@@ -778,7 +814,24 @@ def main(argv=None):
                     help="bilinear-fill unfilled fine cells from 1° cache before archive fetch")
     sp.add_argument("--coarse-fallback-only", action="store_true",
                     help="only run coarse fallback (no archive API calls)")
+    sp.add_argument("--source", choices=("open-meteo", "cds", "auto"), default="open-meteo",
+                    help="climate source: open-meteo (default), cds (NetCDF), auto (cds when present)")
     sp.set_defaults(fn=cmd_field)
+    sp = sub.add_parser("era5-bulk", help="CDS ERA5 regional download + bilinear field sampling")
+    era5_sub = sp.add_subparsers(dest="era5_cmd", required=True)
+    sp_dl = era5_sub.add_parser("download", help="pull 2014–2023 daily stats → data/ref/era5/")
+    sp_dl.add_argument("--year", type=int, action="append", help="limit year(s)")
+    sp_dl.add_argument("--dry-run", action="store_true")
+    sp_dl.add_argument("--force", action="store_true")
+    sp_dl.set_defaults(fn=cmd_era5_bulk)
+    sp_sm = era5_sub.add_parser("sample", help="sample NetCDF onto field_grid cache")
+    sp_sm.add_argument("--step", type=float, default=None, help="grid step (default 0.25)")
+    sp_sm.add_argument("--force", action="store_true")
+    sp_sm.set_defaults(fn=cmd_era5_bulk)
+    sp_st = era5_sub.add_parser("status", help="NetCDF years + cache src counts")
+    sp_st.set_defaults(fn=cmd_era5_bulk)
+    sp_ts = era5_sub.add_parser("self-test", help="offline aggregation smoke (no CDS)")
+    sp_ts.set_defaults(fn=cmd_era5_bulk)
     sp = sub.add_parser("pm25", help="sample ChinaHighPM2.5 annual + heating-season at listing coords")
     sp.add_argument("--year", type=int, default=2020, help="reference year (default 2020; Y1K + Nov(Y-1)–Mar(Y))")
     sp.add_argument("--force", action="store_true", help="re-sample rows that already have pm25_annual")

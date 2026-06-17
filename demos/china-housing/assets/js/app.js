@@ -1322,7 +1322,7 @@
     let cells = f.points;
     if (useFine && fineReady && step <= 0.5) {
       cells = filterCellsByViewport(cells);
-      // fill gaps (provinces / corridors not yet in fine bake) with coarse cells
+      // fill gaps outside viewport fine cells with coarse 1° cells
       const coarseF = FIELD_COARSE && FIELD_COARSE.fields && FIELD_COARSE.fields[baseKey];
       if (coarseF && coarseF.points) {
         const coarseInView = filterCellsByViewport(coarseF.points);

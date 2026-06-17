@@ -1,0 +1,6 @@
+# CDS ERA5 bulk field pipeline (tools/era5_bulk.py) — optional; stdlib manage.py otherwise.
+cdsapi>=0.7.4
+xarray>=2024.1.0
+netCDF4>=1.6.0
+numpy>=1.26.0
+scipy>=1.11.0

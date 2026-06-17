@@ -175,6 +175,23 @@ python3 tools/manage.py hazard-merge data/hazard_research.json   # 新地市类�
 | **light finisher** | 日配额耗尽、heavy 12 变量 429 但 3 变量仍可用时：`PYTHONUNBUFFERED=1 python3 tools/_finish_climate_light.py`（只补月 norm + 轻量 daily，**无** extended dims）。 |
 | **extended dims 次日补** | `PYTHONUNBUFFERED=1 python3 tools/_climate_ext_refresh.py`（雪/湿度/日照等 extended dims）。 |
 
+### 3.1a 连续底图 0.25°（CDS ERA5 bulk，免 archive 429）
+
+| 事实 | 说明 |
+|------|------|
+| **问题** | `field --step 0.25` 对 ~5k `coarse_interp` 格点逐点打 Open-Meteo archive → 易 429。 |
+| **推荐** | Copernicus CDS `derived-era5-single-levels-daily-statistics` 中国区 2014–2023 一次拉 NetCDF → `tools/era5_bulk.py` 双线性采样进 `field_grid_0.25.json`（`src: cds_era5`）。 |
+| **凭证** | `~/.cdsapirc`（无凭证时 `era5-bulk download --dry-run` + `self-test` 验逻辑）。 |
+| **海拔** | 仍用 Open-Meteo elevation API（`gridfield.fill_elevation`），与 CDS 无关。 |
+
+```bash
+pip install -r tools/requirements-era5.txt   # cdsapi xarray scipy netCDF4
+python3 tools/manage.py era5-bulk download
+python3 tools/manage.py era5-bulk sample     # 或 field --source cds --step 0.25
+python3 tools/manage.py build
+python3 tools/manage.py era5-bulk status
+```
+
 ```bash
 # 429 后恢复模板（写者单进程）
 PYTHONUNBUFFERED=1 python3 tools/_finish_climate_light.py    # 先解 blocking gap
