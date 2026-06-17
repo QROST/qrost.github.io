@@ -1,10 +1,10 @@
 {
-  "build_time": "2026-06-13T20:38:55Z",
-  "total_products": 323,
+  "build_time": "2026-06-16T02:52:54Z",
+  "total_products": 326,
   "total_kernels": 43,
   "category_counts": {
     "bim-gis": 32,
-    "cad": 56,
+    "cad": 59,
     "cae": 71,
     "eda": 46,
     "erp": 13,
@@ -12,10 +12,13 @@
     "open-source": 11,
     "platform": 26,
     "plm": 18,
-    "slicers": 16
+    "slicers": 16,
+    "tongyuan-mworks-deep": 0,
+    "tongyuan-mworks-fetch": 0,
+    "tongyuan-mworks-hunt": 0
   },
   "category_l1_counts": {
-    "研发设计": 206,
+    "研发设计": 209,
     "生产制造": 101,
     "经营管理": 13,
     "基础平台": 3
@@ -24,7 +27,7 @@
     "BIM": 18,
     "GIS": 8,
     "CAD 自动化": 19,
-    "CAD": 48,
+    "CAD": 51,
     "CAD互操作": 5,
     "CAE": 49,
     "CAM": 23,
@@ -36,13 +39,13 @@
     "MES": 18,
     "EAM": 1,
     "工业互联网": 25,
-    "PLM": 15,
-    "MBSE": 3,
+    "PLM": 16,
+    "MBSE": 2,
     "切片软件": 16
   },
   "origin_counts": {
     "domestic": 135,
-    "international": 166,
+    "international": 169,
     "open_source": 22
   },
   "kernel_ref_counts": {
@@ -54,14 +57,16 @@
     "thcad-platform-kernel": 1,
     "pengye-graphic-platform": 1,
     "autodesk-acad-geometry": 1,
-    "parasolid": 6,
-    "catia-cgm": 2,
+    "parasolid": 7,
+    "catia-cgm": 4,
     "siemens-hybrid-stack": 1,
     "granite": 1,
     "shape-manager": 2,
-    "acis": 2,
+    "acis": 3,
     "sketchup-geometry": 1,
     "open-cascade": 8,
+    "spatial-cgm": 1,
+    "ironcad-dual-kernel": 1,
     "c3d": 1,
     "poisson-geoshape": 1,
     "cgal": 1,
@@ -79,7 +84,7 @@
     {
       "id": "cad",
       "file": "categories/cad.json",
-      "count": 56
+      "count": 59
     },
     {
       "id": "cae",
@@ -120,6 +125,21 @@
       "id": "slicers",
       "file": "categories/slicers.json",
       "count": 16
+    },
+    {
+      "id": "tongyuan-mworks-deep",
+      "file": "categories/tongyuan-mworks-deep.json",
+      "count": 0
+    },
+    {
+      "id": "tongyuan-mworks-fetch",
+      "file": "categories/tongyuan-mworks-fetch.json",
+      "count": 0
+    },
+    {
+      "id": "tongyuan-mworks-hunt",
+      "file": "categories/tongyuan-mworks-hunt.json",
+      "count": 0
     }
   ]
 }

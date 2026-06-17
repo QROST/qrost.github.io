@@ -46,6 +46,7 @@
       ],
       "used_by_product_ids": [
         "ironcad",
+        "mastercam",
         "onshape",
         "siemens-nx",
         "solid-edge",
@@ -131,28 +132,36 @@
       ],
       "used_by_product_ids": [
         "bricscad",
+        "caxa-3d",
+        "cimatron",
         "formz",
-        "gstarcad"
+        "gstarcad",
+        "ironcad"
       ],
       "used_by_international": [
-        "BricsCAD",
-        "GstarCAD Professional",
-        "SpaceClaim",
+        "Alibre Design",
+        "BricsCAD / BricsCAD Shape",
         "Cimatron",
+        "form·Z Pro",
+        "GstarCAD Professional (3D module)",
+        "IronCAD (dual with Parasolid)",
+        "KeyCreator",
+        "SpaceClaim (ACIS through 2024 R2; Ansys Discovery migrating to Parasolid 2025 R1+)",
         "TurboCAD",
-        "Rhino (partial)"
+        "ViaCAD / SharkCAD"
       ],
       "chinese_products_using": [
-        "GstarCAD（3D Professional）"
+        "浩辰 GstarCAD 3D 模块（Spatial ACIS OEM）",
+        "CAXA 3D实体设计（MEGA/Parasolid/ACIS 多内核可切换）"
       ],
-      "substitution_status_zh": "部分可替 — 浩辰等仍授权 ACIS；中望/华天等走自主内核路线",
-      "substitution_status_en": "Partially substitutable — GstarCAD still licenses ACIS; ZWSOFT/Hoteam pursue owned kernels",
+      "substitution_status_zh": "部分可替 — 浩辰 3D、CAXA 高端模块仍授权 ACIS；中望 Overdrive/华天 CRUX IV/DGM 走自主内核",
+      "substitution_status_en": "Partially substitutable — GstarCAD 3D and CAXA high-end modules still license ACIS; ZWSOFT Overdrive and Hoteam CRUX IV/DGM pursue owned kernels",
       "domestic_alternatives": [
         "zw-overdrive",
         "gstar-2d-platform",
         "caxa-mega-kernel"
       ],
-      "confidence": 0.92,
+      "confidence": 0.93,
       "sources": [
         {
           "url": "https://www.spatial.com/products/acis",
@@ -162,6 +171,21 @@
         {
           "url": "https://www.bricsys.com/blog/what-is-an-acis-solid-and-why-should-you-care",
           "title": "BricsCAD ACIS blog",
+          "accessed": "2026-06"
+        },
+        {
+          "url": "http://cad.caxa.com/function3d",
+          "title": "CAXA 3D multi-engine MEGA/Parasolid/ACIS",
+          "accessed": "2026-06"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/ACIS",
+          "title": "ACIS licensee overview",
+          "accessed": "2026-06"
+        },
+        {
+          "url": "https://spaceclaim.com/en/Support/FAQ/General_FAQ.aspx",
+          "title": "SpaceClaim ACIS kernel FAQ",
           "accessed": "2026-06"
         }
       ],
@@ -461,22 +485,28 @@
         "Decades of high-end validation"
       ],
       "limitations_zh": [
-        "完全封闭不授权",
-        "成本极高",
-        "国内深度替代难度最大"
+        "达索自有产品内封闭；第三方 ISV 须走 Spatial OEM（见 spatial-cgm 条目）",
+        "与 Parasolid 系（SOLIDWORKS/NX）参数历史不原生互通",
+        "成本极高；国内深度替代难度最大"
       ],
       "limitations_en": [
-        "Fully closed, not licensed",
-        "Very high cost",
-        "Hardest depth substitution in China"
+        "Closed within Dassault products; third-party ISVs license via Spatial OEM (see spatial-cgm)",
+        "No native parametric history interop with Parasolid stack (SOLIDWORKS/NX)",
+        "Very high cost; hardest depth substitution in China"
       ],
       "used_by_product_ids": [
-        "catia"
+        "catia",
+        "catia-xgenerative-design",
+        "icem-surf",
+        "solidworks-xdesign"
       ],
       "used_by_international": [
         "CATIA V5/V6",
         "3DEXPERIENCE CATIA",
-        "some SOLIDWORKS hybrid workflows"
+        "CATIA ICEM Surf",
+        "CATIA xGenerative Design",
+        "3DEXPERIENCE SOLIDWORKS xDesign",
+        "3DEXPERIENCE xApps (xShape/xDesign cloud MCAD)"
       ],
       "chinese_products_using": [],
       "substitution_status_zh": "不可替代 — 国产高端曲面仍在追赶；中望 Overdrive 等宣称缩小差距",
@@ -485,7 +515,7 @@
         "zw-overdrive",
         "crowncad-dgm"
       ],
-      "confidence": 0.93,
+      "confidence": 0.94,
       "sources": [
         {
           "url": "https://www.3ds.com/products/catia",
@@ -494,7 +524,22 @@
         },
         {
           "url": "https://www.engineering.com/what-is-a-geometric-modeling-kernel/",
-          "title": "Engineering.com kernel overview",
+          "title": "Engineering.com — CGM powers CATIA/3DEXPERIENCE",
+          "accessed": "2026-06"
+        },
+        {
+          "url": "https://blog.spatial.com/cgm",
+          "title": "Spatial — CGM same engine as CATIA V5/V6",
+          "accessed": "2026-06"
+        },
+        {
+          "url": "https://discover.3ds.com/xapps-talks-cloud-based-3d-modeling-applications",
+          "title": "3DS xApps — xGenerative Design uses CATIA CGM",
+          "accessed": "2026-06"
+        },
+        {
+          "url": "https://mechanitec.ca/what-is-solidworks-xdesign/",
+          "title": "xDesign CGM vs desktop SOLIDWORKS Parasolid",
           "accessed": "2026-06"
         }
       ],
@@ -1967,29 +2012,47 @@
         "China install still ACIS/Parasolid heavy",
         "Licensed separately from ACIS"
       ],
-      "used_by_product_ids": [],
+      "used_by_product_ids": [
+        "staubli-robotics-suite"
+      ],
       "used_by_international": [
-        "3DEXPERIENCE xDesign",
-        "Certain Spatial ISV cloud CAD stacks"
+        "Stäubli Robotics Suite (2022+)",
+        "Mitsui Zosen Systems Research industrial machine software (2011 launch OEM)",
+        "Spatial ISV cloud CAD / metrology / CAM embedders"
       ],
       "chinese_products_using": [],
-      "substitution_status_zh": "OEM 可引入 — 云 CAD ISV 选项；国内龙头走自研",
-      "substitution_status_en": "OEM option for cloud CAD ISVs; Chinese leaders pursue owned kernels",
+      "substitution_status_zh": "OEM 可引入 — 与 CATIA CGM 同源；国内商用 CAD 龙头未公开采用，走自研（Overdrive/DGM/Geoshape）",
+      "substitution_status_en": "OEM option — same lineage as CATIA CGM; Chinese commercial CAD leaders not publicly on Spatial CGM; pursue owned kernels",
       "domestic_alternatives": [
         "zw-overdrive",
         "crowncad-dgm",
         "poisson-geoshape"
       ],
-      "confidence": 0.85,
+      "confidence": 0.89,
       "sources": [
         {
           "url": "https://www.spatial.com/products/cgm",
-          "title": "Spatial CGM",
+          "title": "Spatial CGM Modeler",
+          "accessed": "2026-06"
+        },
+        {
+          "url": "https://www.spatial.com/case-studies/staubli",
+          "title": "Stäubli Robotics Suite + CGM OEM",
+          "accessed": "2026-06"
+        },
+        {
+          "url": "https://blog.spatial.com/cgm",
+          "title": "Spatial CGM launch — Mitsui Zosen first OEM",
           "accessed": "2026-06"
         },
         {
           "url": "https://www.spatial.com/products/acis",
-          "title": "Spatial ACIS (lineage contrast)",
+          "title": "Spatial ACIS (distinct from CGM)",
+          "accessed": "2026-06"
+        },
+        {
+          "url": "https://www.demystifyingplm.com/chapter-3-proprietary-versus-licensed-kernels",
+          "title": "DemystifyingPLM — CGM OEM licensees",
           "accessed": "2026-06"
         }
       ],
@@ -2038,13 +2101,18 @@
         "Hardest depth substitution in China"
       ],
       "used_by_product_ids": [
-        "catia"
+        "catia",
+        "catia-xgenerative-design",
+        "icem-surf",
+        "solidworks-xdesign"
       ],
       "used_by_international": [
         "CATIA V6",
         "3DEXPERIENCE CATIA",
-        "ENOVIA",
-        "DELMIA"
+        "3DEXPERIENCE SOLIDWORKS xDesign",
+        "CATIA xGenerative Design",
+        "ENOVIA (data/collab — consumes CGM geometry)",
+        "DELMIA (manufacturing — consumes CGM geometry)"
       ],
       "chinese_products_using": [],
       "substitution_status_zh": "平台级不可替代 — 仅产品/流程级国产化替代",

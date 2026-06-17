@@ -41,27 +41,8 @@
           "url": "https://www.hoteamsoft.com/",
           "title": "Hoteam PLM",
           "accessed": "2026-06"
-        },
-        {
-          "url": "https://www.hoteamsoft.com/plm-new",
-          "title": "华天软件 PLM 产品",
-          "accessed": "2026-06"
         }
-      ],
-      "capabilities": {
-        "full": [
-          "lifecycle_mgmt",
-          "bom_mgmt",
-          "collaboration",
-          "ext_api",
-          "xinchuang_compat"
-        ],
-        "partial": [
-          "requirements_trace",
-          "cad_repair_interop",
-          "change_config_mgmt"
-        ]
-      }
+      ]
     },
     {
       "id": "sysware-ipdc",
@@ -102,31 +83,8 @@
           "url": "http://www.sysware.com.cn/",
           "title": "Sysware IPDC",
           "accessed": "2026-06"
-        },
-        {
-          "url": "http://www.sysware.com.cn/productplatform-10.html",
-          "title": "索为 平台产品 (IPD/MBSE)",
-          "accessed": "2026-06"
-        },
-        {
-          "url": "http://www.sysware.com.cn/about.html",
-          "title": "索为系统 公司与平台介绍 (工业APP/IPD/MBSE)",
-          "accessed": "2026-06"
         }
-      ],
-      "capabilities": {
-        "full": [
-          "mbse_sys",
-          "requirements_trace",
-          "lifecycle_mgmt"
-        ],
-        "partial": [
-          "collaboration",
-          "ext_api",
-          "xinchuang_compat",
-          "change_config_mgmt"
-        ]
-      }
+      ]
     },
     {
       "id": "tongyuan-mworks",
@@ -168,25 +126,8 @@
           "url": "https://www.tongyuan.cc/",
           "title": "Tongyuan MWorks",
           "accessed": "2026-06"
-        },
-        {
-          "url": "https://www.tongyuan.cc/product/MWorks",
-          "title": "同元 MWorks 系统建模与仿真平台",
-          "accessed": "2026-06"
         }
-      ],
-      "capabilities": {
-        "full": [
-          "mbse_sys",
-          "multi_physics"
-        ],
-        "partial": [
-          "requirements_trace",
-          "ext_api",
-          "xinchuang_compat",
-          "codegen_hil"
-        ]
-      }
+      ]
     },
     {
       "id": "yonyou-plm",
@@ -227,29 +168,11 @@
           "url": "https://www.yonyou.com/",
           "title": "Yonyou PLM Cloud",
           "accessed": "2026-06"
-        },
-        {
-          "url": "https://www.yonyou.com/product/plm",
-          "title": "用友 PLM 产品",
-          "accessed": "2026-06"
         }
       ],
       "international_benchmarks": [
         "windchill"
-      ],
-      "capabilities": {
-        "full": [
-          "lifecycle_mgmt",
-          "bom_mgmt",
-          "cloud_native",
-          "change_config_mgmt"
-        ],
-        "partial": [
-          "finance_ledger",
-          "collaboration",
-          "xinchuang_compat"
-        ]
-      }
+      ]
     },
     {
       "id": "kingdee-plm",
@@ -291,26 +214,8 @@
           "url": "https://www.kingdee.com/",
           "title": "Kingdee PLM",
           "accessed": "2026-06"
-        },
-        {
-          "url": "https://www.kingdee.com/products/plm",
-          "title": "金蝶 PLM 产品",
-          "accessed": "2026-06"
         }
-      ],
-      "capabilities": {
-        "full": [
-          "lifecycle_mgmt",
-          "bom_mgmt",
-          "change_config_mgmt"
-        ],
-        "partial": [
-          "finance_ledger",
-          "cloud_native",
-          "collaboration",
-          "xinchuang_compat"
-        ]
-      }
+      ]
     },
     {
       "id": "avic-plm",
@@ -352,19 +257,7 @@
           "title": "AVIC AVIDM",
           "accessed": "2026-06"
         }
-      ],
-      "capabilities": {
-        "full": [
-          "lifecycle_mgmt",
-          "bom_mgmt",
-          "requirements_trace",
-          "change_config_mgmt"
-        ],
-        "partial": [
-          "collaboration",
-          "xinchuang_compat"
-        ]
-      }
+      ]
     },
     {
       "id": "teamcenter",
@@ -407,21 +300,7 @@
           "title": "Teamcenter",
           "accessed": "2026-06"
         }
-      ],
-      "capabilities": {
-        "full": [
-          "lifecycle_mgmt",
-          "bom_mgmt",
-          "requirements_trace",
-          "collaboration",
-          "ext_api",
-          "mbse_sys",
-          "change_config_mgmt"
-        ],
-        "partial": [
-          "cad_repair_interop"
-        ]
-      }
+      ]
     },
     {
       "id": "enovia",
@@ -464,20 +343,7 @@
           "title": "ENOVIA",
           "accessed": "2026-06"
         }
-      ],
-      "capabilities": {
-        "full": [
-          "lifecycle_mgmt",
-          "bom_mgmt",
-          "requirements_trace",
-          "collaboration",
-          "change_config_mgmt"
-        ],
-        "partial": [
-          "mbse_sys",
-          "ext_api"
-        ]
-      }
+      ]
     },
     {
       "id": "windchill",
@@ -520,20 +386,7 @@
           "title": "Windchill",
           "accessed": "2026-06"
         }
-      ],
-      "capabilities": {
-        "full": [
-          "lifecycle_mgmt",
-          "bom_mgmt",
-          "requirements_trace",
-          "collaboration",
-          "change_config_mgmt"
-        ],
-        "partial": [
-          "mbse_sys",
-          "ext_api"
-        ]
-      }
+      ]
     },
     {
       "id": "aras-innovator",
@@ -576,20 +429,7 @@
           "title": "Aras Innovator",
           "accessed": "2026-06"
         }
-      ],
-      "capabilities": {
-        "full": [
-          "lifecycle_mgmt",
-          "bom_mgmt",
-          "requirements_trace",
-          "ext_api",
-          "change_config_mgmt"
-        ],
-        "partial": [
-          "collaboration",
-          "cloud_native"
-        ]
-      }
+      ]
     },
     {
       "id": "oracle-agile",
@@ -612,13 +452,11 @@
       ],
       "limitations_zh": [
         "创新节奏慢",
-        "本地支持资源收缩",
-        "Oracle 已宣布 2027-12 停止支持，9.3.6 后无新功能"
+        "本地支持资源收缩"
       ],
       "limitations_en": [
         "Slow innovation",
-        "Shrinking local support",
-        "End-of-life Dec 2027; no new features after v9.3.6"
+        "Shrinking local support"
       ],
       "industries": [
         "电子",
@@ -634,41 +472,26 @@
           "title": "Oracle Agile PLM",
           "accessed": "2026-06"
         }
-      ],
-      "capabilities": {
-        "full": [
-          "lifecycle_mgmt",
-          "bom_mgmt",
-          "change_config_mgmt"
-        ],
-        "partial": [
-          "requirements_trace",
-          "finance_ledger",
-          "collaboration",
-          "quality_spc_traceability"
-        ]
-      }
+      ]
     },
     {
       "id": "shenzhou-mdm",
-      "name_zh": "华望 M-Design",
-      "name_en": "Huawang M-Design",
+      "name_zh": "华望PLM",
+      "name_en": "Huawang PLM",
       "vendor_id": "huawang",
       "category_l1": "研发设计",
-      "category_l2": "MBSE",
+      "category_l2": "PLM",
       "origin": "domestic",
       "kernel": "自主",
       "maturity": "mid",
       "localization_depth": "pilot",
       "strengths_zh": [
-        "国产 SysML 系统建模与仿真平台 (MBSE)",
-        "需求/功能/结构/参数全图建模",
-        "B/S 架构，信创适配"
+        "装备制造PLM",
+        "项目型制造"
       ],
       "strengths_en": [
-        "Domestic SysML MBSE modeling & simulation",
-        "Full SysML nine-diagram modeling",
-        "B/S architecture, IT-innovation ready"
+        "Equipment manufacturing PLM",
+        "Project-based manufacturing"
       ],
       "limitations_zh": [
         "市场声量小",
@@ -687,27 +510,11 @@
       "last_verified": "2026-06",
       "sources": [
         {
-          "url": "http://www.mbse.com.cn/",
-          "title": "华望系统科技 MBSE (M-Design)",
-          "accessed": "2026-06"
-        },
-        {
-          "url": "http://www.mbse.com.cn/product",
-          "title": "华望 M-Design / M-Require MBSE 工具链",
+          "url": "http://www.huawangsoft.com/",
+          "title": "Huawang PLM",
           "accessed": "2026-06"
         }
-      ],
-      "capabilities": {
-        "full": [
-          "mbse_sys",
-          "requirements_trace"
-        ],
-        "partial": [
-          "lifecycle_mgmt",
-          "collaboration",
-          "xinchuang_compat"
-        ]
-      }
+      ]
     },
     {
       "id": "hoteam-sview",
@@ -757,19 +564,7 @@
       "international_benchmarks": [
         "teamcenter",
         "autodesk-vault"
-      ],
-      "capabilities": {
-        "full": [
-          "collaboration",
-          "cad_repair_interop"
-        ],
-        "partial": [
-          "bom_mgmt",
-          "lifecycle_mgmt",
-          "ext_api",
-          "xinchuang_compat"
-        ]
-      }
+      ]
     },
     {
       "id": "mathworks-simulink",
@@ -812,18 +607,7 @@
           "title": "Simulink",
           "accessed": "2026-06"
         }
-      ],
-      "capabilities": {
-        "full": [
-          "mbse_sys",
-          "visual_programming",
-          "codegen_hil"
-        ],
-        "partial": [
-          "requirements_trace",
-          "ext_api"
-        ]
-      }
+      ]
     },
     {
       "id": "autodesk-vault",
@@ -866,19 +650,7 @@
           "title": "Autodesk Vault",
           "accessed": "2026-06"
         }
-      ],
-      "capabilities": {
-        "full": [
-          "bom_mgmt",
-          "lifecycle_mgmt",
-          "change_config_mgmt"
-        ],
-        "partial": [
-          "collaboration",
-          "ext_api",
-          "cad_repair_interop"
-        ]
-      }
+      ]
     },
     {
       "id": "siemens-polarion",
@@ -921,20 +693,7 @@
           "title": "Siemens Polarion ALM",
           "accessed": "2026-06"
         }
-      ],
-      "capabilities": {
-        "full": [
-          "requirements_trace",
-          "lifecycle_mgmt",
-          "collaboration"
-        ],
-        "partial": [
-          "mbse_sys",
-          "ext_api",
-          "cloud_native",
-          "quality_spc_traceability"
-        ]
-      }
+      ]
     },
     {
       "id": "dassault-biovia",
@@ -977,18 +736,7 @@
           "title": "BIOVIA",
           "accessed": "2026-06"
         }
-      ],
-      "capabilities": {
-        "full": [
-          "requirements_trace",
-          "lifecycle_mgmt",
-          "lims_lab_data"
-        ],
-        "partial": [
-          "bom_mgmt",
-          "collaboration"
-        ]
-      }
+      ]
     },
     {
       "id": "sipm-plm",
@@ -1042,20 +790,7 @@
       "international_benchmarks": [
         "teamcenter",
         "windchill"
-      ],
-      "capabilities": {
-        "full": [
-          "lifecycle_mgmt",
-          "bom_mgmt",
-          "requirements_trace",
-          "change_config_mgmt"
-        ],
-        "partial": [
-          "mbse_sys",
-          "collaboration",
-          "xinchuang_compat"
-        ]
-      }
+      ]
     }
   ]
 }

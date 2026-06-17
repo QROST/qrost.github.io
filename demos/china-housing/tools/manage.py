@@ -48,6 +48,7 @@ JS_PATH = ROOT / "assets" / "data" / "listings.js"
 ENR_PATH = ROOT / "assets" / "data" / "enriched.js"
 HAZ_PATH = ROOT / "assets" / "data" / "hazards.js"
 FIELD_PATH = ROOT / "assets" / "data" / "field.js"
+FIELD_HI_PATH = ROOT / "assets" / "data" / "field_hi.js"
 CSV_PATH = ROOT / "data" / "listings.csv"
 HTML_PATH = ROOT / "index.html"
 
@@ -261,24 +262,37 @@ def render_hazards(d: dict) -> str:
     return HAZ_HEADER + "window.HOUSING_HAZARDS = " + body + ";\n"
 
 
-FIELD_HEADER = '''/**
- * China small-city housing — gridded climate / elevation field (basemap).
+FIELD_HEADER_COARSE = '''/**
+ * China small-city housing — gridded climate / elevation field (basemap, national LOD).
  *
- * GENERATED FILE — do not hand-edit. Source is data/ref/field_grid.json
+ * GENERATED FILE — do not hand-edit. Source is data/ref/field_grid_1.json
  * (sampled by `manage.py field`); isolines re-extracted by `manage.py build`.
  *
  * A continuous, land-masked field over China (Open-Meteo ERA5 archive + model
  * DEM), so the map can draw a real isotherm / rainfall / elevation basemap
  * under the listings. Per field: heatmap points [lng,lat,value] + marching-
- * squares isoline segments per level. Coarse (1° grid) — for orientation, not
- * precision. window.HOUSING_FIELD = {bbox, step, fields:{key:{...}}}.
+ * squares isoline segments per level. National view @ 1° — zoom in lazy-loads
+ * field_hi.js (0.25°). window.HOUSING_FIELD = {bbox, step, fields:{key:{...}}}.
+ */
+'''
+
+FIELD_HEADER_FINE = '''/**
+ * China small-city housing — gridded climate / elevation field (province-zoom LOD).
+ *
+ * GENERATED FILE — do not hand-edit. Source is data/ref/field_grid_0.25.json
+ * (sampled by `manage.py field --step 0.25`); emitted by `manage.py build`.
+ * Lazy-loaded by app.js when map zoom ≥ threshold. Cells only (no isolines).
+ * Where ERA5 is not yet fetched, climate is bilinear/nearest downscale from 1°.
+ * window.HOUSING_FIELD_HI = {bbox, step, fields:{key:{...}}}.
  */
 '''
 
 
-def render_field(d: dict) -> str:
+def render_field(d: dict, *, fine: bool = False) -> str:
+    header = FIELD_HEADER_FINE if fine else FIELD_HEADER_COARSE
+    global_name = "HOUSING_FIELD_HI" if fine else "HOUSING_FIELD"
     body = json.dumps(d, ensure_ascii=False, separators=(",", ":"))
-    return FIELD_HEADER + "window.HOUSING_FIELD = " + body + ";\n"
+    return header + f"window.{global_name} = " + body + ";\n"
 
 
 def _enrich_coverage(con) -> str:
@@ -446,13 +460,25 @@ def cmd_build(args):
     hazards = enrich.emit_hazards()
     HAZ_PATH.write_text(render_hazards(hazards), encoding="utf-8")
     print(f"✓ hazards: {len(hazards)} province profiles → {HAZ_PATH.relative_to(ROOT)}")
-    # emit the gridded climate/elevation field (offline isoline gen from cache)
-    field = gridfield.emit_field(lambda m: print("   " + m))
+    # emit gridded climate/elevation fields — coarse (1°) + fine (0.25° zoom LOD)
+    log = lambda m: print("   " + m)
+    field = gridfield.emit_field(log, step=gridfield.STEP_COARSE)
     if field:
         FIELD_PATH.write_text(render_field(field), encoding="utf-8")
-        print(f"✓ field: {len(field['fields'])} basemap fields → {FIELD_PATH.relative_to(ROOT)}")
+        npts = len(field["fields"].get("elevation", {}).get("points", []))
+        print(f"✓ field: {len(field['fields'])} basemap fields, {npts} cells @1° → {FIELD_PATH.relative_to(ROOT)}")
     else:
-        print(f"  field: no grid cache ({gridfield.CACHE.relative_to(ROOT)}) — run `field` first; basemaps will be absent")
+        print(f"  field: no 1° cache ({gridfield.cache_path(gridfield.STEP_COARSE).relative_to(ROOT)}) — run `field` first")
+    gridfield.fill_from_coarse_fallback(log, step=gridfield.STEP_FINE)
+    field_hi = gridfield.emit_field(log, step=gridfield.STEP_FINE, isolines_ok=False)
+    if field_hi:
+        FIELD_HI_PATH.write_text(render_field(field_hi, fine=True), encoding="utf-8")
+        nhi = len(field_hi["fields"].get("elevation", {}).get("points", []))
+        filled, total = gridfield.cache_coverage(gridfield.STEP_FINE)
+        partial = f" ({filled}/{total} cached)" if filled < total else ""
+        print(f"✓ field_hi: {len(field_hi['fields'])} fields, {nhi} cells @0.25°{partial} → {FIELD_HI_PATH.relative_to(ROOT)}")
+    else:
+        print(f"  field_hi: no 0.25° cache — run `manage.py field --step 0.25` for province-zoom LOD")
     # keep the human-readable CSV mirror in sync
     args.path = None
     cmd_export_csv(args)
@@ -554,8 +580,16 @@ def cmd_elevation(args):
 
 
 def cmd_field(args):
-    gridfield.fetch_field(print, force=args.force)
-    print("✓ field fetch complete — now run `build` to emit assets/data/field.js")
+    steps = gridfield.RESOLUTIONS
+    if args.step is not None:
+        steps = (float(args.step),)
+    for step in steps:
+        if getattr(args, "coarse_fallback", False) or getattr(args, "coarse_fallback_only", False):
+            gridfield.fill_from_coarse_fallback(print, step=step)
+        if getattr(args, "coarse_fallback_only", False):
+            continue
+        gridfield.fetch_field(print, step=step, force=args.force)
+    print("✓ field fetch complete — now run `build` to emit assets/data/field.js (+ field_hi.js)")
 
 
 def cmd_pm25(args):
@@ -738,7 +772,12 @@ def main(argv=None):
     sp.add_argument("--force", action="store_true", help="re-fetch rows that already have elevation")
     sp.set_defaults(fn=cmd_elevation)
     sp = sub.add_parser("field", help="sample the gridded China climate/elevation field (resumable cache)")
+    sp.add_argument("--step", type=float, default=None, help="grid step in degrees (default: 1.0 and 0.25)")
     sp.add_argument("--force", action="store_true", help="ignore cache and re-sample the whole grid")
+    sp.add_argument("--coarse-fallback", action="store_true",
+                    help="bilinear-fill unfilled fine cells from 1° cache before archive fetch")
+    sp.add_argument("--coarse-fallback-only", action="store_true",
+                    help="only run coarse fallback (no archive API calls)")
     sp.set_defaults(fn=cmd_field)
     sp = sub.add_parser("pm25", help="sample ChinaHighPM2.5 annual + heating-season at listing coords")
     sp.add_argument("--year", type=int, default=2020, help="reference year (default 2020; Y1K + Nov(Y-1)–Mar(Y))")

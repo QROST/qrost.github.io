@@ -157,6 +157,23 @@ python3 tools/manage.py pm25       # 年均 + 采暖季 PM2.5（需 netCDF4，�
 python3 tools/manage.py build      # 重新生成 enriched.js（连同 listings.js / csv / index.html）
 ```
 
+### 连续底图（多分辨率 LOD）
+
+全国视图用 **1°** 栅格 + 等值线（`assets/data/field.js`）；放大到省内懒加载 **0.25°**
+（≈25 km ERA5）格点填色（`assets/data/field_hi.js`）。0.25° 仅采样房源走廊
+（各小区 ±1.5° 包络，约 7k 格点，非全境 15k），`app.js` 在视口内用细格点、
+空隙处回退 1° 粗格。
+
+```bash
+python3 tools/manage.py field              # 拉取 1° + 0.25°（可续跑，cache 分文件）
+python3 tools/manage.py field --step 0.25  # 仅续 0.25° 走廊
+FIELD_FETCH_PACE=2.5 python3 tools/manage.py field --step 0.25  # 限速
+python3 tools/manage.py build              # 吐 field.js + field_hi.js
+```
+
+缓存：`data/ref/field_grid_1.json`、`data/ref/field_grid_0.25.json`。Archive 429 时
+`_get` 会等到 UTC 整点 + 75s 再续；部分烘焙后 `build` 会标注 `(N/7101 cached)`。
+
 **PM2.5 一次性依赖**（仅 `pm25` 子命令；其余仍 stdlib）：
 
 ```bash
