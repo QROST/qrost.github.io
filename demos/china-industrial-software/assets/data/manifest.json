@@ -1,10 +1,10 @@
 {
-  "build_time": "2026-06-16T02:52:54Z",
-  "total_products": 326,
+  "build_time": "2026-06-17T00:32:51Z",
+  "total_products": 325,
   "total_kernels": 43,
   "category_counts": {
     "bim-gis": 32,
-    "cad": 59,
+    "cad": 58,
     "cae": 71,
     "eda": 46,
     "erp": 13,
@@ -18,7 +18,7 @@
     "tongyuan-mworks-hunt": 0
   },
   "category_l1_counts": {
-    "研发设计": 209,
+    "研发设计": 208,
     "生产制造": 101,
     "经营管理": 13,
     "基础平台": 3
@@ -27,7 +27,7 @@
     "BIM": 18,
     "GIS": 8,
     "CAD 自动化": 19,
-    "CAD": 51,
+    "CAD": 50,
     "CAD互操作": 5,
     "CAE": 49,
     "CAM": 23,
@@ -45,7 +45,7 @@
   },
   "origin_counts": {
     "domestic": 135,
-    "international": 169,
+    "international": 168,
     "open_source": 22
   },
   "kernel_ref_counts": {
@@ -58,7 +58,7 @@
     "pengye-graphic-platform": 1,
     "autodesk-acad-geometry": 1,
     "parasolid": 7,
-    "catia-cgm": 4,
+    "catia-cgm": 3,
     "siemens-hybrid-stack": 1,
     "granite": 1,
     "shape-manager": 2,
@@ -84,7 +84,7 @@
     {
       "id": "cad",
       "file": "categories/cad.json",
-      "count": 59
+      "count": 58
     },
     {
       "id": "cae",

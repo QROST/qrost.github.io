@@ -500,6 +500,10 @@
       "category_l1": "研发设计",
       "category_l2": "CAD",
       "product_type": "mcad",
+      "tags": [
+        "visual_programming",
+        "cloud_native"
+      ],
       "origin": "international",
       "kernel": "Convergence GM（CATIA CGM）·达索自研",
       "kernel_id": "catia-cgm",
@@ -509,13 +513,15 @@
         "航空航天与汽车曲面标杆",
         "Visual Scripting + xGenerative Design 节点式图形化编程",
         "经 SIMULIA Roles 在同平台做 CFD/结构/多物理 CAE",
-        "3DEXPERIENCE 云原生平台（web app + ENOVIA 数据上云 + 3DSwym 社区协同）"
+        "3DEXPERIENCE 云原生平台（web app + ENOVIA 数据上云 + 3DSwym 社区协同）",
+        "交付：CATIA V5 桌面版或 3DEXPERIENCE Role 订阅（含 xGenerative 等 xApps）"
       ],
       "strengths_en": [
         "Aerospace/auto surfacing benchmark",
         "Node-based visual scripting + xGenerative Design",
         "CFD/structural/multiphysics CAE via integrated SIMULIA Roles",
-        "Cloud-native 3DEXPERIENCE platform (web apps + ENOVIA data + 3DSwym community)"
+        "Cloud-native 3DEXPERIENCE platform (web apps + ENOVIA data + 3DSwym community)",
+        "Delivery: CATIA V5 desktop or 3DEXPERIENCE Role subscriptions (incl. xGenerative xApps)"
       ],
       "limitations_zh": [
         "学习曲线陡峭",
@@ -551,6 +557,9 @@
           "title": "Spatial — CGM same engine as CATIA V5/V6",
           "accessed": "2026-06"
         }
+      ],
+      "international_benchmarks": [
+        "icem-surf"
       ]
     },
     {
@@ -2307,68 +2316,6 @@
         "onshape",
         "crowncad",
         "solidworks"
-      ]
-    },
-    {
-      "id": "catia-xgenerative-design",
-      "name_zh": "CATIA xGenerative Design",
-      "name_en": "CATIA xGenerative Design",
-      "vendor_id": "dassault",
-      "category_l1": "研发设计",
-      "category_l2": "CAD",
-      "product_type": "mcad",
-      "tags": [
-        "cloud_native",
-        "visual_programming"
-      ],
-      "origin": "international",
-      "kernel": "Convergence GM（CATIA CGM）·计算化建模",
-      "kernel_id": "catia-cgm",
-      "maturity": "high",
-      "localization_depth": "partial",
-      "strengths_zh": [
-        "浏览器端视觉脚本 + 交互 3D 建模双模",
-        "官方明确基于 CATIA CGM 几何内核",
-        "与 CATIA/3DEXPERIENCE 平台数据连续"
-      ],
-      "strengths_en": [
-        "Browser visual scripting plus interactive 3D modeling",
-        "Vendor-documented CATIA CGM geometry kernel",
-        "Data continuity with CATIA/3DEXPERIENCE platform"
-      ],
-      "limitations_zh": [
-        "面向生成式/样式探索，非通用 MCAD 替代",
-        "国内 OEM 案例公开度低于 Alias/ICEM",
-        "需 3DEXPERIENCE 平台订阅"
-      ],
-      "limitations_en": [
-        "Generative/styling exploration — not a general MCAD replacement",
-        "Fewer public China OEM references than Alias/ICEM",
-        "Requires 3DEXPERIENCE platform subscription"
-      ],
-      "industries": [
-        "汽车",
-        "航空航天",
-        "建筑"
-      ],
-      "pricing": "high",
-      "confidence": 0.9,
-      "last_verified": "2026-06",
-      "sources": [
-        {
-          "url": "https://discover.3ds.com/xapps-talks-cloud-based-3d-modeling-applications",
-          "title": "3DS xApps — xGenerative Design powered by CATIA CGM",
-          "accessed": "2026-06"
-        },
-        {
-          "url": "https://www.3ds.com/edu/education/academics/hub/xgenerative-design",
-          "title": "CATIA xGenerative Design",
-          "accessed": "2026-06"
-        }
-      ],
-      "international_benchmarks": [
-        "catia",
-        "alias-autostudio"
       ]
     },
     {

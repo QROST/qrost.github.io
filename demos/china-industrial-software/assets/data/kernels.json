@@ -496,7 +496,6 @@
       ],
       "used_by_product_ids": [
         "catia",
-        "catia-xgenerative-design",
         "icem-surf",
         "solidworks-xdesign"
       ],
@@ -504,9 +503,8 @@
         "CATIA V5/V6",
         "3DEXPERIENCE CATIA",
         "CATIA ICEM Surf",
-        "CATIA xGenerative Design",
         "3DEXPERIENCE SOLIDWORKS xDesign",
-        "3DEXPERIENCE xApps (xShape/xDesign cloud MCAD)"
+        "3DEXPERIENCE xApps (xShape/xDesign/xGenerative cloud MCAD)"
       ],
       "chinese_products_using": [],
       "substitution_status_zh": "不可替代 — 国产高端曲面仍在追赶；中望 Overdrive 等宣称缩小差距",
@@ -2102,7 +2100,6 @@
       ],
       "used_by_product_ids": [
         "catia",
-        "catia-xgenerative-design",
         "icem-surf",
         "solidworks-xdesign"
       ],
@@ -2110,7 +2107,6 @@
         "CATIA V6",
         "3DEXPERIENCE CATIA",
         "3DEXPERIENCE SOLIDWORKS xDesign",
-        "CATIA xGenerative Design",
         "ENOVIA (data/collab — consumes CGM geometry)",
         "DELMIA (manufacturing — consumes CGM geometry)"
       ],
