@@ -49,6 +49,7 @@ ENR_PATH = ROOT / "assets" / "data" / "enriched.js"
 HAZ_PATH = ROOT / "assets" / "data" / "hazards.js"
 FIELD_PATH = ROOT / "assets" / "data" / "field.js"
 FIELD_HI_PATH = ROOT / "assets" / "data" / "field_hi.js"
+FIELD_HI_DIR = ROOT / "assets" / "data"
 CSV_PATH = ROOT / "data" / "listings.csv"
 HTML_PATH = ROOT / "index.html"
 
@@ -272,7 +273,7 @@ FIELD_HEADER_COARSE = '''/**
  * DEM), so the map can draw a real isotherm / rainfall / elevation basemap
  * under the listings. Per field: heatmap points [lng,lat,value] + marching-
  * squares isoline segments per level. National view @ 1° — zoom in lazy-loads
- * field_hi.js (0.25°). window.HOUSING_FIELD = {bbox, step, fields:{key:{...}}}.
+ * field_hi_<key>.js (0.25°, one layer). window.HOUSING_FIELD = {bbox, step, fields:{key:{...}}}.
  */
 '''
 
@@ -281,9 +282,19 @@ FIELD_HEADER_FINE = '''/**
  *
  * GENERATED FILE — do not hand-edit. Source is data/ref/field_grid_0.25.json
  * (sampled by `manage.py field --step 0.25`); emitted by `manage.py build`.
- * Lazy-loaded by app.js when map zoom ≥ threshold. Cells only (no isolines).
+ * Monolithic bundle (all layers). Prefer per-layer field_hi_<key>.js for lazy
+ * load (~270 KB each vs ~1.1 MB). Cells only (no isolines).
  * Where ERA5 is not yet fetched, climate is bilinear/nearest downscale from 1°.
  * window.HOUSING_FIELD_HI = {bbox, step, fields:{key:{...}}}.
+ */
+'''
+
+FIELD_HI_LAYER_HEADER = '''/**
+ * China small-city housing — 0.25° basemap single layer (province-zoom LOD).
+ *
+ * GENERATED FILE — do not hand-edit. Merges into window.HOUSING_FIELD_HI.
+ * Lazy-loaded by app.js for the active basemap only (jan/jul ~75% smaller
+ * than the monolithic field_hi.js). Cells only (no isolines).
  */
 '''
 
@@ -293,6 +304,23 @@ def render_field(d: dict, *, fine: bool = False) -> str:
     global_name = "HOUSING_FIELD_HI" if fine else "HOUSING_FIELD"
     body = json.dumps(d, ensure_ascii=False, separators=(",", ":"))
     return header + f"window.{global_name} = " + body + ";\n"
+
+
+def render_field_hi_layer(field_hi: dict, key: str) -> str:
+    """One basemap layer — self-contained script that merges into HOUSING_FIELD_HI."""
+    meta = {k: field_hi[k] for k in ("bbox", "step", "years") if k in field_hi}
+    meta_js = json.dumps(meta, ensure_ascii=False, separators=(",", ":"))
+    field_js = json.dumps(
+        gridfield.compact_field_layer(field_hi["fields"][key]),
+        ensure_ascii=False,
+        separators=(",", ":"),
+    )
+    key_js = json.dumps(key, ensure_ascii=False)
+    return (
+        FIELD_HI_LAYER_HEADER
+        + f"(function(){{var g=window.HOUSING_FIELD_HI=window.HOUSING_FIELD_HI||{meta_js};"
+        + f"g.fields=g.fields||{{}};g.fields[{key_js}]={field_js};}})();\n"
+    )
 
 
 def _enrich_coverage(con) -> str:
@@ -472,11 +500,17 @@ def cmd_build(args):
     gridfield.fill_from_coarse_fallback(log, step=gridfield.STEP_FINE)
     field_hi = gridfield.emit_field(log, step=gridfield.STEP_FINE, isolines_ok=False)
     if field_hi:
-        FIELD_HI_PATH.write_text(render_field(field_hi, fine=True), encoding="utf-8")
         nhi = len(field_hi["fields"].get("elevation", {}).get("points", []))
         filled, total = gridfield.cache_coverage(gridfield.STEP_FINE)
         partial = f" ({filled}/{total} cached)" if filled < total else ""
-        print(f"✓ field_hi: {len(field_hi['fields'])} fields, {nhi} cells @0.25°{partial} → {FIELD_HI_PATH.relative_to(ROOT)}")
+        for fk in field_hi["fields"]:
+            layer_path = FIELD_HI_DIR / f"field_hi_{fk}.js"
+            layer_path.write_text(render_field_hi_layer(field_hi, fk), encoding="utf-8")
+            kb = layer_path.stat().st_size // 1024
+            print(f"   field_hi_{fk}: {kb} KB → {layer_path.relative_to(ROOT)}")
+        if FIELD_HI_PATH.exists():
+            FIELD_HI_PATH.unlink()
+        print(f"✓ field_hi: {len(field_hi['fields'])} per-layer files, {nhi} cells @0.25°{partial} (monolith removed)")
     else:
         print(f"  field_hi: no 0.25° cache — run `manage.py field --step 0.25` for province-zoom LOD")
     # keep the human-readable CSV mirror in sync
@@ -600,7 +634,7 @@ def cmd_field(args):
                 era5_bulk.sample_grid(print, step=step, force=args.force)
                 continue
         gridfield.fetch_field(print, step=step, force=args.force)
-    print("✓ field fetch complete — now run `build` to emit assets/data/field.js (+ field_hi.js)")
+    print("✓ field fetch complete — now run `build` to emit assets/data/field.js (+ field_hi_<key>.js)")
 
 
 def cmd_era5_bulk(args):
@@ -649,7 +683,8 @@ def cmd_enrich(args):
 
 def cmd_research_merge(args):
     con = connect()
-    findings = json.load(open(args.path, encoding="utf-8"))
+    data = json.load(open(args.path, encoding="utf-8"))
+    findings = data.get("findings", data) if isinstance(data, dict) else data
     print(f"merging {len(findings)} research finding(s) from {args.path} …")
     rep = enrich.merge_research(con, findings, print, dry_run=args.dry_run)
     if not args.dry_run:

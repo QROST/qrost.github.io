@@ -129,6 +129,7 @@ node tools/_smoke.js
 | PM2.5 `pm25` | 跳过（网格外） | 跳过 | 跳过 |
 | 气候 429 兜底 | 同大陆；可 staging JSON | `tools/_tw_climate_fallback.py` + `data/research/tw-climate-cache-*.json` | ERA5 正常；无 CHAP 网格 |
 | Metro POI | 适用（港铁） | 六都适用 | 一般不要求 metro |
+| 纯租赁公寓 | — | — | `listingType: rental`；`rent` = 美元/月（社区挂牌）；**无单元销售**时 `priceWan` = 月租×12÷4.5% 资本化率（隐含资产，便于比回报）；同 zip **买卖中位数**写入调研 JSON `zipBenchmark`（不进 `priceWan`）；`dist` 用 zip（如 90293） |
 
 **香港 geocode 提示**：查询串用「区 + 香港」阶梯；`prov=香港` 时 `_prov_ok` 走大陆 `cn` 路径——若 Nominatim 误配深圳，用 `research-merge` 细化地址纠正。
 

@@ -13,7 +13,7 @@ listings. Two stages, deliberately split:
 
   emit  (offline)   `manage.py build`   → reads the cache, runs marching squares
                     to extract isolines (coarse grid only), and writes
-                    assets/data/field.js (1°) + field_hi.js (0.25°).
+                    assets/data/field.js (1°) + field_hi_<key>.js (0.25°, per layer).
                     No network — deterministic.
 
 The land mask is a stdlib ray-casting point-in-polygon test against the vendored
@@ -577,6 +577,24 @@ def emit_field(log=lambda *_: None, step: float = STEP_COARSE, *, isolines_ok: b
         out["era5_years"] = meta["era5_years"]
     if meta.get("era5_partial"):
         out["era5_partial"] = True
+    return out
+
+
+def compact_field_layer(spec: dict) -> dict:
+    """Quantized pipe-delimited points for 0.25° per-layer lazy load (~30–40% smaller)."""
+    pts = spec.get("points") or []
+    chunks = []
+    for lng, lat, val in pts:
+        v = int(val) if abs(float(val) - round(float(val))) < 1e-6 else round(float(val), 1)
+        chunks.append(f"{lng} {lat} {v}")
+    out = {k: spec[k] for k in ("label", "unit", "ramp", "min", "max", "levels") if k in spec}
+    iso = spec.get("isolines") or {}
+    if iso:
+        out["points"] = pts
+        out["isolines"] = iso
+    else:
+        out["q"] = 1
+        out["pts"] = "|".join(chunks)
     return out
 
 

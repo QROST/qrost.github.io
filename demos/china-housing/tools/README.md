@@ -160,15 +160,16 @@ python3 tools/manage.py build      # 重新生成 enriched.js（连同 listings.
 ### 连续底图（多分辨率 LOD）
 
 全国视图用 **1°** 栅格 + 等值线（`assets/data/field.js`）；放大到省内懒加载 **0.25°**
-（≈25 km ERA5）格点填色（`assets/data/field_hi.js`）。0.25° 与 1° 同口径：中国陆地
+（≈25 km ERA5）格点填色（`assets/data/field_hi_<key>.js`，按当前底图图层 ~180 KB
+量化 pipe 格式；build 不再产出整包 field_hi.js）。0.25° 与 1° 同口径：中国陆地
 bbox（18–54°N / 73–135.5°E）经 `china-geo.js` 陆地掩膜（约 15k 格点）；`app.js`
-视口内渲染细格点，未加载 `field_hi.js` 时回退 1° 粗格。
+视口内渲染细格点，zoom≥2.2 预取当前图层、≥2.6 切换细格，平移结束后再刷新视口。
 
 ```bash
 python3 tools/manage.py field              # 拉取 1° + 0.25°（可续跑，cache 分文件）
 python3 tools/manage.py field --step 0.25  # 仅续 0.25° 全国陆地格点
 FIELD_FETCH_PACE=2.5 python3 tools/manage.py field --step 0.25  # 限速
-python3 tools/manage.py build              # 吐 field.js + field_hi.js
+python3 tools/manage.py build              # 吐 field.js + field_hi_<key>.js（4 层）
 ```
 
 缓存：`data/ref/field_grid_1.json`、`data/ref/field_grid_0.25.json`。Archive 429 时
