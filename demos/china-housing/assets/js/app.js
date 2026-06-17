@@ -14,7 +14,7 @@
  *   window.HOUSING_HAZARDS   province hazard profile   (assets/data/hazards.js)
  *
  * Derived price metrics (kept for reference, de-emphasised):
- *   priceYuan = priceWan×10000 · unitPrice = priceYuan/area
+ *   priceYuan = local priceWan×10000 converted to CNY · unitPrice = priceYuan/area
  *   yieldPct  = rent×12/priceYuan×100 · payback = priceYuan/(rent×12)
  *
  * Derived livability metrics (from baked climate / elevation / pois):
@@ -279,11 +279,21 @@
   };
 
   // Default view excludes listings above price thresholds (see SOP §5; tier1-check).
-  const TIER1_MAX_PRICE_WAN = 20;   // 万元
-  const TIER1_MAX_UNIT_YUAN = 5000; // 元/㎡
+  const TIER1_MAX_PRICE_WAN = 20;   // 万元 (CNY-normalized)
+  const TIER1_MAX_UNIT_YUAN = 5000; // 元/㎡ (CNY-normalized)
+  const cnyYuanOf = (wan, prov) => {
+    const fn = I18N().localWanToCnyYuan;
+    return fn ? fn(wan, prov) : wan * 10000;
+  };
+  const cnyRentOf = (rent, prov) => {
+    if (rent == null) return null;
+    const fn = I18N().localRentToCny;
+    return fn ? fn(rent, prov) : rent;
+  };
   function isDefaultHidden(d) {
-    return d.priceWan > TIER1_MAX_PRICE_WAN
-      || (d.priceWan * 10000 / d.area) > TIER1_MAX_UNIT_YUAN;
+    const priceYuan = cnyYuanOf(d.priceWan, d.prov);
+    return priceYuan / 10000 > TIER1_MAX_PRICE_WAN
+      || priceYuan / d.area > TIER1_MAX_UNIT_YUAN;
   }
   let tier1On = false;
   function viewData() {
@@ -328,9 +338,7 @@
   }
 
   const DATA = RAW.map((d) => {
-    const priceYuan = d.priceWan * 10000;
     const rent = d.rent > 0 ? d.rent : null;          // 0 = 未调研/未知（非"免租"）→ 回报率/月租按未知处理
-    const rentYear = rent != null ? rent * 12 : null;
     const e = ENR[d.id] || ENR[String(d.id)] || null;
     const cd = deriveClimate(e);
     const hz = (e && e.hazard) || HAZ[d.prov] || null;
@@ -339,9 +347,7 @@
       monthComfortDays: monthComfortDaysOf(cd), hazardBurden: hazardBurdenOf(hz),
       heating: (HAZ[d.prov] && HAZ[d.prov].heating) || null,
       heatingNote: (HAZ[d.prov] && HAZ[d.prov].heatingNote) || '',
-      priceYuan, unitPrice: priceYuan / d.area, rent, rentYear,
-      yieldPct: rentYear != null ? (rentYear / priceYuan) * 100 : null,
-      payback: rentYear != null ? priceYuan / rentYear : null,
+      rent,
       elevation: e && e.elevation != null ? e.elevation : null,
       builtYear: e && e.builtYear != null ? e.builtYear : null,
       builtYearSrc: (e && e.builtYearSrc) || null,
@@ -371,17 +377,35 @@
       histTempNote: (e && e.histTempNote) || null,
       histTempLevel: (e && e.histTempLevel) || null,
       ...cd,
+      priceYuan: null, priceCnyWan: null, unitPrice: null, rentCny: null, rentYear: null, yieldPct: null, payback: null,
     };
   });
 
+  function rebuildPriceFields() {
+    DATA.forEach((d) => {
+      const priceYuan = cnyYuanOf(d.priceWan, d.prov);
+      const rentCny = d.rent != null ? cnyRentOf(d.rent, d.prov) : null;
+      const rentYear = rentCny != null ? rentCny * 12 : null;
+      d.priceYuan = priceYuan;
+      d.priceCnyWan = priceYuan / 10000;
+      d.unitPrice = priceYuan / d.area;
+      d.rentCny = rentCny;
+      d.rentYear = rentYear;
+      d.yieldPct = rentYear != null ? (rentYear / priceYuan) * 100 : null;
+      d.payback = rentYear != null ? priceYuan / rentYear : null;
+    });
+  }
+  rebuildPriceFields();
+
   // ---- formatting --------------------------------------------------------
   const trim = (s) => String(s).replace(/\.0+$/, '').replace(/(\.\d*?)0+$/, '$1');
-  const fmtWan = (v) => (I18N().formatPriceWan ? I18N().formatPriceWan(v) : trim(v.toFixed(2)) + '万');
+  const fmtWan = (v, prov) => (I18N().formatPriceWan ? I18N().formatPriceWan(v, prov) : trim(v.toFixed(2)) + '万');
+  const fmtWanD = (d) => fmtWan(d.priceWan, d.prov);
   const fmtArea = (v) => (I18N().formatArea ? I18N().formatArea(v) : trim(v.toFixed(1)) + '㎡');
   const fmtUnit = (v) => (I18N().formatUnitPrice ? I18N().formatUnitPrice(v) : (v == null ? '—' : Math.round(v).toLocaleString('zh-CN') + '元/㎡'));
   const fmtInt = (v) => (I18N().formatInt ? I18N().formatInt(v) : (v == null ? '—' : Math.round(v).toLocaleString('en-US')));
-  const fmtRent = (v) => (I18N().formatRent ? I18N().formatRent(v) : fmtInt(v));
-  const priceX = (wan) => (I18N().priceAxisValue ? I18N().priceAxisValue(wan) : wan);
+  const fmtRent = (v, prov) => (I18N().formatRent ? I18N().formatRent(v, prov) : fmtInt(v));
+  const priceX = (cnyWan) => (I18N().priceAxisValueCnyWan ? I18N().priceAxisValueCnyWan(cnyWan) : cnyWan);
   const fmtPct = (v) => v == null ? '—' : v.toFixed(1) + '%';
   const fmtYrs = (v) => v == null ? '—' : v.toFixed(1);
   const fmtTemp = (v) => (I18N().formatTemp ? I18N().formatTemp(v) : (v == null ? '—' : Math.round(v) + '°C'));
@@ -563,7 +587,7 @@
   })();
   const QZ_MAX_BURDEN = Math.max(1, ...VISIBLE_POP.map((d) => d.hazardBurden || 0));
   function quizScore(d) {
-    if (qz.budget && d.priceWan > qz.budget) return null;
+    if (qz.budget && d.priceYuan / 10000 > qz.budget) return null;
     if (qz.alt && !(d.elevation != null && d.elevation <= 1500)) return null;
     if (qz.heat && !(d.heating === '集中供暖' || d.heating === '部分供暖')) return null;
     const parts = [];   // [dimKey, weight, subscore 0-1]
@@ -705,7 +729,7 @@
   function renderKPIs() {
     const vd = viewData();
     const provinces = new Set(vd.map((d) => d.prov));
-    const cheapest = vd.reduce((a, b) => (b.priceWan < a.priceWan ? b : a));
+    const cheapest = vd.reduce((a, b) => (b.priceYuan < a.priceYuan ? b : a));
     const climD = vd.filter((d) => d.tempRange != null);
     const steadiest = climD.reduce((a, b) => (b.tempRange < a.tempRange ? b : a), climD[0]);
     const comfortScore = (d) => (d.comfortDayCount != null ? d.comfortDayCount
@@ -716,7 +740,7 @@
     const cards = [
       { label: t('kpiListings'), value: vd.length, unit: t('kpiUnit'), sub: t('kpiListingsSub') },
       { label: t('kpiProvinces'), value: provinces.size, unit: t('kpiProvUnit'), sub: t('kpiProvincesSub') },
-      { label: t('kpiCheapest'), value: fmtWan(cheapest.priceWan), sub: cityLabel(cheapest) },
+      { label: t('kpiCheapest'), value: fmtWanD(cheapest), sub: cityLabel(cheapest) },
       { label: t('kpiMedianUnit'), value: isEn() ? fmtUnit(medUnit) : fmtInt(medUnit), unit: isEn() ? '' : '元/㎡', sub: t('kpiMedianUnitSub') },
       { label: t('kpiSteady'), value: steadiest ? fmtSwing(steadiest.tempRange) : '—', unit: '', sub: steadiest ? `${cityLabel(steadiest)} · ${trCl(steadiest.climateType) || ''}` : '—' },
       { label: t('kpiComfortMax'), value: mostComfort ? comfortScore(mostComfort) + t('daySuffix') : '—', sub: mostComfort ? `${cityLabel(mostComfort)} · ${t('kpiComfortMaxSub')}` : '—' },
@@ -766,7 +790,7 @@
     const cdays = (d) => d.comfortDayCount != null ? d.comfortDayCount
       : (d.comfortMonths != null ? Math.round(d.comfortMonths * 30.4) : null);
     const pts = viewData().filter((d) => cdays(d) != null && d.tempRange != null)
-      .map((d) => ({ x: priceX(d.priceWan), y: cdays(d), d }));
+      .map((d) => ({ x: priceX(d.priceYuan / 10000), y: cdays(d), d }));
     const rMax = Math.max(1, ...pts.map((p) => p.d.tempRange));
     const pMax = Math.max(1, ...pts.map((p) => p.x));
     scatterChart = new Chart(ctx, {
@@ -795,7 +819,7 @@
               label: (it) => {
                 const d = it.raw.d;
                 return [
-                  `${isEn() ? 'Total' : '总价'} ${fmtWan(d.priceWan)} · ${fmtArea(d.area)} · ${isEn() ? 'Unit' : '单价'} ${fmtUnit(d.unitPrice)}`,
+                  `${isEn() ? 'Total' : '总价'} ${fmtWanD(d)} · ${fmtArea(d.area)} · ${isEn() ? 'Unit' : '单价'} ${fmtUnit(d.unitPrice)}`,
                   `${trCl(d.climateType) || '—'} · ${t('swingLabel')} ${fmtSwing(d.tempRange)} · ${t('comfortLabel')} ${comfortRangeOf(d)} · ${t('extremeLabel')} ${extremeRangeOf(d)}`,
                   `${isEn() ? 'Jan' : '1月'} ${fmtTemp(d.janTemp)} · ${isEn() ? 'Jul' : '7月'} ${fmtTemp(d.julTemp)} · ${isEn() ? 'Elev' : '海拔'} ${fmtElev(d.elevation)}`,
                 ];
@@ -815,7 +839,7 @@
 
   // ---- ranking bars (switchable metric) ----------------------------------
   const RANK_METRICS = {
-    cheap: { labelKey: 'rankCheap', key: 'priceWan', dir: 1, axisKey: 'rankAxisCheap', fmt: fmtWan, color: (v, n) => badColor(v / n) },
+    cheap: { labelKey: 'rankCheap', key: 'priceCnyWan', dir: 1, axisKey: 'rankAxisCheap', fmt: (v) => (I18N().formatCnyYuan ? I18N().formatCnyYuan(v * 10000) : fmtWan(v)), color: (v, n) => badColor(v / n) },
     unit: { labelKey: 'rankUnit', key: 'unitPrice', dir: 1, axisKey: 'rankAxisUnit', fmt: (v) => fmtUnit(v), color: (v, n) => badColor(v / n) },
     comfort: { labelKey: 'rankComfort', key: 'comfortDayCount', dir: -1, axisKey: 'rankAxisComfort', fmt: (v) => v + t('daySuffix'), color: (v, n) => comfortColor(v / (n || 1)) },
     extreme: { labelKey: 'rankExtreme', key: 'extremeDayCount', dir: -1, axisKey: 'rankAxisExtreme', fmt: (v) => v + t('daySuffix'), color: (v, n) => comfortColor(1 - v / (n || 1)) },
@@ -1156,7 +1180,7 @@
   const MAP_DIMS = {
     tempRange: { labelKey: 'dimTempRange', get: (d) => d.tempRange, fmt: fmtSwing, ramp: 'range', textKeys: ['mapSwingLarge', 'mapSwingSteady'] },
     unitPrice: { labelKey: 'dimUnitPrice', get: (d) => d.unitPrice, fmt: (v) => fmtUnit(v), ramp: 'cheapGood', textKeys: ['mapExpensive', 'mapCheaper'] },
-    priceWan: { labelKey: 'dimPriceWan', get: (d) => d.priceWan, fmt: fmtWan, ramp: 'cheapGood', textKeys: ['mapExpensive', 'mapCheaper'] },
+    priceWan: { labelKey: 'dimPriceWan', get: (d) => d.priceYuan / 10000, fmt: (v) => (I18N().formatCnyYuan ? I18N().formatCnyYuan(v * 10000) : fmtWan(v)), ramp: 'cheapGood', textKeys: ['mapExpensive', 'mapCheaper'] },
     janTemp: { labelKey: 'dimJanTemp', get: (d) => d.janTemp, fmt: fmtTemp, ramp: 'temp', textKeys: ['mapHot', 'mapCold'] },
     julTemp: { labelKey: 'dimJulTemp', get: (d) => d.julTemp, fmt: fmtTemp, ramp: 'temp', textKeys: ['mapHot', 'mapCold'] },
     annualPrecip: { labelKey: 'dimAnnualPrecip', get: (d) => d.annualPrecip, fmt: (v) => fmtPrecip(v), ramp: 'precip', textKeys: ['mapWet', 'mapDry'] },
@@ -1280,9 +1304,9 @@
 
   // cheaper homes render larger so affordable options pop (scale to visible set)
   function dotSizeOf(d) {
-    const vals = viewGeocoded().map((x) => x.priceWan);
+    const vals = viewGeocoded().map((x) => x.priceYuan / 10000);
     const pMin = Math.min(...vals), pMax = Math.max(...vals);
-    return 8 + (1 - clamp((d.priceWan - pMin) / (pMax - pMin || 1), 0, 1)) * 12;
+    return 8 + (1 - clamp((d.priceYuan / 10000 - pMin) / (pMax - pMin || 1), 0, 1)) * 12;
   }
 
   function mapFail(msg) {
@@ -1448,7 +1472,7 @@
             : '';
           return `<b>${cityLabel(d)}</b> · ${trGeo(d.enr.geoLabel) || ''}<br/>`
             + `<b style="color:#059669">${dim.label} ${dim.fmt(dim.get(d))}</b>${ageLine}<br/>`
-            + `${isEn() ? 'Total' : '总价'} ${fmtWan(d.priceWan)} · ${fmtArea(d.area)} · ${isEn() ? 'Unit' : '单价'} ${fmtUnit(d.unitPrice)}<br/>`
+            + `${isEn() ? 'Total' : '总价'} ${fmtWanD(d)} · ${fmtArea(d.area)} · ${isEn() ? 'Unit' : '单价'} ${fmtUnit(d.unitPrice)}<br/>`
             + `${trCl(d.climateType) || '—'} · ${t('swingLabel')} ${d.tempRange == null ? '—' : fmtSwing(d.tempRange)} · ${isEn() ? 'Jan' : '1月'} ${fmtTemp(d.janTemp)}/${isEn() ? 'Jul' : '7月'} ${fmtTemp(d.julTemp)} · ${isEn() ? 'Elev' : '海拔'} ${fmtElev(d.elevation)} · ${t('winterHeating')} ${trHeat(d.heating) || '—'}<br/>`
             + `${t('poiHospital')} ${fmtKm(d.hospitalKm)} · ${d.transitKind === 'metro' ? t('poiMetro') : t('poiTrain')} ${fmtKm(d.transitKm)} · ${t('col_seismic')} ${trSeis(d.seismic) || '—'} · ${t('col_typhoon')} ${trTy(d.typhoon) || '—'}`
             + (haz ? `<br/><span style="color:${themeMuted()}">${isEn() ? 'Top hazard: ' : '最频灾害：'}${haz}</span>` : '')
@@ -1822,10 +1846,10 @@
       cell: (d) => `<span class="font-medium ${tcx().strong}">${I18N().communityName ? I18N().communityName(d.loc, d.name_en) : d.loc}</span>`
         + (worthBadge(d) ? ' ' + worthBadge(d) : ''), dir: 1 },
     { key: 'builtAge', label: '房龄', group: 'core', get: (d) => nz(builtAgeOf(d), -999), cell: (d) => builtCell(d) },
-    { key: 'priceWan', label: '总价', group: 'price', num: true, get: (d) => d.priceWan, cell: (d) => fmtWan(d.priceWan) },
+    { key: 'priceWan', label: '总价', group: 'price', num: true, get: (d) => d.priceYuan / 10000, cell: (d) => fmtWanD(d) },
     { key: 'area', label: '面积㎡', group: 'price', num: true, get: (d) => d.area, cell: (d) => fmtArea(d.area) },
     { key: 'unitPrice', label: '单价 元/㎡', group: 'price', num: true, get: (d) => d.unitPrice, cell: (d) => fmtUnit(d.unitPrice) },
-    { key: 'rent', label: '月租 元', group: 'price', num: true, get: (d) => d.rent, cell: (d) => fmtRent(d.rent) },
+    { key: 'rent', label: '月租 元', group: 'price', num: true, get: (d) => d.rentCny, cell: (d) => fmtRent(d.rent, d.prov) },
     { key: 'climateType', label: '气候类型', group: 'live', str: true, get: (d) => d.climateType || '', cell: (d) => climateCell(d) },
     { key: 'tempRange', label: '年温差', group: 'live', num: true, get: (d) => nz(d.tempRange, -1), cell: (d) => rangeCell(d.tempRange) },
     { key: 'janTemp', label: '1月均温', group: 'live', num: true, get: (d) => nz(d.janTemp, -999), cell: (d) => tempCell(d.janTemp) },
@@ -1860,7 +1884,7 @@
   // when that chip is on) except lowHazard, where no hazard data = no known
   // annual hazard.
   const FILTERS = {
-    budget10: { labelKey: 'fcBudget10', pass: (d) => d.priceWan <= 10 },
+    budget10: { labelKey: 'fcBudget10', pass: (d) => d.priceYuan <= 100000 },
     warmWinter: { labelKey: 'fcWarmWinter', pass: (d) => d.janTemp != null && d.janTemp >= 5 },
     coolSummer: { labelKey: 'fcCoolSummer', pass: (d) => d.julTemp != null && d.julTemp <= 26 },
     heated: { labelKey: 'fcHeated', pass: (d) => d.heating === '集中供暖' || d.heating === '部分供暖' },
@@ -1925,7 +1949,7 @@
     return `<div class="px-4 py-3${d.enr ? ' cursor-pointer active:bg-slate-50 dark:active:bg-slate-700/40' : ''}"${open}>
       <div class="flex items-baseline justify-between gap-2">
         <span class="font-medium ${x.strong} truncate">${name}</span>
-        <span class="font-semibold tabular-nums ${x.strong} whitespace-nowrap">${fmtWan(d.priceWan)}</span>
+        <span class="font-semibold tabular-nums ${x.strong} whitespace-nowrap">${fmtWanD(d)}</span>
       </div>
       <div class="mt-0.5 flex items-baseline justify-between gap-2 text-xs ${x.muted}">
         <span class="truncate">${sub}</span>
@@ -2127,7 +2151,7 @@
   function exportCSV() {
     const cols = [
       ['序号', (d) => d.id], ['省份', (d) => d.prov], ['城市', (d) => d.city],
-      ['区/镇', (d) => d.dist], ['小区', (d) => d.loc], ['总价(万元)', (d) => d.priceWan],
+      ['区/镇', (d) => d.dist], ['小区', (d) => d.loc], ['总价(万元)', (d) => d.priceYuan / 10000],
       ['面积(㎡)', (d) => d.area], ['单价(元/㎡)', (d) => Math.round(d.unitPrice)],
       ['月租(元)', (d) => d.rent],
       ['气候类型', (d) => d.climateType || ''], ['年温差(℃)', (d) => d.tempRange],
@@ -2199,7 +2223,7 @@
   }
 
   function lmSubHtml(d, e) {
-    return `${trProv(d.prov)} · ${trCity(d.city)}${d.dist ? ' · ' + trDist(d.dist) : ''} &nbsp;|&nbsp; ${isEn() ? 'Total' : '总价'} ${fmtWan(d.priceWan)} · ${fmtArea(d.area)} · ${trCl(d.climateType || '')} `
+    return `${trProv(d.prov)} · ${trCity(d.city)}${d.dist ? ' · ' + trDist(d.dist) : ''} &nbsp;|&nbsp; ${isEn() ? 'Total' : '总价'} ${fmtWanD(d)} · ${fmtArea(d.area)} · ${trCl(d.climateType || '')} `
       + `<span class="ml-1 inline-block rounded px-1.5 py-0.5 text-xs ${tcx().badge}">${t('lmGeo')} ${trGeo(e.geoLabel) || '?'}</span>`;
   }
 
@@ -2743,7 +2767,7 @@
     ctx.fillText([trProv(d.prov), trCity(d.city), trDist(d.dist)].filter(Boolean).join(' · '), PAD, y + 44);
     y += 44;
     ctx.fillStyle = '#34d399'; ctx.font = F(700, 84);
-    ctx.fillText(fmtWan(d.priceWan), PAD, y + 110);
+    ctx.fillText(fmtWanD(d), PAD, y + 110);
     ctx.fillStyle = '#cbd5e1'; ctx.font = F(400, 28);
     ctx.fillText(`${fmtUnit(d.unitPrice)} · ${fmtArea(d.area)}`, PAD, y + 158);
     y += 158;
@@ -2858,7 +2882,7 @@
   function wireLangToggle() {
     const btn = document.getElementById('lang-toggle');
     if (!btn || !I18N().toggleLang) return;
-    I18N().onLangChange(() => applyLangToUI());
+    I18N().onLangChange(() => { applyLangToUI(); });
     btn.addEventListener('click', () => {
       const toEn = !isEn();
       I18N().toggleLang();
@@ -2890,7 +2914,9 @@
     chartBase();
     if (I18N().applyStaticI18n) I18N().applyStaticI18n();
     if (I18N().fetchPageBuiltAt) I18N().fetchPageBuiltAt();
-    if (isEn() && I18N().fetchExchangeRate) I18N().fetchExchangeRate();
+    if (I18N().fetchExchangeRate) {
+      I18N().fetchExchangeRate().then(() => { rebuildPriceFields(); refreshViews(); });
+    }
     safeRun('syncHeroCounts', syncHeroCounts);
     // table + interaction wiring first — must survive chart/map failures
     safeRun('wireTable', wireTable);
