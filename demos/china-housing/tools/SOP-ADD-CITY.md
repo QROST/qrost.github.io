@@ -121,7 +121,11 @@ node tools/_smoke.js
 | `app.js` → `PROV_FULL` | `'香港': '香港特别行政区'` | `'台湾': '台湾省'` | `'California': 'California'` |
 | `enrich.py` → `PROVINCE_HAZARDS` / `HEATING` | 已有台风/暴雨模板 | 已有台风/地震模板 | 无省级灾害（per-listing 仍跑 `hazard-merge` 物理细化） |
 | Geocode `countrycodes` | `cn`（`_geo_ladder` + 省份校验） | `tw`（`_geo_ladder_tw`） | `us`（`_geo_ladder_us`） |
-| 货币口径 | **港元**（`priceWan` 万港元；`rent` 港元/月）— 在 research JSON `notes` 写明 | **新台币** | **美元**（research JSON 注明） |
+| 货币口径（**DB ground truth**） | `priceWan` = **万港元**；`rent` = **港元/月** | `priceWan` = **万新台币**；`rent` = **新台币/月** | `priceWan` = **万美元**；`rent` = **美元/月** |
+| 界面显示（`i18n.js`） | **zh**：Frankfurter/fallback 换算为 **人民币**（万/元/元/㎡）；**en**：换算为 **美元** | 同左 | 同左 |
+| 大陆对照 | `priceWan` = **万人民币**；`rent` = **元/月** — 无 FX | — | — |
+| FX 铁律 | **禁止**把换算后的人民币/美元写回 `priceWan`/`rent`；FX 仅用于 `formatPriceWan` / `unitPrice` 派生显示 | 同左 | 同左 |
+| 单价可疑阈值 | 筛选审计用 **>125,000 CNY/㎡**（各 `prov` ground truth → CNY 后比较）；见 `data/research/audit-unit-price-suspects-*.json` | 同左 | 同左 |
 | PM2.5 `pm25` | 跳过（网格外） | 跳过 | 跳过 |
 | 气候 429 兜底 | 同大陆；可 staging JSON | `tools/_tw_climate_fallback.py` + `data/research/tw-climate-cache-*.json` | ERA5 正常；无 CHAP 网格 |
 | Metro POI | 适用（港铁） | 六都适用 | 一般不要求 metro |

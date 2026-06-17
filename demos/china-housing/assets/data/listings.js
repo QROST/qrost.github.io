@@ -361,7 +361,7 @@ window.HOUSING_LISTINGS = [
   { id: 346, prov: "广东",       city: "深圳市",            dist: "南山区",            loc: "恒裕滨城二期",                      priceWan: 6000,  area: 200,    rent: 68000,   updated: "2026-06" },
   { id: 347, prov: "台湾",       city: "台北市",            dist: "大安区",            loc: "仁愛帝寶",                          priceWan: 54420, area: 903,    rent: 2763338, updated: "2026-06" },
   { id: 348, prov: "台湾",       city: "台北市",            dist: "信义区",            loc: "信義帝寶",                          priceWan: 22350, area: 403,    rent: 200000,  updated: "2026-06" },
-  { id: 349, prov: "台湾",       city: "台北市",            dist: "信义区",            loc: "皇翔御琚",                          priceWan: 84000, area: 1107,   rent: 700000,  updated: "2026-06" },
+  { id: 349, prov: "台湾",       city: "台北市",            dist: "信义区",            loc: "皇翔御琚",                          priceWan: 84400, area: 1064,   rent: 700000,  updated: "2026-06" },
   { id: 350, prov: "台湾",       city: "台中市",            dist: "西屯区",            loc: "大陸麗格",                          priceWan: 8000,  area: 430,    rent: 80000,   updated: "2026-06" },
   { id: 351, prov: "台湾",       city: "台中市",            dist: "西屯区",            loc: "大陸寶格",                          priceWan: 10270, area: 486,    rent: 95000,   updated: "2026-06" },
   { id: 352, prov: "台湾",       city: "台中市",            dist: "西屯区",            loc: "惠宇天青",                          priceWan: 6100,  area: 551,    rent: 75000,   updated: "2026-06" },
