@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover" />
+  <meta name="theme-color" content="#04050a" />
+  <title>数渊 · Data Abyss — 中国宜居 × 工业自立</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div id="scene"></div>
+
+  <div id="hud">
+    <div id="title">数渊 <span>DATA ABYSS</span></div>
+    <div id="sub">347 座城的气候、海拔、灾害、房价 × 中国工业软件 30 年自立的产品·内核·突破·政策 —— 每一颗星的形、色、明灭、漂移，皆为真实数据所驱动。</div>
+  </div>
+
+  <div id="tip">拖动旋转 · 缩放 · 点击星体探看 <button id="enable">开启手机感应与声音</button></div>
+
+  <div id="card" class="hidden"></div>
+  <div id="loading">正在点亮数渊…</div>
+
+  <!-- china-housing baked globals (classic scripts run before the module) -->
+  <script src="../china-housing/assets/data/listings.js"></script>
+  <script src="../china-housing/assets/data/enriched.js"></script>
+  <script src="../china-housing/assets/data/hazards.js"></script>
+
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+    }
+  }
+  </script>
+  <script type="module" src="app.js"></script>
+</body>
+</html>
