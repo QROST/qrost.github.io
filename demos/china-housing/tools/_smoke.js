@@ -245,6 +245,62 @@ setTimeout(() => {
     w.__setLang('en');
     T('future built cell en', /−\d+ yr/.test(ids['table-body']._html));
     w.__setLang('zh');
+    try {
+      const I = w.HOUSING_I18N;
+      const hk = (w.HOUSING_LISTINGS || []).find((r) => r.id === 357);
+      const tw = (w.HOUSING_LISTINGS || []).find((r) => r.id === 347);
+      const ca356 = (w.HOUSING_LISTINGS || []).find((r) => r.id === 356);
+      const ml1 = (w.HOUSING_LISTINGS || []).find((r) => r.id === 1);
+      T('HK currency HKD', I.listingCurrency('香港') === 'HKD');
+      T('TW currency TWD', I.listingCurrency('台湾') === 'TWD');
+      T('CA currency USD', I.listingCurrency('California') === 'USD');
+      const hkCnyWan = I.localWanToCnyYuan(hk.priceWan, hk.prov) / 10000;
+      const twCnyWan = I.localWanToCnyYuan(tw.priceWan, tw.prov) / 10000;
+      const ca356CnyWan = I.localWanToCnyYuan(ca356.priceWan, ca356.prov) / 10000;
+      T('HK id357 CNY wan < raw HKD wan', hkCnyWan < hk.priceWan && hkCnyWan > 10000);
+      T('TW id347 CNY wan < raw TWD wan', twCnyWan < tw.priceWan && twCnyWan > 1000);
+      T('CA id356 CNY wan > raw USD wan (×FX)', ca356CnyWan > ca356.priceWan && ca356CnyWan > 1000);
+      T('mainland id1 CNY wan unchanged', I.localWanToCnyYuan(ml1.priceWan, ml1.prov) / 10000 === ml1.priceWan);
+      w.__setTier1On(true);
+      w.__setLang('zh');
+      T('HK zh table not raw 14900万', !/14900万/.test(ids['table-body']._html));
+      T('TW zh table not raw 54420万', !/54420万/.test(ids['table-body']._html));
+      T('CA zh table not raw 1188万', !/1188万/.test(ids['table-body']._html));
+      T('CA zh formatter ~1155万', I.formatPriceWan(ca356.priceWan, ca356.prov).includes('1155'));
+      T('HK zh formatter CNY not HKD wan', (() => {
+        const fmt = I.formatPriceWan(hk.priceWan, hk.prov);
+        return (fmt.endsWith('万') || fmt.endsWith('亿')) && !fmt.includes('14900')
+          && I.localWanToCnyYuan(hk.priceWan, hk.prov) < hk.priceWan * 10000;
+      })());
+      const sh = (w.HOUSING_LISTINGS || []).find((r) => r.id === 125);
+      const shCheap = (w.HOUSING_LISTINGS || []).find((r) => r.id === 60);
+      const hk358 = (w.HOUSING_LISTINGS || []).find((r) => r.id === 358);
+      T('mainland id125 priceYuan unchanged', sh && Math.abs(I.localWanToCnyYuan(sh.priceWan, sh.prov) - sh.priceWan * 10000) < 0.01);
+      T('mainland id60 zh fmt raw wan', shCheap && I.formatPriceWan(shCheap.priceWan, shCheap.prov) === '10万');
+      T('mainland id125 zh fmt raw wan', sh && I.formatPriceWan(sh.priceWan, sh.prov) === '395万');
+      T('mainland needsFx false', !I.listingNeedsFx('上海') && !I.listingNeedsFx('黑龙江'));
+      T('HK id358 zh CNY wan ~5655', hk358 && (() => {
+        const cnyWan = I.localWanToCnyYuan(hk358.priceWan, hk358.prov) / 10000;
+        return cnyWan > 5000 && cnyWan < 7000 && /5655/.test(I.formatPriceWan(hk358.priceWan, hk358.prov));
+      })());
+      w.__setLang('en');
+      T('overseas en formatter not raw-wan USD', [284, 356, 347, 357, 359].every((id) => {
+        const d = w.HOUSING_LISTINGS.find((r) => r.id === id);
+        const fmt = I.formatPriceWan(d.priceWan, d.prov);
+        const wrong = '$' + Math.round(d.priceWan * 10000 / I.getRate()).toLocaleString('en-US');
+        return fmt !== wrong;
+      }));
+      T('overseas en table no raw-wan USD', [284, 356, 347, 357, 359].every((id) => {
+        const d = w.HOUSING_LISTINGS.find((r) => r.id === id);
+        const wrong = '$' + Math.round(d.priceWan * 10000 / I.getRate()).toLocaleString('en-US');
+        return !ids['table-body']._html.includes(wrong);
+      }));
+      T('CA en formatter $1.65M #356', I.formatPriceWan(ca356.priceWan, ca356.prov) === '$1,650,000');
+      T('CA en table $1,650,000', ids['table-body']._html.includes('$1,650,000'));
+      T('HK en table USD millions', /\$1[0-9],/.test(ids['table-body']._html));
+      w.__setLang('zh');
+      w.__setTier1On(false);
+    } catch (e) { T('HK/TW currency — ' + e.message, false); }
     w.__setTier1On(false);
     w.__setLang('zh');
     selCache['[data-dim]'].find((b) => b.dataset.dim === 'tempRange').fire('click');
