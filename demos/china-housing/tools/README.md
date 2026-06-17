@@ -1,5 +1,23 @@
 # china-housing 数据维护
 
+## 过程文件 vs 产品文件（git）
+
+| 类别 | 路径 | git |
+|------|------|-----|
+| **产品 / 可发布** | `data/housing.db`（source of truth） | ✅ 跟踪 |
+| | `data/listings.csv`（build 镜像，可 diff） | ✅ 跟踪 |
+| | `assets/data/*.js`（listings / enriched / field / hazards / geo…） | ✅ 跟踪 |
+| | `data/ref/airports_cn.json`、`coast_cn.json`、`hospitals_tier3_cn.json` | ✅ 跟踪（静态参考） |
+| **过程 / 本地工作** | `data/batch-*.csv`、`data/import-*.csv` | ❌ gitignore |
+| | `data/research/`、`data/hazard_research.json` | ❌ gitignore |
+| | `data/ref/era5/`（CDS NetCDF） | ❌ gitignore |
+| | `data/ref/field_grid*.json`、`hist_temp_cache.json` | ❌ gitignore |
+| | `data/ref/*.log`、`*.log` | ❌ gitignore |
+| | `data/chinahighpm25/`、`.climate_daily_ext.json` | ❌ gitignore |
+
+流程：改 DB / 跑 enrich → `manage.py build` → **只提交**上表「产品」行。批次 CSV、调研 JSON、
+下载缓存留在本地即可（clone 后从 `housing.db` + `listings.csv` 可重建站点数据）。
+
 > 🧭 **要加城市 / 小区？** 直接照 [`SOP-ADD-CITY.md`](SOP-ADD-CITY.md) 这份 runbook 走（给
 > agent / 同事 / Cursor 用的完整闭环）。本 README 是各命令与口径的深度参考。
 
@@ -56,10 +74,11 @@ python3 tools/manage.py build
 （找不到某个 token 会打印 `! ... update manually` 警告，不会静默失败）。
 页脚「网页更新于」在浏览器端从 GitHub API 读取 `demos/china-housing` 路径最近一次 commit 时间，**无需每次 commit 后跑 build**。
 
-**提交**（把 DB、生成的 js、csv、改动的 index.html 一起提交）：
+**提交**（只提交产品文件：DB、生成的 js/csv、改动的 index.html；批次 CSV / research JSON 已被 gitignore）：
 
 ```bash
-git add -A && git commit -m "housing: +N listings"
+git add data/housing.db data/listings.csv assets/data/ index.html
+git commit -m "housing: +N listings"
 ```
 
 > ⚠️ 新省份要单独补一处：地图着色用的短名→GeoJSON 全名映射在

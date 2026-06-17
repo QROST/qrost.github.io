@@ -18,6 +18,17 @@ _screenshot_*.js
 # CDS ERA5 bulk NetCDF cache (tools/era5_bulk.py) — large; gitignore
 ../data/ref/era5/
 
+# Field-grid / hist-temp fetch caches (see root .gitignore; duplicated here for tools cwd)
+../data/ref/field_grid*.json
+../data/ref/hist_temp_cache.json
+../data/ref/*.log
+
+# Agent batch CSVs + research JSON (process artifacts)
+../data/batch-*.csv
+../data/import-*.csv
+../data/research/
+../data/hazard_research.json
+
 # Ad-hoc one-off climate backfill helpers (quota-window wrappers around the
 # manage.py climate/climate-daily/hist-temp subcommands). Disposable — kept on
 # disk for the overnight quota-reset backfill, not part of the tracked toolchain.
