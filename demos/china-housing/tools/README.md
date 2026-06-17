@@ -160,19 +160,43 @@ python3 tools/manage.py build      # 重新生成 enriched.js（连同 listings.
 ### 连续底图（多分辨率 LOD）
 
 全国视图用 **1°** 栅格 + 等值线（`assets/data/field.js`）；放大到省内懒加载 **0.25°**
-（≈25 km ERA5）格点填色（`assets/data/field_hi.js`）。0.25° 仅采样房源走廊
-（各小区 ±1.5° 包络，约 7k 格点，非全境 15k），`app.js` 在视口内用细格点、
-空隙处回退 1° 粗格。
+（≈25 km ERA5）格点填色（`assets/data/field_hi.js`）。0.25° 与 1° 同口径：中国陆地
+bbox（18–54°N / 73–135.5°E）经 `china-geo.js` 陆地掩膜（约 15k 格点）；`app.js`
+视口内渲染细格点，未加载 `field_hi.js` 时回退 1° 粗格。
 
 ```bash
 python3 tools/manage.py field              # 拉取 1° + 0.25°（可续跑，cache 分文件）
-python3 tools/manage.py field --step 0.25  # 仅续 0.25° 走廊
+python3 tools/manage.py field --step 0.25  # 仅续 0.25° 全国陆地格点
 FIELD_FETCH_PACE=2.5 python3 tools/manage.py field --step 0.25  # 限速
 python3 tools/manage.py build              # 吐 field.js + field_hi.js
 ```
 
 缓存：`data/ref/field_grid_1.json`、`data/ref/field_grid_0.25.json`。Archive 429 时
-`_get` 会等到 UTC 整点 + 75s 再续；部分烘焙后 `build` 会标注 `(N/7101 cached)`。
+`_get` 会等到 UTC 整点 + 75s 再续；部分烘焙后 `build` 会标注 `(N/15431 cached)`。
+
+**CDS ERA5 bulk（推荐 0.25° 全国陆地，免 Open-Meteo archive 429）**：
+
+一次拉中国区 2014–2023 日统计 NetCDF，再双线性采样进 `field_grid_*.json`（`src: cds_era5`）。
+需 Copernicus 账号 + `~/.cdsapirc`；Open-Meteo **海拔** API 不变。
+
+```bash
+python3 -m venv tools/.venv
+tools/.venv/bin/pip install -r tools/requirements-era5.txt
+# ~/.cdsapirc:
+#   url: https://cds.climate.copernicus.eu/api
+#   key: <UID>:<API-key>
+
+python3 tools/manage.py era5-bulk download          # 按年续跑 → data/ref/era5/china_YYYY.nc
+python3 tools/manage.py era5-bulk download --dry-run  # 无凭证时预览
+python3 tools/manage.py era5-bulk sample              # 0.25° 全国陆地 → field_grid_0.25.json
+python3 tools/manage.py field --source cds --step 0.25  # 同上（需已有 NetCDF）
+python3 tools/manage.py era5-bulk status
+python3 tools/manage.py build
+```
+
+数据集：`derived-era5-single-levels-daily-statistics`（`2m_temperature` daily_mean +
+`total_precipitation` daily_sum，UTC，bbox 18–54°N / 73–135.5°E）。无凭证时
+`sample`/`self-test` 仍可用本地 fixture 验证聚合逻辑：`manage.py era5-bulk self-test`。
 
 **PM2.5 一次性依赖**（仅 `pm25` 子命令；其余仍 stdlib）：
 

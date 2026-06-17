@@ -120,39 +120,18 @@ def in_china(x, y, polys):
     return False
 
 
-LISTING_CORRIDOR_PAD = float(os.environ.get("FIELD_CORRIDOR_PAD", "1.5"))  # ° around listings for 0.25° grid
-
-
-def _load_listing_coords():
-    db = ROOT / "data" / "housing.db"
-    if not db.exists():
-        return []
-    import sqlite3
-    con = sqlite3.connect(db)
-    try:
-        return [(float(lng), float(lat)) for lat, lng in con.execute(
-            "SELECT lat, lng FROM listings WHERE lat IS NOT NULL AND lng IS NOT NULL")]
-    finally:
-        con.close()
-
-
-def land_grid(step: float = STEP_COARSE, *, corridor_pad: float | None = None):
+def land_grid(step: float = STEP_COARSE):
+    """Land-masked grid over China bbox (18–54°N, 73–135.5°E) via china-geo.js."""
     polys = _load_polys()
     cols = int(round((LNG_MAX - LNG_MIN) / step)) + 1
     rows = int(round((LAT_MAX - LAT_MIN) / step)) + 1
-    listings = _load_listing_coords() if corridor_pad is not None else []
     pts = []
     for r in range(rows):
         lat = round(LAT_MIN + r * step, 4)
         for c in range(cols):
             lng = round(LNG_MIN + c * step, 4)
-            if not in_china(lng, lat, polys):
-                continue
-            if corridor_pad is not None and listings:
-                if not any(abs(lng - ll) <= corridor_pad and abs(lat - la) <= corridor_pad
-                           for ll, la in listings):
-                    continue
-            pts.append((lng, lat))
+            if in_china(lng, lat, polys):
+                pts.append((lng, lat))
     return pts, rows, cols
 
 
@@ -258,7 +237,7 @@ _COARSE_PLACEHOLDER_SRC = frozenset({"coarse_interp", "1deg_nearest"})
 
 def fill_from_coarse_fallback(log, step: float = STEP_FINE):
     """Downscale 1° ERA5 cache onto unfilled fine cells (bilinear when possible,
-    else copy nearest 1° land cell). Climate only — elevation stays as-is.
+    else copy nearest 1° land cell). Climate + missing elevation from 1°.
     Marks `src: coarse_interp` / `1deg_nearest` so archive fetch upgrades later."""
     if step >= STEP_COARSE:
         log(f"coarse fallback: only for step < {STEP_COARSE}° (got {step})")
@@ -270,21 +249,22 @@ def fill_from_coarse_fallback(log, step: float = STEP_FINE):
         return 0
     coarse = json.loads(coarse_file.read_text(encoding="utf-8"))
     coarse_pts = coarse.get("points") or {}
-    corridor = LISTING_CORRIDOR_PAD if step == STEP_FINE else None
-    pts, rows, cols = land_grid(step, corridor_pad=corridor)
+    pts, rows, cols = land_grid(step)
     cache = {"step": step, "bbox": [LNG_MIN, LAT_MIN, LNG_MAX, LAT_MAX],
-             "rows": rows, "cols": cols, "years": list(YEARS), "points": {},
-             "corridor_pad": corridor}
+             "rows": rows, "cols": cols, "years": list(YEARS), "points": {}}
     if fine_file.exists():
         try:
             old = json.loads(fine_file.read_text(encoding="utf-8"))
             if old.get("step") == step and old.get("years") == list(YEARS):
                 cache = old
                 cache["rows"], cache["cols"] = rows, cols
+                cache.pop("corridor_pad", None)
         except Exception:  # noqa: BLE001
             pass
     todo = [(lng, lat) for (lng, lat) in pts
             if cache["points"].get(_key(lng, lat), {}).get("jan") is None]
+    elev_todo = [(lng, lat) for (lng, lat) in pts
+                 if cache["points"].get(_key(lng, lat), {}).get("elev") is None]
 
     def _write_meta():
         meta = cache.setdefault("meta", {})
@@ -297,39 +277,58 @@ def fill_from_coarse_fallback(log, step: float = STEP_FINE):
             "archive fetch replaces src=coarse_interp|1deg_nearest with era5")
         fine_file.write_text(json.dumps(cache, ensure_ascii=False), encoding="utf-8")
 
-    if not todo:
+    n_interp = n_nearest = 0
+    if todo:
+        log(f"coarse fallback @{step}°: filling {len(todo)} climate cell(s) from 1° cache…")
+        for lng, lat in todo:
+            ent = cache["points"].setdefault(_key(lng, lat),
+                                             {"elev": None, "jan": None, "jul": None, "prcp": None})
+            if ent.get("jan") is not None:
+                continue
+            use_bilinear = _bilinear_coarse_ok(coarse_pts, lng, lat)
+            sample = _bilinear_coarse if use_bilinear else _nearest_coarse
+            jan = sample(coarse_pts, lng, lat, "jan")
+            jul = sample(coarse_pts, lng, lat, "jul")
+            prcp = sample(coarse_pts, lng, lat, "prcp")
+            if jan is None and jul is None:
+                continue
+            ent["jan"] = round(jan, 1) if jan is not None else None
+            ent["jul"] = round(jul, 1) if jul is not None else None
+            ent["prcp"] = round(prcp, 0) if prcp is not None else None
+            ent["src"] = "coarse_interp" if use_bilinear else "1deg_nearest"
+            if use_bilinear:
+                n_interp += 1
+            else:
+                n_nearest += 1
+    n_elev = 0
+    if elev_todo:
+        for lng, lat in elev_todo:
+            ent = cache["points"].setdefault(_key(lng, lat),
+                                             {"elev": None, "jan": None, "jul": None, "prcp": None})
+            if ent.get("elev") is not None:
+                continue
+            use_bilinear = _bilinear_coarse_ok(coarse_pts, lng, lat)
+            sample = _bilinear_coarse if use_bilinear else _nearest_coarse
+            elev = sample(coarse_pts, lng, lat, "elev")
+            if elev is not None:
+                ent["elev"] = round(elev, 0)
+                n_elev += 1
+    if not todo and not elev_todo:
         _write_meta()
         log(f"coarse fallback @{step}°: nothing to fill "
             f"({cache['meta'].get('coarse_interp_count', 0)} bilinear, "
             f"{cache['meta'].get('coarse_nearest_count', 0)} nearest)")
         return 0
-    log(f"coarse fallback @{step}°: filling {len(todo)} cell(s) from 1° cache…")
-    n_interp = n_nearest = 0
-    for lng, lat in todo:
-        ent = cache["points"].setdefault(_key(lng, lat),
-                                         {"elev": None, "jan": None, "jul": None, "prcp": None})
-        if ent.get("jan") is not None:
-            continue
-        use_bilinear = _bilinear_coarse_ok(coarse_pts, lng, lat)
-        sample = _bilinear_coarse if use_bilinear else _nearest_coarse
-        jan = sample(coarse_pts, lng, lat, "jan")
-        jul = sample(coarse_pts, lng, lat, "jul")
-        prcp = sample(coarse_pts, lng, lat, "prcp")
-        if jan is None and jul is None:
-            continue
-        ent["jan"] = round(jan, 1) if jan is not None else None
-        ent["jul"] = round(jul, 1) if jul is not None else None
-        ent["prcp"] = round(prcp, 0) if prcp is not None else None
-        ent["src"] = "coarse_interp" if use_bilinear else "1deg_nearest"
-        if use_bilinear:
-            n_interp += 1
-        else:
-            n_nearest += 1
     _write_meta()
     meta = cache["meta"]
-    log(f"coarse fallback @{step}° done: {n_interp + n_nearest} new "
-        f"({meta['coarse_interp_count']} bilinear, {meta['coarse_nearest_count']} nearest)")
-    return n_interp + n_nearest
+    parts = []
+    if todo:
+        parts.append(f"{n_interp + n_nearest} climate "
+                     f"({meta['coarse_interp_count']} bilinear, {meta['coarse_nearest_count']} nearest)")
+    if n_elev:
+        parts.append(f"{n_elev} elev from 1°")
+    log(f"coarse fallback @{step}° done: " + "; ".join(parts))
+    return n_interp + n_nearest + n_elev
 
 
 def fill_elevation(pts, cache, cache_file: Path, log):
@@ -366,17 +365,16 @@ def fill_elevation(pts, cache, cache_file: Path, log):
 def fetch_field(log, step: float = STEP_COARSE, force=False):
     _migrate_legacy_cache()
     cache_file = cache_path(step)
-    corridor = LISTING_CORRIDOR_PAD if step == STEP_FINE else None
-    pts, rows, cols = land_grid(step, corridor_pad=corridor)
+    pts, rows, cols = land_grid(step)
     cache = {"step": step, "bbox": [LNG_MIN, LAT_MIN, LNG_MAX, LAT_MAX],
-             "rows": rows, "cols": cols, "years": list(YEARS), "points": {},
-             "corridor_pad": corridor}
+             "rows": rows, "cols": cols, "years": list(YEARS), "points": {}}
     if cache_file.exists() and not force:
         try:
             old = json.loads(cache_file.read_text(encoding="utf-8"))
             if old.get("step") == step and old.get("years") == list(YEARS):
                 cache = old
                 cache["rows"], cache["cols"] = rows, cols
+                cache.pop("corridor_pad", None)
         except Exception:  # noqa: BLE001
             pass
     # elevation prefill: separate API quota — skip on fine grid (archive returns elevation
@@ -560,17 +558,25 @@ def emit_field(log=lambda *_: None, step: float = STEP_COARSE, *, isolines_ok: b
         nseg = sum(len(s) for s in iso.values())
         log(f"  field @{step}° {key}: {len(hp)} pts, {len(lv)} levels, {nseg} segs")
     out = {"bbox": cache["bbox"], "step": step, "years": cache.get("years", list(YEARS)),
-           "corridor_pad": cache.get("corridor_pad"), "fields": fields}
+           "fields": fields}
     meta = cache.get("meta") or {}
     fill = {}
     if meta.get("coarse_interp_count"):
         fill["coarse_interp"] = meta["coarse_interp_count"]
     if meta.get("coarse_nearest_count"):
         fill["1deg_nearest"] = meta["coarse_nearest_count"]
+    if meta.get("cds_era5_count"):
+        fill["cds_era5"] = meta["cds_era5_count"]
     if fill:
         out["coarse_fill"] = fill
         if meta.get("coarse_fill_note"):
             out["coarse_fill_note"] = meta["coarse_fill_note"]
+        if meta.get("cds_note"):
+            out["cds_note"] = meta["cds_note"]
+    if meta.get("era5_years"):
+        out["era5_years"] = meta["era5_years"]
+    if meta.get("era5_partial"):
+        out["era5_partial"] = True
     return out
 
 
@@ -578,8 +584,7 @@ def cache_coverage(step: float) -> tuple[int, int]:
     """Return (filled, total) climate cells for a resolution."""
     _migrate_legacy_cache()
     cache_file = cache_path(step)
-    corridor = LISTING_CORRIDOR_PAD if step == STEP_FINE else None
-    pts, _, _ = land_grid(step, corridor_pad=corridor)
+    pts, _, _ = land_grid(step)
     if not cache_file.exists():
         return 0, len(pts)
     cache = json.loads(cache_file.read_text(encoding="utf-8"))
