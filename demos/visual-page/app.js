@@ -17,7 +17,7 @@ const IS_MOBILE = matchMedia('(pointer: coarse)').matches || innerWidth < 820;
 const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
 const lerp = (a, b, t) => a + (b - a) * t;
 const IND = '../china-industrial-software/assets/data/';
-const TRAIL = IS_MOBILE ? 11 : 18;   // 轨迹历史帧数
+const TRAIL = IS_MOBILE ? 14 : 26;   // 轨迹历史帧数上限（每点实际尾长由数据决定）
 
 // ---------- scene ----------
 const container = document.getElementById('scene');
@@ -80,29 +80,30 @@ const trailMaterial = new THREE.ShaderMaterial({
   uniforms: U, transparent: true, depthWrite: false, blending: THREE.AdditiveBlending,
   vertexShader: `attribute float aAge; attribute vec3 aColor; varying float vAge; varying vec3 vC;
     void main(){ vAge = aAge; vC = aColor; gl_Position = projectionMatrix*modelViewMatrix*vec4(position,1.0); }`,
-  fragmentShader: `varying float vAge; varying vec3 vC; void main(){ float a = (1.0 - vAge); a = a*a*0.55; gl_FragColor = vec4(vC*a, a); }`
+  fragmentShader: `varying float vAge; varying vec3 vC; void main(){ float a = 1.0 - vAge; if (a <= 0.0) discard; a = a*a*0.6; gl_FragColor = vec4(vC*a, a); }`
 });
 
+// 关系连线：实线 + 半透明（normal blending，弱化）
 const beamMaterial = new THREE.ShaderMaterial({
-  uniforms: U, transparent: true, depthWrite: false, blending: THREE.AdditiveBlending,
-  vertexShader: `uniform float uTime; attribute float aEnd; attribute vec3 aColor; varying float vE; varying vec3 vC;
-    void main(){ vE = aEnd; vC = aColor; gl_Position = projectionMatrix*modelViewMatrix*vec4(position,1.0); }`,
-  fragmentShader: `uniform float uTime; varying float vE; varying vec3 vC;
-    void main(){ float dsh = fract(vE*16.0 - uTime*0.5); if (dsh > 0.42) discard; gl_FragColor = vec4(vC*0.4, 1.0); }`
+  uniforms: U, transparent: true, depthWrite: false, blending: THREE.NormalBlending,
+  vertexShader: `attribute vec3 aColor; varying vec3 vC;
+    void main(){ vC = aColor; gl_Position = projectionMatrix*modelViewMatrix*vec4(position,1.0); }`,
+  fragmentShader: `varying vec3 vC; void main(){ gl_FragColor = vec4(vC, 0.18); }`
 });
 
 // ---------- builders (collect into plain arrays, finalize after counts known) ----------
-const D = { sys: [], anc: [], scl: [], bh: [], prm: [], spd: [], seed: [], rot: [], col: [], sz: [], tw: [], hz: [], op: [], meta: [] };
+const D = { sys: [], anc: [], scl: [], bh: [], prm: [], spd: [], seed: [], rot: [], tlen: [], col: [], sz: [], tw: [], hz: [], op: [], meta: [] };
 function hash01(str) { let h = 2166136261; str = String(str); for (let i = 0; i < str.length; i++) { h ^= str.charCodeAt(i); h = Math.imul(h, 16777619); } return ((h >>> 0) % 100003) / 100003; }
 const BEAM = { a: [], b: [], col: [] };
 const tmpCol = new THREE.Color();
 
 // sys: 0 Thomas · 1 Lorenz · 2 Rössler
-function addStar(sys, anc, scale, baseH, prm, spd, seed, h, s, l, size, twinkle, haze, meta, rot) {
+function addStar(sys, anc, scale, baseH, prm, spd, seed, h, s, l, size, twinkle, haze, meta, rot, tlen) {
   tmpCol.setHSL((((h % 360) + 360) % 360) / 360, s, l);
   D.sys.push(sys); D.anc.push(anc[0], anc[1], anc[2]); D.scl.push(scale); D.bh.push(baseH);
   D.prm.push(prm); D.spd.push(spd); D.seed.push(seed[0], seed[1], seed[2]);
   rot = rot || [0, 0, 0]; D.rot.push(rot[0], rot[1], rot[2]);
+  D.tlen.push(tlen || TRAIL * 0.5);
   D.col.push(tmpCol.r, tmpCol.g, tmpCol.b); D.sz.push(size); D.tw.push(twinkle); D.hz.push(haze); D.op.push(Math.random());
   D.meta.push(meta);
   return D.sys.length - 1;
@@ -138,12 +139,17 @@ function buildHousing() {
     const hz = clamp(pm / 85, 0, 1);
     const spd = 0.5 + (yld > 0 ? clamp(yld / 0.05, 0, 1) : cf) * 0.9;   // 钱越快越快
     const b = 0.15 + cf * 0.06;                                         // 宜居越多越规整
-    const seed = [(e.lng - 104) * 0.05, -(e.lat - 35) * 0.05, elev * 0.0006]; // 经纬度播种
-
-    addStar(0, [0, 10, 0], 7, 0.045, b, spd, seed, hue, sat, light, size, tw, hz, {
+    // 城市按年均温分三类气候云：冷→Thomas / 温→Sprott-B / 热→Lorenz-84（横向分开）
+    const annualMean = months.reduce((a, m2) => a + m2, 0) / months.length;
+    let csys, canc, cscl, cbh, cseed;
+    if (annualMean < 8) { csys = 0; canc = [-58, 12, 0]; cscl = 7; cbh = 0.045; cseed = [(e.lng - 104) * 0.05, -(e.lat - 35) * 0.05, elev * 0.0006]; }
+    else if (annualMean < 18) { csys = 7; canc = [0, 8, 0]; cscl = 9; cbh = 0.02; cseed = [(Math.random() - 0.5) * 1.5, (Math.random() - 0.5) * 1.5, (Math.random() - 0.5) * 1.5]; }
+    else { csys = 8; canc = [58, 12, -10]; cscl = 8; cbh = 0.02; cseed = [(Math.random() - 0.5), 1 + (Math.random() - 0.5), 1 + (Math.random() - 0.5)]; }
+    const ctail = 5 + clamp((Math.log10(unit + 1) - 2.2) / 3, 0, 1) * (TRAIL - 6);   // 越贵彗尾越长
+    addStar(csys, canc, cscl, cbh, b, spd, cseed, hue, sat, light, size, tw, hz, {
       k: '城市 CITY', name: ls.loc || ls.city,
       sub: `${ls.prov} · ${ls.city} · 单价 ${(unit / 10000).toFixed(1)} 万/㎡ · 宜居 ${comfort} 天 · 海拔 ${Math.round(elev)} m${e.hazard?.top?.[0] ? ' · ' + e.hazard.top[0] : ''}`
-    });
+    }, null, ctail);
     n++;
   }
   return n;
@@ -167,25 +173,35 @@ async function buildIndustrial() {
   const hueOf = (o) => (o === 'domestic' ? 44 : o === 'open_source' ? 140 : 210);
   const colOf = (o) => (o === 'domestic' ? [0.55, 0.42, 0.18] : o === 'open_source' ? [0.24, 0.5, 0.28] : [0.2, 0.32, 0.55]);
   const lz = () => [0.1 + (Math.random() - 0.5), (Math.random() - 0.5), 20 + (Math.random() - 0.5) * 2];
-  const ro = () => [(Math.random() - 0.5) * 4, (Math.random() - 0.5) * 4, (Math.random() - 0.5) * 2];
+  const az = () => [0.1 + (Math.random() - 0.5) * 0.3, (Math.random() - 0.5) * 0.3, (Math.random() - 0.5) * 0.3];   // Aizawa
+  const hv = () => [-5 + (Math.random() - 0.5), (Math.random() - 0.5), (Math.random() - 0.5)];                       // Halvorsen
+  const dd = () => [1.1 + (Math.random() - 0.5), 2.1 + (Math.random() - 0.5), -2 + (Math.random() - 0.5)];           // Dadras
+  const lu = () => [0.1 + (Math.random() - 0.5), (Math.random() - 0.5), 18 + (Math.random() - 0.5) * 2];             // Lü
+  const slf = () => [(Math.random() - 0.5), (Math.random() - 0.5), (Math.random() - 0.5)];                           // Sprott-Linz F
+  const nh = () => [(Math.random() - 0.5), 4 + (Math.random() - 0.5), (Math.random() - 0.5)];                        // Nose-Hoover
+  const ro2 = () => [(Math.random() - 0.5) * 3, (Math.random() - 0.5) * 3, (Math.random() - 0.5)];                   // Rössler
 
   kernels.forEach((k) => {
     const used = (k.used_by_product_ids || []).length;
-    kIdx[k.id] = addStar(1, [0, 74, 0], 1.05, 0.008, 28, 0.45, lz(), hueOf(k.origin), 0.7, 0.62, 4.8 + used * 0.06, 0.4, 0.25, {
+    kIdx[k.id] = addStar(1, [-26, 74, 0], 0.85, 0.0016, 28, 0.45, lz(), hueOf(k.origin), 0.7, 0.55, 3.0 + used * 0.04, 0.4, 0.25, {
       k: '内核 KERNEL', name: k.name_zh || k.name_en, sub: `${k.origin === 'domestic' ? '国产' : '国外'} · ${k.owner || ''} · 被 ${used} 个产品使用`
-    });
+    }, null, 6 + clamp(used / 30, 0, 1) * (TRAIL - 6));
   });
 
+  // 产品按出身分三种图案：国产→Lorenz蝴蝶 / 国外→Lü / 开源→Sprott-Linz F
   products.forEach((p) => {
-    const intl = p.origin !== 'domestic';
     const mat = p.maturity === 'high' ? 1 : p.maturity === 'medium' ? 0.5 : 0;
-    const i = addStar(1, [0, 74, 0], 1.05, 0.01, 24 + mat * 6, 0.5 + (1 - mat) * 1.0, lz(),
-      hueOf(p.origin), 0.62, 0.5 + mat * 0.13,
-      p.maturity === 'high' ? 3.5 : p.maturity === 'medium' ? 2.4 : 1.7,
-      p.localization_depth === 'full' ? 0.25 : 0.62, clamp(1 - (p.confidence ?? 0.8), 0, 1), {
+    let psys, panc, pscl, pbh, pseed;
+    if (p.origin === 'domestic') { psys = 1; panc = [-26, 74, 0]; pscl = 0.85; pbh = 0.002; pseed = lz(); }
+    else if (p.origin === 'open_source') { psys = 11; panc = [4, 86, -18]; pscl = 8; pbh = 0.012; pseed = slf(); }
+    else { psys = 9; panc = [30, 74, 0]; pscl = 0.85; pbh = 0.0016; pseed = lu(); }
+    const i = addStar(psys, panc, pscl, pbh, 24 + mat * 6, 0.5 + (1 - mat) * 0.8, pseed,
+      hueOf(p.origin), 0.62, 0.42 + mat * 0.1,
+      p.maturity === 'high' ? 3.0 : p.maturity === 'medium' ? 2.1 : 1.5,
+      p.localization_depth === 'full' ? 0.25 : 0.45, clamp(1 - (p.confidence ?? 0.8), 0, 1), {
       k: '产品 PRODUCT', name: p.name_zh || p.name_en,
       sub: `${p.category_l2 || p.category_l1 || ''} · ${p.origin === 'domestic' ? '国产' : p.origin === 'open_source' ? '开源' : '国外'} · 成熟度 ${p.maturity || '—'} · 本地化 ${p.localization_depth || '—'}`
-    });
+    }, null, 5 + mat * (TRAIL - 6));
     pIdx[p.id] = i;
     if (p.kernel_id && kIdx[p.kernel_id] != null) { const c = colOf(p.origin); BEAM.a.push(i); BEAM.b.push(kIdx[p.kernel_id]); BEAM.col.push(c[0], c[1], c[2]); }
   });
@@ -195,11 +211,16 @@ async function buildIndustrial() {
     const yf = (y4 - 1990) / 36;
     const inc = (m.incumbent_product_ids || []).length;
     const ev = m.evidence_level;
-    const i = addStar(2, [0, 56, 0], 1.7, 0.05, 5 + yf * 4, 0.5 + yf * 1.0, ro(),
+    // 突破按性质拆三团（大幅降速，不再像苍蝇）：替代过→Chen / 实证审计→Nose-Hoover / 其余→Aizawa
+    let msys, manc, mscl, mbh, mseed;
+    if (inc > 0) { msys = 6; manc = [-34, 50, 0]; mscl = 0.9; mbh = 0.0012; mseed = [-10 + (Math.random() - 0.5), (Math.random() - 0.5), 37 + (Math.random() - 0.5)]; }
+    else if (ev === 'audited') { msys = 10; manc = [34, 62, 0]; mscl = 8; mbh = 0.005; mseed = nh(); }
+    else { msys = 3; manc = [34, 50, 0]; mscl = 15; mbh = 0.005; mseed = az(); }
+    const i = addStar(msys, manc, mscl, mbh, 0, 0.3 + yf * 0.4, mseed,
       30 + inc * 4, 0.85, 0.6, ev === 'audited' ? 3.2 : ev === 'case_study' ? 2.4 : 1.8, 0.92, 0.1, {
       k: '突破 BREAKTHROUGH', name: m.headline_zh || m.headline_en || '突破',
       sub: `${y4} · 攻克 ${m.capability_key || ''}${inc ? ' · 替代 ' + inc + ' 款在位产品' : ''}`
-    }, [hash01('cap:' + (m.capability_key || 'x')) * 6.283, hash01('mp:' + (m.id || y4)) * 3.14 - 1.57, hash01('mr:' + (m.id || y4)) * 6.283]);
+    }, [hash01('cap:' + (m.capability_key || 'x')) * 6.283, hash01('mp:' + (m.id || y4)) * 3.14 - 1.57, hash01('mr:' + (m.id || y4)) * 6.283], 7 + clamp(inc / 6, 0, 1) * (TRAIL - 7));
     (m.incumbent_product_ids || []).forEach((iid) => { if (pIdx[iid] != null) { BEAM.a.push(i); BEAM.b.push(pIdx[iid]); BEAM.col.push(0.85, 0.22, 0.28); } });
   });
 
@@ -208,16 +229,19 @@ async function buildIndustrial() {
     const yf = (y4 - 1985) / 41;
     const hue = { program: 265, fund: 190, fyp: 300, ministry: 170 }[p.policy_type] || 240;
     const tNorm = clamp(Math.log10((p.target_value || 1) + 1) / 3, 0, 1);
-    addStar(2, [0, 48, 0], 1.7, 0.045, 5 + tNorm * 4, 0.45 + tNorm * 0.6, ro(), hue, 0.5, 0.6, 1.6 + tNorm * 3, 0.5, 0.3, {
+    // 政策按类型分两团：纲领/五年规划→Halvorsen / 资金·部委→Rössler
+    const prog = p.policy_type === 'program' || p.policy_type === 'fyp';
+    const Psys = prog ? 4 : 2, Panc = prog ? [0, 30, 0] : [0, 30, 16], Pscl = prog ? 1.8 : 1.7, Pbh = prog ? 0.01 : 0.02, Pseed = prog ? hv() : ro2(), Pprm = prog ? 0 : 5.7;
+    addStar(Psys, Panc, Pscl, Pbh, Pprm, 0.4 + tNorm * 0.5, Pseed, hue, 0.5, 0.6, 1.6 + tNorm * 3, 0.5, 0.3, {
       k: '政策 POLICY', name: p.title_zh || p.title_en, sub: `${y4} · ${p.policy_type || ''}${p.target_value ? ' · ' + p.target_value + (p.target_unit_zh || '') : ''}`
-    }, [hash01('pt:' + (p.policy_type || 'x')) * 6.283, yf * 3.14 - 1.0 + hash01('pp:' + (p.id || y4)) * 0.6, hash01('pr:' + (p.id || y4)) * 6.283]);
+    }, [hash01('pt:' + (p.policy_type || 'x')) * 6.283, yf * 3.14 - 1.0 + hash01('pp:' + (p.id || y4)) * 0.6, hash01('pr:' + (p.id || y4)) * 6.283], 5 + tNorm * (TRAIL - 6));
   });
 
   vendors.forEach((v) => {
-    addStar(0, [0, 62, 0], 11, 0.03, 0.19, 0.4, [(Math.random() - 0.5) * 4, (Math.random() - 0.5) * 4, (Math.random() - 0.5) * 4],
+    addStar(5, [0, 58, 0], 1.4, 0.012, 0, 0.4, dd(),
       hueOf(v.origin), 0.4, 0.42, 1.3, 0.4, 0.5, {
       k: '厂商 VENDOR', name: v.name_zh || v.name_en, sub: `${v.origin === 'domestic' ? '国产' : v.origin === 'open_source' ? '开源' : '国外'} · ${v.hq_city || ''} ${v.hq_country || ''}`
-    });
+    }, null, 4);
   });
 
   pairs.forEach((bp) => { if (pIdx[bp.domestic_id] != null && pIdx[bp.international_id] != null) { BEAM.a.push(pIdx[bp.domestic_id]); BEAM.b.push(pIdx[bp.international_id]); BEAM.col.push(0.2, 0.8, 0.72); } });
@@ -249,7 +273,7 @@ function finalize() {
     } }
 
   // warm-up: pre-spread the attractors so the cloud is already unfurled on first frame
-  for (let w = 0; w < 280; w++) for (let i = 0; i < N; i++) { const cap = sys[i] === 1 ? 0.011 : sys[i] === 2 ? 0.045 : 0.05; const h = Math.min(bh[i] * spd[i], cap); stepOne(i, h * 0.5); stepOne(i, h * 0.5); }
+  for (let w = 0; w < 280; w++) for (let i = 0; i < N; i++) { const h = Math.min(bh[i] * spd[i], capOf(sys[i])); stepOne(i, h * 0.5); stepOne(i, h * 0.5); }
 
   // initial world positions + seed trail
   for (let i = 0; i < N; i++) { writeWorld(i); for (let t = 0; t < TRAIL; t++) { const o = (i * TRAIL + t) * 3; trail[o] = posArr[i * 3]; trail[o + 1] = posArr[i * 3 + 1]; trail[o + 2] = posArr[i * 3 + 2]; } }
@@ -269,11 +293,13 @@ function finalize() {
   beamPos; // noop
   const tpos = new Float32Array(tv * 3), tage = new Float32Array(tv), tcol = new Float32Array(tv * 3);
   for (let i = 0; i < N; i++) {
+    const tlenSeg = Math.max(3, Math.min(segs, Math.round(D.tlen[i])));   // 每点彗尾长度（数据驱动）
+    const cr = D.col[i * 3], cg = D.col[i * 3 + 1], cb = D.col[i * 3 + 2];
     for (let k = 0; k < segs; k++) {
       const base = (i * segs + k) * 2;
-      const ageA = k / segs, ageB = (k + 1) / segs;
-      tage[base] = 1 - ageB; tage[base + 1] = 1 - ageA;   // newer end brighter
-      const cr = D.col[i * 3], cg = D.col[i * 3 + 1], cb = D.col[i * 3 + 2];
+      const dNew = segs - 1 - k;                            // 0 = 距头最近（最亮）
+      tage[base] = (dNew + 1) / tlenSeg;                    // 旧端；> tlenSeg 时 age>1 → fragment discard
+      tage[base + 1] = dNew / tlenSeg;                      // 新端（更亮）
       tcol[base * 3] = cr; tcol[base * 3 + 1] = cg; tcol[base * 3 + 2] = cb;
       tcol[base * 3 + 3] = cr; tcol[base * 3 + 4] = cg; tcol[base * 3 + 5] = cb;
     }
@@ -307,21 +333,34 @@ function finalize() {
 }
 
 function writeWorld(i) {
-  const o = i * 3; const cz = sys[i] === 1 ? 25 : 0; const s = scl[i], r = i * 9;
-  const lx = state[o] * s, ly = (state[o + 2] - cz) * s, lz = state[o + 1] * s;   // attractor local frame
+  const o = i * 3, sy = sys[i], s = scl[i], r = i * 9;
+  let cx = 0, cy = 0, cz = 0;                                  // per-attractor centering
+  if (sy === 1) cz = 25; else if (sy === 3) cz = 0.6; else if (sy === 4) { cx = -2.4; cy = -2.4; cz = -2.4; } else if (sy === 6) cz = 22; else if (sy === 8) cx = 1; else if (sy === 9) cz = 20;
+  const lx = (state[o] - cx) * s, ly = (state[o + 2] - cz) * s, lz = (state[o + 1] - cy) * s;   // attractor local frame (z→up)
   posArr[o] = anc[o] + rotM[r] * lx + rotM[r + 1] * ly + rotM[r + 2] * lz;        // rotate into data-driven axis
   posArr[o + 1] = anc[o + 1] + rotM[r + 3] * lx + rotM[r + 4] * ly + rotM[r + 5] * lz;
   posArr[o + 2] = anc[o + 2] + rotM[r + 6] * lx + rotM[r + 7] * ly + rotM[r + 8] * lz;
 }
+function capOf(s) { return s === 1 ? 0.011 : s === 3 ? 0.02 : s === 4 ? 0.01 : s === 5 ? 0.012 : s === 6 ? 0.004 : s === 7 ? 0.02 : s === 8 ? 0.02 : s === 9 ? 0.005 : s === 10 ? 0.02 : s === 11 ? 0.02 : s === 2 ? 0.045 : 0.05; }
 function stepOne(i, h) {
   const o = i * 3; let x = state[o], y = state[o + 1], z = state[o + 2]; const s = sys[i], p = prm[i];
   let dx, dy, dz;
-  if (s === 0) { dx = Math.sin(y) - p * x; dy = Math.sin(z) - p * y; dz = Math.sin(x) - p * z; }
-  else if (s === 1) { dx = 10 * (y - x); dy = x * (p - z) - y; dz = x * y - 2.667 * z; }
-  else { dx = -(y + z); dy = x + 0.2 * y; dz = 0.2 + z * (x - p); }
+  if (s === 0) { dx = Math.sin(y) - p * x; dy = Math.sin(z) - p * y; dz = Math.sin(x) - p * z; }                 // Thomas
+  else if (s === 1) { dx = 10 * (y - x); dy = x * (p - z) - y; dz = x * y - 2.667 * z; }                          // Lorenz
+  else if (s === 2) { dx = -(y + z); dy = x + 0.2 * y; dz = 0.2 + z * (x - p); }                                  // Rössler
+  else if (s === 3) { dx = (z - 0.7) * x - 3.5 * y; dy = 3.5 * x + (z - 0.7) * y; dz = 0.6 + 0.95 * z - z * z * z / 3 - (x * x + y * y) * (1 + 0.25 * z) + 0.1 * z * x * x * x; } // Aizawa
+  else if (s === 4) { dx = -1.4 * x - 4 * y - 4 * z - y * y; dy = -1.4 * y - 4 * z - 4 * x - z * z; dz = -1.4 * z - 4 * x - 4 * y - x * x; } // Halvorsen
+  else if (s === 5) { dx = y - 3 * x + 2.7 * y * z; dy = 1.7 * y - x * z + z; dz = 2 * x * y - 9 * z; }            // Dadras
+  else if (s === 6) { dx = 35 * (y - x); dy = -7 * x - x * z + 28 * y; dz = x * y - 3 * z; }                       // Chen
+  else if (s === 7) { dx = y * z; dy = x - y; dz = 1 - x * y; }                                                    // Sprott-B
+  else if (s === 8) { dx = -0.25 * x - y * y - z * z + 2.0; dy = -y + x * y - 4 * x * z + 1; dz = -z + 4 * x * y + x * z; } // Lorenz-84
+  else if (s === 9) { dx = 36 * (y - x); dy = -x * z + 20 * y; dz = x * y - 3 * z; }                               // Lü
+  else if (s === 10) { dx = y; dy = -x + y * z; dz = 1 - y * y; }                                                  // Nose-Hoover
+  else { dx = y + z; dy = -x + 0.5 * y; dz = x * x - z; }                                                          // Sprott-Linz F
   x += dx * h; y += dy * h; z += dz * h;
-  if (!isFinite(x) || !isFinite(y) || !isFinite(z) || Math.abs(x) > 1e4 || Math.abs(z) > 1e4) {
-    x = (Math.random() - 0.5); y = (Math.random() - 0.5); z = s === 1 ? 20 : (Math.random() - 0.5);
+  if (!isFinite(x) || !isFinite(y) || !isFinite(z) || Math.abs(x) > 1e4 || Math.abs(y) > 1e4 || Math.abs(z) > 1e4) {
+    x = s === 4 ? -5 + (Math.random() - 0.5) : s === 6 ? -10 + (Math.random() - 0.5) : (Math.random() - 0.5);
+    y = (Math.random() - 0.5); z = (s === 1 || s === 6 || s === 9) ? 20 : (Math.random() - 0.5);
   }
   state[o] = x; state[o + 1] = y; state[o + 2] = z;
 }
@@ -329,7 +368,7 @@ function stepOne(i, h) {
 // ---------- controls + sensors ----------
 const controls = new OrbitControls(camera, renderer.domElement);
 controls.enableDamping = true; controls.dampingFactor = 0.06;
-controls.autoRotate = true; controls.autoRotateSpeed = 0.1;
+controls.autoRotate = true; controls.autoRotateSpeed = 0.05;
 controls.minDistance = 40; controls.maxDistance = 700; controls.enablePan = false;
 controls.target.set(0, 42, 0);
 
@@ -378,11 +417,10 @@ function animate() {
   U.uPulse.value = pulse;
 
   if (N) {
-    const hmul = 1.0 + pulse * 2.0;
+    const hmul = 0.5 + pulse * 1.3;          // 全局速度（已降速）
     head = (head + 1) % TRAIL;
     for (let i = 0; i < N; i++) {
-      const cap = sys[i] === 1 ? 0.011 : sys[i] === 2 ? 0.045 : 0.05;
-      const h = Math.min(bh[i] * spd[i] * hmul, cap);
+      const h = Math.min(bh[i] * spd[i] * hmul, capOf(sys[i]));
       stepOne(i, h * 0.5); stepOne(i, h * 0.5);
       writeWorld(i);
       const to = (i * TRAIL + head) * 3; trail[to] = posArr[i * 3]; trail[to + 1] = posArr[i * 3 + 1]; trail[to + 2] = posArr[i * 3 + 2];
