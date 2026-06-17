@@ -1210,37 +1210,67 @@
   let echartsMap = null, mapReady = false, baseGeoOpt = null;
   const GEO_URL = 'https://geo.datav.aliyun.com/areas_v3/bound/100000_full.json';
 
-  // continuous basemap field — national 1° (field.js) + province-zoom 0.25° (field_hi.js,
-  // lazy-loaded). Listing dots stay on top; finer cells fill gaps between communities.
+  // continuous basemap field — national 1° (field.js) + province-zoom 0.25° (field_hi_<key>.js
+  // per active layer, lazy-loaded). Listing dots stay on top; finer cells fill gaps between communities.
   const FIELD_COARSE = window.HOUSING_FIELD || null;
   let FIELD_FINE = null;
-  let fieldFinePromise = null;
+  const fieldFineLayers = {};   // baseKey → true once field_hi_<key>.js merged
+  const fieldFinePromises = {}; // baseKey → in-flight Promise
   const FIELD_LOD_ZOOM = 2.6;       // switch to 0.25° cells at/above this zoom
+  const FIELD_PREFETCH_ZOOM = 2.2;  // start downloading fine layer before LOD switch
   const FIELD_BBOX_PAD = 1.2;       // degrees padding when viewport-filtering fine cells
+  const FIELD_ROAM_SETTLE_MS = 220; // defer fine viewport refresh until pan/zoom settles
   let fieldLodRoamTimer = null;
-  function fieldFineScriptUrl() {
+
+  function fieldFineLayerUrl(key) {
     const tag = document.querySelector('script[src*="field.js"]');
-    if (!tag) return 'assets/data/field_hi.js';
-    return tag.getAttribute('src').replace(/field\.js(\?.*)?$/, 'field_hi.js$1');
+    if (!tag) return `assets/data/field_hi_${key}.js`;
+    return tag.getAttribute('src').replace(/field\.js(\?.*)?$/, `field_hi_${key}.js$1`);
   }
 
-  function ensureFieldFine() {
-    if (FIELD_FINE) return Promise.resolve(FIELD_FINE);
-    if (window.HOUSING_FIELD_HI) { FIELD_FINE = window.HOUSING_FIELD_HI; return Promise.resolve(FIELD_FINE); }
-    if (!fieldFinePromise) {
-      fieldFinePromise = new Promise((resolve, reject) => {
+  function expandFieldLayer(f) {
+    if (!f || f.q !== 1 || !f.pts) return f;
+    const points = f.pts.split('|').filter(Boolean).map((row) => {
+      const p = row.split(' ').map(Number);
+      return [p[0], p[1], p[2]];
+    });
+    const { q, pts, ...rest } = f;
+    return { ...rest, points };
+  }
+
+  function mergeFieldFine() {
+    FIELD_FINE = window.HOUSING_FIELD_HI || FIELD_FINE;
+    return FIELD_FINE;
+  }
+
+  function ensureFieldFine(layerKey) {
+    const key = layerKey || baseKey;
+    if (key === 'none') return Promise.resolve(null);
+    if (fieldFineLayers[key]) return Promise.resolve(mergeFieldFine());
+    if (window.HOUSING_FIELD_HI && window.HOUSING_FIELD_HI.fields && window.HOUSING_FIELD_HI.fields[key]) {
+      fieldFineLayers[key] = true;
+      return Promise.resolve(mergeFieldFine());
+    }
+    if (!fieldFinePromises[key]) {
+      fieldFinePromises[key] = new Promise((resolve, reject) => {
         const s = document.createElement('script');
-        s.src = fieldFineScriptUrl();
+        s.src = fieldFineLayerUrl(key);
         s.async = true;
         s.onload = () => {
-          FIELD_FINE = window.HOUSING_FIELD_HI || null;
-          resolve(FIELD_FINE);
+          fieldFineLayers[key] = true;
+          resolve(mergeFieldFine());
         };
-        s.onerror = () => reject(new Error('field_hi.js load failed'));
+        s.onerror = () => reject(new Error(`field_hi_${key}.js load failed`));
         document.head.appendChild(s);
       });
     }
-    return fieldFinePromise;
+    return fieldFinePromises[key];
+  }
+
+  function prefetchFieldFineIfNeeded() {
+    if (baseKey === 'none') return;
+    const zoom = geoState().zoom;
+    if (zoom >= FIELD_PREFETCH_ZOOM) ensureFieldFine(baseKey).catch(() => {});
   }
 
   function mapViewportBbox() {
@@ -1262,9 +1292,10 @@
   function activeFieldPack() {
     const zoom = geoState().zoom;
     const useFine = zoom >= FIELD_LOD_ZOOM && baseKey !== 'none';
-    const field = useFine && FIELD_FINE ? FIELD_FINE : FIELD_COARSE;
+    const fineReady = baseKey !== 'none' && !!fieldFineLayers[baseKey];
+    const field = useFine && fineReady ? FIELD_FINE : FIELD_COARSE;
     const step = (field && field.step) || 1;
-    return { field, step, useFine, fineReady: !!FIELD_FINE };
+    return { field, step, useFine, fineReady };
   }
 
   function filterCellsByViewport(cells) {
@@ -1275,16 +1306,17 @@
   }
 
   function scheduleFieldLodRefresh() {
+    prefetchFieldFineIfNeeded();
     if (fieldLodRoamTimer) clearTimeout(fieldLodRoamTimer);
     fieldLodRoamTimer = setTimeout(() => {
       fieldLodRoamTimer = null;
       const { useFine, fineReady } = activeFieldPack();
       if (useFine && !fineReady) {
-        ensureFieldFine().then(() => safeRun('renderMap', renderMap)).catch(() => {});
+        ensureFieldFine(baseKey).then(() => safeRun('renderMap', renderMap)).catch(() => {});
         return;
       }
       if (useFine || fineReady) safeRun('renderMap', renderMap);
-    }, 80);
+    }, FIELD_ROAM_SETTLE_MS);
   }
   // Keys must stay temp/terrain/precip — assets/data/field.js references them.
   const BASE_RAMPS = { temp: RAMPS.temp, terrain: RAMPS.terrain, precip: RAMPS.precip };
@@ -1332,8 +1364,9 @@
   // can share the point dimension's domain when the two use the same ramp.
   function baseLayers() {
     const { field: FIELD, step, useFine, fineReady } = activeFieldPack();
-    const f = (baseKey !== 'none' && activeFieldPack().field && activeFieldPack().field.fields)
+    const raw = (baseKey !== 'none' && activeFieldPack().field && activeFieldPack().field.fields)
       ? activeFieldPack().field.fields[baseKey] : null;
+    const f = expandFieldLayer(raw);
     if (!f) return { cells: [], lines: [], step: 1, vm: { min: 0, max: 1, ramp: 'temp' } };
     const lines = [];
     // isolines only on coarse national grid — fine grid is cell-only for clarity
@@ -1487,8 +1520,8 @@
   function renderBaseLegend() {
     const box = document.getElementById('base-legend');
     if (!box) return;
-    const f = (baseKey !== 'none' && activeFieldPack().field && activeFieldPack().field.fields)
-      ? activeFieldPack().field.fields[baseKey] : null;
+    const f = expandFieldLayer((baseKey !== 'none' && activeFieldPack().field && activeFieldPack().field.fields)
+      ? activeFieldPack().field.fields[baseKey] : null);
     const dimRamp = (MAP_DIMS[dimKey] || MAP_DIMS.tempRange).ramp;
     // Hide this 2nd legend when the field shares the point dimension's colour ramp
     // — the left visualMap is then the single unified scale for both layers
@@ -2931,7 +2964,13 @@
     document.querySelectorAll('[data-dim]').forEach((b) =>
       b.addEventListener('click', () => { dimKey = b.dataset.dim; safeRun('renderMap', renderMap); dimTabs(); saveUiPrefs(); }));
     document.querySelectorAll('[data-base]').forEach((b) =>
-      b.addEventListener('click', () => { baseKey = b.dataset.base; safeRun('renderMap', renderMap); baseTabs(); saveUiPrefs(); }));
+      b.addEventListener('click', () => {
+        baseKey = b.dataset.base;
+        if (baseKey !== 'none') prefetchFieldFineIfNeeded();
+        safeRun('renderMap', renderMap);
+        baseTabs();
+        saveUiPrefs();
+      }));
 
     safeRun('renderKPIs', renderKPIs);
     safeRun('renderScatter', renderScatter);

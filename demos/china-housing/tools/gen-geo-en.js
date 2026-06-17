@@ -21,6 +21,7 @@ const PROVINCE_EN = {
   云南: 'Yunnan', 甘肃: 'Gansu',
   山西: 'Shanxi', 陕西: 'Shaanxi', 宁夏: 'Ningxia', 新疆: 'Xinjiang',
   湖南: 'Hunan', 江西: 'Jiangxi', 内蒙古: 'Inner Mongolia',
+  香港: 'Hong Kong', 台湾: 'Taiwan', California: 'California',
 };
 
 const CITY_EN = {
@@ -61,7 +62,25 @@ const CITY_EN = {
   '长春市-公主岭市': 'Changchun-Gongzhuling', 阜新市: 'Fuxin', 防城港市: 'Fangchenggang',
   阳江市: 'Yangjiang', 青岛市: 'Qingdao', 马鞍山市: "Ma'anshan", 鸡西市: 'Jixi',
   鹤壁市: 'Hebi', 鹤岗: 'Hegang', 黑河市: 'Heihe', 黔东南州: 'Qiandongnan',
-  黔南州: 'Qiannan', '黔西南州-兴义市': "Qianxinan-Xingyi", 齐齐哈尔市: 'Qiqihar',
+  黔南州: 'Qiannan',   '黔西南州-兴义市': "Qianxinan-Xingyi", 齐齐哈尔市: 'Qiqihar',
+  香港: 'Hong Kong',
+  台北市: 'Taipei', 台中市: 'Taichung', 台南市: 'Tainan',
+  Sunnyvale: 'Sunnyvale',
+};
+
+const DISTRICT_OVERRIDE = {
+  浦东新区: 'Pudong New Area',
+  黄浦区: 'Huangpu',
+  闵行区: 'Minhang',
+  天河区: 'Tianhe',
+  南山区: 'Nanshan',
+  油尖旺区: 'Yau Tsim Mong',
+  中西区: 'Central & Western',
+  湾仔区: 'Wan Chai',
+  大安区: 'Daan',
+  信义区: 'Xinyi',
+  西屯区: 'Xitun',
+  安平区: 'Anping',
 };
 
 const SUF = [
@@ -94,12 +113,12 @@ const cities = [...new Set(L.map((d) => d.city).filter(Boolean))].sort();
 const CITY_OUT = { ...CITY_EN };
 cities.forEach((c) => { if (!CITY_OUT[c]) CITY_OUT[c] = romanize(c); });
 
-const provs = [...new Set(L.map((d) => d.prov).filter((p) => p && p !== 'California'))].sort();
+const provs = [...new Set(L.map((d) => d.prov).filter(Boolean))].sort();
 const PROV_OUT = { ...PROVINCE_EN };
 provs.forEach((p) => { if (!PROV_OUT[p]) PROV_OUT[p] = titleCaseSyllables(p); });
 
-const DISTRICT_EN = {};
-dists.forEach((d) => { DISTRICT_EN[d] = romanize(d); });
+const DISTRICT_EN = { ...DISTRICT_OVERRIDE };
+dists.forEach((d) => { if (!DISTRICT_EN[d]) DISTRICT_EN[d] = romanize(d); });
 
 const zhRe = /[\u4e00-\u9fff]/;
 const bad = Object.entries(DISTRICT_EN).filter(([, v]) => zhRe.test(v));

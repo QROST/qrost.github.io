@@ -122,13 +122,28 @@ setTimeout(() => {
   T('field 4 fields', w.HOUSING_FIELD && Object.keys(w.HOUSING_FIELD.fields).length === 4);
   T('field step 1° coarse', w.HOUSING_FIELD && w.HOUSING_FIELD.step === 1);
   T('field elevation 973pts', w.HOUSING_FIELD && w.HOUSING_FIELD.fields.elevation.points.length === 973);
-  T('field_hi baked on disk', (() => {
-    const p = path.join(DIR, 'assets/data/field_hi.js');
+  T('field_hi per-layer on disk', (() => {
+    const keys = ['janTemp', 'julTemp', 'elevation', 'annualPrecip'];
+    for (const k of keys) {
+      const p = path.join(DIR, `assets/data/field_hi_${k}.js`);
+      if (!fs.existsSync(p)) return false;
+      const box = { window: {} };
+      vm.runInContext(fs.readFileSync(p, 'utf8'), vm.createContext(box));
+      const hi = box.window.HOUSING_FIELD_HI;
+      const fld = hi && hi.fields && hi.fields[k];
+      const n = fld && (fld.points ? fld.points.length : (fld.q && fld.pts ? fld.pts.split('|').length : 0));
+      if (!hi || hi.step !== 0.25 || !n || n < 80) return false;
+    }
+    return true;
+  })());
+  T('field_hi_janTemp layer', (() => {
+    const p = path.join(DIR, 'assets/data/field_hi_janTemp.js');
     if (!fs.existsSync(p)) return false;
     const box = { window: {} };
     vm.runInContext(fs.readFileSync(p, 'utf8'), vm.createContext(box));
     const hi = box.window.HOUSING_FIELD_HI;
-    const n = hi && hi.fields && hi.fields.elevation && hi.fields.elevation.points.length;
+    const fld = hi && hi.fields && hi.fields.janTemp;
+    const n = fld && (fld.points ? fld.points.length : (fld.q && fld.pts ? fld.pts.split('|').length : 0));
     return hi && hi.step === 0.25 && n >= 80;
   })());
   T('geo-en districts CJK-free', Object.values((w.HOUSING_GEO_EN || {}).district || {}).every((v) => !zhRe.test(v)));
@@ -471,6 +486,26 @@ setTimeout(() => {
     w.__setTier1On(true);
     w.__setLang('en');
     T('lang+tier1 en no crash', w.__getLang() === 'en' && /Showing/.test(ids['table-count'].textContent));
+    T('tier1 en table body no zh', !zhRe.test(ids['table-body']._html || ''));
+    T('tier1 en cards no zh', !zhRe.test((ids['table-cards'] && ids['table-cards']._html) || ''));
+    T('tier1 en rank strip no zh', (() => {
+      selCache['[data-rank]'].find((b) => b.dataset.rank === 'comfort').fire('click');
+      const strip = document.getElementById('rank-strip');
+      return strip && !zhRe.test(strip._html || '');
+    })());
+    T('tier1 HK en labels', (() => {
+      const hk = w.HOUSING_LISTINGS.find((r) => r.id === 357);
+      const tw = w.HOUSING_LISTINGS.find((r) => r.id === 347);
+      const sh = w.HOUSING_LISTINGS.find((r) => r.id === 333);
+      return w.__cityLabel(hk) === 'Hong Kong, Hong Kong, The Cullinan'
+        && w.__cityLabel(tw).startsWith('Taiwan, Taipei,')
+        && w.__cityLabel(sh).includes('Tomson Riviera')
+        && w.HOUSING_I18N.displayProvince('香港') === 'Hong Kong'
+        && w.HOUSING_I18N.displayProvince('台湾') === 'Taiwan';
+    })());
+    ids['table-body'].fire('click', { target: { closest: () => ({ dataset: { open: '357' } }) } });
+    selCache['[data-lm-tab]'].find((b) => b.dataset.lmTab === 'climate').fire('click');
+    T('tier1 HK modal en no zh', !zhRe.test(ids['lm-risk']._html || '') && /The Cullinan/.test(ids['lm-title'].textContent || ''));
     w.__setTier1On(false);
     const I = w.HOUSING_I18N;
     T('FX fallback ÷7', I.getRateSource() === 'fallback' && Math.abs(I.getRate() - 7) < 0.01);

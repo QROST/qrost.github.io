@@ -302,7 +302,7 @@ window.HOUSING_LISTINGS = [
   { id: 281, prov: "重庆",       city: "重庆市",            dist: "永川区",            loc: "红江厂家属区",                      priceWan: 6,     area: 60,     rent: 500,     updated: "2026-06" },
   { id: 282, prov: "重庆",       city: "重庆市",            dist: "丰都县",            loc: "南天湖避暑房竹苑",                  priceWan: 10,    area: 45,     rent: 800,     updated: "2026-06" },
   { id: 283, prov: "河北",       city: "石家庄市",          dist: "平山县",            loc: "温塘阳光河谷",                      priceWan: 8,     area: 50,     rent: 400,     updated: "2026-06" },
-  { id: 284, prov: "California", city: "Los Angeles",       dist: "90293",             loc: "Mariposa at Playa del Rey",         priceWan: 91,    area: 67,     rent: 3400,    updated: "2026-06" },
+  { id: 284, prov: "California", city: "Los Angeles",       dist: "90293",             loc: "Mariposa at Playa del Rey",         priceWan: 84.5,  area: 67,     rent: 3170,    updated: "2026-06" },
   { id: 285, prov: "California", city: "Los Angeles",       dist: "90012",             loc: "Savoy",                             priceWan: 50,    area: 68,     rent: 2900,    updated: "2026-06" },
   { id: 286, prov: "California", city: "Anaheim",           dist: "92805",             loc: "Colony Park",                       priceWan: 74.1,  area: 114.7,  rent: 3300,    updated: "2026-06" },
   { id: 287, prov: "河南",       city: "洛阳市",            dist: "西工区",            loc: "上阳花园",                          priceWan: 33,    area: 60,     rent: 1200,    updated: "2026-06" },
