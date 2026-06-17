@@ -14,15 +14,26 @@ demos/*/package-lock.json
 *.db-shm
 *.db-wal
 
-# --- china-housing ---
-# Local research / audit batches (not for public repo)
+# --- china-housing: process / working artifacts (keep on disk, not in git) ---
+# Agent batch CSVs + one-off import sheets
+demos/china-housing/data/batch-*.csv
+demos/china-housing/data/import-*.csv
+# Parallel agent findings, audit reports, listing research
 demos/china-housing/data/research/
+demos/china-housing/data/hazard_research.json
 # ChinaHighPM2.5 NetCDF/RAR source (~261MB; GitHub blocks >100MB)
 demos/china-housing/data/chinahighpm25/
 # Resumable climate-daily refresh checkpoint
 demos/china-housing/data/.climate_daily_ext.json
+# CDS ERA5 bulk NetCDF cache (tools/era5_bulk.py)
+demos/china-housing/data/ref/era5/
+# Open-Meteo / CDS field-grid fetch caches (NOT static ref: airports/coast/hospitals)
+demos/china-housing/data/ref/field_grid*.json
+demos/china-housing/data/ref/hist_temp_cache.json
+# Download / fetch logs
+demos/china-housing/data/ref/*.log
+*.log
 
 # --- Local audit / agent scratch (not for public repo) ---
 demos/wfoe-china/tmp/
 demos/china-industrial-software/tmp/
-demos/china-housing/data/ref/*.log
