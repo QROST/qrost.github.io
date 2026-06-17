@@ -247,6 +247,9 @@ def migrate(con):
 _OVERSEAS_PROV = {"California"}
 _TAIWAN_PROV = frozenset({"台湾"})
 _HK_PROV = frozenset({"香港"})
+# Coastal listings where histTempMax (1940–2023 grid extrema) ≫ smoothed normals.
+# recordHeatSupplement steals mild shoulder-season comfort days — skip at emit.
+_RECORD_HEAT_SKIP_PROV = _OVERSEAS_PROV | _TAIWAN_PROV | _HK_PROV
 
 
 def _geo_ladder(prov, city, dist, loc):
@@ -2046,7 +2049,7 @@ def refresh_refined_pois(con, log):
 def emit_enriched(con):
     """Return {id: {...}} dict of all baked enrichment for build to serialize."""
     out = {}
-    for r in con.execute("""SELECT id, lat, lng, geo_level, geo_label, geo_source, elevation, daily_climate,
+    for r in con.execute("""SELECT id, prov, lat, lng, geo_level, geo_label, geo_source, elevation, daily_climate,
                                    built_year, built_year_src, built_year_approx, hazards_local,
                                    hist_temp_max, hist_temp_min, hist_temp_max_date, hist_temp_min_date,
                                    hist_temp_src, hist_temp_station, hist_temp_note, hist_temp_level,
@@ -2073,7 +2076,16 @@ def emit_enriched(con):
         if r["daily_climate"]:
             try:
                 daily = json.loads(r["daily_climate"])
-                apply_record_heat_to_daily(daily, r["hist_temp_max"])
+                # Coastal overseas / HK / TW: skip record-heat supplement — grid-cell
+                # hist max (34–45 °C) vs smoothed normals (28–32 °C) steals mild
+                # shoulder-season comfort days as false heat extremes. CA recomputes
+                # from smoothed curve only; HK/TW keep DB unsmoothed-baked flags.
+                if r["prov"] in _RECORD_HEAT_SKIP_PROV:
+                    if r["prov"] in _OVERSEAS_PROV:
+                        climate_daily_recompute_from_curve(daily)
+                    daily.pop("recordHeatSupplement", None)
+                else:
+                    apply_record_heat_to_daily(daily, r["hist_temp_max"])
                 e["daily"] = daily
             except Exception:  # noqa: BLE001
                 pass
