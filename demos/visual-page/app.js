@@ -735,26 +735,58 @@ function seedCPPN(seedInt) {
 // ---------- immersive look controller（相机在体系正中心，第一人称环视）----------
 const camPos = new THREE.Vector3(CENTER[0], CENTER[1], CENTER[2]);
 const cCenter = new THREE.Vector3(CENTER[0], CENTER[1], CENTER[2]);
-let yaw = 0, pitch = 0, dragging = false, lastPX = 0, lastPY = 0, gyroOn = false, gyroYaw = 0, gyroPitch = 0;
+let yaw = 0, pitch = 0, dragging = false, lastPX = 0, lastPY = 0, gyroOn = false;
 const fwd = new THREE.Vector3();
 function applyLook() {
   fwd.set(Math.cos(pitch) * Math.sin(yaw), Math.sin(pitch), Math.cos(pitch) * Math.cos(yaw));
   camera.position.copy(camPos);
   camera.lookAt(camPos.x + fwd.x, camPos.y + fwd.y, camPos.z + fwd.z);
 }
-renderer.domElement.addEventListener('pointerdown', (e) => { dragging = true; lastPX = e.clientX; lastPY = e.clientY; });
-addEventListener('pointerup', () => { dragging = false; });
-renderer.domElement.addEventListener('pointermove', (e) => {
-  if (!dragging) return;
-  yaw -= (e.clientX - lastPX) * 0.004; pitch = clamp(pitch - (e.clientY - lastPY) * 0.004, -1.45, 1.45);
-  lastPX = e.clientX; lastPY = e.clientY;
+// Pointer Events 统一：1 指 = 拖动环视；2 指 = 捏合调焦（FOV）。多指共存，桌面鼠标/滚轮照旧
+const _ptrs = new Map();
+let pinchPrev = 0;
+const _dom = renderer.domElement;
+_dom.addEventListener('pointerdown', (e) => {
+  _ptrs.set(e.pointerId, { x: e.clientX, y: e.clientY });
+  if (_ptrs.size >= 2) { pinchPrev = 0; dragging = false; } else { dragging = true; lastPX = e.clientX; lastPY = e.clientY; }
 });
-renderer.domElement.addEventListener('wheel', (e) => {       // 滚轮 = 调焦距（FOV），相机不位移
+_dom.addEventListener('pointermove', (e) => {
+  if (!_ptrs.has(e.pointerId)) return;
+  _ptrs.set(e.pointerId, { x: e.clientX, y: e.clientY });
+  if (_ptrs.size >= 2) {                                      // 双指捏合 → 焦距（捏开放大）
+    const it = _ptrs.values(), p1 = it.next().value, p2 = it.next().value, d = Math.hypot(p1.x - p2.x, p1.y - p2.y);
+    if (pinchPrev) { camera.fov = clamp(camera.fov - (d - pinchPrev) * 0.08, 22, 105); camera.updateProjectionMatrix(); }
+    pinchPrev = d;
+  } else if (dragging) {                                      // 单指拖动 → 环视
+    yaw -= (e.clientX - lastPX) * 0.004; pitch = clamp(pitch - (e.clientY - lastPY) * 0.004, -1.45, 1.45);
+    lastPX = e.clientX; lastPY = e.clientY;
+  }
+});
+const _ptrEnd = (e) => {
+  _ptrs.delete(e.pointerId); pinchPrev = 0;
+  if (_ptrs.size === 1) { const p = _ptrs.values().next().value; lastPX = p.x; lastPY = p.y; dragging = true; }   // 双→单：续上拖动，不跳变
+  else if (_ptrs.size === 0) dragging = false;
+};
+addEventListener('pointerup', _ptrEnd);
+addEventListener('pointercancel', _ptrEnd);
+_dom.addEventListener('wheel', (e) => {                       // 桌面滚轮 = 调焦距（FOV），相机不位移
   e.preventDefault();
   camera.fov = clamp(camera.fov + e.deltaY * 0.03, 22, 105);
   camera.updateProjectionMatrix();
 }, { passive: false });
-addEventListener('deviceorientation', (e) => { if (e.alpha == null) return; gyroOn = true; gyroYaw = -e.alpha * Math.PI / 180; gyroPitch = clamp(((e.beta || 90) - 90) * Math.PI / 180, -1.3, 1.3); });
+// 陀螺仪：以「增量」驱动 → 与手指拖动叠加共存、互不覆盖；避开绝对罗盘坐标导致的方向混乱
+let gyroPrevA = null, gyroPrevB = null, gyroDYaw = 0, gyroDPitch = 0;
+addEventListener('deviceorientation', (e) => {
+  if (e.alpha == null) return; gyroOn = true;
+  const A = e.alpha, B = e.beta == null ? 90 : e.beta;
+  if (gyroPrevA !== null) {
+    let dA = A - gyroPrevA; if (dA > 180) dA -= 360; else if (dA < -180) dA += 360;   // 罗盘 360° 环绕
+    const dB = B - gyroPrevB;
+    gyroDYaw += -dA * Math.PI / 180;                          // 转动手机 → 视角同向转（1:1）
+    gyroDPitch += -dB * Math.PI / 180;                        // 俯仰手机 → 视角俯仰
+  }
+  gyroPrevA = A; gyroPrevB = B;
+});
 
 let analyser = null, micBuf = null;
 async function enableSensors() {
@@ -921,7 +953,7 @@ function animate() {
     if (prevPos) prevPos.set(posArr);   // 存本帧位置 → 下一帧算速度方向
   }
 
-  if (gyroOn) { yaw = lerp(yaw, gyroYaw, 0.12); pitch = lerp(pitch, gyroPitch, 0.12); }
+  if (gyroOn) { yaw += gyroDYaw; pitch = clamp(pitch + gyroDPitch, -1.45, 1.45); gyroDYaw = 0; gyroDPitch = 0; }   // 陀螺仪增量叠加（与拖动共存）
   else if (!dragging) yaw += 0.00016;    // 极缓自动巡游（降 10 倍）
   applyLook();
   renderer.render(scene, camera);
