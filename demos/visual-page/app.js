@@ -86,11 +86,12 @@ const pointMaterial = new THREE.ShaderMaterial({
   vertexShader: `
     uniform float uTime; uniform float uPixelRatio; uniform float uPulse;
     attribute vec3 aColor; attribute float aSize; attribute float aTwinkle; attribute float aHaze; attribute float aOrbPhase; attribute float aVis;
-    varying vec3 vColor; varying float vHaze;
+    varying vec3 vColor; varying float vHaze; varying float vDist;
     void main(){
       if (aVis < 0.5) { gl_Position = vec4(2.0, 2.0, 2.0, 1.0); gl_PointSize = 0.0; return; }
       vHaze = aHaze;
       vec4 mv = modelViewMatrix * vec4(position, 1.0);
+      vDist = -mv.z;
       float tw = 0.6 + aTwinkle*0.5*sin(uTime*1.4 + aOrbPhase*6.2831) + uPulse*0.4;
       vColor = aColor * tw;
       float sz = 0.25 + aSize * aSize * 0.3;                             // 平方映射：小更小、大更大
@@ -99,7 +100,7 @@ const pointMaterial = new THREE.ShaderMaterial({
       gl_Position = projectionMatrix * mv;
     }`,
   fragmentShader: `
-    varying vec3 vColor; varying float vHaze;
+    varying vec3 vColor; varying float vHaze; varying float vDist;
     void main(){
       vec2 uv = gl_PointCoord - 0.5;
       float d = length(uv) * 2.0; if (d > 1.0) discard;
@@ -111,6 +112,7 @@ const pointMaterial = new THREE.ShaderMaterial({
       vec3 base = mix(vColor, vec3(dot(vColor, vec3(0.333))), 0.2);            // 略去正色
       vec3 col = mix(base, vec3(1.0), core * 0.75) * (core * 1.3 + glow * 0.5 + ring + spike);
       float a = core + glow * (0.4 + 0.4 * vHaze) + ring + spike;
+      a *= clamp((110.0 - vDist) / 80.0, 0.28, 1.0);                    // 景深淡出
       if (a < 0.012) discard;
       gl_FragColor = vec4(col, clamp(a, 0.0, 1.0));
     }`
@@ -142,6 +144,15 @@ const beamMaterial = new THREE.ShaderMaterial({
       gl_Position = cA;
     }`,
   fragmentShader: `varying vec3 vC; varying float vVis; void main(){ if (vVis < 0.5) discard; gl_FragColor = vec4(vC, 0.02); }`
+});
+
+// 几何体棱线材质：彩色加性细线 + 景深淡出
+const solidLineMat = new THREE.ShaderMaterial({
+  uniforms: { uOpacity: { value: 0.55 } }, transparent: true, depthWrite: false, blending: THREE.AdditiveBlending,
+  vertexShader: `attribute vec3 aColor; varying vec3 vC; varying float vDist;
+    void main(){ vC = aColor; vec4 mv = modelViewMatrix*vec4(position,1.0); vDist = -mv.z; gl_Position = projectionMatrix*mv; }`,
+  fragmentShader: `varying vec3 vC; varying float vDist; uniform float uOpacity;
+    void main(){ float f = clamp((110.0 - vDist)/80.0, 0.22, 1.0); gl_FragColor = vec4(vC*0.85, uOpacity*f); }`
 });
 
 // ---------- builders (collect into plain arrays, finalize after counts known) ----------
@@ -317,6 +328,8 @@ let N = 0;
 let sys, anc, scl, bh, prm, spd, state, posArr, trail, rotM, head = 0;
 let pointsObj, trailObj, beamObj, beamIdxA, beamIdxB, beamPos;
 let grp, segsG, pointVisArr, pointVisAttr, trailVisArr, trailVisAttr, beamVisArr, beamVisAttr, beamEnds;
+let solidGroups = [];
+const _dummy = new THREE.Object3D(), _q = new THREE.Quaternion(), _v = new THREE.Vector3();
 const GROUP_KEY = { '城市 CITY': 0, '产品 PRODUCT': 1, '内核 KERNEL': 2, '突破 BREAKTHROUGH': 3, '政策 POLICY': 4, '厂商 VENDOR': 5 };
 const groupVis = [true, true, true, true, true, true];
 
@@ -512,6 +525,11 @@ renderer.domElement.addEventListener('pointerup', (e) => {
   else card.classList.add('hidden');
 });
 
+// HUD 静置淡隐（交互时浮现，让作品留白）
+{ const hud = document.getElementById('hud'), tip = document.getElementById('tip'); let hudT;
+  const showHud = () => { hud.style.opacity = ''; tip.style.opacity = ''; clearTimeout(hudT); hudT = setTimeout(() => { hud.style.opacity = '0'; tip.style.opacity = '0'; }, 5000); };
+  addEventListener('pointermove', showHud); addEventListener('pointerdown', showHud); addEventListener('keydown', showHud); showHud(); }
+
 addEventListener('resize', () => { camera.aspect = innerWidth / innerHeight; camera.updateProjectionMatrix(); renderer.setSize(innerWidth, innerHeight); U.uPixelRatio.value = renderer.getPixelRatio(); beamMaterial.uniforms.uRes.value.set(innerWidth, innerHeight); });
 
 // ---------- loop ----------
@@ -537,6 +555,31 @@ function animate() {
       writeWorld(i);
     }
     pointsObj.geometry.attributes.position.needsUpdate = true;
+
+    // 几何体棱线：跟随混沌位置 + 各自缓慢自转 + 呼吸变径（CPU 变换合并 LineSegments）
+    if (solidGroups.length) {
+      const sbreath = 1.0 + 0.22 * Math.sin(tElapsed * 0.7), ringBreath = 1.0 + 0.18 * Math.sin(tElapsed * 0.5 + 1.0);
+      for (let g = 0; g < solidGroups.length; g++) {
+        const sg = solidGroups[g], local = sg.local, lv = sg.lv, pos = sg.pos;
+        for (let j = 0; j < sg.cnt; j++) {
+          const gi = sg.gidx[j], o = gi * 3, vis = groupVis[grp[gi]] ? 1 : 0;
+          _q.setFromAxisAngle(_v.set(sg.axis[j * 3], sg.axis[j * 3 + 1], sg.axis[j * 3 + 2]), sg.speed[j] * tElapsed);
+          const sc = (0.08 + D.sz[gi] * 0.075) * (sg.ellipsoid ? ringBreath : sbreath) * vis;
+          _dummy.position.set(posArr[o], posArr[o + 1], posArr[o + 2]);
+          _dummy.quaternion.copy(_q);
+          _dummy.scale.set(sc, sg.ellipsoid ? sc * 0.74 : sc, sc);
+          _dummy.updateMatrix();
+          const e = _dummy.matrix.elements, base = j * lv * 3;
+          for (let v = 0; v < lv; v++) {
+            const li = v * 3, lx = local[li], ly = local[li + 1], lz = local[li + 2], k = base + li;
+            pos[k] = e[0] * lx + e[4] * ly + e[8] * lz + e[12];
+            pos[k + 1] = e[1] * lx + e[5] * ly + e[9] * lz + e[13];
+            pos[k + 2] = e[2] * lx + e[6] * ly + e[10] * lz + e[14];
+          }
+        }
+        sg.posAttr.needsUpdate = true;
+      }
+    }
 
     // 每 STRIDE 帧采样一次轨迹（让缓慢运动也能拉出可见路径）
     frameCount++;
@@ -576,6 +619,45 @@ function animate() {
   renderer.render(scene, camera);
 }
 
+// ---------- 几何体变体：每类一种缓慢自转的线框立体（围绕发光核） ----------
+function buildSolids() {
+  const edgesOf = (geo) => new THREE.EdgesGeometry(geo, 1).attributes.position.array.slice();   // 只取真实特征棱
+  const ringEllipse = () => { const seg = 28, T = 6.2831853, a = [];
+    for (let i = 0; i < seg; i++) { const t0 = i / seg * T, t1 = (i + 1) / seg * T; a.push(Math.cos(t0), Math.sin(t0), 0, Math.cos(t1), Math.sin(t1), 0); }       // 环 A · XY 面
+    for (let i = 0; i < seg; i++) { const t0 = i / seg * T, t1 = (i + 1) / seg * T; a.push(Math.cos(t0), 0, Math.sin(t0), Math.cos(t1), 0, Math.sin(t1)); }       // 环 B · XZ 面（正交→陀螺）
+    return new Float32Array(a); };
+  const locals = [
+    edgesOf(new THREE.OctahedronGeometry(0.62)),          // 0 城市 八面体（12 棱）
+    edgesOf(new THREE.BoxGeometry(0.78, 0.78, 0.78)),     // 1 产品 方块（12 棱）
+    edgesOf(new THREE.CylinderGeometry(0.5, 0.5, 0.95, 5)), // 2 内核 五棱柱（15 棱）
+    edgesOf(new THREE.TetrahedronGeometry(0.8)),          // 3 突破 四面锥（6 棱）
+    edgesOf(new THREE.ConeGeometry(0.58, 1.05, 4)),       // 4 政策 金字塔（8 棱）
+    ringEllipse()                                          // 5 厂商 椭圆环（呼吸变径外轮廓）
+  ];
+  const buckets = [[], [], [], [], [], []];
+  for (let i = 0; i < N; i++) buckets[grp[i]].push(i);
+  for (let t = 0; t < 6; t++) {
+    const list = buckets[t], cnt = list.length; if (!cnt) continue;
+    const local = locals[t], lv = local.length / 3;
+    const pos = new Float32Array(cnt * lv * 3), colA = new Float32Array(cnt * lv * 3);
+    const gidx = new Int32Array(cnt), axis = new Float32Array(cnt * 3), speed = new Float32Array(cnt);
+    for (let j = 0; j < cnt; j++) {
+      const gi = list[j]; gidx[j] = gi;
+      let ax = Math.random() - 0.5, ay = Math.random() - 0.5, az = Math.random() - 0.5;
+      const L = Math.hypot(ax, ay, az) || 1; axis[j * 3] = ax / L; axis[j * 3 + 1] = ay / L; axis[j * 3 + 2] = az / L;
+      speed[j] = (t === 5 ? 0.5 + Math.random() * 0.9 : 0.05 + Math.random() * 0.15);   // 厂商环更快、更灵动
+      const cr = D.col[gi * 3], cg = D.col[gi * 3 + 1], cb = D.col[gi * 3 + 2];
+      for (let v = 0; v < lv; v++) { const k = (j * lv + v) * 3; colA[k] = cr; colA[k + 1] = cg; colA[k + 2] = cb; }
+    }
+    const g = new THREE.BufferGeometry();
+    const posAttr = new THREE.BufferAttribute(pos, 3).setUsage(THREE.DynamicDrawUsage);
+    g.setAttribute('position', posAttr);
+    g.setAttribute('aColor', new THREE.BufferAttribute(colA, 3));
+    const mesh = new THREE.LineSegments(g, solidLineMat); mesh.frustumCulled = false; root.add(mesh);
+    solidGroups.push({ posAttr, pos, local, lv, cnt, gidx, axis, speed, ellipsoid: t === 5 });
+  }
+}
+
 // ---------- show / hide groups ----------
 function updateVisibility() {
   if (!N) return;
@@ -607,6 +689,8 @@ function buildPanel() {
   panel.appendChild(mkRow('连线', true, (on) => { if (beamObj) beamObj.visible = on; }));
   panel.appendChild(mkRow('拖尾', true, (on) => { if (trailObj) trailObj.visible = on; }));
   document.body.appendChild(panel);
+  panel.style.display = 'none';                                  // 默认隐藏；按 D 可临时唤出调参
+  addEventListener('keydown', (e) => { if (e.key === 'd' || e.key === 'D') panel.style.display = panel.style.display === 'none' ? 'flex' : 'none'; });
 }
 
 // ---------- boot ----------
@@ -616,6 +700,7 @@ function buildPanel() {
   const cities = buildHousing();
   bgMat.uniforms.uWarm.value = climWarm;
   finalize();
+  buildSolids();
   buildPanel();
   console.log(`[数渊] ${cities} 城市 · ${info.products || 0} 产品 · ${info.kernels || 0} 内核 · ${info.milestones || 0} 突破 · ${info.policies || 0} 政策 · ${info.vendors || 0} 厂商 · ${N} 混沌星体 · ${beamIdxA ? beamIdxA.length : 0} 连线`);
   const ld = document.getElementById('loading'); ld.classList.add('gone'); setTimeout(() => ld.remove(), 1000);
