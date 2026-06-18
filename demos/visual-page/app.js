@@ -16,8 +16,8 @@ const IS_MOBILE = matchMedia('(pointer: coarse)').matches || innerWidth < 820;
 const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
 const lerp = (a, b, t) => a + (b - a) * t;
 const IND = '../china-industrial-software/assets/data/';
-const TRAIL = IS_MOBILE ? 22 : 40;   // 轨迹历史采样数上限（每点实际尾长由数据决定）
-const STRIDE = 5;                     // 每 STRIDE 帧采样一次轨迹 → 路径覆盖更长时间、更可见
+const TRAIL = IS_MOBILE ? 22 : 44;   // 轨迹历史采样数（每点实际尾长由数据决定）
+const STRIDE = 10;                    // 每 STRIDE 帧采样一次 → 加大步幅=路径覆盖更长时间（双倍）、且更省
 const CENTER = [0, 42, 0];           // 所有吸引子共用中心 → 重叠共舞
 const SYSN = 15;                     // 系统总数
 const SYS_AXIS = new Float32Array(SYSN * 3), SYS_SPIN = new Float32Array(SYSN);
@@ -85,10 +85,10 @@ const pointMaterial = new THREE.ShaderMaterial({
   uniforms: U, transparent: true, depthWrite: false, depthTest: true, blending: THREE.AdditiveBlending,
   vertexShader: `
     uniform float uTime; uniform float uPixelRatio; uniform float uPulse;
-    attribute vec3 aColor; attribute float aSize; attribute float aTwinkle; attribute float aHaze; attribute float aOrbPhase; attribute float aVis;
+    attribute vec3 aColor; attribute float aSize; attribute float aTwinkle; attribute float aHaze; attribute float aOrbPhase; attribute float aVis; attribute float aGlow;
     varying vec3 vColor; varying float vHaze; varying float vDist;
     void main(){
-      if (aVis < 0.5) { gl_Position = vec4(2.0, 2.0, 2.0, 1.0); gl_PointSize = 0.0; return; }
+      if (aVis < 0.5 || aGlow < 0.5) { gl_Position = vec4(2.0, 2.0, 2.0, 1.0); gl_PointSize = 0.0; return; }   // 只有"光点型"实体才发光
       vHaze = aHaze;
       vec4 mv = modelViewMatrix * vec4(position, 1.0);
       vDist = -mv.z;
@@ -122,7 +122,7 @@ const trailMaterial = new THREE.ShaderMaterial({
   uniforms: U, transparent: true, depthWrite: false, blending: THREE.AdditiveBlending,
   vertexShader: `attribute float aAge; attribute vec3 aColor; attribute float aVis; varying float vAge; varying vec3 vC; varying float vVis;
     void main(){ vAge = aAge; vC = aColor; vVis = aVis; gl_Position = projectionMatrix*modelViewMatrix*vec4(position,1.0); }`,
-  fragmentShader: `varying float vAge; varying vec3 vC; varying float vVis; void main(){ if (vVis < 0.5) discard; float a = 1.0 - vAge; if (a <= 0.0) discard; a = a * 0.85; gl_FragColor = vec4(vC * (0.45 + 0.55 * a), a); }`
+  fragmentShader: `varying float vAge; varying vec3 vC; varying float vVis; void main(){ if (vVis < 0.5) discard; float a = 1.0 - vAge; if (a <= 0.0) discard; a = a * 0.38; gl_FragColor = vec4(vC * (0.4 + 0.5 * a), a); }`
 });
 
 // 关系连线：朝相机的 ribbon，宽度由数据驱动（aWidth）；实线 + 高透明
@@ -148,7 +148,7 @@ const beamMaterial = new THREE.ShaderMaterial({
 
 // 几何体棱线材质：彩色加性细线 + 景深淡出
 const solidLineMat = new THREE.ShaderMaterial({
-  uniforms: { uOpacity: { value: 0.55 } }, transparent: true, depthWrite: false, blending: THREE.AdditiveBlending,
+  uniforms: { uOpacity: { value: 0.7 } }, transparent: true, depthWrite: false, blending: THREE.AdditiveBlending,
   vertexShader: `attribute vec3 aColor; varying vec3 vC; varying float vDist;
     void main(){ vC = aColor; vec4 mv = modelViewMatrix*vec4(position,1.0); vDist = -mv.z; gl_Position = projectionMatrix*mv; }`,
   fragmentShader: `varying vec3 vC; varying float vDist; uniform float uOpacity;
@@ -325,9 +325,18 @@ async function buildIndustrial() {
 
 // ---------- typed state (filled after build) ----------
 let N = 0;
-let sys, anc, scl, bh, prm, spd, state, posArr, trail, rotM, head = 0;
+let sys, anc, scl, bh, prm, spd, state, posArr, trail, trailSrc, rotM, head = 0;
 let pointsObj, trailObj, beamObj, beamIdxA, beamIdxB, beamPos;
 let grp, segsG, pointVisArr, pointVisAttr, trailVisArr, trailVisAttr, beamVisArr, beamVisAttr, beamEnds;
+let E = 0, emEnt, emLocal, entMat;   // 轨迹发射点：每个立体的每个顶点各一条
+function cornersOf(t) {
+  if (t === 0) return [0, 0, 0];                                                                                   // 城市=光点
+  if (t === 1) { const h = 0.39, a = []; for (const x of [-h, h]) for (const y of [-h, h]) for (const z of [-h, h]) a.push(x, y, z); return a; }   // 方块 8 角（全部）
+  if (t === 2) { const r = 0.5, a = []; for (let i = 0; i < 5; i++) { const an = i / 5 * 6.2832; a.push(Math.cos(an) * r, 0.475, Math.sin(an) * r); } return a; }   // 五棱柱 顶 5 角
+  if (t === 3) { const s = 0.8 / Math.sqrt(3); return [s, s, s, -s, -s, s, -s, s, -s, s, -s, -s]; }               // 四面锥 4 角（全部）
+  if (t === 4) { const r = 0.58, a = [0, 0.525, 0]; for (let i = 0; i < 4; i++) { const an = i / 4 * 6.2832; a.push(Math.cos(an) * r, -0.525, Math.sin(an) * r); } return a; }   // 金字塔 5（全部）
+  const a = []; for (let i = 0; i < 4; i++) { const an = i / 4 * 6.2832; a.push(Math.cos(an), Math.sin(an), 0); } return a;   // 椭圆环 4 点
+}
 let solidGroups = [];
 const _dummy = new THREE.Object3D(), _q = new THREE.Quaternion(), _v = new THREE.Vector3();
 const GROUP_KEY = { '城市 CITY': 0, '产品 PRODUCT': 1, '内核 KERNEL': 2, '突破 BREAKTHROUGH': 3, '政策 POLICY': 4, '厂商 VENDOR': 5 };
@@ -337,7 +346,7 @@ function finalize() {
   N = D.sys.length;
   sys = Uint8Array.from(D.sys); anc = Float32Array.from(D.anc); scl = Float32Array.from(D.scl);
   bh = Float32Array.from(D.bh); prm = Float32Array.from(D.prm); spd = Float32Array.from(D.spd);
-  state = Float32Array.from(D.seed); posArr = new Float32Array(N * 3); trail = new Float32Array(N * TRAIL * 3);
+  state = Float32Array.from(D.seed); posArr = new Float32Array(N * 3);
 
   // per-point 3D orientation matrix (data-driven axis) → tilts each attractor out of its plane
   rotM = new Float32Array(N * 9);
@@ -353,8 +362,8 @@ function finalize() {
   // warm-up: pre-spread the attractors so the cloud is already unfurled on first frame
   for (let w = 0; w < 280; w++) for (let i = 0; i < N; i++) { const h = Math.min(bh[i] * spd[i], capOf(sys[i])); stepOne(i, h * 0.5); stepOne(i, h * 0.5); }
 
-  // initial world positions + seed trail
-  for (let i = 0; i < N; i++) { writeWorld(i); for (let t = 0; t < TRAIL; t++) { const o = (i * TRAIL + t) * 3; trail[o] = posArr[i * 3]; trail[o + 1] = posArr[i * 3 + 1]; trail[o + 2] = posArr[i * 3 + 2]; } }
+  // initial world positions
+  for (let i = 0; i < N; i++) writeWorld(i);
 
   // group id per point (for show/hide toggles)
   grp = Uint8Array.from(D.meta.map((m) => (m && GROUP_KEY[m.k] != null ? GROUP_KEY[m.k] : 0)));
@@ -370,20 +379,31 @@ function finalize() {
   pointVisArr = new Float32Array(N).fill(1);
   pointVisAttr = new THREE.BufferAttribute(pointVisArr, 1).setUsage(THREE.DynamicDrawUsage);
   g.setAttribute('aVis', pointVisAttr);
+  const glowArr = new Float32Array(N); for (let i = 0; i < N; i++) glowArr[i] = grp[i] === 0 ? 1 : 0;   // 仅城市=光点型
+  g.setAttribute('aGlow', new THREE.Float32BufferAttribute(glowArr, 1));
   pointsObj = new THREE.Points(g, pointMaterial); root.add(pointsObj);
 
-  // trails (N * (TRAIL-1) segments)
-  const segs = TRAIL - 1, tv = N * segs * 2;
-  beamPos; // noop
-  const tpos = new Float32Array(tv * 3), tage = new Float32Array(tv), tcol = new Float32Array(tv * 3);
+  // trail emitters: 每个实体的每个顶点各发一条轨迹
+  const emE = [], emL = [], emC = [], emT = [];
   for (let i = 0; i < N; i++) {
-    const tlenSeg = Math.max(3, Math.min(segs, Math.round(D.tlen[i])));   // 每点彗尾长度（数据驱动）
-    const cr = D.col[i * 3], cg = D.col[i * 3 + 1], cb = D.col[i * 3 + 2];
+    const c = cornersOf(grp[i]), cc = c.length / 3;
+    for (let q = 0; q < cc; q++) {
+      emE.push(i); emL.push(c[q * 3], c[q * 3 + 1], c[q * 3 + 2]);
+      emC.push(D.col[i * 3], D.col[i * 3 + 1], D.col[i * 3 + 2]); emT.push(D.tlen[i]);
+    }
+  }
+  E = emE.length; emEnt = Int32Array.from(emE); emLocal = Float32Array.from(emL);
+  trail = new Float32Array(E * TRAIL * 3); trailSrc = new Float32Array(E * 3); entMat = new Float32Array(N * 16);
+  for (let e = 0; e < E; e++) { const gi = emEnt[e]; for (let t = 0; t < TRAIL; t++) { const o = (e * TRAIL + t) * 3; trail[o] = posArr[gi * 3]; trail[o + 1] = posArr[gi * 3 + 1]; trail[o + 2] = posArr[gi * 3 + 2]; } }
+
+  const segs = TRAIL - 1, tv = E * segs * 2;
+  const tpos = new Float32Array(tv * 3), tage = new Float32Array(tv), tcol = new Float32Array(tv * 3);
+  for (let e = 0; e < E; e++) {
+    const tlenSeg = Math.max(3, Math.min(segs, Math.round(emT[e])));
+    const cr = emC[e * 3], cg = emC[e * 3 + 1], cb = emC[e * 3 + 2];
     for (let k = 0; k < segs; k++) {
-      const base = (i * segs + k) * 2;
-      const dNew = segs - 1 - k;                            // 0 = 距头最近（最亮）
-      tage[base] = (dNew + 1) / tlenSeg;                    // 旧端；> tlenSeg 时 age>1 → fragment discard
-      tage[base + 1] = dNew / tlenSeg;                      // 新端（更亮）
+      const base = (e * segs + k) * 2, dNew = segs - 1 - k;
+      tage[base] = (dNew + 1) / tlenSeg; tage[base + 1] = dNew / tlenSeg;
       tcol[base * 3] = cr; tcol[base * 3 + 1] = cg; tcol[base * 3 + 2] = cb;
       tcol[base * 3 + 3] = cr; tcol[base * 3 + 4] = cg; tcol[base * 3 + 5] = cb;
     }
@@ -576,6 +596,7 @@ function animate() {
             pos[k + 1] = e[1] * lx + e[5] * ly + e[9] * lz + e[13];
             pos[k + 2] = e[2] * lx + e[6] * ly + e[10] * lz + e[14];
           }
+          entMat.set(e, gi * 16);                                // 存实体矩阵，供每个顶点的轨迹用
         }
         sg.posAttr.needsUpdate = true;
       }
@@ -584,14 +605,21 @@ function animate() {
     // 每 STRIDE 帧采样一次轨迹（让缓慢运动也能拉出可见路径）
     frameCount++;
     if (frameCount % STRIDE === 0) {
+      for (let e = 0; e < E; e++) {                              // 每个顶点发射点的世界位置
+        const gi = emEnt[e], eo = e * 3;
+        if (grp[gi] === 0) { trailSrc[eo] = posArr[gi * 3]; trailSrc[eo + 1] = posArr[gi * 3 + 1]; trailSrc[eo + 2] = posArr[gi * 3 + 2]; }
+        else { const m = gi * 16, lx = emLocal[eo], ly = emLocal[eo + 1], lz = emLocal[eo + 2];
+          trailSrc[eo] = entMat[m] * lx + entMat[m + 4] * ly + entMat[m + 8] * lz + entMat[m + 12];
+          trailSrc[eo + 1] = entMat[m + 1] * lx + entMat[m + 5] * ly + entMat[m + 9] * lz + entMat[m + 13];
+          trailSrc[eo + 2] = entMat[m + 2] * lx + entMat[m + 6] * ly + entMat[m + 10] * lz + entMat[m + 14]; }
+      }
       head = (head + 1) % TRAIL;
-      for (let i = 0; i < N; i++) { const to = (i * TRAIL + head) * 3; trail[to] = posArr[i * 3]; trail[to + 1] = posArr[i * 3 + 1]; trail[to + 2] = posArr[i * 3 + 2]; }
+      for (let e = 0; e < E; e++) { const to = (e * TRAIL + head) * 3, s3 = e * 3; trail[to] = trailSrc[s3]; trail[to + 1] = trailSrc[s3 + 1]; trail[to + 2] = trailSrc[s3 + 2]; }
       const tpos = trailObj.userData.pos, segs = trailObj.userData.segs;
-      for (let i = 0; i < N; i++) {
+      for (let e = 0; e < E; e++) {
         for (let k = 0; k < segs; k++) {
           const a = (head + 1 + k) % TRAIL, b = (head + 2 + k) % TRAIL;
-          const ao = (i * TRAIL + a) * 3, bo = (i * TRAIL + b) * 3;
-          const w = ((i * segs + k) * 2) * 3;
+          const ao = (e * TRAIL + a) * 3, bo = (e * TRAIL + b) * 3, w = ((e * segs + k) * 2) * 3;
           tpos[w] = trail[ao]; tpos[w + 1] = trail[ao + 1]; tpos[w + 2] = trail[ao + 2];
           tpos[w + 3] = trail[bo]; tpos[w + 4] = trail[bo + 1]; tpos[w + 5] = trail[bo + 2];
         }
@@ -637,7 +665,7 @@ function buildSolids() {
   const buckets = [[], [], [], [], [], []];
   for (let i = 0; i < N; i++) buckets[grp[i]].push(i);
   for (let t = 0; t < 6; t++) {
-    const list = buckets[t], cnt = list.length; if (!cnt) continue;
+    const list = buckets[t], cnt = list.length; if (!cnt || t === 0) continue;   // 城市为光点型，不建立体
     const local = locals[t], lv = local.length / 3;
     const pos = new Float32Array(cnt * lv * 3), colA = new Float32Array(cnt * lv * 3);
     const gidx = new Int32Array(cnt), axis = new Float32Array(cnt * 3), speed = new Float32Array(cnt);
@@ -664,7 +692,7 @@ function updateVisibility() {
   for (let i = 0; i < N; i++) pointVisArr[i] = groupVis[grp[i]] ? 1 : 0;
   pointVisAttr.needsUpdate = true;
   if (trailVisArr) {
-    for (let i = 0; i < N; i++) { const v = groupVis[grp[i]] ? 1 : 0, b0 = i * segsG * 2, b1 = (i + 1) * segsG * 2; for (let t = b0; t < b1; t++) trailVisArr[t] = v; }
+    for (let e = 0; e < E; e++) { const v = groupVis[grp[emEnt[e]]] ? 1 : 0, b0 = e * segsG * 2, b1 = (e + 1) * segsG * 2; for (let t = b0; t < b1; t++) trailVisArr[t] = v; }
     trailVisAttr.needsUpdate = true;
   }
   if (beamVisArr) {
