@@ -49,18 +49,17 @@ html, body {
 
 #card {
   position: fixed; left: 50%; bottom: 64px; transform: translateX(-50%);
-  max-width: 86vw; min-width: 220px;
-  background: rgba(10, 14, 26, 0.74);
-  border: 1px solid rgba(150, 180, 255, 0.26);
-  border-radius: 16px; padding: 14px 20px;
-  backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+  max-width: 86vw; min-width: 200px;
+  background: rgba(8, 11, 20, 0.42);
+  border: 1px solid rgba(150, 180, 255, 0.12);
+  border-radius: 18px; padding: 15px 24px;
+  backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
   z-index: 6; text-align: center;
-  transition: opacity 0.3s, transform 0.3s;
-  box-shadow: 0 0 50px rgba(60, 90, 200, 0.28);
+  transition: opacity 0.45s, transform 0.45s;
+  box-shadow: 0 0 60px rgba(60, 90, 200, 0.16);
 }
-#card .k { font-size: 10px; letter-spacing: 0.24em; opacity: 0.5; text-transform: uppercase; margin-bottom: 7px; }
-#card h3 { font-size: 17px; font-weight: 500; margin-bottom: 5px; line-height: 1.35; }
-#card p { font-size: 12px; opacity: 0.72; line-height: 1.7; }
+#card h3 { font-size: 16px; font-weight: 200; letter-spacing: 0.16em; margin-bottom: 9px; line-height: 1.45; }
+#card .kw { font-size: 10px; font-weight: 300; opacity: 0.4; letter-spacing: 0.34em; text-transform: lowercase; line-height: 1.9; }
 
 .hidden { opacity: 0 !important; pointer-events: none !important; transform: translateX(-50%) translateY(10px) !important; }
 

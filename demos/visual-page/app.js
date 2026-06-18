@@ -737,10 +737,23 @@ const camPos = new THREE.Vector3(CENTER[0], CENTER[1], CENTER[2]);
 const cCenter = new THREE.Vector3(CENTER[0], CENTER[1], CENTER[2]);
 let yaw = 0, pitch = 0, dragging = false, lastPX = 0, lastPY = 0, gyroOn = false;
 const fwd = new THREE.Vector3();
+// 视角追踪：点击一颗星 → 锁定它，相机以它为中心环绕（拖动/陀螺=绕它转）；点空白 → 缓缓退回正中心
+const ORBIT_R = 6.5;
+let focusIdx = -1, focusActive = false, focusBlend = 0;
+const _starSmooth = new THREE.Vector3(), _desiredPos = new THREE.Vector3(), _freeLook = new THREE.Vector3(), _lookTmp = new THREE.Vector3(), _starNow = new THREE.Vector3();
 function applyLook() {
   fwd.set(Math.cos(pitch) * Math.sin(yaw), Math.sin(pitch), Math.cos(pitch) * Math.cos(yaw));
-  camera.position.copy(camPos);
-  camera.lookAt(camPos.x + fwd.x, camPos.y + fwd.y, camPos.z + fwd.z);
+  _freeLook.copy(camPos).add(fwd);
+  if (focusIdx >= 0 && posArr) {
+    const o = focusIdx * 3;
+    _starSmooth.lerp(_starNow.set(posArr[o], posArr[o + 1], posArr[o + 2]), 0.18);   // 平滑跟踪混沌中的目标
+    _desiredPos.copy(_starSmooth).addScaledVector(fwd, ORBIT_R);                       // 相机 = 目标 + 视向·R → 环绕
+    camera.position.copy(camPos).lerp(_desiredPos, focusBlend);
+    camera.lookAt(_lookTmp.copy(_freeLook).lerp(_starSmooth, focusBlend));             // 看向目标（按 blend 平滑切入/退出）
+  } else {
+    camera.position.copy(camPos);
+    camera.lookAt(_freeLook);
+  }
 }
 // Pointer Events 统一：1 指 = 拖动环视；2 指 = 捏合调焦（FOV）。多指共存，桌面鼠标/滚轮照旧
 const _ptrs = new Map();
@@ -817,9 +830,12 @@ renderer.domElement.addEventListener('pointerup', (e) => {
     cardMeta = D.meta[hit.index];
     card.innerHTML = renderCardHtml(cardMeta);
     card.classList.remove('hidden');
+    const o = hit.index * 3; _starSmooth.set(posArr[o], posArr[o + 1], posArr[o + 2]);   // 锚定起点，避免镜头长距飞扑
+    focusIdx = hit.index; focusActive = true;                                              // 锁定追踪
   } else {
     cardMeta = null;
     card.classList.add('hidden');
+    focusActive = false;                                                                    // 点空白 → 退回正中心
   }
 });
 
@@ -954,7 +970,9 @@ function animate() {
   }
 
   if (gyroOn) { yaw += gyroDYaw; pitch = clamp(pitch + gyroDPitch, -1.45, 1.45); gyroDYaw = 0; gyroDPitch = 0; }   // 陀螺仪增量叠加（与拖动共存）
-  else if (!dragging) yaw += 0.00016;    // 极缓自动巡游（降 10 倍）
+  else if (!dragging && focusIdx < 0) yaw += 0.00016;    // 极缓自动巡游（仅自由模式）
+  focusBlend += ((focusActive ? 1 : 0) - focusBlend) * Math.min(1, dt * 2.4);   // 锁定/解锁的平滑过渡
+  if (!focusActive && focusBlend < 0.01) focusIdx = -1;                          // 完全退出后清空
   applyLook();
   renderer.render(scene, camera);
 }
