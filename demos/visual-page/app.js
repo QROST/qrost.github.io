@@ -61,17 +61,19 @@ const bgMat = new THREE.ShaderMaterial({
       return mix(mix(mix(hash(i+vec3(0.,0.,0.)),hash(i+vec3(1.,0.,0.)),f.x), mix(hash(i+vec3(0.,1.,0.)),hash(i+vec3(1.,1.,0.)),f.x),f.y),
                  mix(mix(hash(i+vec3(0.,0.,1.)),hash(i+vec3(1.,0.,1.)),f.x), mix(hash(i+vec3(0.,1.,1.)),hash(i+vec3(1.,1.,1.)),f.x),f.y), f.z); }
     float fbm(vec3 p){ float a=0.5,s=0.0; for(int i=0;i<4;i++){ s+=a*noise(p); p=p*2.03+vec3(1.7); a*=0.5; } return s; }
+    vec3 pal(float x){                                              // off-color 循环调色板（紫·蓝·青·绿·橄榄·橙·红·品）
+      vec3 a = vec3(0.095, 0.095, 0.115), b = vec3(0.085, 0.075, 0.085), d = vec3(0.00, 0.33, 0.62);
+      return a + b * cos(6.28318 * (x + d));
+    }
     void main(){
       vec3 p = vDir*2.4; float t = uTime*0.03;
       float w = fbm(p*0.6 + vec3(t*0.2, t*0.1, 0.0));
       float f = fbm(p*1.1 + (w-0.5)*1.3 + vec3(0.0, t*0.6, t*0.2));
       float breathe = 0.5 + 0.5*sin(uTime*0.22) + uPulse*0.4;        // 缓慢呼吸（真机麦克风接管）
       float vert = (-vDir.y)*0.5 + 0.5;                              // 1=底部 0=顶部
-      float warmth = vert * (0.65 + 0.55*breathe) + (f-0.5)*0.6 + (uWarm-0.5)*0.4;
-      float fc = clamp(warmth, 0.0, 1.0);
-      vec3 cold = vec3(0.02,0.05,0.16), cool = vec3(0.04,0.10,0.15), warm = vec3(0.17,0.09,0.055), hot = vec3(0.22,0.06,0.04);
-      vec3 col = fc < 0.34 ? mix(cold, cool, fc/0.34) : (fc < 0.66 ? mix(cool, warm, (fc-0.34)/0.32) : mix(warm, hot, (fc-0.66)/0.34));
-      col *= 0.75 + 0.35*breathe;                                    // 整体随呼吸明暗起伏
+      float hue = f*0.85 + (w-0.5)*0.45 + vert*0.18 + uTime*0.006 + (uWarm-0.5)*0.25 + 0.06;  // 走遍 off-color 全谱
+      vec3 col = pal(hue);
+      col *= 0.7 + 0.42*breathe;                                     // 整体随呼吸明暗起伏
       gl_FragColor = vec4(col, 1.0);
     }`
 });
@@ -91,7 +93,7 @@ const pointMaterial = new THREE.ShaderMaterial({
       vec4 mv = modelViewMatrix * vec4(position, 1.0);
       float tw = 0.6 + aTwinkle*0.5*sin(uTime*1.4 + aOrbPhase*6.2831) + uPulse*0.4;
       vColor = aColor * tw;
-      float sz = 0.7 + (aSize - 0.7) * 1.7;                              // 放大数据尺寸对比
+      float sz = 0.25 + aSize * aSize * 0.3;                             // 平方映射：小更小、大更大
       float breath = 1.0 + 0.4 * sin(uTime*0.7 + aOrbPhase*6.2831);      // 呼吸般缩放（每点错相位）
       gl_PointSize = min(sz * breath * (1.0 + uPulse*0.35) * uPixelRatio * (380.0 / -mv.z), 66.0);
       gl_Position = projectionMatrix * mv;
@@ -99,11 +101,18 @@ const pointMaterial = new THREE.ShaderMaterial({
   fragmentShader: `
     varying vec3 vColor; varying float vHaze;
     void main(){
-      vec2 uv = gl_PointCoord - 0.5; float d = length(uv);
-      float core = smoothstep(0.5, 0.0, d);
-      float halo = smoothstep(0.5, 0.14, d) * 0.4 * vHaze;
-      float al = core + halo; if (al < 0.012) discard;
-      gl_FragColor = vec4(vColor * (core*1.5 + halo), al);
+      vec2 uv = gl_PointCoord - 0.5;
+      float d = length(uv) * 2.0; if (d > 1.0) discard;
+      float core = smoothstep(0.36, 0.0, d);                                   // 白热核
+      float glow = pow(1.0 - d, 2.6);                                          // 柔光晕
+      float ring = smoothstep(0.07, 0.0, abs(d - 0.74)) * 0.4;                 // 极细镜环
+      vec2 av = abs(uv) * 2.0;                                                 // 四芒衍射星芒
+      float spike = (max(0.0, 1.0 - av.x) * max(0.0, 1.0 - av.y * 11.0) + max(0.0, 1.0 - av.y) * max(0.0, 1.0 - av.x * 11.0)) * 0.3;
+      vec3 base = mix(vColor, vec3(dot(vColor, vec3(0.333))), 0.2);            // 略去正色
+      vec3 col = mix(base, vec3(1.0), core * 0.75) * (core * 1.3 + glow * 0.5 + ring + spike);
+      float a = core + glow * (0.4 + 0.4 * vHaze) + ring + spike;
+      if (a < 0.012) discard;
+      gl_FragColor = vec4(col, clamp(a, 0.0, 1.0));
     }`
 });
 
@@ -132,7 +141,7 @@ const beamMaterial = new THREE.ShaderMaterial({
       cA.xy += perp * aSide * (aWidth / uRes.y) * 2.0 * cA.w;
       gl_Position = cA;
     }`,
-  fragmentShader: `varying vec3 vC; varying float vVis; void main(){ if (vVis < 0.5) discard; gl_FragColor = vec4(0.55, 0.55, 0.6, 0.03); }`
+  fragmentShader: `varying vec3 vC; varying float vVis; void main(){ if (vVis < 0.5) discard; gl_FragColor = vec4(vC, 0.02); }`
 });
 
 // ---------- builders (collect into plain arrays, finalize after counts known) ----------
@@ -387,11 +396,11 @@ function finalize() {
     const bside = new Float32Array(V), bcol = new Float32Array(V * 3), bwid = new Float32Array(V);
     beamVisArr = new Float32Array(V).fill(1); beamEnds = new Uint8Array(V);
     for (let i = 0; i < nb; i++) {
-      const cr = BEAM.col[i * 3], cg = BEAM.col[i * 3 + 1], cb = BEAM.col[i * 3 + 2], w = BEAM.w[i];
+      const w = BEAM.w[i], ia = beamIdxA[i] * 3, ib = beamIdxB[i] * 3;   // 两端取各自点色 → ribbon 上渐变
       for (let v = 0; v < 6; v++) {
-        const idx = i * 6 + v;
+        const idx = i * 6 + v, c = beamEndTmpl[v] === 0 ? ia : ib;
         beamEnds[idx] = beamEndTmpl[v]; bside[idx] = beamSideTmpl[v]; bwid[idx] = w;
-        bcol[idx * 3] = cr; bcol[idx * 3 + 1] = cg; bcol[idx * 3 + 2] = cb;
+        bcol[idx * 3] = D.col[c]; bcol[idx * 3 + 1] = D.col[c + 1]; bcol[idx * 3 + 2] = D.col[c + 2];
       }
     }
     const bg = new THREE.BufferGeometry();
@@ -517,7 +526,7 @@ function animate() {
   bgMat.uniforms.uTime.value = tElapsed; bgMat.uniforms.uPulse.value = pulse;
 
   // 每系统各绕自己的轴自转（始终开启）
-  spinTime += dt * (0.024 + pulse * 0.06);
+  spinTime += dt * (0.00024 + pulse * 0.0006);
   for (let s = 0; s < SYSN; s++) { const a = SYS_SPIN[s] * spinTime; sysCos[s] = Math.cos(a); sysSin[s] = Math.sin(a); }
 
   if (N) {
