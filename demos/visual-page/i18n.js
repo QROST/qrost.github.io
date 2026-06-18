@@ -126,11 +126,28 @@ export function metaName(m) {
   return '';
 }
 
+// 弹卡关键词：刻意去标签、去类型（不显示 城市/产品/小区），只留几枚裸关键词 → 艺术化、不那么易读
+export function formatKeywords(m) {
+  const r = m.raw;
+  if (!r) return (m.sub || '').split(' · ').slice(1).join('  ·  ');
+  const zh = lang === 'zh';
+  let kw = [];
+  switch (m.kind) {
+    case 'CITY': kw = [r.hazard, r.comfort != null ? `${r.comfort}${zh ? '' : 'd'}` : '', r.elev != null ? `${Math.round(r.elev)}m` : '']; break;
+    case 'KERNEL': kw = [originLabel(r.origin), r.used != null ? `${r.used}` : '']; break;
+    case 'PRODUCT': kw = [originLabel(r.origin), r.maturity || '', r.localization || '']; break;
+    case 'BREAKTHROUGH': kw = [r.y4, r.capability || '']; break;
+    case 'POLICY': { const unit = zh ? (r.targetUnitZh || r.targetUnitEn || '') : (r.targetUnitEn || r.targetUnitZh || ''); kw = [r.y4, r.policyType || '', r.targetValue ? `${r.targetValue}${unit}` : '']; break; }
+    case 'VENDOR': kw = [originLabel(r.origin), r.hqCity || r.hqCountry || '']; break;
+    default: kw = [];
+  }
+  return kw.filter(Boolean).join('  ·  ');
+}
+
 export function renderCardHtml(m) {
-  const k = kindLabel(m.kind);
   const name = metaName(m);
-  const sub = formatSub(m);
-  return `<div class="k">${k}</div><h3>${name}</h3><p>${sub}</p>`;
+  const kw = formatKeywords(m);
+  return `<h3>${name}</h3><p class="kw">${kw}</p>`;   // 仅名称 + 关键词，不显类型
 }
 
 export function sensorBtnLabel(analyser) {
