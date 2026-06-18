@@ -11,6 +11,9 @@
 // 视觉：大小/色相/明灭/雾晕仍数据驱动；无 bloom；每颗星拖 18 帧渐隐轨迹；连线=淡虚线（弱化）。
 
 import * as THREE from 'three';
+import {
+  applyUi, registerPanelNode, renderCardHtml, sensorBtnLabel, toggleLang, isZh,
+} from './i18n.js';
 
 const IS_MOBILE = matchMedia('(pointer: coarse)').matches || innerWidth < 820;
 const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
@@ -18,7 +21,12 @@ const lerp = (a, b, t) => a + (b - a) * t;
 const IND = '../china-industrial-software/assets/data/';
 const TRAIL = IS_MOBILE ? 22 : 44;   // 轨迹历史采样数（每点实际尾长由数据决定）
 const STRIDE = 10;                    // 每 STRIDE 帧采样一次 → 加大步幅=路径覆盖更长时间（双倍）、且更省
-const CENTER = [0, 42, 0];           // 所有吸引子共用中心 → 重叠共舞
+const CENTER = [0, 42, 0];           // 所有吸引子共用中心 → 重叠共舞（呼吸吸气态）
+const FEAT_DIM = 26;                 // SOM 特征维度：城市 10 + 工业 10 + 类型 one-hot 6
+const SOM_L = [9, 7, 5];             // Kohonen 晶格维度 → 315 神经元
+const SOM_R = [90, 55, 90];          // 晶格→世界 半幅（CENTER 周围有界盒）
+const SOM_EPOCHS = IS_MOBILE ? 14 : 26;
+const SHRINK = 0.5;                  // 完全呼气（铺开）时混沌缩成锚点周围小笔触的比例
 const SYSN = 15;                     // 系统总数
 const SYS_AXIS = new Float32Array(SYSN * 3), SYS_SPIN = new Float32Array(SYSN);
 const sysCos = new Float32Array(SYSN).fill(1), sysSin = new Float32Array(SYSN);
@@ -51,11 +59,12 @@ scene.add(root);
 let climWarm = 0.5;
 const bgMat = new THREE.ShaderMaterial({
   side: THREE.BackSide, depthWrite: false, depthTest: false, fog: false,
-  uniforms: { uTime: { value: 0 }, uWarm: { value: 0.5 }, uPulse: { value: 0 } },
+  uniforms: { uTime: { value: 0 }, uWarm: { value: 0.5 }, uPulse: { value: 0 }, uW: { value: new Float32Array(138) } },
   vertexShader: `varying vec3 vDir; void main(){ vDir = normalize(position); gl_Position = projectionMatrix*modelViewMatrix*vec4(position,1.0); }`,
   fragmentShader: `
-    precision mediump float;
+    precision highp float;
     varying vec3 vDir; uniform float uTime; uniform float uWarm; uniform float uPulse;
+    uniform float uW[138];                                          // CPPN 权重（数据播种）：5→8→8→2 MLP
     float hash(vec3 p){ p = fract(p*0.3183099 + 0.1); p *= 17.0; return fract(p.x*p.y*p.z*(p.x+p.y+p.z)); }
     float noise(vec3 x){ vec3 i=floor(x), f=fract(x); f=f*f*(3.0-2.0*f);
       return mix(mix(mix(hash(i+vec3(0.,0.,0.)),hash(i+vec3(1.,0.,0.)),f.x), mix(hash(i+vec3(0.,1.,0.)),hash(i+vec3(1.,1.,0.)),f.x),f.y),
@@ -65,13 +74,26 @@ const bgMat = new THREE.ShaderMaterial({
       vec3 a = vec3(0.095, 0.095, 0.115), b = vec3(0.085, 0.075, 0.085), d = vec3(0.00, 0.33, 0.62);
       return a + b * cos(6.28318 * (x + d));
     }
+    // CPPN：一个数据播种的微型神经网络逐像素生成"梦的场" → 只驱动调色板参数/warp，锁住既有美学
+    void cppn(vec3 dir, float tt, out float hueN, out float warpN){
+      float inp[5];
+      inp[0]=dir.x; inp[1]=dir.y; inp[2]=dir.z; inp[3]=sin(tt*0.05); inp[4]=cos(tt*0.05);
+      float h1[8];
+      for(int i=0;i<8;i++){ float s=uW[40+i]; for(int j=0;j<5;j++){ s+=uW[i*5+j]*inp[j]; } h1[i]=tanh(s); }       // tanh 层
+      float h2[8];
+      for(int i=0;i<8;i++){ float s=uW[112+i]; for(int j=0;j<8;j++){ s+=uW[48+i*8+j]*h1[j]; } h2[i]=sin(s); }     // sin 层 → 周期纹
+      float o0=uW[136], o1=uW[137];
+      for(int j=0;j<8;j++){ o0+=uW[120+j]*h2[j]; o1+=uW[128+j]*h2[j]; }
+      hueN=tanh(o0); warpN=tanh(o1);
+    }
     void main(){
       vec3 p = vDir*2.4; float t = uTime*0.03;
+      float hueN, warpN; cppn(vDir, uTime, hueN, warpN);            // 神经场
       float w = fbm(p*0.6 + vec3(t*0.2, t*0.1, 0.0));
-      float f = fbm(p*1.1 + (w-0.5)*1.3 + vec3(0.0, t*0.6, t*0.2));
+      float f = fbm(p*1.1 + (w-0.5)*1.3 + warpN*0.6 + vec3(0.0, t*0.6, t*0.2));   // warp 受神经场扰动
       float breathe = 0.5 + 0.5*sin(uTime*0.22) + uPulse*0.4;        // 缓慢呼吸（真机麦克风接管）
       float vert = (-vDir.y)*0.5 + 0.5;                              // 1=底部 0=顶部
-      float hue = f*0.85 + (w-0.5)*0.45 + vert*0.18 + uTime*0.006 + (uWarm-0.5)*0.25 + 0.06;  // 走遍 off-color 全谱
+      float hue = f*0.6 + (w-0.5)*0.35 + hueN*0.35 + vert*0.18 + uTime*0.006 + (uWarm-0.5)*0.25 + 0.06;  // 神经场 + 流体共定色相
       vec3 col = pal(hue);
       col *= 0.7 + 0.42*breathe;                                     // 整体随呼吸明暗起伏
       gl_FragColor = vec4(col, 1.0);
@@ -155,9 +177,21 @@ const solidLineMat = new THREE.ShaderMaterial({
     void main(){ float f = clamp((110.0 - vDist)/80.0, 0.22, 1.0); gl_FragColor = vec4(vC*0.85, uOpacity*f); }`
 });
 
+// SOM 神经晶格材质：neighbor 连线，亮度=神经元 density，整体随呼吸量 uOrg 浮现（呼气时心智显形）
+const latticeMat = new THREE.ShaderMaterial({
+  uniforms: { uOrg: { value: 0 } }, transparent: true, depthWrite: false, blending: THREE.AdditiveBlending,
+  vertexShader: `attribute vec3 aColor; attribute float aGlow; varying vec3 vC; varying float vG; varying float vDist;
+    void main(){ vC = aColor; vG = aGlow; vec4 mv = modelViewMatrix*vec4(position,1.0); vDist = -mv.z; gl_Position = projectionMatrix*mv; }`,
+  fragmentShader: `varying vec3 vC; varying float vG; varying float vDist; uniform float uOrg;
+    void main(){ float f = clamp((220.0 - vDist)/170.0, 0.12, 1.0); float a = vG*uOrg*0.55*f; if (a < 0.004) discard; gl_FragColor = vec4(vC*(0.45+0.7*vG), a); }`
+});
+
 // ---------- builders (collect into plain arrays, finalize after counts known) ----------
-const D = { sys: [], anc: [], scl: [], bh: [], prm: [], spd: [], seed: [], rot: [], tlen: [], col: [], sz: [], tw: [], hz: [], op: [], meta: [] };
+const D = { sys: [], anc: [], scl: [], bh: [], prm: [], spd: [], seed: [], rot: [], tlen: [], col: [], sz: [], tw: [], hz: [], op: [], meta: [], feat: [] };
 function hash01(str) { let h = 2166136261; str = String(str); for (let i = 0; i < str.length; i++) { h ^= str.charCodeAt(i); h = Math.imul(h, 16777619); } return ((h >>> 0) % 100003) / 100003; }
+// SOM 特征向量：typeId one-hot（×1.5 让分层占优）+ 调用方填充 0..19 的字段槽
+function makeFeat(typeId) { const v = new Float32Array(FEAT_DIM); v[20 + typeId] = 1.5; return v; }
+const setOrigin = (v, o) => { v[10] = o === 'domestic' ? 1 : 0; v[11] = o === 'open_source' ? 1 : 0; v[12] = (o !== 'domestic' && o !== 'open_source') ? 1 : 0; };
 const BEAM = { a: [], b: [], col: [], w: [] };
 const beamEndTmpl = [0, 1, 1, 0, 1, 0], beamSideTmpl = [-1, -1, 1, -1, 1, 1];   // 2 三角形 = ribbon quad
 const tmpCol = new THREE.Color();
@@ -212,10 +246,17 @@ function buildHousing() {
     else if (annualMean < 18) { canc = CENTER; cscl = 9; cbh = 0.00113; if (sun > 2200) { csys = 14; cseed = [(Math.random() - 0.5), (Math.random() - 0.5), (Math.random() - 0.5)]; } else { csys = 7; cseed = [(Math.random() - 0.5) * 1.5, (Math.random() - 0.5) * 1.5, (Math.random() - 0.5) * 1.5]; } }
     else { csys = 8; canc = CENTER; cscl = 8; cbh = 0.00113; cseed = [(Math.random() - 0.5), 1 + (Math.random() - 0.5), 1 + (Math.random() - 0.5)]; }
     const ctail = 5 + clamp((Math.log10(unit + 1) - 2.2) / 3, 0, 1) * (TRAIL - 6);   // 越贵彗尾越长
-    addStar(csys, canc, cscl, cbh, b, spd, cseed, hue, sat, light, size, tw, hz, {
-      k: '城市 CITY', name: ls.loc || ls.city,
-      sub: `${ls.prov} · ${ls.city} · 单价 ${(unit / 10000).toFixed(1)} 万/㎡ · 宜居 ${comfort} 天 · 海拔 ${Math.round(elev)} m${e.hazard?.top?.[0] ? ' · ' + e.hazard.top[0] : ''}`
+    const ci = addStar(csys, canc, cscl, cbh, b, spd, cseed, hue, sat, light, size, tw, hz, {
+      kind: 'CITY',
+      nameZh: ls.loc || ls.city,
+      nameEn: ls.loc || ls.city,
+      raw: { city: ls.city, prov: ls.prov, unit, comfort, elev, hazard: e.hazard?.top?.[0] || '' },
     }, null, ctail);
+    const fv = makeFeat(0);   // 城市气候/房价 → 特征槽 0..9
+    fv[0] = cf; fv[1] = clamp(tRange / 45, 0, 1); fv[2] = clamp(sun / 3500, 0, 1); fv[3] = clamp(pm / 85, 0, 1);
+    fv[4] = clamp(elev / 4000, 0, 1); fv[5] = clamp(burden / 40, 0, 1); fv[6] = clamp((Math.log10(unit + 1) - 2.2) / 3, 0, 1);
+    fv[7] = clamp(yld / 0.05, 0, 1); fv[8] = clamp((outflow + 30) / 60, 0, 1); fv[9] = clamp((annualMean + 10) / 40, 0, 1);
+    D.feat[ci] = fv;
     n++;
   }
   climWarm = cn ? clamp((cs / cn - 5) / 18, 0.12, 0.9) : 0.5;   // 全国年均温 → 背景冷暖偏置
@@ -252,9 +293,14 @@ async function buildIndustrial() {
 
   kernels.forEach((k) => {
     const used = (k.used_by_product_ids || []).length; kUsed[k.id] = used;
-    kIdx[k.id] = addStar(1, CENTER, 0.85, 0.0016, 28, 0.45, lz(), hueOf(k.origin), 0.7, 0.55, 3.0 + used * 0.04, 0.4, 0.25, {
-      k: '内核 KERNEL', name: k.name_zh || k.name_en, sub: `${k.origin === 'domestic' ? '国产' : '国外'} · ${k.owner || ''} · 被 ${used} 个产品使用`
+    const ki = addStar(1, CENTER, 0.85, 0.0016, 28, 0.45, lz(), hueOf(k.origin), 0.7, 0.55, 3.0 + used * 0.04, 0.4, 0.25, {
+      kind: 'KERNEL',
+      nameZh: k.name_zh,
+      nameEn: k.name_en,
+      raw: { origin: k.origin, owner: k.owner || '', used },
     }, null, 6 + clamp(used / 30, 0, 1) * (TRAIL - 6));
+    kIdx[k.id] = ki;
+    const fv = makeFeat(2); setOrigin(fv, k.origin); fv[17] = clamp(used / 30, 0, 1); D.feat[ki] = fv;
   });
 
   // 产品按出身分三种图案：国产→Lorenz蝴蝶 / 国外→Lü / 开源→Sprott-Linz F
@@ -268,10 +314,21 @@ async function buildIndustrial() {
       hueOf(p.origin), 0.62, 0.42 + mat * 0.1,
       p.maturity === 'high' ? 3.0 : p.maturity === 'medium' ? 2.1 : 1.5,
       p.localization_depth === 'full' ? 0.25 : 0.45, clamp(1 - (p.confidence ?? 0.8), 0, 1), {
-      k: '产品 PRODUCT', name: p.name_zh || p.name_en,
-      sub: `${p.category_l2 || p.category_l1 || ''} · ${p.origin === 'domestic' ? '国产' : p.origin === 'open_source' ? '开源' : '国外'} · 成熟度 ${p.maturity || '—'} · 本地化 ${p.localization_depth || '—'}`
+      kind: 'PRODUCT',
+      nameZh: p.name_zh,
+      nameEn: p.name_en,
+      raw: {
+        category: p.category_l2 || p.category_l1 || '',
+        origin: p.origin,
+        maturity: p.maturity || '—',
+        localization: p.localization_depth || '—',
+      },
     }, null, 5 + mat * (TRAIL - 6));
     pIdx[p.id] = i;
+    const fv = makeFeat(1); setOrigin(fv, p.origin); fv[13] = mat;
+    fv[14] = p.localization_depth === 'full' ? 1 : p.localization_depth === 'partial' ? 0.5 : 0.3;
+    fv[15] = clamp(p.confidence ?? 0.8, 0, 1); fv[17] = clamp((kUsed[p.kernel_id] || 0) / 30, 0, 1);
+    D.feat[i] = fv;
     if (p.kernel_id && kIdx[p.kernel_id] != null) { const c = colOf(p.origin); BEAM.a.push(i); BEAM.b.push(kIdx[p.kernel_id]); BEAM.col.push(c[0], c[1], c[2]); BEAM.w.push(0.6 + clamp((kUsed[p.kernel_id] || 0) / 30, 0, 1) * 3.0); }
   });
 
@@ -287,9 +344,12 @@ async function buildIndustrial() {
     else { msys = 3; manc = CENTER; mscl = 15; mbh = 0.0038; mseed = az(); }
     const i = addStar(msys, manc, mscl, mbh, 0, 0.3 + yf * 0.4, mseed,
       30 + inc * 4, 0.85, 0.6, ev === 'audited' ? 3.2 : ev === 'case_study' ? 2.4 : 1.8, 0.92, 0.1, {
-      k: '突破 BREAKTHROUGH', name: m.headline_zh || m.headline_en || '突破',
-      sub: `${y4} · 攻克 ${m.capability_key || ''}${inc ? ' · 替代 ' + inc + ' 款在位产品' : ''}`
+      kind: 'BREAKTHROUGH',
+      nameZh: m.headline_zh,
+      nameEn: m.headline_en,
+      raw: { y4, capability: m.capability_key || '', inc },
     }, [hash01('cap:' + (m.capability_key || 'x')) * 6.283, hash01('mp:' + (m.id || y4)) * 3.14 - 1.57, hash01('mr:' + (m.id || y4)) * 6.283], 7 + clamp(inc / 6, 0, 1) * (TRAIL - 7));
+    const fv = makeFeat(3); fv[16] = yf; fv[18] = ev === 'audited' ? 1 : ev === 'case_study' ? 0.5 : 0; fv[19] = clamp(inc / 6, 0, 1); D.feat[i] = fv;
     (m.incumbent_product_ids || []).forEach((iid) => { if (pIdx[iid] != null) { BEAM.a.push(i); BEAM.b.push(pIdx[iid]); BEAM.col.push(0.85, 0.22, 0.28); BEAM.w.push(0.6 + clamp(inc / 6, 0, 1) * 3.0); } });
   });
 
@@ -301,9 +361,19 @@ async function buildIndustrial() {
     // 政策按类型分两团：纲领/五年规划→Halvorsen / 资金·部委→Rössler
     const prog = p.policy_type === 'program' || p.policy_type === 'fyp';
     const Psys = prog ? 4 : 2, Panc = CENTER, Pscl = prog ? 1.8 : 1.7, Pbh = prog ? 0.002 : 0.004, Pseed = prog ? hv() : ro2(), Pprm = prog ? 0 : 5.7;
-    addStar(Psys, Panc, Pscl, Pbh, Pprm, 0.4 + tNorm * 0.5, Pseed, hue, 0.5, 0.6, 1.6 + tNorm * 3, 0.5, 0.3, {
-      k: '政策 POLICY', name: p.title_zh || p.title_en, sub: `${y4} · ${p.policy_type || ''}${p.target_value ? ' · ' + p.target_value + (p.target_unit_zh || '') : ''}`
+    const pi = addStar(Psys, Panc, Pscl, Pbh, Pprm, 0.4 + tNorm * 0.5, Pseed, hue, 0.5, 0.6, 1.6 + tNorm * 3, 0.5, 0.3, {
+      kind: 'POLICY',
+      nameZh: p.title_zh,
+      nameEn: p.title_en,
+      raw: {
+        y4,
+        policyType: p.policy_type || '',
+        targetValue: p.target_value,
+        targetUnitZh: p.target_unit_zh,
+        targetUnitEn: p.target_unit_en,
+      },
     }, [hash01('pt:' + (p.policy_type || 'x')) * 6.283, yf * 3.14 - 1.0 + hash01('pp:' + (p.id || y4)) * 0.6, hash01('pr:' + (p.id || y4)) * 6.283], 5 + tNorm * (TRAIL - 6));
+    const fv = makeFeat(4); fv[16] = yf; fv[18] = tNorm; D.feat[pi] = fv;
   });
 
   // 厂商按出身分三种图案：国产→Dadras / 国外→Newton-Leipnik / 开源→Hadley
@@ -312,10 +382,14 @@ async function buildIndustrial() {
     if (v.origin === 'domestic') { vsys = 5; vseed = dd(); vscl = 1.4; }
     else if (v.origin === 'open_source') { vsys = 13; vseed = hd(); vscl = 9; }
     else { vsys = 12; vseed = nl(); vscl = 14; }
-    addStar(vsys, CENTER, vscl, 0.012, 0, 0.4, vseed,
+    const vi = addStar(vsys, CENTER, vscl, 0.012, 0, 0.4, vseed,
       hueOf(v.origin), 0.4, 0.42, 2.4, 0.4, 0.5, {
-      k: '厂商 VENDOR', name: v.name_zh || v.name_en, sub: `${v.origin === 'domestic' ? '国产' : v.origin === 'open_source' ? '开源' : '国外'} · ${v.hq_city || ''} ${v.hq_country || ''}`
+      kind: 'VENDOR',
+      nameZh: v.name_zh,
+      nameEn: v.name_en,
+      raw: { origin: v.origin, hqCity: v.hq_city || '', hqCountry: v.hq_country || '' },
     }, null, 4);
+    const fv = makeFeat(5); setOrigin(fv, v.origin); D.feat[vi] = fv;
   });
 
   pairs.forEach((bp) => { if (pIdx[bp.domestic_id] != null && pIdx[bp.international_id] != null) { BEAM.a.push(pIdx[bp.domestic_id]); BEAM.b.push(pIdx[bp.international_id]); BEAM.col.push(0.2, 0.8, 0.72); BEAM.w.push(1.0); } });
@@ -329,6 +403,8 @@ let sys, anc, scl, bh, prm, spd, state, posArr, trail, trailSrc, rotM, head = 0;
 let pointsObj, trailObj, beamObj, beamIdxA, beamIdxB, beamPos;
 let grp, segsG, pointVisArr, pointVisAttr, trailVisArr, trailVisAttr, beamVisArr, beamVisAttr, beamEnds;
 let E = 0, emEnt, emLocal, entMat;   // 轨迹发射点：每个立体的每个顶点各一条
+let featM = null, latticeObj = null;   // SOM 特征矩阵(N×FEAT_DIM) · 神经晶格 LineSegments
+let gOrg = 0, breathT = 0;             // 呼吸量(0=重叠混沌 / 1=铺开成神经地图) · 呼吸相位累加器
 function cornersOf(t) {
   if (t === 0) return [0, 0, 0];                                                                                   // 城市=光点
   if (t === 1) { const h = 0.39, a = []; for (const x of [-h, h]) for (const y of [-h, h]) for (const z of [-h, h]) a.push(x, y, z); return a; }   // 方块 8 角（全部）
@@ -339,7 +415,7 @@ function cornersOf(t) {
 }
 let solidGroups = [];
 const _dummy = new THREE.Object3D(), _q = new THREE.Quaternion(), _v = new THREE.Vector3();
-const GROUP_KEY = { '城市 CITY': 0, '产品 PRODUCT': 1, '内核 KERNEL': 2, '突破 BREAKTHROUGH': 3, '政策 POLICY': 4, '厂商 VENDOR': 5 };
+const GROUP_KEY = { CITY: 0, PRODUCT: 1, KERNEL: 2, BREAKTHROUGH: 3, POLICY: 4, VENDOR: 5 };
 const groupVis = [true, true, true, true, true, true];
 
 function finalize() {
@@ -347,6 +423,15 @@ function finalize() {
   sys = Uint8Array.from(D.sys); anc = Float32Array.from(D.anc); scl = Float32Array.from(D.scl);
   bh = Float32Array.from(D.bh); prm = Float32Array.from(D.prm); spd = Float32Array.from(D.spd);
   state = Float32Array.from(D.seed); posArr = new Float32Array(N * 3);
+
+  // 特征矩阵 featM(N×FEAT_DIM)：缺位填 0；字段列 0..19 做 min/max 归一化（类型 one-hot 列 20..25 保留偏置）
+  featM = new Float32Array(N * FEAT_DIM);
+  for (let i = 0; i < N; i++) { const fv = D.feat[i]; if (fv) featM.set(fv, i * FEAT_DIM); }
+  for (let c = 0; c < 20; c++) {
+    let mn = Infinity, mx = -Infinity;
+    for (let i = 0; i < N; i++) { const v = featM[i * FEAT_DIM + c]; if (v < mn) mn = v; if (v > mx) mx = v; }
+    const rng = mx - mn; if (rng > 1e-6) for (let i = 0; i < N; i++) { const k = i * FEAT_DIM + c; featM[k] = (featM[k] - mn) / rng; }
+  }
 
   // per-point 3D orientation matrix (data-driven axis) → tilts each attractor out of its plane
   rotM = new Float32Array(N * 9);
@@ -366,7 +451,7 @@ function finalize() {
   for (let i = 0; i < N; i++) writeWorld(i);
 
   // group id per point (for show/hide toggles)
-  grp = Uint8Array.from(D.meta.map((m) => (m && GROUP_KEY[m.k] != null ? GROUP_KEY[m.k] : 0)));
+  grp = Uint8Array.from(D.meta.map((m) => (m && GROUP_KEY[m.kind] != null ? GROUP_KEY[m.kind] : 0)));
 
   // points
   const g = new THREE.BufferGeometry();
@@ -452,7 +537,10 @@ function finalize() {
 }
 
 function writeWorld(i) {
-  const o = i * 3, sy = sys[i], s = scl[i], r = i * 9;
+  const o = i * 3, sy = sys[i], s = scl[i] * (1 - (1 - SHRINK) * gOrg), r = i * 9;   // 呼气铺开 → 混沌缩小
+  const ax = CENTER[0] + (anc[o] - CENTER[0]) * gOrg;         // 有效锚点：CENTER(重叠) ⇄ SOM 语义坐标
+  const ay = CENTER[1] + (anc[o + 1] - CENTER[1]) * gOrg;
+  const az = CENTER[2] + (anc[o + 2] - CENTER[2]) * gOrg;
   let cx = 0, cy = 0, cz = 0;                                  // per-attractor centering
   if (sy === 1) cz = 25; else if (sy === 3) cz = 0.6; else if (sy === 4) { cx = -2.4; cy = -2.4; cz = -2.4; } else if (sy === 6) cz = 22; else if (sy === 8) cx = 1; else if (sy === 9) cz = 20;
   const lx = (state[o] - cx) * s, ly = (state[o + 2] - cz) * s, lz = (state[o + 1] - cy) * s;   // attractor local frame (z→up)
@@ -461,9 +549,9 @@ function writeWorld(i) {
   const oz = rotM[r + 6] * lx + rotM[r + 7] * ly + rotM[r + 8] * lz;
   const ai = sy * 3, kx = SYS_AXIS[ai], ky = SYS_AXIS[ai + 1], kz = SYS_AXIS[ai + 2], cc = sysCos[sy], sn = sysSin[sy];
   const kd = (kx * ox + ky * oy + kz * oz) * (1 - cc);                            // per-system self-rotation (Rodrigues)
-  posArr[o] = anc[o] + ox * cc + (ky * oz - kz * oy) * sn + kx * kd;
-  posArr[o + 1] = anc[o + 1] + oy * cc + (kz * ox - kx * oz) * sn + ky * kd;
-  posArr[o + 2] = anc[o + 2] + oz * cc + (kx * oy - ky * ox) * sn + kz * kd;
+  posArr[o] = ax + ox * cc + (ky * oz - kz * oy) * sn + kx * kd;
+  posArr[o + 1] = ay + oy * cc + (kz * ox - kx * oz) * sn + ky * kd;
+  posArr[o + 2] = az + oz * cc + (kx * oy - ky * ox) * sn + kz * kd;
 }
 function capOf(s) { return s === 1 ? 0.011 : s === 3 ? 0.02 : s === 4 ? 0.01 : s === 5 ? 0.012 : s === 6 ? 0.004 : s === 7 ? 0.02 : s === 8 ? 0.02 : s === 9 ? 0.005 : s === 10 ? 0.02 : s === 11 ? 0.02 : s === 12 ? 0.01 : s === 13 ? 0.015 : s === 14 ? 0.02 : s === 2 ? 0.045 : 0.05; }
 function stepOne(i, h) {
@@ -490,6 +578,75 @@ function stepOne(i, h) {
     y = (Math.random() - 0.5); z = (s === 1 || s === 6 || s === 9) ? 20 : (Math.random() - 0.5);
   }
   state[o] = x; state[o + 1] = y; state[o + 2] = z;
+}
+
+// ---------- SOM：Kohonen 自组织网络（boot 一次性整训）→ 写语义锚点 + 画神经晶格 ----------
+function buildSOM() {
+  if (!N || !featM) return null;
+  const Lx = SOM_L[0], Ly = SOM_L[1], Lz = SOM_L[2], M = Lx * Ly * Lz, d = FEAT_DIM;
+  const W = new Float32Array(M * d);
+  for (let n = 0; n < M; n++) { const r = (Math.random() * N) | 0; W.set(featM.subarray(r * d, r * d + d), n * d); }   // init=随机样本
+  const nx = (n) => n % Lx, ny = (n) => ((n / Lx) | 0) % Ly, nz = (n) => (n / (Lx * Ly)) | 0;
+  const order = new Int32Array(N); for (let i = 0; i < N; i++) order[i] = i;
+  const sigma0 = Math.max(Lx, Ly, Lz) * 0.5, total = SOM_EPOCHS * N; let it = 0;
+  for (let ep = 0; ep < SOM_EPOCHS; ep++) {
+    for (let a = N - 1; a > 0; a--) { const b = (Math.random() * (a + 1)) | 0, t = order[a]; order[a] = order[b]; order[b] = t; }   // shuffle
+    for (let s = 0; s < N; s++) {
+      const xi = order[s] * d, frac = it++ / total;
+      const alpha = 0.5 * Math.exp(-frac * 3), sigma = sigma0 * Math.exp(-frac * 3), inv2s2 = 1 / (2 * sigma * sigma);
+      let bmu = 0, best = Infinity;                                          // 竞争：找 BMU
+      for (let n = 0; n < M; n++) { const wo = n * d; let acc = 0; for (let k = 0; k < d; k++) { const e = featM[xi + k] - W[wo + k]; acc += e * e; if (acc >= best) break; } if (acc < best) { best = acc; bmu = n; } }
+      const bx = nx(bmu), by = ny(bmu), bz = nz(bmu), rad = Math.max(1, Math.ceil(sigma));
+      for (let iz = Math.max(0, bz - rad); iz <= Math.min(Lz - 1, bz + rad); iz++)               // 邻域协同更新
+        for (let iy = Math.max(0, by - rad); iy <= Math.min(Ly - 1, by + rad); iy++)
+          for (let ix = Math.max(0, bx - rad); ix <= Math.min(Lx - 1, bx + rad); ix++) {
+            const dist2 = (ix - bx) * (ix - bx) + (iy - by) * (iy - by) + (iz - bz) * (iz - bz);
+            const h = alpha * Math.exp(-dist2 * inv2s2); if (h < 1e-3) continue;
+            const wo = (ix + Lx * (iy + Ly * iz)) * d;
+            for (let k = 0; k < d; k++) W[wo + k] += h * (featM[xi + k] - W[wo + k]);
+          }
+    }
+  }
+  // 每星→BMU→晶格坐标→世界坐标，写入 anc；累积 density
+  const Rx = SOM_R[0], Ry = SOM_R[1], Rz = SOM_R[2];
+  const nodeWorld = (ix, iy, iz) => [CENTER[0] + (ix / (Lx - 1) - 0.5) * 2 * Rx, CENTER[1] + (iy / (Ly - 1) - 0.5) * 2 * Ry, CENTER[2] + (iz / (Lz - 1) - 0.5) * 2 * Rz];
+  const density = new Float32Array(M);
+  for (let i = 0; i < N; i++) {
+    const xi = i * d; let bmu = 0, best = Infinity;
+    for (let n = 0; n < M; n++) { const wo = n * d; let acc = 0; for (let k = 0; k < d; k++) { const e = featM[xi + k] - W[wo + k]; acc += e * e; } if (acc < best) { best = acc; bmu = n; } }
+    density[bmu]++;
+    const w = nodeWorld(nx(bmu), ny(bmu), nz(bmu)); anc[i * 3] = w[0]; anc[i * 3 + 1] = w[1]; anc[i * 3 + 2] = w[2];
+  }
+  let maxD = 1; for (let n = 0; n < M; n++) if (density[n] > maxD) maxD = density[n];
+  // 神经晶格：相邻神经元(+x/+y/+z)连线，aGlow=density 归一
+  const segPos = [], segCol = [], segGlow = [], BASE = [0.42, 0.56, 0.82];
+  const glowOf = (n) => 0.16 + 0.84 * (density[n] / maxD);
+  const link = (na, nb) => {
+    const a = nodeWorld(nx(na), ny(na), nz(na)), b = nodeWorld(nx(nb), ny(nb), nz(nb));
+    segPos.push(a[0], a[1], a[2], b[0], b[1], b[2]);
+    segCol.push(BASE[0], BASE[1], BASE[2], BASE[0], BASE[1], BASE[2]);
+    segGlow.push(glowOf(na), glowOf(nb));
+  };
+  for (let iz = 0; iz < Lz; iz++) for (let iy = 0; iy < Ly; iy++) for (let ix = 0; ix < Lx; ix++) {
+    const n = ix + Lx * (iy + Ly * iz);
+    if (ix + 1 < Lx) link(n, n + 1);
+    if (iy + 1 < Ly) link(n, n + Lx);
+    if (iz + 1 < Lz) link(n, n + Lx * Ly);
+  }
+  const lg = new THREE.BufferGeometry();
+  lg.setAttribute('position', new THREE.Float32BufferAttribute(segPos, 3));
+  lg.setAttribute('aColor', new THREE.Float32BufferAttribute(segCol, 3));
+  lg.setAttribute('aGlow', new THREE.Float32BufferAttribute(segGlow, 1));
+  latticeObj = new THREE.LineSegments(lg, latticeMat); latticeObj.frustumCulled = false; root.add(latticeObj);
+  return { neurons: M, edges: segGlow.length / 2 };
+}
+
+// CPPN 权重：用数据聚合量确定性播种（mulberry32 PRNG）→ 上传到背景 shader
+function seedCPPN(seedInt) {
+  let s = seedInt >>> 0;
+  const rnd = () => { s = (s + 0x6D2B79F5) | 0; let t = Math.imul(s ^ (s >>> 15), 1 | s); t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t; return ((t ^ (t >>> 14)) >>> 0) / 4294967296; };
+  const Wt = new Float32Array(138); for (let i = 0; i < 138; i++) Wt[i] = (rnd() * 2 - 1) * 1.3;
+  return Wt;
 }
 
 // ---------- immersive look controller（相机在体系正中心，第一人称环视）----------
@@ -526,7 +683,7 @@ async function enableSensors() {
     ac.createMediaStreamSource(stream).connect(an); analyser = an; micBuf = new Uint8Array(an.frequencyBinCount);
   } catch (_) {}
   const btn = document.getElementById('enable');
-  btn.textContent = analyser ? '感应已开启 · 出声让混沌加速' : '感应已请求（真机 https 下生效）';
+  btn.textContent = sensorBtnLabel(analyser);
   setTimeout(() => { btn.parentElement.style.opacity = '0.3'; }, 2600);
 }
 document.getElementById('enable').addEventListener('click', enableSensors);
@@ -534,15 +691,29 @@ document.getElementById('enable').addEventListener('click', enableSensors);
 // pick
 const raycaster = new THREE.Raycaster(); raycaster.params.Points.threshold = 2.6;
 const card = document.getElementById('card'); const ndc = new THREE.Vector2();
-let downX = 0, downY = 0;
+let downX = 0, downY = 0, cardMeta = null;
 renderer.domElement.addEventListener('pointerdown', (e) => { downX = e.clientX; downY = e.clientY; });
 renderer.domElement.addEventListener('pointerup', (e) => {
   if (Math.hypot(e.clientX - downX, e.clientY - downY) > 7 || !pointsObj) return;
   ndc.set((e.clientX / innerWidth) * 2 - 1, -(e.clientY / innerHeight) * 2 + 1);
   raycaster.setFromCamera(ndc, camera);
   const hit = raycaster.intersectObject(pointsObj)[0];
-  if (hit && D.meta[hit.index]) { const m = D.meta[hit.index]; card.innerHTML = `<div class="k">${m.k}</div><h3>${m.name || ''}</h3><p>${m.sub || ''}</p>`; card.classList.remove('hidden'); }
-  else card.classList.add('hidden');
+  if (hit && D.meta[hit.index]) {
+    cardMeta = D.meta[hit.index];
+    card.innerHTML = renderCardHtml(cardMeta);
+    card.classList.remove('hidden');
+  } else {
+    cardMeta = null;
+    card.classList.add('hidden');
+  }
+});
+
+document.getElementById('lang-toggle').addEventListener('click', (e) => {
+  e.stopPropagation();
+  toggleLang();
+  const lt = document.getElementById('lang-toggle');
+  if (lt) lt.title = isZh() ? 'Switch to English' : 'Switch to 中文';
+  applyUi({ analyser, cardMeta, cardEl: card });
 });
 
 // HUD 静置淡隐（交互时浮现，让作品留白）
@@ -562,6 +733,12 @@ function animate() {
   else pulse *= 0.95;
   U.uPulse.value = pulse;
   bgMat.uniforms.uTime.value = tElapsed; bgMat.uniforms.uPulse.value = pulse;
+
+  // 呼吸式自组织：CENTER(重叠混沌) ⇄ SOM 神经地图；mic 出声提速呼吸；smootherstep 在两端停留
+  breathT += dt * (0.13 + pulse * 0.3);
+  const oRaw = 0.5 - 0.5 * Math.cos(breathT);
+  gOrg = oRaw * oRaw * (3 - 2 * oRaw);
+  if (latticeObj) latticeMat.uniforms.uOrg.value = gOrg;   // 呼气时神经晶格显形
 
   // 每系统各绕自己的轴自转（始终开启）
   spinTime += dt * (0.00024 + pulse * 0.0006);
@@ -703,34 +880,49 @@ function updateVisibility() {
 
 function buildPanel() {
   const panel = document.createElement('div'); panel.id = 'panel';
-  const groups = [['城市 气候', 0], ['产品', 1], ['内核', 2], ['突破', 3], ['政策', 4], ['厂商', 5]];
-  const mkRow = (label, checked, onToggle) => {
+  const groups = [
+    ['panelCities', 0], ['panelProducts', 1], ['panelKernels', 2],
+    ['panelBreakthroughs', 3], ['panelPolicies', 4], ['panelVendors', 5],
+  ];
+  const mkRow = (i18nKey, checked, onToggle) => {
     const row = document.createElement('label'); row.className = 'prow';
     const cb = document.createElement('input'); cb.type = 'checkbox'; cb.checked = checked;
     cb.addEventListener('change', () => onToggle(cb.checked));
-    const sp = document.createElement('span'); sp.textContent = label;
-    row.appendChild(cb); row.appendChild(sp); return row;
+    const sp = document.createElement('span');
+    row.appendChild(cb); row.appendChild(sp);
+    registerPanelNode('rows', i18nKey, sp);
+    return row;
   };
-  const h = document.createElement('div'); h.className = 'phead'; h.textContent = '数据体系'; panel.appendChild(h);
-  groups.forEach(([label, gi]) => panel.appendChild(mkRow(label, true, (on) => { groupVis[gi] = on; updateVisibility(); })));
-  const h2 = document.createElement('div'); h2.className = 'phead'; h2.textContent = '元素'; panel.appendChild(h2);
-  panel.appendChild(mkRow('连线', true, (on) => { if (beamObj) beamObj.visible = on; }));
-  panel.appendChild(mkRow('拖尾', true, (on) => { if (trailObj) trailObj.visible = on; }));
+  const h = document.createElement('div'); h.className = 'phead';
+  registerPanelNode('heads', 'panelLayers', h);
+  panel.appendChild(h);
+  groups.forEach(([key, gi]) => panel.appendChild(mkRow(key, true, (on) => { groupVis[gi] = on; updateVisibility(); })));
+  const h2 = document.createElement('div'); h2.className = 'phead';
+  registerPanelNode('heads', 'panelEffects', h2);
+  panel.appendChild(h2);
+  panel.appendChild(mkRow('panelBeams', true, (on) => { if (beamObj) beamObj.visible = on; }));
+  panel.appendChild(mkRow('panelTrails', true, (on) => { if (trailObj) trailObj.visible = on; }));
+  panel.appendChild(mkRow('panelLattice', true, (on) => { if (latticeObj) latticeObj.visible = on; }));
   document.body.appendChild(panel);
-  panel.style.display = 'none';                                  // 默认隐藏；按 D 可临时唤出调参
+  panel.style.display = 'none';
   addEventListener('keydown', (e) => { if (e.key === 'd' || e.key === 'D') panel.style.display = panel.style.display === 'none' ? 'flex' : 'none'; });
 }
 
 // ---------- boot ----------
 (async function main() {
   let info = {};
-  try { info = await buildIndustrial(); } catch (err) { console.warn('[数渊] industrial load failed (need http server):', err); }
+  try { info = await buildIndustrial(); } catch (err) { console.warn('[Data Abyss] industrial load failed (need http server):', err); }
   const cities = buildHousing();
   bgMat.uniforms.uWarm.value = climWarm;
+  // CPPN 背景：用数据聚合量确定性播种神经权重（这场梦由数据塑形）
+  const cppnSeed = (Math.round(climWarm * 1000) * 131 + (info.products || 0) * 17 + (info.milestones || 0) * 7 + (info.policies || 0) * 3 + cities) >>> 0;
+  bgMat.uniforms.uW.value = seedCPPN(cppnSeed);
   finalize();
+  const som = buildSOM();   // boot 一次性整训 Kohonen 网络 → 语义锚点 + 神经晶格
   buildSolids();
   buildPanel();
-  console.log(`[数渊] ${cities} 城市 · ${info.products || 0} 产品 · ${info.kernels || 0} 内核 · ${info.milestones || 0} 突破 · ${info.policies || 0} 政策 · ${info.vendors || 0} 厂商 · ${N} 混沌星体 · ${beamIdxA ? beamIdxA.length : 0} 连线`);
+  applyUi({ skipEnable: true });
+  console.log(`[Data Abyss] ${cities} cities · ${info.products || 0} products · ${info.kernels || 0} kernels · ${info.milestones || 0} breakthroughs · ${info.policies || 0} policies · ${info.vendors || 0} vendors · ${N} bodies · ${beamIdxA ? beamIdxA.length : 0} beams · SOM ${som ? som.neurons + ' neurons / ' + som.edges + ' edges' : 'skipped'}`);
   const ld = document.getElementById('loading'); ld.classList.add('gone'); setTimeout(() => ld.remove(), 1000);
   animate();
 })();
