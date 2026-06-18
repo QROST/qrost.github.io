@@ -11,13 +11,22 @@
 // 视觉：大小/色相/明灭/雾晕仍数据驱动；无 bloom；每颗星拖 18 帧渐隐轨迹；连线=淡虚线（弱化）。
 
 import * as THREE from 'three';
-import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 
 const IS_MOBILE = matchMedia('(pointer: coarse)').matches || innerWidth < 820;
 const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
 const lerp = (a, b, t) => a + (b - a) * t;
 const IND = '../china-industrial-software/assets/data/';
-const TRAIL = IS_MOBILE ? 14 : 26;   // 轨迹历史帧数上限（每点实际尾长由数据决定）
+const TRAIL = IS_MOBILE ? 22 : 40;   // 轨迹历史采样数上限（每点实际尾长由数据决定）
+const STRIDE = 5;                     // 每 STRIDE 帧采样一次轨迹 → 路径覆盖更长时间、更可见
+const CENTER = [0, 42, 0];           // 所有吸引子共用中心 → 重叠共舞
+const SYSN = 15;                     // 系统总数
+const SYS_AXIS = new Float32Array(SYSN * 3), SYS_SPIN = new Float32Array(SYSN);
+const sysCos = new Float32Array(SYSN).fill(1), sysSin = new Float32Array(SYSN);
+for (let s = 0; s < SYSN; s++) {     // 每个系统不同的自转轴 + 角速度
+  let ax = Math.sin(s * 1.3 + 0.5), ay = Math.cos(s * 0.7 + 1.1), az = Math.sin(s * 2.1 + 0.3);
+  const L = Math.hypot(ax, ay, az) || 1; SYS_AXIS[s * 3] = ax / L; SYS_AXIS[s * 3 + 1] = ay / L; SYS_AXIS[s * 3 + 2] = az / L;
+  SYS_SPIN[s] = 0.04 + (s % 5) * 0.022;
+}
 
 // ---------- scene ----------
 const container = document.getElementById('scene');
@@ -25,7 +34,7 @@ const scene = new THREE.Scene();
 scene.fog = new THREE.FogExp2(0x05060e, 0.0019);
 
 const camera = new THREE.PerspectiveCamera(56, innerWidth / innerHeight, 0.1, 4000);
-camera.position.set(0, 48, 176);
+camera.position.set(0, 44, 150);
 
 const renderer = new THREE.WebGLRenderer({ antialias: !IS_MOBILE, powerPreference: 'high-performance' });
 renderer.setSize(innerWidth, innerHeight);
@@ -38,16 +47,35 @@ container.appendChild(renderer.domElement);
 const root = new THREE.Group();
 scene.add(root);
 
-// gradient backdrop
-{
-  const mat = new THREE.ShaderMaterial({
-    side: THREE.BackSide, depthWrite: false,
-    uniforms: { top: { value: new THREE.Color(0x0a1230) }, bot: { value: new THREE.Color(0x030308) } },
-    vertexShader: `varying float h; void main(){ h = normalize(position).y*0.5+0.5; gl_Position = projectionMatrix*modelViewMatrix*vec4(position,1.0); }`,
-    fragmentShader: `varying float h; uniform vec3 top; uniform vec3 bot; void main(){ gl_FragColor = vec4(mix(bot, top, pow(h,1.4)), 1.0); }`
-  });
-  scene.add(new THREE.Mesh(new THREE.SphereGeometry(1500, 32, 24), mat));
-}
+// 背景：气候驱动的冷暖流体场（天穹 shader，按视角方向连续·无缝·不重复）
+let climWarm = 0.5;
+const bgMat = new THREE.ShaderMaterial({
+  side: THREE.BackSide, depthWrite: false, depthTest: false, fog: false,
+  uniforms: { uTime: { value: 0 }, uWarm: { value: 0.5 }, uPulse: { value: 0 } },
+  vertexShader: `varying vec3 vDir; void main(){ vDir = normalize(position); gl_Position = projectionMatrix*modelViewMatrix*vec4(position,1.0); }`,
+  fragmentShader: `
+    precision mediump float;
+    varying vec3 vDir; uniform float uTime; uniform float uWarm; uniform float uPulse;
+    float hash(vec3 p){ p = fract(p*0.3183099 + 0.1); p *= 17.0; return fract(p.x*p.y*p.z*(p.x+p.y+p.z)); }
+    float noise(vec3 x){ vec3 i=floor(x), f=fract(x); f=f*f*(3.0-2.0*f);
+      return mix(mix(mix(hash(i+vec3(0.,0.,0.)),hash(i+vec3(1.,0.,0.)),f.x), mix(hash(i+vec3(0.,1.,0.)),hash(i+vec3(1.,1.,0.)),f.x),f.y),
+                 mix(mix(hash(i+vec3(0.,0.,1.)),hash(i+vec3(1.,0.,1.)),f.x), mix(hash(i+vec3(0.,1.,1.)),hash(i+vec3(1.,1.,1.)),f.x),f.y), f.z); }
+    float fbm(vec3 p){ float a=0.5,s=0.0; for(int i=0;i<4;i++){ s+=a*noise(p); p=p*2.03+vec3(1.7); a*=0.5; } return s; }
+    void main(){
+      vec3 p = vDir*2.4; float t = uTime*0.03;
+      float w = fbm(p*0.6 + vec3(t*0.2, t*0.1, 0.0));
+      float f = fbm(p*1.1 + (w-0.5)*1.3 + vec3(0.0, t*0.6, t*0.2));
+      float breathe = 0.5 + 0.5*sin(uTime*0.22) + uPulse*0.4;        // 缓慢呼吸（真机麦克风接管）
+      float vert = (-vDir.y)*0.5 + 0.5;                              // 1=底部 0=顶部
+      float warmth = vert * (0.65 + 0.55*breathe) + (f-0.5)*0.6 + (uWarm-0.5)*0.4;
+      float fc = clamp(warmth, 0.0, 1.0);
+      vec3 cold = vec3(0.02,0.05,0.16), cool = vec3(0.04,0.10,0.15), warm = vec3(0.17,0.09,0.055), hot = vec3(0.22,0.06,0.04);
+      vec3 col = fc < 0.34 ? mix(cold, cool, fc/0.34) : (fc < 0.66 ? mix(cool, warm, (fc-0.34)/0.32) : mix(warm, hot, (fc-0.66)/0.34));
+      col *= 0.75 + 0.35*breathe;                                    // 整体随呼吸明暗起伏
+      gl_FragColor = vec4(col, 1.0);
+    }`
+});
+{ const bg = new THREE.Mesh(new THREE.SphereGeometry(1500, 48, 32), bgMat); bg.renderOrder = -1; bg.frustumCulled = false; scene.add(bg); }
 
 const U = { uTime: { value: 0 }, uPixelRatio: { value: renderer.getPixelRatio() }, uPulse: { value: 0 } };
 
@@ -55,14 +83,17 @@ const pointMaterial = new THREE.ShaderMaterial({
   uniforms: U, transparent: true, depthWrite: false, depthTest: true, blending: THREE.AdditiveBlending,
   vertexShader: `
     uniform float uTime; uniform float uPixelRatio; uniform float uPulse;
-    attribute vec3 aColor; attribute float aSize; attribute float aTwinkle; attribute float aHaze; attribute float aOrbPhase;
+    attribute vec3 aColor; attribute float aSize; attribute float aTwinkle; attribute float aHaze; attribute float aOrbPhase; attribute float aVis;
     varying vec3 vColor; varying float vHaze;
     void main(){
+      if (aVis < 0.5) { gl_Position = vec4(2.0, 2.0, 2.0, 1.0); gl_PointSize = 0.0; return; }
       vHaze = aHaze;
       vec4 mv = modelViewMatrix * vec4(position, 1.0);
       float tw = 0.6 + aTwinkle*0.5*sin(uTime*1.4 + aOrbPhase*6.2831) + uPulse*0.4;
       vColor = aColor * tw;
-      gl_PointSize = aSize * (1.0 + uPulse*0.3) * uPixelRatio * (320.0 / -mv.z);
+      float sz = 0.7 + (aSize - 0.7) * 1.7;                              // 放大数据尺寸对比
+      float breath = 1.0 + 0.4 * sin(uTime*0.7 + aOrbPhase*6.2831);      // 呼吸般缩放（每点错相位）
+      gl_PointSize = min(sz * breath * (1.0 + uPulse*0.35) * uPixelRatio * (380.0 / -mv.z), 66.0);
       gl_Position = projectionMatrix * mv;
     }`,
   fragmentShader: `
@@ -78,23 +109,37 @@ const pointMaterial = new THREE.ShaderMaterial({
 
 const trailMaterial = new THREE.ShaderMaterial({
   uniforms: U, transparent: true, depthWrite: false, blending: THREE.AdditiveBlending,
-  vertexShader: `attribute float aAge; attribute vec3 aColor; varying float vAge; varying vec3 vC;
-    void main(){ vAge = aAge; vC = aColor; gl_Position = projectionMatrix*modelViewMatrix*vec4(position,1.0); }`,
-  fragmentShader: `varying float vAge; varying vec3 vC; void main(){ float a = 1.0 - vAge; if (a <= 0.0) discard; a = a*a*0.6; gl_FragColor = vec4(vC*a, a); }`
+  vertexShader: `attribute float aAge; attribute vec3 aColor; attribute float aVis; varying float vAge; varying vec3 vC; varying float vVis;
+    void main(){ vAge = aAge; vC = aColor; vVis = aVis; gl_Position = projectionMatrix*modelViewMatrix*vec4(position,1.0); }`,
+  fragmentShader: `varying float vAge; varying vec3 vC; varying float vVis; void main(){ if (vVis < 0.5) discard; float a = 1.0 - vAge; if (a <= 0.0) discard; a = a * 0.85; gl_FragColor = vec4(vC * (0.45 + 0.55 * a), a); }`
 });
 
-// 关系连线：实线 + 半透明（normal blending，弱化）
+// 关系连线：朝相机的 ribbon，宽度由数据驱动（aWidth）；实线 + 高透明
 const beamMaterial = new THREE.ShaderMaterial({
-  uniforms: U, transparent: true, depthWrite: false, blending: THREE.NormalBlending,
-  vertexShader: `attribute vec3 aColor; varying vec3 vC;
-    void main(){ vC = aColor; gl_Position = projectionMatrix*modelViewMatrix*vec4(position,1.0); }`,
-  fragmentShader: `varying vec3 vC; void main(){ gl_FragColor = vec4(vC, 0.18); }`
+  uniforms: { uRes: { value: new THREE.Vector2(innerWidth, innerHeight) } },
+  transparent: true, depthWrite: false, blending: THREE.NormalBlending, side: THREE.DoubleSide,
+  vertexShader: `
+    attribute vec3 aDir; attribute float aSide; attribute vec3 aColor; attribute float aWidth; attribute float aVis;
+    uniform vec2 uRes; varying vec3 vC; varying float vVis;
+    void main(){
+      vC = aColor; vVis = aVis;
+      vec4 cA = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+      vec4 cB = projectionMatrix * modelViewMatrix * vec4(aDir, 1.0);
+      float asp = uRes.x / uRes.y;
+      vec2 d = cB.xy / cB.w - cA.xy / cA.w; d.x *= asp;
+      float dl = length(d); d = dl > 0.0001 ? d / dl : vec2(1.0, 0.0);
+      vec2 perp = vec2(-d.y, d.x); perp.x /= asp;
+      cA.xy += perp * aSide * (aWidth / uRes.y) * 2.0 * cA.w;
+      gl_Position = cA;
+    }`,
+  fragmentShader: `varying vec3 vC; varying float vVis; void main(){ if (vVis < 0.5) discard; gl_FragColor = vec4(0.55, 0.55, 0.6, 0.03); }`
 });
 
 // ---------- builders (collect into plain arrays, finalize after counts known) ----------
 const D = { sys: [], anc: [], scl: [], bh: [], prm: [], spd: [], seed: [], rot: [], tlen: [], col: [], sz: [], tw: [], hz: [], op: [], meta: [] };
 function hash01(str) { let h = 2166136261; str = String(str); for (let i = 0; i < str.length; i++) { h ^= str.charCodeAt(i); h = Math.imul(h, 16777619); } return ((h >>> 0) % 100003) / 100003; }
-const BEAM = { a: [], b: [], col: [] };
+const BEAM = { a: [], b: [], col: [], w: [] };
+const beamEndTmpl = [0, 1, 1, 0, 1, 0], beamSideTmpl = [-1, -1, 1, -1, 1, 1];   // 2 三角形 = ribbon quad
 const tmpCol = new THREE.Color();
 
 // sys: 0 Thomas · 1 Lorenz · 2 Rössler
@@ -115,7 +160,7 @@ const angleFor = (k) => (k in _ang ? _ang[k] : (_ang[k] = (_ai++) * 2.3999632));
 function buildHousing() {
   const listings = window.HOUSING_LISTINGS || [];
   const enriched = window.HOUSING_ENRICHED || {};
-  let n = 0;
+  let n = 0, cs = 0, cn = 0;
   for (const ls of listings) {
     const e = enriched[String(ls.id)] || enriched[ls.id];
     if (!e || e.lat == null || e.lng == null) continue;
@@ -141,10 +186,11 @@ function buildHousing() {
     const b = 0.15 + cf * 0.06;                                         // 宜居越多越规整
     // 城市按年均温分三类气候云：冷→Thomas / 温→Sprott-B / 热→Lorenz-84（横向分开）
     const annualMean = months.reduce((a, m2) => a + m2, 0) / months.length;
+    cs += annualMean; cn++;
     let csys, canc, cscl, cbh, cseed;
-    if (annualMean < 8) { csys = 0; canc = [-58, 12, 0]; cscl = 7; cbh = 0.045; cseed = [(e.lng - 104) * 0.05, -(e.lat - 35) * 0.05, elev * 0.0006]; }
-    else if (annualMean < 18) { csys = 7; canc = [0, 8, 0]; cscl = 9; cbh = 0.02; cseed = [(Math.random() - 0.5) * 1.5, (Math.random() - 0.5) * 1.5, (Math.random() - 0.5) * 1.5]; }
-    else { csys = 8; canc = [58, 12, -10]; cscl = 8; cbh = 0.02; cseed = [(Math.random() - 0.5), 1 + (Math.random() - 0.5), 1 + (Math.random() - 0.5)]; }
+    if (annualMean < 8) { csys = 0; canc = CENTER; cscl = 7; cbh = 0.0025; cseed = [(e.lng - 104) * 0.05, -(e.lat - 35) * 0.05, elev * 0.0006]; }
+    else if (annualMean < 18) { canc = CENTER; cscl = 9; cbh = 0.00113; if (sun > 2200) { csys = 14; cseed = [(Math.random() - 0.5), (Math.random() - 0.5), (Math.random() - 0.5)]; } else { csys = 7; cseed = [(Math.random() - 0.5) * 1.5, (Math.random() - 0.5) * 1.5, (Math.random() - 0.5) * 1.5]; } }
+    else { csys = 8; canc = CENTER; cscl = 8; cbh = 0.00113; cseed = [(Math.random() - 0.5), 1 + (Math.random() - 0.5), 1 + (Math.random() - 0.5)]; }
     const ctail = 5 + clamp((Math.log10(unit + 1) - 2.2) / 3, 0, 1) * (TRAIL - 6);   // 越贵彗尾越长
     addStar(csys, canc, cscl, cbh, b, spd, cseed, hue, sat, light, size, tw, hz, {
       k: '城市 CITY', name: ls.loc || ls.city,
@@ -152,6 +198,7 @@ function buildHousing() {
     }, null, ctail);
     n++;
   }
+  climWarm = cn ? clamp((cs / cn - 5) / 18, 0.12, 0.9) : 0.5;   // 全国年均温 → 背景冷暖偏置
   return n;
 }
 
@@ -169,7 +216,7 @@ async function buildIndustrial() {
   const policies = (pol && (pol.policies || pol)) || [];
   const pairs = (prs && (prs.pairs || prs)) || [];
 
-  const kIdx = {}, pIdx = {};
+  const kIdx = {}, pIdx = {}, kUsed = {};
   const hueOf = (o) => (o === 'domestic' ? 44 : o === 'open_source' ? 140 : 210);
   const colOf = (o) => (o === 'domestic' ? [0.55, 0.42, 0.18] : o === 'open_source' ? [0.24, 0.5, 0.28] : [0.2, 0.32, 0.55]);
   const lz = () => [0.1 + (Math.random() - 0.5), (Math.random() - 0.5), 20 + (Math.random() - 0.5) * 2];
@@ -180,10 +227,12 @@ async function buildIndustrial() {
   const slf = () => [(Math.random() - 0.5), (Math.random() - 0.5), (Math.random() - 0.5)];                           // Sprott-Linz F
   const nh = () => [(Math.random() - 0.5), 4 + (Math.random() - 0.5), (Math.random() - 0.5)];                        // Nose-Hoover
   const ro2 = () => [(Math.random() - 0.5) * 3, (Math.random() - 0.5) * 3, (Math.random() - 0.5)];                   // Rössler
+  const nl = () => [0.35 + (Math.random() - 0.5) * 0.2, (Math.random() - 0.5) * 0.2, -0.16 + (Math.random() - 0.5) * 0.2]; // Newton-Leipnik
+  const hd = () => [(Math.random() - 0.5), (Math.random() - 0.5), (Math.random() - 0.5)];                           // Hadley
 
   kernels.forEach((k) => {
-    const used = (k.used_by_product_ids || []).length;
-    kIdx[k.id] = addStar(1, [-26, 74, 0], 0.85, 0.0016, 28, 0.45, lz(), hueOf(k.origin), 0.7, 0.55, 3.0 + used * 0.04, 0.4, 0.25, {
+    const used = (k.used_by_product_ids || []).length; kUsed[k.id] = used;
+    kIdx[k.id] = addStar(1, CENTER, 0.85, 0.0016, 28, 0.45, lz(), hueOf(k.origin), 0.7, 0.55, 3.0 + used * 0.04, 0.4, 0.25, {
       k: '内核 KERNEL', name: k.name_zh || k.name_en, sub: `${k.origin === 'domestic' ? '国产' : '国外'} · ${k.owner || ''} · 被 ${used} 个产品使用`
     }, null, 6 + clamp(used / 30, 0, 1) * (TRAIL - 6));
   });
@@ -192,9 +241,9 @@ async function buildIndustrial() {
   products.forEach((p) => {
     const mat = p.maturity === 'high' ? 1 : p.maturity === 'medium' ? 0.5 : 0;
     let psys, panc, pscl, pbh, pseed;
-    if (p.origin === 'domestic') { psys = 1; panc = [-26, 74, 0]; pscl = 0.85; pbh = 0.002; pseed = lz(); }
-    else if (p.origin === 'open_source') { psys = 11; panc = [4, 86, -18]; pscl = 8; pbh = 0.012; pseed = slf(); }
-    else { psys = 9; panc = [30, 74, 0]; pscl = 0.85; pbh = 0.0016; pseed = lu(); }
+    if (p.origin === 'domestic') { psys = 1; panc = CENTER; pscl = 0.85; pbh = 0.0014; pseed = lz(); }
+    else if (p.origin === 'open_source') { psys = 11; panc = CENTER; pscl = 8; pbh = 0.008; pseed = slf(); }
+    else { psys = 9; panc = CENTER; pscl = 0.85; pbh = 0.0011; pseed = lu(); }
     const i = addStar(psys, panc, pscl, pbh, 24 + mat * 6, 0.5 + (1 - mat) * 0.8, pseed,
       hueOf(p.origin), 0.62, 0.42 + mat * 0.1,
       p.maturity === 'high' ? 3.0 : p.maturity === 'medium' ? 2.1 : 1.5,
@@ -203,7 +252,7 @@ async function buildIndustrial() {
       sub: `${p.category_l2 || p.category_l1 || ''} · ${p.origin === 'domestic' ? '国产' : p.origin === 'open_source' ? '开源' : '国外'} · 成熟度 ${p.maturity || '—'} · 本地化 ${p.localization_depth || '—'}`
     }, null, 5 + mat * (TRAIL - 6));
     pIdx[p.id] = i;
-    if (p.kernel_id && kIdx[p.kernel_id] != null) { const c = colOf(p.origin); BEAM.a.push(i); BEAM.b.push(kIdx[p.kernel_id]); BEAM.col.push(c[0], c[1], c[2]); }
+    if (p.kernel_id && kIdx[p.kernel_id] != null) { const c = colOf(p.origin); BEAM.a.push(i); BEAM.b.push(kIdx[p.kernel_id]); BEAM.col.push(c[0], c[1], c[2]); BEAM.w.push(0.6 + clamp((kUsed[p.kernel_id] || 0) / 30, 0, 1) * 3.0); }
   });
 
   milestones.forEach((m) => {
@@ -213,15 +262,15 @@ async function buildIndustrial() {
     const ev = m.evidence_level;
     // 突破按性质拆三团（大幅降速，不再像苍蝇）：替代过→Chen / 实证审计→Nose-Hoover / 其余→Aizawa
     let msys, manc, mscl, mbh, mseed;
-    if (inc > 0) { msys = 6; manc = [-34, 50, 0]; mscl = 0.9; mbh = 0.0012; mseed = [-10 + (Math.random() - 0.5), (Math.random() - 0.5), 37 + (Math.random() - 0.5)]; }
-    else if (ev === 'audited') { msys = 10; manc = [34, 62, 0]; mscl = 8; mbh = 0.005; mseed = nh(); }
-    else { msys = 3; manc = [34, 50, 0]; mscl = 15; mbh = 0.005; mseed = az(); }
+    if (inc > 0) { msys = 6; manc = CENTER; mscl = 0.9; mbh = 0.0009; mseed = [-10 + (Math.random() - 0.5), (Math.random() - 0.5), 37 + (Math.random() - 0.5)]; }
+    else if (ev === 'audited') { msys = 10; manc = CENTER; mscl = 8; mbh = 0.0038; mseed = nh(); }
+    else { msys = 3; manc = CENTER; mscl = 15; mbh = 0.0038; mseed = az(); }
     const i = addStar(msys, manc, mscl, mbh, 0, 0.3 + yf * 0.4, mseed,
       30 + inc * 4, 0.85, 0.6, ev === 'audited' ? 3.2 : ev === 'case_study' ? 2.4 : 1.8, 0.92, 0.1, {
       k: '突破 BREAKTHROUGH', name: m.headline_zh || m.headline_en || '突破',
       sub: `${y4} · 攻克 ${m.capability_key || ''}${inc ? ' · 替代 ' + inc + ' 款在位产品' : ''}`
     }, [hash01('cap:' + (m.capability_key || 'x')) * 6.283, hash01('mp:' + (m.id || y4)) * 3.14 - 1.57, hash01('mr:' + (m.id || y4)) * 6.283], 7 + clamp(inc / 6, 0, 1) * (TRAIL - 7));
-    (m.incumbent_product_ids || []).forEach((iid) => { if (pIdx[iid] != null) { BEAM.a.push(i); BEAM.b.push(pIdx[iid]); BEAM.col.push(0.85, 0.22, 0.28); } });
+    (m.incumbent_product_ids || []).forEach((iid) => { if (pIdx[iid] != null) { BEAM.a.push(i); BEAM.b.push(pIdx[iid]); BEAM.col.push(0.85, 0.22, 0.28); BEAM.w.push(0.6 + clamp(inc / 6, 0, 1) * 3.0); } });
   });
 
   policies.forEach((p) => {
@@ -231,20 +280,25 @@ async function buildIndustrial() {
     const tNorm = clamp(Math.log10((p.target_value || 1) + 1) / 3, 0, 1);
     // 政策按类型分两团：纲领/五年规划→Halvorsen / 资金·部委→Rössler
     const prog = p.policy_type === 'program' || p.policy_type === 'fyp';
-    const Psys = prog ? 4 : 2, Panc = prog ? [0, 30, 0] : [0, 30, 16], Pscl = prog ? 1.8 : 1.7, Pbh = prog ? 0.01 : 0.02, Pseed = prog ? hv() : ro2(), Pprm = prog ? 0 : 5.7;
+    const Psys = prog ? 4 : 2, Panc = CENTER, Pscl = prog ? 1.8 : 1.7, Pbh = prog ? 0.002 : 0.004, Pseed = prog ? hv() : ro2(), Pprm = prog ? 0 : 5.7;
     addStar(Psys, Panc, Pscl, Pbh, Pprm, 0.4 + tNorm * 0.5, Pseed, hue, 0.5, 0.6, 1.6 + tNorm * 3, 0.5, 0.3, {
       k: '政策 POLICY', name: p.title_zh || p.title_en, sub: `${y4} · ${p.policy_type || ''}${p.target_value ? ' · ' + p.target_value + (p.target_unit_zh || '') : ''}`
     }, [hash01('pt:' + (p.policy_type || 'x')) * 6.283, yf * 3.14 - 1.0 + hash01('pp:' + (p.id || y4)) * 0.6, hash01('pr:' + (p.id || y4)) * 6.283], 5 + tNorm * (TRAIL - 6));
   });
 
+  // 厂商按出身分三种图案：国产→Dadras / 国外→Newton-Leipnik / 开源→Hadley
   vendors.forEach((v) => {
-    addStar(5, [0, 58, 0], 1.4, 0.012, 0, 0.4, dd(),
-      hueOf(v.origin), 0.4, 0.42, 1.3, 0.4, 0.5, {
+    let vsys, vseed, vscl;
+    if (v.origin === 'domestic') { vsys = 5; vseed = dd(); vscl = 1.4; }
+    else if (v.origin === 'open_source') { vsys = 13; vseed = hd(); vscl = 9; }
+    else { vsys = 12; vseed = nl(); vscl = 14; }
+    addStar(vsys, CENTER, vscl, 0.012, 0, 0.4, vseed,
+      hueOf(v.origin), 0.4, 0.42, 2.4, 0.4, 0.5, {
       k: '厂商 VENDOR', name: v.name_zh || v.name_en, sub: `${v.origin === 'domestic' ? '国产' : v.origin === 'open_source' ? '开源' : '国外'} · ${v.hq_city || ''} ${v.hq_country || ''}`
     }, null, 4);
   });
 
-  pairs.forEach((bp) => { if (pIdx[bp.domestic_id] != null && pIdx[bp.international_id] != null) { BEAM.a.push(pIdx[bp.domestic_id]); BEAM.b.push(pIdx[bp.international_id]); BEAM.col.push(0.2, 0.8, 0.72); } });
+  pairs.forEach((bp) => { if (pIdx[bp.domestic_id] != null && pIdx[bp.international_id] != null) { BEAM.a.push(pIdx[bp.domestic_id]); BEAM.b.push(pIdx[bp.international_id]); BEAM.col.push(0.2, 0.8, 0.72); BEAM.w.push(1.0); } });
 
   return { products: products.length, vendors: vendors.length, kernels: kernels.length, milestones: milestones.length, policies: policies.length, pairs: pairs.length };
 }
@@ -253,7 +307,9 @@ async function buildIndustrial() {
 let N = 0;
 let sys, anc, scl, bh, prm, spd, state, posArr, trail, rotM, head = 0;
 let pointsObj, trailObj, beamObj, beamIdxA, beamIdxB, beamPos;
-let dustObj;
+let grp, segsG, pointVisArr, pointVisAttr, trailVisArr, trailVisAttr, beamVisArr, beamVisAttr, beamEnds;
+const GROUP_KEY = { '城市 CITY': 0, '产品 PRODUCT': 1, '内核 KERNEL': 2, '突破 BREAKTHROUGH': 3, '政策 POLICY': 4, '厂商 VENDOR': 5 };
+const groupVis = [true, true, true, true, true, true];
 
 function finalize() {
   N = D.sys.length;
@@ -278,6 +334,9 @@ function finalize() {
   // initial world positions + seed trail
   for (let i = 0; i < N; i++) { writeWorld(i); for (let t = 0; t < TRAIL; t++) { const o = (i * TRAIL + t) * 3; trail[o] = posArr[i * 3]; trail[o + 1] = posArr[i * 3 + 1]; trail[o + 2] = posArr[i * 3 + 2]; } }
 
+  // group id per point (for show/hide toggles)
+  grp = Uint8Array.from(D.meta.map((m) => (m && GROUP_KEY[m.k] != null ? GROUP_KEY[m.k] : 0)));
+
   // points
   const g = new THREE.BufferGeometry();
   g.setAttribute('position', new THREE.BufferAttribute(posArr, 3).setUsage(THREE.DynamicDrawUsage));
@@ -286,6 +345,9 @@ function finalize() {
   g.setAttribute('aTwinkle', new THREE.Float32BufferAttribute(D.tw, 1));
   g.setAttribute('aHaze', new THREE.Float32BufferAttribute(D.hz, 1));
   g.setAttribute('aOrbPhase', new THREE.Float32BufferAttribute(D.op, 1));
+  pointVisArr = new Float32Array(N).fill(1);
+  pointVisAttr = new THREE.BufferAttribute(pointVisArr, 1).setUsage(THREE.DynamicDrawUsage);
+  g.setAttribute('aVis', pointVisAttr);
   pointsObj = new THREE.Points(g, pointMaterial); root.add(pointsObj);
 
   // trails (N * (TRAIL-1) segments)
@@ -309,26 +371,41 @@ function finalize() {
   tg.setAttribute('position', tposAttr);
   tg.setAttribute('aAge', new THREE.BufferAttribute(tage, 1));
   tg.setAttribute('aColor', new THREE.BufferAttribute(tcol, 3));
+  trailVisArr = new Float32Array(tv).fill(1);
+  trailVisAttr = new THREE.BufferAttribute(trailVisArr, 1).setUsage(THREE.DynamicDrawUsage);
+  tg.setAttribute('aVis', trailVisAttr);
   trailObj = new THREE.LineSegments(tg, trailMaterial); trailObj.frustumCulled = false; root.add(trailObj);
   trailObj.userData.pos = tpos; trailObj.userData.attr = tposAttr; trailObj.userData.segs = segs;
+  segsG = segs;
 
-  // beams
+  // beams — ribbon (6 verts/beam, 宽度 aWidth 由数据驱动)
   if (BEAM.a.length) {
     beamIdxA = Uint16Array.from(BEAM.a); beamIdxB = Uint16Array.from(BEAM.b);
-    const nb = beamIdxA.length; beamPos = new Float32Array(nb * 2 * 3);
-    const bend = new Float32Array(nb * 2), bcol = new Float32Array(nb * 2 * 3);
+    const nb = beamIdxA.length, V = nb * 6;
+    beamPos = new Float32Array(V * 3);                          // own-end world pos (per frame)
+    const bdir = new Float32Array(V * 3);                       // other-end world pos (per frame)
+    const bside = new Float32Array(V), bcol = new Float32Array(V * 3), bwid = new Float32Array(V);
+    beamVisArr = new Float32Array(V).fill(1); beamEnds = new Uint8Array(V);
     for (let i = 0; i < nb; i++) {
-      bend[i * 2] = 0; bend[i * 2 + 1] = 1;
-      bcol[i * 6] = BEAM.col[i * 3]; bcol[i * 6 + 1] = BEAM.col[i * 3 + 1]; bcol[i * 6 + 2] = BEAM.col[i * 3 + 2];
-      bcol[i * 6 + 3] = BEAM.col[i * 3]; bcol[i * 6 + 4] = BEAM.col[i * 3 + 1]; bcol[i * 6 + 5] = BEAM.col[i * 3 + 2];
+      const cr = BEAM.col[i * 3], cg = BEAM.col[i * 3 + 1], cb = BEAM.col[i * 3 + 2], w = BEAM.w[i];
+      for (let v = 0; v < 6; v++) {
+        const idx = i * 6 + v;
+        beamEnds[idx] = beamEndTmpl[v]; bside[idx] = beamSideTmpl[v]; bwid[idx] = w;
+        bcol[idx * 3] = cr; bcol[idx * 3 + 1] = cg; bcol[idx * 3 + 2] = cb;
+      }
     }
     const bg = new THREE.BufferGeometry();
-    const bAttr = new THREE.BufferAttribute(beamPos, 3).setUsage(THREE.DynamicDrawUsage);
-    bg.setAttribute('position', bAttr);
-    bg.setAttribute('aEnd', new THREE.BufferAttribute(bend, 1));
+    const bposAttr = new THREE.BufferAttribute(beamPos, 3).setUsage(THREE.DynamicDrawUsage);
+    const bdirAttr = new THREE.BufferAttribute(bdir, 3).setUsage(THREE.DynamicDrawUsage);
+    bg.setAttribute('position', bposAttr);
+    bg.setAttribute('aDir', bdirAttr);
+    bg.setAttribute('aSide', new THREE.BufferAttribute(bside, 1));
     bg.setAttribute('aColor', new THREE.BufferAttribute(bcol, 3));
-    beamObj = new THREE.LineSegments(bg, beamMaterial); beamObj.frustumCulled = false; root.add(beamObj);
-    beamObj.userData.attr = bAttr;
+    bg.setAttribute('aWidth', new THREE.BufferAttribute(bwid, 1));
+    beamVisAttr = new THREE.BufferAttribute(beamVisArr, 1).setUsage(THREE.DynamicDrawUsage);
+    bg.setAttribute('aVis', beamVisAttr);
+    beamObj = new THREE.Mesh(bg, beamMaterial); beamObj.frustumCulled = false; root.add(beamObj);
+    beamObj.userData.posAttr = bposAttr; beamObj.userData.dirAttr = bdirAttr; beamObj.userData.dir = bdir;
   }
 }
 
@@ -337,11 +414,16 @@ function writeWorld(i) {
   let cx = 0, cy = 0, cz = 0;                                  // per-attractor centering
   if (sy === 1) cz = 25; else if (sy === 3) cz = 0.6; else if (sy === 4) { cx = -2.4; cy = -2.4; cz = -2.4; } else if (sy === 6) cz = 22; else if (sy === 8) cx = 1; else if (sy === 9) cz = 20;
   const lx = (state[o] - cx) * s, ly = (state[o + 2] - cz) * s, lz = (state[o + 1] - cy) * s;   // attractor local frame (z→up)
-  posArr[o] = anc[o] + rotM[r] * lx + rotM[r + 1] * ly + rotM[r + 2] * lz;        // rotate into data-driven axis
-  posArr[o + 1] = anc[o + 1] + rotM[r + 3] * lx + rotM[r + 4] * ly + rotM[r + 5] * lz;
-  posArr[o + 2] = anc[o + 2] + rotM[r + 6] * lx + rotM[r + 7] * ly + rotM[r + 8] * lz;
+  const ox = rotM[r] * lx + rotM[r + 1] * ly + rotM[r + 2] * lz;                  // data-driven orientation
+  const oy = rotM[r + 3] * lx + rotM[r + 4] * ly + rotM[r + 5] * lz;
+  const oz = rotM[r + 6] * lx + rotM[r + 7] * ly + rotM[r + 8] * lz;
+  const ai = sy * 3, kx = SYS_AXIS[ai], ky = SYS_AXIS[ai + 1], kz = SYS_AXIS[ai + 2], cc = sysCos[sy], sn = sysSin[sy];
+  const kd = (kx * ox + ky * oy + kz * oz) * (1 - cc);                            // per-system self-rotation (Rodrigues)
+  posArr[o] = anc[o] + ox * cc + (ky * oz - kz * oy) * sn + kx * kd;
+  posArr[o + 1] = anc[o + 1] + oy * cc + (kz * ox - kx * oz) * sn + ky * kd;
+  posArr[o + 2] = anc[o + 2] + oz * cc + (kx * oy - ky * ox) * sn + kz * kd;
 }
-function capOf(s) { return s === 1 ? 0.011 : s === 3 ? 0.02 : s === 4 ? 0.01 : s === 5 ? 0.012 : s === 6 ? 0.004 : s === 7 ? 0.02 : s === 8 ? 0.02 : s === 9 ? 0.005 : s === 10 ? 0.02 : s === 11 ? 0.02 : s === 2 ? 0.045 : 0.05; }
+function capOf(s) { return s === 1 ? 0.011 : s === 3 ? 0.02 : s === 4 ? 0.01 : s === 5 ? 0.012 : s === 6 ? 0.004 : s === 7 ? 0.02 : s === 8 ? 0.02 : s === 9 ? 0.005 : s === 10 ? 0.02 : s === 11 ? 0.02 : s === 12 ? 0.01 : s === 13 ? 0.015 : s === 14 ? 0.02 : s === 2 ? 0.045 : 0.05; }
 function stepOne(i, h) {
   const o = i * 3; let x = state[o], y = state[o + 1], z = state[o + 2]; const s = sys[i], p = prm[i];
   let dx, dy, dz;
@@ -356,7 +438,10 @@ function stepOne(i, h) {
   else if (s === 8) { dx = -0.25 * x - y * y - z * z + 2.0; dy = -y + x * y - 4 * x * z + 1; dz = -z + 4 * x * y + x * z; } // Lorenz-84
   else if (s === 9) { dx = 36 * (y - x); dy = -x * z + 20 * y; dz = x * y - 3 * z; }                               // Lü
   else if (s === 10) { dx = y; dy = -x + y * z; dz = 1 - y * y; }                                                  // Nose-Hoover
-  else { dx = y + z; dy = -x + 0.5 * y; dz = x * x - z; }                                                          // Sprott-Linz F
+  else if (s === 11) { dx = y + z; dy = -x + 0.5 * y; dz = x * x - z; }                                            // Sprott-Linz F
+  else if (s === 12) { dx = -0.4 * x + y + 10 * y * z; dy = -x - 0.4 * y + 5 * x * z; dz = 0.175 * z - 5 * x * y; } // Newton-Leipnik
+  else if (s === 13) { dx = -y * y - z * z - 0.2 * x + 1.6; dy = x * y - 4 * x * z - y + 1; dz = 4 * x * y + x * z - z; } // Hadley
+  else { dx = y * z; dy = x * x - y; dz = 1 - 4 * x; }                                                             // Sprott-E
   x += dx * h; y += dy * h; z += dz * h;
   if (!isFinite(x) || !isFinite(y) || !isFinite(z) || Math.abs(x) > 1e4 || Math.abs(y) > 1e4 || Math.abs(z) > 1e4) {
     x = s === 4 ? -5 + (Math.random() - 0.5) : s === 6 ? -10 + (Math.random() - 0.5) : (Math.random() - 0.5);
@@ -365,15 +450,29 @@ function stepOne(i, h) {
   state[o] = x; state[o + 1] = y; state[o + 2] = z;
 }
 
-// ---------- controls + sensors ----------
-const controls = new OrbitControls(camera, renderer.domElement);
-controls.enableDamping = true; controls.dampingFactor = 0.06;
-controls.autoRotate = true; controls.autoRotateSpeed = 0.05;
-controls.minDistance = 40; controls.maxDistance = 700; controls.enablePan = false;
-controls.target.set(0, 42, 0);
-
-let tiltX = 0, tiltZ = 0, gyroOn = false;
-addEventListener('deviceorientation', (e) => { if (e.beta == null) return; gyroOn = true; tiltX = clamp((e.beta - 50) / 90, -1, 1) * 0.26; tiltZ = clamp(e.gamma / 90, -1, 1) * 0.26; });
+// ---------- immersive look controller（相机在体系正中心，第一人称环视）----------
+const camPos = new THREE.Vector3(CENTER[0], CENTER[1], CENTER[2]);
+const cCenter = new THREE.Vector3(CENTER[0], CENTER[1], CENTER[2]);
+let yaw = 0, pitch = 0, dragging = false, lastPX = 0, lastPY = 0, gyroOn = false, gyroYaw = 0, gyroPitch = 0;
+const fwd = new THREE.Vector3();
+function applyLook() {
+  fwd.set(Math.cos(pitch) * Math.sin(yaw), Math.sin(pitch), Math.cos(pitch) * Math.cos(yaw));
+  camera.position.copy(camPos);
+  camera.lookAt(camPos.x + fwd.x, camPos.y + fwd.y, camPos.z + fwd.z);
+}
+renderer.domElement.addEventListener('pointerdown', (e) => { dragging = true; lastPX = e.clientX; lastPY = e.clientY; });
+addEventListener('pointerup', () => { dragging = false; });
+renderer.domElement.addEventListener('pointermove', (e) => {
+  if (!dragging) return;
+  yaw -= (e.clientX - lastPX) * 0.004; pitch = clamp(pitch - (e.clientY - lastPY) * 0.004, -1.45, 1.45);
+  lastPX = e.clientX; lastPY = e.clientY;
+});
+renderer.domElement.addEventListener('wheel', (e) => {       // 滚轮 = 调焦距（FOV），相机不位移
+  e.preventDefault();
+  camera.fov = clamp(camera.fov + e.deltaY * 0.03, 22, 105);
+  camera.updateProjectionMatrix();
+}, { passive: false });
+addEventListener('deviceorientation', (e) => { if (e.alpha == null) return; gyroOn = true; gyroYaw = -e.alpha * Math.PI / 180; gyroPitch = clamp(((e.beta || 90) - 90) * Math.PI / 180, -1.3, 1.3); });
 
 let analyser = null, micBuf = null;
 async function enableSensors() {
@@ -404,75 +503,101 @@ renderer.domElement.addEventListener('pointerup', (e) => {
   else card.classList.add('hidden');
 });
 
-addEventListener('resize', () => { camera.aspect = innerWidth / innerHeight; camera.updateProjectionMatrix(); renderer.setSize(innerWidth, innerHeight); U.uPixelRatio.value = renderer.getPixelRatio(); });
+addEventListener('resize', () => { camera.aspect = innerWidth / innerHeight; camera.updateProjectionMatrix(); renderer.setSize(innerWidth, innerHeight); U.uPixelRatio.value = renderer.getPixelRatio(); beamMaterial.uniforms.uRes.value.set(innerWidth, innerHeight); });
 
 // ---------- loop ----------
 const clock = new THREE.Clock();
-let pulse = 0;
+let pulse = 0, tElapsed = 0, spinTime = 0, frameCount = 0;
 function animate() {
   requestAnimationFrame(animate);
-  U.uTime.value = clock.getElapsedTime();
+  const dt = Math.min(clock.getDelta(), 0.05); tElapsed += dt; U.uTime.value = tElapsed;
   if (analyser) { analyser.getByteFrequencyData(micBuf); let s = 0; for (let i = 0; i < micBuf.length; i++) s += micBuf[i]; pulse = lerp(pulse, clamp(s / micBuf.length / 110, 0, 1), 0.2); }
   else pulse *= 0.95;
   U.uPulse.value = pulse;
+  bgMat.uniforms.uTime.value = tElapsed; bgMat.uniforms.uPulse.value = pulse;
+
+  // 每系统各绕自己的轴自转（始终开启）
+  spinTime += dt * (0.024 + pulse * 0.06);
+  for (let s = 0; s < SYSN; s++) { const a = SYS_SPIN[s] * spinTime; sysCos[s] = Math.cos(a); sysSin[s] = Math.sin(a); }
 
   if (N) {
     const hmul = 0.5 + pulse * 1.3;          // 全局速度（已降速）
-    head = (head + 1) % TRAIL;
     for (let i = 0; i < N; i++) {
       const h = Math.min(bh[i] * spd[i] * hmul, capOf(sys[i]));
       stepOne(i, h * 0.5); stepOne(i, h * 0.5);
       writeWorld(i);
-      const to = (i * TRAIL + head) * 3; trail[to] = posArr[i * 3]; trail[to + 1] = posArr[i * 3 + 1]; trail[to + 2] = posArr[i * 3 + 2];
     }
     pointsObj.geometry.attributes.position.needsUpdate = true;
 
-    // rebuild trail segments (oldest→newest)
-    const tpos = trailObj.userData.pos, segs = trailObj.userData.segs;
-    for (let i = 0; i < N; i++) {
-      for (let k = 0; k < segs; k++) {
-        const a = (head + 1 + k) % TRAIL, b = (head + 2 + k) % TRAIL;
-        const ao = (i * TRAIL + a) * 3, bo = (i * TRAIL + b) * 3;
-        const w = ((i * segs + k) * 2) * 3;
-        tpos[w] = trail[ao]; tpos[w + 1] = trail[ao + 1]; tpos[w + 2] = trail[ao + 2];
-        tpos[w + 3] = trail[bo]; tpos[w + 4] = trail[bo + 1]; tpos[w + 5] = trail[bo + 2];
+    // 每 STRIDE 帧采样一次轨迹（让缓慢运动也能拉出可见路径）
+    frameCount++;
+    if (frameCount % STRIDE === 0) {
+      head = (head + 1) % TRAIL;
+      for (let i = 0; i < N; i++) { const to = (i * TRAIL + head) * 3; trail[to] = posArr[i * 3]; trail[to + 1] = posArr[i * 3 + 1]; trail[to + 2] = posArr[i * 3 + 2]; }
+      const tpos = trailObj.userData.pos, segs = trailObj.userData.segs;
+      for (let i = 0; i < N; i++) {
+        for (let k = 0; k < segs; k++) {
+          const a = (head + 1 + k) % TRAIL, b = (head + 2 + k) % TRAIL;
+          const ao = (i * TRAIL + a) * 3, bo = (i * TRAIL + b) * 3;
+          const w = ((i * segs + k) * 2) * 3;
+          tpos[w] = trail[ao]; tpos[w + 1] = trail[ao + 1]; tpos[w + 2] = trail[ao + 2];
+          tpos[w + 3] = trail[bo]; tpos[w + 4] = trail[bo + 1]; tpos[w + 5] = trail[bo + 2];
+        }
       }
+      trailObj.userData.attr.needsUpdate = true;
     }
-    trailObj.userData.attr.needsUpdate = true;
 
     if (beamObj) {
+      const bp = beamObj.userData.posAttr.array, bd = beamObj.userData.dir;
       for (let i = 0; i < beamIdxA.length; i++) {
-        const a = beamIdxA[i] * 3, b = beamIdxB[i] * 3, w = i * 6;
-        beamPos[w] = posArr[a]; beamPos[w + 1] = posArr[a + 1]; beamPos[w + 2] = posArr[a + 2];
-        beamPos[w + 3] = posArr[b]; beamPos[w + 4] = posArr[b + 1]; beamPos[w + 5] = posArr[b + 2];
+        const aP = beamIdxA[i] * 3, bP = beamIdxB[i] * 3;
+        for (let v = 0; v < 6; v++) {
+          const e = i * 6 + v, o = e * 3, useA = beamEnds[e] === 0, own = useA ? aP : bP, oth = useA ? bP : aP;
+          bp[o] = posArr[own]; bp[o + 1] = posArr[own + 1]; bp[o + 2] = posArr[own + 2];
+          bd[o] = posArr[oth]; bd[o + 1] = posArr[oth + 1]; bd[o + 2] = posArr[oth + 2];
+        }
       }
-      beamObj.userData.attr.needsUpdate = true;
+      beamObj.userData.posAttr.needsUpdate = true; beamObj.userData.dirAttr.needsUpdate = true;
     }
   }
 
-  if (gyroOn) { root.rotation.x = lerp(root.rotation.x, tiltX, 0.05); root.rotation.z = lerp(root.rotation.z, tiltZ, 0.05); }
-  controls.update();
+  if (gyroOn) { yaw = lerp(yaw, gyroYaw, 0.12); pitch = lerp(pitch, gyroPitch, 0.12); }
+  else if (!dragging) yaw += 0.0016;     // 缓慢自动巡游
+  applyLook();
   renderer.render(scene, camera);
 }
 
-// ---------- dust (static stars) ----------
-function buildDust() {
-  const Nd = IS_MOBILE ? 1100 : 2200;
-  const pos = [], col = [], size = [], tw = [], hz = [], op = [];
-  for (let i = 0; i < Nd; i++) {
-    const r = 90 + Math.random() * 400, th = Math.random() * 6.283, ph = Math.acos(2 * Math.random() - 1);
-    pos.push(Math.sin(ph) * Math.cos(th) * r, Math.cos(ph) * r * 0.6 + 45, Math.sin(ph) * Math.sin(th) * r);
-    tmpCol.setHSL((210 + Math.random() * 60) / 360, 0.4, 0.5); col.push(tmpCol.r, tmpCol.g, tmpCol.b);
-    size.push(0.5 + Math.random() * 0.9); tw.push(0.5 + Math.random() * 0.5); hz.push(0.6); op.push(Math.random());
+// ---------- show / hide groups ----------
+function updateVisibility() {
+  if (!N) return;
+  for (let i = 0; i < N; i++) pointVisArr[i] = groupVis[grp[i]] ? 1 : 0;
+  pointVisAttr.needsUpdate = true;
+  if (trailVisArr) {
+    for (let i = 0; i < N; i++) { const v = groupVis[grp[i]] ? 1 : 0, b0 = i * segsG * 2, b1 = (i + 1) * segsG * 2; for (let t = b0; t < b1; t++) trailVisArr[t] = v; }
+    trailVisAttr.needsUpdate = true;
   }
-  const g = new THREE.BufferGeometry();
-  g.setAttribute('position', new THREE.Float32BufferAttribute(pos, 3));
-  g.setAttribute('aColor', new THREE.Float32BufferAttribute(col, 3));
-  g.setAttribute('aSize', new THREE.Float32BufferAttribute(size, 1));
-  g.setAttribute('aTwinkle', new THREE.Float32BufferAttribute(tw, 1));
-  g.setAttribute('aHaze', new THREE.Float32BufferAttribute(hz, 1));
-  g.setAttribute('aOrbPhase', new THREE.Float32BufferAttribute(op, 1));
-  dustObj = new THREE.Points(g, pointMaterial); root.add(dustObj);
+  if (beamVisArr) {
+    for (let i = 0; i < beamIdxA.length; i++) { const v = (groupVis[grp[beamIdxA[i]]] && groupVis[grp[beamIdxB[i]]]) ? 1 : 0; for (let q = 0; q < 6; q++) beamVisArr[i * 6 + q] = v; }
+    beamVisAttr.needsUpdate = true;
+  }
+}
+
+function buildPanel() {
+  const panel = document.createElement('div'); panel.id = 'panel';
+  const groups = [['城市 气候', 0], ['产品', 1], ['内核', 2], ['突破', 3], ['政策', 4], ['厂商', 5]];
+  const mkRow = (label, checked, onToggle) => {
+    const row = document.createElement('label'); row.className = 'prow';
+    const cb = document.createElement('input'); cb.type = 'checkbox'; cb.checked = checked;
+    cb.addEventListener('change', () => onToggle(cb.checked));
+    const sp = document.createElement('span'); sp.textContent = label;
+    row.appendChild(cb); row.appendChild(sp); return row;
+  };
+  const h = document.createElement('div'); h.className = 'phead'; h.textContent = '数据体系'; panel.appendChild(h);
+  groups.forEach(([label, gi]) => panel.appendChild(mkRow(label, true, (on) => { groupVis[gi] = on; updateVisibility(); })));
+  const h2 = document.createElement('div'); h2.className = 'phead'; h2.textContent = '元素'; panel.appendChild(h2);
+  panel.appendChild(mkRow('连线', true, (on) => { if (beamObj) beamObj.visible = on; }));
+  panel.appendChild(mkRow('拖尾', true, (on) => { if (trailObj) trailObj.visible = on; }));
+  document.body.appendChild(panel);
 }
 
 // ---------- boot ----------
@@ -480,8 +605,9 @@ function buildDust() {
   let info = {};
   try { info = await buildIndustrial(); } catch (err) { console.warn('[数渊] industrial load failed (need http server):', err); }
   const cities = buildHousing();
+  bgMat.uniforms.uWarm.value = climWarm;
   finalize();
-  buildDust();
+  buildPanel();
   console.log(`[数渊] ${cities} 城市 · ${info.products || 0} 产品 · ${info.kernels || 0} 内核 · ${info.milestones || 0} 突破 · ${info.policies || 0} 政策 · ${info.vendors || 0} 厂商 · ${N} 混沌星体 · ${beamIdxA ? beamIdxA.length : 0} 连线`);
   const ld = document.getElementById('loading'); ld.classList.add('gone'); setTimeout(() => ld.remove(), 1000);
   animate();
