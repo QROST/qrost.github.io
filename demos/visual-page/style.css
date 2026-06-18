@@ -11,7 +11,7 @@ html, body {
 }
 
 #scene { position: fixed; inset: 0; z-index: 1; }
-#scene canvas { display: block; }
+#scene canvas { display: block; touch-action: none; }   /* 禁用浏览器手势劫持 → 单指拖动/双指捏合可达 */
 
 #hud {
   position: fixed; left: 0; right: 0; top: 0;

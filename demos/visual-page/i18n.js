@@ -12,8 +12,8 @@ const UI = {
     zh: '一城气候，一国自立，沉为混沌中漂流的星。<br/>光来自真实数据——不必读懂，只需明灭、漂移、呼吸。<br/>数渊在呼吸间自组织：混沌层层折叠，凝为活的神经晶格。',
   },
   tip: {
-    en: 'Drag to orbit · Scroll to focus · Tap a star for its record',
-    zh: '拖动环视 · 滚轮调焦 · 点星读档',
+    en: 'Drag / 1-finger to orbit · scroll / pinch to focus · tap a star for its record',
+    zh: '拖动 / 单指环视 · 滚轮 / 双指调焦 · 点星读档',
   },
   loading: { en: 'Igniting the abyss…', zh: '正在点亮数渊…' },
   enable: { en: 'Motion & sound', zh: '感应与声响' },
