@@ -788,15 +788,17 @@ _dom.addEventListener('wheel', (e) => {                       // 桌面滚轮 = 
   camera.updateProjectionMatrix();
 }, { passive: false });
 // 陀螺仪：以「增量」驱动 → 与手指拖动叠加共存、互不覆盖；避开绝对罗盘坐标导致的方向混乱
-let gyroPrevA = null, gyroPrevB = null, gyroDYaw = 0, gyroDPitch = 0;
+const GYRO_DZ = 0.15;                                         // 软死区阈值（度）：过滤传感器微抖
+const gyroGate = (d) => { const a = Math.abs(d); return a < 1e-9 ? 0 : d * (a * a / (a * a + GYRO_DZ * GYRO_DZ)); };   // (a²)/(a²+t²)：噪声平方级衰减、大幅运动几乎不损
+let gyroPrevA = null, gyroPrevB = null, gyroDYaw = 0, gyroDPitch = 0, gyroSmYaw = 0, gyroSmPitch = 0;
 addEventListener('deviceorientation', (e) => {
   if (e.alpha == null) return; gyroOn = true;
   const A = e.alpha, B = e.beta == null ? 90 : e.beta;
   if (gyroPrevA !== null) {
     let dA = A - gyroPrevA; if (dA > 180) dA -= 360; else if (dA < -180) dA += 360;   // 罗盘 360° 环绕
     const dB = B - gyroPrevB;
-    gyroDYaw += dA * Math.PI / 180;                           // 转动手机 → 视角同向转（1:1，已修正左右反向）
-    gyroDPitch += dB * Math.PI / 180;                         // 俯仰手机 → 视角俯仰（已修正上下反向）
+    gyroDYaw += gyroGate(dA) * Math.PI / 180;                 // 软死区滤微抖 → 视角同向转（已修正左右反向）
+    gyroDPitch += gyroGate(dB) * Math.PI / 180;               // 软死区滤微抖 → 视角俯仰（已修正上下反向）
   }
   gyroPrevA = A; gyroPrevB = B;
 });
@@ -970,7 +972,12 @@ function animate() {
     if (prevPos) prevPos.set(posArr);   // 存本帧位置 → 下一帧算速度方向
   }
 
-  if (gyroOn) { yaw += gyroDYaw; pitch = clamp(pitch + gyroDPitch, -1.45, 1.45); gyroDYaw = 0; gyroDPitch = 0; }   // 陀螺仪增量叠加（与拖动共存）
+  if (gyroOn) {                                          // 泄漏积分 damper：每帧只应用一部分待发增量、余下顺延 → 平滑、保积分（不丢真实运动）
+    const gsm = Math.min(1, dt * 14);
+    gyroSmYaw = gyroDYaw * gsm; gyroDYaw -= gyroSmYaw;
+    gyroSmPitch = gyroDPitch * gsm; gyroDPitch -= gyroSmPitch;
+    yaw += gyroSmYaw; pitch = clamp(pitch + gyroSmPitch, -1.45, 1.45);
+  }
   else if (!dragging && focusIdx < 0) yaw += 0.00016;    // 极缓自动巡游（仅自由模式）
   focusBlend += ((focusActive ? 1 : 0) - focusBlend) * Math.min(1, dt * 2.4);   // 锁定/解锁的平滑过渡
   if (!focusActive && focusBlend < 0.01) focusIdx = -1;                          // 完全退出后清空
