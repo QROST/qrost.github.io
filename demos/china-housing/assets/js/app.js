@@ -1731,6 +1731,41 @@
     const t = (c - EXTREME_COLD_TMEAN_C) / (COMFORT_TMIN_C - EXTREME_COLD_TMEAN_C);
     return t < 0.5 ? mix(TEMP_COL_EXTREME_COLD, TEMP_COL_CYAN, t * 2) : mix(TEMP_COL_CYAN, TEMP_COL_COMFORT, (t - 0.5) * 2);
   }
+  // Historical *record* extremes (all-time max / min) need their OWN scale, NOT the
+  // daily comfort/extreme bands: ~97% of records sit ≥33℃ and ~68% ≤-5℃, so reusing
+  // tempComfortColor() saturated every 历史最高温 to full red and most 历史最低温 to
+  // full blue — the colour carried no information. These multi-stop ramps span the
+  // actual record range (≈ +7…−44℃ lows, 31…45℃ highs) and reuse the field-map
+  // palette, so a coastal 33℃ record reads distinctly milder than a desert 45℃ one.
+  const HIST_HIGH_STOPS = [           // °C → rgb, descending
+    [46, [127, 29, 29]],   // ≥46  severe (Turpan-class)
+    [41, [220, 38, 38]],   // 41   red
+    [37, [249, 115, 22]],  // 37   orange
+    [33, [251, 191, 36]],  // 33   amber
+    [29, [52, 211, 153]],  // ≤29  genuinely mild record (coastal / highland)
+  ];
+  const HIST_LOW_STOPS = [            // °C → rgb, descending
+    [7,  [52, 211, 153]],  // ≥7   subtropical — no real cold record (green)
+    [0,  [103, 232, 249]], // 0    cyan
+    [-8, [56, 189, 248]],  // −8   sky
+    [-18,[37, 99, 235]],   // −18  blue
+    [-30,[55, 48, 163]],   // −30  indigo
+    [-44,[49, 46, 129]],   // ≤−44 deep indigo (Mohe-class)
+  ];
+  function rampStops(val, stops) {
+    if (val >= stops[0][0]) return `rgb(${stops[0][1].join(',')})`;
+    const last = stops[stops.length - 1];
+    if (val <= last[0]) return `rgb(${last[1].join(',')})`;
+    for (let i = 0; i < stops.length - 1; i++) {
+      const [hi, cHi] = stops[i], [lo, cLo] = stops[i + 1];
+      if (val <= hi && val >= lo) return mix(cHi, cLo, (hi - val) / (hi - lo));
+    }
+    return `rgb(${last[1].join(',')})`;
+  }
+  function histExtremeColor(val, kind) {
+    if (val == null || !isFinite(val)) return null;
+    return rampStops(val, kind === 'low' ? HIST_LOW_STOPS : HIST_HIGH_STOPS);
+  }
   // Colour from underlying °C; display via fmtTemp (°F in English).
   function tempCell(val, title) {
     if (val == null) return `<span class="${tcx().faint}">—</span>`;
@@ -1821,7 +1856,8 @@
     const st = station && (!isEn() || !/[\u4e00-\u9fff]/.test(station)) ? station : '';
     const tip = [kind === 'high' ? t('histTempMaxTitle') : t('histTempMinTitle'), fmtTemp(val),
       date ? `(${date})` : '', level ? trHistLevel(level) : '', st, note || ''].filter(Boolean).join(' · ');
-    return tempCell(val, tip);
+    const bg = histExtremeColor(val, kind === 'high' ? 'high' : 'low');
+    return pill(fmtTemp(val), bg, pillFgForBg(bg), tip);
   }
   function climateCell(d) {
     if (!d.climateType) return `<span class="${tcx().faint}">—</span>`;
