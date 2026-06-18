@@ -371,5 +371,6 @@ window.HOUSING_LISTINGS = [
   { id: 356, prov: "California", city: "Sunnyvale",         dist: "94089",             loc: "94089",                    priceWan: 165,   area: 93,     rent: 4003,    updated: "2026-06" },
   { id: 357, prov: "香港",       city: "香港",              dist: "油尖旺区",          loc: "天玺",                     priceWan: 14900, area: 146,    rent: 120000,  updated: "2026-06" },
   { id: 358, prov: "香港",       city: "香港",              dist: "中西区",            loc: "地利根德阁",               priceWan: 6318,  area: 238,    rent: 130000,  updated: "2026-06" },
-  { id: 359, prov: "香港",       city: "香港",              dist: "湾仔区",            loc: "傲璇",                     priceWan: 51200, area: 506,    rent: 850000,  updated: "2026-06" }
+  { id: 359, prov: "香港",       city: "香港",              dist: "湾仔区",            loc: "傲璇",                     priceWan: 51200, area: 506,    rent: 850000,  updated: "2026-06" },
+  { id: 360, prov: "广东",       city: "阳江市",            dist: "江城区",            loc: "海陵岛海上夏威夷",         priceWan: 16,    area: 40,     rent: 600,     updated: "2026-06" }
 ];
