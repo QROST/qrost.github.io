@@ -187,7 +187,7 @@ const latticeMat = new THREE.ShaderMaterial({
 });
 
 // ---------- builders (collect into plain arrays, finalize after counts known) ----------
-const D = { sys: [], anc: [], scl: [], bh: [], prm: [], spd: [], seed: [], rot: [], tlen: [], col: [], sz: [], tw: [], hz: [], op: [], meta: [], feat: [] };
+const D = { sys: [], anc: [], scl: [], bh: [], prm: [], spd: [], seed: [], rot: [], tlen: [], col: [], sz: [], tw: [], hz: [], op: [], meta: [], feat: [], shape: [] };
 function hash01(str) { let h = 2166136261; str = String(str); for (let i = 0; i < str.length; i++) { h ^= str.charCodeAt(i); h = Math.imul(h, 16777619); } return ((h >>> 0) % 100003) / 100003; }
 // SOM 特征向量：typeId one-hot（×1.5 让分层占优）+ 调用方填充 0..19 的字段槽
 function makeFeat(typeId) { const v = new Float32Array(FEAT_DIM); v[20 + typeId] = 1.5; return v; }
@@ -256,7 +256,7 @@ function buildHousing() {
     fv[0] = cf; fv[1] = clamp(tRange / 45, 0, 1); fv[2] = clamp(sun / 3500, 0, 1); fv[3] = clamp(pm / 85, 0, 1);
     fv[4] = clamp(elev / 4000, 0, 1); fv[5] = clamp(burden / 40, 0, 1); fv[6] = clamp((Math.log10(unit + 1) - 2.2) / 3, 0, 1);
     fv[7] = clamp(yld / 0.05, 0, 1); fv[8] = clamp((outflow + 30) / 60, 0, 1); fv[9] = clamp((annualMean + 10) / 40, 0, 1);
-    D.feat[ci] = fv;
+    D.feat[ci] = fv; D.shape[ci] = 0;   // 城市=发光点（密集星场背景）
     n++;
   }
   climWarm = cn ? clamp((cs / cn - 5) / 18, 0.12, 0.9) : 0.5;   // 全国年均温 → 背景冷暖偏置
@@ -301,6 +301,7 @@ async function buildIndustrial() {
     }, null, 6 + clamp(used / 30, 0, 1) * (TRAIL - 6));
     kIdx[k.id] = ki;
     const fv = makeFeat(2); setOrigin(fv, k.origin); fv[17] = clamp(used / 30, 0, 1); D.feat[ki] = fv;
+    D.shape[ki] = used >= 8 ? 9 : 5;   // 内核=核心 → 重用多→星状八面体(stella octangula) / 否则正十二面体
   });
 
   // 产品按出身分三种图案：国产→Lorenz蝴蝶 / 国外→Lü / 开源→Sprott-Linz F
@@ -329,6 +330,7 @@ async function buildIndustrial() {
     fv[14] = p.localization_depth === 'full' ? 1 : p.localization_depth === 'partial' ? 0.5 : 0.3;
     fv[15] = clamp(p.confidence ?? 0.8, 0, 1); fv[17] = clamp((kUsed[p.kernel_id] || 0) / 30, 0, 1);
     D.feat[i] = fv;
+    D.shape[i] = p.maturity === 'high' ? 4 : p.maturity === 'medium' ? 1 : 2;   // 成熟度：高→正二十面体 / 中→方块 / 低→正八面体
     if (p.kernel_id && kIdx[p.kernel_id] != null) { const c = colOf(p.origin); BEAM.a.push(i); BEAM.b.push(kIdx[p.kernel_id]); BEAM.col.push(c[0], c[1], c[2]); BEAM.w.push(0.6 + clamp((kUsed[p.kernel_id] || 0) / 30, 0, 1) * 3.0); }
   });
 
@@ -350,6 +352,7 @@ async function buildIndustrial() {
       raw: { y4, capability: m.capability_key || '', inc },
     }, [hash01('cap:' + (m.capability_key || 'x')) * 6.283, hash01('mp:' + (m.id || y4)) * 3.14 - 1.57, hash01('mr:' + (m.id || y4)) * 6.283], 7 + clamp(inc / 6, 0, 1) * (TRAIL - 7));
     const fv = makeFeat(3); fv[16] = yf; fv[18] = ev === 'audited' ? 1 : ev === 'case_study' ? 0.5 : 0; fv[19] = clamp(inc / 6, 0, 1); D.feat[i] = fv;
+    D.shape[i] = ev === 'audited' ? 10 : ev === 'case_study' ? 3 : 8;   // 证据：审计→立方八面体 / 案例→四面锥 / 其余→三棱柱
     (m.incumbent_product_ids || []).forEach((iid) => { if (pIdx[iid] != null) { BEAM.a.push(i); BEAM.b.push(pIdx[iid]); BEAM.col.push(0.85, 0.22, 0.28); BEAM.w.push(0.6 + clamp(inc / 6, 0, 1) * 3.0); } });
   });
 
@@ -374,6 +377,7 @@ async function buildIndustrial() {
       },
     }, [hash01('pt:' + (p.policy_type || 'x')) * 6.283, yf * 3.14 - 1.0 + hash01('pp:' + (p.id || y4)) * 0.6, hash01('pr:' + (p.id || y4)) * 6.283], 5 + tNorm * (TRAIL - 6));
     const fv = makeFeat(4); fv[16] = yf; fv[18] = tNorm; D.feat[pi] = fv;
+    D.shape[pi] = prog ? 7 : p.policy_type === 'fund' ? 11 : 6;   // 纲领→金字塔 / 资金→超立方体(4D) / 部委等→五棱柱
   });
 
   // 厂商按出身分三种图案：国产→Dadras / 国外→Newton-Leipnik / 开源→Hadley
@@ -390,6 +394,7 @@ async function buildIndustrial() {
       raw: { origin: v.origin, hqCity: v.hq_city || '', hqCountry: v.hq_country || '' },
     }, null, 4);
     const fv = makeFeat(5); setOrigin(fv, v.origin); D.feat[vi] = fv;
+    D.shape[vi] = v.origin === 'domestic' ? 14 : v.origin === 'open_source' ? 12 : 13;   // 国产→陀螺椭圆环 / 开源→五胞体(4-单纯形) / 国外→环面纽结
   });
 
   pairs.forEach((bp) => { if (pIdx[bp.domestic_id] != null && pIdx[bp.international_id] != null) { BEAM.a.push(pIdx[bp.domestic_id]); BEAM.b.push(pIdx[bp.international_id]); BEAM.col.push(0.2, 0.8, 0.72); BEAM.w.push(1.0); } });
@@ -403,16 +408,52 @@ let sys, anc, scl, bh, prm, spd, state, posArr, trail, trailSrc, rotM, head = 0;
 let pointsObj, trailObj, beamObj, beamIdxA, beamIdxB, beamPos;
 let grp, segsG, pointVisArr, pointVisAttr, trailVisArr, trailVisAttr, beamVisArr, beamVisAttr, beamEnds;
 let E = 0, emEnt, emLocal, entMat;   // 轨迹发射点：每个立体的每个顶点各一条
-let featM = null, latticeObj = null;   // SOM 特征矩阵(N×FEAT_DIM) · 神经晶格 LineSegments
+let featM = null, latticeObj = null, shapeArr = null;   // SOM 特征矩阵 · 神经晶格 · 每星几何体形 id
 let gOrg = 0, breathT = 0;             // 呼吸量(0=重叠混沌 / 1=铺开成神经地图) · 呼吸相位累加器
-function cornersOf(t) {
-  if (t === 0) return [0, 0, 0];                                                                                   // 城市=光点
-  if (t === 1) { const h = 0.39, a = []; for (const x of [-h, h]) for (const y of [-h, h]) for (const z of [-h, h]) a.push(x, y, z); return a; }   // 方块 8 角（全部）
-  if (t === 2) { const r = 0.5, a = []; for (let i = 0; i < 5; i++) { const an = i / 5 * 6.2832; a.push(Math.cos(an) * r, 0.475, Math.sin(an) * r); } return a; }   // 五棱柱 顶 5 角
-  if (t === 3) { const s = 0.8 / Math.sqrt(3); return [s, s, s, -s, -s, s, -s, s, -s, s, -s, -s]; }               // 四面锥 4 角（全部）
-  if (t === 4) { const r = 0.58, a = [0, 0.525, 0]; for (let i = 0; i < 4; i++) { const an = i / 4 * 6.2832; a.push(Math.cos(an) * r, -0.525, Math.sin(an) * r); } return a; }   // 金字塔 5（全部）
-  const a = []; for (let i = 0; i < 4; i++) { const an = i / 4 * 6.2832; a.push(Math.cos(an), Math.sin(an), 0); } return a;   // 椭圆环 4 点
-}
+// ---------- 几何体形库：常规多面体 + 特殊数学三维体（每个含棱线 edges + 轨迹发射点 corners）----------
+const SHAPES = (() => {
+  const edgesOf = (geo) => Array.from(new THREE.EdgesGeometry(geo, 1).attributes.position.array);   // 只取真实特征棱
+  const cubeVerts = (a) => [[-1, -1, -1], [1, -1, -1], [1, 1, -1], [-1, 1, -1], [-1, -1, 1], [1, -1, 1], [1, 1, 1], [-1, 1, 1]].map((p) => p.map((c) => c * a));
+  const CUBE_E = [[0, 1], [1, 2], [2, 3], [3, 0], [4, 5], [5, 6], [6, 7], [7, 4], [0, 4], [1, 5], [2, 6], [3, 7]];
+  const segFrom = (verts, idx) => { const a = []; for (const [u, v] of idx) a.push(verts[u][0], verts[u][1], verts[u][2], verts[v][0], verts[v][1], verts[v][2]); return a; };
+  const allPairs = (n) => { const a = []; for (let i = 0; i < n; i++) for (let j = i + 1; j < n; j++) a.push([i, j]); return a; };
+  const autoEdges = (verts) => {                                   // 连接最短等长棱（正多面体类）
+    let mn = Infinity;
+    for (let i = 0; i < verts.length; i++) for (let j = i + 1; j < verts.length; j++) { const d = Math.hypot(verts[i][0] - verts[j][0], verts[i][1] - verts[j][1], verts[i][2] - verts[j][2]); if (d < mn) mn = d; }
+    const idx = [];
+    for (let i = 0; i < verts.length; i++) for (let j = i + 1; j < verts.length; j++) { if (Math.abs(Math.hypot(verts[i][0] - verts[j][0], verts[i][1] - verts[j][1], verts[i][2] - verts[j][2]) - mn) < mn * 0.06) idx.push([i, j]); }
+    return segFrom(verts, idx);
+  };
+  const ring = () => { const seg = 28, T = 6.2831853, a = [];
+    for (let i = 0; i < seg; i++) { const t0 = i / seg * T, t1 = (i + 1) / seg * T; a.push(Math.cos(t0), Math.sin(t0), 0, Math.cos(t1), Math.sin(t1), 0); }       // 环 A · XY 面
+    for (let i = 0; i < seg; i++) { const t0 = i / seg * T, t1 = (i + 1) / seg * T; a.push(Math.cos(t0), 0, Math.sin(t0), Math.cos(t1), 0, Math.sin(t1)); }       // 环 B · XZ 面（正交→陀螺）
+    return a; };
+  const knot = (p, q, seg, sc) => { const a = [], pt = (t) => { const r = Math.cos(q * t) + 2; return [sc * r * Math.cos(p * t), sc * r * Math.sin(p * t), -sc * Math.sin(q * t)]; };
+    let pr = pt(0); for (let k = 1; k <= seg; k++) { const c = pt(k / seg * 6.2831853); a.push(pr[0], pr[1], pr[2], c[0], c[1], c[2]); pr = c; } return a; };
+  const stella = () => { const e = edgesOf(new THREE.TetrahedronGeometry(0.78)); return e.concat(e.map((v) => -v)); };                                            // 两个对偶四面体
+  const cubocta = () => { const s = 0.6 / Math.SQRT2, v = [[1, 1, 0], [1, -1, 0], [-1, 1, 0], [-1, -1, 0], [1, 0, 1], [1, 0, -1], [-1, 0, 1], [-1, 0, -1], [0, 1, 1], [0, 1, -1], [0, -1, 1], [0, -1, -1]].map((p) => p.map((c) => c * s)); return autoEdges(v); };
+  const tesseract = () => { const idx = CUBE_E.concat(CUBE_E.map(([u, v]) => [u + 8, v + 8])); for (let i = 0; i < 8; i++) idx.push([i, i + 8]); return segFrom(cubeVerts(0.42).concat(cubeVerts(0.22)), idx); };   // 内外双立方体 + 连棱
+  const fiveCell = () => { const s = 0.46, v = [[1, 1, 1], [1, -1, -1], [-1, 1, -1], [-1, -1, 1]].map((p) => p.map((c) => c * s)); v.push([0, 0, 0]); return segFrom(v, allPairs(5)); };   // 4-单纯形 Schlegel
+  const dedup = (edges, n) => { const seen = new Set(), out = []; for (let i = 0; i + 2 < edges.length && out.length < n * 3; i += 3) { const k = edges[i].toFixed(2) + ',' + edges[i + 1].toFixed(2) + ',' + edges[i + 2].toFixed(2); if (!seen.has(k)) { seen.add(k); out.push(edges[i], edges[i + 1], edges[i + 2]); } } return out.length ? out : [0, 0, 0]; };
+  const mk = (edges, ellipsoid, spin) => ({ edges: new Float32Array(edges), corners: dedup(edges, ellipsoid ? 4 : 6), ellipsoid: !!ellipsoid, spin });
+  const S = [null];                                                                                  // 0 = 发光点（城市），无几何体
+  S[1] = mk(edgesOf(new THREE.BoxGeometry(0.78, 0.78, 0.78)), 0, 0.10);                               // 方块
+  S[2] = mk(edgesOf(new THREE.OctahedronGeometry(0.62)), 0, 0.11);                                    // 正八面体
+  S[3] = mk(edgesOf(new THREE.TetrahedronGeometry(0.8)), 0, 0.12);                                    // 四面锥
+  S[4] = mk(edgesOf(new THREE.IcosahedronGeometry(0.62)), 0, 0.09);                                   // 正二十面体
+  S[5] = mk(edgesOf(new THREE.DodecahedronGeometry(0.6)), 0, 0.08);                                   // 正十二面体
+  S[6] = mk(edgesOf(new THREE.CylinderGeometry(0.5, 0.5, 0.95, 5)), 0, 0.10);                         // 五棱柱
+  S[7] = mk(edgesOf(new THREE.ConeGeometry(0.58, 1.05, 4)), 0, 0.10);                                 // 金字塔
+  S[8] = mk(edgesOf(new THREE.CylinderGeometry(0.55, 0.55, 0.95, 3)), 0, 0.11);                       // 三棱柱
+  S[9] = mk(stella(), 0, 0.10);                                                                       // 星状八面体 stella octangula
+  S[10] = mk(cubocta(), 0, 0.09);                                                                     // 立方八面体 cuboctahedron
+  S[11] = mk(tesseract(), 0, 0.12);                                                                   // 超立方体 tesseract（4D→3D）
+  S[12] = mk(fiveCell(), 0, 0.14);                                                                    // 五胞体 5-cell（4-单纯形）
+  S[13] = mk(knot(2, 3, 56, 0.24), 0, 0.5);                                                           // 环面纽结 trefoil
+  S[14] = mk(ring(), 1, 0.7);                                                                         // 陀螺椭圆环
+  return S;
+})();
+function cornersOf(t) { return (t && SHAPES[t]) ? SHAPES[t].corners : [0, 0, 0]; }
 let solidGroups = [];
 const _dummy = new THREE.Object3D(), _q = new THREE.Quaternion(), _v = new THREE.Vector3();
 const GROUP_KEY = { CITY: 0, PRODUCT: 1, KERNEL: 2, BREAKTHROUGH: 3, POLICY: 4, VENDOR: 5 };
@@ -452,6 +493,7 @@ function finalize() {
 
   // group id per point (for show/hide toggles)
   grp = Uint8Array.from(D.meta.map((m) => (m && GROUP_KEY[m.kind] != null ? GROUP_KEY[m.kind] : 0)));
+  shapeArr = new Uint8Array(N); for (let i = 0; i < N; i++) shapeArr[i] = D.shape[i] || 0;   // 每星几何体形 id
 
   // points
   const g = new THREE.BufferGeometry();
@@ -471,7 +513,7 @@ function finalize() {
   // trail emitters: 每个实体的每个顶点各发一条轨迹
   const emE = [], emL = [], emC = [], emT = [];
   for (let i = 0; i < N; i++) {
-    const c = cornersOf(grp[i]), cc = c.length / 3;
+    const c = cornersOf(shapeArr[i]), cc = c.length / 3;
     for (let q = 0; q < cc; q++) {
       emE.push(i); emL.push(c[q * 3], c[q * 3 + 1], c[q * 3 + 2]);
       emC.push(D.col[i * 3], D.col[i * 3 + 1], D.col[i * 3 + 2]); emT.push(D.tlen[i]);
@@ -784,7 +826,7 @@ function animate() {
     if (frameCount % STRIDE === 0) {
       for (let e = 0; e < E; e++) {                              // 每个顶点发射点的世界位置
         const gi = emEnt[e], eo = e * 3;
-        if (grp[gi] === 0) { trailSrc[eo] = posArr[gi * 3]; trailSrc[eo + 1] = posArr[gi * 3 + 1]; trailSrc[eo + 2] = posArr[gi * 3 + 2]; }
+        if (shapeArr[gi] === 0) { trailSrc[eo] = posArr[gi * 3]; trailSrc[eo + 1] = posArr[gi * 3 + 1]; trailSrc[eo + 2] = posArr[gi * 3 + 2]; }
         else { const m = gi * 16, lx = emLocal[eo], ly = emLocal[eo + 1], lz = emLocal[eo + 2];
           trailSrc[eo] = entMat[m] * lx + entMat[m + 4] * ly + entMat[m + 8] * lz + entMat[m + 12];
           trailSrc[eo + 1] = entMat[m + 1] * lx + entMat[m + 5] * ly + entMat[m + 9] * lz + entMat[m + 13];
@@ -826,31 +868,18 @@ function animate() {
 
 // ---------- 几何体变体：每类一种缓慢自转的线框立体（围绕发光核） ----------
 function buildSolids() {
-  const edgesOf = (geo) => new THREE.EdgesGeometry(geo, 1).attributes.position.array.slice();   // 只取真实特征棱
-  const ringEllipse = () => { const seg = 28, T = 6.2831853, a = [];
-    for (let i = 0; i < seg; i++) { const t0 = i / seg * T, t1 = (i + 1) / seg * T; a.push(Math.cos(t0), Math.sin(t0), 0, Math.cos(t1), Math.sin(t1), 0); }       // 环 A · XY 面
-    for (let i = 0; i < seg; i++) { const t0 = i / seg * T, t1 = (i + 1) / seg * T; a.push(Math.cos(t0), 0, Math.sin(t0), Math.cos(t1), 0, Math.sin(t1)); }       // 环 B · XZ 面（正交→陀螺）
-    return new Float32Array(a); };
-  const locals = [
-    edgesOf(new THREE.OctahedronGeometry(0.62)),          // 0 城市 八面体（12 棱）
-    edgesOf(new THREE.BoxGeometry(0.78, 0.78, 0.78)),     // 1 产品 方块（12 棱）
-    edgesOf(new THREE.CylinderGeometry(0.5, 0.5, 0.95, 5)), // 2 内核 五棱柱（15 棱）
-    edgesOf(new THREE.TetrahedronGeometry(0.8)),          // 3 突破 四面锥（6 棱）
-    edgesOf(new THREE.ConeGeometry(0.58, 1.05, 4)),       // 4 政策 金字塔（8 棱）
-    ringEllipse()                                          // 5 厂商 椭圆环（呼吸变径外轮廓）
-  ];
-  const buckets = [[], [], [], [], [], []];
-  for (let i = 0; i < N; i++) buckets[grp[i]].push(i);
-  for (let t = 0; t < 6; t++) {
-    const list = buckets[t], cnt = list.length; if (!cnt || t === 0) continue;   // 城市为光点型，不建立体
-    const local = locals[t], lv = local.length / 3;
+  const buckets = {};                                            // 按几何体形 id 分桶（跨数据层，shape 0=点不建）
+  for (let i = 0; i < N; i++) { const sid = shapeArr[i]; if (!sid || !SHAPES[sid]) continue; (buckets[sid] || (buckets[sid] = [])).push(i); }
+  for (const sidKey in buckets) {
+    const sid = +sidKey, list = buckets[sid], cnt = list.length, shape = SHAPES[sid];
+    const local = shape.edges, lv = local.length / 3;
     const pos = new Float32Array(cnt * lv * 3), colA = new Float32Array(cnt * lv * 3);
     const gidx = new Int32Array(cnt), axis = new Float32Array(cnt * 3), speed = new Float32Array(cnt);
     for (let j = 0; j < cnt; j++) {
       const gi = list[j]; gidx[j] = gi;
       let ax = Math.random() - 0.5, ay = Math.random() - 0.5, az = Math.random() - 0.5;
       const L = Math.hypot(ax, ay, az) || 1; axis[j * 3] = ax / L; axis[j * 3 + 1] = ay / L; axis[j * 3 + 2] = az / L;
-      speed[j] = (t === 5 ? 0.5 + Math.random() * 0.9 : 0.05 + Math.random() * 0.15);   // 厂商环更快、更灵动
+      speed[j] = shape.spin * (0.6 + Math.random() * 0.8);        // 自转速度 = 形库基速 × 抖动
       const cr = D.col[gi * 3], cg = D.col[gi * 3 + 1], cb = D.col[gi * 3 + 2];
       for (let v = 0; v < lv; v++) { const k = (j * lv + v) * 3; colA[k] = cr; colA[k + 1] = cg; colA[k + 2] = cb; }
     }
@@ -859,7 +888,7 @@ function buildSolids() {
     g.setAttribute('position', posAttr);
     g.setAttribute('aColor', new THREE.BufferAttribute(colA, 3));
     const mesh = new THREE.LineSegments(g, solidLineMat); mesh.frustumCulled = false; root.add(mesh);
-    solidGroups.push({ posAttr, pos, local, lv, cnt, gidx, axis, speed, ellipsoid: t === 5 });
+    solidGroups.push({ posAttr, pos, local, lv, cnt, gidx, axis, speed, ellipsoid: shape.ellipsoid });
   }
 }
 
