@@ -21,8 +21,13 @@ html, body {
 #title {
   font-size: 17px; font-weight: 200; letter-spacing: 0.42em; margin-top: 4px; opacity: 0.6;
 }
-#title span { font-size: 9px; letter-spacing: 0.34em; opacity: 0.4; margin-left: 12px; font-weight: 200; }
-#sub { font-size: 10px; font-weight: 300; opacity: 0.3; margin-top: 12px; max-width: 460px; line-height: 1.9; letter-spacing: 0.04em; }
+#title span {
+  font-size: 9px; letter-spacing: 0.34em; opacity: 0.4; margin-left: 12px; font-weight: 200;
+  pointer-events: auto; cursor: pointer; transition: opacity 0.2s;
+}
+#title span:hover { opacity: 0.72; }
+#title span:active { opacity: 0.9; }
+#sub { font-size: 10px; font-weight: 300; opacity: 0.3; margin-top: 12px; max-width: 520px; line-height: 1.9; letter-spacing: 0.04em; }
 
 #tip {
   position: fixed; left: 0; right: 0;
