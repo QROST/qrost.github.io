@@ -301,7 +301,7 @@ async function buildIndustrial() {
     }, null, 6 + clamp(used / 30, 0, 1) * (TRAIL - 6));
     kIdx[k.id] = ki;
     const fv = makeFeat(2); setOrigin(fv, k.origin); fv[17] = clamp(used / 30, 0, 1); D.feat[ki] = fv;
-    D.shape[ki] = used >= 8 ? 9 : 5;   // 内核=核心 → 重用多→星状八面体(stella octangula) / 否则正十二面体
+    D.shape[ki] = used >= 12 ? 9 : used >= 5 ? 5 : 4;   // 内核(仅43个)三分：极重用→星状八面体 / 重用→正十二面体 / 其余→正二十面体(故正二十面体很少)
   });
 
   // 产品按出身分三种图案：国产→Lorenz蝴蝶 / 国外→Lü / 开源→Sprott-Linz F
@@ -330,7 +330,7 @@ async function buildIndustrial() {
     fv[14] = p.localization_depth === 'full' ? 1 : p.localization_depth === 'partial' ? 0.5 : 0.3;
     fv[15] = clamp(p.confidence ?? 0.8, 0, 1); fv[17] = clamp((kUsed[p.kernel_id] || 0) / 30, 0, 1);
     D.feat[i] = fv;
-    D.shape[i] = p.maturity === 'high' ? 4 : p.maturity === 'medium' ? 1 : 2;   // 成熟度：高→正二十面体 / 中→方块 / 低→正八面体
+    D.shape[i] = p.maturity === 'high' ? 11 : p.maturity === 'medium' ? 1 : 2;   // 成熟度：高→超立方体(4D，量多) / 中→方块 / 低→正八面体
     if (p.kernel_id && kIdx[p.kernel_id] != null) { const c = colOf(p.origin); BEAM.a.push(i); BEAM.b.push(kIdx[p.kernel_id]); BEAM.col.push(c[0], c[1], c[2]); BEAM.w.push(0.6 + clamp((kUsed[p.kernel_id] || 0) / 30, 0, 1) * 3.0); }
   });
 
@@ -352,7 +352,7 @@ async function buildIndustrial() {
       raw: { y4, capability: m.capability_key || '', inc },
     }, [hash01('cap:' + (m.capability_key || 'x')) * 6.283, hash01('mp:' + (m.id || y4)) * 3.14 - 1.57, hash01('mr:' + (m.id || y4)) * 6.283], 7 + clamp(inc / 6, 0, 1) * (TRAIL - 7));
     const fv = makeFeat(3); fv[16] = yf; fv[18] = ev === 'audited' ? 1 : ev === 'case_study' ? 0.5 : 0; fv[19] = clamp(inc / 6, 0, 1); D.feat[i] = fv;
-    D.shape[i] = ev === 'audited' ? 10 : ev === 'case_study' ? 3 : 8;   // 证据：审计→立方八面体 / 案例→四面锥 / 其余→三棱柱
+    D.shape[i] = ev === 'audited' ? 10 : ev === 'case_study' ? 12 : 8;   // 证据：审计→立方八面体 / 案例→五胞体(4-单纯形，量多) / 其余→三棱柱
     (m.incumbent_product_ids || []).forEach((iid) => { if (pIdx[iid] != null) { BEAM.a.push(i); BEAM.b.push(pIdx[iid]); BEAM.col.push(0.85, 0.22, 0.28); BEAM.w.push(0.6 + clamp(inc / 6, 0, 1) * 3.0); } });
   });
 
@@ -409,6 +409,7 @@ let pointsObj, trailObj, beamObj, beamIdxA, beamIdxB, beamPos;
 let grp, segsG, pointVisArr, pointVisAttr, trailVisArr, trailVisAttr, beamVisArr, beamVisAttr, beamEnds;
 let E = 0, emEnt, emLocal, entMat;   // 轨迹发射点：每个立体的每个顶点各一条
 let featM = null, latticeObj = null, shapeArr = null;   // SOM 特征矩阵 · 神经晶格 · 每星几何体形 id
+let prevPos = null;   // 上一帧世界位置 → 算速度方向（棱柱以运动方向为自转轴）
 let gOrg = 0, breathT = 0;             // 呼吸量(0=重叠混沌 / 1=铺开成神经地图) · 呼吸相位累加器
 // ---------- 几何体形库：常规多面体 + 特殊数学三维体（每个含棱线 edges + 轨迹发射点 corners）----------
 const SHAPES = (() => {
@@ -435,16 +436,16 @@ const SHAPES = (() => {
   const tesseract = () => { const idx = CUBE_E.concat(CUBE_E.map(([u, v]) => [u + 8, v + 8])); for (let i = 0; i < 8; i++) idx.push([i, i + 8]); return segFrom(cubeVerts(0.42).concat(cubeVerts(0.22)), idx); };   // 内外双立方体 + 连棱
   const fiveCell = () => { const s = 0.46, v = [[1, 1, 1], [1, -1, -1], [-1, 1, -1], [-1, -1, 1]].map((p) => p.map((c) => c * s)); v.push([0, 0, 0]); return segFrom(v, allPairs(5)); };   // 4-单纯形 Schlegel
   const dedup = (edges, n) => { const seen = new Set(), out = []; for (let i = 0; i + 2 < edges.length && out.length < n * 3; i += 3) { const k = edges[i].toFixed(2) + ',' + edges[i + 1].toFixed(2) + ',' + edges[i + 2].toFixed(2); if (!seen.has(k)) { seen.add(k); out.push(edges[i], edges[i + 1], edges[i + 2]); } } return out.length ? out : [0, 0, 0]; };
-  const mk = (edges, ellipsoid, spin) => ({ edges: new Float32Array(edges), corners: dedup(edges, ellipsoid ? 4 : 6), ellipsoid: !!ellipsoid, spin });
+  const mk = (edges, ellipsoid, spin, velAxis) => ({ edges: new Float32Array(edges), corners: dedup(edges, ellipsoid ? 4 : 6), ellipsoid: !!ellipsoid, spin, velAxis: !!velAxis });
   const S = [null];                                                                                  // 0 = 发光点（城市），无几何体
   S[1] = mk(edgesOf(new THREE.BoxGeometry(0.78, 0.78, 0.78)), 0, 0.10);                               // 方块
   S[2] = mk(edgesOf(new THREE.OctahedronGeometry(0.62)), 0, 0.11);                                    // 正八面体
   S[3] = mk(edgesOf(new THREE.TetrahedronGeometry(0.8)), 0, 0.12);                                    // 四面锥
   S[4] = mk(edgesOf(new THREE.IcosahedronGeometry(0.62)), 0, 0.09);                                   // 正二十面体
   S[5] = mk(edgesOf(new THREE.DodecahedronGeometry(0.6)), 0, 0.08);                                   // 正十二面体
-  S[6] = mk(edgesOf(new THREE.CylinderGeometry(0.5, 0.5, 0.95, 5)), 0, 0.10);                         // 五棱柱
+  S[6] = mk(edgesOf(new THREE.CylinderGeometry(0.5, 0.5, 0.95, 5)), 0, 0.10, 1);                      // 五棱柱（轴向自转=运动方向）
   S[7] = mk(edgesOf(new THREE.ConeGeometry(0.58, 1.05, 4)), 0, 0.10);                                 // 金字塔
-  S[8] = mk(edgesOf(new THREE.CylinderGeometry(0.55, 0.55, 0.95, 3)), 0, 0.11);                       // 三棱柱
+  S[8] = mk(edgesOf(new THREE.CylinderGeometry(0.55, 0.55, 0.95, 3)), 0, 0.11, 1);                    // 三棱柱（轴向自转=运动方向）
   S[9] = mk(stella(), 0, 0.10);                                                                       // 星状八面体 stella octangula
   S[10] = mk(cubocta(), 0, 0.09);                                                                     // 立方八面体 cuboctahedron
   S[11] = mk(tesseract(), 0, 0.12);                                                                   // 超立方体 tesseract（4D→3D）
@@ -456,6 +457,7 @@ const SHAPES = (() => {
 function cornersOf(t) { return (t && SHAPES[t]) ? SHAPES[t].corners : [0, 0, 0]; }
 let solidGroups = [];
 const _dummy = new THREE.Object3D(), _q = new THREE.Quaternion(), _v = new THREE.Vector3();
+const _q1 = new THREE.Quaternion(), _q2 = new THREE.Quaternion(), _UP = new THREE.Vector3(0, 1, 0);
 const GROUP_KEY = { CITY: 0, PRODUCT: 1, KERNEL: 2, BREAKTHROUGH: 3, POLICY: 4, VENDOR: 5 };
 const groupVis = [true, true, true, true, true, true];
 
@@ -490,6 +492,7 @@ function finalize() {
 
   // initial world positions
   for (let i = 0; i < N; i++) writeWorld(i);
+  prevPos = Float32Array.from(posArr);   // 速度方向初值
 
   // group id per point (for show/hide toggles)
   grp = Uint8Array.from(D.meta.map((m) => (m && GROUP_KEY[m.kind] != null ? GROUP_KEY[m.kind] : 0)));
@@ -812,7 +815,11 @@ function animate() {
         const sg = solidGroups[g], local = sg.local, lv = sg.lv, pos = sg.pos;
         for (let j = 0; j < sg.cnt; j++) {
           const gi = sg.gidx[j], o = gi * 3, vis = groupVis[grp[gi]] ? 1 : 0;
-          _q.setFromAxisAngle(_v.set(sg.axis[j * 3], sg.axis[j * 3 + 1], sg.axis[j * 3 + 2]), sg.speed[j] * tElapsed);
+          if (sg.velAxis) {                                       // 棱柱：长轴对齐运动方向，再绕该方向缓慢自旋（纺锤感）
+            const vx = posArr[o] - prevPos[o], vy = posArr[o + 1] - prevPos[o + 1], vz = posArr[o + 2] - prevPos[o + 2], vl = Math.hypot(vx, vy, vz);
+            if (vl > 1e-5) { _v.set(vx / vl, vy / vl, vz / vl); _q1.setFromUnitVectors(_UP, _v); _q2.setFromAxisAngle(_v, sg.speed[j] * tElapsed); _q.multiplyQuaternions(_q2, _q1); }
+            else { _q.setFromAxisAngle(_v.set(sg.axis[j * 3], sg.axis[j * 3 + 1], sg.axis[j * 3 + 2]), sg.speed[j] * tElapsed); }
+          } else { _q.setFromAxisAngle(_v.set(sg.axis[j * 3], sg.axis[j * 3 + 1], sg.axis[j * 3 + 2]), sg.speed[j] * tElapsed); }
           const sc = (0.08 + D.sz[gi] * 0.075) * (sg.ellipsoid ? ringBreath : sbreath) * vis;
           _dummy.position.set(posArr[o], posArr[o + 1], posArr[o + 2]);
           _dummy.quaternion.copy(_q);
@@ -868,6 +875,8 @@ function animate() {
       }
       beamObj.userData.posAttr.needsUpdate = true; beamObj.userData.dirAttr.needsUpdate = true;
     }
+
+    if (prevPos) prevPos.set(posArr);   // 存本帧位置 → 下一帧算速度方向
   }
 
   if (gyroOn) { yaw = lerp(yaw, gyroYaw, 0.12); pitch = lerp(pitch, gyroPitch, 0.12); }
@@ -889,7 +898,7 @@ function buildSolids() {
       const gi = list[j]; gidx[j] = gi;
       let ax = Math.random() - 0.5, ay = Math.random() - 0.5, az = Math.random() - 0.5;
       const L = Math.hypot(ax, ay, az) || 1; axis[j * 3] = ax / L; axis[j * 3 + 1] = ay / L; axis[j * 3 + 2] = az / L;
-      speed[j] = shape.spin * (0.6 + Math.random() * 0.8);        // 自转速度 = 形库基速 × 抖动
+      speed[j] = shape.velAxis ? shape.spin * (0.5 + (D.spd[gi] || 0.5)) : shape.spin * (0.6 + Math.random() * 0.8);   // 棱柱：随数据(D.spd) 缓慢轴向自转；其余：随机抖动
       const cr = D.col[gi * 3], cg = D.col[gi * 3 + 1], cb = D.col[gi * 3 + 2];
       for (let v = 0; v < lv; v++) { const k = (j * lv + v) * 3; colA[k] = cr; colA[k + 1] = cg; colA[k + 2] = cb; }
     }
@@ -898,7 +907,7 @@ function buildSolids() {
     g.setAttribute('position', posAttr);
     g.setAttribute('aColor', new THREE.BufferAttribute(colA, 3));
     const mesh = new THREE.LineSegments(g, solidLineMat); mesh.frustumCulled = false; root.add(mesh);
-    solidGroups.push({ posAttr, pos, local, lv, cnt, gidx, axis, speed, ellipsoid: shape.ellipsoid });
+    solidGroups.push({ posAttr, pos, local, lv, cnt, gidx, axis, speed, ellipsoid: shape.ellipsoid, velAxis: shape.velAxis });
   }
 }
 
