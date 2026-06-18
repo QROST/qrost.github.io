@@ -96,6 +96,8 @@ const bgMat = new THREE.ShaderMaterial({
       float hue = f*0.6 + (w-0.5)*0.35 + hueN*0.35 + vert*0.18 + uTime*0.006 + (uWarm-0.5)*0.25 + 0.06;  // 神经场 + 流体共定色相
       vec3 col = pal(hue);
       col *= 0.7 + 0.42*breathe;                                     // 整体随呼吸明暗起伏
+      float redness = smoothstep(0.015, 0.16, col.r - max(col.g, col.b));   // 仅"红主导"像素（不含品红/橙）
+      col *= mix(1.0, 0.40, redness);                                // 红 → 黑红（压暗，保留色相）；其余色不变
       gl_FragColor = vec4(col, 1.0);
     }`
 });
@@ -437,6 +439,20 @@ const SHAPES = (() => {
   const fiveCell = () => { const s = 0.46, v = [[1, 1, 1], [1, -1, -1], [-1, 1, -1], [-1, -1, 1]].map((p) => p.map((c) => c * s)); v.push([0, 0, 0]); return segFrom(v, allPairs(5)); };   // 4-单纯形 Schlegel
   const dedup = (edges, n) => { const seen = new Set(), out = []; for (let i = 0; i + 2 < edges.length && out.length < n * 3; i += 3) { const k = edges[i].toFixed(2) + ',' + edges[i + 1].toFixed(2) + ',' + edges[i + 2].toFixed(2); if (!seen.has(k)) { seen.add(k); out.push(edges[i], edges[i + 1], edges[i + 2]); } } return out.length ? out : [0, 0, 0]; };
   const mk = (edges, ellipsoid, spin, velAxis) => ({ edges: new Float32Array(edges), corners: dedup(edges, ellipsoid ? 4 : 6), ellipsoid: !!ellipsoid, spin, velAxis: !!velAxis });
+  // 4D 形：存 4 维顶点 + 棱索引 + 投影距 wdist + 4D 自转基速 spin4；运行时逐帧 4D 旋转→投影 3D（真·四维运动）
+  const proj4 = (v, wd) => { const k = wd / (wd - v[3]); return [v[0] * k, v[1] * k, v[2] * k]; };    // angle-0 投影（建静态棱/corners）
+  const make4d = (V4, E, wd, spin4) => {
+    const v3 = V4.map((v) => proj4(v, wd)), edges = [];
+    for (const [u, v] of E) edges.push(v3[u][0], v3[u][1], v3[u][2], v3[v][0], v3[v][1], v3[v][2]);
+    const verts4 = new Float32Array(V4.length * 4); V4.forEach((v, i) => verts4.set(v, i * 4));
+    const edgeIdx = new Int16Array(E.length * 2); E.forEach((e, i) => { edgeIdx[i * 2] = e[0]; edgeIdx[i * 2 + 1] = e[1]; });
+    return { edges: new Float32Array(edges), corners: dedup(edges, 6), ellipsoid: false, spin: 0, velAxis: false, is4d: true, verts4, edgeIdx, n4: V4.length, ne: E.length, wdist: wd, spin4 };
+  };
+  const tesseract4 = () => { const V = [], E = []; for (const a of [-1, 1]) for (const b of [-1, 1]) for (const c of [-1, 1]) for (const w of [-1, 1]) V.push([a * 0.5, b * 0.5, c * 0.5, w * 0.5]);
+    for (let i = 0; i < 16; i++) for (let j = i + 1; j < 16; j++) { let df = 0; for (let k = 0; k < 4; k++) if (V[i][k] !== V[j][k]) df++; if (df === 1) E.push([i, j]); } return make4d(V, E, 2.4, 0.16); };   // 16 顶点 / 32 棱
+  const fiveCell4 = () => { const r2 = Math.SQRT2, r6 = Math.sqrt(6), r12 = Math.sqrt(12), r20 = Math.sqrt(20), s = 0.72;
+    const V = [[1 / r2, 1 / r6, 1 / r12, 1 / r20], [-1 / r2, 1 / r6, 1 / r12, 1 / r20], [0, -2 / r6, 1 / r12, 1 / r20], [0, 0, -3 / r12, 1 / r20], [0, 0, 0, -4 / r20]].map((p) => p.map((c) => c * s));
+    const E = []; for (let i = 0; i < 5; i++) for (let j = i + 1; j < 5; j++) E.push([i, j]); return make4d(V, E, 2.0, 0.22); };   // 正 4-单纯形 5 顶点 / K5 10 棱
   const S = [null];                                                                                  // 0 = 发光点（城市），无几何体
   S[1] = mk(edgesOf(new THREE.BoxGeometry(0.78, 0.78, 0.78)), 0, 0.10);                               // 方块
   S[2] = mk(edgesOf(new THREE.OctahedronGeometry(0.62)), 0, 0.11);                                    // 正八面体
@@ -448,8 +464,8 @@ const SHAPES = (() => {
   S[8] = mk(edgesOf(new THREE.CylinderGeometry(0.55, 0.55, 0.95, 3)), 0, 0.11, 1);                    // 三棱柱（轴向自转=运动方向）
   S[9] = mk(stella(), 0, 0.10);                                                                       // 星状八面体 stella octangula
   S[10] = mk(cubocta(), 0, 0.09);                                                                     // 立方八面体 cuboctahedron
-  S[11] = mk(tesseract(), 0, 0.12);                                                                   // 超立方体 tesseract（4D→3D）
-  S[12] = mk(fiveCell(), 0, 0.14);                                                                    // 五胞体 5-cell（4-单纯形）
+  S[11] = tesseract4();                                                                               // 超立方体：逐帧 4D 旋转→3D（内外翻转/展开）
+  S[12] = fiveCell4();                                                                                // 五胞体：逐帧 4D 旋转→3D（顶点穿插涌动）
   S[13] = mk(knot(2, 3, 56, 0.24), 0, 0.5);                                                           // 环面纽结 trefoil
   S[14] = mk(ring(), 1, 0.7);                                                                         // 陀螺椭圆环
   return S;
@@ -458,6 +474,18 @@ function cornersOf(t) { return (t && SHAPES[t]) ? SHAPES[t].corners : [0, 0, 0];
 let solidGroups = [];
 const _dummy = new THREE.Object3D(), _q = new THREE.Quaternion(), _v = new THREE.Vector3();
 const _q1 = new THREE.Quaternion(), _q2 = new THREE.Quaternion(), _UP = new THREE.Vector3(0, 1, 0);
+const _v3tmp = new Float32Array(16 * 3), _localDyn = new Float32Array(64 * 3);   // 4D 投影暂存（≤16 顶点 / ≤32 棱）
+// 把 4D 顶点按角 a 旋转（XW 面 + YW 面双旋）再透视投影到 3D，存入 _v3tmp
+function project4D(verts4, n4, wd, a) {
+  const ca = Math.cos(a), sa = Math.sin(a), cb = Math.cos(a * 0.62), sb = Math.sin(a * 0.62);
+  for (let i = 0; i < n4; i++) {
+    const x = verts4[i * 4], y = verts4[i * 4 + 1], z = verts4[i * 4 + 2], w = verts4[i * 4 + 3];
+    const x1 = x * ca - w * sa, w1 = x * sa + w * ca;        // 绕 (x,w) 面
+    const y1 = y * cb - w1 * sb, w2 = y * sb + w1 * cb;      // 绕 (y,w) 面
+    const k = wd / (wd - w2);                                 // 4D→3D 透视（w 近大远小 → 内外翻转）
+    _v3tmp[i * 3] = x1 * k; _v3tmp[i * 3 + 1] = y1 * k; _v3tmp[i * 3 + 2] = z * k;
+  }
+}
 const GROUP_KEY = { CITY: 0, PRODUCT: 1, KERNEL: 2, BREAKTHROUGH: 3, POLICY: 4, VENDOR: 5 };
 const groupVis = [true, true, true, true, true, true];
 
@@ -812,13 +840,27 @@ function animate() {
     if (solidGroups.length) {
       const sbreath = 1.0 + 0.22 * Math.sin(tElapsed * 0.7), ringBreath = 1.0 + 0.18 * Math.sin(tElapsed * 0.5 + 1.0);
       for (let g = 0; g < solidGroups.length; g++) {
-        const sg = solidGroups[g], local = sg.local, lv = sg.lv, pos = sg.pos;
+        const sg = solidGroups[g], lv = sg.lv, pos = sg.pos;
+        let local = sg.local;
         for (let j = 0; j < sg.cnt; j++) {
           const gi = sg.gidx[j], o = gi * 3, vis = groupVis[grp[gi]] ? 1 : 0;
+          if (sg.is4d) {                                          // 逐帧 4D 旋转→投影 3D（速率随数据 D.spd），每个实体各自的形状
+            project4D(sg.verts4, sg.n4, sg.wdist, sg.spd4[j] * tElapsed + sg.phase[j]);
+            for (let e2 = 0; e2 < sg.ne; e2++) { const u = sg.edgeIdx[e2 * 2] * 3, v2 = sg.edgeIdx[e2 * 2 + 1] * 3, o2 = e2 * 6;
+              _localDyn[o2] = _v3tmp[u]; _localDyn[o2 + 1] = _v3tmp[u + 1]; _localDyn[o2 + 2] = _v3tmp[u + 2];
+              _localDyn[o2 + 3] = _v3tmp[v2]; _localDyn[o2 + 4] = _v3tmp[v2 + 1]; _localDyn[o2 + 5] = _v3tmp[v2 + 2]; }
+            local = _localDyn;
+          }
           if (sg.velAxis) {                                       // 棱柱：长轴对齐运动方向，再绕该方向缓慢自旋（纺锤感）
-            const vx = posArr[o] - prevPos[o], vy = posArr[o + 1] - prevPos[o + 1], vz = posArr[o + 2] - prevPos[o + 2], vl = Math.hypot(vx, vy, vz);
-            if (vl > 1e-5) { _v.set(vx / vl, vy / vl, vz / vl); _q1.setFromUnitVectors(_UP, _v); _q2.setFromAxisAngle(_v, sg.speed[j] * tElapsed); _q.multiplyQuaternions(_q2, _q1); }
-            else { _q.setFromAxisAngle(_v.set(sg.axis[j * 3], sg.axis[j * 3 + 1], sg.axis[j * 3 + 2]), sg.speed[j] * tElapsed); }
+            const o3 = j * 3, vx = posArr[o] - prevPos[o], vy = posArr[o + 1] - prevPos[o + 1], vz = posArr[o + 2] - prevPos[o + 2], vl = Math.hypot(vx, vy, vz);
+            let dx = sg.vdir[o3], dy = sg.vdir[o3 + 1], dz = sg.vdir[o3 + 2];
+            if (vl > 1e-6) {                                       // 对方向做低通滤波 → 轴向平滑转动，不再随混沌瞬时速度抖动
+              const sm = Math.min(1, dt * 5);
+              dx += (vx / vl - dx) * sm; dy += (vy / vl - dy) * sm; dz += (vz / vl - dz) * sm;
+              const dl = Math.hypot(dx, dy, dz) || 1; dx /= dl; dy /= dl; dz /= dl;
+              sg.vdir[o3] = dx; sg.vdir[o3 + 1] = dy; sg.vdir[o3 + 2] = dz;
+            }
+            _v.set(dx, dy, dz); _q1.setFromUnitVectors(_UP, _v); _q2.setFromAxisAngle(_v, sg.speed[j] * tElapsed); _q.multiplyQuaternions(_q2, _q1);
           } else { _q.setFromAxisAngle(_v.set(sg.axis[j * 3], sg.axis[j * 3 + 1], sg.axis[j * 3 + 2]), sg.speed[j] * tElapsed); }
           const sc = (0.08 + D.sz[gi] * 0.075) * (sg.ellipsoid ? ringBreath : sbreath) * vis;
           _dummy.position.set(posArr[o], posArr[o + 1], posArr[o + 2]);
@@ -894,11 +936,15 @@ function buildSolids() {
     const local = shape.edges, lv = local.length / 3;
     const pos = new Float32Array(cnt * lv * 3), colA = new Float32Array(cnt * lv * 3);
     const gidx = new Int32Array(cnt), axis = new Float32Array(cnt * 3), speed = new Float32Array(cnt);
+    const spd4 = shape.is4d ? new Float32Array(cnt) : null, phase = shape.is4d ? new Float32Array(cnt) : null;
+    const vdir = shape.velAxis ? new Float32Array(cnt * 3) : null;   // 棱柱：平滑后的运动方向（低通滤波状态）
     for (let j = 0; j < cnt; j++) {
       const gi = list[j]; gidx[j] = gi;
       let ax = Math.random() - 0.5, ay = Math.random() - 0.5, az = Math.random() - 0.5;
       const L = Math.hypot(ax, ay, az) || 1; axis[j * 3] = ax / L; axis[j * 3 + 1] = ay / L; axis[j * 3 + 2] = az / L;
       speed[j] = shape.velAxis ? shape.spin * (0.5 + (D.spd[gi] || 0.5)) : shape.spin * (0.6 + Math.random() * 0.8);   // 棱柱：随数据(D.spd) 缓慢轴向自转；其余：随机抖动
+      if (shape.velAxis) { vdir[j * 3] = 0; vdir[j * 3 + 1] = 1; vdir[j * 3 + 2] = 0; }   // 初始方向
+      if (shape.is4d) { spd4[j] = shape.spin4 * (0.4 + (D.spd[gi] || 0.5)); phase[j] = hash01('p4' + gi) * 6.2831853; }   // 4D 旋转速率随数据 D.spd；相位去同步
       const cr = D.col[gi * 3], cg = D.col[gi * 3 + 1], cb = D.col[gi * 3 + 2];
       for (let v = 0; v < lv; v++) { const k = (j * lv + v) * 3; colA[k] = cr; colA[k + 1] = cg; colA[k + 2] = cb; }
     }
@@ -907,7 +953,8 @@ function buildSolids() {
     g.setAttribute('position', posAttr);
     g.setAttribute('aColor', new THREE.BufferAttribute(colA, 3));
     const mesh = new THREE.LineSegments(g, solidLineMat); mesh.frustumCulled = false; root.add(mesh);
-    solidGroups.push({ posAttr, pos, local, lv, cnt, gidx, axis, speed, ellipsoid: shape.ellipsoid, velAxis: shape.velAxis });
+    solidGroups.push({ posAttr, pos, local, lv, cnt, gidx, axis, speed, ellipsoid: shape.ellipsoid, velAxis: shape.velAxis, vdir,
+      is4d: shape.is4d, verts4: shape.verts4, edgeIdx: shape.edgeIdx, n4: shape.n4, ne: shape.ne, wdist: shape.wdist, spd4, phase });
   }
 }
 
