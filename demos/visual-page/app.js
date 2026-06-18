@@ -24,7 +24,7 @@ const STRIDE = 10;                    // 每 STRIDE 帧采样一次 → 加大�
 const CENTER = [0, 42, 0];           // 所有吸引子共用中心 → 重叠共舞（呼吸吸气态）
 const FEAT_DIM = 26;                 // SOM 特征维度：城市 10 + 工业 10 + 类型 one-hot 6
 const SOM_L = [9, 7, 5];             // Kohonen 晶格维度 → 315 神经元
-const SOM_R = [90, 55, 90];          // 晶格→世界 半幅（CENTER 周围有界盒）
+const SOM_R = [55, 120];             // 神经晶格→世界：环绕视角的球壳 内/外半径（非平面盒）
 const SOM_EPOCHS = IS_MOBILE ? 14 : 26;
 const SHRINK = 0.5;                  // 完全呼气（铺开）时混沌缩成锚点周围小笔触的比例
 const SYSN = 15;                     // 系统总数
@@ -650,8 +650,18 @@ function buildSOM() {
     }
   }
   // 每星→BMU→晶格坐标→世界坐标，写入 anc；累积 density
-  const Rx = SOM_R[0], Ry = SOM_R[1], Rz = SOM_R[2];
-  const nodeWorld = (ix, iy, iz) => [CENTER[0] + (ix / (Lx - 1) - 0.5) * 2 * Rx, CENTER[1] + (iy / (Ly - 1) - 0.5) * 2 * Ry, CENTER[2] + (iz / (Lz - 1) - 0.5) * 2 * Rz];
+  // 晶格→世界：ix=经度（环视一圈）· iy=纬度（等面积、避开极点）· iz=球壳厚度；逐节点确定性抖动 → 不规律的有机球面
+  const Rmin = SOM_R[0], Rmax = SOM_R[1], TAU = 6.2831853;
+  const nodeWorld = (ix, iy, iz) => {
+    const key = ix + '_' + iy + '_' + iz;
+    const ja = hash01('na' + key), jb = hash01('nb' + key), jc = hash01('nc' + key);
+    const theta = (ix / Lx) * TAU + (ja - 0.5) * 0.55;                                  // 经度 + 抖动
+    let cphi = 1 - 2 * ((iy + 0.5) / Ly) + (jb - 0.5) * 0.22;                            // 等面积纬度 + 抖动
+    cphi = Math.max(-0.985, Math.min(0.985, cphi));
+    const phi = Math.acos(cphi), sphi = Math.sin(phi);
+    const r = Rmin + (Lz > 1 ? iz / (Lz - 1) : 0) * (Rmax - Rmin) + (jc - 0.5) * 18;     // 壳厚 + 抖动
+    return [CENTER[0] + r * sphi * Math.cos(theta), CENTER[1] + r * cphi, CENTER[2] + r * sphi * Math.sin(theta)];
+  };
   const density = new Float32Array(M);
   for (let i = 0; i < N; i++) {
     const xi = i * d; let bmu = 0, best = Infinity;
@@ -861,7 +871,7 @@ function animate() {
   }
 
   if (gyroOn) { yaw = lerp(yaw, gyroYaw, 0.12); pitch = lerp(pitch, gyroPitch, 0.12); }
-  else if (!dragging) yaw += 0.0016;     // 缓慢自动巡游
+  else if (!dragging) yaw += 0.00016;    // 极缓自动巡游（降 10 倍）
   applyLook();
   renderer.render(scene, camera);
 }
