@@ -16,20 +16,19 @@ html, body {
 #hud {
   position: fixed; left: 0; right: 0; top: 0;
   padding: max(env(safe-area-inset-top), 16px) 22px 0;
-  pointer-events: none; z-index: 5;
+  pointer-events: none; z-index: 5; transition: opacity 1.6s ease;
 }
 #title {
-  font-size: 30px; font-weight: 300; letter-spacing: 0.34em; margin-top: 6px;
-  text-shadow: 0 0 28px rgba(120, 160, 255, 0.55);
+  font-size: 17px; font-weight: 200; letter-spacing: 0.42em; margin-top: 4px; opacity: 0.6;
 }
-#title span { font-size: 13px; letter-spacing: 0.28em; opacity: 0.5; margin-left: 12px; font-weight: 300; }
-#sub { font-size: 12px; opacity: 0.48; margin-top: 10px; max-width: 580px; line-height: 1.75; }
+#title span { font-size: 9px; letter-spacing: 0.34em; opacity: 0.4; margin-left: 12px; font-weight: 200; }
+#sub { font-size: 10px; font-weight: 300; opacity: 0.3; margin-top: 12px; max-width: 460px; line-height: 1.9; letter-spacing: 0.04em; }
 
 #tip {
   position: fixed; left: 0; right: 0;
   bottom: max(env(safe-area-inset-bottom), 18px);
-  text-align: center; font-size: 12px; opacity: 0.62;
-  pointer-events: none; z-index: 5; padding: 0 16px;
+  text-align: center; font-size: 10px; opacity: 0.4; letter-spacing: 0.06em;
+  pointer-events: none; z-index: 5; padding: 0 16px; transition: opacity 1.6s ease;
 }
 #tip button {
   pointer-events: auto;
@@ -72,6 +71,18 @@ html, body {
 #panel .prow { display: flex; align-items: center; gap: 7px; font-size: 12px; cursor: pointer; opacity: 0.82; padding: 2px 0; user-select: none; }
 #panel .prow:hover { opacity: 1; }
 #panel .prow input { width: 13px; height: 13px; accent-color: #8fb4ff; cursor: pointer; margin: 0; }
+
+#vignette {
+  position: fixed; inset: 0; pointer-events: none; z-index: 3;
+  background: radial-gradient(ellipse 78% 78% at 50% 47%, transparent 32%, rgba(0,0,0,0.52) 100%);
+}
+#grain {
+  position: fixed; inset: -50%; width: 200%; height: 200%; pointer-events: none; z-index: 4;
+  opacity: 0.06; mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='170' height='170'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 170px 170px; animation: grain 0.55s steps(3) infinite;
+}
+@keyframes grain { 0%{transform:translate(0,0)} 33%{transform:translate(-5%,3%)} 66%{transform:translate(4%,-4%)} 100%{transform:translate(0,0)} }
 
 #loading {
   position: fixed; inset: 0; display: flex; align-items: center; justify-content: center;
