@@ -4,16 +4,16 @@ let lang = 'en';
 
 const UI = {
   pageTitle: {
-    en: 'Data Abyss · 数渊 — Livability × Industrial Self-Reliance',
-    zh: '数渊 · Data Abyss — 宜居 × 工业自立',
+    en: 'Data Abyss · 数渊',
+    zh: '数渊 · Data Abyss',
   },
   sub: {
-    en: "A city's climate and a nation's industrial reach, cast as stars adrift in chaos.<br/>Each glow is drawn from real data — meant to be felt, not parsed: pulse, drift, breathe.<br/>Watch the abyss learn its own shape: the chaos folds, breath by breath, into a living neural lattice.",
-    zh: '一城气候，一国自立，沉为混沌中漂流的星。<br/>光来自真实数据——不必读懂，只需明灭、漂移、呼吸。<br/>数渊在呼吸间自组织：混沌层层折叠，凝为活的神经晶格。',
+    en: 'chaos · breath · drift · weave · mind',
+    zh: '沌 · 息 · 漂 · 织 · 念',
   },
   tip: {
-    en: 'Drag / 1-finger to orbit · scroll / pinch to focus · tap a star for its record',
-    zh: '拖动 / 单指环视 · 滚轮 / 双指调焦 · 点星读档',
+    en: '',
+    zh: '',
   },
   loading: { en: 'Igniting the abyss…', zh: '正在点亮数渊…' },
   enable: { en: 'Motion & sound', zh: '感应与声响' },
