@@ -1,0 +1,145 @@
+{
+  "build_time": "2026-06-19T07:07:25Z",
+  "data_version": "e8b90f9130",
+  "total_companies": 128,
+  "total_sites": 305,
+  "total_products": 219,
+  "total_modalities": 21,
+  "total_therapeutic_areas": 14,
+  "total_milestones": 65,
+  "total_countries": 13,
+  "shard_counts": {
+    "china-generic-tcm": 12,
+    "china-innovator-2": 27,
+    "china-innovator": 17,
+    "china-pharma-large": 29,
+    "china-vaccine-insulin-tcm": 24,
+    "eu": 23,
+    "japan": 17,
+    "oceania-other": 14,
+    "us": 40,
+    "vaccine-biotech": 16
+  },
+  "company_type_counts": {
+    "cdmo_cro": 12,
+    "generics": 10,
+    "tcm": 8,
+    "diversified": 20,
+    "biotech": 42,
+    "biosimilar": 5,
+    "originator_bigpharma": 24,
+    "vaccine": 7
+  },
+  "region_counts": {
+    "greater_china": 73,
+    "europe": 14,
+    "north_america": 17,
+    "other_apac": 7,
+    "japan": 12,
+    "oceania": 3,
+    "mea": 2
+  },
+  "modality_class_counts": {
+    "tcm": 17,
+    "small_molecule": 82,
+    "biosimilar": 6,
+    "mab": 41,
+    "adc": 8,
+    "biologic": 15,
+    "bispecific": 5,
+    "vaccine": 26,
+    "peptide": 8,
+    "fusion_protein": 7,
+    "cell_therapy": 2,
+    "radioligand": 1,
+    "gene_therapy": 1
+  },
+  "modality_ref_counts": {
+    "tcm-formula": 15,
+    "small-molecule": 82,
+    "biosimilar": 6,
+    "mab": 41,
+    "adc": 8,
+    "tcm-injection": 2,
+    "recombinant-protein": 15,
+    "bispecific-antibody": 5,
+    "protein-subunit-vaccine": 13,
+    "peptide": 8,
+    "fusion-protein": 7,
+    "car-t": 1,
+    "mrna-vaccine": 8,
+    "inactivated-vaccine": 3,
+    "radioligand": 1,
+    "msc-therapy": 1,
+    "aav-gene-therapy": 1,
+    "viral-vector-vaccine": 2
+  },
+  "ta_counts": {
+    "cardiometabolic": 35,
+    "neuroscience": 23,
+    "dermatology": 3,
+    "oncology": 61,
+    "respiratory": 8,
+    "hematology": 13,
+    "vaccines": 8,
+    "immunology": 21,
+    "gastroenterology": 6,
+    "infectious-disease": 23,
+    "womens-health": 6,
+    "nephrology": 1,
+    "rare-disease": 8,
+    "ophthalmology": 3
+  },
+  "shards": [
+    {
+      "id": "china-generic-tcm",
+      "file": "catalog/china-generic-tcm.json",
+      "count": 12
+    },
+    {
+      "id": "china-innovator-2",
+      "file": "catalog/china-innovator-2.json",
+      "count": 27
+    },
+    {
+      "id": "china-innovator",
+      "file": "catalog/china-innovator.json",
+      "count": 17
+    },
+    {
+      "id": "china-pharma-large",
+      "file": "catalog/china-pharma-large.json",
+      "count": 29
+    },
+    {
+      "id": "china-vaccine-insulin-tcm",
+      "file": "catalog/china-vaccine-insulin-tcm.json",
+      "count": 24
+    },
+    {
+      "id": "eu",
+      "file": "catalog/eu.json",
+      "count": 23
+    },
+    {
+      "id": "japan",
+      "file": "catalog/japan.json",
+      "count": 17
+    },
+    {
+      "id": "oceania-other",
+      "file": "catalog/oceania-other.json",
+      "count": 14
+    },
+    {
+      "id": "us",
+      "file": "catalog/us.json",
+      "count": 40
+    },
+    {
+      "id": "vaccine-biotech",
+      "file": "catalog/vaccine-biotech.json",
+      "count": 16
+    }
+  ]
+}

@@ -1,0 +1,990 @@
+{
+  "data_as_of": "2026-06",
+  "last_verified": "2026-06",
+  "countries": [
+    {
+      "country": "US",
+      "name_zh": "美国",
+      "name_en": "United States",
+      "market_size": {
+        "value": 79780000000,
+        "currency": "USD",
+        "year": 2024,
+        "source_url": "https://www.efpia.eu/media/uj0popel/the-pharmaceutical-industry-in-figures-2025.pdf"
+      },
+      "company_count": 6500,
+      "rnd_spend_total": {
+        "value": 10200000000,
+        "currency": "USD",
+        "year": 2024,
+        "source_url": "https://phrma.org/policy-issues/research-development"
+      },
+      "top_therapeutic_areas": [
+        "oncology",
+        "immunology",
+        "neuroscience",
+        "rare-disease"
+      ],
+      "regulator": "FDA",
+      "notable_strengths_zh": [
+        "全球创新药研发龙头",
+        "生物技术初创生态",
+        "肿瘤免疫管线领先",
+        "FDA 审评标准全球参考"
+      ],
+      "notable_strengths_en": [
+        "Global leader in innovative drug R&D",
+        "Largest biotech startup ecosystem",
+        "Leading oncology and immunology pipelines",
+        "FDA sets global regulatory benchmarks"
+      ],
+      "time_series": [
+        {
+          "year": 2020,
+          "market_size_value": 52300000000,
+          "rnd_value": 8300000000
+        },
+        {
+          "year": 2021,
+          "market_size_value": 57600000000,
+          "rnd_value": 10200000000
+        },
+        {
+          "year": 2022,
+          "market_size_value": 63100000000,
+          "rnd_value": 10200000000
+        },
+        {
+          "year": 2023,
+          "market_size_value": 72700000000,
+          "rnd_value": 10400000000
+        },
+        {
+          "year": 2024,
+          "market_size_value": 79780000000,
+          "rnd_value": 10200000000
+        }
+      ],
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.efpia.eu/media/uj0popel/the-pharmaceutical-industry-in-figures-2025.pdf",
+          "title": "EFPIA — The Pharmaceutical Industry in Figures 2025 (IQVIA MIDAS)",
+          "accessed": "2026-06"
+        },
+        {
+          "url": "https://phrma.org/policy-issues/research-development",
+          "title": "PhRMA — Research and Development Policy Framework",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "country": "CN",
+      "name_zh": "中国",
+      "name_en": "China",
+      "market_size": {
+        "value": 200000000000,
+        "currency": "USD",
+        "year": 2024,
+        "source_url": "https://www.pharmaboardroom.com/articles/china-pharma-market-2024"
+      },
+      "company_count": 5000,
+      "rnd_spend_total": {
+        "value": 16000000000,
+        "currency": "USD",
+        "year": 2024,
+        "source_url": "https://www.iqvia.com/institute-reports"
+      },
+      "top_therapeutic_areas": [
+        "oncology",
+        "vaccines",
+        "cardiometabolic"
+      ],
+      "regulator": "NMPA",
+      "notable_strengths_zh": [
+        "全球第二大医药市场",
+        "原料药(API)和仿制药产能最大",
+        "疫苗生产规模全球领先",
+        "国产创新药(ADC、CAR-T)出海加速"
+      ],
+      "notable_strengths_en": [
+        "World's second-largest pharma market",
+        "Largest API and generics manufacturing capacity",
+        "Global leader in vaccine production scale",
+        "Accelerating out-licensing of innovative drugs (ADC, CAR-T)"
+      ],
+      "time_series": [
+        {
+          "year": 2020,
+          "market_size_value": 160000000000,
+          "rnd_value": 10000000000
+        },
+        {
+          "year": 2021,
+          "market_size_value": 170000000000,
+          "rnd_value": 12000000000
+        },
+        {
+          "year": 2022,
+          "market_size_value": 180000000000,
+          "rnd_value": 14000000000
+        },
+        {
+          "year": 2023,
+          "market_size_value": 190000000000,
+          "rnd_value": 15000000000
+        },
+        {
+          "year": 2024,
+          "market_size_value": 200000000000,
+          "rnd_value": 16000000000
+        }
+      ],
+      "confidence": 0.7,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.pharmaboardroom.com/articles/china-pharma-market-2024",
+          "title": "PharmaBoardroom — China Pharma 2024",
+          "accessed": "2026-06"
+        },
+        {
+          "url": "https://www.iqvia.com/institute-reports",
+          "title": "IQVIA Institute — Global Use of Medicines 2024",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "country": "JP",
+      "name_zh": "日本",
+      "name_en": "Japan",
+      "market_size": {
+        "value": 73000000000,
+        "currency": "USD",
+        "year": 2024,
+        "source_url": "https://www.jpma.or.jp/english/industry/data/"
+      },
+      "company_count": 300,
+      "rnd_spend_total": {
+        "value": 15000000000,
+        "currency": "USD",
+        "year": 2024,
+        "source_url": "https://www.jpma.or.jp/english/industry/data/"
+      },
+      "top_therapeutic_areas": [
+        "oncology",
+        "cardiometabolic",
+        "neuroscience"
+      ],
+      "regulator": "PMDA",
+      "notable_strengths_zh": [
+        "全球第三大医药市场",
+        "老龄化驱动慢性病药物需求",
+        "疫苗和创新生物制剂研发强",
+        "原料药和制剂质量标准全球领先"
+      ],
+      "notable_strengths_en": [
+        "World's third-largest pharma market",
+        "Aging demographics drive chronic-disease drug demand",
+        "Strong in vaccines and innovative biologics",
+        "Global benchmark for API and formulation quality"
+      ],
+      "time_series": [
+        {
+          "year": 2020,
+          "market_size_value": 75000000000,
+          "rnd_value": 15000000000
+        },
+        {
+          "year": 2021,
+          "market_size_value": 74000000000,
+          "rnd_value": 15000000000
+        },
+        {
+          "year": 2022,
+          "market_size_value": 72000000000,
+          "rnd_value": 15000000000
+        },
+        {
+          "year": 2023,
+          "market_size_value": 73000000000,
+          "rnd_value": 15000000000
+        },
+        {
+          "year": 2024,
+          "market_size_value": 73000000000,
+          "rnd_value": 15000000000
+        }
+      ],
+      "confidence": 0.75,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.jpma.or.jp/english/industry/data/",
+          "title": "JPMA — Japan Pharmaceutical Manufacturers Association industry data (FY2024 NHI price base: ¥11.49 trillion)",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "country": "DE",
+      "name_zh": "德国",
+      "name_en": "Germany",
+      "market_size": {
+        "value": 58000000000,
+        "currency": "USD",
+        "year": 2023,
+        "source_url": "https://www.efpia.eu/media/uj0popel/the-pharmaceutical-industry-in-figures-2025.pdf"
+      },
+      "company_count": 500,
+      "rnd_spend_total": {
+        "value": 9000000000,
+        "currency": "USD",
+        "year": 2024,
+        "source_url": "https://www.vfa.de/en/statistics"
+      },
+      "top_therapeutic_areas": [
+        "oncology",
+        "immunology",
+        "cardiometabolic"
+      ],
+      "regulator": "EMA",
+      "notable_strengths_zh": [
+        "欧洲第一大医药市场",
+        "中小生物技术创新活跃(BioNTech、CureVac)",
+        "心血管代谢与肿瘤管线强",
+        "高质量制剂和原料药制造"
+      ],
+      "notable_strengths_en": [
+        "Europe's largest pharma market",
+        "Vibrant biotech SMEs (BioNTech, CureVac)",
+        "Strong cardiometabolic and oncology pipelines",
+        "High-quality formulation and API manufacturing"
+      ],
+      "time_series": [
+        {
+          "year": 2020,
+          "market_size_value": 50000000000,
+          "rnd_value": 8000000000
+        },
+        {
+          "year": 2021,
+          "market_size_value": 52000000000,
+          "rnd_value": 8500000000
+        },
+        {
+          "year": 2022,
+          "market_size_value": 55000000000,
+          "rnd_value": 9000000000
+        },
+        {
+          "year": 2023,
+          "market_size_value": 58000000000,
+          "rnd_value": 9000000000
+        },
+        {
+          "year": 2024,
+          "market_size_value": 60000000000,
+          "rnd_value": 9000000000
+        }
+      ],
+      "confidence": 0.8,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.efpia.eu/media/uj0popel/the-pharmaceutical-industry-in-figures-2025.pdf",
+          "title": "EFPIA 2025 — Pharmaceutical Industry in Figures (Germany €53,729M, 2023 ex-factory)",
+          "accessed": "2026-06"
+        },
+        {
+          "url": "https://www.vfa.de/en/statistics",
+          "title": "vfa — Verband Forschender Arzneimittelhersteller statistics",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "country": "GB",
+      "name_zh": "英国",
+      "name_en": "United Kingdom",
+      "market_size": {
+        "value": 37000000000,
+        "currency": "USD",
+        "year": 2023,
+        "source_url": "https://www.efpia.eu/media/uj0popel/the-pharmaceutical-industry-in-figures-2025.pdf"
+      },
+      "company_count": 500,
+      "rnd_spend_total": {
+        "value": 11000000000,
+        "currency": "USD",
+        "year": 2024,
+        "source_url": "https://www.abpi.org.uk/"
+      },
+      "top_therapeutic_areas": [
+        "oncology",
+        "immunology",
+        "neuroscience"
+      ],
+      "regulator": "MHRA",
+      "notable_strengths_zh": [
+        "生命科学集群(London-Cambridge-Oxford Golden Triangle)",
+        "全球领先的临床试验和基因组学研究",
+        "脱欧后 MHRA 独立审评加速创新药上市",
+        "AI 制药和抗体技术研发活跃"
+      ],
+      "notable_strengths_en": [
+        "Life-science clusters (London-Cambridge-Oxford Golden Triangle)",
+        "World-leading clinical trials and genomics research",
+        "Post-Brexit MHRA independent review accelerates innovation",
+        "Active AI drug discovery and antibody technology R&D"
+      ],
+      "time_series": [
+        {
+          "year": 2020,
+          "market_size_value": 33000000000,
+          "rnd_value": 10000000000
+        },
+        {
+          "year": 2021,
+          "market_size_value": 35000000000,
+          "rnd_value": 10000000000
+        },
+        {
+          "year": 2022,
+          "market_size_value": 36000000000,
+          "rnd_value": 11000000000
+        },
+        {
+          "year": 2023,
+          "market_size_value": 37000000000,
+          "rnd_value": 11000000000
+        },
+        {
+          "year": 2024,
+          "market_size_value": 38000000000,
+          "rnd_value": 11000000000
+        }
+      ],
+      "confidence": 0.8,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.efpia.eu/media/uj0popel/the-pharmaceutical-industry-in-figures-2025.pdf",
+          "title": "EFPIA 2025 — Pharmaceutical Industry in Figures (UK €34,285M, 2023 ex-factory)",
+          "accessed": "2026-06"
+        },
+        {
+          "url": "https://www.abpi.org.uk/",
+          "title": "ABPI — Association of the British Pharmaceutical Industry",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "country": "FR",
+      "name_zh": "法国",
+      "name_en": "France",
+      "market_size": {
+        "value": 41600000000,
+        "currency": "USD",
+        "year": 2023,
+        "source_url": "https://www.efpia.eu/media/uj0popel/the-pharmaceutical-industry-in-figures-2025.pdf"
+      },
+      "company_count": 300,
+      "rnd_spend_total": {
+        "value": 5000000000,
+        "currency": "USD",
+        "year": 2024,
+        "source_url": "https://www.leem.org/"
+      },
+      "top_therapeutic_areas": [
+        "oncology",
+        "vaccines",
+        "immunology"
+      ],
+      "regulator": "EMA",
+      "notable_strengths_zh": [
+        "全球疫苗生产龙头(Sanofi、Valneva、Pasteur)",
+        "罕见病和生物技术创新",
+        "巴黎-Saclay 生物技术集群",
+        "mRNA 和免疫肿瘤研发活跃"
+      ],
+      "notable_strengths_en": [
+        "Global vaccine manufacturing leader (Sanofi, Valneva, Pasteur)",
+        "Rare disease and biotech innovation",
+        "Paris-Saclay biotech cluster",
+        "Active mRNA and immuno-oncology R&D"
+      ],
+      "time_series": [
+        {
+          "year": 2020,
+          "market_size_value": 37000000000,
+          "rnd_value": 5000000000
+        },
+        {
+          "year": 2021,
+          "market_size_value": 39000000000,
+          "rnd_value": 5000000000
+        },
+        {
+          "year": 2022,
+          "market_size_value": 40000000000,
+          "rnd_value": 5000000000
+        },
+        {
+          "year": 2023,
+          "market_size_value": 41600000000,
+          "rnd_value": 5000000000
+        },
+        {
+          "year": 2024,
+          "market_size_value": 43000000000,
+          "rnd_value": 5000000000
+        }
+      ],
+      "confidence": 0.8,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.efpia.eu/media/uj0popel/the-pharmaceutical-industry-in-figures-2025.pdf",
+          "title": "EFPIA 2025 — Pharmaceutical Industry in Figures (France €38,518M, 2023 ex-factory)",
+          "accessed": "2026-06"
+        },
+        {
+          "url": "https://www.leem.org/",
+          "title": "LEEM — Les entreprises du médicament",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "country": "CH",
+      "name_zh": "瑞士",
+      "name_en": "Switzerland",
+      "market_size": {
+        "value": 8300000000,
+        "currency": "USD",
+        "year": 2023,
+        "source_url": "https://www.efpia.eu/media/uj0popel/the-pharmaceutical-industry-in-figures-2025.pdf"
+      },
+      "company_count": 250,
+      "rnd_spend_total": {
+        "value": 10000000000,
+        "currency": "USD",
+        "year": 2024,
+        "source_url": "https://www.interpharma.ch/"
+      },
+      "top_therapeutic_areas": [
+        "oncology",
+        "immunology",
+        "neuroscience"
+      ],
+      "regulator": "EMA",
+      "notable_strengths_zh": [
+        "国内实际监管机构为 Swissmedic(与 EMA 互认 MRA)",
+        "全球制药出口强国(Novartis、Roche 总部)",
+        "制药占 GDP ~5.4%,瑞士最大出口行业",
+        "Basel 制药集群和罕见病研发领先"
+      ],
+      "notable_strengths_en": [
+        "Domestic regulator is Swissmedic (MRA with EMA; EMA used here due to schema enum constraint)",
+        "Global pharma export powerhouse (Novartis, Roche HQ)",
+        "Pharma = ~5.4% of GDP; largest Swiss export sector",
+        "Basel pharma cluster and rare-disease R&D leadership"
+      ],
+      "time_series": [
+        {
+          "year": 2020,
+          "market_size_value": 7500000000,
+          "rnd_value": 9000000000
+        },
+        {
+          "year": 2021,
+          "market_size_value": 7800000000,
+          "rnd_value": 9300000000
+        },
+        {
+          "year": 2022,
+          "market_size_value": 8000000000,
+          "rnd_value": 9700000000
+        },
+        {
+          "year": 2023,
+          "market_size_value": 8300000000,
+          "rnd_value": 10000000000
+        },
+        {
+          "year": 2024,
+          "market_size_value": 8500000000,
+          "rnd_value": 10000000000
+        }
+      ],
+      "confidence": 0.75,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.efpia.eu/media/uj0popel/the-pharmaceutical-industry-in-figures-2025.pdf",
+          "title": "EFPIA 2025 — Pharmaceutical Industry in Figures (Switzerland €7,645M, 2023 ex-factory)",
+          "accessed": "2026-06"
+        },
+        {
+          "url": "https://www.interpharma.ch/",
+          "title": "Interpharma — Swiss pharmaceutical research companies",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "country": "IT",
+      "name_zh": "意大利",
+      "name_en": "Italy",
+      "market_size": {
+        "value": 27500000000,
+        "currency": "USD",
+        "year": 2023,
+        "source_url": "https://www.efpia.eu/media/uj0popel/the-pharmaceutical-industry-in-figures-2025.pdf"
+      },
+      "company_count": 300,
+      "rnd_spend_total": {
+        "value": 3000000000,
+        "currency": "USD",
+        "year": 2024,
+        "source_url": "https://www.farmindustria.it/"
+      },
+      "top_therapeutic_areas": [
+        "oncology",
+        "cardiometabolic",
+        "respiratory"
+      ],
+      "regulator": "EMA",
+      "notable_strengths_zh": [
+        "欧洲第一大制药生产国(产能)",
+        "合同研发生产(CDMO)和生物类似药强",
+        "原料药和仿制药出口大国",
+        "肿瘤和心血管管线活跃"
+      ],
+      "notable_strengths_en": [
+        "Europe's largest pharma producer by manufacturing volume",
+        "Strong CDMO and biosimilars capacity",
+        "Major API and generics exporter",
+        "Active oncology and cardiometabolic pipelines"
+      ],
+      "time_series": [
+        {
+          "year": 2020,
+          "market_size_value": 24000000000,
+          "rnd_value": 2500000000
+        },
+        {
+          "year": 2021,
+          "market_size_value": 25000000000,
+          "rnd_value": 2700000000
+        },
+        {
+          "year": 2022,
+          "market_size_value": 26000000000,
+          "rnd_value": 2800000000
+        },
+        {
+          "year": 2023,
+          "market_size_value": 27500000000,
+          "rnd_value": 3000000000
+        },
+        {
+          "year": 2024,
+          "market_size_value": 28000000000,
+          "rnd_value": 3000000000
+        }
+      ],
+      "confidence": 0.8,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.efpia.eu/media/uj0popel/the-pharmaceutical-industry-in-figures-2025.pdf",
+          "title": "EFPIA 2025 — Pharmaceutical Industry in Figures (Italy €25,438M, 2023 ex-factory)",
+          "accessed": "2026-06"
+        },
+        {
+          "url": "https://www.farmindustria.it/",
+          "title": "Farmindustria — Italian pharmaceutical industry association",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "country": "AU",
+      "name_zh": "澳大利亚",
+      "name_en": "Australia",
+      "market_size": {
+        "value": 25800000000,
+        "currency": "USD",
+        "year": 2024,
+        "source_url": "https://www.medicinesaustralia.com.au/"
+      },
+      "company_count": 150,
+      "rnd_spend_total": {
+        "value": 1000000000,
+        "currency": "USD",
+        "year": 2024,
+        "source_url": "https://www.medicinesaustralia.com.au/"
+      },
+      "top_therapeutic_areas": [
+        "oncology",
+        "immunology"
+      ],
+      "regulator": "TGA",
+      "notable_strengths_zh": [
+        "早期临床试验首选地(高质量、低时差)",
+        "PBS 药品福利计划保障市场准入",
+        "亚太生物技术枢纽(CSL、ResMed)",
+        "疫苗和血液制品研发强"
+      ],
+      "notable_strengths_en": [
+        "Preferred early-phase clinical trial destination (high quality, low timezone friction)",
+        "PBS guarantees market access",
+        "APAC biotech hub (CSL, ResMed)",
+        "Strong vaccines and blood-product R&D"
+      ],
+      "time_series": [
+        {
+          "year": 2020,
+          "market_size_value": 22000000000,
+          "rnd_value": 900000000
+        },
+        {
+          "year": 2021,
+          "market_size_value": 23000000000,
+          "rnd_value": 900000000
+        },
+        {
+          "year": 2022,
+          "market_size_value": 24000000000,
+          "rnd_value": 1000000000
+        },
+        {
+          "year": 2023,
+          "market_size_value": 25000000000,
+          "rnd_value": 1000000000
+        },
+        {
+          "year": 2024,
+          "market_size_value": 25800000000,
+          "rnd_value": 1000000000
+        }
+      ],
+      "confidence": 0.65,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.medicinesaustralia.com.au/",
+          "title": "Medicines Australia — industry association",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "country": "IN",
+      "name_zh": "印度",
+      "name_en": "India",
+      "market_size": {
+        "value": 58000000000,
+        "currency": "USD",
+        "year": 2024,
+        "source_url": "https://www.ibef.org/industry/pharmaceutical-india"
+      },
+      "company_count": 3000,
+      "rnd_spend_total": {
+        "value": 2500000000,
+        "currency": "USD",
+        "year": 2024,
+        "source_url": "https://www.ibef.org/industry/pharmaceutical-india"
+      },
+      "top_therapeutic_areas": [
+        "infectious-disease",
+        "cardiometabolic",
+        "oncology"
+      ],
+      "regulator": "CDSCO",
+      "notable_strengths_zh": [
+        "「世界药房」——仿制药和原料药全球供应 40%+ 美国仿制药市场",
+        "疫苗生产全球第一(供应全球 60%+ 疫苗)",
+        "CDMO 和合同制造快速增长",
+        "成本优势驱动全球仿制药供应链"
+      ],
+      "notable_strengths_en": [
+        "'Pharmacy of the world' — supplies 40%+ of US generics",
+        "World's largest vaccine manufacturer (60%+ of global supply)",
+        "Fast-growing CDMO and contract manufacturing",
+        "Cost advantage anchors global generics supply chain"
+      ],
+      "time_series": [
+        {
+          "year": 2020,
+          "market_size_value": 42000000000,
+          "rnd_value": 1500000000
+        },
+        {
+          "year": 2021,
+          "market_size_value": 46000000000,
+          "rnd_value": 1700000000
+        },
+        {
+          "year": 2022,
+          "market_size_value": 50000000000,
+          "rnd_value": 2000000000
+        },
+        {
+          "year": 2023,
+          "market_size_value": 54000000000,
+          "rnd_value": 2300000000
+        },
+        {
+          "year": 2024,
+          "market_size_value": 58000000000,
+          "rnd_value": 2500000000
+        }
+      ],
+      "confidence": 0.75,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.ibef.org/industry/pharmaceutical-india",
+          "title": "IBEF — Indian Pharmaceutical Industry",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "country": "KR",
+      "name_zh": "韩国",
+      "name_en": "South Korea",
+      "market_size": {
+        "value": 25000000000,
+        "currency": "USD",
+        "year": 2024,
+        "source_url": "https://www.fortunebusinessinsights.com/"
+      },
+      "company_count": 700,
+      "rnd_spend_total": {
+        "value": 3000000000,
+        "currency": "USD",
+        "year": 2024,
+        "source_url": "https://www.krphia.org/"
+      },
+      "top_therapeutic_areas": [
+        "immunology",
+        "oncology"
+      ],
+      "regulator": "MFDS",
+      "notable_strengths_zh": [
+        "全球生物类似药(biosimilars)龙头(Celltrion、Samsung Bioepis)",
+        "Samsung Biologics 全球最大 CDMO 产能",
+        "K-Bio 出口快速扩张欧美",
+        "免疫病和肿瘤生物药管线强"
+      ],
+      "notable_strengths_en": [
+        "Global biosimilars leader (Celltrion, Samsung Bioepis)",
+        "Samsung Biologics — world's largest CDMO capacity",
+        "K-Bio exports expanding rapidly into US/EU",
+        "Strong immunology and oncology biologics pipelines"
+      ],
+      "time_series": [
+        {
+          "year": 2020,
+          "market_size_value": 20000000000,
+          "rnd_value": 2000000000
+        },
+        {
+          "year": 2021,
+          "market_size_value": 21000000000,
+          "rnd_value": 2200000000
+        },
+        {
+          "year": 2022,
+          "market_size_value": 22000000000,
+          "rnd_value": 2500000000
+        },
+        {
+          "year": 2023,
+          "market_size_value": 24000000000,
+          "rnd_value": 2800000000
+        },
+        {
+          "year": 2024,
+          "market_size_value": 25000000000,
+          "rnd_value": 3000000000
+        }
+      ],
+      "confidence": 0.65,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.fortunebusinessinsights.com/",
+          "title": "Fortune Business Insights — South Korea Pharma Market 2024",
+          "accessed": "2026-06"
+        },
+        {
+          "url": "https://www.krphia.org/",
+          "title": "KRPIA — Korea Research-based Pharmaceutical Industry Association",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "country": "CA",
+      "name_zh": "加拿大",
+      "name_en": "Canada",
+      "market_size": {
+        "value": 33000000000,
+        "currency": "USD",
+        "year": 2024,
+        "source_url": "https://www.canada.ca/en/health-canada.html"
+      },
+      "company_count": 150,
+      "rnd_spend_total": {
+        "value": 2000000000,
+        "currency": "USD",
+        "year": 2024,
+        "source_url": "https://www.imc-ipsic.ca/"
+      },
+      "top_therapeutic_areas": [
+        "oncology",
+        "neuroscience"
+      ],
+      "regulator": "HealthCanada",
+      "notable_strengths_zh": [
+        "AI 制药和精准医学领先(Toronto-Montreal 集群)",
+        "高质量临床试验体系",
+        "免疫肿瘤学(首例 CAR-T 临床在加拿大)",
+        "生物技术初创活跃"
+      ],
+      "notable_strengths_en": [
+        "AI drug discovery and precision medicine leadership (Toronto-Montreal clusters)",
+        "High-quality clinical trial system",
+        "Immuno-oncology (first CAR-T clinical in Canada)",
+        "Active biotech startup scene"
+      ],
+      "time_series": [
+        {
+          "year": 2020,
+          "market_size_value": 28000000000,
+          "rnd_value": 1700000000
+        },
+        {
+          "year": 2021,
+          "market_size_value": 29000000000,
+          "rnd_value": 1800000000
+        },
+        {
+          "year": 2022,
+          "market_size_value": 30000000000,
+          "rnd_value": 1900000000
+        },
+        {
+          "year": 2023,
+          "market_size_value": 32000000000,
+          "rnd_value": 2000000000
+        },
+        {
+          "year": 2024,
+          "market_size_value": 33000000000,
+          "rnd_value": 2000000000
+        }
+      ],
+      "confidence": 0.65,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.canada.ca/en/health-canada.html",
+          "title": "Health Canada — pharmaceuticals",
+          "accessed": "2026-06"
+        },
+        {
+          "url": "https://www.imc-ipsic.ca/",
+          "title": "Innovative Medicines Canada",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "country": "BR",
+      "name_zh": "巴西",
+      "name_en": "Brazil",
+      "market_size": {
+        "value": 38080000000,
+        "currency": "USD",
+        "year": 2024,
+        "source_url": "https://www.fortunebusinessinsights.com/"
+      },
+      "company_count": 500,
+      "rnd_spend_total": {
+        "value": 1000000000,
+        "currency": "USD",
+        "year": 2024,
+        "source_url": "https://sindusfarma.org.br/"
+      },
+      "top_therapeutic_areas": [
+        "infectious-disease",
+        "cardiometabolic",
+        "vaccines"
+      ],
+      "regulator": "ANVISA",
+      "notable_strengths_zh": [
+        "拉美最大医药市场(全球第九)",
+        "Fiocruz 和 Butantan 疫苗研发生产全球知名",
+        "Hemobrás 和生物类似药生产扩张",
+        "热带病和传染病药物研发特色"
+      ],
+      "notable_strengths_en": [
+        "Latin America's largest pharma market (9th globally)",
+        "Fiocruz and Butantan — global vaccine R&D and manufacturing",
+        "Expanding biosimilars capacity (Hemobrás)",
+        "Specialization in tropical and infectious-disease drugs"
+      ],
+      "time_series": [
+        {
+          "year": 2020,
+          "market_size_value": 26000000000,
+          "rnd_value": 700000000
+        },
+        {
+          "year": 2021,
+          "market_size_value": 28000000000,
+          "rnd_value": 800000000
+        },
+        {
+          "year": 2022,
+          "market_size_value": 30000000000,
+          "rnd_value": 900000000
+        },
+        {
+          "year": 2023,
+          "market_size_value": 34000000000,
+          "rnd_value": 1000000000
+        },
+        {
+          "year": 2024,
+          "market_size_value": 38080000000,
+          "rnd_value": 1000000000
+        }
+      ],
+      "confidence": 0.7,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.fortunebusinessinsights.com/",
+          "title": "Fortune Business Insights — Brazil Pharma Market 2024",
+          "accessed": "2026-06"
+        },
+        {
+          "url": "https://sindusfarma.org.br/",
+          "title": "Sindusfarma — Brazilian pharmaceutical industry association",
+          "accessed": "2026-06"
+        }
+      ]
+    }
+  ]
+}

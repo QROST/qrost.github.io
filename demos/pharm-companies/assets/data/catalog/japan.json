@@ -1,0 +1,667 @@
+{
+  "shard": "japan",
+  "products": [
+    {
+      "id": "entyvio",
+      "name_zh": "Entyvio（维多珠单抗）",
+      "name_en": "Entyvio",
+      "brand_name": "Entyvio",
+      "inn": "vedolizumab",
+      "company_id": "takeda",
+      "modality_id": "mab",
+      "therapeutic_area_id": "gastroenterology",
+      "indication_zh": "克罗恩病和溃疡性结肠炎",
+      "indication_en": "Crohn's disease and ulcerative colitis",
+      "approval_status": "approved",
+      "first_approval_year": 2014,
+      "key_markets": [
+        "FDA",
+        "EMA",
+        "PMDA"
+      ],
+      "latest_annual_sales": {
+        "value": 6040000000,
+        "currency": "USD",
+        "year": 2024,
+        "source_url": "https://www.takeda.com/newsroom/newsreleases/2025/takeda-announces-fy2024-full-year-results-and-fy2025-outlook/",
+        "note_en": "FY2024 global Entyvio sales USD 6.04B (+14.1% YoY)"
+      },
+      "is_blockbuster": true,
+      "drug_class": "originator",
+      "target_mechanism_zh": "抗α4β7整合素单抗，抑制肠道特异性淋巴细胞迁移",
+      "target_mechanism_en": "Anti-α4β7 integrin mAb; blocks gut-selective lymphocyte trafficking",
+      "region": "japan",
+      "confidence": 0.95,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.takeda.com/newsroom/newsreleases/2025/takeda-announces-fy2024-full-year-results-and-fy2025-outlook/",
+          "title": "Takeda FY2024 Results: Entyvio Sales",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "vyvanse",
+      "name_zh": "Vyvanse/Elvanse（赖氨苯丙胺）",
+      "name_en": "Vyvanse / Elvanse",
+      "brand_name": "Vyvanse",
+      "inn": "lisdexamfetamine",
+      "company_id": "takeda",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "neuroscience",
+      "indication_zh": "注意力缺陷多动障碍（ADHD）、暴食症",
+      "indication_en": "ADHD and binge eating disorder",
+      "approval_status": "approved",
+      "first_approval_year": 2007,
+      "key_markets": [
+        "FDA",
+        "EMA"
+      ],
+      "latest_annual_sales": {
+        "value": 2800000000,
+        "currency": "USD",
+        "year": 2024,
+        "source_url": "https://www.takeda.com/newsroom/newsreleases/2025/takeda-announces-fy2024-full-year-results-and-fy2025-outlook/",
+        "note_en": "FY2024 Vyvanse/Elvanse sales USD 2.8B (-7.9% YoY due to US generic entry)"
+      },
+      "is_blockbuster": true,
+      "drug_class": "originator",
+      "region": "japan",
+      "confidence": 0.9,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.takeda.com/newsroom/newsreleases/2025/takeda-announces-fy2024-full-year-results-and-fy2025-outlook/",
+          "title": "Takeda FY2024 Results: Vyvanse Sales",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "xtandi",
+      "name_zh": "安可坦（恩扎卢胺）",
+      "name_en": "Xtandi",
+      "brand_name": "Xtandi",
+      "inn": "enzalutamide",
+      "company_id": "astellas",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "oncology",
+      "indication_zh": "去势抵抗性前列腺癌和转移性激素敏感性前列腺癌",
+      "indication_en": "Castration-resistant and metastatic hormone-sensitive prostate cancer",
+      "approval_status": "approved",
+      "first_approval_year": 2012,
+      "key_markets": [
+        "FDA",
+        "EMA",
+        "PMDA"
+      ],
+      "latest_annual_sales": {
+        "value": 912300000000,
+        "currency": "JPY",
+        "year": 2024,
+        "source_url": "https://www.astellas.com/content/dam/astellas-com/global/en/documents/financial-results/full-year-and-4q-fy2024-financial-results-en.pdf",
+        "note_en": "FY2024 global Xtandi sales JPY 912.3B (~USD 6.0B), +22% YoY"
+      },
+      "is_blockbuster": true,
+      "drug_class": "originator",
+      "target_mechanism_zh": "雄激素受体（AR）信号抑制剂",
+      "target_mechanism_en": "Androgen receptor (AR) signaling inhibitor",
+      "region": "japan",
+      "confidence": 0.95,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.astellas.com/content/dam/astellas-com/global/en/documents/financial-results/full-year-and-4q-fy2024-financial-results-en.pdf",
+          "title": "Astellas FY2024 Results: Xtandi",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "padcev",
+      "name_zh": "Padcev（恩法他韦-维多汀）",
+      "name_en": "Padcev",
+      "brand_name": "Padcev",
+      "inn": "enfortumab vedotin",
+      "company_id": "astellas",
+      "modality_id": "adc",
+      "therapeutic_area_id": "oncology",
+      "indication_zh": "局部晚期或转移性尿路上皮癌",
+      "indication_en": "Locally advanced or metastatic urothelial cancer",
+      "approval_status": "approved",
+      "first_approval_year": 2019,
+      "key_markets": [
+        "FDA",
+        "EMA",
+        "PMDA"
+      ],
+      "latest_annual_sales": {
+        "value": 164100000000,
+        "currency": "JPY",
+        "year": 2024,
+        "source_url": "https://www.astellas.com/content/dam/astellas-com/global/en/documents/financial-results/full-year-and-4q-fy2024-financial-results-en.pdf",
+        "note_en": "FY2024 Padcev sales JPY 164.1B (~USD 1.08B), +92% YoY"
+      },
+      "is_blockbuster": true,
+      "drug_class": "originator",
+      "target_mechanism_zh": "抗Nectin-4 ADC（MMAE毒素载荷）",
+      "target_mechanism_en": "Anti-Nectin-4 ADC (MMAE payload)",
+      "region": "japan",
+      "confidence": 0.95,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.astellas.com/content/dam/astellas-com/global/en/documents/financial-results/full-year-and-4q-fy2024-financial-results-en.pdf",
+          "title": "Astellas FY2024 Results: Padcev",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "enhertu",
+      "name_zh": "优赫得（曲妥珠单抗-德鲁替康）",
+      "name_en": "Enhertu",
+      "brand_name": "Enhertu",
+      "inn": "trastuzumab deruxtecan",
+      "company_id": "daiichi-sankyo",
+      "modality_id": "adc",
+      "therapeutic_area_id": "oncology",
+      "secondary_ta_ids": [
+        "hematology"
+      ],
+      "indication_zh": "HER2阳性乳腺癌、胃癌、非小细胞肺癌及其他HER2表达实体瘤",
+      "indication_en": "HER2-positive breast cancer, gastric cancer, NSCLC, and other HER2-expressing solid tumors",
+      "approval_status": "approved",
+      "first_approval_year": 2019,
+      "key_markets": [
+        "FDA",
+        "EMA",
+        "PMDA"
+      ],
+      "latest_annual_sales": {
+        "value": 552600000000,
+        "currency": "JPY",
+        "year": 2024,
+        "source_url": "https://www.daiichisankyo.com/files/investors/library/quarterly_result/2024/4Q/FY2024Q4_Financial_Results_Presentation_E.pdf",
+        "note_en": "FY2024 Enhertu global sales JPY 552.6B (+37.9% YoY)"
+      },
+      "is_blockbuster": true,
+      "drug_class": "originator",
+      "target_mechanism_zh": "抗HER2 ADC（DXd拓扑异构酶I抑制剂载荷，高DAR 8）",
+      "target_mechanism_en": "Anti-HER2 ADC (DXd topoisomerase I inhibitor payload, DAR 8)",
+      "region": "japan",
+      "confidence": 0.95,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.daiichisankyo.com/files/investors/library/quarterly_result/2024/4Q/FY2024Q4_Financial_Results_Presentation_E.pdf",
+          "title": "Daiichi Sankyo FY2024 Results: Enhertu",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "lixiana",
+      "name_zh": "Lixiana（依度沙班）",
+      "name_en": "Lixiana",
+      "brand_name": "Lixiana",
+      "inn": "edoxaban",
+      "company_id": "daiichi-sankyo",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "cardiometabolic",
+      "indication_zh": "非瓣膜性房颤中风预防、静脉血栓栓塞治疗",
+      "indication_en": "Stroke prevention in non-valvular atrial fibrillation; treatment of VTE",
+      "approval_status": "approved",
+      "first_approval_year": 2011,
+      "key_markets": [
+        "EMA",
+        "PMDA"
+      ],
+      "latest_annual_sales": {
+        "value": 344000000000,
+        "currency": "JPY",
+        "year": 2024,
+        "source_url": "https://www.daiichisankyo.com/files/investors/library/quarterly_result/2024/4Q/FY2024Q4_Financial_Results_Presentation_E.pdf",
+        "note_en": "FY2024 Lixiana global sales JPY 344.0B"
+      },
+      "is_blockbuster": true,
+      "drug_class": "originator",
+      "target_mechanism_zh": "直接Xa因子抑制剂（口服）",
+      "target_mechanism_en": "Oral direct factor Xa inhibitor",
+      "region": "japan",
+      "confidence": 0.9,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.daiichisankyo.com/files/investors/library/quarterly_result/2024/4Q/FY2024Q4_Financial_Results_Presentation_E.pdf",
+          "title": "Daiichi Sankyo FY2024 Results: Lixiana",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "datroway",
+      "name_zh": "Datroway（达妥珠单抗-德鲁替康）",
+      "name_en": "Datroway",
+      "brand_name": "Datroway",
+      "inn": "datopotamab deruxtecan",
+      "company_id": "daiichi-sankyo",
+      "modality_id": "adc",
+      "therapeutic_area_id": "oncology",
+      "indication_zh": "HR+/HER2-晚期乳腺癌",
+      "indication_en": "HR+/HER2- advanced breast cancer",
+      "approval_status": "approved",
+      "first_approval_year": 2025,
+      "key_markets": [
+        "FDA"
+      ],
+      "is_blockbuster": false,
+      "drug_class": "originator",
+      "target_mechanism_zh": "抗TROP2 ADC（DXd载荷）",
+      "target_mechanism_en": "Anti-TROP2 ADC (DXd payload)",
+      "region": "japan",
+      "confidence": 0.9,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.daiichisankyo.com/files/investors/library/quarterly_result/2024/4Q/FY2024Q4_Financial_Results_Presentation_E.pdf",
+          "title": "Daiichi Sankyo FY2024 Results: Datroway",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "leqembi",
+      "name_zh": "Leqembi（仑卡奈单抗）",
+      "name_en": "Leqembi",
+      "brand_name": "Leqembi",
+      "inn": "lecanemab",
+      "company_id": "eisai",
+      "modality_id": "mab",
+      "therapeutic_area_id": "neuroscience",
+      "indication_zh": "早期阿尔茨海默症（清除淀粉样蛋白斑块）",
+      "indication_en": "Early Alzheimer's disease (amyloid plaque clearance)",
+      "approval_status": "approved",
+      "first_approval_year": 2023,
+      "key_markets": [
+        "FDA",
+        "EMA",
+        "PMDA"
+      ],
+      "latest_annual_sales": {
+        "value": 44300000000,
+        "currency": "JPY",
+        "year": 2024,
+        "source_url": "https://www.prnewswire.com/news-releases/eisai-updates-leqembi-outlook-for-fiscal-year-2024-april-2024--march-2025-sales-now-expected-to-reach-jpy-42-5-billion-302299658.html",
+        "note_en": "FY2024 Leqembi sales JPY 44.3B (+1,041% YoY); ramp-up phase"
+      },
+      "is_blockbuster": false,
+      "drug_class": "originator",
+      "target_mechanism_zh": "抗淀粉样蛋白原纤维mAb（选择性靶向可溶性/不溶性聚集体）",
+      "target_mechanism_en": "Anti-amyloid protofibrils mAb (targets soluble and insoluble aggregates)",
+      "region": "japan",
+      "confidence": 0.9,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.prnewswire.com/news-releases/eisai-updates-leqembi-outlook-for-fiscal-year-2024-april-2024--march-2025-sales-now-expected-to-reach-jpy-42-5-billion-302299658.html",
+          "title": "Eisai Leqembi FY2024 Outlook",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "lenvima",
+      "name_zh": "乐伐替尼（乐卫玛）",
+      "name_en": "Lenvima",
+      "brand_name": "Lenvima",
+      "inn": "lenvatinib",
+      "company_id": "eisai",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "oncology",
+      "indication_zh": "甲状腺癌、肝细胞癌、肾细胞癌、子宫内膜癌（与帕博利珠单抗联用）",
+      "indication_en": "Thyroid cancer, HCC, RCC, and endometrial cancer (with pembrolizumab)",
+      "approval_status": "approved",
+      "first_approval_year": 2015,
+      "key_markets": [
+        "FDA",
+        "EMA",
+        "PMDA"
+      ],
+      "latest_annual_sales": {
+        "value": 328500000000,
+        "currency": "JPY",
+        "year": 2024,
+        "source_url": "https://www.eisai.com/news/2025/news202534.html",
+        "note_en": "FY2024 Lenvima global sales JPY 328.5B (~+10% YoY; co-commercialized with Merck)"
+      },
+      "is_blockbuster": true,
+      "drug_class": "originator",
+      "target_mechanism_zh": "多靶点激酶抑制剂（VEGFR1/2/3、FGFR1-4、RET、KIT等）",
+      "target_mechanism_en": "Multi-kinase inhibitor (VEGFR1/2/3, FGFR1-4, RET, KIT)",
+      "region": "japan",
+      "confidence": 0.9,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.eisai.com/news/2025/news202534.html",
+          "title": "Eisai FY2024 Financial Results",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "actemra",
+      "name_zh": "雅美罗（托珠单抗）",
+      "name_en": "Actemra / RoActemra",
+      "brand_name": "Actemra",
+      "inn": "tocilizumab",
+      "company_id": "chugai",
+      "modality_id": "mab",
+      "therapeutic_area_id": "immunology",
+      "secondary_ta_ids": [
+        "infectious-disease"
+      ],
+      "indication_zh": "类风湿关节炎、全身型幼年特发性关节炎、细胞因子释放综合征（CAR-T并发症）",
+      "indication_en": "Rheumatoid arthritis, systemic juvenile idiopathic arthritis, cytokine release syndrome",
+      "approval_status": "approved",
+      "first_approval_year": 2005,
+      "key_markets": [
+        "FDA",
+        "EMA",
+        "PMDA"
+      ],
+      "latest_annual_sales": {
+        "value": 48000000000,
+        "currency": "JPY",
+        "year": 2024,
+        "source_url": "https://www.chugai-pharm.co.jp/english/news/detail/20250130170004_1134.html",
+        "note_en": "FY2024 Japan domestic Actemra sales JPY 48.0B (+8.4%)"
+      },
+      "is_blockbuster": false,
+      "drug_class": "originator",
+      "target_mechanism_zh": "抗IL-6受体mAb",
+      "target_mechanism_en": "Anti-IL-6 receptor mAb",
+      "region": "japan",
+      "confidence": 0.9,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.chugai-pharm.co.jp/english/news/detail/20250130170004_1134.html",
+          "title": "Chugai FY2024 Results: Actemra",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "rexulti",
+      "name_zh": "Rexulti（雷克硫必利）",
+      "name_en": "Rexulti",
+      "brand_name": "Rexulti",
+      "inn": "brexpiprazole",
+      "company_id": "otsuka",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "neuroscience",
+      "indication_zh": "重度抑郁症（辅助治疗）、精神分裂症、阿尔茨海默症相关激越",
+      "indication_en": "Major depressive disorder (adjunct), schizophrenia, Alzheimer's-associated agitation",
+      "approval_status": "approved",
+      "first_approval_year": 2015,
+      "key_markets": [
+        "FDA",
+        "EMA"
+      ],
+      "latest_annual_sales": {
+        "value": 331300000000,
+        "currency": "JPY",
+        "year": 2024,
+        "source_url": "https://www.tipranks.com/news/company-announcements/otsuka-holdings-reports-strong-fy2024-financial-growth",
+        "note_en": "FY2024 Rexulti global sales JPY 331.3B (~USD 2.2B), +23.9% YoY"
+      },
+      "is_blockbuster": true,
+      "drug_class": "originator",
+      "target_mechanism_zh": "部分多巴胺D2/D3受体激动剂和5-HT1A受体激动剂",
+      "target_mechanism_en": "Partial D2/D3 dopamine receptor agonist and 5-HT1A receptor agonist",
+      "region": "japan",
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.tipranks.com/news/company-announcements/otsuka-holdings-reports-strong-fy2024-financial-growth",
+          "title": "Otsuka Holdings FY2024 Rexulti Sales",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "opdivo-ono",
+      "name_zh": "Opdivo（纳武利尤单抗）— 小野日本版权",
+      "name_en": "Opdivo (nivolumab) — Ono Japan rights",
+      "brand_name": "Opdivo",
+      "inn": "nivolumab",
+      "company_id": "ono-pharmaceutical",
+      "modality_id": "mab",
+      "therapeutic_area_id": "oncology",
+      "indication_zh": "多种实体瘤及血液肿瘤（黑色素瘤、NSCLC、胃癌、食管癌等）",
+      "indication_en": "Multiple solid and hematologic tumors (melanoma, NSCLC, gastric, esophageal, etc.)",
+      "approval_status": "approved",
+      "first_approval_year": 2014,
+      "key_markets": [
+        "PMDA",
+        "FDA",
+        "EMA"
+      ],
+      "latest_annual_sales": {
+        "value": 128000000000,
+        "currency": "JPY",
+        "year": 2024,
+        "source_url": "https://www.ono-pharma.com/sites/default/files/en/ir/library/financial_results/presen/full_2025_4q_en~.pdf",
+        "note_en": "FY2024 Ono domestic Japan Opdivo sales ~JPY 128B (estimated; NHI price cuts impacting growth)"
+      },
+      "is_blockbuster": true,
+      "drug_class": "originator",
+      "target_mechanism_zh": "抗PD-1单克隆抗体（全人源化）",
+      "target_mechanism_en": "Anti-PD-1 fully human mAb",
+      "region": "japan",
+      "confidence": 0.8,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.ono-pharma.com/sites/default/files/en/ir/library/financial_results/presen/full_2025_4q_en~.pdf",
+          "title": "Ono Pharmaceutical FY2024 Results: Opdivo",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "xofluza",
+      "name_zh": "速福达（巴洛沙韦玛波西）",
+      "name_en": "Xofluza",
+      "brand_name": "Xofluza",
+      "inn": "baloxavir marboxil",
+      "company_id": "shionogi",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "infectious-disease",
+      "indication_zh": "流行性感冒（A型和B型）治疗",
+      "indication_en": "Influenza A and B treatment",
+      "approval_status": "approved",
+      "first_approval_year": 2018,
+      "key_markets": [
+        "PMDA",
+        "FDA"
+      ],
+      "is_blockbuster": false,
+      "drug_class": "originator",
+      "target_mechanism_zh": "帽依赖性核酸内切酶（CEN）抑制剂，全新流感抗病毒机制",
+      "target_mechanism_en": "Cap-dependent endonuclease (CEN) inhibitor; novel influenza antiviral mechanism",
+      "region": "japan",
+      "confidence": 0.9,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.shionogi.com/global/en/products/",
+          "title": "Shionogi Products: Xofluza",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "fetroja",
+      "name_zh": "Fetroja/Fetcroja（头孢地尔）",
+      "name_en": "Fetroja / Fetcroja",
+      "brand_name": "Fetroja",
+      "inn": "cefiderocol",
+      "company_id": "shionogi",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "infectious-disease",
+      "indication_zh": "革兰阴性耐药菌感染（含碳青霉烯耐药菌株）",
+      "indication_en": "Gram-negative AMR infections including carbapenem-resistant organisms",
+      "approval_status": "approved",
+      "first_approval_year": 2019,
+      "key_markets": [
+        "FDA",
+        "EMA",
+        "PMDA"
+      ],
+      "latest_annual_sales": {
+        "value": 40200000000,
+        "currency": "JPY",
+        "year": 2024,
+        "source_url": "https://www.shionogi.com/content/dam/shionogi/global/investors/ir-library/presentation/2024/4q/2024.4Q_E%E6%B1%BA%E7%AE%97%E7%9F%AD%E4%BF%A1_250509.pdf",
+        "note_en": "FY2024 Fetroja total global sales ~JPY 40.2B (US JPY 23.4B +30.6%; EU JPY 16.8B +24.0%)"
+      },
+      "is_blockbuster": false,
+      "drug_class": "originator",
+      "target_mechanism_zh": "铁载体头孢菌素，利用铁摄取通道绕过耐药机制",
+      "target_mechanism_en": "Siderophore cephalosporin; exploits iron uptake channels to bypass resistance mechanisms",
+      "region": "japan",
+      "confidence": 0.9,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.shionogi.com/content/dam/shionogi/global/investors/ir-library/presentation/2024/4q/2024.4Q_E%E6%B1%BA%E7%AE%97%E7%9F%AD%E4%BF%A1_250509.pdf",
+          "title": "Shionogi FY2024 Results: Fetroja",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "orgovyx",
+      "name_zh": "Orgovyx（瑞卢戈利）",
+      "name_en": "Orgovyx",
+      "brand_name": "Orgovyx",
+      "inn": "relugolix",
+      "company_id": "sumitomo-pharma",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "oncology",
+      "indication_zh": "晚期前列腺癌（口服GnRH拮抗剂，雄激素剥夺疗法）",
+      "indication_en": "Advanced prostate cancer (oral GnRH antagonist, androgen deprivation therapy)",
+      "approval_status": "approved",
+      "first_approval_year": 2020,
+      "key_markets": [
+        "FDA",
+        "EMA"
+      ],
+      "latest_annual_sales": {
+        "value": 83100000000,
+        "currency": "JPY",
+        "year": 2024,
+        "source_url": "https://www.sumitomo-pharma.com/news/assets/pdf/eir20250513.pdf",
+        "note_en": "FY2024 Orgovyx global sales JPY 83.1B (+96.9% YoY)"
+      },
+      "is_blockbuster": false,
+      "drug_class": "originator",
+      "target_mechanism_zh": "口服非肽类GnRH拮抗剂",
+      "target_mechanism_en": "Oral non-peptide GnRH antagonist",
+      "region": "japan",
+      "confidence": 0.88,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.sumitomo-pharma.com/news/assets/pdf/eir20250513.pdf",
+          "title": "Sumitomo Pharma FY2024 Results: Orgovyx",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "crysvita",
+      "name_zh": "Crysvita（布罗舒单抗）",
+      "name_en": "Crysvita",
+      "brand_name": "Crysvita",
+      "inn": "burosumab",
+      "company_id": "kyowa-kirin",
+      "modality_id": "mab",
+      "therapeutic_area_id": "rare-disease",
+      "indication_zh": "X连锁低磷血症（XLH）和肿瘤诱导的软骨病（TIO）",
+      "indication_en": "X-linked hypophosphatemia (XLH) and tumor-induced osteomalacia (TIO)",
+      "approval_status": "approved",
+      "first_approval_year": 2018,
+      "key_markets": [
+        "FDA",
+        "EMA",
+        "PMDA"
+      ],
+      "latest_annual_sales": {
+        "value": 196600000000,
+        "currency": "JPY",
+        "year": 2024,
+        "source_url": "https://ir.kyowakirin.com/en/library/earnings/earnings0/main/0111115/teaserItems1/00/linkList/0/link/summary_2024_q4_en.pdf",
+        "note_en": "FY2024 Crysvita global sales JPY 196.6B (N.America JPY 130.0B, EMEA JPY 51.5B, Japan JPY 11.7B)"
+      },
+      "is_blockbuster": true,
+      "drug_class": "originator",
+      "target_mechanism_zh": "抗FGF23单抗，恢复磷酸盐重吸收",
+      "target_mechanism_en": "Anti-FGF23 mAb; restores phosphate reabsorption",
+      "region": "japan",
+      "confidence": 0.95,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://ir.kyowakirin.com/en/library/earnings/earnings0/main/0111115/teaserItems1/00/linkList/0/link/summary_2024_q4_en.pdf",
+          "title": "Kyowa Kirin FY2024 Summary: Crysvita",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "radicava",
+      "name_zh": "依达拉奉（Radicava）",
+      "name_en": "Radicava",
+      "brand_name": "Radicava",
+      "inn": "edaravone",
+      "company_id": "mitsubishi-tanabe",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "neuroscience",
+      "indication_zh": "肌萎缩侧索硬化症（ALS）",
+      "indication_en": "Amyotrophic lateral sclerosis (ALS)",
+      "approval_status": "approved",
+      "first_approval_year": 2001,
+      "key_markets": [
+        "PMDA",
+        "FDA"
+      ],
+      "latest_annual_sales": {
+        "value": 79200000000,
+        "currency": "JPY",
+        "year": 2023,
+        "source_url": "https://www.baincapital.com/news/bain-capital-acquire-mitsubishi-tanabe-pharma-corporation",
+        "note_en": "FY ending March 2024 Radicava global sales JPY 79.2B; FY2025 estimated ~JPY 92B"
+      },
+      "is_blockbuster": false,
+      "drug_class": "originator",
+      "target_mechanism_zh": "自由基清除剂（羟基自由基清除），减少氧化应激损伤",
+      "target_mechanism_en": "Free radical scavenger (hydroxyl radical); reduces oxidative stress injury",
+      "region": "japan",
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.baincapital.com/news/bain-capital-acquire-mitsubishi-tanabe-pharma-corporation",
+          "title": "Bain Capital Acquisition: Mitsubishi Tanabe Assets",
+          "accessed": "2026-06"
+        }
+      ]
+    }
+  ]
+}

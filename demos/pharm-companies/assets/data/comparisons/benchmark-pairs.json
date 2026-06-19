@@ -1,0 +1,60 @@
+{
+  "pairs": [
+    {
+      "domestic_id": "brukinsa",
+      "international_id": "imbruvica",
+      "pair_type": "product",
+      "dimension": "BTK 抑制剂 / BTK inhibitor",
+      "note_zh": "百济神州泽布替尼在 ALPINE 3 期头对头研究中 PFS 优于强生/艾伯维伊布替尼——首个头对头击败西方原研的中国创新药。",
+      "note_en": "BeiGene's zanubrutinib showed superior PFS vs J&J/AbbVie ibrutinib in the head-to-head Phase-3 ALPINE trial — the first Chinese drug to beat its Western originator head-to-head."
+    },
+    {
+      "domestic_id": "ivonescimab",
+      "international_id": "merck-keytruda",
+      "pair_type": "product",
+      "dimension": "PD-1×VEGF 双抗 vs PD-1 单抗 / bispecific vs Keytruda",
+      "note_zh": "康方生物依沃西单抗在 HARMONi-2 中国 3 期头对头研究中 PFS 优于帕博利珠单抗（Keytruda）——首个在头对头研究中击败 Keytruda 的药物。",
+      "note_en": "Akeso's ivonescimab beat pembrolizumab (Keytruda) on PFS in the head-to-head China Phase-3 HARMONi-2 trial — the first drug to defeat Keytruda head-to-head."
+    },
+    {
+      "domestic_id": "disitamab-vedotin",
+      "international_id": "enhertu",
+      "pair_type": "product",
+      "dimension": "HER2 ADC",
+      "note_zh": "荣昌生物维迪西妥单抗 vs 第一三共/阿斯利康 Enhertu——中国 ADC 与全球标杆同台竞争。",
+      "note_en": "RemeGen's disitamab vedotin vs Daiichi Sankyo/AstraZeneca's Enhertu — China's ADC competing with the global benchmark."
+    },
+    {
+      "domestic_id": "tislelizumab",
+      "international_id": "merck-keytruda",
+      "pair_type": "product",
+      "dimension": "PD-1 单抗 / anti-PD-1 mAb",
+      "note_zh": "百济神州替雷利珠单抗，国产 PD-1 出海代表，已获 FDA/EMA 批准。",
+      "note_en": "BeiGene's tislelizumab — a leading Chinese PD-1 to go global, now FDA/EMA approved."
+    },
+    {
+      "domestic_id": "toripalimab",
+      "international_id": "merck-keytruda",
+      "pair_type": "product",
+      "dimension": "PD-1 单抗 / anti-PD-1 mAb",
+      "note_zh": "君实生物特瑞普利单抗，首个获 FDA 批准的中国自主 PD-1 抗体。",
+      "note_en": "Junshi's toripalimab — the first China-discovered PD-1 antibody approved by the FDA."
+    },
+    {
+      "domestic_id": "sintilimab",
+      "international_id": "merck-keytruda",
+      "pair_type": "product",
+      "dimension": "PD-1 单抗 / anti-PD-1 mAb",
+      "note_zh": "信达生物/礼来信迪利单抗（达伯舒），中国 PD-1 价格与可及性标杆。",
+      "note_en": "Innovent/Lilly's sintilimab (Tyvyt) — a benchmark for PD-1 pricing and access in China."
+    },
+    {
+      "domestic_id": "serplulimab",
+      "international_id": "merck-keytruda",
+      "pair_type": "product",
+      "dimension": "PD-1 单抗 / anti-PD-1 mAb",
+      "note_zh": "复宏汉霖斯鲁利单抗，全球首个获批用于小细胞肺癌一线治疗的 PD-1 抗体。",
+      "note_en": "Henlius's serplulimab — the world's first PD-1 antibody approved for first-line small-cell lung cancer."
+    }
+  ]
+}

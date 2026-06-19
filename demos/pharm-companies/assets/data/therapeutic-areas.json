@@ -1,0 +1,158 @@
+{
+  "therapeutic_areas": [
+    {
+      "id": "oncology",
+      "name_zh": "肿瘤",
+      "name_en": "Oncology",
+      "description_zh": "癌症治疗，全球研发与销售最集中的领域，涵盖免疫检查点、靶向、ADC、细胞治疗等。",
+      "description_en": "Cancer therapeutics — the largest concentration of global R&D and sales, spanning checkpoint inhibitors, targeted therapy, ADCs and cell therapy.",
+      "representative_product_ids": [],
+      "confidence": 0.9,
+      "last_verified": "2026-06",
+      "sources": [{ "url": "https://www.who.int/health-topics/cancer", "title": "WHO — Cancer", "accessed": "2026-06" }]
+    },
+    {
+      "id": "immunology",
+      "name_zh": "免疫与炎症",
+      "name_en": "Immunology & inflammation",
+      "description_zh": "自身免疫与炎症性疾病（类风湿、银屑病、IBD、特应性皮炎等），TNF/IL 抑制剂的主战场。",
+      "description_en": "Autoimmune and inflammatory disease (rheumatoid arthritis, psoriasis, IBD, atopic dermatitis); the home of TNF/IL inhibitors.",
+      "representative_product_ids": [],
+      "confidence": 0.88,
+      "last_verified": "2026-06",
+      "sources": [{ "url": "https://www.fda.gov/drugs", "title": "FDA — Drugs", "accessed": "2026-06" }]
+    },
+    {
+      "id": "neuroscience",
+      "name_zh": "神经科学",
+      "name_en": "Neuroscience / CNS",
+      "description_zh": "中枢神经系统疾病：阿尔茨海默、帕金森、多发性硬化、抑郁、SMA 等，难度高、未满足需求大。",
+      "description_en": "Central-nervous-system disease: Alzheimer's, Parkinson's, multiple sclerosis, depression, SMA — high difficulty, large unmet need.",
+      "representative_product_ids": [],
+      "confidence": 0.86,
+      "last_verified": "2026-06",
+      "sources": [{ "url": "https://www.ninds.nih.gov/", "title": "NIH NINDS", "accessed": "2026-06" }]
+    },
+    {
+      "id": "cardiometabolic",
+      "name_zh": "心血管与代谢",
+      "name_en": "Cardiometabolic",
+      "description_zh": "心血管、糖尿病、肥胖、血脂等代谢疾病；GLP-1 减重药正重塑该领域格局。",
+      "description_en": "Cardiovascular, diabetes, obesity and lipid disease; GLP-1 weight-loss drugs are reshaping the field.",
+      "representative_product_ids": [],
+      "confidence": 0.88,
+      "last_verified": "2026-06",
+      "sources": [{ "url": "https://www.who.int/health-topics/cardiovascular-diseases", "title": "WHO — Cardiovascular diseases", "accessed": "2026-06" }]
+    },
+    {
+      "id": "infectious-disease",
+      "name_zh": "感染性疾病",
+      "name_en": "Infectious disease",
+      "description_zh": "抗病毒、抗菌、抗真菌及 HIV/HCV 等治疗，疫情驱动周期性高峰。",
+      "description_en": "Antivirals, antibacterials, antifungals and HIV/HCV therapy; pandemic-driven cyclical peaks.",
+      "representative_product_ids": [],
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [{ "url": "https://www.who.int/health-topics/infectious-diseases", "title": "WHO — Infectious diseases", "accessed": "2026-06" }]
+    },
+    {
+      "id": "vaccines",
+      "name_zh": "疫苗",
+      "name_en": "Vaccines",
+      "description_zh": "预防性与治疗性疫苗，mRNA/亚单位/灭活/病毒载体多平台并存。",
+      "description_en": "Prophylactic and therapeutic vaccines across mRNA, subunit, inactivated and viral-vector platforms.",
+      "representative_product_ids": [],
+      "confidence": 0.86,
+      "last_verified": "2026-06",
+      "sources": [{ "url": "https://www.who.int/teams/immunization-vaccines-and-biologicals", "title": "WHO — Immunization & Vaccines", "accessed": "2026-06" }]
+    },
+    {
+      "id": "rare-disease",
+      "name_zh": "罕见病",
+      "name_en": "Rare disease",
+      "description_zh": "孤儿药领域，多为单基因病的酶替代、基因/细胞治疗，定价高、政策激励强。",
+      "description_en": "Orphan-drug space — enzyme replacement, gene/cell therapy for mostly monogenic disease; high pricing, strong policy incentives.",
+      "representative_product_ids": [],
+      "confidence": 0.84,
+      "last_verified": "2026-06",
+      "sources": [{ "url": "https://www.fda.gov/industry/developing-products-rare-diseases-conditions", "title": "FDA — Rare Diseases", "accessed": "2026-06" }]
+    },
+    {
+      "id": "ophthalmology",
+      "name_zh": "眼科",
+      "name_en": "Ophthalmology",
+      "description_zh": "眼底病（湿性 AMD、糖尿病黄斑水肿）等，抗 VEGF 注射为主流。",
+      "description_en": "Retinal disease (wet AMD, diabetic macular edema); anti-VEGF intravitreal injections dominate.",
+      "representative_product_ids": [],
+      "confidence": 0.84,
+      "last_verified": "2026-06",
+      "sources": [{ "url": "https://www.fda.gov/drugs", "title": "FDA — Drugs", "accessed": "2026-06" }]
+    },
+    {
+      "id": "respiratory",
+      "name_zh": "呼吸",
+      "name_en": "Respiratory",
+      "description_zh": "哮喘、COPD 等呼吸系统疾病，吸入制剂与生物制剂并行。",
+      "description_en": "Asthma, COPD and other respiratory disease; inhaled therapies alongside biologics.",
+      "representative_product_ids": [],
+      "confidence": 0.83,
+      "last_verified": "2026-06",
+      "sources": [{ "url": "https://www.who.int/health-topics/chronic-respiratory-diseases", "title": "WHO — Respiratory diseases", "accessed": "2026-06" }]
+    },
+    {
+      "id": "hematology",
+      "name_zh": "血液病",
+      "name_en": "Hematology",
+      "description_zh": "血液肿瘤（白血病、淋巴瘤、骨髓瘤）与血友病等，BTK 抑制剂、CAR-T 集中地。",
+      "description_en": "Blood cancers (leukemia, lymphoma, myeloma) and hemophilia; a hub for BTK inhibitors and CAR-T.",
+      "representative_product_ids": [],
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [{ "url": "https://www.fda.gov/drugs", "title": "FDA — Drugs", "accessed": "2026-06" }]
+    },
+    {
+      "id": "dermatology",
+      "name_zh": "皮肤科",
+      "name_en": "Dermatology",
+      "description_zh": "银屑病、特应性皮炎等，与免疫领域高度重叠。",
+      "description_en": "Psoriasis, atopic dermatitis and more; heavily overlapping with immunology.",
+      "representative_product_ids": [],
+      "confidence": 0.8,
+      "last_verified": "2026-06",
+      "sources": [{ "url": "https://www.fda.gov/drugs", "title": "FDA — Drugs", "accessed": "2026-06" }]
+    },
+    {
+      "id": "womens-health",
+      "name_zh": "女性健康",
+      "name_en": "Women's health",
+      "description_zh": "避孕、更年期、子宫内膜异位等女性专科疾病。",
+      "description_en": "Contraception, menopause, endometriosis and other women's-health conditions.",
+      "representative_product_ids": [],
+      "confidence": 0.78,
+      "last_verified": "2026-06",
+      "sources": [{ "url": "https://www.fda.gov/drugs", "title": "FDA — Drugs", "accessed": "2026-06" }]
+    },
+    {
+      "id": "gastroenterology",
+      "name_zh": "消化",
+      "name_en": "Gastroenterology",
+      "description_zh": "炎症性肠病、肝病等消化系统疾病。",
+      "description_en": "Inflammatory bowel disease, liver disease and other GI conditions.",
+      "representative_product_ids": [],
+      "confidence": 0.78,
+      "last_verified": "2026-06",
+      "sources": [{ "url": "https://www.fda.gov/drugs", "title": "FDA — Drugs", "accessed": "2026-06" }]
+    },
+    {
+      "id": "nephrology",
+      "name_zh": "肾病",
+      "name_en": "Nephrology",
+      "description_zh": "慢性肾病、IgA 肾病等，近年新药密集获批。",
+      "description_en": "Chronic kidney disease, IgA nephropathy and more; a recent wave of approvals.",
+      "representative_product_ids": [],
+      "confidence": 0.78,
+      "last_verified": "2026-06",
+      "sources": [{ "url": "https://www.fda.gov/drugs", "title": "FDA — Drugs", "accessed": "2026-06" }]
+    }
+  ]
+}

@@ -1,0 +1,837 @@
+{
+  "shard": "china-pharma-large",
+  "products": [
+    {
+      "id": "shanghai-pharma-peifeikang",
+      "name_zh": "培菲康",
+      "name_en": "Peifeikang",
+      "brand_name": "培菲康",
+      "company_id": "shanghai-pharma",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "gastroenterology",
+      "indication_zh": "肠道菌群失调相关腹泻",
+      "indication_en": "Diarrhea associated with intestinal flora imbalance",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "region": "greater_china",
+      "is_blockbuster": false,
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "http://money.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=10410789&stockid=601607",
+          "title": "Shanghai Pharma 2024 interim report",
+          "accessed": "2026-06"
+        }
+      ],
+      "inn": "live combined Bifidobacterium, Lactobacillus and Enterococcus",
+      "first_approval_year": 1998,
+      "key_markets": [
+        "NMPA"
+      ],
+      "target_mechanism_zh": "微生态活菌制剂",
+      "target_mechanism_en": "Probiotic live bacteria preparation"
+    },
+    {
+      "id": "shanghai-pharma-liushenwan",
+      "name_zh": "六神丸",
+      "name_en": "Liushen Pills",
+      "brand_name": "六神丸",
+      "company_id": "shanghai-pharma",
+      "modality_id": "tcm-formula",
+      "therapeutic_area_id": "infectious-disease",
+      "indication_zh": "咽喉肿痛及热毒内盛",
+      "indication_en": "Sore throat and internal heat-toxicity syndromes",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "region": "greater_china",
+      "is_blockbuster": false,
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.siic.com/en/news/press/112.html",
+          "title": "SIIC — Shanghai Pharma 2024 results",
+          "accessed": "2026-06"
+        }
+      ],
+      "key_markets": [
+        "NMPA"
+      ]
+    },
+    {
+      "id": "shanghai-pharma-hydroxychloroquine",
+      "name_zh": "纷乐",
+      "name_en": "Fenle (hydroxychloroquine)",
+      "brand_name": "纷乐",
+      "company_id": "shanghai-pharma",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "immunology",
+      "indication_zh": "盘状及系统性红斑狼疮",
+      "indication_en": "Discoid and systemic lupus erythematosus",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "region": "greater_china",
+      "is_blockbuster": false,
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://pdf.dfcfw.com/pdf/H3_AP202408071639173496_1.pdf",
+          "title": "CITIC — Shanghai Pharma industrial portfolio",
+          "accessed": "2026-06"
+        }
+      ],
+      "inn": "hydroxychloroquine sulfate",
+      "key_markets": [
+        "NMPA"
+      ]
+    },
+    {
+      "id": "crsanjiu-999-ganmaoling",
+      "name_zh": "999感冒灵颗粒",
+      "name_en": "999 Ganmaoling Granules",
+      "brand_name": "999感冒灵",
+      "company_id": "crsanjiu",
+      "modality_id": "tcm-formula",
+      "therapeutic_area_id": "respiratory",
+      "indication_zh": "感冒引起的头痛发热鼻塞",
+      "indication_en": "Common cold symptoms including headache and fever",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "region": "greater_china",
+      "is_blockbuster": true,
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://money.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=10781217&stockid=000999",
+          "title": "CR Sanjiu 2024 Annual Report",
+          "accessed": "2026-06"
+        }
+      ],
+      "key_markets": [
+        "NMPA"
+      ]
+    },
+    {
+      "id": "crsanjiu-999-weitai",
+      "name_zh": "三九胃泰",
+      "name_en": "999 Weitai",
+      "brand_name": "三九胃泰",
+      "company_id": "crsanjiu",
+      "modality_id": "tcm-formula",
+      "therapeutic_area_id": "gastroenterology",
+      "indication_zh": "慢性胃炎及胃痛",
+      "indication_en": "Chronic gastritis and epigastric pain",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "region": "greater_china",
+      "is_blockbuster": false,
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.999.com.cn/",
+          "title": "CR Sanjiu official website",
+          "accessed": "2026-06"
+        }
+      ],
+      "key_markets": [
+        "NMPA"
+      ]
+    },
+    {
+      "id": "taiji-huoxiang-zhengqi",
+      "name_zh": "藿香正气口服液",
+      "name_en": "Huoxiang Zhengqi Oral Liquid",
+      "brand_name": "太极藿香正气",
+      "company_id": "taiji-group",
+      "modality_id": "tcm-formula",
+      "therapeutic_area_id": "gastroenterology",
+      "indication_zh": "外感风寒、内伤湿滞",
+      "indication_en": "Exterior cold with interior dampness syndrome",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "region": "greater_china",
+      "is_blockbuster": true,
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://pdf.dfcfw.com/pdf/H2_AN202503281648763509_1.pdf",
+          "title": "Taiji 2024 Annual Report — product volume data",
+          "accessed": "2026-06"
+        }
+      ],
+      "first_approval_year": 1990,
+      "key_markets": [
+        "NMPA"
+      ]
+    },
+    {
+      "id": "taiji-jizhi-syrup",
+      "name_zh": "急支糖浆",
+      "name_en": "Jizhi Cough Syrup",
+      "brand_name": "急支糖浆",
+      "company_id": "taiji-group",
+      "modality_id": "tcm-formula",
+      "therapeutic_area_id": "respiratory",
+      "indication_zh": "急性支气管炎及咳嗽",
+      "indication_en": "Acute bronchitis and cough",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "region": "greater_china",
+      "is_blockbuster": false,
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://pdf.dfcfw.com/pdf/H2_AN202503281648763509_1.pdf",
+          "title": "Taiji 2024 Annual Report",
+          "accessed": "2026-06"
+        }
+      ],
+      "key_markets": [
+        "NMPA"
+      ]
+    },
+    {
+      "id": "hisun-favipiravir",
+      "name_zh": "法维拉韦",
+      "name_en": "Favipiravir",
+      "brand_name": "法维拉韦",
+      "company_id": "hisun",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "infectious-disease",
+      "indication_zh": "流感病毒感染",
+      "indication_en": "Influenza virus infection",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "region": "greater_china",
+      "is_blockbuster": false,
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.hisunpharm.com/main/news-content.thtml?id=14437",
+          "title": "Hisun 2024 results announcement",
+          "accessed": "2026-06"
+        }
+      ],
+      "inn": "favipiravir",
+      "key_markets": [
+        "NMPA"
+      ]
+    },
+    {
+      "id": "hisun-everolimus",
+      "name_zh": "依维莫司片",
+      "name_en": "Everolimus Tablets",
+      "brand_name": "依维莫司",
+      "company_id": "hisun",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "oncology",
+      "indication_zh": "肾细胞癌等肿瘤",
+      "indication_en": "Renal cell carcinoma and related tumors",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "region": "greater_china",
+      "is_blockbuster": false,
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "http://big5.sse.com.cn/site/cht/www.sse.com.cn/disclosure/listedinfo/announcement/c/new/2025-03-29/600267_20250329_G9AA.pdf",
+          "title": "Hisun 2024 Annual Report",
+          "accessed": "2026-06"
+        }
+      ],
+      "inn": "everolimus",
+      "key_markets": [
+        "NMPA"
+      ]
+    },
+    {
+      "id": "livzon-ilaprazole",
+      "name_zh": "壹丽安",
+      "name_en": "Yilizan (ilaprazole)",
+      "brand_name": "壹丽安",
+      "company_id": "livzon",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "gastroenterology",
+      "indication_zh": "十二指肠溃疡及反流性食管炎",
+      "indication_en": "Duodenal ulcer and reflux esophagitis",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "region": "greater_china",
+      "is_blockbuster": true,
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "http://static.cninfo.com.cn/finalpage/2025-03-27/1222910364.PDF",
+          "title": "Livzon 2024 Annual Report",
+          "accessed": "2026-06"
+        }
+      ],
+      "inn": "ilaprazole",
+      "key_markets": [
+        "NMPA"
+      ],
+      "latest_annual_sales": {
+        "value": 2566528687,
+        "currency": "CNY",
+        "year": 2024,
+        "source_url": "http://static.cninfo.com.cn/finalpage/2025-03-27/1222910364.PDF",
+        "note_en": "GI product line revenue",
+        "note_zh": "消化道产品线收入"
+      }
+    },
+    {
+      "id": "livzon-shenqi-fuzheng",
+      "name_zh": "参芪扶正注射液",
+      "name_en": "Shenqi Fuzheng Injection",
+      "brand_name": "参芪扶正",
+      "company_id": "livzon",
+      "modality_id": "tcm-injection",
+      "therapeutic_area_id": "oncology",
+      "indication_zh": "肿瘤放化疗气虚证",
+      "indication_en": "Qi deficiency during cancer chemoradiotherapy",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "region": "greater_china",
+      "is_blockbuster": false,
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "http://static.cninfo.com.cn/finalpage/2025-03-27/1222910364.PDF",
+          "title": "Livzon 2024 Annual Report",
+          "accessed": "2026-06"
+        }
+      ],
+      "key_markets": [
+        "NMPA"
+      ]
+    },
+    {
+      "id": "livzon-leuprorelin",
+      "name_zh": "贝依",
+      "name_en": "Beiyi (leuprorelin microspheres)",
+      "brand_name": "贝依",
+      "company_id": "livzon",
+      "modality_id": "peptide",
+      "therapeutic_area_id": "womens-health",
+      "indication_zh": "前列腺癌、子宫内膜异位症等",
+      "indication_en": "Prostate cancer, endometriosis and related indications",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "region": "greater_china",
+      "is_blockbuster": false,
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "http://static.cninfo.com.cn/finalpage/2025-03-27/1222910364.PDF",
+          "title": "Livzon 2024 Annual Report",
+          "accessed": "2026-06"
+        }
+      ],
+      "inn": "leuprorelin acetate",
+      "key_markets": [
+        "NMPA",
+        "FDA"
+      ]
+    },
+    {
+      "id": "salubris-taijia-clopidogrel",
+      "name_zh": "泰嘉",
+      "name_en": "Taijia",
+      "brand_name": "泰嘉",
+      "company_id": "salubris",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "cardiometabolic",
+      "indication_zh": "急性冠脉综合征等抗血小板治疗",
+      "indication_en": "Antiplatelet therapy for ACS and related conditions",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "region": "greater_china",
+      "is_blockbuster": false,
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://file.finance.qq.com/finance/hs/pdf/2025/03/29/1222946946.PDF",
+          "title": "Salubris 2024 Annual Report",
+          "accessed": "2026-06"
+        }
+      ],
+      "inn": "clopidogrel bisulfate",
+      "first_approval_year": 2000,
+      "key_markets": [
+        "NMPA"
+      ],
+      "target_mechanism_zh": "P2Y12受体拮抗剂",
+      "target_mechanism_en": "P2Y12 receptor antagonist"
+    },
+    {
+      "id": "salubris-alisartan",
+      "name_zh": "信立坦",
+      "name_en": "Xinlitai",
+      "brand_name": "信立坦",
+      "company_id": "salubris",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "cardiometabolic",
+      "indication_zh": "原发性高血压",
+      "indication_en": "Essential hypertension",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "region": "greater_china",
+      "is_blockbuster": false,
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://file.finance.qq.com/finance/hs/pdf/2025/03/29/1222946946.PDF",
+          "title": "Salubris 2024 Annual Report",
+          "accessed": "2026-06"
+        }
+      ],
+      "inn": "alisartan medoxomil",
+      "key_markets": [
+        "NMPA"
+      ]
+    },
+    {
+      "id": "salubris-enarodustat",
+      "name_zh": "恩那罗",
+      "name_en": "Ennaluo",
+      "brand_name": "恩那罗",
+      "company_id": "salubris",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "nephrology",
+      "indication_zh": "透析患者肾性贫血",
+      "indication_en": "Renal anemia in dialysis patients",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "region": "greater_china",
+      "is_blockbuster": false,
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://bydrug.pharmcube.com/news/detail/8c6b5d735318ef02b05506938f2544ca",
+          "title": "PharmCube — Salubris 2024 coverage",
+          "accessed": "2026-06"
+        }
+      ],
+      "inn": "enarodustat",
+      "key_markets": [
+        "NMPA"
+      ]
+    },
+    {
+      "id": "lepu-atorvastatin",
+      "name_zh": "阿托伐他汀钙片",
+      "name_en": "Atorvastatin Calcium Tablets",
+      "brand_name": "阿托伐他汀",
+      "company_id": "lepu-medical",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "cardiometabolic",
+      "indication_zh": "高胆固醇血症",
+      "indication_en": "Hypercholesterolemia",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "region": "greater_china",
+      "is_blockbuster": false,
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://vip.stock.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=10908494&stockid=300003",
+          "title": "Lepu 2024 Annual Report",
+          "accessed": "2026-06"
+        }
+      ],
+      "inn": "atorvastatin calcium",
+      "key_markets": [
+        "NMPA"
+      ]
+    },
+    {
+      "id": "humanwell-fentanyl",
+      "name_zh": "瑞芬太尼",
+      "name_en": "Remifentanil",
+      "brand_name": "瑞芬太尼",
+      "company_id": "humanwell",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "neuroscience",
+      "indication_zh": "全身麻醉镇痛",
+      "indication_en": "Analgesia for general anesthesia",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "region": "greater_china",
+      "is_blockbuster": false,
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://money.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=11021834&stockid=600079",
+          "title": "Humanwell 2024 Annual Report",
+          "accessed": "2026-06"
+        }
+      ],
+      "inn": "remifentanil",
+      "key_markets": [
+        "NMPA"
+      ]
+    },
+    {
+      "id": "humanwell-midazolam-inj",
+      "name_zh": "咪达唑仑注射液",
+      "name_en": "Midazolam Injection",
+      "brand_name": "咪达唑仑",
+      "company_id": "humanwell",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "neuroscience",
+      "indication_zh": "麻醉诱导与镇静",
+      "indication_en": "Anesthesia induction and sedation",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "region": "greater_china",
+      "is_blockbuster": false,
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://money.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=11021834&stockid=600079",
+          "title": "Humanwell 2024 Annual Report",
+          "accessed": "2026-06"
+        }
+      ],
+      "inn": "midazolam",
+      "key_markets": [
+        "NMPA"
+      ]
+    },
+    {
+      "id": "huahai-valsartan",
+      "name_zh": "缬沙坦片",
+      "name_en": "Valsartan Tablets",
+      "brand_name": "倍泽",
+      "company_id": "huahai",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "cardiometabolic",
+      "indication_zh": "原发性高血压",
+      "indication_en": "Essential hypertension",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "region": "greater_china",
+      "is_blockbuster": true,
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.huahaipharm.com/xxg.html",
+          "title": "Huahai cardiovascular products page",
+          "accessed": "2026-06"
+        }
+      ],
+      "inn": "valsartan",
+      "key_markets": [
+        "NMPA",
+        "FDA"
+      ]
+    },
+    {
+      "id": "huahai-irbesartan-hctz",
+      "name_zh": "厄贝沙坦氢氯噻嗪片",
+      "name_en": "Irbesartan/HCTZ Tablets",
+      "brand_name": "倍悦",
+      "company_id": "huahai",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "cardiometabolic",
+      "indication_zh": "原发性高血压",
+      "indication_en": "Essential hypertension",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "region": "greater_china",
+      "is_blockbuster": false,
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "http://static.cninfo.com.cn/finalpage/2025-04-30/1223420208.PDF",
+          "title": "Huahai 2024 Annual Report",
+          "accessed": "2026-06"
+        }
+      ],
+      "inn": "irbesartan; hydrochlorothiazide",
+      "key_markets": [
+        "NMPA"
+      ]
+    },
+    {
+      "id": "huahai-paroxetine",
+      "name_zh": "盐酸帕罗西汀片",
+      "name_en": "Paroxetine Tablets",
+      "brand_name": "乐友",
+      "company_id": "huahai",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "neuroscience",
+      "indication_zh": "抑郁症及焦虑障碍",
+      "indication_en": "Major depressive and anxiety disorders",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "region": "greater_china",
+      "is_blockbuster": false,
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "http://static.cninfo.com.cn/finalpage/2025-04-30/1223420208.PDF",
+          "title": "Huahai 2024 Annual Report",
+          "accessed": "2026-06"
+        }
+      ],
+      "inn": "paroxetine hydrochloride",
+      "key_markets": [
+        "NMPA",
+        "FDA"
+      ]
+    },
+    {
+      "id": "haisco-ciprofol",
+      "name_zh": "环泊酚注射液",
+      "name_en": "Ciprofol Injection",
+      "brand_name": "思舒宁",
+      "company_id": "haisco",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "neuroscience",
+      "indication_zh": "全身麻醉诱导与维持",
+      "indication_en": "General anesthesia induction and maintenance",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "region": "greater_china",
+      "is_blockbuster": true,
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://money.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=10866300&stockid=002653",
+          "title": "Haisco 2024 Annual Report",
+          "accessed": "2026-06"
+        }
+      ],
+      "inn": "ciprofol",
+      "key_markets": [
+        "NMPA"
+      ],
+      "latest_annual_sales": {
+        "value": 1231651885,
+        "currency": "CNY",
+        "year": 2024,
+        "source_url": "https://money.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=10866300&stockid=002653",
+        "note_en": "Anesthesia product line",
+        "note_zh": "麻醉产品线收入"
+      }
+    },
+    {
+      "id": "enhua-midazolam",
+      "name_zh": "力月西",
+      "name_en": "Liyuexi (midazolam)",
+      "brand_name": "力月西",
+      "company_id": "enhua",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "neuroscience",
+      "indication_zh": "麻醉前用药及镇静",
+      "indication_en": "Premedication and sedation",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "region": "greater_china",
+      "is_blockbuster": false,
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://disc.static.szse.cn/disc/disk03/finalpage/2025-03-28/ff086d8c-35c4-486e-9a77-e68628cb52a8.PDF",
+          "title": "Nhwa 2024 Annual Report",
+          "accessed": "2026-06"
+        }
+      ],
+      "inn": "midazolam",
+      "key_markets": [
+        "NMPA"
+      ]
+    },
+    {
+      "id": "enhua-etomidate",
+      "name_zh": "福尔利",
+      "name_en": "Fuorli (etomidate)",
+      "brand_name": "福尔利",
+      "company_id": "enhua",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "neuroscience",
+      "indication_zh": "全身麻醉诱导",
+      "indication_en": "General anesthesia induction",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "region": "greater_china",
+      "is_blockbuster": false,
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://disc.static.szse.cn/disc/disk03/finalpage/2025-03-28/ff086d8c-35c4-486e-9a77-e68628cb52a8.PDF",
+          "title": "Nhwa 2024 Annual Report",
+          "accessed": "2026-06"
+        }
+      ],
+      "inn": "etomidate",
+      "key_markets": [
+        "NMPA"
+      ]
+    },
+    {
+      "id": "enhua-olorofim",
+      "name_zh": "欧立罗",
+      "name_en": "Ouliluo (olorofim)",
+      "brand_name": "欧立罗",
+      "company_id": "enhua",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "infectious-disease",
+      "indication_zh": "侵袭性曲霉病",
+      "indication_en": "Invasive aspergillosis",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "region": "greater_china",
+      "is_blockbuster": false,
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://static.cninfo.com.cn/finalpage/2025-03-29/1222941320.PDF",
+          "title": "Nhwa 2024 Annual Report Summary",
+          "accessed": "2026-06"
+        }
+      ],
+      "inn": "olorofim",
+      "key_markets": [
+        "NMPA"
+      ]
+    },
+    {
+      "id": "shanghai-pharma-ticagrelor",
+      "name_zh": "替格瑞洛",
+      "name_en": "Ticagrelor",
+      "brand_name": "替格瑞洛",
+      "inn": "ticagrelor",
+      "company_id": "shanghai-pharma",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "cardiometabolic",
+      "indication_zh": "急性冠脉综合征",
+      "indication_en": "Acute coronary syndrome",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "region": "greater_china",
+      "is_blockbuster": false,
+      "key_markets": [
+        "NMPA"
+      ],
+      "confidence": 0.82,
+      "last_verified": "2026-06",
+      "target_mechanism_zh": "P2Y12受体拮抗剂",
+      "target_mechanism_en": "P2Y12 receptor antagonist",
+      "sources": [
+        {
+          "url": "https://www.sphchina.com/attached/files/20250327999_.pdf",
+          "title": "Shanghai Pharma 2024 Annual Report",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "lepu-amiodarone",
+      "name_zh": "盐酸胺碘酮片",
+      "name_en": "Amiodarone Tablets",
+      "brand_name": "胺碘酮",
+      "inn": "amiodarone hydrochloride",
+      "company_id": "lepu-medical",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "cardiometabolic",
+      "indication_zh": "心律失常",
+      "indication_en": "Cardiac arrhythmias",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "region": "greater_china",
+      "is_blockbuster": false,
+      "key_markets": [
+        "NMPA"
+      ],
+      "confidence": 0.78,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://vip.stock.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=10908494&stockid=300003",
+          "title": "Lepu 2024 Annual Report",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "humanwell-nalbuphine",
+      "name_zh": "纳布啡注射液",
+      "name_en": "Nalbuphine Injection",
+      "brand_name": "纳布啡",
+      "inn": "nalbuphine",
+      "company_id": "humanwell",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "neuroscience",
+      "indication_zh": "术后镇痛",
+      "indication_en": "Postoperative analgesia",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "region": "greater_china",
+      "is_blockbuster": false,
+      "key_markets": [
+        "NMPA"
+      ],
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://money.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=11021834&stockid=600079",
+          "title": "Humanwell 2024 Annual Report",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "salubris-jk07",
+      "name_zh": "JK07",
+      "name_en": "JK07 (recombinant NRG-1/anti-HER3 fusion protein)",
+      "brand_name": "JK07",
+      "company_id": "salubris",
+      "modality_id": "fusion-protein",
+      "therapeutic_area_id": "cardiometabolic",
+      "indication_zh": "慢性心力衰竭",
+      "indication_en": "Chronic heart failure",
+      "approval_status": "ph2",
+      "drug_class": "originator",
+      "region": "greater_china",
+      "is_blockbuster": false,
+      "confidence": 0.75,
+      "last_verified": "2026-06",
+      "target_mechanism_zh": "ErbB4激动剂融合蛋白",
+      "target_mechanism_en": "ErbB4 agonist fusion protein",
+      "sources": [
+        {
+          "url": "https://bydrug.pharmcube.com/news/detail/8c6b5d735318ef02b05506938f2544ca",
+          "title": "PharmCube — Salubris JK07 pipeline",
+          "accessed": "2026-06"
+        }
+      ]
+    }
+  ]
+}

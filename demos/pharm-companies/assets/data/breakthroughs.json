@@ -1,0 +1,2238 @@
+{
+  "milestones": [
+    {
+      "id": "samsung-biologics-plant4-2023",
+      "date": "2023-09",
+      "company_id": "samsung-biologics",
+      "therapeutic_area_id": "immunology",
+      "headline_zh": "三星生物制剂 Plant 4 全面商业化运营，松岛产能登顶全球 CDMO 第一",
+      "headline_en": "Samsung Biologics Plant 4 fully operational; Songdo becomes the world's largest single-site biologics CDMO campus",
+      "before_gap_zh": "此前全球最大单站点生物药 CDMO 产能由欧美（Lonza Visp、Lonza Portsmouth）保持。",
+      "before_gap_en": "Prior to Plant 4, the largest single-site biologics CDMO capacity sat with European and US incumbents (Lonza Visp, Lonza Portsmouth).",
+      "achievement_zh": "2023 年 9 月 Plant 4 投产，三星生物松岛合计 604,800 L 产能，超过任何欧美同类单站点。",
+      "achievement_en": "Plant 4 GMP operations began in 2023, bringing total Songdo capacity to 604,800 L — exceeding any comparable Western single site.",
+      "still_missing_zh": "在 mRNA、ADC 与连续化生物工艺上仍落后于欧美同行。",
+      "still_missing_en": "Still trails Western peers in mRNA, ADC payload/linker and continuous bioprocessing.",
+      "metrics": [
+        {
+          "label_zh": "P4 产能",
+          "label_en": "P4 capacity",
+          "value": "240000 L",
+          "verified": true
+        },
+        {
+          "label_zh": "松岛总产能",
+          "label_en": "Total Songdo capacity",
+          "value": "604800 L",
+          "verified": true
+        }
+      ],
+      "evidence_level": "audited",
+      "capability_key": "large_scale_biologics_mfg",
+      "confidence": 0.78,
+      "sources": [
+        {
+          "url": "https://www.samsungbiologics.com/en/company/facility.do",
+          "title": "Samsung Biologics Facilities",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "icon-pra-merger-2021",
+      "date": "2021-07",
+      "company_id": "icon-plc",
+      "therapeutic_area_id": "oncology",
+      "headline_zh": "ICON 完成 120 亿美元并购 PRA Health，跃居全球第二临床 CRO",
+      "headline_en": "ICON closes US$12B PRA Health Sciences merger, becoming world's #2 clinical CRO by revenue",
+      "before_gap_zh": "此前 ICON 在全球临床 CRO 排名约第 3-4 位，规模显著落后于 IQVIA。",
+      "before_gap_en": "Pre-merger ICON ranked ~3-4 globally among clinical CROs, well behind IQVIA.",
+      "achievement_zh": "2021 年 7 月以约 120 亿美元完成并购，合并营收使 ICON 体量翻倍。",
+      "achievement_en": "Closed July 2021 at ~US$12B, doubling combined revenue and lifting ICON to #2.",
+      "still_missing_zh": "数据资产与真实世界证据能力仍弱于 IQVIA。",
+      "still_missing_en": "Real-world evidence and data assets still smaller than IQVIA's.",
+      "metrics": [
+        {
+          "label_zh": "并购对价",
+          "label_en": "Deal value",
+          "value": "12000000000 USD",
+          "verified": false
+        }
+      ],
+      "evidence_level": "media",
+      "capability_key": "global_clinical_cro_scale",
+      "confidence": 0.7,
+      "sources": [
+        {
+          "url": "https://www.iconplc.com/news/2021/icon-completes-acquisition-of-pra-health-sciences",
+          "title": "ICON completes acquisition of PRA Health Sciences",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "wuxi-bio-dundalk-2022",
+      "date": "2022-04",
+      "company_id": "wuxi-biologics",
+      "therapeutic_area_id": "immunology",
+      "headline_zh": "药明生物爱尔兰敦多克 MFG4 投产，成为最大中国生物药 CDMO 海外基地",
+      "headline_en": "WuXi Biologics' Dundalk MFG4 site begins GMP production, becoming the largest Chinese biologics CDMO footprint outside China",
+      "before_gap_zh": "中国 CDMO 此前主要在国内生产，海外商业化产能有限。",
+      "before_gap_en": "Chinese CDMOs had limited overseas commercial-scale biomanufacturing capacity.",
+      "achievement_zh": "2022 年 MFG4 (48,000 L) 在爱尔兰敦多克投产，为非中国市场客户提供本地化原液与制剂。",
+      "achievement_en": "Dundalk MFG4 (48,000 L) began GMP production in 2022, providing non-China commercial-scale DS/DP to Western clients.",
+      "still_missing_zh": "全球合规与 ESG 治理体系仍落后于 Lonza 等老牌欧洲同行。",
+      "still_missing_en": "Global compliance maturity and ESG governance still lag European incumbents like Lonza.",
+      "evidence_level": "vendor_claim",
+      "capability_key": "overseas_commercial_biologics_mfg",
+      "confidence": 0.7,
+      "sources": [
+        {
+          "url": "https://www.wuxibiologics.com/about-us/our-sites/",
+          "title": "WuXi Biologics Global Sites",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "catalent-novo-acquisition-2024",
+      "date": "2024-12",
+      "company_id": "catalent",
+      "therapeutic_area_id": "cardiometabolic",
+      "headline_zh": "Novo Holdings 完成 165 亿美元私有化收购 Catalent，对接 GLP-1 注射剂产能",
+      "headline_en": "Novo Holdings closes US$16.5B Catalent take-private, securing GLP-1 injectable fill-finish capacity",
+      "before_gap_zh": "Novo Nordisk 受限于自有无菌灌装产能，Wegovy / Ozempic 持续供不应求。",
+      "before_gap_en": "Novo Nordisk was constrained by in-house sterile fill-finish capacity, causing Wegovy/Ozempic shortages.",
+      "achievement_zh": "2024 年 12 月交易完成，Novo Nordisk 通过三方采购协议直接获得 Catalent 的 Anagni (意大利)、Bloomington (印第安纳) 等灌装线。",
+      "achievement_en": "Deal closed Dec 2024; Novo Nordisk gained direct access to Catalent's Anagni (IT) and Bloomington (IN) fill-finish lines via related-party supply deals.",
+      "still_missing_zh": "Catalent 原 CTLT 上市地位退市，少数股东对估值不满。",
+      "still_missing_en": "Catalent delisted from NYSE; minority shareholders contested the valuation.",
+      "metrics": [
+        {
+          "label_zh": "交易对价",
+          "label_en": "Deal value",
+          "value": "16500000000 USD",
+          "verified": false
+        }
+      ],
+      "evidence_level": "media",
+      "capability_key": "glp1_fill_finish",
+      "confidence": 0.72,
+      "sources": [
+        {
+          "url": "https://www.novo-holdings.com/news-and-insights/news/novo-holdings-completes-acquisition-of-catalent/",
+          "title": "Novo Holdings completes acquisition of Catalent",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "kelun-biotech-merck-adc-deal-2022",
+      "date": "2022-12",
+      "company_id": "kelun",
+      "product_ids": [
+        "skb264-sacituzumab-tirumotecan"
+      ],
+      "therapeutic_area_id": "oncology",
+      "headline_zh": "科伦博泰与默克签署七款临床前ADC资产独家授权协议",
+      "headline_en": "Kelun-Biotech signs exclusive license with Merck for 7 preclinical ADC assets",
+      "before_gap_zh": "中国ADC企业缺乏全球顶级跨国制药公司认可及国际市场准入能力",
+      "before_gap_en": "Chinese ADC developers lacked validation from top multinational pharma and global commercialization pathways",
+      "achievement_zh": "科伦博泰以175亿元人民币潜在里程碑达成与MSD的ADC平台全面战略合作，奠定中国ADC研发的全球地位",
+      "achievement_en": "Kelun-Biotech secured a multi-billion USD ADC platform partnership with Merck including USD 175M upfront + up to USD 1.36B in milestones for 7 novel ADC candidates, validating China's ADC innovation globally",
+      "still_missing_zh": "ADC药物在中国商业化仍处早期，国产ADC出海全面商业化有待实现",
+      "still_missing_en": "Domestic ADC commercialisation in China is still early-stage; full ex-China commercialisation of Chinese-origin ADCs is yet to be achieved",
+      "metrics": [
+        {
+          "label_zh": "首付款（美元）",
+          "label_en": "Upfront payment (USD)",
+          "value": "175 million",
+          "verified": true
+        },
+        {
+          "label_zh": "潜在里程碑（美元）",
+          "label_en": "Potential milestones (USD)",
+          "value": "up to 1.36 billion",
+          "verified": true
+        },
+        {
+          "label_zh": "合作候选药物数量",
+          "label_en": "ADC candidates licensed",
+          "value": "7",
+          "verified": true
+        }
+      ],
+      "evidence_level": "audited",
+      "capability_key": "adc_platform_global_deal",
+      "confidence": 0.92,
+      "sources": [
+        {
+          "url": "https://www.merck.com/news/merck-and-kelun-biotech-announce-exclusive-license-and-collaboration-agreement-for-seven-investigational-antibody-drug-conjugate-candidates-for-the-treatment-of-cancer/",
+          "title": "Merck and Kelun-Biotech Announce Exclusive License and Collaboration Agreement - Merck.com",
+          "accessed": "2026-06"
+        },
+        {
+          "url": "https://www.fiercepharma.com/pharma/keluns-merck-partnered-adc-snags-first-nod-kick-trop2-fight-gilead",
+          "title": "Kelun's Merck-partnered ADC snags first nod in China - FiercePharma",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "skb264-china-approval-2023",
+      "date": "2023-09",
+      "company_id": "kelun",
+      "product_ids": [
+        "skb264-sacituzumab-tirumotecan"
+      ],
+      "therapeutic_area_id": "oncology",
+      "headline_zh": "科伦博泰SKB264（芦康沙妥珠单抗）获NMPA批准用于三阴性乳腺癌",
+      "headline_en": "Kelun-Biotech's SKB264 (sac-TMT) receives NMPA approval for triple-negative breast cancer",
+      "before_gap_zh": "中国TNBC患者缺乏中国本土研发的TROP2靶向ADC治疗选择",
+      "before_gap_en": "Chinese TNBC patients lacked domestically developed TROP2-targeted ADC therapy options",
+      "achievement_zh": "中国首款获批的TROP2 ADC，也是首个由中国企业独立研发并获批的同类药物，与Gilead同类产品Trodelvy竞争",
+      "achievement_en": "First approved TROP2-targeted ADC in China; first such drug independently developed by a Chinese company, competing with Gilead's Trodelvy",
+      "still_missing_zh": "需要更多适应症扩展（如NSCLC、HR+/HER2-乳腺癌）及全球注册数据",
+      "still_missing_en": "Additional indication expansions (NSCLC, HR+/HER2- breast cancer) and ex-China registration data still needed",
+      "metrics": [
+        {
+          "label_zh": "突破性疗法认定（中国）",
+          "label_en": "Breakthrough Therapy Designation (China)",
+          "value": "Granted Jan 2023",
+          "verified": true
+        }
+      ],
+      "evidence_level": "audited",
+      "capability_key": "trop2_adc_originator",
+      "confidence": 0.92,
+      "sources": [
+        {
+          "url": "https://www.fiercepharma.com/pharma/keluns-merck-partnered-adc-snags-first-nod-kick-trop2-fight-gilead",
+          "title": "Kelun's Merck-partnered ADC snags first nod in China - FiercePharma",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "fosun-trastuzumab-eu-approval",
+      "date": "2021-07",
+      "company_id": "fosun-pharma",
+      "product_ids": [
+        "hanquyou-trastuzumab-biosimilar"
+      ],
+      "therapeutic_area_id": "oncology",
+      "headline_zh": "复星医药汉曲优获欧盟批准，成为首个在欧上市的中国研发生物类似药",
+      "headline_en": "Fosun Pharma's Hanquyou (Zercepac) approved by EMA — first China-developed biosimilar approved in Europe",
+      "before_gap_zh": "中国制药企业从未有生物类似药进入欧洲市场",
+      "before_gap_en": "No Chinese pharma had previously brought a biosimilar to the European market",
+      "achievement_zh": "汉曲优（欧洲商品名Zercepac）成为首个获欧盟批准的中国研发生物类似药，已在超过30个国家及地区获批",
+      "achievement_en": "Hanquyou/Zercepac became the first Chinese-developed biosimilar approved by EMA; subsequently approved in 30+ countries including UK, France, Germany, Australia",
+      "still_missing_zh": "美国FDA上市申请仍在审核中；与欧洲本地化商业化能力尚有差距",
+      "still_missing_en": "US FDA BLA still under review; full independent commercialization in Europe vs. originator remains a gap",
+      "evidence_level": "audited",
+      "capability_key": "biosimilar_eu_registration",
+      "confidence": 0.9,
+      "sources": [
+        {
+          "url": "https://www.fosunpharma.com/en/content/details37_13092.html",
+          "title": "Fosun Pharma 2023 Annual Results - Fosun Pharma IR",
+          "accessed": "2026-06"
+        },
+        {
+          "url": "https://www.prnewswire.com/news-releases/fosun-pharma-announces-2023-interim-results-continues-to-promote-innovation-transformation-and-optimizes-product-structure-301913222.html",
+          "title": "Fosun Pharma 2023 Interim Results - PR Newswire",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "hutchmed-fruzaqla-fda-2023",
+      "date": "2023-11",
+      "company_id": "hutchmed",
+      "therapeutic_area_id": "oncology",
+      "headline_zh": "呋喹替尼获美国FDA批准上市",
+      "headline_en": "Fruquintinib (Fruzaqla) approved by US FDA",
+      "before_gap_zh": "中国创新肿瘤药缺乏欧美主流市场批准",
+      "before_gap_en": "China-discovered oncology drugs lacked major Western approvals",
+      "achievement_zh": "首款中国本土发现、在美国/EU/日本均获批的抗肿瘤小分子",
+      "achievement_en": "First China-discovered oncology small molecule approved in US, EU and Japan",
+      "still_missing_zh": "全球商业化仍依赖合作伙伴，自主海外营销能力有限",
+      "still_missing_en": "Global commercialization still partner-dependent with limited proprietary ex-China sales force",
+      "evidence_level": "audited",
+      "confidence": 0.95,
+      "sources": [
+        {
+          "url": "https://www.hutch-med.com/us-fda-approval-of-fruzaqla-fruquintinib/",
+          "title": "Hutchmed FDA Approval",
+          "accessed": "2026-06"
+        }
+      ],
+      "product_ids": [
+        "fruquintinib"
+      ],
+      "capability_key": "vegfr_tki"
+    },
+    {
+      "id": "betta-icotinib-2011",
+      "date": "2011-06",
+      "company_id": "betta-pharmaceuticals",
+      "therapeutic_area_id": "oncology",
+      "headline_zh": "埃克替尼获批——首个国产小分子靶向抗癌药",
+      "headline_en": "Icotinib approved — first domestic small-molecule targeted anticancer drug",
+      "before_gap_zh": "肺癌EGFR靶向治疗依赖进口药物",
+      "before_gap_en": "EGFR-targeted lung cancer therapy relied on imported drugs",
+      "achievement_zh": "实现首个自主研发EGFR-TKI上市",
+      "achievement_en": "Achieved first self-developed EGFR-TKI launch in China",
+      "still_missing_zh": "三代EGFR-TKI及全球商业化仍落后国际龙头",
+      "still_missing_en": "Third-gen EGFR-TKIs and global commercialization still lag MNC leaders",
+      "evidence_level": "audited",
+      "confidence": 0.9,
+      "sources": [
+        {
+          "url": "http://money.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=10891633&stockid=300558",
+          "title": "Betta 2024 Annual Report",
+          "accessed": "2026-06"
+        }
+      ],
+      "product_ids": [
+        "icotinib"
+      ],
+      "capability_key": "egfr_tki"
+    },
+    {
+      "id": "chipscreen-chidamide-2014",
+      "date": "2014-12",
+      "company_id": "chipscreen",
+      "therapeutic_area_id": "oncology",
+      "headline_zh": "西达本胺获批——全球首个亚型选择性HDAC抑制剂",
+      "headline_en": "Chidamide approved — world's first subtype-selective HDAC inhibitor",
+      "before_gap_zh": "中国淋巴瘤缺乏口服原创新药",
+      "before_gap_en": "China lacked oral innovative drugs for lymphoma",
+      "achievement_zh": "实现全球首创表观遗传靶向药物在中国上市",
+      "achievement_en": "Launched globally first-in-class epigenetic drug in China",
+      "still_missing_zh": "海外注册与国际化商业化尚未突破",
+      "still_missing_en": "Overseas registration and global commercialization not yet achieved",
+      "evidence_level": "audited",
+      "confidence": 0.9,
+      "sources": [
+        {
+          "url": "https://www.chipscreen.com/about/history",
+          "title": "Chipscreen History",
+          "accessed": "2026-06"
+        }
+      ],
+      "product_ids": [
+        "chidamide"
+      ],
+      "capability_key": "hdac_inhibitor"
+    },
+    {
+      "id": "innocare-orelabrutinib-2020",
+      "date": "2020-12",
+      "company_id": "innocare",
+      "therapeutic_area_id": "hematology",
+      "headline_zh": "奥布替尼获NMPA批准上市",
+      "headline_en": "Orelabrutinib approved by NMPA",
+      "before_gap_zh": "中国BTK抑制剂市场由进口药主导",
+      "before_gap_en": "China BTK inhibitor market dominated by imports",
+      "achievement_zh": "国产BTK抑制剂获批并纳入医保",
+      "achievement_en": "Domestic BTK inhibitor approved and added to NRDL",
+      "still_missing_zh": "全球权益曾授权后收回，欧美注册仍在推进",
+      "still_missing_en": "Global rights returned from Biogen; US/EU registration ongoing",
+      "evidence_level": "audited",
+      "confidence": 0.9,
+      "sources": [
+        {
+          "url": "https://www.prnewswire.com/news-releases/innocare-announces-inclusion-of-orelabrutinib-in-china-national-reimbursement-drug-list-301436823.html",
+          "title": "InnoCare NRDL",
+          "accessed": "2026-06"
+        }
+      ],
+      "product_ids": [
+        "orelabrutinib"
+      ],
+      "capability_key": "btk_inhibitor"
+    },
+    {
+      "id": "cstone-pfizer-deal-2020",
+      "date": "2020-09",
+      "company_id": "cstone",
+      "therapeutic_area_id": "oncology",
+      "headline_zh": "辉瑞2亿美元入股并获舒格利单抗中国商业化权益",
+      "headline_en": "Pfizer invests USD200M and gains China commercial rights to sugemalimab",
+      "before_gap_zh": "本土PD-L1创新药缺乏大型MNC商业化网络",
+      "before_gap_en": "Domestic PD-L1 innovators lacked major MNC commercial networks",
+      "achievement_zh": "引入辉瑞独家推广，加速医院准入",
+      "achievement_en": "Pfizer exclusive promotion accelerated hospital access",
+      "still_missing_zh": "公司收入以特许权使用费为主，终端销售额不在报表内",
+      "still_missing_en": "Company revenue mainly royalties; end-market sales not on CStone books",
+      "evidence_level": "audited",
+      "confidence": 0.9,
+      "sources": [
+        {
+          "url": "https://www.cstonepharma.com/en/html/news/2463.html",
+          "title": "CStone Pfizer Deal",
+          "accessed": "2026-06"
+        }
+      ],
+      "product_ids": [
+        "sugemalimab"
+      ]
+    },
+    {
+      "id": "3sbio-tpiao-2005",
+      "date": "2005-05",
+      "company_id": "3sbio",
+      "therapeutic_area_id": "hematology",
+      "headline_zh": "特比澳上市——全球首个重组人血小板生成素",
+      "headline_en": "TPIAO launched — world's first recombinant human thrombopoietin",
+      "before_gap_zh": "血小板减少症治疗缺乏有效促血小板生成药物",
+      "before_gap_en": "Thrombocytopenia lacked effective thrombopoietic agents",
+      "achievement_zh": "实现全球唯一商业化rhTPO并占据中国市场主导地位",
+      "achievement_en": "Achieved world's only commercialized rhTPO with dominant China share",
+      "still_missing_zh": "海外注册与全球商业化尚未展开",
+      "still_missing_en": "Overseas registration and global commercialization not established",
+      "evidence_level": "audited",
+      "confidence": 0.9,
+      "sources": [
+        {
+          "url": "https://www.3sbio.com/en/about/memorabilia.aspx",
+          "title": "3SBio History",
+          "accessed": "2026-06"
+        }
+      ],
+      "product_ids": [
+        "tpiao"
+      ],
+      "capability_key": "recombinant_thrombopoietin"
+    },
+    {
+      "id": "henlius-first-biosimilar-2019",
+      "date": "2019-02",
+      "company_id": "henlius",
+      "therapeutic_area_id": "hematology",
+      "headline_zh": "汉利康获批——中国首个生物类似药",
+      "headline_en": "Hanlikang approved — China's first biosimilar",
+      "before_gap_zh": "中国生物药市场长期依赖进口原研",
+      "before_gap_en": "China biologics market long dependent on imported originators",
+      "achievement_zh": "实现首个国产生物类似药上市并建立大规模产能",
+      "achievement_en": "First domestic biosimilar launched with large-scale manufacturing",
+      "still_missing_zh": "创新抗体全球商业化仍处早期",
+      "still_missing_en": "Innovator antibody global commercialization still early stage",
+      "evidence_level": "audited",
+      "confidence": 0.9,
+      "sources": [
+        {
+          "url": "https://www.henlius.com/en/NewsDetails-2185-26.html",
+          "title": "Henlius First Biosimilar",
+          "accessed": "2026-06"
+        }
+      ],
+      "capability_key": "biosimilar"
+    },
+    {
+      "id": "alphamab-kn035-2021",
+      "date": "2021-11",
+      "company_id": "alphamab",
+      "therapeutic_area_id": "oncology",
+      "headline_zh": "恩沃利单抗获批——全球首个皮下注射PD-L1",
+      "headline_en": "Envafolimab approved — world's first subcutaneous PD-L1",
+      "before_gap_zh": "PD-(L)1药物均为静脉给药",
+      "before_gap_en": "PD-(L)1 drugs were all intravenous",
+      "achievement_zh": "实现皮下给药免疫检查点抑制剂商业化",
+      "achievement_en": "Commercialized subcutaneous immune checkpoint inhibitor",
+      "still_missing_zh": "KN046等核心双抗尚未获批",
+      "still_missing_en": "Core bispecific KN046 not yet approved",
+      "evidence_level": "audited",
+      "confidence": 0.9,
+      "sources": [
+        {
+          "url": "https://www.alphamabonc.com/en/html/news/2412.html",
+          "title": "Alphamab KN035 Approval",
+          "accessed": "2026-06"
+        }
+      ],
+      "product_ids": [
+        "envafolimab"
+      ]
+    },
+    {
+      "id": "allist-furmonertinib-2021",
+      "date": "2021-03",
+      "company_id": "allist",
+      "therapeutic_area_id": "oncology",
+      "headline_zh": "伏美替尼获批——国产三代EGFR-TKI",
+      "headline_en": "Furmonertinib approved — domestic third-gen EGFR-TKI",
+      "before_gap_zh": "三代EGFR-TKI市场由进口药主导",
+      "before_gap_en": "Third-gen EGFR-TKI market dominated by imports",
+      "achievement_zh": "实现国产三代EGFR-TKI上市并快速放量",
+      "achievement_en": "Domestic third-gen EGFR-TKI launched and scaled rapidly",
+      "still_missing_zh": "欧美注册与全球商业化仍在推进",
+      "still_missing_en": "US/EU registration and global commercialization ongoing",
+      "evidence_level": "audited",
+      "confidence": 0.9,
+      "sources": [
+        {
+          "url": "https://www.allist.com.cn/en/newsd/102/46.html",
+          "title": "Allist Furmonertinib Approval",
+          "accessed": "2026-06"
+        }
+      ],
+      "product_ids": [
+        "furmonertinib"
+      ],
+      "capability_key": "egfr_tki"
+    },
+    {
+      "id": "zelgen-donafenib-2021",
+      "date": "2021-06",
+      "company_id": "zelgen",
+      "therapeutic_area_id": "oncology",
+      "headline_zh": "多纳非尼获批肝细胞癌一线适应症",
+      "headline_en": "Donafenib approved for first-line HCC",
+      "before_gap_zh": "肝癌一线治疗长期由进口多激酶抑制剂主导",
+      "before_gap_en": "First-line HCC long dominated by imported multi-kinase inhibitors",
+      "achievement_zh": "国产氘代多激酶抑制剂获批并纳入医保",
+      "achievement_en": "Domestic deuterated multi-kinase inhibitor approved and reimbursed",
+      "still_missing_zh": "全球注册与欧美市场尚未突破",
+      "still_missing_en": "Global registration and Western markets not yet achieved",
+      "evidence_level": "audited",
+      "confidence": 0.9,
+      "sources": [
+        {
+          "url": "http://money.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=10905662&stockid=688266",
+          "title": "Zelgen 2024 Annual Report",
+          "accessed": "2026-06"
+        }
+      ],
+      "product_ids": [
+        "donafenib"
+      ]
+    },
+    {
+      "id": "dizal-sunvozertinib-2023",
+      "date": "2023-08",
+      "company_id": "dizal",
+      "therapeutic_area_id": "oncology",
+      "headline_zh": "舒沃替尼获批——全球首款EGFR exon20ins国创新药",
+      "headline_en": "Sunvozertinib approved — first China innovator for EGFR exon20ins",
+      "before_gap_zh": "EGFR exon20ins NSCLC缺乏高效靶向治疗",
+      "before_gap_en": "EGFR exon20ins NSCLC lacked effective targeted therapy",
+      "achievement_zh": "实现全球首个针对exon20ins的国产创新TKI上市",
+      "achievement_en": "Launched world's first domestic innovator TKI for exon20ins",
+      "still_missing_zh": "美国FDA批准及全球商业化仍在推进",
+      "still_missing_en": "US FDA approval and global commercialization ongoing",
+      "evidence_level": "audited",
+      "confidence": 0.9,
+      "sources": [
+        {
+          "url": "https://www.dizalpharma.com/",
+          "title": "Dizal Pharma",
+          "accessed": "2026-06"
+        }
+      ],
+      "product_ids": [
+        "sunvozertinib"
+      ],
+      "capability_key": "egfr_exon20ins_tki"
+    },
+    {
+      "id": "ascentage-nasdaq-2025",
+      "date": "2025-01",
+      "company_id": "ascentage",
+      "therapeutic_area_id": "hematology",
+      "headline_zh": "亚盛医药纳斯达克双重上市",
+      "headline_en": "Ascentage dual-listed on NASDAQ",
+      "before_gap_zh": "中国创新药企融资渠道主要依赖港股",
+      "before_gap_en": "China innovators relied mainly on HK listing for capital",
+      "achievement_zh": "实现H股+美股双重上市，拓宽全球投资者基础",
+      "achievement_en": "Achieved HK+US dual listing broadening global investor base",
+      "still_missing_zh": "核心产品欧美注册仍在推进",
+      "still_missing_en": "Core product US/EU registration still ongoing",
+      "evidence_level": "audited",
+      "confidence": 0.9,
+      "sources": [
+        {
+          "url": "http://www.sipac.gov.cn/szgyyqtzyq/kjdt/202501/3103dee273b740149376355d3325a720.shtml",
+          "title": "SIP NASDAQ listing news",
+          "accessed": "2026-06"
+        }
+      ],
+      "product_ids": [
+        "olverembatinib"
+      ]
+    },
+    {
+      "id": "jacobio-glecirasib-2025",
+      "date": "2025-05",
+      "company_id": "jacobio",
+      "therapeutic_area_id": "oncology",
+      "headline_zh": "戈来雷塞获批——国产KRAS G12C抑制剂",
+      "headline_en": "Glecirasib approved — domestic KRAS G12C inhibitor",
+      "before_gap_zh": "KRAS G12C靶点长期被认为不可成药",
+      "before_gap_en": "KRAS G12C long considered undruggable",
+      "achievement_zh": "实现国产KRAS G12C抑制剂在中国获批",
+      "achievement_en": "Domestic KRAS G12C inhibitor approved in China",
+      "still_missing_zh": "全球市场竞争激烈，欧美市场仍由MNC主导",
+      "still_missing_en": "Intense global competition; US/EU still MNC-dominated",
+      "evidence_level": "audited",
+      "confidence": 0.9,
+      "sources": [
+        {
+          "url": "https://www.jacobiopharma.com/cn/news/glecirasib_China_NDA",
+          "title": "Jacobio Glecirasib Approval",
+          "accessed": "2026-06"
+        }
+      ],
+      "product_ids": [
+        "glecirasib"
+      ],
+      "capability_key": "kras_g12c"
+    },
+    {
+      "id": "harbour-biomed-platform-2024",
+      "date": "2024-12",
+      "company_id": "harbour-biomed",
+      "therapeutic_area_id": "oncology",
+      "headline_zh": "和铂医药实现首个全年盈利",
+      "headline_en": "Harbour BioMed achieves first full-year profit",
+      "before_gap_zh": "中国抗体平台公司长期亏损依赖融资",
+      "before_gap_en": "China antibody platform companies long loss-making on financing",
+      "achievement_zh": "通过对外授权与合作实现盈利转型",
+      "achievement_en": "Achieved profitability transition via out-licensing and partnerships",
+      "still_missing_zh": "自研产品商业化规模仍有限",
+      "still_missing_en": "Proprietary product commercial scale still limited",
+      "evidence_level": "audited",
+      "confidence": 0.9,
+      "sources": [
+        {
+          "url": "https://www.hkexnews.hk/listedco/listconews/sehk/2025/0422/2025042201963.pdf",
+          "title": "Harbour BioMed 2024 Annual Report",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "kelun-biotech-msd-deal-2022",
+      "date": "2022-12",
+      "company_id": "kelun-biotech",
+      "therapeutic_area_id": "oncology",
+      "headline_zh": "科伦博泰与默沙东达成SKB264全球合作",
+      "headline_en": "Kelun-Biotech and MSD sign global SKB264/Sac-TMT partnership",
+      "before_gap_zh": "中国ADC创新药缺乏全球商业化能力",
+      "before_gap_en": "China ADC innovators lacked global commercialization capability",
+      "achievement_zh": "实现超百亿美元潜在价值的对外授权",
+      "achievement_en": "Achieved out-licensing deal with multi-billion USD potential value",
+      "still_missing_zh": "自主海外商业化网络尚未建立",
+      "still_missing_en": "Proprietary ex-China commercial network not yet built",
+      "evidence_level": "audited",
+      "confidence": 0.9,
+      "sources": [
+        {
+          "url": "https://www1.hkexnews.hk/listedco/listconews/sehk/2025/0417/2025041701779.pdf",
+          "title": "Kelun-Biotech 2024 Annual Report",
+          "accessed": "2026-06"
+        }
+      ],
+      "product_ids": [
+        "sacituzumab-tirumotecan"
+      ],
+      "capability_key": "trop2_adc"
+    },
+    {
+      "id": "baili-bio-bms-deal-2023",
+      "date": "2023-12",
+      "company_id": "baili-bio",
+      "therapeutic_area_id": "oncology",
+      "headline_zh": "百利天恒与BMS达成BL-B01D1最高84亿美元全球合作",
+      "headline_en": "Baili Bio and BMS sign up to USD8.4B global BL-B01D1 deal",
+      "before_gap_zh": "中国ADC平台缺乏顶级MNC全球开发资源",
+      "before_gap_en": "China ADC platforms lacked top-tier MNC global development resources",
+      "achievement_zh": "实现中国ADC领域最大额对外授权之一",
+      "achievement_en": "Achieved one of largest China ADC out-licensing deals",
+      "still_missing_zh": "产品尚未获批，商业化收益尚未兑现",
+      "still_missing_en": "Product not yet approved; commercial revenue not yet realized",
+      "evidence_level": "audited",
+      "confidence": 0.9,
+      "sources": [
+        {
+          "url": "https://news.bms.com/news/details/2023/SystImmune-and-Bristol-Myers-Squibb-Announce-a-Global-Strategic-Collaboration-Agreement-for-the-Development-and-Commercialization-of-BL-B01D1/default.aspx",
+          "title": "BMS Deal",
+          "accessed": "2026-06"
+        }
+      ],
+      "product_ids": [
+        "bl-b01d1"
+      ],
+      "capability_key": "egfr_her3_adc",
+      "metrics": [
+        {
+          "label_zh": "合作潜在总价值",
+          "label_en": "Deal potential total value",
+          "value": "USD 8.4 billion",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "id": "dualitybio-hkex-ipo-2025",
+      "date": "2025-04",
+      "company_id": "dualitybio",
+      "therapeutic_area_id": "oncology",
+      "headline_zh": "映恩生物港交所上市",
+      "headline_en": "DualityBio lists on HKEX",
+      "before_gap_zh": "ADC平台公司依赖私募融资",
+      "before_gap_en": "ADC platform companies relied on private financing",
+      "achievement_zh": "实现港股上市并引入BioNTech/GSK合作",
+      "achievement_en": "HK IPO with BioNTech/GSK partnerships",
+      "still_missing_zh": "尚无获批上市产品",
+      "still_missing_en": "No approved marketed product yet",
+      "evidence_level": "audited",
+      "confidence": 0.9,
+      "sources": [
+        {
+          "url": "https://www1.hkexnews.hk/listedco/listconews/sehk/2025/0407/2025040700009.pdf",
+          "title": "DualityBio Prospectus",
+          "accessed": "2026-06"
+        }
+      ],
+      "product_ids": [
+        "db-1303"
+      ],
+      "capability_key": "her2_adc"
+    },
+    {
+      "id": "simcere-enlonstuzumab-2024",
+      "date": "2024-06",
+      "company_id": "simcere",
+      "therapeutic_area_id": "oncology",
+      "headline_zh": "恩立妥获批——国产抗EGFR单抗",
+      "headline_en": "Enlonstuzumab approved — domestic anti-EGFR mAb",
+      "before_gap_zh": "mCRC抗EGFR治疗以进口西妥昔单抗为主",
+      "before_gap_en": "mCRC anti-EGFR therapy dominated by imported cetuximab",
+      "achievement_zh": "实现国产抗EGFR单抗获批并纳入医保谈判",
+      "achievement_en": "Domestic anti-EGFR mAb approved and in NRDL negotiation",
+      "still_missing_zh": "全球注册与欧美市场尚未布局",
+      "still_missing_en": "Global registration and Western markets not yet established",
+      "evidence_level": "audited",
+      "confidence": 0.9,
+      "sources": [
+        {
+          "url": "https://www.hkexnews.hk/listedco/listconews/sehk/2025/0428/2025042803854_c.pdf",
+          "title": "Simcere 2024 Annual Report",
+          "accessed": "2026-06"
+        }
+      ],
+      "product_ids": [
+        "enlonstuzumab"
+      ]
+    },
+    {
+      "id": "sinocelltech-profit-2024",
+      "date": "2024-12",
+      "company_id": "sinocelltech",
+      "therapeutic_area_id": "hematology",
+      "headline_zh": "神州细胞2024年实现扭亏为盈",
+      "headline_en": "Sinocelltech achieves first annual profit in 2024",
+      "before_gap_zh": "生物药企业长期高额研发投入导致亏损",
+      "before_gap_en": "Biopharma companies long loss-making on heavy R&D",
+      "achievement_zh": "安佳因销售放量带动公司首次年度盈利",
+      "achievement_en": "Anjiayin sales growth drove first annual profit",
+      "still_missing_zh": "14价HPV疫苗尚未获批上市",
+      "still_missing_en": "14-valent HPV vaccine not yet approved",
+      "evidence_level": "audited",
+      "confidence": 0.9,
+      "sources": [
+        {
+          "url": "http://static.cninfo.com.cn/finalpage/2025-04-26/1223323161.PDF",
+          "title": "Sinocelltech 2024 Annual Report",
+          "accessed": "2026-06"
+        }
+      ],
+      "product_ids": [
+        "sct800"
+      ]
+    },
+    {
+      "id": "brukinsa-alpine-superiority-ibrutinib",
+      "date": "2022-12",
+      "company_id": "beigene",
+      "product_ids": [
+        "brukinsa"
+      ],
+      "therapeutic_area_id": "hematology",
+      "headline_zh": "Brukinsa（泽布替尼）在ALPINE头对头III期试验中首次证明BTK抑制剂优于伊布替尼",
+      "headline_en": "Brukinsa (zanubrutinib) demonstrates superiority over ibrutinib in head-to-head Phase 3 ALPINE trial — first BTK inhibitor to beat ibrutinib",
+      "before_gap_zh": "伊布替尼（亿珂®，AbbVie/J&J）长期主导BTK抑制剂市场，无竞争对手在随机对照III期试验中证明疗效更优",
+      "before_gap_en": "Ibrutinib (Imbruvica®, AbbVie/J&J) dominated the BTK inhibitor market with no competitor demonstrating superiority in a randomized Phase 3 head-to-head trial",
+      "achievement_zh": "ALPINE试验（652例R/R CLL/SLL患者）证明泽布替尼无进展生存期显著优于伊布替尼（HR=0.65，P=0.002），同时心脏不良事件更少",
+      "achievement_en": "ALPINE trial (652 patients R/R CLL/SLL) showed zanubrutinib achieved significantly longer PFS vs ibrutinib (HR=0.65, P=0.002) with fewer cardiac adverse events; ORR 80.4% vs 72.9% (P=0.0264)",
+      "still_missing_zh": "尚无OS获益数据；伊布替尼在部分CLL亚型中仍广泛使用；泽布替尼在发展中市场可及性有限",
+      "still_missing_en": "Overall survival benefit not yet demonstrated; ibrutinib remains widely used in some CLL subtypes; zanubrutinib access limited in developing markets",
+      "metrics": [
+        {
+          "label_zh": "无进展生存HR（泽布替尼 vs 伊布替尼）",
+          "label_en": "PFS hazard ratio (zanubrutinib vs ibrutinib)",
+          "value": "0.65 (95% CI 0.49-0.86)",
+          "verified": true
+        },
+        {
+          "label_zh": "总缓解率（泽布替尼 vs 伊布替尼）",
+          "label_en": "Overall response rate (zanubrutinib vs ibrutinib)",
+          "value": "80.4% vs 72.9% (P=0.0264)",
+          "verified": true
+        },
+        {
+          "label_zh": "心房颤动/扑动发生率（泽布替尼 vs 伊布替尼）",
+          "label_en": "Atrial fibrillation/flutter rate (zanubrutinib vs ibrutinib)",
+          "value": "5.2% vs 8.6%",
+          "verified": true
+        }
+      ],
+      "evidence_level": "audited",
+      "capability_key": "btk_inhibitor",
+      "incumbent_product_ids": [],
+      "confidence": 0.95,
+      "sources": [
+        {
+          "url": "https://www.nejm.org/doi/full/10.1056/NEJMoa2211582",
+          "title": "NEJM: Zanubrutinib or Ibrutinib in Relapsed or Refractory CLL",
+          "accessed": "2026-06"
+        },
+        {
+          "url": "https://www.ajmc.com/view/final-response-analysis-of-alpine-finds-zanubrutinib-superior-to-ibrutinib-in-r-r-cll",
+          "title": "AJMC: Final ALPINE Analysis",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "ivonescimab-harmoni2-beats-keytruda",
+      "date": "2024-09",
+      "company_id": "akeso",
+      "product_ids": [
+        "ivonescimab"
+      ],
+      "therapeutic_area_id": "oncology",
+      "headline_zh": "依沃西单抗（AK112）在HARMONi-2 III期试验中头对头击败帕博利珠单抗（K药），成为全球首个在随机对照III期中超越K药的药物",
+      "headline_en": "Ivonescimab (AK112) beats pembrolizumab (Keytruda) head-to-head in Phase 3 HARMONi-2 — first drug to demonstrate superiority over Keytruda in a randomized controlled trial",
+      "before_gap_zh": "帕博利珠单抗（K药，默沙东）是一线PD-L1阳性NSCLC标准治疗，无任何药物在随机对照III期中击败过K药单药",
+      "before_gap_en": "Pembrolizumab (Keytruda, MSD/Merck) was the standard first-line monotherapy for PD-L1-positive NSCLC; no drug had ever beaten Keytruda monotherapy in a randomized Phase 3 trial",
+      "achievement_zh": "HARMONi-2（398例中国一线PD-L1+晚期NSCLC患者），依沃西单抗中位PFS 11.14个月 vs 帕博利珠单抗5.82个月（HR=0.51，P<0.0001），降低疾病进展风险49%",
+      "achievement_en": "HARMONi-2 (398 patients, first-line PD-L1+ advanced NSCLC in China): ivonescimab median PFS 11.14 mo vs pembrolizumab 5.82 mo (HR=0.51, P<0.0001); 49% reduction in progression/death risk",
+      "still_missing_zh": "HARMONi-2仅在中国人群中进行；全球多区域III期（HARMONi）尚在进行；总生存数据待成熟；FDA/EMA批准尚未获得",
+      "still_missing_en": "HARMONi-2 conducted only in Chinese patients; global multi-regional Phase 3 (HARMONi) ongoing; overall survival data immature; FDA/EMA approvals not yet obtained",
+      "metrics": [
+        {
+          "label_zh": "PFS风险比（依沃西 vs K药）",
+          "label_en": "PFS hazard ratio (ivonescimab vs pembrolizumab)",
+          "value": "0.51 (P<0.0001)",
+          "verified": true
+        },
+        {
+          "label_zh": "中位PFS（依沃西 vs K药）",
+          "label_en": "Median PFS (ivonescimab vs pembrolizumab)",
+          "value": "11.14 months vs 5.82 months",
+          "verified": true
+        },
+        {
+          "label_zh": "9个月PFS率（依沃西 vs K药）",
+          "label_en": "9-month PFS rate (ivonescimab vs pembrolizumab)",
+          "value": "56% vs 40%",
+          "verified": true
+        }
+      ],
+      "evidence_level": "audited",
+      "capability_key": "pd1_vegf_bispecific",
+      "incumbent_product_ids": [],
+      "confidence": 0.95,
+      "sources": [
+        {
+          "url": "https://www.thelancet.com/journals/lancet/article/PIIS0140-6736(24)02722-3/abstract",
+          "title": "The Lancet: HARMONi-2 Phase 3 study publication",
+          "accessed": "2026-06"
+        },
+        {
+          "url": "https://www.businesswire.com/news/home/20240908828765/en/Ivonescimab-Monotherapy-Reduced-the-Risk-of-Disease-Progression-or-Death-by-49-Compared-to-Pembrolizumab-Monotherapy-in-First-Line-Treatment-of-Patients-with-PD-L1-Positive-Advanced-NSCLC-in-China",
+          "title": "Akeso HARMONi-2 press release",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "cadonilimab-first-bispecific-io-approved",
+      "date": "2022-06",
+      "company_id": "akeso",
+      "product_ids": [
+        "cadonilimab"
+      ],
+      "therapeutic_area_id": "oncology",
+      "headline_zh": "卡度尼利单抗获NMPA批准，成为全球首个用于治疗癌症适应症的双免疫检查点抑制剂",
+      "headline_en": "Cadonilimab approved by NMPA as the world's first bispecific dual immune checkpoint inhibitor (PD-1/CTLA-4) approved for cancer",
+      "before_gap_zh": "双免疫检查点抑制剂长期停留在临床阶段，无任何PD-1/CTLA-4双抗获批上市；肿瘤免疫治疗依赖单靶点单抗（如O药+K药联用方案）",
+      "before_gap_en": "Bispecific dual immune checkpoint inhibitors remained in clinical stage; no PD-1/CTLA-4 bispecific had been approved; combination IO relied on two separate monotherapy antibodies (e.g. nivolumab + ipilimumab)",
+      "achievement_zh": "卡度尼利单抗（AK104）2022年6月获NMPA批准用于宫颈癌，单分子同时阻断PD-1和CTLA-4，开创肿瘤双免疫检查点抑制剂时代",
+      "achievement_en": "Cadonilimab (AK104) received NMPA approval in June 2022 for cervical cancer; single molecule simultaneously blocking PD-1 and CTLA-4; inaugurates the era of bispecific dual IO therapy",
+      "still_missing_zh": "FDA/EMA全球批准尚待获得；在PD-L1高表达患者中相对K药的优效性尚未在头对头III期中证明",
+      "still_missing_en": "FDA/EMA global approvals not yet achieved; superiority vs pembrolizumab in PD-L1 high expressors not yet demonstrated in head-to-head Phase 3",
+      "metrics": [
+        {
+          "label_zh": "批准时间",
+          "label_en": "Approval date",
+          "value": "June 2022 (NMPA)",
+          "verified": true
+        },
+        {
+          "label_zh": "全球首个",
+          "label_en": "Global first",
+          "value": "First bispecific dual IO approved for cancer globally",
+          "verified": true
+        }
+      ],
+      "evidence_level": "audited",
+      "capability_key": "pd1_ctla4_bispecific",
+      "incumbent_product_ids": [],
+      "confidence": 0.92,
+      "sources": [
+        {
+          "url": "https://www.prnewswire.com/news-releases/akesos-cadonilimab-pd-1ctla-4-the-first-dual-immune-checkpoint-inhibitor-to-treat-cancer-approved-for-marketing-in-china-301577866.html",
+          "title": "Akeso Cadonilimab First Global Approval Press Release",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "toripalimab-fda-first-npc",
+      "date": "2023-10",
+      "company_id": "junshi",
+      "product_ids": [
+        "toripalimab"
+      ],
+      "therapeutic_area_id": "oncology",
+      "headline_zh": "特瑞普利单抗（LOQTORZI®）获FDA批准，成为全球首个获批治疗鼻咽癌的药物，填补东亚高发癌症治疗空白",
+      "headline_en": "Toripalimab (LOQTORZI®) receives FDA approval as the world's first approved therapy for nasopharyngeal carcinoma (NPC) — addressing a long-unmet need in an East Asia-prevalent cancer",
+      "before_gap_zh": "鼻咽癌无FDA批准药物；该癌症在东南亚、中国南部高发，全球每年新发约13万例，西方制药公司缺乏研发动力",
+      "before_gap_en": "No FDA-approved therapy existed for NPC; this cancer predominates in Southeast Asia and South China (~130,000 new cases/year globally) but lacked Western R&D investment due to geographic mismatch",
+      "achievement_zh": "2023年10月FDA批准LOQTORZI（特瑞普利单抗）用于鼻咽癌全线治疗，基于JUPITER-02（III期）和POLARIS-02（II期），一线联合化疗使PFS风险降低48%",
+      "achievement_en": "FDA approved LOQTORZI (toripalimab-tpzi) in October 2023 for all lines of NPC; based on JUPITER-02 Phase 3 (48% PFS reduction vs chemo alone) and POLARIS-02 Phase 2; first China-origin IO drug to gain FDA approval",
+      "still_missing_zh": "OS数据仍在成熟中；EMA批准尚未获得；在低收入高发地区可及性受限于价格",
+      "still_missing_en": "OS data still maturing; EMA approval not yet obtained; access in low-income high-prevalence regions limited by price",
+      "metrics": [
+        {
+          "label_zh": "JUPITER-02中位PFS改善（联合化疗 vs 化疗）",
+          "label_en": "JUPITER-02 PFS HR vs chemotherapy (combination)",
+          "value": "HR=0.52 (48% reduction in progression/death)",
+          "verified": true
+        },
+        {
+          "label_zh": "首个FDA批准治疗NPC的药物",
+          "label_en": "First FDA-approved NPC therapy",
+          "value": "October 27, 2023",
+          "verified": true
+        }
+      ],
+      "evidence_level": "audited",
+      "capability_key": "pd1_inhibitor",
+      "incumbent_product_ids": [],
+      "confidence": 0.93,
+      "sources": [
+        {
+          "url": "https://www.globenewswire.com/news-release/2023/10/27/2768663/0/en/Coherus-and-Junshi-Biosciences-Announce-FDA-Approval-of-LOQTORZI-toripalimab-tpzi-in-All-Lines-of-Treatment-for-Recurrent-or-Metastatic-Nasopharyngeal-Carcinoma-NPC.html",
+          "title": "FDA Approval of LOQTORZI for NPC",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "cilta-cel-carvykti-china-cart-global",
+      "date": "2022-02",
+      "company_id": "legend-biotech",
+      "product_ids": [
+        "cilta-cel"
+      ],
+      "therapeutic_area_id": "hematology",
+      "headline_zh": "Carvykti（西达基奥仑赛）获FDA批准，中国CAR-T疗法首次进入全球一线市场，2024年销售额接近10亿美元",
+      "headline_en": "Carvykti (ciltacabtagene autoleucel) receives FDA approval — China-originated CAR-T enters the global market and approaches $1B in sales by 2024",
+      "before_gap_zh": "BCMA CAR-T（如ide-cel/百慕塔基奥仑赛）率先获批，但中国来源的CAR-T疗法无法进入美国/欧洲市场",
+      "before_gap_en": "BCMA CAR-T space existed (ide-cel/idecabtagene vicleucel first approved 2021), but no China-originated CAR-T had entered the US/European markets",
+      "achievement_zh": "Carvykti 2022年2月FDA获批（R/R MM），2022年EMA获批，CARTITUDE-4 III期证明早线优于标准治疗，2024年全球净贸易销售额达9.63亿美元",
+      "achievement_en": "Carvykti received FDA approval February 2022 (R/R MM ≥4 prior lines), EMA approval in 2022; CARTITUDE-4 Phase 3 showed superiority in earlier lines; net trade sales $963M in FY2024",
+      "still_missing_zh": "生产能力扩张是瓶颈（个性化制造）；中国内地NMPA批准用于更多适应症；全球BCMA CAR-T竞争加剧",
+      "still_missing_en": "Manufacturing capacity remains a bottleneck (personalized autologous manufacturing); broader NMPA indications in mainland China; competition from other BCMA CAR-Ts intensifying",
+      "metrics": [
+        {
+          "label_zh": "2024年净贸易销售额",
+          "label_en": "FY2024 net trade sales",
+          "value": "$963 million USD",
+          "verified": true
+        },
+        {
+          "label_zh": "治疗患者总数",
+          "label_en": "Total patients treated",
+          "value": ">5,000 as of end 2024",
+          "verified": true
+        },
+        {
+          "label_zh": "MRD阴性率（CARTITUDE-4）",
+          "label_en": "MRD negativity rate (CARTITUDE-4)",
+          "value": "89% of evaluable patients at 10⁻⁵",
+          "verified": true
+        }
+      ],
+      "evidence_level": "audited",
+      "capability_key": "bcma_car_t",
+      "incumbent_product_ids": [],
+      "confidence": 0.93,
+      "sources": [
+        {
+          "url": "https://www.globenewswire.com/news-release/2025/03/11/3040406/0/en/Legend-Biotech-Reports-Fourth-Quarter-and-Full-Year-2024-Results-and-Recent-Highlights.html",
+          "title": "Legend Biotech Full Year 2024 Results",
+          "accessed": "2026-06"
+        },
+        {
+          "url": "https://investors.legendbiotech.com/news-releases/news-release-details/legend-biotechs-carvyktir-ciltacabtagene-autoleucel-becomes",
+          "title": "Carvykti second-line FDA approval press release",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "huahai-domestic-sartan-volume-leadership",
+      "date": "2024-12",
+      "company_id": "huahai",
+      "product_ids": [
+        "huahai-valsartan",
+        "huahai-irbesartan-hctz"
+      ],
+      "therapeutic_area_id": "cardiometabolic",
+      "headline_zh": "华海沙坦类制剂国内集采接续中标，制剂收入增26.6%",
+      "headline_en": "Huahai sartan formulations win successive China VBP rounds; domestic formulation sales +26.6%",
+      "before_gap_zh": "中国高血压仿制药市场由进口原研与分散仿制药主导",
+      "before_gap_en": "China hypertension generic market dominated by imports and fragmented generics",
+      "achievement_zh": "2024年国内制剂销售收入44亿元，多个沙坦复方在接续集采中标",
+      "achievement_en": "FY2024 domestic formulation revenue RMB4.4B; multiple sartan combos selected in VBP renewals",
+      "still_missing_zh": "创新生物药管线仍处于早期，与美国原研品牌溢价差距仍大",
+      "still_missing_en": "Novel biologics still early-stage; brand premium gap vs Western originators remains",
+      "metrics": [
+        {
+          "label_zh": "国内制剂收入",
+          "label_en": "Domestic formulation revenue",
+          "value": "RMB 4.40B FY2024",
+          "verified": true
+        }
+      ],
+      "evidence_level": "audited",
+      "capability_key": "sartan_generic",
+      "confidence": 0.92,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "http://static.cninfo.com.cn/finalpage/2025-04-30/1223420208.PDF",
+          "title": "Huahai 2024 Annual Report",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "salubris-clopidogrel-domestic-generic",
+      "date": "2000-09",
+      "company_id": "salubris",
+      "product_ids": [
+        "salubris-taijia-clopidogrel"
+      ],
+      "therapeutic_area_id": "cardiometabolic",
+      "headline_zh": "信立泰泰嘉打破波立维垄断，实现氯吡格雷国产化",
+      "headline_en": "Salubris Taijia broke Plavix monopoly with domestic clopidogrel",
+      "before_gap_zh": "硫酸氢氯吡格雷长期依赖赛诺菲进口波立维",
+      "before_gap_en": "Clopidogrel market long dependent on Sanofi Plavix imports",
+      "achievement_zh": "泰嘉成为国内首个上市氯吡格雷硫酸氢盐片，奠定心血管仿制药基石",
+      "achievement_en": "Taijia was among first domestic clopidogrel bisulfate tablets, anchoring cardio generic franchise",
+      "still_missing_zh": "集采后仿制药利润承压，创新转型仍在推进",
+      "still_missing_en": "VBP compressed generic margins; innovation pivot still underway",
+      "evidence_level": "case_study",
+      "capability_key": "antiplatelet_generic",
+      "incumbent_product_ids": [],
+      "confidence": 0.8,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://file.finance.qq.com/finance/hs/pdf/2025/03/29/1222946946.PDF",
+          "title": "Salubris 2024 Annual Report — Taijia product history",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "livzon-leuprorelin-fda-be",
+      "date": "2023-06",
+      "company_id": "livzon",
+      "product_ids": [
+        "livzon-leuprorelin"
+      ],
+      "therapeutic_area_id": "womens-health",
+      "headline_zh": "丽珠亮丙瑞林微球按FDA个药指南完成BE并获批",
+      "headline_en": "Livzon leuprorelin microspheres completed FDA individual-product-guidance BE study",
+      "before_gap_zh": "长效GnRH激动剂微球制剂长期由跨国药企主导",
+      "before_gap_en": "Long-acting GnRH agonist microspheres long dominated by MNCs",
+      "achievement_zh": "1个月规格成为全球首个按FDA个药指南完成BE的GnRH类长效制剂",
+      "achievement_en": "1-month formulation first GnRH depot globally approved via FDA individual product guidance BE path",
+      "still_missing_zh": "欧美商业化规模仍有限，国内仍面临集采价格压力",
+      "still_missing_en": "Limited Western commercial scale; domestic VBP pricing pressure persists",
+      "evidence_level": "audited",
+      "capability_key": "long_acting_peptide",
+      "confidence": 0.88,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "http://static.cninfo.com.cn/finalpage/2025-03-27/1222910364.PDF",
+          "title": "Livzon 2024 Annual Report",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "haisco-ciprofol-anesthesia-innovation",
+      "date": "2024-12",
+      "company_id": "haisco",
+      "product_ids": [
+        "haisco-ciprofol"
+      ],
+      "therapeutic_area_id": "neuroscience",
+      "headline_zh": "海思科环泊酚麻醉产品线收入同比增45%",
+      "headline_en": "Haisco ciprofol anesthesia line revenue grew 45% YoY in FY2024",
+      "before_gap_zh": "静脉麻醉镇静市场由丙泊酚等进口及仿制品种主导",
+      "before_gap_en": "IV anesthetic/sedation market dominated by propofol and legacy agents",
+      "achievement_zh": "自主创新环泊酚快速放量，麻醉产品收入超12亿元",
+      "achievement_en": "Proprietary ciprofol scaled rapidly; anesthesia product revenue exceeded RMB1.23B",
+      "still_missing_zh": "海外注册与全球麻醉标准互认尚未形成规模",
+      "still_missing_en": "Limited ex-China registration and global anesthetic standard alignment",
+      "metrics": [
+        {
+          "label_zh": "麻醉产品收入",
+          "label_en": "Anesthesia product revenue",
+          "value": "RMB 1.23B FY2024",
+          "verified": true
+        }
+      ],
+      "evidence_level": "audited",
+      "capability_key": "iv_anesthetic",
+      "confidence": 0.9,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://money.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=10866300&stockid=002653",
+          "title": "Haisco 2024 Annual Report",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "crsanjiu-999-otc-brand-leadership",
+      "date": "2024-12",
+      "company_id": "crsanjiu",
+      "product_ids": [
+        "crsanjiu-999-ganmaoling"
+      ],
+      "therapeutic_area_id": "respiratory",
+      "headline_zh": "华润三九提前完成十四五营收目标，OTC龙头地位巩固",
+      "headline_en": "CR Sanjiu exceeded 14th Five-Year revenue target early, reinforcing OTC leadership",
+      "before_gap_zh": "大众感冒药市场品牌分散、渠道碎片化",
+      "before_gap_en": "OTC cold medicine market fragmented across brands and channels",
+      "achievement_zh": "2024年营收276.17亿元同比增11.6%，999品牌 OTC 持续领先",
+      "achievement_en": "FY2024 revenue RMB27.62B (+11.6% YoY); 999 OTC brand leadership sustained",
+      "still_missing_zh": "处方药与创新药管线占比仍低于创新生物药企",
+      "still_missing_en": "Rx and innovative pipeline share still below biotech innovators",
+      "metrics": [
+        {
+          "label_zh": "营业收入",
+          "label_en": "Revenue",
+          "value": "RMB 27.62B FY2024",
+          "verified": true
+        }
+      ],
+      "evidence_level": "audited",
+      "capability_key": "otc_tcm_brand",
+      "confidence": 0.93,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://money.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=10781217&stockid=000999",
+          "title": "CR Sanjiu 2024 Annual Report",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "wantai-domestic-2vhpv",
+      "date": "2019-12",
+      "company_id": "wantai",
+      "product_ids": [
+        "cecolin"
+      ],
+      "therapeutic_area_id": "womens-health",
+      "headline_zh": "万泰生物获批国产首个二价HPV疫苗馨可宁",
+      "headline_en": "Wantai wins first domestic bivalent HPV vaccine approval (Cecolin)",
+      "before_gap_zh": "中国宫颈癌疫苗市场由进口Gardasil/Cervarix垄断",
+      "before_gap_en": "China HPV vaccine market dominated by imported Gardasil/Cervarix",
+      "achievement_zh": "2019年NMPA批准馨可宁，2021年获WHO预认证",
+      "achievement_en": "NMPA approved Cecolin in 2019; WHO prequalification in 2021",
+      "still_missing_zh": "九价HPV仍由默沙东进口及智飞代理主导",
+      "still_missing_en": "9-valent HPV still led by imported Merck product via Zhifei",
+      "evidence_level": "audited",
+      "capability_key": "hpv_vaccine",
+      "incumbent_product_ids": [
+        "gardasil-9-zhifei"
+      ],
+      "confidence": 0.92,
+      "sources": [
+        {
+          "url": "http://www.cnpharm.com/upload/resources/file/2024/03/29/154114.pdf",
+          "title": "Wantai 2023 AR",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "walvax-domestic-pcv13",
+      "date": "2020-04",
+      "company_id": "walvax",
+      "product_ids": [
+        "pcv13-walvax"
+      ],
+      "therapeutic_area_id": "vaccines",
+      "headline_zh": "沃森生物上市国产首个13价肺炎结合疫苗",
+      "headline_en": "Walvax launches China's first domestic 13-valent PCV",
+      "before_gap_zh": "13价肺炎疫苗市场由辉瑞Prevnar 13垄断",
+      "before_gap_en": "PCV13 market monopolized by Pfizer Prevnar 13",
+      "achievement_zh": "2020年获批上市后稳居国内市场份额第一",
+      "achievement_en": "Post-2020 launch maintained #1 domestic PCV13 market share",
+      "still_missing_zh": "九价HPV及带状疱疹等高价疫苗仍依赖进口",
+      "still_missing_en": "High-value vaccines like 9v HPV and shingles still import-dependent",
+      "evidence_level": "audited",
+      "capability_key": "pcv13_vaccine",
+      "confidence": 0.9,
+      "sources": [
+        {
+          "url": "http://static.cninfo.com.cn/finalpage/2024-03-30/1219473514.PDF",
+          "title": "Walvax 2023 AR",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "gensci-peg-gh-global-first",
+      "date": "2014-01",
+      "company_id": "changchun-high-tech",
+      "product_ids": [
+        "jinsai-peg-growth-hormone"
+      ],
+      "therapeutic_area_id": "rare-disease",
+      "headline_zh": "金赛药业全球首个PEG长效生长激素获批",
+      "headline_en": "GenSci launches world's first PEGylated long-acting growth hormone",
+      "before_gap_zh": "长效生长激素依赖每日注射短效制剂",
+      "before_gap_en": "Long-acting GH options limited before weekly PEG formulation",
+      "achievement_zh": "2014年聚乙二醇重组人生长激素（金赛增）在中国获批",
+      "achievement_en": "PEGylated somatropin (Jinsai Increase) approved in China in 2014",
+      "still_missing_zh": "全球生长激素市场仍由诺和诺德等国际巨头主导",
+      "still_missing_en": "Global GH market still led by Novo Nordisk and other multinationals",
+      "evidence_level": "audited",
+      "capability_key": "long_acting_growth_hormone",
+      "confidence": 0.88,
+      "sources": [
+        {
+          "url": "https://disc.static.szse.cn/disc/disk03/finalpage/2024-03-20/0be61aa3-1a49-4aa9-903a-cbc775e13dde.PDF",
+          "title": "Changchun HT 2023 AR",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "gan-lee-insulin-analog-pioneer",
+      "date": "2005-05",
+      "company_id": "gan-lee",
+      "product_ids": [
+        "basalin-glargine"
+      ],
+      "therapeutic_area_id": "cardiometabolic",
+      "headline_zh": "甘李药业实现中国胰岛素类似物产业化突破",
+      "headline_en": "Gan & Lee pioneers industrialized insulin analog production in China",
+      "before_gap_zh": "三代胰岛素类似物主要依赖进口",
+      "before_gap_en": "Third-generation insulin analogs mainly imported",
+      "achievement_zh": "2005年甘精胰岛素类似物长秀霖获批，打破进口垄断",
+      "achievement_en": "Basalin glargine approved 2005, breaking import monopoly",
+      "still_missing_zh": "集采后价格承压，GLP-1创新药仍落后国际龙头",
+      "still_missing_en": "VBP price pressure; GLP-1 innovators still trail global leaders",
+      "evidence_level": "case_study",
+      "capability_key": "insulin_analog",
+      "confidence": 0.85,
+      "sources": [
+        {
+          "url": "http://money.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=10055645&stockid=603087",
+          "title": "Gan & Lee 2023 AR",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "hec-oseltamivir-granule-monopoly",
+      "date": "2006-01",
+      "company_id": "hec-pharm",
+      "product_ids": [
+        "kewei-oseltamivir"
+      ],
+      "therapeutic_area_id": "respiratory",
+      "headline_zh": "东阳光药成为中国唯一奥司他韦颗粒剂生产商",
+      "headline_en": "HEC Pharm becomes sole China manufacturer of oseltamivir granules",
+      "before_gap_zh": "流感抗病毒药依赖罗氏Tamiflu进口",
+      "before_gap_en": "Influenza antivirals relied on imported Roche Tamiflu",
+      "achievement_zh": "可威颗粒剂占据中国奥司他韦市场最大份额，2023年销售额55.1亿元",
+      "achievement_en": "Kewei granules hold largest China oseltamivir share; CNY 5.51B sales in 2023",
+      "still_missing_zh": "玛巴洛沙韦等新一代流感药竞争加剧",
+      "still_missing_en": "Next-gen agents like baloxavir intensify competition",
+      "evidence_level": "audited",
+      "capability_key": "oseltamivir",
+      "confidence": 0.92,
+      "sources": [
+        {
+          "url": "https://www1.hkexnews.hk/listedco/listconews/sehk/2024/0426/2024042604709.pdf",
+          "title": "HEC 2023 AR",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "united-ubt251-triple-agonist",
+      "date": "2023-09",
+      "company_id": "united-laboratories",
+      "product_ids": [
+        "ubt251"
+      ],
+      "therapeutic_area_id": "cardiometabolic",
+      "headline_zh": "联邦制药UBT251三靶点GLP-1/GIP/GCG激动剂获中美临床批件",
+      "headline_en": "United Labs UBT251 triple GLP-1/GIP/GCG agonist wins China/US IND",
+      "before_gap_zh": "国产三重激动剂尚无获批产品",
+      "before_gap_en": "No approved domestic triple incretin agonist",
+      "achievement_zh": "公司宣称国内首家、全球第二家化学合成多肽三激动剂获批临床",
+      "achievement_en": "Company claims first in China, second globally for synthetic peptide triple agonist IND",
+      "still_missing_zh": "司美格鲁肽等重磅品种仍由诺和诺德等进口主导",
+      "still_missing_en": "Blockbusters like semaglutide still dominated by Novo Nordisk imports",
+      "evidence_level": "vendor_claim",
+      "capability_key": "glp1",
+      "confidence": 0.75,
+      "sources": [
+        {
+          "url": "http://www.irasia.com/listco/hk/unitedlab/annual/2023/crespress.htm",
+          "title": "United Labs 2023 press release",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "baike-shingles-domestic-first",
+      "date": "2023-01",
+      "company_id": "changchun-high-tech",
+      "product_ids": [
+        "baike-shingles-vaccine"
+      ],
+      "therapeutic_area_id": "vaccines",
+      "headline_zh": "百克生物带状疱疹疫苗获批填补国产空白",
+      "headline_en": "BCHT shingles vaccine approved, filling domestic gap",
+      "before_gap_zh": "带状疱疹疫苗市场由GSK Shingrix进口垄断",
+      "before_gap_en": "Shingles prevention dominated by imported GSK Shingrix",
+      "achievement_zh": "2023年获批国内首个适用于40岁以上人群的带状疱疹疫苗",
+      "achievement_en": "2023 approval of first domestic shingles vaccine for adults 40+",
+      "still_missing_zh": "与Shingrix的头对头市场教育及产能仍处追赶阶段",
+      "still_missing_en": "Market education and capacity still catching up vs Shingrix",
+      "evidence_level": "audited",
+      "capability_key": "shingles_vaccine",
+      "confidence": 0.9,
+      "sources": [
+        {
+          "url": "https://disc.static.szse.cn/disc/disk03/finalpage/2024-03-20/0be61aa3-1a49-4aa9-903a-cbc775e13dde.PDF",
+          "title": "Changchun HT 2023 AR",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "novo-nordisk-glp1-obesity-revolution",
+      "date": "2021-06",
+      "company_id": "novo-nordisk",
+      "product_ids": [
+        "wegovy",
+        "ozempic"
+      ],
+      "therapeutic_area_id": "cardiometabolic",
+      "headline_zh": "司美格鲁肽重塑肥胖治疗格局，Wegovy获FDA批准",
+      "headline_en": "Semaglutide redefines obesity treatment; Wegovy FDA approved",
+      "before_gap_zh": "肥胖症药物疗效有限（5-10%体重减轻），患者依从性差，长期治疗难以维持",
+      "before_gap_en": "Obesity drugs offered modest weight loss (5-10%), poor compliance, and unsustainable long-term results",
+      "achievement_zh": "Wegovy（司美格鲁肽2.4mg）在III期临床试验中实现平均15-17%体重减轻，大幅超越既往疗法；2021年6月FDA批准",
+      "achievement_en": "Wegovy (semaglutide 2.4mg) achieved average 15-17% weight reduction in Ph3 trials, far exceeding prior therapies; FDA approved June 2021",
+      "still_missing_zh": "长期安全性数据积累中；供应短缺制约全球可及性；价格昂贵限制广泛使用",
+      "still_missing_en": "Long-term safety data accumulating; supply constraints limit global access; high cost restricts broad use",
+      "metrics": [
+        {
+          "label_zh": "平均体重减轻",
+          "label_en": "Average weight reduction",
+          "value": "15-17%",
+          "verified": true
+        },
+        {
+          "label_zh": "Ozempic + Wegovy 2024年总销售额",
+          "label_en": "Combined Ozempic + Wegovy 2024 sales",
+          "value": "~USD 26B",
+          "verified": true
+        }
+      ],
+      "evidence_level": "audited",
+      "capability_key": "glp1_obesity",
+      "confidence": 0.97,
+      "sources": [
+        {
+          "url": "https://annualreport.novonordisk.com/2024/strategic-aspirations/financials.html",
+          "title": "Novo Nordisk Annual Report 2024",
+          "accessed": "2026-06"
+        },
+        {
+          "url": "https://fortune.com/2025/03/31/ozempic-wegovy-novo-nordisk-nvidia/",
+          "title": "Fortune: Ozempic and Wegovy $26B sales",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "roche-hemlibra-hemophilia-breakthrough",
+      "date": "2017-11",
+      "company_id": "roche",
+      "product_ids": [
+        "hemlibra"
+      ],
+      "therapeutic_area_id": "hematology",
+      "headline_zh": "艾美赛珠单抗（Hemlibra）获批，首个非凝血因子替代疗法改变血友病A治疗",
+      "headline_en": "Hemlibra (emicizumab) approved — first non-factor therapy transforming hemophilia A",
+      "before_gap_zh": "含或不含FVIII抑制剂的血友病A患者需要频繁静脉注射凝血因子，生活质量受严重影响",
+      "before_gap_en": "Hemophilia A patients required frequent intravenous factor infusions; inhibitor patients had very limited options",
+      "achievement_zh": "双特异性抗体桥接FIXa和FX，模拟FVIII功能；皮下注射，每周至每月一次；适用于含/不含FVIII抑制剂患者",
+      "achievement_en": "Bispecific antibody mimics FVIII function; subcutaneous dosing weekly to monthly; works in inhibitor and non-inhibitor patients",
+      "still_missing_zh": "基因治疗作为潜在治愈手段仍在开发；成本高昂，全球可及性不均等",
+      "still_missing_en": "Gene therapy as potential cure still in development; high cost limits global access",
+      "metrics": [
+        {
+          "label_zh": "2024年销售额",
+          "label_en": "2024 annual sales",
+          "value": "CHF 4.5B",
+          "verified": true
+        },
+        {
+          "label_zh": "出血率降低",
+          "label_en": "Bleeding rate reduction",
+          "value": ">80%",
+          "verified": true
+        }
+      ],
+      "evidence_level": "audited",
+      "capability_key": "bispecific_hematology",
+      "confidence": 0.95,
+      "sources": [
+        {
+          "url": "https://www.roche.com/media/releases/med-cor-2025-01-30",
+          "title": "Roche FY2024 Results",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "astrazeneca-farxiga-ckd-hf-expansion",
+      "date": "2020-05",
+      "company_id": "astrazeneca",
+      "product_ids": [
+        "farxiga"
+      ],
+      "therapeutic_area_id": "cardiometabolic",
+      "headline_zh": "达格列净（Farxiga）扩展至心力衰竭和慢性肾病适应证，开创SGLT2跨适应证时代",
+      "headline_en": "Dapagliflozin (Farxiga) expands into heart failure and CKD — SGLT2 class enters multi-indication era",
+      "before_gap_zh": "SGLT2抑制剂仅被视为降糖药物，心衰和CKD缺乏有效保护性口服药物",
+      "before_gap_en": "SGLT2 inhibitors viewed only as glucose-lowering; HF and CKD lacked effective oral cardioprotective drugs",
+      "achievement_zh": "DAPA-HF和DAPA-CKD试验证实达格列净降低心衰住院率和CKD进展风险，FDA于2020-2021年批准新适应证",
+      "achievement_en": "DAPA-HF and DAPA-CKD trials proved dapagliflozin reduced HF hospitalizations and CKD progression; FDA approved new indications 2020-2021",
+      "still_missing_zh": "机制研究仍在进行；费用-效益和更广泛人群可及性仍需改善",
+      "still_missing_en": "Mechanism research ongoing; cost-effectiveness and broader population access still need improvement",
+      "metrics": [
+        {
+          "label_zh": "2024年销售额（最高SGLT2）",
+          "label_en": "2024 sales (highest-selling SGLT2)",
+          "value": "USD 8.4B",
+          "verified": true
+        }
+      ],
+      "evidence_level": "audited",
+      "capability_key": "sglt2_expanded_indications",
+      "confidence": 0.95,
+      "sources": [
+        {
+          "url": "https://www.astrazeneca.com/content/dam/az/PDF/2024/fy/Full-year-and-Q4-2024-results-announcement.pdf",
+          "title": "AstraZeneca FY2024 Results",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "sanofi-dupixent-multi-indication",
+      "date": "2017-03",
+      "company_id": "sanofi",
+      "product_ids": [
+        "dupixent"
+      ],
+      "therapeutic_area_id": "immunology",
+      "headline_zh": "度普利尤单抗（Dupixent）获批，成为首个靶向IL-4/IL-13双重信号通路的生物制剂",
+      "headline_en": "Dupilumab (Dupixent) approved — first biologic targeting the IL-4/IL-13 pathway across multiple diseases",
+      "before_gap_zh": "中重度特应性皮炎缺乏有效的靶向生物治疗，患者依赖皮质类固醇，副作用大",
+      "before_gap_en": "Moderate-to-severe atopic dermatitis lacked effective biologic options; patients relied on corticosteroids with significant side effects",
+      "achievement_zh": "Dupixent先后获批特应性皮炎、哮喘、鼻窦炎伴鼻息肉、嗜酸性食管炎等多个适应证，成为全球销售额最高的免疫学药物之一",
+      "achievement_en": "Dupixent sequentially approved in AD, asthma, CRSwNP, EoE and more; became one of the highest-revenue immunology drugs globally",
+      "still_missing_zh": "价格仍是主要障碍，生物类似药竞争预期在2030年代加剧",
+      "still_missing_en": "High price remains barrier; biosimilar competition expected to intensify in 2030s",
+      "metrics": [
+        {
+          "label_zh": "2024年销售额",
+          "label_en": "2024 sales",
+          "value": "EUR 13.1B",
+          "verified": true
+        },
+        {
+          "label_zh": "已获批适应证数量",
+          "label_en": "Approved indications",
+          "value": "7+",
+          "verified": true
+        }
+      ],
+      "evidence_level": "audited",
+      "capability_key": "il4_il13_dual_inhibition",
+      "confidence": 0.97,
+      "sources": [
+        {
+          "url": "https://www.sanofi.com/assets/dotcom/pressreleases/2025/2025-01-30-06-30-00-3017713-en.pdf",
+          "title": "Sanofi FY2024 Results",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "enhertu-adc-platform-global",
+      "date": "2023-10",
+      "company_id": "daiichi-sankyo",
+      "product_ids": [
+        "enhertu"
+      ],
+      "therapeutic_area_id": "oncology",
+      "headline_zh": "第一三共与默沙东签署多达USD 220亿的ADC平台合作，创历史最大制药交易之一",
+      "headline_en": "Daiichi Sankyo signs up to USD 22B ADC collaboration with Merck, one of the largest pharma deals ever",
+      "before_gap_zh": "ADC平台在全球缺乏足够大规模商业化资源，无法覆盖肿瘤所有适应症",
+      "before_gap_en": "ADC platform lacked the commercial scale and reach to develop across all oncology indications globally",
+      "achievement_zh": "与默沙东签署涵盖3款DXd ADC（Dato-DXd、HER3-DXd、I-DXd）合作协议，总价值达USD 220亿，Enhertu已实现全球多适应症突破",
+      "achievement_en": "USD 22B Merck collaboration covering three DXd ADCs; Enhertu achieved multi-indication global breakthrough with over JPY 552B FY2024 sales",
+      "still_missing_zh": "ADC耐药机制尚未完全解决；间质性肺炎（ILD）安全性问题仍需长期监测",
+      "still_missing_en": "ADC resistance mechanisms not fully resolved; ILD safety signal requires ongoing long-term monitoring",
+      "metrics": [
+        {
+          "label_zh": "默沙东合作总价值",
+          "label_en": "Merck deal total value",
+          "value": "USD 22B",
+          "verified": true
+        },
+        {
+          "label_zh": "FY2024 Enhertu销售额",
+          "label_en": "FY2024 Enhertu sales",
+          "value": "JPY 552.6B (+37.9%)",
+          "verified": true
+        }
+      ],
+      "evidence_level": "audited",
+      "capability_key": "adc_dxd_platform",
+      "confidence": 0.95,
+      "sources": [
+        {
+          "url": "https://www.daiichisankyo.com/files/investors/library/quarterly_result/2024/4Q/FY2024Q4_Financial_Results_Presentation_E.pdf",
+          "title": "Daiichi Sankyo FY2024 Results",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "leqembi-alzheimer-first-approval",
+      "date": "2023-07",
+      "company_id": "eisai",
+      "product_ids": [
+        "leqembi"
+      ],
+      "therapeutic_area_id": "neuroscience",
+      "headline_zh": "Leqembi（仑卡奈单抗）获FDA完全批准——首个获传统批准的阿尔茨海默症疾病修饰疗法",
+      "headline_en": "Leqembi receives FDA traditional approval — first disease-modifying Alzheimer's therapy with traditional approval",
+      "before_gap_zh": "此前无任何疾病修饰性阿尔茨海默症疗法获得FDA传统批准；十余年无新药批准",
+      "before_gap_en": "No disease-modifying Alzheimer's therapy had traditional FDA approval; over a decade without new AD approvals",
+      "achievement_zh": "Leqembi于2023年7月7日获FDA传统批准；CLARITY-AD试验显示认知衰退减缓27%；2024年11月获EU批准",
+      "achievement_en": "Traditional FDA approval July 7, 2023; CLARITY-AD trial showed 27% slowing of cognitive decline; EU approval November 2024",
+      "still_missing_zh": "仅适用于早期患者；ARIA（淀粉样蛋白相关影像异常）安全风险仍存；高昂费用限制可及性；中晚期阿尔茨海默症仍无效治疗",
+      "still_missing_en": "Limited to early-stage patients; ARIA safety risk remains; high cost limits access; no effective therapy for moderate-to-late AD",
+      "metrics": [
+        {
+          "label_zh": "认知衰退减缓",
+          "label_en": "Cognitive decline slowing",
+          "value": "27%",
+          "verified": true
+        },
+        {
+          "label_zh": "FY2024销售额",
+          "label_en": "FY2024 sales",
+          "value": "JPY 44.3B (+1,041% YoY)",
+          "verified": true
+        }
+      ],
+      "evidence_level": "audited",
+      "capability_key": "amyloid_targeting_alzheimers",
+      "confidence": 0.95,
+      "sources": [
+        {
+          "url": "https://www.eisai.com/news/2025/news202534.html",
+          "title": "Eisai FY2024 Financial Results",
+          "accessed": "2026-06"
+        },
+        {
+          "url": "https://www.prnewswire.com/news-releases/eisai-updates-leqembi-outlook-for-fiscal-year-2024-april-2024--march-2025-sales-now-expected-to-reach-jpy-42-5-billion-302299658.html",
+          "title": "Eisai Leqembi FY2024 Outlook",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "hemlibra-bispecific-hemophilia",
+      "date": "2017-11",
+      "company_id": "chugai",
+      "product_ids": [
+        "hemlibra"
+      ],
+      "therapeutic_area_id": "hematology",
+      "headline_zh": "Hemlibra（艾美赛珠单抗）：全球首个获批双特异性抗体药物，革命性改写血友病A治疗",
+      "headline_en": "Hemlibra (emicizumab): World's first approved bispecific antibody drug; revolutionized hemophilia A treatment",
+      "before_gap_zh": "血友病A患者需每周多次静脉注射凝血因子VIII替代品；抑制物患者疗效受限，生活质量极差",
+      "before_gap_en": "Hemophilia A patients required frequent IV factor VIII infusions; patients with inhibitors had limited options and poor quality of life",
+      "achievement_zh": "Hemlibra通过双臂同时结合FIXa和FX模拟FVIII辅因子功能，实现皮下每周/每两周/每月给药；获批血友病A伴或不伴抑制物患者",
+      "achievement_en": "Hemlibra mimics FVIII cofactor via bispecific FIXa/FX bridging; enables SC weekly/biweekly/monthly dosing; approved for hemophilia A with and without inhibitors",
+      "still_missing_zh": "血友病B覆盖仍有限（NXT007尚在临床开发中）；长期出血率预防不能达100%",
+      "still_missing_en": "Hemophilia B coverage still limited (NXT007 in development); breakthrough bleeding not fully eliminated",
+      "metrics": [
+        {
+          "label_zh": "全球罗氏年销售额（约）",
+          "label_en": "Global Roche annual sales (approx)",
+          "value": "CHF 5B+",
+          "verified": true
+        },
+        {
+          "label_zh": "日本国内FY2024销售额",
+          "label_en": "Japan domestic FY2024 sales",
+          "value": "JPY 59.0B",
+          "verified": true
+        }
+      ],
+      "evidence_level": "audited",
+      "capability_key": "bispecific_antibody_hemophilia",
+      "confidence": 0.95,
+      "sources": [
+        {
+          "url": "https://www.chugai-pharm.co.jp/english/news/detail/20250130170004_1134.html",
+          "title": "Chugai FY2024 Financial Results",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "xofluza-novel-influenza-moa",
+      "date": "2018-02",
+      "company_id": "shionogi",
+      "product_ids": [
+        "xofluza"
+      ],
+      "therapeutic_area_id": "infectious-disease",
+      "headline_zh": "速福达（巴洛沙韦）：全新机制流感药物，40年来第一个全新作用靶点抗流感药",
+      "headline_en": "Xofluza (baloxavir): First flu drug with a novel mechanism in 40 years, targeting cap-dependent endonuclease",
+      "before_gap_zh": "流感抗病毒药物长达40年仅有神经氨酸酶抑制剂（如奥司他韦）和M2离子通道阻断剂，均存在耐药风险",
+      "before_gap_en": "Influenza antivirals had been limited to neuraminidase inhibitors (like oseltamivir) and M2 blockers for 40 years, both with resistance concerns",
+      "achievement_zh": "巴洛沙韦靶向CEN（帽依赖性核酸内切酶），单剂口服治疗流感，单次给药方案显著改善依从性",
+      "achievement_en": "Baloxavir targets CEN (cap-dependent endonuclease); single-dose oral treatment for influenza; significant compliance advantage",
+      "still_missing_zh": "PA-I38T耐药突变在部分患者中出现；非流感季销售额受季节性波动影响大",
+      "still_missing_en": "PA-I38T resistance mutation emerges in some patients; sales highly seasonal and weather-dependent",
+      "evidence_level": "audited",
+      "capability_key": "novel_influenza_antiviral",
+      "confidence": 0.9,
+      "sources": [
+        {
+          "url": "https://www.shionogi.com/global/en/products/",
+          "title": "Shionogi Products",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "ono-opdivo-pd1-discovery",
+      "date": "2014-09",
+      "company_id": "ono-pharmaceutical",
+      "product_ids": [
+        "opdivo-ono"
+      ],
+      "therapeutic_area_id": "oncology",
+      "headline_zh": "小野药品Opdivo（纳武利尤单抗）：全球首个获批PD-1抑制剂，开创肿瘤免疫治疗新纪元",
+      "headline_en": "Ono's Opdivo (nivolumab): World's first approved PD-1 inhibitor, inaugurating the cancer immunotherapy era",
+      "before_gap_zh": "晚期黑色素瘤及多种实体瘤缺乏有效免疫治疗；PD-1通路的免疫检查点抑制作用尚未被临床验证",
+      "before_gap_en": "Advanced melanoma and most solid tumors lacked effective immunotherapy; the PD-1 checkpoint pathway had not been clinically validated",
+      "achievement_zh": "Opdivo于2014年9月在日本首先获批治疗黑色素瘤，成为全球首批PD-1抑制剂；源于本庶佑教授的PD-1发现（2018年Nobel奖）",
+      "achievement_en": "Opdivo became the world's first approved PD-1 inhibitor, approved in Japan September 2014; originated from Prof. Tasuku Honjo's discovery (Nobel Prize 2018)",
+      "still_missing_zh": "部分肿瘤类型应答率仍低；免疫相关不良反应管理挑战；初始耐药和获得性耐药机制仍需突破",
+      "still_missing_en": "Response rates still low in some tumor types; immune-related adverse events remain a management challenge; primary and acquired resistance mechanisms unresolved",
+      "evidence_level": "audited",
+      "capability_key": "pd1_inhibitor",
+      "confidence": 0.9,
+      "sources": [
+        {
+          "url": "https://www.ono-pharma.com/sites/default/files/en/ir/library/financial_results/presen/full_2025_4q_en~.pdf",
+          "title": "Ono Pharmaceutical FY2024 Results",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "mesoblast-ryoncil-fda-2024",
+      "date": "2024-12",
+      "company_id": "mesoblast",
+      "product_ids": [
+        "ryoncil"
+      ],
+      "therapeutic_area_id": "hematology",
+      "headline_zh": "FDA批准全球首个间充质基质细胞疗法Ryoncil，用于儿童急性移植物抗宿主病",
+      "headline_en": "FDA approves world's first mesenchymal stromal cell therapy Ryoncil for pediatric acute GvHD",
+      "before_gap_zh": "儿童类固醇难治性急性GvHD死亡率极高，此前缺乏标准化的细胞治疗批准方案。",
+      "before_gap_en": "Pediatric SR-aGvHD carried very high mortality; no standardized approved cellular therapy existed.",
+      "achievement_zh": "2024年12月18日FDA批准remestemcel-L（Ryoncil），成为全球首个获FDA批准的MSC疗法，III期临床试验ORR达70.4%。",
+      "achievement_en": "FDA approved remestemcel-L (Ryoncil) on 18 December 2024 — first FDA-approved MSC therapy globally; Phase 3 ORR of 70.4%.",
+      "still_missing_zh": "尚未获得成人SR-aGvHD及其他炎症适应症批准；商业规模放大及定价仍是挑战。",
+      "still_missing_en": "Adult SR-aGvHD and other inflammatory indications not yet approved; commercial scale-up and pricing remain challenges.",
+      "metrics": [
+        {
+          "label_zh": "III期临床ORR",
+          "label_en": "Phase 3 Overall Response Rate",
+          "value": "70.4%",
+          "verified": true
+        },
+        {
+          "label_zh": "批准日期",
+          "label_en": "Approval Date",
+          "value": "2024-12-18",
+          "verified": true
+        }
+      ],
+      "evidence_level": "audited",
+      "capability_key": "msc_cell_therapy",
+      "confidence": 0.95,
+      "sources": [
+        {
+          "url": "https://www.fda.gov/media/185192/download",
+          "title": "FDA Summary Basis for Regulatory Action – Ryoncil",
+          "accessed": "2026-06"
+        },
+        {
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11977348/",
+          "title": "A milestone for the therapeutic EV field: FDA approves Ryoncil – PMC",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "telix-illuccix-global-rollout-2024",
+      "date": "2024-12",
+      "company_id": "telix-pharmaceuticals",
+      "product_ids": [
+        "illuccix"
+      ],
+      "therapeutic_area_id": "oncology",
+      "headline_zh": "Telix制药Illuccix 2024年全年收入突破7.83亿澳元，成为澳大利亚生物技术的里程碑式商业成就",
+      "headline_en": "Telix Illuccix delivers A$783M FY2024 revenue — landmark commercial success for Australian biotech",
+      "before_gap_zh": "Ga-68 PSMA PET成像在美国可及性有限，缺乏商业化规模的供应链。",
+      "before_gap_en": "Ga-68 PSMA PET imaging had limited US accessibility and lacked commercial-scale supply chain.",
+      "achievement_zh": "Illuccix成为美国市场主导性前列腺癌PSMA PET显像剂，FY2024收入同比增长56%，达7.83亿澳元（约5.17亿美元）。",
+      "achievement_en": "Illuccix became the leading PSMA PET imaging agent in the US; FY2024 revenue A$783M (+56% YoY), demonstrating commercial-scale radiopharmaceutical logistics.",
+      "still_missing_zh": "治疗性放射性配体（如Gozellix、Zircaix）尚处于临床/审批阶段，治疗性商业化有待实现。",
+      "still_missing_en": "Therapeutic radioligand products (Gozellix, Zircaix) still in clinical/regulatory stage; therapeutic commercial revenue not yet achieved.",
+      "metrics": [
+        {
+          "label_zh": "FY2024收入（澳元）",
+          "label_en": "FY2024 Revenue (AUD)",
+          "value": "A$783.2M",
+          "verified": true
+        },
+        {
+          "label_zh": "同比增长",
+          "label_en": "YoY Growth",
+          "value": "+56%",
+          "verified": true
+        }
+      ],
+      "evidence_level": "audited",
+      "capability_key": "radioligand_diagnostics",
+      "confidence": 0.92,
+      "sources": [
+        {
+          "url": "https://ir.telixpharma.com/news-releases/news-release-details/telix-2024-full-year-results-record-financial-performance-and",
+          "title": "Telix FY2024 Full Year Results IR Release",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "celltrion-remsima-1-trillion-2024",
+      "date": "2024-12",
+      "company_id": "celltrion",
+      "product_ids": [
+        "remsima"
+      ],
+      "therapeutic_area_id": "immunology",
+      "headline_zh": "赛尔群Remsima单品年销售额首次突破1万亿韩元，欧洲市场份额达62%",
+      "headline_en": "Celltrion Remsima surpasses KRW 1 trillion annual sales for the first time; 62% European market share",
+      "before_gap_zh": "生物类似药市场准入受到原研药品牌效应制约，市场份额增长缓慢。",
+      "before_gap_en": "Biosimilar market penetration constrained by brand loyalty to originators; slow market share growth.",
+      "achievement_zh": "2024年Remsima IV年销售额首次超过1万亿韩元，同时在欧洲市场占62%份额，证明高价原研生物药可被有效竞争替代。",
+      "achievement_en": "Remsima IV exceeded KRW 1 trillion in 2024 for the first time, holding 62% European market share — proving large-scale originator displacement by biosimilars.",
+      "still_missing_zh": "美国市场份额仍显著低于欧洲；价格竞争压缩利润空间；尚需扩展至更多生物类似药管线。",
+      "still_missing_en": "US market share significantly trails Europe; pricing competition compresses margins; pipeline diversification ongoing.",
+      "metrics": [
+        {
+          "label_zh": "Remsima IV 2024年收入",
+          "label_en": "Remsima IV 2024 Revenue",
+          "value": ">KRW 1 trillion",
+          "verified": true
+        },
+        {
+          "label_zh": "欧洲市场份额",
+          "label_en": "European Market Share",
+          "value": "62%",
+          "verified": true
+        }
+      ],
+      "evidence_level": "case_study",
+      "capability_key": "biosimilar_infliximab",
+      "incumbent_product_ids": [
+        "remicade"
+      ],
+      "confidence": 0.9,
+      "sources": [
+        {
+          "url": "https://www.koreabiomed.com/news/articleView.html?idxno=26744",
+          "title": "Celltrion's 2024 revenue hits record high – Korea BioMed",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "keytruda-top-drug-2023",
+      "date": "2023-12",
+      "company_id": "merck-us",
+      "product_ids": [
+        "merck-keytruda"
+      ],
+      "therapeutic_area_id": "oncology",
+      "headline_zh": "Keytruda成为全球最畅销药品，首个年销售额突破220亿美元的抗肿瘤药",
+      "headline_en": "Keytruda becomes world's best-selling drug, first oncology drug to surpass $22B in annual sales",
+      "before_gap_zh": "此前全球最畅销药物长期为修美乐（Humira）等免疫类药物，肿瘤领域无法与之竞争规模",
+      "before_gap_en": "Global top-selling drugs were long dominated by immunology products like Humira; oncology could not compete at that scale",
+      "achievement_zh": "Keytruda（帕博利珠单抗）2023年销售额达220亿美元，超越修美乐成为全球第一，2024年进一步增长至295亿美元",
+      "achievement_en": "Keytruda (pembrolizumab) reached $22B in 2023 to dethrone Humira as the global top-selling drug, growing further to $29.5B in 2024",
+      "still_missing_zh": "Keytruda专利将于2028年前后到期，届时生物类似药冲击将考验默克的收入替代能力",
+      "still_missing_en": "Keytruda LOE around 2028 will pressure Merck to replace $30B+ revenue through pipeline and MK-7264/coformulations",
+      "metrics": [
+        {
+          "label_zh": "2024年全球销售额",
+          "label_en": "FY2024 global sales",
+          "value": "$29.5B",
+          "verified": true
+        },
+        {
+          "label_zh": "占Merck总营收比例",
+          "label_en": "Share of Merck total revenue",
+          "value": "46%",
+          "verified": true
+        },
+        {
+          "label_zh": "获批适应症数量",
+          "label_en": "FDA-approved indications",
+          "value": "40+",
+          "verified": false
+        }
+      ],
+      "evidence_level": "audited",
+      "capability_key": "pd1_inhibitor",
+      "confidence": 0.97,
+      "sources": [
+        {
+          "url": "https://www.merck.com/news/merck-announces-fourth-quarter-and-full-year-2024-financial-results/",
+          "title": "Merck Q4 and Full-Year 2024 Financial Results",
+          "accessed": "2026-06"
+        },
+        {
+          "url": "https://www.echemi.com/cms/2235712.html",
+          "title": "Merck Reports 2024 Revenue of $64.168 Billion",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "lilly-glp1-blockbuster-2024",
+      "date": "2024-01",
+      "company_id": "eli-lilly",
+      "product_ids": [
+        "lilly-mounjaro",
+        "lilly-zepbound"
+      ],
+      "therapeutic_area_id": "cardiometabolic",
+      "headline_zh": "礼来替西帕肽（Mounjaro+Zepbound）2024年合计营收164亿美元，引领GLP-1/GIP双靶点减重革命",
+      "headline_en": "Lilly tirzepatide (Mounjaro+Zepbound) hits $16.4B combined in 2024, leading the dual GLP-1/GIP weight-loss revolution",
+      "before_gap_zh": "此前肥胖症无突破性药物疗法，GLP-1单靶点药物疗效有限；2型糖尿病市场格局陈旧",
+      "before_gap_en": "No breakthrough drug therapy for obesity; single GLP-1 agents had limited efficacy; T2D market was mature without step-change innovation",
+      "achievement_zh": "替西帕肽同时激活GLP-1和GIP两个肠促胰素受体，在III期试验中减重幅度超过20%；2024年Mounjaro（糖尿病）115亿美元+Zepbound（减重）49亿美元",
+      "achievement_en": "Tirzepatide activates both GLP-1 and GIP receptors, achieving >20% weight loss in Phase 3; 2024: Mounjaro $11.5B + Zepbound $4.9B combined",
+      "still_missing_zh": "产能仍是瓶颈；口服剂型尚在研发中；心血管/肾脏适应症有待更多数据",
+      "still_missing_en": "Manufacturing capacity remains a bottleneck; oral formulation still in development; additional CV/renal indications need more data",
+      "metrics": [
+        {
+          "label_zh": "Mounjaro 2024年收入",
+          "label_en": "Mounjaro FY2024 revenue",
+          "value": "$11.5B",
+          "verified": true
+        },
+        {
+          "label_zh": "Zepbound 2024年收入",
+          "label_en": "Zepbound FY2024 revenue",
+          "value": "$4.9B",
+          "verified": true
+        },
+        {
+          "label_zh": "SURMOUNT-1试验减重幅度",
+          "label_en": "SURMOUNT-1 weight reduction",
+          "value": "22.5%",
+          "verified": true
+        }
+      ],
+      "evidence_level": "audited",
+      "capability_key": "glp1_gip_dual_agonist",
+      "confidence": 0.97,
+      "sources": [
+        {
+          "url": "https://investor.lilly.com/news-releases/news-release-details/lilly-reports-full-q4-2024-financial-results-and-provides-2025",
+          "title": "Lilly Full-Year 2024 Financial Results",
+          "accessed": "2026-06"
+        },
+        {
+          "url": "https://www.prnewswire.com/news-releases/lilly-reports-full-q4-2024-financial-results-and-provides-2025-guidance-302369432.html",
+          "title": "Lilly Q4 2024 Press Release",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "vertex-casgevy-crispr-approval-2023",
+      "date": "2023-12",
+      "company_id": "vertex",
+      "product_ids": [
+        "vertex-casgevy"
+      ],
+      "therapeutic_area_id": "hematology",
+      "headline_zh": "FDA批准Casgevy，全球首个CRISPR基因疗法正式上市，用于镰状细胞病",
+      "headline_en": "FDA approves Casgevy, the world's first CRISPR gene therapy, for sickle cell disease",
+      "before_gap_zh": "镰状细胞病为遗传性血液病，无法根治；既有治疗仅能缓解症状，骨髓移植风险高且供体难觅",
+      "before_gap_en": "Sickle cell disease is a debilitating genetic blood disorder with no cure; existing treatments only manage symptoms; bone marrow transplant is high-risk and requires matched donors",
+      "achievement_zh": "Vertex/CRISPR Therapeutics联合研发的Casgevy通过CRISPR-Cas9编辑BCL11A基因，上调胎儿血红蛋白，2023年12月获FDA批准，III期试验中97%患者在12个月内无血管闭塞危象",
+      "achievement_en": "Casgevy (co-developed with CRISPR Therapeutics) uses CRISPR-Cas9 to edit BCL11A and upregulate fetal hemoglobin; FDA approved Dec 2023; 97% of patients had no vaso-occlusive crises at 12 months in Phase 3",
+      "still_missing_zh": "价格极高（约220万美元/疗程），可及性受限；制造复杂度和基因编辑长期安全性仍需观察",
+      "still_missing_en": "Extremely high price (~$2.2M per treatment) limits access; manufacturing complexity and long-term safety of genome editing require ongoing monitoring",
+      "metrics": [
+        {
+          "label_zh": "III期无危象率",
+          "label_en": "Phase 3 vaso-occlusive crisis-free rate",
+          "value": "97%",
+          "verified": true
+        },
+        {
+          "label_zh": "FDA批准时间",
+          "label_en": "FDA approval date",
+          "value": "2023-12-08",
+          "verified": true
+        },
+        {
+          "label_zh": "上市价格（美国）",
+          "label_en": "US list price",
+          "value": "$2.2M",
+          "verified": true
+        }
+      ],
+      "evidence_level": "audited",
+      "capability_key": "crispr_gene_therapy",
+      "confidence": 0.97,
+      "sources": [
+        {
+          "url": "https://investors.vrtx.com/news-releases/news-release-details/vertex-reports-fourth-quarter-and-full-year-2024-financial",
+          "title": "Vertex Q4 and Full-Year 2024 Financial Results",
+          "accessed": "2026-06"
+        },
+        {
+          "url": "https://www.fda.gov/vaccines-blood-biologics/cellular-gene-therapy-products/casgevy",
+          "title": "FDA Casgevy Approval",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "regeneron-dupixent-14b-2024",
+      "date": "2024-12",
+      "company_id": "regeneron",
+      "product_ids": [
+        "regeneron-dupixent"
+      ],
+      "therapeutic_area_id": "immunology",
+      "headline_zh": "Dupixent 2024年全球销售额达141.5亿美元，成为史上最成功的生物制剂之一",
+      "headline_en": "Dupixent reaches $14.15B in global sales in 2024, becoming one of the most successful biologics ever launched",
+      "before_gap_zh": "特应性皮炎、哮喘等Th2炎症疾病缺乏精准靶向生物制剂；以往仅有激素和广谱免疫抑制药物",
+      "before_gap_en": "Type 2/Th2 inflammatory diseases like atopic dermatitis and asthma lacked precision-targeted biologics; only steroids and broad immunosuppressants were available",
+      "achievement_zh": "Dupixent（度普利尤单抗）靶向IL-4Rα同时阻断IL-4/IL-13通路，已获批超过7个适应症；2024年销售额同比增长22%达141.5亿美元，是Regeneron与赛诺菲合作研发的成果",
+      "achievement_en": "Dupixent (dupilumab) targets IL-4Rα to block both IL-4/IL-13 pathways; approved in 7+ indications; 2024 global net sales grew 22% to $14.15B; co-developed with Sanofi",
+      "still_missing_zh": "适应症仍有扩展空间；价格较高制约患者可及性；生物类似药竞争预计2030年代中期开始",
+      "still_missing_en": "Further indication expansion ongoing; high price limits access in many markets; biosimilar competition expected in the mid-2030s",
+      "metrics": [
+        {
+          "label_zh": "2024年全球净销售额",
+          "label_en": "FY2024 global net sales",
+          "value": "$14.15B",
+          "verified": true
+        },
+        {
+          "label_zh": "同比增速",
+          "label_en": "YoY growth",
+          "value": "22%",
+          "verified": true
+        },
+        {
+          "label_zh": "已获批适应症",
+          "label_en": "Approved indications",
+          "value": "7+",
+          "verified": false
+        }
+      ],
+      "evidence_level": "audited",
+      "capability_key": "il4_il13_dual_blocker",
+      "confidence": 0.97,
+      "sources": [
+        {
+          "url": "https://www.globenewswire.com/news-release/2025/02/04/3020099/0/en/Regeneron-Reports-Fourth-Quarter-and-Full-Year-2024-Financial-and-Operating-Results-Initiates-Quarterly-Dividend-and-Increases-Total-Share-Repurchase-Capacity-to-4-5-Billion.html",
+          "title": "Regeneron Q4 and Full-Year 2024 Financial Results",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "biontech-comirnaty-first-mrna",
+      "date": "2020-12",
+      "company_id": "biontech",
+      "product_ids": [
+        "comirnaty"
+      ],
+      "therapeutic_area_id": "vaccines",
+      "headline_zh": "全球首个获批的 mRNA COVID-19 疫苗",
+      "headline_en": "World's first authorized mRNA COVID-19 vaccine",
+      "before_gap_zh": "尚无商业化 mRNA 疫苗平台",
+      "before_gap_en": "No commercialized mRNA vaccine platform existed",
+      "achievement_zh": "BNT162b2/Comirnaty 在约 10 个月内完成开发并获多国紧急/附条件批准，开启 mRNA 疫苗时代",
+      "achievement_en": "BNT162b2/Comirnaty developed and authorized in ~10 months across multiple jurisdictions, launching the mRNA vaccine era",
+      "still_missing_zh": "mRNA 疫苗在低收入国家冷链与产能分配仍不均衡",
+      "still_missing_en": "Uneven cold-chain infrastructure and manufacturing access for mRNA vaccines in low-income countries",
+      "metrics": [
+        {
+          "label_zh": "III 期疫苗效力",
+          "label_en": "Phase 3 vaccine efficacy",
+          "value": "95%",
+          "verified": true
+        }
+      ],
+      "evidence_level": "audited",
+      "capability_key": "mrna_vaccine",
+      "confidence": 0.95,
+      "sources": [
+        {
+          "url": "https://www.biontech.com/us/en/home/about/history.html",
+          "title": "BioNTech History",
+          "accessed": "2026-06"
+        },
+        {
+          "url": "https://www.biontech.com/int/en/home/mediaroom/news/press-releases/2020/12/pfizer-and-biontech-receive-authorization-european-union-covid.html",
+          "title": "EU Comirnaty authorization",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "moderna-spikevax-fda-bla",
+      "date": "2022-01",
+      "company_id": "moderna",
+      "product_ids": [
+        "spikevax"
+      ],
+      "therapeutic_area_id": "vaccines",
+      "headline_zh": "Moderna 首款获 FDA 正式批准的 mRNA 疫苗",
+      "headline_en": "Moderna's first FDA-approved mRNA vaccine (BLA)",
+      "before_gap_zh": "Spikevax 此前仅持有紧急使用授权",
+      "before_gap_en": "Spikevax was previously available only under Emergency Use Authorization",
+      "achievement_zh": "mRNA-1273 获 FDA 生物制品许可申请（BLA）正式批准，确立 mRNA 平台监管路径",
+      "achievement_en": "mRNA-1273 received full FDA Biologics License Application approval, establishing regulatory pathway for mRNA platform",
+      "still_missing_zh": "mRNA 平台在非 COVID 适应症的大规模商业化仍在早期",
+      "still_missing_en": "Large-scale commercialization of mRNA platform beyond COVID remains early-stage",
+      "evidence_level": "audited",
+      "capability_key": "mrna_vaccine",
+      "confidence": 0.95,
+      "sources": [
+        {
+          "url": "https://www.fda.gov/media/155815/download",
+          "title": "FDA Spikevax BLA approval letter",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "sinopharm-bbibp-first-china-covid",
+      "date": "2020-12",
+      "company_id": "sinopharm-cnbg",
+      "product_ids": [
+        "bbibp-corv"
+      ],
+      "therapeutic_area_id": "vaccines",
+      "headline_zh": "中国首个获批 COVID-19 疫苗",
+      "headline_en": "China's first approved COVID-19 vaccine",
+      "before_gap_zh": "中国尚无自主 COVID-19 疫苗获批",
+      "before_gap_en": "No domestically developed COVID-19 vaccine approved in China",
+      "achievement_zh": "国药中生北京所 BBIBP-CorV 获 NMPA 附条件批准，报告保护效力 79.34%",
+      "achievement_en": "Sinopharm CNBG Beijing Institute BBIBP-CorV received NMPA conditional approval with reported 79.34% efficacy",
+      "still_missing_zh": "灭活疫苗对变异株的中和抗体衰减快于 mRNA 平台",
+      "still_missing_en": "Inactivated vaccines show faster neutralizing antibody waning vs mRNA platforms against variants",
+      "metrics": [
+        {
+          "label_zh": "报告保护效力",
+          "label_en": "Reported protective efficacy",
+          "value": "79.34%",
+          "verified": true
+        }
+      ],
+      "evidence_level": "audited",
+      "capability_key": "inactivated_vaccine",
+      "confidence": 0.9,
+      "sources": [
+        {
+          "url": "http://english.nmpa.gov.cn/2020-12/30/c_578717.htm",
+          "title": "NMPA BBIBP-CorV approval",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "novavax-first-protein-covid-fda",
+      "date": "2022-07",
+      "company_id": "novavax",
+      "product_ids": [
+        "nuvaxovid"
+      ],
+      "therapeutic_area_id": "vaccines",
+      "headline_zh": "首款获 FDA 授权的蛋白亚单位 COVID-19 疫苗",
+      "headline_en": "First FDA-authorized protein subunit COVID-19 vaccine",
+      "before_gap_zh": "美国尚无非 mRNA/非腺病毒载体的 COVID 疫苗获批",
+      "before_gap_en": "No non-mRNA, non-adenoviral COVID vaccine authorized in the U.S.",
+      "achievement_zh": "NVX-CoV2373（Nuvaxovid）成为美国首个获批的重组蛋白纳米颗粒 COVID 疫苗",
+      "achievement_en": "NVX-CoV2373 (Nuvaxovid) became the first authorized recombinant protein nanoparticle COVID vaccine in the U.S.",
+      "still_missing_zh": "商业化规模落后于 mRNA 疫苗，需依赖 CMO 与合作伙伴",
+      "still_missing_en": "Commercial scale lagged mRNA vaccines; reliant on CMOs and partners",
+      "evidence_level": "audited",
+      "capability_key": "protein_subunit_vaccine",
+      "confidence": 0.9,
+      "sources": [
+        {
+          "url": "https://www.sec.gov/Archives/edgar/data/1000694/000100069425000004/nvax-20241231.htm",
+          "title": "Novavax 10-K FY2024",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "sii-largest-vaccine-manufacturer",
+      "date": "2020-01",
+      "company_id": "serum-institute-india",
+      "therapeutic_area_id": "vaccines",
+      "headline_zh": "全球最大疫苗剂量生产商",
+      "headline_en": "World's largest vaccine manufacturer by dose volume",
+      "before_gap_zh": "全球疫苗供应高度集中于少数发达国家厂商",
+      "before_gap_en": "Global vaccine supply was concentrated among a few manufacturers in developed countries",
+      "achievement_zh": "血清研究所年产逾 15 亿剂疫苗，供应 170 余国，估计全球约 65% 儿童至少接种一剂 SII 疫苗",
+      "achievement_en": "SII produces and sells over 1.5 billion vaccine doses annually to 170+ countries; estimated ~65% of children worldwide receive at least one SII-manufactured vaccine",
+      "still_missing_zh": "新兴疫苗（如 HPV、mRNA）产能与西方国家仍有差距",
+      "still_missing_en": "Capacity for newer vaccines (e.g. HPV, mRNA) still trails Western manufacturers",
+      "metrics": [
+        {
+          "label_zh": "年产能",
+          "label_en": "Annual dose capacity",
+          "value": "4 billion doses",
+          "verified": true
+        },
+        {
+          "label_zh": "年销售量",
+          "label_en": "Annual doses sold",
+          "value": ">1.5 billion",
+          "verified": true
+        }
+      ],
+      "evidence_level": "case_study",
+      "capability_key": "vaccine_manufacturing_scale",
+      "confidence": 0.85,
+      "sources": [
+        {
+          "url": "https://www.seruminstitute.com/about_us.php",
+          "title": "SII About Us",
+          "accessed": "2026-06"
+        },
+        {
+          "url": "https://cepi.net/serum-institute-india-joins-cepi-global-network-boost-production-affordable-outbreak-vaccines",
+          "title": "CEPI SII profile",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "cansino-convidecia-approval",
+      "date": "2021-02",
+      "company_id": "cansino",
+      "product_ids": [
+        "convidecia"
+      ],
+      "therapeutic_area_id": "vaccines",
+      "headline_zh": "中国首个单剂腺病毒载体 COVID-19 疫苗获批",
+      "headline_en": "China's first single-dose adenoviral vector COVID-19 vaccine approved",
+      "before_gap_zh": "中国尚无腺病毒载体 COVID 疫苗获批",
+      "before_gap_en": "No adenoviral vector COVID vaccine approved in China",
+      "achievement_zh": "康希诺 Ad5-nCoV（克威莎）获 NMPA 附条件批准，采用单剂接种方案",
+      "achievement_en": "CanSino Ad5-nCoV (Convidecia) received NMPA conditional approval with single-dose regimen",
+      "still_missing_zh": "腺病毒载体疫苗对预存免疫人群免疫原性受限",
+      "still_missing_en": "Adenoviral vector vaccines face reduced immunogenicity in pre-immune populations",
+      "evidence_level": "audited",
+      "capability_key": "viral_vector_vaccine",
+      "confidence": 0.9,
+      "sources": [
+        {
+          "url": "http://english.nmpa.gov.cn/2021-02/27/c_597153.htm",
+          "title": "NMPA Convidecia approval",
+          "accessed": "2026-06"
+        }
+      ]
+    }
+  ]
+}
