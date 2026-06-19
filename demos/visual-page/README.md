@@ -1,6 +1,6 @@
 # 数渊 · Data Abyss
 
-一件交互式新媒体 / generative-art 网页：把 **china-housing**（347 座城的气候·海拔·灾害·房价）与 **china-industrial-software**（325 产品 / 43 内核 / 269 突破 / 123 政策 / 220 厂商 / 64 对标）两套真实数据，全部生灵化成漂浮在三维数渊中的发光星体。Three.js WebGL + UnrealBloom + 雾景深。手机端 full-bleed，可接入陀螺仪 / 麦克风。
+一件交互式新媒体 / generative-art 网页：把 **china-housing**（347 座城的气候·海拔·灾害·房价）、**china-industrial-software**（325 产品 / 43 内核 / 269 突破 / 123 政策 / 220 厂商 / 对标）与 **pharm-companies**（全球医药：128 公司 / 305 站点 / 219 药物 / 21 模态 / 65 突破 / 对标）三套真实数据，全部生灵化成漂浮在三维数渊中的发光星体（共 ~2066 颗）。Three.js WebGL + 雾景深。手机端 full-bleed，可接入陀螺仪 / 麦克风。
 
 ## 结构
 
@@ -8,9 +8,14 @@
 - `app.js` — 全部场景逻辑（数据载入、通感编码、渲染、交互）
 - `style.css` — full-bleed / overlay UI
 
-数据来自**同仓库的兄弟 demo**（相对路径引用，不复制）：
+数据来自**同仓库的三个兄弟 demo**（相对路径引用，不复制）：
 - housing：`<script src="../china-housing/assets/data/{listings,enriched,hazards}.js">` → `window.HOUSING_*`
-- industrial：runtime `fetch('../china-industrial-software/assets/data/...')`
+- industrial：runtime `fetch('../china-industrial-software/assets/data/...')`（`buildIndustrial`）
+- pharma：runtime `fetch('../pharm-companies/assets/data/...')`（`buildPharma`）→ **第 7 个数据层「医药」（group 6）**：
+  manifest→shards(catalog/*) + companies/sites/modalities/breakthroughs/benchmark-pairs；
+  站点(305,有经纬度)=发光点(地理)、公司=按 company_type 取简单立体(复活退役形)、药物=八面体、模态=星状八面体、突破=四面锥；
+  **按全球地区(greater_china/north_america/europe/japan/…)着色**(玫红/紫罗兰/品红/青——与工业的金绿蓝分层)；对标→青紫光束。
+  缺数据时 `try/catch` 优雅降级（不影响其余层）。`FEAT_DIM` 26→27（第 7 类 one-hot），SOM 一并学。
 
 ## 通感编码语法（映射不必符合逻辑，但把数据用满）
 
