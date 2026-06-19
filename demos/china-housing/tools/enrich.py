@@ -1161,14 +1161,11 @@ def lulu_all(con, log):
         "SELECT id, prov, lat, lng FROM listings "
         "WHERE lat IS NOT NULL AND lng IS NOT NULL ORDER BY id"
     ).fetchall()
-    # The ref sets are mainland-OSM (ISO CN area). Skip listings the sets don't
-    # represent: California (meaningless trans-Pacific nearest) AND Taiwan (its own
-    # facilities are tagged ISO TW, excluded from the CN query → a Taiwan listing's
-    # "nearest" is a ~130 km+ strait crossing, falsely reading as "far from all
-    # LULUs / ideal"). Both show "—". HK is kept: its border listings legitimately
-    # sit a few km from Shenzhen mainland facilities.
-    _lulu_skip = _OVERSEAS_PROV | _TAIWAN_PROV
-    listings = [r for r in listings if r["prov"] not in _lulu_skip]
+    # The ref sets now cover CN + HK + TW (fetch_lulu queries all three ISO areas),
+    # so HK/TW listings find their OWN local facilities. Only California is skipped
+    # here — it has no ref set and is baked separately by lulu_ca_local() via a
+    # per-listing local Overpass search (no all-US dataset).
+    listings = [r for r in listings if r["prov"] not in _OVERSEAS_PROV]
     log(f"lulu: {len(listings)} listing(s) × {len(LULU_CATEGORIES)} categories "
         f"(~{total_pts} ref points total, brute-force haversine)…")
 
@@ -1202,6 +1199,35 @@ def lulu_all(con, log):
             continue
         med = dists[len(dists) // 2]   # list is sorted ascending → middle ≈ median
         log(f"  {cat:12s}  rows={len(dists):3d}  min={dists[0]:.1f}km  median={med:.1f}km")
+
+
+def lulu_ca_local(con, log):
+    """Bake LULU nearest-distance for California listings via a per-listing LOCAL
+    Overpass search (no all-US ref set — per user scope). Each listing queries its
+    own ~local radius per category; missing categories stay absent ("—")."""
+    try:
+        import fetch_lulu  # sibling tool; owns the OSM tag defs + Overpass infra
+    except Exception as e:  # noqa: BLE001
+        log(f"lulu-ca: fetch_lulu import failed ({e}); skipping California local bake")
+        return
+    rows = con.execute(
+        "SELECT id, lat, lng FROM listings "
+        "WHERE prov='California' AND lat IS NOT NULL AND lng IS NOT NULL ORDER BY id"
+    ).fetchall()
+    if not rows:
+        return
+    log(f"lulu-ca: {len(rows)} California listing(s) — per-listing local Overpass search…")
+    con.execute("DELETE FROM poi WHERE source='osm-ref' AND listing_id IN "
+                "(SELECT id FROM listings WHERE prov='California')")
+    for r in rows:
+        found = fetch_lulu.fetch_around(r["lat"], r["lng"])
+        for cat, p in found.items():
+            con.execute(
+                "INSERT OR REPLACE INTO poi (listing_id, category, name, lat, lng, dist_km, source, subtype) "
+                "VALUES (?,?,?,?,?,?,?,?)",
+                (r["id"], cat, p["name"] or "", p["lat"], p["lng"], p["dist_km"], "osm-ref", None))
+        con.commit()
+        log(f"  …listing {r['id']}: {len(found)}/7 categories found locally")
 
 
 def pois_overpass_refresh(con, log, categories=("train",)):
