@@ -105,11 +105,59 @@ def _in_china(lat: float, lng: float) -> bool:
 def _build_query(body_lines: list[str]) -> str:
     inner = "\n  ".join(body_lines)
     return (
-        '[out:json][timeout:180];\n'
-        'area["ISO3166-1"="CN"][admin_level=2]->.cn;\n'
+        '[out:json][timeout:200];\n'
+        # CN + HK + TW: Hong Kong & Taiwan facilities carry ISO3166-1 HK / TW and
+        # are absent from a CN-only area, so include them explicitly — their
+        # listings need their OWN local 不利设施, not a cross-border proxy.
+        'area["ISO3166-1"~"^(CN|HK|TW)$"]->.cn;\n'
         '(\n  ' + inner + '\n);\n'
         'out center tags;'
     )
+
+
+def _build_query_around(body_lines: list[str], lat: float, lng: float, radius_m: int) -> str:
+    """Like _build_query but a local radius (no area) — for per-listing search
+    where we don't keep a national ref set (e.g. California)."""
+    inner = "\n  ".join(ln.replace("(area.cn)", f"(around:{radius_m},{lat},{lng})") for ln in body_lines)
+    return '[out:json][timeout:120];\n(\n  ' + inner + '\n);\nout center tags;'
+
+
+# Per-category radius (m) for the per-listing local search: dense nuisances need
+# only a near ring; sparse-but-want-far classes (nuclear/sensitive) need a wide one.
+_LOCAL_RADIUS_M = {
+    "wastewater": 60_000, "landfill": 60_000, "incinerator": 80_000,
+    "nuclear": 250_000, "substation": 40_000, "chemical": 80_000, "sensitive": 120_000,
+}
+
+
+def fetch_around(lat: float, lng: float) -> dict:
+    """Nearest facility per category within a local radius of one point. Returns
+    {cat: {name, lat, lng, dist_km}} (omits categories with no hit). Used for
+    California listings — local search, no all-US dataset."""
+    out = {}
+    for cat, body in CATEGORIES.items():
+        radius = _LOCAL_RADIUS_M.get(cat, 80_000)
+        data = _fetch(_build_query_around(body, lat, lng, radius), f"{cat}@{lat:.2f},{lng:.2f}")
+        if data is None:
+            continue
+        best = None
+        for el in data.get("elements", []):
+            co = _coord(el)
+            if not co:
+                continue
+            tags = el.get("tags", {})
+            if cat == "substation" and not _keep_substation(tags):
+                continue
+            from math import radians, sin, cos, asin, sqrt
+            p1, p2 = radians(lat), radians(co[0])
+            dp, dl = radians(co[0] - lat), radians(co[1] - lng)
+            km = 2 * 6371.0 * asin(sqrt(sin(dp / 2) ** 2 + cos(p1) * cos(p2) * sin(dl / 2) ** 2))
+            if best is None or km < best[0]:
+                best = (km, _name(tags), round(co[0], 5), round(co[1], 5))
+        if best:
+            out[cat] = {"name": best[1], "lat": best[2], "lng": best[3], "dist_km": round(best[0], 1)}
+        time.sleep(1.0)  # polite between category queries
+    return out
 
 
 def _post(url: str, query: str, timeout: int = 200) -> dict:
