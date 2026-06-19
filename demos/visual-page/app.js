@@ -1017,7 +1017,8 @@ function animate() {
   if (N) {
     const hmul = 0.5 + pulse * 1.3;          // 全局速度（已降速）
     for (let i = 0; i < N; i++) {
-      const h = Math.min(bh[i] * spd[i] * hmul, capOf(sys[i]));
+      const slow = 1 - szCurve[i] * 0.84;     // 越大(数据越超群)→越慢：日月大行星沉缓、群星颗粒灵动 → 速度差更广
+      const h = Math.min(bh[i] * spd[i] * hmul * slow, capOf(sys[i]));
       stepOne(i, h * 0.5); stepOne(i, h * 0.5);
       writeWorld(i);
     }
