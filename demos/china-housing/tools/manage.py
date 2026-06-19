@@ -612,6 +612,10 @@ def cmd_pois(args):
     enrich.pois_all(connect(), print)
 
 
+def cmd_lulu(args):
+    enrich.lulu_all(connect(), print)
+
+
 def cmd_pois_refix(args):
     enrich.pois_refix(connect(), print)
     print("✓ pois-refix complete — now run `research-merge` for gaps, then `build`")
@@ -896,6 +900,7 @@ def main(argv=None):
     sp.add_argument("--categories", default="train", help="comma-separated categories (default: train)")
     sp.set_defaults(fn=cmd_pois_refresh)
     sub.add_parser("risk", help="compute coarse coast/seismic/typhoon risk").set_defaults(fn=cmd_risk)
+    sub.add_parser('lulu', help='bake nearest-distance to 7 LULU facility classes (offline, from data/ref/lulu_*_cn.json)').set_defaults(fn=cmd_lulu)
     sub.add_parser("enrich", help="run geocode + climate + pois + risk (all stages)").set_defaults(fn=cmd_enrich)
 
     sp = sub.add_parser("research-merge", help="fold subagent research findings (JSON) into the DB")
