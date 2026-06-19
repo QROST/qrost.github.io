@@ -1,0 +1,446 @@
+{
+  "shard": "enrich-jpkr-w1",
+  "products": [
+    {
+      "id": "santen-eybelis",
+      "name_zh": "Eybelis（奥米帕格异丙酯）",
+      "name_en": "Eybelis",
+      "brand_name": "Eybelis",
+      "company_id": "santen-pharmaceutical",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "ophthalmology",
+      "indication_zh": "开角型青光眼与高眼压症",
+      "indication_en": "Open-angle glaucoma and ocular hypertension",
+      "approval_status": "approved",
+      "is_blockbuster": false,
+      "drug_class": "originator",
+      "region": "japan",
+      "confidence": 0.88,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.santen.com/global/our-products/",
+          "title": "Santen Global Products",
+          "accessed": "2026-06"
+        }
+      ],
+      "inn": "omidenepag isopropyl"
+    },
+    {
+      "id": "santen-diquas",
+      "name_zh": "Diquas（聚乙二醇滴眼液）",
+      "name_en": "Diquas",
+      "brand_name": "Diquas",
+      "company_id": "santen-pharmaceutical",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "ophthalmology",
+      "indication_zh": "干眼症",
+      "indication_en": "Dry eye disease",
+      "approval_status": "approved",
+      "is_blockbuster": false,
+      "drug_class": "originator",
+      "region": "japan",
+      "confidence": 0.88,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.santen.com/global/our-products/",
+          "title": "Santen Global Products",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "nippon-shinyaku-viltepso",
+      "name_zh": "Viltepso（维托雷生）",
+      "name_en": "Viltepso",
+      "brand_name": "Viltepso",
+      "company_id": "nippon-shinyaku",
+      "modality_id": "sirna",
+      "therapeutic_area_id": "rare-disease",
+      "indication_zh": "杜氏肌营养不良（外显子53跳跃）",
+      "indication_en": "Duchenne muscular dystrophy (exon 53 skipping)",
+      "approval_status": "approved",
+      "is_blockbuster": false,
+      "drug_class": "originator",
+      "region": "japan",
+      "confidence": 0.88,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.nippon-shinyaku.co.jp/english/products/viltepso/",
+          "title": "Nippon Shinyaku Viltepso",
+          "accessed": "2026-06"
+        }
+      ],
+      "inn": "viltolarsen"
+    },
+    {
+      "id": "nippon-shinyaku-uptravi",
+      "name_zh": "Uptravi（司来帕格）",
+      "name_en": "Uptravi",
+      "brand_name": "Uptravi",
+      "company_id": "nippon-shinyaku",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "cardiometabolic",
+      "indication_zh": "肺动脉高压",
+      "indication_en": "Pulmonary arterial hypertension",
+      "approval_status": "approved",
+      "is_blockbuster": true,
+      "drug_class": "originator",
+      "region": "japan",
+      "confidence": 0.88,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.nippon-shinyaku.co.jp/file/download.php?file_id=8535",
+          "title": "Nippon Shinyaku FY2024 IR Meeting",
+          "accessed": "2026-06"
+        }
+      ],
+      "inn": "selexipag"
+    },
+    {
+      "id": "jcr-growject",
+      "name_zh": "GROWJECT（人生长激素）",
+      "name_en": "GROWJECT",
+      "brand_name": "GROWJECT",
+      "company_id": "jcr-pharma",
+      "modality_id": "recombinant-protein",
+      "therapeutic_area_id": "rare-disease",
+      "indication_zh": "生长激素缺乏症",
+      "indication_en": "Growth hormone deficiency",
+      "approval_status": "approved",
+      "is_blockbuster": false,
+      "drug_class": "originator",
+      "region": "japan",
+      "confidence": 0.88,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.jcrpharm.co.jp/en/products/growject/",
+          "title": "JCR GROWJECT Product Page",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "nxera-pivlaz",
+      "name_zh": "PIVLAZ（克拉唑生坦）",
+      "name_en": "PIVLAZ",
+      "brand_name": "PIVLAZ",
+      "company_id": "nxera-pharma",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "neuroscience",
+      "indication_zh": "动脉瘤性蛛网膜下腔出血后脑血管痉挛",
+      "indication_en": "Cerebral vasospasm after aneurysmal subarachnoid hemorrhage",
+      "approval_status": "approved",
+      "is_blockbuster": false,
+      "drug_class": "originator",
+      "region": "japan",
+      "confidence": 0.88,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://investors.nxera.life/common/pdf/2025.2.14%20FY2024%20result%20briefing_EN_v1.pdf",
+          "title": "Nxera FY2024 Results",
+          "accessed": "2026-06"
+        }
+      ],
+      "inn": "clazosentan"
+    },
+    {
+      "id": "kissei-rosuzet",
+      "name_zh": "Rosuzet（瑞舒伐他汀/依折麦布）",
+      "name_en": "Rosuzet",
+      "brand_name": "Rosuzet",
+      "company_id": "kissei-pharmaceutical",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "cardiometabolic",
+      "indication_zh": "高脂血症",
+      "indication_en": "Hyperlipidemia",
+      "approval_status": "approved",
+      "is_blockbuster": false,
+      "drug_class": "generic",
+      "region": "japan",
+      "confidence": 0.88,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.kissei.co.jp/e_contents/relation/financial_summary/uploaded/Financial%20Briefing%20for%20the%20Fiscal%20Year%20Ended%20March%2031%2C%202025.pdf",
+          "title": "Kissei FY2024 Financial Briefing",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "hisamitsu-salonpas",
+      "name_zh": "Salonpas（撒隆巴斯）",
+      "name_en": "Salonpas",
+      "brand_name": "Salonpas",
+      "company_id": "hisamitsu-pharmaceutical",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "immunology",
+      "indication_zh": "肌肉骨骼疼痛与炎症",
+      "indication_en": "Musculoskeletal pain and inflammation",
+      "approval_status": "approved",
+      "is_blockbuster": true,
+      "drug_class": "originator",
+      "region": "japan",
+      "confidence": 0.88,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://global.hisamitsu/products/",
+          "title": "Hisamitsu Global Products",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "sk-biopharm-xcopri",
+      "name_zh": "Xcopri（塞诺巴酯）",
+      "name_en": "Xcopri",
+      "brand_name": "Xcopri",
+      "company_id": "sk-biopharmaceuticals",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "neuroscience",
+      "indication_zh": "局灶性癫痫发作",
+      "indication_en": "Focal-onset seizures in epilepsy",
+      "approval_status": "approved",
+      "is_blockbuster": true,
+      "drug_class": "originator",
+      "region": "other_apac",
+      "confidence": 0.88,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.koreabiomed.com/news/articleView.html?idxno=26517",
+          "title": "KBR: SK Biopharm FY2024 Xcopri Sales",
+          "accessed": "2026-06"
+        }
+      ],
+      "inn": "cenobamate"
+    },
+    {
+      "id": "hanmi-rosuzet-kr",
+      "name_zh": "Rosuzet（瑞舒伐他汀/依折麦布）",
+      "name_en": "Rosuzet",
+      "brand_name": "Rosuzet",
+      "company_id": "hanmi-pharmaceutical",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "cardiometabolic",
+      "indication_zh": "高脂血症",
+      "indication_en": "Hyperlipidemia",
+      "approval_status": "approved",
+      "is_blockbuster": true,
+      "drug_class": "originator",
+      "region": "other_apac",
+      "confidence": 0.88,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://hanmi.co.kr/about/news-media/press/detail-3602.hm",
+          "title": "Hanmi FY2024 Press Release",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "gc-skycellflu",
+      "name_zh": "SKYCellflu（流感疫苗）",
+      "name_en": "SKYCellflu",
+      "brand_name": "SKYCellflu",
+      "company_id": "gc-biopharma",
+      "modality_id": "inactivated-vaccine",
+      "therapeutic_area_id": "vaccines",
+      "indication_zh": "季节性流感预防",
+      "indication_en": "Seasonal influenza prevention",
+      "approval_status": "approved",
+      "is_blockbuster": false,
+      "drug_class": "originator",
+      "region": "other_apac",
+      "confidence": 0.88,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://kind.krx.co.kr/external/2025/03/18/001727/20250318008108/11011.htm",
+          "title": "GC Biopharma Business Report",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "gc-singrix",
+      "name_zh": "欣普利克（带状疱疹疫苗）",
+      "name_en": "Shingrix (distributed)",
+      "brand_name": "Shingrix",
+      "company_id": "gc-biopharma",
+      "modality_id": "recombinant-protein",
+      "therapeutic_area_id": "vaccines",
+      "indication_zh": "带状疱疹预防",
+      "indication_en": "Herpes zoster prevention",
+      "approval_status": "approved",
+      "is_blockbuster": false,
+      "drug_class": "originator",
+      "region": "other_apac",
+      "confidence": 0.88,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://kind.krx.co.kr/external/2025/03/18/001727/20250318008108/11011.htm",
+          "title": "GC Biopharma Business Report",
+          "accessed": "2026-06"
+        }
+      ],
+      "note_en": "GC Biopharma distributes GSK Shingrix in Korea"
+    },
+    {
+      "id": "sk-bioscience-skycellflu",
+      "name_zh": "SKYCellflu四价流感疫苗",
+      "name_en": "SKYCellflu Quadrivalent",
+      "brand_name": "SKYCellflu",
+      "company_id": "sk-bioscience",
+      "modality_id": "inactivated-vaccine",
+      "therapeutic_area_id": "vaccines",
+      "indication_zh": "季节性流感预防",
+      "indication_en": "Seasonal influenza prevention",
+      "approval_status": "approved",
+      "is_blockbuster": false,
+      "drug_class": "originator",
+      "region": "other_apac",
+      "confidence": 0.88,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.skbioscience.com/en/product/vaccine",
+          "title": "SK Bioscience Vaccine Portfolio",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "hugel-botulax",
+      "name_zh": "Botulax/Letybo（A型肉毒毒素）",
+      "name_en": "Botulax / Letybo",
+      "brand_name": "Botulax",
+      "company_id": "hugel",
+      "modality_id": "peptide",
+      "therapeutic_area_id": "dermatology",
+      "indication_zh": "医美除皱及神经肌肉适应症",
+      "indication_en": "Aesthetic wrinkle treatment and neuromuscular indications",
+      "approval_status": "approved",
+      "is_blockbuster": true,
+      "drug_class": "originator",
+      "region": "other_apac",
+      "confidence": 0.88,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.prnewswire.com/news-releases/hugel-achieves-record-net-sales-profit-net-income-in-2024-302375661.html",
+          "title": "Hugel FY2024 Results",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "yuhan-leclaza",
+      "name_zh": "Leclaza（拉泽替尼）",
+      "name_en": "Leclaza",
+      "brand_name": "Leclaza",
+      "company_id": "yuhan",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "oncology",
+      "indication_zh": "EGFR突变非小细胞肺癌",
+      "indication_en": "EGFR-mutated non-small cell lung cancer",
+      "approval_status": "approved",
+      "is_blockbuster": true,
+      "drug_class": "originator",
+      "region": "other_apac",
+      "confidence": 0.88,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.koreabiomed.com/news/articleView.html?idxno=26593",
+          "title": "KBR: Yuhan Leclaza Revenue Driver",
+          "accessed": "2026-06"
+        }
+      ],
+      "inn": "lazertinib"
+    },
+    {
+      "id": "daewoong-nabota",
+      "name_zh": "Nabota（A型肉毒毒素）",
+      "name_en": "Nabota",
+      "brand_name": "Nabota",
+      "company_id": "daewoong-pharmaceutical",
+      "modality_id": "peptide",
+      "therapeutic_area_id": "dermatology",
+      "indication_zh": "医美除皱及神经肌肉适应症",
+      "indication_en": "Aesthetic and neuromuscular botulinum toxin indications",
+      "approval_status": "approved",
+      "is_blockbuster": false,
+      "drug_class": "originator",
+      "region": "other_apac",
+      "confidence": 0.88,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.newsspace.kr/news/article.html?no=5604",
+          "title": "Daewoong Nabota FY2024 Sales",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "daewoong-fexuclu",
+      "name_zh": "Fexuclu（培克索泮）",
+      "name_en": "Fexuclu",
+      "brand_name": "Fexuclu",
+      "company_id": "daewoong-pharmaceutical",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "gastroenterology",
+      "indication_zh": "胃食管反流病",
+      "indication_en": "Gastroesophageal reflux disease",
+      "approval_status": "approved",
+      "is_blockbuster": true,
+      "drug_class": "originator",
+      "region": "other_apac",
+      "confidence": 0.88,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.daewoong.co.kr/en/newsroom/news/7088",
+          "title": "Daewoong FY2024 Results",
+          "accessed": "2026-06"
+        }
+      ],
+      "inn": "tegoprazan"
+    },
+    {
+      "id": "genexine-efesa",
+      "name_zh": "Efesa（依泊泊汀α）",
+      "name_en": "Efesa",
+      "brand_name": "Efesa",
+      "company_id": "genexine",
+      "modality_id": "recombinant-protein",
+      "therapeutic_area_id": "rare-disease",
+      "indication_zh": "慢性肾病贫血（非透析）",
+      "indication_en": "Anemia in chronic kidney disease (non-dialysis)",
+      "approval_status": "filed",
+      "is_blockbuster": false,
+      "drug_class": "originator",
+      "region": "other_apac",
+      "confidence": 0.88,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "http://genexine.com/en/news-media/press-releases/870",
+          "title": "Genexine Efesa Regulatory Status",
+          "accessed": "2026-06"
+        }
+      ],
+      "inn": "efepoetin alfa"
+    }
+  ]
+}

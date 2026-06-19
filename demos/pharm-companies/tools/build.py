@@ -90,8 +90,15 @@ def merge_research() -> None:
                 continue
             companies[cid] = c
         for s in d.get("sites", []):
-            if s.get("id"):
-                sites[s["id"]] = s
+            sid = s.get("id")
+            if not sid:
+                continue
+            prev = sites.get(sid)
+            # On id collision keep the higher-confidence site, so a precise enrichment HQ
+            # is never clobbered by the coarse city-centroid geocode (conf 0.6).
+            if prev and (prev.get("confidence", 0) or 0) > (s.get("confidence", 0) or 0):
+                continue
+            sites[sid] = s
         for m in d.get("milestones", []):
             if m.get("id"):
                 milestones[m["id"]] = m
@@ -110,6 +117,101 @@ def merge_research() -> None:
         print(f"  merged {path.name}: "
               f"{len(d.get('companies', []))}c {len(d.get('sites', []))}s "
               f"{len(prods)}p {len(d.get('milestones', []))}m {len(d.get('countries', []))}cty")
+
+    # ---- dedup cross-slug duplicates (parallel roster agents coined multiple ids per firm) ----
+    # Two company records are the SAME firm if they share country AND (a ticker symbol OR the
+    # normalized English name). Keep the richest (deep > roster, then most fields), remap refs.
+    import unicodedata
+
+    def _nn(s):
+        s = unicodedata.normalize("NFKD", (s or "")).encode("ascii", "ignore").decode().lower()
+        return re.sub(r"\s+", " ", re.sub(r"[^a-z0-9 ]", " ", s)).strip()
+
+    def _nsym(s):
+        s = str(s or "").strip().upper()
+        return s.lstrip("0") if s.isdigit() else s
+
+    clist = list(companies.values())
+    par = {c["id"]: c["id"] for c in clist}
+
+    def _find(x):
+        while par[x] != x:
+            par[x] = par[par[x]]; x = par[x]
+        return x
+
+    def _union(a, b):
+        ra, rb = _find(a), _find(b)
+        if ra != rb:
+            par[ra] = rb
+
+    buckets: dict = {}
+    for c in clist:
+        cc = c.get("country")
+        if not cc:
+            continue
+        nm = _nn(c.get("name_en"))
+        if len(nm) >= 4:
+            buckets.setdefault(("n", nm, cc), []).append(c["id"])
+        for t in (c.get("tickers") or []):
+            sym = _nsym(t.get("symbol") if isinstance(t, dict) else None)
+            if len(sym) >= 2:
+                buckets.setdefault(("t", sym, cc), []).append(c["id"])
+    for ids in buckets.values():
+        for other in ids[1:]:
+            _union(ids[0], other)
+
+    groups: dict = {}
+    for c in clist:
+        groups.setdefault(_find(c["id"]), []).append(c["id"])
+
+    def _score(r):
+        return (0 if r.get("tier") == "roster" else 1,
+                sum(1 for v in r.values() if v not in (None, "", [], {})),
+                -len(r["id"]))
+
+    remap: dict = {}
+    for ids in groups.values():
+        if len(ids) == 1:
+            continue
+        canon = max((companies[i] for i in ids), key=_score)
+        cid = canon["id"]
+        for i in ids:
+            if i == cid:
+                continue
+            other = companies[i]
+            for k2, v2 in other.items():  # fill fields canon lacks (don't lose data)
+                if canon.get(k2) in (None, "", [], {}) and v2 not in (None, "", [], {}):
+                    canon[k2] = v2
+            remap[i] = cid
+            del companies[i]
+    if remap:
+        for c in companies.values():
+            if c.get("parent_id") in remap:
+                c["parent_id"] = remap[c["parent_id"]]
+        for s in sites.values():
+            if s.get("company_id") in remap:
+                s["company_id"] = remap[s["company_id"]]
+        for m in milestones.values():
+            if m.get("company_id") in remap:
+                m["company_id"] = remap[m["company_id"]]
+        for shard in catalog.values():
+            for p in shard.values():
+                if p.get("company_id") in remap:
+                    p["company_id"] = remap[p["company_id"]]
+        # collapse duplicate HQ sites that the remap produced (one HQ per company, best confidence)
+        hq_by_co: dict = {}
+        for sid, s in list(sites.items()):
+            if s.get("site_type") != "HQ":
+                continue
+            co = s.get("company_id")
+            keep = hq_by_co.get(co)
+            if keep is None:
+                hq_by_co[co] = sid
+            elif (sites[keep].get("confidence", 0) or 0) >= (s.get("confidence", 0) or 0):
+                del sites[sid]
+            else:
+                del sites[keep]; hq_by_co[co] = sid
+        print(f"  dedup: merged {len(remap)} duplicate company id(s) into canonical entries")
 
     write_json(DATA / "companies.json", {"companies": list(companies.values())})
     write_json(DATA / "sites.json", {"sites": list(sites.values())})

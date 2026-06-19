@@ -1,0 +1,629 @@
+{
+  "shard": "enrich-india-w1",
+  "products": [
+    {
+      "id": "zydus-lipaglyn",
+      "name_zh": "利帕格林",
+      "name_en": "Lipaglyn (saroglitazar)",
+      "brand_name": "Lipaglyn",
+      "company_id": "zydus-lifesciences",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "cardiometabolic",
+      "indication_zh": "糖尿病性血脂异常",
+      "indication_en": "Diabetic dyslipidemia",
+      "approval_status": "approved",
+      "is_blockbuster": false,
+      "drug_class": "originator",
+      "region": "other_apac",
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://zyduslife.com/",
+          "title": "Zydus Lifesciences product portfolio",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "zydus-desidustat",
+      "name_zh": "德西达司他",
+      "name_en": "Desidustat",
+      "brand_name": "Desidustat",
+      "company_id": "zydus-lifesciences",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "hematology",
+      "indication_zh": "慢性肾病贫血",
+      "indication_en": "Anemia in chronic kidney disease",
+      "approval_status": "approved",
+      "is_blockbuster": false,
+      "drug_class": "originator",
+      "region": "other_apac",
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://zyduslife.com/investor/admin/uploads/21/83/Press-Release---20-05-2025.pdf",
+          "title": "Zydus FY2025 results pipeline",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "lupin-telekast",
+      "name_zh": "泰莱卡斯特",
+      "name_en": "Telekast (montelukast)",
+      "brand_name": "Telekast",
+      "company_id": "lupin",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "respiratory",
+      "indication_zh": "哮喘及过敏性鼻炎",
+      "indication_en": "Asthma and allergic rhinitis",
+      "approval_status": "approved",
+      "is_blockbuster": true,
+      "drug_class": "generic",
+      "region": "other_apac",
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.lupin.com/media/press-releases/lupin-fy2025-results",
+          "title": "Lupin FY2025 results",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "lupin-glumetza",
+      "name_zh": "格华止XR仿制药",
+      "name_en": "Glumetza (metformin ER)",
+      "brand_name": "Glumetza",
+      "company_id": "lupin",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "cardiometabolic",
+      "indication_zh": "2型糖尿病",
+      "indication_en": "Type 2 diabetes mellitus",
+      "approval_status": "approved",
+      "is_blockbuster": false,
+      "drug_class": "generic",
+      "region": "other_apac",
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.lupin.com/media/press-releases/lupin-fy2025-results",
+          "title": "Lupin FY2025 US portfolio",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "torrent-shelcal",
+      "name_zh": "Shelcal钙片",
+      "name_en": "Shelcal (calcium + vitamin D3)",
+      "brand_name": "Shelcal",
+      "company_id": "torrent-pharma",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "cardiometabolic",
+      "indication_zh": "钙缺乏及骨质疏松",
+      "indication_en": "Calcium deficiency and osteoporosis",
+      "approval_status": "approved",
+      "is_blockbuster": true,
+      "drug_class": "originator",
+      "region": "other_apac",
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.torrentpharma.com/assets/Torrent_Pharma_Press_release_final_Q4_24_25_4201161339.pdf",
+          "title": "Torrent FY2025 — top chronic brands",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "torrent-azulix",
+      "name_zh": "Azulix",
+      "name_en": "Azulix (glimepiride)",
+      "brand_name": "Azulix",
+      "company_id": "torrent-pharma",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "cardiometabolic",
+      "indication_zh": "2型糖尿病",
+      "indication_en": "Type 2 diabetes mellitus",
+      "approval_status": "approved",
+      "is_blockbuster": false,
+      "drug_class": "originator",
+      "region": "other_apac",
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.torrentpharma.com/assets/Torrent_Pharma_Press_release_final_Q4_24_25_4201161339.pdf",
+          "title": "Torrent FY2025 India portfolio",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "alkem-clavam",
+      "name_zh": "Clavam",
+      "name_en": "Clavam (amoxicillin/clavulanate)",
+      "brand_name": "Clavam",
+      "company_id": "alkem-laboratories",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "infectious-disease",
+      "indication_zh": "细菌感染",
+      "indication_en": "Bacterial infections",
+      "approval_status": "approved",
+      "is_blockbuster": true,
+      "drug_class": "originator",
+      "region": "other_apac",
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://admin.alkemlabs.com/uploads/Alkem_Labs_AR_2024_25_d712ae10bd.pdf",
+          "title": "Alkem Annual Report FY2025",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "alkem-pan-d",
+      "name_zh": "Pan-D",
+      "name_en": "Pan-D (pantoprazole/domperidone)",
+      "brand_name": "Pan-D",
+      "company_id": "alkem-laboratories",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "gastroenterology",
+      "indication_zh": "胃食管反流及消化不良",
+      "indication_en": "GERD and dyspepsia",
+      "approval_status": "approved",
+      "is_blockbuster": true,
+      "drug_class": "originator",
+      "region": "other_apac",
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://admin.alkemlabs.com/uploads/Alkem_Labs_AR_2024_25_d712ae10bd.pdf",
+          "title": "Alkem Annual Report FY2025",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "aurobindo-ceftriaxone",
+      "name_zh": "头孢曲松",
+      "name_en": "Ceftriaxone injection",
+      "brand_name": "Ceftriaxone",
+      "company_id": "aurobindo-pharma",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "infectious-disease",
+      "indication_zh": "严重细菌感染",
+      "indication_en": "Serious bacterial infections",
+      "approval_status": "approved",
+      "is_blockbuster": false,
+      "drug_class": "generic",
+      "region": "other_apac",
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.goodreturns.in/company/aurobindo-pharma/director-report.html",
+          "title": "Aurobindo FY2025 directors report",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "biocon-hulio",
+      "name_zh": "Hulio",
+      "name_en": "Hulio (adalimumab biosimilar)",
+      "brand_name": "Hulio",
+      "company_id": "biocon",
+      "modality_id": "biosimilar",
+      "therapeutic_area_id": "immunology",
+      "indication_zh": "类风湿关节炎等自身免疫病",
+      "indication_en": "Rheumatoid arthritis and autoimmune diseases",
+      "approval_status": "approved",
+      "is_blockbuster": true,
+      "drug_class": "biosimilar",
+      "region": "other_apac",
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.biocon.com/docs/SE-Biocon-Q4_FY25EarningsRelease-May8.pdf",
+          "title": "Biocon FY2025 biosimilars update",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "biocon-semglee",
+      "name_zh": "Semglee",
+      "name_en": "Semglee (insulin glargine biosimilar)",
+      "brand_name": "Semglee",
+      "company_id": "biocon",
+      "modality_id": "biosimilar",
+      "therapeutic_area_id": "cardiometabolic",
+      "indication_zh": "1型及2型糖尿病",
+      "indication_en": "Type 1 and type 2 diabetes",
+      "approval_status": "approved",
+      "is_blockbuster": true,
+      "drug_class": "biosimilar",
+      "region": "other_apac",
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.biocon.com/docs/Biocon_Integrated_Annual_Report_2025.pdf",
+          "title": "Biocon Integrated Annual Report FY2025",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "glenmark-ryaltris",
+      "name_zh": "Ryaltris",
+      "name_en": "Ryaltris (olopatadine/fluticasone nasal spray)",
+      "brand_name": "Ryaltris",
+      "company_id": "glenmark-pharmaceuticals",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "respiratory",
+      "indication_zh": "过敏性鼻炎",
+      "indication_en": "Allergic rhinitis",
+      "approval_status": "approved",
+      "is_blockbuster": false,
+      "drug_class": "originator",
+      "region": "other_apac",
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://glenmarkpharma.com/gpl_pdfs/media/Press_Release_Glenmark_Pharmaceuticals_Q4_Results.pdf",
+          "title": "Glenmark FY2025 results",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "glenmark-candid",
+      "name_zh": "Candid",
+      "name_en": "Candid (clotrimazole)",
+      "brand_name": "Candid",
+      "company_id": "glenmark-pharmaceuticals",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "dermatology",
+      "indication_zh": "皮肤真菌感染",
+      "indication_en": "Dermal fungal infections",
+      "approval_status": "approved",
+      "is_blockbuster": true,
+      "drug_class": "originator",
+      "region": "other_apac",
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://glenmarkpharma.com/",
+          "title": "Glenmark Pharmaceuticals product portfolio",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "mankind-manforce",
+      "name_zh": "Manforce",
+      "name_en": "Manforce condoms",
+      "brand_name": "Manforce",
+      "company_id": "mankind-pharma",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "womens-health",
+      "indication_zh": "避孕及性健康",
+      "indication_en": "Contraception and sexual wellness",
+      "approval_status": "approved",
+      "is_blockbuster": true,
+      "drug_class": "originator",
+      "region": "other_apac",
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://bsmedia.business-standard.com/_media/bs/data/announcements/bse/21052025/6e768a11-e3f8-46fe-be52-d95b8ea90c41.pdf",
+          "title": "Mankind FY2025 investor presentation",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "mankind-preganews",
+      "name_zh": "PregaNews",
+      "name_en": "PregaNews pregnancy test kit",
+      "brand_name": "PregaNews",
+      "company_id": "mankind-pharma",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "womens-health",
+      "indication_zh": "妊娠检测",
+      "indication_en": "Pregnancy detection",
+      "approval_status": "approved",
+      "is_blockbuster": false,
+      "drug_class": "originator",
+      "region": "other_apac",
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://mankindpharma.com/",
+          "title": "Mankind Pharma consumer health portfolio",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "gland-heparin",
+      "name_zh": "肝素钠",
+      "name_en": "Heparin Sodium injection",
+      "brand_name": "Heparin",
+      "company_id": "gland-pharma",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "cardiometabolic",
+      "indication_zh": "抗凝治疗",
+      "indication_en": "Anticoagulation therapy",
+      "approval_status": "approved",
+      "is_blockbuster": false,
+      "drug_class": "generic",
+      "region": "other_apac",
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://glandpharma.com/images/Investor_Presentation_Q4FY25.pdf",
+          "title": "Gland Pharma FY2025 investor presentation",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "gland-enoxaparin",
+      "name_zh": "依诺肝素",
+      "name_en": "Enoxaparin Sodium injection",
+      "brand_name": "Enoxaparin",
+      "company_id": "gland-pharma",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "cardiometabolic",
+      "indication_zh": "深静脉血栓及急性冠脉综合征",
+      "indication_en": "DVT and acute coronary syndrome",
+      "approval_status": "approved",
+      "is_blockbuster": false,
+      "drug_class": "generic",
+      "region": "other_apac",
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://glandpharma.com/images/AnnualReport2024-25-Double-Page.pdf",
+          "title": "Gland Pharma Annual Report FY2025",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "ipca-hcqs",
+      "name_zh": "HCQS",
+      "name_en": "HCQS (hydroxychloroquine)",
+      "brand_name": "HCQS",
+      "company_id": "ipca-laboratories",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "immunology",
+      "indication_zh": "类风湿关节炎及狼疮",
+      "indication_en": "Rheumatoid arthritis and lupus",
+      "approval_status": "approved",
+      "is_blockbuster": false,
+      "drug_class": "generic",
+      "region": "other_apac",
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://ipca.com/wp-content/pdf/financials/audited-financial-results/ipca-audited-financial-results-and-press-release-march-2025.pdf",
+          "title": "Ipca FY2025 results",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "ipca-lariago",
+      "name_zh": "Lariago",
+      "name_en": "Lariago (chloroquine)",
+      "brand_name": "Lariago",
+      "company_id": "ipca-laboratories",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "infectious-disease",
+      "indication_zh": "疟疾",
+      "indication_en": "Malaria",
+      "approval_status": "approved",
+      "is_blockbuster": false,
+      "drug_class": "generic",
+      "region": "other_apac",
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://ipca.com/wp-content/pdf/financials/annual-reports/annual_report_2024_25.pdf",
+          "title": "Ipca Annual Report FY2025",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "alembic-azithral",
+      "name_zh": "Azithral",
+      "name_en": "Azithral (azithromycin)",
+      "brand_name": "Azithral",
+      "company_id": "alembic-pharmaceuticals",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "infectious-disease",
+      "indication_zh": "细菌感染",
+      "indication_en": "Bacterial infections",
+      "approval_status": "approved",
+      "is_blockbuster": true,
+      "drug_class": "originator",
+      "region": "other_apac",
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://alembicpharmaceuticals.com/webfiles/media/2024-2025/Press-release-March-2025.pdf",
+          "title": "Alembic FY2025 press release",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "emcure-xtane",
+      "name_zh": "Xtane",
+      "name_en": "Xtane (exemestane)",
+      "brand_name": "Xtane",
+      "company_id": "emcure-pharmaceuticals",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "oncology",
+      "indication_zh": "乳腺癌",
+      "indication_en": "Breast cancer",
+      "approval_status": "approved",
+      "is_blockbuster": false,
+      "drug_class": "generic",
+      "region": "other_apac",
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://bsmedia.business-standard.com/_media/bs/data/announcements/bse/02082025/0c256c54-d4d5-4f33-8fb4-7eecf52f3566.pdf",
+          "title": "Emcure Annual Report FY2025",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "laurus-tenofovir-api",
+      "name_zh": "替诺福韦API",
+      "name_en": "Tenofovir disoproxil fumarate API",
+      "brand_name": "Tenofovir API",
+      "company_id": "laurus-labs",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "infectious-disease",
+      "indication_zh": "HIV/AIDS联合治疗API",
+      "indication_en": "HIV/AIDS combination therapy API",
+      "approval_status": "approved",
+      "is_blockbuster": false,
+      "drug_class": "generic",
+      "region": "other_apac",
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.lauruslabs.com/Investors/PDF/Q4/InvPresentation24042025.pdf",
+          "title": "Laurus Labs FY2025 ARV portfolio",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "wockhardt-wck5222",
+      "name_zh": "WCK 5222",
+      "name_en": "WCK 5222 (zidebactam + cefepime)",
+      "brand_name": "WCK 5222",
+      "company_id": "wockhardt",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "infectious-disease",
+      "indication_zh": "多重耐药革兰阴性菌感染",
+      "indication_en": "Multidrug-resistant Gram-negative infections",
+      "approval_status": "approved",
+      "is_blockbuster": false,
+      "drug_class": "originator",
+      "region": "other_apac",
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.wockhardt.com/wp-content/uploads/2025/05/press-release-q4-fy25.pdf",
+          "title": "Wockhardt FY2025 novel antibiotics pipeline",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "natco-hepcinat",
+      "name_zh": "Hepcinat",
+      "name_en": "Hepcinat (sofosbuvir)",
+      "brand_name": "Hepcinat",
+      "company_id": "natco-pharma",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "infectious-disease",
+      "indication_zh": "慢性丙型肝炎",
+      "indication_en": "Chronic hepatitis C",
+      "approval_status": "approved",
+      "is_blockbuster": true,
+      "drug_class": "generic",
+      "region": "other_apac",
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://admin.natcopharma.co.in/wp-content/uploads/2025/06/Q4PressReleae-28052025.pdf",
+          "title": "Natco FY2025 results",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "natco-nindanib",
+      "name_zh": "Nindanib",
+      "name_en": "Nindanib (nintedanib)",
+      "brand_name": "Nindanib",
+      "company_id": "natco-pharma",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "respiratory",
+      "indication_zh": "特发性肺纤维化",
+      "indication_en": "Idiopathic pulmonary fibrosis",
+      "approval_status": "approved",
+      "is_blockbuster": false,
+      "drug_class": "generic",
+      "region": "other_apac",
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://admin.natcopharma.co.in/wp-content/uploads/2025/08/Natco_AR_1.pdf",
+          "title": "Natco Annual Report FY2025",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "natco-olaparib",
+      "name_zh": "奥拉帕利仿制药",
+      "name_en": "Olaparib tablets (generic)",
+      "brand_name": "Olaparib",
+      "company_id": "natco-pharma",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "oncology",
+      "indication_zh": "BRCA突变卵巢癌及乳腺癌",
+      "indication_en": "BRCA-mutated ovarian and breast cancer",
+      "approval_status": "approved",
+      "is_blockbuster": false,
+      "drug_class": "generic",
+      "region": "other_apac",
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://admin.natcopharma.co.in/wp-content/uploads/2025/08/Natco_AR_1.pdf",
+          "title": "Natco oncology portfolio FY2025",
+          "accessed": "2026-06"
+        }
+      ]
+    }
+  ]
+}
