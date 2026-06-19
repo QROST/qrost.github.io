@@ -712,11 +712,12 @@
         "MHRA"
       ],
       "latest_annual_sales": {
-        "value": 65146000000,
+        "value": 58210000000,
         "currency": "DKK",
         "year": 2024,
         "source_url": "https://annualreport.novonordisk.com/2024/strategic-aspirations/financials.html",
-        "note_en": "FY2024 DKK 65.1B combined obesity care (Wegovy+Saxenda); Wegovy alone ~DKK 58.2B (~USD 8B)"
+        "note_en": "Wegovy only (FY2024); excludes Saxenda",
+        "note_zh": "仅 Wegovy（2024），不含 Saxenda"
       },
       "is_blockbuster": true,
       "drug_class": "originator",
