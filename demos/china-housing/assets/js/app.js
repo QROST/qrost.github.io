@@ -648,7 +648,7 @@
     const dk = isDark();
     document.querySelectorAll('[data-qz]').forEach((b) => {
       const k = b.dataset.qz;
-      b.textContent = t({ heat: 'qzHeat', coast: 'qzCoast', alt: 'qzAlt', rail: 'qzRail', hsr: 'qzHsr', airport: 'qzAirport', hospital: 'qzHospital' }[k]);
+      b.textContent = t({ heat: 'qzHeat', coast: 'qzCoast', alt: 'qzAlt', rail: 'qzRail', hsr: 'qzHsr', airport: 'qzAirport', hospital: 'qzHospital', avoidLulu: 'qzAvoidLulu' }[k]);
       const on = !!qz[k];
       b.className = 'px-3 py-1.5 rounded-md text-xs font-medium transition-colors ' +
         (on
@@ -2800,7 +2800,7 @@
         quiz: {
           budget: qz.budget, winter: qz.winter, summer: qz.summer, hazard: qz.hazard,
           heat: !!qz.heat, coast: !!qz.coast, alt: !!qz.alt, rail: !!qz.rail, hsr: !!qz.hsr,
-          airport: !!qz.airport, hospital: !!qz.hospital,
+          airport: !!qz.airport, hospital: !!qz.hospital, avoidLulu: !!qz.avoidLulu,
         },
       }));
     } catch (e) { /* private mode / quota */ }
@@ -2863,6 +2863,7 @@
         if (typeof u.hsr === 'boolean') qz.hsr = u.hsr;
         if (typeof u.airport === 'boolean') qz.airport = u.airport;
         if (typeof u.hospital === 'boolean') qz.hospital = u.hospital;
+        if (typeof u.avoidLulu === 'boolean') qz.avoidLulu = u.avoidLulu;
       }
     } catch (e) { /* corrupt JSON */ }
   }
