@@ -127,6 +127,77 @@
       ]
     },
     {
+      "id": "microport-platinum-icd-china-first",
+      "date": "2024-10",
+      "company_id": "microport",
+      "product_ids": [],
+      "therapeutic_area_id": "cardiometabolic",
+      "headline_zh": "微创CRM Platinium ICD获NMPA批准，成中国首款国产ICD",
+      "headline_en": "MicroPort CRM Platinium ICD gains NMPA approval as China's first domestically developed ICD",
+      "before_gap_zh": "植入式心律转复除颤器（ICD）市场长期被美敦力、波士顿科学、雅培等外资品牌垄断，中国患者依赖进口",
+      "before_gap_en": "The ICD market in China was entirely dependent on imports from Medtronic, Boston Scientific, and Abbott; no domestic alternative existed",
+      "achievement_zh": "微创CRM开发的Platinium ICD于2024年10月获NMPA上市批准，成为中国首款自主研发的ICD，打破外资垄断",
+      "achievement_en": "MicroPort CRM's Platinium ICD received NMPA marketing approval in October 2024, becoming China's first domestically developed and approved ICD, breaking the foreign monopoly",
+      "still_missing_zh": "市场渗透率及与进口品牌的长期临床证据对比仍需时间积累；皮下ICD（S-ICD）等高端产品尚未国产化",
+      "still_missing_en": "Market penetration and long-term clinical evidence versus import brands still needs to accumulate; subcutaneous ICD (S-ICD) and other advanced variants remain to be developed domestically",
+      "metrics": [
+        {
+          "label_zh": "上市年份",
+          "label_en": "Approval Year",
+          "value": "2024",
+          "verified": true
+        }
+      ],
+      "evidence_level": "case_study",
+      "capability_key": "icd_cardiac_device",
+      "confidence": 0.9,
+      "sources": [
+        {
+          "url": "https://microport.com/news/microport-crms-platinium-icd-receives-nmpa-approval",
+          "title": "MicroPort CRM Platinium ICD NMPA Approval Press Release",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "mgi-dnbseq-illumina-alternative",
+      "date": "2022-06",
+      "company_id": "mgi-tech",
+      "product_ids": [],
+      "therapeutic_area_id": "oncology",
+      "headline_zh": "华大智造DNBSEQ测序平台成为全球范围Illumina的有力竞争者",
+      "headline_en": "MGI DNBSEQ sequencing platform emerges as a viable global alternative to Illumina",
+      "before_gap_zh": "全球基因测序仪市场由Illumina近乎垄断，中国缺乏自主高通量测序设备",
+      "before_gap_en": "The global sequencer market was near-monopolized by Illumina; China lacked domestically developed high-throughput sequencing instruments",
+      "achievement_zh": "华大智造DNBSEQ系列仪器通过CE认证并进入欧洲市场，与Illumina形成实质竞争，海外销售持续增长",
+      "achievement_en": "MGI DNBSEQ instruments obtained CE certification and entered European markets, forming substantive competition with Illumina, with overseas sales growing strongly",
+      "still_missing_zh": "短读长测序之外的长读长平台（PacBio / Oxford Nanopore）尚无国产等效产品；整体市场份额仍远低于Illumina",
+      "still_missing_en": "Long-read sequencing platforms (PacBio/Oxford Nanopore) still lack domestic equivalents; overall market share still well below Illumina",
+      "metrics": [
+        {
+          "label_zh": "2024年海外收入占比",
+          "label_en": "2024 Overseas Revenue Share",
+          "value": ">30%",
+          "verified": false
+        }
+      ],
+      "evidence_level": "case_study",
+      "capability_key": "dna_sequencer_platform",
+      "confidence": 0.82,
+      "sources": [
+        {
+          "url": "https://en.wikipedia.org/wiki/MGI_(company)",
+          "title": "MGI Tech Wikipedia – CE-marked DNBSEQ",
+          "accessed": "2026-06"
+        },
+        {
+          "url": "https://static.cninfo.com.cn/finalpage/2025-04-30/1223427370.PDF",
+          "title": "MGI Tech 2024 Annual Report Summary",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
       "id": "kelun-biotech-merck-adc-deal-2022",
       "date": "2022-12",
       "company_id": "kelun",
@@ -992,6 +1063,115 @@
         {
           "url": "https://investors.legendbiotech.com/news-releases/news-release-details/legend-biotechs-carvyktir-ciltacabtagene-autoleucel-becomes",
           "title": "Carvykti second-line FDA approval press release",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "tiantan-recombinant-factor-viii-2023",
+      "date": "2023-09",
+      "company_id": "tiantan-bio",
+      "product_ids": [
+        "tiantan-recombinant-factor-viii"
+      ],
+      "therapeutic_area_id": "hematology",
+      "headline_zh": "天坛生物重组人凝血因子Ⅷ获批上市",
+      "headline_en": "Tiantan Bio recombinant factor VIII approved in China",
+      "before_gap_zh": "国内血友病A患者长期依赖进口重组因子Ⅷ",
+      "before_gap_en": "Hemophilia A patients in China relied heavily on imported recombinant factor VIII",
+      "achievement_zh": "国药系上市平台实现重组凝血因子国产化供应",
+      "achievement_en": "Sinopharm listed platform achieved domestic recombinant coagulation factor supply",
+      "still_missing_zh": "长效及非因子类血友病疗法仍由跨国企业主导",
+      "still_missing_en": "Long-acting and non-factor hemophilia therapies remain dominated by multinationals",
+      "evidence_level": "audited",
+      "capability_key": "recombinant_coagulation_factor",
+      "confidence": 0.9,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "http://static.cninfo.com.cn/finalpage/2024-03-29/1219446467.PDF",
+          "title": "Tiantan Bio 2023 AR",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "bloomage-first-domestic-ha-filler-2012",
+      "date": "2012-07",
+      "company_id": "bloomage",
+      "product_ids": [
+        "bloomage-runbaiyan"
+      ],
+      "therapeutic_area_id": "dermatology",
+      "headline_zh": "润百颜获批，首款国产交联透明质酸软组织填充剂",
+      "headline_en": "Runbaiyan approved as first domestic cross-linked HA soft-tissue filler",
+      "before_gap_zh": "医美填充剂市场由进口品牌垄断",
+      "before_gap_en": "Aesthetic filler market was dominated by imported brands",
+      "achievement_zh": "打破进口垄断，建立国产HA医美产业链",
+      "achievement_en": "Broke import monopoly and established domestic HA aesthetic industry chain",
+      "still_missing_zh": "高端长效及复合填充剂仍与Allergan等存在差距",
+      "still_missing_en": "Premium long-acting and composite fillers still lag behind Allergan and peers",
+      "evidence_level": "audited",
+      "capability_key": "ha_dermal_filler",
+      "confidence": 0.88,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "http://static.cninfo.com.cn/finalpage/2024-04-30/1219923936.PDF",
+          "title": "Bloomage 2023 AR",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "hongri-xuebijing-sepsis",
+      "date": "2004-06",
+      "company_id": "hongri",
+      "product_ids": [
+        "hongri-xuebijing"
+      ],
+      "therapeutic_area_id": "infectious-disease",
+      "headline_zh": "血必净注射液获批，填补脓毒症中药注射剂空白",
+      "headline_en": "Xuebijing injection approved for sepsis, pioneering TCM injectable in critical care",
+      "before_gap_zh": "脓毒症缺乏具有高级别证据的中医药治疗方案",
+      "before_gap_en": "Sepsis lacked TCM therapies with high-level clinical evidence",
+      "achievement_zh": "建立中药注射剂在ICU脓毒症治疗的应用标杆",
+      "achievement_en": "Established benchmark for TCM injection use in ICU sepsis management",
+      "still_missing_zh": "国际多中心RCT证据及欧美监管认可仍不足",
+      "still_missing_en": "International multicenter RCT evidence and Western regulatory acceptance remain limited",
+      "evidence_level": "case_study",
+      "capability_key": "tcm_injection_sepsis",
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://disc.static.szse.cn/disc/disk03/finalpage/2025-04-25/045a6cba-4238-4fc5-8335-8d64aef59cfc.PDF",
+          "title": "Hongri 2024 AR",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "kpc-cr-sanjiu-integration-2024",
+      "date": "2024-01",
+      "company_id": "kpc",
+      "therapeutic_area_id": "cardiometabolic",
+      "headline_zh": "昆药集团深化华润三九融合，整合三七产业链",
+      "headline_en": "KPC deepens CR Sanjiu integration consolidating Panax notoginseng value chain",
+      "before_gap_zh": "三七资源分散，血塞通品牌各自为战",
+      "before_gap_en": "Panax notoginseng resources were fragmented across competing Xuesaitong brands",
+      "achievement_zh": "华润系统一三七战略，血塞通与777品牌协同",
+      "achievement_en": "China Resources unified notoginseng strategy with Xuesaitong and 777 brand synergy",
+      "still_missing_zh": "创新中药国际化及循证证据仍待加强",
+      "still_missing_en": "Innovative TCM internationalization and evidence base still need strengthening",
+      "evidence_level": "audited",
+      "capability_key": "tcm_notoginseng_chain",
+      "confidence": 0.88,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "http://static.cninfo.com.cn/finalpage/2025-03-12/1222769153.PDF",
+          "title": "KPC 2024 AR Summary",
           "accessed": "2026-06"
         }
       ]

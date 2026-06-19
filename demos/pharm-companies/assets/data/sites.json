@@ -953,6 +953,498 @@
       ]
     },
     {
+      "id": "mindray-shenzhen-hq",
+      "company_id": "mindray",
+      "name_zh": "迈瑞医疗深圳总部",
+      "name_en": "Mindray Shenzhen HQ",
+      "site_type": "HQ",
+      "country": "CN",
+      "city": "Shenzhen",
+      "lat": 22.5427,
+      "lng": 113.9401,
+      "focus": [
+        "infectious-disease",
+        "cardiometabolic",
+        "oncology"
+      ],
+      "is_subsidiary": false,
+      "confidence": 0.9,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.mindray.com/en/contact",
+          "title": "Mindray Contact – Keji 12th Road South, Nanshan, Shenzhen",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "mindray-nanjing-rd",
+      "company_id": "mindray",
+      "name_zh": "迈瑞南京研发中心",
+      "name_en": "Mindray Nanjing R&D Center",
+      "site_type": "RD",
+      "country": "CN",
+      "city": "Nanjing",
+      "lat": 32.0603,
+      "lng": 118.7969,
+      "focus": [
+        "infectious-disease"
+      ],
+      "is_subsidiary": false,
+      "confidence": 0.8,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.mindray.com/en/contact",
+          "title": "Mindray Contact – Nanjing office",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "bgi-shenzhen-hq",
+      "company_id": "bgi-genomics",
+      "name_zh": "华大基因深圳总部",
+      "name_en": "BGI Genomics Shenzhen HQ",
+      "site_type": "HQ",
+      "country": "CN",
+      "city": "Shenzhen",
+      "lat": 22.5773,
+      "lng": 114.2626,
+      "focus": [
+        "oncology",
+        "rare-disease",
+        "infectious-disease"
+      ],
+      "is_subsidiary": false,
+      "confidence": 0.9,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://en.genomics.cn/en-contact.html",
+          "title": "BGI Contact – BGI Center, No.9 Yunhua Road, Yantian District, Shenzhen",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "mgi-shenzhen-hq",
+      "company_id": "mgi-tech",
+      "name_zh": "华大智造深圳总部",
+      "name_en": "MGI Tech Shenzhen HQ",
+      "site_type": "HQ",
+      "country": "CN",
+      "city": "Shenzhen",
+      "lat": 22.5773,
+      "lng": 114.23,
+      "focus": [
+        "oncology",
+        "infectious-disease"
+      ],
+      "is_subsidiary": false,
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.mgi-tech.com/",
+          "title": "MGI Tech – Shenzhen headquarters",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "sansure-changsha-hq",
+      "company_id": "sansure",
+      "name_zh": "圣湘生物长沙总部",
+      "name_en": "Sansure Biotech Changsha HQ",
+      "site_type": "HQ",
+      "country": "CN",
+      "city": "Changsha",
+      "lat": 28.2282,
+      "lng": 112.9388,
+      "focus": [
+        "infectious-disease",
+        "respiratory"
+      ],
+      "is_subsidiary": false,
+      "confidence": 0.88,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.sansure.com.cn/gsyw/info.aspx?itemid=2130",
+          "title": "圣湘生物公司概况",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "autobio-zhengzhou-hq",
+      "company_id": "autobio",
+      "name_zh": "安图生物郑州总部及制造基地",
+      "name_en": "Autobio Zhengzhou HQ & Manufacturing",
+      "site_type": "HQ",
+      "country": "CN",
+      "city": "Zhengzhou",
+      "lat": 34.7579,
+      "lng": 113.7246,
+      "focus": [
+        "infectious-disease",
+        "oncology"
+      ],
+      "is_subsidiary": false,
+      "confidence": 0.9,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.autobio.com.cn/About/about/fid/28.html",
+          "title": "安图生物关于安图 – 郑州经济技术开发区第十五大街199号",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "snibe-shenzhen-hq",
+      "company_id": "snibe",
+      "name_zh": "新产业深圳总部",
+      "name_en": "Snibe Shenzhen HQ",
+      "site_type": "HQ",
+      "country": "CN",
+      "city": "Shenzhen",
+      "lat": 22.6922,
+      "lng": 114.3569,
+      "focus": [
+        "infectious-disease",
+        "cardiometabolic"
+      ],
+      "is_subsidiary": false,
+      "confidence": 0.88,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.snibe.com/cn/service/network/",
+          "title": "Snibe – Pingshan District, Shenzhen headquarters",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "amoy-dx-xiamen-hq",
+      "company_id": "amoy-dx",
+      "name_zh": "艾德生物厦门总部",
+      "name_en": "Amoy Diagnostics Xiamen HQ",
+      "site_type": "HQ",
+      "country": "CN",
+      "city": "Xiamen",
+      "lat": 24.4798,
+      "lng": 118.0894,
+      "focus": [
+        "oncology"
+      ],
+      "is_subsidiary": false,
+      "confidence": 0.88,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.amoydx.com",
+          "title": "Amoy Diagnostics official website – Xiamen",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "zhijiang-bio-shanghai-hq",
+      "company_id": "zhijiang-bio",
+      "name_zh": "之江生物上海总部",
+      "name_en": "Zeesan Biotech Shanghai HQ",
+      "site_type": "HQ",
+      "country": "CN",
+      "city": "Shanghai",
+      "lat": 31.1497,
+      "lng": 121.3756,
+      "focus": [
+        "infectious-disease",
+        "respiratory"
+      ],
+      "is_subsidiary": false,
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "http://xinpi.zqrb.cn/pdf/KCB/688317/2025/0425/ef5fb6e183a49e7fcb6d963311e551be.pdf",
+          "title": "之江生物2024年年度报告摘要 – 上海",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "kingmed-guangzhou-hq",
+      "company_id": "kingmed",
+      "name_zh": "金域医学广州总部",
+      "name_en": "Kingmed Diagnostics Guangzhou HQ",
+      "site_type": "HQ",
+      "country": "CN",
+      "city": "Guangzhou",
+      "lat": 23.0981,
+      "lng": 113.3248,
+      "focus": [
+        "oncology",
+        "infectious-disease"
+      ],
+      "is_subsidiary": false,
+      "confidence": 0.9,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.globaldata.com/company-profile/guangzhou-kingmed-diagnostics-group-co-ltd/locations/",
+          "title": "Kingmed Diagnostics – 2429 Xingang Dong Rd, Haizhu, Guangzhou",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "dian-hangzhou-hq",
+      "company_id": "dian-diagnostics",
+      "name_zh": "迪安诊断杭州总部",
+      "name_en": "Dian Diagnostics Hangzhou HQ",
+      "site_type": "HQ",
+      "country": "CN",
+      "city": "Hangzhou",
+      "lat": 30.2741,
+      "lng": 120.1551,
+      "focus": [
+        "oncology",
+        "infectious-disease"
+      ],
+      "is_subsidiary": false,
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://finance.sina.com.cn/jjxw/2025-04-24/doc-ineufwyv9038402.shtml",
+          "title": "迪安诊断2024年年报 – 杭州",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "wondfo-guangzhou-hq",
+      "company_id": "wondfo",
+      "name_zh": "万孚生物广州总部",
+      "name_en": "Wondfo Biotech Guangzhou HQ",
+      "site_type": "HQ",
+      "country": "CN",
+      "city": "Guangzhou",
+      "lat": 23.1291,
+      "lng": 113.2644,
+      "focus": [
+        "infectious-disease",
+        "cardiometabolic"
+      ],
+      "is_subsidiary": false,
+      "confidence": 0.88,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://en.wondfo.com/",
+          "title": "Wondfo official website – Guangzhou",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "microport-shanghai-hq",
+      "company_id": "microport",
+      "name_zh": "微创医疗上海总部",
+      "name_en": "MicroPort Scientific Shanghai HQ",
+      "site_type": "HQ",
+      "country": "CN",
+      "city": "Shanghai",
+      "lat": 31.2,
+      "lng": 121.6045,
+      "focus": [
+        "cardiometabolic"
+      ],
+      "is_subsidiary": false,
+      "confidence": 0.92,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://microport.com/news/microport-reports-59-improvement-in-annual-results-for-2024",
+          "title": "MicroPort 2024 Annual Results – 1601 Zhangdong Road, Zhangjiang, Shanghai",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "microport-paris-rd",
+      "company_id": "microport",
+      "name_zh": "微创CRM欧洲研发中心（巴黎）",
+      "name_en": "MicroPort CRM Europe R&D (Paris)",
+      "site_type": "RD",
+      "country": "FR",
+      "city": "Paris",
+      "lat": 48.8566,
+      "lng": 2.3522,
+      "focus": [
+        "cardiometabolic"
+      ],
+      "is_subsidiary": true,
+      "confidence": 0.8,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://en.wikipedia.org/wiki/MicroPort",
+          "title": "MicroPort Wikipedia – CRM acquired from Sorin Group (France)",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "venus-hangzhou-hq",
+      "company_id": "venus-medtech",
+      "name_zh": "启明医疗杭州总部",
+      "name_en": "Venus Medtech Hangzhou HQ",
+      "site_type": "HQ",
+      "country": "CN",
+      "city": "Hangzhou",
+      "lat": 30.2741,
+      "lng": 120.1551,
+      "focus": [
+        "cardiometabolic"
+      ],
+      "is_subsidiary": false,
+      "confidence": 0.9,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.prnewswire.com/news-releases/venus-medtech-reports-2024-annual-results-profitability-surges-with-robust-global-expansion-and-innovations-302433322.html",
+          "title": "Venus Medtech 2024 Annual Results – Hangzhou HQ",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "venus-us-rd",
+      "company_id": "venus-medtech",
+      "name_zh": "启明医疗美国研发中心",
+      "name_en": "Venus Medtech US R&D Center",
+      "site_type": "RD",
+      "country": "US",
+      "city": "Houston",
+      "lat": 29.7604,
+      "lng": -95.3698,
+      "focus": [
+        "cardiometabolic"
+      ],
+      "is_subsidiary": true,
+      "confidence": 0.75,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.prnewswire.com/news-releases/venus-medtech-reports-2024-annual-results-profitability-surges-with-robust-global-expansion-and-innovations-302433322.html",
+          "title": "Venus Medtech – global R&D centers in China, US, Israel",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "jafron-zhuhai-hq",
+      "company_id": "jafron",
+      "name_zh": "健帆生物珠海总部及制造基地",
+      "name_en": "Jafron Biomedical Zhuhai HQ & Manufacturing",
+      "site_type": "HQ",
+      "country": "CN",
+      "city": "Zhuhai",
+      "lat": 22.2708,
+      "lng": 113.5767,
+      "focus": [
+        "nephrology"
+      ],
+      "is_subsidiary": false,
+      "confidence": 0.9,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://jafron.com/index.php?a=show&c=index&catid=91&id=2&m=content",
+          "title": "Jafron Company Profile – No. 98, Keji 6th Road, High-tech Zone, Zhuhai",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "opcon-hefei-hq",
+      "company_id": "opcon",
+      "name_zh": "欧普康视合肥总部",
+      "name_en": "Opcon Technology Hefei HQ",
+      "site_type": "HQ",
+      "country": "CN",
+      "city": "Hefei",
+      "lat": 31.8206,
+      "lng": 117.2272,
+      "focus": [
+        "ophthalmology"
+      ],
+      "is_subsidiary": false,
+      "confidence": 0.9,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.orthok.cn/index/page/index/id/11.html",
+          "title": "欧普康视联系我们 – 安徽省合肥市高新区望江西路4899号",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "eyebright-beijing-hq",
+      "company_id": "eyebright",
+      "name_zh": "爱博医疗北京总部",
+      "name_en": "Eyebright Medical Beijing HQ",
+      "site_type": "HQ",
+      "country": "CN",
+      "city": "Beijing",
+      "lat": 39.9042,
+      "lng": 116.4074,
+      "focus": [
+        "ophthalmology"
+      ],
+      "is_subsidiary": false,
+      "confidence": 0.88,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "http://star.sse.com.cn/disclosure/listedinfo/announcement/c/new/2025-04-23/688050_20250423_40P9.pdf",
+          "title": "爱博医疗2024年年度报告 – 北京",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "haier-bio-qingdao-hq",
+      "company_id": "haier-bio",
+      "name_zh": "海尔生物青岛总部",
+      "name_en": "Haier Biomedical Qingdao HQ",
+      "site_type": "HQ",
+      "country": "CN",
+      "city": "Qingdao",
+      "lat": 36.0671,
+      "lng": 120.3826,
+      "focus": [
+        "infectious-disease"
+      ],
+      "is_subsidiary": false,
+      "confidence": 0.88,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.haiermedical.com/News/Haier-Biomedical-2024-Annual-Report",
+          "title": "Haier Biomedical 2024 Annual Report – Qingdao",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
       "id": "yangtze-river-taizhou-hq",
       "company_id": "yangtze-river",
       "name_zh": "扬子江药业集团总部（泰州）",
@@ -2588,6 +3080,1116 @@
         {
           "url": "https://www.hspharm.com",
           "title": "Hansoh Official Website",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "xingsha-xiamen-hq",
+      "company_id": "xingsha",
+      "name_zh": "星鲨厦门总部",
+      "name_en": "Xingsha Xiamen HQ",
+      "site_type": "HQ",
+      "country": "CN",
+      "city": "Xiamen",
+      "lat": 24.527,
+      "lng": 118.242,
+      "is_subsidiary": false,
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.sinopharm-xs.com",
+          "title": "Sinopharm Xingsha Official Site",
+          "accessed": "2026-06"
+        }
+      ],
+      "focus": [
+        "cardiometabolic"
+      ]
+    },
+    {
+      "id": "xingsha-xiamen-mfg",
+      "company_id": "xingsha",
+      "name_zh": "星鲨厦门生产基地",
+      "name_en": "Xingsha Xiamen Manufacturing",
+      "site_type": "manufacturing",
+      "country": "CN",
+      "city": "Xiamen",
+      "lat": 24.527,
+      "lng": 118.242,
+      "is_subsidiary": false,
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.sinopharm-xs.com",
+          "title": "Sinopharm Xingsha Official Site",
+          "accessed": "2026-06"
+        }
+      ],
+      "focus": [
+        "cardiometabolic"
+      ]
+    },
+    {
+      "id": "shanghai-raas-hq",
+      "company_id": "shanghai-raas",
+      "name_zh": "上海莱士总部",
+      "name_en": "Shanghai RAAS HQ",
+      "site_type": "HQ",
+      "country": "CN",
+      "city": "Shanghai",
+      "lat": 31.085,
+      "lng": 121.459,
+      "is_subsidiary": false,
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://disc.static.szse.cn/disc/disk03/finalpage/2024-04-26/aadd5067-ae97-4057-9498-e7d8a68eb463.PDF",
+          "title": "Shanghai RAAS 2023 AR",
+          "accessed": "2026-06"
+        }
+      ],
+      "focus": [
+        "hematology"
+      ]
+    },
+    {
+      "id": "shanghai-raas-fengxian-mfg",
+      "company_id": "shanghai-raas",
+      "name_zh": "上海莱士奉贤生产基地",
+      "name_en": "Shanghai RAAS Fengxian Plant",
+      "site_type": "manufacturing",
+      "country": "CN",
+      "city": "Shanghai",
+      "lat": 31.085,
+      "lng": 121.459,
+      "is_subsidiary": false,
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://disc.static.szse.cn/disc/disk03/finalpage/2024-04-26/aadd5067-ae97-4057-9498-e7d8a68eb463.PDF",
+          "title": "Shanghai RAAS 2023 AR",
+          "accessed": "2026-06"
+        }
+      ],
+      "focus": [
+        "hematology"
+      ]
+    },
+    {
+      "id": "shanghai-raas-zhengzhou",
+      "company_id": "shanghai-raas",
+      "name_zh": "郑州莱士",
+      "name_en": "Zhengzhou RAAS",
+      "site_type": "manufacturing",
+      "country": "CN",
+      "city": "Zhengzhou",
+      "lat": 34.746,
+      "lng": 113.625,
+      "is_subsidiary": true,
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://disc.static.szse.cn/disc/disk03/finalpage/2024-04-26/aadd5067-ae97-4057-9498-e7d8a68eb463.PDF",
+          "title": "Shanghai RAAS 2023 AR",
+          "accessed": "2026-06"
+        }
+      ],
+      "focus": [
+        "hematology"
+      ]
+    },
+    {
+      "id": "tiantan-bio-beijing-hq",
+      "company_id": "tiantan-bio",
+      "name_zh": "天坛生物北京总部",
+      "name_en": "Tiantan Bio Beijing HQ",
+      "site_type": "HQ",
+      "country": "CN",
+      "city": "Beijing",
+      "lat": 39.893,
+      "lng": 116.577,
+      "is_subsidiary": false,
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "http://static.cninfo.com.cn/finalpage/2024-03-29/1219446467.PDF",
+          "title": "Tiantan Bio 2023 AR",
+          "accessed": "2026-06"
+        }
+      ],
+      "focus": [
+        "hematology"
+      ]
+    },
+    {
+      "id": "tiantan-bio-chengdu-rd",
+      "company_id": "tiantan-bio",
+      "name_zh": "成都蓉生药业",
+      "name_en": "Chengdu Rongsheng Bio",
+      "site_type": "manufacturing",
+      "country": "CN",
+      "city": "Chengdu",
+      "lat": 30.395,
+      "lng": 104.083,
+      "is_subsidiary": true,
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "http://static.cninfo.com.cn/finalpage/2024-03-29/1219446467.PDF",
+          "title": "Tiantan Bio 2023 AR",
+          "accessed": "2026-06"
+        }
+      ],
+      "focus": [
+        "hematology"
+      ]
+    },
+    {
+      "id": "tiantan-bio-lanzhou",
+      "company_id": "tiantan-bio",
+      "name_zh": "兰州生物制药",
+      "name_en": "Lanzhou Bio Pharma",
+      "site_type": "manufacturing",
+      "country": "CN",
+      "city": "Lanzhou",
+      "lat": 36.061,
+      "lng": 103.834,
+      "is_subsidiary": true,
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "http://static.cninfo.com.cn/finalpage/2024-03-29/1219446467.PDF",
+          "title": "Tiantan Bio 2023 AR",
+          "accessed": "2026-06"
+        }
+      ],
+      "focus": [
+        "hematology"
+      ]
+    },
+    {
+      "id": "boya-bio-fuzhou-hq",
+      "company_id": "boya-bio",
+      "name_zh": "博雅生物抚州总部",
+      "name_en": "Boya Bio Fuzhou HQ",
+      "site_type": "HQ",
+      "country": "CN",
+      "city": "Fuzhou",
+      "lat": 27.947,
+      "lng": 116.358,
+      "is_subsidiary": false,
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "http://static.cninfo.com.cn/finalpage/2024-03-23/1219390917.PDF",
+          "title": "Boya Bio 2023 AR",
+          "accessed": "2026-06"
+        }
+      ],
+      "focus": [
+        "hematology"
+      ]
+    },
+    {
+      "id": "boya-bio-fuzhou-mfg",
+      "company_id": "boya-bio",
+      "name_zh": "博雅生物抚州血制基地",
+      "name_en": "Boya Bio Fuzhou Plasma Plant",
+      "site_type": "manufacturing",
+      "country": "CN",
+      "city": "Fuzhou",
+      "lat": 27.947,
+      "lng": 116.358,
+      "is_subsidiary": false,
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "http://static.cninfo.com.cn/finalpage/2024-03-23/1219390917.PDF",
+          "title": "Boya Bio 2023 AR",
+          "accessed": "2026-06"
+        }
+      ],
+      "focus": [
+        "hematology"
+      ]
+    },
+    {
+      "id": "boya-bio-nanjing",
+      "company_id": "boya-bio",
+      "name_zh": "南京新百药业",
+      "name_en": "Nanjing Xbai Pharma",
+      "site_type": "manufacturing",
+      "country": "CN",
+      "city": "Nanjing",
+      "lat": 32.06,
+      "lng": 118.796,
+      "is_subsidiary": true,
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "http://static.cninfo.com.cn/finalpage/2024-03-23/1219390917.PDF",
+          "title": "Boya Bio 2023 AR",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "hualan-bio-xinxiang-hq",
+      "company_id": "hualan-bio",
+      "name_zh": "华兰生物新乡总部",
+      "name_en": "Hualan Bio Xinxiang HQ",
+      "site_type": "HQ",
+      "country": "CN",
+      "city": "Xinxiang",
+      "lat": 35.285,
+      "lng": 113.826,
+      "is_subsidiary": false,
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "http://static.cninfo.com.cn/finalpage/2024-03-30/1219464618.PDF",
+          "title": "Hualan Bio 2023 AR",
+          "accessed": "2026-06"
+        }
+      ],
+      "focus": [
+        "hematology",
+        "vaccines"
+      ]
+    },
+    {
+      "id": "hualan-bio-xinxiang-mfg",
+      "company_id": "hualan-bio",
+      "name_zh": "华兰生物新乡生产基地",
+      "name_en": "Hualan Bio Xinxiang Plant",
+      "site_type": "manufacturing",
+      "country": "CN",
+      "city": "Xinxiang",
+      "lat": 35.285,
+      "lng": 113.826,
+      "is_subsidiary": false,
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "http://static.cninfo.com.cn/finalpage/2024-03-30/1219464618.PDF",
+          "title": "Hualan Bio 2023 AR",
+          "accessed": "2026-06"
+        }
+      ],
+      "focus": [
+        "hematology",
+        "vaccines"
+      ]
+    },
+    {
+      "id": "hualan-bio-chongqing",
+      "company_id": "hualan-bio",
+      "name_zh": "华兰生物重庆",
+      "name_en": "Hualan Bio Chongqing",
+      "site_type": "manufacturing",
+      "country": "CN",
+      "city": "Chongqing",
+      "lat": 29.554,
+      "lng": 106.465,
+      "is_subsidiary": true,
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "http://static.cninfo.com.cn/finalpage/2024-03-30/1219464618.PDF",
+          "title": "Hualan Bio 2023 AR",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "bloomage-jinan-hq",
+      "company_id": "bloomage",
+      "name_zh": "华熙生物济南总部",
+      "name_en": "Bloomage Jinan HQ",
+      "site_type": "HQ",
+      "country": "CN",
+      "city": "Jinan",
+      "lat": 36.684,
+      "lng": 117.137,
+      "is_subsidiary": false,
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "http://static.cninfo.com.cn/finalpage/2024-04-30/1219923936.PDF",
+          "title": "Bloomage 2023 AR",
+          "accessed": "2026-06"
+        }
+      ],
+      "focus": [
+        "dermatology"
+      ]
+    },
+    {
+      "id": "bloomage-tianjin-mfg",
+      "company_id": "bloomage",
+      "name_zh": "华熙生物天津基地",
+      "name_en": "Bloomage Tianjin Plant",
+      "site_type": "manufacturing",
+      "country": "CN",
+      "city": "Tianjin",
+      "lat": 38.799,
+      "lng": 117.513,
+      "is_subsidiary": true,
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "http://static.cninfo.com.cn/finalpage/2024-04-30/1219923936.PDF",
+          "title": "Bloomage 2023 AR",
+          "accessed": "2026-06"
+        }
+      ],
+      "focus": [
+        "dermatology"
+      ]
+    },
+    {
+      "id": "bloomage-haikou-mfg",
+      "company_id": "bloomage",
+      "name_zh": "华熙生物海口基地",
+      "name_en": "Bloomage Haikou Plant",
+      "site_type": "manufacturing",
+      "country": "CN",
+      "city": "Haikou",
+      "lat": 19.94,
+      "lng": 110.174,
+      "is_subsidiary": true,
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "http://static.cninfo.com.cn/finalpage/2024-04-30/1219923936.PDF",
+          "title": "Bloomage 2023 AR",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "haohai-shanghai-hq",
+      "company_id": "haohai",
+      "name_zh": "昊海生科上海总部",
+      "name_en": "Haohai Shanghai HQ",
+      "site_type": "HQ",
+      "country": "CN",
+      "city": "Shanghai",
+      "lat": 31.202,
+      "lng": 121.396,
+      "is_subsidiary": false,
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "http://static.cninfo.com.cn/finalpage/2024-04-30/1219909665.PDF",
+          "title": "Haohai 2023 AR",
+          "accessed": "2026-06"
+        }
+      ],
+      "focus": [
+        "ophthalmology"
+      ]
+    },
+    {
+      "id": "haohai-songjiang-mfg",
+      "company_id": "haohai",
+      "name_zh": "昊海生科松江生产基地",
+      "name_en": "Haohai Songjiang Plant",
+      "site_type": "manufacturing",
+      "country": "CN",
+      "city": "Shanghai",
+      "lat": 31.023,
+      "lng": 121.254,
+      "is_subsidiary": false,
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "http://static.cninfo.com.cn/finalpage/2024-04-30/1219909665.PDF",
+          "title": "Haohai 2023 AR",
+          "accessed": "2026-06"
+        }
+      ],
+      "focus": [
+        "ophthalmology",
+        "dermatology"
+      ]
+    },
+    {
+      "id": "haohai-songjiang-rd",
+      "company_id": "haohai",
+      "name_zh": "昊海生科松江研发产业化基地",
+      "name_en": "Haohai Songjiang R&D Base",
+      "site_type": "RD",
+      "country": "CN",
+      "city": "Shanghai",
+      "lat": 31.047,
+      "lng": 121.16,
+      "is_subsidiary": false,
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "http://static.cninfo.com.cn/finalpage/2024-04-30/1219909665.PDF",
+          "title": "Haohai 2023 AR",
+          "accessed": "2026-06"
+        }
+      ],
+      "focus": [
+        "ophthalmology"
+      ]
+    },
+    {
+      "id": "lukang-jining-hq",
+      "company_id": "lukang",
+      "name_zh": "鲁抗医药济宁总部",
+      "name_en": "Lukang Jining HQ",
+      "site_type": "HQ",
+      "country": "CN",
+      "city": "Jining",
+      "lat": 35.413,
+      "lng": 116.585,
+      "is_subsidiary": false,
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://static.cninfo.com.cn/finalpage/2025-03-22/1222868331.PDF",
+          "title": "Lukang 2024 AR",
+          "accessed": "2026-06"
+        }
+      ],
+      "focus": [
+        "infectious-disease"
+      ]
+    },
+    {
+      "id": "lukang-jining-mfg",
+      "company_id": "lukang",
+      "name_zh": "鲁抗医药济宁生产基地",
+      "name_en": "Lukang Jining Plant",
+      "site_type": "manufacturing",
+      "country": "CN",
+      "city": "Jining",
+      "lat": 35.413,
+      "lng": 116.585,
+      "is_subsidiary": false,
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://static.cninfo.com.cn/finalpage/2025-03-22/1222868331.PDF",
+          "title": "Lukang 2024 AR",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "lukang-qinghai-api",
+      "company_id": "lukang",
+      "name_zh": "青海鲁抗大地药业",
+      "name_en": "Qinghai Lukang Dadi Pharma",
+      "site_type": "manufacturing",
+      "country": "CN",
+      "city": "Xining",
+      "lat": 36.825,
+      "lng": 101.441,
+      "is_subsidiary": true,
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://static.cninfo.com.cn/finalpage/2025-03-22/1222868331.PDF",
+          "title": "Lukang 2024 AR",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "xinhua-pharma-zibo-hq",
+      "company_id": "xinhua-pharma",
+      "name_zh": "新华制药淄博总部",
+      "name_en": "Xinhua Pharma Zibo HQ",
+      "site_type": "HQ",
+      "country": "CN",
+      "city": "Zibo",
+      "lat": 36.813,
+      "lng": 118.049,
+      "is_subsidiary": false,
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://static.cninfo.com.cn/finalpage/2025-03-31/1222945461.PDF",
+          "title": "Xinhua Pharma 2024 AR",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "xinhua-pharma-shouguang",
+      "company_id": "xinhua-pharma",
+      "name_zh": "新华制药寿光基地",
+      "name_en": "Xinhua Pharma Shouguang Plant",
+      "site_type": "manufacturing",
+      "country": "CN",
+      "city": "Shouguang",
+      "lat": 36.876,
+      "lng": 118.732,
+      "is_subsidiary": true,
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://static.cninfo.com.cn/finalpage/2025-03-31/1222945461.PDF",
+          "title": "Xinhua Pharma 2024 AR",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "renhe-zhangshu-hq",
+      "company_id": "renhe",
+      "name_zh": "仁和药业樟树总部",
+      "name_en": "Renhe Zhangshu HQ",
+      "site_type": "HQ",
+      "country": "CN",
+      "city": "Zhangshu",
+      "lat": 28.027,
+      "lng": 115.439,
+      "is_subsidiary": false,
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://disc.static.szse.cn/disc/disk03/finalpage/2025-04-26/ef8408bb-22f1-4e57-b163-4bfdcf5d007a.PDF",
+          "title": "Renhe 2024 AR",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "renhe-nanchang-mfg",
+      "company_id": "renhe",
+      "name_zh": "江西闪亮制药南昌基地",
+      "name_en": "Shining Pharma Nanchang Plant",
+      "site_type": "manufacturing",
+      "country": "CN",
+      "city": "Nanchang",
+      "lat": 28.647,
+      "lng": 116.035,
+      "is_subsidiary": true,
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://disc.static.szse.cn/disc/disk03/finalpage/2025-04-26/ef8408bb-22f1-4e57-b163-4bfdcf5d007a.PDF",
+          "title": "Renhe 2024 AR",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "kuihua-harbin-hq",
+      "company_id": "kuihua",
+      "name_zh": "葵花药业哈尔滨总部",
+      "name_en": "Kuihua Harbin HQ",
+      "site_type": "HQ",
+      "country": "CN",
+      "city": "Harbin",
+      "lat": 45.759,
+      "lng": 126.628,
+      "is_subsidiary": false,
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://disc.static.szse.cn/disc/disk03/finalpage/2025-04-24/8bf4025b-53e2-43d9-a850-18f3c25a5561.PDF",
+          "title": "Kuihua 2024 AR",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "kuihua-wuchang-mfg",
+      "company_id": "kuihua",
+      "name_zh": "葵花药业五常基地",
+      "name_en": "Kuihua Wuchang Plant",
+      "site_type": "manufacturing",
+      "country": "CN",
+      "city": "Wuchang",
+      "lat": 44.93,
+      "lng": 127.161,
+      "is_subsidiary": true,
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://disc.static.szse.cn/disc/disk03/finalpage/2025-04-24/8bf4025b-53e2-43d9-a850-18f3c25a5561.PDF",
+          "title": "Kuihua 2024 AR",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "jichuan-taixing-hq",
+      "company_id": "jichuan",
+      "name_zh": "济川药业泰兴总部",
+      "name_en": "Jumpcan Taixing HQ",
+      "site_type": "HQ",
+      "country": "CN",
+      "city": "Taixing",
+      "lat": 32.169,
+      "lng": 120.017,
+      "is_subsidiary": false,
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://static.cninfo.com.cn/finalpage/2025-04-26/1223320773.PDF",
+          "title": "Jumpcan 2024 AR",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "jichuan-taixing-mfg",
+      "company_id": "jichuan",
+      "name_zh": "济川药业泰兴生产基地",
+      "name_en": "Jumpcan Taixing Plant",
+      "site_type": "manufacturing",
+      "country": "CN",
+      "city": "Taixing",
+      "lat": 32.169,
+      "lng": 120.017,
+      "is_subsidiary": false,
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://static.cninfo.com.cn/finalpage/2025-04-26/1223320773.PDF",
+          "title": "Jumpcan 2024 AR",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "jichuan-yangling-rd",
+      "company_id": "jichuan",
+      "name_zh": "陕西东科制药杨凌基地",
+      "name_en": "Dongke Pharma Yangling",
+      "site_type": "RD",
+      "country": "CN",
+      "city": "Yangling",
+      "lat": 34.274,
+      "lng": 108.081,
+      "is_subsidiary": true,
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://static.cninfo.com.cn/finalpage/2025-04-26/1223320773.PDF",
+          "title": "Jumpcan 2024 AR",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "lingrui-xinxian-hq",
+      "company_id": "lingrui",
+      "name_zh": "羚锐制药新县总部",
+      "name_en": "Lingrui Xinxian HQ",
+      "site_type": "HQ",
+      "country": "CN",
+      "city": "Xinxian",
+      "lat": 31.646,
+      "lng": 114.88,
+      "is_subsidiary": false,
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://static.cninfo.com.cn/finalpage/2025-04-26/1223304281.PDF",
+          "title": "Lingrui 2024 AR",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "lingrui-xinxian-mfg",
+      "company_id": "lingrui",
+      "name_zh": "羚锐制药新县贴膏基地",
+      "name_en": "Lingrui Patch Plant",
+      "site_type": "manufacturing",
+      "country": "CN",
+      "city": "Xinxian",
+      "lat": 31.646,
+      "lng": 114.88,
+      "is_subsidiary": false,
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://static.cninfo.com.cn/finalpage/2025-04-26/1223304281.PDF",
+          "title": "Lingrui 2024 AR",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "guizhou-bailing-anshun-hq",
+      "company_id": "guizhou-bailing",
+      "name_zh": "贵州百灵安顺总部",
+      "name_en": "Guizhou Bailing Anshun HQ",
+      "site_type": "HQ",
+      "country": "CN",
+      "city": "Anshun",
+      "lat": 26.255,
+      "lng": 105.944,
+      "is_subsidiary": false,
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "http://static.cninfo.com.cn/finalpage/2025-04-29/1223391356.PDF",
+          "title": "Guizhou Bailing 2024 AR",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "guizhou-bailing-anshun-mfg",
+      "company_id": "guizhou-bailing",
+      "name_zh": "贵州百灵安顺生产基地",
+      "name_en": "Guizhou Bailing Anshun Plant",
+      "site_type": "manufacturing",
+      "country": "CN",
+      "city": "Anshun",
+      "lat": 26.255,
+      "lng": 105.944,
+      "is_subsidiary": false,
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "http://static.cninfo.com.cn/finalpage/2025-04-29/1223391356.PDF",
+          "title": "Guizhou Bailing 2024 AR",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "hongri-tianjin-hq",
+      "company_id": "hongri",
+      "name_zh": "红日药业天津总部",
+      "name_en": "Hongri Tianjin HQ",
+      "site_type": "HQ",
+      "country": "CN",
+      "city": "Tianjin",
+      "lat": 39.382,
+      "lng": 117.038,
+      "is_subsidiary": false,
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://disc.static.szse.cn/disc/disk03/finalpage/2025-04-25/045a6cba-4238-4fc5-8335-8d64aef59cfc.PDF",
+          "title": "Hongri 2024 AR",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "hongri-beijing-granules",
+      "company_id": "hongri",
+      "name_zh": "北京康仁堂配方颗粒",
+      "name_en": "Beijing Kangrentang Granules",
+      "site_type": "manufacturing",
+      "country": "CN",
+      "city": "Beijing",
+      "lat": 39.904,
+      "lng": 116.407,
+      "is_subsidiary": true,
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://disc.static.szse.cn/disc/disk03/finalpage/2025-04-25/045a6cba-4238-4fc5-8335-8d64aef59cfc.PDF",
+          "title": "Hongri 2024 AR",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "kpc-kunming-hq",
+      "company_id": "kpc",
+      "name_zh": "昆药集团昆明总部",
+      "name_en": "KPC Kunming HQ",
+      "site_type": "HQ",
+      "country": "CN",
+      "city": "Kunming",
+      "lat": 25.04,
+      "lng": 102.717,
+      "is_subsidiary": false,
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "http://static.cninfo.com.cn/finalpage/2025-03-12/1222769153.PDF",
+          "title": "KPC 2024 AR",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "kpc-kunzhongyao-mfg",
+      "company_id": "kpc",
+      "name_zh": "昆中药生产基地",
+      "name_en": "Kunzhongyao Plant",
+      "site_type": "manufacturing",
+      "country": "CN",
+      "city": "Kunming",
+      "lat": 25.04,
+      "lng": 102.717,
+      "is_subsidiary": true,
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "http://static.cninfo.com.cn/finalpage/2025-03-12/1222769153.PDF",
+          "title": "KPC 2024 AR",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "cr-double-crane-beijing-hq",
+      "company_id": "cr-double-crane",
+      "name_zh": "华润双鹤北京总部",
+      "name_en": "CR Double-Crane Beijing HQ",
+      "site_type": "HQ",
+      "country": "CN",
+      "city": "Beijing",
+      "lat": 40.02,
+      "lng": 116.473,
+      "is_subsidiary": false,
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "http://static.cninfo.com.cn/finalpage/2025-03-20/1222845750.PDF",
+          "title": "CR Double-Crane 2024 AR",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "cr-double-crane-beijing-mfg",
+      "company_id": "cr-double-crane",
+      "name_zh": "华润双鹤北京工业园",
+      "name_en": "CR Double-Crane Beijing Industrial Park",
+      "site_type": "manufacturing",
+      "country": "CN",
+      "city": "Beijing",
+      "lat": 40.02,
+      "lng": 116.473,
+      "is_subsidiary": false,
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "http://static.cninfo.com.cn/finalpage/2025-03-20/1222845750.PDF",
+          "title": "CR Double-Crane 2024 AR",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "shuanglu-beijing-hq",
+      "company_id": "shuanglu",
+      "name_zh": "双鹭药业北京总部",
+      "name_en": "Shuanglu Beijing HQ",
+      "site_type": "HQ",
+      "country": "CN",
+      "city": "Beijing",
+      "lat": 39.923,
+      "lng": 116.294,
+      "is_subsidiary": false,
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://disc.static.szse.cn/disc/disk03/finalpage/2025-04-21/a3e24866-a83c-417c-924c-02ddc1e36d5a.PDF",
+          "title": "Shuanglu 2024 AR",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "shuanglu-changping-mfg",
+      "company_id": "shuanglu",
+      "name_zh": "双鹭药业昌平生产基地",
+      "name_en": "Shuanglu Changping Plant",
+      "site_type": "manufacturing",
+      "country": "CN",
+      "city": "Beijing",
+      "lat": 40.221,
+      "lng": 116.231,
+      "is_subsidiary": false,
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://disc.static.szse.cn/disc/disk03/finalpage/2025-04-21/a3e24866-a83c-417c-924c-02ddc1e36d5a.PDF",
+          "title": "Shuanglu 2024 AR",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "xianju-xianju-hq",
+      "company_id": "xianju",
+      "name_zh": "仙琚制药仙居总部",
+      "name_en": "Xianju Pharma HQ",
+      "site_type": "HQ",
+      "country": "CN",
+      "city": "Xianju",
+      "lat": 28.85,
+      "lng": 120.725,
+      "is_subsidiary": false,
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "http://static.cninfo.com.cn/finalpage/2025-04-24/1223241478.PDF",
+          "title": "Xianju 2024 AR",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "xianju-xianju-mfg",
+      "company_id": "xianju",
+      "name_zh": "仙琚制药甾体激素基地",
+      "name_en": "Xianju Steroid Plant",
+      "site_type": "manufacturing",
+      "country": "CN",
+      "city": "Xianju",
+      "lat": 28.85,
+      "lng": 120.725,
+      "is_subsidiary": false,
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "http://static.cninfo.com.cn/finalpage/2025-04-24/1223241478.PDF",
+          "title": "Xianju 2024 AR",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "apeloa-dongyang-hq",
+      "company_id": "apeloa",
+      "name_zh": "普洛药业东阳总部",
+      "name_en": "Apeloa Dongyang HQ",
+      "site_type": "HQ",
+      "country": "CN",
+      "city": "Dongyang",
+      "lat": 29.218,
+      "lng": 120.26,
+      "is_subsidiary": false,
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "http://static.cninfo.com.cn/finalpage/2025-03-11/1222760371.PDF",
+          "title": "Apeloa 2024 AR",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "apeloa-dongyang-cdmo",
+      "company_id": "apeloa",
+      "name_zh": "普洛药业横店CDMO基地",
+      "name_en": "Apeloa Hengdian CDMO Base",
+      "site_type": "manufacturing",
+      "country": "CN",
+      "city": "Dongyang",
+      "lat": 29.218,
+      "lng": 120.26,
+      "is_subsidiary": false,
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "http://static.cninfo.com.cn/finalpage/2025-03-11/1222760371.PDF",
+          "title": "Apeloa 2024 AR",
+          "accessed": "2026-06"
+        }
+      ],
+      "focus": [
+        "small-molecule"
+      ]
+    },
+    {
+      "id": "jianmin-wuhan-hq",
+      "company_id": "jianmin",
+      "name_zh": "健民集团武汉总部",
+      "name_en": "Jianmin Wuhan HQ",
+      "site_type": "HQ",
+      "country": "CN",
+      "city": "Wuhan",
+      "lat": 30.557,
+      "lng": 114.213,
+      "is_subsidiary": false,
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "http://static.cninfo.com.cn/finalpage/2025-03-22/1222867640.PDF",
+          "title": "Jianmin 2024 AR",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "jianmin-suizhou-mfg",
+      "company_id": "jianmin",
+      "name_zh": "叶开泰随州生产基地",
+      "name_en": "Yekaitai Suizhou Plant",
+      "site_type": "manufacturing",
+      "country": "CN",
+      "city": "Suizhou",
+      "lat": 31.69,
+      "lng": 113.383,
+      "is_subsidiary": true,
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "http://static.cninfo.com.cn/finalpage/2025-03-22/1222867640.PDF",
+          "title": "Jianmin 2024 AR",
           "accessed": "2026-06"
         }
       ]
@@ -5247,6 +6849,1119 @@
         {
           "url": "https://www.mt-pharma.co.jp/e/ir/",
           "title": "Mitsubishi Tanabe Manufacturing",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "danaher-washington-hq",
+      "company_id": "danaher",
+      "name_zh": "丹纳赫总部（华盛顿特区）",
+      "name_en": "Danaher Corporation Headquarters",
+      "site_type": "HQ",
+      "country": "US",
+      "city": "Washington",
+      "lat": 38.9072,
+      "lng": -77.0369,
+      "focus": [
+        "corporate"
+      ],
+      "is_subsidiary": false,
+      "confidence": 0.95,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.danaher.com/about",
+          "title": "Danaher About Page",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "danaher-cytiva-uppsala",
+      "company_id": "danaher",
+      "name_zh": "Cytiva 生物工艺研发中心（乌普萨拉）",
+      "name_en": "Cytiva Bioprocess R&D Site, Uppsala",
+      "site_type": "RD",
+      "country": "SE",
+      "city": "Uppsala",
+      "lat": 59.8586,
+      "lng": 17.6389,
+      "focus": [
+        "bioprocessing",
+        "chromatography"
+      ],
+      "is_subsidiary": true,
+      "confidence": 0.95,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.cytivalifesciences.com/en/us/about/locations",
+          "title": "Cytiva Locations",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "danaher-beckman-brea",
+      "company_id": "danaher",
+      "name_zh": "贝克曼库尔特制造基地（布雷亚）",
+      "name_en": "Beckman Coulter Manufacturing, Brea CA",
+      "site_type": "manufacturing",
+      "country": "US",
+      "city": "Brea",
+      "lat": 33.9167,
+      "lng": -117.9,
+      "focus": [
+        "diagnostics",
+        "centrifugation"
+      ],
+      "is_subsidiary": true,
+      "confidence": 0.93,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.beckmancoulter.com/en/about-us",
+          "title": "Beckman Coulter About",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "danaher-cepheid-sunnyvale",
+      "company_id": "danaher",
+      "name_zh": "赛菲诊断研发制造（桑尼维尔）",
+      "name_en": "Cepheid R&D and Manufacturing, Sunnyvale CA",
+      "site_type": "manufacturing",
+      "country": "US",
+      "city": "Sunnyvale",
+      "lat": 37.3688,
+      "lng": -122.0363,
+      "focus": [
+        "molecular-diagnostics",
+        "PCR"
+      ],
+      "is_subsidiary": true,
+      "confidence": 0.94,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.cepheid.com/en/about-cepheid",
+          "title": "Cepheid About",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "thermo-fisher-waltham-hq",
+      "company_id": "thermo-fisher",
+      "name_zh": "赛默飞世尔科技总部（沃尔瑟姆）",
+      "name_en": "Thermo Fisher Scientific Headquarters, Waltham MA",
+      "site_type": "HQ",
+      "country": "US",
+      "city": "Waltham",
+      "lat": 42.3765,
+      "lng": -71.2356,
+      "focus": [
+        "corporate"
+      ],
+      "is_subsidiary": false,
+      "confidence": 0.97,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.thermofisher.com/us/en/home/about-us.html",
+          "title": "Thermo Fisher About",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "thermo-fisher-carlsbad-rd",
+      "company_id": "thermo-fisher",
+      "name_zh": "赛默飞生命技术研发（卡尔斯巴德）",
+      "name_en": "Thermo Fisher Life Technologies R&D, Carlsbad CA",
+      "site_type": "RD",
+      "country": "US",
+      "city": "Carlsbad",
+      "lat": 33.1192,
+      "lng": -117.2864,
+      "focus": [
+        "genomics",
+        "cell-biology",
+        "molecular-biology"
+      ],
+      "is_subsidiary": false,
+      "confidence": 0.94,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.thermofisher.com/us/en/home/about-us/contact-us/map.html",
+          "title": "Thermo Fisher Locations",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "thermo-fisher-pittsburgh-mfg",
+      "company_id": "thermo-fisher",
+      "name_zh": "赛默飞制造工厂（匹兹堡）",
+      "name_en": "Thermo Fisher Manufacturing, Pittsburgh PA",
+      "site_type": "manufacturing",
+      "country": "US",
+      "city": "Pittsburgh",
+      "lat": 40.4406,
+      "lng": -79.9959,
+      "focus": [
+        "chemicals",
+        "reagents"
+      ],
+      "is_subsidiary": false,
+      "confidence": 0.9,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.thermofisher.com/us/en/home/about-us/contact-us/map.html",
+          "title": "Thermo Fisher Locations",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "thermo-fisher-regensburg-mfg",
+      "company_id": "thermo-fisher",
+      "name_zh": "赛默飞制造工厂（雷根斯堡）",
+      "name_en": "Thermo Fisher Manufacturing, Regensburg Germany",
+      "site_type": "manufacturing",
+      "country": "DE",
+      "city": "Regensburg",
+      "lat": 49.0134,
+      "lng": 12.1016,
+      "focus": [
+        "instruments",
+        "electron-microscopy"
+      ],
+      "is_subsidiary": false,
+      "confidence": 0.92,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.thermofisher.com/us/en/home/about-us/contact-us/map.html",
+          "title": "Thermo Fisher Locations",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "abbott-abbott-park-hq",
+      "company_id": "abbott",
+      "name_zh": "雅培总部（雅培园区）",
+      "name_en": "Abbott Laboratories Headquarters, Abbott Park IL",
+      "site_type": "HQ",
+      "country": "US",
+      "city": "Abbott Park",
+      "lat": 42.2625,
+      "lng": -87.9706,
+      "focus": [
+        "corporate"
+      ],
+      "is_subsidiary": false,
+      "confidence": 0.97,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.abbott.com/about-abbott/at-a-glance.html",
+          "title": "Abbott At A Glance",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "abbott-alameda-diagnostics",
+      "company_id": "abbott",
+      "name_zh": "雅培诊断事业部（阿拉米达）",
+      "name_en": "Abbott Diagnostics, Alameda CA",
+      "site_type": "manufacturing",
+      "country": "US",
+      "city": "Alameda",
+      "lat": 37.7652,
+      "lng": -122.2416,
+      "focus": [
+        "diagnostics",
+        "immunoassay"
+      ],
+      "is_subsidiary": false,
+      "confidence": 0.93,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.abbott.com/about-abbott/at-a-glance.html",
+          "title": "Abbott Locations",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "abbott-irving-nutrition",
+      "company_id": "abbott",
+      "name_zh": "雅培营养事业部（欧文）",
+      "name_en": "Abbott Nutrition, Irving TX",
+      "site_type": "manufacturing",
+      "country": "US",
+      "city": "Irving",
+      "lat": 32.814,
+      "lng": -96.9489,
+      "focus": [
+        "nutrition"
+      ],
+      "is_subsidiary": false,
+      "confidence": 0.91,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.abbott.com/about-abbott/at-a-glance.html",
+          "title": "Abbott Locations",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "abbott-witney-uk",
+      "company_id": "abbott",
+      "name_zh": "雅培英国研发制造（威特尼）",
+      "name_en": "Abbott UK Manufacturing, Witney",
+      "site_type": "manufacturing",
+      "country": "GB",
+      "city": "Witney",
+      "lat": 51.784,
+      "lng": -1.484,
+      "focus": [
+        "diagnostics",
+        "point-of-care"
+      ],
+      "is_subsidiary": false,
+      "confidence": 0.9,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.abbott.com/about-abbott/at-a-glance.html",
+          "title": "Abbott Locations",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "bd-franklin-lakes-hq",
+      "company_id": "becton-dickinson",
+      "name_zh": "碧迪医疗总部（富兰克林湖）",
+      "name_en": "Becton Dickinson Headquarters, Franklin Lakes NJ",
+      "site_type": "HQ",
+      "country": "US",
+      "city": "Franklin Lakes",
+      "lat": 41.0126,
+      "lng": -74.2174,
+      "focus": [
+        "corporate"
+      ],
+      "is_subsidiary": false,
+      "confidence": 0.97,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.bd.com/en-us/about-bd",
+          "title": "BD About Us",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "bd-sandy-ut-mfg",
+      "company_id": "becton-dickinson",
+      "name_zh": "碧迪医疗制造工厂（桑迪）",
+      "name_en": "Becton Dickinson Manufacturing, Sandy UT",
+      "site_type": "manufacturing",
+      "country": "US",
+      "city": "Sandy",
+      "lat": 40.5521,
+      "lng": -111.8985,
+      "focus": [
+        "medical-devices",
+        "diagnostics"
+      ],
+      "is_subsidiary": false,
+      "confidence": 0.91,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.bd.com/en-us/about-bd/global-operations",
+          "title": "BD Global Operations",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "bd-sparks-md-rd",
+      "company_id": "becton-dickinson",
+      "name_zh": "碧迪医疗研发中心（斯帕克斯）",
+      "name_en": "Becton Dickinson R&D Center, Sparks MD",
+      "site_type": "RD",
+      "country": "US",
+      "city": "Sparks",
+      "lat": 39.5465,
+      "lng": -76.6877,
+      "focus": [
+        "diagnostics",
+        "infectious-disease"
+      ],
+      "is_subsidiary": false,
+      "confidence": 0.9,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.bd.com/en-us/about-bd/global-operations",
+          "title": "BD Global Operations",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "bd-san-diego-rd",
+      "company_id": "becton-dickinson",
+      "name_zh": "碧迪医疗研发（圣地亚哥）",
+      "name_en": "Becton Dickinson R&D, San Diego CA",
+      "site_type": "RD",
+      "country": "US",
+      "city": "San Diego",
+      "lat": 32.7157,
+      "lng": -117.1611,
+      "focus": [
+        "flow-cytometry",
+        "molecular-diagnostics"
+      ],
+      "is_subsidiary": false,
+      "confidence": 0.9,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.bd.com/en-us/about-bd/global-operations",
+          "title": "BD Global Operations",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "agilent-santa-clara-hq",
+      "company_id": "agilent",
+      "name_zh": "安捷伦科技总部（圣克拉拉）",
+      "name_en": "Agilent Technologies Headquarters, Santa Clara CA",
+      "site_type": "HQ",
+      "country": "US",
+      "city": "Santa Clara",
+      "lat": 37.3875,
+      "lng": -121.9632,
+      "focus": [
+        "corporate"
+      ],
+      "is_subsidiary": false,
+      "confidence": 0.97,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.agilent.com/en/about-agilent",
+          "title": "Agilent About",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "agilent-waldbronn-mfg",
+      "company_id": "agilent",
+      "name_zh": "安捷伦制造工厂（瓦尔德布隆）",
+      "name_en": "Agilent Manufacturing, Waldbronn Germany",
+      "site_type": "manufacturing",
+      "country": "DE",
+      "city": "Waldbronn",
+      "lat": 48.95,
+      "lng": 8.5167,
+      "focus": [
+        "chromatography",
+        "LC-MS"
+      ],
+      "is_subsidiary": false,
+      "confidence": 0.93,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.agilent.com/en/about-agilent/global-locations",
+          "title": "Agilent Global Locations",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "agilent-wilmington-rd",
+      "company_id": "agilent",
+      "name_zh": "安捷伦研发中心（威尔明顿）",
+      "name_en": "Agilent R&D Center, Wilmington DE",
+      "site_type": "RD",
+      "country": "US",
+      "city": "Wilmington",
+      "lat": 39.7391,
+      "lng": -75.5398,
+      "focus": [
+        "columns",
+        "sample-prep"
+      ],
+      "is_subsidiary": false,
+      "confidence": 0.91,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.agilent.com/en/about-agilent/global-locations",
+          "title": "Agilent Global Locations",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "bio-rad-hercules-hq",
+      "company_id": "bio-rad",
+      "name_zh": "伯乐生命医学总部（赫尔克里斯）",
+      "name_en": "Bio-Rad Laboratories Headquarters, Hercules CA",
+      "site_type": "HQ",
+      "country": "US",
+      "city": "Hercules",
+      "lat": 37.9977,
+      "lng": -122.2835,
+      "focus": [
+        "corporate"
+      ],
+      "is_subsidiary": false,
+      "confidence": 0.97,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.bio-rad.com/en-us/about-bio-rad",
+          "title": "Bio-Rad About",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "bio-rad-irvine-mfg",
+      "company_id": "bio-rad",
+      "name_zh": "伯乐制造工厂（欧文）",
+      "name_en": "Bio-Rad Manufacturing, Irvine CA",
+      "site_type": "manufacturing",
+      "country": "US",
+      "city": "Irvine",
+      "lat": 33.6846,
+      "lng": -117.8265,
+      "focus": [
+        "immunology",
+        "flow-cytometry"
+      ],
+      "is_subsidiary": false,
+      "confidence": 0.91,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.bio-rad.com/en-us/about-bio-rad/global-locations",
+          "title": "Bio-Rad Global Locations",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "bio-rad-munich-europe",
+      "company_id": "bio-rad",
+      "name_zh": "伯乐欧洲运营中心（慕尼黑）",
+      "name_en": "Bio-Rad European Operations, Munich Germany",
+      "site_type": "commercial",
+      "country": "DE",
+      "city": "Munich",
+      "lat": 48.1351,
+      "lng": 11.582,
+      "focus": [
+        "sales",
+        "support"
+      ],
+      "is_subsidiary": true,
+      "confidence": 0.89,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.bio-rad.com/en-us/about-bio-rad/global-locations",
+          "title": "Bio-Rad Global Locations",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "illumina-san-diego-hq",
+      "company_id": "illumina",
+      "name_zh": "因美纳总部（圣地亚哥）",
+      "name_en": "Illumina Headquarters, San Diego CA",
+      "site_type": "HQ",
+      "country": "US",
+      "city": "San Diego",
+      "lat": 32.8998,
+      "lng": -117.2013,
+      "focus": [
+        "corporate"
+      ],
+      "is_subsidiary": false,
+      "confidence": 0.97,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.illumina.com/company/about-us.html",
+          "title": "Illumina About",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "illumina-cambridge-uk",
+      "company_id": "illumina",
+      "name_zh": "因美纳欧洲区（剑桥）",
+      "name_en": "Illumina EMEA Hub, Cambridge UK",
+      "site_type": "commercial",
+      "country": "GB",
+      "city": "Cambridge",
+      "lat": 52.2053,
+      "lng": 0.1218,
+      "focus": [
+        "genomics",
+        "EMEA-commercial"
+      ],
+      "is_subsidiary": true,
+      "confidence": 0.93,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.illumina.com/company/about-us/global-locations.html",
+          "title": "Illumina Locations",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "illumina-eindhoven-mfg",
+      "company_id": "illumina",
+      "name_zh": "因美纳制造工厂（埃因霍温）",
+      "name_en": "Illumina Manufacturing, Eindhoven Netherlands",
+      "site_type": "manufacturing",
+      "country": "NL",
+      "city": "Eindhoven",
+      "lat": 51.4416,
+      "lng": 5.4697,
+      "focus": [
+        "flow-cells",
+        "sequencing-reagents"
+      ],
+      "is_subsidiary": false,
+      "confidence": 0.91,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.illumina.com/company/about-us/global-locations.html",
+          "title": "Illumina Locations",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "bruker-billerica-hq",
+      "company_id": "bruker",
+      "name_zh": "布鲁克总部（比勒里卡）",
+      "name_en": "Bruker Corporation Headquarters, Billerica MA",
+      "site_type": "HQ",
+      "country": "US",
+      "city": "Billerica",
+      "lat": 42.5584,
+      "lng": -71.2693,
+      "focus": [
+        "corporate"
+      ],
+      "is_subsidiary": false,
+      "confidence": 0.97,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.bruker.com/en/about-bruker.html",
+          "title": "Bruker About",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "bruker-bremen-mfg",
+      "company_id": "bruker",
+      "name_zh": "布鲁克制造与研发（不来梅）",
+      "name_en": "Bruker Manufacturing & R&D, Bremen Germany",
+      "site_type": "manufacturing",
+      "country": "DE",
+      "city": "Bremen",
+      "lat": 53.0793,
+      "lng": 8.8017,
+      "focus": [
+        "NMR",
+        "EPR",
+        "MRI-magnets"
+      ],
+      "is_subsidiary": true,
+      "confidence": 0.93,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.bruker.com/en/about-bruker/locations.html",
+          "title": "Bruker Locations",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "bruker-faellanden-ch",
+      "company_id": "bruker",
+      "name_zh": "布鲁克 CALID 事业部（费伦登）",
+      "name_en": "Bruker CALID Division, Fällanden Switzerland",
+      "site_type": "manufacturing",
+      "country": "CH",
+      "city": "Fällanden",
+      "lat": 47.3667,
+      "lng": 8.6833,
+      "focus": [
+        "mass-spectrometry",
+        "MALDI"
+      ],
+      "is_subsidiary": true,
+      "confidence": 0.91,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.bruker.com/en/about-bruker/locations.html",
+          "title": "Bruker Locations",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "waters-milford-hq",
+      "company_id": "waters-corp",
+      "name_zh": "沃特世总部（米尔福德）",
+      "name_en": "Waters Corporation Headquarters, Milford MA",
+      "site_type": "HQ",
+      "country": "US",
+      "city": "Milford",
+      "lat": 42.1598,
+      "lng": -71.5148,
+      "focus": [
+        "corporate"
+      ],
+      "is_subsidiary": false,
+      "confidence": 0.97,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.waters.com/waters/en_US/About-Waters/nav.htm",
+          "title": "Waters About",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "waters-wilmslow-uk",
+      "company_id": "waters-corp",
+      "name_zh": "沃特世欧洲区总部（威姆斯洛）",
+      "name_en": "Waters European Headquarters, Wilmslow UK",
+      "site_type": "commercial",
+      "country": "GB",
+      "city": "Wilmslow",
+      "lat": 53.3258,
+      "lng": -2.2319,
+      "focus": [
+        "EMEA-commercial",
+        "RD"
+      ],
+      "is_subsidiary": true,
+      "confidence": 0.92,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.waters.com/waters/en_US/About-Waters/Locations/nav.htm",
+          "title": "Waters Locations",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "waters-singapore-apac",
+      "company_id": "waters-corp",
+      "name_zh": "沃特世亚太区（新加坡）",
+      "name_en": "Waters Asia Pacific Hub, Singapore",
+      "site_type": "commercial",
+      "country": "SG",
+      "city": "Singapore",
+      "lat": 1.3521,
+      "lng": 103.8198,
+      "focus": [
+        "APAC-commercial"
+      ],
+      "is_subsidiary": true,
+      "confidence": 0.9,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.waters.com/waters/en_US/About-Waters/Locations/nav.htm",
+          "title": "Waters Locations",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "sartorius-gottingen-hq",
+      "company_id": "sartorius",
+      "name_zh": "赛多利斯总部（哥廷根）",
+      "name_en": "Sartorius AG Headquarters, Göttingen Germany",
+      "site_type": "HQ",
+      "country": "DE",
+      "city": "Göttingen",
+      "lat": 51.5328,
+      "lng": 9.9352,
+      "focus": [
+        "corporate"
+      ],
+      "is_subsidiary": false,
+      "confidence": 0.97,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.sartorius.com/en/company/about-sartorius",
+          "title": "Sartorius About",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "sartorius-aubagne-bioprocess",
+      "company_id": "sartorius",
+      "name_zh": "赛多利斯生物工艺制造（欧班涅）",
+      "name_en": "Sartorius Bioprocess Manufacturing, Aubagne France",
+      "site_type": "manufacturing",
+      "country": "FR",
+      "city": "Aubagne",
+      "lat": 43.2927,
+      "lng": 5.5722,
+      "focus": [
+        "bioprocessing",
+        "filtration"
+      ],
+      "is_subsidiary": false,
+      "confidence": 0.91,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.sartorius.com/en/company/about-sartorius/locations",
+          "title": "Sartorius Locations",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "sartorius-yauco-pr",
+      "company_id": "sartorius",
+      "name_zh": "赛多利斯制造工厂（亚乌科，波多黎各）",
+      "name_en": "Sartorius Manufacturing, Yauco Puerto Rico",
+      "site_type": "manufacturing",
+      "country": "US",
+      "city": "Yauco",
+      "lat": 18.0344,
+      "lng": -66.8506,
+      "focus": [
+        "filtration",
+        "single-use"
+      ],
+      "is_subsidiary": false,
+      "confidence": 0.9,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.sartorius.com/en/company/about-sartorius/locations",
+          "title": "Sartorius Locations",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "qiagen-venlo-hq",
+      "company_id": "qiagen",
+      "name_zh": "凯杰法律注册总部（芬洛）",
+      "name_en": "QIAGEN Registered Headquarters, Venlo Netherlands",
+      "site_type": "HQ",
+      "country": "NL",
+      "city": "Venlo",
+      "lat": 51.3704,
+      "lng": 6.1725,
+      "focus": [
+        "corporate"
+      ],
+      "is_subsidiary": false,
+      "confidence": 0.95,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://corporate.qiagen.com/investor-relations",
+          "title": "QIAGEN Corporate IR",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "qiagen-hilden-campus",
+      "company_id": "qiagen",
+      "name_zh": "凯杰主研发制造园区（希尔登）",
+      "name_en": "QIAGEN Main Campus, Hilden Germany",
+      "site_type": "manufacturing",
+      "country": "DE",
+      "city": "Hilden",
+      "lat": 51.1718,
+      "lng": 6.9399,
+      "focus": [
+        "molecular-diagnostics",
+        "sample-prep",
+        "RD"
+      ],
+      "is_subsidiary": false,
+      "confidence": 0.96,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://corporate.qiagen.com/about/locations",
+          "title": "QIAGEN Locations",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "qiagen-germantown-us",
+      "company_id": "qiagen",
+      "name_zh": "凯杰美国总部（日耳曼敦）",
+      "name_en": "QIAGEN US Headquarters, Germantown MD",
+      "site_type": "commercial",
+      "country": "US",
+      "city": "Germantown",
+      "lat": 39.1755,
+      "lng": -77.2644,
+      "focus": [
+        "US-commercial",
+        "RD"
+      ],
+      "is_subsidiary": true,
+      "confidence": 0.93,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://corporate.qiagen.com/about/locations",
+          "title": "QIAGEN Locations",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "revvity-waltham-hq",
+      "company_id": "revvity",
+      "name_zh": "睿威迪总部（沃尔瑟姆）",
+      "name_en": "Revvity Headquarters, Waltham MA",
+      "site_type": "HQ",
+      "country": "US",
+      "city": "Waltham",
+      "lat": 42.3765,
+      "lng": -71.2356,
+      "focus": [
+        "corporate"
+      ],
+      "is_subsidiary": false,
+      "confidence": 0.96,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.revvity.com/about-us",
+          "title": "Revvity About",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "revvity-turku-rd",
+      "company_id": "revvity",
+      "name_zh": "睿威迪研发中心（图尔库）",
+      "name_en": "Revvity R&D Center, Turku Finland",
+      "site_type": "RD",
+      "country": "FI",
+      "city": "Turku",
+      "lat": 60.4518,
+      "lng": 22.2666,
+      "focus": [
+        "immunoassay",
+        "DELFIA",
+        "screening"
+      ],
+      "is_subsidiary": false,
+      "confidence": 0.93,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.revvity.com/about-us/locations",
+          "title": "Revvity Locations",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "revvity-hopkinton-mfg",
+      "company_id": "revvity",
+      "name_zh": "睿威迪制造工厂（霍普金顿）",
+      "name_en": "Revvity Manufacturing, Hopkinton MA",
+      "site_type": "manufacturing",
+      "country": "US",
+      "city": "Hopkinton",
+      "lat": 42.2287,
+      "lng": -71.5228,
+      "focus": [
+        "instruments",
+        "reagents"
+      ],
+      "is_subsidiary": false,
+      "confidence": 0.91,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.revvity.com/about-us/locations",
+          "title": "Revvity Locations",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "repligen-marlborough-hq",
+      "company_id": "repligen",
+      "name_zh": "瑞普利根总部（马尔伯勒）",
+      "name_en": "Repligen Corporation Headquarters, Marlborough MA",
+      "site_type": "HQ",
+      "country": "US",
+      "city": "Marlborough",
+      "lat": 42.3459,
+      "lng": -71.5523,
+      "focus": [
+        "corporate"
+      ],
+      "is_subsidiary": false,
+      "confidence": 0.96,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.repligen.com/about",
+          "title": "Repligen About",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "repligen-weesp-mfg",
+      "company_id": "repligen",
+      "name_zh": "瑞普利根制造工厂（韦斯普，荷兰）",
+      "name_en": "Repligen Manufacturing, Weesp Netherlands",
+      "site_type": "manufacturing",
+      "country": "NL",
+      "city": "Weesp",
+      "lat": 52.307,
+      "lng": 5.033,
+      "focus": [
+        "protein-A",
+        "bioprocessing-columns"
+      ],
+      "is_subsidiary": true,
+      "confidence": 0.91,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.repligen.com/about/locations",
+          "title": "Repligen Locations",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "mettler-toledo-greifensee-ops-hq",
+      "company_id": "mettler-toledo",
+      "name_zh": "梅特勒-托利多运营总部（格赖芬湖）",
+      "name_en": "Mettler-Toledo Operational Headquarters, Greifensee Switzerland",
+      "site_type": "HQ",
+      "country": "CH",
+      "city": "Greifensee",
+      "lat": 47.3667,
+      "lng": 8.6833,
+      "focus": [
+        "corporate",
+        "RD"
+      ],
+      "is_subsidiary": false,
+      "confidence": 0.96,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.mt.com/us/en/home/about-us/investor-relations.html",
+          "title": "Mettler-Toledo About",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "mettler-toledo-columbus-legal",
+      "company_id": "mettler-toledo",
+      "name_zh": "梅特勒-托利多法律注册地（哥伦布）",
+      "name_en": "Mettler-Toledo Legal HQ, Columbus OH",
+      "site_type": "HQ",
+      "country": "US",
+      "city": "Columbus",
+      "lat": 40.015,
+      "lng": -82.9988,
+      "focus": [
+        "legal-registration"
+      ],
+      "is_subsidiary": false,
+      "confidence": 0.94,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.mt.com/us/en/home/about-us.html",
+          "title": "Mettler-Toledo About US",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "mettler-toledo-changzhou-mfg",
+      "company_id": "mettler-toledo",
+      "name_zh": "梅特勒-托利多制造基地（常州）",
+      "name_en": "Mettler-Toledo Manufacturing, Changzhou China",
+      "site_type": "manufacturing",
+      "country": "CN",
+      "city": "Changzhou",
+      "lat": 31.7719,
+      "lng": 119.9742,
+      "focus": [
+        "balances",
+        "industrial-weighing"
+      ],
+      "is_subsidiary": true,
+      "confidence": 0.92,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.mt.com/cn/zh/home/about-us/locations.html",
+          "title": "Mettler-Toledo China Locations",
           "accessed": "2026-06"
         }
       ]

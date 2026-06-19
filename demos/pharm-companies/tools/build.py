@@ -81,8 +81,14 @@ def merge_research() -> None:
             continue
         shard = path.stem
         for c in d.get("companies", []):
-            if c.get("id"):
-                companies[c["id"]] = c
+            cid = c.get("id")
+            if not cid:
+                continue
+            prev = companies.get(cid)
+            # Never let a lightweight roster entry overwrite an existing deep profile.
+            if prev and prev.get("tier") != "roster" and c.get("tier") == "roster":
+                continue
+            companies[cid] = c
         for s in d.get("sites", []):
             if s.get("id"):
                 sites[s["id"]] = s

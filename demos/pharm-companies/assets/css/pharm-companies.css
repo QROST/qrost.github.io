@@ -144,6 +144,10 @@ body { color: var(--text); font-family: Inter, system-ui, sans-serif; }
 .badge-ct-biosimilar { background: rgba(168,85,247,.15); color: #9333ea; }
 .badge-ct-tcm { background: rgba(239,68,68,.13); color: #dc2626; }
 .badge-ct-diversified { background: rgba(100,116,139,.16); color: #475569; }
+.badge-ct-lifesci_tools { background: rgba(14,165,233,.15); color: #0369a1; }
+.badge-ct-medtech { background: rgba(244,63,94,.13); color: #be123c; }
+html.dark .badge-ct-lifesci_tools { color: #38bdf8; }
+html.dark .badge-ct-medtech { color: #fb7185; }
 html.dark .badge-ct-generics { color: #fbbf24; }
 html.dark .badge-ct-tcm { color: #f87171; }
 html.dark .badge-ct-diversified { color: #cbd5e1; }

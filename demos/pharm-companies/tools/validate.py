@@ -29,7 +29,7 @@ ID_RE = re.compile(r"^[a-z0-9][a-z0-9-]*$")
 DATE_RE = re.compile(r"^\d{4}-\d{2}(-\d{2})?$")
 
 VALID_REGION = {"north_america", "europe", "japan", "greater_china", "oceania", "other_apac", "latam", "mea"}
-VALID_COMPANY_TYPE = {"originator_bigpharma", "biotech", "generics", "cdmo_cro", "vaccine", "biosimilar", "tcm", "diversified"}
+VALID_COMPANY_TYPE = {"originator_bigpharma", "biotech", "generics", "cdmo_cro", "vaccine", "biosimilar", "tcm", "diversified", "lifesci_tools", "medtech"}
 VALID_SITE_TYPE = {"HQ", "RD", "manufacturing", "commercial", "JV"}
 VALID_APPROVAL = {"preclinical", "ph1", "ph2", "ph3", "filed", "approved", "withdrawn"}
 VALID_DRUG_CLASS = {"originator", "biosimilar", "generic"}
@@ -44,6 +44,11 @@ VALID_EVIDENCE = {"audited", "case_study", "vendor_claim", "media"}
 
 REQ_COMPANY = {"id", "name_zh", "name_en", "country", "country_display_zh", "country_display_en",
                "hq_city", "is_public", "company_type", "region", "confidence", "last_verified", "sources"}
+# Roster tier: lightweight listed-company index (no required sites/products) — for broad
+# exchange-by-exchange coverage of the global listed-pharma long tail.
+REQ_ROSTER = {"id", "name_en", "country", "country_display_en", "company_type", "region",
+              "exchange", "confidence", "last_verified", "sources"}
+VALID_TIER = {"deep", "roster"}
 REQ_SITE = {"id", "company_id", "name_zh", "name_en", "site_type", "country", "city",
             "lat", "lng", "is_subsidiary", "confidence", "last_verified", "sources"}
 REQ_PRODUCT = {"id", "name_zh", "name_en", "brand_name", "company_id", "modality_id",
@@ -201,7 +206,10 @@ def main() -> int:
     seen = set()
     for i, c in enumerate(companies):
         ctx = f"company[{i}] id={c.get('id','?')}"
-        check_common(c, ctx, REQ_COMPANY, errors)
+        is_roster = c.get("tier") == "roster"
+        check_common(c, ctx, REQ_ROSTER if is_roster else REQ_COMPANY, errors)
+        if c.get("tier") and c["tier"] not in VALID_TIER:
+            errors.append(f"{ctx}: invalid tier={c.get('tier')!r}")
         if c.get("company_type") and c["company_type"] not in VALID_COMPANY_TYPE:
             errors.append(f"{ctx}: invalid company_type={c.get('company_type')!r}")
         if c.get("region") and c["region"] not in VALID_REGION:
