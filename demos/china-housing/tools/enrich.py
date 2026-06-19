@@ -1154,10 +1154,17 @@ def lulu_all(con, log):
     """
     refs = {cat: _load_lulu_ref(cat) for cat in LULU_CATEGORIES}
     total_pts = sum(len(v) for v in refs.values())
+    # Clear prior osm-ref rows so stale / overseas entries never linger (this is
+    # the only source that owns these 7 categories).
+    con.execute("DELETE FROM poi WHERE source='osm-ref'")
     listings = con.execute(
-        "SELECT id, lat, lng FROM listings "
+        "SELECT id, prov, lat, lng FROM listings "
         "WHERE lat IS NOT NULL AND lng IS NOT NULL ORDER BY id"
     ).fetchall()
+    # The ref sets are China-only — for overseas listings (California) the nearest
+    # CN facility is a meaningless trans-Pacific distance, so skip them (LULU
+    # columns show "—"). HK/TW keep real distances (e.g. Daya Bay near HK).
+    listings = [r for r in listings if r["prov"] not in _OVERSEAS_PROV]
     log(f"lulu: {len(listings)} listing(s) × {len(LULU_CATEGORIES)} categories "
         f"(~{total_pts} ref points total, brute-force haversine)…")
 
