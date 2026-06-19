@@ -573,7 +573,7 @@
   // combine as Σwᵢsᵢ/Σwᵢ×100. Weights are FIXED and published in #qz-formula.
   // Population is always the default-visible set — hidden benchmark rows never
   // surface here regardless of the footer tier toggle.
-  const qz = { budget: 0, winter: 1, summer: 1, hazard: 1, heat: false, coast: false, alt: false, rail: false, hsr: false, airport: false, hospital: false };
+  const qz = { budget: 0, winter: 1, summer: 1, hazard: 1, heat: false, coast: false, alt: false, rail: false, hsr: false, airport: false, hospital: false, avoidLulu: false };
   const QZ_DIM_META = {
     price: { labelKey: 'qdPrice', color: '#059669' },
     climate: { labelKey: 'qdClimate', color: '#6366f1' },
@@ -585,12 +585,23 @@
     hsr: { labelKey: 'qdHsr', color: '#7c3aed' },
     airport: { labelKey: 'qdAirport', color: '#10b981' },
     hospital: { labelKey: 'qdHospital', color: '#dc2626' },
+    avoidLulu: { labelKey: 'qdAvoidLulu', color: '#b91c1c' },
   };
   const QZ_PRICE_RANGE = (() => {
     const xs = VISIBLE_POP.map((d) => d.unitPrice);
     return { min: Math.min(...xs), max: Math.max(...xs) };
   })();
   const QZ_MAX_BURDEN = Math.max(1, ...VISIBLE_POP.map((d) => d.hazardBurden || 0));
+  // LULU avoidance sub-score (越远越好): mean per-category farness, each a
+  // 1−e^(−km/scale) curve so being NEAR any unwanted facility drags the score
+  // down and being comfortably far from ALL of them approaches 1. Scales (km
+  // e-fold) reflect each class's nuisance radius.
+  const LULU_FAR_SCALE = { wastewater: 4, landfill: 5, incinerator: 6, nuclear: 30, substation: 2, chemical: 6, sensitive: 8 };
+  function luluFarness(d) {
+    const f = { wastewater: d.wastewaterKm, landfill: d.landfillKm, incinerator: d.incineratorKm, nuclear: d.nuclearKm, substation: d.substationKm, chemical: d.chemicalKm, sensitive: d.sensitiveKm };
+    const xs = Object.keys(f).filter((k) => f[k] != null).map((k) => 1 - Math.exp(-f[k] / LULU_FAR_SCALE[k]));
+    return xs.length ? xs.reduce((a, b) => a + b, 0) / xs.length : 0.5;
+  }
   function quizScore(d) {
     if (qz.budget && d.priceYuan / 10000 > qz.budget) return null;
     if (qz.alt && !(d.elevation != null && d.elevation <= 1500)) return null;
@@ -606,6 +617,7 @@
     if (qz.hsr) parts.push(['hsr', 1.5, d.hsrKm != null ? Math.exp(-d.hsrKm / 15) : 0]);
     if (qz.airport) parts.push(['airport', 1.5, d.airportKm != null ? Math.exp(-d.airportKm / 15) : 0]);
     if (qz.hospital) parts.push(['hospital', 1.5, d.hospitalKm != null ? Math.exp(-d.hospitalKm / 15) : 0]);
+    if (qz.avoidLulu) parts.push(['avoidLulu', 1.5, luluFarness(d)]);
     const wSum = parts.reduce((s, p) => s + p[1], 0);
     const vSum = parts.reduce((s, p) => s + p[1] * p[2], 0);
     return { score: (vSum / (wSum || 1)) * 100, parts, vSum };
@@ -613,7 +625,7 @@
   function quizHash() {
     try {
       if (!(window.history && window.history.replaceState)) return;
-      const enc = [qz.budget, qz.winter, qz.summer, qz.hazard, +qz.heat, +qz.coast, +qz.alt, +qz.rail, +qz.hsr, +qz.airport, +qz.hospital].join(',');
+      const enc = [qz.budget, qz.winter, qz.summer, qz.hazard, +qz.heat, +qz.coast, +qz.alt, +qz.rail, +qz.hsr, +qz.airport, +qz.hospital, +qz.avoidLulu].join(',');
       window.history.replaceState(null, '', '#q=' + enc);
     } catch (e) { /* sandbox */ }
   }
@@ -622,13 +634,14 @@
       const m = (window.location && window.location.hash || '').match(/^#q=([\d.,]+)$/);
       if (!m) return;
       const v = m[1].split(',').map(Number);
-      if (v.length !== 8 && v.length !== 9 && v.length !== 11) return;
+      if (v.length !== 8 && v.length !== 9 && v.length !== 11 && v.length !== 12) return;
       if (v.some((x) => !isFinite(x))) return;
       qz.budget = v[0]; qz.winter = clamp(v[1], 0, 2); qz.summer = clamp(v[2], 0, 2); qz.hazard = clamp(v[3], 0, 2);
       qz.heat = !!v[4]; qz.coast = !!v[5]; qz.alt = !!v[6]; qz.rail = !!v[7];
       qz.hsr = v.length >= 9 ? !!v[8] : false;
       qz.airport = v.length >= 11 ? !!v[9] : false;
       qz.hospital = v.length >= 11 ? !!v[10] : false;
+      qz.avoidLulu = v.length >= 12 ? !!v[11] : false;
     } catch (e) { /* sandbox */ }
   }
   function styleQzChips() {

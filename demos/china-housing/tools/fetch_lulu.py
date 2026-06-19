@@ -45,14 +45,23 @@ MIRRORS = [
 # returns one point per element. Tags are kept so we can label + post-filter.
 CATEGORIES = {
     # 污水处理厂
-    "wastewater": ['nwr["man_made"="wastewater_plant"](area.cn);'],
+    "wastewater": [
+        'nwr["man_made"="wastewater_plant"](area.cn);',
+        'nwr["industrial"="wastewater_treatment"](area.cn);',
+    ],
     # 垃圾填埋场
-    "landfill": ['nwr["landuse"="landfill"](area.cn);'],
+    "landfill": [
+        'nwr["landuse"="landfill"](area.cn);',
+        'nwr["amenity"="waste_disposal"](area.cn);',
+        'nwr["amenity"="waste_transfer_station"](area.cn);',
+    ],
     # 垃圾焚烧厂 (waste-to-energy / municipal incinerator)
     "incinerator": [
         'nwr["man_made"="incinerator"](area.cn);',
         'nwr["plant:source"="waste"](area.cn);',
         'nwr["generator:source"="waste"](area.cn);',
+        'nwr["amenity"="waste_incineration"](area.cn);',
+        'nwr["plant:method"="combustion"]["plant:source"="waste"](area.cn);',
     ],
     # 核电站
     "nuclear": [
@@ -67,7 +76,10 @@ CATEGORIES = {
     # explicit industrial=chemical tag with name-matched industrial parks.
     "chemical": [
         'nwr["industrial"="chemical"](area.cn);',
+        'nwr["industrial"="petrochemical"](area.cn);',
+        'nwr["industrial"="oil"](area.cn);',
         'nwr["man_made"="works"]["product"~"chemical|petrochemical|油|化"](area.cn);',
+        'nwr["man_made"="works"]["product"~"化工|石化|化学"](area.cn);',
         'nwr["landuse"="industrial"]["name"~"化工|石化|化学|危化|炼化"](area.cn);',
     ],
     # 敏感地点 (军事) — OSM-public military areas only. CN coverage is
@@ -79,6 +91,15 @@ CATEGORIES = {
 }
 
 MIN_VOLTAGE_V = 220_000  # "大型变电站" threshold
+# Mainland-China bbox sanity gate — drop any OSM point outside it (mis-tagged /
+# wrong-hemisphere nodes occasionally slip through area queries). Generous to keep
+# Xinjiang/Tibet/Hainan/island coverage.
+BBOX = {"lat_min": 17.0, "lat_max": 54.5, "lng_min": 72.0, "lng_max": 135.5}
+
+
+def _in_china(lat: float, lng: float) -> bool:
+    return (BBOX["lat_min"] <= lat <= BBOX["lat_max"]
+            and BBOX["lng_min"] <= lng <= BBOX["lng_max"])
 
 
 def _build_query(body_lines: list[str]) -> str:
@@ -161,6 +182,7 @@ def fetch_category(cat: str) -> list[dict]:
         raise RuntimeError(f"Overpass totally failed for {cat}")
     seen: dict[tuple, dict] = {}
     dropped = 0
+    out_of_bbox = 0
     for el in data.get("elements", []):
         co = _coord(el)
         if not co:
@@ -168,6 +190,9 @@ def fetch_category(cat: str) -> list[dict]:
         tags = el.get("tags", {})
         if cat == "substation" and not _keep_substation(tags):
             dropped += 1
+            continue
+        if not _in_china(co[0], co[1]):
+            out_of_bbox += 1
             continue
         lat, lng = round(co[0], 5), round(co[1], 5)
         key = (lat, lng)
@@ -180,6 +205,8 @@ def fetch_category(cat: str) -> list[dict]:
     out = list(seen.values())
     if cat == "substation":
         print(f"    substation: kept {len(out)} ≥{MIN_VOLTAGE_V//1000}kV (dropped {dropped} lower-voltage)")
+    if out_of_bbox:
+        print(f"    {cat}: dropped {out_of_bbox} out-of-China-bbox point(s)")
     return out
 
 
