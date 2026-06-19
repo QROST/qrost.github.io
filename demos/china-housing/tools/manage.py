@@ -381,6 +381,24 @@ def sync_html(rows: list[dict]) -> list[str]:
         apply("date range", r"\d{4}-\d{2}(\s*~\s*)\d{4}-\d{2}",
               lambda m: f"{lo}{m.group(1)}{hi}")
 
+    # Cache-bust ALL local <script src="assets/…js"> tags with a content hash, so
+    # browsers / the GitHub-Pages CDN re-fetch whenever data OR code changes. The
+    # data files (listings/enriched/…) previously had no ?v= and app.js/i18n.js
+    # carried a hand-edited stamp — both went stale, so a normal refresh kept the
+    # old baked extremeDays / colours. Hash spans every served asset, so any
+    # rebuild flips the token and invalidates the lot.
+    import hashlib
+    asset_dirs = [HTML_PATH.parent / "assets" / "data", HTML_PATH.parent / "assets" / "js"]
+    h = hashlib.sha1()
+    for d in asset_dirs:
+        for f in sorted(d.glob("*.js")) if d.exists() else []:
+            h.update(f.read_bytes())
+    ver = h.hexdigest()[:10]
+    if ver:
+        apply("cache-bust (?v)",
+              r'(src=")(assets/(?:data|js)/[^"?]+\.js)(?:\?v=[^"]*)?(")',
+              lambda m: f"{m.group(1)}{m.group(2)}?v={ver}{m.group(3)}")
+
     HTML_PATH.write_text(html, encoding="utf-8")
     return log
 
