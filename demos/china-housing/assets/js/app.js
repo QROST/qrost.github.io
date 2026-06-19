@@ -2774,6 +2774,7 @@
         q: tstate.q || '',
         groups: [...tstate.groups],
         chips: [...tstate.chips],
+        avoidSeen: true, // 'avoid' group migration flag (see loadUiPrefs)
         rankKey,
         provMetric,
         dimKey,
@@ -2808,6 +2809,10 @@
       if (Array.isArray(p.groups)) {
         const gs = p.groups.filter((k) => UI_GROUP_KEYS.has(k));
         if (gs.length) tstate.groups = new Set(gs);
+        // One-time migration: surface the new 'avoid' (环境规避) group for users
+        // whose stored prefs predate it. After the next save the avoidSeen flag
+        // is set, so an explicit toggle-off then persists normally.
+        if (!p.avoidSeen) tstate.groups.add('avoid');
       }
       if (Array.isArray(p.chips)) {
         tstate.chips = new Set(p.chips.filter((k) => FILTERS[k]));
