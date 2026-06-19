@@ -1161,10 +1161,14 @@ def lulu_all(con, log):
         "SELECT id, prov, lat, lng FROM listings "
         "WHERE lat IS NOT NULL AND lng IS NOT NULL ORDER BY id"
     ).fetchall()
-    # The ref sets are China-only — for overseas listings (California) the nearest
-    # CN facility is a meaningless trans-Pacific distance, so skip them (LULU
-    # columns show "—"). HK/TW keep real distances (e.g. Daya Bay near HK).
-    listings = [r for r in listings if r["prov"] not in _OVERSEAS_PROV]
+    # The ref sets are mainland-OSM (ISO CN area). Skip listings the sets don't
+    # represent: California (meaningless trans-Pacific nearest) AND Taiwan (its own
+    # facilities are tagged ISO TW, excluded from the CN query → a Taiwan listing's
+    # "nearest" is a ~130 km+ strait crossing, falsely reading as "far from all
+    # LULUs / ideal"). Both show "—". HK is kept: its border listings legitimately
+    # sit a few km from Shenzhen mainland facilities.
+    _lulu_skip = _OVERSEAS_PROV | _TAIWAN_PROV
+    listings = [r for r in listings if r["prov"] not in _lulu_skip]
     log(f"lulu: {len(listings)} listing(s) × {len(LULU_CATEGORIES)} categories "
         f"(~{total_pts} ref points total, brute-force haversine)…")
 
