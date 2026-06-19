@@ -27,6 +27,7 @@ const UI = {
   panelBreakthroughs: { en: 'Breakthroughs', zh: '突破' },
   panelPolicies: { en: 'Policies', zh: '政策' },
   panelVendors: { en: 'Vendors', zh: '厂商' },
+  panelPharma: { en: 'Pharma', zh: '医药' },
   panelBeams: { en: 'Beams', zh: '连线' },
   panelTrails: { en: 'Trails', zh: '拖尾' },
   panelLattice: { en: 'Lattice', zh: '晶格' },
@@ -128,6 +129,7 @@ export function metaName(m) {
 
 // 弹卡关键词：刻意去标签、去类型（不显示 城市/产品/小区），只留几枚裸关键词 → 艺术化、不那么易读
 export function formatKeywords(m) {
+  if (m.kwZh || m.kwEn) return lang === 'zh' ? (m.kwZh || m.kwEn) : (m.kwEn || m.kwZh);   // 预置关键词（医药层等）
   const r = m.raw;
   if (!r) return (m.sub || '').split(' · ').slice(1).join('  ·  ');
   const zh = lang === 'zh';

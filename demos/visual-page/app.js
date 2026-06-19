@@ -19,10 +19,11 @@ const IS_MOBILE = matchMedia('(pointer: coarse)').matches || innerWidth < 820;
 const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
 const lerp = (a, b, t) => a + (b - a) * t;
 const IND = '../china-industrial-software/assets/data/';
+const PHARM = '../pharm-companies/assets/data/';   // 第三个数据源：全球医药公司图谱
 const TRAIL = IS_MOBILE ? 22 : 44;   // 轨迹历史采样数（每点实际尾长由数据决定）
 const STRIDE = 10;                    // 每 STRIDE 帧采样一次 → 加大步幅=路径覆盖更长时间（双倍）、且更省
 const CENTER = [0, 42, 0];           // 所有吸引子共用中心 → 重叠共舞（呼吸吸气态）
-const FEAT_DIM = 26;                 // SOM 特征维度：城市 10 + 工业 10 + 类型 one-hot 6
+const FEAT_DIM = 27;                 // SOM 特征维度：字段 0..19 + 类型 one-hot 20..26（7 类：含医药）
 const SOM_L = [9, 7, 5];             // Kohonen 晶格维度 → 315 神经元
 const SOM_R = [55, 120];             // 神经晶格→世界：环绕视角的球壳 内/外半径（非平面盒）
 const SOM_EPOCHS = IS_MOBILE ? 14 : 26;
@@ -404,6 +405,103 @@ async function buildIndustrial() {
   return { products: products.length, vendors: vendors.length, kernels: kernels.length, milestones: milestones.length, policies: policies.length, pairs: pairs.length };
 }
 
+// ---------- 第三数据源：全球医药公司图谱（pharm-companies） → 新的「医药」层（group 6） ----------
+async function buildPharma() {
+  const j = (p) => fetch(PHARM + p).then((r) => (r.ok ? r.json() : null)).catch(() => null);
+  const manifest = await j('manifest.json');
+  const shardFiles = (manifest && manifest.shards || []).map((s) => s.file);
+  const [coData, siData, moData, brData, prData, ...shards] = await Promise.all([
+    j('companies.json'), j('sites.json'), j('modalities.json'), j('breakthroughs.json'), j('comparisons/benchmark-pairs.json'),
+    ...shardFiles.map((f) => j(f))
+  ]);
+  const companies = (coData && (coData.companies || coData)) || [];
+  const sites = (siData && (siData.sites || siData)) || [];
+  const modalities = (moData && (moData.modalities || moData)) || [];
+  const milestones = (brData && (brData.milestones || brData)) || [];
+  const pairs = (prData && (prData.pairs || prData)) || [];
+  const products = shards.flatMap((d) => (d && (d.products || d)) || []);
+  if (!companies.length) return { companies: 0 };
+
+  const coMap = {}; companies.forEach((c) => { coMap[c.id] = c; });
+  const RHUE = { greater_china: 345, north_america: 280, europe: 255, japan: 320, other_apac: 175, oceania: 160, mea: 30 };
+  const rhue = (r) => (RHUE[r] != null ? RHUE[r] : 300);
+  const pIdx = {};                                                  // id → 星索引（companies + products），供连线
+  const rnd = () => Math.random() - 0.5;
+  // 各亚型的吸引子播种
+  const lz = () => [0.1 + rnd(), rnd(), 20 + rnd() * 2];            // Lorenz
+  const lu = () => [0.1 + rnd(), rnd(), 18 + rnd() * 2];           // Lü
+  const az = () => [rnd() * 0.3, rnd() * 0.3, rnd() * 0.3];        // Aizawa
+  const ch = () => [-10 + rnd(), rnd(), 37 + rnd()];              // Chen
+
+  // 站点（305，全球地理）→ 发光点；按公司所属地区着色；经纬度播种 Thomas → 全球版图被混沌卷入
+  sites.forEach((st) => {
+    if (st.lat == null || st.lng == null) return;
+    const co = coMap[st.company_id], region = co ? co.region : 'other';
+    const hi = rhue(region), conf = st.confidence ?? 0.7;
+    const i = addStar(0, CENTER, 8, 0.0022, 0.16, 0.5, [(st.lng - 100) * 0.05, -(st.lat - 30) * 0.05, (st.lat) * 0.0006],
+      hi, 0.5, 0.5 + conf * 0.18, 1.8, 0.5, clamp(1 - conf, 0, 1),
+      { kind: 'PHARMA', nameZh: st.name_zh || st.name_en, nameEn: st.name_en || st.name_zh,
+        kwZh: `${st.site_type || ''} · ${st.city || ''} · ${st.country || ''}`.trim(), kwEn: `${st.site_type || ''} · ${st.city || ''} · ${st.country || ''}`.trim() },
+      null, 5);
+    const fv = makeFeat(6); fv[0] = clamp((st.lat + 60) / 120, 0, 1); fv[1] = clamp((st.lng + 180) / 360, 0, 1); fv[4] = conf; D.feat[i] = fv; D.shape[i] = 0;
+  });
+
+  // 公司（128）→ 按 company_type 取一种简单立体（复活退役形）；地区着色；营收→大小
+  const CO_SHAPE = { originator_bigpharma: 4, biotech: 2, cdmo_cro: 1, generics: 3, tcm: 6, vaccine: 7, biosimilar: 8, diversified: 10 };
+  companies.forEach((c) => {
+    const rev = (c.revenue && c.revenue.value) || 0, emp = (c.employees && c.employees.value) || 0;
+    const sz = 1.8 + clamp((Math.log10(rev + 1) - 8) / 3, 0, 1) * 2.2;
+    const i = addStar(3, CENTER, 15, 0.0032, 18, 0.4 + Math.random() * 0.3, az(),
+      rhue(c.region), 0.6, 0.5 + (c.is_public ? 0.12 : 0), sz, 0.42, clamp(1 - (c.confidence ?? 0.8), 0, 1),
+      { kind: 'PHARMA', nameZh: c.name_zh || c.name_en, nameEn: c.name_en || c.name_zh,
+        kwZh: `${c.hq_city || ''} · ${c.country_display_zh || c.country || ''} · ${rev ? Math.round(rev / 1e8) + ' 亿' : ''}`.replace(/ · $/, ''),
+        kwEn: `${c.hq_city || ''} · ${c.country || ''} · ${rev ? '$' + (rev / 1e9).toFixed(1) + 'B' : ''}`.replace(/ · $/, '') },
+      null, 5 + clamp((Math.log10(rev + 1) - 8) / 3, 0, 1) * (TRAIL - 6));
+    pIdx[c.id] = i;
+    const fv = makeFeat(6); fv[0] = clamp((Math.log10(rev + 1) - 8) / 3, 0, 1); fv[1] = clamp((Math.log10(emp + 1) - 2) / 4, 0, 1);
+    fv[2] = clamp(((c.founded || 1980) - 1900) / 130, 0, 1); fv[3] = c.is_public ? 1 : 0; fv[4] = clamp(c.confidence ?? 0.8, 0, 1); D.feat[i] = fv; D.shape[i] = CO_SHAPE[c.company_type] || 2;
+  });
+
+  // 产品（219）→ 八面体；按所属公司地区着色；重磅炸弹更大
+  products.forEach((p) => {
+    const co = coMap[p.company_id], region = (co && co.region) || p.region || 'other';
+    const i = addStar(9, CENTER, 0.85, 0.0013, 24, 0.55, lu(),
+      rhue(region), 0.62, 0.46, p.is_blockbuster ? 3.0 : 1.9, 0.4, 0.25,
+      { kind: 'PHARMA', nameZh: p.name_zh || p.brand_name || p.name_en, nameEn: p.name_en || p.brand_name || p.name_zh,
+        kwZh: `${p.modality_id || ''} · ${p.therapeutic_area_id || ''} · ${p.first_approval_year || ''}`.trim(),
+        kwEn: `${p.modality_id || ''} · ${p.therapeutic_area_id || ''} · ${p.first_approval_year || ''}`.trim() },
+      null, 5 + (p.is_blockbuster ? TRAIL - 6 : 0));
+    pIdx[p.id] = i;
+    const fv = makeFeat(6); fv[6] = clamp(((p.first_approval_year || 2000) - 1980) / 50, 0, 1); fv[7] = p.is_blockbuster ? 1 : 0; D.feat[i] = fv; D.shape[i] = 2;
+  });
+
+  // 药物模态（21）→ 星状八面体（核心平台，内圈）
+  modalities.forEach((m) => {
+    const i = addStar(1, CENTER, 0.85, 0.0016, 28, 0.45, lz(), 300, 0.55, 0.6, 3.2, 0.45, 0.2,
+      { kind: 'PHARMA', nameZh: m.name_zh || m.name_en, nameEn: m.name_en || m.name_zh,
+        kwZh: `${m.class || ''}`, kwEn: `${m.class || ''}` }, null, 7);
+    const fv = makeFeat(6); fv[5] = 0.8; D.feat[i] = fv; D.shape[i] = 9;
+  });
+
+  // 突破（65）→ 四面锥；按所属公司地区着色；年份→彗尾
+  milestones.forEach((m) => {
+    const co = coMap[m.company_id], region = (co && co.region) || 'other';
+    const y4 = clamp(parseInt((m.date || '2015').slice(0, 4)) || 2015, 2000, 2026);
+    const i = addStar(6, CENTER, 0.9, 0.0009, 28, 0.4, ch(),
+      rhue(region), 0.78, 0.6, 2.6, 0.85, 0.15,
+      { kind: 'PHARMA', nameZh: m.headline_zh || m.headline_en, nameEn: m.headline_en || m.headline_zh,
+        kwZh: `${y4} · ${m.therapeutic_area_id || ''}`, kwEn: `${y4} · ${m.therapeutic_area_id || ''}` },
+      [hash01('pta:' + (m.therapeutic_area_id || 'x')) * 6.283, hash01('pm:' + (m.id || y4)) * 3.14 - 1.57, hash01('pr:' + (m.id || y4)) * 6.283],
+      6 + clamp((y4 - 2010) / 16, 0, 1) * (TRAIL - 7));
+    const fv = makeFeat(6); fv[6] = clamp((y4 - 1980) / 50, 0, 1); D.feat[i] = fv; D.shape[i] = 3;
+  });
+
+  // 对标连线（国产↔国外）：青紫光束
+  pairs.forEach((bp) => { if (pIdx[bp.domestic_id] != null && pIdx[bp.international_id] != null) { BEAM.a.push(pIdx[bp.domestic_id]); BEAM.b.push(pIdx[bp.international_id]); BEAM.col.push(0.62, 0.3, 0.7); BEAM.w.push(1.0); } });
+
+  return { companies: companies.length, sites: sites.length, products: products.length, modalities: modalities.length, milestones: milestones.length, pairs: pairs.length };
+}
+
 // ---------- typed state (filled after build) ----------
 let N = 0;
 let sys, anc, scl, bh, prm, spd, state, posArr, trail, trailSrc, rotM, head = 0;
@@ -517,8 +615,8 @@ function projectND(verts, n4, dim, wd, a) {
     _v3tmp[i * 3] = _cN[0]; _v3tmp[i * 3 + 1] = _cN[1]; _v3tmp[i * 3 + 2] = _cN[2];
   }
 }
-const GROUP_KEY = { CITY: 0, PRODUCT: 1, KERNEL: 2, BREAKTHROUGH: 3, POLICY: 4, VENDOR: 5 };
-const groupVis = [true, true, true, true, true, true];
+const GROUP_KEY = { CITY: 0, PRODUCT: 1, KERNEL: 2, BREAKTHROUGH: 3, POLICY: 4, VENDOR: 5, PHARMA: 6 };
+const groupVis = [true, true, true, true, true, true, true];
 
 function finalize() {
   N = D.sys.length;
@@ -568,7 +666,7 @@ function finalize() {
   pointVisArr = new Float32Array(N).fill(1);
   pointVisAttr = new THREE.BufferAttribute(pointVisArr, 1).setUsage(THREE.DynamicDrawUsage);
   g.setAttribute('aVis', pointVisAttr);
-  const glowArr = new Float32Array(N); for (let i = 0; i < N; i++) glowArr[i] = grp[i] === 0 ? 1 : 0;   // 仅城市=光点型
+  const glowArr = new Float32Array(N); for (let i = 0; i < N; i++) glowArr[i] = shapeArr[i] === 0 ? 1 : 0;   // 光点型（城市 + 医药站点）=发光，余皆几何体
   g.setAttribute('aGlow', new THREE.Float32BufferAttribute(glowArr, 1));
   pointsObj = new THREE.Points(g, pointMaterial); root.add(pointsObj);
 
@@ -1063,7 +1161,7 @@ function buildPanel() {
   const panel = document.createElement('div'); panel.id = 'panel';
   const groups = [
     ['panelCities', 0], ['panelProducts', 1], ['panelKernels', 2],
-    ['panelBreakthroughs', 3], ['panelPolicies', 4], ['panelVendors', 5],
+    ['panelBreakthroughs', 3], ['panelPolicies', 4], ['panelVendors', 5], ['panelPharma', 6],
   ];
   const mkRow = (i18nKey, checked, onToggle) => {
     const row = document.createElement('label'); row.className = 'prow';
@@ -1091,8 +1189,9 @@ function buildPanel() {
 
 // ---------- boot ----------
 (async function main() {
-  let info = {};
+  let info = {}, pharma = {};
   try { info = await buildIndustrial(); } catch (err) { console.warn('[Data Abyss] industrial load failed (need http server):', err); }
+  try { pharma = await buildPharma(); } catch (err) { console.warn('[Data Abyss] pharma load failed:', err); }
   const cities = buildHousing();
   bgMat.uniforms.uWarm.value = climWarm;
   // CPPN 背景：用数据聚合量确定性播种神经权重（这场梦由数据塑形）
@@ -1103,7 +1202,7 @@ function buildPanel() {
   buildSolids();
   buildPanel();
   applyUi({ skipEnable: true });
-  console.log(`[Data Abyss] ${cities} cities · ${info.products || 0} products · ${info.kernels || 0} kernels · ${info.milestones || 0} breakthroughs · ${info.policies || 0} policies · ${info.vendors || 0} vendors · ${N} bodies · ${beamIdxA ? beamIdxA.length : 0} beams · SOM ${som ? som.neurons + ' neurons / ' + som.edges + ' edges' : 'skipped'}`);
+  console.log(`[Data Abyss] ${cities} cities · ${info.products || 0} products · ${info.kernels || 0} kernels · ${info.milestones || 0} breakthroughs · ${info.policies || 0} policies · ${info.vendors || 0} vendors · pharma[${pharma.companies || 0} co / ${pharma.sites || 0} sites / ${pharma.products || 0} drugs / ${pharma.modalities || 0} mod / ${pharma.milestones || 0} bk] · ${N} bodies · ${beamIdxA ? beamIdxA.length : 0} beams · SOM ${som ? som.neurons + ' neurons / ' + som.edges + ' edges' : 'skipped'}`);
   const ld = document.getElementById('loading'); ld.classList.add('gone'); setTimeout(() => ld.remove(), 1000);
   animate();
 })();
