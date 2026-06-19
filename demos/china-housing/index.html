@@ -527,6 +527,7 @@
                     <button data-qz="hsr" class="qz-chip"></button>
                     <button data-qz="airport" class="qz-chip"></button>
                     <button data-qz="hospital" class="qz-chip"></button>
+                    <button data-qz="avoidLulu" class="qz-chip"></button>
                 </div>
                 <div id="qz-result" class="pt-1"></div>
                 <div class="flex flex-wrap items-center gap-2 pt-1 border-t border-slate-100 dark:border-slate-700/80">
@@ -755,25 +756,25 @@
     </footer>
 
     <!-- data + libs + app (load order matters) -->
-    <script src="assets/data/listings.js?v=ec580f40da"></script>
+    <script src="assets/data/listings.js?v=5f83a1f0f2"></script>
     <!-- China province boundaries, vendored locally (no runtime third-party fetch) -->
-    <script src="assets/data/china-geo.js?v=ec580f40da"></script>
+    <script src="assets/data/china-geo.js?v=5f83a1f0f2"></script>
     <!-- Baked enrichment: geocode / climate / POIs / risk / elevation (tools/manage.py enrich → build) -->
-    <script src="assets/data/enriched.js?v=ec580f40da"></script>
+    <script src="assets/data/enriched.js?v=5f83a1f0f2"></script>
     <!-- Curated province natural-hazard profile (tools/manage.py build) -->
-    <script src="assets/data/hazards.js?v=ec580f40da"></script>
+    <script src="assets/data/hazards.js?v=5f83a1f0f2"></script>
     <!-- Gridded climate/elevation basemap field — isotherms / rainfall / DEM (tools/manage.py field → build) -->
-    <script src="assets/data/field.js?v=ec580f40da"></script>
-    <script src="assets/data/loc-pinyin.js?v=ec580f40da"></script>
-    <script src="assets/data/geo-en.js?v=ec580f40da"></script>
-    <script src="assets/js/i18n.js?v=ec580f40da"></script>
+    <script src="assets/data/field.js?v=5f83a1f0f2"></script>
+    <script src="assets/data/loc-pinyin.js?v=5f83a1f0f2"></script>
+    <script src="assets/data/geo-en.js?v=5f83a1f0f2"></script>
+    <script src="assets/js/i18n.js?v=5f83a1f0f2"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"
         integrity="sha384-vsrfeLOOY6KuIYKDlmVH5UiBmgIdB1oEf7p01YgWHuqmOHfZr374+odEv96n9tNC" crossorigin="anonymous"
         referrerpolicy="no-referrer"></script>
     <script src="https://cdn.jsdelivr.net/npm/echarts@5.5.1/dist/echarts.min.js" crossorigin="anonymous"
         referrerpolicy="no-referrer"></script>
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
-    <script src="assets/js/app.js?v=ec580f40da"></script>
+    <script src="assets/js/app.js?v=5f83a1f0f2"></script>
 
 </body>
 
