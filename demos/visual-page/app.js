@@ -119,9 +119,9 @@ const pointMaterial = new THREE.ShaderMaterial({
       vDist = -mv.z;
       float tw = 0.6 + aTwinkle*0.5*sin(uTime*1.4 + aOrbPhase*6.2831) + uPulse*0.4;
       vColor = aColor * tw;
-      float sz = 0.25 + aSize * aSize * 0.3;                             // 平方映射：小更小、大更大
+      float sz = 0.16 + aSize * 3.0;                                     // aSize 已是归一化幂曲线 → 群星(微)到日月(巨)
       float breath = 1.0 + 0.4 * sin(uTime*0.7 + aOrbPhase*6.2831);      // 呼吸般缩放（每点错相位）
-      gl_PointSize = min(sz * breath * (1.0 + uPulse*0.35) * uPixelRatio * (380.0 / -mv.z), 66.0);
+      gl_PointSize = min(sz * breath * (1.0 + uPulse*0.35) * uPixelRatio * (380.0 / -mv.z), 150.0);
       gl_Position = projectionMatrix * mv;
     }`,
   fragmentShader: `
@@ -438,8 +438,10 @@ async function buildPharma() {
     if (st.lat == null || st.lng == null) return;
     const co = coMap[st.company_id], region = co ? co.region : 'other';
     const hi = rhue(region), conf = st.confidence ?? 0.7;
+    const srev = (co && co.revenue && co.revenue.value) || 0;
+    const ssz = (st.site_type === 'HQ' ? 2.0 : 1.2) + clamp((Math.log10(srev + 1) - 8) / 3, 0, 1) * 2.8;   // 站点大小随母公司营收 + HQ 加成 → 巨头总部=日月
     const i = addStar(0, CENTER, 8, 0.0022, 0.16, 0.5, [(st.lng - 100) * 0.05, -(st.lat - 30) * 0.05, (st.lat) * 0.0006],
-      hi, 0.5, 0.5 + conf * 0.18, 1.8, 0.5, clamp(1 - conf, 0, 1),
+      hi, 0.5, 0.5 + conf * 0.18, ssz, 0.5, clamp(1 - conf, 0, 1),
       { kind: 'PHARMA', nameZh: st.name_zh || st.name_en, nameEn: st.name_en || st.name_zh,
         kwZh: `${st.site_type || ''} · ${st.city || ''} · ${st.country || ''}`.trim(), kwEn: `${st.site_type || ''} · ${st.city || ''} · ${st.country || ''}`.trim() },
       null, 5);
@@ -508,7 +510,8 @@ let sys, anc, scl, bh, prm, spd, state, posArr, trail, trailSrc, rotM, head = 0;
 let pointsObj, trailObj, beamObj, beamIdxA, beamIdxB, beamPos;
 let grp, segsG, pointVisArr, pointVisAttr, trailVisArr, trailVisAttr, beamVisArr, beamVisAttr, beamEnds;
 let E = 0, emEnt, emLocal, entMat;   // 轨迹发射点：每个立体的每个顶点各一条
-let featM = null, latticeObj = null, shapeArr = null;   // SOM 特征矩阵 · 神经晶格 · 每星几何体形 id
+let featM = null, latticeObj = null, shapeArr = null, szCurve = null;   // SOM 特征矩阵 · 神经晶格 · 每星几何体形 id · 尺寸曲线[0,1]
+const SZ_GAMMA = 2.2;   // 尺寸幂曲线：>1 → 多数微小、少数巨大（群星 + 日月大行星）
 let prevPos = null;   // 上一帧世界位置 → 算速度方向（棱柱以运动方向为自转轴）
 let gOrg = 0, breathT = 0;             // 呼吸量(0=重叠混沌 / 1=铺开成神经地图) · 呼吸相位累加器
 // ---------- 几何体形库：常规多面体 + 特殊数学三维体（每个含棱线 edges + 轨迹发射点 corners）----------
@@ -654,12 +657,17 @@ function finalize() {
   // group id per point (for show/hide toggles)
   grp = Uint8Array.from(D.meta.map((m) => (m && GROUP_KEY[m.kind] != null ? GROUP_KEY[m.kind] : 0)));
   shapeArr = new Uint8Array(N); for (let i = 0; i < N; i++) shapeArr[i] = D.shape[i] || 0;   // 每星几何体形 id
+  // 尺寸曲线：发光点 / 几何体各按自身全局最大值归一化（连续量级·长尾的超群者→巨星），过幂曲线 → 群星 + 日月大行星，皆由数据决定
+  { let pointMax = 1e-3, solidMax = 1e-3;
+    for (let i = 0; i < N; i++) { if (shapeArr[i] === 0) { if (D.sz[i] > pointMax) pointMax = D.sz[i]; } else if (D.sz[i] > solidMax) solidMax = D.sz[i]; }
+    szCurve = new Float32Array(N);
+    for (let i = 0; i < N; i++) szCurve[i] = Math.pow(clamp(D.sz[i] / (shapeArr[i] === 0 ? pointMax : solidMax), 0, 1), SZ_GAMMA); }
 
   // points
   const g = new THREE.BufferGeometry();
   g.setAttribute('position', new THREE.BufferAttribute(posArr, 3).setUsage(THREE.DynamicDrawUsage));
   g.setAttribute('aColor', new THREE.Float32BufferAttribute(D.col, 3));
-  g.setAttribute('aSize', new THREE.Float32BufferAttribute(D.sz, 1));
+  g.setAttribute('aSize', new THREE.Float32BufferAttribute(szCurve, 1));   // 已是归一化幂曲线 [0,1]
   g.setAttribute('aTwinkle', new THREE.Float32BufferAttribute(D.tw, 1));
   g.setAttribute('aHaze', new THREE.Float32BufferAttribute(D.hz, 1));
   g.setAttribute('aOrbPhase', new THREE.Float32BufferAttribute(D.op, 1));
@@ -1042,7 +1050,7 @@ function animate() {
           _v.set(dx, dy, dz);
           if (sg.velAxis) { _q1.setFromUnitVectors(_UP, _v); _q2.setFromAxisAngle(_v, sg.speed[j] * tElapsed); _q.multiplyQuaternions(_q2, _q1); }   // 棱柱：长轴对齐 + 绕轴自旋（纺锤）
           else { _q.setFromAxisAngle(_v, sg.speed[j] * tElapsed); }   // 其余：绕运动方向轻微自转
-          const sc = (0.08 + D.sz[gi] * 0.075) * (sg.ellipsoid ? ringBreath : sbreath) * vis;
+          const sc = (0.05 + szCurve[gi] * 1.4) * (sg.ellipsoid ? ringBreath : sbreath) * vis;   // 群星(微) → 日月大行星(巨)，幂曲线·按层归一化·数据驱动
           _dummy.position.set(posArr[o], posArr[o + 1], posArr[o + 2]);
           _dummy.quaternion.copy(_q);
           _dummy.scale.set(sc, sg.ellipsoid ? sc * 0.74 : sc, sc);
