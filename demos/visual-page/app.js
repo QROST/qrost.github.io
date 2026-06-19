@@ -303,7 +303,7 @@ async function buildIndustrial() {
     }, null, 6 + clamp(used / 30, 0, 1) * (TRAIL - 6));
     kIdx[k.id] = ki;
     const fv = makeFeat(2); setOrigin(fv, k.origin); fv[17] = clamp(used / 30, 0, 1); D.feat[ki] = fv;
-    D.shape[ki] = used >= 12 ? 9 : used >= 5 ? 5 : 4;   // 内核(仅43个)三分：极重用→星状八面体 / 重用→正十二面体 / 其余→正二十面体(故正二十面体很少)
+    D.shape[ki] = used >= 20 ? 20 : used >= 12 ? 19 : used >= 6 ? 9 : used >= 3 ? 5 : 15;   // 内核=维度核心(仅43个)：被用越多维度越高 → 6-立方体(6D)/penteract(5D)/星状八面体/正十二面体/16-胞体(4D)
   });
 
   // 产品按出身分三种图案：国产→Lorenz蝴蝶 / 国外→Lü / 开源→Sprott-Linz F
@@ -332,7 +332,7 @@ async function buildIndustrial() {
     fv[14] = p.localization_depth === 'full' ? 1 : p.localization_depth === 'partial' ? 0.5 : 0.3;
     fv[15] = clamp(p.confidence ?? 0.8, 0, 1); fv[17] = clamp((kUsed[p.kernel_id] || 0) / 30, 0, 1);
     D.feat[i] = fv;
-    D.shape[i] = p.maturity === 'high' ? 11 : p.maturity === 'medium' ? 1 : 2;   // 成熟度：高→超立方体(4D，量多) / 中→方块 / 低→正八面体
+    D.shape[i] = p.maturity === 'high' ? 11 : p.maturity === 'medium' ? 1 : 16;   // 成熟度：高→超立方体(4D) / 中→方块 / 低→24-胞体(4D，替换正八面体)
     if (p.kernel_id && kIdx[p.kernel_id] != null) { const c = colOf(p.origin); BEAM.a.push(i); BEAM.b.push(kIdx[p.kernel_id]); BEAM.col.push(c[0], c[1], c[2]); BEAM.w.push(0.6 + clamp((kUsed[p.kernel_id] || 0) / 30, 0, 1) * 3.0); }
   });
 
@@ -354,7 +354,7 @@ async function buildIndustrial() {
       raw: { y4, capability: m.capability_key || '', inc },
     }, [hash01('cap:' + (m.capability_key || 'x')) * 6.283, hash01('mp:' + (m.id || y4)) * 3.14 - 1.57, hash01('mr:' + (m.id || y4)) * 6.283], 7 + clamp(inc / 6, 0, 1) * (TRAIL - 7));
     const fv = makeFeat(3); fv[16] = yf; fv[18] = ev === 'audited' ? 1 : ev === 'case_study' ? 0.5 : 0; fv[19] = clamp(inc / 6, 0, 1); D.feat[i] = fv;
-    D.shape[i] = ev === 'audited' ? 10 : ev === 'case_study' ? 12 : 8;   // 证据：审计→立方八面体 / 案例→五胞体(4-单纯形，量多) / 其余→三棱柱
+    D.shape[i] = ev === 'audited' ? 10 : ev === 'case_study' ? 12 : 18;   // 证据：审计→立方八面体 / 案例→五胞体 / 其余→八面体棱柱(4D胞柱，替换三棱柱)
     (m.incumbent_product_ids || []).forEach((iid) => { if (pIdx[iid] != null) { BEAM.a.push(i); BEAM.b.push(pIdx[iid]); BEAM.col.push(0.85, 0.22, 0.28); BEAM.w.push(0.6 + clamp(inc / 6, 0, 1) * 3.0); } });
   });
 
@@ -379,7 +379,7 @@ async function buildIndustrial() {
       },
     }, [hash01('pt:' + (p.policy_type || 'x')) * 6.283, yf * 3.14 - 1.0 + hash01('pp:' + (p.id || y4)) * 0.6, hash01('pr:' + (p.id || y4)) * 6.283], 5 + tNorm * (TRAIL - 6));
     const fv = makeFeat(4); fv[16] = yf; fv[18] = tNorm; D.feat[pi] = fv;
-    D.shape[pi] = prog ? 7 : p.policy_type === 'fund' ? 11 : 6;   // 纲领→金字塔 / 资金→超立方体(4D) / 部委等→五棱柱
+    D.shape[pi] = prog ? 7 : p.policy_type === 'fund' ? 11 : 17;   // 纲领→金字塔 / 资金→超立方体(4D) / 部委等→3-3多胞柱(4D，替换五棱柱)
   });
 
   // 厂商按出身分三种图案：国产→Dadras / 国外→Newton-Leipnik / 开源→Hadley
@@ -439,20 +439,44 @@ const SHAPES = (() => {
   const fiveCell = () => { const s = 0.46, v = [[1, 1, 1], [1, -1, -1], [-1, 1, -1], [-1, -1, 1]].map((p) => p.map((c) => c * s)); v.push([0, 0, 0]); return segFrom(v, allPairs(5)); };   // 4-单纯形 Schlegel
   const dedup = (edges, n) => { const seen = new Set(), out = []; for (let i = 0; i + 2 < edges.length && out.length < n * 3; i += 3) { const k = edges[i].toFixed(2) + ',' + edges[i + 1].toFixed(2) + ',' + edges[i + 2].toFixed(2); if (!seen.has(k)) { seen.add(k); out.push(edges[i], edges[i + 1], edges[i + 2]); } } return out.length ? out : [0, 0, 0]; };
   const mk = (edges, ellipsoid, spin, velAxis) => ({ edges: new Float32Array(edges), corners: dedup(edges, ellipsoid ? 4 : 6), ellipsoid: !!ellipsoid, spin, velAxis: !!velAxis });
-  // 4D 形：存 4 维顶点 + 棱索引 + 投影距 wdist + 4D 自转基速 spin4；运行时逐帧 4D 旋转→投影 3D（真·四维运动）
-  const proj4 = (v, wd) => { const k = wd / (wd - v[3]); return [v[0] * k, v[1] * k, v[2] * k]; };    // angle-0 投影（建静态棱/corners）
-  const make4d = (V4, E, wd, spin4) => {
-    const v3 = V4.map((v) => proj4(v, wd)), edges = [];
+  // nD 形（4/5/6 维）：存 D 维顶点 + 棱 + 投影距 wdist + 自转基速 spin4；运行时逐帧 nD 旋转→透视投影到 3D（真·高维运动）
+  const projND0 = (v, dim, wd) => { const c = v.slice(); for (let d = dim - 1; d >= 3; d--) { const k = wd / (wd - c[d]); for (let m = 0; m < d; m++) c[m] *= k; } return [c[0], c[1], c[2]]; };   // angle-0 投影（建静态棱/corners）
+  const makeND = (V, E, dim, wd, spin4) => {
+    const v3 = V.map((v) => projND0(v, dim, wd)), edges = [];
     for (const [u, v] of E) edges.push(v3[u][0], v3[u][1], v3[u][2], v3[v][0], v3[v][1], v3[v][2]);
-    const verts4 = new Float32Array(V4.length * 4); V4.forEach((v, i) => verts4.set(v, i * 4));
+    const verts4 = new Float32Array(V.length * dim); V.forEach((v, i) => { for (let k = 0; k < dim; k++) verts4[i * dim + k] = v[k]; });
     const edgeIdx = new Int16Array(E.length * 2); E.forEach((e, i) => { edgeIdx[i * 2] = e[0]; edgeIdx[i * 2 + 1] = e[1]; });
-    return { edges: new Float32Array(edges), corners: dedup(edges, 6), ellipsoid: false, spin: 0.05, velAxis: false, is4d: true, verts4, edgeIdx, n4: V4.length, ne: E.length, wdist: wd, spin4 };   // spin 0.05 → 4D 形也绕运动方向轻微自转
+    return { edges: new Float32Array(edges), corners: dedup(edges, 6), ellipsoid: false, spin: 0.05, velAxis: false, is4d: true, verts4, edgeIdx, n4: V.length, ne: E.length, wdist: wd, spin4, dim };   // spin 0.05 → 也绕运动方向轻微自转
   };
-  const tesseract4 = () => { const V = [], E = []; for (const a of [-1, 1]) for (const b of [-1, 1]) for (const c of [-1, 1]) for (const w of [-1, 1]) V.push([a * 0.5, b * 0.5, c * 0.5, w * 0.5]);
-    for (let i = 0; i < 16; i++) for (let j = i + 1; j < 16; j++) { let df = 0; for (let k = 0; k < 4; k++) if (V[i][k] !== V[j][k]) df++; if (df === 1) E.push([i, j]); } return make4d(V, E, 2.4, 0.16); };   // 16 顶点 / 32 棱
+  const hcube = (dim, s) => { const V = [], E = [], N = 1 << dim;                                    // n-立方体：2^dim 顶点、Hamming=1 相邻 → dim·2^(dim-1) 棱
+    for (let m = 0; m < N; m++) { const v = []; for (let k = 0; k < dim; k++) v.push(((m >> k) & 1) ? s : -s); V.push(v); }
+    for (let i = 0; i < N; i++) for (let j = i + 1; j < N; j++) { let df = 0, x = i ^ j; while (x) { df += x & 1; x >>= 1; } if (df === 1) E.push([i, j]); } return { V, E }; };
+  const autoEdgesND = (V, dim, tol) => { let mn = Infinity;                                          // 连接最短等长棱（正多胞体）
+    const dist = (a, b) => { let s = 0; for (let k = 0; k < dim; k++) { const d = a[k] - b[k]; s += d * d; } return Math.sqrt(s); };
+    for (let i = 0; i < V.length; i++) for (let j = i + 1; j < V.length; j++) { const d = dist(V[i], V[j]); if (d < mn) mn = d; }
+    const E = []; for (let i = 0; i < V.length; i++) for (let j = i + 1; j < V.length; j++) if (Math.abs(dist(V[i], V[j]) - mn) < mn * (tol || 0.06)) E.push([i, j]); return E; };
+  const tesseract4 = () => { const h = hcube(4, 0.5); return makeND(h.V, h.E, 4, 2.4, 0.16); };       // 8-胞体 16顶/32棱
   const fiveCell4 = () => { const r2 = Math.SQRT2, r6 = Math.sqrt(6), r12 = Math.sqrt(12), r20 = Math.sqrt(20), s = 0.72;
     const V = [[1 / r2, 1 / r6, 1 / r12, 1 / r20], [-1 / r2, 1 / r6, 1 / r12, 1 / r20], [0, -2 / r6, 1 / r12, 1 / r20], [0, 0, -3 / r12, 1 / r20], [0, 0, 0, -4 / r20]].map((p) => p.map((c) => c * s));
-    const E = []; for (let i = 0; i < 5; i++) for (let j = i + 1; j < 5; j++) E.push([i, j]); return make4d(V, E, 2.0, 0.22); };   // 正 4-单纯形 5 顶点 / K5 10 棱
+    const E = []; for (let i = 0; i < 5; i++) for (let j = i + 1; j < 5; j++) E.push([i, j]); return makeND(V, E, 4, 2.0, 0.22); };   // 5-胞体（4-单纯形）K5
+  const cell16 = () => { const s = 0.72, V = []; for (let ax = 0; ax < 4; ax++) for (const sgn of [s, -s]) { const v = [0, 0, 0, 0]; v[ax] = sgn; V.push(v); }   // 16-胞体（4-正轴体）±e_i 8顶
+    const E = []; for (let i = 0; i < 8; i++) for (let j = i + 1; j < 8; j++) { let anti = true; for (let k = 0; k < 4; k++) if (V[i][k] !== -V[j][k]) anti = false; if (!anti) E.push([i, j]); } return makeND(V, E, 4, 2.2, 0.2); };   // 非对极相连 → 24棱
+  const cell24 = () => { const s = 0.5, V = [], pr = [[0, 1], [0, 2], [0, 3], [1, 2], [1, 3], [2, 3]];   // 24-胞体：(±1,±1,0,0) 全排列 24顶（唯一无三维对应）
+    for (const [a, b] of pr) for (const sa of [s, -s]) for (const sb of [s, -s]) { const v = [0, 0, 0, 0]; v[a] = sa; v[b] = sb; V.push(v); }
+    return makeND(V, autoEdgesND(V, 4, 0.06), 4, 2.4, 0.18); };   // 96棱
+  const duo33 = () => { const r = 0.5, T = 6.2831853, V = [], E = [];                                  // 3-3 多胞柱：三角×三角 9顶/18棱
+    for (let i = 0; i < 3; i++) for (let j = 0; j < 3; j++) V.push([r * Math.cos(i / 3 * T), r * Math.sin(i / 3 * T), r * Math.cos(j / 3 * T), r * Math.sin(j / 3 * T)]);
+    for (let i = 0; i < 3; i++) for (let j = 0; j < 3; j++) for (let j2 = j + 1; j2 < 3; j2++) E.push([i * 3 + j, i * 3 + j2]);
+    for (let j = 0; j < 3; j++) for (let i = 0; i < 3; i++) for (let i2 = i + 1; i2 < 3; i2++) E.push([i * 3 + j, i2 * 3 + j]);
+    return makeND(V, E, 4, 2.0, 0.2); };
+  const octaPrism = () => { const s = 0.62, wp = 0.45, oct = [], V = [];                               // 八面体棱柱：八面体×线段 12顶/30棱
+    for (let ax = 0; ax < 3; ax++) for (const sgn of [s, -s]) { const v = [0, 0, 0]; v[ax] = sgn; oct.push(v); }
+    const octE = autoEdgesND(oct, 3, 0.06);
+    oct.forEach((v) => V.push([v[0], v[1], v[2], -wp])); oct.forEach((v) => V.push([v[0], v[1], v[2], wp]));
+    const E = []; octE.forEach(([a, b]) => { E.push([a, b]); E.push([a + 6, b + 6]); }); for (let i = 0; i < 6; i++) E.push([i, i + 6]);
+    return makeND(V, E, 4, 2.2, 0.2); };
+  const penteract = () => { const h = hcube(5, 0.42); return makeND(h.V, h.E, 5, 2.6, 0.14); };       // 5-立方体 32顶/80棱
+  const cube6 = () => { const h = hcube(6, 0.4); return makeND(h.V, h.E, 6, 2.8, 0.12); };            // 6-立方体 64顶/192棱
   const S = [null];                                                                                  // 0 = 发光点（城市），无几何体
   S[1] = mk(edgesOf(new THREE.BoxGeometry(0.78, 0.78, 0.78)), 0, 0.10);                               // 方块
   S[2] = mk(edgesOf(new THREE.OctahedronGeometry(0.62)), 0, 0.11);                                    // 正八面体
@@ -468,22 +492,29 @@ const SHAPES = (() => {
   S[12] = fiveCell4();                                                                                // 五胞体：逐帧 4D 旋转→3D（顶点穿插涌动）
   S[13] = mk(knot(2, 3, 56, 0.24), 0, 0.5);                                                           // 环面纽结 trefoil
   S[14] = mk(ring(), 1, 0.7);                                                                         // 陀螺椭圆环
+  S[15] = cell16();                                                                                   // 16-胞体（4D，8顶/24棱）
+  S[16] = cell24();                                                                                   // 24-胞体（4D，24顶/96棱，唯一无三维对应）
+  S[17] = duo33();                                                                                    // 3-3 多胞柱（4D，9顶/18棱）
+  S[18] = octaPrism();                                                                                // 八面体棱柱（4D，12顶/30棱）
+  S[19] = penteract();                                                                                // 5-立方体（5D，32顶/80棱）
+  S[20] = cube6();                                                                                    // 6-立方体（6D，64顶/192棱）
   return S;
 })();
 function cornersOf(t) { return (t && SHAPES[t]) ? SHAPES[t].corners : [0, 0, 0]; }
 let solidGroups = [];
 const _dummy = new THREE.Object3D(), _q = new THREE.Quaternion(), _v = new THREE.Vector3();
 const _q1 = new THREE.Quaternion(), _q2 = new THREE.Quaternion(), _UP = new THREE.Vector3(0, 1, 0);
-const _v3tmp = new Float32Array(16 * 3), _localDyn = new Float32Array(64 * 3);   // 4D 投影暂存（≤16 顶点 / ≤32 棱）
-// 把 4D 顶点按角 a 旋转（XW 面 + YW 面双旋）再透视投影到 3D，存入 _v3tmp
-function project4D(verts4, n4, wd, a) {
-  const ca = Math.cos(a), sa = Math.sin(a), cb = Math.cos(a * 0.62), sb = Math.sin(a * 0.62);
+const _v3tmp = new Float32Array(64 * 3), _localDyn = new Float32Array(192 * 6), _cN = new Float32Array(6);   // nD 投影暂存（≤64 顶点 / ≤192 棱 / ≤6 维）
+// 把 D 维顶点按角 a 旋转（数个 4D 平面）再逐维透视塌缩到 3D，存入 _v3tmp
+function projectND(verts, n4, dim, wd, a) {
+  const c0 = Math.cos(a), s0 = Math.sin(a), c1 = Math.cos(a * 0.62), s1 = Math.sin(a * 0.62), c2 = Math.cos(a * 0.41), s2 = Math.sin(a * 0.41);
   for (let i = 0; i < n4; i++) {
-    const x = verts4[i * 4], y = verts4[i * 4 + 1], z = verts4[i * 4 + 2], w = verts4[i * 4 + 3];
-    const x1 = x * ca - w * sa, w1 = x * sa + w * ca;        // 绕 (x,w) 面
-    const y1 = y * cb - w1 * sb, w2 = y * sb + w1 * cb;      // 绕 (y,w) 面
-    const k = wd / (wd - w2);                                 // 4D→3D 透视（w 近大远小 → 内外翻转）
-    _v3tmp[i * 3] = x1 * k; _v3tmp[i * 3 + 1] = y1 * k; _v3tmp[i * 3 + 2] = z * k;
+    for (let k = 0; k < dim; k++) _cN[k] = verts[i * dim + k];
+    { const x = _cN[0], w = _cN[dim - 1]; _cN[0] = x * c0 - w * s0; _cN[dim - 1] = x * s0 + w * c0; }       // 绕 (0, dim-1) 面
+    { const y = _cN[1], w = _cN[dim - 1]; _cN[1] = y * c1 - w * s1; _cN[dim - 1] = y * s1 + w * c1; }       // 绕 (1, dim-1) 面
+    if (dim >= 5) { const z = _cN[2], w = _cN[dim - 2]; _cN[2] = z * c2 - w * s2; _cN[dim - 2] = z * s2 + w * c2; }   // 5D+ 多一个旋转面
+    for (let d = dim - 1; d >= 3; d--) { const k = wd / (wd - _cN[d]); for (let m = 0; m < d; m++) _cN[m] *= k; }     // 逐维透视塌缩到 3D
+    _v3tmp[i * 3] = _cN[0]; _v3tmp[i * 3 + 1] = _cN[1]; _v3tmp[i * 3 + 2] = _cN[2];
   }
 }
 const GROUP_KEY = { CITY: 0, PRODUCT: 1, KERNEL: 2, BREAKTHROUGH: 3, POLICY: 4, VENDOR: 5 };
@@ -894,8 +925,8 @@ function animate() {
         let local = sg.local;
         for (let j = 0; j < sg.cnt; j++) {
           const gi = sg.gidx[j], o = gi * 3, vis = groupVis[grp[gi]] ? 1 : 0;
-          if (sg.is4d) {                                          // 逐帧 4D 旋转→投影 3D（速率随数据 D.spd），每个实体各自的形状
-            project4D(sg.verts4, sg.n4, sg.wdist, sg.spd4[j] * tElapsed + sg.phase[j]);
+          if (sg.is4d) {                                          // 逐帧 nD 旋转→投影 3D（速率随数据 D.spd），每个实体各自的形状
+            projectND(sg.verts4, sg.n4, sg.dim, sg.wdist, sg.spd4[j] * tElapsed + sg.phase[j]);
             for (let e2 = 0; e2 < sg.ne; e2++) { const u = sg.edgeIdx[e2 * 2] * 3, v2 = sg.edgeIdx[e2 * 2 + 1] * 3, o2 = e2 * 6;
               _localDyn[o2] = _v3tmp[u]; _localDyn[o2 + 1] = _v3tmp[u + 1]; _localDyn[o2 + 2] = _v3tmp[u + 2];
               _localDyn[o2 + 3] = _v3tmp[v2]; _localDyn[o2 + 4] = _v3tmp[v2 + 1]; _localDyn[o2 + 5] = _v3tmp[v2 + 2]; }
@@ -1009,7 +1040,7 @@ function buildSolids() {
     g.setAttribute('aColor', new THREE.BufferAttribute(colA, 3));
     const mesh = new THREE.LineSegments(g, solidLineMat); mesh.frustumCulled = false; root.add(mesh);
     solidGroups.push({ posAttr, pos, local, lv, cnt, gidx, speed, vdir, ellipsoid: shape.ellipsoid, velAxis: shape.velAxis,
-      is4d: shape.is4d, verts4: shape.verts4, edgeIdx: shape.edgeIdx, n4: shape.n4, ne: shape.ne, wdist: shape.wdist, spd4, phase });
+      is4d: shape.is4d, verts4: shape.verts4, edgeIdx: shape.edgeIdx, n4: shape.n4, ne: shape.ne, wdist: shape.wdist, dim: shape.dim, spd4, phase });
   }
 }
 
