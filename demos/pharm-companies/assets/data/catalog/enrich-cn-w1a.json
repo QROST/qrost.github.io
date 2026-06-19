@@ -1,0 +1,221 @@
+{
+  "shard": "enrich-cn-w1a",
+  "products": [
+    {
+      "id": "zanubrutinib-beigene",
+      "name_zh": "泽布替尼",
+      "name_en": "Zanubrutinib",
+      "brand_name": "BRUKINSA",
+      "company_id": "beigene-star",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "hematology",
+      "indication_zh": "慢性淋巴细胞白血病、套细胞淋巴瘤、边缘区淋巴瘤等多种 B 细胞恶性肿瘤",
+      "indication_en": "CLL/SLL, MCL, MZL, WM and other B-cell malignancies; approved in US, EU, China and 70+ countries",
+      "approval_status": "approved",
+      "is_blockbuster": true,
+      "drug_class": "originator",
+      "region": "greater_china",
+      "confidence": 0.95,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.biospace.com/press-releases/beigene-announces-fourth-quarter-and-full-year-2024-financial-results-and-business-updates",
+          "title": "BeiGene 2024 Full Year Results",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "tislelizumab-beigene",
+      "name_zh": "替雷利珠单抗",
+      "name_en": "Tislelizumab",
+      "brand_name": "TEVIMBRA",
+      "company_id": "beigene-star",
+      "modality_id": "mab",
+      "therapeutic_area_id": "oncology",
+      "indication_zh": "多种实体瘤及血液肿瘤，包括非小细胞肺癌、食道癌、肝细胞癌等",
+      "indication_en": "NSCLC, esophageal SCC, HCC, gastric/GEJ cancer and other solid tumors; approved in US (esophageal SCC) and China",
+      "approval_status": "approved",
+      "is_blockbuster": false,
+      "drug_class": "originator",
+      "region": "greater_china",
+      "confidence": 0.92,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.biospace.com/press-releases/beigene-announces-fourth-quarter-and-full-year-2024-financial-results-and-business-updates",
+          "title": "BeiGene 2024 Full Year Results",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "toripalimab-junshi",
+      "name_zh": "托利帕利单抗",
+      "name_en": "Toripalimab",
+      "brand_name": "Tuoyi / Loqtorzi",
+      "company_id": "junshi-biosciences-star",
+      "modality_id": "mab",
+      "therapeutic_area_id": "oncology",
+      "indication_zh": "鼻咽癌、尿路上皮癌、黑色素瘤等多个瘤种",
+      "indication_en": "Nasopharyngeal carcinoma (US approved), urothelial carcinoma, melanoma; 35+ country approvals",
+      "approval_status": "approved",
+      "is_blockbuster": false,
+      "drug_class": "originator",
+      "region": "greater_china",
+      "confidence": 0.92,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.biospace.com/press-releases/junshi-biosciences-announces-2024-full-year-financial-results-and-provides-corporate-updates",
+          "title": "Junshi Biosciences 2024 Full Year Results",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "sac-tmt-kelun",
+      "name_zh": "sacituzumab tirumotecan",
+      "name_en": "Sacituzumab Tirumotecan",
+      "brand_name": "sac-TMT / SKB264",
+      "company_id": "kelun-biotech-star",
+      "modality_id": "adc",
+      "therapeutic_area_id": "oncology",
+      "indication_zh": "三阴性乳腺癌（TNBC）及 EGFR 突变非小细胞肺癌",
+      "indication_en": "Unresectable locally advanced/metastatic TNBC (2L+) and EGFR-mutant NSCLC; NMPA-approved Nov 2024; global MSD partnership",
+      "approval_status": "approved",
+      "is_blockbuster": false,
+      "drug_class": "originator",
+      "region": "greater_china",
+      "confidence": 0.92,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.prnewswire.com/news-releases/announcement-of-annual-results-for-2024-302411892.html",
+          "title": "Kelun-Biotech 2024 Annual Results",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "bl-b01d1-baili",
+      "name_zh": "BL-B01D1",
+      "name_en": "BL-B01D1",
+      "brand_name": "BL-B01D1",
+      "company_id": "baili-biopharm",
+      "modality_id": "bispecific-antibody",
+      "therapeutic_area_id": "oncology",
+      "indication_zh": "EGFR 突变非小细胞肺癌及 HR+/三阴性乳腺癌等多瘤种（临床III期）",
+      "indication_en": "EGFRm NSCLC (1L/2L), HR+/TNBC (2L+); 9 Phase III trials in China; co-developed with BMS globally",
+      "approval_status": "ph3",
+      "is_blockbuster": false,
+      "drug_class": "originator",
+      "region": "greater_china",
+      "confidence": 0.9,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://news.bms.com/news/details/2023/SystImmune-and-Bristol-Myers-Squibb-Announce-a-Global-Strategic-Collaboration-Agreement-for-the-Development-and-Commercialization-of-BL-B01D1/default.aspx",
+          "title": "BMS & SystImmune BL-B01D1 Global Collaboration",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "disitamab-vedotin-remegen",
+      "name_zh": "维迪西妥单抗",
+      "name_en": "Disitamab Vedotin",
+      "brand_name": "爱地希 (RC48)",
+      "company_id": "rongchang-biopharm",
+      "modality_id": "adc",
+      "therapeutic_area_id": "oncology",
+      "indication_zh": "HER2 过表达尿路上皮癌、胃癌等，为国内首款获批 ADC",
+      "indication_en": "HER2-overexpressing urothelial carcinoma and gastric cancer; China's first approved ADC drug",
+      "approval_status": "approved",
+      "is_blockbuster": false,
+      "drug_class": "originator",
+      "region": "greater_china",
+      "confidence": 0.92,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.remegen.com/uploadfile/2025/04/29/142ab5971055498116d0e36f084f25e5681085413fafb.pdf",
+          "title": "RemeGen 2024 Annual Report",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "telitacicept-remegen",
+      "name_zh": "泰它西普",
+      "name_en": "Telitacicept",
+      "brand_name": "泰爱 (RC18)",
+      "company_id": "rongchang-biopharm",
+      "modality_id": "recombinant-protein",
+      "therapeutic_area_id": "immunology",
+      "indication_zh": "系统性红斑狼疮（SLE）",
+      "indication_en": "Systemic lupus erythematosus (SLE); dual-target fusion protein (TACI-Ig) blocking BLyS and APRIL",
+      "approval_status": "approved",
+      "is_blockbuster": false,
+      "drug_class": "originator",
+      "region": "greater_china",
+      "confidence": 0.92,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.remegen.com/uploadfile/2025/04/29/142ab5971055498116d0e36f084f25e5681085413fafb.pdf",
+          "title": "RemeGen 2024 Annual Report",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "convidecia-cansino",
+      "name_zh": "克威莎",
+      "name_en": "Convidecia (Ad5-nCoV)",
+      "brand_name": "Convidecia / Convidecia Air",
+      "company_id": "cansino-biologics",
+      "modality_id": "inactivated-vaccine",
+      "therapeutic_area_id": "vaccines",
+      "indication_zh": "新型冠状病毒肺炎（COVID-19）预防",
+      "indication_en": "Prevention of COVID-19; adenovirus-vectored vaccine; approved in multiple countries; also inhaled formulation",
+      "approval_status": "approved",
+      "is_blockbuster": false,
+      "drug_class": "originator",
+      "region": "greater_china",
+      "confidence": 0.9,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.cansinotech.com/WhoWeAre",
+          "title": "CanSino Biologics Products",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "orelabrutinib-innocare",
+      "name_zh": "奥布替尼",
+      "name_en": "Orelabrutinib",
+      "brand_name": "宜诺凯",
+      "company_id": "innocare-pharma",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "hematology",
+      "indication_zh": "复发/难治性慢性淋巴细胞白血病、套细胞淋巴瘤、边缘区淋巴瘤等多个 B 细胞肿瘤",
+      "indication_en": "R/R CLL, MCL, MZL, WM; approved in China; also in clinical development for MS and other autoimmune diseases",
+      "approval_status": "approved",
+      "is_blockbuster": false,
+      "drug_class": "originator",
+      "region": "greater_china",
+      "confidence": 0.93,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.innocarepharma.com/en/news/activity/en020250327-InnoCare-2024-Results",
+          "title": "InnoCare 2024 Full Year Results",
+          "accessed": "2026-06"
+        }
+      ]
+    }
+  ]
+}
