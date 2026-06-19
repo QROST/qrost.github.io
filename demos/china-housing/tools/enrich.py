@@ -1127,6 +1127,72 @@ def pois_all(con, log):
     log(f"pois done: {done} listing(s)")
 
 
+# ---------------------------------------------------------------------------
+# LULU — nearest-distance to 7 "avoid" facility classes (offline ref sets)
+#
+# Sources: data/ref/lulu_<cat>_cn.json — national reference point sets built by
+# tools/fetch_lulu.py (committed). Brute-force haversine against each set;
+# stored in poi with source='osm-ref' so emit_enriched serializes them
+# generically (no emit change needed). NOT part of POI_CATEGORIES — that
+# constant drives the live Overpass path; LULU is offline-only.
+# ---------------------------------------------------------------------------
+LULU_CATEGORIES = ("wastewater", "landfill", "incinerator", "nuclear",
+                   "substation", "chemical", "sensitive")
+
+
+def _load_lulu_ref(cat):
+    """Load data/ref/lulu_<cat>_cn.json → list of (name, lat, lng)."""
+    path = REF / f"lulu_{cat}_cn.json"
+    raw = json.loads(path.read_text(encoding="utf-8"))
+    return [(p.get("name") or "", float(p["lat"]), float(p["lng"])) for p in raw]
+
+
+def lulu_all(con, log):
+    """Bake nearest-distance from each geocoded listing to 7 LULU facility classes.
+
+    Idempotent via INSERT OR REPLACE — safe to re-run.
+    """
+    refs = {cat: _load_lulu_ref(cat) for cat in LULU_CATEGORIES}
+    total_pts = sum(len(v) for v in refs.values())
+    listings = con.execute(
+        "SELECT id, lat, lng FROM listings "
+        "WHERE lat IS NOT NULL AND lng IS NOT NULL ORDER BY id"
+    ).fetchall()
+    log(f"lulu: {len(listings)} listing(s) × {len(LULU_CATEGORIES)} categories "
+        f"(~{total_pts} ref points total, brute-force haversine)…")
+
+    for idx, r in enumerate(listings, 1):
+        lid, lat, lng = r["id"], r["lat"], r["lng"]
+        for cat, pts in refs.items():
+            best_name, best_lat, best_lng, best_km = "", None, None, None
+            for nm, plat, plng in pts:
+                km = haversine(lat, lng, plat, plng)
+                if best_km is None or km < best_km:
+                    best_name, best_lat, best_lng, best_km = nm, plat, plng, km
+            con.execute(
+                "INSERT OR REPLACE INTO poi (listing_id, category, name, lat, lng, dist_km, source, subtype) "
+                "VALUES (?,?,?,?,?,?,?,?)",
+                (lid, cat, best_name, best_lat, best_lng,
+                 round(best_km, 1), "osm-ref", None))
+        if idx % 20 == 0 or idx == len(listings):
+            con.commit()
+            log(f"  …{idx}/{len(listings)} listings baked")
+    con.commit()
+
+    log("lulu done — per-category summary (rows / min km / median km):")
+    for cat in LULU_CATEGORIES:
+        dists = [r[0] for r in con.execute(
+            "SELECT dist_km FROM poi WHERE category=? AND source='osm-ref' "
+            "AND dist_km IS NOT NULL ORDER BY dist_km",
+            (cat,),
+        ).fetchall()]
+        if not dists:
+            log(f"  {cat:12s}  0 rows")
+            continue
+        med = dists[len(dists) // 2]   # list is sorted ascending → middle ≈ median
+        log(f"  {cat:12s}  rows={len(dists):3d}  min={dists[0]:.1f}km  median={med:.1f}km")
+
+
 def pois_overpass_refresh(con, log, categories=("train",)):
     """Re-fetch Overpass for selected categories (e.g. train subtype backfill)."""
     cats = tuple(categories)
