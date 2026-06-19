@@ -423,6 +423,8 @@ async function buildPharma() {
   if (!companies.length) return { companies: 0 };
 
   const coMap = {}; companies.forEach((c) => { coMap[c.id] = c; });
+  const deepCo = new Set();   // 有站点/产品的"深度"公司 → 几何体；其余"名册"公司 → 发光点（轻量，省性能但仍可见）
+  sites.forEach((s) => deepCo.add(s.company_id)); products.forEach((p) => deepCo.add(p.company_id));
   const RHUE = { greater_china: 345, north_america: 280, europe: 255, japan: 320, other_apac: 175, oceania: 160, mea: 30 };
   const rhue = (r) => (RHUE[r] != null ? RHUE[r] : 300);
   const pIdx = {};                                                  // id → 星索引（companies + products），供连线
@@ -461,7 +463,8 @@ async function buildPharma() {
       null, 5 + clamp((Math.log10(rev + 1) - 8) / 3, 0, 1) * (TRAIL - 6));
     pIdx[c.id] = i;
     const fv = makeFeat(6); fv[0] = clamp((Math.log10(rev + 1) - 8) / 3, 0, 1); fv[1] = clamp((Math.log10(emp + 1) - 2) / 4, 0, 1);
-    fv[2] = clamp(((c.founded || 1980) - 1900) / 130, 0, 1); fv[3] = c.is_public ? 1 : 0; fv[4] = clamp(c.confidence ?? 0.8, 0, 1); D.feat[i] = fv; D.shape[i] = CO_SHAPE[c.company_type] || 2;
+    fv[2] = clamp(((c.founded || 1980) - 1900) / 130, 0, 1); fv[3] = c.is_public ? 1 : 0; fv[4] = clamp(c.confidence ?? 0.8, 0, 1); D.feat[i] = fv;
+    D.shape[i] = deepCo.has(c.id) ? (CO_SHAPE[c.company_type] || 2) : 0;   // 深度公司=立体，名册公司=发光点（省性能）
   });
 
   // 产品（219）→ 八面体；按所属公司地区着色；重磅炸弹更大
