@@ -366,6 +366,11 @@
         return m != null && m <= 12 ? 'metro' : 'train';
       })(),
       coastKm: e && e.risk ? e.risk.coastKm : poiKm(e, 'coast'),
+      // LULU avoidance (越远越好): nearest-distance to 7 unwanted land uses.
+      wastewaterKm: poiKm(e, 'wastewater'), landfillKm: poiKm(e, 'landfill'),
+      incineratorKm: poiKm(e, 'incinerator'), nuclearKm: poiKm(e, 'nuclear'),
+      substationKm: poiKm(e, 'substation'), chemicalKm: poiKm(e, 'chemical'),
+      sensitiveKm: poiKm(e, 'sensitive'),
       seismic: e && e.risk ? e.risk.seismic : null,
       typhoon: e && e.risk ? e.risk.typhoon : null,
       histTempMax: e && e.histTempMax != null ? e.histTempMax : null,
@@ -1661,6 +1666,11 @@
       airportKm: span('airportKm', 150),
       coastKm: span('coastKm', 400),
       hsrKm: span('hsrKm', 80),
+      // LULU avoidance: fallback max = "comfortably far" per category (km).
+      wastewaterKm: span('wastewaterKm', 15), landfillKm: span('landfillKm', 15),
+      incineratorKm: span('incineratorKm', 20), nuclearKm: span('nuclearKm', 120),
+      substationKm: span('substationKm', 8), chemicalKm: span('chemicalKm', 20),
+      sensitiveKm: span('sensitiveKm', 30),
     };
   }
   function tableFrac(val, { min, max }) {
@@ -1789,6 +1799,15 @@
     const frac = tableFrac(val, viewTableScales()[scaleKey]);
     const bg = distKmBg(frac);
     return pill(label != null ? label : fmtKm(val), bg, pillFgForBg(bg));
+  }
+  // LULU avoidance distance — DIVERGING (NEAR = bad = RED → slate → FAR = good =
+  // EMER). Mirror image of amenity distance (where near is greener); never reuse
+  // the neutral gray distKmBg, which carries no good/bad meaning.
+  function luluKmCell(val, scaleKey) {
+    if (val == null) return `<span class="${tcx().faint}">—</span>`;
+    const frac = tableFrac(val, viewTableScales()[scaleKey]);
+    const bg = frac < 0.5 ? mix(RED, SLATE, frac * 2) : mix(SLATE, EMER, (frac - 0.5) * 2);
+    return pill(fmtKm(val), bg, pillFgForBg(bg));
   }
   function bandCell(level, kind) {
     if (!level) return `<span class="${tcx().faint}">—</span>`;
@@ -1941,6 +1960,13 @@
         d.transitKm == null ? null : (d.transitKind === 'metro' ? `${t('poiMetro')} ${fmtKm(d.transitKm)}` : `${t('poiTrain')} ${fmtKm(d.transitKm)}`)) },
     { key: 'airportKm', label: '机场km', group: 'infra', num: true, get: (d) => nz(d.airportKm, 1e9), cell: (d) => distKmCell(d.airportKm, 'airportKm') },
     { key: 'coastKm', label: '海岸km', group: 'infra', num: true, get: (d) => nz(d.coastKm, 1e9), cell: (d) => distKmCell(d.coastKm, 'coastKm') },
+    { key: 'wastewaterKm', label: '污水厂km', group: 'avoid', num: true, get: (d) => nz(d.wastewaterKm, 1e9), cell: (d) => luluKmCell(d.wastewaterKm, 'wastewaterKm') },
+    { key: 'landfillKm', label: '垃圾填埋km', group: 'avoid', num: true, get: (d) => nz(d.landfillKm, 1e9), cell: (d) => luluKmCell(d.landfillKm, 'landfillKm') },
+    { key: 'incineratorKm', label: '垃圾焚烧km', group: 'avoid', num: true, get: (d) => nz(d.incineratorKm, 1e9), cell: (d) => luluKmCell(d.incineratorKm, 'incineratorKm') },
+    { key: 'nuclearKm', label: '核电站km', group: 'avoid', num: true, get: (d) => nz(d.nuclearKm, 1e9), cell: (d) => luluKmCell(d.nuclearKm, 'nuclearKm') },
+    { key: 'substationKm', label: '大变电站km', group: 'avoid', num: true, get: (d) => nz(d.substationKm, 1e9), cell: (d) => luluKmCell(d.substationKm, 'substationKm') },
+    { key: 'chemicalKm', label: '化工危化km', group: 'avoid', num: true, get: (d) => nz(d.chemicalKm, 1e9), cell: (d) => luluKmCell(d.chemicalKm, 'chemicalKm') },
+    { key: 'sensitiveKm', label: '敏感地点km', group: 'avoid', num: true, get: (d) => nz(d.sensitiveKm, 1e9), cell: (d) => luluKmCell(d.sensitiveKm, 'sensitiveKm') },
     { key: 'seismic', label: '地震带', group: 'risk', get: (d) => SEISMIC_ORD[d.seismic] || 0, cell: (d) => bandCell(d.seismic, 'seismic') },
     { key: 'typhoon', label: '台风', group: 'risk', get: (d) => TYPH_ORD[d.typhoon] || 0, cell: (d) => bandCell(d.typhoon, 'typhoon') },
     { key: 'hazard', label: '当地灾种·常见度', group: 'risk', get: (d) => d.hazard ? d.hazard.hazards[0].freq * 10 + d.hazard.hazards.length : 0, cell: (d) => hazardCell(d) },
@@ -1962,8 +1988,12 @@
     lowHazard: { labelKey: 'fcLowHazard', pass: (d) => !(d.hazard && d.hazard.hazards && d.hazard.hazards.some((h) => h.freq >= 5)) },
     rail20: { labelKey: 'fcRail20', pass: (d) => d.transitKm != null && d.transitKm <= 20 },
     hsr20: { labelKey: 'fcHsr20', pass: (d) => d.hsrKm != null && d.hsrKm <= 20 },
+    // LULU avoidance — 越远越好 (farther-is-better; pass = "at least this far").
+    fcFarSensitive: { labelKey: 'fcFarSensitive', pass: (d) => d.sensitiveKm != null && d.sensitiveKm >= 5 },
+    fcFarNuclear: { labelKey: 'fcFarNuclear', pass: (d) => d.nuclearKm != null && d.nuclearKm >= 30 },
+    fcFarNuisance: { labelKey: 'fcFarNuisance', pass: (d) => { const xs = [d.wastewaterKm, d.landfillKm, d.incineratorKm, d.chemicalKm].filter((v) => v != null); return xs.length > 0 && Math.min(...xs) >= 3; } },
   };
-  const tstate = { sortKey: 'comfortMonths', sortDir: -1, prov: '', q: '', groups: new Set(['live', 'infra', 'risk']), chips: new Set() };
+  const tstate = { sortKey: 'comfortMonths', sortDir: -1, prov: '', q: '', groups: new Set(['live', 'infra', 'risk', 'avoid']), chips: new Set() };
 
   const colLabel = (c) => t('col_' + c.key) || c.label;
   const visibleCols = () => COLS.filter((c) => c.group === 'core' || c.group === 'price' || tstate.groups.has(c.group));
@@ -2116,9 +2146,39 @@
     safeRun('renderMap', renderMap);
   }
 
+  // Inject the LULU `avoid` column-group toggle (HTML toolbar is owned by another
+  // worker; we add the button here so the existing [data-group] wiring / styling /
+  // persistence picks it up like the other groups).
+  function ensureAvoidChip() {
+    const invest = document.querySelector('button[data-group="invest"]');
+    if (!invest || document.querySelector('button[data-group="avoid"]')) return;
+    const btn = document.createElement('button');
+    btn.setAttribute('data-group', 'avoid');
+    btn.className = 'group-chip';
+    invest.parentNode.insertBefore(btn, invest.nextSibling);
+  }
+  // Inject the 3 LULU avoidance filter chips into the same filter-chip bar as the
+  // others (HTML owned by another worker). Existing [data-filter] wiring styles +
+  // persists them automatically once present.
+  function ensureLuluFilterChips() {
+    const anchor = document.querySelector('button[data-filter="hsr20"]');
+    if (!anchor) return;
+    const keys = ['fcFarSensitive', 'fcFarNuclear', 'fcFarNuisance'];
+    keys.forEach((k) => {
+      if (document.querySelector(`button[data-filter="${k}"]`)) return;
+      if (!FILTERS[k]) return;
+      const btn = document.createElement('button');
+      btn.setAttribute('data-filter', k);
+      btn.className = 'filter-chip';
+      anchor.parentNode.insertBefore(btn, anchor.nextSibling);
+    });
+  }
+
   function styleGroupChips() {
     const dk = isDark();
+    ensureAvoidChip();
     document.querySelectorAll('[data-group]').forEach((b) => {
+      if (b.dataset.group === 'avoid') b.textContent = t('gAvoid');
       const on = tstate.groups.has(b.dataset.group);
       b.className = 'px-3 py-1.5 rounded-md text-xs font-medium transition-colors ' +
         (on
@@ -2144,6 +2204,8 @@
   }
 
   function wireTable() {
+    ensureAvoidChip(); // inject before the [data-group] click wiring below
+    ensureLuluFilterChips(); // inject before the [data-filter] click wiring below
     updateProvFilter();
     document.getElementById('prov-filter').addEventListener('change', (e) => {
       tstate.prov = e.target.value; renderTable(); saveUiPrefs();
@@ -2261,6 +2323,11 @@
     metro: { labelKey: 'poiMetro', color: '#2563eb' }, train: { labelKey: 'poiTrain', color: '#7c3aed' },
     airport: { labelKey: 'poiAirport', color: '#059669' }, hospital: { labelKey: 'poiHospital', color: '#dc2626' },
     mall: { labelKey: 'poiMall', color: '#d97706' }, coast: { labelKey: 'poiCoast', color: '#0ea5e9' },
+    // LULU avoidance (越远越好) — distinct hazard palette, none reuse the amenity hues above.
+    wastewater: { labelKey: 'poiWastewater', color: '#475569' }, landfill: { labelKey: 'poiLandfill', color: '#92400e' },
+    incinerator: { labelKey: 'poiIncinerator', color: '#ea580c' }, nuclear: { labelKey: 'poiNuclear', color: '#facc15' },
+    substation: { labelKey: 'poiSubstation', color: '#db2777' }, chemical: { labelKey: 'poiChemical', color: '#0f766e' },
+    sensitive: { labelKey: 'poiSensitive', color: '#1e293b' },
   };
   const trainKindTag = (p) => {
     if (!p || !p.trainKind) return '';
@@ -2694,7 +2761,7 @@
   // lang / theme / quiz-rent stay on housing-lang, housing-theme, housing-rent.
   // URL hashes #q= #l= #c= override stored quiz / compare on load.
   const UI_PREFS_KEY = 'housing-ui-prefs';
-  const UI_GROUP_KEYS = new Set(['live', 'infra', 'risk', 'invest']);
+  const UI_GROUP_KEYS = new Set(['live', 'infra', 'risk', 'invest', 'avoid']);
   const QZ_BUDGETS = new Set([0, 5, 10, 15, 20]);
 
   function saveUiPrefs() {
