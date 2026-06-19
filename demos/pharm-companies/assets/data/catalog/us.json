@@ -1,0 +1,1574 @@
+{
+  "shard": "us",
+  "products": [
+    {
+      "id": "pfizer-eliquis",
+      "name_zh": "艾乐妥（辉瑞）",
+      "name_en": "Eliquis (Pfizer)",
+      "brand_name": "Eliquis",
+      "inn": "apixaban",
+      "company_id": "pfizer",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "cardiometabolic",
+      "indication_zh": "非瓣膜性房颤、深静脉血栓预防与治疗",
+      "indication_en": "Non-valvular atrial fibrillation and VTE prevention/treatment",
+      "approval_status": "approved",
+      "first_approval_year": 2012,
+      "key_markets": [
+        "FDA",
+        "EMA"
+      ],
+      "latest_annual_sales": {
+        "value": 11200000000,
+        "currency": "USD",
+        "year": 2024,
+        "source_url": "https://www.accio.com/business/what-are-pfizers-top-selling-drugs",
+        "note_en": "Pfizer share of Eliquis global revenue 2024"
+      },
+      "is_blockbuster": true,
+      "drug_class": "originator",
+      "target_mechanism_zh": "Factor Xa抑制剂",
+      "target_mechanism_en": "Factor Xa inhibitor",
+      "region": "north_america",
+      "confidence": 0.95,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.accio.com/business/what-are-pfizers-top-selling-drugs",
+          "title": "Pfizer Top-Selling Drugs 2024",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "pfizer-paxlovid",
+      "name_zh": "帕克斯洛维德",
+      "name_en": "Paxlovid",
+      "brand_name": "Paxlovid",
+      "inn": "nirmatrelvir/ritonavir",
+      "company_id": "pfizer",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "infectious-disease",
+      "indication_zh": "COVID-19成人轻至中度治疗",
+      "indication_en": "Treatment of mild-to-moderate COVID-19 in adults",
+      "approval_status": "approved",
+      "first_approval_year": 2021,
+      "key_markets": [
+        "FDA",
+        "EMA"
+      ],
+      "latest_annual_sales": {
+        "value": 2700000000,
+        "currency": "USD",
+        "year": 2024,
+        "source_url": "https://www.biospace.com/press-releases/pfizer-reports-strong-full-year-2024-results-and-reaffirms-2025-guidance",
+        "note_en": "Approximate FY2024 based on quarterly reports"
+      },
+      "is_blockbuster": true,
+      "drug_class": "originator",
+      "target_mechanism_zh": "SARS-CoV-2 3CL蛋白酶抑制剂",
+      "target_mechanism_en": "SARS-CoV-2 3CL protease inhibitor",
+      "region": "north_america",
+      "confidence": 0.9,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.biospace.com/press-releases/pfizer-reports-strong-full-year-2024-results-and-reaffirms-2025-guidance",
+          "title": "Pfizer 2024 Full-Year Results",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "pfizer-comirnaty",
+      "name_zh": "辉瑞新冠mRNA疫苗",
+      "name_en": "Comirnaty",
+      "brand_name": "Comirnaty",
+      "inn": "tozinameran",
+      "company_id": "pfizer",
+      "modality_id": "mrna-vaccine",
+      "therapeutic_area_id": "vaccines",
+      "indication_zh": "COVID-19预防（与BioNTech联合研发）",
+      "indication_en": "COVID-19 prevention (co-developed with BioNTech)",
+      "approval_status": "approved",
+      "first_approval_year": 2021,
+      "key_markets": [
+        "FDA",
+        "EMA"
+      ],
+      "latest_annual_sales": {
+        "value": 5700000000,
+        "currency": "USD",
+        "year": 2024,
+        "source_url": "https://www.biospace.com/press-releases/pfizer-reports-strong-full-year-2024-results-and-reaffirms-2025-guidance",
+        "note_en": "Approximate FY2024 based on quarterly data"
+      },
+      "is_blockbuster": true,
+      "drug_class": "originator",
+      "target_mechanism_zh": "mRNA编码SARS-CoV-2刺突蛋白",
+      "target_mechanism_en": "mRNA encoding SARS-CoV-2 spike protein",
+      "region": "north_america",
+      "confidence": 0.9,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.biospace.com/press-releases/pfizer-reports-strong-full-year-2024-results-and-reaffirms-2025-guidance",
+          "title": "Pfizer 2024 Full-Year Results",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "pfizer-vyndaqel",
+      "name_zh": "万达凯（他法米迪）",
+      "name_en": "Vyndaqel/Vyndamax",
+      "brand_name": "Vyndaqel",
+      "inn": "tafamidis",
+      "company_id": "pfizer",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "rare-disease",
+      "indication_zh": "转甲状腺素蛋白淀粉样变性心肌病",
+      "indication_en": "Transthyretin amyloid cardiomyopathy (ATTR-CM)",
+      "approval_status": "approved",
+      "first_approval_year": 2019,
+      "key_markets": [
+        "FDA",
+        "EMA"
+      ],
+      "latest_annual_sales": {
+        "value": 4900000000,
+        "currency": "USD",
+        "year": 2024,
+        "source_url": "https://www.biospace.com/press-releases/pfizer-reports-strong-full-year-2024-results-and-reaffirms-2025-guidance",
+        "note_en": "Estimated FY2024 from quarterly data; Q1 $1.14B +66%, Q3 $1.45B +63%"
+      },
+      "is_blockbuster": true,
+      "drug_class": "originator",
+      "target_mechanism_zh": "TTR稳定剂",
+      "target_mechanism_en": "Transthyretin (TTR) stabilizer",
+      "region": "north_america",
+      "confidence": 0.88,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.biospace.com/press-releases/pfizer-reports-strong-full-year-2024-results-and-reaffirms-2025-guidance",
+          "title": "Pfizer 2024 Full-Year Results",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "pfizer-ibrance",
+      "name_zh": "爱博新（哌柏西利）",
+      "name_en": "Ibrance",
+      "brand_name": "Ibrance",
+      "inn": "palbociclib",
+      "company_id": "pfizer",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "oncology",
+      "indication_zh": "HR+/HER2-乳腺癌",
+      "indication_en": "HR+/HER2- breast cancer",
+      "approval_status": "approved",
+      "first_approval_year": 2015,
+      "key_markets": [
+        "FDA",
+        "EMA"
+      ],
+      "latest_annual_sales": {
+        "value": 5900000000,
+        "currency": "USD",
+        "year": 2024,
+        "source_url": "https://www.accio.com/business/what-are-pfizers-top-selling-drugs",
+        "note_en": "Ibrance FY2024 revenue"
+      },
+      "is_blockbuster": true,
+      "drug_class": "originator",
+      "target_mechanism_zh": "CDK4/6抑制剂",
+      "target_mechanism_en": "CDK4/6 inhibitor",
+      "region": "north_america",
+      "confidence": 0.92,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.accio.com/business/what-are-pfizers-top-selling-drugs",
+          "title": "Pfizer Top Products 2024",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "pfizer-prevnar",
+      "name_zh": "沛儿肺炎球菌疫苗",
+      "name_en": "Prevnar 13/20",
+      "brand_name": "Prevnar",
+      "inn": "pneumococcal vaccine",
+      "company_id": "pfizer",
+      "modality_id": "protein-subunit-vaccine",
+      "therapeutic_area_id": "vaccines",
+      "indication_zh": "肺炎球菌疾病预防",
+      "indication_en": "Prevention of pneumococcal disease",
+      "approval_status": "approved",
+      "first_approval_year": 2000,
+      "key_markets": [
+        "FDA",
+        "EMA"
+      ],
+      "latest_annual_sales": {
+        "value": 6900000000,
+        "currency": "USD",
+        "year": 2024,
+        "source_url": "https://www.accio.com/business/what-are-pfizers-top-selling-drugs",
+        "note_en": "Prevnar franchise FY2024"
+      },
+      "is_blockbuster": true,
+      "drug_class": "originator",
+      "target_mechanism_zh": "肺炎球菌多糖结合疫苗",
+      "target_mechanism_en": "Pneumococcal polysaccharide conjugate vaccine",
+      "region": "north_america",
+      "confidence": 0.92,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.accio.com/business/what-are-pfizers-top-selling-drugs",
+          "title": "Pfizer Top Products 2024",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "merck-keytruda",
+      "name_zh": "可瑞达（帕博利珠单抗）",
+      "name_en": "Keytruda",
+      "brand_name": "Keytruda",
+      "inn": "pembrolizumab",
+      "company_id": "merck-us",
+      "modality_id": "mab",
+      "therapeutic_area_id": "oncology",
+      "indication_zh": "多瘤种（肺癌、黑色素瘤、膀胱癌等）一线及多线治疗",
+      "indication_en": "Multiple solid tumors; first-line NSCLC, melanoma, bladder cancer and others",
+      "approval_status": "approved",
+      "first_approval_year": 2014,
+      "key_markets": [
+        "FDA",
+        "EMA"
+      ],
+      "latest_annual_sales": {
+        "value": 29500000000,
+        "currency": "USD",
+        "year": 2024,
+        "source_url": "https://www.merck.com/news/merck-announces-fourth-quarter-and-full-year-2024-financial-results/",
+        "note_en": "FY2024 global Keytruda revenue, up 18% YoY"
+      },
+      "is_blockbuster": true,
+      "drug_class": "originator",
+      "target_mechanism_zh": "抗PD-1单克隆抗体",
+      "target_mechanism_en": "Anti-PD-1 monoclonal antibody",
+      "region": "north_america",
+      "confidence": 0.98,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.merck.com/news/merck-announces-fourth-quarter-and-full-year-2024-financial-results/",
+          "title": "Merck Q4 and Full-Year 2024 Financial Results",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "merck-gardasil",
+      "name_zh": "加德西（HPV疫苗）",
+      "name_en": "Gardasil 9",
+      "brand_name": "Gardasil 9",
+      "inn": "human papillomavirus vaccine",
+      "company_id": "merck-us",
+      "modality_id": "protein-subunit-vaccine",
+      "therapeutic_area_id": "vaccines",
+      "indication_zh": "人乳头瘤病毒（HPV）感染及相关癌症预防",
+      "indication_en": "Prevention of HPV infection and related cancers",
+      "approval_status": "approved",
+      "first_approval_year": 2006,
+      "key_markets": [
+        "FDA",
+        "EMA",
+        "NMPA"
+      ],
+      "latest_annual_sales": {
+        "value": 8600000000,
+        "currency": "USD",
+        "year": 2024,
+        "source_url": "https://www.merck.com/news/merck-announces-fourth-quarter-and-full-year-2024-financial-results/",
+        "note_en": "FY2024 Gardasil/Gardasil9 revenue, down 3% due to China weakness"
+      },
+      "is_blockbuster": true,
+      "drug_class": "originator",
+      "target_mechanism_zh": "9价HPV L1蛋白病毒样颗粒疫苗",
+      "target_mechanism_en": "9-valent HPV L1 protein virus-like particle vaccine",
+      "region": "north_america",
+      "confidence": 0.97,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.merck.com/news/merck-announces-fourth-quarter-and-full-year-2024-financial-results/",
+          "title": "Merck Q4 and Full-Year 2024 Financial Results",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "merck-januvia",
+      "name_zh": "捷诺维（西格列汀）",
+      "name_en": "Januvia/Janumet",
+      "brand_name": "Januvia",
+      "inn": "sitagliptin",
+      "company_id": "merck-us",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "cardiometabolic",
+      "indication_zh": "2型糖尿病血糖控制",
+      "indication_en": "Type 2 diabetes blood glucose control",
+      "approval_status": "approved",
+      "first_approval_year": 2006,
+      "key_markets": [
+        "FDA",
+        "EMA"
+      ],
+      "latest_annual_sales": {
+        "value": 2300000000,
+        "currency": "USD",
+        "year": 2024,
+        "source_url": "https://www.merck.com/news/merck-announces-fourth-quarter-and-full-year-2024-financial-results/",
+        "note_en": "FY2024 Januvia/Janumet revenue, down 33% due to pricing pressure and generics"
+      },
+      "is_blockbuster": true,
+      "drug_class": "originator",
+      "target_mechanism_zh": "DPP-4抑制剂",
+      "target_mechanism_en": "DPP-4 inhibitor",
+      "region": "north_america",
+      "confidence": 0.97,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.merck.com/news/merck-announces-fourth-quarter-and-full-year-2024-financial-results/",
+          "title": "Merck Q4 and Full-Year 2024 Financial Results",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "merck-winrevair",
+      "name_zh": "温瑞维（索他普妥）",
+      "name_en": "Winrevair",
+      "brand_name": "Winrevair",
+      "inn": "sotatercept",
+      "company_id": "merck-us",
+      "modality_id": "fusion-protein",
+      "therapeutic_area_id": "cardiometabolic",
+      "indication_zh": "肺动脉高压（PAH）",
+      "indication_en": "Pulmonary arterial hypertension (PAH)",
+      "approval_status": "approved",
+      "first_approval_year": 2024,
+      "key_markets": [
+        "FDA"
+      ],
+      "latest_annual_sales": {
+        "value": 419000000,
+        "currency": "USD",
+        "year": 2024,
+        "source_url": "https://www.merck.com/news/merck-announces-fourth-quarter-and-full-year-2024-financial-results/",
+        "note_en": "First full year on market 2024; Q2 US launch"
+      },
+      "is_blockbuster": false,
+      "drug_class": "originator",
+      "target_mechanism_zh": "激活素信号抑制剂（ActRIIA-Fc融合蛋白）",
+      "target_mechanism_en": "Activin signaling inhibitor (ActRIIA-Fc fusion protein)",
+      "region": "north_america",
+      "confidence": 0.97,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.merck.com/news/merck-announces-fourth-quarter-and-full-year-2024-financial-results/",
+          "title": "Merck Q4 and Full-Year 2024 Financial Results",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "jnj-darzalex",
+      "name_zh": "达雷妥尤单抗",
+      "name_en": "Darzalex",
+      "brand_name": "Darzalex",
+      "inn": "daratumumab",
+      "company_id": "jnj",
+      "modality_id": "mab",
+      "therapeutic_area_id": "hematology",
+      "indication_zh": "多发性骨髓瘤",
+      "indication_en": "Multiple myeloma",
+      "approval_status": "approved",
+      "first_approval_year": 2015,
+      "key_markets": [
+        "FDA",
+        "EMA"
+      ],
+      "latest_annual_sales": {
+        "value": 11700000000,
+        "currency": "USD",
+        "year": 2024,
+        "source_url": "https://www.jnj.com/media-center/press-releases/johnson-johnson-reports-q4-2024-and-full-year-2024-results",
+        "note_en": "FY2024 Darzalex global revenue, up 19.8%, first time over $10B"
+      },
+      "is_blockbuster": true,
+      "drug_class": "originator",
+      "target_mechanism_zh": "抗CD38单克隆抗体",
+      "target_mechanism_en": "Anti-CD38 monoclonal antibody",
+      "region": "north_america",
+      "confidence": 0.97,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.jnj.com/media-center/press-releases/johnson-johnson-reports-q4-2024-and-full-year-2024-results",
+          "title": "J&J Q4 and Full-Year 2024 Results",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "jnj-stelara",
+      "name_zh": "喜达诺（乌司奴单抗）",
+      "name_en": "Stelara",
+      "brand_name": "Stelara",
+      "inn": "ustekinumab",
+      "company_id": "jnj",
+      "modality_id": "mab",
+      "therapeutic_area_id": "immunology",
+      "secondary_ta_ids": [
+        "dermatology",
+        "gastroenterology"
+      ],
+      "indication_zh": "银屑病、银屑病关节炎、克罗恩病、溃疡性结肠炎",
+      "indication_en": "Psoriasis, PsA, Crohn's disease, ulcerative colitis",
+      "approval_status": "approved",
+      "first_approval_year": 2009,
+      "key_markets": [
+        "FDA",
+        "EMA"
+      ],
+      "latest_annual_sales": {
+        "value": 10400000000,
+        "currency": "USD",
+        "year": 2024,
+        "source_url": "https://www.jnj.com/media-center/press-releases/johnson-johnson-reports-q4-2024-and-full-year-2024-results",
+        "note_en": "FY2024; facing biosimilar competition"
+      },
+      "is_blockbuster": true,
+      "drug_class": "originator",
+      "target_mechanism_zh": "抗IL-12/23单克隆抗体",
+      "target_mechanism_en": "Anti-IL-12/23 monoclonal antibody",
+      "region": "north_america",
+      "confidence": 0.97,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.jnj.com/media-center/press-releases/johnson-johnson-reports-q4-2024-and-full-year-2024-results",
+          "title": "J&J Q4 and Full-Year 2024 Results",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "jnj-tremfya",
+      "name_zh": "特立鲁单抗",
+      "name_en": "Tremfya",
+      "brand_name": "Tremfya",
+      "inn": "guselkumab",
+      "company_id": "jnj",
+      "modality_id": "mab",
+      "therapeutic_area_id": "immunology",
+      "secondary_ta_ids": [
+        "dermatology"
+      ],
+      "indication_zh": "斑块状银屑病、银屑病关节炎",
+      "indication_en": "Plaque psoriasis and psoriatic arthritis",
+      "approval_status": "approved",
+      "first_approval_year": 2017,
+      "key_markets": [
+        "FDA",
+        "EMA"
+      ],
+      "latest_annual_sales": {
+        "value": 3700000000,
+        "currency": "USD",
+        "year": 2024,
+        "source_url": "https://www.jnj.com/media-center/press-releases/johnson-johnson-reports-q4-2024-and-full-year-2024-results",
+        "note_en": "FY2024 Tremfya global revenue"
+      },
+      "is_blockbuster": true,
+      "drug_class": "originator",
+      "target_mechanism_zh": "抗IL-23单克隆抗体",
+      "target_mechanism_en": "Anti-IL-23 monoclonal antibody",
+      "region": "north_america",
+      "confidence": 0.97,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.jnj.com/media-center/press-releases/johnson-johnson-reports-q4-2024-and-full-year-2024-results",
+          "title": "J&J Q4 and Full-Year 2024 Results",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "jnj-erleada",
+      "name_zh": "爱普列特（阿帕他胺）",
+      "name_en": "Erleada",
+      "brand_name": "Erleada",
+      "inn": "apalutamide",
+      "company_id": "jnj",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "oncology",
+      "indication_zh": "非转移性去势抵抗性前列腺癌及转移性去势敏感性前列腺癌",
+      "indication_en": "nmCRPC and metastatic castration-sensitive prostate cancer",
+      "approval_status": "approved",
+      "first_approval_year": 2018,
+      "key_markets": [
+        "FDA",
+        "EMA"
+      ],
+      "latest_annual_sales": {
+        "value": 3000000000,
+        "currency": "USD",
+        "year": 2024,
+        "source_url": "https://www.jnj.com/media-center/press-releases/johnson-johnson-reports-q4-2024-and-full-year-2024-results",
+        "note_en": "FY2024 Erleada global revenue"
+      },
+      "is_blockbuster": true,
+      "drug_class": "originator",
+      "target_mechanism_zh": "雄激素受体抑制剂",
+      "target_mechanism_en": "Androgen receptor inhibitor",
+      "region": "north_america",
+      "confidence": 0.97,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.jnj.com/media-center/press-releases/johnson-johnson-reports-q4-2024-and-full-year-2024-results",
+          "title": "J&J Q4 and Full-Year 2024 Results",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "abbvie-humira",
+      "name_zh": "修美乐（阿达木单抗）",
+      "name_en": "Humira",
+      "brand_name": "Humira",
+      "inn": "adalimumab",
+      "company_id": "abbvie",
+      "modality_id": "mab",
+      "therapeutic_area_id": "immunology",
+      "secondary_ta_ids": [
+        "dermatology",
+        "gastroenterology"
+      ],
+      "indication_zh": "类风湿关节炎、银屑病、克罗恩病等多种炎症性疾病",
+      "indication_en": "Rheumatoid arthritis, psoriasis, Crohn's disease and other inflammatory diseases",
+      "approval_status": "approved",
+      "first_approval_year": 2002,
+      "key_markets": [
+        "FDA",
+        "EMA"
+      ],
+      "latest_annual_sales": {
+        "value": 9000000000,
+        "currency": "USD",
+        "year": 2024,
+        "source_url": "https://www.prnewswire.com/news-releases/abbvie-reports-full-year-and-fourth-quarter-2024-financial-results-302364968.html",
+        "note_en": "FY2024 global Humira revenue down 37% due to biosimilar competition"
+      },
+      "is_blockbuster": true,
+      "drug_class": "originator",
+      "target_mechanism_zh": "抗TNF-α单克隆抗体",
+      "target_mechanism_en": "Anti-TNF-α monoclonal antibody",
+      "region": "north_america",
+      "confidence": 0.97,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.prnewswire.com/news-releases/abbvie-reports-full-year-and-fourth-quarter-2024-financial-results-302364968.html",
+          "title": "AbbVie Full-Year 2024 Financial Results",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "abbvie-skyrizi",
+      "name_zh": "斯奇里兹（利生奇珠单抗）",
+      "name_en": "Skyrizi",
+      "brand_name": "Skyrizi",
+      "inn": "risankizumab",
+      "company_id": "abbvie",
+      "modality_id": "mab",
+      "therapeutic_area_id": "immunology",
+      "secondary_ta_ids": [
+        "dermatology",
+        "gastroenterology"
+      ],
+      "indication_zh": "银屑病、银屑病关节炎、克罗恩病、溃疡性结肠炎",
+      "indication_en": "Psoriasis, PsA, Crohn's disease, ulcerative colitis",
+      "approval_status": "approved",
+      "first_approval_year": 2019,
+      "key_markets": [
+        "FDA",
+        "EMA"
+      ],
+      "latest_annual_sales": {
+        "value": 11700000000,
+        "currency": "USD",
+        "year": 2024,
+        "source_url": "https://www.prnewswire.com/news-releases/abbvie-reports-full-year-and-fourth-quarter-2024-financial-results-302364968.html",
+        "note_en": "FY2024 global Skyrizi revenue up 51.4%"
+      },
+      "is_blockbuster": true,
+      "drug_class": "originator",
+      "target_mechanism_zh": "抗IL-23 p19单克隆抗体",
+      "target_mechanism_en": "Anti-IL-23 p19 monoclonal antibody",
+      "region": "north_america",
+      "confidence": 0.97,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.prnewswire.com/news-releases/abbvie-reports-full-year-and-fourth-quarter-2024-financial-results-302364968.html",
+          "title": "AbbVie Full-Year 2024 Financial Results",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "abbvie-rinvoq",
+      "name_zh": "瑞复可（乌帕替尼）",
+      "name_en": "Rinvoq",
+      "brand_name": "Rinvoq",
+      "inn": "upadacitinib",
+      "company_id": "abbvie",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "immunology",
+      "secondary_ta_ids": [
+        "dermatology",
+        "gastroenterology"
+      ],
+      "indication_zh": "类风湿关节炎、银屑病关节炎、特应性皮炎等",
+      "indication_en": "Rheumatoid arthritis, PsA, atopic dermatitis and other inflammatory conditions",
+      "approval_status": "approved",
+      "first_approval_year": 2019,
+      "key_markets": [
+        "FDA",
+        "EMA"
+      ],
+      "latest_annual_sales": {
+        "value": 6000000000,
+        "currency": "USD",
+        "year": 2024,
+        "source_url": "https://www.prnewswire.com/news-releases/abbvie-reports-full-year-and-fourth-quarter-2024-financial-results-302364968.html",
+        "note_en": "FY2024 global Rinvoq revenue up 52.5%"
+      },
+      "is_blockbuster": true,
+      "drug_class": "originator",
+      "target_mechanism_zh": "JAK1抑制剂",
+      "target_mechanism_en": "JAK1 inhibitor",
+      "region": "north_america",
+      "confidence": 0.97,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.prnewswire.com/news-releases/abbvie-reports-full-year-and-fourth-quarter-2024-financial-results-302364968.html",
+          "title": "AbbVie Full-Year 2024 Financial Results",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "bms-eliquis",
+      "name_zh": "艾乐妥（百时美施贵宝）",
+      "name_en": "Eliquis (BMS)",
+      "brand_name": "Eliquis",
+      "inn": "apixaban",
+      "company_id": "bms",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "cardiometabolic",
+      "indication_zh": "非瓣膜性房颤、深静脉血栓预防与治疗",
+      "indication_en": "Non-valvular atrial fibrillation and VTE prevention/treatment",
+      "approval_status": "approved",
+      "first_approval_year": 2012,
+      "key_markets": [
+        "FDA",
+        "EMA"
+      ],
+      "latest_annual_sales": {
+        "value": 13300000000,
+        "currency": "USD",
+        "year": 2024,
+        "source_url": "https://news.bms.com/news/details/2025/Bristol-Myers-Squibb-Reports-Fourth-Quarter-and-Full-Year-Financial-Results-for-2024/default.aspx",
+        "note_en": "FY2024 total Eliquis revenue (co-marketed with Pfizer); BMS holds primary marketing rights"
+      },
+      "is_blockbuster": true,
+      "drug_class": "originator",
+      "target_mechanism_zh": "Factor Xa抑制剂",
+      "target_mechanism_en": "Factor Xa inhibitor",
+      "region": "north_america",
+      "confidence": 0.97,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://news.bms.com/news/details/2025/Bristol-Myers-Squibb-Reports-Fourth-Quarter-and-Full-Year-Financial-Results-for-2024/default.aspx",
+          "title": "BMS Full-Year 2024 Financial Results",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "bms-opdivo",
+      "name_zh": "欧狄沃（纳武利尤单抗）",
+      "name_en": "Opdivo",
+      "brand_name": "Opdivo",
+      "inn": "nivolumab",
+      "company_id": "bms",
+      "modality_id": "mab",
+      "therapeutic_area_id": "oncology",
+      "indication_zh": "多瘤种：肺癌、肾癌、黑色素瘤、结直肠癌等",
+      "indication_en": "Multiple cancers including NSCLC, RCC, melanoma, colorectal cancer",
+      "approval_status": "approved",
+      "first_approval_year": 2014,
+      "key_markets": [
+        "FDA",
+        "EMA"
+      ],
+      "latest_annual_sales": {
+        "value": 9300000000,
+        "currency": "USD",
+        "year": 2024,
+        "source_url": "https://news.bms.com/news/details/2025/Bristol-Myers-Squibb-Reports-Fourth-Quarter-and-Full-Year-Financial-Results-for-2024/default.aspx",
+        "note_en": "FY2024 Opdivo global revenue"
+      },
+      "is_blockbuster": true,
+      "drug_class": "originator",
+      "target_mechanism_zh": "抗PD-1单克隆抗体",
+      "target_mechanism_en": "Anti-PD-1 monoclonal antibody",
+      "region": "north_america",
+      "confidence": 0.97,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://news.bms.com/news/details/2025/Bristol-Myers-Squibb-Reports-Fourth-Quarter-and-Full-Year-Financial-Results-for-2024/default.aspx",
+          "title": "BMS Full-Year 2024 Financial Results",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "bms-revlimid",
+      "name_zh": "来那度胺",
+      "name_en": "Revlimid",
+      "brand_name": "Revlimid",
+      "inn": "lenalidomide",
+      "company_id": "bms",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "hematology",
+      "indication_zh": "多发性骨髓瘤、骨髓增生异常综合征",
+      "indication_en": "Multiple myeloma and myelodysplastic syndromes",
+      "approval_status": "approved",
+      "first_approval_year": 2005,
+      "key_markets": [
+        "FDA",
+        "EMA"
+      ],
+      "latest_annual_sales": {
+        "value": 5800000000,
+        "currency": "USD",
+        "year": 2024,
+        "source_url": "https://news.bms.com/news/details/2025/Bristol-Myers-Squibb-Reports-Fourth-Quarter-and-Full-Year-Financial-Results-for-2024/default.aspx",
+        "note_en": "FY2024 Revlimid revenue; declining due to generic competition"
+      },
+      "is_blockbuster": true,
+      "drug_class": "originator",
+      "target_mechanism_zh": "免疫调节剂（cereblon E3泛素连接酶调节剂）",
+      "target_mechanism_en": "Immunomodulatory agent (cereblon E3 ubiquitin ligase modulator)",
+      "region": "north_america",
+      "confidence": 0.97,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://news.bms.com/news/details/2025/Bristol-Myers-Squibb-Reports-Fourth-Quarter-and-Full-Year-Financial-Results-for-2024/default.aspx",
+          "title": "BMS Full-Year 2024 Financial Results",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "lilly-mounjaro",
+      "name_zh": "梦扎洛（替西帕肽，糖尿病）",
+      "name_en": "Mounjaro",
+      "brand_name": "Mounjaro",
+      "inn": "tirzepatide",
+      "company_id": "eli-lilly",
+      "modality_id": "peptide",
+      "therapeutic_area_id": "cardiometabolic",
+      "indication_zh": "2型糖尿病血糖控制",
+      "indication_en": "Type 2 diabetes blood glucose control",
+      "approval_status": "approved",
+      "first_approval_year": 2022,
+      "key_markets": [
+        "FDA",
+        "EMA"
+      ],
+      "latest_annual_sales": {
+        "value": 11500000000,
+        "currency": "USD",
+        "year": 2024,
+        "source_url": "https://investor.lilly.com/news-releases/news-release-details/lilly-reports-full-q4-2024-financial-results-and-provides-2025",
+        "note_en": "FY2024 Mounjaro global revenue, more than doubled YoY"
+      },
+      "is_blockbuster": true,
+      "drug_class": "originator",
+      "target_mechanism_zh": "GLP-1/GIP双靶点受体激动剂",
+      "target_mechanism_en": "Dual GLP-1/GIP receptor agonist",
+      "region": "north_america",
+      "confidence": 0.97,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://investor.lilly.com/news-releases/news-release-details/lilly-reports-full-q4-2024-financial-results-and-provides-2025",
+          "title": "Lilly Full-Year 2024 Financial Results",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "lilly-zepbound",
+      "name_zh": "择庞得（替西帕肽，减重）",
+      "name_en": "Zepbound",
+      "brand_name": "Zepbound",
+      "inn": "tirzepatide",
+      "company_id": "eli-lilly",
+      "modality_id": "peptide",
+      "therapeutic_area_id": "cardiometabolic",
+      "indication_zh": "成人肥胖症或超重（含体重相关合并症）",
+      "indication_en": "Obesity or overweight in adults with weight-related comorbidities",
+      "approval_status": "approved",
+      "first_approval_year": 2023,
+      "key_markets": [
+        "FDA"
+      ],
+      "latest_annual_sales": {
+        "value": 4900000000,
+        "currency": "USD",
+        "year": 2024,
+        "source_url": "https://investor.lilly.com/news-releases/news-release-details/lilly-reports-full-q4-2024-financial-results-and-provides-2025",
+        "note_en": "FY2024 Zepbound revenue, launched Nov 2023"
+      },
+      "is_blockbuster": true,
+      "drug_class": "originator",
+      "target_mechanism_zh": "GLP-1/GIP双靶点受体激动剂",
+      "target_mechanism_en": "Dual GLP-1/GIP receptor agonist",
+      "region": "north_america",
+      "confidence": 0.97,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://investor.lilly.com/news-releases/news-release-details/lilly-reports-full-q4-2024-financial-results-and-provides-2025",
+          "title": "Lilly Full-Year 2024 Financial Results",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "lilly-verzenio",
+      "name_zh": "维泽尼奥（阿贝西利）",
+      "name_en": "Verzenio",
+      "brand_name": "Verzenio",
+      "inn": "abemaciclib",
+      "company_id": "eli-lilly",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "oncology",
+      "indication_zh": "HR+/HER2-乳腺癌",
+      "indication_en": "HR+/HER2- breast cancer",
+      "approval_status": "approved",
+      "first_approval_year": 2017,
+      "key_markets": [
+        "FDA",
+        "EMA"
+      ],
+      "latest_annual_sales": {
+        "value": 5300000000,
+        "currency": "USD",
+        "year": 2024,
+        "source_url": "https://investor.lilly.com/news-releases/news-release-details/lilly-reports-full-q4-2024-financial-results-and-provides-2025",
+        "note_en": "FY2024 Verzenio global revenue up 37.4%"
+      },
+      "is_blockbuster": true,
+      "drug_class": "originator",
+      "target_mechanism_zh": "CDK4/6抑制剂",
+      "target_mechanism_en": "CDK4/6 inhibitor",
+      "region": "north_america",
+      "confidence": 0.97,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://investor.lilly.com/news-releases/news-release-details/lilly-reports-full-q4-2024-financial-results-and-provides-2025",
+          "title": "Lilly Full-Year 2024 Financial Results",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "lilly-taltz",
+      "name_zh": "拓咨（依奇珠单抗）",
+      "name_en": "Taltz",
+      "brand_name": "Taltz",
+      "inn": "ixekizumab",
+      "company_id": "eli-lilly",
+      "modality_id": "mab",
+      "therapeutic_area_id": "immunology",
+      "secondary_ta_ids": [
+        "dermatology"
+      ],
+      "indication_zh": "银屑病、银屑病关节炎、强直性脊柱炎",
+      "indication_en": "Psoriasis, psoriatic arthritis, ankylosing spondylitis",
+      "approval_status": "approved",
+      "first_approval_year": 2016,
+      "key_markets": [
+        "FDA",
+        "EMA"
+      ],
+      "latest_annual_sales": {
+        "value": 3300000000,
+        "currency": "USD",
+        "year": 2024,
+        "source_url": "https://investor.lilly.com/news-releases/news-release-details/lilly-reports-full-q4-2024-financial-results-and-provides-2025",
+        "note_en": "FY2024 Taltz global revenue up 18.1%"
+      },
+      "is_blockbuster": true,
+      "drug_class": "originator",
+      "target_mechanism_zh": "抗IL-17A单克隆抗体",
+      "target_mechanism_en": "Anti-IL-17A monoclonal antibody",
+      "region": "north_america",
+      "confidence": 0.97,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://investor.lilly.com/news-releases/news-release-details/lilly-reports-full-q4-2024-financial-results-and-provides-2025",
+          "title": "Lilly Full-Year 2024 Financial Results",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "amgen-prolia",
+      "name_zh": "普利亚（地舒单抗）",
+      "name_en": "Prolia",
+      "brand_name": "Prolia",
+      "inn": "denosumab",
+      "company_id": "amgen",
+      "modality_id": "mab",
+      "therapeutic_area_id": "rare-disease",
+      "indication_zh": "绝经后骨质疏松症",
+      "indication_en": "Postmenopausal osteoporosis",
+      "approval_status": "approved",
+      "first_approval_year": 2010,
+      "key_markets": [
+        "FDA",
+        "EMA"
+      ],
+      "latest_annual_sales": {
+        "value": 4374000000,
+        "currency": "USD",
+        "year": 2024,
+        "source_url": "https://www.prnewswire.com/news-releases/amgen-reports-fourth-quarter-and-full-year-2024-financial-results-302367906.html",
+        "note_en": "FY2024 Prolia global revenue up 8%"
+      },
+      "is_blockbuster": true,
+      "drug_class": "originator",
+      "target_mechanism_zh": "抗RANK配体单克隆抗体",
+      "target_mechanism_en": "Anti-RANKL monoclonal antibody",
+      "region": "north_america",
+      "confidence": 0.97,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.prnewswire.com/news-releases/amgen-reports-fourth-quarter-and-full-year-2024-financial-results-302367906.html",
+          "title": "Amgen 2024 Full-Year Results",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "amgen-enbrel",
+      "name_zh": "依那西普",
+      "name_en": "Enbrel",
+      "brand_name": "Enbrel",
+      "inn": "etanercept",
+      "company_id": "amgen",
+      "modality_id": "fusion-protein",
+      "therapeutic_area_id": "immunology",
+      "secondary_ta_ids": [
+        "dermatology"
+      ],
+      "indication_zh": "类风湿关节炎、银屑病等（美国）",
+      "indication_en": "Rheumatoid arthritis, psoriasis (US rights held by Amgen)",
+      "approval_status": "approved",
+      "first_approval_year": 1998,
+      "key_markets": [
+        "FDA"
+      ],
+      "latest_annual_sales": {
+        "value": 3316000000,
+        "currency": "USD",
+        "year": 2024,
+        "source_url": "https://www.prnewswire.com/news-releases/amgen-reports-fourth-quarter-and-full-year-2024-financial-results-302367906.html",
+        "note_en": "FY2024 Enbrel revenue down 10% due to price erosion"
+      },
+      "is_blockbuster": true,
+      "drug_class": "originator",
+      "target_mechanism_zh": "TNF-α受体融合蛋白",
+      "target_mechanism_en": "TNF-α receptor fusion protein",
+      "region": "north_america",
+      "confidence": 0.97,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.prnewswire.com/news-releases/amgen-reports-fourth-quarter-and-full-year-2024-financial-results-302367906.html",
+          "title": "Amgen 2024 Full-Year Results",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "amgen-otezla",
+      "name_zh": "奥泰拉（阿普米司特）",
+      "name_en": "Otezla",
+      "brand_name": "Otezla",
+      "inn": "apremilast",
+      "company_id": "amgen",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "immunology",
+      "secondary_ta_ids": [
+        "dermatology"
+      ],
+      "indication_zh": "银屑病关节炎、斑块状银屑病",
+      "indication_en": "Psoriatic arthritis and plaque psoriasis",
+      "approval_status": "approved",
+      "first_approval_year": 2014,
+      "key_markets": [
+        "FDA",
+        "EMA"
+      ],
+      "latest_annual_sales": {
+        "value": 2126000000,
+        "currency": "USD",
+        "year": 2024,
+        "source_url": "https://www.prnewswire.com/news-releases/amgen-reports-fourth-quarter-and-full-year-2024-financial-results-302367906.html",
+        "note_en": "FY2024 Otezla revenue down 3%"
+      },
+      "is_blockbuster": true,
+      "drug_class": "originator",
+      "target_mechanism_zh": "磷酸二酯酶4（PDE4）抑制剂",
+      "target_mechanism_en": "Phosphodiesterase 4 (PDE4) inhibitor",
+      "region": "north_america",
+      "confidence": 0.97,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.prnewswire.com/news-releases/amgen-reports-fourth-quarter-and-full-year-2024-financial-results-302367906.html",
+          "title": "Amgen 2024 Full-Year Results",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "amgen-repatha",
+      "name_zh": "瑞百安（依洛尤单抗）",
+      "name_en": "Repatha",
+      "brand_name": "Repatha",
+      "inn": "evolocumab",
+      "company_id": "amgen",
+      "modality_id": "mab",
+      "therapeutic_area_id": "cardiometabolic",
+      "indication_zh": "高胆固醇血症及心血管事件风险降低",
+      "indication_en": "Hypercholesterolemia and reduction of cardiovascular events",
+      "approval_status": "approved",
+      "first_approval_year": 2015,
+      "key_markets": [
+        "FDA",
+        "EMA"
+      ],
+      "latest_annual_sales": {
+        "value": 2222000000,
+        "currency": "USD",
+        "year": 2024,
+        "source_url": "https://www.prnewswire.com/news-releases/amgen-reports-fourth-quarter-and-full-year-2024-financial-results-302367906.html",
+        "note_en": "FY2024 Repatha revenue up 36%"
+      },
+      "is_blockbuster": true,
+      "drug_class": "originator",
+      "target_mechanism_zh": "抗PCSK9单克隆抗体",
+      "target_mechanism_en": "Anti-PCSK9 monoclonal antibody",
+      "region": "north_america",
+      "confidence": 0.97,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.prnewswire.com/news-releases/amgen-reports-fourth-quarter-and-full-year-2024-financial-results-302367906.html",
+          "title": "Amgen 2024 Full-Year Results",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "gilead-biktarvy",
+      "name_zh": "必妥维（比克替拉韦/恩曲他滨/丙酚替诺福韦）",
+      "name_en": "Biktarvy",
+      "brand_name": "Biktarvy",
+      "inn": "bictegravir/emtricitabine/tenofovir alafenamide",
+      "company_id": "gilead",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "infectious-disease",
+      "indication_zh": "HIV-1感染成人与儿科患者",
+      "indication_en": "HIV-1 infection in adults and pediatric patients",
+      "approval_status": "approved",
+      "first_approval_year": 2018,
+      "key_markets": [
+        "FDA",
+        "EMA"
+      ],
+      "latest_annual_sales": {
+        "value": 13423000000,
+        "currency": "USD",
+        "year": 2024,
+        "source_url": "https://investors.gilead.com/news/news-details/2025/Gilead-Sciences-Announces-Fourth-Quarter-and-Full-Year-2024-Financial-Results/default.aspx",
+        "note_en": "FY2024 Biktarvy global revenue up 13%"
+      },
+      "is_blockbuster": true,
+      "drug_class": "originator",
+      "target_mechanism_zh": "整合酶链转移抑制剂复方（INSTI+NRTI）",
+      "target_mechanism_en": "Integrase strand transfer inhibitor combination (INSTI+NRTIs)",
+      "region": "north_america",
+      "confidence": 0.97,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://investors.gilead.com/news/news-details/2025/Gilead-Sciences-Announces-Fourth-Quarter-and-Full-Year-2024-Financial-Results/default.aspx",
+          "title": "Gilead Q4 and Full-Year 2024 Financial Results",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "gilead-veklury",
+      "name_zh": "维克鲁（瑞德西韦）",
+      "name_en": "Veklury",
+      "brand_name": "Veklury",
+      "inn": "remdesivir",
+      "company_id": "gilead",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "infectious-disease",
+      "indication_zh": "COVID-19住院患者治疗",
+      "indication_en": "Treatment of COVID-19 in hospitalized patients",
+      "approval_status": "approved",
+      "first_approval_year": 2020,
+      "key_markets": [
+        "FDA",
+        "EMA"
+      ],
+      "latest_annual_sales": {
+        "value": 1799000000,
+        "currency": "USD",
+        "year": 2024,
+        "source_url": "https://investors.gilead.com/news/news-details/2025/Gilead-Sciences-Announces-Fourth-Quarter-and-Full-Year-2024-Financial-Results/default.aspx",
+        "note_en": "FY2024 Veklury revenue down 18% due to lower hospitalization rates"
+      },
+      "is_blockbuster": true,
+      "drug_class": "originator",
+      "target_mechanism_zh": "核苷类RNA聚合酶抑制剂",
+      "target_mechanism_en": "Nucleoside RNA polymerase inhibitor",
+      "region": "north_america",
+      "confidence": 0.97,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://investors.gilead.com/news/news-details/2025/Gilead-Sciences-Announces-Fourth-Quarter-and-Full-Year-2024-Financial-Results/default.aspx",
+          "title": "Gilead Q4 and Full-Year 2024 Financial Results",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "vertex-trikafta",
+      "name_zh": "三联疗法（依来卡托/泰扎卡托/伊伐卡托）",
+      "name_en": "Trikafta/Kaftrio",
+      "brand_name": "Trikafta",
+      "inn": "elexacaftor/tezacaftor/ivacaftor",
+      "company_id": "vertex",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "rare-disease",
+      "indication_zh": "囊性纤维化（含F508del突变患者）",
+      "indication_en": "Cystic fibrosis including F508del mutation",
+      "approval_status": "approved",
+      "first_approval_year": 2019,
+      "key_markets": [
+        "FDA",
+        "EMA"
+      ],
+      "latest_annual_sales": {
+        "value": 10240000000,
+        "currency": "USD",
+        "year": 2024,
+        "source_url": "https://investors.vrtx.com/news-releases/news-release-details/vertex-reports-fourth-quarter-and-full-year-2024-financial",
+        "note_en": "FY2024 Trikafta/Kaftrio global revenue"
+      },
+      "is_blockbuster": true,
+      "drug_class": "originator",
+      "target_mechanism_zh": "CFTR调节剂三联疗法",
+      "target_mechanism_en": "Triple CFTR modulator combination",
+      "region": "north_america",
+      "confidence": 0.97,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://investors.vrtx.com/news-releases/news-release-details/vertex-reports-fourth-quarter-and-full-year-2024-financial",
+          "title": "Vertex Q4 and Full-Year 2024 Financial Results",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "vertex-casgevy",
+      "name_zh": "卡斯加维（依可赛珠）",
+      "name_en": "Casgevy",
+      "brand_name": "Casgevy",
+      "inn": "exagamglogene autotemcel (exa-cel)",
+      "company_id": "vertex",
+      "modality_id": "aav-gene-therapy",
+      "therapeutic_area_id": "hematology",
+      "indication_zh": "镰状细胞病及输血依赖型β地中海贫血（CRISPR基因疗法）",
+      "indication_en": "Sickle cell disease and transfusion-dependent beta-thalassemia (CRISPR therapy)",
+      "approval_status": "approved",
+      "first_approval_year": 2023,
+      "key_markets": [
+        "FDA",
+        "EMA",
+        "MHRA"
+      ],
+      "is_blockbuster": false,
+      "drug_class": "originator",
+      "target_mechanism_zh": "CRISPR-Cas9编辑BCL11A基因以上调胎儿血红蛋白",
+      "target_mechanism_en": "CRISPR-Cas9 editing of BCL11A to upregulate fetal hemoglobin",
+      "region": "north_america",
+      "confidence": 0.97,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://investors.vrtx.com/news-releases/news-release-details/vertex-reports-fourth-quarter-and-full-year-2024-financial",
+          "title": "Vertex Q4 and Full-Year 2024 Financial Results",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "regeneron-dupixent",
+      "name_zh": "达必妥（度普利尤单抗）",
+      "name_en": "Dupixent",
+      "brand_name": "Dupixent",
+      "inn": "dupilumab",
+      "company_id": "regeneron",
+      "modality_id": "mab",
+      "therapeutic_area_id": "immunology",
+      "secondary_ta_ids": [
+        "dermatology",
+        "respiratory"
+      ],
+      "indication_zh": "特应性皮炎、哮喘、慢性鼻窦炎伴鼻息肉等",
+      "indication_en": "Atopic dermatitis, asthma, chronic rhinosinusitis with nasal polyps, eosinophilic esophagitis",
+      "approval_status": "approved",
+      "first_approval_year": 2017,
+      "key_markets": [
+        "FDA",
+        "EMA"
+      ],
+      "latest_annual_sales": {
+        "value": 14150000000,
+        "currency": "USD",
+        "year": 2024,
+        "source_url": "https://www.globenewswire.com/news-release/2025/02/04/3020099/0/en/Regeneron-Reports-Fourth-Quarter-and-Full-Year-2024-Financial-and-Operating-Results-Initiates-Quarterly-Dividend-and-Increases-Total-Share-Repurchase-Capacity-to-4-5-Billion.html",
+        "note_en": "FY2024 Dupixent global net sales up 22% (co-marketed with Sanofi)"
+      },
+      "is_blockbuster": true,
+      "drug_class": "originator",
+      "target_mechanism_zh": "抗IL-4Rα单克隆抗体（阻断IL-4和IL-13信号）",
+      "target_mechanism_en": "Anti-IL-4Rα mAb blocking IL-4 and IL-13 signaling",
+      "region": "north_america",
+      "confidence": 0.97,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.globenewswire.com/news-release/2025/02/04/3020099/0/en/Regeneron-Reports-Fourth-Quarter-and-Full-Year-2024-Financial-and-Operating-Results-Initiates-Quarterly-Dividend-and-Increases-Total-Share-Repurchase-Capacity-to-4-5-Billion.html",
+          "title": "Regeneron Q4 and Full-Year 2024 Financial Results",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "regeneron-eylea",
+      "name_zh": "艾力雅（阿柏西普）",
+      "name_en": "EYLEA / EYLEA HD",
+      "brand_name": "EYLEA",
+      "inn": "aflibercept",
+      "company_id": "regeneron",
+      "modality_id": "fusion-protein",
+      "therapeutic_area_id": "ophthalmology",
+      "indication_zh": "新生血管性年龄相关性黄斑变性、糖尿病黄斑水肿等",
+      "indication_en": "Neovascular AMD, diabetic macular edema, retinal vein occlusion",
+      "approval_status": "approved",
+      "first_approval_year": 2011,
+      "key_markets": [
+        "FDA",
+        "EMA"
+      ],
+      "latest_annual_sales": {
+        "value": 5970000000,
+        "currency": "USD",
+        "year": 2024,
+        "source_url": "https://www.globenewswire.com/news-release/2025/02/04/3020099/0/en/Regeneron-Reports-Fourth-Quarter-and-Full-Year-2024-Financial-and-Operating-Results-Initiates-Quarterly-Dividend-and-Increases-Total-Share-Repurchase-Capacity-to-4-5-Billion.html",
+        "note_en": "FY2024 US net sales for EYLEA+EYLEA HD combined, up 1%"
+      },
+      "is_blockbuster": true,
+      "drug_class": "originator",
+      "target_mechanism_zh": "VEGF-A/VEGF-B/PIGF捕获融合蛋白",
+      "target_mechanism_en": "VEGF-A/VEGF-B/PlGF trap fusion protein",
+      "region": "north_america",
+      "confidence": 0.97,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.globenewswire.com/news-release/2025/02/04/3020099/0/en/Regeneron-Reports-Fourth-Quarter-and-Full-Year-2024-Financial-and-Operating-Results-Initiates-Quarterly-Dividend-and-Increases-Total-Share-Repurchase-Capacity-to-4-5-Billion.html",
+          "title": "Regeneron Q4 and Full-Year 2024 Financial Results",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "regeneron-libtayo",
+      "name_zh": "利泰木（西米普利单抗）",
+      "name_en": "Libtayo",
+      "brand_name": "Libtayo",
+      "inn": "cemiplimab",
+      "company_id": "regeneron",
+      "modality_id": "mab",
+      "therapeutic_area_id": "oncology",
+      "indication_zh": "皮肤鳞状细胞癌、基底细胞癌、非小细胞肺癌",
+      "indication_en": "Cutaneous squamous cell carcinoma, basal cell carcinoma, NSCLC",
+      "approval_status": "approved",
+      "first_approval_year": 2018,
+      "key_markets": [
+        "FDA",
+        "EMA"
+      ],
+      "latest_annual_sales": {
+        "value": 1220000000,
+        "currency": "USD",
+        "year": 2024,
+        "source_url": "https://www.globenewswire.com/news-release/2025/02/04/3020099/0/en/Regeneron-Reports-Fourth-Quarter-and-Full-Year-2024-Financial-and-Operating-Results-Initiates-Quarterly-Dividend-and-Increases-Total-Share-Repurchase-Capacity-to-4-5-Billion.html",
+        "note_en": "FY2024 Libtayo global net sales up 40%"
+      },
+      "is_blockbuster": true,
+      "drug_class": "originator",
+      "target_mechanism_zh": "抗PD-1单克隆抗体",
+      "target_mechanism_en": "Anti-PD-1 monoclonal antibody",
+      "region": "north_america",
+      "confidence": 0.97,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.globenewswire.com/news-release/2025/02/04/3020099/0/en/Regeneron-Reports-Fourth-Quarter-and-Full-Year-2024-Financial-and-Operating-Results-Initiates-Quarterly-Dividend-and-Increases-Total-Share-Repurchase-Capacity-to-4-5-Billion.html",
+          "title": "Regeneron Q4 and Full-Year 2024 Financial Results",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "biogen-leqembi",
+      "name_zh": "可善挺（仑卡奈单抗）",
+      "name_en": "Leqembi",
+      "brand_name": "Leqembi",
+      "inn": "lecanemab",
+      "company_id": "biogen",
+      "modality_id": "mab",
+      "therapeutic_area_id": "neuroscience",
+      "indication_zh": "早期阿尔茨海默病（淀粉样蛋白清除）",
+      "indication_en": "Early Alzheimer's disease (amyloid plaque clearance)",
+      "approval_status": "approved",
+      "first_approval_year": 2023,
+      "key_markets": [
+        "FDA"
+      ],
+      "latest_annual_sales": {
+        "value": 175000000,
+        "currency": "USD",
+        "year": 2024,
+        "source_url": "https://investors.biogen.com/static-files/a4eadd7a-6e77-4110-8289-94816df02324",
+        "note_en": "Approximate FY2024 US revenue based on quarterly data (Q4 ~$50M US)"
+      },
+      "is_blockbuster": false,
+      "drug_class": "originator",
+      "target_mechanism_zh": "抗淀粉样蛋白原纤维单克隆抗体",
+      "target_mechanism_en": "Anti-amyloid protofibrils monoclonal antibody",
+      "region": "north_america",
+      "confidence": 0.9,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://investors.biogen.com/static-files/a4eadd7a-6e77-4110-8289-94816df02324",
+          "title": "Biogen Q4 2024 Exhibit 99.1",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "biogen-tysabri",
+      "name_zh": "那他珠单抗",
+      "name_en": "Tysabri",
+      "brand_name": "Tysabri",
+      "inn": "natalizumab",
+      "company_id": "biogen",
+      "modality_id": "mab",
+      "therapeutic_area_id": "neuroscience",
+      "indication_zh": "复发缓解型多发性硬化症、克罗恩病",
+      "indication_en": "Relapsing-remitting multiple sclerosis and Crohn's disease",
+      "approval_status": "approved",
+      "first_approval_year": 2004,
+      "key_markets": [
+        "FDA",
+        "EMA"
+      ],
+      "latest_annual_sales": {
+        "value": 1500000000,
+        "currency": "USD",
+        "year": 2024,
+        "source_url": "https://investors.biogen.com/static-files/a4eadd7a-6e77-4110-8289-94816df02324",
+        "note_en": "Approximate FY2024 Tysabri revenue"
+      },
+      "is_blockbuster": true,
+      "drug_class": "originator",
+      "target_mechanism_zh": "抗α4整合素单克隆抗体",
+      "target_mechanism_en": "Anti-α4 integrin monoclonal antibody",
+      "region": "north_america",
+      "confidence": 0.88,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://investors.biogen.com/static-files/a4eadd7a-6e77-4110-8289-94816df02324",
+          "title": "Biogen Q4 2024 Exhibit 99.1",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "biogen-tecfidera",
+      "name_zh": "富马酸二甲酯",
+      "name_en": "Tecfidera",
+      "brand_name": "Tecfidera",
+      "inn": "dimethyl fumarate",
+      "company_id": "biogen",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "neuroscience",
+      "indication_zh": "复发型多发性硬化症",
+      "indication_en": "Relapsing forms of multiple sclerosis",
+      "approval_status": "approved",
+      "first_approval_year": 2013,
+      "key_markets": [
+        "FDA",
+        "EMA"
+      ],
+      "latest_annual_sales": {
+        "value": 967000000,
+        "currency": "USD",
+        "year": 2024,
+        "source_url": "https://www.biospectrumasia.com/company-results/102/25587/biogen-reports-q4-and-full-year-2024-results-strong-eps-growth-amid-revenue-challenges.html",
+        "note_en": "FY2024 Tecfidera revenue, down 5% due to generics"
+      },
+      "is_blockbuster": false,
+      "drug_class": "originator",
+      "target_mechanism_zh": "Nrf2通路激活/免疫调节",
+      "target_mechanism_en": "Nrf2 pathway activation / immunomodulation",
+      "region": "north_america",
+      "confidence": 0.9,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.biospectrumasia.com/company-results/102/25587/biogen-reports-q4-and-full-year-2024-results-strong-eps-growth-amid-revenue-challenges.html",
+          "title": "Biogen Q4 and Full-Year 2024 Results",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "biogen-skyclarys",
+      "name_zh": "斯可拉力斯（奥马维罗克索隆）",
+      "name_en": "Skyclarys",
+      "brand_name": "Skyclarys",
+      "inn": "omaveloxolone",
+      "company_id": "biogen",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "rare-disease",
+      "indication_zh": "弗里德赖希共济失调（Friedreich's ataxia）",
+      "indication_en": "Friedreich's ataxia",
+      "approval_status": "approved",
+      "first_approval_year": 2023,
+      "key_markets": [
+        "FDA"
+      ],
+      "is_blockbuster": false,
+      "drug_class": "originator",
+      "target_mechanism_zh": "Nrf2通路激活剂",
+      "target_mechanism_en": "Nrf2 pathway activator",
+      "region": "north_america",
+      "confidence": 0.9,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://investors.biogen.com/static-files/a4eadd7a-6e77-4110-8289-94816df02324",
+          "title": "Biogen Q4 2024 Exhibit 99.1",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "imbruvica",
+      "name_zh": "亿珂（伊布替尼）",
+      "name_en": "Imbruvica",
+      "brand_name": "Imbruvica",
+      "inn": "ibrutinib",
+      "company_id": "abbvie",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "hematology",
+      "indication_zh": "慢性淋巴细胞白血病、套细胞淋巴瘤等 B 细胞恶性肿瘤",
+      "indication_en": "CLL, MCL and other B-cell malignancies",
+      "approval_status": "approved",
+      "first_approval_year": 2013,
+      "key_markets": [
+        "FDA",
+        "EMA",
+        "NMPA"
+      ],
+      "is_blockbuster": true,
+      "drug_class": "originator",
+      "target_mechanism_zh": "BTK 抑制剂",
+      "target_mechanism_en": "BTK inhibitor",
+      "region": "north_america",
+      "confidence": 0.8,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.abbvie.com/",
+          "title": "AbbVie — Imbruvica",
+          "accessed": "2026-06"
+        }
+      ]
+    }
+  ]
+}

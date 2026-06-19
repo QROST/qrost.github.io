@@ -1,0 +1,890 @@
+{
+  "shard": "china-innovator-2",
+  "products": [
+    {
+      "id": "fruquintinib",
+      "name_zh": "呋喹替尼",
+      "name_en": "Fruquintinib",
+      "brand_name": "Fruzaqla",
+      "company_id": "hutchmed",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "oncology",
+      "indication_zh": "转移性结直肠癌",
+      "indication_en": "Metastatic colorectal cancer",
+      "approval_status": "approved",
+      "is_blockbuster": false,
+      "drug_class": "originator",
+      "region": "greater_china",
+      "confidence": 0.9,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.hutch-med.com/2024-full-year-results/",
+          "title": "Hutchmed 2024 Results",
+          "accessed": "2026-06"
+        },
+        {
+          "url": "https://www.takedaoncology.com/newsroom/news-releases/2023/fda-approval-fruzaqla-fruquintinib/",
+          "title": "FDA Fruzaqla Approval",
+          "accessed": "2026-06"
+        }
+      ],
+      "inn": "fruquintinib",
+      "first_approval_year": 2018,
+      "key_markets": [
+        "FDA",
+        "NMPA",
+        "EMA",
+        "PMDA"
+      ],
+      "latest_annual_sales": {
+        "value": 405600000,
+        "currency": "USD",
+        "year": 2024,
+        "source_url": "https://www.hutch-med.com/2024-full-year-results/",
+        "note_en": "China USD115M + ex-China USD290.6M"
+      },
+      "target_mechanism_zh": "VEGFR 1/2/3 抑制剂",
+      "target_mechanism_en": "VEGFR 1/2/3 inhibitor"
+    },
+    {
+      "id": "surufatinib",
+      "name_zh": "索凡替尼",
+      "name_en": "Surufatinib",
+      "brand_name": "Sulanda",
+      "company_id": "hutchmed",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "oncology",
+      "indication_zh": "神经内分泌肿瘤",
+      "indication_en": "Neuroendocrine tumors",
+      "approval_status": "approved",
+      "is_blockbuster": false,
+      "drug_class": "originator",
+      "region": "greater_china",
+      "confidence": 0.9,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.hutch-med.com/2024-full-year-results/",
+          "title": "Hutchmed 2024 Results",
+          "accessed": "2026-06"
+        }
+      ],
+      "inn": "surufatinib",
+      "first_approval_year": 2020,
+      "key_markets": [
+        "NMPA"
+      ],
+      "latest_annual_sales": {
+        "value": 49000000,
+        "currency": "USD",
+        "year": 2024,
+        "source_url": "https://www.hutch-med.com/2024-full-year-results/"
+      },
+      "target_mechanism_zh": "VEGFR/FGFR/CSF-1R 多靶点抑制剂",
+      "target_mechanism_en": "VEGFR/FGFR/CSF-1R multi-kinase inhibitor"
+    },
+    {
+      "id": "icotinib",
+      "name_zh": "埃克替尼",
+      "name_en": "Icotinib",
+      "brand_name": "Conmana",
+      "company_id": "betta-pharmaceuticals",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "oncology",
+      "indication_zh": "EGFR突变非小细胞肺癌",
+      "indication_en": "EGFR-mutant NSCLC",
+      "approval_status": "approved",
+      "is_blockbuster": false,
+      "drug_class": "originator",
+      "region": "greater_china",
+      "confidence": 0.9,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "http://money.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=10891633&stockid=300558",
+          "title": "Betta 2024 Annual Report",
+          "accessed": "2026-06"
+        }
+      ],
+      "inn": "icotinib",
+      "first_approval_year": 2011,
+      "key_markets": [
+        "NMPA"
+      ],
+      "target_mechanism_zh": "EGFR酪氨酸激酶抑制剂",
+      "target_mechanism_en": "EGFR tyrosine kinase inhibitor"
+    },
+    {
+      "id": "ensartinib",
+      "name_zh": "恩沙替尼",
+      "name_en": "Ensartinib",
+      "brand_name": "Ensartinib",
+      "company_id": "betta-pharmaceuticals",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "oncology",
+      "indication_zh": "ALK阳性非小细胞肺癌",
+      "indication_en": "ALK-positive NSCLC",
+      "approval_status": "approved",
+      "is_blockbuster": false,
+      "drug_class": "originator",
+      "region": "greater_china",
+      "confidence": 0.9,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.bettapharma.com/News/show/id/2718",
+          "title": "Betta Ensartinib FDA Approval",
+          "accessed": "2026-06"
+        }
+      ],
+      "inn": "ensartinib",
+      "first_approval_year": 2020,
+      "key_markets": [
+        "NMPA",
+        "FDA"
+      ],
+      "target_mechanism_zh": "ALK抑制剂",
+      "target_mechanism_en": "ALK inhibitor"
+    },
+    {
+      "id": "chidamide",
+      "name_zh": "西达本胺",
+      "name_en": "Chidamide",
+      "brand_name": "Epidaza",
+      "company_id": "chipscreen",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "oncology",
+      "indication_zh": "外周T细胞淋巴瘤及弥漫大B细胞淋巴瘤",
+      "indication_en": "Peripheral T-cell lymphoma and DLBCL",
+      "approval_status": "approved",
+      "is_blockbuster": false,
+      "drug_class": "originator",
+      "region": "greater_china",
+      "confidence": 0.9,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "http://notice.10jqka.com.cn/api/pdf/a94fb12404c60923.pdf",
+          "title": "Chipscreen 2024 Annual Report",
+          "accessed": "2026-06"
+        }
+      ],
+      "inn": "chidamide",
+      "first_approval_year": 2014,
+      "key_markets": [
+        "NMPA"
+      ],
+      "latest_annual_sales": {
+        "value": 499541052,
+        "currency": "CNY",
+        "year": 2024,
+        "source_url": "http://notice.10jqka.com.cn/api/pdf/a94fb12404c60923.pdf"
+      },
+      "target_mechanism_zh": "亚型选择性HDAC抑制剂",
+      "target_mechanism_en": "Subtype-selective HDAC inhibitor"
+    },
+    {
+      "id": "orelabrutinib",
+      "name_zh": "奥布替尼",
+      "name_en": "Orelabrutinib",
+      "brand_name": "Istinyu",
+      "company_id": "innocare",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "hematology",
+      "indication_zh": "慢性淋巴细胞白血病/小淋巴细胞淋巴瘤、套细胞淋巴瘤、边缘区淋巴瘤",
+      "indication_en": "CLL/SLL, MCL, and MZL",
+      "approval_status": "approved",
+      "is_blockbuster": true,
+      "drug_class": "originator",
+      "region": "greater_china",
+      "confidence": 0.9,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.hkexnews.hk/listedco/listconews/sehk/2025/0428/2025042800913.pdf",
+          "title": "InnoCare 2024 Annual Report",
+          "accessed": "2026-06"
+        }
+      ],
+      "inn": "orelabrutinib",
+      "first_approval_year": 2020,
+      "key_markets": [
+        "NMPA"
+      ],
+      "latest_annual_sales": {
+        "value": 1000400000,
+        "currency": "CNY",
+        "year": 2024,
+        "source_url": "https://www.hkexnews.hk/listedco/listconews/sehk/2025/0428/2025042800913.pdf"
+      },
+      "target_mechanism_zh": "BTK抑制剂",
+      "target_mechanism_en": "BTK inhibitor"
+    },
+    {
+      "id": "sugemalimab",
+      "name_zh": "舒格利单抗",
+      "name_en": "Sugemalimab",
+      "brand_name": "Cejemly",
+      "company_id": "cstone",
+      "modality_id": "mab",
+      "therapeutic_area_id": "oncology",
+      "indication_zh": "非小细胞肺癌、食管鳞癌、胃癌等",
+      "indication_en": "NSCLC, esophageal SCC, gastric cancer",
+      "approval_status": "approved",
+      "is_blockbuster": false,
+      "drug_class": "originator",
+      "region": "greater_china",
+      "confidence": 0.9,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.prnewswire.com/news-releases/cstone-announced-new-drug-approval-of-cejemly-sugemalimab-in-china-to-potentially-reshape-the-landscape-of-immuno-oncology-therapy-in-lung-cancer-301448778.html",
+          "title": "CStone Sugemalimab Approval",
+          "accessed": "2026-06"
+        }
+      ],
+      "inn": "sugemalimab",
+      "first_approval_year": 2021,
+      "key_markets": [
+        "NMPA",
+        "EMA"
+      ],
+      "target_mechanism_zh": "抗PD-L1单抗",
+      "target_mechanism_en": "Anti-PD-L1 monoclonal antibody"
+    },
+    {
+      "id": "tpiao",
+      "name_zh": "特比澳",
+      "name_en": "TPIAO",
+      "brand_name": "TPIAO",
+      "company_id": "3sbio",
+      "modality_id": "recombinant-protein",
+      "therapeutic_area_id": "hematology",
+      "indication_zh": "化疗所致血小板减少症及免疫性血小板减少症",
+      "indication_en": "Chemotherapy-induced and immune thrombocytopenia",
+      "approval_status": "approved",
+      "is_blockbuster": true,
+      "drug_class": "originator",
+      "region": "greater_china",
+      "confidence": 0.9,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.hkexnews.hk/listedco/listconews/sehk/2025/0430/2025043001618.pdf",
+          "title": "3SBio 2024 Annual Report",
+          "accessed": "2026-06"
+        }
+      ],
+      "inn": "recombinant human thrombopoietin",
+      "first_approval_year": 2005,
+      "key_markets": [
+        "NMPA"
+      ],
+      "latest_annual_sales": {
+        "value": 5062000000,
+        "currency": "CNY",
+        "year": 2024,
+        "source_url": "https://www.3sbio.com/en/news/details.aspx?id=306"
+      },
+      "target_mechanism_zh": "重组人血小板生成素",
+      "target_mechanism_en": "Recombinant human thrombopoietin"
+    },
+    {
+      "id": "serplulimab",
+      "name_zh": "斯鲁利单抗",
+      "name_en": "Serplulimab",
+      "brand_name": "Hansizhuang",
+      "company_id": "henlius",
+      "modality_id": "mab",
+      "therapeutic_area_id": "oncology",
+      "indication_zh": "微卫星高度不稳定实体瘤、小细胞肺癌等",
+      "indication_en": "MSI-H solid tumors, SCLC, and others",
+      "approval_status": "approved",
+      "is_blockbuster": true,
+      "drug_class": "originator",
+      "region": "greater_china",
+      "confidence": 0.9,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.henlius.com/en/NewsDetails-4915-26.html",
+          "title": "Henlius 2024 Results",
+          "accessed": "2026-06"
+        }
+      ],
+      "inn": "serplulimab",
+      "first_approval_year": 2022,
+      "key_markets": [
+        "NMPA"
+      ],
+      "latest_annual_sales": {
+        "value": 1312600000,
+        "currency": "CNY",
+        "year": 2024,
+        "source_url": "https://www.henlius.com/en/NewsDetails-4915-26.html"
+      },
+      "target_mechanism_zh": "抗PD-1单抗",
+      "target_mechanism_en": "Anti-PD-1 monoclonal antibody"
+    },
+    {
+      "id": "henlius-trastuzumab-biosimilar",
+      "name_zh": "曲妥珠单抗生物类似药",
+      "name_en": "Trastuzumab Biosimilar",
+      "brand_name": "Hanquyou",
+      "company_id": "henlius",
+      "modality_id": "mab",
+      "therapeutic_area_id": "oncology",
+      "indication_zh": "HER2阳性乳腺癌",
+      "indication_en": "HER2-positive breast cancer",
+      "approval_status": "approved",
+      "is_blockbuster": true,
+      "drug_class": "biosimilar",
+      "region": "greater_china",
+      "confidence": 0.9,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.henlius.com/upload/202504/14/2024AnnualReport.pdf",
+          "title": "Henlius 2024 Annual Report",
+          "accessed": "2026-06"
+        }
+      ],
+      "inn": "trastuzumab",
+      "first_approval_year": 2020,
+      "key_markets": [
+        "NMPA",
+        "FDA",
+        "EMA"
+      ],
+      "latest_annual_sales": {
+        "value": 2810000000,
+        "currency": "CNY",
+        "year": 2024,
+        "source_url": "https://www.henlius.com/en/NewsDetails-4915-26.html"
+      },
+      "target_mechanism_zh": "抗HER2单抗",
+      "target_mechanism_en": "Anti-HER2 monoclonal antibody"
+    },
+    {
+      "id": "envafolimab",
+      "name_zh": "恩沃利单抗",
+      "name_en": "Envafolimab",
+      "brand_name": "Enweida",
+      "company_id": "alphamab",
+      "modality_id": "mab",
+      "therapeutic_area_id": "oncology",
+      "indication_zh": "MSI-H/dMMR晚期实体瘤",
+      "indication_en": "MSI-H/dMMR advanced solid tumors",
+      "approval_status": "approved",
+      "is_blockbuster": false,
+      "drug_class": "originator",
+      "region": "greater_china",
+      "confidence": 0.9,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.alphamabonc.com/en/html/news/2657.html",
+          "title": "Alphamab 2024 Results",
+          "accessed": "2026-06"
+        }
+      ],
+      "inn": "envafolimab",
+      "first_approval_year": 2021,
+      "key_markets": [
+        "NMPA"
+      ],
+      "target_mechanism_zh": "皮下注射抗PD-L1单抗",
+      "target_mechanism_en": "Subcutaneous anti-PD-L1 mAb"
+    },
+    {
+      "id": "kn046",
+      "name_zh": "KN046",
+      "name_en": "KN046",
+      "brand_name": "KN046",
+      "company_id": "alphamab",
+      "modality_id": "bispecific-antibody",
+      "therapeutic_area_id": "oncology",
+      "indication_zh": "非小细胞肺癌等",
+      "indication_en": "NSCLC and other solid tumors",
+      "approval_status": "ph3",
+      "is_blockbuster": false,
+      "drug_class": "originator",
+      "region": "greater_china",
+      "confidence": 0.9,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.alphamabonc.com/en/uploads/2025/04/174583539038320.pdf",
+          "title": "Alphamab 2024 Annual Report",
+          "accessed": "2026-06"
+        }
+      ],
+      "target_mechanism_zh": "PD-L1×CTLA-4双特异性抗体",
+      "target_mechanism_en": "PD-L1×CTLA-4 bispecific antibody"
+    },
+    {
+      "id": "furmonertinib",
+      "name_zh": "伏美替尼",
+      "name_en": "Furmonertinib",
+      "brand_name": "Furmonertinib",
+      "company_id": "allist",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "oncology",
+      "indication_zh": "EGFR突变及T790M阳性非小细胞肺癌",
+      "indication_en": "EGFR-mutant and T790M-positive NSCLC",
+      "approval_status": "approved",
+      "is_blockbuster": true,
+      "drug_class": "originator",
+      "region": "greater_china",
+      "confidence": 0.9,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "http://file.finance.sina.com.cn/211.154.219.97:9494/MRGG/CNSESH_STOCK/2025/2025-4/2025-04-24/10945760.PDF",
+          "title": "Allist 2024 Annual Report",
+          "accessed": "2026-06"
+        }
+      ],
+      "inn": "furmonertinib",
+      "first_approval_year": 2021,
+      "key_markets": [
+        "NMPA"
+      ],
+      "latest_annual_sales": {
+        "value": 3557930156,
+        "currency": "CNY",
+        "year": 2024,
+        "source_url": "http://file.finance.sina.com.cn/211.154.219.97:9494/MRGG/CNSESH_STOCK/2025/2025-4/2025-04-24/10945760.PDF",
+        "note_en": "Company revenue substantially from furmonertinib"
+      },
+      "target_mechanism_zh": "第三代EGFR-TKI",
+      "target_mechanism_en": "Third-generation EGFR-TKI"
+    },
+    {
+      "id": "donafenib",
+      "name_zh": "多纳非尼",
+      "name_en": "Donafenib",
+      "brand_name": "Zepu Sheng",
+      "company_id": "zelgen",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "oncology",
+      "indication_zh": "肝细胞癌一线治疗及放射性碘难治性分化型甲状腺癌",
+      "indication_en": "First-line HCC and RAI-refractory DTC",
+      "approval_status": "approved",
+      "is_blockbuster": false,
+      "drug_class": "originator",
+      "region": "greater_china",
+      "confidence": 0.9,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "http://money.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=10905662&stockid=688266",
+          "title": "Zelgen 2024 Annual Report",
+          "accessed": "2026-06"
+        }
+      ],
+      "inn": "donafenib",
+      "first_approval_year": 2021,
+      "key_markets": [
+        "NMPA"
+      ],
+      "target_mechanism_zh": "多激酶抑制剂（氘代索拉非尼衍生物）",
+      "target_mechanism_en": "Multi-kinase inhibitor (deuterated sorafenib derivative)"
+    },
+    {
+      "id": "sunvozertinib",
+      "name_zh": "舒沃替尼",
+      "name_en": "Sunvozertinib",
+      "brand_name": "Zegfrovy",
+      "company_id": "dizal",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "oncology",
+      "indication_zh": "EGFR 20号外显子插入突变非小细胞肺癌",
+      "indication_en": "NSCLC with EGFR exon20 insertion mutations",
+      "approval_status": "approved",
+      "is_blockbuster": false,
+      "drug_class": "originator",
+      "region": "greater_china",
+      "confidence": 0.9,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.dizalpharma.com/",
+          "title": "Dizal Pharma",
+          "accessed": "2026-06"
+        },
+        {
+          "url": "http://money.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=11066094&stockid=688192",
+          "title": "Dizal 2024 Annual Report",
+          "accessed": "2026-06"
+        }
+      ],
+      "inn": "sunvozertinib",
+      "first_approval_year": 2023,
+      "key_markets": [
+        "NMPA"
+      ],
+      "target_mechanism_zh": "高选择性EGFR-TKI",
+      "target_mechanism_en": "Highly selective EGFR-TKI"
+    },
+    {
+      "id": "olverembatinib",
+      "name_zh": "奥雷巴替尼",
+      "name_en": "Olverembatinib",
+      "brand_name": "Hengjiu",
+      "company_id": "ascentage",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "hematology",
+      "indication_zh": "慢性髓细胞白血病（含T315I突变）",
+      "indication_en": "Chronic myeloid leukemia including T315I mutation",
+      "approval_status": "approved",
+      "is_blockbuster": false,
+      "drug_class": "originator",
+      "region": "greater_china",
+      "confidence": 0.9,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www1.hkexnews.hk/listedco/listconews/sehk/2025/0327/2025032701351.pdf",
+          "title": "Ascentage 2024 Annual Report",
+          "accessed": "2026-06"
+        }
+      ],
+      "inn": "olverembatinib",
+      "first_approval_year": 2021,
+      "key_markets": [
+        "NMPA"
+      ],
+      "latest_annual_sales": {
+        "value": 241000000,
+        "currency": "CNY",
+        "year": 2024,
+        "source_url": "https://www1.hkexnews.hk/listedco/listconews/sehk/2025/0327/2025032701351.pdf"
+      },
+      "target_mechanism_zh": "第三代BCR-ABL抑制剂",
+      "target_mechanism_en": "Third-generation BCR-ABL inhibitor"
+    },
+    {
+      "id": "glecirasib",
+      "name_zh": "戈来雷塞",
+      "name_en": "Glecirasib",
+      "brand_name": "Glecirasib",
+      "company_id": "jacobio",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "oncology",
+      "indication_zh": "KRAS G12C突变非小细胞肺癌",
+      "indication_en": "KRAS G12C-mutant NSCLC",
+      "approval_status": "approved",
+      "is_blockbuster": false,
+      "drug_class": "originator",
+      "region": "greater_china",
+      "confidence": 0.9,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.jacobiopharma.com/cn/news/glecirasib_China_NDA",
+          "title": "Jacobio Glecirasib NMPA Approval",
+          "accessed": "2026-06"
+        }
+      ],
+      "inn": "glecirasib",
+      "first_approval_year": 2025,
+      "key_markets": [
+        "NMPA"
+      ],
+      "target_mechanism_zh": "KRAS G12C抑制剂",
+      "target_mechanism_en": "KRAS G12C inhibitor"
+    },
+    {
+      "id": "sitneprotafib",
+      "name_zh": "JAB-3312",
+      "name_en": "Sitneprotafib",
+      "brand_name": "JAB-3312",
+      "company_id": "jacobio",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "oncology",
+      "indication_zh": "实体瘤（SHP2抑制剂联合疗法）",
+      "indication_en": "Solid tumors (SHP2 inhibitor combination therapy)",
+      "approval_status": "ph3",
+      "is_blockbuster": false,
+      "drug_class": "originator",
+      "region": "greater_china",
+      "confidence": 0.9,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.hkexnews.hk/listedco/listconews/sehk/2025/0424/2025042401702.pdf",
+          "title": "Jacobio 2024 Annual Report",
+          "accessed": "2026-06"
+        }
+      ],
+      "inn": "sitneprotafib",
+      "target_mechanism_zh": "SHP2抑制剂",
+      "target_mechanism_en": "SHP2 inhibitor"
+    },
+    {
+      "id": "hbm4003",
+      "name_zh": "HBM4003",
+      "name_en": "HBM4003",
+      "brand_name": "Porustobart",
+      "company_id": "harbour-biomed",
+      "modality_id": "mab",
+      "therapeutic_area_id": "oncology",
+      "indication_zh": "实体瘤（抗CTLA-4全人源抗体）",
+      "indication_en": "Solid tumors (fully human anti-CTLA-4 mAb)",
+      "approval_status": "ph2",
+      "is_blockbuster": false,
+      "drug_class": "originator",
+      "region": "greater_china",
+      "confidence": 0.9,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.hkexnews.hk/listedco/listconews/sehk/2025/0422/2025042201963.pdf",
+          "title": "Harbour BioMed 2024 Annual Report",
+          "accessed": "2026-06"
+        }
+      ],
+      "inn": "porustobart",
+      "target_mechanism_zh": "抗CTLA-4全人源单抗",
+      "target_mechanism_en": "Fully human anti-CTLA-4 mAb"
+    },
+    {
+      "id": "hbm9167",
+      "name_zh": "HBM9167",
+      "name_en": "HBM9167",
+      "brand_name": "Tagitanlimab",
+      "company_id": "harbour-biomed",
+      "modality_id": "mab",
+      "therapeutic_area_id": "oncology",
+      "indication_zh": "实体瘤（抗PD-L1全人源抗体）",
+      "indication_en": "Solid tumors (fully human anti-PD-L1 mAb)",
+      "approval_status": "ph2",
+      "is_blockbuster": false,
+      "drug_class": "originator",
+      "region": "greater_china",
+      "confidence": 0.9,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.harbourbiomed.com/news/26.html",
+          "title": "Harbour HBM9167 FDA IND",
+          "accessed": "2026-06"
+        }
+      ],
+      "inn": "tagitanlimab",
+      "target_mechanism_zh": "抗PD-L1全人源单抗",
+      "target_mechanism_en": "Fully human anti-PD-L1 mAb"
+    },
+    {
+      "id": "sacituzumab-tirumotecan",
+      "name_zh": "芦康沙妥珠单抗",
+      "name_en": "Sacituzumab Tirumotecan",
+      "brand_name": "Sac-TMT",
+      "company_id": "kelun-biotech",
+      "modality_id": "adc",
+      "therapeutic_area_id": "oncology",
+      "indication_zh": "三阴性乳腺癌等实体瘤",
+      "indication_en": "Triple-negative breast cancer and other solid tumors",
+      "approval_status": "approved",
+      "is_blockbuster": false,
+      "drug_class": "originator",
+      "region": "greater_china",
+      "confidence": 0.9,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www1.hkexnews.hk/listedco/listconews/sehk/2025/0417/2025041701779.pdf",
+          "title": "Kelun-Biotech 2024 Annual Report",
+          "accessed": "2026-06"
+        }
+      ],
+      "inn": "sacituzumab tirumotecan",
+      "first_approval_year": 2024,
+      "key_markets": [
+        "NMPA"
+      ],
+      "target_mechanism_zh": "TROP2靶向抗体偶联药物",
+      "target_mechanism_en": "TROP2-targeted antibody-drug conjugate"
+    },
+    {
+      "id": "bl-b01d1",
+      "name_zh": "BL-B01D1",
+      "name_en": "BL-B01D1",
+      "brand_name": "iza-bren",
+      "company_id": "baili-bio",
+      "modality_id": "adc",
+      "therapeutic_area_id": "oncology",
+      "indication_zh": "实体瘤（EGFR×HER3双抗ADC）",
+      "indication_en": "Solid tumors (EGFR×HER3 bispecific ADC)",
+      "approval_status": "ph3",
+      "is_blockbuster": false,
+      "drug_class": "originator",
+      "region": "greater_china",
+      "confidence": 0.9,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://news.bms.com/news/details/2023/SystImmune-and-Bristol-Myers-Squibb-Announce-a-Global-Strategic-Collaboration-Agreement-for-the-Development-and-Commercialization-of-BL-B01D1/default.aspx",
+          "title": "BMS Baili Bio Deal",
+          "accessed": "2026-06"
+        }
+      ],
+      "inn": "iza-bren",
+      "target_mechanism_zh": "EGFR×HER3双特异性抗体偶联药物",
+      "target_mechanism_en": "EGFR×HER3 bispecific antibody-drug conjugate"
+    },
+    {
+      "id": "db-1303",
+      "name_zh": "DB-1303",
+      "name_en": "DB-1303",
+      "brand_name": "BNT323",
+      "company_id": "dualitybio",
+      "modality_id": "adc",
+      "therapeutic_area_id": "oncology",
+      "indication_zh": "HER2表达实体瘤",
+      "indication_en": "HER2-expressing solid tumors",
+      "approval_status": "filed",
+      "is_blockbuster": false,
+      "drug_class": "originator",
+      "region": "greater_china",
+      "confidence": 0.9,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www1.hkexnews.hk/listedco/listconews/sehk/2026/0426/2026042600131.pdf",
+          "title": "DualityBio 2025 Annual Report",
+          "accessed": "2026-06"
+        }
+      ],
+      "target_mechanism_zh": "HER2靶向抗体偶联药物",
+      "target_mechanism_en": "HER2-targeted antibody-drug conjugate"
+    },
+    {
+      "id": "edaravone-dexborneol",
+      "name_zh": "依达拉奉右莰醇",
+      "name_en": "Edaravone Dexborneol",
+      "brand_name": "Xianbixin",
+      "company_id": "simcere",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "neuroscience",
+      "indication_zh": "急性缺血性脑卒中",
+      "indication_en": "Acute ischemic stroke",
+      "approval_status": "approved",
+      "is_blockbuster": false,
+      "drug_class": "originator",
+      "region": "greater_china",
+      "confidence": 0.9,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.hkexnews.hk/listedco/listconews/sehk/2025/0428/2025042803854_c.pdf",
+          "title": "Simcere 2024 Annual Report",
+          "accessed": "2026-06"
+        }
+      ],
+      "inn": "edaravone dexborneol",
+      "first_approval_year": 2020,
+      "key_markets": [
+        "NMPA"
+      ],
+      "target_mechanism_zh": "自由基清除与抗炎复方",
+      "target_mechanism_en": "Free radical scavenger and anti-inflammatory combination"
+    },
+    {
+      "id": "enlonstuzumab",
+      "name_zh": "恩立妥",
+      "name_en": "Enlonstuzumab",
+      "brand_name": "Enlonstuzumab",
+      "company_id": "simcere",
+      "modality_id": "mab",
+      "therapeutic_area_id": "oncology",
+      "indication_zh": "RAS/BRAF野生型转移性结直肠癌",
+      "indication_en": "RAS/BRAF wild-type metastatic colorectal cancer",
+      "approval_status": "approved",
+      "is_blockbuster": false,
+      "drug_class": "originator",
+      "region": "greater_china",
+      "confidence": 0.9,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.hkexnews.hk/listedco/listconews/sehk/2025/0428/2025042803854_c.pdf",
+          "title": "Simcere 2024 Annual Report",
+          "accessed": "2026-06"
+        }
+      ],
+      "inn": "enlonstuzumab",
+      "first_approval_year": 2024,
+      "key_markets": [
+        "NMPA"
+      ],
+      "target_mechanism_zh": "抗EGFR单抗",
+      "target_mechanism_en": "Anti-EGFR monoclonal antibody"
+    },
+    {
+      "id": "sct800",
+      "name_zh": "安佳因",
+      "name_en": "Anjiayin",
+      "brand_name": "Anjiayin",
+      "company_id": "sinocelltech",
+      "modality_id": "recombinant-protein",
+      "therapeutic_area_id": "hematology",
+      "indication_zh": "甲型血友病（重组凝血因子VIII）",
+      "indication_en": "Hemophilia A (recombinant coagulation factor VIII)",
+      "approval_status": "approved",
+      "is_blockbuster": true,
+      "drug_class": "originator",
+      "region": "greater_china",
+      "confidence": 0.9,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "http://static.cninfo.com.cn/finalpage/2025-04-26/1223323161.PDF",
+          "title": "Sinocelltech 2024 Annual Report",
+          "accessed": "2026-06"
+        }
+      ],
+      "inn": "recombinant coagulation factor VIII",
+      "first_approval_year": 2021,
+      "key_markets": [
+        "NMPA"
+      ],
+      "latest_annual_sales": {
+        "value": 1890000000,
+        "currency": "CNY",
+        "year": 2024,
+        "source_url": "http://static.cninfo.com.cn/finalpage/2025-04-26/1223323161.PDF"
+      },
+      "target_mechanism_zh": "重组凝血因子VIII",
+      "target_mechanism_en": "Recombinant coagulation factor VIII"
+    },
+    {
+      "id": "sct1000",
+      "name_zh": "SCT1000",
+      "name_en": "SCT1000",
+      "brand_name": "SCT1000",
+      "company_id": "sinocelltech",
+      "modality_id": "protein-subunit-vaccine",
+      "therapeutic_area_id": "vaccines",
+      "indication_zh": "14价HPV疫苗",
+      "indication_en": "14-valent HPV vaccine",
+      "approval_status": "ph3",
+      "is_blockbuster": false,
+      "drug_class": "originator",
+      "region": "greater_china",
+      "confidence": 0.9,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "http://static.cninfo.com.cn/finalpage/2025-04-26/1223323161.PDF",
+          "title": "Sinocelltech 2024 Annual Report",
+          "accessed": "2026-06"
+        }
+      ],
+      "target_mechanism_zh": "14价重组HPV病毒样颗粒疫苗",
+      "target_mechanism_en": "14-valent recombinant HPV VLP vaccine"
+    }
+  ]
+}

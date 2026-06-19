@@ -1,0 +1,203 @@
+/* Pharma Atlas — theme tokens (light + dark) + components.
+   Used alongside Tailwind CDN utilities; custom classes below avoid Tailwind
+   opacity modifiers (e.g. never `bg-shell/90`). */
+
+:root {
+  --bg-base: #f6f8fb;
+  --bg-shell: rgba(255, 255, 255, 0.9);
+  --bg-surface: #ffffff;
+  --bg-elev: #f1f5f9;
+  --border: #e2e8f0;
+  --border-strong: #cbd5e1;
+  --text: #0f172a;
+  --text-muted: #475569;
+  --text-faint: #94a3b8;
+  --accent: #0d9488;
+  --accent-strong: #0f766e;
+  --accent-soft: rgba(13, 148, 136, 0.12);
+
+  /* site-type colors — MUST match map.js visualMap categories */
+  --site-hq: #6366f1;
+  --site-rd: #14b8a6;
+  --site-manufacturing: #f59e0b;
+  --site-commercial: #ec4899;
+  --site-jv: #8b5cf6;
+
+  --chart-1: #14b8a6; --chart-2: #6366f1; --chart-3: #f59e0b; --chart-4: #ec4899;
+  --chart-5: #22c55e; --chart-6: #38bdf8; --chart-7: #a855f7; --chart-8: #ef4444;
+
+  --map-land: #e6ebf2;
+  --map-border: #cbd5e1;
+}
+
+html.dark {
+  --bg-base: #0b1220;
+  --bg-shell: rgba(15, 23, 42, 0.85);
+  --bg-surface: #131d30;
+  --bg-elev: #1e293b;
+  --border: #273449;
+  --border-strong: #3b4d66;
+  --text: #f1f5f9;
+  --text-muted: #b4c0d3;
+  --text-faint: #7c8aa3;
+  --accent: #2dd4bf;
+  --accent-strong: #5eead4;
+  --accent-soft: rgba(45, 212, 191, 0.14);
+
+  --site-hq: #818cf8;
+  --site-rd: #2dd4bf;
+  --site-manufacturing: #fbbf24;
+  --site-commercial: #f472b6;
+  --site-jv: #a78bfa;
+
+  --map-land: #1c2740;
+  --map-border: #34415c;
+}
+
+html, body { background: var(--bg-base); }
+body { color: var(--text); font-family: Inter, system-ui, sans-serif; }
+
+/* ---- color utility classes referenced from HTML/JS ---- */
+.bg-base { background: var(--bg-base); }
+.bg-shell { background: var(--bg-shell); }
+.text-base { color: var(--text); }
+.text-muted { color: var(--text-muted); }
+.text-faint { color: var(--text-faint); }
+.border-base { border-color: var(--border); }
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* ---- nav ---- */
+.nav-link {
+  padding: 0.35rem 0.6rem; border-radius: 0.5rem; color: var(--text-muted);
+  white-space: nowrap; transition: background .15s, color .15s;
+}
+.nav-link:hover { background: var(--bg-elev); color: var(--text); }
+.btn-ghost {
+  padding: 0.35rem 0.7rem; border-radius: 0.5rem; font-size: 0.8rem;
+  border: 1px solid var(--border); color: var(--text-muted); background: transparent;
+  transition: all .15s; cursor: pointer;
+}
+.btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
+.compare-badge {
+  position: absolute; top: -6px; right: -6px; min-width: 16px; height: 16px;
+  padding: 0 4px; border-radius: 8px; background: var(--accent); color: #fff;
+  font-size: 0.6rem; line-height: 16px; text-align: center;
+}
+
+/* ---- sections / panels ---- */
+.section-title { font-size: 1.4rem; font-weight: 600; letter-spacing: -0.01em; }
+.panel {
+  border: 1px solid var(--border); border-radius: 0.85rem; background: var(--bg-surface);
+  overflow: hidden;
+}
+.panel-head {
+  padding: 0.6rem 0.9rem; border-bottom: 1px solid var(--border);
+  font-size: 0.85rem; font-weight: 500; color: var(--text-muted);
+  display: flex; align-items: center; gap: 0.5rem;
+}
+.chart-h-md { width: 100%; height: 320px; }
+.chart-h-lg { width: 100%; height: 520px; }
+
+/* ---- KPI ---- */
+.kpi-card {
+  border: 1px solid var(--border); border-radius: 0.85rem; background: var(--bg-surface);
+  padding: 0.9rem 1rem;
+}
+.kpi-num { font-size: 1.6rem; font-weight: 700; letter-spacing: -0.02em; color: var(--accent-strong); }
+.kpi-label { margin-top: 0.15rem; font-size: 0.72rem; color: var(--text-faint); }
+
+/* ---- form controls ---- */
+.select {
+  padding: 0.35rem 0.6rem; border-radius: 0.5rem; font-size: 0.8rem;
+  border: 1px solid var(--border); background: var(--bg-surface); color: var(--text);
+}
+.select:focus { outline: none; border-color: var(--accent); }
+.seg { display: inline-flex; border: 1px solid var(--border); border-radius: 0.5rem; overflow: hidden; }
+.seg button {
+  padding: 0.35rem 0.7rem; font-size: 0.78rem; background: transparent; color: var(--text-muted);
+  border: none; border-right: 1px solid var(--border); cursor: pointer; white-space: nowrap;
+}
+.seg button:last-child { border-right: none; }
+.seg button.active { background: var(--accent-soft); color: var(--accent-strong); font-weight: 600; }
+
+/* ---- tables ---- */
+.data-table { width: 100%; border-collapse: collapse; font-size: 0.82rem; }
+.data-table th, .data-table td { padding: 0.5rem 0.7rem; text-align: left; border-bottom: 1px solid var(--border); white-space: nowrap; }
+.data-table th { color: var(--text-faint); font-weight: 500; position: sticky; top: 0; background: var(--bg-surface); cursor: pointer; user-select: none; }
+.data-table th:hover { color: var(--accent); }
+.data-table tbody tr { cursor: pointer; }
+.data-table tbody tr:hover { background: var(--accent-soft); }
+.data-table td.num { text-align: right; font-variant-numeric: tabular-nums; }
+
+/* ---- map legend ---- */
+.map-legend { display: flex; flex-wrap: wrap; gap: 0.75rem; padding: 0.6rem 0.9rem; border-top: 1px solid var(--border); font-size: 0.72rem; color: var(--text-muted); }
+.map-legend .dot { display: inline-block; width: 9px; height: 9px; border-radius: 50%; margin-right: 4px; vertical-align: middle; }
+
+/* ---- badges ---- */
+.badge { display: inline-block; padding: 0.08rem 0.45rem; border-radius: 0.4rem; font-size: 0.66rem; font-weight: 500; line-height: 1.5; }
+.badge-ct-originator_bigpharma { background: rgba(99,102,241,.15); color: #6366f1; }
+.badge-ct-biotech { background: rgba(20,184,166,.15); color: #0d9488; }
+.badge-ct-generics { background: rgba(245,158,11,.15); color: #b45309; }
+.badge-ct-cdmo_cro { background: rgba(56,189,248,.15); color: #0284c7; }
+.badge-ct-vaccine { background: rgba(34,197,94,.15); color: #16a34a; }
+.badge-ct-biosimilar { background: rgba(168,85,247,.15); color: #9333ea; }
+.badge-ct-tcm { background: rgba(239,68,68,.13); color: #dc2626; }
+.badge-ct-diversified { background: rgba(100,116,139,.16); color: #475569; }
+html.dark .badge-ct-generics { color: #fbbf24; }
+html.dark .badge-ct-tcm { color: #f87171; }
+html.dark .badge-ct-diversified { color: #cbd5e1; }
+html.dark .badge-ct-cdmo_cro { color: #38bdf8; }
+
+.badge-site-HQ { background: rgba(99,102,241,.16); color: var(--site-hq); }
+.badge-site-RD { background: rgba(20,184,166,.16); color: var(--site-rd); }
+.badge-site-manufacturing { background: rgba(245,158,11,.16); color: var(--site-manufacturing); }
+.badge-site-commercial { background: rgba(236,72,153,.16); color: var(--site-commercial); }
+.badge-site-JV { background: rgba(139,92,246,.16); color: var(--site-jv); }
+
+.badge-appr-approved { background: rgba(34,197,94,.16); color: #16a34a; }
+.badge-appr-filed { background: rgba(56,189,248,.16); color: #0284c7; }
+.badge-appr-ph3 { background: rgba(245,158,11,.16); color: #b45309; }
+.badge-appr-ph2 { background: rgba(245,158,11,.12); color: #a16207; }
+.badge-appr-ph1 { background: rgba(148,163,184,.18); color: #64748b; }
+.badge-appr-preclinical { background: rgba(148,163,184,.14); color: #94a3b8; }
+.badge-appr-withdrawn { background: rgba(239,68,68,.15); color: #dc2626; }
+html.dark .badge-appr-approved { color: #4ade80; }
+html.dark .badge-appr-ph3 { color: #fbbf24; }
+
+.badge-conf-high { background: rgba(34,197,94,.16); color: #16a34a; }
+.badge-conf-med { background: rgba(245,158,11,.16); color: #b45309; }
+.badge-conf-low { background: rgba(239,68,68,.15); color: #dc2626; }
+.badge-bb { background: var(--accent-soft); color: var(--accent-strong); }
+
+/* ---- timeline ---- */
+.timeline { position: relative; padding-left: 1.25rem; }
+.timeline::before { content: ""; position: absolute; left: 5px; top: 0; bottom: 0; width: 2px; background: var(--border); }
+.timeline-node { position: relative; padding: 0 0 1.25rem 0.5rem; }
+.timeline-node::before { content: ""; position: absolute; left: -1.05rem; top: 0.35rem; width: 10px; height: 10px; border-radius: 50%; background: var(--accent); border: 2px solid var(--bg-base); }
+.timeline-card { border: 1px solid var(--border); border-radius: 0.7rem; background: var(--bg-surface); padding: 0.8rem 0.9rem; cursor: pointer; transition: border-color .15s; }
+.timeline-card:hover { border-color: var(--accent); }
+.timeline-date { font-size: 0.7rem; color: var(--text-faint); font-variant-numeric: tabular-nums; }
+
+/* ---- benchmark cards ---- */
+.bm-card { border: 1px solid var(--border); border-radius: 0.7rem; background: var(--bg-surface); padding: 0.85rem; cursor: pointer; transition: border-color .15s; }
+.bm-card:hover { border-color: var(--accent); }
+.bm-vs { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 0.5rem; }
+.bm-vs .vs { font-size: 0.7rem; color: var(--text-faint); }
+
+/* ---- modal ---- */
+.modal-backdrop { position: fixed; inset: 0; z-index: 60; background: rgba(2, 6, 23, 0.6); backdrop-filter: blur(2px); display: flex; align-items: flex-start; justify-content: center; padding: 4vh 1rem; overflow-y: auto; }
+.modal-panel { position: relative; width: 100%; max-width: 880px; background: var(--bg-surface); border: 1px solid var(--border); border-radius: 1rem; padding: 1.25rem 1.4rem 1.6rem; }
+.modal-close { position: absolute; top: 0.6rem; right: 0.9rem; font-size: 1.5rem; line-height: 1; color: var(--text-faint); background: none; border: none; cursor: pointer; }
+.modal-close:hover { color: var(--text); }
+.modal-tabs { display: flex; flex-wrap: wrap; gap: 0.25rem; margin-top: 0.9rem; border-bottom: 1px solid var(--border); }
+.modal-tab-btn { padding: 0.4rem 0.7rem; font-size: 0.8rem; color: var(--text-muted); border: none; background: none; border-bottom: 2px solid transparent; cursor: pointer; }
+.modal-tab-btn.active { color: var(--accent-strong); border-bottom-color: var(--accent); font-weight: 600; }
+.modal-body { margin-top: 0.9rem; font-size: 0.85rem; line-height: 1.55; }
+.modal-body h4 { font-size: 0.78rem; color: var(--text-faint); text-transform: uppercase; letter-spacing: 0.04em; margin: 0.9rem 0 0.35rem; }
+.modal-body a { color: var(--accent); text-decoration: underline; text-underline-offset: 2px; }
+.kv { display: grid; grid-template-columns: max-content 1fr; gap: 0.25rem 0.9rem; }
+.kv dt { color: var(--text-faint); }
+.chip { display: inline-block; padding: 0.1rem 0.5rem; margin: 0.1rem; border-radius: 0.4rem; background: var(--bg-elev); font-size: 0.72rem; }
+
+.loading { color: var(--text-faint); font-size: 0.85rem; padding: 1.5rem; text-align: center; }

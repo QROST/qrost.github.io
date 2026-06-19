@@ -44,6 +44,14 @@
       en: '325 products across EDA, CAD, CAE/CAM, PLM, DCS/MES, ERP, BIM/GIS and IIoT — localization breadth vs depth, sunburst taxonomy, benchmark compare. Bilingual UI.',
       zh: '325 款 EDA、CAD、CAE/CAM、PLM、DCS/MES、ERP、BIM/GIS 与 IIoT 产品——国产化广度与深度、旭日图品类、对标比较。中英界面。',
     },
+    cardPharmTitle: {
+      en: 'Global pharmaceutical industry atlas',
+      zh: '全球医药行业图谱',
+    },
+    cardPharmDesc: {
+      en: 'Chinese pharma in global context — companies, subsidiaries and sites on a world map, flagship drugs and pipelines, modality and therapeutic-area breakdowns, country comparison, and China-vs-incumbent breakthroughs. Bilingual UI.',
+      zh: '在全球语境中看中国医药——世界地图上的企业、子公司与研发/生产站点，旗舰药物与在研管线，药物模态与治疗领域分布，国家间对比，以及中国对国际原研的突破。中英界面。',
+    },
     cardAbyssTitle: {
       en: 'Data Abyss · 数渊 — Livability × Industrial Self-Reliance',
       zh: '数渊 · Data Abyss — 宜居 × 工业自立',
