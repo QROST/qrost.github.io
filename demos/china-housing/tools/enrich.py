@@ -391,6 +391,9 @@ def geocode_all(con, log, force=False):
 _ERA5_Y0, _ERA5_Y1 = 2014, 2023
 # Livability extreme-heat: smoothed daily high (°C). Below CMA 35°C warning line.
 EXTREME_HEAT_TMAX_C = 33
+# Record-heat supplement only ever upgrades days whose NORMAL high is already warm
+# (≥ this, just under the 33 °C extreme line); never a ≤26 °C-high comfort/shoulder day.
+RECORD_HEAT_FLOOR_C = 28
 # Single archive call carries temp/precip plus extended daily dimensions for
 # listings.daily_climate JSON (see _daily_climate_from_archive docstring).
 _ERA5_DAILY = (
@@ -657,9 +660,17 @@ def apply_record_heat_to_daily(dc, hist_max):
     tmean = dc["curve"]["tmean"]
     tmin = dc["curve"]["tmin"]
     comfort, extreme = climate_daily_flags_from_curve(tmean, tmax, tmin)
-    hot_comfort = sorted((i for i, c in enumerate(comfort) if c),
-                         key=lambda i: -(tmax[i] if tmax[i] is not None else -999))
-    for i in hot_comfort[:extra]:
+    # Occasional record-heat lands on the year's HOTTEST days (summer peak), not on
+    # the hottest *comfort* days — comfort requires daily high ≤26 °C, so picking
+    # from the comfort set marked pleasant spring/autumn shoulder days (high ~26,
+    # mean ~22) as 酷热, leaving the true summer peak uncoloured. Select the hottest
+    # non-extreme days whose normal high is genuinely warm (≥ RECORD_HEAT_FLOOR_C);
+    # never reclassify a ≤26 °C-high day. If fewer qualify than `extra`, mark only
+    # those — honest under-count beats fabricating heat on mild days.
+    hot = sorted((i for i, ex in enumerate(extreme)
+                  if not ex and tmax[i] is not None and tmax[i] >= RECORD_HEAT_FLOOR_C),
+                 key=lambda i: -tmax[i])
+    for i in hot[:extra]:
         extreme[i] = True
         comfort[i] = False
     dc["comfortDays"] = _day_ranges(comfort)
