@@ -1,7 +1,7 @@
 {
-  "build_time": "2026-06-19T08:29:20Z",
-  "data_version": "353ea140ff",
-  "total_companies": 885,
+  "build_time": "2026-06-19T18:07:57Z",
+  "data_version": "ffeb01a5ff",
+  "total_companies": 1629,
   "total_sites": 420,
   "total_products": 267,
   "total_modalities": 21,
@@ -22,26 +22,26 @@
     "vaccine-biotech": 16
   },
   "company_type_counts": {
-    "cdmo_cro": 66,
-    "lifesci_tools": 84,
-    "medtech": 71,
-    "generics": 119,
-    "tcm": 49,
-    "diversified": 85,
-    "biotech": 314,
-    "biosimilar": 14,
-    "originator_bigpharma": 54,
-    "vaccine": 29
+    "cdmo_cro": 108,
+    "lifesci_tools": 136,
+    "medtech": 142,
+    "generics": 288,
+    "tcm": 100,
+    "diversified": 133,
+    "biotech": 614,
+    "biosimilar": 16,
+    "originator_bigpharma": 55,
+    "vaccine": 37
   },
   "region_counts": {
-    "greater_china": 460,
-    "europe": 92,
-    "north_america": 133,
-    "other_apac": 108,
-    "japan": 45,
+    "greater_china": 756,
+    "europe": 204,
+    "north_america": 219,
+    "other_apac": 303,
+    "japan": 80,
     "oceania": 25,
-    "mea": 16,
-    "latam": 6
+    "mea": 30,
+    "latam": 12
   },
   "modality_class_counts": {
     "tcm": 30,
