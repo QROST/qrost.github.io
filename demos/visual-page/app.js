@@ -232,15 +232,28 @@ function buildHousing() {
     const yld = ls.rent > 0 ? (ls.rent * 12) / (ls.priceWan * 10000) : 0;
     const outflow = e.demographics?.popChangePct ?? 0;
     const cf = clamp(comfort / 365, 0, 1);
+    // —— 这轮 enrich 的新字段 → 更多元的动态通道 ——
+    const humid = e.daily?.meanHumidityPct ?? 50, snow = e.daily?.snowDayCount ?? 0;
+    const wind = e.daily?.windyDayCount ?? 0, extreme = e.daily?.extremeDayCount ?? 0;
+    const aging = e.demographics?.aging65Plus ?? 0.12;
+    const histRange = (e.histTempMax != null && e.histTempMin != null) ? (e.histTempMax - e.histTempMin) : 45;
+    const builtY = e.builtYear ?? 2000;
+    const seismic = ({ '高': 1, '中': 0.55, '低': 0.22 })[e.risk?.seismic] ?? 0.35;
+    const P = e.pois || {}; const km = (k) => (P[k] && P[k].distKm != null ? P[k].distKm : null);
+    const amen = [km('hospital_tier3'), km('hsr'), km('train'), km('airport')].filter((x) => x != null);
+    const conn = amen.length ? clamp(1 - Math.min(...amen) / 30, 0, 1) : 0.3;             // 便利设施越近→连通度高
+    const lulu = ['chemical', 'incinerator', 'landfill', 'nuclear', 'substation', 'wastewater', 'sensitive'].map(km).filter((x) => x != null);
+    const nuisance = lulu.length ? clamp(1 - Math.min(...lulu) / 8, 0, 1) : 0;             // 厌恶设施越近→越"紧张"
 
     const hue = 220 - cf * 162;
-    const sat = 0.44 + clamp(tRange / 45, 0, 1) * 0.5;
-    const light = (0.45 + clamp(sun / 3500, 0, 1) * 0.2) * (outflow < 0 ? 0.78 : 1);
+    const sat = (0.44 + clamp(tRange / 45, 0, 1) * 0.5) * (1 - clamp(snow / 150, 0, 1) * 0.28);   // 多雪→略去色（雪国发白）
+    const light = (0.45 + clamp(sun / 3500, 0, 1) * 0.2) * (outflow < 0 ? 0.78 : 1) * (1 - aging * 0.3);   // 老龄→略暗
     const size = 1.6 + clamp(Math.log10(unit + 1) - 2.2, 0, 3) * 1.7;
-    const tw = 0.28 + clamp(burden / 40, 0, 1) * 0.72;
-    const hz = clamp(pm / 85, 0, 1);
-    const spd = 0.5 + (yld > 0 ? clamp(yld / 0.05, 0, 1) : cf) * 0.9;   // 钱越快越快
-    const b = 0.15 + cf * 0.06;                                         // 宜居越多越规整
+    const tw = 0.22 + clamp(burden / 40, 0, 1) * 0.42 + nuisance * 0.34 + seismic * 0.04;   // 灾害 + 厌恶设施邻近 + 地震 → 越发颤动
+    const hz = clamp(pm / 85, 0, 1) * 0.62 + clamp(humid / 100, 0, 1) * 0.42;               // 雾霾 + 潮湿 → 雾晕
+    const agit = (1 + clamp(extreme / 120, 0, 1) * 0.5 + clamp(wind / 120, 0, 1) * 0.3) * (1 - aging * 0.35);   // 极端/多风→躁动，老龄→沉缓
+    const spd = (0.5 + (yld > 0 ? clamp(yld / 0.05, 0, 1) : cf) * 0.8) * agit;              // 钱/宜居 × 气候躁动度
+    const b = 0.15 + cf * 0.055 - clamp(histRange / 75, 0, 1) * 0.035;                       // 宜居越多越规整；大陆性极端→更混沌
     // 城市按年均温分三类气候云：冷→Thomas / 温→Sprott-B / 热→Lorenz-84（横向分开）
     const annualMean = months.reduce((a, m2) => a + m2, 0) / months.length;
     cs += annualMean; cn++;
@@ -248,7 +261,7 @@ function buildHousing() {
     if (annualMean < 8) { csys = 0; canc = CENTER; cscl = 7; cbh = 0.0025; cseed = [(e.lng - 104) * 0.05, -(e.lat - 35) * 0.05, elev * 0.0006]; }
     else if (annualMean < 18) { canc = CENTER; cscl = 9; cbh = 0.00113; if (sun > 2200) { csys = 14; cseed = [(Math.random() - 0.5), (Math.random() - 0.5), (Math.random() - 0.5)]; } else { csys = 7; cseed = [(Math.random() - 0.5) * 1.5, (Math.random() - 0.5) * 1.5, (Math.random() - 0.5) * 1.5]; } }
     else { csys = 8; canc = CENTER; cscl = 8; cbh = 0.00113; cseed = [(Math.random() - 0.5), 1 + (Math.random() - 0.5), 1 + (Math.random() - 0.5)]; }
-    const ctail = 5 + clamp((Math.log10(unit + 1) - 2.2) / 3, 0, 1) * (TRAIL - 6);   // 越贵彗尾越长
+    const ctail = 4 + (clamp((Math.log10(unit + 1) - 2.2) / 3, 0, 1) * 0.6 + conn * 0.4) * (TRAIL - 5);   // 越贵 + 越连通(近高铁/机场/医院) → 彗尾越长
     const ci = addStar(csys, canc, cscl, cbh, b, spd, cseed, hue, sat, light, size, tw, hz, {
       kind: 'CITY',
       nameZh: ls.loc || ls.city,
@@ -260,6 +273,7 @@ function buildHousing() {
     fv[4] = clamp(elev / 4000, 0, 1); fv[5] = clamp(burden / 40, 0, 1); fv[6] = clamp((Math.log10(unit + 1) - 2.2) / 3, 0, 1);
     fv[7] = clamp(yld / 0.05, 0, 1); fv[8] = clamp((outflow + 30) / 60, 0, 1); fv[9] = clamp((annualMean + 10) / 40, 0, 1);
     D.feat[ci] = fv; D.shape[ci] = 0;   // 城市=发光点（密集星场背景）
+    D.op[ci] = clamp((builtY - 1980) / 60, 0, 1);   // 呼吸/明灭相位 ← 楼龄：同龄楼群同步脉动（涌现时间结构）
     n++;
   }
   climWarm = cn ? clamp((cs / cn - 5) / 18, 0.12, 0.9) : 0.5;   // 全国年均温 → 背景冷暖偏置
@@ -440,10 +454,10 @@ async function buildPharma() {
     if (st.lat == null || st.lng == null) return;
     const co = coMap[st.company_id], region = co ? co.region : 'other';
     const hi = rhue(region), conf = st.confidence ?? 0.7;
-    const srev = (co && co.revenue && co.revenue.value) || 0;
-    const ssz = (st.site_type === 'HQ' ? 2.0 : 1.2) + clamp((Math.log10(srev + 1) - 8) / 3, 0, 1) * 2.8;   // 站点大小随母公司营收 + HQ 加成 → 巨头总部=日月
+    const srev = (co && co.revenue && co.revenue.value) || 0, sub = st.is_subsidiary ? 0.7 : 1;   // 子公司站点略暗略小
+    const ssz = ((st.site_type === 'HQ' ? 2.0 : 1.2) + clamp((Math.log10(srev + 1) - 8) / 3, 0, 1) * 2.8) * sub;   // 站点大小随母公司营收 + HQ 加成 → 巨头总部=日月
     const i = addStar(0, CENTER, 8, 0.0022, 0.16, 0.5, [(st.lng - 100) * 0.05, -(st.lat - 30) * 0.05, (st.lat) * 0.0006],
-      hi, 0.5, 0.5 + conf * 0.18, ssz, 0.5, clamp(1 - conf, 0, 1),
+      hi, 0.5, (0.5 + conf * 0.18) * sub, ssz, 0.5, clamp(1 - conf, 0, 1),
       { kind: 'PHARMA', nameZh: st.name_zh || st.name_en, nameEn: st.name_en || st.name_zh,
         kwZh: `${st.site_type || ''} · ${st.city || ''} · ${st.country || ''}`.trim(), kwEn: `${st.site_type || ''} · ${st.city || ''} · ${st.country || ''}`.trim() },
       null, 5);
@@ -452,26 +466,32 @@ async function buildPharma() {
 
   // 公司（128）→ 按 company_type 取一种简单立体（复活退役形）；地区着色；营收→大小
   const CO_SHAPE = { originator_bigpharma: 4, biotech: 2, cdmo_cro: 1, generics: 3, tcm: 6, vaccine: 7, biosimilar: 8, diversified: 10 };
+  const num = (x) => (x == null ? 0 : (typeof x === 'object' ? (x.value || 0) : x));
   companies.forEach((c) => {
-    const rev = (c.revenue && c.revenue.value) || 0, emp = (c.employees && c.employees.value) || 0;
-    const sz = 1.8 + clamp((Math.log10(rev + 1) - 8) / 3, 0, 1) * 2.2;
-    const i = addStar(3, CENTER, 15, 0.0032, 18, 0.4 + Math.random() * 0.3, az(),
-      rhue(c.region), 0.6, 0.5 + (c.is_public ? 0.12 : 0), sz, 0.42, clamp(1 - (c.confidence ?? 0.8), 0, 1),
+    const rev = num(c.revenue), emp = num(c.employees), mcap = num(c.market_cap), rnd = num(c.rnd_spend);
+    const magN = clamp((Math.log10(Math.max(rev, mcap * 0.5) + 1) - 8) / 3, 0, 1);   // 量级取营收/市值
+    const rndInt = rev > 0 ? clamp(rnd / rev / 0.25, 0, 1) : 0;                        // 研发强度 R&D/营收 → 明灭
+    const tierSlow = c.tier === 1 ? 0.55 : c.tier === 2 ? 0.8 : 1;                     // 头部药企更沉缓
+    const sz = 1.8 + magN * 2.4;
+    const i = addStar(3, CENTER, 15, 0.0032, 18, (0.35 + Math.random() * 0.25) * tierSlow, az(),
+      rhue(c.region), 0.6, 0.5 + (c.is_public ? 0.12 : 0), sz, 0.28 + rndInt * 0.5, clamp(1 - (c.confidence ?? 0.8), 0, 1),
       { kind: 'PHARMA', nameZh: c.name_zh || c.name_en, nameEn: c.name_en || c.name_zh,
         kwZh: `${c.hq_city || ''} · ${c.country_display_zh || c.country || ''} · ${rev ? Math.round(rev / 1e8) + ' 亿' : ''}`.replace(/ · $/, ''),
         kwEn: `${c.hq_city || ''} · ${c.country || ''} · ${rev ? '$' + (rev / 1e9).toFixed(1) + 'B' : ''}`.replace(/ · $/, '') },
-      null, 5 + clamp((Math.log10(rev + 1) - 8) / 3, 0, 1) * (TRAIL - 6));
+      null, 5 + magN * (TRAIL - 6));
     pIdx[c.id] = i;
-    const fv = makeFeat(6); fv[0] = clamp((Math.log10(rev + 1) - 8) / 3, 0, 1); fv[1] = clamp((Math.log10(emp + 1) - 2) / 4, 0, 1);
-    fv[2] = clamp(((c.founded || 1980) - 1900) / 130, 0, 1); fv[3] = c.is_public ? 1 : 0; fv[4] = clamp(c.confidence ?? 0.8, 0, 1); D.feat[i] = fv;
+    const fv = makeFeat(6); fv[0] = magN; fv[1] = clamp((Math.log10(emp + 1) - 2) / 4, 0, 1);
+    fv[2] = clamp(((c.founded || 1980) - 1900) / 130, 0, 1); fv[3] = c.is_public ? 1 : 0; fv[4] = clamp(c.confidence ?? 0.8, 0, 1); fv[5] = rndInt; D.feat[i] = fv;
     D.shape[i] = deepCo.has(c.id) ? (CO_SHAPE[c.company_type] || 2) : 0;   // 深度公司=立体，名册公司=发光点（省性能）
   });
 
   // 产品（219）→ 八面体；按所属公司地区着色；重磅炸弹更大
   products.forEach((p) => {
     const co = coMap[p.company_id], region = (co && co.region) || p.region || 'other';
-    const i = addStar(9, CENTER, 0.85, 0.0013, 24, 0.55, lu(),
-      rhue(region), 0.62, 0.46, p.is_blockbuster ? 3.0 : 1.9, 0.4, 0.25,
+    const approved = p.approval_status === 'approved';
+    const psz = p.is_blockbuster ? 3.0 : approved ? 2.1 : 1.5;   // 重磅 > 已批 > 临床
+    const i = addStar(9, CENTER, 0.85, 0.0013, 24, approved ? 0.42 : 0.72, lu(),   // 临床期更躁动快、已批更沉稳
+      rhue(region), 0.62, 0.46, psz, approved ? 0.3 : 0.55, 0.25,                    // 临床期明灭更颤
       { kind: 'PHARMA', nameZh: p.name_zh || p.brand_name || p.name_en, nameEn: p.name_en || p.brand_name || p.name_zh,
         kwZh: `${p.modality_id || ''} · ${p.therapeutic_area_id || ''} · ${p.first_approval_year || ''}`.trim(),
         kwEn: `${p.modality_id || ''} · ${p.therapeutic_area_id || ''} · ${p.first_approval_year || ''}`.trim() },
@@ -1054,7 +1074,7 @@ function animate() {
           _v.set(dx, dy, dz);
           if (sg.velAxis) { _q1.setFromUnitVectors(_UP, _v); _q2.setFromAxisAngle(_v, sg.speed[j] * tElapsed); _q.multiplyQuaternions(_q2, _q1); }   // 棱柱：长轴对齐 + 绕轴自旋（纺锤）
           else { _q.setFromAxisAngle(_v, sg.speed[j] * tElapsed); }   // 其余：绕运动方向轻微自转
-          const sc = (0.05 + szCurve[gi] * 1.4) * (sg.ellipsoid ? ringBreath : sbreath) * vis;   // 群星(微) → 日月大行星(巨)，幂曲线·按层归一化·数据驱动
+          const sc = sg.cmplx * (0.05 + szCurve[gi] * 1.4) * (sg.ellipsoid ? ringBreath : sbreath) * vis;   // 数据量级(szCurve) × 复杂度(边数/维度) → 高维体更大、多维展开看得清
           _dummy.position.set(posArr[o], posArr[o + 1], posArr[o + 2]);
           _dummy.quaternion.copy(_q);
           _dummy.scale.set(sc, sg.ellipsoid ? sc * 0.74 : sc, sc);
@@ -1133,6 +1153,9 @@ function buildSolids() {
   for (const sidKey in buckets) {
     const sid = +sidKey, list = buckets[sid], cnt = list.length, shape = SHAPES[sid];
     const local = shape.edges, lv = local.length / 3;
+    // 复杂度因子：边越多(越高维/复杂)整体越大 → 多维展开看得清，不缩成点。lv/2=棱数
+    let cmplx = 1.0 + clamp(Math.log2(Math.max(lv / 2, 6) / 6) / 5.2, 0, 1) * 1.4;
+    if (shape.is4d) cmplx *= 1 + (shape.dim - 3) * 0.1;   // 高维额外加成（4D×1.1 / 5D×1.2 / 6D×1.3）
     const pos = new Float32Array(cnt * lv * 3), colA = new Float32Array(cnt * lv * 3);
     const gidx = new Int32Array(cnt), speed = new Float32Array(cnt), vdir = new Float32Array(cnt * 3);   // vdir = 平滑后的运动方向（所有几何体共用）
     const spd4 = shape.is4d ? new Float32Array(cnt) : null, phase = shape.is4d ? new Float32Array(cnt) : null;
@@ -1149,7 +1172,7 @@ function buildSolids() {
     g.setAttribute('position', posAttr);
     g.setAttribute('aColor', new THREE.BufferAttribute(colA, 3));
     const mesh = new THREE.LineSegments(g, solidLineMat); mesh.frustumCulled = false; root.add(mesh);
-    solidGroups.push({ posAttr, pos, local, lv, cnt, gidx, speed, vdir, ellipsoid: shape.ellipsoid, velAxis: shape.velAxis,
+    solidGroups.push({ posAttr, pos, local, lv, cnt, gidx, speed, vdir, cmplx, ellipsoid: shape.ellipsoid, velAxis: shape.velAxis,
       is4d: shape.is4d, verts4: shape.verts4, edgeIdx: shape.edgeIdx, n4: shape.n4, ne: shape.ne, wdist: shape.wdist, dim: shape.dim, spd4, phase });
   }
 }
