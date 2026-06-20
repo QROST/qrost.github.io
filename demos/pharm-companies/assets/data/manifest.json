@@ -1,6 +1,6 @@
 {
-  "build_time": "2026-06-20T06:36:50Z",
-  "data_version": "feb976db56",
+  "build_time": "2026-06-20T06:39:23Z",
+  "data_version": "d79d3a3936",
   "total_companies": 1552,
   "total_sites": 1950,
   "total_products": 1098,
@@ -9,98 +9,14 @@
   "total_milestones": 71,
   "total_countries": 13,
   "shard_counts": {
-    "china-generic-tcm": 12,
-    "china-innovator-2": 27,
-    "china-innovator": 17,
-    "china-midcap": 48,
-    "china-pharma-large": 29,
-    "china-vaccine-insulin-tcm": 24,
-    "enrich-cn-w1a": 9,
-    "enrich-cn-w1b": 7,
-    "enrich-cn-w2a": 7,
-    "enrich-eu-w1": 13,
-    "enrich-india-w1": 26,
-    "enrich-jpkr-w1": 18,
-    "enrich-us-w1": 33,
-    "enrich-wf-0": 15,
-    "enrich-wf-1": 17,
-    "enrich-wf-10": 6,
-    "enrich-wf-11": 10,
-    "enrich-wf-12": 12,
-    "enrich-wf-13": 7,
-    "enrich-wf-14": 14,
-    "enrich-wf-15": 5,
-    "enrich-wf-16": 7,
-    "enrich-wf-17": 10,
-    "enrich-wf-18": 7,
-    "enrich-wf-19": 5,
-    "enrich-wf-2": 11,
-    "enrich-wf-20": 8,
-    "enrich-wf-21": 6,
-    "enrich-wf-22": 3,
-    "enrich-wf-23": 1,
-    "enrich-wf-24": 9,
-    "enrich-wf-25": 11,
-    "enrich-wf-26": 6,
-    "enrich-wf-27": 13,
-    "enrich-wf-28": 6,
-    "enrich-wf-29": 7,
-    "enrich-wf-3": 11,
-    "enrich-wf-30": 5,
-    "enrich-wf-31": 6,
-    "enrich-wf-32": 9,
-    "enrich-wf-33": 13,
-    "enrich-wf-34": 5,
-    "enrich-wf-35": 10,
-    "enrich-wf-36": 6,
-    "enrich-wf-37": 6,
-    "enrich-wf-38": 3,
-    "enrich-wf-39": 7,
-    "enrich-wf-4": 10,
-    "enrich-wf-40": 14,
-    "enrich-wf-41": 6,
-    "enrich-wf-42": 15,
-    "enrich-wf-43": 14,
-    "enrich-wf-44": 10,
-    "enrich-wf-45": 12,
-    "enrich-wf-46": 9,
-    "enrich-wf-47": 14,
-    "enrich-wf-48": 12,
-    "enrich-wf-49": 14,
-    "enrich-wf-5": 16,
-    "enrich-wf-50": 13,
-    "enrich-wf-51": 17,
-    "enrich-wf-52": 12,
-    "enrich-wf-53": 15,
-    "enrich-wf-54": 20,
-    "enrich-wf-55": 17,
-    "enrich-wf-56": 11,
-    "enrich-wf-57": 12,
-    "enrich-wf-58": 5,
-    "enrich-wf-59": 9,
-    "enrich-wf-6": 12,
-    "enrich-wf-60": 5,
-    "enrich-wf-61": 10,
-    "enrich-wf-62": 11,
-    "enrich-wf-63": 12,
-    "enrich-wf-64": 5,
-    "enrich-wf-65": 6,
-    "enrich-wf-66": 4,
-    "enrich-wf-67": 12,
-    "enrich-wf-68": 11,
-    "enrich-wf-69": 14,
-    "enrich-wf-7": 11,
-    "enrich-wf-70": 11,
-    "enrich-wf-71": 10,
-    "enrich-wf-72": 10,
-    "enrich-wf-73": 3,
-    "enrich-wf-8": 12,
-    "enrich-wf-9": 7,
-    "eu": 23,
-    "japan": 17,
-    "oceania-other": 12,
-    "us": 40,
-    "vaccine-biotech": 16
+    "europe": 157,
+    "greater_china": 438,
+    "japan": 67,
+    "latam": 2,
+    "mea": 23,
+    "north_america": 211,
+    "oceania": 17,
+    "other_apac": 183
   },
   "company_type_counts": {
     "cdmo_cro": 89,
@@ -125,519 +41,99 @@
     "oceania": 25
   },
   "modality_class_counts": {
-    "tcm": 68,
-    "small_molecule": 523,
-    "biosimilar": 34,
-    "mab": 98,
-    "adc": 27,
-    "biologic": 135,
-    "bispecific": 21,
-    "vaccine": 60,
-    "peptide": 54,
     "fusion_protein": 9,
+    "vaccine": 60,
+    "biologic": 135,
+    "small_molecule": 523,
+    "mab": 98,
+    "bispecific": 21,
     "cell_therapy": 37,
+    "biosimilar": 34,
+    "peptide": 54,
+    "adc": 27,
+    "tcm": 68,
     "rna_oligo": 26,
     "gene_therapy": 5,
     "radioligand": 1
   },
   "modality_ref_counts": {
-    "tcm-formula": 64,
-    "small-molecule": 523,
-    "biosimilar": 34,
-    "mab": 98,
-    "adc": 27,
-    "tcm-injection": 4,
-    "recombinant-protein": 135,
-    "bispecific-antibody": 21,
-    "protein-subunit-vaccine": 13,
-    "peptide": 54,
     "fusion-protein": 9,
-    "car-t": 36,
-    "inactivated-vaccine": 29,
-    "mrna-vaccine": 13,
     "viral-vector-vaccine": 5,
+    "recombinant-protein": 135,
+    "small-molecule": 523,
+    "mab": 98,
+    "bispecific-antibody": 21,
+    "car-t": 36,
+    "biosimilar": 34,
+    "peptide": 54,
+    "adc": 27,
+    "tcm-formula": 64,
+    "mrna-vaccine": 13,
     "sirna": 23,
+    "inactivated-vaccine": 29,
+    "protein-subunit-vaccine": 13,
+    "tcm-injection": 4,
     "antisense-oligo": 3,
     "aav-gene-therapy": 5,
     "radioligand": 1,
     "msc-therapy": 1
   },
   "ta_counts": {
-    "cardiometabolic": 124,
-    "neuroscience": 98,
-    "dermatology": 24,
-    "oncology": 289,
-    "respiratory": 41,
-    "hematology": 90,
-    "vaccines": 30,
     "immunology": 126,
-    "infectious-disease": 105,
+    "vaccines": 30,
+    "rare-disease": 114,
+    "dermatology": 24,
+    "neuroscience": 98,
+    "oncology": 289,
+    "hematology": 90,
+    "cardiometabolic": 124,
+    "infectious-disease": 106,
+    "respiratory": 41,
     "ophthalmology": 28,
-    "gastroenterology": 17,
+    "gastroenterology": 16,
     "womens-health": 9,
-    "nephrology": 3,
-    "rare-disease": 114
+    "nephrology": 3
   },
   "shards": [
     {
-      "id": "china-generic-tcm",
-      "file": "catalog/china-generic-tcm.json",
-      "count": 12
+      "id": "europe",
+      "file": "catalog/europe.json",
+      "count": 157
     },
     {
-      "id": "china-innovator-2",
-      "file": "catalog/china-innovator-2.json",
-      "count": 27
-    },
-    {
-      "id": "china-innovator",
-      "file": "catalog/china-innovator.json",
-      "count": 17
-    },
-    {
-      "id": "china-midcap",
-      "file": "catalog/china-midcap.json",
-      "count": 48
-    },
-    {
-      "id": "china-pharma-large",
-      "file": "catalog/china-pharma-large.json",
-      "count": 29
-    },
-    {
-      "id": "china-vaccine-insulin-tcm",
-      "file": "catalog/china-vaccine-insulin-tcm.json",
-      "count": 24
-    },
-    {
-      "id": "enrich-cn-w1a",
-      "file": "catalog/enrich-cn-w1a.json",
-      "count": 9
-    },
-    {
-      "id": "enrich-cn-w1b",
-      "file": "catalog/enrich-cn-w1b.json",
-      "count": 7
-    },
-    {
-      "id": "enrich-cn-w2a",
-      "file": "catalog/enrich-cn-w2a.json",
-      "count": 7
-    },
-    {
-      "id": "enrich-eu-w1",
-      "file": "catalog/enrich-eu-w1.json",
-      "count": 13
-    },
-    {
-      "id": "enrich-india-w1",
-      "file": "catalog/enrich-india-w1.json",
-      "count": 26
-    },
-    {
-      "id": "enrich-jpkr-w1",
-      "file": "catalog/enrich-jpkr-w1.json",
-      "count": 18
-    },
-    {
-      "id": "enrich-us-w1",
-      "file": "catalog/enrich-us-w1.json",
-      "count": 33
-    },
-    {
-      "id": "enrich-wf-0",
-      "file": "catalog/enrich-wf-0.json",
-      "count": 15
-    },
-    {
-      "id": "enrich-wf-1",
-      "file": "catalog/enrich-wf-1.json",
-      "count": 17
-    },
-    {
-      "id": "enrich-wf-10",
-      "file": "catalog/enrich-wf-10.json",
-      "count": 6
-    },
-    {
-      "id": "enrich-wf-11",
-      "file": "catalog/enrich-wf-11.json",
-      "count": 10
-    },
-    {
-      "id": "enrich-wf-12",
-      "file": "catalog/enrich-wf-12.json",
-      "count": 12
-    },
-    {
-      "id": "enrich-wf-13",
-      "file": "catalog/enrich-wf-13.json",
-      "count": 7
-    },
-    {
-      "id": "enrich-wf-14",
-      "file": "catalog/enrich-wf-14.json",
-      "count": 14
-    },
-    {
-      "id": "enrich-wf-15",
-      "file": "catalog/enrich-wf-15.json",
-      "count": 5
-    },
-    {
-      "id": "enrich-wf-16",
-      "file": "catalog/enrich-wf-16.json",
-      "count": 7
-    },
-    {
-      "id": "enrich-wf-17",
-      "file": "catalog/enrich-wf-17.json",
-      "count": 10
-    },
-    {
-      "id": "enrich-wf-18",
-      "file": "catalog/enrich-wf-18.json",
-      "count": 7
-    },
-    {
-      "id": "enrich-wf-19",
-      "file": "catalog/enrich-wf-19.json",
-      "count": 5
-    },
-    {
-      "id": "enrich-wf-2",
-      "file": "catalog/enrich-wf-2.json",
-      "count": 11
-    },
-    {
-      "id": "enrich-wf-20",
-      "file": "catalog/enrich-wf-20.json",
-      "count": 8
-    },
-    {
-      "id": "enrich-wf-21",
-      "file": "catalog/enrich-wf-21.json",
-      "count": 6
-    },
-    {
-      "id": "enrich-wf-22",
-      "file": "catalog/enrich-wf-22.json",
-      "count": 3
-    },
-    {
-      "id": "enrich-wf-23",
-      "file": "catalog/enrich-wf-23.json",
-      "count": 1
-    },
-    {
-      "id": "enrich-wf-24",
-      "file": "catalog/enrich-wf-24.json",
-      "count": 9
-    },
-    {
-      "id": "enrich-wf-25",
-      "file": "catalog/enrich-wf-25.json",
-      "count": 11
-    },
-    {
-      "id": "enrich-wf-26",
-      "file": "catalog/enrich-wf-26.json",
-      "count": 6
-    },
-    {
-      "id": "enrich-wf-27",
-      "file": "catalog/enrich-wf-27.json",
-      "count": 13
-    },
-    {
-      "id": "enrich-wf-28",
-      "file": "catalog/enrich-wf-28.json",
-      "count": 6
-    },
-    {
-      "id": "enrich-wf-29",
-      "file": "catalog/enrich-wf-29.json",
-      "count": 7
-    },
-    {
-      "id": "enrich-wf-3",
-      "file": "catalog/enrich-wf-3.json",
-      "count": 11
-    },
-    {
-      "id": "enrich-wf-30",
-      "file": "catalog/enrich-wf-30.json",
-      "count": 5
-    },
-    {
-      "id": "enrich-wf-31",
-      "file": "catalog/enrich-wf-31.json",
-      "count": 6
-    },
-    {
-      "id": "enrich-wf-32",
-      "file": "catalog/enrich-wf-32.json",
-      "count": 9
-    },
-    {
-      "id": "enrich-wf-33",
-      "file": "catalog/enrich-wf-33.json",
-      "count": 13
-    },
-    {
-      "id": "enrich-wf-34",
-      "file": "catalog/enrich-wf-34.json",
-      "count": 5
-    },
-    {
-      "id": "enrich-wf-35",
-      "file": "catalog/enrich-wf-35.json",
-      "count": 10
-    },
-    {
-      "id": "enrich-wf-36",
-      "file": "catalog/enrich-wf-36.json",
-      "count": 6
-    },
-    {
-      "id": "enrich-wf-37",
-      "file": "catalog/enrich-wf-37.json",
-      "count": 6
-    },
-    {
-      "id": "enrich-wf-38",
-      "file": "catalog/enrich-wf-38.json",
-      "count": 3
-    },
-    {
-      "id": "enrich-wf-39",
-      "file": "catalog/enrich-wf-39.json",
-      "count": 7
-    },
-    {
-      "id": "enrich-wf-4",
-      "file": "catalog/enrich-wf-4.json",
-      "count": 10
-    },
-    {
-      "id": "enrich-wf-40",
-      "file": "catalog/enrich-wf-40.json",
-      "count": 14
-    },
-    {
-      "id": "enrich-wf-41",
-      "file": "catalog/enrich-wf-41.json",
-      "count": 6
-    },
-    {
-      "id": "enrich-wf-42",
-      "file": "catalog/enrich-wf-42.json",
-      "count": 15
-    },
-    {
-      "id": "enrich-wf-43",
-      "file": "catalog/enrich-wf-43.json",
-      "count": 14
-    },
-    {
-      "id": "enrich-wf-44",
-      "file": "catalog/enrich-wf-44.json",
-      "count": 10
-    },
-    {
-      "id": "enrich-wf-45",
-      "file": "catalog/enrich-wf-45.json",
-      "count": 12
-    },
-    {
-      "id": "enrich-wf-46",
-      "file": "catalog/enrich-wf-46.json",
-      "count": 9
-    },
-    {
-      "id": "enrich-wf-47",
-      "file": "catalog/enrich-wf-47.json",
-      "count": 14
-    },
-    {
-      "id": "enrich-wf-48",
-      "file": "catalog/enrich-wf-48.json",
-      "count": 12
-    },
-    {
-      "id": "enrich-wf-49",
-      "file": "catalog/enrich-wf-49.json",
-      "count": 14
-    },
-    {
-      "id": "enrich-wf-5",
-      "file": "catalog/enrich-wf-5.json",
-      "count": 16
-    },
-    {
-      "id": "enrich-wf-50",
-      "file": "catalog/enrich-wf-50.json",
-      "count": 13
-    },
-    {
-      "id": "enrich-wf-51",
-      "file": "catalog/enrich-wf-51.json",
-      "count": 17
-    },
-    {
-      "id": "enrich-wf-52",
-      "file": "catalog/enrich-wf-52.json",
-      "count": 12
-    },
-    {
-      "id": "enrich-wf-53",
-      "file": "catalog/enrich-wf-53.json",
-      "count": 15
-    },
-    {
-      "id": "enrich-wf-54",
-      "file": "catalog/enrich-wf-54.json",
-      "count": 20
-    },
-    {
-      "id": "enrich-wf-55",
-      "file": "catalog/enrich-wf-55.json",
-      "count": 17
-    },
-    {
-      "id": "enrich-wf-56",
-      "file": "catalog/enrich-wf-56.json",
-      "count": 11
-    },
-    {
-      "id": "enrich-wf-57",
-      "file": "catalog/enrich-wf-57.json",
-      "count": 12
-    },
-    {
-      "id": "enrich-wf-58",
-      "file": "catalog/enrich-wf-58.json",
-      "count": 5
-    },
-    {
-      "id": "enrich-wf-59",
-      "file": "catalog/enrich-wf-59.json",
-      "count": 9
-    },
-    {
-      "id": "enrich-wf-6",
-      "file": "catalog/enrich-wf-6.json",
-      "count": 12
-    },
-    {
-      "id": "enrich-wf-60",
-      "file": "catalog/enrich-wf-60.json",
-      "count": 5
-    },
-    {
-      "id": "enrich-wf-61",
-      "file": "catalog/enrich-wf-61.json",
-      "count": 10
-    },
-    {
-      "id": "enrich-wf-62",
-      "file": "catalog/enrich-wf-62.json",
-      "count": 11
-    },
-    {
-      "id": "enrich-wf-63",
-      "file": "catalog/enrich-wf-63.json",
-      "count": 12
-    },
-    {
-      "id": "enrich-wf-64",
-      "file": "catalog/enrich-wf-64.json",
-      "count": 5
-    },
-    {
-      "id": "enrich-wf-65",
-      "file": "catalog/enrich-wf-65.json",
-      "count": 6
-    },
-    {
-      "id": "enrich-wf-66",
-      "file": "catalog/enrich-wf-66.json",
-      "count": 4
-    },
-    {
-      "id": "enrich-wf-67",
-      "file": "catalog/enrich-wf-67.json",
-      "count": 12
-    },
-    {
-      "id": "enrich-wf-68",
-      "file": "catalog/enrich-wf-68.json",
-      "count": 11
-    },
-    {
-      "id": "enrich-wf-69",
-      "file": "catalog/enrich-wf-69.json",
-      "count": 14
-    },
-    {
-      "id": "enrich-wf-7",
-      "file": "catalog/enrich-wf-7.json",
-      "count": 11
-    },
-    {
-      "id": "enrich-wf-70",
-      "file": "catalog/enrich-wf-70.json",
-      "count": 11
-    },
-    {
-      "id": "enrich-wf-71",
-      "file": "catalog/enrich-wf-71.json",
-      "count": 10
-    },
-    {
-      "id": "enrich-wf-72",
-      "file": "catalog/enrich-wf-72.json",
-      "count": 10
-    },
-    {
-      "id": "enrich-wf-73",
-      "file": "catalog/enrich-wf-73.json",
-      "count": 3
-    },
-    {
-      "id": "enrich-wf-8",
-      "file": "catalog/enrich-wf-8.json",
-      "count": 12
-    },
-    {
-      "id": "enrich-wf-9",
-      "file": "catalog/enrich-wf-9.json",
-      "count": 7
-    },
-    {
-      "id": "eu",
-      "file": "catalog/eu.json",
-      "count": 23
+      "id": "greater_china",
+      "file": "catalog/greater_china.json",
+      "count": 438
     },
     {
       "id": "japan",
       "file": "catalog/japan.json",
+      "count": 67
+    },
+    {
+      "id": "latam",
+      "file": "catalog/latam.json",
+      "count": 2
+    },
+    {
+      "id": "mea",
+      "file": "catalog/mea.json",
+      "count": 23
+    },
+    {
+      "id": "north_america",
+      "file": "catalog/north_america.json",
+      "count": 211
+    },
+    {
+      "id": "oceania",
+      "file": "catalog/oceania.json",
       "count": 17
     },
     {
-      "id": "oceania-other",
-      "file": "catalog/oceania-other.json",
-      "count": 12
-    },
-    {
-      "id": "us",
-      "file": "catalog/us.json",
-      "count": 40
-    },
-    {
-      "id": "vaccine-biotech",
-      "file": "catalog/vaccine-biotech.json",
-      "count": 16
+      "id": "other_apac",
+      "file": "catalog/other_apac.json",
+      "count": 183
     }
   ]
 }
