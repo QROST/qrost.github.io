@@ -897,23 +897,32 @@ const camPos = new THREE.Vector3(CENTER[0], CENTER[1], CENTER[2]);
 const cCenter = new THREE.Vector3(CENTER[0], CENTER[1], CENTER[2]);
 let yaw = 0, pitch = 0, dragging = false, lastPX = 0, lastPY = 0, gyroOn = false;
 const fwd = new THREE.Vector3();
-// 视角追踪：点击一颗星 → 锁定它，相机以它为中心环绕（拖动/陀螺=绕它转）；点空白 → 缓缓退回正中心
-const ORBIT_R = 6.5;
-let focusIdx = -1, focusActive = false, focusBlend = 0;
-const _starSmooth = new THREE.Vector3(), _desiredPos = new THREE.Vector3(), _freeLook = new THREE.Vector3(), _lookTmp = new THREE.Vector3(), _starNow = new THREE.Vector3();
-function applyLook() {
+// 视角追踪：点击一颗星 → 锁定它，相机连贯地飞过去、绕它转（拖动/陀螺=绕它转）；点空白 → 连贯退回正中心
+const ORBIT_R = 8;
+let focusIdx = -1, focusActive = false;
+const _starSmooth = new THREE.Vector3(), _desPos = new THREE.Vector3(), _lookTmp = new THREE.Vector3(), _starNow = new THREE.Vector3();
+const _camCur = new THREE.Vector3().copy(camPos), _lookCur = new THREE.Vector3(camPos.x, camPos.y, camPos.z + 1);
+function applyLook(dt) {
   fwd.set(Math.cos(pitch) * Math.sin(yaw), Math.sin(pitch), Math.cos(pitch) * Math.cos(yaw));
-  _freeLook.copy(camPos).add(fwd);
-  if (focusIdx >= 0 && posArr) {
+  const k = 1 - Math.exp(-dt / 0.11);   // 临界阻尼跟随：时间常数 ~110ms，帧率无关 → 切换全程连贯、不跳
+  if (focusActive && focusIdx >= 0 && posArr) {
     const o = focusIdx * 3;
-    _starSmooth.lerp(_starNow.set(posArr[o], posArr[o + 1], posArr[o + 2]), 0.18);   // 平滑跟踪混沌中的目标
-    _desiredPos.copy(_starSmooth).addScaledVector(fwd, ORBIT_R);                       // 相机 = 目标 + 视向·R → 环绕
-    camera.position.copy(camPos).lerp(_desiredPos, focusBlend);
-    camera.lookAt(_lookTmp.copy(_freeLook).lerp(_starSmooth, focusBlend));             // 看向目标（按 blend 平滑切入/退出）
+    _starSmooth.lerp(_starNow.set(posArr[o], posArr[o + 1], posArr[o + 2]), Math.min(1, dt * 4));   // 平滑跟踪目标（不追混沌瞬抖）
+    const r = ORBIT_R + (szCurve ? szCurve[focusIdx] * 6 : 0);                          // 越大的目标，环绕半径越远
+    _desPos.copy(_starSmooth).addScaledVector(fwd, -r);                                 // 近端环绕：相机在星的「视向后方」R 处 → 看向 +视向(=星)，不翻面
+    _camCur.lerp(_desPos, k);
+    _lookCur.lerp(_starSmooth, k);
   } else {
-    camera.position.copy(camPos);
-    camera.lookAt(_freeLook);
+    _camCur.lerp(camPos, k);                                                            // 连贯退回中心
+    if (_camCur.distanceToSquared(camPos) < 0.04) {                                     // 已归位 → 自由视角即时跟手（拖动无延迟）
+      _camCur.copy(camPos); _lookCur.copy(_lookTmp.copy(camPos).add(fwd));
+      if (focusIdx >= 0) focusIdx = -1;
+    } else {
+      _lookCur.lerp(_lookTmp.copy(camPos).add(fwd), k);                                 // 退出过程中平滑看向
+    }
   }
+  camera.position.copy(_camCur);
+  camera.lookAt(_lookCur);
 }
 // Pointer Events 统一：1 指 = 拖动环视；2 指 = 捏合调焦（FOV）。多指共存，桌面鼠标/滚轮照旧
 const _ptrs = new Map();
@@ -1140,9 +1149,7 @@ function animate() {
     yaw += gyroSmYaw; pitch = clamp(pitch + gyroSmPitch, -1.45, 1.45);
   }
   else if (!dragging && focusIdx < 0) yaw += 0.00016;    // 极缓自动巡游（仅自由模式）
-  focusBlend += ((focusActive ? 1 : 0) - focusBlend) * Math.min(1, dt * 2.4);   // 锁定/解锁的平滑过渡
-  if (!focusActive && focusBlend < 0.01) focusIdx = -1;                          // 完全退出后清空
-  applyLook();
+  applyLook(dt);   // 焦点切换/退出由 applyLook 内的临界阻尼跟随处理（连贯不跳）
   renderer.render(scene, camera);
 }
 
