@@ -236,6 +236,16 @@ def merge_research() -> None:
                 del sites[keep]; hq_by_co[co] = sid
         print(f"  dedup: merged {len(remap)} duplicate company id(s) into canonical entries")
 
+    # guard: merging a subsidiary record into its own parent can leave parent_id pointing at self
+    selfloop = 0
+    for cid, c in companies.items():
+        if c.get("parent_id") == cid:
+            c["parent_id"] = ""
+            c["is_subsidiary"] = False
+            selfloop += 1
+    if selfloop:
+        print(f"  dedup: cleared {selfloop} parent_id self-loop(s)")
+
     # product.region <- its company's region (denormalized); drop orphans (id dedup is automatic
     # in the flat dict). Then bucket products into REGION-based catalog shards (8, not ~80 by file).
     region_by_co = {cid: c.get("region") for cid, c in companies.items()}
