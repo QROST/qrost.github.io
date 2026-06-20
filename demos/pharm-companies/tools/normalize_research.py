@@ -104,6 +104,62 @@ def coerce_money(v, ccy):
     return v
 
 
+# Unit-bearing currency tags (e.g. 'CNY_millions', 'JPY_M', 'HUF_bn', 'INR_crores') leak the scale
+# into the currency string. The frontend's fxRate() only knows ISO codes, so an unknown tag falls
+# back to USD=1 and the value renders ~1e6x too small. Normalize to ISO currency + scaled raw value.
+_UNIT_FACTOR = {
+    "m": 1e6, "mn": 1e6, "mln": 1e6, "million": 1e6, "millions": 1e6,
+    "b": 1e9, "bn": 1e9, "billion": 1e9, "billions": 1e9,
+    "cr": 1e7, "crore": 1e7, "crores": 1e7, "lakh": 1e5, "lakhs": 1e5, "lac": 1e5,
+    "k": 1e3, "thousand": 1e3, "thousands": 1e3,
+}
+_UNIT_TAG = re.compile(r"^([A-Za-z]{3})[_ ]([A-Za-z]+)$")
+
+
+def unit_money(v):
+    """If currency is a unit-bearing tag, scale value and reduce currency to the ISO code.
+    Returns (money, changed)."""
+    if not isinstance(v, dict) or not isinstance(v.get("currency"), str):
+        return v, False
+    m = _UNIT_TAG.match(v["currency"].strip())
+    if not m:
+        return v, False
+    factor = _UNIT_FACTOR.get(m.group(2).lower())
+    if not factor:
+        return v, False
+    if isinstance(v.get("value"), (int, float)):
+        v["value"] = v["value"] * factor
+    v["currency"] = m.group(1).upper()
+    return v, True
+
+
+# Roster research frequently stored money in MILLIONS with a plain ISO tag (e.g. Viatris revenue
+# 14300 USD = $14.3B); the frontend reads raw units, rendering these ~1e6x too small. For ESTABLISHED
+# (non pre-revenue) company types, a plain-ISO money value in [0.1, 1e5) is unambiguously in millions:
+# the raw reading would be an implausibly tiny <100k for a listed firm, while a genuinely small biotech
+# stored raw sits at value >= 1e6. Bounding to non-biotech avoids rescaling tiny clinical-stage revenue.
+# Per-field (not per-record) so intra-record drift is handled (rev in millions, R&D already raw).
+# Lower bound 0.1 keeps it idempotent (scaled result >= 1e5 is never matched again).
+SCALE_MILLIONS_TYPES = {
+    "generics", "tcm", "lifesci_tools", "medtech", "distributor", "cdmo", "api", "cro",
+    "originator_bigpharma", "diversified", "vaccine", "consumer_health", "retail_pharmacy",
+    "otc", "animal_health",
+}
+
+
+def scale_millions(v, company_type):
+    if company_type not in SCALE_MILLIONS_TYPES or not isinstance(v, dict):
+        return False
+    cur = v.get("currency")
+    if not isinstance(cur, str) or not re.fullmatch(r"[A-Z]{3}", cur):
+        return False
+    val = v.get("value")
+    if isinstance(val, (int, float)) and 0.1 <= val < 1e5:
+        v["value"] = val * 1e6
+        return True
+    return False
+
+
 def conf(x):
     if isinstance(x, (int, float)):
         v = float(x)
@@ -186,10 +242,13 @@ def main() -> int:
                     if nc != c["confidence"]:
                         c["confidence"] = nc; ch = True
                 ccy = COUNTRY_CCY.get(c.get("country"), "USD")
+                ct_now = c.get("company_type")
                 for fld in ("revenue", "market_cap", "rnd_spend"):
                     if c.get(fld) is not None:
                         nv = coerce_money(c[fld], ccy)
-                        if nv is not c[fld]:
+                        nv, uchanged = unit_money(nv)
+                        schanged = scale_millions(nv, ct_now)
+                        if uchanged or schanged or nv is not c[fld]:
                             c[fld] = nv; ch = True; fixes += 1
                 if isinstance(c.get("employees"), (int, float)):
                     c["employees"] = {"value": int(c["employees"]), "year": 2024}; ch = True
@@ -238,7 +297,8 @@ def main() -> int:
                 for fld in ("latest_annual_sales", "annual_sales", "peak_sales"):
                     if p.get(fld) is not None:
                         nv = coerce_money(p[fld], pccy)
-                        if nv is not p[fld]:
+                        nv, uchanged = unit_money(nv)
+                        if uchanged or nv is not p[fld]:
                             p[fld] = nv; ch = True; fixes += 1
                 if p.get("annual_sales") and not p.get("latest_annual_sales"):
                     p["latest_annual_sales"] = p["annual_sales"]; ch = True
