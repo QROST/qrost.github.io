@@ -1,0 +1,245 @@
+{
+  "shard": "enrich-wf-4",
+  "products": [
+    {
+      "id": "genedrive-mt-rnr1-kit",
+      "name_zh": "MT-RNR1基因检测套件",
+      "name_en": "Genedrive MT-RNR1 ID Kit",
+      "brand_name": "Genedrive® MT-RNR1 ID Kit",
+      "company_id": "genedrive",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "infectious-disease",
+      "indication_zh": "氨基糖苷类抗生素诱导的耳毒性风险筛查（MT-RNR1基因变异）",
+      "indication_en": "Rapid point-of-care screening for MT-RNR1 genetic variant associated with aminoglycoside-induced hearing loss",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "europe",
+      "sources": [
+        {
+          "url": "https://www.genedriveplc.com",
+          "title": "Genedrive plc – Official Website",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "genedrive-cyp2c19-kit",
+      "name_zh": "CYP2C19基因检测套件",
+      "name_en": "Genedrive CYP2C19 ID Kit",
+      "brand_name": "Genedrive® CYP2C19 ID Kit",
+      "company_id": "genedrive",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "cardiometabolic",
+      "indication_zh": "心血管药物（如氯吡格雷）代谢基因CYP2C19变异的即时检测",
+      "indication_en": "Point-of-care pharmacogenomic testing for CYP2C19 variants predicting cardiovascular drug metabolism (e.g. clopidogrel response)",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "europe",
+      "sources": [
+        {
+          "url": "https://www.genedriveplc.com",
+          "title": "Genedrive plc – Official Website",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "genfit-ntz-g1090n",
+      "name_zh": "NTZ/G1090N",
+      "name_en": "NTZ/G1090N",
+      "brand_name": "NTZ/G1090N",
+      "company_id": "genfit",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "rare-disease",
+      "indication_zh": "急性慢性肝衰竭（ACLF）",
+      "indication_en": "Acute-on-chronic liver failure (ACLF)",
+      "approval_status": "ph2",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "europe",
+      "sources": [
+        {
+          "url": "https://ir.genfit.com/news-releases/news-release-details/genfit-reports-full-year-2025-financial-results-and-provides",
+          "title": "GENFIT Full-Year 2025 Financial Results",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "genfit-gns561",
+      "name_zh": "GNS561",
+      "name_en": "GNS561",
+      "brand_name": "GNS561",
+      "company_id": "genfit",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "oncology",
+      "indication_zh": "胆管癌（CCA）",
+      "indication_en": "Cholangiocarcinoma (CCA)",
+      "approval_status": "ph1",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "europe",
+      "sources": [
+        {
+          "url": "https://ir.genfit.com/news-releases/news-release-details/genfit-reports-full-year-2025-financial-results-and-provides",
+          "title": "GENFIT Full-Year 2025 Financial Results",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "hansa-idefirix",
+      "name_zh": "IDEFIRIX（imlifidase）",
+      "name_en": "IDEFIRIX (imlifidase)",
+      "brand_name": "IDEFIRIX",
+      "company_id": "hansa-biopharma",
+      "modality_id": "recombinant-protein",
+      "therapeutic_area_id": "immunology",
+      "indication_zh": "高度致敏成人肾移植患者的脱敏治疗",
+      "indication_en": "Desensitization in highly sensitized adult kidney transplant candidates",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "europe",
+      "sources": [
+        {
+          "url": "https://www.prnewswire.com/news-releases/hansa-biopharma-reports-fourth-quarter-and-full-year-2025-financial-results-302684730.html",
+          "title": "Hansa Biopharma Full-Year 2025 Financial Results",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "heidelberg-hdp-101",
+      "name_zh": "HDP-101（帕姆勒他巴替坦利斯马尼汀）",
+      "name_en": "HDP-101 (pamlectabart tismanitin)",
+      "brand_name": "HDP-101 (pamlectabart tismanitin)",
+      "company_id": "heidelberg-pharma",
+      "modality_id": "adc",
+      "therapeutic_area_id": "oncology",
+      "indication_zh": "多发性骨髓瘤",
+      "indication_en": "Multiple myeloma",
+      "approval_status": "ph1",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "europe",
+      "sources": [
+        {
+          "url": "https://heidelberg-pharma.com/en/press-investors/announcements/press-releases-and-ad-hoc-announcements/pm-heidelberg-pharma-announces-financial-figures-and-reports-on-business-performance-in-2025-and-outlook-for-2026",
+          "title": "Heidelberg Pharma Financial Figures 2025",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "hyloris-maxigesic-iv",
+      "name_zh": "Maxigesic IV",
+      "name_en": "Maxigesic IV",
+      "brand_name": "Maxigesic IV",
+      "company_id": "hyloris-pharmaceuticals",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "cardiometabolic",
+      "indication_zh": "术后疼痛、急性疼痛管理（对乙酰氨基酚+布洛芬静脉注射复方）",
+      "indication_en": "Post-operative and acute pain management (IV paracetamol + ibuprofen combination)",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "europe",
+      "sources": [
+        {
+          "url": "https://hyloris.com/wp-content/uploads/2025/09/2025-06-30-Hyloris-HY-report_EN-final.pdf",
+          "title": "Hyloris Half Year Report 2025",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "hyloris-sotalol-iv",
+      "name_zh": "Sotalol IV",
+      "name_en": "Sotalol IV",
+      "brand_name": "Sotalol IV",
+      "company_id": "hyloris-pharmaceuticals",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "cardiometabolic",
+      "indication_zh": "心房颤动",
+      "indication_en": "Atrial fibrillation",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "europe",
+      "sources": [
+        {
+          "url": "https://hyloris.com/wp-content/uploads/2025/09/2025-06-30-Hyloris-HY-report_EN-final.pdf",
+          "title": "Hyloris Half Year Report 2025",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "immupharma-lupuzor",
+      "name_zh": "Lupuzor（P140肽）",
+      "name_en": "Lupuzor (P140 peptide)",
+      "brand_name": "Lupuzor",
+      "company_id": "immupharma",
+      "modality_id": "peptide",
+      "therapeutic_area_id": "immunology",
+      "indication_zh": "系统性红斑狼疮（SLE）",
+      "indication_en": "Systemic lupus erythematosus (SLE)",
+      "approval_status": "ph3",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "europe",
+      "sources": [
+        {
+          "url": "https://www.immupharma.co.uk",
+          "title": "ImmuPharma PLC – Official Website",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "inventiva-lanifibranor",
+      "name_zh": "拉尼非布诺",
+      "name_en": "lanifibranor",
+      "brand_name": "lanifibranor",
+      "company_id": "inventiva",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "cardiometabolic",
+      "indication_zh": "代谢相关脂肪性肝炎（MASH）",
+      "indication_en": "Metabolic dysfunction-associated steatohepatitis (MASH)",
+      "approval_status": "ph3",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "europe",
+      "sources": [
+        {
+          "url": "https://www.globenewswire.com/news-release/2026/03/30/3265019/0/en/Inventiva-reports-2025-full-year-results-and-provides-a-business-update.html",
+          "title": "Inventiva 2025 Full Year Results",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    }
+  ]
+}

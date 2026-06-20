@@ -1,0 +1,221 @@
+{
+  "shard": "enrich-wf-46",
+  "products": [
+    {
+      "id": "biolinerx-aphexda",
+      "name_zh": "APHEXDA（莫提沙福泰）",
+      "name_en": "APHEXDA",
+      "brand_name": "APHEXDA",
+      "company_id": "biolinerx",
+      "modality_id": "peptide",
+      "therapeutic_area_id": "hematology",
+      "indication_zh": "多发性骨髓瘤自体造血干细胞动员",
+      "indication_en": "Stem cell mobilization for autologous transplantation in multiple myeloma",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "mea",
+      "sources": [
+        {
+          "url": "https://www.prnewswire.com/news-releases/biolinerx-reports-2025-financial-results-and-provides-corporate-update-302721933.html",
+          "title": "BioLineRx 2025 annual results",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "biolinerx-glix1",
+      "name_zh": "GLIX1",
+      "name_en": "GLIX1",
+      "brand_name": "GLIX1",
+      "company_id": "biolinerx",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "oncology",
+      "indication_zh": "胶质母细胞瘤及其他实体肿瘤",
+      "indication_en": "Glioblastoma and other solid tumors (DNA damage response targeting)",
+      "approval_status": "ph1",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "mea",
+      "sources": [
+        {
+          "url": "https://www.prnewswire.com/news-releases/biolinerx-reports-2025-financial-results-and-provides-corporate-update-302721933.html",
+          "title": "BioLineRx 2025 annual results",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "can-fite-namodenoson",
+      "name_zh": "那莫德诺生",
+      "name_en": "Namodenoson",
+      "brand_name": "Namodenoson",
+      "company_id": "can-fite-biopharma",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "oncology",
+      "indication_zh": "肝细胞癌（三期）；代谢相关脂肪性肝炎MASH（二期b）",
+      "indication_en": "Hepatocellular carcinoma (Phase 3); MASH (Phase 2b); pancreatic cancer (Phase 2a)",
+      "approval_status": "ph3",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "mea",
+      "sources": [
+        {
+          "url": "https://ir.canfite.com/news-events/press-releases/detail/1087/can-fite-has-raised-175-million-in-total-to-date-for-the",
+          "title": "Can-Fite – $175M raised announcement",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "can-fite-piclidenoson",
+      "name_zh": "匹可利地诺生",
+      "name_en": "Piclidenoson",
+      "brand_name": "Piclidenoson",
+      "company_id": "can-fite-biopharma",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "immunology",
+      "indication_zh": "银屑病（三期临床）",
+      "indication_en": "Psoriasis (Phase 3); veterinary applications (Vetbiolix partnership)",
+      "approval_status": "ph3",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "mea",
+      "sources": [
+        {
+          "url": "https://www.globenewswire.com/news-release/2025/04/14/3060926/0/en/Can-Fite-to-Generate-685M-in-Projected-Future-Revenues-from-its-Partnerships.html",
+          "title": "Globe Newswire – Can-Fite $685M projected revenues",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "collplant-dermal-filler",
+      "name_zh": "光固化真皮填充剂（艾伯维合作项目）",
+      "name_en": "Photocurable Dermal Filler (AbbVie collaboration)",
+      "brand_name": "Photocurable Dermal Filler (AbbVie collaboration)",
+      "company_id": "collplant-biotechnologies",
+      "modality_id": "recombinant-protein",
+      "therapeutic_area_id": "rare-disease",
+      "indication_zh": "美容皮肤填充（真皮填充剂）",
+      "indication_en": "Aesthetic dermal filler using rhCollagen",
+      "approval_status": "preclinical",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "mea",
+      "sources": [
+        {
+          "url": "https://ir.collplant.com/news-events/press-releases/detail/198/collplant-biotechnologies-reports-2025-financial-results-and-provides-corporate-update",
+          "title": "CollPlant – 2025 financial results",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "compugen-rilvegostomig",
+      "name_zh": "利韦戈斯托米格",
+      "name_en": "Rilvegostomig",
+      "brand_name": "Rilvegostomig",
+      "company_id": "compugen",
+      "modality_id": "bispecific-antibody",
+      "therapeutic_area_id": "oncology",
+      "indication_zh": "实体瘤（抗PVRIG×抗PD-1双特异性抗体，由阿斯利康开发三期临床）",
+      "indication_en": "Solid tumors – anti-PVRIG × anti-PD-1 bispecific antibody licensed to and developed by AstraZeneca (Phase 3)",
+      "approval_status": "ph3",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "mea",
+      "sources": [
+        {
+          "url": "https://www.nasdaq.com/press-release/compugen-monetizes-portion-rilvegostomig-future-royalties-astrazeneca-90-million-2025",
+          "title": "Nasdaq – Compugen AstraZeneca royalty deal",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "enlivex-allocetra",
+      "name_zh": "Allocetra™",
+      "name_en": "Allocetra",
+      "brand_name": "Allocetra",
+      "company_id": "enlivex-therapeutics",
+      "modality_id": "car-t",
+      "therapeutic_area_id": "immunology",
+      "indication_zh": "膝关节骨关节炎（二期b）；脓毒症相关器官功能障碍（一/二期）",
+      "indication_en": "Knee osteoarthritis (Phase 2b, US first patient dosed); sepsis organ dysfunction (Phase 1/2a)",
+      "approval_status": "ph2",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "mea",
+      "sources": [
+        {
+          "url": "https://enlivex.com/pipeline/",
+          "title": "Enlivex – Pipeline",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "entera-bio-eb613",
+      "name_zh": "EB613（口服PTH(1-34)片）",
+      "name_en": "EB613 – Oral PTH(1-34) Tablet",
+      "brand_name": "EB613 – Oral PTH(1-34) Tablet",
+      "company_id": "entera-bio",
+      "modality_id": "peptide",
+      "therapeutic_area_id": "rare-disease",
+      "indication_zh": "绝经后骨质疏松症",
+      "indication_en": "Postmenopausal osteoporosis – first oral anabolic PTH peptide tablet",
+      "approval_status": "ph3",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "mea",
+      "sources": [
+        {
+          "url": "https://www.stocktitan.net/news/ENTX/entera-bio-announces-full-year-2025-financial-results-and-provides-34sgl38xkucs.html",
+          "title": "StockTitan – Entera Bio FY2025 results",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "entera-bio-eb618",
+      "name_zh": "EB618（口服GLP-1/胰高糖素双激动剂）",
+      "name_en": "EB618 – Oral GLP-1/Glucagon Dual Agonist",
+      "brand_name": "EB618 – Oral GLP-1/Glucagon Dual Agonist",
+      "company_id": "entera-bio",
+      "modality_id": "peptide",
+      "therapeutic_area_id": "cardiometabolic",
+      "indication_zh": "肥胖症及代谢紊乱",
+      "indication_en": "Obesity and metabolic disorders (OPKO collaboration)",
+      "approval_status": "preclinical",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "mea",
+      "sources": [
+        {
+          "url": "https://investors.enterabio.com/news-releases/news-release-details/entera-bio-announces-upcoming-q1-2026-corporate-priorities-and",
+          "title": "Entera Bio – Q1 2026 pipeline outlook",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    }
+  ]
+}

@@ -1,0 +1,245 @@
+{
+  "shard": "enrich-wf-17",
+  "products": [
+    {
+      "id": "giant-biogene-comfy-collagen",
+      "name_zh": "可复美重组胶原蛋白敷料",
+      "name_en": "Comfy Recombinant Collagen Dressing",
+      "brand_name": "Comfy (可复美)",
+      "company_id": "giant-biogene",
+      "modality_id": "recombinant-protein",
+      "therapeutic_area_id": "dermatology",
+      "indication_zh": "皮肤修复、术后护理、皮炎、敏感肌护理",
+      "indication_en": "Skin repair, post-procedure care, dermatitis, sensitive skin care",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": true,
+      "region": "greater_china",
+      "sources": [
+        {
+          "url": "https://www.xajuzi.com/resources/uploads/20250428/1916863320618598400.pdf",
+          "title": "Giant Biogene 2024 Annual Report",
+          "accessed": "2026-06"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "grand-pharma-gpn00833",
+      "name_zh": "GPN00833眼科创新药",
+      "name_en": "GPN00833 Ophthalmic Drug",
+      "brand_name": "GPN00833 Ophthalmic Drug",
+      "company_id": "grand-pharma",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "oncology",
+      "indication_zh": "白内障术后炎症及疼痛",
+      "indication_en": "Inflammation and pain following cataract surgery",
+      "approval_status": "ph3",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "sources": [
+        {
+          "url": "https://www.tipranks.com/news/company-announcements/grand-pharmaceuticals-breakthrough-in-ophthalmic-drug-trial",
+          "title": "Grand Pharmaceuticals GPN00833 Phase III - TipRanks",
+          "accessed": "2026-06"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "guangdong-essex-ar882",
+      "name_zh": "AR882痛风创新药",
+      "name_en": "AR882 Innovative Drug (Gout)",
+      "brand_name": "AR882 Innovative Drug (Gout)",
+      "company_id": "guangdong-essex",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "rare-disease",
+      "indication_zh": "痛风/高尿酸血症（URAT1抑制剂）",
+      "indication_en": "Gout/hyperuricemia (URAT1 inhibitor)",
+      "approval_status": "ph3",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "sources": [
+        {
+          "url": "https://stcn.com/article/detail/1699699.html",
+          "title": "一品红创新药AR882 - 证券时报",
+          "accessed": "2026-06"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "guangyu-yuan-guilingji",
+      "name_zh": "龟龄集",
+      "name_en": "Guilingji",
+      "brand_name": "Guilingji (龟龄集)",
+      "company_id": "guangyu-yuan-chinese-medicine",
+      "modality_id": "tcm-formula",
+      "therapeutic_area_id": "immunology",
+      "indication_zh": "肾虚精亏、阳痿早泄、畏寒肢冷、腰膝痿软",
+      "indication_en": "Kidney deficiency, yang impotence, limb coldness, lumbar weakness (TCM tonic)",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": true,
+      "region": "greater_china",
+      "sources": [
+        {
+          "url": "https://file.finance.qq.com/finance/hs/pdf/2025/04/25/1223283703.PDF",
+          "title": "广誉远2024年年度报告摘要",
+          "accessed": "2026-06"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "guangyu-yuan-dingkundan",
+      "name_zh": "定坤丹",
+      "name_en": "Dingkundan",
+      "brand_name": "Dingkundan (定坤丹)",
+      "company_id": "guangyu-yuan-chinese-medicine",
+      "modality_id": "tcm-formula",
+      "therapeutic_area_id": "immunology",
+      "indication_zh": "月经不调、经期腹痛、痛经",
+      "indication_en": "Menstrual irregularity, dysmenorrhea (TCM women's health formula)",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": true,
+      "region": "greater_china",
+      "sources": [
+        {
+          "url": "https://file.finance.qq.com/finance/hs/pdf/2025/04/25/1223283703.PDF",
+          "title": "广誉远2024年年度报告摘要",
+          "accessed": "2026-06"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "guilin-sanjin-watermelon-frost",
+      "name_zh": "西瓜霜润喉片",
+      "name_en": "Watermelon Frost Lozenge",
+      "brand_name": "桂林西瓜霜",
+      "company_id": "guilin-sanjin",
+      "modality_id": "tcm-formula",
+      "therapeutic_area_id": "respiratory",
+      "indication_zh": "咽喉肿痛、口舌生疮、牙龈肿痛",
+      "indication_en": "Sore throat, mouth ulcers, gingival swelling and pain",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": true,
+      "region": "greater_china",
+      "sources": [
+        {
+          "url": "https://sg.finance.yahoo.com/quote/002275.SZ/profile/",
+          "title": "Guilin Sanjin Profile - Yahoo Finance",
+          "accessed": "2026-06"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "guilin-sanjin-tablets",
+      "name_zh": "三金片",
+      "name_en": "Sanjin Tablets",
+      "brand_name": "三金片",
+      "company_id": "guilin-sanjin",
+      "modality_id": "tcm-formula",
+      "therapeutic_area_id": "infectious-disease",
+      "indication_zh": "泌尿系统感染（尿频尿急尿痛）",
+      "indication_en": "Urinary tract infection (frequent, urgent, painful urination)",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "sources": [
+        {
+          "url": "https://sg.finance.yahoo.com/quote/002275.SZ/profile/",
+          "title": "Guilin Sanjin Profile - Yahoo Finance",
+          "accessed": "2026-06"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "guangzhou-guangshengtang-taichongding",
+      "name_zh": "太冲定（丙酚替诺福韦片）",
+      "name_en": "Taichongding (Tenofovir Alafenamide Tablets)",
+      "brand_name": "太冲定",
+      "company_id": "guangzhou-guangshengtang",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "infectious-disease",
+      "indication_zh": "慢性乙型肝炎",
+      "indication_en": "Chronic hepatitis B (TAF, tenofovir alafenamide fumarate)",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "sources": [
+        {
+          "url": "https://stcn.com/article/detail/1300052.html",
+          "title": "广生堂2024年上半年业绩改善 - 证券时报",
+          "accessed": "2026-06"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "guanhao-biotech-benvitimod",
+      "name_zh": "本维莫德乳膏",
+      "name_en": "Benvitimod Cream",
+      "brand_name": "Benvitimod Cream",
+      "company_id": "guanhao-biotech",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "immunology",
+      "indication_zh": "银屑病",
+      "indication_en": "Plaque psoriasis",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "sources": [
+        {
+          "url": "https://news.qq.com/rain/a/20250423A06LIT00",
+          "title": "冠昊生物年报摘要2024 - 腾讯新闻",
+          "accessed": "2026-06"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "guangdong-zhongsheng-fufang-xueshuantong",
+      "name_zh": "复方血栓通系列",
+      "name_en": "Fufang Xueshuantong Series",
+      "brand_name": "复方血栓通",
+      "company_id": "guangdong-zhongsheng",
+      "modality_id": "tcm-formula",
+      "therapeutic_area_id": "cardiometabolic",
+      "indication_zh": "视网膜静脉阻塞、视网膜中央动脉阻塞、眼底出血及血瘀兼气虚型冠心病",
+      "indication_en": "Retinal vein occlusion, retinal artery occlusion, fundus hemorrhage, and qi-deficiency blood-stasis coronary disease",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": true,
+      "region": "greater_china",
+      "sources": [
+        {
+          "url": "https://money.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?stockid=002317&id=11008858",
+          "title": "众生药业2024年年度报告 - 新浪财经",
+          "accessed": "2026-06"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    }
+  ]
+}

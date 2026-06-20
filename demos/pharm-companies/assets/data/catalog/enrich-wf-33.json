@@ -1,0 +1,317 @@
+{
+  "shard": "enrich-wf-33",
+  "products": [
+    {
+      "id": "hepalink-enoxaparin",
+      "name_zh": "依诺肝素钠注射液",
+      "name_en": "Enoxaparin Sodium Injection",
+      "brand_name": "Techdow Enoxaparin / Clexane (licensed)",
+      "company_id": "shenzhen-hepalink",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "hematology",
+      "indication_zh": "深静脉血栓预防与治疗、肺栓塞、急性冠脉综合征",
+      "indication_en": "Prevention and treatment of deep vein thrombosis, pulmonary embolism, and acute coronary syndromes",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": true,
+      "region": "greater_china",
+      "sources": [
+        {
+          "url": "https://www.hepalink.com/en/",
+          "title": "Hepalink Official Website",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "hepalink-heparin-api",
+      "name_zh": "肝素钠原料药",
+      "name_en": "Heparin Sodium API",
+      "brand_name": "Heparin Sodium API",
+      "company_id": "shenzhen-hepalink",
+      "modality_id": "recombinant-protein",
+      "therapeutic_area_id": "hematology",
+      "indication_zh": "抗凝血活性原料药，用于各类肝素注射剂生产",
+      "indication_en": "Anticoagulant API for manufacturing various heparin injectable formulations",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "sources": [
+        {
+          "url": "https://www.hepalink.com/en/",
+          "title": "Hepalink Official Website",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "shineway-qingkailing-injection",
+      "name_zh": "清开灵注射液",
+      "name_en": "Qingkailing Injection",
+      "brand_name": "Qing Kai Ling",
+      "company_id": "shineway-pharm",
+      "modality_id": "tcm-formula",
+      "therapeutic_area_id": "respiratory",
+      "indication_zh": "用于上呼吸道感染、流行性感冒、病毒性脑膜炎等",
+      "indication_en": "Upper respiratory tract infections, influenza, viral encephalitis",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": true,
+      "region": "greater_china",
+      "sources": [
+        {
+          "url": "https://finance.yahoo.com/quote/2877.HK/profile/",
+          "title": "Yahoo Finance – China Shineway Profile",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "shineway-shenmai-injection",
+      "name_zh": "参麦注射液",
+      "name_en": "Shen Mai Injection",
+      "brand_name": "Shen Mai Injection",
+      "company_id": "shineway-pharm",
+      "modality_id": "tcm-formula",
+      "therapeutic_area_id": "cardiometabolic",
+      "indication_zh": "心力衰竭、心律失常、心肌缺血辅助治疗",
+      "indication_en": "Adjunct for heart failure, arrhythmia, and myocardial ischemia",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "sources": [
+        {
+          "url": "https://finance.yahoo.com/quote/2877.HK/profile/",
+          "title": "Yahoo Finance – China Shineway Profile",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "shouyao-ct707",
+      "name_zh": "康泰替尼颗粒（首曜泽）",
+      "name_en": "Kangtaitinib Granules (CT-707)",
+      "brand_name": "首曜泽 (Shouyaoze)",
+      "company_id": "shouyao-holdings",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "oncology",
+      "indication_zh": "局部晚期或转移性ALK阳性非小细胞肺癌（NSCLC）",
+      "indication_en": "Locally advanced or metastatic ALK-positive non-small cell lung cancer (NSCLC)",
+      "approval_status": "filed",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "sources": [
+        {
+          "url": "https://static.cninfo.com.cn/finalpage/2025-04-28/1223347604.PDF",
+          "title": "CNInfo – Shouyao 2024 Annual Report",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "shuanglu-arsenic-trioxide",
+      "name_zh": "亚砷酸注射液",
+      "name_en": "Arsenic Trioxide Injection",
+      "brand_name": "Arsenic Trioxide Injection",
+      "company_id": "shuanglu",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "hematology",
+      "indication_zh": "急性早幼粒细胞白血病（APL）",
+      "indication_en": "Acute promyelocytic leukemia (APL)",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "sources": [
+        {
+          "url": "https://stockanalysis.com/quote/she/002038/financials/",
+          "title": "StockAnalysis – 002038 Financials",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "shuanglu-temozolomide",
+      "name_zh": "替莫唑胺胶囊",
+      "name_en": "Temozolomide Capsules",
+      "brand_name": "Temozolomide Capsules",
+      "company_id": "shuanglu",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "oncology",
+      "indication_zh": "恶性神经胶质瘤（包括多形性胶质母细胞瘤）",
+      "indication_en": "Malignant glioma including glioblastoma multiforme",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "sources": [
+        {
+          "url": "https://stockanalysis.com/quote/she/002038/",
+          "title": "StockAnalysis – SZSE:002038",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "sihuan-biological-delusen",
+      "name_zh": "德路生（人白细胞介素-2注射液）",
+      "name_en": "Delusen (Human Interleukin-2 for Injection)",
+      "brand_name": "Delusen / 新德路生",
+      "company_id": "sihuan-biological",
+      "modality_id": "recombinant-protein",
+      "therapeutic_area_id": "oncology",
+      "indication_zh": "肾癌、恶性黑色素瘤、癌性胸腹水免疫治疗",
+      "indication_en": "Tumor immunotherapy for renal cell carcinoma, malignant melanoma, and malignant pleural/ascitic effusion",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "sources": [
+        {
+          "url": "https://stockanalysis.com/quote/she/000518/",
+          "title": "StockAnalysis – SZSE:000518",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "sinomab-sm03",
+      "name_zh": "SM03（Suciraslimab，抗CD22单抗）",
+      "name_en": "Suciraslimab (SM03, anti-CD22 mAb)",
+      "brand_name": "Suciraslimab (SM03, anti-CD22 mAb)",
+      "company_id": "sinomab-bio",
+      "modality_id": "mab",
+      "therapeutic_area_id": "immunology",
+      "indication_zh": "类风湿关节炎（III期）；非霍奇金淋巴瘤、系统性红斑狼疮（II期）；阿尔茨海默病、干燥综合征（I期）",
+      "indication_en": "Rheumatoid arthritis (Phase III completed); Non-Hodgkin's lymphoma, SLE (Phase II); Alzheimer's disease, Sjögren's syndrome (Phase I)",
+      "approval_status": "ph3",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "sources": [
+        {
+          "url": "https://www1.hkexnews.hk/listedco/listconews/sehk/2025/0331/2025033101449.pdf",
+          "title": "HKEX – SinoMab 2024 Annual Results",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "sirnaomics-stp705",
+      "name_zh": "STP705",
+      "name_en": "STP705",
+      "brand_name": "STP705",
+      "company_id": "sirnaomics",
+      "modality_id": "sirna",
+      "therapeutic_area_id": "oncology",
+      "indication_zh": "非黑色素瘤皮肤癌；局部脂肪堆积（美容适应症）",
+      "indication_en": "Non-melanoma skin cancer (Bowen's disease, basal cell carcinoma); focal fat reduction",
+      "approval_status": "ph2",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "sources": [
+        {
+          "url": "https://www.tipranks.com/news/company-announcements/sirnaomics-reports-2024-annual-results-and-strategic-progress",
+          "title": "TipRanks – Sirnaomics 2024 Annual Results",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "sirnaomics-stp707",
+      "name_zh": "STP707",
+      "name_en": "STP707",
+      "brand_name": "STP707",
+      "company_id": "sirnaomics",
+      "modality_id": "sirna",
+      "therapeutic_area_id": "oncology",
+      "indication_zh": "实体瘤（肝脏靶向GalAhead平台）",
+      "indication_en": "Solid tumors (liver-targeting GalAhead platform)",
+      "approval_status": "ph1",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "sources": [
+        {
+          "url": "https://stockanalysis.com/quote/hkg/2257/",
+          "title": "StockAnalysis – HKEX:2257",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "simcere-sanroad-tb-ppd",
+      "name_zh": "结核菌素纯蛋白衍生物（TB-PPD）",
+      "name_en": "Tuberculin Purified Protein Derivative (TB-PPD)",
+      "brand_name": "Tuberculin Purified Protein Derivative (TB-PPD)",
+      "company_id": "simcere-sanroad",
+      "modality_id": "recombinant-protein",
+      "therapeutic_area_id": "infectious-disease",
+      "indication_zh": "结核病皮肤诊断试验（TST）",
+      "indication_en": "Tuberculin skin test (TST) for tuberculosis diagnosis",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "sources": [
+        {
+          "url": "https://stock.qianzhan.com/neeq/zhuyingchanpin_873821.OC.html",
+          "title": "Qianzhan – Simcere Sanroad Products",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "shuangcheng-thymalfasin",
+      "name_zh": "胸腺法新注射液",
+      "name_en": "Thymalfasin for Injection",
+      "brand_name": "Thymalfasin for Injection",
+      "company_id": "shuangcheng-pharmaceutical",
+      "modality_id": "peptide",
+      "therapeutic_area_id": "immunology",
+      "indication_zh": "慢性乙型肝炎、免疫调节",
+      "indication_en": "Chronic hepatitis B, immune modulation",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "sources": [
+        {
+          "url": "https://finance.yahoo.com/quote/002693.SZ/profile/",
+          "title": "Yahoo Finance – Shuangcheng Profile",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    }
+  ]
+}

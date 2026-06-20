@@ -1,0 +1,125 @@
+{
+  "shard": "enrich-wf-64",
+  "products": [
+    {
+      "id": "k-cab-tegoprazan",
+      "name_zh": "K-CAB（替戈拉生）",
+      "name_en": "K-CAB (tegoprazan)",
+      "brand_name": "K-CAB",
+      "company_id": "hk-innon",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "gastroenterology",
+      "indication_zh": "胃食管反流病（GERD）、消化性溃疡、幽门螺杆菌根除",
+      "indication_en": "Gastroesophageal reflux disease (GERD), peptic ulcer disease, Helicobacter pylori eradication",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": true,
+      "region": "other_apac",
+      "sources": [
+        {
+          "url": "https://www.inno-n.com/eng/pr/news/view/2/1035",
+          "title": "HK inno.N K-CAB Phase 3 US Results",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "rivoceranib-hlb",
+      "name_zh": "利伏西拉尼（阿帕替尼）",
+      "name_en": "Rivoceranib (apatinib)",
+      "brand_name": "Elevar",
+      "company_id": "hlb",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "oncology",
+      "indication_zh": "不可切除肝细胞癌（与卡瑞利珠单抗联用，一线治疗）",
+      "indication_en": "Unresectable hepatocellular carcinoma (first-line, combination with camrelizumab)",
+      "approval_status": "filed",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "other_apac",
+      "sources": [
+        {
+          "url": "https://www.ajmc.com/view/second-crl-for-rivoceranib-camrelizumab-for-unresectable-hcc",
+          "title": "Second CRL for Rivoceranib/Camrelizumab – AJMC",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "imc-001-immuneoncia",
+      "name_zh": "IMC-001（抗PD-L1单抗）",
+      "name_en": "IMC-001 (anti-PD-L1 antibody)",
+      "brand_name": "IMC-001 (anti-PD-L1 antibody)",
+      "company_id": "immuneoncia-therapeutics",
+      "modality_id": "mab",
+      "therapeutic_area_id": "oncology",
+      "indication_zh": "复发/难治性NK/T细胞淋巴瘤（鼻型）及高肿瘤突变负荷实体瘤",
+      "indication_en": "Relapsed/refractory extranodal NK/T-cell lymphoma (nasal type) and solid tumors with high tumor mutation burden",
+      "approval_status": "ph2",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "other_apac",
+      "sources": [
+        {
+          "url": "https://www.koreabiomed.com/news/articleView.html?idxno=29395",
+          "title": "ImmuneOncia at ESMO 2025 – Korea Biomedical Review",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "imc-002-immuneoncia",
+      "name_zh": "IMC-002（抗CD47抗体）",
+      "name_en": "IMC-002 (anti-CD47 antibody)",
+      "brand_name": "IMC-002 (anti-CD47 antibody)",
+      "company_id": "immuneoncia-therapeutics",
+      "modality_id": "mab",
+      "therapeutic_area_id": "oncology",
+      "indication_zh": "晚期实体瘤（CD47-SIRPα阻断）",
+      "indication_en": "Advanced solid tumors (CD47-SIRPα checkpoint blockade)",
+      "approval_status": "ph1",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "other_apac",
+      "sources": [
+        {
+          "url": "https://www.prnewswire.com/news-releases/samsung-biologics-and-immuneoncia-therapeutics-inc-development-and-manufacturing-agreement-accomplishes-ind-clearance-of-imc-002-anti-cd47-antibody-301045318.html",
+          "title": "Samsung Biologics / ImmuneOncia IMC-002 IND Clearance – PR Newswire",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "cp-cov03-hyundai",
+      "name_zh": "CP-COV03（氯硝柳胺抗病毒药）",
+      "name_en": "CP-COV03 (niclosamide antiviral)",
+      "brand_name": "CP-COV03 (niclosamide antiviral)",
+      "company_id": "hyundai-bioscience",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "infectious-disease",
+      "indication_zh": "COVID-19（口服抗病毒）",
+      "indication_en": "COVID-19 oral antiviral treatment",
+      "approval_status": "ph2",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "other_apac",
+      "sources": [
+        {
+          "url": "https://www.clinicaltrialsarena.com/news/hyundai-bioscience-trial-covid-19-drug/",
+          "title": "Hyundai Bioscience Phase II COVID-19 Trial",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    }
+  ]
+}

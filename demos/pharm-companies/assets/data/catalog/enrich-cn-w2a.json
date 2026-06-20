@@ -1,0 +1,173 @@
+{
+  "shard": "enrich-cn-w2a",
+  "products": [
+    {
+      "id": "chidamide-chipscreen",
+      "name_zh": "西达本胺",
+      "name_en": "Chidamide (Tucidinostat)",
+      "brand_name": "爱谱沙 (Epidaza)",
+      "company_id": "chipscreen",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "hematology",
+      "indication_zh": "外周T细胞淋巴瘤（PTCL）及HR+/HER2- 晚期乳腺癌",
+      "indication_en": "Peripheral T-cell lymphoma (PTCL) and HR+/HER2- advanced breast cancer; approved in China (2015 PTCL, 2019 breast cancer)",
+      "approval_status": "approved",
+      "is_blockbuster": false,
+      "drug_class": "originator",
+      "region": "greater_china",
+      "confidence": 0.95,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.chipscreen.com/en/about",
+          "title": "Chipscreen Products",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "chiglitazar-chipscreen",
+      "name_zh": "西格列他钠",
+      "name_en": "Chiglitazar Sodium",
+      "brand_name": "双达英",
+      "company_id": "chipscreen",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "cardiometabolic",
+      "indication_zh": "2型糖尿病（联合二甲双胍）",
+      "indication_en": "Type 2 diabetes mellitus in combination with metformin; NMPA approved July 2024",
+      "approval_status": "approved",
+      "is_blockbuster": false,
+      "drug_class": "originator",
+      "region": "greater_china",
+      "confidence": 0.92,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://dcfmodeling.com/blogs/history/688321ss-history-mission-ownership",
+          "title": "Chipscreen History & Products",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "albuvirtide-frontier",
+      "name_zh": "阿比朵尔注射液",
+      "name_en": "Albuvirtide Injection",
+      "brand_name": "艾可宁 (Aikening)",
+      "company_id": "frontier-biotech",
+      "modality_id": "peptide",
+      "therapeutic_area_id": "infectious-disease",
+      "indication_zh": "HIV感染与艾滋病（联合抗逆转录病毒疗法）",
+      "indication_en": "HIV infection and AIDS in combination with antiretroviral therapy; first approved long-acting HIV fusion inhibitor globally; approved in China",
+      "approval_status": "approved",
+      "is_blockbuster": false,
+      "drug_class": "originator",
+      "region": "greater_china",
+      "confidence": 0.93,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://clinicalinfo.hiv.gov/en/drugs/albuvirtide/health-professional",
+          "title": "NIH Albuvirtide Drug Record",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "bat2094-biothera-adalimumab",
+      "name_zh": "阿达木单抗注射液",
+      "name_en": "Adalimumab Injection (BAT2094)",
+      "brand_name": "格乐立",
+      "company_id": "baiao-biopharm",
+      "modality_id": "biosimilar",
+      "therapeutic_area_id": "immunology",
+      "indication_zh": "类风湿关节炎、强直性脊柱炎、银屑病等多种炎症性疾病",
+      "indication_en": "Rheumatoid arthritis, ankylosing spondylitis, psoriasis and other inflammatory conditions; adalimumab biosimilar approved in China",
+      "approval_status": "approved",
+      "is_blockbuster": false,
+      "drug_class": "biosimilar",
+      "region": "greater_china",
+      "confidence": 0.9,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://news.futunn.com/en/post/60736532/bai-ao-tai-688177-company-recent-developments-tracking-part-ii",
+          "title": "Bio-Thera Solutions Developments",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "bat2506-biothera-golimumab",
+      "name_zh": "戈利木单抗注射液（BAT2506）",
+      "name_en": "Golimumab Injection (BAT2506)",
+      "brand_name": "BAT2506",
+      "company_id": "baiao-biopharm",
+      "modality_id": "biosimilar",
+      "therapeutic_area_id": "immunology",
+      "indication_zh": "类风湿关节炎（生物类似药，美国/欧盟商业化合作）",
+      "indication_en": "Rheumatoid arthritis; golimumab biosimilar in development/registration; US commercialisation licensed to Accord BioPharma",
+      "approval_status": "filed",
+      "is_blockbuster": false,
+      "drug_class": "biosimilar",
+      "region": "greater_china",
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.businesswire.com/news/home/20200717005123/en/Bio-Thera-Solutions-Partners-Pharmapark-Market-BAT2506-Russia",
+          "title": "Bio-Thera BAT2506 Partnership",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "9mw2821-mabwell",
+      "name_zh": "9MW2821（Nectin-4靶向ADC）",
+      "name_en": "9MW2821 (Anti-Nectin-4 ADC)",
+      "brand_name": "9MW2821",
+      "company_id": "mabwell-bioscience",
+      "modality_id": "adc",
+      "therapeutic_area_id": "oncology",
+      "indication_zh": "宫颈癌及其他Nectin-4高表达实体肿瘤",
+      "indication_en": "Cervical cancer (Phase III) and other solid tumors expressing Nectin-4; pivotal trial ongoing",
+      "approval_status": "ph3",
+      "is_blockbuster": false,
+      "drug_class": "originator",
+      "region": "greater_china",
+      "confidence": 0.88,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.prnewswire.com/news-releases/mabwell-releases-preclinical-study-results-of-multiple-innovative-drugs-released-at-the-2024-aacr-annual-meeting-302117739.html",
+          "title": "Mabwell 2024 AACR Pipeline",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "kanglaite-kanion",
+      "name_zh": "康莱特注射液",
+      "name_en": "Kanglaite Injection",
+      "brand_name": "康莱特",
+      "company_id": "jiangsu-kanion",
+      "modality_id": "tcm-injection",
+      "therapeutic_area_id": "oncology",
+      "indication_zh": "非小细胞肺癌、胰腺癌辅助治疗（中药注射剂）",
+      "indication_en": "Adjuvant treatment of non-small-cell lung cancer and pancreatic cancer; TCM injection derived from Coix seed oil; approved in China and Russia",
+      "approval_status": "approved",
+      "is_blockbuster": false,
+      "drug_class": "originator",
+      "region": "greater_china",
+      "confidence": 0.88,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.kanion.com",
+          "title": "Kanion Pharmaceutical Product Portfolio",
+          "accessed": "2026-06"
+        }
+      ]
+    }
+  ]
+}

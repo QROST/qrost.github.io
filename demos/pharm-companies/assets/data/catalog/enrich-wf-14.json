@@ -1,0 +1,341 @@
+{
+  "shard": "enrich-wf-14",
+  "products": [
+    {
+      "id": "chuanning-erythromycin-thiocyanate",
+      "name_zh": "红霉素硫氰酸盐",
+      "name_en": "Erythromycin Thiocyanate",
+      "brand_name": "Erythromycin Thiocyanate",
+      "company_id": "chuanning-biotechnology",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "infectious-disease",
+      "indication_zh": "抗生素中间体（用于生产大环内酯类抗生素）",
+      "indication_en": "Antibiotic intermediate for macrolide antibiotic production",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "sources": [
+        {
+          "url": "https://stockanalysis.com/quote/she/301301/",
+          "title": "Yili Chuanning Biotechnology Overview",
+          "accessed": "2026-06"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "cloudbreak-cbt-001",
+      "name_zh": "CBT-001眼用溶液（翼状胬肉）",
+      "name_en": "CBT-001 Ophthalmic Solution (Pterygium)",
+      "brand_name": "CBT-001 Ophthalmic Solution (Pterygium)",
+      "company_id": "cloudbreak-pharma",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "ophthalmology",
+      "indication_zh": "翼状胬肉",
+      "indication_en": "Pterygium",
+      "approval_status": "ph3",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "sources": [
+        {
+          "url": "https://cloudbreakpharma.com/pipeline/",
+          "title": "Cloudbreak Pharma Pipeline",
+          "accessed": "2026-06"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "cloudbreak-cbt-004",
+      "name_zh": "CBT-004眼用溶液（睑裂斑新生血管化）",
+      "name_en": "CBT-004 Ophthalmic Solution (Vascularised Pinguecula)",
+      "brand_name": "CBT-004 Ophthalmic Solution (Vascularised Pinguecula)",
+      "company_id": "cloudbreak-pharma",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "ophthalmology",
+      "indication_zh": "睑裂斑新生血管化",
+      "indication_en": "Vascularised pinguecula",
+      "approval_status": "ph3",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "sources": [
+        {
+          "url": "https://cloudbreakpharma.com/pipeline/",
+          "title": "Cloudbreak Pharma Pipeline",
+          "accessed": "2026-06"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "clover-scb-2019",
+      "name_zh": "SCB-2019新冠病毒疫苗",
+      "name_en": "SCB-2019 COVID-19 Vaccine (CpG 1018/Alum)",
+      "brand_name": "SCB-2019 COVID-19 Vaccine (CpG 1018/Alum)",
+      "company_id": "clover-biopharma",
+      "modality_id": "recombinant-protein",
+      "therapeutic_area_id": "vaccines",
+      "indication_zh": "新冠病毒感染预防",
+      "indication_en": "Prevention of COVID-19",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "sources": [
+        {
+          "url": "https://www.precisionvaccinations.com/vaccines/clover-covid-19-vaccine",
+          "title": "Clover COVID-19 Vaccine - Precision Vaccinations",
+          "accessed": "2026-06"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "clover-adimflu-s",
+      "name_zh": "AdimFlu-S四价流感疫苗",
+      "name_en": "AdimFlu-S Quadrivalent Influenza Vaccine",
+      "brand_name": "AdimFlu-S",
+      "company_id": "clover-biopharma",
+      "modality_id": "recombinant-protein",
+      "therapeutic_area_id": "vaccines",
+      "indication_zh": "季节性流感预防",
+      "indication_en": "Seasonal influenza prevention",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "sources": [
+        {
+          "url": "https://stockanalysis.com/quote/hkg/2197/company/",
+          "title": "Clover Biopharmaceuticals Company Profile",
+          "accessed": "2026-06"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "cms-plendil",
+      "name_zh": "波依定（非洛地平缓释片）",
+      "name_en": "Plendil (Felodipine Extended-Release Tablets)",
+      "brand_name": "Plendil",
+      "company_id": "cms",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "cardiometabolic",
+      "indication_zh": "高血压",
+      "indication_en": "Hypertension",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "sources": [
+        {
+          "url": "https://dcfmodeling.com/blogs/history/0867hk-history-mission-ownership",
+          "title": "China Medical System Holdings History",
+          "accessed": "2026-06"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "cms-deanxit",
+      "name_zh": "黛力新（氟哌噻吨美利曲辛片）",
+      "name_en": "Deanxit (Flupentixol and Melitracen Tablets)",
+      "brand_name": "Deanxit",
+      "company_id": "cms",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "neuroscience",
+      "indication_zh": "轻中度抑郁及焦虑",
+      "indication_en": "Mild to moderate depression and anxiety",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "sources": [
+        {
+          "url": "https://dcfmodeling.com/blogs/history/0867hk-history-mission-ownership",
+          "title": "China Medical System Holdings History",
+          "accessed": "2026-06"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "consun-uremic-clearance-granule",
+      "name_zh": "尿毒清颗粒",
+      "name_en": "Uremic Clearance Granule",
+      "brand_name": "尿毒清",
+      "company_id": "consun-pharma",
+      "modality_id": "tcm-formula",
+      "therapeutic_area_id": "rare-disease",
+      "indication_zh": "慢性肾功能衰竭（氮质血症期和尿毒症期）",
+      "indication_en": "Chronic renal failure (azotemia and uremia stages)",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": true,
+      "region": "greater_china",
+      "sources": [
+        {
+          "url": "https://www.chinaconsun.com/en/index.php?ac=article&at=list&tid=84",
+          "title": "Consun Pharmaceutical Company Profile",
+          "accessed": "2026-06"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "cutia-cu-10201",
+      "name_zh": "CU-10201（4%盐酸米诺环素泡沫剂）",
+      "name_en": "CU-10201 (4% Minocycline Hydrochloride Foam)",
+      "brand_name": "CU-10201 (4% Minocycline Hydrochloride Foam)",
+      "company_id": "cutia-therapeutics",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "immunology",
+      "indication_zh": "中重度非结节性痤疮",
+      "indication_en": "Non-nodular moderate to severe acne vulgaris (pediatric and adult, ≥9 years)",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "sources": [
+        {
+          "url": "https://www.tipranks.com/news/company-announcements/cutia-therapeutics-boosts-revenue-and-margins-as-key-dermatology-products-launch-in-2025",
+          "title": "Cutia Therapeutics Revenue 2025 Update",
+          "accessed": "2026-06"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "cutia-cu-40102",
+      "name_zh": "CU-40102（外用非那雄胺喷雾剂）",
+      "name_en": "CU-40102 (Topical Finasteride Spray)",
+      "brand_name": "CU-40102 (Topical Finasteride Spray)",
+      "company_id": "cutia-therapeutics",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "immunology",
+      "indication_zh": "雄激素性脱发（脱发）",
+      "indication_en": "Androgenetic alopecia (hair loss)",
+      "approval_status": "ph3",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "sources": [
+        {
+          "url": "https://stockanalysis.com/quote/hkg/2487/",
+          "title": "Cutia Therapeutics Overview",
+          "accessed": "2026-06"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "cutia-cu-10101",
+      "name_zh": "CU-10101（外用小分子特应性皮炎药）",
+      "name_en": "CU-10101 (Topical Novel Small Molecule Agent for Atopic Dermatitis)",
+      "brand_name": "CU-10101 (Topical Novel Small Molecule Agent for Atopic Dermatitis)",
+      "company_id": "cutia-therapeutics",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "immunology",
+      "indication_zh": "轻中度特应性皮炎",
+      "indication_en": "Mild to moderate atopic dermatitis",
+      "approval_status": "ph2",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "sources": [
+        {
+          "url": "https://stockanalysis.com/quote/hkg/2487/",
+          "title": "Cutia Therapeutics Overview",
+          "accessed": "2026-06"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "dynamiker-bgla-kit",
+      "name_zh": "β-1,3-葡聚糖检测试剂盒",
+      "name_en": "Beta-Glucan (BG/LA) Detection Kit",
+      "brand_name": "Dynamiker Fungal",
+      "company_id": "danna-bio",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "infectious-disease",
+      "indication_zh": "侵袭性真菌病（曲霉菌、念珠菌等）诊断",
+      "indication_en": "Diagnosis of invasive fungal disease (aspergillosis, candidiasis, etc.)",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "sources": [
+        {
+          "url": "https://en.dynamiker.com/",
+          "title": "Dynamiker IVD Products",
+          "accessed": "2026-06"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "conquer-duleningm",
+      "name_zh": "度来宁（盐酸二甲双胍微孔渗透泵控释片）",
+      "name_en": "Duleningm (Metformin HCl Microporous Osmotic Pump Controlled-Release Tablets)",
+      "brand_name": "度来宁",
+      "company_id": "conquer-pharma",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "cardiometabolic",
+      "indication_zh": "2型糖尿病",
+      "indication_en": "Type 2 diabetes mellitus",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "sources": [
+        {
+          "url": "https://xinsanban.eastmoney.com/Article/NoticeContent?id=AN202504281663863273",
+          "title": "康刻尔 2024年年度报告",
+          "accessed": "2026-06"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "nbdavid-infant-incubator",
+      "name_zh": "婴儿暖箱",
+      "name_en": "Infant Incubator (David brand)",
+      "brand_name": "David",
+      "company_id": "dawei-medical",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "rare-disease",
+      "indication_zh": "新生儿保温及护理",
+      "indication_en": "Neonatal thermal management and care",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "sources": [
+        {
+          "url": "https://www.nbdavid.com/En/about.html",
+          "title": "Ningbo David Medical Device About",
+          "accessed": "2026-06"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    }
+  ]
+}

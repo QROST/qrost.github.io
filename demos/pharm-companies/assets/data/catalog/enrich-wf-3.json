@@ -1,0 +1,269 @@
+{
+  "shard": "enrich-wf-3",
+  "products": [
+    {
+      "id": "egetis-emcitate",
+      "name_zh": "Emcitate（tiratricol）",
+      "name_en": "Emcitate (tiratricol)",
+      "brand_name": "Emcitate",
+      "company_id": "egetis-therapeutics",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "rare-disease",
+      "indication_zh": "MCT8缺乏症（艾伦-赫恩登-达德利综合征）",
+      "indication_en": "MCT8 deficiency (Allan–Herndon–Dudley syndrome)",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "europe",
+      "sources": [
+        {
+          "url": "https://www.egetis.com/mfn_news/year-end-report-january-december-2025/",
+          "title": "Egetis Year-End Report 2025",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "faes-bilastine",
+      "name_zh": "比拉斯汀",
+      "name_en": "Bilastine",
+      "brand_name": "Bilaxten / Ilaxten",
+      "company_id": "faes-farma",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "immunology",
+      "indication_zh": "过敏性鼻炎和荨麻疹",
+      "indication_en": "Allergic rhinitis and urticaria",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": true,
+      "region": "europe",
+      "sources": [
+        {
+          "url": "https://faesfarma.com/en/lines-of-business/global-outlicensing/bilastina/",
+          "title": "Faes Farma - Bilastine",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "faron-bexmarilimab",
+      "name_zh": "bexmarilimab",
+      "name_en": "Bexmarilimab",
+      "brand_name": "Bexmarilimab",
+      "company_id": "faron-pharmaceuticals",
+      "modality_id": "mab",
+      "therapeutic_area_id": "hematology",
+      "indication_zh": "高风险骨髓增生异常综合征（HR-MDS）及急性髓系白血病（AML）",
+      "indication_en": "Higher-risk myelodysplastic syndrome (HR-MDS) and acute myeloid leukaemia (AML)",
+      "approval_status": "ph2",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "europe",
+      "sources": [
+        {
+          "url": "https://faron.com/releases-and-publications/farons-financial-statements-release-1-january-to-31-december-2025/",
+          "title": "Faron Financial Statements 2025",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "formycon-fyb201",
+      "name_zh": "FYB201（雷珠单抗生物类似药）",
+      "name_en": "FYB201 / Cimerli (ranibizumab biosimilar)",
+      "brand_name": "Cimerli",
+      "company_id": "formycon",
+      "modality_id": "biosimilar",
+      "therapeutic_area_id": "rare-disease",
+      "indication_zh": "湿性年龄相关性黄斑变性及其他视网膜新生血管疾病",
+      "indication_en": "Neovascular age-related macular degeneration and other retinal neovascular diseases",
+      "approval_status": "approved",
+      "drug_class": "biosimilar",
+      "is_blockbuster": false,
+      "region": "europe",
+      "sources": [
+        {
+          "url": "https://www.formycon.com/en/blog/press-release/formycon-reports-successful-financial-year-2025-with-important-operational-progress-growing-market-presence-and-strategic-partnerships/",
+          "title": "Formycon 2025 Results",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "formycon-fyb202",
+      "name_zh": "FYB202（乌司奴单抗生物类似药）",
+      "name_en": "FYB202 (ustekinumab biosimilar)",
+      "brand_name": "FYB202 (ustekinumab biosimilar)",
+      "company_id": "formycon",
+      "modality_id": "biosimilar",
+      "therapeutic_area_id": "immunology",
+      "indication_zh": "中重度斑块状银屑病、克罗恩病、溃疡性结肠炎",
+      "indication_en": "Moderate to severe plaque psoriasis, Crohn's disease, ulcerative colitis",
+      "approval_status": "approved",
+      "drug_class": "biosimilar",
+      "is_blockbuster": false,
+      "region": "europe",
+      "sources": [
+        {
+          "url": "https://www.formycon.com/en/blog/press-release/formycon-reports-successful-financial-year-2025-with-important-operational-progress-growing-market-presence-and-strategic-partnerships/",
+          "title": "Formycon 2025 Results",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "formycon-fyb203",
+      "name_zh": "FYB203（阿柏西普生物类似药）",
+      "name_en": "FYB203 (aflibercept biosimilar)",
+      "brand_name": "FYB203 (aflibercept biosimilar)",
+      "company_id": "formycon",
+      "modality_id": "biosimilar",
+      "therapeutic_area_id": "rare-disease",
+      "indication_zh": "湿性AMD及糖尿病黄斑水肿",
+      "indication_en": "Neovascular AMD and diabetic macular oedema",
+      "approval_status": "approved",
+      "drug_class": "biosimilar",
+      "is_blockbuster": false,
+      "region": "europe",
+      "sources": [
+        {
+          "url": "https://www.formycon.com/en/blog/press-release/formycon-reports-successful-financial-year-2025-with-important-operational-progress-growing-market-presence-and-strategic-partnerships/",
+          "title": "Formycon 2025 Results",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "futura-eroxon",
+      "name_zh": "Eroxon（MED2005）",
+      "name_en": "Eroxon (MED2005)",
+      "brand_name": "Eroxon",
+      "company_id": "futura-medical",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "rare-disease",
+      "indication_zh": "勃起功能障碍",
+      "indication_en": "Erectile dysfunction",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "europe",
+      "sources": [
+        {
+          "url": "https://futuramedical.com",
+          "title": "Futura Medical Official Website",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "fluoguide-fg001",
+      "name_zh": "FG001",
+      "name_en": "FG001",
+      "brand_name": "FG001",
+      "company_id": "fluoguide",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "oncology",
+      "indication_zh": "胶质母细胞瘤（高级别脑癌）及口腔头颈部癌症",
+      "indication_en": "Glioblastoma (high-grade brain cancer) and oral head & neck cancer",
+      "approval_status": "ph2",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "europe",
+      "sources": [
+        {
+          "url": "https://www.biospace.com/press-releases/fluoguide-a-s-publishes-annual-report-for-the-fiscal-year-2025",
+          "title": "FluoGuide Annual Report 2025",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "epigenomics-epi-procolon",
+      "name_zh": "Epi proColon（结直肠癌血液筛查检测）",
+      "name_en": "Epi proColon",
+      "brand_name": "Epi proColon",
+      "company_id": "epigenomics",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "oncology",
+      "indication_zh": "结直肠癌血液筛查（SEPT9甲基化检测）",
+      "indication_en": "Blood-based colorectal cancer screening (SEPT9 methylation detection)",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "europe",
+      "sources": [
+        {
+          "url": "https://www.epigenomics.com/products/epi-procolon/",
+          "title": "Epi proColon Product Page",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "dicot-lib01",
+      "name_zh": "LIB-01",
+      "name_en": "LIB-01",
+      "brand_name": "LIB-01",
+      "company_id": "dicot-pharma",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "rare-disease",
+      "indication_zh": "勃起功能障碍和早泄",
+      "indication_en": "Erectile dysfunction and premature ejaculation",
+      "approval_status": "ph2",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "europe",
+      "sources": [
+        {
+          "url": "https://www.dicotpharma.com/en/",
+          "title": "Dicot Pharma Official Website",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "expres2ion-es2b-c001",
+      "name_zh": "ES2B-C001（HER2乳腺癌治疗性疫苗）",
+      "name_en": "ES2B-C001 (HER2 therapeutic cancer vaccine)",
+      "brand_name": "ES2B-C001 (HER2 therapeutic cancer vaccine)",
+      "company_id": "expres2ion-biotech",
+      "modality_id": "recombinant-protein",
+      "therapeutic_area_id": "oncology",
+      "indication_zh": "HER2阳性乳腺癌",
+      "indication_en": "HER2-positive breast cancer",
+      "approval_status": "ph1",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "europe",
+      "sources": [
+        {
+          "url": "https://en.wikipedia.org/wiki/ExpreS2ion_Biotechnologies",
+          "title": "ExpreS2ion Biotechnologies Wikipedia",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    }
+  ]
+}

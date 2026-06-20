@@ -1,0 +1,341 @@
+{
+  "shard": "enrich-wf-43",
+  "products": [
+    {
+      "id": "cyfuse-regenova",
+      "name_zh": "Regenova生物3D打印机",
+      "name_en": "Regenova Bio 3D Printer",
+      "brand_name": "Regenova®",
+      "company_id": "cyfuse-biomedical",
+      "modality_id": "car-t",
+      "therapeutic_area_id": "rare-disease",
+      "indication_zh": "用于软骨、血管、神经等三维组织再生研究及潜在器官再生",
+      "indication_en": "3D scaffold-free tissue regeneration for cartilage, blood vessels, and nerve research",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "japan",
+      "sources": [
+        {
+          "url": "https://en.cyfusebio.com/about/company/",
+          "title": "Cyfuse Biomedical About",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "dwti-glanatec",
+      "name_zh": "格拉纳泰克眼液",
+      "name_en": "GLANATEC Ophthalmic Solution",
+      "brand_name": "GLANATEC®",
+      "company_id": "deu-western-therapeutix",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "ophthalmology",
+      "indication_zh": "青光眼/高眼压症（Rho激酶抑制剂利帕舒多）",
+      "indication_en": "Glaucoma and ocular hypertension; Rho-kinase inhibitor ripasudil",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "japan",
+      "sources": [
+        {
+          "url": "https://dwti.co.jp/english/product-pipeline/glanatec/",
+          "title": "GLANATEC – DWTI",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "gni-etuary",
+      "name_zh": "艾司特（吡非尼酮胶囊）",
+      "name_en": "Etuary (Pirfenidone Capsules)",
+      "brand_name": "Etuary®",
+      "company_id": "gni-group",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "respiratory",
+      "indication_zh": "特发性肺纤维化（IPF），中国首个1.1类新药",
+      "indication_en": "Idiopathic pulmonary fibrosis (IPF); China's first Class 1.1 new drug approval (2011); also in Ph2/3 for radiation-induced lung injury",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": true,
+      "region": "japan",
+      "sources": [
+        {
+          "url": "https://www.gnipharma.com",
+          "title": "GNI Group Website",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "heartseed-hs001",
+      "name_zh": "HS-001 iPSC来源心肌细胞球",
+      "name_en": "HS-001 iPSC-Derived Cardiomyocyte Spheroids",
+      "brand_name": "HS-001 iPSC-Derived Cardiomyocyte Spheroids",
+      "company_id": "heartseed",
+      "modality_id": "car-t",
+      "therapeutic_area_id": "cardiometabolic",
+      "indication_zh": "心力衰竭（扩张型心肌病、陈旧性心肌梗死等），LAPiS Phase1/2",
+      "indication_en": "Advanced heart failure (dilated cardiomyopathy, old MI); LAPiS Ph1/2 enrollment complete (10 patients, allogeneic)",
+      "approval_status": "ph1",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "japan",
+      "sources": [
+        {
+          "url": "https://heartseed.jp/en/",
+          "title": "Heartseed Website",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "heartseed-hs005",
+      "name_zh": "HS-005 导管给药iPSC心肌细胞球",
+      "name_en": "HS-005 Catheter-Administered iPSC Cardiomyocyte Spheroids",
+      "brand_name": "HS-005 Catheter-Administered iPSC Cardiomyocyte Spheroids",
+      "company_id": "heartseed",
+      "modality_id": "car-t",
+      "therapeutic_area_id": "cardiometabolic",
+      "indication_zh": "扩张型心肌病（EMERALD Phase1/2，导管途径给药，全球首例）",
+      "indication_en": "Dilated cardiomyopathy; EMERALD Ph1/2; world's first catheter administration of iPSC-derived cardiomyocyte spheroids (first patient Mar 2026)",
+      "approval_status": "ph1",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "japan",
+      "sources": [
+        {
+          "url": "https://www.nikon.com/company/news/2026/0612_01/",
+          "title": "Heartseed EMERALD Study – Nikon",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "helios-hlcm051",
+      "name_zh": "HLCM051（invimestrocel，MultiStem®）",
+      "name_en": "HLCM051 (invimestrocel, MultiStem®)",
+      "brand_name": "MultiStem®",
+      "company_id": "helios",
+      "modality_id": "car-t",
+      "therapeutic_area_id": "respiratory",
+      "indication_zh": "ARDS（急性呼吸窘迫综合征）、缺血性卒中",
+      "indication_en": "Acute respiratory distress syndrome (ARDS) and ischemic stroke; allogeneic bone marrow-derived mesenchymal stem cells (acquired from Athersys 2024)",
+      "approval_status": "ph3",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "japan",
+      "sources": [
+        {
+          "url": "https://www.healios.co.jp/en/",
+          "title": "Healios K.K. Website",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "innovacell-icef15",
+      "name_zh": "ICEF15自体骨骼肌细胞疗法",
+      "name_en": "ICEF15 Autologous Cell Therapy",
+      "brand_name": "ICEF15 Autologous Cell Therapy",
+      "company_id": "innovacell",
+      "modality_id": "car-t",
+      "therapeutic_area_id": "nephrology",
+      "indication_zh": "急迫性大便失禁，全球多中心Phase3",
+      "indication_en": "Urge fecal incontinence; global multiregional Ph3; autologous skeletal muscle cells re-injected into weakened sphincter",
+      "approval_status": "ph3",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "japan",
+      "sources": [
+        {
+          "url": "https://www.bioworld.com/articles/729194-innovacells-91m-tokyo-ipo-to-fund-incontinence-cell-therapies",
+          "title": "Innovacell $91M IPO – BioWorld",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "delta-fly-dfp10917",
+      "name_zh": "DFP-10917抗癌药",
+      "name_en": "DFP-10917",
+      "brand_name": "DFP-10917",
+      "company_id": "delta-fly-pharma",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "oncology",
+      "indication_zh": "复发/难治性急性髓系白血病（AML），FDA孤儿药，联合Venetoclax Phase1/2",
+      "indication_en": "Relapsed/refractory AML; FDA Orphan Drug designation; Ph1/2 US + Japan; combination with venetoclax proceeding to Ph2",
+      "approval_status": "ph2",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "japan",
+      "sources": [
+        {
+          "url": "https://www.businesswire.com/news/home/20221206006153/en/Delta-Fly-Pharma-Inc.-is-granted-Orphan-Drug-Designation-by-US-Food-and-Drug-Administration-for-DFP-10917",
+          "title": "DFP-10917 FDA Orphan Drug – Business Wire",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "delta-fly-dfp14323",
+      "name_zh": "DFP-14323抗肺癌药",
+      "name_en": "DFP-14323",
+      "brand_name": "DFP-14323",
+      "company_id": "delta-fly-pharma",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "oncology",
+      "indication_zh": "肺癌，Phase3临床试验",
+      "indication_en": "Lung cancer; Phase 3 clinical trial",
+      "approval_status": "ph3",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "japan",
+      "sources": [
+        {
+          "url": "https://simplywall.st/stocks/jp/pharmaceuticals-biotech/tse-4598/delta-fly-pharma-shares",
+          "title": "Delta-Fly Pharma – Simply Wall St",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "funpep-sr0379",
+      "name_zh": "SR-0379功能性肽",
+      "name_en": "SR-0379 Functional Peptide",
+      "brand_name": "SR-0379 Functional Peptide",
+      "company_id": "funpep",
+      "modality_id": "peptide",
+      "therapeutic_area_id": "dermatology",
+      "indication_zh": "皮肤溃疡，Phase3临床试验",
+      "indication_en": "Skin ulcer treatment; Phase 3 clinical trial",
+      "approval_status": "ph3",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "japan",
+      "sources": [
+        {
+          "url": "https://simplywall.st/stocks/jp/pharmaceuticals-biotech/tse-4881/funpep-shares/information",
+          "title": "FunPep Company Information – Simply Wall St",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "kaken-efinaconazole",
+      "name_zh": "艾氟康唑（依芬康唑）外用溶液",
+      "name_en": "Efinaconazole Topical Solution",
+      "brand_name": "Clenafin®",
+      "company_id": "kaken-pharmaceutical",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "dermatology",
+      "indication_zh": "甲真菌病（甲癣），外用三唑类抗真菌药",
+      "indication_en": "Onychomycosis (nail fungal infection); topical triazole antifungal approved in Japan and licensed globally (Jublia in US/Canada)",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "japan",
+      "sources": [
+        {
+          "url": "https://www.kaken.co.jp/en/",
+          "title": "Kaken Pharmaceutical Website",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "kidswell-gbs001",
+      "name_zh": "GBS-001生物类似药",
+      "name_en": "GBS-001 Biosimilar",
+      "brand_name": "GBS-001 Biosimilar",
+      "company_id": "kidswell-bio",
+      "modality_id": "biosimilar",
+      "therapeutic_area_id": "oncology",
+      "indication_zh": "肿瘤（参考药生物类似药，已上市）",
+      "indication_en": "Oncology biosimilar; approved and marketed in Japan",
+      "approval_status": "approved",
+      "drug_class": "biosimilar",
+      "is_blockbuster": false,
+      "region": "japan",
+      "sources": [
+        {
+          "url": "https://www.kidswellbio.com/en/",
+          "title": "Kidswell Bio Website",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "kidswell-gct103",
+      "name_zh": "GCT-103 SHED细胞疗法",
+      "name_en": "GCT-103 SHED Cell Therapy",
+      "brand_name": "GCT-103 SHED Cell Therapy",
+      "company_id": "kidswell-bio",
+      "modality_id": "car-t",
+      "therapeutic_area_id": "rare-disease",
+      "indication_zh": "儿童脑瘫（乳牙干细胞SHED技术，临床试验中）",
+      "indication_en": "Pediatric cerebral palsy; stem cells from human exfoliated deciduous teeth (SHED) technology; clinical trial ongoing",
+      "approval_status": "ph1",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "japan",
+      "sources": [
+        {
+          "url": "https://www.kidswellbio.com/en/",
+          "title": "Kidswell Bio Website",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "j-pharma-jph034",
+      "name_zh": "JPH034（LAT1抑制剂）",
+      "name_en": "JPH034",
+      "brand_name": "JPH034",
+      "company_id": "j-pharma",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "neuroscience",
+      "indication_zh": "中枢神经系统脱髓鞘疾病/多发性硬化症，LAT1转运蛋白抑制剂",
+      "indication_en": "CNS demyelinating diseases / multiple sclerosis; LAT1 (SLC7A5) transporter inhibitor",
+      "approval_status": "preclinical",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "japan",
+      "sources": [
+        {
+          "url": "https://www.j-pharma.com/en/company/",
+          "title": "About Us – J-Pharma Co., Ltd.",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    }
+  ]
+}

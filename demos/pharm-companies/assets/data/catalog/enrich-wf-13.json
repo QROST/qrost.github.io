@@ -1,0 +1,173 @@
+{
+  "shard": "enrich-wf-13",
+  "products": [
+    {
+      "id": "prod-zevor-cel",
+      "name_zh": "泽沃塞尔（CT053）",
+      "name_en": "Zevor-cel (CT053)",
+      "brand_name": "泽沃塞尔",
+      "company_id": "carsgen",
+      "modality_id": "car-t",
+      "therapeutic_area_id": "hematology",
+      "indication_zh": "复发/难治性多发性骨髓瘤",
+      "indication_en": "Relapsed or refractory multiple myeloma",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "sources": [
+        {
+          "url": "https://www.prnewswire.com/news-releases/carsgen-announced-2024-annual-results-302404373.html",
+          "title": "CARsgen 2024 Annual Results",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "prod-satri-cel",
+      "name_zh": "沙曲塞尔（CT041）",
+      "name_en": "Satri-cel (CT041)",
+      "brand_name": "Satri-cel (CT041)",
+      "company_id": "carsgen",
+      "modality_id": "car-t",
+      "therapeutic_area_id": "oncology",
+      "indication_zh": "胃癌（确证性二期已完成，拟申报NDA）",
+      "indication_en": "Gastric cancer (confirmatory Ph2 met primary endpoint; NDA submission planned)",
+      "approval_status": "filed",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "sources": [
+        {
+          "url": "https://www.prnewswire.com/news-releases/carsgen-announced-2024-annual-results-302404373.html",
+          "title": "CARsgen 2024 Annual Results",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "prod-cf017-budesonide",
+      "name_zh": "布地奈德吸入混悬液（CF017，长琦®）",
+      "name_en": "Budesonide Suspension for Inhalation (CF017, ChangQi)",
+      "brand_name": "长琦",
+      "company_id": "cf-pharmtech",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "respiratory",
+      "indication_zh": "支气管哮喘",
+      "indication_en": "Bronchial asthma",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "sources": [
+        {
+          "url": "https://www.cfpharmtech.com/en/Company",
+          "title": "CF PharmTech About",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "prod-chidamide",
+      "name_zh": "西达本胺（爱谱沙®）",
+      "name_en": "Chidamide (Tucidinostat / Epidaza)",
+      "brand_name": "爱谱沙 / Epidaza",
+      "company_id": "chipscreen",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "oncology",
+      "indication_zh": "复发/难治外周T细胞淋巴瘤（PTCL）；乳腺癌（联合依西美坦）",
+      "indication_en": "Relapsed/refractory peripheral T-cell lymphoma; Hormone receptor-positive HER2-negative breast cancer (in combination with exemestane)",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "sources": [
+        {
+          "url": "https://www.chipscreen.com/en/products",
+          "title": "Chipscreen Pipeline",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "prod-chiglitazar",
+      "name_zh": "卡格列净（内分泰®）",
+      "name_en": "Chiglitazar (Carfloglitazar / Naisitai)",
+      "brand_name": "内分泰",
+      "company_id": "chipscreen",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "cardiometabolic",
+      "indication_zh": "2型糖尿病",
+      "indication_en": "Type 2 diabetes mellitus",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "sources": [
+        {
+          "url": "https://www.chipscreen.com/en/products",
+          "title": "Chipscreen Pipeline",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "prod-enoxaparin-qianhong",
+      "name_zh": "依诺肝素钠注射液",
+      "name_en": "Enoxaparin Sodium Injection (LMWH)",
+      "brand_name": "Enoxaparin Sodium Injection (LMWH)",
+      "company_id": "changzhou-qianhong",
+      "modality_id": "recombinant-protein",
+      "therapeutic_area_id": "hematology",
+      "indication_zh": "深静脉血栓形成、肺栓塞预防与治疗",
+      "indication_en": "Prevention and treatment of deep vein thrombosis and pulmonary embolism",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "sources": [
+        {
+          "url": "https://en.qhsh.com.cn/",
+          "title": "Changzhou Qianhong Official Site",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "prod-heparin-sodium-changshan",
+      "name_zh": "低分子量肝素钙注射液",
+      "name_en": "Low Molecular Weight Heparin Calcium Injection",
+      "brand_name": "Low Molecular Weight Heparin Calcium Injection",
+      "company_id": "changshan-biochemical",
+      "modality_id": "recombinant-protein",
+      "therapeutic_area_id": "hematology",
+      "indication_zh": "血栓防治",
+      "indication_en": "Thrombosis prevention and treatment",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "sources": [
+        {
+          "url": "https://en.hbcsbio.com/",
+          "title": "Hebei Changshan Biochemical Official Site",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    }
+  ]
+}

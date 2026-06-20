@@ -1,0 +1,82 @@
+{
+  "shard": "enrich-wf-73",
+  "products": [
+    {
+      "id": "ybl-006-acrixolimab",
+      "name_zh": "YBL-006（Acrixolimab）",
+      "name_en": "YBL-006 (Acrixolimab)",
+      "brand_name": "YBL-006 (Acrixolimab)",
+      "company_id": "y-biologics",
+      "modality_id": "mab",
+      "therapeutic_area_id": "oncology",
+      "indication_zh": "晚期实体瘤（抗PD-1单克隆抗体）",
+      "indication_en": "Advanced solid tumors – anti-PD-1 immune checkpoint inhibitor",
+      "approval_status": "ph2",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "other_apac",
+      "sources": [
+        {
+          "url": "https://clinicaltrials.gov/study/NCT04450901",
+          "title": "ClinicalTrials.gov – YBL-006 Phase 1 Study NCT04450901",
+          "accessed": "2026-06-19"
+        },
+        {
+          "url": "https://ascopubs.org/doi/10.1200/JCO.2022.40.16_suppl.e14557",
+          "title": "ASCO – Safety and efficacy of YBL-006 in advanced solid tumors (Phase I)",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "ybl-001-adc",
+      "name_zh": "YBL-001（ADC候选物）",
+      "name_en": "YBL-001 (ADC candidate)",
+      "brand_name": "YBL-001 (ADC candidate)",
+      "company_id": "y-biologics",
+      "modality_id": "adc",
+      "therapeutic_area_id": "oncology",
+      "indication_zh": "小细胞肺癌及肝细胞癌",
+      "indication_en": "Small cell lung cancer and hepatocellular carcinoma",
+      "approval_status": "preclinical",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "other_apac",
+      "sources": [
+        {
+          "url": "https://stockanalysis.com/quote/kosdaq/338840/company/",
+          "title": "Y-Biologics Company Profile – StockAnalysis",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "ybl-011-lag3",
+      "name_zh": "YBL-011（LAG-3抑制剂）",
+      "name_en": "YBL-011 (LAG-3 inhibitor)",
+      "brand_name": "YBL-011 (LAG-3 inhibitor)",
+      "company_id": "y-biologics",
+      "modality_id": "mab",
+      "therapeutic_area_id": "oncology",
+      "indication_zh": "实体瘤（LAG-3单特异性抗体）",
+      "indication_en": "Solid tumors – LAG-3 monospecific antibody",
+      "approval_status": "preclinical",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "other_apac",
+      "sources": [
+        {
+          "url": "https://stockanalysis.com/quote/kosdaq/338840/company/",
+          "title": "Y-Biologics Company Profile – StockAnalysis",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    }
+  ]
+}

@@ -1,0 +1,149 @@
+{
+  "shard": "enrich-wf-21",
+  "products": [
+    {
+      "id": "hualan-vaccine-flu4",
+      "name_zh": "四价流感病毒裂解疫苗",
+      "name_en": "Quadrivalent Influenza Vaccine (Split-Virion)",
+      "brand_name": "Quadrivalent Influenza Vaccine (Split-Virion)",
+      "company_id": "hualan-biological-vaccine",
+      "modality_id": "inactivated-vaccine",
+      "therapeutic_area_id": "vaccines",
+      "indication_zh": "预防季节性流感病毒感染",
+      "indication_en": "Prevention of seasonal influenza infection",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "sources": [
+        {
+          "url": "https://stockanalysis.com/quote/she/301207/company/",
+          "title": "Hualan Biological Vaccine – Stock Analysis",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "hybio-liraglutide",
+      "name_zh": "利拉鲁肽注射液",
+      "name_en": "Liraglutide Injection",
+      "brand_name": "Liraglutide Injection",
+      "company_id": "hybio-pharmaceutical",
+      "modality_id": "peptide",
+      "therapeutic_area_id": "cardiometabolic",
+      "indication_zh": "2型糖尿病及肥胖",
+      "indication_en": "Type 2 diabetes mellitus and obesity",
+      "approval_status": "approved",
+      "drug_class": "biosimilar",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "sources": [
+        {
+          "url": "https://www.moomoo.com/stock/300199-SZ/news/news",
+          "title": "Hybio Pharmaceutical News – Moomoo",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "hybio-atosiban",
+      "name_zh": "阿托西班注射液",
+      "name_en": "Atosiban Injection",
+      "brand_name": "Atosiban Injection",
+      "company_id": "hybio-pharmaceutical",
+      "modality_id": "peptide",
+      "therapeutic_area_id": "rare-disease",
+      "indication_zh": "早产抑制",
+      "indication_en": "Preterm labour inhibition",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "sources": [
+        {
+          "url": "https://stockanalysis.com/quote/she/300199/company/",
+          "title": "Hybio Pharmaceutical – Stock Analysis",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "insilico-rentosertib",
+      "name_zh": "ISM001-055（rentosertib）",
+      "name_en": "Rentosertib (ISM001-055)",
+      "brand_name": "Rentosertib (ISM001-055)",
+      "company_id": "insilico-medicine",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "respiratory",
+      "indication_zh": "特发性肺纤维化",
+      "indication_en": "Idiopathic pulmonary fibrosis (IPF)",
+      "approval_status": "ph2",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "sources": [
+        {
+          "url": "https://en.wikipedia.org/wiki/Insilico_Medicine",
+          "title": "Insilico Medicine – Wikipedia",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "huashen-metuximab-i131",
+      "name_zh": "碘[131I]美妥昔单抗注射液",
+      "name_en": "Iodine-131 Metuximab Injection",
+      "brand_name": "Iodine-131 Metuximab Injection",
+      "company_id": "huashen-technology",
+      "modality_id": "recombinant-protein",
+      "therapeutic_area_id": "oncology",
+      "indication_zh": "原发性肝癌",
+      "indication_en": "Primary hepatocellular carcinoma",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "sources": [
+        {
+          "url": "https://www.futunn.com/en/stock/000790-SZ/company",
+          "title": "Huashen Technology – Futu Company Profile",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "hybribio-hpv-kit",
+      "name_zh": "人乳头瘤病毒核酸检测试剂盒",
+      "name_en": "Human Papillomavirus Nucleic Acid Detection Kit",
+      "brand_name": "Human Papillomavirus Nucleic Acid Detection Kit",
+      "company_id": "hybribio",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "infectious-disease",
+      "indication_zh": "HPV感染的核酸检测",
+      "indication_en": "Nucleic acid detection of HPV infection",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": true,
+      "region": "greater_china",
+      "sources": [
+        {
+          "url": "http://hybribio.com/about/",
+          "title": "Hybribio – About Us",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    }
+  ]
+}

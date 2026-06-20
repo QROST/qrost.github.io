@@ -1,0 +1,245 @@
+{
+  "shard": "enrich-wf-11",
+  "products": [
+    {
+      "id": "ascletis-asc30",
+      "name_zh": "ASC30",
+      "name_en": "ASC30",
+      "brand_name": "ASC30",
+      "company_id": "ascletis",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "cardiometabolic",
+      "indication_zh": "肥胖症（GLP-1R激动剂，皮下长效制剂）",
+      "indication_en": "Obesity (GLP-1R agonist, ultra-long-acting subcutaneous depot formulation)",
+      "approval_status": "ph2",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "sources": [
+        {
+          "url": "https://www.prnewswire.com/news-releases/ascletis-announces-positive-topline-results-from-us-phase-ii-24-week-study-for-its-ultra-long-acting-subcutaneous-depot-formulations-of-small-molecule-glp-1r-agonist-asc30-for-obesity-302709245.html",
+          "title": "Ascletis Announces Positive Topline Results from U.S. Phase II Study for ASC30 – PR Newswire",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "ascletis-danoprevir",
+      "name_zh": "达诺瑞韦",
+      "name_en": "Danoprevir",
+      "brand_name": "GANOVO",
+      "company_id": "ascletis",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "infectious-disease",
+      "indication_zh": "慢性丙型肝炎（NS3/4A蛋白酶抑制剂）",
+      "indication_en": "Chronic hepatitis C (NS3/4A protease inhibitor)",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "sources": [
+        {
+          "url": "https://www.ascletis.com",
+          "title": "Ascletis Pharma – Official Website",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "biothera-bat1406",
+      "name_zh": "阿达木单抗",
+      "name_en": "Adalimumab Biosimilar",
+      "brand_name": "培贝希® (Pubeixi®)",
+      "company_id": "baiao-biopharm",
+      "modality_id": "biosimilar",
+      "therapeutic_area_id": "immunology",
+      "indication_zh": "类风湿关节炎、强直性脊柱炎等自身免疫疾病",
+      "indication_en": "Rheumatoid arthritis, ankylosing spondylitis and other autoimmune diseases",
+      "approval_status": "approved",
+      "drug_class": "biosimilar",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "sources": [
+        {
+          "url": "https://www.bio-thera.com",
+          "title": "Bio-Thera Solutions – Official Website",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "biothera-bat1706",
+      "name_zh": "贝伐珠单抗",
+      "name_en": "Bevacizumab Biosimilar",
+      "brand_name": "倍利妥®",
+      "company_id": "baiao-biopharm",
+      "modality_id": "biosimilar",
+      "therapeutic_area_id": "oncology",
+      "indication_zh": "转移性结直肠癌、非小细胞肺癌等",
+      "indication_en": "Metastatic colorectal cancer, non-small cell lung cancer, and others",
+      "approval_status": "approved",
+      "drug_class": "biosimilar",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "sources": [
+        {
+          "url": "https://www.bio-thera.com",
+          "title": "Bio-Thera Solutions – Official Website",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "biothera-bat1806",
+      "name_zh": "托珠单抗",
+      "name_en": "Tocilizumab Biosimilar",
+      "brand_name": "司利妥® (Sirili®)",
+      "company_id": "baiao-biopharm",
+      "modality_id": "biosimilar",
+      "therapeutic_area_id": "immunology",
+      "indication_zh": "类风湿关节炎",
+      "indication_en": "Rheumatoid arthritis",
+      "approval_status": "approved",
+      "drug_class": "biosimilar",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "sources": [
+        {
+          "url": "https://www.bio-thera.com",
+          "title": "Bio-Thera Solutions – Official Website",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "baoji-sj02",
+      "name_zh": "重组人促卵泡素CTP融合蛋白",
+      "name_en": "Long-acting recombinant FSH-CTP fusion protein",
+      "brand_name": "SJ02",
+      "company_id": "baoji-pharma",
+      "modality_id": "recombinant-protein",
+      "therapeutic_area_id": "rare-disease",
+      "indication_zh": "控制性卵巢刺激（辅助生殖）",
+      "indication_en": "Controlled ovarian stimulation (assisted reproduction)",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "sources": [
+        {
+          "url": "https://news.futunn.com/en/post/71335849/targeting-the-bottleneck-challenges-in-biopharmaceuticals-baoji-pharmaceuticals-02659-provides",
+          "title": "Targeting the bottleneck challenges in biopharmaceuticals – Futunn",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "baoji-kj017",
+      "name_zh": "重组人透明质酸酶",
+      "name_en": "Recombinant human hyaluronidase",
+      "brand_name": "KJ017",
+      "company_id": "baoji-pharma",
+      "modality_id": "recombinant-protein",
+      "therapeutic_area_id": "rare-disease",
+      "indication_zh": "促进皮下药物传递（注射给药辅助）",
+      "indication_en": "Subcutaneous drug delivery facilitation",
+      "approval_status": "ph3",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "sources": [
+        {
+          "url": "https://news.futunn.com/en/post/71335849/targeting-the-bottleneck-challenges-in-biopharmaceuticals-baoji-pharmaceuticals-02659-provides",
+          "title": "Targeting the bottleneck challenges in biopharmaceuticals – Futunn",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "bcht-varicella-vaccine",
+      "name_zh": "水痘减毒活疫苗",
+      "name_en": "Live Attenuated Varicella Vaccine",
+      "brand_name": "Live Attenuated Varicella Vaccine",
+      "company_id": "bcht-biotechnology",
+      "modality_id": "inactivated-vaccine",
+      "therapeutic_area_id": "vaccines",
+      "indication_zh": "预防水痘（由水痘-带状疱疹病毒引起）",
+      "indication_en": "Prevention of varicella (chickenpox) caused by varicella-zoster virus",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "sources": [
+        {
+          "url": "https://baike.baidu.com/en/item/Changchun%20Bcht%20Biotechnology%20Co./62138",
+          "title": "Changchun Bcht Biotechnology Co. – Baidu Encyclopedia",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "beilu-gadobutrol",
+      "name_zh": "钆布醇注射液",
+      "name_en": "Gadobutrol Injection",
+      "brand_name": "Gadobutrol Injection",
+      "company_id": "beilu-pharmaceutical",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "rare-disease",
+      "indication_zh": "MRI造影剂（中枢神经系统及全身增强扫描）",
+      "indication_en": "MRI contrast agent (CNS and whole-body contrast-enhanced imaging)",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "sources": [
+        {
+          "url": "https://en.wikipedia.org/wiki/Beilu_Pharmaceutical",
+          "title": "Beilu Pharmaceutical – Wikipedia",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "berry-beibian-nipt",
+      "name_zh": "贝碧安®无创产前检测",
+      "name_en": "BeibiAn® Non-invasive Prenatal Testing",
+      "brand_name": "BeibiAn® (贝碧安®)",
+      "company_id": "berry-genomics",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "rare-disease",
+      "indication_zh": "胎儿染色体异常无创产前筛查（游离DNA）",
+      "indication_en": "Non-invasive prenatal screening for fetal chromosomal abnormalities using cell-free DNA",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "sources": [
+        {
+          "url": "https://www.berrygenomics.com/cmscontent/211.html",
+          "title": "About Berry Genomics – berrygenomics.com",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    }
+  ]
+}

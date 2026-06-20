@@ -1,0 +1,298 @@
+{
+  "shard": "enrich-wf-67",
+  "products": [
+    {
+      "id": "medipost-cartistem",
+      "name_zh": "CARTISTEM",
+      "name_en": "CARTISTEM",
+      "brand_name": "CARTISTEM",
+      "company_id": "medipost",
+      "modality_id": "recombinant-protein",
+      "therapeutic_area_id": "rare-disease",
+      "indication_zh": "软骨退行性变（骨关节炎）",
+      "indication_en": "Repetitive and/or traumatic cartilage degeneration, degenerative osteoarthritis",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "other_apac",
+      "sources": [
+        {
+          "url": "https://stockanalysis.com/quote/kosdaq/078160/company/",
+          "title": "MEDIPOST Company Description",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "medipost-pneumostem",
+      "name_zh": "PNEUMOSTEM",
+      "name_en": "PNEUMOSTEM",
+      "brand_name": "PNEUMOSTEM",
+      "company_id": "medipost",
+      "modality_id": "recombinant-protein",
+      "therapeutic_area_id": "respiratory",
+      "indication_zh": "支气管肺发育不良（预防）",
+      "indication_en": "Preventive treatment of bronchopulmonary dysplasia in premature infants",
+      "approval_status": "ph2",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "other_apac",
+      "sources": [
+        {
+          "url": "https://stockanalysis.com/quote/kosdaq/078160/company/",
+          "title": "MEDIPOST Company Description",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "medytox-neuronox",
+      "name_zh": "纽若诺斯",
+      "name_en": "Neuronox",
+      "brand_name": "Neuronox",
+      "company_id": "medytox",
+      "modality_id": "recombinant-protein",
+      "therapeutic_area_id": "neuroscience",
+      "indication_zh": "小儿脑瘫痉挛性足部畸形",
+      "indication_en": "Foot deformities due to spasticity in pediatric cerebral palsy patients",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "other_apac",
+      "sources": [
+        {
+          "url": "https://stockanalysis.com/quote/kosdaq/086900/",
+          "title": "Medy-Tox Stock Overview",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "medytox-innotox",
+      "name_zh": "INNOTOX",
+      "name_en": "INNOTOX",
+      "brand_name": "INNOTOX",
+      "company_id": "medytox",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "neuroscience",
+      "indication_zh": "中重度眉间纹（液态肉毒毒素注射）",
+      "indication_en": "Temporary improvement of moderate to severe glabellar lines; liquid botulinum toxin formulation",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "other_apac",
+      "sources": [
+        {
+          "url": "https://stockanalysis.com/quote/kosdaq/086900/",
+          "title": "Medy-Tox Stock Overview",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "medytox-coretox",
+      "name_zh": "Coretox",
+      "name_en": "Coretox",
+      "brand_name": "Coretox",
+      "company_id": "medytox",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "neuroscience",
+      "indication_zh": "中重度眉间纹（冻干粉针）",
+      "indication_en": "Temporary improvement of moderate to severe glabellar lines; lyophilized botulinum toxin formulation",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "other_apac",
+      "sources": [
+        {
+          "url": "https://stockanalysis.com/quote/kosdaq/086900/",
+          "title": "Medy-Tox Stock Overview",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "medigen-vaccine-biologics-envacgen",
+      "name_zh": "安可净（肠道病毒71型疫苗）",
+      "name_en": "Envacgen (EV71 Vaccine)",
+      "brand_name": "Envacgen",
+      "company_id": "medigen-vaccine-biologics",
+      "modality_id": "inactivated-vaccine",
+      "therapeutic_area_id": "vaccines",
+      "indication_zh": "肠道病毒71型感染（手足口病）",
+      "indication_en": "Enterovirus A71 infection (hand-foot-mouth disease)",
+      "approval_status": "ph3",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "other_apac",
+      "sources": [
+        {
+          "url": "https://stockanalysis.com/quote/tpex/6547/company/",
+          "title": "Medigen Vaccine Biologics Company Description",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "medigen-vaccine-biologics-covid",
+      "name_zh": "高端新冠疫苗MVC-COV1901",
+      "name_en": "MVC-COV1901 COVID-19 Vaccine",
+      "brand_name": "MVC-COV1901",
+      "company_id": "medigen-vaccine-biologics",
+      "modality_id": "recombinant-protein",
+      "therapeutic_area_id": "vaccines",
+      "indication_zh": "新冠肺炎预防",
+      "indication_en": "Prevention of COVID-19",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "other_apac",
+      "sources": [
+        {
+          "url": "https://en.wikipedia.org/wiki/Medigen_Vaccine_Biologics_Corporation",
+          "title": "Wikipedia – Medigen Vaccine Biologics",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "mezzion-jurvigo",
+      "name_zh": "JURVIGO（乌地那非）",
+      "name_en": "JURVIGO (udenafil)",
+      "brand_name": "JURVIGO",
+      "company_id": "mezzion-pharma",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "rare-disease",
+      "indication_zh": "Fontan患者运动耐量改善（单心室先天性心脏病）",
+      "indication_en": "Improvement of exercise capacity in Fontan patients (single-ventricle congenital heart disease); highly selective oral PDE5 inhibitor",
+      "approval_status": "ph3",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "other_apac",
+      "sources": [
+        {
+          "url": "https://mezzion.com/news/mezzion-pharma-raises-nearly-40m-to-advance-a-first-to-market-treatment-option-for-fontan-patients",
+          "title": "Mezzion $40M fundraise press release",
+          "accessed": "2026-06-19"
+        },
+        {
+          "url": "https://www.prnewswire.com/news-releases/mezzion-announces-us-patent-allowance-strengthening-udenafil-exclusivity-in-fontan-patients-302631809.html",
+          "title": "Mezzion US Patent Allowance – PR Newswire",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "microbio-ms20",
+      "name_zh": "MS-20",
+      "name_en": "MS-20",
+      "brand_name": "MS-20",
+      "company_id": "microbio",
+      "modality_id": "tcm-formula",
+      "therapeutic_area_id": "oncology",
+      "indication_zh": "化疗相关疲劳与食欲不振",
+      "indication_en": "Fatigue and appetite loss associated with cancer chemotherapy",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "other_apac",
+      "sources": [
+        {
+          "url": "https://stockanalysis.com/quote/tpex/4128/",
+          "title": "Microbio Stock Overview",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "microbio-herbiron",
+      "name_zh": "Herbiron",
+      "name_en": "Herbiron",
+      "brand_name": "Herbiron",
+      "company_id": "microbio",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "hematology",
+      "indication_zh": "缺铁性贫血及痛经",
+      "indication_en": "Iron deficiency anemia and dysmenorrhea",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "other_apac",
+      "sources": [
+        {
+          "url": "https://stockanalysis.com/quote/tpex/4128/",
+          "title": "Microbio Stock Overview",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "medigen-biotech-mbi-obp301",
+      "name_zh": "OBP-301（Telomelysin）",
+      "name_en": "OBP-301 (Telomelysin)",
+      "brand_name": "Telomelysin",
+      "company_id": "medigen-biotech-mbi",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "oncology",
+      "indication_zh": "多种实体肿瘤（溶瘤腺病毒）",
+      "indication_en": "Multiple solid tumors; genetically modified human adenovirus type 5 oncolytic therapy",
+      "approval_status": "ph2",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "other_apac",
+      "sources": [
+        {
+          "url": "https://stockanalysis.com/quote/tpex/3176/company/",
+          "title": "Medigen Biotechnology Company Description",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "ngenebio-brcaaccutest",
+      "name_zh": "BRCAaccuTest PLUS",
+      "name_en": "BRCAaccuTest PLUS",
+      "brand_name": "BRCAaccuTest PLUS",
+      "company_id": "ngenebio",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "oncology",
+      "indication_zh": "乳腺癌/卵巢癌BRCA基因变异NGS检测",
+      "indication_en": "NGS-based BRCA variant detection for breast and ovarian cancer companion diagnostics",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "other_apac",
+      "sources": [
+        {
+          "url": "https://stockanalysis.com/quote/kosdaq/354200/",
+          "title": "NGeneBio Stock Overview",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    }
+  ]
+}

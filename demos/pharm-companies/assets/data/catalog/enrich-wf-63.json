@@ -1,0 +1,293 @@
+{
+  "shard": "enrich-wf-63",
+  "products": [
+    {
+      "id": "gnx102-glyconex",
+      "name_zh": "GNX102（人源化單株抗體）",
+      "name_en": "GNX102",
+      "brand_name": "GNX102",
+      "company_id": "glyconex",
+      "modality_id": "mab",
+      "therapeutic_area_id": "oncology",
+      "indication_zh": "實體腫瘤",
+      "indication_en": "Solid tumors",
+      "approval_status": "ph1",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "other_apac",
+      "sources": [
+        {
+          "url": "https://stockanalysis.com/quote/tpex/4168/company/",
+          "title": "GlycoNex Profile – Stock Analysis",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "gen-001-genome-co",
+      "name_zh": "GEN-001（口服微生物組免疫調節劑）",
+      "name_en": "GEN-001",
+      "brand_name": "GEN-001",
+      "company_id": "genome-and-company",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "oncology",
+      "indication_zh": "腫瘤免疫治療（口服微生物組療法）",
+      "indication_en": "Immuno-oncology (oral microbiome immunotherapy)",
+      "approval_status": "ph1",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "other_apac",
+      "sources": [
+        {
+          "url": "https://stockanalysis.com/quote/kosdaq/314130/company/",
+          "title": "Genome & Company Profile",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "gi101-gi-innovation",
+      "name_zh": "GI-101/GI-102（雙功能融合蛋白）",
+      "name_en": "GI-101/GI-102",
+      "brand_name": "GI-101/GI-102",
+      "company_id": "gi-innovation",
+      "modality_id": "recombinant-protein",
+      "therapeutic_area_id": "oncology",
+      "indication_zh": "腫瘤免疫（雙功能融合蛋白）",
+      "indication_en": "Immuno-oncology (dual fusion protein)",
+      "approval_status": "ph2",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "other_apac",
+      "sources": [
+        {
+          "url": "https://stockanalysis.com/quote/kosdaq/358570/company/",
+          "title": "GI Innovation Profile",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "gi301-gi-innovation",
+      "name_zh": "GI-301（IgE介導過敏症融合蛋白）",
+      "name_en": "GI-301",
+      "brand_name": "GI-301",
+      "company_id": "gi-innovation",
+      "modality_id": "recombinant-protein",
+      "therapeutic_area_id": "immunology",
+      "indication_zh": "IgE介導過敏性疾病",
+      "indication_en": "IgE-mediated allergic disease",
+      "approval_status": "ph1",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "other_apac",
+      "sources": [
+        {
+          "url": "https://stockanalysis.com/quote/kosdaq/358570/company/",
+          "title": "GI Innovation Profile",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "pts302-gongwin",
+      "name_zh": "Purocenta（PTS302）",
+      "name_en": "PTS302 / Purocenta",
+      "brand_name": "Purocenta",
+      "company_id": "gongwin-biopharm",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "oncology",
+      "indication_zh": "非小細胞肺癌（NSCLC-MAO）",
+      "indication_en": "Non-small cell lung cancer (NSCLC-MAO)",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "other_apac",
+      "sources": [
+        {
+          "url": "https://stockanalysis.com/quote/tpex/6617/company/",
+          "title": "Gongwin Biopharm Profile",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "pts100-gongwin",
+      "name_zh": "PTS100",
+      "name_en": "PTS100",
+      "brand_name": "PTS100",
+      "company_id": "gongwin-biopharm",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "oncology",
+      "indication_zh": "肝細胞癌",
+      "indication_en": "Hepatocellular carcinoma",
+      "approval_status": "ph2",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "other_apac",
+      "sources": [
+        {
+          "url": "https://stockanalysis.com/quote/tpex/6617/company/",
+          "title": "Gongwin Biopharm Profile",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "batoclimab-hanall",
+      "name_zh": "Batoclimab（HL161BKN，抗FcRn抗體）",
+      "name_en": "Batoclimab (HL161BKN)",
+      "brand_name": "Batoclimab (HL161BKN)",
+      "company_id": "hanall-biopharma",
+      "modality_id": "mab",
+      "therapeutic_area_id": "immunology",
+      "indication_zh": "重症肌無力、CIDP、甲狀腺眼病、格雷夫斯病等自體免疫疾病",
+      "indication_en": "Myasthenia gravis, CIDP, thyroid eye disease, Graves' disease (autoimmune diseases)",
+      "approval_status": "ph3",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "other_apac",
+      "sources": [
+        {
+          "url": "https://www.hanall.com/board_view.php?bo_table=press&idx=103",
+          "title": "HanAll Biopharma 2025 Full Year Results",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "tanfanercept-hanall",
+      "name_zh": "Tanfanercept（HL036，TNF抑制蛋白）",
+      "name_en": "Tanfanercept (HL036)",
+      "brand_name": "Tanfanercept (HL036)",
+      "company_id": "hanall-biopharma",
+      "modality_id": "recombinant-protein",
+      "therapeutic_area_id": "ophthalmology",
+      "indication_zh": "乾眼症（III期臨床）",
+      "indication_en": "Dry eye disease (Phase 3)",
+      "approval_status": "ph3",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "other_apac",
+      "sources": [
+        {
+          "url": "https://www.hanall.com/board_view.php?bo_table=press&idx=103",
+          "title": "HanAll Biopharma 2025 Full Year Results",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "immuncell-lc-gcc",
+      "name_zh": "Immuncell-LC（自體T細胞免疫療法）",
+      "name_en": "Immuncell-LC",
+      "brand_name": "Immuncell-LC",
+      "company_id": "green-cross-cell",
+      "modality_id": "car-t",
+      "therapeutic_area_id": "oncology",
+      "indication_zh": "肝細胞癌術後輔助治療",
+      "indication_en": "Adjuvant therapy for hepatocellular carcinoma post-curative resection",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "other_apac",
+      "sources": [
+        {
+          "url": "https://www.investing.com/equities/green-cross-cell-corp-company-profile",
+          "title": "GC Cell Corp Profile – Investing.com",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "engensis-helixmith",
+      "name_zh": "Engensis（VM202，非病毒質粒DNA基因療法）",
+      "name_en": "Engensis (VM202)",
+      "brand_name": "Engensis",
+      "company_id": "helixmith",
+      "modality_id": "sirna",
+      "therapeutic_area_id": "neuroscience",
+      "indication_zh": "糖尿病周圍神經病變（III期）、ALS（II期）",
+      "indication_en": "Diabetic peripheral neuropathy (Phase 3, USA); ALS (Phase 2); claudication",
+      "approval_status": "ph3",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "other_apac",
+      "sources": [
+        {
+          "url": "https://stockanalysis.com/quote/kosdaq/084990/company/",
+          "title": "Helixmith Profile – Stock Analysis",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "hcb101-hanchorbio",
+      "name_zh": "HCB101（多功能融合蛋白免疫療法）",
+      "name_en": "HCB101",
+      "brand_name": "HCB101",
+      "company_id": "hanchorbio",
+      "modality_id": "recombinant-protein",
+      "therapeutic_area_id": "oncology",
+      "indication_zh": "腫瘤及免疫介導疾病",
+      "indication_en": "Oncology and immune-mediated diseases",
+      "approval_status": "ph1",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "other_apac",
+      "sources": [
+        {
+          "url": "https://www.prnewswire.com/news-releases/tpex-listed-hanchorbio-advances-global-impact-of-hcb101-immunotherapy-302506397.html",
+          "title": "HanchorBio HCB101 PR Newswire",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "tascenso-handa",
+      "name_zh": "Tascenso ODT（多發性硬化症）",
+      "name_en": "Tascenso ODT",
+      "brand_name": "Tascenso ODT",
+      "company_id": "handa-pharmaceuticals",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "neuroscience",
+      "indication_zh": "多發性硬化症",
+      "indication_en": "Multiple sclerosis",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "other_apac",
+      "sources": [
+        {
+          "url": "https://stockanalysis.com/quote/tpex/6620/company/",
+          "title": "Handa Pharmaceuticals Profile – Stock Analysis",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    }
+  ]
+}

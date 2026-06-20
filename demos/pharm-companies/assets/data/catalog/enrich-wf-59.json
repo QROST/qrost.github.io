@@ -1,0 +1,221 @@
+{
+  "shard": "enrich-wf-59",
+  "products": [
+    {
+      "id": "ala-1000",
+      "name_zh": "长效丁丙诺啡注射剂",
+      "name_en": "ALA-1000 (Long-acting Buprenorphine Injectable)",
+      "brand_name": "ALA-1000",
+      "company_id": "alar-pharmaceuticals",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "neuroscience",
+      "indication_zh": "阿片类药物使用障碍",
+      "indication_en": "Opioid use disorder",
+      "approval_status": "ph3",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "other_apac",
+      "sources": [
+        {
+          "url": "https://www.indivior.com/en/media/press-releases/Indivior-Enters-an-Exclusive-Licensing-Agreement-with-Alar-Pharmaceuticals",
+          "title": "Indivior Exclusive License Agreement – ALA-1000",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "ala-3000",
+      "name_zh": "长效抗抑郁注射剂",
+      "name_en": "ALA-3000 (Long-acting Injectable for TRD)",
+      "brand_name": "ALA-3000",
+      "company_id": "alar-pharmaceuticals",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "neuroscience",
+      "indication_zh": "难治性抑郁症",
+      "indication_en": "Treatment-resistant depression",
+      "approval_status": "ph1",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "other_apac",
+      "sources": [
+        {
+          "url": "https://alarpharm.com/service/focus-area/",
+          "title": "Products Pipeline – Alar Pharmaceuticals",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "alteogen-alt-b4-keytruda-sc",
+      "name_zh": "Keytruda皮下注射制剂（Hybrozyme平台）",
+      "name_en": "Keytruda SC (Hybrozyme-enabled, ALT-B4)",
+      "brand_name": "Keytruda Qlex",
+      "company_id": "alteogen",
+      "modality_id": "mab",
+      "therapeutic_area_id": "oncology",
+      "indication_zh": "多种肿瘤适应证（帕博利珠单抗皮下剂型）",
+      "indication_en": "Multiple oncology indications (pembrolizumab subcutaneous formulation)",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": true,
+      "region": "other_apac",
+      "sources": [
+        {
+          "url": "https://moatalpha.com/alteogen-analysis-en-2026/",
+          "title": "Alteogen Analysis – Keytruda SC",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "alteogen-alt-p7",
+      "name_zh": "ALT-P7（抗体药物偶联物）",
+      "name_en": "ALT-P7 (ADC for Breast/Gastric Cancer)",
+      "brand_name": "ALT-P7",
+      "company_id": "alteogen",
+      "modality_id": "adc",
+      "therapeutic_area_id": "oncology",
+      "indication_zh": "乳腺癌、胃癌（HER2靶向ADC）",
+      "indication_en": "Breast and gastric cancer (HER2-targeting ADC)",
+      "approval_status": "ph1",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "other_apac",
+      "sources": [
+        {
+          "url": "https://stockanalysis.com/quote/kosdaq/196170/",
+          "title": "ALTEOGEN Overview",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "ap-biosciences-ibi302",
+      "name_zh": "IBI302（双特异性抗体，AMD）",
+      "name_en": "IBI302 (Bispecific Antibody for nAMD)",
+      "brand_name": "IBI302",
+      "company_id": "ap-biosciences",
+      "modality_id": "bispecific-antibody",
+      "therapeutic_area_id": "immunology",
+      "indication_zh": "新生血管性（湿性）年龄相关性黄斑变性",
+      "indication_en": "Neovascular (wet) age-related macular degeneration",
+      "approval_status": "ph3",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "other_apac",
+      "sources": [
+        {
+          "url": "https://www.apbioinc.com/en/about.htm",
+          "title": "AP Biosciences About Us",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "ap-biosciences-ap203",
+      "name_zh": "AP203（双特异性抗体，肺癌/头颈癌）",
+      "name_en": "AP203 (Bispecific Antibody for NSCLC/HNSCC)",
+      "brand_name": "AP203",
+      "company_id": "ap-biosciences",
+      "modality_id": "bispecific-antibody",
+      "therapeutic_area_id": "oncology",
+      "indication_zh": "非小细胞肺癌、头颈部鳞状细胞癌、食管鳞癌",
+      "indication_en": "Non-small cell lung cancer, head and neck squamous cell carcinoma, esophageal squamous-cell carcinoma",
+      "approval_status": "ph1",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "other_apac",
+      "sources": [
+        {
+          "url": "https://www.apbioinc.com/en/about.htm",
+          "title": "AP Biosciences About Us",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "aprilbio-safa-il18",
+      "name_zh": "IL-18靶向融合蛋白（SAFA平台）",
+      "name_en": "IL-18-Targeted Fusion Protein (SAFA Platform)",
+      "brand_name": "IL-18-Targeted Fusion Protein (SAFA Platform)",
+      "company_id": "aprilbio",
+      "modality_id": "recombinant-protein",
+      "therapeutic_area_id": "immunology",
+      "indication_zh": "自身免疫性/炎症性疾病（IL-18通路）",
+      "indication_en": "Autoimmune/inflammatory diseases (IL-18 pathway)",
+      "approval_status": "preclinical",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "other_apac",
+      "sources": [
+        {
+          "url": "https://www.cbinsights.com/company/aprilbio",
+          "title": "AprilBio – CBInsights",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "aptamer-sciences-ast201",
+      "name_zh": "AST-201（适体疗法）",
+      "name_en": "AST-201 (Aptamer Therapeutics)",
+      "brand_name": "AST-201",
+      "company_id": "aptamer-sciences",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "oncology",
+      "indication_zh": "癌症（IND已获韩国食药处受理，2024年3月）",
+      "indication_en": "Cancer (IND filed with Korean MFDS, March 2024)",
+      "approval_status": "ph1",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "other_apac",
+      "sources": [
+        {
+          "url": "https://aptsci.com/en/",
+          "title": "Aptamer Sciences Official Website",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "abclon-car-t",
+      "name_zh": "CAR-T平台（血液肿瘤/卵巢癌）",
+      "name_en": "CAR-T Platform (Hematologic/Ovarian Cancers)",
+      "brand_name": "CAR-T Platform (Hematologic/Ovarian Cancers)",
+      "company_id": "appclon",
+      "modality_id": "car-t",
+      "therapeutic_area_id": "hematology",
+      "indication_zh": "血液肿瘤、卵巢癌",
+      "indication_en": "Hematologic cancers and ovarian cancer",
+      "approval_status": "preclinical",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "other_apac",
+      "sources": [
+        {
+          "url": "https://stockanalysis.com/quote/kosdaq/174900/company/",
+          "title": "AbClon Company Profile",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    }
+  ]
+}

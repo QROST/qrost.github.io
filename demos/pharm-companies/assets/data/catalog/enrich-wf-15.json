@@ -1,0 +1,125 @@
+{
+  "shard": "enrich-wf-15",
+  "products": [
+    {
+      "id": "dizal-sunvozertinib",
+      "name_zh": "舒沃替尼",
+      "name_en": "Sunvozertinib",
+      "brand_name": "ZEGFROVY",
+      "company_id": "dizal",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "oncology",
+      "indication_zh": "EGFR外显子20插入突变阳性的局部晚期或转移性非小细胞肺癌（NSCLC）",
+      "indication_en": "Locally advanced or metastatic NSCLC with EGFR exon 20 insertion mutations",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "sources": [
+        {
+          "url": "https://flcube.com/?p=32795",
+          "title": "Dizal Pharmaceutical 2024 Revenue – FL Cube",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "dizal-golidocitinib",
+      "name_zh": "高瑞哲",
+      "name_en": "Golidocitinib",
+      "brand_name": "Gaoruizhe",
+      "company_id": "dizal",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "hematology",
+      "indication_zh": "复发或难治性外周T细胞淋巴瘤（PTCL）",
+      "indication_en": "Relapsed or refractory peripheral T-cell lymphoma (PTCL)",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "sources": [
+        {
+          "url": "https://flcube.com/?p=32795",
+          "title": "Dizal Pharmaceutical 2024 Revenue – FL Cube",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "dezhan-atorvastatin",
+      "name_zh": "阿托伐他汀钙片",
+      "name_en": "Atorvastatin Calcium Tablets",
+      "brand_name": "Atorvastatin Calcium Tablets",
+      "company_id": "dezhan-health",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "cardiometabolic",
+      "indication_zh": "高胆固醇血症及心血管疾病风险降低",
+      "indication_en": "Hypercholesterolemia and cardiovascular risk reduction",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "sources": [
+        {
+          "url": "https://finance.yahoo.com/quote/000813.SZ/profile/",
+          "title": "Dezhan Healthcare Profile – Yahoo Finance",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "deyuan-pioglitazone-metformin",
+      "name_zh": "吡格列酮甲福明片",
+      "name_en": "Pioglitazone Metformin Tablets",
+      "brand_name": "Pioglitazone Metformin Tablets",
+      "company_id": "deyuan-pharma",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "cardiometabolic",
+      "indication_zh": "2型糖尿病",
+      "indication_en": "Type 2 diabetes mellitus",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "sources": [
+        {
+          "url": "https://baike.baidu.com/en/item/Jiangsu%20Deyuan%20Pharmaceutical%20Co.,%20Ltd./74200",
+          "title": "Jiangsu Deyuan Pharmaceutical – Baike Baidu",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "dawnrays-cephalosporins",
+      "name_zh": "头孢菌素类原料药及制剂",
+      "name_en": "Cephalosporin APIs and Finished Drug Products",
+      "brand_name": "Cephalosporin APIs and Finished Drug Products",
+      "company_id": "dawnrays-pharma",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "infectious-disease",
+      "indication_zh": "细菌感染",
+      "indication_en": "Bacterial infections",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "sources": [
+        {
+          "url": "http://en.dawnrays.com/About/Dawnrays.aspx",
+          "title": "Dawnrays corporate website",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    }
+  ]
+}

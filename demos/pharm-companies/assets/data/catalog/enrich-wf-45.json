@@ -1,0 +1,293 @@
+{
+  "shard": "enrich-wf-45",
+  "products": [
+    {
+      "id": "rbm007-amd",
+      "name_zh": "RBM-007（湿性加齢黄斑変性）",
+      "name_en": "RBM-007 (wet AMD)",
+      "brand_name": "RBM-007",
+      "company_id": "ribomic",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "ophthalmology",
+      "indication_zh": "湿性加齢黄斑変性",
+      "indication_en": "Wet age-related macular degeneration (wAMD)",
+      "approval_status": "ph2",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "japan",
+      "sources": [
+        {
+          "url": "https://www.businesswire.com/news/home/20190617005273/en/RIBOMIC-Announces-Positive-Top-Line-Results-from-the-Phase-12a-Clinical-Trial-of-RBM-007-SUSHI-Study-in-Subjects-with-Wet-Age-Related-Macular-Degeneration",
+          "title": "BusinessWire - RBM-007 Phase 1/2a Results",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "rbm007-achondro",
+      "name_zh": "RBM-007（軟骨無形成症）",
+      "name_en": "RBM-007 (achondroplasia)",
+      "brand_name": "RBM-007",
+      "company_id": "ribomic",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "rare-disease",
+      "indication_zh": "軟骨無形成症",
+      "indication_en": "Achondroplasia",
+      "approval_status": "ph1",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "japan",
+      "sources": [
+        {
+          "url": "https://www.businesswire.com/news/home/20200715005370/en/RIBOMIC-Announces-Dosing-of-First-Subject-in-RBM-007-Phase-1-Clinical-Trial-for-Achondroplasia",
+          "title": "BusinessWire - RBM-007 Achondroplasia Phase 1",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "akuugo-sb623",
+      "name_zh": "アキューゴ（SB623）",
+      "name_en": "AKUUGO (SB623)",
+      "brand_name": "AKUUGO",
+      "company_id": "sanbio",
+      "modality_id": "recombinant-protein",
+      "therapeutic_area_id": "neuroscience",
+      "indication_zh": "外傷性脳損傷後の慢性運動麻痺",
+      "indication_en": "Chronic motor paralysis due to traumatic brain injury (TBI)",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "japan",
+      "sources": [
+        {
+          "url": "https://simplywall.st/stocks/jp/pharmaceuticals-biotech/tse-4592/sanbio-shares/news/how-investors-may-respond-to-sanbio-tse4592-after-key-progre",
+          "title": "Simply Wall St - SanBio AKUUGO Approval",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "artz-hyaluronate",
+      "name_zh": "アルツ（ヒアルロン酸ナトリウム）",
+      "name_en": "ARTZ (sodium hyaluronate intra-articular injection)",
+      "brand_name": "ARTZ / SUPARTZ FX",
+      "company_id": "seikagaku",
+      "modality_id": "recombinant-protein",
+      "therapeutic_area_id": "immunology",
+      "indication_zh": "変形性膝関節症",
+      "indication_en": "Knee osteoarthritis",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "japan",
+      "sources": [
+        {
+          "url": "https://stockanalysis.com/quote/tyo/4548/",
+          "title": "Stock Analysis - Seikagaku",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "darvias-pralatrexate",
+      "name_zh": "ダルビアス（プラリトレキサート）",
+      "name_en": "DARVIAS (pralatrexate injection)",
+      "brand_name": "DARVIAS",
+      "company_id": "solasia-pharma",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "hematology",
+      "indication_zh": "再発・難治性末梢性T細胞リンパ腫",
+      "indication_en": "Relapsed or refractory peripheral T-cell lymphoma (PTCL)",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "japan",
+      "sources": [
+        {
+          "url": "https://stockanalysis.com/quote/tyo/4597/",
+          "title": "Stock Analysis - Solasia Pharma",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "episil-oral-mucositis",
+      "name_zh": "Episil（口腔粘膜炎治療液）",
+      "name_en": "Episil (oral mucositis treatment)",
+      "brand_name": "Episil",
+      "company_id": "solasia-pharma",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "oncology",
+      "indication_zh": "口腔粘膜炎・口内炎",
+      "indication_en": "Oral mucositis / stomatitis",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "japan",
+      "sources": [
+        {
+          "url": "https://solasia.co.jp/en/",
+          "title": "Solasia Pharma Website",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "steboronine-bpa",
+      "name_zh": "ステボロニン（BPA製剤）",
+      "name_en": "Steboronine (BPA / borophenylalanine for BNCT)",
+      "brand_name": "Steboronine",
+      "company_id": "stella-pharma",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "oncology",
+      "indication_zh": "頭頸部がん・悪性神経膠腫（BNCT適応）",
+      "indication_en": "Head and neck cancer; malignant glioma (BNCT indication)",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "japan",
+      "sources": [
+        {
+          "url": "https://www.marketscreener.com/quote/stock/STELLA-PHARMA-CORPORATION-120780888/company/",
+          "title": "MarketScreener - Stella Pharma",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "pj1-hmgb1",
+      "name_zh": "PJ1（HMGB1ペプチド再生誘導薬）",
+      "name_en": "PJ1 (HMGB1 peptide regenerative induction medicine)",
+      "brand_name": "PJ1",
+      "company_id": "stemrim",
+      "modality_id": "peptide",
+      "therapeutic_area_id": "rare-disease",
+      "indication_zh": "表皮水疱症・脳梗塞・変形性関節症・慢性肝臓病・心筋症",
+      "indication_en": "Epidermolysis bullosa; cerebral infarction; osteoarthritis; chronic liver disease; cardiomyopathy",
+      "approval_status": "ph2",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "japan",
+      "sources": [
+        {
+          "url": "https://stemrim.com/english/company/",
+          "title": "StemRIM Corporate",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "treakisym-bendamustine",
+      "name_zh": "トレアキシン（ベンダムスチン）",
+      "name_en": "Treakisym (bendamustine hydrochloride)",
+      "brand_name": "TREAKISYM",
+      "company_id": "symbio-pharmaceuticals",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "hematology",
+      "indication_zh": "低悪性度B細胞性非ホジキンリンパ腫・慢性リンパ性白血病",
+      "indication_en": "Indolent B-cell non-Hodgkin lymphoma; chronic lymphocytic leukemia",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "japan",
+      "sources": [
+        {
+          "url": "https://www.symbiopharma.com/ir_e/pdf/20230116_FR_4582_E.pdf",
+          "title": "SymBio Analyst Report",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "tms-007-stroke",
+      "name_zh": "TMS-007（急性脳梗塞）",
+      "name_en": "TMS-007 (acute ischemic stroke)",
+      "brand_name": "TMS-007",
+      "company_id": "tms",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "neuroscience",
+      "indication_zh": "急性脳梗塞",
+      "indication_en": "Acute ischemic stroke",
+      "approval_status": "ph2",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "japan",
+      "sources": [
+        {
+          "url": "https://investors.biogen.com/news-releases/news-release-details/biogen-announces-exercise-option-acquire-investigational-drug",
+          "title": "Biogen - TMS-007 Option",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "glargilin-insulin",
+      "name_zh": "GLARGILIN（インスリングラルギン）",
+      "name_en": "GLARGILIN (insulin glargine)",
+      "brand_name": "GLARGILIN",
+      "company_id": "biomm-br",
+      "modality_id": "biosimilar",
+      "therapeutic_area_id": "cardiometabolic",
+      "indication_zh": "1型・2型糖尿病",
+      "indication_en": "Type 1 and type 2 diabetes mellitus",
+      "approval_status": "approved",
+      "drug_class": "biosimilar",
+      "is_blockbuster": false,
+      "region": "latam",
+      "sources": [
+        {
+          "url": "https://biomm.com/en/biomm/",
+          "title": "Biomm Website",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "afrezza-inhaled-insulin",
+      "name_zh": "Afrezza（吸入インスリン）",
+      "name_en": "Afrezza (inhaled human insulin)",
+      "brand_name": "Afrezza",
+      "company_id": "biomm-br",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "cardiometabolic",
+      "indication_zh": "糖尿病（吸入インスリン）",
+      "indication_en": "Diabetes mellitus (inhalable insulin)",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "latam",
+      "sources": [
+        {
+          "url": "https://biomm.com/en/biomm/",
+          "title": "Biomm Website",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    }
+  ]
+}

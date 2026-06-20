@@ -1,0 +1,293 @@
+{
+  "shard": "enrich-wf-8",
+  "products": [
+    {
+      "id": "sdc-1801",
+      "name_zh": "SDC-1801",
+      "name_en": "SDC-1801",
+      "brand_name": "SDC-1801",
+      "company_id": "sareum-holdings",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "immunology",
+      "indication_zh": "银屑病（TYK2/JAK1抑制）",
+      "indication_en": "Psoriasis (TYK2/JAK1 dual inhibitor; autoimmune diseases)",
+      "approval_status": "ph1",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "europe",
+      "sources": [
+        {
+          "url": "https://sareum.com/research-development/",
+          "title": "Sareum R&D Pipeline",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "iscib1plus",
+      "name_zh": "iSCIB1+",
+      "name_en": "iSCIB1+",
+      "brand_name": "iSCIB1+",
+      "company_id": "scancell-holdings",
+      "modality_id": "mab",
+      "therapeutic_area_id": "oncology",
+      "indication_zh": "晚期黑色素瘤（ImmunoBody癌症疫苗）",
+      "indication_en": "Advanced melanoma (next-generation ImmunoBody cancer vaccine)",
+      "approval_status": "ph2",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "europe",
+      "sources": [
+        {
+          "url": "https://scancell.co.uk/company-profile/",
+          "title": "Scancell Pipeline",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "modi-1",
+      "name_zh": "Modi-1",
+      "name_en": "Modi-1",
+      "brand_name": "Modi-1",
+      "company_id": "scancell-holdings",
+      "modality_id": "peptide",
+      "therapeutic_area_id": "oncology",
+      "indication_zh": "头颈癌、肾细胞癌（Moditope肽免疫疗法）",
+      "indication_en": "Head and neck cancer; renal cell carcinoma (Moditope platform peptide immunotherapy)",
+      "approval_status": "ph2",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "europe",
+      "sources": [
+        {
+          "url": "https://www.globenewswire.com/news-release/2025/09/11/3148321/0/en/Scancell-reports-Business-Update-and-Financial-Results-for-the-Year-Ended-30-April-2025.html",
+          "title": "Scancell FY2025 Results",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "sens-501",
+      "name_zh": "SENS-501 Audiogene基因治疗",
+      "name_en": "SENS-501 (Audiogene gene therapy)",
+      "brand_name": "SENS-501 (Audiogene gene therapy)",
+      "company_id": "sensorion",
+      "modality_id": "mrna-vaccine",
+      "therapeutic_area_id": "rare-disease",
+      "indication_zh": "OTOF基因突变引起的先天性遗传性耳聋",
+      "indication_en": "Congenital deafness caused by OTOF gene mutations",
+      "approval_status": "ph1",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "europe",
+      "sources": [
+        {
+          "url": "https://www.sensorion.com/en/our-approach/restore-treat-prevent/",
+          "title": "Sensorion Pipeline",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "accrufer",
+      "name_zh": "ACCRUFeR",
+      "name_en": "ACCRUFeR (ferric maltol)",
+      "brand_name": "ACCRUFeR / FeRACCRU",
+      "company_id": "shield-therapeutics",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "hematology",
+      "indication_zh": "成人铁缺乏症/缺铁性贫血（口服铁麦芽糖醇）",
+      "indication_en": "Iron deficiency and iron deficiency anemia in adults (oral ferric maltol)",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "europe",
+      "sources": [
+        {
+          "url": "https://www.investegate.co.uk/announcement/rns/shield-therapeutics--stx/audited-results-for-year-ended-31-december-2025/9513012",
+          "title": "Shield Therapeutics FY2025 Results",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "zerlasiran",
+      "name_zh": "泽拉西兰",
+      "name_en": "Zerlasiran (SLN360)",
+      "brand_name": "Zerlasiran (SLN360)",
+      "company_id": "silence-therapeutics",
+      "modality_id": "sirna",
+      "therapeutic_area_id": "cardiometabolic",
+      "indication_zh": "高脂蛋白(a)相关心血管疾病",
+      "indication_en": "Elevated lipoprotein(a) in cardiovascular disease",
+      "approval_status": "ph3",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "europe",
+      "sources": [
+        {
+          "url": "https://finance.yahoo.com/news/silence-therapeutics-highlights-recent-business-123000357.html",
+          "title": "Silence Therapeutics FY2025 Results",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "divesiran",
+      "name_zh": "地维西兰",
+      "name_en": "Divesiran (SLN124)",
+      "brand_name": "Divesiran (SLN124)",
+      "company_id": "silence-therapeutics",
+      "modality_id": "sirna",
+      "therapeutic_area_id": "hematology",
+      "indication_zh": "真性红细胞增多症（TMPRSS6靶向siRNA）",
+      "indication_en": "Polycythemia vera (first-in-class siRNA targeting TMPRSS6)",
+      "approval_status": "ph2",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "europe",
+      "sources": [
+        {
+          "url": "https://finance.yahoo.com/news/silence-therapeutics-highlights-recent-business-123000357.html",
+          "title": "Silence Therapeutics FY2025 Results",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "tg4050",
+      "name_zh": "TG4050",
+      "name_en": "TG4050 (myvac individualized neoantigen vaccine)",
+      "brand_name": "TG4050 (myvac individualized neoantigen vaccine)",
+      "company_id": "transgene",
+      "modality_id": "inactivated-vaccine",
+      "therapeutic_area_id": "oncology",
+      "indication_zh": "头颈癌、其他实体瘤（个体化新抗原治疗性癌症疫苗）",
+      "indication_en": "Head and neck cancer and other solid tumours (individualized neoantigen therapeutic vaccine using myvac platform, developed with NEC)",
+      "approval_status": "ph2",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "europe",
+      "sources": [
+        {
+          "url": "https://www.globenewswire.com/news-release/2025/03/27/3050835/0/en/Transgene-Achieves-Key-Milestones-in-2024-Including-Clinical-Proof-of-Principle-for-Individualized-Cancer-Vaccine-%CC%B6-Strong-Outlook-for-2025.html",
+          "title": "Transgene 2024 Results",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "foralumab-intranasal",
+      "name_zh": "鼻内给药foralumab",
+      "name_en": "Intranasal foralumab",
+      "brand_name": "Intranasal foralumab",
+      "company_id": "tiziana-life-sciences",
+      "modality_id": "mab",
+      "therapeutic_area_id": "neuroscience",
+      "indication_zh": "非活动性继发进展型多发性硬化症（鼻内全人源抗CD3单克隆抗体）",
+      "indication_en": "Non-active secondary progressive multiple sclerosis (na-SPMS); fully human anti-CD3 mAb delivered intranasally",
+      "approval_status": "ph2",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "europe",
+      "sources": [
+        {
+          "url": "https://www.tizianalifesciences.com/tiziana-life-sciences-announces-johns-hopkins-university-commences-dosing-nasal-foralumab-in-phase-2-multiple-sclerosis-clinical-trial/",
+          "title": "Tiziana foralumab Phase 2 MS Trial",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "amt-130",
+      "name_zh": "AMT-130",
+      "name_en": "AMT-130",
+      "brand_name": "AMT-130",
+      "company_id": "uniqure",
+      "modality_id": "sirna",
+      "therapeutic_area_id": "neuroscience",
+      "indication_zh": "亨廷顿病（AAV5载体介导的基因治疗）",
+      "indication_en": "Huntington's disease (AAV5-based gene therapy; miHTT to silence mutant HTT); 36-month data shows statistically significant slowing of disease progression",
+      "approval_status": "ph2",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "europe",
+      "sources": [
+        {
+          "url": "https://uniqure.gcs-web.com/news-releases/news-release-details/uniqure-announces-2025-financial-results-and-provides-recent",
+          "title": "uniQure 2025 Financial Results",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "tx01-theranexus",
+      "name_zh": "TX01",
+      "name_en": "TX01",
+      "brand_name": "TX01",
+      "company_id": "theranexus",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "rare-disease",
+      "indication_zh": "戈谢病和C型尼曼-匹克病（儿科新制剂）",
+      "indication_en": "Gaucher disease and Niemann-Pick disease type C (novel pediatric formulation of approved compound; EMA PIP approved; Exeltis filing targeted Q1 2027)",
+      "approval_status": "filed",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "europe",
+      "sources": [
+        {
+          "url": "https://live.euronext.com/en/products/equities/company-news/2026-06-09-thx-pharma-theranexus-and-exeltis-secure-ema-approval",
+          "title": "THX Pharma EMA PIP Approval TX01",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "sng001-synairgen",
+      "name_zh": "SNG001",
+      "name_en": "SNG001 (inhaled IFN-β)",
+      "brand_name": "SNG001 (inhaled IFN-β)",
+      "company_id": "synairgen",
+      "modality_id": "recombinant-protein",
+      "therapeutic_area_id": "respiratory",
+      "indication_zh": "高风险患者病毒性肺部感染（吸入式干扰素β）",
+      "indication_en": "Severe viral lung infections in high-risk patients (inhaled interferon beta; host-targeted broad-spectrum antiviral)",
+      "approval_status": "ph2",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "europe",
+      "sources": [
+        {
+          "url": "https://www.synairgen.com/investors",
+          "title": "Synairgen Investor Overview",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    }
+  ]
+}

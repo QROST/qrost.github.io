@@ -1,0 +1,221 @@
+{
+  "shard": "enrich-wf-32",
+  "products": [
+    {
+      "id": "sciventech-occluder-asd",
+      "name_zh": "房间隔缺损封堵器",
+      "name_en": "Atrial Septal Defect Occluder",
+      "brand_name": "Atrial Septal Defect Occluder",
+      "company_id": "sciventech",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "cardiometabolic",
+      "indication_zh": "先天性房间隔缺损介入封堵治疗",
+      "indication_en": "Interventional closure of congenital atrial septal defect",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "sources": [
+        {
+          "url": "https://stockanalysis.com/quote/hkg/2291/company/",
+          "title": "LEPU ScienTech Company Info",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "sciventech-occluder-laa",
+      "name_zh": "左心耳封堵器",
+      "name_en": "Left Atrial Appendage Occluder",
+      "brand_name": "Left Atrial Appendage Occluder",
+      "company_id": "sciventech",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "cardiometabolic",
+      "indication_zh": "非瓣膜性心房颤动左心耳封堵",
+      "indication_en": "Left atrial appendage closure for non-valvular atrial fibrillation",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "sources": [
+        {
+          "url": "https://stockanalysis.com/quote/hkg/2291/company/",
+          "title": "LEPU ScienTech Company Info",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "shanghai-raas-albumin",
+      "name_zh": "人血白蛋白",
+      "name_en": "Human Serum Albumin",
+      "brand_name": "Human Serum Albumin",
+      "company_id": "shanghai-raas",
+      "modality_id": "recombinant-protein",
+      "therapeutic_area_id": "hematology",
+      "indication_zh": "低蛋白血症、失血性休克、肝硬化腹水等",
+      "indication_en": "Hypoalbuminaemia, haemorrhagic shock, hepatic cirrhosis with ascites",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": true,
+      "region": "greater_china",
+      "sources": [
+        {
+          "url": "https://stockanalysis.com/quote/she/002252/revenue/",
+          "title": "Shanghai RAAS Revenue",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "shanghai-raas-ivig",
+      "name_zh": "静注人免疫球蛋白",
+      "name_en": "Intravenous Immunoglobulin (IVIG)",
+      "brand_name": "Intravenous Immunoglobulin (IVIG)",
+      "company_id": "shanghai-raas",
+      "modality_id": "recombinant-protein",
+      "therapeutic_area_id": "immunology",
+      "indication_zh": "原发性免疫缺陷、特发性血小板减少性紫癜、川崎病等",
+      "indication_en": "Primary immunodeficiency, ITP, Kawasaki disease",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": true,
+      "region": "greater_china",
+      "sources": [
+        {
+          "url": "https://stockanalysis.com/quote/she/002252/revenue/",
+          "title": "Shanghai RAAS Revenue",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "shanghai-yizhong-paclitaxel-micelle",
+      "name_zh": "紫杉醇聚合物胶束注射液",
+      "name_en": "Paclitaxel Polymeric Micelle Injection",
+      "brand_name": "Paclitaxel Polymeric Micelle Injection",
+      "company_id": "shanghai-yizhong-pharma",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "oncology",
+      "indication_zh": "晚期非小细胞肺癌（一线联合化疗）",
+      "indication_en": "Advanced non-small cell lung cancer (first-line combination chemotherapy)",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "sources": [
+        {
+          "url": "https://data.pharmacodia.com/drugs/details/1778306310551372029",
+          "title": "Paclitaxel Polymeric Micelles – Pharmacodia",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "shanghai-zesheng-neucardin",
+      "name_zh": "重组人纽兰格林（纽卡定）注射液",
+      "name_en": "Recombinant Human Neuregulin-1 (Neucardin) Injection",
+      "brand_name": "纽卡定",
+      "company_id": "shanghai-zesheng",
+      "modality_id": "recombinant-protein",
+      "therapeutic_area_id": "cardiometabolic",
+      "indication_zh": "慢性心力衰竭（包括射血分数降低型及舒张性心衰）",
+      "indication_en": "Chronic heart failure (HFrEF and HFpEF); Phase 3 in China and US",
+      "approval_status": "ph3",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "sources": [
+        {
+          "url": "https://bydrug.pharmcube.com/news/detail/fff72a91fd9060ae1d04c6cc472d8382",
+          "title": "Zensun Phase III ZS-01-308 – Pharmcube",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "shenyang-sinqi-atropine",
+      "name_zh": "硫酸阿托品滴眼液（0.01%）",
+      "name_en": "Atropine Sulfate Eye Drops 0.01%",
+      "brand_name": "Atropine Sulfate Eye Drops 0.01%",
+      "company_id": "shenyang-sinqi-eye",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "ophthalmology",
+      "indication_zh": "儿童近视防控",
+      "indication_en": "Myopia control in children",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "sources": [
+        {
+          "url": "https://news.futunn.com/en/post/49261511/shenyang-xingqi-pharmaceutical-300573-significant-narrowing-of-expenses-in-q3",
+          "title": "Sinqi Atropine Analysis – Futunn",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "shenyang-sinqi-ophthalmic-anti-infective",
+      "name_zh": "眼科抗感染制剂（多品种）",
+      "name_en": "Ophthalmic Anti-infective Formulations (multiple)",
+      "brand_name": "Ophthalmic Anti-infective Formulations (multiple)",
+      "company_id": "shenyang-sinqi-eye",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "ophthalmology",
+      "indication_zh": "眼部细菌性/病毒性感染",
+      "indication_en": "Ocular bacterial and viral infections",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "sources": [
+        {
+          "url": "https://finance.yahoo.com/quote/300573.SZ/profile/",
+          "title": "Sinqi Profile – Yahoo Finance",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "shandong-wit-dary-azithromycin",
+      "name_zh": "阿奇霉素颗粒",
+      "name_en": "Azithromycin Granules",
+      "brand_name": "Azithromycin Granules",
+      "company_id": "shandong-wit-dary",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "infectious-disease",
+      "indication_zh": "儿童呼吸道及皮肤感染（口服阿奇霉素颗粒剂）",
+      "indication_en": "Paediatric respiratory and skin infections (oral azithromycin granules)",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "sources": [
+        {
+          "url": "https://sg.finance.yahoo.com/quote/000915.SZ/",
+          "title": "Shandong Wit Dyne – Yahoo Finance",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    }
+  ]
+}

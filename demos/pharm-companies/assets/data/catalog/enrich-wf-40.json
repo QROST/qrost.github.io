@@ -1,0 +1,341 @@
+{
+  "shard": "enrich-wf-40",
+  "products": [
+    {
+      "id": "zelgen-donafenib-hcc",
+      "name_zh": "多纳非尼片（甲磺酸多纳非尼）",
+      "name_en": "Donafenib Tosilate Tablets",
+      "brand_name": "Zepsun (泽普生)",
+      "company_id": "zelgen",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "oncology",
+      "indication_zh": "晚期肝细胞癌；放射性碘难治性分化型甲状腺癌",
+      "indication_en": "Advanced hepatocellular carcinoma (HCC); radioactive iodine-refractory differentiated thyroid cancer",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "sources": [
+        {
+          "url": "https://zelgen.com/en/index.php/chanpinxian/",
+          "title": "Zelgen Pipeline - Official Website",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "zelgen-gecacitinib-mf",
+      "name_zh": "盐酸杰克替尼片",
+      "name_en": "Gecacitinib Hydrochloride Tablets",
+      "brand_name": "Zepuping (泽普平)",
+      "company_id": "zelgen",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "hematology",
+      "indication_zh": "中高危骨髓纤维化；重度斑秃；强直性脊柱炎；特应性皮炎",
+      "indication_en": "Intermediate/high-risk myelofibrosis; severe alopecia areata; ankylosing spondylitis; atopic dermatitis",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "sources": [
+        {
+          "url": "https://zelgen.com/en/index.php/chanpinxian/",
+          "title": "Zelgen Pipeline - Official Website",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "zelgen-rh-thrombin",
+      "name_zh": "重组人凝血酶",
+      "name_en": "Recombinant Human Thrombin",
+      "brand_name": "Zepuning (泽普宁)",
+      "company_id": "zelgen",
+      "modality_id": "recombinant-protein",
+      "therapeutic_area_id": "hematology",
+      "indication_zh": "手术中局部止血",
+      "indication_en": "Hemostasis support during surgery",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "sources": [
+        {
+          "url": "https://zelgen.com/en/index.php/chanpinxian/",
+          "title": "Zelgen Pipeline - Official Website",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "zelgen-thyrotropin-beta",
+      "name_zh": "人促甲状腺素β",
+      "name_en": "Human Thyrotropin Beta",
+      "brand_name": "Zesuning (泽速宁)",
+      "company_id": "zelgen",
+      "modality_id": "recombinant-protein",
+      "therapeutic_area_id": "oncology",
+      "indication_zh": "分化型甲状腺癌疗效评估",
+      "indication_en": "Assessment of differentiated thyroid cancer",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "sources": [
+        {
+          "url": "https://zelgen.com/en/index.php/chanpinxian/",
+          "title": "Zelgen Pipeline - Official Website",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "zelgen-zg005-bispecific",
+      "name_zh": "ZG005（Nilvanstomig）",
+      "name_en": "ZG005 (Nilvanstomig) PD-1/TIGIT Bispecific Antibody",
+      "brand_name": "ZG005 (Nilvanstomig) PD-1/TIGIT Bispecific Antibody",
+      "company_id": "zelgen",
+      "modality_id": "bispecific-antibody",
+      "therapeutic_area_id": "oncology",
+      "indication_zh": "晚期实体瘤",
+      "indication_en": "Advanced solid tumors",
+      "approval_status": "ph3",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "sources": [
+        {
+          "url": "https://zelgen.com/en/index.php/chanpinxian/",
+          "title": "Zelgen Pipeline - Official Website",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "zelgen-zg006-trispecific",
+      "name_zh": "ZG006（Alveltamig）",
+      "name_en": "ZG006 (Alveltamig) DLL3-targeting Trispecific Antibody",
+      "brand_name": "ZG006 (Alveltamig) DLL3-targeting Trispecific Antibody",
+      "company_id": "zelgen",
+      "modality_id": "bispecific-antibody",
+      "therapeutic_area_id": "oncology",
+      "indication_zh": "晚期实体瘤（DLL3靶向）",
+      "indication_en": "Advanced solid tumors (DLL3-targeting)",
+      "approval_status": "ph3",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "sources": [
+        {
+          "url": "https://zelgen.com/en/index.php/chanpinxian/",
+          "title": "Zelgen Pipeline - Official Website",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "zhaoke-nvk002-myopia",
+      "name_zh": "NVK002（低浓度阿托品滴眼液）",
+      "name_en": "NVK002 (Low-concentration Atropine Eye Drops)",
+      "brand_name": "NVK002 (Low-concentration Atropine Eye Drops)",
+      "company_id": "zhaoke-ophthalmology",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "ophthalmology",
+      "indication_zh": "近视控制",
+      "indication_en": "Myopia control",
+      "approval_status": "filed",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "sources": [
+        {
+          "url": "https://stockanalysis.com/quote/hkg/6622/company/",
+          "title": "Zhaoke Ophthalmology Company Profile",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "zhaoke-csa-ded",
+      "name_zh": "环孢素眼用凝胶（CsA Ophthalmic Gel）",
+      "name_en": "CsA Ophthalmic Gel (Cyclosporine A Ophthalmic Gel)",
+      "brand_name": "CsA Ophthalmic Gel (Cyclosporine A Ophthalmic Gel)",
+      "company_id": "zhaoke-ophthalmology",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "ophthalmology",
+      "indication_zh": "干眼病（DED）",
+      "indication_en": "Dry eye disease (DED)",
+      "approval_status": "filed",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "sources": [
+        {
+          "url": "https://www.zkoph.com/about?lang=en",
+          "title": "Zhaoke Ophthalmology About Us",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "zhaoke-tab014-wamd",
+      "name_zh": "TAB014（抗VEGF单抗）",
+      "name_en": "TAB014 (Anti-VEGF Monoclonal Antibody)",
+      "brand_name": "TAB014 (Anti-VEGF Monoclonal Antibody)",
+      "company_id": "zhaoke-ophthalmology",
+      "modality_id": "mab",
+      "therapeutic_area_id": "ophthalmology",
+      "indication_zh": "湿性年龄相关性黄斑变性（wAMD）",
+      "indication_en": "Wet age-related macular degeneration (wAMD)",
+      "approval_status": "filed",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "sources": [
+        {
+          "url": "https://stockanalysis.com/quote/hkg/6622/company/",
+          "title": "Zhaoke Ophthalmology Company Profile",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "yunnan-datang-alstonia-cough",
+      "name_zh": "满山红素片",
+      "name_en": "Alstonia scholaris Tablets",
+      "brand_name": "Alstonia scholaris Tablets",
+      "company_id": "yunnan-datang-hanfang",
+      "modality_id": "tcm-formula",
+      "therapeutic_area_id": "respiratory",
+      "indication_zh": "咳嗽",
+      "indication_en": "Cough",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "sources": [
+        {
+          "url": "https://synapse.patsnap.com/organization/58b8b737d921737598caa301c1d5f9af",
+          "title": "Yunnan Datang Hanfang Pharmaceutical - Synapse Patsnap",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "zenkom-dexketoprofen",
+      "name_zh": "右旋酮洛芬氨丁三醇注射液",
+      "name_en": "Dexketoprofen Trometamol Injection",
+      "brand_name": "Dexketoprofen Trometamol Injection",
+      "company_id": "zenkom-pharma",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "immunology",
+      "indication_zh": "术后疼痛、绞痛",
+      "indication_en": "Postoperative pain and colic",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "sources": [
+        {
+          "url": "https://synapse.patsnap.com/organization/da5ca259590825332b4d973a6bf0c105",
+          "title": "Nanjing Zenkom Pharmaceutical - Synapse Patsnap",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "zhejiang-conba-qianliekang",
+      "name_zh": "前列康舒尿通胶囊/片",
+      "name_en": "Qianliekang Pule'an Tablets/Capsules",
+      "brand_name": "前列康 (Qianliekang)",
+      "company_id": "zhejiang-conba",
+      "modality_id": "tcm-formula",
+      "therapeutic_area_id": "immunology",
+      "indication_zh": "前列腺增生，辅助改善排尿功能",
+      "indication_en": "Benign prostatic hyperplasia; adjunctive improvement of urinary function",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "sources": [
+        {
+          "url": "https://baike.baidu.com/en/item/Zhejiang%20Conba%20Pharmaceutical%20Co.,Ltd./932259",
+          "title": "Zhejiang Conba Pharmaceutical - Baike Baidu",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "zhejiang-conba-tianbaoning",
+      "name_zh": "天保宁银杏叶片/胶囊",
+      "name_en": "Tianbaoning Ginkgo Leaf Tablets/Capsules",
+      "brand_name": "天保宁 (Tianbaoning)",
+      "company_id": "zhejiang-conba",
+      "modality_id": "tcm-formula",
+      "therapeutic_area_id": "cardiometabolic",
+      "indication_zh": "脑血管疾病、冠心病辅助治疗",
+      "indication_en": "Adjunctive treatment for cerebrovascular disease and coronary heart disease",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "sources": [
+        {
+          "url": "https://baike.baidu.com/en/item/Zhejiang%20Conba%20Pharmaceutical%20Co.,Ltd./932259",
+          "title": "Zhejiang Conba Pharmaceutical - Baike Baidu",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "yunnan-longfa-wujin-capsule",
+      "name_zh": "乌金活血止痛胶囊",
+      "name_en": "Wujin Huoxue Zhitong Capsules",
+      "brand_name": "Wujin Huoxue Zhitong Capsules",
+      "company_id": "yunnan-longfa",
+      "modality_id": "tcm-formula",
+      "therapeutic_area_id": "immunology",
+      "indication_zh": "活血化瘀，止痛消肿",
+      "indication_en": "Promoting blood circulation and relieving pain and swelling",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "sources": [
+        {
+          "url": "http://pdf.dfcfw.com/pdf/H2_AN201804241129038828_1.pdf",
+          "title": "云南龙发制药 NEEQ 871290 2017年度报告",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    }
+  ]
+}

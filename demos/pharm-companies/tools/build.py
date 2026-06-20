@@ -38,6 +38,13 @@ def load(path: Path):
         return json.load(f)
 
 
+def to_float(x):
+    try:
+        return float(x)
+    except (TypeError, ValueError):
+        return 0.0
+
+
 def write_json(path: Path, obj) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(json.dumps(obj, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
@@ -96,7 +103,7 @@ def merge_research() -> None:
             prev = sites.get(sid)
             # On id collision keep the higher-confidence site, so a precise enrichment HQ
             # is never clobbered by the coarse city-centroid geocode (conf 0.6).
-            if prev and (prev.get("confidence", 0) or 0) > (s.get("confidence", 0) or 0):
+            if prev and to_float(prev.get("confidence")) > to_float(s.get("confidence")):
                 continue
             sites[sid] = s
         for m in d.get("milestones", []):
@@ -207,11 +214,27 @@ def merge_research() -> None:
             keep = hq_by_co.get(co)
             if keep is None:
                 hq_by_co[co] = sid
-            elif (sites[keep].get("confidence", 0) or 0) >= (s.get("confidence", 0) or 0):
+            elif to_float(sites[keep].get("confidence")) >= to_float(s.get("confidence")):
                 del sites[sid]
             else:
                 del sites[keep]; hq_by_co[co] = sid
         print(f"  dedup: merged {len(remap)} duplicate company id(s) into canonical entries")
+
+    # product.region <- its company's region (denormalized); drop orphans; global product-id dedup
+    region_by_co = {cid: c.get("region") for cid, c in companies.items()}
+    seen_pid: dict = {}
+    dropped_p = 0
+    for shard in list(catalog.keys()):
+        for pid in list(catalog[shard].keys()):
+            p = catalog[shard][pid]
+            co = p.get("company_id")
+            if co not in companies or pid in seen_pid:
+                del catalog[shard][pid]; dropped_p += 1; continue
+            if region_by_co.get(co):
+                p["region"] = region_by_co[co]
+            seen_pid[pid] = shard
+    if dropped_p:
+        print(f"  product cleanup: dropped {dropped_p} orphan/duplicate product id(s)")
 
     write_json(DATA / "companies.json", {"companies": list(companies.values())})
     write_json(DATA / "sites.json", {"sites": list(sites.values())})

@@ -1,0 +1,125 @@
+{
+  "shard": "enrich-wf-58",
+  "products": [
+    {
+      "id": "adimmune-adimflu-s",
+      "name_zh": "四价流感疫苗",
+      "name_en": "Quadrivalent Influenza Vaccine",
+      "brand_name": "AdimFlu-S",
+      "company_id": "adimmune",
+      "modality_id": "inactivated-vaccine",
+      "therapeutic_area_id": "vaccines",
+      "indication_zh": "流感预防",
+      "indication_en": "Prevention of seasonal influenza",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "other_apac",
+      "sources": [
+        {
+          "url": "https://en.wikipedia.org/wiki/Adimmune",
+          "title": "Adimmune - Wikipedia",
+          "accessed": "2026-06"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "race-oncology-rcds1",
+      "name_zh": "RCDS1（RC220，比山蒽定制剂）",
+      "name_en": "RCDS1 / RC220 (bisantrene formulation)",
+      "brand_name": "RCDS1 / RC220 (bisantrene formulation)",
+      "company_id": "race-oncology",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "oncology",
+      "indication_zh": "急性髓系白血病（三期）；EGFRm非小细胞肺癌（一期）",
+      "indication_en": "Acute myeloid leukaemia (Phase 3); EGFRm NSCLC Phase 1a/b; combination with doxorubicin Phase 1a/b",
+      "approval_status": "ph3",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "oceania",
+      "sources": [
+        {
+          "url": "https://stockanalysis.com/quote/asx/RAC/company/",
+          "title": "Racura Oncology Company Profile",
+          "accessed": "2026-06"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "abl-bio-abl301",
+      "name_zh": "ABL301（SAR446159）",
+      "name_en": "ABL301 / SAR446159",
+      "brand_name": "ABL301 / SAR446159",
+      "company_id": "abl-bio",
+      "modality_id": "bispecific-antibody",
+      "therapeutic_area_id": "neuroscience",
+      "indication_zh": "帕金森病（α-突触核蛋白/IGF1R双特异性抗体，BBB穿越）",
+      "indication_en": "Parkinson's disease — bispecific antibody targeting alpha-synuclein and IGF1R with blood-brain barrier penetration; partnered with Sanofi",
+      "approval_status": "ph1",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "other_apac",
+      "sources": [
+        {
+          "url": "https://www.prnewswire.com/news-releases/abl-bio-enters-global-collaboration-and-license-agreement-with-sanofi-to-advance-abl301-for-the-treatment-of-parkinsons-disease-301458951.html",
+          "title": "ABL Bio–Sanofi Press Release",
+          "accessed": "2026-06"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "abl-bio-abl001",
+      "name_zh": "ABL001（托维西单抗）",
+      "name_en": "ABL001 (Tovecimig)",
+      "brand_name": "ABL001 (Tovecimig)",
+      "company_id": "abl-bio",
+      "modality_id": "bispecific-antibody",
+      "therapeutic_area_id": "oncology",
+      "indication_zh": "实体瘤免疫治疗，已获FDA快速通道资格",
+      "indication_en": "Solid tumor immuno-oncology; FDA fast track designation",
+      "approval_status": "ph2",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "other_apac",
+      "sources": [
+        {
+          "url": "https://www.koreabiomed.com/news/articleView.html?idxno=32004",
+          "title": "ABL Bio Grabody-T clinical progress - Korea BioMed",
+          "accessed": "2026-06"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "ajanta-pharma-ophtha",
+      "name_zh": "阿贾塔眼科专科制剂系列",
+      "name_en": "Ajanta Pharma Ophthalmic Specialty Portfolio",
+      "brand_name": "Ajanta Pharma Ophthalmic Specialty Portfolio",
+      "company_id": "ajanta-pharma",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "ophthalmology",
+      "indication_zh": "青光眼、干眼症及其他眼科适应证",
+      "indication_en": "Glaucoma, dry eye and various ophthalmic indications; branded generics",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "other_apac",
+      "sources": [
+        {
+          "url": "https://www.ajantapharma.com/ajanta/r_and_d",
+          "title": "Ajanta Pharma R&D",
+          "accessed": "2026-06"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    }
+  ]
+}

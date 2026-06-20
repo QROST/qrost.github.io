@@ -1,0 +1,365 @@
+{
+  "shard": "enrich-wf-0",
+  "products": [
+    {
+      "id": "masitinib-human",
+      "name_zh": "马西替尼（人类适应症）",
+      "name_en": "Masitinib (human indications)",
+      "brand_name": "Masitinib (human indications)",
+      "company_id": "ab-science",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "oncology",
+      "indication_zh": "AML（AB8939化合物）、皮肤T细胞淋巴瘤（CTCL）、ALS、多发性硬化、系统性肥大细胞增多症、病毒性疾病",
+      "indication_en": "AML (compound AB8939), cutaneous T-cell lymphoma, ALS, multiple sclerosis, systemic mastocytosis, viral diseases",
+      "approval_status": "ph3",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "europe",
+      "sources": [
+        {
+          "url": "https://www.ab-science.com/",
+          "title": "AB Science Pipeline",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "masitinib-vet",
+      "name_zh": "马西替尼（兽医适应症）",
+      "name_en": "Masitinib (veterinary)",
+      "brand_name": "Masivet",
+      "company_id": "ab-science",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "oncology",
+      "indication_zh": "犬肥大细胞瘤（已上市）",
+      "indication_en": "Canine mast cell tumours (approved)",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "europe",
+      "sources": [
+        {
+          "url": "https://www.ab-science.com/",
+          "title": "AB Science Website",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "resminostat",
+      "name_zh": "Resminostat",
+      "name_en": "Resminostat",
+      "brand_name": "Kinselby",
+      "company_id": "4sc",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "oncology",
+      "indication_zh": "皮肤T细胞淋巴瘤（CTCL）维持治疗",
+      "indication_en": "Cutaneous T-cell lymphoma (CTCL) maintenance treatment",
+      "approval_status": "filed",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "europe",
+      "sources": [
+        {
+          "url": "https://www.4sc.com/news/4sc-ag-provides-results-for-financial-year-2024-and-outlook-for-2025/",
+          "title": "4SC AG FY2024 Results",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "obefazimod",
+      "name_zh": "Obefazimod",
+      "name_en": "Obefazimod",
+      "brand_name": "ABX464",
+      "company_id": "abivax",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "immunology",
+      "indication_zh": "中重度溃疡性结肠炎（Phase 3，诱导达主要终点）、克罗恩病（Phase 2b）",
+      "indication_en": "Moderately to severely active ulcerative colitis (Phase 3, induction met primary endpoints); Crohn's disease (Phase 2b)",
+      "approval_status": "ph3",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "europe",
+      "sources": [
+        {
+          "url": "https://ir.abivax.com/news-releases/news-release-details/abivax-announces-full-year-2025-financial-results-and-provides/",
+          "title": "Abivax FY2025 Results",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "kl1333",
+      "name_zh": "KL1333",
+      "name_en": "KL1333",
+      "brand_name": "KL1333",
+      "company_id": "abliva",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "rare-disease",
+      "indication_zh": "原发性线粒体疾病（关键性临床试验FALCON，中期分析阳性）",
+      "indication_en": "Primary mitochondrial diseases (pivotal FALCON study, positive interim analysis July 2024)",
+      "approval_status": "ph3",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "europe",
+      "sources": [
+        {
+          "url": "https://view.news.eu.nasdaq.com/view?id=bb35e5aa59e925f99753112bd3f60acd8&lang=en",
+          "title": "Abliva Year-End Report 2024",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "glenzocimab",
+      "name_zh": "Glenzocimab",
+      "name_en": "Glenzocimab",
+      "brand_name": "Glenzocimab",
+      "company_id": "acticor-biotech",
+      "modality_id": "mab",
+      "therapeutic_area_id": "hematology",
+      "indication_zh": "急性缺血性卒中（Phase 2/3 ACTISAVE，未达主要终点；公司已清算）",
+      "indication_en": "Acute ischaemic stroke (Phase 2/3 ACTISAVE, primary endpoint not met; company in liquidation)",
+      "approval_status": "withdrawn",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "europe",
+      "sources": [
+        {
+          "url": "https://www.businesswire.com/news/home/20240424916910/en/ACTICOR-BIOTECH-Topline-Results-of-ACTISAVE-Phase-23-Study-in-Stroke-Treatment",
+          "title": "ACTISAVE Phase 2/3 Results",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "tasquinimod",
+      "name_zh": "Tasquinimod",
+      "name_en": "Tasquinimod",
+      "brand_name": "Tasquinimod",
+      "company_id": "active-biotech",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "oncology",
+      "indication_zh": "骨髓纤维化（临床概念验证研究中）",
+      "indication_en": "Myelofibrosis (proof-of-concept studies)",
+      "approval_status": "ph2",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "europe",
+      "sources": [
+        {
+          "url": "https://www.activebiotech.com/en/mfn_news/active-biotech-year-end-report-2025/",
+          "title": "Active Biotech Year End Report 2025",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "laquinimod",
+      "name_zh": "Laquinimod",
+      "name_en": "Laquinimod",
+      "brand_name": "Laquinimod",
+      "company_id": "active-biotech",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "immunology",
+      "indication_zh": "非感染性葡萄膜炎（Phase I局部眼科制剂已完成）",
+      "indication_en": "Non-infectious uveitis (topical ophthalmic Phase I completed)",
+      "approval_status": "ph2",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "europe",
+      "sources": [
+        {
+          "url": "https://www.activebiotech.com/en/mfn_news/active-biotech-year-end-report-2025/",
+          "title": "Active Biotech Year End Report 2025",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "biochaperone-lispro",
+      "name_zh": "BioChaperone® Lispro",
+      "name_en": "BioChaperone Lispro",
+      "brand_name": "BioChaperone Lispro",
+      "company_id": "adocia",
+      "modality_id": "recombinant-protein",
+      "therapeutic_area_id": "cardiometabolic",
+      "indication_zh": "1型和2型糖尿病（超速效胰岛素，中国Phase 3阳性结果）",
+      "indication_en": "Type 1 and 2 diabetes (ultra-rapid insulin; positive Phase 3 results in China in 2025)",
+      "approval_status": "ph3",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "europe",
+      "sources": [
+        {
+          "url": "https://www.morningstar.com/news/business-wire/20260421362499/adocia-announces-full-year-2025-financial-results-and-provides-a-corporate-and-financial-update",
+          "title": "Adocia FY2025 Results",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "mitazalimab",
+      "name_zh": "Mitazalimab",
+      "name_en": "Mitazalimab",
+      "brand_name": "Mitazalimab",
+      "company_id": "alligator-bioscience",
+      "modality_id": "mab",
+      "therapeutic_area_id": "oncology",
+      "indication_zh": "转移性胰腺癌一线（Phase 2 OPTIMIZE-1已显示30个月生存数据优于化疗；准备进入Phase 3）",
+      "indication_en": "First-line metastatic pancreatic cancer (Phase 2 OPTIMIZE-1; 30-month survival 29.4% vs chemotherapy estimate; Phase 3 preparation)",
+      "approval_status": "ph3",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "europe",
+      "sources": [
+        {
+          "url": "https://alligatorbioscience.se/en/mfn_news/alligator-bioscience-ab-reports-full-year-financial-results-for-2025-and-for-q4-2025-and-provides-a-business-update/",
+          "title": "Alligator Bioscience Full Year 2025 Results",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "avt02-simlandi",
+      "name_zh": "AVT02（阿达木单抗生物类似药）",
+      "name_en": "AVT02 (adalimumab biosimilar)",
+      "brand_name": "SIMLANDI / HUKYNDRA",
+      "company_id": "alvotech",
+      "modality_id": "biosimilar",
+      "therapeutic_area_id": "immunology",
+      "indication_zh": "类风湿关节炎、银屑病、克罗恩病等（Humira®生物类似药，已在50余国获批）",
+      "indication_en": "Rheumatoid arthritis, psoriasis, Crohn's disease and other Humira indications (approved in 50+ countries)",
+      "approval_status": "approved",
+      "drug_class": "biosimilar",
+      "is_blockbuster": true,
+      "region": "europe",
+      "sources": [
+        {
+          "url": "https://investors.alvotech.com/news-releases/news-release-details/alvotech-q4-2025-and-full-year-2025-financial-results",
+          "title": "Alvotech FY2025 Results",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "aef0117",
+      "name_zh": "AEF0117",
+      "name_en": "AEF0117",
+      "brand_name": "AEF0117",
+      "company_id": "aelis-farma",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "neuroscience",
+      "indication_zh": "大麻使用障碍（CUD）（Phase 2b完成，未达主要终点，部分子组有效）",
+      "indication_en": "Cannabis use disorder (Phase 2b completed; did not meet primary endpoint; significant reduction in subgroups)",
+      "approval_status": "ph2",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "europe",
+      "sources": [
+        {
+          "url": "https://live.euronext.com/en/products/equities/company-news/2025-04-01-aelis-farma-reports-its-2024-annual-financial-results-and",
+          "title": "Aelis Farma 2024 Annual Results",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "alz-101",
+      "name_zh": "ALZ-101",
+      "name_en": "ALZ-101",
+      "brand_name": "ALZ-101",
+      "company_id": "alzinova",
+      "modality_id": "peptide",
+      "therapeutic_area_id": "neuroscience",
+      "indication_zh": "阿尔茨海默病（靶向毒性Aβ寡聚体的治疗性疫苗，FDA快速通道，Phase II准备中）",
+      "indication_en": "Alzheimer's disease (therapeutic vaccine targeting toxic amyloid-beta oligomers; FDA Fast Track; Phase II preparation)",
+      "approval_status": "ph2",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "europe",
+      "sources": [
+        {
+          "url": "https://www.tradingview.com/news/modular_finance:14001be376df0:0-alzinova-publishes-annual-report-for-2025/",
+          "title": "Alzinova Annual Report 2025",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "acd856",
+      "name_zh": "ACD856",
+      "name_en": "ACD856",
+      "brand_name": "ACD856",
+      "company_id": "alzecure-pharma",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "neuroscience",
+      "indication_zh": "阿尔茨海默病（TrkA激动剂，Phase Ib已启动，正在准备Phase II）",
+      "indication_en": "Alzheimer's disease (TrkA agonist; Phase Ib initiated 2025; Phase II preparation with €2.5M EIC grant)",
+      "approval_status": "ph1",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "europe",
+      "sources": [
+        {
+          "url": "https://www.alzecurepharma.se/en/alzecure-pharma-publishes-its-annual-report-for-2025/",
+          "title": "AlzeCure Pharma Annual Report 2025",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "pollinex-quattro",
+      "name_zh": "Pollinex Quattro",
+      "name_en": "Pollinex Quattro",
+      "brand_name": "Pollinex Quattro",
+      "company_id": "allergy-therapeutics",
+      "modality_id": "recombinant-protein",
+      "therapeutic_area_id": "immunology",
+      "indication_zh": "花粉过敏（草粉、树木和草本植物过敏免疫治疗）",
+      "indication_en": "Pollen allergy (grass, tree, and weed allergen-specific immunotherapy)",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "europe",
+      "sources": [
+        {
+          "url": "https://www.allergytherapeutics.com/",
+          "title": "Allergy Therapeutics Website",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    }
+  ]
+}
