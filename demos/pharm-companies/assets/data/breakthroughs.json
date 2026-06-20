@@ -317,6 +317,249 @@
       ]
     },
     {
+      "id": "brukinsa-alpine-superiority-ibrutinib",
+      "date": "2022-12",
+      "company_id": "beigene-star",
+      "product_ids": [
+        "brukinsa"
+      ],
+      "therapeutic_area_id": "hematology",
+      "headline_zh": "Brukinsa（泽布替尼）在ALPINE头对头III期试验中首次证明BTK抑制剂优于伊布替尼",
+      "headline_en": "Brukinsa (zanubrutinib) demonstrates superiority over ibrutinib in head-to-head Phase 3 ALPINE trial — first BTK inhibitor to beat ibrutinib",
+      "before_gap_zh": "伊布替尼（亿珂®，AbbVie/J&J）长期主导BTK抑制剂市场，无竞争对手在随机对照III期试验中证明疗效更优",
+      "before_gap_en": "Ibrutinib (Imbruvica®, AbbVie/J&J) dominated the BTK inhibitor market with no competitor demonstrating superiority in a randomized Phase 3 head-to-head trial",
+      "achievement_zh": "ALPINE试验（652例R/R CLL/SLL患者）证明泽布替尼无进展生存期显著优于伊布替尼（HR=0.65，P=0.002），同时心脏不良事件更少",
+      "achievement_en": "ALPINE trial (652 patients R/R CLL/SLL) showed zanubrutinib achieved significantly longer PFS vs ibrutinib (HR=0.65, P=0.002) with fewer cardiac adverse events; ORR 80.4% vs 72.9% (P=0.0264)",
+      "still_missing_zh": "尚无OS获益数据；伊布替尼在部分CLL亚型中仍广泛使用；泽布替尼在发展中市场可及性有限",
+      "still_missing_en": "Overall survival benefit not yet demonstrated; ibrutinib remains widely used in some CLL subtypes; zanubrutinib access limited in developing markets",
+      "metrics": [
+        {
+          "label_zh": "无进展生存HR（泽布替尼 vs 伊布替尼）",
+          "label_en": "PFS hazard ratio (zanubrutinib vs ibrutinib)",
+          "value": "0.65 (95% CI 0.49-0.86)",
+          "verified": true
+        },
+        {
+          "label_zh": "总缓解率（泽布替尼 vs 伊布替尼）",
+          "label_en": "Overall response rate (zanubrutinib vs ibrutinib)",
+          "value": "80.4% vs 72.9% (P=0.0264)",
+          "verified": true
+        },
+        {
+          "label_zh": "心房颤动/扑动发生率（泽布替尼 vs 伊布替尼）",
+          "label_en": "Atrial fibrillation/flutter rate (zanubrutinib vs ibrutinib)",
+          "value": "5.2% vs 8.6%",
+          "verified": true
+        }
+      ],
+      "evidence_level": "audited",
+      "capability_key": "btk_inhibitor",
+      "incumbent_product_ids": [],
+      "confidence": 0.95,
+      "sources": [
+        {
+          "url": "https://www.nejm.org/doi/full/10.1056/NEJMoa2211582",
+          "title": "NEJM: Zanubrutinib or Ibrutinib in Relapsed or Refractory CLL",
+          "accessed": "2026-06"
+        },
+        {
+          "url": "https://www.ajmc.com/view/final-response-analysis-of-alpine-finds-zanubrutinib-superior-to-ibrutinib-in-r-r-cll",
+          "title": "AJMC: Final ALPINE Analysis",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "ivonescimab-harmoni2-beats-keytruda",
+      "date": "2024-09",
+      "company_id": "akeso",
+      "product_ids": [
+        "ivonescimab"
+      ],
+      "therapeutic_area_id": "oncology",
+      "headline_zh": "依沃西单抗（AK112）在HARMONi-2 III期试验中头对头击败帕博利珠单抗（K药），成为全球首个在随机对照III期中超越K药的药物",
+      "headline_en": "Ivonescimab (AK112) beats pembrolizumab (Keytruda) head-to-head in Phase 3 HARMONi-2 — first drug to demonstrate superiority over Keytruda in a randomized controlled trial",
+      "before_gap_zh": "帕博利珠单抗（K药，默沙东）是一线PD-L1阳性NSCLC标准治疗，无任何药物在随机对照III期中击败过K药单药",
+      "before_gap_en": "Pembrolizumab (Keytruda, MSD/Merck) was the standard first-line monotherapy for PD-L1-positive NSCLC; no drug had ever beaten Keytruda monotherapy in a randomized Phase 3 trial",
+      "achievement_zh": "HARMONi-2（398例中国一线PD-L1+晚期NSCLC患者），依沃西单抗中位PFS 11.14个月 vs 帕博利珠单抗5.82个月（HR=0.51，P<0.0001），降低疾病进展风险49%",
+      "achievement_en": "HARMONi-2 (398 patients, first-line PD-L1+ advanced NSCLC in China): ivonescimab median PFS 11.14 mo vs pembrolizumab 5.82 mo (HR=0.51, P<0.0001); 49% reduction in progression/death risk",
+      "still_missing_zh": "HARMONi-2仅在中国人群中进行；全球多区域III期（HARMONi）尚在进行；总生存数据待成熟；FDA/EMA批准尚未获得",
+      "still_missing_en": "HARMONi-2 conducted only in Chinese patients; global multi-regional Phase 3 (HARMONi) ongoing; overall survival data immature; FDA/EMA approvals not yet obtained",
+      "metrics": [
+        {
+          "label_zh": "PFS风险比（依沃西 vs K药）",
+          "label_en": "PFS hazard ratio (ivonescimab vs pembrolizumab)",
+          "value": "0.51 (P<0.0001)",
+          "verified": true
+        },
+        {
+          "label_zh": "中位PFS（依沃西 vs K药）",
+          "label_en": "Median PFS (ivonescimab vs pembrolizumab)",
+          "value": "11.14 months vs 5.82 months",
+          "verified": true
+        },
+        {
+          "label_zh": "9个月PFS率（依沃西 vs K药）",
+          "label_en": "9-month PFS rate (ivonescimab vs pembrolizumab)",
+          "value": "56% vs 40%",
+          "verified": true
+        }
+      ],
+      "evidence_level": "audited",
+      "capability_key": "pd1_vegf_bispecific",
+      "incumbent_product_ids": [],
+      "confidence": 0.95,
+      "sources": [
+        {
+          "url": "https://www.thelancet.com/journals/lancet/article/PIIS0140-6736(24)02722-3/abstract",
+          "title": "The Lancet: HARMONi-2 Phase 3 study publication",
+          "accessed": "2026-06"
+        },
+        {
+          "url": "https://www.businesswire.com/news/home/20240908828765/en/Ivonescimab-Monotherapy-Reduced-the-Risk-of-Disease-Progression-or-Death-by-49-Compared-to-Pembrolizumab-Monotherapy-in-First-Line-Treatment-of-Patients-with-PD-L1-Positive-Advanced-NSCLC-in-China",
+          "title": "Akeso HARMONi-2 press release",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "cadonilimab-first-bispecific-io-approved",
+      "date": "2022-06",
+      "company_id": "akeso",
+      "product_ids": [
+        "cadonilimab"
+      ],
+      "therapeutic_area_id": "oncology",
+      "headline_zh": "卡度尼利单抗获NMPA批准，成为全球首个用于治疗癌症适应症的双免疫检查点抑制剂",
+      "headline_en": "Cadonilimab approved by NMPA as the world's first bispecific dual immune checkpoint inhibitor (PD-1/CTLA-4) approved for cancer",
+      "before_gap_zh": "双免疫检查点抑制剂长期停留在临床阶段，无任何PD-1/CTLA-4双抗获批上市；肿瘤免疫治疗依赖单靶点单抗（如O药+K药联用方案）",
+      "before_gap_en": "Bispecific dual immune checkpoint inhibitors remained in clinical stage; no PD-1/CTLA-4 bispecific had been approved; combination IO relied on two separate monotherapy antibodies (e.g. nivolumab + ipilimumab)",
+      "achievement_zh": "卡度尼利单抗（AK104）2022年6月获NMPA批准用于宫颈癌，单分子同时阻断PD-1和CTLA-4，开创肿瘤双免疫检查点抑制剂时代",
+      "achievement_en": "Cadonilimab (AK104) received NMPA approval in June 2022 for cervical cancer; single molecule simultaneously blocking PD-1 and CTLA-4; inaugurates the era of bispecific dual IO therapy",
+      "still_missing_zh": "FDA/EMA全球批准尚待获得；在PD-L1高表达患者中相对K药的优效性尚未在头对头III期中证明",
+      "still_missing_en": "FDA/EMA global approvals not yet achieved; superiority vs pembrolizumab in PD-L1 high expressors not yet demonstrated in head-to-head Phase 3",
+      "metrics": [
+        {
+          "label_zh": "批准时间",
+          "label_en": "Approval date",
+          "value": "June 2022 (NMPA)",
+          "verified": true
+        },
+        {
+          "label_zh": "全球首个",
+          "label_en": "Global first",
+          "value": "First bispecific dual IO approved for cancer globally",
+          "verified": true
+        }
+      ],
+      "evidence_level": "audited",
+      "capability_key": "pd1_ctla4_bispecific",
+      "incumbent_product_ids": [],
+      "confidence": 0.92,
+      "sources": [
+        {
+          "url": "https://www.prnewswire.com/news-releases/akesos-cadonilimab-pd-1ctla-4-the-first-dual-immune-checkpoint-inhibitor-to-treat-cancer-approved-for-marketing-in-china-301577866.html",
+          "title": "Akeso Cadonilimab First Global Approval Press Release",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "toripalimab-fda-first-npc",
+      "date": "2023-10",
+      "company_id": "junshi-biosciences-star",
+      "product_ids": [
+        "toripalimab"
+      ],
+      "therapeutic_area_id": "oncology",
+      "headline_zh": "特瑞普利单抗（LOQTORZI®）获FDA批准，成为全球首个获批治疗鼻咽癌的药物，填补东亚高发癌症治疗空白",
+      "headline_en": "Toripalimab (LOQTORZI®) receives FDA approval as the world's first approved therapy for nasopharyngeal carcinoma (NPC) — addressing a long-unmet need in an East Asia-prevalent cancer",
+      "before_gap_zh": "鼻咽癌无FDA批准药物；该癌症在东南亚、中国南部高发，全球每年新发约13万例，西方制药公司缺乏研发动力",
+      "before_gap_en": "No FDA-approved therapy existed for NPC; this cancer predominates in Southeast Asia and South China (~130,000 new cases/year globally) but lacked Western R&D investment due to geographic mismatch",
+      "achievement_zh": "2023年10月FDA批准LOQTORZI（特瑞普利单抗）用于鼻咽癌全线治疗，基于JUPITER-02（III期）和POLARIS-02（II期），一线联合化疗使PFS风险降低48%",
+      "achievement_en": "FDA approved LOQTORZI (toripalimab-tpzi) in October 2023 for all lines of NPC; based on JUPITER-02 Phase 3 (48% PFS reduction vs chemo alone) and POLARIS-02 Phase 2; first China-origin IO drug to gain FDA approval",
+      "still_missing_zh": "OS数据仍在成熟中；EMA批准尚未获得；在低收入高发地区可及性受限于价格",
+      "still_missing_en": "OS data still maturing; EMA approval not yet obtained; access in low-income high-prevalence regions limited by price",
+      "metrics": [
+        {
+          "label_zh": "JUPITER-02中位PFS改善（联合化疗 vs 化疗）",
+          "label_en": "JUPITER-02 PFS HR vs chemotherapy (combination)",
+          "value": "HR=0.52 (48% reduction in progression/death)",
+          "verified": true
+        },
+        {
+          "label_zh": "首个FDA批准治疗NPC的药物",
+          "label_en": "First FDA-approved NPC therapy",
+          "value": "October 27, 2023",
+          "verified": true
+        }
+      ],
+      "evidence_level": "audited",
+      "capability_key": "pd1_inhibitor",
+      "incumbent_product_ids": [],
+      "confidence": 0.93,
+      "sources": [
+        {
+          "url": "https://www.globenewswire.com/news-release/2023/10/27/2768663/0/en/Coherus-and-Junshi-Biosciences-Announce-FDA-Approval-of-LOQTORZI-toripalimab-tpzi-in-All-Lines-of-Treatment-for-Recurrent-or-Metastatic-Nasopharyngeal-Carcinoma-NPC.html",
+          "title": "FDA Approval of LOQTORZI for NPC",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "cilta-cel-carvykti-china-cart-global",
+      "date": "2022-02",
+      "company_id": "legend-biotech",
+      "product_ids": [
+        "cilta-cel"
+      ],
+      "therapeutic_area_id": "hematology",
+      "headline_zh": "Carvykti（西达基奥仑赛）获FDA批准，中国CAR-T疗法首次进入全球一线市场，2024年销售额接近10亿美元",
+      "headline_en": "Carvykti (ciltacabtagene autoleucel) receives FDA approval — China-originated CAR-T enters the global market and approaches $1B in sales by 2024",
+      "before_gap_zh": "BCMA CAR-T（如ide-cel/百慕塔基奥仑赛）率先获批，但中国来源的CAR-T疗法无法进入美国/欧洲市场",
+      "before_gap_en": "BCMA CAR-T space existed (ide-cel/idecabtagene vicleucel first approved 2021), but no China-originated CAR-T had entered the US/European markets",
+      "achievement_zh": "Carvykti 2022年2月FDA获批（R/R MM），2022年EMA获批，CARTITUDE-4 III期证明早线优于标准治疗，2024年全球净贸易销售额达9.63亿美元",
+      "achievement_en": "Carvykti received FDA approval February 2022 (R/R MM ≥4 prior lines), EMA approval in 2022; CARTITUDE-4 Phase 3 showed superiority in earlier lines; net trade sales $963M in FY2024",
+      "still_missing_zh": "生产能力扩张是瓶颈（个性化制造）；中国内地NMPA批准用于更多适应症；全球BCMA CAR-T竞争加剧",
+      "still_missing_en": "Manufacturing capacity remains a bottleneck (personalized autologous manufacturing); broader NMPA indications in mainland China; competition from other BCMA CAR-Ts intensifying",
+      "metrics": [
+        {
+          "label_zh": "2024年净贸易销售额",
+          "label_en": "FY2024 net trade sales",
+          "value": "$963 million USD",
+          "verified": true
+        },
+        {
+          "label_zh": "治疗患者总数",
+          "label_en": "Total patients treated",
+          "value": ">5,000 as of end 2024",
+          "verified": true
+        },
+        {
+          "label_zh": "MRD阴性率（CARTITUDE-4）",
+          "label_en": "MRD negativity rate (CARTITUDE-4)",
+          "value": "89% of evaluable patients at 10⁻⁵",
+          "verified": true
+        }
+      ],
+      "evidence_level": "audited",
+      "capability_key": "bcma_car_t",
+      "incumbent_product_ids": [],
+      "confidence": 0.93,
+      "sources": [
+        {
+          "url": "https://www.globenewswire.com/news-release/2025/03/11/3040406/0/en/Legend-Biotech-Reports-Fourth-Quarter-and-Full-Year-2024-Results-and-Recent-Highlights.html",
+          "title": "Legend Biotech Full Year 2024 Results",
+          "accessed": "2026-06"
+        },
+        {
+          "url": "https://investors.legendbiotech.com/news-releases/news-release-details/legend-biotechs-carvyktir-ciltacabtagene-autoleucel-becomes",
+          "title": "Carvykti second-line FDA approval press release",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
       "id": "hutchmed-fruzaqla-fda-2023",
       "date": "2023-11",
       "company_id": "hutchmed",
@@ -822,249 +1065,6 @@
       ],
       "product_ids": [
         "sct800"
-      ]
-    },
-    {
-      "id": "brukinsa-alpine-superiority-ibrutinib",
-      "date": "2022-12",
-      "company_id": "beigene-star",
-      "product_ids": [
-        "brukinsa"
-      ],
-      "therapeutic_area_id": "hematology",
-      "headline_zh": "Brukinsa（泽布替尼）在ALPINE头对头III期试验中首次证明BTK抑制剂优于伊布替尼",
-      "headline_en": "Brukinsa (zanubrutinib) demonstrates superiority over ibrutinib in head-to-head Phase 3 ALPINE trial — first BTK inhibitor to beat ibrutinib",
-      "before_gap_zh": "伊布替尼（亿珂®，AbbVie/J&J）长期主导BTK抑制剂市场，无竞争对手在随机对照III期试验中证明疗效更优",
-      "before_gap_en": "Ibrutinib (Imbruvica®, AbbVie/J&J) dominated the BTK inhibitor market with no competitor demonstrating superiority in a randomized Phase 3 head-to-head trial",
-      "achievement_zh": "ALPINE试验（652例R/R CLL/SLL患者）证明泽布替尼无进展生存期显著优于伊布替尼（HR=0.65，P=0.002），同时心脏不良事件更少",
-      "achievement_en": "ALPINE trial (652 patients R/R CLL/SLL) showed zanubrutinib achieved significantly longer PFS vs ibrutinib (HR=0.65, P=0.002) with fewer cardiac adverse events; ORR 80.4% vs 72.9% (P=0.0264)",
-      "still_missing_zh": "尚无OS获益数据；伊布替尼在部分CLL亚型中仍广泛使用；泽布替尼在发展中市场可及性有限",
-      "still_missing_en": "Overall survival benefit not yet demonstrated; ibrutinib remains widely used in some CLL subtypes; zanubrutinib access limited in developing markets",
-      "metrics": [
-        {
-          "label_zh": "无进展生存HR（泽布替尼 vs 伊布替尼）",
-          "label_en": "PFS hazard ratio (zanubrutinib vs ibrutinib)",
-          "value": "0.65 (95% CI 0.49-0.86)",
-          "verified": true
-        },
-        {
-          "label_zh": "总缓解率（泽布替尼 vs 伊布替尼）",
-          "label_en": "Overall response rate (zanubrutinib vs ibrutinib)",
-          "value": "80.4% vs 72.9% (P=0.0264)",
-          "verified": true
-        },
-        {
-          "label_zh": "心房颤动/扑动发生率（泽布替尼 vs 伊布替尼）",
-          "label_en": "Atrial fibrillation/flutter rate (zanubrutinib vs ibrutinib)",
-          "value": "5.2% vs 8.6%",
-          "verified": true
-        }
-      ],
-      "evidence_level": "audited",
-      "capability_key": "btk_inhibitor",
-      "incumbent_product_ids": [],
-      "confidence": 0.95,
-      "sources": [
-        {
-          "url": "https://www.nejm.org/doi/full/10.1056/NEJMoa2211582",
-          "title": "NEJM: Zanubrutinib or Ibrutinib in Relapsed or Refractory CLL",
-          "accessed": "2026-06"
-        },
-        {
-          "url": "https://www.ajmc.com/view/final-response-analysis-of-alpine-finds-zanubrutinib-superior-to-ibrutinib-in-r-r-cll",
-          "title": "AJMC: Final ALPINE Analysis",
-          "accessed": "2026-06"
-        }
-      ]
-    },
-    {
-      "id": "ivonescimab-harmoni2-beats-keytruda",
-      "date": "2024-09",
-      "company_id": "akeso",
-      "product_ids": [
-        "ivonescimab"
-      ],
-      "therapeutic_area_id": "oncology",
-      "headline_zh": "依沃西单抗（AK112）在HARMONi-2 III期试验中头对头击败帕博利珠单抗（K药），成为全球首个在随机对照III期中超越K药的药物",
-      "headline_en": "Ivonescimab (AK112) beats pembrolizumab (Keytruda) head-to-head in Phase 3 HARMONi-2 — first drug to demonstrate superiority over Keytruda in a randomized controlled trial",
-      "before_gap_zh": "帕博利珠单抗（K药，默沙东）是一线PD-L1阳性NSCLC标准治疗，无任何药物在随机对照III期中击败过K药单药",
-      "before_gap_en": "Pembrolizumab (Keytruda, MSD/Merck) was the standard first-line monotherapy for PD-L1-positive NSCLC; no drug had ever beaten Keytruda monotherapy in a randomized Phase 3 trial",
-      "achievement_zh": "HARMONi-2（398例中国一线PD-L1+晚期NSCLC患者），依沃西单抗中位PFS 11.14个月 vs 帕博利珠单抗5.82个月（HR=0.51，P<0.0001），降低疾病进展风险49%",
-      "achievement_en": "HARMONi-2 (398 patients, first-line PD-L1+ advanced NSCLC in China): ivonescimab median PFS 11.14 mo vs pembrolizumab 5.82 mo (HR=0.51, P<0.0001); 49% reduction in progression/death risk",
-      "still_missing_zh": "HARMONi-2仅在中国人群中进行；全球多区域III期（HARMONi）尚在进行；总生存数据待成熟；FDA/EMA批准尚未获得",
-      "still_missing_en": "HARMONi-2 conducted only in Chinese patients; global multi-regional Phase 3 (HARMONi) ongoing; overall survival data immature; FDA/EMA approvals not yet obtained",
-      "metrics": [
-        {
-          "label_zh": "PFS风险比（依沃西 vs K药）",
-          "label_en": "PFS hazard ratio (ivonescimab vs pembrolizumab)",
-          "value": "0.51 (P<0.0001)",
-          "verified": true
-        },
-        {
-          "label_zh": "中位PFS（依沃西 vs K药）",
-          "label_en": "Median PFS (ivonescimab vs pembrolizumab)",
-          "value": "11.14 months vs 5.82 months",
-          "verified": true
-        },
-        {
-          "label_zh": "9个月PFS率（依沃西 vs K药）",
-          "label_en": "9-month PFS rate (ivonescimab vs pembrolizumab)",
-          "value": "56% vs 40%",
-          "verified": true
-        }
-      ],
-      "evidence_level": "audited",
-      "capability_key": "pd1_vegf_bispecific",
-      "incumbent_product_ids": [],
-      "confidence": 0.95,
-      "sources": [
-        {
-          "url": "https://www.thelancet.com/journals/lancet/article/PIIS0140-6736(24)02722-3/abstract",
-          "title": "The Lancet: HARMONi-2 Phase 3 study publication",
-          "accessed": "2026-06"
-        },
-        {
-          "url": "https://www.businesswire.com/news/home/20240908828765/en/Ivonescimab-Monotherapy-Reduced-the-Risk-of-Disease-Progression-or-Death-by-49-Compared-to-Pembrolizumab-Monotherapy-in-First-Line-Treatment-of-Patients-with-PD-L1-Positive-Advanced-NSCLC-in-China",
-          "title": "Akeso HARMONi-2 press release",
-          "accessed": "2026-06"
-        }
-      ]
-    },
-    {
-      "id": "cadonilimab-first-bispecific-io-approved",
-      "date": "2022-06",
-      "company_id": "akeso",
-      "product_ids": [
-        "cadonilimab"
-      ],
-      "therapeutic_area_id": "oncology",
-      "headline_zh": "卡度尼利单抗获NMPA批准，成为全球首个用于治疗癌症适应症的双免疫检查点抑制剂",
-      "headline_en": "Cadonilimab approved by NMPA as the world's first bispecific dual immune checkpoint inhibitor (PD-1/CTLA-4) approved for cancer",
-      "before_gap_zh": "双免疫检查点抑制剂长期停留在临床阶段，无任何PD-1/CTLA-4双抗获批上市；肿瘤免疫治疗依赖单靶点单抗（如O药+K药联用方案）",
-      "before_gap_en": "Bispecific dual immune checkpoint inhibitors remained in clinical stage; no PD-1/CTLA-4 bispecific had been approved; combination IO relied on two separate monotherapy antibodies (e.g. nivolumab + ipilimumab)",
-      "achievement_zh": "卡度尼利单抗（AK104）2022年6月获NMPA批准用于宫颈癌，单分子同时阻断PD-1和CTLA-4，开创肿瘤双免疫检查点抑制剂时代",
-      "achievement_en": "Cadonilimab (AK104) received NMPA approval in June 2022 for cervical cancer; single molecule simultaneously blocking PD-1 and CTLA-4; inaugurates the era of bispecific dual IO therapy",
-      "still_missing_zh": "FDA/EMA全球批准尚待获得；在PD-L1高表达患者中相对K药的优效性尚未在头对头III期中证明",
-      "still_missing_en": "FDA/EMA global approvals not yet achieved; superiority vs pembrolizumab in PD-L1 high expressors not yet demonstrated in head-to-head Phase 3",
-      "metrics": [
-        {
-          "label_zh": "批准时间",
-          "label_en": "Approval date",
-          "value": "June 2022 (NMPA)",
-          "verified": true
-        },
-        {
-          "label_zh": "全球首个",
-          "label_en": "Global first",
-          "value": "First bispecific dual IO approved for cancer globally",
-          "verified": true
-        }
-      ],
-      "evidence_level": "audited",
-      "capability_key": "pd1_ctla4_bispecific",
-      "incumbent_product_ids": [],
-      "confidence": 0.92,
-      "sources": [
-        {
-          "url": "https://www.prnewswire.com/news-releases/akesos-cadonilimab-pd-1ctla-4-the-first-dual-immune-checkpoint-inhibitor-to-treat-cancer-approved-for-marketing-in-china-301577866.html",
-          "title": "Akeso Cadonilimab First Global Approval Press Release",
-          "accessed": "2026-06"
-        }
-      ]
-    },
-    {
-      "id": "toripalimab-fda-first-npc",
-      "date": "2023-10",
-      "company_id": "junshi-biosciences-star",
-      "product_ids": [
-        "toripalimab"
-      ],
-      "therapeutic_area_id": "oncology",
-      "headline_zh": "特瑞普利单抗（LOQTORZI®）获FDA批准，成为全球首个获批治疗鼻咽癌的药物，填补东亚高发癌症治疗空白",
-      "headline_en": "Toripalimab (LOQTORZI®) receives FDA approval as the world's first approved therapy for nasopharyngeal carcinoma (NPC) — addressing a long-unmet need in an East Asia-prevalent cancer",
-      "before_gap_zh": "鼻咽癌无FDA批准药物；该癌症在东南亚、中国南部高发，全球每年新发约13万例，西方制药公司缺乏研发动力",
-      "before_gap_en": "No FDA-approved therapy existed for NPC; this cancer predominates in Southeast Asia and South China (~130,000 new cases/year globally) but lacked Western R&D investment due to geographic mismatch",
-      "achievement_zh": "2023年10月FDA批准LOQTORZI（特瑞普利单抗）用于鼻咽癌全线治疗，基于JUPITER-02（III期）和POLARIS-02（II期），一线联合化疗使PFS风险降低48%",
-      "achievement_en": "FDA approved LOQTORZI (toripalimab-tpzi) in October 2023 for all lines of NPC; based on JUPITER-02 Phase 3 (48% PFS reduction vs chemo alone) and POLARIS-02 Phase 2; first China-origin IO drug to gain FDA approval",
-      "still_missing_zh": "OS数据仍在成熟中；EMA批准尚未获得；在低收入高发地区可及性受限于价格",
-      "still_missing_en": "OS data still maturing; EMA approval not yet obtained; access in low-income high-prevalence regions limited by price",
-      "metrics": [
-        {
-          "label_zh": "JUPITER-02中位PFS改善（联合化疗 vs 化疗）",
-          "label_en": "JUPITER-02 PFS HR vs chemotherapy (combination)",
-          "value": "HR=0.52 (48% reduction in progression/death)",
-          "verified": true
-        },
-        {
-          "label_zh": "首个FDA批准治疗NPC的药物",
-          "label_en": "First FDA-approved NPC therapy",
-          "value": "October 27, 2023",
-          "verified": true
-        }
-      ],
-      "evidence_level": "audited",
-      "capability_key": "pd1_inhibitor",
-      "incumbent_product_ids": [],
-      "confidence": 0.93,
-      "sources": [
-        {
-          "url": "https://www.globenewswire.com/news-release/2023/10/27/2768663/0/en/Coherus-and-Junshi-Biosciences-Announce-FDA-Approval-of-LOQTORZI-toripalimab-tpzi-in-All-Lines-of-Treatment-for-Recurrent-or-Metastatic-Nasopharyngeal-Carcinoma-NPC.html",
-          "title": "FDA Approval of LOQTORZI for NPC",
-          "accessed": "2026-06"
-        }
-      ]
-    },
-    {
-      "id": "cilta-cel-carvykti-china-cart-global",
-      "date": "2022-02",
-      "company_id": "legend-biotech",
-      "product_ids": [
-        "cilta-cel"
-      ],
-      "therapeutic_area_id": "hematology",
-      "headline_zh": "Carvykti（西达基奥仑赛）获FDA批准，中国CAR-T疗法首次进入全球一线市场，2024年销售额接近10亿美元",
-      "headline_en": "Carvykti (ciltacabtagene autoleucel) receives FDA approval — China-originated CAR-T enters the global market and approaches $1B in sales by 2024",
-      "before_gap_zh": "BCMA CAR-T（如ide-cel/百慕塔基奥仑赛）率先获批，但中国来源的CAR-T疗法无法进入美国/欧洲市场",
-      "before_gap_en": "BCMA CAR-T space existed (ide-cel/idecabtagene vicleucel first approved 2021), but no China-originated CAR-T had entered the US/European markets",
-      "achievement_zh": "Carvykti 2022年2月FDA获批（R/R MM），2022年EMA获批，CARTITUDE-4 III期证明早线优于标准治疗，2024年全球净贸易销售额达9.63亿美元",
-      "achievement_en": "Carvykti received FDA approval February 2022 (R/R MM ≥4 prior lines), EMA approval in 2022; CARTITUDE-4 Phase 3 showed superiority in earlier lines; net trade sales $963M in FY2024",
-      "still_missing_zh": "生产能力扩张是瓶颈（个性化制造）；中国内地NMPA批准用于更多适应症；全球BCMA CAR-T竞争加剧",
-      "still_missing_en": "Manufacturing capacity remains a bottleneck (personalized autologous manufacturing); broader NMPA indications in mainland China; competition from other BCMA CAR-Ts intensifying",
-      "metrics": [
-        {
-          "label_zh": "2024年净贸易销售额",
-          "label_en": "FY2024 net trade sales",
-          "value": "$963 million USD",
-          "verified": true
-        },
-        {
-          "label_zh": "治疗患者总数",
-          "label_en": "Total patients treated",
-          "value": ">5,000 as of end 2024",
-          "verified": true
-        },
-        {
-          "label_zh": "MRD阴性率（CARTITUDE-4）",
-          "label_en": "MRD negativity rate (CARTITUDE-4)",
-          "value": "89% of evaluable patients at 10⁻⁵",
-          "verified": true
-        }
-      ],
-      "evidence_level": "audited",
-      "capability_key": "bcma_car_t",
-      "incumbent_product_ids": [],
-      "confidence": 0.93,
-      "sources": [
-        {
-          "url": "https://www.globenewswire.com/news-release/2025/03/11/3040406/0/en/Legend-Biotech-Reports-Fourth-Quarter-and-Full-Year-2024-Results-and-Recent-Highlights.html",
-          "title": "Legend Biotech Full Year 2024 Results",
-          "accessed": "2026-06"
-        },
-        {
-          "url": "https://investors.legendbiotech.com/news-releases/news-release-details/legend-biotechs-carvyktir-ciltacabtagene-autoleucel-becomes",
-          "title": "Carvykti second-line FDA approval press release",
-          "accessed": "2026-06"
-        }
       ]
     },
     {

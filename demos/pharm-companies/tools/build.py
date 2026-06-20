@@ -78,7 +78,13 @@ def merge_research() -> None:
     products: dict[str, dict] = {}  # flat id->product; re-bucketed to region shards before write
     country_meta = {}
 
-    for path in sorted(RESEARCH.glob("*.json")):
+    # fc-* shards carry freshly fact-checked figures and MUST merge last so their values win
+    # the per-field last-wins below (otherwise an alphabetically-later source shard like
+    # us.json / vaccine-biotech.json / roster-* would clobber a correction back to stale data).
+    def _shard_order(p):
+        return (1 if p.stem.startswith("fc-") else 0, p.stem)
+
+    for path in sorted(RESEARCH.glob("*.json"), key=_shard_order):
         try:
             d = load(path)
         except json.JSONDecodeError as e:
@@ -92,10 +98,23 @@ def merge_research() -> None:
             if not cid:
                 continue
             prev = companies.get(cid)
-            # Never let a lightweight roster entry overwrite an existing deep profile.
-            if prev and prev.get("tier") != "roster" and c.get("tier") == "roster":
+            if prev is None:
+                companies[cid] = dict(c)
                 continue
-            companies[cid] = c
+            # Field-level union (not wholesale replace): later non-empty fields win, but fields
+            # the new record OMITS are preserved — so an fc record (which lacks country_display /
+            # is_public) overriding revenue never drops those computed fields. A lightweight roster
+            # entry may only FILL gaps in a deep profile, never overwrite populated deep fields.
+            roster_new = c.get("tier") == "roster"
+            deep_prev = prev.get("tier") != "roster"
+            for k, v in c.items():
+                if v in (None, "", [], {}):
+                    continue
+                if roster_new and deep_prev and prev.get(k) not in (None, "", [], {}):
+                    continue
+                if k == "confidence" and prev.get("confidence") is not None:
+                    v = max(to_float(prev.get("confidence")), to_float(v))
+                prev[k] = v
         for s in d.get("sites", []):
             sid = s.get("id")
             if not sid:
