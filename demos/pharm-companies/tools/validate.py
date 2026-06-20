@@ -29,7 +29,7 @@ ID_RE = re.compile(r"^[a-z0-9][a-z0-9-]*$")
 DATE_RE = re.compile(r"^\d{4}-\d{2}(-\d{2})?$")
 
 VALID_REGION = {"north_america", "europe", "japan", "greater_china", "oceania", "other_apac", "latam", "mea"}
-VALID_COMPANY_TYPE = {"originator_bigpharma", "biotech", "generics", "cdmo_cro", "vaccine", "biosimilar", "tcm", "diversified", "lifesci_tools", "medtech"}
+VALID_COMPANY_TYPE = {"originator_bigpharma", "biotech", "generics", "cdmo_cro", "vaccine", "biosimilar", "tcm", "diversified", "lifesci_tools", "medtech", "consumer_health", "venture_creation"}
 VALID_SITE_TYPE = {"HQ", "RD", "manufacturing", "commercial", "JV"}
 VALID_APPROVAL = {"preclinical", "ph1", "ph2", "ph3", "filed", "approved", "withdrawn"}
 VALID_DRUG_CLASS = {"originator", "biosimilar", "generic"}

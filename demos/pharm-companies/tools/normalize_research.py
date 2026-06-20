@@ -11,11 +11,16 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 RESEARCH = ROOT / "tmp" / "research"
 
-VALID_CT = {"originator_bigpharma", "biotech", "generics", "cdmo_cro", "vaccine", "biosimilar", "tcm", "diversified", "lifesci_tools", "medtech"}
+VALID_CT = {"originator_bigpharma", "biotech", "generics", "cdmo_cro", "vaccine", "biosimilar", "tcm",
+            "diversified", "lifesci_tools", "medtech", "consumer_health", "venture_creation"}
 CT_MAP = {
     "biopharma": "biotech", "originator_biotech": "biotech", "originator_midcap": "originator_bigpharma",
     "specialty_pharma": "originator_bigpharma", "specialty": "originator_bigpharma", "innovator": "biotech",
     "cdmo": "cdmo_cro", "cro": "cdmo_cro", "cro_cdmo": "cdmo_cro", "cmo": "cdmo_cro", "api": "cdmo_cro",
+    "consumer-health": "consumer_health", "consumer": "consumer_health", "otc": "consumer_health",
+    "consumer_healthcare": "consumer_health", "venture-creation": "venture_creation",
+    "venture_capital": "venture_creation", "vc": "venture_creation", "incubator": "venture_creation",
+    "company_builder": "venture_creation", "investor": "venture_creation",
     "diagnostic_services": "lifesci_tools", "diagnostics": "lifesci_tools", "diagnostic": "lifesci_tools",
     "ivd": "lifesci_tools", "genomics": "lifesci_tools", "lab_services": "lifesci_tools", "tools": "lifesci_tools",
     "device": "medtech", "medical_device": "medtech", "devices": "medtech",

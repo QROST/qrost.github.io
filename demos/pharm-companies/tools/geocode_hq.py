@@ -35,6 +35,14 @@ PROV_CAPITAL = {
     "tianjin": "tianjin", "beijing": "beijing", "shanghai": "shanghai",
 }
 
+# Hardcoded coords for well-known HQ cities the gazetteer misses (final fallback).
+CITY_COORD = {
+    ("US", "new york"): (40.7128, -74.0060), ("DE", "bad homburg"): (50.2268, 8.6182),
+    ("CH", "st gallen"): (47.4245, 9.3767), ("US", "south san francisco"): (37.6547, -122.4077),
+    ("US", "thousand oaks"): (34.1706, -118.8376), ("GB", "abingdon"): (51.6743, -1.2826),
+    ("DK", "hellerup"): (55.7327, 12.5719), ("US", "foster city"): (37.5585, -122.2711),
+}
+
 def norm(s: str) -> str:
     s = unicodedata.normalize("NFKD", s or "").encode("ascii", "ignore").decode()
     s = s.lower().split(",")[0].split("(")[0]
@@ -69,11 +77,18 @@ def main() -> int:
     print(f"gazetteer index: {len(idx)} (country,city) keys")
     companies = json.loads((DATA / "companies.json").read_text())["companies"]
 
-    # Geocode ALL roster companies each run (full rebuild of this shard — deep companies
-    # are tier!=roster and already have their own sites elsewhere, so they're skipped).
+    # Skip companies that already have a RESEARCHED (non-geocoded) site; geocode everyone else
+    # with an hq_city — covers roster companies AND deep companies added without their own sites
+    # (e.g. the "notable" expansion wave). Re-runnable: this shard is rebuilt from scratch each run.
+    has_real_site = set()
+    for s in json.loads((DATA / "sites.json").read_text()).get("sites", []):
+        srcs = s.get("sources") or []
+        if not any("lutangar" in (src.get("url") or "") for src in srcs):
+            has_real_site.add(s.get("company_id"))
+
     sites, hit, miss, misses = [], 0, 0, []
     for c in companies:
-        if c.get("tier") != "roster":
+        if c["id"] in has_real_site:
             continue
         city = c.get("hq_city")
         cc = c.get("country", "").upper()
@@ -86,6 +101,8 @@ def main() -> int:
             coord = idx.get((cc, n.replace(" city", "").strip()))
         if not coord and cc in ("CN", "TW") and n in PROV_CAPITAL:  # province/region -> capital
             coord = idx.get((cc, PROV_CAPITAL[n]))
+        if not coord:
+            coord = CITY_COORD.get((cc, n)) or CITY_COORD.get((cc, n.replace(" city", "").strip()))
         if not coord:
             miss += 1; misses.append(f"{c['id']}:{city}/{cc}"); continue
         lat, lng = coord
