@@ -1,30 +1,6 @@
 {
-  "shard": "enrich-wf-57",
+  "shard": "oceania",
   "products": [
-    {
-      "id": "zentalis-azenosertib",
-      "name_zh": "阿泽诺塞替尼",
-      "name_en": "Azenosertib",
-      "brand_name": "Azenosertib",
-      "company_id": "zentalis-pharmaceuticals",
-      "modality_id": "small-molecule",
-      "therapeutic_area_id": "oncology",
-      "indication_zh": "铂耐药卵巢癌、其他实体瘤",
-      "indication_en": "Platinum-resistant ovarian cancer; other solid tumors",
-      "approval_status": "ph3",
-      "drug_class": "originator",
-      "is_blockbuster": false,
-      "region": "north_america",
-      "sources": [
-        {
-          "url": "https://www.zentalis.com/pipeline/pipeline",
-          "title": "Zentalis Pipeline",
-          "accessed": "2026-06-19"
-        }
-      ],
-      "confidence": 0.6,
-      "last_verified": "2026-06"
-    },
     {
       "id": "clarity-sar-bispsma",
       "name_zh": "SAR-bisPSMA",
@@ -298,6 +274,215 @@
       ],
       "confidence": 0.6,
       "last_verified": "2026-06"
+    },
+    {
+      "id": "race-oncology-rcds1",
+      "name_zh": "RCDS1（RC220，比山蒽定制剂）",
+      "name_en": "RCDS1 / RC220 (bisantrene formulation)",
+      "brand_name": "RCDS1 / RC220 (bisantrene formulation)",
+      "company_id": "race-oncology",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "oncology",
+      "indication_zh": "急性髓系白血病（三期）；EGFRm非小细胞肺癌（一期）",
+      "indication_en": "Acute myeloid leukaemia (Phase 3); EGFRm NSCLC Phase 1a/b; combination with doxorubicin Phase 1a/b",
+      "approval_status": "ph3",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "oceania",
+      "sources": [
+        {
+          "url": "https://stockanalysis.com/quote/asx/RAC/company/",
+          "title": "Racura Oncology Company Profile",
+          "accessed": "2026-06"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "hizentra",
+      "name_zh": "Hizentra皮下注射免疫球蛋白",
+      "name_en": "Hizentra",
+      "brand_name": "Hizentra",
+      "inn": "immunoglobulin subcutaneous (human)",
+      "company_id": "csl",
+      "modality_id": "recombinant-protein",
+      "therapeutic_area_id": "immunology",
+      "secondary_ta_ids": [
+        "rare-disease"
+      ],
+      "indication_zh": "原发性免疫缺陷病（PID）皮下注射替代疗法",
+      "indication_en": "Primary immunodeficiency (PID) – subcutaneous immunoglobulin replacement therapy",
+      "approval_status": "approved",
+      "first_approval_year": 2010,
+      "key_markets": [
+        "FDA",
+        "EMA",
+        "TGA"
+      ],
+      "is_blockbuster": true,
+      "drug_class": "originator",
+      "target_mechanism_zh": "补充IgG，增强体液免疫",
+      "target_mechanism_en": "IgG supplementation to restore humoral immunity",
+      "region": "oceania",
+      "confidence": 0.9,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://investors.csl.com/annualreport/2024/",
+          "title": "CSL Annual Report 2024",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "privigen",
+      "name_zh": "Privigen静脉注射免疫球蛋白",
+      "name_en": "Privigen",
+      "brand_name": "Privigen",
+      "inn": "immune globulin intravenous (human)",
+      "company_id": "csl",
+      "modality_id": "recombinant-protein",
+      "therapeutic_area_id": "immunology",
+      "secondary_ta_ids": [
+        "hematology",
+        "rare-disease"
+      ],
+      "indication_zh": "原发性免疫缺陷、慢性特发性血小板减少性紫癜（ITP）、慢性炎性脱髓鞘性多发性神经根神经病（CIDP）",
+      "indication_en": "PID, chronic ITP, CIDP – intravenous immunoglobulin replacement",
+      "approval_status": "approved",
+      "first_approval_year": 2007,
+      "key_markets": [
+        "FDA",
+        "EMA"
+      ],
+      "is_blockbuster": true,
+      "drug_class": "originator",
+      "target_mechanism_zh": "补充IgG，增强体液免疫",
+      "target_mechanism_en": "IgG supplementation and immunomodulation",
+      "region": "oceania",
+      "confidence": 0.9,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://investors.csl.com/annualreport/2024/",
+          "title": "CSL Annual Report 2024",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "fluad",
+      "name_zh": "FLUAD佐剂流感疫苗",
+      "name_en": "FLUAD",
+      "brand_name": "FLUAD",
+      "inn": "influenza vaccine adjuvanted",
+      "company_id": "csl",
+      "modality_id": "inactivated-vaccine",
+      "therapeutic_area_id": "vaccines",
+      "secondary_ta_ids": [
+        "infectious-disease"
+      ],
+      "indication_zh": "65岁及以上老年人季节性流感预防",
+      "indication_en": "Seasonal influenza prevention in adults 65 years and older (adjuvanted for enhanced response)",
+      "approval_status": "approved",
+      "first_approval_year": 1997,
+      "key_markets": [
+        "FDA",
+        "EMA"
+      ],
+      "is_blockbuster": false,
+      "drug_class": "originator",
+      "region": "oceania",
+      "confidence": 0.88,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.cslseqirus.com.au/manufacturing/global-manufacturing-network",
+          "title": "CSL Seqirus Global Manufacturing Network",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "illuccix",
+      "name_zh": "Illuccix前列腺癌PET显像剂",
+      "name_en": "Illuccix",
+      "brand_name": "Illuccix",
+      "inn": "gallium Ga-68 gozetotide",
+      "company_id": "telix-pharmaceuticals",
+      "modality_id": "radioligand",
+      "therapeutic_area_id": "oncology",
+      "indication_zh": "前列腺特异性膜抗原（PSMA）阳性病变的PET成像，用于前列腺癌诊断",
+      "indication_en": "PSMA-targeted PET imaging for prostate cancer diagnosis and staging",
+      "approval_status": "approved",
+      "first_approval_year": 2022,
+      "key_markets": [
+        "FDA",
+        "TGA"
+      ],
+      "latest_annual_sales": {
+        "value": 517000000,
+        "currency": "USD",
+        "year": 2024,
+        "source_url": "https://telixpharma.com/news-views/telix-2024-full-year-results-record-financial-performance-and-investment-in-future-growth-fy2025-guidance-of-up-to-1-23-billion/",
+        "note_en": "FY2024 revenue approximately US$517M (A$783M), primarily Illuccix",
+        "note_zh": "2024财年收入约5.17亿美元（7.83亿澳元），主要来自Illuccix"
+      },
+      "is_blockbuster": false,
+      "drug_class": "originator",
+      "target_mechanism_zh": "镓-68标记PSMA靶向放射性配体",
+      "target_mechanism_en": "Ga-68-labeled PSMA-targeting radioligand for PET imaging",
+      "region": "oceania",
+      "confidence": 0.92,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://telixpharma.com/news-views/telix-2024-full-year-results-record-financial-performance-and-investment-in-future-growth-fy2025-guidance-of-up-to-1-23-billion/",
+          "title": "Telix FY2024 Full Year Results",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "ryoncil",
+      "name_zh": "Ryoncil（remestemcel-L）",
+      "name_en": "Ryoncil",
+      "brand_name": "Ryoncil",
+      "inn": "remestemcel-L",
+      "company_id": "mesoblast",
+      "modality_id": "msc-therapy",
+      "therapeutic_area_id": "hematology",
+      "secondary_ta_ids": [
+        "immunology",
+        "rare-disease"
+      ],
+      "indication_zh": "儿童（2个月及以上）类固醇难治性急性移植物抗宿主病",
+      "indication_en": "Steroid-refractory acute graft-versus-host disease (SR-aGvHD) in pediatric patients aged ≥2 months",
+      "approval_status": "approved",
+      "first_approval_year": 2024,
+      "key_markets": [
+        "FDA"
+      ],
+      "is_blockbuster": false,
+      "drug_class": "originator",
+      "target_mechanism_zh": "同种异体骨髓来源间充质基质细胞（MSC），通过免疫调节抑制GvHD",
+      "target_mechanism_en": "Allogeneic bone marrow-derived mesenchymal stromal cells (MSC) with immunomodulatory mechanism to suppress GvHD",
+      "region": "oceania",
+      "confidence": 0.92,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://ipscell.com/2024/12/in-landmark-fda-approves-first-msc-therapy-mesoblasts-ryoncil-for-gvhd/",
+          "title": "FDA approves first MSC therapy – Mesoblast's Ryoncil",
+          "accessed": "2026-06"
+        },
+        {
+          "url": "https://www.fda.gov/media/185192/download",
+          "title": "FDA Summary Basis for Regulatory Action – Ryoncil (Dec 18, 2024)",
+          "accessed": "2026-06"
+        }
+      ]
     }
   ]
 }

@@ -1,0 +1,596 @@
+{
+  "shard": "mea",
+  "products": [
+    {
+      "id": "austedo",
+      "name_zh": "AUSTEDO（氘代丁苯那嗪）",
+      "name_en": "AUSTEDO",
+      "brand_name": "AUSTEDO",
+      "inn": "deutetrabenazine",
+      "company_id": "teva",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "neuroscience",
+      "indication_zh": "迟发性运动障碍（TD）和亨廷顿病相关舞蹈病",
+      "indication_en": "Tardive dyskinesia (TD) and chorea associated with Huntington's disease",
+      "approval_status": "approved",
+      "first_approval_year": 2017,
+      "key_markets": [
+        "FDA"
+      ],
+      "latest_annual_sales": {
+        "value": 1642000000,
+        "currency": "USD",
+        "year": 2024,
+        "source_url": "https://ir.tevapharm.com/news-and-events/press-releases/press-release-details/2025/Teva-Delivers-Second-Consecutive-Year-of-Growth-Announces-Strong-Financial-Results-in-Fourth-Quarter-and-Full-Year-2024-Led-by-Generics-Performance-and-Innovative-Portfolio-Growth/default.aspx",
+        "note_en": "FY2024 AUSTEDO revenues US$1,642M",
+        "note_zh": "2024财年AUSTEDO收入16.42亿美元"
+      },
+      "is_blockbuster": true,
+      "drug_class": "originator",
+      "target_mechanism_zh": "囊泡单胺转运体2（VMAT2）抑制剂",
+      "target_mechanism_en": "Vesicular monoamine transporter 2 (VMAT2) inhibitor",
+      "region": "mea",
+      "confidence": 0.95,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://ir.tevapharm.com/news-and-events/press-releases/press-release-details/2025/Teva-Delivers-Second-Consecutive-Year-of-Growth-Announces-Strong-Financial-Results-in-Fourth-Quarter-and-Full-Year-2024-Led-by-Generics-Performance-and-Innovative-Portfolio-Growth/default.aspx",
+          "title": "Teva FY2024 Full Year Results",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "ajovy",
+      "name_zh": "AJOVY（弗雷曼单抗）",
+      "name_en": "AJOVY",
+      "brand_name": "AJOVY",
+      "inn": "fremanezumab",
+      "company_id": "teva",
+      "modality_id": "mab",
+      "therapeutic_area_id": "neuroscience",
+      "indication_zh": "成人偏头痛预防治疗",
+      "indication_en": "Preventive treatment of migraine in adults",
+      "approval_status": "approved",
+      "first_approval_year": 2018,
+      "key_markets": [
+        "FDA",
+        "EMA"
+      ],
+      "latest_annual_sales": {
+        "value": 507000000,
+        "currency": "USD",
+        "year": 2024,
+        "source_url": "https://ir.tevapharm.com/news-and-events/press-releases/press-release-details/2025/Teva-Delivers-Second-Consecutive-Year-of-Growth-Announces-Strong-Financial-Results-in-Fourth-Quarter-and-Full-Year-2024-Led-by-Generics-Performance-and-Innovative-Portfolio-Growth/default.aspx",
+        "note_en": "FY2024 global AJOVY revenues US$507M",
+        "note_zh": "2024财年AJOVY全球收入5.07亿美元"
+      },
+      "is_blockbuster": false,
+      "drug_class": "originator",
+      "target_mechanism_zh": "抗CGRP单克隆抗体",
+      "target_mechanism_en": "Anti-CGRP monoclonal antibody",
+      "region": "mea",
+      "confidence": 0.93,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://ir.tevapharm.com/news-and-events/press-releases/press-release-details/2025/Teva-Delivers-Second-Consecutive-Year-of-Growth-Announces-Strong-Financial-Results-in-Fourth-Quarter-and-Full-Year-2024-Led-by-Generics-Performance-and-Innovative-Portfolio-Growth/default.aspx",
+          "title": "Teva FY2024 Full Year Results",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "biolinerx-aphexda",
+      "name_zh": "APHEXDA（莫提沙福泰）",
+      "name_en": "APHEXDA",
+      "brand_name": "APHEXDA",
+      "company_id": "biolinerx",
+      "modality_id": "peptide",
+      "therapeutic_area_id": "hematology",
+      "indication_zh": "多发性骨髓瘤自体造血干细胞动员",
+      "indication_en": "Stem cell mobilization for autologous transplantation in multiple myeloma",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "mea",
+      "sources": [
+        {
+          "url": "https://www.prnewswire.com/news-releases/biolinerx-reports-2025-financial-results-and-provides-corporate-update-302721933.html",
+          "title": "BioLineRx 2025 annual results",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "biolinerx-glix1",
+      "name_zh": "GLIX1",
+      "name_en": "GLIX1",
+      "brand_name": "GLIX1",
+      "company_id": "biolinerx",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "oncology",
+      "indication_zh": "胶质母细胞瘤及其他实体肿瘤",
+      "indication_en": "Glioblastoma and other solid tumors (DNA damage response targeting)",
+      "approval_status": "ph1",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "mea",
+      "sources": [
+        {
+          "url": "https://www.prnewswire.com/news-releases/biolinerx-reports-2025-financial-results-and-provides-corporate-update-302721933.html",
+          "title": "BioLineRx 2025 annual results",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "can-fite-namodenoson",
+      "name_zh": "那莫德诺生",
+      "name_en": "Namodenoson",
+      "brand_name": "Namodenoson",
+      "company_id": "can-fite-biopharma",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "oncology",
+      "indication_zh": "肝细胞癌（三期）；代谢相关脂肪性肝炎MASH（二期b）",
+      "indication_en": "Hepatocellular carcinoma (Phase 3); MASH (Phase 2b); pancreatic cancer (Phase 2a)",
+      "approval_status": "ph3",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "mea",
+      "sources": [
+        {
+          "url": "https://ir.canfite.com/news-events/press-releases/detail/1087/can-fite-has-raised-175-million-in-total-to-date-for-the",
+          "title": "Can-Fite – $175M raised announcement",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "can-fite-piclidenoson",
+      "name_zh": "匹可利地诺生",
+      "name_en": "Piclidenoson",
+      "brand_name": "Piclidenoson",
+      "company_id": "can-fite-biopharma",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "immunology",
+      "indication_zh": "银屑病（三期临床）",
+      "indication_en": "Psoriasis (Phase 3); veterinary applications (Vetbiolix partnership)",
+      "approval_status": "ph3",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "mea",
+      "sources": [
+        {
+          "url": "https://www.globenewswire.com/news-release/2025/04/14/3060926/0/en/Can-Fite-to-Generate-685M-in-Projected-Future-Revenues-from-its-Partnerships.html",
+          "title": "Globe Newswire – Can-Fite $685M projected revenues",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "collplant-dermal-filler",
+      "name_zh": "光固化真皮填充剂（艾伯维合作项目）",
+      "name_en": "Photocurable Dermal Filler (AbbVie collaboration)",
+      "brand_name": "Photocurable Dermal Filler (AbbVie collaboration)",
+      "company_id": "collplant-biotechnologies",
+      "modality_id": "recombinant-protein",
+      "therapeutic_area_id": "rare-disease",
+      "indication_zh": "美容皮肤填充（真皮填充剂）",
+      "indication_en": "Aesthetic dermal filler using rhCollagen",
+      "approval_status": "preclinical",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "mea",
+      "sources": [
+        {
+          "url": "https://ir.collplant.com/news-events/press-releases/detail/198/collplant-biotechnologies-reports-2025-financial-results-and-provides-corporate-update",
+          "title": "CollPlant – 2025 financial results",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "compugen-rilvegostomig",
+      "name_zh": "利韦戈斯托米格",
+      "name_en": "Rilvegostomig",
+      "brand_name": "Rilvegostomig",
+      "company_id": "compugen",
+      "modality_id": "bispecific-antibody",
+      "therapeutic_area_id": "oncology",
+      "indication_zh": "实体瘤（抗PVRIG×抗PD-1双特异性抗体，由阿斯利康开发三期临床）",
+      "indication_en": "Solid tumors – anti-PVRIG × anti-PD-1 bispecific antibody licensed to and developed by AstraZeneca (Phase 3)",
+      "approval_status": "ph3",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "mea",
+      "sources": [
+        {
+          "url": "https://www.nasdaq.com/press-release/compugen-monetizes-portion-rilvegostomig-future-royalties-astrazeneca-90-million-2025",
+          "title": "Nasdaq – Compugen AstraZeneca royalty deal",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "enlivex-allocetra",
+      "name_zh": "Allocetra™",
+      "name_en": "Allocetra",
+      "brand_name": "Allocetra",
+      "company_id": "enlivex-therapeutics",
+      "modality_id": "car-t",
+      "therapeutic_area_id": "immunology",
+      "indication_zh": "膝关节骨关节炎（二期b）；脓毒症相关器官功能障碍（一/二期）",
+      "indication_en": "Knee osteoarthritis (Phase 2b, US first patient dosed); sepsis organ dysfunction (Phase 1/2a)",
+      "approval_status": "ph2",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "mea",
+      "sources": [
+        {
+          "url": "https://enlivex.com/pipeline/",
+          "title": "Enlivex – Pipeline",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "entera-bio-eb613",
+      "name_zh": "EB613（口服PTH(1-34)片）",
+      "name_en": "EB613 – Oral PTH(1-34) Tablet",
+      "brand_name": "EB613 – Oral PTH(1-34) Tablet",
+      "company_id": "entera-bio",
+      "modality_id": "peptide",
+      "therapeutic_area_id": "rare-disease",
+      "indication_zh": "绝经后骨质疏松症",
+      "indication_en": "Postmenopausal osteoporosis – first oral anabolic PTH peptide tablet",
+      "approval_status": "ph3",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "mea",
+      "sources": [
+        {
+          "url": "https://www.stocktitan.net/news/ENTX/entera-bio-announces-full-year-2025-financial-results-and-provides-34sgl38xkucs.html",
+          "title": "StockTitan – Entera Bio FY2025 results",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "entera-bio-eb618",
+      "name_zh": "EB618（口服GLP-1/胰高糖素双激动剂）",
+      "name_en": "EB618 – Oral GLP-1/Glucagon Dual Agonist",
+      "brand_name": "EB618 – Oral GLP-1/Glucagon Dual Agonist",
+      "company_id": "entera-bio",
+      "modality_id": "peptide",
+      "therapeutic_area_id": "cardiometabolic",
+      "indication_zh": "肥胖症及代谢紊乱",
+      "indication_en": "Obesity and metabolic disorders (OPKO collaboration)",
+      "approval_status": "preclinical",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "mea",
+      "sources": [
+        {
+          "url": "https://investors.enterabio.com/news-releases/news-release-details/entera-bio-announces-upcoming-q1-2026-corporate-priorities-and",
+          "title": "Entera Bio – Q1 2026 pipeline outlook",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "kedrab",
+      "name_zh": "KEDRAB（狂犬病人免疫球蛋白）",
+      "name_en": "KEDRAB",
+      "brand_name": "KEDRAB",
+      "company_id": "kamada",
+      "modality_id": "recombinant-protein",
+      "therapeutic_area_id": "infectious-disease",
+      "indication_zh": "狂犬病暴露后预防",
+      "indication_en": "Rabies post-exposure prophylaxis",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "mea",
+      "sources": [
+        {
+          "url": "https://www.kamada.com/company-profile/",
+          "title": "Kamada Company Profile",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "glassia",
+      "name_zh": "GLASSIA（α1-蛋白酶抑制剂）",
+      "name_en": "GLASSIA",
+      "brand_name": "GLASSIA",
+      "company_id": "kamada",
+      "modality_id": "recombinant-protein",
+      "therapeutic_area_id": "respiratory",
+      "indication_zh": "α1-抗胰蛋白酶缺乏症",
+      "indication_en": "Alpha-1 antitrypsin deficiency",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "mea",
+      "sources": [
+        {
+          "url": "https://www.kamada.com/company-profile/",
+          "title": "Kamada Company Profile",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "elelyso",
+      "name_zh": "Elelyso（他利葡糖苷酶α）",
+      "name_en": "Elelyso (taliglucerase alfa)",
+      "brand_name": "Elelyso",
+      "company_id": "protalix-biotherapeutics",
+      "modality_id": "recombinant-protein",
+      "therapeutic_area_id": "rare-disease",
+      "indication_zh": "戈谢病",
+      "indication_en": "Gaucher disease (enzyme replacement therapy)",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "mea",
+      "sources": [
+        {
+          "url": "https://www.prnewswire.com/news-releases/protalix-biotherapeutics-reports-fiscal-year-2025-financial-and-business-results-302717302.html",
+          "title": "Protalix FY2025 Results",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "elfabrio",
+      "name_zh": "Elfabrio（佩古尼加酶α-iwxj）",
+      "name_en": "Elfabrio (pegunigalsidase alfa-iwxj)",
+      "brand_name": "Elfabrio",
+      "company_id": "protalix-biotherapeutics",
+      "modality_id": "recombinant-protein",
+      "therapeutic_area_id": "rare-disease",
+      "indication_zh": "法布里病",
+      "indication_en": "Fabry disease (enzyme replacement therapy)",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "mea",
+      "sources": [
+        {
+          "url": "https://www.prnewswire.com/news-releases/protalix-biotherapeutics-reports-fiscal-year-2025-financial-and-business-results-302717302.html",
+          "title": "Protalix FY2025 Results",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "prx-115",
+      "name_zh": "PRX-115（重组PEG化尿酸酶）",
+      "name_en": "PRX-115",
+      "brand_name": "PRX-115",
+      "company_id": "protalix-biotherapeutics",
+      "modality_id": "recombinant-protein",
+      "therapeutic_area_id": "rare-disease",
+      "indication_zh": "难治性痛风",
+      "indication_en": "Uncontrolled gout (Phase 2 RELEASE trial)",
+      "approval_status": "ph2",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "mea",
+      "sources": [
+        {
+          "url": "https://www.prnewswire.com/news-releases/protalix-biotherapeutics-reports-fiscal-year-2025-financial-and-business-results-302717302.html",
+          "title": "Protalix FY2025 Results",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "jelmyto",
+      "name_zh": "JELMYTO（丝裂霉素肾盂灌注溶液）",
+      "name_en": "JELMYTO (mitomycin for pyelocalyceal solution)",
+      "brand_name": "JELMYTO",
+      "company_id": "urogen-pharma",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "oncology",
+      "indication_zh": "低级别上尿路尿路上皮癌",
+      "indication_en": "Low-grade upper tract urothelial carcinoma (LG-UTUC)",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "mea",
+      "sources": [
+        {
+          "url": "https://investors.urogen.com/news-releases/news-release-details/urogen-pharma-expands-commercial-portfolio-launch-zusduritm-and/",
+          "title": "UroGen Q2 2025 Results",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "zusduri",
+      "name_zh": "ZUSDURI（丝裂霉素膀胱灌注凝胶）",
+      "name_en": "ZUSDURI (mitomycin intravesical gel, UGN-102)",
+      "brand_name": "ZUSDURI",
+      "company_id": "urogen-pharma",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "oncology",
+      "indication_zh": "非肌层浸润性膀胱癌",
+      "indication_en": "Non-muscle-invasive bladder cancer (NMIBC)",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "mea",
+      "sources": [
+        {
+          "url": "https://investors.urogen.com/news-releases/news-release-details/urogen-pharma-expands-commercial-portfolio-launch-zusduritm-and/",
+          "title": "UroGen Q2 2025 Results and ZUSDURI Launch",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "talicia",
+      "name_zh": "Talicia（奥美拉唑/阿莫西林/利福布汀胶囊）",
+      "name_en": "Talicia (omeprazole/amoxicillin/rifabutin)",
+      "brand_name": "Talicia",
+      "company_id": "redhill-biopharma",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "infectious-disease",
+      "indication_zh": "幽门螺杆菌感染",
+      "indication_en": "H. pylori infection",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "mea",
+      "sources": [
+        {
+          "url": "https://www.redhillbio.com/news/news-details/2026/RedHill-Biopharma-Announces-Full-Year-2025-Financial-Results-and-Operational-Highlights/default.aspx",
+          "title": "RedHill 2025 Results",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "rhb-204",
+      "name_zh": "RHB-204（克拉霉素/利福布汀/氯法齐明固定剂量复方）",
+      "name_en": "RHB-204 (clarithromycin/rifabutin/clofazimine FDC)",
+      "brand_name": "RHB-204 (clarithromycin/rifabutin/clofazimine FDC)",
+      "company_id": "redhill-biopharma",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "immunology",
+      "indication_zh": "MAP阳性克罗恩病",
+      "indication_en": "MAP-positive Crohn's disease",
+      "approval_status": "ph3",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "mea",
+      "sources": [
+        {
+          "url": "https://www.redhillbio.com/news/news-details/2026/RedHill-Biopharma-Announces-Full-Year-2025-Financial-Results-and-Operational-Highlights/default.aspx",
+          "title": "RedHill 2025 Results",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "ormd-0801",
+      "name_zh": "ORMD-0801（口服胰岛素胶囊）",
+      "name_en": "ORMD-0801 (oral insulin capsule)",
+      "brand_name": "ORMD-0801 (oral insulin capsule)",
+      "company_id": "oramed-pharmaceuticals",
+      "modality_id": "peptide",
+      "therapeutic_area_id": "cardiometabolic",
+      "indication_zh": "2型糖尿病",
+      "indication_en": "Type 2 diabetes (oral insulin)",
+      "approval_status": "ph3",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "mea",
+      "sources": [
+        {
+          "url": "https://oramed.com/pipeline/",
+          "title": "Oramed Pipeline",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "d-plex100",
+      "name_zh": "D-PLEX100（紫杉醇局部释放）",
+      "name_en": "D-PLEX100 (paclitaxel local release)",
+      "brand_name": "D-PLEX100 (paclitaxel local release)",
+      "company_id": "polypid",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "infectious-disease",
+      "indication_zh": "腹部结直肠手术切口感染预防",
+      "indication_en": "Prevention of abdominal colorectal surgical site infections",
+      "approval_status": "filed",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "mea",
+      "sources": [
+        {
+          "url": "https://investors.polypid.com/news-releases/news-release-details/polypid-provides-corporate-update-and-reports-third-quarter-2025",
+          "title": "PolyPid Q3 2025 Update",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "arixtra",
+      "name_zh": "Arixtra（磺达肝癸钠）",
+      "name_en": "Arixtra",
+      "brand_name": "Arixtra",
+      "inn": "fondaparinux sodium",
+      "company_id": "aspen-pharmacare",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "hematology",
+      "indication_zh": "静脉血栓栓塞（VTE）预防及深静脉血栓治疗",
+      "indication_en": "Prevention and treatment of venous thromboembolism (DVT/PE)",
+      "approval_status": "approved",
+      "first_approval_year": 2001,
+      "key_markets": [
+        "FDA",
+        "EMA"
+      ],
+      "is_blockbuster": false,
+      "drug_class": "generic",
+      "target_mechanism_zh": "选择性Xa因子抑制剂（合成戊糖）",
+      "target_mechanism_en": "Selective factor Xa inhibitor (synthetic pentasaccharide)",
+      "region": "mea",
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.aspenpharma.com/about-aspen/sterile-focus-brands/",
+          "title": "Aspen Pharmacare Sterile Focus Brands",
+          "accessed": "2026-06"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,53 @@
+{
+  "shard": "latam",
+  "products": [
+    {
+      "id": "glargilin-insulin",
+      "name_zh": "GLARGILIN（インスリングラルギン）",
+      "name_en": "GLARGILIN (insulin glargine)",
+      "brand_name": "GLARGILIN",
+      "company_id": "biomm-br",
+      "modality_id": "biosimilar",
+      "therapeutic_area_id": "cardiometabolic",
+      "indication_zh": "1型・2型糖尿病",
+      "indication_en": "Type 1 and type 2 diabetes mellitus",
+      "approval_status": "approved",
+      "drug_class": "biosimilar",
+      "is_blockbuster": false,
+      "region": "latam",
+      "sources": [
+        {
+          "url": "https://biomm.com/en/biomm/",
+          "title": "Biomm Website",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "afrezza-inhaled-insulin",
+      "name_zh": "Afrezza（吸入インスリン）",
+      "name_en": "Afrezza (inhaled human insulin)",
+      "brand_name": "Afrezza",
+      "company_id": "biomm-br",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "cardiometabolic",
+      "indication_zh": "糖尿病（吸入インスリン）",
+      "indication_en": "Diabetes mellitus (inhalable insulin)",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "latam",
+      "sources": [
+        {
+          "url": "https://biomm.com/en/biomm/",
+          "title": "Biomm Website",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    }
+  ]
+}

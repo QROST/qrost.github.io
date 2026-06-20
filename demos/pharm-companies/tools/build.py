@@ -75,7 +75,7 @@ def merge_research() -> None:
     sites: dict[str, dict] = {}
     milestones: dict[str, dict] = {}
     countries: dict[str, dict] = {}
-    catalog: dict[str, dict] = {}
+    products: dict[str, dict] = {}  # flat id->product; re-bucketed to region shards before write
     country_meta = {}
 
     for path in sorted(RESEARCH.glob("*.json")):
@@ -116,11 +116,9 @@ def merge_research() -> None:
             if d.get(k):
                 country_meta[k] = d[k]
         prods = d.get("products", [])
-        if prods:
-            catalog.setdefault(shard, {})
-            for p in prods:
-                if p.get("id"):
-                    catalog[shard][p["id"]] = p
+        for p in prods:
+            if p.get("id"):
+                products[p["id"]] = p
         print(f"  merged {path.name}: "
               f"{len(d.get('companies', []))}c {len(d.get('sites', []))}s "
               f"{len(prods)}p {len(d.get('milestones', []))}m {len(d.get('countries', []))}cty")
@@ -201,10 +199,9 @@ def merge_research() -> None:
         for m in milestones.values():
             if m.get("company_id") in remap:
                 m["company_id"] = remap[m["company_id"]]
-        for shard in catalog.values():
-            for p in shard.values():
-                if p.get("company_id") in remap:
-                    p["company_id"] = remap[p["company_id"]]
+        for p in products.values():
+            if p.get("company_id") in remap:
+                p["company_id"] = remap[p["company_id"]]
         # collapse duplicate HQ sites that the remap produced (one HQ per company, best confidence)
         hq_by_co: dict = {}
         for sid, s in list(sites.items()):
@@ -220,21 +217,21 @@ def merge_research() -> None:
                 del sites[keep]; hq_by_co[co] = sid
         print(f"  dedup: merged {len(remap)} duplicate company id(s) into canonical entries")
 
-    # product.region <- its company's region (denormalized); drop orphans; global product-id dedup
+    # product.region <- its company's region (denormalized); drop orphans (id dedup is automatic
+    # in the flat dict). Then bucket products into REGION-based catalog shards (8, not ~80 by file).
     region_by_co = {cid: c.get("region") for cid, c in companies.items()}
-    seen_pid: dict = {}
     dropped_p = 0
-    for shard in list(catalog.keys()):
-        for pid in list(catalog[shard].keys()):
-            p = catalog[shard][pid]
-            co = p.get("company_id")
-            if co not in companies or pid in seen_pid:
-                del catalog[shard][pid]; dropped_p += 1; continue
-            if region_by_co.get(co):
-                p["region"] = region_by_co[co]
-            seen_pid[pid] = shard
+    for pid in list(products.keys()):
+        co = products[pid].get("company_id")
+        if co not in companies:
+            del products[pid]; dropped_p += 1; continue
+        if region_by_co.get(co):
+            products[pid]["region"] = region_by_co[co]
     if dropped_p:
-        print(f"  product cleanup: dropped {dropped_p} orphan/duplicate product id(s)")
+        print(f"  product cleanup: dropped {dropped_p} orphan product id(s)")
+    catalog: dict[str, dict] = {}
+    for p in products.values():
+        catalog.setdefault(p.get("region") or "other", {})[p["id"]] = p
 
     write_json(DATA / "companies.json", {"companies": list(companies.values())})
     write_json(DATA / "sites.json", {"sites": list(sites.values())})
@@ -243,10 +240,14 @@ def merge_research() -> None:
         obj = dict(country_meta)
         obj["countries"] = list(countries.values())
         write_json(DATA / "country-stats.json", obj)
+    # rewrite catalog dir from scratch so stale per-file shards don't linger
+    if CATALOG.exists():
+        for old in CATALOG.glob("*.json"):
+            old.unlink()
     for shard, prods in sorted(catalog.items()):
         write_json(CATALOG / f"{shard}.json", {"shard": shard, "products": list(prods.values())})
     print(f"  -> {len(companies)} companies, {len(sites)} sites, "
-          f"{sum(len(v) for v in catalog.values())} products across {len(catalog)} shard(s)")
+          f"{len(products)} products across {len(catalog)} region shard(s)")
 
 
 def build_manifest() -> dict:
