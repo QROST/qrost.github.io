@@ -1675,6 +1675,441 @@
       ]
     },
     {
+      "id": "hengrui-lianyungang-hq",
+      "company_id": "hengrui",
+      "name_zh": "恒瑞医药连云港总部",
+      "name_en": "Hengrui Lianyungang Headquarters",
+      "site_type": "HQ",
+      "country": "CN",
+      "city": "Lianyungang",
+      "lat": 34.5897,
+      "lng": 119.2239,
+      "focus": [
+        "oncology",
+        "immunology"
+      ],
+      "is_subsidiary": false,
+      "confidence": 0.92,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://en.wikipedia.org/wiki/Jiangsu_Hengrui",
+          "title": "Jiangsu Hengrui Wikipedia",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "hengrui-shanghai-rd",
+      "company_id": "hengrui",
+      "name_zh": "恒瑞医药上海研发中心",
+      "name_en": "Hengrui Shanghai R&D Center",
+      "site_type": "RD",
+      "country": "CN",
+      "city": "Shanghai",
+      "lat": 31.2304,
+      "lng": 121.4737,
+      "focus": [
+        "oncology",
+        "immunology",
+        "small-molecule",
+        "mab"
+      ],
+      "is_subsidiary": false,
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.hengrui.com/en/",
+          "title": "Hengrui Official Website",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "beigene-beijing-hq",
+      "company_id": "beigene-star",
+      "name_zh": "百济神州北京总部",
+      "name_en": "BeOne Medicines Beijing Headquarters",
+      "site_type": "HQ",
+      "country": "CN",
+      "city": "Beijing",
+      "lat": 39.9042,
+      "lng": 116.4074,
+      "focus": [
+        "oncology",
+        "hematology"
+      ],
+      "is_subsidiary": false,
+      "confidence": 0.92,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.beigene.com",
+          "title": "BeiGene/BeOne Official Website",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "beigene-guangzhou-manufacturing",
+      "company_id": "beigene-star",
+      "name_zh": "百济神州广州生物药生产基地",
+      "name_en": "BeOne Medicines Guangzhou Biologics Manufacturing",
+      "site_type": "manufacturing",
+      "country": "CN",
+      "city": "Guangzhou",
+      "lat": 23.1291,
+      "lng": 113.2644,
+      "focus": [
+        "mab"
+      ],
+      "is_subsidiary": false,
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.beigene.com",
+          "title": "BeiGene/BeOne Official Website",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "beigene-cambridge-rd",
+      "company_id": "beigene-star",
+      "name_zh": "百济神州剑桥研发中心",
+      "name_en": "BeOne Medicines Cambridge R&D Center",
+      "site_type": "RD",
+      "country": "US",
+      "city": "Cambridge",
+      "lat": 42.3736,
+      "lng": -71.1097,
+      "focus": [
+        "oncology",
+        "small-molecule",
+        "mab"
+      ],
+      "is_subsidiary": false,
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.beigene.com",
+          "title": "BeiGene/BeOne Official Website",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "innovent-suzhou-hq",
+      "company_id": "innovent",
+      "name_zh": "信达生物苏州总部",
+      "name_en": "Innovent Biologics Suzhou Headquarters",
+      "site_type": "HQ",
+      "country": "CN",
+      "city": "Suzhou",
+      "lat": 31.299,
+      "lng": 120.5853,
+      "focus": [
+        "oncology",
+        "immunology",
+        "mab"
+      ],
+      "is_subsidiary": false,
+      "confidence": 0.92,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.prnewswire.com/news-releases/innovent-announces-2024-annual-results-and-business-updates-302411888.html",
+          "title": "Innovent 2024 Annual Results Press Release",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "akeso-zhongshan-hq",
+      "company_id": "akeso",
+      "name_zh": "康方生物中山总部",
+      "name_en": "Akeso Zhongshan Headquarters",
+      "site_type": "HQ",
+      "country": "CN",
+      "city": "Zhongshan",
+      "lat": 22.5176,
+      "lng": 113.3926,
+      "focus": [
+        "oncology",
+        "immunology",
+        "bispecific-antibody"
+      ],
+      "is_subsidiary": false,
+      "confidence": 0.92,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://en.wikipedia.org/wiki/Akeso",
+          "title": "Akeso Wikipedia",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "junshi-shanghai-hq",
+      "company_id": "junshi-biosciences-star",
+      "name_zh": "君实生物上海总部",
+      "name_en": "Junshi Biosciences Shanghai Headquarters",
+      "site_type": "HQ",
+      "country": "CN",
+      "city": "Shanghai",
+      "lat": 31.2304,
+      "lng": 121.4737,
+      "focus": [
+        "oncology",
+        "immunology",
+        "mab"
+      ],
+      "is_subsidiary": false,
+      "confidence": 0.9,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.junshipharma.com/en/",
+          "title": "Junshi Biosciences Official Website",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "zai-lab-shanghai-hq",
+      "company_id": "zai-lab",
+      "name_zh": "再鼎医药上海总部",
+      "name_en": "Zai Lab Shanghai Headquarters",
+      "site_type": "HQ",
+      "country": "CN",
+      "city": "Shanghai",
+      "lat": 31.2304,
+      "lng": 121.4737,
+      "focus": [
+        "oncology",
+        "immunology",
+        "neuroscience"
+      ],
+      "is_subsidiary": false,
+      "confidence": 0.9,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://ir.zailaboratory.com/news-releases/news-release-details/zai-lab-announces-fourth-quarter-and-full-year-2024-financial/",
+          "title": "Zai Lab Q4 2024 Results",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "zai-lab-sanfrancisco-rd",
+      "company_id": "zai-lab",
+      "name_zh": "再鼎医药旧金山研发中心",
+      "name_en": "Zai Lab San Francisco R&D Office",
+      "site_type": "RD",
+      "country": "US",
+      "city": "San Francisco",
+      "lat": 37.7749,
+      "lng": -122.4194,
+      "focus": [
+        "oncology",
+        "immunology"
+      ],
+      "is_subsidiary": false,
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.zailaboratory.com",
+          "title": "Zai Lab Official Website",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "remegen-yantai-hq",
+      "company_id": "rongchang-biopharm",
+      "name_zh": "荣昌生物烟台总部",
+      "name_en": "RemeGen Yantai Headquarters",
+      "site_type": "HQ",
+      "country": "CN",
+      "city": "Yantai",
+      "lat": 37.5641,
+      "lng": 121.3912,
+      "focus": [
+        "oncology",
+        "immunology",
+        "adc",
+        "fusion-protein"
+      ],
+      "is_subsidiary": false,
+      "confidence": 0.9,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.remegen.com/",
+          "title": "RemeGen Official Website",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "legend-biotech-nanjing-hq",
+      "company_id": "legend-biotech",
+      "name_zh": "传奇生物南京总部及生产基地",
+      "name_en": "Legend Biotech Nanjing HQ & Manufacturing",
+      "site_type": "HQ",
+      "country": "CN",
+      "city": "Nanjing",
+      "lat": 32.0617,
+      "lng": 118.7778,
+      "focus": [
+        "car-t",
+        "hematology",
+        "oncology"
+      ],
+      "is_subsidiary": false,
+      "confidence": 0.9,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.dnb.com/business-directory/company-profiles.nanjing_legend_biotech_coltd.96e03f93af3ba775435b31c4272b0243.html",
+          "title": "Nanjing Legend Biotech Co. D&B Profile",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "legend-biotech-somerset-us",
+      "company_id": "legend-biotech",
+      "name_zh": "传奇生物美国萨默塞特总部",
+      "name_en": "Legend Biotech Somerset NJ US Headquarters",
+      "site_type": "commercial",
+      "country": "US",
+      "city": "Somerset",
+      "lat": 40.4965,
+      "lng": -74.5,
+      "focus": [
+        "car-t",
+        "hematology"
+      ],
+      "is_subsidiary": false,
+      "confidence": 0.88,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://legendbiotech.com/contact-us/",
+          "title": "Legend Biotech Contact Page",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "sino-biopharm-beijing-hq",
+      "company_id": "sino-biopharm",
+      "name_zh": "中国生物制药北京总部",
+      "name_en": "Sino Biopharmaceutical Beijing Headquarters",
+      "site_type": "HQ",
+      "country": "CN",
+      "city": "Beijing",
+      "lat": 39.9042,
+      "lng": 116.4074,
+      "focus": [
+        "oncology",
+        "respiratory"
+      ],
+      "is_subsidiary": false,
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.sinobiopharm.com",
+          "title": "Sino Biopharmaceutical Official Website",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "cspc-shijiazhuang-hq",
+      "company_id": "cspc",
+      "name_zh": "石药集团石家庄总部",
+      "name_en": "CSPC Pharmaceutical Shijiazhuang Headquarters",
+      "site_type": "HQ",
+      "country": "CN",
+      "city": "Shijiazhuang",
+      "lat": 38.0428,
+      "lng": 114.5149,
+      "focus": [
+        "neuroscience",
+        "oncology",
+        "cardiometabolic"
+      ],
+      "is_subsidiary": false,
+      "confidence": 0.9,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.cspc.com.hk/en/ir/ir_overview.php",
+          "title": "CSPC IR Overview",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "hansoh-lianyungang-hq",
+      "company_id": "hansoh",
+      "name_zh": "翰森制药连云港总部",
+      "name_en": "Hansoh Pharmaceutical Lianyungang Headquarters",
+      "site_type": "HQ",
+      "country": "CN",
+      "city": "Lianyungang",
+      "lat": 34.5897,
+      "lng": 119.2239,
+      "focus": [
+        "oncology",
+        "small-molecule"
+      ],
+      "is_subsidiary": false,
+      "confidence": 0.9,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.zoominfo.com/c/hansoh-pharmaceutical-group-co-ltd/1295925030",
+          "title": "Hansoh Pharma ZoomInfo Profile",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "hansoh-shanghai-rd",
+      "company_id": "hansoh",
+      "name_zh": "翰森制药上海研发中心",
+      "name_en": "Hansoh Pharmaceutical Shanghai R&D Center",
+      "site_type": "RD",
+      "country": "CN",
+      "city": "Shanghai",
+      "lat": 31.2304,
+      "lng": 121.4737,
+      "focus": [
+        "oncology",
+        "small-molecule"
+      ],
+      "is_subsidiary": false,
+      "confidence": 0.82,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://www.hspharm.com",
+          "title": "Hansoh Official Website",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
       "id": "hutchmed-hk-hq",
       "company_id": "hutchmed",
       "name_zh": "和黄医药香港总部",
@@ -2450,441 +2885,6 @@
         {
           "url": "http://static.cninfo.com.cn/finalpage/2025-04-26/1223323161.PDF",
           "title": "Sinocelltech 2024 Annual Report",
-          "accessed": "2026-06"
-        }
-      ]
-    },
-    {
-      "id": "hengrui-lianyungang-hq",
-      "company_id": "hengrui",
-      "name_zh": "恒瑞医药连云港总部",
-      "name_en": "Hengrui Lianyungang Headquarters",
-      "site_type": "HQ",
-      "country": "CN",
-      "city": "Lianyungang",
-      "lat": 34.5897,
-      "lng": 119.2239,
-      "focus": [
-        "oncology",
-        "immunology"
-      ],
-      "is_subsidiary": false,
-      "confidence": 0.92,
-      "last_verified": "2026-06",
-      "sources": [
-        {
-          "url": "https://en.wikipedia.org/wiki/Jiangsu_Hengrui",
-          "title": "Jiangsu Hengrui Wikipedia",
-          "accessed": "2026-06"
-        }
-      ]
-    },
-    {
-      "id": "hengrui-shanghai-rd",
-      "company_id": "hengrui",
-      "name_zh": "恒瑞医药上海研发中心",
-      "name_en": "Hengrui Shanghai R&D Center",
-      "site_type": "RD",
-      "country": "CN",
-      "city": "Shanghai",
-      "lat": 31.2304,
-      "lng": 121.4737,
-      "focus": [
-        "oncology",
-        "immunology",
-        "small-molecule",
-        "mab"
-      ],
-      "is_subsidiary": false,
-      "confidence": 0.85,
-      "last_verified": "2026-06",
-      "sources": [
-        {
-          "url": "https://www.hengrui.com/en/",
-          "title": "Hengrui Official Website",
-          "accessed": "2026-06"
-        }
-      ]
-    },
-    {
-      "id": "beigene-beijing-hq",
-      "company_id": "beigene-star",
-      "name_zh": "百济神州北京总部",
-      "name_en": "BeOne Medicines Beijing Headquarters",
-      "site_type": "HQ",
-      "country": "CN",
-      "city": "Beijing",
-      "lat": 39.9042,
-      "lng": 116.4074,
-      "focus": [
-        "oncology",
-        "hematology"
-      ],
-      "is_subsidiary": false,
-      "confidence": 0.92,
-      "last_verified": "2026-06",
-      "sources": [
-        {
-          "url": "https://www.beigene.com",
-          "title": "BeiGene/BeOne Official Website",
-          "accessed": "2026-06"
-        }
-      ]
-    },
-    {
-      "id": "beigene-guangzhou-manufacturing",
-      "company_id": "beigene-star",
-      "name_zh": "百济神州广州生物药生产基地",
-      "name_en": "BeOne Medicines Guangzhou Biologics Manufacturing",
-      "site_type": "manufacturing",
-      "country": "CN",
-      "city": "Guangzhou",
-      "lat": 23.1291,
-      "lng": 113.2644,
-      "focus": [
-        "mab"
-      ],
-      "is_subsidiary": false,
-      "confidence": 0.85,
-      "last_verified": "2026-06",
-      "sources": [
-        {
-          "url": "https://www.beigene.com",
-          "title": "BeiGene/BeOne Official Website",
-          "accessed": "2026-06"
-        }
-      ]
-    },
-    {
-      "id": "beigene-cambridge-rd",
-      "company_id": "beigene-star",
-      "name_zh": "百济神州剑桥研发中心",
-      "name_en": "BeOne Medicines Cambridge R&D Center",
-      "site_type": "RD",
-      "country": "US",
-      "city": "Cambridge",
-      "lat": 42.3736,
-      "lng": -71.1097,
-      "focus": [
-        "oncology",
-        "small-molecule",
-        "mab"
-      ],
-      "is_subsidiary": false,
-      "confidence": 0.85,
-      "last_verified": "2026-06",
-      "sources": [
-        {
-          "url": "https://www.beigene.com",
-          "title": "BeiGene/BeOne Official Website",
-          "accessed": "2026-06"
-        }
-      ]
-    },
-    {
-      "id": "innovent-suzhou-hq",
-      "company_id": "innovent",
-      "name_zh": "信达生物苏州总部",
-      "name_en": "Innovent Biologics Suzhou Headquarters",
-      "site_type": "HQ",
-      "country": "CN",
-      "city": "Suzhou",
-      "lat": 31.299,
-      "lng": 120.5853,
-      "focus": [
-        "oncology",
-        "immunology",
-        "mab"
-      ],
-      "is_subsidiary": false,
-      "confidence": 0.92,
-      "last_verified": "2026-06",
-      "sources": [
-        {
-          "url": "https://www.prnewswire.com/news-releases/innovent-announces-2024-annual-results-and-business-updates-302411888.html",
-          "title": "Innovent 2024 Annual Results Press Release",
-          "accessed": "2026-06"
-        }
-      ]
-    },
-    {
-      "id": "akeso-zhongshan-hq",
-      "company_id": "akeso",
-      "name_zh": "康方生物中山总部",
-      "name_en": "Akeso Zhongshan Headquarters",
-      "site_type": "HQ",
-      "country": "CN",
-      "city": "Zhongshan",
-      "lat": 22.5176,
-      "lng": 113.3926,
-      "focus": [
-        "oncology",
-        "immunology",
-        "bispecific-antibody"
-      ],
-      "is_subsidiary": false,
-      "confidence": 0.92,
-      "last_verified": "2026-06",
-      "sources": [
-        {
-          "url": "https://en.wikipedia.org/wiki/Akeso",
-          "title": "Akeso Wikipedia",
-          "accessed": "2026-06"
-        }
-      ]
-    },
-    {
-      "id": "junshi-shanghai-hq",
-      "company_id": "junshi-biosciences-star",
-      "name_zh": "君实生物上海总部",
-      "name_en": "Junshi Biosciences Shanghai Headquarters",
-      "site_type": "HQ",
-      "country": "CN",
-      "city": "Shanghai",
-      "lat": 31.2304,
-      "lng": 121.4737,
-      "focus": [
-        "oncology",
-        "immunology",
-        "mab"
-      ],
-      "is_subsidiary": false,
-      "confidence": 0.9,
-      "last_verified": "2026-06",
-      "sources": [
-        {
-          "url": "https://www.junshipharma.com/en/",
-          "title": "Junshi Biosciences Official Website",
-          "accessed": "2026-06"
-        }
-      ]
-    },
-    {
-      "id": "zai-lab-shanghai-hq",
-      "company_id": "zai-lab",
-      "name_zh": "再鼎医药上海总部",
-      "name_en": "Zai Lab Shanghai Headquarters",
-      "site_type": "HQ",
-      "country": "CN",
-      "city": "Shanghai",
-      "lat": 31.2304,
-      "lng": 121.4737,
-      "focus": [
-        "oncology",
-        "immunology",
-        "neuroscience"
-      ],
-      "is_subsidiary": false,
-      "confidence": 0.9,
-      "last_verified": "2026-06",
-      "sources": [
-        {
-          "url": "https://ir.zailaboratory.com/news-releases/news-release-details/zai-lab-announces-fourth-quarter-and-full-year-2024-financial/",
-          "title": "Zai Lab Q4 2024 Results",
-          "accessed": "2026-06"
-        }
-      ]
-    },
-    {
-      "id": "zai-lab-sanfrancisco-rd",
-      "company_id": "zai-lab",
-      "name_zh": "再鼎医药旧金山研发中心",
-      "name_en": "Zai Lab San Francisco R&D Office",
-      "site_type": "RD",
-      "country": "US",
-      "city": "San Francisco",
-      "lat": 37.7749,
-      "lng": -122.4194,
-      "focus": [
-        "oncology",
-        "immunology"
-      ],
-      "is_subsidiary": false,
-      "confidence": 0.85,
-      "last_verified": "2026-06",
-      "sources": [
-        {
-          "url": "https://www.zailaboratory.com",
-          "title": "Zai Lab Official Website",
-          "accessed": "2026-06"
-        }
-      ]
-    },
-    {
-      "id": "remegen-yantai-hq",
-      "company_id": "rongchang-biopharm",
-      "name_zh": "荣昌生物烟台总部",
-      "name_en": "RemeGen Yantai Headquarters",
-      "site_type": "HQ",
-      "country": "CN",
-      "city": "Yantai",
-      "lat": 37.5641,
-      "lng": 121.3912,
-      "focus": [
-        "oncology",
-        "immunology",
-        "adc",
-        "fusion-protein"
-      ],
-      "is_subsidiary": false,
-      "confidence": 0.9,
-      "last_verified": "2026-06",
-      "sources": [
-        {
-          "url": "https://www.remegen.com/",
-          "title": "RemeGen Official Website",
-          "accessed": "2026-06"
-        }
-      ]
-    },
-    {
-      "id": "legend-biotech-nanjing-hq",
-      "company_id": "legend-biotech",
-      "name_zh": "传奇生物南京总部及生产基地",
-      "name_en": "Legend Biotech Nanjing HQ & Manufacturing",
-      "site_type": "HQ",
-      "country": "CN",
-      "city": "Nanjing",
-      "lat": 32.0617,
-      "lng": 118.7778,
-      "focus": [
-        "car-t",
-        "hematology",
-        "oncology"
-      ],
-      "is_subsidiary": false,
-      "confidence": 0.9,
-      "last_verified": "2026-06",
-      "sources": [
-        {
-          "url": "https://www.dnb.com/business-directory/company-profiles.nanjing_legend_biotech_coltd.96e03f93af3ba775435b31c4272b0243.html",
-          "title": "Nanjing Legend Biotech Co. D&B Profile",
-          "accessed": "2026-06"
-        }
-      ]
-    },
-    {
-      "id": "legend-biotech-somerset-us",
-      "company_id": "legend-biotech",
-      "name_zh": "传奇生物美国萨默塞特总部",
-      "name_en": "Legend Biotech Somerset NJ US Headquarters",
-      "site_type": "commercial",
-      "country": "US",
-      "city": "Somerset",
-      "lat": 40.4965,
-      "lng": -74.5,
-      "focus": [
-        "car-t",
-        "hematology"
-      ],
-      "is_subsidiary": false,
-      "confidence": 0.88,
-      "last_verified": "2026-06",
-      "sources": [
-        {
-          "url": "https://legendbiotech.com/contact-us/",
-          "title": "Legend Biotech Contact Page",
-          "accessed": "2026-06"
-        }
-      ]
-    },
-    {
-      "id": "sino-biopharm-beijing-hq",
-      "company_id": "sino-biopharm",
-      "name_zh": "中国生物制药北京总部",
-      "name_en": "Sino Biopharmaceutical Beijing Headquarters",
-      "site_type": "HQ",
-      "country": "CN",
-      "city": "Beijing",
-      "lat": 39.9042,
-      "lng": 116.4074,
-      "focus": [
-        "oncology",
-        "respiratory"
-      ],
-      "is_subsidiary": false,
-      "confidence": 0.85,
-      "last_verified": "2026-06",
-      "sources": [
-        {
-          "url": "https://www.sinobiopharm.com",
-          "title": "Sino Biopharmaceutical Official Website",
-          "accessed": "2026-06"
-        }
-      ]
-    },
-    {
-      "id": "cspc-shijiazhuang-hq",
-      "company_id": "cspc",
-      "name_zh": "石药集团石家庄总部",
-      "name_en": "CSPC Pharmaceutical Shijiazhuang Headquarters",
-      "site_type": "HQ",
-      "country": "CN",
-      "city": "Shijiazhuang",
-      "lat": 38.0428,
-      "lng": 114.5149,
-      "focus": [
-        "neuroscience",
-        "oncology",
-        "cardiometabolic"
-      ],
-      "is_subsidiary": false,
-      "confidence": 0.9,
-      "last_verified": "2026-06",
-      "sources": [
-        {
-          "url": "https://www.cspc.com.hk/en/ir/ir_overview.php",
-          "title": "CSPC IR Overview",
-          "accessed": "2026-06"
-        }
-      ]
-    },
-    {
-      "id": "hansoh-lianyungang-hq",
-      "company_id": "hansoh",
-      "name_zh": "翰森制药连云港总部",
-      "name_en": "Hansoh Pharmaceutical Lianyungang Headquarters",
-      "site_type": "HQ",
-      "country": "CN",
-      "city": "Lianyungang",
-      "lat": 34.5897,
-      "lng": 119.2239,
-      "focus": [
-        "oncology",
-        "small-molecule"
-      ],
-      "is_subsidiary": false,
-      "confidence": 0.9,
-      "last_verified": "2026-06",
-      "sources": [
-        {
-          "url": "https://www.zoominfo.com/c/hansoh-pharmaceutical-group-co-ltd/1295925030",
-          "title": "Hansoh Pharma ZoomInfo Profile",
-          "accessed": "2026-06"
-        }
-      ]
-    },
-    {
-      "id": "hansoh-shanghai-rd",
-      "company_id": "hansoh",
-      "name_zh": "翰森制药上海研发中心",
-      "name_en": "Hansoh Pharmaceutical Shanghai R&D Center",
-      "site_type": "RD",
-      "country": "CN",
-      "city": "Shanghai",
-      "lat": 31.2304,
-      "lng": 121.4737,
-      "focus": [
-        "oncology",
-        "small-molecule"
-      ],
-      "is_subsidiary": false,
-      "confidence": 0.82,
-      "last_verified": "2026-06",
-      "sources": [
-        {
-          "url": "https://www.hspharm.com",
-          "title": "Hansoh Official Website",
           "accessed": "2026-06"
         }
       ]
@@ -5399,7 +5399,7 @@
     },
     {
       "id": "snibe-diagnostic-hq",
-      "company_id": "snibe-diagnostic",
+      "company_id": "snibe",
       "name_zh": "深圳新产业生物深圳总部",
       "name_en": "Snibe Shenzhen HQ",
       "site_type": "HQ",
@@ -32275,24 +32275,6 @@
       "name_zh": "Kalamazoo R&D"
     },
     {
-      "id": "teva-pharmaceutical-hq",
-      "company_id": "teva-pharmaceutical",
-      "site_type": "HQ",
-      "name": "Teva US HQ",
-      "city": "Parsippany",
-      "state": "NJ",
-      "country": "US",
-      "lat": 40.8573,
-      "lng": -74.4207,
-      "description": "US commercial headquarters (global HQ in Tel Aviv)",
-      "last_verified": "2026-06",
-      "sources": [],
-      "confidence": 0.5,
-      "is_subsidiary": false,
-      "name_en": "Parsippany HQ",
-      "name_zh": "Parsippany HQ"
-    },
-    {
       "id": "alkermes-mfg-wilmington",
       "company_id": "alkermes",
       "site_type": "manufacturing",
@@ -40353,7 +40335,7 @@
     },
     {
       "id": "teva-tel-aviv-hq",
-      "company_id": "teva",
+      "company_id": "teva-pharmaceutical",
       "name_zh": "梯瓦制药全球总部（特拉维夫）",
       "name_en": "Teva Global HQ – Tel Aviv",
       "site_type": "HQ",
@@ -40378,7 +40360,7 @@
     },
     {
       "id": "teva-petah-tikva-rd",
-      "company_id": "teva",
+      "company_id": "teva-pharmaceutical",
       "name_zh": "梯瓦以色列研发中心（佩塔提克瓦）",
       "name_en": "Teva Israel R&D – Petah Tikva",
       "site_type": "RD",
