@@ -21,12 +21,12 @@
   var CUR = { USD: '$', CNY: '¥', EUR: '€', JPY: '¥', CHF: 'CHF ', GBP: '£', DKK: 'kr ', KRW: '₩',
     INR: '₹', AUD: 'A$', SGD: 'S$', HKD: 'HK$', TWD: 'NT$', BRL: 'R$', CAD: 'C$', ILS: '₪', SEK: 'kr ',
     PLN: 'zł ', TRY: '₺', SAR: 'SAR ', NOK: 'kr ', HUF: 'Ft ', MXN: 'MX$', IDR: 'Rp ', MYR: 'RM ',
-    THB: '฿', ZAR: 'R ', EGP: 'E£', AED: 'AED ', RUB: '₽' };
+    THB: '฿', ZAR: 'R ', EGP: 'E£', AED: 'AED ', RUB: '₽', ARS: 'AR$ ' };
   var FX_FALLBACK = { USD: 1, CNY: 7.22, EUR: 0.925, JPY: 149, GBP: 0.787, CHF: 0.893, DKK: 6.9,
     KRW: 1330, INR: 83.3, AUD: 1.515, HKD: 7.81, TWD: 32.3, BRL: 5.55, ILS: 3.7, SEK: 10.5, PLN: 4.0,
     TRY: 33.3, SAR: 3.75, CAD: 1.37, NOK: 10.9, HUF: 357, MXN: 20, IDR: 16100, MYR: 4.55, THB: 34.5,
     SGD: 1.35, ZAR: 18.2, EGP: 50, AED: 3.67, JOD: 0.709, PKR: 278, RUB: 91, BDT: 110, VND: 25400,
-    PHP: 58, NZD: 1.65, CZK: 23.3, RON: 4.6 };
+    PHP: 58, NZD: 1.65, CZK: 23.3, RON: 4.6, ARS: 1200 };
   var FX = { rates: Object.assign({}, FX_FALLBACK), live: false };
   async function loadFx() {
     try {
