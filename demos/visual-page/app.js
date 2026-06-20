@@ -180,6 +180,17 @@ const solidLineMat = new THREE.ShaderMaterial({
     void main(){ float f = clamp((110.0 - vDist)/80.0, 0.22, 1.0); gl_FragColor = vec4(vC*0.85, uOpacity*f); }`
 });
 
+// GPU instancing 可用性（几乎所有 WebGL 设备都支持；否则回退到 CPU 合并路径，保证任何设备可开）
+const USE_INST = !!(renderer.capabilities.isWebGL2 || (renderer.extensions && renderer.extensions.has && renderer.extensions.has('ANGLE_instanced_arrays')));
+// 几何体实例化材质：每实例一个 4×4 矩阵 iMat + 颜色 iColor，逐顶点变换交给 GPU；外观与 solidLineMat 完全一致
+const instLineMat = new THREE.ShaderMaterial({
+  transparent: true, depthWrite: false, blending: THREE.AdditiveBlending,
+  vertexShader: `attribute mat4 iMat; attribute vec3 iColor; varying vec3 vC; varying float vDist;
+    void main(){ vC = iColor; vec4 mv = modelViewMatrix*(iMat*vec4(position,1.0)); vDist = -mv.z; gl_Position = projectionMatrix*mv; }`,
+  fragmentShader: `varying vec3 vC; varying float vDist;
+    void main(){ float f = clamp((110.0 - vDist)/80.0, 0.22, 1.0); gl_FragColor = vec4(vC*0.85, 0.7*f); }`
+});
+
 // SOM 神经晶格材质：neighbor 连线，亮度=神经元 density，整体随呼吸量 uOrg 浮现（呼气时心智显形）
 const latticeMat = new THREE.ShaderMaterial({
   uniforms: { uOrg: { value: 0 } }, transparent: true, depthWrite: false, blending: THREE.AdditiveBlending,
@@ -536,7 +547,7 @@ let E = 0, emEnt, emLocal, entMat;   // 轨迹发射点：每个立体的每个�
 let featM = null, latticeObj = null, shapeArr = null, szCurve = null;   // SOM 特征矩阵 · 神经晶格 · 每星几何体形 id · 尺寸曲线[0,1]
 const SZ_GAMMA = 2.2;   // 尺寸幂曲线：>1 → 多数微小、少数巨大（群星 + 日月大行星）
 let prevPos = null;   // 上一帧世界位置 → 算速度方向（棱柱以运动方向为自转轴）
-let visArr = null, prevVisArr = null;   // 视锥剔除：本帧/上次采样时是否可见（屏外跳过重活，不减视觉）
+let visArr = null, prevVisArr = null, cwArr = null;   // 视锥剔除 + 每实体到相机的距离（cw）→ 投影尺寸 LOD
 let gOrg = 0, breathT = 0;             // 呼吸量(0=重叠混沌 / 1=铺开成神经地图) · 呼吸相位累加器
 // ---------- 几何体形库：常规多面体 + 特殊数学三维体（每个含棱线 edges + 轨迹发射点 corners）----------
 const SHAPES = (() => {
@@ -678,7 +689,7 @@ function finalize() {
   // initial world positions
   for (let i = 0; i < N; i++) writeWorld(i);
   prevPos = Float32Array.from(posArr);   // 速度方向初值
-  visArr = new Uint8Array(N).fill(1); prevVisArr = new Uint8Array(N).fill(1);   // 视锥可见性
+  visArr = new Uint8Array(N).fill(1); prevVisArr = new Uint8Array(N).fill(1); cwArr = new Float32Array(N).fill(50);   // 视锥可见性 + 距离
 
   // group id per point (for show/hide toggles)
   grp = Uint8Array.from(D.meta.map((m) => (m && GROUP_KEY[m.kind] != null ? GROUP_KEY[m.kind] : 0)));
@@ -1065,28 +1076,33 @@ function animate() {
       for (let i = 0; i < N; i++) {
         const o = i * 3, x = posArr[o], y = posArr[o + 1], z = posArr[o + 2];
         const cw = m[3] * x + m[7] * y + m[11] * z + m[15];
-        if (cw <= 0.1) { visArr[i] = 0; continue; }                 // 背后 → 剔除
-        if (cw < 5) { visArr[i] = 1; continue; }                    // 近处大体可能中心出框 → 保留
+        cwArr[i] = cw > 0.5 ? cw : 0.5;                              // 到相机距离（供投影尺寸 LOD）
+        if (cw <= 0.05) { visArr[i] = 0; continue; }                // 背后 → 剔除
+        if (cw < 14) { visArr[i] = 1; continue; }                   // 近处大体可能中心出框 → 保留（余量加大）
         const cx = (m[0] * x + m[4] * y + m[8] * z + m[12]) / cw, cy = (m[1] * x + m[5] * y + m[9] * z + m[13]) / cw;
-        visArr[i] = (cx > -1.5 && cx < 1.5 && cy > -1.5 && cy < 1.5) ? 1 : 0;   // 视锥内(留 1.5 余量给大体边缘)
+        visArr[i] = (cx > -2.8 && cx < 2.8 && cy > -2.8 && cy < 2.8) ? 1 : 0;   // 视锥内（±2.8 大余量 → 转视角时边缘不闪）
       }
     }
 
     // 几何体棱线：跟随混沌位置 + 各自缓慢自转 + 呼吸变径（CPU 变换合并 LineSegments）
     if (solidGroups.length) {
       const sbreath = 1.0 + 0.22 * Math.sin(tElapsed * 0.7), ringBreath = 1.0 + 0.18 * Math.sin(tElapsed * 0.5 + 1.0);
+      const lodK = Math.tan(camera.fov * Math.PI / 360) * 0.013;   // morph-LOD 阈值随焦距：投影 <~5px 才冻结 4D 形变（子像素，看不出）
       for (let g = 0; g < solidGroups.length; g++) {
-        const sg = solidGroups[g], lv = sg.lv, pos = sg.pos;
+        const sg = solidGroups[g], lv = sg.lv, pos = sg.pos, inst = sg.inst;
         let local = sg.local;
         for (let j = 0; j < sg.cnt; j++) {
           const gi = sg.gidx[j], o = gi * 3, vis = groupVis[grp[gi]] ? 1 : 0;
           if (!visArr[gi]) continue;                              // 屏外 → 跳过（位置留旧值，本就不可见；回到视野内下一帧即更新）
-          if (sg.is4d) {                                          // 逐帧 nD 旋转→投影 3D（速率随数据 D.spd），每个实体各自的形状
-            projectND(sg.verts4, sg.n4, sg.dim, sg.wdist, sg.spd4[j] * tElapsed + sg.phase[j]);
-            for (let e2 = 0; e2 < sg.ne; e2++) { const u = sg.edgeIdx[e2 * 2] * 3, v2 = sg.edgeIdx[e2 * 2 + 1] * 3, o2 = e2 * 6;
-              _localDyn[o2] = _v3tmp[u]; _localDyn[o2 + 1] = _v3tmp[u + 1]; _localDyn[o2 + 2] = _v3tmp[u + 2];
-              _localDyn[o2 + 3] = _v3tmp[v2]; _localDyn[o2 + 4] = _v3tmp[v2 + 1]; _localDyn[o2 + 5] = _v3tmp[v2 + 2]; }
-            local = _localDyn;
+          const sc = sg.cmplx * (0.05 + szCurve[gi] * 1.4) * (sg.ellipsoid ? ringBreath : sbreath) * vis;   // 数据量级(szCurve) × 复杂度 → 高维体更大
+          if (sg.is4d) {                                          // 逐帧 nD 旋转→投影 3D；但投影 <~5px 时冻结 morph 用静态形（看不出，省 projectND）
+            if (sc >= cwArr[gi] * lodK) {
+              projectND(sg.verts4, sg.n4, sg.dim, sg.wdist, sg.spd4[j] * tElapsed + sg.phase[j]);
+              for (let e2 = 0; e2 < sg.ne; e2++) { const u = sg.edgeIdx[e2 * 2] * 3, v2 = sg.edgeIdx[e2 * 2 + 1] * 3, o2 = e2 * 6;
+                _localDyn[o2] = _v3tmp[u]; _localDyn[o2 + 1] = _v3tmp[u + 1]; _localDyn[o2 + 2] = _v3tmp[u + 2];
+                _localDyn[o2 + 3] = _v3tmp[v2]; _localDyn[o2 + 4] = _v3tmp[v2 + 1]; _localDyn[o2 + 5] = _v3tmp[v2 + 2]; }
+              local = _localDyn;
+            } else { local = sg.local; }                          // LOD：冻结 morph（静态 Schlegel 投影）
           }
           // 所有几何体：以「运动方向」为轴轻微自转（顺着各自轨迹流转）；方向先低通滤波 → 平滑不抖
           const o3 = j * 3, vx = posArr[o] - prevPos[o], vy = posArr[o + 1] - prevPos[o + 1], vz = posArr[o + 2] - prevPos[o + 2], vl = Math.hypot(vx, vy, vz);
@@ -1100,21 +1116,23 @@ function animate() {
           _v.set(dx, dy, dz);
           if (sg.velAxis) { _q1.setFromUnitVectors(_UP, _v); _q2.setFromAxisAngle(_v, sg.speed[j] * tElapsed); _q.multiplyQuaternions(_q2, _q1); }   // 棱柱：长轴对齐 + 绕轴自旋（纺锤）
           else { _q.setFromAxisAngle(_v, sg.speed[j] * tElapsed); }   // 其余：绕运动方向轻微自转
-          const sc = sg.cmplx * (0.05 + szCurve[gi] * 1.4) * (sg.ellipsoid ? ringBreath : sbreath) * vis;   // 数据量级(szCurve) × 复杂度(边数/维度) → 高维体更大、多维展开看得清
           _dummy.position.set(posArr[o], posArr[o + 1], posArr[o + 2]);
           _dummy.quaternion.copy(_q);
           _dummy.scale.set(sc, sg.ellipsoid ? sc * 0.74 : sc, sc);
           _dummy.updateMatrix();
-          const e = _dummy.matrix.elements, base = j * lv * 3;
-          for (let v = 0; v < lv; v++) {
-            const li = v * 3, lx = local[li], ly = local[li + 1], lz = local[li + 2], k = base + li;
-            pos[k] = e[0] * lx + e[4] * ly + e[8] * lz + e[12];
-            pos[k + 1] = e[1] * lx + e[5] * ly + e[9] * lz + e[13];
-            pos[k + 2] = e[2] * lx + e[6] * ly + e[10] * lz + e[14];
+          const e = _dummy.matrix.elements;
+          if (inst) { sg.iMat.set(e, j * 16); }                  // GPU：写实例矩阵（16 floats），逐顶点变换交给 GPU
+          else { const base = j * lv * 3;                         // CPU 回退：逐顶点变换写入大缓冲
+            for (let v = 0; v < lv; v++) {
+              const li = v * 3, lx = local[li], ly = local[li + 1], lz = local[li + 2], k = base + li;
+              pos[k] = e[0] * lx + e[4] * ly + e[8] * lz + e[12];
+              pos[k + 1] = e[1] * lx + e[5] * ly + e[9] * lz + e[13];
+              pos[k + 2] = e[2] * lx + e[6] * ly + e[10] * lz + e[14];
+            }
           }
           entMat.set(e, gi * 16);                                // 存实体矩阵，供每个顶点的轨迹用
         }
-        sg.posAttr.needsUpdate = true;
+        if (inst) sg.iMatAttr.needsUpdate = true; else sg.posAttr.needsUpdate = true;
       }
     }
 
@@ -1184,7 +1202,6 @@ function buildSolids() {
     // 复杂度因子：边越多(越高维/复杂)整体越大 → 多维展开看得清，不缩成点。lv/2=棱数
     let cmplx = 1.0 + clamp(Math.log2(Math.max(lv / 2, 6) / 6) / 5.2, 0, 1) * 1.4;
     if (shape.is4d) cmplx *= 1 + (shape.dim - 3) * 0.1;   // 高维额外加成（4D×1.1 / 5D×1.2 / 6D×1.3）
-    const pos = new Float32Array(cnt * lv * 3), colA = new Float32Array(cnt * lv * 3);
     const gidx = new Int32Array(cnt), speed = new Float32Array(cnt), vdir = new Float32Array(cnt * 3);   // vdir = 平滑后的运动方向（所有几何体共用）
     const spd4 = shape.is4d ? new Float32Array(cnt) : null, phase = shape.is4d ? new Float32Array(cnt) : null;
     for (let j = 0; j < cnt; j++) {
@@ -1192,16 +1209,30 @@ function buildSolids() {
       vdir[j * 3] = 0; vdir[j * 3 + 1] = 1; vdir[j * 3 + 2] = 0;   // 初始方向
       speed[j] = shape.spin * (0.4 + (D.spd[gi] || 0.5));          // 自转速率随数据 D.spd（轻微、绕运动方向）
       if (shape.is4d) { spd4[j] = shape.spin4 * (0.4 + (D.spd[gi] || 0.5)); phase[j] = hash01('p4' + gi) * 6.2831853; }   // 4D 旋转速率随数据 D.spd；相位去同步
-      const cr = D.col[gi * 3], cg = D.col[gi * 3 + 1], cb = D.col[gi * 3 + 2];
-      for (let v = 0; v < lv; v++) { const k = (j * lv + v) * 3; colA[k] = cr; colA[k + 1] = cg; colA[k + 2] = cb; }
     }
-    const g = new THREE.BufferGeometry();
-    const posAttr = new THREE.BufferAttribute(pos, 3).setUsage(THREE.DynamicDrawUsage);
-    g.setAttribute('position', posAttr);
-    g.setAttribute('aColor', new THREE.BufferAttribute(colA, 3));
-    const mesh = new THREE.LineSegments(g, solidLineMat); mesh.frustumCulled = false; root.add(mesh);
-    solidGroups.push({ posAttr, pos, local, lv, cnt, gidx, speed, vdir, cmplx, ellipsoid: shape.ellipsoid, velAxis: shape.velAxis,
-      is4d: shape.is4d, verts4: shape.verts4, edgeIdx: shape.edgeIdx, n4: shape.n4, ne: shape.ne, wdist: shape.wdist, dim: shape.dim, spd4, phase });
+    const common = { lv, cnt, gidx, speed, vdir, cmplx, ellipsoid: shape.ellipsoid, velAxis: shape.velAxis };
+    if (USE_INST && !shape.is4d) {
+      // GPU 实例化：base 几何体一份 + 每实例 iMat(mat4)+iColor → 逐顶点变换交给 GPU（省 CPU）
+      const ig = new THREE.InstancedBufferGeometry();
+      ig.setAttribute('position', new THREE.Float32BufferAttribute(local, 3));
+      const iMat = new Float32Array(cnt * 16), iCol = new Float32Array(cnt * 3);
+      for (let j = 0; j < cnt; j++) { const gi = gidx[j]; iCol[j * 3] = D.col[gi * 3]; iCol[j * 3 + 1] = D.col[gi * 3 + 1]; iCol[j * 3 + 2] = D.col[gi * 3 + 2]; }
+      const iMatAttr = new THREE.InstancedBufferAttribute(iMat, 16).setUsage(THREE.DynamicDrawUsage);
+      ig.setAttribute('iMat', iMatAttr); ig.setAttribute('iColor', new THREE.InstancedBufferAttribute(iCol, 3));
+      ig.instanceCount = cnt;
+      const mesh = new THREE.LineSegments(ig, instLineMat); mesh.frustumCulled = false; root.add(mesh);
+      solidGroups.push(Object.assign({ inst: true, iMat, iMatAttr, is4d: false }, common));
+    } else {
+      // CPU 合并路径（4D 形 / 不支持 instancing 时的回退）：逐帧把每顶点变换写进大缓冲
+      const pos = new Float32Array(cnt * lv * 3), colA = new Float32Array(cnt * lv * 3);
+      for (let j = 0; j < cnt; j++) { const gi = gidx[j], cr = D.col[gi * 3], cg = D.col[gi * 3 + 1], cb = D.col[gi * 3 + 2];
+        for (let v = 0; v < lv; v++) { const k = (j * lv + v) * 3; colA[k] = cr; colA[k + 1] = cg; colA[k + 2] = cb; } }
+      const g = new THREE.BufferGeometry();
+      const posAttr = new THREE.BufferAttribute(pos, 3).setUsage(THREE.DynamicDrawUsage);
+      g.setAttribute('position', posAttr); g.setAttribute('aColor', new THREE.BufferAttribute(colA, 3));
+      const mesh = new THREE.LineSegments(g, solidLineMat); mesh.frustumCulled = false; root.add(mesh);
+      solidGroups.push(Object.assign({ posAttr, pos, local, is4d: shape.is4d, verts4: shape.verts4, edgeIdx: shape.edgeIdx, n4: shape.n4, ne: shape.ne, wdist: shape.wdist, dim: shape.dim, spd4, phase }, common));
+    }
   }
 }
 
