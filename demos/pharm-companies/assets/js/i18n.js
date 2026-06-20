@@ -94,7 +94,9 @@
       tcm: { zh: '中药', en: 'TCM' },
       diversified: { zh: '综合', en: 'Diversified' },
       lifesci_tools: { zh: '生命科学工具/诊断', en: 'Life-sci tools / Dx' },
-      medtech: { zh: '医疗器械', en: 'MedTech' }
+      medtech: { zh: '医疗器械', en: 'MedTech' },
+      consumer_health: { zh: '消费健康/OTC', en: 'Consumer health' },
+      venture_creation: { zh: '风险孵化/创建', en: 'Venture creation' }
     },
     site_type: {
       HQ: { zh: '总部', en: 'HQ' }, RD: { zh: '研发', en: 'R&D' },

@@ -146,6 +146,10 @@ body { color: var(--text); font-family: Inter, system-ui, sans-serif; }
 .badge-ct-diversified { background: rgba(100,116,139,.16); color: #475569; }
 .badge-ct-lifesci_tools { background: rgba(14,165,233,.15); color: #0369a1; }
 .badge-ct-medtech { background: rgba(244,63,94,.13); color: #be123c; }
+.badge-ct-consumer_health { background: rgba(132,204,22,.15); color: #4d7c0f; }
+.badge-ct-venture_creation { background: rgba(217,70,239,.14); color: #a21caf; }
+html.dark .badge-ct-consumer_health { color: #a3e635; }
+html.dark .badge-ct-venture_creation { color: #e879f9; }
 html.dark .badge-ct-lifesci_tools { color: #38bdf8; }
 html.dark .badge-ct-medtech { color: #fb7185; }
 html.dark .badge-ct-generics { color: #fbbf24; }
