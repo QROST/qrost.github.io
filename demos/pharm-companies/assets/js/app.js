@@ -14,16 +14,51 @@
   var companyModalities = {}, companyTAs = {};
   var CAT_CAP = 400; // max catalog rows rendered at once (perf w/ large roster); refine via filters
 
-  // ---------- formatting ----------
-  var CUR = { USD: '$', CNY: '¥', EUR: '€', JPY: '¥', CHF: 'CHF ', GBP: '£', DKK: 'kr ', KRW: '₩', INR: '₹', AUD: 'A$', SGD: 'S$' };
-  function money(m) {
+  // ---------- FX + money formatting ----------
+  // Raw values stay in local currency (ground truth in the data); DISPLAY converts to the reader's
+  // currency — ¥ CNY in 中文, $ USD in English — so amounts are comparable/sortable across markets.
+  // Rates = units per 1 USD; fetched live from open.er-api.com with a hardcoded ~2026 fallback.
+  var CUR = { USD: '$', CNY: '¥', EUR: '€', JPY: '¥', CHF: 'CHF ', GBP: '£', DKK: 'kr ', KRW: '₩',
+    INR: '₹', AUD: 'A$', SGD: 'S$', HKD: 'HK$', TWD: 'NT$', BRL: 'R$', CAD: 'C$', ILS: '₪', SEK: 'kr ',
+    PLN: 'zł ', TRY: '₺', SAR: 'SAR ', NOK: 'kr ', HUF: 'Ft ', MXN: 'MX$', IDR: 'Rp ', MYR: 'RM ',
+    THB: '฿', ZAR: 'R ', EGP: 'E£', AED: 'AED ', RUB: '₽' };
+  var FX_FALLBACK = { USD: 1, CNY: 7.22, EUR: 0.925, JPY: 149, GBP: 0.787, CHF: 0.893, DKK: 6.9,
+    KRW: 1330, INR: 83.3, AUD: 1.515, HKD: 7.81, TWD: 32.3, BRL: 5.55, ILS: 3.7, SEK: 10.5, PLN: 4.0,
+    TRY: 33.3, SAR: 3.75, CAD: 1.37, NOK: 10.9, HUF: 357, MXN: 20, IDR: 16100, MYR: 4.55, THB: 34.5,
+    SGD: 1.35, ZAR: 18.2, EGP: 50, AED: 3.67, JOD: 0.709, PKR: 278, RUB: 91, BDT: 110, VND: 25400,
+    PHP: 58, NZD: 1.65, CZK: 23.3, RON: 4.6 };
+  var FX = { rates: Object.assign({}, FX_FALLBACK), live: false };
+  async function loadFx() {
+    try {
+      var r = await fetch('https://open.er-api.com/v6/latest/USD');
+      if (r.ok) {
+        var j = await r.json();
+        if (j && j.rates && j.rates.CNY) { Object.assign(FX.rates, j.rates); FX.live = true; }
+      }
+    } catch (e) {}
+  }
+  function fxRate(cur) { return FX.rates[(cur || 'USD').toUpperCase()] || FX.rates.USD || 1; }
+  function toUSD(m) { return (m && m.value != null) ? m.value / fxRate(m.currency) : null; }
+  function usdVal(m) { var u = toUSD(m); return u == null ? -1 : u; }  // for sorting (missing -> bottom)
+  function fmtNum(v) {
+    var a = Math.abs(v);
+    if (a >= 1e9) return (v / 1e9).toFixed(a >= 1e10 ? 0 : 1) + 'B';
+    if (a >= 1e6) return (v / 1e6).toFixed(0) + 'M';
+    if (a >= 1e3) return (v / 1e3).toFixed(0) + 'K';
+    return Math.round(v).toLocaleString();
+  }
+  function money(m, withOrig) {
     if (!m || m.value == null) return '—';
-    var v = m.value, sym = CUR[m.currency] || (m.currency ? m.currency + ' ' : '');
-    var s;
-    if (v >= 1e9) s = (v / 1e9).toFixed(v >= 1e10 ? 0 : 1) + 'B';
-    else if (v >= 1e6) s = (v / 1e6).toFixed(0) + 'M';
-    else s = v.toLocaleString();
-    return sym + s + (m.year ? ' (' + m.year + ')' : '');
+    var usd = toUSD(m); if (usd == null) return '—';
+    var en = I18N.isEn();
+    var disp = en ? usd : usd * fxRate('CNY');
+    var out = (en ? '$' : '¥') + fmtNum(disp) + (m.year ? ' (' + m.year + ')' : '');
+    var dcur = en ? 'USD' : 'CNY';
+    if (withOrig && m.currency && String(m.currency).toUpperCase() !== dcur) {
+      out += ' <span class="text-faint" style="font-size:.85em">· ' + I18N.t('origCur') + ' '
+        + (CUR[m.currency] || (m.currency + ' ')) + fmtNum(m.value) + '</span>';
+    }
+    return out;
   }
   function num(n) { return n == null ? '—' : Number(n).toLocaleString(); }
   function confBadge(c) {
@@ -125,7 +160,7 @@
       if (k === 'country') { va = a.country || ''; vb = b.country || ''; return va.localeCompare(vb) * dir; }
       if (k === 'type') { va = a.company_type || ''; vb = b.company_type || ''; return va.localeCompare(vb) * dir; }
       if (k === 'exchange') { va = exchOf(a); vb = exchOf(b); return va.localeCompare(vb) * dir; }
-      if (k === 'revenue') { va = a.revenue ? a.revenue.value : -1; vb = b.revenue ? b.revenue.value : -1; return (va - vb) * dir; }
+      if (k === 'revenue') { return (usdVal(a.revenue) - usdVal(b.revenue)) * dir; }
       if (k === 'products') { va = D.productsForCompany(a.id).length; vb = D.productsForCompany(b.id).length; return (va - vb) * dir; }
       return 0;
     });
@@ -186,8 +221,8 @@
       var kv = [
         [I18N.t('thExchange'), esc(exchOf(c)) || '—'],
         [I18N.t('ticker'), (c.tickers || []).map(function (x) { return x.exchange + ':' + x.symbol; }).join(', ') || (c.is_public === false ? '私有/Private' : '—')],
-        [I18N.t('revenue'), money(c.revenue)], [I18N.t('marketCap'), money(c.market_cap)],
-        [I18N.t('rndSpend'), money(c.rnd_spend)], [I18N.t('employees'), c.employees ? num(c.employees.value) + (c.employees.year ? ' (' + c.employees.year + ')' : '') : '—'],
+        [I18N.t('revenue'), money(c.revenue, true)], [I18N.t('marketCap'), money(c.market_cap, true)],
+        [I18N.t('rndSpend'), money(c.rnd_spend, true)], [I18N.t('employees'), c.employees ? num(c.employees.value) + (c.employees.year ? ' (' + c.employees.year + ')' : '') : '—'],
         [I18N.t('founded'), c.founded || '—'], [I18N.t('hq'), esc(c.hq_city || '') + (c.hq_city ? ', ' : '') + esc(I18N.pick(c.country_display_zh, c.country_display_en))]
       ];
       if (c.parent_id && D.getCompany(c.parent_id)) kv.push([I18N.t('parent'), esc(I18N.name(D.getCompany(c.parent_id)))]);
@@ -237,7 +272,7 @@
     var cols = ['name', 'colRegion', 'colMarket', 'colCompanies', 'colRegulator', 'colStrength'];
     $('country-head').innerHTML = ['thCountry', 'colRegion', 'colMarket', 'colCompanies', 'colRegulator', 'colStrength']
       .map(function (k) { return '<th>' + I18N.t(k) + '</th>'; }).join('');
-    var list = D.countries.slice().sort(function (a, b) { return (b.market_size ? b.market_size.value : 0) - (a.market_size ? a.market_size.value : 0); });
+    var list = D.countries.slice().sort(function (a, b) { return usdVal(b.market_size) - usdVal(a.market_size); });
     if (!state.countrySel.length) state.countrySel = list.slice(0, 4).map(function (c) { return c.country; });
     $('country-body').innerHTML = list.map(function (c) {
       var checked = state.countrySel.indexOf(c.country) !== -1;
@@ -427,7 +462,7 @@
     I18N.applyLangToUI();
     var foot = $('foot-build');
     try {
-      await D.initCore();
+      await Promise.all([D.initCore(), loadFx()]);
       buildIndexes(); fillSelects(); bind(); renderAll();
       if (D.manifest && foot) foot.textContent = 'build ' + (D.manifest.data_version || '') + ' · ' + (D.manifest.build_time || '');
     } catch (e) {
