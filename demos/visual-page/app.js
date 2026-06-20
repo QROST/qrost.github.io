@@ -536,6 +536,7 @@ let E = 0, emEnt, emLocal, entMat;   // 轨迹发射点：每个立体的每个�
 let featM = null, latticeObj = null, shapeArr = null, szCurve = null;   // SOM 特征矩阵 · 神经晶格 · 每星几何体形 id · 尺寸曲线[0,1]
 const SZ_GAMMA = 2.2;   // 尺寸幂曲线：>1 → 多数微小、少数巨大（群星 + 日月大行星）
 let prevPos = null;   // 上一帧世界位置 → 算速度方向（棱柱以运动方向为自转轴）
+let visArr = null, prevVisArr = null;   // 视锥剔除：本帧/上次采样时是否可见（屏外跳过重活，不减视觉）
 let gOrg = 0, breathT = 0;             // 呼吸量(0=重叠混沌 / 1=铺开成神经地图) · 呼吸相位累加器
 // ---------- 几何体形库：常规多面体 + 特殊数学三维体（每个含棱线 edges + 轨迹发射点 corners）----------
 const SHAPES = (() => {
@@ -562,7 +563,7 @@ const SHAPES = (() => {
   const tesseract = () => { const idx = CUBE_E.concat(CUBE_E.map(([u, v]) => [u + 8, v + 8])); for (let i = 0; i < 8; i++) idx.push([i, i + 8]); return segFrom(cubeVerts(0.42).concat(cubeVerts(0.22)), idx); };   // 内外双立方体 + 连棱
   const fiveCell = () => { const s = 0.46, v = [[1, 1, 1], [1, -1, -1], [-1, 1, -1], [-1, -1, 1]].map((p) => p.map((c) => c * s)); v.push([0, 0, 0]); return segFrom(v, allPairs(5)); };   // 4-单纯形 Schlegel
   const dedup = (edges, n) => { const seen = new Set(), out = []; for (let i = 0; i + 2 < edges.length && out.length < n * 3; i += 3) { const k = edges[i].toFixed(2) + ',' + edges[i + 1].toFixed(2) + ',' + edges[i + 2].toFixed(2); if (!seen.has(k)) { seen.add(k); out.push(edges[i], edges[i + 1], edges[i + 2]); } } return out.length ? out : [0, 0, 0]; };
-  const mk = (edges, ellipsoid, spin, velAxis) => ({ edges: new Float32Array(edges), corners: dedup(edges, ellipsoid ? 4 : 6), ellipsoid: !!ellipsoid, spin, velAxis: !!velAxis });
+  const mk = (edges, ellipsoid, spin, velAxis, cornerCap) => ({ edges: new Float32Array(edges), corners: dedup(edges, cornerCap || 99), ellipsoid: !!ellipsoid, spin, velAxis: !!velAxis });   // 默认取全部顶点 → 每个节点都拖尾；曲线类传小 cap
   // nD 形（4/5/6 维）：存 D 维顶点 + 棱 + 投影距 wdist + 自转基速 spin4；运行时逐帧 nD 旋转→透视投影到 3D（真·高维运动）
   const projND0 = (v, dim, wd) => { const c = v.slice(); for (let d = dim - 1; d >= 3; d--) { const k = wd / (wd - c[d]); for (let m = 0; m < d; m++) c[m] *= k; } return [c[0], c[1], c[2]]; };   // angle-0 投影（建静态棱/corners）
   const makeND = (V, E, dim, wd, spin4) => {
@@ -570,7 +571,7 @@ const SHAPES = (() => {
     for (const [u, v] of E) edges.push(v3[u][0], v3[u][1], v3[u][2], v3[v][0], v3[v][1], v3[v][2]);
     const verts4 = new Float32Array(V.length * dim); V.forEach((v, i) => { for (let k = 0; k < dim; k++) verts4[i * dim + k] = v[k]; });
     const edgeIdx = new Int16Array(E.length * 2); E.forEach((e, i) => { edgeIdx[i * 2] = e[0]; edgeIdx[i * 2 + 1] = e[1]; });
-    return { edges: new Float32Array(edges), corners: dedup(edges, 6), ellipsoid: false, spin: 0.05, velAxis: false, is4d: true, verts4, edgeIdx, n4: V.length, ne: E.length, wdist: wd, spin4, dim };   // spin 0.05 → 也绕运动方向轻微自转
+    return { edges: new Float32Array(edges), corners: dedup(edges, 99), ellipsoid: false, spin: 0.05, velAxis: false, is4d: true, verts4, edgeIdx, n4: V.length, ne: E.length, wdist: wd, spin4, dim };   // corners=全部顶点 → 每个节点都拖尾
   };
   const hcube = (dim, s) => { const V = [], E = [], N = 1 << dim;                                    // n-立方体：2^dim 顶点、Hamming=1 相邻 → dim·2^(dim-1) 棱
     for (let m = 0; m < N; m++) { const v = []; for (let k = 0; k < dim; k++) v.push(((m >> k) & 1) ? s : -s); V.push(v); }
@@ -614,8 +615,8 @@ const SHAPES = (() => {
   S[10] = mk(cubocta(), 0, 0.09);                                                                     // 立方八面体 cuboctahedron
   S[11] = tesseract4();                                                                               // 超立方体：逐帧 4D 旋转→3D（内外翻转/展开）
   S[12] = fiveCell4();                                                                                // 五胞体：逐帧 4D 旋转→3D（顶点穿插涌动）
-  S[13] = mk(knot(2, 3, 56, 0.24), 0, 0.5);                                                           // 环面纽结 trefoil
-  S[14] = mk(ring(), 1, 0.7);                                                                         // 陀螺椭圆环
+  S[13] = mk(knot(2, 3, 56, 0.24), 0, 0.5, 0, 8);                                                     // 环面纽结 trefoil（曲线 → 8 点采样拖尾）
+  S[14] = mk(ring(), 1, 0.7, 0, 8);                                                                   // 陀螺椭圆环（曲线 → 8 点采样拖尾）
   S[15] = cell16();                                                                                   // 16-胞体（4D，8顶/24棱）
   S[16] = cell24();                                                                                   // 24-胞体（4D，24顶/96棱，唯一无三维对应）
   S[17] = duo33();                                                                                    // 3-3 多胞柱（4D，9顶/18棱）
@@ -628,6 +629,7 @@ function cornersOf(t) { return (t && SHAPES[t]) ? SHAPES[t].corners : [0, 0, 0];
 let solidGroups = [];
 const _dummy = new THREE.Object3D(), _q = new THREE.Quaternion(), _v = new THREE.Vector3();
 const _q1 = new THREE.Quaternion(), _q2 = new THREE.Quaternion(), _UP = new THREE.Vector3(0, 1, 0);
+const _vp = new THREE.Matrix4();   // view-projection（用于视锥剔除测试）
 const _v3tmp = new Float32Array(64 * 3), _localDyn = new Float32Array(192 * 6), _cN = new Float32Array(6);   // nD 投影暂存（≤64 顶点 / ≤192 棱 / ≤6 维）
 // 把 D 维顶点按角 a 旋转（数个 4D 平面）再逐维透视塌缩到 3D，存入 _v3tmp
 function projectND(verts, n4, dim, wd, a) {
@@ -676,6 +678,7 @@ function finalize() {
   // initial world positions
   for (let i = 0; i < N; i++) writeWorld(i);
   prevPos = Float32Array.from(posArr);   // 速度方向初值
+  visArr = new Uint8Array(N).fill(1); prevVisArr = new Uint8Array(N).fill(1);   // 视锥可见性
 
   // group id per point (for show/hide toggles)
   grp = Uint8Array.from(D.meta.map((m) => (m && GROUP_KEY[m.kind] != null ? GROUP_KEY[m.kind] : 0)));
@@ -1056,6 +1059,19 @@ function animate() {
     }
     pointsObj.geometry.attributes.position.needsUpdate = true;
 
+    // 视锥剔除：屏外实体跳过最贵的几何体变换 / 4D 投影 / 拖尾重建（屏内一模一样，仅省看不见的算力）
+    _vp.multiplyMatrices(camera.projectionMatrix, camera.matrixWorldInverse);
+    { const m = _vp.elements;
+      for (let i = 0; i < N; i++) {
+        const o = i * 3, x = posArr[o], y = posArr[o + 1], z = posArr[o + 2];
+        const cw = m[3] * x + m[7] * y + m[11] * z + m[15];
+        if (cw <= 0.1) { visArr[i] = 0; continue; }                 // 背后 → 剔除
+        if (cw < 5) { visArr[i] = 1; continue; }                    // 近处大体可能中心出框 → 保留
+        const cx = (m[0] * x + m[4] * y + m[8] * z + m[12]) / cw, cy = (m[1] * x + m[5] * y + m[9] * z + m[13]) / cw;
+        visArr[i] = (cx > -1.5 && cx < 1.5 && cy > -1.5 && cy < 1.5) ? 1 : 0;   // 视锥内(留 1.5 余量给大体边缘)
+      }
+    }
+
     // 几何体棱线：跟随混沌位置 + 各自缓慢自转 + 呼吸变径（CPU 变换合并 LineSegments）
     if (solidGroups.length) {
       const sbreath = 1.0 + 0.22 * Math.sin(tElapsed * 0.7), ringBreath = 1.0 + 0.18 * Math.sin(tElapsed * 0.5 + 1.0);
@@ -1064,6 +1080,7 @@ function animate() {
         let local = sg.local;
         for (let j = 0; j < sg.cnt; j++) {
           const gi = sg.gidx[j], o = gi * 3, vis = groupVis[grp[gi]] ? 1 : 0;
+          if (!visArr[gi]) continue;                              // 屏外 → 跳过（位置留旧值，本就不可见；回到视野内下一帧即更新）
           if (sg.is4d) {                                          // 逐帧 nD 旋转→投影 3D（速率随数据 D.spd），每个实体各自的形状
             projectND(sg.verts4, sg.n4, sg.dim, sg.wdist, sg.spd4[j] * tElapsed + sg.phase[j]);
             for (let e2 = 0; e2 < sg.ne; e2++) { const u = sg.edgeIdx[e2 * 2] * 3, v2 = sg.edgeIdx[e2 * 2 + 1] * 3, o2 = e2 * 6;
@@ -1104,19 +1121,22 @@ function animate() {
     // 每 STRIDE 帧采样一次轨迹（让缓慢运动也能拉出可见路径）
     frameCount++;
     if (frameCount % STRIDE === 0) {
-      for (let e = 0; e < E; e++) {                              // 每个顶点发射点的世界位置
+      const tpos = trailObj.userData.pos, segs = trailObj.userData.segs;
+      head = (head + 1) % TRAIL;
+      for (let e = 0; e < E; e++) {
         const gi = emEnt[e], eo = e * 3;
+        if (!visArr[gi]) continue;                               // 屏外发射点 → 跳过采样+重建（拖尾冻结，不可见）
         if (shapeArr[gi] === 0) { trailSrc[eo] = posArr[gi * 3]; trailSrc[eo + 1] = posArr[gi * 3 + 1]; trailSrc[eo + 2] = posArr[gi * 3 + 2]; }
         else { const m = gi * 16, lx = emLocal[eo], ly = emLocal[eo + 1], lz = emLocal[eo + 2];
           trailSrc[eo] = entMat[m] * lx + entMat[m + 4] * ly + entMat[m + 8] * lz + entMat[m + 12];
           trailSrc[eo + 1] = entMat[m + 1] * lx + entMat[m + 5] * ly + entMat[m + 9] * lz + entMat[m + 13];
           trailSrc[eo + 2] = entMat[m + 2] * lx + entMat[m + 6] * ly + entMat[m + 10] * lz + entMat[m + 14]; }
-      }
-      head = (head + 1) % TRAIL;
-      for (let e = 0; e < E; e++) { const to = (e * TRAIL + head) * 3, s3 = e * 3; trail[to] = trailSrc[s3]; trail[to + 1] = trailSrc[s3 + 1]; trail[to + 2] = trailSrc[s3 + 2]; }
-      const tpos = trailObj.userData.pos, segs = trailObj.userData.segs;
-      for (let e = 0; e < E; e++) {
-        for (let k = 0; k < segs; k++) {
+        if (!prevVisArr[gi]) {                                   // 刚回到视野 → 用当前位置填满 ring，避免拖出长拖影
+          for (let t = 0; t < TRAIL; t++) { const to = (e * TRAIL + t) * 3; trail[to] = trailSrc[eo]; trail[to + 1] = trailSrc[eo + 1]; trail[to + 2] = trailSrc[eo + 2]; }
+        } else {
+          const to = (e * TRAIL + head) * 3; trail[to] = trailSrc[eo]; trail[to + 1] = trailSrc[eo + 1]; trail[to + 2] = trailSrc[eo + 2];
+        }
+        for (let k = 0; k < segs; k++) {                         // 重建该发射点的所有段
           const a = (head + 1 + k) % TRAIL, b = (head + 2 + k) % TRAIL;
           const ao = (e * TRAIL + a) * 3, bo = (e * TRAIL + b) * 3, w = ((e * segs + k) * 2) * 3;
           tpos[w] = trail[ao]; tpos[w + 1] = trail[ao + 1]; tpos[w + 2] = trail[ao + 2];
@@ -1124,6 +1144,7 @@ function animate() {
         }
       }
       trailObj.userData.attr.needsUpdate = true;
+      prevVisArr.set(visArr);                                    // 记录本次采样时的可见性（供下次「重入」判定）
     }
 
     if (beamObj) {
