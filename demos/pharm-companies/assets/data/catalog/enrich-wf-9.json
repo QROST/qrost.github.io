@@ -1,0 +1,173 @@
+{
+  "shard": "enrich-wf-9",
+  "products": [
+    {
+      "id": "clx001",
+      "name_zh": "CLX001",
+      "name_en": "CLX001",
+      "brand_name": "CLX001",
+      "company_id": "valirx",
+      "modality_id": "peptide",
+      "therapeutic_area_id": "oncology",
+      "indication_zh": "肿瘤学（广谱）",
+      "indication_en": "Oncology (broad)",
+      "approval_status": "ph1",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "europe",
+      "sources": [
+        {
+          "url": "https://www.investegate.co.uk/announcement/rns/valirx--val/final-results-notice-of-agm/8915986",
+          "title": "ValiRx Final Results 2024",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "buloxibutid",
+      "name_zh": "buloxibutid",
+      "name_en": "Buloxibutid",
+      "brand_name": "Buloxibutid",
+      "company_id": "vicore-pharma",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "respiratory",
+      "indication_zh": "特发性肺纤维化（IPF）",
+      "indication_en": "Idiopathic pulmonary fibrosis (IPF)",
+      "approval_status": "ph2",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "europe",
+      "sources": [
+        {
+          "url": "https://vicorepharma.com/mfn_news/year-end-report-2025/",
+          "title": "Vicore Pharma Year-end Report 2025",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "ximluci",
+      "name_zh": "Ximluci®",
+      "name_en": "Ximluci® (ranibizumab biosimilar)",
+      "brand_name": "Ximluci",
+      "company_id": "xbrane-biopharma",
+      "modality_id": "biosimilar",
+      "therapeutic_area_id": "ophthalmology",
+      "indication_zh": "湿性年龄相关性黄斑变性（wAMD）及其他视网膜疾病",
+      "indication_en": "Wet age-related macular degeneration (wAMD) and other retinal diseases",
+      "approval_status": "approved",
+      "drug_class": "biosimilar",
+      "is_blockbuster": false,
+      "region": "europe",
+      "sources": [
+        {
+          "url": "https://xbrane.com/en/mfn_news/xbrane-biopharma-releases-year-end-report-2025/",
+          "title": "Xbrane Year-end Report 2025",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "pimicotinib",
+      "name_zh": "匹米替尼（pimicotinib，ABSK021）",
+      "name_en": "Pimicotinib (ABSK021)",
+      "brand_name": "Pimicotinib (ABSK021)",
+      "company_id": "abbisko",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "oncology",
+      "indication_zh": "腱鞘巨细胞瘤（TGCT）",
+      "indication_en": "Tenosynovial giant cell tumor (TGCT)",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "sources": [
+        {
+          "url": "https://www.biospace.com/press-releases/abbisko-therapeutics-csf-1r-inhibitor-pimicotinib-approved-by-the-china-nmpa-addressing-the-treatment-gap-for-tenosynovial-giant-cell-tumor",
+          "title": "Pimicotinib NMPA Approval – BioSpace",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "irpagratinib",
+      "name_zh": "irpagratinib（ABSK011）",
+      "name_en": "Irpagratinib (ABSK011)",
+      "brand_name": "Irpagratinib (ABSK011)",
+      "company_id": "abbisko",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "oncology",
+      "indication_zh": "肝细胞癌（HCC）",
+      "indication_en": "Hepatocellular carcinoma (HCC)",
+      "approval_status": "ph2",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "sources": [
+        {
+          "url": "https://www.biospace.com/press-releases/abbisko-therapeutics-receives-cde-approval-of-breakthrough-therapy-designation-for-irpagratinib-absk011-in-the-treatment-of-hcc",
+          "title": "Irpagratinib Breakthrough Designation – BioSpace",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "bars13-rsv",
+      "name_zh": "BARS13（RSV 疫苗）",
+      "name_en": "BARS13 (RSV Vaccine)",
+      "brand_name": "BARS13 (RSV Vaccine)",
+      "company_id": "advaccine",
+      "modality_id": "inactivated-vaccine",
+      "therapeutic_area_id": "vaccines",
+      "indication_zh": "呼吸道合胞病毒（RSV）感染预防",
+      "indication_en": "Prevention of Respiratory Syncytial Virus (RSV) infection in infants and elderly",
+      "approval_status": "ph2",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "sources": [
+        {
+          "url": "https://synapse.patsnap.com/organization/8c9671f1cdf49ee5e4fb664b495a6cb6",
+          "title": "Advaccine Pipeline – Synapse",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "sodium-aescinate-aimin",
+      "name_zh": "注射用七叶皂苷钠",
+      "name_en": "Sodium Aescinate Injection",
+      "brand_name": "欧键",
+      "company_id": "aimin-pharma",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "neuroscience",
+      "indication_zh": "脑水肿、肢体肿胀",
+      "indication_en": "Cerebral edema and limb swelling",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "sources": [
+        {
+          "url": "https://xinsanban.eastmoney.com/Article/NoticeContent?id=AN202408271639487085",
+          "title": "爱民制药 2024 H1 Report",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    }
+  ]
+}

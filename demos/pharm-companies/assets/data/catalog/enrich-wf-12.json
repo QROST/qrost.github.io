@@ -1,0 +1,293 @@
+{
+  "shard": "enrich-wf-12",
+  "products": [
+    {
+      "id": "betta-icotinib",
+      "name_zh": "埃克替尼（凯美纳®）",
+      "name_en": "Icotinib",
+      "brand_name": "Conmana® (凯美纳®)",
+      "company_id": "betta-pharmaceuticals",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "oncology",
+      "indication_zh": "局部晚期或转移性非小细胞肺癌（EGFR突变阳性）",
+      "indication_en": "Locally advanced or metastatic NSCLC (EGFR mutation positive)",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": true,
+      "region": "greater_china",
+      "sources": [
+        {
+          "url": "https://baike.baidu.com/en/item/Betta%20Pharmaceuticals%20Co.,%20Ltd./38405",
+          "title": "Betta Pharmaceuticals – Baidu Baike",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "betta-ensartinib",
+      "name_zh": "恩沙替尼（贝美纳®）",
+      "name_en": "Ensartinib",
+      "brand_name": "Ensanitinib® (贝美纳®)",
+      "company_id": "betta-pharmaceuticals",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "oncology",
+      "indication_zh": "ALK阳性非小细胞肺癌",
+      "indication_en": "ALK-positive non-small cell lung cancer",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "sources": [
+        {
+          "url": "https://stockanalysis.com/quote/she/300558/",
+          "title": "Betta Pharmaceuticals – Stock Analysis",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "boan-bevacizumab",
+      "name_zh": "贝伐珠单抗（博优诺®）",
+      "name_en": "Bevacizumab biosimilar",
+      "brand_name": "Boyounuo® (博优诺®)",
+      "company_id": "boan-biotech",
+      "modality_id": "biosimilar",
+      "therapeutic_area_id": "oncology",
+      "indication_zh": "多种实体瘤（结直肠癌、肺癌、宫颈癌等）",
+      "indication_en": "Multiple solid tumours (colorectal, lung, cervical cancers, etc.)",
+      "approval_status": "approved",
+      "drug_class": "biosimilar",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "sources": [
+        {
+          "url": "https://www.boan-bio.com/en/info.php?id=427",
+          "title": "Boan Biotech 2025 Annual Results",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "boan-denosumab-60",
+      "name_zh": "地诺单抗注射液60mg（博优贝®）",
+      "name_en": "Denosumab injection 60 mg biosimilar",
+      "brand_name": "Boyoubei® (博优贝®)",
+      "company_id": "boan-biotech",
+      "modality_id": "biosimilar",
+      "therapeutic_area_id": "rare-disease",
+      "indication_zh": "骨质疏松症",
+      "indication_en": "Osteoporosis",
+      "approval_status": "approved",
+      "drug_class": "biosimilar",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "sources": [
+        {
+          "url": "https://www.boan-bio.com/en/info.php?id=427",
+          "title": "Boan Biotech 2025 Annual Results",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "boan-dulaglutide",
+      "name_zh": "度拉糖肽注射液（博优平®）",
+      "name_en": "Dulaglutide injection biosimilar",
+      "brand_name": "Boyouping® (博优平®)",
+      "company_id": "boan-biotech",
+      "modality_id": "biosimilar",
+      "therapeutic_area_id": "cardiometabolic",
+      "indication_zh": "2型糖尿病",
+      "indication_en": "Type 2 diabetes mellitus",
+      "approval_status": "approved",
+      "drug_class": "biosimilar",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "sources": [
+        {
+          "url": "https://www.boan-bio.com/en/info.php?id=427",
+          "title": "Boan Biotech 2025 Annual Results",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "boan-aflibercept",
+      "name_zh": "阿柏西普眼内注射液（博优晶®）",
+      "name_en": "Aflibercept intravitreous injection biosimilar",
+      "brand_name": "Boyoujing® (博优晶®)",
+      "company_id": "boan-biotech",
+      "modality_id": "biosimilar",
+      "therapeutic_area_id": "ophthalmology",
+      "indication_zh": "湿性年龄相关性黄斑变性、糖尿病性黄斑水肿",
+      "indication_en": "Wet age-related macular degeneration and diabetic macular oedema",
+      "approval_status": "approved",
+      "drug_class": "biosimilar",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "sources": [
+        {
+          "url": "https://www.boan-bio.com/en/info.php?id=427",
+          "title": "Boan Biotech 2025 Annual Results",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "boan-ba1104-nivolumab",
+      "name_zh": "纳武利尤单抗生物类似药（BA1104）",
+      "name_en": "Nivolumab biosimilar BA1104",
+      "brand_name": "Nivolumab biosimilar BA1104",
+      "company_id": "boan-biotech",
+      "modality_id": "biosimilar",
+      "therapeutic_area_id": "oncology",
+      "indication_zh": "多种实体瘤",
+      "indication_en": "Multiple solid tumors",
+      "approval_status": "ph3",
+      "drug_class": "biosimilar",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "sources": [
+        {
+          "url": "https://www.boan-bio.com/en/info.php?id=427",
+          "title": "Boan Biotech 2025 Annual Results",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "boan-ba1301-adc",
+      "name_zh": "抗Claudin18.2 ADC（BA1301）",
+      "name_en": "Anti-Claudin18.2 ADC BA1301",
+      "brand_name": "Anti-Claudin18.2 ADC BA1301",
+      "company_id": "boan-biotech",
+      "modality_id": "adc",
+      "therapeutic_area_id": "oncology",
+      "indication_zh": "胃癌等消化道肿瘤",
+      "indication_en": "Gastric and other GI cancers",
+      "approval_status": "ph1",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "sources": [
+        {
+          "url": "https://www.boan-bio.com/en/info.php?id=427",
+          "title": "Boan Biotech 2025 Annual Results",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "brii-179",
+      "name_zh": "BRII-179（HBV治疗性疫苗）",
+      "name_en": "BRII-179 (HBV surface antigen therapeutic vaccine)",
+      "brand_name": "BRII-179 (HBV surface antigen therapeutic vaccine)",
+      "company_id": "brii-bio",
+      "modality_id": "recombinant-protein",
+      "therapeutic_area_id": "infectious-disease",
+      "indication_zh": "慢性乙型肝炎功能性治愈",
+      "indication_en": "Chronic HBV infection functional cure",
+      "approval_status": "ph2",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "sources": [
+        {
+          "url": "https://www.prnewswire.com/news-releases/brii-biosciences-provides-corporate-updates-and-reports-full-year-2025-financial-results-302718312.html",
+          "title": "Brii Biosciences 2025 Results",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "brightgene-bgm0504",
+      "name_zh": "BGM0504（GLP-1/GIP双靶点激动剂）",
+      "name_en": "BGM0504 (GLP-1/GIP dual receptor agonist)",
+      "brand_name": "BGM0504 (GLP-1/GIP dual receptor agonist)",
+      "company_id": "boryung-pharma-cn",
+      "modality_id": "peptide",
+      "therapeutic_area_id": "cardiometabolic",
+      "indication_zh": "2型糖尿病/肥胖症",
+      "indication_en": "Type 2 diabetes mellitus / obesity",
+      "approval_status": "ph3",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "sources": [
+        {
+          "url": "https://stockanalysis.com/quote/sha/688166/",
+          "title": "BrightGene Bio-Medical – Stock Analysis",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "boya-bio-albumin",
+      "name_zh": "人血白蛋白",
+      "name_en": "Human Serum Albumin",
+      "brand_name": "Human Serum Albumin",
+      "company_id": "boya-bio",
+      "modality_id": "recombinant-protein",
+      "therapeutic_area_id": "hematology",
+      "indication_zh": "低蛋白血症、烧伤、外科手术等",
+      "indication_en": "Hypoalbuminaemia, burns, surgical applications",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "sources": [
+        {
+          "url": "https://finance.yahoo.com/quote/300294.SZ/profile/",
+          "title": "China Resources Boya Profile – Yahoo Finance",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "boya-bio-ivig",
+      "name_zh": "静注人免疫球蛋白（pH4）",
+      "name_en": "Intravenous Human Immunoglobulin (pH4)",
+      "brand_name": "Intravenous Human Immunoglobulin (pH4)",
+      "company_id": "boya-bio",
+      "modality_id": "recombinant-protein",
+      "therapeutic_area_id": "immunology",
+      "indication_zh": "原发性免疫缺陷、川崎病等免疫相关疾病",
+      "indication_en": "Primary immunodeficiency, Kawasaki disease, and other immune-related conditions",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "sources": [
+        {
+          "url": "https://finance.yahoo.com/quote/300294.SZ/profile/",
+          "title": "China Resources Boya Profile – Yahoo Finance",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    }
+  ]
+}

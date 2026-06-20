@@ -1,0 +1,221 @@
+{
+  "shard": "enrich-wf-24",
+  "products": [
+    {
+      "id": "kangchen-suling",
+      "name_zh": "注射用血凝酶（苏灵）",
+      "name_en": "Agkistrodon Hemocoagulase for Injection",
+      "brand_name": "苏灵 (Suling)",
+      "company_id": "kangchen-pharmaceutical",
+      "modality_id": "recombinant-protein",
+      "therapeutic_area_id": "hematology",
+      "indication_zh": "外科手术止血",
+      "indication_en": "Surgical hemostasis",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "sources": [
+        {
+          "url": "https://www.konruns.cn/",
+          "title": "Beijing Konruns Pharmaceutical official website",
+          "accessed": "2026-06"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "kangchen-zy5301",
+      "name_zh": "ZY5301",
+      "name_en": "ZY5301",
+      "brand_name": "ZY5301",
+      "company_id": "kangchen-pharmaceutical",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "immunology",
+      "indication_zh": "盆腔炎后遗症慢性盆腔疼痛",
+      "indication_en": "Chronic pelvic pain in sequelae of pelvic inflammatory disease",
+      "approval_status": "ph3",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "sources": [
+        {
+          "url": "https://news.futunn.com/en/post/65455135/kangchen-pharmaceutical-603590-significant-achievements-in-marketing-model-transformation-innovative",
+          "title": "Kangchen Pharmaceutical pipeline",
+          "accessed": "2026-06"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "kanghua-biological-rabies",
+      "name_zh": "冻干人用狂犬病疫苗（人二倍体细胞）",
+      "name_en": "Freeze-dried Human Rabies Vaccine (Human Diploid Cell)",
+      "brand_name": "Freeze-dried Human Rabies Vaccine (Human Diploid Cell)",
+      "company_id": "kanghua-biological",
+      "modality_id": "inactivated-vaccine",
+      "therapeutic_area_id": "infectious-disease",
+      "indication_zh": "狂犬病预防",
+      "indication_en": "Rabies prevention",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "sources": [
+        {
+          "url": "https://en.kangh.com/",
+          "title": "Chengdu Kanghua Biological official website",
+          "accessed": "2026-06"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "kanghua-biological-mening",
+      "name_zh": "ACYW135群脑膜炎球菌多糖疫苗",
+      "name_en": "Group ACYW135 Meningococcal Polysaccharide Vaccine",
+      "brand_name": "Group ACYW135 Meningococcal Polysaccharide Vaccine",
+      "company_id": "kanghua-biological",
+      "modality_id": "inactivated-vaccine",
+      "therapeutic_area_id": "infectious-disease",
+      "indication_zh": "脑膜炎球菌感染预防",
+      "indication_en": "Meningococcal disease prevention",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "sources": [
+        {
+          "url": "https://en.kangh.com/",
+          "title": "Chengdu Kanghua Biological official website",
+          "accessed": "2026-06"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "kangtai-pcv13",
+      "name_zh": "13价肺炎球菌多糖结合疫苗",
+      "name_en": "13-valent Pneumococcal Polysaccharide Conjugate Vaccine",
+      "brand_name": "13-valent Pneumococcal Polysaccharide Conjugate Vaccine",
+      "company_id": "kangtai-biologics",
+      "modality_id": "inactivated-vaccine",
+      "therapeutic_area_id": "infectious-disease",
+      "indication_zh": "肺炎球菌感染预防",
+      "indication_en": "Pneumococcal disease prevention",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "sources": [
+        {
+          "url": "https://en.wikipedia.org/wiki/Shenzhen_Kangtai_Biological_Products",
+          "title": "Shenzhen Kangtai Biological Products Wikipedia",
+          "accessed": "2026-06"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "kangtai-rabies",
+      "name_zh": "冻干人用狂犬病疫苗（人二倍体细胞）",
+      "name_en": "Freeze-dried Human Diploid Cell Rabies Vaccine",
+      "brand_name": "Freeze-dried Human Diploid Cell Rabies Vaccine",
+      "company_id": "kangtai-biologics",
+      "modality_id": "inactivated-vaccine",
+      "therapeutic_area_id": "infectious-disease",
+      "indication_zh": "狂犬病预防",
+      "indication_en": "Rabies prevention",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "sources": [
+        {
+          "url": "http://media.drugdu.com/ddu-news/kangtai-biologicals-revenue-in-the-first-quarter-of-2025-increased-by-more-than-40-year-on-year-and-multiple-projects-such-as-the-pentavalent-vaccine-made-significant-progress.html",
+          "title": "Kangtai Biologicals Q1 2025 revenue increase",
+          "accessed": "2026-06"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "kangle-weishi-hpv3",
+      "name_zh": "三价人乳头瘤病毒疫苗",
+      "name_en": "Trivalent Human Papillomavirus (HPV) Vaccine",
+      "brand_name": "Trivalent Human Papillomavirus (HPV) Vaccine",
+      "company_id": "kangle-weishi",
+      "modality_id": "recombinant-protein",
+      "therapeutic_area_id": "infectious-disease",
+      "indication_zh": "HPV感染相关疾病预防",
+      "indication_en": "Prevention of HPV infection-related diseases",
+      "approval_status": "filed",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "sources": [
+        {
+          "url": "https://36kr.com/newsflashes/3271983247155337",
+          "title": "康乐卫士2024年报：三价HPV疫苗BLA已受理",
+          "accessed": "2026-06"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "kangle-weishi-hpv9",
+      "name_zh": "九价人乳头瘤病毒疫苗",
+      "name_en": "9-valent Human Papillomavirus (HPV) Vaccine",
+      "brand_name": "9-valent Human Papillomavirus (HPV) Vaccine",
+      "company_id": "kangle-weishi",
+      "modality_id": "recombinant-protein",
+      "therapeutic_area_id": "infectious-disease",
+      "indication_zh": "HPV感染相关疾病预防（女性适应症）",
+      "indication_en": "Prevention of HPV-related diseases (female indication)",
+      "approval_status": "ph3",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "sources": [
+        {
+          "url": "https://m.bjnews.com.cn/detail/1746086531168652.html",
+          "title": "康乐卫士2024年报：核心产品冲刺上市",
+          "accessed": "2026-06"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "kechow-tunlametinib",
+      "name_zh": "妥拉美替尼",
+      "name_en": "Tunlametinib",
+      "brand_name": "Kolupin",
+      "company_id": "kechow-pharma",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "oncology",
+      "indication_zh": "NRAS突变晚期黑色素瘤",
+      "indication_en": "NRAS-mutant advanced melanoma",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "sources": [
+        {
+          "url": "https://www.kechowpharma.com/en/",
+          "title": "Shanghai Kechow Pharma official website",
+          "accessed": "2026-06"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    }
+  ]
+}

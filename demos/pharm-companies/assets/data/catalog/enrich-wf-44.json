@@ -1,0 +1,245 @@
+{
+  "shard": "enrich-wf-44",
+  "products": [
+    {
+      "id": "kp-100it",
+      "name_zh": "KP-100IT（重组人HGF蛋白）",
+      "name_en": "KP-100IT (recombinant human HGF protein, intrathecal)",
+      "brand_name": "KP-100IT (recombinant human HGF protein, intrathecal)",
+      "company_id": "kringle-pharma",
+      "modality_id": "recombinant-protein",
+      "therapeutic_area_id": "rare-disease",
+      "indication_zh": "急性脊髓损伤；声带瘢痕；肌萎缩侧索硬化症；急性肾损伤",
+      "indication_en": "Acute spinal cord injury (Phase III); vocal fold scarring (Phase III); ALS; acute kidney injury",
+      "approval_status": "ph3",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "japan",
+      "sources": [
+        {
+          "url": "https://www.kringle-pharma.com/en/development/hgf/",
+          "title": "Pipeline - Kringle Pharma",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "emixustat-hydrochloride",
+      "name_zh": "盐酸emixustat",
+      "name_en": "Emixustat Hydrochloride",
+      "brand_name": "Emixustat Hydrochloride",
+      "company_id": "kubota-pharmaceutical",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "rare-disease",
+      "indication_zh": "Stargardt病（III期）；增殖性糖尿病视网膜病变（II期）",
+      "indication_en": "Stargardt disease (Phase III); proliferative diabetic retinopathy (Phase II)",
+      "approval_status": "ph3",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "japan",
+      "sources": [
+        {
+          "url": "https://www.kubotaholdings.co.jp/en/pipeline/index.html",
+          "title": "Pipeline - Kubota Pharmaceutical Holdings",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "mn-166-ibudilast",
+      "name_zh": "MN-166（ibudilast）",
+      "name_en": "MN-166 (ibudilast)",
+      "brand_name": "MN-166 (ibudilast)",
+      "company_id": "medicinova",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "neuroscience",
+      "indication_zh": "ALS；多发性硬化症；神经胶质母细胞瘤；化疗诱导的周围神经病变；急性呼吸窘迫综合征",
+      "indication_en": "ALS; multiple sclerosis; glioblastoma; chemotherapy-induced peripheral neuropathy; ARDS/lung injury; degenerative cervical myelopathy; substance dependence",
+      "approval_status": "ph2",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "japan",
+      "sources": [
+        {
+          "url": "https://medicinova.com/",
+          "title": "MediciNova Pipeline",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "mn-001-tipelukast",
+      "name_zh": "MN-001（tipelukast）",
+      "name_en": "MN-001 (tipelukast)",
+      "brand_name": "MN-001 (tipelukast)",
+      "company_id": "medicinova",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "cardiometabolic",
+      "indication_zh": "非酒精性脂肪性肝病；高甘油三酯血症；2型糖尿病",
+      "indication_en": "NAFLD; hypertriglyceridemia; type 2 diabetes mellitus",
+      "approval_status": "ph2",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "japan",
+      "sources": [
+        {
+          "url": "https://medicinova.com/",
+          "title": "MediciNova Pipeline",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "telomelysin-obp301",
+      "name_zh": "Telomelysin（OBP-301）",
+      "name_en": "Telomelysin (OBP-301)",
+      "brand_name": "Telomelysin",
+      "company_id": "oncolys-biopharma",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "oncology",
+      "indication_zh": "胃癌/胃食管连接部癌（II期）；头颈部癌（II期）；食管癌（II期）；肝细胞癌（I期）",
+      "indication_en": "Gastric/GEJ cancer (Phase II); head & neck cancer (Phase II); esophageal cancer (Phase II); hepatocellular carcinoma (Phase I)",
+      "approval_status": "ph2",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "japan",
+      "sources": [
+        {
+          "url": "https://stockanalysis.com/quote/tyo/4588/",
+          "title": "Oncolys BioPharma Company Profile",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "tegoprazan",
+      "name_zh": "替戈拉生",
+      "name_en": "Tegoprazan",
+      "brand_name": "Tegoprazan",
+      "company_id": "raqualia-pharma",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "cardiometabolic",
+      "indication_zh": "胃食管反流病",
+      "indication_en": "Gastroesophageal reflux disease (GERD)",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "japan",
+      "sources": [
+        {
+          "url": "https://www.raqualia.com/en/pipeline.html",
+          "title": "Pipeline - RaQualia Pharma",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "grapiprant-raqualia",
+      "name_zh": "格雷吡坦",
+      "name_en": "Grapiprant",
+      "brand_name": "Grapiprant",
+      "company_id": "raqualia-pharma",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "oncology",
+      "indication_zh": "癌症疼痛（人类）；犬骨关节炎（兽医）",
+      "indication_en": "Cancer pain management (human); canine osteoarthritis (veterinary)",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "japan",
+      "sources": [
+        {
+          "url": "https://www.raqualia.com/en/pipeline.html",
+          "title": "Pipeline - RaQualia Pharma",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "mdl-201-fshd",
+      "name_zh": "MDL-201（面肩肱型肌营养不良症表观基因组编辑疗法）",
+      "name_en": "MDL-201 (FSHD epigenome editing therapy)",
+      "brand_name": "MDL-201 (FSHD epigenome editing therapy)",
+      "company_id": "modalis-therapeutics",
+      "modality_id": "sirna",
+      "therapeutic_area_id": "rare-disease",
+      "indication_zh": "面肩肱型肌营养不良症（FSHD）",
+      "indication_en": "Facioscapulohumeral muscular dystrophy (FSHD)",
+      "approval_status": "preclinical",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "japan",
+      "sources": [
+        {
+          "url": "https://www.biospace.com/modalis-therapeutics-reports-data-supporting-development-of-a-transformative-epigenome-editing-therapeutic-mdl-101-a-first-in-class-epigenome-editing-approach-for-the-treatment-of-lama2-deficient-congenital-muscular-dystrophy-lama2-cmd",
+          "title": "Modalis MDL Pipeline - BioSpace",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "e7386-prism",
+      "name_zh": "E7386（CBP/β-连环蛋白抑制剂）",
+      "name_en": "E7386 (CBP/beta-catenin inhibitor)",
+      "brand_name": "E7386 (CBP/beta-catenin inhibitor)",
+      "company_id": "prism-biolab",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "oncology",
+      "indication_zh": "癌症（II期，授权艾莎制药）",
+      "indication_en": "Cancer (Phase II, licensed to Eisai Co., Ltd.)",
+      "approval_status": "ph2",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "japan",
+      "sources": [
+        {
+          "url": "https://prismbiolab.com/pipeline/",
+          "title": "Pipeline - PRISM BioLab",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "rs5614",
+      "name_zh": "RS5614（PAI-1抑制剂）",
+      "name_en": "RS5614 (PAI-1 inhibitor)",
+      "brand_name": "RS5614 (PAI-1 inhibitor)",
+      "company_id": "renascience",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "oncology",
+      "indication_zh": "慢性粒细胞白血病；恶性黑色素瘤；非小细胞肺癌；皮肤血管肉瘤；COVID-19肺损伤；系统性硬化症相关间质性肺病",
+      "indication_en": "Chronic myeloid leukemia; malignant melanoma; NSCLC; cutaneous angiosarcoma; COVID-19 lung injury; systemic scleroderma-associated ILD",
+      "approval_status": "ph1",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "japan",
+      "sources": [
+        {
+          "url": "https://www.renascience.co.jp/en/en_pipline/en_pai_1/",
+          "title": "RS5614 PAI-1 Inhibitor - RenaScience",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    }
+  ]
+}

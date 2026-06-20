@@ -1,0 +1,149 @@
+{
+  "shard": "enrich-wf-36",
+  "products": [
+    {
+      "id": "tyk-medicines-ty9591",
+      "name_zh": "TY-9591",
+      "name_en": "TY-9591",
+      "brand_name": "TY-9591",
+      "company_id": "tyk-medicines",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "oncology",
+      "indication_zh": "EGFR突变非小细胞肺癌（含脑转移）",
+      "indication_en": "EGFR-mutant non-small cell lung cancer (NSCLC) including brain metastases",
+      "approval_status": "ph3",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "sources": [
+        {
+          "url": "https://finance.yahoo.com/quote/2410.HK/profile/",
+          "title": "TYK Medicines Profile – Yahoo Finance",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "tyk-medicines-ty302",
+      "name_zh": "TY-302",
+      "name_en": "TY-302",
+      "brand_name": "TY-302",
+      "company_id": "tyk-medicines",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "oncology",
+      "indication_zh": "实体瘤（乳腺癌、前列腺癌）",
+      "indication_en": "Solid tumors including breast cancer and prostate cancer",
+      "approval_status": "ph1",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "sources": [
+        {
+          "url": "https://finance.yahoo.com/quote/2410.HK/profile/",
+          "title": "TYK Medicines Profile – Yahoo Finance",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "velavi-bio-opamtistomig",
+      "name_zh": "Opamtistomig (LBL-024)",
+      "name_en": "Opamtistomig (LBL-024)",
+      "brand_name": "Opamtistomig (LBL-024)",
+      "company_id": "velavi-bio",
+      "modality_id": "bispecific-antibody",
+      "therapeutic_area_id": "oncology",
+      "indication_zh": "肺外神经内分泌癌",
+      "indication_en": "Advanced extra-pulmonary neuroendocrine carcinoma",
+      "approval_status": "ph3",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "sources": [
+        {
+          "url": "https://www.tipranks.com/news/company-announcements/nanjing-leads-biolabs-reports-significant-progress-in-cancer-therapy-development",
+          "title": "Leads Biolabs Progress Report – TipRanks",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "visen-pharma-skytrofa",
+      "name_zh": "Lonapegsomatropin（乐谱妥）",
+      "name_en": "Lonapegsomatropin (SKYTROFA)",
+      "brand_name": "SKYTROFA",
+      "company_id": "visen-pharma",
+      "modality_id": "recombinant-protein",
+      "therapeutic_area_id": "rare-disease",
+      "indication_zh": "儿童生长激素缺乏症",
+      "indication_en": "Pediatric growth hormone deficiency (GHD)",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "sources": [
+        {
+          "url": "https://www.tipranks.com/news/company-announcements/visen-wins-china-approval-for-once-weekly-growth-hormone-drug-skytrofa",
+          "title": "VISEN Wins China Approval for SKYTROFA – TipRanks",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "wangshan-wangshui-vv116",
+      "name_zh": "氘代瑞米地韦（VV116）",
+      "name_en": "Deuremidevir hydrobromide (VV116)",
+      "brand_name": "Mingdewei / MINDVYR",
+      "company_id": "wangshan-wangshui",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "infectious-disease",
+      "indication_zh": "新冠病毒感染（COVID-19）；RSV感染（在研）",
+      "indication_en": "COVID-19; RSV infection (in Phase II/III development)",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "sources": [
+        {
+          "url": "https://www.vigonvita.cn/en/164.html",
+          "title": "VV116 RSV Clinical Trial Launch – Vigonvita",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "weikang-yinhuang",
+      "name_zh": "银黄滴丸",
+      "name_en": "Yinhuang Dripping Pills",
+      "brand_name": "Yinhuang Dripping Pills",
+      "company_id": "weikang-pharmaceutical",
+      "modality_id": "tcm-formula",
+      "therapeutic_area_id": "infectious-disease",
+      "indication_zh": "清热解毒，用于上呼吸道感染",
+      "indication_en": "Heat-clearing and detoxifying TCM formula for upper respiratory tract infections",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "sources": [
+        {
+          "url": "https://stcn.com/article/detail/1734162.html",
+          "title": "维康药业2024年报 – STCN",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    }
+  ]
+}

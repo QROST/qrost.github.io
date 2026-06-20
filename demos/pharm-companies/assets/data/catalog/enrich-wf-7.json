@@ -1,0 +1,269 @@
+{
+  "shard": "enrich-wf-7",
+  "products": [
+    {
+      "id": "pharmamar-lurbinectedin",
+      "name_zh": "卢比奈特定",
+      "name_en": "Lurbinectedin",
+      "brand_name": "Zepzelca",
+      "company_id": "pharmamar",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "oncology",
+      "indication_zh": "小细胞肺癌（二线，美国FDA批准）",
+      "indication_en": "Small cell lung cancer (2nd-line; FDA approved)",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "europe",
+      "sources": [
+        {
+          "url": "https://pharmamar.com/en/",
+          "title": "PharmaMar Official Website",
+          "accessed": "2026-06"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "pharmamar-trabectedin",
+      "name_zh": "曲贝替定",
+      "name_en": "Trabectedin",
+      "brand_name": "Yondelis",
+      "company_id": "pharmamar",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "oncology",
+      "indication_zh": "软组织肉瘤和卵巢癌（欧洲批准）",
+      "indication_en": "Soft tissue sarcoma and ovarian cancer (EU approved)",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "europe",
+      "sources": [
+        {
+          "url": "https://en.wikipedia.org/wiki/PharmaMar",
+          "title": "PharmaMar – Wikipedia",
+          "accessed": "2026-06"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "pharming-ruconest",
+      "name_zh": "C1酯酶抑制剂（重组）",
+      "name_en": "Conestat alfa",
+      "brand_name": "RUCONEST",
+      "company_id": "pharming-group",
+      "modality_id": "recombinant-protein",
+      "therapeutic_area_id": "rare-disease",
+      "indication_zh": "遗传性血管性水肿急性发作",
+      "indication_en": "Acute attacks of hereditary angioedema (HAE)",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "europe",
+      "sources": [
+        {
+          "url": "https://www.pharming.com/news/pharming-group-reports-fourth-quarter-full-year-2025-financial-results",
+          "title": "Pharming FY2025 Results",
+          "accessed": "2026-06"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "pharming-leniolisib",
+      "name_zh": "来尼利昔布",
+      "name_en": "Leniolisib",
+      "brand_name": "Joenja",
+      "company_id": "pharming-group",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "rare-disease",
+      "indication_zh": "活化PI3Kδ综合征（APDS）",
+      "indication_en": "Activated PI3K delta syndrome (APDS)",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "europe",
+      "sources": [
+        {
+          "url": "https://www.pharming.com/news/pharming-group-reports-fourth-quarter-full-year-2025-financial-results",
+          "title": "Pharming FY2025 Results",
+          "accessed": "2026-06"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "photocure-hexvix",
+      "name_zh": "己氨基乙酰丙酸",
+      "name_en": "Hexaminolevulinate",
+      "brand_name": "Hexvix / Cysview",
+      "company_id": "photocure",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "oncology",
+      "indication_zh": "膀胱癌蓝光膀胱镜检查辅助诊断",
+      "indication_en": "Blue-light cystoscopy for bladder cancer detection",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "europe",
+      "sources": [
+        {
+          "url": "https://www.photocure.com",
+          "title": "Photocure Official Website",
+          "accessed": "2026-06"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "santhera-agamree",
+      "name_zh": "伐莫罗龙",
+      "name_en": "Vamorolone",
+      "brand_name": "AGAMREE",
+      "company_id": "santhera-pharmaceuticals",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "rare-disease",
+      "indication_zh": "杜氏肌营养不良（DMD）",
+      "indication_en": "Duchenne muscular dystrophy (DMD)",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "europe",
+      "sources": [
+        {
+          "url": "https://www.globenewswire.com/news-release/2026/04/28/3282208/0/en/santhera-pharmaceuticals-full-year-results-for-the-year-ended-31-december-2025.html",
+          "title": "Santhera FY2025 Results – GlobeNewswire",
+          "accessed": "2026-06"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "rovi-bemiparin",
+      "name_zh": "贝米肝素",
+      "name_en": "Bemiparin sodium",
+      "brand_name": "Hibor / Badyket",
+      "company_id": "rovi",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "hematology",
+      "indication_zh": "静脉血栓栓塞预防和治疗；抗凝",
+      "indication_en": "VTE prevention and treatment; anticoagulation (2nd-gen LMWH)",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "europe",
+      "sources": [
+        {
+          "url": "https://en.wikipedia.org/wiki/Laboratorios_Farmaceuticos_Rovi",
+          "title": "Laboratorios Farmacéuticos Rovi – Wikipedia",
+          "accessed": "2026-06"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "rovi-enoxaparin",
+      "name_zh": "依诺肝素生物类似药",
+      "name_en": "Enoxaparin biosimilar",
+      "brand_name": "Enoxaparin Rovi",
+      "company_id": "rovi",
+      "modality_id": "biosimilar",
+      "therapeutic_area_id": "hematology",
+      "indication_zh": "低分子量肝素，静脉血栓预防与治疗",
+      "indication_en": "LMWH biosimilar for VTE prevention and treatment; approved in 26 European markets",
+      "approval_status": "approved",
+      "drug_class": "biosimilar",
+      "is_blockbuster": false,
+      "region": "europe",
+      "sources": [
+        {
+          "url": "https://www.rovi.es/sites/default/files/rovi_presentation_vdef_3_0.pdf",
+          "title": "Rovi FY2025 Presentation",
+          "accessed": "2026-06"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "ryvu-romaciclib",
+      "name_zh": "罗马西利布",
+      "name_en": "Romaciclib",
+      "brand_name": "RVU120",
+      "company_id": "ryvu-therapeutics-pl",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "hematology",
+      "indication_zh": "复发/难治性急性髓性白血病和骨髓纤维化",
+      "indication_en": "Relapsed/refractory acute myeloid leukaemia (AML) and myelofibrosis",
+      "approval_status": "ph2",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "europe",
+      "sources": [
+        {
+          "url": "https://ryvu.com/press-release/ryvu-therapeutics-reports-2025-fiscal-year-financial-results-and-provides-corporate-update",
+          "title": "Ryvu FY2025 Results",
+          "accessed": "2026-06"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "saniona-san2355",
+      "name_zh": "SAN2355",
+      "name_en": "SAN2355",
+      "brand_name": "SAN2355",
+      "company_id": "saniona",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "neuroscience",
+      "indication_zh": "癫痫（已授权给Jazz Pharmaceuticals）",
+      "indication_en": "Epilepsy and potential other indications (licensed to Jazz Pharmaceuticals 2025; USD 42.5M upfront)",
+      "approval_status": "preclinical",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "europe",
+      "sources": [
+        {
+          "url": "https://www.prnewswire.com/news-releases/jazz-pharmaceuticals-enters-exclusive-licensing-agreement-with-saniona-to-develop-and-commercialize-san2355-302534545.html",
+          "title": "Jazz-Saniona SAN2355 Licensing Agreement",
+          "accessed": "2026-06"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "poolbeg-polb001",
+      "name_zh": "POLB 001",
+      "name_en": "POLB 001",
+      "brand_name": "POLB 001",
+      "company_id": "poolbeg-pharma",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "oncology",
+      "indication_zh": "肿瘤免疫治疗诱发的细胞因子释放综合征（CRS）",
+      "indication_en": "Cytokine release syndrome (CRS) induced by cancer immunotherapy; FDA Orphan Drug Designation",
+      "approval_status": "ph1",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "europe",
+      "sources": [
+        {
+          "url": "https://www.poolbegpharma.com/pipeline/polb-001-oncology/",
+          "title": "Poolbeg Pharma – POLB 001 Pipeline",
+          "accessed": "2026-06"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    }
+  ]
+}

@@ -1,0 +1,77 @@
+{
+  "shard": "enrich-wf-22",
+  "products": [
+    {
+      "id": "jiangzhong-jianweixiaoshi",
+      "name_zh": "健胃消食片",
+      "name_en": "Jianweixiaoshi Tablet",
+      "brand_name": "江中健胃消食片",
+      "company_id": "jiangzhong-pharmaceutical",
+      "modality_id": "tcm-formula",
+      "therapeutic_area_id": "gastroenterology",
+      "indication_zh": "食欲不振、消化不良、脘腹胀满、大便溏烂",
+      "indication_en": "Loss of appetite, dyspepsia, abdominal distension, loose stools",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": true,
+      "region": "greater_china",
+      "sources": [
+        {
+          "url": "https://news.futunn.com/en/post/49912486/jiangzhong-pharmaceutical-600750-the-leading-otc-gastrointestinal-category-leader-in",
+          "title": "Jiangzhong Pharmaceutical OTC Leader Futunn",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "jinbo-recombinant-collagen",
+      "name_zh": "重组人III型胶原蛋白",
+      "name_en": "Recombinant Humanized Type III Collagen",
+      "brand_name": "锦波胶原蛋白",
+      "company_id": "jinbo-biotech",
+      "modality_id": "recombinant-protein",
+      "therapeutic_area_id": "dermatology",
+      "indication_zh": "皮肤修复、创面愈合、医美填充",
+      "indication_en": "Skin repair, wound healing, aesthetic medicine filling",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "sources": [
+        {
+          "url": "https://en.sxjbswyy.com/about.html",
+          "title": "Shanxi Jinbo About Page",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "jinbo-anti-hpv-dressing",
+      "name_zh": "抗HPV生物蛋白敷料",
+      "name_en": "Anti-HPV Biological Protein Dressing",
+      "brand_name": "锦波抗HPV敷料",
+      "company_id": "jinbo-biotech",
+      "modality_id": "recombinant-protein",
+      "therapeutic_area_id": "infectious-disease",
+      "indication_zh": "HPV感染辅助治疗（III类医疗器械）",
+      "indication_en": "Adjunctive treatment of HPV infection (Class III medical device)",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "sources": [
+        {
+          "url": "https://en.sxjbswyy.com/about.html",
+          "title": "Shanxi Jinbo About Page",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    }
+  ]
+}

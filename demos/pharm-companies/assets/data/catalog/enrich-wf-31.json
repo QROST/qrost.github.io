@@ -1,0 +1,149 @@
+{
+  "shard": "enrich-wf-31",
+  "products": [
+    {
+      "id": "sairen-biotech-snakevenom-serum",
+      "name_zh": "抗蛇毒血清（蝮蛇/五步蛇/眼镜蛇/银环蛇）",
+      "name_en": "Anti-snake venom serum (multiple species)",
+      "brand_name": "Anti-snake venom serum (multiple species)",
+      "company_id": "sairen-biotech",
+      "modality_id": "recombinant-protein",
+      "therapeutic_area_id": "rare-disease",
+      "indication_zh": "毒蛇咬伤",
+      "indication_en": "Snake envenomation",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "sources": [
+        {
+          "url": "https://baike.baidu.com/item/%E4%B8%8A%E6%B5%B7%E8%B5%9B%E4%BC%A6%E7%94%9F%E7%89%A9%E6%8A%80%E6%9C%AF%E8%82%A1%E4%BB%BD%E6%9C%89%E9%99%90%E5%85%AC%E5%8F%B8/20024367",
+          "title": "上海赛伦生物技术股份有限公司 – 百度百科",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "sairen-biotech-tetanus-ig",
+      "name_zh": "马破伤风免疫球蛋白F(ab')2",
+      "name_en": "Equine Tetanus Immunoglobulin F(ab')2",
+      "brand_name": "Equine Tetanus Immunoglobulin F(ab')2",
+      "company_id": "sairen-biotech",
+      "modality_id": "recombinant-protein",
+      "therapeutic_area_id": "infectious-disease",
+      "indication_zh": "破伤风预防和治疗",
+      "indication_en": "Tetanus prevention and treatment",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "sources": [
+        {
+          "url": "https://baike.baidu.com/item/%E4%B8%8A%E6%B5%B7%E8%B5%9B%E4%BC%A6%E7%94%9F%E7%89%A9%E6%8A%80%E6%9C%AF%E8%82%A1%E4%BB%BD%E6%9C%89%E9%99%90%E5%85%AC%E5%8F%B8/20024367",
+          "title": "上海赛伦生物技术股份有限公司 – 百度百科",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "sansouguojian-bevacizumab-biosimilar",
+      "name_zh": "贝伐珠单抗注射液（生物类似药）",
+      "name_en": "Bevacizumab Biosimilar Injection",
+      "brand_name": "Bevacizumab Biosimilar Injection",
+      "company_id": "sansouguojian-pharma",
+      "modality_id": "mab",
+      "therapeutic_area_id": "oncology",
+      "indication_zh": "多种实体肿瘤的一线/二线治疗",
+      "indication_en": "First/second-line treatment of multiple solid tumours (colorectal, NSCLC, etc.)",
+      "approval_status": "approved",
+      "drug_class": "biosimilar",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "sources": [
+        {
+          "url": "https://www.3sbio.com/mobile/en/news/details.aspx?id=147",
+          "title": "3SBio Announces Acceptance of IND application for bevacizumab biosimilar in China",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "sansouguojian-ssgj-707",
+      "name_zh": "SSGJ-707（PD-1/VEGF双抗）",
+      "name_en": "SSGJ-707 (PD-1/VEGF Bispecific Antibody)",
+      "brand_name": "SSGJ-707 (PD-1/VEGF Bispecific Antibody)",
+      "company_id": "sansouguojian-pharma",
+      "modality_id": "bispecific-antibody",
+      "therapeutic_area_id": "oncology",
+      "indication_zh": "实体肿瘤",
+      "indication_en": "Solid tumours",
+      "approval_status": "ph3",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "sources": [
+        {
+          "url": "https://english.sse.com.cn/news/newsrelease/voice/c/c_20250521_10779603.shtml",
+          "title": "SSE STAR Market Pharma Company Sets New Record in Global Expansion – SSE",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "sanyuan-gene-ifn-alpha1b",
+      "name_zh": "重组人干扰素α1b注射液",
+      "name_en": "Recombinant Human Interferon Alpha-1b Injection",
+      "brand_name": "运德素 (Yundeosu)",
+      "company_id": "sanyuan-gene",
+      "modality_id": "recombinant-protein",
+      "therapeutic_area_id": "infectious-disease",
+      "indication_zh": "病毒感染性疾病（慢性乙肝、丙肝等）",
+      "indication_en": "Viral infectious diseases including chronic hepatitis B and C",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "sources": [
+        {
+          "url": "https://data.pharmacodia.com/drugs/details/21876986950985696928",
+          "title": "重组人干扰素α1b – Pharmacodia",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "saisheng-pharmaceutical-fibrinolysin",
+      "name_zh": "纤溶酶注射液",
+      "name_en": "Fibrinolysin Injection",
+      "brand_name": "Fibrinolysin Injection",
+      "company_id": "saisheng-pharmaceutical",
+      "modality_id": "recombinant-protein",
+      "therapeutic_area_id": "cardiometabolic",
+      "indication_zh": "缺血性脑卒中、心血管血栓",
+      "indication_en": "Ischaemic stroke and cardiovascular thrombus",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "sources": [
+        {
+          "url": "https://news.qq.com/rain/a/20250329A065QY00",
+          "title": "赛升药业2024年财报 – 腾讯新闻",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    }
+  ]
+}

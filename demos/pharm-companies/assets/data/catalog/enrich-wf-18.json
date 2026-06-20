@@ -1,0 +1,173 @@
+{
+  "shard": "enrich-wf-18",
+  "products": [
+    {
+      "id": "guizhou-bailing-p001",
+      "name_zh": "苗药系列产品",
+      "name_en": "Miao Medicine Product Series",
+      "brand_name": "Miao Medicine Product Series",
+      "company_id": "guizhou-bailing",
+      "modality_id": "tcm-formula",
+      "therapeutic_area_id": "cardiometabolic",
+      "indication_zh": "心脑血管疾病、妇科疾病、儿科疾病",
+      "indication_en": "Cardiovascular-cerebrovascular diseases, gynecological conditions, pediatric conditions",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "sources": [
+        {
+          "url": "https://stockanalysis.com/quote/she/002424/company/",
+          "title": "Guizhou Bailing Company Profile",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "guizhou-sanli-p001",
+      "name_zh": "开喉剑喷雾剂（儿童型）",
+      "name_en": "Kaihoujian Spray (Pediatric)",
+      "brand_name": "开喉剑",
+      "company_id": "guizhou-sanli-pharmaceutical",
+      "modality_id": "tcm-formula",
+      "therapeutic_area_id": "respiratory",
+      "indication_zh": "咽喉疾病、口腔疾病",
+      "indication_en": "Throat and oral conditions",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "sources": [
+        {
+          "url": "https://baike.baidu.com/en/item/GUIZHOU%20SANLI/651581",
+          "title": "Guizhou Sanli Baidu Baike",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "guizhou-weikang-p001",
+      "name_zh": "骨康胶囊",
+      "name_en": "Bone Health Capsule",
+      "brand_name": "骨康",
+      "company_id": "guizhou-weikang",
+      "modality_id": "tcm-formula",
+      "therapeutic_area_id": "immunology",
+      "indication_zh": "骨质疏松、关节疾病",
+      "indication_en": "Osteoporosis, joint diseases",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "sources": [
+        {
+          "url": "https://stock.qianzhan.com/neeq/gongsixinxi_834174.OC.html",
+          "title": "维康子帆基本信息",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "haichen-p001",
+      "name_zh": "托拉塞米注射液",
+      "name_en": "Torasemide Injection",
+      "brand_name": "Torasemide Injection",
+      "company_id": "haichen-pharmaceutical",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "cardiometabolic",
+      "indication_zh": "水肿、心力衰竭",
+      "indication_en": "Edema, heart failure",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "sources": [
+        {
+          "url": "https://news.futunn.com/en/post/28881234/haichen-pharmaceutical-co-ltd-300584-torasemi-maintains-advantages-and-rapid",
+          "title": "Haichen Pharmaceutical Torasemide Analysis",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "haichuang-p001",
+      "name_zh": "氘恩扎卢胺软胶囊",
+      "name_en": "Denlutamide Soft Capsules (HC-1119)",
+      "brand_name": "HC-1119",
+      "company_id": "haichuang-pharma",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "oncology",
+      "indication_zh": "转移性去势抵抗性前列腺癌（mCRPC）",
+      "indication_en": "Metastatic castration-resistant prostate cancer (mCRPC)",
+      "approval_status": "filed",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "sources": [
+        {
+          "url": "https://news.futunn.com/en/post/31422106/haichuang-pharmaceutical-688302-deuterium-enzalutamide-has-begun-cfdi-verification-and",
+          "title": "HC-1119 CFDI Verification News",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "haite-p001",
+      "name_zh": "注射用鼠神经生长因子",
+      "name_en": "Injected Mouse Nerve Growth Factor",
+      "brand_name": "金路捷",
+      "company_id": "haite-biological",
+      "modality_id": "recombinant-protein",
+      "therapeutic_area_id": "neuroscience",
+      "indication_zh": "视神经损伤、神经系统疾病",
+      "indication_en": "Optic nerve injury, neurological diseases",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "sources": [
+        {
+          "url": "https://www.hiteckpharma.com/",
+          "title": "Wuhan Hiteck Biopharmaceutical Official Website",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "haite-p002",
+      "name_zh": "环形排列TRAIL（赛爱特）",
+      "name_en": "Circular Permuted TRAIL (CPT)",
+      "brand_name": "赛爱特",
+      "company_id": "haite-biological",
+      "modality_id": "recombinant-protein",
+      "therapeutic_area_id": "oncology",
+      "indication_zh": "肿瘤",
+      "indication_en": "Oncology",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "sources": [
+        {
+          "url": "https://paper.cnstock.com/html/2025-04/21/content_2052105.htm",
+          "title": "武汉海特生物制药2024年年度报告摘要",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    }
+  ]
+}

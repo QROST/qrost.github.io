@@ -1,0 +1,173 @@
+{
+  "shard": "enrich-wf-29",
+  "products": [
+    {
+      "id": "ocumension-youshiying",
+      "name_zh": "悠视影®（布地奈德眼用混悬液）",
+      "name_en": "Youshiying (Budesonide Ophthalmic Suspension)",
+      "brand_name": "Youshiying®",
+      "company_id": "ocumension",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "ophthalmology",
+      "indication_zh": "非感染性前葡萄膜炎",
+      "indication_en": "Non-infectious anterior uveitis",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "sources": [
+        {
+          "url": "https://www.ocumension.com",
+          "title": "Ocumension Therapeutics Official Website",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "ocumension-zerviate",
+      "name_zh": "希拉®（盐酸西替利嗪滴眼液）",
+      "name_en": "Zerviate (Cetirizine Ophthalmic Solution)",
+      "brand_name": "Zerviate®",
+      "company_id": "ocumension",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "ophthalmology",
+      "indication_zh": "过敏性结膜炎",
+      "indication_en": "Allergic conjunctivitis",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "sources": [
+        {
+          "url": "https://www.prnewswire.com/news-releases/ocumension-01477hk-demonstrates-strong-operational-resilience-commercialization-capabilities-reach-new-heights-302219944.html",
+          "title": "OcuMension Demonstrates Strong Operational Resilience",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "pegbio-pb119",
+      "name_zh": "PB-119（聚乙二醇洛塞那肽注射液）",
+      "name_en": "PB-119 (Polyethylene Glycol Loxenatide for Injection)",
+      "brand_name": "PB-119 (Polyethylene Glycol Loxenatide for Injection)",
+      "company_id": "pegbio",
+      "modality_id": "peptide",
+      "therapeutic_area_id": "cardiometabolic",
+      "indication_zh": "2型糖尿病、肥胖症",
+      "indication_en": "Type 2 diabetes mellitus, obesity",
+      "approval_status": "filed",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "sources": [
+        {
+          "url": "https://stockanalysis.com/quote/hkg/2565/",
+          "title": "PegBio Co. (HKG:2565) – Stock Analysis",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "peijia-medical-tavr",
+      "name_zh": "TAVR经导管主动脉瓣置换系统",
+      "name_en": "Transcatheter Aortic Valve Replacement (TAVR) Systems",
+      "brand_name": "Transcatheter Aortic Valve Replacement (TAVR) Systems",
+      "company_id": "peijia-medical",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "cardiometabolic",
+      "indication_zh": "重度主动脉瓣狭窄",
+      "indication_en": "Severe aortic stenosis",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "sources": [
+        {
+          "url": "https://www.prnewswire.com/news-releases/peijia-medical-announces-2024-annual-results-302411872.html",
+          "title": "Peijia Medical Announces 2024 Annual Results",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "nuosiland-nl003",
+      "name_zh": "NL003（重组人肝细胞生长因子裸质粒注射液）",
+      "name_en": "NL003 (Recombinant Human HGF Plasmid for Injection)",
+      "brand_name": "NL003 (Recombinant Human HGF Plasmid for Injection)",
+      "company_id": "nuosiland",
+      "modality_id": "mrna-vaccine",
+      "therapeutic_area_id": "cardiometabolic",
+      "indication_zh": "严重下肢缺血（Rutherford 5级溃疡）",
+      "indication_en": "Critical limb ischemia (Rutherford grade 5 ulceration)",
+      "approval_status": "ph3",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "sources": [
+        {
+          "url": "https://finance.sina.com.cn/jjxw/2025-04-24/doc-ineufnmc3707786.shtml",
+          "title": "诺思兰德(430047.BJ)：2024年年报净利润为-4518.07万元",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "panlong-panlong-qi-pian",
+      "name_zh": "盘龙七片",
+      "name_en": "Panlong Qi Tablet",
+      "brand_name": "盘龙七片",
+      "company_id": "panlong-pharmaceutical-yunnan",
+      "modality_id": "tcm-formula",
+      "therapeutic_area_id": "immunology",
+      "indication_zh": "风湿性关节炎、骨关节炎及骨质疏松",
+      "indication_en": "Rheumatoid arthritis, osteoarthritis, osteoporosis",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "sources": [
+        {
+          "url": "https://www.chnfund.com/article/851b3b12-7406-34d0-ed27-3a197a8925b8",
+          "title": "盘龙药业：2024年净利润同比增长8.91%",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "pak-fah-yeow-white-flower",
+      "name_zh": "白花消痛液",
+      "name_en": "White Flower Embrocation",
+      "brand_name": "Hoe Hin White Flower Embrocation",
+      "company_id": "pak-fah-yeow",
+      "modality_id": "tcm-formula",
+      "therapeutic_area_id": "immunology",
+      "indication_zh": "跌打损伤、肌肉酸痛、头痛",
+      "indication_en": "Sprains, muscle aches, headaches, topical pain relief",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "sources": [
+        {
+          "url": "https://stockanalysis.com/quote/hkg/0239/",
+          "title": "Pak Fah Yeow International (HKG:0239) – Stock Analysis",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    }
+  ]
+}

@@ -1,0 +1,149 @@
+{
+  "shard": "enrich-wf-26",
+  "products": [
+    {
+      "id": "lifetech-sci-occluder",
+      "name_zh": "先健封堵器系列（先天性心脏病）",
+      "name_en": "LifeTech Structural Heart Disease Occluder Series",
+      "brand_name": "Cera / MemoCath",
+      "company_id": "lifetech-sci",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "cardiometabolic",
+      "indication_zh": "先天性心脏病（室间隔缺损、房间隔缺损）",
+      "indication_en": "Congenital heart disease (VSD, ASD occluders)",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "sources": [
+        {
+          "url": "https://www.prnewswire.com/news-releases/lifetech-scientific-corporation-announced-2024-annual-results-revenue-exceeded-rmb1-3-billion-and-international-business-increased-by-26-302414525.html",
+          "title": "LifeTech Scientific 2024 Annual Results",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "lifetech-sci-laa",
+      "name_zh": "先健左心耳封堵器",
+      "name_en": "LifeTech Left Atrial Appendage Occluder",
+      "brand_name": "LAmbre",
+      "company_id": "lifetech-sci",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "cardiometabolic",
+      "indication_zh": "非瓣膜性房颤卒中预防（左心耳封堵）",
+      "indication_en": "Non-valvular atrial fibrillation stroke prevention (LAA closure)",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "sources": [
+        {
+          "url": "https://www.prnewswire.com/news-releases/lifetech-scientific-corporation-announced-2024-annual-results-revenue-exceeded-rmb1-3-billion-and-international-business-increased-by-26-302414525.html",
+          "title": "LifeTech Scientific 2024 Annual Results",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "longshen-rongfa-xuanfei",
+      "name_zh": "宣肺止嗽合剂",
+      "name_en": "Xuanfei Zhisou Mixture (Lung-clearing Cough-relief Mixture)",
+      "brand_name": "宣肺止嗽合剂",
+      "company_id": "longshen-rongfa",
+      "modality_id": "tcm-formula",
+      "therapeutic_area_id": "respiratory",
+      "indication_zh": "急慢性支气管炎、咳嗽",
+      "indication_en": "Acute and chronic bronchitis, cough",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "sources": [
+        {
+          "url": "https://www.stcn.com/article/detail/1624321.html",
+          "title": "陇神戎发2024年经营分析 – Securities Times",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "longshine-bio-qilong",
+      "name_zh": "奇龙胶囊",
+      "name_en": "Qilong Capsule",
+      "brand_name": "奇龙胶囊",
+      "company_id": "longshine-bio",
+      "modality_id": "tcm-formula",
+      "therapeutic_area_id": "neuroscience",
+      "indication_zh": "缺血性脑卒中",
+      "indication_en": "Ischemic stroke",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "sources": [
+        {
+          "url": "https://synapse.patsnap.com/organization/be74eb54dff72032764afd669c5bb314",
+          "title": "Shandong Luhua Longshine Biotechnology – Patsnap",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "libo-medical-gel-card",
+      "name_zh": "力博微柱凝胶卡",
+      "name_en": "LIBO Microcolumn Gel Card (Blood Grouping)",
+      "brand_name": "力博凝胶卡",
+      "company_id": "libo-medical",
+      "modality_id": "recombinant-protein",
+      "therapeutic_area_id": "hematology",
+      "indication_zh": "血型鉴定和交叉配血",
+      "indication_en": "Blood group typing and cross-matching",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "sources": [
+        {
+          "url": "https://5209b550c0c9fd7c.en.made-in-china.com",
+          "title": "LIBO Medicine – Made in China",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "liaoning-chengda-rabies",
+      "name_zh": "人用狂犬病疫苗（成大生物）",
+      "name_en": "Human Rabies Vaccine (Chengda Bio)",
+      "brand_name": "成大生物狂犬病疫苗",
+      "company_id": "liaoning-chengda",
+      "modality_id": "inactivated-vaccine",
+      "therapeutic_area_id": "vaccines",
+      "indication_zh": "狂犬病预防",
+      "indication_en": "Rabies prevention",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "sources": [
+        {
+          "url": "https://en.wikipedia.org/wiki/Liaoning_Chengda",
+          "title": "Liaoning Chengda – Wikipedia",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    }
+  ]
+}

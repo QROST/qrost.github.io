@@ -1,0 +1,125 @@
+{
+  "shard": "enrich-wf-19",
+  "products": [
+    {
+      "id": "hanx-hx009",
+      "name_zh": "HX009",
+      "name_en": "HX009",
+      "brand_name": "HX009",
+      "company_id": "hansi-aitai",
+      "modality_id": "bispecific-antibody",
+      "therapeutic_area_id": "oncology",
+      "indication_zh": "EBV+非霍奇金淋巴瘤、肢端/黏膜亚型黑色素瘤、复发/难治性黑色素瘤、胆道癌",
+      "indication_en": "EBV+ non-Hodgkin lymphoma, acral/mucosal melanoma, relapsed/refractory melanoma post-PD-1, biliary tract cancer",
+      "approval_status": "ph2",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "sources": [
+        {
+          "url": "https://simplywall.st/stocks/hk/pharmaceuticals-biotech/hkg-3378/hanx-biopharmaceuticals-wuhan-shares/past",
+          "title": "Hanx Biopharmaceuticals Pipeline – Simply Wall St",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "haohai-ha-injection",
+      "name_zh": "医用透明质酸钠注射液",
+      "name_en": "Sodium Hyaluronate Injection",
+      "brand_name": "Sodium Hyaluronate Injection",
+      "company_id": "haohai",
+      "modality_id": "recombinant-protein",
+      "therapeutic_area_id": "immunology",
+      "indication_zh": "骨关节炎关节腔内注射，眼科手术辅助",
+      "indication_en": "Intra-articular injection for osteoarthritis; ophthalmic surgical viscoelastic",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "sources": [
+        {
+          "url": "https://www.yicaiglobal.com/bulletin/253000000582757102",
+          "title": "Haohai Biotech 2024 Annual Report Summary – Yicai Global",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "tailong-shuanghuanglian",
+      "name_zh": "双黄连口服液",
+      "name_en": "Shuanghuanglian Oral Liquid",
+      "brand_name": "双黄连",
+      "company_id": "henan-tailong-pharmaceutical",
+      "modality_id": "tcm-formula",
+      "therapeutic_area_id": "infectious-disease",
+      "indication_zh": "外感风热所致的感冒，症见发热、咳嗽、咽痛",
+      "indication_en": "Common cold with fever, cough, and sore throat due to wind-heat syndrome (TCM)",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": true,
+      "region": "greater_china",
+      "sources": [
+        {
+          "url": "https://baike.baidu.com/en/item/Henan%20Tailong%20Pharmaceutical%20Co.,%20Ltd./68105",
+          "title": "Henan Tailong Pharmaceutical – Baidu Wiki",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "hendi-ibuprofen-api",
+      "name_zh": "布洛芬原料药",
+      "name_en": "Ibuprofen API",
+      "brand_name": "Ibuprofen API",
+      "company_id": "hendi-pharmaceutical",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "immunology",
+      "indication_zh": "非甾体抗炎药（NSAID）原料药，用于解热镇痛",
+      "indication_en": "NSAID active pharmaceutical ingredient for analgesic and antipyretic formulations",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "sources": [
+        {
+          "url": "https://finance.yahoo.com/quote/301211.SZ/profile/",
+          "title": "Hubei Biocause Heilen Profile – Yahoo Finance",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "hendi-abiraterone-api",
+      "name_zh": "醋酸阿比特龙原料药",
+      "name_en": "Abiraterone Acetate API",
+      "brand_name": "Abiraterone Acetate API",
+      "company_id": "hendi-pharmaceutical",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "oncology",
+      "indication_zh": "前列腺癌原料药",
+      "indication_en": "Active pharmaceutical ingredient for prostate cancer formulations",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "sources": [
+        {
+          "url": "https://finance.yahoo.com/quote/301211.SZ/profile/",
+          "title": "Hubei Biocause Heilen Profile – Yahoo Finance",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    }
+  ]
+}

@@ -1,0 +1,317 @@
+{
+  "shard": "enrich-wf-27",
+  "products": [
+    {
+      "id": "luye-lipusu",
+      "name_zh": "力朴素",
+      "name_en": "Lipusu",
+      "brand_name": "Lipusu",
+      "company_id": "luye-pharma",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "oncology",
+      "indication_zh": "卵巢癌、乳腺癌等实体瘤",
+      "indication_en": "Ovarian cancer, breast cancer and other solid tumors",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": true,
+      "region": "greater_china",
+      "sources": [
+        {
+          "url": "https://www.luye.cn/lvye_en/view.php?id=2385",
+          "title": "Luye Pharma 2025 Annual Results",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "luye-ruoxinlin",
+      "name_zh": "若欣林",
+      "name_en": "Ruoxinlin",
+      "brand_name": "Ruoxinlin",
+      "company_id": "luye-pharma",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "neuroscience",
+      "indication_zh": "重度抑郁症、广泛性焦虑症",
+      "indication_en": "Major depressive disorder, generalized anxiety disorder",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "sources": [
+        {
+          "url": "https://www.luye.cn/lvye_en/view.php?id=2385",
+          "title": "Luye Pharma 2025 Annual Results",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "luye-erzofri",
+      "name_zh": "棕榈帕利哌酮注射液",
+      "name_en": "ERZOFRI",
+      "brand_name": "ERZOFRI",
+      "company_id": "luye-pharma",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "neuroscience",
+      "indication_zh": "精神分裂症（长效注射制剂）",
+      "indication_en": "Schizophrenia (long-acting injectable)",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "sources": [
+        {
+          "url": "https://www.luye.cn/lvye_en/view.php?id=2385",
+          "title": "Luye Pharma 2025 Annual Results",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "luye-zepzelca",
+      "name_zh": "泽普利卡",
+      "name_en": "Zepzelca",
+      "brand_name": "Zepzelca",
+      "company_id": "luye-pharma",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "oncology",
+      "indication_zh": "小细胞肺癌",
+      "indication_en": "Small cell lung cancer",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "sources": [
+        {
+          "url": "https://www.luye.cn/lvye_en/view.php?id=2385",
+          "title": "Luye Pharma 2025 Annual Results",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "mabpharm-cmab007",
+      "name_zh": "CMAB007",
+      "name_en": "CMAB007",
+      "brand_name": "CMAB007",
+      "company_id": "mabpharm",
+      "modality_id": "mab",
+      "therapeutic_area_id": "respiratory",
+      "indication_zh": "哮喘（奥马珠单抗生物类似药）",
+      "indication_en": "Asthma (omalizumab biosimilar)",
+      "approval_status": "approved",
+      "drug_class": "biosimilar",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "sources": [
+        {
+          "url": "https://stockanalysis.com/quote/hkg/2181/",
+          "title": "Mabpharm Stock Overview",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "mabpharm-cmab009",
+      "name_zh": "CMAB009",
+      "name_en": "CMAB009",
+      "brand_name": "CMAB009",
+      "company_id": "mabpharm",
+      "modality_id": "mab",
+      "therapeutic_area_id": "oncology",
+      "indication_zh": "结直肠癌（西妥昔单抗生物类似药）",
+      "indication_en": "Colorectal cancer (cetuximab biosimilar)",
+      "approval_status": "approved",
+      "drug_class": "biosimilar",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "sources": [
+        {
+          "url": "https://stockanalysis.com/quote/hkg/2181/",
+          "title": "Mabpharm Stock Overview",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "mabpharm-cmab807",
+      "name_zh": "CMAB807",
+      "name_en": "CMAB807",
+      "brand_name": "CMAB807",
+      "company_id": "mabpharm",
+      "modality_id": "mab",
+      "therapeutic_area_id": "oncology",
+      "indication_zh": "骨质疏松症、肿瘤骨转移、骨巨细胞瘤",
+      "indication_en": "Osteoporosis, tumor bone metastasis, giant-cell tumor of bone (denosumab biosimilar)",
+      "approval_status": "ph3",
+      "drug_class": "biosimilar",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "sources": [
+        {
+          "url": "https://www.tipranks.com/news/company-announcements/mabpharm-limited-reports-strong-interim-financial-results-for-h1-2025",
+          "title": "Mabpharm H1 2025 Results - TipRanks",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "mabwell-9mw2821",
+      "name_zh": "9MW2821",
+      "name_en": "9MW2821",
+      "brand_name": "9MW2821",
+      "company_id": "mabwell-bioscience",
+      "modality_id": "adc",
+      "therapeutic_area_id": "oncology",
+      "indication_zh": "宫颈癌（Nectin-4靶向ADC）",
+      "indication_en": "Cervical cancer (Nectin-4 targeting ADC, Ph3)",
+      "approval_status": "ph3",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "sources": [
+        {
+          "url": "https://www.mabwell.com/en/about.html",
+          "title": "About Mabwell",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "mabworks-mil60",
+      "name_zh": "MIL60",
+      "name_en": "MIL60",
+      "brand_name": "MIL60",
+      "company_id": "mabworks-cn",
+      "modality_id": "mab",
+      "therapeutic_area_id": "oncology",
+      "indication_zh": "实体肿瘤（贝伐珠单抗生物类似药）",
+      "indication_en": "Solid tumors (bevacizumab biosimilar)",
+      "approval_status": "approved",
+      "drug_class": "biosimilar",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "sources": [
+        {
+          "url": "https://synapse.patsnap.com/organization/8a6eaf0965a7e9b80febeeaac51d41d6",
+          "title": "Beijing Mabworks - Synapse",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "mabworks-mil116",
+      "name_zh": "MIL116",
+      "name_en": "MIL116 (CLYM116)",
+      "brand_name": "MIL116 (CLYM116)",
+      "company_id": "mabworks-cn",
+      "modality_id": "mab",
+      "therapeutic_area_id": "immunology",
+      "indication_zh": "IgA肾病、铁过载",
+      "indication_en": "IgA nephropathy (anti-APRIL mAb; ex-Greater China licensed to Climb Bio)",
+      "approval_status": "ph1",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "sources": [
+        {
+          "url": "https://www.globenewswire.com/news-release/2025/01/09/3006952/0/en/Climb-Bio-Expands-Pipeline-Through-an-Exclusive-License-to-Develop-and-Commercialize-an-Antibody-Targeting-the-APRIL-Pathway-for-IgA-Nephropathy.html",
+          "title": "Climb Bio licenses MIL116 - GlobeNewsWire",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "micurx-contezolid",
+      "name_zh": "甲磺酸康替唑胺",
+      "name_en": "Contezolid",
+      "brand_name": "Contezolid",
+      "company_id": "meng-ke-pharma",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "infectious-disease",
+      "indication_zh": "复杂性皮肤软组织感染（MRSA）",
+      "indication_en": "Complicated skin and soft tissue infections (cSSTI), including MRSA",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "sources": [
+        {
+          "url": "https://www.prnewswire.com/news-releases/micurx-receives-fda-qualified-infectious-disease-product-qidp-and-fast-track-designation-for-contezolid-and-contezolid-acefosamil-301935987.html",
+          "title": "MicuRx FDA QIDP Designation - PRNewswire",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "micurx-mrx4",
+      "name_zh": "康替唑胺磷酸酯注射液",
+      "name_en": "Contezolid acefosamil (MRX-4)",
+      "brand_name": "Contezolid acefosamil (MRX-4)",
+      "company_id": "meng-ke-pharma",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "infectious-disease",
+      "indication_zh": "糖尿病足感染（全球多中心III期）",
+      "indication_en": "Diabetic foot infections (global Phase III; IV-to-oral transition)",
+      "approval_status": "ph3",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "sources": [
+        {
+          "url": "https://www.prnewswire.com/news-releases/micurx-pharmaceutical-contezolid-global-phase-iii-clinical-trial-safety-and-efficacy-evaluation-endorsed-by-data-monitoring-committee-promising-prospects-for-diabetic-foot-infection-treatment-302384542.html",
+          "title": "MicuRx Contezolid Phase III DMC - PRNewswire",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "medprin-redura",
+      "name_zh": "可降解硬脑膜补片（ReDura）",
+      "name_en": "ReDura Synthetic Dural Substitute",
+      "brand_name": "ReDura",
+      "company_id": "medprin",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "neuroscience",
+      "indication_zh": "脑膜修复（神经外科硬脑膜缺损修补）",
+      "indication_en": "Meningeal repair in neurosurgery (dural defect closure)",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "sources": [
+        {
+          "url": "https://simplywall.st/stocks/cn/healthcare/szse-301033/medprin-regenerative-medical-technologies-shares",
+          "title": "Medprin - Simply Wall St",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    }
+  ]
+}

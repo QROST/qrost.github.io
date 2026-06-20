@@ -1,0 +1,485 @@
+{
+  "shard": "enrich-wf-54",
+  "products": [
+    {
+      "id": "palazestrant-op1250",
+      "name_zh": "帕拉泽司坦特",
+      "name_en": "Palazestrant",
+      "brand_name": "OP-1250",
+      "company_id": "olema-pharmaceuticals",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "oncology",
+      "indication_zh": "ER+/HER2-转移性乳腺癌",
+      "indication_en": "ER+/HER2- metastatic breast cancer",
+      "approval_status": "ph3",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "north_america",
+      "sources": [
+        {
+          "url": "https://ir.olema.com/",
+          "title": "Olema Oncology IR",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "pelareorep",
+      "name_zh": "帕拉瑞欧普",
+      "name_en": "Pelareorep",
+      "brand_name": "Pelareorep",
+      "company_id": "oncolytics-biotech",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "oncology",
+      "indication_zh": "转移性乳腺癌、转移性胰腺癌、肛门癌",
+      "indication_en": "Metastatic breast cancer, metastatic pancreatic ductal adenocarcinoma, anal cancer",
+      "approval_status": "ph2",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "north_america",
+      "sources": [
+        {
+          "url": "https://oncolyticsbiotech.com/pipeline/",
+          "title": "Oncolytics Biotech Pipeline",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "ngenla-somatrogon",
+      "name_zh": "索马曲根",
+      "name_en": "Somatrogon",
+      "brand_name": "NGENLA",
+      "company_id": "opko-health",
+      "modality_id": "recombinant-protein",
+      "therapeutic_area_id": "rare-disease",
+      "indication_zh": "儿童生长激素缺乏症（每周一次）",
+      "indication_en": "Pediatric growth hormone deficiency (once-weekly)",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "north_america",
+      "sources": [
+        {
+          "url": "https://www.opko.com/",
+          "title": "OPKO Health Website",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "pbft02",
+      "name_zh": "PBFT02基因疗法",
+      "name_en": "PBFT02",
+      "brand_name": "PBFT02",
+      "company_id": "passage-bio",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "neuroscience",
+      "indication_zh": "GRN突变额颞叶痴呆（FTD-GRN）",
+      "indication_en": "Frontotemporal dementia due to GRN mutations (FTD-GRN)",
+      "approval_status": "ph1",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "north_america",
+      "sources": [
+        {
+          "url": "https://www.passagebio.com/",
+          "title": "Passage Bio Website",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "rezatapopt-pc14586",
+      "name_zh": "瑞扎他普特",
+      "name_en": "Rezatapopt",
+      "brand_name": "PC14586",
+      "company_id": "pmv-pharmaceuticals",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "oncology",
+      "indication_zh": "p53 Y220C突变铂耐药/难治性卵巢癌及其他实体瘤",
+      "indication_en": "p53 Y220C mutant platinum-resistant/refractory ovarian cancer and solid tumors",
+      "approval_status": "ph2",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "north_america",
+      "sources": [
+        {
+          "url": "https://ir.pmvpharma.com/",
+          "title": "PMV Pharmaceuticals IR",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "vormatrigine",
+      "name_zh": "沃马曲金",
+      "name_en": "Vormatrigine",
+      "brand_name": "Vormatrigine",
+      "company_id": "praxis-precision-medicine",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "neuroscience",
+      "indication_zh": "局灶性癫痫发作及广泛性癫痫",
+      "indication_en": "Focal onset seizures and generalized epilepsy",
+      "approval_status": "ph3",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "north_america",
+      "sources": [
+        {
+          "url": "https://ir.praxismedicines.com/",
+          "title": "Praxis Precision Medicines IR",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "relutrigine",
+      "name_zh": "瑞卢曲金",
+      "name_en": "Relutrigine",
+      "brand_name": "Relutrigine",
+      "company_id": "praxis-precision-medicine",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "neuroscience",
+      "indication_zh": "发育性癫痫脑病（DEE）",
+      "indication_en": "Developmental epilepsies and encephalopathies (DEEs)",
+      "approval_status": "ph3",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "north_america",
+      "sources": [
+        {
+          "url": "https://ir.praxismedicines.com/",
+          "title": "Praxis Precision Medicines IR",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "prt3789",
+      "name_zh": "PRT3789",
+      "name_en": "PRT3789",
+      "brand_name": "PRT3789",
+      "company_id": "prelude-therapeutics",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "oncology",
+      "indication_zh": "SMARCA4突变实体瘤",
+      "indication_en": "SMARCA4-mutated solid tumors",
+      "approval_status": "ph1",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "north_america",
+      "sources": [
+        {
+          "url": "https://preludetx.com/",
+          "title": "Prelude Therapeutics Website",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "rusfertide",
+      "name_zh": "鲁斯泛特",
+      "name_en": "Rusfertide",
+      "brand_name": "Rusfertide",
+      "company_id": "protagonist-therapeutics",
+      "modality_id": "peptide",
+      "therapeutic_area_id": "hematology",
+      "indication_zh": "真性红细胞增多症（PV）",
+      "indication_en": "Polycythemia vera",
+      "approval_status": "filed",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "north_america",
+      "sources": [
+        {
+          "url": "https://www.protagonist-inc.com/",
+          "title": "Protagonist Therapeutics Website",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "icotyde-imetelstat",
+      "name_zh": "ICOTYDE",
+      "name_en": "ICOTYDE (imetelstat)",
+      "brand_name": "ICOTYDE",
+      "company_id": "protagonist-therapeutics",
+      "modality_id": "peptide",
+      "therapeutic_area_id": "immunology",
+      "indication_zh": "炎症性肠病（IBD，IL-23R靶向口服肽）",
+      "indication_en": "Inflammatory bowel disease (IBD; oral IL-23R blocking peptide)",
+      "approval_status": "filed",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "north_america",
+      "sources": [
+        {
+          "url": "https://www.protagonist-inc.com/",
+          "title": "Protagonist Therapeutics Website",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "prasinezumab",
+      "name_zh": "普拉西珠单抗",
+      "name_en": "Prasinezumab",
+      "brand_name": "Prasinezumab",
+      "company_id": "prothena",
+      "modality_id": "mab",
+      "therapeutic_area_id": "neuroscience",
+      "indication_zh": "帕金森病（早期）",
+      "indication_en": "Early-stage Parkinson's disease",
+      "approval_status": "ph3",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "north_america",
+      "sources": [
+        {
+          "url": "https://www.prothena.com/",
+          "title": "Prothena Corporate Website",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "coramitug-prx004",
+      "name_zh": "科拉米图格",
+      "name_en": "Coramitug (PRX004)",
+      "brand_name": "Coramitug (PRX004)",
+      "company_id": "prothena",
+      "modality_id": "mab",
+      "therapeutic_area_id": "rare-disease",
+      "indication_zh": "转甲状腺素蛋白淀粉样变性心肌病（ATTR-CM）",
+      "indication_en": "Transthyretin amyloid cardiomyopathy (ATTR-CM)",
+      "approval_status": "ph3",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "north_america",
+      "sources": [
+        {
+          "url": "https://www.prothena.com/",
+          "title": "Prothena Corporate Website",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "translarna-ataluren",
+      "name_zh": "阿他卢仑",
+      "name_en": "Ataluren",
+      "brand_name": "Translarna",
+      "company_id": "ptc-therapeutics",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "rare-disease",
+      "indication_zh": "无义突变型Duchenne肌营养不良（nmDMD）",
+      "indication_en": "Nonsense mutation Duchenne muscular dystrophy (nmDMD)",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "north_america",
+      "sources": [
+        {
+          "url": "https://www.ptcbio.com/",
+          "title": "PTC Therapeutics Website",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "sephience",
+      "name_zh": "Sephience",
+      "name_en": "Sephience",
+      "brand_name": "Sephience",
+      "company_id": "ptc-therapeutics",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "rare-disease",
+      "indication_zh": "苯丙酮尿症（PKU）",
+      "indication_en": "Phenylketonuria (PKU)",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "north_america",
+      "sources": [
+        {
+          "url": "https://www.ptcbio.com/",
+          "title": "PTC Therapeutics Website",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "nerlynx-neratinib",
+      "name_zh": "奈拉替尼",
+      "name_en": "Neratinib",
+      "brand_name": "NERLYNX",
+      "company_id": "puma-biotechnology",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "oncology",
+      "indication_zh": "HER2+早期乳腺癌延长辅助治疗；晚期/转移性HER2+乳腺癌（联合卡培他滨）",
+      "indication_en": "Extended adjuvant therapy in early HER2+ breast cancer; advanced/metastatic HER2+ breast cancer (with capecitabine)",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "north_america",
+      "sources": [
+        {
+          "url": "https://www.pumabiotechnology.com/",
+          "title": "Puma Biotechnology Website",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "micvo",
+      "name_zh": "MICVO",
+      "name_en": "MICVO",
+      "brand_name": "MICVO",
+      "company_id": "pyxis-oncology",
+      "modality_id": "adc",
+      "therapeutic_area_id": "oncology",
+      "indication_zh": "头颈癌等实体瘤",
+      "indication_en": "Head and neck cancer and solid tumors",
+      "approval_status": "ph1",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "north_america",
+      "sources": [
+        {
+          "url": "https://pyxisoncology.com/",
+          "title": "Pyxis Oncology Website",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "zovegalisib",
+      "name_zh": "佐维加利西布",
+      "name_en": "Zovegalisib",
+      "brand_name": "Zovegalisib",
+      "company_id": "relay-therapeutics",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "oncology",
+      "indication_zh": "HR+/HER2-转移性乳腺癌、PI3Kα驱动血管异常",
+      "indication_en": "HR+/HER2- metastatic breast cancer; PI3Kα-driven vascular anomalies",
+      "approval_status": "ph3",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "north_america",
+      "sources": [
+        {
+          "url": "https://relaytx.com/",
+          "title": "Relay Therapeutics Website",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "apabetalone-rvx208",
+      "name_zh": "阿帕泊他隆",
+      "name_en": "Apabetalone",
+      "brand_name": "RVX-208",
+      "company_id": "resverlogix",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "cardiometabolic",
+      "indication_zh": "心血管高风险合并2型糖尿病及低HDL-C",
+      "indication_en": "High-risk cardiovascular disease with type 2 diabetes and low HDL-C",
+      "approval_status": "ph3",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "north_america",
+      "sources": [
+        {
+          "url": "https://www.resverlogix.com/",
+          "title": "Resverlogix Website",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "daraxonrasib",
+      "name_zh": "达拉克索拉西布",
+      "name_en": "Daraxonrasib",
+      "brand_name": "Daraxonrasib",
+      "company_id": "revolution-medicines",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "oncology",
+      "indication_zh": "RAS突变实体瘤（多选择性RAS(ON)抑制剂）",
+      "indication_en": "RAS-mutant solid tumors (multi-selective RAS(ON) inhibitor)",
+      "approval_status": "ph3",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "north_america",
+      "sources": [
+        {
+          "url": "https://www.revmed.com/",
+          "title": "Revolution Medicines Website",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "elironrasib",
+      "name_zh": "伊利纳拉西布",
+      "name_en": "Elironrasib",
+      "brand_name": "Elironrasib",
+      "company_id": "revolution-medicines",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "oncology",
+      "indication_zh": "KRAS G12C突变实体瘤",
+      "indication_en": "KRAS G12C mutant solid tumors",
+      "approval_status": "ph2",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "north_america",
+      "sources": [
+        {
+          "url": "https://www.revmed.com/",
+          "title": "Revolution Medicines Website",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    }
+  ]
+}

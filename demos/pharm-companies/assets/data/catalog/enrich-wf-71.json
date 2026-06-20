@@ -1,0 +1,250 @@
+{
+  "shard": "enrich-wf-71",
+  "products": [
+    {
+      "id": "shinpoong-pyramax",
+      "name_zh": "Pyramax抗疟药",
+      "name_en": "Pyramax (pyronaridine-artesunate)",
+      "brand_name": "Pyramax",
+      "company_id": "shinpoong-pharmaceutical",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "infectious-disease",
+      "indication_zh": "恶性疟及间日疟",
+      "indication_en": "Treatment of uncomplicated Plasmodium falciparum and P. vivax malaria",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "other_apac",
+      "sources": [
+        {
+          "url": "https://www.globaldata.com/company-profile/shin-poong-pharm-co-ltd/",
+          "title": "Shin Poong Pharm Company Profile - GlobalData",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "sun-pharma-arc-vodobatinib",
+      "name_zh": "沃多巴替尼（Vodobatinib）",
+      "name_en": "Vodobatinib (SCO-088)",
+      "brand_name": "Vodobatinib (SCO-088)",
+      "company_id": "sun-pharma-arc",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "oncology",
+      "indication_zh": "难治性慢性粒细胞白血病（CML）",
+      "indication_en": "Refractory chronic myelogenous leukemia (CML) - BCR-ABL inhibitor",
+      "approval_status": "ph2",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "other_apac",
+      "sources": [
+        {
+          "url": "https://stockanalysis.com/quote/nse/SPARC/",
+          "title": "Sun Pharma Advanced Research (SPARC) Overview",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "sun-pharma-arc-vibozilimod",
+      "name_zh": "Vibozilimod（SCD-044）",
+      "name_en": "Vibozilimod (SCD-044)",
+      "brand_name": "Vibozilimod (SCD-044)",
+      "company_id": "sun-pharma-arc",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "immunology",
+      "indication_zh": "银屑病（选择性S1P1受体激动剂）",
+      "indication_en": "Psoriasis - selective sphingosine-1-phosphate receptor 1 (S1P1) agonist",
+      "approval_status": "ph2",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "other_apac",
+      "sources": [
+        {
+          "url": "https://stockanalysis.com/quote/nse/SPARC/",
+          "title": "Sun Pharma Advanced Research (SPARC) Overview",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "syncore-sb01",
+      "name_zh": "SB01抗癌注射剂",
+      "name_en": "SB01 Anti-Cancer Injectable",
+      "brand_name": "SB01 Anti-Cancer Injectable",
+      "company_id": "syncore-biotechnology",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "oncology",
+      "indication_zh": "肿瘤（注射剂，2期临床）",
+      "indication_en": "Cancer (injectable, Phase II clinical trial)",
+      "approval_status": "ph2",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "other_apac",
+      "sources": [
+        {
+          "url": "https://stockanalysis.com/quote/tpex/4192/company/",
+          "title": "SynCore Biotechnology Company Description",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "syncore-sb04",
+      "name_zh": "SB04老年性黄斑变性药物",
+      "name_en": "SB04 Age-related Macular Degeneration",
+      "brand_name": "SB04 Age-related Macular Degeneration",
+      "company_id": "syncore-biotechnology",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "ophthalmology",
+      "indication_zh": "老年性黄斑变性（AMD）",
+      "indication_en": "Age-related macular degeneration (AMD) - Phase II/III trials",
+      "approval_status": "ph3",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "other_apac",
+      "sources": [
+        {
+          "url": "https://stockanalysis.com/quote/tpex/4192/company/",
+          "title": "SynCore Biotechnology Company Description",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "syncore-sb05",
+      "name_zh": "SB05-EndoTAG-1",
+      "name_en": "SB05-EndoTAG-1 (liposomal paclitaxel)",
+      "brand_name": "EndoTAG-1",
+      "company_id": "syncore-biotechnology",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "oncology",
+      "indication_zh": "胰腺癌及三阴性乳腺癌",
+      "indication_en": "Pancreatic cancer and triple-negative breast cancer (TNBC) - Phase III",
+      "approval_status": "ph3",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "other_apac",
+      "sources": [
+        {
+          "url": "https://stockanalysis.com/quote/tpex/4192/company/",
+          "title": "SynCore Biotechnology Company Description",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "taigen-taigexyn",
+      "name_zh": "Taigexyn（奈诺沙星）",
+      "name_en": "Taigexyn (Nemonoxacin)",
+      "brand_name": "Taigexyn",
+      "company_id": "taigen-biopharmaceuticals",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "infectious-disease",
+      "indication_zh": "社区获得性肺炎（CAP）、糖尿病足感染",
+      "indication_en": "Community-acquired bacterial pneumonia (CAP), diabetic foot infection - non-fluorinated quinolone antibiotic",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "other_apac",
+      "sources": [
+        {
+          "url": "https://www.taigenbiotech.com/en/about/milestone",
+          "title": "TaiGen Biotechnology Milestones",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "taigen-tg1000",
+      "name_zh": "TG-1000流感治疗药",
+      "name_en": "TG-1000 (Furaprevir for Influenza)",
+      "brand_name": "TG-1000 (Furaprevir for Influenza)",
+      "company_id": "taigen-biopharmaceuticals",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "infectious-disease",
+      "indication_zh": "流感A型和B型及禽流感H7N9",
+      "indication_en": "Influenza A and B, and avian influenza H7N9 - Phase III clinical trial",
+      "approval_status": "ph3",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "other_apac",
+      "sources": [
+        {
+          "url": "https://www.investing.com/equities/taigen-biopharmaceuticals-holdings-company-profile",
+          "title": "TaiGen Biopharmaceuticals Company Profile - Investing.com",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "taimed-trogarzo",
+      "name_zh": "Trogarzo（ibalizumab）",
+      "name_en": "Trogarzo (ibalizumab-uiyk)",
+      "brand_name": "Trogarzo",
+      "company_id": "taimed-biologics",
+      "modality_id": "mab",
+      "therapeutic_area_id": "infectious-disease",
+      "indication_zh": "多重耐药HIV-1感染（成人患者）",
+      "indication_en": "Multidrug-resistant HIV-1 infection in treatment-experienced adults",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "other_apac",
+      "sources": [
+        {
+          "url": "https://www.taimedbiologics.com/article_d.php?lang=en&tb=5&id=3473",
+          "title": "TaiMed Biologics CEO Interview on Trogarzo",
+          "accessed": "2026-06-19"
+        },
+        {
+          "url": "https://www.biospace.com/press-releases/taimed-biologics-completes-phase-2b-enrollment-for-tmb-365-380-in-hiv-maintenance-therapy-study",
+          "title": "TaiMed Biologics TMB-365/380 Phase 2b",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "taimed-tmb365380",
+      "name_zh": "TMB-365/380长效HIV维持疗法",
+      "name_en": "TMB-365/TMB-380 Long-Acting HIV Maintenance Therapy",
+      "brand_name": "TMB-365/TMB-380 Long-Acting HIV Maintenance Therapy",
+      "company_id": "taimed-biologics",
+      "modality_id": "mab",
+      "therapeutic_area_id": "infectious-disease",
+      "indication_zh": "HIV维持治疗（长效单克隆抗体组合，2b期）",
+      "indication_en": "HIV maintenance therapy - long-acting bispecific monoclonal antibody combination in Phase 2b",
+      "approval_status": "ph2",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "other_apac",
+      "sources": [
+        {
+          "url": "https://www.biospace.com/press-releases/taimed-biologics-completes-phase-2b-enrollment-for-tmb-365-380-in-hiv-maintenance-therapy-study",
+          "title": "TaiMed Biologics Completes Phase 2b Enrollment for TMB-365/380",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    }
+  ]
+}

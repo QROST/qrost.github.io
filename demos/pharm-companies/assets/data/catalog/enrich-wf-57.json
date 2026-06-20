@@ -1,0 +1,303 @@
+{
+  "shard": "enrich-wf-57",
+  "products": [
+    {
+      "id": "zentalis-azenosertib",
+      "name_zh": "阿泽诺塞替尼",
+      "name_en": "Azenosertib",
+      "brand_name": "Azenosertib",
+      "company_id": "zentalis-pharmaceuticals",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "oncology",
+      "indication_zh": "铂耐药卵巢癌、其他实体瘤",
+      "indication_en": "Platinum-resistant ovarian cancer; other solid tumors",
+      "approval_status": "ph3",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "north_america",
+      "sources": [
+        {
+          "url": "https://www.zentalis.com/pipeline/pipeline",
+          "title": "Zentalis Pipeline",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "clarity-sar-bispsma",
+      "name_zh": "SAR-bisPSMA",
+      "name_en": "SAR-bisPSMA (64Cu/67Cu-SAR-bisPSMA)",
+      "brand_name": "SAR-bisPSMA (64Cu/67Cu-SAR-bisPSMA)",
+      "company_id": "clarity-pharmaceuticals",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "oncology",
+      "indication_zh": "前列腺癌（诊断成像及靶向放射性核素治疗）",
+      "indication_en": "Prostate cancer (theranostic: Cu-64 imaging / Cu-67 therapy)",
+      "approval_status": "ph3",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "oceania",
+      "sources": [
+        {
+          "url": "https://www.claritypharmaceuticals.com/about-us/",
+          "title": "Clarity Pharmaceuticals About Us",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "clinuvel-scenesse",
+      "name_zh": "SCENESSE（阿法美拉诺肽植入剂）",
+      "name_en": "Afamelanotide 16mg Implant",
+      "brand_name": "SCENESSE®",
+      "company_id": "clinuvel-pharmaceuticals",
+      "modality_id": "peptide",
+      "therapeutic_area_id": "rare-disease",
+      "indication_zh": "红细胞生成性原卟啉症（EPP）光毒性预防",
+      "indication_en": "Erythropoietic protoporphyria (EPP) – prevention of phototoxicity",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "oceania",
+      "sources": [
+        {
+          "url": "https://scenesse.com/",
+          "title": "SCENESSE Official Website",
+          "accessed": "2026-06-19"
+        },
+        {
+          "url": "https://aetion.com/evidence-hub/fda-decision-alerts/cder-approved-nda-for-scenesse-afamelanotide-16mg/",
+          "title": "FDA Approval SCENESSE – Aetion",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "cyclopharm-technegas",
+      "name_zh": "Technegas肺通气显像系统",
+      "name_en": "Technegas Ventilation Lung Imaging System",
+      "brand_name": "Technegas®",
+      "company_id": "cyclopharm",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "respiratory",
+      "indication_zh": "肺通气显像（肺栓塞诊断）",
+      "indication_en": "Lung ventilation scintigraphy for diagnosis of pulmonary embolism",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "oceania",
+      "sources": [
+        {
+          "url": "https://www.cyclomedica.com/company/cyclopharm/",
+          "title": "Cyclopharm – Cyclomedica",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "dimerix-dmx200",
+      "name_zh": "DMX-200（repagermanium）",
+      "name_en": "DMX-200 (Repagermanium)",
+      "brand_name": "DMX-200 (Repagermanium)",
+      "company_id": "dimerix",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "rare-disease",
+      "indication_zh": "局灶节段性肾小球硬化症（FSGS）",
+      "indication_en": "Focal segmental glomerulosclerosis (FSGS)",
+      "approval_status": "ph3",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "oceania",
+      "sources": [
+        {
+          "url": "https://dimerix.com/products/dmx-200-for-focal-segmental-glomerulosclerosis/",
+          "title": "DMX-200 for FSGS – Dimerix",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "imugene-azer-cel",
+      "name_zh": "azer-cel（阿泽卡贝他格扎普罗留金）",
+      "name_en": "Azercabtagene Zapreleucel (azer-cel)",
+      "brand_name": "Azercabtagene Zapreleucel (azer-cel)",
+      "company_id": "imugene",
+      "modality_id": "car-t",
+      "therapeutic_area_id": "oncology",
+      "indication_zh": "CD19阳性B细胞淋巴瘤及白血病（同种异体现货型CAR-T）",
+      "indication_en": "CD19+ B-cell lymphoma and leukemia (allogeneic off-the-shelf CAR-T)",
+      "approval_status": "ph1",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "oceania",
+      "sources": [
+        {
+          "url": "https://imugene.com/technology/introduction/",
+          "title": "Imugene Technology Introduction",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "imugene-cf33-vaxinia",
+      "name_zh": "CF33 VAXINIA溶瘤病毒",
+      "name_en": "CF33 VAXINIA Oncolytic Virus",
+      "brand_name": "VAXINIA",
+      "company_id": "imugene",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "oncology",
+      "indication_zh": "混合型晚期实体瘤",
+      "indication_en": "Mixed advanced solid tumors",
+      "approval_status": "ph1",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "oceania",
+      "sources": [
+        {
+          "url": "https://imugene.com/technology/introduction/",
+          "title": "Imugene Technology Introduction",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "neuren-trofinetide",
+      "name_zh": "曲非耐肽",
+      "name_en": "Trofinetide",
+      "brand_name": "DAYBUE™",
+      "company_id": "neuren-pharmaceuticals",
+      "modality_id": "peptide",
+      "therapeutic_area_id": "neuroscience",
+      "indication_zh": "瑞特综合征（Rett syndrome，≥2岁）",
+      "indication_en": "Rett syndrome (adults and children ≥2 years)",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "oceania",
+      "sources": [
+        {
+          "url": "https://www.neurenpharma.com/",
+          "title": "Neuren Pharmaceuticals",
+          "accessed": "2026-06-19"
+        },
+        {
+          "url": "https://acadia.com/en-us/media/news-releases/acadia-pharmaceuticals-acquires-ex-north-american-rights",
+          "title": "Acadia acquires ex-North American rights to trofinetide – Acadia",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "neuren-nnz2591",
+      "name_zh": "NNZ-2591",
+      "name_en": "NNZ-2591",
+      "brand_name": "NNZ-2591",
+      "company_id": "neuren-pharmaceuticals",
+      "modality_id": "peptide",
+      "therapeutic_area_id": "neuroscience",
+      "indication_zh": "Phelan-McDermid综合征（pms）、Angelman综合征、脆性X综合征",
+      "indication_en": "Phelan-McDermid syndrome (Phase 3), Angelman syndrome, Fragile X syndrome",
+      "approval_status": "ph3",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "oceania",
+      "sources": [
+        {
+          "url": "https://www.neurenpharma.com/",
+          "title": "Neuren Pharmaceuticals Pipeline",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "opthea-sozinibercept",
+      "name_zh": "索辛尼贝塞（OPT-302）",
+      "name_en": "Sozinibercept (OPT-302)",
+      "brand_name": "Sozinibercept (OPT-302)",
+      "company_id": "opthea",
+      "modality_id": "recombinant-protein",
+      "therapeutic_area_id": "ophthalmology",
+      "indication_zh": "湿性年龄相关性黄斑变性（wAMD）、糖尿病黄斑水肿（DME）",
+      "indication_en": "Wet age-related macular degeneration (wAMD); diabetic macular edema (DME)",
+      "approval_status": "withdrawn",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "oceania",
+      "sources": [
+        {
+          "url": "https://ir.opthea.com/news-releases/news-release-details/opthea-reports-full-year-financial-results-and-business-updates",
+          "title": "Opthea Full-Year Financial Results 2025 – IR",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "paradigm-zilosul",
+      "name_zh": "Zilosul（注射用戊糖多硫酸钠）",
+      "name_en": "Zilosul (Injectable Pentosan Polysulfate Sodium, iPPS)",
+      "brand_name": "Zilosul",
+      "company_id": "paradigm-biopharmaceuticals",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "immunology",
+      "indication_zh": "膝关节骨关节炎（3期）；黏多糖贮积症；阿尔法病毒性关节炎",
+      "indication_en": "Knee osteoarthritis (Phase 3); mucopolysaccharidosis; alphaviral arthritis (Ross River virus, chikungunya)",
+      "approval_status": "ph3",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "oceania",
+      "sources": [
+        {
+          "url": "https://paradigmbiopharma.com/pentosan-polysulfate-sodium/",
+          "title": "Pentosan Polysulfate Sodium – Paradigm Biopharmaceuticals",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "percheron-atl1102",
+      "name_zh": "ATL1102",
+      "name_en": "ATL1102 (Anti-CD49d Antisense Oligonucleotide)",
+      "brand_name": "ATL1102 (Anti-CD49d Antisense Oligonucleotide)",
+      "company_id": "percheron-therapeutics",
+      "modality_id": "sirna",
+      "therapeutic_area_id": "rare-disease",
+      "indication_zh": "杜氏肌营养不良症（DMD）、多发性硬化症（MS）",
+      "indication_en": "Duchenne muscular dystrophy (Phase IIb); multiple sclerosis",
+      "approval_status": "ph2",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "oceania",
+      "sources": [
+        {
+          "url": "https://percherontx.com/pipeline/atl1102-for-dmd/",
+          "title": "ATL1102 for DMD – Percheron Therapeutics",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    }
+  ]
+}

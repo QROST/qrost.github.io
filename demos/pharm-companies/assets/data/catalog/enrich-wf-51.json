@@ -1,0 +1,413 @@
+{
+  "shard": "enrich-wf-51",
+  "products": [
+    {
+      "id": "palsonify-paltusotine",
+      "name_zh": "帕替索汀",
+      "name_en": "Paltusotine",
+      "brand_name": "PALSONIFY",
+      "company_id": "crinetics-pharmaceuticals",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "rare-disease",
+      "indication_zh": "肢端肥大症（成人症状性肢端肥大症的长期治疗）",
+      "indication_en": "Acromegaly (long-term treatment of adult patients with acromegaly)",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "north_america",
+      "sources": [
+        {
+          "url": "https://crinetics.com/crinetics-pharmaceuticals-reports-fourth-quarter-and-full-year-2025-financial-results-and-provides-business-update/",
+          "title": "Crinetics Pharmaceuticals FY2025 Press Release (PALSONIFY FDA-approved September 2025)",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "atumelnant-crnx",
+      "name_zh": "阿图美尔南特",
+      "name_en": "Atumelnant",
+      "brand_name": "Atumelnant",
+      "company_id": "crinetics-pharmaceuticals",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "rare-disease",
+      "indication_zh": "ACTH依赖性库欣综合征；先天性肾上腺皮质增生症",
+      "indication_en": "ACTH-dependent Cushing's syndrome; Congenital adrenal hyperplasia (CAH)",
+      "approval_status": "ph3",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "north_america",
+      "sources": [
+        {
+          "url": "https://crinetics.com/crinetics-pharmaceuticals-reports-fourth-quarter-and-full-year-2025-financial-results-and-provides-business-update/",
+          "title": "Crinetics Pharmaceuticals FY2025 Press Release",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "cyb003-cybin",
+      "name_zh": "CYB003",
+      "name_en": "CYB003",
+      "brand_name": "CYB003",
+      "company_id": "cybin-ca",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "neuroscience",
+      "indication_zh": "重度抑郁症（MDD）",
+      "indication_en": "Major depressive disorder (MDD)",
+      "approval_status": "ph3",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "north_america",
+      "sources": [
+        {
+          "url": "https://www.businesswire.com/news/home/20250630308528/en/Cybin-Reports-Fiscal-Year-2025-Financial-Results-and-Recent-Business-Highlights",
+          "title": "Cybin FY2025 Financial Results",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "cyb004-cybin",
+      "name_zh": "CYB004",
+      "name_en": "CYB004",
+      "brand_name": "CYB004",
+      "company_id": "cybin-ca",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "neuroscience",
+      "indication_zh": "广泛性焦虑障碍（GAD）",
+      "indication_en": "Generalized anxiety disorder (GAD)",
+      "approval_status": "ph2",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "north_america",
+      "sources": [
+        {
+          "url": "https://www.businesswire.com/news/home/20250630308528/en/Cybin-Reports-Fiscal-Year-2025-Financial-Results-and-Recent-Business-Highlights",
+          "title": "Cybin FY2025 Financial Results",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "myqorzo-aficamten",
+      "name_zh": "阿非卡门",
+      "name_en": "Aficamten",
+      "brand_name": "MYQORZO",
+      "company_id": "cytokinetics",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "cardiometabolic",
+      "indication_zh": "症状性梗阻性肥厚型心肌病（oHCM）",
+      "indication_en": "Symptomatic obstructive hypertrophic cardiomyopathy (oHCM)",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "north_america",
+      "sources": [
+        {
+          "url": "https://ir.cytokinetics.com/press-releases/press-release-details/2025/Cytokinetics-Announces-NMPA-Approval-of-MYQORZO-aficamten-in-China--for-Patients-with-Obstructive-Hypertrophic-Cardiomyopathy/default.aspx",
+          "title": "Cytokinetics MYQORZO China Approval",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "dm199-diamedica",
+      "name_zh": "DM199",
+      "name_en": "DM199",
+      "brand_name": "DM199",
+      "company_id": "diamedica-therapeutics",
+      "modality_id": "recombinant-protein",
+      "therapeutic_area_id": "neuroscience",
+      "indication_zh": "急性缺血性脑卒中；先兆子痫",
+      "indication_en": "Acute ischemic stroke; Preeclampsia",
+      "approval_status": "ph2",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "north_america",
+      "sources": [
+        {
+          "url": "https://www.diamedica.com/investors/press-releases/detail/1723/diamedica-therapeutics-reports-full-year-2025-financial",
+          "title": "DiaMedica FY2025 Press Release",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "bitopertin-disc",
+      "name_zh": "比托培汀",
+      "name_en": "Bitopertin",
+      "brand_name": "Bitopertin",
+      "company_id": "disc-medicine",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "hematology",
+      "indication_zh": "红细胞生成性卟啉症（EPP/XLP）",
+      "indication_en": "Erythropoietic protoporphyria (EPP) and X-linked protoporphyria (XLP)",
+      "approval_status": "ph3",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "north_america",
+      "sources": [
+        {
+          "url": "https://stockanalysis.com/stocks/iron/",
+          "title": "Disc Medicine Stock Overview and Pipeline",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "sevasemten-edgewise",
+      "name_zh": "塞瓦匹坦",
+      "name_en": "Sevasemten",
+      "brand_name": "Sevasemten",
+      "company_id": "edgewise-therapeutics",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "rare-disease",
+      "indication_zh": "杜氏肌营养不良症（DMD）；贝克肌营养不良症（BMD）",
+      "indication_en": "Duchenne muscular dystrophy (DMD); Becker muscular dystrophy (BMD)",
+      "approval_status": "ph3",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "north_america",
+      "sources": [
+        {
+          "url": "https://www.prnewswire.com/news-releases/edgewise-therapeutics-reports-fourth-quarter-and-full-year-2025-financial-results-with-strong-progress-across-muscular-dystrophy-and-cardiovascular-programs-302696484.html",
+          "title": "Edgewise Therapeutics FY2025 Press Release",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "cyfendus-emergent",
+      "name_zh": "CYFENDUS",
+      "name_en": "CYFENDUS (Anthrax Vaccine Adsorbed Adjuvanted)",
+      "brand_name": "CYFENDUS",
+      "company_id": "emergent-biosolutions",
+      "modality_id": "inactivated-vaccine",
+      "therapeutic_area_id": "infectious-disease",
+      "indication_zh": "炭疽暴露后预防（成人）",
+      "indication_en": "Post-exposure prophylaxis of disease following suspected or confirmed exposure to Bacillus anthracis (adults)",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "north_america",
+      "sources": [
+        {
+          "url": "https://investors.emergentbiosolutions.com/news-releases/news-release-details/emergent-biosolutions-reports-fourth-quarter-and-full-year-2024",
+          "title": "Emergent BioSolutions FY2024 Press Release",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "pedmark-fennec",
+      "name_zh": "PEDMARK",
+      "name_en": "PEDMARK (Sodium Thiosulfate Injection)",
+      "brand_name": "PEDMARK",
+      "company_id": "fennec-pharmaceuticals",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "oncology",
+      "indication_zh": "降低接受顺铂治疗的局限性非转移性实体瘤儿科患者耳毒性风险",
+      "indication_en": "Reduce the risk of ototoxicity associated with cisplatin in pediatric patients (≥1 month) with localized, non-metastatic solid tumors",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "north_america",
+      "sources": [
+        {
+          "url": "https://www.globenewswire.com/news-release/2026/03/24/3261052/0/en/Fennec-Pharmaceuticals-Reports-Fourth-Quarter-and-Full-Year-2025-Financial-Results-and-Provides-Business-Update.html",
+          "title": "Fennec Pharmaceuticals FY2025 Press Release",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "z-rostudirsen-dyne",
+      "name_zh": "z-罗斯图地森",
+      "name_en": "z-Rostudirsen",
+      "brand_name": "z-Rostudirsen",
+      "company_id": "dyne-therapeutics",
+      "modality_id": "sirna",
+      "therapeutic_area_id": "rare-disease",
+      "indication_zh": "杜氏肌营养不良症（DMD）",
+      "indication_en": "Duchenne muscular dystrophy (DMD)",
+      "approval_status": "ph2",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "north_america",
+      "sources": [
+        {
+          "url": "https://www.globenewswire.com/news-release/2026/03/02/3247269/0/en/Dyne-Therapeutics-Reports-Fourth-Quarter-and-Full-Year-2025-Financial-Results-and-Recent-Business-Highlights.html",
+          "title": "Dyne Therapeutics FY2025 Press Release",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "evo756-evommune",
+      "name_zh": "EVO756",
+      "name_en": "EVO756",
+      "brand_name": "EVO756",
+      "company_id": "evommune",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "immunology",
+      "indication_zh": "慢性自发性荨麻疹（CSU）；特应性皮炎（AD）",
+      "indication_en": "Chronic spontaneous urticaria (CSU); Atopic dermatitis (AD)",
+      "approval_status": "ph2",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "north_america",
+      "sources": [
+        {
+          "url": "https://ir.evommune.com/news-events/press-releases/detail/121/evommune-reports-fourth-quarter-and-full-year-2025-financial-results-and-provides-business-highlights",
+          "title": "Evommune FY2025 Press Release",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "ft819-fate",
+      "name_zh": "FT819",
+      "name_en": "FT819",
+      "brand_name": "FT819",
+      "company_id": "fate-therapeutics",
+      "modality_id": "car-t",
+      "therapeutic_area_id": "immunology",
+      "indication_zh": "系统性红斑狼疮（SLE）等自身免疫性疾病；血液肿瘤",
+      "indication_en": "Autoimmune diseases (systemic lupus erythematosus, SLE) and hematologic malignancies",
+      "approval_status": "ph1",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "north_america",
+      "sources": [
+        {
+          "url": "https://ir.fatetherapeutics.com/news-releases/news-release-details/fate-therapeutics-reports-third-quarter-2025-financial-results",
+          "title": "Fate Therapeutics Q3 2025 Press Release",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "fhd909-foghorn",
+      "name_zh": "FHD-909",
+      "name_en": "FHD-909",
+      "brand_name": "FHD-909",
+      "company_id": "foghorn-therapeutics",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "oncology",
+      "indication_zh": "SMARCA2缺陷型肿瘤（BRM选择性ATPase抑制剂）",
+      "indication_en": "SMARCA2-deficient tumors (selective BRM ATPase inhibitor)",
+      "approval_status": "ph1",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "north_america",
+      "sources": [
+        {
+          "url": "https://ir.foghorntx.com/news-releases/news-release-details/foghorn-therapeutics-provides-financial-update-2025-and-2026",
+          "title": "Foghorn Therapeutics 2025 Financial Update",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "ep104iar-eupraxia",
+      "name_zh": "EP-104IAR",
+      "name_en": "EP-104IAR",
+      "brand_name": "EP-104IAR",
+      "company_id": "eupraxia-pharmaceuticals-ca",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "cardiometabolic",
+      "indication_zh": "膝关节骨性关节炎疼痛",
+      "indication_en": "Knee osteoarthritis pain",
+      "approval_status": "ph3",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "north_america",
+      "sources": [
+        {
+          "url": "https://members.viatec.ca/news/Details/eupraxia-pharmaceuticals-initiates-phase-3-development-program-for-ep-104iar-201201",
+          "title": "Eupraxia Initiates Phase 3 for EP-104IAR",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "ep104gi-eupraxia",
+      "name_zh": "EP-104GI",
+      "name_en": "EP-104GI",
+      "brand_name": "EP-104GI",
+      "company_id": "eupraxia-pharmaceuticals-ca",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "immunology",
+      "indication_zh": "嗜酸性食管炎（EoE）",
+      "indication_en": "Eosinophilic esophagitis (EoE)",
+      "approval_status": "ph2",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "north_america",
+      "sources": [
+        {
+          "url": "https://www.biospace.com/press-releases/eupraxia-pharmaceuticals-announces-positive-data-from-resolve-phase-1b-2a-trial-of-ep-104gi-for-treatment-of-eosinophilic-esophagitis",
+          "title": "Eupraxia EP-104GI RESOLVE Trial Positive Data",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    },
+    {
+      "id": "eras0015-erasca",
+      "name_zh": "ERAS-0015",
+      "name_en": "ERAS-0015",
+      "brand_name": "ERAS-0015",
+      "company_id": "erasca",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "oncology",
+      "indication_zh": "RAS驱动的实体肿瘤（pan-RAS分子胶）",
+      "indication_en": "RAS-driven solid tumors (pan-RAS molecular glue)",
+      "approval_status": "ph1",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "north_america",
+      "sources": [
+        {
+          "url": "https://investors.erasca.com/news-releases/news-release-details/erasca-reports-fourth-quarter-and-full-year-2025-business/",
+          "title": "Erasca FY2025 Press Release",
+          "accessed": "2026-06-19"
+        }
+      ],
+      "confidence": 0.6,
+      "last_verified": "2026-06"
+    }
+  ]
+}
