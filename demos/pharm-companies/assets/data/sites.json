@@ -2786,7 +2786,7 @@
     },
     {
       "id": "dualitybio-suzhou-hq",
-      "company_id": "dualitybio",
+      "company_id": "duality-biologics",
       "name_zh": "映恩生物苏州总部",
       "name_en": "DualityBio Suzhou HQ",
       "site_type": "HQ",
@@ -5399,7 +5399,7 @@
     },
     {
       "id": "snibe-diagnostic-hq",
-      "company_id": "snibe",
+      "company_id": "shenzhen-new-industries",
       "name_zh": "深圳新产业生物深圳总部",
       "name_en": "Snibe Shenzhen HQ",
       "site_type": "HQ",
@@ -10565,6 +10565,3828 @@
       "city": "Tempe",
       "lat": 33.4148,
       "lng": -111.9093,
+      "is_subsidiary": false,
+      "confidence": 0.6,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://github.com/lutangar/cities.json",
+          "title": "world cities gazetteer (HQ city geocode)",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "alivira-hq",
+      "company_id": "alivira",
+      "name_en": "Alivira Animal Health HQ",
+      "name_zh": "阿莉维拉动物保健 总部",
+      "site_type": "HQ",
+      "country": "IN",
+      "city": "Mumbai",
+      "lat": 19.0728,
+      "lng": 72.8826,
+      "is_subsidiary": false,
+      "confidence": 0.6,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://github.com/lutangar/cities.json",
+          "title": "world cities gazetteer (HQ city geocode)",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "bimeda-hq",
+      "company_id": "bimeda",
+      "name_en": "Bimeda HQ",
+      "name_zh": "比美达 总部",
+      "site_type": "HQ",
+      "country": "IE",
+      "city": "Dublin",
+      "lat": 53.3331,
+      "lng": -6.2489,
+      "is_subsidiary": false,
+      "confidence": 0.6,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://github.com/lutangar/cities.json",
+          "title": "world cities gazetteer (HQ city geocode)",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "ceva-sante-animale-hq",
+      "company_id": "ceva-sante-animale",
+      "name_en": "Ceva Santé Animale HQ",
+      "name_zh": "诗华动物保健 总部",
+      "site_type": "HQ",
+      "country": "FR",
+      "city": "Libourne",
+      "lat": 44.9145,
+      "lng": -0.2419,
+      "is_subsidiary": false,
+      "confidence": 0.6,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://github.com/lutangar/cities.json",
+          "title": "world cities gazetteer (HQ city geocode)",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "chanelle-pharma-hq",
+      "company_id": "chanelle-pharma",
+      "name_en": "Chanelle Pharma HQ",
+      "name_zh": "沙内尔制药 总部",
+      "site_type": "HQ",
+      "country": "IE",
+      "city": "Loughrea",
+      "lat": 53.1969,
+      "lng": -8.5669,
+      "is_subsidiary": false,
+      "confidence": 0.6,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://github.com/lutangar/cities.json",
+          "title": "world cities gazetteer (HQ city geocode)",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "covetrus-hq",
+      "company_id": "covetrus",
+      "name_en": "Covetrus HQ",
+      "name_zh": "科唯思 总部",
+      "site_type": "HQ",
+      "country": "US",
+      "city": "Portland, Maine",
+      "lat": 36.5817,
+      "lng": -86.5164,
+      "is_subsidiary": false,
+      "confidence": 0.6,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://github.com/lutangar/cities.json",
+          "title": "world cities gazetteer (HQ city geocode)",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "dechra-pharmaceuticals-hq",
+      "company_id": "dechra-pharmaceuticals",
+      "name_en": "Dechra Pharmaceuticals HQ",
+      "name_zh": "德诚动物保健 总部",
+      "site_type": "HQ",
+      "country": "GB",
+      "city": "Northwich",
+      "lat": 53.2588,
+      "lng": -2.5202,
+      "is_subsidiary": false,
+      "confidence": 0.6,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://github.com/lutangar/cities.json",
+          "title": "world cities gazetteer (HQ city geocode)",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "elanco-animal-health-hq",
+      "company_id": "elanco-animal-health",
+      "name_en": "Elanco Animal Health HQ",
+      "name_zh": "礼蓝动物保健 总部",
+      "site_type": "HQ",
+      "country": "US",
+      "city": "Greenfield, Indiana",
+      "lat": 39.3437,
+      "lng": -90.2126,
+      "is_subsidiary": false,
+      "confidence": 0.6,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://github.com/lutangar/cities.json",
+          "title": "world cities gazetteer (HQ city geocode)",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "heska-hq",
+      "company_id": "heska",
+      "name_en": "Heska HQ",
+      "name_zh": "海斯卡 总部",
+      "site_type": "HQ",
+      "country": "US",
+      "city": "Loveland, Colorado",
+      "lat": 39.2689,
+      "lng": -84.2638,
+      "is_subsidiary": false,
+      "confidence": 0.6,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://github.com/lutangar/cities.json",
+          "title": "world cities gazetteer (HQ city geocode)",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "hipra-hq",
+      "company_id": "hipra",
+      "name_en": "HIPRA HQ",
+      "name_zh": "海博莱 总部",
+      "site_type": "HQ",
+      "country": "ES",
+      "city": "Amer (Girona)",
+      "lat": 42.1561,
+      "lng": 2.6033,
+      "is_subsidiary": false,
+      "confidence": 0.6,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://github.com/lutangar/cities.json",
+          "title": "world cities gazetteer (HQ city geocode)",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "huvepharma-hq",
+      "company_id": "huvepharma",
+      "name_en": "Huvepharma HQ",
+      "name_zh": "虎博制药 总部",
+      "site_type": "HQ",
+      "country": "BG",
+      "city": "Sofia",
+      "lat": 42.6975,
+      "lng": 23.3241,
+      "is_subsidiary": false,
+      "confidence": 0.6,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://github.com/lutangar/cities.json",
+          "title": "world cities gazetteer (HQ city geocode)",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "idexx-laboratories-hq",
+      "company_id": "idexx-laboratories",
+      "name_en": "IDEXX Laboratories HQ",
+      "name_zh": "爱德士 总部",
+      "site_type": "HQ",
+      "country": "US",
+      "city": "Westbrook, Maine",
+      "lat": 43.677,
+      "lng": -70.3712,
+      "is_subsidiary": false,
+      "confidence": 0.6,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://github.com/lutangar/cities.json",
+          "title": "world cities gazetteer (HQ city geocode)",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "indian-immunologicals-hq",
+      "company_id": "indian-immunologicals",
+      "name_en": "Indian Immunologicals Limited HQ",
+      "name_zh": "印度免疫制品有限公司 总部",
+      "site_type": "HQ",
+      "country": "IN",
+      "city": "Hyderabad",
+      "lat": 17.384,
+      "lng": 78.4564,
+      "is_subsidiary": false,
+      "confidence": 0.6,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://github.com/lutangar/cities.json",
+          "title": "world cities gazetteer (HQ city geocode)",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "jinhe-biotechnology-hq",
+      "company_id": "jinhe-biotechnology",
+      "name_en": "Jinhe Biotechnology HQ",
+      "name_zh": "金河生物 总部",
+      "site_type": "HQ",
+      "country": "CN",
+      "city": "Hohhot",
+      "lat": 40.8106,
+      "lng": 111.6522,
+      "is_subsidiary": false,
+      "confidence": 0.6,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://github.com/lutangar/cities.json",
+          "title": "world cities gazetteer (HQ city geocode)",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "kyoritsu-seiyaku-hq",
+      "company_id": "kyoritsu-seiyaku",
+      "name_en": "Kyoritsu Seiyaku HQ",
+      "name_zh": "共立制药 总部",
+      "site_type": "HQ",
+      "country": "JP",
+      "city": "Tokyo",
+      "lat": 35.6895,
+      "lng": 139.6917,
+      "is_subsidiary": false,
+      "confidence": 0.6,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://github.com/lutangar/cities.json",
+          "title": "world cities gazetteer (HQ city geocode)",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "meiji-animal-health-hq",
+      "company_id": "meiji-animal-health",
+      "name_en": "Meiji Animal Health HQ",
+      "name_zh": "明治动物保健 总部",
+      "site_type": "HQ",
+      "country": "JP",
+      "city": "Tokyo",
+      "lat": 35.6895,
+      "lng": 139.6917,
+      "is_subsidiary": false,
+      "confidence": 0.6,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://github.com/lutangar/cities.json",
+          "title": "world cities gazetteer (HQ city geocode)",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "nippon-zenyaku-kogyo-hq",
+      "company_id": "nippon-zenyaku-kogyo",
+      "name_en": "Nippon Zenyaku Kogyo (ZENOAQ) HQ",
+      "name_zh": "日本全药工业 总部",
+      "site_type": "HQ",
+      "country": "JP",
+      "city": "Koriyama",
+      "lat": 37.4,
+      "lng": 140.3833,
+      "is_subsidiary": false,
+      "confidence": 0.6,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://github.com/lutangar/cities.json",
+          "title": "world cities gazetteer (HQ city geocode)",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "anavex-life-sciences-hq",
+      "company_id": "anavex-life-sciences",
+      "name_en": "Anavex Life Sciences HQ",
+      "name_zh": "Anavex生命科学 总部",
+      "site_type": "HQ",
+      "country": "US",
+      "city": "New York",
+      "lat": 40.7128,
+      "lng": -74.006,
+      "is_subsidiary": false,
+      "confidence": 0.6,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://github.com/lutangar/cities.json",
+          "title": "world cities gazetteer (HQ city geocode)",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "annovis-bio-hq",
+      "company_id": "annovis-bio",
+      "name_en": "Annovis Bio HQ",
+      "name_zh": "Annovis生物 总部",
+      "site_type": "HQ",
+      "country": "US",
+      "city": "Malvern",
+      "lat": 31.1393,
+      "lng": -85.5191,
+      "is_subsidiary": false,
+      "confidence": 0.6,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://github.com/lutangar/cities.json",
+          "title": "world cities gazetteer (HQ city geocode)",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "bial-hq",
+      "company_id": "bial",
+      "name_en": "Bial HQ",
+      "name_zh": "百安药业 总部",
+      "site_type": "HQ",
+      "country": "PT",
+      "city": "Porto",
+      "lat": 41.1485,
+      "lng": -8.611,
+      "is_subsidiary": false,
+      "confidence": 0.6,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://github.com/lutangar/cities.json",
+          "title": "world cities gazetteer (HQ city geocode)",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "cassava-sciences-hq",
+      "company_id": "cassava-sciences",
+      "name_en": "Cassava Sciences HQ",
+      "name_zh": "Cassava科学 总部",
+      "site_type": "HQ",
+      "country": "US",
+      "city": "Austin",
+      "lat": 34.9984,
+      "lng": -91.9838,
+      "is_subsidiary": false,
+      "confidence": 0.6,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://github.com/lutangar/cities.json",
+          "title": "world cities gazetteer (HQ city geocode)",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "cerevance-hq",
+      "company_id": "cerevance",
+      "name_en": "Cerevance HQ",
+      "name_zh": "Cerevance 总部",
+      "site_type": "HQ",
+      "country": "GB",
+      "city": "Cambridge",
+      "lat": 52.2,
+      "lng": 0.1167,
+      "is_subsidiary": false,
+      "confidence": 0.6,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://github.com/lutangar/cities.json",
+          "title": "world cities gazetteer (HQ city geocode)",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "cervomed-hq",
+      "company_id": "cervomed",
+      "name_en": "CervoMed HQ",
+      "name_zh": "CervoMed 总部",
+      "site_type": "HQ",
+      "country": "US",
+      "city": "Boston",
+      "lat": 30.7919,
+      "lng": -83.7899,
+      "is_subsidiary": false,
+      "confidence": 0.6,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://github.com/lutangar/cities.json",
+          "title": "world cities gazetteer (HQ city geocode)",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "denali-therapeutics-hq",
+      "company_id": "denali-therapeutics",
+      "name_en": "Denali Therapeutics HQ",
+      "name_zh": "Denali治疗 总部",
+      "site_type": "HQ",
+      "country": "US",
+      "city": "South San Francisco",
+      "lat": 37.7749,
+      "lng": -122.4194,
+      "is_subsidiary": false,
+      "confidence": 0.6,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://github.com/lutangar/cities.json",
+          "title": "world cities gazetteer (HQ city geocode)",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "morphic-therapeutic-hq",
+      "company_id": "morphic-therapeutic",
+      "name_en": "Morphic Therapeutic HQ",
+      "name_zh": "Morphic治疗 总部",
+      "site_type": "HQ",
+      "country": "US",
+      "city": "Waltham",
+      "lat": 42.3765,
+      "lng": -71.2356,
+      "is_subsidiary": false,
+      "confidence": 0.6,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://github.com/lutangar/cities.json",
+          "title": "world cities gazetteer (HQ city geocode)",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "muna-therapeutics-hq",
+      "company_id": "muna-therapeutics",
+      "name_en": "Muna Therapeutics HQ",
+      "name_zh": "穆纳治疗 总部",
+      "site_type": "HQ",
+      "country": "DK",
+      "city": "Copenhagen",
+      "lat": 55.6759,
+      "lng": 12.5655,
+      "is_subsidiary": false,
+      "confidence": 0.6,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://github.com/lutangar/cities.json",
+          "title": "world cities gazetteer (HQ city geocode)",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "neumora-therapeutics-hq",
+      "company_id": "neumora-therapeutics",
+      "name_en": "Neumora Therapeutics HQ",
+      "name_zh": "Neumora治疗 总部",
+      "site_type": "HQ",
+      "country": "US",
+      "city": "Watertown",
+      "lat": 30.1925,
+      "lng": -82.6146,
+      "is_subsidiary": false,
+      "confidence": 0.6,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://github.com/lutangar/cities.json",
+          "title": "world cities gazetteer (HQ city geocode)",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "q32-bio-hq",
+      "company_id": "q32-bio",
+      "name_en": "Q32 Bio HQ",
+      "name_zh": "Q32生物 总部",
+      "site_type": "HQ",
+      "country": "US",
+      "city": "Waltham",
+      "lat": 42.3765,
+      "lng": -71.2356,
+      "is_subsidiary": false,
+      "confidence": 0.6,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://github.com/lutangar/cities.json",
+          "title": "world cities gazetteer (HQ city geocode)",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "sage-therapeutics-hq",
+      "company_id": "sage-therapeutics",
+      "name_en": "Sage Therapeutics HQ",
+      "name_zh": "Sage治疗 总部",
+      "site_type": "HQ",
+      "country": "US",
+      "city": "Cambridge",
+      "lat": 38.5632,
+      "lng": -76.0788,
+      "is_subsidiary": false,
+      "confidence": 0.6,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://github.com/lutangar/cities.json",
+          "title": "world cities gazetteer (HQ city geocode)",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "ventyx-biosciences-hq",
+      "company_id": "ventyx-biosciences",
+      "name_en": "Ventyx Biosciences HQ",
+      "name_zh": "Ventyx生物科学 总部",
+      "site_type": "HQ",
+      "country": "US",
+      "city": "San Diego",
+      "lat": 27.7639,
+      "lng": -98.2389,
+      "is_subsidiary": false,
+      "confidence": 0.6,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://github.com/lutangar/cities.json",
+          "title": "world cities gazetteer (HQ city geocode)",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "vigil-neuroscience-hq",
+      "company_id": "vigil-neuroscience",
+      "name_en": "Vigil Neuroscience HQ",
+      "name_zh": "Vigil神经科学 总部",
+      "site_type": "HQ",
+      "country": "US",
+      "city": "Watertown",
+      "lat": 30.1925,
+      "lng": -82.6146,
+      "is_subsidiary": false,
+      "confidence": 0.6,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://github.com/lutangar/cities.json",
+          "title": "world cities gazetteer (HQ city geocode)",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "nichi-iko-pharmaceutical-hq",
+      "company_id": "nichi-iko-pharmaceutical",
+      "name_en": "Nichi-Iko Pharmaceutical HQ",
+      "name_zh": "日医工 总部",
+      "site_type": "HQ",
+      "country": "JP",
+      "city": "Toyama",
+      "lat": 36.7,
+      "lng": 137.2167,
+      "is_subsidiary": false,
+      "confidence": 0.6,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://github.com/lutangar/cities.json",
+          "title": "world cities gazetteer (HQ city geocode)",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "nippon-zoki-pharmaceutical-hq",
+      "company_id": "nippon-zoki-pharmaceutical",
+      "name_en": "Nippon Zoki Pharmaceutical HQ",
+      "name_zh": "日本脏器制药 总部",
+      "site_type": "HQ",
+      "country": "JP",
+      "city": "Osaka",
+      "lat": 34.6938,
+      "lng": 135.5011,
+      "is_subsidiary": false,
+      "confidence": 0.6,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://github.com/lutangar/cities.json",
+          "title": "world cities gazetteer (HQ city geocode)",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "pharmicell-hq",
+      "company_id": "pharmicell",
+      "name_en": "Pharmicell HQ",
+      "name_zh": "Pharmicell（法米塞尔） 总部",
+      "site_type": "HQ",
+      "country": "KR",
+      "city": "Seongnam",
+      "lat": 37.42,
+      "lng": 127.1267,
+      "is_subsidiary": false,
+      "confidence": 0.6,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://github.com/lutangar/cities.json",
+          "title": "world cities gazetteer (HQ city geocode)",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "taisho-pharmaceutical-hq",
+      "company_id": "taisho-pharmaceutical",
+      "name_en": "Taisho Pharmaceutical HQ",
+      "name_zh": "大正制药 总部",
+      "site_type": "HQ",
+      "country": "JP",
+      "city": "Tokyo",
+      "lat": 35.6895,
+      "lng": 139.6917,
+      "is_subsidiary": false,
+      "confidence": 0.6,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://github.com/lutangar/cities.json",
+          "title": "world cities gazetteer (HQ city geocode)",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "teijin-pharma-hq",
+      "company_id": "teijin-pharma",
+      "name_en": "Teijin Pharma HQ",
+      "name_zh": "帝人制药 总部",
+      "site_type": "HQ",
+      "country": "JP",
+      "city": "Tokyo",
+      "lat": 35.6895,
+      "lng": 139.6917,
+      "is_subsidiary": false,
+      "confidence": 0.6,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://github.com/lutangar/cities.json",
+          "title": "world cities gazetteer (HQ city geocode)",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "ache-laboratorios-hq",
+      "company_id": "ache-laboratorios",
+      "name_en": "Aché Laboratórios Farmacêuticos HQ",
+      "name_zh": "阿谢制药 总部",
+      "site_type": "HQ",
+      "country": "BR",
+      "city": "Guarulhos",
+      "lat": -23.4628,
+      "lng": -46.5333,
+      "is_subsidiary": false,
+      "confidence": 0.6,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://github.com/lutangar/cities.json",
+          "title": "world cities gazetteer (HQ city geocode)",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "adcock-ingram-hq",
+      "company_id": "adcock-ingram",
+      "name_en": "Adcock Ingram Holdings HQ",
+      "name_zh": "阿德科克·英格拉姆 总部",
+      "site_type": "HQ",
+      "country": "ZA",
+      "city": "Midrand",
+      "lat": -25.976,
+      "lng": 28.118,
+      "is_subsidiary": false,
+      "confidence": 0.6,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://github.com/lutangar/cities.json",
+          "title": "world cities gazetteer (HQ city geocode)",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "amoun-pharmaceutical-hq",
+      "company_id": "amoun-pharmaceutical",
+      "name_en": "Amoun Pharmaceutical HQ",
+      "name_zh": "阿蒙制药 总部",
+      "site_type": "HQ",
+      "country": "EG",
+      "city": "Cairo",
+      "lat": 30.0626,
+      "lng": 31.2497,
+      "is_subsidiary": false,
+      "confidence": 0.6,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://github.com/lutangar/cities.json",
+          "title": "world cities gazetteer (HQ city geocode)",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "biolab-farmaceutica-hq",
+      "company_id": "biolab-farmaceutica",
+      "name_en": "Biolab Farmacêutica HQ",
+      "name_zh": "百欧莱制药 总部",
+      "site_type": "HQ",
+      "country": "BR",
+      "city": "São Paulo",
+      "lat": -23.5475,
+      "lng": -46.6361,
+      "is_subsidiary": false,
+      "confidence": 0.6,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://github.com/lutangar/cities.json",
+          "title": "world cities gazetteer (HQ city geocode)",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "chemo-hq",
+      "company_id": "chemo",
+      "name_en": "Chemo (Insud Pharma) HQ",
+      "name_zh": "因苏德制药（Chemo） 总部",
+      "site_type": "HQ",
+      "country": "ES",
+      "city": "Madrid",
+      "lat": 40.4165,
+      "lng": -3.7026,
+      "is_subsidiary": false,
+      "confidence": 0.6,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://github.com/lutangar/cities.json",
+          "title": "world cities gazetteer (HQ city geocode)",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "cristalia-hq",
+      "company_id": "cristalia",
+      "name_en": "Cristália HQ",
+      "name_zh": "克里斯塔利亚制药 总部",
+      "site_type": "HQ",
+      "country": "BR",
+      "city": "Itapira",
+      "lat": -22.4361,
+      "lng": -46.8217,
+      "is_subsidiary": false,
+      "confidence": 0.6,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://github.com/lutangar/cities.json",
+          "title": "world cities gazetteer (HQ city geocode)",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "ems-pharma-hq",
+      "company_id": "ems-pharma",
+      "name_en": "EMS Pharma HQ",
+      "name_zh": "EMS制药 总部",
+      "site_type": "HQ",
+      "country": "BR",
+      "city": "São Bernardo do Campo",
+      "lat": -23.6939,
+      "lng": -46.565,
+      "is_subsidiary": false,
+      "confidence": 0.6,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://github.com/lutangar/cities.json",
+          "title": "world cities gazetteer (HQ city geocode)",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "hikma-pharmaceuticals-hq",
+      "company_id": "hikma-pharmaceuticals",
+      "name_en": "Hikma Pharmaceuticals HQ",
+      "name_zh": "希克玛制药 总部",
+      "site_type": "HQ",
+      "country": "JO",
+      "city": "London",
+      "lat": 51.5074,
+      "lng": -0.1278,
+      "is_subsidiary": false,
+      "confidence": 0.6,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://github.com/lutangar/cities.json",
+          "title": "world cities gazetteer (HQ city geocode)",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "laboratorio-pablo-cassara-hq",
+      "company_id": "laboratorio-pablo-cassara",
+      "name_en": "Laboratorio Pablo Cassará HQ",
+      "name_zh": "巴勃罗·卡萨拉实验室 总部",
+      "site_type": "HQ",
+      "country": "AR",
+      "city": "Buenos Aires",
+      "lat": -34.6131,
+      "lng": -58.3772,
+      "is_subsidiary": false,
+      "confidence": 0.6,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://github.com/lutangar/cities.json",
+          "title": "world cities gazetteer (HQ city geocode)",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "laboratorios-bago-hq",
+      "company_id": "laboratorios-bago",
+      "name_en": "Laboratorios Bagó HQ",
+      "name_zh": "巴戈实验室 总部",
+      "site_type": "HQ",
+      "country": "AR",
+      "city": "Buenos Aires",
+      "lat": -34.6131,
+      "lng": -58.3772,
+      "is_subsidiary": false,
+      "confidence": 0.6,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://github.com/lutangar/cities.json",
+          "title": "world cities gazetteer (HQ city geocode)",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "libbs-farmaceutica-hq",
+      "company_id": "libbs-farmaceutica",
+      "name_en": "Libbs Farmacêutica HQ",
+      "name_zh": "利布斯制药 总部",
+      "site_type": "HQ",
+      "country": "BR",
+      "city": "São Paulo",
+      "lat": -23.5475,
+      "lng": -46.6361,
+      "is_subsidiary": false,
+      "confidence": 0.6,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://github.com/lutangar/cities.json",
+          "title": "world cities gazetteer (HQ city geocode)",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "megalabs-hq",
+      "company_id": "megalabs",
+      "name_en": "Megalabs HQ",
+      "name_zh": "美佳莱制药 总部",
+      "site_type": "HQ",
+      "country": "UY",
+      "city": "Montevideo",
+      "lat": -34.9033,
+      "lng": -56.1882,
+      "is_subsidiary": false,
+      "confidence": 0.6,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://github.com/lutangar/cities.json",
+          "title": "world cities gazetteer (HQ city geocode)",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "pharco-pharmaceuticals-hq",
+      "company_id": "pharco-pharmaceuticals",
+      "name_en": "Pharco Pharmaceuticals HQ",
+      "name_zh": "法尔科制药 总部",
+      "site_type": "HQ",
+      "country": "EG",
+      "city": "Alexandria",
+      "lat": 31.2018,
+      "lng": 29.9158,
+      "is_subsidiary": false,
+      "confidence": 0.6,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://github.com/lutangar/cities.json",
+          "title": "world cities gazetteer (HQ city geocode)",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "roemmers-hq",
+      "company_id": "roemmers",
+      "name_en": "Roemmers HQ",
+      "name_zh": "罗默斯制药 总部",
+      "site_type": "HQ",
+      "country": "AR",
+      "city": "Buenos Aires",
+      "lat": -34.6131,
+      "lng": -58.3772,
+      "is_subsidiary": false,
+      "confidence": 0.6,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://github.com/lutangar/cities.json",
+          "title": "world cities gazetteer (HQ city geocode)",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "tabuk-pharmaceuticals-hq",
+      "company_id": "tabuk-pharmaceuticals",
+      "name_en": "Tabuk Pharmaceuticals HQ",
+      "name_zh": "塔布克制药 总部",
+      "site_type": "HQ",
+      "country": "SA",
+      "city": "Riyadh",
+      "lat": 24.6877,
+      "lng": 46.7219,
+      "is_subsidiary": false,
+      "confidence": 0.6,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://github.com/lutangar/cities.json",
+          "title": "world cities gazetteer (HQ city geocode)",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "tecnofarma-hq",
+      "company_id": "tecnofarma",
+      "name_en": "Tecnofarma HQ",
+      "name_zh": "泰诺法玛 总部",
+      "site_type": "HQ",
+      "country": "UY",
+      "city": "Montevideo",
+      "lat": -34.9033,
+      "lng": -56.1882,
+      "is_subsidiary": false,
+      "confidence": 0.6,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://github.com/lutangar/cities.json",
+          "title": "world cities gazetteer (HQ city geocode)",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "mabxience-hq",
+      "company_id": "mabxience",
+      "name_en": "mAbxience HQ",
+      "name_zh": "曼比申 总部",
+      "site_type": "HQ",
+      "country": "ES",
+      "city": "Madrid",
+      "lat": 40.4165,
+      "lng": -3.7026,
+      "is_subsidiary": false,
+      "confidence": 0.6,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://github.com/lutangar/cities.json",
+          "title": "world cities gazetteer (HQ city geocode)",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "adcentrx-therapeutics-hq",
+      "company_id": "adcentrx-therapeutics",
+      "name_en": "Adcentrx Therapeutics HQ",
+      "name_zh": "Adcentrx Therapeutics 总部",
+      "site_type": "HQ",
+      "country": "US",
+      "city": "San Diego",
+      "lat": 27.7639,
+      "lng": -98.2389,
+      "is_subsidiary": false,
+      "confidence": 0.6,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://github.com/lutangar/cities.json",
+          "title": "world cities gazetteer (HQ city geocode)",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "cdr-life-hq",
+      "company_id": "cdr-life",
+      "name_en": "CDR-Life HQ",
+      "name_zh": "CDR-Life 总部",
+      "site_type": "HQ",
+      "country": "CH",
+      "city": "Schlieren",
+      "lat": 47.3967,
+      "lng": 8.4476,
+      "is_subsidiary": false,
+      "confidence": 0.6,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://github.com/lutangar/cities.json",
+          "title": "world cities gazetteer (HQ city geocode)",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "deciphera-pharmaceuticals-hq",
+      "company_id": "deciphera-pharmaceuticals",
+      "name_en": "Deciphera Pharmaceuticals HQ",
+      "name_zh": "Deciphera制药 总部",
+      "site_type": "HQ",
+      "country": "US",
+      "city": "Waltham",
+      "lat": 42.3765,
+      "lng": -71.2356,
+      "is_subsidiary": false,
+      "confidence": 0.6,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://github.com/lutangar/cities.json",
+          "title": "world cities gazetteer (HQ city geocode)",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "iovance-biotherapeutics-hq",
+      "company_id": "iovance-biotherapeutics",
+      "name_en": "Iovance Biotherapeutics HQ",
+      "name_zh": "Iovance生物疗法 总部",
+      "site_type": "HQ",
+      "country": "US",
+      "city": "San Carlos",
+      "lat": 26.2956,
+      "lng": -98.072,
+      "is_subsidiary": false,
+      "confidence": 0.6,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://github.com/lutangar/cities.json",
+          "title": "world cities gazetteer (HQ city geocode)",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "nektar-therapeutics-hq",
+      "company_id": "nektar-therapeutics",
+      "name_en": "Nektar Therapeutics HQ",
+      "name_zh": "Nektar制药 总部",
+      "site_type": "HQ",
+      "country": "US",
+      "city": "San Francisco",
+      "lat": 37.7749,
+      "lng": -122.4194,
+      "is_subsidiary": false,
+      "confidence": 0.6,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://github.com/lutangar/cities.json",
+          "title": "world cities gazetteer (HQ city geocode)",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "springworks-therapeutics-hq",
+      "company_id": "springworks-therapeutics",
+      "name_en": "SpringWorks Therapeutics HQ",
+      "name_zh": "SpringWorks制药 总部",
+      "site_type": "HQ",
+      "country": "US",
+      "city": "Stamford",
+      "lat": 32.9454,
+      "lng": -99.8029,
+      "is_subsidiary": false,
+      "confidence": 0.6,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://github.com/lutangar/cities.json",
+          "title": "world cities gazetteer (HQ city geocode)",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "verastem-oncology-hq",
+      "company_id": "verastem-oncology",
+      "name_en": "Verastem Oncology HQ",
+      "name_zh": "Verastem肿瘤 总部",
+      "site_type": "HQ",
+      "country": "US",
+      "city": "Needham",
+      "lat": 42.2834,
+      "lng": -71.2328,
+      "is_subsidiary": false,
+      "confidence": 0.6,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://github.com/lutangar/cities.json",
+          "title": "world cities gazetteer (HQ city geocode)",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "xilio-therapeutics-hq",
+      "company_id": "xilio-therapeutics",
+      "name_en": "Xilio Therapeutics HQ",
+      "name_zh": "Xilio制药 总部",
+      "site_type": "HQ",
+      "country": "US",
+      "city": "Waltham",
+      "lat": 42.3765,
+      "lng": -71.2356,
+      "is_subsidiary": false,
+      "confidence": 0.6,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://github.com/lutangar/cities.json",
+          "title": "world cities gazetteer (HQ city geocode)",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "alcon-hq",
+      "company_id": "alcon",
+      "name_en": "Alcon HQ",
+      "name_zh": "爱尔康 总部",
+      "site_type": "HQ",
+      "country": "CH",
+      "city": "Geneva",
+      "lat": 46.2022,
+      "lng": 6.1457,
+      "is_subsidiary": false,
+      "confidence": 0.6,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://github.com/lutangar/cities.json",
+          "title": "world cities gazetteer (HQ city geocode)",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "carl-zeiss-meditec-hq",
+      "company_id": "carl-zeiss-meditec",
+      "name_en": "Carl Zeiss Meditec HQ",
+      "name_zh": "卡尔蔡司医疗 总部",
+      "site_type": "HQ",
+      "country": "DE",
+      "city": "Jena",
+      "lat": 50.9288,
+      "lng": 11.5899,
+      "is_subsidiary": false,
+      "confidence": 0.6,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://github.com/lutangar/cities.json",
+          "title": "world cities gazetteer (HQ city geocode)",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "dentsply-sirona-hq",
+      "company_id": "dentsply-sirona",
+      "name_en": "Dentsply Sirona HQ",
+      "name_zh": "登士柏西诺德 总部",
+      "site_type": "HQ",
+      "country": "US",
+      "city": "Charlotte",
+      "lat": 35.2271,
+      "lng": -80.8431,
+      "is_subsidiary": false,
+      "confidence": 0.6,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://github.com/lutangar/cities.json",
+          "title": "world cities gazetteer (HQ city geocode)",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "dermtech-hq",
+      "company_id": "dermtech",
+      "name_en": "DermTech HQ",
+      "name_zh": "德姆科技 总部",
+      "site_type": "HQ",
+      "country": "US",
+      "city": "San Diego",
+      "lat": 27.7639,
+      "lng": -98.2389,
+      "is_subsidiary": false,
+      "confidence": 0.6,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://github.com/lutangar/cities.json",
+          "title": "world cities gazetteer (HQ city geocode)",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "envista-holdings-hq",
+      "company_id": "envista-holdings",
+      "name_en": "Envista Holdings HQ",
+      "name_zh": "恩维斯塔 总部",
+      "site_type": "HQ",
+      "country": "US",
+      "city": "Brea",
+      "lat": 33.9167,
+      "lng": -117.9001,
+      "is_subsidiary": false,
+      "confidence": 0.6,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://github.com/lutangar/cities.json",
+          "title": "world cities gazetteer (HQ city geocode)",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "essilorluxottica-hq",
+      "company_id": "essilorluxottica",
+      "name_en": "EssilorLuxottica HQ",
+      "name_zh": "依视路陆逊梯卡 总部",
+      "site_type": "HQ",
+      "country": "FR",
+      "city": "Charenton-le-Pont",
+      "lat": 48.8221,
+      "lng": 2.4122,
+      "is_subsidiary": false,
+      "confidence": 0.6,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://github.com/lutangar/cities.json",
+          "title": "world cities gazetteer (HQ city geocode)",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "eyepoint-pharmaceuticals-hq",
+      "company_id": "eyepoint-pharmaceuticals",
+      "name_en": "EyePoint Pharmaceuticals HQ",
+      "name_zh": "EyePoint制药 总部",
+      "site_type": "HQ",
+      "country": "US",
+      "city": "Watertown",
+      "lat": 30.1925,
+      "lng": -82.6146,
+      "is_subsidiary": false,
+      "confidence": 0.6,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://github.com/lutangar/cities.json",
+          "title": "world cities gazetteer (HQ city geocode)",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "glaukos-hq",
+      "company_id": "glaukos",
+      "name_en": "Glaukos HQ",
+      "name_zh": "格劳克斯 总部",
+      "site_type": "HQ",
+      "country": "US",
+      "city": "Aliso Viejo",
+      "lat": 33.565,
+      "lng": -117.7271,
+      "is_subsidiary": false,
+      "confidence": 0.6,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://github.com/lutangar/cities.json",
+          "title": "world cities gazetteer (HQ city geocode)",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "harrow-hq",
+      "company_id": "harrow",
+      "name_en": "Harrow HQ",
+      "name_zh": "哈罗制药 总部",
+      "site_type": "HQ",
+      "country": "US",
+      "city": "Nashville",
+      "lat": 33.9457,
+      "lng": -93.8471,
+      "is_subsidiary": false,
+      "confidence": 0.6,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://github.com/lutangar/cities.json",
+          "title": "world cities gazetteer (HQ city geocode)",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "henry-schein-hq",
+      "company_id": "henry-schein",
+      "name_en": "Henry Schein HQ",
+      "name_zh": "汉瑞祥 总部",
+      "site_type": "HQ",
+      "country": "US",
+      "city": "Melville",
+      "lat": 30.693,
+      "lng": -91.744,
+      "is_subsidiary": false,
+      "confidence": 0.6,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://github.com/lutangar/cities.json",
+          "title": "world cities gazetteer (HQ city geocode)",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "hoya-corporation-hq",
+      "company_id": "hoya-corporation",
+      "name_en": "Hoya Corporation HQ",
+      "name_zh": "豪雅 总部",
+      "site_type": "HQ",
+      "country": "JP",
+      "city": "Tokyo",
+      "lat": 35.6895,
+      "lng": 139.6917,
+      "is_subsidiary": false,
+      "confidence": 0.6,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://github.com/lutangar/cities.json",
+          "title": "world cities gazetteer (HQ city geocode)",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "ivoclar-hq",
+      "company_id": "ivoclar",
+      "name_en": "Ivoclar HQ",
+      "name_zh": "义获嘉 总部",
+      "site_type": "HQ",
+      "country": "LI",
+      "city": "Schaan",
+      "lat": 47.165,
+      "lng": 9.5087,
+      "is_subsidiary": false,
+      "confidence": 0.6,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://github.com/lutangar/cities.json",
+          "title": "world cities gazetteer (HQ city geocode)",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "lensar-hq",
+      "company_id": "lensar",
+      "name_en": "Lensar HQ",
+      "name_zh": "莱莎 总部",
+      "site_type": "HQ",
+      "country": "US",
+      "city": "Orlando",
+      "lat": 28.5383,
+      "lng": -81.3792,
+      "is_subsidiary": false,
+      "confidence": 0.6,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://github.com/lutangar/cities.json",
+          "title": "world cities gazetteer (HQ city geocode)",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "nidek-hq",
+      "company_id": "nidek",
+      "name_en": "Nidek HQ",
+      "name_zh": "尼德克 总部",
+      "site_type": "HQ",
+      "country": "JP",
+      "city": "Gamagori",
+      "lat": 34.8333,
+      "lng": 137.2333,
+      "is_subsidiary": false,
+      "confidence": 0.6,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://github.com/lutangar/cities.json",
+          "title": "world cities gazetteer (HQ city geocode)",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "nikon-hq",
+      "company_id": "nikon",
+      "name_en": "Nikon HQ",
+      "name_zh": "尼康 总部",
+      "site_type": "HQ",
+      "country": "JP",
+      "city": "Tokyo",
+      "lat": 35.6895,
+      "lng": 139.6917,
+      "is_subsidiary": false,
+      "confidence": 0.6,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://github.com/lutangar/cities.json",
+          "title": "world cities gazetteer (HQ city geocode)",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "ocular-therapeutix-hq",
+      "company_id": "ocular-therapeutix",
+      "name_en": "Ocular Therapeutix HQ",
+      "name_zh": "眼力健治疗 总部",
+      "site_type": "HQ",
+      "country": "US",
+      "city": "Bedford",
+      "lat": 38.8612,
+      "lng": -86.4872,
+      "is_subsidiary": false,
+      "confidence": 0.6,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://github.com/lutangar/cities.json",
+          "title": "world cities gazetteer (HQ city geocode)",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "patterson-companies-hq",
+      "company_id": "patterson-companies",
+      "name_en": "Patterson Companies HQ",
+      "name_zh": "帕特森公司 总部",
+      "site_type": "HQ",
+      "country": "US",
+      "city": "Saint Paul",
+      "lat": 39.4281,
+      "lng": -85.6283,
+      "is_subsidiary": false,
+      "confidence": 0.6,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://github.com/lutangar/cities.json",
+          "title": "world cities gazetteer (HQ city geocode)",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "rxsight-hq",
+      "company_id": "rxsight",
+      "name_en": "RxSight HQ",
+      "name_zh": "锐视 总部",
+      "site_type": "HQ",
+      "country": "US",
+      "city": "Aliso Viejo",
+      "lat": 33.565,
+      "lng": -117.7271,
+      "is_subsidiary": false,
+      "confidence": 0.6,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://github.com/lutangar/cities.json",
+          "title": "world cities gazetteer (HQ city geocode)",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "staar-surgical-hq",
+      "company_id": "staar-surgical",
+      "name_en": "STAAR Surgical HQ",
+      "name_zh": "视达康 总部",
+      "site_type": "HQ",
+      "country": "US",
+      "city": "Lake Forest",
+      "lat": 25.9776,
+      "lng": -80.1831,
+      "is_subsidiary": false,
+      "confidence": 0.6,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://github.com/lutangar/cities.json",
+          "title": "world cities gazetteer (HQ city geocode)",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "sight-sciences-hq",
+      "company_id": "sight-sciences",
+      "name_en": "Sight Sciences HQ",
+      "name_zh": "视界科学 总部",
+      "site_type": "HQ",
+      "country": "US",
+      "city": "Menlo Park",
+      "lat": 37.4538,
+      "lng": -122.1822,
+      "is_subsidiary": false,
+      "confidence": 0.6,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://github.com/lutangar/cities.json",
+          "title": "world cities gazetteer (HQ city geocode)",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "tarsus-pharmaceuticals-hq",
+      "company_id": "tarsus-pharmaceuticals",
+      "name_en": "Tarsus Pharmaceuticals HQ",
+      "name_zh": "塔尔苏斯制药 总部",
+      "site_type": "HQ",
+      "country": "US",
+      "city": "Irvine",
+      "lat": 37.7006,
+      "lng": -83.9738,
+      "is_subsidiary": false,
+      "confidence": 0.6,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://github.com/lutangar/cities.json",
+          "title": "world cities gazetteer (HQ city geocode)",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "the-cooper-companies-hq",
+      "company_id": "the-cooper-companies",
+      "name_en": "The Cooper Companies HQ",
+      "name_zh": "库博光学 总部",
+      "site_type": "HQ",
+      "country": "US",
+      "city": "San Ramon",
+      "lat": 37.7799,
+      "lng": -121.978,
+      "is_subsidiary": false,
+      "confidence": 0.6,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://github.com/lutangar/cities.json",
+          "title": "world cities gazetteer (HQ city geocode)",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "topcon-hq",
+      "company_id": "topcon",
+      "name_en": "Topcon HQ",
+      "name_zh": "拓普康 总部",
+      "site_type": "HQ",
+      "country": "JP",
+      "city": "Tokyo",
+      "lat": 35.6895,
+      "lng": 139.6917,
+      "is_subsidiary": false,
+      "confidence": 0.6,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://github.com/lutangar/cities.json",
+          "title": "world cities gazetteer (HQ city geocode)",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "aktis-oncology-hq",
+      "company_id": "aktis-oncology",
+      "name_en": "Aktis Oncology HQ",
+      "name_zh": "阿克提斯肿瘤 总部",
+      "site_type": "HQ",
+      "country": "US",
+      "city": "Boston",
+      "lat": 30.7919,
+      "lng": -83.7899,
+      "is_subsidiary": false,
+      "confidence": 0.6,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://github.com/lutangar/cities.json",
+          "title": "world cities gazetteer (HQ city geocode)",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "ariceum-therapeutics-hq",
+      "company_id": "ariceum-therapeutics",
+      "name_en": "Ariceum Therapeutics HQ",
+      "name_zh": "阿瑞塞姆疗法 总部",
+      "site_type": "HQ",
+      "country": "DE",
+      "city": "Berlin",
+      "lat": 52.5244,
+      "lng": 13.4105,
+      "is_subsidiary": false,
+      "confidence": 0.6,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://github.com/lutangar/cities.json",
+          "title": "world cities gazetteer (HQ city geocode)",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "cardinal-health-nuclear-precision-health-solutions-hq",
+      "company_id": "cardinal-health-nuclear-precision-health-solutions",
+      "name_en": "Cardinal Health Nuclear & Precision Health Solutions HQ",
+      "name_zh": "康德乐核医学与精准健康解决方案 总部",
+      "site_type": "HQ",
+      "country": "US",
+      "city": "Dublin",
+      "lat": 32.5404,
+      "lng": -82.9038,
+      "is_subsidiary": false,
+      "confidence": 0.6,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://github.com/lutangar/cities.json",
+          "title": "world cities gazetteer (HQ city geocode)",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "curium-pharma-hq",
+      "company_id": "curium-pharma",
+      "name_en": "Curium Pharma HQ",
+      "name_zh": "居里制药 总部",
+      "site_type": "HQ",
+      "country": "FR",
+      "city": "Paris",
+      "lat": 48.8534,
+      "lng": 2.3488,
+      "is_subsidiary": false,
+      "confidence": 0.6,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://github.com/lutangar/cities.json",
+          "title": "world cities gazetteer (HQ city geocode)",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "eckert-ziegler-hq",
+      "company_id": "eckert-ziegler",
+      "name_en": "Eckert & Ziegler HQ",
+      "name_zh": "埃克特-齐格勒 总部",
+      "site_type": "HQ",
+      "country": "DE",
+      "city": "Berlin",
+      "lat": 52.5244,
+      "lng": 13.4105,
+      "is_subsidiary": false,
+      "confidence": 0.6,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://github.com/lutangar/cities.json",
+          "title": "world cities gazetteer (HQ city geocode)",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "fusion-pharmaceuticals-hq",
+      "company_id": "fusion-pharmaceuticals",
+      "name_en": "Fusion Pharmaceuticals HQ",
+      "name_zh": "富生制药 总部",
+      "site_type": "HQ",
+      "country": "CA",
+      "city": "Hamilton, Ontario",
+      "lat": 43.2501,
+      "lng": -79.8496,
+      "is_subsidiary": false,
+      "confidence": 0.6,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://github.com/lutangar/cities.json",
+          "title": "world cities gazetteer (HQ city geocode)",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "itm-isotope-technologies-munich-hq",
+      "company_id": "itm-isotope-technologies-munich",
+      "name_en": "ITM Isotope Technologies Munich HQ",
+      "name_zh": "ITM同位素技术慕尼黑公司 总部",
+      "site_type": "HQ",
+      "country": "DE",
+      "city": "Munich",
+      "lat": 48.1374,
+      "lng": 11.5755,
+      "is_subsidiary": false,
+      "confidence": 0.6,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://github.com/lutangar/cities.json",
+          "title": "world cities gazetteer (HQ city geocode)",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "jubilant-radiopharma-hq",
+      "company_id": "jubilant-radiopharma",
+      "name_en": "Jubilant Radiopharma HQ",
+      "name_zh": "朱比兰放射药业 总部",
+      "site_type": "HQ",
+      "country": "US",
+      "city": "Yardley, Pennsylvania",
+      "lat": 40.2457,
+      "lng": -74.846,
+      "is_subsidiary": false,
+      "confidence": 0.6,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://github.com/lutangar/cities.json",
+          "title": "world cities gazetteer (HQ city geocode)",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "lantheus-holdings-hq",
+      "company_id": "lantheus-holdings",
+      "name_en": "Lantheus Holdings HQ",
+      "name_zh": "蓝瑟斯控股 总部",
+      "site_type": "HQ",
+      "country": "US",
+      "city": "Bedford, Massachusetts",
+      "lat": 38.8612,
+      "lng": -86.4872,
+      "is_subsidiary": false,
+      "confidence": 0.6,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://github.com/lutangar/cities.json",
+          "title": "world cities gazetteer (HQ city geocode)",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "northstar-medical-radioisotopes-hq",
+      "company_id": "northstar-medical-radioisotopes",
+      "name_en": "NorthStar Medical Radioisotopes HQ",
+      "name_zh": "北极星医用放射性同位素公司 总部",
+      "site_type": "HQ",
+      "country": "US",
+      "city": "Beloit, Wisconsin",
+      "lat": 39.4561,
+      "lng": -98.1062,
+      "is_subsidiary": false,
+      "confidence": 0.6,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://github.com/lutangar/cities.json",
+          "title": "world cities gazetteer (HQ city geocode)",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "nusano-hq",
+      "company_id": "nusano",
+      "name_en": "Nusano HQ",
+      "name_zh": "努萨诺 总部",
+      "site_type": "HQ",
+      "country": "US",
+      "city": "Salt Lake City, Utah",
+      "lat": 40.7608,
+      "lng": -111.8911,
+      "is_subsidiary": false,
+      "confidence": 0.6,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://github.com/lutangar/cities.json",
+          "title": "world cities gazetteer (HQ city geocode)",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "norbrook-laboratories-hq",
+      "company_id": "norbrook-laboratories",
+      "name_en": "Norbrook Laboratories HQ",
+      "name_zh": "诺伯克实验室 总部",
+      "site_type": "HQ",
+      "country": "GB",
+      "city": "Newry",
+      "lat": 54.1784,
+      "lng": -6.3374,
+      "is_subsidiary": false,
+      "confidence": 0.6,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://github.com/lutangar/cities.json",
+          "title": "world cities gazetteer (HQ city geocode)",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "phibro-animal-health-hq",
+      "company_id": "phibro-animal-health",
+      "name_en": "Phibro Animal Health HQ",
+      "name_zh": "菲布罗动物保健 总部",
+      "site_type": "HQ",
+      "country": "US",
+      "city": "Teaneck, New Jersey",
+      "lat": 40.8976,
+      "lng": -74.016,
+      "is_subsidiary": false,
+      "confidence": 0.6,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://github.com/lutangar/cities.json",
+          "title": "world cities gazetteer (HQ city geocode)",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "pulike-biological-engineering-hq",
+      "company_id": "pulike-biological-engineering",
+      "name_en": "Pulike Biological Engineering HQ",
+      "name_zh": "普莱柯生物工程 总部",
+      "site_type": "HQ",
+      "country": "CN",
+      "city": "Luoyang",
+      "lat": 34.6735,
+      "lng": 112.4368,
+      "is_subsidiary": false,
+      "confidence": 0.6,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://github.com/lutangar/cities.json",
+          "title": "world cities gazetteer (HQ city geocode)",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "shandong-sinder-technology-hq",
+      "company_id": "shandong-sinder-technology",
+      "name_en": "Shandong Sinder Technology HQ",
+      "name_zh": "山东信得科技 总部",
+      "site_type": "HQ",
+      "country": "CN",
+      "city": "Weifang",
+      "lat": 36.71,
+      "lng": 119.1019,
+      "is_subsidiary": false,
+      "confidence": 0.6,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://github.com/lutangar/cities.json",
+          "title": "world cities gazetteer (HQ city geocode)",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "tianjin-ringpu-bio-technology-hq",
+      "company_id": "tianjin-ringpu-bio-technology",
+      "name_en": "Tianjin Ringpu Bio-Technology HQ",
+      "name_zh": "天津瑞普生物技术 总部",
+      "site_type": "HQ",
+      "country": "CN",
+      "city": "Tianjin",
+      "lat": 39.1422,
+      "lng": 117.1767,
+      "is_subsidiary": false,
+      "confidence": 0.6,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://github.com/lutangar/cities.json",
+          "title": "world cities gazetteer (HQ city geocode)",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "vetoquinol-hq",
+      "company_id": "vetoquinol",
+      "name_en": "Vetoquinol HQ",
+      "name_zh": "威隆药业 总部",
+      "site_type": "HQ",
+      "country": "FR",
+      "city": "Lure",
+      "lat": 47.6829,
+      "lng": 6.4966,
+      "is_subsidiary": false,
+      "confidence": 0.6,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://github.com/lutangar/cities.json",
+          "title": "world cities gazetteer (HQ city geocode)",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "virbac-hq",
+      "company_id": "virbac",
+      "name_en": "Virbac HQ",
+      "name_zh": "维克 总部",
+      "site_type": "HQ",
+      "country": "FR",
+      "city": "Carros",
+      "lat": 43.7925,
+      "lng": 7.1875,
+      "is_subsidiary": false,
+      "confidence": 0.6,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://github.com/lutangar/cities.json",
+          "title": "world cities gazetteer (HQ city geocode)",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "ani-pharmaceuticals-hq",
+      "company_id": "ani-pharmaceuticals",
+      "name_en": "ANI Pharmaceuticals HQ",
+      "name_zh": "ANI制药 总部",
+      "site_type": "HQ",
+      "country": "US",
+      "city": "Baudette, Minnesota",
+      "lat": 48.7125,
+      "lng": -94.5999,
+      "is_subsidiary": false,
+      "confidence": 0.6,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://github.com/lutangar/cities.json",
+          "title": "world cities gazetteer (HQ city geocode)",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "point-biopharma-hq",
+      "company_id": "point-biopharma",
+      "name_en": "POINT Biopharma HQ",
+      "name_zh": "波因特生物制药 总部",
+      "site_type": "HQ",
+      "country": "US",
+      "city": "Indianapolis, Indiana",
+      "lat": 39.7684,
+      "lng": -86.158,
+      "is_subsidiary": false,
+      "confidence": 0.6,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://github.com/lutangar/cities.json",
+          "title": "world cities gazetteer (HQ city geocode)",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "perspective-therapeutics-hq",
+      "company_id": "perspective-therapeutics",
+      "name_en": "Perspective Therapeutics HQ",
+      "name_zh": "视角疗法 总部",
+      "site_type": "HQ",
+      "country": "US",
+      "city": "Seattle, Washington",
+      "lat": 47.6062,
+      "lng": -122.3321,
+      "is_subsidiary": false,
+      "confidence": 0.6,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://github.com/lutangar/cities.json",
+          "title": "world cities gazetteer (HQ city geocode)",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "ratio-therapeutics-hq",
+      "company_id": "ratio-therapeutics",
+      "name_en": "Ratio Therapeutics HQ",
+      "name_zh": "瑞蒂奥疗法 总部",
+      "site_type": "HQ",
+      "country": "US",
+      "city": "Boston, Massachusetts",
+      "lat": 30.7919,
+      "lng": -83.7899,
+      "is_subsidiary": false,
+      "confidence": 0.6,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://github.com/lutangar/cities.json",
+          "title": "world cities gazetteer (HQ city geocode)",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "inozyme-pharma-hq",
+      "company_id": "inozyme-pharma",
+      "name_en": "Inozyme Pharma HQ",
+      "name_zh": "Inozyme制药 总部",
+      "site_type": "HQ",
+      "country": "US",
+      "city": "Boston, Massachusetts",
+      "lat": 30.7919,
+      "lng": -83.7899,
+      "is_subsidiary": false,
+      "confidence": 0.6,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://github.com/lutangar/cities.json",
+          "title": "world cities gazetteer (HQ city geocode)",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "larimar-therapeutics-hq",
+      "company_id": "larimar-therapeutics",
+      "name_en": "Larimar Therapeutics HQ",
+      "name_zh": "Larimar疗法 总部",
+      "site_type": "HQ",
+      "country": "US",
+      "city": "Bala Cynwyd, Pennsylvania",
+      "lat": 40.0076,
+      "lng": -75.2341,
+      "is_subsidiary": false,
+      "confidence": 0.6,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://github.com/lutangar/cities.json",
+          "title": "world cities gazetteer (HQ city geocode)",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "rocket-pharmaceuticals-hq",
+      "company_id": "rocket-pharmaceuticals",
+      "name_en": "Rocket Pharmaceuticals HQ",
+      "name_zh": "Rocket制药 总部",
+      "site_type": "HQ",
+      "country": "US",
+      "city": "Cranbury, New Jersey",
+      "lat": 40.3162,
+      "lng": -74.5138,
+      "is_subsidiary": false,
+      "confidence": 0.6,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://github.com/lutangar/cities.json",
+          "title": "world cities gazetteer (HQ city geocode)",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "solid-biosciences-hq",
+      "company_id": "solid-biosciences",
+      "name_en": "Solid Biosciences HQ",
+      "name_zh": "Solid生物科学 总部",
+      "site_type": "HQ",
+      "country": "US",
+      "city": "Charlestown, Massachusetts",
+      "lat": 38.4531,
+      "lng": -85.6702,
+      "is_subsidiary": false,
+      "confidence": 0.6,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://github.com/lutangar/cities.json",
+          "title": "world cities gazetteer (HQ city geocode)",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "taysha-gene-therapies-hq",
+      "company_id": "taysha-gene-therapies",
+      "name_en": "Taysha Gene Therapies HQ",
+      "name_zh": "Taysha基因疗法 总部",
+      "site_type": "HQ",
+      "country": "US",
+      "city": "Dallas",
+      "lat": 33.9237,
+      "lng": -84.8408,
+      "is_subsidiary": false,
+      "confidence": 0.6,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://github.com/lutangar/cities.json",
+          "title": "world cities gazetteer (HQ city geocode)",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "vera-therapeutics-hq",
+      "company_id": "vera-therapeutics",
+      "name_en": "Vera Therapeutics HQ",
+      "name_zh": "Vera疗法 总部",
+      "site_type": "HQ",
+      "country": "US",
+      "city": "Brisbane",
+      "lat": 37.6808,
+      "lng": -122.4,
+      "is_subsidiary": false,
+      "confidence": 0.6,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://github.com/lutangar/cities.json",
+          "title": "world cities gazetteer (HQ city geocode)",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "zevra-therapeutics-hq",
+      "company_id": "zevra-therapeutics",
+      "name_en": "Zevra Therapeutics HQ",
+      "name_zh": "Zevra疗法 总部",
+      "site_type": "HQ",
+      "country": "US",
+      "city": "Celebration",
+      "lat": 28.3253,
+      "lng": -81.5331,
+      "is_subsidiary": false,
+      "confidence": 0.6,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://github.com/lutangar/cities.json",
+          "title": "world cities gazetteer (HQ city geocode)",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "akoya-biosciences-hq",
+      "company_id": "akoya-biosciences",
+      "name_en": "Akoya Biosciences HQ",
+      "name_zh": "Akoya生物科学 总部",
+      "site_type": "HQ",
+      "country": "US",
+      "city": "Marlborough",
+      "lat": 38.5703,
+      "lng": -90.3371,
+      "is_subsidiary": false,
+      "confidence": 0.6,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://github.com/lutangar/cities.json",
+          "title": "world cities gazetteer (HQ city geocode)",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "cytiva-hq",
+      "company_id": "cytiva",
+      "name_en": "Cytiva HQ",
+      "name_zh": "思拓凡 总部",
+      "site_type": "HQ",
+      "country": "US",
+      "city": "Marlborough",
+      "lat": 38.5703,
+      "lng": -90.3371,
+      "is_subsidiary": false,
+      "confidence": 0.6,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://github.com/lutangar/cities.json",
+          "title": "world cities gazetteer (HQ city geocode)",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "gilson-hq",
+      "company_id": "gilson",
+      "name_en": "Gilson HQ",
+      "name_zh": "基尔森 总部",
+      "site_type": "HQ",
+      "country": "US",
+      "city": "Middleton",
+      "lat": 42.5951,
+      "lng": -71.0162,
+      "is_subsidiary": false,
+      "confidence": 0.6,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://github.com/lutangar/cities.json",
+          "title": "world cities gazetteer (HQ city geocode)",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "horiba-hq",
+      "company_id": "horiba",
+      "name_en": "HORIBA HQ",
+      "name_zh": "堀场制作所 总部",
+      "site_type": "HQ",
+      "country": "JP",
+      "city": "Kyoto",
+      "lat": 35.0211,
+      "lng": 135.7538,
+      "is_subsidiary": false,
+      "confidence": 0.6,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://github.com/lutangar/cities.json",
+          "title": "world cities gazetteer (HQ city geocode)",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "hamilton-company-hq",
+      "company_id": "hamilton-company",
+      "name_en": "Hamilton Company HQ",
+      "name_zh": "哈美顿 总部",
+      "site_type": "HQ",
+      "country": "US",
+      "city": "Reno",
+      "lat": 39.3728,
+      "lng": -81.3957,
+      "is_subsidiary": false,
+      "confidence": 0.6,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://github.com/lutangar/cities.json",
+          "title": "world cities gazetteer (HQ city geocode)",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "hitachi-high-tech-hq",
+      "company_id": "hitachi-high-tech",
+      "name_en": "Hitachi High-Tech HQ",
+      "name_zh": "日立高新技术 总部",
+      "site_type": "HQ",
+      "country": "JP",
+      "city": "Tokyo",
+      "lat": 35.6895,
+      "lng": 139.6917,
+      "is_subsidiary": false,
+      "confidence": 0.6,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://github.com/lutangar/cities.json",
+          "title": "world cities gazetteer (HQ city geocode)",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "integrated-dna-technologies-hq",
+      "company_id": "integrated-dna-technologies",
+      "name_en": "Integrated DNA Technologies HQ",
+      "name_zh": "IDT（集成DNA技术公司） 总部",
+      "site_type": "HQ",
+      "country": "US",
+      "city": "Coralville",
+      "lat": 41.6764,
+      "lng": -91.5804,
+      "is_subsidiary": false,
+      "confidence": 0.6,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://github.com/lutangar/cities.json",
+          "title": "world cities gazetteer (HQ city geocode)",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "jeol-hq",
+      "company_id": "jeol",
+      "name_en": "JEOL HQ",
+      "name_zh": "日本电子株式会社 总部",
+      "site_type": "HQ",
+      "country": "JP",
+      "city": "Tokyo",
+      "lat": 35.6895,
+      "lng": 139.6917,
+      "is_subsidiary": false,
+      "confidence": 0.6,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://github.com/lutangar/cities.json",
+          "title": "world cities gazetteer (HQ city geocode)",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "mission-bio-hq",
+      "company_id": "mission-bio",
+      "name_en": "Mission Bio HQ",
+      "name_zh": "Mission Bio（迷雄生物） 总部",
+      "site_type": "HQ",
+      "country": "US",
+      "city": "South San Francisco",
+      "lat": 37.7749,
+      "lng": -122.4194,
+      "is_subsidiary": false,
+      "confidence": 0.6,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://github.com/lutangar/cities.json",
+          "title": "world cities gazetteer (HQ city geocode)",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "phenomex-hq",
+      "company_id": "phenomex",
+      "name_en": "PhenomeX HQ",
+      "name_zh": "PhenomeX 总部",
+      "site_type": "HQ",
+      "country": "US",
+      "city": "Emeryville",
+      "lat": 37.8313,
+      "lng": -122.2853,
+      "is_subsidiary": false,
+      "confidence": 0.6,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://github.com/lutangar/cities.json",
+          "title": "world cities gazetteer (HQ city geocode)",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "promega-hq",
+      "company_id": "promega",
+      "name_en": "Promega HQ",
+      "name_zh": "普洛麦格 总部",
+      "site_type": "HQ",
+      "country": "US",
+      "city": "Madison",
+      "lat": 34.6993,
+      "lng": -86.7483,
+      "is_subsidiary": false,
+      "confidence": 0.6,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://github.com/lutangar/cities.json",
+          "title": "world cities gazetteer (HQ city geocode)",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "quanterix-hq",
+      "company_id": "quanterix",
+      "name_en": "Quanterix HQ",
+      "name_zh": "Quanterix 总部",
+      "site_type": "HQ",
+      "country": "US",
+      "city": "Billerica",
+      "lat": 42.5584,
+      "lng": -71.269,
+      "is_subsidiary": false,
+      "confidence": 0.6,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://github.com/lutangar/cities.json",
+          "title": "world cities gazetteer (HQ city geocode)",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "spt-labtech-hq",
+      "company_id": "spt-labtech",
+      "name_en": "SPT Labtech HQ",
+      "name_zh": "SPT Labtech 总部",
+      "site_type": "HQ",
+      "country": "GB",
+      "city": "Melbourn",
+      "lat": 52.0813,
+      "lng": 0.0151,
+      "is_subsidiary": false,
+      "confidence": 0.6,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://github.com/lutangar/cities.json",
+          "title": "world cities gazetteer (HQ city geocode)",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "shimadzu-hq",
+      "company_id": "shimadzu",
+      "name_en": "Shimadzu Corporation HQ",
+      "name_zh": "岛津制作所 总部",
+      "site_type": "HQ",
+      "country": "JP",
+      "city": "Kyoto",
+      "lat": 35.0211,
+      "lng": 135.7538,
+      "is_subsidiary": false,
+      "confidence": 0.6,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://github.com/lutangar/cities.json",
+          "title": "world cities gazetteer (HQ city geocode)",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "sotera-health-hq",
+      "company_id": "sotera-health",
+      "name_en": "Sotera Health Company HQ",
+      "name_zh": "索特拉健康 总部",
+      "site_type": "HQ",
+      "country": "US",
+      "city": "Broadview Heights",
+      "lat": 41.3139,
+      "lng": -81.6851,
+      "is_subsidiary": false,
+      "confidence": 0.6,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://github.com/lutangar/cities.json",
+          "title": "world cities gazetteer (HQ city geocode)",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "vizgen-hq",
+      "company_id": "vizgen",
+      "name_en": "Vizgen Inc. HQ",
+      "name_zh": "Vizgen 总部",
+      "site_type": "HQ",
+      "country": "US",
+      "city": "Cambridge",
+      "lat": 38.5632,
+      "lng": -76.0788,
+      "is_subsidiary": false,
+      "confidence": 0.6,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://github.com/lutangar/cities.json",
+          "title": "world cities gazetteer (HQ city geocode)",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "amneal-pharmaceuticals-hq",
+      "company_id": "amneal-pharmaceuticals",
+      "name_en": "Amneal Pharmaceuticals HQ",
+      "name_zh": "阿姆尼尔制药 总部",
+      "site_type": "HQ",
+      "country": "US",
+      "city": "Bridgewater",
+      "lat": 38.3821,
+      "lng": -78.9767,
+      "is_subsidiary": false,
+      "confidence": 0.6,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://github.com/lutangar/cities.json",
+          "title": "world cities gazetteer (HQ city geocode)",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "amphastar-pharmaceuticals-hq",
+      "company_id": "amphastar-pharmaceuticals",
+      "name_en": "Amphastar Pharmaceuticals HQ",
+      "name_zh": "安发斯特制药 总部",
+      "site_type": "HQ",
+      "country": "US",
+      "city": "Rancho Cucamonga",
+      "lat": 34.1064,
+      "lng": -117.5931,
+      "is_subsidiary": false,
+      "confidence": 0.6,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://github.com/lutangar/cities.json",
+          "title": "world cities gazetteer (HQ city geocode)",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "bioeq-hq",
+      "company_id": "bioeq",
+      "name_en": "Bioeq HQ",
+      "name_zh": "Bioeq 总部",
+      "site_type": "HQ",
+      "country": "CH",
+      "city": "Zug",
+      "lat": 47.1724,
+      "lng": 8.5175,
+      "is_subsidiary": false,
+      "confidence": 0.6,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://github.com/lutangar/cities.json",
+          "title": "world cities gazetteer (HQ city geocode)",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "coherus-biosciences-hq",
+      "company_id": "coherus-biosciences",
+      "name_en": "Coherus BioSciences HQ",
+      "name_zh": "科休斯生物科学 总部",
+      "site_type": "HQ",
+      "country": "US",
+      "city": "Redwood City",
+      "lat": 37.4852,
+      "lng": -122.2364,
+      "is_subsidiary": false,
+      "confidence": 0.6,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://github.com/lutangar/cities.json",
+          "title": "world cities gazetteer (HQ city geocode)",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "fresenius-kabi-hq",
+      "company_id": "fresenius-kabi",
+      "name_en": "Fresenius Kabi HQ",
+      "name_zh": "费森尤斯卡比 总部",
+      "site_type": "HQ",
+      "country": "DE",
+      "city": "Bad Homburg",
+      "lat": 50.2268,
+      "lng": 8.6182,
+      "is_subsidiary": false,
+      "confidence": 0.6,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://github.com/lutangar/cities.json",
+          "title": "world cities gazetteer (HQ city geocode)",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "hetero-hq",
+      "company_id": "hetero",
+      "name_en": "Hetero HQ",
+      "name_zh": "赫特罗 总部",
+      "site_type": "HQ",
+      "country": "IN",
+      "city": "Hyderabad",
+      "lat": 17.384,
+      "lng": 78.4564,
+      "is_subsidiary": false,
+      "confidence": 0.6,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://github.com/lutangar/cities.json",
+          "title": "world cities gazetteer (HQ city geocode)",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "lannett-company-hq",
+      "company_id": "lannett-company",
+      "name_en": "Lannett Company HQ",
+      "name_zh": "兰尼特制药 总部",
+      "site_type": "HQ",
+      "country": "US",
+      "city": "Trevose",
+      "lat": 40.146,
+      "lng": -74.985,
+      "is_subsidiary": false,
+      "confidence": 0.6,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://github.com/lutangar/cities.json",
+          "title": "world cities gazetteer (HQ city geocode)",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "polpharma-biologics-hq",
+      "company_id": "polpharma-biologics",
+      "name_en": "Polpharma Biologics HQ",
+      "name_zh": "波尔制药生物 总部",
+      "site_type": "HQ",
+      "country": "PL",
+      "city": "Gdansk",
+      "lat": 54.3523,
+      "lng": 18.6491,
+      "is_subsidiary": false,
+      "confidence": 0.6,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://github.com/lutangar/cities.json",
+          "title": "world cities gazetteer (HQ city geocode)",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "sandoz-group-hq",
+      "company_id": "sandoz-group",
+      "name_en": "Sandoz Group HQ",
+      "name_zh": "山德士集团 总部",
+      "site_type": "HQ",
+      "country": "CH",
+      "city": "Basel",
+      "lat": 47.5584,
+      "lng": 7.5733,
+      "is_subsidiary": false,
+      "confidence": 0.6,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://github.com/lutangar/cities.json",
+          "title": "world cities gazetteer (HQ city geocode)",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "adragos-pharma-hq",
+      "company_id": "adragos-pharma",
+      "name_en": "Adragos Pharma HQ",
+      "name_zh": "阿德拉戈斯制药 总部",
+      "site_type": "HQ",
+      "country": "DE",
+      "city": "Munich",
+      "lat": 48.1374,
+      "lng": 11.5755,
+      "is_subsidiary": false,
+      "confidence": 0.6,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://github.com/lutangar/cities.json",
+          "title": "world cities gazetteer (HQ city geocode)",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "ajinomoto-bio-pharma-hq",
+      "company_id": "ajinomoto-bio-pharma",
+      "name_en": "Ajinomoto Bio-Pharma Services HQ",
+      "name_zh": "味之素生物制药服务 总部",
+      "site_type": "HQ",
+      "country": "US",
+      "city": "San Diego",
+      "lat": 27.7639,
+      "lng": -98.2389,
+      "is_subsidiary": false,
+      "confidence": 0.6,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://github.com/lutangar/cities.json",
+          "title": "world cities gazetteer (HQ city geocode)",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "allucent-hq",
+      "company_id": "allucent",
+      "name_en": "Allucent HQ",
+      "name_zh": "安路森 总部",
+      "site_type": "HQ",
+      "country": "US",
+      "city": "Cary",
+      "lat": 35.7915,
+      "lng": -78.7811,
+      "is_subsidiary": false,
+      "confidence": 0.6,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://github.com/lutangar/cities.json",
+          "title": "world cities gazetteer (HQ city geocode)",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "aragen-life-sciences-hq",
+      "company_id": "aragen-life-sciences",
+      "name_en": "Aragen Life Sciences HQ",
+      "name_zh": "阿拉根生命科学 总部",
+      "site_type": "HQ",
+      "country": "IN",
+      "city": "Hyderabad",
+      "lat": 17.384,
+      "lng": 78.4564,
+      "is_subsidiary": false,
+      "confidence": 0.6,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://github.com/lutangar/cities.json",
+          "title": "world cities gazetteer (HQ city geocode)",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "asahi-kasei-bioprocess-hq",
+      "company_id": "asahi-kasei-bioprocess",
+      "name_en": "Asahi Kasei Bioprocess HQ",
+      "name_zh": "旭化成生物工艺 总部",
+      "site_type": "HQ",
+      "country": "JP",
+      "city": "Tokyo",
+      "lat": 35.6895,
+      "lng": 139.6917,
+      "is_subsidiary": false,
+      "confidence": 0.6,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://github.com/lutangar/cities.json",
+          "title": "world cities gazetteer (HQ city geocode)",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "biospring-hq",
+      "company_id": "biospring",
+      "name_en": "BioSpring HQ",
+      "name_zh": "百思普林 总部",
+      "site_type": "HQ",
+      "country": "DE",
+      "city": "Frankfurt",
+      "lat": 52.3471,
+      "lng": 14.5506,
+      "is_subsidiary": false,
+      "confidence": 0.6,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://github.com/lutangar/cities.json",
+          "title": "world cities gazetteer (HQ city geocode)",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "caidya-hq",
+      "company_id": "caidya",
+      "name_en": "Caidya HQ",
+      "name_zh": "凯迪亚 总部",
+      "site_type": "HQ",
+      "country": "US",
+      "city": "Wilmington",
+      "lat": 39.746,
+      "lng": -75.5466,
+      "is_subsidiary": false,
+      "confidence": 0.6,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://github.com/lutangar/cities.json",
+          "title": "world cities gazetteer (HQ city geocode)",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "cellares-hq",
+      "company_id": "cellares",
+      "name_en": "Cellares HQ",
+      "name_zh": "塞拉雷斯 总部",
+      "site_type": "HQ",
+      "country": "US",
+      "city": "South San Francisco",
+      "lat": 37.7749,
+      "lng": -122.4194,
+      "is_subsidiary": false,
+      "confidence": 0.6,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://github.com/lutangar/cities.json",
+          "title": "world cities gazetteer (HQ city geocode)",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "corning-life-sciences-hq",
+      "company_id": "corning-life-sciences",
+      "name_en": "Corning Life Sciences HQ",
+      "name_zh": "康宁生命科学 总部",
+      "site_type": "HQ",
+      "country": "US",
+      "city": "Corning",
+      "lat": 36.4078,
+      "lng": -90.5798,
+      "is_subsidiary": false,
+      "confidence": 0.6,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://github.com/lutangar/cities.json",
+          "title": "world cities gazetteer (HQ city geocode)",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "cytel-hq",
+      "company_id": "cytel",
+      "name_en": "Cytel HQ",
+      "name_zh": "赛特尔 总部",
+      "site_type": "HQ",
+      "country": "US",
+      "city": "Waltham",
+      "lat": 42.3765,
+      "lng": -71.2356,
+      "is_subsidiary": false,
+      "confidence": 0.6,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://github.com/lutangar/cities.json",
+          "title": "world cities gazetteer (HQ city geocode)",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "donaldson-hq",
+      "company_id": "donaldson",
+      "name_en": "Donaldson Company HQ",
+      "name_zh": "唐纳森公司 总部",
+      "site_type": "HQ",
+      "country": "US",
+      "city": "Bloomington",
+      "lat": 39.1653,
+      "lng": -86.5264,
+      "is_subsidiary": false,
+      "confidence": 0.6,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://github.com/lutangar/cities.json",
+          "title": "world cities gazetteer (HQ city geocode)",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "emmes-hq",
+      "company_id": "emmes",
+      "name_en": "Emmes HQ",
+      "name_zh": "埃姆斯 总部",
+      "site_type": "HQ",
+      "country": "US",
+      "city": "Rockville",
+      "lat": 39.7625,
+      "lng": -87.2292,
+      "is_subsidiary": false,
+      "confidence": 0.6,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://github.com/lutangar/cities.json",
+          "title": "world cities gazetteer (HQ city geocode)",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "entegris-hq",
+      "company_id": "entegris",
+      "name_en": "Entegris HQ",
+      "name_zh": "恩特格里斯 总部",
+      "site_type": "HQ",
+      "country": "US",
+      "city": "Billerica",
+      "lat": 42.5584,
+      "lng": -71.269,
+      "is_subsidiary": false,
+      "confidence": 0.6,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://github.com/lutangar/cities.json",
+          "title": "world cities gazetteer (HQ city geocode)",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "eppendorf-hq",
+      "company_id": "eppendorf",
+      "name_en": "Eppendorf HQ",
+      "name_zh": "艾本德 总部",
+      "site_type": "HQ",
+      "country": "DE",
+      "city": "Hamburg",
+      "lat": 53.5507,
+      "lng": 9.993,
+      "is_subsidiary": false,
+      "confidence": 0.6,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://github.com/lutangar/cities.json",
+          "title": "world cities gazetteer (HQ city geocode)",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "george-clinical-hq",
+      "company_id": "george-clinical",
+      "name_en": "George Clinical HQ",
+      "name_zh": "乔治临床 总部",
+      "site_type": "HQ",
+      "country": "AU",
+      "city": "Sydney",
+      "lat": -33.8678,
+      "lng": 151.2073,
+      "is_subsidiary": false,
+      "confidence": 0.6,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://github.com/lutangar/cities.json",
+          "title": "world cities gazetteer (HQ city geocode)",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "hovione-hq",
+      "company_id": "hovione",
+      "name_en": "Hovione HQ",
+      "name_zh": "霍维恩 总部",
+      "site_type": "HQ",
+      "country": "PT",
+      "city": "Loures",
+      "lat": 38.8309,
+      "lng": -9.1684,
+      "is_subsidiary": false,
+      "confidence": 0.6,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://github.com/lutangar/cities.json",
+          "title": "world cities gazetteer (HQ city geocode)",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "novotech-hq",
+      "company_id": "novotech",
+      "name_en": "Novotech HQ",
+      "name_zh": "诺洼科 总部",
+      "site_type": "HQ",
+      "country": "AU",
+      "city": "Sydney",
+      "lat": -33.8678,
+      "lng": 151.2073,
+      "is_subsidiary": false,
+      "confidence": 0.6,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://github.com/lutangar/cities.json",
+          "title": "world cities gazetteer (HQ city geocode)",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "pci-pharma-services-hq",
+      "company_id": "pci-pharma-services",
+      "name_en": "PCI Pharma Services HQ",
+      "name_zh": "PCI制药服务 总部",
+      "site_type": "HQ",
+      "country": "US",
+      "city": "Philadelphia",
+      "lat": 32.7715,
+      "lng": -89.1167,
+      "is_subsidiary": false,
+      "confidence": 0.6,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://github.com/lutangar/cities.json",
+          "title": "world cities gazetteer (HQ city geocode)",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "premier-research-hq",
+      "company_id": "premier-research",
+      "name_en": "Premier Research HQ",
+      "name_zh": "普瑞研究 总部",
+      "site_type": "HQ",
+      "country": "US",
+      "city": "Morrisville",
+      "lat": 35.8235,
+      "lng": -78.8256,
+      "is_subsidiary": false,
+      "confidence": 0.6,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://github.com/lutangar/cities.json",
+          "title": "world cities gazetteer (HQ city geocode)",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "saint-gobain-life-sciences-hq",
+      "company_id": "saint-gobain-life-sciences",
+      "name_en": "Saint-Gobain Life Sciences HQ",
+      "name_zh": "圣戈班生命科学 总部",
+      "site_type": "HQ",
+      "country": "FR",
+      "city": "Courbevoie",
+      "lat": 48.8967,
+      "lng": 2.2567,
+      "is_subsidiary": false,
+      "confidence": 0.6,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://github.com/lutangar/cities.json",
+          "title": "world cities gazetteer (HQ city geocode)",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "solventum-hq",
+      "company_id": "solventum",
+      "name_en": "Solventum HQ",
+      "name_zh": "速维特 总部",
+      "site_type": "HQ",
+      "country": "US",
+      "city": "Maplewood",
+      "lat": 38.6125,
+      "lng": -90.3246,
+      "is_subsidiary": false,
+      "confidence": 0.6,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://github.com/lutangar/cities.json",
+          "title": "world cities gazetteer (HQ city geocode)",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "stevanato-group-hq",
+      "company_id": "stevanato-group",
+      "name_en": "Stevanato Group HQ",
+      "name_zh": "史蒂瓦纳托集团 总部",
+      "site_type": "HQ",
+      "country": "IT",
+      "city": "Piombino Dese",
+      "lat": 45.6096,
+      "lng": 11.9942,
+      "is_subsidiary": false,
+      "confidence": 0.6,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://github.com/lutangar/cities.json",
+          "title": "world cities gazetteer (HQ city geocode)",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "univercells-hq",
+      "company_id": "univercells",
+      "name_en": "Univercells HQ",
+      "name_zh": "环球细胞 总部",
+      "site_type": "HQ",
+      "country": "BE",
+      "city": "Nivelles",
+      "lat": 50.5983,
+      "lng": 4.3285,
+      "is_subsidiary": false,
+      "confidence": 0.6,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://github.com/lutangar/cities.json",
+          "title": "world cities gazetteer (HQ city geocode)",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "veeda-clinical-research-hq",
+      "company_id": "veeda-clinical-research",
+      "name_en": "Veeda Clinical Research HQ",
+      "name_zh": "维达临床研究 总部",
+      "site_type": "HQ",
+      "country": "IN",
+      "city": "Ahmedabad",
+      "lat": 23.0258,
+      "lng": 72.5873,
+      "is_subsidiary": false,
+      "confidence": 0.6,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://github.com/lutangar/cities.json",
+          "title": "world cities gazetteer (HQ city geocode)",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "veristat-hq",
+      "company_id": "veristat",
+      "name_en": "Veristat HQ",
+      "name_zh": "维瑞斯塔 总部",
+      "site_type": "HQ",
+      "country": "US",
+      "city": "Southborough",
+      "lat": 42.3056,
+      "lng": -71.5245,
+      "is_subsidiary": false,
+      "confidence": 0.6,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://github.com/lutangar/cities.json",
+          "title": "world cities gazetteer (HQ city geocode)",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "wacker-biotech-hq",
+      "company_id": "wacker-biotech",
+      "name_en": "Wacker Biotech HQ",
+      "name_zh": "瓦克生物 总部",
+      "site_type": "HQ",
+      "country": "DE",
+      "city": "Jena",
+      "lat": 50.9288,
+      "lng": 11.5899,
+      "is_subsidiary": false,
+      "confidence": 0.6,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://github.com/lutangar/cities.json",
+          "title": "world cities gazetteer (HQ city geocode)",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "west-pharmaceutical-services-hq",
+      "company_id": "west-pharmaceutical-services",
+      "name_en": "West Pharmaceutical Services HQ",
+      "name_zh": "西氏制药 总部",
+      "site_type": "HQ",
+      "country": "US",
+      "city": "Exton",
+      "lat": 40.029,
+      "lng": -75.6208,
+      "is_subsidiary": false,
+      "confidence": 0.6,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://github.com/lutangar/cities.json",
+          "title": "world cities gazetteer (HQ city geocode)",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "wilson-wolf-hq",
+      "company_id": "wilson-wolf",
+      "name_en": "Wilson Wolf HQ",
+      "name_zh": "威尔逊沃尔夫 总部",
+      "site_type": "HQ",
+      "country": "US",
+      "city": "Saint Paul",
+      "lat": 39.4281,
+      "lng": -85.6283,
+      "is_subsidiary": false,
+      "confidence": 0.6,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://github.com/lutangar/cities.json",
+          "title": "world cities gazetteer (HQ city geocode)",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "worldwide-clinical-trials-hq",
+      "company_id": "worldwide-clinical-trials",
+      "name_en": "Worldwide Clinical Trials HQ",
+      "name_zh": "环球临床试验 总部",
+      "site_type": "HQ",
+      "country": "US",
+      "city": "Morrisville",
+      "lat": 35.8235,
+      "lng": -78.8256,
+      "is_subsidiary": false,
+      "confidence": 0.6,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://github.com/lutangar/cities.json",
+          "title": "world cities gazetteer (HQ city geocode)",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "burning-rock-biotech-hq",
+      "company_id": "burning-rock-biotech",
+      "name_en": "Burning Rock Biotech HQ",
+      "name_zh": "燃石医学 总部",
+      "site_type": "HQ",
+      "country": "CN",
+      "city": "Guangzhou",
+      "lat": 23.1167,
+      "lng": 113.25,
+      "is_subsidiary": false,
+      "confidence": 0.6,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://github.com/lutangar/cities.json",
+          "title": "world cities gazetteer (HQ city geocode)",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "akili-interactive-hq",
+      "company_id": "akili-interactive",
+      "name_en": "Akili Interactive HQ",
+      "name_zh": "阿基里斯互动 总部",
+      "site_type": "HQ",
+      "country": "US",
+      "city": "Boston, MA",
+      "lat": 30.7919,
+      "lng": -83.7899,
+      "is_subsidiary": false,
+      "confidence": 0.6,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://github.com/lutangar/cities.json",
+          "title": "world cities gazetteer (HQ city geocode)",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "arsenal-biosciences-hq",
+      "company_id": "arsenal-biosciences",
+      "name_en": "Arsenal Biosciences (ArsenalBio) HQ",
+      "name_zh": "阿森纳生物科学 总部",
+      "site_type": "HQ",
+      "country": "US",
+      "city": "South San Francisco, CA",
+      "lat": 37.7749,
+      "lng": -122.4194,
+      "is_subsidiary": false,
+      "confidence": 0.6,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://github.com/lutangar/cities.json",
+          "title": "world cities gazetteer (HQ city geocode)",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "big-health-hq",
+      "company_id": "big-health",
+      "name_en": "Big Health HQ",
+      "name_zh": "Big Health 总部",
+      "site_type": "HQ",
+      "country": "US",
+      "city": "San Francisco, CA",
+      "lat": 37.7749,
+      "lng": -122.4194,
+      "is_subsidiary": false,
+      "confidence": 0.6,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://github.com/lutangar/cities.json",
+          "title": "world cities gazetteer (HQ city geocode)",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "cartesian-therapeutics-hq",
+      "company_id": "cartesian-therapeutics",
+      "name_en": "Cartesian Therapeutics HQ",
+      "name_zh": "笛卡尔医疗 总部",
+      "site_type": "HQ",
+      "country": "US",
+      "city": "Gaithersburg, MD",
+      "lat": 39.1434,
+      "lng": -77.2014,
+      "is_subsidiary": false,
+      "confidence": 0.6,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://github.com/lutangar/cities.json",
+          "title": "world cities gazetteer (HQ city geocode)",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "click-therapeutics-hq",
+      "company_id": "click-therapeutics",
+      "name_en": "Click Therapeutics HQ",
+      "name_zh": "Click医疗 总部",
+      "site_type": "HQ",
+      "country": "US",
+      "city": "New York, NY",
+      "lat": 40.7128,
+      "lng": -74.006,
+      "is_subsidiary": false,
+      "confidence": 0.6,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://github.com/lutangar/cities.json",
+          "title": "world cities gazetteer (HQ city geocode)",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "compass-pathways-hq",
+      "company_id": "compass-pathways",
+      "name_en": "Compass Pathways HQ",
+      "name_zh": "康帕斯医药 总部",
+      "site_type": "HQ",
+      "country": "GB",
+      "city": "London",
+      "lat": 51.5085,
+      "lng": -0.1257,
+      "is_subsidiary": false,
+      "confidence": 0.6,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://github.com/lutangar/cities.json",
+          "title": "world cities gazetteer (HQ city geocode)",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "dicerna-pharmaceuticals-hq",
+      "company_id": "dicerna-pharmaceuticals",
+      "name_en": "Dicerna Pharmaceuticals HQ",
+      "name_zh": "迪瑟纳制药 总部",
+      "site_type": "HQ",
+      "country": "US",
+      "city": "Lexington, MA",
+      "lat": 33.8698,
+      "lng": -83.1118,
+      "is_subsidiary": false,
+      "confidence": 0.6,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://github.com/lutangar/cities.json",
+          "title": "world cities gazetteer (HQ city geocode)",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "finch-therapeutics-hq",
+      "company_id": "finch-therapeutics",
+      "name_en": "Finch Therapeutics HQ",
+      "name_zh": "芬奇医疗 总部",
+      "site_type": "HQ",
+      "country": "US",
+      "city": "Somerville, MA",
+      "lat": 35.2437,
+      "lng": -89.3501,
+      "is_subsidiary": false,
+      "confidence": 0.6,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://github.com/lutangar/cities.json",
+          "title": "world cities gazetteer (HQ city geocode)",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "kyverna-therapeutics-hq",
+      "company_id": "kyverna-therapeutics",
+      "name_en": "Kyverna Therapeutics HQ",
+      "name_zh": "凯沃纳医疗 总部",
+      "site_type": "HQ",
+      "country": "US",
+      "city": "Emeryville, CA",
+      "lat": 37.8313,
+      "lng": -122.2853,
+      "is_subsidiary": false,
+      "confidence": 0.6,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://github.com/lutangar/cities.json",
+          "title": "world cities gazetteer (HQ city geocode)",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "lyell-immunopharma-hq",
+      "company_id": "lyell-immunopharma",
+      "name_en": "Lyell Immunopharma HQ",
+      "name_zh": "莱尔免疫制药 总部",
+      "site_type": "HQ",
+      "country": "US",
+      "city": "South San Francisco, CA",
+      "lat": 37.7749,
+      "lng": -122.4194,
+      "is_subsidiary": false,
+      "confidence": 0.6,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://github.com/lutangar/cities.json",
+          "title": "world cities gazetteer (HQ city geocode)",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "mind-medicine-hq",
+      "company_id": "mind-medicine",
+      "name_en": "Mind Medicine (MindMed) HQ",
+      "name_zh": "迈恩德医药 总部",
+      "site_type": "HQ",
+      "country": "US",
+      "city": "New York, NY",
+      "lat": 40.7128,
+      "lng": -74.006,
+      "is_subsidiary": false,
+      "confidence": 0.6,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://github.com/lutangar/cities.json",
+          "title": "world cities gazetteer (HQ city geocode)",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "pear-therapeutics-hq",
+      "company_id": "pear-therapeutics",
+      "name_en": "Pear Therapeutics HQ",
+      "name_zh": "梨子医疗 总部",
+      "site_type": "HQ",
+      "country": "US",
+      "city": "Boston, MA",
+      "lat": 30.7919,
+      "lng": -83.7899,
+      "is_subsidiary": false,
+      "confidence": 0.6,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://github.com/lutangar/cities.json",
+          "title": "world cities gazetteer (HQ city geocode)",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "seres-therapeutics-hq",
+      "company_id": "seres-therapeutics",
+      "name_en": "Seres Therapeutics HQ",
+      "name_zh": "塞雷斯医疗 总部",
+      "site_type": "HQ",
+      "country": "US",
+      "city": "Cambridge, MA",
+      "lat": 38.5632,
+      "lng": -76.0788,
+      "is_subsidiary": false,
+      "confidence": 0.6,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://github.com/lutangar/cities.json",
+          "title": "world cities gazetteer (HQ city geocode)",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "vedanta-biosciences-hq",
+      "company_id": "vedanta-biosciences",
+      "name_en": "Vedanta Biosciences HQ",
+      "name_zh": "韦丹塔生物科学 总部",
+      "site_type": "HQ",
+      "country": "US",
+      "city": "Cambridge, MA",
+      "lat": 38.5632,
+      "lng": -76.0788,
+      "is_subsidiary": false,
+      "confidence": 0.6,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "url": "https://github.com/lutangar/cities.json",
+          "title": "world cities gazetteer (HQ city geocode)",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "alpine-immune-sciences-hq",
+      "company_id": "alpine-immune-sciences",
+      "name_en": "Alpine Immune Sciences HQ",
+      "name_zh": "阿尔派免疫科学 总部",
+      "site_type": "HQ",
+      "country": "US",
+      "city": "Seattle, WA",
+      "lat": 47.6062,
+      "lng": -122.3321,
       "is_subsidiary": false,
       "confidence": 0.6,
       "last_verified": "2026-06",

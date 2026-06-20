@@ -41,6 +41,8 @@ CITY_COORD = {
     ("CH", "st gallen"): (47.4245, 9.3767), ("US", "south san francisco"): (37.6547, -122.4077),
     ("US", "thousand oaks"): (34.1706, -118.8376), ("GB", "abingdon"): (51.6743, -1.2826),
     ("DK", "hellerup"): (55.7327, 12.5719), ("US", "foster city"): (37.5585, -122.2711),
+    ("ES", "amer"): (42.1561, 2.6033), ("ES", "girona"): (41.9794, 2.8214),
+    ("KR", "seongnam"): (37.4200, 127.1267), ("JO", "london"): (51.5074, -0.1278),
 }
 
 def norm(s: str) -> str:
