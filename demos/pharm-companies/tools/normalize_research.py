@@ -85,6 +85,24 @@ NONDRUG_MOD = {"medical-device", "device", "ivd", "ivd-assay", "diagnostic", "di
 CONF_WORDS = {"very high": 0.95, "high": 0.85, "medium-high": 0.8, "moderate": 0.7, "medium": 0.7, "med": 0.7,
               "medium-low": 0.6, "low": 0.55, "very low": 0.4}
 
+COUNTRY_CCY = {"US": "USD", "CN": "CNY", "HK": "HKD", "TW": "TWD", "JP": "JPY", "KR": "KRW", "GB": "GBP",
+    "DE": "EUR", "FR": "EUR", "CH": "CHF", "DK": "DKK", "SE": "SEK", "NL": "EUR", "BE": "EUR", "IT": "EUR",
+    "ES": "EUR", "IE": "EUR", "FI": "EUR", "NO": "NOK", "AT": "EUR", "PT": "EUR", "GR": "EUR", "IN": "INR",
+    "AU": "AUD", "SG": "SGD", "BR": "BRL", "IL": "ILS", "PL": "PLN", "TR": "TRY", "SA": "SAR", "AE": "AED",
+    "EG": "EGP", "ZA": "ZAR", "CA": "CAD", "MX": "MXN", "ID": "IDR", "MY": "MYR", "TH": "THB", "JO": "JOD",
+    "PK": "PKR", "RU": "RUB", "HU": "HUF", "CZ": "CZK", "RO": "RON", "NZ": "NZD"}
+REGION_CCY = {"north_america": "USD", "greater_china": "CNY", "japan": "JPY", "europe": "EUR",
+    "other_apac": "USD", "oceania": "AUD", "latam": "USD", "mea": "USD"}
+
+
+def coerce_money(v, ccy):
+    """Bare number -> money object; dict missing currency -> fill. ccy = inferred default currency."""
+    if isinstance(v, (int, float)):
+        return {"value": v, "currency": ccy, "year": 2024}
+    if isinstance(v, dict) and v.get("value") is not None and not v.get("currency"):
+        v["currency"] = ccy
+    return v
+
 
 def conf(x):
     if isinstance(x, (int, float)):
@@ -167,6 +185,14 @@ def main() -> int:
                     nc = conf(c["confidence"])
                     if nc != c["confidence"]:
                         c["confidence"] = nc; ch = True
+                ccy = COUNTRY_CCY.get(c.get("country"), "USD")
+                for fld in ("revenue", "market_cap", "rnd_spend"):
+                    if c.get(fld) is not None:
+                        nv = coerce_money(c[fld], ccy)
+                        if nv is not c[fld]:
+                            c[fld] = nv; ch = True; fixes += 1
+                if isinstance(c.get("employees"), (int, float)):
+                    c["employees"] = {"value": int(c["employees"]), "year": 2024}; ch = True
                 c.setdefault("last_verified", "2026-06")
                 before = len(c.get("sources") or [])
                 clean_sources(c)
@@ -208,6 +234,14 @@ def main() -> int:
                     p["modality_id"] = mod; ch = True
                 if ta != p.get("therapeutic_area_id"):
                     p["therapeutic_area_id"] = ta; ch = True
+                pccy = REGION_CCY.get(p.get("region"), "USD")
+                for fld in ("latest_annual_sales", "annual_sales", "peak_sales"):
+                    if p.get(fld) is not None:
+                        nv = coerce_money(p[fld], pccy)
+                        if nv is not p[fld]:
+                            p[fld] = nv; ch = True; fixes += 1
+                if p.get("annual_sales") and not p.get("latest_annual_sales"):
+                    p["latest_annual_sales"] = p["annual_sales"]; ch = True
                 if p.get("drug_class") and p["drug_class"] not in VALID_DC:
                     p["drug_class"] = "originator"; ch = True; fixes += 1
                 p.setdefault("drug_class", "originator")

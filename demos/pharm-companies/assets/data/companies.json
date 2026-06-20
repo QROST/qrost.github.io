@@ -11796,10 +11796,25 @@
           "symbol": "ALNY"
         }
       ],
-      "market_cap": 41000000000,
-      "revenue": 3714000000,
-      "rnd_spend": 1320000000,
-      "employees": 2500,
+      "market_cap": {
+        "value": 41000000000,
+        "currency": "USD",
+        "year": 2024
+      },
+      "revenue": {
+        "value": 3714000000,
+        "currency": "USD",
+        "year": 2024
+      },
+      "rnd_spend": {
+        "value": 1320000000,
+        "currency": "USD",
+        "year": 2024
+      },
+      "employees": {
+        "value": 2500,
+        "year": 2024
+      },
       "company_type": "biotech",
       "region": "north_america",
       "website": "https://www.alnylam.com",
@@ -11831,10 +11846,25 @@
           "symbol": "IONS"
         }
       ],
-      "market_cap": 12330000000,
-      "revenue": 940000000,
-      "rnd_spend": 826000000,
-      "employees": 1402,
+      "market_cap": {
+        "value": 12330000000,
+        "currency": "USD",
+        "year": 2024
+      },
+      "revenue": {
+        "value": 940000000,
+        "currency": "USD",
+        "year": 2024
+      },
+      "rnd_spend": {
+        "value": 826000000,
+        "currency": "USD",
+        "year": 2024
+      },
+      "employees": {
+        "value": 1402,
+        "year": 2024
+      },
       "company_type": "biotech",
       "region": "north_america",
       "website": "https://www.ionis.com",
@@ -11867,10 +11897,25 @@
           "symbol": "BMRN"
         }
       ],
-      "market_cap": 10350000000,
-      "revenue": 3221000000,
-      "rnd_spend": 922000000,
-      "employees": 3221,
+      "market_cap": {
+        "value": 10350000000,
+        "currency": "USD",
+        "year": 2024
+      },
+      "revenue": {
+        "value": 3221000000,
+        "currency": "USD",
+        "year": 2024
+      },
+      "rnd_spend": {
+        "value": 922000000,
+        "currency": "USD",
+        "year": 2024
+      },
+      "employees": {
+        "value": 3221,
+        "year": 2024
+      },
       "company_type": "biotech",
       "region": "north_america",
       "website": "https://www.biomarin.com",
@@ -11900,10 +11945,25 @@
           "symbol": "INCY"
         }
       ],
-      "market_cap": 19000000000,
-      "revenue": 5140000000,
-      "rnd_spend": 1500000000,
-      "employees": 2844,
+      "market_cap": {
+        "value": 19000000000,
+        "currency": "USD",
+        "year": 2024
+      },
+      "revenue": {
+        "value": 5140000000,
+        "currency": "USD",
+        "year": 2024
+      },
+      "rnd_spend": {
+        "value": 1500000000,
+        "currency": "USD",
+        "year": 2024
+      },
+      "employees": {
+        "value": 2844,
+        "year": 2024
+      },
       "company_type": "biotech",
       "region": "north_america",
       "website": "https://www.incyte.com",
@@ -11936,10 +11996,25 @@
           "symbol": "NBIX"
         }
       ],
-      "market_cap": 16170000000,
-      "revenue": 2860000000,
-      "rnd_spend": 900000000,
-      "employees": 2000,
+      "market_cap": {
+        "value": 16170000000,
+        "currency": "USD",
+        "year": 2024
+      },
+      "revenue": {
+        "value": 2860000000,
+        "currency": "USD",
+        "year": 2024
+      },
+      "rnd_spend": {
+        "value": 900000000,
+        "currency": "USD",
+        "year": 2024
+      },
+      "employees": {
+        "value": 2000,
+        "year": 2024
+      },
       "company_type": "biotech",
       "region": "north_america",
       "website": "https://www.neurocrine.com",
@@ -11969,10 +12044,25 @@
           "symbol": "EXEL"
         }
       ],
-      "market_cap": 12260000000,
-      "revenue": 2320000000,
-      "rnd_spend": 825000000,
-      "employees": 1077,
+      "market_cap": {
+        "value": 12260000000,
+        "currency": "USD",
+        "year": 2024
+      },
+      "revenue": {
+        "value": 2320000000,
+        "currency": "USD",
+        "year": 2024
+      },
+      "rnd_spend": {
+        "value": 825000000,
+        "currency": "USD",
+        "year": 2024
+      },
+      "employees": {
+        "value": 1077,
+        "year": 2024
+      },
       "company_type": "biotech",
       "region": "north_america",
       "website": "https://www.exelixis.com",
@@ -12002,10 +12092,25 @@
           "symbol": "SRPT"
         }
       ],
-      "market_cap": 1780000000,
-      "revenue": 2198000000,
-      "rnd_spend": 900000000,
-      "employees": 1500,
+      "market_cap": {
+        "value": 1780000000,
+        "currency": "USD",
+        "year": 2024
+      },
+      "revenue": {
+        "value": 2198000000,
+        "currency": "USD",
+        "year": 2024
+      },
+      "rnd_spend": {
+        "value": 900000000,
+        "currency": "USD",
+        "year": 2024
+      },
+      "employees": {
+        "value": 1500,
+        "year": 2024
+      },
       "company_type": "biotech",
       "region": "north_america",
       "website": "https://www.sarepta.com",
@@ -12036,10 +12141,25 @@
           "symbol": "JAZZ"
         }
       ],
-      "market_cap": 12700000000,
-      "revenue": 4000000000,
-      "rnd_spend": 800000000,
-      "employees": 2890,
+      "market_cap": {
+        "value": 12700000000,
+        "currency": "USD",
+        "year": 2024
+      },
+      "revenue": {
+        "value": 4000000000,
+        "currency": "USD",
+        "year": 2024
+      },
+      "rnd_spend": {
+        "value": 800000000,
+        "currency": "USD",
+        "year": 2024
+      },
+      "employees": {
+        "value": 2890,
+        "year": 2024
+      },
       "company_type": "biotech",
       "region": "north_america",
       "website": "https://www.jazzpharma.com",
@@ -12070,10 +12190,25 @@
           "symbol": "UTHR"
         }
       ],
-      "market_cap": 15000000000,
-      "revenue": 3180000000,
-      "rnd_spend": 400000000,
-      "employees": 1400,
+      "market_cap": {
+        "value": 15000000000,
+        "currency": "USD",
+        "year": 2024
+      },
+      "revenue": {
+        "value": 3180000000,
+        "currency": "USD",
+        "year": 2024
+      },
+      "rnd_spend": {
+        "value": 400000000,
+        "currency": "USD",
+        "year": 2024
+      },
+      "employees": {
+        "value": 1400,
+        "year": 2024
+      },
       "company_type": "biotech",
       "region": "north_america",
       "website": "https://www.unither.com",
@@ -12104,10 +12239,25 @@
           "symbol": "ZTS"
         }
       ],
-      "market_cap": 49100000000,
-      "revenue": 9467000000,
-      "rnd_spend": 698000000,
-      "employees": 14500,
+      "market_cap": {
+        "value": 49100000000,
+        "currency": "USD",
+        "year": 2024
+      },
+      "revenue": {
+        "value": 9467000000,
+        "currency": "USD",
+        "year": 2024
+      },
+      "rnd_spend": {
+        "value": 698000000,
+        "currency": "USD",
+        "year": 2024
+      },
+      "employees": {
+        "value": 14500,
+        "year": 2024
+      },
       "company_type": "diversified",
       "region": "north_america",
       "website": "https://www.zoetis.com",
@@ -12143,10 +12293,25 @@
           "symbol": "TEVA"
         }
       ],
-      "market_cap": 27900000000,
-      "revenue": 17258000000,
-      "rnd_spend": 1003000000,
-      "employees": 37000,
+      "market_cap": {
+        "value": 27900000000,
+        "currency": "USD",
+        "year": 2024
+      },
+      "revenue": {
+        "value": 17258000000,
+        "currency": "USD",
+        "year": 2024
+      },
+      "rnd_spend": {
+        "value": 1003000000,
+        "currency": "USD",
+        "year": 2024
+      },
+      "employees": {
+        "value": 37000,
+        "year": 2024
+      },
       "company_type": "diversified",
       "region": "north_america",
       "website": "https://www.tevapharm.com",
@@ -12179,10 +12344,25 @@
           "symbol": "ALKS"
         }
       ],
-      "market_cap": 5740000000,
-      "revenue": 1476000000,
-      "rnd_spend": 320000000,
-      "employees": 2100,
+      "market_cap": {
+        "value": 5740000000,
+        "currency": "USD",
+        "year": 2024
+      },
+      "revenue": {
+        "value": 1476000000,
+        "currency": "USD",
+        "year": 2024
+      },
+      "rnd_spend": {
+        "value": 320000000,
+        "currency": "USD",
+        "year": 2024
+      },
+      "employees": {
+        "value": 2100,
+        "year": 2024
+      },
       "company_type": "biotech",
       "region": "north_america",
       "website": "https://www.alkermes.com",
@@ -12212,10 +12392,25 @@
           "symbol": "EXAS"
         }
       ],
-      "market_cap": 20020000000,
-      "revenue": 3247000000,
-      "rnd_spend": 500000000,
-      "employees": 7200,
+      "market_cap": {
+        "value": 20020000000,
+        "currency": "USD",
+        "year": 2024
+      },
+      "revenue": {
+        "value": 3247000000,
+        "currency": "USD",
+        "year": 2024
+      },
+      "rnd_spend": {
+        "value": 500000000,
+        "currency": "USD",
+        "year": 2024
+      },
+      "employees": {
+        "value": 7200,
+        "year": 2024
+      },
       "company_type": "diversified",
       "region": "north_america",
       "website": "https://www.exactsciences.com",
@@ -12245,10 +12440,25 @@
           "symbol": "NTRA"
         }
       ],
-      "market_cap": 28000000000,
-      "revenue": 2306000000,
-      "rnd_spend": 400000000,
-      "employees": 6140,
+      "market_cap": {
+        "value": 28000000000,
+        "currency": "USD",
+        "year": 2024
+      },
+      "revenue": {
+        "value": 2306000000,
+        "currency": "USD",
+        "year": 2024
+      },
+      "rnd_spend": {
+        "value": 400000000,
+        "currency": "USD",
+        "year": 2024
+      },
+      "employees": {
+        "value": 6140,
+        "year": 2024
+      },
       "company_type": "diversified",
       "region": "north_america",
       "website": "https://www.natera.com",
@@ -12280,10 +12490,25 @@
           "symbol": "GH"
         }
       ],
-      "market_cap": 11200000000,
-      "revenue": 982000000,
-      "rnd_spend": 350000000,
-      "employees": 2506,
+      "market_cap": {
+        "value": 11200000000,
+        "currency": "USD",
+        "year": 2024
+      },
+      "revenue": {
+        "value": 982000000,
+        "currency": "USD",
+        "year": 2024
+      },
+      "rnd_spend": {
+        "value": 350000000,
+        "currency": "USD",
+        "year": 2024
+      },
+      "employees": {
+        "value": 2506,
+        "year": 2024
+      },
       "company_type": "diversified",
       "region": "north_america",
       "website": "https://www.guardanthealth.com",
@@ -12313,10 +12538,25 @@
           "symbol": "ARVN"
         }
       ],
-      "market_cap": 858000000,
-      "revenue": 50000000,
-      "rnd_spend": 200000000,
-      "employees": 430,
+      "market_cap": {
+        "value": 858000000,
+        "currency": "USD",
+        "year": 2024
+      },
+      "revenue": {
+        "value": 50000000,
+        "currency": "USD",
+        "year": 2024
+      },
+      "rnd_spend": {
+        "value": 200000000,
+        "currency": "USD",
+        "year": 2024
+      },
+      "employees": {
+        "value": 430,
+        "year": 2024
+      },
       "company_type": "biotech",
       "region": "north_america",
       "website": "https://www.arvinas.com",
@@ -12347,10 +12587,25 @@
           "symbol": "CRSP"
         }
       ],
-      "market_cap": 5610000000,
-      "revenue": 116000000,
-      "rnd_spend": 350000000,
-      "employees": 480,
+      "market_cap": {
+        "value": 5610000000,
+        "currency": "USD",
+        "year": 2024
+      },
+      "revenue": {
+        "value": 116000000,
+        "currency": "USD",
+        "year": 2024
+      },
+      "rnd_spend": {
+        "value": 350000000,
+        "currency": "USD",
+        "year": 2024
+      },
+      "employees": {
+        "value": 480,
+        "year": 2024
+      },
       "company_type": "biotech",
       "region": "north_america",
       "website": "https://www.crisprtx.com",
@@ -12382,10 +12637,25 @@
           "symbol": "BEAM"
         }
       ],
-      "market_cap": 3090000000,
-      "revenue": 140000000,
-      "rnd_spend": 400000000,
-      "employees": 500,
+      "market_cap": {
+        "value": 3090000000,
+        "currency": "USD",
+        "year": 2024
+      },
+      "revenue": {
+        "value": 140000000,
+        "currency": "USD",
+        "year": 2024
+      },
+      "rnd_spend": {
+        "value": 400000000,
+        "currency": "USD",
+        "year": 2024
+      },
+      "employees": {
+        "value": 500,
+        "year": 2024
+      },
       "company_type": "biotech",
       "region": "north_america",
       "website": "https://www.beamtx.com",
