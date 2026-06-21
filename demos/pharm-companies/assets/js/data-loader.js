@@ -7,9 +7,10 @@
 
   var store = {
     manifest: null, companies: [], sites: [], products: [], modalities: [],
-    therapeuticAreas: [], countries: [], milestones: [], pairs: []
+    therapeuticAreas: [], countries: [], milestones: [], pairs: [], groups: []
   };
   var companyMap = {}, modalityMap = {}, taMap = {}, productMap = {}, sitesByCompany = {};
+  var groupMap = {}, childrenByParent = {}, companiesByGroup = {};
 
   async function fetchJson(path, optional) {
     var sep = path.indexOf('?') === -1 ? '?' : '&';
@@ -36,7 +37,8 @@
       fetchJson(BASE + 'therapeutic-areas.json', true),
       fetchJson(BASE + 'country-stats.json', true),
       fetchJson(BASE + 'breakthroughs.json', true),
-      fetchJson(BASE + 'comparisons/benchmark-pairs.json', true)
+      fetchJson(BASE + 'comparisons/benchmark-pairs.json', true),
+      fetchJson(BASE + 'groups.json', true)
     ].concat(shards.map(function (s) { return fetchJson(BASE + s.file, true); })));
 
     store.companies = arr(results[0], 'companies');
@@ -46,10 +48,16 @@
     store.countries = arr(results[4], 'countries');
     store.milestones = arr(results[5], 'milestones');
     store.pairs = arr(results[6], 'pairs');
+    store.groups = arr(results[7], 'groups');
     store.products = [];
-    for (var i = 7; i < results.length; i++) { store.products = store.products.concat(arr(results[i], 'products')); }
+    for (var i = 8; i < results.length; i++) { store.products = store.products.concat(arr(results[i], 'products')); }
 
-    store.companies.forEach(function (c) { companyMap[c.id] = c; });
+    store.groups.forEach(function (g) { groupMap[g.id] = g; });
+    store.companies.forEach(function (c) {
+      companyMap[c.id] = c;
+      if (c.parent_id) (childrenByParent[c.parent_id] = childrenByParent[c.parent_id] || []).push(c);
+      if (c.group_id) (companiesByGroup[c.group_id] = companiesByGroup[c.group_id] || []).push(c);
+    });
     store.modalities.forEach(function (m) { modalityMap[m.id] = m; });
     store.therapeuticAreas.forEach(function (t) { taMap[t.id] = t; });
     store.products.forEach(function (p) { productMap[p.id] = p; });
@@ -70,12 +78,27 @@
     });
   }
 
+  // ---- corporate-group / ownership helpers ----
+  function getGroup(id) { return groupMap[id] || null; }
+  function companiesInGroup(gid) { return companiesByGroup[gid] || []; }
+  function subsidiariesOf(id) { return childrenByParent[id] || []; }      // direct children (parent_id === id)
+  function parentOf(id) { var c = companyMap[id]; return (c && c.parent_id && companyMap[c.parent_id]) || null; }
+  function groupSiblings(id) {                                            // same group, excluding self + own children
+    var c = companyMap[id]; if (!c || !c.group_id) return [];
+    return (companiesByGroup[c.group_id] || []).filter(function (x) { return x.id !== id && x.parent_id !== id; });
+  }
+
   window.PHARM_DATA = {
     initCore: initCore,
     productsForCompany: productsForCompany,
     sitesForCompany: sitesForCompany,
     milestonesForCompany: milestonesForCompany,
     reverseMilestones: reverseMilestones,
+    getGroup: getGroup,
+    companiesInGroup: companiesInGroup,
+    subsidiariesOf: subsidiariesOf,
+    parentOf: parentOf,
+    groupSiblings: groupSiblings,
     getCompany: function (id) { return companyMap[id] || null; },
     getModality: function (id) { return modalityMap[id] || null; },
     getTA: function (id) { return taMap[id] || null; },
@@ -88,6 +111,7 @@
     get therapeuticAreas() { return store.therapeuticAreas; },
     get countries() { return store.countries; },
     get milestones() { return store.milestones; },
-    get pairs() { return store.pairs; }
+    get pairs() { return store.pairs; },
+    get groups() { return store.groups; }
   };
 })();
