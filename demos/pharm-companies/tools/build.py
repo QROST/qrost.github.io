@@ -262,6 +262,44 @@ def merge_research() -> None:
     for p in products.values():
         catalog.setdefault(p.get("region") or "other", {})[p["id"]] = p
 
+    # ---- corporate-group / ownership graph: apply group-*.json shards ----
+    # group-*.json carry {group:{...}, members:[{company_id, parent_company_id, role, ...}]}.
+    # They set group_id (ultimate conglomerate) + a control parent_id on the named companies,
+    # kept in their own shards so company shards stay untouched (no concurrent-edit collision).
+    groups: dict[str, dict] = {}
+    member_group: dict[str, str] = {}  # company_id -> group_id (first wins; conflicts logged)
+    for gp in sorted(RESEARCH.glob("group-*.json")):
+        try:
+            gd = load(gp)
+        except json.JSONDecodeError as e:
+            print(f"  ! SKIP {gp.name}: invalid JSON ({e})")
+            continue
+        g = (gd.get("group") or {})
+        gid = g.get("id")
+        if not gid:
+            continue
+        groups[gid] = g
+        for m in gd.get("members", []):
+            cid = m.get("company_id")
+            c = companies.get(cid)
+            if not c:
+                continue
+            if cid in member_group and member_group[cid] != gid:
+                print(f"  ! group conflict: {cid} in {member_group[cid]} and {gid}; keeping first")
+                continue
+            member_group[cid] = gid
+            c["group_id"] = gid
+            if m.get("role"):
+                c["group_role"] = m["role"]
+            pid = (m.get("parent_company_id") or "").strip()
+            if pid and pid != cid and pid in companies:
+                c["parent_id"] = pid
+                c["is_subsidiary"] = True
+    if groups:
+        used = set(member_group.values())
+        write_json(DATA / "groups.json", {"groups": [groups[g] for g in groups if g in used]})
+        print(f"  groups: {len(used)} group(s), {len(member_group)} company assignment(s)")
+
     write_json(DATA / "companies.json", {"companies": list(companies.values())})
     write_json(DATA / "sites.json", {"sites": list(sites.values())})
     write_json(DATA / "breakthroughs.json", {"milestones": list(milestones.values())})
@@ -286,6 +324,7 @@ def build_manifest() -> dict:
     tas = root_list(DATA / "therapeutic-areas.json", "therapeutic_areas")
     milestones = root_list(DATA / "breakthroughs.json", "milestones")
     countries = root_list(DATA / "country-stats.json", "countries")
+    groups = root_list(DATA / "groups.json", "groups") if (DATA / "groups.json").exists() else []
     modality_class = {m["id"]: m.get("class", "?") for m in modalities if m.get("id")}
 
     shard_counts: dict[str, int] = {}
@@ -321,6 +360,7 @@ def build_manifest() -> dict:
         "total_therapeutic_areas": len(tas),
         "total_milestones": len(milestones),
         "total_countries": len(countries),
+        "total_groups": len(groups),
         "shard_counts": shard_counts,
         "company_type_counts": dict(company_type),
         "region_counts": dict(region),

@@ -1439,7 +1439,11 @@
           "accessed": "2026-06"
         }
       ],
-      "tier": "deep"
+      "tier": "deep",
+      "group_id": "china-resources",
+      "group_role": "flagship-listco",
+      "parent_id": "crsanjiu",
+      "is_subsidiary": true
     },
     {
       "id": "tong-ren-tang",
@@ -1499,7 +1503,9 @@
           "accessed": "2026-06"
         }
       ],
-      "tier": "deep"
+      "tier": "deep",
+      "group_id": "tongrentang-group",
+      "group_role": "flagship-listco"
     },
     {
       "id": "yunnan-baiyao",
@@ -1555,7 +1561,9 @@
         "source_url": "https://stockanalysis.com/quote/she/000538/",
         "note_en": "Approximately 9,277 employees as of 2025"
       },
-      "tier": "deep"
+      "tier": "deep",
+      "group_id": "yunnan-baiyao-grp",
+      "group_role": "flagship-listco"
     },
     {
       "id": "huadong-medicine",
@@ -1687,7 +1695,9 @@
           "accessed": "2026-06"
         }
       ],
-      "tier": "deep"
+      "tier": "deep",
+      "group_id": "fosun-pharma-group",
+      "group_role": "flagship-listco"
     },
     {
       "id": "kelun",
@@ -1856,7 +1866,9 @@
           "accessed": "2026-06"
         }
       ],
-      "tier": "deep"
+      "tier": "deep",
+      "group_id": "gphl",
+      "group_role": "flagship-listco"
     },
     {
       "id": "joincare",
@@ -2298,7 +2310,9 @@
         "source_url": "https://www.tradingview.com/news/reuters.com,2025-03-21:newsml_ACN97226a:0-sino-biopharm-1177-hk-announces-2024-annual-results/",
         "note_en": "24,379 employees as of FY2024; corrected from input which had no employee data"
       },
-      "tier": "deep"
+      "tier": "deep",
+      "group_id": "sino-biopharm-grp",
+      "group_role": "flagship-listco"
     },
     {
       "id": "cspc",
@@ -2355,7 +2369,9 @@
         "year": 2024,
         "source_url": "https://stockanalysis.com/quote/hkg/1093/employees/"
       },
-      "tier": "deep"
+      "tier": "deep",
+      "group_id": "cspc-group",
+      "group_role": "group-holdco"
     },
     {
       "id": "hansoh",
@@ -2772,7 +2788,10 @@
         "hematology"
       ],
       "description_zh": "中国领先的生物类似药企业，同时拥有斯鲁利单抗等创新抗体。",
-      "description_en": "Leading China biosimilar company with innovator serplulimab portfolio."
+      "description_en": "Leading China biosimilar company with innovator serplulimab portfolio.",
+      "group_id": "fosun-pharma-group",
+      "group_role": "subsidiary",
+      "is_subsidiary": true
     },
     {
       "id": "alphamab",
@@ -3305,7 +3324,10 @@
           "title": "Sinopharm Xingsha Official Site",
           "accessed": "2026-06"
         }
-      ]
+      ],
+      "group_id": "sinopharm-group",
+      "group_role": "subsidiary",
+      "is_subsidiary": true
     },
     {
       "country": "CN",
@@ -3399,7 +3421,7 @@
         }
       ],
       "is_public": true,
-      "parent_id": "sinopharm",
+      "parent_id": "sinopharm-cnbg",
       "revenue": {
         "value": 6032000000.0,
         "currency": "CNY",
@@ -3452,7 +3474,9 @@
       "tier": "deep",
       "is_subsidiary": true,
       "exchange": "SSE",
-      "sub_sector": "blood_products"
+      "sub_sector": "blood_products",
+      "group_id": "sinopharm-group",
+      "group_role": "flagship-listco"
     },
     {
       "country": "CN",
@@ -3520,7 +3544,10 @@
         "source_url": "https://stockanalysis.com/quote/she/300294/"
       },
       "exchange": "SZSE",
-      "sub_sector": "blood_products"
+      "sub_sector": "blood_products",
+      "group_id": "china-resources",
+      "group_role": "flagship-listco",
+      "is_subsidiary": true
     },
     {
       "country": "CN",
@@ -4213,7 +4240,10 @@
         "source_url": "https://stockanalysis.com/quote/sha/600422/"
       },
       "exchange": "SSE",
-      "sub_sector": "botanical_drugs"
+      "sub_sector": "botanical_drugs",
+      "group_id": "china-resources",
+      "group_role": "subsidiary",
+      "is_subsidiary": true
     },
     {
       "country": "CN",
@@ -4291,7 +4321,10 @@
         "source_url": "https://stockanalysis.com/quote/sha/600062/"
       },
       "exchange": "SSE",
-      "sub_sector": "infusion_generics"
+      "sub_sector": "infusion_generics",
+      "group_id": "china-resources",
+      "group_role": "flagship-listco",
+      "is_subsidiary": true
     },
     {
       "country": "CN",
@@ -4629,7 +4662,9 @@
         "source_url": "https://en.wikipedia.org/wiki/Sinopharm_(company)",
         "note_en": "Most recent disclosed figure (2023); 2024 figure pending full annual report"
       },
-      "tier": "deep"
+      "tier": "deep",
+      "group_id": "sinopharm-group",
+      "group_role": "group-holdco"
     },
     {
       "id": "shanghai-pharma",
@@ -4693,7 +4728,9 @@
           "accessed": "2026-06"
         }
       ],
-      "tier": "deep"
+      "tier": "deep",
+      "group_id": "shanghai-pharma",
+      "group_role": "flagship-listco"
     },
     {
       "id": "china-resources-pharma",
@@ -4744,7 +4781,9 @@
           "accessed": "2026-06"
         }
       ],
-      "tier": "deep"
+      "tier": "deep",
+      "group_id": "china-resources",
+      "group_role": "group-holdco"
     },
     {
       "id": "crsanjiu",
@@ -4809,7 +4848,10 @@
         "source_url": "https://stockanalysis.com/quote/she/000999/market-cap/",
         "note_en": "Approximate CNY market cap ~USD 6.0B as of 2026"
       },
-      "tier": "deep"
+      "tier": "deep",
+      "group_id": "china-resources",
+      "group_role": "flagship-listco",
+      "is_subsidiary": true
     },
     {
       "id": "taiji-group",
@@ -4883,7 +4925,11 @@
         "source_url": "https://stockanalysis.com/quote/sha/600129/market-cap/"
       },
       "exchange": "SSE",
-      "sub_sector": "TCM / OTC branded"
+      "sub_sector": "TCM / OTC branded",
+      "group_id": "sinopharm-group",
+      "group_role": "flagship-listco",
+      "parent_id": "sinopharm",
+      "is_subsidiary": true
     },
     {
       "id": "hisun",
@@ -5151,7 +5197,9 @@
         "year": 2024,
         "source_url": "https://stockanalysis.com/quote/sha/600079/market-cap/",
         "note_en": "Market cap CNY 37.61B as of Dec 31, 2024"
-      }
+      },
+      "group_id": "humanwell-grp",
+      "group_role": "flagship-listco"
     },
     {
       "id": "huahai",
@@ -5901,7 +5949,11 @@
       ],
       "tier": "roster",
       "exchange": "SZSE",
-      "sub_sector": "donkey-hide gelatin / premium TCM"
+      "sub_sector": "donkey-hide gelatin / premium TCM",
+      "group_id": "china-resources",
+      "group_role": "flagship-listco",
+      "parent_id": "china-resources-pharma",
+      "is_subsidiary": true
     },
     {
       "id": "hec-pharm",
@@ -6503,7 +6555,11 @@
         }
       ],
       "exchange": "SSE",
-      "sub_sector": "pharma_distribution"
+      "sub_sector": "pharma_distribution",
+      "group_id": "sinopharm-group",
+      "group_role": "flagship-listco",
+      "parent_id": "sinopharm",
+      "is_subsidiary": true
     },
     {
       "id": "kingmed-diagnostics",
@@ -7877,7 +7933,11 @@
       ],
       "tier": "roster",
       "exchange": "HKEX",
-      "sub_sector": "TCM manufacturing"
+      "sub_sector": "TCM manufacturing",
+      "group_id": "sinopharm-group",
+      "group_role": "flagship-listco",
+      "parent_id": "sinopharm",
+      "is_subsidiary": true
     },
     {
       "id": "mabwell-bioscience",
@@ -10766,7 +10826,11 @@
         }
       ],
       "exchange": "NSE",
-      "sub_sector": "Injectables CDMO"
+      "sub_sector": "Injectables CDMO",
+      "group_id": "fosun-pharma-group",
+      "group_role": "subsidiary",
+      "parent_id": "fosun-pharma",
+      "is_subsidiary": true
     },
     {
       "id": "ipca-laboratories",
@@ -13027,7 +13091,9 @@
       ],
       "exchange": "NYSE",
       "sub_sector": "generics, biosimilars, specialty",
-      "_note": "This entry merged and supersedes duplicate 'teva' entry (id=teva); original 'teva-pharmaceutical' had wrong country (US) and inflated revenue ($17,258M). Authoritative figures from Teva IR."
+      "_note": "This entry merged and supersedes duplicate 'teva' entry (id=teva); original 'teva-pharmaceutical' had wrong country (US) and inflated revenue ($17,258M). Authoritative figures from Teva IR.",
+      "group_id": "teva-group",
+      "group_role": "flagship-listco"
     },
     {
       "id": "alkermes",
@@ -20239,7 +20305,11 @@
         }
       ],
       "exchange": "SZSE",
-      "sub_sector": "functional_food_innovator"
+      "sub_sector": "functional_food_innovator",
+      "group_id": "cspc-group",
+      "group_role": "flagship-listco",
+      "parent_id": "cspc",
+      "is_subsidiary": true
     },
     {
       "id": "cutia-therapeutics",
@@ -22844,7 +22914,9 @@
         }
       ],
       "exchange": "HKEX",
-      "sub_sector": "specialty pharma"
+      "sub_sector": "specialty pharma",
+      "group_id": "grand-pharma-grp",
+      "group_role": "flagship-listco"
     },
     {
       "id": "gred-medic",
@@ -23429,7 +23501,11 @@
         }
       ],
       "exchange": "NEEQ",
-      "sub_sector": "pharma distribution"
+      "sub_sector": "pharma distribution",
+      "group_id": "gphl",
+      "group_role": "subsidiary",
+      "parent_id": "baiyunshan",
+      "is_subsidiary": true
     },
     {
       "id": "guanhao-biotech",
@@ -29024,7 +29100,11 @@
         }
       ],
       "exchange": "SSE",
-      "sub_sector": "digestive_health"
+      "sub_sector": "digestive_health",
+      "group_id": "china-resources",
+      "group_role": "flagship-listco",
+      "parent_id": "china-resources-pharma",
+      "is_subsidiary": true
     },
     {
       "id": "jiankaikeji-peg",
@@ -29710,7 +29790,11 @@
         }
       ],
       "exchange": "SZSE",
-      "sub_sector": "chemical_generics"
+      "sub_sector": "chemical_generics",
+      "group_id": "cspc-group",
+      "group_role": "subsidiary",
+      "parent_id": "cspc",
+      "is_subsidiary": true
     },
     {
       "id": "jinghua-pharmaceutical",
@@ -41697,7 +41781,11 @@
         }
       ],
       "exchange": "SZSE",
-      "sub_sector": "pharma_distribution"
+      "sub_sector": "pharma_distribution",
+      "group_id": "sinopharm-group",
+      "group_role": "flagship-listco",
+      "parent_id": "sinopharm",
+      "is_subsidiary": true
     },
     {
       "id": "sinopharm-modern-medicines",
@@ -41765,7 +41853,11 @@
         }
       ],
       "exchange": "SSE",
-      "sub_sector": "anti_infectives"
+      "sub_sector": "anti_infectives",
+      "group_id": "sinopharm-group",
+      "group_role": "flagship-listco",
+      "parent_id": "sinopharm",
+      "is_subsidiary": true
     },
     {
       "id": "sirnaomics",
@@ -43353,7 +43445,11 @@
         }
       ],
       "exchange": "HKEX",
-      "sub_sector": "TCM manufacturing / retail"
+      "sub_sector": "TCM manufacturing / retail",
+      "group_id": "tongrentang-group",
+      "group_role": "subsidiary",
+      "parent_id": "tong-ren-tang",
+      "is_subsidiary": true
     },
     {
       "id": "tonghe-pharmaceutical",
@@ -61900,7 +61996,11 @@
         }
       ],
       "exchange": "Xetra",
-      "sub_sector": "antibody therapeutics, oncology"
+      "sub_sector": "antibody therapeutics, oncology",
+      "group_id": "novartis-group",
+      "group_role": "subsidiary",
+      "parent_id": "novartis",
+      "is_subsidiary": true
     },
     {
       "id": "n4-pharma",
@@ -69622,7 +69722,9 @@
         }
       ],
       "exchange": "NASDAQ",
-      "sub_sector": "generics, biosimilars, complex products"
+      "sub_sector": "generics, biosimilars, complex products",
+      "group_id": "viatris-group",
+      "group_role": "flagship-listco"
     },
     {
       "id": "viking-therapeutics",
@@ -71733,7 +71835,11 @@
         }
       ],
       "exchange": "NSE",
-      "sub_sector": "Branded Pharma / MNC Subsidiary"
+      "sub_sector": "Branded Pharma / MNC Subsidiary",
+      "group_id": "abbott-group",
+      "group_role": "subsidiary",
+      "parent_id": "abbott",
+      "is_subsidiary": true
     },
     {
       "id": "abl-bio",
@@ -73191,7 +73297,11 @@
         }
       ],
       "exchange": "NSE",
-      "sub_sector": "Branded Pharma / MNC Subsidiary"
+      "sub_sector": "Branded Pharma / MNC Subsidiary",
+      "group_id": "astrazeneca-group",
+      "group_role": "subsidiary",
+      "parent_id": "astrazeneca",
+      "is_subsidiary": true
     },
     {
       "id": "bal-pharma-in",
@@ -93319,7 +93429,9 @@
           "accessed": "2026-06-20"
         }
       ],
-      "tier": "deep"
+      "tier": "deep",
+      "group_id": "roche-group",
+      "group_role": "group-holdco"
     },
     {
       "id": "novartis",
@@ -93394,7 +93506,9 @@
           "accessed": "2026-06-20"
         }
       ],
-      "tier": "deep"
+      "tier": "deep",
+      "group_id": "novartis-group",
+      "group_role": "group-holdco"
     },
     {
       "id": "astrazeneca",
@@ -93464,7 +93578,9 @@
           "accessed": "2026-06-20"
         }
       ],
-      "tier": "deep"
+      "tier": "deep",
+      "group_id": "astrazeneca-group",
+      "group_role": "group-holdco"
     },
     {
       "id": "gsk",
@@ -93679,7 +93795,9 @@
       ],
       "tier": "deep",
       "exchange": "Xetra",
-      "sub_sector": "pharmaceuticals, crop science, consumer health"
+      "sub_sector": "pharmaceuticals, crop science, consumer health",
+      "group_id": "bayer-group",
+      "group_role": "group-holdco"
     },
     {
       "id": "novo-nordisk",
@@ -94055,7 +94173,10 @@
           "title": "Roche | Genentech R&D (gRED)",
           "accessed": "2026-06"
         }
-      ]
+      ],
+      "group_id": "roche-group",
+      "group_role": "subsidiary",
+      "is_subsidiary": true
     },
     {
       "id": "takeda",
@@ -94378,7 +94499,10 @@
           "accessed": "2026-06"
         }
       ],
-      "tier": "deep"
+      "tier": "deep",
+      "group_id": "roche-group",
+      "group_role": "flagship-listco",
+      "is_subsidiary": true
     },
     {
       "id": "otsuka",
@@ -94943,7 +95067,9 @@
           "accessed": "2026-06-20"
         }
       ],
-      "tier": "deep"
+      "tier": "deep",
+      "group_id": "abbott-group",
+      "group_role": "group-holdco"
     },
     {
       "id": "becton-dickinson",
@@ -95790,7 +95916,9 @@
         }
       ],
       "confidence": 0.7,
-      "last_verified": "2026-06"
+      "last_verified": "2026-06",
+      "group_id": "roche-group",
+      "group_role": "subsidiary"
     },
     {
       "id": "grail",
@@ -97803,7 +97931,9 @@
         }
       ],
       "confidence": 0.85,
-      "last_verified": "2026-06"
+      "last_verified": "2026-06",
+      "group_id": "abbvie-group",
+      "group_role": "subsidiary"
     },
     {
       "id": "cityblock-health",
@@ -98242,7 +98372,7 @@
       "description_en": "Telavant Holdings was a Roivant/Pfizer 'NewCo' (Roivant 75%, Pfizer 25%) formed in 2022 to develop the TL1A antibody RVT-3101 for inflammatory bowel disease in the US and Japan. Roche acquired Telavant for $7.1B upfront in December 2023, one of the year's largest single-asset biopharma deals.",
       "description_zh": "Telavant Holdings 是 Roivant 与 Pfizer 于 2022 年共同组建的“NewCo”（Roivant 持股 75%、Pfizer 持股 25%），开发用于炎症性肠病的 TL1A 抗体 RVT-3101（美、日权益）。罗氏于 2023 年 12 月以 71 亿美元预付款收购 Telavant，为当年最大单资产生物医药交易之一。",
       "is_subsidiary": true,
-      "parent_id": "roivant",
+      "parent_id": "roche",
       "sources": [
         {
           "title": "Roche to acquire Telavant $7.1B (Roivant IR)",
@@ -98254,7 +98384,9 @@
         }
       ],
       "confidence": 0.8,
-      "last_verified": "2026-06"
+      "last_verified": "2026-06",
+      "group_id": "roche-group",
+      "group_role": "subsidiary"
     },
     {
       "id": "agex-therapeutics",
@@ -102181,7 +102313,9 @@
         }
       ],
       "confidence": 0.8,
-      "last_verified": "2026-06"
+      "last_verified": "2026-06",
+      "group_id": "astrazeneca-group",
+      "group_role": "subsidiary"
     },
     {
       "id": "hengenix-biotech",
@@ -103222,7 +103356,9 @@
         }
       ],
       "confidence": 0.8,
-      "last_verified": "2026-06"
+      "last_verified": "2026-06",
+      "group_id": "roche-group",
+      "group_role": "subsidiary"
     },
     {
       "id": "neogenomics",
@@ -108266,7 +108402,9 @@
         }
       ],
       "confidence": 0.85,
-      "last_verified": "2026-06"
+      "last_verified": "2026-06",
+      "group_id": "astrazeneca-group",
+      "group_role": "subsidiary"
     },
     {
       "id": "itm-isotope-technologies-munich",
@@ -113475,7 +113613,9 @@
           "accessed": "2026-06-20"
         }
       ],
-      "tier": "deep"
+      "tier": "deep",
+      "group_id": "jnj-group",
+      "group_role": "group-holdco"
     },
     {
       "id": "abbvie",
@@ -113540,7 +113680,9 @@
           "accessed": "2026-06-20"
         }
       ],
-      "tier": "deep"
+      "tier": "deep",
+      "group_id": "abbvie-group",
+      "group_role": "group-holdco"
     },
     {
       "id": "bms",
@@ -114130,7 +114272,11 @@
           "title": "Sinopharm Group organizational structure",
           "accessed": "2026-06"
         }
-      ]
+      ],
+      "group_id": "sinopharm-group",
+      "group_role": "subsidiary",
+      "parent_id": "sinopharm",
+      "is_subsidiary": true
     },
     {
       "id": "serum-institute-india",
