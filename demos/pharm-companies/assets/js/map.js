@@ -110,7 +110,10 @@
       series: [{
         // NOTE: do NOT enable `large` — large-scatter batches points and ignores per-point
         // itemStyle.color, so re-coloring by dimension stops working. ~3k points render fine.
-        type: 'scatter', coordinateSystem: 'geo', data: points,
+        // progressive:0 disables progressive (incremental) rendering, which auto-enables above
+        // progressiveThreshold (default 3000) — its already-drawn chunks DON'T re-project on geo
+        // roam/zoom, so points lag the base map once site count crosses ~3000 (all filters = all).
+        type: 'scatter', coordinateSystem: 'geo', data: points, progressive: 0,
         emphasis: { scale: 1.4 }, z: 5
       }]
     }, true);
