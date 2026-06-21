@@ -1,22 +1,22 @@
 {
-  "build_time": "2026-06-21T06:27:04Z",
-  "data_version": "08453fd30e",
+  "build_time": "2026-06-21T20:04:46Z",
+  "data_version": "680b2cee25",
   "total_companies": 1913,
   "total_sites": 2312,
-  "total_products": 1959,
+  "total_products": 2588,
   "total_modalities": 21,
   "total_therapeutic_areas": 14,
   "total_milestones": 71,
   "total_countries": 13,
   "shard_counts": {
-    "europe": 290,
-    "greater_china": 689,
-    "japan": 107,
-    "latam": 21,
-    "mea": 43,
-    "north_america": 313,
-    "oceania": 17,
-    "other_apac": 479
+    "europe": 390,
+    "greater_china": 912,
+    "japan": 141,
+    "latam": 28,
+    "mea": 50,
+    "north_america": 503,
+    "oceania": 20,
+    "other_apac": 544
   },
   "company_type_counts": {
     "cdmo_cro": 128,
@@ -43,100 +43,100 @@
     "oceania": 27
   },
   "modality_class_counts": {
-    "biosimilar": 68,
-    "fusion_protein": 22,
-    "biologic": 174,
-    "small_molecule": 1086,
-    "mab": 123,
-    "bispecific": 23,
-    "adc": 31,
-    "vaccine": 98,
-    "peptide": 73,
-    "gene_therapy": 10,
-    "radioligand": 10,
-    "cell_therapy": 58,
-    "tcm": 157,
-    "rna_oligo": 26
+    "biosimilar": 87,
+    "fusion_protein": 33,
+    "biologic": 186,
+    "small_molecule": 1418,
+    "mab": 153,
+    "bispecific": 34,
+    "adc": 40,
+    "vaccine": 135,
+    "peptide": 86,
+    "gene_therapy": 25,
+    "radioligand": 29,
+    "cell_therapy": 86,
+    "rna_oligo": 38,
+    "tcm": 238
   },
   "modality_ref_counts": {
-    "biosimilar": 68,
-    "fusion-protein": 22,
-    "recombinant-protein": 174,
-    "small-molecule": 1086,
-    "mab": 123,
-    "bispecific-antibody": 23,
-    "adc": 31,
-    "viral-vector-vaccine": 13,
-    "peptide": 73,
-    "aav-gene-therapy": 10,
-    "radioligand": 10,
-    "protein-subunit-vaccine": 28,
-    "inactivated-vaccine": 44,
-    "car-t": 44,
-    "tcm-formula": 140,
-    "mrna-vaccine": 13,
-    "sirna": 23,
-    "tcm-injection": 17,
-    "tcr-t": 3,
-    "msc-therapy": 11,
-    "antisense-oligo": 3
+    "biosimilar": 87,
+    "fusion-protein": 33,
+    "recombinant-protein": 186,
+    "small-molecule": 1418,
+    "mab": 153,
+    "bispecific-antibody": 34,
+    "adc": 40,
+    "viral-vector-vaccine": 25,
+    "peptide": 86,
+    "aav-gene-therapy": 25,
+    "radioligand": 29,
+    "protein-subunit-vaccine": 35,
+    "inactivated-vaccine": 55,
+    "car-t": 63,
+    "antisense-oligo": 9,
+    "msc-therapy": 20,
+    "mrna-vaccine": 20,
+    "sirna": 29,
+    "tcm-formula": 219,
+    "tcm-injection": 19,
+    "tcr-t": 3
   },
   "ta_counts": {
-    "immunology": 190,
-    "oncology": 380,
-    "neuroscience": 208,
-    "rare-disease": 137,
-    "hematology": 132,
-    "nephrology": 23,
-    "vaccines": 64,
-    "dermatology": 42,
-    "infectious-disease": 244,
-    "womens-health": 42,
-    "gastroenterology": 75,
-    "respiratory": 91,
-    "cardiometabolic": 281,
-    "ophthalmology": 50
+    "immunology": 229,
+    "oncology": 505,
+    "neuroscience": 294,
+    "rare-disease": 164,
+    "hematology": 168,
+    "nephrology": 34,
+    "vaccines": 91,
+    "dermatology": 57,
+    "infectious-disease": 304,
+    "womens-health": 57,
+    "gastroenterology": 128,
+    "respiratory": 121,
+    "cardiometabolic": 369,
+    "ophthalmology": 67
   },
   "shards": [
     {
       "id": "europe",
       "file": "catalog/europe.json",
-      "count": 290
+      "count": 390
     },
     {
       "id": "greater_china",
       "file": "catalog/greater_china.json",
-      "count": 689
+      "count": 912
     },
     {
       "id": "japan",
       "file": "catalog/japan.json",
-      "count": 107
+      "count": 141
     },
     {
       "id": "latam",
       "file": "catalog/latam.json",
-      "count": 21
+      "count": 28
     },
     {
       "id": "mea",
       "file": "catalog/mea.json",
-      "count": 43
+      "count": 50
     },
     {
       "id": "north_america",
       "file": "catalog/north_america.json",
-      "count": 313
+      "count": 503
     },
     {
       "id": "oceania",
       "file": "catalog/oceania.json",
-      "count": 17
+      "count": 20
     },
     {
       "id": "other_apac",
       "file": "catalog/other_apac.json",
-      "count": 479
+      "count": 544
     }
   ]
 }

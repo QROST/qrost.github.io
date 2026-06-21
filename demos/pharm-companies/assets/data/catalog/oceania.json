@@ -2,6 +2,75 @@
   "shard": "oceania",
   "products": [
     {
+      "id": "emyria-emd-rx5",
+      "company_id": "emyria",
+      "name_en": "EMD-RX5 (cannabidiol)",
+      "name_zh": "EMD-RX5（大麻二酚）",
+      "brand_name": "EMD-RX5",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "neuroscience",
+      "indication_en": "Anxiety and complex chronic pain",
+      "indication_zh": "焦虑及复杂慢性疼痛",
+      "approval_status": "ph3",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "oceania",
+      "confidence": 0.82,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Emyria (ASX:EMD) company profile",
+          "url": "https://nextinvestors.com/company/asx-emd/"
+        }
+      ]
+    },
+    {
+      "id": "emyria-mdma-assisted-therapy",
+      "company_id": "emyria",
+      "name_en": "MDMA (3,4-methylenedioxymethamphetamine)",
+      "name_zh": "MDMA（亚甲二氧基甲基苯丙胺）",
+      "brand_name": "Emyria MDMA-assisted therapy",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "neuroscience",
+      "indication_en": "Post-traumatic stress disorder (MDMA-assisted therapy)",
+      "indication_zh": "创伤后应激障碍（MDMA辅助治疗）",
+      "approval_status": "ph2",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "oceania",
+      "confidence": 0.8,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Emyria expands MDMA programs following TGA decision",
+          "url": "https://emyria.com/announcements/4319708"
+        }
+      ]
+    },
+    {
+      "id": "emyria-emd-mx2",
+      "company_id": "emyria",
+      "name_en": "EMD-MX2 (novel MDMA analogue)",
+      "name_zh": "EMD-MX2（新型MDMA类似物）",
+      "brand_name": "EMD-MX2",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "neuroscience",
+      "indication_en": "Parkinson's disease (preclinical serotonin-releasing agent)",
+      "indication_zh": "帕金森病（临床前血清素释放剂）",
+      "approval_status": "preclinical",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "oceania",
+      "confidence": 0.75,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Emyria and UWA partnership on serotonin-releasing agents",
+          "url": "https://investingnews.com/emyria-and-uwa-in-partnership-to-commercialise-novel-serotonin-releasing-agents-for-mental-health-and-neurology/"
+        }
+      ]
+    },
+    {
       "id": "clarity-sar-bispsma",
       "name_zh": "SAR-bisPSMA",
       "name_en": "SAR-bisPSMA (64Cu/67Cu-SAR-bisPSMA)",

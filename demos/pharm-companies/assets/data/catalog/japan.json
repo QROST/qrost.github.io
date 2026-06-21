@@ -934,6 +934,824 @@
       ]
     },
     {
+      "id": "veritas-in-silico-vis-aki-p53-aso",
+      "company_id": "veritas-in-silico",
+      "name_en": "Anti-p53 antisense oligonucleotide (ischemic AKI program)",
+      "name_zh": "抗p53反义寡核苷酸（缺血性急性肾损伤项目）",
+      "brand_name": "VIS p53 ASO (ischemic AKI)",
+      "modality_id": "antisense-oligo",
+      "therapeutic_area_id": "nephrology",
+      "indication_en": "Prevention of ischemic acute kidney injury after cardiovascular surgery",
+      "indication_zh": "预防心血管手术后缺血性急性肾损伤",
+      "approval_status": "preclinical",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "japan",
+      "confidence": 0.8,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Veritas In Silico Files Patent for mRNA-Targeted Drug for Post-Surgery Kidney Injury",
+          "url": "https://www.tipranks.com/news/company-announcements/veritas-in-silico-files-patent-for-first-in-class-mrna-targeted-drug-for-post-surgery-kidney-injury"
+        }
+      ]
+    },
+    {
+      "id": "veritas-in-silico-mrna-small-molecule-platform",
+      "company_id": "veritas-in-silico",
+      "name_en": "mRNA-targeting small-molecule discovery candidate (aibVIS platform)",
+      "name_zh": "靶向mRNA小分子候选药物（aibVIS平台）",
+      "brand_name": "aibVIS mRNA-targeting small molecule",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "rare-disease",
+      "indication_en": "Undisclosed rare-disease / neuroscience / oncology targets via mRNA-targeting small molecules",
+      "indication_zh": "针对mRNA的小分子，覆盖罕见病/神经/肿瘤靶点（未披露）",
+      "approval_status": "preclinical",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "japan",
+      "confidence": 0.65,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Veritas In Silico Technology platform",
+          "url": "https://www.veritasinsilico.com/en/platform/"
+        }
+      ]
+    },
+    {
+      "id": "medrx-mrx-4tzt",
+      "company_id": "medrx",
+      "name_en": "MRX-4TZT (tizanidine transdermal patch)",
+      "name_zh": "MRX-4TZT（替扎尼定透皮贴剂）",
+      "brand_name": "MRX-4TZT",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "neuroscience",
+      "indication_en": "Spastic paralysis / muscle spasticity",
+      "indication_zh": "痉挛性麻痹/肌肉痉挛",
+      "approval_status": "ph2",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "japan",
+      "confidence": 0.72,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "MEDRx Pipeline",
+          "url": "https://www.medrx.co.jp/english/"
+        },
+        {
+          "title": "GlobalData MEDRx Pipeline",
+          "url": "https://www.globaldata.com/store/report/medrx-co-ltd-pipeline-innovation-and-trend-analysis/"
+        }
+      ]
+    },
+    {
+      "id": "medrx-mrx-9flt",
+      "company_id": "medrx",
+      "name_en": "MRX-9FLT (fentanyl ionic-liquid transdermal)",
+      "name_zh": "MRX-9FLT（芬太尼离子液体透皮制剂）",
+      "brand_name": "MRX-9FLT",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "neuroscience",
+      "indication_en": "Chronic, cancer and severe pain",
+      "indication_zh": "慢性痛、癌痛及重度疼痛",
+      "approval_status": "ph1",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "japan",
+      "confidence": 0.68,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "MEDRx Pipeline",
+          "url": "https://www.medrx.co.jp/english/"
+        }
+      ]
+    },
+    {
+      "id": "medrx-mrx-7mll",
+      "company_id": "medrx",
+      "name_en": "MRX-7MLL (memantine transdermal patch)",
+      "name_zh": "MRX-7MLL（美金刚透皮贴剂）",
+      "brand_name": "MRX-7MLL",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "neuroscience",
+      "indication_en": "Alzheimer's disease",
+      "indication_zh": "阿尔茨海默病",
+      "approval_status": "ph1",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "japan",
+      "confidence": 0.68,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "MEDRx Pipeline",
+          "url": "https://www.medrx.co.jp/english/"
+        }
+      ]
+    },
+    {
+      "id": "medrx-mrx-5lbt",
+      "company_id": "medrx",
+      "name_en": "MRX-5LBT (lidocaine ionic-liquid transdermal)",
+      "name_zh": "MRX-5LBT（利多卡因离子液体透皮制剂）",
+      "brand_name": "MRX-5LBT",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "neuroscience",
+      "indication_en": "Postherpetic neuralgia",
+      "indication_zh": "带状疱疹后神经痛",
+      "approval_status": "ph2",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "japan",
+      "confidence": 0.65,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "MEDRx Pipeline",
+          "url": "https://www.medrx.co.jp/english/"
+        }
+      ]
+    },
+    {
+      "id": "perseus-proteomics-ppmx-t003",
+      "company_id": "perseus-proteomics",
+      "name_en": "PPMX-T003 (anti-TfR1 monoclonal antibody)",
+      "name_zh": "PPMX-T003（抗转铁蛋白受体1单抗）",
+      "brand_name": "PPMX-T003",
+      "modality_id": "mab",
+      "therapeutic_area_id": "hematology",
+      "indication_en": "Polycythemia vera / aggressive NK-cell leukemia",
+      "indication_zh": "真性红细胞增多症/侵袭性NK细胞白血病",
+      "approval_status": "ph1",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "japan",
+      "confidence": 0.82,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Perseus Proteomics Pipeline",
+          "url": "https://www.ppmx.com/en/rd/pipeline/"
+        },
+        {
+          "title": "Newton Biocapital investment",
+          "url": "https://biovox.eu/newton-biocapital-i-invests-in-perseus-proteomics-inc-in-japan-to-develop-therapeutic-antibodies-for-the-treatment-of-blood-cancers/"
+        }
+      ]
+    },
+    {
+      "id": "perseus-proteomics-ppmx-t002",
+      "company_id": "perseus-proteomics",
+      "name_en": "PPMX-T002 (therapeutic monoclonal antibody)",
+      "name_zh": "PPMX-T002（治疗性单克隆抗体）",
+      "brand_name": "PPMX-T002",
+      "modality_id": "mab",
+      "therapeutic_area_id": "oncology",
+      "indication_en": "Cancer (solid/hematologic)",
+      "indication_zh": "肿瘤（实体瘤/血液肿瘤）",
+      "approval_status": "preclinical",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "japan",
+      "confidence": 0.6,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Perseus Proteomics Pipeline",
+          "url": "https://www.ppmx.com/en/rd/pipeline/"
+        }
+      ]
+    },
+    {
+      "id": "perseus-proteomics-ppmx-t004",
+      "company_id": "perseus-proteomics",
+      "name_en": "PPMX-T004 (antibody-drug conjugate)",
+      "name_zh": "PPMX-T004（抗体药物偶联物）",
+      "brand_name": "PPMX-T004",
+      "modality_id": "adc",
+      "therapeutic_area_id": "oncology",
+      "indication_en": "Cancer (ADC with UBE collaboration)",
+      "indication_zh": "肿瘤（与UBE合作开发的ADC）",
+      "approval_status": "preclinical",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "japan",
+      "confidence": 0.62,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Perseus Proteomics & UBE ADC agreement",
+          "url": "https://ube.com/ube/en/news/2024/1021.html"
+        },
+        {
+          "title": "Perseus Proteomics Pipeline",
+          "url": "https://www.ppmx.com/en/rd/pipeline/"
+        }
+      ]
+    },
+    {
+      "id": "qualips-ipsoc-1",
+      "company_id": "qualips",
+      "name_en": "Allogeneic iPSC-derived cardiomyocyte sheet (IPSOC-1)",
+      "name_zh": "异体iPSC来源心肌细胞片（IPSOC-1）",
+      "brand_name": "RiHEART",
+      "modality_id": "msc-therapy",
+      "therapeutic_area_id": "cardiometabolic",
+      "indication_en": "Severe ischemic heart failure",
+      "indication_zh": "重度缺血性心力衰竭",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "japan",
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "World's First iPSC-Derived Cardiomyocyte Therapy Receives Conditional Approval in Japan",
+          "url": "https://cuorips.co.jp/en/news/2026/03/06/512/"
+        },
+        {
+          "title": "Clinical Trial of iPS Cell-derived Cardiomyocytes Sheet for Ischemic Cardiomyopathy",
+          "url": "https://clinicaltrials.gov/study/NCT04696328"
+        }
+      ]
+    },
+    {
+      "id": "nano-holdings-nk105",
+      "company_id": "nano-holdings",
+      "name_en": "NK105 (Paclitaxel micelle)",
+      "name_zh": "NK105（紫杉醇胶束）",
+      "brand_name": "NK105",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "oncology",
+      "indication_en": "Polymeric micelle paclitaxel for breast and other solid tumors",
+      "indication_zh": "高分子胶束紫杉醇，用于乳腺癌等实体瘤",
+      "approval_status": "ph3",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "japan",
+      "confidence": 0.75,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "NK105 パクリタキセルミセル パイプライン-ナノキャリア",
+          "url": "http://www.nanocarrier.co.jp/research/pipeline/01.html"
+        },
+        {
+          "title": "NANOホールディングス株式会社",
+          "url": "https://www.nano-hd.com/"
+        }
+      ]
+    },
+    {
+      "id": "nano-holdings-nc-6004-nanoplatin",
+      "company_id": "nano-holdings",
+      "name_en": "NC-6004 (Nanoplatin)",
+      "name_zh": "NC-6004（纳诺铂）",
+      "brand_name": "Nanoplatin",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "oncology",
+      "indication_en": "Cisplatin micelle for pancreatic and other solid tumors",
+      "indication_zh": "顺铂胶束，用于胰腺癌等实体瘤",
+      "approval_status": "ph3",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "japan",
+      "confidence": 0.75,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "ナノキャリア/ミセル化ナノ粒子で優れた抗がん剤創出推進",
+          "url": "https://finance.logmi.jp/articles/357231"
+        },
+        {
+          "title": "NANOホールディングス株式会社",
+          "url": "https://www.nano-hd.com/"
+        }
+      ]
+    },
+    {
+      "id": "nano-holdings-mrna-therapeutic-candidate",
+      "company_id": "nano-holdings",
+      "name_en": "mRNA therapeutic candidate",
+      "name_zh": "mRNA 治疗候选物",
+      "brand_name": "NANO MRNA pipeline",
+      "modality_id": "mrna-vaccine",
+      "therapeutic_area_id": "oncology",
+      "indication_en": "RNA-based therapeutics platform (early-stage)",
+      "indication_zh": "基于 RNA 的治疗平台（早期）",
+      "approval_status": "preclinical",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "japan",
+      "confidence": 0.55,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "NANO MRNA株式会社",
+          "url": "https://www.nanomrna.co.jp/"
+        }
+      ]
+    },
+    {
+      "id": "oncotherapy-science-ots167",
+      "company_id": "oncotherapy-science",
+      "name_en": "OTS167",
+      "name_zh": "OTS167",
+      "brand_name": "OTS167",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "oncology",
+      "indication_en": "MELK kinase inhibitor for breast cancer and acute myeloid leukemia",
+      "indication_zh": "MELK 激酶抑制剂，用于乳腺癌和急性髓系白血病",
+      "approval_status": "ph2",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "japan",
+      "confidence": 0.8,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "OncoTherapy Science Clinical Pipeline",
+          "url": "https://www.oncotherapy.co.jp/en/research-development/clinical-development-pipelines/"
+        }
+      ]
+    },
+    {
+      "id": "oncotherapy-science-s-588410",
+      "company_id": "oncotherapy-science",
+      "name_en": "S-588410",
+      "name_zh": "S-588410",
+      "brand_name": "S-588410",
+      "modality_id": "peptide",
+      "therapeutic_area_id": "oncology",
+      "indication_en": "Cancer peptide vaccine for esophageal and bladder cancer",
+      "indication_zh": "癌症肽疫苗，用于食管癌和膀胱癌",
+      "approval_status": "ph3",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "japan",
+      "confidence": 0.8,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "OncoTherapy Science Clinical Pipeline",
+          "url": "https://www.oncotherapy.co.jp/en/research-development/clinical-development-pipelines/"
+        }
+      ]
+    },
+    {
+      "id": "oncotherapy-science-s-588210",
+      "company_id": "oncotherapy-science",
+      "name_en": "S-588210",
+      "name_zh": "S-588210",
+      "brand_name": "S-588210",
+      "modality_id": "peptide",
+      "therapeutic_area_id": "oncology",
+      "indication_en": "Cancer peptide vaccine for head and neck cancer and solid tumors",
+      "indication_zh": "癌症肽疫苗，用于头颈癌和实体瘤",
+      "approval_status": "ph2",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "japan",
+      "confidence": 0.75,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "OncoTherapy Science Clinical Pipeline",
+          "url": "https://www.oncotherapy.co.jp/en/research-development/clinical-development-pipelines/"
+        }
+      ]
+    },
+    {
+      "id": "oncotherapy-science-otsgc-a24",
+      "company_id": "oncotherapy-science",
+      "name_en": "OTSGC-A24",
+      "name_zh": "OTSGC-A24",
+      "brand_name": "OTSGC-A24",
+      "modality_id": "peptide",
+      "therapeutic_area_id": "oncology",
+      "indication_en": "Cancer peptide vaccine combined with checkpoint inhibitor for gastric cancer",
+      "indication_zh": "联合免疫检查点抑制剂的癌症肽疫苗，用于胃癌",
+      "approval_status": "ph1",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "japan",
+      "confidence": 0.7,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "OncoTherapy Science Clinical Pipeline",
+          "url": "https://www.oncotherapy.co.jp/en/research-development/clinical-development-pipelines/"
+        }
+      ]
+    },
+    {
+      "id": "oncotherapy-science-otsa101",
+      "company_id": "oncotherapy-science",
+      "name_en": "OTSA101",
+      "name_zh": "OTSA101",
+      "brand_name": "OTSA101",
+      "modality_id": "radioligand",
+      "therapeutic_area_id": "oncology",
+      "indication_en": "Radioisotope-conjugated antibody for synovial sarcoma",
+      "indication_zh": "放射性同位素偶联抗体，用于滑膜肉瘤",
+      "approval_status": "ph1",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "japan",
+      "confidence": 0.65,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "OncoTherapy Science Clinical Pipeline",
+          "url": "https://www.oncotherapy.co.jp/en/research-development/clinical-development-pipelines/"
+        }
+      ]
+    },
+    {
+      "id": "wakamoto-pharmaceutical-strong-wakamoto",
+      "company_id": "wakamoto-pharmaceutical",
+      "name_en": "Strong Wakamoto (Aspergillus oryzae NK + lactic acid bacteria culture)",
+      "name_zh": "强力若素（米曲霉NK菌+乳酸菌培养末）",
+      "brand_name": "強力わかもと / Strong Wakamoto",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "gastroenterology",
+      "indication_en": "Digestive aid / intestinal regulator for indigestion and gastrointestinal upset",
+      "indication_zh": "助消化、整肠，用于消化不良和胃肠不适",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "japan",
+      "confidence": 0.8,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "わかもと製薬 公式サイト",
+          "url": "https://www.wakamoto-pharm.co.jp/english/"
+        },
+        {
+          "title": "強力わかもと-KEGG OTC",
+          "url": "https://www.kegg.jp/medicus-bin/japic_otc?japic_code=J0601002717"
+        }
+      ]
+    },
+    {
+      "id": "wakamoto-pharmaceutical-pranoprofen-eye-drops",
+      "company_id": "wakamoto-pharmaceutical",
+      "name_en": "Pranoprofen ophthalmic solution",
+      "name_zh": "普拉洛芬滴眼液",
+      "brand_name": "プラノプロフェン点眼液0.1%「わかもと」",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "ophthalmology",
+      "indication_en": "NSAID eye drops for ocular inflammation (conjunctivitis, post-surgical)",
+      "indication_zh": "非甾体抗炎滴眼液，用于眼部炎症（结膜炎、术后炎症）",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "japan",
+      "confidence": 0.8,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "プラノプロフェン点眼液0.1%「わかもと」-わかもと製薬",
+          "url": "https://www.wakamoto-pharm.co.jp/medical/0020"
+        }
+      ]
+    },
+    {
+      "id": "wakamoto-pharmaceutical-ofloxacin-eye-drops",
+      "company_id": "wakamoto-pharmaceutical",
+      "name_en": "Ofloxacin ophthalmic solution",
+      "name_zh": "氧氟沙星滴眼液",
+      "brand_name": "オフロキサシン点眼液0.3%「わかもと」",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "ophthalmology",
+      "indication_en": "Fluoroquinolone antibiotic eye drops for bacterial eye infections",
+      "indication_zh": "氟喹诺酮类抗菌滴眼液，用于细菌性眼部感染",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "japan",
+      "confidence": 0.8,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "オフロキサシン点眼液0.3%「わかもと」-KEGG",
+          "url": "https://www.kegg.jp/medicus-bin/japic_med?japic_code=00068823"
+        }
+      ]
+    },
+    {
+      "id": "kyoritsu-seiyaku-canine-distemper-vaccine",
+      "company_id": "kyoritsu-seiyaku",
+      "name_en": "Canine combination vaccine",
+      "name_zh": "犬用联合疫苗",
+      "brand_name": "Kyoritsu canine vaccine",
+      "modality_id": "inactivated-vaccine",
+      "therapeutic_area_id": "vaccines",
+      "indication_en": "Prevention of canine distemper and other infectious diseases in dogs",
+      "indication_zh": "预防犬瘟热及其他犬类传染病",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "japan",
+      "confidence": 0.8,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Kyoritsu Seiyaku history canine vaccine",
+          "url": "https://www.kyoritsuseiyaku.co.jp/en/about/history.html"
+        }
+      ]
+    },
+    {
+      "id": "kyoritsu-seiyaku-livestock-vaccine",
+      "company_id": "kyoritsu-seiyaku",
+      "name_en": "Livestock & aquaculture vaccine range",
+      "name_zh": "畜禽与水产疫苗系列",
+      "brand_name": "Kyoritsu livestock vaccines",
+      "modality_id": "inactivated-vaccine",
+      "therapeutic_area_id": "vaccines",
+      "indication_en": "Infectious disease prevention in livestock, poultry and aquaculture",
+      "indication_zh": "畜禽及水产养殖的传染病预防",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "japan",
+      "confidence": 0.76,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Kyoritsu Seiyaku business overview",
+          "url": "https://www.kyoritsuseiyaku.co.jp/en/about/works.html"
+        }
+      ]
+    },
+    {
+      "id": "meiji-animal-health-suimmugen-art2-er",
+      "company_id": "meiji-animal-health",
+      "name_en": "SUIMMUGEN ART2/ER (combined swine AR/ER recombinant vaccine)",
+      "name_zh": "SUIMMUGEN ART2/ER 猪用重组联合疫苗",
+      "brand_name": "SUIMMUGEN ART2/ER",
+      "modality_id": "recombinant-protein",
+      "therapeutic_area_id": "vaccines",
+      "indication_en": "Swine atrophic rhinitis and erysipelas prevention",
+      "indication_zh": "预防猪萎缩性鼻炎与丹毒",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "japan",
+      "confidence": 0.7,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Meiji Animal Health Innovation",
+          "url": "https://www.vet.meiji.com/global/innovation/"
+        }
+      ]
+    },
+    {
+      "id": "meiji-animal-health-oilvax-7r",
+      "company_id": "meiji-animal-health",
+      "name_en": "OILVAX 7R (multivalent poultry oil-emulsion vaccine)",
+      "name_zh": "OILVAX 7R 禽用油佐剂多价疫苗",
+      "brand_name": "OILVAX 7R",
+      "modality_id": "inactivated-vaccine",
+      "therapeutic_area_id": "vaccines",
+      "indication_en": "Multiple poultry infectious diseases prevention",
+      "indication_zh": "预防多种家禽传染病",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "japan",
+      "confidence": 0.7,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Meiji Animal Health Innovation",
+          "url": "https://www.vet.meiji.com/global/innovation/"
+        }
+      ]
+    },
+    {
+      "id": "meiji-animal-health-kanamycin-veterinary",
+      "company_id": "meiji-animal-health",
+      "name_en": "Kanamycin sulfate (veterinary injectable)",
+      "name_zh": "硫酸卡那霉素（兽用注射剂）",
+      "brand_name": "Kanamycin (veterinary)",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "infectious-disease",
+      "indication_en": "Bacterial infections in livestock",
+      "indication_zh": "畜禽细菌感染",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "japan",
+      "confidence": 0.6,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Meiji Animal Health History",
+          "url": "https://www.vet.meiji.com/global/about/history/"
+        }
+      ]
+    },
+    {
+      "id": "nichi-iko-pharmaceutical-ni-071",
+      "company_id": "nichi-iko-pharmaceutical",
+      "name_en": "Infliximab biosimilar (NI-071)",
+      "name_zh": "英夫利西单抗生物类似药（NI-071）",
+      "brand_name": "Infliximab BS 'Nichi-Iko'",
+      "modality_id": "biosimilar",
+      "therapeutic_area_id": "immunology",
+      "indication_en": "Rheumatoid arthritis, inflammatory bowel disease",
+      "indication_zh": "类风湿关节炎、炎症性肠病",
+      "approval_status": "approved",
+      "drug_class": "biosimilar",
+      "is_blockbuster": false,
+      "region": "japan",
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Nichi-Iko gains Japanese approval for infliximab biosimilar",
+          "url": "https://www.gabionline.net/biosimilars/news/Nichi-Iko-gains-Japanese-approval-for-infliximab-biosimilar"
+        }
+      ]
+    },
+    {
+      "id": "nippon-zoki-pharmaceutical-neurotropin",
+      "company_id": "nippon-zoki-pharmaceutical",
+      "name_en": "Neurotropin (vaccinia inoculated rabbit inflammatory skin extract)",
+      "name_zh": "神经妥乐平",
+      "brand_name": "Neurotropin",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "neuroscience",
+      "indication_en": "Chronic pain, low back pain, postherpetic neuralgia",
+      "indication_zh": "慢性疼痛、腰痛、带状疱疹后神经痛",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "japan",
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Nippon Zoki Products - Neurotropin",
+          "url": "https://www.nippon-zoki.co.jp/e/products/index.html"
+        }
+      ]
+    },
+    {
+      "id": "k-pharma-kp-100-bosutinib",
+      "company_id": "k-pharma",
+      "name_en": "Bosutinib (repurposed, ALS)",
+      "name_zh": "博舒替尼（ALS适应症再定位）",
+      "brand_name": "Bosutinib (K Pharma ALS program)",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "neuroscience",
+      "indication_en": "Amyotrophic lateral sclerosis (ALS)",
+      "indication_zh": "肌萎缩侧索硬化症（渐冻症）",
+      "approval_status": "ph3",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "japan",
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Bosutinib in ALS iDReAM phase 1, eClinicalMedicine",
+          "url": "https://www.thelancet.com/journals/eclinm/article/PIIS2589-5370(22)00437-0/fulltext"
+        },
+        {
+          "title": "K Pharma iPSC CNS pipeline",
+          "url": "https://www.geneonline.com/video/k-pharma/"
+        }
+      ]
+    },
+    {
+      "id": "kaiom-bioscience-cba-1205",
+      "company_id": "kaiom-bioscience",
+      "name_en": "CBA-1205 (anti-DLK1 antibody)",
+      "name_zh": "CBA-1205（抗DLK1抗体）",
+      "brand_name": "CBA-1205",
+      "modality_id": "mab",
+      "therapeutic_area_id": "oncology",
+      "indication_en": "Advanced solid tumors / hepatocellular carcinoma",
+      "indication_zh": "晚期实体瘤、肝细胞癌",
+      "approval_status": "ph1",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "japan",
+      "confidence": 0.8,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Phase I First-In-Human Study of CBA-1205, anti-DLK1 mAb",
+          "url": "https://clinicaltrials.gov/study/NCT06636435"
+        },
+        {
+          "title": "Chiome Bioscience pipeline - Synapse",
+          "url": "https://synapse.patsnap.com/organization/a79a37f4016af90abd1d3767b361db40"
+        }
+      ]
+    },
+    {
+      "id": "kaiom-bioscience-cba-1535",
+      "company_id": "kaiom-bioscience",
+      "name_en": "CBA-1535 (anti-5T4 x anti-CD3 T-cell engager)",
+      "name_zh": "CBA-1535（抗5T4/CD3多特异性抗体）",
+      "brand_name": "CBA-1535",
+      "modality_id": "bispecific-antibody",
+      "therapeutic_area_id": "oncology",
+      "indication_en": "Malignant mesothelioma / solid tumors",
+      "indication_zh": "恶性间皮瘤、实体瘤",
+      "approval_status": "ph1",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "japan",
+      "confidence": 0.75,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Chiome Bioscience pipeline - Synapse",
+          "url": "https://synapse.patsnap.com/organization/a79a37f4016af90abd1d3767b361db40"
+        }
+      ]
+    },
+    {
+      "id": "noile-immune-biotech-nib-101",
+      "company_id": "noile-immune-biotech",
+      "name_en": "NIB-101 (GM2-targeting PRIME CAR-T)",
+      "name_zh": "NIB-101（GM2 靶向 PRIME CAR-T）",
+      "brand_name": "NIB-101",
+      "modality_id": "car-t",
+      "therapeutic_area_id": "oncology",
+      "indication_en": "GM2-positive advanced solid tumors",
+      "indication_zh": "GM2 阳性晚期实体瘤",
+      "approval_status": "ph1",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "japan",
+      "confidence": 0.8,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Noile-Immune Biotech - Synapse",
+          "url": "https://synapse.patsnap.com/organization/2367b8370c06cc3c7d183fc3242c605d"
+        }
+      ]
+    },
+    {
+      "id": "noile-immune-biotech-nib-102",
+      "company_id": "noile-immune-biotech",
+      "name_en": "NIB-102 (GPC3-targeting PRIME CAR-T)",
+      "name_zh": "NIB-102（GPC3 靶向 PRIME CAR-T）",
+      "brand_name": "NIB-102",
+      "modality_id": "car-t",
+      "therapeutic_area_id": "oncology",
+      "indication_en": "GPC3-positive hepatocellular carcinoma, gastric, NSCLC",
+      "indication_zh": "GPC3 阳性肝细胞癌、胃癌、非小细胞肺癌",
+      "approval_status": "ph1",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "japan",
+      "confidence": 0.75,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Return of NIB102 and NIB103 from Takeda",
+          "url": "https://www.noile-immune.com/dcms_media/other/20240624_Return_of_NIB102_and_NIB103_from_Takeda_en.pdf"
+        }
+      ]
+    },
+    {
+      "id": "noile-immune-biotech-nib-103",
+      "company_id": "noile-immune-biotech",
+      "name_en": "NIB-103 (Mesothelin-targeting PRIME CAR-T)",
+      "name_zh": "NIB-103（间皮素靶向 PRIME CAR-T）",
+      "brand_name": "NIB-103",
+      "modality_id": "car-t",
+      "therapeutic_area_id": "oncology",
+      "indication_en": "Mesothelin-positive TNBC, colorectal, ovarian, pancreatic cancer",
+      "indication_zh": "间皮素阳性三阴乳腺癌、结直肠癌、卵巢癌、胰腺癌",
+      "approval_status": "ph1",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "japan",
+      "confidence": 0.75,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Return of NIB102 and NIB103 from Takeda",
+          "url": "https://www.noile-immune.com/dcms_media/other/20240624_Return_of_NIB102_and_NIB103_from_Takeda_en.pdf"
+        }
+      ]
+    },
+    {
       "id": "santen-eybelis",
       "name_zh": "Eybelis（奥米帕格异丙酯）",
       "name_en": "Eybelis",

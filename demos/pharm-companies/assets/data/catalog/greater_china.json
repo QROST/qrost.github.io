@@ -10700,6 +10700,5275 @@
       ]
     },
     {
+      "id": "pruli-pharmaceutical-bivalirudin",
+      "company_id": "pruli-pharmaceutical",
+      "name_en": "Bivalirudin for injection",
+      "name_zh": "注射用比伐芦定",
+      "brand_name": "Bivalirudin",
+      "modality_id": "peptide",
+      "therapeutic_area_id": "cardiometabolic",
+      "indication_en": "Anticoagulation during percutaneous coronary intervention",
+      "indication_zh": "经皮冠状动脉介入术中抗凝",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "confidence": 0.9,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Pruli bivalirudin global approvals",
+          "url": "https://www.zhihuiya.com/news/info_9968.html"
+        }
+      ]
+    },
+    {
+      "id": "pruli-pharmaceutical-azithromycin",
+      "company_id": "pruli-pharmaceutical",
+      "name_en": "Azithromycin for injection",
+      "name_zh": "注射用阿奇霉素",
+      "brand_name": "Azithromycin",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "infectious-disease",
+      "indication_en": "Respiratory and soft-tissue bacterial infections",
+      "indication_zh": "呼吸道及软组织细菌感染",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Pruli Pharmaceutical product portfolio",
+          "url": "https://www.hnpoly.com/"
+        }
+      ]
+    },
+    {
+      "id": "pruli-pharmaceutical-desloratadine",
+      "company_id": "pruli-pharmaceutical",
+      "name_en": "Desloratadine dry suspension",
+      "name_zh": "地氯雷他定干混悬剂",
+      "brand_name": "Fubiding",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "respiratory",
+      "indication_en": "Allergic rhinitis and urticaria (pediatric antihistamine)",
+      "indication_zh": "过敏性鼻炎与荨麻疹（儿童抗组胺药）",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Pruli Pharmaceutical product portfolio",
+          "url": "https://www.hnpoly.com/"
+        }
+      ]
+    },
+    {
+      "id": "pruli-pharmaceutical-posaconazole",
+      "company_id": "pruli-pharmaceutical",
+      "name_en": "Posaconazole injection",
+      "name_zh": "泊沙康唑注射液",
+      "brand_name": "Posaconazole",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "infectious-disease",
+      "indication_en": "Prophylaxis of invasive fungal infections",
+      "indication_zh": "侵袭性真菌感染的预防",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "confidence": 0.8,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Pruli posaconazole / gadoteric acid bulk procurement win",
+          "url": "https://bydrug.pharmcube.com/news/detail/d1f020d275e2b4518340210cf4c4e115"
+        }
+      ]
+    },
+    {
+      "id": "pruli-pharmaceutical-gadoteric-acid",
+      "company_id": "pruli-pharmaceutical",
+      "name_en": "Gadoteric acid meglumine injection",
+      "name_zh": "钆特酸葡胺注射液",
+      "brand_name": "Gadoteric acid",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "oncology",
+      "indication_en": "Gadolinium-based MRI contrast agent",
+      "indication_zh": "钆基磁共振造影剂",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "confidence": 0.8,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Pruli gadoteric acid bulk procurement win",
+          "url": "https://bydrug.pharmcube.com/news/detail/d1f020d275e2b4518340210cf4c4e115"
+        }
+      ]
+    },
+    {
+      "id": "duorui-pharmaceutical-sodium-acetate-ringers",
+      "company_id": "duorui-pharmaceutical",
+      "name_en": "Sodium acetate Ringer's injection",
+      "name_zh": "醋酸钠林格注射液",
+      "brand_name": "Sodium Acetate Ringer's Injection",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "nephrology",
+      "indication_en": "Fluid and electrolyte replacement / plasma volume expander for perioperative and emergency use",
+      "indication_zh": "围手术期及急救补液与电解质平衡",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "confidence": 0.9,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "西藏多瑞医药 液体治疗",
+          "url": "http://www.duoruiyy.com/list/21.html"
+        },
+        {
+          "title": "多瑞医药 2021 年年度报告",
+          "url": "http://file.finance.sina.com.cn/211.154.219.97:9494/MRGG/CNSESZ_STOCK/2022/2022-5/2022-05-18/8226311.PDF"
+        }
+      ]
+    },
+    {
+      "id": "duorui-pharmaceutical-compound-mannitol-injection",
+      "company_id": "duorui-pharmaceutical",
+      "name_en": "Compound mannitol injection",
+      "name_zh": "复方甘露醇注射液",
+      "brand_name": "Compound Mannitol Injection",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "neuroscience",
+      "indication_en": "Osmotic diuretic to reduce intracranial/intraocular pressure and cerebral edema",
+      "indication_zh": "渗透性利尿，降低颅内压及脑水肿",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "confidence": 0.88,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "西藏多瑞医药百度百科",
+          "url": "https://baike.baidu.com/item/%E8%A5%BF%E8%97%8F%E5%A4%9A%E7%91%9E%E5%8C%BB%E8%8D%AF%E8%82%A1%E4%BB%BD%E6%9C%89%E9%99%90%E5%85%AC%E5%8F%B8/51406795"
+        }
+      ]
+    },
+    {
+      "id": "duorui-pharmaceutical-cefotaxime-sodium",
+      "company_id": "duorui-pharmaceutical",
+      "name_en": "Cefotaxime sodium for injection",
+      "name_zh": "注射用头孢噻肟钠",
+      "brand_name": "Cefotaxime Sodium for Injection",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "infectious-disease",
+      "indication_en": "Bacterial infections (third-generation cephalosporin antibiotic)",
+      "indication_zh": "细菌感染（第三代头孢菌素）",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "多瑞医药 2021 年年度报告",
+          "url": "http://file.finance.sina.com.cn/211.154.219.97:9494/MRGG/CNSESZ_STOCK/2022/2022-5/2022-05-18/8226311.PDF"
+        }
+      ]
+    },
+    {
+      "id": "honch-pharma-ixabepilone",
+      "company_id": "honch-pharma",
+      "name_en": "Ixabepilone",
+      "name_zh": "伊沙匹隆",
+      "brand_name": "Ixabepilone API",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "oncology",
+      "indication_en": "Ovarian, peritoneal and fallopian tube cancer",
+      "indication_zh": "卵巢癌、腹膜癌、输卵管癌",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "confidence": 0.6,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "湖北宏中药业 - 官网",
+          "url": "http://www.hcpharm.com/"
+        },
+        {
+          "title": "宏中药业 - 医药魔方",
+          "url": "https://bydrug.pharmcube.com/investgo/company/detail/33c54f2f19238d51108d032956dfa2d2"
+        }
+      ]
+    },
+    {
+      "id": "honch-pharma-vinorelbine",
+      "company_id": "honch-pharma",
+      "name_en": "Vinorelbine tartrate",
+      "name_zh": "酒石酸长春瑞滨",
+      "brand_name": "Vinorelbine API",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "oncology",
+      "indication_en": "Non-small cell lung and breast cancer",
+      "indication_zh": "非小细胞肺癌、乳腺癌",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "confidence": 0.6,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "湖北宏中药业 - 官网",
+          "url": "http://www.hcpharm.com/"
+        }
+      ]
+    },
+    {
+      "id": "honch-pharma-melphalan",
+      "company_id": "honch-pharma",
+      "name_en": "Melphalan hydrochloride",
+      "name_zh": "盐酸美法仑",
+      "brand_name": "Melphalan API",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "hematology",
+      "indication_en": "Multiple myeloma",
+      "indication_zh": "多发性骨髓瘤",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "confidence": 0.55,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "湖北宏中药业 - 官网",
+          "url": "http://www.hcpharm.com/"
+        }
+      ]
+    },
+    {
+      "id": "honch-pharma-midostaurin",
+      "company_id": "honch-pharma",
+      "name_en": "Midostaurin",
+      "name_zh": "米哚妥林",
+      "brand_name": "Midostaurin API",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "oncology",
+      "indication_en": "FLT3-mutated acute myeloid leukemia",
+      "indication_zh": "FLT3突变急性髓系白血病",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "confidence": 0.5,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "湖北宏中药业 - 官网",
+          "url": "http://www.hcpharm.com/"
+        }
+      ]
+    },
+    {
+      "id": "zhongrui-pharma-valsartan",
+      "company_id": "zhongrui-pharma",
+      "name_en": "Valsartan",
+      "name_zh": "缬沙坦",
+      "brand_name": "Valsartan Capsules",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "cardiometabolic",
+      "indication_en": "Hypertension",
+      "indication_zh": "高血压",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "confidence": 0.55,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "天津中瑞药业 产品列表",
+          "url": "http://www.tjzryy.net/tjzryy_ProClass.html"
+        }
+      ]
+    },
+    {
+      "id": "sislan-pharma-methenamine-solution",
+      "company_id": "sislan-pharma",
+      "name_en": "Methenamine solution",
+      "name_zh": "乌洛托品溶液",
+      "brand_name": "Sislan Xialu (西施兰夏露)",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "dermatology",
+      "indication_en": "Hyperhidrosis and bromhidrosis (excessive sweating, body odor)",
+      "indication_zh": "手足多汗、腋臭（狐臭）",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "confidence": 0.9,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "西施兰（南阳）药业股份有限公司 公司简介",
+          "url": "http://www.sislan.cn/Company_profile.html"
+        },
+        {
+          "title": "乌洛托品溶液(西施兰夏露) 说明书",
+          "url": "https://www.jianke.com/product/154509.html"
+        }
+      ]
+    },
+    {
+      "id": "warmen-pharma-relinqing-granules",
+      "company_id": "warmen-pharma",
+      "name_en": "Relinqing Granules",
+      "name_zh": "热淋清颗粒",
+      "brand_name": "Relinqing Granules (热淋清颗粒)",
+      "modality_id": "tcm-formula",
+      "therapeutic_area_id": "nephrology",
+      "indication_en": "Urinary tract infection, pyelonephritis (damp-heat lin syndrome)",
+      "indication_zh": "尿路感染、肾盂肾炎（下焦湿热所致热淋）",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "confidence": 0.9,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "热淋清颗粒(威门) 说明书 - 39药品通",
+          "url": "https://ypk.39.net/509459/manual/"
+        },
+        {
+          "title": "威门药业(430369)公司介绍 - 东方财富网新三板",
+          "url": "https://xinsanban.eastmoney.com/F10/CompanyInfo/Introduction/430369"
+        }
+      ]
+    },
+    {
+      "id": "warmen-pharma-jinqian-dantong-granules",
+      "company_id": "warmen-pharma",
+      "name_en": "Jinqian Dantong Granules",
+      "name_zh": "金钱胆通颗粒",
+      "brand_name": "Jinqian Dantong Granules (金钱胆通颗粒)",
+      "modality_id": "tcm-formula",
+      "therapeutic_area_id": "gastroenterology",
+      "indication_en": "Cholecystitis, cholelithiasis, post-biliary surgery syndrome",
+      "indication_zh": "急慢性胆囊炎、胆石症、胆道术后综合征",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "威门药业(430369)公司介绍 - 东方财富网新三板",
+          "url": "https://xinsanban.eastmoney.com/F10/CompanyInfo/Introduction/430369"
+        }
+      ]
+    },
+    {
+      "id": "warmen-pharma-chuanxiong-chatiao-granules",
+      "company_id": "warmen-pharma",
+      "name_en": "Chuanxiong Chatiao Granules",
+      "name_zh": "川芎茶调颗粒",
+      "brand_name": "Chuanxiong Chatiao Granules (川芎茶调颗粒)",
+      "modality_id": "tcm-formula",
+      "therapeutic_area_id": "neuroscience",
+      "indication_en": "Headache due to wind-cold, cerebral insufficiency",
+      "indication_zh": "外感风邪头痛、脑组织供血供氧不足",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "confidence": 0.8,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "威门药业(430369)公司介绍 - 东方财富网新三板",
+          "url": "https://xinsanban.eastmoney.com/F10/CompanyInfo/Introduction/430369"
+        }
+      ]
+    },
+    {
+      "id": "huaren-bio-pro-101-1",
+      "company_id": "huaren-bio",
+      "name_en": "Recombinant human platelet-derived growth factor-BB (Pro-101-1)",
+      "name_zh": "重组人血小板源生长因子-BB（Pro-101-1）",
+      "brand_name": "Pro-101-1",
+      "modality_id": "recombinant-protein",
+      "therapeutic_area_id": "dermatology",
+      "indication_en": "Burn wound healing",
+      "indication_zh": "烧伤创面愈合",
+      "approval_status": "ph3",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "confidence": 0.78,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "华芢生物赴港IPO 主攻伤口愈合多功能疗法",
+          "url": "http://www.eeo.com.cn/2024/0512/660676.shtml"
+        },
+        {
+          "title": "华芢生物科技（青岛）股份有限公司官网",
+          "url": "https://www.huarenshengwu.com/en/"
+        }
+      ]
+    },
+    {
+      "id": "huaren-bio-pro-101-2",
+      "company_id": "huaren-bio",
+      "name_en": "Recombinant human platelet-derived growth factor-BB (Pro-101-2)",
+      "name_zh": "重组人血小板源生长因子-BB（Pro-101-2）",
+      "brand_name": "Pro-101-2",
+      "modality_id": "recombinant-protein",
+      "therapeutic_area_id": "cardiometabolic",
+      "indication_en": "Diabetic foot ulcers",
+      "indication_zh": "糖尿病足溃疡",
+      "approval_status": "ph2",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "confidence": 0.78,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "重组人血小板源生长因子（华芢生物）— Synapse",
+          "url": "https://synapse.zhihuiya.com/drug/48463a1aa4dd4cdab5176c947f323a89"
+        },
+        {
+          "title": "华芢生物赴港IPO 主攻伤口愈合多功能疗法",
+          "url": "http://www.eeo.com.cn/2024/0512/660676.shtml"
+        }
+      ]
+    },
+    {
+      "id": "anbang-pharma-amoxicillin",
+      "company_id": "anbang-pharma",
+      "name_en": "Amoxicillin capsules",
+      "name_zh": "阿莫西林胶囊",
+      "brand_name": "Amoxicillin",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "infectious-disease",
+      "indication_en": "Bacterial infections",
+      "indication_zh": "细菌感染",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "confidence": 0.7,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Hunan Anbang Pharmaceuticals Co. Ltd. — Synapse",
+          "url": "https://synapse.patsnap.com/organization/89b1f7f912c777aa74a9446dfae4ed3f"
+        }
+      ]
+    },
+    {
+      "id": "bio-valley-dengzhan-shengmai",
+      "company_id": "bio-valley",
+      "name_en": "Dengzhan Shengmai capsules (Erigeron breviscapus + Panax ginseng + Ophiopogon + Schisandra)",
+      "name_zh": "灯盏生脉胶囊",
+      "brand_name": "灯盏生脉胶囊",
+      "modality_id": "tcm-formula",
+      "therapeutic_area_id": "cardiometabolic",
+      "indication_en": "Recovery phase of ischemic cardio-cerebrovascular disease; secondary stroke prevention",
+      "indication_zh": "缺血性心脑血管疾病恢复期；卒中二级预防",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "灯盏生脉胶囊 — 生物谷官网",
+          "url": "http://www.biovalley.cn/product/4628.htm"
+        },
+        {
+          "title": "生物谷 灯盏花药品领域龙头 — 中证网",
+          "url": "https://www.cs.com.cn/ssgs/gsxw/202007/t20200710_6075154.html"
+        }
+      ]
+    },
+    {
+      "id": "bio-valley-dengzhan-xixin-injection",
+      "company_id": "bio-valley",
+      "name_en": "Dengzhan Xixin (Erigeron breviscapus) injection",
+      "name_zh": "灯盏细辛注射液",
+      "brand_name": "灯盏细辛注射液",
+      "modality_id": "tcm-injection",
+      "therapeutic_area_id": "cardiometabolic",
+      "indication_en": "Ischemic cardio-cerebrovascular disease, stroke sequelae",
+      "indication_zh": "缺血性心脑血管疾病、中风后遗症",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "confidence": 0.82,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "生物谷 灯盏花药品领域龙头 — 中证网",
+          "url": "https://www.cs.com.cn/ssgs/gsxw/202007/t20200710_6075154.html"
+        },
+        {
+          "title": "云南首家精选层晋层企业 生物谷引领灯盏花产业发展",
+          "url": "https://www.stcn.com/sanban/hot/202007/t20200727_2171164.html"
+        }
+      ]
+    },
+    {
+      "id": "bio-valley-dengzhanhuasu-tablets",
+      "company_id": "bio-valley",
+      "name_en": "Breviscapine (Dengzhanhuasu) tablets",
+      "name_zh": "灯盏花素片",
+      "brand_name": "灯盏花素片",
+      "modality_id": "tcm-formula",
+      "therapeutic_area_id": "cardiometabolic",
+      "indication_en": "Cerebral thrombosis, coronary heart disease, angina",
+      "indication_zh": "脑血栓、冠心病、心绞痛",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "confidence": 0.75,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "云南生物谷灯盏花药业 — 百度百科",
+          "url": "https://baike.baidu.com/item/%E4%BA%91%E5%8D%97%E7%94%9F%E7%89%A9%E8%B0%B7%E7%81%AF%E7%9B%8F%E8%8A%B1%E8%8D%AF%E4%B8%9A%E6%9C%89%E9%99%90%E5%85%AC%E5%8F%B8/6612524"
+        }
+      ]
+    },
+    {
+      "id": "changxing-pharma-ningxinbao",
+      "company_id": "changxing-pharma",
+      "name_en": "Ningxinbao capsules (Cordyceps cephalosporin mycelium powder)",
+      "name_zh": "宁心宝胶囊",
+      "brand_name": "宁心宝胶囊",
+      "modality_id": "tcm-formula",
+      "therapeutic_area_id": "cardiometabolic",
+      "indication_en": "Arrhythmia, atrioventricular block, refractory bradyarrhythmia, chronic cardiac insufficiency",
+      "indication_zh": "心律失常、房室传导阻滞、难治性缓慢型心律失常、慢性心功能不全",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "confidence": 0.78,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "宁心宝胶囊 — 国产药品数据库（药智数据）",
+          "url": "https://dbadminmaster.yaozh.com/pijian/aJqUaGFna2NmlmdplJ6ckzkwMzli.html"
+        },
+        {
+          "title": "长兴制药股份有限公司官网",
+          "url": "http://www.cxzyc.com.cn/"
+        }
+      ]
+    },
+    {
+      "id": "changxing-pharma-levodopa",
+      "company_id": "changxing-pharma",
+      "name_en": "Levodopa",
+      "name_zh": "左旋多巴",
+      "brand_name": "Levodopa",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "neuroscience",
+      "indication_en": "Parkinson's disease (active pharmaceutical ingredient)",
+      "indication_zh": "帕金森病（原料药）",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "confidence": 0.65,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "长兴制药股份有限公司官网",
+          "url": "http://www.cxzyc.com.cn/"
+        }
+      ]
+    },
+    {
+      "id": "daphne-pharma-watermelon-frost-spray",
+      "company_id": "daphne-pharma",
+      "name_en": "Watermelon Frost (Xiguashuang) Throat Spray",
+      "name_zh": "西瓜霜喷剂",
+      "brand_name": "大佛 (Daphne)",
+      "modality_id": "tcm-formula",
+      "therapeutic_area_id": "respiratory",
+      "indication_en": "Sore throat, pharyngitis, mouth ulcers, gingivitis",
+      "indication_zh": "咽喉肿痛、咽炎、口腔溃疡、牙龈炎",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "confidence": 0.6,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "深圳大佛药业股份有限公司",
+          "url": "http://www.szdaphne.com/"
+        },
+        {
+          "title": "深圳大佛药业 - 百度百科",
+          "url": "https://baike.baidu.com/item/%E6%B7%B1%E5%9C%B3%E5%A4%A7%E4%BD%9B%E8%8D%AF%E4%B8%9A%E8%82%A1%E4%BB%BD%E6%9C%89%E9%99%90%E5%85%AC%E5%8F%B8/19996619"
+        }
+      ]
+    },
+    {
+      "id": "daphne-pharma-compound-menthol-nasal-drops",
+      "company_id": "daphne-pharma",
+      "name_en": "Compound Menthol Nasal Drops",
+      "name_zh": "复方薄荷脑滴鼻液",
+      "brand_name": "大佛 (Daphne)",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "respiratory",
+      "indication_en": "Nasal congestion, dry rhinitis (ENT use)",
+      "indication_zh": "鼻塞、干燥性鼻炎",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "confidence": 0.55,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "产品中心 - 深圳大佛药业",
+          "url": "http://www.szdaphne.com/cn/Products/72_2.html"
+        }
+      ]
+    },
+    {
+      "id": "daphne-pharma-ambroxol-inhalation-solution",
+      "company_id": "daphne-pharma",
+      "name_en": "Ambroxol Hydrochloride Inhalation Solution",
+      "name_zh": "盐酸氨溴索吸入溶液",
+      "brand_name": "盐酸氨溴索吸入溶液",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "respiratory",
+      "indication_en": "Mucolytic for respiratory tract diseases with abnormal mucus secretion",
+      "indication_zh": "呼吸道黏液分泌异常的祛痰治疗",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "confidence": 0.5,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "深圳大佛药业 - 东方财富新三板 F10",
+          "url": "https://xinsanban.eastmoney.com/F10/CompanyInfo/Introduction/836649"
+        }
+      ]
+    },
+    {
+      "id": "datang-pharma-compound-fluocinonide-acetate-tincture",
+      "company_id": "datang-pharma",
+      "name_en": "Compound Fluocinonide Acetate Tincture",
+      "name_zh": "复方醋酸氟轻松酊",
+      "brand_name": "三花 (Sanhua)",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "dermatology",
+      "indication_en": "Eczema, dermatitis, pruritus (topical corticosteroid)",
+      "indication_zh": "湿疹、皮炎、瘙痒（外用糖皮质激素）",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "confidence": 0.7,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "内蒙古大唐药业股份有限公司",
+          "url": "http://www.nmdt.com.cn/"
+        },
+        {
+          "title": "大唐药业 2023 年年度报告",
+          "url": "https://static.cninfo.com.cn/finalpage/2024-03-20/1219362580.PDF"
+        }
+      ]
+    },
+    {
+      "id": "datang-pharma-seabuckthorn-syrup",
+      "company_id": "datang-pharma",
+      "name_en": "Sea Buckthorn Syrup",
+      "name_zh": "沙棘糖浆",
+      "brand_name": "三花 (Sanhua)",
+      "modality_id": "tcm-formula",
+      "therapeutic_area_id": "gastroenterology",
+      "indication_en": "Loss of appetite, indigestion, spleen deficiency (esp. pediatric)",
+      "indication_zh": "食欲不振、消化不良、脾虚（多用于儿童）",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "confidence": 0.7,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "大唐药业 2023 年年度报告",
+          "url": "https://static.cninfo.com.cn/finalpage/2024-03-20/1219362580.PDF"
+        }
+      ]
+    },
+    {
+      "id": "datang-pharma-nuangong-qiwei-powder",
+      "company_id": "datang-pharma",
+      "name_en": "Nuangong Qiwei Powder",
+      "name_zh": "暖宫七味散",
+      "brand_name": "三花 (Sanhua)",
+      "modality_id": "tcm-formula",
+      "therapeutic_area_id": "womens-health",
+      "indication_en": "Menstrual disorders, cold uterus (Mongolian medicine)",
+      "indication_zh": "月经不调、宫寒（蒙药）",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "confidence": 0.65,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "大健康产品 - 大唐药业",
+          "url": "http://www.nmdt.com.cn/Product/Index/40"
+        }
+      ]
+    },
+    {
+      "id": "datang-pharma-honghua-qinggan-shisanwei-pills",
+      "company_id": "datang-pharma",
+      "name_en": "Honghua Qinggan Shisanwei Pills",
+      "name_zh": "红花清肝十三味丸",
+      "brand_name": "三花 (Sanhua)",
+      "modality_id": "tcm-formula",
+      "therapeutic_area_id": "gastroenterology",
+      "indication_en": "Liver heat, hepatobiliary disorders (Mongolian medicine)",
+      "indication_zh": "肝热、肝胆疾患（蒙药）",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "confidence": 0.6,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "大唐药业 2023 年年度报告",
+          "url": "https://static.cninfo.com.cn/finalpage/2024-03-20/1219362580.PDF"
+        }
+      ]
+    },
+    {
+      "id": "fangu-pharma-olanzapine-tablets",
+      "company_id": "fangu-pharma",
+      "name_en": "Olanzapine Tablets",
+      "name_zh": "奥氮平片",
+      "brand_name": "奥氮平片",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "neuroscience",
+      "indication_en": "Schizophrenia, bipolar disorder",
+      "indication_zh": "精神分裂症、双相情感障碍",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "confidence": 0.8,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "深圳市泛谷药业（方古/Foncoo）官网",
+          "url": "https://www.foncoo.com/"
+        },
+        {
+          "title": "奥氮平片通过仿制药一致性评价 - 泛谷药业",
+          "url": "https://www.foncoo.com/news_details/7473970-80-8.html"
+        }
+      ]
+    },
+    {
+      "id": "fangu-pharma-aripiprazole-tablets",
+      "company_id": "fangu-pharma",
+      "name_en": "Aripiprazole Tablets",
+      "name_zh": "阿立哌唑片",
+      "brand_name": "阿立哌唑片",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "neuroscience",
+      "indication_en": "Schizophrenia",
+      "indication_zh": "精神分裂症",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "confidence": 0.78,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "产品中心 - 泛谷药业（方古/Foncoo）",
+          "url": "https://www.foncoo.com/products.html"
+        }
+      ]
+    },
+    {
+      "id": "fangu-pharma-clopidogrel-tablets",
+      "company_id": "fangu-pharma",
+      "name_en": "Clopidogrel Bisulfate Tablets",
+      "name_zh": "硫酸氢氯吡格雷片",
+      "brand_name": "硫酸氢氯吡格雷片",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "cardiometabolic",
+      "indication_en": "Antiplatelet for atherothrombotic events",
+      "indication_zh": "抗血小板，预防动脉粥样硬化血栓事件",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "confidence": 0.75,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "产品中心 - 泛谷药业（方古/Foncoo）",
+          "url": "https://www.foncoo.com/products.html"
+        }
+      ]
+    },
+    {
+      "id": "fangu-pharma-entacapone-tablets",
+      "company_id": "fangu-pharma",
+      "name_en": "Entacapone Tablets",
+      "name_zh": "恩他卡朋片",
+      "brand_name": "恩他卡朋片",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "neuroscience",
+      "indication_en": "Adjunct to levodopa in Parkinson's disease",
+      "indication_zh": "帕金森病左旋多巴辅助治疗",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "confidence": 0.72,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "产品中心 - 泛谷药业（方古/Foncoo）",
+          "url": "https://www.foncoo.com/products.html"
+        }
+      ]
+    },
+    {
+      "id": "fangu-pharma-milnacipran-capsules",
+      "company_id": "fangu-pharma",
+      "name_en": "Milnacipran Hydrochloride Capsules",
+      "name_zh": "盐酸米那普仑胶囊",
+      "brand_name": "盐酸米那普仑胶囊",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "neuroscience",
+      "indication_en": "Major depressive disorder",
+      "indication_zh": "抑郁症",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "confidence": 0.72,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "公司简介 - 泛谷药业（方古/Foncoo）",
+          "url": "https://www.foncoo.com/about.html"
+        }
+      ]
+    },
+    {
+      "id": "fuzheng-pharma-fermented-liushenqu",
+      "company_id": "fuzheng-pharma",
+      "name_en": "Fermented Liushenqu (Massa Medicata Fermentata)",
+      "name_zh": "六神曲（发酵中药饮片）",
+      "brand_name": "辅正",
+      "modality_id": "tcm-formula",
+      "therapeutic_area_id": "gastroenterology",
+      "indication_en": "Indigestion, food stagnation, loss of appetite",
+      "indication_zh": "消化不良、食积、食欲不振",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "confidence": 0.6,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "四川辅正药业 - 中国中药协会",
+          "url": "https://www.catcm.org.cn/143/197001/3183.html"
+        },
+        {
+          "title": "辅正药业 2022 年度报告",
+          "url": "https://pdf.dfcfw.com/pdf/H2_AN202304211585675941_1.pdf"
+        }
+      ]
+    },
+    {
+      "id": "fuzheng-pharma-fermented-jianqu",
+      "company_id": "fuzheng-pharma",
+      "name_en": "Fermented Jianqu (Massa Fermentata)",
+      "name_zh": "建曲（发酵中药饮片）",
+      "brand_name": "辅正",
+      "modality_id": "tcm-formula",
+      "therapeutic_area_id": "gastroenterology",
+      "indication_en": "Food stagnation, indigestion with wind-cold",
+      "indication_zh": "食积不化、表邪食滞",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "confidence": 0.55,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "四川辅正药业股份有限公司 - 百度百科",
+          "url": "https://baike.baidu.com/item/%E5%9B%9B%E5%B7%9D%E8%BE%85%E6%AD%A3%E8%8D%AF%E4%B8%9A%E8%82%A1%E4%BB%BD%E6%9C%89%E9%99%90%E5%85%AC%E5%8F%B8/20091384"
+        }
+      ]
+    },
+    {
+      "id": "haersi-health-kangongyan-tablets",
+      "company_id": "haersi-health",
+      "name_en": "Kang Gong Yan Pian (Anti-Cervicitis Tablets)",
+      "name_zh": "抗宫炎片",
+      "brand_name": "海尔思 (Haersi)",
+      "modality_id": "tcm-formula",
+      "therapeutic_area_id": "womens-health",
+      "indication_en": "Cervicitis, abnormal vaginal discharge",
+      "indication_zh": "宫颈炎、白带异常",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "confidence": 0.75,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "江西海尔思药业 - 官网",
+          "url": "http://www.jxhesyy.com/About"
+        },
+        {
+          "title": "海尔思 2023 半年度报告",
+          "url": "http://file.finance.sina.com.cn/211.154.219.97:9494/MRGG/SBGG/2023/2023-8/2023-08-23/9433631.PDF"
+        }
+      ]
+    },
+    {
+      "id": "haersi-health-xingxiang-tuerfeng-capsules",
+      "company_id": "haersi-health",
+      "name_en": "Xingxiang Tuerfeng Capsules",
+      "name_zh": "杏香兔耳风胶囊",
+      "brand_name": "海尔思 (Haersi)",
+      "modality_id": "tcm-formula",
+      "therapeutic_area_id": "womens-health",
+      "indication_en": "Cervical erosion, pelvic inflammation (clears heat, removes dampness)",
+      "indication_zh": "宫颈糜烂、盆腔炎（清热解毒、祛瘀生新）",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "confidence": 0.65,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "江西海尔思药业 - 官网",
+          "url": "http://www.jxhesyy.com/About"
+        }
+      ]
+    },
+    {
+      "id": "haersi-health-tiaojing-zhitong-tablets",
+      "company_id": "haersi-health",
+      "name_en": "Tiaojing Zhitong Tablets",
+      "name_zh": "调经止痛片",
+      "brand_name": "海尔思 (Haersi)",
+      "modality_id": "tcm-formula",
+      "therapeutic_area_id": "womens-health",
+      "indication_en": "Menstrual irregularity, dysmenorrhea",
+      "indication_zh": "月经不调、痛经",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "confidence": 0.6,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "海尔思 2023 半年度报告",
+          "url": "http://file.finance.sina.com.cn/211.154.219.97:9494/MRGG/SBGG/2023/2023-8/2023-08-23/9433631.PDF"
+        }
+      ]
+    },
+    {
+      "id": "haersi-health-yangxue-danggui-syrup",
+      "company_id": "haersi-health",
+      "name_en": "Yangxue Danggui Syrup",
+      "name_zh": "养血当归糖浆",
+      "brand_name": "海尔思 (Haersi)",
+      "modality_id": "tcm-formula",
+      "therapeutic_area_id": "womens-health",
+      "indication_en": "Blood deficiency, menstrual disorders, tonifying",
+      "indication_zh": "血虚、月经不调、补血调经",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "confidence": 0.6,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "江西海尔思药业 - 官网",
+          "url": "http://www.jxhesyy.com/About"
+        }
+      ]
+    },
+    {
+      "id": "hainan-huanglong-alanyl-glutamine",
+      "company_id": "hainan-huanglong",
+      "name_en": "N(2)-L-alanyl-L-glutamine for injection",
+      "name_zh": "注射用N(2)-L-丙氨酰-L-谷氨酰胺",
+      "brand_name": "N(2)-L-alanyl-L-glutamine for injection",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "gastroenterology",
+      "indication_en": "Parenteral nutrition / glutamine supplementation",
+      "indication_zh": "肠外营养、谷氨酰胺补充",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "confidence": 0.7,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "海南皇隆制药 - 百度百科",
+          "url": "https://baike.baidu.com/item/%E6%B5%B7%E5%8D%97%E7%9A%87%E9%9A%86%E5%88%B6%E8%8D%AF%E8%82%A1%E4%BB%BD%E6%9C%89%E9%99%90%E5%85%AC%E5%8F%B8/12621860"
+        }
+      ]
+    },
+    {
+      "id": "hainan-huanglong-aztreonam",
+      "company_id": "hainan-huanglong",
+      "name_en": "Aztreonam for injection",
+      "name_zh": "注射用氨曲南",
+      "brand_name": "Aztreonam for injection",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "infectious-disease",
+      "indication_en": "Gram-negative bacterial infections",
+      "indication_zh": "革兰阴性菌感染",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "confidence": 0.75,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "海南皇隆制药 - 百度百科",
+          "url": "https://baike.baidu.com/item/%E6%B5%B7%E5%8D%97%E7%9A%87%E9%9A%86%E5%88%B6%E8%8D%AF%E8%82%A1%E4%BB%BD%E6%9C%89%E9%99%90%E5%85%AC%E5%8F%B8/12621860"
+        }
+      ]
+    },
+    {
+      "id": "hainan-huanglong-fructose-diphosphate",
+      "company_id": "hainan-huanglong",
+      "name_en": "Fructose 1,6-diphosphate sodium for injection",
+      "name_zh": "注射用果糖二磷酸钠",
+      "brand_name": "Fructose 1,6-diphosphate sodium for injection",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "cardiometabolic",
+      "indication_en": "Myocardial ischemia / metabolic support",
+      "indication_zh": "心肌缺血、代谢支持",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "confidence": 0.7,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "海南皇隆制药 - 百度百科",
+          "url": "https://baike.baidu.com/item/%E6%B5%B7%E5%8D%97%E7%9A%87%E9%9A%86%E5%88%B6%E8%8D%AF%E8%82%A1%E4%BB%BD%E6%9C%89%E9%99%90%E5%85%AC%E5%8F%B8/12621860"
+        }
+      ]
+    },
+    {
+      "id": "hainan-huanglong-nicorandil",
+      "company_id": "hainan-huanglong",
+      "name_en": "Nicorandil for injection",
+      "name_zh": "注射用尼可地尔",
+      "brand_name": "Nicorandil for injection",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "cardiometabolic",
+      "indication_en": "Unstable angina pectoris",
+      "indication_zh": "不稳定型心绞痛",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "confidence": 0.7,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "注射用尼可地尔 - 药智数据",
+          "url": "https://dbadminmaster.yaozh.com/pijian/aJqUcGZmaWFolmZinJmWkzkwMzli.html"
+        }
+      ]
+    },
+    {
+      "id": "hainan-huanglong-omeprazole",
+      "company_id": "hainan-huanglong",
+      "name_en": "Omeprazole sodium for injection",
+      "name_zh": "注射用奥美拉唑钠",
+      "brand_name": "Omeprazole sodium for injection",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "gastroenterology",
+      "indication_en": "Peptic ulcer / acid-related disorders",
+      "indication_zh": "消化性溃疡、酸相关疾病",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "confidence": 0.65,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "海南皇隆制药 - 百度百科",
+          "url": "https://baike.baidu.com/item/%E6%B5%B7%E5%8D%97%E7%9A%87%E9%9A%86%E5%88%B6%E8%8D%AF%E8%82%A1%E4%BB%BD%E6%9C%89%E9%99%90%E5%85%AC%E5%8F%B8/12621860"
+        }
+      ]
+    },
+    {
+      "id": "haixin-pharma-transfer-factor",
+      "company_id": "haixin-pharma",
+      "name_en": "Transfer factor oral solution",
+      "name_zh": "转移因子口服溶液",
+      "brand_name": "孚泰 (Futai)",
+      "modality_id": "recombinant-protein",
+      "therapeutic_area_id": "immunology",
+      "indication_en": "Immune modulation / immunodeficiency adjunct",
+      "indication_zh": "免疫调节、免疫缺陷辅助治疗",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "confidence": 0.7,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "江西赣南海欣药业 - 公司网站",
+          "url": "https://www.gnhxyy.com/xsqy.jhtml"
+        }
+      ]
+    },
+    {
+      "id": "haixin-pharma-azithromycin",
+      "company_id": "haixin-pharma",
+      "name_en": "Azithromycin lactobionate for injection",
+      "name_zh": "注射用乳糖酸阿奇霉素",
+      "brand_name": "孚新 (Fuxin)",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "infectious-disease",
+      "indication_en": "Bacterial infections",
+      "indication_zh": "细菌感染",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "confidence": 0.75,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "江西赣南海欣药业 - 公司网站",
+          "url": "https://www.gnhxyy.com/xsqy.jhtml"
+        }
+      ]
+    },
+    {
+      "id": "haixin-pharma-clindamycin",
+      "company_id": "haixin-pharma",
+      "name_en": "Clindamycin glucose injection",
+      "name_zh": "克林霉素葡萄糖注射液",
+      "brand_name": "孚帮 (Fubang)",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "infectious-disease",
+      "indication_en": "Anaerobic / Gram-positive bacterial infections",
+      "indication_zh": "厌氧菌及革兰阳性菌感染",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "confidence": 0.7,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "江西赣南海欣药业 - 公司网站",
+          "url": "https://www.gnhxyy.com/xsqy.jhtml"
+        }
+      ]
+    },
+    {
+      "id": "haixin-pharma-pefloxacin",
+      "company_id": "haixin-pharma",
+      "name_en": "Pefloxacin mesylate for injection",
+      "name_zh": "注射用甲磺酸培氟沙星",
+      "brand_name": "孚来灵 (Fulailing)",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "infectious-disease",
+      "indication_en": "Bacterial infections",
+      "indication_zh": "细菌感染",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "confidence": 0.65,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "江西赣南海欣药业 - 公司网站",
+          "url": "https://www.gnhxyy.com/xsqy.jhtml"
+        }
+      ]
+    },
+    {
+      "id": "hc-synthetic-guyuling",
+      "company_id": "hc-synthetic",
+      "name_en": "Guyuling capsule",
+      "name_zh": "骨愈灵胶囊",
+      "brand_name": "骨愈灵胶囊",
+      "modality_id": "tcm-formula",
+      "therapeutic_area_id": "rare-disease",
+      "indication_en": "Promotion of bone fracture healing (orthopedics)",
+      "indication_zh": "促进骨折愈合（骨科）",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "confidence": 0.7,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "华创合成制药 - 同花顺F10",
+          "url": "https://basic.10jqka.com.cn/832077/company.html"
+        }
+      ]
+    },
+    {
+      "id": "hc-synthetic-levornidazole",
+      "company_id": "hc-synthetic",
+      "name_en": "Levornidazole",
+      "name_zh": "左奥硝唑",
+      "brand_name": "Levornidazole",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "infectious-disease",
+      "indication_en": "Anaerobic bacterial infections",
+      "indication_zh": "敏感厌氧菌感染",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "confidence": 0.65,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "华创合成制药 - 公司网站",
+          "url": "http://hcsynthesis.com/"
+        }
+      ]
+    },
+    {
+      "id": "hc-synthetic-triazole-antifungal",
+      "company_id": "hc-synthetic",
+      "name_en": "Novel broad-spectrum triazole antifungal (class-1)",
+      "name_zh": "广谱三唑类抗真菌新药（化药1类）",
+      "brand_name": "Novel triazole antifungal",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "infectious-disease",
+      "indication_en": "Invasive aspergillosis / deep fungal infections",
+      "indication_zh": "侵袭性曲霉病、深部真菌感染",
+      "approval_status": "ph2",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "confidence": 0.55,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "华创合成制药 - 创新药管线",
+          "url": "http://www.hcsynthesis.com/list-chuangxinxinyao.html"
+        }
+      ]
+    },
+    {
+      "id": "zhejiang-haisen-pharmaceutical-escitalopram",
+      "company_id": "zhejiang-haisen-pharmaceutical",
+      "name_en": "Escitalopram oxalate",
+      "name_zh": "草酸艾司西酞普兰",
+      "brand_name": "泰齐 (Taiqi)",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "neuroscience",
+      "indication_en": "Major depression and anxiety disorders",
+      "indication_zh": "抑郁症与焦虑障碍",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "confidence": 0.78,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "浙江海森药业 2024 年度报告摘要",
+          "url": "https://paper.cnstock.com/html/2025-03/28/content_2041726.htm"
+        },
+        {
+          "title": "海森药业官网",
+          "url": "https://www.haisenpharma.com/"
+        }
+      ]
+    },
+    {
+      "id": "zhejiang-haisen-pharmaceutical-parecoxib",
+      "company_id": "zhejiang-haisen-pharmaceutical",
+      "name_en": "Parecoxib sodium",
+      "name_zh": "帕瑞昔布钠",
+      "brand_name": "Parecoxib sodium",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "neuroscience",
+      "indication_en": "Short-term management of post-operative pain",
+      "indication_zh": "术后镇痛",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "confidence": 0.68,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "浙江海森药业 2024 年度报告摘要",
+          "url": "https://paper.cnstock.com/html/2025-03/28/content_2041726.htm"
+        }
+      ]
+    },
+    {
+      "id": "zhejiang-haisen-pharmaceutical-atorvastatin",
+      "company_id": "zhejiang-haisen-pharmaceutical",
+      "name_en": "Atorvastatin calcium",
+      "name_zh": "阿托伐他汀钙",
+      "brand_name": "Atorvastatin calcium",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "cardiometabolic",
+      "indication_en": "Hyperlipidemia (API)",
+      "indication_zh": "高血脂症（原料药）",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "confidence": 0.66,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "海森药业官网",
+          "url": "https://www.haisenpharma.com/"
+        }
+      ]
+    },
+    {
+      "id": "haixi-pharma-amlodipine-atorvastatin",
+      "company_id": "haixi-pharma",
+      "name_en": "Amlodipine / Atorvastatin",
+      "name_zh": "氨氯地平阿托伐他汀钙",
+      "brand_name": "海慧通 (Haihuitong)",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "cardiometabolic",
+      "indication_en": "Hypertension with hyperlipidemia / coronary heart disease",
+      "indication_zh": "高血压合并高血脂、冠心病",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "latest_annual_sales": {
+        "value": 187000000.0,
+        "currency": "CNY",
+        "year": 2024
+      },
+      "confidence": 0.8,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "海西新药 4 款仿制药贡献超 90% 收入",
+          "url": "https://m.ofweek.com/medical/2025-08/ART-11163-8420-30668760.html"
+        }
+      ]
+    },
+    {
+      "id": "haixi-pharma-mosapride",
+      "company_id": "haixi-pharma",
+      "name_en": "Mosapride citrate",
+      "name_zh": "枸橼酸莫沙必利",
+      "brand_name": "安必力 (Anbili)",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "gastroenterology",
+      "indication_en": "Functional dyspepsia",
+      "indication_zh": "功能性消化不良",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "latest_annual_sales": {
+        "value": 146000000.0,
+        "currency": "CNY",
+        "year": 2024
+      },
+      "confidence": 0.8,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "海西新药 4 款仿制药贡献超 90% 收入",
+          "url": "https://m.ofweek.com/medical/2025-08/ART-11163-8420-30668760.html"
+        }
+      ]
+    },
+    {
+      "id": "haixi-pharma-cinacalcet",
+      "company_id": "haixi-pharma",
+      "name_en": "Cinacalcet hydrochloride",
+      "name_zh": "盐酸西那卡塞",
+      "brand_name": "瑞安妥 (Ruiantuo)",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "nephrology",
+      "indication_en": "Secondary hyperparathyroidism in dialysis patients",
+      "indication_zh": "继发性甲状旁腺功能亢进",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "latest_annual_sales": {
+        "value": 47900000.0,
+        "currency": "CNY",
+        "year": 2024
+      },
+      "confidence": 0.78,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "海西新药 4 款仿制药贡献超 90% 收入",
+          "url": "https://m.ofweek.com/medical/2025-08/ART-11163-8420-30668760.html"
+        }
+      ]
+    },
+    {
+      "id": "haixi-pharma-hydroxychloroquine",
+      "company_id": "haixi-pharma",
+      "name_en": "Hydroxychloroquine sulfate",
+      "name_zh": "硫酸羟氯喹",
+      "brand_name": "赛西福 (Saixifu)",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "immunology",
+      "indication_en": "Rheumatoid arthritis and systemic lupus erythematosus",
+      "indication_zh": "类风湿关节炎与系统性红斑狼疮",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "latest_annual_sales": {
+        "value": 43700000.0,
+        "currency": "CNY",
+        "year": 2024
+      },
+      "confidence": 0.78,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "海西新药 4 款仿制药贡献超 90% 收入",
+          "url": "https://m.ofweek.com/medical/2025-08/ART-11163-8420-30668760.html"
+        }
+      ]
+    },
+    {
+      "id": "haixi-pharma-c019199",
+      "company_id": "haixi-pharma",
+      "name_en": "C019199",
+      "name_zh": "C019199",
+      "brand_name": "C019199",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "oncology",
+      "indication_en": "Second-line / advanced osteosarcoma",
+      "indication_zh": "二线及晚期骨肉瘤",
+      "approval_status": "ph2",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "confidence": 0.6,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "福建海西新药创制 百度百科",
+          "url": "https://baike.baidu.com/item/%E7%A6%8F%E5%BB%BA%E6%B5%B7%E8%A5%BF%E6%96%B0%E8%8D%AF%E5%88%9B%E5%88%B6%E6%9C%89%E9%99%90%E5%85%AC%E5%8F%B8/21046726"
+        }
+      ]
+    },
+    {
+      "id": "homesun-pharma-salbutamol-tablets",
+      "company_id": "homesun-pharma",
+      "name_en": "Salbutamol sulfate tablets",
+      "name_zh": "硫酸沙丁胺醇片",
+      "brand_name": "Salbutamol sulfate tablets",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "respiratory",
+      "indication_en": "Bronchospasm in asthma and COPD",
+      "indication_zh": "哮喘及慢阻肺所致支气管痉挛",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "confidence": 0.78,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "苏州弘森药业股份有限公司 官网",
+          "url": "https://www.homesunpharm.com/"
+        }
+      ]
+    },
+    {
+      "id": "homesun-pharma-ketotifen-fumarate-tablets",
+      "company_id": "homesun-pharma",
+      "name_en": "Ketotifen fumarate tablets",
+      "name_zh": "富马酸酮替芬片",
+      "brand_name": "Ketotifen fumarate tablets",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "respiratory",
+      "indication_en": "Allergic asthma and rhinitis prophylaxis",
+      "indication_zh": "过敏性哮喘及鼻炎预防",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "confidence": 0.75,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "苏州弘森药业股份有限公司 官网",
+          "url": "https://www.homesunpharm.com/"
+        }
+      ]
+    },
+    {
+      "id": "homesun-pharma-phenytoin-sodium-tablets",
+      "company_id": "homesun-pharma",
+      "name_en": "Phenytoin sodium tablets",
+      "name_zh": "苯妥英钠片",
+      "brand_name": "Phenytoin sodium tablets",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "neuroscience",
+      "indication_en": "Epilepsy / seizure control",
+      "indication_zh": "癫痫发作控制",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "confidence": 0.75,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "苏州弘森药业股份有限公司 官网",
+          "url": "https://www.homesunpharm.com/"
+        }
+      ]
+    },
+    {
+      "id": "homesun-pharma-metronidazole-tablets",
+      "company_id": "homesun-pharma",
+      "name_en": "Metronidazole tablets",
+      "name_zh": "甲硝唑片",
+      "brand_name": "Metronidazole tablets",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "infectious-disease",
+      "indication_en": "Anaerobic and protozoal infections",
+      "indication_zh": "厌氧菌及原虫感染",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "confidence": 0.74,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "苏州弘森药业股份有限公司 官网",
+          "url": "https://www.homesunpharm.com/"
+        }
+      ]
+    },
+    {
+      "id": "homesun-pharma-ranitidine-capsules",
+      "company_id": "homesun-pharma",
+      "name_en": "Ranitidine hydrochloride capsules",
+      "name_zh": "盐酸雷尼替丁胶囊",
+      "brand_name": "Ranitidine hydrochloride capsules",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "gastroenterology",
+      "indication_en": "Peptic ulcer and acid-related disease",
+      "indication_zh": "消化性溃疡及胃酸相关疾病",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "confidence": 0.72,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "苏州弘森药业股份有限公司 官网",
+          "url": "https://www.homesunpharm.com/"
+        }
+      ]
+    },
+    {
+      "id": "hunan-tianji-naodesheng-pills",
+      "company_id": "hunan-tianji",
+      "name_en": "Naodesheng pills",
+      "name_zh": "脑得生丸",
+      "brand_name": "脑得生丸",
+      "modality_id": "tcm-formula",
+      "therapeutic_area_id": "neuroscience",
+      "indication_en": "Cerebral ischemia, post-stroke recovery",
+      "indication_zh": "脑供血不足、中风后遗症",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "confidence": 0.62,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "湖南天济草堂制药 2020 半年度报告",
+          "url": "http://notice.10jqka.com.cn/api/pdf/e653c0db78aa3cc0.pdf"
+        }
+      ]
+    },
+    {
+      "id": "hunan-tianji-breviscapine-tablets",
+      "company_id": "hunan-tianji",
+      "name_en": "Breviscapine tablets",
+      "name_zh": "灯盏花素片",
+      "brand_name": "灯盏花素片",
+      "modality_id": "tcm-formula",
+      "therapeutic_area_id": "cardiometabolic",
+      "indication_en": "Cerebrovascular and ischemic cardiovascular disease",
+      "indication_zh": "脑血管及缺血性心血管疾病",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "confidence": 0.62,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "湖南天济草堂制药 2020 半年度报告",
+          "url": "http://notice.10jqka.com.cn/api/pdf/e653c0db78aa3cc0.pdf"
+        }
+      ]
+    },
+    {
+      "id": "hunan-tianji-qingre-sanjie-capsules",
+      "company_id": "hunan-tianji",
+      "name_en": "Qingre Sanjie capsules",
+      "name_zh": "清热散结胶囊",
+      "brand_name": "清热散结胶囊",
+      "modality_id": "tcm-formula",
+      "therapeutic_area_id": "infectious-disease",
+      "indication_en": "Heat-clearing, anti-inflammatory (TCM)",
+      "indication_zh": "清热解毒、消炎",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "confidence": 0.58,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "湖南天济草堂制药 2020 半年度报告",
+          "url": "http://notice.10jqka.com.cn/api/pdf/e653c0db78aa3cc0.pdf"
+        }
+      ]
+    },
+    {
+      "id": "hunan-tianji-huganning-capsules",
+      "company_id": "hunan-tianji",
+      "name_en": "Huganning capsules",
+      "name_zh": "护肝宁胶囊",
+      "brand_name": "护肝宁胶囊",
+      "modality_id": "tcm-formula",
+      "therapeutic_area_id": "gastroenterology",
+      "indication_en": "Liver protection, chronic hepatitis support",
+      "indication_zh": "护肝、慢性肝炎辅助",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "confidence": 0.58,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "湖南天济草堂制药 2020 半年度报告",
+          "url": "http://notice.10jqka.com.cn/api/pdf/e653c0db78aa3cc0.pdf"
+        }
+      ]
+    },
+    {
+      "id": "jiangxi-yuandong-sangju-ganmao-mixture",
+      "company_id": "jiangxi-yuandong",
+      "name_en": "Sangju Ganmao mixture",
+      "name_zh": "桑菊感冒合剂",
+      "brand_name": "桑菊感冒合剂",
+      "modality_id": "tcm-formula",
+      "therapeutic_area_id": "respiratory",
+      "indication_en": "Wind-heat common cold, cough",
+      "indication_zh": "风热感冒、咳嗽",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "confidence": 0.72,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "江西远东药业 生产药品 - 环球医药网",
+          "url": "https://shuju.qgyyzs.net/ypscqy/details85399kdCE6a7wZz90111.html"
+        }
+      ]
+    },
+    {
+      "id": "jiangxi-yuandong-yinqiao-jiedu-mixture",
+      "company_id": "jiangxi-yuandong",
+      "name_en": "Yinqiao Jiedu mixture",
+      "name_zh": "银翘解毒合剂",
+      "brand_name": "银翘解毒合剂",
+      "modality_id": "tcm-formula",
+      "therapeutic_area_id": "respiratory",
+      "indication_en": "Wind-heat cold, fever, sore throat",
+      "indication_zh": "风热感冒、发热、咽痛",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "confidence": 0.72,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "江西远东药业 生产药品 - 环球医药网",
+          "url": "https://shuju.qgyyzs.net/ypscqy/details85399kdCE6a7wZz90111.html"
+        }
+      ]
+    },
+    {
+      "id": "jiangxi-yuandong-yangxue-danggui-syrup",
+      "company_id": "jiangxi-yuandong",
+      "name_en": "Yangxue Danggui syrup",
+      "name_zh": "养血当归糖浆",
+      "brand_name": "养血当归糖浆",
+      "modality_id": "tcm-formula",
+      "therapeutic_area_id": "womens-health",
+      "indication_en": "Blood deficiency, menstrual disorders (TCM)",
+      "indication_zh": "血虚、月经不调",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "confidence": 0.7,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "江西远东药业 生产药品 - 环球医药网",
+          "url": "https://shuju.qgyyzs.net/ypscqy/details85399kdCE6a7wZz90111.html"
+        }
+      ]
+    },
+    {
+      "id": "jiangxi-yuandong-nongweilin-syrup",
+      "company_id": "jiangxi-yuandong",
+      "name_en": "Concentrated vitavef syrup (Nongweilin)",
+      "name_zh": "浓维磷糖浆",
+      "brand_name": "浓维磷糖浆",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "neuroscience",
+      "indication_en": "Neurasthenia, fatigue, nutritional support",
+      "indication_zh": "神经衰弱、体虚、营养补充",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "confidence": 0.68,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "江西远东药业 生产药品 - 环球医药网",
+          "url": "https://shuju.qgyyzs.net/ypscqy/details85399kdCE6a7wZz90111.html"
+        }
+      ]
+    },
+    {
+      "id": "jilin-boda-edaravone-injection",
+      "company_id": "jilin-boda",
+      "name_en": "Edaravone injection",
+      "name_zh": "依达拉奉注射液",
+      "brand_name": "易达生",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "neuroscience",
+      "indication_en": "Acute ischemic stroke neuroprotection",
+      "indication_zh": "急性缺血性脑卒中神经保护",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "confidence": 0.8,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "吉林省博大制药 百度百科",
+          "url": "https://baike.baidu.com/item/%E5%90%89%E6%9E%97%E7%9C%81%E5%8D%9A%E5%A4%A7%E5%88%B6%E8%8D%AF%E8%82%A1%E4%BB%BD%E6%9C%89%E9%99%90%E5%85%AC%E5%8F%B8/51194210"
+        },
+        {
+          "title": "博大制药 官网",
+          "url": "http://boldere.com/about/about.asp"
+        }
+      ]
+    },
+    {
+      "id": "jilin-boda-rivaroxaban-tablets",
+      "company_id": "jilin-boda",
+      "name_en": "Rivaroxaban tablets",
+      "name_zh": "利伐沙班片",
+      "brand_name": "Rivaroxaban tablets",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "cardiometabolic",
+      "indication_en": "Anticoagulation, VTE / stroke prevention",
+      "indication_zh": "抗凝、静脉血栓/卒中预防",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "confidence": 0.78,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "吉林省博大制药 百度百科",
+          "url": "https://baike.baidu.com/item/%E5%90%89%E6%9E%97%E7%9C%81%E5%8D%9A%E5%A4%A7%E5%88%B6%E8%8D%AF%E8%82%A1%E4%BB%BD%E6%9C%89%E9%99%90%E5%85%AC%E5%8F%B8/51194210"
+        }
+      ]
+    },
+    {
+      "id": "jilin-boda-compound-paracetamol-diphenhydramine-tablets",
+      "company_id": "jilin-boda",
+      "name_en": "Compound paracetamol and diphenhydramine tablets",
+      "name_zh": "复方氨酚苯海拉明片",
+      "brand_name": "复方氨酚苯海拉明片",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "respiratory",
+      "indication_en": "Common cold symptom relief",
+      "indication_zh": "感冒症状缓解",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "confidence": 0.76,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "吉林省博大制药 百度百科",
+          "url": "https://baike.baidu.com/item/%E5%90%89%E6%9E%97%E7%9C%81%E5%8D%9A%E5%A4%A7%E5%88%B6%E8%8D%AF%E8%82%A1%E4%BB%BD%E6%9C%89%E9%99%90%E5%85%AC%E5%8F%B8/51194210"
+        }
+      ]
+    },
+    {
+      "id": "jilin-boda-moroxydine-hydrochloride",
+      "company_id": "jilin-boda",
+      "name_en": "Moroxydine hydrochloride",
+      "name_zh": "盐酸吗啉胍",
+      "brand_name": "盐酸吗啉胍",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "infectious-disease",
+      "indication_en": "Antiviral active ingredient",
+      "indication_zh": "抗病毒原料药",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "confidence": 0.74,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "博大制药 官网",
+          "url": "http://boldere.com/about/about.asp"
+        }
+      ]
+    },
+    {
+      "id": "jingzhu-tibetan-gout-metabolism-injection",
+      "company_id": "jingzhu-tibetan",
+      "name_en": "Tibetan medicine gout / crystal-dissolving metabolic injection",
+      "name_zh": "融晶调代谢藏药针剂",
+      "brand_name": "晶珠融晶调代谢针剂",
+      "modality_id": "tcm-injection",
+      "therapeutic_area_id": "immunology",
+      "indication_en": "Gout / hyperuricemia, dissolving urate crystals and regulating metabolism",
+      "indication_zh": "痛风、高尿酸血症，融解尿酸结晶调节代谢",
+      "approval_status": "ph2",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "confidence": 0.5,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "痛风最新型融晶调代谢针剂 — 百度健康",
+          "url": "https://m.baidu.com/bh/m/detail/ar_6444892123710371586"
+        }
+      ]
+    },
+    {
+      "id": "jingzhu-tibetan-rheumatic-bone-formula",
+      "company_id": "jingzhu-tibetan",
+      "name_en": "Tibetan rheumatic-bone disease formula",
+      "name_zh": "风湿骨病藏药",
+      "brand_name": "晶珠风湿骨痛系列",
+      "modality_id": "tcm-formula",
+      "therapeutic_area_id": "immunology",
+      "indication_en": "Rheumatic and bone-joint disease, joint swelling and pain",
+      "indication_zh": "风湿骨病、关节肿痛",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "confidence": 0.5,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "青海晶珠藏药集团 — 百度百科",
+          "url": "https://baike.baidu.com/item/%E9%9D%92%E6%B5%B7%E6%99%B6%E7%8F%A0%E8%97%8F%E8%8D%AF%E9%9B%86%E5%9B%A2/1807607"
+        }
+      ]
+    },
+    {
+      "id": "jingzhu-tibetan-cardio-cerebro-formula",
+      "company_id": "jingzhu-tibetan",
+      "name_en": "Tibetan cardio-cerebrovascular formula",
+      "name_zh": "心脑血管藏药",
+      "brand_name": "晶珠心脑系列",
+      "modality_id": "tcm-formula",
+      "therapeutic_area_id": "cardiometabolic",
+      "indication_en": "Prevention and treatment of cardio-cerebrovascular disease",
+      "indication_zh": "心脑血管疾病防治",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "confidence": 0.45,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "晶珠藏药(838410)公司介绍 — 东方财富网新三板",
+          "url": "https://xinsanban.eastmoney.com/F10/CompanyInfo/Introduction/838410"
+        }
+      ]
+    },
+    {
+      "id": "jiren-pharma-shufeng-jiedu-capsule",
+      "company_id": "jiren-pharma",
+      "name_en": "Shufeng Jiedu Capsule",
+      "name_zh": "疏风解毒胶囊",
+      "brand_name": "济人 疏风解毒胶囊",
+      "modality_id": "tcm-formula",
+      "therapeutic_area_id": "infectious-disease",
+      "indication_en": "Acute upper respiratory tract infection, viral respiratory illness",
+      "indication_zh": "急性上呼吸道感染、病毒性呼吸道疾病",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "安徽济人药业 公司简介 — 济人医药集团",
+          "url": "https://www.ahjiren.com/about.aspx"
+        },
+        {
+          "title": "安徽济人药业 2024 年年度报告 — 上交所",
+          "url": "http://static.sse.com.cn/stock/disclosure/announcement/c/202412/001661_20241231_XFM1.pdf"
+        }
+      ]
+    },
+    {
+      "id": "jiren-pharma-pudilan-anti-inflammatory-tablet",
+      "company_id": "jiren-pharma",
+      "name_en": "Pudilan Xiaoyan Tablet",
+      "name_zh": "蒲地蓝消炎片",
+      "brand_name": "济人 蒲地蓝消炎片",
+      "modality_id": "tcm-formula",
+      "therapeutic_area_id": "infectious-disease",
+      "indication_en": "Heat-clearing anti-inflammatory; pharyngitis, tonsillitis, furuncle",
+      "indication_zh": "清热解毒消炎；咽炎、扁桃体炎、疖肿",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "confidence": 0.8,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "安徽济人药业 公司简介 — 济人医药集团",
+          "url": "https://www.ahjiren.com/about.aspx"
+        }
+      ]
+    },
+    {
+      "id": "jiren-pharma-tongbianling-capsule",
+      "company_id": "jiren-pharma",
+      "name_en": "Tongbianling Capsule",
+      "name_zh": "通便灵胶囊",
+      "brand_name": "济人 通便灵胶囊",
+      "modality_id": "tcm-formula",
+      "therapeutic_area_id": "gastroenterology",
+      "indication_en": "Constipation, habitual / functional constipation",
+      "indication_zh": "便秘、习惯性便秘",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "confidence": 0.75,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "安徽济人药业 2024 年年度报告 — 上交所",
+          "url": "http://static.sse.com.cn/stock/disclosure/announcement/c/202412/001661_20241231_XFM1.pdf"
+        }
+      ]
+    },
+    {
+      "id": "jiren-pharma-penyanjing-tablet",
+      "company_id": "jiren-pharma",
+      "name_en": "Penyanjing Tablet",
+      "name_zh": "盆炎净片",
+      "brand_name": "济人 盆炎净片",
+      "modality_id": "tcm-formula",
+      "therapeutic_area_id": "womens-health",
+      "indication_en": "Pelvic inflammatory disease, gynecologic inflammation",
+      "indication_zh": "盆腔炎、妇科炎症",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "confidence": 0.7,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "安徽济人药业 2024 年年度报告 — 上交所",
+          "url": "http://static.sse.com.cn/stock/disclosure/announcement/c/202412/001661_20241231_XFM1.pdf"
+        }
+      ]
+    },
+    {
+      "id": "kangya-pharma-levofloxacin-eye-drops",
+      "company_id": "kangya-pharma",
+      "name_en": "Levofloxacin hydrochloride eye drops",
+      "name_zh": "盐酸左氧氟沙星滴眼液",
+      "brand_name": "康亚 盐酸左氧氟沙星滴眼液",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "ophthalmology",
+      "indication_en": "Bacterial conjunctivitis, keratitis, blepharitis, peri-operative ocular antisepsis",
+      "indication_zh": "细菌性结膜炎、角膜炎、睑炎、眼科围手术期抗感染",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "宁夏康亚药业 产品中心",
+          "url": "https://www.nxkangya.com/index.php?m=content&c=index&a=lists&catid=12"
+        }
+      ]
+    },
+    {
+      "id": "kangya-pharma-calcium-dobesilate",
+      "company_id": "kangya-pharma",
+      "name_en": "Calcium dobesilate",
+      "name_zh": "羟苯磺酸钙",
+      "brand_name": "康亚 羟苯磺酸钙",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "cardiometabolic",
+      "indication_en": "Diabetic retinopathy, chronic venous insufficiency / microangiopathy",
+      "indication_zh": "糖尿病视网膜病变、慢性静脉功能不全/微血管病",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "confidence": 0.8,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "宁夏康亚药业股份有限公司",
+          "url": "https://www.nxkangya.com/"
+        }
+      ]
+    },
+    {
+      "id": "kangya-pharma-indapamide-sr-tablet",
+      "company_id": "kangya-pharma",
+      "name_en": "Indapamide sustained-release tablet",
+      "name_zh": "吲达帕胺缓释片",
+      "brand_name": "康亚 吲达帕胺缓释片",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "cardiometabolic",
+      "indication_en": "Essential hypertension",
+      "indication_zh": "原发性高血压",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "confidence": 0.8,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "宁夏康亚药业股份有限公司",
+          "url": "https://www.nxkangya.com/"
+        }
+      ]
+    },
+    {
+      "id": "kangya-pharma-meloxicam-tablet",
+      "company_id": "kangya-pharma",
+      "name_en": "Meloxicam tablet",
+      "name_zh": "美洛昔康片",
+      "brand_name": "康亚 美洛昔康片",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "immunology",
+      "indication_en": "Osteoarthritis, rheumatoid arthritis (NSAID)",
+      "indication_zh": "骨关节炎、类风湿关节炎（非甾体抗炎）",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "confidence": 0.75,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "宁夏康亚药业股份有限公司",
+          "url": "https://www.nxkangya.com/"
+        }
+      ]
+    },
+    {
+      "id": "kinhoo-pharma-cefixime-dispersible-tablet",
+      "company_id": "kinhoo-pharma",
+      "name_en": "Cefixime dispersible tablet",
+      "name_zh": "头孢克肟分散片",
+      "brand_name": "金鸿 头孢克肟分散片",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "infectious-disease",
+      "indication_en": "Respiratory, urinary and ENT bacterial infections (3rd-gen cephalosporin)",
+      "indication_zh": "呼吸道、泌尿道及耳鼻喉细菌感染（第三代头孢）",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "confidence": 0.8,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "金鸿药业股份有限公司 官网",
+          "url": "http://www.kinhoo.com/"
+        }
+      ]
+    },
+    {
+      "id": "kinhoo-pharma-ceftriaxone-sodium-injection",
+      "company_id": "kinhoo-pharma",
+      "name_en": "Ceftriaxone sodium for injection",
+      "name_zh": "注射用头孢曲松钠",
+      "brand_name": "金鸿 注射用头孢曲松钠",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "infectious-disease",
+      "indication_en": "Serious bacterial infections (3rd-gen cephalosporin)",
+      "indication_zh": "严重细菌感染（第三代头孢）",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "confidence": 0.8,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "金鸿药业股份有限公司 官网",
+          "url": "http://www.kinhoo.com/"
+        }
+      ]
+    },
+    {
+      "id": "kinhoo-pharma-cefaclor-dispersible-tablet",
+      "company_id": "kinhoo-pharma",
+      "name_en": "Cefaclor dispersible tablet",
+      "name_zh": "头孢克洛分散片",
+      "brand_name": "金鸿 头孢克洛分散片",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "infectious-disease",
+      "indication_en": "Respiratory and ENT bacterial infections (2nd-gen cephalosporin)",
+      "indication_zh": "呼吸道及耳鼻喉细菌感染（第二代头孢）",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "confidence": 0.78,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "金鸿药业股份有限公司 官网",
+          "url": "http://www.kinhoo.com/"
+        }
+      ]
+    },
+    {
+      "id": "kinhoo-pharma-loxoprofen-sodium-capsule",
+      "company_id": "kinhoo-pharma",
+      "name_en": "Loxoprofen sodium capsule",
+      "name_zh": "洛索洛芬钠胶囊",
+      "brand_name": "金鸿 洛索洛芬钠胶囊",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "immunology",
+      "indication_en": "Analgesic / anti-inflammatory for arthritis and pain (NSAID)",
+      "indication_zh": "关节炎及疼痛镇痛抗炎（非甾体抗炎）",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "confidence": 0.75,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "金鸿药业股份有限公司 官网",
+          "url": "http://www.kinhoo.com/"
+        }
+      ]
+    },
+    {
+      "id": "kinhoo-pharma-compound-danshen-granule",
+      "company_id": "kinhoo-pharma",
+      "name_en": "Compound Danshen granule",
+      "name_zh": "复方丹参颗粒",
+      "brand_name": "金鸿 复方丹参颗粒",
+      "modality_id": "tcm-formula",
+      "therapeutic_area_id": "cardiometabolic",
+      "indication_en": "Coronary heart disease, angina, blood-stasis chest pain",
+      "indication_zh": "冠心病、心绞痛、血瘀胸痹",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "confidence": 0.72,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "金鸿药业股份有限公司 官网",
+          "url": "http://www.kinhoo.com/"
+        }
+      ]
+    },
+    {
+      "id": "lixin-pharma-ranitidine-hcl-injection",
+      "company_id": "lixin-pharma",
+      "name_en": "Ranitidine hydrochloride injection",
+      "name_zh": "盐酸雷尼替丁注射液",
+      "brand_name": "利欣 盐酸雷尼替丁注射液",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "gastroenterology",
+      "indication_en": "Peptic ulcer, GI bleeding, acid-related disorders (H2 blocker)",
+      "indication_zh": "消化性溃疡、上消化道出血、胃酸相关疾病（H2受体拮抗剂）",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "confidence": 0.82,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "利欣制药 2023 半年度报告 — NEEQ 834866",
+          "url": "http://file.finance.sina.com.cn/211.154.219.97:9494/MRGG/SBGG/2023/2023-8/2023-08-28/9469682.PDF"
+        }
+      ]
+    },
+    {
+      "id": "lixin-pharma-bisoprolol-fumarate-tablet",
+      "company_id": "lixin-pharma",
+      "name_en": "Bisoprolol fumarate tablet",
+      "name_zh": "富马酸比索洛尔片",
+      "brand_name": "利欣 富马酸比索洛尔片",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "cardiometabolic",
+      "indication_en": "Hypertension, coronary heart disease / angina (beta-blocker)",
+      "indication_zh": "高血压、冠心病/心绞痛（β受体阻滞剂）",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "confidence": 0.6,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "利欣制药 2023 半年度报告 — NEEQ 834866",
+          "url": "http://file.finance.sina.com.cn/211.154.219.97:9494/MRGG/SBGG/2023/2023-8/2023-08-28/9469682.PDF"
+        }
+      ]
+    },
+    {
+      "id": "lixin-pharma-large-volume-infusion",
+      "company_id": "lixin-pharma",
+      "name_en": "Large-volume intravenous infusion solutions",
+      "name_zh": "大容量注射液（输液）",
+      "brand_name": "利欣 输液系列",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "infectious-disease",
+      "indication_en": "Fluid/electrolyte replacement and IV drug delivery vehicle",
+      "indication_zh": "补液、电解质补充及静脉给药载体",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "confidence": 0.55,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "利欣制药 2024 半年度报告 — 东方财富",
+          "url": "https://xinsanban.eastmoney.com/Article/NoticeContent?id=AN202408281639527658&pageIndex=1"
+        }
+      ]
+    },
+    {
+      "id": "medfron-salbutamol-inhalation",
+      "company_id": "medfron",
+      "name_en": "Salbutamol Sulfate Inhalation Solution",
+      "name_zh": "吸入用硫酸沙丁胺醇溶液",
+      "brand_name": "Salbutamol Sulfate Inhalation Solution",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "respiratory",
+      "indication_en": "Bronchospasm in asthma and COPD",
+      "indication_zh": "哮喘及慢阻肺支气管痉挛",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "confidence": 0.78,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "美福润 833784 年度报告产品介绍",
+          "url": "https://xinsanban.eastmoney.com/F10/CompanyInfo/Introduction/833784"
+        }
+      ]
+    },
+    {
+      "id": "medfron-fufang-xianshihu-granules",
+      "company_id": "medfron",
+      "name_en": "Compound Fresh Dendrobium Granules",
+      "name_zh": "复方鲜石斛颗粒",
+      "brand_name": "Compound Fresh Dendrobium Granules",
+      "modality_id": "tcm-formula",
+      "therapeutic_area_id": "respiratory",
+      "indication_en": "Yin deficiency cough, dry throat",
+      "indication_zh": "阴虚咳嗽、咽干",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "confidence": 0.62,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "美福润 833784 年度报告产品介绍",
+          "url": "https://xinsanban.eastmoney.com/F10/CompanyInfo/Introduction/833784"
+        }
+      ]
+    },
+    {
+      "id": "medfron-xiaoer-changweikang-granules",
+      "company_id": "medfron",
+      "name_en": "Xiaoer Changweikang Granules",
+      "name_zh": "小儿肠胃康颗粒",
+      "brand_name": "Xiaoer Changweikang Granules",
+      "modality_id": "tcm-formula",
+      "therapeutic_area_id": "gastroenterology",
+      "indication_en": "Pediatric indigestion and diarrhea",
+      "indication_zh": "小儿消化不良、腹泻",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "confidence": 0.62,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "美福润 833784 年度报告产品介绍",
+          "url": "https://xinsanban.eastmoney.com/F10/CompanyInfo/Introduction/833784"
+        }
+      ]
+    },
+    {
+      "id": "meilan-bio-nd-ib-eds-ai-vaccine",
+      "company_id": "meilan-bio",
+      "name_en": "Newcastle Disease, IB, EDS & Avian Influenza (H9) Inactivated Vaccine",
+      "name_zh": "新城疫-传支-减蛋综合征-禽流感(H9亚型)四联灭活疫苗",
+      "brand_name": "Meilan Quadruple Poultry Inactivated Vaccine",
+      "modality_id": "inactivated-vaccine",
+      "therapeutic_area_id": "vaccines",
+      "indication_en": "Poultry Newcastle disease / avian influenza H9 prevention",
+      "indication_zh": "禽新城疫及H9禽流感预防（兽用）",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "confidence": 0.7,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "商丘美兰生物工程产品介绍",
+          "url": "https://cn.melanbio.com/"
+        }
+      ]
+    },
+    {
+      "id": "meilan-bio-swine-fever-live-vaccine",
+      "company_id": "meilan-bio",
+      "name_en": "Classical Swine Fever Live Vaccine (Rabbit Origin)",
+      "name_zh": "猪瘟活疫苗（兔源）",
+      "brand_name": "Meilan Swine Fever Live Vaccine",
+      "modality_id": "viral-vector-vaccine",
+      "therapeutic_area_id": "vaccines",
+      "indication_en": "Classical swine fever prevention (veterinary)",
+      "indication_zh": "猪瘟预防（兽用）",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "confidence": 0.68,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "商丘美兰生物工程产品介绍",
+          "url": "https://cn.melanbio.com/"
+        }
+      ]
+    },
+    {
+      "id": "nanfang-pharma-paclitaxel-api",
+      "company_id": "nanfang-pharma",
+      "name_en": "Paclitaxel (API)",
+      "name_zh": "紫杉醇（原料药）",
+      "brand_name": "Paclitaxel",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "oncology",
+      "indication_en": "Ovarian, breast and lung cancer chemotherapy",
+      "indication_zh": "卵巢癌、乳腺癌、肺癌化疗",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "confidence": 0.8,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "福建南方制药企业简介",
+          "url": "https://www.southpharma.com/m/list.php?tid=7"
+        }
+      ]
+    },
+    {
+      "id": "nanfang-pharma-docetaxel-api",
+      "company_id": "nanfang-pharma",
+      "name_en": "Docetaxel (API)",
+      "name_zh": "多西他赛（原料药）",
+      "brand_name": "Docetaxel",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "oncology",
+      "indication_en": "Breast, lung and prostate cancer chemotherapy",
+      "indication_zh": "乳腺癌、肺癌、前列腺癌化疗",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "confidence": 0.78,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "福建南方制药企业简介",
+          "url": "https://www.southpharma.com/m/list.php?tid=7"
+        }
+      ]
+    },
+    {
+      "id": "nanfang-pharma-imatinib-mesylate-tablets",
+      "company_id": "nanfang-pharma",
+      "name_en": "Imatinib Mesylate Tablets",
+      "name_zh": "甲磺酸伊马替尼片",
+      "brand_name": "Imatinib Mesylate Tablets",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "oncology",
+      "indication_en": "Chronic myeloid leukemia, GIST",
+      "indication_zh": "慢性髓性白血病、胃肠间质瘤",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "confidence": 0.72,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "福建南方制药企业简介",
+          "url": "https://www.southpharma.com/m/list.php?tid=7"
+        }
+      ]
+    },
+    {
+      "id": "pharmavan-lead-cerebrovascular-candidate",
+      "company_id": "pharmavan",
+      "name_en": "Pharmavan Natural-Product Cerebro-cardiovascular Candidate",
+      "name_zh": "沪云脑心血管天然产物候选药物（Ⅱ期）",
+      "brand_name": "Pharmavan lead candidate",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "neuroscience",
+      "indication_en": "Ischemic stroke / cerebrovascular disease",
+      "indication_zh": "缺血性脑卒中/脑血管病",
+      "approval_status": "ph2",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "confidence": 0.55,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "苏州沪云 2025 年度报告（管线 6 分子 8 适应症）",
+          "url": "https://bydrug.pharmcube.com/investgo/company/detail/1f93c2aa295e51a040735a0774501337"
+        }
+      ]
+    },
+    {
+      "id": "pharmavan-heart-failure-candidate",
+      "company_id": "pharmavan",
+      "name_en": "Pharmavan Heart Failure Candidate",
+      "name_zh": "沪云心衰候选药物（Ⅰ期）",
+      "brand_name": "Pharmavan heart failure candidate",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "cardiometabolic",
+      "indication_en": "Chronic heart failure",
+      "indication_zh": "慢性心力衰竭",
+      "approval_status": "ph1",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "confidence": 0.5,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "苏州沪云 2025 年度报告（管线 6 分子 8 适应症）",
+          "url": "https://bydrug.pharmcube.com/investgo/company/detail/1f93c2aa295e51a040735a0774501337"
+        }
+      ]
+    },
+    {
+      "id": "pharmavan-autoimmune-candidate",
+      "company_id": "pharmavan",
+      "name_en": "Pharmavan Autoimmune Candidate",
+      "name_zh": "沪云自身免疫候选药物（IND/临床前）",
+      "brand_name": "Pharmavan autoimmune candidate",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "immunology",
+      "indication_en": "Psoriasis / inflammatory bowel disease",
+      "indication_zh": "银屑病/炎症性肠病",
+      "approval_status": "preclinical",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "confidence": 0.48,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "苏州沪云 2025 年度报告（管线 6 分子 8 适应症）",
+          "url": "https://bydrug.pharmcube.com/investgo/company/detail/1f93c2aa295e51a040735a0774501337"
+        }
+      ]
+    },
+    {
+      "id": "qihuang-tcm-qianggu-capsule",
+      "company_id": "qihuang-tcm",
+      "name_en": "Qianggu Capsule",
+      "name_zh": "强骨胶囊",
+      "brand_name": "强骨胶囊",
+      "modality_id": "tcm-formula",
+      "therapeutic_area_id": "rare-disease",
+      "indication_en": "Osteoporosis",
+      "indication_zh": "骨质疏松症",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "北京岐黄医药股份有限公司_百度百科",
+          "url": "https://baike.baidu.com/item/%E5%8C%97%E4%BA%AC%E5%B2%90%E9%BB%84%E5%8C%BB%E8%8D%AF%E8%82%A1%E4%BB%BD%E6%9C%89%E9%99%90%E5%85%AC%E5%8F%B8/20342583"
+        }
+      ]
+    },
+    {
+      "id": "qihuang-tcm-shuangdan-mingmu-capsule",
+      "company_id": "qihuang-tcm",
+      "name_en": "Shuangdan Mingmu Capsule",
+      "name_zh": "双丹明目胶囊",
+      "brand_name": "双丹明目胶囊",
+      "modality_id": "tcm-formula",
+      "therapeutic_area_id": "ophthalmology",
+      "indication_en": "Diabetic retinopathy",
+      "indication_zh": "糖尿病视网膜病变",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "北京岐黄医药股份有限公司_百度百科",
+          "url": "https://baike.baidu.com/item/%E5%8C%97%E4%BA%AC%E5%B2%90%E9%BB%84%E5%8C%BB%E8%8D%AF%E8%82%A1%E4%BB%BD%E6%9C%89%E9%99%90%E5%85%AC%E5%8F%B8/20342583"
+        }
+      ]
+    },
+    {
+      "id": "quanyu-pharma-silver-sulfadiazine",
+      "company_id": "quanyu-pharma",
+      "name_en": "Silver Sulfadiazine Cream",
+      "name_zh": "磺胺嘧啶银乳膏",
+      "brand_name": "磺胺嘧啶银乳膏",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "infectious-disease",
+      "indication_en": "Prevention and treatment of burn wound infection",
+      "indication_zh": "烧伤创面抗感染",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "confidence": 0.82,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "河南全宇制药股份有限公司",
+          "url": "http://www.nyqyzy.com/"
+        }
+      ]
+    },
+    {
+      "id": "quanyu-pharma-qingre-jiedu-oral-liquid",
+      "company_id": "quanyu-pharma",
+      "name_en": "Qingre Jiedu Oral Liquid",
+      "name_zh": "清热解毒口服液",
+      "brand_name": "清热解毒口服液",
+      "modality_id": "tcm-formula",
+      "therapeutic_area_id": "infectious-disease",
+      "indication_en": "Heat-clearing/detoxifying for influenza and febrile illness",
+      "indication_zh": "清热解毒，用于流感等热证",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "confidence": 0.78,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "河南全宇制药股份有限公司",
+          "url": "http://www.nyqyzy.com/"
+        }
+      ]
+    },
+    {
+      "id": "quanyu-pharma-mannatide",
+      "company_id": "quanyu-pharma",
+      "name_en": "Mannatide",
+      "name_zh": "甘露聚糖肽",
+      "brand_name": "甘露聚糖肽",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "immunology",
+      "indication_en": "Immunomodulator, adjuvant in infections and leukopenia",
+      "indication_zh": "免疫调节剂，用于感染及白细胞减少辅助治疗",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "confidence": 0.7,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "全宇制药 公开转让说明书",
+          "url": "http://file.finance.sina.com.cn/211.154.219.97:9494/MRGG/SBGG/2022/2022-8/2022-08-19/8436737.PDF"
+        }
+      ]
+    },
+    {
+      "id": "shanxi-lanhua-pharma-apixaban",
+      "company_id": "shanxi-lanhua-pharma",
+      "name_en": "Apixaban",
+      "name_zh": "阿哌沙班",
+      "brand_name": "Apixaban Tablets",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "cardiometabolic",
+      "indication_en": "Anticoagulation / stroke prevention in atrial fibrillation",
+      "indication_zh": "抗凝、房颤卒中预防",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "confidence": 0.6,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Shanxi Lanhua Pharmaceutical - Synapse",
+          "url": "https://synapse.patsnap.com/organization/83ff98fd84e648b76f7d38a3a3f816e2"
+        }
+      ]
+    },
+    {
+      "id": "shanxi-lanhua-pharma-amoxicillin",
+      "company_id": "shanxi-lanhua-pharma",
+      "name_en": "Amoxicillin",
+      "name_zh": "阿莫西林",
+      "brand_name": "Amoxicillin Capsules",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "infectious-disease",
+      "indication_en": "Bacterial infections",
+      "indication_zh": "细菌感染",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "confidence": 0.6,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Shanxi Lanhua Pharmaceutical - Synapse",
+          "url": "https://synapse.patsnap.com/organization/83ff98fd84e648b76f7d38a3a3f816e2"
+        }
+      ]
+    },
+    {
+      "id": "sundoc-pharma-risperidone-microspheres",
+      "company_id": "sundoc-pharma",
+      "name_en": "Risperidone microspheres for injection",
+      "name_zh": "注射用利培酮微球",
+      "brand_name": "Rushenkang (儒申康)",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "neuroscience",
+      "indication_en": "Schizophrenia (long-acting injectable)",
+      "indication_zh": "精神分裂症（长效注射）",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "注射用利培酮微球（儒申康）国内首仿 - NHSA",
+          "url": "https://www.nhsa.gov.cn/attach/Ypsn2025/YPSW202500416/YPSW202500416(ppt).pdf"
+        },
+        {
+          "title": "圣兆药物首仿利培酮微球 - 搜狐",
+          "url": "https://www.sohu.com/a/691469547_120962702"
+        }
+      ]
+    },
+    {
+      "id": "sundoc-pharma-doxorubicin-liposome",
+      "company_id": "sundoc-pharma",
+      "name_en": "Doxorubicin hydrochloride liposome injection",
+      "name_zh": "盐酸多柔比星脂质体注射液",
+      "brand_name": "Doxorubicin liposome injection",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "oncology",
+      "indication_en": "Ovarian cancer, multiple myeloma, breast cancer",
+      "indication_zh": "卵巢癌、多发性骨髓瘤、乳腺癌",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "confidence": 0.8,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "圣兆药物 2025 半年度报告",
+          "url": "https://qxb-pdf-osscache.qixin.com/AnBaseinfo/cda0d780497ebf3b3795f4ba4a7f4714.pdf"
+        }
+      ]
+    },
+    {
+      "id": "sundoc-pharma-paliperidone-palmitate",
+      "company_id": "sundoc-pharma",
+      "name_en": "Paliperidone palmitate long-acting injection",
+      "name_zh": "棕榈酸帕利哌酮注射液",
+      "brand_name": "Paliperidone palmitate injection",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "neuroscience",
+      "indication_en": "Schizophrenia (1-month long-acting injectable)",
+      "indication_zh": "精神分裂症（一月长效注射）",
+      "approval_status": "ph3",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "confidence": 0.7,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "圣兆药物 2025 半年度报告",
+          "url": "https://qxb-pdf-osscache.qixin.com/AnBaseinfo/cda0d780497ebf3b3795f4ba4a7f4714.pdf"
+        }
+      ]
+    },
+    {
+      "id": "sundoc-pharma-irinotecan-liposome",
+      "company_id": "sundoc-pharma",
+      "name_en": "Irinotecan hydrochloride liposome injection",
+      "name_zh": "盐酸伊立替康脂质体注射液",
+      "brand_name": "Irinotecan liposome injection",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "oncology",
+      "indication_en": "Advanced pancreatic cancer",
+      "indication_zh": "晚期胰腺癌",
+      "approval_status": "filed",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "confidence": 0.7,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "圣兆药物 2025 半年度报告",
+          "url": "https://qxb-pdf-osscache.qixin.com/AnBaseinfo/cda0d780497ebf3b3795f4ba4a7f4714.pdf"
+        }
+      ]
+    },
+    {
+      "id": "sundoc-pharma-bupivacaine-liposome",
+      "company_id": "sundoc-pharma",
+      "name_en": "Bupivacaine liposome injection",
+      "name_zh": "布比卡因脂质体注射液",
+      "brand_name": "Bupivacaine liposome injection",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "neuroscience",
+      "indication_en": "Postoperative pain management",
+      "indication_zh": "术后镇痛",
+      "approval_status": "filed",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "confidence": 0.65,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "圣兆药物 2025 半年度报告",
+          "url": "https://qxb-pdf-osscache.qixin.com/AnBaseinfo/cda0d780497ebf3b3795f4ba4a7f4714.pdf"
+        }
+      ]
+    },
+    {
+      "id": "taxus-pharma-docetaxel",
+      "company_id": "taxus-pharma",
+      "name_en": "Docetaxel injection",
+      "name_zh": "多西他赛注射液",
+      "brand_name": "Docetaxel injection",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "oncology",
+      "indication_en": "Breast, lung and other solid tumors",
+      "indication_zh": "乳腺癌、肺癌等实体瘤",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "confidence": 0.75,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Wuxi Taxus Pharmaceutical official site",
+          "url": "https://www.taxuspharm.com/"
+        }
+      ]
+    },
+    {
+      "id": "taxus-pharma-paclitaxel",
+      "company_id": "taxus-pharma",
+      "name_en": "Paclitaxel",
+      "name_zh": "紫杉醇",
+      "brand_name": "Paclitaxel",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "oncology",
+      "indication_en": "Ovarian, breast and lung cancer",
+      "indication_zh": "卵巢癌、乳腺癌、肺癌",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "confidence": 0.65,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Wuxi Taxus Pharmaceutical official site",
+          "url": "https://www.taxuspharm.com/"
+        }
+      ]
+    },
+    {
+      "id": "tecon-pharma-fmd-vaccine",
+      "company_id": "tecon-pharma",
+      "name_en": "Foot-and-mouth disease vaccine",
+      "name_zh": "口蹄疫疫苗",
+      "brand_name": "FMD vaccine",
+      "modality_id": "inactivated-vaccine",
+      "therapeutic_area_id": "vaccines",
+      "indication_en": "Foot-and-mouth disease prevention in livestock",
+      "indication_zh": "畜类口蹄疫预防",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "confidence": 0.8,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "天康制药公司介绍 - 东方财富新三板",
+          "url": "https://xinsanban.eastmoney.com/F10/CompanyInfo/Introduction/874339"
+        },
+        {
+          "title": "天康动物疫苗品种汇总 - 大畜牧网",
+          "url": "https://www.dxumu.com/25046.html"
+        }
+      ]
+    },
+    {
+      "id": "tecon-pharma-ppr-vaccine",
+      "company_id": "tecon-pharma",
+      "name_en": "Peste des petits ruminants (PPR) vaccine",
+      "name_zh": "小反刍兽疫疫苗",
+      "brand_name": "PPR vaccine",
+      "modality_id": "viral-vector-vaccine",
+      "therapeutic_area_id": "vaccines",
+      "indication_en": "PPR prevention in small ruminants",
+      "indication_zh": "小反刍兽疫预防",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "confidence": 0.7,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "天康制药公司介绍 - 东方财富新三板",
+          "url": "https://xinsanban.eastmoney.com/F10/CompanyInfo/Introduction/874339"
+        }
+      ]
+    },
+    {
+      "id": "tecon-pharma-brucellosis-vaccine",
+      "company_id": "tecon-pharma",
+      "name_en": "Brucellosis vaccine",
+      "name_zh": "布鲁氏菌病疫苗",
+      "brand_name": "Brucellosis vaccine",
+      "modality_id": "inactivated-vaccine",
+      "therapeutic_area_id": "vaccines",
+      "indication_en": "Brucellosis prevention in livestock",
+      "indication_zh": "畜类布鲁氏菌病预防",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "confidence": 0.7,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "天康制药公司介绍 - 东方财富新三板",
+          "url": "https://xinsanban.eastmoney.com/F10/CompanyInfo/Introduction/874339"
+        }
+      ]
+    },
+    {
+      "id": "tecon-pharma-avian-influenza-vaccine",
+      "company_id": "tecon-pharma",
+      "name_en": "Avian influenza vaccine",
+      "name_zh": "禽流感疫苗",
+      "brand_name": "Avian influenza vaccine",
+      "modality_id": "inactivated-vaccine",
+      "therapeutic_area_id": "vaccines",
+      "indication_en": "Avian influenza prevention in poultry",
+      "indication_zh": "禽流感预防",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "confidence": 0.7,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "天康制药公司介绍 - 东方财富新三板",
+          "url": "https://xinsanban.eastmoney.com/F10/CompanyInfo/Introduction/874339"
+        }
+      ]
+    },
+    {
+      "id": "tongren-tai-xinqin-granules",
+      "company_id": "tongren-tai",
+      "name_en": "Xinqin Granules",
+      "name_zh": "辛芩颗粒",
+      "brand_name": "Xinqin Granules",
+      "modality_id": "tcm-formula",
+      "therapeutic_area_id": "respiratory",
+      "indication_en": "Allergic rhinitis, wind-cold nasal congestion",
+      "indication_zh": "过敏性鼻炎、鼻塞",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "confidence": 0.7,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "四川同人泰药业 2024 年年度报告",
+          "url": "http://qxb-pdf-osscache.qixin.com/AnBaseinfo/f0db8a566332720aa2662cc4e5111d7e.pdf"
+        }
+      ]
+    },
+    {
+      "id": "tongren-tai-pugongying-granules",
+      "company_id": "tongren-tai",
+      "name_en": "Dandelion (Pugongying) Granules",
+      "name_zh": "蒲公英颗粒",
+      "brand_name": "Pugongying Granules",
+      "modality_id": "tcm-formula",
+      "therapeutic_area_id": "infectious-disease",
+      "indication_en": "Heat-clearing, detoxifying, anti-inflammatory",
+      "indication_zh": "清热解毒、消炎",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "confidence": 0.6,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "四川同人泰药业 2024 年年度报告",
+          "url": "http://qxb-pdf-osscache.qixin.com/AnBaseinfo/f0db8a566332720aa2662cc4e5111d7e.pdf"
+        }
+      ]
+    },
+    {
+      "id": "tongren-tai-artemisinin",
+      "company_id": "tongren-tai",
+      "name_en": "Artemisinin",
+      "name_zh": "青蒿素",
+      "brand_name": "Artemisinin",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "infectious-disease",
+      "indication_en": "Antimalarial (API)",
+      "indication_zh": "抗疟（原料药）",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "confidence": 0.65,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "四川同人泰药业 2024 年年度报告",
+          "url": "http://qxb-pdf-osscache.qixin.com/AnBaseinfo/f0db8a566332720aa2662cc4e5111d7e.pdf"
+        }
+      ]
+    },
+    {
+      "id": "tongren-tai-huoxiang-granules",
+      "company_id": "tongren-tai",
+      "name_en": "Agastache (Huoxiang) Granules",
+      "name_zh": "藿香颗粒",
+      "brand_name": "Huoxiang Granules",
+      "modality_id": "tcm-formula",
+      "therapeutic_area_id": "gastroenterology",
+      "indication_en": "Summer-damp gastrointestinal discomfort",
+      "indication_zh": "暑湿胃肠不适",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "confidence": 0.6,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "四川同人泰药业 2024 年年度报告",
+          "url": "http://qxb-pdf-osscache.qixin.com/AnBaseinfo/f0db8a566332720aa2662cc4e5111d7e.pdf"
+        }
+      ]
+    },
+    {
+      "id": "visum-pharma-metoprolol-succinate-er",
+      "company_id": "visum-pharma",
+      "name_en": "Metoprolol Succinate Extended-Release Tablets",
+      "name_zh": "琥珀酸美托洛尔缓释片",
+      "brand_name": "Metoprolol Succinate ER",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "cardiometabolic",
+      "indication_en": "Hypertension, angina, heart failure",
+      "indication_zh": "高血压、心绞痛、心力衰竭",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "confidence": 0.8,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Visum Pharmaceutical - About Us",
+          "url": "http://www.visumpharma.com/eg/about.php?id=59"
+        }
+      ]
+    },
+    {
+      "id": "wuhan-beican-compound-panax-pseudoginseng-powder",
+      "company_id": "wuhan-beican",
+      "name_en": "Compound Panax Pseudoginseng Cough-Relief Qi-Tonifying Powder",
+      "name_zh": "复方参七止咳补气散",
+      "brand_name": "贝参",
+      "modality_id": "tcm-formula",
+      "therapeutic_area_id": "respiratory",
+      "indication_en": "Chronic respiratory disease, chronic cough",
+      "indication_zh": "慢性呼吸道疾病、慢性咳嗽",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "confidence": 0.7,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "武汉贝参药业股份有限公司 - 产品中心",
+          "url": "http://beishenyaoye.com/productCenter"
+        }
+      ]
+    },
+    {
+      "id": "wuhan-beican-fritillaria-loquat-syrup",
+      "company_id": "wuhan-beican",
+      "name_en": "Fritillaria and Loquat Syrup",
+      "name_zh": "川贝枇杷糖浆",
+      "brand_name": "贝参",
+      "modality_id": "tcm-formula",
+      "therapeutic_area_id": "respiratory",
+      "indication_en": "Cough, excessive phlegm",
+      "indication_zh": "咳嗽、痰多",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "confidence": 0.65,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "武汉贝参药业股份有限公司 - 产品中心",
+          "url": "http://beishenyaoye.com/productCenter"
+        }
+      ]
+    },
+    {
+      "id": "wuhan-beican-antiviral-oral-liquid",
+      "company_id": "wuhan-beican",
+      "name_en": "Antiviral Oral Liquid",
+      "name_zh": "抗病毒口服液",
+      "brand_name": "贝参",
+      "modality_id": "tcm-formula",
+      "therapeutic_area_id": "infectious-disease",
+      "indication_en": "Influenza, viral upper respiratory infection",
+      "indication_zh": "流感、病毒性上呼吸道感染",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "confidence": 0.65,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "武汉贝参药业股份有限公司 - 产品中心",
+          "url": "http://beishenyaoye.com/productCenter"
+        }
+      ]
+    },
+    {
+      "id": "wuzhong-sanjian-ornidazole-injection",
+      "company_id": "wuzhong-sanjian",
+      "name_en": "Ornidazole for Injection",
+      "name_zh": "注射用奥硝唑",
+      "brand_name": "Ornidazole for Injection",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "infectious-disease",
+      "indication_en": "Anaerobic bacterial and protozoal infections",
+      "indication_zh": "厌氧菌及原虫感染",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "confidence": 0.78,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Wuhan Changlian Laifu Pharmaceutical Co., Ltd.",
+          "url": "http://wuhan-changlian-laifu-pharmaceutical.en.drugdu.com/"
+        }
+      ]
+    },
+    {
+      "id": "wuzhong-sanjian-sodium-aescinate-injection",
+      "company_id": "wuzhong-sanjian",
+      "name_en": "Sodium Aescinate for Injection",
+      "name_zh": "注射用七叶皂苷钠",
+      "brand_name": "Lydosinat",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "cardiometabolic",
+      "indication_en": "Edema, venous insufficiency, traumatic swelling",
+      "indication_zh": "水肿、静脉功能不全、创伤性肿胀",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "confidence": 0.75,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Wuhan Changlian Laifu - ImportGenius",
+          "url": "https://www.importgenius.com/vietnam/suppliers/wuhan-changlian-laifu-biochemical-pharmaceutical-co-ltd"
+        }
+      ]
+    },
+    {
+      "id": "wuzhong-sanjian-ganciclovir-injection",
+      "company_id": "wuzhong-sanjian",
+      "name_en": "Ganciclovir for Injection",
+      "name_zh": "注射用更昔洛韦",
+      "brand_name": "Ganciclovir for Injection",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "infectious-disease",
+      "indication_en": "Cytomegalovirus infection",
+      "indication_zh": "巨细胞病毒感染",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "confidence": 0.72,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Wuhan Changlian Laifu Pharmaceutical Co., Ltd.",
+          "url": "http://wuhan-changlian-laifu-pharmaceutical.en.drugdu.com/"
+        }
+      ]
+    },
+    {
+      "id": "wuzhong-sanjian-azithromycin-injection",
+      "company_id": "wuzhong-sanjian",
+      "name_en": "Azithromycin for Injection",
+      "name_zh": "注射用阿奇霉素",
+      "brand_name": "Azithromycin for Injection",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "infectious-disease",
+      "indication_en": "Bacterial respiratory and soft-tissue infections",
+      "indication_zh": "细菌性呼吸道及软组织感染",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "confidence": 0.72,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Wuhan Changlian Laifu Pharmaceutical Co., Ltd.",
+          "url": "http://wuhan-changlian-laifu-pharmaceutical.en.drugdu.com/"
+        }
+      ]
+    },
+    {
+      "id": "xiangquan-pharma-fuyankang-tablets",
+      "company_id": "xiangquan-pharma",
+      "name_en": "Fuyankang Tablets",
+      "name_zh": "妇炎康片",
+      "brand_name": "湘泉牌妇炎康片",
+      "modality_id": "tcm-formula",
+      "therapeutic_area_id": "womens-health",
+      "indication_en": "Chronic pelvic inflammation, gynecological inflammation",
+      "indication_zh": "慢性盆腔炎、妇科炎症",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "confidence": 0.78,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "湘泉药业(836972) 经营分析",
+          "url": "https://basic.10jqka.com.cn/836972/operate.html"
+        }
+      ]
+    },
+    {
+      "id": "xiangquan-pharma-changkang-tablets",
+      "company_id": "xiangquan-pharma",
+      "name_en": "Changkang Tablets",
+      "name_zh": "肠康片",
+      "brand_name": "湘泉牌肠康片",
+      "modality_id": "tcm-formula",
+      "therapeutic_area_id": "gastroenterology",
+      "indication_en": "Chronic enteritis, diarrhea",
+      "indication_zh": "慢性肠炎、腹泻",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "confidence": 0.75,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "湘泉药业(836972) 经营分析",
+          "url": "https://basic.10jqka.com.cn/836972/operate.html"
+        }
+      ]
+    },
+    {
+      "id": "xiangquan-pharma-tufuling-pieces",
+      "company_id": "xiangquan-pharma",
+      "name_en": "Tu Fu Ling (Smilax Glabra Rhizome) Decoction Pieces",
+      "name_zh": "土茯苓中药饮片",
+      "brand_name": "湘泉牌土茯苓",
+      "modality_id": "tcm-formula",
+      "therapeutic_area_id": "immunology",
+      "indication_en": "Detoxification, dampness-clearing, antipruritic",
+      "indication_zh": "清热解毒、除湿、止痒",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "confidence": 0.7,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "湘泉药业(836972) 经营分析",
+          "url": "https://basic.10jqka.com.cn/836972/operate.html"
+        }
+      ]
+    },
+    {
+      "id": "xinjiang-quanan-licorice-flavonoid-capsules",
+      "company_id": "xinjiang-quanan",
+      "name_en": "Licorice Flavonoid Capsules",
+      "name_zh": "甘草黄酮胶囊",
+      "brand_name": "甘草黄酮",
+      "modality_id": "tcm-formula",
+      "therapeutic_area_id": "gastroenterology",
+      "indication_en": "Gastric ulcer, gastritis",
+      "indication_zh": "胃溃疡、胃炎",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "confidence": 0.75,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Xinjiang Quanan Pharmaceutical - PatSnap Discovery",
+          "url": "https://discovery.patsnap.com/company/xinjiang-quanan-pharmaceutical/"
+        }
+      ]
+    },
+    {
+      "id": "xinjiang-quanan-ranitidine-bismuth-citrate",
+      "company_id": "xinjiang-quanan",
+      "name_en": "Anti-Gastric-Ulcer Tablets",
+      "name_zh": "抗胃溃疡片",
+      "brand_name": "抗胃溃疡片",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "gastroenterology",
+      "indication_en": "Gastric and duodenal ulcer, H. pylori",
+      "indication_zh": "胃十二指肠溃疡、幽门螺杆菌",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "confidence": 0.65,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Xinjiang Quanan Pharmaceutical - PatSnap Discovery",
+          "url": "https://discovery.patsnap.com/company/xinjiang-quanan-pharmaceutical/"
+        }
+      ]
+    },
+    {
+      "id": "xinjiang-quanan-antitussive-expectorant",
+      "company_id": "xinjiang-quanan",
+      "name_en": "Antitussive Expectorant Preparation",
+      "name_zh": "止咳化痰制剂",
+      "brand_name": "止咳化痰制剂",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "respiratory",
+      "indication_en": "Cough and phlegm from acute/chronic bronchitis",
+      "indication_zh": "急慢性支气管炎咳嗽痰多",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "confidence": 0.6,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Xinjiang Quanan Pharmaceutical - PatSnap Discovery",
+          "url": "https://discovery.patsnap.com/company/xinjiang-quanan-pharmaceutical/"
+        }
+      ]
+    },
+    {
+      "id": "yikang-pharma-cefuroxime-axetil",
+      "company_id": "yikang-pharma",
+      "name_en": "Cefuroxime Axetil",
+      "name_zh": "头孢呋辛酯",
+      "brand_name": "Cefuroxime Axetil",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "infectious-disease",
+      "indication_en": "Bacterial respiratory and urinary tract infections",
+      "indication_zh": "细菌性呼吸道及泌尿道感染",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "confidence": 0.7,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Shandong Yikang Pharmaceutical - Echemi Profile",
+          "url": "https://www.echemi.com/drugs-manufacturer/ep2505164071.html"
+        }
+      ]
+    },
+    {
+      "id": "yikang-pharma-metformin-hydrochloride",
+      "company_id": "yikang-pharma",
+      "name_en": "Metformin Hydrochloride Tablets",
+      "name_zh": "盐酸二甲双胍片",
+      "brand_name": "Metformin Hydrochloride",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "cardiometabolic",
+      "indication_en": "Type 2 diabetes mellitus",
+      "indication_zh": "2型糖尿病",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "confidence": 0.68,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Shandong Yikang Pharmaceutical - Echemi Profile",
+          "url": "https://www.echemi.com/drugs-manufacturer/ep2505164071.html"
+        }
+      ]
+    },
+    {
+      "id": "yikang-pharma-tegafur",
+      "company_id": "yikang-pharma",
+      "name_en": "Tegafur",
+      "name_zh": "替加氟",
+      "brand_name": "Tegafur",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "oncology",
+      "indication_en": "Gastrointestinal and other solid tumors",
+      "indication_zh": "消化道及其他实体瘤",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "confidence": 0.62,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Shandong Yikang Pharmaceutical - Echemi Profile",
+          "url": "https://www.echemi.com/drugs-manufacturer/ep2505164071.html"
+        }
+      ]
+    },
+    {
+      "id": "yongshun-bio-classical-swine-fever-live-vaccine",
+      "company_id": "yongshun-bio",
+      "name_en": "Classical Swine Fever Live Vaccine (cell-passage strain)",
+      "name_zh": "猪瘟活疫苗（传代细胞源）",
+      "brand_name": "Classical Swine Fever Live Vaccine (cell-passage)",
+      "modality_id": "viral-vector-vaccine",
+      "therapeutic_area_id": "vaccines",
+      "indication_en": "Prevention of classical swine fever in pigs",
+      "indication_zh": "预防猪瘟",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "永顺生物（839729）：猪瘟疫苗行业龙头",
+          "url": "http://pdf.dfcfw.com/pdf/H3_AP201706150649385739_01.pdf"
+        },
+        {
+          "title": "8家兽用疫苗上市企业主要产品及在研管线盘点",
+          "url": "https://zhuanlan.zhihu.com/p/697057533"
+        }
+      ]
+    },
+    {
+      "id": "yongshun-bio-csf-erysipelas-pasteurellosis-triple-vaccine",
+      "company_id": "yongshun-bio",
+      "name_en": "Classical Swine Fever, Swine Erysipelas, Swine Pasteurellosis Combined Live Vaccine",
+      "name_zh": "猪瘟、猪丹毒、猪多杀性巴氏杆菌病三联活疫苗",
+      "brand_name": "CSF-Erysipelas-Pasteurellosis Triple Live Vaccine",
+      "modality_id": "viral-vector-vaccine",
+      "therapeutic_area_id": "vaccines",
+      "indication_en": "Combined prevention of classical swine fever, swine erysipelas and swine pasteurellosis",
+      "indication_zh": "联合预防猪瘟、猪丹毒、猪巴氏杆菌病",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "confidence": 0.82,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "猪瘟疫苗龙头永顺生物 研发驱动开拓新兽药市场",
+          "url": "https://www.stcn.com/article/detail/1037044.html"
+        }
+      ]
+    },
+    {
+      "id": "yongshun-bio-pseudorabies-live-vaccine-bartha-k61",
+      "company_id": "yongshun-bio",
+      "name_en": "Porcine Pseudorabies Live Vaccine (Bartha-K61 strain)",
+      "name_zh": "猪伪狂犬病活疫苗（Bartha-K61株）",
+      "brand_name": "Pseudorabies Live Vaccine (Bartha-K61)",
+      "modality_id": "viral-vector-vaccine",
+      "therapeutic_area_id": "vaccines",
+      "indication_en": "Prevention of pseudorabies (Aujeszky's disease) in pigs",
+      "indication_zh": "预防猪伪狂犬病",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "confidence": 0.83,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "猪瘟疫苗龙头永顺生物 研发驱动开拓新兽药市场",
+          "url": "https://www.stcn.com/article/detail/1037044.html"
+        },
+        {
+          "title": "8家兽用疫苗上市企业主要产品及在研管线盘点",
+          "url": "https://zhuanlan.zhihu.com/p/697057533"
+        }
+      ]
+    },
+    {
+      "id": "yongshun-bio-porcine-circovirus-type2-inactivated-vaccine",
+      "company_id": "yongshun-bio",
+      "name_en": "Porcine Circovirus Type 2 Inactivated Vaccine (WH strain)",
+      "name_zh": "猪圆环病毒2型灭活疫苗（WH株）",
+      "brand_name": "PCV2 Inactivated Vaccine (WH)",
+      "modality_id": "inactivated-vaccine",
+      "therapeutic_area_id": "vaccines",
+      "indication_en": "Prevention of porcine circovirus type 2 associated disease in pigs",
+      "indication_zh": "预防猪圆环病毒2型相关疾病",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "confidence": 0.82,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "8家兽用疫苗上市企业主要产品及在研管线盘点",
+          "url": "https://zhuanlan.zhihu.com/p/697057533"
+        }
+      ]
+    },
+    {
+      "id": "yongshun-bio-tge-ped-combined-live-vaccine",
+      "company_id": "yongshun-bio",
+      "name_en": "Porcine Transmissible Gastroenteritis and Epidemic Diarrhea Combined Live Vaccine (WH1R+AJ1102-R strains)",
+      "name_zh": "猪传染性胃肠炎、猪流行性腹泻二联活疫苗（WH1R株+AJ1102-R株）",
+      "brand_name": "TGE-PED Combined Live Vaccine",
+      "modality_id": "viral-vector-vaccine",
+      "therapeutic_area_id": "vaccines",
+      "indication_en": "Prevention of porcine transmissible gastroenteritis and epidemic diarrhea",
+      "indication_zh": "预防猪传染性胃肠炎和流行性腹泻",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "confidence": 0.8,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "8家兽用疫苗上市企业主要产品及在研管线盘点",
+          "url": "https://zhuanlan.zhihu.com/p/697057533"
+        }
+      ]
+    },
+    {
+      "id": "yongshun-bio-csf-pr-subunit-vaccine",
+      "company_id": "yongshun-bio",
+      "name_en": "Classical Swine Fever and Pseudorabies Bivalent Genetically Engineered Subunit Vaccine (CHO-E2 + CHO-gB + CHO-gD)",
+      "name_zh": "猪瘟、猪伪狂犬病二联基因工程亚单位疫苗（CHO-E2株+CHO-gB株+CHO-gD株）",
+      "brand_name": "CSF-PR Subunit Vaccine",
+      "modality_id": "protein-subunit-vaccine",
+      "therapeutic_area_id": "vaccines",
+      "indication_en": "Combined prevention of classical swine fever and pseudorabies in pigs",
+      "indication_zh": "联合预防猪瘟和猪伪狂犬病",
+      "approval_status": "ph2",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "confidence": 0.72,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "猪瘟疫苗龙头永顺生物 研发驱动开拓新兽药市场",
+          "url": "https://www.stcn.com/article/detail/1037044.html"
+        }
+      ]
+    },
+    {
+      "id": "yunnan-xili-nicorandil",
+      "company_id": "yunnan-xili",
+      "name_en": "Nicorandil",
+      "name_zh": "尼可地尔",
+      "brand_name": "Nicorandil",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "cardiometabolic",
+      "indication_en": "Chronic stable angina pectoris / coronary artery disease",
+      "indication_zh": "慢性稳定型心绞痛/冠心病",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "confidence": 0.7,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Nicorandil Market Size, Share and Forecast 2025 to 2034",
+          "url": "https://www.insightaceanalytic.com/report/nicorandil-market/3335"
+        }
+      ]
+    },
+    {
+      "id": "xunda-pharma-ketoprofen",
+      "company_id": "xunda-pharma",
+      "name_en": "Ketoprofen",
+      "name_zh": "酮洛芬",
+      "brand_name": "Ketoprofen",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "immunology",
+      "indication_en": "Anti-inflammatory / analgesic (NSAID API and preparations)",
+      "indication_zh": "消炎镇痛（NSAID 原料药及制剂）",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "confidence": 0.7,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "湖北迅达药业产品中心",
+          "url": "https://www.xundapharm.com/product.html"
+        },
+        {
+          "title": "湖北迅达药业-动脉网",
+          "url": "https://www.vbdata.cn/companyDetail/46bb383085cf11e9a078adde0f774562"
+        }
+      ]
+    },
+    {
+      "id": "xunda-pharma-loxoprofen-sodium",
+      "company_id": "xunda-pharma",
+      "name_en": "Loxoprofen Sodium",
+      "name_zh": "洛索洛芬钠",
+      "brand_name": "Loxoprofen Sodium",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "immunology",
+      "indication_en": "Anti-inflammatory / analgesic NSAID for pain and inflammation",
+      "indication_zh": "抗炎镇痛 NSAID，用于疼痛和炎症",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "confidence": 0.65,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "湖北迅达药业产品中心",
+          "url": "https://www.xundapharm.com/product.html"
+        }
+      ]
+    },
+    {
+      "id": "xunda-pharma-fosfomycin-calcium",
+      "company_id": "xunda-pharma",
+      "name_en": "Fosfomycin Calcium",
+      "name_zh": "磷霉素钙",
+      "brand_name": "Fosfomycin Calcium",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "infectious-disease",
+      "indication_en": "Broad-spectrum antibiotic for bacterial infections",
+      "indication_zh": "广谱抗生素，用于细菌感染",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "confidence": 0.65,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "湖北迅达药业产品中心",
+          "url": "https://www.xundapharm.com/product.html"
+        }
+      ]
+    },
+    {
+      "id": "kangle-zhejiang-paracetamol",
+      "company_id": "kangle-zhejiang",
+      "name_en": "Paracetamol",
+      "name_zh": "对乙酰氨基酚",
+      "brand_name": "Paracetamol",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "immunology",
+      "indication_en": "Antipyretic / analgesic for fever and pain",
+      "indication_zh": "解热镇痛，用于发热和疼痛",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "confidence": 0.8,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "浙江康乐药业官网",
+          "url": "http://www.conlerpharm.com/"
+        },
+        {
+          "title": "康乐药业(832126)公司介绍-东方财富",
+          "url": "https://xinsanban.eastmoney.com/F10/CompanyInfo/Introduction/832126"
+        }
+      ]
+    },
+    {
+      "id": "kangle-zhejiang-erdosteine",
+      "company_id": "kangle-zhejiang",
+      "name_en": "Erdosteine",
+      "name_zh": "厄多司坦",
+      "brand_name": "Erdosteine Capsules",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "respiratory",
+      "indication_en": "Mucolytic / expectorant for respiratory disorders",
+      "indication_zh": "祛痰药，用于呼吸道疾病",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "confidence": 0.8,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "浙江康乐药业官网",
+          "url": "http://www.conlerpharm.com/"
+        }
+      ]
+    },
+    {
+      "id": "kangle-zhejiang-cefpodoxime-proxetil",
+      "company_id": "kangle-zhejiang",
+      "name_en": "Cefpodoxime Proxetil",
+      "name_zh": "头孢泊肟酯",
+      "brand_name": "Cefpodoxime Proxetil Tablets",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "infectious-disease",
+      "indication_en": "Oral cephalosporin antibiotic for bacterial infections",
+      "indication_zh": "口服头孢菌素类抗生素，用于细菌感染",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "confidence": 0.75,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "浙江康乐药业官网",
+          "url": "http://www.conlerpharm.com/"
+        }
+      ]
+    },
+    {
+      "id": "kangle-zhejiang-amlodipine-besylate",
+      "company_id": "kangle-zhejiang",
+      "name_en": "Amlodipine Besylate",
+      "name_zh": "苯磺酸氨氯地平",
+      "brand_name": "Amlodipine Besylate Tablets",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "cardiometabolic",
+      "indication_en": "Calcium channel blocker for hypertension and angina",
+      "indication_zh": "钙通道阻滞剂，用于高血压和心绞痛",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "confidence": 0.75,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "浙江康乐药业官网",
+          "url": "http://www.conlerpharm.com/"
+        }
+      ]
+    },
+    {
+      "id": "xiangyu-pharma-compound-red-skin-blood-tonic-oral-liquid",
+      "company_id": "xiangyu-pharma",
+      "name_en": "Compound Hongyi Blood-Tonic Oral Liquid",
+      "name_zh": "复方红衣补血口服液",
+      "brand_name": "翔宇红衣 (Xiangyu Hongyi)",
+      "modality_id": "tcm-formula",
+      "therapeutic_area_id": "hematology",
+      "indication_en": "Adjuvant treatment of iron-deficiency anemia (blood-tonic TCM)",
+      "indication_zh": "补血益气健脾，用于缺铁性贫血的辅助治疗",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "翔宇药业股份有限公司官网",
+          "url": "http://www.xiangyuyaoye.com/"
+        },
+        {
+          "title": "复方红衣补血口服液(翔宇红衣)-39药品通",
+          "url": "https://ypk.39.net/1000001717/"
+        }
+      ]
+    },
+    {
+      "id": "xiangyu-pharma-puling-penyankang-granules",
+      "company_id": "xiangyu-pharma",
+      "name_en": "Puling Penyankang Granules",
+      "name_zh": "蒲苓盆炎康颗粒",
+      "brand_name": "翔宇凯复利 (Xiangyu Kaifuli)",
+      "modality_id": "tcm-formula",
+      "therapeutic_area_id": "womens-health",
+      "indication_en": "Sequelae of chronic pelvic inflammatory disease (heat-clearing, damp-removing TCM)",
+      "indication_zh": "清热除湿、化瘀散结，用于慢性盆腔炎后遗症",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "蒲苓盆炎康颗粒(翔宇凯复利)-39药品通",
+          "url": "https://ypk.39.net/823254/"
+        },
+        {
+          "title": "2023国家医保药品目录调整申报材料-蒲苓盆炎康颗粒",
+          "url": "https://www.nhsa.gov.cn/attach/Ypsn2023/YPSW202300156/YPSW202300156-W2.pdf"
+        }
+      ]
+    },
+    {
+      "id": "xiangyu-pharma-compound-motherwort-capsules",
+      "company_id": "xiangyu-pharma",
+      "name_en": "Compound Motherwort Capsules",
+      "name_zh": "复方益母胶囊",
+      "brand_name": "复方益母胶囊",
+      "modality_id": "tcm-formula",
+      "therapeutic_area_id": "womens-health",
+      "indication_en": "Dysmenorrhea and irregular menstruation (blood-activating TCM)",
+      "indication_zh": "活血调经，用于痛经及月经不调",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "confidence": 0.8,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "翔宇药业股份有限公司官网",
+          "url": "http://www.xiangyuyaoye.com/"
+        },
+        {
+          "title": "复方益母胶囊说明书-方舟健客",
+          "url": "https://www.jianke.com/a/20180317/5139293.html"
+        }
+      ]
+    },
+    {
+      "id": "adlai-nortye-buparlisib",
+      "company_id": "adlai-nortye",
+      "name_en": "Buparlisib",
+      "name_zh": "布帕利西布",
+      "brand_name": "AN2025",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "oncology",
+      "indication_en": "Recurrent or metastatic head and neck squamous cell carcinoma",
+      "indication_zh": "复发或转移性头颈部鳞状细胞癌",
+      "approval_status": "ph3",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Adlai Nortye Pipeline",
+          "url": "https://www.adlainortye.com/index.php/products"
+        },
+        {
+          "title": "Adlai Nortye F-1 (SEC)",
+          "url": "https://www.sec.gov/Archives/edgar/data/1944552/000110465923084478/tm2225088-21_f1.htm"
+        }
+      ]
+    },
+    {
+      "id": "adlai-nortye-palupiprant",
+      "company_id": "adlai-nortye",
+      "name_en": "Palupiprant",
+      "name_zh": "帕鲁普利普兰",
+      "brand_name": "AN0025",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "oncology",
+      "indication_en": "Solid tumors (EP4 antagonist, combination immunotherapy)",
+      "indication_zh": "实体瘤（EP4拮抗剂，联合免疫治疗）",
+      "approval_status": "ph2",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "confidence": 0.82,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Adlai Nortye Pipeline",
+          "url": "https://www.adlainortye.com/index.php/products"
+        }
+      ]
+    },
+    {
+      "id": "adlai-nortye-an4005",
+      "company_id": "adlai-nortye",
+      "name_en": "AN4005",
+      "name_zh": "AN4005",
+      "brand_name": "AN4005",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "oncology",
+      "indication_en": "Solid tumors (oral PD-L1 small molecule)",
+      "indication_zh": "实体瘤（口服PD-L1小分子）",
+      "approval_status": "ph1",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "confidence": 0.78,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Adlai Nortye Pipeline",
+          "url": "https://www.adlainortye.com/index.php/products"
+        }
+      ]
+    },
+    {
+      "id": "lanova-medicines-lm-299",
+      "company_id": "lanova-medicines",
+      "name_en": "LM-299",
+      "name_zh": "LM-299",
+      "brand_name": "LM-299",
+      "modality_id": "bispecific-antibody",
+      "therapeutic_area_id": "oncology",
+      "indication_en": "Advanced solid tumors (anti-PD-1/VEGF bispecific)",
+      "indication_zh": "晚期实体瘤（抗PD-1/VEGF双特异性抗体）",
+      "approval_status": "ph1",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "confidence": 0.9,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Merck Global License for LM-299",
+          "url": "https://www.merck.com/news/merck-enters-into-exclusive-global-license-for-lm-299-an-investigational-anti-pd-1-vegf-bispecific-antibody-from-lanova-medicines-ltd/"
+        }
+      ]
+    },
+    {
+      "id": "lanova-medicines-lm-302",
+      "company_id": "lanova-medicines",
+      "name_en": "LM-302",
+      "name_zh": "LM-302",
+      "brand_name": "LM-302",
+      "modality_id": "adc",
+      "therapeutic_area_id": "oncology",
+      "indication_en": "Claudin 18.2-positive gastric and gastroesophageal cancers",
+      "indication_zh": "Claudin18.2阳性胃癌及胃食管癌",
+      "approval_status": "ph3",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "LaNova Medicines Pipeline (PRNewswire)",
+          "url": "https://www.prnewswire.com/news-releases/lanova-medicines-announces-initiation-of-phase-1-clinical-trial-of-anti-pd-1vegf-bispecific-antibody-lm-299-and-completion-of-42-million-series-c1-financing-302280157.html"
+        }
+      ]
+    },
+    {
+      "id": "lanova-medicines-lm-108",
+      "company_id": "lanova-medicines",
+      "name_en": "LM-108",
+      "name_zh": "LM-108",
+      "brand_name": "LM-108",
+      "modality_id": "mab",
+      "therapeutic_area_id": "oncology",
+      "indication_en": "Solid tumors (anti-CCR8 monoclonal antibody)",
+      "indication_zh": "实体瘤（抗CCR8单抗）",
+      "approval_status": "ph2",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "confidence": 0.83,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "LaNova Medicines Pipeline (PRNewswire)",
+          "url": "https://www.prnewswire.com/news-releases/lanova-medicines-announces-initiation-of-phase-1-clinical-trial-of-anti-pd-1vegf-bispecific-antibody-lm-299-and-completion-of-42-million-series-c1-financing-302280157.html"
+        }
+      ]
+    },
+    {
+      "id": "lanova-medicines-lm-305",
+      "company_id": "lanova-medicines",
+      "name_en": "LM-305",
+      "name_zh": "LM-305",
+      "brand_name": "LM-305",
+      "modality_id": "adc",
+      "therapeutic_area_id": "hematology",
+      "indication_en": "GPRC5D-positive multiple myeloma",
+      "indication_zh": "GPRC5D阳性多发性骨髓瘤",
+      "approval_status": "ph1",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "confidence": 0.8,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "LaNova Medicines Pipeline (PRNewswire)",
+          "url": "https://www.prnewswire.com/news-releases/lanova-medicines-announces-initiation-of-phase-1-clinical-trial-of-anti-pd-1vegf-bispecific-antibody-lm-299-and-completion-of-42-million-series-c1-financing-302280157.html"
+        }
+      ]
+    },
+    {
+      "id": "gracell-biotechnologies-gc012f",
+      "company_id": "gracell-biotechnologies",
+      "name_en": "GC012F",
+      "name_zh": "GC012F",
+      "brand_name": "GC012F",
+      "modality_id": "car-t",
+      "therapeutic_area_id": "hematology",
+      "indication_en": "Relapsed/refractory multiple myeloma (BCMA/CD19 dual-targeting FasTCAR)",
+      "indication_zh": "复发/难治性多发性骨髓瘤（BCMA/CD19双靶点FasTCAR）",
+      "approval_status": "ph2",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "confidence": 0.88,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "AstraZeneca to acquire Gracell",
+          "url": "https://www.astrazeneca.com/media-centre/press-releases/2023/astrazeneca-to-acquire-gracell-furthering-cell-therapy-ambition-across-oncology-and-autoimmune-diseases.html"
+        }
+      ]
+    },
+    {
+      "id": "gracell-biotechnologies-gc012f-sle",
+      "company_id": "gracell-biotechnologies",
+      "name_en": "GC012F (autoimmune)",
+      "name_zh": "GC012F（自身免疫）",
+      "brand_name": "GC012F",
+      "modality_id": "car-t",
+      "therapeutic_area_id": "immunology",
+      "indication_en": "Refractory systemic lupus erythematosus",
+      "indication_zh": "难治性系统性红斑狼疮",
+      "approval_status": "ph1",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "confidence": 0.8,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "AstraZeneca to acquire Gracell",
+          "url": "https://www.astrazeneca.com/media-centre/press-releases/2023/astrazeneca-to-acquire-gracell-furthering-cell-therapy-ambition-across-oncology-and-autoimmune-diseases.html"
+        }
+      ]
+    },
+    {
+      "id": "lianbio-mavacamten",
+      "company_id": "lianbio",
+      "name_en": "Mavacamten",
+      "name_zh": "玛伐凯泰",
+      "brand_name": "Camzyos",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "cardiometabolic",
+      "indication_en": "Obstructive hypertrophic cardiomyopathy (cardiac myosin inhibitor)",
+      "indication_zh": "梗阻性肥厚型心肌病（心肌肌球蛋白抑制剂）",
+      "approval_status": "ph3",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "confidence": 0.8,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "LianBio Pipeline (Seeking Alpha)",
+          "url": "https://seekingalpha.com/article/4459375-lianbio-holding-company-in-licensing-late-stage-candidates-for-china-and-the-asian-markets"
+        }
+      ]
+    },
+    {
+      "id": "lianbio-infigratinib",
+      "company_id": "lianbio",
+      "name_en": "Infigratinib",
+      "name_zh": "英菲格拉替尼",
+      "brand_name": "Truseltiq",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "oncology",
+      "indication_en": "FGFR2-altered cholangiocarcinoma",
+      "indication_zh": "FGFR2变异胆管癌",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "confidence": 0.78,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "LianBio Pipeline (Seeking Alpha)",
+          "url": "https://seekingalpha.com/article/4459375-lianbio-holding-company-in-licensing-late-stage-candidates-for-china-and-the-asian-markets"
+        }
+      ]
+    },
+    {
+      "id": "lianbio-bbp-398",
+      "company_id": "lianbio",
+      "name_en": "BBP-398",
+      "name_zh": "BBP-398",
+      "brand_name": "BBP-398",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "oncology",
+      "indication_en": "RTK-driven solid tumors (SHP2 inhibitor)",
+      "indication_zh": "RTK驱动实体瘤（SHP2抑制剂）",
+      "approval_status": "ph1",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "confidence": 0.75,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "LianBio Pipeline (Seeking Alpha)",
+          "url": "https://seekingalpha.com/article/4459375-lianbio-holding-company-in-licensing-late-stage-candidates-for-china-and-the-asian-markets"
+        }
+      ]
+    },
+    {
+      "id": "jiaying-pharmaceutical-shuangliao-houfeng-san",
+      "company_id": "jiaying-pharmaceutical",
+      "name_en": "Shuangliao Houfeng San",
+      "name_zh": "双料喉风散",
+      "brand_name": "嘉应牌双料喉风散",
+      "modality_id": "tcm-formula",
+      "therapeutic_area_id": "respiratory",
+      "indication_en": "Sore throat, gum swelling, mouth ulcers (heat-toxin clearing)",
+      "indication_zh": "咽喉肿痛、齿龈肿痛、口腔糜烂（清热解毒）",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "confidence": 0.92,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "双料喉风散(嘉应)说明书 39药品通",
+          "url": "https://ypk.39.net/510152/manual/"
+        }
+      ]
+    },
+    {
+      "id": "jiaying-pharmaceutical-zhongganling-tablets",
+      "company_id": "jiaying-pharmaceutical",
+      "name_en": "Zhongganling Tablets",
+      "name_zh": "重感灵片",
+      "brand_name": "重感灵片",
+      "modality_id": "tcm-formula",
+      "therapeutic_area_id": "respiratory",
+      "indication_en": "Severe colds and influenza",
+      "indication_zh": "重症感冒、流行性感冒",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "嘉应制药 百度百科",
+          "url": "https://baike.baidu.com/item/%E5%98%89%E5%BA%94%E5%88%B6%E8%8D%AF/10084216"
+        }
+      ]
+    },
+    {
+      "id": "jiaying-pharmaceutical-jinju-wuhua-cha",
+      "company_id": "jiaying-pharmaceutical",
+      "name_en": "Jinju Wuhua Cha granules",
+      "name_zh": "金菊五花茶冲剂",
+      "brand_name": "金菊五花茶冲剂",
+      "modality_id": "tcm-formula",
+      "therapeutic_area_id": "gastroenterology",
+      "indication_en": "Clearing heat and dispelling damp-heat",
+      "indication_zh": "清热祛湿、解暑",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "confidence": 0.8,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "嘉应制药 百度百科",
+          "url": "https://baike.baidu.com/item/%E5%98%89%E5%BA%94%E5%88%B6%E8%8D%AF/10084216"
+        }
+      ]
+    },
+    {
+      "id": "weiming-biology-enerjin",
+      "company_id": "weiming-biology",
+      "name_en": "Mouse nerve growth factor for injection",
+      "name_zh": "注射用鼠神经生长因子",
+      "brand_name": "恩经复 (Enerjin)",
+      "modality_id": "recombinant-protein",
+      "therapeutic_area_id": "neuroscience",
+      "indication_en": "Nerve injury repair, peripheral neuropathy",
+      "indication_zh": "神经损伤修复、周围神经病变",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "confidence": 0.9,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Shandong Sinobioway Biomedicine pipeline",
+          "url": "https://synapse.zhihuiya.com/organization/7c2d9c379084731b24eca2e90b57a985"
+        }
+      ]
+    },
+    {
+      "id": "weiming-biology-interferon-alpha2b-injection",
+      "company_id": "weiming-biology",
+      "name_en": "Recombinant human interferon alpha-2b injection",
+      "name_zh": "重组人干扰素α2b注射液",
+      "brand_name": "安福隆 (Anfuolong)",
+      "modality_id": "recombinant-protein",
+      "therapeutic_area_id": "infectious-disease",
+      "indication_en": "Chronic viral hepatitis B/C, certain tumors",
+      "indication_zh": "慢性乙型/丙型病毒性肝炎、部分肿瘤",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "confidence": 0.88,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Shandong Sinobioway Biomedicine 干扰素 product",
+          "url": "https://baike.eastmoney.com/item/%E5%B1%B1%E4%B8%9C%E6%9C%AA%E5%90%8D%E7%94%9F%E7%89%A9%E5%8C%BB%E8%8D%AF%E8%82%A1%E4%BB%BD%E6%9C%89%E9%99%90%E5%85%AC%E5%8F%B8"
+        }
+      ]
+    },
+    {
+      "id": "weiming-biology-interferon-alpha2b-spray",
+      "company_id": "weiming-biology",
+      "name_en": "Recombinant human interferon alpha-2b spray",
+      "name_zh": "重组人干扰素α2b喷雾剂",
+      "brand_name": "捷抚 (Jiefu)",
+      "modality_id": "recombinant-protein",
+      "therapeutic_area_id": "infectious-disease",
+      "indication_en": "Viral respiratory and mucosal infections",
+      "indication_zh": "病毒性呼吸道及黏膜感染",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "confidence": 0.82,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Shandong Sinobioway Biomedicine 干扰素喷雾",
+          "url": "https://baike.eastmoney.com/item/%E5%B1%B1%E4%B8%9C%E6%9C%AA%E5%90%8D%E7%94%9F%E7%89%A9%E5%8C%BB%E8%8D%AF%E8%82%A1%E4%BB%BD%E6%9C%89%E9%99%90%E5%85%AC%E5%8F%B8"
+        }
+      ]
+    },
+    {
+      "id": "guhan-medicine-guhan-yangshengjing",
+      "company_id": "guhan-medicine",
+      "name_en": "Guhan Yangshengjing (tonic formula)",
+      "name_zh": "古汉养生精",
+      "brand_name": "古汉养生精 Guhan Yangshengjing",
+      "modality_id": "tcm-formula",
+      "therapeutic_area_id": "rare-disease",
+      "indication_en": "Qi-yin deficiency: fatigue, dizziness, insomnia, menopausal syndrome",
+      "indication_zh": "气阴亏虚所致头晕、失眠、疲乏、更年期综合征",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "confidence": 0.9,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "古汉养生精口服液 - 湖南药事服务网",
+          "url": "https://www.hnysfww.com/mobile/prod.php?code=Z107001"
+        },
+        {
+          "title": "启迪古汉：激发古汉养生精核心效应",
+          "url": "http://www.tusholdings.com/h/branchmedia/show-65-3477-1.html"
+        }
+      ]
+    },
+    {
+      "id": "guhan-medicine-yixinshu-pian",
+      "company_id": "guhan-medicine",
+      "name_en": "Yixinshu Tablets",
+      "name_zh": "益心舒片",
+      "brand_name": "益心舒片 Yixinshu",
+      "modality_id": "tcm-formula",
+      "therapeutic_area_id": "cardiometabolic",
+      "indication_en": "Coronary heart disease / angina (qi-yin deficiency type)",
+      "indication_zh": "气阴两虚型冠心病、心绞痛",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "confidence": 0.7,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "启迪药业集团 2022年年度报告",
+          "url": "http://m.cnpharm.com/upload/resources/file/2023/03/28/134887.pdf"
+        }
+      ]
+    },
+    {
+      "id": "guhan-medicine-yangxin-dingji-keli",
+      "company_id": "guhan-medicine",
+      "name_en": "Yangxin Dingji Granules",
+      "name_zh": "养心定悸颗粒",
+      "brand_name": "养心定悸颗粒 Yangxin Dingji",
+      "modality_id": "tcm-formula",
+      "therapeutic_area_id": "cardiometabolic",
+      "indication_en": "Palpitations / arrhythmia (qi-blood deficiency type)",
+      "indication_zh": "气血不足所致心悸、心律失常",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "confidence": 0.65,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "启迪药业集团 2022年年度报告",
+          "url": "http://m.cnpharm.com/upload/resources/file/2023/03/28/134887.pdf"
+        }
+      ]
+    },
+    {
+      "id": "tongji-pharma-bennaitong-cha",
+      "company_id": "tongji-pharma",
+      "name_en": "Bennaitong Tea (laxative herbal tea)",
+      "name_zh": "便乃通茶",
+      "brand_name": "便乃通茶 Bennaitong",
+      "modality_id": "tcm-formula",
+      "therapeutic_area_id": "gastroenterology",
+      "indication_en": "Habitual / functional constipation",
+      "indication_zh": "习惯性便秘",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "同济医药：从单一产品发展至80余个产品 - 武汉市人民政府",
+          "url": "https://www.wuhan.gov.cn/sy/whyw/202403/t20240307_2368847.shtml"
+        }
+      ]
+    },
+    {
+      "id": "tongji-pharma-compound-calcium-carbonate-granules",
+      "company_id": "tongji-pharma",
+      "name_en": "Compound Calcium Carbonate Granules",
+      "name_zh": "复方碳酸钙颗粒",
+      "brand_name": "复方碳酸钙颗粒",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "cardiometabolic",
+      "indication_en": "Calcium supplementation / hypocalcemia",
+      "indication_zh": "补钙、钙缺乏",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "confidence": 0.75,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "同济医药主导产品 - 武汉市人民政府",
+          "url": "https://www.wuhan.gov.cn/sy/whyw/202403/t20240307_2368847.shtml"
+        }
+      ]
+    },
+    {
+      "id": "tongji-pharma-insulin-oral-spray",
+      "company_id": "tongji-pharma",
+      "name_en": "Insulin oral spray",
+      "name_zh": "胰岛素口腔喷剂",
+      "brand_name": "胰岛素口腔喷剂",
+      "modality_id": "peptide",
+      "therapeutic_area_id": "cardiometabolic",
+      "indication_en": "Diabetes mellitus",
+      "indication_zh": "糖尿病",
+      "approval_status": "ph2",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "confidence": 0.5,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "同济医药创新药产品 - 武汉市人民政府",
+          "url": "https://www.wuhan.gov.cn/sy/whyw/202403/t20240307_2368847.shtml"
+        }
+      ]
+    },
+    {
+      "id": "chengda-pharmaceutical-brivaracetam",
+      "company_id": "chengda-pharmaceutical",
+      "name_en": "Brivaracetam",
+      "name_zh": "布立西坦",
+      "brand_name": "Brivaracetam (API)",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "neuroscience",
+      "indication_en": "Partial-onset epileptic seizures",
+      "indication_zh": "部分性癫痫发作",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "confidence": 0.6,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "诚达药业 2024年年度报告摘要",
+          "url": "https://static.cninfo.com.cn/finalpage/2025-04-25/1223265674.PDF"
+        }
+      ]
+    },
+    {
+      "id": "chengda-pharmaceutical-dapagliflozin",
+      "company_id": "chengda-pharmaceutical",
+      "name_en": "Dapagliflozin",
+      "name_zh": "达格列净",
+      "brand_name": "Dapagliflozin (API)",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "cardiometabolic",
+      "indication_en": "Type 2 diabetes mellitus",
+      "indication_zh": "2型糖尿病",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "confidence": 0.6,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "诚达药业 2024年年度报告摘要",
+          "url": "https://static.cninfo.com.cn/finalpage/2025-04-25/1223265674.PDF"
+        }
+      ]
+    },
+    {
+      "id": "purapharm-nongs-ccmg",
+      "company_id": "purapharm",
+      "name_en": "Nong's Concentrated Chinese Medicine Granules",
+      "name_zh": "农本方浓缩中药配方颗粒",
+      "brand_name": "Nong's 農本方",
+      "modality_id": "tcm-formula",
+      "therapeutic_area_id": "immunology",
+      "indication_en": "Single-herb and formula concentrated granules for TCM prescriptions",
+      "indication_zh": "单味及复方浓缩中药配方颗粒",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "NONG'S Concentrated Chinese Medicine Granules - PuraPharm",
+          "url": "https://www.purapharm.com/product/nongs-concentrated-chinese-medicine-granules/"
+        },
+        {
+          "title": "PuraPharm Corporate Overview",
+          "url": "https://www.purapharm.com/about-us/company-profile/corporate-overview/"
+        }
+      ]
+    },
+    {
+      "id": "oukang-pharma-diosmin",
+      "company_id": "oukang-pharma",
+      "name_en": "Diosmin",
+      "name_zh": "地奥司明",
+      "brand_name": "Diosmin",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "cardiometabolic",
+      "indication_en": "Chronic venous insufficiency, hemorrhoids",
+      "indication_zh": "慢性静脉功能不全、痔疮",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "confidence": 0.7,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "成都欧康医药股份有限公司_百度百科",
+          "url": "https://baike.baidu.com/item/%E6%88%90%E9%83%BD%E6%AC%A7%E5%BA%B7%E5%8C%BB%E8%8D%AF%E8%82%A1%E4%BB%BD%E6%9C%89%E9%99%90%E5%85%AC%E5%8F%B8/20003950"
+        },
+        {
+          "title": "欧康医药官网",
+          "url": "https://www.okaypharm.com/quality.html"
+        }
+      ]
+    },
+    {
+      "id": "oukang-pharma-rutin",
+      "company_id": "oukang-pharma",
+      "name_en": "Rutin (Rutoside)",
+      "name_zh": "芦丁",
+      "brand_name": "Rutin",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "cardiometabolic",
+      "indication_en": "Capillary fragility, vascular support",
+      "indication_zh": "毛细血管脆性、血管保护",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "confidence": 0.65,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "成都欧康医药股份有限公司_百度百科",
+          "url": "https://baike.baidu.com/item/%E6%88%90%E9%83%BD%E6%AC%A7%E5%BA%B7%E5%8C%BB%E8%8D%AF%E8%82%A1%E4%BB%BD%E6%9C%89%E9%99%90%E5%85%AC%E5%8F%B8/20003950"
+        }
+      ]
+    },
+    {
+      "id": "guangdong-wannianqing-xiaoyan-lidan",
+      "company_id": "guangdong-wannianqing",
+      "name_en": "Xiaoyan Lidan Tablets",
+      "name_zh": "消炎利胆片",
+      "brand_name": "消炎利胆片",
+      "modality_id": "tcm-formula",
+      "therapeutic_area_id": "gastroenterology",
+      "indication_en": "Cholecystitis, biliary tract inflammation (clearing heat, draining bile)",
+      "indication_zh": "胆囊炎、胆道炎症（清热利胆）",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "confidence": 0.8,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "广东万年青制药股份有限公司 - 广东省中药协会",
+          "url": "https://www.gdszyxh.com/vip/infor.aspx?ArticleId=362&ColumnCode=B101"
+        }
+      ]
+    },
+    {
+      "id": "guangdong-wannianqing-danshitong",
+      "company_id": "guangdong-wannianqing",
+      "name_en": "Danshitong Capsules",
+      "name_zh": "胆石通胶囊",
+      "brand_name": "胆石通胶囊",
+      "modality_id": "tcm-formula",
+      "therapeutic_area_id": "gastroenterology",
+      "indication_en": "Gallstones, cholecystitis (promoting bile flow)",
+      "indication_zh": "胆结石、胆囊炎（利胆排石）",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "confidence": 0.8,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "广东万年青制药股份有限公司 - 广东省中药协会",
+          "url": "https://www.gdszyxh.com/vip/infor.aspx?ArticleId=362&ColumnCode=B101"
+        }
+      ]
+    },
+    {
+      "id": "guangdong-wannianqing-shilintong",
+      "company_id": "guangdong-wannianqing",
+      "name_en": "Shilintong Tablets",
+      "name_zh": "石淋通片",
+      "brand_name": "石淋通片",
+      "modality_id": "tcm-formula",
+      "therapeutic_area_id": "nephrology",
+      "indication_en": "Urinary tract stones, urolithiasis (clearing damp-heat)",
+      "indication_zh": "尿路结石、淋证（清利湿热）",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "confidence": 0.78,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "广东万年青制药股份有限公司 - 广东省中药协会",
+          "url": "https://www.gdszyxh.com/vip/infor.aspx?ArticleId=362&ColumnCode=B101"
+        }
+      ]
+    },
+    {
+      "id": "guangdong-wannianqing-naolibao",
+      "company_id": "guangdong-wannianqing",
+      "name_en": "Naolibao Pills",
+      "name_zh": "脑力宝丸",
+      "brand_name": "脑力宝丸",
+      "modality_id": "tcm-formula",
+      "therapeutic_area_id": "neuroscience",
+      "indication_en": "Neurasthenia, memory decline (tonifying kidney and brain)",
+      "indication_zh": "神经衰弱、健忘（补肾益脑）",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "confidence": 0.75,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "广东万年青制药股份有限公司 - 广东省中药协会",
+          "url": "https://www.gdszyxh.com/vip/infor.aspx?ArticleId=362&ColumnCode=B101"
+        }
+      ]
+    },
+    {
+      "id": "heyi-pharma-cetirizine",
+      "company_id": "heyi-pharma",
+      "name_en": "Cetirizine Hydrochloride",
+      "name_zh": "盐酸西替利嗪",
+      "brand_name": "盐酸西替利嗪片",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "respiratory",
+      "indication_en": "Allergic rhinitis, urticaria (antihistamine)",
+      "indication_zh": "过敏性鼻炎、荨麻疹（抗组胺）",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "confidence": 0.5,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "成都欧康/合益 — therapeutic focus reference (NMPA classes)",
+          "url": "https://www.drugfuture.com/cndrug/search.aspx?SearchTerm=aspirin&DataFieldSelected=auto"
+        }
+      ]
+    },
+    {
+      "id": "heyi-pharma-aspirin-ec",
+      "company_id": "heyi-pharma",
+      "name_en": "Aspirin Enteric-Coated Tablets",
+      "name_zh": "阿司匹林肠溶片",
+      "brand_name": "阿司匹林肠溶片",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "cardiometabolic",
+      "indication_en": "Antithrombotic / antiplatelet, cardiovascular prevention",
+      "indication_zh": "抗血栓/抗血小板，心血管预防",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "confidence": 0.5,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "中国药品注册数据库 - 阿司匹林",
+          "url": "https://www.drugfuture.com/cndrug/search.aspx?SearchTerm=aspirin&DataFieldSelected=auto"
+        }
+      ]
+    },
+    {
+      "id": "heyi-pharma-antiviral-oral-liquid",
+      "company_id": "heyi-pharma",
+      "name_en": "Antiviral Oral Liquid (TCM)",
+      "name_zh": "抗病毒口服液",
+      "brand_name": "抗病毒口服液",
+      "modality_id": "tcm-formula",
+      "therapeutic_area_id": "infectious-disease",
+      "indication_en": "Wind-heat cold and influenza (clearing heat, resolving toxicity)",
+      "indication_zh": "风热感冒、流感（清热解毒）",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "confidence": 0.45,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "抗病毒口服液 - 药房网商城",
+          "url": "https://m.yaofangwang.com/medicine/652626/68724653.html"
+        }
+      ]
+    },
+    {
+      "id": "xinguang-pharmaceutical-huangqi-shengmai-yin",
+      "company_id": "xinguang-pharmaceutical",
+      "name_en": "Huangqi Shengmai Oral Liquid",
+      "name_zh": "黄芪生脉饮",
+      "brand_name": "黄芪生脉饮",
+      "modality_id": "tcm-formula",
+      "therapeutic_area_id": "cardiometabolic",
+      "indication_en": "Qi-yin deficiency, palpitations, fatigue (cardiovascular tonic)",
+      "indication_zh": "气阴两虚、心悸、乏力",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "浙江新光药业 2023 年年度报告",
+          "url": "https://reportify-1252068037.cos.ap-beijing.myqcloud.com/media/production/30051911ebe2b4af5b195a99d06f24e9478fd8.pdf"
+        }
+      ]
+    },
+    {
+      "id": "xinguang-pharmaceutical-xiyangshen-oral-liquid",
+      "company_id": "xinguang-pharmaceutical",
+      "name_en": "American Ginseng Oral Liquid",
+      "name_zh": "西洋参口服液",
+      "brand_name": "西洋参口服液",
+      "modality_id": "tcm-formula",
+      "therapeutic_area_id": "cardiometabolic",
+      "indication_en": "Qi and yin tonic for fatigue and weakness",
+      "indication_zh": "补气养阴、缓解乏力虚弱",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "confidence": 0.8,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "浙江新光药业 2023 年年度报告",
+          "url": "https://reportify-1252068037.cos.ap-beijing.myqcloud.com/media/production/30051911ebe2b4af5b195a99d06f24e9478fd8.pdf"
+        }
+      ]
+    },
+    {
+      "id": "xinguang-pharmaceutical-shenjindan-capsule",
+      "company_id": "xinguang-pharmaceutical",
+      "name_en": "Shenjindan Capsule",
+      "name_zh": "伸筋丹胶囊",
+      "brand_name": "伸筋丹胶囊",
+      "modality_id": "tcm-formula",
+      "therapeutic_area_id": "neuroscience",
+      "indication_en": "Joint and muscle pain, rheumatic arthralgia",
+      "indication_zh": "舒筋活血、用于关节肌肉疼痛、风湿痹痛",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "confidence": 0.8,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "浙江新光药业 2023 年年度报告",
+          "url": "https://reportify-1252068037.cos.ap-beijing.myqcloud.com/media/production/30051911ebe2b4af5b195a99d06f24e9478fd8.pdf"
+        }
+      ]
+    },
+    {
+      "id": "sailong-pharmaceutical-gemcitabine",
+      "company_id": "sailong-pharmaceutical",
+      "name_en": "Gemcitabine Hydrochloride for Injection",
+      "name_zh": "注射用盐酸吉西他滨",
+      "brand_name": "注射用盐酸吉西他滨",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "oncology",
+      "indication_en": "Pancreatic, non-small cell lung, breast and bladder cancer",
+      "indication_zh": "胰腺癌、非小细胞肺癌、乳腺癌、膀胱癌",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "赛隆药业同日过评 - 健康界",
+          "url": "https://www.cn-healthcare.com/articlewm/20220419/content-1341266.html"
+        }
+      ]
+    },
+    {
+      "id": "sailong-pharmaceutical-oxaliplatin",
+      "company_id": "sailong-pharmaceutical",
+      "name_en": "Oxaliplatin for Injection",
+      "name_zh": "注射用奥沙利铂",
+      "brand_name": "注射用奥沙利铂",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "oncology",
+      "indication_en": "Metastatic colorectal cancer",
+      "indication_zh": "转移性结直肠癌",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "赛隆药业同日过评 - 健康界",
+          "url": "https://www.cn-healthcare.com/articlewm/20220419/content-1341266.html"
+        }
+      ]
+    },
+    {
+      "id": "sailong-pharmaceutical-tigecycline",
+      "company_id": "sailong-pharmaceutical",
+      "name_en": "Tigecycline for Injection",
+      "name_zh": "注射用替加环素",
+      "brand_name": "注射用替加环素",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "infectious-disease",
+      "indication_en": "Complicated intra-abdominal and skin infections",
+      "indication_zh": "复杂腹腔感染、复杂皮肤软组织感染",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "confidence": 0.8,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "赛隆药业同日过评 - 健康界",
+          "url": "https://www.cn-healthcare.com/articlewm/20220419/content-1341266.html"
+        }
+      ]
+    },
+    {
+      "id": "sailong-pharmaceutical-milrinone",
+      "company_id": "sailong-pharmaceutical",
+      "name_en": "Milrinone Injection",
+      "name_zh": "米力农注射液",
+      "brand_name": "米力农注射液",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "cardiometabolic",
+      "indication_en": "Acute decompensated heart failure",
+      "indication_zh": "急性失代偿性心力衰竭",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "confidence": 0.75,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "赛隆药业同日过评 - 健康界",
+          "url": "https://www.cn-healthcare.com/articlewm/20220419/content-1341266.html"
+        }
+      ]
+    },
+    {
+      "id": "duoputai-pharma-maixuekang-capsule",
+      "company_id": "duoputai-pharma",
+      "name_en": "Maixuekang Capsule (Lumbricus extract)",
+      "name_zh": "脉血康胶囊",
+      "brand_name": "脉血康胶囊",
+      "modality_id": "tcm-formula",
+      "therapeutic_area_id": "cardiometabolic",
+      "indication_en": "Blood stasis, thrombotic cardiovascular and cerebrovascular disease",
+      "indication_zh": "破血逐瘀，用于血瘀所致心脑血管栓塞",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "重庆多普泰制药 - 百度百科",
+          "url": "https://baike.baidu.com/item/%E9%87%8D%E5%BA%86%E5%A4%9A%E6%99%AE%E6%B3%B0%E5%88%B6%E8%8D%AF%E8%82%A1%E4%BB%BD%E6%9C%89%E9%99%90%E5%85%AC%E5%8F%B8/24551650"
+        }
+      ]
+    },
+    {
+      "id": "duoputai-pharma-maixuekang-enteric-tablet",
+      "company_id": "duoputai-pharma",
+      "name_en": "Maixuekang Enteric-coated Tablet",
+      "name_zh": "脉血康肠溶片",
+      "brand_name": "脉血康肠溶片",
+      "modality_id": "tcm-formula",
+      "therapeutic_area_id": "cardiometabolic",
+      "indication_en": "Blood stasis, cerebral thrombosis and ischemic stroke sequelae",
+      "indication_zh": "血瘀证、脑血栓及缺血性中风后遗症",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "confidence": 0.8,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "重庆多普泰制药 - 百度百科",
+          "url": "https://baike.baidu.com/item/%E9%87%8D%E5%BA%86%E5%A4%9A%E6%99%AE%E6%B3%B0%E5%88%B6%E8%8D%AF%E8%82%A1%E4%BB%BD%E6%9C%89%E9%99%90%E5%85%AC%E5%8F%B8/24551650"
+        }
+      ]
+    },
+    {
+      "id": "duoputai-pharma-yuntongding-capsule",
+      "company_id": "duoputai-pharma",
+      "name_en": "Yuntongding Capsule",
+      "name_zh": "晕痛定胶囊",
+      "brand_name": "晕痛定胶囊",
+      "modality_id": "tcm-formula",
+      "therapeutic_area_id": "neuroscience",
+      "indication_en": "Vascular headache and dizziness",
+      "indication_zh": "血管性头痛、眩晕",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "confidence": 0.75,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "重庆多普泰制药 - 百度百科",
+          "url": "https://baike.baidu.com/item/%E9%87%8D%E5%BA%86%E5%A4%9A%E6%99%AE%E6%B3%B0%E5%88%B6%E8%8D%AF%E8%82%A1%E4%BB%BD%E6%9C%89%E9%99%90%E5%85%AC%E5%8F%B8/24551650"
+        }
+      ]
+    },
+    {
+      "id": "xidian-pharmaceutical-iron-folic-acid",
+      "company_id": "xidian-pharmaceutical",
+      "name_en": "Ferrous Sulfate Folic Acid Tablets",
+      "name_zh": "硫酸亚铁叶酸片（益源生）",
+      "brand_name": "益源生",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "hematology",
+      "indication_en": "Iron deficiency anemia, including in pregnancy",
+      "indication_zh": "缺铁性贫血（含孕期）",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "西点药业 2023 年年度报告摘要",
+          "url": "https://file.finance.qq.com/finance/hs/pdf/2024/04/23/1219743671.PDF"
+        }
+      ]
+    },
+    {
+      "id": "xidian-pharmaceutical-risperidone-odt",
+      "company_id": "xidian-pharmaceutical",
+      "name_en": "Risperidone Orally Disintegrating Tablets",
+      "name_zh": "利培酮口崩片（可同）",
+      "brand_name": "可同",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "neuroscience",
+      "indication_en": "Schizophrenia",
+      "indication_zh": "精神分裂症",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "西点药业 2023 年年度报告摘要",
+          "url": "https://file.finance.qq.com/finance/hs/pdf/2024/04/23/1219743671.PDF"
+        }
+      ]
+    },
+    {
+      "id": "xidian-pharmaceutical-escitalopram",
+      "company_id": "xidian-pharmaceutical",
+      "name_en": "Escitalopram Oxalate Tablets",
+      "name_zh": "草酸艾司西酞普兰片",
+      "brand_name": "草酸艾司西酞普兰片",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "neuroscience",
+      "indication_en": "Major depressive disorder",
+      "indication_zh": "抑郁症",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "confidence": 0.8,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "西点药业 2023 年年度报告摘要",
+          "url": "https://file.finance.qq.com/finance/hs/pdf/2024/04/23/1219743671.PDF"
+        }
+      ]
+    },
+    {
+      "id": "xidian-pharmaceutical-daphnetin",
+      "company_id": "xidian-pharmaceutical",
+      "name_en": "Daphnetin Capsules",
+      "name_zh": "瑞香素胶囊",
+      "brand_name": "瑞香素胶囊",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "cardiometabolic",
+      "indication_en": "Thromboangiitis obliterans and microcirculatory disorders",
+      "indication_zh": "血栓闭塞性脉管炎、微循环障碍",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "confidence": 0.75,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "西点药业 2023 年年度报告摘要",
+          "url": "https://file.finance.qq.com/finance/hs/pdf/2024/04/23/1219743671.PDF"
+        }
+      ]
+    },
+    {
+      "id": "globe-pharma-levofloxacin",
+      "company_id": "globe-pharma",
+      "name_en": "Levofloxacin Hydrochloride",
+      "name_zh": "盐酸左氧氟沙星",
+      "brand_name": "Youepang",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "infectious-disease",
+      "indication_en": "Fluoroquinolone antibiotic for bacterial infections",
+      "indication_zh": "氟喹诺酮类抗菌药，治疗细菌感染",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "confidence": 0.78,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "安徽环球药业股份有限公司_百度百科",
+          "url": "https://baike.baidu.com/item/%E5%AE%89%E5%BE%BD%E7%8E%AF%E7%90%83%E8%8D%AF%E4%B8%9A%E8%82%A1%E4%BB%BD%E6%9C%89%E9%99%90%E5%85%AC%E5%8F%B8/3388357"
+        }
+      ]
+    },
+    {
+      "id": "globe-pharma-valsartan",
+      "company_id": "globe-pharma",
+      "name_en": "Valsartan",
+      "name_zh": "缬沙坦",
+      "brand_name": "Ruepang",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "cardiometabolic",
+      "indication_en": "Angiotensin receptor blocker for hypertension",
+      "indication_zh": "血管紧张素受体拮抗剂，治疗高血压",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "confidence": 0.75,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "安徽环球药业股份有限公司_百度百科",
+          "url": "https://baike.baidu.com/item/%E5%AE%89%E5%BE%BD%E7%8E%AF%E7%90%83%E8%8D%AF%E4%B8%9A%E8%82%A1%E4%BB%BD%E6%9C%89%E9%99%90%E5%85%AC%E5%8F%B8/3388357"
+        }
+      ]
+    },
+    {
+      "id": "globe-pharma-salbutamol",
+      "company_id": "globe-pharma",
+      "name_en": "Salbutamol Hydrochloride",
+      "name_zh": "盐酸沙丁胺醇",
+      "brand_name": "Koepang",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "respiratory",
+      "indication_en": "Beta-2 agonist bronchodilator for asthma",
+      "indication_zh": "β2受体激动剂支气管扩张剂，治疗哮喘",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "confidence": 0.72,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "安徽环球药业股份有限公司_百度百科",
+          "url": "https://baike.baidu.com/item/%E5%AE%89%E5%BE%BD%E7%8E%AF%E7%90%83%E8%8D%AF%E4%B8%9A%E8%82%A1%E4%BB%BD%E6%9C%89%E9%99%90%E5%85%AC%E5%8F%B8/3388357"
+        }
+      ]
+    },
+    {
+      "id": "modern-chinese-medicine-jingui-shenqi-wan",
+      "company_id": "modern-chinese-medicine",
+      "name_en": "Jingui Shenqi Wan",
+      "name_zh": "金匮肾气丸",
+      "brand_name": "金匮肾气丸",
+      "modality_id": "tcm-formula",
+      "therapeutic_area_id": "nephrology",
+      "indication_en": "Kidney-yang deficiency, edema, frequent urination",
+      "indication_zh": "肾阳不足、水肿、小便频数",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "confidence": 0.78,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "现代中药集团 IPO 申购分析",
+          "url": "https://m.sohu.com/a/442597418_120827194/"
+        }
+      ]
+    },
+    {
+      "id": "modern-chinese-medicine-hugan-pian",
+      "company_id": "modern-chinese-medicine",
+      "name_en": "Hugan Pian (liver-protecting tablets)",
+      "name_zh": "护肝片",
+      "brand_name": "护肝片",
+      "modality_id": "tcm-formula",
+      "therapeutic_area_id": "gastroenterology",
+      "indication_en": "Liver protection, chronic hepatitis support",
+      "indication_zh": "保肝、慢性肝炎辅助",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "confidence": 0.78,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "现代中药集团 IPO 申购分析",
+          "url": "https://m.sohu.com/a/442597418_120827194/"
+        }
+      ]
+    },
+    {
+      "id": "modern-chinese-medicine-xinan-jiaonang",
+      "company_id": "modern-chinese-medicine",
+      "name_en": "Xin'an Jiaonang (heart-calming capsules)",
+      "name_zh": "心安胶囊",
+      "brand_name": "心安胶囊",
+      "modality_id": "tcm-formula",
+      "therapeutic_area_id": "cardiometabolic",
+      "indication_en": "Coronary heart disease, angina, cardiovascular support",
+      "indication_zh": "冠心病、心绞痛、心血管辅助",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "confidence": 0.72,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "现代中药集团 IPO 申购分析",
+          "url": "https://m.sohu.com/a/442597418_120827194/"
+        }
+      ]
+    },
+    {
+      "id": "modern-chinese-medicine-jiawei-xiaoyao-wan",
+      "company_id": "modern-chinese-medicine",
+      "name_en": "Jiawei Xiaoyao Wan",
+      "name_zh": "加味逍遥丸",
+      "brand_name": "加味逍遥丸",
+      "modality_id": "tcm-formula",
+      "therapeutic_area_id": "womens-health",
+      "indication_en": "Liver-qi stagnation, menstrual disorders, irritability",
+      "indication_zh": "肝郁血虚、月经不调、烦躁",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "greater_china",
+      "confidence": 0.72,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "现代中药集团 IPO 申购分析",
+          "url": "https://m.sohu.com/a/442597418_120827194/"
+        }
+      ]
+    },
+    {
       "id": "zanubrutinib-beigene",
       "name_zh": "泽布替尼",
       "name_en": "Zanubrutinib",

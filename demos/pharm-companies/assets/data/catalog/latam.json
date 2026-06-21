@@ -443,6 +443,171 @@
       ]
     },
     {
+      "id": "laboratorio-pablo-cassara-arvac",
+      "company_id": "laboratorio-pablo-cassara",
+      "name_en": "ARVAC Cecilia Grierson",
+      "name_zh": "ARVAC新冠疫苗",
+      "brand_name": "ARVAC",
+      "modality_id": "protein-subunit-vaccine",
+      "therapeutic_area_id": "vaccines",
+      "indication_en": "COVID-19 prevention (recombinant RBD subunit booster)",
+      "indication_zh": "新冠肺炎预防（重组RBD亚单位加强针）",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "latam",
+      "confidence": 0.9,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "ARVAC, la primera vacuna 100% argentina - CONICET",
+          "url": "https://www.conicet.gov.ar/arvac-la-primera-vacuna-100-argentina-estara-disponible-en-farmacias-de-todo-el-pais/"
+        },
+        {
+          "title": "ARVAC - A New Recombinant COVID-19 Vaccine - ClinicalTrials.gov",
+          "url": "https://clinicaltrials.gov/study/NCT05656508"
+        }
+      ]
+    },
+    {
+      "id": "laboratorio-pablo-cassara-vaccimel",
+      "company_id": "laboratorio-pablo-cassara",
+      "name_en": "Vaccimel (CSF-470 melanoma vaccine)",
+      "name_zh": "Vaccimel黑色素瘤治疗性疫苗",
+      "brand_name": "Vaccimel",
+      "modality_id": "protein-subunit-vaccine",
+      "therapeutic_area_id": "oncology",
+      "indication_en": "Therapeutic vaccine for cutaneous melanoma (adjuvant)",
+      "indication_zh": "皮肤黑色素瘤治疗性疫苗（辅助治疗）",
+      "approval_status": "ph3",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "latam",
+      "confidence": 0.75,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Vaccimel - Laboratorio Pablo Cassara",
+          "url": "https://cassara.com.ar/vaccimel/"
+        }
+      ]
+    },
+    {
+      "id": "laboratorio-pablo-cassara-interferon-alfa-2b",
+      "company_id": "laboratorio-pablo-cassara",
+      "name_en": "Interferon alfa-2b (recombinant)",
+      "name_zh": "重组干扰素α-2b",
+      "brand_name": "Interferon alfa-2b",
+      "modality_id": "biosimilar",
+      "therapeutic_area_id": "infectious-disease",
+      "indication_en": "Chronic viral hepatitis and certain cancers",
+      "indication_zh": "慢性病毒性肝炎及某些肿瘤",
+      "approval_status": "approved",
+      "drug_class": "biosimilar",
+      "is_blockbuster": false,
+      "region": "latam",
+      "confidence": 0.7,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Interferon alpha-2b biosimilar - AdisInsight",
+          "url": "https://adisinsight.springer.com/drugs/800040080"
+        }
+      ]
+    },
+    {
+      "id": "laboratorio-pablo-cassara-filgrastim",
+      "company_id": "laboratorio-pablo-cassara",
+      "name_en": "Filgrastim",
+      "name_zh": "非格司亭",
+      "brand_name": "Filgrastim",
+      "modality_id": "biosimilar",
+      "therapeutic_area_id": "hematology",
+      "indication_en": "Chemotherapy-induced neutropenia",
+      "indication_zh": "化疗引起的中性粒细胞减少症",
+      "approval_status": "approved",
+      "drug_class": "biosimilar",
+      "is_blockbuster": false,
+      "region": "latam",
+      "confidence": 0.65,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Laboratorio Pablo Cassara - I+D / biosimilars",
+          "url": "https://cassara.com.ar/i-d/"
+        }
+      ]
+    },
+    {
+      "id": "tecnofarma-bevacizumab",
+      "company_id": "tecnofarma",
+      "name_en": "Bevacizumab",
+      "name_zh": "贝伐珠单抗",
+      "brand_name": "Bevacizumab (Tecnofarma)",
+      "modality_id": "biosimilar",
+      "therapeutic_area_id": "oncology",
+      "indication_en": "Metastatic colorectal and lung cancer (anti-VEGF)",
+      "indication_zh": "转移性结直肠癌和肺癌（抗VEGF）",
+      "approval_status": "approved",
+      "drug_class": "biosimilar",
+      "is_blockbuster": false,
+      "region": "latam",
+      "confidence": 0.6,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Biosimilar Monoclonal Antibodies in Latin America - IntechOpen",
+          "url": "https://www.intechopen.com/chapters/79577"
+        }
+      ]
+    },
+    {
+      "id": "tecnofarma-trastuzumab",
+      "company_id": "tecnofarma",
+      "name_en": "Trastuzumab",
+      "name_zh": "曲妥珠单抗",
+      "brand_name": "Trastuzumab (Tecnofarma)",
+      "modality_id": "biosimilar",
+      "therapeutic_area_id": "oncology",
+      "indication_en": "HER2-positive breast cancer",
+      "indication_zh": "HER2阳性乳腺癌",
+      "approval_status": "approved",
+      "drug_class": "biosimilar",
+      "is_blockbuster": false,
+      "region": "latam",
+      "confidence": 0.55,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Biosimilar Monoclonal Antibodies in Latin America - IntechOpen",
+          "url": "https://www.intechopen.com/chapters/79577"
+        }
+      ]
+    },
+    {
+      "id": "tecnofarma-filgrastim",
+      "company_id": "tecnofarma",
+      "name_en": "Filgrastim",
+      "name_zh": "非格司亭",
+      "brand_name": "Filgrastim (Tecnofarma)",
+      "modality_id": "biosimilar",
+      "therapeutic_area_id": "hematology",
+      "indication_en": "Chemotherapy-induced neutropenia",
+      "indication_zh": "化疗引起的中性粒细胞减少症",
+      "approval_status": "approved",
+      "drug_class": "biosimilar",
+      "is_blockbuster": false,
+      "region": "latam",
+      "confidence": 0.5,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Biosimilars approved in Uruguay - GaBI Online",
+          "url": "https://gabionline.net/biosimilars/general/biosimilars-approved-in-uruguay"
+        }
+      ]
+    },
+    {
       "id": "glargilin-insulin",
       "name_zh": "GLARGILIN（インスリングラルギン）",
       "name_en": "GLARGILIN (insulin glargine)",
