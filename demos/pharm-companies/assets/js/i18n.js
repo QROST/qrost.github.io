@@ -10,7 +10,9 @@
     zh: {
       navBrand: '全球医药图谱', navOverview: '概览', navMap: '地图', navCatalog: '企业',
       navModalities: '药物模态', navTrends: '研发趋势', navCountries: '国家对比',
-      navBenchmarks: '对标', navMilestones: '里程碑', navCompare: '对比',
+      navBenchmarks: '对标', navMilestones: '里程碑', navCompare: '对比', navGroups: '集团关系',
+      grpTitle: '集团 / 控股关系图谱', grpSub: '把同属一个集团、有控股 / 归属关系的企业连起来：国药、华润、罗氏、辉瑞系等。箭头由母公司指向子公司，颜色代表集团。点击节点查看企业详情。',
+      allGroups: '全部集团', grpRelations: '集团 / 控股关系', grpMemberOf: '隶属集团', grpParentCo: '母公司', grpSubs: '控股子公司', grpSiblings: '同集团企业', grpCountTpl: '{g} 个集团 · {n} 家企业',
       errTitle: '数据加载失败', errBody: '本页通过 fetch 读取 JSON，需经 HTTP(S) 提供（不能用 file:// 直接打开）。请用本地服务器访问。',
       heroTitle: '全球医药行业图谱',
       heroSub: '用数据看全球医药版图：中国与美、欧、日、澳等国的医药企业，它们的地理布局、子公司与研发/生产站点、旗舰药物与在研管线、药物模态与治疗领域侧重，以及国家间的对比与中国对国际原研的突破。',
@@ -47,7 +49,9 @@
     en: {
       navBrand: 'Global Pharma Atlas', navOverview: 'Overview', navMap: 'Map', navCatalog: 'Companies',
       navModalities: 'Modalities', navTrends: 'R&D Trends', navCountries: 'Countries',
-      navBenchmarks: 'Benchmarks', navMilestones: 'Milestones', navCompare: 'Compare',
+      navBenchmarks: 'Benchmarks', navMilestones: 'Milestones', navCompare: 'Compare', navGroups: 'Groups',
+      grpTitle: 'Corporate group / ownership graph', grpSub: 'Companies that share a parent or belong to the same conglomerate, linked up — Sinopharm, China Resources, Roche, the Pfizer lineage, and more. Arrows point parent → subsidiary; color = group. Click a node for the company.',
+      allGroups: 'All groups', grpRelations: 'Corporate group / ownership', grpMemberOf: 'Part of group', grpParentCo: 'Parent', grpSubs: 'Controlled subsidiaries', grpSiblings: 'Group affiliates', grpCountTpl: '{g} groups · {n} companies',
       errTitle: 'Data failed to load', errBody: 'This page fetches JSON and must be served over HTTP(S) (not opened via file://). Use a local server.',
       heroTitle: 'Global Pharmaceutical Industry Atlas',
       heroSub: 'A data view of the global pharma landscape — Chinese pharma alongside the US, Europe, Japan, Australia and more: geographic footprint, subsidiaries and R&D/manufacturing sites, flagship drugs and pipelines, modality and therapeutic-area focus, country-vs-country comparison, and China-vs-incumbent breakthroughs.',
@@ -97,6 +101,12 @@
       medtech: { zh: '医疗器械', en: 'MedTech' },
       consumer_health: { zh: '消费健康/OTC', en: 'Consumer health' },
       venture_creation: { zh: '风险孵化/创建', en: 'Venture creation' }
+    },
+    group_role: {
+      'group-holdco': { zh: '集团母公司', en: 'Group holdco' },
+      'flagship-listco': { zh: '上市旗舰', en: 'Listed flagship' },
+      subsidiary: { zh: '子公司', en: 'Subsidiary' },
+      affiliate: { zh: '关联企业', en: 'Affiliate' }
     },
     site_type: {
       HQ: { zh: '总部', en: 'HQ' }, RD: { zh: '研发', en: 'R&D' },

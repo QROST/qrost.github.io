@@ -9,7 +9,7 @@
   var state = {
     map: { dim: 'site_type', region: '', modality: '', ta: '' },
     cat: { search: '', region: '', type: '', modality: '', tier: '', sort: 'name', dir: 1 },
-    compare: [], countrySel: []
+    compare: [], countrySel: [], groupsFilter: ''
   };
   var companyModalities = {}, companyTAs = {};
   var CAT_CAP = 400; // max catalog rows rendered at once (perf w/ large roster); refine via filters
@@ -75,6 +75,19 @@
   }
   function ctBadge(c) { return '<span class="badge badge-ct-' + c.company_type + '">' + I18N.enumLabel('company_type', c.company_type) + '</span>'; }
   function apprBadge(p) { return '<span class="badge badge-appr-' + p.approval_status + '">' + I18N.phaseLabel(p.approval_status) + '</span>'; }
+  function coChip(co) { return '<button class="chip chip-link" data-company-link="' + esc(co.id) + '">' + esc(I18N.name(co)) + '</button>'; }
+  function relationsHtml(c) {
+    var g = c.group_id ? D.getGroup(c.group_id) : null;
+    var parent = D.parentOf(c.id), subs = D.subsidiariesOf(c.id), sibs = D.groupSiblings(c.id);
+    if (!g && !parent && !subs.length && !sibs.length) return '';
+    var rows = '';
+    if (g) rows += '<dt>' + I18N.t('grpMemberOf') + '</dt><dd>' + esc(I18N.name(g)) +
+      (c.group_role ? ' <span class="badge" style="background:var(--bg-elev)">' + I18N.enumLabel('group_role', c.group_role) + '</span>' : '') + '</dd>';
+    if (parent) rows += '<dt>' + I18N.t('grpParentCo') + '</dt><dd>' + coChip(parent) + '</dd>';
+    if (subs.length) rows += '<dt>' + I18N.t('grpSubs') + '</dt><dd>' + subs.map(coChip).join(' ') + '</dd>';
+    if (sibs.length) rows += '<dt>' + I18N.t('grpSiblings') + '</dt><dd>' + sibs.slice(0, 14).map(coChip).join(' ') + '</dd>';
+    return '<h4 class="mt-4">' + I18N.t('grpRelations') + '</h4><dl class="kv">' + rows + '</dl>';
+  }
 
   // ---------- indexes ----------
   function buildIndexes() {
@@ -225,10 +238,10 @@
         [I18N.t('rndSpend'), money(c.rnd_spend, true)], [I18N.t('employees'), c.employees ? num(c.employees.value) + (c.employees.year ? ' (' + c.employees.year + ')' : '') : '—'],
         [I18N.t('founded'), c.founded || '—'], [I18N.t('hq'), esc(c.hq_city || '') + (c.hq_city ? ', ' : '') + esc(I18N.pick(c.country_display_zh, c.country_display_en))]
       ];
-      if (c.parent_id && D.getCompany(c.parent_id)) kv.push([I18N.t('parent'), esc(I18N.name(D.getCompany(c.parent_id)))]);
       b.innerHTML = (c.tier === 'roster' ? '<p class="text-faint" style="font-size:.78rem">' + esc(I18N.t('rosterNote')) + '</p>' : '') +
         (c.description_zh || c.description_en ? '<p class="text-muted">' + esc(I18N.pick(c.description_zh, c.description_en)) + '</p>' : '') +
         '<dl class="kv mt-3">' + kv.map(function (r) { return '<dt>' + r[0] + '</dt><dd>' + r[1] + '</dd>'; }).join('') + '</dl>' +
+        relationsHtml(c) +
         (c.website ? '<p class="mt-3"><a href="' + esc(c.website) + '" target="_blank" rel="noopener">' + esc(c.website) + '</a></p>' : '') +
         sourcesHtml(c.sources);
     } else if (t === 'tabSites') {
@@ -361,6 +374,24 @@
     $('compare-modal').classList.remove('hidden');
   }
 
+  // ---------- groups (corporate-ownership graph) ----------
+  function renderGroups() {
+    if (!window.GROUPS_GRAPH || !$('groups-graph')) return;
+    var grouped = D.companies.filter(function (c) { return c.group_id; });
+    var present = {}; grouped.forEach(function (c) { present[c.group_id] = 1; });
+    var gs = D.groups.filter(function (g) { return present[g.id]; })
+      .sort(function (a, b) { return I18N.name(a).localeCompare(I18N.name(b)); });
+    $('groups-filter').innerHTML = opt('', I18N.t('allGroups')) + gs.map(function (g) { return opt(g.id, I18N.name(g)); }).join('');
+    $('groups-filter').value = state.groupsFilter || '';
+    $('groups-count').textContent = I18N.t('grpCountTpl').replace('{g}', gs.length).replace('{n}', grouped.length);
+    GROUPS_GRAPH.render($('groups-graph'), {
+      companies: D.companies, groups: D.groups, isEn: I18N.isEn(),
+      filterGroupId: state.groupsFilter || '',
+      getCompany: D.getCompany, getGroup: D.getGroup,
+      onNodeClick: function (id) { modalTab = 'tabSummary'; openCompanyModal(id); }
+    });
+  }
+
   // ---------- render all dynamic ----------
   function renderAll() {
     renderKpis();
@@ -373,7 +404,7 @@
     });
     CH.renderTrendPhase(D.products); CH.renderTrendTA(D.products, D.getTA);
     CH.renderTrendModality(D.products, D.getModality); CH.renderTrendRegion(D.companies);
-    renderCountries(); renderBenchmarks(); renderMilestones();
+    renderCountries(); renderBenchmarks(); renderMilestones(); renderGroups();
   }
 
   // ---------- theme ----------
@@ -433,9 +464,11 @@
       renderModalBodyFromOpen();
     });
     $('company-modal-body').addEventListener('click', function (e) {
-      var b = e.target.closest('[data-add-compare]'); if (b) { toggleCompare(b.getAttribute('data-add-compare')); renderModalBodyFromOpen(); }
+      var b = e.target.closest('[data-add-compare]'); if (b) { toggleCompare(b.getAttribute('data-add-compare')); renderModalBodyFromOpen(); return; }
+      var link = e.target.closest('[data-company-link]'); if (link) { modalTab = 'tabSummary'; openCompanyModal(link.getAttribute('data-company-link')); }
     });
 
+    $('groups-filter').addEventListener('change', function (e) { state.groupsFilter = e.target.value; renderGroups(); });
     $('milestone-filter').addEventListener('change', renderMilestones);
     $('country-body').addEventListener('change', function (e) {
       var cb = e.target.closest('input[data-cty]'); if (!cb) return;
