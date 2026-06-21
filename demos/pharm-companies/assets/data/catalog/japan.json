@@ -282,6 +282,658 @@
       ]
     },
     {
+      "id": "kyorin-pharmaceutical-beova",
+      "company_id": "kyorin-pharmaceutical",
+      "name_en": "Vibegron",
+      "name_zh": "维贝格龙",
+      "brand_name": "Beova",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "nephrology",
+      "indication_en": "Overactive bladder (beta-3 adrenergic agonist)",
+      "indication_zh": "膀胱过度活动症（β3肾上腺素受体激动剂）",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "japan",
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Kyorin main products",
+          "url": "https://www.kyorin-pharm.co.jp/en/business/product.shtml"
+        }
+      ]
+    },
+    {
+      "id": "kyorin-pharmaceutical-lasvic",
+      "company_id": "kyorin-pharmaceutical",
+      "name_en": "Lascufloxacin",
+      "name_zh": "拉司氟沙星",
+      "brand_name": "Lasvic",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "infectious-disease",
+      "indication_en": "Respiratory tract infections (quinolone antibacterial)",
+      "indication_zh": "呼吸道感染（喹诺酮类抗菌药）",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "japan",
+      "confidence": 0.82,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Kyorin main products",
+          "url": "https://www.kyorin-pharm.co.jp/en/business/product.shtml"
+        }
+      ]
+    },
+    {
+      "id": "kyorin-pharmaceutical-kipres",
+      "company_id": "kyorin-pharmaceutical",
+      "name_en": "Montelukast",
+      "name_zh": "孟鲁司特",
+      "brand_name": "Kipres",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "respiratory",
+      "indication_en": "Bronchial asthma and allergic rhinitis (leukotriene receptor antagonist)",
+      "indication_zh": "支气管哮喘及变应性鼻炎（白三烯受体拮抗剂）",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "japan",
+      "confidence": 0.8,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Kyorin main products",
+          "url": "https://www.kyorin-pharm.co.jp/en/business/product.shtml"
+        }
+      ]
+    },
+    {
+      "id": "kyorin-pharmaceutical-desalex",
+      "company_id": "kyorin-pharmaceutical",
+      "name_en": "Desloratadine",
+      "name_zh": "地氯雷他定",
+      "brand_name": "Desalex",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "respiratory",
+      "indication_en": "Allergic diseases / allergic rhinitis (antihistamine)",
+      "indication_zh": "过敏性疾病/变应性鼻炎（抗组胺药）",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "japan",
+      "confidence": 0.78,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Kyorin main products",
+          "url": "https://www.kyorin-pharm.co.jp/en/business/product.shtml"
+        }
+      ]
+    },
+    {
+      "id": "mochida-pharmaceutical-epadel",
+      "company_id": "mochida-pharmaceutical",
+      "name_en": "Ethyl icosapentate (EPA-E)",
+      "name_zh": "二十碳五烯酸乙酯",
+      "brand_name": "Epadel",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "cardiometabolic",
+      "indication_en": "Hyperlipidemia, arteriosclerosis obliterans",
+      "indication_zh": "高脂血症、闭塞性动脉硬化症",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "japan",
+      "confidence": 0.9,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Mochida Pharmaceutical - Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Mochida_Pharmaceutical"
+        }
+      ]
+    },
+    {
+      "id": "mochida-pharmaceutical-lotriga",
+      "company_id": "mochida-pharmaceutical",
+      "name_en": "Omega-3-acid ethyl esters (EPA-E/DHA-E)",
+      "name_zh": "ω-3脂肪酸乙酯",
+      "brand_name": "Lotriga",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "cardiometabolic",
+      "indication_en": "Hyperlipidemia",
+      "indication_zh": "高脂血症",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "japan",
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Mochida Pharmaceutical - Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Mochida_Pharmaceutical"
+        }
+      ]
+    },
+    {
+      "id": "mochida-pharmaceutical-tecipul",
+      "company_id": "mochida-pharmaceutical",
+      "name_en": "Setiptiline",
+      "name_zh": "司替普林",
+      "brand_name": "Tecipul",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "neuroscience",
+      "indication_en": "Depression",
+      "indication_zh": "抑郁症",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "japan",
+      "confidence": 0.8,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Mochida Pharmaceutical - Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Mochida_Pharmaceutical"
+        }
+      ]
+    },
+    {
+      "id": "fuji-pharma-lunabell",
+      "company_id": "fuji-pharma",
+      "name_en": "Norethisterone / Ethinylestradiol",
+      "name_zh": "炔诺酮/炔雌醇",
+      "brand_name": "Lunabell (ルナベル)",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "womens-health",
+      "indication_en": "Dysmenorrhea associated with endometriosis",
+      "indication_zh": "子宫内膜异位症相关痛经",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "japan",
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Nippon Shinyaku, Fuji Pharma Launch Lunabell Tablets ULD",
+          "url": "https://pj.jiho.jp/article/p-1226574866141"
+        },
+        {
+          "title": "富士製薬工業 - Wikipedia",
+          "url": "https://ja.wikipedia.org/wiki/%E5%AF%8C%E5%A3%AB%E8%A3%BD%E8%96%AC%E5%B7%A5%E6%A5%AD"
+        }
+      ]
+    },
+    {
+      "id": "fuji-pharma-dienogest",
+      "company_id": "fuji-pharma",
+      "name_en": "Dienogest",
+      "name_zh": "地诺孕素",
+      "brand_name": "Dienogest Fuji",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "womens-health",
+      "indication_en": "Endometriosis and uterine adenomyosis",
+      "indication_zh": "子宫内膜异位症及子宫腺肌症",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "japan",
+      "confidence": 0.8,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "製品情報 | Fuji Women's Site",
+          "url": "https://www.fuji-women.jp/product/"
+        }
+      ]
+    },
+    {
+      "id": "fuji-pharma-fesin",
+      "company_id": "fuji-pharma",
+      "name_en": "Saccharated ferric oxide (iron injection)",
+      "name_zh": "含糖氧化铁注射液",
+      "brand_name": "Fesin (フェジン)",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "hematology",
+      "indication_en": "Iron-deficiency anemia",
+      "indication_zh": "缺铁性贫血",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "japan",
+      "confidence": 0.7,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "About Fuji Pharma",
+          "url": "https://www.fujipharma.jp/english/company/overview/"
+        }
+      ]
+    },
+    {
+      "id": "fuji-pharma-contrast-media",
+      "company_id": "fuji-pharma",
+      "name_en": "Iodinated contrast media (Guerbet range, Japan distribution)",
+      "name_zh": "碘对比剂（Guerbet系列，日本经销）",
+      "brand_name": "Guerbet contrast media",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "oncology",
+      "indication_en": "Diagnostic radiology contrast enhancement (MRI/X-ray/interventional)",
+      "indication_zh": "诊断放射学造影增强（MRI/X射线/介入）",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "japan",
+      "confidence": 0.65,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Guerbet signs an agreement with Fuji Pharma to market its range of contrast media in Japan",
+          "url": "https://www.globenewswire.com/news-release/2015/07/31/1635772/0/en/Guerbet-signs-an-agreement-with-Fuji-Pharma-to-market-its-range-of-contrast-media-in-Japan.html"
+        }
+      ]
+    },
+    {
+      "id": "peptidream-bms-986229",
+      "company_id": "peptidream",
+      "name_en": "Florpegmifosbi (18F-PD-L1 PET tracer)",
+      "name_zh": "BMS-986229（18F PD-L1 PET 示踪剂）",
+      "brand_name": "BMS-986229",
+      "modality_id": "radioligand",
+      "therapeutic_area_id": "oncology",
+      "indication_en": "PD-L1 PET imaging to guide checkpoint inhibitor therapy",
+      "indication_zh": "PD-L1 PET 显像，指导免疫检查点抑制剂治疗",
+      "approval_status": "ph1",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "japan",
+      "confidence": 0.7,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "PeptiDream pipeline",
+          "url": "https://www.peptidream.com/en/pipeline/"
+        }
+      ]
+    },
+    {
+      "id": "peptidream-64cu-psma-i-t",
+      "company_id": "peptidream",
+      "name_en": "64Cu-PSMA-I&T",
+      "name_zh": "64Cu-PSMA-I&T（PSMA 放射诊断剂）",
+      "brand_name": "64Cu-PSMA-I&T",
+      "modality_id": "radioligand",
+      "therapeutic_area_id": "oncology",
+      "indication_en": "PSMA-targeted PET imaging for prostate cancer",
+      "indication_zh": "PSMA 靶向前列腺癌 PET 显像",
+      "approval_status": "ph1",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "japan",
+      "confidence": 0.74,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Curium/PeptiDream/PDRadiopharma 64Cu-PSMA-I&T dosing announcement",
+          "url": "https://www.biospace.com/press-releases/curium-group-peptidream-and-pdradiopharma-announce-completion-of-patient-dosing-in-clinical-trial-of-64cu-psma-i-t-for-prostate-cancer-in-japan"
+        }
+      ]
+    },
+    {
+      "id": "peptidream-pdr-mtp",
+      "company_id": "peptidream",
+      "name_en": "PD-1 macrocyclic peptide radiotherapeutic (PDPS-derived)",
+      "name_zh": "PDPS 大环肽靶向放射治疗候选药",
+      "brand_name": "PDRadiopharma pipeline candidate",
+      "modality_id": "radioligand",
+      "therapeutic_area_id": "oncology",
+      "indication_en": "Targeted radiotherapeutics for solid tumors",
+      "indication_zh": "实体瘤靶向放射治疗",
+      "approval_status": "preclinical",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "japan",
+      "confidence": 0.6,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "PeptiDream PDPS science",
+          "url": "https://www.peptidream.com/en/science/pdps/"
+        }
+      ]
+    },
+    {
+      "id": "nihon-chemiphar-zaltoprofen",
+      "company_id": "nihon-chemiphar",
+      "name_en": "Zaltoprofen",
+      "name_zh": "扎托洛芬",
+      "brand_name": "Soleton",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "immunology",
+      "indication_en": "Rheumatoid arthritis, osteoarthritis, post-op analgesia (NSAID)",
+      "indication_zh": "类风湿关节炎、骨关节炎、术后镇痛",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "japan",
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Soleton (zaltoprofen) / Nippon Chemiphar - LARVOL DELTA",
+          "url": "https://delta.larvol.com/Products/?ProductId=3a40c663-1ce0-4f9f-960b-5f7d834c1771"
+        }
+      ]
+    },
+    {
+      "id": "nihon-chemiphar-uralyt-u",
+      "company_id": "nihon-chemiphar",
+      "name_en": "Potassium sodium hydrogen citrate (Uralyt-U)",
+      "name_zh": "枸橼酸钾钠（尿路碱化剂）",
+      "brand_name": "Uralyt-U",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "nephrology",
+      "indication_en": "Urine alkalinization for hyperuricemia / uric acid stones",
+      "indication_zh": "高尿酸血症及尿酸结石的尿液碱化治疗",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "japan",
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Uralyt Combination Tablets : Nippon Chemiphar",
+          "url": "https://synapse.inc/medicine/9429/"
+        }
+      ]
+    },
+    {
+      "id": "nihon-chemiphar-bevantolol",
+      "company_id": "nihon-chemiphar",
+      "name_en": "Bevantolol",
+      "name_zh": "贝凡洛尔",
+      "brand_name": "Calvan",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "cardiometabolic",
+      "indication_en": "Hypertension (beta-blocker)",
+      "indication_zh": "高血压（β受体阻滞剂）",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "japan",
+      "confidence": 0.82,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Nippon Chemiphar and SOM Biotech on Bevantolol (Calvan)",
+          "url": "https://www.prnewswire.com/news-releases/nippon-chemiphar-and-som-biotech-to-cooperate-on-new-orphan-disease-indications-for-bevantolol-calvan-650402403.html"
+        }
+      ]
+    },
+    {
+      "id": "nippon-zenyaku-kogyo-allermmune-hdm",
+      "company_id": "nippon-zenyaku-kogyo",
+      "name_en": "House dust mite allergen immunotherapy (Allermmune HDM)",
+      "name_zh": "屋尘螨脱敏治疗剂（Allermmune HDM）",
+      "brand_name": "Allermmune HDM",
+      "modality_id": "protein-subunit-vaccine",
+      "therapeutic_area_id": "immunology",
+      "indication_en": "Canine atopic dermatitis (house dust mite desensitization)",
+      "indication_zh": "犬特应性皮炎（屋尘螨脱敏）",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "japan",
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "ZENOAQ company overview",
+          "url": "https://www.zenoaq.com/en/about-us/company-at-a-glance/"
+        }
+      ]
+    },
+    {
+      "id": "nippon-zenyaku-kogyo-koen-series",
+      "company_id": "nippon-zenyaku-kogyo",
+      "name_en": "KOEN livestock health series",
+      "name_zh": "KOEN 系列畜用制剂",
+      "brand_name": "KOEN",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "infectious-disease",
+      "indication_en": "Livestock infectious disease prevention and treatment",
+      "indication_zh": "畜禽传染病防治",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "japan",
+      "confidence": 0.7,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "ZENOAQ products",
+          "url": "http://www.zenoaq.jp/english/index.html"
+        }
+      ]
+    },
+    {
+      "id": "zeria-pharmaceutical-acotiamide",
+      "company_id": "zeria-pharmaceutical",
+      "name_en": "Acotiamide",
+      "name_zh": "阿考替胺",
+      "brand_name": "Acofide",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "gastroenterology",
+      "indication_en": "Functional dyspepsia",
+      "indication_zh": "功能性消化不良",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "japan",
+      "confidence": 0.9,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Approval in Japan for Treating Functional Dyspepsia with Acofide",
+          "url": "https://newsroom.astellas.com/2013-03-25-Approval-in-Japan-for-Treating-Functional-Dyspepsia-with-Acofide-R"
+        }
+      ]
+    },
+    {
+      "id": "zeria-pharmaceutical-budesonide",
+      "company_id": "zeria-pharmaceutical",
+      "name_en": "Budesonide",
+      "name_zh": "布地奈德",
+      "brand_name": "Zentacort (Entocort)",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "gastroenterology",
+      "indication_en": "Crohn's disease",
+      "indication_zh": "克罗恩病",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "japan",
+      "confidence": 0.88,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Zeria Launches Zentacort 3mg Capsules in Japan for Crohn's Disease",
+          "url": "https://www.prnewswire.com/news-releases/tillotts-pharma-ags-parent-company-zeria-pharmaceutical-launches-zentacort-3mg-capsules-in-japan-for-treatment-in-crohns-disease-606508506.html"
+        }
+      ]
+    },
+    {
+      "id": "zeria-pharmaceutical-mesalazine",
+      "company_id": "zeria-pharmaceutical",
+      "name_en": "Mesalazine",
+      "name_zh": "美沙拉嗪",
+      "brand_name": "Asacol",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "gastroenterology",
+      "indication_en": "Ulcerative colitis",
+      "indication_zh": "溃疡性结肠炎",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "japan",
+      "confidence": 0.82,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Zeria Pharmaceutical Co., Ltd. | Tillotts Pharma AG",
+          "url": "https://www.tillotts.com/about-us/zeria/"
+        }
+      ]
+    },
+    {
+      "id": "aska-pharmaceutical-levothyroxine",
+      "company_id": "aska-pharmaceutical",
+      "name_en": "Levothyroxine sodium",
+      "name_zh": "左甲状腺素钠",
+      "brand_name": "Thyradin",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "cardiometabolic",
+      "indication_en": "Hypothyroidism",
+      "indication_zh": "甲状腺功能减退症",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "japan",
+      "confidence": 0.9,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "ASKA: leading women's healthcare company - Worldfolio",
+          "url": "https://www.theworldfolio.com/interviews/aska-we-create-new-value-as-leading-womens-healthcare-company/5872/"
+        },
+        {
+          "title": "ASKA Pharmaceutical R&D",
+          "url": "https://www.aska-pharma.co.jp/english/company/business/research.html"
+        }
+      ]
+    },
+    {
+      "id": "aska-pharmaceutical-drospirenone-ethinylestradiol",
+      "company_id": "aska-pharmaceutical",
+      "name_en": "Drospirenone / ethinylestradiol",
+      "name_zh": "屈螺酮/炔雌醇",
+      "brand_name": "Yaz (Japan)",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "womens-health",
+      "indication_en": "Contraception, dysmenorrhea",
+      "indication_zh": "避孕、痛经",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "japan",
+      "confidence": 0.72,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "ASKA Pharmaceutical Company Profile - intuitionlabs",
+          "url": "https://intuitionlabs.ai/companies/biotech/aska-pharmaceutical-co-ltd"
+        }
+      ]
+    },
+    {
+      "id": "aska-pharmaceutical-mecobalamin",
+      "company_id": "aska-pharmaceutical",
+      "name_en": "Sex hormone / endocrine preparation",
+      "name_zh": "性激素/内分泌制剂",
+      "brand_name": "ASKA hormone preparations",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "womens-health",
+      "indication_en": "Gynecologic and endocrine disorders",
+      "indication_zh": "妇科及内分泌疾病",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "japan",
+      "confidence": 0.65,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "ASKA Pharmaceutical R&D",
+          "url": "https://www.aska-pharma.co.jp/english/company/business/research.html"
+        }
+      ]
+    },
+    {
+      "id": "fuso-pharmaceutical-kindaly-dialysis",
+      "company_id": "fuso-pharmaceutical",
+      "name_en": "Kindaly Dialysis Solution",
+      "name_zh": "Kindaly 透析液",
+      "brand_name": "Kindaly",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "nephrology",
+      "indication_en": "Hemodialysis electrolyte/glucose dialysate for kidney failure",
+      "indication_zh": "肾衰竭血液透析用电解质/葡萄糖透析液",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "japan",
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Fuso Pharmaceutical Industries - Dialysis Drug Development",
+          "url": "https://www.pharmatechoutlook.com/fuso-pharmaceutical-industries-2026"
+        }
+      ]
+    },
+    {
+      "id": "fuso-pharmaceutical-iv-infusion-solutions",
+      "company_id": "fuso-pharmaceutical",
+      "name_en": "Intravenous Infusion Solutions",
+      "name_zh": "静脉输液制剂",
+      "brand_name": "Fuso Infusion",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "nephrology",
+      "indication_en": "Fluid and electrolyte replacement (small- and large-volume parenterals)",
+      "indication_zh": "补液与电解质补充（大小容量注射液）",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "japan",
+      "confidence": 0.78,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Fuso Pharmaceutical Industries company profile",
+          "url": "https://finance.yahoo.com/quote/4538.T/profile/"
+        }
+      ]
+    },
+    {
+      "id": "fuso-pharmaceutical-higrow-art-media",
+      "company_id": "fuso-pharmaceutical",
+      "name_en": "HiGROW ART Culture Media",
+      "name_zh": "HiGROW 辅助生殖培养液",
+      "brand_name": "HiGROW",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "womens-health",
+      "indication_en": "In vitro fertilization / assisted reproductive technology media",
+      "indication_zh": "体外受精/辅助生殖技术培养液",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "japan",
+      "confidence": 0.7,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Fuso Pharmaceutical Industries - Dialysis Drug Development",
+          "url": "https://www.pharmatechoutlook.com/fuso-pharmaceutical-industries-2026"
+        }
+      ]
+    },
+    {
       "id": "santen-eybelis",
       "name_zh": "Eybelis（奥米帕格异丙酯）",
       "name_en": "Eybelis",

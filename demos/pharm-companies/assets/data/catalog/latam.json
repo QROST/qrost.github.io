@@ -351,6 +351,98 @@
       ]
     },
     {
+      "id": "blau-farmaceutica-epoetin-alfa",
+      "company_id": "blau-farmaceutica",
+      "name_en": "Epoetin alfa",
+      "name_zh": "促红素α",
+      "brand_name": "Eritropoetina Blau",
+      "modality_id": "biosimilar",
+      "therapeutic_area_id": "nephrology",
+      "indication_en": "Anemia in chronic kidney disease",
+      "indication_zh": "慢性肾病相关贫血",
+      "approval_status": "approved",
+      "drug_class": "biosimilar",
+      "is_blockbuster": false,
+      "region": "latam",
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Blau Farmaceutica - Synapse",
+          "url": "https://synapse.patsnap.com/organization/93a7cce7b8ed3f9b3a0bd0371b644abd"
+        }
+      ]
+    },
+    {
+      "id": "blau-farmaceutica-filgrastim",
+      "company_id": "blau-farmaceutica",
+      "name_en": "Filgrastim",
+      "name_zh": "非格司亭",
+      "brand_name": "Filgrastima Blau",
+      "modality_id": "biosimilar",
+      "therapeutic_area_id": "hematology",
+      "indication_en": "Chemotherapy-induced neutropenia",
+      "indication_zh": "化疗所致中性粒细胞减少",
+      "approval_status": "approved",
+      "drug_class": "biosimilar",
+      "is_blockbuster": false,
+      "region": "latam",
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Filgrastim biosimilar - Blau Farmaceutica - AdisInsight",
+          "url": "https://adisinsight.springer.com/drugs/800073108"
+        }
+      ]
+    },
+    {
+      "id": "blau-farmaceutica-pembrolizumab-biosimilar",
+      "company_id": "blau-farmaceutica",
+      "name_en": "Pembrolizumab biosimilar",
+      "name_zh": "帕博利珠单抗生物类似药",
+      "brand_name": "Pembrolizumab Blau",
+      "modality_id": "mab",
+      "therapeutic_area_id": "oncology",
+      "indication_en": "Multiple solid tumors (anti-PD-1)",
+      "indication_zh": "多种实体瘤（抗PD-1）",
+      "approval_status": "ph3",
+      "drug_class": "biosimilar",
+      "is_blockbuster": false,
+      "region": "latam",
+      "confidence": 0.8,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Blau Farmaceutica pembrolizumab biosimilar milestone",
+          "url": "https://trial.medpath.com/news/blau-farmaceutica-achieves-historic-milestone-with-first-brazilian-developed-pembrolizumab-biosimilar"
+        }
+      ]
+    },
+    {
+      "id": "blau-farmaceutica-interferon-alfa-2a",
+      "company_id": "blau-farmaceutica",
+      "name_en": "Interferon alfa-2a",
+      "name_zh": "干扰素α-2a",
+      "brand_name": "Interferon alfa Blau",
+      "modality_id": "recombinant-protein",
+      "therapeutic_area_id": "oncology",
+      "indication_en": "Hematologic malignancies, viral hepatitis",
+      "indication_zh": "血液肿瘤、病毒性肝炎",
+      "approval_status": "approved",
+      "drug_class": "biosimilar",
+      "is_blockbuster": false,
+      "region": "latam",
+      "confidence": 0.78,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Blau Farmaceutica - Synapse",
+          "url": "https://synapse.patsnap.com/organization/93a7cce7b8ed3f9b3a0bd0371b644abd"
+        }
+      ]
+    },
+    {
       "id": "glargilin-insulin",
       "name_zh": "GLARGILIN（インスリングラルギン）",
       "name_en": "GLARGILIN (insulin glargine)",
