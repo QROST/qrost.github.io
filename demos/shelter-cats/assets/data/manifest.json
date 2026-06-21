@@ -1,57 +1,60 @@
 {
- "build_time": "2026-06-21T06:45:51Z",
- "data_version": "cafb5fd65b",
+ "build_time": "2026-06-21T09:05:46Z",
+ "data_version": "3c916e8a56",
  "generator": "tools/build.py",
- "total_cats": 97,
- "total_shelters": 2,
- "total_adoptable": 37,
- "with_photo": 37,
- "with_thumb": 37,
+ "total_cats": 180,
+ "total_shelters": 4,
+ "total_adoptable": 60,
+ "with_photo": 60,
+ "with_thumb": 60,
  "region_counts": {
-  "north_america": 97
+  "north_america": 180
  },
  "regions_live": [
   "north_america"
  ],
  "status_counts": {
-  "adoptable": 37,
-  "in_shelter": 60
+  "in_shelter": 120,
+  "adoptable": 60
  },
  "coat_counts": {
-  "short": 87,
-  "medium": 9,
+  "short": 169,
+  "medium": 10,
   "long": 1
  },
  "pattern_counts": {
-  "tabby": 34,
-  "solid": 28,
-  "calico": 4,
-  "bicolor": 8,
-  "tortie": 7,
-  "tuxedo": 16
+  "tabby": 70,
+  "solid": 63,
+  "calico": 6,
+  "tortie": 10,
+  "tuxedo": 20,
+  "bicolor": 9,
+  "smoke": 2
  },
  "color_counts": {
-  "gray": 42,
-  "black": 37,
-  "orange": 11,
-  "white": 34
+  "brown": 11,
+  "black": 66,
+  "orange": 30,
+  "white": 49,
+  "gray": 55,
+  "blue": 3
  },
  "age_counts": {
-  "adult": 22,
-  "young": 18,
-  "senior": 5,
-  "kitten": 43
+  "young": 50,
+  "adult": 49,
+  "senior": 11,
+  "kitten": 52
  },
  "sex_counts": {
-  "male": 35,
-  "female": 55,
-  "unknown": 7
+  "male": 60,
+  "female": 85,
+  "unknown": 35
  },
  "shards": [
   {
    "region": "north_america",
    "file": "cats/north_america.json",
-   "count": 97
+   "count": 180
   }
  ],
  "shelters_file": "shelters.json",
@@ -60,7 +63,7 @@
   {
    "id": "socrata",
    "attribution": "City/County Open Data (Socrata)",
-   "last_fetch": "2026-06-21T06:45:51Z"
+   "last_fetch": "2026-06-21T09:05:46Z"
   }
  ]
 }

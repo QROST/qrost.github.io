@@ -101,7 +101,7 @@ def _cat_from_animal(animal: dict, included: dict, shelter_id: str, now_year: in
     tags = [t for t in (a.get("qualities") or []) if isinstance(t, str)]
     return NormalizedCat(
         id=f"rg-{aid}", source=SOURCE_ID, source_id=aid, shelter_id=shelter_id,
-        name=N.title_name(a.get("name") or "Unnamed"),
+        name=N.friendly_name(a.get("name"), aid),
         age_text=age_text, age_bucket=age_bucket, birth_estimate=birth,
         sex=sex, spayed_neutered=fixed,
         breed_primary=N.pretty_breed(str(breed)),

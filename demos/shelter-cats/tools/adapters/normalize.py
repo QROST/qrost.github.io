@@ -192,3 +192,29 @@ def title_name(raw: str | None) -> str:
     if s.isupper() or s.islower():
         s = s.title()
     return s
+
+
+# whimsical, unisex nicknames for cats the shelter logged without a name (common
+# for strays). Seeded by the cat's stable id so it never changes between runs.
+_NICKNAMES = [
+    "Whiskers", "Mittens", "Shadow", "Pumpkin", "Clover", "Biscuit", "Mochi", "Pepper",
+    "Luna", "Oreo", "Ziggy", "Maple", "Tofu", "Pixel", "Nimbus", "Sprout", "Sesame",
+    "Marble", "Pickle", "Waffles", "Dusty", "Gizmo", "Noodle", "Bean", "Cricket",
+    "Hazel", "Olive", "Pesto", "Suki", "Yuki", "Bao", "Momo", "Coco", "Taro", "Miso",
+    "Juniper", "Fern", "Comet", "Smokey", "Dumpling", "Peanut", "Bagel", "Ravioli",
+    "Cinnamon", "Pudding", "Mango", "Saffron", "Biscotti", "Pebble", "Wasabi",
+]
+
+
+def friendly_name(raw: str | None, seed: str) -> str:
+    """Real name when present; otherwise a stable seeded nickname (strays often
+    arrive unnamed, and a wall of 'Unnamed' reads dead). Truth is kept in the
+    source id / adoption link."""
+    s = title_name(raw)
+    low = s.lower()
+    if not s or low in ("unnamed", "unknown", "no name", "stray", "kitten", "cat") or s.isdigit() or len(s) < 2:
+        h = 2166136261
+        for ch in (seed or "x"):
+            h = (h ^ ord(ch)) * 16777619 & 0xFFFFFFFF
+        return _NICKNAMES[h % len(_NICKNAMES)]
+    return s
