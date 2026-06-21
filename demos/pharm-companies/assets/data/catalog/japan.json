@@ -2,6 +2,286 @@
   "shard": "japan",
   "products": [
     {
+      "id": "tsumura-daikenchuto",
+      "company_id": "tsumura",
+      "name_en": "Daikenchuto (TJ-100)",
+      "name_zh": "大建中汤",
+      "brand_name": "Tsumura Daikenchuto Extract Granules",
+      "modality_id": "tcm-formula",
+      "therapeutic_area_id": "gastroenterology",
+      "indication_en": "Postoperative ileus, abdominal distension",
+      "indication_zh": "术后肠梗阻、腹胀",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "japan",
+      "confidence": 0.9,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Tsumura Daikenchuto",
+          "url": "https://www.tsumura.co.jp/english/brand/products/kampo/100.html"
+        }
+      ]
+    },
+    {
+      "id": "tsumura-yokukansan",
+      "company_id": "tsumura",
+      "name_en": "Yokukansan (TJ-54)",
+      "name_zh": "抑肝散",
+      "brand_name": "Tsumura Yokukansan Extract Granules",
+      "modality_id": "tcm-formula",
+      "therapeutic_area_id": "neuroscience",
+      "indication_en": "Behavioral and psychological symptoms of dementia, irritability",
+      "indication_zh": "痴呆相关行为精神症状、易激惹",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "japan",
+      "confidence": 0.9,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Tsumura Kampo Products",
+          "url": "https://www.tsumura.co.jp/english/kampo/guidance/"
+        }
+      ]
+    },
+    {
+      "id": "tsumura-rikkunshito",
+      "company_id": "tsumura",
+      "name_en": "Rikkunshito (TJ-43)",
+      "name_zh": "六君子汤",
+      "brand_name": "Tsumura Rikkunshito Extract Granules",
+      "modality_id": "tcm-formula",
+      "therapeutic_area_id": "gastroenterology",
+      "indication_en": "Functional dyspepsia, GERD, appetite loss",
+      "indication_zh": "功能性消化不良、胃食管反流、食欲不振",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "japan",
+      "confidence": 0.9,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Tsumura Kampo Products",
+          "url": "https://www.tsumura.co.jp/english/kampo/guidance/"
+        }
+      ]
+    },
+    {
+      "id": "tsumura-kakkonto",
+      "company_id": "tsumura",
+      "name_en": "Kakkonto (TJ-1)",
+      "name_zh": "葛根汤",
+      "brand_name": "Tsumura Kakkonto Extract Granules",
+      "modality_id": "tcm-formula",
+      "therapeutic_area_id": "respiratory",
+      "indication_en": "Common cold, early-stage fever, stiff shoulders",
+      "indication_zh": "感冒初期、发热、肩颈僵硬",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "japan",
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Tsumura Kampo Products",
+          "url": "https://www.tsumura.co.jp/english/kampo/guidance/"
+        }
+      ]
+    },
+    {
+      "id": "tsumura-hochuekkito",
+      "company_id": "tsumura",
+      "name_en": "Hochuekkito (TJ-41)",
+      "name_zh": "补中益气汤",
+      "brand_name": "Tsumura Hochuekkito Extract Granules",
+      "modality_id": "tcm-formula",
+      "therapeutic_area_id": "immunology",
+      "indication_en": "General fatigue, weakness, immune support",
+      "indication_zh": "全身乏力、虚弱、增强免疫",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "japan",
+      "confidence": 0.8,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Tsumura Kampo Products",
+          "url": "https://www.tsumura.co.jp/english/kampo/guidance/"
+        }
+      ]
+    },
+    {
+      "id": "towa-pharmaceutical-amlodipine-od",
+      "company_id": "towa-pharmaceutical",
+      "name_en": "Amlodipine besylate (OD tablet)",
+      "name_zh": "氨氯地平（口腔崩解片）",
+      "brand_name": "Amlodipine OD Tablets Towa",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "cardiometabolic",
+      "indication_en": "Hypertension / angina",
+      "indication_zh": "高血压/心绞痛",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "japan",
+      "confidence": 0.82,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Towa Pharmaceutical profile (GlobalData)",
+          "url": "https://www.globaldata.com/company-profile/towa-pharmaceutical-co-ltd/"
+        },
+        {
+          "title": "Worldfolio: Towa Pharmaceutical",
+          "url": "https://www.theworldfolio.com/company/towa-pharmaceutical-co-ltd/1511/"
+        }
+      ]
+    },
+    {
+      "id": "towa-pharmaceutical-metformin-od",
+      "company_id": "towa-pharmaceutical",
+      "name_en": "Metformin hydrochloride (RACTAB OD tablet)",
+      "name_zh": "二甲双胍（RACTAB 口崩片）",
+      "brand_name": "Metformin OD Tablets Towa",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "cardiometabolic",
+      "indication_en": "Type 2 diabetes mellitus",
+      "indication_zh": "2型糖尿病",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "japan",
+      "confidence": 0.8,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Towa Pharmaceutical RACTAB / portfolio",
+          "url": "https://www.theworldfolio.com/company/towa-pharmaceutical-co-ltd/1511/"
+        }
+      ]
+    },
+    {
+      "id": "towa-pharmaceutical-atorvastatin",
+      "company_id": "towa-pharmaceutical",
+      "name_en": "Atorvastatin calcium",
+      "name_zh": "阿托伐他汀钙",
+      "brand_name": "Atorvastatin Tablets Towa",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "cardiometabolic",
+      "indication_en": "Hyperlipidemia / dyslipidemia",
+      "indication_zh": "高脂血症",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "japan",
+      "confidence": 0.78,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Towa Pharmaceutical profile",
+          "url": "https://www.globaldata.com/company-profile/towa-pharmaceutical-co-ltd/"
+        }
+      ]
+    },
+    {
+      "id": "sawai-group-holdings-amlodipine-ag",
+      "company_id": "sawai-group-holdings",
+      "name_en": "Amlodipine besylate",
+      "name_zh": "苯磺酸氨氯地平",
+      "brand_name": "Amlodipine OD Tablets (Sawai)",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "cardiometabolic",
+      "indication_en": "Hypertension and angina",
+      "indication_zh": "高血压与心绞痛",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "japan",
+      "confidence": 0.6,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Sawai Pharmaceutical Global",
+          "url": "https://global.sawai.co.jp/"
+        }
+      ]
+    },
+    {
+      "id": "sawai-group-holdings-tosymra",
+      "company_id": "sawai-group-holdings",
+      "name_en": "Sumatriptan nasal spray",
+      "name_zh": "舒马曲坦鼻喷雾剂",
+      "brand_name": "Tosymra",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "neuroscience",
+      "indication_en": "Acute treatment of migraine in adults",
+      "indication_zh": "成人偏头痛急性治疗",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "japan",
+      "confidence": 0.7,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Upsher-Smith Launches Tosymra (Sawai news)",
+          "url": "https://global.sawai.co.jp/news/detail/111"
+        }
+      ]
+    },
+    {
+      "id": "sawai-group-holdings-qudexy-xr",
+      "company_id": "sawai-group-holdings",
+      "name_en": "Topiramate extended-release",
+      "name_zh": "托吡酯缓释剂",
+      "brand_name": "Qudexy XR",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "neuroscience",
+      "indication_en": "Epilepsy and migraine prophylaxis",
+      "indication_zh": "癫痫与偏头痛预防",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "japan",
+      "confidence": 0.7,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Upsher-Smith Qudexy XR",
+          "url": "https://www.prnewswire.com/news-releases/upsher-smith-launches-newly-designed-website-for-qudexy-xr-topiramate-extended-release-capsules-300506940.html"
+        }
+      ]
+    },
+    {
+      "id": "sawai-group-holdings-zembrace-symtouch",
+      "company_id": "sawai-group-holdings",
+      "name_en": "Sumatriptan injection",
+      "name_zh": "舒马曲坦注射剂",
+      "brand_name": "Zembrace SymTouch",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "neuroscience",
+      "indication_en": "Acute treatment of migraine in adults",
+      "indication_zh": "成人偏头痛急性治疗",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "japan",
+      "confidence": 0.65,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Upsher-Smith migraine portfolio",
+          "url": "https://www.upsher-smith.com/news/upsher-smith-laboratories-launches-tosymra-sumatriptan-nasal-spray/"
+        }
+      ]
+    },
+    {
       "id": "santen-eybelis",
       "name_zh": "Eybelis（奥米帕格异丙酯）",
       "name_en": "Eybelis",

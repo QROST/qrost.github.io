@@ -2,6 +2,1408 @@
   "shard": "north_america",
   "products": [
     {
+      "id": "roivant-sciences-batoclimab",
+      "company_id": "roivant-sciences",
+      "name_en": "Batoclimab",
+      "name_zh": "巴托利单抗",
+      "brand_name": "Batoclimab",
+      "modality_id": "mab",
+      "therapeutic_area_id": "immunology",
+      "indication_en": "Thyroid eye disease, myasthenia gravis, CIDP (anti-FcRn)",
+      "indication_zh": "甲状腺眼病、重症肌无力、CIDP（抗FcRn）",
+      "approval_status": "ph3",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "north_america",
+      "confidence": 0.88,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Roivant positive results batoclimab MG and CIDP",
+          "url": "https://investor.roivant.com/news-releases/news-release-details/roivant-announces-positive-results-batoclimab-myasthenia-gravis/"
+        }
+      ]
+    },
+    {
+      "id": "roivant-sciences-imvt-1402",
+      "company_id": "roivant-sciences",
+      "name_en": "IMVT-1402",
+      "name_zh": "IMVT-1402",
+      "brand_name": "IMVT-1402",
+      "modality_id": "mab",
+      "therapeutic_area_id": "immunology",
+      "indication_en": "Rheumatoid arthritis, Graves' disease, myasthenia gravis (anti-FcRn)",
+      "indication_zh": "类风湿关节炎、Graves病、重症肌无力（抗FcRn）",
+      "approval_status": "ph3",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "north_america",
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Roivant 2025 Investor Day pipeline progress",
+          "url": "https://investor.roivant.com/news-releases/news-release-details/roivant-highlights-continued-pipeline-progress-and-outlook/"
+        }
+      ]
+    },
+    {
+      "id": "roivant-sciences-brepocitinib",
+      "company_id": "roivant-sciences",
+      "name_en": "Brepocitinib",
+      "name_zh": "布瑞替尼",
+      "brand_name": "Brepocitinib",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "immunology",
+      "indication_en": "Dermatomyositis, non-infectious uveitis, cutaneous sarcoidosis (JAK1/TYK2)",
+      "indication_zh": "皮肌炎、非感染性葡萄膜炎、皮肤结节病（JAK1/TYK2）",
+      "approval_status": "ph3",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "north_america",
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Roivant positive Phase 2 brepocitinib cutaneous sarcoidosis",
+          "url": "https://investor.roivant.com/news-releases/news-release-details/roivant-announces-positive-phase-2-results-brepocitinib"
+        }
+      ]
+    },
+    {
+      "id": "roivant-sciences-mosliciguat",
+      "company_id": "roivant-sciences",
+      "name_en": "Mosliciguat",
+      "name_zh": "莫西利古特",
+      "brand_name": "Mosliciguat",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "respiratory",
+      "indication_en": "Pulmonary hypertension associated with interstitial lung disease (inhaled sGC activator)",
+      "indication_zh": "间质性肺病相关肺动脉高压（吸入型sGC激活剂）",
+      "approval_status": "ph2",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "north_america",
+      "confidence": 0.8,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Roivant 2025 Investor Day pipeline progress",
+          "url": "https://investor.roivant.com/news-releases/news-release-details/roivant-highlights-continued-pipeline-progress-and-outlook/"
+        }
+      ]
+    },
+    {
+      "id": "viatris-lipitor",
+      "company_id": "viatris",
+      "name_en": "Atorvastatin",
+      "name_zh": "阿托伐他汀",
+      "brand_name": "Lipitor",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "cardiometabolic",
+      "indication_en": "Hypercholesterolemia, cardiovascular risk reduction",
+      "indication_zh": "高胆固醇血症、心血管风险降低",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": true,
+      "region": "north_america",
+      "latest_annual_sales": {
+        "value": 1500000000.0,
+        "currency": "USD",
+        "year": 2024
+      },
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Viatris brand portfolio",
+          "url": "https://www.viatris.com/"
+        }
+      ]
+    },
+    {
+      "id": "viatris-viagra",
+      "company_id": "viatris",
+      "name_en": "Sildenafil",
+      "name_zh": "西地那非",
+      "brand_name": "Viagra",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "womens-health",
+      "indication_en": "Erectile dysfunction",
+      "indication_zh": "勃起功能障碍",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "north_america",
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Viatris brand portfolio",
+          "url": "https://www.viatris.com/"
+        }
+      ]
+    },
+    {
+      "id": "viatris-lyrica",
+      "company_id": "viatris",
+      "name_en": "Pregabalin",
+      "name_zh": "普瑞巴林",
+      "brand_name": "Lyrica",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "neuroscience",
+      "indication_en": "Neuropathic pain, epilepsy, fibromyalgia",
+      "indication_zh": "神经性疼痛、癫痫、纤维肌痛",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "north_america",
+      "confidence": 0.82,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Viatris brand portfolio",
+          "url": "https://www.viatris.com/"
+        }
+      ]
+    },
+    {
+      "id": "viatris-epipen",
+      "company_id": "viatris",
+      "name_en": "Epinephrine autoinjector",
+      "name_zh": "肾上腺素自动注射剂",
+      "brand_name": "EpiPen",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "immunology",
+      "indication_en": "Emergency treatment of anaphylaxis",
+      "indication_zh": "过敏性休克的急救",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "north_america",
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Viatris brand portfolio",
+          "url": "https://www.viatris.com/"
+        }
+      ]
+    },
+    {
+      "id": "viatris-semglee",
+      "company_id": "viatris",
+      "name_en": "Insulin glargine",
+      "name_zh": "甘精胰岛素",
+      "brand_name": "Semglee",
+      "modality_id": "biosimilar",
+      "therapeutic_area_id": "cardiometabolic",
+      "indication_en": "Diabetes mellitus",
+      "indication_zh": "糖尿病",
+      "approval_status": "approved",
+      "drug_class": "biosimilar",
+      "is_blockbuster": false,
+      "region": "north_america",
+      "confidence": 0.82,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Viatris biosimilars",
+          "url": "https://www.viatris.com/"
+        }
+      ]
+    },
+    {
+      "id": "vera-therapeutics-atacicept",
+      "company_id": "vera-therapeutics",
+      "name_en": "Atacicept",
+      "name_zh": "阿塞西普",
+      "brand_name": "Atacicept",
+      "modality_id": "fusion-protein",
+      "therapeutic_area_id": "nephrology",
+      "indication_en": "IgA nephropathy",
+      "indication_zh": "IgA肾病",
+      "approval_status": "filed",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "north_america",
+      "confidence": 0.95,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Vera Therapeutics Atacicept Priority Review",
+          "url": "https://ir.veratx.com/news-releases/news-release-details/vera-therapeutics-announces-us-fda-granted-priority-review/"
+        }
+      ]
+    },
+    {
+      "id": "vera-therapeutics-atacicept-mn",
+      "company_id": "vera-therapeutics",
+      "name_en": "Atacicept",
+      "name_zh": "阿塞西普",
+      "brand_name": "Atacicept",
+      "modality_id": "fusion-protein",
+      "therapeutic_area_id": "nephrology",
+      "indication_en": "Primary membranous nephropathy (anti-PLA2R positive)",
+      "indication_zh": "原发性膜性肾病",
+      "approval_status": "ph2",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "north_america",
+      "confidence": 0.8,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Vera Therapeutics Expanded Atacicept Program",
+          "url": "https://www.biospace.com/press-releases/vera-therapeutics-announces-expanded-atacicept-development-program-in-multiple-autoimmune-kidney-diseases"
+        }
+      ]
+    },
+    {
+      "id": "ani-pharmaceuticals-cortrophin-gel",
+      "company_id": "ani-pharmaceuticals",
+      "name_en": "Repository corticotropin (Purified Cortrophin Gel)",
+      "name_zh": "纯化促皮质素凝胶",
+      "brand_name": "Purified Cortrophin Gel",
+      "modality_id": "peptide",
+      "therapeutic_area_id": "rare-disease",
+      "indication_en": "Acute gouty arthritis flares, MS exacerbations, and other ACTH-responsive conditions",
+      "indication_zh": "急性痛风性关节炎发作、多发性硬化急性加重等ACTH反应性疾病",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "north_america",
+      "latest_annual_sales": {
+        "value": 200,
+        "currency": "USD",
+        "year": 2024
+      },
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "ANI Pharmaceuticals 2026 guidance",
+          "url": "https://investor.anipharmaceuticals.com/news-releases/news-release-details/ani-pharmaceuticals-highlights-significant-growth-2025-provides"
+        }
+      ]
+    },
+    {
+      "id": "ani-pharmaceuticals-iluvien",
+      "company_id": "ani-pharmaceuticals",
+      "name_en": "Fluocinolone acetonide intravitreal implant 0.19 mg",
+      "name_zh": "氟轻松玻璃体内植入剂0.19mg",
+      "brand_name": "Iluvien",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "ophthalmology",
+      "indication_en": "Diabetic macular edema and chronic non-infectious posterior uveitis",
+      "indication_zh": "糖尿病黄斑水肿与慢性非感染性后段葡萄膜炎",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "north_america",
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "ANI FDA approval ILUVIEN label expansion",
+          "url": "https://investor.anipharmaceuticals.com/news-releases/news-release-details/ani-pharmaceuticals-announces-fda-approval-expansion-iluvienr"
+        }
+      ]
+    },
+    {
+      "id": "ani-pharmaceuticals-yutiq",
+      "company_id": "ani-pharmaceuticals",
+      "name_en": "Fluocinolone acetonide intravitreal implant 0.18 mg",
+      "name_zh": "氟轻松玻璃体内植入剂0.18mg",
+      "brand_name": "Yutiq",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "ophthalmology",
+      "indication_en": "Chronic non-infectious uveitis affecting the posterior segment",
+      "indication_zh": "慢性非感染性后段葡萄膜炎",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "north_america",
+      "confidence": 0.8,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "ANI acquires Alimera ophthalmology meds",
+          "url": "https://www.fiercepharma.com/pharma/ani-scoops-alimera-2-approved-ophthalmology-meds-381m-plus"
+        }
+      ]
+    },
+    {
+      "id": "abcellera-biologics-abcl635",
+      "company_id": "abcellera-biologics",
+      "name_en": "ABCL635",
+      "name_zh": "ABCL635",
+      "brand_name": "ABCL635",
+      "modality_id": "mab",
+      "therapeutic_area_id": "womens-health",
+      "indication_en": "Vasomotor symptoms (menopause)",
+      "indication_zh": "更年期血管舒缩症状（潮热）",
+      "approval_status": "ph2",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "north_america",
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "AbCellera Reports Q2 2025 Business Results",
+          "url": "https://investors.abcellera.com/news/news-releases/2025/AbCellera-Reports-Q2-2025-Business-Results--First-Participants-Dosed-in-a-Phase-1-Clinical-Trial-of-ABCL635-for-Vasomotor-Symptoms/default.aspx"
+        }
+      ]
+    },
+    {
+      "id": "abcellera-biologics-abcl575",
+      "company_id": "abcellera-biologics",
+      "name_en": "ABCL575",
+      "name_zh": "ABCL575",
+      "brand_name": "ABCL575",
+      "modality_id": "mab",
+      "therapeutic_area_id": "dermatology",
+      "indication_en": "Atopic dermatitis",
+      "indication_zh": "特应性皮炎",
+      "approval_status": "ph1",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "north_america",
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "AbCellera SEC 10-K FY2025",
+          "url": "https://www.stocktitan.net/sec-filings/ABCL/10-k-ab-cellera-biologics-inc-files-annual-report-a6d1b7c6684c.html"
+        }
+      ]
+    },
+    {
+      "id": "abcellera-biologics-abcl386",
+      "company_id": "abcellera-biologics",
+      "name_en": "ABCL386",
+      "name_zh": "ABCL386",
+      "brand_name": "ABCL386",
+      "modality_id": "mab",
+      "therapeutic_area_id": "oncology",
+      "indication_en": "Solid tumors (oncology)",
+      "indication_zh": "实体瘤（肿瘤）",
+      "approval_status": "preclinical",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "north_america",
+      "confidence": 0.75,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "AbCellera Reports Q3 2025 Business Results",
+          "url": "https://www.sec.gov/Archives/edgar/data/0001703057/000170305725000024/q32025earningspressrelease.htm"
+        }
+      ]
+    },
+    {
+      "id": "abcellera-biologics-abcl688",
+      "company_id": "abcellera-biologics",
+      "name_en": "ABCL688",
+      "name_zh": "ABCL688",
+      "brand_name": "ABCL688",
+      "modality_id": "mab",
+      "therapeutic_area_id": "immunology",
+      "indication_en": "Autoimmune disease",
+      "indication_zh": "自身免疫疾病",
+      "approval_status": "preclinical",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "north_america",
+      "confidence": 0.75,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "AbCellera Reports Q3 2025 Business Results",
+          "url": "https://www.sec.gov/Archives/edgar/data/0001703057/000170305725000024/q32025earningspressrelease.htm"
+        }
+      ]
+    },
+    {
+      "id": "atai-life-sciences-bpl-003",
+      "company_id": "atai-life-sciences",
+      "name_en": "Mebufotenin benzoate (BPL-003)",
+      "name_zh": "苯甲酸美布福丁（BPL-003）",
+      "brand_name": "BPL-003",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "neuroscience",
+      "indication_en": "Treatment-resistant depression",
+      "indication_zh": "难治性抑郁症",
+      "approval_status": "ph2",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "north_america",
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "ATAI Life Sciences 8-K FY2025",
+          "url": "https://www.sec.gov/Archives/edgar/data/0001840904/000114036125000708/ef20040004_ex99-1.htm"
+        }
+      ]
+    },
+    {
+      "id": "atai-life-sciences-vls-01",
+      "company_id": "atai-life-sciences",
+      "name_en": "DMT buccal film (VLS-01)",
+      "name_zh": "DMT口腔膜剂（VLS-01）",
+      "brand_name": "VLS-01",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "neuroscience",
+      "indication_en": "Treatment-resistant depression",
+      "indication_zh": "难治性抑郁症",
+      "approval_status": "ph2",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "north_america",
+      "confidence": 0.8,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "ATAI Life Sciences 8-K FY2025",
+          "url": "https://www.sec.gov/Archives/edgar/data/0001840904/000114036125021024/ef20050047_ex99-1.htm"
+        }
+      ]
+    },
+    {
+      "id": "atai-life-sciences-emp-01",
+      "company_id": "atai-life-sciences",
+      "name_en": "R-MDMA (EMP-01)",
+      "name_zh": "R-MDMA（EMP-01）",
+      "brand_name": "EMP-01",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "neuroscience",
+      "indication_en": "Social anxiety disorder",
+      "indication_zh": "社交焦虑障碍",
+      "approval_status": "ph2",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "north_america",
+      "confidence": 0.8,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "ATAI Life Sciences 8-K FY2025",
+          "url": "https://www.sec.gov/Archives/edgar/data/0001840904/000114036125018795/ef20048841_ex99-1.htm"
+        }
+      ]
+    },
+    {
+      "id": "harrow-chloroprocaine-gel",
+      "company_id": "harrow",
+      "name_en": "Chloroprocaine hydrochloride ophthalmic gel",
+      "name_zh": "盐酸氯普鲁卡因眼用凝胶",
+      "brand_name": "IHEEZO",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "ophthalmology",
+      "indication_en": "Ocular surface anesthesia for cataract and ophthalmic procedures",
+      "indication_zh": "眼科手术眼表麻醉",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "north_america",
+      "confidence": 0.93,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Products | Harrow",
+          "url": "https://www.harrow.com/products"
+        }
+      ]
+    },
+    {
+      "id": "harrow-cyclosporine-vevye",
+      "company_id": "harrow",
+      "name_en": "Cyclosporine ophthalmic solution 0.1%",
+      "name_zh": "环孢素滴眼液0.1%",
+      "brand_name": "VEVYE",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "ophthalmology",
+      "indication_en": "Signs and symptoms of dry eye disease",
+      "indication_zh": "干眼症体征与症状",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "north_america",
+      "confidence": 0.93,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Products | Harrow",
+          "url": "https://www.harrow.com/products"
+        }
+      ]
+    },
+    {
+      "id": "harrow-triamcinolone-triesence",
+      "company_id": "harrow",
+      "name_en": "Triamcinolone acetonide injectable suspension",
+      "name_zh": "曲安奈德注射混悬液",
+      "brand_name": "TRIESENCE",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "ophthalmology",
+      "indication_en": "Uveitis and visualization during vitrectomy",
+      "indication_zh": "葡萄膜炎及玻璃体切除术中可视化",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "north_america",
+      "confidence": 0.9,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Products | Harrow",
+          "url": "https://www.harrow.com/products"
+        }
+      ]
+    },
+    {
+      "id": "eyepoint-pharmaceuticals-yutiq",
+      "company_id": "eyepoint-pharmaceuticals",
+      "name_en": "Fluocinolone acetonide intravitreal implant",
+      "name_zh": "氟轻松玻璃体内植入剂",
+      "brand_name": "YUTIQ",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "ophthalmology",
+      "indication_en": "Chronic non-infectious posterior uveitis",
+      "indication_zh": "慢性非感染性后葡萄膜炎",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "north_america",
+      "confidence": 0.9,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "EyePoint Pharmaceuticals investor relations",
+          "url": "https://investors.eyepointpharma.com/news-releases/news-release-details/eyepoint-pharmaceuticals-presents-data-supporting-yutiqr"
+        }
+      ]
+    },
+    {
+      "id": "eyepoint-pharmaceuticals-dexycu",
+      "company_id": "eyepoint-pharmaceuticals",
+      "name_en": "Dexamethasone intraocular suspension",
+      "name_zh": "地塞米松眼内混悬液",
+      "brand_name": "DEXYCU",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "ophthalmology",
+      "indication_en": "Postoperative ocular inflammation",
+      "indication_zh": "眼科手术后炎症",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "north_america",
+      "confidence": 0.9,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "EyePoint / Harrow ImprimisRx alliance for DEXYCU",
+          "url": "https://investors.harrow.com/news-releases/news-release-details/eyepoint-pharmaceuticals-and-harrow-healths-imprimisrx-0"
+        }
+      ]
+    },
+    {
+      "id": "eyepoint-pharmaceuticals-duravyu",
+      "company_id": "eyepoint-pharmaceuticals",
+      "name_en": "Vorolanib intravitreal insert (EYP-1901)",
+      "name_zh": "沃罗尼布玻璃体内缓释剂（EYP-1901）",
+      "brand_name": "DURAVYU",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "ophthalmology",
+      "indication_en": "Wet age-related macular degeneration; diabetic retinopathy",
+      "indication_zh": "湿性年龄相关性黄斑变性；糖尿病视网膜病变",
+      "approval_status": "ph3",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "north_america",
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "EyePoint Announces First Patient Dosed in DAVIO 2 (EYP-1901)",
+          "url": "https://investors.eyepointpharma.com/news-releases/news-release-details/eyepoint-pharmaceuticals-announces-first-patient-dosed-phase-2"
+        }
+      ]
+    },
+    {
+      "id": "amphastar-pharmaceuticals-primatene-mist",
+      "company_id": "amphastar-pharmaceuticals",
+      "name_en": "Epinephrine inhalation aerosol",
+      "name_zh": "肾上腺素吸入气雾剂",
+      "brand_name": "Primatene Mist",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "respiratory",
+      "indication_en": "Mild intermittent asthma (OTC)",
+      "indication_zh": "轻度间歇性哮喘（非处方）",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "north_america",
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Amphastar Pharmaceuticals",
+          "url": "https://www.amphastar.com/"
+        }
+      ]
+    },
+    {
+      "id": "amphastar-pharmaceuticals-enoxaparin",
+      "company_id": "amphastar-pharmaceuticals",
+      "name_en": "Enoxaparin sodium injection",
+      "name_zh": "依诺肝素钠注射液",
+      "brand_name": "Enoxaparin Sodium",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "hematology",
+      "indication_en": "Anticoagulation / venous thromboembolism prophylaxis",
+      "indication_zh": "抗凝/静脉血栓栓塞预防",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "north_america",
+      "confidence": 0.8,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Amphastar Pharmaceuticals - Products",
+          "url": "https://www.amphastar.com/"
+        }
+      ]
+    },
+    {
+      "id": "amphastar-pharmaceuticals-glucagon",
+      "company_id": "amphastar-pharmaceuticals",
+      "name_en": "Glucagon for injection",
+      "name_zh": "胰高血糖素注射剂",
+      "brand_name": "Amphastar Glucagon",
+      "modality_id": "peptide",
+      "therapeutic_area_id": "cardiometabolic",
+      "indication_en": "Severe hypoglycemia",
+      "indication_zh": "严重低血糖",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "north_america",
+      "confidence": 0.75,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Amphastar Pharmaceuticals - Products",
+          "url": "https://www.amphastar.com/"
+        }
+      ]
+    },
+    {
+      "id": "amphastar-pharmaceuticals-naloxone",
+      "company_id": "amphastar-pharmaceuticals",
+      "name_en": "Naloxone hydrochloride injection",
+      "name_zh": "盐酸纳洛酮注射液",
+      "brand_name": "Naloxone HCl",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "neuroscience",
+      "indication_en": "Opioid overdose reversal",
+      "indication_zh": "阿片类药物过量逆转",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "north_america",
+      "confidence": 0.75,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Amphastar Pharmaceuticals - Products",
+          "url": "https://www.amphastar.com/"
+        }
+      ]
+    },
+    {
+      "id": "halozyme-therapeutics-hylenex",
+      "company_id": "halozyme-therapeutics",
+      "name_en": "Hyaluronidase (recombinant human, rHuPH20)",
+      "name_zh": "重组人透明质酸酶",
+      "brand_name": "Hylenex",
+      "modality_id": "recombinant-protein",
+      "therapeutic_area_id": "oncology",
+      "indication_en": "Tissue permeability adjuvant for subcutaneous drug/fluid delivery",
+      "indication_zh": "皮下给药与输液的组织渗透辅助剂",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "north_america",
+      "confidence": 0.9,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Halozyme (Wikipedia)",
+          "url": "https://en.wikipedia.org/wiki/Halozyme"
+        },
+        {
+          "title": "Halozyme Hylenex reintroduction",
+          "url": "https://www.prnewswire.com/news-releases/halozyme-provides-hylenex-product-reintroduction-update-101866763.html"
+        }
+      ]
+    },
+    {
+      "id": "halozyme-therapeutics-enhanze",
+      "company_id": "halozyme-therapeutics",
+      "name_en": "ENHANZE (rHuPH20 drug-delivery platform)",
+      "name_zh": "ENHANZE皮下给药平台",
+      "brand_name": "ENHANZE",
+      "modality_id": "recombinant-protein",
+      "therapeutic_area_id": "oncology",
+      "indication_en": "Subcutaneous co-formulation enabling platform for partnered biologics",
+      "indication_zh": "用于合作生物药皮下共制剂的赋能平台",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": true,
+      "region": "north_america",
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Halozyme 10-K FY2024",
+          "url": "https://www.sec.gov/Archives/edgar/data/1159036/000115903625000010/halo-20241231.htm"
+        }
+      ]
+    },
+    {
+      "id": "halozyme-therapeutics-xyosted",
+      "company_id": "halozyme-therapeutics",
+      "name_en": "Testosterone enanthate (auto-injector)",
+      "name_zh": "庚酸睾酮",
+      "brand_name": "XYOSTED",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "cardiometabolic",
+      "indication_en": "Testosterone replacement in hypogonadism",
+      "indication_zh": "性腺功能减退症睾酮替代治疗",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "north_america",
+      "confidence": 0.82,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Halozyme 10-K FY2024",
+          "url": "https://www.sec.gov/Archives/edgar/data/1159036/000115903625000010/halo-20241231.htm"
+        }
+      ]
+    },
+    {
+      "id": "halozyme-therapeutics-pegph20",
+      "company_id": "halozyme-therapeutics",
+      "name_en": "PEGPH20 (pegvorhyaluronidase alfa)",
+      "name_zh": "聚乙二醇透明质酸酶α",
+      "brand_name": "PEGPH20",
+      "modality_id": "recombinant-protein",
+      "therapeutic_area_id": "oncology",
+      "indication_en": "Hyaluronan-high solid tumors",
+      "indication_zh": "透明质酸高表达实体瘤",
+      "approval_status": "ph2",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "north_america",
+      "confidence": 0.7,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Halozyme (Wikipedia)",
+          "url": "https://en.wikipedia.org/wiki/Halozyme"
+        }
+      ]
+    },
+    {
+      "id": "lantheus-holdings-pylarify",
+      "company_id": "lantheus-holdings",
+      "name_en": "Piflufolastat F 18",
+      "name_zh": "氟[18F]匹氟伏拉司他",
+      "brand_name": "Pylarify",
+      "modality_id": "radioligand",
+      "therapeutic_area_id": "oncology",
+      "indication_en": "PSMA PET imaging in prostate cancer",
+      "indication_zh": "前列腺癌PSMA PET显像",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": true,
+      "region": "north_america",
+      "confidence": 0.9,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Lantheus FDA approval of PYLARIFY",
+          "url": "https://investor.lantheus.com/news-releases/news-release-details/lantheus-receives-us-fda-approval-pylarifyr-piflufolastat-f-18"
+        }
+      ]
+    },
+    {
+      "id": "lantheus-holdings-definity",
+      "company_id": "lantheus-holdings",
+      "name_en": "Perflutren lipid microsphere",
+      "name_zh": "全氟丙烷脂质微球",
+      "brand_name": "Definity",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "cardiometabolic",
+      "indication_en": "Echocardiography contrast agent",
+      "indication_zh": "超声心动图造影剂",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "north_america",
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Lantheus FY2023 ARS",
+          "url": "https://www.sec.gov/Archives/edgar/data/0001521036/000119312524068593/d630514dars.pdf"
+        }
+      ]
+    },
+    {
+      "id": "lantheus-holdings-azedra",
+      "company_id": "lantheus-holdings",
+      "name_en": "Iobenguane I 131",
+      "name_zh": "碘[131I]间碘苄胍",
+      "brand_name": "Azedra",
+      "modality_id": "radioligand",
+      "therapeutic_area_id": "oncology",
+      "indication_en": "Pheochromocytoma and paraganglioma",
+      "indication_zh": "嗜铬细胞瘤和副神经节瘤",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "north_america",
+      "confidence": 0.8,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Lantheus FY2023 ARS",
+          "url": "https://www.sec.gov/Archives/edgar/data/0001521036/000119312524068593/d630514dars.pdf"
+        }
+      ]
+    },
+    {
+      "id": "lantheus-holdings-relistor",
+      "company_id": "lantheus-holdings",
+      "name_en": "Methylnaltrexone bromide",
+      "name_zh": "甲基纳曲酮溴化物",
+      "brand_name": "Relistor",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "gastroenterology",
+      "indication_en": "Opioid-induced constipation",
+      "indication_zh": "阿片类药物引起的便秘",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "north_america",
+      "confidence": 0.75,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Lantheus FY2023 ARS",
+          "url": "https://www.sec.gov/Archives/edgar/data/0001521036/000119312524068593/d630514dars.pdf"
+        }
+      ]
+    },
+    {
+      "id": "akero-therapeutics-efruxifermin",
+      "company_id": "akero-therapeutics",
+      "name_en": "Efruxifermin",
+      "name_zh": "依芙昔非明",
+      "brand_name": "Efruxifermin (EFX)",
+      "modality_id": "fusion-protein",
+      "therapeutic_area_id": "cardiometabolic",
+      "indication_en": "MASH (metabolic dysfunction-associated steatohepatitis) and MASH-related cirrhosis",
+      "indication_zh": "代谢相关脂肪性肝炎（MASH）及其相关肝硬化",
+      "approval_status": "ph3",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "north_america",
+      "confidence": 0.95,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Akero Therapeutics - EFX for MASH",
+          "url": "https://akerotx.com/efruxifermin/"
+        },
+        {
+          "title": "Efruxifermin - Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Efruxifermin"
+        }
+      ]
+    },
+    {
+      "id": "elanco-animal-health-seresto",
+      "company_id": "elanco-animal-health",
+      "name_en": "Imidacloprid/flumethrin collar",
+      "name_zh": "吡虫啉/氟氯苯氰菊酯项圈（速来沃）",
+      "brand_name": "Seresto",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "infectious-disease",
+      "indication_en": "Flea and tick control in dogs and cats",
+      "indication_zh": "犬猫跳蚤与蜱虫防治",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "north_america",
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Elanco - Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Elanco"
+        }
+      ]
+    },
+    {
+      "id": "elanco-animal-health-credelio",
+      "company_id": "elanco-animal-health",
+      "name_en": "Lotilaner",
+      "name_zh": "洛替拉纳（可乐适）",
+      "brand_name": "Credelio",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "infectious-disease",
+      "indication_en": "Oral flea and tick treatment for dogs and cats",
+      "indication_zh": "犬猫口服跳蚤与蜱虫治疗",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "north_america",
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Elanco Product Overview",
+          "url": "https://my.elanco.com/us/product-overview"
+        }
+      ]
+    },
+    {
+      "id": "elanco-animal-health-galliprant",
+      "company_id": "elanco-animal-health",
+      "name_en": "Grapiprant",
+      "name_zh": "格拉匹兰（加利普兰）",
+      "brand_name": "Galliprant",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "immunology",
+      "indication_en": "Osteoarthritis pain and inflammation in dogs",
+      "indication_zh": "犬骨关节炎疼痛与炎症",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "north_america",
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Elanco Product Overview",
+          "url": "https://my.elanco.com/us/product-overview"
+        }
+      ]
+    },
+    {
+      "id": "elanco-animal-health-rumensin",
+      "company_id": "elanco-animal-health",
+      "name_en": "Monensin",
+      "name_zh": "莫能菌素（瑞美生）",
+      "brand_name": "Rumensin",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "infectious-disease",
+      "indication_en": "Feed efficiency and coccidiosis in cattle",
+      "indication_zh": "牛饲料效率与球虫病防治",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "north_america",
+      "confidence": 0.8,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Elanco 10-K 2023",
+          "url": "https://en.wikipedia.org/wiki/Elanco"
+        }
+      ]
+    },
+    {
+      "id": "perrigo-albuterol-hfa",
+      "company_id": "perrigo",
+      "name_en": "Albuterol sulfate HFA",
+      "name_zh": "硫酸沙丁胺醇气雾剂",
+      "brand_name": "Albuterol Sulfate HFA (generic ProAir)",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "respiratory",
+      "indication_en": "Bronchospasm in asthma / COPD",
+      "indication_zh": "哮喘/慢阻肺支气管痉挛",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "north_america",
+      "confidence": 0.82,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Perrigo - Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Perrigo"
+        }
+      ]
+    },
+    {
+      "id": "perrigo-omeprazole-otc",
+      "company_id": "perrigo",
+      "name_en": "Omeprazole",
+      "name_zh": "奥美拉唑",
+      "brand_name": "Omeprazole (store brand OTC)",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "gastroenterology",
+      "indication_en": "Frequent heartburn / acid reflux",
+      "indication_zh": "频繁烧心、胃酸反流",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "north_america",
+      "confidence": 0.78,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Perrigo - Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Perrigo"
+        }
+      ]
+    },
+    {
+      "id": "perrigo-cetirizine-otc",
+      "company_id": "perrigo",
+      "name_en": "Cetirizine",
+      "name_zh": "西替利嗪",
+      "brand_name": "Cetirizine (store brand OTC)",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "respiratory",
+      "indication_en": "Allergic rhinitis / allergies",
+      "indication_zh": "过敏性鼻炎、过敏",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "north_america",
+      "confidence": 0.75,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Perrigo - Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Perrigo"
+        }
+      ]
+    },
+    {
+      "id": "amneal-pharmaceuticals-crexont",
+      "company_id": "amneal-pharmaceuticals",
+      "name_en": "Carbidopa/Levodopa ER",
+      "name_zh": "卡比多巴/左旋多巴缓释",
+      "brand_name": "Crexont",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "neuroscience",
+      "indication_en": "Parkinson's disease",
+      "indication_zh": "帕金森病",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "north_america",
+      "confidence": 0.92,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Amneal Receives FDA Approval for CREXONT",
+          "url": "https://investors.amneal.com/news/press-releases/press-release-details/2024/Amneal-Receives-U.S.-FDA-Approval-for-IPX203-for-Treatment-of-Parkinsons-Disease-to-Be-Launched-as-CREXONT-Carbidopa-and-Levodopa-Extended-Release-Capsules/default.aspx"
+        }
+      ]
+    },
+    {
+      "id": "amneal-pharmaceuticals-rytary",
+      "company_id": "amneal-pharmaceuticals",
+      "name_en": "Carbidopa/Levodopa ER",
+      "name_zh": "卡比多巴/左旋多巴缓释",
+      "brand_name": "Rytary",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "neuroscience",
+      "indication_en": "Parkinson's disease",
+      "indication_zh": "帕金森病",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "north_america",
+      "confidence": 0.9,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Amneal Pharmaceuticals - Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Amneal_Pharmaceuticals"
+        }
+      ]
+    },
+    {
+      "id": "amneal-pharmaceuticals-naloxone-otc",
+      "company_id": "amneal-pharmaceuticals",
+      "name_en": "Naloxone nasal spray",
+      "name_zh": "纳洛酮鼻喷雾剂",
+      "brand_name": "Naloxone HCl Nasal Spray (OTC)",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "neuroscience",
+      "indication_en": "Opioid overdose reversal",
+      "indication_zh": "阿片类药物过量逆转",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "north_america",
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Amneal Pharmaceuticals - Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Amneal_Pharmaceuticals"
+        }
+      ]
+    },
+    {
+      "id": "amneal-pharmaceuticals-unithroid",
+      "company_id": "amneal-pharmaceuticals",
+      "name_en": "Levothyroxine sodium",
+      "name_zh": "左甲状腺素钠",
+      "brand_name": "Unithroid",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "cardiometabolic",
+      "indication_en": "Hypothyroidism",
+      "indication_zh": "甲状腺功能减退症",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "north_america",
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Amneal Pharmaceuticals - Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Amneal_Pharmaceuticals"
+        }
+      ]
+    },
+    {
+      "id": "apotex-lapelga",
+      "company_id": "apotex",
+      "name_en": "Pegfilgrastim",
+      "name_zh": "培非格司亭",
+      "brand_name": "Lapelga",
+      "modality_id": "biosimilar",
+      "therapeutic_area_id": "hematology",
+      "indication_en": "Chemotherapy-induced neutropenia",
+      "indication_zh": "化疗引起的中性粒细胞减少症",
+      "approval_status": "approved",
+      "drug_class": "biosimilar",
+      "is_blockbuster": false,
+      "region": "north_america",
+      "confidence": 0.9,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Apotex pegfilgrastim biosimilar",
+          "url": "https://gabionline.net/biosimilars/news/Apotex-pegfilgrastim-biosimilar-under-FDA-review"
+        }
+      ]
+    },
+    {
+      "id": "apotex-grastofil",
+      "company_id": "apotex",
+      "name_en": "Filgrastim",
+      "name_zh": "非格司亭",
+      "brand_name": "Grastofil",
+      "modality_id": "biosimilar",
+      "therapeutic_area_id": "hematology",
+      "indication_en": "Chemotherapy-induced neutropenia",
+      "indication_zh": "化疗引起的中性粒细胞减少症",
+      "approval_status": "approved",
+      "drug_class": "biosimilar",
+      "is_blockbuster": false,
+      "region": "north_america",
+      "confidence": 0.88,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Apotex Filgrastim biosimilar accepted",
+          "url": "https://www.fiercebiotech.com/biotech/apotex-announces-fda-has-accepted-for-filing-its-biosimilar-application-for-filgrastim"
+        }
+      ]
+    },
+    {
+      "id": "apotex-apo-atorvastatin",
+      "company_id": "apotex",
+      "name_en": "Atorvastatin",
+      "name_zh": "阿托伐他汀",
+      "brand_name": "Apo-Atorvastatin",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "cardiometabolic",
+      "indication_en": "Hypercholesterolemia",
+      "indication_zh": "高胆固醇血症",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "north_america",
+      "confidence": 0.82,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Apotex: Advancing Generics",
+          "url": "https://www.pharmacytimes.com/view/apotex-advancing-generics"
+        }
+      ]
+    },
+    {
+      "id": "denali-therapeutics-tividenofusp-alfa",
+      "company_id": "denali-therapeutics",
+      "name_en": "Tividenofusp alfa",
+      "name_zh": "替维多夫普α",
+      "brand_name": "Tividenofusp alfa (DNL310)",
+      "modality_id": "fusion-protein",
+      "therapeutic_area_id": "rare-disease",
+      "indication_en": "Hunter syndrome (MPS II)",
+      "indication_zh": "亨特综合征（黏多糖贮积症II型）",
+      "approval_status": "filed",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "north_america",
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Denali 2026 Milestones - Tividenofusp Alfa",
+          "url": "https://investors.denalitherapeutics.com/news-releases/news-release-details/denali-therapeutics-announces-key-anticipated-milestones-and"
+        }
+      ]
+    },
+    {
+      "id": "denali-therapeutics-dnl151",
+      "company_id": "denali-therapeutics",
+      "name_en": "BIIB122 / DNL151 (LRRK2 inhibitor)",
+      "name_zh": "BIIB122／DNL151（LRRK2抑制剂）",
+      "brand_name": "BIIB122 / DNL151",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "neuroscience",
+      "indication_en": "Parkinson's disease",
+      "indication_zh": "帕金森病",
+      "approval_status": "ph2",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "north_america",
+      "confidence": 0.82,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Denali 2026 Milestones",
+          "url": "https://investors.denalitherapeutics.com/news-releases/news-release-details/denali-therapeutics-announces-key-anticipated-milestones-and"
+        }
+      ]
+    },
+    {
+      "id": "denali-therapeutics-dnl126",
+      "company_id": "denali-therapeutics",
+      "name_en": "DNL126 (SGSH ETV)",
+      "name_zh": "DNL126",
+      "brand_name": "DNL126",
+      "modality_id": "fusion-protein",
+      "therapeutic_area_id": "rare-disease",
+      "indication_en": "Sanfilippo syndrome type A (MPS IIIA)",
+      "indication_zh": "圣菲利波综合征A型（MPS IIIA）",
+      "approval_status": "ph2",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "north_america",
+      "confidence": 0.78,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Denali 2026 Milestones",
+          "url": "https://investors.denalitherapeutics.com/news-releases/news-release-details/denali-therapeutics-announces-key-anticipated-milestones-and"
+        }
+      ]
+    },
+    {
+      "id": "denali-therapeutics-dnl343",
+      "company_id": "denali-therapeutics",
+      "name_en": "DNL343 (eIF2B activator)",
+      "name_zh": "DNL343",
+      "brand_name": "DNL343",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "neuroscience",
+      "indication_en": "Amyotrophic lateral sclerosis (ALS)",
+      "indication_zh": "肌萎缩侧索硬化（ALS）",
+      "approval_status": "ph2",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "north_america",
+      "confidence": 0.74,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Denali Therapeutics 10-K Pipeline",
+          "url": "https://www.stocktitan.net/sec-filings/DNLI/10-k-denali-therapeutics-inc-files-annual-report-4cd40fb6456d.html"
+        }
+      ]
+    },
+    {
+      "id": "recursion-pharmaceuticals-rec-617",
+      "company_id": "recursion-pharmaceuticals",
+      "name_en": "REC-617",
+      "name_zh": "REC-617（CDK7抑制剂）",
+      "brand_name": "REC-617",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "oncology",
+      "indication_en": "Advanced solid tumors (CDK7 inhibitor)",
+      "indication_zh": "晚期实体瘤（CDK7抑制剂）",
+      "approval_status": "ph1",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "north_america",
+      "confidence": 0.8,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Recursion's Drug Discovery Pipeline",
+          "url": "https://www.recursion.com/pipeline"
+        },
+        {
+          "title": "Recursion FY2025 8-K (SEC)",
+          "url": "https://www.sec.gov/Archives/edgar/data/0001601830/000160183025000034/exhibit991-10xk24.htm"
+        }
+      ]
+    },
+    {
+      "id": "recursion-pharmaceuticals-rec-1245",
+      "company_id": "recursion-pharmaceuticals",
+      "name_en": "REC-1245",
+      "name_zh": "REC-1245（RBM39降解剂）",
+      "brand_name": "REC-1245",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "oncology",
+      "indication_en": "Biomarker-enriched solid tumors and lymphoma (RBM39 degrader)",
+      "indication_zh": "生物标志物富集实体瘤及淋巴瘤（RBM39降解剂）",
+      "approval_status": "ph1",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "north_america",
+      "confidence": 0.65,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Recursion's Drug Discovery Pipeline",
+          "url": "https://www.recursion.com/pipeline"
+        }
+      ]
+    },
+    {
       "id": "amvuttra",
       "company_id": "alnylam",
       "name": "AMVUTTRA (vutrisiran)",

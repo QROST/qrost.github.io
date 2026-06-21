@@ -2,6 +2,355 @@
   "shard": "latam",
   "products": [
     {
+      "id": "laboratorios-richmond-ar-zutrab",
+      "company_id": "laboratorios-richmond-ar",
+      "name_en": "Bevacizumab",
+      "name_zh": "贝伐珠单抗",
+      "brand_name": "Zutrab",
+      "modality_id": "biosimilar",
+      "therapeutic_area_id": "oncology",
+      "indication_en": "Metastatic colorectal and other cancers (anti-VEGF)",
+      "indication_zh": "转移性结直肠癌及其他肿瘤（抗VEGF）",
+      "approval_status": "approved",
+      "drug_class": "biosimilar",
+      "is_blockbuster": false,
+      "region": "latam",
+      "confidence": 0.9,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Argentina approves bevacizumab biosimilar Zutrab",
+          "url": "https://www.gabionline.net/biosimilars/news/argentina-approves-bevacizumab-similar-biological-medicine-zutrab"
+        }
+      ]
+    },
+    {
+      "id": "laboratorios-richmond-ar-efavirenz",
+      "company_id": "laboratorios-richmond-ar",
+      "name_en": "Efavirenz",
+      "name_zh": "依非韦伦",
+      "brand_name": "Efavirenz Richmond",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "infectious-disease",
+      "indication_en": "HIV/AIDS antiretroviral therapy",
+      "indication_zh": "HIV/艾滋病抗逆转录病毒治疗",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "latam",
+      "confidence": 0.78,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Laboratorios Richmond directory",
+          "url": "https://pharmaboardroom.com/directory/laboratorios-richmond/"
+        }
+      ]
+    },
+    {
+      "id": "laboratorios-richmond-ar-oncology-generics",
+      "company_id": "laboratorios-richmond-ar",
+      "name_en": "Branded oncology generics line",
+      "name_zh": "品牌肿瘤仿制药系列",
+      "brand_name": "Richmond Oncology",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "oncology",
+      "indication_en": "Various oncology indications (cytotoxic/oral oncolytics)",
+      "indication_zh": "多种肿瘤适应症（细胞毒/口服抗肿瘤药）",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "latam",
+      "confidence": 0.72,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Laboratorios Richmond products",
+          "url": "https://richmondlab.com/ar/en/products/"
+        }
+      ]
+    },
+    {
+      "id": "ems-pharma-sildenafil",
+      "company_id": "ems-pharma",
+      "name_en": "Sildenafil",
+      "name_zh": "西地那非",
+      "brand_name": "Sildenafila EMS",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "cardiometabolic",
+      "indication_en": "Erectile dysfunction",
+      "indication_zh": "勃起功能障碍",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "latam",
+      "confidence": 0.8,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "EMS (pharmaceuticals) - Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/EMS_(pharmaceuticals)"
+        },
+        {
+          "title": "EMS — Grokipedia",
+          "url": "https://grokipedia.com/page/ems_pharmaceuticals"
+        }
+      ]
+    },
+    {
+      "id": "ems-pharma-atorvastatin",
+      "company_id": "ems-pharma",
+      "name_en": "Atorvastatin",
+      "name_zh": "阿托伐他汀",
+      "brand_name": "Atorvastatina EMS",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "cardiometabolic",
+      "indication_en": "Hypercholesterolemia",
+      "indication_zh": "高胆固醇血症",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "latam",
+      "confidence": 0.8,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "EMS — Grokipedia",
+          "url": "https://grokipedia.com/page/ems_pharmaceuticals"
+        }
+      ]
+    },
+    {
+      "id": "ems-pharma-losartan",
+      "company_id": "ems-pharma",
+      "name_en": "Losartan",
+      "name_zh": "氯沙坦",
+      "brand_name": "Losartana EMS",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "cardiometabolic",
+      "indication_en": "Hypertension",
+      "indication_zh": "高血压",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "latam",
+      "confidence": 0.78,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "EMS — Grokipedia",
+          "url": "https://grokipedia.com/page/ems_pharmaceuticals"
+        }
+      ]
+    },
+    {
+      "id": "ems-pharma-balsamo-bengue",
+      "company_id": "ems-pharma",
+      "name_en": "Methyl salicylate / menthol topical analgesic",
+      "name_zh": "水杨酸甲酯/薄荷醇外用镇痛剂",
+      "brand_name": "Bálsamo Bengué",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "neuroscience",
+      "indication_en": "Topical pain relief (muscular/joint pain)",
+      "indication_zh": "外用止痛（肌肉/关节疼痛）",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "latam",
+      "confidence": 0.72,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "About EMS S.A. | CPHI Online",
+          "url": "https://www.cphi-online.com/company/ems-s-a/"
+        }
+      ]
+    },
+    {
+      "id": "eurofarma-nitazoxanide",
+      "company_id": "eurofarma",
+      "name_en": "Nitazoxanide",
+      "name_zh": "硝唑尼特",
+      "brand_name": "Annita",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "infectious-disease",
+      "indication_en": "Protozoal and helminthic infections",
+      "indication_zh": "原虫与蠕虫感染",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "latam",
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Annita (International database)",
+          "url": "https://www.drugs.com/international/annita.html"
+        }
+      ]
+    },
+    {
+      "id": "eurofarma-filgrastim",
+      "company_id": "eurofarma",
+      "name_en": "Filgrastim",
+      "name_zh": "非格司亭",
+      "brand_name": "Fiprima",
+      "modality_id": "biosimilar",
+      "therapeutic_area_id": "hematology",
+      "indication_en": "Neutropenia following chemotherapy",
+      "indication_zh": "化疗后中性粒细胞减少",
+      "approval_status": "approved",
+      "drug_class": "biosimilar",
+      "is_blockbuster": false,
+      "region": "latam",
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Eurofarma - Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Eurofarma"
+        }
+      ]
+    },
+    {
+      "id": "eurofarma-genfar-generics",
+      "company_id": "eurofarma",
+      "name_en": "Genfar generics portfolio",
+      "name_zh": "Genfar 仿制药组合",
+      "brand_name": "Genfar",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "infectious-disease",
+      "indication_en": "Multi-class generic medicines for Latin America",
+      "indication_zh": "拉美多类仿制药",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "latam",
+      "confidence": 0.75,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Genfar: Eurofarma's new generic brand in Latin America",
+          "url": "https://gabionline.net/pharma-news/genfar-eurofarma-s-new-generic-brand-in-latin-america"
+        }
+      ]
+    },
+    {
+      "id": "hypera-pharma-buscopan",
+      "company_id": "hypera-pharma",
+      "name_en": "Hyoscine butylbromide",
+      "name_zh": "丁溴东莨菪碱",
+      "brand_name": "Buscopan",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "gastroenterology",
+      "indication_en": "Abdominal cramps and spasms",
+      "indication_zh": "腹部绞痛与平滑肌痉挛",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "latam",
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Hypera Pharma Corporate Profile",
+          "url": "https://ri.hypera.com.br/en/hypera-pharma/corporate-profile/"
+        }
+      ]
+    },
+    {
+      "id": "hypera-pharma-neosaldina",
+      "company_id": "hypera-pharma",
+      "name_en": "Isometheptene / dipyrone / caffeine",
+      "name_zh": "异美汀复方镇痛",
+      "brand_name": "Neosaldina",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "neuroscience",
+      "indication_en": "Headache and migraine",
+      "indication_zh": "头痛与偏头痛",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "latam",
+      "confidence": 0.82,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Hypera Pharma Corporate Profile",
+          "url": "https://ri.hypera.com.br/en/hypera-pharma/corporate-profile/"
+        }
+      ]
+    },
+    {
+      "id": "hypera-pharma-addera-d3",
+      "company_id": "hypera-pharma",
+      "name_en": "Cholecalciferol",
+      "name_zh": "维生素D3（胆钙化醇）",
+      "brand_name": "Addera D3",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "cardiometabolic",
+      "indication_en": "Vitamin D deficiency",
+      "indication_zh": "维生素D缺乏",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "latam",
+      "confidence": 0.8,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Hypera Pharma Corporate Profile",
+          "url": "https://ri.hypera.com.br/en/hypera-pharma/corporate-profile/"
+        }
+      ]
+    },
+    {
+      "id": "hypera-pharma-predsim",
+      "company_id": "hypera-pharma",
+      "name_en": "Prednisolone",
+      "name_zh": "泼尼松龙",
+      "brand_name": "Predsim",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "immunology",
+      "indication_en": "Inflammatory and allergic conditions",
+      "indication_zh": "炎症与过敏性疾病",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "latam",
+      "confidence": 0.8,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Hypera Pharma Corporate Profile",
+          "url": "https://ri.hypera.com.br/en/hypera-pharma/corporate-profile/"
+        }
+      ]
+    },
+    {
+      "id": "hypera-pharma-nesina",
+      "company_id": "hypera-pharma",
+      "name_en": "Alogliptin",
+      "name_zh": "阿格列汀",
+      "brand_name": "Nesina",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "cardiometabolic",
+      "indication_en": "Type 2 diabetes",
+      "indication_zh": "2型糖尿病",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "latam",
+      "confidence": 0.78,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Hypera Pharma Corporate Profile",
+          "url": "https://ri.hypera.com.br/en/hypera-pharma/corporate-profile/"
+        }
+      ]
+    },
+    {
       "id": "glargilin-insulin",
       "name_zh": "GLARGILIN（インスリングラルギン）",
       "name_en": "GLARGILIN (insulin glargine)",
