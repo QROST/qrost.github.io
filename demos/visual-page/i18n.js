@@ -28,6 +28,7 @@ const UI = {
   panelPolicies: { en: 'Policies', zh: '政策' },
   panelVendors: { en: 'Vendors', zh: '厂商' },
   panelPharma: { en: 'Pharma', zh: '医药' },
+  panelCats: { en: 'Shelter cats', zh: '收容猫' },
   panelBeams: { en: 'Beams', zh: '连线' },
   panelTrails: { en: 'Trails', zh: '拖尾' },
   panelLattice: { en: 'Lattice', zh: '晶格' },
