@@ -63,6 +63,30 @@ html, body {
 
 .hidden { opacity: 0 !important; pointer-events: none !important; transform: translateX(-50%) translateY(10px) !important; }
 
+/* 焦点详情探查面板：公式 + 实时参数 + 数据映射（实体名降为角落小字） */
+#card.inspect {
+  left: max(env(safe-area-inset-left), 16px); right: auto; bottom: 52px;
+  transform: none; text-align: left;
+  max-width: min(440px, 82vw); min-width: 272px;
+  padding: 15px 18px 13px;
+  font-family: ui-monospace, 'SF Mono', 'JetBrains Mono', Menlo, Consolas, monospace;
+}
+#card.inspect.hidden { transform: translateY(12px) !important; }
+.ins-meta { margin-top: 10px; padding-top: 8px; border-top: 1px solid rgba(150, 180, 255, 0.1); }
+.ins-name { display: block; font-size: 9px; font-weight: 300; letter-spacing: 0.06em; color: rgba(195, 205, 230, 0.3); line-height: 1.3; text-transform: none; }
+.ins-eq { font-size: 12px; line-height: 1.65; color: rgba(220, 232, 255, 0.85); margin-bottom: 8px; }
+.ins-eqh { font-size: 11px; letter-spacing: 0.1em; color: rgba(255, 208, 135, 0.92); margin-bottom: 4px; }
+.ins-eqh .ins-sys { opacity: 0.5; }
+.ins-eq b { color: rgba(150, 255, 200, 0.95); font-weight: 500; }
+.ins-state { font-size: 11px; letter-spacing: 0.05em; color: rgba(190, 205, 235, 0.6); margin-bottom: 9px; padding-bottom: 8px; border-bottom: 1px solid rgba(150, 180, 255, 0.1); }
+.ins-state i { font-style: normal; color: rgba(150, 255, 200, 0.9); }
+.ins-dt { opacity: 0.72; }
+.ins-rows { display: flex; flex-direction: column; gap: 2px; }
+.ir { display: grid; grid-template-columns: 56px 50px 1fr; gap: 7px; align-items: baseline; font-size: 10.5px; line-height: 1.5; }
+.ir .ic { color: rgba(255, 208, 135, 0.8); letter-spacing: 0.03em; }
+.ir .iv { color: rgba(222, 236, 255, 0.92); text-align: right; }
+.ir .im { color: rgba(185, 200, 230, 0.5); font-size: 9.5px; letter-spacing: 0.02em; }
+
 #panel {
   position: fixed; left: max(env(safe-area-inset-left), 12px); top: 50%; transform: translateY(-50%);
   z-index: 7; display: flex; flex-direction: column; gap: 2px;
