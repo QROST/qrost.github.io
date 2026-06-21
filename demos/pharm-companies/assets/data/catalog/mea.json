@@ -2,6 +2,374 @@
   "shard": "mea",
   "products": [
     {
+      "id": "eipico-eg-rabezol",
+      "company_id": "eipico-eg",
+      "name_en": "Rabeprazole",
+      "name_zh": "雷贝拉唑",
+      "brand_name": "Rabezol",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "gastroenterology",
+      "indication_en": "Gastroesophageal reflux, peptic ulcer",
+      "indication_zh": "胃食管反流、消化性溃疡",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "mea",
+      "confidence": 0.62,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "EIPICO",
+          "url": "https://www.eipico.com.eg/"
+        }
+      ]
+    },
+    {
+      "id": "eipico-eg-atorvastatin",
+      "company_id": "eipico-eg",
+      "name_en": "Atorvastatin",
+      "name_zh": "阿托伐他汀",
+      "brand_name": "Ator",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "cardiometabolic",
+      "indication_en": "Hypercholesterolemia",
+      "indication_zh": "高胆固醇血症",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "mea",
+      "confidence": 0.6,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "EIPICO",
+          "url": "https://www.eipico.com.eg/"
+        }
+      ]
+    },
+    {
+      "id": "eipico-eg-amoxicillin",
+      "company_id": "eipico-eg",
+      "name_en": "Amoxicillin",
+      "name_zh": "阿莫西林",
+      "brand_name": "E-Mox",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "infectious-disease",
+      "indication_en": "Bacterial infections",
+      "indication_zh": "细菌感染",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "mea",
+      "confidence": 0.6,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "EIPICO",
+          "url": "https://www.eipico.com.eg/"
+        }
+      ]
+    },
+    {
+      "id": "julphar-ae-jusline",
+      "company_id": "julphar-ae",
+      "name_en": "Recombinant human insulin",
+      "name_zh": "重组人胰岛素",
+      "brand_name": "Jusline",
+      "modality_id": "recombinant-protein",
+      "therapeutic_area_id": "cardiometabolic",
+      "indication_en": "Diabetes mellitus type 1 and type 2",
+      "indication_zh": "1型和2型糖尿病",
+      "approval_status": "approved",
+      "drug_class": "biosimilar",
+      "is_blockbuster": false,
+      "region": "mea",
+      "confidence": 0.9,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Julphar - Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Julphar"
+        }
+      ]
+    },
+    {
+      "id": "julphar-ae-insulin-glargine",
+      "company_id": "julphar-ae",
+      "name_en": "Insulin glargine",
+      "name_zh": "甘精胰岛素",
+      "brand_name": "Insulin Glargine",
+      "modality_id": "recombinant-protein",
+      "therapeutic_area_id": "cardiometabolic",
+      "indication_en": "Long-acting basal insulin for diabetes",
+      "indication_zh": "糖尿病长效基础胰岛素",
+      "approval_status": "ph3",
+      "drug_class": "biosimilar",
+      "is_blockbuster": false,
+      "region": "mea",
+      "confidence": 0.7,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Julphar signs agreement with Sunshine Lake Pharma on insulin biosimilars",
+          "url": "https://www.julphar.net/en/gulf-pharmaceutical-industries--julphar--signs-landmark-agreement-with-sunshine-lake-pharma-to-pioneer-insulin-biosimilar-manufacturing-in-mena-2"
+        }
+      ]
+    },
+    {
+      "id": "rameda-eg-cardiovascular-amlodipine",
+      "company_id": "rameda-eg",
+      "name_en": "Amlodipine",
+      "name_zh": "氨氯地平",
+      "brand_name": "Amlodipine (Rameda)",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "cardiometabolic",
+      "indication_en": "Hypertension",
+      "indication_zh": "高血压",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "mea",
+      "confidence": 0.65,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Rameda Pharma overview",
+          "url": "https://ramedapharma.com/overview/"
+        }
+      ]
+    },
+    {
+      "id": "rameda-eg-amoxicillin-clavulanate",
+      "company_id": "rameda-eg",
+      "name_en": "Amoxicillin/Clavulanic acid",
+      "name_zh": "阿莫西林/克拉维酸",
+      "brand_name": "Amoxicillin-Clav (Rameda)",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "infectious-disease",
+      "indication_en": "Bacterial infections",
+      "indication_zh": "细菌感染",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "mea",
+      "confidence": 0.65,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Rameda Pharma overview",
+          "url": "https://ramedapharma.com/overview/"
+        }
+      ]
+    },
+    {
+      "id": "rameda-eg-respiratory-salbutamol",
+      "company_id": "rameda-eg",
+      "name_en": "Salbutamol",
+      "name_zh": "沙丁胺醇",
+      "brand_name": "Salbutamol (Rameda)",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "respiratory",
+      "indication_en": "Asthma and bronchospasm",
+      "indication_zh": "哮喘与支气管痉挛",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "mea",
+      "confidence": 0.6,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Rameda Pharma overview",
+          "url": "https://ramedapharma.com/overview/"
+        }
+      ]
+    },
+    {
+      "id": "hikma-pharmaceuticals-glucagon",
+      "company_id": "hikma-pharmaceuticals",
+      "name_en": "Glucagon (recombinant)",
+      "name_zh": "胰高血糖素",
+      "brand_name": "Glucagon Emergency Kit",
+      "modality_id": "recombinant-protein",
+      "therapeutic_area_id": "cardiometabolic",
+      "indication_en": "Severe hypoglycemia rescue",
+      "indication_zh": "重度低血糖急救",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "mea",
+      "confidence": 0.78,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Hikma Pharmaceuticals",
+          "url": "https://www.hikma.com/"
+        }
+      ]
+    },
+    {
+      "id": "hikma-pharmaceuticals-naloxone",
+      "company_id": "hikma-pharmaceuticals",
+      "name_en": "Naloxone hydrochloride",
+      "name_zh": "纳洛酮",
+      "brand_name": "Kloxxado",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "neuroscience",
+      "indication_en": "Opioid overdose reversal",
+      "indication_zh": "阿片类药物过量逆转",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "mea",
+      "confidence": 0.8,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Hikma Kloxxado",
+          "url": "https://www.hikma.com/"
+        }
+      ]
+    },
+    {
+      "id": "hikma-pharmaceuticals-sevoflurane",
+      "company_id": "hikma-pharmaceuticals",
+      "name_en": "Sevoflurane",
+      "name_zh": "七氟烷",
+      "brand_name": "Sevoflurane",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "neuroscience",
+      "indication_en": "General anesthesia",
+      "indication_zh": "全身麻醉",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "mea",
+      "confidence": 0.72,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Hikma Injectables",
+          "url": "https://www.hikma.com/"
+        }
+      ]
+    },
+    {
+      "id": "hikma-pharmaceuticals-buprenorphine",
+      "company_id": "hikma-pharmaceuticals",
+      "name_en": "Buprenorphine/naloxone",
+      "name_zh": "丁丙诺啡/纳洛酮",
+      "brand_name": "Buprenorphine and Naloxone Sublingual Film",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "neuroscience",
+      "indication_en": "Opioid use disorder",
+      "indication_zh": "阿片类药物使用障碍",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "mea",
+      "confidence": 0.7,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Hikma Pharmaceuticals",
+          "url": "https://www.hikma.com/"
+        }
+      ]
+    },
+    {
+      "id": "jamjoom-pharma-sa-elica",
+      "company_id": "jamjoom-pharma-sa",
+      "name_en": "Mometasone furoate",
+      "name_zh": "糠酸莫米松",
+      "brand_name": "Elica",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "dermatology",
+      "indication_en": "Eczema, psoriasis, dermatitis",
+      "indication_zh": "湿疹、银屑病、皮炎",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "mea",
+      "confidence": 0.88,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Elica Cream - Jamjoom Pharma",
+          "url": "https://www.jamjoompharma.com/product/elica-cream/"
+        }
+      ]
+    },
+    {
+      "id": "jamjoom-pharma-sa-elica-m",
+      "company_id": "jamjoom-pharma-sa",
+      "name_en": "Mometasone furoate + Miconazole nitrate",
+      "name_zh": "糠酸莫米松+硝酸咪康唑",
+      "brand_name": "Elica-M",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "dermatology",
+      "indication_en": "Infected inflammatory dermatoses",
+      "indication_zh": "伴感染的炎性皮肤病",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "mea",
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Elica-M Cream - Jamjoom Pharma",
+          "url": "https://www.jamjoompharma.com/product/elica-m-cream/"
+        }
+      ]
+    },
+    {
+      "id": "jamjoom-pharma-sa-hyfresh",
+      "company_id": "jamjoom-pharma-sa",
+      "name_en": "Carboxymethylcellulose / lubricant eye drops",
+      "name_zh": "羧甲基纤维素人工泪液",
+      "brand_name": "Hyfresh",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "ophthalmology",
+      "indication_en": "Dry eye disease",
+      "indication_zh": "干眼症",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "mea",
+      "confidence": 0.78,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Ophthalmic Solutions - Jamjoom Pharma",
+          "url": "https://www.jamjoompharma.com/product-range/ophthalmic-solutions/"
+        }
+      ]
+    },
+    {
+      "id": "jamjoom-pharma-sa-secukinumab-biosim",
+      "company_id": "jamjoom-pharma-sa",
+      "name_en": "Secukinumab (BAT2306)",
+      "name_zh": "司库奇尤单抗（生物类似药）",
+      "brand_name": "BAT2306 (Cosentyx biosimilar)",
+      "modality_id": "biosimilar",
+      "therapeutic_area_id": "immunology",
+      "indication_en": "Psoriasis and inflammatory arthritis",
+      "indication_zh": "银屑病及炎性关节炎",
+      "approval_status": "filed",
+      "drug_class": "biosimilar",
+      "is_blockbuster": false,
+      "region": "mea",
+      "confidence": 0.75,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Bio-Thera deal with Jamjoom for Cosentyx biosimilar in MENA",
+          "url": "https://www.biosimilardevelopment.com/doc/bio-thera-strikes-strategic-deal-with-jamjoom-pharma-for-securing-cosentyx-biosimilar-in-mena-0001"
+        }
+      ]
+    },
+    {
       "id": "austedo",
       "name_zh": "AUSTEDO（氘代丁苯那嗪）",
       "name_en": "AUSTEDO",
