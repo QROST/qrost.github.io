@@ -45,13 +45,26 @@ scene.fog = new THREE.FogExp2(0x05060e, 0.0019);
 const camera = new THREE.PerspectiveCamera(56, innerWidth / innerHeight, 0.1, 4000);
 camera.position.set(0, 44, 150);
 
-const renderer = new THREE.WebGLRenderer({ antialias: !IS_MOBILE, powerPreference: 'high-performance' });
+const renderer = new THREE.WebGLRenderer({ antialias: !IS_MOBILE, powerPreference: 'high-performance', failIfMajorPerformanceCaveat: false });   // 不因弱 GPU 拒绝创建 → 任何设备都能开
 renderer.setSize(innerWidth, innerHeight);
-renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+renderer.setPixelRatio(Math.min(devicePixelRatio, IS_MOBILE ? 1.5 : 2));   // 移动端高清屏降采样：省 GPU 像素填充，肉眼几乎无损
 renderer.toneMapping = THREE.ACESFilmicToneMapping;
 renderer.toneMappingExposure = 1.0;
 renderer.outputColorSpace = THREE.SRGBColorSpace;
 container.appendChild(renderer.domElement);
+
+// WebGL 上下文丢失/恢复（手机切后台、内存压力、GPU 复位常触发）→ 阻止默认即可让浏览器自动恢复，避免永久黑屏
+renderer.domElement.addEventListener('webglcontextlost', (e) => { e.preventDefault(); }, false);
+// 恢复后 Three 自动重传自身 GPU 资源；动态实例/位置缓冲每帧 needsUpdate=true → 下一帧自然重建
+
+// GPU 可绘制的最大点尺寸各异（部分移动 GPU 仅 64）→ 取真实上限，避免超限被驱动异常裁切；日月封顶 150
+const _gl = renderer.getContext();
+const MAX_PT = Math.min(150, ((_gl && _gl.getParameter(_gl.ALIASED_POINT_SIZE_RANGE)) || [1, 64])[1] || 64);
+
+// 片元 highp 探测：现代 GPU 恒 true（Three 自动 prepend highp，CPPN 神经场精度不变）；极老 GPU（无 highp 片元，多为 2015 前 PowerVR/Mali-400）→ false，
+// 届时 Three 自动降 mediump + 下方 bgMat 启用 mediump-safe hash 兜底，避免噪声碎裂/编译失败黑屏。探测失败按支持处理（现代设备绝对多数）→ 不误伤非老 GPU 效果。
+const _hpf = _gl && _gl.getShaderPrecisionFormat && _gl.getShaderPrecisionFormat(_gl.FRAGMENT_SHADER, _gl.HIGH_FLOAT);
+const FRAG_HIGHP = !_hpf || _hpf.precision > 0;
 
 const root = new THREE.Group();
 scene.add(root);
@@ -62,11 +75,20 @@ const bgMat = new THREE.ShaderMaterial({
   side: THREE.BackSide, depthWrite: false, depthTest: false, fog: false,
   uniforms: { uTime: { value: 0 }, uWarm: { value: 0.5 }, uPulse: { value: 0 }, uW: { value: new Float32Array(138) } },
   vertexShader: `varying vec3 vDir; void main(){ vDir = normalize(position); gl_Position = projectionMatrix*modelViewMatrix*vec4(position,1.0); }`,
-  fragmentShader: `
-    precision highp float;
+  // 精度交由 Three 按 GPU 自动 prepend（现代 highp / 老 GPU mediump）；仅老 GPU 注入 LOWP_HASH 切到 mediump-safe hash。现代路径无 define → 逐字不变。
+  fragmentShader: (FRAG_HIGHP ? '' : '#define LOWP_HASH\n') + `
     varying vec3 vDir; uniform float uTime; uniform float uWarm; uniform float uPulse;
     uniform float uW[138];                                          // CPPN 权重（数据播种）：5→8→8→2 MLP
-    float hash(vec3 p){ p = fract(p*0.3183099 + 0.1); p *= 17.0; return fract(p.x*p.y*p.z*(p.x+p.y+p.z)); }
+    #if __VERSION__ < 300
+      float tanh(float x){ x = clamp(x, -5.0, 5.0); float e = exp(2.0*x); return (e - 1.0) / (e + 1.0); }   // ES1.00（WebGL1 老 GPU）无 tanh 内建 → polyfill；clamp 防 mediump exp 溢出（|x|>5 时 tanh≈±1，视觉无差）。WebGL2 走内建 tanh，此块被预处理跳过 → 现代逐字不变。
+    #endif
+    float hash(vec3 p){
+    #ifdef LOWP_HASH
+      p = fract(p * 0.1031); p += dot(p, p.yzx + 33.33); return fract((p.x + p.y) * p.z);   // mediump-safe：量级压进低值，避免 fract 丢精度致噪声碎裂（仅老 GPU）
+    #else
+      p = fract(p*0.3183099 + 0.1); p *= 17.0; return fract(p.x*p.y*p.z*(p.x+p.y+p.z));      // 原高精度 hash（现代 GPU 路径，逐字不变）
+    #endif
+    }
     float noise(vec3 x){ vec3 i=floor(x), f=fract(x); f=f*f*(3.0-2.0*f);
       return mix(mix(mix(hash(i+vec3(0.,0.,0.)),hash(i+vec3(1.,0.,0.)),f.x), mix(hash(i+vec3(0.,1.,0.)),hash(i+vec3(1.,1.,0.)),f.x),f.y),
                  mix(mix(hash(i+vec3(0.,0.,1.)),hash(i+vec3(1.,0.,1.)),f.x), mix(hash(i+vec3(0.,1.,1.)),hash(i+vec3(1.,1.,1.)),f.x),f.y), f.z); }
@@ -104,12 +126,12 @@ const bgMat = new THREE.ShaderMaterial({
 });
 { const bg = new THREE.Mesh(new THREE.SphereGeometry(1500, 48, 32), bgMat); bg.renderOrder = -1; bg.frustumCulled = false; scene.add(bg); }
 
-const U = { uTime: { value: 0 }, uPixelRatio: { value: renderer.getPixelRatio() }, uPulse: { value: 0 } };
+const U = { uTime: { value: 0 }, uPixelRatio: { value: renderer.getPixelRatio() }, uPulse: { value: 0 }, uMaxPt: { value: MAX_PT } };
 
 const pointMaterial = new THREE.ShaderMaterial({
   uniforms: U, transparent: true, depthWrite: false, depthTest: true, blending: THREE.AdditiveBlending,
   vertexShader: `
-    uniform float uTime; uniform float uPixelRatio; uniform float uPulse;
+    uniform float uTime; uniform float uPixelRatio; uniform float uPulse; uniform float uMaxPt;
     attribute vec3 aColor; attribute float aSize; attribute float aTwinkle; attribute float aHaze; attribute float aOrbPhase; attribute float aVis; attribute float aGlow;
     varying vec3 vColor; varying float vHaze; varying float vDist;
     void main(){
@@ -121,7 +143,7 @@ const pointMaterial = new THREE.ShaderMaterial({
       vColor = aColor * tw;
       float sz = 0.16 + aSize * 3.0;                                     // aSize 已是归一化幂曲线 → 群星(微)到日月(巨)
       float breath = 1.0 + 0.4 * sin(uTime*0.7 + aOrbPhase*6.2831);      // 呼吸般缩放（每点错相位）
-      gl_PointSize = min(sz * breath * (1.0 + uPulse*0.35) * uPixelRatio * (380.0 / -mv.z), 150.0);
+      gl_PointSize = min(sz * breath * (1.0 + uPulse*0.35) * uPixelRatio * (380.0 / -mv.z), uMaxPt);
       gl_Position = projectionMatrix * mv;
     }`,
   fragmentShader: `
@@ -182,11 +204,13 @@ const solidLineMat = new THREE.ShaderMaterial({
 
 // GPU instancing 可用性（几乎所有 WebGL 设备都支持；否则回退到 CPU 合并路径，保证任何设备可开）
 const USE_INST = !!(renderer.capabilities.isWebGL2 || (renderer.extensions && renderer.extensions.has && renderer.extensions.has('ANGLE_instanced_arrays')));
-// 几何体实例化材质：每实例一个 4×4 矩阵 iMat + 颜色 iColor，逐顶点变换交给 GPU；外观与 solidLineMat 完全一致
+// 几何体实例化材质：每实例 pos(3)+quat(4)+scale(3)+color(3)，纯四元数旋转 → 最普适、跨 GPU 稳（无 mat4 属性、少占顶点槽）
 const instLineMat = new THREE.ShaderMaterial({
   transparent: true, depthWrite: false, blending: THREE.AdditiveBlending,
-  vertexShader: `attribute mat4 iMat; attribute vec3 iColor; varying vec3 vC; varying float vDist;
-    void main(){ vC = iColor; vec4 mv = modelViewMatrix*(iMat*vec4(position,1.0)); vDist = -mv.z; gl_Position = projectionMatrix*mv; }`,
+  vertexShader: `attribute vec3 iPos; attribute vec4 iQuat; attribute vec3 iScl; attribute vec3 iColor;
+    varying vec3 vC; varying float vDist;
+    vec3 qrot(vec4 q, vec3 v){ return v + 2.0*cross(q.xyz, cross(q.xyz, v) + q.w*v); }
+    void main(){ vC = iColor; vec3 wp = iPos + qrot(iQuat, position*iScl); vec4 mv = modelViewMatrix*vec4(wp,1.0); vDist = -mv.z; gl_Position = projectionMatrix*mv; }`,
   fragmentShader: `varying vec3 vC; varying float vDist;
     void main(){ float f = clamp((110.0 - vDist)/80.0, 0.22, 1.0); gl_FragColor = vec4(vC*0.85, 0.7*f); }`
 });
@@ -1121,8 +1145,12 @@ function animate() {
           _dummy.scale.set(sc, sg.ellipsoid ? sc * 0.74 : sc, sc);
           _dummy.updateMatrix();
           const e = _dummy.matrix.elements;
-          if (inst) { sg.iMat.set(e, j * 16); }                  // GPU：写实例矩阵（16 floats），逐顶点变换交给 GPU
-          else { const base = j * lv * 3;                         // CPU 回退：逐顶点变换写入大缓冲
+          if (inst) {                                            // GPU：写每实例 pos/quat/scale，逐顶点变换交给 GPU
+            const p3 = j * 3, q4 = j * 4;
+            sg.iPos[p3] = posArr[o]; sg.iPos[p3 + 1] = posArr[o + 1]; sg.iPos[p3 + 2] = posArr[o + 2];
+            sg.iQuat[q4] = _q.x; sg.iQuat[q4 + 1] = _q.y; sg.iQuat[q4 + 2] = _q.z; sg.iQuat[q4 + 3] = _q.w;
+            sg.iScl[p3] = sc; sg.iScl[p3 + 1] = sg.ellipsoid ? sc * 0.74 : sc; sg.iScl[p3 + 2] = sc;
+          } else { const base = j * lv * 3;                       // CPU 回退：逐顶点变换写入大缓冲
             for (let v = 0; v < lv; v++) {
               const li = v * 3, lx = local[li], ly = local[li + 1], lz = local[li + 2], k = base + li;
               pos[k] = e[0] * lx + e[4] * ly + e[8] * lz + e[12];
@@ -1130,9 +1158,9 @@ function animate() {
               pos[k + 2] = e[2] * lx + e[6] * ly + e[10] * lz + e[14];
             }
           }
-          entMat.set(e, gi * 16);                                // 存实体矩阵，供每个顶点的轨迹用
+          entMat.set(e, gi * 16);                                // 存实体矩阵，供每个顶点的轨迹用（拖尾不变）
         }
-        if (inst) sg.iMatAttr.needsUpdate = true; else sg.posAttr.needsUpdate = true;
+        if (inst) { sg.iPosAttr.needsUpdate = true; sg.iQuatAttr.needsUpdate = true; sg.iSclAttr.needsUpdate = true; } else sg.posAttr.needsUpdate = true;
       }
     }
 
@@ -1212,16 +1240,19 @@ function buildSolids() {
     }
     const common = { lv, cnt, gidx, speed, vdir, cmplx, ellipsoid: shape.ellipsoid, velAxis: shape.velAxis };
     if (USE_INST && !shape.is4d) {
-      // GPU 实例化：base 几何体一份 + 每实例 iMat(mat4)+iColor → 逐顶点变换交给 GPU（省 CPU）
+      // GPU 实例化：base 几何体一份 + 每实例 pos/quat/scale/color → 逐顶点变换交给 GPU（省 CPU，跨设备稳）
       const ig = new THREE.InstancedBufferGeometry();
       ig.setAttribute('position', new THREE.Float32BufferAttribute(local, 3));
-      const iMat = new Float32Array(cnt * 16), iCol = new Float32Array(cnt * 3);
-      for (let j = 0; j < cnt; j++) { const gi = gidx[j]; iCol[j * 3] = D.col[gi * 3]; iCol[j * 3 + 1] = D.col[gi * 3 + 1]; iCol[j * 3 + 2] = D.col[gi * 3 + 2]; }
-      const iMatAttr = new THREE.InstancedBufferAttribute(iMat, 16).setUsage(THREE.DynamicDrawUsage);
-      ig.setAttribute('iMat', iMatAttr); ig.setAttribute('iColor', new THREE.InstancedBufferAttribute(iCol, 3));
+      const iPos = new Float32Array(cnt * 3), iQuat = new Float32Array(cnt * 4), iScl = new Float32Array(cnt * 3), iCol = new Float32Array(cnt * 3);
+      for (let j = 0; j < cnt; j++) { const gi = gidx[j]; iCol[j * 3] = D.col[gi * 3]; iCol[j * 3 + 1] = D.col[gi * 3 + 1]; iCol[j * 3 + 2] = D.col[gi * 3 + 2]; iQuat[j * 4 + 3] = 1; }   // 颜色静态；quat 初值 identity
+      const iPosAttr = new THREE.InstancedBufferAttribute(iPos, 3).setUsage(THREE.DynamicDrawUsage);
+      const iQuatAttr = new THREE.InstancedBufferAttribute(iQuat, 4).setUsage(THREE.DynamicDrawUsage);
+      const iSclAttr = new THREE.InstancedBufferAttribute(iScl, 3).setUsage(THREE.DynamicDrawUsage);
+      ig.setAttribute('iPos', iPosAttr); ig.setAttribute('iQuat', iQuatAttr); ig.setAttribute('iScl', iSclAttr);
+      ig.setAttribute('iColor', new THREE.InstancedBufferAttribute(iCol, 3));
       ig.instanceCount = cnt;
       const mesh = new THREE.LineSegments(ig, instLineMat); mesh.frustumCulled = false; root.add(mesh);
-      solidGroups.push(Object.assign({ inst: true, iMat, iMatAttr, is4d: false }, common));
+      solidGroups.push(Object.assign({ inst: true, iPos, iQuat, iScl, iPosAttr, iQuatAttr, iSclAttr, is4d: false }, common));
     } else {
       // CPU 合并路径（4D 形 / 不支持 instancing 时的回退）：逐帧把每顶点变换写进大缓冲
       const pos = new Float32Array(cnt * lv * 3), colA = new Float32Array(cnt * lv * 3);
