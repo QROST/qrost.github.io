@@ -466,6 +466,179 @@
       ]
     },
     {
+      "id": "dar-al-dawa-jo-amoxicillin-clavulanate",
+      "company_id": "dar-al-dawa-jo",
+      "name_en": "Amoxicillin/Clavulanic acid",
+      "name_zh": "阿莫西林/克拉维酸",
+      "brand_name": "Megamox",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "infectious-disease",
+      "indication_en": "Bacterial infections",
+      "indication_zh": "细菌感染",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "mea",
+      "confidence": 0.7,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Dar Aldawa Group",
+          "url": "https://www.dadgroup.com/"
+        }
+      ]
+    },
+    {
+      "id": "dar-al-dawa-jo-diclofenac",
+      "company_id": "dar-al-dawa-jo",
+      "name_en": "Diclofenac sodium",
+      "name_zh": "双氯芬酸钠",
+      "brand_name": "Rumafen",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "immunology",
+      "indication_en": "Pain and inflammation",
+      "indication_zh": "疼痛与炎症",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "mea",
+      "confidence": 0.65,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Dar Aldawa Group",
+          "url": "https://www.dadgroup.com/about-us/"
+        }
+      ]
+    },
+    {
+      "id": "dar-al-dawa-jo-omeprazole",
+      "company_id": "dar-al-dawa-jo",
+      "name_en": "Omeprazole",
+      "name_zh": "奥美拉唑",
+      "brand_name": "Omiz",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "gastroenterology",
+      "indication_en": "Acid reflux, peptic ulcer",
+      "indication_zh": "胃酸反流、消化性溃疡",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "mea",
+      "confidence": 0.6,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Dar Aldawa Group",
+          "url": "https://www.dadgroup.com/"
+        }
+      ]
+    },
+    {
+      "id": "dar-al-dawa-jo-atorvastatin",
+      "company_id": "dar-al-dawa-jo",
+      "name_en": "Atorvastatin",
+      "name_zh": "阿托伐他汀",
+      "brand_name": "Atorvastatin DAD",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "cardiometabolic",
+      "indication_en": "Hypercholesterolemia",
+      "indication_zh": "高胆固醇血症",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "mea",
+      "confidence": 0.6,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "PharmaBoardroom — Dar Al Dawa",
+          "url": "https://pharmaboardroom.com/directory/dar-al-dawa-development-investment-dad/"
+        }
+      ]
+    },
+    {
+      "id": "evogene-bmc128",
+      "company_id": "evogene",
+      "name_en": "BMC128",
+      "name_zh": "BMC128",
+      "brand_name": "BMC128",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "oncology",
+      "indication_en": "Solid tumors (NSCLC, melanoma, RCC) with checkpoint inhibitor",
+      "indication_zh": "实体瘤（非小细胞肺癌、黑色素瘤、肾细胞癌）联合免疫检查点抑制剂",
+      "approval_status": "ph1",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "mea",
+      "confidence": 0.8,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Biomica Completes Phase I Enrollment for Microbiome Immuno-Oncology Drug",
+          "url": "https://evogene.com/press_release/biomica-successfully-completes-phase-i-trial-enrollment-for-microbiome-based-immuno-oncology-drug/"
+        },
+        {
+          "title": "Biomica Positive Pre-Clinical Results for BMC128 in Melanoma",
+          "url": "https://www.prnewswire.com/news-releases/biomica-announces-positive-pre-clinical-results-demonstrating-efficacy-of-bmc128-in-melanoma-301267404.html"
+        }
+      ]
+    },
+    {
+      "id": "pluri-plx-pad",
+      "company_id": "pluri",
+      "name_en": "PLX-PAD",
+      "name_zh": "PLX-PAD 胎盘来源贴壁基质细胞",
+      "brand_name": "PLX-PAD",
+      "modality_id": "msc-therapy",
+      "therapeutic_area_id": "rare-disease",
+      "indication_en": "Muscle regeneration following hip fracture surgery",
+      "indication_zh": "髋部骨折术后肌肉再生",
+      "approval_status": "ph3",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "mea",
+      "confidence": 0.8,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Pluristem Phase III PLX-PAD hip fracture",
+          "url": "https://pluri-biotech.com/releases/pluristem-advances-towards-multinational-phase-iii-trial-of-plx-pad-to-improve-recovery-following-surgery-for-hip-fracture/"
+        },
+        {
+          "title": "Pluri Inc. - Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Pluri_Inc."
+        }
+      ]
+    },
+    {
+      "id": "pluri-plx-r18",
+      "company_id": "pluri",
+      "name_en": "PLX-R18",
+      "name_zh": "PLX-R18 胎盘来源细胞疗法",
+      "brand_name": "PLX-R18",
+      "modality_id": "msc-therapy",
+      "therapeutic_area_id": "hematology",
+      "indication_en": "Acute radiation syndrome; incomplete hematopoietic recovery after HCT",
+      "indication_zh": "急性放射综合征；造血干细胞移植后造血恢复不良",
+      "approval_status": "ph2",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "mea",
+      "confidence": 0.8,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "PLX-R18 case study - PMC",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6434483/"
+        },
+        {
+          "title": "Pluri clinical pipeline",
+          "url": "https://pluristem.com/clinical-pipeline/"
+        }
+      ]
+    },
+    {
       "id": "austedo",
       "name_zh": "AUSTEDO（氘代丁苯那嗪）",
       "name_en": "AUSTEDO",
