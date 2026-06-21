@@ -1115,6 +1115,8 @@ _dom.addEventListener('wheel', (e) => {                       // 桌面滚轮 = 
 }, { passive: false });
 // 陀螺仪：以「增量」驱动 → 与手指拖动叠加共存、互不覆盖；避开绝对罗盘坐标导致的方向混乱
 const GYRO_DZ = 0.15;                                         // 软死区阈值（度）：过滤传感器微抖
+const GYRO_GAIN = 0.5;                                        // 陀螺→视角增益（<1 = 松散「非精确指引」，没那么敏感；可调）
+const GYRO_SMOOTH = 8;                                        // 速度低通强度（越小越平滑/越滞、越大越跟手；TC≈1/GYRO_SMOOTH s）
 const gyroGate = (d) => { const a = Math.abs(d); return a < 1e-9 ? 0 : d * (a * a / (a * a + GYRO_DZ * GYRO_DZ)); };   // (a²)/(a²+t²)：噪声平方级衰减、大幅运动几乎不损
 let gyroPrevA = null, gyroPrevB = null, gyroDYaw = 0, gyroDPitch = 0, gyroSmYaw = 0, gyroSmPitch = 0;
 addEventListener('deviceorientation', (e) => {
@@ -1421,12 +1423,12 @@ function animate() {
     if (prevPos) prevPos.set(posArr);   // 存本帧位置 → 下一帧算速度方向
   }
 
-  if (gyroOn) {                                          // 陀螺 = 松散「指向性」导航：重阻尼低通 + 待发增量泄漏 → 平滑跟随慢倾、滤掉手抖/传感器微抖，停手即定（不再延迟蠕动/震荡）
-    const gsm = Math.min(1, dt * 4);                     // 跟随率（阻尼大幅加重：低通 TC ~71ms → ~250ms，慢倾仍跟、快抖被滤）
-    const leak = Math.exp(-dt * 4);                      // 待发增量每帧泄漏 → 残量/抖动被遗忘（非精确：稳态增益 ~0.5，松散指引而非 1:1 锁定，消除传感器精度 gap 引起的蠕动）
-    gyroSmYaw = gyroDYaw * gsm; gyroDYaw = (gyroDYaw - gyroSmYaw) * leak;
-    gyroSmPitch = gyroDPitch * gsm; gyroDPitch = (gyroDPitch - gyroSmPitch) * leak;
-    yaw += gyroSmYaw; pitch = clamp(pitch + gyroSmPitch, -1.45, 1.45);
+  if (gyroOn) {                                          // 陀螺 = 松散「指向性」导航（非精确）：对「每帧角速度」低通(滤手抖) × 半增益(松散) + 每帧全消费(不积分 → 无蓄量蠕动；停手时速度自然衰减 → 平滑滑停、绝不震荡)
+    const a = Math.min(1, dt * GYRO_SMOOTH);             // 速度低通：gyroDYaw/gyroDPitch = 本帧累计(已门控)增量 = 目标角速度
+    gyroSmYaw += (gyroDYaw - gyroSmYaw) * a;             // 慢倾平滑跟随、快抖被滤（一阶低通不过冲 → 不会有延迟震动）
+    gyroSmPitch += (gyroDPitch - gyroSmPitch) * a;
+    gyroDYaw = 0; gyroDPitch = 0;                        // 增量已消费 → 不再积分累蓄（消除传感器精度 gap 引起的蠕动）
+    yaw += gyroSmYaw * GYRO_GAIN; pitch = clamp(pitch + gyroSmPitch * GYRO_GAIN, -1.45, 1.45);   // 半增益 → 松散非精确指引，没那么敏感
   }
   else if (!dragging && focusIdx < 0) yaw += 0.00016;    // 极缓自动巡游（仅自由模式）
   applyLook(dt);   // 焦点切换/退出由 applyLook 内的临界阻尼跟随处理（连贯不跳）
