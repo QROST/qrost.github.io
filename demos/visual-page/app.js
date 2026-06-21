@@ -20,10 +20,12 @@ const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
 const lerp = (a, b, t) => a + (b - a) * t;
 const IND = '../china-industrial-software/assets/data/';
 const PHARM = '../pharm-companies/assets/data/';   // 第三个数据源：全球医药公司图谱
+const CATS_DATA = '../shelter-cats/assets/data/';  // 第四个数据源：全球收容所猫领养平台
 const TRAIL = IS_MOBILE ? 22 : 44;   // 轨迹历史采样数（每点实际尾长由数据决定）
 const STRIDE = 10;                    // 每 STRIDE 帧采样一次 → 加大步幅=路径覆盖更长时间（双倍）、且更省
+const MOTION = 0.5;                   // 全局运动降速系数（用户「整体降速 2×」）：缩放吸引子步长 + 系统自转 → 混沌轨迹/朝向不变，仅放慢演化速率；不动呼吸/明灭（那是氛围非位移）
 const CENTER = [0, 42, 0];           // 所有吸引子共用中心 → 重叠共舞（呼吸吸气态）
-const FEAT_DIM = 27;                 // SOM 特征维度：字段 0..19 + 类型 one-hot 20..26（7 类：含医药）
+const FEAT_DIM = 28;                 // SOM 特征维度：字段 0..19 + 类型 one-hot 20..27（8 类：含医药 + 收容所猫）
 const SOM_L = [9, 7, 5];             // Kohonen 晶格维度 → 315 神经元
 const SOM_R = [55, 120];             // 神经晶格→世界：环绕视角的球壳 内/外半径（非平面盒）
 const SOM_EPOCHS = IS_MOBILE ? 14 : 26;
@@ -562,6 +564,78 @@ async function buildPharma() {
   return { companies: companies.length, sites: sites.length, products: products.length, modalities: modalities.length, milestones: milestones.length, pairs: pairs.length };
 }
 
+// ---------- 第四数据源：全球收容所猫（shelter-cats）→ 每只猫一颗按真实毛色着色的星，按收容所地理播种成簇，暖光束连回各自收容所（星座式归属）----------
+async function buildShelterCats() {
+  const j = (p) => fetch(CATS_DATA + p).then((r) => (r.ok ? r.json() : null)).catch(() => null);
+  const manifest = await j('manifest.json');
+  if (!manifest) return { shelters: 0, cats: 0 };
+  const [shData, enData, ...shardRes] = await Promise.all([
+    j('shelters.json'), j('enums.json'),
+    ...((manifest.shards || []).map((s) => j(s.file)))
+  ]);
+  const shelters = (shData && (shData.shelters || shData)) || [];
+  const enums = enData || {};
+  const cats = shardRes.flatMap((d) => (d && (d.cats || d)) || []);
+  if (!shelters.length) return { shelters: 0, cats: 0 };
+
+  const enLab = (grp, k, zh) => { const e = enums[grp] && enums[grp][k]; return (e && (zh ? e.zh : e.en)) || k || ''; };
+  const colHexOf = (k) => (enums.colors && enums.colors[k] && enums.colors[k].hex) || '';
+  const _cc = new THREE.Color(), _hsl = {};
+  const coatHSL = (hex) => {                                   // 毛色 hex → HSL；抬亮去黑（加性混合下纯黑/极暗不可见），保留色相身份
+    if (!hex) return [40, 0.4, 0.55];
+    _cc.set(hex); _cc.getHSL(_hsl);
+    return [_hsl.h * 360, clamp(_hsl.s * 0.7 + 0.25, 0.2, 0.85), clamp(_hsl.l * 0.5 + 0.42, 0.42, 0.72)];
+  };
+  const shById = {}; shelters.forEach((s) => { shById[s.id] = s; });
+  const geoSeed = (s) => [(s.lng - 100) * 0.05, -(s.lat - 30) * 0.05, (s.lat) * 0.0006];   // 经纬度播种 Thomas（与医药站点同坐标系 → 同被全球混沌卷入）
+  const catCount = {}; cats.forEach((c) => { catCount[c.shelter_id] = (catCount[c.shelter_id] || 0) + 1; });
+  const rnd = () => Math.random() - 0.5;
+
+  const shIdx = {};
+  // 收容所（5）→ 暖琥珀星状八面体（一颗"家"的引导星）；尺寸随在册猫数（封顶 ≤4.5 → 不拉高 solidMax 致其他立体被归一化缩小）
+  shelters.forEach((s) => {
+    const n = catCount[s.id] || 0, gs = geoSeed(s);
+    const sz = 3.2 + clamp(n / 60, 0, 1) * 1.3;
+    const loc = `${s.city || ''}${s.state ? ' ' + s.state : ''}`;
+    const i = addStar(0, CENTER, 7, 0.0018, 0.16, 0.2, gs, 38, 0.6, 0.6, sz, 0.35, 0.18,
+      { kind: 'SHELTER', nameZh: s.name, nameEn: s.name,
+        kwZh: `${loc} · ${s.country || ''} · ${n} 只猫`.replace(/^ · | · $/g, '').trim(),
+        kwEn: `${loc} · ${s.country || ''} · ${n} cats`.replace(/^ · | · $/g, '').trim() },
+      null, 8);
+    shIdx[s.id] = i;
+    const fv = makeFeat(7); fv[7] = clamp((s.lat + 60) / 120, 0, 1); fv[8] = clamp((s.lng + 180) / 360, 0, 1); fv[5] = clamp(n / 80, 0, 1); D.feat[i] = fv; D.shape[i] = 9;
+  });
+
+  // 猫（244）→ 按真实毛色着色的发光点；播种在所属收容所附近 → 5 个地理猫簇；可领养更亮更颤（在向你呼唤），长毛更朦胧，越老存在感越大
+  const AGEN = { kitten: 0, young: 0.33, adult: 0.66, senior: 1 }, COATN = { short: 0, medium: 0.5, long: 1 }, SIZEN = { small: 0, medium: 0.5, large: 1 };
+  cats.forEach((c) => {
+    const sh = shById[c.shelter_id]; if (!sh) return;
+    const gs = geoSeed(sh);
+    const seed = [gs[0] + rnd() * 0.9, gs[1] + rnd() * 0.9, gs[2] + rnd() * 0.4];   // 收容所附近抖动 → 同所猫成簇
+    const primary = (c.colors && c.colors[0]) || '';
+    const [h, s, l] = coatHSL(colHexOf(primary));
+    const adoptable = c.status === 'adoptable';
+    const ageN = AGEN[c.age_bucket] != null ? AGEN[c.age_bucket] : 0.5;
+    const sz = 1.6 + ageN * 1.0 + (adoptable ? 0.4 : 0);
+    const tw = adoptable ? 0.7 : 0.3;                          // 可领养 → 更闪烁（呼唤领养）
+    const hz = 0.15 + (COATN[c.coat_length] || 0) * 0.4;       // 长毛 → 更朦胧绒晕
+    const loc = `${sh.city || ''}${sh.state ? ' ' + sh.state : ''}`;
+    const i = addStar(0, CENTER, 6.5, 0.0018, 0.16, 0.42, seed, h, s, l, sz, tw, hz,
+      { kind: 'CAT', nameZh: c.name || '猫', nameEn: c.name || 'Cat',
+        kwZh: [enLab('colors', primary, 1), enLab('patterns', c.pattern, 1), enLab('age_bucket', c.age_bucket, 1), loc, enLab('status', c.status, 1)].filter(Boolean).join(' · '),
+        kwEn: [enLab('colors', primary, 0), enLab('patterns', c.pattern, 0), enLab('age_bucket', c.age_bucket, 0), loc, enLab('status', c.status, 0)].filter(Boolean).join(' · ') },
+      null, 5);
+    const fv = makeFeat(7);
+    fv[0] = ageN; fv[1] = c.sex === 'male' ? 1 : c.sex === 'female' ? 0 : 0.5; fv[2] = COATN[c.coat_length] || 0;
+    fv[3] = SIZEN[c.size] != null ? SIZEN[c.size] : 0.5; fv[4] = adoptable ? 1 : 0;
+    fv[7] = clamp((sh.lat + 60) / 120, 0, 1); fv[8] = clamp((sh.lng + 180) / 360, 0, 1); fv[9] = c.spayed_neutered ? 1 : 0;
+    D.feat[i] = fv; D.shape[i] = 0;
+    if (shIdx[c.shelter_id] != null) { BEAM.a.push(shIdx[c.shelter_id]); BEAM.b.push(i); BEAM.col.push(0.85, 0.55, 0.3); BEAM.w.push(0.6); }   // 暖光束：每只猫连回收容所 → 星座式归属
+  });
+
+  return { shelters: shelters.length, cats: cats.length };
+}
+
 // ---------- typed state (filled after build) ----------
 let N = 0;
 let sys, anc, scl, bh, prm, spd, state, posArr, trail, trailSrc, rotM, head = 0;
@@ -678,8 +752,8 @@ function projectND(verts, n4, dim, wd, a) {
     _v3tmp[i * 3] = _cN[0]; _v3tmp[i * 3 + 1] = _cN[1]; _v3tmp[i * 3 + 2] = _cN[2];
   }
 }
-const GROUP_KEY = { CITY: 0, PRODUCT: 1, KERNEL: 2, BREAKTHROUGH: 3, POLICY: 4, VENDOR: 5, PHARMA: 6 };
-const groupVis = [true, true, true, true, true, true, true];
+const GROUP_KEY = { CITY: 0, PRODUCT: 1, KERNEL: 2, BREAKTHROUGH: 3, POLICY: 4, VENDOR: 5, PHARMA: 6, CAT: 7, SHELTER: 7 };
+const groupVis = [true, true, true, true, true, true, true, true];   // [7] = 收容所猫层（猫 + 收容所共用一个开关）
 
 function finalize() {
   N = D.sys.length;
@@ -1081,11 +1155,11 @@ function animate() {
   if (latticeObj) latticeMat.uniforms.uOrg.value = gOrg;   // 呼气时神经晶格显形
 
   // 每系统各绕自己的轴自转（始终开启）
-  spinTime += dt * (0.00024 + pulse * 0.0006);
+  spinTime += dt * (0.00024 + pulse * 0.0006) * MOTION;   // 随全局降速一并放慢
   for (let s = 0; s < SYSN; s++) { const a = SYS_SPIN[s] * spinTime; sysCos[s] = Math.cos(a); sysSin[s] = Math.sin(a); }
 
   if (N) {
-    const hmul = 0.5 + pulse * 1.3;          // 全局速度（已降速）
+    const hmul = (0.5 + pulse * 1.3) * MOTION;   // 全局速度 × MOTION（用户「降速 2×」：基线 0.5→0.25，mic 提速也等比放慢）
     for (let i = 0; i < N; i++) {
       const slow = 1 - szCurve[i] * 0.84;     // 越大(数据越超群)→越慢：日月大行星沉缓、群星颗粒灵动 → 速度差更广
       const h = Math.min(bh[i] * spd[i] * hmul * slow, capOf(sys[i]));
@@ -1286,7 +1360,7 @@ function buildPanel() {
   const panel = document.createElement('div'); panel.id = 'panel';
   const groups = [
     ['panelCities', 0], ['panelProducts', 1], ['panelKernels', 2],
-    ['panelBreakthroughs', 3], ['panelPolicies', 4], ['panelVendors', 5], ['panelPharma', 6],
+    ['panelBreakthroughs', 3], ['panelPolicies', 4], ['panelVendors', 5], ['panelPharma', 6], ['panelCats', 7],
   ];
   const mkRow = (i18nKey, checked, onToggle) => {
     const row = document.createElement('label'); row.className = 'prow';
@@ -1314,9 +1388,10 @@ function buildPanel() {
 
 // ---------- boot ----------
 (async function main() {
-  let info = {}, pharma = {};
+  let info = {}, pharma = {}, scats = {};
   try { info = await buildIndustrial(); } catch (err) { console.warn('[Data Abyss] industrial load failed (need http server):', err); }
   try { pharma = await buildPharma(); } catch (err) { console.warn('[Data Abyss] pharma load failed:', err); }
+  try { scats = await buildShelterCats(); } catch (err) { console.warn('[Data Abyss] shelter-cats load failed:', err); }
   const cities = buildHousing();
   bgMat.uniforms.uWarm.value = climWarm;
   // CPPN 背景：用数据聚合量确定性播种神经权重（这场梦由数据塑形）
@@ -1327,7 +1402,7 @@ function buildPanel() {
   buildSolids();
   buildPanel();
   applyUi({ skipEnable: true });
-  console.log(`[Data Abyss] ${cities} cities · ${info.products || 0} products · ${info.kernels || 0} kernels · ${info.milestones || 0} breakthroughs · ${info.policies || 0} policies · ${info.vendors || 0} vendors · pharma[${pharma.companies || 0} co / ${pharma.sites || 0} sites / ${pharma.products || 0} drugs / ${pharma.modalities || 0} mod / ${pharma.milestones || 0} bk] · ${N} bodies · ${beamIdxA ? beamIdxA.length : 0} beams · SOM ${som ? som.neurons + ' neurons / ' + som.edges + ' edges' : 'skipped'}`);
+  console.log(`[Data Abyss] ${cities} cities · ${info.products || 0} products · ${info.kernels || 0} kernels · ${info.milestones || 0} breakthroughs · ${info.policies || 0} policies · ${info.vendors || 0} vendors · pharma[${pharma.companies || 0} co / ${pharma.sites || 0} sites / ${pharma.products || 0} drugs / ${pharma.modalities || 0} mod / ${pharma.milestones || 0} bk] · cats[${scats.cats || 0} / ${scats.shelters || 0} shelters] · ${N} bodies · ${beamIdxA ? beamIdxA.length : 0} beams · SOM ${som ? som.neurons + ' neurons / ' + som.edges + ' edges' : 'skipped'}`);
   const ld = document.getElementById('loading'); ld.classList.add('gone'); setTimeout(() => ld.remove(), 1000);
   animate();
 })();
