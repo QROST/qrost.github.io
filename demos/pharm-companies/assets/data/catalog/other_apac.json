@@ -3997,6 +3997,2899 @@
       ]
     },
     {
+      "id": "chabiotech-cordstem-dd",
+      "company_id": "chabiotech",
+      "name_en": "CordSTEM-DD",
+      "name_zh": "CordSTEM-DD 脐带间充质干细胞疗法",
+      "brand_name": "CordSTEM-DD",
+      "modality_id": "msc-therapy",
+      "therapeutic_area_id": "neuroscience",
+      "indication_en": "Chronic lower back pain (degenerative disc)",
+      "indication_zh": "慢性腰背痛（退行性椎间盘）",
+      "approval_status": "ph2",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "other_apac",
+      "confidence": 0.7,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Chabiotech company profile",
+          "url": "https://finance.yahoo.com/quote/085660.KQ/profile/"
+        }
+      ]
+    },
+    {
+      "id": "chabiotech-cordstem-poi",
+      "company_id": "chabiotech",
+      "name_en": "CordSTEM-POI",
+      "name_zh": "CordSTEM-POI 干细胞疗法",
+      "brand_name": "CordSTEM-POI",
+      "modality_id": "msc-therapy",
+      "therapeutic_area_id": "womens-health",
+      "indication_en": "Premature ovarian insufficiency",
+      "indication_zh": "卵巢早衰",
+      "approval_status": "ph2",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "other_apac",
+      "confidence": 0.68,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Chabiotech company profile",
+          "url": "https://finance.yahoo.com/quote/085660.KQ/profile/"
+        }
+      ]
+    },
+    {
+      "id": "chabiotech-cbt101",
+      "company_id": "chabiotech",
+      "name_en": "CBT101",
+      "name_zh": "CBT101 自然杀伤细胞疗法",
+      "brand_name": "CBT101",
+      "modality_id": "msc-therapy",
+      "therapeutic_area_id": "oncology",
+      "indication_en": "Recurrent glioblastoma and solid tumors",
+      "indication_zh": "复发性胶质母细胞瘤及实体瘤",
+      "approval_status": "ph1",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "other_apac",
+      "confidence": 0.65,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Chabiotech company profile",
+          "url": "https://finance.yahoo.com/quote/085660.KQ/profile/"
+        }
+      ]
+    },
+    {
+      "id": "chabiotech-cbt-npc",
+      "company_id": "chabiotech",
+      "name_en": "CBT-NPC",
+      "name_zh": "CBT-NPC 神经前体细胞疗法",
+      "brand_name": "CBT-NPC",
+      "modality_id": "msc-therapy",
+      "therapeutic_area_id": "neuroscience",
+      "indication_en": "Parkinson's disease",
+      "indication_zh": "帕金森病",
+      "approval_status": "ph1",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "other_apac",
+      "confidence": 0.62,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Chabiotech company profile",
+          "url": "https://finance.yahoo.com/quote/085660.KQ/profile/"
+        }
+      ]
+    },
+    {
+      "id": "kilitch-drugs-in-triamcinolone",
+      "company_id": "kilitch-drugs-in",
+      "name_en": "Triamcinolone acetonide injection",
+      "name_zh": "曲安奈德注射液",
+      "brand_name": "Triamcinolone (Kilitch)",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "immunology",
+      "indication_en": "Inflammatory and allergic conditions",
+      "indication_zh": "炎症及过敏性疾病",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "other_apac",
+      "confidence": 0.78,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Kilitch Healthcare",
+          "url": "https://kilitchhealthcare.com/"
+        }
+      ]
+    },
+    {
+      "id": "kilitch-drugs-in-ceftriaxone-inj",
+      "company_id": "kilitch-drugs-in",
+      "name_en": "Ceftriaxone injection",
+      "name_zh": "头孢曲松注射剂",
+      "brand_name": "Ceftriaxone (Kilitch)",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "infectious-disease",
+      "indication_en": "Bacterial infections",
+      "indication_zh": "细菌感染",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "other_apac",
+      "confidence": 0.7,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Kilitch Drugs products",
+          "url": "https://kilitch.com/products/"
+        }
+      ]
+    },
+    {
+      "id": "kilitch-drugs-in-diclofenac-inj",
+      "company_id": "kilitch-drugs-in",
+      "name_en": "Diclofenac sodium injection",
+      "name_zh": "双氯芬酸钠注射液",
+      "brand_name": "Diclofenac (Kilitch)",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "immunology",
+      "indication_en": "Pain and inflammation",
+      "indication_zh": "疼痛与炎症",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "other_apac",
+      "confidence": 0.68,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Kilitch Drugs products",
+          "url": "https://kilitch.com/products/"
+        }
+      ]
+    },
+    {
+      "id": "fdc-limited-in-zifi",
+      "company_id": "fdc-limited-in",
+      "name_en": "Cefixime",
+      "name_zh": "头孢克肟",
+      "brand_name": "Zifi",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "infectious-disease",
+      "indication_en": "Bacterial infections",
+      "indication_zh": "细菌感染",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "other_apac",
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "About FDC India",
+          "url": "https://www.fdcindia.com/about"
+        }
+      ]
+    },
+    {
+      "id": "fdc-limited-in-electral",
+      "company_id": "fdc-limited-in",
+      "name_en": "Oral rehydration salts (ORS)",
+      "name_zh": "口服补液盐",
+      "brand_name": "Electral",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "gastroenterology",
+      "indication_en": "Dehydration / electrolyte replacement",
+      "indication_zh": "脱水/电解质补充",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "other_apac",
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "About FDC India",
+          "url": "https://www.fdcindia.com/about"
+        }
+      ]
+    },
+    {
+      "id": "fdc-limited-in-zocon",
+      "company_id": "fdc-limited-in",
+      "name_en": "Fluconazole",
+      "name_zh": "氟康唑",
+      "brand_name": "Zocon",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "infectious-disease",
+      "indication_en": "Fungal infections",
+      "indication_zh": "真菌感染",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "other_apac",
+      "confidence": 0.8,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "About FDC India",
+          "url": "https://www.fdcindia.com/about"
+        }
+      ]
+    },
+    {
+      "id": "fdc-limited-in-zathrin",
+      "company_id": "fdc-limited-in",
+      "name_en": "Azithromycin",
+      "name_zh": "阿奇霉素",
+      "brand_name": "Zathrin",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "infectious-disease",
+      "indication_en": "Bacterial infections",
+      "indication_zh": "细菌感染",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "other_apac",
+      "confidence": 0.78,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "About FDC India",
+          "url": "https://www.fdcindia.com/about"
+        }
+      ]
+    },
+    {
+      "id": "tcm-biotech-international-tcm-800b",
+      "company_id": "tcm-biotech-international",
+      "name_en": "TCM-800B",
+      "name_zh": "TCM-800B",
+      "brand_name": "TCM-800B",
+      "modality_id": "tcm-formula",
+      "therapeutic_area_id": "infectious-disease",
+      "indication_en": "Chronic hepatitis B (combined with entecavir)",
+      "indication_zh": "慢性乙型肝炎（联合恩替卡韦）",
+      "approval_status": "ph2",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "other_apac",
+      "confidence": 0.72,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "TCM Biotech International about",
+          "url": "https://www.tcmbio.com/en/about.php"
+        }
+      ]
+    },
+    {
+      "id": "tcm-biotech-international-ptx-9908",
+      "company_id": "tcm-biotech-international",
+      "name_en": "PTX-9908",
+      "name_zh": "PTX-9908",
+      "brand_name": "PTX-9908",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "oncology",
+      "indication_en": "Hepatocellular carcinoma (combined with TACE)",
+      "indication_zh": "肝细胞癌（联合 TACE）",
+      "approval_status": "ph2",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "other_apac",
+      "confidence": 0.68,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "TCM Biotech International about",
+          "url": "https://www.tcmbio.com/en/about.php"
+        }
+      ]
+    },
+    {
+      "id": "tcm-biotech-international-ptd-9908",
+      "company_id": "tcm-biotech-international",
+      "name_en": "PTD-9908",
+      "name_zh": "PTD-9908",
+      "brand_name": "PTD-9908",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "oncology",
+      "indication_en": "Liver cancer (combined with anti-PD-1 therapy)",
+      "indication_zh": "肝癌（联合抗 PD-1 治疗）",
+      "approval_status": "ph1",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "other_apac",
+      "confidence": 0.62,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "TCM Biotech International about",
+          "url": "https://www.tcmbio.com/en/about.php"
+        }
+      ]
+    },
+    {
+      "id": "indoco-remedies-in-cyclopam",
+      "company_id": "indoco-remedies-in",
+      "name_en": "Dicyclomine + Paracetamol",
+      "name_zh": "双环维林+对乙酰氨基酚（Cyclopam）",
+      "brand_name": "Cyclopam",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "gastroenterology",
+      "indication_en": "Abdominal pain and spasms",
+      "indication_zh": "腹痛与胃肠痉挛",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "other_apac",
+      "confidence": 0.78,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Indoco Remedies domestic divisions",
+          "url": "https://www.indoco.com/biz-dom-divs.asp"
+        }
+      ]
+    },
+    {
+      "id": "indoco-remedies-in-febrex-plus",
+      "company_id": "indoco-remedies-in",
+      "name_en": "Paracetamol + Phenylephrine + Chlorpheniramine",
+      "name_zh": "对乙酰氨基酚复方（Febrex Plus）",
+      "brand_name": "Febrex Plus",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "respiratory",
+      "indication_en": "Cold, cough and fever symptoms",
+      "indication_zh": "感冒、咳嗽与发热症状",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "other_apac",
+      "confidence": 0.78,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Indoco Remedies domestic divisions",
+          "url": "https://www.indoco.com/biz-dom-divs.asp"
+        }
+      ]
+    },
+    {
+      "id": "indoco-remedies-in-sensodent",
+      "company_id": "indoco-remedies-in",
+      "name_en": "Potassium nitrate dental paste",
+      "name_zh": "硝酸钾抗敏牙膏剂（Sensodent-K）",
+      "brand_name": "Sensodent-K",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "dermatology",
+      "indication_en": "Dentinal hypersensitivity (stomatological)",
+      "indication_zh": "牙本质过敏（口腔科）",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "other_apac",
+      "confidence": 0.7,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Indoco Remedies domestic divisions",
+          "url": "https://www.indoco.com/biz-dom-divs.asp"
+        }
+      ]
+    },
+    {
+      "id": "indoco-remedies-in-oxipod",
+      "company_id": "indoco-remedies-in",
+      "name_en": "Cefpodoxime proxetil",
+      "name_zh": "头孢泊肟酯（Oxipod）",
+      "brand_name": "Oxipod",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "infectious-disease",
+      "indication_en": "Bacterial respiratory and urinary infections",
+      "indication_zh": "细菌性呼吸道及泌尿系感染",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "other_apac",
+      "confidence": 0.72,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Indoco Remedies domestic divisions",
+          "url": "https://www.indoco.com/biz-dom-divs.asp"
+        }
+      ]
+    },
+    {
+      "id": "venus-remedies-in-elores",
+      "company_id": "venus-remedies-in",
+      "name_en": "Ceftriaxone + Sulbactam + Disodium EDTA",
+      "name_zh": "头孢曲松+舒巴坦+依地酸二钠",
+      "brand_name": "Elores",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "infectious-disease",
+      "indication_en": "Multidrug-resistant gram-negative bacterial infections",
+      "indication_zh": "耐多药革兰阴性菌感染",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "other_apac",
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Cipla acquires anti-infective product Elores from Venus Remedies",
+          "url": "https://www.business-standard.com/article/pti-stories/cipla-acquires-anti-infective-product-elores-from-venus-remedies-119101701303_1.html"
+        }
+      ]
+    },
+    {
+      "id": "venus-remedies-in-sulbactomax",
+      "company_id": "venus-remedies-in",
+      "name_en": "Ceftriaxone + Sulbactam (VRP1034)",
+      "name_zh": "头孢曲松+舒巴坦复方",
+      "brand_name": "Sulbactomax",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "infectious-disease",
+      "indication_en": "Beta-lactamase-mediated drug-resistant infections",
+      "indication_zh": "β-内酰胺酶介导耐药感染",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "other_apac",
+      "confidence": 0.8,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Venus Remedies R&D reputation draws fresh attention",
+          "url": "https://www.multibagg.ai/market-pulse/articles/venus-remedies-rd-reputation-cmowlbocf0008mn0jccgdl23o"
+        }
+      ]
+    },
+    {
+      "id": "venus-remedies-in-vancoplus",
+      "company_id": "venus-remedies-in",
+      "name_en": "Vancomycin + Ceftriaxone (Vancoplus)",
+      "name_zh": "万古霉素+头孢曲松复方",
+      "brand_name": "Vancoplus",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "infectious-disease",
+      "indication_en": "Severe drug-resistant gram-positive infections",
+      "indication_zh": "重度耐药革兰阳性菌感染",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "other_apac",
+      "confidence": 0.78,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Vanco Plus from Venus Remedies - DrugsUpdate India",
+          "url": "http://www.drugsupdate.com/brand/generic/Ceftriaxone/20630/29"
+        }
+      ]
+    },
+    {
+      "id": "hovid-tocovid-suprabio",
+      "company_id": "hovid",
+      "name_en": "Mixed palm tocotrienols (SupraBio)",
+      "name_zh": "棕榈混合生育三烯酚",
+      "brand_name": "Tocovid SupraBio",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "cardiometabolic",
+      "indication_en": "Antioxidant / vascular and metabolic support",
+      "indication_zh": "抗氧化、血管与代谢支持",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "other_apac",
+      "confidence": 0.75,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Tocovid SupraBio Range - Hovid",
+          "url": "https://hovid.com/product-category/tocovid-innovative-range/tocovid-suprabio-range/"
+        }
+      ]
+    },
+    {
+      "id": "hovid-tocotrienol-suprabio-trial",
+      "company_id": "hovid",
+      "name_en": "Tocotrienol SupraBio (investigational)",
+      "name_zh": "生育三烯酚 SupraBio（在研）",
+      "brand_name": "Tocotrienol SupraBio",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "rare-disease",
+      "indication_en": "Orphan brain disease / end-stage liver disease",
+      "indication_zh": "脑部罕见病/终末期肝病",
+      "approval_status": "ph2",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "other_apac",
+      "confidence": 0.62,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Hovid",
+          "url": "https://hovid.com/"
+        }
+      ]
+    },
+    {
+      "id": "hovid-generics-portfolio",
+      "company_id": "hovid",
+      "name_en": "Generic prescription medicines portfolio",
+      "name_zh": "仿制处方药组合",
+      "brand_name": "Hovid generics",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "infectious-disease",
+      "indication_en": "Broad generic therapies (anti-infectives, others)",
+      "indication_zh": "广谱仿制治疗（抗感染等）",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "other_apac",
+      "confidence": 0.7,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Hovid",
+          "url": "https://hovid.com/"
+        }
+      ]
+    },
+    {
+      "id": "beta-drugs-in-nab-paclitaxel",
+      "company_id": "beta-drugs-in",
+      "name_en": "Nanoparticle albumin-bound paclitaxel",
+      "name_zh": "纳米白蛋白结合型紫杉醇",
+      "brand_name": "nab-Paclitaxel",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "oncology",
+      "indication_en": "Breast, pancreatic and non-small cell lung cancer",
+      "indication_zh": "乳腺癌、胰腺癌、非小细胞肺癌",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "other_apac",
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Beta Drugs Ltd.",
+          "url": "https://www.betadrugslimited.com/"
+        },
+        {
+          "title": "Beta Drugs: Spearheading the Battle Against Cancer",
+          "url": "https://www.indiapharmaoutlook.com/drug-discovery/cover-story/beta-drugs-spearheading-the-battle-against-cancer-with-highquality-medicines-cid-534.html"
+        }
+      ]
+    },
+    {
+      "id": "beta-drugs-in-docetaxel",
+      "company_id": "beta-drugs-in",
+      "name_en": "Docetaxel",
+      "name_zh": "多西他赛",
+      "brand_name": "Docetaxel (Beta Drugs)",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "oncology",
+      "indication_en": "Breast, lung, prostate and gastric cancer",
+      "indication_zh": "乳腺癌、肺癌、前列腺癌、胃癌",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "other_apac",
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Beta Drugs Ltd.",
+          "url": "https://www.betadrugslimited.com/"
+        }
+      ]
+    },
+    {
+      "id": "beta-drugs-in-gemcitabine",
+      "company_id": "beta-drugs-in",
+      "name_en": "Gemcitabine",
+      "name_zh": "吉西他滨",
+      "brand_name": "Gemcitabine (Beta Drugs)",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "oncology",
+      "indication_en": "Pancreatic, lung, breast and ovarian cancer",
+      "indication_zh": "胰腺癌、肺癌、乳腺癌、卵巢癌",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "other_apac",
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Beta Drugs Ltd.",
+          "url": "https://www.betadrugslimited.com/"
+        }
+      ]
+    },
+    {
+      "id": "bharat-serums-and-vaccines-foristal",
+      "company_id": "bharat-serums-and-vaccines",
+      "name_en": "Hydroxyprogesterone caproate",
+      "name_zh": "己酸羟孕酮",
+      "brand_name": "Foristal",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "womens-health",
+      "indication_en": "Prevention of preterm birth / recurrent miscarriage",
+      "indication_zh": "预防早产/习惯性流产",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "other_apac",
+      "confidence": 0.7,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "BSV Women's Health Product Brands",
+          "url": "https://bsvgroup.com/women-health/"
+        }
+      ]
+    },
+    {
+      "id": "bharat-serums-and-vaccines-lupride",
+      "company_id": "bharat-serums-and-vaccines",
+      "name_en": "Leuprolide acetate",
+      "name_zh": "醋酸亮丙瑞林",
+      "brand_name": "Lupride",
+      "modality_id": "peptide",
+      "therapeutic_area_id": "womens-health",
+      "indication_en": "Endometriosis, fibroids, IVF protocols, prostate cancer",
+      "indication_zh": "子宫内膜异位症、肌瘤、试管婴儿方案、前列腺癌",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "other_apac",
+      "confidence": 0.78,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Bharat Serums & Vaccines Products List | 1mg",
+          "url": "https://www.1mg.com/marketer/bharat-serums-vaccines-ltd-54975"
+        }
+      ]
+    },
+    {
+      "id": "bharat-serums-and-vaccines-follitrope",
+      "company_id": "bharat-serums-and-vaccines",
+      "name_en": "Follitropin alfa",
+      "name_zh": "促卵泡激素α",
+      "brand_name": "Foligraf",
+      "modality_id": "recombinant-protein",
+      "therapeutic_area_id": "womens-health",
+      "indication_en": "Controlled ovarian stimulation / infertility (IVF)",
+      "indication_zh": "控制性卵巢刺激/不孕症（试管婴儿）",
+      "approval_status": "approved",
+      "drug_class": "biosimilar",
+      "is_blockbuster": false,
+      "region": "other_apac",
+      "confidence": 0.62,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "BSV Women's Health Product Brands",
+          "url": "https://bsvgroup.com/women-health/"
+        }
+      ]
+    },
+    {
+      "id": "bharat-serums-and-vaccines-anti-rabies-serum",
+      "company_id": "bharat-serums-and-vaccines",
+      "name_en": "Equine anti-rabies immunoglobulin",
+      "name_zh": "马源抗狂犬病免疫球蛋白",
+      "brand_name": "Equirab",
+      "modality_id": "recombinant-protein",
+      "therapeutic_area_id": "infectious-disease",
+      "indication_en": "Post-exposure rabies prophylaxis",
+      "indication_zh": "狂犬病暴露后预防",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "other_apac",
+      "confidence": 0.7,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "BSV Group",
+          "url": "https://bsvgroup.com/"
+        }
+      ]
+    },
+    {
+      "id": "savior-lifetec-meropenem",
+      "company_id": "savior-lifetec",
+      "name_en": "Meropenem",
+      "name_zh": "美罗培南",
+      "brand_name": "Meropenem for Injection",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "infectious-disease",
+      "indication_en": "Serious bacterial infections (carbapenem antibiotic)",
+      "indication_zh": "严重细菌感染（碳青霉烯类抗生素）",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "other_apac",
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Carbapenem :: Savior Lifetec",
+          "url": "https://www.saviorlifetec.com.tw/en/products-15"
+        }
+      ]
+    },
+    {
+      "id": "savior-lifetec-ertapenem",
+      "company_id": "savior-lifetec",
+      "name_en": "Ertapenem",
+      "name_zh": "厄他培南",
+      "brand_name": "Ertapenem for Injection",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "infectious-disease",
+      "indication_en": "Complicated intra-abdominal/urinary infections (carbapenem)",
+      "indication_zh": "复杂腹腔/泌尿系感染（碳青霉烯类）",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "other_apac",
+      "confidence": 0.82,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Carbapenem :: Savior Lifetec",
+          "url": "https://www.saviorlifetec.com.tw/en/products-15"
+        }
+      ]
+    },
+    {
+      "id": "savior-lifetec-imipenem-cilastatin",
+      "company_id": "savior-lifetec",
+      "name_en": "Imipenem/Cilastatin",
+      "name_zh": "亚胺培南/西司他丁",
+      "brand_name": "Imipenem and Cilastatin for Injection",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "infectious-disease",
+      "indication_en": "Severe multi-system bacterial infections (carbapenem)",
+      "indication_zh": "严重多系统细菌感染（碳青霉烯类）",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "other_apac",
+      "confidence": 0.8,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Carbapenem :: Savior Lifetec",
+          "url": "https://www.saviorlifetec.com.tw/en/products-15"
+        }
+      ]
+    },
+    {
+      "id": "sakar-healthcare-imatinib",
+      "company_id": "sakar-healthcare-in",
+      "name_en": "Imatinib",
+      "name_zh": "伊马替尼",
+      "brand_name": "Imatinib",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "oncology",
+      "indication_en": "Chronic myeloid leukemia / GIST",
+      "indication_zh": "慢性髓系白血病/胃肠间质瘤",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "other_apac",
+      "confidence": 0.72,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Sakar Healthcare - Differentiated Oncology Products",
+          "url": "https://www.indiapharmaoutlook.com/manufacturing/vendor/sakar-healthcare-promising-differentiated-oncology-products-through-its-researchdriven-apiintegrated-eu-gmp-approved-oral-injection-manufacturing-units-cid-924.html"
+        }
+      ]
+    },
+    {
+      "id": "sakar-healthcare-heparin",
+      "company_id": "sakar-healthcare-in",
+      "name_en": "Heparin sodium",
+      "name_zh": "肝素钠",
+      "brand_name": "Sakarin",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "hematology",
+      "indication_en": "Anticoagulation / thromboembolism prevention",
+      "indication_zh": "抗凝/血栓栓塞预防",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "other_apac",
+      "confidence": 0.7,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Sakar Healthcare",
+          "url": "https://www.sakarhealthcare.com/"
+        }
+      ]
+    },
+    {
+      "id": "sakar-healthcare-ceftriaxone",
+      "company_id": "sakar-healthcare-in",
+      "name_en": "Ceftriaxone",
+      "name_zh": "头孢曲松",
+      "brand_name": "Ceftriaxone Injection",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "infectious-disease",
+      "indication_en": "Broad-spectrum bacterial infections (cephalosporin)",
+      "indication_zh": "广谱细菌感染（头孢菌素类）",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "other_apac",
+      "confidence": 0.7,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Sakar Healthcare",
+          "url": "https://www.sakarhealthcare.com/"
+        }
+      ]
+    },
+    {
+      "id": "organon-indonesia-marvelon",
+      "company_id": "organon-indonesia",
+      "name_en": "Desogestrel/Ethinylestradiol",
+      "name_zh": "去氧孕烯/炔雌醇",
+      "brand_name": "Marvelon",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "womens-health",
+      "indication_en": "Oral contraception",
+      "indication_zh": "口服避孕",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "other_apac",
+      "confidence": 0.8,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Organon Products List",
+          "url": "https://www.organon.com/our-focus/products-list/"
+        }
+      ]
+    },
+    {
+      "id": "organon-indonesia-implanon-nxt",
+      "company_id": "organon-indonesia",
+      "name_en": "Etonogestrel implant",
+      "name_zh": "依托孕烯皮下埋植剂",
+      "brand_name": "Implanon NXT",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "womens-health",
+      "indication_en": "Long-acting subdermal contraception",
+      "indication_zh": "长效皮下避孕",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "other_apac",
+      "confidence": 0.8,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Organon Products List",
+          "url": "https://www.organon.com/our-focus/products-list/"
+        }
+      ]
+    },
+    {
+      "id": "organon-indonesia-nuvaring",
+      "company_id": "organon-indonesia",
+      "name_en": "Etonogestrel/Ethinylestradiol vaginal ring",
+      "name_zh": "依托孕烯/炔雌醇阴道环",
+      "brand_name": "NuvaRing",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "womens-health",
+      "indication_en": "Vaginal ring contraception",
+      "indication_zh": "阴道环避孕",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "other_apac",
+      "confidence": 0.75,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Organon Products List",
+          "url": "https://www.organon.com/our-focus/products-list/"
+        }
+      ]
+    },
+    {
+      "id": "organon-indonesia-singulair",
+      "company_id": "organon-indonesia",
+      "name_en": "Montelukast",
+      "name_zh": "孟鲁司特",
+      "brand_name": "Singulair",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "respiratory",
+      "indication_en": "Asthma and allergic rhinitis",
+      "indication_zh": "哮喘和过敏性鼻炎",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "other_apac",
+      "confidence": 0.78,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Organon Products List",
+          "url": "https://www.organon.com/our-focus/products-list/"
+        }
+      ]
+    },
+    {
+      "id": "organon-indonesia-nasonex",
+      "company_id": "organon-indonesia",
+      "name_en": "Mometasone furoate nasal spray",
+      "name_zh": "糠酸莫米松鼻喷雾剂",
+      "brand_name": "Nasonex",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "respiratory",
+      "indication_en": "Allergic rhinitis / nasal congestion",
+      "indication_zh": "过敏性鼻炎/鼻塞",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "other_apac",
+      "confidence": 0.72,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Organon Products List",
+          "url": "https://www.organon.com/our-focus/products-list/"
+        }
+      ]
+    },
+    {
+      "id": "indian-immunologicals-abhayrab",
+      "company_id": "indian-immunologicals",
+      "name_en": "Purified Vero Cell Rabies Vaccine",
+      "name_zh": "纯化Vero细胞狂犬病疫苗",
+      "brand_name": "Abhayrab",
+      "modality_id": "inactivated-vaccine",
+      "therapeutic_area_id": "vaccines",
+      "indication_en": "Pre- and post-exposure prophylaxis against rabies",
+      "indication_zh": "狂犬病暴露前及暴露后预防",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "other_apac",
+      "confidence": 0.9,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Abhayrab | Indian Immunologicals Ltd | CPHI Online",
+          "url": "https://www.cphi-online.com/abhayrab-prod1235001.html"
+        },
+        {
+          "title": "Indian Immunologicals Limited - Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Indian_Immunologicals_Limited"
+        }
+      ]
+    },
+    {
+      "id": "indian-immunologicals-elovac-b",
+      "company_id": "indian-immunologicals",
+      "name_en": "Recombinant Hepatitis B Vaccine",
+      "name_zh": "重组乙型肝炎疫苗",
+      "brand_name": "Elovac-B",
+      "modality_id": "protein-subunit-vaccine",
+      "therapeutic_area_id": "vaccines",
+      "indication_en": "Prevention of hepatitis B infection",
+      "indication_zh": "预防乙型肝炎感染",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "other_apac",
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Indian Immunologicals Limited - Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Indian_Immunologicals_Limited"
+        }
+      ]
+    },
+    {
+      "id": "indian-immunologicals-vaxtar-5",
+      "company_id": "indian-immunologicals",
+      "name_en": "Pentavalent Vaccine (DTwP-HepB-Hib)",
+      "name_zh": "五联疫苗（百白破-乙肝-Hib）",
+      "brand_name": "VAXTAR 5",
+      "modality_id": "protein-subunit-vaccine",
+      "therapeutic_area_id": "vaccines",
+      "indication_en": "Pediatric protection against diphtheria, tetanus, pertussis, hepatitis B and Hib",
+      "indication_zh": "儿童预防白喉、破伤风、百日咳、乙肝及b型流感嗜血杆菌",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "other_apac",
+      "confidence": 0.82,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Indian Immunologicals Limited - Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Indian_Immunologicals_Limited"
+        }
+      ]
+    },
+    {
+      "id": "indian-immunologicals-havisure",
+      "company_id": "indian-immunologicals",
+      "name_en": "Hepatitis A Vaccine",
+      "name_zh": "甲型肝炎疫苗",
+      "brand_name": "Havisure",
+      "modality_id": "inactivated-vaccine",
+      "therapeutic_area_id": "vaccines",
+      "indication_en": "Prevention of hepatitis A infection",
+      "indication_zh": "预防甲型肝炎感染",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "other_apac",
+      "confidence": 0.83,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "India's vaccine supremacy - BioSpectrum",
+          "url": "https://biospectrumindia.com/features/95/22712/indias-vaccine-supremacy.html"
+        }
+      ]
+    },
+    {
+      "id": "indian-immunologicals-mabella",
+      "company_id": "indian-immunologicals",
+      "name_en": "Measles and Rubella Vaccine",
+      "name_zh": "麻疹风疹联合疫苗",
+      "brand_name": "Mabella",
+      "modality_id": "viral-vector-vaccine",
+      "therapeutic_area_id": "vaccines",
+      "indication_en": "Prevention of measles and rubella in children",
+      "indication_zh": "预防儿童麻疹和风疹",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "other_apac",
+      "confidence": 0.8,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "IIL receives approval for Measles-Rubella vaccine",
+          "url": "https://biopharmaapac.com/news/95/2836/indian-immunologicals-limited-receives-regulatory-approval-for-measles-rubella-mr-vaccine.html"
+        }
+      ]
+    },
+    {
+      "id": "orient-pharma-methydur",
+      "company_id": "orient-pharma",
+      "name_en": "Methylphenidate Sustained-Release",
+      "name_zh": "盐酸哌甲酯缓释胶囊",
+      "brand_name": "Methydur",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "neuroscience",
+      "indication_en": "Attention deficit hyperactivity disorder (ADHD)",
+      "indication_zh": "注意缺陷多动障碍（ADHD）",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "other_apac",
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Orient Pharma company profile",
+          "url": "https://www.oppharma.com/index.php/eng/company/introduction"
+        }
+      ]
+    },
+    {
+      "id": "orient-pharma-pitavastatin",
+      "company_id": "orient-pharma",
+      "name_en": "Pitavastatin",
+      "name_zh": "匹伐他汀",
+      "brand_name": "Pitavastatin",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "cardiometabolic",
+      "indication_en": "Hyperlipidemia / dyslipidemia",
+      "indication_zh": "高脂血症/血脂异常",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "other_apac",
+      "confidence": 0.8,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Orient Pharma company profile",
+          "url": "https://www.oppharma.com/index.php/eng/company/introduction"
+        }
+      ]
+    },
+    {
+      "id": "hem-pharma-hemp-001",
+      "company_id": "hem-pharma",
+      "name_en": "HEMP-001",
+      "name_zh": "HEMP-001 活菌疗法",
+      "brand_name": "HEMP-001",
+      "modality_id": "msc-therapy",
+      "therapeutic_area_id": "neuroscience",
+      "indication_en": "Major depressive disorder (live biotherapeutic)",
+      "indication_zh": "抑郁症（活菌疗法）",
+      "approval_status": "ph2",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "other_apac",
+      "confidence": 0.78,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Genome&Company, HEM Pharma strengthen ties - KBR",
+          "url": "https://www.koreabiomed.com/news/articleView.html?idxno=21784"
+        }
+      ]
+    },
+    {
+      "id": "hem-pharma-hemp-002",
+      "company_id": "hem-pharma",
+      "name_en": "HEMP-002",
+      "name_zh": "HEMP-002 活菌疗法",
+      "brand_name": "HEMP-002",
+      "modality_id": "msc-therapy",
+      "therapeutic_area_id": "gastroenterology",
+      "indication_en": "Low anterior resection syndrome (live biotherapeutic)",
+      "indication_zh": "低位前切除综合征（活菌疗法）",
+      "approval_status": "ph2",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "other_apac",
+      "confidence": 0.75,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Genome&Company, HEM Pharma strengthen ties - KBR",
+          "url": "https://www.koreabiomed.com/news/articleView.html?idxno=21784"
+        }
+      ]
+    },
+    {
+      "id": "darya-varia-natur-e",
+      "company_id": "darya-varia",
+      "name_en": "Tocopherol (Vitamin E)",
+      "name_zh": "维生素E（生育酚）",
+      "brand_name": "Natur-E",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "dermatology",
+      "indication_en": "Skin nutrition / vitamin E supplement",
+      "indication_zh": "皮肤营养/维生素E补充剂",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "other_apac",
+      "confidence": 0.78,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Darya-Varia Products",
+          "url": "https://www.darya-varia.com/en/products"
+        },
+        {
+          "title": "Darya-Varia Laboratoria Company Profile - stockanalysis",
+          "url": "https://stockanalysis.com/quote/idx/DVLA/company/"
+        }
+      ]
+    },
+    {
+      "id": "darya-varia-decolgen",
+      "company_id": "darya-varia",
+      "name_en": "Paracetamol / Phenylephrine / Chlorphenamine",
+      "name_zh": "对乙酰氨基酚/去氧肾上腺素/氯苯那敏复方",
+      "brand_name": "Decolgen",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "respiratory",
+      "indication_en": "Cold and nasal congestion relief",
+      "indication_zh": "感冒及鼻塞缓解",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "other_apac",
+      "confidence": 0.78,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Darya-Varia Products",
+          "url": "https://www.darya-varia.com/en/products"
+        }
+      ]
+    },
+    {
+      "id": "darya-varia-neozep",
+      "company_id": "darya-varia",
+      "name_en": "Phenylephrine / Chlorphenamine / Paracetamol",
+      "name_zh": "去氧肾上腺素/氯苯那敏/对乙酰氨基酚复方",
+      "brand_name": "Neozep",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "respiratory",
+      "indication_en": "Common cold symptom relief",
+      "indication_zh": "普通感冒症状缓解",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "other_apac",
+      "confidence": 0.76,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Darya-Varia Products",
+          "url": "https://www.darya-varia.com/en/products"
+        }
+      ]
+    },
+    {
+      "id": "darya-varia-enervon-c",
+      "company_id": "darya-varia",
+      "name_en": "Ascorbic Acid + B-Complex Vitamins",
+      "name_zh": "维生素C加B族复合维生素",
+      "brand_name": "Enervon-C",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "cardiometabolic",
+      "indication_en": "Multivitamin supplement for energy and immunity",
+      "indication_zh": "增强精力与免疫的复合维生素",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "other_apac",
+      "confidence": 0.74,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Darya-Varia Products",
+          "url": "https://www.darya-varia.com/en/products"
+        }
+      ]
+    },
+    {
+      "id": "darya-varia-biogesic",
+      "company_id": "darya-varia",
+      "name_en": "Paracetamol",
+      "name_zh": "对乙酰氨基酚",
+      "brand_name": "Biogesic",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "neuroscience",
+      "indication_en": "Analgesic / antipyretic for pain and fever",
+      "indication_zh": "镇痛退热（疼痛与发热）",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "other_apac",
+      "confidence": 0.74,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Darya-Varia Products",
+          "url": "https://www.darya-varia.com/en/products"
+        }
+      ]
+    },
+    {
+      "id": "nkmax-snk01",
+      "company_id": "nkmax",
+      "name_en": "SNK01 (autologous SuperNK cells)",
+      "name_zh": "SNK01 自体超级NK细胞",
+      "brand_name": "SNK01",
+      "modality_id": "car-t",
+      "therapeutic_area_id": "oncology",
+      "indication_en": "Advanced/metastatic solid tumors (combination with trastuzumab or cetuximab)",
+      "indication_zh": "晚期/转移性实体瘤（联合曲妥珠单抗或西妥昔单抗）",
+      "approval_status": "ph2",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "other_apac",
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "NKMax America FDA IND clearance for SNK01 - NKGen Biotech",
+          "url": "https://nkgenbiotech.com/nkmax-america-receives-fda-clearance-of-ind-for-phase-i-2a-trial-of-their-natural-killer-cell-therapy-snk01-in-combination-with-trastuzumab-or-cetuximab-for-the-treatment-of-advanced-metastatic-her2/"
+        },
+        {
+          "title": "SNK01 IND clearance - BioSpace",
+          "url": "https://www.biospace.com/nkmax-america-receives-fda-clearance-of-ind-for-phase-i-2a-trial-of-their-natural-killer-cell-therapy-snk01-in-combination-with-trastuzumab-or-cetuximab-for-the-treatment-of-advanced-metastatic-her2-or-egfr-expressing-cancers"
+        }
+      ]
+    },
+    {
+      "id": "nkmax-snk02",
+      "company_id": "nkmax",
+      "name_en": "SNK02 (allogeneic SuperNK cells)",
+      "name_zh": "SNK02 同种异体超级NK细胞",
+      "brand_name": "SNK02",
+      "modality_id": "car-t",
+      "therapeutic_area_id": "oncology",
+      "indication_en": "Advanced refractory solid tumors",
+      "indication_zh": "晚期难治性实体瘤",
+      "approval_status": "ph1",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "other_apac",
+      "confidence": 0.7,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Nkmax company profile - Whiteford Research Biobase",
+          "url": "http://biobase.whitefordresearch.com/companies/nkmax"
+        }
+      ]
+    },
+    {
+      "id": "t-man-pharmaceutical-propoliz",
+      "company_id": "t-man-pharmaceutical",
+      "name_en": "Propolis throat spray/lozenge",
+      "name_zh": "蜂胶喉部喷雾/含片",
+      "brand_name": "Propoliz",
+      "modality_id": "tcm-formula",
+      "therapeutic_area_id": "respiratory",
+      "indication_en": "Sore throat and mouth/throat care",
+      "indication_zh": "咽喉痛及口腔咽喉护理",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "other_apac",
+      "confidence": 0.65,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "T.Man Pharmaceutical products",
+          "url": "https://tmanpharmaceutical.com/en/product/"
+        }
+      ]
+    },
+    {
+      "id": "t-man-pharmaceutical-iyara",
+      "company_id": "t-man-pharmaceutical",
+      "name_en": "Iyara herbal balm/inhaler",
+      "name_zh": "Iyara 草本膏/吸入剂",
+      "brand_name": "Iyara",
+      "modality_id": "tcm-formula",
+      "therapeutic_area_id": "respiratory",
+      "indication_en": "Nasal congestion and dizziness relief (herbal)",
+      "indication_zh": "鼻塞、头晕缓解（草本）",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "other_apac",
+      "confidence": 0.6,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "T.Man Pharmaceutical products",
+          "url": "https://tmanpharmaceutical.com/en/product/"
+        }
+      ]
+    },
+    {
+      "id": "themis-medicare-in-etojet",
+      "company_id": "themis-medicare-in",
+      "name_en": "Etoricoxib",
+      "name_zh": "依托考昔",
+      "brand_name": "Etojet",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "immunology",
+      "indication_en": "Pain and inflammation (arthritis)",
+      "indication_zh": "疼痛与炎症（关节炎）",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "other_apac",
+      "confidence": 0.75,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Themis Medicare Ltd products - Medindia",
+          "url": "https://www.medindia.net/drugs/manufacturers/themis-medicare-ltd.htm"
+        }
+      ]
+    },
+    {
+      "id": "themis-medicare-in-themicaine",
+      "company_id": "themis-medicare-in",
+      "name_en": "Bupivacaine",
+      "name_zh": "布比卡因",
+      "brand_name": "Themicaine",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "neuroscience",
+      "indication_en": "Local/regional anesthesia",
+      "indication_zh": "局部/区域麻醉",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "other_apac",
+      "confidence": 0.72,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Themis Medicare Ltd products - Medindia",
+          "url": "https://www.medindia.net/drugs/manufacturers/themis-medicare-ltd.htm"
+        }
+      ]
+    },
+    {
+      "id": "themis-medicare-in-ketmin",
+      "company_id": "themis-medicare-in",
+      "name_en": "Ketamine",
+      "name_zh": "氯胺酮",
+      "brand_name": "Ketmin",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "neuroscience",
+      "indication_en": "Anesthesia induction and analgesia",
+      "indication_zh": "麻醉诱导与镇痛",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "other_apac",
+      "confidence": 0.7,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Themis Medicare Ltd products - Medindia",
+          "url": "https://www.medindia.net/drugs/manufacturers/themis-medicare-ltd.htm"
+        }
+      ]
+    },
+    {
+      "id": "kopran-in-flupen",
+      "company_id": "kopran-in",
+      "name_en": "Flucloxacillin",
+      "name_zh": "氟氯西林",
+      "brand_name": "Flupen",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "infectious-disease",
+      "indication_en": "Bacterial infections (penicillinase-resistant penicillin)",
+      "indication_zh": "细菌感染（耐青霉素酶青霉素）",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "other_apac",
+      "confidence": 0.78,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Kopran Limited official site",
+          "url": "https://www.kopran.com/"
+        },
+        {
+          "title": "Kopran Ltd products - 1mg",
+          "url": "https://www.1mg.com/marketer/kopran-ltd-55673"
+        }
+      ]
+    },
+    {
+      "id": "kopran-in-regat",
+      "company_id": "kopran-in",
+      "name_en": "Gatifloxacin",
+      "name_zh": "加替沙星",
+      "brand_name": "Regat",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "infectious-disease",
+      "indication_en": "Bacterial infections (fluoroquinolone)",
+      "indication_zh": "细菌感染（氟喹诺酮）",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "other_apac",
+      "confidence": 0.75,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Kopran Limited official site",
+          "url": "https://www.kopran.com/"
+        }
+      ]
+    },
+    {
+      "id": "kopran-in-lisir",
+      "company_id": "kopran-in",
+      "name_en": "Lisinopril",
+      "name_zh": "赖诺普利",
+      "brand_name": "Lisir",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "cardiometabolic",
+      "indication_en": "Hypertension (ACE inhibitor)",
+      "indication_zh": "高血压（ACE抑制剂）",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "other_apac",
+      "confidence": 0.72,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Kopran Ltd products - 1mg",
+          "url": "https://www.1mg.com/marketer/kopran-ltd-55673"
+        }
+      ]
+    },
+    {
+      "id": "wanbury-in-metformin",
+      "company_id": "wanbury-in",
+      "name_en": "Metformin",
+      "name_zh": "二甲双胍",
+      "brand_name": "Metformin (Wanbury)",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "cardiometabolic",
+      "indication_en": "Type 2 diabetes mellitus",
+      "indication_zh": "2型糖尿病",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "other_apac",
+      "confidence": 0.8,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Wanbury Limited - PharmaSource",
+          "url": "https://pharmasource.global/directory/wanbury-limited/"
+        },
+        {
+          "title": "Wanbury Limited - PharmaCompass",
+          "url": "https://www.pharmacompass.com/api-manufacturers/wanbury-limited"
+        }
+      ]
+    },
+    {
+      "id": "wanbury-in-tramadol",
+      "company_id": "wanbury-in",
+      "name_en": "Tramadol",
+      "name_zh": "曲马多",
+      "brand_name": "Tramadol (Wanbury)",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "neuroscience",
+      "indication_en": "Moderate to severe pain (opioid analgesic)",
+      "indication_zh": "中重度疼痛（阿片类镇痛药）",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "other_apac",
+      "confidence": 0.78,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Wanbury Limited - PharmaSource",
+          "url": "https://pharmasource.global/directory/wanbury-limited/"
+        }
+      ]
+    },
+    {
+      "id": "wanbury-in-sertraline",
+      "company_id": "wanbury-in",
+      "name_en": "Sertraline",
+      "name_zh": "舍曲林",
+      "brand_name": "Sertraline (Wanbury)",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "neuroscience",
+      "indication_en": "Depression and anxiety disorders (SSRI)",
+      "indication_zh": "抑郁与焦虑障碍（SSRI）",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "other_apac",
+      "confidence": 0.7,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Wanbury Ltd - Medindia",
+          "url": "https://www.medindia.net/drugs/manufacturers/wanbury-ltd.htm"
+        }
+      ]
+    },
+    {
+      "id": "fermenta-biotech-in-cholecalciferol",
+      "company_id": "fermenta-biotech-in",
+      "name_en": "Cholecalciferol (Vitamin D3)",
+      "name_zh": "胆钙化醇（维生素D3）",
+      "brand_name": "Fermenta Vitamin D3",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "cardiometabolic",
+      "indication_en": "Vitamin D deficiency, bone health supplementation",
+      "indication_zh": "维生素D缺乏、骨骼健康补充",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "other_apac",
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Fermenta Biotech - Vitamin D3 / Cholecalciferol",
+          "url": "https://fermentabiotech.com/index.php"
+        }
+      ]
+    },
+    {
+      "id": "alivira-ceftiofur-hydrochloride",
+      "company_id": "alivira",
+      "name_en": "Ceftiofur Hydrochloride Injection",
+      "name_zh": "盐酸头孢噻呋注射液",
+      "brand_name": "Resfur RTU",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "infectious-disease",
+      "indication_en": "Bacterial respiratory and reproductive disease in livestock (veterinary)",
+      "indication_zh": "家畜细菌性呼吸道与生殖系统疾病（兽用）",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "other_apac",
+      "confidence": 0.8,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Alivira Animal Health Limited",
+          "url": "https://alivira.co.in/"
+        }
+      ]
+    },
+    {
+      "id": "alivira-calcium-borogluconate",
+      "company_id": "alivira",
+      "name_en": "Calcium Borogluconate Injection",
+      "name_zh": "硼葡萄糖酸钙注射液",
+      "brand_name": "Calject",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "cardiometabolic",
+      "indication_en": "Prevention and treatment of milk fever (hypocalcemia) in cattle (veterinary)",
+      "indication_zh": "牛产乳热（低钙血症）的预防与治疗（兽用）",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "other_apac",
+      "confidence": 0.8,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Alivira Animal Health Limited",
+          "url": "https://alivira.co.in/"
+        }
+      ]
+    },
+    {
+      "id": "alivira-albendazole",
+      "company_id": "alivira",
+      "name_en": "Albendazole",
+      "name_zh": "阿苯达唑",
+      "brand_name": "Albendazole (Alivira)",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "infectious-disease",
+      "indication_en": "Broad-spectrum anthelmintic for parasitic worm infections in animals (veterinary)",
+      "indication_zh": "动物寄生虫（蠕虫）感染的广谱驱虫药（兽用）",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "other_apac",
+      "confidence": 0.7,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Alivira Animal Health DMF/products (PharmaCompass)",
+          "url": "https://www.pharmacompass.com/api-manufacturers/alivira-animal-health"
+        }
+      ]
+    },
+    {
+      "id": "bliss-gvs-pharma-in-artemether-lumefantrine",
+      "company_id": "bliss-gvs-pharma-in",
+      "name_en": "Artemether/Lumefantrine",
+      "name_zh": "蒿甲醚/苯芴醇",
+      "brand_name": "Lonart",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "infectious-disease",
+      "indication_en": "Uncomplicated malaria",
+      "indication_zh": "非复杂性疟疾",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "other_apac",
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Lonart - Bliss GVS Pharma / ACTwatch",
+          "url": "http://www.actwatch.info/lonartbliss-gvs-pharma-ltd"
+        },
+        {
+          "title": "Bliss GVS Pharma",
+          "url": "https://www.blissgvs.com/"
+        }
+      ]
+    },
+    {
+      "id": "bliss-gvs-pharma-in-piperaquine-artesunate",
+      "company_id": "bliss-gvs-pharma-in",
+      "name_en": "Artesunate/Pyrimethamine/Sulfadoxine",
+      "name_zh": "青蒿琥酯复方抗疟药",
+      "brand_name": "P-Alaxin",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "infectious-disease",
+      "indication_en": "Malaria",
+      "indication_zh": "疟疾",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "other_apac",
+      "confidence": 0.78,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Bliss GVS Pharma brands",
+          "url": "https://www.blissgvs.com/"
+        }
+      ]
+    },
+    {
+      "id": "bliss-gvs-pharma-in-clotrimazole-neomycin",
+      "company_id": "bliss-gvs-pharma-in",
+      "name_en": "Clotrimazole/Beclomethasone/Neomycin",
+      "name_zh": "克霉唑/倍氯米松/新霉素复方",
+      "brand_name": "Funbact-A",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "dermatology",
+      "indication_en": "Fungal/bacterial skin infections",
+      "indication_zh": "皮肤真菌及细菌感染",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "other_apac",
+      "confidence": 0.78,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Bliss GVS Funbact-A",
+          "url": "https://www.gov.uk/product-safety-alerts-reports-recalls/product-safety-report-bliss-gvs-pharma-funbact-a-steroid-cream-2312-0054"
+        }
+      ]
+    },
+    {
+      "id": "bliss-gvs-pharma-in-diclofenac",
+      "company_id": "bliss-gvs-pharma-in",
+      "name_en": "Diclofenac",
+      "name_zh": "双氯芬酸",
+      "brand_name": "Lofnac",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "immunology",
+      "indication_en": "Pain and inflammation",
+      "indication_zh": "疼痛与炎症",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "other_apac",
+      "confidence": 0.7,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Bliss GVS Pharma products",
+          "url": "https://www.blissgvs.com/"
+        }
+      ]
+    },
+    {
+      "id": "dongkook-pharmaceutical-centella-asiatica-ointment",
+      "company_id": "dongkook-pharmaceutical",
+      "name_en": "Centella asiatica extract/Neomycin/Hydrocortisone",
+      "name_zh": "积雪草提取物复方软膏（马德卡索）",
+      "brand_name": "Madecassol",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "dermatology",
+      "indication_en": "Wound healing / scar care",
+      "indication_zh": "创伤愈合与疤痕护理",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "other_apac",
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Madecassol - Korea.net",
+          "url": "https://www.korea.net/NewsFocus/Business/view?articleId=126453"
+        }
+      ]
+    },
+    {
+      "id": "dongkook-pharmaceutical-leuprolide",
+      "company_id": "dongkook-pharmaceutical",
+      "name_en": "Leuprolide acetate",
+      "name_zh": "醋酸亮丙瑞林",
+      "brand_name": "Caziva / Leuplin (long-acting)",
+      "modality_id": "peptide",
+      "therapeutic_area_id": "oncology",
+      "indication_en": "Prostate cancer / endometriosis",
+      "indication_zh": "前列腺癌/子宫内膜异位症",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "other_apac",
+      "confidence": 0.55,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Dongkook Pharmaceutical",
+          "url": "https://www.dkpharm.co.kr/"
+        }
+      ]
+    },
+    {
+      "id": "dongkook-pharmaceutical-pantogar",
+      "company_id": "dongkook-pharmaceutical",
+      "name_en": "Pantogar (medicinal yeast/cystine/thiamine)",
+      "name_zh": "潘特生（抗脱发口服剂）",
+      "brand_name": "Pantogar",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "dermatology",
+      "indication_en": "Diffuse hair loss",
+      "indication_zh": "弥漫性脱发",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "other_apac",
+      "confidence": 0.5,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Dongkook Pharmaceutical",
+          "url": "https://www.dkpharm.co.kr/"
+        }
+      ]
+    },
+    {
+      "id": "kotra-industries-cefuroxime",
+      "company_id": "kotra-industries",
+      "name_en": "Cefuroxime",
+      "name_zh": "头孢呋辛",
+      "brand_name": "Vaxcel Cefuroxime",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "infectious-disease",
+      "indication_en": "Bacterial infections (sterile injectable antibiotic)",
+      "indication_zh": "细菌感染",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "other_apac",
+      "confidence": 0.72,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Kotra Pharma",
+          "url": "https://www.kotrapharma.com/"
+        },
+        {
+          "title": "Kotra Pharma - Wikitia",
+          "url": "https://wikitia.com/wiki/Kotra_Pharma"
+        }
+      ]
+    },
+    {
+      "id": "kotra-industries-salbutamol",
+      "company_id": "kotra-industries",
+      "name_en": "Salbutamol",
+      "name_zh": "沙丁胺醇",
+      "brand_name": "Arite",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "respiratory",
+      "indication_en": "Asthma / bronchospasm (inhaler)",
+      "indication_zh": "哮喘",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "other_apac",
+      "confidence": 0.7,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Kotra Pharma - Wikitia",
+          "url": "https://wikitia.com/wiki/Kotra_Pharma"
+        }
+      ]
+    },
+    {
+      "id": "kotra-industries-paracetamol",
+      "company_id": "kotra-industries",
+      "name_en": "Paracetamol",
+      "name_zh": "对乙酰氨基酚",
+      "brand_name": "AxPain",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "neuroscience",
+      "indication_en": "Fever and pain relief",
+      "indication_zh": "退热与镇痛",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "other_apac",
+      "confidence": 0.68,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Kotra Pharma - Wikitia",
+          "url": "https://wikitia.com/wiki/Kotra_Pharma"
+        }
+      ]
+    },
+    {
+      "id": "toolgen-tg-htt",
+      "company_id": "toolgen",
+      "name_en": "ToolGen Huntingtin Gene-Editing Candidate",
+      "name_zh": "图尔金亨廷顿基因编辑候选药物",
+      "brand_name": "ToolGen HTT Program",
+      "modality_id": "aav-gene-therapy",
+      "therapeutic_area_id": "neuroscience",
+      "indication_en": "Huntington's disease",
+      "indication_zh": "亨廷顿病",
+      "approval_status": "preclinical",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "other_apac",
+      "confidence": 0.6,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "TOOLGEN pipeline",
+          "url": "http://eng.toolgen.com/sub01/sub01.html"
+        },
+        {
+          "title": "ToolGen, Inc. - Synapse",
+          "url": "https://synapse.patsnap.com/organization/2d02e167385544ed44277cafaf96d719"
+        }
+      ]
+    },
+    {
+      "id": "toolgen-amd-dr-program",
+      "company_id": "toolgen",
+      "name_en": "ToolGen Retinal Gene-Editing Candidate",
+      "name_zh": "图尔金视网膜基因编辑候选药物",
+      "brand_name": "ToolGen AMD/DR Program",
+      "modality_id": "aav-gene-therapy",
+      "therapeutic_area_id": "ophthalmology",
+      "indication_en": "Age-related macular degeneration / diabetic retinopathy",
+      "indication_zh": "年龄相关性黄斑变性/糖尿病视网膜病变",
+      "approval_status": "preclinical",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "other_apac",
+      "confidence": 0.55,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "TOOLGEN pipeline",
+          "url": "http://eng.toolgen.com/sub01/sub01.html"
+        }
+      ]
+    },
+    {
+      "id": "toolgen-styx-t",
+      "company_id": "toolgen",
+      "name_en": "Styx-T CAR-T Cell Therapy",
+      "name_zh": "Styx-T CAR-T 细胞疗法",
+      "brand_name": "Styx-T",
+      "modality_id": "car-t",
+      "therapeutic_area_id": "oncology",
+      "indication_en": "Hematologic malignancies",
+      "indication_zh": "血液系统肿瘤",
+      "approval_status": "preclinical",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "other_apac",
+      "confidence": 0.55,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "TOOLGEN pipeline",
+          "url": "http://eng.toolgen.com/sub01/sub01.html"
+        }
+      ]
+    },
+    {
+      "id": "zota-health-care-in-azithromycin",
+      "company_id": "zota-health-care-in",
+      "name_en": "Azithromycin",
+      "name_zh": "阿奇霉素",
+      "brand_name": "Davaindia Azithromycin",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "infectious-disease",
+      "indication_en": "Bacterial infections",
+      "indication_zh": "细菌感染",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "other_apac",
+      "confidence": 0.7,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Zota Health Care Ltd Products List | 1mg",
+          "url": "https://www.1mg.com/marketer/zota-health-care-ltd-56858"
+        },
+        {
+          "title": "Davaindia - Zota Healthcare",
+          "url": "https://www.zotahealthcare.com/dava-india/"
+        }
+      ]
+    },
+    {
+      "id": "zota-health-care-in-aceclofenac",
+      "company_id": "zota-health-care-in",
+      "name_en": "Aceclofenac",
+      "name_zh": "醋氯芬酸",
+      "brand_name": "Davaindia Aceclofenac",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "immunology",
+      "indication_en": "Pain and inflammation",
+      "indication_zh": "疼痛与炎症",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "other_apac",
+      "confidence": 0.68,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Zota Health Care Ltd Products List | 1mg",
+          "url": "https://www.1mg.com/marketer/zota-health-care-ltd-56858"
+        }
+      ]
+    },
+    {
+      "id": "zota-health-care-in-ciprofloxacin",
+      "company_id": "zota-health-care-in",
+      "name_en": "Ciprofloxacin",
+      "name_zh": "环丙沙星",
+      "brand_name": "Davaindia Ciprofloxacin",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "infectious-disease",
+      "indication_en": "Bacterial infections",
+      "indication_zh": "细菌感染",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "other_apac",
+      "confidence": 0.68,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Zota Health Care Ltd Products List | 1mg",
+          "url": "https://www.1mg.com/marketer/zota-health-care-ltd-56858"
+        }
+      ]
+    },
+    {
+      "id": "gujarat-themis-biosyn-in-rifampicin",
+      "company_id": "gujarat-themis-biosyn-in",
+      "name_en": "Rifampicin",
+      "name_zh": "利福平",
+      "brand_name": "Rifampicin",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "infectious-disease",
+      "indication_en": "Tuberculosis",
+      "indication_zh": "结核病",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "other_apac",
+      "confidence": 0.75,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Gujarat Themis Biosyn Ltd Summary | IIFL Capital",
+          "url": "https://www.indiainfoline.com/company/gujarat-themis-biosyn-ltd/summary"
+        }
+      ]
+    },
+    {
+      "id": "gujarat-themis-biosyn-in-rifaximin",
+      "company_id": "gujarat-themis-biosyn-in",
+      "name_en": "Rifaximin",
+      "name_zh": "利福昔明",
+      "brand_name": "Rifaximin",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "gastroenterology",
+      "indication_en": "Hepatic encephalopathy / traveler's diarrhea",
+      "indication_zh": "肝性脑病/旅行者腹泻",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "other_apac",
+      "confidence": 0.62,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Gujarat Themis Biosyn Ltd Summary | IIFL Capital",
+          "url": "https://www.indiainfoline.com/company/gujarat-themis-biosyn-ltd/summary"
+        }
+      ]
+    },
+    {
+      "id": "jw-pharmaceutical-pitavastatin",
+      "company_id": "jw-pharmaceutical",
+      "name_en": "Pitavastatin",
+      "name_zh": "匹伐他汀",
+      "brand_name": "Livalo",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "cardiometabolic",
+      "indication_en": "Hyperlipidemia / dyslipidemia",
+      "indication_zh": "高脂血症",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "other_apac",
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "JW Pharmaceutical Corporation",
+          "url": "https://www.jw-pharma.co.kr/pharma/en/intro/pharma.jsp"
+        }
+      ]
+    },
+    {
+      "id": "jw-pharmaceutical-fostamatinib",
+      "company_id": "jw-pharmaceutical",
+      "name_en": "Fostamatinib",
+      "name_zh": "福他替尼",
+      "brand_name": "Tavalisse",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "hematology",
+      "indication_en": "Chronic immune thrombocytopenia",
+      "indication_zh": "慢性免疫性血小板减少症",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "other_apac",
+      "confidence": 0.8,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "JW Pharmaceutical Pipeline",
+          "url": "https://www.jw-pharma.co.kr/pharma/en/rnd/research_pipeline.jsp"
+        }
+      ]
+    },
+    {
+      "id": "jw-pharmaceutical-tocilizumab",
+      "company_id": "jw-pharmaceutical",
+      "name_en": "Tocilizumab",
+      "name_zh": "托珠单抗",
+      "brand_name": "Actemra",
+      "modality_id": "mab",
+      "therapeutic_area_id": "immunology",
+      "indication_en": "Rheumatoid arthritis (co-marketed)",
+      "indication_zh": "类风湿关节炎（共同推广）",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "other_apac",
+      "confidence": 0.7,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "JW Pharmaceutical Corporation",
+          "url": "https://www.jw-pharma.co.kr/pharma/en/intro/pharma.jsp"
+        }
+      ]
+    },
+    {
+      "id": "jw-pharmaceutical-bofanglutide",
+      "company_id": "jw-pharmaceutical",
+      "name_en": "Bofanglutide",
+      "name_zh": "博凡鲁肽",
+      "brand_name": "Bofanglutide",
+      "modality_id": "peptide",
+      "therapeutic_area_id": "cardiometabolic",
+      "indication_en": "Type 2 diabetes / obesity (GLP-1 RA, licensed)",
+      "indication_zh": "2型糖尿病/肥胖（GLP-1受体激动剂，授权引进）",
+      "approval_status": "ph3",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "other_apac",
+      "confidence": 0.7,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Gan & Lee licenses Bofanglutide to JW Pharmaceutical",
+          "url": "https://www.prnewswire.com/news-releases/gan--lee-pharmaceuticals-signs-exclusive-license-agreement-with-jw-pharmaceutical-the-leading-south-korean-pharma-to-advance-the-global-commercialization-of-the-innovative-glp-1-receptor-agonist-bofanglutide-302738066.html"
+        }
+      ]
+    },
+    {
+      "id": "g2g-bio-gb-5001",
+      "company_id": "g2g-bio",
+      "name_en": "Donepezil long-acting microsphere injection (GB-5001)",
+      "name_zh": "多奈哌齐长效微球注射剂（GB-5001）",
+      "brand_name": "GB-5001",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "neuroscience",
+      "indication_en": "Alzheimer's disease (once-monthly depot)",
+      "indication_zh": "阿尔茨海默病（每月一次缓释）",
+      "approval_status": "ph1",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "other_apac",
+      "confidence": 0.82,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Microsphere injectables biotech G2Gbio debuts with $38M",
+          "url": "https://www.bioworld.com/articles/723474-microsphere-injectables-biotech-g2gbio-debuts-with-38m?v=preview"
+        }
+      ]
+    },
+    {
+      "id": "g2g-bio-la-semaglutide",
+      "company_id": "g2g-bio",
+      "name_en": "Long-acting semaglutide microsphere (GB-7001)",
+      "name_zh": "长效司美格鲁肽微球",
+      "brand_name": "Long-acting semaglutide",
+      "modality_id": "peptide",
+      "therapeutic_area_id": "cardiometabolic",
+      "indication_en": "Obesity / type 2 diabetes (monthly GLP-1, partnered with Samsung Bioepis)",
+      "indication_zh": "肥胖/2型糖尿病（每月一次GLP-1，与三星Bioepis合作）",
+      "approval_status": "preclinical",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "other_apac",
+      "confidence": 0.78,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Samsung Bioepis, G2GBio partner on long-acting obesity drug",
+          "url": "https://www.koreaherald.com/article/10695402"
+        }
+      ]
+    },
+    {
+      "id": "g2g-bio-gb-6002",
+      "company_id": "g2g-bio",
+      "name_en": "Long-acting microsphere antipsychotic / analgesic candidate",
+      "name_zh": "长效微球抗精神病/镇痛候选药",
+      "brand_name": "InnoLAMP pipeline",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "neuroscience",
+      "indication_en": "Schizophrenia / post-operative pain (long-acting injectable)",
+      "indication_zh": "精神分裂症/术后疼痛（长效注射剂）",
+      "approval_status": "preclinical",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "other_apac",
+      "confidence": 0.6,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "G2GBIO pipeline",
+          "url": "https://www.g2gbio.com/en/"
+        }
+      ]
+    },
+    {
+      "id": "rpg-life-sciences-in-azathioprine",
+      "company_id": "rpg-life-sciences-in",
+      "name_en": "Azathioprine",
+      "name_zh": "硫唑嘌呤",
+      "brand_name": "Azoran",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "immunology",
+      "indication_en": "Transplant rejection prophylaxis, autoimmune disease",
+      "indication_zh": "移植排斥预防、自身免疫病",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "other_apac",
+      "confidence": 0.9,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Our Brand | RPG Life Sciences",
+          "url": "https://rpglifesciences.com/website/our_brand.php"
+        },
+        {
+          "title": "RPG Life Sciences Ltd Products | 1mg",
+          "url": "https://www.1mg.com/marketer/rpg-life-sciences-ltd-56438"
+        }
+      ]
+    },
+    {
+      "id": "rpg-life-sciences-in-naproxen",
+      "company_id": "rpg-life-sciences-in",
+      "name_en": "Naproxen",
+      "name_zh": "萘普生",
+      "brand_name": "Naprosyn",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "immunology",
+      "indication_en": "Pain and inflammation",
+      "indication_zh": "疼痛与炎症",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "other_apac",
+      "confidence": 0.9,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Product Details Naprosyn | RPG Life Sciences",
+          "url": "https://www.rpglifesciences.com/website/product_details.php?title=Naprosyn"
+        }
+      ]
+    },
+    {
+      "id": "rpg-life-sciences-in-spironolactone",
+      "company_id": "rpg-life-sciences-in",
+      "name_en": "Spironolactone",
+      "name_zh": "螺内酯",
+      "brand_name": "Aldactone",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "cardiometabolic",
+      "indication_en": "Hypertension, heart failure, edema",
+      "indication_zh": "高血压、心力衰竭、水肿",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "other_apac",
+      "confidence": 0.88,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Our Brand | RPG Life Sciences",
+          "url": "https://rpglifesciences.com/website/our_brand.php"
+        }
+      ]
+    },
+    {
+      "id": "rpg-life-sciences-in-haloperidol",
+      "company_id": "rpg-life-sciences-in",
+      "name_en": "Haloperidol",
+      "name_zh": "氟哌啶醇",
+      "brand_name": "Serenace",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "neuroscience",
+      "indication_en": "Schizophrenia, psychosis",
+      "indication_zh": "精神分裂症、精神病",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "other_apac",
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Our Brand | RPG Life Sciences",
+          "url": "https://rpglifesciences.com/website/our_brand.php"
+        }
+      ]
+    },
+    {
+      "id": "huons-botulinum-toxin-a",
+      "company_id": "huons",
+      "name_en": "Botulinum toxin type A",
+      "name_zh": "A型肉毒毒素",
+      "brand_name": "Liztox (Hutox)",
+      "modality_id": "recombinant-protein",
+      "therapeutic_area_id": "neuroscience",
+      "indication_en": "Glabellar lines, post-stroke spasticity",
+      "indication_zh": "眉间纹、卒中后痉挛",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "other_apac",
+      "confidence": 0.88,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Liztox Manufacturer - Huons Biopharma",
+          "url": "https://www.medicadepot.com/blog/liztox-manufacturer.html"
+        },
+        {
+          "title": "Botulinum toxin type A (Huons) - Synapse",
+          "url": "https://synapse.patsnap.com/drug/17d996e869de4b468fd2c5014fbc2dae"
+        }
+      ]
+    },
+    {
+      "id": "huons-lidocaine",
+      "company_id": "huons",
+      "name_en": "Lidocaine hydrochloride injection",
+      "name_zh": "盐酸利多卡因注射液",
+      "brand_name": "Huons Lidocaine",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "neuroscience",
+      "indication_en": "Local anesthesia",
+      "indication_zh": "局部麻醉",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "other_apac",
+      "confidence": 0.88,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Huons wins FDA approval for injectable lidocaine - KBR",
+          "url": "https://www.koreabiomed.com/news/articleView.html?idxno=27472"
+        }
+      ]
+    },
+    {
+      "id": "huons-bupivacaine",
+      "company_id": "huons",
+      "name_en": "Bupivacaine hydrochloride injection",
+      "name_zh": "盐酸布比卡因注射液",
+      "brand_name": "Huons Bupivacaine",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "neuroscience",
+      "indication_en": "Local and regional anesthesia",
+      "indication_zh": "局部及区域麻醉",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "other_apac",
+      "confidence": 0.82,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Huons to supply local anesthetic to US - KBR",
+          "url": "https://www.koreabiomed.com/news/articleView.html?idxno=14019"
+        }
+      ]
+    },
+    {
+      "id": "ildong-pharmaceutical-besifovir",
+      "company_id": "ildong-pharmaceutical",
+      "name_en": "Besifovir dipivoxil maleate",
+      "name_zh": "倍司福韦",
+      "brand_name": "Besivo",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "infectious-disease",
+      "indication_en": "Chronic hepatitis B",
+      "indication_zh": "慢性乙型肝炎",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "other_apac",
+      "confidence": 0.88,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Ildong Pharmaceutical",
+          "url": "https://pharmaboardroom.com/directory/ildong-pharmaceutical/"
+        },
+        {
+          "title": "MatrixBCG - Ildong history",
+          "url": "https://matrixbcg.com/blogs/brief-history/ildong"
+        }
+      ]
+    },
+    {
+      "id": "ildong-pharmaceutical-saxagliptin-dapagliflozin",
+      "company_id": "ildong-pharmaceutical",
+      "name_en": "Saxagliptin / dapagliflozin",
+      "name_zh": "沙格列汀/达格列净",
+      "brand_name": "Qtern (Korea)",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "cardiometabolic",
+      "indication_en": "Type 2 diabetes",
+      "indication_zh": "2型糖尿病",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "other_apac",
+      "confidence": 0.78,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Ildong releases DPP4+SGLT2 combo Qtern - KBR",
+          "url": "https://www.koreabiomed.com/news/articleView.html?idxno=12460"
+        }
+      ]
+    },
+    {
+      "id": "ildong-pharmaceutical-novel-diabetes-candidate",
+      "company_id": "ildong-pharmaceutical",
+      "name_en": "ID110521156 (GLP-1/glucagon agonist)",
+      "name_zh": "ID110521156 (糖尿病新药候选)",
+      "brand_name": "ID110521156",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "cardiometabolic",
+      "indication_en": "Type 2 diabetes / obesity",
+      "indication_zh": "2型糖尿病/肥胖",
+      "approval_status": "ph1",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "other_apac",
+      "confidence": 0.65,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Ildong starts Phase 1 diabetes therapy in Germany - PR Newswire",
+          "url": "https://www.prnewswire.com/news-releases/ildong-pharmaceutical-starts-phase-1-study-of-new-diabetes-therapy-in-germany-301324001.html"
+        }
+      ]
+    },
+    {
+      "id": "ever-supreme-bio-umsc01",
+      "company_id": "ever-supreme-bio",
+      "name_en": "Umbilical cord mesenchymal stem cells (UMSC01)",
+      "name_zh": "脐带间充质干细胞 (UMSC01)",
+      "brand_name": "UMSC01",
+      "modality_id": "msc-therapy",
+      "therapeutic_area_id": "cardiometabolic",
+      "indication_en": "Acute myocardial infarction",
+      "indication_zh": "急性心肌梗死",
+      "approval_status": "ph2",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "other_apac",
+      "confidence": 0.8,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Ever Supreme Bio Technology - Taiwan Healthcare",
+          "url": "https://www.taiwan-healthcare.org/en/company-detail?id=0rgghf5x9x5hhxum"
+        },
+        {
+          "title": "Ever Supreme Bio - Synapse",
+          "url": "https://synapse.patsnap.com/organization/fa5ab5820002e41d3c543a8e7a6218fb"
+        }
+      ]
+    },
+    {
+      "id": "ever-supreme-bio-umsc01-stroke",
+      "company_id": "ever-supreme-bio",
+      "name_en": "UMSC01 for acute ischemic stroke",
+      "name_zh": "UMSC01（急性缺血性卒中）",
+      "brand_name": "UMSC01",
+      "modality_id": "msc-therapy",
+      "therapeutic_area_id": "neuroscience",
+      "indication_en": "Acute ischemic stroke",
+      "indication_zh": "急性缺血性卒中",
+      "approval_status": "ph1",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "other_apac",
+      "confidence": 0.78,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "UCMSC in Acute Ischemic Stroke - ClinicalTrials.gov",
+          "url": "https://clinicaltrials.gov/study/NCT04434768"
+        }
+      ]
+    },
+    {
+      "id": "gufic-biosciences-in-teicoplanin",
+      "company_id": "gufic-biosciences-in",
+      "name_en": "Teicoplanin",
+      "name_zh": "替考拉宁",
+      "brand_name": "Ticofic",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "infectious-disease",
+      "indication_en": "Serious Gram-positive bacterial infections (MRSA)",
+      "indication_zh": "严重革兰阳性菌感染（耐甲氧西林金葡菌）",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "other_apac",
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Gufic Biosciences Product List",
+          "url": "https://gufic.com/wp-content/uploads/2023/10/Gufic-Biosciences-Product-List.pdf"
+        },
+        {
+          "title": "HDFC Securities Stock Note - Gufic Biosciences",
+          "url": "https://www.hdfcsec.com/hsl.research.pdf/HSL_Stock%20Note%20-%20Gufic%20BioSciences%20-%20211024.pdf"
+        }
+      ]
+    },
+    {
+      "id": "gufic-biosciences-in-liposomal-amphotericin-b",
+      "company_id": "gufic-biosciences-in",
+      "name_en": "Liposomal Amphotericin B",
+      "name_zh": "脂质体两性霉素B",
+      "brand_name": "Phosome",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "infectious-disease",
+      "indication_en": "Severe systemic and invasive fungal infections",
+      "indication_zh": "严重系统性及侵袭性真菌感染",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "other_apac",
+      "confidence": 0.8,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Gufic Biosciences Product List",
+          "url": "https://gufic.com/wp-content/uploads/2023/10/Gufic-Biosciences-Product-List.pdf"
+        }
+      ]
+    },
+    {
+      "id": "gufic-biosciences-in-micafungin",
+      "company_id": "gufic-biosciences-in",
+      "name_en": "Micafungin",
+      "name_zh": "米卡芬净",
+      "brand_name": "Micafung",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "infectious-disease",
+      "indication_en": "Invasive candidiasis and other fungal infections",
+      "indication_zh": "侵袭性念珠菌病及其他真菌感染",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "other_apac",
+      "confidence": 0.8,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Gufic Biosciences Product List",
+          "url": "https://gufic.com/wp-content/uploads/2023/10/Gufic-Biosciences-Product-List.pdf"
+        }
+      ]
+    },
+    {
+      "id": "gufic-biosciences-in-meropenem",
+      "company_id": "gufic-biosciences-in",
+      "name_en": "Meropenem",
+      "name_zh": "美罗培南",
+      "brand_name": "Merofic",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "infectious-disease",
+      "indication_en": "Severe bacterial infections (carbapenem antibiotic)",
+      "indication_zh": "严重细菌感染（碳青霉烯类抗生素）",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "other_apac",
+      "confidence": 0.8,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Gufic Biosciences Product List",
+          "url": "https://gufic.com/wp-content/uploads/2023/10/Gufic-Biosciences-Product-List.pdf"
+        }
+      ]
+    },
+    {
+      "id": "komipharm-kml001",
+      "company_id": "komipharm",
+      "name_en": "Sodium metaarsenite (KML-001)",
+      "name_zh": "亚砷酸钠（KML-001）",
+      "brand_name": "KML-001",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "oncology",
+      "indication_en": "Metastatic solid tumors / glioblastoma (telomere-targeting)",
+      "indication_zh": "转移性实体瘤／胶质母细胞瘤（靶向端粒）",
+      "approval_status": "ph2",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "other_apac",
+      "confidence": 0.75,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Komipharm pipeline - Synapse",
+          "url": "https://synapse.patsnap.com/organization/fc659f9888f4374feb36cc9eccec149b"
+        },
+        {
+          "title": "KML001 antitumor activity - NCBI",
+          "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3543270/"
+        }
+      ]
+    },
+    {
+      "id": "komipharm-vet-antibiotics",
+      "company_id": "komipharm",
+      "name_en": "Veterinary antibiotic formulations",
+      "name_zh": "兽用抗生素制剂",
+      "brand_name": "Komipharm Veterinary",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "infectious-disease",
+      "indication_en": "Bacterial infections in swine, bovine, poultry, canine",
+      "indication_zh": "猪牛禽犬细菌感染",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "other_apac",
+      "confidence": 0.7,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Komipharm International",
+          "url": "https://komipharm.co.kr/en/"
+        }
+      ]
+    },
+    {
+      "id": "unichem-labs-in-losar-losartan",
+      "company_id": "unichem-labs-in",
+      "name_en": "Losartan Potassium",
+      "name_zh": "氯沙坦钾",
+      "brand_name": "Losar",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "cardiometabolic",
+      "indication_en": "Hypertension (angiotensin receptor blocker)",
+      "indication_zh": "高血压（血管紧张素受体拮抗剂）",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "other_apac",
+      "confidence": 0.88,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Unichem Laboratories Investor Update",
+          "url": "https://unichemlabs.com/pdf/investor-release/InvestorUpdateQ3FY12-13.pdf"
+        }
+      ]
+    },
+    {
+      "id": "unichem-labs-in-telsar-telmisartan",
+      "company_id": "unichem-labs-in",
+      "name_en": "Telmisartan",
+      "name_zh": "替米沙坦",
+      "brand_name": "Telsar",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "cardiometabolic",
+      "indication_en": "Hypertension (angiotensin receptor blocker)",
+      "indication_zh": "高血压（血管紧张素受体拮抗剂）",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "other_apac",
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Unichem Laboratories Investor Update",
+          "url": "https://unichemlabs.com/pdf/investor-release/InvestorUpdateQ3FY12-13.pdf"
+        }
+      ]
+    },
+    {
+      "id": "unichem-labs-in-ampoxin-ampicillin-cloxacillin",
+      "company_id": "unichem-labs-in",
+      "name_en": "Ampicillin + Cloxacillin",
+      "name_zh": "氨苄西林+氯唑西林",
+      "brand_name": "Ampoxin",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "infectious-disease",
+      "indication_en": "Bacterial infections (combination antibiotic)",
+      "indication_zh": "细菌感染（复方抗生素）",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "other_apac",
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Unichem Laboratories Ltd. - Medindia",
+          "url": "https://www.medindia.net/drugs/manufacturers/unichem-laboratories-ltd.htm"
+        }
+      ]
+    },
+    {
+      "id": "unichem-labs-in-vizylac-probiotic",
+      "company_id": "unichem-labs-in",
+      "name_en": "Lactic Acid Bacillus + B-complex",
+      "name_zh": "乳酸杆菌+B族维生素",
+      "brand_name": "Vizylac",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "gastroenterology",
+      "indication_en": "Restoration of gut flora / digestive health",
+      "indication_zh": "肠道菌群恢复/消化健康",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "other_apac",
+      "confidence": 0.78,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Unichem Laboratories Ltd. - Medindia",
+          "url": "https://www.medindia.net/drugs/manufacturers/unichem-laboratories-ltd.htm"
+        }
+      ]
+    },
+    {
+      "id": "ysp-southeast-asia-paracetamol-yspharma",
+      "company_id": "ysp-southeast-asia",
+      "name_en": "Paracetamol",
+      "name_zh": "对乙酰氨基酚",
+      "brand_name": "YSP Paracetamol",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "respiratory",
+      "indication_en": "Fever and pain relief",
+      "indication_zh": "退热与镇痛",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "other_apac",
+      "confidence": 0.6,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Y.S.P. Industries (M) Sdn. Bhd.",
+          "url": "https://www.yspsah.com/"
+        }
+      ]
+    },
+    {
+      "id": "ysp-southeast-asia-amoxicillin",
+      "company_id": "ysp-southeast-asia",
+      "name_en": "Amoxicillin",
+      "name_zh": "阿莫西林",
+      "brand_name": "YSP Amoxicillin",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "infectious-disease",
+      "indication_en": "Bacterial infections (broad-spectrum antibiotic)",
+      "indication_zh": "细菌感染（广谱抗生素）",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "other_apac",
+      "confidence": 0.6,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Y.S.P. Southeast Asia Holding Berhad profile",
+          "url": "https://finance.yahoo.com/quote/7178.KL/profile/"
+        }
+      ]
+    },
+    {
+      "id": "ysp-southeast-asia-metformin",
+      "company_id": "ysp-southeast-asia",
+      "name_en": "Metformin",
+      "name_zh": "二甲双胍",
+      "brand_name": "YSP Metformin",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "cardiometabolic",
+      "indication_en": "Type 2 diabetes mellitus",
+      "indication_zh": "2型糖尿病",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "other_apac",
+      "confidence": 0.58,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Y.S.P. Southeast Asia Holding Berhad profile",
+          "url": "https://finance.yahoo.com/quote/7178.KL/profile/"
+        }
+      ]
+    },
+    {
       "id": "zydus-lipaglyn",
       "name_zh": "利帕格林",
       "name_en": "Lipaglyn (saroglitazar)",

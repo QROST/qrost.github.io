@@ -370,6 +370,102 @@
       ]
     },
     {
+      "id": "spimaco-sa-megamox",
+      "company_id": "spimaco-sa",
+      "name_en": "Amoxicillin/Clavulanic Acid",
+      "name_zh": "阿莫西林/克拉维酸",
+      "brand_name": "Megamox",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "infectious-disease",
+      "indication_en": "Broad-spectrum bacterial infections",
+      "indication_zh": "广谱细菌感染",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "mea",
+      "confidence": 0.78,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "SPIMACO official site",
+          "url": "https://www.spimaco.com.sa/"
+        },
+        {
+          "title": "Megamox product listing",
+          "url": "https://lemon.sa/en/megamox-1-gm-tablets-14-s"
+        }
+      ]
+    },
+    {
+      "id": "spimaco-sa-ferrose",
+      "company_id": "spimaco-sa",
+      "name_en": "Ferrous Iron / Folic Acid / Vitamin B12",
+      "name_zh": "铁剂/叶酸/维生素B12复方",
+      "brand_name": "Ferrose",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "hematology",
+      "indication_en": "Iron-deficiency anemia / nutritional supplementation",
+      "indication_zh": "缺铁性贫血/营养补充",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "mea",
+      "confidence": 0.6,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "SPIMACO official site",
+          "url": "https://www.spimaco.com.sa/"
+        }
+      ]
+    },
+    {
+      "id": "avalon-pharma-sa-minoxidil",
+      "company_id": "avalon-pharma-sa",
+      "name_en": "Minoxidil",
+      "name_zh": "米诺地尔",
+      "brand_name": "Avogain",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "dermatology",
+      "indication_en": "Androgenetic alopecia / hair loss",
+      "indication_zh": "雄激素性脱发",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "mea",
+      "confidence": 0.78,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Avalon Pharma company profile",
+          "url": "https://intuitionlabs.ai/companies/biotech/avalon-pharma-middle-east-pharmaceutical-industries-co"
+        }
+      ]
+    },
+    {
+      "id": "avalon-pharma-sa-hydroquinone",
+      "company_id": "avalon-pharma-sa",
+      "name_en": "Hydroquinone",
+      "name_zh": "氢醌",
+      "brand_name": "Alpha Plus",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "dermatology",
+      "indication_en": "Hyperpigmentation / skin lightening",
+      "indication_zh": "色素沉着",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "mea",
+      "confidence": 0.7,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Avalon Pharma company profile",
+          "url": "https://intuitionlabs.ai/companies/biotech/avalon-pharma-middle-east-pharmaceutical-industries-co"
+        }
+      ]
+    },
+    {
       "id": "austedo",
       "name_zh": "AUSTEDO（氘代丁苯那嗪）",
       "name_en": "AUSTEDO",

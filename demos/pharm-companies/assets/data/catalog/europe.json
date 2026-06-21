@@ -2432,6 +2432,708 @@
       ]
     },
     {
+      "id": "laboratoires-thea-iyuzeh",
+      "company_id": "laboratoires-thea",
+      "name_en": "Latanoprost (preservative-free)",
+      "name_zh": "拉坦前列素（无防腐剂）",
+      "brand_name": "IYUZEH",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "ophthalmology",
+      "indication_en": "Open-angle glaucoma, ocular hypertension",
+      "indication_zh": "开角型青光眼、高眼压症",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "europe",
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Thea receives FDA approval for preservative-free latanoprost",
+          "url": "https://www.ophthalmologytimes.com/view/thea-receives-fda-approval-for-preservative-free-latanoprost-for-iop-reduction"
+        }
+      ]
+    },
+    {
+      "id": "laboratoires-thea-vevizye",
+      "company_id": "laboratoires-thea",
+      "name_en": "Ciclosporin 0.1% (eye drops)",
+      "name_zh": "环孢素0.1%滴眼液",
+      "brand_name": "Vevizye",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "ophthalmology",
+      "indication_en": "Dry eye disease",
+      "indication_zh": "干眼症",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "europe",
+      "confidence": 0.83,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Novaliq and Laboratoires Théa EU approval for Vevizye",
+          "url": "https://www.novaliq.com/press-releases/2024/10/02/novaliq-and-laboratoires-thea-announce-partnership-and-eu-approval-for-vevizye-ciclosporin-0-1-eye-drops-solution/"
+        }
+      ]
+    },
+    {
+      "id": "laboratoires-thea-travoprost-pf",
+      "company_id": "laboratoires-thea",
+      "name_en": "Travoprost (preservative-free)",
+      "name_zh": "曲伏前列素（无防腐剂）",
+      "brand_name": "Travanix",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "ophthalmology",
+      "indication_en": "Open-angle glaucoma, ocular hypertension",
+      "indication_zh": "开角型青光眼、高眼压症",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "europe",
+      "confidence": 0.72,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Théa Pharmaceuticals - Our Story",
+          "url": "https://www.thea-pharmaceuticals.co.uk/about-us"
+        }
+      ]
+    },
+    {
+      "id": "reig-jofre-mecaptril",
+      "company_id": "reig-jofre",
+      "name_en": "Cloxacillin",
+      "name_zh": "氯唑西林",
+      "brand_name": "Cloxacillin Reig Jofre",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "infectious-disease",
+      "indication_en": "Staphylococcal and other beta-lactamase-producing bacterial infections",
+      "indication_zh": "葡萄球菌等耐酶细菌感染",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "europe",
+      "confidence": 0.75,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Products - Reig Jofre",
+          "url": "https://reigjofre.com/en/about-us/reig-jofre-in-brief/"
+        }
+      ]
+    },
+    {
+      "id": "reig-jofre-amoxicillin",
+      "company_id": "reig-jofre",
+      "name_en": "Amoxicillin / Clavulanic acid",
+      "name_zh": "阿莫西林/克拉维酸",
+      "brand_name": "Amoxicillin-Clavulanate Reig Jofre",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "infectious-disease",
+      "indication_en": "Broad-spectrum bacterial infections (penicillin-derived antibiotic)",
+      "indication_zh": "广谱细菌感染（青霉素类抗生素）",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "europe",
+      "confidence": 0.78,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Who we are | Laboratorio Reig Jofre",
+          "url": "https://reigjofre.com/en/about-us/reig-jofre-in-brief/"
+        }
+      ]
+    },
+    {
+      "id": "reig-jofre-lb-0702",
+      "company_id": "reig-jofre",
+      "name_en": "Biosimilar candidate (Syna Therapeutics LB-0702)",
+      "name_zh": "生物类似药候选物（LB-0702）",
+      "brand_name": "LB-0702",
+      "modality_id": "biosimilar",
+      "therapeutic_area_id": "oncology",
+      "indication_en": "Oncology / supportive care biosimilar (in development)",
+      "indication_zh": "肿瘤/支持治疗生物类似药（在研）",
+      "approval_status": "ph2",
+      "drug_class": "biosimilar",
+      "is_blockbuster": false,
+      "region": "europe",
+      "confidence": 0.6,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Reig Jofre and Leanbio create the joint venture Syna Therapeutics",
+          "url": "https://reigjofre.com/en/noticias/item/reig-jofre-and-leanbio-create-the-joint-venture-syna-therapeutics-for-the-development-of-biosimilar-products/"
+        }
+      ]
+    },
+    {
+      "id": "reig-jofre-lb-07802",
+      "company_id": "reig-jofre",
+      "name_en": "Biosimilar candidate (Syna Therapeutics LB-07802)",
+      "name_zh": "生物类似药候选物（LB-07802）",
+      "brand_name": "LB-07802",
+      "modality_id": "biosimilar",
+      "therapeutic_area_id": "hematology",
+      "indication_en": "Hematology biosimilar (clinical development)",
+      "indication_zh": "血液病领域生物类似药（临床研发）",
+      "approval_status": "ph1",
+      "drug_class": "biosimilar",
+      "is_blockbuster": false,
+      "region": "europe",
+      "confidence": 0.58,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Reig Jofre and Leanbio Form Joint Venture to Develop Biosimilars",
+          "url": "https://www.pharmtech.com/view/reig-jofre-and-leanbio-form-joint-venture-develop-biosimilars"
+        }
+      ]
+    },
+    {
+      "id": "celon-pharma-pl-salmex",
+      "company_id": "celon-pharma-pl",
+      "name_en": "Salmeterol + Fluticasone propionate (DPI)",
+      "name_zh": "沙美特罗+丙酸氟替卡松干粉吸入剂",
+      "brand_name": "Salmex",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "respiratory",
+      "indication_en": "Asthma and COPD",
+      "indication_zh": "哮喘与慢阻肺",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "europe",
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Celon Pharma pipeline - PharmaCompass",
+          "url": "https://www.pharmacompass.com/pipeline-prospector-drugs-in-development/celon-pharma"
+        }
+      ]
+    },
+    {
+      "id": "celon-pharma-pl-falkieri",
+      "company_id": "celon-pharma-pl",
+      "name_en": "Esketamine (dry powder inhalation)",
+      "name_zh": "艾司氯胺酮干粉吸入剂",
+      "brand_name": "Falkieri",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "neuroscience",
+      "indication_en": "Treatment-resistant bipolar / depression",
+      "indication_zh": "难治性双相抑郁/抑郁症",
+      "approval_status": "ph3",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "europe",
+      "confidence": 0.83,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Celon Pharma / Novohale Falkieri Phase 3",
+          "url": "https://www.oindpnews.com/2024/05/celon-pharma-announces-creation-of-novohale-therapeutics-in-partnership-with-tang-capital-phase-3-development-of-falkieri-esketamine-dpi/"
+        }
+      ]
+    },
+    {
+      "id": "celon-pharma-pl-cpl409116",
+      "company_id": "celon-pharma-pl",
+      "name_en": "CPL409116 (oral JAK/ROCK dual inhibitor)",
+      "name_zh": "CPL409116 口服 JAK/ROCK 双重抑制剂",
+      "brand_name": "CPL'116",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "immunology",
+      "indication_en": "Rheumatoid arthritis / autoimmune diseases",
+      "indication_zh": "类风湿关节炎/自身免疫病",
+      "approval_status": "ph2",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "europe",
+      "confidence": 0.75,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Celon Pharma pipeline - PharmaCompass",
+          "url": "https://www.pharmacompass.com/pipeline-prospector-drugs-in-development/celon-pharma"
+        }
+      ]
+    },
+    {
+      "id": "innate-pharma-monalizumab",
+      "company_id": "innate-pharma",
+      "name_en": "Monalizumab",
+      "name_zh": "莫纳利珠单抗",
+      "brand_name": "Monalizumab",
+      "modality_id": "mab",
+      "therapeutic_area_id": "oncology",
+      "indication_en": "Non-small cell lung cancer (anti-NKG2A, with AstraZeneca)",
+      "indication_zh": "非小细胞肺癌（抗NKG2A，与阿斯利康合作）",
+      "approval_status": "ph3",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "europe",
+      "confidence": 0.9,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Innate Pharma Monalizumab",
+          "url": "https://www.innate-pharma.com/products/monalizumab"
+        }
+      ]
+    },
+    {
+      "id": "innate-pharma-lacutamab",
+      "company_id": "innate-pharma",
+      "name_en": "Lacutamab",
+      "name_zh": "拉库妥单抗",
+      "brand_name": "Lacutamab",
+      "modality_id": "mab",
+      "therapeutic_area_id": "oncology",
+      "indication_en": "Cutaneous / peripheral T-cell lymphoma (anti-KIR3DL2)",
+      "indication_zh": "皮肤/外周T细胞淋巴瘤（抗KIR3DL2）",
+      "approval_status": "ph3",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "europe",
+      "confidence": 0.9,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Innate Pharma lacutamab BTD",
+          "url": "https://www.businesswire.com/news/home/20240103221044/en/Innate-Pharma-Announces-U.S.-FDA-Lifts-Partial-Clinical-Hold-on-Lacutamab-Clinical-Program"
+        }
+      ]
+    },
+    {
+      "id": "innate-pharma-iph4502",
+      "company_id": "innate-pharma",
+      "name_en": "IPH4502",
+      "name_zh": "IPH4502",
+      "brand_name": "IPH4502",
+      "modality_id": "adc",
+      "therapeutic_area_id": "oncology",
+      "indication_en": "Solid tumors (Nectin-4 antibody-drug conjugate)",
+      "indication_zh": "实体瘤（Nectin-4抗体偶联药物）",
+      "approval_status": "ph1",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "europe",
+      "confidence": 0.82,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Innate Pharma pipeline",
+          "url": "https://www.innate-pharma.com/"
+        }
+      ]
+    },
+    {
+      "id": "curium-pharma-ioflupane-i-123",
+      "company_id": "curium-pharma",
+      "name_en": "Ioflupane I 123 Injection",
+      "name_zh": "碘[123I]氟潘注射液",
+      "brand_name": "DaTscan (generic)",
+      "modality_id": "radioligand",
+      "therapeutic_area_id": "neuroscience",
+      "indication_en": "SPECT imaging of striatal dopamine transporters in suspected Parkinsonian syndromes",
+      "indication_zh": "用于疑似帕金森综合征的纹状体多巴胺转运体SPECT显像",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "europe",
+      "confidence": 0.9,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Curium Announces FDA Approval of a Generic Version of DaTscan",
+          "url": "https://www.curiumpharma.com/2022/04/05/curium-announces-fda-approval-of-a-generic-version-of-datscan-ioflupane-i-123-injection-in-the-u-s/"
+        }
+      ]
+    },
+    {
+      "id": "curium-pharma-copper-cu-64-dotatate",
+      "company_id": "curium-pharma",
+      "name_en": "Copper Cu 64 Dotatate Injection",
+      "name_zh": "铜[64Cu]多塔肽注射液",
+      "brand_name": "Detectnet",
+      "modality_id": "radioligand",
+      "therapeutic_area_id": "oncology",
+      "indication_en": "PET imaging of somatostatin receptor-positive neuroendocrine tumors",
+      "indication_zh": "用于生长抑素受体阳性神经内分泌肿瘤的PET显像",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "europe",
+      "confidence": 0.9,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "RadioMedix and Curium Announce FDA Approval of Detectnet",
+          "url": "https://www.curiumpharma.com/2020/09/08/radiomedix-and-curium-announce-fda-approval-of-detectnet-copper-cu-64-dotatate-injection-in-the-u-s/"
+        }
+      ]
+    },
+    {
+      "id": "curium-pharma-lutetium-lu-177-psma-it",
+      "company_id": "curium-pharma",
+      "name_en": "Lutetium Lu 177 PSMA-I&T",
+      "name_zh": "镥[177Lu]PSMA-I&T",
+      "brand_name": "177Lu-PSMA-I&T",
+      "modality_id": "radioligand",
+      "therapeutic_area_id": "oncology",
+      "indication_en": "Metastatic castration-resistant prostate cancer",
+      "indication_zh": "转移性去势抵抗性前列腺癌",
+      "approval_status": "ph3",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "europe",
+      "confidence": 0.8,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Radioligand Therapies Market / Curium ECLIPSE Phase III",
+          "url": "https://www.prnewswire.com/news-releases/radioligand-therapies-market-set-for-significant-growth-by-2034-driven-by-rising-cancer-burden-and-targeted-radiopharmaceutical-innovation--delveinsight-302711896.html"
+        }
+      ]
+    },
+    {
+      "id": "curium-pharma-lutetium-lu-177-dotatate",
+      "company_id": "curium-pharma",
+      "name_en": "Lutetium Lu 177 Dotatate Injection",
+      "name_zh": "镥[177Lu]多塔肽注射液",
+      "brand_name": "Lutetium Lu 177 Dotatate",
+      "modality_id": "radioligand",
+      "therapeutic_area_id": "oncology",
+      "indication_en": "Somatostatin receptor-positive gastroenteropancreatic neuroendocrine tumors",
+      "indication_zh": "生长抑素受体阳性胃肠胰神经内分泌肿瘤",
+      "approval_status": "filed",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "europe",
+      "confidence": 0.75,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Curium US products",
+          "url": "https://www.curiumpharma.com/products/us-products/"
+        }
+      ]
+    },
+    {
+      "id": "vetoquinol-marbofloxacin",
+      "company_id": "vetoquinol",
+      "name_en": "Marbofloxacin",
+      "name_zh": "马波沙星",
+      "brand_name": "Marbocyl",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "infectious-disease",
+      "indication_en": "Bacterial infections in dogs/cats/cattle (veterinary)",
+      "indication_zh": "犬猫牛细菌感染（兽用）",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "europe",
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Marbocyl P - Vetoquinol UK",
+          "url": "https://www.vetoquinol.co.uk/products/marbocylr-p"
+        }
+      ]
+    },
+    {
+      "id": "vetoquinol-felpreva",
+      "company_id": "vetoquinol",
+      "name_en": "Tigolaner/Emodepside/Praziquantel",
+      "name_zh": "替戈拉纳/恩诺地泮/吡喹酮复方",
+      "brand_name": "Felpreva",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "infectious-disease",
+      "indication_en": "Feline endo/ectoparasite spot-on (veterinary)",
+      "indication_zh": "猫体内外寄生虫滴剂（兽用）",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "europe",
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Vetoquinol launches Felpreva",
+          "url": "https://international-animalhealth.com/vetoquinol-launches-felpreva-a-new-three-monthly-feline-spot-on-parasiticide/"
+        }
+      ]
+    },
+    {
+      "id": "vetoquinol-desoxycortone",
+      "company_id": "vetoquinol",
+      "name_en": "Desoxycortone pivalate",
+      "name_zh": "新戊酸去氧皮质酮",
+      "brand_name": "Zycortal",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "rare-disease",
+      "indication_en": "Canine hypoadrenocorticism (Addison's, veterinary)",
+      "indication_zh": "犬肾上腺皮质功能减退（兽用）",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "europe",
+      "confidence": 0.75,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Vetoquinol products",
+          "url": "https://www.vetoquinol.com/en/products"
+        }
+      ]
+    },
+    {
+      "id": "hipra-bimervax",
+      "company_id": "hipra",
+      "name_en": "PHH-1V RBD fusion heterodimer vaccine",
+      "name_zh": "PHH-1V重组RBD融合异二聚体疫苗",
+      "brand_name": "Bimervax",
+      "modality_id": "protein-subunit-vaccine",
+      "therapeutic_area_id": "vaccines",
+      "indication_en": "COVID-19 booster vaccination (human)",
+      "indication_zh": "新冠加强免疫（人用）",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "europe",
+      "confidence": 0.88,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "EMA rolling review of COVID-19 Vaccine HIPRA (PHH-1V)",
+          "url": "https://www.ema.europa.eu/en/news/ema-starts-rolling-review-covid-19-vaccine-hipra-phh-1v"
+        }
+      ]
+    },
+    {
+      "id": "hipra-unistrain-prrs",
+      "company_id": "hipra",
+      "name_en": "PRRS modified-live virus vaccine",
+      "name_zh": "猪繁殖与呼吸综合征活疫苗",
+      "brand_name": "UNISTRAIN PRRS",
+      "modality_id": "viral-vector-vaccine",
+      "therapeutic_area_id": "vaccines",
+      "indication_en": "Porcine reproductive and respiratory syndrome (swine)",
+      "indication_zh": "猪繁殖与呼吸综合征（猪用）",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "europe",
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "HIPRA Swine vaccines",
+          "url": "https://www.hipra.com/en/species/swine"
+        }
+      ]
+    },
+    {
+      "id": "hipra-eryseng",
+      "company_id": "hipra",
+      "name_en": "Inactivated swine erysipelas vaccine",
+      "name_zh": "猪丹毒灭活疫苗",
+      "brand_name": "ERYSENG",
+      "modality_id": "inactivated-vaccine",
+      "therapeutic_area_id": "vaccines",
+      "indication_en": "Swine erysipelas (swine)",
+      "indication_zh": "猪丹毒（猪用）",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "europe",
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "HIPRA ERYSENG vaccine",
+          "url": "https://www.hipra.com/en/animal-health/products/eryseng"
+        }
+      ]
+    },
+    {
+      "id": "hipra-rhiniseng",
+      "company_id": "hipra",
+      "name_en": "Atrophic rhinitis inactivated vaccine",
+      "name_zh": "猪萎缩性鼻炎灭活疫苗",
+      "brand_name": "RHINISENG",
+      "modality_id": "inactivated-vaccine",
+      "therapeutic_area_id": "vaccines",
+      "indication_en": "Progressive/non-progressive atrophic rhinitis (swine)",
+      "indication_zh": "猪进行性/非进行性萎缩性鼻炎（猪用）",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "europe",
+      "confidence": 0.82,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "HIPRA RHINISENG vaccine",
+          "url": "https://www.hipra.com/en/rhiniseng"
+        }
+      ]
+    },
+    {
+      "id": "deva-holding-tr-enoxaparin",
+      "company_id": "deva-holding-tr",
+      "name_en": "Enoxaparin sodium",
+      "name_zh": "依诺肝素钠",
+      "brand_name": "Deva Enoxaparin",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "hematology",
+      "indication_en": "Anticoagulant for thromboembolism prophylaxis/treatment",
+      "indication_zh": "抗凝，预防／治疗血栓栓塞",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "europe",
+      "confidence": 0.65,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Deva Holding",
+          "url": "https://deva.com.tr/en/"
+        },
+        {
+          "title": "Deva Holding - Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Deva_Holding_A.S."
+        }
+      ]
+    },
+    {
+      "id": "deva-holding-tr-anti-infectives",
+      "company_id": "deva-holding-tr",
+      "name_en": "Antibiotic / anti-infective generics portfolio",
+      "name_zh": "抗生素／抗感染仿制药组合",
+      "brand_name": "Deva Anti-infectives",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "infectious-disease",
+      "indication_en": "Bacterial infections (core revenue driver)",
+      "indication_zh": "细菌感染（核心收入来源）",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "europe",
+      "confidence": 0.7,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Deva Holding",
+          "url": "https://deva.com.tr/en/"
+        },
+        {
+          "title": "Pharmaboardroom - Deva Turkey",
+          "url": "https://pharmaboardroom.com/directory/deva-turkey/"
+        }
+      ]
+    },
+    {
+      "id": "deva-holding-tr-cardiovascular-portfolio",
+      "company_id": "deva-holding-tr",
+      "name_en": "Cardiovascular generics portfolio",
+      "name_zh": "心血管仿制药组合",
+      "brand_name": "Deva Cardiovascular",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "cardiometabolic",
+      "indication_en": "Hypertension and cardiovascular disease",
+      "indication_zh": "高血压及心血管疾病",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "europe",
+      "confidence": 0.7,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Deva Holding",
+          "url": "https://deva.com.tr/en/"
+        }
+      ]
+    },
+    {
+      "id": "bial-zebinix-eslicarbazepine",
+      "company_id": "bial",
+      "name_en": "Eslicarbazepine acetate",
+      "name_zh": "醋酸艾司利卡西平",
+      "brand_name": "Zebinix",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "neuroscience",
+      "indication_en": "Partial-onset (focal) epileptic seizures",
+      "indication_zh": "部分性（局灶性）癫痫发作",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "europe",
+      "confidence": 0.92,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "BIAL - Zebinix commercialisation in Europe",
+          "url": "https://www.businesswire.com/news/home/20210217005821/en/"
+        },
+        {
+          "title": "Eslicarbazepine acetate - Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Eslicarbazepine_acetate"
+        }
+      ]
+    },
+    {
+      "id": "bial-ongentys-opicapone",
+      "company_id": "bial",
+      "name_en": "Opicapone",
+      "name_zh": "奥匹卡朋",
+      "brand_name": "Ongentys",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "neuroscience",
+      "indication_en": "Parkinson's disease 'off' episodes (COMT inhibitor adjunct)",
+      "indication_zh": "帕金森病'关期'（COMT抑制剂辅助治疗）",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "europe",
+      "confidence": 0.92,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Pipeline | Bial",
+          "url": "https://www.bial.com/en/our-research/pipeline"
+        }
+      ]
+    },
+    {
+      "id": "bial-nebivolol",
+      "company_id": "bial",
+      "name_en": "Nebivolol",
+      "name_zh": "奈必洛尔",
+      "brand_name": "Nebicor",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "cardiometabolic",
+      "indication_en": "Hypertension (beta-blocker)",
+      "indication_zh": "高血压（β受体阻滞剂）",
+      "approval_status": "approved",
+      "drug_class": "generic",
+      "is_blockbuster": false,
+      "region": "europe",
+      "confidence": 0.65,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Our Products | Bial",
+          "url": "https://www.bial.com/en/products"
+        }
+      ]
+    },
+    {
       "id": "vyvgart-efgartigimod",
       "name_zh": "艾加莫德（VYVGART®）",
       "name_en": "VYVGART / VYVGART SC",

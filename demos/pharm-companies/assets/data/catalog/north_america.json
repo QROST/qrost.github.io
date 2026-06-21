@@ -1404,6 +1404,1020 @@
       ]
     },
     {
+      "id": "sana-biotechnology-sc291",
+      "company_id": "sana-biotechnology",
+      "name_en": "SC291",
+      "name_zh": "SC291",
+      "brand_name": "SC291",
+      "modality_id": "car-t",
+      "therapeutic_area_id": "immunology",
+      "indication_en": "B-cell mediated autoimmune diseases (CD19-directed allogeneic CAR T)",
+      "indication_zh": "B细胞介导的自身免疫病（CD19定向异体CAR-T）",
+      "approval_status": "ph1",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "north_america",
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Sana Q1 2026 results",
+          "url": "https://sana.gcs-web.com/news-releases/news-release-details/sana-biotechnology-reports-first-quarter-2026-financial-results"
+        }
+      ]
+    },
+    {
+      "id": "sana-biotechnology-up421",
+      "company_id": "sana-biotechnology",
+      "name_en": "UP421",
+      "name_zh": "UP421",
+      "brand_name": "UP421",
+      "modality_id": "msc-therapy",
+      "therapeutic_area_id": "cardiometabolic",
+      "indication_en": "Type 1 diabetes (HIP-engineered allogeneic primary islet cell therapy)",
+      "indication_zh": "1型糖尿病（HIP改造异体原代胰岛细胞疗法）",
+      "approval_status": "ph1",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "north_america",
+      "confidence": 0.82,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Sana T1D islet cell update",
+          "url": "https://ir.sana.com/news-releases/news-release-details/sana-biotechnology-announces-continued-positive-clinical-results"
+        }
+      ]
+    },
+    {
+      "id": "sana-biotechnology-sc451",
+      "company_id": "sana-biotechnology",
+      "name_en": "SC451",
+      "name_zh": "SC451",
+      "brand_name": "SC451",
+      "modality_id": "msc-therapy",
+      "therapeutic_area_id": "cardiometabolic",
+      "indication_en": "Type 1 diabetes (HIP-modified stem cell-derived islet cell therapy)",
+      "indication_zh": "1型糖尿病（HIP改造干细胞来源胰岛细胞疗法）",
+      "approval_status": "preclinical",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "north_america",
+      "confidence": 0.8,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Sana FY2024 results",
+          "url": "https://ir.sana.com/news-releases/news-release-details/sana-biotechnology-reports-fourth-quarter-and-full-year-2024"
+        }
+      ]
+    },
+    {
+      "id": "inhibrx-biosciences-ozekibart",
+      "company_id": "inhibrx-biosciences",
+      "name_en": "Ozekibart",
+      "name_zh": "奥泽吉巴特",
+      "brand_name": "Ozekibart",
+      "modality_id": "mab",
+      "therapeutic_area_id": "oncology",
+      "indication_en": "Conventional chondrosarcoma; colorectal cancer; Ewing sarcoma (DR5 agonist antibody)",
+      "indication_zh": "传统型软骨肉瘤、结直肠癌、尤文肉瘤（DR5激动型抗体）",
+      "approval_status": "filed",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "north_america",
+      "confidence": 0.9,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "FDA accepts BLA for ozekibart",
+          "url": "https://www.prnewswire.com/news-releases/inhibrx-announces-us-fda-acceptance-of-bla-for-ozekibart-in-patients-with-conventional-chondrosarcoma-302800101.html"
+        },
+        {
+          "title": "Inhibrx pipeline",
+          "url": "https://inhibrx.com/pipeline/"
+        }
+      ]
+    },
+    {
+      "id": "inhibrx-biosciences-inbrx-106",
+      "company_id": "inhibrx-biosciences",
+      "name_en": "INBRX-106",
+      "name_zh": "INBRX-106",
+      "brand_name": "INBRX-106",
+      "modality_id": "mab",
+      "therapeutic_area_id": "oncology",
+      "indication_en": "HNSCC / NSCLC solid tumors (hexavalent OX40 agonist)",
+      "indication_zh": "头颈鳞癌/非小细胞肺癌实体瘤（六价OX40激动剂）",
+      "approval_status": "ph2",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "north_america",
+      "confidence": 0.88,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Inhibrx interim Ph2 INBRX-106 data",
+          "url": "https://inhibrxbiosciences.investorroom.com/2026-05-11-Inhibrx-Reports-Interim-Phase-2-Data-for-INBRX-106-in-First-Line-HNSCC-Initial-Results-Demonstrate-Potential-Costimulatory-Benefit-Over-PD-1-Monotherapy"
+        }
+      ]
+    },
+    {
+      "id": "dynavax-technologies-heplisav-b",
+      "company_id": "dynavax-technologies",
+      "name_en": "Hepatitis B vaccine (recombinant, adjuvanted)",
+      "name_zh": "重组佐剂乙型肝炎疫苗",
+      "brand_name": "Heplisav-B",
+      "modality_id": "protein-subunit-vaccine",
+      "therapeutic_area_id": "vaccines",
+      "indication_en": "Prevention of hepatitis B in adults",
+      "indication_zh": "成人乙型肝炎预防",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "north_america",
+      "latest_annual_sales": {
+        "value": 268,
+        "currency": "USD",
+        "year": 2024
+      },
+      "confidence": 0.88,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Sanofi to Acquire Dynavax",
+          "url": "https://www.prnewswire.com/news-releases/sanofi-to-acquire-dynavax-adding-a-marketed-adult-hepatitis-b-vaccine-and-phase-12-shingles-candidate-to-the-pipeline-302649146.html"
+        }
+      ]
+    },
+    {
+      "id": "dynavax-technologies-cpg-1018",
+      "company_id": "dynavax-technologies",
+      "name_en": "CpG 1018 vaccine adjuvant",
+      "name_zh": "CpG 1018 疫苗佐剂",
+      "brand_name": "CpG 1018",
+      "modality_id": "protein-subunit-vaccine",
+      "therapeutic_area_id": "vaccines",
+      "indication_en": "Adjuvant for COVID-19, influenza, plague vaccines",
+      "indication_zh": "新冠/流感/鼠疫疫苗佐剂",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "north_america",
+      "confidence": 0.78,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Dynavax 8-K commercial products",
+          "url": "https://www.sec.gov/Archives/edgar/data/0001029142/000095017024091760/dvax-ex99_1.htm"
+        }
+      ]
+    },
+    {
+      "id": "dynavax-technologies-z-1018",
+      "company_id": "dynavax-technologies",
+      "name_en": "Z-1018 shingles vaccine candidate",
+      "name_zh": "Z-1018 带状疱疹疫苗候选",
+      "brand_name": "Z-1018",
+      "modality_id": "protein-subunit-vaccine",
+      "therapeutic_area_id": "vaccines",
+      "indication_en": "Prevention of shingles (herpes zoster)",
+      "indication_zh": "带状疱疹预防",
+      "approval_status": "ph2",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "north_america",
+      "confidence": 0.8,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Dynavax Initiates Phase 1/2 Study of Novel Shingles Vaccine",
+          "url": "https://www.prnewswire.com/news-releases/dynavax-initiates-phase-12-study-of-novel-shingles-vaccine-program-302185089.html"
+        }
+      ]
+    },
+    {
+      "id": "dynavax-technologies-tdap-1018",
+      "company_id": "dynavax-technologies",
+      "name_en": "Tdap-1018 booster vaccine candidate",
+      "name_zh": "Tdap-1018 加强免疫疫苗候选",
+      "brand_name": "Tdap-1018",
+      "modality_id": "protein-subunit-vaccine",
+      "therapeutic_area_id": "vaccines",
+      "indication_en": "Tetanus, diphtheria, pertussis booster",
+      "indication_zh": "破伤风、白喉、百日咳加强免疫",
+      "approval_status": "ph1",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "north_america",
+      "confidence": 0.72,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Dynavax 8-K pipeline",
+          "url": "https://www.sec.gov/Archives/edgar/data/0001029142/000095017024091760/dvax-ex99_1.htm"
+        }
+      ]
+    },
+    {
+      "id": "springworks-therapeutics-nirogacestat",
+      "company_id": "springworks-therapeutics",
+      "name_en": "Nirogacestat",
+      "name_zh": "尼罗加司他",
+      "brand_name": "Ogsiveo",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "oncology",
+      "indication_en": "Adults with progressing desmoid tumors",
+      "indication_zh": "进展性硬纤维瘤（韧带样瘤）成人患者",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "north_america",
+      "latest_annual_sales": {
+        "value": 380000000.0,
+        "currency": "USD",
+        "year": 2024
+      },
+      "confidence": 0.9,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "SpringWorks Q4/FY2024 Financial Results",
+          "url": "https://springworkstx.gcs-web.com/news-releases/news-release-details/springworks-therapeutics-reports-fourth-quarter-and-full-year-4/"
+        },
+        {
+          "title": "Clinical Focus Areas – SpringWorks Therapeutics",
+          "url": "https://springworkstx.com/focus-areas/"
+        }
+      ]
+    },
+    {
+      "id": "springworks-therapeutics-mirdametinib",
+      "company_id": "springworks-therapeutics",
+      "name_en": "Mirdametinib",
+      "name_zh": "米达替尼",
+      "brand_name": "Gomekli",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "oncology",
+      "indication_en": "NF1-associated symptomatic plexiform neurofibromas (adults & children)",
+      "indication_zh": "NF1相关丛状神经纤维瘤（成人及儿童）",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "north_america",
+      "confidence": 0.9,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "SpringWorks Announces FDA Approval of GOMEKLI (mirdametinib)",
+          "url": "https://www.biospace.com/press-releases/springworks-therapeutics-announces-fda-approval-of-gomekli-mirdametinib-for-the-treatment-of-adult-and-pediatric-patients-with-nf1-pn"
+        }
+      ]
+    },
+    {
+      "id": "editas-medicine-reni-cel",
+      "company_id": "editas-medicine",
+      "name_en": "Renizgamglogene autogedtemcel (reni-cel, EDIT-301)",
+      "name_zh": "reni-cel（EDIT-301，基因编辑造血干细胞）",
+      "brand_name": "reni-cel",
+      "modality_id": "aav-gene-therapy",
+      "therapeutic_area_id": "hematology",
+      "indication_en": "Severe sickle cell disease and transfusion-dependent beta-thalassemia",
+      "indication_zh": "重度镰状细胞病及输血依赖型β地中海贫血",
+      "approval_status": "ph2",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "north_america",
+      "confidence": 0.8,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Editas notches milestones for sickle cell disease therapy",
+          "url": "https://www.fiercebiotech.com/biotech/editas-notches-milestones-sickle-cell-disease-therapy-fda-lifts-partial-clinical-hold"
+        },
+        {
+          "title": "Research and Pipeline | Editas Medicine",
+          "url": "https://www.editasmedicine.com/gene-editing-pipeline/"
+        }
+      ]
+    },
+    {
+      "id": "editas-medicine-edit-101",
+      "company_id": "editas-medicine",
+      "name_en": "EDIT-101 (AGN-151587)",
+      "name_zh": "EDIT-101（眼内CRISPR基因编辑疗法）",
+      "brand_name": "EDIT-101",
+      "modality_id": "aav-gene-therapy",
+      "therapeutic_area_id": "ophthalmology",
+      "indication_en": "Leber congenital amaurosis type 10 (CEP290)",
+      "indication_zh": "Leber先天性黑矇10型（CEP290突变）",
+      "approval_status": "ph1",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "north_america",
+      "confidence": 0.78,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Research and Pipeline | Editas Medicine",
+          "url": "https://www.editasmedicine.com/gene-editing-pipeline/"
+        }
+      ]
+    },
+    {
+      "id": "ac-immune-aci-24-060",
+      "company_id": "ac-immune",
+      "name_en": "ACI-24.060",
+      "name_zh": "ACI-24.060",
+      "brand_name": "ACI-24.060",
+      "modality_id": "protein-subunit-vaccine",
+      "therapeutic_area_id": "neuroscience",
+      "indication_en": "Alzheimer's disease (anti-amyloid-beta active immunotherapy)",
+      "indication_zh": "阿尔茨海默病（抗β淀粉样蛋白主动免疫疗法）",
+      "approval_status": "ph2",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "north_america",
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "AC Immune Clinical Pipeline",
+          "url": "https://www.acimmune.com/pipeline/clinical-trials/"
+        }
+      ]
+    },
+    {
+      "id": "ac-immune-aci-7104-056",
+      "company_id": "ac-immune",
+      "name_en": "ACI-7104.056",
+      "name_zh": "ACI-7104.056",
+      "brand_name": "ACI-7104.056",
+      "modality_id": "protein-subunit-vaccine",
+      "therapeutic_area_id": "neuroscience",
+      "indication_en": "Parkinson's disease (anti-alpha-synuclein active immunotherapy)",
+      "indication_zh": "帕金森病（抗α-突触核蛋白主动免疫疗法）",
+      "approval_status": "ph2",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "north_america",
+      "confidence": 0.82,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "AC Immune Clinical Pipeline",
+          "url": "https://www.acimmune.com/pipeline/clinical-trials/"
+        }
+      ]
+    },
+    {
+      "id": "ac-immune-crenezumab",
+      "company_id": "ac-immune",
+      "name_en": "Crenezumab",
+      "name_zh": "克雷内单抗",
+      "brand_name": "Crenezumab",
+      "modality_id": "mab",
+      "therapeutic_area_id": "neuroscience",
+      "indication_en": "Alzheimer's disease (anti-amyloid-beta antibody)",
+      "indication_zh": "阿尔茨海默病（抗β淀粉样蛋白抗体）",
+      "approval_status": "ph2",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "north_america",
+      "confidence": 0.75,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "AC Immune to Regain Rights to Crenezumab and Semorinemab",
+          "url": "https://ir.acimmune.com/news-releases/news-release-details/ac-immune-regain-global-rights-crenezumab-and-semorinemab"
+        }
+      ]
+    },
+    {
+      "id": "ac-immune-semorinemab",
+      "company_id": "ac-immune",
+      "name_en": "Semorinemab",
+      "name_zh": "塞莫瑞奈单抗",
+      "brand_name": "Semorinemab",
+      "modality_id": "mab",
+      "therapeutic_area_id": "neuroscience",
+      "indication_en": "Alzheimer's disease (anti-Tau antibody)",
+      "indication_zh": "阿尔茨海默病（抗Tau蛋白抗体）",
+      "approval_status": "ph2",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "north_america",
+      "confidence": 0.72,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "AC Immune to Regain Rights to Crenezumab and Semorinemab",
+          "url": "https://ir.acimmune.com/news-releases/news-release-details/ac-immune-regain-global-rights-crenezumab-and-semorinemab"
+        }
+      ]
+    },
+    {
+      "id": "ac-immune-aci-35-030",
+      "company_id": "ac-immune",
+      "name_en": "ACI-35.030 (JNJ-64042056)",
+      "name_zh": "ACI-35.030",
+      "brand_name": "ACI-35.030",
+      "modality_id": "protein-subunit-vaccine",
+      "therapeutic_area_id": "neuroscience",
+      "indication_en": "Alzheimer's disease (anti-phospho-Tau active immunotherapy)",
+      "indication_zh": "阿尔茨海默病（抗磷酸化Tau主动免疫疗法）",
+      "approval_status": "ph2",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "north_america",
+      "confidence": 0.7,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "AC Immune Clinical Pipeline",
+          "url": "https://www.acimmune.com/pipeline/clinical-trials/"
+        }
+      ]
+    },
+    {
+      "id": "tarsus-pharmaceuticals-xdemvy",
+      "company_id": "tarsus-pharmaceuticals",
+      "name_en": "Lotilaner ophthalmic solution 0.25%",
+      "name_zh": "洛替拉纳滴眼液0.25%",
+      "brand_name": "Xdemvy",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "ophthalmology",
+      "indication_en": "Demodex blepharitis",
+      "indication_zh": "蠕形螨睑缘炎",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "north_america",
+      "latest_annual_sales": {
+        "value": 180,
+        "currency": "USD",
+        "year": 2024
+      },
+      "confidence": 0.92,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Tarsus Reports $180M XDEMVY Sales Full-Year 2024",
+          "url": "https://www.stocktitan.net/news/TARS/tarsus-reports-strong-fourth-quarter-and-full-year-2024-financial-u8dd2v8vsnt1.html"
+        },
+        {
+          "title": "Xdemvy | Tarsus",
+          "url": "https://tarsusrx.com/products/xdemvy/"
+        }
+      ]
+    },
+    {
+      "id": "tarsus-pharmaceuticals-tp-04",
+      "company_id": "tarsus-pharmaceuticals",
+      "name_en": "Lotilaner gel (TP-04)",
+      "name_zh": "洛替拉纳凝胶（TP-04）",
+      "brand_name": "TP-04",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "dermatology",
+      "indication_en": "Papulopustular / ocular rosacea",
+      "indication_zh": "丘疹脓疱型/眼部酒渣鼻",
+      "approval_status": "ph2",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "north_america",
+      "confidence": 0.78,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Tarsus Q3 2024 Results",
+          "url": "https://ir.tarsusrx.com/news-releases/news-release-details/tarsus-reports-third-quarter-and-year-date-2024-financial"
+        }
+      ]
+    },
+    {
+      "id": "tarsus-pharmaceuticals-tp-05",
+      "company_id": "tarsus-pharmaceuticals",
+      "name_en": "Lotilaner oral tablet (TP-05)",
+      "name_zh": "洛替拉纳口服片（TP-05）",
+      "brand_name": "TP-05",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "infectious-disease",
+      "indication_en": "Lyme disease prevention",
+      "indication_zh": "莱姆病预防",
+      "approval_status": "ph2",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "north_america",
+      "confidence": 0.78,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Tarsus Q3 2024 Results",
+          "url": "https://ir.tarsusrx.com/news-releases/news-release-details/tarsus-reports-third-quarter-and-year-date-2024-financial"
+        }
+      ]
+    },
+    {
+      "id": "iovance-biotherapeutics-amtagvi",
+      "company_id": "iovance-biotherapeutics",
+      "name_en": "Lifileucel",
+      "name_zh": "利非洛素",
+      "brand_name": "Amtagvi",
+      "modality_id": "tcr-t",
+      "therapeutic_area_id": "oncology",
+      "indication_en": "Advanced melanoma after anti-PD-1 therapy",
+      "indication_zh": "抗PD-1治疗后晚期黑色素瘤",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "north_america",
+      "confidence": 0.95,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Iovance AMTAGVI FDA approval",
+          "url": "https://ir.iovance.com/node/14166/pdf"
+        }
+      ]
+    },
+    {
+      "id": "iovance-biotherapeutics-proleukin",
+      "company_id": "iovance-biotherapeutics",
+      "name_en": "Aldesleukin",
+      "name_zh": "阿地白介素",
+      "brand_name": "Proleukin",
+      "modality_id": "recombinant-protein",
+      "therapeutic_area_id": "oncology",
+      "indication_en": "Metastatic melanoma and renal cell carcinoma; TIL regimen component",
+      "indication_zh": "转移性黑色素瘤和肾细胞癌；TIL方案组成部分",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "north_america",
+      "confidence": 0.9,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Iovance AMTAGVI FDA approval",
+          "url": "https://ir.iovance.com/node/14166/pdf"
+        }
+      ]
+    },
+    {
+      "id": "iovance-biotherapeutics-lifileucel-nsclc",
+      "company_id": "iovance-biotherapeutics",
+      "name_en": "Lifileucel (NSCLC program)",
+      "name_zh": "利非洛素（非小细胞肺癌项目）",
+      "brand_name": "Lifileucel (NSCLC)",
+      "modality_id": "tcr-t",
+      "therapeutic_area_id": "oncology",
+      "indication_en": "Advanced non-small cell lung cancer",
+      "indication_zh": "晚期非小细胞肺癌",
+      "approval_status": "ph2",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "north_america",
+      "confidence": 0.8,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Iovance pipeline milestones Q3 2025",
+          "url": "https://finance.yahoo.com/news/iovance-biotherapeutics-highlights-business-achievements-130000301.html"
+        }
+      ]
+    },
+    {
+      "id": "deciphera-pharmaceuticals-ripretinib",
+      "company_id": "deciphera-pharmaceuticals",
+      "name_en": "Ripretinib",
+      "name_zh": "瑞派替尼",
+      "brand_name": "Qinlock",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "oncology",
+      "indication_en": "Fourth-line gastrointestinal stromal tumor (GIST)",
+      "indication_zh": "四线胃肠道间质瘤",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "north_america",
+      "confidence": 0.95,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Deciphera Qinlock",
+          "url": "https://www.deciphera.com/news/deciphera-receives-european-commission-approval-for-romvimza"
+        },
+        {
+          "title": "Ono acquires Deciphera",
+          "url": "https://www.ono-pharma.com/en/news/20240430.html"
+        }
+      ]
+    },
+    {
+      "id": "deciphera-pharmaceuticals-vimseltinib",
+      "company_id": "deciphera-pharmaceuticals",
+      "name_en": "Vimseltinib",
+      "name_zh": "维塞替尼",
+      "brand_name": "Romvimza",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "oncology",
+      "indication_en": "Tenosynovial giant cell tumor (TGCT)",
+      "indication_zh": "腱鞘巨细胞瘤",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "north_america",
+      "confidence": 0.93,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Deciphera Romvimza EC approval",
+          "url": "https://www.deciphera.com/news/deciphera-receives-european-commission-approval-for-romvimza"
+        }
+      ]
+    },
+    {
+      "id": "zevra-therapeutics-arimoclomol",
+      "company_id": "zevra-therapeutics",
+      "name_en": "Arimoclomol",
+      "name_zh": "阿立莫司莫",
+      "brand_name": "Miplyffa",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "rare-disease",
+      "indication_en": "Niemann-Pick disease type C (NPC)",
+      "indication_zh": "C型尼曼-匹克病",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "north_america",
+      "latest_annual_sales": {
+        "value": 87400000.0,
+        "currency": "USD",
+        "year": 2025
+      },
+      "confidence": 0.93,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Zevra Therapeutics SEC filing - MIPLYFFA $87.4M 2025",
+          "url": "https://www.stocktitan.net/sec-filings/ZVRA/pre-14a-zevra-therapeutics-inc-preliminary-proxy-statement-4c6f01f64efa.html"
+        },
+        {
+          "title": "Zevra Science & Pipeline",
+          "url": "https://zevra.com/pipeline/"
+        }
+      ]
+    },
+    {
+      "id": "zevra-therapeutics-sodium-phenylbutyrate",
+      "company_id": "zevra-therapeutics",
+      "name_en": "Sodium Phenylbutyrate",
+      "name_zh": "苯丁酸钠",
+      "brand_name": "Olpruva",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "rare-disease",
+      "indication_en": "Urea cycle disorders (UCDs)",
+      "indication_zh": "尿素循环障碍",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "north_america",
+      "confidence": 0.9,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Zevra Therapeutics 8-K FY2025",
+          "url": "https://www.sec.gov/Archives/edgar/data/0001434647/000143464725000009/zvra-20251105xex991.htm"
+        }
+      ]
+    },
+    {
+      "id": "zevra-therapeutics-celiprolol",
+      "company_id": "zevra-therapeutics",
+      "name_en": "Celiprolol",
+      "name_zh": "塞利洛尔",
+      "brand_name": "Celiprolol",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "rare-disease",
+      "indication_en": "Vascular Ehlers-Danlos syndrome (vEDS)",
+      "indication_zh": "血管型埃勒斯-当洛斯综合征",
+      "approval_status": "ph3",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "north_america",
+      "confidence": 0.88,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Zevra Therapeutics 10-K / DiSCOVER Phase 3",
+          "url": "https://www.stocktitan.net/sec-filings/ZVRA/10-k-zevra-therapeutics-inc-files-annual-report-2f1e7aebd686.html"
+        }
+      ]
+    },
+    {
+      "id": "zevra-therapeutics-kp1077",
+      "company_id": "zevra-therapeutics",
+      "name_en": "Serdexmethylphenidate (KP1077)",
+      "name_zh": "KP1077（前药右哌甲酯）",
+      "brand_name": "KP1077",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "neuroscience",
+      "indication_en": "Idiopathic hypersomnia",
+      "indication_zh": "特发性嗜睡症",
+      "approval_status": "ph2",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "north_america",
+      "confidence": 0.82,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Zevra Therapeutics 10-K - KP1077 pipeline",
+          "url": "https://www.stocktitan.net/sec-filings/ZVRA/10-k-zevra-therapeutics-inc-files-annual-report-2f1e7aebd686.html"
+        }
+      ]
+    },
+    {
+      "id": "nektar-therapeutics-rezpegaldesleukin",
+      "company_id": "nektar-therapeutics",
+      "name_en": "Rezpegaldesleukin (NKTR-358)",
+      "name_zh": "瑞培白介素（NKTR-358）",
+      "brand_name": "Rezpegaldesleukin",
+      "modality_id": "fusion-protein",
+      "therapeutic_area_id": "dermatology",
+      "indication_en": "Moderate-to-severe atopic dermatitis; alopecia areata",
+      "indication_zh": "中重度特应性皮炎；斑秃",
+      "approval_status": "ph3",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "north_america",
+      "confidence": 0.9,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Nektar - REZOLVE-AD Phase 2b results / Fast Track",
+          "url": "https://www.prnewswire.com/news-releases/nektar-therapeutics-receives-fast-track-designation-for-rezpegaldesleukin-for-the-treatment-of-moderate-to-severe-atopic-dermatitis-302371995.html"
+        }
+      ]
+    },
+    {
+      "id": "nektar-therapeutics-nktr-0165",
+      "company_id": "nektar-therapeutics",
+      "name_en": "NKTR-0165",
+      "name_zh": "NKTR-0165",
+      "brand_name": "NKTR-0165",
+      "modality_id": "mab",
+      "therapeutic_area_id": "immunology",
+      "indication_en": "Bivalent TNFR2 agonist antibody for autoimmune disease",
+      "indication_zh": "双价TNFR2激动型抗体，自身免疫疾病",
+      "approval_status": "preclinical",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "north_america",
+      "confidence": 0.78,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Nektar Therapeutics 8-K FY2026 pipeline",
+          "url": "https://www.sec.gov/Archives/edgar/data/0000906709/000119312526043755/d103279dex991.htm"
+        }
+      ]
+    },
+    {
+      "id": "nektar-therapeutics-nktr-422",
+      "company_id": "nektar-therapeutics",
+      "name_en": "NKTR-422",
+      "name_zh": "NKTR-422",
+      "brand_name": "NKTR-422",
+      "modality_id": "recombinant-protein",
+      "therapeutic_area_id": "hematology",
+      "indication_en": "Modified colony-stimulating factor (CSF) for neutropenia",
+      "indication_zh": "改良型集落刺激因子，用于中性粒细胞减少",
+      "approval_status": "preclinical",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "north_america",
+      "confidence": 0.75,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Nektar Therapeutics 8-K FY2026 pipeline",
+          "url": "https://www.sec.gov/Archives/edgar/data/0000906709/000119312526043755/d103279dex991.htm"
+        }
+      ]
+    },
+    {
+      "id": "anavex-life-sciences-blarcamesine",
+      "company_id": "anavex-life-sciences",
+      "name_en": "Blarcamesine",
+      "name_zh": "布拉卡美辛",
+      "brand_name": "ANAVEX 2-73",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "neuroscience",
+      "indication_en": "Early Alzheimer's disease",
+      "indication_zh": "早期阿尔茨海默病",
+      "approval_status": "filed",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "north_america",
+      "confidence": 0.9,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Blarcamesine Receives EMA Filing Acceptance for Alzheimer's Disease",
+          "url": "https://www.anavex.com/post/blarcamesine-receives-ema-filing-acceptance-for-treatment-of-alzheimer-s-disease"
+        }
+      ]
+    },
+    {
+      "id": "anavex-life-sciences-blarcamesine-rett",
+      "company_id": "anavex-life-sciences",
+      "name_en": "Blarcamesine",
+      "name_zh": "布拉卡美辛",
+      "brand_name": "ANAVEX 2-73 (Rett syndrome)",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "rare-disease",
+      "indication_en": "Rett syndrome",
+      "indication_zh": "雷特综合征",
+      "approval_status": "ph3",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "north_america",
+      "confidence": 0.85,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "ANAVEX 2-73 Meets Endpoints in Phase 2 Rett Syndrome Trial",
+          "url": "https://www.anavex.com/press-releases/anavex-life-sciences-announces-anavex%C2%AE2-73-(blarcamesine)-meets-primary-and-secondary-endpoints-in-placebo-controlled-u.s.-phase-2-clinical-trial-for-the-treatment-of-adult-patients-with-rett-syndrome"
+        }
+      ]
+    },
+    {
+      "id": "anavex-life-sciences-anavex-3-71",
+      "company_id": "anavex-life-sciences",
+      "name_en": "ANAVEX 3-71 (blarsegistat)",
+      "name_zh": "ANAVEX 3-71",
+      "brand_name": "ANAVEX 3-71",
+      "modality_id": "small-molecule",
+      "therapeutic_area_id": "neuroscience",
+      "indication_en": "Schizophrenia / frontotemporal dementia",
+      "indication_zh": "精神分裂症、额颞叶痴呆",
+      "approval_status": "ph2",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "north_america",
+      "confidence": 0.75,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Anavex Life Sciences pipeline",
+          "url": "https://www.anavex.com/"
+        }
+      ]
+    },
+    {
+      "id": "adagio-therapeutics-pemivibart",
+      "company_id": "adagio-therapeutics",
+      "name_en": "Pemivibart",
+      "name_zh": "佩米维巴特",
+      "brand_name": "Pemgarda",
+      "modality_id": "mab",
+      "therapeutic_area_id": "infectious-disease",
+      "indication_en": "COVID-19 pre-exposure prophylaxis in immunocompromised patients",
+      "indication_zh": "免疫缺陷患者新冠暴露前预防",
+      "approval_status": "approved",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "north_america",
+      "confidence": 0.9,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Invivyd Announces FDA Authorization for Emergency Use of PEMGARDA",
+          "url": "https://investors.invivyd.com/news-releases/news-release-details/invivyd-announces-fda-authorization-emergency-use-pemgardatm"
+        }
+      ]
+    },
+    {
+      "id": "adagio-therapeutics-vyd2311",
+      "company_id": "adagio-therapeutics",
+      "name_en": "VYD2311",
+      "name_zh": "VYD2311",
+      "brand_name": "VYD2311",
+      "modality_id": "mab",
+      "therapeutic_area_id": "infectious-disease",
+      "indication_en": "COVID-19 prevention and treatment (next-generation)",
+      "indication_zh": "新冠预防与治疗（新一代单抗）",
+      "approval_status": "ph2",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "north_america",
+      "confidence": 0.78,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Invivyd Announces Positive Phase 1/2 Clinical Data for VYD2311",
+          "url": "https://investors.invivyd.com/news-releases/news-release-details/invivyd-announces-positive-full-phase-12-clinical-data-vyd2311"
+        }
+      ]
+    },
+    {
+      "id": "adagio-therapeutics-adintrevimab",
+      "company_id": "adagio-therapeutics",
+      "name_en": "Adintrevimab",
+      "name_zh": "阿丁曲韦单抗",
+      "brand_name": "Adintrevimab (ADG20)",
+      "modality_id": "mab",
+      "therapeutic_area_id": "infectious-disease",
+      "indication_en": "COVID-19 prevention and treatment",
+      "indication_zh": "新冠预防与治疗",
+      "approval_status": "ph3",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "north_america",
+      "confidence": 0.72,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Rising from the Ashes: FDA Grants EUA to Invivyd COVID-19 Antibody",
+          "url": "https://www.genengnews.com/topics/drug-discovery/rising-from-the-ashes-fda-grants-eua-to-invivyd-covid-19-antibody/"
+        }
+      ]
+    },
+    {
+      "id": "cartesian-therapeutics-descartes-08",
+      "company_id": "cartesian-therapeutics",
+      "name_en": "Descartes-08",
+      "name_zh": "Descartes-08（mRNA抗BCMA CAR-T）",
+      "brand_name": "Descartes-08",
+      "modality_id": "car-t",
+      "therapeutic_area_id": "neuroscience",
+      "indication_en": "Generalized myasthenia gravis",
+      "indication_zh": "全身型重症肌无力",
+      "approval_status": "ph3",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "north_america",
+      "confidence": 0.9,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Cartesian Phase 3 AURORA enrollment",
+          "url": "https://ir.cartesiantherapeutics.com/news-releases/news-release-details/cartesian-therapeutics-announces-first-participant-enrolled"
+        },
+        {
+          "title": "Cartesian Phase 2b topline results",
+          "url": "https://ir.cartesiantherapeutics.com/news-releases/news-release-details/cartesian-therapeutics-announces-positive-topline-results-phase"
+        }
+      ]
+    },
+    {
+      "id": "cartesian-therapeutics-descartes-08-sle",
+      "company_id": "cartesian-therapeutics",
+      "name_en": "Descartes-08 (SLE)",
+      "name_zh": "Descartes-08（系统性红斑狼疮）",
+      "brand_name": "Descartes-08",
+      "modality_id": "car-t",
+      "therapeutic_area_id": "immunology",
+      "indication_en": "Systemic lupus erythematosus",
+      "indication_zh": "系统性红斑狼疮",
+      "approval_status": "ph2",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "north_america",
+      "confidence": 0.8,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Cartesian Therapeutics pipeline",
+          "url": "https://www.cartesiantherapeutics.com/pipeline/"
+        }
+      ]
+    },
+    {
+      "id": "cartesian-therapeutics-descartes-15",
+      "company_id": "cartesian-therapeutics",
+      "name_en": "Descartes-15",
+      "name_zh": "Descartes-15（新一代mRNA CAR-T）",
+      "brand_name": "Descartes-15",
+      "modality_id": "car-t",
+      "therapeutic_area_id": "immunology",
+      "indication_en": "Autoimmune disease (next-gen anti-BCMA)",
+      "indication_zh": "自身免疫疾病（新一代抗BCMA）",
+      "approval_status": "ph1",
+      "drug_class": "originator",
+      "is_blockbuster": false,
+      "region": "north_america",
+      "confidence": 0.7,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "Cartesian Therapeutics pipeline",
+          "url": "https://www.cartesiantherapeutics.com/pipeline/"
+        }
+      ]
+    },
+    {
       "id": "amvuttra",
       "company_id": "alnylam",
       "name": "AMVUTTRA (vutrisiran)",

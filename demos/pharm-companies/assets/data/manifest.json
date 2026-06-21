@@ -1,22 +1,22 @@
 {
-  "build_time": "2026-06-21T06:19:10Z",
-  "data_version": "195d567acb",
+  "build_time": "2026-06-21T06:27:04Z",
+  "data_version": "08453fd30e",
   "total_companies": 1913,
   "total_sites": 2312,
-  "total_products": 1576,
+  "total_products": 1959,
   "total_modalities": 21,
   "total_therapeutic_areas": 14,
   "total_milestones": 71,
   "total_countries": 13,
   "shard_counts": {
-    "europe": 260,
-    "greater_china": 537,
-    "japan": 79,
-    "latam": 17,
-    "mea": 39,
-    "north_america": 271,
+    "europe": 290,
+    "greater_china": 689,
+    "japan": 107,
+    "latam": 21,
+    "mea": 43,
+    "north_america": 313,
     "oceania": 17,
-    "other_apac": 356
+    "other_apac": 479
   },
   "company_type_counts": {
     "cdmo_cro": 128,
@@ -43,89 +43,90 @@
     "oceania": 27
   },
   "modality_class_counts": {
-    "biosimilar": 64,
-    "fusion_protein": 20,
-    "biologic": 163,
-    "small_molecule": 850,
-    "mab": 110,
+    "biosimilar": 68,
+    "fusion_protein": 22,
+    "biologic": 174,
+    "small_molecule": 1086,
+    "mab": 123,
     "bispecific": 23,
-    "adc": 30,
-    "vaccine": 72,
-    "peptide": 67,
-    "gene_therapy": 6,
-    "cell_therapy": 38,
-    "tcm": 104,
-    "rna_oligo": 26,
-    "radioligand": 3
+    "adc": 31,
+    "vaccine": 98,
+    "peptide": 73,
+    "gene_therapy": 10,
+    "radioligand": 10,
+    "cell_therapy": 58,
+    "tcm": 157,
+    "rna_oligo": 26
   },
   "modality_ref_counts": {
-    "biosimilar": 64,
-    "fusion-protein": 20,
-    "recombinant-protein": 163,
-    "small-molecule": 850,
-    "mab": 110,
+    "biosimilar": 68,
+    "fusion-protein": 22,
+    "recombinant-protein": 174,
+    "small-molecule": 1086,
+    "mab": 123,
     "bispecific-antibody": 23,
-    "adc": 30,
-    "viral-vector-vaccine": 10,
-    "peptide": 67,
-    "aav-gene-therapy": 6,
-    "car-t": 37,
-    "tcm-formula": 96,
+    "adc": 31,
+    "viral-vector-vaccine": 13,
+    "peptide": 73,
+    "aav-gene-therapy": 10,
+    "radioligand": 10,
+    "protein-subunit-vaccine": 28,
+    "inactivated-vaccine": 44,
+    "car-t": 44,
+    "tcm-formula": 140,
     "mrna-vaccine": 13,
     "sirna": 23,
-    "inactivated-vaccine": 33,
-    "protein-subunit-vaccine": 16,
-    "tcm-injection": 8,
-    "radioligand": 3,
-    "antisense-oligo": 3,
-    "msc-therapy": 1
+    "tcm-injection": 17,
+    "tcr-t": 3,
+    "msc-therapy": 11,
+    "antisense-oligo": 3
   },
   "ta_counts": {
-    "immunology": 163,
-    "oncology": 335,
-    "neuroscience": 164,
-    "rare-disease": 129,
-    "hematology": 118,
-    "nephrology": 11,
-    "vaccines": 42,
-    "dermatology": 33,
-    "infectious-disease": 178,
-    "womens-health": 22,
-    "gastroenterology": 48,
-    "respiratory": 66,
-    "cardiometabolic": 224,
-    "ophthalmology": 43
+    "immunology": 190,
+    "oncology": 380,
+    "neuroscience": 208,
+    "rare-disease": 137,
+    "hematology": 132,
+    "nephrology": 23,
+    "vaccines": 64,
+    "dermatology": 42,
+    "infectious-disease": 244,
+    "womens-health": 42,
+    "gastroenterology": 75,
+    "respiratory": 91,
+    "cardiometabolic": 281,
+    "ophthalmology": 50
   },
   "shards": [
     {
       "id": "europe",
       "file": "catalog/europe.json",
-      "count": 260
+      "count": 290
     },
     {
       "id": "greater_china",
       "file": "catalog/greater_china.json",
-      "count": 537
+      "count": 689
     },
     {
       "id": "japan",
       "file": "catalog/japan.json",
-      "count": 79
+      "count": 107
     },
     {
       "id": "latam",
       "file": "catalog/latam.json",
-      "count": 17
+      "count": 21
     },
     {
       "id": "mea",
       "file": "catalog/mea.json",
-      "count": 39
+      "count": 43
     },
     {
       "id": "north_america",
       "file": "catalog/north_america.json",
-      "count": 271
+      "count": 313
     },
     {
       "id": "oceania",
@@ -135,7 +136,7 @@
     {
       "id": "other_apac",
       "file": "catalog/other_apac.json",
-      "count": 356
+      "count": 479
     }
   ]
 }
