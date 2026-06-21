@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>QROST — research notes & build logs on AEC, China & tooling</title>
-    <meta name="description" content="QROST is a personal shelf of research notes and build logs — China WFOE setup & AEC hiring costs, plus interactive product demos.">
+    <meta name="description" content="Personal research shelf: small-city housing livability, China industrial-software survey, global pharma atlas, WFOE setup & AEC hiring costs, plus product prototypes.">
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <link rel="apple-touch-icon" href="favicon.svg">
 
@@ -16,36 +16,80 @@
     <meta name="twitter:title" content="QROST — research notes & build logs">
     <meta name="twitter:description" content="Personal shelf: China WFOE & AEC hiring research, plus interactive product demos.">
 
+    <!-- Theme bootstrap: apply saved/system dark mode before paint -->
+    <script>
+      (function () {
+        try {
+          var stored = localStorage.getItem('qrost-home-theme');
+          var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+          if (stored === 'dark' || (!stored && prefersDark)) {
+            document.documentElement.classList.add('dark');
+          }
+        } catch (e) {}
+      })();
+    </script>
+
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = { darkMode: 'class' };
+    </script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Inter', sans-serif; background-color: #f8fafc; color: #0f172a; }
+        body { font-family: 'Inter', sans-serif; }
+        #theme-toggle .sun-icon,
+        #theme-toggle .moon-icon { transition: opacity 0.25s, transform 0.3s; }
+        .dark #theme-toggle .sun-icon  { opacity: 1; transform: rotate(0deg) scale(1); }
+        .dark #theme-toggle .moon-icon { opacity: 0; transform: rotate(-90deg) scale(0.6); }
+        #theme-toggle .sun-icon  { opacity: 0; transform: rotate(90deg) scale(0.6); }
+        #theme-toggle .moon-icon { opacity: 1; transform: rotate(0deg) scale(1); }
+        #lang-toggle:focus-visible,
+        #theme-toggle:focus-visible,
+        .card-link:focus-visible {
+            outline: 2px solid #64748b;
+            outline-offset: 2px;
+        }
+        .dark #lang-toggle:focus-visible,
+        .dark #theme-toggle:focus-visible,
+        .dark .card-link:focus-visible {
+            outline-color: #94a3b8;
+        }
     </style>
 </head>
-<body class="antialiased min-h-screen flex flex-col">
+<body class="antialiased min-h-screen flex flex-col bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-slate-100 transition-colors duration-300">
 
-    <nav class="bg-white/90 border-b border-slate-200/90 backdrop-blur-sm">
+    <nav class="bg-white/90 dark:bg-slate-900/90 border-b border-slate-200/90 dark:border-slate-700/90 backdrop-blur-sm transition-colors duration-300">
         <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between h-14 items-center">
-                <a href="/" class="text-[0.65rem] font-semibold tracking-[0.35em] text-slate-900 uppercase">Qrost</a>
-                <div class="flex items-center gap-4 sm:gap-6 text-sm text-slate-500">
-                    <a href="#research" class="hover:text-slate-900 transition-colors" data-i18n="navResearch">Research</a>
-                    <a href="#demos" class="hover:text-slate-900 transition-colors" data-i18n="navDemos">Demos</a>
-                    <button type="button" id="lang-toggle" class="text-xs font-medium text-slate-600 border border-slate-200 rounded px-2.5 py-1 hover:bg-slate-50 transition-colors shrink-0" aria-label="Switch to 中文" title="中文">中</button>
+                <a href="/" class="text-[0.65rem] font-semibold tracking-[0.35em] text-slate-900 dark:text-slate-100 uppercase transition-colors">Qrost</a>
+                <div class="flex items-center gap-2 sm:gap-3 text-sm text-slate-500 dark:text-slate-400">
+                    <a href="#research" class="hover:text-slate-900 dark:hover:text-slate-100 transition-colors px-1" data-i18n="navResearch">Research</a>
+                    <a href="#demos" class="hover:text-slate-900 dark:hover:text-slate-100 transition-colors px-1" data-i18n="navDemos">Demos</a>
+                    <button type="button" id="lang-toggle" class="w-9 h-9 flex items-center justify-center rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700 transition-all text-xs font-semibold shrink-0" aria-label="Switch to 中文" title="中文">中</button>
+                    <button type="button" id="theme-toggle" class="relative w-9 h-9 flex items-center justify-center rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700 transition-all shrink-0" aria-label="Switch to dark mode" title="Dark mode">
+                        <svg class="sun-icon absolute w-[18px] h-[18px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/>
+                            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+                            <line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/>
+                            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+                        </svg>
+                        <svg class="moon-icon absolute w-[18px] h-[18px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+                        </svg>
+                    </button>
                 </div>
             </div>
         </div>
     </nav>
 
-    <header class="py-16 md:py-20 border-b border-slate-100 bg-white">
+    <header class="py-16 md:py-20 border-b border-slate-100 dark:border-slate-800 bg-white dark:bg-slate-900 transition-colors duration-300">
         <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-            <p class="text-xs font-medium uppercase tracking-[0.2em] text-slate-400 mb-4" data-i18n="heroEyebrow">Personal site</p>
-            <h1 class="text-3xl md:text-4xl font-semibold tracking-tight text-slate-900 leading-tight" data-i18n="heroH1">
+            <p class="text-xs font-medium uppercase tracking-[0.2em] text-slate-400 dark:text-slate-500 mb-4" data-i18n="heroEyebrow">Personal site</p>
+            <h1 class="text-3xl md:text-4xl font-semibold tracking-tight text-slate-900 dark:text-slate-50 leading-tight" data-i18n="heroH1">
                 I build and write.
             </h1>
-            <p class="mt-6 text-slate-600 leading-relaxed" data-i18n-html="heroLead">
-                Notes and build logs around <strong class="font-medium text-slate-800">AEC tooling</strong>, the
-                <strong class="font-medium text-slate-800">China side of doing engineering business</strong>, and the occasional product prototype.
+            <p class="mt-6 text-slate-600 dark:text-slate-400 leading-relaxed" data-i18n-html="heroLead">
+                Notes and build logs around <strong class="font-medium text-slate-800 dark:text-slate-200">AEC tooling</strong>, the
+                <strong class="font-medium text-slate-800 dark:text-slate-200">China side of doing engineering business</strong>, and the occasional product prototype.
                 A small public shelf — pick what's useful, ignore the rest.
             </p>
         </div>
@@ -54,78 +98,78 @@
     <main class="flex-grow max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-14 w-full space-y-14">
 
         <section id="research">
-            <h2 class="text-xs font-semibold uppercase tracking-[0.15em] text-slate-400 mb-6" data-i18n="sectionResearch">Research &amp; notes</h2>
+            <h2 class="text-xs font-semibold uppercase tracking-[0.15em] text-slate-400 dark:text-slate-500 mb-6" data-i18n="sectionResearch">Research &amp; notes</h2>
             <ul class="space-y-4">
                 <li>
-                    <a href="demos/china-housing/index.html" class="group block rounded-lg border border-slate-200 bg-white p-5 transition hover:border-slate-300 hover:bg-slate-50/80">
+                    <a href="demos/china-housing/index.html" class="card-link group block rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 p-5 transition hover:border-slate-300 dark:hover:border-slate-600 hover:bg-slate-50/80 dark:hover:bg-slate-800/80">
                         <div class="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1">
-                            <span class="font-medium text-slate-900 group-hover:text-slate-700" data-i18n="cardHousingTitle">China small-city housing &amp; rent data</span>
-                            <span class="text-xs text-slate-400 shrink-0" data-i18n="badgeResearch">Research · interactive</span>
+                            <span class="font-medium text-slate-900 dark:text-slate-100 group-hover:text-slate-700 dark:group-hover:text-slate-300" data-i18n="cardHousingTitle">Where to live well — and cheap · China small-city housing</span>
+                            <span class="text-xs text-slate-400 dark:text-slate-500 shrink-0" data-i18n="badgeResearch">Research · interactive</span>
                         </div>
-                        <p class="mt-2 text-sm text-slate-500 leading-relaxed" data-i18n="cardHousingDesc">
-                            347 cities — price, rent, yield, climate, hazards, and livability on a choropleth map with rankings and a sortable table. A data slice of China's small-city housing landscape.
+                        <p class="mt-2 text-sm text-slate-500 dark:text-slate-400 leading-relaxed" data-i18n="cardHousingDesc">
+                            248 listing samples across 26 provinces (348 total; tier-1 outliers hidden by default) — price × livability on an interactive map with ERA5 climate overlays, hazard layers, rankings and a sortable table. Dark mode · EN/中文.
                         </p>
-                        <span class="mt-3 inline-flex items-center text-xs font-medium text-slate-600 group-hover:text-slate-900">
+                        <span class="mt-3 inline-flex items-center text-xs font-medium text-slate-600 dark:text-slate-300 group-hover:text-slate-900 dark:group-hover:text-slate-100">
                             <span data-i18n="openPage">Open page</span>
                             <svg class="w-3.5 h-3.5 ml-1 opacity-70 group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
                         </span>
                     </a>
                 </li>
                 <li>
-                    <a href="demos/china-industrial-software/index.html" class="group block rounded-lg border border-slate-200 bg-white p-5 transition hover:border-slate-300 hover:bg-slate-50/80">
+                    <a href="demos/china-industrial-software/index.html" class="card-link group block rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 p-5 transition hover:border-slate-300 dark:hover:border-slate-600 hover:bg-slate-50/80 dark:hover:bg-slate-800/80">
                         <div class="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1">
-                            <span class="font-medium text-slate-900 group-hover:text-slate-700" data-i18n="cardIndustrialTitle">China industrial software survey</span>
-                            <span class="text-xs text-slate-400 shrink-0" data-i18n="badgeResearch">Research · interactive</span>
+                            <span class="font-medium text-slate-900 dark:text-slate-100 group-hover:text-slate-700 dark:group-hover:text-slate-300" data-i18n="cardIndustrialTitle">China industrial software survey</span>
+                            <span class="text-xs text-slate-400 dark:text-slate-500 shrink-0" data-i18n="badgeResearch">Research · interactive</span>
                         </div>
-                        <p class="mt-2 text-sm text-slate-500 leading-relaxed" data-i18n="cardIndustrialDesc">
-                            325 products across EDA, CAD, CAE/CAM, PLM, DCS/MES, ERP, BIM/GIS and IIoT — localization breadth vs depth, sunburst taxonomy, benchmark compare. Bilingual UI.
+                        <p class="mt-2 text-sm text-slate-500 dark:text-slate-400 leading-relaxed" data-i18n="cardIndustrialDesc">
+                            325 traceable products and 43 geometry kernels across EDA, CAD, CAE/CAM, PLM, DCS/MES, ERP, BIM/GIS, slicers and IIoT — sunburst taxonomy, capability matrix, benchmark compare. Bilingual EN/中文 · last verified 2026-06.
                         </p>
-                        <span class="mt-3 inline-flex items-center text-xs font-medium text-slate-600 group-hover:text-slate-900">
+                        <span class="mt-3 inline-flex items-center text-xs font-medium text-slate-600 dark:text-slate-300 group-hover:text-slate-900 dark:group-hover:text-slate-100">
                             <span data-i18n="openPage">Open page</span>
                             <svg class="w-3.5 h-3.5 ml-1 opacity-70 group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
                         </span>
                     </a>
                 </li>
                 <li>
-                    <a href="demos/pharm-companies/index.html" class="group block rounded-lg border border-slate-200 bg-white p-5 transition hover:border-slate-300 hover:bg-slate-50/80">
+                    <a href="demos/pharm-companies/index.html" class="card-link group block rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 p-5 transition hover:border-slate-300 dark:hover:border-slate-600 hover:bg-slate-50/80 dark:hover:bg-slate-800/80">
                         <div class="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1">
-                            <span class="font-medium text-slate-900 group-hover:text-slate-700" data-i18n="cardPharmTitle">Global pharmaceutical industry atlas</span>
-                            <span class="text-xs text-slate-400 shrink-0" data-i18n="badgeResearch">Research · interactive</span>
+                            <span class="font-medium text-slate-900 dark:text-slate-100 group-hover:text-slate-700 dark:group-hover:text-slate-300" data-i18n="cardPharmTitle">Global pharmaceutical industry atlas</span>
+                            <span class="text-xs text-slate-400 dark:text-slate-500 shrink-0" data-i18n="badgeResearch">Research · interactive</span>
                         </div>
-                        <p class="mt-2 text-sm text-slate-500 leading-relaxed" data-i18n="cardPharmDesc">
-                            Chinese pharma in global context — companies, subsidiaries and sites on a world map, flagship drugs and pipelines, modality and therapeutic-area breakdowns, country comparison, and China-vs-incumbent breakthroughs. Bilingual UI.
+                        <p class="mt-2 text-sm text-slate-500 dark:text-slate-400 leading-relaxed" data-i18n="cardPharmDesc">
+                            1,551 companies, 1,098 drugs and 1,949 sites across 13 countries — world map, modality charts, country radar, China ↔ incumbent benchmarks and breakthrough milestones. Sourced with confidence scores. Dark mode · EN/中文.
                         </p>
-                        <span class="mt-3 inline-flex items-center text-xs font-medium text-slate-600 group-hover:text-slate-900">
+                        <span class="mt-3 inline-flex items-center text-xs font-medium text-slate-600 dark:text-slate-300 group-hover:text-slate-900 dark:group-hover:text-slate-100">
                             <span data-i18n="openPage">Open page</span>
                             <svg class="w-3.5 h-3.5 ml-1 opacity-70 group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
                         </span>
                     </a>
                 </li>
                 <li>
-                    <a href="demos/visual-page/index.html" class="group block rounded-lg border border-slate-200 bg-white p-5 transition hover:border-slate-300 hover:bg-slate-50/80">
+                    <a href="demos/visual-page/index.html" class="card-link group block rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 p-5 transition hover:border-slate-300 dark:hover:border-slate-600 hover:bg-slate-50/80 dark:hover:bg-slate-800/80">
                         <div class="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1">
-                            <span class="font-medium text-slate-900 group-hover:text-slate-700" data-i18n="cardAbyssTitle">Data Abyss · 数渊 — Livability × Industrial Self-Reliance</span>
-                            <span class="text-xs text-slate-400 shrink-0" data-i18n="badgeGenerative">Research · generative art</span>
+                            <span class="font-medium text-slate-900 dark:text-slate-100 group-hover:text-slate-700 dark:group-hover:text-slate-300" data-i18n="cardAbyssTitle">Data Abyss · 数渊</span>
+                            <span class="text-xs text-slate-400 dark:text-slate-500 shrink-0" data-i18n="badgeGenerative">Research · generative art</span>
                         </div>
-                        <p class="mt-2 text-sm text-slate-500 leading-relaxed" data-i18n="cardAbyssDesc">
-                            347 cities and 325 industrial-software records rendered as drifting stars in a Three.js WebGL field. Full-bleed on mobile; gyro and microphone optional. Click 数渊 in-page for 中文.
+                        <p class="mt-2 text-sm text-slate-500 dark:text-slate-400 leading-relaxed" data-i18n="cardAbyssDesc">
+                            Housing, industrial software and pharma records fused into a full-bleed Three.js star field — chaos, breath, drift and a self-organizing neural lattice. Optional gyro &amp; microphone on HTTPS. Click 数渊 in-page for 中文.
                         </p>
-                        <span class="mt-3 inline-flex items-center text-xs font-medium text-slate-600 group-hover:text-slate-900">
+                        <span class="mt-3 inline-flex items-center text-xs font-medium text-slate-600 dark:text-slate-300 group-hover:text-slate-900 dark:group-hover:text-slate-100">
                             <span data-i18n="openPage">Open page</span>
                             <svg class="w-3.5 h-3.5 ml-1 opacity-70 group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
                         </span>
                     </a>
                 </li>
                 <li>
-                    <a href="demos/wfoe-china/index.html" class="group block rounded-lg border border-slate-200 bg-white p-5 transition hover:border-slate-300 hover:bg-slate-50/80">
+                    <a href="demos/wfoe-china/index.html" class="card-link group block rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 p-5 transition hover:border-slate-300 dark:hover:border-slate-600 hover:bg-slate-50/80 dark:hover:bg-slate-800/80">
                         <div class="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1">
-                            <span class="font-medium text-slate-900 group-hover:text-slate-700" data-i18n="cardWfoeTitle">How to open a company in China — WFOE setup &amp; AEC hiring costs</span>
-                            <span class="text-xs text-slate-400 shrink-0" data-i18n="badgeResearch">Research · interactive</span>
+                            <span class="font-medium text-slate-900 dark:text-slate-100 group-hover:text-slate-700 dark:group-hover:text-slate-300" data-i18n="cardWfoeTitle">How to open a company in China — WFOE setup &amp; AEC hiring costs</span>
+                            <span class="text-xs text-slate-400 dark:text-slate-500 shrink-0" data-i18n="badgeResearch">Research · interactive</span>
                         </div>
-                        <p class="mt-2 text-sm text-slate-500 leading-relaxed" data-i18n="cardWfoeDesc">
-                            Step-by-step setup workflows (mainland WFOE, domestic LLC, HK/Macau SAR) and an interactive city-level cost model for CAD roles across 24 talent hubs. Bilingual EN/中文.
+                        <p class="mt-2 text-sm text-slate-500 dark:text-slate-400 leading-relaxed" data-i18n="cardWfoeDesc">
+                            Four entity paths (mainland WFOE, domestic LLC, Sino-foreign JV, HK/Macau SAR) plus an interactive cost dashboard across 24 China hubs with optional global city benchmarks. Data as of 2024 Q4 · last reviewed 2026-06. Bilingual EN/中文.
                         </p>
-                        <span class="mt-3 inline-flex items-center text-xs font-medium text-slate-600 group-hover:text-slate-900">
+                        <span class="mt-3 inline-flex items-center text-xs font-medium text-slate-600 dark:text-slate-300 group-hover:text-slate-900 dark:group-hover:text-slate-100">
                             <span data-i18n="openPage">Open page</span>
                             <svg class="w-3.5 h-3.5 ml-1 opacity-70 group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
                         </span>
@@ -135,18 +179,18 @@
         </section>
 
         <section id="demos">
-            <h2 class="text-xs font-semibold uppercase tracking-[0.15em] text-slate-400 mb-6" data-i18n="sectionDemos">Product demos</h2>
+            <h2 class="text-xs font-semibold uppercase tracking-[0.15em] text-slate-400 dark:text-slate-500 mb-6" data-i18n="sectionDemos">Product demos</h2>
             <ul class="space-y-4">
                 <li>
-                    <a href="demos/makoauto/index.html" class="group block rounded-lg border border-slate-200 bg-white p-5 transition hover:border-slate-300 hover:bg-slate-50/80">
+                    <a href="demos/makoauto/index.html" class="card-link group block rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 p-5 transition hover:border-slate-300 dark:hover:border-slate-600 hover:bg-slate-50/80 dark:hover:bg-slate-800/80">
                         <div class="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1">
-                            <span class="font-medium text-slate-900 group-hover:text-slate-700" data-i18n="cardMakoTitle">Makoauto — custom plate frame</span>
-                            <span class="text-xs text-slate-400 shrink-0" data-i18n="badgePrototype">Prototype · interactive</span>
+                            <span class="font-medium text-slate-900 dark:text-slate-100 group-hover:text-slate-700 dark:group-hover:text-slate-300" data-i18n="cardMakoTitle">Makoauto — custom plate frame</span>
+                            <span class="text-xs text-slate-400 dark:text-slate-500 shrink-0" data-i18n="badgePrototype">Prototype · interactive</span>
                         </div>
-                        <p class="mt-2 text-sm text-slate-500 leading-relaxed" data-i18n="cardMakoDesc">
-                            Multi-page prototype for designing a silicone license-plate frame: draggable metal pins, AI preview, cart, account, and admin views.
+                        <p class="mt-2 text-sm text-slate-500 dark:text-slate-400 leading-relaxed" data-i18n="cardMakoDesc">
+                            Multi-page prototype for a silicone U.S. license-plate frame — 32 pin slots, draggable metal letters/emoji/flags, optional AI car preview, cart, account and admin. Light/dark theme toggle.
                         </p>
-                        <span class="mt-3 inline-flex items-center text-xs font-medium text-slate-600 group-hover:text-slate-900">
+                        <span class="mt-3 inline-flex items-center text-xs font-medium text-slate-600 dark:text-slate-300 group-hover:text-slate-900 dark:group-hover:text-slate-100">
                             <span data-i18n="openPage">Open page</span>
                             <svg class="w-3.5 h-3.5 ml-1 opacity-70 group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
                         </span>
@@ -157,9 +201,9 @@
 
     </main>
 
-    <footer class="mt-auto border-t border-slate-100 py-8 bg-white">
-        <div class="max-w-3xl mx-auto px-4 text-center text-slate-400 text-xs space-y-2">
-            <p data-i18n="footerUpdated">Last updated 2026-04. Nothing here is financial, legal or tax advice.</p>
+    <footer class="mt-auto border-t border-slate-100 dark:border-slate-800 py-8 bg-white dark:bg-slate-900 transition-colors duration-300">
+        <div class="max-w-3xl mx-auto px-4 text-center text-slate-400 dark:text-slate-500 text-xs space-y-2">
+            <p data-i18n="footerUpdated">Last updated 2026-06. Nothing here is financial, legal or tax advice.</p>
             <p data-i18n="footerCopyright">&copy; 2026 QROST. All rights reserved.</p>
         </div>
     </footer>
