@@ -1,0 +1,2633 @@
+{
+ "region": "north_america",
+ "cats": [
+  {
+   "id": "socrata-montgomery_md-A483792",
+   "source": "socrata",
+   "source_id": "A483792",
+   "shelter_id": "montgomery_md",
+   "name": "Princely",
+   "age_text": "4 YEARS",
+   "age_bucket": "adult",
+   "sex": "male",
+   "spayed_neutered": true,
+   "breed_primary": "Domestic Shorthair",
+   "breed_mixed": true,
+   "colors": [
+    "gray"
+   ],
+   "pattern": "tabby",
+   "coat_length": "short",
+   "size": "medium",
+   "attributes": {
+    "spayed_neutered": true
+   },
+   "photo_url": "https://petharbor.com/get_image.asp?RES=Detail&ID=A483792&LOCATION=MONT",
+   "thumb_path": "assets/img/cats/socrata-montgomery_md-A483792.jpg",
+   "adoption_url": "https://petharbor.com/pet.asp?uaid=MONT.A483792",
+   "status": "adoptable",
+   "published_at": "2026-05-29",
+   "first_seen": "2026-06-21T06:28:40Z"
+  },
+  {
+   "id": "socrata-montgomery_md-A492262",
+   "source": "socrata",
+   "source_id": "A492262",
+   "shelter_id": "montgomery_md",
+   "name": "Charlie",
+   "age_text": "4 YEARS",
+   "age_bucket": "adult",
+   "sex": "female",
+   "spayed_neutered": true,
+   "breed_primary": "Domestic Shorthair",
+   "breed_mixed": true,
+   "colors": [
+    "black"
+   ],
+   "pattern": "solid",
+   "coat_length": "short",
+   "size": "medium",
+   "attributes": {
+    "spayed_neutered": true
+   },
+   "photo_url": "https://petharbor.com/get_image.asp?RES=Detail&ID=A492262&LOCATION=MONT",
+   "thumb_path": "assets/img/cats/socrata-montgomery_md-A492262.jpg",
+   "adoption_url": "https://petharbor.com/pet.asp?uaid=MONT.A492262",
+   "status": "adoptable",
+   "published_at": "2026-04-16",
+   "first_seen": "2026-06-21T06:28:40Z"
+  },
+  {
+   "id": "socrata-montgomery_md-A536242",
+   "source": "socrata",
+   "source_id": "A536242",
+   "shelter_id": "montgomery_md",
+   "name": "Candy Apple",
+   "age_text": "1 YEAR 8 MONTHS",
+   "age_bucket": "young",
+   "sex": "female",
+   "spayed_neutered": true,
+   "breed_primary": "Domestic Shorthair",
+   "breed_mixed": true,
+   "colors": [
+    "gray"
+   ],
+   "pattern": "tabby",
+   "coat_length": "short",
+   "size": "medium",
+   "attributes": {
+    "spayed_neutered": true
+   },
+   "photo_url": "https://petharbor.com/get_image.asp?RES=Detail&ID=A536242&LOCATION=MONT",
+   "thumb_path": "assets/img/cats/socrata-montgomery_md-A536242.jpg",
+   "adoption_url": "https://petharbor.com/pet.asp?uaid=MONT.A536242",
+   "status": "adoptable",
+   "published_at": "2026-04-24",
+   "first_seen": "2026-06-21T06:28:40Z"
+  },
+  {
+   "id": "socrata-montgomery_md-A536576",
+   "source": "socrata",
+   "source_id": "A536576",
+   "shelter_id": "montgomery_md",
+   "name": "Lily",
+   "age_text": "3 YEARS",
+   "age_bucket": "adult",
+   "sex": "female",
+   "spayed_neutered": true,
+   "breed_primary": "Domestic Shorthair",
+   "breed_mixed": true,
+   "colors": [
+    "gray"
+   ],
+   "pattern": "solid",
+   "coat_length": "short",
+   "size": "medium",
+   "attributes": {
+    "spayed_neutered": true
+   },
+   "photo_url": "https://petharbor.com/get_image.asp?RES=Detail&ID=A536576&LOCATION=MONT",
+   "thumb_path": "assets/img/cats/socrata-montgomery_md-A536576.jpg",
+   "adoption_url": "https://petharbor.com/pet.asp?uaid=MONT.A536576",
+   "status": "adoptable",
+   "published_at": "2025-10-14",
+   "first_seen": "2026-06-21T06:28:40Z"
+  },
+  {
+   "id": "socrata-montgomery_md-A539454",
+   "source": "socrata",
+   "source_id": "A539454",
+   "shelter_id": "montgomery_md",
+   "name": "Oakley",
+   "age_text": "4 YEARS",
+   "age_bucket": "adult",
+   "sex": "male",
+   "spayed_neutered": true,
+   "breed_primary": "Domestic Shorthair",
+   "breed_mixed": true,
+   "colors": [
+    "gray"
+   ],
+   "pattern": "tabby",
+   "coat_length": "short",
+   "size": "medium",
+   "attributes": {
+    "spayed_neutered": true
+   },
+   "photo_url": "https://petharbor.com/get_image.asp?RES=Detail&ID=A539454&LOCATION=MONT",
+   "thumb_path": "assets/img/cats/socrata-montgomery_md-A539454.jpg",
+   "adoption_url": "https://petharbor.com/pet.asp?uaid=MONT.A539454",
+   "status": "adoptable",
+   "published_at": "2026-05-17",
+   "first_seen": "2026-06-21T06:28:40Z"
+  },
+  {
+   "id": "socrata-montgomery_md-A542033",
+   "source": "socrata",
+   "source_id": "A542033",
+   "shelter_id": "montgomery_md",
+   "name": "Marcy",
+   "age_text": "8 YEARS",
+   "age_bucket": "senior",
+   "sex": "female",
+   "spayed_neutered": true,
+   "breed_primary": "Domestic Shorthair",
+   "breed_mixed": true,
+   "colors": [
+    "orange"
+   ],
+   "pattern": "calico",
+   "coat_length": "short",
+   "size": "medium",
+   "attributes": {
+    "spayed_neutered": true
+   },
+   "photo_url": "https://petharbor.com/get_image.asp?RES=Detail&ID=A542033&LOCATION=MONT",
+   "thumb_path": "assets/img/cats/socrata-montgomery_md-A542033.jpg",
+   "adoption_url": "https://petharbor.com/pet.asp?uaid=MONT.A542033",
+   "status": "adoptable",
+   "published_at": "2026-04-10",
+   "first_seen": "2026-06-21T06:28:40Z"
+  },
+  {
+   "id": "socrata-montgomery_md-A542047",
+   "source": "socrata",
+   "source_id": "A542047",
+   "shelter_id": "montgomery_md",
+   "name": "Clarabell",
+   "age_text": "2 YEARS",
+   "age_bucket": "young",
+   "sex": "female",
+   "spayed_neutered": true,
+   "breed_primary": "Domestic Shorthair",
+   "breed_mixed": true,
+   "colors": [
+    "black"
+   ],
+   "pattern": "solid",
+   "coat_length": "short",
+   "size": "small",
+   "attributes": {
+    "spayed_neutered": true
+   },
+   "photo_url": "https://petharbor.com/get_image.asp?RES=Detail&ID=A542047&LOCATION=MONT",
+   "thumb_path": "assets/img/cats/socrata-montgomery_md-A542047.jpg",
+   "adoption_url": "https://petharbor.com/pet.asp?uaid=MONT.A542047",
+   "status": "adoptable",
+   "published_at": "2026-04-15",
+   "first_seen": "2026-06-21T06:28:40Z"
+  },
+  {
+   "id": "socrata-montgomery_md-A542099",
+   "source": "socrata",
+   "source_id": "A542099",
+   "shelter_id": "montgomery_md",
+   "name": "Gnocchi",
+   "age_text": "2 YEARS",
+   "age_bucket": "young",
+   "sex": "male",
+   "spayed_neutered": true,
+   "breed_primary": "Domestic Shorthair",
+   "breed_mixed": true,
+   "colors": [
+    "white",
+    "gray"
+   ],
+   "pattern": "bicolor",
+   "coat_length": "short",
+   "size": "medium",
+   "attributes": {
+    "spayed_neutered": true
+   },
+   "photo_url": "https://petharbor.com/get_image.asp?RES=Detail&ID=A542099&LOCATION=MONT",
+   "thumb_path": "assets/img/cats/socrata-montgomery_md-A542099.jpg",
+   "adoption_url": "https://petharbor.com/pet.asp?uaid=MONT.A542099",
+   "status": "adoptable",
+   "published_at": "2026-04-11",
+   "first_seen": "2026-06-21T06:28:40Z"
+  },
+  {
+   "id": "socrata-montgomery_md-A542404",
+   "source": "socrata",
+   "source_id": "A542404",
+   "shelter_id": "montgomery_md",
+   "name": "Shinju",
+   "age_text": "6 YEARS",
+   "age_bucket": "adult",
+   "sex": "female",
+   "spayed_neutered": true,
+   "breed_primary": "Domestic Shorthair",
+   "breed_mixed": true,
+   "colors": [
+    "orange"
+   ],
+   "pattern": "tortie",
+   "coat_length": "short",
+   "size": "medium",
+   "attributes": {
+    "spayed_neutered": true
+   },
+   "photo_url": "https://petharbor.com/get_image.asp?RES=Detail&ID=A542404&LOCATION=MONT",
+   "thumb_path": "assets/img/cats/socrata-montgomery_md-A542404.jpg",
+   "adoption_url": "https://petharbor.com/pet.asp?uaid=MONT.A542404",
+   "status": "adoptable",
+   "published_at": "2026-04-21",
+   "first_seen": "2026-06-21T06:28:40Z"
+  },
+  {
+   "id": "socrata-montgomery_md-A542408",
+   "source": "socrata",
+   "source_id": "A542408",
+   "shelter_id": "montgomery_md",
+   "name": "Meowma",
+   "age_text": "2 YEARS",
+   "age_bucket": "young",
+   "sex": "female",
+   "spayed_neutered": true,
+   "breed_primary": "American Shorthair",
+   "breed_mixed": false,
+   "colors": [
+    "white",
+    "gray"
+   ],
+   "pattern": "bicolor",
+   "coat_length": "short",
+   "size": "medium",
+   "attributes": {
+    "spayed_neutered": true
+   },
+   "photo_url": "https://petharbor.com/get_image.asp?RES=Detail&ID=A542408&LOCATION=MONT",
+   "thumb_path": "assets/img/cats/socrata-montgomery_md-A542408.jpg",
+   "adoption_url": "https://petharbor.com/pet.asp?uaid=MONT.A542408",
+   "status": "adoptable",
+   "published_at": "2026-05-31",
+   "first_seen": "2026-06-21T06:28:40Z"
+  },
+  {
+   "id": "socrata-montgomery_md-A542487",
+   "source": "socrata",
+   "source_id": "A542487",
+   "shelter_id": "montgomery_md",
+   "name": "Dusti",
+   "age_text": "2 YEARS",
+   "age_bucket": "young",
+   "sex": "female",
+   "spayed_neutered": true,
+   "breed_primary": "Domestic Mediumhair",
+   "breed_mixed": true,
+   "colors": [
+    "orange"
+   ],
+   "pattern": "tortie",
+   "coat_length": "medium",
+   "size": "medium",
+   "attributes": {
+    "spayed_neutered": true
+   },
+   "photo_url": "https://petharbor.com/get_image.asp?RES=Detail&ID=A542487&LOCATION=MONT",
+   "thumb_path": "assets/img/cats/socrata-montgomery_md-A542487.jpg",
+   "adoption_url": "https://petharbor.com/pet.asp?uaid=MONT.A542487",
+   "status": "adoptable",
+   "published_at": "2026-04-24",
+   "first_seen": "2026-06-21T06:28:40Z"
+  },
+  {
+   "id": "socrata-montgomery_md-A543082",
+   "source": "socrata",
+   "source_id": "A543082",
+   "shelter_id": "montgomery_md",
+   "name": "Paisley",
+   "age_text": "3 YEARS",
+   "age_bucket": "adult",
+   "sex": "female",
+   "spayed_neutered": true,
+   "breed_primary": "Domestic Shorthair",
+   "breed_mixed": true,
+   "colors": [
+    "black",
+    "white"
+   ],
+   "pattern": "tuxedo",
+   "coat_length": "short",
+   "size": "small",
+   "attributes": {
+    "spayed_neutered": true
+   },
+   "photo_url": "https://petharbor.com/get_image.asp?RES=Detail&ID=A543082&LOCATION=MONT",
+   "thumb_path": "assets/img/cats/socrata-montgomery_md-A543082.jpg",
+   "adoption_url": "https://petharbor.com/pet.asp?uaid=MONT.A543082",
+   "status": "adoptable",
+   "published_at": "2026-05-11",
+   "first_seen": "2026-06-21T06:28:40Z"
+  },
+  {
+   "id": "socrata-montgomery_md-A543510",
+   "source": "socrata",
+   "source_id": "A543510",
+   "shelter_id": "montgomery_md",
+   "name": "Brookie",
+   "age_text": "1 YEAR 1 MONTH",
+   "age_bucket": "young",
+   "sex": "female",
+   "spayed_neutered": true,
+   "breed_primary": "Domestic Shorthair",
+   "breed_mixed": true,
+   "colors": [
+    "black"
+   ],
+   "pattern": "solid",
+   "coat_length": "short",
+   "size": "small",
+   "attributes": {
+    "spayed_neutered": true
+   },
+   "photo_url": "https://petharbor.com/get_image.asp?RES=Detail&ID=A543510&LOCATION=MONT",
+   "thumb_path": "assets/img/cats/socrata-montgomery_md-A543510.jpg",
+   "adoption_url": "https://petharbor.com/pet.asp?uaid=MONT.A543510",
+   "status": "adoptable",
+   "published_at": "2026-05-21",
+   "first_seen": "2026-06-21T06:28:40Z"
+  },
+  {
+   "id": "socrata-montgomery_md-A543542",
+   "source": "socrata",
+   "source_id": "A543542",
+   "shelter_id": "montgomery_md",
+   "name": "Baby Bella",
+   "age_text": "2 YEARS",
+   "age_bucket": "young",
+   "sex": "female",
+   "spayed_neutered": false,
+   "breed_primary": "Domestic Shorthair",
+   "breed_mixed": true,
+   "colors": [
+    "black",
+    "white"
+   ],
+   "pattern": "tuxedo",
+   "coat_length": "short",
+   "size": "medium",
+   "attributes": {
+    "spayed_neutered": false
+   },
+   "photo_url": "https://petharbor.com/get_image.asp?RES=Detail&ID=A543542&LOCATION=MONT",
+   "thumb_path": "assets/img/cats/socrata-montgomery_md-A543542.jpg",
+   "adoption_url": "https://petharbor.com/pet.asp?uaid=MONT.A543542",
+   "status": "adoptable",
+   "published_at": "2026-05-22",
+   "first_seen": "2026-06-21T06:28:40Z"
+  },
+  {
+   "id": "socrata-montgomery_md-A543583",
+   "source": "socrata",
+   "source_id": "A543583",
+   "shelter_id": "montgomery_md",
+   "name": "Bunner",
+   "age_text": "2 YEARS",
+   "age_bucket": "young",
+   "sex": "male",
+   "spayed_neutered": true,
+   "breed_primary": "Domestic Shorthair",
+   "breed_mixed": true,
+   "colors": [
+    "black",
+    "white"
+   ],
+   "pattern": "tuxedo",
+   "coat_length": "short",
+   "size": "medium",
+   "attributes": {
+    "spayed_neutered": true
+   },
+   "photo_url": "https://petharbor.com/get_image.asp?RES=Detail&ID=A543583&LOCATION=MONT",
+   "thumb_path": "assets/img/cats/socrata-montgomery_md-A543583.jpg",
+   "adoption_url": "https://petharbor.com/pet.asp?uaid=MONT.A543583",
+   "status": "adoptable",
+   "published_at": "2026-05-23",
+   "first_seen": "2026-06-21T06:28:40Z"
+  },
+  {
+   "id": "socrata-montgomery_md-A543741",
+   "source": "socrata",
+   "source_id": "A543741",
+   "shelter_id": "montgomery_md",
+   "name": "Karina",
+   "age_text": "4 YEARS",
+   "age_bucket": "adult",
+   "sex": "female",
+   "spayed_neutered": true,
+   "breed_primary": "Domestic Shorthair",
+   "breed_mixed": true,
+   "colors": [
+    "white",
+    "gray"
+   ],
+   "pattern": "bicolor",
+   "coat_length": "short",
+   "size": "medium",
+   "attributes": {
+    "spayed_neutered": true
+   },
+   "photo_url": "https://petharbor.com/get_image.asp?RES=Detail&ID=A543741&LOCATION=MONT",
+   "thumb_path": "assets/img/cats/socrata-montgomery_md-A543741.jpg",
+   "adoption_url": "https://petharbor.com/pet.asp?uaid=MONT.A543741",
+   "status": "adoptable",
+   "published_at": "2026-05-28",
+   "first_seen": "2026-06-21T06:28:40Z"
+  },
+  {
+   "id": "socrata-montgomery_md-A543843",
+   "source": "socrata",
+   "source_id": "A543843",
+   "shelter_id": "montgomery_md",
+   "name": "Genesis",
+   "age_text": "1 YEAR",
+   "age_bucket": "young",
+   "sex": "female",
+   "spayed_neutered": true,
+   "breed_primary": "Domestic Shorthair",
+   "breed_mixed": true,
+   "colors": [
+    "black",
+    "white"
+   ],
+   "pattern": "tuxedo",
+   "coat_length": "short",
+   "size": "medium",
+   "attributes": {
+    "spayed_neutered": true
+   },
+   "photo_url": "https://petharbor.com/get_image.asp?RES=Detail&ID=A543843&LOCATION=MONT",
+   "thumb_path": "assets/img/cats/socrata-montgomery_md-A543843.jpg",
+   "adoption_url": "https://petharbor.com/pet.asp?uaid=MONT.A543843",
+   "status": "adoptable",
+   "published_at": "2026-05-30",
+   "first_seen": "2026-06-21T06:28:40Z"
+  },
+  {
+   "id": "socrata-montgomery_md-A543921",
+   "source": "socrata",
+   "source_id": "A543921",
+   "shelter_id": "montgomery_md",
+   "name": "Kipper",
+   "age_text": "4 YEARS",
+   "age_bucket": "adult",
+   "sex": "female",
+   "spayed_neutered": true,
+   "breed_primary": "Domestic Mediumhair",
+   "breed_mixed": true,
+   "colors": [
+    "black",
+    "white"
+   ],
+   "pattern": "tuxedo",
+   "coat_length": "medium",
+   "size": "medium",
+   "attributes": {
+    "spayed_neutered": true
+   },
+   "photo_url": "https://petharbor.com/get_image.asp?RES=Detail&ID=A543921&LOCATION=MONT",
+   "thumb_path": "assets/img/cats/socrata-montgomery_md-A543921.jpg",
+   "adoption_url": "https://petharbor.com/pet.asp?uaid=MONT.A543921",
+   "status": "adoptable",
+   "published_at": "2026-06-01",
+   "first_seen": "2026-06-21T06:28:40Z"
+  },
+  {
+   "id": "socrata-montgomery_md-A543955",
+   "source": "socrata",
+   "source_id": "A543955",
+   "shelter_id": "montgomery_md",
+   "name": "Dulce Gato",
+   "age_text": "7 MONTHS",
+   "age_bucket": "kitten",
+   "sex": "female",
+   "spayed_neutered": true,
+   "breed_primary": "Domestic Shorthair",
+   "breed_mixed": true,
+   "colors": [
+    "gray"
+   ],
+   "pattern": "tabby",
+   "coat_length": "short",
+   "size": "small",
+   "attributes": {
+    "spayed_neutered": true
+   },
+   "photo_url": "https://petharbor.com/get_image.asp?RES=Detail&ID=A543955&LOCATION=MONT",
+   "thumb_path": "assets/img/cats/socrata-montgomery_md-A543955.jpg",
+   "adoption_url": "https://petharbor.com/pet.asp?uaid=MONT.A543955",
+   "status": "adoptable",
+   "published_at": "2026-06-02",
+   "first_seen": "2026-06-21T06:28:40Z"
+  },
+  {
+   "id": "socrata-montgomery_md-A544007",
+   "source": "socrata",
+   "source_id": "A544007",
+   "shelter_id": "montgomery_md",
+   "name": "Princess Noodle",
+   "age_text": "3 YEARS",
+   "age_bucket": "adult",
+   "sex": "female",
+   "spayed_neutered": true,
+   "breed_primary": "Domestic Shorthair",
+   "breed_mixed": true,
+   "colors": [
+    "white"
+   ],
+   "pattern": "tabby",
+   "coat_length": "short",
+   "size": "small",
+   "attributes": {
+    "spayed_neutered": true
+   },
+   "photo_url": "https://petharbor.com/get_image.asp?RES=Detail&ID=A544007&LOCATION=MONT",
+   "thumb_path": "assets/img/cats/socrata-montgomery_md-A544007.jpg",
+   "adoption_url": "https://petharbor.com/pet.asp?uaid=MONT.A544007",
+   "status": "adoptable",
+   "published_at": "2026-06-04",
+   "first_seen": "2026-06-21T06:28:40Z"
+  },
+  {
+   "id": "socrata-montgomery_md-A544010",
+   "source": "socrata",
+   "source_id": "A544010",
+   "shelter_id": "montgomery_md",
+   "name": "Princess Pj",
+   "age_text": "3 YEARS",
+   "age_bucket": "adult",
+   "sex": "female",
+   "spayed_neutered": true,
+   "breed_primary": "Domestic Shorthair",
+   "breed_mixed": true,
+   "colors": [
+    "white",
+    "orange"
+   ],
+   "pattern": "calico",
+   "coat_length": "short",
+   "size": "medium",
+   "attributes": {
+    "spayed_neutered": true
+   },
+   "photo_url": "https://petharbor.com/get_image.asp?RES=Detail&ID=A544010&LOCATION=MONT",
+   "thumb_path": "assets/img/cats/socrata-montgomery_md-A544010.jpg",
+   "adoption_url": "https://petharbor.com/pet.asp?uaid=MONT.A544010",
+   "status": "adoptable",
+   "published_at": "2026-06-04",
+   "first_seen": "2026-06-21T06:28:40Z"
+  },
+  {
+   "id": "socrata-montgomery_md-A544028",
+   "source": "socrata",
+   "source_id": "A544028",
+   "shelter_id": "montgomery_md",
+   "name": "Kitty Fantastica",
+   "age_text": "3 YEARS",
+   "age_bucket": "adult",
+   "sex": "female",
+   "spayed_neutered": true,
+   "breed_primary": "Domestic Shorthair",
+   "breed_mixed": true,
+   "colors": [
+    "gray"
+   ],
+   "pattern": "tabby",
+   "coat_length": "short",
+   "size": "medium",
+   "attributes": {
+    "spayed_neutered": true
+   },
+   "photo_url": "https://petharbor.com/get_image.asp?RES=Detail&ID=A544028&LOCATION=MONT",
+   "thumb_path": "assets/img/cats/socrata-montgomery_md-A544028.jpg",
+   "adoption_url": "https://petharbor.com/pet.asp?uaid=MONT.A544028",
+   "status": "adoptable",
+   "published_at": "2026-06-04",
+   "first_seen": "2026-06-21T06:28:40Z"
+  },
+  {
+   "id": "socrata-montgomery_md-A544087",
+   "source": "socrata",
+   "source_id": "A544087",
+   "shelter_id": "montgomery_md",
+   "name": "Snagglepuss",
+   "age_text": "4 YEARS",
+   "age_bucket": "adult",
+   "sex": "female",
+   "spayed_neutered": true,
+   "breed_primary": "Domestic Mediumhair",
+   "breed_mixed": true,
+   "colors": [
+    "white"
+   ],
+   "pattern": "tabby",
+   "coat_length": "medium",
+   "size": "medium",
+   "attributes": {
+    "spayed_neutered": true
+   },
+   "photo_url": "https://petharbor.com/get_image.asp?RES=Detail&ID=A544087&LOCATION=MONT",
+   "thumb_path": "assets/img/cats/socrata-montgomery_md-A544087.jpg",
+   "adoption_url": "https://petharbor.com/pet.asp?uaid=MONT.A544087",
+   "status": "adoptable",
+   "published_at": "2026-06-06",
+   "first_seen": "2026-06-21T06:28:40Z"
+  },
+  {
+   "id": "socrata-montgomery_md-A544133",
+   "source": "socrata",
+   "source_id": "A544133",
+   "shelter_id": "montgomery_md",
+   "name": "Kores",
+   "age_text": "2 YEARS",
+   "age_bucket": "young",
+   "sex": "female",
+   "spayed_neutered": true,
+   "breed_primary": "Domestic Shorthair",
+   "breed_mixed": true,
+   "colors": [
+    "gray"
+   ],
+   "pattern": "solid",
+   "coat_length": "short",
+   "size": "medium",
+   "attributes": {
+    "spayed_neutered": true
+   },
+   "photo_url": "https://petharbor.com/get_image.asp?RES=Detail&ID=A544133&LOCATION=MONT",
+   "thumb_path": "assets/img/cats/socrata-montgomery_md-A544133.jpg",
+   "adoption_url": "https://petharbor.com/pet.asp?uaid=MONT.A544133",
+   "status": "adoptable",
+   "published_at": "2026-06-07",
+   "first_seen": "2026-06-21T06:28:40Z"
+  },
+  {
+   "id": "socrata-montgomery_md-A544156",
+   "source": "socrata",
+   "source_id": "A544156",
+   "shelter_id": "montgomery_md",
+   "name": "Kashmir",
+   "age_text": "14 WEEKS",
+   "age_bucket": "kitten",
+   "sex": "female",
+   "spayed_neutered": true,
+   "breed_primary": "Manx",
+   "breed_mixed": true,
+   "colors": [
+    "black",
+    "white"
+   ],
+   "pattern": "tuxedo",
+   "coat_length": "long",
+   "size": "medium",
+   "attributes": {
+    "spayed_neutered": true
+   },
+   "photo_url": "https://petharbor.com/get_image.asp?RES=Detail&ID=A544156&LOCATION=MONT",
+   "thumb_path": "assets/img/cats/socrata-montgomery_md-A544156.jpg",
+   "adoption_url": "https://petharbor.com/pet.asp?uaid=MONT.A544156",
+   "status": "adoptable",
+   "published_at": "2026-06-07",
+   "first_seen": "2026-06-21T06:28:40Z"
+  },
+  {
+   "id": "socrata-montgomery_md-A544167",
+   "source": "socrata",
+   "source_id": "A544167",
+   "shelter_id": "montgomery_md",
+   "name": "Tapioca",
+   "age_text": "2 YEARS",
+   "age_bucket": "young",
+   "sex": "female",
+   "spayed_neutered": true,
+   "breed_primary": "Domestic Shorthair",
+   "breed_mixed": true,
+   "colors": [
+    "black"
+   ],
+   "pattern": "solid",
+   "coat_length": "short",
+   "size": "medium",
+   "attributes": {
+    "spayed_neutered": true
+   },
+   "photo_url": "https://petharbor.com/get_image.asp?RES=Detail&ID=A544167&LOCATION=MONT",
+   "thumb_path": "assets/img/cats/socrata-montgomery_md-A544167.jpg",
+   "adoption_url": "https://petharbor.com/pet.asp?uaid=MONT.A544167",
+   "status": "adoptable",
+   "published_at": "2026-06-07",
+   "first_seen": "2026-06-21T06:28:40Z"
+  },
+  {
+   "id": "socrata-montgomery_md-A544193",
+   "source": "socrata",
+   "source_id": "A544193",
+   "shelter_id": "montgomery_md",
+   "name": "Yuki",
+   "age_text": "15 YEARS",
+   "age_bucket": "senior",
+   "sex": "female",
+   "spayed_neutered": true,
+   "breed_primary": "Domestic Shorthair",
+   "breed_mixed": true,
+   "colors": [
+    "orange"
+   ],
+   "pattern": "tortie",
+   "coat_length": "short",
+   "size": "medium",
+   "attributes": {
+    "spayed_neutered": true
+   },
+   "photo_url": "https://petharbor.com/get_image.asp?RES=Detail&ID=A544193&LOCATION=MONT",
+   "thumb_path": "assets/img/cats/socrata-montgomery_md-A544193.jpg",
+   "adoption_url": "https://petharbor.com/pet.asp?uaid=MONT.A544193",
+   "status": "adoptable",
+   "published_at": "2026-06-08",
+   "first_seen": "2026-06-21T06:28:40Z"
+  },
+  {
+   "id": "socrata-montgomery_md-A544194",
+   "source": "socrata",
+   "source_id": "A544194",
+   "shelter_id": "montgomery_md",
+   "name": "Boots",
+   "age_text": "15 YEARS",
+   "age_bucket": "senior",
+   "sex": "female",
+   "spayed_neutered": true,
+   "breed_primary": "Domestic Shorthair",
+   "breed_mixed": true,
+   "colors": [
+    "white",
+    "gray"
+   ],
+   "pattern": "bicolor",
+   "coat_length": "short",
+   "size": "medium",
+   "attributes": {
+    "spayed_neutered": true
+   },
+   "photo_url": "https://petharbor.com/get_image.asp?RES=Detail&ID=A544194&LOCATION=MONT",
+   "thumb_path": "assets/img/cats/socrata-montgomery_md-A544194.jpg",
+   "adoption_url": "https://petharbor.com/pet.asp?uaid=MONT.A544194",
+   "status": "adoptable",
+   "published_at": "2026-06-08",
+   "first_seen": "2026-06-21T06:28:40Z"
+  },
+  {
+   "id": "socrata-montgomery_md-A544203",
+   "source": "socrata",
+   "source_id": "A544203",
+   "shelter_id": "montgomery_md",
+   "name": "Sherbert",
+   "age_text": "1 YEAR 6 MONTHS",
+   "age_bucket": "young",
+   "sex": "female",
+   "spayed_neutered": true,
+   "breed_primary": "Domestic Shorthair",
+   "breed_mixed": true,
+   "colors": [
+    "gray"
+   ],
+   "pattern": "solid",
+   "coat_length": "short",
+   "size": "medium",
+   "attributes": {
+    "spayed_neutered": true
+   },
+   "photo_url": "https://petharbor.com/get_image.asp?RES=Detail&ID=A544203&LOCATION=MONT",
+   "thumb_path": "assets/img/cats/socrata-montgomery_md-A544203.jpg",
+   "adoption_url": "https://petharbor.com/pet.asp?uaid=MONT.A544203",
+   "status": "adoptable",
+   "published_at": "2026-06-08",
+   "first_seen": "2026-06-21T06:28:40Z"
+  },
+  {
+   "id": "socrata-montgomery_md-A544258",
+   "source": "socrata",
+   "source_id": "A544258",
+   "shelter_id": "montgomery_md",
+   "name": "Teenage Dirtbag",
+   "age_text": "10 MONTHS",
+   "age_bucket": "kitten",
+   "sex": "male",
+   "spayed_neutered": true,
+   "breed_primary": "Domestic Shorthair",
+   "breed_mixed": true,
+   "colors": [
+    "black",
+    "white"
+   ],
+   "pattern": "tuxedo",
+   "coat_length": "short",
+   "size": "medium",
+   "attributes": {
+    "spayed_neutered": true
+   },
+   "photo_url": "https://petharbor.com/get_image.asp?RES=Detail&ID=A544258&LOCATION=MONT",
+   "thumb_path": "assets/img/cats/socrata-montgomery_md-A544258.jpg",
+   "adoption_url": "https://petharbor.com/pet.asp?uaid=MONT.A544258",
+   "status": "adoptable",
+   "published_at": "2026-06-09",
+   "first_seen": "2026-06-21T06:28:40Z"
+  },
+  {
+   "id": "socrata-montgomery_md-A544260",
+   "source": "socrata",
+   "source_id": "A544260",
+   "shelter_id": "montgomery_md",
+   "name": "Wheatus",
+   "age_text": "10 MONTHS",
+   "age_bucket": "kitten",
+   "sex": "male",
+   "spayed_neutered": true,
+   "breed_primary": "Domestic Shorthair",
+   "breed_mixed": true,
+   "colors": [
+    "black",
+    "white"
+   ],
+   "pattern": "tuxedo",
+   "coat_length": "short",
+   "size": "medium",
+   "attributes": {
+    "spayed_neutered": true
+   },
+   "photo_url": "https://petharbor.com/get_image.asp?RES=Detail&ID=A544260&LOCATION=MONT",
+   "thumb_path": "assets/img/cats/socrata-montgomery_md-A544260.jpg",
+   "adoption_url": "https://petharbor.com/pet.asp?uaid=MONT.A544260",
+   "status": "adoptable",
+   "published_at": "2026-06-09",
+   "first_seen": "2026-06-21T06:28:40Z"
+  },
+  {
+   "id": "socrata-montgomery_md-A544314",
+   "source": "socrata",
+   "source_id": "A544314",
+   "shelter_id": "montgomery_md",
+   "name": "Rori",
+   "age_text": "2 YEARS",
+   "age_bucket": "young",
+   "sex": "male",
+   "spayed_neutered": true,
+   "breed_primary": "Domestic Shorthair",
+   "breed_mixed": true,
+   "colors": [
+    "gray"
+   ],
+   "pattern": "solid",
+   "coat_length": "short",
+   "size": "small",
+   "attributes": {
+    "spayed_neutered": true
+   },
+   "photo_url": "https://petharbor.com/get_image.asp?RES=Detail&ID=A544314&LOCATION=MONT",
+   "thumb_path": "assets/img/cats/socrata-montgomery_md-A544314.jpg",
+   "adoption_url": "https://petharbor.com/pet.asp?uaid=MONT.A544314",
+   "status": "adoptable",
+   "published_at": "2026-06-11",
+   "first_seen": "2026-06-21T06:28:40Z"
+  },
+  {
+   "id": "socrata-montgomery_md-A544378",
+   "source": "socrata",
+   "source_id": "A544378",
+   "shelter_id": "montgomery_md",
+   "name": "Patty Cakes",
+   "age_text": "2 YEARS",
+   "age_bucket": "young",
+   "sex": "female",
+   "spayed_neutered": true,
+   "breed_primary": "Domestic Shorthair",
+   "breed_mixed": true,
+   "colors": [
+    "orange"
+   ],
+   "pattern": "calico",
+   "coat_length": "short",
+   "size": "medium",
+   "attributes": {
+    "spayed_neutered": true
+   },
+   "photo_url": "https://petharbor.com/get_image.asp?RES=Detail&ID=A544378&LOCATION=MONT",
+   "thumb_path": "assets/img/cats/socrata-montgomery_md-A544378.jpg",
+   "adoption_url": "https://petharbor.com/pet.asp?uaid=MONT.A544378",
+   "status": "adoptable",
+   "published_at": "2026-06-12",
+   "first_seen": "2026-06-21T06:28:40Z"
+  },
+  {
+   "id": "socrata-montgomery_md-A544379",
+   "source": "socrata",
+   "source_id": "A544379",
+   "shelter_id": "montgomery_md",
+   "name": "Cupcake",
+   "age_text": "1 YEAR",
+   "age_bucket": "young",
+   "sex": "male",
+   "spayed_neutered": true,
+   "breed_primary": "Domestic Shorthair",
+   "breed_mixed": true,
+   "colors": [
+    "white",
+    "gray"
+   ],
+   "pattern": "bicolor",
+   "coat_length": "short",
+   "size": "medium",
+   "attributes": {
+    "spayed_neutered": true
+   },
+   "photo_url": "https://petharbor.com/get_image.asp?RES=Detail&ID=A544379&LOCATION=MONT",
+   "thumb_path": "assets/img/cats/socrata-montgomery_md-A544379.jpg",
+   "adoption_url": "https://petharbor.com/pet.asp?uaid=MONT.A544379",
+   "status": "adoptable",
+   "published_at": "2026-06-12",
+   "first_seen": "2026-06-21T06:28:40Z"
+  },
+  {
+   "id": "socrata-montgomery_md-A544439",
+   "source": "socrata",
+   "source_id": "A544439",
+   "shelter_id": "montgomery_md",
+   "name": "Nala",
+   "age_text": "1 YEAR",
+   "age_bucket": "young",
+   "sex": "female",
+   "spayed_neutered": true,
+   "breed_primary": "Domestic Shorthair",
+   "breed_mixed": true,
+   "colors": [
+    "black"
+   ],
+   "pattern": "solid",
+   "coat_length": "short",
+   "size": "medium",
+   "attributes": {
+    "spayed_neutered": true
+   },
+   "photo_url": "https://petharbor.com/get_image.asp?RES=Detail&ID=A544439&LOCATION=MONT",
+   "thumb_path": "assets/img/cats/socrata-montgomery_md-A544439.jpg",
+   "adoption_url": "https://petharbor.com/pet.asp?uaid=MONT.A544439",
+   "status": "adoptable",
+   "published_at": "2026-06-14",
+   "first_seen": "2026-06-21T06:28:40Z"
+  },
+  {
+   "id": "socrata-montgomery_md-A544462",
+   "source": "socrata",
+   "source_id": "A544462",
+   "shelter_id": "montgomery_md",
+   "name": "Finn",
+   "age_text": "12 WEEKS",
+   "age_bucket": "kitten",
+   "sex": "male",
+   "spayed_neutered": true,
+   "breed_primary": "Domestic Shorthair",
+   "breed_mixed": true,
+   "colors": [
+    "white",
+    "gray"
+   ],
+   "pattern": "bicolor",
+   "coat_length": "short",
+   "size": "medium",
+   "attributes": {
+    "spayed_neutered": true
+   },
+   "photo_url": "https://petharbor.com/get_image.asp?RES=Detail&ID=A544462&LOCATION=MONT",
+   "thumb_path": "assets/img/cats/socrata-montgomery_md-A544462.jpg",
+   "adoption_url": "https://petharbor.com/pet.asp?uaid=MONT.A544462",
+   "status": "adoptable",
+   "published_at": "2026-06-14",
+   "first_seen": "2026-06-21T06:28:40Z"
+  },
+  {
+   "id": "socrata-montgomery_md-A544667",
+   "source": "socrata",
+   "source_id": "A544667",
+   "shelter_id": "montgomery_md",
+   "name": "Shadow",
+   "age_text": "8 YEARS",
+   "age_bucket": "senior",
+   "sex": "male",
+   "spayed_neutered": true,
+   "breed_primary": "Domestic Shorthair",
+   "breed_mixed": true,
+   "colors": [
+    "gray"
+   ],
+   "pattern": "solid",
+   "coat_length": "short",
+   "size": "medium",
+   "attributes": {
+    "spayed_neutered": true
+   },
+   "photo_url": "https://petharbor.com/get_image.asp?RES=Detail&ID=A544667&LOCATION=MONT",
+   "thumb_path": "assets/img/cats/socrata-montgomery_md-A544667.jpg",
+   "adoption_url": "https://petharbor.com/pet.asp?uaid=MONT.A544667",
+   "status": "adoptable",
+   "published_at": "2026-06-09",
+   "first_seen": "2026-06-21T06:28:40Z"
+  },
+  {
+   "id": "socrata-sonoma_ca-A431860",
+   "source": "socrata",
+   "source_id": "A431860",
+   "shelter_id": "sonoma_ca",
+   "name": "Mary",
+   "age_text": "5y",
+   "age_bucket": "adult",
+   "birth_estimate": "2021-02",
+   "sex": "male",
+   "spayed_neutered": true,
+   "breed_primary": "Domestic Shorthair",
+   "breed_mixed": true,
+   "colors": [
+    "white"
+   ],
+   "pattern": "tabby",
+   "coat_length": "short",
+   "size": "small",
+   "attributes": {
+    "spayed_neutered": true
+   },
+   "adoption_url": "https://sonomacounty.ca.gov/health-and-human-services/health-services/divisions/public-health/animal-services/adopt",
+   "status": "in_shelter",
+   "published_at": "2026-06-11",
+   "first_seen": "2026-06-21T06:28:40Z"
+  },
+  {
+   "id": "socrata-sonoma_ca-A437033",
+   "source": "socrata",
+   "source_id": "A437033",
+   "shelter_id": "sonoma_ca",
+   "name": "Forest",
+   "age_text": "4y",
+   "age_bucket": "adult",
+   "birth_estimate": "2022-12",
+   "sex": "female",
+   "spayed_neutered": true,
+   "breed_primary": "Domestic Mediumhair",
+   "breed_mixed": true,
+   "colors": [
+    "orange"
+   ],
+   "pattern": "tortie",
+   "coat_length": "medium",
+   "size": "small",
+   "attributes": {
+    "spayed_neutered": true
+   },
+   "adoption_url": "https://sonomacounty.ca.gov/health-and-human-services/health-services/divisions/public-health/animal-services/adopt",
+   "status": "in_shelter",
+   "published_at": "2026-06-12",
+   "first_seen": "2026-06-21T06:28:40Z"
+  },
+  {
+   "id": "socrata-sonoma_ca-A441129",
+   "source": "socrata",
+   "source_id": "A441129",
+   "shelter_id": "sonoma_ca",
+   "name": "Toro",
+   "age_text": "3y",
+   "age_bucket": "adult",
+   "birth_estimate": "2023-04",
+   "sex": "male",
+   "spayed_neutered": false,
+   "breed_primary": "Domestic Shorthair",
+   "breed_mixed": true,
+   "colors": [
+    "white"
+   ],
+   "pattern": "tabby",
+   "coat_length": "short",
+   "size": "small",
+   "attributes": {
+    "spayed_neutered": false
+   },
+   "adoption_url": "https://sonomacounty.ca.gov/health-and-human-services/health-services/divisions/public-health/animal-services/adopt",
+   "status": "in_shelter",
+   "published_at": "2026-06-18",
+   "first_seen": "2026-06-21T06:28:40Z"
+  },
+  {
+   "id": "socrata-sonoma_ca-A441444",
+   "source": "socrata",
+   "source_id": "A441444",
+   "shelter_id": "sonoma_ca",
+   "name": "Shimi",
+   "age_text": "5y",
+   "age_bucket": "adult",
+   "birth_estimate": "2021-04",
+   "sex": "female",
+   "spayed_neutered": true,
+   "breed_primary": "Domestic Mediumhair",
+   "breed_mixed": true,
+   "colors": [
+    "orange"
+   ],
+   "pattern": "tortie",
+   "coat_length": "medium",
+   "size": "small",
+   "attributes": {
+    "spayed_neutered": true
+   },
+   "adoption_url": "https://sonomacounty.ca.gov/health-and-human-services/health-services/divisions/public-health/animal-services/adopt",
+   "status": "in_shelter",
+   "published_at": "2026-06-10",
+   "first_seen": "2026-06-21T06:28:40Z"
+  },
+  {
+   "id": "socrata-sonoma_ca-A442311",
+   "source": "socrata",
+   "source_id": "A442311",
+   "shelter_id": "sonoma_ca",
+   "name": "Unnamed",
+   "age_text": "0.0yy",
+   "age_bucket": "kitten",
+   "birth_estimate": "2026-04",
+   "sex": "female",
+   "spayed_neutered": false,
+   "breed_primary": "Domestic Mediumhair",
+   "breed_mixed": true,
+   "colors": [
+    "white",
+    "gray"
+   ],
+   "pattern": "bicolor",
+   "coat_length": "medium",
+   "size": "medium",
+   "attributes": {
+    "spayed_neutered": false
+   },
+   "adoption_url": "https://sonomacounty.ca.gov/health-and-human-services/health-services/divisions/public-health/animal-services/adopt",
+   "status": "in_shelter",
+   "published_at": "2026-06-08",
+   "first_seen": "2026-06-21T06:28:40Z"
+  },
+  {
+   "id": "socrata-sonoma_ca-A442323",
+   "source": "socrata",
+   "source_id": "A442323",
+   "shelter_id": "sonoma_ca",
+   "name": "Sable",
+   "age_text": "3y",
+   "age_bucket": "adult",
+   "birth_estimate": "2023-06",
+   "sex": "female",
+   "spayed_neutered": false,
+   "breed_primary": "Domestic Shorthair",
+   "breed_mixed": true,
+   "colors": [
+    "black"
+   ],
+   "pattern": "solid",
+   "coat_length": "short",
+   "size": "small",
+   "attributes": {
+    "spayed_neutered": false
+   },
+   "adoption_url": "https://sonomacounty.ca.gov/health-and-human-services/health-services/divisions/public-health/animal-services/adopt",
+   "status": "in_shelter",
+   "published_at": "2026-06-09",
+   "first_seen": "2026-06-21T06:28:40Z"
+  },
+  {
+   "id": "socrata-sonoma_ca-A442336",
+   "source": "socrata",
+   "source_id": "A442336",
+   "shelter_id": "sonoma_ca",
+   "name": "34406",
+   "sex": "female",
+   "spayed_neutered": false,
+   "breed_primary": "Domestic Shorthair",
+   "breed_mixed": true,
+   "colors": [
+    "gray"
+   ],
+   "pattern": "tabby",
+   "coat_length": "short",
+   "size": "small",
+   "attributes": {
+    "spayed_neutered": false
+   },
+   "adoption_url": "https://sonomacounty.ca.gov/health-and-human-services/health-services/divisions/public-health/animal-services/adopt",
+   "status": "in_shelter",
+   "published_at": "2026-06-08",
+   "first_seen": "2026-06-21T06:28:40Z"
+  },
+  {
+   "id": "socrata-sonoma_ca-A442337",
+   "source": "socrata",
+   "source_id": "A442337",
+   "shelter_id": "sonoma_ca",
+   "name": "34407",
+   "age_text": "0.0yy",
+   "age_bucket": "kitten",
+   "birth_estimate": "2026-04",
+   "sex": "unknown",
+   "breed_primary": "Domestic Shorthair",
+   "breed_mixed": true,
+   "colors": [
+    "white",
+    "gray"
+   ],
+   "pattern": "bicolor",
+   "coat_length": "short",
+   "size": "medium",
+   "adoption_url": "https://sonomacounty.ca.gov/health-and-human-services/health-services/divisions/public-health/animal-services/adopt",
+   "status": "in_shelter",
+   "published_at": "2026-06-08",
+   "first_seen": "2026-06-21T06:28:40Z"
+  },
+  {
+   "id": "socrata-sonoma_ca-A442338",
+   "source": "socrata",
+   "source_id": "A442338",
+   "shelter_id": "sonoma_ca",
+   "name": "34408",
+   "age_text": "0.0yy",
+   "age_bucket": "kitten",
+   "birth_estimate": "2026-04",
+   "sex": "unknown",
+   "breed_primary": "Domestic Shorthair",
+   "breed_mixed": true,
+   "colors": [
+    "gray"
+   ],
+   "pattern": "solid",
+   "coat_length": "short",
+   "size": "medium",
+   "adoption_url": "https://sonomacounty.ca.gov/health-and-human-services/health-services/divisions/public-health/animal-services/adopt",
+   "status": "in_shelter",
+   "published_at": "2026-06-08",
+   "first_seen": "2026-06-21T06:28:40Z"
+  },
+  {
+   "id": "socrata-sonoma_ca-A442339",
+   "source": "socrata",
+   "source_id": "A442339",
+   "shelter_id": "sonoma_ca",
+   "name": "34409",
+   "age_text": "0.0yy",
+   "age_bucket": "kitten",
+   "birth_estimate": "2026-04",
+   "sex": "unknown",
+   "breed_primary": "Domestic Shorthair",
+   "breed_mixed": true,
+   "colors": [
+    "gray"
+   ],
+   "pattern": "tabby",
+   "coat_length": "short",
+   "size": "medium",
+   "adoption_url": "https://sonomacounty.ca.gov/health-and-human-services/health-services/divisions/public-health/animal-services/adopt",
+   "status": "in_shelter",
+   "published_at": "2026-06-08",
+   "first_seen": "2026-06-21T06:28:40Z"
+  },
+  {
+   "id": "socrata-sonoma_ca-A442340",
+   "source": "socrata",
+   "source_id": "A442340",
+   "shelter_id": "sonoma_ca",
+   "name": "34410",
+   "age_text": "0.0yy",
+   "age_bucket": "kitten",
+   "birth_estimate": "2026-04",
+   "sex": "unknown",
+   "breed_primary": "Domestic Shorthair",
+   "breed_mixed": true,
+   "colors": [
+    "gray"
+   ],
+   "pattern": "tabby",
+   "coat_length": "short",
+   "size": "medium",
+   "adoption_url": "https://sonomacounty.ca.gov/health-and-human-services/health-services/divisions/public-health/animal-services/adopt",
+   "status": "in_shelter",
+   "published_at": "2026-06-08",
+   "first_seen": "2026-06-21T06:28:40Z"
+  },
+  {
+   "id": "socrata-sonoma_ca-A442341",
+   "source": "socrata",
+   "source_id": "A442341",
+   "shelter_id": "sonoma_ca",
+   "name": "34411",
+   "age_text": "0.0yy",
+   "age_bucket": "kitten",
+   "birth_estimate": "2026-04",
+   "sex": "unknown",
+   "breed_primary": "Domestic Shorthair",
+   "breed_mixed": true,
+   "colors": [
+    "gray"
+   ],
+   "pattern": "tabby",
+   "coat_length": "short",
+   "size": "medium",
+   "adoption_url": "https://sonomacounty.ca.gov/health-and-human-services/health-services/divisions/public-health/animal-services/adopt",
+   "status": "in_shelter",
+   "published_at": "2026-06-08",
+   "first_seen": "2026-06-21T06:28:40Z"
+  },
+  {
+   "id": "socrata-sonoma_ca-A442376",
+   "source": "socrata",
+   "source_id": "A442376",
+   "shelter_id": "sonoma_ca",
+   "name": "Unnamed",
+   "age_text": "0.0yy",
+   "age_bucket": "kitten",
+   "birth_estimate": "2026-04",
+   "sex": "male",
+   "spayed_neutered": false,
+   "breed_primary": "Domestic Shorthair",
+   "breed_mixed": true,
+   "colors": [
+    "black",
+    "white"
+   ],
+   "pattern": "tuxedo",
+   "coat_length": "short",
+   "size": "medium",
+   "attributes": {
+    "spayed_neutered": false
+   },
+   "adoption_url": "https://sonomacounty.ca.gov/health-and-human-services/health-services/divisions/public-health/animal-services/adopt",
+   "status": "in_shelter",
+   "published_at": "2026-06-10",
+   "first_seen": "2026-06-21T06:28:40Z"
+  },
+  {
+   "id": "socrata-sonoma_ca-A442386",
+   "source": "socrata",
+   "source_id": "A442386",
+   "shelter_id": "sonoma_ca",
+   "name": "Zane",
+   "age_text": "3y",
+   "age_bucket": "adult",
+   "birth_estimate": "2023-06",
+   "sex": "male",
+   "spayed_neutered": true,
+   "breed_primary": "Domestic Mediumhair",
+   "breed_mixed": true,
+   "colors": [
+    "gray"
+   ],
+   "pattern": "tabby",
+   "coat_length": "medium",
+   "size": "small",
+   "attributes": {
+    "spayed_neutered": true
+   },
+   "adoption_url": "https://sonomacounty.ca.gov/health-and-human-services/health-services/divisions/public-health/animal-services/adopt",
+   "status": "in_shelter",
+   "published_at": "2026-06-11",
+   "first_seen": "2026-06-21T06:28:40Z"
+  },
+  {
+   "id": "socrata-sonoma_ca-A442392",
+   "source": "socrata",
+   "source_id": "A442392",
+   "shelter_id": "sonoma_ca",
+   "name": "Unnamed",
+   "age_text": "5y",
+   "age_bucket": "adult",
+   "birth_estimate": "2021-06",
+   "sex": "female",
+   "spayed_neutered": false,
+   "breed_primary": "Domestic Shorthair",
+   "breed_mixed": true,
+   "colors": [
+    "white"
+   ],
+   "pattern": "solid",
+   "coat_length": "short",
+   "size": "small",
+   "attributes": {
+    "spayed_neutered": false
+   },
+   "adoption_url": "https://sonomacounty.ca.gov/health-and-human-services/health-services/divisions/public-health/animal-services/adopt",
+   "status": "in_shelter",
+   "published_at": "2026-06-11",
+   "first_seen": "2026-06-21T06:28:40Z"
+  },
+  {
+   "id": "socrata-sonoma_ca-A442402",
+   "source": "socrata",
+   "source_id": "A442402",
+   "shelter_id": "sonoma_ca",
+   "name": "Unnamed",
+   "age_text": "2y",
+   "age_bucket": "young",
+   "birth_estimate": "2024-06",
+   "sex": "female",
+   "spayed_neutered": false,
+   "breed_primary": "Domestic Shorthair",
+   "breed_mixed": true,
+   "colors": [
+    "gray"
+   ],
+   "pattern": "tabby",
+   "coat_length": "short",
+   "size": "small",
+   "attributes": {
+    "spayed_neutered": false
+   },
+   "adoption_url": "https://sonomacounty.ca.gov/health-and-human-services/health-services/divisions/public-health/animal-services/adopt",
+   "status": "in_shelter",
+   "published_at": "2026-06-12",
+   "first_seen": "2026-06-21T06:28:40Z"
+  },
+  {
+   "id": "socrata-sonoma_ca-A442403",
+   "source": "socrata",
+   "source_id": "A442403",
+   "shelter_id": "sonoma_ca",
+   "name": "Unnamed",
+   "age_text": "0.0yy",
+   "age_bucket": "kitten",
+   "birth_estimate": "2026-05",
+   "sex": "male",
+   "spayed_neutered": false,
+   "breed_primary": "Domestic Shorthair",
+   "breed_mixed": true,
+   "colors": [
+    "black",
+    "white"
+   ],
+   "pattern": "tuxedo",
+   "coat_length": "short",
+   "size": "medium",
+   "attributes": {
+    "spayed_neutered": false
+   },
+   "adoption_url": "https://sonomacounty.ca.gov/health-and-human-services/health-services/divisions/public-health/animal-services/adopt",
+   "status": "in_shelter",
+   "published_at": "2026-06-12",
+   "first_seen": "2026-06-21T06:28:40Z"
+  },
+  {
+   "id": "socrata-sonoma_ca-A442404",
+   "source": "socrata",
+   "source_id": "A442404",
+   "shelter_id": "sonoma_ca",
+   "name": "Unnamed",
+   "age_text": "0.0yy",
+   "age_bucket": "kitten",
+   "birth_estimate": "2026-05",
+   "sex": "male",
+   "spayed_neutered": false,
+   "breed_primary": "Domestic Shorthair",
+   "breed_mixed": true,
+   "colors": [
+    "black",
+    "white"
+   ],
+   "pattern": "tuxedo",
+   "coat_length": "short",
+   "size": "medium",
+   "attributes": {
+    "spayed_neutered": false
+   },
+   "adoption_url": "https://sonomacounty.ca.gov/health-and-human-services/health-services/divisions/public-health/animal-services/adopt",
+   "status": "in_shelter",
+   "published_at": "2026-06-12",
+   "first_seen": "2026-06-21T06:28:40Z"
+  },
+  {
+   "id": "socrata-sonoma_ca-A442405",
+   "source": "socrata",
+   "source_id": "A442405",
+   "shelter_id": "sonoma_ca",
+   "name": "Unnamed",
+   "age_text": "0.0yy",
+   "age_bucket": "kitten",
+   "birth_estimate": "2026-05",
+   "sex": "female",
+   "spayed_neutered": false,
+   "breed_primary": "Domestic Shorthair",
+   "breed_mixed": true,
+   "colors": [
+    "black",
+    "white"
+   ],
+   "pattern": "tuxedo",
+   "coat_length": "short",
+   "size": "medium",
+   "attributes": {
+    "spayed_neutered": false
+   },
+   "adoption_url": "https://sonomacounty.ca.gov/health-and-human-services/health-services/divisions/public-health/animal-services/adopt",
+   "status": "in_shelter",
+   "published_at": "2026-06-12",
+   "first_seen": "2026-06-21T06:28:40Z"
+  },
+  {
+   "id": "socrata-sonoma_ca-A442406",
+   "source": "socrata",
+   "source_id": "A442406",
+   "shelter_id": "sonoma_ca",
+   "name": "Unnamed",
+   "age_text": "0.0yy",
+   "age_bucket": "kitten",
+   "birth_estimate": "2026-05",
+   "sex": "female",
+   "spayed_neutered": false,
+   "breed_primary": "Domestic Shorthair",
+   "breed_mixed": true,
+   "colors": [
+    "gray"
+   ],
+   "pattern": "tabby",
+   "coat_length": "short",
+   "size": "medium",
+   "attributes": {
+    "spayed_neutered": false
+   },
+   "adoption_url": "https://sonomacounty.ca.gov/health-and-human-services/health-services/divisions/public-health/animal-services/adopt",
+   "status": "in_shelter",
+   "published_at": "2026-06-12",
+   "first_seen": "2026-06-21T06:28:40Z"
+  },
+  {
+   "id": "socrata-sonoma_ca-A442407",
+   "source": "socrata",
+   "source_id": "A442407",
+   "shelter_id": "sonoma_ca",
+   "name": "Unnamed",
+   "age_text": "0.0yy",
+   "age_bucket": "kitten",
+   "birth_estimate": "2026-05",
+   "sex": "female",
+   "spayed_neutered": false,
+   "breed_primary": "Domestic Shorthair",
+   "breed_mixed": true,
+   "colors": [
+    "gray"
+   ],
+   "pattern": "tabby",
+   "coat_length": "short",
+   "size": "medium",
+   "attributes": {
+    "spayed_neutered": false
+   },
+   "adoption_url": "https://sonomacounty.ca.gov/health-and-human-services/health-services/divisions/public-health/animal-services/adopt",
+   "status": "in_shelter",
+   "published_at": "2026-06-12",
+   "first_seen": "2026-06-21T06:28:40Z"
+  },
+  {
+   "id": "socrata-sonoma_ca-A442408",
+   "source": "socrata",
+   "source_id": "A442408",
+   "shelter_id": "sonoma_ca",
+   "name": "Unnamed",
+   "age_text": "0.0yy",
+   "age_bucket": "kitten",
+   "birth_estimate": "2026-05",
+   "sex": "male",
+   "spayed_neutered": false,
+   "breed_primary": "Domestic Shorthair",
+   "breed_mixed": true,
+   "colors": [
+    "black",
+    "gray"
+   ],
+   "pattern": "tabby",
+   "coat_length": "short",
+   "size": "medium",
+   "attributes": {
+    "spayed_neutered": false
+   },
+   "adoption_url": "https://sonomacounty.ca.gov/health-and-human-services/health-services/divisions/public-health/animal-services/adopt",
+   "status": "in_shelter",
+   "published_at": "2026-06-12",
+   "first_seen": "2026-06-21T06:28:40Z"
+  },
+  {
+   "id": "socrata-sonoma_ca-A442412",
+   "source": "socrata",
+   "source_id": "A442412",
+   "shelter_id": "sonoma_ca",
+   "name": "34434",
+   "age_text": "0.0yy",
+   "age_bucket": "kitten",
+   "birth_estimate": "2026-04",
+   "sex": "male",
+   "spayed_neutered": false,
+   "breed_primary": "Domestic Shorthair",
+   "breed_mixed": true,
+   "colors": [
+    "black"
+   ],
+   "pattern": "solid",
+   "coat_length": "short",
+   "size": "medium",
+   "attributes": {
+    "spayed_neutered": false
+   },
+   "adoption_url": "https://sonomacounty.ca.gov/health-and-human-services/health-services/divisions/public-health/animal-services/adopt",
+   "status": "in_shelter",
+   "published_at": "2026-06-12",
+   "first_seen": "2026-06-21T06:28:40Z"
+  },
+  {
+   "id": "socrata-sonoma_ca-A442413",
+   "source": "socrata",
+   "source_id": "A442413",
+   "shelter_id": "sonoma_ca",
+   "name": "34435",
+   "age_text": "0.0yy",
+   "age_bucket": "kitten",
+   "birth_estimate": "2026-04",
+   "sex": "female",
+   "spayed_neutered": false,
+   "breed_primary": "Domestic Shorthair",
+   "breed_mixed": true,
+   "colors": [
+    "black",
+    "white"
+   ],
+   "pattern": "tuxedo",
+   "coat_length": "short",
+   "size": "medium",
+   "attributes": {
+    "spayed_neutered": false
+   },
+   "adoption_url": "https://sonomacounty.ca.gov/health-and-human-services/health-services/divisions/public-health/animal-services/adopt",
+   "status": "in_shelter",
+   "published_at": "2026-06-12",
+   "first_seen": "2026-06-21T06:28:40Z"
+  },
+  {
+   "id": "socrata-sonoma_ca-A442435",
+   "source": "socrata",
+   "source_id": "A442435",
+   "shelter_id": "sonoma_ca",
+   "name": "Pretty Kitty",
+   "age_text": "6y",
+   "age_bucket": "adult",
+   "birth_estimate": "2020-06",
+   "sex": "female",
+   "spayed_neutered": true,
+   "breed_primary": "Domestic Mediumhair",
+   "breed_mixed": true,
+   "colors": [
+    "black",
+    "white"
+   ],
+   "pattern": "tuxedo",
+   "coat_length": "medium",
+   "size": "medium",
+   "attributes": {
+    "spayed_neutered": true
+   },
+   "adoption_url": "https://sonomacounty.ca.gov/health-and-human-services/health-services/divisions/public-health/animal-services/adopt",
+   "status": "in_shelter",
+   "published_at": "2026-06-13",
+   "first_seen": "2026-06-21T06:28:40Z"
+  },
+  {
+   "id": "socrata-sonoma_ca-A442458",
+   "source": "socrata",
+   "source_id": "A442458",
+   "shelter_id": "sonoma_ca",
+   "name": "Celeste",
+   "age_text": "0.0yy",
+   "age_bucket": "kitten",
+   "birth_estimate": "2026-02",
+   "sex": "female",
+   "spayed_neutered": false,
+   "breed_primary": "Domestic Shorthair",
+   "breed_mixed": true,
+   "colors": [
+    "black",
+    "white"
+   ],
+   "pattern": "tuxedo",
+   "coat_length": "short",
+   "size": "medium",
+   "attributes": {
+    "spayed_neutered": false
+   },
+   "adoption_url": "https://sonomacounty.ca.gov/health-and-human-services/health-services/divisions/public-health/animal-services/adopt",
+   "status": "in_shelter",
+   "published_at": "2026-06-15",
+   "first_seen": "2026-06-21T06:28:40Z"
+  },
+  {
+   "id": "socrata-sonoma_ca-A442460",
+   "source": "socrata",
+   "source_id": "A442460",
+   "shelter_id": "sonoma_ca",
+   "name": "Myron",
+   "age_text": "3y",
+   "age_bucket": "adult",
+   "birth_estimate": "2023-06",
+   "sex": "male",
+   "spayed_neutered": true,
+   "breed_primary": "Domestic Shorthair",
+   "breed_mixed": true,
+   "colors": [
+    "gray"
+   ],
+   "pattern": "tabby",
+   "coat_length": "short",
+   "size": "small",
+   "attributes": {
+    "spayed_neutered": true
+   },
+   "adoption_url": "https://sonomacounty.ca.gov/health-and-human-services/health-services/divisions/public-health/animal-services/adopt",
+   "status": "in_shelter",
+   "published_at": "2026-06-15",
+   "first_seen": "2026-06-21T06:28:40Z"
+  },
+  {
+   "id": "socrata-sonoma_ca-A442462",
+   "source": "socrata",
+   "source_id": "A442462",
+   "shelter_id": "sonoma_ca",
+   "name": "Duva",
+   "sex": "female",
+   "spayed_neutered": true,
+   "breed_primary": "Domestic Shorthair",
+   "breed_mixed": true,
+   "colors": [
+    "orange"
+   ],
+   "pattern": "calico",
+   "coat_length": "short",
+   "size": "small",
+   "attributes": {
+    "spayed_neutered": true
+   },
+   "adoption_url": "https://sonomacounty.ca.gov/health-and-human-services/health-services/divisions/public-health/animal-services/adopt",
+   "status": "in_shelter",
+   "published_at": "2026-06-15",
+   "first_seen": "2026-06-21T06:28:40Z"
+  },
+  {
+   "id": "socrata-sonoma_ca-A442463",
+   "source": "socrata",
+   "source_id": "A442463",
+   "shelter_id": "sonoma_ca",
+   "name": "Bagheera",
+   "age_text": "8y",
+   "age_bucket": "senior",
+   "birth_estimate": "2018-05",
+   "sex": "male",
+   "spayed_neutered": true,
+   "breed_primary": "Domestic Shorthair",
+   "breed_mixed": true,
+   "colors": [
+    "black"
+   ],
+   "pattern": "solid",
+   "coat_length": "short",
+   "size": "small",
+   "attributes": {
+    "spayed_neutered": true
+   },
+   "adoption_url": "https://sonomacounty.ca.gov/health-and-human-services/health-services/divisions/public-health/animal-services/adopt",
+   "status": "in_shelter",
+   "published_at": "2026-06-15",
+   "first_seen": "2026-06-21T06:28:40Z"
+  },
+  {
+   "id": "socrata-sonoma_ca-A442466",
+   "source": "socrata",
+   "source_id": "A442466",
+   "shelter_id": "sonoma_ca",
+   "name": "Unnamed",
+   "age_text": "0.0yy",
+   "age_bucket": "kitten",
+   "birth_estimate": "2026-03",
+   "sex": "female",
+   "spayed_neutered": false,
+   "breed_primary": "Domestic Shorthair",
+   "breed_mixed": true,
+   "colors": [
+    "black"
+   ],
+   "pattern": "solid",
+   "coat_length": "short",
+   "size": "small",
+   "attributes": {
+    "spayed_neutered": false
+   },
+   "adoption_url": "https://sonomacounty.ca.gov/health-and-human-services/health-services/divisions/public-health/animal-services/adopt",
+   "status": "in_shelter",
+   "published_at": "2026-06-15",
+   "first_seen": "2026-06-21T06:28:40Z"
+  },
+  {
+   "id": "socrata-sonoma_ca-A442481",
+   "source": "socrata",
+   "source_id": "A442481",
+   "shelter_id": "sonoma_ca",
+   "name": "Unnamed",
+   "age_text": "0.0yy",
+   "age_bucket": "kitten",
+   "birth_estimate": "2026-06",
+   "sex": "male",
+   "spayed_neutered": false,
+   "breed_primary": "Domestic Shorthair",
+   "breed_mixed": true,
+   "colors": [
+    "black"
+   ],
+   "pattern": "solid",
+   "coat_length": "short",
+   "size": "medium",
+   "attributes": {
+    "spayed_neutered": false
+   },
+   "adoption_url": "https://sonomacounty.ca.gov/health-and-human-services/health-services/divisions/public-health/animal-services/adopt",
+   "status": "in_shelter",
+   "published_at": "2026-06-16",
+   "first_seen": "2026-06-21T06:28:40Z"
+  },
+  {
+   "id": "socrata-sonoma_ca-A442482",
+   "source": "socrata",
+   "source_id": "A442482",
+   "shelter_id": "sonoma_ca",
+   "name": "Unnamed",
+   "age_text": "0.0yy",
+   "age_bucket": "kitten",
+   "birth_estimate": "2026-06",
+   "sex": "female",
+   "spayed_neutered": false,
+   "breed_primary": "Domestic Shorthair",
+   "breed_mixed": true,
+   "colors": [
+    "black"
+   ],
+   "pattern": "solid",
+   "coat_length": "short",
+   "size": "medium",
+   "attributes": {
+    "spayed_neutered": false
+   },
+   "adoption_url": "https://sonomacounty.ca.gov/health-and-human-services/health-services/divisions/public-health/animal-services/adopt",
+   "status": "in_shelter",
+   "published_at": "2026-06-16",
+   "first_seen": "2026-06-21T06:28:40Z"
+  },
+  {
+   "id": "socrata-sonoma_ca-A442483",
+   "source": "socrata",
+   "source_id": "A442483",
+   "shelter_id": "sonoma_ca",
+   "name": "Unnamed",
+   "age_text": "0.0yy",
+   "age_bucket": "kitten",
+   "birth_estimate": "2026-06",
+   "sex": "male",
+   "spayed_neutered": false,
+   "breed_primary": "Domestic Shorthair",
+   "breed_mixed": true,
+   "colors": [
+    "gray"
+   ],
+   "pattern": "solid",
+   "coat_length": "short",
+   "size": "medium",
+   "attributes": {
+    "spayed_neutered": false
+   },
+   "adoption_url": "https://sonomacounty.ca.gov/health-and-human-services/health-services/divisions/public-health/animal-services/adopt",
+   "status": "in_shelter",
+   "published_at": "2026-06-16",
+   "first_seen": "2026-06-21T06:28:40Z"
+  },
+  {
+   "id": "socrata-sonoma_ca-A442484",
+   "source": "socrata",
+   "source_id": "A442484",
+   "shelter_id": "sonoma_ca",
+   "name": "Unnamed",
+   "age_text": "0.0yy",
+   "age_bucket": "kitten",
+   "birth_estimate": "2026-06",
+   "sex": "female",
+   "spayed_neutered": false,
+   "breed_primary": "Domestic Shorthair",
+   "breed_mixed": true,
+   "colors": [
+    "gray"
+   ],
+   "pattern": "solid",
+   "coat_length": "short",
+   "size": "medium",
+   "attributes": {
+    "spayed_neutered": false
+   },
+   "adoption_url": "https://sonomacounty.ca.gov/health-and-human-services/health-services/divisions/public-health/animal-services/adopt",
+   "status": "in_shelter",
+   "published_at": "2026-06-16",
+   "first_seen": "2026-06-21T06:28:40Z"
+  },
+  {
+   "id": "socrata-sonoma_ca-A442506",
+   "source": "socrata",
+   "source_id": "A442506",
+   "shelter_id": "sonoma_ca",
+   "name": "34466",
+   "age_text": "0.0yy",
+   "age_bucket": "kitten",
+   "birth_estimate": "2026-04",
+   "sex": "female",
+   "spayed_neutered": false,
+   "breed_primary": "Domestic Shorthair",
+   "breed_mixed": true,
+   "colors": [
+    "black",
+    "white"
+   ],
+   "pattern": "tuxedo",
+   "coat_length": "short",
+   "size": "medium",
+   "attributes": {
+    "spayed_neutered": false
+   },
+   "adoption_url": "https://sonomacounty.ca.gov/health-and-human-services/health-services/divisions/public-health/animal-services/adopt",
+   "status": "in_shelter",
+   "published_at": "2026-06-16",
+   "first_seen": "2026-06-21T06:28:40Z"
+  },
+  {
+   "id": "socrata-sonoma_ca-A442507",
+   "source": "socrata",
+   "source_id": "A442507",
+   "shelter_id": "sonoma_ca",
+   "name": "34467",
+   "age_text": "0.0yy",
+   "age_bucket": "kitten",
+   "birth_estimate": "2026-04",
+   "sex": "female",
+   "spayed_neutered": false,
+   "breed_primary": "Domestic Shorthair",
+   "breed_mixed": true,
+   "colors": [
+    "black"
+   ],
+   "pattern": "solid",
+   "coat_length": "short",
+   "size": "medium",
+   "attributes": {
+    "spayed_neutered": false
+   },
+   "adoption_url": "https://sonomacounty.ca.gov/health-and-human-services/health-services/divisions/public-health/animal-services/adopt",
+   "status": "in_shelter",
+   "published_at": "2026-06-16",
+   "first_seen": "2026-06-21T06:28:40Z"
+  },
+  {
+   "id": "socrata-sonoma_ca-A442508",
+   "source": "socrata",
+   "source_id": "A442508",
+   "shelter_id": "sonoma_ca",
+   "name": "34468",
+   "age_text": "0.0yy",
+   "age_bucket": "kitten",
+   "birth_estimate": "2026-04",
+   "sex": "male",
+   "spayed_neutered": false,
+   "breed_primary": "Domestic Shorthair",
+   "breed_mixed": true,
+   "colors": [
+    "black"
+   ],
+   "pattern": "tabby",
+   "coat_length": "short",
+   "size": "medium",
+   "attributes": {
+    "spayed_neutered": false
+   },
+   "adoption_url": "https://sonomacounty.ca.gov/health-and-human-services/health-services/divisions/public-health/animal-services/adopt",
+   "status": "in_shelter",
+   "published_at": "2026-06-16",
+   "first_seen": "2026-06-21T06:28:40Z"
+  },
+  {
+   "id": "socrata-sonoma_ca-A442525",
+   "source": "socrata",
+   "source_id": "A442525",
+   "shelter_id": "sonoma_ca",
+   "name": "34484",
+   "age_text": "1y",
+   "age_bucket": "young",
+   "birth_estimate": "2025-06",
+   "sex": "female",
+   "spayed_neutered": false,
+   "breed_primary": "Domestic Shorthair",
+   "breed_mixed": true,
+   "colors": [
+    "black"
+   ],
+   "pattern": "solid",
+   "coat_length": "short",
+   "size": "small",
+   "attributes": {
+    "spayed_neutered": false
+   },
+   "adoption_url": "https://sonomacounty.ca.gov/health-and-human-services/health-services/divisions/public-health/animal-services/adopt",
+   "status": "in_shelter",
+   "published_at": "2026-06-17",
+   "first_seen": "2026-06-21T06:28:40Z"
+  },
+  {
+   "id": "socrata-sonoma_ca-A442526",
+   "source": "socrata",
+   "source_id": "A442526",
+   "shelter_id": "sonoma_ca",
+   "name": "34485",
+   "age_text": "0.0yy",
+   "age_bucket": "kitten",
+   "birth_estimate": "2026-04",
+   "sex": "male",
+   "spayed_neutered": false,
+   "breed_primary": "Domestic Shorthair",
+   "breed_mixed": true,
+   "colors": [
+    "black"
+   ],
+   "pattern": "solid",
+   "coat_length": "short",
+   "size": "medium",
+   "attributes": {
+    "spayed_neutered": false
+   },
+   "adoption_url": "https://sonomacounty.ca.gov/health-and-human-services/health-services/divisions/public-health/animal-services/adopt",
+   "status": "in_shelter",
+   "published_at": "2026-06-17",
+   "first_seen": "2026-06-21T06:28:40Z"
+  },
+  {
+   "id": "socrata-sonoma_ca-A442527",
+   "source": "socrata",
+   "source_id": "A442527",
+   "shelter_id": "sonoma_ca",
+   "name": "34486",
+   "age_text": "0.0yy",
+   "age_bucket": "kitten",
+   "birth_estimate": "2026-04",
+   "sex": "female",
+   "spayed_neutered": false,
+   "breed_primary": "Domestic Shorthair",
+   "breed_mixed": true,
+   "colors": [
+    "orange"
+   ],
+   "pattern": "tortie",
+   "coat_length": "short",
+   "size": "medium",
+   "attributes": {
+    "spayed_neutered": false
+   },
+   "adoption_url": "https://sonomacounty.ca.gov/health-and-human-services/health-services/divisions/public-health/animal-services/adopt",
+   "status": "in_shelter",
+   "published_at": "2026-06-17",
+   "first_seen": "2026-06-21T06:28:40Z"
+  },
+  {
+   "id": "socrata-sonoma_ca-A442528",
+   "source": "socrata",
+   "source_id": "A442528",
+   "shelter_id": "sonoma_ca",
+   "name": "34487",
+   "age_text": "0.0yy",
+   "age_bucket": "kitten",
+   "birth_estimate": "2026-04",
+   "sex": "female",
+   "spayed_neutered": false,
+   "breed_primary": "Domestic Shorthair",
+   "breed_mixed": true,
+   "colors": [
+    "orange"
+   ],
+   "pattern": "tortie",
+   "coat_length": "short",
+   "size": "medium",
+   "attributes": {
+    "spayed_neutered": false
+   },
+   "adoption_url": "https://sonomacounty.ca.gov/health-and-human-services/health-services/divisions/public-health/animal-services/adopt",
+   "status": "in_shelter",
+   "published_at": "2026-06-17",
+   "first_seen": "2026-06-21T06:28:40Z"
+  },
+  {
+   "id": "socrata-sonoma_ca-A442535",
+   "source": "socrata",
+   "source_id": "A442535",
+   "shelter_id": "sonoma_ca",
+   "name": "Dad Cat",
+   "sex": "male",
+   "spayed_neutered": false,
+   "breed_primary": "Domestic Shorthair",
+   "breed_mixed": true,
+   "colors": [
+    "gray"
+   ],
+   "pattern": "tabby",
+   "coat_length": "short",
+   "size": "small",
+   "attributes": {
+    "spayed_neutered": false
+   },
+   "adoption_url": "https://sonomacounty.ca.gov/health-and-human-services/health-services/divisions/public-health/animal-services/adopt",
+   "status": "in_shelter",
+   "published_at": "2026-06-17",
+   "first_seen": "2026-06-21T06:28:40Z"
+  },
+  {
+   "id": "socrata-sonoma_ca-A442542",
+   "source": "socrata",
+   "source_id": "A442542",
+   "shelter_id": "sonoma_ca",
+   "name": "Unnamed",
+   "sex": "female",
+   "spayed_neutered": false,
+   "breed_primary": "Bengal",
+   "breed_mixed": false,
+   "colors": [
+    "gray"
+   ],
+   "pattern": "tabby",
+   "coat_length": "short",
+   "size": "small",
+   "attributes": {
+    "spayed_neutered": false
+   },
+   "adoption_url": "https://sonomacounty.ca.gov/health-and-human-services/health-services/divisions/public-health/animal-services/adopt",
+   "status": "in_shelter",
+   "published_at": "2026-06-18",
+   "first_seen": "2026-06-21T06:28:40Z"
+  },
+  {
+   "id": "socrata-sonoma_ca-A442543",
+   "source": "socrata",
+   "source_id": "A442543",
+   "shelter_id": "sonoma_ca",
+   "name": "Unnamed",
+   "sex": "unknown",
+   "breed_primary": "Bengal",
+   "breed_mixed": false,
+   "colors": [
+    "black"
+   ],
+   "pattern": "tabby",
+   "coat_length": "short",
+   "size": "medium",
+   "adoption_url": "https://sonomacounty.ca.gov/health-and-human-services/health-services/divisions/public-health/animal-services/adopt",
+   "status": "in_shelter",
+   "published_at": "2026-06-18",
+   "first_seen": "2026-06-21T06:28:40Z"
+  },
+  {
+   "id": "socrata-sonoma_ca-A442544",
+   "source": "socrata",
+   "source_id": "A442544",
+   "shelter_id": "sonoma_ca",
+   "name": "Unnamed",
+   "sex": "female",
+   "spayed_neutered": false,
+   "breed_primary": "Domestic Shorthair",
+   "breed_mixed": true,
+   "colors": [
+    "gray"
+   ],
+   "pattern": "tabby",
+   "coat_length": "short",
+   "size": "small",
+   "attributes": {
+    "spayed_neutered": false
+   },
+   "adoption_url": "https://sonomacounty.ca.gov/health-and-human-services/health-services/divisions/public-health/animal-services/adopt",
+   "status": "in_shelter",
+   "published_at": "2026-06-18",
+   "first_seen": "2026-06-21T06:28:40Z"
+  },
+  {
+   "id": "socrata-sonoma_ca-A442545",
+   "source": "socrata",
+   "source_id": "A442545",
+   "shelter_id": "sonoma_ca",
+   "name": "Loki",
+   "sex": "male",
+   "spayed_neutered": false,
+   "breed_primary": "Domestic Shorthair",
+   "breed_mixed": true,
+   "colors": [
+    "gray"
+   ],
+   "pattern": "tabby",
+   "coat_length": "short",
+   "size": "small",
+   "attributes": {
+    "spayed_neutered": false
+   },
+   "adoption_url": "https://sonomacounty.ca.gov/health-and-human-services/health-services/divisions/public-health/animal-services/adopt",
+   "status": "in_shelter",
+   "published_at": "2026-06-18",
+   "first_seen": "2026-06-21T06:28:40Z"
+  },
+  {
+   "id": "socrata-sonoma_ca-A442551",
+   "source": "socrata",
+   "source_id": "A442551",
+   "shelter_id": "sonoma_ca",
+   "name": "Unnamed",
+   "age_text": "0.0yy",
+   "age_bucket": "kitten",
+   "birth_estimate": "2026-05",
+   "sex": "female",
+   "spayed_neutered": false,
+   "breed_primary": "Domestic Shorthair",
+   "breed_mixed": true,
+   "colors": [
+    "gray"
+   ],
+   "pattern": "tabby",
+   "coat_length": "short",
+   "size": "medium",
+   "attributes": {
+    "spayed_neutered": false
+   },
+   "adoption_url": "https://sonomacounty.ca.gov/health-and-human-services/health-services/divisions/public-health/animal-services/adopt",
+   "status": "in_shelter",
+   "published_at": "2026-06-18",
+   "first_seen": "2026-06-21T06:28:40Z"
+  },
+  {
+   "id": "socrata-sonoma_ca-A442552",
+   "source": "socrata",
+   "source_id": "A442552",
+   "shelter_id": "sonoma_ca",
+   "name": "Unnamed",
+   "age_text": "0.0yy",
+   "age_bucket": "kitten",
+   "birth_estimate": "2026-05",
+   "sex": "male",
+   "spayed_neutered": false,
+   "breed_primary": "Domestic Shorthair",
+   "breed_mixed": true,
+   "colors": [
+    "white"
+   ],
+   "pattern": "tabby",
+   "coat_length": "short",
+   "size": "medium",
+   "attributes": {
+    "spayed_neutered": false
+   },
+   "adoption_url": "https://sonomacounty.ca.gov/health-and-human-services/health-services/divisions/public-health/animal-services/adopt",
+   "status": "in_shelter",
+   "published_at": "2026-06-18",
+   "first_seen": "2026-06-21T06:28:40Z"
+  },
+  {
+   "id": "socrata-sonoma_ca-A442553",
+   "source": "socrata",
+   "source_id": "A442553",
+   "shelter_id": "sonoma_ca",
+   "name": "Unnamed",
+   "age_text": "0.0yy",
+   "age_bucket": "kitten",
+   "birth_estimate": "2026-05",
+   "sex": "female",
+   "spayed_neutered": false,
+   "breed_primary": "Domestic Shorthair",
+   "breed_mixed": true,
+   "colors": [
+    "white"
+   ],
+   "pattern": "tabby",
+   "coat_length": "short",
+   "size": "medium",
+   "attributes": {
+    "spayed_neutered": false
+   },
+   "adoption_url": "https://sonomacounty.ca.gov/health-and-human-services/health-services/divisions/public-health/animal-services/adopt",
+   "status": "in_shelter",
+   "published_at": "2026-06-18",
+   "first_seen": "2026-06-21T06:28:40Z"
+  },
+  {
+   "id": "socrata-sonoma_ca-A442554",
+   "source": "socrata",
+   "source_id": "A442554",
+   "shelter_id": "sonoma_ca",
+   "name": "Unnamed",
+   "age_text": "0.0yy",
+   "age_bucket": "kitten",
+   "birth_estimate": "2026-05",
+   "sex": "female",
+   "spayed_neutered": false,
+   "breed_primary": "Domestic Shorthair",
+   "breed_mixed": true,
+   "colors": [
+    "white",
+    "gray"
+   ],
+   "pattern": "tabby",
+   "coat_length": "short",
+   "size": "medium",
+   "attributes": {
+    "spayed_neutered": false
+   },
+   "adoption_url": "https://sonomacounty.ca.gov/health-and-human-services/health-services/divisions/public-health/animal-services/adopt",
+   "status": "in_shelter",
+   "published_at": "2026-06-18",
+   "first_seen": "2026-06-21T06:28:40Z"
+  },
+  {
+   "id": "socrata-sonoma_ca-A442558",
+   "source": "socrata",
+   "source_id": "A442558",
+   "shelter_id": "sonoma_ca",
+   "name": "Unnamed",
+   "age_text": "0.0yy",
+   "age_bucket": "kitten",
+   "birth_estimate": "2026-04",
+   "sex": "female",
+   "spayed_neutered": false,
+   "breed_primary": "Domestic Shorthair",
+   "breed_mixed": true,
+   "colors": [
+    "gray"
+   ],
+   "pattern": "tabby",
+   "coat_length": "short",
+   "size": "medium",
+   "attributes": {
+    "spayed_neutered": false
+   },
+   "adoption_url": "https://sonomacounty.ca.gov/health-and-human-services/health-services/divisions/public-health/animal-services/adopt",
+   "status": "in_shelter",
+   "published_at": "2026-06-18",
+   "first_seen": "2026-06-21T06:28:40Z"
+  },
+  {
+   "id": "socrata-sonoma_ca-A442559",
+   "source": "socrata",
+   "source_id": "A442559",
+   "shelter_id": "sonoma_ca",
+   "name": "Unnamed",
+   "age_text": "0.0yy",
+   "age_bucket": "kitten",
+   "birth_estimate": "2026-04",
+   "sex": "male",
+   "spayed_neutered": false,
+   "breed_primary": "Domestic Shorthair",
+   "breed_mixed": true,
+   "colors": [
+    "gray"
+   ],
+   "pattern": "tabby",
+   "coat_length": "short",
+   "size": "medium",
+   "attributes": {
+    "spayed_neutered": false
+   },
+   "adoption_url": "https://sonomacounty.ca.gov/health-and-human-services/health-services/divisions/public-health/animal-services/adopt",
+   "status": "in_shelter",
+   "published_at": "2026-06-18",
+   "first_seen": "2026-06-21T06:28:40Z"
+  },
+  {
+   "id": "socrata-sonoma_ca-A442560",
+   "source": "socrata",
+   "source_id": "A442560",
+   "shelter_id": "sonoma_ca",
+   "name": "Unnamed",
+   "age_text": "0.0yy",
+   "age_bucket": "kitten",
+   "birth_estimate": "2026-04",
+   "sex": "male",
+   "spayed_neutered": false,
+   "breed_primary": "Domestic Mediumhair",
+   "breed_mixed": true,
+   "colors": [
+    "black"
+   ],
+   "pattern": "solid",
+   "coat_length": "medium",
+   "size": "medium",
+   "attributes": {
+    "spayed_neutered": false
+   },
+   "adoption_url": "https://sonomacounty.ca.gov/health-and-human-services/health-services/divisions/public-health/animal-services/adopt",
+   "status": "in_shelter",
+   "published_at": "2026-06-18",
+   "first_seen": "2026-06-21T06:28:40Z"
+  },
+  {
+   "id": "socrata-sonoma_ca-A442561",
+   "source": "socrata",
+   "source_id": "A442561",
+   "shelter_id": "sonoma_ca",
+   "name": "Unnamed",
+   "age_text": "0.0yy",
+   "age_bucket": "kitten",
+   "birth_estimate": "2026-04",
+   "sex": "male",
+   "spayed_neutered": false,
+   "breed_primary": "Domestic Shorthair",
+   "breed_mixed": true,
+   "colors": [
+    "white"
+   ],
+   "pattern": "tabby",
+   "coat_length": "short",
+   "size": "medium",
+   "attributes": {
+    "spayed_neutered": false
+   },
+   "adoption_url": "https://sonomacounty.ca.gov/health-and-human-services/health-services/divisions/public-health/animal-services/adopt",
+   "status": "in_shelter",
+   "published_at": "2026-06-18",
+   "first_seen": "2026-06-21T06:28:40Z"
+  },
+  {
+   "id": "socrata-sonoma_ca-A442562",
+   "source": "socrata",
+   "source_id": "A442562",
+   "shelter_id": "sonoma_ca",
+   "name": "Unnamed",
+   "age_text": "0.0yy",
+   "age_bucket": "kitten",
+   "birth_estimate": "2026-05",
+   "sex": "male",
+   "spayed_neutered": false,
+   "breed_primary": "Domestic Shorthair",
+   "breed_mixed": true,
+   "colors": [
+    "gray"
+   ],
+   "pattern": "solid",
+   "coat_length": "short",
+   "size": "medium",
+   "attributes": {
+    "spayed_neutered": false
+   },
+   "adoption_url": "https://sonomacounty.ca.gov/health-and-human-services/health-services/divisions/public-health/animal-services/adopt",
+   "status": "in_shelter",
+   "published_at": "2026-06-18",
+   "first_seen": "2026-06-21T06:28:40Z"
+  },
+  {
+   "id": "socrata-sonoma_ca-A442563",
+   "source": "socrata",
+   "source_id": "A442563",
+   "shelter_id": "sonoma_ca",
+   "name": "Unnamed",
+   "age_text": "0.0yy",
+   "age_bucket": "kitten",
+   "birth_estimate": "2026-05",
+   "sex": "male",
+   "spayed_neutered": false,
+   "breed_primary": "Domestic Shorthair",
+   "breed_mixed": true,
+   "colors": [
+    "gray"
+   ],
+   "pattern": "tabby",
+   "coat_length": "short",
+   "size": "medium",
+   "attributes": {
+    "spayed_neutered": false
+   },
+   "adoption_url": "https://sonomacounty.ca.gov/health-and-human-services/health-services/divisions/public-health/animal-services/adopt",
+   "status": "in_shelter",
+   "published_at": "2026-06-18",
+   "first_seen": "2026-06-21T06:28:40Z"
+  },
+  {
+   "id": "socrata-sonoma_ca-A442564",
+   "source": "socrata",
+   "source_id": "A442564",
+   "shelter_id": "sonoma_ca",
+   "name": "Unnamed",
+   "age_text": "0.0yy",
+   "age_bucket": "kitten",
+   "birth_estimate": "2026-05",
+   "sex": "male",
+   "spayed_neutered": false,
+   "breed_primary": "Domestic Shorthair",
+   "breed_mixed": true,
+   "colors": [
+    "gray"
+   ],
+   "pattern": "solid",
+   "coat_length": "short",
+   "size": "medium",
+   "attributes": {
+    "spayed_neutered": false
+   },
+   "adoption_url": "https://sonomacounty.ca.gov/health-and-human-services/health-services/divisions/public-health/animal-services/adopt",
+   "status": "in_shelter",
+   "published_at": "2026-06-18",
+   "first_seen": "2026-06-21T06:28:40Z"
+  },
+  {
+   "id": "socrata-sonoma_ca-A442571",
+   "source": "socrata",
+   "source_id": "A442571",
+   "shelter_id": "sonoma_ca",
+   "name": "Unnamed",
+   "sex": "unknown",
+   "breed_primary": "Domestic Shorthair",
+   "breed_mixed": true,
+   "colors": [
+    "black"
+   ],
+   "pattern": "tabby",
+   "coat_length": "short",
+   "size": "small",
+   "adoption_url": "https://sonomacounty.ca.gov/health-and-human-services/health-services/divisions/public-health/animal-services/adopt",
+   "status": "in_shelter",
+   "published_at": "2026-06-19",
+   "first_seen": "2026-06-21T06:28:40Z"
+  },
+  {
+   "id": "socrata-sonoma_ca-A442577",
+   "source": "socrata",
+   "source_id": "A442577",
+   "shelter_id": "sonoma_ca",
+   "name": "Unnamed",
+   "age_text": "4y",
+   "age_bucket": "adult",
+   "birth_estimate": "2022-06",
+   "sex": "male",
+   "spayed_neutered": false,
+   "breed_primary": "Domestic Shorthair",
+   "breed_mixed": true,
+   "colors": [
+    "black"
+   ],
+   "pattern": "solid",
+   "coat_length": "short",
+   "size": "small",
+   "attributes": {
+    "spayed_neutered": false
+   },
+   "adoption_url": "https://sonomacounty.ca.gov/health-and-human-services/health-services/divisions/public-health/animal-services/adopt",
+   "status": "in_shelter",
+   "published_at": "2026-06-19",
+   "first_seen": "2026-06-21T06:28:40Z"
+  },
+  {
+   "id": "socrata-sonoma_ca-A442586",
+   "source": "socrata",
+   "source_id": "A442586",
+   "shelter_id": "sonoma_ca",
+   "name": "Diego",
+   "sex": "male",
+   "spayed_neutered": true,
+   "breed_primary": "Domestic Shorthair",
+   "breed_mixed": true,
+   "colors": [
+    "black"
+   ],
+   "pattern": "solid",
+   "coat_length": "short",
+   "size": "small",
+   "attributes": {
+    "spayed_neutered": true
+   },
+   "adoption_url": "https://sonomacounty.ca.gov/health-and-human-services/health-services/divisions/public-health/animal-services/adopt",
+   "status": "in_shelter",
+   "published_at": "2026-06-19",
+   "first_seen": "2026-06-21T06:28:40Z"
+  }
+ ]
+}

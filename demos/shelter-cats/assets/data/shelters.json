@@ -1,0 +1,40 @@
+{
+ "shelters": [
+  {
+   "id": "montgomery_md",
+   "source": "socrata",
+   "name": "Montgomery County Animal Services & Adoption Center",
+   "country": "US",
+   "region": "north_america",
+   "city": "Derwood",
+   "state": "MD",
+   "address": "7315 Muncaster Mill Rd, Derwood, MD 20855",
+   "postcode": "20855",
+   "lat": 39.1289,
+   "lng": -77.1525,
+   "website": "https://www.montgomerycountymd.gov/animalservices/",
+   "url": "https://www.montgomerycountymd.gov/animalservices/adoption/",
+   "email": "",
+   "phone": "",
+   "last_seen": "2026-06-21T06:45:51Z"
+  },
+  {
+   "id": "sonoma_ca",
+   "source": "socrata",
+   "name": "Sonoma County Animal Services",
+   "country": "US",
+   "region": "north_america",
+   "city": "Santa Rosa",
+   "state": "CA",
+   "address": "1247 Century Ct, Santa Rosa, CA 95403",
+   "postcode": "95403",
+   "lat": 38.4663,
+   "lng": -122.7269,
+   "website": "https://sonomacounty.ca.gov/animals",
+   "url": "https://sonomacounty.ca.gov/animals",
+   "email": "",
+   "phone": "",
+   "last_seen": "2026-06-21T06:45:51Z"
+  }
+ ]
+}
