@@ -28,13 +28,40 @@
       "description_zh": "总部位于英国的全球生物制药公司，业务覆盖肿瘤、心血管、呼吸、罕见病及细胞疗法，并通过全资收购扩张。"
     },
     {
-      "id": "bayer-group",
-      "name_en": "Bayer Group",
-      "name_zh": "拜耳集团",
+      "id": "bausch-group",
+      "name_en": "Bausch Health",
+      "name_zh": "博士健康集团",
       "type": "multinational",
-      "country": "DE",
-      "description_en": "German DAX-listed life-science multinational organized into three divisions (Pharmaceuticals, Consumer Health, Crop Science), with wholly-owned cell- and gene-therapy units BlueRock Therapeutics and AskBio.",
-      "description_zh": "德国DAX上市的生命科学跨国集团，下设制药、消费者健康、作物科学三大事业部，并全资拥有细胞与基因治疗子公司BlueRock与AskBio。"
+      "country": "CA",
+      "description_en": "Canadian diversified pharmaceutical company that develops branded and generic drugs and also majority-controls separately listed eye-health firm Bausch + Lomb.",
+      "description_zh": "加拿大多元化制药公司，研发品牌与仿制药，并控股独立上市的眼科健康企业博士伦。"
+    },
+    {
+      "id": "biocon-group",
+      "name_en": "Biocon Group",
+      "name_zh": "百康集团",
+      "type": "conglomerate",
+      "country": "IN",
+      "description_en": "Indian biopharmaceutical group founded by Kiran Mazumdar-Shaw and headquartered in Bengaluru. Flagship Biocon Limited (BSE/NSE listed) spans biosimilars, generics and research services. The group controls a majority stake (~52.7% as of 2025) in listed CRDMO Syngene International, and wholly owns biosimilars arm Biocon Biologics.",
+      "description_zh": "由 Kiran Mazumdar-Shaw 创立、总部位于班加罗尔的印度生物制药集团。旗舰上市公司 Biocon Limited（孟买/印度交易所上市）业务涵盖生物类似药、仿制药与研发服务。集团控股上市 CRDMO 公司赛进国际（2025 年约持股 52.7%），并全资拥有生物类似药子公司 Biocon Biologics。"
+    },
+    {
+      "id": "bms-group",
+      "name_en": "Bristol Myers Squibb",
+      "name_zh": "百时美施贵宝",
+      "type": "multinational",
+      "country": "US",
+      "description_en": "U.S.-based global biopharmaceutical company (NYSE: BMY) in oncology, hematology, immunology, cardiovascular and neuroscience, grown through major acquisitions including Celgene, RayzeBio and Karuna.",
+      "description_zh": "总部位于美国的全球生物制药公司（纽交所代码 BMY），聚焦肿瘤、血液、免疫、心血管与神经科学，通过收购 Celgene、RayzeBio、Karuna 等持续扩张。"
+    },
+    {
+      "id": "celltrion-group",
+      "name_en": "Celltrion Group",
+      "name_zh": "赛尔群集团",
+      "type": "private",
+      "country": "KR",
+      "description_en": "South Korean biopharmaceutical group led by listed flagship Celltrion Inc. (which absorbed Celltrion Healthcare in 2023), specializing in biosimilars and novel biologics.",
+      "description_zh": "韩国生物制药集团，以上市旗舰公司赛尔群（Celltrion Inc.，2023年合并 Celltrion Healthcare）为核心，专注生物类似药与创新生物药。"
     },
     {
       "id": "china-resources",
@@ -46,6 +73,15 @@
       "description_zh": "央企中国华润有限公司的医药板块，通过香港上市旗舰华润医药（3320.HK）控股中国规模最大的一批医药与中药上市公司。"
     },
     {
+      "id": "csl-group",
+      "name_en": "CSL Limited",
+      "name_zh": "杰特(CSL)有限公司",
+      "type": "multinational",
+      "country": "AU",
+      "description_en": "Australian-headquartered global biotechnology group operating through CSL Behring (plasma-derived and recombinant biotherapies), CSL Seqirus (influenza vaccines) and CSL Vifor (iron deficiency and nephrology).",
+      "description_zh": "总部位于澳大利亚的全球生物技术集团，旗下设有CSL Behring（血浆衍生及重组生物制品）、CSL Seqirus（流感疫苗）和CSL Vifor（铁缺乏与肾科）。"
+    },
+    {
       "id": "cspc-group",
       "name_en": "CSPC Pharmaceutical Group",
       "name_zh": "石药集团",
@@ -53,6 +89,15 @@
       "country": "CN",
       "description_en": "Chinese pharmaceutical conglomerate controlled by Cai Dongchen, anchored by HK-listed CSPC Pharmaceutical Group (1093.HK) and spanning innovative drugs, generics, APIs and functional foods.",
       "description_zh": "蔡东晨实际控制的中国医药集团，以港股上市的石药集团（1093.HK）为旗舰，业务覆盖创新药、仿制药、原料药及功能食品。"
+    },
+    {
+      "id": "danaher-group",
+      "name_en": "Danaher Corporation",
+      "name_zh": "丹纳赫公司",
+      "type": "conglomerate",
+      "country": "US",
+      "description_en": "US science and technology conglomerate operating life sciences, diagnostics, and biotechnology businesses under the Danaher Business System.",
+      "description_zh": "美国科学与技术企业集团，旗下涵盖生命科学、诊断与生物技术业务，以丹纳赫管理体系运营。"
     },
     {
       "id": "fosun-pharma-group",
@@ -64,6 +109,24 @@
       "description_zh": "复星集团旗下的A+H上市医药板块，控股复宏汉霖、Gland Pharma等创新药与注射剂企业。"
     },
     {
+      "id": "fresenius-group",
+      "name_en": "Fresenius",
+      "name_zh": "费森尤斯集团",
+      "type": "conglomerate",
+      "country": "DE",
+      "description_en": "German healthcare group (Fresenius SE & Co. KGaA) spanning clinical nutrition/infusion (Kabi), hospitals (Helios), and a major stake in dialysis provider Fresenius Medical Care.",
+      "description_zh": "德国医疗健康集团（费森尤斯 SE & Co. KGaA），业务涵盖临床营养与输注（卡比）、医院（Helios），并持有透析企业费森尤斯医疗的重要股权。"
+    },
+    {
+      "id": "gc-group",
+      "name_en": "GC (Green Cross) Group",
+      "name_zh": "GC（绿十字）集团",
+      "type": "conglomerate",
+      "country": "KR",
+      "description_en": "South Korean family-controlled pharmaceutical holding group anchored by GC Corp (GC Holdings, formerly Green Cross Holdings), the listed holding company through which the founding Heo family retains decisive control. Its flagship operating company is GC Biopharma (formerly Green Cross Corporation), a leading vaccine and plasma-protein maker, which in turn controls the cell-therapy unit GC Cell.",
+      "description_zh": "韩国许氏家族控制的医药控股集团，顶层为上市控股公司 GC 株式会社（GC Holdings，原绿十字控股），家族借此保持决定性控制。旗舰运营公司为 GC Biopharma（原绿十字株式会社），是疫苗与血浆蛋白制品的领先企业，并进而控股细胞治疗子公司 GC Cell。"
+    },
+    {
       "id": "gphl",
       "name_en": "Guangzhou Pharmaceutical Holdings Limited (GPHL)",
       "name_zh": "广州医药集团有限公司（广药集团）",
@@ -73,31 +136,85 @@
       "description_zh": "广州市属国有大型医药集团，中国最大的中药龙头之一，控股上市旗舰广州白云山及王老吉品牌。"
     },
     {
-      "id": "grand-pharma-grp",
-      "name_en": "China Grand Pharmaceutical (China Grand Enterprises)",
-      "name_zh": "远大医药（中国远大集团）",
-      "type": "conglomerate",
-      "country": "CN",
-      "description_en": "Chinese privately-controlled healthcare group whose HK-listed flagship Grand Pharmaceutical Group is ~59% controlled by China Grand Enterprises (ultimately Hu Kaijun), spanning pharma, nuclear/radio-medicine and the Sirtex SIR-Spheres business.",
-      "description_zh": "由中国远大集团（最终实控人胡凯军）控股的民营医疗集团，旗下港股旗舰远大医药约59%受控，业务涵盖制药、核药/放射医学及Sirtex SIR-Spheres。"
+      "id": "gsk-group",
+      "name_en": "GSK Group",
+      "name_zh": "葛兰素史克集团",
+      "type": "multinational",
+      "country": "GB",
+      "description_en": "GSK plc is a UK-based global biopharma group focused on vaccines, specialty and general medicines, controlling its publicly-listed Indian pharmaceuticals subsidiary and the majority-owned HIV venture ViiV Healthcare.",
+      "description_zh": "葛兰素史克是总部位于英国的全球生物制药集团，专注疫苗、特药与普药，旗下控股印度上市子公司并持有ViiV Healthcare多数股权。"
     },
     {
-      "id": "humanwell-grp",
-      "name_en": "Humanwell Healthcare Group",
-      "name_zh": "人福医药集团",
-      "type": "conglomerate",
+      "id": "hualan-group",
+      "name_en": "Hualan Biological Group",
+      "name_zh": "华兰生物集团",
+      "type": "private",
       "country": "CN",
-      "description_en": "Wuhan-based Shanghai-listed pharma group (600079), China's anesthetics leader, with subsidiaries including Yichang Humanwell and US-based Epic Pharma; voting control transitioning to China Merchants Group (central SOE) via the 2024-25 restructuring of former parent Contemporary Amperex/Dangdai Technology.",
-      "description_zh": "总部武汉的沪市上市医药集团（600079），国内麻醉药龙头，旗下含宜昌人福、美国Epic Pharma等；随当代科技重整，表决权控制权正转向央企招商局集团。"
+      "description_en": "Chinese biopharmaceutical group founded by An Kang and headquartered in Xinxiang, Henan. The Shenzhen-listed flagship Hualan Biological Engineering (002007.SZ) makes plasma-derived blood products and, through its controlling stake in separately ChiNext-listed Hualan Biological Vaccine (301207.SZ), influenza and other human vaccines.",
+      "description_zh": "由安康创立、总部位于河南新乡的中国生物制药集团。深市旗舰华兰生物工程（002007.SZ）从事血液制品业务，并通过对创业板独立上市的华兰生物疫苗（301207.SZ）的控股，经营流感等人用疫苗。"
     },
     {
-      "id": "jnj-group",
-      "name_en": "Johnson & Johnson",
-      "name_zh": "强生公司",
+      "id": "joincare-group",
+      "name_en": "Joincare Pharmaceutical Group",
+      "name_zh": "健康元药业集团",
+      "type": "conglomerate",
+      "country": "CN",
+      "description_en": "Joincare Pharmaceutical Group Industry Co., Ltd. (SSE: 600380) is a Chinese pharmaceutical conglomerate headquartered in Shenzhen, spanning APIs, chemical generics, TCM and biologics. It is the controlling shareholder of dual-listed Livzon Pharmaceutical Group (holding ~53% of Livzon), through which the group operates a major share of its drug and API business.",
+      "description_zh": "健康元药业集团股份有限公司（上交所：600380）是总部位于深圳的综合性医药集团，业务覆盖原料药、化学仿制药、中药与生物药。健康元为 A+H 两地上市的丽珠医药集团的控股股东（持股约 53%），通过丽珠运营其大部分药品与原料药业务。"
+    },
+    {
+      "id": "jubilant-group",
+      "name_en": "Jubilant Bhartia Group",
+      "name_zh": "欢腾巴蒂亚集团",
+      "type": "conglomerate",
+      "country": "IN",
+      "description_en": "Indian conglomerate controlled by the Bhartia family (Shyam S. Bhartia and Hari S. Bhartia), spanning pharmaceuticals & life sciences (Jubilant Pharmova), specialty chemicals & nutrition (Jubilant Ingrevia), food service (Jubilant FoodWorks / Domino's Pizza India), and other businesses.",
+      "description_zh": "由巴蒂亚家族（Shyam S. Bhartia 与 Hari S. Bhartia）控股的印度多元化企业集团，业务涵盖医药与生命科学（Jubilant Pharmova）、特种化学品与营养（Jubilant Ingrevia）、餐饮服务（Jubilant FoodWorks／印度达美乐）等。"
+    },
+    {
+      "id": "kolon-group",
+      "name_en": "Kolon Group",
+      "name_zh": "可隆集团",
+      "type": "conglomerate",
+      "country": "KR",
+      "description_en": "Kolon Group is a South Korean conglomerate (chaebol) spanning chemicals, advanced materials, construction, fashion, and biotechnology. Its bio & healthcare arm is anchored by Kolon Life Science, the KOSDAQ-listed flagship that holds Asian commercialization rights to the cell-and-gene osteoarthritis therapy TG-C, and Kolon TissueGene, the KOSDAQ-listed developer of TG-C in which Kolon Life Science is the controlling/major shareholder.",
+      "description_zh": "可隆集团是韩国综合性企业集团（财阀），业务涵盖化工、先进材料、建筑、时尚与生物科技。其生物医疗板块以在 KOSDAQ 上市的旗舰公司可隆生命科学（持有骨关节炎细胞与基因疗法 TG-C 的亚洲商业化权利）为核心，以及在 KOSDAQ 上市、由可隆生命科学控股的 TG-C 开发商科隆组织基因公司。"
+    },
+    {
+      "id": "lepu-group",
+      "name_en": "Lepu Group",
+      "name_zh": "乐普集团",
+      "type": "conglomerate",
+      "country": "CN",
+      "description_en": "Chinese medical-and-pharma group founded and ultimately controlled by Dr. Pu Zhongjie. The flagship is Shenzhen/Beijing-listed Lepu Medical Technology (300003), a diversified cardiovascular-device, diagnostics and pharma maker. The group has serially spun off subsidiaries; Lepu Biopharma (oncology innovative drugs, HK 02157) shares the same actual controller (Pu Zhongjie via Ningbo Houde Yimin) but is held by the Lepu Medical listco only as a minority affiliate (~15-20%), making the two sister companies under one individual controller rather than a parent-subsidiary listco chain.",
+      "description_zh": "由蒲忠杰创立并最终控制的中国医疗与制药集团。旗舰为深市创业板上市的乐普（北京）医疗器械股份有限公司（300003），主营心血管器械、诊断与制药的多元化企业。集团多次分拆子公司；乐普生物（肿瘤创新药，港股02157）与乐普医疗同受蒲忠杰（经宁波厚德义民）实际控制，但乐普医疗上市公司仅持有其约15-20%的参股股权，故两者为同一实际控制人下的姊妹公司，而非上市公司层面的母子控股链。"
+    },
+    {
+      "id": "lilly-group",
+      "name_en": "Eli Lilly and Company",
+      "name_zh": "礼来公司",
       "type": "multinational",
       "country": "US",
-      "description_en": "Global diversified healthcare company spanning Innovative Medicine (pharmaceuticals) and MedTech, headquartered in New Brunswick, New Jersey.",
-      "description_zh": "总部位于美国新泽西的全球多元化医疗健康集团，业务涵盖创新制药与医疗科技两大板块。"
+      "description_en": "Indianapolis-based global pharmaceutical company spanning diabetes, obesity, oncology, immunology and neuroscience, with a portfolio expanded through acquisitions of biotech firms.",
+      "description_zh": "总部位于印第安纳波利斯的全球制药公司，业务涵盖糖尿病、肥胖、肿瘤、免疫与神经科学，并通过收购生物科技公司扩展其管线。"
+    },
+    {
+      "id": "mankind-group",
+      "name_en": "Mankind Pharma Group",
+      "name_zh": "曼金德制药集团",
+      "type": "private",
+      "country": "IN",
+      "description_en": "Indian pharmaceutical group led by flagship listed company Mankind Pharma Limited (BSE/NSE), one of India's largest pharma firms by domestic sales. In October 2024 it completed the ~INR 13,768 crore acquisition of 100% of Bharat Serums and Vaccines Limited from Advent International, expanding into women's health, fertility, critical care and biologics.",
+      "description_zh": "印度医药集团，旗舰为上市公司曼金德制药有限公司（孟买/印度国家证交所上市），按国内销售额计为印度最大药企之一。2024年10月以约137.68亿卢比完成对巴拉特血清与疫苗有限公司100%股权的收购（卖方为Advent International），切入女性健康、生育、重症及生物药领域。"
+    },
+    {
+      "id": "microport-group",
+      "name_en": "MicroPort Scientific Group",
+      "name_zh": "微创医疗集团",
+      "type": "conglomerate",
+      "country": "CN",
+      "description_en": "Shanghai-based medical device conglomerate built around MicroPort Scientific Corporation (HKEX: 00853), spanning twelve therapeutic platforms (cardiovascular, structural heart, endovascular, electrophysiology, orthopedics, neurovascular, surgical robotics and more). The group has spun several platforms into separately listed companies that MicroPort Scientific still controls and consolidates as the largest/controlling shareholder.",
+      "description_zh": "总部位于上海的医疗器械集团，以微创医疗科学有限公司（港交所 00853）为母体，覆盖心血管、结构性心脏病、主动脉及外周血管介入、电生理、骨科、神经介入、手术机器人等十二大平台。集团已将多个平台分拆为独立上市公司，但微创医疗仍作为最大/控股股东保持控制并并表。"
     },
     {
       "id": "novartis-group",
@@ -109,6 +226,42 @@
       "description_zh": "瑞士跨国制药企业，专注创新专利药物，已剥离仿制药（山德士）与眼科（爱尔康）业务。"
     },
     {
+      "id": "novo-group",
+      "name_en": "Novo Holdings / Novo Nordisk Foundation Group",
+      "name_zh": "诺和控股 / 诺和诺德基金会集团",
+      "type": "conglomerate",
+      "country": "DK",
+      "description_en": "Danish foundation-controlled group: the Novo Nordisk Foundation, via Novo Holdings, controls flagship listco Novo Nordisk and wholly owns Catalent (acquired 2024).",
+      "description_zh": "丹麦基金会控制的集团：诺和诺德基金会通过诺和控股控股旗舰上市公司诺和诺德，并全资拥有康泰伦特（2024年收购）。"
+    },
+    {
+      "id": "ono-group",
+      "name_en": "Ono Pharmaceutical",
+      "name_zh": "小野药品工业",
+      "type": "multinational",
+      "country": "JP",
+      "description_en": "Osaka-based Japanese pharmaceutical company (originator of Opdivo) that expanded into the US oncology market with its 2024 acquisition of Deciphera.",
+      "description_zh": "总部位于大阪的日本制药公司（Opdivo的原研方），通过2024年收购Deciphera进入美国肿瘤市场。"
+    },
+    {
+      "id": "otsuka-group",
+      "name_en": "Otsuka Holdings",
+      "name_zh": "大塚控股集团",
+      "type": "conglomerate",
+      "country": "JP",
+      "description_en": "Japanese pharmaceutical and nutraceutical holding group led by Otsuka Holdings, spanning prescription drugs, OTC, and consumer health across global subsidiaries.",
+      "description_zh": "以大塚控股为核心的日本医药与营养品综合企业集团，业务涵盖处方药、OTC及消费健康，旗下拥有全球子公司。"
+    },
+    {
+      "id": "pfizer-group",
+      "name_en": "Pfizer Inc.",
+      "name_zh": "辉瑞",
+      "type": "multinational",
+      "country": "US",
+      "description_en": "American multinational pharmaceutical and biotechnology corporation headquartered in New York, one of the world's largest drug makers.",
+      "description_zh": "总部位于纽约的美国跨国制药与生物技术公司，是全球最大的制药企业之一。"
+    },
+    {
       "id": "roche-group",
       "name_en": "Roche Group",
       "name_zh": "罗氏集团",
@@ -118,22 +271,13 @@
       "description_zh": "瑞士跨国医疗集团，由罗氏控股公司统辖，业务涵盖制药与诊断两大支柱。"
     },
     {
-      "id": "shanghai-pharma",
-      "name_en": "Shanghai Pharmaceuticals Holding Co., Ltd.",
-      "name_zh": "上海医药集团股份有限公司",
-      "type": "SOE",
-      "country": "CN",
-      "description_en": "Shanghai SASAC-controlled (via SIIC/Shanghai Industrial) integrated pharmaceutical group spanning R&D, manufacturing and China's second-largest drug distribution network, dual-listed in Shanghai (601607) and Hong Kong (02607).",
-      "description_zh": "上海市国资委通过上海实业集团控股的综合性医药集团，覆盖研发、制造与全国第二大药品分销网络，A股(601607)+H股(02607)两地上市。"
-    },
-    {
-      "id": "sino-biopharm-grp",
-      "name_en": "Sino Biopharmaceutical (Charoen Pokphand / Chia Tai Group)",
-      "name_zh": "中国生物制药（正大/卜蜂集团）",
-      "type": "conglomerate",
-      "country": "TH",
-      "description_en": "Hong Kong-listed pharmaceutical flagship of Thailand's Charoen Pokphand (Chia Tai) Group, whose core operating units are Chia Tai Tianqing, Beijing Tide and UK-based invoX Pharma.",
-      "description_zh": "泰国正大（卜蜂）集团旗下香港上市的医药旗舰，核心子公司含正大天晴、北京泰德及英国 invoX Pharma。"
+      "id": "sanofi-group",
+      "name_en": "Sanofi",
+      "name_zh": "赛诺菲集团",
+      "type": "multinational",
+      "country": "FR",
+      "description_en": "French multinational pure-play biopharma company headquartered in Paris, focused on prescription medicines and vaccines after divesting its consumer-health arm.",
+      "description_zh": "总部位于巴黎的法国跨国纯生物制药企业，剥离消费者健康业务后专注于处方药与疫苗。"
     },
     {
       "id": "sinopharm-group",
@@ -145,13 +289,22 @@
       "description_zh": "国务院国资委直管的央企级医药集团，业务覆盖研发、生产、分销与零售，控股国药控股、天坛生物、国药中生、中国中药等多家上市公司。"
     },
     {
-      "id": "teva-group",
-      "name_en": "Teva Pharmaceutical Industries",
-      "name_zh": "梯瓦制药",
+      "id": "sk-group",
+      "name_en": "SK Group",
+      "name_zh": "SK集团",
+      "type": "conglomerate",
+      "country": "KR",
+      "description_en": "SK Group is South Korea's second-largest chaebol conglomerate, with pharma interests held through holding company SK Inc. and affiliate SK Chemicals.",
+      "description_zh": "SK集团是韩国第二大财阀企业集团，其医药业务通过控股公司SK Inc.及关联公司SK化学持有。"
+    },
+    {
+      "id": "thermofisher-group",
+      "name_en": "Thermo Fisher Scientific",
+      "name_zh": "赛默飞世尔科技",
       "type": "multinational",
-      "country": "IL",
-      "description_en": "Israel-based global generics and specialty pharmaceutical company, the world's largest generic-drug maker, listed on NYSE and TASE.",
-      "description_zh": "总部位于以色列的全球仿制药与特药巨头，全球最大仿制药企业，于纽交所和特拉维夫证交所上市。"
+      "country": "US",
+      "description_en": "American multinational supplier of scientific instrumentation, reagents, laboratory products, and clinical research / pharma services (CDMO/CRO) operating across life sciences, diagnostics, and lab products segments.",
+      "description_zh": "美国跨国科学仪器、试剂、实验室产品及临床研究/医药服务（CDMO/CRO）供应商，业务涵盖生命科学、诊断和实验室产品板块。"
     },
     {
       "id": "tongrentang-group",
@@ -161,24 +314,6 @@
       "country": "CN",
       "description_en": "Beijing-municipal state-owned traditional Chinese medicine conglomerate, founded 1669, controlling listed flagship Beijing Tong Ren Tang (600085) and its HK-listed arms.",
       "description_zh": "北京市属国有中医药企业集团，始创于1669年，控股A股旗舰北京同仁堂（600085）及其港股上市公司。"
-    },
-    {
-      "id": "viatris-group",
-      "name_en": "Viatris",
-      "name_zh": "辉致制药集团",
-      "type": "multinational",
-      "country": "US",
-      "description_en": "Global generics and biosimilars company formed in 2020 by combining Mylan with Pfizer's Upjohn off-patent established-medicines business.",
-      "description_zh": "2020年由迈兰与辉瑞普强（Upjohn）合并组成的全球仿制药与生物类似药公司。"
-    },
-    {
-      "id": "yunnan-baiyao-grp",
-      "name_en": "Yunnan Baiyao Group",
-      "name_zh": "云南白药集团",
-      "type": "SOE",
-      "country": "CN",
-      "description_en": "Yunnan SASAC-controlled traditional Chinese medicine giant whose former holdco was absorbed into the Shenzhen-listed flagship (000538) after mixed-ownership reform.",
-      "description_zh": "云南省国资委实控的中药龙头，混改后原控股母公司被吸收合并入深市上市旗舰（000538）。"
     }
   ]
 }

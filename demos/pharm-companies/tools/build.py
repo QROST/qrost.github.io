@@ -266,8 +266,12 @@ def merge_research() -> None:
     # group-*.json carry {group:{...}, members:[{company_id, parent_company_id, role, ...}]}.
     # They set group_id (ultimate conglomerate) + a control parent_id on the named companies,
     # kept in their own shards so company shards stay untouched (no concurrent-edit collision).
-    groups: dict[str, dict] = {}
-    member_group: dict[str, str] = {}  # company_id -> group_id (first wins; conflicts logged)
+    # Collect assignments first, then keep only MULTI-member groups (>=2 of our companies) so the
+    # graph shows real relationships, not lone parent nodes (a multinational with no other group
+    # entity in our data adds no edge).
+    group_defs: dict[str, dict] = {}
+    assign: dict[str, tuple] = {}            # company_id -> (gid, role, parent_id); first wins
+    members_per_group: dict[str, list] = {}
     for gp in sorted(RESEARCH.glob("group-*.json")):
         try:
             gd = load(gp)
@@ -278,27 +282,33 @@ def merge_research() -> None:
         gid = g.get("id")
         if not gid:
             continue
-        groups[gid] = g
+        group_defs[gid] = g
         for m in gd.get("members", []):
             cid = m.get("company_id")
-            c = companies.get(cid)
-            if not c:
+            if cid not in companies:
                 continue
-            if cid in member_group and member_group[cid] != gid:
-                print(f"  ! group conflict: {cid} in {member_group[cid]} and {gid}; keeping first")
+            if cid in assign and assign[cid][0] != gid:
+                print(f"  ! group conflict: {cid} in {assign[cid][0]} and {gid}; keeping first")
                 continue
-            member_group[cid] = gid
-            c["group_id"] = gid
-            if m.get("role"):
-                c["group_role"] = m["role"]
-            pid = (m.get("parent_company_id") or "").strip()
-            if pid and pid != cid and pid in companies:
-                c["parent_id"] = pid
-                c["is_subsidiary"] = True
-    if groups:
-        used = set(member_group.values())
-        write_json(DATA / "groups.json", {"groups": [groups[g] for g in groups if g in used]})
-        print(f"  groups: {len(used)} group(s), {len(member_group)} company assignment(s)")
+            assign[cid] = (gid, m.get("role"), (m.get("parent_company_id") or "").strip())
+            members_per_group.setdefault(gid, []).append(cid)
+    keep = {gid for gid, mem in members_per_group.items() if len(mem) >= 2}
+    applied = 0
+    for cid, (gid, role, pid) in assign.items():
+        if gid not in keep:
+            continue
+        c = companies[cid]
+        c["group_id"] = gid
+        if role:
+            c["group_role"] = role
+        if pid and pid != cid and pid in companies:
+            c["parent_id"] = pid
+            c["is_subsidiary"] = True
+        applied += 1
+    if keep:
+        write_json(DATA / "groups.json", {"groups": [group_defs[g] for g in group_defs if g in keep]})
+        print(f"  groups: {len(keep)} multi-member group(s) kept, "
+              f"{len(members_per_group) - len(keep)} single-member pruned, {applied} assignment(s)")
 
     write_json(DATA / "companies.json", {"companies": list(companies.values())})
     write_json(DATA / "sites.json", {"sites": list(sites.values())})
