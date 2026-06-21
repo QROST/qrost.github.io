@@ -1,0 +1,184 @@
+{
+  "groups": [
+    {
+      "id": "abbott-group",
+      "name_en": "Abbott Laboratories",
+      "name_zh": "雅培",
+      "type": "multinational",
+      "country": "US",
+      "description_en": "US diversified medical-devices, diagnostics and nutrition company (NYSE: ABT).",
+      "description_zh": "美国多元化医疗器械、诊断与营养公司。"
+    },
+    {
+      "id": "abbvie-group",
+      "name_en": "AbbVie",
+      "name_zh": "艾伯维",
+      "type": "multinational",
+      "country": "US",
+      "description_en": "US research-based biopharma spun off from Abbott in 2013 (NYSE: ABBV); owns Allergan, Cerevel, ImmunoGen.",
+      "description_zh": "2013年从雅培分拆的美国创新生物制药公司；旗下含艾尔建、Cerevel、ImmunoGen。"
+    },
+    {
+      "id": "astrazeneca-group",
+      "name_en": "AstraZeneca PLC",
+      "name_zh": "阿斯利康",
+      "type": "multinational",
+      "country": "GB",
+      "description_en": "UK-headquartered global biopharmaceutical company spanning oncology, cardiovascular, respiratory, rare disease and cell therapy, expanded via wholly-owned acquisitions.",
+      "description_zh": "总部位于英国的全球生物制药公司，业务覆盖肿瘤、心血管、呼吸、罕见病及细胞疗法，并通过全资收购扩张。"
+    },
+    {
+      "id": "bayer-group",
+      "name_en": "Bayer Group",
+      "name_zh": "拜耳集团",
+      "type": "multinational",
+      "country": "DE",
+      "description_en": "German DAX-listed life-science multinational organized into three divisions (Pharmaceuticals, Consumer Health, Crop Science), with wholly-owned cell- and gene-therapy units BlueRock Therapeutics and AskBio.",
+      "description_zh": "德国DAX上市的生命科学跨国集团，下设制药、消费者健康、作物科学三大事业部，并全资拥有细胞与基因治疗子公司BlueRock与AskBio。"
+    },
+    {
+      "id": "china-resources",
+      "name_en": "China Resources Pharmaceutical Group",
+      "name_zh": "华润医药集团",
+      "type": "SOE",
+      "country": "CN",
+      "description_en": "The pharmaceutical arm of China Resources, a central state-owned conglomerate, controlling China's largest portfolio of listed pharma and TCM companies through HK-listed flagship CR Pharmaceutical (3320.HK).",
+      "description_zh": "央企中国华润有限公司的医药板块，通过香港上市旗舰华润医药（3320.HK）控股中国规模最大的一批医药与中药上市公司。"
+    },
+    {
+      "id": "cspc-group",
+      "name_en": "CSPC Pharmaceutical Group",
+      "name_zh": "石药集团",
+      "type": "conglomerate",
+      "country": "CN",
+      "description_en": "Chinese pharmaceutical conglomerate controlled by Cai Dongchen, anchored by HK-listed CSPC Pharmaceutical Group (1093.HK) and spanning innovative drugs, generics, APIs and functional foods.",
+      "description_zh": "蔡东晨实际控制的中国医药集团，以港股上市的石药集团（1093.HK）为旗舰，业务覆盖创新药、仿制药、原料药及功能食品。"
+    },
+    {
+      "id": "fosun-pharma-group",
+      "name_en": "Fosun Pharma Group",
+      "name_zh": "复星医药集团",
+      "type": "conglomerate",
+      "country": "CN",
+      "description_en": "Shanghai-listed (and HK-listed) pharmaceutical arm of the Fosun conglomerate, controlling biosimilar, injectables and aesthetic-device subsidiaries across China, India and Israel.",
+      "description_zh": "复星集团旗下的A+H上市医药板块，控股复宏汉霖、Gland Pharma等创新药与注射剂企业。"
+    },
+    {
+      "id": "gphl",
+      "name_en": "Guangzhou Pharmaceutical Holdings Limited (GPHL)",
+      "name_zh": "广州医药集团有限公司（广药集团）",
+      "type": "SOE",
+      "country": "CN",
+      "description_en": "Guangzhou municipal state-owned pharmaceutical conglomerate, China's largest TCM-led pharma group, controlling listed flagship Guangzhou Baiyunshan and the Wanglaoji brand.",
+      "description_zh": "广州市属国有大型医药集团，中国最大的中药龙头之一，控股上市旗舰广州白云山及王老吉品牌。"
+    },
+    {
+      "id": "grand-pharma-grp",
+      "name_en": "China Grand Pharmaceutical (China Grand Enterprises)",
+      "name_zh": "远大医药（中国远大集团）",
+      "type": "conglomerate",
+      "country": "CN",
+      "description_en": "Chinese privately-controlled healthcare group whose HK-listed flagship Grand Pharmaceutical Group is ~59% controlled by China Grand Enterprises (ultimately Hu Kaijun), spanning pharma, nuclear/radio-medicine and the Sirtex SIR-Spheres business.",
+      "description_zh": "由中国远大集团（最终实控人胡凯军）控股的民营医疗集团，旗下港股旗舰远大医药约59%受控，业务涵盖制药、核药/放射医学及Sirtex SIR-Spheres。"
+    },
+    {
+      "id": "humanwell-grp",
+      "name_en": "Humanwell Healthcare Group",
+      "name_zh": "人福医药集团",
+      "type": "conglomerate",
+      "country": "CN",
+      "description_en": "Wuhan-based Shanghai-listed pharma group (600079), China's anesthetics leader, with subsidiaries including Yichang Humanwell and US-based Epic Pharma; voting control transitioning to China Merchants Group (central SOE) via the 2024-25 restructuring of former parent Contemporary Amperex/Dangdai Technology.",
+      "description_zh": "总部武汉的沪市上市医药集团（600079），国内麻醉药龙头，旗下含宜昌人福、美国Epic Pharma等；随当代科技重整，表决权控制权正转向央企招商局集团。"
+    },
+    {
+      "id": "jnj-group",
+      "name_en": "Johnson & Johnson",
+      "name_zh": "强生公司",
+      "type": "multinational",
+      "country": "US",
+      "description_en": "Global diversified healthcare company spanning Innovative Medicine (pharmaceuticals) and MedTech, headquartered in New Brunswick, New Jersey.",
+      "description_zh": "总部位于美国新泽西的全球多元化医疗健康集团，业务涵盖创新制药与医疗科技两大板块。"
+    },
+    {
+      "id": "novartis-group",
+      "name_en": "Novartis Group",
+      "name_zh": "诺华集团",
+      "type": "multinational",
+      "country": "CH",
+      "description_en": "Swiss multinational pharmaceutical company focused on innovative patented medicines, having divested its generics (Sandoz) and eye-care (Alcon) businesses.",
+      "description_zh": "瑞士跨国制药企业，专注创新专利药物，已剥离仿制药（山德士）与眼科（爱尔康）业务。"
+    },
+    {
+      "id": "roche-group",
+      "name_en": "Roche Group",
+      "name_zh": "罗氏集团",
+      "type": "multinational",
+      "country": "CH",
+      "description_en": "Swiss multinational healthcare group spanning pharmaceuticals and diagnostics, controlled via Roche Holding AG.",
+      "description_zh": "瑞士跨国医疗集团，由罗氏控股公司统辖，业务涵盖制药与诊断两大支柱。"
+    },
+    {
+      "id": "shanghai-pharma",
+      "name_en": "Shanghai Pharmaceuticals Holding Co., Ltd.",
+      "name_zh": "上海医药集团股份有限公司",
+      "type": "SOE",
+      "country": "CN",
+      "description_en": "Shanghai SASAC-controlled (via SIIC/Shanghai Industrial) integrated pharmaceutical group spanning R&D, manufacturing and China's second-largest drug distribution network, dual-listed in Shanghai (601607) and Hong Kong (02607).",
+      "description_zh": "上海市国资委通过上海实业集团控股的综合性医药集团，覆盖研发、制造与全国第二大药品分销网络，A股(601607)+H股(02607)两地上市。"
+    },
+    {
+      "id": "sino-biopharm-grp",
+      "name_en": "Sino Biopharmaceutical (Charoen Pokphand / Chia Tai Group)",
+      "name_zh": "中国生物制药（正大/卜蜂集团）",
+      "type": "conglomerate",
+      "country": "TH",
+      "description_en": "Hong Kong-listed pharmaceutical flagship of Thailand's Charoen Pokphand (Chia Tai) Group, whose core operating units are Chia Tai Tianqing, Beijing Tide and UK-based invoX Pharma.",
+      "description_zh": "泰国正大（卜蜂）集团旗下香港上市的医药旗舰，核心子公司含正大天晴、北京泰德及英国 invoX Pharma。"
+    },
+    {
+      "id": "sinopharm-group",
+      "name_en": "China National Pharmaceutical Group (Sinopharm / CNPGC)",
+      "name_zh": "国药集团（中国医药集团有限公司）",
+      "type": "SOE",
+      "country": "CN",
+      "description_en": "Central state-owned (SASAC-controlled) pharmaceutical conglomerate spanning R&D, manufacturing, distribution and retail, controlling multiple listed arms including Sinopharm Holding, Tiantan Bio, CNBG and China TCM.",
+      "description_zh": "国务院国资委直管的央企级医药集团，业务覆盖研发、生产、分销与零售，控股国药控股、天坛生物、国药中生、中国中药等多家上市公司。"
+    },
+    {
+      "id": "teva-group",
+      "name_en": "Teva Pharmaceutical Industries",
+      "name_zh": "梯瓦制药",
+      "type": "multinational",
+      "country": "IL",
+      "description_en": "Israel-based global generics and specialty pharmaceutical company, the world's largest generic-drug maker, listed on NYSE and TASE.",
+      "description_zh": "总部位于以色列的全球仿制药与特药巨头，全球最大仿制药企业，于纽交所和特拉维夫证交所上市。"
+    },
+    {
+      "id": "tongrentang-group",
+      "name_en": "China Beijing Tong Ren Tang (Group) Co., Ltd.",
+      "name_zh": "中国北京同仁堂（集团）有限责任公司",
+      "type": "SOE",
+      "country": "CN",
+      "description_en": "Beijing-municipal state-owned traditional Chinese medicine conglomerate, founded 1669, controlling listed flagship Beijing Tong Ren Tang (600085) and its HK-listed arms.",
+      "description_zh": "北京市属国有中医药企业集团，始创于1669年，控股A股旗舰北京同仁堂（600085）及其港股上市公司。"
+    },
+    {
+      "id": "viatris-group",
+      "name_en": "Viatris",
+      "name_zh": "辉致制药集团",
+      "type": "multinational",
+      "country": "US",
+      "description_en": "Global generics and biosimilars company formed in 2020 by combining Mylan with Pfizer's Upjohn off-patent established-medicines business.",
+      "description_zh": "2020年由迈兰与辉瑞普强（Upjohn）合并组成的全球仿制药与生物类似药公司。"
+    },
+    {
+      "id": "yunnan-baiyao-grp",
+      "name_en": "Yunnan Baiyao Group",
+      "name_zh": "云南白药集团",
+      "type": "SOE",
+      "country": "CN",
+      "description_en": "Yunnan SASAC-controlled traditional Chinese medicine giant whose former holdco was absorbed into the Shenzhen-listed flagship (000538) after mixed-ownership reform.",
+      "description_zh": "云南省国资委实控的中药龙头，混改后原控股母公司被吸收合并入深市上市旗舰（000538）。"
+    }
+  ]
+}
