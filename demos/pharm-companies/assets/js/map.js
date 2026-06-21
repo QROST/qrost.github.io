@@ -7,8 +7,11 @@
   function cssVar(n) { return getComputedStyle(document.documentElement).getPropertyValue(n).trim(); }
 
   var SITE_SIZE = { HQ: 12, RD: 9, manufacturing: 9, commercial: 6, JV: 8 };
-  function siteColor(type) { return cssVar('--site-' + type) || cssVar('--chart-1'); }
+  // CSS site vars are lowercase (--site-hq / --site-rd / --site-jv …) but data site_type is HQ/RD/JV.
+  function siteColor(type) { return cssVar('--site-' + String(type).toLowerCase()) || cssVar('--chart-1'); }
   var TYPE_COLORS = ['--chart-1','--chart-2','--chart-3','--chart-4','--chart-5','--chart-6','--chart-7','--chart-8'];
+  // distinct color for the i-th category: themed palette first, then golden-angle HSL (so 40+ countries differ).
+  function catColor(i, pal) { return i < pal.length ? pal[i] : 'hsl(' + Math.round((i * 137.508) % 360) + ',62%,56%)'; }
 
   function ensure() {
     if (!window.echarts || !window.WORLD_GEO) return null;
@@ -53,8 +56,8 @@
       if (co && co.company_type && types.indexOf(co.company_type) === -1) types.push(co.company_type);
     });
     var pal = TYPE_COLORS.map(cssVar);
-    var countryColorMap = {}; countries.sort().forEach(function (co, i) { countryColorMap[co] = pal[i % pal.length]; });
-    var typeColorMap = {}; types.forEach(function (t, i) { typeColorMap[t] = pal[i % pal.length]; });
+    var countryColorMap = {}; countries.sort().forEach(function (co, i) { countryColorMap[co] = catColor(i, pal); });
+    var typeColorMap = {}; types.sort().forEach(function (t, i) { typeColorMap[t] = catColor(i, pal); });
 
     var legend = {};
     var points = sites.filter(function (s) { return typeof s.lat === 'number' && typeof s.lng === 'number'; }).map(function (s) {
@@ -91,7 +94,9 @@
         label: { show: false }, silent: true
       },
       series: [{
-        type: 'scatter', coordinateSystem: 'geo', data: points, large: points.length > 1500,
+        // NOTE: do NOT enable `large` — large-scatter batches points and ignores per-point
+        // itemStyle.color, so re-coloring by dimension stops working. ~3k points render fine.
+        type: 'scatter', coordinateSystem: 'geo', data: points,
         emphasis: { scale: 1.4 }, z: 5
       }]
     }, true);
