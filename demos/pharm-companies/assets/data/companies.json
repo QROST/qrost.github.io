@@ -86141,8 +86141,8 @@
     {
       "id": "poongjeon-pharmacy",
       "tier": "deep",
-      "name_zh": "풍전제약 주식회사",
-      "name_en": "Poongjeon Pharmacy Co., Ltd.",
+      "name_zh": "풍전약품 주식회사",
+      "name_en": "Poongjeon Pharm Co., Ltd.",
       "country": "KR",
       "country_display_zh": "韓國",
       "country_display_en": "South Korea",
@@ -86162,10 +86162,10 @@
         "source_url": "https://pitchbook.com/profiles/company/111482-92"
       },
       "revenue": {
-        "value": 27000000,
-        "currency": "USD",
+        "value": 23839000000,
+        "currency": "KRW",
         "year": 2025,
-        "source_url": "https://pitchbook.com/profiles/company/111482-92"
+        "source_url": "https://comp.fnguide.com/SVO2/ASP/SVD_Main.asp?pGB=1&gicode=A298060"
       },
       "rnd_spend": null,
       "employees": {
@@ -86173,16 +86173,16 @@
         "year": 2024,
         "source_url": "https://pitchbook.com/profiles/company/111482-92"
       },
-      "company_type": "generics",
+      "company_type": "diversified",
       "region": "other_apac",
       "website": null,
       "therapeutic_focus": [
         "cardiometabolic",
         "infectious-disease"
       ],
-      "description_zh": "풍전제약（Poongjeon Pharmacy）成立於2014年，前身為SCM Lifescience Co., Ltd.，是韓國仁川的小型製藥公司，從事藥品、護髮藥及幹細胞產品的研發，2024年約有44名員工，為韓國KOSDAQ掛牌的微型製藥公司。",
-      "description_en": "Poongjeon Pharmacy Co., Ltd. (formerly SCM Lifescience Co., Ltd.), founded in 2014 and headquartered in Incheon, South Korea, is a micro-cap pharmaceutical company engaged in R&D of medicines, hair care medicines, and stem cell products. Listed on KOSDAQ with approximately 44 employees.",
-      "confidence": 0.55,
+      "description_zh": "풍전약품（Poongjeon Pharm，原 SCM Lifescience／에스씨엠생명과학）2014 年成立、2020 年於韓國 KOSDAQ 上市，原為幹細胞治療研發公司（總部仁川松島）。2025 年 7 月收購成立於 1995 年的醫藥品批發商풍전약품，2026 年 4 月吸收合併並更名為풍전약품，主業轉為專業醫藥品（造影劑、輸液、麻醉藥等）批發配送，並保留少量幹細胞與化妝品業務。FY2025 合併營收約 238 億韓元。",
+      "description_en": "Poongjeon Pharm Co., Ltd. (formerly SCM Lifescience / 에스씨엠생명과학) was founded in 2014 and listed on KOSDAQ in 2020 as a stem-cell therapeutics R&D biotech (HQ Incheon Songdo). In July 2025 it acquired Poongjeon Pharm, a prescription-drug wholesaler founded in 1995; it absorbed the subsidiary via merger and renamed the listed entity Poongjeon Pharm in April 2026. Its primary business is now prescription-drug wholesale/distribution (contrast media, IV fluids, narcotics to hospitals), with residual stem-cell and cosmetics operations. FY2025 consolidated revenue ≈ KRW 23.8B.",
+      "confidence": 0.85,
       "last_verified": "2026-06",
       "sources": [
         {
@@ -86196,8 +86196,8 @@
           "accessed": "2026-06-19"
         }
       ],
-      "exchange": "KOSDAQ",
-      "sub_sector": "stem cell therapy (fka SCM Lifescience)"
+      "sub_sector": "pharmaceutical wholesale/distribution (SCM Lifescience merged into Poongjeon Pharm, 2026)",
+      "exchange": "KOSDAQ"
     },
     {
       "id": "prestige-biopharma",
