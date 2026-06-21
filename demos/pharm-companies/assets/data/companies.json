@@ -212,7 +212,11 @@
         "injectables",
         "gene-therapy"
       ],
-      "tier": "deep"
+      "tier": "deep",
+      "group_id": "novo-group",
+      "group_role": "subsidiary",
+      "parent_id": "novo-nordisk",
+      "is_subsidiary": true
     },
     {
       "id": "samsung-biologics",
@@ -1003,7 +1007,9 @@
       ],
       "tier": "roster",
       "exchange": "HKEX",
-      "sub_sector": "medical devices platform"
+      "sub_sector": "medical devices platform",
+      "group_id": "microport-group",
+      "group_role": "group-holdco"
     },
     {
       "id": "venus-medtech",
@@ -1561,9 +1567,7 @@
         "source_url": "https://stockanalysis.com/quote/she/000538/",
         "note_en": "Approximately 9,277 employees as of 2025"
       },
-      "tier": "deep",
-      "group_id": "yunnan-baiyao-grp",
-      "group_role": "flagship-listco"
+      "tier": "deep"
     },
     {
       "id": "huadong-medicine",
@@ -1923,7 +1927,9 @@
           "accessed": "2026-06"
         }
       ],
-      "tier": "deep"
+      "tier": "deep",
+      "group_id": "joincare-group",
+      "group_role": "group-holdco"
     },
     {
       "id": "hengrui",
@@ -2310,9 +2316,7 @@
         "source_url": "https://www.tradingview.com/news/reuters.com,2025-03-21:newsml_ACN97226a:0-sino-biopharm-1177-hk-announces-2024-annual-results/",
         "note_en": "24,379 employees as of FY2024; corrected from input which had no employee data"
       },
-      "tier": "deep",
-      "group_id": "sino-biopharm-grp",
-      "group_role": "flagship-listco"
+      "tier": "deep"
     },
     {
       "id": "cspc",
@@ -3603,7 +3607,9 @@
       ],
       "tier": "roster",
       "exchange": "SZSE",
-      "sub_sector": "vaccines_blood_products"
+      "sub_sector": "vaccines_blood_products",
+      "group_id": "hualan-group",
+      "group_role": "flagship-listco"
     },
     {
       "country": "CN",
@@ -4728,9 +4734,7 @@
           "accessed": "2026-06"
         }
       ],
-      "tier": "deep",
-      "group_id": "shanghai-pharma",
-      "group_role": "flagship-listco"
+      "tier": "deep"
     },
     {
       "id": "china-resources-pharma",
@@ -5038,7 +5042,11 @@
         "note_en": "Total R&D spend FY2024 (RMB1,044 million, 8.84% of revenue)",
         "note_zh": "2024年研发投入合计10.44亿元，占营收8.84%"
       },
-      "tier": "deep"
+      "tier": "deep",
+      "group_id": "joincare-group",
+      "group_role": "flagship-listco",
+      "parent_id": "joincare",
+      "is_subsidiary": true
     },
     {
       "id": "salubris",
@@ -5134,7 +5142,9 @@
       ],
       "tier": "roster",
       "exchange": "SZSE",
-      "sub_sector": "cardiovascular_devices"
+      "sub_sector": "cardiovascular_devices",
+      "group_id": "lepu-group",
+      "group_role": "flagship-listco"
     },
     {
       "id": "humanwell",
@@ -5197,9 +5207,7 @@
         "year": 2024,
         "source_url": "https://stockanalysis.com/quote/sha/600079/market-cap/",
         "note_en": "Market cap CNY 37.61B as of Dec 31, 2024"
-      },
-      "group_id": "humanwell-grp",
-      "group_role": "flagship-listco"
+      }
     },
     {
       "id": "huahai",
@@ -10631,7 +10639,9 @@
         "currency": "INR",
         "year": 2025,
         "source_url": "https://stockanalysis.com/quote/nse/SPARC/"
-      }
+      },
+      "group_id": "biocon-group",
+      "group_role": "flagship-listco"
     },
     {
       "id": "glenmark-pharmaceuticals",
@@ -10761,7 +10771,9 @@
         "source_url": "https://companiesmarketcap.com/inr/mankind-pharma/marketcap/",
         "note_en": "~INR 951.64 billion (≈ INR 95,164 crore) as of 2026",
         "note_zh": "2026年约9,516.4亿卢比"
-      }
+      },
+      "group_id": "mankind-group",
+      "group_role": "flagship-listco"
     },
     {
       "id": "gland-pharma",
@@ -11131,7 +11143,11 @@
         }
       ],
       "exchange": "NSE",
-      "sub_sector": "CRO / CDMO"
+      "sub_sector": "CRO / CDMO",
+      "group_id": "biocon-group",
+      "group_role": "subsidiary",
+      "parent_id": "biocon",
+      "is_subsidiary": true
     },
     {
       "id": "jubilant-pharmova",
@@ -11188,7 +11204,9 @@
         }
       ],
       "exchange": "NSE",
-      "sub_sector": "CDMO / Radiopharma / Generics"
+      "sub_sector": "CDMO / Radiopharma / Generics",
+      "group_id": "jubilant-group",
+      "group_role": "flagship-listco"
     },
     {
       "id": "wockhardt",
@@ -11899,7 +11917,9 @@
         }
       ],
       "exchange": "KOSDAQ",
-      "sub_sector": "CNS / epilepsy"
+      "sub_sector": "CNS / epilepsy",
+      "group_id": "sk-group",
+      "group_role": "flagship-listco"
     },
     {
       "id": "hanmi-pharmaceutical",
@@ -12028,7 +12048,11 @@
         }
       ],
       "exchange": "KOSPI",
-      "sub_sector": "vaccines / plasma derivatives"
+      "sub_sector": "vaccines / plasma derivatives",
+      "group_id": "gc-group",
+      "group_role": "flagship-listco",
+      "parent_id": "gc-corp",
+      "is_subsidiary": true
     },
     {
       "id": "sk-bioscience",
@@ -12090,7 +12114,9 @@
         }
       ],
       "exchange": "KOSDAQ",
-      "sub_sector": "vaccines / CDMO"
+      "sub_sector": "vaccines / CDMO",
+      "group_id": "sk-group",
+      "group_role": "affiliate"
     },
     {
       "id": "seegene",
@@ -13091,9 +13117,7 @@
       ],
       "exchange": "NYSE",
       "sub_sector": "generics, biosimilars, specialty",
-      "_note": "This entry merged and supersedes duplicate 'teva' entry (id=teva); original 'teva-pharmaceutical' had wrong country (US) and inflated revenue ($17,258M). Authoritative figures from Teva IR.",
-      "group_id": "teva-group",
-      "group_role": "flagship-listco"
+      "_note": "This entry merged and supersedes duplicate 'teva' entry (id=teva); original 'teva-pharmaceutical' had wrong country (US) and inflated revenue ($17,258M). Authoritative figures from Teva IR."
     },
     {
       "id": "alkermes",
@@ -22914,9 +22938,7 @@
         }
       ],
       "exchange": "HKEX",
-      "sub_sector": "specialty pharma",
-      "group_id": "grand-pharma-grp",
-      "group_role": "flagship-listco"
+      "sub_sector": "specialty pharma"
     },
     {
       "id": "gred-medic",
@@ -27702,7 +27724,11 @@
         }
       ],
       "exchange": "SZSE",
-      "sub_sector": "vaccines"
+      "sub_sector": "vaccines",
+      "group_id": "hualan-group",
+      "group_role": "subsidiary",
+      "parent_id": "hualan-bio",
+      "is_subsidiary": true
     },
     {
       "id": "hualan-components",
@@ -32822,7 +32848,9 @@
         }
       ],
       "exchange": "HKEX",
-      "sub_sector": "oncology biologics"
+      "sub_sector": "oncology biologics",
+      "group_id": "lepu-group",
+      "group_role": "affiliate"
     },
     {
       "id": "lexin-medical",
@@ -34810,7 +34838,11 @@
         }
       ],
       "exchange": "HKEX",
-      "sub_sector": "structural heart / TAVR"
+      "sub_sector": "structural heart / TAVR",
+      "group_id": "microport-group",
+      "group_role": "flagship-listco",
+      "parent_id": "microport",
+      "is_subsidiary": true
     },
     {
       "id": "microport-electrophysiology",
@@ -34863,7 +34895,11 @@
         }
       ],
       "exchange": "STAR",
-      "sub_sector": "cardiac_electrophysiology"
+      "sub_sector": "cardiac_electrophysiology",
+      "group_id": "microport-group",
+      "group_role": "subsidiary",
+      "parent_id": "microport",
+      "is_subsidiary": true
     },
     {
       "id": "microport-neuroflow",
@@ -34921,7 +34957,11 @@
         }
       ],
       "exchange": "STAR",
-      "sub_sector": "aortic_vascular_stent"
+      "sub_sector": "aortic_vascular_stent",
+      "group_id": "microport-group",
+      "group_role": "subsidiary",
+      "parent_id": "microport",
+      "is_subsidiary": true
     },
     {
       "id": "mingde-biotechnology",
@@ -62204,7 +62244,9 @@
         }
       ],
       "exchange": "TSX",
-      "sub_sector": "Diversified pharma; GI, hepatology, neuroscience, dermatology, dentistry, aesthetics"
+      "sub_sector": "Diversified pharma; GI, hepatology, neuroscience, dermatology, dentistry, aesthetics",
+      "group_id": "bausch-group",
+      "group_role": "group-holdco"
     },
     {
       "id": "bausch-lomb-ca",
@@ -62273,7 +62315,11 @@
         }
       ],
       "exchange": "TSX",
-      "sub_sector": "Eye health; contact lenses, surgical devices, ophthalmic pharmaceuticals"
+      "sub_sector": "Eye health; contact lenses, surgical devices, ophthalmic pharmaceuticals",
+      "group_id": "bausch-group",
+      "group_role": "flagship-listco",
+      "parent_id": "bausch-health-ca",
+      "is_subsidiary": true
     },
     {
       "id": "bicycle-therapeutics",
@@ -69660,7 +69706,11 @@
         }
       ],
       "exchange": "NASDAQ",
-      "sub_sector": "gene_editing_cardiovascular"
+      "sub_sector": "gene_editing_cardiovascular",
+      "group_id": "lilly-group",
+      "group_role": "subsidiary",
+      "parent_id": "eli-lilly",
+      "is_subsidiary": true
     },
     {
       "id": "viatris",
@@ -69722,9 +69772,7 @@
         }
       ],
       "exchange": "NASDAQ",
-      "sub_sector": "generics, biosimilars, complex products",
-      "group_id": "viatris-group",
-      "group_role": "flagship-listco"
+      "sub_sector": "generics, biosimilars, complex products"
     },
     {
       "id": "viking-therapeutics",
@@ -75962,7 +76010,11 @@
         }
       ],
       "exchange": "KOSPI",
-      "sub_sector": "distribution / generics (Celltrion group)"
+      "sub_sector": "distribution / generics (Celltrion group)",
+      "group_id": "celltrion-group",
+      "group_role": "subsidiary",
+      "parent_id": "celltrion",
+      "is_subsidiary": true
     },
     {
       "id": "central-pharmaceuticals-bd",
@@ -78278,7 +78330,11 @@
         }
       ],
       "exchange": "KOSDAQ",
-      "sub_sector": "immune cell therapy products"
+      "sub_sector": "immune cell therapy products",
+      "group_id": "gc-group",
+      "group_role": "subsidiary",
+      "parent_id": "gc-biopharma",
+      "is_subsidiary": true
     },
     {
       "id": "gc-corp",
@@ -78348,7 +78404,9 @@
         }
       ],
       "exchange": "KOSPI",
-      "sub_sector": "healthcare holding (Green Cross)"
+      "sub_sector": "healthcare holding (Green Cross)",
+      "group_id": "gc-group",
+      "group_role": "group-holdco"
     },
     {
       "id": "generach-biotechnology",
@@ -79001,7 +79059,11 @@
         }
       ],
       "exchange": "KOSDAQ",
-      "sub_sector": "cell therapy / cord blood processing"
+      "sub_sector": "cell therapy / cord blood processing",
+      "group_id": "gc-group",
+      "group_role": "subsidiary",
+      "parent_id": "gc-biopharma",
+      "is_subsidiary": true
     },
     {
       "id": "gsk-pharma-india",
@@ -79074,7 +79136,11 @@
         }
       ],
       "exchange": "NSE",
-      "sub_sector": "Branded Pharma / MNC Subsidiary"
+      "sub_sector": "Branded Pharma / MNC Subsidiary",
+      "group_id": "gsk-group",
+      "group_role": "subsidiary",
+      "parent_id": "gsk",
+      "is_subsidiary": true
     },
     {
       "id": "gufic-biosciences-in",
@@ -81868,7 +81934,9 @@
         }
       ],
       "exchange": "KOSPI",
-      "sub_sector": "cell & gene therapy"
+      "sub_sector": "cell & gene therapy",
+      "group_id": "kolon-group",
+      "group_role": "flagship-listco"
     },
     {
       "id": "kolon-tissuegene",
@@ -81934,7 +82002,11 @@
         }
       ],
       "exchange": "KOSDAQ",
-      "sub_sector": "cell & gene therapy"
+      "sub_sector": "cell & gene therapy",
+      "group_id": "kolon-group",
+      "group_role": "subsidiary",
+      "parent_id": "kolon-life-science",
+      "is_subsidiary": true
     },
     {
       "id": "komipharm",
@@ -84966,7 +85038,11 @@
         }
       ],
       "exchange": "PSX",
-      "sub_sector": "pharmaceutical"
+      "sub_sector": "pharmaceutical",
+      "group_id": "otsuka-group",
+      "group_role": "subsidiary",
+      "parent_id": "otsuka",
+      "is_subsidiary": true
     },
     {
       "id": "panacea-biotec-in",
@@ -85535,7 +85611,11 @@
         }
       ],
       "exchange": "NSE",
-      "sub_sector": "Branded Pharma / MNC Subsidiary"
+      "sub_sector": "Branded Pharma / MNC Subsidiary",
+      "group_id": "pfizer-group",
+      "group_role": "flagship-listco",
+      "parent_id": "pfizer",
+      "is_subsidiary": true
     },
     {
       "id": "phapros",
@@ -88273,7 +88353,11 @@
         }
       ],
       "exchange": "PSX",
-      "sub_sector": "pharmaceutical"
+      "sub_sector": "pharmaceutical",
+      "group_id": "sanofi-group",
+      "group_role": "subsidiary",
+      "parent_id": "sanofi",
+      "is_subsidiary": true
     },
     {
       "id": "sanofi-india",
@@ -88336,7 +88420,11 @@
         }
       ],
       "exchange": "NSE",
-      "sub_sector": "Branded Pharma / MNC Subsidiary"
+      "sub_sector": "Branded Pharma / MNC Subsidiary",
+      "group_id": "sanofi-group",
+      "group_role": "subsidiary",
+      "parent_id": "sanofi",
+      "is_subsidiary": true
     },
     {
       "id": "savior-lifetec",
@@ -93648,7 +93736,9 @@
           "accessed": "2026-06"
         }
       ],
-      "tier": "deep"
+      "tier": "deep",
+      "group_id": "gsk-group",
+      "group_role": "group-holdco"
     },
     {
       "id": "sanofi",
@@ -93723,7 +93813,9 @@
           "accessed": "2026-06-20"
         }
       ],
-      "tier": "deep"
+      "tier": "deep",
+      "group_id": "sanofi-group",
+      "group_role": "group-holdco"
     },
     {
       "id": "bayer",
@@ -93795,9 +93887,7 @@
       ],
       "tier": "deep",
       "exchange": "Xetra",
-      "sub_sector": "pharmaceuticals, crop science, consumer health",
-      "group_id": "bayer-group",
-      "group_role": "group-holdco"
+      "sub_sector": "pharmaceuticals, crop science, consumer health"
     },
     {
       "id": "novo-nordisk",
@@ -93870,7 +93960,9 @@
           "accessed": "2026-06-20"
         }
       ],
-      "tier": "deep"
+      "tier": "deep",
+      "group_id": "novo-group",
+      "group_role": "flagship-listco"
     },
     {
       "id": "boehringer-ingelheim",
@@ -94571,7 +94663,9 @@
           "accessed": "2026-06"
         }
       ],
-      "tier": "deep"
+      "tier": "deep",
+      "group_id": "otsuka-group",
+      "group_role": "group-holdco"
     },
     {
       "id": "ono-pharmaceutical",
@@ -94639,7 +94733,9 @@
         "year": 2024,
         "source_url": "https://stockanalysis.com/quote/tyo/4528/market-cap/",
         "note_en": "Market cap JPY 767.74B (~USD 4.85B) as of Dec 31, 2024"
-      }
+      },
+      "group_id": "ono-group",
+      "group_role": "group-holdco"
     },
     {
       "id": "shionogi",
@@ -94941,7 +95037,9 @@
           "accessed": "2026-06"
         }
       ],
-      "tier": "deep"
+      "tier": "deep",
+      "group_id": "danaher-group",
+      "group_role": "group-holdco"
     },
     {
       "id": "thermo-fisher",
@@ -95004,7 +95102,9 @@
           "accessed": "2026-06-20"
         }
       ],
-      "tier": "deep"
+      "tier": "deep",
+      "group_id": "thermofisher-group",
+      "group_role": "group-holdco"
     },
     {
       "id": "abbott",
@@ -96885,7 +96985,9 @@
         }
       ],
       "confidence": 0.9,
-      "last_verified": "2026-06"
+      "last_verified": "2026-06",
+      "group_id": "fresenius-group",
+      "group_role": "affiliate"
     },
     {
       "id": "getinge",
@@ -98194,7 +98296,7 @@
       "description_en": "Boston neuroscience biotech founded by PureTech Health in 2009, developer of KarXT, the first antipsychotic targeting cholinergic (muscarinic) rather than dopamine receptors; Bristol Myers Squibb acquired Karuna for ~$14B ($330/share) in 2023, and the drug won FDA approval as Cobenfy for schizophrenia in 2024.",
       "description_zh": "由PureTech Health于2009年创立的波士顿神经科学生物技术公司，开发KarXT——首个靶向胆碱能（毒蕈碱）受体而非多巴胺受体的抗精神病药；百时美施贵宝于2023年以约140亿美元（每股330美元）收购Karuna，该药于2024年以Cobenfy之名获FDA批准用于精神分裂症。",
       "is_subsidiary": true,
-      "parent_id": "bristol-myers-squibb",
+      "parent_id": "bms",
       "sources": [
         {
           "title": "BMS Strengthens Neuroscience Portfolio with Karuna (BMS)",
@@ -98206,7 +98308,9 @@
         }
       ],
       "confidence": 0.85,
-      "last_verified": "2026-06"
+      "last_verified": "2026-06",
+      "group_id": "bms-group",
+      "group_role": "subsidiary"
     },
     {
       "id": "komodo-health",
@@ -100161,7 +100265,9 @@
         }
       ],
       "confidence": 0.8,
-      "last_verified": "2026-06"
+      "last_verified": "2026-06",
+      "group_id": "csl-group",
+      "group_role": "subsidiary"
     },
     {
       "id": "worwag-pharma",
@@ -100642,7 +100748,9 @@
         }
       ],
       "confidence": 0.75,
-      "last_verified": "2026-06"
+      "last_verified": "2026-06",
+      "group_id": "thermofisher-group",
+      "group_role": "subsidiary"
     },
     {
       "id": "bighat-biosciences",
@@ -102560,7 +102668,9 @@
         }
       ],
       "confidence": 0.75,
-      "last_verified": "2026-06"
+      "last_verified": "2026-06",
+      "group_id": "csl-group",
+      "group_role": "subsidiary"
     },
     {
       "id": "church-dwight",
@@ -103808,7 +103918,7 @@
       "description_en": "RayzeBio is a radiopharmaceutical therapeutics company pioneering actinium-225 alpha-emitter therapies, led by RYZ101 (225Ac-DOTATATE) targeting SSTR2 in GEP-NETs and small cell lung cancer. Bristol Myers Squibb acquired it for ~$4.1B ($62.50/share), completing the deal in February 2024, just months after RayzeBio's IPO.",
       "description_zh": "RayzeBio 是一家放射性药物治疗公司，开创锕-225 阿尔法发射体疗法，核心产品 RYZ101（225Ac-DOTATATE）靶向 GEP-NET 与小细胞肺癌中的 SSTR2。百时美施贵宝以约 41 亿美元（每股 62.50 美元）收购该公司，并于 2024 年 2 月完成交易，距其 IPO 仅数月。",
       "is_subsidiary": true,
-      "parent_id": "bristol-myers-squibb",
+      "parent_id": "bms",
       "sources": [
         {
           "title": "BMS Completes Acquisition of RayzeBio",
@@ -103820,7 +103930,9 @@
         }
       ],
       "confidence": 0.85,
-      "last_verified": "2026-06"
+      "last_verified": "2026-06",
+      "group_id": "bms-group",
+      "group_role": "subsidiary"
     },
     {
       "id": "structure-therapeutics",
@@ -103951,7 +104063,9 @@
         }
       ],
       "confidence": 0.75,
-      "last_verified": "2026-06"
+      "last_verified": "2026-06",
+      "group_id": "mankind-group",
+      "group_role": "subsidiary"
     },
     {
       "id": "dexa-medica",
@@ -105358,7 +105472,9 @@
         }
       ],
       "confidence": 0.85,
-      "last_verified": "2026-06"
+      "last_verified": "2026-06",
+      "group_id": "lilly-group",
+      "group_role": "subsidiary"
     },
     {
       "id": "muna-therapeutics",
@@ -106714,7 +106830,9 @@
         }
       ],
       "confidence": 0.85,
-      "last_verified": "2026-06"
+      "last_verified": "2026-06",
+      "group_id": "ono-group",
+      "group_role": "subsidiary"
     },
     {
       "id": "iovance-biotherapeutics",
@@ -108483,7 +108601,9 @@
         }
       ],
       "confidence": 0.65,
-      "last_verified": "2026-06"
+      "last_verified": "2026-06",
+      "group_id": "jubilant-group",
+      "group_role": "subsidiary"
     },
     {
       "id": "lantheus-holdings",
@@ -109062,7 +109182,9 @@
         }
       ],
       "confidence": 0.85,
-      "last_verified": "2026-06"
+      "last_verified": "2026-06",
+      "group_id": "lilly-group",
+      "group_role": "subsidiary"
     },
     {
       "id": "perspective-therapeutics",
@@ -109542,7 +109664,9 @@
         }
       ],
       "confidence": 0.8,
-      "last_verified": "2026-06"
+      "last_verified": "2026-06",
+      "group_id": "danaher-group",
+      "group_role": "subsidiary"
     },
     {
       "id": "gilson",
@@ -109769,7 +109893,9 @@
         }
       ],
       "confidence": 0.8,
-      "last_verified": "2026-06"
+      "last_verified": "2026-06",
+      "group_id": "danaher-group",
+      "group_role": "subsidiary"
     },
     {
       "id": "jeol",
@@ -110514,7 +110640,9 @@
         }
       ],
       "confidence": 0.85,
-      "last_verified": "2026-06"
+      "last_verified": "2026-06",
+      "group_id": "fresenius-group",
+      "group_role": "subsidiary"
     },
     {
       "id": "hetero",
@@ -112873,7 +113001,9 @@
       ],
       "tier": "deep",
       "exchange": "ASX",
-      "sub_sector": "Plasma / Vaccines / Specialty"
+      "sub_sector": "Plasma / Vaccines / Specialty",
+      "group_id": "csl-group",
+      "group_role": "flagship-listco"
     },
     {
       "id": "telix-pharmaceuticals",
@@ -113258,7 +113388,9 @@
           "accessed": "2026-06"
         }
       ],
-      "tier": "deep"
+      "tier": "deep",
+      "group_id": "celltrion-group",
+      "group_role": "flagship-listco"
     },
     {
       "id": "samsung-bioepis",
@@ -113487,7 +113619,9 @@
           "accessed": "2026-06-20"
         }
       ],
-      "tier": "deep"
+      "tier": "deep",
+      "group_id": "pfizer-group",
+      "group_role": "group-holdco"
     },
     {
       "id": "merck-us",
@@ -113613,9 +113747,7 @@
           "accessed": "2026-06-20"
         }
       ],
-      "tier": "deep",
-      "group_id": "jnj-group",
-      "group_role": "group-holdco"
+      "tier": "deep"
     },
     {
       "id": "abbvie",
@@ -113747,7 +113879,9 @@
           "accessed": "2026-06-20"
         }
       ],
-      "tier": "deep"
+      "tier": "deep",
+      "group_id": "bms-group",
+      "group_role": "flagship-listco"
     },
     {
       "id": "eli-lilly",
@@ -113812,7 +113946,9 @@
           "accessed": "2026-06-20"
         }
       ],
-      "tier": "deep"
+      "tier": "deep",
+      "group_id": "lilly-group",
+      "group_role": "group-holdco"
     },
     {
       "id": "amgen",
