@@ -1,0 +1,7 @@
+.venv/
+__pycache__/
+*.pyc
+tmp/
+data/*.sqlite-wal
+data/*.sqlite-shm
+.httpcache/

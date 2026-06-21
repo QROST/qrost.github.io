@@ -1,0 +1,4 @@
+# shelter-cats build-time pipeline (runs locally, never in the browser).
+# Fetching uses only the Python stdlib (urllib) — no network deps required.
+# Pillow is used by tools/thumbs.py to downscale cached cat photos.
+Pillow>=10

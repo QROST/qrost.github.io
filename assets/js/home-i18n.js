@@ -81,6 +81,14 @@
       en: 'Multi-page prototype for a silicone U.S. license-plate frame — 32 pin slots, draggable metal letters/emoji/flags, optional AI car preview, cart, account and admin. Light/dark theme toggle.',
       zh: '硅胶美式车牌框多页原型——32 字钉位、可拖拽金属字母/表情/旗帜、可选 AI 车辆预览、购物车、账户与管理后台。支持明暗主题切换。',
     },
+    cardSheltercatsTitle: {
+      en: 'Shelter Cats — a world platform for adoption',
+      zh: '全球收容所猫 — 在线领养大一统平台',
+    },
+    cardSheltercatsDesc: {
+      en: 'Real adoptable shelter cats on one world map (live from open-data shelter feeds) — filter by color, pattern, coat and distance. Every cat gets a deterministic pixel avatar and an attribute-driven personality preview, so you can imagine life with it before adopting. Dark mode · EN/中文.',
+      zh: '把真实可领养的收容所猫汇到一张世界地图（数据来自开放数据收容所源）——按颜色/花纹/毛长/远近筛选。每只猫据真实属性确定性生成像素形象与性格预览，让你在领养前先想象相处。深色模式 · 中英双语。',
+    },
     footerUpdated: {
       en: 'Last updated 2026-06. Nothing here is financial, legal or tax advice.',
       zh: '最后更新 2026-06。本站内容不构成财务、法律或税务建议。',
