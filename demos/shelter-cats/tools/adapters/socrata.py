@@ -12,22 +12,18 @@ Discovered + live-verified via the Socrata Discovery API; see adapters/README.md
 """
 from __future__ import annotations
 
-import html
 import json
 import re
 import urllib.parse
 from datetime import datetime, timezone, timedelta
 from pathlib import Path
 
-from .base import NormalizedCat, NormalizedShelter
-from . import normalize as N
+from .base import NormalizedShelter
+from . import recnorm
 
 SOURCE_ID = "socrata"
 ATTRIBUTION = {"name": "City/County Open Data (Socrata)", "url": "https://dev.socrata.com/"}
 _SOURCES_FILE = Path(__file__).resolve().parent / "socrata_sources.json"
-
-_TAG_RE = re.compile(r"<[^>]+>")
-_WS_RE = re.compile(r"\s+")
 
 
 def _load_sources() -> dict:
@@ -53,22 +49,6 @@ def _resolve_where(where: str | None) -> str | None:
     return re.sub(r"\{cutoff_(\d+)\}", lambda m: _cutoff(int(m.group(1))), where)
 
 
-def _clean_text(s: str | None) -> str:
-    if not s:
-        return ""
-    s = html.unescape(_TAG_RE.sub(" ", s))
-    return _WS_RE.sub(" ", s).strip()
-
-
-def _dig(row: dict, path: str):
-    cur = row
-    for part in path.split("."):
-        if not isinstance(cur, dict):
-            return None
-        cur = cur.get(part)
-    return cur
-
-
 def _shelter_obj(key: str, cfg: dict) -> NormalizedShelter:
     s = cfg["shelter"]
     return NormalizedShelter(
@@ -78,43 +58,6 @@ def _shelter_obj(key: str, cfg: dict) -> NormalizedShelter:
         postcode=str(s.get("postcode", "")), lat=s.get("lat"), lng=s.get("lng"),
         website=s.get("website", ""), url=s.get("url", ""),
         email=s.get("email", ""), phone=str(s.get("phone", "")),
-    )
-
-
-def _normalize_row(row: dict, key: str, cfg: dict, shelter: NormalizedShelter, now_year: int) -> NormalizedCat | None:
-    f = cfg["fields"]
-    sid = str(_dig(row, f["source_id"]) or "").strip()
-    if not sid:
-        return None
-    breed = _clean_text(str(_dig(row, f.get("breed", "")) or ""))
-    color = _clean_text(str(_dig(row, f.get("color", "")) or ""))
-    sex, fixed = N.norm_sex(_clean_text(_dig(row, f.get("sex", ""))))
-    pattern = N.norm_pattern(color, breed)
-    age_text, age_bucket, birth = N.norm_age(
-        _clean_text(_dig(row, f.get("age_text", ""))), _dig(row, f.get("dob", "")), now_year)
-    if cfg.get("photo_url_template"):
-        photo = cfg["photo_url_template"].format(source_id=urllib.parse.quote(sid))
-    elif f.get("photo"):
-        photo = str(_dig(row, f["photo"]) or "")
-    else:
-        photo = ""
-    desc = _clean_text(str(_dig(row, f.get("description", "")) or ""))[:1200] if f.get("description") else ""
-    cat_id = f"{SOURCE_ID}-{key}-{sid}"
-    adopt = cfg.get("adoption_url", "")
-    if "{source_id}" in adopt:
-        adopt = adopt.format(source_id=urllib.parse.quote(sid))
-    return NormalizedCat(
-        id=cat_id, source=SOURCE_ID, source_id=sid, shelter_id=key,
-        name=N.friendly_name(_clean_text(_dig(row, f.get("name", ""))), sid),
-        age_text=age_text, age_bucket=age_bucket, birth_estimate=birth,
-        sex=sex, spayed_neutered=fixed,
-        breed_primary=N.pretty_breed(breed), breed_mixed=N.breed_is_mixed(breed),
-        colors=N.norm_colors(color, pattern), pattern=pattern,
-        coat_length=N.norm_coat(breed), size=N.norm_size(_dig(row, f.get("size", ""))),
-        attributes={"spayed_neutered": fixed} if fixed is not None else {},
-        good_with={}, personality_tags=[], description=desc,
-        photo_url=photo, adoption_url=adopt, status=cfg.get("status", "adoptable"),
-        published_at=str(_dig(row, f.get("published", "")) or "")[:10],
     )
 
 
@@ -147,7 +90,7 @@ def fetch(session, source_keys: list[str] | None = None, max_per_source: int = 1
                 if not rows:
                     break
                 for row in rows:
-                    c = _normalize_row(row, key, cfg, shelter, now_year)
+                    c = recnorm.normalize_cat(row, SOURCE_ID, key, cfg, shelter, now_year)
                     if c:
                         cats.append(c)
                 if len(rows) < params["$limit"]:
