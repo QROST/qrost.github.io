@@ -271,20 +271,22 @@ function buildHousing() {
     const cf = clamp(comfort / 365, 0, 1);
     // —— 这轮 enrich 的新字段 → 更多元的动态通道 ——
     const humid = e.daily?.meanHumidityPct ?? 50, snow = e.daily?.snowDayCount ?? 0;
+    const apparentComfort = e.daily?.apparentComfortDayCount ?? comfort;   // 体感舒适日数（apparentComfortDayCount，333 城有）
+    const comfortGap = clamp((apparentComfort - comfort) / 120, -1, 1);    // 体感 vs 日历舒适之差（湿热体感更糟→负）
     const wind = e.daily?.windyDayCount ?? 0, extreme = e.daily?.extremeDayCount ?? 0;
     const aging = e.demographics?.aging65Plus ?? 0.12;
     const histRange = (e.histTempMax != null && e.histTempMin != null) ? (e.histTempMax - e.histTempMin) : 45;
     const builtY = e.builtYear ?? 2000;
     const seismic = ({ '高': 1, '中': 0.55, '低': 0.22 })[e.risk?.seismic] ?? 0.35;
     const P = e.pois || {}; const km = (k) => (P[k] && P[k].distKm != null ? P[k].distKm : null);
-    const amen = [km('hospital_tier3'), km('hsr'), km('train'), km('airport')].filter((x) => x != null);
+    const amen = [km('hospital_tier3'), km('hsr'), km('train'), km('airport'), km('metro'), km('mall'), km('hospital')].filter((x) => x != null);   // 便利设施扩充：地铁/商场/综合医院（metro 92·mall 194·hospital 337 城有）
     const conn = amen.length ? clamp(1 - Math.min(...amen) / 30, 0, 1) : 0.3;             // 便利设施越近→连通度高
     const lulu = ['chemical', 'incinerator', 'landfill', 'nuclear', 'substation', 'wastewater', 'sensitive'].map(km).filter((x) => x != null);
     const nuisance = lulu.length ? clamp(1 - Math.min(...lulu) / 8, 0, 1) : 0;             // 厌恶设施越近→越"紧张"
 
     const hue = 220 - cf * 162;
     const sat = (0.44 + clamp(tRange / 45, 0, 1) * 0.5) * (1 - clamp(snow / 150, 0, 1) * 0.28);   // 多雪→略去色（雪国发白）
-    const light = (0.45 + clamp(sun / 3500, 0, 1) * 0.2) * (outflow < 0 ? 0.78 : 1) * (1 - aging * 0.3);   // 老龄→略暗
+    const light = (0.45 + clamp(sun / 3500, 0, 1) * 0.2) * (outflow < 0 ? 0.78 : 1) * (1 - aging * 0.3) * (1 + comfortGap * 0.08);   // 老龄→略暗；体感比日历更舒适→略亮
     const size = 1.6 + clamp(Math.log10(unit + 1) - 2.2, 0, 3) * 1.7;
     const tw = 0.22 + clamp(burden / 40, 0, 1) * 0.42 + nuisance * 0.34 + seismic * 0.04;   // 灾害 + 厌恶设施邻近 + 地震 → 越发颤动
     const hz = clamp(pm / 85, 0, 1) * 0.62 + clamp(humid / 100, 0, 1) * 0.42;               // 雾霾 + 潮湿 → 雾晕
@@ -300,6 +302,7 @@ function buildHousing() {
     else { csys = 8; canc = CENTER; cscl = 8; cbh = 0.00113; cseed = [(Math.random() - 0.5), 1 + (Math.random() - 0.5), 1 + (Math.random() - 0.5)]; }
     const ctail = 4 + (clamp((Math.log10(unit + 1) - 2.2) / 3, 0, 1) * 0.6 + conn * 0.4) * (TRAIL - 5);   // 越贵 + 越连通(近高铁/机场/医院) → 彗尾越长
     const ci = addStar(csys, canc, cscl, cbh, b, spd, cseed, hue, sat, light, size, tw, hz, {
+      id: ls.id,
       kind: 'CITY',
       nameZh: ls.loc || ls.city,
       nameEn: ls.loc || ls.city,
@@ -348,6 +351,7 @@ async function buildIndustrial() {
   kernels.forEach((k) => {
     const used = (k.used_by_product_ids || []).length; kUsed[k.id] = used;
     const ki = addStar(1, CENTER, 0.85, 0.0016, 28, 0.45, lz(), hueOf(k.origin), 0.7, 0.55, 3.0 + used * 0.04, 0.4, 0.25, {
+      id: k.id,
       kind: 'KERNEL',
       nameZh: k.name_zh,
       nameEn: k.name_en,
@@ -369,6 +373,7 @@ async function buildIndustrial() {
       hueOf(p.origin), 0.62, 0.42 + mat * 0.1,
       p.maturity === 'high' ? 3.0 : p.maturity === 'medium' ? 2.1 : 1.5,
       p.localization_depth === 'full' ? 0.25 : 0.45, clamp(1 - (p.confidence ?? 0.8), 0, 1), {
+      id: p.id,
       kind: 'PRODUCT',
       nameZh: p.name_zh,
       nameEn: p.name_en,
@@ -400,6 +405,7 @@ async function buildIndustrial() {
     else { msys = 3; manc = CENTER; mscl = 15; mbh = 0.0038; mseed = az(); }
     const i = addStar(msys, manc, mscl, mbh, 0, 0.3 + yf * 0.4, mseed,
       30 + inc * 4, 0.85, 0.6, ev === 'audited' ? 3.2 : ev === 'case_study' ? 2.4 : 1.8, 0.92, 0.1, {
+      id: m.id,
       kind: 'BREAKTHROUGH',
       nameZh: m.headline_zh,
       nameEn: m.headline_en,
@@ -419,6 +425,7 @@ async function buildIndustrial() {
     const prog = p.policy_type === 'program' || p.policy_type === 'fyp';
     const Psys = prog ? 4 : 2, Panc = CENTER, Pscl = prog ? 1.8 : 1.7, Pbh = prog ? 0.002 : 0.004, Pseed = prog ? hv() : ro2(), Pprm = prog ? 0 : 5.7;
     const pi = addStar(Psys, Panc, Pscl, Pbh, Pprm, 0.4 + tNorm * 0.5, Pseed, hue, 0.5, 0.6, 1.6 + tNorm * 3, 0.5, 0.3, {
+      id: p.id,
       kind: 'POLICY',
       nameZh: p.title_zh,
       nameEn: p.title_en,
@@ -435,6 +442,7 @@ async function buildIndustrial() {
   });
 
   // 厂商按出身分三种图案：国产→Dadras / 国外→Newton-Leipnik / 开源→Hadley
+  const vIdx = {};   // vendor id → 星索引，供 product↔vendor 关系光束
   vendors.forEach((v) => {
     let vsys, vseed, vscl;
     if (v.origin === 'domestic') { vsys = 5; vseed = dd(); vscl = 1.4; }
@@ -442,18 +450,24 @@ async function buildIndustrial() {
     else { vsys = 12; vseed = nl(); vscl = 14; }
     const vi = addStar(vsys, CENTER, vscl, 0.012, 0, 0.4, vseed,
       hueOf(v.origin), 0.4, 0.42, 2.4, 0.4, 0.5, {
+      id: v.id,
       kind: 'VENDOR',
       nameZh: v.name_zh,
       nameEn: v.name_en,
       raw: { origin: v.origin, hqCity: v.hq_city || '', hqCountry: v.hq_country || '' },
     }, null, 4);
+    vIdx[v.id] = vi;
     const fv = makeFeat(5); setOrigin(fv, v.origin); D.feat[vi] = fv;
     D.shape[vi] = v.origin === 'domestic' ? 14 : v.origin === 'open_source' ? 12 : 13;   // 国产→陀螺椭圆环 / 开源→五胞体(4-单纯形) / 国外→环面纽结
   });
 
+  // 产品→所属厂商关系光束（vendor_id，325/325 全有）→ 让原本孤立的厂商点成为各自产品星座的中枢（冷灰·细，作底层脉络）
+  let nPV = 0;
+  products.forEach((p) => { if (p.vendor_id && vIdx[p.vendor_id] != null && pIdx[p.id] != null) { BEAM.a.push(pIdx[p.id]); BEAM.b.push(vIdx[p.vendor_id]); BEAM.col.push(0.32, 0.38, 0.42); BEAM.w.push(0.5); nPV++; } });
+
   pairs.forEach((bp) => { if (pIdx[bp.domestic_id] != null && pIdx[bp.international_id] != null) { BEAM.a.push(pIdx[bp.domestic_id]); BEAM.b.push(pIdx[bp.international_id]); BEAM.col.push(0.2, 0.8, 0.72); BEAM.w.push(1.0); } });
 
-  return { products: products.length, vendors: vendors.length, kernels: kernels.length, milestones: milestones.length, policies: policies.length, pairs: pairs.length };
+  return { products: products.length, vendors: vendors.length, kernels: kernels.length, milestones: milestones.length, policies: policies.length, pairs: pairs.length, vendorBeams: nPV };
 }
 
 // ---------- 第三数据源：全球医药公司图谱（pharm-companies） → 新的「医药」层（group 6） ----------
@@ -495,7 +509,7 @@ async function buildPharma() {
     const ssz = ((st.site_type === 'HQ' ? 2.0 : 1.2) + clamp((Math.log10(srev + 1) - 8) / 3, 0, 1) * 2.8) * sub;   // 站点大小随母公司营收 + HQ 加成 → 巨头总部=日月
     const i = addStar(0, CENTER, 8, 0.0022, 0.16, 0.5, [(st.lng - 100) * 0.05, -(st.lat - 30) * 0.05, (st.lat) * 0.0006],
       hi, 0.5, (0.5 + conf * 0.18) * sub, ssz, 0.5, clamp(1 - conf, 0, 1),
-      { kind: 'PHARMA', nameZh: st.name_zh || st.name_en, nameEn: st.name_en || st.name_zh,
+      { id: st.id, kind: 'PHARMA', nameZh: st.name_zh || st.name_en, nameEn: st.name_en || st.name_zh,
         kwZh: `${st.site_type || ''} · ${st.city || ''} · ${st.country || ''}`.trim(), kwEn: `${st.site_type || ''} · ${st.city || ''} · ${st.country || ''}`.trim() },
       null, 5);
     const fv = makeFeat(6); fv[0] = clamp((st.lat + 60) / 120, 0, 1); fv[1] = clamp((st.lng + 180) / 360, 0, 1); fv[4] = conf; D.feat[i] = fv; D.shape[i] = 0;
@@ -504,21 +518,29 @@ async function buildPharma() {
   // 公司（128）→ 按 company_type 取一种简单立体（复活退役形）；地区着色；营收→大小
   const CO_SHAPE = { originator_bigpharma: 4, biotech: 2, cdmo_cro: 1, generics: 3, tcm: 6, vaccine: 7, biosimilar: 8, diversified: 10 };
   const num = (x) => (x == null ? 0 : (typeof x === 'object' ? (x.value || 0) : x));
+  const ROLE_TW = { subsidiary: 0.55, affiliate: 0.7, 'flagship-listco': 0.22, 'group-holdco': 0.32 };   // 集团角色→明灭：被控股/松散关联的更躁，控股母体/旗舰更沉
+  const ROLE_TIER = { 'group-holdco': 1.0, 'flagship-listco': 0.7, subsidiary: 0.45, affiliate: 0.25 };   // 控股层级 → SOM 特征
   companies.forEach((c) => {
     const rev = num(c.revenue), emp = num(c.employees), mcap = num(c.market_cap), rnd = num(c.rnd_spend);
     const magN = clamp((Math.log10(Math.max(rev, mcap * 0.5) + 1) - 8) / 3, 0, 1);   // 量级取营收/市值
     const rndInt = rev > 0 ? clamp(rnd / rev / 0.25, 0, 1) : 0;                        // 研发强度 R&D/营收 → 明灭
     const tierSlow = c.tier === 1 ? 0.55 : c.tier === 2 ? 0.8 : 1;                     // 头部药企更沉缓
     const sz = 1.8 + magN * 2.4;
+    const tfN = Array.isArray(c.therapeutic_focus) ? c.therapeutic_focus.length : 0;   // 治疗领域跨度（therapeutic_focus，1801 家有）
+    const sat = 0.6 - clamp((tfN - 1) / 6, 0, 1) * 0.2;                                 // 多领域→去色（多元巨头淡雅，专科药企鲜艳）
+    const light = (0.5 + (c.is_public ? 0.12 : 0)) * (c.is_subsidiary ? 0.85 : 1);      // 子公司略暗 → 从属感（is_subsidiary，415 家）
+    const tw = clamp(0.24 + rndInt * 0.4 + (ROLE_TW[c.group_role] || 0) * 0.45, 0, 1.1); // 研发强度 + 集团控股角色 → 明灭
     const i = addStar(3, CENTER, 15, 0.0032, 18, (0.35 + Math.random() * 0.25) * tierSlow, az(),
-      rhue(c.region), 0.6, 0.5 + (c.is_public ? 0.12 : 0), sz, 0.28 + rndInt * 0.5, clamp(1 - (c.confidence ?? 0.8), 0, 1),
-      { kind: 'PHARMA', nameZh: c.name_zh || c.name_en, nameEn: c.name_en || c.name_zh,
+      rhue(c.region), sat, light, sz, tw, clamp(1 - (c.confidence ?? 0.8), 0, 1),
+      { id: c.id, kind: 'PHARMA', nameZh: c.name_zh || c.name_en, nameEn: c.name_en || c.name_zh,
         kwZh: `${c.hq_city || ''} · ${c.country_display_zh || c.country || ''} · ${rev ? Math.round(rev / 1e8) + ' 亿' : ''}`.replace(/ · $/, ''),
         kwEn: `${c.hq_city || ''} · ${c.country || ''} · ${rev ? '$' + (rev / 1e9).toFixed(1) + 'B' : ''}`.replace(/ · $/, '') },
       null, 5 + magN * (TRAIL - 6));
     pIdx[c.id] = i;
     const fv = makeFeat(6); fv[0] = magN; fv[1] = clamp((Math.log10(emp + 1) - 2) / 4, 0, 1);
-    fv[2] = clamp(((c.founded || 1980) - 1900) / 130, 0, 1); fv[3] = c.is_public ? 1 : 0; fv[4] = clamp(c.confidence ?? 0.8, 0, 1); fv[5] = rndInt; D.feat[i] = fv;
+    fv[2] = clamp(((c.founded || 1980) - 1900) / 130, 0, 1); fv[3] = c.is_public ? 1 : 0; fv[4] = clamp(c.confidence ?? 0.8, 0, 1); fv[5] = rndInt;
+    fv[16] = ROLE_TIER[c.group_role] || 0; fv[17] = clamp(tfN / 6, 0, 1);   // 控股层级 + 治疗领域跨度 → SOM 聚出集团表型（整合 vs 收购型 vs 分散）
+    D.feat[i] = fv;
     D.shape[i] = deepCo.has(c.id) ? (CO_SHAPE[c.company_type] || 2) : 0;   // 深度公司=立体，名册公司=发光点（省性能）
   });
 
@@ -529,7 +551,7 @@ async function buildPharma() {
     const psz = p.is_blockbuster ? 3.0 : approved ? 2.1 : 1.5;   // 重磅 > 已批 > 临床
     const i = addStar(9, CENTER, 0.85, 0.0013, 24, approved ? 0.42 : 0.72, lu(),   // 临床期更躁动快、已批更沉稳
       rhue(region), 0.62, 0.46, psz, approved ? 0.3 : 0.55, 0.25,                    // 临床期明灭更颤
-      { kind: 'PHARMA', nameZh: p.name_zh || p.brand_name || p.name_en, nameEn: p.name_en || p.brand_name || p.name_zh,
+      { id: p.id, kind: 'PHARMA', nameZh: p.name_zh || p.brand_name || p.name_en, nameEn: p.name_en || p.brand_name || p.name_zh,
         kwZh: `${p.modality_id || ''} · ${p.therapeutic_area_id || ''} · ${p.first_approval_year || ''}`.trim(),
         kwEn: `${p.modality_id || ''} · ${p.therapeutic_area_id || ''} · ${p.first_approval_year || ''}`.trim() },
       null, 5 + (p.is_blockbuster ? TRAIL - 6 : 0));
@@ -540,7 +562,7 @@ async function buildPharma() {
   // 药物模态（21）→ 星状八面体（核心平台，内圈）
   modalities.forEach((m) => {
     const i = addStar(1, CENTER, 0.85, 0.0016, 28, 0.45, lz(), 300, 0.55, 0.6, 3.2, 0.45, 0.2,
-      { kind: 'PHARMA', nameZh: m.name_zh || m.name_en, nameEn: m.name_en || m.name_zh,
+      { id: m.id, kind: 'PHARMA', nameZh: m.name_zh || m.name_en, nameEn: m.name_en || m.name_zh,
         kwZh: `${m.class || ''}`, kwEn: `${m.class || ''}` }, null, 7);
     const fv = makeFeat(6); fv[5] = 0.8; D.feat[i] = fv; D.shape[i] = 9;
   });
@@ -551,7 +573,7 @@ async function buildPharma() {
     const y4 = clamp(parseInt((m.date || '2015').slice(0, 4)) || 2015, 2000, 2026);
     const i = addStar(6, CENTER, 0.9, 0.0009, 28, 0.4, ch(),
       rhue(region), 0.78, 0.6, 2.6, 0.85, 0.15,
-      { kind: 'PHARMA', nameZh: m.headline_zh || m.headline_en, nameEn: m.headline_en || m.headline_zh,
+      { id: m.id, kind: 'PHARMA', nameZh: m.headline_zh || m.headline_en, nameEn: m.headline_en || m.headline_zh,
         kwZh: `${y4} · ${m.therapeutic_area_id || ''}`, kwEn: `${y4} · ${m.therapeutic_area_id || ''}` },
       [hash01('pta:' + (m.therapeutic_area_id || 'x')) * 6.283, hash01('pm:' + (m.id || y4)) * 3.14 - 1.57, hash01('pr:' + (m.id || y4)) * 6.283],
       6 + clamp((y4 - 2010) / 16, 0, 1) * (TRAIL - 7));
@@ -561,7 +583,30 @@ async function buildPharma() {
   // 对标连线（国产↔国外）：青紫光束
   pairs.forEach((bp) => { if (pIdx[bp.domestic_id] != null && pIdx[bp.international_id] != null) { BEAM.a.push(pIdx[bp.domestic_id]); BEAM.b.push(pIdx[bp.international_id]); BEAM.col.push(0.62, 0.3, 0.7); BEAM.w.push(1.0); } });
 
-  return { companies: companies.length, sites: sites.length, products: products.length, modalities: modalities.length, milestones: milestones.length, pairs: pairs.length };
+  // —— 公司集团/控股关系图谱（新数据：parent_id 控股树 80 边 + group_id 集团归属 35 组）→ 关系光束 ——
+  const groupHub = {};   // group_id → 中枢公司 id（优先 group-holdco，其次 flagship-listco，再退任意成员）
+  companies.forEach((c) => {
+    if (!c.group_id) return;
+    const cur = groupHub[c.group_id], curRole = cur ? coMap[cur].group_role : null;
+    if (c.group_role === 'group-holdco') groupHub[c.group_id] = c.id;
+    else if (c.group_role === 'flagship-listco' && curRole !== 'group-holdco') groupHub[c.group_id] = c.id;
+    else if (!cur) groupHub[c.group_id] = c.id;
+  });
+  const beamSeen = new Set();
+  const addRel = (aId, bId, r, g, b, w) => {                            // 去重（同一对只画一条，控股边优先）
+    if (aId === bId || pIdx[aId] == null || pIdx[bId] == null) return false;
+    const lo = Math.min(pIdx[aId], pIdx[bId]), hi = Math.max(pIdx[aId], pIdx[bId]), k = lo + '|' + hi;
+    if (beamSeen.has(k)) return false; beamSeen.add(k);
+    BEAM.a.push(pIdx[aId]); BEAM.b.push(pIdx[bId]); BEAM.col.push(r, g, b); BEAM.w.push(w); return true;
+  };
+  let nOwn = 0, nGrp = 0;
+  companies.forEach((c) => {
+    if (c.parent_id && addRel(c.id, c.parent_id, 0.95, 0.55, 0.2, 1.2)) nOwn++;                                 // 控股边（暖橙·粗）：子公司→母公司
+    const hub = c.group_id && groupHub[c.group_id];
+    if (hub && hub !== c.id && addRel(c.id, hub, 0.85, 0.7, 0.32, 0.6)) nGrp++;                                  // 集团归属（柔金·细）：成员→集团中枢
+  });
+
+  return { companies: companies.length, sites: sites.length, products: products.length, modalities: modalities.length, milestones: milestones.length, pairs: pairs.length, groups: Object.keys(groupHub).length, rel: nOwn + nGrp };
 }
 
 // ---------- 第四数据源：全球收容所猫（shelter-cats）→ 每只猫一颗按真实毛色着色的星，按收容所地理播种成簇，暖光束连回各自收容所（星座式归属）----------
@@ -598,7 +643,7 @@ async function buildShelterCats() {
     const sz = 3.2 + clamp(n / 60, 0, 1) * 1.3;
     const loc = `${s.city || ''}${s.state ? ' ' + s.state : ''}`;
     const i = addStar(0, CENTER, 7, 0.0018, 0.16, 0.2, gs, 38, 0.6, 0.6, sz, 0.35, 0.18,
-      { kind: 'SHELTER', nameZh: s.name, nameEn: s.name,
+      { id: s.id, kind: 'SHELTER', nameZh: s.name, nameEn: s.name,
         kwZh: `${loc} · ${s.country || ''} · ${n} 只猫`.replace(/^ · | · $/g, '').trim(),
         kwEn: `${loc} · ${s.country || ''} · ${n} cats`.replace(/^ · | · $/g, '').trim() },
       null, 8);
@@ -621,7 +666,7 @@ async function buildShelterCats() {
     const hz = 0.15 + (COATN[c.coat_length] || 0) * 0.4;       // 长毛 → 更朦胧绒晕
     const loc = `${sh.city || ''}${sh.state ? ' ' + sh.state : ''}`;
     const i = addStar(0, CENTER, 6.5, 0.0018, 0.16, 0.42, seed, h, s, l, sz, tw, hz,
-      { kind: 'CAT', nameZh: c.name || '猫', nameEn: c.name || 'Cat',
+      { id: c.id, kind: 'CAT', nameZh: c.name || '猫', nameEn: c.name || 'Cat',
         kwZh: [enLab('colors', primary, 1), enLab('patterns', c.pattern, 1), enLab('age_bucket', c.age_bucket, 1), loc, enLab('status', c.status, 1)].filter(Boolean).join(' · '),
         kwEn: [enLab('colors', primary, 0), enLab('patterns', c.pattern, 0), enLab('age_bucket', c.age_bucket, 0), loc, enLab('status', c.status, 0)].filter(Boolean).join(' · ') },
       null, 5);
@@ -1099,6 +1144,99 @@ async function enableSensors() {
 }
 document.getElementById('enable').addEventListener('click', enableSensors);
 
+// ---------- 焦点详情探查：实时显示 id + 定义轨迹的微分方程 + 当前公式参数 + 每个参数所映射的数据；实体名降为角落小字 ----------
+// 每个吸引子的 ODE（与 stepOne 完全一致）；dv = 进入方程且数据可驱动的参数符号（仅 Thomas/Lorenz/Rössler），其余常数固定
+const ATTRACTORS = {
+  0: { n: 'Thomas', dv: 'b', ode: ['ẋ = sin y − b·x', 'ẏ = sin z − b·y', 'ż = sin x − b·z'] },
+  1: { n: 'Lorenz', dv: 'ρ', ode: ['ẋ = 10(y − x)', 'ẏ = x(ρ − z) − y', 'ż = xy − 8⁄3·z'] },
+  2: { n: 'Rössler', dv: 'c', ode: ['ẋ = −(y + z)', 'ẏ = x + 0.2y', 'ż = 0.2 + z(x − c)'] },
+  3: { n: 'Aizawa', ode: ['ẋ = (z−0.7)x − 3.5y', 'ẏ = 3.5x + (z−0.7)y', 'ż = 0.6+0.95z − z³⁄3 − (x²+y²)(1+0.25z) + 0.1z·x³'] },
+  4: { n: 'Halvorsen', ode: ['ẋ = −1.4x − 4y − 4z − y²', 'ẏ = −1.4y − 4z − 4x − z²', 'ż = −1.4z − 4x − 4y − x²'] },
+  5: { n: 'Dadras', ode: ['ẋ = y − 3x + 2.7yz', 'ẏ = 1.7y − xz + z', 'ż = 2xy − 9z'] },
+  6: { n: 'Chen', ode: ['ẋ = 35(y − x)', 'ẏ = −7x − xz + 28y', 'ż = xy − 3z'] },
+  7: { n: 'Sprott-B', ode: ['ẋ = yz', 'ẏ = x − y', 'ż = 1 − xy'] },
+  8: { n: 'Lorenz-84', ode: ['ẋ = −0.25x − y² − z² + 2', 'ẏ = −y + xy − 4xz + 1', 'ż = −z + 4xy + xz'] },
+  9: { n: 'Lü', ode: ['ẋ = 36(y − x)', 'ẏ = −xz + 20y', 'ż = xy − 3z'] },
+  10: { n: 'Nosé–Hoover', ode: ['ẋ = y', 'ẏ = −x + yz', 'ż = 1 − y²'] },
+  11: { n: 'Sprott-Linz F', ode: ['ẋ = y + z', 'ẏ = −x + 0.5y', 'ż = x² − z'] },
+  12: { n: 'Newton–Leipnik', ode: ['ẋ = −0.4x + y + 10yz', 'ẏ = −x − 0.4y + 5xz', 'ż = 0.175z − 5xy'] },
+  13: { n: 'Hadley', ode: ['ẋ = −y² − z² − 0.2x + 1.6', 'ẏ = xy − 4xz − y + 1', 'ż = 4xy + xz − z'] },
+  14: { n: 'Sprott-E', ode: ['ẋ = yz', 'ẏ = x² − y', 'ż = 1 − 4x'] },
+};
+// 数据→通道编码语法（每实体型固定）：[通道id, 中文数据源, 英文数据源]
+const ENC = {
+  city: [['eq', '宜居度 − 大陆性温差', 'livability − continental range'], ['speed', '钱(收益/宜居)×气候躁动(极端/多风)×老龄', 'money × climate agitation × aging'], ['scale', '气候带(冷/温/热)选吸引子族', 'climate zone picks attractor family'], ['size', '房价 ¥/㎡', 'housing price /m²'], ['hue', '宜居天数(冷蓝→热红)', 'livable days'], ['tw', '灾害+厌恶设施邻近+地震', 'hazards + LULU proximity + seismic'], ['hz', 'PM2.5 + 湿度', 'PM2.5 + humidity'], ['trail', '房价 + 便利连通度', 'price + amenity connectivity']],
+  ind_kernel: [['eq', '固定常数', 'fixed constant'], ['size', '被产品使用数', '# products using it'], ['hue', '出身(国产/开源/国外)', 'origin'], ['beam', '→ 使用它的产品', '→ products using it']],
+  ind_product: [['hue', '出身', 'origin'], ['size', '成熟度', 'maturity'], ['speed', '成熟度(越熟越稳)', 'maturity (mature=calmer)'], ['hz', '本地化深度', 'localization depth'], ['trail', '置信度', 'confidence'], ['beam', '→ 所用内核 / 国外对标', '→ kernel / intl benchmark']],
+  ind_milestone: [['hue', '替代在位产品数', '# incumbents displaced'], ['size', '证据级别(审计/案例)', 'evidence level'], ['speed', '年份', 'year'], ['beam', '→ 被替代的在位产品', '→ displaced incumbents']],
+  ind_policy: [['hue', '政策类型', 'policy type'], ['size', '目标数值量级', 'target magnitude'], ['scale', '纲领/规划 vs 资金·部委', 'program vs funding']],
+  ind_vendor: [['hue', '出身', 'origin'], ['scale', '出身定吸引子', 'origin sets attractor'], ['beam', '→ 旗下产品(vendor_id)', '→ its products']],
+  ph_site: [['eq', '固定 b', 'fixed b'], ['hue', '所属公司地区', 'parent company region'], ['size', '母公司营收 + HQ加成', 'parent revenue + HQ bonus'], ['hz', '置信度(低→雾)', 'confidence (low→hazy)'], ['ic', '经纬度播种', 'lat/lng seeded']],
+  ph_company: [['hue', '地区', 'region'], ['size', '营收/市值量级', 'revenue/market-cap'], ['sat', '治疗领域跨度(多→淡)', 'therapeutic breadth'], ['light', '上市 + 是否子公司', 'public + subsidiary'], ['tw', '研发强度 + 集团控股角色', 'R&D intensity + group role'], ['speed', '梯队(头部更慢)', 'tier'], ['beam', '→ 母公司(parent_id) + 集团中枢(group_id)', '→ parent + group hub']],
+  ph_product: [['hue', '地区', 'region'], ['size', '重磅/已批/临床', 'blockbuster/approved/clinical'], ['speed', '审批状态(临床更躁)', 'approval status'], ['trail', '重磅炸弹', 'blockbuster']],
+  ph_modality: [['eq', '固定 ρ', 'fixed ρ'], ['size', '固定(核心平台)', 'fixed (core platform)']],
+  ph_milestone: [['hue', '地区', 'region'], ['trail', '年份', 'year']],
+  cat: [['hue', '真实毛色', 'actual coat color'], ['size', '年龄(幼→老)', 'age'], ['tw', '可领养→更闪', 'adoptable→twinkles'], ['hz', '毛长(长毛朦胧)', 'coat length'], ['ic', '所属收容所地理', 'shelter geo'], ['beam', '→ 所属收容所', '→ its shelter']],
+  shelter: [['hue', '暖琥珀(家)', 'warm amber (home)'], ['size', '在册猫数', '# cats housed'], ['ic', '经纬度', 'lat/lng'], ['beam', '→ 旗下的猫', '→ its cats']],
+};
+function encKeyOf(kind, s) {
+  switch (kind) {
+    case 'CITY': return 'city'; case 'KERNEL': return 'ind_kernel'; case 'PRODUCT': return 'ind_product';
+    case 'BREAKTHROUGH': return 'ind_milestone'; case 'POLICY': return 'ind_policy'; case 'VENDOR': return 'ind_vendor';
+    case 'CAT': return 'cat'; case 'SHELTER': return 'shelter';
+    case 'PHARMA': return s === 0 ? 'ph_site' : s === 3 ? 'ph_company' : s === 9 ? 'ph_product' : s === 1 ? 'ph_modality' : s === 6 ? 'ph_milestone' : 'ph_company';
+    default: return null;
+  }
+}
+const CHAN_LABEL = { dt: 'Δt', speed: 'speed', scale: 'scale', size: 'size', hue: 'hue', sat: 'sat', light: 'light', tw: 'twinkle', hz: 'haze', trail: 'trail', ic: 'init·cond', beam: 'beams' };
+const _hsl2 = {};
+function chanVal(id, i) {   // 通道当前值：从 typed arrays 实时取
+  switch (id) {
+    case 'eq': return prm[i].toFixed(2);
+    case 'speed': return spd[i].toFixed(2);
+    case 'scale': return scl[i].toFixed(1);
+    case 'size': return (szCurve ? szCurve[i] : 0).toFixed(2);
+    case 'hue': case 'sat': case 'light': {
+      tmpCol.setRGB(D.col[i * 3], D.col[i * 3 + 1], D.col[i * 3 + 2]); tmpCol.getHSL(_hsl2);
+      return id === 'hue' ? Math.round(_hsl2.h * 360) + '°' : (id === 'sat' ? _hsl2.s : _hsl2.l).toFixed(2);
+    }
+    case 'tw': return D.tw[i].toFixed(2);
+    case 'hz': return D.hz[i].toFixed(2);
+    case 'trail': return (D.tlen[i] || 0).toFixed(0);
+    default: return '';
+  }
+}
+let _ins = null;   // 缓存逐帧更新的节点
+function openInspector(i) {
+  const m = D.meta[i]; if (!m || !card) return;
+  const s = sys[i], A = ATTRACTORS[s] || ATTRACTORS[14], dv = A.dv, zh = isZh();
+  const enc = ENC[encKeyOf(m.kind, s)] || [];
+  const odeHtml = A.ode.map((l) => `<div>${dv ? l.replaceAll(dv, `<b>${dv}</b>`) : l}</div>`).join('');
+  const rows = enc.filter((r) => r[0] !== 'eq' || dv).map(([cid, zs, es]) => {
+    const lab = cid === 'eq' ? dv : (CHAN_LABEL[cid] || cid);
+    const val = cid === 'eq' ? prm[i].toFixed(2) : chanVal(cid, i);
+    return { lab, val, src: zh ? zs : es };
+  }).filter((r) => r.val !== '' && r.val != null)   // 数据为空 → 整行隐藏（不显示「参数名 + 空」）
+    .map((r) => `<div class="ir"><span class="ic">${r.lab}</span><span class="iv">${r.val}</span><span class="im">← ${r.src}</span></div>`).join('');
+  const nm = (zh ? (m.nameZh || m.nameEn) : (m.nameEn || m.nameZh)) || '';
+  card.classList.add('inspect');
+  card.innerHTML =
+    `<div class="ins-eq"><div class="ins-eqh">${A.n}<span class="ins-sys"> · sys ${s}</span>${dv ? ` · <b>${dv}</b> = ${prm[i].toFixed(2)}` : ''}</div>${odeHtml}</div>` +
+    `<div class="ins-state">x <i data-l="x">·</i> y <i data-l="y">·</i> z <i data-l="z">·</i> <span class="ins-dt">Δt <i data-l="h">·</i></span></div>` +
+    `<div class="ins-rows">${rows}</div>` +
+    `<div class="ins-meta"><span class="ins-name">${nm}</span></div>`;   // id 隐藏（多为名称 slug 的重述，冗余）；脚注仅留极淡名字
+  card.classList.remove('hidden');
+  _ins = { i, x: card.querySelector('[data-l=x]'), y: card.querySelector('[data-l=y]'), z: card.querySelector('[data-l=z]'), h: card.querySelector('[data-l=h]') };
+  updateInspector();
+}
+function updateInspector() {   // 逐帧：实时 trajectory 点 (x,y,z) + 当前有效步长 Δt
+  if (!_ins || !focusActive || focusIdx !== _ins.i || !state) return;
+  const i = _ins.i, o = i * 3;
+  _ins.x.textContent = state[o].toFixed(2); _ins.y.textContent = state[o + 1].toFixed(2); _ins.z.textContent = state[o + 2].toFixed(2);
+  const pulse = U.uPulse.value || 0, hmul = (0.5 + pulse * 1.3) * MOTION, slow = 1 - (szCurve ? szCurve[i] : 0) * 0.84;
+  _ins.h.textContent = Math.min(bh[i] * spd[i] * hmul * slow, capOf(sys[i])).toExponential(1);
+}
+
 // pick
 const raycaster = new THREE.Raycaster(); raycaster.params.Points.threshold = 2.6;
 const card = document.getElementById('card'); const ndc = new THREE.Vector2();
@@ -1111,10 +1249,9 @@ renderer.domElement.addEventListener('pointerup', (e) => {
   const hit = raycaster.intersectObject(pointsObj)[0];
   if (hit && D.meta[hit.index]) {
     cardMeta = D.meta[hit.index];
-    card.innerHTML = renderCardHtml(cardMeta);
-    card.classList.remove('hidden');
     const o = hit.index * 3; _starSmooth.set(posArr[o], posArr[o + 1], posArr[o + 2]);   // 锚定起点，避免镜头长距飞扑
     focusIdx = hit.index; focusActive = true;                                              // 锁定追踪
+    openInspector(hit.index);                                                              // 详情：公式 + 实时参数 + 数据映射（名字降为角落小字）
   } else {
     cardMeta = null;
     card.classList.add('hidden');
@@ -1127,7 +1264,8 @@ document.getElementById('lang-toggle').addEventListener('click', (e) => {
   toggleLang();
   const lt = document.getElementById('lang-toggle');
   if (lt) lt.title = isZh() ? 'Switch to English' : 'Switch to 中文';
-  applyUi({ analyser, cardMeta, cardEl: card });
+  applyUi({ analyser });                                            // 不让 applyUi 用旧卡片渲染覆盖详情面板
+  if (focusActive && focusIdx >= 0) openInspector(focusIdx);        // 详情面板自行按新语言重渲染
 });
 
 // HUD 静置淡隐（交互时浮现，让作品留白）
@@ -1291,6 +1429,7 @@ function animate() {
   }
   else if (!dragging && focusIdx < 0) yaw += 0.00016;    // 极缓自动巡游（仅自由模式）
   applyLook(dt);   // 焦点切换/退出由 applyLook 内的临界阻尼跟随处理（连贯不跳）
+  if (focusActive) updateInspector();   // 详情面板逐帧刷新 trajectory 点 (x,y,z) + 有效步长 Δt
   renderer.render(scene, camera);
 }
 
@@ -1402,7 +1541,7 @@ function buildPanel() {
   buildSolids();
   buildPanel();
   applyUi({ skipEnable: true });
-  console.log(`[Data Abyss] ${cities} cities · ${info.products || 0} products · ${info.kernels || 0} kernels · ${info.milestones || 0} breakthroughs · ${info.policies || 0} policies · ${info.vendors || 0} vendors · pharma[${pharma.companies || 0} co / ${pharma.sites || 0} sites / ${pharma.products || 0} drugs / ${pharma.modalities || 0} mod / ${pharma.milestones || 0} bk] · cats[${scats.cats || 0} / ${scats.shelters || 0} shelters] · ${N} bodies · ${beamIdxA ? beamIdxA.length : 0} beams · SOM ${som ? som.neurons + ' neurons / ' + som.edges + ' edges' : 'skipped'}`);
+  console.log(`[Data Abyss] ${cities} cities · ${info.products || 0} products · ${info.kernels || 0} kernels · ${info.milestones || 0} breakthroughs · ${info.policies || 0} policies · ${info.vendors || 0} vendors · pharma[${pharma.companies || 0} co / ${pharma.sites || 0} sites / ${pharma.products || 0} drugs / ${pharma.modalities || 0} mod / ${pharma.milestones || 0} bk] · cats[${scats.cats || 0} / ${scats.shelters || 0} shelters] · ${N} bodies · ${beamIdxA ? beamIdxA.length : 0} beams · rel[pharma ${pharma.rel || 0} edges/${pharma.groups || 0} groups · vendor ${info.vendorBeams || 0}] · SOM ${som ? som.neurons + ' neurons / ' + som.edges + ' edges' : 'skipped'}`);
   const ld = document.getElementById('loading'); ld.classList.add('gone'); setTimeout(() => ld.remove(), 1000);
   animate();
 })();
