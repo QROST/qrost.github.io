@@ -1,6 +1,42 @@
 {
  "shelters": [
   {
+   "id": "austin_tx",
+   "source": "socrata",
+   "name": "Austin Animal Center",
+   "country": "US",
+   "region": "north_america",
+   "city": "Austin",
+   "state": "TX",
+   "address": "7201 Levander Loop Bldg A, Austin, TX 78702",
+   "postcode": "78702",
+   "lat": 30.2672,
+   "lng": -97.6925,
+   "website": "https://www.austintexas.gov/austin-animal-center",
+   "url": "https://www.austintexas.gov/page/view-adoptable-pets",
+   "email": "",
+   "phone": "",
+   "last_seen": "2026-06-21T09:05:46Z"
+  },
+  {
+   "id": "king_county_wa",
+   "source": "socrata",
+   "name": "Regional Animal Services of King County (RASKC)",
+   "country": "US",
+   "region": "north_america",
+   "city": "Kent",
+   "state": "WA",
+   "address": "21615 64th Ave S, Kent, WA 98032",
+   "postcode": "98032",
+   "lat": 47.3776,
+   "lng": -122.2566,
+   "website": "https://kingcounty.gov/raskc",
+   "url": "https://kingcounty.gov/en/dept/executive-services/animals-pets-pests/regional-animal-services",
+   "email": "",
+   "phone": "",
+   "last_seen": "2026-06-21T09:05:46Z"
+  },
+  {
    "id": "montgomery_md",
    "source": "socrata",
    "name": "Montgomery County Animal Services & Adoption Center",
@@ -16,7 +52,7 @@
    "url": "https://www.montgomerycountymd.gov/animalservices/adoption/",
    "email": "",
    "phone": "",
-   "last_seen": "2026-06-21T06:45:51Z"
+   "last_seen": "2026-06-21T09:05:46Z"
   },
   {
    "id": "sonoma_ca",
@@ -34,7 +70,7 @@
    "url": "https://sonomacounty.ca.gov/animals",
    "email": "",
    "phone": "",
-   "last_seen": "2026-06-21T06:45:51Z"
+   "last_seen": "2026-06-21T09:05:46Z"
   }
  ]
 }

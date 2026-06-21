@@ -1,0 +1,74 @@
+{
+  "_comment": "Socrata open-data shelter sources. Add a shelter = add an entry here (no Python edits). Each source = one shelter + its SODA dataset. where supports {cutoff_N} = ISO date N days ago. photo_url_template / fields.photo (dotted path ok) / none. Verified live before adding.",
+  "sources": {
+    "montgomery_md": {
+      "enabled": true,
+      "domain": "data.montgomerycountymd.gov",
+      "dataset": "e54u-qx42",
+      "species_field": "animaltype",
+      "species_value": "CAT",
+      "where": null,
+      "order": "animalid",
+      "status": "adoptable",
+      "fields": {"source_id": "animalid", "name": "petname", "age_text": "petage", "breed": "breed", "color": "color", "sex": "sex", "size": "petsize", "published": "indate"},
+      "photo_url_template": "https://petharbor.com/get_image.asp?RES=Detail&ID={source_id}&LOCATION=MONT",
+      "adoption_url": "https://petharbor.com/pet.asp?uaid=MONT.{source_id}",
+      "shelter": {"name": "Montgomery County Animal Services & Adoption Center", "country": "US", "region": "north_america", "city": "Derwood", "state": "MD", "address": "7315 Muncaster Mill Rd, Derwood, MD 20855", "postcode": "20855", "lat": 39.1289, "lng": -77.1525, "website": "https://www.montgomerycountymd.gov/animalservices/", "url": "https://www.montgomerycountymd.gov/animalservices/adoption/"}
+    },
+    "sonoma_ca": {
+      "enabled": true,
+      "domain": "data.sonomacounty.ca.gov",
+      "dataset": "w3nx-jfcx",
+      "species_field": "type",
+      "species_value": "CAT",
+      "where": "intake_date > '{cutoff_60}'",
+      "order": "intake_date DESC",
+      "limit_cap": 60,
+      "status": "in_shelter",
+      "fields": {"source_id": "id", "name": "name", "breed": "breed", "color": "color", "sex": "sex", "size": "size", "dob": "date_of_birth", "published": "intake_date"},
+      "adoption_url": "https://sonomacounty.ca.gov/health-and-human-services/health-services/divisions/public-health/animal-services/adopt",
+      "shelter": {"name": "Sonoma County Animal Services", "country": "US", "region": "north_america", "city": "Santa Rosa", "state": "CA", "address": "1247 Century Ct, Santa Rosa, CA 95403", "postcode": "95403", "lat": 38.4663, "lng": -122.7269, "website": "https://sonomacounty.ca.gov/animals", "url": "https://sonomacounty.ca.gov/animals"}
+    },
+    "king_county_wa": {
+      "enabled": true,
+      "domain": "data.kingcounty.gov",
+      "dataset": "yaai-7frk",
+      "species_field": "animal_type",
+      "species_value": "Cat",
+      "where": "record_type='ADOPTABLE'",
+      "order": "date DESC",
+      "status": "adoptable",
+      "fields": {"source_id": "animal_id", "name": "animal_name", "age_text": "age", "breed": "animal_breed", "color": "animal_color", "sex": "animal_gender", "photo": "image.url", "description": "memo", "published": "date"},
+      "adoption_url": "https://kingcounty.gov/en/dept/executive-services/animals-pets-pests/regional-animal-services/adopt-a-pet",
+      "shelter": {"name": "Regional Animal Services of King County (RASKC)", "country": "US", "region": "north_america", "city": "Kent", "state": "WA", "address": "21615 64th Ave S, Kent, WA 98032", "postcode": "98032", "lat": 47.3776, "lng": -122.2566, "website": "https://kingcounty.gov/raskc", "url": "https://kingcounty.gov/en/dept/executive-services/animals-pets-pests/regional-animal-services"}
+    },
+    "austin_tx": {
+      "enabled": true,
+      "domain": "data.austintexas.gov",
+      "dataset": "pyqf-r2dc",
+      "species_field": "type",
+      "species_value": "Cat",
+      "where": "source_date > '{cutoff_45}'",
+      "order": "source_date DESC",
+      "limit_cap": 60,
+      "status": "in_shelter",
+      "fields": {"source_id": "animal_id", "name": "name_at_intake", "breed": "primary_breed", "color": "primary_color", "sex": "sex", "dob": "date_of_birth", "description": "intake_health_condition", "published": "source_date"},
+      "adoption_url": "https://www.austintexas.gov/page/view-adoptable-pets",
+      "shelter": {"name": "Austin Animal Center", "country": "US", "region": "north_america", "city": "Austin", "state": "TX", "address": "7201 Levander Loop Bldg A, Austin, TX 78702", "postcode": "78702", "lat": 30.2672, "lng": -97.6925, "website": "https://www.austintexas.gov/austin-animal-center", "url": "https://www.austintexas.gov/page/view-adoptable-pets"}
+    },
+    "bloomington_in": {
+      "enabled": false,
+      "domain": "data.bloomington.in.gov",
+      "dataset": "e245-r9ub",
+      "species_field": "speciesname",
+      "species_value": "Cat",
+      "where": "movementdate IS NULL AND deceaseddate IS NULL",
+      "order": "intakedate DESC",
+      "limit_cap": 60,
+      "status": "in_shelter",
+      "fields": {"source_id": "id", "name": "animalname", "age_text": "animalage", "breed": "breedname", "color": "basecolour", "sex": "sexname", "published": "intakedate"},
+      "adoption_url": "https://bloomington.in.gov/animal-shelter/animals",
+      "shelter": {"name": "Bloomington Animal Care & Control", "country": "US", "region": "north_america", "city": "Bloomington", "state": "IN", "address": "3410 S Walnut St, Bloomington, IN 47401", "postcode": "47401", "lat": 39.1268, "lng": -86.5320, "website": "https://bloomington.in.gov/animal-shelter", "url": "https://bloomington.in.gov/animal-shelter/animals"}
+    }
+  }
+}
