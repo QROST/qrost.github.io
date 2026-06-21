@@ -1421,10 +1421,11 @@ function animate() {
     if (prevPos) prevPos.set(posArr);   // 存本帧位置 → 下一帧算速度方向
   }
 
-  if (gyroOn) {                                          // 泄漏积分 damper：每帧只应用一部分待发增量、余下顺延 → 平滑、保积分（不丢真实运动）
-    const gsm = Math.min(1, dt * 14);
-    gyroSmYaw = gyroDYaw * gsm; gyroDYaw -= gyroSmYaw;
-    gyroSmPitch = gyroDPitch * gsm; gyroDPitch -= gyroSmPitch;
+  if (gyroOn) {                                          // 陀螺 = 松散「指向性」导航：重阻尼低通 + 待发增量泄漏 → 平滑跟随慢倾、滤掉手抖/传感器微抖，停手即定（不再延迟蠕动/震荡）
+    const gsm = Math.min(1, dt * 4);                     // 跟随率（阻尼大幅加重：低通 TC ~71ms → ~250ms，慢倾仍跟、快抖被滤）
+    const leak = Math.exp(-dt * 4);                      // 待发增量每帧泄漏 → 残量/抖动被遗忘（非精确：稳态增益 ~0.5，松散指引而非 1:1 锁定，消除传感器精度 gap 引起的蠕动）
+    gyroSmYaw = gyroDYaw * gsm; gyroDYaw = (gyroDYaw - gyroSmYaw) * leak;
+    gyroSmPitch = gyroDPitch * gsm; gyroDPitch = (gyroDPitch - gyroSmPitch) * leak;
     yaw += gyroSmYaw; pitch = clamp(pitch + gyroSmPitch, -1.45, 1.45);
   }
   else if (!dragging && focusIdx < 0) yaw += 0.00016;    // 极缓自动巡游（仅自由模式）
