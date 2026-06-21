@@ -1,0 +1,1885 @@
+{
+ "region": "europe",
+ "cats": [
+  {
+   "id": "generic-zaragoza_es-10002",
+   "source": "generic",
+   "source_id": "10002",
+   "shelter_id": "zaragoza_es",
+   "name": "Natilla",
+   "age_text": "7y",
+   "age_bucket": "adult",
+   "birth_estimate": "2019-09",
+   "sex": "female",
+   "spayed_neutered": false,
+   "breed_primary": "Común Europeo",
+   "breed_mixed": true,
+   "colors": [
+    "gray"
+   ],
+   "pattern": "solid",
+   "coat_length": "short",
+   "size": "small",
+   "attributes": {
+    "spayed_neutered": false
+   },
+   "photo_url": "https://www.zaragoza.es/cont/paginas/IMSP/mascotas/NATILLA.jpg",
+   "thumb_path": "assets/img/cats/generic-zaragoza_es-10002.jpg",
+   "adoption_url": "https://www.zaragoza.es/sede/servicio/proteccion-animal/",
+   "status": "adoptable",
+   "published_at": "2020-04-05",
+   "first_seen": "2026-06-21T09:55:37Z"
+  },
+  {
+   "id": "generic-zaragoza_es-10003",
+   "source": "generic",
+   "source_id": "10003",
+   "shelter_id": "zaragoza_es",
+   "name": "Hojaldre",
+   "age_text": "7y",
+   "age_bucket": "adult",
+   "birth_estimate": "2019-09",
+   "sex": "male",
+   "spayed_neutered": false,
+   "breed_primary": "Común Europeo",
+   "breed_mixed": true,
+   "colors": [
+    "gray"
+   ],
+   "pattern": "solid",
+   "coat_length": "short",
+   "size": "small",
+   "attributes": {
+    "spayed_neutered": false
+   },
+   "photo_url": "https://www.zaragoza.es/cont/paginas/IMSP/mascotas/HOJALDRE.jpg",
+   "thumb_path": "assets/img/cats/generic-zaragoza_es-10003.jpg",
+   "adoption_url": "https://www.zaragoza.es/sede/servicio/proteccion-animal/",
+   "status": "adoptable",
+   "published_at": "2020-04-05",
+   "first_seen": "2026-06-21T09:55:37Z"
+  },
+  {
+   "id": "generic-zaragoza_es-10005",
+   "source": "generic",
+   "source_id": "10005",
+   "shelter_id": "zaragoza_es",
+   "name": "Buñuelo",
+   "age_text": "7y",
+   "age_bucket": "adult",
+   "birth_estimate": "2019-03",
+   "sex": "male",
+   "spayed_neutered": false,
+   "breed_primary": "Común Europeo",
+   "breed_mixed": true,
+   "colors": [
+    "gray"
+   ],
+   "pattern": "solid",
+   "coat_length": "short",
+   "size": "small",
+   "attributes": {
+    "spayed_neutered": false
+   },
+   "photo_url": "https://www.zaragoza.es/cont/paginas/IMSP/mascotas/BUnUELO.jpg",
+   "thumb_path": "assets/img/cats/generic-zaragoza_es-10005.jpg",
+   "adoption_url": "https://www.zaragoza.es/sede/servicio/proteccion-animal/",
+   "status": "adoptable",
+   "published_at": "2020-04-05",
+   "first_seen": "2026-06-21T09:55:37Z"
+  },
+  {
+   "id": "generic-zaragoza_es-10007",
+   "source": "generic",
+   "source_id": "10007",
+   "shelter_id": "zaragoza_es",
+   "name": "Panacota",
+   "age_text": "7y",
+   "age_bucket": "adult",
+   "birth_estimate": "2019-09",
+   "sex": "female",
+   "spayed_neutered": false,
+   "breed_primary": "Común Europeo",
+   "breed_mixed": true,
+   "colors": [
+    "gray"
+   ],
+   "pattern": "solid",
+   "coat_length": "short",
+   "size": "small",
+   "attributes": {
+    "spayed_neutered": false
+   },
+   "photo_url": "https://www.zaragoza.es/cont/paginas/IMSP/mascotas/PANACOTA.jpg",
+   "thumb_path": "assets/img/cats/generic-zaragoza_es-10007.jpg",
+   "adoption_url": "https://www.zaragoza.es/sede/servicio/proteccion-animal/",
+   "status": "adoptable",
+   "published_at": "2020-04-05",
+   "first_seen": "2026-06-21T09:55:37Z"
+  },
+  {
+   "id": "generic-zaragoza_es-10011",
+   "source": "generic",
+   "source_id": "10011",
+   "shelter_id": "zaragoza_es",
+   "name": "Polvoron",
+   "age_text": "7y",
+   "age_bucket": "adult",
+   "birth_estimate": "2019-03",
+   "sex": "male",
+   "spayed_neutered": false,
+   "breed_primary": "Común Europeo",
+   "breed_mixed": true,
+   "colors": [
+    "gray"
+   ],
+   "pattern": "solid",
+   "coat_length": "short",
+   "size": "small",
+   "attributes": {
+    "spayed_neutered": false
+   },
+   "photo_url": "https://www.zaragoza.es/cont/paginas/IMSP/mascotas/POLVORoN.jpg",
+   "thumb_path": "assets/img/cats/generic-zaragoza_es-10011.jpg",
+   "adoption_url": "https://www.zaragoza.es/sede/servicio/proteccion-animal/",
+   "status": "adoptable",
+   "published_at": "2020-04-05",
+   "first_seen": "2026-06-21T09:55:37Z"
+  },
+  {
+   "id": "generic-zaragoza_es-10031",
+   "source": "generic",
+   "source_id": "10031",
+   "shelter_id": "zaragoza_es",
+   "name": "Hera",
+   "age_text": "Joven (5 meses)",
+   "age_bucket": "adult",
+   "birth_estimate": "2019-12",
+   "sex": "female",
+   "spayed_neutered": false,
+   "breed_primary": "Común Europeo",
+   "breed_mixed": true,
+   "colors": [
+    "black"
+   ],
+   "pattern": "solid",
+   "coat_length": "short",
+   "size": "small",
+   "attributes": {
+    "spayed_neutered": false
+   },
+   "photo_url": "https://www.zaragoza.es/cont/paginas/IMSP/mascotas/IMG_3745.jpg",
+   "thumb_path": "assets/img/cats/generic-zaragoza_es-10031.jpg",
+   "adoption_url": "https://www.zaragoza.es/sede/servicio/proteccion-animal/",
+   "status": "adoptable",
+   "published_at": "2020-04-29",
+   "first_seen": "2026-06-21T09:55:37Z"
+  },
+  {
+   "id": "generic-zaragoza_es-10685",
+   "source": "generic",
+   "source_id": "10685",
+   "shelter_id": "zaragoza_es",
+   "name": "Hanna",
+   "age_text": "5y",
+   "age_bucket": "adult",
+   "birth_estimate": "2021-01",
+   "sex": "female",
+   "spayed_neutered": false,
+   "breed_primary": "Comun Europeo",
+   "breed_mixed": true,
+   "colors": [
+    "orange",
+    "black",
+    "white"
+   ],
+   "pattern": "calico",
+   "coat_length": "short",
+   "size": "small",
+   "attributes": {
+    "spayed_neutered": false
+   },
+   "photo_url": "https://www.zaragoza.es/cont/paginas/IMSP/mascotas/HANNA.jpg",
+   "thumb_path": "assets/img/cats/generic-zaragoza_es-10685.jpg",
+   "adoption_url": "https://www.zaragoza.es/sede/servicio/proteccion-animal/",
+   "status": "adoptable",
+   "published_at": "2021-01-12",
+   "first_seen": "2026-06-21T09:55:37Z"
+  },
+  {
+   "id": "generic-zaragoza_es-10729",
+   "source": "generic",
+   "source_id": "10729",
+   "shelter_id": "zaragoza_es",
+   "name": "Fiffy",
+   "age_text": "7y",
+   "age_bucket": "adult",
+   "birth_estimate": "2019-02",
+   "sex": "female",
+   "spayed_neutered": false,
+   "breed_primary": "Comun Europeo",
+   "breed_mixed": true,
+   "colors": [
+    "gray"
+   ],
+   "pattern": "solid",
+   "coat_length": "short",
+   "size": "small",
+   "attributes": {
+    "spayed_neutered": false
+   },
+   "photo_url": "https://www.zaragoza.es/cont/paginas/IMSP/mascotas/fiffy.jpg",
+   "thumb_path": "assets/img/cats/generic-zaragoza_es-10729.jpg",
+   "adoption_url": "https://www.zaragoza.es/sede/servicio/proteccion-animal/",
+   "status": "adoptable",
+   "published_at": "2021-02-01",
+   "first_seen": "2026-06-21T09:55:37Z"
+  },
+  {
+   "id": "generic-zaragoza_es-10739",
+   "source": "generic",
+   "source_id": "10739",
+   "shelter_id": "zaragoza_es",
+   "name": "Fifille",
+   "age_text": "6y",
+   "age_bucket": "adult",
+   "birth_estimate": "2020-02",
+   "sex": "female",
+   "spayed_neutered": false,
+   "breed_primary": "Comun Europeo",
+   "breed_mixed": true,
+   "colors": [
+    "gray"
+   ],
+   "pattern": "solid",
+   "coat_length": "short",
+   "size": "small",
+   "attributes": {
+    "spayed_neutered": false
+   },
+   "photo_url": "https://www.zaragoza.es/cont/paginas/IMSP/mascotas/FILILLE.jpg",
+   "thumb_path": "assets/img/cats/generic-zaragoza_es-10739.jpg",
+   "adoption_url": "https://www.zaragoza.es/sede/servicio/proteccion-animal/",
+   "status": "adoptable",
+   "published_at": "2021-02-01",
+   "first_seen": "2026-06-21T09:55:37Z"
+  },
+  {
+   "id": "generic-zaragoza_es-10744",
+   "source": "generic",
+   "source_id": "10744",
+   "shelter_id": "zaragoza_es",
+   "name": "Flora",
+   "age_text": "6y",
+   "age_bucket": "adult",
+   "birth_estimate": "2020-02",
+   "sex": "female",
+   "spayed_neutered": false,
+   "breed_primary": "Comun Europeo",
+   "breed_mixed": true,
+   "colors": [
+    "gray"
+   ],
+   "pattern": "solid",
+   "coat_length": "short",
+   "size": "small",
+   "attributes": {
+    "spayed_neutered": false
+   },
+   "photo_url": "https://www.zaragoza.es/cont/paginas/IMSP/mascotas/FLORA.jpg",
+   "thumb_path": "assets/img/cats/generic-zaragoza_es-10744.jpg",
+   "adoption_url": "https://www.zaragoza.es/sede/servicio/proteccion-animal/",
+   "status": "adoptable",
+   "published_at": "2021-02-01",
+   "first_seen": "2026-06-21T09:55:37Z"
+  },
+  {
+   "id": "generic-zaragoza_es-10760",
+   "source": "generic",
+   "source_id": "10760",
+   "shelter_id": "zaragoza_es",
+   "name": "Fanfan",
+   "age_text": "6y",
+   "age_bucket": "adult",
+   "birth_estimate": "2020-02",
+   "sex": "female",
+   "spayed_neutered": false,
+   "breed_primary": "Comun Europeo",
+   "breed_mixed": true,
+   "colors": [
+    "gray"
+   ],
+   "pattern": "tabby",
+   "coat_length": "short",
+   "size": "small",
+   "attributes": {
+    "spayed_neutered": false
+   },
+   "photo_url": "https://www.zaragoza.es/cont/paginas/IMSP/mascotas/FANFAN.jpg",
+   "thumb_path": "assets/img/cats/generic-zaragoza_es-10760.jpg",
+   "adoption_url": "https://www.zaragoza.es/sede/servicio/proteccion-animal/",
+   "status": "adoptable",
+   "published_at": "2021-02-01",
+   "first_seen": "2026-06-21T09:55:37Z"
+  },
+  {
+   "id": "generic-zaragoza_es-10764",
+   "source": "generic",
+   "source_id": "10764",
+   "shelter_id": "zaragoza_es",
+   "name": "Fayna",
+   "age_text": "6y",
+   "age_bucket": "adult",
+   "birth_estimate": "2020-02",
+   "sex": "female",
+   "spayed_neutered": false,
+   "breed_primary": "Comun Europeo",
+   "breed_mixed": true,
+   "colors": [
+    "gray"
+   ],
+   "pattern": "tabby",
+   "coat_length": "short",
+   "size": "small",
+   "attributes": {
+    "spayed_neutered": false
+   },
+   "photo_url": "https://www.zaragoza.es/cont/paginas/IMSP/mascotas/FAYNA11.jpg",
+   "thumb_path": "assets/img/cats/generic-zaragoza_es-10764.jpg",
+   "adoption_url": "https://www.zaragoza.es/sede/servicio/proteccion-animal/",
+   "status": "adoptable",
+   "published_at": "2021-02-01",
+   "first_seen": "2026-06-21T09:55:37Z"
+  },
+  {
+   "id": "generic-zaragoza_es-10765",
+   "source": "generic",
+   "source_id": "10765",
+   "shelter_id": "zaragoza_es",
+   "name": "Florette",
+   "age_text": "7y",
+   "age_bucket": "adult",
+   "birth_estimate": "2019-08",
+   "sex": "female",
+   "spayed_neutered": false,
+   "breed_primary": "Comun Europeo",
+   "breed_mixed": true,
+   "colors": [
+    "gray"
+   ],
+   "pattern": "solid",
+   "coat_length": "short",
+   "size": "small",
+   "attributes": {
+    "spayed_neutered": false
+   },
+   "photo_url": "https://www.zaragoza.es/cont/paginas/IMSP/mascotas/FLORETTE11.jpg",
+   "thumb_path": "assets/img/cats/generic-zaragoza_es-10765.jpg",
+   "adoption_url": "https://www.zaragoza.es/sede/servicio/proteccion-animal/",
+   "status": "adoptable",
+   "published_at": "2021-02-04",
+   "first_seen": "2026-06-21T09:55:37Z"
+  },
+  {
+   "id": "generic-zaragoza_es-10802",
+   "source": "generic",
+   "source_id": "10802",
+   "shelter_id": "zaragoza_es",
+   "name": "Casetas",
+   "age_text": "7y",
+   "age_bucket": "adult",
+   "birth_estimate": "2019-10",
+   "sex": "male",
+   "spayed_neutered": false,
+   "breed_primary": "Comun Europeo",
+   "breed_mixed": true,
+   "colors": [
+    "gray"
+   ],
+   "pattern": "tabby",
+   "coat_length": "short",
+   "size": "small",
+   "attributes": {
+    "spayed_neutered": false
+   },
+   "photo_url": "https://www.zaragoza.es/cont/paginas/IMSP/mascotas/casetas.jpg",
+   "thumb_path": "assets/img/cats/generic-zaragoza_es-10802.jpg",
+   "adoption_url": "https://www.zaragoza.es/sede/servicio/proteccion-animal/",
+   "status": "adoptable",
+   "published_at": "2021-02-25",
+   "first_seen": "2026-06-21T09:55:37Z"
+  },
+  {
+   "id": "generic-zaragoza_es-10827",
+   "source": "generic",
+   "source_id": "10827",
+   "shelter_id": "zaragoza_es",
+   "name": "Morgan",
+   "age_text": "6y",
+   "age_bucket": "adult",
+   "birth_estimate": "2020-03",
+   "sex": "male",
+   "spayed_neutered": false,
+   "breed_primary": "Comun Europeo",
+   "breed_mixed": true,
+   "colors": [
+    "black"
+   ],
+   "pattern": "solid",
+   "coat_length": "short",
+   "size": "small",
+   "attributes": {
+    "spayed_neutered": false
+   },
+   "photo_url": "https://www.zaragoza.es/cont/paginas/IMSP/mascotas/morgan.jpeg",
+   "thumb_path": "assets/img/cats/generic-zaragoza_es-10827.jpg",
+   "adoption_url": "https://www.zaragoza.es/sede/servicio/proteccion-animal/",
+   "status": "adoptable",
+   "published_at": "2021-03-20",
+   "first_seen": "2026-06-21T09:55:37Z"
+  },
+  {
+   "id": "generic-zaragoza_es-10830",
+   "source": "generic",
+   "source_id": "10830",
+   "shelter_id": "zaragoza_es",
+   "name": "Misi",
+   "age_text": "7y",
+   "age_bucket": "adult",
+   "birth_estimate": "2019-03",
+   "sex": "female",
+   "spayed_neutered": false,
+   "breed_primary": "Siamés",
+   "breed_mixed": false,
+   "colors": [
+    "gray"
+   ],
+   "pattern": "pointed",
+   "coat_length": "short",
+   "size": "medium",
+   "attributes": {
+    "spayed_neutered": false
+   },
+   "photo_url": "https://www.zaragoza.es/cont/paginas/IMSP/mascotas/misi.jpg",
+   "thumb_path": "assets/img/cats/generic-zaragoza_es-10830.jpg",
+   "adoption_url": "https://www.zaragoza.es/sede/servicio/proteccion-animal/",
+   "status": "adoptable",
+   "published_at": "2021-03-30",
+   "first_seen": "2026-06-21T09:55:37Z"
+  },
+  {
+   "id": "generic-zaragoza_es-10833",
+   "source": "generic",
+   "source_id": "10833",
+   "shelter_id": "zaragoza_es",
+   "name": "Achis",
+   "age_text": "6y",
+   "age_bucket": "adult",
+   "birth_estimate": "2020-04",
+   "sex": "male",
+   "spayed_neutered": false,
+   "breed_primary": "Siamés",
+   "breed_mixed": false,
+   "colors": [
+    "gray"
+   ],
+   "pattern": "pointed",
+   "coat_length": "short",
+   "size": "small",
+   "attributes": {
+    "spayed_neutered": false
+   },
+   "photo_url": "https://www.zaragoza.es/cont/paginas/IMSP/mascotas/achis.jpg",
+   "thumb_path": "assets/img/cats/generic-zaragoza_es-10833.jpg",
+   "adoption_url": "https://www.zaragoza.es/sede/servicio/proteccion-animal/",
+   "status": "adoptable",
+   "published_at": "2021-04-01",
+   "first_seen": "2026-06-21T09:55:37Z"
+  },
+  {
+   "id": "generic-zaragoza_es-10842",
+   "source": "generic",
+   "source_id": "10842",
+   "shelter_id": "zaragoza_es",
+   "name": "Sarah",
+   "age_text": "6y",
+   "age_bucket": "adult",
+   "birth_estimate": "2020-10",
+   "sex": "female",
+   "spayed_neutered": false,
+   "breed_primary": "Comun Europeo",
+   "breed_mixed": true,
+   "colors": [
+    "orange",
+    "black",
+    "white"
+   ],
+   "pattern": "calico",
+   "coat_length": "short",
+   "size": "small",
+   "attributes": {
+    "spayed_neutered": false
+   },
+   "photo_url": "https://www.zaragoza.es/cont/paginas/IMSP/mascotas/sarah.jpeg",
+   "thumb_path": "assets/img/cats/generic-zaragoza_es-10842.jpg",
+   "adoption_url": "https://www.zaragoza.es/sede/servicio/proteccion-animal/",
+   "status": "adoptable",
+   "published_at": "2021-03-28",
+   "first_seen": "2026-06-21T09:55:37Z"
+  },
+  {
+   "id": "generic-zaragoza_es-10847",
+   "source": "generic",
+   "source_id": "10847",
+   "shelter_id": "zaragoza_es",
+   "name": "Asterix",
+   "age_text": "5y",
+   "age_bucket": "adult",
+   "birth_estimate": "2021-03",
+   "sex": "male",
+   "spayed_neutered": false,
+   "breed_primary": "Comun Europeo",
+   "breed_mixed": true,
+   "colors": [
+    "orange"
+   ],
+   "pattern": "solid",
+   "coat_length": "short",
+   "size": "small",
+   "attributes": {
+    "spayed_neutered": false
+   },
+   "photo_url": "https://www.zaragoza.es/cont/paginas/IMSP/mascotas/ASTERIX.jpg",
+   "thumb_path": "assets/img/cats/generic-zaragoza_es-10847.jpg",
+   "adoption_url": "https://www.zaragoza.es/sede/servicio/proteccion-animal/",
+   "status": "adoptable",
+   "published_at": "2021-04-09",
+   "first_seen": "2026-06-21T09:55:37Z"
+  },
+  {
+   "id": "generic-zaragoza_es-10848",
+   "source": "generic",
+   "source_id": "10848",
+   "shelter_id": "zaragoza_es",
+   "name": "Apolo",
+   "age_text": "5y",
+   "age_bucket": "adult",
+   "birth_estimate": "2021-03",
+   "sex": "male",
+   "spayed_neutered": false,
+   "breed_primary": "Comun Europeo",
+   "breed_mixed": true,
+   "colors": [
+    "gray"
+   ],
+   "pattern": "tabby",
+   "coat_length": "short",
+   "size": "small",
+   "attributes": {
+    "spayed_neutered": false
+   },
+   "photo_url": "https://www.zaragoza.es/cont/paginas/IMSP/mascotas/APOLO.jpg",
+   "thumb_path": "assets/img/cats/generic-zaragoza_es-10848.jpg",
+   "adoption_url": "https://www.zaragoza.es/sede/servicio/proteccion-animal/",
+   "status": "adoptable",
+   "published_at": "2021-04-09",
+   "first_seen": "2026-06-21T09:55:37Z"
+  },
+  {
+   "id": "generic-zaragoza_es-10849",
+   "source": "generic",
+   "source_id": "10849",
+   "shelter_id": "zaragoza_es",
+   "name": "Aura",
+   "age_text": "5y",
+   "age_bucket": "adult",
+   "birth_estimate": "2021-03",
+   "sex": "female",
+   "spayed_neutered": false,
+   "breed_primary": "Comun Europeo",
+   "breed_mixed": true,
+   "colors": [
+    "black"
+   ],
+   "pattern": "solid",
+   "coat_length": "short",
+   "size": "small",
+   "attributes": {
+    "spayed_neutered": false
+   },
+   "photo_url": "https://www.zaragoza.es/cont/paginas/IMSP/mascotas/AURA.jpg",
+   "thumb_path": "assets/img/cats/generic-zaragoza_es-10849.jpg",
+   "adoption_url": "https://www.zaragoza.es/sede/servicio/proteccion-animal/",
+   "status": "adoptable",
+   "published_at": "2021-04-09",
+   "first_seen": "2026-06-21T09:55:37Z"
+  },
+  {
+   "id": "generic-zaragoza_es-10860",
+   "source": "generic",
+   "source_id": "10860",
+   "shelter_id": "zaragoza_es",
+   "name": "Alaila",
+   "age_text": "6y",
+   "age_bucket": "adult",
+   "birth_estimate": "2020-05",
+   "sex": "female",
+   "spayed_neutered": false,
+   "breed_primary": "Comun Europeo",
+   "breed_mixed": true,
+   "colors": [
+    "black",
+    "white"
+   ],
+   "pattern": "tuxedo",
+   "coat_length": "short",
+   "size": "small",
+   "attributes": {
+    "spayed_neutered": false
+   },
+   "photo_url": "https://www.zaragoza.es/cont/paginas/IMSP/mascotas/alaila.jpg",
+   "thumb_path": "assets/img/cats/generic-zaragoza_es-10860.jpg",
+   "adoption_url": "https://www.zaragoza.es/sede/servicio/proteccion-animal/",
+   "status": "adoptable",
+   "published_at": "2021-04-17",
+   "first_seen": "2026-06-21T09:55:37Z"
+  },
+  {
+   "id": "generic-zaragoza_es-10872",
+   "source": "generic",
+   "source_id": "10872",
+   "shelter_id": "zaragoza_es",
+   "name": "Argus",
+   "age_text": "5y",
+   "age_bucket": "adult",
+   "birth_estimate": "2021-02",
+   "sex": "male",
+   "spayed_neutered": false,
+   "breed_primary": "Comun Europeo",
+   "breed_mixed": true,
+   "colors": [
+    "black"
+   ],
+   "pattern": "solid",
+   "coat_length": "short",
+   "size": "small",
+   "attributes": {
+    "spayed_neutered": false
+   },
+   "photo_url": "https://www.zaragoza.es/cont/paginas/IMSP/mascotas/ARGUS.jpg",
+   "thumb_path": "assets/img/cats/generic-zaragoza_es-10872.jpg",
+   "adoption_url": "https://www.zaragoza.es/sede/servicio/proteccion-animal/",
+   "status": "adoptable",
+   "published_at": "2021-04-23",
+   "first_seen": "2026-06-21T09:55:37Z"
+  },
+  {
+   "id": "generic-zaragoza_es-10887",
+   "source": "generic",
+   "source_id": "10887",
+   "shelter_id": "zaragoza_es",
+   "name": "Alfi",
+   "age_text": "5y",
+   "age_bucket": "adult",
+   "birth_estimate": "2021-04",
+   "sex": "male",
+   "spayed_neutered": false,
+   "breed_primary": "Común",
+   "breed_mixed": true,
+   "colors": [
+    "black"
+   ],
+   "pattern": "solid",
+   "coat_length": "short",
+   "size": "small",
+   "attributes": {
+    "spayed_neutered": false
+   },
+   "photo_url": "https://www.zaragoza.es/cont/paginas/IMSP/mascotas/GATITOS%20.jpg",
+   "thumb_path": "assets/img/cats/generic-zaragoza_es-10887.jpg",
+   "adoption_url": "https://www.zaragoza.es/sede/servicio/proteccion-animal/",
+   "status": "adoptable",
+   "published_at": "2021-04-29",
+   "first_seen": "2026-06-21T09:55:37Z"
+  },
+  {
+   "id": "generic-zaragoza_es-10891",
+   "source": "generic",
+   "source_id": "10891",
+   "shelter_id": "zaragoza_es",
+   "name": "Lulu",
+   "age_text": "6y",
+   "age_bucket": "adult",
+   "birth_estimate": "2020-05",
+   "sex": "female",
+   "spayed_neutered": false,
+   "breed_primary": "Comun Europeo",
+   "breed_mixed": true,
+   "colors": [
+    "brown",
+    "cream"
+   ],
+   "pattern": "bicolor",
+   "coat_length": "short",
+   "size": "small",
+   "attributes": {
+    "spayed_neutered": false
+   },
+   "photo_url": "https://www.zaragoza.es/cont/paginas/IMSP/mascotas/LULU.jpeg",
+   "thumb_path": "assets/img/cats/generic-zaragoza_es-10891.jpg",
+   "adoption_url": "https://www.zaragoza.es/sede/servicio/proteccion-animal/",
+   "status": "adoptable",
+   "published_at": "2021-04-30",
+   "first_seen": "2026-06-21T09:55:37Z"
+  },
+  {
+   "id": "generic-zaragoza_es-10894",
+   "source": "generic",
+   "source_id": "10894",
+   "shelter_id": "zaragoza_es",
+   "name": "Mailo",
+   "age_text": "5y",
+   "age_bucket": "adult",
+   "birth_estimate": "2021-05",
+   "sex": "male",
+   "spayed_neutered": false,
+   "breed_primary": "Comun Europeo",
+   "breed_mixed": true,
+   "colors": [
+    "white",
+    "orange"
+   ],
+   "pattern": "bicolor",
+   "coat_length": "short",
+   "size": "small",
+   "attributes": {
+    "spayed_neutered": false
+   },
+   "photo_url": "https://www.zaragoza.es/cont/paginas/IMSP/mascotas/MAILO.jpeg",
+   "thumb_path": "assets/img/cats/generic-zaragoza_es-10894.jpg",
+   "adoption_url": "https://www.zaragoza.es/sede/servicio/proteccion-animal/",
+   "status": "adoptable",
+   "published_at": "2021-05-04",
+   "first_seen": "2026-06-21T09:55:37Z"
+  },
+  {
+   "id": "generic-zaragoza_es-10906",
+   "source": "generic",
+   "source_id": "10906",
+   "shelter_id": "zaragoza_es",
+   "name": "Mel",
+   "age_text": "5y",
+   "age_bucket": "adult",
+   "birth_estimate": "2021-04",
+   "sex": "female",
+   "spayed_neutered": false,
+   "breed_primary": "Comun Europeo",
+   "breed_mixed": true,
+   "colors": [
+    "orange",
+    "black",
+    "white"
+   ],
+   "pattern": "calico",
+   "coat_length": "short",
+   "size": "small",
+   "attributes": {
+    "spayed_neutered": false
+   },
+   "photo_url": "https://www.zaragoza.es/cont/paginas/IMSP/mascotas/MEL.jpeg",
+   "thumb_path": "assets/img/cats/generic-zaragoza_es-10906.jpg",
+   "adoption_url": "https://www.zaragoza.es/sede/servicio/proteccion-animal/",
+   "status": "adoptable",
+   "published_at": "2021-05-04",
+   "first_seen": "2026-06-21T09:55:37Z"
+  },
+  {
+   "id": "generic-zaragoza_es-10907",
+   "source": "generic",
+   "source_id": "10907",
+   "shelter_id": "zaragoza_es",
+   "name": "Mini",
+   "age_text": "5y",
+   "age_bucket": "adult",
+   "birth_estimate": "2021-04",
+   "sex": "female",
+   "spayed_neutered": false,
+   "breed_primary": "Comun Europeo",
+   "breed_mixed": true,
+   "colors": [
+    "orange",
+    "black",
+    "white"
+   ],
+   "pattern": "calico",
+   "coat_length": "short",
+   "size": "small",
+   "attributes": {
+    "spayed_neutered": false
+   },
+   "photo_url": "https://www.zaragoza.es/cont/paginas/IMSP/mascotas/MINI.jpeg",
+   "thumb_path": "assets/img/cats/generic-zaragoza_es-10907.jpg",
+   "adoption_url": "https://www.zaragoza.es/sede/servicio/proteccion-animal/",
+   "status": "adoptable",
+   "published_at": "2021-05-04",
+   "first_seen": "2026-06-21T09:55:37Z"
+  },
+  {
+   "id": "generic-zaragoza_es-10908",
+   "source": "generic",
+   "source_id": "10908",
+   "shelter_id": "zaragoza_es",
+   "name": "Misi",
+   "age_text": "5y",
+   "age_bucket": "adult",
+   "birth_estimate": "2021-04",
+   "sex": "female",
+   "spayed_neutered": false,
+   "breed_primary": "Comun Europeo",
+   "breed_mixed": true,
+   "colors": [
+    "orange",
+    "black",
+    "white"
+   ],
+   "pattern": "calico",
+   "coat_length": "short",
+   "size": "small",
+   "attributes": {
+    "spayed_neutered": false
+   },
+   "photo_url": "https://www.zaragoza.es/cont/paginas/IMSP/mascotas/MISI.jpeg",
+   "thumb_path": "assets/img/cats/generic-zaragoza_es-10908.jpg",
+   "adoption_url": "https://www.zaragoza.es/sede/servicio/proteccion-animal/",
+   "status": "adoptable",
+   "published_at": "2021-05-05",
+   "first_seen": "2026-06-21T09:55:37Z"
+  },
+  {
+   "id": "generic-zaragoza_es-10917",
+   "source": "generic",
+   "source_id": "10917",
+   "shelter_id": "zaragoza_es",
+   "name": "Bruno",
+   "age_text": "11y",
+   "age_bucket": "senior",
+   "birth_estimate": "2015-05",
+   "sex": "male",
+   "spayed_neutered": false,
+   "breed_primary": "Comun Europeo",
+   "breed_mixed": true,
+   "colors": [
+    "black"
+   ],
+   "pattern": "solid",
+   "coat_length": "short",
+   "size": "small",
+   "attributes": {
+    "spayed_neutered": false
+   },
+   "photo_url": "https://www.zaragoza.es/cont/paginas/IMSP/mascotas/BRUNO.jpg",
+   "thumb_path": "assets/img/cats/generic-zaragoza_es-10917.jpg",
+   "adoption_url": "https://www.zaragoza.es/sede/servicio/proteccion-animal/",
+   "status": "adoptable",
+   "published_at": "2021-05-11",
+   "first_seen": "2026-06-21T09:55:37Z"
+  },
+  {
+   "id": "generic-zaragoza_es-10918",
+   "source": "generic",
+   "source_id": "10918",
+   "shelter_id": "zaragoza_es",
+   "name": "Monti",
+   "age_text": "5y",
+   "age_bucket": "adult",
+   "birth_estimate": "2021-05",
+   "sex": "male",
+   "spayed_neutered": false,
+   "breed_primary": "Común Europeo",
+   "breed_mixed": true,
+   "colors": [
+    "gray"
+   ],
+   "pattern": "tabby",
+   "coat_length": "short",
+   "size": "small",
+   "attributes": {
+    "spayed_neutered": false
+   },
+   "photo_url": "https://www.zaragoza.es/cont/paginas/IMSP/mascotas/monti.jpg",
+   "thumb_path": "assets/img/cats/generic-zaragoza_es-10918.jpg",
+   "adoption_url": "https://www.zaragoza.es/sede/servicio/proteccion-animal/",
+   "status": "adoptable",
+   "published_at": "2021-05-11",
+   "first_seen": "2026-06-21T09:55:37Z"
+  },
+  {
+   "id": "generic-zaragoza_es-10919",
+   "source": "generic",
+   "source_id": "10919",
+   "shelter_id": "zaragoza_es",
+   "name": "Óscar",
+   "age_text": "11y",
+   "age_bucket": "senior",
+   "birth_estimate": "2015-05",
+   "sex": "male",
+   "spayed_neutered": false,
+   "breed_primary": "Común Europeo",
+   "breed_mixed": true,
+   "colors": [
+    "gray"
+   ],
+   "pattern": "tabby",
+   "coat_length": "short",
+   "size": "small",
+   "attributes": {
+    "spayed_neutered": false
+   },
+   "photo_url": "https://www.zaragoza.es/cont/paginas/IMSP/mascotas/oscar.jpg",
+   "thumb_path": "assets/img/cats/generic-zaragoza_es-10919.jpg",
+   "adoption_url": "https://www.zaragoza.es/sede/servicio/proteccion-animal/",
+   "status": "adoptable",
+   "published_at": "2021-05-11",
+   "first_seen": "2026-06-21T09:55:37Z"
+  },
+  {
+   "id": "generic-zaragoza_es-10920",
+   "source": "generic",
+   "source_id": "10920",
+   "shelter_id": "zaragoza_es",
+   "name": "Coquita",
+   "age_text": "7y",
+   "age_bucket": "adult",
+   "birth_estimate": "2019-05",
+   "sex": "female",
+   "spayed_neutered": false,
+   "breed_primary": "Comun Europeo",
+   "breed_mixed": true,
+   "colors": [
+    "gray"
+   ],
+   "pattern": "solid",
+   "coat_length": "short",
+   "size": "small",
+   "attributes": {
+    "spayed_neutered": false
+   },
+   "photo_url": "https://www.zaragoza.es/cont/paginas/IMSP/mascotas/COCA.jpg",
+   "thumb_path": "assets/img/cats/generic-zaragoza_es-10920.jpg",
+   "adoption_url": "https://www.zaragoza.es/sede/servicio/proteccion-animal/",
+   "status": "adoptable",
+   "published_at": "2021-05-13",
+   "first_seen": "2026-06-21T09:55:37Z"
+  },
+  {
+   "id": "generic-zaragoza_es-10921",
+   "source": "generic",
+   "source_id": "10921",
+   "shelter_id": "zaragoza_es",
+   "name": "Kira",
+   "age_text": "6y",
+   "age_bucket": "adult",
+   "birth_estimate": "2020-05",
+   "sex": "female",
+   "spayed_neutered": false,
+   "breed_primary": "Comun Europeo",
+   "breed_mixed": true,
+   "colors": [
+    "gray"
+   ],
+   "pattern": "tabby",
+   "coat_length": "short",
+   "size": "small",
+   "attributes": {
+    "spayed_neutered": false
+   },
+   "photo_url": "https://www.zaragoza.es/cont/paginas/IMSP/mascotas/KIRA%202.jpg",
+   "thumb_path": "assets/img/cats/generic-zaragoza_es-10921.jpg",
+   "adoption_url": "https://www.zaragoza.es/sede/servicio/proteccion-animal/",
+   "status": "adoptable",
+   "published_at": "2021-05-13",
+   "first_seen": "2026-06-21T09:55:37Z"
+  },
+  {
+   "id": "generic-zaragoza_es-10923",
+   "source": "generic",
+   "source_id": "10923",
+   "shelter_id": "zaragoza_es",
+   "name": "Mac",
+   "age_text": "9y",
+   "age_bucket": "senior",
+   "birth_estimate": "2017-05",
+   "sex": "male",
+   "spayed_neutered": false,
+   "breed_primary": "Mestizo Siamés",
+   "breed_mixed": true,
+   "colors": [
+    "gray"
+   ],
+   "pattern": "pointed",
+   "coat_length": "short",
+   "size": "small",
+   "attributes": {
+    "spayed_neutered": false
+   },
+   "photo_url": "https://www.zaragoza.es/cont/paginas/IMSP/mascotas/MAC.jpg",
+   "thumb_path": "assets/img/cats/generic-zaragoza_es-10923.jpg",
+   "adoption_url": "https://www.zaragoza.es/sede/servicio/proteccion-animal/",
+   "status": "adoptable",
+   "published_at": "2021-05-16",
+   "first_seen": "2026-06-21T09:55:37Z"
+  },
+  {
+   "id": "generic-zaragoza_es-10930",
+   "source": "generic",
+   "source_id": "10930",
+   "shelter_id": "zaragoza_es",
+   "name": "Mayo",
+   "age_text": "5y",
+   "age_bucket": "adult",
+   "birth_estimate": "2021-04",
+   "sex": "male",
+   "spayed_neutered": false,
+   "breed_primary": "Comun Europeo",
+   "breed_mixed": true,
+   "colors": [
+    "black",
+    "white"
+   ],
+   "pattern": "tuxedo",
+   "coat_length": "short",
+   "size": "small",
+   "attributes": {
+    "spayed_neutered": false
+   },
+   "photo_url": "https://www.zaragoza.es/cont/paginas/IMSP/mascotas/MAYO.jpg",
+   "thumb_path": "assets/img/cats/generic-zaragoza_es-10930.jpg",
+   "adoption_url": "https://www.zaragoza.es/sede/servicio/proteccion-animal/",
+   "status": "adoptable",
+   "published_at": "2021-05-20",
+   "first_seen": "2026-06-21T09:55:37Z"
+  },
+  {
+   "id": "generic-zaragoza_es-10931",
+   "source": "generic",
+   "source_id": "10931",
+   "shelter_id": "zaragoza_es",
+   "name": "Junio",
+   "age_text": "5y",
+   "age_bucket": "adult",
+   "birth_estimate": "2021-05",
+   "sex": "male",
+   "spayed_neutered": false,
+   "breed_primary": "Comun Europeo",
+   "breed_mixed": true,
+   "colors": [
+    "black",
+    "white"
+   ],
+   "pattern": "tuxedo",
+   "coat_length": "short",
+   "size": "small",
+   "attributes": {
+    "spayed_neutered": false
+   },
+   "photo_url": "https://www.zaragoza.es/cont/paginas/IMSP/mascotas/JUNIO.jpg",
+   "thumb_path": "assets/img/cats/generic-zaragoza_es-10931.jpg",
+   "adoption_url": "https://www.zaragoza.es/sede/servicio/proteccion-animal/",
+   "status": "adoptable",
+   "published_at": "2021-05-20",
+   "first_seen": "2026-06-21T09:55:37Z"
+  },
+  {
+   "id": "generic-zaragoza_es-10934",
+   "source": "generic",
+   "source_id": "10934",
+   "shelter_id": "zaragoza_es",
+   "name": "Margot",
+   "age_text": "7y",
+   "age_bucket": "adult",
+   "birth_estimate": "2019-05",
+   "sex": "female",
+   "spayed_neutered": false,
+   "breed_primary": "Comun Europeo",
+   "breed_mixed": true,
+   "colors": [
+    "black"
+   ],
+   "pattern": "solid",
+   "coat_length": "short",
+   "size": "small",
+   "attributes": {
+    "spayed_neutered": false
+   },
+   "photo_url": "https://www.zaragoza.es/cont/paginas/IMSP/mascotas/MARGOT.jpg",
+   "thumb_path": "assets/img/cats/generic-zaragoza_es-10934.jpg",
+   "adoption_url": "https://www.zaragoza.es/sede/servicio/proteccion-animal/",
+   "status": "adoptable",
+   "published_at": "2021-05-21",
+   "first_seen": "2026-06-21T09:55:37Z"
+  },
+  {
+   "id": "generic-zaragoza_es-10941",
+   "source": "generic",
+   "source_id": "10941",
+   "shelter_id": "zaragoza_es",
+   "name": "Yudai",
+   "age_text": "9y",
+   "age_bucket": "senior",
+   "birth_estimate": "2017-06",
+   "sex": "male",
+   "spayed_neutered": false,
+   "breed_primary": "Comun Europeo",
+   "breed_mixed": true,
+   "colors": [
+    "gray"
+   ],
+   "pattern": "tabby",
+   "coat_length": "short",
+   "size": "small",
+   "attributes": {
+    "spayed_neutered": false
+   },
+   "photo_url": "https://www.zaragoza.es/cont/paginas/IMSP/mascotas/yudai.jpeg",
+   "thumb_path": "assets/img/cats/generic-zaragoza_es-10941.jpg",
+   "adoption_url": "https://www.zaragoza.es/sede/servicio/proteccion-animal/",
+   "status": "adoptable",
+   "published_at": "2021-05-29",
+   "first_seen": "2026-06-21T09:55:37Z"
+  },
+  {
+   "id": "generic-zaragoza_es-10946",
+   "source": "generic",
+   "source_id": "10946",
+   "shelter_id": "zaragoza_es",
+   "name": "John",
+   "age_text": "5y",
+   "age_bucket": "adult",
+   "birth_estimate": "2021-04",
+   "sex": "male",
+   "spayed_neutered": false,
+   "breed_primary": "Comun Europeo",
+   "breed_mixed": true,
+   "colors": [
+    "black",
+    "white"
+   ],
+   "pattern": "tuxedo",
+   "coat_length": "short",
+   "size": "small",
+   "attributes": {
+    "spayed_neutered": false
+   },
+   "photo_url": "https://www.zaragoza.es/cont/paginas/IMSP/mascotas/JOHN.jpg",
+   "thumb_path": "assets/img/cats/generic-zaragoza_es-10946.jpg",
+   "adoption_url": "https://www.zaragoza.es/sede/servicio/proteccion-animal/",
+   "status": "adoptable",
+   "published_at": "2021-05-31",
+   "first_seen": "2026-06-21T09:55:37Z"
+  },
+  {
+   "id": "generic-zaragoza_es-10947",
+   "source": "generic",
+   "source_id": "10947",
+   "shelter_id": "zaragoza_es",
+   "name": "July",
+   "age_text": "5y",
+   "age_bucket": "adult",
+   "birth_estimate": "2021-04",
+   "sex": "female",
+   "spayed_neutered": false,
+   "breed_primary": "Comun Europeo",
+   "breed_mixed": true,
+   "colors": [
+    "black",
+    "white"
+   ],
+   "pattern": "tuxedo",
+   "coat_length": "short",
+   "size": "small",
+   "attributes": {
+    "spayed_neutered": false
+   },
+   "photo_url": "https://www.zaragoza.es/cont/paginas/IMSP/mascotas/JULY.jpg",
+   "thumb_path": "assets/img/cats/generic-zaragoza_es-10947.jpg",
+   "adoption_url": "https://www.zaragoza.es/sede/servicio/proteccion-animal/",
+   "status": "adoptable",
+   "published_at": "2021-05-31",
+   "first_seen": "2026-06-21T09:55:37Z"
+  },
+  {
+   "id": "generic-zaragoza_es-10948",
+   "source": "generic",
+   "source_id": "10948",
+   "shelter_id": "zaragoza_es",
+   "name": "Jepeto",
+   "age_text": "5y",
+   "age_bucket": "adult",
+   "birth_estimate": "2021-04",
+   "sex": "male",
+   "spayed_neutered": false,
+   "breed_primary": "Comun Europeo",
+   "breed_mixed": true,
+   "colors": [
+    "black"
+   ],
+   "pattern": "solid",
+   "coat_length": "short",
+   "size": "small",
+   "attributes": {
+    "spayed_neutered": false
+   },
+   "photo_url": "https://www.zaragoza.es/cont/paginas/IMSP/mascotas/JEPETO.jpg",
+   "thumb_path": "assets/img/cats/generic-zaragoza_es-10948.jpg",
+   "adoption_url": "https://www.zaragoza.es/sede/servicio/proteccion-animal/",
+   "status": "adoptable",
+   "published_at": "2021-06-01",
+   "first_seen": "2026-06-21T09:55:37Z"
+  },
+  {
+   "id": "generic-zaragoza_es-10961",
+   "source": "generic",
+   "source_id": "10961",
+   "shelter_id": "zaragoza_es",
+   "name": "Betun",
+   "age_text": "5y",
+   "age_bucket": "adult",
+   "birth_estimate": "2021-03",
+   "sex": "male",
+   "spayed_neutered": false,
+   "breed_primary": "Comun Europeo",
+   "breed_mixed": true,
+   "colors": [
+    "black"
+   ],
+   "pattern": "solid",
+   "coat_length": "short",
+   "size": "small",
+   "attributes": {
+    "spayed_neutered": false
+   },
+   "photo_url": "https://www.zaragoza.es/cont/paginas/IMSP/mascotas/BETUN.jpg",
+   "thumb_path": "assets/img/cats/generic-zaragoza_es-10961.jpg",
+   "adoption_url": "https://www.zaragoza.es/sede/servicio/proteccion-animal/",
+   "status": "adoptable",
+   "published_at": "2021-06-05",
+   "first_seen": "2026-06-21T09:55:37Z"
+  },
+  {
+   "id": "generic-zaragoza_es-10962",
+   "source": "generic",
+   "source_id": "10962",
+   "shelter_id": "zaragoza_es",
+   "name": "Moro",
+   "age_text": "10y",
+   "age_bucket": "senior",
+   "birth_estimate": "2016-06",
+   "sex": "male",
+   "spayed_neutered": false,
+   "breed_primary": "Comun Europeo",
+   "breed_mixed": true,
+   "colors": [
+    "black"
+   ],
+   "pattern": "solid",
+   "coat_length": "short",
+   "size": "small",
+   "attributes": {
+    "spayed_neutered": false
+   },
+   "photo_url": "https://www.zaragoza.es/cont/paginas/IMSP/mascotas/MORO.jpg",
+   "thumb_path": "assets/img/cats/generic-zaragoza_es-10962.jpg",
+   "adoption_url": "https://www.zaragoza.es/sede/servicio/proteccion-animal/",
+   "status": "adoptable",
+   "published_at": "2021-06-05",
+   "first_seen": "2026-06-21T09:55:37Z"
+  },
+  {
+   "id": "generic-zaragoza_es-10963",
+   "source": "generic",
+   "source_id": "10963",
+   "shelter_id": "zaragoza_es",
+   "name": "Tata",
+   "age_text": "5y",
+   "age_bucket": "adult",
+   "birth_estimate": "2021-03",
+   "sex": "female",
+   "spayed_neutered": false,
+   "breed_primary": "Comun Europeo",
+   "breed_mixed": true,
+   "colors": [
+    "gray"
+   ],
+   "pattern": "solid",
+   "coat_length": "short",
+   "size": "small",
+   "attributes": {
+    "spayed_neutered": false
+   },
+   "photo_url": "https://www.zaragoza.es/cont/paginas/IMSP/mascotas/TATA.jpg",
+   "thumb_path": "assets/img/cats/generic-zaragoza_es-10963.jpg",
+   "adoption_url": "https://www.zaragoza.es/sede/servicio/proteccion-animal/",
+   "status": "adoptable",
+   "published_at": "2021-06-05",
+   "first_seen": "2026-06-21T09:55:37Z"
+  },
+  {
+   "id": "generic-zaragoza_es-10966",
+   "source": "generic",
+   "source_id": "10966",
+   "shelter_id": "zaragoza_es",
+   "name": "Jorge",
+   "age_text": "5y",
+   "age_bucket": "adult",
+   "birth_estimate": "2021-03",
+   "sex": "male",
+   "spayed_neutered": false,
+   "breed_primary": "Comun Europeo",
+   "breed_mixed": true,
+   "colors": [
+    "black",
+    "white"
+   ],
+   "pattern": "tuxedo",
+   "coat_length": "short",
+   "size": "small",
+   "attributes": {
+    "spayed_neutered": false
+   },
+   "photo_url": "https://www.zaragoza.es/cont/paginas/IMSP/mascotas/JORGE.jpg",
+   "thumb_path": "assets/img/cats/generic-zaragoza_es-10966.jpg",
+   "adoption_url": "https://www.zaragoza.es/sede/servicio/proteccion-animal/",
+   "status": "adoptable",
+   "published_at": "2021-06-08",
+   "first_seen": "2026-06-21T09:55:37Z"
+  },
+  {
+   "id": "generic-zaragoza_es-10967",
+   "source": "generic",
+   "source_id": "10967",
+   "shelter_id": "zaragoza_es",
+   "name": "Jumbo",
+   "age_text": "5y",
+   "age_bucket": "adult",
+   "birth_estimate": "2021-03",
+   "sex": "male",
+   "spayed_neutered": false,
+   "breed_primary": "Comun Europeo",
+   "breed_mixed": true,
+   "colors": [
+    "black",
+    "white"
+   ],
+   "pattern": "tuxedo",
+   "coat_length": "short",
+   "size": "small",
+   "attributes": {
+    "spayed_neutered": false
+   },
+   "photo_url": "https://www.zaragoza.es/cont/paginas/IMSP/mascotas/JUMBO.jpg",
+   "thumb_path": "assets/img/cats/generic-zaragoza_es-10967.jpg",
+   "adoption_url": "https://www.zaragoza.es/sede/servicio/proteccion-animal/",
+   "status": "adoptable",
+   "published_at": "2021-06-08",
+   "first_seen": "2026-06-21T09:55:37Z"
+  },
+  {
+   "id": "generic-zaragoza_es-10968",
+   "source": "generic",
+   "source_id": "10968",
+   "shelter_id": "zaragoza_es",
+   "name": "Jazmin",
+   "age_text": "5y",
+   "age_bucket": "adult",
+   "birth_estimate": "2021-03",
+   "sex": "female",
+   "spayed_neutered": false,
+   "breed_primary": "Comun Europeo",
+   "breed_mixed": true,
+   "colors": [
+    "black",
+    "white"
+   ],
+   "pattern": "tuxedo",
+   "coat_length": "short",
+   "size": "small",
+   "attributes": {
+    "spayed_neutered": false
+   },
+   "photo_url": "https://www.zaragoza.es/cont/paginas/IMSP/mascotas/JAZMIN.jpg",
+   "thumb_path": "assets/img/cats/generic-zaragoza_es-10968.jpg",
+   "adoption_url": "https://www.zaragoza.es/sede/servicio/proteccion-animal/",
+   "status": "adoptable",
+   "published_at": "2021-06-08",
+   "first_seen": "2026-06-21T09:55:37Z"
+  },
+  {
+   "id": "generic-zaragoza_es-10969",
+   "source": "generic",
+   "source_id": "10969",
+   "shelter_id": "zaragoza_es",
+   "name": "Jara",
+   "age_text": "5y",
+   "age_bucket": "adult",
+   "birth_estimate": "2021-03",
+   "sex": "female",
+   "spayed_neutered": false,
+   "breed_primary": "Comun Europeo",
+   "breed_mixed": true,
+   "colors": [
+    "black"
+   ],
+   "pattern": "solid",
+   "coat_length": "short",
+   "size": "small",
+   "attributes": {
+    "spayed_neutered": false
+   },
+   "photo_url": "https://www.zaragoza.es/cont/paginas/IMSP/mascotas/JARA.jpg",
+   "thumb_path": "assets/img/cats/generic-zaragoza_es-10969.jpg",
+   "adoption_url": "https://www.zaragoza.es/sede/servicio/proteccion-animal/",
+   "status": "adoptable",
+   "published_at": "2021-06-08",
+   "first_seen": "2026-06-21T09:55:37Z"
+  },
+  {
+   "id": "generic-zaragoza_es-10970",
+   "source": "generic",
+   "source_id": "10970",
+   "shelter_id": "zaragoza_es",
+   "name": "Jamaica",
+   "age_text": "5y",
+   "age_bucket": "adult",
+   "birth_estimate": "2021-03",
+   "sex": "female",
+   "spayed_neutered": false,
+   "breed_primary": "Comun Europeo",
+   "breed_mixed": true,
+   "colors": [
+    "black",
+    "white"
+   ],
+   "pattern": "tuxedo",
+   "coat_length": "short",
+   "size": "small",
+   "attributes": {
+    "spayed_neutered": false
+   },
+   "photo_url": "https://www.zaragoza.es/cont/paginas/IMSP/mascotas/JAMAICA.jpg",
+   "thumb_path": "assets/img/cats/generic-zaragoza_es-10970.jpg",
+   "adoption_url": "https://www.zaragoza.es/sede/servicio/proteccion-animal/",
+   "status": "adoptable",
+   "published_at": "2021-06-08",
+   "first_seen": "2026-06-21T09:55:37Z"
+  },
+  {
+   "id": "generic-zaragoza_es-10989",
+   "source": "generic",
+   "source_id": "10989",
+   "shelter_id": "zaragoza_es",
+   "name": "Jedi",
+   "age_text": "5y",
+   "age_bucket": "adult",
+   "birth_estimate": "2021-03",
+   "sex": "male",
+   "spayed_neutered": false,
+   "breed_primary": "Comun Europeo",
+   "breed_mixed": true,
+   "colors": [
+    "gray"
+   ],
+   "pattern": "tabby",
+   "coat_length": "short",
+   "size": "small",
+   "attributes": {
+    "spayed_neutered": false
+   },
+   "photo_url": "https://www.zaragoza.es/cont/paginas/IMSP/mascotas/JEDI.jpg",
+   "thumb_path": "assets/img/cats/generic-zaragoza_es-10989.jpg",
+   "adoption_url": "https://www.zaragoza.es/sede/servicio/proteccion-animal/",
+   "status": "adoptable",
+   "published_at": "2021-06-11",
+   "first_seen": "2026-06-21T09:55:37Z"
+  },
+  {
+   "id": "generic-zaragoza_es-10991",
+   "source": "generic",
+   "source_id": "10991",
+   "shelter_id": "zaragoza_es",
+   "name": "Janis",
+   "age_text": "5y",
+   "age_bucket": "adult",
+   "birth_estimate": "2021-03",
+   "sex": "female",
+   "spayed_neutered": false,
+   "breed_primary": "Comun Europeo",
+   "breed_mixed": true,
+   "colors": [
+    "black"
+   ],
+   "pattern": "solid",
+   "coat_length": "short",
+   "size": "small",
+   "attributes": {
+    "spayed_neutered": false
+   },
+   "photo_url": "https://www.zaragoza.es/cont/paginas/IMSP/mascotas/janis.jpeg",
+   "thumb_path": "assets/img/cats/generic-zaragoza_es-10991.jpg",
+   "adoption_url": "https://www.zaragoza.es/sede/servicio/proteccion-animal/",
+   "status": "adoptable",
+   "published_at": "2021-06-14",
+   "first_seen": "2026-06-21T09:55:37Z"
+  },
+  {
+   "id": "generic-zaragoza_es-10992",
+   "source": "generic",
+   "source_id": "10992",
+   "shelter_id": "zaragoza_es",
+   "name": "Joshua",
+   "age_text": "5y",
+   "age_bucket": "adult",
+   "birth_estimate": "2021-04",
+   "sex": "male",
+   "spayed_neutered": false,
+   "breed_primary": "Comun Europeo",
+   "breed_mixed": true,
+   "colors": [
+    "black"
+   ],
+   "pattern": "solid",
+   "coat_length": "short",
+   "size": "small",
+   "attributes": {
+    "spayed_neutered": false
+   },
+   "photo_url": "https://www.zaragoza.es/cont/paginas/IMSP/mascotas/JOSHUA.jpg",
+   "thumb_path": "assets/img/cats/generic-zaragoza_es-10992.jpg",
+   "adoption_url": "https://www.zaragoza.es/sede/servicio/proteccion-animal/",
+   "status": "adoptable",
+   "published_at": "2021-06-14",
+   "first_seen": "2026-06-21T09:55:37Z"
+  },
+  {
+   "id": "generic-zaragoza_es-11020",
+   "source": "generic",
+   "source_id": "11020",
+   "shelter_id": "zaragoza_es",
+   "name": "Jina",
+   "age_text": "5y",
+   "age_bucket": "adult",
+   "birth_estimate": "2021-03",
+   "sex": "female",
+   "spayed_neutered": false,
+   "breed_primary": "Comun Europeo",
+   "breed_mixed": true,
+   "colors": [
+    "gray"
+   ],
+   "pattern": "solid",
+   "coat_length": "short",
+   "size": "medium",
+   "attributes": {
+    "spayed_neutered": false
+   },
+   "photo_url": "https://www.zaragoza.es/cont/paginas/IMSP/mascotas/IMG-20210622-WA0002-1.jpg",
+   "thumb_path": "assets/img/cats/generic-zaragoza_es-11020.jpg",
+   "adoption_url": "https://www.zaragoza.es/sede/servicio/proteccion-animal/",
+   "status": "adoptable",
+   "first_seen": "2026-06-21T09:55:37Z"
+  },
+  {
+   "id": "generic-zaragoza_es-9138",
+   "source": "generic",
+   "source_id": "9138",
+   "shelter_id": "zaragoza_es",
+   "name": "Luna",
+   "age_text": "13y",
+   "age_bucket": "senior",
+   "birth_estimate": "2013-03",
+   "sex": "female",
+   "spayed_neutered": false,
+   "breed_primary": "Común Europeo",
+   "breed_mixed": true,
+   "colors": [
+    "orange",
+    "black",
+    "white"
+   ],
+   "pattern": "calico",
+   "coat_length": "short",
+   "size": "small",
+   "attributes": {
+    "spayed_neutered": false
+   },
+   "photo_url": "https://www.zaragoza.es/cont/paginas/IMSP/mascotas/Luna%208663.jpg",
+   "thumb_path": "assets/img/cats/generic-zaragoza_es-9138.jpg",
+   "adoption_url": "https://www.zaragoza.es/sede/servicio/proteccion-animal/",
+   "status": "adoptable",
+   "published_at": "2019-02-15",
+   "first_seen": "2026-06-21T09:55:37Z"
+  },
+  {
+   "id": "generic-zaragoza_es-9377",
+   "source": "generic",
+   "source_id": "9377",
+   "shelter_id": "zaragoza_es",
+   "name": "Boira",
+   "age_text": "7y",
+   "age_bucket": "adult",
+   "birth_estimate": "2019-05",
+   "sex": "female",
+   "spayed_neutered": false,
+   "breed_primary": "Común Europeo",
+   "breed_mixed": true,
+   "colors": [
+    "orange",
+    "black",
+    "white"
+   ],
+   "pattern": "calico",
+   "coat_length": "short",
+   "size": "small",
+   "attributes": {
+    "spayed_neutered": false
+   },
+   "photo_url": "https://www.zaragoza.es/cont/paginas/IMSP/mascotas/Boira%208974.png",
+   "thumb_path": "assets/img/cats/generic-zaragoza_es-9377.jpg",
+   "adoption_url": "https://www.zaragoza.es/sede/servicio/proteccion-animal/",
+   "status": "adoptable",
+   "published_at": "2019-06-24",
+   "first_seen": "2026-06-21T09:55:37Z"
+  },
+  {
+   "id": "generic-zaragoza_es-9400",
+   "source": "generic",
+   "source_id": "9400",
+   "shelter_id": "zaragoza_es",
+   "name": "Peñita",
+   "age_text": "9y",
+   "age_bucket": "senior",
+   "birth_estimate": "2017-06",
+   "sex": "female",
+   "spayed_neutered": false,
+   "breed_primary": "Común Europeo",
+   "breed_mixed": true,
+   "colors": [
+    "gray"
+   ],
+   "pattern": "solid",
+   "coat_length": "short",
+   "size": "small",
+   "attributes": {
+    "spayed_neutered": false
+   },
+   "photo_url": "https://www.zaragoza.es/cont/paginas/IMSP/mascotas/pena.jpg",
+   "thumb_path": "assets/img/cats/generic-zaragoza_es-9400.jpg",
+   "adoption_url": "https://www.zaragoza.es/sede/servicio/proteccion-animal/",
+   "status": "adoptable",
+   "published_at": "2019-06-17",
+   "first_seen": "2026-06-21T09:55:37Z"
+  },
+  {
+   "id": "generic-zaragoza_es-9416",
+   "source": "generic",
+   "source_id": "9416",
+   "shelter_id": "zaragoza_es",
+   "name": "Maya",
+   "age_text": "7y",
+   "age_bucket": "adult",
+   "birth_estimate": "2019-05",
+   "sex": "female",
+   "spayed_neutered": false,
+   "breed_primary": "Común Europeo",
+   "breed_mixed": true,
+   "colors": [
+    "black"
+   ],
+   "pattern": "solid",
+   "coat_length": "short",
+   "size": "small",
+   "attributes": {
+    "spayed_neutered": false
+   },
+   "photo_url": "https://www.zaragoza.es/cont/paginas/IMSP/mascotas/MAYA.jpg",
+   "thumb_path": "assets/img/cats/generic-zaragoza_es-9416.jpg",
+   "adoption_url": "https://www.zaragoza.es/sede/servicio/proteccion-animal/",
+   "status": "adoptable",
+   "published_at": "2019-05-22",
+   "first_seen": "2026-06-21T09:55:37Z"
+  },
+  {
+   "id": "generic-zaragoza_es-9418",
+   "source": "generic",
+   "source_id": "9418",
+   "shelter_id": "zaragoza_es",
+   "name": "Steisy",
+   "age_text": "7y",
+   "age_bucket": "adult",
+   "birth_estimate": "2019-05",
+   "sex": "female",
+   "spayed_neutered": false,
+   "breed_primary": "Común Europeo",
+   "breed_mixed": true,
+   "colors": [
+    "black"
+   ],
+   "pattern": "solid",
+   "coat_length": "short",
+   "size": "small",
+   "attributes": {
+    "spayed_neutered": false
+   },
+   "photo_url": "https://www.zaragoza.es/cont/paginas/IMSP/mascotas/STEISY.jpg",
+   "thumb_path": "assets/img/cats/generic-zaragoza_es-9418.jpg",
+   "adoption_url": "https://www.zaragoza.es/sede/servicio/proteccion-animal/",
+   "status": "adoptable",
+   "published_at": "2019-05-06",
+   "first_seen": "2026-06-21T09:55:37Z"
+  },
+  {
+   "id": "generic-zaragoza_es-9466",
+   "source": "generic",
+   "source_id": "9466",
+   "shelter_id": "zaragoza_es",
+   "name": "Kronos",
+   "age_text": "7y",
+   "age_bucket": "adult",
+   "birth_estimate": "2019-07",
+   "sex": "male",
+   "spayed_neutered": false,
+   "breed_primary": "Común Europeo",
+   "breed_mixed": true,
+   "colors": [
+    "black"
+   ],
+   "pattern": "solid",
+   "coat_length": "short",
+   "size": "small",
+   "attributes": {
+    "spayed_neutered": false
+   },
+   "photo_url": "https://www.zaragoza.es/cont/paginas/IMSP/mascotas/KRONOS.jpg",
+   "thumb_path": "assets/img/cats/generic-zaragoza_es-9466.jpg",
+   "adoption_url": "https://www.zaragoza.es/sede/servicio/proteccion-animal/",
+   "status": "adoptable",
+   "published_at": "2019-07-12",
+   "first_seen": "2026-06-21T09:55:37Z"
+  },
+  {
+   "id": "generic-zaragoza_es-9614",
+   "source": "generic",
+   "source_id": "9614",
+   "shelter_id": "zaragoza_es",
+   "name": "Juana",
+   "age_text": "7y",
+   "age_bucket": "adult",
+   "birth_estimate": "2019-02",
+   "sex": "female",
+   "spayed_neutered": false,
+   "breed_primary": "Común Europeo",
+   "breed_mixed": true,
+   "colors": [
+    "gray"
+   ],
+   "pattern": "solid",
+   "coat_length": "short",
+   "size": "small",
+   "attributes": {
+    "spayed_neutered": false
+   },
+   "description": "Colonia Pignatelli",
+   "photo_url": "https://www.zaragoza.es/cont/paginas/IMSP/mascotas/JUANA.jpg",
+   "thumb_path": "assets/img/cats/generic-zaragoza_es-9614.jpg",
+   "adoption_url": "https://www.zaragoza.es/sede/servicio/proteccion-animal/",
+   "status": "adoptable",
+   "published_at": "2019-09-07",
+   "first_seen": "2026-06-21T09:55:37Z"
+  },
+  {
+   "id": "generic-zaragoza_es-9702",
+   "source": "generic",
+   "source_id": "9702",
+   "shelter_id": "zaragoza_es",
+   "name": "Castilla",
+   "age_text": "7y",
+   "age_bucket": "adult",
+   "birth_estimate": "2019-07",
+   "sex": "female",
+   "spayed_neutered": false,
+   "breed_primary": "Común Europeo",
+   "breed_mixed": true,
+   "colors": [
+    "white"
+   ],
+   "pattern": "solid",
+   "coat_length": "short",
+   "size": "small",
+   "attributes": {
+    "spayed_neutered": false
+   },
+   "photo_url": "https://www.zaragoza.es/cont/paginas/IMSP/mascotas/CASTILLA.jpg",
+   "thumb_path": "assets/img/cats/generic-zaragoza_es-9702.jpg",
+   "adoption_url": "https://www.zaragoza.es/sede/servicio/proteccion-animal/",
+   "status": "adoptable",
+   "first_seen": "2026-06-21T09:55:37Z"
+  },
+  {
+   "id": "generic-zaragoza_es-9941",
+   "source": "generic",
+   "source_id": "9941",
+   "shelter_id": "zaragoza_es",
+   "name": "Rosca",
+   "age_text": "8y",
+   "age_bucket": "senior",
+   "birth_estimate": "2018-02",
+   "sex": "female",
+   "spayed_neutered": false,
+   "breed_primary": "Común Europeo",
+   "breed_mixed": true,
+   "colors": [
+    "black"
+   ],
+   "pattern": "solid",
+   "coat_length": "short",
+   "size": "small",
+   "attributes": {
+    "spayed_neutered": false
+   },
+   "photo_url": "https://www.zaragoza.es/cont/paginas/IMSP/mascotas/ROSCA%20(2).jpg",
+   "thumb_path": "assets/img/cats/generic-zaragoza_es-9941.jpg",
+   "adoption_url": "https://www.zaragoza.es/sede/servicio/proteccion-animal/",
+   "status": "adoptable",
+   "published_at": "2020-01-18",
+   "first_seen": "2026-06-21T09:55:37Z"
+  },
+  {
+   "id": "generic-zaragoza_es-9942",
+   "source": "generic",
+   "source_id": "9942",
+   "shelter_id": "zaragoza_es",
+   "name": "Tornillo",
+   "age_text": "8y",
+   "age_bucket": "senior",
+   "birth_estimate": "2018-02",
+   "sex": "male",
+   "spayed_neutered": false,
+   "breed_primary": "Común Europeo",
+   "breed_mixed": true,
+   "colors": [
+    "white",
+    "orange"
+   ],
+   "pattern": "bicolor",
+   "coat_length": "short",
+   "size": "small",
+   "attributes": {
+    "spayed_neutered": false
+   },
+   "photo_url": "https://www.zaragoza.es/cont/paginas/IMSP/mascotas/TOMILLO.jpg",
+   "adoption_url": "https://www.zaragoza.es/sede/servicio/proteccion-animal/",
+   "status": "adoptable",
+   "published_at": "2020-01-18",
+   "first_seen": "2026-06-21T09:55:37Z"
+  }
+ ]
+}

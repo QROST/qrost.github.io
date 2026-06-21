@@ -7,6 +7,12 @@ into the controlled vocabulary so the frontend filters actually work.
 from __future__ import annotations
 
 import re
+import unicodedata
+
+
+def _deaccent(s: str) -> str:
+    """marrón -> marron, común -> comun — so multilingual matching works."""
+    return "".join(c for c in unicodedata.normalize("NFKD", s) if not unicodedata.combining(c))
 
 # ---- sex --------------------------------------------------------------------
 # Shelter codes vary: M/F/S/N/U (Montgomery-style) and full words (Sonoma-style).
@@ -14,35 +20,40 @@ def norm_sex(raw: str | None) -> tuple[str, bool | None]:
     s = (raw or "").strip().lower()
     if not s:
         return "unknown", None
-    if s in ("m", "male", "intact male"):
+    s = _deaccent(s)
+    if s in ("m", "male", "intact male", "macho", "male "):
         return "male", False
-    if s in ("f", "female", "intact female"):
+    if s in ("f", "female", "intact female", "hembra"):
         return "female", False
-    if s in ("n", "neuter", "neutered", "neutered male", "altered male"):
+    if s in ("n", "neuter", "neutered", "neutered male", "altered male", "castrado"):
         return "male", True
-    if s in ("s", "spay", "spayed", "spayed female", "altered female"):
+    if s in ("s", "spay", "spayed", "spayed female", "altered female", "esterilizada", "castrada"):
         return "female", True
-    if "neuter" in s or ("male" in s and "fe" not in s):
+    if "castrad" in s or "esterilizad" in s:  # es: castrado(m)/esterilizada(f) — sex ambiguous, mark fixed
+        return ("female" if s.endswith("a") else "male"), True
+    if "neuter" in s or "macho" in s or ("male" in s and "fe" not in s):
         return "male", "neuter" in s or None
-    if "spay" in s or "female" in s:
+    if "spay" in s or "hembra" in s or "female" in s:
         return "female", "spay" in s or None
     return "unknown", None
 
 
 # ---- coat length (often encoded in the breed string) ------------------------
 def norm_coat(breed: str | None, fallback: str | None = None) -> str:
-    b = (breed or "").lower()
-    if any(k in b for k in ("hairless", "sphynx", "peterbald")):
+    b = _deaccent((breed or "").lower())
+    if any(k in b for k in ("hairless", "sphynx", "peterbald", "sin pelo")):
         return "hairless"
-    if re.search(r"\b(lh|long ?hair|longhair|long-hair)\b", b) or "long hair" in b:
+    if re.search(r"\b(lh|long ?hair|longhair|long-hair)\b", b) or "long hair" in b or "pelo largo" in b:
         return "long"
-    if re.search(r"\b(mh|medium ?hair|mediumhair)\b", b) or "medium hair" in b:
+    if re.search(r"\b(mh|medium ?hair|mediumhair)\b", b) or "medium hair" in b or "pelo medio" in b:
         return "medium"
-    if re.search(r"\b(sh|short ?hair|shorthair|short-hair|dsh)\b", b) or "short hair" in b:
+    if re.search(r"\b(sh|short ?hair|shorthair|short-hair|dsh)\b", b) or "short hair" in b or "pelo corto" in b:
         return "short"
-    # breed-implied long-hairs
+    # breed-implied coats
     if any(k in b for k in ("persian", "maine coon", "ragdoll", "himalayan", "angora", "siberian", "norwegian")):
         return "long"
+    if "comun europeo" in b or "europeo" in b:  # es: Común Europeo = European domestic shorthair
+        return "short"
     f = (fallback or "").lower()
     if f in ("short", "medium", "long", "hairless"):
         return f
@@ -51,16 +62,16 @@ def norm_coat(breed: str | None, fallback: str | None = None) -> str:
 
 # ---- pattern (mined from color + breed strings) -----------------------------
 def norm_pattern(color: str | None, breed: str | None = "") -> str:
-    s = f"{color or ''} {breed or ''}".lower()
-    if "calico" in s:
+    s = _deaccent(f"{color or ''} {breed or ''}".lower())
+    if "calico" in s or "tricolor" in s or "tri-color" in s:
         return "calico"
-    if "tortie" in s or "tortoise" in s:
+    if "tortie" in s or "tortoise" in s or "carey" in s or "concha" in s:
         return "tortie"
     if "tuxedo" in s:
         return "tuxedo"
-    if any(k in s for k in ("siamese", "point", "lynx point", "flame point", "seal point")):
+    if any(k in s for k in ("siamese", "siames", "point", "lynx point", "flame point", "seal point")):
         return "pointed"
-    if "tabby" in s or "tiger" in s or "mackerel" in s or "torbie" in s:
+    if "tabby" in s or "tiger" in s or "mackerel" in s or "torbie" in s or "atigrado" in s or "rayado" in s:
         return "tabby"
     if "smoke" in s or "shaded" in s or "chinchilla" in s:
         return "smoke"
@@ -77,23 +88,25 @@ def norm_pattern(color: str | None, breed: str | None = "") -> str:
 
 # ---- colors (palette tokens) ------------------------------------------------
 _COLOR_SYNONYMS = {
-    "black": "black", "blk": "black",
-    "white": "white", "wht": "white",
-    "gray": "gray", "grey": "gray", "silver": "gray",
-    "blue": "blue",
-    "brown": "brown", "sable": "brown", "seal": "brown",
+    "black": "black", "blk": "black", "negro": "black", "noir": "black", "schwarz": "black",
+    "white": "white", "wht": "white", "blanco": "white", "blanc": "white", "weiss": "white",
+    "gray": "gray", "grey": "gray", "silver": "gray", "gris": "gray", "plateado": "gray",
+    "blue": "blue", "azul": "blue",
+    "brown": "brown", "sable": "brown", "seal": "brown", "pardo": "brown", "marron": "brown", "braun": "brown",
     "chocolate": "chocolate", "choc": "chocolate",
     "orange": "orange", "ginger": "orange", "red": "orange", "marmalade": "orange",
-    "cream": "cream", "ivory": "cream",
+    "naranja": "orange", "rojo": "orange", "rubio": "orange",
+    "cream": "cream", "ivory": "cream", "crema": "cream",
     "tan": "tan", "buff": "tan", "fawn": "tan", "gold": "tan", "yellow": "tan",
+    "canela": "tan", "dorado": "tan", "amarillo": "tan",
     "lilac": "lilac", "lavender": "lilac",
     # patterns that show up in the color column -> map to their dominant pigment(s)
-    "calico": "orange", "tortie": "orange", "tortoiseshell": "orange",
+    "calico": "orange", "tortie": "orange", "tortoiseshell": "orange", "carey": "orange",
 }
 
 
 def _pigment_tokens(color: str | None) -> list[str]:
-    s = (color or "").lower()
+    s = _deaccent((color or "").lower())
     out: list[str] = []
     for word, tok in _COLOR_SYNONYMS.items():
         if re.search(rf"\b{re.escape(word)}\b", s) and tok not in out:
@@ -153,19 +166,20 @@ def norm_age(age_text: str | None, dob_iso: str | None = None, now_year: int | N
 
 
 def norm_size(raw: str | None) -> str:
-    s = (raw or "").strip().lower()
-    if s.startswith("s") or "small" in s or "kitten" in s:
+    s = _deaccent((raw or "").strip().lower())
+    if "small" in s or "kitten" in s or "peque" in s or s.startswith("s"):
         return "small"
-    if s.startswith("l") or "large" in s:
+    if "large" in s or "grande" in s or s.startswith("l") or s.startswith("g"):
         return "large"
-    if s.startswith("m") or "med" in s:
+    if "med" in s or s.startswith("m"):
         return "medium"
     return "medium"
 
 
 def breed_is_mixed(breed: str | None) -> bool:
-    b = (breed or "").lower()
-    return any(k in b for k in ("mix", "domestic", "/", " dsh", "dmh", "dlh", "moggie"))
+    b = _deaccent((breed or "").lower())
+    return any(k in b for k in ("mix", "domestic", "/", " dsh", "dmh", "dlh", "moggie",
+                                "comun", "europeo", "mestizo"))
 
 
 def pretty_breed(raw: str | None) -> str:
@@ -187,8 +201,10 @@ def pretty_breed(raw: str | None) -> str:
 
 
 def title_name(raw: str | None) -> str:
-    """Shelter names are often SHOUTED and prefixed with * for specials."""
+    """Shelter names are often SHOUTED, prefixed with * for specials, or suffixed with
+    a status like '(ACOGIDA)' / '(FOSTER)' — strip those for a clean display name."""
     s = (raw or "").strip().lstrip("*").strip()
+    s = re.sub(r"\s*\([^)]*\)\s*$", "", s).strip()
     if s.isupper() or s.islower():
         s = s.title()
     return s

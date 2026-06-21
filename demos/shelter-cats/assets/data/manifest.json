@@ -1,56 +1,65 @@
 {
- "build_time": "2026-06-21T09:05:46Z",
- "data_version": "3c916e8a56",
+ "build_time": "2026-06-21T09:57:17Z",
+ "data_version": "63d31410f3",
  "generator": "tools/build.py",
- "total_cats": 180,
- "total_shelters": 4,
- "total_adoptable": 60,
- "with_photo": 60,
- "with_thumb": 60,
+ "total_cats": 244,
+ "total_shelters": 5,
+ "total_adoptable": 124,
+ "with_photo": 124,
+ "with_thumb": 123,
  "region_counts": {
+  "europe": 64,
   "north_america": 180
  },
  "regions_live": [
+  "europe",
   "north_america"
  ],
  "status_counts": {
-  "in_shelter": 120,
-  "adoptable": 60
+  "adoptable": 124,
+  "in_shelter": 120
  },
  "coat_counts": {
-  "short": 169,
+  "short": 233,
   "medium": 10,
   "long": 1
  },
  "pattern_counts": {
-  "tabby": 70,
-  "solid": 63,
-  "calico": 6,
+  "solid": 96,
+  "calico": 13,
+  "tabby": 79,
+  "pointed": 3,
+  "tuxedo": 29,
+  "bicolor": 12,
   "tortie": 10,
-  "tuxedo": 20,
-  "bicolor": 9,
   "smoke": 2
  },
  "color_counts": {
-  "brown": 11,
-  "black": 66,
-  "orange": 30,
-  "white": 49,
-  "gray": 55,
+  "gray": 81,
+  "black": 99,
+  "orange": 40,
+  "white": 68,
+  "brown": 12,
+  "cream": 1,
   "blue": 3
  },
  "age_counts": {
+  "adult": 104,
+  "senior": 20,
   "young": 50,
-  "adult": 49,
-  "senior": 11,
   "kitten": 52
  },
  "sex_counts": {
-  "male": 60,
-  "female": 85,
+  "female": 121,
+  "male": 88,
   "unknown": 35
  },
  "shards": [
+  {
+   "region": "europe",
+   "file": "cats/europe.json",
+   "count": 64
+  },
   {
    "region": "north_america",
    "file": "cats/north_america.json",
@@ -61,9 +70,14 @@
  "enums_file": "enums.json",
  "sources": [
   {
+   "id": "generic",
+   "attribution": "International open data (CKAN / OpenDataSoft / Socrata)",
+   "last_fetch": "2026-06-21T09:55:37Z"
+  },
+  {
    "id": "socrata",
    "attribution": "City/County Open Data (Socrata)",
-   "last_fetch": "2026-06-21T09:05:46Z"
+   "last_fetch": "2026-06-21T09:41:21Z"
   }
  ]
 }
