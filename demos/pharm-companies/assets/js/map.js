@@ -12,6 +12,20 @@
   var TYPE_COLORS = ['--chart-1','--chart-2','--chart-3','--chart-4','--chart-5','--chart-6','--chart-7','--chart-8'];
   // distinct color for the i-th category: themed palette first, then golden-angle HSL (so 40+ countries differ).
   function catColor(i, pal) { return i < pal.length ? pal[i] : 'hsl(' + Math.round((i * 137.508) % 360) + ',62%,56%)'; }
+  // National/flag-leaning color per country (ISO2) so the map reads intuitively — US blue, CN red,
+  // IN green, DE gold, JP pink, NL orange… High-marker-count countries are kept mutually distinct;
+  // unlisted countries fall back to the golden-angle HSL above.
+  var FLAG_COLOR = {
+    US: '#3b5bdb', CN: '#e8352e', JP: '#f783ac', IN: '#2f9e44', DE: '#f2c811', GB: '#2b3a8c',
+    FR: '#1c7ed6', CH: '#fa5252', KR: '#1098ad', IT: '#82c91e', CA: '#e64980', AU: '#0b7285',
+    DK: '#d6336c', SE: '#1864ab', NL: '#fd7e14', BE: '#f08c00', IE: '#40c057', ES: '#e67700',
+    BR: '#94d82d', IL: '#4dabf7', RU: '#4263eb', AT: '#ff8787', FI: '#74c0fc', NO: '#c92a2a',
+    PL: '#f06595', TR: '#e8590c', SA: '#087f5b', EG: '#a61e4d', ZA: '#d9480f', MX: '#2b8a3e',
+    AR: '#66d9e8', TW: '#5c7cfa', HK: '#ff6b6b', SG: '#ffa8a8', ID: '#e599f7', TH: '#845ef7',
+    MY: '#f59f00', PK: '#087f5b', BD: '#0ca678', PH: '#9775fa', VN: '#fa5252', JO: '#9e2a2b',
+    AE: '#2f9e44', NZ: '#15616d', PT: '#51cf66', GR: '#1971c2', HU: '#37b24d', CZ: '#4c6ef5',
+    RO: '#fab005', SI: '#3bc9db', BG: '#69db7c', SK: '#5c7cfa', UA: '#fcc419'
+  };
 
   function ensure() {
     if (!window.echarts || !window.WORLD_GEO) return null;
@@ -56,7 +70,7 @@
       if (co && co.company_type && types.indexOf(co.company_type) === -1) types.push(co.company_type);
     });
     var pal = TYPE_COLORS.map(cssVar);
-    var countryColorMap = {}; countries.sort().forEach(function (co, i) { countryColorMap[co] = catColor(i, pal); });
+    var countryColorMap = {}; countries.sort().forEach(function (co, i) { countryColorMap[co] = FLAG_COLOR[co] || catColor(i, pal); });
     var typeColorMap = {}; types.sort().forEach(function (t, i) { typeColorMap[t] = catColor(i, pal); });
 
     var legend = {};
