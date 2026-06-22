@@ -2,6 +2,365 @@
  "region": "north_america",
  "cats": [
   {
+   "id": "socrata-austin_tx-28583",
+   "source": "socrata",
+   "source_id": "28583",
+   "shelter_id": "austin_tx",
+   "name": "Dumpling",
+   "sex": "male",
+   "spayed_neutered": false,
+   "breed_primary": "Domestic Shorthair",
+   "breed_mixed": true,
+   "colors": [
+    "black"
+   ],
+   "pattern": "solid",
+   "coat_length": "short",
+   "size": "medium",
+   "attributes": {
+    "spayed_neutered": false
+   },
+   "description": "Injured",
+   "adoption_url": "https://www.austintexas.gov/page/view-adoptable-pets",
+   "status": "in_shelter",
+   "published_at": "2026-06-21",
+   "first_seen": "2026-06-22T01:53:03Z"
+  },
+  {
+   "id": "socrata-austin_tx-28589",
+   "source": "socrata",
+   "source_id": "28589",
+   "shelter_id": "austin_tx",
+   "name": "Hazel",
+   "sex": "female",
+   "spayed_neutered": false,
+   "breed_primary": "Domestic Shorthair",
+   "breed_mixed": true,
+   "colors": [
+    "brown"
+   ],
+   "pattern": "tabby",
+   "coat_length": "short",
+   "size": "medium",
+   "attributes": {
+    "spayed_neutered": false
+   },
+   "description": "Injured",
+   "adoption_url": "https://www.austintexas.gov/page/view-adoptable-pets",
+   "status": "in_shelter",
+   "published_at": "2026-06-21",
+   "first_seen": "2026-06-22T01:53:03Z"
+  },
+  {
+   "id": "socrata-austin_tx-28590",
+   "source": "socrata",
+   "source_id": "28590",
+   "shelter_id": "austin_tx",
+   "name": "Marble",
+   "sex": "unknown",
+   "breed_primary": "Domestic Mediumhair",
+   "breed_mixed": true,
+   "colors": [
+    "brown"
+   ],
+   "pattern": "tabby",
+   "coat_length": "medium",
+   "size": "medium",
+   "adoption_url": "https://www.austintexas.gov/page/view-adoptable-pets",
+   "status": "in_shelter",
+   "published_at": "2026-06-21",
+   "first_seen": "2026-06-22T01:53:03Z"
+  },
+  {
+   "id": "socrata-austin_tx-28594",
+   "source": "socrata",
+   "source_id": "28594",
+   "shelter_id": "austin_tx",
+   "name": "Bagel",
+   "sex": "unknown",
+   "breed_primary": "Domestic Shorthair",
+   "breed_mixed": true,
+   "colors": [
+    "black"
+   ],
+   "pattern": "solid",
+   "coat_length": "short",
+   "size": "medium",
+   "adoption_url": "https://www.austintexas.gov/page/view-adoptable-pets",
+   "status": "in_shelter",
+   "published_at": "2026-06-21",
+   "first_seen": "2026-06-22T01:53:03Z"
+  },
+  {
+   "id": "socrata-austin_tx-28595",
+   "source": "socrata",
+   "source_id": "28595",
+   "shelter_id": "austin_tx",
+   "name": "Noodle",
+   "sex": "unknown",
+   "breed_primary": "Domestic Shorthair",
+   "breed_mixed": true,
+   "colors": [
+    "brown"
+   ],
+   "pattern": "tabby",
+   "coat_length": "short",
+   "size": "medium",
+   "adoption_url": "https://www.austintexas.gov/page/view-adoptable-pets",
+   "status": "in_shelter",
+   "published_at": "2026-06-21",
+   "first_seen": "2026-06-22T01:53:03Z"
+  },
+  {
+   "id": "socrata-austin_tx-28609",
+   "source": "socrata",
+   "source_id": "28609",
+   "shelter_id": "austin_tx",
+   "name": "Pickle",
+   "age_text": "1y",
+   "age_bucket": "young",
+   "birth_estimate": "2025-06",
+   "sex": "female",
+   "spayed_neutered": false,
+   "breed_primary": "Domestic Shorthair",
+   "breed_mixed": true,
+   "colors": [
+    "black"
+   ],
+   "pattern": "solid",
+   "coat_length": "short",
+   "size": "medium",
+   "attributes": {
+    "spayed_neutered": false
+   },
+   "adoption_url": "https://www.austintexas.gov/page/view-adoptable-pets",
+   "status": "in_shelter",
+   "published_at": "2026-06-21",
+   "first_seen": "2026-06-22T01:53:03Z"
+  },
+  {
+   "id": "socrata-king_county_wa-A747797",
+   "source": "socrata",
+   "source_id": "A747797",
+   "shelter_id": "king_county_wa",
+   "name": "Reece",
+   "age_text": "7 WEEKS",
+   "age_bucket": "kitten",
+   "sex": "male",
+   "spayed_neutered": true,
+   "breed_primary": "Domestic Shorthair",
+   "breed_mixed": true,
+   "colors": [
+    "black"
+   ],
+   "pattern": "solid",
+   "coat_length": "short",
+   "size": "medium",
+   "attributes": {
+    "spayed_neutered": true
+   },
+   "description": "Received on: 2026-06-04 Description: Black Neutered Male Domestic Shorthair Cat Age: 7 WEEKS Adoption Fee: $100.00 Current Location: King County Pet Adoption Center 21615 64TH AVE S KENT, WA 98032 Hi! My name is Reece and I am available for adoption! You can visit me at the Pet Adoption Center on weekdays from 12:00 pm to 5:00 pm, Saturdays and Sundays from 12:00 pm to 4:00 pm. The Pet Adoption Center is located at 21615 64th Ave S, Kent, WA 98032. Come and visit me today, I'd love to go home with you!",
+   "photo_url": "https://petharbor.com/get_image.asp?RES=Detail&LOCATION=KING&ID=A747797",
+   "thumb_path": "assets/img/cats/socrata-king_county_wa-A747797.jpg",
+   "adoption_url": "https://kingcounty.gov/en/dept/executive-services/animals-pets-pests/regional-animal-services/adopt-a-pet",
+   "status": "adoptable",
+   "published_at": "2026-06-04",
+   "first_seen": "2026-06-22T01:53:03Z"
+  },
+  {
+   "id": "socrata-king_county_wa-A747798",
+   "source": "socrata",
+   "source_id": "A747798",
+   "shelter_id": "king_county_wa",
+   "name": "King",
+   "age_text": "7 WEEKS",
+   "age_bucket": "kitten",
+   "sex": "male",
+   "spayed_neutered": true,
+   "breed_primary": "Domestic Longhair",
+   "breed_mixed": true,
+   "colors": [
+    "black"
+   ],
+   "pattern": "solid",
+   "coat_length": "long",
+   "size": "medium",
+   "attributes": {
+    "spayed_neutered": true
+   },
+   "description": "Received on: 2026-06-04 Description: Black Neutered Male Domestic Longhair Cat Age: 7 WEEKS Adoption Fee: $100.00 Current Location: King County Pet Adoption Center 21615 64TH AVE S KENT, WA 98032 Hi! My name is King and I am available for adoption! You can visit me at the Pet Adoption Center on weekdays from 12:00 pm to 5:00 pm, Saturdays and Sundays from 12:00 pm to 4:00 pm. The Pet Adoption Center is located at 21615 64th Ave S, Kent, WA 98032. Come and visit me today, I'd love to go home with you!",
+   "photo_url": "https://petharbor.com/get_image.asp?RES=Detail&LOCATION=KING&ID=A747798",
+   "thumb_path": "assets/img/cats/socrata-king_county_wa-A747798.jpg",
+   "adoption_url": "https://kingcounty.gov/en/dept/executive-services/animals-pets-pests/regional-animal-services/adopt-a-pet",
+   "status": "adoptable",
+   "published_at": "2026-06-04",
+   "first_seen": "2026-06-22T01:53:03Z"
+  },
+  {
+   "id": "socrata-king_county_wa-A748297",
+   "source": "socrata",
+   "source_id": "A748297",
+   "shelter_id": "king_county_wa",
+   "name": "Nightingale",
+   "age_text": "8 WEEKS",
+   "age_bucket": "kitten",
+   "sex": "female",
+   "spayed_neutered": true,
+   "breed_primary": "Domestic Mediumhair",
+   "breed_mixed": true,
+   "colors": [
+    "black"
+   ],
+   "pattern": "solid",
+   "coat_length": "medium",
+   "size": "medium",
+   "attributes": {
+    "spayed_neutered": true
+   },
+   "description": "Received on: 2026-06-20 Description: Black Spayed Female Domestic Mediumhair Cat Age: 8 WEEKS Adoption Fee: $100.00 Current Location: King County Pet Adoption Center 21615 64TH AVE S KENT, WA 98032",
+   "photo_url": "https://petharbor.com/get_image.asp?RES=Detail&LOCATION=KING&ID=A748297",
+   "thumb_path": "assets/img/cats/socrata-king_county_wa-A748297.jpg",
+   "adoption_url": "https://kingcounty.gov/en/dept/executive-services/animals-pets-pests/regional-animal-services/adopt-a-pet",
+   "status": "adoptable",
+   "published_at": "2026-06-20",
+   "first_seen": "2026-06-22T01:53:03Z"
+  },
+  {
+   "id": "socrata-king_county_wa-A748641",
+   "source": "socrata",
+   "source_id": "A748641",
+   "shelter_id": "king_county_wa",
+   "name": "Morel",
+   "age_text": "2 YEARS",
+   "age_bucket": "young",
+   "sex": "male",
+   "spayed_neutered": true,
+   "breed_primary": "Domestic Shorthair",
+   "breed_mixed": true,
+   "colors": [
+    "black",
+    "white"
+   ],
+   "pattern": "tuxedo",
+   "coat_length": "short",
+   "size": "medium",
+   "attributes": {
+    "spayed_neutered": true
+   },
+   "description": "Received on: 2026-06-15 Description: Black / White Neutered Male Domestic Shorthair Cat Age: 2 YEARS Adoption Fee: $30.00 Current Location: King County Pet Adoption Center 21615 64TH AVE S KENT, WA 98032 Hi! My name is Morel and I am available for adoption! You can visit me at the Pet Adoption Center on weekdays from 12:00 pm to 5:00 pm, Saturdays and Sundays from 12:00 pm to 4:00 pm. The Pet Adoption Center is located at 21615 64th Ave S, Kent, WA 98032. Come and visit me today, I'd love to go home with you!",
+   "photo_url": "https://petharbor.com/get_image.asp?RES=Detail&LOCATION=KING&ID=A748641",
+   "thumb_path": "assets/img/cats/socrata-king_county_wa-A748641.jpg",
+   "adoption_url": "https://kingcounty.gov/en/dept/executive-services/animals-pets-pests/regional-animal-services/adopt-a-pet",
+   "status": "adoptable",
+   "published_at": "2026-06-15",
+   "first_seen": "2026-06-22T01:53:03Z"
+  },
+  {
+   "id": "socrata-montgomery_md-A544226",
+   "source": "socrata",
+   "source_id": "A544226",
+   "shelter_id": "montgomery_md",
+   "name": "George",
+   "age_text": "6 YEARS",
+   "age_bucket": "adult",
+   "sex": "male",
+   "spayed_neutered": true,
+   "breed_primary": "Domestic Shorthair",
+   "breed_mixed": true,
+   "colors": [
+    "black"
+   ],
+   "pattern": "solid",
+   "coat_length": "short",
+   "size": "large",
+   "attributes": {
+    "spayed_neutered": true
+   },
+   "photo_url": "https://petharbor.com/get_image.asp?RES=Detail&ID=A544226&LOCATION=MONT",
+   "thumb_path": "assets/img/cats/socrata-montgomery_md-A544226.jpg",
+   "adoption_url": "https://petharbor.com/pet.asp?uaid=MONT.A544226",
+   "status": "adoptable",
+   "published_at": "2026-06-09",
+   "first_seen": "2026-06-22T01:53:03Z"
+  },
+  {
+   "id": "socrata-montgomery_md-A544465",
+   "source": "socrata",
+   "source_id": "A544465",
+   "shelter_id": "montgomery_md",
+   "name": "Miguel",
+   "age_text": "1 YEAR",
+   "age_bucket": "young",
+   "sex": "male",
+   "spayed_neutered": true,
+   "breed_primary": "Domestic Shorthair",
+   "breed_mixed": true,
+   "colors": [
+    "gray"
+   ],
+   "pattern": "tabby",
+   "coat_length": "short",
+   "size": "medium",
+   "attributes": {
+    "spayed_neutered": true
+   },
+   "photo_url": "https://petharbor.com/get_image.asp?RES=Detail&ID=A544465&LOCATION=MONT",
+   "thumb_path": "assets/img/cats/socrata-montgomery_md-A544465.jpg",
+   "adoption_url": "https://petharbor.com/pet.asp?uaid=MONT.A544465",
+   "status": "adoptable",
+   "published_at": "2026-06-14",
+   "first_seen": "2026-06-22T01:53:03Z"
+  },
+  {
+   "id": "socrata-montgomery_md-A544483",
+   "source": "socrata",
+   "source_id": "A544483",
+   "shelter_id": "montgomery_md",
+   "name": "Elise",
+   "age_text": "7 YEARS",
+   "age_bucket": "adult",
+   "sex": "female",
+   "spayed_neutered": true,
+   "breed_primary": "Domestic Shorthair",
+   "breed_mixed": true,
+   "colors": [
+    "white",
+    "gray"
+   ],
+   "pattern": "bicolor",
+   "coat_length": "short",
+   "size": "medium",
+   "attributes": {
+    "spayed_neutered": true
+   },
+   "photo_url": "https://petharbor.com/get_image.asp?RES=Detail&ID=A544483&LOCATION=MONT",
+   "thumb_path": "assets/img/cats/socrata-montgomery_md-A544483.jpg",
+   "adoption_url": "https://petharbor.com/pet.asp?uaid=MONT.A544483",
+   "status": "adoptable",
+   "published_at": "2026-06-15",
+   "first_seen": "2026-06-22T01:53:03Z"
+  },
+  {
+   "id": "socrata-sonoma_ca-A442603",
+   "source": "socrata",
+   "source_id": "A442603",
+   "shelter_id": "sonoma_ca",
+   "name": "Momo",
+   "sex": "unknown",
+   "breed_primary": "Domestic Shorthair",
+   "breed_mixed": true,
+   "colors": [
+    "black"
+   ],
+   "pattern": "solid",
+   "coat_length": "short",
+   "size": "small",
+   "adoption_url": "https://sonomacounty.ca.gov/health-and-human-services/health-services/divisions/public-health/animal-services/adopt",
+   "status": "in_shelter",
+   "published_at": "2026-06-20",
+   "first_seen": "2026-06-22T01:53:03Z"
+  },
+  {
    "id": "socrata-austin_tx-25470",
    "source": "socrata",
    "source_id": "25470",
@@ -51,7 +410,7 @@
     "spayed_neutered": false
    },
    "adoption_url": "https://www.austintexas.gov/page/view-adoptable-pets",
-   "status": "in_shelter",
+   "status": "removed",
    "published_at": "2026-06-15",
    "first_seen": "2026-06-21T09:04:48Z"
   },
@@ -78,7 +437,7 @@
     "spayed_neutered": false
    },
    "adoption_url": "https://www.austintexas.gov/page/view-adoptable-pets",
-   "status": "in_shelter",
+   "status": "removed",
    "published_at": "2026-06-15",
    "first_seen": "2026-06-21T09:04:48Z"
   },
@@ -105,7 +464,7 @@
     "spayed_neutered": false
    },
    "adoption_url": "https://www.austintexas.gov/page/view-adoptable-pets",
-   "status": "in_shelter",
+   "status": "removed",
    "published_at": "2026-06-16",
    "first_seen": "2026-06-21T09:04:48Z"
   },
@@ -132,7 +491,7 @@
     "spayed_neutered": false
    },
    "adoption_url": "https://www.austintexas.gov/page/view-adoptable-pets",
-   "status": "in_shelter",
+   "status": "removed",
    "published_at": "2026-06-16",
    "first_seen": "2026-06-21T09:04:48Z"
   },
@@ -160,7 +519,7 @@
    },
    "description": "Normal",
    "adoption_url": "https://www.austintexas.gov/page/view-adoptable-pets",
-   "status": "in_shelter",
+   "status": "removed",
    "published_at": "2026-06-16",
    "first_seen": "2026-06-21T09:04:48Z"
   },
@@ -184,7 +543,7 @@
    "size": "medium",
    "description": "Normal",
    "adoption_url": "https://www.austintexas.gov/page/view-adoptable-pets",
-   "status": "in_shelter",
+   "status": "removed",
    "published_at": "2026-06-16",
    "first_seen": "2026-06-21T09:04:48Z"
   },
@@ -1952,7 +2311,7 @@
    "photo_url": "https://petharbor.com/get_image.asp?RES=Detail&LOCATION=KING&ID=A747664",
    "thumb_path": "assets/img/cats/socrata-king_county_wa-A747664.jpg",
    "adoption_url": "https://kingcounty.gov/en/dept/executive-services/animals-pets-pests/regional-animal-services/adopt-a-pet",
-   "status": "adoptable",
+   "status": "removed",
    "published_at": "2026-05-26",
    "first_seen": "2026-06-21T08:54:14Z"
   },
@@ -2352,7 +2711,7 @@
    "photo_url": "https://petharbor.com/get_image.asp?RES=Detail&ID=A542047&LOCATION=MONT",
    "thumb_path": "assets/img/cats/socrata-montgomery_md-A542047.jpg",
    "adoption_url": "https://petharbor.com/pet.asp?uaid=MONT.A542047",
-   "status": "adoptable",
+   "status": "removed",
    "published_at": "2026-04-15",
    "first_seen": "2026-06-21T06:28:40Z"
   },
@@ -2979,7 +3338,7 @@
    "photo_url": "https://petharbor.com/get_image.asp?RES=Detail&ID=A544203&LOCATION=MONT",
    "thumb_path": "assets/img/cats/socrata-montgomery_md-A544203.jpg",
    "adoption_url": "https://petharbor.com/pet.asp?uaid=MONT.A544203",
-   "status": "adoptable",
+   "status": "removed",
    "published_at": "2026-06-08",
    "first_seen": "2026-06-21T06:28:40Z"
   },
@@ -3343,7 +3702,7 @@
     "spayed_neutered": false
    },
    "adoption_url": "https://sonomacounty.ca.gov/health-and-human-services/health-services/divisions/public-health/animal-services/adopt",
-   "status": "in_shelter",
+   "status": "removed",
    "published_at": "2026-06-08",
    "first_seen": "2026-06-21T06:28:40Z"
   },
@@ -4424,7 +4783,7 @@
    "source": "socrata",
    "source_id": "A442551",
    "shelter_id": "sonoma_ca",
-   "name": "Biscuit",
+   "name": "Nan",
    "age_text": "0.0yy",
    "age_bucket": "kitten",
    "birth_estimate": "2026-05",
@@ -4451,7 +4810,7 @@
    "source": "socrata",
    "source_id": "A442552",
    "shelter_id": "sonoma_ca",
-   "name": "Cricket",
+   "name": "Tater",
    "age_text": "0.0yy",
    "age_bucket": "kitten",
    "birth_estimate": "2026-05",
@@ -4478,7 +4837,7 @@
    "source": "socrata",
    "source_id": "A442553",
    "shelter_id": "sonoma_ca",
-   "name": "Cinnamon",
+   "name": "Darby",
    "age_text": "0.0yy",
    "age_bucket": "kitten",
    "birth_estimate": "2026-05",
@@ -4505,7 +4864,7 @@
    "source": "socrata",
    "source_id": "A442554",
    "shelter_id": "sonoma_ca",
-   "name": "Tofu",
+   "name": "Greta",
    "age_text": "0.0yy",
    "age_bucket": "kitten",
    "birth_estimate": "2026-05",

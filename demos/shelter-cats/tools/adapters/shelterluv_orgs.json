@@ -1,0 +1,26 @@
+{
+  "_how_to_add": "Each org enables its own ShelterLuv API: ShelterLuv account → Settings → API → generate key. Put the key in shelterluv_keys.json (gitignored) under this org's id, OR set the env var named in key_env. No key = org skipped. The key identifies the org; slug (if set) builds per-cat adoption links. Add a new org = append a block here with its real geocode. Confirmed-ShelterLuv orgs seeded below; expand SoCal → NorCal → nationwide as you obtain keys (see adapters/README.md for the candidate roadmap).",
+  "orgs": {
+    "pasadena_humane": {
+      "enabled": true,
+      "key_env": "SHELTERLUV_KEY_PASADENA",
+      "slug": "PHC",
+      "name": "Pasadena Humane",
+      "country": "US", "region": "north_america", "city": "Pasadena", "state": "CA",
+      "address": "361 S Raymond Ave, Pasadena, CA 91105", "postcode": "91105",
+      "lat": 34.1366, "lng": -118.1503,
+      "website": "https://pasadenahumane.org/",
+      "adoption_url": "https://www.shelterluv.com/matchme/adopt/PHC/Cat"
+    },
+    "spca_la": {
+      "enabled": true,
+      "key_env": "SHELTERLUV_KEY_SPCALA",
+      "name": "spcaLA (P.D. Pitchford Companion Animal Village)",
+      "country": "US", "region": "north_america", "city": "Long Beach", "state": "CA",
+      "address": "7700 E Spring St, Long Beach, CA 90815", "postcode": "90815",
+      "lat": 33.8086, "lng": -118.0892,
+      "website": "https://spcala.com/",
+      "adoption_url": "https://spcala.com/adoptable/"
+    }
+  }
+}

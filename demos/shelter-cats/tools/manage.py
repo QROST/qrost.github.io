@@ -46,12 +46,15 @@ def cmd_init(args) -> int:
 
 
 def cmd_sources(args) -> int:
-    from tools.adapters import socrata, generic, rescuegroups
+    from tools.adapters import socrata, generic, shelterluv, rescuegroups
     print("Registered sources:")
     print(f"  socrata        live datasets: {', '.join(socrata.list_sources())}")
     print(f"                 (all configured: {', '.join(socrata.SOURCES.keys())})")
     glive = generic.list_sources()
     print(f"  generic        live datasets: {', '.join(glive) if glive else '(none yet — intl CKAN/ODS/ArcGIS feeds)'}")
+    keyed = shelterluv.keyed_orgs()
+    print(f"  shelterluv     configured orgs: {', '.join(shelterluv.ORGS.keys()) or '(none)'}")
+    print(f"                 orgs WITH a key (will fetch): {', '.join(keyed) if keyed else '(none — add to shelterluv_keys.json)'}")
     print(f"  rescuegroups   key set: {rescuegroups.have_key()}  "
           f"(export RESCUEGROUPS_API_KEY to enable)")
     return 0
