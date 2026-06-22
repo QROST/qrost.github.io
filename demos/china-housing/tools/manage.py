@@ -30,7 +30,7 @@ import argparse
 import csv
 import json
 import re
-from datetime import datetime
+from datetime import datetime, timezone
 import sqlite3
 import sys
 import unicodedata
@@ -47,6 +47,7 @@ DB_PATH = ROOT / "data" / "housing.db"
 JS_PATH = ROOT / "assets" / "data" / "listings.js"
 ENR_PATH = ROOT / "assets" / "data" / "enriched.js"
 HAZ_PATH = ROOT / "assets" / "data" / "hazards.js"
+POLICY_PATH = ROOT / "assets" / "data" / "policy.js"
 FIELD_PATH = ROOT / "assets" / "data" / "field.js"
 FIELD_HI_PATH = ROOT / "assets" / "data" / "field_hi.js"
 FIELD_HI_DIR = ROOT / "assets" / "data"
@@ -261,6 +262,30 @@ HAZ_HEADER = '''/**
 def render_hazards(d: dict) -> str:
     body = json.dumps(d, ensure_ascii=False, separators=(",", ":"), sort_keys=True)
     return HAZ_HEADER + "window.HOUSING_HAZARDS = " + body + ";\n"
+
+
+POLICY_HEADER = '''/**
+ * China small-city housing — city + national home-buying policy (城市/国家购房政策).
+ *
+ * GENERATED FILE — do not hand-edit. Source is data/housing.db (city_policy +
+ * national_policy), populated by `manage.py import-policy`; regenerate with:
+ *   python3 tools/manage.py build
+ *
+ * Contract: tools/POLICY_CONTRACT.md. Policy is keyed by 地级市 (NOT per-listing);
+ * every field carries source_url + as_of + confidence (cite-or-null). A TIME-DECAYING
+ * snapshot — the page shows an "as-of {date}, 购房前请向当地住建局核实" disclaimer.
+ *   window.CITY_POLICY     = {asOf, byPref:{"<prov>|<地级市>":{...}}, locIndex:{...}}
+ *   window.NATIONAL_POLICY = {<topic>:{key_facts, value_struct, source_url, as_of, confidence}}
+ */
+'''
+
+
+def render_policy(city: dict, national: dict) -> str:
+    cb = json.dumps(city, ensure_ascii=False, separators=(",", ":"), sort_keys=True)
+    nb = json.dumps(national, ensure_ascii=False, separators=(",", ":"), sort_keys=True)
+    return (POLICY_HEADER
+            + "window.CITY_POLICY = " + cb + ";\n"
+            + "window.NATIONAL_POLICY = " + nb + ";\n")
 
 
 FIELD_HEADER_COARSE = '''/**
@@ -506,6 +531,12 @@ def cmd_build(args):
     hazards = enrich.emit_hazards()
     HAZ_PATH.write_text(render_hazards(hazards), encoding="utf-8")
     print(f"✓ hazards: {len(hazards)} province profiles → {HAZ_PATH.relative_to(ROOT)}")
+    # emit city + national home-buying policy (keyed by 地级市; cite-or-null provenance)
+    city_pol = enrich.emit_city_policy(con)
+    nat_pol = enrich.emit_national_policy(con)
+    POLICY_PATH.write_text(render_policy(city_pol, nat_pol), encoding="utf-8")
+    print(f"✓ policy: {len(city_pol.get('byPref', {}))} 地级市 + "
+          f"{len(nat_pol)} national topics → {POLICY_PATH.relative_to(ROOT)}")
     # emit gridded climate/elevation fields — coarse (1°) + fine (0.25° zoom LOD)
     log = lambda m: print("   " + m)
     field = gridfield.emit_field(log, step=gridfield.STEP_COARSE)
@@ -809,6 +840,109 @@ def cmd_property_import(args):
         print("→ run `build` to regenerate enriched.js")
 
 
+_CONF_RANK = {"unknown": 0, "low": 1, "med": 2, "high": 3}
+
+
+def _apply_verify(city: dict, adjustments: list, log) -> int:
+    """Fold an adversarial-verify pass into a city's policy fields (downgrade confidence,
+    attach provenance of the check). Returns the number of fields adjusted."""
+    n = 0
+    for adj in adjustments or []:
+        if adj.get("prefecture") != city.get("prefecture"):
+            continue
+        fld = adj.get("field")
+        obj = city.get(fld)
+        if not isinstance(obj, dict):
+            continue
+        verdict = adj.get("verdict")
+        if verdict == "confirmed":
+            continue
+        cur = obj.get("confidence", "unknown")
+        if verdict in ("unsupported", "contradicted"):
+            target = adj.get("corrected_confidence") or "unknown"
+        elif verdict == "unverifiable":
+            target = adj.get("corrected_confidence") or "low"
+        else:
+            target = cur
+        # never raise confidence via a skeptical pass — only cap/lower it
+        if _CONF_RANK.get(target, 0) < _CONF_RANK.get(cur, 0):
+            obj["confidence"] = target
+        obj["_verify"] = {k: adj.get(k) for k in ("verdict", "corrected_value", "note")
+                          if adj.get(k) is not None}
+        n += 1
+    return n
+
+
+def cmd_import_policy(args):
+    """Ingest the policy-research workflow result → city_policy + national_policy.
+
+    Expects {asOf, provinces:[{research:{prov,cities},verify:{adjustments}} | {prov,cities}],
+             national:[{topic,...}]}. Applies the adversarial-verify pass before upsert.
+    """
+    con = connect()
+    blob = json.loads(Path(args.path).read_text(encoding="utf-8"))
+    as_of = blob.get("asOf") or args.as_of
+    stamp = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%MZ")
+    cur = con.cursor()
+    n_adj = n_nat = 0
+    # Accumulate by (short-prov, prefecture) so 县级市 lumped under one prefecture
+    # (e.g. 娄底市-冷水江市 + 娄底市-涟源市 → 娄底市) merge instead of clobbering.
+    merged = {}  # (prov, pref) -> {"loc_names": set, "data": dict}
+    for item in blob.get("provinces", []):
+        research = item.get("research", item) if isinstance(item, dict) else None
+        if not research or not research.get("cities"):
+            continue
+        prov = enrich.norm_prov(research.get("prov"))
+        adjustments = (item.get("verify") or {}).get("adjustments") if "verify" in item else None
+        for city in research["cities"]:
+            if adjustments:
+                n_adj += _apply_verify(city, adjustments, print)
+            pref = city.get("prefecture")
+            if not prov or not pref:
+                continue
+            loc_names = city.pop("loc_names", []) or []
+            data = {k: v for k, v in city.items() if k != "prefecture"}
+            slot = merged.get((prov, pref))
+            if slot is None:
+                merged[(prov, pref)] = {"loc_names": list(loc_names), "data": data}
+            else:  # collision: union loc_names, keep first (prefecture-grain) data
+                for ln in loc_names:
+                    if ln not in slot["loc_names"]:
+                        slot["loc_names"].append(ln)
+    n_pref = len(merged)
+    if not args.dry_run:
+        cur.execute("DELETE FROM city_policy")   # full-snapshot replace
+        cur.execute("DELETE FROM national_policy")
+        for (prov, pref), slot in merged.items():
+            cur.execute(
+                """INSERT INTO city_policy (prov, prefecture, loc_names, data, as_of, updated)
+                   VALUES (?,?,?,?,?,?)""",
+                (prov, pref, json.dumps(slot["loc_names"], ensure_ascii=False),
+                 json.dumps(slot["data"], ensure_ascii=False), as_of, stamp),
+            )
+    for nat in blob.get("national", []):
+        topic = nat.get("topic")
+        if not topic:
+            continue
+        if args.dry_run:
+            n_nat += 1
+            continue
+        payload = {k: v for k, v in nat.items() if k != "topic"}
+        cur.execute(
+            """INSERT INTO national_policy (topic, data, updated) VALUES (?,?,?)
+               ON CONFLICT(topic) DO UPDATE SET data=excluded.data, updated=excluded.updated""",
+            (topic, json.dumps(payload, ensure_ascii=False), stamp),
+        )
+        n_nat += 1
+    if not args.dry_run:
+        con.commit()
+    verb = "(dry-run) would import" if args.dry_run else "imported"
+    print(f"✓ {verb}: {n_pref} 地级市 ({n_adj} verify adjustments) + {n_nat} national topics "
+          f"[as_of={as_of}]")
+    if not args.dry_run:
+        print("→ run `build` to regenerate assets/data/policy.js")
+
+
 def main(argv=None):
     p = argparse.ArgumentParser(prog="manage.py", description=__doc__,
                                 formatter_class=argparse.RawDescriptionHelpFormatter)
@@ -941,6 +1075,13 @@ def main(argv=None):
     sp.add_argument("path", help="CSV with id + optional property columns")
     sp.add_argument("--dry-run", action="store_true", help="validate only, no DB writes")
     sp.set_defaults(fn=cmd_property_import)
+
+    sp = sub.add_parser("import-policy",
+                        help="ingest policy-research workflow JSON → city_policy + national_policy")
+    sp.add_argument("path", help="workflow result JSON {asOf, provinces:[…], national:[…]}")
+    sp.add_argument("--as-of", default="2026-06", help="fallback as_of when JSON omits it")
+    sp.add_argument("--dry-run", action="store_true", help="report only, no DB writes")
+    sp.set_defaults(fn=cmd_import_policy)
 
     sp = sub.add_parser("export-csv", help="dump DB → CSV (default data/listings.csv)")
     sp.add_argument("path", nargs="?", default=None)

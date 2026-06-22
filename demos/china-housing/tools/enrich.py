@@ -229,6 +229,23 @@ def migrate(con):
         listing_id INTEGER PRIMARY KEY,
         coast_km REAL, seismic_band TEXT, typhoon TEXT, summary TEXT
       );
+      -- City-level home-buying policy (限购/限贷/落户/补贴/公积金/契税/资源枯竭/人口),
+      -- keyed by 地级市 — NOT per-listing. data = JSON per POLICY_CONTRACT.md, each
+      -- field carrying source_url + as_of + confidence. loc_names = JSON array of the
+      -- raw DB `city` strings this prefecture covers (e.g. 威海市-荣成市 / 威海市-乳山市).
+      CREATE TABLE IF NOT EXISTS city_policy (
+        prov TEXT, prefecture TEXT,
+        loc_names TEXT, data TEXT,
+        as_of TEXT, updated TEXT,
+        PRIMARY KEY (prov, prefecture)
+      );
+      -- National policy constants (LPR/首付下限/认房不认贷/契税分档/增值税/个税/
+      -- 房地产税/户籍改革/保交楼), one row per topic. data = JSON {key_facts,
+      -- value_struct, source_url, as_of, confidence}.
+      CREATE TABLE IF NOT EXISTS national_policy (
+        topic TEXT PRIMARY KEY,
+        data TEXT, updated TEXT
+      );
     """)
     poicols = {r[1] for r in con.execute("PRAGMA table_info(poi)")}
     if "source" not in poicols:  # 'osm' | 'research'
@@ -2268,4 +2285,110 @@ def emit_enriched(con):
             continue
         e["risk"] = {"coastKm": r["coast_km"], "seismic": r["seismic_band"],
                      "typhoon": r["typhoon"], "summary": r["summary"]}
+    return out
+
+
+# ---------------------------------------------------------------------------
+# Emit — city + national policy globals (window.CITY_POLICY / window.NATIONAL_POLICY)
+# ---------------------------------------------------------------------------
+_PROV_SUFFIXES = ("维吾尔自治区", "壮族自治区", "回族自治区", "自治区", "省", "市")
+_PREF_SUFFIXES = ("朝鲜族自治州", "哈萨克自治州", "自治州", "地区", "盟", "州", "市", "区", "县")
+
+
+def norm_prov(p: str) -> str:
+    """Province full name → DB short form: 山东省→山东, 宁夏回族自治区→宁夏, 内蒙古→内蒙古."""
+    p = (p or "").strip()
+    for suf in _PROV_SUFFIXES:
+        if p.endswith(suf) and len(p) > len(suf):
+            return p[: -len(suf)]
+    return p
+
+
+def _pref_stem(s: str) -> str:
+    """Prefecture stem for fuzzy match: 延边朝鲜族自治州→延边, 延边州→延边, 长春市→长春."""
+    s = (s or "").strip()
+    for suf in _PREF_SUFFIXES:
+        if s.endswith(suf) and len(s) > len(suf):
+            return s[: -len(suf)]
+    return s
+
+
+def _resolve_pref_key(prov: str, city: str, cand: dict):
+    """Map a raw DB (prov, city) to a 'prov|prefecture' key. cand = {prefecture: key}.
+
+    Ladder: exact prefecture == city.split('-')[0]  →  whole city  →  stem equality.
+    DB cities are '地级市-区县' (威海市-荣成市) or bare (南通市); the prefecture is the
+    part before '-'. Stem match catches 延边州-龙井市 → 延边朝鲜族自治州."""
+    guess = city.split("-")[0]
+    if guess in cand:
+        return cand[guess]
+    if city in cand:
+        return cand[city]
+    gstem = _pref_stem(guess)
+    for pref, key in cand.items():
+        if gstem and _pref_stem(pref) == gstem:
+            return key
+    return None
+
+
+def emit_city_policy(con):
+    """Return {asOf, byPref, locIndex} for build to serialize as window.CITY_POLICY.
+
+    byPref:   {"<prov>|<prefecture>": {prefecture, locNames, asOf, ...policyFields}}
+    locIndex: {"<prov>|<rawCityString>": "<prov>|<prefecture>"} so the frontend can
+              resolve an exact listing.city first, falling back to city.split('-')[0].
+    """
+    by_pref, loc_index, as_of_max = {}, {}, None
+    for r in con.execute("SELECT prov, prefecture, loc_names, data, as_of FROM city_policy"):
+        key = f"{r['prov']}|{r['prefecture']}"
+        try:
+            data = json.loads(r["data"]) if r["data"] else {}
+        except Exception:  # noqa: BLE001
+            data = {}
+        try:
+            loc_names = json.loads(r["loc_names"]) if r["loc_names"] else []
+        except Exception:  # noqa: BLE001
+            loc_names = []
+        entry = {"prefecture": r["prefecture"], "locNames": loc_names}
+        if r["as_of"]:
+            entry["asOf"] = r["as_of"]
+            as_of_max = max(as_of_max, r["as_of"]) if as_of_max else r["as_of"]
+        entry.update(data)
+        by_pref[key] = entry
+        for ln in loc_names:
+            loc_index[f"{r['prov']}|{ln}"] = key
+    # Complete the index against the actual listings so EVERY (prov, city) resolves to a
+    # prefecture even when the researcher's loc_names were sloppy (南通 vs 南通市) or the
+    # prefecture name differs from the DB prefix (延边朝鲜族自治州 vs 延边州). Logged gaps
+    # in build mean a listing genuinely has no policy row yet.
+    cand_by_prov = {}
+    for key in by_pref:
+        prov, pref = key.split("|", 1)
+        cand_by_prov.setdefault(prov, {})[pref] = key
+    unresolved = []
+    for prov, city in con.execute("SELECT DISTINCT prov, city FROM listings"):
+        k = f"{prov}|{city}"
+        if k in loc_index:
+            continue
+        hit = _resolve_pref_key(prov, city, cand_by_prov.get(prov, {}))
+        if hit:
+            loc_index[k] = hit
+        elif prov in cand_by_prov:  # mainland prov we researched, but this city didn't map
+            unresolved.append(k)
+    out = {"byPref": by_pref, "locIndex": loc_index}
+    if as_of_max:
+        out["asOf"] = as_of_max
+    if unresolved:
+        out["_unresolved"] = sorted(unresolved)
+    return out
+
+
+def emit_national_policy(con):
+    """Return {topic: {key_facts, value_struct, source_url, as_of, confidence}}."""
+    out = {}
+    for r in con.execute("SELECT topic, data FROM national_policy"):
+        try:
+            out[r["topic"]] = json.loads(r["data"]) if r["data"] else {}
+        except Exception:  # noqa: BLE001
+            out[r["topic"]] = {}
     return out
