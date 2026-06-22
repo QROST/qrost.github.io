@@ -21,7 +21,8 @@
   var CUR = { USD: '$', CNY: '¥', EUR: '€', JPY: '¥', CHF: 'CHF ', GBP: '£', DKK: 'kr ', KRW: '₩',
     INR: '₹', AUD: 'A$', SGD: 'S$', HKD: 'HK$', TWD: 'NT$', BRL: 'R$', CAD: 'C$', ILS: '₪', SEK: 'kr ',
     PLN: 'zł ', TRY: '₺', SAR: 'SAR ', NOK: 'kr ', HUF: 'Ft ', MXN: 'MX$', IDR: 'Rp ', MYR: 'RM ',
-    THB: '฿', ZAR: 'R ', EGP: 'E£', AED: 'AED ', RUB: '₽', ARS: 'AR$ ' };
+    THB: '฿', ZAR: 'R ', EGP: 'E£', AED: 'AED ', RUB: '₽', ARS: 'AR$ ',
+    BDT: '৳ ', JOD: 'JD ', PHP: '₱', PKR: '₨ ', RON: 'lei ', VND: '₫ ' };
   var FX_FALLBACK = { USD: 1, CNY: 7.22, EUR: 0.925, JPY: 149, GBP: 0.787, CHF: 0.893, DKK: 6.9,
     KRW: 1330, INR: 83.3, AUD: 1.515, HKD: 7.81, TWD: 32.3, BRL: 5.55, ILS: 3.7, SEK: 10.5, PLN: 4.0,
     TRY: 33.3, SAR: 3.75, CAD: 1.37, NOK: 10.9, HUF: 357, MXN: 20, IDR: 16100, MYR: 4.55, THB: 34.5,
