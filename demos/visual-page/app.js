@@ -14,6 +14,9 @@ import * as THREE from 'three';
 import {
   applyUi, registerPanelNode, renderCardHtml, sensorBtnLabel, toggleLang, isZh,
 } from './i18n.js';
+import { Sonifier } from './audio.js';   // 生成式数据音乐引擎（zero-dep Web Audio）
+
+const sonifier = new Sonifier();   // 由「Motion & sound」按钮在用户手势内 start()
 
 const IS_MOBILE = matchMedia('(pointer: coarse)').matches || innerWidth < 820;
 const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
@@ -693,6 +696,8 @@ const SZ_GAMMA = 2.2;   // 尺寸幂曲线：>1 → 多数微小、少数巨大�
 let prevPos = null;   // 上一帧世界位置 → 算速度方向（棱柱以运动方向为自转轴）
 let visArr = null, cwArr = null, trOff = null;   // 视锥剔除 + 每实体到相机的距离（cw）→ 投影尺寸 LOD；trOff=连续离屏采样数（拖尾重入迟滞，消除边缘闪烁）
 let gOrg = 0, breathT = 0, bPhase = null, bRate = null;   // 全局呼吸量(供晶格) + 相位累加器；bPhase/bRate=每实体(按 cluster)的呼吸相位偏移与速率 → 错峰 + 各异速
+let audioCtx = null, audioTone = null, _aggTick = 0;   // 音乐：用户手势内创建的 AudioContext；每星音高种子(色相 0..1)；视野聚合节流计数
+const viewAgg = { n: 0, dom: 0, toneAvg: 0.5, szAvg: 0.3, counts: new Int32Array(8) };   // 视野内实体聚合 → 喂给音乐引擎（gaze 决定听到什么）
 // ---------- 几何体形库：常规多面体 + 特殊数学三维体（每个含棱线 edges + 轨迹发射点 corners）----------
 const SHAPES = (() => {
   const edgesOf = (geo) => Array.from(new THREE.EdgesGeometry(geo, 1).attributes.position.array);   // 只取真实特征棱
@@ -844,6 +849,11 @@ function finalize() {
     for (let i = 0; i < N; i++) { if (shapeArr[i] === 0) { if (D.sz[i] > pointMax) pointMax = D.sz[i]; } else if (D.sz[i] > solidMax) solidMax = D.sz[i]; }
     szCurve = new Float32Array(N);
     for (let i = 0; i < N; i++) szCurve[i] = Math.pow(clamp(D.sz[i] / (shapeArr[i] === 0 ? pointMax : solidMax), 0, 1), SZ_GAMMA); }
+
+  // 每星音高种子：颜色色相(0..1) → 音乐里映射到音阶级（"听见颜色"，与视觉数据编码一致）
+  audioTone = new Float32Array(N);
+  { const _ac = new THREE.Color(), _ah = {};
+    for (let i = 0; i < N; i++) { _ac.setRGB(D.col[i * 3], D.col[i * 3 + 1], D.col[i * 3 + 2]); _ac.getHSL(_ah); audioTone[i] = _ah.h; } }
 
   // points
   const g = new THREE.BufferGeometry();
@@ -1150,12 +1160,21 @@ addEventListener('deviceorientation', (e) => {
 
 let analyser = null, micBuf = null;
 async function enableSensors() {
-  try { if (typeof DeviceOrientationEvent !== 'undefined' && DeviceOrientationEvent.requestPermission) await DeviceOrientationEvent.requestPermission().catch(() => {}); } catch (_) {}
+  // 1) 先在用户手势的同步上下文里起音乐输出：AudioContext.resume 只有在手势内调用才生效，故必须在任何 await 之前
   try {
-    const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
-    const AC = window.AudioContext || window.webkitAudioContext; const ac = new AC();
-    ac.createMediaStreamSource(stream); const an = ac.createAnalyser(); an.fftSize = 256;
-    ac.createMediaStreamSource(stream).connect(an); analyser = an; micBuf = new Uint8Array(an.frequencyBinCount);
+    if (!audioCtx) { const AC = window.AudioContext || window.webkitAudioContext; if (AC) audioCtx = new AC(); }
+    if (audioCtx) { if (audioCtx.resume) audioCtx.resume(); sonifier.start(audioCtx, { climWarm }); }
+  } catch (_) {}
+  // 2) 陀螺仪权限（iOS 13+ 需显式授权）
+  try { if (typeof DeviceOrientationEvent !== 'undefined' && DeviceOrientationEvent.requestPermission) await DeviceOrientationEvent.requestPermission().catch(() => {}); } catch (_) {}
+  // 3) 麦克风（可选）→ 复用同一 AudioContext 作输入分析；失败不影响音乐播放（多数桌面用户不授权麦克风，但音乐仍是主体验）
+  try {
+    if (audioCtx) {
+      const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+      const an = audioCtx.createAnalyser(); an.fftSize = 256;
+      audioCtx.createMediaStreamSource(stream).connect(an);   // 仅接 analyser，不接 destination → 无回授/无回声
+      analyser = an; micBuf = new Uint8Array(an.frequencyBinCount);
+    }
   } catch (_) {}
   const btn = document.getElementById('enable');
   btn.textContent = sensorBtnLabel(analyser);
@@ -1293,6 +1312,19 @@ document.getElementById('lang-toggle').addEventListener('click', (e) => {
   addEventListener('pointermove', showHud); addEventListener('pointerdown', showHud); addEventListener('keydown', showHud); showHud(); }
 
 addEventListener('resize', () => { camera.aspect = innerWidth / innerHeight; camera.updateProjectionMatrix(); renderer.setSize(innerWidth, innerHeight); U.uPixelRatio.value = renderer.getPixelRatio(); beamMaterial.uniforms.uRes.value.set(innerWidth, innerHeight); });
+
+// 视野内实体聚合 → 喂给音乐引擎：count/层 → 主导层(选音色=变轨)、色相均值 → 旋律目标音级（gaze 决定听到什么）。节流调用（音符级速率足矣）
+function computeViewAgg() {
+  if (!N || !visArr || !audioTone) return;
+  const c = viewAgg.counts; c.fill(0);
+  let tone = 0, sz = 0, n = 0;
+  for (let i = 0; i < N; i++) {
+    if (!visArr[i] || !groupVis[grp[i]]) continue;
+    c[grp[i]]++; tone += audioTone[i]; sz += szCurve ? szCurve[i] : 0.5; n++;
+  }
+  if (n) { let dom = 0, dmax = -1; for (let k = 0; k < 8; k++) if (c[k] > dmax) { dmax = c[k]; dom = k; } viewAgg.dom = dom; viewAgg.toneAvg = tone / n; viewAgg.szAvg = sz / n; }
+  viewAgg.n = n;   // n==0 时保留上一帧 dom/tone（避免视野扫空时音色乱跳）
+}
 
 // ---------- loop ----------
 const clock = new THREE.Clock();
@@ -1451,6 +1483,17 @@ function animate() {
   else if (!dragging && focusIdx < 0) yaw += 0.00016;    // 极缓自动巡游（仅自由模式）
   applyLook(dt);   // 焦点切换/退出由 applyLook 内的临界阻尼跟随处理（连贯不跳）
   if (focusActive) updateInspector();   // 详情面板逐帧刷新 trajectory 点 (x,y,z) + 有效步长 Δt
+
+  // 生成式数据音乐：呼吸=曲式、视角=空间乐器、视野=旋律、焦点=吟唱（仅在用户开声后运行）
+  if (sonifier.started) {
+    if ((_aggTick++ & 3) === 0) computeViewAgg();   // 视野聚合节流（每 4 帧）→ 音符级足够
+    sonifier.update({
+      dt, t: tElapsed, pulse, gOrg, breathT,
+      yaw, pitch, fov: camera.fov,
+      focus: (focusActive && focusIdx >= 0 && sys) ? { idx: focusIdx, sys: sys[focusIdx], prm: prm[focusIdx], tone: audioTone ? audioTone[focusIdx] : 0.5, group: grp[focusIdx], spd: spd[focusIdx] } : null,
+      view: viewAgg,
+    });
+  }
   renderer.render(scene, camera);
 }
 
@@ -1541,6 +1584,7 @@ function buildPanel() {
   panel.appendChild(mkRow('panelBeams', true, (on) => { if (beamObj) beamObj.visible = on; }));
   panel.appendChild(mkRow('panelTrails', true, (on) => { if (trailObj) trailObj.visible = on; }));
   panel.appendChild(mkRow('panelLattice', true, (on) => { if (latticeObj) latticeObj.visible = on; }));
+  panel.appendChild(mkRow('panelSound', true, (on) => { sonifier.setMuted(!on); }));   // 静音/取消静音（需先点「Motion & sound」起声）
   document.body.appendChild(panel);
   panel.style.display = 'none';
   addEventListener('keydown', (e) => { if (e.key === 'd' || e.key === 'D') panel.style.display = panel.style.display === 'none' ? 'flex' : 'none'; });

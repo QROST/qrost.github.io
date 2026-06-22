@@ -32,6 +32,7 @@ const UI = {
   panelBeams: { en: 'Beams', zh: '连线' },
   panelTrails: { en: 'Trails', zh: '拖尾' },
   panelLattice: { en: 'Lattice', zh: '晶格' },
+  panelSound: { en: 'Sound', zh: '声音' },
 };
 
 const KIND = {
