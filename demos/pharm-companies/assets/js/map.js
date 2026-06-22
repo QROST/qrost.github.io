@@ -40,13 +40,19 @@
   }
 
   // Returns {key,label,color} for a site under the chosen dimension.
-  function categorize(site, company, dim, countryColorMap, typeColorMap) {
+  function categorize(site, company, dim, countryColorMap, typeColorMap, taColorMap, opts) {
     if (dim === 'site_type') {
       return { key: site.site_type, label: I18N.enumLabel('site_type', site.site_type), color: siteColor(site.site_type) };
     }
     if (dim === 'company_type') {
       var ct = company ? company.company_type : '?';
       return { key: ct, label: I18N.enumLabel('company_type', ct), color: typeColorMap[ct] || cssVar('--chart-1') };
+    }
+    if (dim === 'therapeutic_area') {
+      var ta = opts.getPrimaryTA ? opts.getPrimaryTA(site.company_id) : null;
+      if (!ta) return { key: '_none', label: I18N.t('noData') || '—', color: cssVar('--text-faint') };
+      var tlab = opts.taName ? opts.taName(ta) : ta;
+      return { key: ta, label: tlab || ta, color: taColorMap[ta] || cssVar('--chart-1') };
     }
     // country (HQ)
     var co = company ? company.country : '?';
@@ -62,21 +68,24 @@
     var getCompany = opts.getCompany;
     onClickCb = opts.onClick || onClickCb;
 
-    // stable color maps for country / company_type
-    var countries = [], types = [];
+    // stable color maps for country / company_type / therapeutic_area
+    var countries = [], types = [], areas = [];
     sites.forEach(function (s) {
       var co = getCompany(s.company_id);
       if (co && co.country && countries.indexOf(co.country) === -1) countries.push(co.country);
       if (co && co.company_type && types.indexOf(co.company_type) === -1) types.push(co.company_type);
+      var ta = opts.getPrimaryTA && opts.getPrimaryTA(s.company_id);
+      if (ta && areas.indexOf(ta) === -1) areas.push(ta);
     });
     var pal = TYPE_COLORS.map(cssVar);
     var countryColorMap = {}; countries.sort().forEach(function (co, i) { countryColorMap[co] = FLAG_COLOR[co] || catColor(i, pal); });
     var typeColorMap = {}; types.sort().forEach(function (t, i) { typeColorMap[t] = catColor(i, pal); });
+    var taColorMap = {}; areas.sort().forEach(function (t, i) { taColorMap[t] = catColor(i, pal); });
 
     var legend = {};
     var points = sites.filter(function (s) { return typeof s.lat === 'number' && typeof s.lng === 'number'; }).map(function (s) {
       var co = getCompany(s.company_id);
-      var cat = categorize(s, co, dim, countryColorMap, typeColorMap);
+      var cat = categorize(s, co, dim, countryColorMap, typeColorMap, taColorMap, opts);
       legend[cat.key] = { label: cat.label, color: cat.color };
       return {
         name: co ? I18N.name(co) : s.company_id,

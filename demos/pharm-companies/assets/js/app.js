@@ -8,10 +8,10 @@
 
   var state = {
     map: { dim: 'site_type', region: '', modality: '', ta: '' },
-    cat: { search: '', region: '', type: '', modality: '', tier: '', sort: 'name', dir: 1 },
+    cat: { search: '', region: '', type: '', modality: '', ta: '', tier: '', sort: 'name', dir: 1 },
     compare: [], countrySel: [], groupsFilter: '', policiesFilter: '', dealsFilter: ''
   };
-  var companyModalities = {}, companyTAs = {};
+  var companyModalities = {}, companyTAs = {}, companyPrimaryTA = {};
   var CAT_CAP = 400; // max catalog rows rendered at once (perf w/ large roster); refine via filters
 
   // ---------- FX + money formatting ----------
@@ -92,15 +92,27 @@
 
   // ---------- indexes ----------
   function buildIndexes() {
-    companyModalities = {}; companyTAs = {};
+    companyModalities = {}; companyTAs = {}; companyPrimaryTA = {};
+    var taIds = {}; D.therapeuticAreas.forEach(function (t) { taIds[t.id] = 1; });  // valid TA id set
+    var taCount = {};  // company_id -> { ta_id: product_count }
     D.products.forEach(function (p) {
       (companyModalities[p.company_id] = companyModalities[p.company_id] || new Set()).add(p.modality_id);
       (companyTAs[p.company_id] = companyTAs[p.company_id] || new Set()).add(p.therapeutic_area_id);
+      if (p.therapeutic_area_id && taIds[p.therapeutic_area_id]) {
+        (taCount[p.company_id] = taCount[p.company_id] || {});
+        taCount[p.company_id][p.therapeutic_area_id] = (taCount[p.company_id][p.therapeutic_area_id] || 0) + 1;
+      }
     });
     D.companies.forEach(function (c) {
       (c.therapeutic_focus || []).forEach(function (ta) { (companyTAs[c.id] = companyTAs[c.id] || new Set()).add(ta); });
+      // primary TA = the area with the most pipeline/products; fallback = first declared focus.
+      // Gate on the valid TA-id set so free-text focus tags (cdmo, drug-discovery…) don't pollute the map legend.
+      var cnt = taCount[c.id];
+      if (cnt) { var best = null, bn = -1; for (var k in cnt) { if (cnt[k] > bn) { bn = cnt[k]; best = k; } } companyPrimaryTA[c.id] = best; }
+      else { var tf = (c.therapeutic_focus || []).filter(function (x) { return taIds[x]; }); if (tf.length) companyPrimaryTA[c.id] = tf[0]; }
     });
   }
+  function getPrimaryTA(id) { return companyPrimaryTA[id] || null; }
 
   // ---------- filter population ----------
   function opt(v, label) { return '<option value="' + esc(v) + '">' + esc(label) + '</option>'; }
@@ -116,10 +128,12 @@
     var modOpts = opt('', I18N.t('allModalities')) + mods.map(function (m) { return opt(m.id, I18N.name(m)); }).join('');
     $('map-filter-modality').innerHTML = modOpts; $('cat-filter-modality').innerHTML = modOpts;
     $('cat-filter-tier').innerHTML = opt('', I18N.t('tierAll')) + opt('deep', I18N.t('tierDeep')) + opt('roster', I18N.t('tierRoster'));
-    $('map-filter-ta').innerHTML = opt('', I18N.t('allTAs')) + tas.map(function (t) { return opt(t.id, I18N.name(t)); }).join('');
+    var taOpts = opt('', I18N.t('allTAs')) + tas.map(function (t) { return opt(t.id, I18N.name(t)); }).join('');
+    $('map-filter-ta').innerHTML = taOpts;
+    if ($('cat-filter-ta')) $('cat-filter-ta').innerHTML = taOpts;
     $('milestone-filter').innerHTML = opt('', I18N.t('allTAs')) + tas.map(function (t) { return opt(t.id, I18N.name(t)); }).join('');
 
-    var dims = [['site_type', 'dimSiteType'], ['country', 'dimCountry'], ['company_type', 'dimType']];
+    var dims = [['site_type', 'dimSiteType'], ['country', 'dimCountry'], ['company_type', 'dimType'], ['therapeutic_area', 'dimTA']];
     $('map-dims').innerHTML = dims.map(function (d) {
       return '<button data-dim="' + d[0] + '" class="' + (d[0] === state.map.dim ? 'active' : '') + '">' + I18N.t(d[1]) + '</button>';
     }).join('');
@@ -148,7 +162,11 @@
     });
   }
   function renderMap() {
-    MAP.render({ dim: state.map.dim, sites: filteredSites(), getCompany: D.getCompany, onClick: openCompanyModal });
+    MAP.render({
+      dim: state.map.dim, sites: filteredSites(), getCompany: D.getCompany,
+      getPrimaryTA: getPrimaryTA, taName: function (id) { var t = D.getTA(id); return t ? I18N.name(t) : id; },
+      onClick: openCompanyModal
+    });
   }
 
   // ---------- catalog ----------
@@ -159,6 +177,7 @@
       if (f.type && c.company_type !== f.type) return false;
       if (f.tier && (c.tier || 'deep') !== f.tier) return false;
       if (f.modality && !(companyModalities[c.id] && companyModalities[c.id].has(f.modality))) return false;
+      if (f.ta && !(companyTAs[c.id] && companyTAs[c.id].has(f.ta))) return false;
       if (q) {
         var tk = (c.tickers || []).map(function (x) { return x.symbol; }).join(' ');
         var hay = ((c.name_zh || '') + ' ' + (c.name_en || '') + ' ' + c.id + ' ' + (c.exchange || '') + ' ' + tk).toLowerCase();
@@ -577,10 +596,12 @@
     $('cat-filter-region').addEventListener('change', function (e) { state.cat.region = e.target.value; renderCatalog(); });
     $('cat-filter-type').addEventListener('change', function (e) { state.cat.type = e.target.value; renderCatalog(); });
     $('cat-filter-modality').addEventListener('change', function (e) { state.cat.modality = e.target.value; renderCatalog(); });
+    if ($('cat-filter-ta')) $('cat-filter-ta').addEventListener('change', function (e) { state.cat.ta = e.target.value; renderCatalog(); });
     $('cat-filter-tier').addEventListener('change', function (e) { state.cat.tier = e.target.value; renderCatalog(); });
     $('cat-reset').addEventListener('click', function () {
-      state.cat.search = state.cat.region = state.cat.type = state.cat.modality = state.cat.tier = '';
-      $('cat-search').value = ''; $('cat-filter-region').value = ''; $('cat-filter-type').value = ''; $('cat-filter-modality').value = ''; $('cat-filter-tier').value = ''; renderCatalog();
+      state.cat.search = state.cat.region = state.cat.type = state.cat.modality = state.cat.ta = state.cat.tier = '';
+      $('cat-search').value = ''; $('cat-filter-region').value = ''; $('cat-filter-type').value = ''; $('cat-filter-modality').value = '';
+      if ($('cat-filter-ta')) $('cat-filter-ta').value = ''; $('cat-filter-tier').value = ''; renderCatalog();
     });
     $('catalog-head').addEventListener('click', function (e) {
       var th = e.target.closest('th[data-sort]'); if (!th) return;
@@ -635,6 +656,7 @@
   function restoreFilterValues() {
     $('map-filter-region').value = state.map.region; $('map-filter-modality').value = state.map.modality; $('map-filter-ta').value = state.map.ta;
     $('cat-filter-region').value = state.cat.region; $('cat-filter-type').value = state.cat.type; $('cat-filter-modality').value = state.cat.modality; $('cat-filter-tier').value = state.cat.tier; $('cat-search').value = state.cat.search;
+    if ($('cat-filter-ta')) $('cat-filter-ta').value = state.cat.ta;
   }
 
   // ---------- init ----------
