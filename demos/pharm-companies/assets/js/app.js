@@ -9,7 +9,7 @@
   var state = {
     map: { dim: 'site_type', region: '', modality: '', ta: '' },
     cat: { search: '', region: '', type: '', modality: '', tier: '', sort: 'name', dir: 1 },
-    compare: [], countrySel: [], groupsFilter: '', policiesFilter: ''
+    compare: [], countrySel: [], groupsFilter: '', policiesFilter: '', dealsFilter: ''
   };
   var companyModalities = {}, companyTAs = {};
   var CAT_CAP = 400; // max catalog rows rendered at once (perf w/ large roster); refine via filters
@@ -222,6 +222,8 @@
     if (c.tier === 'roster') modalTab = 'tabSummary';
     var tabs = c.tier === 'roster' ? [['tabSummary', 1]]
       : [['tabSummary', 1], ['tabSites', 1], ['tabPipeline', 1], ['tabFocus', 1], ['tabBench', 1], ['tabMilestones', 1]];
+    if (c.tier !== 'roster' && D.dealsForCompany(c.id).length) tabs.splice(4, 0, ['tabDeals', 1]);  // after Focus
+    if (modalTab === 'tabDeals' && !D.dealsForCompany(c.id).length) modalTab = 'tabSummary';
     $('company-modal-tabs').innerHTML = tabs.map(function (t) {
       return '<button class="modal-tab-btn ' + (t[0] === modalTab ? 'active' : '') + '" data-tab="' + t[0] + '">' + I18N.t(t[0]) + '</button>';
     }).join('');
@@ -278,6 +280,9 @@
       var fwd = D.milestonesForCompany(c.id), rev = D.reverseMilestones(c.id);
       var all = fwd.concat(rev.filter(function (m) { return fwd.indexOf(m) === -1; }));
       b.innerHTML = all.length ? all.map(function (m) { return milestoneCardHtml(m, true); }).join('') : '<p class="loading">' + I18N.t('noData') + '</p>';
+    } else if (t === 'tabDeals') {
+      var ds = D.dealsForCompany(c.id).slice().sort(function (a, b2) { return (b2.date || '').localeCompare(a.date || ''); });
+      b.innerHTML = ds.length ? ds.map(function (d) { return dealCardHtml(d, c.id); }).join('') : '<p class="loading">' + I18N.t('noDeals') + '</p>';
     }
   }
 
@@ -475,6 +480,52 @@
     $('policies-grid').innerHTML = list.length ? list.map(policyCardHtml).join('') : '<p class="loading">' + I18N.t('noData') + '</p>';
   }
 
+  // ---------- deal / partnership network ----------
+  var DEAL_COLORS = { license_out: '#14b8a6', license_in: '#3b82f6', m_and_a: '#ef4444', collaboration: '#94a3b8', jv: '#22c55e', equity_stake: '#a855f7' };
+  function dtBadge(d) { return '<span class="badge badge-dt-' + (d.deal_type || 'collaboration') + '">' + I18N.enumLabel('deal_type', d.deal_type) + '</span>'; }
+  function usdM(m) { return m == null ? '' : (m >= 1000 ? '$' + (m / 1000).toFixed(1) + 'B' : '$' + m + 'M'); }
+  function dealCounterparties(d, selfId) {
+    return (d.parties || []).filter(function (p) { return p.company_id !== selfId; }).map(function (p) {
+      var co = p.company_id ? D.getCompany(p.company_id) : null;
+      var nm = co ? I18N.name(co) : (I18N.pick(p.name_zh, p.name_en) || p.company_id || '');
+      return co ? '<button class="chip chip-link" data-company-link="' + esc(p.company_id) + '">' + esc(nm) + '</button>' : '<span class="chip">' + esc(nm) + '</span>';
+    }).join(' ');
+  }
+  function dealCardHtml(d, selfId) {
+    var val = [];
+    if (d.upfront_usd_m != null) val.push(I18N.t('dealUpfront') + ' ' + usdM(d.upfront_usd_m));
+    if (d.total_usd_m != null) val.push(I18N.t('dealTotal') + ' ' + usdM(d.total_usd_m));
+    var asset = I18N.pick(d.asset_zh, d.asset_en);
+    var srcs = d.sources || [];
+    var src1 = srcs.length ? '<a href="' + esc(srcs[0].url) + '" target="_blank" rel="noopener">' + esc(srcs[0].publisher || I18N.t('sources')) + '</a>' : '';
+    return '<div class="deal-card">' +
+      '<div class="flex items-center gap-2 flex-wrap">' + dtBadge(d) +
+        '<span class="text-xs text-faint">' + esc(d.date || '') + '</span>' +
+        '<span class="badge" style="background:var(--bg-elev)">' + I18N.enumLabel('deal_status', d.status) + '</span>' +
+        (val.length ? '<span class="text-xs ml-auto" style="color:var(--accent-strong)">' + esc(val.join(' · ')) + '</span>' : '') + '</div>' +
+      '<div class="mt-1 text-sm">' + esc(I18N.pick(d.headline_zh, d.headline_en)) + '</div>' +
+      '<div class="mt-1 flex flex-wrap items-center gap-1 text-xs"><span class="text-faint">' + I18N.t('dealCounterparty') + '：</span> ' + dealCounterparties(d, selfId) + '</div>' +
+      (asset ? '<div class="text-faint mt-1" style="font-size:.72rem">' + I18N.t('dealAsset') + '：' + esc(asset) + '</div>' : '') +
+      (src1 ? '<div class="mt-1" style="font-size:.72rem">' + src1 + '</div>' : '') + '</div>';
+  }
+  function renderDeals() {
+    if (!window.DEALS_GRAPH || !$('deals-graph')) return;
+    var deals = D.deals || [];
+    var types = uniq(deals.map(function (d) { return d.deal_type; }));
+    $('deals-filter').innerHTML = opt('', I18N.t('allDealTypes')) + types.sort().map(function (t) { return opt(t, I18N.enumLabel('deal_type', t)); }).join('');
+    $('deals-filter').value = state.dealsFilter || '';
+    var res = DEALS_GRAPH.render($('deals-graph'), {
+      deals: deals, getCompany: D.getCompany, isEn: I18N.isEn(),
+      filterType: state.dealsFilter || '', i18n: I18N,
+      onNodeClick: function (id) { modalTab = 'tabSummary'; openCompanyModal(id); }
+    }) || {};
+    $('deals-count').textContent = I18N.t('dealsCountTpl').replace('{n}', deals.length).replace('{c}', res.nodes || 0);
+    var leg = $('deals-legend');
+    if (leg) leg.innerHTML = types.sort().map(function (t) {
+      return '<span><span class="dot" style="background:' + (DEAL_COLORS[t] || '#64748b') + '"></span>' + I18N.enumLabel('deal_type', t) + '</span>';
+    }).join('');
+  }
+
   // ---------- render all dynamic ----------
   function renderAll() {
     renderKpis();
@@ -487,7 +538,7 @@
     });
     CH.renderTrendPhase(D.products); CH.renderTrendTA(D.products, D.getTA);
     CH.renderTrendModality(D.products, D.getModality); CH.renderTrendRegion(D.companies);
-    renderCountries(); renderBenchmarks(); renderMilestones(); renderGroups(); renderPolicies();
+    renderCountries(); renderBenchmarks(); renderMilestones(); renderGroups(); renderDeals(); renderPolicies();
   }
 
   // ---------- theme ----------
@@ -559,6 +610,7 @@
     });
 
     $('groups-filter').addEventListener('change', function (e) { state.groupsFilter = e.target.value; renderGroups(); });
+    $('deals-filter').addEventListener('change', function (e) { state.dealsFilter = e.target.value; renderDeals(); });
     $('policies-filter').addEventListener('change', function (e) { state.policiesFilter = e.target.value; renderPolicies(); });
     $('policies-grid').addEventListener('click', function (e) {
       var b = e.target.closest('[data-policy]'); if (b) openPolicyModal(b.getAttribute('data-policy'));

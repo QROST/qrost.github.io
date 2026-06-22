@@ -43,6 +43,9 @@ VALID_REGULATOR = {"FDA", "EMA", "NMPA", "PMDA", "TGA", "MHRA", "CDSCO", "MFDS",
 VALID_EVIDENCE = {"audited", "case_study", "vendor_claim", "media"}
 VALID_POLICY_TYPE = {"procurement", "reimbursement", "quality", "regulatory", "financing", "ip", "innovation", "access", "distribution", "data"}
 VALID_POLICY_EFFECT = {"positive", "negative", "mixed", "neutral"}
+VALID_DEAL_TYPE = {"license_out", "license_in", "m_and_a", "jv", "collaboration", "equity_stake"}
+VALID_DEAL_STATUS = {"announced", "completed", "terminated"}
+VALID_DEAL_ROLE = {"licensor", "licensee", "acquirer", "target", "partner", "investor", "investee"}
 
 REQ_COMPANY = {"id", "name_zh", "name_en", "country", "country_display_zh", "country_display_en",
                "hq_city", "is_public", "company_type", "region", "confidence", "last_verified", "sources"}
@@ -65,6 +68,8 @@ REQ_MILESTONE = {"id", "date", "company_id", "therapeutic_area_id", "headline_zh
 REQ_COUNTRY = {"country", "name_zh", "name_en", "market_size", "regulator", "confidence", "last_verified", "sources"}
 REQ_POLICY = {"id", "title_zh", "title_en", "summary_zh", "summary_en", "date", "policy_type",
               "agency_zh", "agency_en", "confidence", "sources"}
+REQ_DEAL = {"id", "deal_type", "date", "headline_zh", "headline_en", "parties",
+            "summary_zh", "summary_en", "status", "confidence", "sources"}
 
 
 def load(path: Path):
@@ -376,6 +381,37 @@ def main() -> int:
             for rid in (p.get("detail") or {}).get("related") or []:
                 if rid not in policy_ids:
                     warns.append(f"{ctx}: detail.related -> unknown policy {rid!r}")
+
+    # ---- deals ----
+    deals_path = DATA / "deals.json"
+    if deals_path.exists():
+        deals = root_list(deals_path, "deals")
+        seen = set()
+        for i, d in enumerate(deals):
+            ctx = f"deal[{i}] id={d.get('id','?')}"
+            check_common(d, ctx, REQ_DEAL, errors)
+            if d.get("deal_type") and d["deal_type"] not in VALID_DEAL_TYPE:
+                errors.append(f"{ctx}: invalid deal_type={d.get('deal_type')!r}")
+            if d.get("status") and d["status"] not in VALID_DEAL_STATUS:
+                errors.append(f"{ctx}: invalid status={d.get('status')!r}")
+            if d.get("date") and not re.match(r"^\d{4}(-\d{2}(-\d{2})?)?$", str(d["date"])):
+                errors.append(f"{ctx}: invalid date {d.get('date')!r}")
+            if d.get("id") in seen:
+                errors.append(f"duplicate deal id {d.get('id')}")
+            seen.add(d.get("id"))
+            parties = d.get("parties") or []
+            linked = 0
+            for j, pty in enumerate(parties):
+                cid = pty.get("company_id")
+                if cid:
+                    if company_ids and cid not in company_ids:
+                        errors.append(f"{ctx}.parties[{j}]: company_id -> unknown company {cid!r}")
+                    else:
+                        linked += 1
+                if pty.get("role") and pty["role"] not in VALID_DEAL_ROLE:
+                    errors.append(f"{ctx}.parties[{j}]: invalid role={pty.get('role')!r}")
+            if not linked:
+                warns.append(f"{ctx}: no party links to a catalogued company")
 
     # ---- min-count soft gates ----
     if companies and len(companies) < 40:

@@ -10,7 +10,10 @@
     zh: {
       navBrand: '全球医药图谱', navOverview: '概览', navMap: '地图', navCatalog: '企业',
       navModalities: '药物模态', navTrends: '研发趋势', navCountries: '国家对比',
-      navBenchmarks: '对标', navMilestones: '里程碑', navCompare: '对比', navGroups: '集团关系', navPolicies: '中国政策',
+      navBenchmarks: '对标', navMilestones: '里程碑', navCompare: '对比', navGroups: '集团关系', navDeals: '交易网络', navPolicies: '中国政策',
+      dealsTitle: '交易与合作关系网', dealsSub: '把企业通过授权（license-out/in）、并购、合资、合作、股权联系起来——尤其是中国创新药"出海"的对外授权与跨国并购。连线颜色代表交易类型，节点颜色代表企业总部地区，节点越大交易越多。点击节点查看企业，悬停连线看交易详情。',
+      allDealTypes: '全部类型', dealsCountTpl: '{n} 笔交易 · {c} 家企业入网',
+      tabDeals: '交易与合作', dealUpfront: '首付款', dealTotal: '潜在总额', dealAsset: '标的', dealStatus: '状态', dealParties: '交易方', noDeals: '暂无交易记录', dealCounterparty: '对手方',
       grpTitle: '集团 / 控股关系图谱', grpSub: '把同属一个集团、有控股 / 归属关系的企业连起来：国药、华润、罗氏、辉瑞系等。箭头由母公司指向子公司，颜色代表集团。点击节点查看企业详情。',
       allGroups: '全部集团', grpRelations: '集团 / 控股关系', grpMemberOf: '隶属集团', grpParentCo: '母公司', grpSubs: '控股子公司', grpSiblings: '同集团企业', grpCountTpl: '{g} 个集团 · {n} 家企业',
       polTitle: '中国医药政策板块', polSub: '读懂中国医药格局的"游戏规则"：集采、医保谈判、一致性评价、MAH、18A 融资、药审改革与 ICH、创新药出海、专利链接、支付改革等。每条政策标注主管机构、时间线、影响与来源，并反向链接到受影响的企业。点击卡片查看详情。',
@@ -52,7 +55,10 @@
     en: {
       navBrand: 'Global Pharma Atlas', navOverview: 'Overview', navMap: 'Map', navCatalog: 'Companies',
       navModalities: 'Modalities', navTrends: 'R&D Trends', navCountries: 'Countries',
-      navBenchmarks: 'Benchmarks', navMilestones: 'Milestones', navCompare: 'Compare', navGroups: 'Groups', navPolicies: 'China Policy',
+      navBenchmarks: 'Benchmarks', navMilestones: 'Milestones', navCompare: 'Compare', navGroups: 'Groups', navDeals: 'Deals', navPolicies: 'China Policy',
+      dealsTitle: 'Deal & partnership network', dealsSub: 'Companies linked by licensing (out/in), M&A, joint ventures, collaborations and equity — especially the out-licensing and cross-border M&A behind Chinese innovators going global. Edge color = deal type, node color = HQ region, node size = deal count. Click a node for the company; hover an edge for the deal.',
+      allDealTypes: 'All types', dealsCountTpl: '{n} deals · {c} companies in network',
+      tabDeals: 'Deals & partnerships', dealUpfront: 'Upfront', dealTotal: 'Total (incl. milestones)', dealAsset: 'Asset', dealStatus: 'Status', dealParties: 'Parties', noDeals: 'No deals recorded', dealCounterparty: 'Counterparty',
       grpTitle: 'Corporate group / ownership graph', grpSub: 'Companies that share a parent or belong to the same conglomerate, linked up — Sinopharm, China Resources, Roche, the Pfizer lineage, and more. Arrows point parent → subsidiary; color = group. Click a node for the company.',
       allGroups: 'All groups', grpRelations: 'Corporate group / ownership', grpMemberOf: 'Part of group', grpParentCo: 'Parent', grpSubs: 'Controlled subsidiaries', grpSiblings: 'Group affiliates', grpCountTpl: '{g} groups · {n} companies',
       polTitle: 'China pharma policy board', polSub: 'The rules of the game behind China\'s pharma landscape: volume-based procurement, NRDL negotiation, generic consistency evaluation, MAH, Ch.18A financing, CDE/ICH reform, going-global, patent linkage, payment reform and more. Each policy carries its agency, timeline, impact and sources, and links back to the companies it affects. Click a card for detail.',
@@ -131,6 +137,25 @@
       negative: { zh: '承压', en: 'Headwind' },
       mixed: { zh: '双向', en: 'Mixed' },
       neutral: { zh: '中性', en: 'Neutral' }
+    },
+    deal_type: {
+      license_out: { zh: '对外授权', en: 'License-out' },
+      license_in: { zh: '授权引进', en: 'License-in' },
+      m_and_a: { zh: '并购', en: 'M&A' },
+      jv: { zh: '合资', en: 'Joint venture' },
+      collaboration: { zh: '合作', en: 'Collaboration' },
+      equity_stake: { zh: '股权投资', en: 'Equity stake' }
+    },
+    deal_status: {
+      announced: { zh: '已宣布', en: 'Announced' },
+      completed: { zh: '已完成', en: 'Completed' },
+      terminated: { zh: '已终止', en: 'Terminated' }
+    },
+    deal_role: {
+      licensor: { zh: '授权方', en: 'Licensor' }, licensee: { zh: '被授权方', en: 'Licensee' },
+      acquirer: { zh: '收购方', en: 'Acquirer' }, target: { zh: '被收购方', en: 'Target' },
+      partner: { zh: '合作方', en: 'Partner' }, investor: { zh: '投资方', en: 'Investor' },
+      investee: { zh: '被投资方', en: 'Investee' }
     },
     site_type: {
       HQ: { zh: '总部', en: 'HQ' }, RD: { zh: '研发', en: 'R&D' },

@@ -19,7 +19,7 @@
       } catch (e) {}
     })();
     // Stamped by tools/build.py (content hash) → appended as ?v= to every data fetch.
-    window.PHARM_DATA_VERSION = 'e1e2aeda53';
+    window.PHARM_DATA_VERSION = 'c568ec6c53';
   </script>
 
   <script src="https://cdn.tailwindcss.com"></script>
@@ -28,7 +28,7 @@
   </script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" />
-  <link rel="stylesheet" href="assets/css/pharm-companies.css?v=e1e2aeda53" />
+  <link rel="stylesheet" href="assets/css/pharm-companies.css?v=c568ec6c53" />
 </head>
 
 <body class="bg-base text-base antialiased">
@@ -43,6 +43,7 @@
         <a href="#map" class="nav-link" data-i18n="navMap">地图</a>
         <a href="#catalog" class="nav-link" data-i18n="navCatalog">企业</a>
         <a href="#groups" class="nav-link" data-i18n="navGroups">集团关系</a>
+        <a href="#deals" class="nav-link" data-i18n="navDeals">交易网络</a>
         <a href="#modalities" class="nav-link" data-i18n="navModalities">药物模态</a>
         <a href="#trends" class="nav-link" data-i18n="navTrends">研发趋势</a>
         <a href="#countries" class="nav-link" data-i18n="navCountries">国家对比</a>
@@ -140,6 +141,20 @@
       </div>
       <div class="panel mt-3">
         <div id="groups-graph" class="chart-h-lg"></div>
+      </div>
+    </section>
+
+    <!-- ============ DEAL NETWORK ============ -->
+    <section id="deals" class="scroll-mt-20">
+      <h2 class="section-title" data-i18n="dealsTitle">交易与合作关系网</h2>
+      <p class="text-sm text-muted mt-1" data-i18n="dealsSub">把企业通过授权、并购、合资、合作、股权联系起来——尤其是中国创新药"出海"的对外授权与跨国并购。连线颜色代表交易类型，节点颜色代表企业总部地区。点击节点查看企业，悬停连线看交易。</p>
+      <div class="flex flex-wrap items-center gap-2 mt-3">
+        <select id="deals-filter" class="select"></select>
+        <span id="deals-count" class="text-xs text-faint ml-auto"></span>
+      </div>
+      <div class="panel mt-3">
+        <div id="deals-graph" class="chart-h-lg"></div>
+        <div id="deals-legend" class="map-legend"></div>
       </div>
     </section>
 
@@ -251,13 +266,14 @@
   </div>
 
   <!-- data + libs + app (load order matters) -->
-  <script src="assets/data/world-geo.js?v=e1e2aeda53"></script>
+  <script src="assets/data/world-geo.js?v=c568ec6c53"></script>
   <script src="https://cdn.jsdelivr.net/npm/echarts@5.5.1/dist/echarts.min.js"></script>
-  <script src="assets/js/i18n.js?v=e1e2aeda53"></script>
-  <script src="assets/js/data-loader.js?v=e1e2aeda53"></script>
-  <script src="assets/js/charts.js?v=e1e2aeda53"></script>
-  <script src="assets/js/map.js?v=e1e2aeda53"></script>
-  <script src="assets/js/groups-graph.js?v=e1e2aeda53"></script>
-  <script src="assets/js/app.js?v=e1e2aeda53"></script>
+  <script src="assets/js/i18n.js?v=c568ec6c53"></script>
+  <script src="assets/js/data-loader.js?v=c568ec6c53"></script>
+  <script src="assets/js/charts.js?v=c568ec6c53"></script>
+  <script src="assets/js/map.js?v=c568ec6c53"></script>
+  <script src="assets/js/groups-graph.js?v=c568ec6c53"></script>
+  <script src="assets/js/deals-graph.js?v=c568ec6c53"></script>
+  <script src="assets/js/app.js?v=c568ec6c53"></script>
 </body>
 </html>
