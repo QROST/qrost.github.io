@@ -54,8 +54,8 @@
       zh: '全球医药行业图谱',
     },
     cardPharmDesc: {
-      en: '1,551 companies, 1,098 drugs and 1,949 sites across 13 countries — world map, modality & therapeutic-area charts, country radar, China ↔ incumbent benchmarks and breakthrough milestones. Sourced records with confidence scores. Dark mode · EN/中文.',
-      zh: '13 国 1,551 家企业、1,098 款药物与 1,949 处站点——世界地图、模态与治疗领域分布、国家雷达图、中国 ↔ 国际对标与突破里程碑。带来源与置信度标注。深色模式 · 中英切换。',
+      en: '1,913 companies, 2,588 drugs and 3,036 sites across 51 countries — world map (by site / HQ country / therapeutic area), a China pharma-policy board, a deal & M&A network, corporate-group graphs, country radar and China ↔ incumbent benchmarks. Sourced records with confidence scores. Dark mode · EN/中文.',
+      zh: '51 国 1,913 家企业、2,588 款药物与 3,036 处站点——世界地图（按站点/总部国家/治疗领域着色）、中国医药政策板块、交易与并购关系网、集团关系图、国家雷达图与中国 ↔ 国际对标。带来源与置信度标注。深色模式 · 中英切换。',
     },
     cardAbyssTitle: {
       en: 'Data Abyss · 数渊',
