@@ -23,6 +23,7 @@ const PHARM = '../pharm-companies/assets/data/';   // 第三个数据源：全�
 const CATS_DATA = '../shelter-cats/assets/data/';  // 第四个数据源：全球收容所猫领养平台
 const TRAIL = IS_MOBILE ? 22 : 44;   // 轨迹历史采样数（每点实际尾长由数据决定）
 const STRIDE = 10;                    // 每 STRIDE 帧采样一次 → 加大步幅=路径覆盖更长时间（双倍）、且更省
+const TR_GRACE = 3;                   // 拖尾重入迟滞：离屏 < TR_GRACE 个采样(掠过屏幕边缘) → 桥接续画不闪；≥ 则整 ring 重置防长拖影
 const MOTION = 0.5;                   // 全局运动降速系数（用户「整体降速 2×」）：缩放吸引子步长 + 系统自转 → 混沌轨迹/朝向不变，仅放慢演化速率；不动呼吸/明灭（那是氛围非位移）
 const CENTER = [0, 42, 0];           // 所有吸引子共用中心 → 重叠共舞（呼吸吸气态）
 const FEAT_DIM = 28;                 // SOM 特征维度：字段 0..19 + 类型 one-hot 20..27（8 类：含医药 + 收容所猫）
@@ -690,7 +691,7 @@ let E = 0, emEnt, emLocal, entMat;   // 轨迹发射点：每个立体的每个�
 let featM = null, latticeObj = null, shapeArr = null, szCurve = null;   // SOM 特征矩阵 · 神经晶格 · 每星几何体形 id · 尺寸曲线[0,1]
 const SZ_GAMMA = 2.2;   // 尺寸幂曲线：>1 → 多数微小、少数巨大（群星 + 日月大行星）
 let prevPos = null;   // 上一帧世界位置 → 算速度方向（棱柱以运动方向为自转轴）
-let visArr = null, prevVisArr = null, cwArr = null;   // 视锥剔除 + 每实体到相机的距离（cw）→ 投影尺寸 LOD
+let visArr = null, cwArr = null, trOff = null;   // 视锥剔除 + 每实体到相机的距离（cw）→ 投影尺寸 LOD；trOff=连续离屏采样数（拖尾重入迟滞，消除边缘闪烁）
 let gOrg = 0, breathT = 0;             // 呼吸量(0=重叠混沌 / 1=铺开成神经地图) · 呼吸相位累加器
 // ---------- 几何体形库：常规多面体 + 特殊数学三维体（每个含棱线 edges + 轨迹发射点 corners）----------
 const SHAPES = (() => {
@@ -832,7 +833,7 @@ function finalize() {
   // initial world positions
   for (let i = 0; i < N; i++) writeWorld(i);
   prevPos = Float32Array.from(posArr);   // 速度方向初值
-  visArr = new Uint8Array(N).fill(1); prevVisArr = new Uint8Array(N).fill(1); cwArr = new Float32Array(N).fill(50);   // 视锥可见性 + 距离
+  visArr = new Uint8Array(N).fill(1); cwArr = new Float32Array(N).fill(50); trOff = new Uint16Array(N);   // 视锥可见性 + 距离 + 离屏采样计数
 
   // group id per point (for show/hide toggles)
   grp = Uint8Array.from(D.meta.map((m) => (m && GROUP_KEY[m.kind] != null ? GROUP_KEY[m.kind] : 0)));
@@ -1391,10 +1392,11 @@ function animate() {
           trailSrc[eo] = entMat[m] * lx + entMat[m + 4] * ly + entMat[m + 8] * lz + entMat[m + 12];
           trailSrc[eo + 1] = entMat[m + 1] * lx + entMat[m + 5] * ly + entMat[m + 9] * lz + entMat[m + 13];
           trailSrc[eo + 2] = entMat[m + 2] * lx + entMat[m + 6] * ly + entMat[m + 10] * lz + entMat[m + 14]; }
-        if (!prevVisArr[gi]) {                                   // 刚回到视野 → 用当前位置填满 ring，避免拖出长拖影
+        const off = trOff[gi];
+        if (off >= TR_GRACE) {                                   // 离屏够久(位置已漂远) → 整 ring 填当前位置，避免拖出长拖影
           for (let t = 0; t < TRAIL; t++) { const to = (e * TRAIL + t) * 3; trail[to] = trailSrc[eo]; trail[to + 1] = trailSrc[eo + 1]; trail[to + 2] = trailSrc[eo + 2]; }
-        } else {
-          const to = (e * TRAIL + head) * 3; trail[to] = trailSrc[eo]; trail[to + 1] = trailSrc[eo + 1]; trail[to + 2] = trailSrc[eo + 2];
+        } else {                                                 // 在屏 / 短暂掠过边缘 → 只把跳过的槽(含当前)桥接为当前位置 → 续画不闪、也不拉长线
+          for (let g = 0; g <= off; g++) { const to = (e * TRAIL + ((head - g + TRAIL) % TRAIL)) * 3; trail[to] = trailSrc[eo]; trail[to + 1] = trailSrc[eo + 1]; trail[to + 2] = trailSrc[eo + 2]; }
         }
         for (let k = 0; k < segs; k++) {                         // 重建该发射点的所有段
           const a = (head + 1 + k) % TRAIL, b = (head + 2 + k) % TRAIL;
@@ -1404,7 +1406,7 @@ function animate() {
         }
       }
       trailObj.userData.attr.needsUpdate = true;
-      prevVisArr.set(visArr);                                    // 记录本次采样时的可见性（供下次「重入」判定）
+      for (let gi = 0; gi < N; gi++) trOff[gi] = visArr[gi] ? 0 : (trOff[gi] < 255 ? trOff[gi] + 1 : 255);   // 连续离屏采样计数（迟滞：短暂掠过边缘不触发重置 → 不闪）
     }
 
     if (beamObj) {
