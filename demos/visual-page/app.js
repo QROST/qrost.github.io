@@ -12,7 +12,7 @@
 
 import * as THREE from 'three';
 import {
-  applyUi, registerPanelNode, renderCardHtml, sensorBtnLabel, toggleLang, isZh,
+  applyUi, registerPanelNode, renderCardHtml, sensorBtnLabel, setLang, isZh,
 } from './i18n.js';
 import { Sonifier } from './audio.js';   // 生成式数据音乐引擎（zero-dep Web Audio）
 
@@ -1320,19 +1320,41 @@ renderer.domElement.addEventListener('pointerup', (e) => {
   }
 });
 
-document.getElementById('lang-toggle').addEventListener('click', (e) => {
-  e.stopPropagation();
-  toggleLang();
-  const lt = document.getElementById('lang-toggle');
-  if (lt) lt.title = isZh() ? 'Switch to English' : 'Switch to 中文';
-  applyUi({ analyser });                                            // 不让 applyUi 用旧卡片渲染覆盖详情面板
-  if (focusActive && focusIdx >= 0) openInspector(focusIdx);        // 详情面板自行按新语言重渲染
-});
+// ---------- 标题 = 三模式循环 toggle：EN → 中文 → 隐藏（隐藏态：收起全部文字与按钮；左上角 hover/触控 浮现大标题）----------
+{
+  const hud = document.getElementById('hud'), tip = document.getElementById('tip'), title = document.getElementById('title');
+  let uiMode = 0;                                                   // 0 EN · 1 ZH · 2 HIDDEN
+  let hudT = null, peekT = null, peeking = false, lastPtr = 'mouse';
 
-// HUD 静置淡隐（交互时浮现，让作品留白）
-{ const hud = document.getElementById('hud'), tip = document.getElementById('tip'); let hudT;
-  const showHud = () => { hud.style.opacity = ''; tip.style.opacity = ''; clearTimeout(hudT); hudT = setTimeout(() => { hud.style.opacity = '0'; tip.style.opacity = '0'; }, 5000); };
-  addEventListener('pointermove', showHud); addEventListener('pointerdown', showHud); addEventListener('keydown', showHud); showHud(); }
+  const applyLang = () => { applyUi({ analyser }); if (focusActive && focusIdx >= 0) openInspector(focusIdx); };   // 切语言后重渲染（含 analyser 感知按钮 + 详情面板）
+  const showHud = () => {                                          // 静置淡隐：仅 EN/ZH 模式有效；隐藏模式由 CSS 接管标题浮现
+    if (uiMode === 2) { hud.style.opacity = ''; tip.style.opacity = ''; clearTimeout(hudT); return; }
+    hud.style.opacity = ''; tip.style.opacity = ''; clearTimeout(hudT);
+    hudT = setTimeout(() => { hud.style.opacity = '0'; tip.style.opacity = '0'; }, 5000);
+  };
+  const hint = () => { title.title = uiMode === 0 ? 'Title: English  ·  click → 中文' : uiMode === 1 ? '标题：中文  ·  点击 → 隐藏' : 'Hidden  ·  hover/tap corner, click → English'; };
+  const peek = (ms) => { peeking = true; title.classList.add('peek'); clearTimeout(peekT); peekT = setTimeout(() => { peeking = false; title.classList.remove('peek'); }, ms || 2800); };   // 触控/进隐藏：短暂浮现大标题
+  const setMode = (m) => {
+    uiMode = ((m % 3) + 3) % 3;
+    if (uiMode === 0 && isZh()) { setLang('en'); applyLang(); }
+    else if (uiMode === 1 && !isZh()) { setLang('zh'); applyLang(); }
+    document.body.classList.toggle('ui-hidden', uiMode === 2);
+    hint();
+    if (uiMode === 2) { clearTimeout(hudT); hud.style.opacity = ''; tip.style.opacity = ''; peek(2800); }   // 进隐藏：停淡隐计时 + 给一次浮现确认
+    else { title.classList.remove('peek'); peeking = false; showHud(); }
+  };
+
+  title.addEventListener('pointerdown', (e) => { lastPtr = e.pointerType || 'mouse'; }, true);
+  title.addEventListener('click', (e) => {
+    e.stopPropagation();
+    if (uiMode !== 2) { setMode(uiMode + 1); return; }
+    if (lastPtr === 'touch' && !peeking) peek(2800);               // 隐藏态触控：首点浮现、再点(浮现中)循环；桌面 hover 已显 → 直接循环
+    else setMode(uiMode + 1);
+  });
+
+  addEventListener('pointermove', showHud); addEventListener('pointerdown', showHud); addEventListener('keydown', showHud);
+  hint(); showHud();
+}
 
 addEventListener('resize', () => { camera.aspect = innerWidth / innerHeight; camera.updateProjectionMatrix(); renderer.setSize(innerWidth, innerHeight); U.uPixelRatio.value = renderer.getPixelRatio(); beamMaterial.uniforms.uRes.value.set(innerWidth, innerHeight); });
 
