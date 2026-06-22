@@ -21,8 +21,8 @@ const lerp = (a, b, t) => a + (b - a) * t;
 const IND = '../china-industrial-software/assets/data/';
 const PHARM = '../pharm-companies/assets/data/';   // 第三个数据源：全球医药公司图谱
 const CATS_DATA = '../shelter-cats/assets/data/';  // 第四个数据源：全球收容所猫领养平台
-const TRAIL = IS_MOBILE ? 22 : 44;   // 轨迹历史采样数（每点实际尾长由数据决定）
-const STRIDE = 10;                    // 每 STRIDE 帧采样一次 → 加大步幅=路径覆盖更长时间（双倍）、且更省
+const TRAIL = IS_MOBILE ? 30 : 72;   // 轨迹历史采样数=最长尾上限（每点实际尾长由数据 tlen 决定，公式按 TRAIL 自动缩放）。加长：44→72（补偿 MOTION/呼吸半速后变短的世界尾长）
+const STRIDE = 20;                    // 每 STRIDE 帧采样一次 → 路径覆盖帧数 = TRAIL×STRIDE。10→20：免内存翻倍覆盖；因运动已半速，每段位移(snap=motion×STRIDE)≈原值 → 平滑度不降。合计最长尾世界距离 ≈ 原来的 1.6×
 const TR_GRACE = 3;                   // 拖尾重入迟滞：离屏 < TR_GRACE 个采样(掠过屏幕边缘) → 桥接续画不闪；≥ 则整 ring 重置防长拖影
 const MOTION = 0.5;                   // 全局运动降速系数（用户「整体降速 2×」）：缩放吸引子步长 + 系统自转 → 混沌轨迹/朝向不变，仅放慢演化速率；不动呼吸/明灭（那是氛围非位移）
 const CENTER = [0, 42, 0];           // 所有吸引子共用中心 → 重叠共舞（呼吸吸气态）
@@ -692,7 +692,7 @@ let featM = null, latticeObj = null, shapeArr = null, szCurve = null;   // SOM �
 const SZ_GAMMA = 2.2;   // 尺寸幂曲线：>1 → 多数微小、少数巨大（群星 + 日月大行星）
 let prevPos = null;   // 上一帧世界位置 → 算速度方向（棱柱以运动方向为自转轴）
 let visArr = null, cwArr = null, trOff = null;   // 视锥剔除 + 每实体到相机的距离（cw）→ 投影尺寸 LOD；trOff=连续离屏采样数（拖尾重入迟滞，消除边缘闪烁）
-let gOrg = 0, breathT = 0;             // 呼吸量(0=重叠混沌 / 1=铺开成神经地图) · 呼吸相位累加器
+let gOrg = 0, breathT = 0, bPhase = null, bRate = null;   // 全局呼吸量(供晶格) + 相位累加器；bPhase/bRate=每实体(按 cluster)的呼吸相位偏移与速率 → 错峰 + 各异速
 // ---------- 几何体形库：常规多面体 + 特殊数学三维体（每个含棱线 edges + 轨迹发射点 corners）----------
 const SHAPES = (() => {
   const edgesOf = (geo) => Array.from(new THREE.EdgesGeometry(geo, 1).attributes.position.array);   // 只取真实特征棱
@@ -831,6 +831,7 @@ function finalize() {
   for (let w = 0; w < 280; w++) for (let i = 0; i < N; i++) { const h = Math.min(bh[i] * spd[i], capOf(sys[i])); stepOne(i, h * 0.5); stepOne(i, h * 0.5); }
 
   // initial world positions
+  bPhase = new Float32Array(N); bRate = new Float32Array(N).fill(1);   // 呼吸相位偏移(默认0)+速率(默认1)：必须在首次 writeWorld 前分配；buildSOM 后按 cluster 数据填充（finalize 期默认=旧全局行为）
   for (let i = 0; i < N; i++) writeWorld(i);
   prevPos = Float32Array.from(posArr);   // 速度方向初值
   visArr = new Uint8Array(N).fill(1); cwArr = new Float32Array(N).fill(50); trOff = new Uint16Array(N);   // 视锥可见性 + 距离 + 离屏采样计数
@@ -937,10 +938,12 @@ function finalize() {
 }
 
 function writeWorld(i) {
-  const o = i * 3, sy = sys[i], s = scl[i] * (1 - (1 - SHRINK) * gOrg), r = i * 9;   // 呼气铺开 → 混沌缩小
-  const ax = CENTER[0] + (anc[o] - CENTER[0]) * gOrg;         // 有效锚点：CENTER(重叠) ⇄ SOM 语义坐标
-  const ay = CENTER[1] + (anc[o + 1] - CENTER[1]) * gOrg;
-  const az = CENTER[2] + (anc[o + 2] - CENTER[2]) * gOrg;
+  const o = i * 3, sy = sys[i], r = i * 9;
+  const bph = breathT * bRate[i] + bPhase[i], boR = 0.5 - 0.5 * Math.cos(bph), g = boR * boR * (3 - 2 * boR);   // 每实体呼吸量：全局时间×个体速率 + 个体相位 → 簇间错峰、簇内相干、速率各异
+  const s = scl[i] * (1 - (1 - SHRINK) * g);                  // 呼气铺开 → 混沌缩小
+  const ax = CENTER[0] + (anc[o] - CENTER[0]) * g;            // 有效锚点：CENTER(重叠) ⇄ SOM 语义坐标
+  const ay = CENTER[1] + (anc[o + 1] - CENTER[1]) * g;
+  const az = CENTER[2] + (anc[o + 2] - CENTER[2]) * g;
   let cx = 0, cy = 0, cz = 0;                                  // per-attractor centering
   if (sy === 1) cz = 25; else if (sy === 3) cz = 0.6; else if (sy === 4) { cx = -2.4; cy = -2.4; cz = -2.4; } else if (sy === 6) cz = 22; else if (sy === 8) cx = 1; else if (sy === 9) cz = 20;
   const lx = (state[o] - cx) * s, ly = (state[o + 2] - cz) * s, lz = (state[o + 1] - cy) * s;   // attractor local frame (z→up)
@@ -1021,12 +1024,16 @@ function buildSOM() {
     return [CENTER[0] + r * sphi * Math.cos(theta), CENTER[1] + r * cphi, CENTER[2] + r * sphi * Math.sin(theta)];
   };
   const density = new Float32Array(M);
+  const nSpd = new Float32Array(M), nCnt = new Float32Array(M), bmuOf = new Int32Array(N);   // 每神经元(cluster)累计速度→均速→呼吸速率
   for (let i = 0; i < N; i++) {
     const xi = i * d; let bmu = 0, best = Infinity;
     for (let n = 0; n < M; n++) { const wo = n * d; let acc = 0; for (let k = 0; k < d; k++) { const e = featM[xi + k] - W[wo + k]; acc += e * e; } if (acc < best) { best = acc; bmu = n; } }
-    density[bmu]++;
+    density[bmu]++; bmuOf[i] = bmu; nSpd[bmu] += spd[i]; nCnt[bmu]++;
     const w = nodeWorld(nx(bmu), ny(bmu), nz(bmu)); anc[i * 3] = w[0]; anc[i * 3 + 1] = w[1]; anc[i * 3 + 2] = w[2];
+    bPhase[i] = hash01('bp' + bmu) * TAU;                                  // 每神经元(=cluster)一个相位 → 簇间错峰、簇内同步
   }
+  for (let i = 0; i < N; i++) { const bmu = bmuOf[i], avg = nCnt[bmu] ? nSpd[bmu] / nCnt[bmu] : 0.5;
+    bRate[i] = clamp(0.5 + avg * 0.8, 0.5, 1.6); }                         // 呼吸速率 = 该 cluster 内几何体的平均(吸引子)速度 → 每簇一速、由数据定（速率各异→持续错峰、永不重新同步）
   let maxD = 1; for (let n = 0; n < M; n++) if (density[n] > maxD) maxD = density[n];
   // 神经晶格：相邻神经元(+x/+y/+z)连线，aGlow=density 归一
   const segPos = [], segCol = [], segGlow = [], BASE = [0.42, 0.56, 0.82];
@@ -1299,7 +1306,7 @@ function animate() {
   bgMat.uniforms.uTime.value = tElapsed; bgMat.uniforms.uPulse.value = pulse;
 
   // 呼吸式自组织：CENTER(重叠混沌) ⇄ SOM 神经地图；mic 出声提速呼吸；smootherstep 在两端停留
-  breathT += dt * (0.13 + pulse * 0.3);
+  breathT += dt * (0.065 + pulse * 0.15);   // 整体半速（用户「1/2 速度」：0.13→0.065、0.3→0.15）；每实体再 × bRate
   const oRaw = 0.5 - 0.5 * Math.cos(breathT);
   gOrg = oRaw * oRaw * (3 - 2 * oRaw);
   if (latticeObj) latticeMat.uniforms.uOrg.value = gOrg;   // 呼气时神经晶格显形
@@ -1552,6 +1559,7 @@ function buildPanel() {
   bgMat.uniforms.uW.value = seedCPPN(cppnSeed);
   finalize();
   const som = buildSOM();   // boot 一次性整训 Kohonen 网络 → 语义锚点 + 神经晶格
+  for (let i = 0; i < N; i++) writeWorld(i); if (prevPos) prevPos.set(posArr);   // SOM 设好 bPhase/bRate 后按 boot 相位重置初始位置，避免首帧从中心跳到各自错峰位
   buildSolids();
   buildPanel();
   applyUi({ skipEnable: true });
