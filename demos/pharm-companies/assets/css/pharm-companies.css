@@ -178,6 +178,30 @@ html.dark .badge-appr-ph3 { color: #fbbf24; }
 .badge-conf-low { background: rgba(239,68,68,.15); color: #dc2626; }
 .badge-bb { background: var(--accent-soft); color: var(--accent-strong); }
 
+/* ---- China policy: type + effect badges ---- */
+.badge-pt-procurement { background: rgba(239,68,68,.14); color: #dc2626; }
+.badge-pt-reimbursement { background: rgba(20,184,166,.16); color: #0d9488; }
+.badge-pt-quality { background: rgba(245,158,11,.16); color: #b45309; }
+.badge-pt-regulatory { background: rgba(99,102,241,.15); color: #6366f1; }
+.badge-pt-financing { background: rgba(168,85,247,.15); color: #9333ea; }
+.badge-pt-ip { background: rgba(236,72,153,.15); color: #db2777; }
+.badge-pt-innovation { background: rgba(34,197,94,.16); color: #16a34a; }
+.badge-pt-access { background: rgba(14,165,233,.15); color: #0284c7; }
+.badge-pt-distribution { background: rgba(100,116,139,.16); color: #475569; }
+.badge-pt-data { background: rgba(56,189,248,.15); color: #0369a1; }
+html.dark .badge-pt-procurement { color: #f87171; }
+html.dark .badge-pt-quality { color: #fbbf24; }
+html.dark .badge-pt-distribution { color: #cbd5e1; }
+html.dark .badge-pt-data { color: #38bdf8; }
+html.dark .badge-pt-access { color: #38bdf8; }
+.badge.eff-positive { background: rgba(34,197,94,.16); color: #16a34a; }
+.badge.eff-negative { background: rgba(239,68,68,.15); color: #dc2626; }
+.badge.eff-mixed { background: rgba(245,158,11,.16); color: #b45309; }
+.badge.eff-neutral { background: rgba(100,116,139,.16); color: #64748b; }
+html.dark .badge.eff-positive { color: #4ade80; }
+html.dark .badge.eff-negative { color: #f87171; }
+html.dark .badge.eff-mixed { color: #fbbf24; }
+
 /* ---- timeline ---- */
 .timeline { position: relative; padding-left: 1.25rem; }
 .timeline::before { content: ""; position: absolute; left: 5px; top: 0; bottom: 0; width: 2px; background: var(--border); }
@@ -209,5 +233,11 @@ html.dark .badge-appr-ph3 { color: #fbbf24; }
 .chip { display: inline-block; padding: 0.1rem 0.5rem; margin: 0.1rem; border-radius: 0.4rem; background: var(--bg-elev); font-size: 0.72rem; }
 .chip-link { border: 1px solid var(--border); color: var(--accent); cursor: pointer; transition: background .12s, border-color .12s; }
 .chip-link:hover { background: var(--accent); color: #fff; border-color: var(--accent); }
+
+/* ---- China policy: cards ---- */
+.policy-card { display: block; width: 100%; text-align: left; border: 1px solid var(--border); border-radius: 0.7rem; background: var(--bg-surface); padding: 0.85rem 0.9rem; cursor: pointer; transition: border-color .15s, transform .1s; color: var(--text); }
+.policy-card:hover { border-color: var(--accent); transform: translateY(-1px); }
+.pol-ul { margin: 0.2rem 0 0; padding-left: 1.1rem; list-style: disc; }
+.pol-ul li { margin: 0.15rem 0; }
 
 .loading { color: var(--text-faint); font-size: 0.85rem; padding: 1.5rem; text-align: center; }

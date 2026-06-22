@@ -41,6 +41,8 @@ VALID_MODALITY_CLASS = {
 VALID_MARKETS = {"FDA", "EMA", "NMPA", "PMDA", "TGA", "MHRA", "ANVISA", "WHO", "CDSCO", "MFDS", "HealthCanada"}
 VALID_REGULATOR = {"FDA", "EMA", "NMPA", "PMDA", "TGA", "MHRA", "CDSCO", "MFDS", "HealthCanada", "ANVISA", "Swissmedic", "ANSM"}
 VALID_EVIDENCE = {"audited", "case_study", "vendor_claim", "media"}
+VALID_POLICY_TYPE = {"procurement", "reimbursement", "quality", "regulatory", "financing", "ip", "innovation", "access", "distribution", "data"}
+VALID_POLICY_EFFECT = {"positive", "negative", "mixed", "neutral"}
 
 REQ_COMPANY = {"id", "name_zh", "name_en", "country", "country_display_zh", "country_display_en",
                "hq_city", "is_public", "company_type", "region", "confidence", "last_verified", "sources"}
@@ -61,6 +63,8 @@ REQ_MILESTONE = {"id", "date", "company_id", "therapeutic_area_id", "headline_zh
                  "before_gap_zh", "before_gap_en", "achievement_zh", "achievement_en",
                  "still_missing_zh", "still_missing_en", "evidence_level", "confidence", "sources"}
 REQ_COUNTRY = {"country", "name_zh", "name_en", "market_size", "regulator", "confidence", "last_verified", "sources"}
+REQ_POLICY = {"id", "title_zh", "title_en", "summary_zh", "summary_en", "date", "policy_type",
+              "agency_zh", "agency_en", "confidence", "sources"}
 
 
 def load(path: Path):
@@ -345,6 +349,33 @@ def main() -> int:
                     errors.append(f"{ctx}: missing {role}")
                 elif pool and rid not in pool:
                     errors.append(f"{ctx}: orphan {role}={rid!r} (pair_type={ptype})")
+
+    # ---- China policies ----
+    pol_path = DATA / "policies.json"
+    if pol_path.exists():
+        policies = root_list(pol_path, "policies")
+        policy_ids = {p.get("id") for p in policies if p.get("id")}
+        seen = set()
+        for i, p in enumerate(policies):
+            ctx = f"policy[{i}] id={p.get('id','?')}"
+            check_common(p, ctx, REQ_POLICY, errors)
+            if p.get("policy_type") and p["policy_type"] not in VALID_POLICY_TYPE:
+                errors.append(f"{ctx}: invalid policy_type={p.get('policy_type')!r}")
+            if p.get("date") and not re.match(r"^\d{4}(-\d{2}(-\d{2})?)?$", str(p["date"])):
+                errors.append(f"{ctx}: invalid date {p.get('date')!r}")
+            if p.get("id") in seen:
+                errors.append(f"duplicate policy id {p.get('id')}")
+            seen.add(p.get("id"))
+            for j, a in enumerate(p.get("affected_companies") or []):
+                if not a.get("company_id"):
+                    errors.append(f"{ctx}.affected_companies[{j}]: missing company_id")
+                elif company_ids and a["company_id"] not in company_ids:
+                    errors.append(f"{ctx}.affected_companies[{j}]: company_id -> unknown company {a['company_id']!r}")
+                if a.get("effect") and a["effect"] not in VALID_POLICY_EFFECT:
+                    errors.append(f"{ctx}.affected_companies[{j}]: invalid effect={a.get('effect')!r}")
+            for rid in (p.get("detail") or {}).get("related") or []:
+                if rid not in policy_ids:
+                    warns.append(f"{ctx}: detail.related -> unknown policy {rid!r}")
 
     # ---- min-count soft gates ----
     if companies and len(companies) < 40:

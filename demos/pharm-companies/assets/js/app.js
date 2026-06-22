@@ -9,7 +9,7 @@
   var state = {
     map: { dim: 'site_type', region: '', modality: '', ta: '' },
     cat: { search: '', region: '', type: '', modality: '', tier: '', sort: 'name', dir: 1 },
-    compare: [], countrySel: [], groupsFilter: ''
+    compare: [], countrySel: [], groupsFilter: '', policiesFilter: ''
   };
   var companyModalities = {}, companyTAs = {};
   var CAT_CAP = 400; // max catalog rows rendered at once (perf w/ large roster); refine via filters
@@ -242,6 +242,7 @@
         (c.description_zh || c.description_en ? '<p class="text-muted">' + esc(I18N.pick(c.description_zh, c.description_en)) + '</p>' : '') +
         '<dl class="kv mt-3">' + kv.map(function (r) { return '<dt>' + r[0] + '</dt><dd>' + r[1] + '</dd>'; }).join('') + '</dl>' +
         relationsHtml(c) +
+        relatedPoliciesHtml(c) +
         (c.website ? '<p class="mt-3"><a href="' + esc(c.website) + '" target="_blank" rel="noopener">' + esc(c.website) + '</a></p>' : '') +
         sourcesHtml(c.sources);
     } else if (t === 'tabSites') {
@@ -392,6 +393,88 @@
     });
   }
 
+  // ---------- China policy board ----------
+  function effBadge(e) { return '<span class="badge eff-' + (e || 'neutral') + '">' + I18N.enumLabel('policy_effect', e) + '</span>'; }
+  function ptBadge(p) { return '<span class="badge badge-pt-' + (p.policy_type || 'regulatory') + '">' + I18N.enumLabel('policy_type', p.policy_type) + '</span>'; }
+  function policyName(p) { return I18N.pick(p.title_zh, p.title_en); }
+  function polChip(p) { return '<button class="chip chip-link" data-policy-link="' + esc(p.id) + '">' + esc(policyName(p)) + '</button>'; }
+
+  function policyCardHtml(p) {
+    var aff = (p.affected_companies || []).length;
+    return '<button class="policy-card" data-policy="' + esc(p.id) + '">' +
+      '<div class="flex items-center gap-2 flex-wrap">' + ptBadge(p) +
+        '<span class="text-xs text-faint">' + esc(p.date || '') + '</span>' + confBadge(p.confidence) + '</div>' +
+      '<div class="font-medium mt-2">' + esc(policyName(p)) + '</div>' +
+      '<p class="text-muted mt-1" style="font-size:.8rem">' + esc(I18N.pick(p.summary_zh, p.summary_en)) + '</p>' +
+      '<div class="text-faint mt-2" style="font-size:.72rem">' + esc(I18N.pick(p.agency_zh, p.agency_en)) +
+        (aff ? ' · ' + I18N.t('polAffected') + ' ' + aff : '') + '</div></button>';
+  }
+  function affectedHtml(p) {
+    var list = (p.affected_companies || []).filter(function (a) { return a && a.company_id; });
+    if (!list.length) return '';
+    return '<h4 class="mt-4">' + I18N.t('polAffected') + '</h4><div class="space-y-1">' + list.map(function (a) {
+      var co = D.getCompany(a.company_id);
+      return '<div class="flex items-start gap-2 text-sm">' + effBadge(a.effect) +
+        '<button class="chip chip-link" data-company-link="' + esc(a.company_id) + '">' + esc(co ? I18N.name(co) : a.company_id) + '</button>' +
+        '<span class="text-faint">' + esc(I18N.pick(a.note_zh, a.note_en)) + '</span></div>';
+    }).join('') + '</div>';
+  }
+  function polSourcesHtml(srcs) {
+    if (!srcs || !srcs.length) return '';
+    return '<h4 class="mt-4">' + I18N.t('polSources') + '</h4><ul class="space-y-1">' + srcs.map(function (s) {
+      return '<li><a href="' + esc(s.url) + '" target="_blank" rel="noopener">' + esc(I18N.pick(s.label_zh, s.label_en) || s.url) + '</a>' +
+        (s.publisher ? ' <span class="text-faint">· ' + esc(s.publisher) + '</span>' : '') + '</li>';
+    }).join('') + '</ul>';
+  }
+  function openPolicyModal(id) {
+    var p = D.getPolicy(id); if (!p) return;
+    $('company-modal').classList.add('hidden');  // avoid stacked modals
+    $('policy-modal-head').innerHTML =
+      '<h3 class="text-xl font-semibold">' + esc(policyName(p)) + '</h3>' +
+      '<div class="mt-1 flex flex-wrap items-center gap-2 text-sm">' + ptBadge(p) +
+      '<span class="badge" style="background:var(--bg-elev)">' + esc(I18N.pick(p.agency_zh, p.agency_en)) + '</span>' +
+      '<span class="text-muted">' + esc(p.date || '') + '</span>' + confBadge(p.confidence) + '</div>';
+    var d = p.detail || {};
+    var inits = (d.initiatives || []).map(function (x) { return '<li>' + esc(I18N.pick(x.zh, x.en)) + '</li>'; }).join('');
+    var tl = (d.timeline || []).map(function (x) {
+      return '<div class="flex gap-2 text-sm"><span class="text-faint" style="min-width:4.5rem">' + esc(x.date) + '</span><span>' + esc(I18N.pick(x.zh, x.en)) + '</span></div>';
+    }).join('');
+    var related = (d.related || []).map(D.getPolicy).filter(Boolean);
+    $('policy-modal-body').innerHTML =
+      '<p class="text-muted">' + esc(I18N.pick(p.summary_zh, p.summary_en)) + '</p>' +
+      (d.direction_zh || d.direction_en ? '<h4 class="mt-4">' + I18N.t('polDirection') + '</h4><p class="text-muted">' + esc(I18N.pick(d.direction_zh, d.direction_en)) + '</p>' : '') +
+      (d.focus_zh || d.focus_en ? '<h4 class="mt-4">' + I18N.t('polFocus') + '</h4><p class="text-muted">' + esc(I18N.pick(d.focus_zh, d.focus_en)) + '</p>' : '') +
+      (inits ? '<h4 class="mt-4">' + I18N.t('polInitiatives') + '</h4><ul class="pol-ul">' + inits + '</ul>' : '') +
+      (d.implications_zh || d.implications_en ? '<h4 class="mt-4">' + I18N.t('polImplications') + '</h4><p class="text-muted">' + esc(I18N.pick(d.implications_zh, d.implications_en)) + '</p>' : '') +
+      (tl ? '<h4 class="mt-4">' + I18N.t('polTimeline') + '</h4><div class="space-y-1">' + tl + '</div>' : '') +
+      affectedHtml(p) +
+      (related.length ? '<h4 class="mt-4">' + I18N.t('polRelatedPolicies') + '</h4><div>' + related.map(polChip).join(' ') + '</div>' : '') +
+      polSourcesHtml(p.sources);
+    $('policy-modal').classList.remove('hidden');
+  }
+  // reverse: policies affecting THIS company (shown in company modal summary)
+  function relatedPoliciesHtml(c) {
+    var pol = D.policiesForCompany(c.id); if (!pol.length) return '';
+    var seen = {}, items = [];
+    pol.forEach(function (x) { if (!seen[x.policy.id]) { seen[x.policy.id] = 1; items.push(x); } });
+    return '<h4 class="mt-4">' + I18N.t('polRelated') + '</h4><div class="space-y-1">' + items.map(function (x) {
+      return '<div class="flex items-center gap-2 text-sm">' + effBadge(x.effect) + polChip(x.policy) + '</div>';
+    }).join('') + '</div>';
+  }
+  function renderPolicies() {
+    if (!$('policies-grid')) return;
+    var pols = D.policies.slice();
+    var types = uniq(pols.map(function (p) { return p.policy_type; }));
+    $('policies-filter').innerHTML = opt('', I18N.t('allPolicyTypes')) +
+      types.sort().map(function (t) { return opt(t, I18N.enumLabel('policy_type', t)); }).join('');
+    $('policies-filter').value = state.policiesFilter || '';
+    var list = pols.filter(function (p) { return !state.policiesFilter || p.policy_type === state.policiesFilter; })
+      .sort(function (a, b) { return (b.date || '').localeCompare(a.date || ''); });
+    var links = 0; pols.forEach(function (p) { links += (p.affected_companies || []).length; });
+    $('policies-count').textContent = I18N.t('polCountTpl').replace('{n}', pols.length).replace('{c}', links);
+    $('policies-grid').innerHTML = list.length ? list.map(policyCardHtml).join('') : '<p class="loading">' + I18N.t('noData') + '</p>';
+  }
+
   // ---------- render all dynamic ----------
   function renderAll() {
     renderKpis();
@@ -404,7 +487,7 @@
     });
     CH.renderTrendPhase(D.products); CH.renderTrendTA(D.products, D.getTA);
     CH.renderTrendModality(D.products, D.getModality); CH.renderTrendRegion(D.companies);
-    renderCountries(); renderBenchmarks(); renderMilestones(); renderGroups();
+    renderCountries(); renderBenchmarks(); renderMilestones(); renderGroups(); renderPolicies();
   }
 
   // ---------- theme ----------
@@ -422,7 +505,8 @@
     $('compare-btn').addEventListener('click', openCompare);
     document.querySelectorAll('[data-close-modal]').forEach(function (b) { b.addEventListener('click', function () { $('company-modal').classList.add('hidden'); }); });
     document.querySelectorAll('[data-close-compare]').forEach(function (b) { b.addEventListener('click', function () { $('compare-modal').classList.add('hidden'); }); });
-    [['company-modal'], ['compare-modal']].forEach(function (m) {
+    document.querySelectorAll('[data-close-policy]').forEach(function (b) { b.addEventListener('click', function () { $('policy-modal').classList.add('hidden'); }); });
+    [['company-modal'], ['compare-modal'], ['policy-modal']].forEach(function (m) {
       $(m[0]).addEventListener('click', function (e) { if (e.target === this) this.classList.add('hidden'); });
     });
 
@@ -465,10 +549,20 @@
     });
     $('company-modal-body').addEventListener('click', function (e) {
       var b = e.target.closest('[data-add-compare]'); if (b) { toggleCompare(b.getAttribute('data-add-compare')); renderModalBodyFromOpen(); return; }
+      var pl = e.target.closest('[data-policy-link]'); if (pl) { openPolicyModal(pl.getAttribute('data-policy-link')); return; }
       var link = e.target.closest('[data-company-link]'); if (link) { modalTab = 'tabSummary'; openCompanyModal(link.getAttribute('data-company-link')); }
+    });
+    $('policy-modal-body').addEventListener('click', function (e) {
+      var link = e.target.closest('[data-company-link]');
+      if (link) { $('policy-modal').classList.add('hidden'); modalTab = 'tabSummary'; openCompanyModal(link.getAttribute('data-company-link')); return; }
+      var pl = e.target.closest('[data-policy-link]'); if (pl) { openPolicyModal(pl.getAttribute('data-policy-link')); }
     });
 
     $('groups-filter').addEventListener('change', function (e) { state.groupsFilter = e.target.value; renderGroups(); });
+    $('policies-filter').addEventListener('change', function (e) { state.policiesFilter = e.target.value; renderPolicies(); });
+    $('policies-grid').addEventListener('click', function (e) {
+      var b = e.target.closest('[data-policy]'); if (b) openPolicyModal(b.getAttribute('data-policy'));
+    });
     $('milestone-filter').addEventListener('change', renderMilestones);
     $('country-body').addEventListener('change', function (e) {
       var cb = e.target.closest('input[data-cty]'); if (!cb) return;
