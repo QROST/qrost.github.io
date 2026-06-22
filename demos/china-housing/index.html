@@ -287,6 +287,7 @@
                     <a href="#rankings" id="nav-rankings" class="hover:text-slate-900 dark:hover:text-slate-100 transition-colors whitespace-nowrap">排行</a>
                     <a href="#overview" id="nav-overview" class="hover:text-slate-900 dark:hover:text-slate-100 transition-colors whitespace-nowrap">便宜×宜居</a>
                     <a href="#table" id="nav-table" class="hover:text-slate-900 dark:hover:text-slate-100 transition-colors whitespace-nowrap">数据表</a>
+                    <a href="#policy" id="nav-policy" class="hover:text-slate-900 dark:hover:text-slate-100 transition-colors whitespace-nowrap">购房政策</a>
                 </div>
                 <div class="flex items-center gap-2 shrink-0">
                 <button id="lang-toggle" aria-label="切换中文 / English" title="English"
@@ -539,6 +540,20 @@
             </div>
         </section>
 
+        <!-- National + city home-buying policy -->
+        <section id="policy" class="scroll-mt-20">
+            <h2 id="sec-policy-h" class="text-xs font-semibold uppercase tracking-[0.15em] text-slate-400 dark:text-slate-500 mb-1">购房政策 · Buying policy</h2>
+            <p id="sec-policy-p" class="text-slate-600 dark:text-slate-400 mb-5 max-w-3xl text-sm leading-relaxed">先看<strong class="text-slate-800 dark:text-slate-200">全国通行规则</strong>（利率 / 首付 / 契税 / 认房不认贷 / 户籍改革），再点任意房源的「政策」页看<strong class="text-slate-800 dark:text-slate-200">该市限购·落户·补贴</strong>与<strong class="text-slate-800 dark:text-slate-200">能买→划算→落户→宜居→交付</strong>决策漏斗。每条政策附<strong class="text-slate-800 dark:text-slate-200">来源·时点·置信度</strong>。</p>
+            <div class="rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 p-4 md:p-6 transition-colors duration-300">
+                <div class="flex flex-wrap items-baseline justify-between gap-2 mb-4">
+                    <span id="np-title" class="text-sm font-medium text-slate-700 dark:text-slate-300">全国通行政策（截至快照时点）</span>
+                    <span id="np-asof" class="text-xs text-slate-400 dark:text-slate-500 tabular-nums"></span>
+                </div>
+                <div id="national-policy-grid" class="grid grid-cols-1 md:grid-cols-2 gap-3"></div>
+                <p id="np-disclaimer" class="mt-4 text-xs text-amber-600/90 dark:text-amber-400/90 leading-relaxed"></p>
+            </div>
+        </section>
+
         <!-- Methodology (collapsed by default) -->
         <section id="methodology" class="scroll-mt-20">
             <details class="methodology-details rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 transition-colors duration-300">
@@ -635,6 +650,16 @@
                     </ul>
                 </div>
                 <div
+                    class="rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 p-5 text-sm text-slate-600 dark:text-slate-400 leading-relaxed space-y-2">
+                    <p id="method-policy-title" class="font-medium text-slate-800 dark:text-slate-200 mt-0">购房政策（国家 + 各市）</p>
+                    <ul id="method-policy-body" class="space-y-2 list-disc list-inside mt-2 text-sm">
+                        <li><strong class="text-slate-700 dark:text-slate-300">粒度</strong>：政策按<strong class="text-slate-700 dark:text-slate-300">地级市</strong>归并（限购 / 限贷 / 落户 / 补贴 / 公积金 / 二手房指导价 / 棚改 / 资源枯竭 / 七普人口），国家级常量（LPR / 首付下限 / 契税分档 / 认房不认贷 / 户籍改革 / 保交楼）单列。一套房按其市映射到对应政策。</li>
+                        <li><strong class="text-slate-700 dark:text-slate-300">溯源</strong>：每个政策字段附<strong class="text-slate-700 dark:text-slate-300">来源链接 · 时点 · 置信度</strong>（高=政府原文 / 中=权威媒体或地方门户 / 低=间接推断）；查无可靠源即标「未知」，<strong class="text-slate-700 dark:text-slate-300">绝不臆测</strong>。多轮联网调研 + 对抗式事实核查（仅下调、不上调置信度）。</li>
+                        <li><strong class="text-slate-700 dark:text-slate-300">决策漏斗</strong>：能买（限购）→ 划算（契税 + 月供）→ 落户（门槛）→ 宜居（本页评分）→ 交付（二手现房无烂尾风险）。五闸为<strong class="text-slate-700 dark:text-slate-300">提示性</strong>，非审批结论。</li>
+                        <li><strong class="text-amber-700 dark:text-amber-400">时效</strong>：政策是<strong class="text-amber-700 dark:text-amber-400">快照</strong>，利率 / 限购 / 补贴变动频繁；<strong class="text-amber-700 dark:text-amber-400">购房前务必向当地住建局 / 不动产登记中心 / 公积金中心核实最新口径</strong>。总价 / 月供为粗略估算，不含贷款审批、评估价差异、维修基金等。</li>
+                    </ul>
+                </div>
+                <div
                     class="rounded-xl border border-amber-200 dark:border-amber-900/60 bg-amber-50/60 dark:bg-amber-950/30 p-6 text-sm text-slate-600 dark:text-slate-400 leading-relaxed space-y-3 transition-colors duration-300">
                     <p id="method-limits-title" class="font-medium text-amber-800 dark:text-amber-400">务必注意的局限</p>
                     <ul id="method-limits-body" class="space-y-2 list-disc list-inside">
@@ -713,6 +738,7 @@
                     <button data-lm-tab="sat" class="lm-tab"></button>
                     <button data-lm-tab="near" class="lm-tab"></button>
                     <button data-lm-tab="climate" class="lm-tab"></button>
+                    <button data-lm-tab="policy" class="lm-tab"></button>
                 </div>
                 <div class="flex-grow overflow-auto p-5 pt-3">
                     <div data-lm-pane="sat">
@@ -733,6 +759,14 @@
                         <div id="lm-risk" class="mt-4 text-sm text-slate-600 dark:text-slate-400 leading-relaxed"></div>
                         <p id="lm-climate-note" class="mt-2 text-xs text-slate-400 dark:text-slate-500">气候为 2014–2023 月度均值（Open-Meteo
                             ERA5）；灾害类型据地市灾情史、频率按坐标物理细化到小区，仍为粗略近似、非工程依据。</p>
+                    </div>
+                    <div data-lm-pane="policy" class="hidden">
+                        <!-- decision funnel → city policy facts → total-cost/月供 → why-cheap → disclaimer -->
+                        <div id="lm-policy-funnel" class="mb-4"></div>
+                        <div id="lm-policy-facts" class="mb-4 space-y-2 text-sm"></div>
+                        <div id="lm-policy-tco" class="mb-4"></div>
+                        <div id="lm-policy-why" class="mb-3"></div>
+                        <p id="lm-policy-note" class="mt-2 text-xs text-amber-600/90 dark:text-amber-400/90 leading-relaxed"></p>
                     </div>
                 </div>
             </div>
@@ -756,25 +790,26 @@
     </footer>
 
     <!-- data + libs + app (load order matters) -->
-    <script src="assets/data/listings.js?v=ada088c4d2"></script>
+    <script src="assets/data/listings.js?v=dcf2ce8124"></script>
     <!-- China province boundaries, vendored locally (no runtime third-party fetch) -->
-    <script src="assets/data/china-geo.js?v=ada088c4d2"></script>
+    <script src="assets/data/china-geo.js?v=dcf2ce8124"></script>
     <!-- Baked enrichment: geocode / climate / POIs / risk / elevation (tools/manage.py enrich → build) -->
-    <script src="assets/data/enriched.js?v=ada088c4d2"></script>
+    <script src="assets/data/enriched.js?v=dcf2ce8124"></script>
     <!-- Curated province natural-hazard profile (tools/manage.py build) -->
-    <script src="assets/data/hazards.js?v=ada088c4d2"></script>
+    <script src="assets/data/hazards.js?v=dcf2ce8124"></script>
+    <script src="assets/data/policy.js?v=dcf2ce8124"></script>
     <!-- Gridded climate/elevation basemap field — isotherms / rainfall / DEM (tools/manage.py field → build) -->
-    <script src="assets/data/field.js?v=ada088c4d2"></script>
-    <script src="assets/data/loc-pinyin.js?v=ada088c4d2"></script>
-    <script src="assets/data/geo-en.js?v=ada088c4d2"></script>
-    <script src="assets/js/i18n.js?v=ada088c4d2"></script>
+    <script src="assets/data/field.js?v=dcf2ce8124"></script>
+    <script src="assets/data/loc-pinyin.js?v=dcf2ce8124"></script>
+    <script src="assets/data/geo-en.js?v=dcf2ce8124"></script>
+    <script src="assets/js/i18n.js?v=dcf2ce8124"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"
         integrity="sha384-vsrfeLOOY6KuIYKDlmVH5UiBmgIdB1oEf7p01YgWHuqmOHfZr374+odEv96n9tNC" crossorigin="anonymous"
         referrerpolicy="no-referrer"></script>
     <script src="https://cdn.jsdelivr.net/npm/echarts@5.5.1/dist/echarts.min.js" crossorigin="anonymous"
         referrerpolicy="no-referrer"></script>
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
-    <script src="assets/js/app.js?v=ada088c4d2"></script>
+    <script src="assets/js/app.js?v=dcf2ce8124"></script>
 
 </body>
 

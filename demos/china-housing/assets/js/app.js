@@ -2362,6 +2362,249 @@
   const ZOOM_BY_LEVEL = { loc: 16, dist: 14, city: 12, prefecture: 11 };
   let lmCurrent = null, lmActiveTab = 'sat', lmSatMap = null, lmNearMap = null, lmClimateChart = null, lmTabInit = {};
 
+  // ===== Buying policy (national + city) ==================================
+  const CP = window.CITY_POLICY || { byPref: {}, locIndex: {} };
+  const NP = window.NATIONAL_POLICY || {};
+  // Nationwide numeric constants for the cost/mortgage estimate — these MIRROR
+  // window.NATIONAL_POLICY (2024 契税分档 + 5Y-LPR) as plain numbers the calculator
+  // can use; the policy panel shows the cited text versions. Update with NP.
+  const POLICY_CONST = {
+    lpr5y: 3.5, mortgageYears: 30, downFirst: 15,   // 5Y-LPR 2026-06; 全国首付下限 2024-09 统一 15%
+    deed: { le140: 1.0, gt140First: 1.5 },   // 家庭唯一住房: ≤140㎡ 1% · >140㎡ 1.5% (公告2024-16号)
+  };
+  const escP = (s) => String(s == null ? '' : s).replace(/</g, '&lt;').replace(/>/g, '&gt;');
+  // researcher key_facts/details sometimes append meta like "confidence=high" or a
+  // 【bracket】 audit prefix — strip the confidence meta for display (source shown as a link).
+  const polText = (s) => escP(String(s == null ? '' : s)
+    .replace(/[（(]\s*confidence\s*=\s*[^）)]*[）)]/gi, '')
+    .replace(/[,，;；]?\s*confidence\s*=\s*\S+/gi, '')
+    .trim());
+
+  function policyFor(d) {
+    const idx = CP.locIndex || {};
+    const key = idx[`${d.prov}|${d.city}`] || idx[`${d.prov}|${(d.city || '').split('-')[0]}`];
+    return (key && CP.byPref) ? CP.byPref[key] : null;
+  }
+
+  const CONF_DOT = { high: '#059669', med: '#d97706', low: '#dc2626', unknown: '#94a3b8' };
+  function confChip(f) {
+    if (!f || !f.confidence) return '';
+    const c = f.confidence, key = 'conf' + c.charAt(0).toUpperCase() + c.slice(1);
+    const tip = `${t('polAsOf')} ${f.as_of || '?'}`;
+    return `<span class="inline-flex items-center gap-1 text-[0.6rem] ${tcx().muted} align-middle" title="${tip}">`
+      + `<span style="width:7px;height:7px;border-radius:50%;background:${CONF_DOT[c] || CONF_DOT.unknown};display:inline-block"></span>${t(key)}</span>`;
+  }
+  function srcLink(f) {
+    if (!f || !f.source_url) return '';
+    return ` <a href="${escP(f.source_url)}" target="_blank" rel="noopener" class="text-[0.6rem] text-sky-600 dark:text-sky-400 hover:underline whitespace-nowrap">${t('polSource')}↗</a>`;
+  }
+  // one policy row: label · value · confidence dot · source link
+  function polRow(label, valueHtml, f) {
+    const tc = tcx();
+    if (!valueHtml) return '';
+    return `<div class="flex flex-wrap items-baseline gap-x-2 gap-y-0.5 py-1 border-b border-slate-100 dark:border-slate-700/50">`
+      + `<span class="${tc.muted} text-xs w-24 shrink-0">${label}</span>`
+      + `<span class="${tc.body} flex-1 min-w-[8rem]">${valueHtml}</span>`
+      + `${confChip(f)}${srcLink(f)}</div>`;
+  }
+
+  // ---- decision funnel: 能买 → 划算 → 落户 → 宜居 → 交付 -------------------
+  const GATE_STYLE = {
+    ok: ['#dcfce7', '#166534', '#bbf7d0', '✓'],
+    warn: ['#fef9c3', '#854d0e', '#fde68a', '!'],
+    na: ['#f1f5f9', '#64748b', '#e2e8f0', '?'],
+  };
+  function gatePill(label, status, sub) {
+    const [bg, fg, , icon] = GATE_STYLE[status] || GATE_STYLE.na;
+    const dk = isDark();
+    const bgc = dk ? (status === 'ok' ? 'rgba(5,150,105,0.18)' : status === 'warn' ? 'rgba(217,119,6,0.18)' : 'rgba(100,116,139,0.15)') : bg;
+    const fgc = dk ? (status === 'ok' ? '#6ee7b7' : status === 'warn' ? '#fcd34d' : '#94a3b8') : fg;
+    return `<div class="flex-1 min-w-[3.5rem] rounded-lg px-2 py-1.5 text-center" style="background:${bgc}">`
+      + `<div class="text-[0.95rem] leading-none mb-0.5" style="color:${fgc}">${icon}</div>`
+      + `<div class="text-[0.62rem] font-medium" style="color:${fgc}">${label}</div>`
+      + `<div class="text-[0.58rem] mt-0.5" style="color:${fgc};opacity:.85">${sub || ''}</div></div>`;
+  }
+  function funnelHtml(d, pol) {
+    const pl = pol.purchase_limit || {}, hk = pol.hukou || {};
+    // 能买
+    let g1 = 'na', s1 = t('pfBuyNa');
+    if (pl.status === '不限购') { g1 = 'ok'; s1 = t('pfBuyOk'); }
+    else if (pl.status === '限购' || pl.status === '区域限购') { g1 = 'warn'; s1 = t('pfBuyWarn'); }
+    // 划算 — show one-time deed tax magnitude (always computable for mainland)
+    const deedRate = d.area > 140 ? POLICY_CONST.deed.gt140First : POLICY_CONST.deed.le140;
+    const deed = (d.priceYuan || 0) * deedRate / 100;
+    const g2 = 'ok', s2 = '+' + fmtCny(deed);
+    // 落户
+    let g3 = 'na', s3 = t('pfHukouNa');
+    if (hk.threshold === '零门槛' || hk.threshold === '买房落户') { g3 = 'ok'; s3 = t('pfHukouOk'); }
+    else if (hk.threshold === '积分落户' || hk.threshold === '社保年限' || hk.threshold === '稳定就业') { g3 = 'warn'; s3 = t('pfHukouWarn'); }
+    // 宜居 — reuse 值得看 badge / grade signal
+    const worth = worthBadge(d);
+    let g4 = 'na', s4 = t('pfLiveNa');
+    if (worth) { g4 = 'ok'; s4 = t('worthBadge'); }
+    else {
+      const grades = Object.keys(GRADE_DIMS).map((k) => gradeOf(d, k)).filter(Boolean);
+      if (grades.length) { const hasC = grades.some((g) => g[0] === 'C'); g4 = hasC ? 'warn' : 'ok'; s4 = grades.filter((g) => g[0] === 'A').length + '×A'; }
+    }
+    // 交付 — resale = already built, no stalled-project risk
+    const g5 = 'ok', s5 = t('pfDeliverOk');
+    return `<div class="text-xs font-medium ${tcx().muted} mb-1.5">${t('pfTitle')}</div>`
+      + `<div class="flex items-stretch gap-1.5">`
+      + gatePill(t('pfBuy'), g1, s1) + gatePill(t('pfWorth'), g2, s2) + gatePill(t('pfHukou'), g3, s3)
+      + gatePill(t('pfLive'), g4, s4) + gatePill(t('pfDeliver'), g5, s5) + `</div>`;
+  }
+
+  // ¥ formatter for policy/cost figures (CNY domain regardless of UI language)
+  function fmtCny(yuan) {
+    if (yuan == null || !isFinite(yuan)) return '—';
+    if (yuan >= 10000) return '¥' + (yuan / 10000).toFixed(yuan >= 1000000 ? 0 : 1) + (isEn() ? '0k' : '万');
+    return '¥' + Math.round(yuan).toLocaleString('en-US');
+  }
+  function tcoHtml(d, pol) {
+    if (!(d.priceYuan > 0) || !(d.area > 0)) return '';
+    const tc = tcx();
+    const deedRate = d.area > 140 ? POLICY_CONST.deed.gt140First : POLICY_CONST.deed.le140;
+    const deed = d.priceYuan * deedRate / 100;
+    const upfront = d.priceYuan + deed;
+    const down = (pol.loan_policy && pol.loan_policy.first_down_pct) || POLICY_CONST.downFirst;
+    const loan = d.priceYuan * (1 - down / 100);
+    const r = POLICY_CONST.lpr5y / 100 / 12, n = POLICY_CONST.mortgageYears * 12;
+    const monthly = r > 0 ? loan * r / (1 - Math.pow(1 + r, -n)) : loan / n;
+    const fee = (d.enr && d.enr.propertyFeeYuan != null) ? d.enr.propertyFeeYuan * d.area * 12 : null;
+    const parts = [
+      `<span>${t('tcoPrice')} <b>${fmtCny(d.priceYuan)}</b></span>`,
+      `<span>${t('tcoDeed')} <b>${fmtCny(deed)}</b> <span class="${tc.muted}">(${deedRate}%·${t('tcoFirst')})</span></span>`,
+      `<span class="${tc.strong}">${t('tcoTotal')} <b>${fmtCny(upfront)}</b></span>`,
+    ];
+    if (fee) parts.push(`<span>${t('tcoFeeYr')} <b>${fmtCny(fee)}</b></span>`);
+    const mort = `<span>${t('tcoDown', { p: down })} · ${t('tcoMonthly', { y: POLICY_CONST.mortgageYears, r: POLICY_CONST.lpr5y })} <b>${t('tcoMonthlyVal', { v: fmtCny(monthly) })}</b></span>`;
+    return `<div class="rounded-lg border border-slate-200 dark:border-slate-700 p-3">`
+      + `<div class="text-xs font-medium ${tc.muted} mb-1.5">${t('tcoTitle')}</div>`
+      + `<div class="flex flex-wrap gap-x-3 gap-y-1 text-sm ${tc.body}">${parts.join('')}</div>`
+      + `<div class="mt-1.5 text-sm ${tc.body}">${mort}</div>`
+      + `<p class="mt-2 text-[0.65rem] ${tc.muted} leading-relaxed">${t('tcoNote')}</p></div>`;
+  }
+
+  // ---- "why cheap" cross-reference chips ---------------------------------
+  function whyChips(d, pol) {
+    const tc = tcx();
+    const chips = [];
+    const re = pol.resource_exhausted || {}, pop = pol.population || {};
+    const chip = (txt, tone) => `<span class="inline-block rounded px-1.5 py-0.5 text-[0.65rem] font-medium" style="background:${tone};color:#fff">${txt}</span>`;
+    if (re.flag === true) chips.push(chip(t('whyResource'), '#7c3aed'));
+    if (pop.change_pct != null && pop.change_pct <= -5) chips.push(chip(t('whyShrink', { p: Math.abs(Math.round(pop.change_pct)) }), '#0891b2'));
+    if (pop.aging_65plus_pct != null && pop.aging_65plus_pct >= 20) chips.push(chip(t('whyAging', { p: Math.round(pop.aging_65plus_pct) }), '#db2777'));
+    if (d.janTemp != null && d.janTemp <= -10) chips.push(chip(t('whyCold'), '#2563eb'));
+    if (d.transitKm != null && d.transitKm > 60) chips.push(chip(t('whyRemote'), '#64748b'));
+    if (d.hazard && d.hazard.hazards && d.hazard.hazards.some((h) => h.freq >= 5)) chips.push(chip(t('whyHazard'), '#ea580c'));
+    if (d.builtYear != null && (NOW_YEAR - d.builtYear) >= 30) chips.push(chip(t('whyOld'), '#9a3412'));
+    if (!chips.length) return `<div class="text-xs ${tc.muted}">${t('whyNone')}</div>`;
+    return `<div class="text-xs font-medium ${tc.muted} mb-1.5">${t('whyTitle')}</div><div class="flex flex-wrap gap-1.5">${chips.join('')}</div>`;
+  }
+
+  function lmRenderPolicy(d) {
+    const tc = tcx();
+    const funnelEl = document.getElementById('lm-policy-funnel');
+    const factsEl = document.getElementById('lm-policy-facts');
+    const tcoEl = document.getElementById('lm-policy-tco');
+    const whyEl = document.getElementById('lm-policy-why');
+    const noteEl = document.getElementById('lm-policy-note');
+    const pol = policyFor(d);
+    if (!pol) {   // non-mainland (HK/TW/CA) or unmapped — no city policy regime
+      funnelEl.innerHTML = '';
+      factsEl.innerHTML = `<div class="${tc.muted} text-sm">${t('polNone')}</div>`;
+      tcoEl.innerHTML = ''; whyEl.innerHTML = '';
+      noteEl.textContent = t('polDisclaimerNone') || '';
+      return;
+    }
+    funnelEl.innerHTML = funnelHtml(d, pol);
+    // policy facts
+    const rows = [];
+    const pl = pol.purchase_limit;
+    if (pl) rows.push(polRow(t('polPurchase'), `<b>${escP(pl.status || '—')}</b>${pl.detail ? ' · ' + polText(pl.detail) : ''}`, pl));
+    const ln = pol.loan_policy;
+    if (ln && (ln.first_down_pct != null || ln.recognize)) {
+      const bits = [];
+      if (ln.first_down_pct != null) bits.push(t('polFirstDown', { p: ln.first_down_pct }));
+      if (ln.second_down_pct != null) bits.push(t('polSecondDown', { p: ln.second_down_pct }));
+      if (ln.recognize) bits.push(polText(ln.recognize));
+      rows.push(polRow(t('polLoan'), bits.join(' · '), ln));
+    }
+    const hk = pol.hukou;
+    if (hk) rows.push(polRow(t('polHukou'), `<b>${escP(hk.threshold || '—')}</b>${hk.detail ? ' · ' + polText(hk.detail) : ''}`, hk));
+    const sub = pol.subsidy;
+    if (sub && sub.has) {
+      const bits = [(sub.kinds && sub.kinds.length) ? polText(sub.kinds.join('/')) : t('polYes')];
+      if (sub.amount_note) bits.push(polText(sub.amount_note));
+      rows.push(polRow(t('polSubsidy'), bits.join(' · '), sub));
+    }
+    const pf = pol.provident_fund;
+    if (pf && (pf.max_loan_wan != null || pf.cross_city != null)) {
+      const bits = [];
+      if (pf.max_loan_wan != null) bits.push(t('polFundMax', { n: pf.max_loan_wan }));
+      if (pf.cross_city === true) bits.push(t('polFundCross'));
+      rows.push(polRow(t('polFund'), bits.join(' · '), pf));
+    }
+    const gp = pol.guide_price;
+    if (gp && gp.has != null) rows.push(polRow(t('polGuide'), `${gp.has ? t('polYes') : t('polNo')}${gp.detail ? ' · ' + polText(gp.detail) : ''}`, gp));
+    const ur = pol.urban_renewal;
+    if (ur && ur.active != null) rows.push(polRow(t('polRenewal'), `${ur.active ? t('polYes') : t('polNo')}${ur.detail ? ' · ' + polText(ur.detail) : ''}`, ur));
+    const re = pol.resource_exhausted;
+    if (re && re.flag != null) rows.push(polRow(t('polResource'), `<b>${re.flag ? t('polYes') : t('polNo')}</b>${re.ndrc_batch ? ' · ' + polText(re.ndrc_batch) : ''}`, re));
+    const pop = pol.population;
+    if (pop && pop.pop_2020 != null) {
+      const bits = [`${(pop.pop_2020 / 10000).toFixed(1)}万`];
+      if (pop.change_pct != null) bits.push((pop.change_pct >= 0 ? '+' : '') + pop.change_pct + '%');
+      if (pop.aging_65plus_pct != null) bits.push(t('lmAging') + ' ' + pop.aging_65plus_pct + '%');
+      rows.push(polRow(t('polPop'), bits.join(' · '), pop));
+    }
+    if (pol.property_tax_pilot === true) rows.push(polRow(t('polTax'), t('polYes'), null));
+    factsEl.innerHTML = rows.filter(Boolean).join('');
+    tcoEl.innerHTML = tcoHtml(d, pol);
+    whyEl.innerHTML = whyChips(d, pol);
+    noteEl.textContent = t('polDisclaimer');
+  }
+
+  // ---- national policy panel (section #policy) ---------------------------
+  const NP_LABELS = [
+    { kw: 'LPR', zh: 'LPR 房贷基准利率', en: 'LPR mortgage rate' },
+    { kw: '认房', zh: '认房不认贷', en: 'Recognize-home-not-loan' },
+    { kw: '首付', zh: '首付比例下限', en: 'Down-payment floor' },
+    { kw: '契税', zh: '契税分档', en: 'Deed-tax brackets' },
+    { kw: '增值税', zh: '增值税(转让)', en: 'VAT on resale' },
+    { kw: '个人所得税', zh: '个税·满五唯一', en: 'Income tax (5y-sole)' },
+    { kw: '房地产税', zh: '房地产税立法', en: 'Property-tax legislation' },
+    { kw: '户籍', zh: '户籍改革·落户', en: 'Hukou reform' },
+    { kw: '保交', zh: '保交楼·白名单', en: 'Project delivery / whitelist' },
+  ];
+  function npLabel(topic) {
+    const hit = NP_LABELS.find((x) => topic.indexOf(x.kw) >= 0);
+    if (hit) return isEn() ? hit.en : hit.zh;
+    return escP(topic.split(/[—（(:：]/)[0].slice(0, 16));
+  }
+  function renderNationalPolicy() {
+    const grid = document.getElementById('national-policy-grid');
+    if (!grid) return;
+    const tc = tcx();
+    const topics = Object.keys(NP);
+    if (!topics.length) { grid.innerHTML = `<div class="${tc.muted} text-sm">—</div>`; return; }
+    // stable display order by NP_LABELS, unknowns last
+    const order = (tp) => { const i = NP_LABELS.findIndex((x) => tp.indexOf(x.kw) >= 0); return i < 0 ? 99 : i; };
+    topics.sort((a, b) => order(a) - order(b));
+    grid.innerHTML = topics.map((topic) => {
+      const o = NP[topic] || {};
+      const facts = (o.key_facts || []).slice(0, 4).map((f) => `<li>${polText(f)}</li>`).join('');
+      return `<div class="rounded-lg border border-slate-200 dark:border-slate-700 p-3 bg-slate-50/50 dark:bg-slate-800/50">`
+        + `<div class="flex items-baseline justify-between gap-2 mb-1"><span class="font-medium ${tc.strong} text-sm">${npLabel(topic)}</span>${confChip(o)}</div>`
+        + `<ul class="list-disc list-inside space-y-0.5 text-xs ${tc.body} leading-relaxed">${facts}</ul>`
+        + `<div class="mt-1">${srcLink(o)}</div></div>`;
+    }).join('');
+    const asof = document.getElementById('np-asof');
+    if (asof) asof.textContent = t('npAsOf', { d: CP.asOf || '2026-06' });
+    const dis = document.getElementById('np-disclaimer');
+    if (dis) dis.textContent = t('npDisclaimer');
+  }
+
   function lmStyleTabs(active) {
     const dk = isDark();
     document.querySelectorAll('[data-lm-tab]').forEach((b) => {
@@ -2387,7 +2630,7 @@
     const e = d.enr;
     document.getElementById('lm-title').textContent = cityLabel(d);
     document.getElementById('lm-sub').innerHTML = lmSubHtml(d, e);
-    const tabs = { sat: t('lmSat'), near: t('lmNear'), climate: t('lmClimate') };
+    const tabs = { sat: t('lmSat'), near: t('lmNear'), climate: t('lmClimate'), policy: t('lmPolicy') };
     document.querySelectorAll('[data-lm-tab]').forEach((b) => { b.textContent = tabs[b.dataset.lmTab]; });
     updateCmpModalBtn();
     const shareBtn = document.getElementById('lm-share');
@@ -2421,6 +2664,8 @@
       else { setTimeout(() => lmNearMap && lmNearMap.invalidateSize(), 60); }
     } else if (tab === 'climate') {
       lmRenderClimate(d);
+    } else if (tab === 'policy') {
+      lmRenderPolicy(d);
     }
   }
 
@@ -2997,11 +3242,13 @@
     lmStyleTabs(lmActiveTab);
     if (lmActiveTab === 'near' && lmTabInit.near) safeRun('lmRenderNearList', () => lmRenderNearList(d));
     if (lmActiveTab === 'climate') safeRun('lmRenderClimate', () => lmRenderClimate(d));
+    if (lmActiveTab === 'policy') safeRun('lmRenderPolicy', () => lmRenderPolicy(d));
   }
 
   function applyLangToUI() {
     if (I18N().applyStaticI18n) I18N().applyStaticI18n();
     safeRun('syncHeroCounts', syncHeroCounts);
+    safeRun('renderNationalPolicy', renderNationalPolicy);
     applyThemeToCharts();
   }
 
@@ -3102,6 +3349,7 @@
     safeRun('renderScatter', renderScatter);
     safeRun('renderRankings', renderRankings);
     safeRun('renderProvinceChart', renderProvinceChart);
+    safeRun('renderNationalPolicy', renderNationalPolicy);
 
     const zi = document.getElementById('map-zoom-in'), zo = document.getElementById('map-zoom-out'), zr = document.getElementById('map-zoom-reset');
     if (zi) zi.addEventListener('click', () => zoomBy(1.45));
