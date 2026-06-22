@@ -9,7 +9,13 @@
       "representative_product_ids": [],
       "confidence": 0.9,
       "last_verified": "2026-06",
-      "sources": [{ "url": "https://www.who.int/health-topics/cancer", "title": "WHO — Cancer", "accessed": "2026-06" }]
+      "sources": [
+        {
+          "url": "https://www.who.int/health-topics/cancer",
+          "title": "WHO — Cancer",
+          "accessed": "2026-06"
+        }
+      ]
     },
     {
       "id": "immunology",
@@ -20,7 +26,13 @@
       "representative_product_ids": [],
       "confidence": 0.88,
       "last_verified": "2026-06",
-      "sources": [{ "url": "https://www.fda.gov/drugs", "title": "FDA — Drugs", "accessed": "2026-06" }]
+      "sources": [
+        {
+          "url": "https://www.fda.gov/drugs",
+          "title": "FDA — Drugs",
+          "accessed": "2026-06"
+        }
+      ]
     },
     {
       "id": "neuroscience",
@@ -31,7 +43,13 @@
       "representative_product_ids": [],
       "confidence": 0.86,
       "last_verified": "2026-06",
-      "sources": [{ "url": "https://www.ninds.nih.gov/", "title": "NIH NINDS", "accessed": "2026-06" }]
+      "sources": [
+        {
+          "url": "https://www.ninds.nih.gov/",
+          "title": "NIH NINDS",
+          "accessed": "2026-06"
+        }
+      ]
     },
     {
       "id": "cardiometabolic",
@@ -42,7 +60,13 @@
       "representative_product_ids": [],
       "confidence": 0.88,
       "last_verified": "2026-06",
-      "sources": [{ "url": "https://www.who.int/health-topics/cardiovascular-diseases", "title": "WHO — Cardiovascular diseases", "accessed": "2026-06" }]
+      "sources": [
+        {
+          "url": "https://www.who.int/health-topics/cardiovascular-diseases",
+          "title": "WHO — Cardiovascular diseases",
+          "accessed": "2026-06"
+        }
+      ]
     },
     {
       "id": "infectious-disease",
@@ -53,7 +77,13 @@
       "representative_product_ids": [],
       "confidence": 0.85,
       "last_verified": "2026-06",
-      "sources": [{ "url": "https://www.who.int/health-topics/infectious-diseases", "title": "WHO — Infectious diseases", "accessed": "2026-06" }]
+      "sources": [
+        {
+          "url": "https://www.who.int/health-topics/infectious-diseases",
+          "title": "WHO — Infectious diseases",
+          "accessed": "2026-06"
+        }
+      ]
     },
     {
       "id": "vaccines",
@@ -64,7 +94,13 @@
       "representative_product_ids": [],
       "confidence": 0.86,
       "last_verified": "2026-06",
-      "sources": [{ "url": "https://www.who.int/teams/immunization-vaccines-and-biologicals", "title": "WHO — Immunization & Vaccines", "accessed": "2026-06" }]
+      "sources": [
+        {
+          "url": "https://www.who.int/teams/immunization-vaccines-and-biologicals",
+          "title": "WHO — Immunization & Vaccines",
+          "accessed": "2026-06"
+        }
+      ]
     },
     {
       "id": "rare-disease",
@@ -75,7 +111,13 @@
       "representative_product_ids": [],
       "confidence": 0.84,
       "last_verified": "2026-06",
-      "sources": [{ "url": "https://www.fda.gov/industry/developing-products-rare-diseases-conditions", "title": "FDA — Rare Diseases", "accessed": "2026-06" }]
+      "sources": [
+        {
+          "url": "https://www.fda.gov/industry/developing-products-rare-diseases-conditions",
+          "title": "FDA — Rare Diseases",
+          "accessed": "2026-06"
+        }
+      ]
     },
     {
       "id": "ophthalmology",
@@ -86,7 +128,13 @@
       "representative_product_ids": [],
       "confidence": 0.84,
       "last_verified": "2026-06",
-      "sources": [{ "url": "https://www.fda.gov/drugs", "title": "FDA — Drugs", "accessed": "2026-06" }]
+      "sources": [
+        {
+          "url": "https://www.fda.gov/drugs",
+          "title": "FDA — Drugs",
+          "accessed": "2026-06"
+        }
+      ]
     },
     {
       "id": "respiratory",
@@ -97,7 +145,13 @@
       "representative_product_ids": [],
       "confidence": 0.83,
       "last_verified": "2026-06",
-      "sources": [{ "url": "https://www.who.int/health-topics/chronic-respiratory-diseases", "title": "WHO — Respiratory diseases", "accessed": "2026-06" }]
+      "sources": [
+        {
+          "url": "https://www.who.int/health-topics/chronic-respiratory-diseases",
+          "title": "WHO — Respiratory diseases",
+          "accessed": "2026-06"
+        }
+      ]
     },
     {
       "id": "hematology",
@@ -108,7 +162,13 @@
       "representative_product_ids": [],
       "confidence": 0.85,
       "last_verified": "2026-06",
-      "sources": [{ "url": "https://www.fda.gov/drugs", "title": "FDA — Drugs", "accessed": "2026-06" }]
+      "sources": [
+        {
+          "url": "https://www.fda.gov/drugs",
+          "title": "FDA — Drugs",
+          "accessed": "2026-06"
+        }
+      ]
     },
     {
       "id": "dermatology",
@@ -119,7 +179,13 @@
       "representative_product_ids": [],
       "confidence": 0.8,
       "last_verified": "2026-06",
-      "sources": [{ "url": "https://www.fda.gov/drugs", "title": "FDA — Drugs", "accessed": "2026-06" }]
+      "sources": [
+        {
+          "url": "https://www.fda.gov/drugs",
+          "title": "FDA — Drugs",
+          "accessed": "2026-06"
+        }
+      ]
     },
     {
       "id": "womens-health",
@@ -130,7 +196,13 @@
       "representative_product_ids": [],
       "confidence": 0.78,
       "last_verified": "2026-06",
-      "sources": [{ "url": "https://www.fda.gov/drugs", "title": "FDA — Drugs", "accessed": "2026-06" }]
+      "sources": [
+        {
+          "url": "https://www.fda.gov/drugs",
+          "title": "FDA — Drugs",
+          "accessed": "2026-06"
+        }
+      ]
     },
     {
       "id": "gastroenterology",
@@ -141,7 +213,13 @@
       "representative_product_ids": [],
       "confidence": 0.78,
       "last_verified": "2026-06",
-      "sources": [{ "url": "https://www.fda.gov/drugs", "title": "FDA — Drugs", "accessed": "2026-06" }]
+      "sources": [
+        {
+          "url": "https://www.fda.gov/drugs",
+          "title": "FDA — Drugs",
+          "accessed": "2026-06"
+        }
+      ]
     },
     {
       "id": "nephrology",
@@ -152,7 +230,47 @@
       "representative_product_ids": [],
       "confidence": 0.78,
       "last_verified": "2026-06",
-      "sources": [{ "url": "https://www.fda.gov/drugs", "title": "FDA — Drugs", "accessed": "2026-06" }]
+      "sources": [
+        {
+          "url": "https://www.fda.gov/drugs",
+          "title": "FDA — Drugs",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "cardiovascular",
+      "name_zh": "心血管",
+      "name_en": "Cardiovascular",
+      "description_zh": "心血管疾病治疗，涵盖抗凝、降脂、心衰、高血压等;与心血管代谢领域部分重叠。",
+      "description_en": "Cardiovascular disease therapeutics — anticoagulation, lipid-lowering, heart failure, hypertension; partially overlaps cardiometabolic.",
+      "representative_product_ids": [],
+      "confidence": 0.8,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "WHO — Cardiovascular diseases",
+          "url": "https://www.who.int/health-topics/cardiovascular-diseases",
+          "accessed": "2026-06"
+        }
+      ]
+    },
+    {
+      "id": "diagnostics",
+      "name_zh": "诊断与精准医疗",
+      "name_en": "Diagnostics & precision medicine",
+      "description_zh": "体外诊断、分子诊断、影像与精准医疗工具,支撑疾病检测与用药决策。",
+      "description_en": "In-vitro / molecular diagnostics, imaging and precision-medicine tools supporting disease detection and treatment decisions.",
+      "representative_product_ids": [],
+      "confidence": 0.8,
+      "last_verified": "2026-06",
+      "sources": [
+        {
+          "title": "WHO — In vitro diagnostics",
+          "url": "https://www.who.int/health-topics/in-vitro-diagnostics",
+          "accessed": "2026-06"
+        }
+      ]
     }
   ]
 }
