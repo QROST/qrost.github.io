@@ -697,7 +697,9 @@ let prevPos = null;   // 上一帧世界位置 → 算速度方向（棱柱以�
 let visArr = null, cwArr = null, trOff = null;   // 视锥剔除 + 每实体到相机的距离（cw）→ 投影尺寸 LOD；trOff=连续离屏采样数（拖尾重入迟滞，消除边缘闪烁）
 let gOrg = 0, breathT = 0, bPhase = null, bRate = null;   // 全局呼吸量(供晶格) + 相位累加器；bPhase/bRate=每实体(按 cluster)的呼吸相位偏移与速率 → 错峰 + 各异速
 let audioCtx = null, audioTone = null, _aggTick = 0;   // 音乐：用户手势内创建的 AudioContext；每星音高种子(色相 0..1)；视野聚合节流计数
-const viewAgg = { n: 0, dom: 0, toneAvg: 0.5, szAvg: 0.3, counts: new Int32Array(8) };   // 视野内实体聚合 → 喂给音乐引擎（gaze 决定听到什么）
+let musicDNA = null;                                    // 这片宇宙的涌现态→乐曲身份（buildSOM 后算；替代随机种子，每次开页 SOM 不同→DNA 不同→曲不同）
+let clusterOf = null, clusterHue = null, clusterEnergy = null, somM = 0, clusterVote = null;   // 每实体所属 SOM 簇 + 每簇色相/能量 + 簇数 + 视野投票（主导可见簇→实时旋律色）
+const viewAgg = { n: 0, dom: 0, toneAvg: 0.5, szAvg: 0.3, clHue: 0.5, clEnergy: 0.3, counts: new Int32Array(8) };   // 视野内实体聚合 → 喂给音乐引擎（gaze + 主导可见簇 决定听到什么）
 // ---------- 几何体形库：常规多面体 + 特殊数学三维体（每个含棱线 edges + 轨迹发射点 corners）----------
 const SHAPES = (() => {
   const edgesOf = (geo) => Array.from(new THREE.EdgesGeometry(geo, 1).attributes.position.array);   // 只取真实特征棱
@@ -1045,6 +1047,27 @@ function buildSOM() {
   for (let i = 0; i < N; i++) { const bmu = bmuOf[i], avg = nCnt[bmu] ? nSpd[bmu] / nCnt[bmu] : 0.5;
     bRate[i] = clamp(0.5 + avg * 0.8, 0.5, 1.6); }                         // 呼吸速率 = 该 cluster 内几何体的平均(吸引子)速度 → 每簇一速、由数据定（速率各异→持续错峰、永不重新同步）
   let maxD = 1; for (let n = 0; n < M; n++) if (density[n] > maxD) maxD = density[n];
+
+  // ---- 音乐 DNA：把这片宇宙的「涌现态」编码成乐曲身份（替代随机种子）。每次开页 SOM 自组织不同 → DNA 不同 → 乐曲不同，且与所见相关 ----
+  somM = M; clusterOf = bmuOf; clusterVote = new Int32Array(M);
+  clusterHue = new Float32Array(M); clusterEnergy = new Float32Array(M);
+  { const hx = new Float32Array(M), hy = new Float32Array(M);                              // 每簇色相 = 成员色相的圆均值；能量 = 簇内平均(吸引子)速度
+    for (let i = 0; i < N; i++) { const b = bmuOf[i], a = (audioTone ? audioTone[i] : 0.5) * TAU; hx[b] += Math.cos(a); hy[b] += Math.sin(a); }
+    for (let n = 0; n < M; n++) { clusterHue[n] = (Math.atan2(hy[n], hx[n]) / TAU + 1) % 1; clusterEnergy[n] = nCnt[n] ? clamp((nSpd[n] / nCnt[n]) / 0.6, 0, 1) : 0.3; } }
+  { let dStar = 0; for (let n = 0; n < M; n++) if (density[n] > density[dStar]) dStar = n;   // 最密簇 = 宇宙最大的自组织主题
+    let populated = 0, sumD = 0; for (let n = 0; n < M; n++) { if (density[n] > 0) populated++; sumD += density[n]; }
+    const meanD = sumD / Math.max(1, populated), concentration = clamp((density[dStar] / Math.max(1, meanD)) / 6, 0, 1);   // 峰/均 → 组织集中度
+    let cs = 0, ccnt = 0; for (let n = 0; n < M; n++) if (nCnt[n] > 0) { cs += nSpd[n] / nCnt[n]; ccnt++; }
+    const csMean = ccnt ? cs / ccnt : 0.5; let csVar = 0; for (let n = 0; n < M; n++) if (nCnt[n] > 0) { const v = nSpd[n] / nCnt[n] - csMean; csVar += v * v; }
+    const speedSpread = clamp(Math.sqrt(ccnt ? csVar / ccnt : 0) / 0.4, 0, 1);
+    const wStar = dStar * d, motif = []; for (let k = 0; k < 8; k++) motif.push(Math.floor(clamp(W[wStar + k], 0, 0.999) * 5));   // 最密簇学习原型(前8特征) → 动机轮廓
+    let domType = 0; for (let k = 1; k < 8; k++) if (W[wStar + 20 + k] > W[wStar + 20 + domType]) domType = k;                   // 最密簇主导类型(one-hot 20..27)
+    let h = 2166136261 >>> 0; const mix = (x) => { h = (h ^ ((Math.round(x * 100003) >>> 0))) >>> 0; h = Math.imul(h, 16777619) >>> 0; };   // 涌现签名：整片密度图+簇速+主题 的确定性 hash
+    mix(climWarm); mix(concentration); mix(populated / M); mix(csMean); mix(speedSpread); mix(clusterHue[dStar]);
+    for (let k = 0; k < 8; k++) mix(motif[k]); for (let n = 0; n < M; n++) mix(density[n] / maxD);
+    musicDNA = { warm: climWarm, hueStar: clusterHue[dStar], concentration, populatedFrac: populated / M, speedMean: clamp(csMean / 0.6, 0, 1), speedSpread, domType, motif, sig: h >>> 0, clusters: populated };
+  }
+
   // 神经晶格：相邻神经元(+x/+y/+z)连线，aGlow=density 归一
   const segPos = [], segCol = [], segGlow = [], BASE = [0.42, 0.56, 0.82];
   const glowOf = (n) => 0.16 + 0.84 * (density[n] / maxD);
@@ -1163,7 +1186,7 @@ async function enableSensors() {
   // 1) 先在用户手势的同步上下文里起音乐输出：AudioContext.resume 只有在手势内调用才生效，故必须在任何 await 之前
   try {
     if (!audioCtx) { const AC = window.AudioContext || window.webkitAudioContext; if (AC) audioCtx = new AC(); }
-    if (audioCtx) { if (audioCtx.resume) audioCtx.resume(); sonifier.start(audioCtx, { climWarm }); }
+    if (audioCtx) { if (audioCtx.resume) audioCtx.resume(); sonifier.start(audioCtx, musicDNA || { climWarm }); }   // 乐曲身份来自宇宙涌现态(musicDNA)，非随机种子；boot 未完成则退回 climWarm
   } catch (_) {}
   // 2) 陀螺仪权限（iOS 13+ 需显式授权）
   try { if (typeof DeviceOrientationEvent !== 'undefined' && DeviceOrientationEvent.requestPermission) await DeviceOrientationEvent.requestPermission().catch(() => {}); } catch (_) {}
@@ -1317,13 +1340,22 @@ addEventListener('resize', () => { camera.aspect = innerWidth / innerHeight; cam
 function computeViewAgg() {
   if (!N || !visArr || !audioTone) return;
   const c = viewAgg.counts; c.fill(0);
+  const vote = clusterVote; if (vote) vote.fill(0);
   let tone = 0, sz = 0, n = 0;
   for (let i = 0; i < N; i++) {
     if (!visArr[i] || !groupVis[grp[i]]) continue;
     c[grp[i]]++; tone += audioTone[i]; sz += szCurve ? szCurve[i] : 0.5; n++;
+    if (vote && clusterOf) vote[clusterOf[i]]++;   // 视野内各 SOM 簇的实体数
   }
-  if (n) { let dom = 0, dmax = -1; for (let k = 0; k < 8; k++) if (c[k] > dmax) { dmax = c[k]; dom = k; } viewAgg.dom = dom; viewAgg.toneAvg = tone / n; viewAgg.szAvg = sz / n; }
-  viewAgg.n = n;   // n==0 时保留上一帧 dom/tone（避免视野扫空时音色乱跳）
+  if (n) {
+    let dom = 0, dmax = -1; for (let k = 0; k < 8; k++) if (c[k] > dmax) { dmax = c[k]; dom = k; }
+    viewAgg.dom = dom; viewAgg.toneAvg = tone / n; viewAgg.szAvg = sz / n;
+    if (vote && clusterHue) {   // 主导可见簇(真实 SOM 神经元) → 其色相/能量 = 你正看着哪片自组织 → 实时旋律色/密度
+      let vcl = 0, vmax = -1; for (let m = 0; m < somM; m++) if (vote[m] > vmax) { vmax = vote[m]; vcl = m; }
+      if (vmax > 0) { viewAgg.clHue = clusterHue[vcl]; viewAgg.clEnergy = clusterEnergy[vcl]; }
+    }
+  }
+  viewAgg.n = n;   // n==0 时保留上一帧 dom/tone/簇（避免视野扫空时乱跳）
 }
 
 // ---------- loop ----------
@@ -1607,7 +1639,7 @@ function buildPanel() {
   buildSolids();
   buildPanel();
   applyUi({ skipEnable: true });
-  console.log(`[Data Abyss] ${cities} cities · ${info.products || 0} products · ${info.kernels || 0} kernels · ${info.milestones || 0} breakthroughs · ${info.policies || 0} policies · ${info.vendors || 0} vendors · pharma[${pharma.companies || 0} co / ${pharma.sites || 0} sites / ${pharma.products || 0} drugs / ${pharma.modalities || 0} mod / ${pharma.milestones || 0} bk] · cats[${scats.cats || 0} / ${scats.shelters || 0} shelters] · ${N} bodies · ${E} trail-emitters · ${beamIdxA ? beamIdxA.length : 0} beams · rel[pharma ${pharma.rel || 0} edges/${pharma.groups || 0} groups · vendor ${info.vendorBeams || 0}] · SOM ${som ? som.neurons + ' neurons / ' + som.edges + ' edges' : 'skipped'}`);
+  console.log(`[Data Abyss] ${cities} cities · ${info.products || 0} products · ${info.kernels || 0} kernels · ${info.milestones || 0} breakthroughs · ${info.policies || 0} policies · ${info.vendors || 0} vendors · pharma[${pharma.companies || 0} co / ${pharma.sites || 0} sites / ${pharma.products || 0} drugs / ${pharma.modalities || 0} mod / ${pharma.milestones || 0} bk] · cats[${scats.cats || 0} / ${scats.shelters || 0} shelters] · ${N} bodies · ${E} trail-emitters · ${beamIdxA ? beamIdxA.length : 0} beams · rel[pharma ${pharma.rel || 0} edges/${pharma.groups || 0} groups · vendor ${info.vendorBeams || 0}] · SOM ${som ? som.neurons + ' neurons / ' + som.edges + ' edges' : 'skipped'}${musicDNA ? ` · musicDNA[hue ${musicDNA.hueStar.toFixed(2)} · conc ${musicDNA.concentration.toFixed(2)} · clusters ${musicDNA.clusters} · spd ${musicDNA.speedMean.toFixed(2)}±${musicDNA.speedSpread.toFixed(2)} · domType ${musicDNA.domType} · sig ${musicDNA.sig}]` : ''}`);
   const ld = document.getElementById('loading'); ld.classList.add('gone'); setTimeout(() => ld.remove(), 1000);
   animate();
 })();
