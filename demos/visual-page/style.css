@@ -20,13 +20,30 @@ html, body {
 }
 #title {
   font-size: 17px; font-weight: 200; letter-spacing: 0.42em; margin-top: 4px; opacity: 0.6;
+  pointer-events: auto; cursor: pointer; transition: opacity 0.5s ease, font-size 0.4s ease;   /* 整个标题 = 三模式循环 toggle */
+  width: fit-content;                                       /* 命中区贴合文字，不横跨整条 HUD */
 }
+#title:hover { opacity: 0.85; }
 #title span {
   font-size: 9px; letter-spacing: 0.34em; opacity: 0.4; margin-left: 12px; font-weight: 200;
-  pointer-events: auto; cursor: pointer; transition: opacity 0.2s;
+  pointer-events: auto; cursor: pointer; transition: opacity 0.2s, font-size 0.4s ease;
 }
 #title span:hover { opacity: 0.72; }
 #title span:active { opacity: 0.9; }
+
+/* 模式3 隐藏态：收起全部文字与按钮（沉浸纯画面）；左上角 hover/触控 浮现大标题 */
+body.ui-hidden #sub,
+body.ui-hidden #tip,
+body.ui-hidden #panel,
+body.ui-hidden #card { opacity: 0 !important; pointer-events: none !important; }
+body.ui-hidden #hud { opacity: 1 !important; }              /* 保持 HUD 在场，好让标题可浮现（不被静置淡隐） */
+body.ui-hidden #title {
+  opacity: 0; font-size: 30px; letter-spacing: 0.32em;
+  padding: 16px 64px 44px 2px; margin: -8px 0 0 -2px;       /* 放大左上角 hover/触控命中区（透明，仅命中用） */
+}
+body.ui-hidden #title:hover,
+body.ui-hidden #title.peek { opacity: 0.8; }
+body.ui-hidden #title span { font-size: 0.78em; opacity: 0.85; margin-left: 18px; }   /* 大标题里 数渊 同步放大 */
 #sub { font-size: 10px; font-weight: 300; opacity: 0.3; margin-top: 12px; max-width: 520px; line-height: 1.9; letter-spacing: 0.04em; }
 
 #tip {

@@ -60,6 +60,13 @@ export function toggleLang() {
   return lang;
 }
 
+export function setLang(l) {                          // 直接设定语言（不自动 applyUi，由调用方统一重渲染）
+  if ((l === 'en' || l === 'zh') && lang !== l) {
+    lang = l;
+    document.documentElement.lang = l === 'zh' ? 'zh-CN' : 'en';
+  }
+}
+
 function t(key) { return UI[key][lang]; }
 
 export function pickName(zh, en) {
