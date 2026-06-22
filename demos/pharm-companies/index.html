@@ -19,7 +19,7 @@
       } catch (e) {}
     })();
     // Stamped by tools/build.py (content hash) → appended as ?v= to every data fetch.
-    window.PHARM_DATA_VERSION = 'b356b4ef1b';
+    window.PHARM_DATA_VERSION = 'e1e2aeda53';
   </script>
 
   <script src="https://cdn.tailwindcss.com"></script>
@@ -28,7 +28,7 @@
   </script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" />
-  <link rel="stylesheet" href="assets/css/pharm-companies.css?v=b356b4ef1b" />
+  <link rel="stylesheet" href="assets/css/pharm-companies.css?v=e1e2aeda53" />
 </head>
 
 <body class="bg-base text-base antialiased">
@@ -46,6 +46,7 @@
         <a href="#modalities" class="nav-link" data-i18n="navModalities">药物模态</a>
         <a href="#trends" class="nav-link" data-i18n="navTrends">研发趋势</a>
         <a href="#countries" class="nav-link" data-i18n="navCountries">国家对比</a>
+        <a href="#policies" class="nav-link" data-i18n="navPolicies">中国政策</a>
         <a href="#benchmarks" class="nav-link" data-i18n="navBenchmarks">对标</a>
         <a href="#milestones" class="nav-link" data-i18n="navMilestones">里程碑</a>
       </div>
@@ -174,6 +175,17 @@
       </div>
     </section>
 
+    <!-- ============ CHINA POLICY ============ -->
+    <section id="policies" class="scroll-mt-20">
+      <h2 class="section-title" data-i18n="polTitle">中国医药政策板块</h2>
+      <p class="text-sm text-muted mt-1" data-i18n="polSub">读懂中国医药格局的"游戏规则"。每条政策标注主管机构、时间线、影响与来源，并反向链接到受影响的企业。点击卡片查看详情。</p>
+      <div class="flex flex-wrap items-center gap-2 mt-3">
+        <select id="policies-filter" class="select"></select>
+        <span id="policies-count" class="text-xs text-faint ml-auto"></span>
+      </div>
+      <div id="policies-grid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-3 mt-3"></div>
+    </section>
+
     <!-- ============ BENCHMARKS ============ -->
     <section id="benchmarks" class="scroll-mt-20">
       <h2 class="section-title" data-i18n="bmTitle">中国 ↔ 国际对标</h2>
@@ -229,14 +241,23 @@
     </div>
   </div>
 
+  <!-- ============ POLICY MODAL ============ -->
+  <div id="policy-modal" class="modal-backdrop hidden">
+    <div class="modal-panel">
+      <button class="modal-close" data-close-policy>&times;</button>
+      <div id="policy-modal-head"></div>
+      <div id="policy-modal-body" class="modal-body"></div>
+    </div>
+  </div>
+
   <!-- data + libs + app (load order matters) -->
-  <script src="assets/data/world-geo.js?v=b356b4ef1b"></script>
+  <script src="assets/data/world-geo.js?v=e1e2aeda53"></script>
   <script src="https://cdn.jsdelivr.net/npm/echarts@5.5.1/dist/echarts.min.js"></script>
-  <script src="assets/js/i18n.js?v=b356b4ef1b"></script>
-  <script src="assets/js/data-loader.js?v=b356b4ef1b"></script>
-  <script src="assets/js/charts.js?v=b356b4ef1b"></script>
-  <script src="assets/js/map.js?v=b356b4ef1b"></script>
-  <script src="assets/js/groups-graph.js?v=b356b4ef1b"></script>
-  <script src="assets/js/app.js?v=b356b4ef1b"></script>
+  <script src="assets/js/i18n.js?v=e1e2aeda53"></script>
+  <script src="assets/js/data-loader.js?v=e1e2aeda53"></script>
+  <script src="assets/js/charts.js?v=e1e2aeda53"></script>
+  <script src="assets/js/map.js?v=e1e2aeda53"></script>
+  <script src="assets/js/groups-graph.js?v=e1e2aeda53"></script>
+  <script src="assets/js/app.js?v=e1e2aeda53"></script>
 </body>
 </html>

@@ -7,10 +7,11 @@
 
   var store = {
     manifest: null, companies: [], sites: [], products: [], modalities: [],
-    therapeuticAreas: [], countries: [], milestones: [], pairs: [], groups: []
+    therapeuticAreas: [], countries: [], milestones: [], pairs: [], groups: [], policies: []
   };
   var companyMap = {}, modalityMap = {}, taMap = {}, productMap = {}, sitesByCompany = {};
   var groupMap = {}, childrenByParent = {}, companiesByGroup = {};
+  var policyMap = {}, policiesByCompany = {};
 
   async function fetchJson(path, optional) {
     var sep = path.indexOf('?') === -1 ? '?' : '&';
@@ -38,7 +39,8 @@
       fetchJson(BASE + 'country-stats.json', true),
       fetchJson(BASE + 'breakthroughs.json', true),
       fetchJson(BASE + 'comparisons/benchmark-pairs.json', true),
-      fetchJson(BASE + 'groups.json', true)
+      fetchJson(BASE + 'groups.json', true),
+      fetchJson(BASE + 'policies.json', true)
     ].concat(shards.map(function (s) { return fetchJson(BASE + s.file, true); })));
 
     store.companies = arr(results[0], 'companies');
@@ -49,8 +51,9 @@
     store.milestones = arr(results[5], 'milestones');
     store.pairs = arr(results[6], 'pairs');
     store.groups = arr(results[7], 'groups');
+    store.policies = arr(results[8], 'policies');
     store.products = [];
-    for (var i = 8; i < results.length; i++) { store.products = store.products.concat(arr(results[i], 'products')); }
+    for (var i = 9; i < results.length; i++) { store.products = store.products.concat(arr(results[i], 'products')); }
 
     store.groups.forEach(function (g) { groupMap[g.id] = g; });
     store.companies.forEach(function (c) {
@@ -63,6 +66,14 @@
     store.products.forEach(function (p) { productMap[p.id] = p; });
     store.sites.forEach(function (s) {
       (sitesByCompany[s.company_id] = sitesByCompany[s.company_id] || []).push(s);
+    });
+    // policy index + reverse (company -> policies that affect it)
+    store.policies.forEach(function (p) {
+      policyMap[p.id] = p;
+      (p.affected_companies || []).forEach(function (a) {
+        if (!a || !a.company_id) return;
+        (policiesByCompany[a.company_id] = policiesByCompany[a.company_id] || []).push({ policy: p, effect: a.effect, note_zh: a.note_zh, note_en: a.note_en });
+      });
     });
     return store;
   }
@@ -88,6 +99,10 @@
     return (companiesByGroup[c.group_id] || []).filter(function (x) { return x.id !== id && x.parent_id !== id; });
   }
 
+  // ---- China-policy helpers ----
+  function getPolicy(id) { return policyMap[id] || null; }
+  function policiesForCompany(id) { return policiesByCompany[id] || []; }   // [{policy, effect, note_zh, note_en}]
+
   window.PHARM_DATA = {
     initCore: initCore,
     productsForCompany: productsForCompany,
@@ -99,6 +114,8 @@
     subsidiariesOf: subsidiariesOf,
     parentOf: parentOf,
     groupSiblings: groupSiblings,
+    getPolicy: getPolicy,
+    policiesForCompany: policiesForCompany,
     getCompany: function (id) { return companyMap[id] || null; },
     getModality: function (id) { return modalityMap[id] || null; },
     getTA: function (id) { return taMap[id] || null; },
@@ -112,6 +129,7 @@
     get countries() { return store.countries; },
     get milestones() { return store.milestones; },
     get pairs() { return store.pairs; },
-    get groups() { return store.groups; }
+    get groups() { return store.groups; },
+    get policies() { return store.policies; }
   };
 })();
