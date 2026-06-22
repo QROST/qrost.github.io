@@ -336,6 +336,7 @@ def build_manifest() -> dict:
     countries = root_list(DATA / "country-stats.json", "countries")
     groups = root_list(DATA / "groups.json", "groups") if (DATA / "groups.json").exists() else []
     policies = root_list(DATA / "policies.json", "policies") if (DATA / "policies.json").exists() else []
+    deals = root_list(DATA / "deals.json", "deals") if (DATA / "deals.json").exists() else []
     modality_class = {m["id"]: m.get("class", "?") for m in modalities if m.get("id")}
 
     shard_counts: dict[str, int] = {}
@@ -373,6 +374,7 @@ def build_manifest() -> dict:
         "total_countries": len(countries),
         "total_groups": len(groups),
         "total_policies": len(policies),
+        "total_deals": len(deals),
         "shard_counts": shard_counts,
         "company_type_counts": dict(company_type),
         "region_counts": dict(region),

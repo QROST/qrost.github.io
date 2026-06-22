@@ -7,11 +7,12 @@
 
   var store = {
     manifest: null, companies: [], sites: [], products: [], modalities: [],
-    therapeuticAreas: [], countries: [], milestones: [], pairs: [], groups: [], policies: []
+    therapeuticAreas: [], countries: [], milestones: [], pairs: [], groups: [], policies: [], deals: []
   };
   var companyMap = {}, modalityMap = {}, taMap = {}, productMap = {}, sitesByCompany = {};
   var groupMap = {}, childrenByParent = {}, companiesByGroup = {};
   var policyMap = {}, policiesByCompany = {};
+  var dealMap = {}, dealsByCompany = {};
 
   async function fetchJson(path, optional) {
     var sep = path.indexOf('?') === -1 ? '?' : '&';
@@ -40,7 +41,8 @@
       fetchJson(BASE + 'breakthroughs.json', true),
       fetchJson(BASE + 'comparisons/benchmark-pairs.json', true),
       fetchJson(BASE + 'groups.json', true),
-      fetchJson(BASE + 'policies.json', true)
+      fetchJson(BASE + 'policies.json', true),
+      fetchJson(BASE + 'deals.json', true)
     ].concat(shards.map(function (s) { return fetchJson(BASE + s.file, true); })));
 
     store.companies = arr(results[0], 'companies');
@@ -52,8 +54,9 @@
     store.pairs = arr(results[6], 'pairs');
     store.groups = arr(results[7], 'groups');
     store.policies = arr(results[8], 'policies');
+    store.deals = arr(results[9], 'deals');
     store.products = [];
-    for (var i = 9; i < results.length; i++) { store.products = store.products.concat(arr(results[i], 'products')); }
+    for (var i = 10; i < results.length; i++) { store.products = store.products.concat(arr(results[i], 'products')); }
 
     store.groups.forEach(function (g) { groupMap[g.id] = g; });
     store.companies.forEach(function (c) {
@@ -73,6 +76,16 @@
       (p.affected_companies || []).forEach(function (a) {
         if (!a || !a.company_id) return;
         (policiesByCompany[a.company_id] = policiesByCompany[a.company_id] || []).push({ policy: p, effect: a.effect, note_zh: a.note_zh, note_en: a.note_en });
+      });
+    });
+    // deal index + reverse (company -> deals it is a party to)
+    store.deals.forEach(function (d) {
+      dealMap[d.id] = d;
+      var seen = {};
+      (d.parties || []).forEach(function (p) {
+        if (!p || !p.company_id || seen[p.company_id]) return;
+        seen[p.company_id] = 1;
+        (dealsByCompany[p.company_id] = dealsByCompany[p.company_id] || []).push(d);
       });
     });
     return store;
@@ -103,6 +116,10 @@
   function getPolicy(id) { return policyMap[id] || null; }
   function policiesForCompany(id) { return policiesByCompany[id] || []; }   // [{policy, effect, note_zh, note_en}]
 
+  // ---- deal helpers ----
+  function getDeal(id) { return dealMap[id] || null; }
+  function dealsForCompany(id) { return dealsByCompany[id] || []; }
+
   window.PHARM_DATA = {
     initCore: initCore,
     productsForCompany: productsForCompany,
@@ -116,6 +133,8 @@
     groupSiblings: groupSiblings,
     getPolicy: getPolicy,
     policiesForCompany: policiesForCompany,
+    getDeal: getDeal,
+    dealsForCompany: dealsForCompany,
     getCompany: function (id) { return companyMap[id] || null; },
     getModality: function (id) { return modalityMap[id] || null; },
     getTA: function (id) { return taMap[id] || null; },
@@ -130,6 +149,7 @@
     get milestones() { return store.milestones; },
     get pairs() { return store.pairs; },
     get groups() { return store.groups; },
-    get policies() { return store.policies; }
+    get policies() { return store.policies; },
+    get deals() { return store.deals; }
   };
 })();
