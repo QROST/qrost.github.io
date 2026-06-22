@@ -859,11 +859,20 @@ function finalize() {
   g.setAttribute('aGlow', new THREE.Float32BufferAttribute(glowArr, 1));
   pointsObj = new THREE.Points(g, pointMaterial); root.add(pointsObj);
 
-  // trail emitters: 每个实体的每个顶点各发一条轨迹
+  // trail emitters: 每个实体只用「约一半」顶点发轨迹（数据驱动选哪些）→ 砍掉多余拖尾线（尤其高维多胞体 16~64 顶点的密簇）、减弱边缘闪烁、更省
   const emE = [], emL = [], emC = [], emT = [];
   for (let i = 0; i < N; i++) {
     const c = cornersOf(shapeArr[i]), cc = c.length / 3;
+    let sel = null;
+    if (cc > 2) {                                                  // 多顶点几何体抽稀（点/退化体保留全部）
+      const sig = szCurve ? szCurve[i] : 0.5;                       // 数据量级(size)=「显著度」→ 越显著拖尾顶点越多（35%~70%，均值~½）：把数据编进拖尾密度
+      const keep = Math.max(2, Math.round(cc * clamp(0.35 + sig * 0.35, 0.35, 0.7)));
+      const off = (hash01('tv:' + i + ':' + sys[i] + ':' + Math.round((spd[i] || 0) * 97)) * cc) | 0;   // 「哪些顶点」由数据(系统/速度/身份)播种的偏移决定 → 抽象但确定
+      sel = new Set();
+      for (let j = 0; j < keep; j++) sel.add((Math.round(j * cc / keep) + off) % cc);   // 均匀抽 keep 个，整体绕几何体分布、不偏一侧
+    }
     for (let q = 0; q < cc; q++) {
+      if (sel && !sel.has(q)) continue;                            // 未入选顶点 → 不发轨迹
       emE.push(i); emL.push(c[q * 3], c[q * 3 + 1], c[q * 3 + 2]);
       emC.push(D.col[i * 3], D.col[i * 3 + 1], D.col[i * 3 + 2]); emT.push(D.tlen[i]);
     }
@@ -1546,7 +1555,7 @@ function buildPanel() {
   buildSolids();
   buildPanel();
   applyUi({ skipEnable: true });
-  console.log(`[Data Abyss] ${cities} cities · ${info.products || 0} products · ${info.kernels || 0} kernels · ${info.milestones || 0} breakthroughs · ${info.policies || 0} policies · ${info.vendors || 0} vendors · pharma[${pharma.companies || 0} co / ${pharma.sites || 0} sites / ${pharma.products || 0} drugs / ${pharma.modalities || 0} mod / ${pharma.milestones || 0} bk] · cats[${scats.cats || 0} / ${scats.shelters || 0} shelters] · ${N} bodies · ${beamIdxA ? beamIdxA.length : 0} beams · rel[pharma ${pharma.rel || 0} edges/${pharma.groups || 0} groups · vendor ${info.vendorBeams || 0}] · SOM ${som ? som.neurons + ' neurons / ' + som.edges + ' edges' : 'skipped'}`);
+  console.log(`[Data Abyss] ${cities} cities · ${info.products || 0} products · ${info.kernels || 0} kernels · ${info.milestones || 0} breakthroughs · ${info.policies || 0} policies · ${info.vendors || 0} vendors · pharma[${pharma.companies || 0} co / ${pharma.sites || 0} sites / ${pharma.products || 0} drugs / ${pharma.modalities || 0} mod / ${pharma.milestones || 0} bk] · cats[${scats.cats || 0} / ${scats.shelters || 0} shelters] · ${N} bodies · ${E} trail-emitters · ${beamIdxA ? beamIdxA.length : 0} beams · rel[pharma ${pharma.rel || 0} edges/${pharma.groups || 0} groups · vendor ${info.vendorBeams || 0}] · SOM ${som ? som.neurons + ' neurons / ' + som.edges + ' edges' : 'skipped'}`);
   const ld = document.getElementById('loading'); ld.classList.add('gone'); setTimeout(() => ld.remove(), 1000);
   animate();
 })();
