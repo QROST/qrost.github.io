@@ -1111,7 +1111,7 @@ _dom.addEventListener('pointermove', (e) => {
   _ptrs.set(e.pointerId, { x: e.clientX, y: e.clientY });
   if (_ptrs.size >= 2) {                                      // 双指捏合 → 焦距（捏开放大）
     const it = _ptrs.values(), p1 = it.next().value, p2 = it.next().value, d = Math.hypot(p1.x - p2.x, p1.y - p2.y);
-    if (pinchPrev) { camera.fov = clamp(camera.fov - (d - pinchPrev) * 0.08, 22, 105); camera.updateProjectionMatrix(); }
+    if (pinchPrev) { camera.fov = clamp(camera.fov - (d - pinchPrev) * 0.10, 10, 125); camera.updateProjectionMatrix(); }   // 焦距范围：10~125（强长焦 + 广视角）
     pinchPrev = d;
   } else if (dragging) {                                      // 单指拖动 → 环视
     yaw -= (e.clientX - lastPX) * 0.004; pitch = clamp(pitch - (e.clientY - lastPY) * 0.004, -1.45, 1.45);
@@ -1127,7 +1127,7 @@ addEventListener('pointerup', _ptrEnd);
 addEventListener('pointercancel', _ptrEnd);
 _dom.addEventListener('wheel', (e) => {                       // 桌面滚轮 = 调焦距（FOV），相机不位移
   e.preventDefault();
-  camera.fov = clamp(camera.fov + e.deltaY * 0.03, 22, 105);
+  camera.fov = clamp(camera.fov + e.deltaY * 0.045, 10, 125);   // 焦距范围：10~125；步长 0.045 让范围好达到
   camera.updateProjectionMatrix();
 }, { passive: false });
 // 陀螺仪：以「增量」驱动 → 与手指拖动叠加共存、互不覆盖；避开绝对罗盘坐标导致的方向混乱
