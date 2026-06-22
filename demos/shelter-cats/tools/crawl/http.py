@@ -147,12 +147,15 @@ class PoliteSession:
                 raise
 
     def get_text(self, url: str, respect_robots: bool = False, force: bool = False,
-                 headers: dict | None = None) -> str | None:
-        """Return decoded text, using cache when fresh; revalidate via ETag when stale."""
+                 headers: dict | None = None, cache_key: str | None = None) -> str | None:
+        """Return decoded text, using cache when fresh; revalidate via ETag when stale.
+        cache_key overrides the URL for the cache identity — needed when the same URL
+        returns different data per request header (e.g. a per-org API key)."""
         if respect_robots and not self.allowed(url):
             print(f"    robots.txt disallows {url} — skipped")
             return None
-        cached = None if force else self._read_cache(url)
+        ck = cache_key or url
+        cached = None if force else self._read_cache(ck)
         if cached and cached.get("text") is not None and (time.time() - cached.get("fetched", 0)) < self.cache_ttl:
             return cached["text"]
         cond = dict(headers or {})
@@ -163,15 +166,15 @@ class PoliteSession:
                 cond["If-Modified-Since"] = cached["last_modified"]
         status, hd, raw = self._do_request(url, cond, binary=False)
         if status == 304 and cached:
-            self._write_cache(url, 200, hd, None, cached.get("text"))
+            self._write_cache(ck, 200, hd, None, cached.get("text"))
             return cached.get("text")
         text = raw.decode("utf-8", errors="replace")
-        self._write_cache(url, status, hd, None, text)
+        self._write_cache(ck, status, hd, None, text)
         return text
 
     def get_json(self, url: str, respect_robots: bool = False, force: bool = False,
-                 headers: dict | None = None):
-        t = self.get_text(url, respect_robots=respect_robots, force=force, headers=headers)
+                 headers: dict | None = None, cache_key: str | None = None):
+        t = self.get_text(url, respect_robots=respect_robots, force=force, headers=headers, cache_key=cache_key)
         return None if t is None else json.loads(t)
 
     def get_bytes(self, url: str, respect_robots: bool = False) -> bytes | None:

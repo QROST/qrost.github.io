@@ -1,0 +1,5 @@
+{
+  "_comment": "COPY this file to shelterluv_keys.json (which is gitignored — NEVER commit real keys) and fill in each org's ShelterLuv API key. Keys map org_id (matching shelterluv_orgs.json) -> key string. Alternatively set the org's key_env environment variable. Build-time only; keys never reach the browser.",
+  "pasadena_humane": "PASTE_PASADENA_SHELTERLUV_API_KEY_HERE",
+  "spca_la": "PASTE_SPCALA_SHELTERLUV_API_KEY_HERE"
+}
