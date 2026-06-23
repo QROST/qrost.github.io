@@ -44,7 +44,7 @@ STEP_FINE = 0.25
 RESOLUTIONS = (STEP_COARSE, STEP_FINE)
 LAT_MIN, LAT_MAX = 18.0, 54.0
 LNG_MIN, LNG_MAX = 73.0, 135.5
-YEARS = (2014, 2023)
+YEARS = (2014, 2025)       # (start, end) basemap field base; bumped to 2025 with era5_bulk.YEARS
 BATCH = 80                 # coords per archive request
 
 # legacy alias (was single 1° cache)
