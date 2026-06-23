@@ -38,8 +38,8 @@ body.ui-hidden #panel,
 body.ui-hidden #card { opacity: 0 !important; pointer-events: none !important; }
 body.ui-hidden #hud { opacity: 1 !important; }              /* 保持 HUD 在场，好让标题可浮现（不被静置淡隐） */
 body.ui-hidden #title {
-  opacity: 0;                                              /* 尺寸与模式1/2 完全一致，不放大；仅用透明 padding 扩大左上角 hover/触控命中区 */
-  padding: 16px 64px 44px 2px; margin: -8px 0 0 -2px;
+  opacity: 0;                                              /* 尺寸+位置与模式1/2 完全一致（不放大、不位移）；padding 只向右/下扩大命中区、不碰 top/left → 文字不动，切换无位移 */
+  padding: 0 56px 32px 0;
 }
 body.ui-hidden #title:hover,
 body.ui-hidden #title.peek { opacity: 0.8; }
