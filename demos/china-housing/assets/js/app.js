@@ -1992,7 +1992,9 @@
   // when that chip is on) except lowHazard, where no hazard data = no known
   // annual hazard.
   const FILTERS = {
-    budget10: { labelKey: 'fcBudget10', pass: (d) => d.priceYuan <= 100000 },
+    budget30: { labelKey: 'fcBudget30', pass: (d) => d.priceYuan <= 300000 },
+    unit5000: { labelKey: 'fcUnit5000', pass: (d) => d.unitPrice != null && d.unitPrice <= 5000 },
+    age20: { labelKey: 'fcAge20', pass: (d) => d.builtYear != null && (new Date().getFullYear() - d.builtYear) <= 20 },
     warmWinter: { labelKey: 'fcWarmWinter', pass: (d) => d.janTemp != null && d.janTemp >= 5 },
     coolSummer: { labelKey: 'fcCoolSummer', pass: (d) => d.julTemp != null && d.julTemp <= 26 },
     heated: { labelKey: 'fcHeated', pass: (d) => d.heating === '集中供暖' || d.heating === '部分供暖' },
