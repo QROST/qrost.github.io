@@ -2561,7 +2561,12 @@
       rows.push(polRow(t('polPop'), bits.join(' · '), pop));
     }
     if (pol.property_tax_pilot === true) rows.push(polRow(t('polTax'), t('polYes'), null));
-    factsEl.innerHTML = rows.filter(Boolean).join('');
+    const factRows = rows.filter(Boolean);
+    factsEl.innerHTML = factRows.length
+      ? `<details class="rounded-lg border border-slate-200 dark:border-slate-700">`
+        + `<summary class="cursor-pointer px-3 py-2 text-xs font-medium ${tc.muted} marker:text-slate-400 dark:marker:text-slate-500">${t('polFactsTitle')} · ${factRows.length} ${t('polFactsItems')}</summary>`
+        + `<div class="px-3 pb-1 pt-0">${factRows.join('')}</div></details>`
+      : '';
     tcoEl.innerHTML = tcoHtml(d, pol);
     whyEl.innerHTML = whyChips(d, pol);
     noteEl.textContent = t('polDisclaimer');
@@ -2596,15 +2601,81 @@
     grid.innerHTML = topics.map((topic) => {
       const o = NP[topic] || {};
       const facts = (o.key_facts || []).slice(0, 4).map((f) => `<li>${polText(f)}</li>`).join('');
-      return `<div class="rounded-lg border border-slate-200 dark:border-slate-700 p-3 bg-slate-50/50 dark:bg-slate-800/50">`
-        + `<div class="flex items-baseline justify-between gap-2 mb-1"><span class="font-medium ${tc.strong} text-sm">${npLabel(topic)}</span>${confChip(o)}</div>`
+      return `<details class="rounded-lg border border-slate-200 dark:border-slate-700 bg-slate-50/50 dark:bg-slate-800/50">`
+        + `<summary class="cursor-pointer px-3 py-2 text-sm font-medium ${tc.strong} marker:text-slate-400 dark:marker:text-slate-500">${npLabel(topic)} <span class="font-normal align-middle">${confChip(o)}</span></summary>`
+        + `<div class="px-3 pb-3 pt-1 border-t border-slate-100 dark:border-slate-700/60">`
         + `<ul class="list-disc list-inside space-y-0.5 text-xs ${tc.body} leading-relaxed">${facts}</ul>`
-        + `<div class="mt-1">${srcLink(o)}</div></div>`;
+        + `<div class="mt-1">${srcLink(o)}</div></div></details>`;
     }).join('');
     const asof = document.getElementById('np-asof');
     if (asof) asof.textContent = t('npAsOf', { d: CP.asOf || '2026-06' });
     const dis = document.getElementById('np-disclaimer');
     if (dis) dis.textContent = t('npDisclaimer');
+  }
+
+  // ---- 各省市政策横向对比 (#policy compare tab) --------------------------
+  function confDot(f) {
+    if (!f || !f.confidence) return '';
+    const c = f.confidence;
+    return `<span title="${escP(t('conf' + c.charAt(0).toUpperCase() + c.slice(1)) + ' · ' + t('polAsOf') + ' ' + (f.as_of || '?'))}" style="width:6px;height:6px;border-radius:50%;background:${CONF_DOT[c] || CONF_DOT.unknown};display:inline-block;margin-left:4px;vertical-align:middle"></span>`;
+  }
+  const _prefShort = (s) => String(s || '').replace(/(市|地区|盟)$/, '');
+  const PP_COLS = [
+    { key: 'city', lk: 'ppColCity', f: null, get: (r) => { const ps = _prefShort(r.pref); return ps === r.prov ? r.prov : r.prov + '·' + ps; }, sv: (r) => r.prov + r.pref },
+    { key: 'purchase', lk: 'ppColPurchase', f: (r) => r.p.purchase_limit, get: (r) => (r.p.purchase_limit || {}).status || '—', sv: (r) => (r.p.purchase_limit || {}).status || '~' },
+    { key: 'down', lk: 'ppColDown', f: (r) => r.p.loan_policy, get: (r) => { const v = (r.p.loan_policy || {}).first_down_pct; return v != null ? v + '%' : '—'; }, sv: (r) => { const v = (r.p.loan_policy || {}).first_down_pct; return v == null ? 999 : v; } },
+    { key: 'hukou', lk: 'ppColHukou', f: (r) => r.p.hukou, get: (r) => (r.p.hukou || {}).threshold || '—', sv: (r) => (r.p.hukou || {}).threshold || '~' },
+    { key: 'subsidy', lk: 'ppColSubsidy', f: (r) => r.p.subsidy, get: (r) => { const s = r.p.subsidy || {}; return s.has == null ? '—' : (s.has ? t('polYes') : t('polNo')); }, sv: (r) => { const s = r.p.subsidy || {}; return s.has === true ? 0 : s.has === false ? 1 : 2; } },
+    { key: 'resource', lk: 'ppColResource', f: (r) => r.p.resource_exhausted, get: (r) => { const x = r.p.resource_exhausted || {}; return x.flag == null ? '—' : (x.flag ? t('polYes') : t('polNo')); }, sv: (r) => { const x = r.p.resource_exhausted || {}; return x.flag === true ? 0 : x.flag === false ? 1 : 2; } },
+    { key: 'pop', lk: 'ppColPop', f: (r) => r.p.population, get: (r) => { const pp = r.p.population || {}; return pp.change_pct != null ? ((pp.change_pct >= 0 ? '+' : '') + pp.change_pct + '%') : '—'; }, sv: (r) => { const pp = r.p.population || {}; return pp.change_pct == null ? 9999 : pp.change_pct; } },
+  ];
+  const ppState = { sort: 'city', dir: 1, prov: '', tab: 'national' };
+  function ppData() {
+    const bp = CP.byPref || {};
+    return Object.keys(bp).map((k) => { const i = k.indexOf('|'); return { prov: k.slice(0, i), pref: k.slice(i + 1), p: bp[k] || {} }; });
+  }
+  function renderPolicyCompare() {
+    const tbl = document.getElementById('pp-compare-table');
+    if (!tbl) return;
+    const tc = tcx();
+    let rows = ppData();
+    if (ppState.prov) rows = rows.filter((r) => r.prov === ppState.prov);
+    const col = PP_COLS.find((c) => c.key === ppState.sort) || PP_COLS[0];
+    rows.sort((a, b) => { const av = col.sv(a), bv = col.sv(b); return (av < bv ? -1 : av > bv ? 1 : 0) * ppState.dir; });
+    const arrow = (k) => (k === ppState.sort ? (ppState.dir > 0 ? ' ▲' : ' ▼') : '');
+    const head = PP_COLS.map((c) => `<th data-pp-sort="${c.key}" class="cursor-pointer select-none text-left font-medium ${c.key === ppState.sort ? tc.strong : tc.muted} px-2 py-1.5 border-b border-slate-200 dark:border-slate-700 whitespace-nowrap">${t(c.lk)}${arrow(c.key)}</th>`).join('');
+    const body = rows.map((r) => '<tr class="hover:bg-slate-50 dark:hover:bg-slate-700/30">' + PP_COLS.map((c) => {
+      const v = c.get(r), f = c.f ? c.f(r) : null;
+      const cls = c.key === 'city' ? tc.strong + ' font-medium' : tc.body;
+      return `<td class="px-2 py-1 border-b border-slate-100 dark:border-slate-700/50 ${cls} whitespace-nowrap">${escP(v)}${f ? confDot(f) : ''}</td>`;
+    }).join('') + '</tr>').join('');
+    tbl.innerHTML = `<thead><tr>${head}</tr></thead><tbody>${body}</tbody>`;
+    tbl.querySelectorAll('[data-pp-sort]').forEach((th) => { th.onclick = () => { const k = th.dataset.ppSort; if (ppState.sort === k) ppState.dir *= -1; else { ppState.sort = k; ppState.dir = 1; } renderPolicyCompare(); }; });
+    const sel = document.getElementById('pp-prov-filter');
+    if (sel) {
+      const provs = [...new Set(ppData().map((r) => r.prov))].sort();
+      sel.innerHTML = `<option value="">${t('ppAllProv')}</option>` + provs.map((p) => `<option value="${escP(p)}"${p === ppState.prov ? ' selected' : ''}>${escP(p)}</option>`).join('');
+      sel.onchange = () => { ppState.prov = sel.value; renderPolicyCompare(); };
+    }
+    const note = document.getElementById('pp-compare-note');
+    if (note) note.textContent = t('ppCompareNote');
+    const title = document.getElementById('pp-compare-title');
+    if (title) title.textContent = t('ppCompareTitle');
+  }
+  function stylePpTabs() {
+    document.querySelectorAll('[data-pp-tab]').forEach((b) => {
+      b.textContent = t(b.dataset.ppTab === 'national' ? 'ppTabNational' : 'ppTabCompare');
+      styleTab(b, b.dataset.ppTab === ppState.tab, 'pp-tab');
+    });
+  }
+  function refreshPolicySection() {
+    stylePpTabs();
+    if (ppState.tab === 'compare') renderPolicyCompare(); else renderNationalPolicy();
+  }
+  function ppShowTab(tab) {
+    ppState.tab = tab;
+    document.querySelectorAll('[data-pp-pane]').forEach((p) => p.classList.toggle('hidden', p.dataset.ppPane !== tab));
+    refreshPolicySection();
   }
 
   function lmStyleTabs(active) {
@@ -3250,7 +3321,7 @@
   function applyLangToUI() {
     if (I18N().applyStaticI18n) I18N().applyStaticI18n();
     safeRun('syncHeroCounts', syncHeroCounts);
-    safeRun('renderNationalPolicy', renderNationalPolicy);
+    safeRun('refreshPolicySection', refreshPolicySection);
     applyThemeToCharts();
   }
 
@@ -3285,6 +3356,7 @@
       safeRun('renderMap', renderMap);
     }
     safeRun('refreshModalTheme', refreshModalTheme);
+    safeRun('refreshPolicySection', refreshPolicySection);
   }
 
   function wireLangToggle() {
@@ -3351,7 +3423,10 @@
     safeRun('renderScatter', renderScatter);
     safeRun('renderRankings', renderRankings);
     safeRun('renderProvinceChart', renderProvinceChart);
-    safeRun('renderNationalPolicy', renderNationalPolicy);
+    safeRun('initPolicySection', () => {
+      document.querySelectorAll('[data-pp-tab]').forEach((b) => b.addEventListener('click', () => ppShowTab(b.dataset.ppTab)));
+      ppShowTab('national');
+    });
 
     const zi = document.getElementById('map-zoom-in'), zo = document.getElementById('map-zoom-out'), zr = document.getElementById('map-zoom-reset');
     if (zi) zi.addEventListener('click', () => zoomBy(1.45));
