@@ -835,7 +835,7 @@ function finalize() {
     } }
 
   // warm-up: pre-spread the attractors so the cloud is already unfurled on first frame
-  for (let w = 0; w < 280; w++) for (let i = 0; i < N; i++) { const h = Math.min(bh[i] * spd[i], capOf(sys[i])); stepOne(i, h * 0.5); stepOne(i, h * 0.5); }
+  for (let w = 0; w < 180; w++) for (let i = 0; i < N; i++) { const h = Math.min(bh[i] * spd[i], capOf(sys[i])); stepOne(i, h * 0.5); stepOne(i, h * 0.5); }   // 首屏前预展开吸引子；280→180 省时（混沌轨道几十步即铺开，云团仍是展开态）
 
   // initial world positions
   bPhase = new Float32Array(N); bRate = new Float32Array(N).fill(1);   // 呼吸相位偏移(默认0)+速率(默认1)：必须在首次 writeWorld 前分配；buildSOM 后按 cluster 数据填充（finalize 期默认=旧全局行为）
@@ -1003,10 +1003,11 @@ function buildSOM() {
   for (let n = 0; n < M; n++) { const r = (Math.random() * N) | 0; W.set(featM.subarray(r * d, r * d + d), n * d); }   // init=随机样本
   const nx = (n) => n % Lx, ny = (n) => ((n / Lx) | 0) % Ly, nz = (n) => (n / (Lx * Ly)) | 0;
   const order = new Int32Array(N); for (let i = 0; i < N; i++) order[i] = i;
-  const sigma0 = Math.max(Lx, Ly, Lz) * 0.5, total = SOM_EPOCHS * N; let it = 0;
+  const TRAIN_N = Math.min(N, 2800);   // 子采样训练：每 epoch 只用 TRAIN_N 个(每轮重洗→跨轮覆盖全集)代表性样本 → 训练成本 ∝ TRAIN_N 而非 N（315 神经元用 26×2800 次呈现足够收敛，聚类质量几乎不变）。全部 N 仍各自做 BMU 分配拿锚点（下方）
+  const sigma0 = Math.max(Lx, Ly, Lz) * 0.5, total = SOM_EPOCHS * TRAIN_N; let it = 0;
   for (let ep = 0; ep < SOM_EPOCHS; ep++) {
     for (let a = N - 1; a > 0; a--) { const b = (Math.random() * (a + 1)) | 0, t = order[a]; order[a] = order[b]; order[b] = t; }   // shuffle
-    for (let s = 0; s < N; s++) {
+    for (let s = 0; s < TRAIN_N; s++) {
       const xi = order[s] * d, frac = it++ / total;
       const alpha = 0.5 * Math.exp(-frac * 3), sigma = sigma0 * Math.exp(-frac * 3), inv2s2 = 1 / (2 * sigma * sigma);
       let bmu = 0, best = Infinity;                                          // 竞争：找 BMU
@@ -1656,12 +1657,19 @@ function buildPanel() {
   const cppnSeed = (Math.round(climWarm * 1000) * 131 + (info.products || 0) * 17 + (info.milestones || 0) * 7 + (info.policies || 0) * 3 + cities) >>> 0;
   bgMat.uniforms.uW.value = seedCPPN(cppnSeed);
   finalize();
-  const som = buildSOM();   // boot 一次性整训 Kohonen 网络 → 语义锚点 + 神经晶格
-  for (let i = 0; i < N; i++) writeWorld(i); if (prevPos) prevPos.set(posArr);   // SOM 设好 bPhase/bRate 后按 boot 相位重置初始位置，避免首帧从中心跳到各自错峰位
   buildSolids();
   buildPanel();
   applyUi({ skipEnable: true });
-  console.log(`[Data Abyss] ${cities} cities · ${info.products || 0} products · ${info.kernels || 0} kernels · ${info.milestones || 0} breakthroughs · ${info.policies || 0} policies · ${info.vendors || 0} vendors · pharma[${pharma.companies || 0} co / ${pharma.sites || 0} sites / ${pharma.products || 0} drugs / ${pharma.modalities || 0} mod / ${pharma.milestones || 0} bk] · cats[${scats.cats || 0} / ${scats.shelters || 0} shelters] · ${N} bodies · ${E} trail-emitters · ${beamIdxA ? beamIdxA.length : 0} beams · rel[pharma ${pharma.rel || 0} edges/${pharma.groups || 0} groups · vendor ${info.vendorBeams || 0}] · SOM ${som ? som.neurons + ' neurons / ' + som.edges + ' edges' : 'skipped'}${musicDNA ? ` · musicDNA[hue ${musicDNA.hueStar.toFixed(2)} · conc ${musicDNA.concentration.toFixed(2)} · clusters ${musicDNA.clusters} · spd ${musicDNA.speedMean.toFixed(2)}±${musicDNA.speedSpread.toFixed(2)} · domType ${musicDNA.domType} · sig ${musicDNA.sig}]` : ''}`);
+  // 先出混沌团并开跑：首屏 = 重叠态（此刻 anc 全 = CENTER → 呼气不展开，正是 inhale 视觉），不等最重的 SOM。
   const ld = document.getElementById('loading'); ld.classList.add('gone'); setTimeout(() => ld.remove(), 1000);
+  console.log(`[Data Abyss] ${cities} cities · ${info.products || 0} products · ${info.kernels || 0} kernels · ${info.milestones || 0} breakthroughs · ${info.policies || 0} policies · ${info.vendors || 0} vendors · pharma[${pharma.companies || 0} co / ${pharma.sites || 0} sites / ${pharma.products || 0} drugs / ${pharma.modalities || 0} mod / ${pharma.milestones || 0} bk] · cats[${scats.cats || 0} / ${scats.shelters || 0} shelters] · ${N} bodies · ${E} trail-emitters · ${beamIdxA ? beamIdxA.length : 0} beams · rel[pharma ${pharma.rel || 0} edges/${pharma.groups || 0} groups · vendor ${info.vendorBeams || 0}] · SOM training deferred…`);
   animate();
+  // SOM（最重的同步计算 ~占启动绝大部分）推迟到首屏之后：训完无缝长出神经骨架。首次呼气展开远在 ~24s 后、SOM(<1s) 早已完成 → 观感零损失。
+  const trainSOM = () => {
+    const som = buildSOM();   // 子采样训练 + 全量 BMU 分配 → 语义锚点/呼吸/晶格/musicDNA
+    for (let i = 0; i < N; i++) writeWorld(i); if (prevPos) prevPos.set(posArr);   // SOM 设好 anc/bPhase/bRate 后按相位重置位置（此刻仍重叠态 anc≈CENTER，无可见跳变）
+    console.log(`[Data Abyss] SOM ${som ? som.neurons + ' neurons / ' + som.edges + ' edges' : 'skipped'}${musicDNA ? ` · musicDNA[hue ${musicDNA.hueStar.toFixed(2)} · conc ${musicDNA.concentration.toFixed(2)} · clusters ${musicDNA.clusters} · spd ${musicDNA.speedMean.toFixed(2)}±${musicDNA.speedSpread.toFixed(2)} · domType ${musicDNA.domType} · sig ${musicDNA.sig}]` : ''} (trained after first paint)`);
+  };
+  if ('requestIdleCallback' in window) requestIdleCallback(trainSOM, { timeout: 1500 });
+  else setTimeout(trainSOM, 120);
 })();
