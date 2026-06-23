@@ -546,13 +546,25 @@
         <section id="policy" class="scroll-mt-20">
             <h2 id="sec-policy-h" class="text-xs font-semibold uppercase tracking-[0.15em] text-slate-400 dark:text-slate-500 mb-1">购房政策 · Buying policy</h2>
             <p id="sec-policy-p" class="text-slate-600 dark:text-slate-400 mb-5 max-w-3xl text-sm leading-relaxed">先看<strong class="text-slate-800 dark:text-slate-200">全国通行规则</strong>（利率 / 首付 / 契税 / 认房不认贷 / 户籍改革），再点任意房源的「政策」页看<strong class="text-slate-800 dark:text-slate-200">该市限购·落户·补贴</strong>与<strong class="text-slate-800 dark:text-slate-200">能买→划算→落户→宜居→交付</strong>决策漏斗。每条政策附<strong class="text-slate-800 dark:text-slate-200">来源·时点·置信度</strong>。</p>
-            <div class="rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 p-4 md:p-6 transition-colors duration-300">
+            <div class="flex flex-wrap items-center gap-2 mb-4">
+                <button data-pp-tab="national" class="pp-tab"></button>
+                <button data-pp-tab="compare" class="pp-tab"></button>
+            </div>
+            <div data-pp-pane="national" class="rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 p-4 md:p-6 transition-colors duration-300">
                 <div class="flex flex-wrap items-baseline justify-between gap-2 mb-4">
                     <span id="np-title" class="text-sm font-medium text-slate-700 dark:text-slate-300">全国通行政策（截至快照时点）</span>
                     <span id="np-asof" class="text-xs text-slate-400 dark:text-slate-500 tabular-nums"></span>
                 </div>
                 <div id="national-policy-grid" class="grid grid-cols-1 md:grid-cols-2 gap-3"></div>
                 <p id="np-disclaimer" class="mt-4 text-xs text-amber-600/90 dark:text-amber-400/90 leading-relaxed"></p>
+            </div>
+            <div data-pp-pane="compare" class="hidden rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 p-4 md:p-6 transition-colors duration-300">
+                <div class="flex flex-wrap items-baseline justify-between gap-2 mb-3">
+                    <span id="pp-compare-title" class="text-sm font-medium text-slate-700 dark:text-slate-300">各省市购房政策横向对比</span>
+                    <select id="pp-prov-filter" class="text-xs border border-slate-200 dark:border-slate-600 rounded-lg px-2 py-1 bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 focus:outline-none focus:ring-2 focus:ring-emerald-500/40"></select>
+                </div>
+                <div class="overflow-x-auto -mx-1 px-1"><table id="pp-compare-table" class="w-full text-xs border-collapse tabular-nums"></table></div>
+                <p id="pp-compare-note" class="mt-3 text-xs text-amber-600/90 dark:text-amber-400/90 leading-relaxed"></p>
             </div>
         </section>
 
@@ -792,26 +804,26 @@
     </footer>
 
     <!-- data + libs + app (load order matters) -->
-    <script src="assets/data/listings.js?v=39001c9eea"></script>
+    <script src="assets/data/listings.js?v=687314ab0b"></script>
     <!-- China province boundaries, vendored locally (no runtime third-party fetch) -->
-    <script src="assets/data/china-geo.js?v=39001c9eea"></script>
+    <script src="assets/data/china-geo.js?v=687314ab0b"></script>
     <!-- Baked enrichment: geocode / climate / POIs / risk / elevation (tools/manage.py enrich → build) -->
-    <script src="assets/data/enriched.js?v=39001c9eea"></script>
+    <script src="assets/data/enriched.js?v=687314ab0b"></script>
     <!-- Curated province natural-hazard profile (tools/manage.py build) -->
-    <script src="assets/data/hazards.js?v=39001c9eea"></script>
-    <script src="assets/data/policy.js?v=39001c9eea"></script>
+    <script src="assets/data/hazards.js?v=687314ab0b"></script>
+    <script src="assets/data/policy.js?v=687314ab0b"></script>
     <!-- Gridded climate/elevation basemap field — isotherms / rainfall / DEM (tools/manage.py field → build) -->
-    <script src="assets/data/field.js?v=39001c9eea"></script>
-    <script src="assets/data/loc-pinyin.js?v=39001c9eea"></script>
-    <script src="assets/data/geo-en.js?v=39001c9eea"></script>
-    <script src="assets/js/i18n.js?v=39001c9eea"></script>
+    <script src="assets/data/field.js?v=687314ab0b"></script>
+    <script src="assets/data/loc-pinyin.js?v=687314ab0b"></script>
+    <script src="assets/data/geo-en.js?v=687314ab0b"></script>
+    <script src="assets/js/i18n.js?v=687314ab0b"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"
         integrity="sha384-vsrfeLOOY6KuIYKDlmVH5UiBmgIdB1oEf7p01YgWHuqmOHfZr374+odEv96n9tNC" crossorigin="anonymous"
         referrerpolicy="no-referrer"></script>
     <script src="https://cdn.jsdelivr.net/npm/echarts@5.5.1/dist/echarts.min.js" crossorigin="anonymous"
         referrerpolicy="no-referrer"></script>
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
-    <script src="assets/js/app.js?v=39001c9eea"></script>
+    <script src="assets/js/app.js?v=687314ab0b"></script>
 
 </body>
 
