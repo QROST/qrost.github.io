@@ -34,7 +34,7 @@ CDS_DATASET = "derived-era5-single-levels-daily-statistics"
 # Align with gridfield.py / enrich.py
 LAT_MIN, LAT_MAX = 18.0, 54.0
 LNG_MIN, LNG_MAX = 73.0, 135.5
-YEARS = tuple(range(2014, 2024))
+YEARS = tuple(range(2014, 2026))  # 2014–2025 (basemap field base; per-listing climate stays 2014–2023, enrich._ERA5_Y1)
 CDS_AREA = [LAT_MAX, LNG_MIN, LAT_MIN, LNG_MAX]  # N, W, S, E
 
 _COARSE_PLACEHOLDER_SRC = frozenset({"coarse_interp", "1deg_nearest"})
