@@ -50,6 +50,9 @@ scene.fog = new THREE.FogExp2(0x05060e, 0.0019);
 
 const camera = new THREE.PerspectiveCamera(56, innerWidth / innerHeight, 0.1, 4000);
 camera.position.set(0, 44, 150);
+// 开场镜头：SOM 计算/呼气揭示期间，焦距从开场值缓慢 zoom out 到 100（ease-in-out → 起步柔、到点平缓停住）；用户手动缩放即取消
+let introZoom = true, introProg = 0;
+const INTRO_DUR = 10, INTRO_FOV_START = camera.fov, INTRO_FOV_END = 100;
 
 const renderer = new THREE.WebGLRenderer({ antialias: !IS_MOBILE, powerPreference: 'high-performance', failIfMajorPerformanceCaveat: false });   // 不因弱 GPU 拒绝创建 → 任何设备都能开
 renderer.setSize(innerWidth, innerHeight);
@@ -696,6 +699,8 @@ const SZ_GAMMA = 2.2;   // 尺寸幂曲线：>1 → 多数微小、少数巨大�
 let prevPos = null;   // 上一帧世界位置 → 算速度方向（棱柱以运动方向为自转轴）
 let visArr = null, cwArr = null, trOff = null;   // 视锥剔除 + 每实体到相机的距离（cw）→ 投影尺寸 LOD；trOff=连续离屏采样数（拖尾重入迟滞，消除边缘闪烁）
 let gOrg = 0, breathT = 0, bPhase = null, bRate = null;   // 全局呼吸量(供晶格) + 相位累加器；bPhase/bRate=每实体(按 cluster)的呼吸相位偏移与速率 → 错峰 + 各异速
+let somReady = false, bAmp = 0, bProg = 0;   // SOM 就绪前 bAmp=0（纯重叠混沌、不呼吸不展开）；就绪后从 0 平滑 ramp 到 1 → 随机运动态与神经地图态连续衔接（无瞬变跳位）。bProg=线性进度，bAmp=其 smootherstep 缓动（首尾更柔）
+const BREATH_RAMP = 12;           // bAmp 0→1 的 ramp 时长(秒)：SOM 完成后呼气展开的揭示节奏。3.5→12 + ease，让展开慢慢来、更平缓
 let audioCtx = null, audioTone = null, _aggTick = 0;   // 音乐：用户手势内创建的 AudioContext；每星音高种子(色相 0..1)；视野聚合节流计数
 let musicDNA = null;                                    // 这片宇宙的涌现态→乐曲身份（buildSOM 后算；替代随机种子，每次开页 SOM 不同→DNA 不同→曲不同）
 let clusterOf = null, clusterHue = null, clusterEnergy = null, somM = 0, clusterVote = null;   // 每实体所属 SOM 簇 + 每簇色相/能量 + 簇数 + 视野投票（主导可见簇→实时旋律色）
@@ -951,7 +956,7 @@ function finalize() {
 
 function writeWorld(i) {
   const o = i * 3, sy = sys[i], r = i * 9;
-  const bph = breathT * bRate[i] + bPhase[i], boR = 0.5 - 0.5 * Math.cos(bph), g = boR * boR * (3 - 2 * boR);   // 每实体呼吸量：全局时间×个体速率 + 个体相位 → 簇间错峰、簇内相干、速率各异
+  const bph = breathT * bRate[i] + bPhase[i], boR = 0.5 - 0.5 * Math.cos(bph), g = boR * boR * (3 - 2 * boR) * bAmp;   // 每实体呼吸量：全局时间×个体速率 + 个体相位 → 簇间错峰、簇内相干、速率各异；× bAmp：SOM 就绪前=0(纯重叠混沌)→就绪后平滑长出，与随机运动态连续
   const s = scl[i] * (1 - (1 - SHRINK) * g);                  // 呼气铺开 → 混沌缩小
   const ax = CENTER[0] + (anc[o] - CENTER[0]) * g;            // 有效锚点：CENTER(重叠) ⇄ SOM 语义坐标
   const ay = CENTER[1] + (anc[o + 1] - CENTER[1]) * g;
@@ -996,34 +1001,43 @@ function stepOne(i, h) {
 }
 
 // ---------- SOM：Kohonen 自组织网络（boot 一次性整训）→ 写语义锚点 + 画神经晶格 ----------
-function buildSOM() {
-  if (!N || !featM) return null;
-  const Lx = SOM_L[0], Ly = SOM_L[1], Lz = SOM_L[2], M = Lx * Ly * Lz, d = FEAT_DIM;
-  const W = new Float32Array(M * d);
-  for (let n = 0; n < M; n++) { const r = (Math.random() * N) | 0; W.set(featM.subarray(r * d, r * d + d), n * d); }   // init=随机样本
-  const nx = (n) => n % Lx, ny = (n) => ((n / Lx) | 0) % Ly, nz = (n) => (n / (Lx * Ly)) | 0;
-  const order = new Int32Array(N); for (let i = 0; i < N; i++) order[i] = i;
-  const TRAIN_N = Math.min(N, 2800);   // 子采样训练：每 epoch 只用 TRAIN_N 个(每轮重洗→跨轮覆盖全集)代表性样本 → 训练成本 ∝ TRAIN_N 而非 N（315 神经元用 26×2800 次呈现足够收敛，聚类质量几乎不变）。全部 N 仍各自做 BMU 分配拿锚点（下方）
-  const sigma0 = Math.max(Lx, Ly, Lz) * 0.5, total = SOM_EPOCHS * TRAIN_N; let it = 0;
-  for (let ep = 0; ep < SOM_EPOCHS; ep++) {
-    for (let a = N - 1; a > 0; a--) { const b = (Math.random() * (a + 1)) | 0, t = order[a]; order[a] = order[b]; order[b] = t; }   // shuffle
-    for (let s = 0; s < TRAIN_N; s++) {
-      const xi = order[s] * d, frac = it++ / total;
-      const alpha = 0.5 * Math.exp(-frac * 3), sigma = sigma0 * Math.exp(-frac * 3), inv2s2 = 1 / (2 * sigma * sigma);
-      let bmu = 0, best = Infinity;                                          // 竞争：找 BMU
-      for (let n = 0; n < M; n++) { const wo = n * d; let acc = 0; for (let k = 0; k < d; k++) { const e = featM[xi + k] - W[wo + k]; acc += e * e; if (acc >= best) break; } if (acc < best) { best = acc; bmu = n; } }
-      const bx = nx(bmu), by = ny(bmu), bz = nz(bmu), rad = Math.max(1, Math.ceil(sigma));
-      for (let iz = Math.max(0, bz - rad); iz <= Math.min(Lz - 1, bz + rad); iz++)               // 邻域协同更新
-        for (let iy = Math.max(0, by - rad); iy <= Math.min(Ly - 1, by + rad); iy++)
-          for (let ix = Math.max(0, bx - rad); ix <= Math.min(Lx - 1, bx + rad); ix++) {
-            const dist2 = (ix - bx) * (ix - bx) + (iy - by) * (iy - by) + (iz - bz) * (iz - bz);
-            const h = alpha * Math.exp(-dist2 * inv2s2); if (h < 1e-3) continue;
-            const wo = (ix + Lx * (iy + Ly * iz)) * d;
-            for (let k = 0; k < d; k++) W[wo + k] += h * (featM[xi + k] - W[wo + k]);
-          }
-    }
+// SOM 训练(W 权重 + 每星 BMU 分配)的 Worker 源：纯数学、不碰 DOM/THREE → 搬出主线程，训练期间 animate 照常跑混沌运动、零卡顿
+const SOM_WORKER_SRC = `self.onmessage=function(e){
+var F=e.data.featM,N=e.data.N,d=e.data.d,M=e.data.M,Lx=e.data.Lx,Ly=e.data.Ly,Lz=e.data.Lz,EP=e.data.epochs,TN=e.data.trainN,sigma0=e.data.sigma0;
+var W=new Float32Array(M*d);
+for(var n=0;n<M;n++){var r=(Math.random()*N)|0;W.set(F.subarray(r*d,r*d+d),n*d);}
+var nx=function(q){return q%Lx;},ny=function(q){return ((q/Lx)|0)%Ly;},nz=function(q){return (q/(Lx*Ly))|0;};
+var order=new Int32Array(N);for(var i=0;i<N;i++)order[i]=i;
+var total=EP*TN,it=0;
+for(var ep=0;ep<EP;ep++){
+  for(var a=N-1;a>0;a--){var b=(Math.random()*(a+1))|0,t=order[a];order[a]=order[b];order[b]=t;}
+  for(var s=0;s<TN;s++){
+    var xi=order[s]*d,frac=it++/total;
+    var alpha=0.5*Math.exp(-frac*3),sigma=sigma0*Math.exp(-frac*3),inv2s2=1/(2*sigma*sigma);
+    var bmu=0,best=Infinity;
+    for(var n2=0;n2<M;n2++){var wo=n2*d,acc=0;for(var k=0;k<d;k++){var er=F[xi+k]-W[wo+k];acc+=er*er;if(acc>=best)break;}if(acc<best){best=acc;bmu=n2;}}
+    var bx=nx(bmu),by=ny(bmu),bz=nz(bmu),rad=Math.max(1,Math.ceil(sigma));
+    for(var iz=Math.max(0,bz-rad);iz<=Math.min(Lz-1,bz+rad);iz++)
+      for(var iy=Math.max(0,by-rad);iy<=Math.min(Ly-1,by+rad);iy++)
+        for(var ix=Math.max(0,bx-rad);ix<=Math.min(Lx-1,bx+rad);ix++){
+          var dd=(ix-bx)*(ix-bx)+(iy-by)*(iy-by)+(iz-bz)*(iz-bz);
+          var h=alpha*Math.exp(-dd*inv2s2);if(h<1e-3)continue;
+          var wo2=(ix+Lx*(iy+Ly*iz))*d;
+          for(var k2=0;k2<d;k2++)W[wo2+k2]+=h*(F[xi+k2]-W[wo2+k2]);
+        }
   }
-  // 每星→BMU→晶格坐标→世界坐标，写入 anc；累积 density
+}
+var density=new Float32Array(M),bmuOf=new Int32Array(N);
+for(var p=0;p<N;p++){var px=p*d,pb=0,pbest=Infinity;
+  for(var n3=0;n3<M;n3++){var wo3=n3*d,acc2=0;for(var k3=0;k3<d;k3++){var er2=F[px+k3]-W[wo3+k3];acc2+=er2*er2;}if(acc2<pbest){pbest=acc2;pb=n3;}}
+  density[pb]++;bmuOf[p]=pb;}
+self.postMessage({W:W,bmuOf:bmuOf,density:density},[W.buffer,bmuOf.buffer,density.buffer]);
+};`;
+
+// 后处理（主线程，廉价 ~N+M：锚点/呼吸/clusterHue/musicDNA/晶格）——用 Worker(或兜底) 返回的 W/bmuOf/density，不含重训练
+function somFinish(W, bmuOf, density) {
+  const Lx = SOM_L[0], Ly = SOM_L[1], Lz = SOM_L[2], M = Lx * Ly * Lz, d = FEAT_DIM;
+  const nx = (n) => n % Lx, ny = (n) => ((n / Lx) | 0) % Ly, nz = (n) => (n / (Lx * Ly)) | 0;
   // 晶格→世界：ix=经度（环视一圈）· iy=纬度（等面积、避开极点）· iz=球壳厚度；逐节点确定性抖动 → 不规律的有机球面
   const Rmin = SOM_R[0], Rmax = SOM_R[1], TAU = 6.2831853;
   const nodeWorld = (ix, iy, iz) => {
@@ -1036,12 +1050,9 @@ function buildSOM() {
     const r = Rmin + (Lz > 1 ? iz / (Lz - 1) : 0) * (Rmax - Rmin) + (jc - 0.5) * 18;     // 壳厚 + 抖动
     return [CENTER[0] + r * sphi * Math.cos(theta), CENTER[1] + r * cphi, CENTER[2] + r * sphi * Math.sin(theta)];
   };
-  const density = new Float32Array(M);
-  const nSpd = new Float32Array(M), nCnt = new Float32Array(M), bmuOf = new Int32Array(N);   // 每神经元(cluster)累计速度→均速→呼吸速率
+  const nSpd = new Float32Array(M), nCnt = new Float32Array(M);     // bmuOf 已由 worker 给出 → 这里只写锚点/相位、累计速度（无 BMU 搜索）
   for (let i = 0; i < N; i++) {
-    const xi = i * d; let bmu = 0, best = Infinity;
-    for (let n = 0; n < M; n++) { const wo = n * d; let acc = 0; for (let k = 0; k < d; k++) { const e = featM[xi + k] - W[wo + k]; acc += e * e; } if (acc < best) { best = acc; bmu = n; } }
-    density[bmu]++; bmuOf[i] = bmu; nSpd[bmu] += spd[i]; nCnt[bmu]++;
+    const bmu = bmuOf[i]; nSpd[bmu] += spd[i]; nCnt[bmu]++;
     const w = nodeWorld(nx(bmu), ny(bmu), nz(bmu)); anc[i * 3] = w[0]; anc[i * 3 + 1] = w[1]; anc[i * 3 + 2] = w[2];
     bPhase[i] = hash01('bp' + bmu) * TAU;                                  // 每神经元(=cluster)一个相位 → 簇间错峰、簇内同步
   }
@@ -1090,6 +1101,60 @@ function buildSOM() {
   lg.setAttribute('aGlow', new THREE.Float32BufferAttribute(segGlow, 1));
   latticeObj = new THREE.LineSegments(lg, latticeMat); latticeObj.frustumCulled = false; root.add(latticeObj);
   return { neurons: M, edges: segGlow.length / 2 };
+}
+
+// 主线程同步训练兜底（无 Worker / Worker 失败时）：W 训练 + 全量 BMU 分配 → {W,bmuOf,density}
+function somTrainSync() {
+  const Lx = SOM_L[0], Ly = SOM_L[1], Lz = SOM_L[2], M = Lx * Ly * Lz, d = FEAT_DIM;
+  const W = new Float32Array(M * d);
+  for (let n = 0; n < M; n++) { const r = (Math.random() * N) | 0; W.set(featM.subarray(r * d, r * d + d), n * d); }
+  const nx = (n) => n % Lx, ny = (n) => ((n / Lx) | 0) % Ly, nz = (n) => (n / (Lx * Ly)) | 0;
+  const order = new Int32Array(N); for (let i = 0; i < N; i++) order[i] = i;
+  const TRAIN_N = Math.min(N, 2800), sigma0 = Math.max(Lx, Ly, Lz) * 0.5, total = SOM_EPOCHS * TRAIN_N; let it = 0;
+  for (let ep = 0; ep < SOM_EPOCHS; ep++) {
+    for (let a = N - 1; a > 0; a--) { const b = (Math.random() * (a + 1)) | 0, t = order[a]; order[a] = order[b]; order[b] = t; }
+    for (let s = 0; s < TRAIN_N; s++) {
+      const xi = order[s] * d, frac = it++ / total;
+      const alpha = 0.5 * Math.exp(-frac * 3), sigma = sigma0 * Math.exp(-frac * 3), inv2s2 = 1 / (2 * sigma * sigma);
+      let bmu = 0, best = Infinity;
+      for (let n = 0; n < M; n++) { const wo = n * d; let acc = 0; for (let k = 0; k < d; k++) { const e = featM[xi + k] - W[wo + k]; acc += e * e; if (acc >= best) break; } if (acc < best) { best = acc; bmu = n; } }
+      const bx = nx(bmu), by = ny(bmu), bz = nz(bmu), rad = Math.max(1, Math.ceil(sigma));
+      for (let iz = Math.max(0, bz - rad); iz <= Math.min(Lz - 1, bz + rad); iz++)
+        for (let iy = Math.max(0, by - rad); iy <= Math.min(Ly - 1, by + rad); iy++)
+          for (let ix = Math.max(0, bx - rad); ix <= Math.min(Lx - 1, bx + rad); ix++) {
+            const dist2 = (ix - bx) * (ix - bx) + (iy - by) * (iy - by) + (iz - bz) * (iz - bz);
+            const h = alpha * Math.exp(-dist2 * inv2s2); if (h < 1e-3) continue;
+            const wo = (ix + Lx * (iy + Ly * iz)) * d;
+            for (let k = 0; k < d; k++) W[wo + k] += h * (featM[xi + k] - W[wo + k]);
+          }
+    }
+  }
+  const density = new Float32Array(M), bmuOf = new Int32Array(N);
+  for (let i = 0; i < N; i++) {
+    const xi = i * d; let bmu = 0, best = Infinity;
+    for (let n = 0; n < M; n++) { const wo = n * d; let acc = 0; for (let k = 0; k < d; k++) { const e = featM[xi + k] - W[wo + k]; acc += e * e; } if (acc < best) { best = acc; bmu = n; } }
+    density[bmu]++; bmuOf[i] = bmu;
+  }
+  return { W, bmuOf, density };
+}
+
+// 异步训练 SOM：优先 Worker（训练期间主线程动画不冻、星体保持自由运动）→ 完成回主线程做廉价后处理。Worker 不可用/失败 → 同步兜底
+function buildSOM(onDone) {
+  const done = (r) => { if (onDone) onDone(r); };
+  if (!N || !featM) { done(null); return; }
+  const Lx = SOM_L[0], Ly = SOM_L[1], Lz = SOM_L[2], M = Lx * Ly * Lz, d = FEAT_DIM;
+  const TRAIN_N = Math.min(N, 2800), sigma0 = Math.max(Lx, Ly, Lz) * 0.5;
+  const fallback = () => { const r = somTrainSync(); done(somFinish(r.W, r.bmuOf, r.density)); };
+  if (typeof Worker === 'undefined' || typeof URL === 'undefined' || !URL.createObjectURL) { fallback(); return; }
+  try {
+    const fm = featM.slice();                                              // 拷贝一份给 worker transfer（主线程保留 featM 供兜底）
+    const url = URL.createObjectURL(new Blob([SOM_WORKER_SRC], { type: 'text/javascript' }));
+    const w = new Worker(url);
+    let settled = false;
+    w.onmessage = (e) => { if (settled) return; settled = true; w.terminate(); URL.revokeObjectURL(url); done(somFinish(e.data.W, e.data.bmuOf, e.data.density)); };
+    w.onerror = () => { if (settled) return; settled = true; w.terminate(); URL.revokeObjectURL(url); fallback(); };
+    w.postMessage({ featM: fm, N, d, M, Lx, Ly, Lz, epochs: SOM_EPOCHS, trainN: TRAIN_N, sigma0 }, [fm.buffer]);
+  } catch (_) { fallback(); }
 }
 
 // CPPN 权重：用数据聚合量确定性播种（mulberry32 PRNG）→ 上传到背景 shader
@@ -1145,7 +1210,7 @@ _dom.addEventListener('pointermove', (e) => {
   _ptrs.set(e.pointerId, { x: e.clientX, y: e.clientY });
   if (_ptrs.size >= 2) {                                      // 双指捏合 → 焦距（捏开放大）
     const it = _ptrs.values(), p1 = it.next().value, p2 = it.next().value, d = Math.hypot(p1.x - p2.x, p1.y - p2.y);
-    if (pinchPrev) { camera.fov = clamp(camera.fov - (d - pinchPrev) * 0.10, 10, 125); camera.updateProjectionMatrix(); }   // 焦距范围：10~125（强长焦 + 广视角）
+    if (pinchPrev) { introZoom = false; camera.fov = clamp(camera.fov - (d - pinchPrev) * 0.10, 10, 125); camera.updateProjectionMatrix(); }   // 焦距范围：10~125（强长焦 + 广视角）；手动缩放取消开场动画
     pinchPrev = d;
   } else if (dragging) {                                      // 单指拖动 → 环视
     yaw -= (e.clientX - lastPX) * 0.004; pitch = clamp(pitch - (e.clientY - lastPY) * 0.004, -1.45, 1.45);
@@ -1161,6 +1226,7 @@ addEventListener('pointerup', _ptrEnd);
 addEventListener('pointercancel', _ptrEnd);
 _dom.addEventListener('wheel', (e) => {                       // 桌面滚轮 = 调焦距（FOV），相机不位移
   e.preventDefault();
+  introZoom = false;                                            // 手动滚轮取消开场缓慢拉远
   camera.fov = clamp(camera.fov + e.deltaY * 0.045, 10, 125);   // 焦距范围：10~125；步长 0.045 让范围好达到
   camera.updateProjectionMatrix();
 }, { passive: false });
@@ -1392,10 +1458,20 @@ function animate() {
   U.uPulse.value = pulse;
   bgMat.uniforms.uTime.value = tElapsed; bgMat.uniforms.uPulse.value = pulse;
 
+  // 开场缓慢 zoom out → FOV 到 100（smootherstep：起步柔、临近 100 减速、平缓停住）；一旦用户手动缩放即取消（introZoom=false）
+  if (introZoom) {
+    introProg = Math.min(1, introProg + dt / INTRO_DUR);
+    const e = introProg * introProg * (3 - 2 * introProg);
+    camera.fov = INTRO_FOV_START + (INTRO_FOV_END - INTRO_FOV_START) * e;
+    camera.updateProjectionMatrix();
+    if (introProg >= 1) introZoom = false;
+  }
+
   // 呼吸式自组织：CENTER(重叠混沌) ⇄ SOM 神经地图；mic 出声提速呼吸；smootherstep 在两端停留
-  breathT += dt * (0.065 + pulse * 0.15);   // 整体半速（用户「1/2 速度」：0.13→0.065、0.3→0.15）；每实体再 × bRate
+  // SOM 就绪前不推进呼吸(breathT=0、bAmp=0 → 纯重叠混沌运动)；就绪后 bAmp 从 0 平滑 ramp → 从随机运动态连续呼气展开成神经地图，无瞬变
+  if (somReady) { breathT += dt * (0.065 + pulse * 0.15); bProg = Math.min(1, bProg + dt / BREATH_RAMP); bAmp = bProg * bProg * (3 - 2 * bProg); }   // 整体半速；每实体再 × bRate。bAmp = smootherstep(bProg) → 揭示首尾更柔、更平缓
   const oRaw = 0.5 - 0.5 * Math.cos(breathT);
-  gOrg = oRaw * oRaw * (3 - 2 * oRaw);
+  gOrg = oRaw * oRaw * (3 - 2 * oRaw) * bAmp;   // × bAmp：晶格随展开平滑显形（就绪前 = 0，不显）
   if (latticeObj) latticeMat.uniforms.uOrg.value = gOrg;   // 呼气时神经晶格显形
 
   // 每系统各绕自己的轴自转（始终开启）
@@ -1664,12 +1740,11 @@ function buildPanel() {
   const ld = document.getElementById('loading'); ld.classList.add('gone'); setTimeout(() => ld.remove(), 1000);
   console.log(`[Data Abyss] ${cities} cities · ${info.products || 0} products · ${info.kernels || 0} kernels · ${info.milestones || 0} breakthroughs · ${info.policies || 0} policies · ${info.vendors || 0} vendors · pharma[${pharma.companies || 0} co / ${pharma.sites || 0} sites / ${pharma.products || 0} drugs / ${pharma.modalities || 0} mod / ${pharma.milestones || 0} bk] · cats[${scats.cats || 0} / ${scats.shelters || 0} shelters] · ${N} bodies · ${E} trail-emitters · ${beamIdxA ? beamIdxA.length : 0} beams · rel[pharma ${pharma.rel || 0} edges/${pharma.groups || 0} groups · vendor ${info.vendorBeams || 0}] · SOM training deferred…`);
   animate();
-  // SOM（最重的同步计算 ~占启动绝大部分）推迟到首屏之后：训完无缝长出神经骨架。首次呼气展开远在 ~24s 后、SOM(<1s) 早已完成 → 观感零损失。
-  const trainSOM = () => {
-    const som = buildSOM();   // 子采样训练 + 全量 BMU 分配 → 语义锚点/呼吸/晶格/musicDNA
-    for (let i = 0; i < N; i++) writeWorld(i); if (prevPos) prevPos.set(posArr);   // SOM 设好 anc/bPhase/bRate 后按相位重置位置（此刻仍重叠态 anc≈CENTER，无可见跳变）
-    console.log(`[Data Abyss] SOM ${som ? som.neurons + ' neurons / ' + som.edges + ' edges' : 'skipped'}${musicDNA ? ` · musicDNA[hue ${musicDNA.hueStar.toFixed(2)} · conc ${musicDNA.concentration.toFixed(2)} · clusters ${musicDNA.clusters} · spd ${musicDNA.speedMean.toFixed(2)}±${musicDNA.speedSpread.toFixed(2)} · domType ${musicDNA.domType} · sig ${musicDNA.sig}]` : ''} (trained after first paint)`);
-  };
-  if ('requestIdleCallback' in window) requestIdleCallback(trainSOM, { timeout: 1500 });
-  else setTimeout(trainSOM, 120);
+  // SOM（最重的计算）在 Web Worker 里训练 → 训练全程主线程 animate 照常跑、星体保持自由混沌运动、零卡顿；训完回主线程做廉价后处理(~N+M)无缝长出神经骨架。
+  // 首帧后再 kickoff（让首屏先绘制，featM 拷贝/postMessage 不挤进首帧）。首次呼气展开远在 ~24s 后、SOM 早已训完 → 观感零损失。
+  requestAnimationFrame(() => buildSOM((som) => {
+    for (let i = 0; i < N; i++) writeWorld(i); if (prevPos) prevPos.set(posArr);   // SOM 设好 anc/bPhase/bRate；此刻 bAmp 仍 = 0 → effAnc≈CENTER、位置与上一帧一致（重叠态），无跳变
+    somReady = true;   // 解锁呼吸：从这帧起 bAmp 从 0 平滑 ramp → 星体连续地呼气展开成神经地图（与之前的随机运动态无缝衔接）
+    console.log(`[Data Abyss] SOM ${som ? som.neurons + ' neurons / ' + som.edges + ' edges' : 'skipped'}${musicDNA ? ` · musicDNA[hue ${musicDNA.hueStar.toFixed(2)} · conc ${musicDNA.concentration.toFixed(2)} · clusters ${musicDNA.clusters} · spd ${musicDNA.speedMean.toFixed(2)}±${musicDNA.speedSpread.toFixed(2)} · domType ${musicDNA.domType} · sig ${musicDNA.sig}]` : ''} (trained off-thread)`);
+  }));
 })();
