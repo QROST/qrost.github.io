@@ -410,5 +410,6 @@ window.HOUSING_LISTINGS = [
   { id: 395, prov: "广东",       city: "惠州市",            dist: "大亚湾区",          loc: "听涛雅苑",                 priceWan: 19.1,  area: 15.11,  rent: 400,     updated: "2026-06" },
   { id: 396, prov: "广东",       city: "惠州市",            dist: "惠城区 小金口",     loc: "金裕星河丹堤花园",         priceWan: 47,    area: 95,     rent: 0,       updated: "2026-06" },
   { id: 397, prov: "广东",       city: "惠州市",            dist: "惠阳区 淡水",       loc: "心境山水郡",               priceWan: 118,   area: 226.87, rent: 0,       updated: "2026-06" },
-  { id: 398, prov: "广东",       city: "惠州市",            dist: "惠东县 稔山",       loc: "碧桂园伴海云山",           priceWan: 76,    area: 95.7,   rent: 1100,    updated: "2026-06" }
+  { id: 398, prov: "广东",       city: "惠州市",            dist: "惠东县 稔山",       loc: "碧桂园伴海云山",           priceWan: 76,    area: 95.7,   rent: 1100,    updated: "2026-06" },
+  { id: 399, prov: "广东",       city: "惠州市",            dist: "仲恺区 惠环",       loc: "碧桂园凤凰华府",           priceWan: 64.8,  area: 97,     rent: 0,       updated: "2026-06" }
 ];

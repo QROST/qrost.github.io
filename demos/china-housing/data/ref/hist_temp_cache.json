@@ -4690,5 +4690,25 @@
   "histTempStation": null,
   "histTempNote": "ERA5 再分析格点 1940–2023 日最高/日最低极值（≈25 km 网格，非气象站记录）（邻近格点复用）（邻近格点复用）（邻近格点复用）",
   "histTempLevel": "区镇/街道"
+ },
+ "wiki-dist:仲恺区 惠环": null,
+ "era5:23.03,114.36": {
+  "histTempMax": 36.9,
+  "histTempMin": -1.8,
+  "histTempMaxDate": "2020-07-25",
+  "histTempMinDate": "1955-01-12",
+  "histTempSrc": "open-meteo-era5-1940-2023",
+  "histTempStation": null,
+  "histTempNote": "ERA5 再分析格点 1940–2023 日最高/日最低极值（≈25 km 网格，非气象站记录）（邻近格点复用）"
+ },
+ "广东|惠州市|仲恺区 惠环": {
+  "histTempMax": 36.9,
+  "histTempMin": -1.8,
+  "histTempMaxDate": "2020-07-25",
+  "histTempMinDate": "1955-01-12",
+  "histTempSrc": "open-meteo-era5-1940-2023",
+  "histTempStation": null,
+  "histTempNote": "ERA5 再分析格点 1940–2023 日最高/日最低极值（≈25 km 网格，非气象站记录）（邻近格点复用）",
+  "histTempLevel": "区镇/街道"
  }
 }
