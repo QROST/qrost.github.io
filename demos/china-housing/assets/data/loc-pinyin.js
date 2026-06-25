@@ -272,6 +272,7 @@ window.HOUSING_LOC_PINYIN = {
   "碧桂园世纪城（滁州）": "Bi Gui Yuan Shi Ji Cheng （ Chu Zhou ）",
   "碧桂园伯爵": "Bi Gui Yuan Bo Jue",
   "碧桂园伴海云山": "Bi Gui Yuan Ban Hai Yun Shan",
+  "碧桂园凤凰华府": "Bi Gui Yuan Feng Huang Hua Fu",
   "碧桂园凤凰城凤仪苑": "Bi Gui Yuan Feng Huang Cheng Feng Yi Yuan",
   "碧桂园凤凰城凤馨苑": "Bi Gui Yuan Feng Huang Cheng Feng Xin Yuan",
   "碧桂园凤凰城（句容）": "Bi Gui Yuan Feng Huang Cheng （ Ju Rong ）",

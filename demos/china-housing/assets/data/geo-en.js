@@ -474,6 +474,7 @@ window.HOUSING_GEO_EN = {
     "绣林大道": "Xiu Lin Da Dao",
     "雪野旅游区": "Xue Ye Lv You District",
     "雅瑶镇": "Ya Yao Town",
-    "银海区": "Yin Hai District"
+    "银海区": "Yin Hai District",
+    "仲恺区 惠环": "Zhong Kai Qu Hui Huan"
   }
 };

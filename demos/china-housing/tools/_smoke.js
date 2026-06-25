@@ -116,7 +116,7 @@ ids['listing-modal'].classList = { _c: new Set(['hidden']), contains(c) { return
 setTimeout(() => {
   const w = sandbox.window; const checks = [];
   const T = (n, p) => checks.push([n, !!p]);
-  T('listings 386', (w.HOUSING_LISTINGS || []).length === 386);
+  T('listings 387', (w.HOUSING_LISTINGS || []).length === 387);
   T('loc no area suffix', (w.HOUSING_LISTINGS || []).every((r) => !/（\d+\.?\d*\s*㎡?）|\(\d+\.?\d*\s*㎡?\)|\d+\s*(m2|m²|㎡)/i.test(r.loc)));
   T('loc no slash combos', (w.HOUSING_LISTINGS || []).every((r) => !/\//.test(r.loc)));
   T('loc no pricing notes', (w.HOUSING_LISTINGS || []).every((r) => !/按套计价|非按㎡/.test(r.loc)));
@@ -130,7 +130,7 @@ setTimeout(() => {
     const b = w.HOUSING_LISTINGS.find((r) => r.id === 263);
     return a && a.loc === '新田城甲壳虫公寓' && b && b.loc === '新田城甲壳虫公寓（小户）';
   })());
-  T('enriched 386', Object.keys(w.HOUSING_ENRICHED || {}).length === 386);
+  T('enriched 387', Object.keys(w.HOUSING_ENRICHED || {}).length === 387);
   T('hazards 32', Object.keys(w.HOUSING_HAZARDS || {}).length === 32);
   T('field 4 fields', w.HOUSING_FIELD && Object.keys(w.HOUSING_FIELD.fields).length === 4);
   T('field step 1° coarse', w.HOUSING_FIELD && w.HOUSING_FIELD.step === 1);
@@ -201,7 +201,7 @@ setTimeout(() => {
   T('tier1 toggle wired', typeof w.__setTier1On === 'function');
   try {
     w.__setTier1On(true);
-    T('table count 386 tier1', /显示 386 \/ 386/.test(ids['table-count'].textContent));
+    T('table count 387 tier1', /显示 387 \/ 387/.test(ids['table-count'].textContent));
     T('prov California zh 加州', w.HOUSING_I18N.displayProvince('California') === '加州');
     const cal = (w.HOUSING_LISTINGS || []).find((r) => r.id === 284);
     T('cityLabel California zh 加州', cal && w.__cityLabel && w.__cityLabel(cal).startsWith('加州'));
