@@ -748,6 +748,8 @@
                             class="shrink-0 text-slate-400 dark:text-slate-500 hover:text-slate-900 dark:hover:text-slate-100 text-3xl leading-none -mt-1 transition-colors">×</button>
                     </div>
                 </div>
+                <!-- 一楼盘多价格挂牌 (同坐标多套在售) — populated from window.HOUSING_OFFERS by app.js -->
+                <div id="lm-offers" class="hidden px-5 pt-3"></div>
                 <div class="flex gap-1.5 px-5 pt-3">
                     <button data-lm-tab="sat" class="lm-tab"></button>
                     <button data-lm-tab="near" class="lm-tab"></button>
@@ -804,26 +806,28 @@
     </footer>
 
     <!-- data + libs + app (load order matters) -->
-    <script src="assets/data/listings.js?v=d815ddf5b5"></script>
+    <script src="assets/data/listings.js?v=c54d074f0e"></script>
     <!-- China province boundaries, vendored locally (no runtime third-party fetch) -->
-    <script src="assets/data/china-geo.js?v=d815ddf5b5"></script>
+    <script src="assets/data/china-geo.js?v=c54d074f0e"></script>
     <!-- Baked enrichment: geocode / climate / POIs / risk / elevation (tools/manage.py enrich → build) -->
-    <script src="assets/data/enriched.js?v=d815ddf5b5"></script>
+    <script src="assets/data/enriched.js?v=c54d074f0e"></script>
     <!-- Curated province natural-hazard profile (tools/manage.py build) -->
-    <script src="assets/data/hazards.js?v=d815ddf5b5"></script>
-    <script src="assets/data/policy.js?v=d815ddf5b5"></script>
+    <script src="assets/data/hazards.js?v=c54d074f0e"></script>
+    <script src="assets/data/policy.js?v=c54d074f0e"></script>
+    <!-- Multiple price offers per listing (一楼盘多价格挂牌) — tools/manage.py import-offers → build -->
+    <script src="assets/data/offers.js?v=c54d074f0e"></script>
     <!-- Gridded climate/elevation basemap field — isotherms / rainfall / DEM (tools/manage.py field → build) -->
-    <script src="assets/data/field.js?v=d815ddf5b5"></script>
-    <script src="assets/data/loc-pinyin.js?v=d815ddf5b5"></script>
-    <script src="assets/data/geo-en.js?v=d815ddf5b5"></script>
-    <script src="assets/js/i18n.js?v=d815ddf5b5"></script>
+    <script src="assets/data/field.js?v=c54d074f0e"></script>
+    <script src="assets/data/loc-pinyin.js?v=c54d074f0e"></script>
+    <script src="assets/data/geo-en.js?v=c54d074f0e"></script>
+    <script src="assets/js/i18n.js?v=c54d074f0e"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"
         integrity="sha384-vsrfeLOOY6KuIYKDlmVH5UiBmgIdB1oEf7p01YgWHuqmOHfZr374+odEv96n9tNC" crossorigin="anonymous"
         referrerpolicy="no-referrer"></script>
     <script src="https://cdn.jsdelivr.net/npm/echarts@5.5.1/dist/echarts.min.js" crossorigin="anonymous"
         referrerpolicy="no-referrer"></script>
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
-    <script src="assets/js/app.js?v=d815ddf5b5"></script>
+    <script src="assets/js/app.js?v=c54d074f0e"></script>
 
 </body>
 

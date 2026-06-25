@@ -48,6 +48,7 @@ JS_PATH = ROOT / "assets" / "data" / "listings.js"
 ENR_PATH = ROOT / "assets" / "data" / "enriched.js"
 HAZ_PATH = ROOT / "assets" / "data" / "hazards.js"
 POLICY_PATH = ROOT / "assets" / "data" / "policy.js"
+OFFERS_PATH = ROOT / "assets" / "data" / "offers.js"
 FIELD_PATH = ROOT / "assets" / "data" / "field.js"
 FIELD_HI_PATH = ROOT / "assets" / "data" / "field_hi.js"
 FIELD_HI_DIR = ROOT / "assets" / "data"
@@ -262,6 +263,26 @@ HAZ_HEADER = '''/**
 def render_hazards(d: dict) -> str:
     body = json.dumps(d, ensure_ascii=False, separators=(",", ":"), sort_keys=True)
     return HAZ_HEADER + "window.HOUSING_HAZARDS = " + body + ";\n"
+
+
+OFFERS_HEADER = '''/**
+ * China small-city housing — multiple price offers per listing (一楼盘多价格挂牌).
+ *
+ * GENERATED FILE — do not hand-edit. Source is data/housing.db (listing_offers),
+ * populated by `manage.py import-offers`; regenerate with `manage.py build`.
+ *
+ * Additional price points (面积/户型/单价/时间) under one listing — the listings row
+ * stays the canonical/representative offer; these show in the detail modal. Every
+ * offer carries sourceUrl (cite-or-omit). unitPrice is derived (priceWan*1e4/area).
+ *   window.HOUSING_OFFERS = {"<listing_id>": [{area, priceWan, unitPrice, rent,
+ *     layout, orientation, floorNote, updated, sourceUrl, note}, …]}  // sorted by 单价 asc
+ */
+'''
+
+
+def render_offers(d: dict) -> str:
+    body = json.dumps(d, ensure_ascii=False, separators=(",", ":"), sort_keys=True)
+    return OFFERS_HEADER + "window.HOUSING_OFFERS = " + body + ";\n"
 
 
 POLICY_HEADER = '''/**
@@ -537,6 +558,11 @@ def cmd_build(args):
     POLICY_PATH.write_text(render_policy(city_pol, nat_pol), encoding="utf-8")
     print(f"✓ policy: {len(city_pol.get('byPref', {}))} 地级市 + "
           f"{len(nat_pol)} national topics → {POLICY_PATH.relative_to(ROOT)}")
+    # emit multiple price offers per listing (一楼盘多价格; cite-or-omit provenance)
+    offers = enrich.emit_offers(con)
+    OFFERS_PATH.write_text(render_offers(offers), encoding="utf-8")
+    print(f"✓ offers: {sum(len(v) for v in offers.values())} price point(s) across "
+          f"{len(offers)} listing(s) → {OFFERS_PATH.relative_to(ROOT)}")
     # emit gridded climate/elevation fields — coarse (1°) + fine (0.25° zoom LOD)
     log = lambda m: print("   " + m)
     field = gridfield.emit_field(log, step=gridfield.STEP_COARSE)
@@ -768,6 +794,22 @@ def cmd_built_merge(args):
         print(f"(dry-run — would store {rep['set']}, kept_existing {rep['kept_existing']})")
     else:
         print(f"→ {rep['set']} built-year(s) stored; run `build` to regenerate enriched.js")
+
+
+def cmd_import_offers(args):
+    con = connect()
+    enrich.migrate(con)   # ensure listing_offers exists
+    data = json.load(open(args.path, encoding="utf-8"))
+    findings = data.get("offers", data.get("findings", data)) if isinstance(data, dict) else data
+    print(f"merging {len(findings)} price offer(s) from {args.path} …")
+    rep = enrich.merge_offers(con, findings, print, dry_run=args.dry_run)
+    print("=== offers merge report ===")
+    print(json.dumps(rep, ensure_ascii=False, indent=1))
+    if args.dry_run:
+        print(f"(dry-run — would insert {rep['inserted']} across {rep['listings']} listing(s))")
+    else:
+        print(f"→ {rep['inserted']} offer(s) across {rep['listings']} listing(s) stored "
+              f"(replaced {rep['cleared']}); run `build` to regenerate offers.js")
 
 
 def cmd_hazard_merge(args):
@@ -1048,6 +1090,12 @@ def main(argv=None):
     sp.add_argument("path", help="JSON: [{id, builtYear, source, confidence}, …] or {findings:[…]}")
     sp.add_argument("--dry-run", action="store_true", help="report only, no DB writes")
     sp.set_defaults(fn=cmd_built_merge)
+
+    sp = sub.add_parser("import-offers",
+                        help="fold multiple price offers (一楼盘多价格) into listing_offers; re-import replaces per listing")
+    sp.add_argument("path", help="JSON: [{id|loc, area, priceWan, layout?, updated?, source_url}, …] or {offers:[…]}")
+    sp.add_argument("--dry-run", action="store_true", help="report only, no DB writes")
+    sp.set_defaults(fn=cmd_import_offers)
 
     sub.add_parser("relief", help="bake local terrain relief (DEM ring) for 地质灾害 downscaling").set_defaults(
         fn=lambda a: (enrich.relief_all(connect(), print)))
