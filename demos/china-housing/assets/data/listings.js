@@ -402,5 +402,13 @@ window.HOUSING_LISTINGS = [
   { id: 387, prov: "四川",       city: "乐山市",            dist: "市中区",            loc: "碧桂园青江府",             priceWan: 42.8,  area: 100,    rent: 1500,    updated: "2026-06" },
   { id: 388, prov: "四川",       city: "宜宾市-珙县",       dist: "珙县城区",          loc: "珙县碧桂园",               priceWan: 46.8,  area: 103,    rent: 1500,    updated: "2026-06" },
   { id: 389, prov: "甘肃",       city: "兰州市",            dist: "城关区",            loc: "碧桂园学府里",             priceWan: 60,    area: 93,     rent: 1400,    updated: "2026-06" },
-  { id: 390, prov: "广东",       city: "江门市-鹤山市",     dist: "雅瑶镇",            loc: "碧桂园星语",               priceWan: 45,    area: 115,    rent: 1200,    updated: "2026-06" }
+  { id: 390, prov: "广东",       city: "江门市-鹤山市",     dist: "雅瑶镇",            loc: "碧桂园星语",               priceWan: 45,    area: 115,    rent: 1200,    updated: "2026-06" },
+  { id: 391, prov: "广东",       city: "惠州市",            dist: "大亚湾区 澳头",     loc: "皇庭湾天下花园",           priceWan: 95,    area: 127.6,  rent: 0,       updated: "2026-06" },
+  { id: 392, prov: "广东",       city: "惠州市",            dist: "惠阳区 淡水",       loc: "雅居乐花园",               priceWan: 31,    area: 73.53,  rent: 0,       updated: "2026-06" },
+  { id: 393, prov: "广东",       city: "惠州市",            dist: "大亚湾区 澳头",     loc: "海伦堡爱ME城市",           priceWan: 51,    area: 98.7,   rent: 1200,    updated: "2026-06" },
+  { id: 394, prov: "广东",       city: "惠州市",            dist: "惠阳区 三和",       loc: "碧桂园山河城",             priceWan: 35.3,  area: 60.3,   rent: 800,     updated: "2026-06" },
+  { id: 395, prov: "广东",       city: "惠州市",            dist: "大亚湾区",          loc: "听涛雅苑",                 priceWan: 19.1,  area: 15.11,  rent: 400,     updated: "2026-06" },
+  { id: 396, prov: "广东",       city: "惠州市",            dist: "惠城区 小金口",     loc: "金裕星河丹堤花园",         priceWan: 47,    area: 95,     rent: 0,       updated: "2026-06" },
+  { id: 397, prov: "广东",       city: "惠州市",            dist: "惠阳区 淡水",       loc: "心境山水郡",               priceWan: 118,   area: 226.87, rent: 0,       updated: "2026-06" },
+  { id: 398, prov: "广东",       city: "惠州市",            dist: "惠东县 稔山",       loc: "碧桂园伴海云山",           priceWan: 76,    area: 95.7,   rent: 1100,    updated: "2026-06" }
 ];
