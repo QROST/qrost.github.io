@@ -2691,6 +2691,40 @@
       p.classList.toggle('hidden', p.dataset.lmPane !== active));
   }
 
+  // 一楼盘多价格 (同坐标多套在售) — window.HOUSING_OFFERS[id], cheapest 单价 first.
+  function lmRenderOffers(d) {
+    const box = document.getElementById('lm-offers');
+    if (!box) return;
+    const offers = (window.HOUSING_OFFERS || {})[String(d.id)] || [];
+    if (!offers.length) { box.classList.add('hidden'); box.innerHTML = ''; return; }
+    const tc = tcx();
+    const rows = offers.map((o) => {
+      const info = [o.layout, o.orientation, o.floorNote].filter(Boolean).join(' · ');
+      const src = o.sourceUrl
+        ? ` <a href="${o.sourceUrl}" target="_blank" rel="noopener" class="text-emerald-600 dark:text-emerald-400 hover:underline" title="${t('offersSource')}">↗</a>`
+        : '';
+      return `<tr class="border-t border-slate-100 dark:border-slate-700/60">`
+        + `<td class="py-1 pr-3 ${tc.strong} whitespace-nowrap font-medium">${fmtWan(o.priceWan, d.prov)}</td>`
+        + `<td class="py-1 pr-3 ${tc.body} whitespace-nowrap">${fmtArea(o.area)}</td>`
+        + `<td class="py-1 pr-3 ${tc.body} whitespace-nowrap">${fmtUnit(o.unitPrice)}</td>`
+        + `<td class="py-1 pr-3 ${tc.muted}">${info || '—'}</td>`
+        + `<td class="py-1 ${tc.muted} whitespace-nowrap text-right">${o.updated || ''}${src}</td></tr>`;
+    }).join('');
+    box.classList.remove('hidden');
+    box.innerHTML = `<details class="rounded-lg border border-slate-200 dark:border-slate-700 bg-slate-50/50 dark:bg-slate-800/40">`
+      + `<summary class="cursor-pointer px-3 py-2 text-sm font-medium ${tc.strong} marker:text-slate-400 dark:marker:text-slate-500">`
+      + `${t('offersTitle')} <span class="font-normal ${tc.muted}">· ${offers.length} ${t('offersUnit')}</span></summary>`
+      + `<div class="px-3 pb-3 pt-1 overflow-x-auto"><table class="w-full text-xs">`
+      + `<thead><tr class="${tc.muted} text-left">`
+      + `<th class="font-normal pr-3 pb-1">${t('offersColTotal')}</th>`
+      + `<th class="font-normal pr-3 pb-1">${t('offersColArea')}</th>`
+      + `<th class="font-normal pr-3 pb-1">${t('offersColUnit')}</th>`
+      + `<th class="font-normal pr-3 pb-1">${t('offersColInfo')}</th>`
+      + `<th class="font-normal pb-1 text-right">${t('offersColUpdated')}</th></tr></thead>`
+      + `<tbody>${rows}</tbody></table>`
+      + `<p class="mt-2 text-[11px] ${tc.muted}">${t('offersNote')}</p></div></details>`;
+  }
+
   function lmSubHtml(d, e) {
     return `${trProv(d.prov)} · ${trCity(d.city)}${d.dist ? ' · ' + trDist(d.dist) : ''} &nbsp;|&nbsp; ${isEn() ? 'Total' : '总价'} ${fmtWanD(d)} · ${fmtArea(d.area)} · ${trCl(d.climateType || '')} `
       + `<span class="ml-1 inline-block rounded px-1.5 py-0.5 text-xs ${tcx().badge}">${t('lmGeo')} ${trGeo(e.geoLabel) || '?'}</span>`;
@@ -2703,6 +2737,7 @@
     const e = d.enr;
     document.getElementById('lm-title').textContent = cityLabel(d);
     document.getElementById('lm-sub').innerHTML = lmSubHtml(d, e);
+    safeRun('lmRenderOffers', () => lmRenderOffers(d));
     const tabs = { sat: t('lmSat'), near: t('lmNear'), climate: t('lmClimate'), policy: t('lmPolicy') };
     document.querySelectorAll('[data-lm-tab]').forEach((b) => { b.textContent = tabs[b.dataset.lmTab]; });
     updateCmpModalBtn();
@@ -3312,6 +3347,7 @@
     if (!lmCurrent) return;
     const d = lmCurrent, e = d.enr;
     document.getElementById('lm-sub').innerHTML = lmSubHtml(d, e);
+    safeRun('lmRenderOffers', () => lmRenderOffers(d));
     lmStyleTabs(lmActiveTab);
     if (lmActiveTab === 'near' && lmTabInit.near) safeRun('lmRenderNearList', () => lmRenderNearList(d));
     if (lmActiveTab === 'climate') safeRun('lmRenderClimate', () => lmRenderClimate(d));

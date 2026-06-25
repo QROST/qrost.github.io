@@ -246,6 +246,21 @@ def migrate(con):
         topic TEXT PRIMARY KEY,
         data TEXT, updated TEXT
       );
+      -- Multiple price offers (挂牌房源) under ONE listing/楼盘 — different 面积/户型/
+      -- 单价/时间, sharing the listing's geo + enrichment (一楼盘多价格). The listings
+      -- row stays the canonical/representative offer (drives the map point + all
+      -- enrichment); listing_offers holds the additional price points shown in the
+      -- detail modal. Every row carries source_url (cite-or-omit). unit_price is
+      -- DERIVED at emit (priceWan*1e4/area) — not stored. Re-import replaces a
+      -- listing's full offer set (idempotent).
+      CREATE TABLE IF NOT EXISTS listing_offers (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        listing_id INTEGER NOT NULL,
+        area REAL, priceWan REAL, rent INTEGER,
+        layout TEXT, orientation TEXT, floor_note TEXT,
+        updated TEXT, source_url TEXT, note TEXT
+      );
+      CREATE INDEX IF NOT EXISTS idx_listing_offers_lid ON listing_offers(listing_id);
     """)
     poicols = {r[1] for r in con.execute("PRAGMA table_info(poi)")}
     if "source" not in poicols:  # 'osm' | 'research'
@@ -1977,6 +1992,117 @@ def merge_built_years(con, findings, log, lo=1900, hi=None, dry_run=False):
     if not dry_run:
         con.commit()
     return rep
+
+
+# ---------------------------------------------------------------------------
+# Offers merge — multiple price points (挂牌房源) under one listing/楼盘
+# ---------------------------------------------------------------------------
+def _resolve_offer_listing(con, f):
+    """Resolve a finding to exactly one listing id. Accepts explicit `id`/`listing_id`,
+    or a `loc` (+ optional prov/city/dist) matched case-exact against the DB. Returns
+    (id, None) on a unique hit, else (None, reason)."""
+    lid = f.get("id", f.get("listing_id"))
+    if lid is not None:
+        row = con.execute("SELECT id FROM listings WHERE id=?", (lid,)).fetchone()
+        return (lid, None) if row else (None, f"no listing id={lid}")
+    loc = (f.get("loc") or "").strip()
+    if not loc:
+        return (None, "no id and no loc")
+    where, params = ["loc=?"], [loc]
+    for k in ("prov", "city", "dist"):
+        if f.get(k):
+            where.append(f"{k}=?")
+            params.append(f[k].strip())
+    rows = con.execute(f"SELECT id FROM listings WHERE {' AND '.join(where)}", params).fetchall()
+    if len(rows) == 1:
+        return (rows[0]["id"], None)
+    if not rows:
+        return (None, f"loc '{loc}' not found")
+    return (None, f"loc '{loc}' ambiguous ({len(rows)} rows) — add prov/city/dist or use id")
+
+
+def merge_offers(con, findings, log, *, dry_run=False):
+    """Fold multiple price offers into listing_offers, grouped by listing.
+
+    finding = {id|listing_id|loc, area, priceWan, rent?, layout?, orientation?,
+               floor_note?, updated?, source_url, note?}. cite-or-omit: a row WITHOUT
+      a non-empty source_url is rejected. area>0 and priceWan>0 required (unit_price
+      is derived at emit). Re-import is idempotent PER LISTING: the first finding seen
+      for a listing CLEARS that listing's existing offers, then all findings for it are
+      inserted — so re-running replaces, never duplicates. Listings not mentioned keep
+      their offers untouched."""
+    rep = {"inserted": 0, "listings": 0, "cleared": 0, "rejected": [], "dry_run": dry_run}
+    seen_listings = set()
+    for f in findings:
+        lid, why = _resolve_offer_listing(con, f)
+        if lid is None:
+            rep["rejected"].append({"why": why, "finding": {k: f.get(k) for k in ("loc", "area", "priceWan")}})
+            continue
+        area = f.get("area")
+        price = f.get("priceWan", f.get("price_wan"))
+        src = (f.get("source_url") or f.get("source") or "").strip()
+        try:
+            area = float(area); price = float(price)
+        except (TypeError, ValueError):
+            rep["rejected"].append({"id": lid, "why": "area/priceWan not numeric"})
+            continue
+        if area <= 0 or price <= 0:
+            rep["rejected"].append({"id": lid, "why": "area/priceWan must be > 0"})
+            continue
+        if not src:
+            rep["rejected"].append({"id": lid, "loc": f.get("loc"), "why": "no source_url (cite-or-omit)"})
+            continue
+        if lid not in seen_listings:
+            seen_listings.add(lid)
+            n = con.execute("SELECT COUNT(*) FROM listing_offers WHERE listing_id=?", (lid,)).fetchone()[0]
+            if not dry_run:
+                con.execute("DELETE FROM listing_offers WHERE listing_id=?", (lid,))
+            rep["cleared"] += n
+        rent = f.get("rent")
+        try:
+            rent = int(rent) if rent not in (None, "") else None
+        except (TypeError, ValueError):
+            rent = None
+        if not dry_run:
+            con.execute(
+                "INSERT INTO listing_offers (listing_id, area, priceWan, rent, layout, "
+                "orientation, floor_note, updated, source_url, note) VALUES (?,?,?,?,?,?,?,?,?,?)",
+                (lid, round(area, 2), round(price, 2), rent,
+                 (f.get("layout") or "").strip() or None,
+                 (f.get("orientation") or "").strip() or None,
+                 (f.get("floor_note") or "").strip() or None,
+                 (f.get("updated") or "").strip() or None,
+                 src, (f.get("note") or "").strip() or None))
+        rep["inserted"] += 1
+    rep["listings"] = len(seen_listings)
+    if not dry_run:
+        con.commit()
+    return rep
+
+
+def emit_offers(con):
+    """window.HOUSING_OFFERS = {"<listing_id>": [ {area, priceWan, unitPrice, rent,
+    layout, orientation, floorNote, updated, sourceUrl, note}, … ]}. Offers per listing
+    sorted by unit_price asc (cheapest 单价 first). unit_price derived here."""
+    try:
+        rows = con.execute(
+            "SELECT listing_id, area, priceWan, rent, layout, orientation, floor_note, "
+            "updated, source_url, note FROM listing_offers").fetchall()
+    except sqlite3.OperationalError:
+        return {}   # table not migrated yet
+    by_listing = {}
+    for r in rows:
+        area, price = r["area"], r["priceWan"]
+        unit = round(price * 10000 / area) if area and price else None
+        by_listing.setdefault(str(r["listing_id"]), []).append({
+            "area": area, "priceWan": price, "unitPrice": unit, "rent": r["rent"],
+            "layout": r["layout"], "orientation": r["orientation"],
+            "floorNote": r["floor_note"], "updated": r["updated"],
+            "sourceUrl": r["source_url"], "note": r["note"],
+        })
+    for offers in by_listing.values():
+        offers.sort(key=lambda o: (o["unitPrice"] is None, o["unitPrice"] or 0))
+    return by_listing
 
 
 # ---------------------------------------------------------------------------
