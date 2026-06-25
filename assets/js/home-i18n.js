@@ -38,24 +38,24 @@
       zh: '哪里既宜居又便宜 · 全国小城市住房数据',
     },
     cardHousingDesc: {
-      en: '248 listing samples across 26 provinces (348 total; tier-1 outliers hidden by default) — price × livability on an interactive map with ERA5 climate overlays, hazard layers, rankings and a sortable table. Dark mode · EN/中文.',
-      zh: '26 省 248 套挂牌样本（全库 348 套，默认隐藏一线城市高价样本）——价格 × 宜居：ERA5 气候底图、灾害层、排行榜与可排序表格。深色模式 · 中英切换。',
+      en: 'A growing set of housing listing samples across China — price × livability on an interactive map with ERA5 climate overlays, hazard layers, rankings and a sortable table. Tier-1 outliers hidden by default. Dark mode · EN/中文.',
+      zh: '覆盖全国、持续扩充的住房挂牌样本——价格 × 宜居：ERA5 气候底图、灾害层、排行榜与可排序表格。默认隐藏一线城市高价样本。深色模式 · 中英切换。',
     },
     cardIndustrialTitle: {
       en: 'China industrial software survey',
       zh: '中国工业软件现状综述',
     },
     cardIndustrialDesc: {
-      en: '325 traceable products and 43 geometry kernels across EDA, CAD, CAE/CAM, PLM, DCS/MES, ERP, BIM/GIS, slicers and IIoT — sunburst taxonomy, capability matrix, benchmark compare. Bilingual EN/中文 · last verified 2026-06.',
-      zh: '325 款可追溯产品与 43 个几何内核，覆盖 EDA、CAD、CAE/CAM、PLM、DCS/MES、ERP、BIM/GIS、切片与工业互联网——旭日图品类、能力矩阵、对标比较。中英界面 · 最近核验 2026-06。',
+      en: 'Traceable products and geometry kernels across EDA, CAD, CAE/CAM, PLM, DCS/MES, ERP, BIM/GIS, slicers and IIoT — sunburst taxonomy, capability matrix, benchmark compare. Bilingual EN/中文 · last verified 2026-06.',
+      zh: '可追溯的产品与几何内核，覆盖 EDA、CAD、CAE/CAM、PLM、DCS/MES、ERP、BIM/GIS、切片与工业互联网——旭日图品类、能力矩阵、对标比较。中英界面 · 最近核验 2026-06。',
     },
     cardPharmTitle: {
       en: 'Global pharmaceutical industry atlas',
       zh: '全球医药行业图谱',
     },
     cardPharmDesc: {
-      en: '1,913 companies, 2,588 drugs and 3,036 sites across 51 countries — world map (by site / HQ country / therapeutic area), a China pharma-policy board, a deal & M&A network, corporate-group graphs, country radar and China ↔ incumbent benchmarks. Sourced records with confidence scores. Dark mode · EN/中文.',
-      zh: '51 国 1,913 家企业、2,588 款药物与 3,036 处站点——世界地图（按站点/总部国家/治疗领域着色）、中国医药政策板块、交易与并购关系网、集团关系图、国家雷达图与中国 ↔ 国际对标。带来源与置信度标注。深色模式 · 中英切换。',
+      en: 'Companies, drugs and sites across dozens of countries — world map (by site / HQ country / therapeutic area), a China pharma-policy board, a deal & M&A network, corporate-group graphs, country radar and China ↔ incumbent benchmarks. Sourced records with confidence scores. Dark mode · EN/中文.',
+      zh: '覆盖数十国的企业、药物与站点——世界地图（按站点/总部国家/治疗领域着色）、中国医药政策板块、交易与并购关系网、集团关系图、国家雷达图与中国 ↔ 国际对标。带来源与置信度标注。深色模式 · 中英切换。',
     },
     cardAbyssTitle: {
       en: 'Data Abyss · 数渊',
@@ -70,8 +70,8 @@
       zh: '在中国开公司 — WFOE 设立与 AEC 招聘成本',
     },
     cardWfoeDesc: {
-      en: 'Four entity paths (mainland WFOE, domestic LLC, Sino-foreign JV, HK/Macau SAR) plus an interactive cost dashboard across 24 China hubs with optional global city benchmarks. Data as of 2024 Q4 · last reviewed 2026-06. Bilingual EN/中文.',
-      zh: '四条设立路径（大陆 WFOE、内资 LLC、中外合资、港澳 SAR）及 24 个人才枢纽的城市级成本仪表盘（可选国际城市对标）。数据时点 2024 Q4 · 最近复核 2026-06。中英双语。',
+      en: 'Four entity paths (mainland WFOE, domestic LLC, Sino-foreign JV, HK/Macau SAR) plus an interactive cost dashboard across major China hubs with optional global city benchmarks. Data as of 2024 Q4 · last reviewed 2026-06. Bilingual EN/中文.',
+      zh: '四条设立路径（大陆 WFOE、内资 LLC、中外合资、港澳 SAR）及主要人才枢纽的城市级成本仪表盘（可选国际城市对标）。数据时点 2024 Q4 · 最近复核 2026-06。中英双语。',
     },
     cardMakoTitle: {
       en: 'Makoauto — custom plate frame',
