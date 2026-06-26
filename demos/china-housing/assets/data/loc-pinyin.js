@@ -198,6 +198,7 @@ window.HOUSING_LOC_PINYIN = {
   "桃园小区": "Tao Yuan Xiao Qu",
   "桃源新城": "Tao Yuan Xin Cheng",
   "梅乐园两室": "Mei Le Yuan Liang Shi",
+  "梵高的海": "Fan Gao De Hai",
   "棉纺厂": "Mian Fang Chang",
   "正阳社区": "Zheng Yang She Qu",
   "步埠社区": "Bu Bu She Qu",

@@ -4710,5 +4710,25 @@
   "histTempStation": null,
   "histTempNote": "ERA5 再分析格点 1940–2023 日最高/日最低极值（≈25 km 网格，非气象站记录）（邻近格点复用）",
   "histTempLevel": "区镇/街道"
+ },
+ "wiki-dist:大亚湾区 霞涌": null,
+ "era5:22.80,114.69": {
+  "histTempMax": 35.2,
+  "histTempMin": 2.4,
+  "histTempMaxDate": "2017-08-22",
+  "histTempMinDate": "1967-01-16",
+  "histTempSrc": "open-meteo-era5-1940-2023",
+  "histTempStation": null,
+  "histTempNote": "ERA5 再分析格点 1940–2023 日最高/日最低极值（≈25 km 网格，非气象站记录）（邻近格点复用）（邻近格点复用）"
+ },
+ "广东|惠州市|大亚湾区 霞涌": {
+  "histTempMax": 35.2,
+  "histTempMin": 2.4,
+  "histTempMaxDate": "2017-08-22",
+  "histTempMinDate": "1967-01-16",
+  "histTempSrc": "open-meteo-era5-1940-2023",
+  "histTempStation": null,
+  "histTempNote": "ERA5 再分析格点 1940–2023 日最高/日最低极值（≈25 km 网格，非气象站记录）（邻近格点复用）（邻近格点复用）",
+  "histTempLevel": "区镇/街道"
  }
 }
