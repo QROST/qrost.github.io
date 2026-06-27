@@ -19,6 +19,22 @@ index.html 的「N套 / N省 / 日期」                                ←─ b
 **绝不手改生成文件**（`assets/data/*.js`、`data/listings.csv`、`housing.db` 的行内容除非走 CLI）。
 改完 DB **必跑 `build`**。
 
+### 0.1 坐标系铁律（WGS-84 vs GCJ-02 — 2026-06 实测钉死，别再被"中国地图偏移"带跑）
+
+**全栈统一 WGS-84，标点本就对齐，绝不做 WGS→GCJ 转换。**
+
+| 来源 | 坐标系 | 处置 |
+|------|--------|------|
+| Nominatim / OSM geocode（我们的 `lat/lng`） | **WGS-84** | 直接入库 |
+| 详情弹窗卫星底图 = **Esri World Imagery** | **WGS-84** | 与标点天然对齐 |
+| OSM 街道底图 | **WGS-84** | 对齐 |
+| **高德 / 百度 / 腾讯 / 天地图 / Google 中国瓦片** | **GCJ-02**（百度再叠 BD-09） | ⚠️ 取坐标必须 **GCJ-02→WGS-84** 转换后才入库 |
+
+- A/B 实测（同图打 WGS 绿点 + GCJ 红点）：小区级定位的绿点**精准压楼**，转成 GCJ 的红点反而**偏到海里 ~400m**。所以 Esri/OSM 底图上**做 GCJ 偏移 = 人为制造 ~500m 错位**。
+- GCJ-02 法定偏移**只作用于中国持牌厂商瓦片**；Esri/OSM 是境外 WGS 源，不套偏移。
+- **头号雷**：让调研 agent 查坐标时，若从**高德/百度**页面取值（GCJ-02/BD-09），**必须显式转 WGS-84 再写库**，否则全库就这一条偏 ~500m。OSM/Nominatim 原生值不用转。**派坐标调研 agent 时把本节铁律原样写进其契约**（OSM 优先、高德/百度必转 WGS-84、查不到坐标返 null 绝不猜、结果须落在标称城市内）。
+- 用户看到的"偏移"几乎都是**定位精度问题**（免费 Nominatim 认不出文旅盘名 → 落到街道/镇/区中心）或**错城**（见 §7 `city-check`），**不是坐标系问题**——先别急着转坐标。
+
 ## 1. 加房源
 
 **单条**（`id` 自动取下一个空号；`--updated` 接受 `2026.6` 或 `2026-06`）：
@@ -80,7 +96,19 @@ python3 tools/manage.py import-csv 新一批.csv
 | 加州 zip 展示 | `90293` / `94089` | 把物业英文名塞进 `loc`（用 `name_en` 或 research JSON） |
 | 北京号院小区 | `交大东路56号院` | 把整个街道地址当 loc（无小区名时） |
 
-**入库后**：`python3 tools/manage.py build` → `node tools/gen-loc-pinyin.js` → `node tools/_smoke.js`（含 loc 质量断言）。
+**入库后（EN 视图防中文泄漏 · 顺序承重）**：
+```bash
+python3 tools/manage.py build        # ① 先出新 listings.js
+node tools/gen-loc-pinyin.js         # ② 新 loc → loc-pinyin.js（EN 表名拼音罗马化）
+node tools/gen-geo-en.js             # ③ 新 dist 字符串 → geo-en.js（自动覆盖全部 dist；★易漏）
+python3 tools/manage.py build        # ④ 再 build 一次，刷新 loc-pinyin.js/geo-en.js 的 content-hash ?v=
+node tools/_smoke.js                 # ⑤ 含 loc 质量 + EN「no zh」断言
+```
+> 为什么是这个顺序：`gen-*.js` 读 `listings.js` 产 EN 映射表 → 必须先 build；它们改了生成文件后，
+> `?v=` 戳会 stale → **必须再 build 一次刷新**（否则浏览器吃旧缓存，见 [[html-cache-versioning]]）。
+> **新 `dist`（含「区」后缀变体，如 `大亚湾区 霞涌` vs 已有 `大亚湾 霞涌` 算两个 key）漏跑 `gen-geo-en.js`
+> → smoke 报 `en table body no zh` 失败**（EN 表泄中文）。smoke 若报 `listings N`/`table count` → 同步
+> `_smoke.js` 写死套数（§7）。
 
 审计样例：`data/research/audit-community-names-2026-06.json`。
 
@@ -88,6 +116,8 @@ python3 tools/manage.py import-csv 新一批.csv
 
 多 agent 同时加一批房源时，**禁止**多人并行 `manage.py import-csv` / `add` / 任意 enrich 子命令写
 `data/housing.db`。采用 **策略 C**：
+
+> **后端路由（2026-06 实战）**：调研 = **联网多步任务**。① **GLM** 的 WebSearch 是 **z.ai 按周配额**，耗尽后整周 429（reset 见报错；用 curl 直查门户子域可绕一部分，但官方住建局/统计局调研会瘸）→ 额度干了就**降级 Sonnet**。② **Cursor Composer 2.5** 是"到 spec 的自包含编码"，**不适合开放式联网调研**。③ **Sonnet**（in-session `Agent`，model=sonnet）WebSearch/WebFetch 可用，是政策/房龄/坐标调研的主力。**写契约文件让各 agent 读**（如 `_policy_gap2_contract.md`/`_listing_gap_contract.md`/`_geocode_contract.md`），prompt 只塞分配清单 + 输出路径 → 省 token、schema 统一。<br>⚠️ **Nominatim 必须单线程 paced（≥1s）**：多 agent 并行 reverse/geocode 同一公网 IP 会被 429/封；`city-check` 已内建单线程缓存，**别并行**。
 
 | 角色 | 允许 | 禁止 |
 |------|------|------|
@@ -247,6 +277,29 @@ python3 tools/manage.py hazard-merge data/hazard_research.json   # ⚠️ 必跑
 
 > **易撞 Open-Meteo / Nominatim 429（限流）**：不是 bug，等几十秒~1 分钟**重跑同一条命令**，
 > 只补没做完的行。小城 / 县城常 geocode 只到街道 / 城市级、查不到周边——属正常，优雅降级。
+
+### 3.3 ⚠️ 改**已有房源**坐标后的重烘焙（清表 · `poi_done` 陷阱）
+
+§3 的命令靠"该列为 NULL"判定 to-do。但**改一条已存在 listing 的 `lat/lng` 后，光 UPDATE 坐标不会触发重烘焙**——
+旧富集还在、且**有独立 `poi_done` 表**（PK `listing_id`）标记"POI 已做"，`pois`/`lulu` 的 to-do 查询是
+`id NOT IN (SELECT listing_id FROM poi_done)`，所以**删了 `poi` 行仍报 "0 to do"**。正确清表（单写者，按移动距离选范围）：
+
+```sql
+UPDATE listings SET lat=?,lng=?,geo_source='research',geo_label='调研纠偏' WHERE id=?;
+DELETE FROM poi       WHERE listing_id=?;
+DELETE FROM poi_done  WHERE listing_id=?;   -- ★ 不删这个，pois/lulu 永远跳过
+-- 跨城/大幅移动(>~10km)：气候/海岸/灾害都变，连同清掉：
+DELETE FROM climate   WHERE listing_id=?;
+UPDATE listings SET elevation=NULL,daily_climate=NULL,terrain_relief=NULL,hazards_local=NULL,
+  hist_temp_max=NULL,hist_temp_min=NULL,hist_temp_max_date=NULL,hist_temp_min_date=NULL,
+  hist_temp_src=NULL,hist_temp_station=NULL,hist_temp_note=NULL,hist_temp_level=NULL,
+  pm25_annual=NULL,pm25_heating=NULL,pm25_year=NULL,pm25_src=NULL WHERE id=?;
+```
+
+然后顺跑 §3.0 流水线（`climate`→`hist-temp`→`elevation`→`relief`→`risk`→`pois`→`pois-refix`→`lulu`→`pm25`→`hazard-merge`），
+每条只碰被清空的那一行。**列名是 snake_case**（`pm25_annual` 非 emit 后的 `pm25Annual`）。
+**改完坐标务必 `city-check --refresh --from <id> --to <id>` 复核**落回正确城市（见 §7）。
+> 重烘焙会清掉旧 POI——若新（正确）坐标处 Overpass 没有医院，"最近医院"会暂缺（优雅降级，本就比错坐标算出的假距离诚实）；有需要再单独 `research-merge` 补。
 
 ## 4. 可选：联网调研补 房龄 / 新地市灾害类型（**反幻觉铁律**）
 
