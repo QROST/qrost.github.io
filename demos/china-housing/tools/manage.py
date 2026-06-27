@@ -636,6 +636,28 @@ def cmd_list(args):
         print(f"  {prov:<6} {c}")
 
 
+def cmd_city_check(args):
+    """Accuracy gate: reverse-geocode listings and flag any landing in the wrong 地级市/省.
+
+    Catches same-province wrong-city placements the geocode province-validator misses
+    (e.g. a 芜湖 listing latching onto a 合肥 district). Cached → cheap to re-run.
+    Use after adding listings: `city-check --from <id0> --to <idN>`; bare = whole DB.
+    """
+    con = connect()
+    ids = None
+    if args.from_id is not None or args.to_id is not None:
+        lo = args.from_id if args.from_id is not None else 0
+        hi = args.to_id if args.to_id is not None else 10 ** 9
+        ids = [r["id"] for r in con.execute(
+            "SELECT id FROM listings WHERE id BETWEEN ? AND ?", (lo, hi))]
+    mism = enrich.verify_cities(con, print, ids=ids, refresh=args.refresh)
+    if mism:
+        print(f"CITY_CHECK_FAIL: {len(mism)} listing(s) in wrong city/province "
+              f"→ data/research/_city_mismatch.json (research correct coords, fix, re-bake)")
+        sys.exit(1)
+    print("CITY_CHECK_OK")
+
+
 # ---------------------------------------------------------------------------
 # enrichment sub-commands (delegate to enrich.py; all resumable + rate-limited)
 # ---------------------------------------------------------------------------
@@ -1137,6 +1159,12 @@ def main(argv=None):
 
     sub.add_parser("tier1-check", help="list listings auto-excluded from default view (SOP §5)").set_defaults(
         fn=cmd_tier1_check)
+    sp = sub.add_parser("city-check",
+                        help="reverse-geocode listings; flag any in the wrong 地级市/省 (accuracy gate)")
+    sp.add_argument("--from", dest="from_id", type=int, default=None, help="only check ids ≥ this")
+    sp.add_argument("--to", dest="to_id", type=int, default=None, help="only check ids ≤ this")
+    sp.add_argument("--refresh", action="store_true", help="ignore cache, re-query Nominatim")
+    sp.set_defaults(fn=cmd_city_check)
     sub.add_parser("list", help="print a summary of the DB").set_defaults(fn=cmd_list)
 
     args = p.parse_args(argv)
