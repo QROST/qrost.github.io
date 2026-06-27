@@ -46,7 +46,15 @@ LPR(1Y/5Y+) · 全国首付下限(首套/二套) · 认房不认贷全国转向 
 
 ## Pipeline 集成(Phase 2,集成者串行执行)
 
-- 新表 `city_policy` + `national_policy`(`manage.py init` 加 schema;研究 JSON 落 `data/research/policy-*.json` → `manage.py import-policy` upsert)。
+- 新表 `city_policy` + `national_policy`(`manage.py init` 加 schema;研究 JSON 落 `data/research/policy-*.json` → `manage.py import-policy`)。
+
+> ### ⚠️ `import-policy` 是**清表全量替换**，不是 upsert（2026-06 钉死）
+> `cmd_import_policy` 内部 `DELETE FROM city_policy` 后整批 INSERT。**所以它只能用于"一次性提交完整 128 城快照"，绝不能拿来补几条**——传只含几城的 JSON 会**抹掉其余 120+ 城**。
+> **补单个/少数字段缺口（如本轮 首付/补贴/人口/公积金/契税/指导价/棚改）走 fill-only 合并，不走 import-policy**：
+> 逐 `(prov,prefecture)` 读出该行 `data` JSON，**仅当目标字段 null / 缺 / `confidence=="unknown"` / 关键子键 null 时才写入，既有非空一律保留**，然后 `UPDATE city_policy SET data=?,updated='YYYY-MM'`。
+> - `population` 类还要做 **>10% 差异检测纠错**（本轮抓到娄底 `pop_2020` 误存县级数 329912→七普地级市 3826996）。
+> - `subsidy` 查无可靠源 → `has=null`+`confidence` low/unknown **诚实留空**，不臆造（cite-or-null）。
+> - 合并完照常 `build`（重 emit `policy.js` + 刷 `?v`）。research JSON 全 gitignored，真相在 `housing.db`。
 - `enrich.py` 加 `emit_city_policy(con)` + `emit_national_policy(con)` → 新 global `window.CITY_POLICY`(`{ "prov|prefecture": {...} }`)、`window.NATIONAL_POLICY`。
 - `manage.py build` 多 emit 两个文件 `assets/data/policy.js` + 在 index.html 注入带 content-hash `?v=` 的 `<script>`(见 [[html-cache-versioning]],绝不手填 stamp)。
 - 前端 `app.js` 按 `listing.prov + 地级市(city.split('-')[0])` JOIN policy;modal 加 "政策" 区块 + 决策漏斗 + TCO/月供;来源逐条可点 + 全局时效免责。
