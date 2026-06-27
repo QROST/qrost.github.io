@@ -2301,6 +2301,114 @@ def refresh_refined_pois(con, log):
 
 
 # ---------------------------------------------------------------------------
+# City-accuracy verification — reverse-geocode each listing, flag wrong-city.
+# The geocode step only validates the *province* (it keeps the first of the top-5
+# hits whose address matches the expected prov), so a same-province wrong-city hit
+# (e.g. a 芜湖 listing latching onto a 合肥 district) slips through. This sweep
+# reverse-geocodes the stored (lat,lng) and checks the actual admin region contains
+# the stated 地级市 / 省. Cached so re-runs are cheap.
+# ---------------------------------------------------------------------------
+_REVGEO_CACHE = ROOT / "data" / "research" / ".revgeo_cache.json"
+_ADMIN_SUFFIXES = ("朝鲜族自治州", "哈萨克自治州", "蒙古自治州", "回族自治州", "壮族自治州",
+                   "土家族苗族自治州", "布依族苗族自治州", "傣族景颇族自治州", "彝族自治州",
+                   "自治州", "自治县", "地区", "盟", "市", "州", "区", "县")
+
+
+def _admin_stem(name: str) -> str:
+    """Strip a trailing admin suffix (市/州/区/县/盟/地区/自治州…) to a matchable core."""
+    name = (name or "").strip()
+    for suf in _ADMIN_SUFFIXES:
+        if name.endswith(suf) and len(name) > len(suf):
+            return name[: -len(suf)]
+    return name
+
+
+def reverse_geocode(lat, lng, zoom=10, timeout=25):
+    """Nominatim reverse → parsed JSON (with an `address` dict) or None. Caller paces ≥1s."""
+    url = "https://nominatim.openstreetmap.org/reverse?" + urllib.parse.urlencode(
+        {"lat": lat, "lon": lng, "format": "jsonv2", "zoom": zoom,
+         "addressdetails": 1, "accept-language": "zh"})
+    for i in range(4):
+        try:
+            req = urllib.request.Request(url, headers={"User-Agent": UA})
+            with urllib.request.urlopen(req, timeout=timeout, context=_SSL) as r:
+                return json.loads(r.read().decode())
+        except urllib.error.HTTPError as e:
+            time.sleep((8 if e.code == 429 else 3) * (i + 1))
+        except Exception:  # noqa: BLE001
+            time.sleep(3 * (i + 1))
+    return None
+
+
+def verify_cities(con, log, ids=None, refresh=False, write=True, pace=1.2):
+    """Reverse-geocode every mainland geocoded listing and flag any whose actual admin
+    region (per Nominatim) does NOT contain its stated 省 or 地级市. Returns the list of
+    mismatch dicts; also writes them to data/research/_city_mismatch.json when any are
+    found. Reverse results are cached to data/research/.revgeo_cache.json so re-runs only
+    query coords not seen before (e.g. a freshly-added batch).
+
+    ids: optional iterable to restrict the check (e.g. a just-imported batch). None = all.
+    """
+    cache = {}
+    if _REVGEO_CACHE.exists():
+        try:
+            cache = json.loads(_REVGEO_CACHE.read_text())
+        except Exception:  # noqa: BLE001
+            cache = {}
+    where = "prov NOT IN ('香港','台湾','California') AND lat IS NOT NULL"
+    params: list = []
+    if ids:
+        where += " AND id IN (%s)" % ",".join("?" * len(ids))
+        params = list(ids)
+    rows = con.execute(
+        f"SELECT id, loc, prov, city, dist, lat, lng, geo_label FROM listings WHERE {where} ORDER BY id",
+        params).fetchall()
+    mism, errs, checked = [], [], 0
+    for r in rows:
+        key = f"{r['lat']:.5f},{r['lng']:.5f}"
+        d = cache.get(key)
+        if d is None or refresh:
+            d = reverse_geocode(r["lat"], r["lng"])
+            if d is not None:
+                cache[key] = d
+                _REVGEO_CACHE.parent.mkdir(parents=True, exist_ok=True)
+                _REVGEO_CACHE.write_text(json.dumps(cache, ensure_ascii=False))
+                time.sleep(pace)
+        checked += 1
+        if not d:
+            errs.append(r["id"])
+            continue
+        addr = d.get("address", {}) or {}
+        blob = " ".join(str(v) for v in addr.values()) + " " + (d.get("display_name") or "")
+        pref = _admin_stem((r["city"] or "").split("-")[0])
+        prov_s = _admin_stem(r["prov"])
+        prov_ok = (r["prov"] in blob) or (bool(prov_s) and prov_s in blob)
+        city_ok = (not pref) or (pref in blob)
+        if not (prov_ok and city_ok):
+            mism.append({"id": r["id"], "loc": r["loc"], "stated": f"{r['prov']}|{r['city']}",
+                         "geo_label": r["geo_label"], "lat": r["lat"], "lng": r["lng"],
+                         "actual_state": addr.get("state"),
+                         "actual_city": addr.get("city") or addr.get("county") or addr.get("town"),
+                         "prov_mismatch": not prov_ok, "city_mismatch": not city_ok,
+                         "display": (d.get("display_name") or "")[:100]})
+        if checked % 40 == 0 and log:
+            log(f"  …{checked}/{len(rows)} reverse-geocoded, {len(mism)} mismatch so far")
+    if write and mism:
+        out = ROOT / "data" / "research" / "_city_mismatch.json"
+        out.parent.mkdir(parents=True, exist_ok=True)
+        out.write_text(json.dumps(mism, ensure_ascii=False, indent=1))
+    if log:
+        log(f"city-check: {len(rows)} checked, {len(mism)} city/prov mismatch, {len(errs)} revgeo errors")
+        for m in mism:
+            tag = ("PROV!" if m["prov_mismatch"] else "") + ("CITY" if m["city_mismatch"] else "")
+            log(f"  [{tag}] #{m['id']} {m['loc']} 标称={m['stated']} → 实际 "
+                f"{m['actual_state']}/{m['actual_city']} ({m['geo_label']})")
+        if errs:
+            log(f"  revgeo errors (ids, re-run to retry): {errs}")
+    return mism
+
+
+# ---------------------------------------------------------------------------
 # Emit — assemble the enriched JS global from the DB
 # ---------------------------------------------------------------------------
 def emit_enriched(con):

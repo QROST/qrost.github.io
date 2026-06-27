@@ -372,10 +372,18 @@ python3 tools/manage.py build
 
 ```bash
 python3 tools/check_batch_complete.py --from <id0> --to <idN>   # 或整库；须 BATCH_COMPLETE_OK
+python3 tools/manage.py city-check --from <id0> --to <idN>      # ★ 错城核查；须 CITY_CHECK_OK（见下）
 python3 tools/manage.py tier1-check
 python3 tools/manage.py build          # ① 重生成 assets/data/*.js + sync index.html 计数
 node tools/_smoke.js                   # ② 无头冒烟（DOM/Chart/表格路径）
 ```
+
+> **★ `city-check`（错城/错省核查，2026-06 固化）**：geocode **只校验省**（top-5 取首个省份匹配），所以
+> **同省落错市**会漏（实测 372 库里 11 个：芜湖盘误落合肥蜀山区、山西介休误落浙江…）。`city-check` 对每条
+> listing 的 `(lat,lng)` 做 **Nominatim reverse-geocode**，核对实际行政区是否含标称**地级市/省**；不含即 flag
+> 到 `data/research/_city_mismatch.json` 并 `CITY_CHECK_FAIL`（exit 1）。结果**缓存**（`data/research/.revgeo_cache.json`，
+> gitignored），re-run 只查新坐标（加房后 `--from/--to` 仅核查本批，秒级）。撞 flag → 派 agent 查正确城市内
+> 真实坐标 → 改 `lat/lng` → 按 [[§3]] 清 `poi_done`/`climate` **全套重烘焙** → 再 `city-check` 复核落回正确城市。
 
 若 smoke 报 `listings N` / `table count …` 失败 → **同步 `tools/_smoke.js` 里写死的套数**（与 build 后实际一致）：
 
@@ -416,6 +424,7 @@ python3 tools/manage.py research-merge data/research/listing-batch-<slug>.json -
 python3 tools/manage.py research-merge data/research/listing-batch-<slug>.json
 # (新省份? §2 PROV_FULL + PROVINCE_HAZARDS/HEATING；境外 §2.5)
 python3 tools/check_batch_complete.py --from <id0> --to <idN>
+python3 tools/manage.py city-check --from <id0> --to <idN>   # ★ 错城核查；须 CITY_CHECK_OK（§7）
 python3 tools/manage.py tier1-check
 python3 tools/manage.py build
 node tools/_smoke.js
