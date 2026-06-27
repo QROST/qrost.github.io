@@ -2733,6 +2733,12 @@
   function openListing(id) {
     const d = DATA.find((x) => x.id === id);
     if (!d || !d.enr) return;
+    // tear down any maps/chart from a previously-open listing — otherwise re-init on an
+    // already-initialized Leaflet container is a no-op and the stale map (prior listing's
+    // location) lingers. closeModal does this on close; do it on (re)open too.
+    if (lmSatMap) { lmSatMap.remove(); lmSatMap = null; }
+    if (lmNearMap) { lmNearMap.remove(); lmNearMap = null; }
+    if (lmClimateChart) { lmClimateChart.destroy(); lmClimateChart = null; }
     lmCurrent = d; lmActiveTab = 'sat'; lmTabInit = {};
     const e = d.enr;
     document.getElementById('lm-title').textContent = cityLabel(d);
