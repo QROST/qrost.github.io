@@ -4770,5 +4770,25 @@
   "histTempStation": null,
   "histTempNote": "ERA5 再分析格点 1940–2023 日最高/日最低极值（≈25 km 网格，非气象站记录）",
   "histTempLevel": "区镇/街道"
+ },
+ "wiki-dist:丹徒区": null,
+ "era5:32.15,119.71": {
+  "histTempMax": 40.4,
+  "histTempMin": -17.2,
+  "histTempMaxDate": "2022-08-15",
+  "histTempMinDate": "1969-02-06",
+  "histTempSrc": "open-meteo-era5-1940-2023",
+  "histTempStation": null,
+  "histTempNote": "ERA5 再分析格点 1940–2023 日最高/日最低极值（≈25 km 网格，非气象站记录）"
+ },
+ "江苏|镇江市|丹徒区": {
+  "histTempMax": 40.4,
+  "histTempMin": -17.2,
+  "histTempMaxDate": "2022-08-15",
+  "histTempMinDate": "1969-02-06",
+  "histTempSrc": "open-meteo-era5-1940-2023",
+  "histTempStation": null,
+  "histTempNote": "ERA5 再分析格点 1940–2023 日最高/日最低极值（≈25 km 网格，非气象站记录）",
+  "histTempLevel": "区镇/街道"
  }
 }
