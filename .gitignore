@@ -14,6 +14,13 @@ demos/*/package-lock.json
 *.db-shm
 *.db-wal
 
+# china-housing: the ONLY DB is demos/china-housing/data/housing.db (single source of truth).
+# Guard against stray empty DBs from scripts run with a wrong path/name (anchored, so the
+# canonical data/housing.db stays tracked):
+/demos/china-housing/housing.db
+demos/china-housing/china_housing.db
+demos/china-housing/data/china_housing.db
+
 # --- china-housing: process / working artifacts (keep on disk, not in git) ---
 # Agent batch CSVs + one-off import sheets
 demos/china-housing/data/batch-*.csv
