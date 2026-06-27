@@ -4730,5 +4730,45 @@
   "histTempStation": null,
   "histTempNote": "ERA5 再分析格点 1940–2023 日最高/日最低极值（≈25 km 网格，非气象站记录）（邻近格点复用）（邻近格点复用）",
   "histTempLevel": "区镇/街道"
+ },
+ "wiki-dist:禄丰市": null,
+ "era5:25.16,101.90": {
+  "histTempMax": 36.3,
+  "histTempMin": -8.3,
+  "histTempMaxDate": "2023-05-31",
+  "histTempMinDate": "1983-12-29",
+  "histTempSrc": "open-meteo-era5-1940-2023",
+  "histTempStation": null,
+  "histTempNote": "ERA5 再分析格点 1940–2023 日最高/日最低极值（≈25 km 网格，非气象站记录）（邻近格点复用）"
+ },
+ "云南|楚雄州|禄丰市": {
+  "histTempMax": 36.3,
+  "histTempMin": -8.3,
+  "histTempMaxDate": "2023-05-31",
+  "histTempMinDate": "1983-12-29",
+  "histTempSrc": "open-meteo-era5-1940-2023",
+  "histTempStation": null,
+  "histTempNote": "ERA5 再分析格点 1940–2023 日最高/日最低极值（≈25 km 网格，非气象站记录）（邻近格点复用）",
+  "histTempLevel": "区镇/街道"
+ },
+ "wiki-dist:阳明区": null,
+ "era5:44.65,129.65": {
+  "histTempMax": 36.4,
+  "histTempMin": -38.4,
+  "histTempMaxDate": "2010-06-26",
+  "histTempMinDate": "1950-01-06",
+  "histTempSrc": "open-meteo-era5-1940-2023",
+  "histTempStation": null,
+  "histTempNote": "ERA5 再分析格点 1940–2023 日最高/日最低极值（≈25 km 网格，非气象站记录）"
+ },
+ "黑龙江|牡丹江市|阳明区": {
+  "histTempMax": 36.4,
+  "histTempMin": -38.4,
+  "histTempMaxDate": "2010-06-26",
+  "histTempMinDate": "1950-01-06",
+  "histTempSrc": "open-meteo-era5-1940-2023",
+  "histTempStation": null,
+  "histTempNote": "ERA5 再分析格点 1940–2023 日最高/日最低极值（≈25 km 网格，非气象站记录）",
+  "histTempLevel": "区镇/街道"
  }
 }
