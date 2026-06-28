@@ -17,8 +17,8 @@ const UI = {
   },
   loading: { en: 'Igniting the abyss…', zh: '正在点亮数渊…' },
   enable: { en: 'Motion & sound', zh: '感应与声响' },
-  sensorsOn: { en: 'Sensors on · voice quickens the field', zh: '感应已开 · 出声加速混沌' },
-  sensorsFallback: { en: 'Granted on HTTPS devices', zh: '真机 HTTPS 下生效' },
+  modeMusic: { en: 'Music on · tap for mic rhythm', zh: '音乐播放 · 点按切麦克风律动' },
+  modeClub: { en: 'Mic rhythm · tap for music', zh: '麦克风律动 · 点按切音乐' },
   panelLayers: { en: 'Layers', zh: '数据层' },
   panelEffects: { en: 'Effects', zh: '效果' },
   panelCities: { en: 'Cities', zh: '城市' },
@@ -161,8 +161,8 @@ export function renderCardHtml(m) {
   return `<h3>${name}</h3><p class="kw">${kw}</p>`;   // 仅名称 + 关键词，不显类型
 }
 
-export function sensorBtnLabel(analyser) {
-  return analyser ? t('sensorsOn') : t('sensorsFallback');
+export function sensorBtnLabel(clubMode) {
+  return clubMode ? t('modeClub') : t('modeMusic');
 }
 
 /** Panel label nodes — filled by buildPanel */
@@ -173,7 +173,7 @@ export function registerPanelNode(type, key, el) {
 }
 
 export function applyUi(opts = {}) {
-  const { analyser, cardMeta, cardEl } = opts;
+  const { cardMeta, cardEl } = opts;
   document.title = t('pageTitle');
   const sub = document.getElementById('sub');
   if (sub) sub.innerHTML = t('sub');
@@ -183,7 +183,7 @@ export function applyUi(opts = {}) {
   if (ld && !ld.classList.contains('gone')) ld.textContent = t('loading');
   const btn = document.getElementById('enable');
   if (btn && !opts.skipEnable) {
-    btn.textContent = analyser != null ? sensorBtnLabel(analyser) : t('enable');
+    btn.textContent = sensorBtnLabel(!!opts.clubMode);
   }
   for (const { key, el } of panelNodes.heads) {
     if (el && UI[key]) el.textContent = t(key);
