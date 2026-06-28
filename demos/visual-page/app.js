@@ -1231,9 +1231,10 @@ _dom.addEventListener('wheel', (e) => {                       // 桌面滚轮 = 
   camera.updateProjectionMatrix();
 }, { passive: false });
 // 陀螺仪：以「增量」驱动 → 与手指拖动叠加共存、互不覆盖；避开绝对罗盘坐标导致的方向混乱
-const GYRO_DZ = 0.15;                                         // 软死区阈值（度）：过滤传感器微抖
-const GYRO_GAIN = 0.5;                                        // 陀螺→视角增益（<1 = 松散「非精确指引」，没那么敏感；可调）
-const GYRO_SMOOTH = 8;                                        // 速度低通强度（越小越平滑/越滞、越大越跟手；TC≈1/GYRO_SMOOTH s）
+const GYRO_DZ = 0.25;                                         // 软死区阈值（度）：过滤传感器微抖（加大 → 手抖更不易触动镜头）
+const GYRO_GAIN = 0.3;                                        // 陀螺→视角增益（<1 = 松散「非精确指引」；调小 → 镜头随陀螺移动更缓、更温和）
+const GYRO_SMOOTH = 4.5;                                      // 速度低通强度（越小越平滑/越滞、越大越跟手；TC≈1/GYRO_SMOOTH s）→ 调小=加重阻尼，转头/手抖被更厚地平滑
+const GYRO_MAX_STEP = 0.018;                                  // 单帧最大转角（弧度）限幅：快速转头或手抖也不会让镜头骤然翻转/跳跃
 const gyroGate = (d) => { const a = Math.abs(d); return a < 1e-9 ? 0 : d * (a * a / (a * a + GYRO_DZ * GYRO_DZ)); };   // (a²)/(a²+t²)：噪声平方级衰减、大幅运动几乎不损
 let gyroPrevA = null, gyroPrevB = null, gyroDYaw = 0, gyroDPitch = 0, gyroSmYaw = 0, gyroSmPitch = 0;
 addEventListener('deviceorientation', (e) => {
@@ -1248,29 +1249,78 @@ addEventListener('deviceorientation', (e) => {
   gyroPrevA = A; gyroPrevB = B;
 });
 
-let analyser = null, micBuf = null;
-async function enableSensors() {
-  // 1) 先在用户手势的同步上下文里起音乐输出：AudioContext.resume 只有在手势内调用才生效，故必须在任何 await 之前
+// ---------- 声音 / 律动 双模式 ----------
+// 默认（进入页面）：自动播放由「视觉/SOM 涌现态」生成的音乐(sonifier)，不开麦克风 → 即「通过视觉生成音频」。
+// 按下方按钮 → 「俱乐部律动」模式：音乐停、打开麦克风，画面随环境声(uPulse)脉冲式加速；再按一次切回音乐。
+let analyser = null, micBuf = null, micStream = null;
+let clubMode = false, micActive = false, gyroAsked = false, audioKicked = false, _btnFade = null;
+
+function startMusic() {                                   // 在用户手势(或自动尝试)的同步上下文里起音乐输出；幂等
   try {
     if (!audioCtx) { const AC = window.AudioContext || window.webkitAudioContext; if (AC) audioCtx = new AC(); }
-    if (audioCtx) { if (audioCtx.resume) audioCtx.resume(); sonifier.start(audioCtx, musicDNA || { climWarm }); }   // 乐曲身份来自宇宙涌现态(musicDNA)，非随机种子；boot 未完成则退回 climWarm
-  } catch (_) {}
-  // 2) 陀螺仪权限（iOS 13+ 需显式授权）
-  try { if (typeof DeviceOrientationEvent !== 'undefined' && DeviceOrientationEvent.requestPermission) await DeviceOrientationEvent.requestPermission().catch(() => {}); } catch (_) {}
-  // 3) 麦克风（可选）→ 复用同一 AudioContext 作输入分析；失败不影响音乐播放（多数桌面用户不授权麦克风，但音乐仍是主体验）
-  try {
     if (audioCtx) {
-      const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
-      const an = audioCtx.createAnalyser(); an.fftSize = 256;
-      audioCtx.createMediaStreamSource(stream).connect(an);   // 仅接 analyser，不接 destination → 无回授/无回声
-      analyser = an; micBuf = new Uint8Array(an.frequencyBinCount);
+      if (audioCtx.resume) audioCtx.resume();
+      sonifier.start(audioCtx, musicDNA || { climWarm });   // 乐曲身份来自宇宙涌现态(musicDNA)，非随机种子；boot 未完成则退回 climWarm
+      if (!clubMode) sonifier.setMuted(false);              // 音乐模式 → 确保发声（律动模式保持静音）
     }
   } catch (_) {}
-  const btn = document.getElementById('enable');
-  btn.textContent = sensorBtnLabel(analyser);
-  setTimeout(() => { btn.parentElement.style.opacity = '0.3'; }, 2600);
 }
-document.getElementById('enable').addEventListener('click', enableSensors);
+
+async function requestGyro() {                           // 陀螺仪权限（iOS 13+ 需在用户手势内显式授权）
+  if (gyroAsked) return; gyroAsked = true;
+  try { if (typeof DeviceOrientationEvent !== 'undefined' && DeviceOrientationEvent.requestPermission) await DeviceOrientationEvent.requestPermission().catch(() => {}); } catch (_) {}
+}
+
+async function enableMic() {                              // 仅律动模式按需打开麦克风；复用同一 AudioContext 作分析输入（不接 destination → 无回授/无回声）
+  if (analyser) { micActive = true; return; }
+  try {
+    if (!audioCtx) { const AC = window.AudioContext || window.webkitAudioContext; if (AC) audioCtx = new AC(); }
+    if (audioCtx) {
+      micStream = await navigator.mediaDevices.getUserMedia({ audio: true });
+      const an = audioCtx.createAnalyser(); an.fftSize = 256;
+      audioCtx.createMediaStreamSource(micStream).connect(an);
+      analyser = an; micBuf = new Uint8Array(an.frequencyBinCount); micActive = true;
+    }
+  } catch (_) { micActive = false; }                       // 麦克风被拒/不可用 → 律动模式失败，调用方回退音乐
+}
+
+function disableMic() {                                   // 回音乐模式：停采麦克风轨 → 关闭系统麦克风指示灯（隐私）；下次进律动再重新获取（权限已授，无需重弹）
+  micActive = false;
+  if (micStream) { try { micStream.getTracks().forEach((tr) => tr.stop()); } catch (_) {} micStream = null; }
+  analyser = null; micBuf = null;
+}
+
+function updateModeBtn() {                                // 按钮文案反映当前模式（默认=音乐）
+  const btn = document.getElementById('enable');
+  if (btn) btn.textContent = sensorBtnLabel(clubMode);
+}
+
+// 自动播放：浏览器自动播放策略要求音频须在用户手势内解锁 → 先直接尝试；若被挂起(suspended)，则在首个手势(指针/触摸/键盘)内解锁。
+function kickAudio() {
+  if (audioKicked) return;
+  startMusic();
+  if (audioCtx && audioCtx.state !== 'suspended') { audioKicked = true; updateModeBtn(); }
+}
+['pointerdown', 'touchstart', 'keydown'].forEach((ev) => addEventListener(ev, kickAudio, { passive: true }));
+
+async function toggleMode() {                             // 下方按钮：音乐 ⇄ 俱乐部律动
+  startMusic();                                           // 先在手势同步上下文内解锁音频（须早于任何 await）
+  requestGyro();                                          // 陀螺权限（不 await，避免拖慢按钮反馈）
+  clubMode = !clubMode;
+  if (clubMode) {                                         // 进律动：音乐停、麦克风开 → 画面随环境声脉冲式加速（夜店等场景）
+    sonifier.setMuted(true);
+    await enableMic();
+    if (!analyser) { clubMode = false; sonifier.setMuted(false); }   // 麦克风被拒 → 退回音乐模式
+  } else {                                                // 回音乐：麦克风停采(脉冲自然衰减)、音乐恢复
+    disableMic();
+    sonifier.setMuted(false);
+  }
+  updateModeBtn();
+  const btn = document.getElementById('enable');
+  if (btn) { btn.parentElement.style.opacity = ''; clearTimeout(_btnFade); _btnFade = setTimeout(() => { btn.parentElement.style.opacity = '0.3'; }, 2600); }
+}
+document.getElementById('enable').addEventListener('click', toggleMode);
+updateModeBtn();
 
 // ---------- 焦点详情探查：实时显示 id + 定义轨迹的微分方程 + 当前公式参数 + 每个参数所映射的数据；实体名降为角落小字 ----------
 // 每个吸引子的 ODE（与 stepOne 完全一致）；dv = 进入方程且数据可驱动的参数符号（仅 Thomas/Lorenz/Rössler），其余常数固定
@@ -1393,7 +1443,7 @@ renderer.domElement.addEventListener('pointerup', (e) => {
   let uiMode = 0;                                                   // 0 EN · 1 ZH · 2 HIDDEN
   let hudT = null, peekT = null, peeking = false, lastPtr = 'mouse';
 
-  const applyLang = () => { applyUi({ analyser }); if (focusActive && focusIdx >= 0) openInspector(focusIdx); };   // 切语言后重渲染（含 analyser 感知按钮 + 详情面板）
+  const applyLang = () => { applyUi({ clubMode }); if (focusActive && focusIdx >= 0) openInspector(focusIdx); };   // 切语言后重渲染（含模式感知按钮 + 详情面板）
   const showHud = () => {                                          // 静置淡隐：仅 EN/ZH 模式有效；隐藏模式由 CSS 接管标题浮现
     if (uiMode === 2) { hud.style.opacity = ''; tip.style.opacity = ''; clearTimeout(hudT); return; }
     hud.style.opacity = ''; tip.style.opacity = ''; clearTimeout(hudT);
@@ -1453,8 +1503,8 @@ let pulse = 0, tElapsed = 0, spinTime = 0, frameCount = 0;
 function animate() {
   requestAnimationFrame(animate);
   const dt = Math.min(clock.getDelta(), 0.05); tElapsed += dt; U.uTime.value = tElapsed;
-  if (analyser) { analyser.getByteFrequencyData(micBuf); let s = 0; for (let i = 0; i < micBuf.length; i++) s += micBuf[i]; pulse = lerp(pulse, clamp(s / micBuf.length / 110, 0, 1), 0.2); }
-  else pulse *= 0.95;
+  if (micActive && analyser) { analyser.getByteFrequencyData(micBuf); let s = 0; for (let i = 0; i < micBuf.length; i++) s += micBuf[i]; pulse = lerp(pulse, clamp(s / micBuf.length / 110, 0, 1), 0.2); }   // 律动模式：环境声 → 脉冲(加速整片宇宙)
+  else pulse *= 0.95;                                                                                                                                                                            // 音乐模式：无麦克风采集 → 脉冲自然衰减
   U.uPulse.value = pulse;
   bgMat.uniforms.uTime.value = tElapsed; bgMat.uniforms.uPulse.value = pulse;
 
@@ -1609,7 +1659,9 @@ function animate() {
     gyroSmYaw += (gyroDYaw - gyroSmYaw) * a;             // 慢倾平滑跟随、快抖被滤（一阶低通不过冲 → 不会有延迟震动）
     gyroSmPitch += (gyroDPitch - gyroSmPitch) * a;
     gyroDYaw = 0; gyroDPitch = 0;                        // 增量已消费 → 不再积分累蓄（消除传感器精度 gap 引起的蠕动）
-    yaw += gyroSmYaw * GYRO_GAIN; pitch = clamp(pitch + gyroSmPitch * GYRO_GAIN, -1.45, 1.45);   // 半增益 → 松散非精确指引，没那么敏感
+    const dYaw = clamp(gyroSmYaw * GYRO_GAIN, -GYRO_MAX_STEP, GYRO_MAX_STEP);     // 限幅：单帧转角封顶 → 快速转头/手抖不致镜头翻转跳跃
+    const dPitch = clamp(gyroSmPitch * GYRO_GAIN, -GYRO_MAX_STEP, GYRO_MAX_STEP);
+    yaw += dYaw; pitch = clamp(pitch + dPitch, -1.45, 1.45);   // 低增益 + 限幅 → 松散、温和、不突跳的指向性导航
   }
   else if (!dragging && focusIdx < 0) yaw += 0.00016;    // 极缓自动巡游（仅自由模式）
   applyLook(dt);   // 焦点切换/退出由 applyLook 内的临界阻尼跟随处理（连贯不跳）
