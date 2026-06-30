@@ -1259,6 +1259,7 @@ function startMusic() {                                   // 在用户手势(或
   try {
     if (!audioCtx) { const AC = window.AudioContext || window.webkitAudioContext; if (AC) audioCtx = new AC(); }
     if (audioCtx) {
+      if (!audioCtx._abListen) { audioCtx._abListen = true; audioCtx.addEventListener('statechange', onAudioStateChange); }   // resume 是异步的：state 进入 running 时统一刷 UI
       if (audioCtx.resume) audioCtx.resume();
       sonifier.start(audioCtx, musicDNA || { climWarm });   // 乐曲身份来自宇宙涌现态(musicDNA)，非随机种子；boot 未完成则退回 climWarm
       if (!clubMode) sonifier.setMuted(false);              // 音乐模式 → 确保发声（律动模式保持静音）
@@ -1295,11 +1296,32 @@ function updateModeBtn() {                                // 按钮文案反映�
   if (btn) btn.textContent = sensorBtnLabel(clubMode);
 }
 
-// 自动播放：浏览器自动播放策略要求音频须在用户手势内解锁 → 先直接尝试；若被挂起(suspended)，则在首个手势(指针/触摸/键盘)内解锁。
-function kickAudio() {
+// 自动播放：浏览器 Autoplay Policy 硬约束 — 无 user gesture 时 AudioContext 必然 suspended、不出声。
+// 策略：boot 末尾主动 startMusic() 一次（即使被挂起，也把 sonifier 内部 nextTime/状态机备好，等手势 resume 立刻出声）；
+// 首个 pointerdown/touchstart/keydown 内再 resume；statechange 事件统一处理 UI 文案。
+function refreshAudioState() {
+  if (!audioCtx) return 'pending';
+  if (audioCtx.state === 'running') { if (!clubMode) sonifier.setMuted(false); return 'running'; }
+  if (audioCtx.state === 'closed') return 'denied';
+  return 'pending';   // 'suspended'
+}
+
+function updateTipText(state) {                          // 底部 #tip-text：未出声时引导点一下；出声后清空
+  const el = document.getElementById('tip-text');
+  if (!el) return;
+  el.textContent = state === 'running' ? '' : (isZh() ? '点按屏幕任意处开启声音' : 'tap anywhere to enable sound');
+}
+
+function onAudioStateChange() {
+  const state = refreshAudioState();
+  updateTipText(state);
+  if (state === 'running') { audioKicked = true; updateModeBtn(); }
+}
+
+function kickAudio() {                                   // 首个手势内：resume + 起声（幂等）
   if (audioKicked) return;
   startMusic();
-  if (audioCtx && audioCtx.state !== 'suspended') { audioKicked = true; updateModeBtn(); }
+  onAudioStateChange();
 }
 ['pointerdown', 'touchstart', 'keydown'].forEach((ev) => addEventListener(ev, kickAudio, { passive: true }));
 
@@ -1791,6 +1813,10 @@ function buildPanel() {
   // 先出混沌团并开跑：首屏 = 重叠态（此刻 anc 全 = CENTER → 呼气不展开，正是 inhale 视觉），不等最重的 SOM。
   const ld = document.getElementById('loading'); ld.classList.add('gone'); setTimeout(() => ld.remove(), 1000);
   console.log(`[Data Abyss] ${cities} cities · ${info.products || 0} products · ${info.kernels || 0} kernels · ${info.milestones || 0} breakthroughs · ${info.policies || 0} policies · ${info.vendors || 0} vendors · pharma[${pharma.companies || 0} co / ${pharma.sites || 0} sites / ${pharma.products || 0} drugs / ${pharma.modalities || 0} mod / ${pharma.milestones || 0} bk] · cats[${scats.cats || 0} / ${scats.shelters || 0} shelters] · ${N} bodies · ${E} trail-emitters · ${beamIdxA ? beamIdxA.length : 0} beams · rel[pharma ${pharma.rel || 0} edges/${pharma.groups || 0} groups · vendor ${info.vendorBeams || 0}] · SOM training deferred…`);
+  // 音乐：boot 后主动尝试起声。无 user gesture 时 AudioContext 会被浏览器挂起（Autoplay Policy）→
+  // sonifier 内部状态机先就绪、底部 tip-text 提示用户点一下；首个 pointerdown/touchstart/keydown 内 resume 即出声。
+  startMusic();
+  onAudioStateChange();
   animate();
   // SOM（最重的计算）在 Web Worker 里训练 → 训练全程主线程 animate 照常跑、星体保持自由混沌运动、零卡顿；训完回主线程做廉价后处理(~N+M)无缝长出神经骨架。
   // 首帧后再 kickoff（让首屏先绘制，featM 拷贝/postMessage 不挤进首帧）。首次呼气展开远在 ~24s 后、SOM 早已训完 → 观感零损失。

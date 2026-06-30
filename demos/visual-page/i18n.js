@@ -15,6 +15,7 @@ const UI = {
     en: '',
     zh: '',
   },
+  tipSoundLocked: { en: 'tap anywhere to enable sound', zh: '点按屏幕任意处开启声音' },
   loading: { en: 'Igniting the abyss…', zh: '正在点亮数渊…' },
   enable: { en: 'Motion & sound', zh: '感应与声响' },
   modeMusic: { en: 'Music on · tap for mic rhythm', zh: '音乐播放 · 点按切麦克风律动' },
