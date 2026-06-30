@@ -1459,40 +1459,40 @@ renderer.domElement.addEventListener('pointerup', (e) => {
   }
 });
 
-// ---------- 标题 = 三模式循环 toggle：EN → 中文 → 隐藏（隐藏态：收起全部文字与按钮；左上角 hover/触控 浮现大标题）----------
+// ---------- 标题 = 三模式循环 toggle：隐藏 → EN → 中文（首屏默认隐藏文字；左上角 hover/触控 浮现大标题，点击进入 EN）----------
 {
   const hud = document.getElementById('hud'), tip = document.getElementById('tip'), title = document.getElementById('title');
-  let uiMode = 0;                                                   // 0 EN · 1 ZH · 2 HIDDEN
+  let uiMode = 0;                                                   // 0 HIDDEN · 1 EN · 2 ZH（默认 0 = 首屏纯画面）
   let hudT = null, peekT = null, peeking = false, lastPtr = 'mouse';
 
   const applyLang = () => { applyUi({ clubMode }); if (focusActive && focusIdx >= 0) openInspector(focusIdx); };   // 切语言后重渲染（含模式感知按钮 + 详情面板）
   const showHud = () => {                                          // 静置淡隐：仅 EN/ZH 模式有效；隐藏模式由 CSS 接管标题浮现
-    if (uiMode === 2) { hud.style.opacity = ''; tip.style.opacity = ''; clearTimeout(hudT); return; }
+    if (uiMode === 0) { hud.style.opacity = ''; tip.style.opacity = ''; clearTimeout(hudT); return; }
     hud.style.opacity = ''; tip.style.opacity = ''; clearTimeout(hudT);
     hudT = setTimeout(() => { hud.style.opacity = '0'; tip.style.opacity = '0'; }, 5000);
   };
-  const hint = () => { title.title = uiMode === 0 ? 'Title: English  ·  click → 中文' : uiMode === 1 ? '标题：中文  ·  点击 → 隐藏' : 'Hidden  ·  hover/tap corner, click → English'; };
+  const hint = () => { title.title = uiMode === 0 ? 'Hidden  ·  hover/tap corner, click → English' : uiMode === 1 ? 'Title: English  ·  click → 中文' : '标题：中文  ·  点击 → 隐藏'; };
   const peek = (ms) => { peeking = true; title.classList.add('peek'); clearTimeout(peekT); peekT = setTimeout(() => { peeking = false; title.classList.remove('peek'); }, ms || 2800); };   // 触控/进隐藏：短暂浮现大标题
   const setMode = (m) => {
     uiMode = ((m % 3) + 3) % 3;
-    if (uiMode === 0 && isZh()) { setLang('en'); applyLang(); }
-    else if (uiMode === 1 && !isZh()) { setLang('zh'); applyLang(); }
-    document.body.classList.toggle('ui-hidden', uiMode === 2);
+    if (uiMode === 1 && isZh()) { setLang('en'); applyLang(); }
+    else if (uiMode === 2 && !isZh()) { setLang('zh'); applyLang(); }
+    document.body.classList.toggle('ui-hidden', uiMode === 0);
     hint();
-    if (uiMode === 2) { clearTimeout(hudT); hud.style.opacity = ''; tip.style.opacity = ''; peek(2800); }   // 进隐藏：停淡隐计时 + 给一次浮现确认
+    if (uiMode === 0) { clearTimeout(hudT); hud.style.opacity = ''; tip.style.opacity = ''; peek(2800); }   // 进隐藏：停淡隐计时 + 给一次浮现确认
     else { title.classList.remove('peek'); peeking = false; showHud(); }
   };
 
   title.addEventListener('pointerdown', (e) => { lastPtr = e.pointerType || 'mouse'; }, true);
   title.addEventListener('click', (e) => {
     e.stopPropagation();
-    if (uiMode !== 2) { setMode(uiMode + 1); return; }
+    if (uiMode !== 0) { setMode(uiMode + 1); return; }
     if (lastPtr === 'touch' && !peeking) peek(2800);               // 隐藏态触控：首点浮现、再点(浮现中)循环；桌面 hover 已显 → 直接循环
     else setMode(uiMode + 1);
   });
 
   addEventListener('pointermove', showHud); addEventListener('pointerdown', showHud); addEventListener('keydown', showHud);
-  hint(); showHud();
+  setMode(0);   // 首屏默认 = 隐藏文字（纯画面沉浸）+ 给一次浮现确认
 }
 
 addEventListener('resize', () => { camera.aspect = innerWidth / innerHeight; camera.updateProjectionMatrix(); renderer.setSize(innerWidth, innerHeight); U.uPixelRatio.value = renderer.getPixelRatio(); beamMaterial.uniforms.uRes.value.set(innerWidth, innerHeight); });
