@@ -208,12 +208,15 @@ python3 tools/manage.py relief         # ⑥ 地形起伏（hazard-merge 前置�
 python3 tools/manage.py risk           # ⑦ 海岸/台风/地震暴露
 python3 tools/manage.py pois           # ⑧ Overpass 周边（最慢）
 python3 tools/manage.py pois-refix     # ⑨ 可疑 0m 医院 / 缺地铁城
-python3 tools/manage.py pm25           # ⑩ 可选；大陆 PM2.5（需 tools/.venv）
-python3 tools/manage.py hazard-merge data/hazard_research.json   # ⑪ 必跑
+python3 tools/manage.py lulu           # ⑩ LULU 7 类敏感设施距离（离线 ref + CA 本地 Overpass）⚠️ 易漏
+python3 tools/manage.py pm25           # ⑪ 可选；大陆 PM2.5（需 tools/.venv）
+python3 tools/manage.py hazard-merge data/hazard_research.json   # ⑫ 必跑
 # 调研 merge（§4）插在 pois 之后、hazard-merge 之前或之后均可
 python3 tools/manage.py built-merge … / research-merge …
 python3 tools/manage.py hazard-merge data/hazard_research.json   # 新地市类型后重跑
 ```
+
+> **⚠️ 最易漏：`lulu`** —— `pois` 只烘焙 airport/coast/hospital/mall/metro/train/hsr；**化工厂/垃圾填埋/焚化炉/变电站/污水处理厂/核设施/敏感设施** 7 类在 `poi` 表但由 **`manage.py lulu`** 单独写入（`source='osm-ref'`）。新批次 `pois` 后**必跑 `lulu`**，否则表格「敏感设施距离」列全空。California 走 `lulu` 内建的 `lulu_ca_local`（per-listing Overpass，慢）。
 
 > 旧写法 `geocode && climate && …` 一键链仍可用，但**多 agent 场景必须拆成上表逐步执行**，写者不得在 agent 并行调研时后台挂 `climate`。
 
@@ -264,12 +267,14 @@ python3 tools/manage.py elevation      # 海拔 (Open-Meteo DEM, 批量)
 python3 tools/manage.py relief         # 地形起伏 (DEM 环采样, 地质灾害降尺度用)
 python3 tools/manage.py risk           # 离海岸 / 地震带 / 台风暴露 (离线+派生)
 python3 tools/manage.py pois           # 周边 地铁/火车/医院/商场 (Overpass, 最慢最 flaky)
-python3 tools/manage.py pois-refix     # 复核：0m 医院 / 轨交城缺地铁 等可疑 POI 重烘焙
+python3 tools/manage.py pois-refix     # 复核：0m 医院 / 轨交城缺 metro 等可疑 POI 重烘焙
+python3 tools/manage.py lulu           # LULU 7 类敏感设施距离（离线 ref；California 本地 Overpass）
 python3 tools/manage.py pm25           # 年均 + 采暖季 PM2.5（ChinaHighPM2.5；需 tools/.venv + netCDF4）
 python3 tools/manage.py hazard-merge data/hazard_research.json   # ⚠️ 必跑！每小区灾害 = 地市类型 × 坐标物理频率
 ```
 
-> **⚠️ 最易漏的一步是 `hazard-merge`** —— 它把每小区的 `hazards_local` 合成出来（地市真实灾种
+> **⚠️ 最易漏的两步：`lulu` + `hazard-merge`** —— `lulu` 补 7 类敏感设施距离（不在 `pois` 里）；
+> `hazard-merge` 把每小区的 `hazards_local` 合成出来（地市真实灾种
 > × 按坐标物理细化频率：台风按离海岸、地质灾害按地形起伏、采煤沉陷豁免）。**即便没为新地市单独
 > 调研灾害，也必须跑**——新地市自动走**省级兜底**（用该省 `PROVINCE_HAZARDS` 类型 + 同样的物理
 > 细化）。漏跑则新房源的「主要灾害·频率」列回退到粗略省级、缺逐小区细化。`relief` + `risk` 是它的
@@ -300,6 +305,45 @@ UPDATE listings SET elevation=NULL,daily_climate=NULL,terrain_relief=NULL,hazard
 每条只碰被清空的那一行。**列名是 snake_case**（`pm25_annual` 非 emit 后的 `pm25Annual`）。
 **改完坐标务必 `city-check --refresh --from <id> --to <id>` 复核**落回正确城市（见 §7）。
 > 重烘焙会清掉旧 POI——若新（正确）坐标处 Overpass 没有医院，"最近医院"会暂缺（优雅降级，本就比错坐标算出的假距离诚实）；有需要再单独 `research-merge` 补。
+
+### 3.4 入库后 POI / LULU 缺口审计（**2026-06-30 固化 · 易漏**）
+
+`pois` 标记 `poi_done` 后**不会**自动补 hospital（Overpass 查不到时留空）或 LULU（根本不在 `pois` 路径里）。**每批 enrich 结束、全库定期巡检**必跑：
+
+```bash
+# ① 缺 hospital（name IS NULL）— 多为偏远文旅盘/海岛/乡镇
+sqlite3 data/housing.db "
+SELECT l.id, l.loc, l.city FROM listings l
+LEFT JOIN poi p ON p.listing_id=l.id AND p.category='hospital'
+WHERE l.lat IS NOT NULL AND p.name IS NULL ORDER BY l.id;"
+
+# ② 缺 LULU 7 类任一（chemical/incinerator/landfill/nuclear/sensitive/substation/wastewater）
+sqlite3 data/housing.db "
+SELECT l.id, l.loc FROM listings l WHERE l.lat IS NOT NULL
+  AND l.id NOT IN (
+    SELECT DISTINCT listing_id FROM poi
+    WHERE category IN ('chemical','incinerator','landfill','nuclear','sensitive','substation','wastewater')
+  );"
+
+# ③ 自动门禁（含 lulu_* + poi_hospital）
+python3 tools/check_batch_complete.py --from <id0> --to <idN>
+```
+
+**补全路径：**
+
+| 缺口 | 命令 | 说明 |
+|------|------|------|
+| **LULU 7 类** | `python3 tools/manage.py lulu` | 大陆/HK/TW 离线 ref 全库重算（~5min）；含 CA `lulu_ca_local` |
+| **hospital 空** | 调研 JSON → `apply_hospital_gap_backfill.py` | `data/research/hospital-gap-backfill-*.json` 含 `hospital_name` + **`hospital_lat`/`hospital_lng`（WGS-84）**；Nominatim 429 时**禁止**裸跑 `research-merge` 25 条（太慢） |
+| **hospital 0m 可疑** | `pois-refix` 或 `research-merge` | `_POI_REFIX_KM.hospital=0.5` |
+
+```bash
+# hospital 缺口 backfill（推荐：JSON 预填 WGS-84 坐标 + source URL）
+python3 tools/apply_hospital_gap_backfill.py data/research/hospital-gap-backfill-<slug>.json
+python3 tools/manage.py build
+```
+
+> **事故复盘（2026-06-30）**：#401/#402 入库后 enrich 漏跑 `lulu` → 7 类敏感设施全空；全库 25 条偏远盘 Overpass 无 hospital → 表格「最近医院」列空。根因：§3.0 流水线未列 `lulu`；`check_batch_complete` 未验 LULU。
 
 ## 4. 可选：联网调研补 房龄 / 新地市灾害类型（**反幻觉铁律**）
 
@@ -360,11 +404,13 @@ python3 tools/check_batch_complete.py --from <首批id> --to <末批id>
 | 4 | **elevation** | `elevation` |
 | 5 | **relief** + **risk** + **hazard-merge** | `relief`/`risk`/`hazards_local`；若 `hazard_research.json` 已有该 `prefKey` 则不得 `hazard_merge_prefecture`（省级 headline 兜底） |
 | 6 | **POI** hospital / train / airport / coast / hsr + 轨交城 **metro** | `poi_*`；`poi_done` 行存在 |
+| 6b | **LULU 7 类** sensitive-facility 距离 | `lulu_*`（`manage.py lulu` 后 `check_batch_complete` 全绿） |
 | 7 | **built_year** 有来源 **或** research JSON `confidence:none` 建档 | `built_year_or_documented_unknown` |
 | 8 | **rent** portal 调研 **或** JSON 注明无市场（估算仅 JSON） | `rent_or_research`（`rent>0` 或 rent-backfill 条目） |
 | 9 | **hist_temp_max/min** | `hist_temp_max_min`（`manage.py hist-temp`） |
 | 10 | **tier1-check** | `manage.py tier1-check` 默认可见套数符合预期 |
 | 11 | **build + smoke** | `manage.py build` → `node tools/_smoke.js`；失败则同步 `_smoke.js` 硬编码套数 |
+| 12 | **POI 缺口审计** | §3.4 SQL 零行 + 全库 `check_batch_complete` 无 `poi_hospital`/`lulu_*` |
 
 ```bash
 python3 tools/manage.py hist-temp
@@ -470,6 +516,7 @@ python3 tools/manage.py climate && python3 tools/manage.py climate-daily
 python3 tools/manage.py hist-temp
 python3 tools/manage.py elevation && python3 tools/manage.py relief && python3 tools/manage.py risk
 python3 tools/manage.py pois && python3 tools/manage.py pois-refix
+python3 tools/manage.py lulu
 python3 tools/manage.py hazard-merge data/hazard_research.json
 python3 tools/manage.py built-merge data/research/built-year-<slug>.json --dry-run
 python3 tools/manage.py built-merge data/research/built-year-<slug>.json

@@ -23,6 +23,7 @@ HAZARD_RESEARCH = ROOT / "data" / "hazard_research.json"
 RESEARCH_DIR = ROOT / "data" / "research"
 
 POI_CATS = ("hospital", "train", "airport", "coast", "hsr")
+LULU_CATS = ("wastewater", "landfill", "incinerator", "nuclear", "chemical", "sensitive", "substation")
 # Mainland prefecture-level cities with metro — skip metro gap elsewhere.
 _METRO_CITIES = frozenset({
     "北京市", "上海市", "天津市", "重庆市", "广州市", "深圳市", "成都市", "武汉市",
@@ -229,6 +230,10 @@ def _checks_for_row(
 
     if _metro_required(r["city"], r["prov"]) and not _poi_ok(pois.get("metro")):
         gaps.append("poi_metro")
+
+    for cat in LULU_CATS:
+        if not _poi_ok(pois.get(cat)):
+            gaps.append(f"lulu_{cat}")
 
     if r["lat"] is not None and not poi_done:
         gaps.append("poi_done")
