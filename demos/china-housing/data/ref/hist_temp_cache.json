@@ -4790,5 +4790,45 @@
   "histTempStation": null,
   "histTempNote": "ERA5 再分析格点 1940–2023 日最高/日最低极值（≈25 km 网格，非气象站记录）",
   "histTempLevel": "区镇/街道"
+ },
+ "wiki-dist:福田区 梅林": null,
+ "era5:22.57,114.03": {
+  "histTempMax": 36.6,
+  "histTempMin": 1.6,
+  "histTempMaxDate": "2023-07-15",
+  "histTempMinDate": "1969-02-05",
+  "histTempSrc": "open-meteo-era5-1940-2023",
+  "histTempStation": null,
+  "histTempNote": "ERA5 再分析格点 1940–2023 日最高/日最低极值（≈25 km 网格，非气象站记录）（邻近格点复用）"
+ },
+ "广东|深圳市|福田区 梅林": {
+  "histTempMax": 36.6,
+  "histTempMin": 1.6,
+  "histTempMaxDate": "2023-07-15",
+  "histTempMinDate": "1969-02-05",
+  "histTempSrc": "open-meteo-era5-1940-2023",
+  "histTempStation": null,
+  "histTempNote": "ERA5 再分析格点 1940–2023 日最高/日最低极值（≈25 km 网格，非气象站记录）（邻近格点复用）",
+  "histTempLevel": "区镇/街道"
+ },
+ "wiki-dist:洛龙区": null,
+ "era5:34.62,112.46": {
+  "histTempMax": 43.0,
+  "histTempMin": -27.2,
+  "histTempMaxDate": "1942-07-06",
+  "histTempMinDate": "1951-01-13",
+  "histTempSrc": "open-meteo-era5-1940-2023",
+  "histTempStation": null,
+  "histTempNote": "ERA5 再分析格点 1940–2023 日最高/日最低极值（≈25 km 网格，非气象站记录）（邻近格点复用）"
+ },
+ "河南|洛阳市|洛龙区": {
+  "histTempMax": 43.0,
+  "histTempMin": -27.2,
+  "histTempMaxDate": "1942-07-06",
+  "histTempMinDate": "1951-01-13",
+  "histTempSrc": "open-meteo-era5-1940-2023",
+  "histTempStation": null,
+  "histTempNote": "ERA5 再分析格点 1940–2023 日最高/日最低极值（≈25 km 网格，非气象站记录）（邻近格点复用）",
+  "histTempLevel": "区镇/街道"
  }
 }

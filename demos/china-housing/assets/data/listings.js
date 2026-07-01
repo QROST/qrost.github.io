@@ -412,5 +412,7 @@ window.HOUSING_LISTINGS = [
   { id: 397, prov: "广东",       city: "惠州市",            dist: "惠阳区 淡水",       loc: "心境山水郡",               priceWan: 118,   area: 226.87, rent: 0,       updated: "2026-06" },
   { id: 398, prov: "广东",       city: "惠州市",            dist: "惠东县 稔山",       loc: "碧桂园伴海云山",           priceWan: 76,    area: 95.7,   rent: 1100,    updated: "2026-06" },
   { id: 399, prov: "广东",       city: "惠州市",            dist: "仲恺区 惠环",       loc: "碧桂园凤凰华府",           priceWan: 64.8,  area: 97,     rent: 1900,    updated: "2026-06" },
-  { id: 400, prov: "广东",       city: "惠州市",            dist: "大亚湾区 霞涌",     loc: "梵高的海",                 priceWan: 17,    area: 45.95,  rent: 920,     updated: "2026-06" }
+  { id: 400, prov: "广东",       city: "惠州市",            dist: "大亚湾区 霞涌",     loc: "梵高的海",                 priceWan: 17,    area: 45.95,  rent: 920,     updated: "2026-06" },
+  { id: 401, prov: "广东",       city: "深圳市",            dist: "福田区 梅林",       loc: "梅林一村",                 priceWan: 316,   area: 67,     rent: 6400,    updated: "2026-06" },
+  { id: 402, prov: "河南",       city: "洛阳市",            dist: "洛龙区",            loc: "政和东郡",                 priceWan: 108,   area: 137.8,  rent: 2300,    updated: "2026-06" }
 ];
