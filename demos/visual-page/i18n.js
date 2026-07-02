@@ -43,6 +43,9 @@ const KIND = {
   BREAKTHROUGH: { en: 'BREAKTHROUGH', zh: '突破' },
   POLICY: { en: 'POLICY', zh: '政策' },
   VENDOR: { en: 'VENDOR', zh: '厂商' },
+  PHARMA: { en: 'PHARMA', zh: '医药' },
+  CAT: { en: 'CAT', zh: '猫' },
+  SHELTER: { en: 'SHELTER', zh: '收容所' },
 };
 
 const ORIGIN = {

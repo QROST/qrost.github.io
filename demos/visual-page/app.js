@@ -19,6 +19,7 @@ import { Sonifier } from './audio.js';   // 生成式数据音乐引擎（zero-d
 const sonifier = new Sonifier();   // 由「Motion & sound」按钮在用户手势内 start()
 
 const IS_MOBILE = matchMedia('(pointer: coarse)').matches || innerWidth < 820;
+const DEBUG = new URLSearchParams(location.search).has('debug');
 const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
 const lerp = (a, b, t) => a + (b - a) * t;
 const IND = '../china-industrial-software/assets/data/';
@@ -1811,9 +1812,9 @@ function buildPanel() {
 // ---------- boot ----------
 (async function main() {
   let info = {}, pharma = {}, scats = {};
-  try { info = await buildIndustrial(); } catch (err) { console.warn('[Data Abyss] industrial load failed (need http server):', err); }
-  try { pharma = await buildPharma(); } catch (err) { console.warn('[Data Abyss] pharma load failed:', err); }
-  try { scats = await buildShelterCats(); } catch (err) { console.warn('[Data Abyss] shelter-cats load failed:', err); }
+  try { info = await buildIndustrial(); } catch (err) { if (DEBUG) console.warn('[Data Abyss] industrial load failed (need http server):', err); }
+  try { pharma = await buildPharma(); } catch (err) { if (DEBUG) console.warn('[Data Abyss] pharma load failed:', err); }
+  try { scats = await buildShelterCats(); } catch (err) { if (DEBUG) console.warn('[Data Abyss] shelter-cats load failed:', err); }
   const cities = buildHousing();
   bgMat.uniforms.uWarm.value = climWarm;
   // CPPN 背景：用数据聚合量确定性播种神经权重（这场梦由数据塑形）
@@ -1825,7 +1826,7 @@ function buildPanel() {
   applyUi({ skipEnable: true });
   // 先出混沌团并开跑：首屏 = 重叠态（此刻 anc 全 = CENTER → 呼气不展开，正是 inhale 视觉），不等最重的 SOM。
   const ld = document.getElementById('loading'); ld.classList.add('gone'); setTimeout(() => ld.remove(), 1000);
-  console.log(`[Data Abyss] ${cities} cities · ${info.products || 0} products · ${info.kernels || 0} kernels · ${info.milestones || 0} breakthroughs · ${info.policies || 0} policies · ${info.vendors || 0} vendors · pharma[${pharma.companies || 0} co / ${pharma.sites || 0} sites / ${pharma.products || 0} drugs / ${pharma.modalities || 0} mod / ${pharma.milestones || 0} bk] · cats[${scats.cats || 0} / ${scats.shelters || 0} shelters] · ${N} bodies · ${E} trail-emitters · ${beamIdxA ? beamIdxA.length : 0} beams · rel[pharma ${pharma.rel || 0} edges/${pharma.groups || 0} groups · vendor ${info.vendorBeams || 0}] · SOM training deferred…`);
+  if (DEBUG) console.log(`[Data Abyss] ${cities} cities · ${info.products || 0} products · ${info.kernels || 0} kernels · ${info.milestones || 0} breakthroughs · ${info.policies || 0} policies · ${info.vendors || 0} vendors · pharma[${pharma.companies || 0} co / ${pharma.sites || 0} sites / ${pharma.products || 0} drugs / ${pharma.modalities || 0} mod / ${pharma.milestones || 0} bk] · cats[${scats.cats || 0} / ${scats.shelters || 0} shelters] · ${N} bodies · ${E} trail-emitters · ${beamIdxA ? beamIdxA.length : 0} beams · rel[pharma ${pharma.rel || 0} edges/${pharma.groups || 0} groups · vendor ${info.vendorBeams || 0}] · SOM training deferred…`);
   // 音乐：boot 后主动尝试起声。无 user gesture 时 AudioContext 会被浏览器挂起（Autoplay Policy）→
   // sonifier 内部状态机先就绪、底部 tip-text 提示用户点一下；首个 pointerdown/touchstart/keydown 内 resume 即出声。
   startMusic();
@@ -1836,6 +1837,6 @@ function buildPanel() {
   requestAnimationFrame(() => buildSOM((som) => {
     for (let i = 0; i < N; i++) writeWorld(i); if (prevPos) prevPos.set(posArr);   // SOM 设好 anc/bPhase/bRate；此刻 bAmp 仍 = 0 → effAnc≈CENTER、位置与上一帧一致（重叠态），无跳变
     somReady = true;   // 解锁呼吸：从这帧起 bAmp 从 0 平滑 ramp → 星体连续地呼气展开成神经地图（与之前的随机运动态无缝衔接）
-    console.log(`[Data Abyss] SOM ${som ? som.neurons + ' neurons / ' + som.edges + ' edges' : 'skipped'}${musicDNA ? ` · musicDNA[hue ${musicDNA.hueStar.toFixed(2)} · conc ${musicDNA.concentration.toFixed(2)} · clusters ${musicDNA.clusters} · spd ${musicDNA.speedMean.toFixed(2)}±${musicDNA.speedSpread.toFixed(2)} · domType ${musicDNA.domType} · sig ${musicDNA.sig}]` : ''} (trained off-thread)`);
+    if (DEBUG) console.log(`[Data Abyss] SOM ${som ? som.neurons + ' neurons / ' + som.edges + ' edges' : 'skipped'}${musicDNA ? ` · musicDNA[hue ${musicDNA.hueStar.toFixed(2)} · conc ${musicDNA.concentration.toFixed(2)} · clusters ${musicDNA.clusters} · spd ${musicDNA.speedMean.toFixed(2)}±${musicDNA.speedSpread.toFixed(2)} · domType ${musicDNA.domType} · sig ${musicDNA.sig}]` : ''} (trained off-thread)`);
   }));
 })();
