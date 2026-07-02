@@ -1527,7 +1527,11 @@
       console.error('Industrial software app init failed:', err);
       const note = document.getElementById('init-error');
       if (note) {
-        note.textContent = 'Data load failed — use a local HTTP server (not file://).';
+        let message = 'Data load failed — use a local HTTP server (not file://).';
+        if (err && err.message && err.message.includes('ECharts library failed to load from CDN')) {
+          message = 'Chart library failed to load from CDN. Check your internet connection.';
+        }
+        note.textContent = message;
         note.classList.remove('hidden');
       }
     });
