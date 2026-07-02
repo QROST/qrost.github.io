@@ -205,6 +205,7 @@ h1,h2,h3,h4 { font-family: 'Space Grotesk', sans-serif; letter-spacing: -0.02em;
 .btn.cobalt { background: var(--cobalt); color: var(--paper); }
 .btn.ghost { background: transparent; color: var(--ink); box-shadow: none; border: var(--border); }
 .btn.ghost:hover { background: var(--ink); color: var(--bg); box-shadow: var(--shadow-hard); }
+.btn[disabled] { opacity: .45; cursor: not-allowed; pointer-events: none; box-shadow: none; transform: none; }
 
 .chip {
   display: inline-flex; align-items: center; gap: 6px;

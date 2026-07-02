@@ -21,6 +21,7 @@
   .tabs{display:flex;gap:6px;margin-bottom:20px;border-bottom:2px solid var(--ink)}
   .tabs button{border:none;background:transparent;padding:10px 18px;font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:15px;cursor:pointer;border-radius:12px 12px 0 0}
   .tabs button.active{background:var(--ink);color:var(--bg)}
+  .tabs button[disabled]{opacity:.4;cursor:not-allowed}
   .orders{display:grid;gap:14px}
   .order{padding:18px;display:grid;grid-template-columns:120px 1fr auto auto;gap:18px;align-items:center}
   .status-pill{padding:5px 11px;border-radius:999px;font-family:'JetBrains Mono',monospace;font-size:11px;text-transform:uppercase;border:1.5px solid var(--ink)}
@@ -65,9 +66,9 @@
 
   <div class="tabs">
     <button class="active" data-tab="orders" data-i18n="tab_orders">Orders</button>
-    <button data-tab="saved" data-i18n="tab_saved">Saved designs</button>
-    <button data-tab="addresses" data-i18n="tab_addresses">Addresses</button>
-    <button data-tab="settings" data-i18n="tab_settings">Settings</button>
+    <button data-tab="saved" data-i18n="tab_saved" disabled aria-disabled="true" title="Coming soon">Saved designs</button>
+    <button data-tab="addresses" data-i18n="tab_addresses" disabled aria-disabled="true" title="Coming soon">Addresses</button>
+    <button data-tab="settings" data-i18n="tab_settings" disabled aria-disabled="true" title="Coming soon">Settings</button>
   </div>
 
   <div id="tab-orders">
@@ -88,7 +89,7 @@
           <div class="mono" style="font-size:12px;color:var(--muted);margin-top:4px">Placed Mar 02 · $134.20 · delivered Mar 06</div>
         </div>
         <div class="status-pill delivered" data-i18n="status_delivered">DELIVERED</div>
-        <a class="btn ghost" href="#" data-i18n="reorder">Reorder</a>
+        <a class="btn ghost" href="designer.html" data-i18n="reorder">Reorder</a>
       </div>
       <div class="card order">
         <div class="mini-plate lime"><div class="inner">GT-R</div></div>
@@ -97,7 +98,7 @@
           <div class="mono" style="font-size:12px;color:var(--muted);margin-top:4px">Placed Feb 08 · $72.40 · delivered Feb 12</div>
         </div>
         <div class="status-pill delivered" data-i18n="status_delivered">DELIVERED</div>
-        <a class="btn ghost" href="#" data-i18n="reorder">Reorder</a>
+        <a class="btn ghost" href="designer.html" data-i18n="reorder">Reorder</a>
       </div>
     </div>
   </div>
