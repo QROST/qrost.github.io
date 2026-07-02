@@ -1,6 +1,6 @@
 # 数渊 · Data Abyss
 
-一件交互式新媒体 / generative-art 网页：把 **china-housing**（347 座城的气候·海拔·灾害·房价）、**china-industrial-software**（325 产品 / 43 内核 / 269 突破 / 123 政策 / 220 厂商 / 对标）与 **pharm-companies**（全球医药：128 公司 / 305 站点 / 219 药物 / 21 模态 / 65 突破 / 对标）三套真实数据，全部生灵化成漂浮在三维数渊中的发光星体（共 ~2066 颗）。Three.js WebGL + 雾景深。手机端 full-bleed，可接入陀螺仪 / 麦克风。
+一件交互式新媒体 / generative-art 网页：把 **china-housing**（347 座城的气候·海拔·灾害·房价）、**china-industrial-software**（325 产品 / 43 内核 / 269 突破 / 123 政策 / 220 厂商 / 对标）、**pharm-companies**（全球医药：128 公司 / 305 站点 / 219 药物 / 21 模态 / 65 突破 / 对标）与 **shelter-cats**（全球收容所：5 家收容所 / 数百只在册猫，实时 fetch）四套真实数据，全部生灵化成漂浮在三维数渊中的发光星体。Three.js WebGL + 雾景深。手机端 full-bleed，可接入陀螺仪 / 麦克风。
 
 ## 结构
 
@@ -8,14 +8,19 @@
 - `app.js` — 全部场景逻辑（数据载入、通感编码、渲染、交互）
 - `style.css` — full-bleed / overlay UI
 
-数据来自**同仓库的三个兄弟 demo**（相对路径引用，不复制）：
+数据来自**同仓库的四个兄弟 demo**（相对路径引用，不复制）：
 - housing：`<script src="../china-housing/assets/data/{listings,enriched,hazards}.js">` → `window.HOUSING_*`
 - industrial：runtime `fetch('../china-industrial-software/assets/data/...')`（`buildIndustrial`）
 - pharma：runtime `fetch('../pharm-companies/assets/data/...')`（`buildPharma`）→ **第 7 个数据层「医药」（group 6）**：
   manifest→shards(catalog/*) + companies/sites/modalities/breakthroughs/benchmark-pairs；
   站点(305,有经纬度)=发光点(地理)、公司=按 company_type 取简单立体(复活退役形)、药物=八面体、模态=星状八面体、突破=四面锥；
   **按全球地区(greater_china/north_america/europe/japan/…)着色**(玫红/紫罗兰/品红/青——与工业的金绿蓝分层)；对标→青紫光束。
-  缺数据时 `try/catch` 优雅降级（不影响其余层）。`FEAT_DIM` 26→27（第 7 类 one-hot），SOM 一并学。
+  缺数据时 `try/catch` 优雅降级（不影响其余层）。
+- shelter-cats：runtime `fetch('../shelter-cats/assets/data/...')`（`buildShelterCats`）→ **第 8 个数据层「收容所猫」（group 7，猫 + 收容所共用一个 panel 开关）**：
+  manifest→shelters.json + enums.json + shards(cats/*)；
+  收容所=暖琥珀星状八面体(尺寸随在册猫数)、猫=按真实毛色着色的发光点(播种在所属收容所附近 → 地理聚簇，可领养更闪、长毛更朦胧、越老越大)；
+  缺数据时同样 `try/catch` 优雅降级。
+  `FEAT_DIM = 28`（8 类 entity-type one-hot：city/ind_product/ind_kernel/ind_milestone/ind_policy/ind_vendor/ph_*/cat+shelter），SOM 一并学。
 
 ## 通感编码语法（映射不必符合逻辑，但把数据用满）
 
@@ -41,6 +46,9 @@
 | 政策 policy | 高度=年份 · 大小=目标金额 · 色=政策类型 |
 | 厂商 vendor | 外圈微尘 · 色=出身 |
 | 对标 pair | 国产↔国外产品之间的青色光束 |
+| 医药 pharma（站点/公司/药物/模态/突破，共用一个 panel 开关）| 按全球地区着色 · 大小=营收/重磅程度 · 站点=经纬度播种(地理) · 光束→母公司/集团中枢/国外对标 |
+| 猫 cat | 色=真实毛色 · 大小=年龄(幼→老) · 明灭=可领养(更闪) · 雾晕=毛长(长毛朦胧) · 播种在所属收容所附近(地理聚簇) · 光束→所属收容所 |
+| 收容所 shelter | 暖琥珀星状八面体(家的引导星) · 大小=在册猫数 · 经纬度播种(地理) · 光束→旗下的猫 |
 
 ## 几何体形库（`SHAPES`）— 数据驱动的多面体 + 特殊数学三维体
 
