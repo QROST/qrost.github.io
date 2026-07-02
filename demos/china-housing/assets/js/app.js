@@ -2363,6 +2363,37 @@
     : { radius: 6, color: '#fff', weight: 1.5, fillColor: m.color, fillOpacity: 0.95 };
   const ZOOM_BY_LEVEL = { loc: 16, dist: 14, city: 12, prefecture: 11 };
   let lmCurrent = null, lmActiveTab = 'sat', lmSatMap = null, lmNearMap = null, lmClimateChart = null, lmTabInit = {};
+  let modalReturnFocus = null; // element to restore focus to when a dialog closes (a11y)
+
+  // ---- minimal a11y focus trap for #listing-modal / #cmp-modal dialogs ----
+  // Keeps Tab/Shift+Tab cycling within the open panel; does not change any
+  // existing open/close triggers (click/Escape wiring untouched).
+  function trapFocus(e, panelEl) {
+    if (e.key !== 'Tab' || !panelEl) return;
+    const focusables = panelEl.querySelectorAll(
+      'a[href], button:not([disabled]), textarea:not([disabled]), input:not([disabled]), select:not([disabled]), [tabindex]:not([tabindex="-1"])'
+    );
+    if (!focusables.length) return;
+    const first = focusables[0], last = focusables[focusables.length - 1];
+    if (e.shiftKey && document.activeElement === first) {
+      e.preventDefault(); last.focus();
+    } else if (!e.shiftKey && document.activeElement === last) {
+      e.preventDefault(); first.focus();
+    }
+  }
+  function focusModalPanel(panelEl) {
+    if (!panelEl) return;
+    const focusable = panelEl.querySelector(
+      'a[href], button:not([disabled]), textarea:not([disabled]), input:not([disabled]), select:not([disabled]), [tabindex]:not([tabindex="-1"])'
+    );
+    (focusable || panelEl).focus({ preventScroll: true });
+  }
+  function restoreModalFocus() {
+    if (modalReturnFocus && typeof modalReturnFocus.focus === 'function') {
+      try { modalReturnFocus.focus({ preventScroll: true }); } catch (e) {}
+    }
+    modalReturnFocus = null;
+  }
 
   // ===== Buying policy (national + city) ==================================
   const CP = window.CITY_POLICY || { byPref: {}, locIndex: {} };
@@ -2749,8 +2780,12 @@
     updateCmpModalBtn();
     const shareBtn = document.getElementById('lm-share');
     if (shareBtn) shareBtn.textContent = t('lmShare');
+    // a11y: remember the trigger only if no other dialog transition is already tracking one
+    // (e.g. cmp-modal row click closes cmp then opens this — keep the original trigger).
+    if (!modalReturnFocus) modalReturnFocus = document.activeElement;
     document.getElementById('listing-modal').classList.remove('hidden');
     document.body.style.overflow = 'hidden';
+    safeRun('focusModalPanel', () => focusModalPanel(document.getElementById('lm-panel')));
     lmShowTab('sat');
     // shareable deep link (#l=<id>); replaceState keeps section anchors usable
     try {
@@ -3014,12 +3049,15 @@
   }
 
   function closeModal() {
-    document.getElementById('listing-modal').classList.add('hidden');
+    const modalEl = document.getElementById('listing-modal');
+    const wasOpen = modalEl && !modalEl.classList.contains('hidden');
+    if (modalEl) modalEl.classList.add('hidden');
     document.body.style.overflow = '';
     if (lmSatMap) { lmSatMap.remove(); lmSatMap = null; }
     if (lmNearMap) { lmNearMap.remove(); lmNearMap = null; }
     if (lmClimateChart) { lmClimateChart.destroy(); lmClimateChart = null; }
     lmTabInit = {}; lmCurrent = null;
+    if (wasOpen) safeRun('restoreModalFocus', restoreModalFocus);
     try {
       if (window.history && window.history.replaceState && /^#l=\d+$/.test(window.location.hash || '')) {
         window.history.replaceState(null, '', window.location.pathname + window.location.search);
@@ -3117,6 +3155,8 @@
     const m = document.getElementById('cmp-modal');
     if (m) m.classList.remove('hidden');
     document.body.style.overflow = 'hidden';
+    if (!modalReturnFocus) modalReturnFocus = document.activeElement;
+    safeRun('focusModalPanel', () => focusModalPanel(document.getElementById('cmp-panel')));
     try {
       if (window.history && window.history.replaceState) window.history.replaceState(null, '', '#c=' + [...cmp].join(','));
     } catch (e) { /* sandbox */ }
@@ -3126,6 +3166,7 @@
     if (!m || m.classList.contains('hidden')) return;
     m.classList.add('hidden');
     document.body.style.overflow = '';
+    safeRun('restoreModalFocus', restoreModalFocus);
     try {
       if (window.history && window.history.replaceState && /^#c=/.test(window.location.hash || '')) {
         window.history.replaceState(null, '', window.location.pathname + window.location.search);
@@ -3484,7 +3525,14 @@
     wireListingOpens();
     document.querySelectorAll('[data-lm-tab]').forEach((b) =>
       b.addEventListener('click', () => lmShowTab(b.dataset.lmTab)));
-    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') { closeModal(); closeCmp(); } });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') { closeModal(); closeCmp(); return; }
+      if (e.key !== 'Tab') return;
+      const lmEl = document.getElementById('listing-modal');
+      const cmpEl = document.getElementById('cmp-modal');
+      if (lmEl && !lmEl.classList.contains('hidden')) trapFocus(e, document.getElementById('lm-panel'));
+      else if (cmpEl && !cmpEl.classList.contains('hidden')) trapFocus(e, document.getElementById('cmp-panel'));
+    });
 
     wireThemeToggle();
     wireLangToggle();
