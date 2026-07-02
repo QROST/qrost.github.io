@@ -13,8 +13,8 @@
 import * as THREE from 'three';
 import {
   applyUi, registerPanelNode, renderCardHtml, sensorBtnLabel, setLang, isZh,
-} from './i18n.js';
-import { Sonifier } from './audio.js';   // 生成式数据音乐引擎（zero-dep Web Audio）
+} from './i18n.js?v=be92743a4a';
+import { Sonifier } from './audio.js?v=be92743a4a';   // 生成式数据音乐引擎（zero-dep Web Audio）
 
 const sonifier = new Sonifier();   // 由「Motion & sound」按钮在用户手势内 start()
 
@@ -1503,6 +1503,11 @@ renderer.domElement.addEventListener('pointerup', (e) => {
     if (uiMode !== 0) { setMode(uiMode + 1); return; }
     if (lastPtr === 'touch' && !peeking) peek(2800);               // 隐藏态触控：首点浮现、再点(浮现中)循环；桌面 hover 已显 → 直接循环
     else setMode(uiMode + 1);
+  });
+  title.addEventListener('keydown', (e) => {                       // 键盘可达：Enter/Space 等效点击（无 touch 概念 → 走桌面分支直接循环）
+    if (e.key !== 'Enter' && e.key !== ' ' && e.key !== 'Spacebar') return;
+    e.preventDefault(); e.stopPropagation();
+    setMode(uiMode + 1);
   });
 
   addEventListener('pointermove', showHud); addEventListener('pointerdown', showHud); addEventListener('keydown', showHud);

@@ -18,6 +18,14 @@ html, body {
   padding: max(env(safe-area-inset-top), 16px) 22px 0;
   pointer-events: none; z-index: 5; transition: opacity 1.6s ease;
 }
+#home-link {
+  position: fixed; right: 22px; top: max(env(safe-area-inset-top), 16px);
+  z-index: 5; font-size: 10px; font-weight: 300; letter-spacing: 0.28em;
+  color: #cfe0ff; opacity: 0.32; text-decoration: none;
+  transition: opacity 0.3s ease;
+}
+#home-link:hover, #home-link:focus-visible { opacity: 0.75; }
+body.ui-hidden #home-link { opacity: 0; pointer-events: none; }
 #title {
   font-size: 17px; font-weight: 200; letter-spacing: 0.42em; margin-top: 4px; opacity: 0.6;
   pointer-events: auto; cursor: pointer; transition: opacity 0.5s ease, font-size 0.4s ease;   /* 整个标题 = 三模式循环 toggle */
