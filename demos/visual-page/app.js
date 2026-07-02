@@ -1260,10 +1260,20 @@ function startMusic() {                                   // 在用户手势(或
     if (!audioCtx) { const AC = window.AudioContext || window.webkitAudioContext; if (AC) audioCtx = new AC(); }
     if (audioCtx) {
       if (!audioCtx._abListen) { audioCtx._abListen = true; audioCtx.addEventListener('statechange', onAudioStateChange); }   // resume 是异步的：state 进入 running 时统一刷 UI
-      if (audioCtx.resume) audioCtx.resume();
+      if (audioCtx.resume) { const p = audioCtx.resume(); if (p && p.then) p.then(onAudioStateChange, () => {}); }   // resume 是 Promise：有些浏览器 resume 后不发 statechange → 用 .then 兜底刷 UI/起声
       sonifier.start(audioCtx, musicDNA || { climWarm });   // 乐曲身份来自宇宙涌现态(musicDNA)，非随机种子；boot 未完成则退回 climWarm
       if (!clubMode) sonifier.setMuted(false);              // 音乐模式 → 确保发声（律动模式保持静音）
     }
+  } catch (_) {}
+}
+
+// iOS Safari / 部分桌面 Safari：AudioContext 在无手势时构造 → 仅 resume() 不足以解锁；须在真实手势的同步栈里「播放」一段 1-sample 静音 buffer 才真正开声道。只需一次。
+function primeAudioUnlock() {
+  if (!audioCtx || audioCtx._primed) return;
+  try {
+    const b = audioCtx.createBuffer(1, 1, 22050);
+    const s = audioCtx.createBufferSource(); s.buffer = b; s.connect(audioCtx.destination); s.start(0);
+    audioCtx._primed = true;
   } catch (_) {}
 }
 
@@ -1318,15 +1328,18 @@ function onAudioStateChange() {
   if (state === 'running') { audioKicked = true; updateModeBtn(); }
 }
 
-function kickAudio() {                                   // 首个手势内：resume + 起声（幂等）
+function kickAudio() {                                   // 首个手势内（点任意几何体/屏幕/按键都算）：resume + iOS 解锁 + 起声（幂等）
   if (audioKicked) return;
-  startMusic();
+  startMusic();          // 创建/resume AudioContext + 起 sonifier
+  primeAudioUnlock();    // ctx 已存在 → 手势内播 1-sample 静音 buffer 彻底解锁（iOS/Safari 必需）
   onAudioStateChange();
 }
-['pointerdown', 'touchstart', 'keydown'].forEach((ev) => addEventListener(ev, kickAudio, { passive: true }));
+// 覆盖尽可能多的「首个手势」入口（含桌面 click / 触屏 touchend / iOS 老式 mousedown），最大化点任意几何体即出声的成功率；audioKicked 幂等，running 后全部 no-op
+['pointerdown', 'pointerup', 'touchstart', 'touchend', 'mousedown', 'click', 'keydown'].forEach((ev) => addEventListener(ev, kickAudio, { passive: true }));
 
 async function toggleMode() {                             // 下方按钮：音乐 ⇄ 俱乐部律动
   startMusic();                                           // 先在手势同步上下文内解锁音频（须早于任何 await）
+  primeAudioUnlock();                                    // iOS/Safari：手势内静音 buffer 解锁
   requestGyro();                                          // 陀螺权限（不 await，避免拖慢按钮反馈）
   clubMode = !clubMode;
   if (clubMode) {                                         // 进律动：音乐停、麦克风开 → 画面随环境声脉冲式加速（夜店等场景）
