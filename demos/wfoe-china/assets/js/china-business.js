@@ -1188,6 +1188,40 @@ document.addEventListener('DOMContentLoaded', () => {
             });
 
             /* ----------------------------------------------------------------
+               Dark mode toggle. The html.dark class + saved preference are
+               already applied pre-paint by the inline bootstrap script in
+               index.html <head> (avoids flash of wrong theme); this handler
+               only flips the class + persists on click. Chart.js draws its
+               axis/legend/tooltip text in a fixed Chart.defaults.color, which
+               does not respond to CSS, so we update that and force a redraw
+               of both charts on toggle — everything else (surfaces, borders,
+               step-flow rail, badges) is covered by the html.dark overrides
+               in china-business.css.
+               ---------------------------------------------------------------- */
+            const THEME_STORAGE_KEY = 'wfoe-china-theme';
+            function isDarkMode() {
+                return document.documentElement.classList.contains('dark');
+            }
+            function applyChartTheme() {
+                if (typeof Chart === 'undefined') return;
+                Chart.defaults.color = isDarkMode() ? '#94a3b8' : '#475569';
+                [barChart, doughnutChart].forEach(function (c) {
+                    if (c) c.update();
+                });
+            }
+            function setDarkMode(dark) {
+                document.documentElement.classList.toggle('dark', dark);
+                try { localStorage.setItem(THEME_STORAGE_KEY, dark ? 'dark' : 'light'); } catch (e) { /* ignore */ }
+                applyChartTheme();
+            }
+            const themeToggleBtn = document.getElementById('theme-toggle');
+            if (themeToggleBtn) {
+                themeToggleBtn.addEventListener('click', function () {
+                    setDarkMode(!isDarkMode());
+                });
+            }
+
+            /* ----------------------------------------------------------------
                Phase 1.2 — City focus dropdown.
                A keyboard-friendly parallel control for the bar-chart onClick.
                Builds <option> nodes once from cityData, listens to "change",
@@ -1343,6 +1377,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             initCharts();
+            applyChartTheme(); // pick up html.dark set pre-paint by the bootstrap script, if any
             updateFxLabel();
             loadExchangeRate();
 

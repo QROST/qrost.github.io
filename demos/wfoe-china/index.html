@@ -8,6 +8,17 @@
     <meta name="description" content="Step-by-step setup workflows (mainland WFOE, domestic LLC, Sino-foreign JV, HK/Macau SAR) plus an interactive cost dashboard across 24 China hubs and optional global cities. Research notes for international AEC founders.">
     <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230f172a'/%3E%3Ctext x='16' y='21' font-family='Inter,system-ui,sans-serif' font-size='13' font-weight='700' text-anchor='middle' fill='white' letter-spacing='1'%3EQ%3C/text%3E%3C/svg%3E">
 
+    <!-- Theme bootstrap: apply saved/system dark mode before paint to avoid flash -->
+    <script>
+        (function () {
+            try {
+                var t = localStorage.getItem('wfoe-china-theme');
+                var dark = t ? t === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches;
+                document.documentElement.classList.toggle('dark', dark);
+            } catch (e) {}
+        })();
+    </script>
+
     <meta property="og:type" content="article">
     <meta property="og:title" content="China company setup (WFOE, domestic, JV, HK/Macau) &amp; AEC hiring costs">
     <meta property="og:description" content="Four entity paths (WFOE, domestic LLC, JV, HK/Macau) plus a cost dashboard across 24 China hubs and optional global cities. Bilingual EN/中文.">
@@ -28,7 +39,7 @@
          need to rapid-prototype new utility classes, temporarily re-add
          <script src="https://cdn.tailwindcss.com"></script> below this link,
          confirm the visual, then re-run npm run build:css and remove it again. -->
-    <link rel="stylesheet" href="assets/css/tailwind-built.css?v=20260611fx2">
+    <link rel="stylesheet" href="assets/css/tailwind-built.css?v=20260702dm1">
     <!-- Chart.js pinned to 4.4.7 (jsDelivr) with sha384 SRI; bump version + SRI together. -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"
         integrity="sha384-vsrfeLOOY6KuIYKDlmVH5UiBmgIdB1oEf7p01YgWHuqmOHfZr374+odEv96n9tNC"
@@ -36,7 +47,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
     <!-- Chosen Palette: Slate and Emerald -->
-    <link rel="stylesheet" href="assets/css/china-business.css?v=20260611fx2">
+    <link rel="stylesheet" href="assets/css/china-business.css?v=20260702dm1">
 </head>
 
 <body class="antialiased scroll-smooth">
@@ -63,6 +74,9 @@
                         </svg>
                     </button>
                     <button type="button" id="lang-toggle" class="text-xs font-medium text-slate-600 border border-slate-200 rounded px-2.5 py-1 hover:bg-slate-50 transition-colors shrink-0" aria-label="Switch language">中文</button>
+                    <button type="button" id="theme-toggle" class="text-xs font-medium text-slate-600 border border-slate-200 rounded px-2.5 py-1 hover:bg-slate-50 transition-colors shrink-0" aria-label="Toggle dark mode" title="Toggle dark mode">
+                        <span class="theme-toggle-icon" aria-hidden="true"></span>
+                    </button>
                 </div>
             </div>
             <div id="mobile-menu" class="md:hidden hidden border-t border-slate-200 -mx-4 sm:-mx-6 lg:-mx-8 px-4 sm:px-6 lg:px-8 py-2 bg-white/95" role="region" aria-label="Section navigation">
@@ -865,9 +879,9 @@
         </div>
     </footer>
 
-    <script src="assets/js/steps-render.js?v=20260611fx2"></script>
-    <script src="assets/js/i18n-china-business.js?v=20260611fx2"></script>
-    <script src="assets/js/china-business.js?v=20260611fx2"></script>
+    <script src="assets/js/steps-render.js?v=20260702dm1"></script>
+    <script src="assets/js/i18n-china-business.js?v=20260702dm1"></script>
+    <script src="assets/js/china-business.js?v=20260702dm1"></script>
 </body>
 
 </html>

@@ -13,6 +13,7 @@
 //   text-emerald-600, underline, underline-offset-2). Scanning the JSON directly
 //   keeps future edits to step data from silently dropping classes from the build.
 module.exports = {
+    darkMode: 'class',
     content: [
         './index.html',
         './assets/js/china-business.js',

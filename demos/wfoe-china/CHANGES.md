@@ -142,3 +142,61 @@ Extended manual smoke checklist:
 - [ ] City select updates JV money cells; bar chart click on another city updates JV estimates.
 - [ ] Language toggle switches all JV titles + details + money header correctly.
 - [ ] DevTools Network → 404 `joint-venture-steps.json`: that mount shows the amber notice, but WFOE/Domestic tabs remain functional.
+
+## Phase 6 — Dark mode
+
+Adds an `html.dark` class toggle (`#theme-toggle` button in the nav, next
+to the language toggle), matching the pattern used by the china-housing
+and pharm-companies demos in this repo:
+
+- **Bootstrap** — inline `<script>` in `<head>` applies saved
+  (`localStorage['wfoe-china-theme']`) or system (`prefers-color-scheme`)
+  preference to `<html class="dark">` before first paint, avoiding a
+  flash of the wrong theme.
+- **Tailwind config** — `darkMode: 'class'` added to `tailwind.config.js`.
+  No `dark:` utility variants are actually used anywhere in the markup;
+  this flag is present for correctness/future-proofing but the current
+  implementation does not depend on Tailwind's dark-variant generation.
+- **CSS override layer** — `assets/css/china-business.css` appends a
+  `html.dark …` block that re-targets the ~50 hardcoded Tailwind
+  slate/white/emerald/sky/amber/cyan utility classes already used
+  throughout `index.html`, the JS-rendered step cards
+  (`steps-render.js`), and i18n strings (`i18n-china-business.js`), with
+  `!important`. This was chosen over adding `dark:` variants to every
+  call site (~50+ locations across HTML + 2 JS files) because the
+  class-based override automatically covers classes that JS toggles at
+  runtime (e.g. `classList.add('bg-white', ...)` in the Role/Currency/
+  Overhead pill buttons) without touching light-mode markup at all —
+  zero risk of light-mode regression. Custom (non-Tailwind) components
+  with hardcoded hex colors (step-flow rail, badges, FX tooltip) get
+  their own `html.dark` rules in the same block.
+- **Chart.js** — `Chart.defaults.color` (axis/legend/tooltip text) is
+  fixed at chart-construction time and does not respond to CSS.
+  `assets/js/china-business.js` adds `applyChartTheme()`, called once
+  after `initCharts()` (to pick up dark mode set pre-paint) and again on
+  every toggle click, which flips `Chart.defaults.color` and calls
+  `.update()` on both charts. Chart gridlines use Chart.js defaults in
+  both themes (not overridden) — acceptable contrast in both modes.
+- **Icon** — `#theme-toggle .theme-toggle-icon` uses a CSS `content`
+  swap (moon in light mode → click to go dark; sun in dark mode → click
+  to go light), no extra image assets.
+
+Cache-bust: all five versioned asset tags in `index.html` bumped from
+`?v=20260611fx2` to `?v=20260702dm1` (CSS + JS changed together).
+
+Extended manual smoke checklist:
+- [ ] Toggle button flips `<html>` between light/dark; icon swaps
+      moon ↔ sun; preference persists across reload (localStorage) and
+      across `#anchor` navigation.
+- [ ] First load with no saved preference follows OS
+      `prefers-color-scheme`.
+- [ ] Dark mode + language toggle combined: Chinese copy renders with
+      correct dark-mode contrast (checked: hero, step cards, SAR tab,
+      region cards/badges, dashboard, footer, methodology accordion).
+- [ ] Dashboard bar + doughnut charts are legible in dark mode
+      (axis labels, city names, legend, tooltips); toggling theme
+      mid-session (charts already rendered) updates them live.
+- [ ] Role/Currency/Overhead/Global-cities pill buttons keep visible
+      active-state contrast in dark mode (JS toggles the same
+      `bg-white`/`text-slate-800`/etc. classes the CSS override covers).
+- [ ] No console errors on load or on toggle.
