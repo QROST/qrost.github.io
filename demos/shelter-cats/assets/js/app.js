@@ -63,7 +63,11 @@
 
   function renderGrid() {
     var list = filtered();
-    $('result-count').textContent = list.length + (I18N.isEn() ? ' cats' : ' 只');
+    var countText = list.length + (I18N.isEn() ? ' cats' : ' 只');
+    if (list.length > RENDER_CAP) {
+      countText += ' · ' + I18N.t('resultsCapped');
+    }
+    $('result-count').textContent = countText;
     var grid = $('cat-grid'), empty = $('cat-empty');
     grid.innerHTML = '';
     if (!list.length) { empty.classList.remove('hidden'); return; }
