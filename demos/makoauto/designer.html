@@ -190,6 +190,7 @@
     cursor: pointer;
   }
   .hole .placed-pin .pin-visual { width:100% !important; height:100% !important; }
+  .hole .placed-pin:focus-visible { outline: 2px solid var(--cobalt); outline-offset: 2px; }
   .hole .placed-pin.remove-hint::after { content: "×"; position: absolute; top: 4px; right: 4px; width: 18px; height: 18px; background: var(--pink); color: var(--paper); border-radius: 50%; font-size: 14px; display: flex; align-items: center; justify-content: center; border: 1.5px solid var(--ink); }
 
   /* Drag ghost */
@@ -636,15 +637,22 @@
           const wrap = document.createElement('div');
           wrap.className = 'placed-pin';
           wrap.dataset.hole = idx;
+          wrap.setAttribute('role', 'button');
+          wrap.setAttribute('tabindex', '0');
+          wrap.setAttribute('aria-label', 'Remove ' + pin.label + ' pin');
           wrap.innerHTML = renderPinVisual(pin, finish, 40);
           const inner = wrap.querySelector('.pin-visual');
           if (inner) inner.style.pointerEvents = 'none';
-          wrap.addEventListener('click', (e) => {
+          const removePin = (e) => {
             e.stopPropagation();
             pushHistory();
             delete state.placements[idx];
             delete state.placements[idx+'_finish'];
             renderHoles(); updateSummary();
+          };
+          wrap.addEventListener('click', removePin);
+          wrap.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); removePin(e); }
           });
           el.appendChild(wrap);
         }
@@ -676,7 +684,7 @@
       return true;
     });
     grid.innerHTML = filtered.map(p => `
-      <div class="pin-item" data-pin="${p.id}" draggable="false">
+      <div class="pin-item" data-pin="${p.id}" draggable="false" role="img" aria-label="${p.label} pin">
         ${renderPinVisual(p, state.finish, 38)}
         <div class="label">${p.label}</div>
       </div>
