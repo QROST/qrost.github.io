@@ -124,17 +124,12 @@
         'dash.intl_title': '国际对标提示',
         'dash.intl_body': '您选择的是大中华区以外的国际城市。薪酬与本地办公成本以<strong>美元</strong>为锚，再按与图表相同的美元/人民币汇率折算为人民币以便比较。雇主法定负担为规划百分比——非大陆五险一金。',
 
-        'dash.macro': '年度宏观对比：',
-        'dash.macro.sub': '名员工。',
         'dash.macro.cost_base': '年度总成本（底薪 + 雇主缴费）',
         'dash.macro.cost_oh': '年度总成本（底薪 + 雇主缴费 + 模拟间接成本）',
 
-        'dash.micro': '年度细分：',
         'dash.micro.sub1': '年度构成：用工 + 间接成本（租金、设备、公用事业、软件）',
-        'dash.micro.sub2': '年度底薪与雇主“五险一金”',
+        'dash.micro.sub2': '年度底薪与雇主”五险一金”',
         'dash.micro.intl_sub2': '年度底薪与本地雇主法定负担',
-        'dash.micro.intl_sub2': '年度底薪与本地雇主法定负担',
-        'dash.total_row': '年度总成本',
 
         'dash.sar_title': '特别行政区法律结构提示',
         'dash.sar_body': '您选择的是特别行政区。底薪通常更高，但雇主法定薪酬缴费按<strong>强积金</strong>（香港，有上限）或<strong>FSS 定额</strong>（澳门）建模——非大陆五险一金。<strong>港澳公司不能直接雇佣在大陆工作的员工，也不能开具大陆增值税发票（数电票）</strong>；在大陆 payroll 与开票须通过大陆外商独资/合资等主体。图表数值仅为人民币/美元等价比较。',

@@ -660,10 +660,16 @@ document.addEventListener('DOMContentLoaded', () => {
                     </div>
                 `;
 
-                document.getElementById('micro-detail-list').innerHTML = listHTML;
+                const microDetailList = document.getElementById('micro-detail-list');
+                if (microDetailList) {
+                    microDetailList.innerHTML = listHTML;
+                }
 
                 // Update Text Elements
-                document.getElementById('macro-title-role').textContent = state.role === 'junior' ? tr('role.junior_short', 'Junior CAD') : tr('role.senior_short', 'Senior Modeler');
+                const macroTitleRole = document.getElementById('macro-title-role');
+                if (macroTitleRole) {
+                    macroTitleRole.textContent = state.role === 'junior' ? tr('role.junior_short', 'Junior CAD') : tr('role.senior_short', 'Senior Modeler');
+                }
                 document.getElementById('micro-title-city').textContent = cityDisplayName(state.city);
                 // Keep the city-select dropdown's value in sync with state.city so
                 // bar-chart clicks visibly drive the dropdown too. We don't rebuild
@@ -692,7 +698,10 @@ document.addEventListener('DOMContentLoaded', () => {
                         pctEl.textContent = (effectiveContribPct(state.city, baseRMB) * 100).toFixed(0) + '%';
                     }
                 }
-                document.getElementById('hc-display').textContent = state.headcount;
+                const hcDisplay = document.getElementById('hc-display');
+                if (hcDisplay) {
+                    hcDisplay.textContent = state.headcount;
+                }
 
                 // Handle SAR / international alerts
                 const alertBox = document.getElementById('sar-alert');
@@ -1106,16 +1115,22 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             }
 
-            document.getElementById('btn-overhead-exclude').addEventListener('click', () => {
-                state.includeOverhead = false;
-                syncOverheadToggleUI();
-                updateVisuals();
-            });
-            document.getElementById('btn-overhead-include').addEventListener('click', () => {
-                state.includeOverhead = true;
-                syncOverheadToggleUI();
-                updateVisuals();
-            });
+            const btnOverheadExclude = document.getElementById('btn-overhead-exclude');
+            if (btnOverheadExclude) {
+                btnOverheadExclude.addEventListener('click', () => {
+                    state.includeOverhead = false;
+                    syncOverheadToggleUI();
+                    updateVisuals();
+                });
+            }
+            const btnOverheadInclude = document.getElementById('btn-overhead-include');
+            if (btnOverheadInclude) {
+                btnOverheadInclude.addEventListener('click', () => {
+                    state.includeOverhead = true;
+                    syncOverheadToggleUI();
+                    updateVisuals();
+                });
+            }
             syncOverheadToggleUI();
 
             function syncInternationalToggleUI() {

@@ -123,3 +123,22 @@ Index.html size: previously ~130 KB / 1460 lines → now ~61 KB / 760 lines. JSO
 - [ ] Phase 4 — switch to Domestic tab: 10 cards visible, numbers 1–10.
 - [ ] Phase 4 — toggle language while on each tab: every title + every detail body switches; money cells switch; SAR brief switches.
 - [ ] Phase 4 — DevTools Network → 404 one of the JSON files: that mount shows the amber inline notice, but the other tab + dashboard + i18n all work normally.
+
+## Phase 5 — Sino-foreign JV (Joint Venture) tab
+
+Adds a third entity-type tab alongside WFOE and Domestic LLC, targeting mainland Sino-foreign JV / FIE LLC structures (中外合资·外商投资有限责任公司):
+
+- **Data** — `assets/data/joint-venture-steps.json` (12 entries). Extracted from the same JSON protocol as WFOE and domestic steps; includes JV-specific milestones (partner due diligence, JV agreement + Articles, negative-list compliance, dual-language governance).
+- **Renderer** — existing `assets/js/steps-render.js` reused; adds JV mount point `<div id="jv-steps-mount">` alongside WFOE and domestic.
+- **Money formatter** — `buildJvStepMoneyHtml`, `refreshJvMoney` (parallel to `buildWfoeMoney`, `refreshDomesticFees`). JV steps carry higher legal counsel fees (~100K–300K CNY range for partner negotiation + dual filings).
+- **i18n** — new keys for `process.tab_jv`, `process.jv_intro`, `process.fee_note_jv`, entity-comparison columns (`entity.col_jv`, `entity.jv_vehicle`, `entity.jv_own`, `entity.jv_hire`, `entity.jv_fp`, `entity.jv_time`, `entity.jv_cap`). All keys exist in both EN and ZH dictionaries.
+- **Event hook** — renderer fires `china-biz-steps-rendered` after JV cards mount; `refreshJvMoney` is triggered at the same time as `refreshWfoeMoney` and `refreshDomesticFees`.
+
+Behavioural contract: Same as Phase 4 (mount point structure, null-fallback, i18n + money refresh on render).
+
+Extended manual smoke checklist:
+- [ ] JV tab is visible and labeled correctly in both EN and ZH.
+- [ ] JV tab shows 12 step cards (steps jv01–jv12) with correct numbering.
+- [ ] City select updates JV money cells; bar chart click on another city updates JV estimates.
+- [ ] Language toggle switches all JV titles + details + money header correctly.
+- [ ] DevTools Network → 404 `joint-venture-steps.json`: that mount shows the amber notice, but WFOE/Domestic tabs remain functional.
