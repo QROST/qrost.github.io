@@ -11,7 +11,7 @@
   --border-strong: #d6cdbd;
   --text: #2a2620;
   --text-muted: #6b6256;
-  --text-faint: #a59a88;
+  --text-faint: #75695a;      /* WCAG AA: >=4.5:1 on --bg-surface and --bg-elev */
   --accent: #e08a3c;          /* ginger */
   --accent-strong: #c06a1f;
   --accent-soft: rgba(224, 138, 60, 0.12);
@@ -35,7 +35,7 @@ html.dark {
   --border-strong: #463f32;
   --text: #f3eee4;
   --text-muted: #c2b8a6;
-  --text-faint: #8a8070;
+  --text-faint: #968c7a;      /* WCAG AA: >=4.5:1 on --bg-surface and --bg-elev */
   --accent: #f0a35a;
   --accent-strong: #f6b977;
   --accent-soft: rgba(240, 163, 90, 0.16);

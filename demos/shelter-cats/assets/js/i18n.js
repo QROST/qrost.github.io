@@ -21,6 +21,7 @@
       searchPh: '搜索名字 / 品种 / 收容所…', sortNewest: '最新收录', sortName: '名字', sortAge: '年龄',
       anyColor: '全部颜色', anyPattern: '全部花纹', anyCoat: '全部毛长', anyAge: '全部年龄', anySex: '全部性别', anyRegion: '全部地区',
       includeAdopted: '包含已领养/下架',
+      ariaSort: '排序方式', mClose: '关闭',
       aboutTitle: '关于与数据来源', aboutSummary: '数据范围、安全抓取与归属说明',
       mGen: '像素形象', mGenNote: '由这只猫的真实属性（颜色/花纹/毛长/体型）确定性生成，纯前端无 AI。第二期将由 AIGC/CV 升级。',
       mPersona: '性格预览', mGood: '可能的好习惯', mQuirk: '可能的小毛病',
@@ -46,6 +47,7 @@
       searchPh: 'Search name / breed / shelter…', sortNewest: 'Newest', sortName: 'Name', sortAge: 'Age',
       anyColor: 'Any color', anyPattern: 'Any pattern', anyCoat: 'Any coat', anyAge: 'Any age', anySex: 'Any sex', anyRegion: 'Any region',
       includeAdopted: 'Include adopted/removed',
+      ariaSort: 'Sort by', mClose: 'Close',
       aboutTitle: 'About & data sources', aboutSummary: 'Coverage, polite fetching & attribution',
       mGen: 'Pixel avatar', mGenNote: 'Deterministically generated from this cat’s real attributes (color/pattern/coat/size) — pure front-end, no AI. Phase 2 upgrades this with AIGC/CV.',
       mPersona: 'Personality preview', mGood: 'Likely good habits', mQuirk: 'Possible quirks',
@@ -91,6 +93,9 @@
     });
     document.querySelectorAll('[data-i18n-ph]').forEach(function (el) {
       var v = I.t(el.getAttribute('data-i18n-ph')); if (v != null) el.setAttribute('placeholder', v);
+    });
+    document.querySelectorAll('[data-i18n-aria]').forEach(function (el) {
+      var v = I.t(el.getAttribute('data-i18n-aria')); if (v != null) el.setAttribute('aria-label', v);
     });
     var lt = document.getElementById('lang-toggle');
     if (lt) lt.textContent = (lang === 'en') ? '中' : 'EN';
