@@ -19,6 +19,17 @@
     <meta name="twitter:title" content="哪里既宜居又便宜 · 小城市住房宜居度可视化">
     <meta name="twitter:description" content="249 套小城市二手房样本，价格 × 宜居（气候/海拔/基础设施/灾害风险）横向对比，覆盖 26 省。">
 
+    <!-- Theme color for mobile browser chrome -->
+    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#0f172a" media="(prefers-color-scheme: dark)">
+
+    <!-- Preconnect/dns-prefetch for external CDN origins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdn.tailwindcss.com">
+    <link rel="preconnect" href="https://cdn.jsdelivr.net">
+    <link rel="preconnect" href="https://unpkg.com">
+
     <!-- ① Dark-mode: prevent FOUC by reading localStorage BEFORE first paint -->
     <script>
       (function () {
@@ -314,7 +325,7 @@
 
     <header class="py-14 md:py-20 border-b border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 transition-colors duration-300">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <p id="hero-eyebrow" class="text-xs font-medium uppercase tracking-[0.2em] text-slate-400 dark:text-slate-500 mb-4">Data · 宜居 × 便宜</p>
+            <p id="hero-eyebrow" class="text-xs font-medium uppercase tracking-[0.2em] text-slate-500 dark:text-slate-500 mb-4">Data · 宜居 × 便宜</p>
             <h1 id="hero-title" class="text-3xl md:text-[2.6rem] font-semibold tracking-tight text-slate-900 dark:text-slate-50 leading-tight max-w-3xl">
                 哪里既<span class="text-emerald-700 dark:text-emerald-400">宜居</span>，又<span class="text-emerald-700 dark:text-emerald-400">便宜</span>？
             </h1>
@@ -350,7 +361,7 @@
 
         <!-- Geo: full-width zoomable overlay map -->
         <section id="geo" class="scroll-mt-20">
-            <h2 id="sec-geo-h" class="text-xs font-semibold uppercase tracking-[0.15em] text-slate-400 dark:text-slate-500 mb-1">宜居地图 · Livability overlay
+            <h2 id="sec-geo-h" class="text-xs font-semibold uppercase tracking-[0.15em] text-slate-500 dark:text-slate-500 mb-1">宜居地图 · Livability overlay
             </h2>
             <p id="sec-geo-p" class="text-slate-600 dark:text-slate-400 mb-5 max-w-3xl text-sm leading-relaxed">每个圆点是一套房，<strong class="text-slate-800 dark:text-slate-200">越大
                     = 越便宜</strong>，颜色按<strong class="text-emerald-700 dark:text-emerald-400">点·叠加维度</strong>变化（单价 / 总价 / 年温差 / 冬夏等温 / 年降水 / 海拔 /
@@ -359,7 +370,7 @@
                     +−</strong> 缩放、拖动平移；点击圆点看卫星图 / 周边 / 气候与灾害。</p>
             <div class="rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 p-4 md:p-6 transition-colors duration-300">
                 <div class="flex flex-wrap items-center gap-2 mb-3">
-                    <span id="dim-overlay-label" class="text-xs font-medium text-slate-400 dark:text-slate-500 mr-1 self-center">点·叠加维度</span>
+                    <span id="dim-overlay-label" class="text-xs font-medium text-slate-500 dark:text-slate-500 mr-1 self-center">点·叠加维度</span>
                     <button data-dim="unitPrice" class="dim-tab"></button>
                     <button data-dim="priceWan" class="dim-tab"></button>
                     <button data-dim="tempRange" class="dim-tab"></button>
@@ -370,9 +381,9 @@
                     <button data-dim="hazardFreq" class="dim-tab"></button>
                     <button data-dim="builtAge" class="dim-tab"></button>
                 </div>
-                <p id="map-dim-note" class="hidden text-[0.7rem] text-slate-400 dark:text-slate-500 mb-2 -mt-1"></p>
+                <p id="map-dim-note" class="hidden text-[0.7rem] text-slate-500 dark:text-slate-500 mb-2 -mt-1"></p>
                 <div class="flex flex-wrap items-center gap-2 mb-4">
-                    <span id="base-overlay-label" class="text-xs font-medium text-slate-400 dark:text-slate-500 mr-1 self-center">连续底图</span>
+                    <span id="base-overlay-label" class="text-xs font-medium text-slate-500 dark:text-slate-500 mr-1 self-center">连续底图</span>
                     <button data-base="janTemp" class="base-tab"></button>
                     <button data-base="julTemp" class="base-tab"></button>
                     <button data-base="elevation" class="base-tab"></button>
@@ -400,7 +411,7 @@
 
         <!-- Rankings -->
         <section id="rankings" class="scroll-mt-20">
-            <h2 id="sec-rankings-h" class="text-xs font-semibold uppercase tracking-[0.15em] text-slate-400 dark:text-slate-500 mb-1">排行 · Top 50</h2>
+            <h2 id="sec-rankings-h" class="text-xs font-semibold uppercase tracking-[0.15em] text-slate-500 dark:text-slate-500 mb-1">排行 · Top 50</h2>
             <p id="sec-rankings-p" class="text-slate-600 dark:text-slate-400 mb-4 max-w-2xl text-sm leading-relaxed">切换不同口径看极值——总价 /
                 单价最低、舒适日最多、极端日最多，也保留了租金回报口径。</p>
             <div class="flex flex-wrap gap-2 mb-3">
@@ -414,31 +425,31 @@
             </div>
             <p id="rank-climate-note" class="hidden mb-4 max-w-3xl text-sm leading-relaxed text-slate-600 dark:text-slate-400 border-l-2 border-emerald-500/40 pl-3"></p>
             <div class="rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 p-4 md:p-6 transition-colors duration-300">
-                <div class="relative" style="height: 520px;"><canvas id="rank-chart"></canvas></div>
+                <div class="relative" style="height: 520px;"><canvas id="rank-chart" aria-label="排行榜柱状图：按当前口径排序的前50套房源"></canvas></div>
             </div>
         </section>
 
         <!-- Overview / scatter -->
         <section id="overview" class="scroll-mt-20">
-            <h2 id="sec-overview-h" class="text-xs font-semibold uppercase tracking-[0.15em] text-slate-400 dark:text-slate-500 mb-1">便宜 × 宜居 · Cheap ↔ Livable
+            <h2 id="sec-overview-h" class="text-xs font-semibold uppercase tracking-[0.15em] text-slate-500 dark:text-slate-500 mb-1">便宜 × 宜居 · Cheap ↔ Livable
             </h2>
             <p id="sec-overview-p" class="text-slate-600 dark:text-slate-400 mb-6 max-w-2xl text-sm leading-relaxed">每个点是一套房：横轴<strong
                     class="text-slate-800 dark:text-slate-200">总价（越左越便宜）</strong>、纵轴<strong class="text-slate-800 dark:text-slate-200">舒适天数（日最低≥8℃且日最高≤26℃；悬停看具体日期范围，越上越多）</strong>，<strong class="text-indigo-700 dark:text-indigo-400">颜色越蓝 = 年温差越大（四季越分明）</strong>、越青 = 全年越平稳。<strong
                     class="text-slate-800 dark:text-slate-200">左上角</strong>那批既便宜、舒适日又多的房子，正是这份清单想帮你找到的。</p>
             <div class="rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 p-4 md:p-6 transition-colors duration-300">
-                <div class="relative" style="height: 440px;"><canvas id="scatter-chart"></canvas></div>
+                <div class="relative" style="height: 440px;"><canvas id="scatter-chart" aria-label="散点图：总价 vs 舒适天数，点的颜色表示年温差"></canvas></div>
             </div>
         </section>
 
         <!-- Table -->
         <section id="table" class="scroll-mt-20">
-            <h2 id="sec-table-h" class="text-xs font-semibold uppercase tracking-[0.15em] text-slate-400 dark:text-slate-500 mb-1">数据表 · 总信息源</h2>
+            <h2 id="sec-table-h" class="text-xs font-semibold uppercase tracking-[0.15em] text-slate-500 dark:text-slate-500 mb-1">数据表 · 总信息源</h2>
             <p id="sec-table-p" class="text-slate-600 dark:text-slate-400 mb-5 max-w-3xl text-sm leading-relaxed">这张表是<strong
                     class="text-slate-800 dark:text-slate-200">一切图表与地图的来源</strong>——价格、宜居（气温 / 降水 / 海拔 /
                 舒适日 / 极端日、气温 / 降水 / 海拔）、基础设施距离、在地灾害风险全部并列，便于横向对比。点击表头排序，用下方按钮切换<strong
                     class="text-emerald-700 dark:text-emerald-400">列分组</strong>，按省份筛选或搜索。所有派生指标实时计算。</p>
             <div class="flex flex-wrap items-center gap-2 mb-3">
-                <span id="show-cols-label" class="text-xs font-medium text-slate-400 dark:text-slate-500 mr-1 self-center">显示列</span>
+                <span id="show-cols-label" class="text-xs font-medium text-slate-500 dark:text-slate-500 mr-1 self-center">显示列</span>
                 <button data-group="live" class="group-chip">宜居</button>
                 <button data-group="infra" class="group-chip">基础设施</button>
                 <button data-group="risk" class="group-chip">灾害风险</button>
@@ -446,7 +457,7 @@
             </div>
             <!-- Row filters (AND-combined, thresholds in the labels; indigo ≠ emerald column-group chips) -->
             <div class="flex flex-wrap items-center gap-2 mb-3">
-                <span id="filter-chips-label" class="text-xs font-medium text-slate-400 dark:text-slate-500 mr-1 self-center">条件筛选</span>
+                <span id="filter-chips-label" class="text-xs font-medium text-slate-500 dark:text-slate-500 mr-1 self-center">条件筛选</span>
                 <button data-filter="budget30" class="filter-chip"></button>
                 <button data-filter="unit5000" class="filter-chip"></button>
                 <button data-filter="age20" class="filter-chip"></button>
@@ -467,7 +478,7 @@
                     class="sm:hidden text-sm border border-slate-200 dark:border-slate-600 rounded-lg px-3 py-2 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 focus:outline-none focus:ring-2 focus:ring-emerald-500/40 transition-colors duration-200"></select>
                 <input id="table-search" type="search" placeholder="搜索省 / 城市 / 区 / 小区…"
                     class="text-sm border border-slate-200 dark:border-slate-600 rounded-lg px-3 py-2 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 placeholder-slate-400 dark:placeholder-slate-500 flex-grow focus:outline-none focus:ring-2 focus:ring-emerald-500/40 transition-colors duration-200" />
-                <span id="table-count" class="text-xs text-slate-400 dark:text-slate-500 tabular-nums whitespace-nowrap"></span>
+                <span id="table-count" class="text-xs text-slate-500 dark:text-slate-500 tabular-nums whitespace-nowrap"></span>
                 <button id="csv-export"
                     class="text-xs font-medium text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-600 rounded-lg px-3 py-2 bg-white dark:bg-slate-800 hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors whitespace-nowrap">导出
                     CSV</button>
@@ -495,30 +506,30 @@
                     <button data-prov="avgPrecip" class="prov-tab"></button>
                     <button data-prov="avgHazard" class="prov-tab"></button>
                 </div>
-                <div id="province-chart-wrap" class="relative" style="height: 420px;"><canvas id="province-chart"></canvas></div>
+                <div id="province-chart-wrap" class="relative" style="height: 420px;"><canvas id="province-chart" aria-label="各省对比柱状图：显示各省按选定维度的平均值"></canvas></div>
             </div>
         </section>
 
         <!-- Match quiz: weighted scoring over already-baked dims, all client-side -->
         <section id="quiz" class="scroll-mt-20">
-            <h2 id="sec-quiz-h" class="text-xs font-semibold uppercase tracking-[0.15em] text-slate-400 dark:text-slate-500 mb-1">找城测验 · Match quiz</h2>
+            <h2 id="sec-quiz-h" class="text-xs font-semibold uppercase tracking-[0.15em] text-slate-500 dark:text-slate-500 mb-1">找城测验 · Match quiz</h2>
             <p id="sec-quiz-p" class="text-slate-600 dark:text-slate-400 mb-5 max-w-3xl text-sm leading-relaxed">回答几个偏好，按<strong class="text-slate-800 dark:text-slate-200">公开权重</strong>给所有可见房源实时打分。彩条显示每个维度对得分的贡献——<strong class="text-slate-800 dark:text-slate-200">为什么匹配，一眼可查</strong>；权重与公式见卡片底部。</p>
             <div class="rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 p-4 md:p-6 space-y-4 transition-colors duration-300">
                 <div class="grid grid-cols-2 lg:grid-cols-4 gap-3">
                     <label class="block">
-                        <span id="qz-budget-label" class="block text-xs font-medium text-slate-400 dark:text-slate-500 mb-1">预算上限（总价）</span>
+                        <span id="qz-budget-label" class="block text-xs font-medium text-slate-500 dark:text-slate-500 mb-1">预算上限（总价）</span>
                         <select id="qz-budget" class="qz-select w-full text-sm border border-slate-200 dark:border-slate-600 rounded-lg px-2.5 py-2 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 focus:outline-none focus:ring-2 focus:ring-emerald-500/40"></select>
                     </label>
                     <label class="block">
-                        <span id="qz-winter-label" class="block text-xs font-medium text-slate-400 dark:text-slate-500 mb-1">冬天怕冷？</span>
+                        <span id="qz-winter-label" class="block text-xs font-medium text-slate-500 dark:text-slate-500 mb-1">冬天怕冷？</span>
                         <select id="qz-winter" class="qz-select w-full text-sm border border-slate-200 dark:border-slate-600 rounded-lg px-2.5 py-2 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 focus:outline-none focus:ring-2 focus:ring-emerald-500/40"></select>
                     </label>
                     <label class="block">
-                        <span id="qz-summer-label" class="block text-xs font-medium text-slate-400 dark:text-slate-500 mb-1">夏天怕热？</span>
+                        <span id="qz-summer-label" class="block text-xs font-medium text-slate-500 dark:text-slate-500 mb-1">夏天怕热？</span>
                         <select id="qz-summer" class="qz-select w-full text-sm border border-slate-200 dark:border-slate-600 rounded-lg px-2.5 py-2 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 focus:outline-none focus:ring-2 focus:ring-emerald-500/40"></select>
                     </label>
                     <label class="block">
-                        <span id="qz-hazard-label" class="block text-xs font-medium text-slate-400 dark:text-slate-500 mb-1">灾害容忍度</span>
+                        <span id="qz-hazard-label" class="block text-xs font-medium text-slate-500 dark:text-slate-500 mb-1">灾害容忍度</span>
                         <select id="qz-hazard" class="qz-select w-full text-sm border border-slate-200 dark:border-slate-600 rounded-lg px-2.5 py-2 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 focus:outline-none focus:ring-2 focus:ring-emerald-500/40"></select>
                     </label>
                 </div>
@@ -538,13 +549,13 @@
                         class="text-sm border border-slate-200 dark:border-slate-600 rounded-lg px-3 py-2 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 placeholder-slate-400 dark:placeholder-slate-500 w-44 focus:outline-none focus:ring-2 focus:ring-emerald-500/40" />
                     <span id="qz-rent-out" class="text-xs text-slate-500 dark:text-slate-400"></span>
                 </div>
-                <p id="qz-formula" class="text-[0.7rem] leading-relaxed text-slate-400 dark:text-slate-500"></p>
+                <p id="qz-formula" class="text-[0.7rem] leading-relaxed text-slate-500 dark:text-slate-500"></p>
             </div>
         </section>
 
         <!-- National + city home-buying policy -->
         <section id="policy" class="scroll-mt-20">
-            <h2 id="sec-policy-h" class="text-xs font-semibold uppercase tracking-[0.15em] text-slate-400 dark:text-slate-500 mb-1">购房政策 · Buying policy</h2>
+            <h2 id="sec-policy-h" class="text-xs font-semibold uppercase tracking-[0.15em] text-slate-500 dark:text-slate-500 mb-1">购房政策 · Buying policy</h2>
             <p id="sec-policy-p" class="text-slate-600 dark:text-slate-400 mb-5 max-w-3xl text-sm leading-relaxed">先看<strong class="text-slate-800 dark:text-slate-200">全国通行规则</strong>（利率 / 首付 / 契税 / 认房不认贷 / 户籍改革），再点任意房源的「政策」页看<strong class="text-slate-800 dark:text-slate-200">该市限购·落户·补贴</strong>与<strong class="text-slate-800 dark:text-slate-200">能买→划算→落户→宜居→交付</strong>决策漏斗。每条政策附<strong class="text-slate-800 dark:text-slate-200">来源·时点·置信度</strong>。</p>
             <div class="flex flex-wrap items-center gap-2 mb-4">
                 <button data-pp-tab="national" class="pp-tab"></button>
@@ -553,7 +564,7 @@
             <div data-pp-pane="national" class="rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 p-4 md:p-6 transition-colors duration-300">
                 <div class="flex flex-wrap items-baseline justify-between gap-2 mb-4">
                     <span id="np-title" class="text-sm font-medium text-slate-700 dark:text-slate-300">全国通行政策（截至快照时点）</span>
-                    <span id="np-asof" class="text-xs text-slate-400 dark:text-slate-500 tabular-nums"></span>
+                    <span id="np-asof" class="text-xs text-slate-500 dark:text-slate-500 tabular-nums"></span>
                 </div>
                 <div id="national-policy-grid" class="grid grid-cols-1 md:grid-cols-2 gap-3"></div>
                 <p id="np-disclaimer" class="mt-4 text-xs text-amber-600/90 dark:text-amber-400/90 leading-relaxed"></p>
@@ -571,7 +582,7 @@
         <!-- Methodology (collapsed by default) -->
         <section id="methodology" class="scroll-mt-20">
             <details class="methodology-details rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 transition-colors duration-300">
-                <summary id="methodology-summary" class="px-5 py-4 text-xs font-semibold uppercase tracking-[0.15em] text-slate-400 dark:text-slate-500">
+                <summary id="methodology-summary" class="px-5 py-4 text-xs font-semibold uppercase tracking-[0.15em] text-slate-500 dark:text-slate-500">
                     说明 · Methodology
                 </summary>
                 <div class="px-5 pb-5 pt-0 space-y-5 border-t border-slate-100 dark:border-slate-700/80">
@@ -720,7 +731,7 @@
                         <button id="cmp-clear"
                             class="text-xs font-medium border border-slate-200 dark:border-slate-600 rounded-lg px-2.5 py-1.5 bg-white dark:bg-slate-700 text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-600 transition-colors"></button>
                         <button id="cmp-close" aria-label="关闭"
-                            class="shrink-0 text-slate-400 dark:text-slate-500 hover:text-slate-900 dark:hover:text-slate-100 text-3xl leading-none -mt-1 transition-colors">×</button>
+                            class="shrink-0 text-slate-500 dark:text-slate-500 hover:text-slate-900 dark:hover:text-slate-100 text-3xl leading-none -mt-1 transition-colors">×</button>
                     </div>
                 </div>
                 <div id="cmp-body" class="flex-grow overflow-auto p-4 text-sm"></div>
@@ -745,7 +756,7 @@
                         <button id="lm-share"
                             class="text-xs font-medium border border-slate-200 dark:border-slate-600 rounded-lg px-2.5 py-1.5 bg-white dark:bg-slate-700 text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-600 transition-colors whitespace-nowrap"></button>
                         <button id="lm-close" aria-label="关闭"
-                            class="shrink-0 text-slate-400 dark:text-slate-500 hover:text-slate-900 dark:hover:text-slate-100 text-3xl leading-none -mt-1 transition-colors">×</button>
+                            class="shrink-0 text-slate-500 dark:text-slate-500 hover:text-slate-900 dark:hover:text-slate-100 text-3xl leading-none -mt-1 transition-colors">×</button>
                     </div>
                 </div>
                 <!-- 一楼盘多价格挂牌 (同坐标多套在售) — populated from window.HOUSING_OFFERS by app.js -->
@@ -760,20 +771,20 @@
                     <div data-lm-pane="sat">
                         <div id="lm-sat-map" class="rounded-lg overflow-hidden border border-slate-200 dark:border-slate-700"
                             style="height:58vh;min-height:320px"></div>
-                        <p id="lm-sat-note" class="mt-2 text-xs text-slate-400 dark:text-slate-500">卫星影像 © Esri World Imagery。定位精度见上方标注。</p>
+                        <p id="lm-sat-note" class="mt-2 text-xs text-slate-500 dark:text-slate-500">卫星影像 © Esri World Imagery。定位精度见上方标注。</p>
                     </div>
                     <div data-lm-pane="near" class="hidden">
                         <div id="lm-near-map" class="rounded-lg overflow-hidden border border-slate-200 dark:border-slate-700 mb-3"
                             style="height:44vh;min-height:300px"></div>
                         <div id="lm-near-list" class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-sm"></div>
-                        <p id="lm-near-note" class="mt-2 text-xs text-slate-400 dark:text-slate-500">周边设施来自 OpenStreetMap（小城/县城覆盖可能不全）；机场/海岸线为离线计算。</p>
+                        <p id="lm-near-note" class="mt-2 text-xs text-slate-500 dark:text-slate-500">周边设施来自 OpenStreetMap（小城/县城覆盖可能不全）；机场/海岸线为离线计算。</p>
                     </div>
                     <div data-lm-pane="climate" class="hidden">
                         <!-- hard facts first (贝壳 ordering): grades / 值得看 / summary / money / temp bands -->
                         <div id="lm-facts" class="mb-4 space-y-2 text-sm"></div>
-                        <div class="relative" style="height:300px"><canvas id="lm-climate-chart"></canvas></div>
+                        <div class="relative" style="height:300px"><canvas id="lm-climate-chart" aria-label="该房源全年气温曲线：绿段为舒适日，红段为极端日"></canvas></div>
                         <div id="lm-risk" class="mt-4 text-sm text-slate-600 dark:text-slate-400 leading-relaxed"></div>
-                        <p id="lm-climate-note" class="mt-2 text-xs text-slate-400 dark:text-slate-500">气候为 2014–2023 月度均值（Open-Meteo
+                        <p id="lm-climate-note" class="mt-2 text-xs text-slate-500 dark:text-slate-500">气候为 2014–2023 月度均值（Open-Meteo
                             ERA5）；灾害类型据地市灾情史、频率按坐标物理细化到小区，仍为粗略近似、非工程依据。</p>
                     </div>
                     <div data-lm-pane="policy" class="hidden">
@@ -790,7 +801,7 @@
     </div>
 
     <footer class="mt-auto border-t border-slate-200 dark:border-slate-800 py-8 bg-white dark:bg-slate-900 transition-colors duration-300">
-        <div class="max-w-6xl mx-auto px-4 text-center text-slate-400 dark:text-slate-500 text-xs space-y-2">
+        <div class="max-w-6xl mx-auto px-4 text-center text-slate-500 dark:text-slate-500 text-xs space-y-2">
             <p id="page-built-at" class="tabular-nums">网页更新于 …</p>
             <p id="footer-thanks">数据来源 · 致谢：感谢 <strong class="font-medium text-slate-500 dark:text-slate-400">小红书 @FIRE规划师</strong>、<strong class="font-medium text-slate-500 dark:text-slate-400">小红书 @包子全是水</strong> 提供的原始信息与样本线索；后续扩充与全部宜居 enrich 由
                 QROST 独立调研整理，建成年代等附可核查来源（点击表格行查看）。</p>
