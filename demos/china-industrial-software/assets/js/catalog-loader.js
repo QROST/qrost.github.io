@@ -7,7 +7,7 @@
   const BASE = 'assets/data/';
   // Cache-bust the data shards (manifest, vendors, category JSON, etc.) so that
   // returning visitors pick up data changes. Bump on any data-file edit.
-  const DATA_VERSION = '20260614f';
+  const DATA_VERSION = '20260702a';
   let manifest = null;
   let vendors = null;
   let kernels = null;
@@ -132,8 +132,11 @@
   }
 
   async function initCore() {
+    // benchmark-pairs.json is intentionally NOT fetched eagerly here: it has no
+    // UI consumer yet (see loadBenchmarkPairs below). Call it lazily if/when a
+    // feature needs it, to avoid an unconditional extra 12KB round-trip on every load.
     await Promise.all([
-      loadManifest(), loadVendors(), loadKernels(), loadMarketStats(), loadPolicies(), loadBenchmarkPairs(),
+      loadManifest(), loadVendors(), loadKernels(), loadMarketStats(), loadPolicies(),
     ]);
     await loadAllProducts();
   }

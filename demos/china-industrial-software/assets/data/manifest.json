@@ -12,10 +12,7 @@
     "open-source": 11,
     "platform": 26,
     "plm": 18,
-    "slicers": 16,
-    "tongyuan-mworks-deep": 0,
-    "tongyuan-mworks-fetch": 0,
-    "tongyuan-mworks-hunt": 0
+    "slicers": 16
   },
   "category_l1_counts": {
     "研发设计": 208,
@@ -125,21 +122,6 @@
       "id": "slicers",
       "file": "categories/slicers.json",
       "count": 16
-    },
-    {
-      "id": "tongyuan-mworks-deep",
-      "file": "categories/tongyuan-mworks-deep.json",
-      "count": 0
-    },
-    {
-      "id": "tongyuan-mworks-fetch",
-      "file": "categories/tongyuan-mworks-fetch.json",
-      "count": 0
-    },
-    {
-      "id": "tongyuan-mworks-hunt",
-      "file": "categories/tongyuan-mworks-hunt.json",
-      "count": 0
     }
   ]
 }
