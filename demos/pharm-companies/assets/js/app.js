@@ -413,7 +413,7 @@
     GROUPS_GRAPH.render($('groups-graph'), {
       companies: D.companies, groups: D.groups, isEn: I18N.isEn(),
       filterGroupId: state.groupsFilter || '',
-      getCompany: D.getCompany, getGroup: D.getGroup,
+      getCompany: D.getCompany, getGroup: D.getGroup, i18n: I18N,
       onNodeClick: function (id) { modalTab = 'tabSummary'; openCompanyModal(id); }
     });
   }
@@ -617,7 +617,6 @@
       var b = e.target.closest('button[data-tab]'); if (!b) return;
       modalTab = b.getAttribute('data-tab');
       $('company-modal-tabs').querySelectorAll('button').forEach(function (x) { x.classList.toggle('active', x === b); });
-      var head = $('company-modal-head').querySelector('h3'); // current company id via re-find
       renderModalBodyFromOpen();
     });
     $('company-modal-body').addEventListener('click', function (e) {

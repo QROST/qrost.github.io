@@ -16,6 +16,7 @@
     var filter = opts.filterGroupId || '';
     var label = function (c) { return isEn ? (c.name_en || c.id) : (c.name_zh || c.name_en || c.id); };
     var gname = function (g) { return isEn ? (g.name_en || g.id) : (g.name_zh || g.name_en || g.id); };
+    var groupRoleLabel = function (r) { return opts.i18n ? opts.i18n.enumLabel('group_role', r) : r; };
 
     var members = companies.filter(function (c) { return c.group_id && (!filter || c.group_id === filter); });
     var idset = {}; members.forEach(function (c) { idset[c.id] = 1; });
@@ -44,7 +45,7 @@
           var g = (opts.getGroup && opts.getGroup(c.group_id)) || {};
           var pc = c.parent_id && opts.getCompany ? opts.getCompany(c.parent_id) : null;
           return '<b>' + p.name + '</b><br>' + (isEn ? (g.name_en || '') : (g.name_zh || '')) +
-            (c.group_role ? '<br><span style="opacity:.7">' + c.group_role + '</span>' : '') +
+            (c.group_role ? '<br><span style="opacity:.7">' + groupRoleLabel(c.group_role) + '</span>' : '') +
             (pc ? '<br>↑ ' + (isEn ? (pc.name_en || pc.id) : (pc.name_zh || pc.id)) : '');
         }
       },
