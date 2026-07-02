@@ -73,6 +73,14 @@ body { color: var(--text); font-family: Inter, system-ui, sans-serif; }
   white-space: nowrap; transition: background .15s, color .15s;
 }
 .nav-link:hover { background: var(--bg-elev); color: var(--text); }
+/* Edge-fade cue: signals the nav row is horizontally scrollable when it
+   overflows (most section links are off-screen on narrow viewports and
+   the native scrollbar is hidden via .no-scrollbar). Fades the row's own
+   right edge instead of adding an overlay element. */
+.nav-scroll {
+  -webkit-mask-image: linear-gradient(to right, #000 calc(100% - 1.5rem), transparent 100%);
+  mask-image: linear-gradient(to right, #000 calc(100% - 1.5rem), transparent 100%);
+}
 .btn-ghost {
   padding: 0.35rem 0.7rem; border-radius: 0.5rem; font-size: 0.8rem;
   border: 1px solid var(--border); color: var(--text-muted); background: transparent;
