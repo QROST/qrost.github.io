@@ -588,6 +588,7 @@ window.renderTopbar = (active) => {
   const tb = document.querySelector('[data-topbar]');
   if (!tb) return;
   tb.innerHTML = `
+    <a class="site-badge" href="../../index.html" title="Back to qrost.github.io">QROST</a>
     <a class="logo" href="index.html">Makoauto</a>
     <nav>
       <a href="index.html" ${active==='home'?'class="active"':''} data-i18n="nav_home">Home</a>

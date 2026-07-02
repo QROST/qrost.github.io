@@ -238,6 +238,8 @@ h1,h2,h3,h4 { font-family: 'Space Grotesk', sans-serif; letter-spacing: -0.02em;
   display: flex; align-items: center; gap: 18px;
   flex-wrap: nowrap;
 }
+.topbar .site-badge { font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 11px; letter-spacing: .04em; color: var(--muted); text-decoration: none; padding: 4px 8px; border: 1.5px solid var(--muted); border-radius: 999px; flex: 0 0 auto; }
+.topbar .site-badge:hover { color: var(--ink); border-color: var(--ink); }
 .topbar .logo { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 22px; letter-spacing: -0.03em; display: flex; align-items: center; gap: 8px; text-decoration: none; color: var(--ink); }
 .topbar .logo::before { content: ""; width: 18px; height: 18px; background: var(--lime); border: var(--border-thick); border-radius: 50%; display: inline-block; }
 .topbar nav { display: flex; flex-wrap: nowrap; gap: 4px; margin-left: 16px; min-width: 0; }
@@ -259,6 +261,7 @@ h1,h2,h3,h4 { font-family: 'Space Grotesk', sans-serif; letter-spacing: -0.02em;
     row-gap: 4px;
     align-items: center;
   }
+  .topbar .site-badge { display: none; }
   .topbar .logo { grid-column: 1; grid-row: 1; min-width: 0; }
   .topbar .right { grid-column: 2; grid-row: 1; margin-left: 0; }
   .topbar nav {
