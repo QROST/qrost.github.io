@@ -75,7 +75,7 @@
       { label: t('colOrigin'), fn: (p) => I18N().originLabel(p.origin) },
       { label: t('colMaturity'), fn: (p) => I18N().maturityLabel(p.maturity) },
       { label: t('colLocDepth'), fn: (p) => I18N().locLabel(p.localization_depth) },
-      { label: 'Kernel', fn: (p) => {
+      { label: t('kernelLabel'), fn: (p) => {
         const CAT = window.INDUSTRIAL_CATALOG;
         return CAT && CAT.productKernelLabel ? CAT.productKernelLabel(p) : (p.kernel || '');
       } },
