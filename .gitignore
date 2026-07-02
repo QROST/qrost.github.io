@@ -4,8 +4,10 @@ __pycache__/
 *.pyc
 
 # Node.js — per-demo Tailwind/tooling installs (built CSS is committed under assets/css/)
-demos/*/node_modules/
-demos/*/package-lock.json
+# ** so this also catches nested installs like demos/china-housing/tools/node_modules/
+# (a single * stops at the next path segment and previously let that one slip through).
+demos/**/node_modules/
+demos/**/package-lock.json
 
 # Python virtualenv (china-housing pm25 tooling, etc.)
 .venv/
@@ -45,3 +47,8 @@ demos/china-housing/data/ref/*.log
 demos/wfoe-china/tmp/
 demos/china-industrial-software/tmp/
 demos/pharm-companies/tmp/
+demos/makoauto/_tmp/
+
+# makoauto: unused raw source-photo dump (site actually serves demos/makoauto/assets/legacy/photos/).
+# Purged from history 2026-07-02 — keep this guard so it can't silently regrow.
+demos/makoauto/assets/photos/
