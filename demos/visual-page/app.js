@@ -55,7 +55,16 @@ camera.position.set(0, 44, 150);
 let introZoom = true, introProg = 0;
 const INTRO_DUR = 10, INTRO_FOV_START = camera.fov, INTRO_FOV_END = 100;
 
-const renderer = new THREE.WebGLRenderer({ antialias: !IS_MOBILE, powerPreference: 'high-performance', failIfMajorPerformanceCaveat: false });   // 不因弱 GPU 拒绝创建 → 任何设备都能开
+let renderer;
+try {
+  renderer = new THREE.WebGLRenderer({ antialias: !IS_MOBILE, powerPreference: 'high-performance', failIfMajorPerformanceCaveat: false });   // 不因弱 GPU 拒绝创建 → 任何设备都能开
+} catch (err) {
+  // WebGL 完全不可用（设置关闭/古董浏览器/受限环境）：构造函数同步抛出 → 后续所有顶层代码都会执行失败。
+  // 把"Igniting the abyss…"换成明确文案，而不是让 loading 遮罩永远卡住、不给任何反馈；随后照常向外抛出以停止本模块剩余的初始化。
+  const ld = document.getElementById('loading');
+  if (ld) ld.textContent = 'WebGL not available in this browser · 此浏览器不支持 WebGL';
+  throw err;
+}
 renderer.setSize(innerWidth, innerHeight);
 renderer.setPixelRatio(Math.min(devicePixelRatio, IS_MOBILE ? 1.5 : 2));   // 移动端高清屏降采样：省 GPU 像素填充，肉眼几乎无损
 renderer.toneMapping = THREE.ACESFilmicToneMapping;
