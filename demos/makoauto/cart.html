@@ -242,7 +242,8 @@
         return;
       }
       const ship = readFormAddress();
-      const email = document.querySelector('[data-i18n="ship_to"]')?.closest('.section')?.querySelector('input[type="email"]')?.value || 'brian@example.com';
+      // Prototype placeholder: no email field in Ship to form; use hardcoded default until backend captures customer email.
+      const email = 'brian@example.com';
       const out = await window.MakoautoAPI.createOrderStub({
         design_id,
         customer_email: email,

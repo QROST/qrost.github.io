@@ -1,7 +1,6 @@
 // Inline-SVG placeholder generator for product cards in the lookbook + set PDP.
-// The original product photos carried the old brand's wordmark embossed on the
-// frame, so we render brand-correct placeholders until real Makoauto photography
-// lands.
+// Fallback-only: all 19 products in the product catalog now have real images.
+// This generator remains as a defensive fallback for products without an image field.
 window.MakoautoPlaceholders = (function () {
   const presets = {
     '1-1-exclusive':            { bg:'#0F0F0F', fg:'#D4FF4F', accent:'#FF3D8A', tag:'1/1',     glyph:'★' },
