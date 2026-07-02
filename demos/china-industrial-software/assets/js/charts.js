@@ -1,5 +1,5 @@
 /**
- * Chart.js + ECharts wrappers for industrial software survey.
+ * ECharts wrappers for industrial software survey.
  * Chart colors read from :root CSS variables (industrial-software.css).
  */
 (function () {
