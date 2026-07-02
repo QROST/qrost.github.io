@@ -193,7 +193,11 @@
       const [prods, packs] = await Promise.all([
         fetch('assets/legacy/products.json').then((r) => r.json()),
         fetch('assets/legacy/products.i18n.json?v=1').then((r) => r.json()).catch(() => ({})),
-      ]);
+      ]).catch((e) => {
+        console.warn('[set] load failed:', e);
+        root.innerHTML = '<div class="not-found"><h1>Couldn\'t load this set</h1><p>Please refresh to try again, or <a href="catalog.html">browse the lookbook</a>.</p></div>';
+        throw e;
+      });
       productsCache = prods;
       productPacks = packs || {};
     }
@@ -275,7 +279,7 @@
       };
     });
   }
-  load();
-  window.addEventListener('pinned:langchange', () => load());
+  load().catch(() => {});
+  window.addEventListener('pinned:langchange', () => load().catch(() => {}));
 </script>
 </body></html>

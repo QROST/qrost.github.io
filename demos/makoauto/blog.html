@@ -213,6 +213,10 @@
     else renderIndex(blogs);
   }
 
+  function showLoadError() {
+    root.innerHTML = '<p class="mono" style="padding:60px 0;text-align:center;color:var(--muted)">Couldn\'t load stories right now — please refresh to try again.</p>';
+  }
+
   renderTopbar('stories');
   window.addEventListener('pinned:langchange', () => {
     if (!cacheBlogs) return;
@@ -220,6 +224,6 @@
     else renderIndex(cacheBlogs);
     window.applyI18N && window.applyI18N();
   });
-  load();
+  load().catch((e) => { console.warn('[blog] load failed:', e); showLoadError(); });
 </script>
 </body></html>
