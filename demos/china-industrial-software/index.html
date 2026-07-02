@@ -39,8 +39,8 @@
                         <button type="button" id="nav-compare-btn" class="text-slate-500 hover:text-slate-900" data-i18n="navCompare">对标</button>
                         <a href="#methodology" class="text-slate-500 hover:text-slate-900" data-i18n="navMethodology">方法论</a>
                     </div>
-                    <button type="button" id="nav-menu-toggle" class="md:hidden inline-flex items-center justify-center w-9 h-9 rounded border border-slate-200 text-slate-700" aria-controls="mobile-menu" aria-expanded="false">
-                        <svg class="w-4 h-4" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.75"><path stroke-linecap="round" d="M3.5 6h13M3.5 10h13M3.5 14h13"/></svg>
+                    <button type="button" id="nav-menu-toggle" class="md:hidden inline-flex items-center justify-center w-9 h-9 rounded border border-slate-200 text-slate-700" aria-controls="mobile-menu" aria-expanded="false" aria-label="Menu">
+                        <svg class="w-4 h-4" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><path stroke-linecap="round" d="M3.5 6h13M3.5 10h13M3.5 14h13"/></svg>
                     </button>
                     <button type="button" id="lang-toggle" class="text-xs font-medium text-slate-600 border border-slate-200 rounded px-2.5 py-1 hover:bg-slate-50">EN</button>
                 </div>
@@ -149,14 +149,14 @@
             <p class="text-slate-500 mb-6 max-w-3xl" data-i18n="secCatalogDesc"></p>
             <div class="flex flex-wrap gap-3 mb-4 no-print items-center">
                 <button type="button" id="catalog-compare-btn" class="text-sm font-medium btn-accent-outline rounded px-3 py-2" data-i18n="compareOpenCta">对标对比</button>
-                <select id="filter-origin" class="text-sm border border-slate-200 rounded px-3 py-2 bg-white">
+                <select id="filter-origin" class="text-sm border border-slate-200 rounded px-3 py-2 bg-white" aria-label="Filter by origin">
                     <option value="" data-i18n="filterAllOrigin">全部来源</option>
                     <option value="domestic" data-i18n="originDomestic">国产</option>
                     <option value="international" data-i18n="originInternational">国际</option>
                     <option value="joint_venture" data-i18n="originJV">合资</option>
                     <option value="open_source" data-i18n="originOSS">开源</option>
                 </select>
-                <select id="filter-category" class="text-sm border border-slate-200 rounded px-3 py-2 bg-white"></select>
+                <select id="filter-category" class="text-sm border border-slate-200 rounded px-3 py-2 bg-white" aria-label="Filter by category"></select>
                 <select id="filter-kernel" class="text-sm border border-slate-200 rounded px-3 py-2 bg-white min-w-[10rem]" aria-label="Filter by geometry kernel"></select>
                 <input type="search" id="catalog-search" class="text-sm border border-slate-200 rounded px-3 py-2 flex-1 min-w-[12rem]" data-i18n-placeholder="searchPlaceholder">
                 <button type="button" id="catalog-clear-filters" class="clear-filters-btn" data-i18n="clearFilters" hidden>清除筛选</button>
@@ -185,14 +185,14 @@
             <h2 class="text-3xl font-bold text-slate-800 mb-2" data-i18n="secMatrix">能力矩阵</h2>
             <p class="text-slate-500 mb-6 max-w-3xl" data-i18n="secMatrixDesc"></p>
             <div class="flex flex-wrap gap-3 mb-4 items-center">
-                <select id="matrix-filter-origin" class="text-sm border border-slate-200 rounded px-3 py-2 bg-white">
+                <select id="matrix-filter-origin" class="text-sm border border-slate-200 rounded px-3 py-2 bg-white" aria-label="Filter by origin">
                     <option value="" data-i18n="filterAllOrigin">全部来源</option>
                     <option value="domestic" data-i18n="originDomestic">国产</option>
                     <option value="international" data-i18n="originInternational">国际</option>
                     <option value="joint_venture" data-i18n="originJV">合资</option>
                     <option value="open_source" data-i18n="originOSS">开源</option>
                 </select>
-                <select id="matrix-filter-category" class="text-sm border border-slate-200 rounded px-3 py-2 bg-white"></select>
+                <select id="matrix-filter-category" class="text-sm border border-slate-200 rounded px-3 py-2 bg-white" aria-label="Filter by category"></select>
                 <input type="search" id="matrix-search" class="text-sm border border-slate-200 rounded px-3 py-2 flex-1 min-w-[12rem]" data-i18n-placeholder="searchPlaceholder">
                 <button type="button" id="matrix-clear-filters" class="clear-filters-btn" data-i18n="clearFilters" hidden>清除筛选</button>
                 <span class="filter-result-count"><span id="matrix-count">0</span> <span data-i18n="matrixRowsUnit">款产品</span></span>
@@ -312,7 +312,7 @@
 
     <button type="button" id="compare-fab" class="hidden fixed bottom-5 right-5 z-40 rounded-full shadow-lg px-4 py-2.5 text-sm font-medium bg-accent transition-colors no-print" data-i18n="compareFab">对标对比</button>
 
-    <div id="product-modal" class="modal-backdrop hidden no-print" role="dialog" aria-modal="true" aria-hidden="true">
+    <div id="product-modal" class="modal-backdrop hidden no-print" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="modal-title">
         <div class="modal-panel p-6 mt-8 max-h-[88vh] overflow-y-auto">
             <div class="flex justify-between items-start gap-4">
                 <h3 id="modal-title" class="text-xl font-semibold text-slate-900"></h3>
@@ -325,7 +325,7 @@
         </div>
     </div>
 
-    <div id="kernel-modal" class="modal-backdrop hidden no-print" role="dialog" aria-modal="true" aria-hidden="true">
+    <div id="kernel-modal" class="modal-backdrop hidden no-print" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="kernel-modal-title">
         <div class="modal-panel p-6 mt-8 max-h-[88vh] overflow-y-auto">
             <div class="flex justify-between items-start gap-4">
                 <h3 id="kernel-modal-title" class="text-xl font-semibold text-slate-900"></h3>
@@ -359,7 +359,7 @@
             </div>
             <div id="compare-slots" class="grid grid-cols-2 md:grid-cols-4 gap-3 my-4"></div>
             <div class="flex flex-wrap gap-3 mb-6 no-print">
-                <select id="compare-search" class="text-sm border border-slate-200 rounded px-3 py-2 bg-white min-w-[16rem] flex-1"></select>
+                <select id="compare-search" class="text-sm border border-slate-200 rounded px-3 py-2 bg-white min-w-[16rem] flex-1" aria-label="Search products to compare"></select>
             </div>
             <h4 class="font-medium text-slate-800 mb-3" data-i18n="compareRadar">能力雷达</h4>
             <div class="bg-slate-50 rounded-xl border border-slate-100 p-4 mb-8">
