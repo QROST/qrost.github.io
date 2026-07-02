@@ -128,18 +128,23 @@
 
   <div id="cat-modal" class="modal-backdrop hidden">
     <div class="modal-panel">
-      <button class="modal-close" data-close-modal>&times;</button>
+      <button class="modal-close" data-close-modal data-i18n-aria="mClose" aria-label="Close">&times;</button>
       <div id="cat-modal-body" class="modal-body"></div>
     </div>
   </div>
 
-  <script src="assets/js/world-geo.js?v=7c60efa52c"></script>
-  <script src="https://cdn.jsdelivr.net/npm/echarts@5.5.1/dist/echarts.min.js"></script>
-  <script src="assets/js/i18n.js?v=7c60efa52c"></script>
-  <script src="assets/js/data-loader.js?v=7c60efa52c"></script>
-  <script src="assets/js/pixelcat.js?v=7c60efa52c"></script>
-  <script src="assets/js/persona.js?v=7c60efa52c"></script>
-  <script src="assets/js/map.js?v=7c60efa52c"></script>
-  <script src="assets/js/app.js?v=7c60efa52c"></script>
+  <!-- defer on all of these (not just world-geo.js): defer preserves relative document
+       order across scripts and always runs before DOMContentLoaded, so app.js's boot()
+       still sees i18n/data-loader/pixelcat/persona/map fully initialized. This lets the
+       986KB vendored world-geo.js fetch off the main parse path instead of blocking the
+       scripts queued after it. -->
+  <script src="assets/js/world-geo.js?v=7c60efa52c" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/echarts@5.5.1/dist/echarts.min.js" defer></script>
+  <script src="assets/js/i18n.js?v=7c60efa52c" defer></script>
+  <script src="assets/js/data-loader.js?v=7c60efa52c" defer></script>
+  <script src="assets/js/pixelcat.js?v=7c60efa52c" defer></script>
+  <script src="assets/js/persona.js?v=7c60efa52c" defer></script>
+  <script src="assets/js/map.js?v=7c60efa52c" defer></script>
+  <script src="assets/js/app.js?v=7c60efa52c" defer></script>
 </body>
 </html>
