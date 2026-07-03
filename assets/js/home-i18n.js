@@ -62,8 +62,8 @@
       zh: '数渊 · Data Abyss',
     },
     cardAbyssDesc: {
-      en: 'A full-bleed cosmos that breathes — countless points drift, cluster and self-organize into a living lattice, and its music is read out from the field itself. Chaos · breath · drift · weave. Best in the dark; tilt or speak to it on HTTPS. Click 数渊 in-page for 中文.',
-      zh: '一片会呼吸的全屏星海——无数光点漂流、聚拢，自组织为流动的晶格，乐声自星场本身涌出。沌 · 息 · 漂 · 织。暗处最佳；HTTPS 下可倾斜或出声与之相应。页内点「数渊」切换语言。',
+      en: 'A full-bleed cosmos that breathes — countless points drift, cluster and self-organize into a living lattice, and its music is read out from the field itself. Chaos · breath · drift · weave.',
+      zh: '一片会呼吸的全屏星海——无数光点漂流、聚拢，自组织为流动的晶格，乐声自星场本身涌出。沌 · 息 · 漂 · 织。',
     },
     cardWfoeTitle: {
       en: 'How to open a company in China — entity paths & hiring costs',
