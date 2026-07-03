@@ -1455,7 +1455,26 @@
         a.addEventListener('click', () => mobileMenu.classList.add('hidden'));
       });
     }
+    // Theme toggle: flip html.dark, persist, and re-render ECharts so they
+    // pick up the new CSS-var colors (sunburst + compare radar read tokens at
+    // render time and don't auto-refresh on a class change).
+    const themeBtn = document.getElementById('theme-toggle');
+    if (themeBtn) themeBtn.addEventListener('click', toggleTheme);
   }
+
+  const THEME_STORAGE_KEY = 'industrial-software-theme';
+  function isDark() { return document.documentElement.classList.contains('dark'); }
+  function applyTheme() {
+    // Re-render the two ECharts that read CSS-var colors at render time.
+    renderSunburstChart();
+    refreshCompare();
+  }
+  function setTheme(dark) {
+    document.documentElement.classList.toggle('dark', dark);
+    try { localStorage.setItem(THEME_STORAGE_KEY, dark ? 'dark' : 'light'); } catch (e) { /* ignore */ }
+    applyTheme();
+  }
+  function toggleTheme() { setTheme(!isDark()); }
 
   function populateCompareSelect() {
     const sel = document.getElementById('compare-search');
@@ -1493,6 +1512,17 @@
     });
     updateVisuals();
     handleHash();
+
+    // Follow OS theme changes when the user hasn't set an explicit preference.
+    try {
+      const mq = window.matchMedia('(prefers-color-scheme: dark)');
+      mq.addEventListener('change', (e) => {
+        if (!localStorage.getItem(THEME_STORAGE_KEY)) {
+          document.documentElement.classList.toggle('dark', e.matches);
+          applyTheme();
+        }
+      });
+    } catch (e) { /* older browsers */ }
 
     window.__industrialSoftwareTest = {
       getProductCount: () => (CAT().allProducts || []).length,
