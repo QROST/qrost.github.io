@@ -35,7 +35,7 @@
       const s = document.createElement('script');
       s.src = 'https://cdn.jsdelivr.net/npm/echarts@5.5.0/dist/echarts.min.js';
       s.crossOrigin = 'anonymous';
-      s.integrity = 'sha384-L+t/IG9M7qZV2G0gHm1M7tBZe9I8sR8VaVx6lbfvP0WMiBZyh6x5U0SpN3S8jCPq';
+      s.integrity = 'sha384-o5uz97et3bErHvpKfD4Jz4n0JfhJDWABFuF4NP+iEEDxE1VwMWJ19QGR0lqFZnr6';
       s.onload = () => { echartsReady = true; resolve(); };
       s.onerror = (e) => {
         const cdnErr = new Error('ECharts library failed to load from CDN (https://cdn.jsdelivr.net). This may be due to network connectivity or CDN availability.');
