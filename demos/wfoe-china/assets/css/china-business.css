@@ -853,12 +853,11 @@ html.dark .fx-status-chip.fx-pending {
     background: rgba(148, 163, 184, 0.15);
 }
 
-/* Theme-toggle icon swap: moon glyph in light mode (click to go dark),
-   sun glyph in dark mode (click to go light). */
-#theme-toggle .theme-toggle-icon::before {
-    content: "\1F319";
-}
-
-html.dark #theme-toggle .theme-toggle-icon::before {
-    content: "\2600\FE0F";
-}
+/* Theme-toggle icon swap: moon shown in light mode (click to go dark),
+   sun shown in dark mode (click to go light) — animated SVG, unified with QROST home. */
+#theme-toggle .sun-icon,
+#theme-toggle .moon-icon { transition: opacity 0.25s, transform 0.3s; }
+html.dark #theme-toggle .sun-icon  { opacity: 1; transform: rotate(0deg) scale(1); }
+html.dark #theme-toggle .moon-icon { opacity: 0; transform: rotate(-90deg) scale(0.6); }
+#theme-toggle .sun-icon  { opacity: 0; transform: rotate(90deg) scale(0.6); }
+#theme-toggle .moon-icon { opacity: 1; transform: rotate(0deg) scale(1); }

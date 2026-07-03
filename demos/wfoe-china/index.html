@@ -57,7 +57,7 @@
     <nav class="site-nav fixed top-0 w-full z-50 border-b border-slate-200/90 bg-white/85 backdrop-blur-md">
         <div class="max-w-[90rem] mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between h-14 items-center gap-4">
-                <a href="../../index.html" class="text-[0.65rem] font-semibold tracking-[0.35em] text-slate-900 uppercase" aria-label="Back to QROST home">QROST</a>
+                <a href="../../index.html" class="text-[0.65rem] font-semibold tracking-[0.35em] text-slate-900 uppercase" aria-label="Back to QROST home">Qrost</a>
                 <div class="flex items-center gap-4 md:gap-10">
                     <div class="hidden md:flex items-center gap-10">
                         <a href="#process" class="text-sm text-slate-500 hover:text-slate-900 transition-colors" data-i18n="nav.setup">Setup</a>
@@ -73,9 +73,17 @@
                             <path stroke-linecap="round" d="M5 5l10 10M15 5L5 15" />
                         </svg>
                     </button>
-                    <button type="button" id="lang-toggle" class="text-xs font-medium text-slate-600 border border-slate-200 rounded px-2.5 py-1 hover:bg-slate-50 transition-colors shrink-0" aria-label="Switch language">中文</button>
-                    <button type="button" id="theme-toggle" class="text-xs font-medium text-slate-600 border border-slate-200 rounded px-2.5 py-1 hover:bg-slate-50 transition-colors shrink-0" aria-label="Toggle dark mode" title="Toggle dark mode">
-                        <span class="theme-toggle-icon" aria-hidden="true"></span>
+                    <button type="button" id="lang-toggle" class="w-9 h-9 flex items-center justify-center rounded-lg border border-slate-200 bg-white text-slate-600 hover:bg-slate-50 hover:text-slate-900 transition-all text-xs font-semibold shrink-0" aria-label="Switch language">中文</button>
+                    <button type="button" id="theme-toggle" class="relative w-9 h-9 flex items-center justify-center rounded-lg border border-slate-200 bg-white text-slate-600 hover:bg-slate-50 hover:text-slate-900 transition-all shrink-0" aria-label="Toggle dark mode" title="Toggle dark mode">
+                        <svg class="sun-icon absolute w-[18px] h-[18px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/>
+                            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+                            <line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/>
+                            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+                        </svg>
+                        <svg class="moon-icon absolute w-[18px] h-[18px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+                        </svg>
                     </button>
                 </div>
             </div>
