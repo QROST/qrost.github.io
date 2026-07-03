@@ -41,13 +41,22 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" />
   <link rel="stylesheet" href="assets/css/pharm-companies.css?v=6148339f84" />
+  <style>
+    /* Sun/moon theme-toggle animation — unified with QROST home */
+    #theme-toggle .sun-icon,
+    #theme-toggle .moon-icon { transition: opacity 0.25s, transform 0.3s; }
+    .dark #theme-toggle .sun-icon  { opacity: 1; transform: rotate(0deg) scale(1); }
+    .dark #theme-toggle .moon-icon { opacity: 0; transform: rotate(-90deg) scale(0.6); }
+    #theme-toggle .sun-icon  { opacity: 0; transform: rotate(90deg) scale(0.6); }
+    #theme-toggle .moon-icon { opacity: 1; transform: rotate(0deg) scale(1); }
+  </style>
 </head>
 
 <body class="bg-base text-base antialiased">
   <!-- ================= NAV ================= -->
   <nav class="sticky top-0 z-40 backdrop-blur border-b border-base bg-shell">
     <div class="max-w-7xl mx-auto px-4 h-14 flex items-center gap-4">
-      <a href="../../index.html" class="font-semibold tracking-tight text-base shrink-0">QROST</a>
+      <a href="../../index.html" class="text-[0.65rem] font-semibold tracking-[0.35em] uppercase shrink-0 transition-colors">Qrost</a>
       <span class="text-muted hidden sm:inline">/</span>
       <span class="text-sm text-muted hidden sm:inline" data-i18n="navBrand">全球医药图谱</span>
       <div class="ml-auto flex items-center gap-1 text-sm overflow-x-auto no-scrollbar nav-scroll">
@@ -65,8 +74,18 @@
       </div>
       <div class="flex items-center gap-2 shrink-0">
         <button id="compare-btn" class="btn-ghost relative" data-i18n="navCompare">对比<span id="compare-badge" class="compare-badge hidden">0</span></button>
-        <button id="lang-toggle" class="btn-ghost" title="中 / EN">EN</button>
-        <button id="theme-toggle" class="btn-ghost" title="theme" aria-label="toggle theme">◐</button>
+        <button id="lang-toggle" class="w-9 h-9 flex items-center justify-center rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700 transition-all text-xs font-semibold shrink-0" title="中 / EN">中</button>
+        <button id="theme-toggle" class="relative w-9 h-9 flex items-center justify-center rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700 transition-all shrink-0" title="theme" aria-label="toggle theme">
+          <svg class="sun-icon absolute w-[18px] h-[18px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+            <line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+          </svg>
+          <svg class="moon-icon absolute w-[18px] h-[18px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+          </svg>
+        </button>
       </div>
     </div>
   </nav>
