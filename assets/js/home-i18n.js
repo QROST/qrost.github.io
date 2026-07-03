@@ -8,24 +8,24 @@
 
   const STR = {
     pageTitle: {
-      en: 'QROST — research notes & interactive atlases on AEC, China & tooling',
-      zh: 'QROST — AEC、中国与工具链相关的研究笔记与交互图谱',
+      en: 'QROST — research notes & interactive data atlases',
+      zh: 'QROST — 研究笔记与交互式数据图谱',
     },
     metaDescription: {
-      en: 'Personal research shelf: small-city housing livability, China industrial-software survey, global pharma atlas, WFOE setup & AEC hiring costs, plus product prototypes.',
-      zh: '个人研究书架：小城市住房宜居度、中国工业软件综述、全球医药图谱、WFOE 设立与 AEC 招聘成本，以及产品原型演示。',
+      en: 'A personal research shelf of interactive data atlases and notes — a global pharma industry map, worldwide shelter-cat adoption, China small-city housing, China industrial software, and how to open a company in China — plus product prototypes. Bilingual EN/中文.',
+      zh: '一个个人站点：几份交互式数据图谱与笔记——全球医药行业、全球收容所猫领养、中国小城市住房、中国工业软件、在华开公司实务，外加一些产品原型。中英双语。',
     },
     ogDescription: {
-      en: 'Housing, industrial software, pharma atlas, WFOE & AEC cost research — plus interactive demos.',
-      zh: '住房、工业软件、医药图谱、WFOE 与 AEC 成本研究，以及交互演示。',
+      en: 'Research notes and interactive data atlases — global pharma, shelter cats, China housing, industrial software, company setup — plus product prototypes.',
+      zh: '研究笔记与交互式数据图谱——全球医药、收容所猫、中国住房、工业软件、开公司实务，以及产品原型。',
     },
     navResearch: { en: 'Research', zh: '研究' },
     navDemos: { en: 'Demos', zh: '演示' },
     heroEyebrow: { en: 'Personal site', zh: '个人站点' },
-    heroH1: { en: 'I build and write.', zh: '我做产品，也写笔记。' },
+    heroH1: { en: 'I build and write.', zh: '我在实践中记录。' },
     heroLead: {
-      en: 'Notes and build logs around <strong class="font-medium text-slate-800 dark:text-slate-200">AEC tooling</strong>, the <strong class="font-medium text-slate-800 dark:text-slate-200">China side of doing engineering business</strong>, and occasional interactive atlases and prototypes. A small public shelf — pick what\'s useful, ignore the rest.',
-      zh: '围绕 <strong class="font-medium text-slate-800 dark:text-slate-200">AEC 工具链</strong>、<strong class="font-medium text-slate-800 dark:text-slate-200">在中国做工程业务的实务</strong>，以及交互式图谱与产品原型，整理的笔记与构建记录。公开小书架——有用的拿走，其余忽略。',
+      en: 'Notes and build logs — a few <strong class="font-medium text-slate-800 dark:text-slate-200">interactive data atlases</strong>: a global view seen through Chinese eyes, plus occasional product prototypes. A small public shelf — take what\'s useful.',
+      zh: '几份 <strong class="font-medium text-slate-800 dark:text-slate-200">交互式数据图谱</strong>，一个中国人的全球视角，也有一些动手做的产品原型。随手记下来、摆在这里，有用就拿走。',
     },
     sectionResearch: { en: 'Research & notes', zh: '研究与笔记' },
     sectionDemos: { en: 'Product demos', zh: '产品演示' },
@@ -66,8 +66,8 @@
       zh: '一片会呼吸的全屏星海——无数光点漂流、聚拢，自组织为流动的晶格，乐声自星场本身涌出。沌 · 息 · 漂 · 织。暗处最佳；HTTPS 下可倾斜或出声与之相应。页内点「数渊」切换语言。',
     },
     cardWfoeTitle: {
-      en: 'How to open a company in China — WFOE setup & AEC hiring costs',
-      zh: '在中国开公司 — WFOE 设立与 AEC 招聘成本',
+      en: 'How to open a company in China — entity paths & hiring costs',
+      zh: '在中国开公司 — 设立路径与用人成本',
     },
     cardWfoeDesc: {
       en: 'Four entity paths (mainland WFOE, domestic LLC, Sino-foreign JV, HK/Macau SAR) plus an interactive cost dashboard across major China hubs with optional global city benchmarks. Data as of 2024 Q4 · last reviewed 2026-06. Bilingual EN/中文.',
@@ -83,11 +83,11 @@
     },
     cardSheltercatsTitle: {
       en: 'Shelter Cats — a world platform for adoption',
-      zh: '全球收容所猫 — 在线领养大一统平台',
+      zh: '全球收容所猫 — 领养统一平台',
     },
     cardSheltercatsDesc: {
       en: 'Real adoptable shelter cats on one world map (live from open-data shelter feeds) — filter by color, pattern, coat and distance. Every cat gets a deterministic pixel avatar and an attribute-driven personality preview, so you can imagine life with it before adopting. Dark mode · EN/中文.',
-      zh: '把真实可领养的收容所猫汇到一张世界地图（数据来自开放数据收容所源）——按颜色/花纹/毛长/远近筛选。每只猫据真实属性确定性生成像素形象与性格预览，让你在领养前先想象相处。深色模式 · 中英双语。',
+      zh: '把各地收容所里真实可领养的猫汇到一张世界地图（数据来自开放数据源）——按颜色、花纹、毛长、距离筛选。每只猫会按真实属性生成专属像素形象与性格预览，让你在领养前先想象与它相处的日常。深色模式 · 中英双语。',
     },
     footerUpdated: {
       en: 'Last updated 2026-06. Nothing here is financial, legal or tax advice.',
