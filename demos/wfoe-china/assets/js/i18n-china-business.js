@@ -6,7 +6,7 @@
     const STORAGE_KEY = 'china-biz-lang';
 
     const ZH = {
-        'meta.title': '中国公司设立（外商独资/内资/合资/港澳）与 AEC 用工成本 | QROST',
+        'meta.title': '在中国开公司（外商独资/内资/合资/港澳）与用工成本 | QROST',
 
         'nav.setup': '设置',
         'nav.regions': '区域',
@@ -436,7 +436,7 @@
         if (isZh && ZH[titleKey]) {
             document.title = ZH[titleKey];
         } else {
-            document.title = 'China company setup (WFOE, domestic, JV, HK/Macau) & AEC hiring costs | QROST';
+            document.title = 'How to open a company in China — WFOE, domestic, JV, HK/Macau & hiring costs | QROST';
         }
 
         const btn = document.getElementById('lang-toggle');
