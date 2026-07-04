@@ -41,9 +41,11 @@ body.ui-hidden #home-link { opacity: 0; pointer-events: none; }
 
 /* 模式3 隐藏态：收起全部文字与按钮（沉浸纯画面）；左上角 hover/触控 浮现大标题 */
 body.ui-hidden #sub,
-body.ui-hidden #tip,
 body.ui-hidden #panel,
 body.ui-hidden #card { opacity: 0 !important; pointer-events: none !important; }
+/* 但音频未开启时，#tip 的「点按开启声音」提示必须可见（否则首屏一片黑、用户不知要点） */
+body.ui-hidden:not(.audio-on) #tip { opacity: 0.4 !important; pointer-events: none !important; }
+body.ui-hidden:not(.audio-on) #tip button { pointer-events: auto !important; }
 body.ui-hidden #hud { opacity: 1 !important; }              /* 保持 HUD 在场，好让标题可浮现（不被静置淡隐） */
 body.ui-hidden #title {
   opacity: 0;                                              /* 尺寸+位置与模式1/2 完全一致（不放大、不位移）；padding 只向右/下扩大命中区、不碰 top/left → 文字不动，切换无位移 */

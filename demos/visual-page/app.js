@@ -1265,25 +1265,42 @@ addEventListener('deviceorientation', (e) => {
 let analyser = null, micBuf = null, micStream = null;
 let clubMode = false, micActive = false, gyroAsked = false, audioKicked = false, _btnFade = null;
 
-function startMusic() {                                   // 在用户手势(或自动尝试)的同步上下文里起音乐输出；幂等
+// iOS Safari / Chrome@Android：AudioContext 必须「在用户手势的同步调用栈内」被创建 + 首次发声，
+// 仅 resume() 一个 boot 阶段无手势创建的 suspended ctx 在手机上几乎必然静音。
+// 策略：boot 时不创建 ctx；首个手势的同步栈内按 iOS 要求的顺序解锁 →
+//   ① 在手势内 new AudioContext  ② 立刻播一段与 ctx 同采样率的(略长)静音 buffer 开声道
+//   ③ ctx.resume()  ④ sonifier.start。resume 是异步的，故静音 buffer 必须先于 resume 播放。
+function ensureCtx() {
+  if (audioCtx) return audioCtx;
   try {
-    if (!audioCtx) { const AC = window.AudioContext || window.webkitAudioContext; if (AC) audioCtx = new AC(); }
-    if (audioCtx) {
-      if (!audioCtx._abListen) { audioCtx._abListen = true; audioCtx.addEventListener('statechange', onAudioStateChange); }   // resume 是异步的：state 进入 running 时统一刷 UI
-      if (audioCtx.resume) { const p = audioCtx.resume(); if (p && p.then) p.then(onAudioStateChange, () => {}); }   // resume 是 Promise：有些浏览器 resume 后不发 statechange → 用 .then 兜底刷 UI/起声
-      sonifier.start(audioCtx, musicDNA || { climWarm });   // 乐曲身份来自宇宙涌现态(musicDNA)，非随机种子；boot 未完成则退回 climWarm
-      if (!clubMode) sonifier.setMuted(false);              // 音乐模式 → 确保发声（律动模式保持静音）
-    }
+    const AC = window.AudioContext || window.webkitAudioContext;
+    if (AC) audioCtx = new AC();
+  } catch (_) {}
+  return audioCtx;
+}
+
+// iOS/Safari 专用：在手势同步栈内播一段静音 buffer 才能真正打通声道。用 ctx 自身采样率、稍长（~50ms）更稳。
+function primeAudioUnlock() {
+  const ctx = audioCtx;
+  if (!ctx || ctx._primed) return;
+  try {
+    const len = Math.max(1, Math.floor(0.05 * ctx.sampleRate));   // ~50ms 静音，与 ctx 同采样率
+    const b = ctx.createBuffer(1, len, ctx.sampleRate);
+    const s = ctx.createBufferSource(); s.buffer = b; s.connect(ctx.destination); s.start(0);
+    ctx._primed = true;
   } catch (_) {}
 }
 
-// iOS Safari / 部分桌面 Safari：AudioContext 在无手势时构造 → 仅 resume() 不足以解锁；须在真实手势的同步栈里「播放」一段 1-sample 静音 buffer 才真正开声道。只需一次。
-function primeAudioUnlock() {
-  if (!audioCtx || audioCtx._primed) return;
+function startMusic() {                                   // 创建/resume AudioContext + 起 sonifier；幂等
   try {
-    const b = audioCtx.createBuffer(1, 1, 22050);
-    const s = audioCtx.createBufferSource(); s.buffer = b; s.connect(audioCtx.destination); s.start(0);
-    audioCtx._primed = true;
+    const ctx = ensureCtx();
+    if (ctx) {
+      if (!ctx._abListen) { ctx._abListen = true; ctx.addEventListener('statechange', onAudioStateChange); }
+      primeAudioUnlock();                                 // 必须在 resume 之前：iOS 在 resume(异步) 完成前就需要一次真实发声
+      if (ctx.resume) { const p = ctx.resume(); if (p && p.then) p.then(onAudioStateChange, () => {}); }
+      sonifier.start(ctx, musicDNA || { climWarm });
+      if (!clubMode) sonifier.setMuted(false);
+    }
   } catch (_) {}
 }
 
@@ -1295,11 +1312,11 @@ async function requestGyro() {                           // 陀螺仪权限（iO
 async function enableMic() {                              // 仅律动模式按需打开麦克风；复用同一 AudioContext 作分析输入（不接 destination → 无回授/无回声）
   if (analyser) { micActive = true; return; }
   try {
-    if (!audioCtx) { const AC = window.AudioContext || window.webkitAudioContext; if (AC) audioCtx = new AC(); }
-    if (audioCtx) {
+    const ctx = ensureCtx();
+    if (ctx) {
       micStream = await navigator.mediaDevices.getUserMedia({ audio: true });
-      const an = audioCtx.createAnalyser(); an.fftSize = 256;
-      audioCtx.createMediaStreamSource(micStream).connect(an);
+      const an = ctx.createAnalyser(); an.fftSize = 256;
+      ctx.createMediaStreamSource(micStream).connect(an);
       analyser = an; micBuf = new Uint8Array(an.frequencyBinCount); micActive = true;
     }
   } catch (_) { micActive = false; }                       // 麦克风被拒/不可用 → 律动模式失败，调用方回退音乐
@@ -1317,8 +1334,8 @@ function updateModeBtn() {                                // 按钮文案反映�
 }
 
 // 自动播放：浏览器 Autoplay Policy 硬约束 — 无 user gesture 时 AudioContext 必然 suspended、不出声。
-// 策略：boot 末尾主动 startMusic() 一次（即使被挂起，也把 sonifier 内部 nextTime/状态机备好，等手势 resume 立刻出声）；
-// 首个 pointerdown/touchstart/keydown 内再 resume；statechange 事件统一处理 UI 文案。
+// 策略：不在 boot 时创建 ctx（避免手机上制造无法发声的 suspended ctx）；boot 后只把 tip-text 提示亮起来，
+// 首个 pointerdown/touchstart/click 的同步栈内 kickAudio() 解锁+起声。
 function refreshAudioState() {
   if (!audioCtx) return 'pending';
   if (audioCtx.state === 'running') { if (!clubMode) sonifier.setMuted(false); return 'running'; }
@@ -1335,21 +1352,21 @@ function updateTipText(state) {                          // 底部 #tip-text：�
 function onAudioStateChange() {
   const state = refreshAudioState();
   updateTipText(state);
-  if (state === 'running') { audioKicked = true; updateModeBtn(); }
+  if (state === 'running') { audioKicked = true; document.body.classList.add('audio-on'); updateModeBtn(); }
 }
 
-function kickAudio() {                                   // 首个手势内（点任意几何体/屏幕/按键都算）：resume + iOS 解锁 + 起声（幂等）
+function kickAudio() {                                   // 首个手势内（点任意几何体/屏幕/按键都算）：解锁+起声（幂等）
   if (audioKicked) return;
-  startMusic();          // 创建/resume AudioContext + 起 sonifier
-  primeAudioUnlock();    // ctx 已存在 → 手势内播 1-sample 静音 buffer 彻底解锁（iOS/Safari 必需）
+  startMusic();          // 手势同步栈内：new ctx → 静音 buffer 解锁 → resume → start sonifier（iOS 必需的顺序）
   onAudioStateChange();
 }
-// 覆盖尽可能多的「首个手势」入口（含桌面 click / 触屏 touchend / iOS 老式 mousedown），最大化点任意几何体即出声的成功率；audioKicked 幂等，running 后全部 no-op
+// 覆盖尽可能多的「首个手势」入口（含桌面 click / 触屏 touchstart / iOS 老式 mousedown），最大化点任意几何体即出声的成功率；audioKicked 幂等，running 后全部 no-op
 ['pointerdown', 'pointerup', 'touchstart', 'touchend', 'mousedown', 'click', 'keydown'].forEach((ev) => addEventListener(ev, kickAudio, { passive: true }));
+// 页面从后台切回前台：移动端浏览器常把 AudioContext 自动 suspend，回来后需重新 resume（无需静音 buffer，声道已开过）
+document.addEventListener('visibilitychange', () => { if (!document.hidden && audioCtx && audioCtx.state === 'suspended') { try { audioCtx.resume(); } catch (_) {} } });
 
 async function toggleMode() {                             // 下方按钮：音乐 ⇄ 俱乐部律动
   startMusic();                                           // 先在手势同步上下文内解锁音频（须早于任何 await）
-  primeAudioUnlock();                                    // iOS/Safari：手势内静音 buffer 解锁
   requestGyro();                                          // 陀螺权限（不 await，避免拖慢按钮反馈）
   clubMode = !clubMode;
   if (clubMode) {                                         // 进律动：音乐停、麦克风开 → 画面随环境声脉冲式加速（夜店等场景）
@@ -1841,10 +1858,9 @@ function buildPanel() {
   // 先出混沌团并开跑：首屏 = 重叠态（此刻 anc 全 = CENTER → 呼气不展开，正是 inhale 视觉），不等最重的 SOM。
   const ld = document.getElementById('loading'); ld.classList.add('gone'); setTimeout(() => ld.remove(), 1000);
   if (DEBUG) console.log(`[Data Abyss] ${cities} cities · ${info.products || 0} products · ${info.kernels || 0} kernels · ${info.milestones || 0} breakthroughs · ${info.policies || 0} policies · ${info.vendors || 0} vendors · pharma[${pharma.companies || 0} co / ${pharma.sites || 0} sites / ${pharma.products || 0} drugs / ${pharma.modalities || 0} mod / ${pharma.milestones || 0} bk] · cats[${scats.cats || 0} / ${scats.shelters || 0} shelters] · ${N} bodies · ${E} trail-emitters · ${beamIdxA ? beamIdxA.length : 0} beams · rel[pharma ${pharma.rel || 0} edges/${pharma.groups || 0} groups · vendor ${info.vendorBeams || 0}] · SOM training deferred…`);
-  // 音乐：boot 后主动尝试起声。无 user gesture 时 AudioContext 会被浏览器挂起（Autoplay Policy）→
-  // sonifier 内部状态机先就绪、底部 tip-text 提示用户点一下；首个 pointerdown/touchstart/keydown 内 resume 即出声。
-  startMusic();
-  onAudioStateChange();
+  // 音乐：boot 后不立即创建 AudioContext（手机浏览器在无手势时创建的 ctx 会进入 suspended 且之后难以解锁）。
+  // 仅亮起底部 tip-text 引导；首个 pointerdown/touchstart/click 的同步栈内 kickAudio() 解锁+起声。
+  updateTipText(refreshAudioState());
   animate();
   // SOM（最重的计算）在 Web Worker 里训练 → 训练全程主线程 animate 照常跑、星体保持自由混沌运动、零卡顿；训完回主线程做廉价后处理(~N+M)无缝长出神经骨架。
   // 首帧后再 kickoff（让首屏先绘制，featM 拷贝/postMessage 不挤进首帧）。首次呼气展开远在 ~24s 后、SOM 早已训完 → 观感零损失。
