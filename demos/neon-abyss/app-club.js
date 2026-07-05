@@ -174,7 +174,7 @@ const pointMaterial = new THREE.ShaderMaterial({
       vColor = aColor * tw;
       float sz = 0.16 + aSize * 3.0;                                     // aSize 已是归一化幂曲线 → 群星(微)到日月(巨)
       float breath = 1.0 + 0.4 * sin(uTime*0.7 + aOrbPhase*6.2831);      // 呼吸般缩放（每点错相位）
-      gl_PointSize = min(sz * breath * (1.0 + uPulse*0.35) * uPixelRatio * (380.0 / -mv.z), uMaxPt);
+      gl_PointSize = min(sz * breath * (1.0 + uPulse*0.35) * uPixelRatio * (320.0 / -mv.z), uMaxPt);   // 霓虹版：距离缩放 380→320（远距点更小，密集场不糊成片）
       gl_Position = projectionMatrix * mv;
     }`,
   fragmentShader: `
@@ -182,16 +182,16 @@ const pointMaterial = new THREE.ShaderMaterial({
     void main(){
       vec2 uv = gl_PointCoord - 0.5;
       float d = length(uv) * 2.0; if (d > 1.0) discard;
-      float core = smoothstep(0.36, 0.0, d);                                   // 白热核
-      float glow = pow(1.0 - d, 2.6);                                          // 柔光晕
+      float core = smoothstep(0.30, 0.0, d);                                   // 白热核（收紧：0.36→0.30）
+      float glow = pow(1.0 - d, 4.5);                                          // 柔光晕（陡衰减 2.6→4.5 + 强度减半）→ 密集场点不糊成光斑
       float ring = smoothstep(0.07, 0.0, abs(d - 0.74)) * 0.4;                 // 极细镜环
       vec2 av = abs(uv) * 2.0;                                                 // 四芒衍射星芒
       float spike = (max(0.0, 1.0 - av.x) * max(0.0, 1.0 - av.y * 11.0) + max(0.0, 1.0 - av.y) * max(0.0, 1.0 - av.x * 11.0)) * 0.3;
       vec3 base = mix(vColor, vec3(dot(vColor, vec3(0.333))), 0.2);            // 略去正色
       // 霓虹版：核不向白靠拢（只提亮到自身色的 1.6×，而非 mix 到 vec3(1.0)）→ 星点保留霓虹色，不被 bloom 烧成白。
       vec3 coreCol = base * 1.6;
-      vec3 col = mix(coreCol, base, 1.0 - core) * (core * 0.9 + glow * 0.5 + ring + spike);
-      float a = core + glow * (0.4 + 0.4 * vHaze) + ring + spike;
+      vec3 col = mix(coreCol, base, 1.0 - core) * (core * 1.1 + glow * 0.28 + ring + spike);   // 核提亮(0.9→1.1)更可见；光晕压暗(0.5→0.28)不糊片
+      float a = core * 1.05 + glow * (0.22 + 0.25 * vHaze) + ring + spike;     // 光晕 alpha 压低（0.4→0.22）→ 密集叠加不爆白
       a *= clamp((110.0 - vDist) / 80.0, 0.28, 1.0);                    // 景深淡出
       if (a < 0.012) discard;
       gl_FragColor = vec4(col, clamp(a, 0.0, 1.0));
