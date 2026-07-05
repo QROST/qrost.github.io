@@ -28,9 +28,10 @@
       zh: '几份 <strong class="font-medium text-slate-800 dark:text-slate-200">交互式数据图谱</strong>，一个中国人的全球视角，也有一些动手做的产品原型。随手记下来、摆在这里，有用就拿走。',
     },
     sectionResearch: { en: 'Research & notes', zh: '研究与笔记' },
+    sectionGenerative: { en: 'Generative art', zh: '生成艺术' },
     sectionDemos: { en: 'Product demos', zh: '产品演示' },
     badgeResearch: { en: 'Research · interactive', zh: '研究 · 交互' },
-    badgeGenerative: { en: 'Research · generative art', zh: '研究 · 生成艺术' },
+    badgeGenerative: { en: 'Generative art', zh: '生成艺术' },
     badgePrototype: { en: 'Prototype · interactive', zh: '原型 · 交互' },
     openPage: { en: 'Open page', zh: '打开页面' },
     cardHousingTitle: {
@@ -64,6 +65,14 @@
     cardAbyssDesc: {
       en: 'A full-bleed cosmos that breathes — countless points drift, cluster and self-organize into a living lattice, and its music is read out from the field itself. Chaos · breath · drift · weave.',
       zh: '一片会呼吸的全屏星海——无数光点漂流、聚拢，自组织为流动的晶格，乐声自星场本身涌出。沌 · 息 · 漂 · 织。',
+    },
+    cardNeonTitle: {
+      en: 'Neon Abyss · 霓虹渊',
+      zh: '霓虹渊 · Neon Abyss',
+    },
+    cardNeonDesc: {
+      en: 'The same cosmos, after dark — the lattice now pulses to a four-on-the-floor, the field lit in neon, every beat strikes the light. The dance-floor twin of the piece above. Kick · build · drop · rise.',
+      zh: '同一片星海，入了夜——晶格随四四鼓机起伏，星场亮成霓虹，每一记鼓点都打在光上。上面那件作品的舞池孪生。鼓 · 升 · 泻 · 起。',
     },
     cardWfoeTitle: {
       en: 'How to open a company in China — entity paths & hiring costs',
