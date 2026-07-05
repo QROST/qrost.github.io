@@ -54,6 +54,10 @@
   <script src="../china-housing/assets/data/enriched.js"></script>
   <script src="../china-housing/assets/data/hazards.js"></script>
 
+  <!-- 提前并行拉取 three（模块顶部 import 的最大阻塞项）→ 缩短冷网下"门已可点但模块还没加载完、
+       点确认那一下被丢弃"的竞态窗口。非完全消除；彻底解法是把音频解锁原语搬到 parse-time inline script（见后续）。 -->
+  <link rel="modulepreload" href="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js" crossorigin>
+
   <script type="importmap">
   {
     "imports": {
@@ -62,6 +66,6 @@
     }
   }
   </script>
-  <script type="module" src="app.js?v=be92743a4a"></script>
+  <script type="module" src="app.js?v=be92743a4b"></script>
 </body>
 </html>

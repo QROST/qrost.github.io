@@ -1270,37 +1270,83 @@ let clubMode = false, micActive = false, gyroAsked = false, audioKicked = false,
 // 策略：boot 时不创建 ctx；首个手势的同步栈内按 iOS 要求的顺序解锁 →
 //   ① 在手势内 new AudioContext  ② 立刻播一段与 ctx 同采样率的(略长)静音 buffer 开声道
 //   ③ ctx.resume()  ④ sonifier.start。resume 是异步的，故静音 buffer 必须先于 resume 播放。
+// —— iOS 铃声/静音开关逃逸：纯 AudioContext 在 iOS 上走"遵守静音开关"的音频会话类别；
+//    但静音开关本应只管通知、不该掐媒体。要让生成音乐像媒体一样无视静音开关，须在用户手势内
+//    把会话类别提升到 playback，两条路并用（都不用麦克风）：
+//    (A) navigator.audioSession.type='playback'（W3C，Safari/iOS 16.4+；无此属性的浏览器跳过）
+//    (B) loop 播一个亚感知 dither <audio>（关键：不能纯静音——WebKit 靠"是否真有音频输出"决定翻不翻
+//        会话类别，纯静音会被判为无输出而不翻；故写 ±1 LSB 抖动，对人耳不可闻但对 WebKit 计为有效输出）。
+//    仅 iOS 触发；桌面/Android 无静音开关 → 整体退化为 no-op。
+const _isIosLike = (/iP(hone|ad|od)/.test(navigator.platform) ||
+  (navigator.maxTouchPoints > 1 && /Mac/.test(navigator.platform))) && !!window.webkitAudioContext;
+let _silentEl = null, _silentUrl = null;
+function _makeDitherWavUrl(sr, frames) {                    // 极短 8-bit 单声道 dither WAV（127/129 交替）；Blob+ObjectURL，无网络依赖
+  const buf = new ArrayBuffer(44 + frames), dv = new DataView(buf); let p = 0;
+  const u32 = (v) => { dv.setUint32(p, v, true); p += 4; }, u16 = (v) => { dv.setUint16(p, v, true); p += 2; };
+  const str = (s) => { for (let i = 0; i < s.length; i++) dv.setUint8(p++, s.charCodeAt(i)); };
+  str('RIFF'); u32(36 + frames); str('WAVE'); str('fmt '); u32(16); u16(1); u16(1); u32(sr); u32(sr); u16(1); u16(8); str('data'); u32(frames);
+  for (let i = 0; i < frames; i++) dv.setUint8(p++, (i & 1) ? 129 : 127);   // ±1 LSB 亚感知抖动（非纯静音）
+  return URL.createObjectURL(new Blob([buf], { type: 'audio/wav' }));
+}
+function promoteAudioSession() {                            // 必须在用户手势同步栈内、且早于 resume() 调用
+  if (!_isIosLike) return;                                  // 仅 iOS：桌面/Android 无静音开关 → 真 no-op
+  try { if (navigator.audioSession) navigator.audioSession.type = 'playback'; } catch (_) {}   // (A)
+  if (_silentEl) return;                                    // (B) 静音元素只建一次，持续 loop 维持会话类别
+  try {
+    _silentUrl = _makeDitherWavUrl(44100, 1024);
+    const el = document.createElement('audio');
+    el.loop = true; el.preload = 'auto'; el.volume = 1;     // 绝不 muted：muted 元素不翻会话类别
+    el.setAttribute('playsinline', ''); el.setAttribute('webkit-playsinline', '');
+    el.src = _silentUrl; document.body.appendChild(el); _silentEl = el;   // 挂 DOM + 持引用防 GC
+    const pr = el.play(); if (pr && pr.catch) pr.catch(() => {});         // 被自动播放策略拒 → 下个手势重试
+  } catch (_) {}
+}
 function ensureCtx() {
   if (audioCtx) return audioCtx;
   try {
     const AC = window.AudioContext || window.webkitAudioContext;
-    if (AC) audioCtx = new AC();
+    if (AC) { audioCtx = new AC(); audioCtx._tries = 0; }
   } catch (_) {}
   return audioCtx;
 }
+function recreateCtx() {                                    // 僵死 ctx 兜底：close 旧的、在同一手势内重建（手势内建的 ctx 直接 running）
+  const old = audioCtx;
+  try { old && old.removeEventListener('statechange', onAudioStateChange); } catch (_) {}
+  try { old && old.state !== 'closed' && old.close(); } catch (_) {}   // fire-and-forget
+  audioCtx = null;
+  return ensureCtx();
+}
 
 // iOS/Safari 专用：在手势同步栈内播一段静音 buffer 才能真正打通声道。用 ctx 自身采样率、稍长（~50ms）更稳。
+// 只要 ctx 还没 running 就每次有效手势重播一次静音源（不再用 _primed 一次性门控）：iOS 某些版本
+// 要求每次 resume 前都有一次真实发声；配合 recreateCtx 兜底彻底救回僵死 ctx。
 function primeAudioUnlock() {
   const ctx = audioCtx;
-  if (!ctx || ctx._primed) return;
+  if (!ctx || ctx.state === 'running') return;
   try {
     const len = Math.max(1, Math.floor(0.05 * ctx.sampleRate));   // ~50ms 静音，与 ctx 同采样率
     const b = ctx.createBuffer(1, len, ctx.sampleRate);
     const s = ctx.createBufferSource(); s.buffer = b; s.connect(ctx.destination); s.start(0);
-    ctx._primed = true;
   } catch (_) {}
 }
 
-function startMusic() {                                   // 创建/resume AudioContext + 起 sonifier；幂等
+function startMusic() {                                   // 提升会话 → 解锁 → resume → 僵死兜底 → 起 sonifier；幂等
   try {
-    const ctx = ensureCtx();
-    if (ctx) {
-      if (!ctx._abListen) { ctx._abListen = true; ctx.addEventListener('statechange', onAudioStateChange); }
-      primeAudioUnlock();                                 // 必须在 resume 之前：iOS 在 resume(异步) 完成前就需要一次真实发声
-      if (ctx.resume) { const p = ctx.resume(); if (p && p.then) p.then(onAudioStateChange, () => {}); }
-      sonifier.start(ctx, musicDNA || { climWarm });
-      if (!clubMode) sonifier.setMuted(false);
+    promoteAudioSession();                                // ① 手势内最先：iOS 会话提升（越过静音开关）
+    let ctx = ensureCtx();                                // ② 手势内建/取 ctx
+    if (!ctx) return;
+    if (ctx.state === 'suspended' && (ctx._tries || 0) >= 2) {   // 前几次手势 resume 都没顶到 running（僵死）→ 本手势重建
+      ctx = recreateCtx(); if (sonifier) sonifier.started = false;   // 强制在新 ctx 上重建音频图（旧 ctx 已 close，图已死）
+      if (!ctx) return;
     }
+    if (!ctx._abListen) { ctx._abListen = true; ctx.addEventListener('statechange', onAudioStateChange); }
+    primeAudioUnlock();                                   // ③ 早于 resume：iOS 需在 resume(异步) 完成前有一次真实发声
+    if (ctx.state !== 'running' && ctx.resume) {          // ④ resume（计数供僵死兜底判定）
+      ctx._tries = (ctx._tries || 0) + 1;
+      const p = ctx.resume(); if (p && p.then) p.then(onAudioStateChange, () => {});
+    }
+    sonifier.start(ctx, musicDNA || { climWarm });        // sonifier.start 幂等（内部 if(this.started) return）
+    if (!clubMode) sonifier.setMuted(false);
   } catch (_) {}
 }
 
@@ -1360,10 +1406,18 @@ function kickAudio() {                                   // 首个手势内（�
   startMusic();          // 手势同步栈内：new ctx → 静音 buffer 解锁 → resume → start sonifier（iOS 必需的顺序）
   onAudioStateChange();
 }
-// 覆盖尽可能多的「首个手势」入口（含桌面 click / 触屏 touchstart / iOS 老式 mousedown），最大化点任意几何体即出声的成功率；audioKicked 幂等，running 后全部 no-op
-['pointerdown', 'pointerup', 'touchstart', 'touchend', 'mousedown', 'click', 'keydown'].forEach((ev) => addEventListener(ev, kickAudio, { passive: true }));
-// 页面从后台切回前台：移动端浏览器常把 AudioContext 自动 suspend，回来后需重新 resume（无需静音 buffer，声道已开过）
-document.addEventListener('visibilitychange', () => { if (!document.hidden && audioCtx && audioCtx.state === 'suspended') { try { audioCtx.resume(); } catch (_) {} } });
+// 只挂「手势结束/离散激活」事件：touchend / click / pointerup / keydown。
+// iOS/WebKit 只把这些当作有效 user-activation；touchstart/pointerdown/mousedown 是手势"开始"，
+// 在 iOS 上不算激活——若在它们里 new AudioContext 会造出一个永久 suspended 的僵死 ctx，之后任何有效手势都救不回来（Mac Chrome 宽松故无此问题）。
+// audioKicked 幂等，running 后全部 no-op。
+['touchend', 'click', 'pointerup', 'keydown'].forEach((ev) => addEventListener(ev, kickAudio, { passive: true }));
+// 页面从后台切回前台：移动端浏览器常把 AudioContext 自动 suspend；电话/Siri 会置 interrupted。回来后 resume；
+// iOS 上顺带补一次会话提升（静音元素可能在打断中被释放）。
+document.addEventListener('visibilitychange', () => {
+  if (document.hidden) return;
+  if (_isIosLike && audioKicked && !_silentEl) promoteAudioSession();
+  if (audioCtx && (audioCtx.state === 'suspended' || audioCtx.state === 'interrupted')) { try { audioCtx.resume(); } catch (_) {} }
+});
 
 // 欢迎门：点「Enter」的同步手势内解锁音频 + 起声 + 关门。这一下点击就是移动端 Autoplay Policy 要求的 user gesture，
 // 所以音频在用户确认进入的瞬间就开始播放（无需再额外点屏幕）。
