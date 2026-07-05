@@ -82,10 +82,10 @@ let composer = null, bloomPass = null;
 if (BLOOM_ON) {
   composer = new EffectComposer(renderer);
   composer.addPass(new RenderPass(scene, camera));
-  bloomPass = new UnrealBloomPass(new THREE.Vector2(innerWidth, innerHeight), 0.9, 0.6, 0.35);   // strength 0.9 · radius 0.6 · threshold 0.35
+  bloomPass = new UnrealBloomPass(new THREE.Vector2(innerWidth, innerHeight), 0.7, 0.5, 0.7);   // strength 0.7 · radius 0.5 · threshold 0.7（高阈值：只有真正亮的星核 bloom，背景星云不糊成白）
   composer.addPass(bloomPass);
 }
-const BLOOM_BASE = 0.9;   // bloom 基线强度（kick 时脉冲到 ~1.4）
+const BLOOM_BASE = 0.7;   // bloom 基线强度（kick 时脉冲到 ~1.1）
 
 
 // GPU 可绘制的最大点尺寸各异（部分移动 GPU 仅 64）→ 取真实上限，避免超限被驱动异常裁切；日月封顶 150
@@ -124,9 +124,9 @@ const bgMat = new THREE.ShaderMaterial({
       return mix(mix(mix(hash(i+vec3(0.,0.,0.)),hash(i+vec3(1.,0.,0.)),f.x), mix(hash(i+vec3(0.,1.,0.)),hash(i+vec3(1.,1.,0.)),f.x),f.y),
                  mix(mix(hash(i+vec3(0.,0.,1.)),hash(i+vec3(1.,0.,1.)),f.x), mix(hash(i+vec3(0.,1.,1.)),hash(i+vec3(1.,1.,1.)),f.x),f.y), f.z); }
     float fbm(vec3 p){ float a=0.5,s=0.0; for(int i=0;i<4;i++){ s+=a*noise(p); p=p*2.03+vec3(1.7); a*=0.5; } return s; }
-    vec3 pal(float x){                                              // 霓虹循环调色板（品红·青·酸橙·橙·紫，比 Data Abyss 更饱和更亮）
-      vec3 a = vec3(0.5, 0.5, 0.5), b = vec3(0.5, 0.5, 0.5), c = vec3(1.0, 1.0, 1.0), d = vec3(0.0, 0.33, 0.67);
-      return a + b * cos(6.28318 * (c * x + d));   // 经典 IQ palette：高饱和全幅 → 霓虹感
+    vec3 pal(float x){                                              // 霓虹循环调色板（品红·青·酸橙·橙·紫），亮度适中 → 背景可读但不撞白点
+      vec3 a = vec3(0.42, 0.40, 0.45), b = vec3(0.38, 0.34, 0.36), c = vec3(1.0, 1.0, 1.0), d = vec3(0.0, 0.33, 0.67);
+      return a + b * cos(6.28318 * (c * x + d));   // IQ palette：亮度中心 0.42 + 振幅 0.38 → 峰值 ~0.80（背景稍亮、留出星点明亮余量）
     }
     // CPPN：一个数据播种的微型神经网络逐像素生成"梦的场" → 只驱动调色板参数/warp，锁住既有美学
     void cppn(vec3 dir, float tt, out float hueN, out float warpN){
@@ -188,7 +188,9 @@ const pointMaterial = new THREE.ShaderMaterial({
       vec2 av = abs(uv) * 2.0;                                                 // 四芒衍射星芒
       float spike = (max(0.0, 1.0 - av.x) * max(0.0, 1.0 - av.y * 11.0) + max(0.0, 1.0 - av.y) * max(0.0, 1.0 - av.x * 11.0)) * 0.3;
       vec3 base = mix(vColor, vec3(dot(vColor, vec3(0.333))), 0.2);            // 略去正色
-      vec3 col = mix(base, vec3(1.0), core * 0.75) * (core * 1.3 + glow * 0.5 + ring + spike);
+      // 霓虹版：核不向白靠拢（只提亮到自身色的 1.6×，而非 mix 到 vec3(1.0)）→ 星点保留霓虹色，不被 bloom 烧成白。
+      vec3 coreCol = base * 1.6;
+      vec3 col = mix(coreCol, base, 1.0 - core) * (core * 0.9 + glow * 0.5 + ring + spike);
       float a = core + glow * (0.4 + 0.4 * vHaze) + ring + spike;
       a *= clamp((110.0 - vDist) / 80.0, 0.28, 1.0);                    // 景深淡出
       if (a < 0.012) discard;
@@ -224,26 +226,26 @@ const beamMaterial = new THREE.ShaderMaterial({
   fragmentShader: `varying vec3 vC; varying float vVis; void main(){ if (vVis < 0.5) discard; gl_FragColor = vec4(vC, 0.02); }`
 });
 
-// 几何体棱线材质：彩色加性细线 + 景深淡出
+// 几何体棱线材质：彩色细线 + 景深淡出。NormalBlending（非 Additive）→ 密集几何体聚拢时颜色不叠加烧白，只互相遮挡。
 const solidLineMat = new THREE.ShaderMaterial({
-  uniforms: { uOpacity: { value: 0.7 } }, transparent: true, depthWrite: false, blending: THREE.AdditiveBlending,
+  uniforms: { uOpacity: { value: 0.92 } }, transparent: true, depthWrite: false, blending: THREE.NormalBlending,
   vertexShader: `attribute vec3 aColor; varying vec3 vC; varying float vDist;
     void main(){ vC = aColor; vec4 mv = modelViewMatrix*vec4(position,1.0); vDist = -mv.z; gl_Position = projectionMatrix*mv; }`,
   fragmentShader: `varying vec3 vC; varying float vDist; uniform float uOpacity;
-    void main(){ float f = clamp((110.0 - vDist)/80.0, 0.22, 1.0); gl_FragColor = vec4(vC*0.85, uOpacity*f); }`
+    void main(){ float f = clamp((110.0 - vDist)/80.0, 0.22, 1.0); gl_FragColor = vec4(vC, uOpacity*f); }`
 });
 
 // GPU instancing 可用性（几乎所有 WebGL 设备都支持；否则回退到 CPU 合并路径，保证任何设备可开）
 const USE_INST = !!(renderer.capabilities.isWebGL2 || (renderer.extensions && renderer.extensions.has && renderer.extensions.has('ANGLE_instanced_arrays')));
 // 几何体实例化材质：每实例 pos(3)+quat(4)+scale(3)+color(3)，纯四元数旋转 → 最普适、跨 GPU 稳（无 mat4 属性、少占顶点槽）
 const instLineMat = new THREE.ShaderMaterial({
-  transparent: true, depthWrite: false, blending: THREE.AdditiveBlending,
+  transparent: true, depthWrite: false, blending: THREE.NormalBlending,
   vertexShader: `attribute vec3 iPos; attribute vec4 iQuat; attribute vec3 iScl; attribute vec3 iColor;
     varying vec3 vC; varying float vDist;
     vec3 qrot(vec4 q, vec3 v){ return v + 2.0*cross(q.xyz, cross(q.xyz, v) + q.w*v); }
     void main(){ vC = iColor; vec3 wp = iPos + qrot(iQuat, position*iScl); vec4 mv = modelViewMatrix*vec4(wp,1.0); vDist = -mv.z; gl_Position = projectionMatrix*mv; }`,
   fragmentShader: `varying vec3 vC; varying float vDist;
-    void main(){ float f = clamp((110.0 - vDist)/80.0, 0.22, 1.0); gl_FragColor = vec4(vC*0.85, 0.7*f); }`
+    void main(){ float f = clamp((110.0 - vDist)/80.0, 0.22, 1.0); gl_FragColor = vec4(vC, 0.92*f); }`
 });
 
 // SOM 神经晶格材质：neighbor 连线，亮度=神经元 density，整体随呼吸量 uOrg 浮现（呼气时心智显形）
