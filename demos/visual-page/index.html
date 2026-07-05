@@ -39,6 +39,16 @@
   <div id="card" class="hidden"></div>
   <div id="loading">Igniting the abyss…</div>
 
+  <!-- Welcome gate: acknowledged click is also the user gesture that unlocks audio (mobile autoplay policy). -->
+  <div id="welcome-gate" role="dialog" aria-modal="true" aria-labelledby="wg-title">
+    <div class="wg-card">
+      <h2 id="wg-title">Data Abyss · 数渊</h2>
+      <p class="wg-en">A slowly breathing data cosmos. Best experienced with <strong>sound on</strong> — a generative lo-fi score is woven from the data you see.</p>
+      <p class="wg-zh">一片缓缓呼吸的数据星海。建议<strong>开启声音</strong>——你会听到一首由眼前数据织成的生成式 lo-fi 配乐。</p>
+      <button id="wg-enter" type="button">Enter · 进入</button>
+    </div>
+  </div>
+
   <!-- china-housing baked globals (classic scripts run before the module) -->
   <script src="../china-housing/assets/data/listings.js"></script>
   <script src="../china-housing/assets/data/enriched.js"></script>

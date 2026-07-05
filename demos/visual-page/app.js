@@ -1365,6 +1365,18 @@ function kickAudio() {                                   // 首个手势内（�
 // 页面从后台切回前台：移动端浏览器常把 AudioContext 自动 suspend，回来后需重新 resume（无需静音 buffer，声道已开过）
 document.addEventListener('visibilitychange', () => { if (!document.hidden && audioCtx && audioCtx.state === 'suspended') { try { audioCtx.resume(); } catch (_) {} } });
 
+// 欢迎门：点「Enter」的同步手势内解锁音频 + 起声 + 关门。这一下点击就是移动端 Autoplay Policy 要求的 user gesture，
+// 所以音频在用户确认进入的瞬间就开始播放（无需再额外点屏幕）。
+const welcomeGate = document.getElementById('welcome-gate');
+const wgEnter = document.getElementById('wg-enter');
+if (wgEnter) {
+  wgEnter.addEventListener('click', () => {
+    kickAudio();                                          // 手势同步栈内：解锁 + 起声（与首屏点屏幕等价）
+    if (welcomeGate) { welcomeGate.classList.add('gone'); setTimeout(() => welcomeGate.remove(), 1000); }
+  }, { once: true });
+}
+
+
 async function toggleMode() {                             // 下方按钮：音乐 ⇄ 俱乐部律动
   startMusic();                                           // 先在手势同步上下文内解锁音频（须早于任何 await）
   requestGyro();                                          // 陀螺权限（不 await，避免拖慢按钮反馈）

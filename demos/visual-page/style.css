@@ -151,3 +151,47 @@ body.ui-hidden #title.peek { opacity: 0.8; }
   #title span { display: block; margin: 6px 0 0; }
   #sub { font-size: 11px; }
 }
+
+/* ---------- 欢迎门：点击 Enter 的同步手势内解锁音频（移动端 Autoplay Policy）---------- */
+#welcome-gate {
+  position: fixed; inset: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: center;
+  padding: 24px;
+  background: radial-gradient(ellipse at center, rgba(8, 11, 22, 0.92), rgba(0,0,0,0.97));
+  backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+  transition: opacity 0.9s ease;
+}
+#welcome-gate.gone { opacity: 0; pointer-events: none; }
+.wg-card {
+  max-width: 460px; width: 100%;
+  background: rgba(8, 11, 22, 0.55);
+  border: 1px solid rgba(150, 180, 255, 0.16);
+  border-radius: 18px; padding: 30px 26px 24px;
+  text-align: center;
+  box-shadow: 0 0 60px rgba(60, 90, 200, 0.2);   /* 冷蓝辉光（与 #card 一致）*/
+}
+.wg-card h2 {
+  font-size: 15px; font-weight: 200; letter-spacing: 0.32em;
+  margin-bottom: 20px; color: #cfe0ff; opacity: 0.85;
+}
+.wg-card .wg-en {
+  font-size: 13px; line-height: 1.65; color: rgba(220, 232, 255, 0.78); margin-bottom: 12px;
+}
+.wg-card .wg-zh {
+  font-size: 13px; line-height: 1.7; color: rgba(220, 232, 255, 0.78); margin-bottom: 24px;
+}
+.wg-card #wg-enter {
+  font-size: 12px; letter-spacing: 0.18em; cursor: pointer;
+  color: #cfe0ff; background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(170, 200, 255, 0.35);
+  padding: 11px 26px; border-radius: 999px;
+  backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+  transition: background 0.2s, transform 0.1s, box-shadow 0.2s;
+}
+.wg-card #wg-enter:hover { background: rgba(255, 255, 255, 0.12); box-shadow: 0 0 24px rgba(120, 160, 255, 0.25); }
+.wg-card #wg-enter:active { transform: scale(0.96); }
+@media (max-width: 820px) {
+  .wg-card { padding: 24px 20px 20px; }
+  .wg-card h2 { font-size: 13px; }
+  .wg-card .wg-en, .wg-card .wg-zh { font-size: 12px; }
+}
