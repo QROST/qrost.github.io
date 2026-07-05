@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover" />
+  <meta name="theme-color" content="#04050a" />
+  <title>Neon Abyss · 霓虹渊</title>
+  <meta name="description" content="A nightclub-grade generative data cosmos: the same housing, industrial-software, pharma, and shelter-cat data driving a Three.js star field, now scored by a 138 BPM Trance / Progressive engine with beat-synced bloom and strobe. The dance-floor sibling of Data Abyss." />
+  <link rel="icon" href="../../favicon.svg" />
+  <link rel="apple-touch-icon" href="../../favicon.svg" />
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Neon Abyss · 霓虹渊">
+  <meta property="og:description" content="A nightclub-grade generative data cosmos — Data Abyss reimagined with a 138 BPM Trance engine, four-on-the-floor, supersaw stabs, and beat-synced bloom.">
+  <meta property="og:url" content="https://qrost.github.io/demos/neon-abyss/">
+  <meta property="og:site_name" content="QROST">
+  <meta property="og:image" content="https://qrost.github.io/demos/neon-abyss/assets/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Neon Abyss · 霓虹渊">
+  <meta name="twitter:description" content="A nightclub-grade generative data cosmos — Data Abyss reimagined with a 138 BPM Trance engine and beat-synced bloom.">
+  <meta name="twitter:image" content="https://qrost.github.io/demos/neon-abyss/assets/og-image.png">
+
+  <link rel="stylesheet" href="style-club.css?v=n1" />
+</head>
+<body>
+  <div id="scene"></div>
+  <div id="vignette"></div>
+  <div id="grain"></div>
+  <div id="strobe"></div>
+
+  <a id="home-link" href="../../index.html" aria-label="Back to QROST home · 返回 QROST 首页">QROST</a>
+
+  <div id="hud">
+    <div id="title" role="button" tabindex="0">NEON ABYSS <span id="lang-toggle">霓虹渊</span></div>
+    <div id="sub">kick · build · drop · rise · trance</div>
+  </div>
+
+  <div id="tip"><span id="tip-text"></span><button id="enable">Motion &amp; sound</button></div>
+
+  <div id="card" class="hidden"></div>
+  <div id="loading">Igniting the dance floor…</div>
+
+  <!-- Photosensitivity / epilepsy gate: must be acknowledged before the beat-synced strobe runs -->
+  <div id="epilepsy-gate" role="dialog" aria-modal="true" aria-labelledby="ep-title">
+    <div class="ep-card">
+      <h2 id="ep-title">Photosensitivity warning · 光敏性警示</h2>
+      <p class="ep-en">This experience contains <strong>beat-synced strobing flashes</strong> and rapid color changes. If you have photosensitive epilepsy or are sensitive to flashing lights, do not continue.</p>
+      <p class="ep-zh">本作品包含<strong>与节拍同步的频闪与快速闪烁</strong>。如有光敏性癫痫或对闪光敏感，请勿继续。</p>
+      <div class="ep-actions">
+        <a class="ep-leave" href="../../index.html">Leave · 离开</a>
+        <button id="ep-enter" type="button">I understand · 我已知悉</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- china-housing baked globals (classic scripts run before the module) -->
+  <script src="../china-housing/assets/data/listings.js"></script>
+  <script src="../china-housing/assets/data/enriched.js"></script>
+  <script src="../china-housing/assets/data/hazards.js"></script>
+
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+    }
+  }
+  </script>
+  <script type="module" src="app-club.js?v=n1"></script>
+</body>
+</html>
