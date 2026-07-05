@@ -1,6 +1,7 @@
 // Auto-maintained romanization for EN table cells (loc names).
 // Regenerate: node tools/gen-loc-pinyin.js
 window.HOUSING_LOC_PINYIN = {
+  "4006": "4006",
   "537家属楼": "5 3 7 Jia Shu Lou",
   "90293": "90293",
   "94089": "94089",

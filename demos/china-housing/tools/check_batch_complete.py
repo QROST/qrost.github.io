@@ -24,6 +24,12 @@ RESEARCH_DIR = ROOT / "data" / "research"
 
 POI_CATS = ("hospital", "train", "airport", "coast", "hsr")
 LULU_CATS = ("wastewater", "landfill", "incinerator", "nuclear", "chemical", "sensitive", "substation")
+# Overseas provs (same level as California). Their POI/LULU come from a LOCAL-radius
+# Overpass search, not CN's national nearest-set — so an absent category is an honest
+# "nothing within range" (no HSR network; Australia has no nuclear facilities at all),
+# NOT a data gap. hsr is exempted, and absent LULU is tolerated once the local search
+# has demonstrably run (≥1 category found).
+_OVERSEAS_PROV = frozenset({"香港", "台湾", "California", "澳洲"})
 # Mainland prefecture-level cities with metro — skip metro gap elsewhere.
 _METRO_CITIES = frozenset({
     "北京市", "上海市", "天津市", "重庆市", "广州市", "深圳市", "成都市", "武汉市",
@@ -115,7 +121,7 @@ def _hazards_ok(raw: str | None) -> bool:
 
 def _metro_required(city: str, prov: str) -> bool:
     base = (city or "").split("-")[0]
-    if prov in ("香港", "台湾", "California"):
+    if prov in _OVERSEAS_PROV:
         return base in _METRO_CITIES or prov == "香港"
     return base in _METRO_CITIES or base.endswith("市")
 
@@ -221,9 +227,11 @@ def _checks_for_row(
     elif _hazard_province_only(r["prov"], r["city"], r["hazards_local"], pref_keys, prov_headlines):
         gaps.append("hazard_merge_prefecture")
 
+    overseas = r["prov"] in _OVERSEAS_PROV
     for cat in POI_CATS:
         if cat == "hsr":
-            if not _hsr_ok(pois):
+            # No HSR network in any overseas region we cover — exempt (CA/AU/HK/TW).
+            if not _hsr_ok(pois) and not overseas:
                 gaps.append("poi_hsr")
         elif not _poi_ok(pois.get(cat)):
             gaps.append(f"poi_{cat}")
@@ -231,9 +239,15 @@ def _checks_for_row(
     if _metro_required(r["city"], r["prov"]) and not _poi_ok(pois.get("metro")):
         gaps.append("poi_metro")
 
+    # Overseas LULU is a local-radius search: absent categories are honest once the
+    # search ran (≥1 found). CN uses a national nearest-set → stays strict (all 7).
+    lulu_ran = any(_poi_ok(pois.get(c)) for c in LULU_CATS)
     for cat in LULU_CATS:
-        if not _poi_ok(pois.get(cat)):
-            gaps.append(f"lulu_{cat}")
+        if _poi_ok(pois.get(cat)):
+            continue
+        if overseas and lulu_ran:
+            continue
+        gaps.append(f"lulu_{cat}")
 
     if r["lat"] is not None and not poi_done:
         gaps.append("poi_done")

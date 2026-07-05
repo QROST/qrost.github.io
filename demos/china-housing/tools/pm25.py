@@ -27,7 +27,7 @@ ZENODO_BASE = f"https://zenodo.org/api/records/{ZENODO_REC}/files"
 VERSION_TAG = "V4"
 REF_YEAR = 2020
 UA = "qrost-china-housing/1.0 (+https://qrost.github.io; contact czd358121692@gmail.com)"
-_OVERSEAS_PROV = {"California", "台湾"}
+_OVERSEAS_PROV = {"California", "台湾", "澳洲"}
 # ChinaHighPM2.5 grid extent (approx; listings outside → null)
 _CN_LAT = (15.0, 55.0)
 _CN_LNG = (70.0, 137.0)
@@ -187,12 +187,12 @@ def pm25_all(
     if force:
         rows = con.execute(
             """SELECT id, lat, lng, prov FROM listings
-               WHERE lat IS NOT NULL AND prov NOT IN ('California')"""
+               WHERE lat IS NOT NULL AND prov NOT IN ('California','澳洲')"""
         ).fetchall()
     else:
         rows = con.execute(
             """SELECT id, lat, lng, prov FROM listings
-               WHERE lat IS NOT NULL AND prov NOT IN ('California')
+               WHERE lat IS NOT NULL AND prov NOT IN ('California','澳洲')
                  AND pm25_annual IS NULL"""
         ).fetchall()
     log(f"pm25: {len(rows)} listing(s) to sample (ChinaHighPM2.5 {year}) …")
@@ -211,10 +211,10 @@ def pm25_all(
     con.commit()
     total = con.execute(
         """SELECT COUNT(*) FROM listings
-           WHERE lat IS NOT NULL AND prov NOT IN ('California') AND pm25_annual IS NOT NULL"""
+           WHERE lat IS NOT NULL AND prov NOT IN ('California','澳洲') AND pm25_annual IS NOT NULL"""
     ).fetchone()[0]
     geo_cn = con.execute(
-        "SELECT COUNT(*) FROM listings WHERE lat IS NOT NULL AND prov NOT IN ('California')"
+        "SELECT COUNT(*) FROM listings WHERE lat IS NOT NULL AND prov NOT IN ('California','澳洲')"
     ).fetchone()[0]
     rep = {
         "year": year,

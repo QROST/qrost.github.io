@@ -32,7 +32,8 @@ window.HOUSING_GEO_EN = {
   "内蒙古": "Inner Mongolia",
   "香港": "Hong Kong",
   "台湾": "Taiwan",
-  "California": "California"
+  "California": "California",
+  "澳洲": "Australia"
 },
   city: {
   "七台河市": "Qitaihe",
@@ -164,6 +165,7 @@ window.HOUSING_GEO_EN = {
   "台中市": "Taichung",
   "台南市": "Tainan",
   "Sunnyvale": "Sunnyvale",
+  "Brisbane": "Brisbane",
   "Anaheim": "Anaheim",
   "Los Angeles": "Los Angeles",
   "三门峡市-灵宝市": "San Men Xia Shi Ling Bao City",
@@ -214,6 +216,7 @@ window.HOUSING_GEO_EN = {
   "韶关市": "Shao Guan City"
 },
   district: {
+  "4006": "4006",
   "90012": "90012",
   "90293": "90293",
   "92805": "92805",

@@ -414,5 +414,7 @@ window.HOUSING_LISTINGS = [
   { id: 399, prov: "广东",       city: "惠州市",            dist: "仲恺区 惠环",       loc: "碧桂园凤凰华府",           priceWan: 64.8,  area: 97,     rent: 1900,    updated: "2026-06" },
   { id: 400, prov: "广东",       city: "惠州市",            dist: "大亚湾区 霞涌",     loc: "梵高的海",                 priceWan: 17,    area: 45.95,  rent: 920,     updated: "2026-06" },
   { id: 401, prov: "广东",       city: "深圳市",            dist: "福田区 梅林",       loc: "梅林一村",                 priceWan: 316,   area: 67,     rent: 6400,    updated: "2026-06" },
-  { id: 402, prov: "河南",       city: "洛阳市",            dist: "洛龙区",            loc: "政和东郡",                 priceWan: 108,   area: 137.8,  rent: 2300,    updated: "2026-06" }
+  { id: 402, prov: "河南",       city: "洛阳市",            dist: "洛龙区",            loc: "政和东郡",                 priceWan: 108,   area: 137.8,  rent: 2300,    updated: "2026-06" },
+  { id: 403, prov: "澳洲",       city: "Brisbane",          dist: "4006",              loc: "4006",                     priceWan: 87.6,  area: 135,    rent: 3424,    updated: "2026-07" },
+  { id: 404, prov: "澳洲",       city: "Brisbane",          dist: "4006",              loc: "4006",                     priceWan: 82,    area: 90,     rent: 3424,    updated: "2026-07" }
 ];

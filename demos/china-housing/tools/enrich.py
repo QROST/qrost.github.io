@@ -276,9 +276,19 @@ def migrate(con):
 # ---------------------------------------------------------------------------
 # Geocoding — Nominatim coarse-to-fine ladder
 # ---------------------------------------------------------------------------
-_OVERSEAS_PROV = {"California"}
+_OVERSEAS_PROV = {"California", "澳洲"}
 _TAIWAN_PROV = frozenset({"台湾"})
 _HK_PROV = frozenset({"香港"})
+# Map each overseas prov → (country name for geocode ladder, Nominatim countrycodes).
+# `prov` is the display/region label and sits at California's level (澳洲 = 国家级标签).
+# It may be a country name Nominatim can't resolve, so the address ladder + 省份校验
+# use a real state-level token from _OVERSEAS_STATE instead of `prov` directly.
+_OVERSEAS_COUNTRY = {"California": "USA", "澳洲": "Australia"}
+_OVERSEAS_CC = {"California": "us", "澳洲": "au"}
+# State-level token for the geocode address ladder + _prov_ok validation, decoupled
+# from the display `prov`. NOTE: the AU token is Brisbane/Queensland-specific — a
+# future non-QLD Australian city would need a per-city map, not this per-prov one.
+_OVERSEAS_STATE = {"California": "California", "澳洲": "Queensland"}
 # Coastal listings where histTempMax (1940–2023 grid extrema) ≫ smoothed normals.
 # recordHeatSupplement steals mild shoulder-season comfort days — skip at emit.
 _RECORD_HEAT_SKIP_PROV = _OVERSEAS_PROV | _TAIWAN_PROV | _HK_PROV
@@ -315,8 +325,15 @@ _GEO_LABELS = {"loc": "小区级", "dist": "街道/镇级", "city": "城市级",
               "building": "building", "district": "district"}
 
 
-def _geo_ladder_us(prov, city, dist, loc):
-    """US listings — no trailing 中国; countrycodes=us in geocode_one."""
+def _geo_ladder_overseas(prov, city, dist, loc):
+    """Overseas listings — no trailing 中国; countrycodes per-prov in geocode_one.
+
+    Each overseas prov maps to a country via _OVERSEAS_COUNTRY and to a resolvable
+    state-level token via _OVERSEAS_STATE (the display `prov` may be a country label
+    such as '澳洲' that Nominatim can't resolve). The query ladder is identical in
+    shape regardless of country: loc→dist→city with state+country."""
+    country = _OVERSEAS_COUNTRY.get(prov, "")
+    state = _OVERSEAS_STATE.get(prov, prov)
     out, used = [], set()
 
     def add(query, level):
@@ -325,11 +342,11 @@ def _geo_ladder_us(prov, city, dist, loc):
             out.append((query, level))
 
     if loc:
-        add(f"{loc}, {city}, {prov}, USA", "loc")
-        add(f"{loc}, {city}, CA, USA", "loc")
-    if dist:
-        add(f"{dist}, {city}, {prov}, USA", "dist")
-    add(f"{city}, {prov}, USA", "city")
+        add(f"{loc}, {city}, {state}, {country}", "loc")
+        add(f"{loc}, {state}, {country}", "loc")
+    if dist and dist != loc:
+        add(f"{dist}, {city}, {state}, {country}", "dist")
+    add(f"{city}, {state}, {country}", "city")
     return out
 
 
@@ -359,6 +376,12 @@ def _prov_ok(prov, hit):
     disp = hit.get("display_name", "")
     addr = hit.get("address", {})
     state = addr.get("state", "") or addr.get("region", "") or addr.get("province", "")
+    if prov in _OVERSEAS_PROV:
+        # `prov` may be a country label (澳洲) that Nominatim never echoes — validate
+        # on the resolvable state token and/or the country name instead.
+        tok = _OVERSEAS_STATE.get(prov, prov)
+        country = _OVERSEAS_COUNTRY.get(prov, "")
+        return tok in disp or tok in state or (bool(country) and country in disp)
     if prov in _TAIWAN_PROV:
         return (prov in disp or "台湾" in disp or "Taiwan" in disp or "臺灣" in disp
                 or "台灣" in state or "Taiwan" in state)
@@ -372,7 +395,7 @@ def geocode_one(prov, city, dist, loc):
     whose address actually lies in the expected province; otherwise we fall to
     the next (coarser) rung. This trades precision for not-wildly-wrong."""
     if prov in _OVERSEAS_PROV:
-        ladder, cc, lang = _geo_ladder_us(prov, city, dist, loc), "us", "en"
+        ladder, cc, lang = _geo_ladder_overseas(prov, city, dist, loc), _OVERSEAS_CC[prov], "en"
     elif prov in _TAIWAN_PROV:
         ladder, cc, lang = _geo_ladder_tw(prov, city, dist, loc), "tw", "zh"
     else:
@@ -862,10 +885,28 @@ _US_AIRPORTS = [
     {"name": "Hollywood Burbank Airport", "iata": "BUR", "lat": 34.200667, "lng": -118.358667},
     {"name": "Ontario International Airport", "iata": "ONT", "lat": 34.056, "lng": -117.601194},
 ]
+# Australia — Queensland (Brisbane area) airport vertices.
+_AU_AIRPORTS = [
+    {"name": "Brisbane Airport", "iata": "BNE", "lat": -27.3942, "lng": 153.1218},
+    {"name": "Gold Coast Airport", "iata": "OOL", "lat": -28.1645, "lng": 153.5050},
+    {"name": "Sunshine Coast Airport", "iata": "MCY", "lat": -26.6033, "lng": 153.0911},
+]
 # SoCal / central CA coastline sample vertices (lat, lng) — nearest-vertex distance.
 _US_COAST = [
     (33.958, -118.445), (33.618, -117.929), (33.770, -118.196), (34.008, -118.498),
     (34.040, -118.677), (32.768, -117.252), (36.620, -121.902), (34.250, -119.264),
+]
+# Australia — SE Queensland coastline + Brisbane River mouth vertices (WGS-84).
+# Captures Pacific/Moreton Bay shore near Brisbane + Gold/Sunshine Coasts; nearest-vertex distance.
+_AU_COAST = [
+    (-27.412, 153.181),   # Brisbane River mouth / Port of Brisbane
+    (-27.395, 153.158),   # Pinkenba / river north bank
+    (-27.350, 153.190),   # Moreton Bay (N of river mouth)
+    (-27.300, 153.230),   # Moreton Island west coast (facing bay)
+    (-27.420, 153.430),   # Moreton Island eastern shore (Pacific)
+    (-27.700, 153.500),   # Sunshine Coast near Caloundra
+    (-28.000, 153.430),   # Gold Coast Spit / South Stradbroke
+    (-28.165, 153.525),   # Gold Coast Seaway
 ]
 _TW_AIRPORTS = [
     {"name": "Taiwan Taoyuan International Airport", "iata": "TPE", "lat": 25.0797, "lng": 121.2342},
@@ -885,8 +926,10 @@ _HK_AIRPORTS = [
 
 
 def _load_airports(prov=None):
-    if prov in _OVERSEAS_PROV:
+    if prov == "California":
         return _US_AIRPORTS
+    if prov == "澳洲":
+        return _AU_AIRPORTS
     if prov in _TAIWAN_PROV:
         return _TW_AIRPORTS
     if prov in _HK_PROV:
@@ -895,8 +938,10 @@ def _load_airports(prov=None):
 
 
 def _load_coast(prov=None):
-    if prov in _OVERSEAS_PROV:
+    if prov == "California":
         return _US_COAST
+    if prov == "澳洲":
+        return _AU_COAST
     if prov in _TAIWAN_PROV:
         return _TW_COAST
     return json.loads((REF / "coast_cn.json").read_text(encoding="utf-8"))
@@ -1194,9 +1239,10 @@ def lulu_all(con, log):
         "WHERE lat IS NOT NULL AND lng IS NOT NULL ORDER BY id"
     ).fetchall()
     # The ref sets now cover CN + HK + TW (fetch_lulu queries all three ISO areas),
-    # so HK/TW listings find their OWN local facilities. Only California is skipped
-    # here — it has no ref set and is baked separately by lulu_ca_local() via a
-    # per-listing local Overpass search (no all-US dataset).
+    # so HK/TW listings find their OWN local facilities. All overseas provs
+    # (California, 澳洲, …) are skipped here — they have no ref set and are
+    # baked separately by lulu_overseas_local() via a per-listing local Overpass
+    # search (no national dataset kept).
     listings = [r for r in listings if r["prov"] not in _OVERSEAS_PROV]
     log(f"lulu: {len(listings)} listing(s) × {len(LULU_CATEGORIES)} categories "
         f"(~{total_pts} ref points total, brute-force haversine)…")
@@ -1233,24 +1279,28 @@ def lulu_all(con, log):
         log(f"  {cat:12s}  rows={len(dists):3d}  min={dists[0]:.1f}km  median={med:.1f}km")
 
 
-def lulu_ca_local(con, log):
-    """Bake LULU nearest-distance for California listings via a per-listing LOCAL
-    Overpass search (no all-US ref set — per user scope). Each listing queries its
-    own ~local radius per category; missing categories stay absent ("—")."""
+def lulu_overseas_local(con, log):
+    """Bake LULU nearest-distance for overseas listings (California, 澳洲, …)
+    via a per-listing LOCAL Overpass search (no national ref set kept for these).
+    Each listing queries its own ~local radius per category; missing categories
+    stay absent ("—"). Region-agnostic — works for any overseas prov."""
     try:
         import fetch_lulu  # sibling tool; owns the OSM tag defs + Overpass infra
     except Exception as e:  # noqa: BLE001
-        log(f"lulu-ca: fetch_lulu import failed ({e}); skipping California local bake")
+        log(f"lulu-overseas: fetch_lulu import failed ({e}); skipping overseas local bake")
         return
+    placeholders = ",".join("?" * len(_OVERSEAS_PROV))
     rows = con.execute(
-        "SELECT id, lat, lng FROM listings "
-        "WHERE prov='California' AND lat IS NOT NULL AND lng IS NOT NULL ORDER BY id"
+        f"SELECT id, lat, lng FROM listings "
+        f"WHERE prov IN ({placeholders}) AND lat IS NOT NULL AND lng IS NOT NULL ORDER BY id",
+        tuple(_OVERSEAS_PROV),
     ).fetchall()
     if not rows:
         return
-    log(f"lulu-ca: {len(rows)} California listing(s) — per-listing local Overpass search…")
-    con.execute("DELETE FROM poi WHERE source='osm-ref' AND listing_id IN "
-                "(SELECT id FROM listings WHERE prov='California')")
+    log(f"lulu-overseas: {len(rows)} overseas listing(s) — per-listing local Overpass search…")
+    con.execute(f"DELETE FROM poi WHERE source='osm-ref' AND listing_id IN "
+                f"(SELECT id FROM listings WHERE prov IN ({placeholders}))",
+                tuple(_OVERSEAS_PROV))
     for r in rows:
         found = fetch_lulu.fetch_around(r["lat"], r["lng"])
         for cat, p in found.items():
@@ -1359,6 +1409,7 @@ SEISMIC = {
     "California": "较高",
     "台湾": "高",
     "香港": "低",
+    "澳洲": "低",  # stable continental interior; rare intraplate quakes
 }
 
 
@@ -1595,6 +1646,12 @@ PROVINCE_HAZARDS = {
                                ("洪涝", 3, "Urban flash flood / storm-drain overflow during intense winter storms"),
                                ("高温", 4, "Summer heat waves + downtown heat-island effect"),
                                ("干旱", 3, "Periodic SoCal multi-year drought cycles")]},
+    "澳洲": {"headline": "Subtropical Brisbane: severe thunderstorms/hail + flooding rains; bushfire smoke on urban fringe; rare tropical-cyclone outer-band influence; low regional seismicity",
+                   "hazards": [("暴雨", 5, "Brisbane River floods (1974/2011/2022) inundated inner-north riverside suburbs incl. Newstead; severe thunderstorms dump 100mm+ in hours several times/yr"),
+                               ("森林火灾", 3, "Low direct risk in dense inner-city; regional bushfire smoke reaches CBD in severe seasons (2019-20 Black Summer, 2023)"),
+                               ("高温", 4, "Summer heat waves ≥35°C common; humidity amplifies heat stress"),
+                               ("风暴潮", 3, "East-coast lows and ex-tropical-cyclones drive surge up the Brisbane River mouth; king-tide + river-flood compound risk"),
+                               ("地质灾害", 2, "Tidal estuary soft sediments along Breakfast Creek/Brisbane River banks; minor bank slumping during floods")]},
     "台湾": {"headline": "台风高暴露+环太平洋地震带；梅雨暴雨与山区土石流",
             "hazards": [("台风", 5, "夏秋台风登陆/影响频繁，东部走廊尤甚"),
                         ("暴雨", 4, "梅雨季/台风暴雨"),
@@ -1630,6 +1687,7 @@ PROVINCE_HEATING = {
     "California": "无·冬暖",  # SoCal: mild winters, no central heating
     "台湾": HEAT_DAMP,  # subtropical north: humid winters, no central heating
     "香港": HEAT_WARM,  # subtropical: mild dry winters, no central heating
+    "澳洲": "无·冬暖",  # subtropical Brisbane: mild winters, no central heating
 }
 HEATING_NOTE = {
     HEAT_HEATED: "秦岭-淮河线以北，市政集中供暖",
@@ -1777,7 +1835,7 @@ def synth_hazards(con, research_by_pref, log):
 def geocode_query(query, prov, limit=5):
     """Province-validated geocode of an arbitrary name/address. Caller rate-limits."""
     if prov in _OVERSEAS_PROV:
-        cc, lang = "us", "en"
+        cc, lang = _OVERSEAS_CC[prov], "en"
     elif prov in _TAIWAN_PROV:
         cc, lang = "tw", "zh"
     else:
@@ -1859,9 +1917,14 @@ def merge_research(con, findings, log, move_flag_km=25.0, poi_max_km=60.0, dry_r
             simpler = _re.sub(r"\d+\s*号?", "", addr).strip(" ,，")
             if simpler and simpler != addr:
                 cands.append(simpler)
+            # Overseas refined_address is already fully qualified (…, State, Country),
+            # so appending the display prov would pollute the English query — and when
+            # that prov is a Chinese label (e.g. 澳洲) it drops the Nominatim match
+            # entirely. CN provs still get the province appended for disambiguation.
+            qtail = "" if prov in _OVERSEAS_PROV else f", {prov}"
             g = None
             for cand in cands:
-                g = geocode_query(f"{cand}, {prov}", prov)
+                g = geocode_query(f"{cand}{qtail}", prov)
                 time.sleep(1.1)
                 if g:
                     break
@@ -2355,7 +2418,7 @@ def verify_cities(con, log, ids=None, refresh=False, write=True, pace=1.2):
             cache = json.loads(_REVGEO_CACHE.read_text())
         except Exception:  # noqa: BLE001
             cache = {}
-    where = "prov NOT IN ('香港','台湾','California') AND lat IS NOT NULL"
+    where = "prov NOT IN ('香港','台湾','California','澳洲') AND lat IS NOT NULL"
     params: list = []
     if ids:
         where += " AND id IN (%s)" % ",".join("?" * len(ids))

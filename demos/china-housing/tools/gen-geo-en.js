@@ -22,6 +22,7 @@ const PROVINCE_EN = {
   山西: 'Shanxi', 陕西: 'Shaanxi', 宁夏: 'Ningxia', 新疆: 'Xinjiang',
   湖南: 'Hunan', 江西: 'Jiangxi', 内蒙古: 'Inner Mongolia',
   香港: 'Hong Kong', 台湾: 'Taiwan', California: 'California',
+  澳洲: 'Australia',
 };
 
 const CITY_EN = {
@@ -65,7 +66,7 @@ const CITY_EN = {
   黔南州: 'Qiannan',   '黔西南州-兴义市': "Qianxinan-Xingyi", 齐齐哈尔市: 'Qiqihar',
   香港: 'Hong Kong',
   台北市: 'Taipei', 台中市: 'Taichung', 台南市: 'Tainan',
-  Sunnyvale: 'Sunnyvale',
+  Sunnyvale: 'Sunnyvale', Brisbane: 'Brisbane',
 };
 
 const DISTRICT_OVERRIDE = {

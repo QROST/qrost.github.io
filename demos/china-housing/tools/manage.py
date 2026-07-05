@@ -694,7 +694,7 @@ def cmd_pois(args):
 def cmd_lulu(args):
     con = connect()
     enrich.lulu_all(con, print)        # CN + HK + TW from national ref sets
-    enrich.lulu_ca_local(con, print)   # California via per-listing local search
+    enrich.lulu_overseas_local(con, print)   # California/澳洲 via per-listing local search
 
 
 def cmd_pois_refix(args):

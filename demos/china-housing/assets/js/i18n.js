@@ -17,8 +17,9 @@
   // Fallback cross-rates when Frankfurter is unreachable (as of 2026-06-17).
   const FALLBACK_CNY_PER_HKD = 7 / 7.82;
   const FALLBACK_CNY_PER_TWD = 7 / 31.0;
-  const FX_API = 'https://api.frankfurter.app/latest?from=USD&to=CNY,HKD,TWD';
-  const PROV_CURRENCY = { '香港': 'HKD', '台湾': 'TWD', California: 'USD' };
+  const FALLBACK_CNY_PER_AUD = 7 / 1.45;
+  const FX_API = 'https://api.frankfurter.app/latest?from=USD&to=CNY,HKD,TWD,AUD';
+  const PROV_CURRENCY = { '香港': 'HKD', '台湾': 'TWD', California: 'USD', '澳洲': 'AUD' };
   const GITHUB_COMMITS_API = 'https://api.github.com/repos/QROST/qrost.github.io/commits?path=demos/china-housing&per_page=1';
   const BUILT_AT_CACHE_KEY = 'housing-built-at';
 
@@ -26,6 +27,7 @@
   let cnyPerUsd = FALLBACK_CNY_PER_USD;
   let cnyPerHkd = FALLBACK_CNY_PER_HKD;
   let cnyPerTwd = FALLBACK_CNY_PER_TWD;
+  let cnyPerAud = FALLBACK_CNY_PER_AUD;
   let rateSource = 'fallback';
   let lastCommitIso = null;
   let onChangeCb = null;
@@ -68,7 +70,7 @@
       exportCsv: '导出 CSV',
       methodologySummary: '说明 · Methodology',
       i18nMethodTitle: '语言与单位换算（English 模式）',
-      i18nMethodBody: '<p><strong class="text-slate-700 dark:text-slate-300">货币</strong>：大陆样本的 <code>priceWan</code> 为<strong>万元人民币</strong>；香港为<strong>万港元</strong>、台湾为<strong>万新台币</strong>、加州为<strong>万美元</strong>（见 SOP §2.5）。中文界面统一换算为<strong>人民币（万元 / 元 / 元/㎡）</strong>；英文界面换算为<strong>美元</strong>。在线时从 <a href="https://www.frankfurter.app/" class="text-emerald-700 dark:text-emerald-400 underline" target="_blank" rel="noopener">Frankfurter</a> 拉取 USD→CNY/HKD/TWD 实时汇率（24h 缓存）；离线时使用页面内标注日期的近似汇率（默认 <strong>1 USD ≈ 7 CNY</strong>）。</p><p><strong class="text-slate-700 dark:text-slate-300">面积</strong>：英文界面将 ㎡ 换算为平方英尺（sq ft），系数 <strong>1 ㎡ = 10.7639 sq ft</strong>；单价同步换算为 <strong>USD/sq ft</strong>（总价 USD ÷ 面积 sq ft，等价于 元/㎡ 经汇率与面积系数换算）。</p><p><strong class="text-slate-700 dark:text-slate-300">气温</strong>：英文界面将摄氏温度换算为华氏度显示，<strong>°F = °C × 9/5 + 32</strong>（年温差等差值按 <strong>Δ°F = Δ°C × 9/5</strong>）。</p><p><strong class="text-slate-700 dark:text-slate-300">距离</strong>：英文界面将公里换算为英里，<strong>1 km ≈ 0.621371 mi</strong>；不足约 160 m 时显示英尺。</p><p><strong class="text-slate-700 dark:text-slate-300">海拔</strong>：英文界面将米换算为英尺，<strong>1 m = 3.28084 ft</strong>（整数英尺显示）。</p><p><strong class="text-slate-700 dark:text-slate-300">降水</strong>：英文界面将毫米换算为英寸，<strong>1 in = 25.4 mm</strong>（年降水与月降水柱状图保留 1 位小数 in）。</p><p><strong class="text-slate-700 dark:text-slate-300">地名与小区</strong>：英文界面将省 / 市 / 区显示为常用英文名或全拼；小区名无官方英文时使用<strong>全拼</strong>（无声调，词间空格）。中文界面保持原始中文与 ㎡ / ¥ / °C / km / m / mm。</p><p id="fx-rate-note" class="text-xs text-slate-500 dark:text-slate-500"></p>',
+      i18nMethodBody: '<p><strong class="text-slate-700 dark:text-slate-300">货币</strong>：大陆样本的 <code>priceWan</code> 为<strong>万元人民币</strong>；香港为<strong>万港元</strong>、台湾为<strong>万新台币</strong>、加州为<strong>万美元</strong>、澳洲为<strong>万澳元</strong>（见 SOP §2.5）。中文界面统一换算为<strong>人民币（万元 / 元 / 元/㎡）</strong>；英文界面换算为<strong>美元</strong>。在线时从 <a href="https://www.frankfurter.app/" class="text-emerald-700 dark:text-emerald-400 underline" target="_blank" rel="noopener">Frankfurter</a> 拉取 USD→CNY/HKD/TWD/AUD 实时汇率（24h 缓存）；离线时使用页面内标注日期的近似汇率（默认 <strong>1 USD ≈ 7 CNY</strong>）。</p><p><strong class="text-slate-700 dark:text-slate-300">面积</strong>：英文界面将 ㎡ 换算为平方英尺（sq ft），系数 <strong>1 ㎡ = 10.7639 sq ft</strong>；单价同步换算为 <strong>USD/sq ft</strong>（总价 USD ÷ 面积 sq ft，等价于 元/㎡ 经汇率与面积系数换算）。</p><p><strong class="text-slate-700 dark:text-slate-300">气温</strong>：英文界面将摄氏温度换算为华氏度显示，<strong>°F = °C × 9/5 + 32</strong>（年温差等差值按 <strong>Δ°F = Δ°C × 9/5</strong>）。</p><p><strong class="text-slate-700 dark:text-slate-300">距离</strong>：英文界面将公里换算为英里，<strong>1 km ≈ 0.621371 mi</strong>；不足约 160 m 时显示英尺。</p><p><strong class="text-slate-700 dark:text-slate-300">海拔</strong>：英文界面将米换算为英尺，<strong>1 m = 3.28084 ft</strong>（整数英尺显示）。</p><p><strong class="text-slate-700 dark:text-slate-300">降水</strong>：英文界面将毫米换算为英寸，<strong>1 in = 25.4 mm</strong>（年降水与月降水柱状图保留 1 位小数 in）。</p><p><strong class="text-slate-700 dark:text-slate-300">地名与小区</strong>：英文界面将省 / 市 / 区显示为常用英文名或全拼；小区名无官方英文时使用<strong>全拼</strong>（无声调，词间空格）。中文界面保持原始中文与 ㎡ / ¥ / °C / km / m / mm。</p><p id="fx-rate-note" class="text-xs text-slate-500 dark:text-slate-500"></p>',
       mapZoomIn: '放大', mapZoomOut: '缩小', mapZoomReset: '复位',
       tier1Label: '显示全部',
       footerBuiltPrefix: '网页更新于',
@@ -306,7 +308,7 @@ methodDataTitle: '数据来源与整合',
       exportCsv: 'Export CSV',
       methodologySummary: 'Methodology',
       i18nMethodTitle: 'Language & unit conversion (English mode)',
-      i18nMethodBody: '<p><strong class="text-slate-700 dark:text-slate-300">Currency</strong>: Mainland <code>priceWan</code> is in <strong>10k CNY</strong>; Hong Kong listings use <strong>10k HKD</strong>, Taiwan <strong>10k TWD</strong>, California <strong>10k USD</strong> (see SOP §2.5). Chinese UI shows everything in <strong>RMB (万 / ¥ / ¥/㎡)</strong>; English UI in <strong>USD</strong>. When online, live USD→CNY/HKD/TWD rates come from <a href="https://www.frankfurter.app/" class="text-emerald-700 dark:text-emerald-400 underline" target="_blank" rel="noopener">Frankfurter</a> (24h cache); offline we use dated fallback rates (<strong>1 USD ≈ 7 CNY</strong> by default).</p><p><strong class="text-slate-700 dark:text-slate-300">Area</strong>: square metres are shown as <strong>square feet (sq ft)</strong> using <strong>1 m² = 10.7639 sq ft</strong>. Unit prices become <strong>USD/sq ft</strong> (total USD ÷ sq ft area, equivalent to converting ¥/m² via FX and area factor).</p><p><strong class="text-slate-700 dark:text-slate-300">Temperature</strong>: Celsius values are shown as <strong>°F</strong> using <strong>°F = °C × 9/5 + 32</strong> (swing / range deltas use <strong>Δ°F = Δ°C × 9/5</strong>).</p><p><strong class="text-slate-700 dark:text-slate-300">Distance</strong>: kilometres are shown as <strong>miles</strong> using <strong>1 km ≈ 0.621371 mi</strong>; very short hops (&lt; ~160 m) use feet.</p><p><strong class="text-slate-700 dark:text-slate-300">Elevation</strong>: metres are shown as <strong>feet (ft)</strong> using <strong>1 m = 3.28084 ft</strong> (rounded to whole feet in labels).</p><p><strong class="text-slate-700 dark:text-slate-300">Precipitation</strong>: millimetres are shown as <strong>inches (in)</strong> using <strong>1 in = 25.4 mm</strong> (annual totals and monthly chart bars use one decimal place).</p><p><strong class="text-slate-700 dark:text-slate-300">Community names</strong>: where no official English name exists, the Chinese community name is shown in <strong>full pinyin</strong> (no tone marks, space-separated); province / city / district labels are shown in standard English or romanized pinyin.</p><p id="fx-rate-note" class="text-xs text-slate-500 dark:text-slate-500"></p>',
+      i18nMethodBody: '<p><strong class="text-slate-700 dark:text-slate-300">Currency</strong>: Mainland <code>priceWan</code> is in <strong>10k CNY</strong>; Hong Kong listings use <strong>10k HKD</strong>, Taiwan <strong>10k TWD</strong>, California <strong>10k USD</strong>, Australia <strong>10k AUD</strong> (see SOP §2.5). Chinese UI shows everything in <strong>RMB (万 / ¥ / ¥/㎡)</strong>; English UI in <strong>USD</strong>. When online, live USD→CNY/HKD/TWD/AUD rates come from <a href="https://www.frankfurter.app/" class="text-emerald-700 dark:text-emerald-400 underline" target="_blank" rel="noopener">Frankfurter</a> (24h cache); offline we use dated fallback rates (<strong>1 USD ≈ 7 CNY</strong> by default).</p><p><strong class="text-slate-700 dark:text-slate-300">Area</strong>: square metres are shown as <strong>square feet (sq ft)</strong> using <strong>1 m² = 10.7639 sq ft</strong>. Unit prices become <strong>USD/sq ft</strong> (total USD ÷ sq ft area, equivalent to converting ¥/m² via FX and area factor).</p><p><strong class="text-slate-700 dark:text-slate-300">Temperature</strong>: Celsius values are shown as <strong>°F</strong> using <strong>°F = °C × 9/5 + 32</strong> (swing / range deltas use <strong>Δ°F = Δ°C × 9/5</strong>).</p><p><strong class="text-slate-700 dark:text-slate-300">Distance</strong>: kilometres are shown as <strong>miles</strong> using <strong>1 km ≈ 0.621371 mi</strong>; very short hops (&lt; ~160 m) use feet.</p><p><strong class="text-slate-700 dark:text-slate-300">Elevation</strong>: metres are shown as <strong>feet (ft)</strong> using <strong>1 m = 3.28084 ft</strong> (rounded to whole feet in labels).</p><p><strong class="text-slate-700 dark:text-slate-300">Precipitation</strong>: millimetres are shown as <strong>inches (in)</strong> using <strong>1 in = 25.4 mm</strong> (annual totals and monthly chart bars use one decimal place).</p><p><strong class="text-slate-700 dark:text-slate-300">Community names</strong>: where no official English name exists, the Chinese community name is shown in <strong>full pinyin</strong> (no tone marks, space-separated); province / city / district labels are shown in standard English or romanized pinyin.</p><p id="fx-rate-note" class="text-xs text-slate-500 dark:text-slate-500"></p>',
       mapZoomIn: 'Zoom in', mapZoomOut: 'Zoom out', mapZoomReset: 'Reset',
       tier1Label: 'Show all listings',
       footerBuiltPrefix: 'Page updated',
@@ -520,7 +522,7 @@ methodDataTitle: 'Data sources & integration',
 
   const GEO = () => window.HOUSING_GEO_EN || { province: {}, city: {}, district: {} };
   // Overseas province keys in data (English) → zh UI label
-  const PROV_ZH = { California: '加州', '台湾': '台湾' };
+  const PROV_ZH = { California: '加州', '澳洲': '澳洲', '台湾': '台湾' };
   const ENUM = {
   "HAZARD_TYPE_ZH": {
     "地质灾害": "滑坡/泥石流",
@@ -840,6 +842,7 @@ methodDataTitle: 'Data sources & integration',
   function getRateSource() { return rateSource; }
   function getCnyPerHkd() { return cnyPerHkd; }
   function getCnyPerTwd() { return cnyPerTwd; }
+  function getCnyPerAud() { return cnyPerAud; }
 
   function listingCurrency(prov) {
     return PROV_CURRENCY[prov] || 'CNY';
@@ -854,6 +857,7 @@ methodDataTitle: 'Data sources & integration',
     if (cur === 'USD') return cnyPerUsd;
     if (cur === 'HKD') return cnyPerHkd;
     if (cur === 'TWD') return cnyPerTwd;
+    if (cur === 'AUD') return cnyPerAud;
     return 1;
   }
 
@@ -1170,6 +1174,7 @@ methodDataTitle: 'Data sources & integration',
     cnyPerUsd = rates.CNY;
     if (rates.HKD > 0) cnyPerHkd = rates.CNY / rates.HKD;
     if (rates.TWD > 0) cnyPerTwd = rates.CNY / rates.TWD;
+    if (rates.AUD > 0) cnyPerAud = rates.CNY / rates.AUD;
     rateSource = source;
     updateFxNote();
     return true;
@@ -1186,7 +1191,7 @@ methodDataTitle: 'Data sources & integration',
       if (data.rates && applyFxRates(data.rates, 'live')) {
         try {
           sessionStorage.setItem(FX_CACHE_KEY, JSON.stringify({
-            rate: cnyPerUsd, cnyPerHkd, cnyPerTwd, at: Date.now(),
+            rate: cnyPerUsd, cnyPerHkd, cnyPerTwd, cnyPerAud, at: Date.now(),
           }));
         } catch (e) { /* */ }
         if (onChangeCb) onChangeCb();
@@ -1199,6 +1204,7 @@ methodDataTitle: 'Data sources & integration',
         cnyPerUsd = cached.rate;
         if (cached.cnyPerHkd > 0) cnyPerHkd = cached.cnyPerHkd;
         if (cached.cnyPerTwd > 0) cnyPerTwd = cached.cnyPerTwd;
+        if (cached.cnyPerAud > 0) cnyPerAud = cached.cnyPerAud;
         rateSource = 'cached';
         updateFxNote();
         return;
@@ -1207,6 +1213,7 @@ methodDataTitle: 'Data sources & integration',
     cnyPerUsd = FALLBACK_CNY_PER_USD;
     cnyPerHkd = FALLBACK_CNY_PER_HKD;
     cnyPerTwd = FALLBACK_CNY_PER_TWD;
+    cnyPerAud = FALLBACK_CNY_PER_AUD;
     rateSource = 'fallback';
     updateFxNote();
   }

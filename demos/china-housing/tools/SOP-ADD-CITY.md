@@ -162,26 +162,32 @@ node tools/_smoke.js
 | `tools/enrich.py` → `PROVINCE_HAZARDS` | `'西藏': {"headline": "…", "hazards": [("地震", 3, "…"), …]}` |
 | `tools/enrich.py` → `PROVINCE_HEATING` | `'西藏': HEAT_HEATED`（或 PARTIAL / WARM / DAMP） |
 
-## 2.5 境外 / 特殊行政区增补（香港 · 台湾 · 加州）
+## 2.5 境外 / 特殊行政区增补（香港 · 台湾 · 加州 · 澳洲）
 
-引入 `prov` 为 **香港** / **台湾** / **California** 时，除 §2 三处外核对：
+引入 `prov` 为 **香港** / **台湾** / **California** / **澳洲** 时，除 §2 三处外核对：
 
-| 项 | 香港 | 台湾 | California (US) |
-|----|------|------|-------------------|
-| `app.js` → `PROV_FULL` | `'香港': '香港特别行政区'` | `'台湾': '台湾省'` | `'California': 'California'` |
-| `enrich.py` → `PROVINCE_HAZARDS` / `HEATING` | 已有台风/暴雨模板 | 已有台风/地震模板 | 无省级灾害（per-listing 仍跑 `hazard-merge` 物理细化） |
-| Geocode `countrycodes` | `cn`（`_geo_ladder` + 省份校验） | `tw`（`_geo_ladder_tw`） | `us`（`_geo_ladder_us`） |
-| 货币口径（**DB ground truth**） | `priceWan` = **万港元**；`rent` = **港元/月** | `priceWan` = **万新台币**；`rent` = **新台币/月** | `priceWan` = **万美元**；`rent` = **美元/月** |
-| 界面显示（`i18n.js`） | **zh**：Frankfurter/fallback 换算为 **人民币**（万/元/元/㎡）；**en**：换算为 **美元** | 同左 | 同左 |
-| 大陆对照 | `priceWan` = **万人民币**；`rent` = **元/月** — 无 FX | — | — |
-| FX 铁律 | **禁止**把换算后的人民币/美元写回 `priceWan`/`rent`；FX 仅用于 `formatPriceWan` / `unitPrice` 派生显示 | 同左 | 同左 |
-| 单价可疑阈值 | 筛选审计用 **>125,000 CNY/㎡**（各 `prov` ground truth → CNY 后比较）；见 `data/research/audit-unit-price-suspects-*.json` | 同左 | 同左 |
-| PM2.5 `pm25` | 跳过（网格外） | 跳过 | 跳过 |
-| 气候 429 兜底 | 同大陆；可 staging JSON | `tools/_tw_climate_fallback.py` + `data/research/tw-climate-cache-*.json` | ERA5 正常；无 CHAP 网格 |
-| Metro POI | 适用（港铁） | 六都适用 | 一般不要求 metro |
-| 纯租赁公寓 | — | — | `listingType: rental`；`rent` = 美元/月（社区挂牌）；**无单元销售**时 `priceWan` = 月租×12÷4.5% 资本化率（隐含资产，便于比回报）；同 zip **买卖/租赁中位数**写入调研 JSON `zipBenchmark`（不进 `priceWan`）；`dist` 与 **`loc` 展示名均用 zip**（如 90293），`city` 保留 Los Angeles；调研 JSON 可保留 `refined_address` / `notes` 中的真实物业名 |
+> **`prov` 粒度**：香港 / 台湾是**行政区名**、California 是**州名**、**澳洲是国家级标签**——四者在数据里**同级**（都当 `prov`）。澳洲 listing **只写 `prov=澳洲`，不写 Queensland/州名**（州只作为 geocode 的内部 state token，见表末注）。
+
+| 项 | 香港 | 台湾 | California (US) | 澳洲 (Australia) |
+|----|------|------|-------------------|-------------------|
+| `app.js` → `PROV_FULL` | `'香港': '香港特别行政区'` | `'台湾': '台湾省'` | `'California': 'California'` | `'澳洲': '澳洲'` |
+| `enrich.py` → `PROVINCE_HAZARDS` / `HEATING` | 已有台风/暴雨模板 | 已有台风/地震模板 | 无省级灾害（per-listing 仍跑 `hazard-merge` 物理细化） | `'澳洲'` 亚热带暴雨/洪涝模板；`SEISMIC='低'`、`HEATING='无·冬暖'` |
+| Geocode `countrycodes` | `cn`（`_geo_ladder` + 省份校验） | `tw`（`_geo_ladder_tw`） | `us`（`_geo_ladder_overseas`） | `au`（`_geo_ladder_overseas`；显示 `prov` 与 state token 解耦，见表末注） |
+| EN 省名（`gen-geo-en.js` `PROVINCE_EN`） | `Hong Kong`（内建） | `Taiwan`（内建） | `California`（内建） | **须加 `澳洲: 'Australia'`**；漏加 → EN 表泄拼音 `Ao Zhou`（smoke `no zh` 报错） |
+| 货币口径（**DB ground truth**） | `priceWan` = **万港元**；`rent` = **港元/月** | `priceWan` = **万新台币**；`rent` = **新台币/月** | `priceWan` = **万美元**；`rent` = **美元/月** | `priceWan` = **万澳元**；`rent` = **澳元/月** |
+| 界面显示（`i18n.js`） | **zh**：Frankfurter/fallback 换算为 **人民币**（万/元/元/㎡）；**en**：换算为 **美元** | 同左 | 同左 | 同左；`PROV_CURRENCY['澳洲']='AUD'` + `FALLBACK_CNY_PER_AUD`（FX_API 拉 `…,AUD`） |
+| 大陆对照 | `priceWan` = **万人民币**；`rent` = **元/月** — 无 FX | — | — | — |
+| FX 铁律 | **禁止**把换算后的人民币/美元写回 `priceWan`/`rent`；FX 仅用于 `formatPriceWan` / `unitPrice` 派生显示 | 同左 | 同左 | 同左 |
+| 单价可疑阈值 | 筛选审计用 **>125,000 CNY/㎡**（各 `prov` ground truth → CNY 后比较）；见 `data/research/audit-unit-price-suspects-*.json` | 同左 | 同左 | 同左 |
+| PM2.5 `pm25` | 跳过（网格外） | 跳过 | 跳过 | 跳过（`prov NOT IN` + 网格外双保险） |
+| 气候 429 兜底 | 同大陆；可 staging JSON | `tools/_tw_climate_fallback.py` + `data/research/tw-climate-cache-*.json` | ERA5 正常；无 CHAP 网格 | ERA5 正常（Brisbane 全球覆盖）；无 CHAP 网格 |
+| Metro POI | 适用（港铁） | 六都适用 | 一般不要求 metro | Brisbane 适用（City network / busway，不强制） |
+| 离线 airport/coast 顶点 | — | `_TW_AIRPORTS`/`_TW_COAST` | `_US_AIRPORTS`/`_US_COAST` | `_AU_AIRPORTS`（BNE/OOL/MCY）/`_AU_COAST`（SE-QLD 8 点）；`_load_airports`/`_load_coast` 按 `prov=='澳洲'` 分流 |
+| 纯租赁公寓 / 计价 | — | — | `listingType: rental`；`rent` = 美元/月（社区挂牌）；**无单元销售**时 `priceWan` = 月租×12÷4.5% 资本化率（隐含资产，便于比回报）；同 zip **买卖/租赁中位数**写入调研 JSON `zipBenchmark`（不进 `priceWan`）；`dist` 与 **`loc` 展示名均用 zip**（如 90293），`city` 保留 Los Angeles；调研 JSON 可保留 `refined_address` / `notes` 中的真实物业名 | 同 California 口径：`dist`/`loc` 用**邮编**（如 `4006`），`city=Brisbane`；套均/成交 comp 计价（万澳元）；真实门牌/楼盘名留 `refined_address`/`notes` |
 
 **香港 geocode 提示**：查询串用「区 + 香港」阶梯；`prov=香港` 时 `_prov_ok` 走大陆 `cn` 路径——若 Nominatim 误配深圳，用 `research-merge` 细化地址纠正。
+
+**澳洲 geocode 提示（显示 `prov` 与 state token 解耦 · 2026-07 固化）**：Nominatim **不认识「澳洲」**，故 `enrich.py` 用 `_OVERSEAS_STATE = {'California':'California', '澳洲':'Queensland'}` 提供**可解析的 state token**——address ladder（`_geo_ladder_overseas`）与 `_prov_ok` 校验都用它，`country=Australia` 再作 OR 兜底。所以 DB/表格里 `prov` 恒为 `澳洲`，而 geocode 查询串是 `4006, Brisbane, Queensland, Australia`。⚠️ **该 state token 是 Brisbane/Queensland 专属**——未来加非昆州澳洲城市（悉尼 NSW…）要改成 **per-city** 映射，而非往 `prov` 里塞州名。坐标仍走 §0.1 铁律：**绝不裸写 agent 坐标**——具体楼盘用调研 JSON 的 `refined_address` + `force_refine`，让 `research-merge` 经 Nominatim 落到楼栋（查不到则优雅降级到邮编中心）。
 
 **台湾气候并行事故**：多 agent 同时 `manage.py climate` → archive 429 → 用缓存脚本，**禁止**再开第二个 climate 进程：
 

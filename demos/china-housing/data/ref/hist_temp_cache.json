@@ -4830,5 +4830,25 @@
   "histTempStation": null,
   "histTempNote": "ERA5 再分析格点 1940–2023 日最高/日最低极值（≈25 km 网格，非气象站记录）（邻近格点复用）",
   "histTempLevel": "区镇/街道"
+ },
+ "wiki-dist:4006": null,
+ "era5:-27.45,153.04": {
+  "histTempMax": 42.3,
+  "histTempMin": 3.5,
+  "histTempMaxDate": "1944-11-20",
+  "histTempMinDate": "1943-06-26",
+  "histTempSrc": "open-meteo-era5-1940-2023",
+  "histTempStation": null,
+  "histTempNote": "ERA5 再分析格点 1940–2023 日最高/日最低极值（≈25 km 网格，非气象站记录）"
+ },
+ "澳洲|Brisbane|4006": {
+  "histTempMax": 42.3,
+  "histTempMin": 3.5,
+  "histTempMaxDate": "1944-11-20",
+  "histTempMinDate": "1943-06-26",
+  "histTempSrc": "open-meteo-era5-1940-2023",
+  "histTempStation": null,
+  "histTempNote": "ERA5 再分析格点 1940–2023 日最高/日最低极值（≈25 km 网格，非气象站记录）",
+  "histTempLevel": "区镇/街道"
  }
 }
