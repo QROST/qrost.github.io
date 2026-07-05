@@ -33,13 +33,26 @@ const SOM_L = [9, 7, 5];             // Kohonen 晶格维度 → 315 神经元
 const SOM_R = [55, 120];             // 神经晶格→世界：环绕视角的球壳 内/外半径（非平面盒）
 const SOM_EPOCHS = IS_MOBILE ? 14 : 26;
 const SHRINK = 0.5;                  // 完全呼气（铺开）时混沌缩成锚点周围小笔触的比例
+// —— 打破"所有吸引子共用 CENTER → 中央堆叠"：每个系统各有一个"吸气归位中心"，
+//    散布在 CENTER 周围半径 SPREAD_R 的小球面上（黄金角螺旋 → 角向均匀）。
+//    最深吸气态不再把全部实体堆成一坨，而是散成 15 个各居其位的松散子团；呼气照常展开到各自 SOM 壳坐标。
+//    SPREAD_R 越大越散、越小越聚——"稍微分散"取中等值（相对 SOM 内壳 55 约 40%）。
+const SPREAD_R = 24;
 const SYSN = 15;                     // 系统总数
 const SYS_AXIS = new Float32Array(SYSN * 3), SYS_SPIN = new Float32Array(SYSN);
+const SYS_CTR = new Float32Array(SYSN * 3);   // 每系统吸气归位中心（CENTER + 球面散布偏移）
 const sysCos = new Float32Array(SYSN).fill(1), sysSin = new Float32Array(SYSN);
-for (let s = 0; s < SYSN; s++) {     // 每个系统不同的自转轴 + 角速度
+const GOLDEN_ANGLE = Math.PI * (3 - Math.sqrt(5));
+for (let s = 0; s < SYSN; s++) {     // 每个系统不同的自转轴 + 角速度 + 散布归位中心
   let ax = Math.sin(s * 1.3 + 0.5), ay = Math.cos(s * 0.7 + 1.1), az = Math.sin(s * 2.1 + 0.3);
   const L = Math.hypot(ax, ay, az) || 1; SYS_AXIS[s * 3] = ax / L; SYS_AXIS[s * 3 + 1] = ay / L; SYS_AXIS[s * 3 + 2] = az / L;
   SYS_SPIN[s] = 0.04 + (s % 5) * 0.022;
+  const yy = 1 - (s + 0.5) / SYSN * 2;                       // +1..-1 均匀分层
+  const rr = Math.sqrt(Math.max(0, 1 - yy * yy)), th = GOLDEN_ANGLE * s;
+  const rad = SPREAD_R * (0.72 + 0.56 * ((s * 7 % SYSN) / SYSN));   // 半径略抖动 → 非完美空心球壳
+  SYS_CTR[s * 3]     = CENTER[0] + Math.cos(th) * rr * rad;
+  SYS_CTR[s * 3 + 1] = CENTER[1] + yy * rad;
+  SYS_CTR[s * 3 + 2] = CENTER[2] + Math.sin(th) * rr * rad;
 }
 
 // ---------- scene ----------
@@ -983,9 +996,10 @@ function writeWorld(i) {
   const o = i * 3, sy = sys[i], r = i * 9;
   const bph = breathT * bRate[i] + bPhase[i], boR = 0.5 - 0.5 * Math.cos(bph), g = boR * boR * (3 - 2 * boR) * bAmp;   // 每实体呼吸量：全局时间×个体速率 + 个体相位 → 簇间错峰、簇内相干、速率各异；× bAmp：SOM 就绪前=0(纯重叠混沌)→就绪后平滑长出，与随机运动态连续
   const s = scl[i] * (1 - (1 - SHRINK) * g);                  // 呼气铺开 → 混沌缩小
-  const ax = CENTER[0] + (anc[o] - CENTER[0]) * g;            // 有效锚点：CENTER(重叠) ⇄ SOM 语义坐标
-  const ay = CENTER[1] + (anc[o + 1] - CENTER[1]) * g;
-  const az = CENTER[2] + (anc[o + 2] - CENTER[2]) * g;
+  const sc = sy * 3;                                          // 有效锚点：本族吸气归位中心(散布) ⇄ SOM 语义坐标
+  const ax = SYS_CTR[sc] + (anc[o] - SYS_CTR[sc]) * g;
+  const ay = SYS_CTR[sc + 1] + (anc[o + 1] - SYS_CTR[sc + 1]) * g;
+  const az = SYS_CTR[sc + 2] + (anc[o + 2] - SYS_CTR[sc + 2]) * g;
   let cx = 0, cy = 0, cz = 0;                                  // per-attractor centering
   if (sy === 1) cz = 25; else if (sy === 3) cz = 0.6; else if (sy === 4) { cx = -2.4; cy = -2.4; cz = -2.4; } else if (sy === 6) cz = 22; else if (sy === 8) cx = 1; else if (sy === 9) cz = 20;
   const lx = (state[o] - cx) * s, ly = (state[o + 2] - cz) * s, lz = (state[o + 1] - cy) * s;   // attractor local frame (z→up)
@@ -1294,14 +1308,15 @@ function ensureCtx() {
 }
 
 // iOS/Safari 专用：在手势同步栈内播一段静音 buffer 才能真正打通声道。用 ctx 自身采样率、稍长（~50ms）更稳。
+// 只要 ctx 还没 running 就每次手势重播一次静音源：iOS 某些版本要求每次 resume 前都有一次真实发声，
+// 且首个手势创建的 ctx 若当时不是有效激活会僵死——重播静音源是最便宜的"每次有效手势都再试一次解锁"。
 function primeAudioUnlock() {
   const ctx = audioCtx;
-  if (!ctx || ctx._primed) return;
+  if (!ctx || ctx.state === 'running') return;
   try {
     const len = Math.max(1, Math.floor(0.05 * ctx.sampleRate));   // ~50ms 静音，与 ctx 同采样率
     const b = ctx.createBuffer(1, len, ctx.sampleRate);
     const s = ctx.createBufferSource(); s.buffer = b; s.connect(ctx.destination); s.start(0);
-    ctx._primed = true;
   } catch (_) {}
 }
 
@@ -1350,8 +1365,11 @@ function kickAudio() {                                   // 首个手势内（�
   startMusic();          // 手势同步栈内：new ctx → 静音 buffer 解锁 → resume → start sonifier（iOS 必需的顺序）
   onAudioStateChange();
 }
-// 覆盖尽可能多的「首个手势」入口（含桌面 click / 触屏 touchstart / iOS 老式 mousedown），最大化点任意几何体即出声的成功率；audioKicked 幂等，running 后全部 no-op
-['pointerdown', 'pointerup', 'touchstart', 'touchend', 'mousedown', 'click', 'keydown'].forEach((ev) => addEventListener(ev, kickAudio, { passive: true }));
+// 只挂「手势结束/离散激活」事件：touchend / click / pointerup / keydown。
+// iOS/WebKit 只把这些当作有效 user-activation；touchstart/pointerdown/mousedown 是手势"开始"，
+// 在 iOS 上不算激活——若在它们里 new AudioContext 会造出一个永久 suspended 的僵死 ctx，之后任何有效手势都救不回来（Mac Chrome 宽松故无此问题）。
+// audioKicked 幂等，running 后全部 no-op。
+['touchend', 'click', 'pointerup', 'keydown'].forEach((ev) => addEventListener(ev, kickAudio, { passive: true }));
 // 页面从后台切回前台：移动端浏览器常把 AudioContext 自动 suspend，回来后需重新 resume（无需静音 buffer，声道已开过）
 document.addEventListener('visibilitychange', () => { if (!document.hidden && audioCtx && audioCtx.state === 'suspended') { try { audioCtx.resume(); } catch (_) {} } });
 
@@ -1846,6 +1864,7 @@ const epEnter = document.getElementById('ep-enter');
 if (epEnter) {
   epEnter.addEventListener('click', () => {
     gateConfirmed = true;
+    kickAudio();   // 「我已知悉」这次 click 本身就是 iOS 上有效的 user-activation → 在同一手势同步栈内解锁+起声（不再仅依赖全局监听冒泡的时序）
     if (gate) { gate.classList.add('gone'); setTimeout(() => gate.remove(), 700); }
   }, { once: true });
 }
