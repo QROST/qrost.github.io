@@ -60,10 +60,10 @@ const MODES = {
   ], scale: [0, 2, 3, 5, 7, 9, 10, 12, 14, 15, 17] },
   phrygian: { progs: [
     [{ r: 0, c: 'min' }, { r: 1, c: 'maj' }, { r: 0, c: 'min' }, { r: 10, c: 'maj' }],     // i–bII–i–bVII（西班牙/暗）
-    [{ r: 0, c: 'min9' }, { r: 1, c: 'maj' }, { r: 10, c: 'min' }, { r: 1, c: 'maj' }],    // i–bII–bvii–bII
+    [{ r: 0, c: 'min9' }, { r: 10, c: 'maj' }, { r: 8, c: 'maj' }, { r: 5, c: 'min' }],    // i–bVII–bVI–iv（暗 aeolian，不叠 bII）
   ], scale: [0, 1, 3, 5, 7, 8, 10, 12, 13, 15, 17] },
 };
-const modeForDom = (dt) => (dt === 7) ? 'major' : (dt === 6 || dt === 3) ? 'dorian' : (dt === 2 || dt === 1 || dt === 5) ? 'phrygian' : 'minor';
+const modeForDom = (dt) => (dt === 7) ? 'major' : (dt === 1) ? 'phrygian' : (dt === 2 || dt === 3 || dt === 5 || dt === 6) ? 'dorian' : 'minor';   // phrygian(最辛辣)只留最硬的 dt=1；其余暗调走 dorian(暗但好蹦)
 
 // 编排段：intro(0–7) → build(8–15) → drop(16–31) → breakdown(32–47) → 循环回 intro(0)。
 // 总循环长度 = BARS=48 小节（breakdown 加长到 16 → 情绪中心有呼吸空间，DJ #4b）。所有 cycle 边界都用 BARS，防相位错位。
@@ -82,7 +82,7 @@ export class Sonifier {
     this.bpm = 138; this.step = 0; this.bar = 0; this.nextTime = 0; this.lookahead = 0.14;
     this.keyRoot = 48;
     this.modeName = 'minor'; this.progs = PROGS; this.scale = MODES.minor.scale;   // 默认 minor；start() 按 domType 定
-    this.patch = { leadSquare: false, sawSpread: 8, kickBoom: 0.35, bassReese: false };   // 音色签名；start() 按 domType+sig 定
+    this.patch = { leadSquare: false, sawSpread: 7, kickBoom: 0.35, bassReese: false };   // 音色签名；start() 按 domType+sig 定
     this.motif = [0, 2, 1, 3, 2, 0, 3, 1]; this.motifPos = 0;
     this._lastFocusKey = null;
     this.section = 'intro';
@@ -141,7 +141,7 @@ export class Sonifier {
     const _pdt = (dna ? dna.domType : 0), _ph = (_pdt === 2 || _pdt === 1 || _pdt === 5);   // kernel/工业/vendor = 硬派
     this.patch = {
       leadSquare: (this._sigMix(7) % 3 === 0),           // 1/3 宇宙用方波 lead（更空/更硬）
-      sawSpread: 6 + (this._sigMix(8) % 3) * 4,           // supersaw 失谐展开 6/10/14 cents（窄→宽）
+      sawSpread: 5 + (this._sigMix(8) % 3) * 2,           // supersaw 失谐展开 5/7/9 cents（窄→宽，收窄防"走音"感）
       kickBoom: _ph ? 0.12 : 0.55,                        // 硬派 punchy(短) / 柔派 boomy(长尾)
       bassReese: _ph || (this._sigMix(9) % 4 === 0),      // 硬派 + 1/4 其它 → reese 双失谐锯贝斯
     };
@@ -161,7 +161,7 @@ export class Sonifier {
     const master = ctx.createGain(); master.gain.value = 0; limiter.connect(master); master.connect(ctx.destination); this.master = master;
     // 高频 highshelf +3dB（反转 lofi 的 −4dB 暗暖）+ 轻激励器。
     const sat = ctx.createWaveShaper(); sat.curve = this._satCurve(1.15); sat.oversample = '2x';
-    const hiShelf = ctx.createBiquadFilter(); hiShelf.type = 'highshelf'; hiShelf.frequency.value = 3500; hiShelf.gain.value = 3;
+    const hiShelf = ctx.createBiquadFilter(); hiShelf.type = 'highshelf'; hiShelf.frequency.value = 3500; hiShelf.gain.value = 1.5;
     sat.connect(hiShelf); hiShelf.connect(limiter);
     // 母线 lowpass：drop 全开、build 末段收窄蓄力、呼吸谷下沉（DJ: drop 要"挣来"——先 filter-down 再砸开）。
     const masterLP = ctx.createBiquadFilter(); masterLP.type = 'lowpass'; masterLP.frequency.value = 20000; masterLP.Q.value = 0.7; this.masterLP = masterLP;
@@ -385,10 +385,12 @@ export class Sonifier {
       this._lead(t, ch, stepDur * 2, 0.4);
     }
     // —— Breakdown 主旋律 hook（DJ: track 需一条暴露的 topline —— rest 段唱、drop 段再现）：
-    //    motif(主题) + mode scale(情绪) 的慢速歌唱线，压在 pad 之上；音由 (bar,step) 确定性索引 → 同宇宙同旋律。
+    //    暴露、拉长的 topline → **永远和弦内音**（consonant；原来用音阶级数叠 ch.r，裸露且长音，不和谐最扎耳）；
+    //    色彩来自选的是 3 音/5 音/9 音而非音阶步进。音由 (bar,step) 确定性索引 → 同宇宙同旋律。
     if (sec === 'breakdown' && (step === 0 || step === 6 || step === 10)) {
       const mi = this.motif[(this.bar * 3 + (step === 0 ? 0 : step === 6 ? 1 : 2)) % this.motif.length];
-      this._lead(t, ch, stepDur * 3, 0.34, this.sessKey + ch.r + this.scale[mi % this.scale.length] + 12);
+      const tones = CHORD[ch.c];
+      this._lead(t, ch, stepDur * 3, 0.34, this.sessKey + ch.r + tones[mi % tones.length] + 12);
     }
   }
 
@@ -484,7 +486,7 @@ export class Sonifier {
     for (const semi of tones) {
       for (let v = 0; v < 7; v++) {
         const o = this.ctx.createOscillator(); o.type = 'sawtooth';
-        const detune = (v - 3) * this.patch.sawSpread + (this._rngV() - 0.5) * 4;   // 失谐展开(patch 音色签名) + 微抖（隔离流）
+        const detune = (v - 3) * this.patch.sawSpread + (this._rngV() - 0.5) * 3;   // 失谐展开(patch 音色签名) + 微抖（隔离流）
         o.frequency.setValueAtTime(mtof(base + semi + 12), t); o.detune.setValueAtTime(detune, t);
         const lp = this.ctx.createBiquadFilter(); lp.type = 'lowpass';
         lp.frequency.setValueAtTime(4000, t); lp.frequency.exponentialRampToValueAtTime(1200, t + dur * 0.5);   // 滤波包络（开→关）
@@ -511,10 +513,16 @@ export class Sonifier {
     }
   }
   _arp(t, ch, dur, vel, step) {
-    // 16 分琶音：音符 = ARP_SCALE[motif 轮廓选] + octave up。亮 saw lead。
+    // 16 分琶音：默认选**当前和弦内音**(root/3/5/7/9) → consonant（修：原来把 key 相对音阶叠到 ch.r 上，大调和弦上频繁
+    //   b3 撞 3 —— 最刺耳的音程；改成和弦音后半首曲子的不和谐消失）。motif 轮廓 + 八度铺开仍"跑"；小节头锚根音 → hook 稳；
+    //   ~16% 非拍点允许一个 key 相对音阶经过音做 spice（偶尔出彩；音阶本就相对调根，**不叠 ch.r**）。
     const mi = this.motif[this.motifPos % this.motif.length]; this.motifPos++;
-    const idx = mi % this.scale.length;
-    const freq = mtof(this.sessKey + ch.r + this.scale[idx] + 12);
+    const tones = CHORD[ch.c];
+    let note;
+    if (step % 16 === 0) note = this.sessKey + ch.r + tones[0] + 12;                              // 小节头锚和弦根音
+    else if ((step % 2 === 1) && this._h(11) < 0.16) note = this.sessKey + this.scale[(mi + 2) % 6] + 12;   // spice：key 相对经过音（不加 ch.r）
+    else note = this.sessKey + ch.r + tones[mi % tones.length] + 12 * Math.floor(mi / tones.length) + 12;   // 和弦内音，随轮廓升八度
+    const freq = mtof(note);
     const o = this.ctx.createOscillator(); o.type = 'sawtooth'; o.frequency.setValueAtTime(freq, t); o.detune.setValueAtTime(this._rngV() * 10 - 5, t);
     const lp = this.ctx.createBiquadFilter(); lp.type = 'lowpass'; lp.frequency.value = 5000;
     const g = this.ctx.createGain();
@@ -532,7 +540,7 @@ export class Sonifier {
     const lw = this.patch.leadSquare ? 'square' : 'sawtooth';   // 音色签名：方波=更空/更硬
     const o = this.ctx.createOscillator(); o.type = lw; o.frequency.setValueAtTime(freq, t);
     const o2 = this.ctx.createOscillator(); o2.type = lw; o2.frequency.setValueAtTime(freq, t); o2.detune.setValueAtTime(7, t);
-    const lp = this.ctx.createBiquadFilter(); lp.type = 'lowpass'; lp.frequency.value = 6000;
+    const lp = this.ctx.createBiquadFilter(); lp.type = 'lowpass'; lp.frequency.value = this.patch.leadSquare ? 4200 : 6000;   // 方波 lead 收高频防刺耳
     const g = this.ctx.createGain();
     g.gain.setValueAtTime(0.0001, t); g.gain.linearRampToValueAtTime(vel, t + 0.006); g.gain.setTargetAtTime(0.0001, t + dur * 0.5, dur * 0.4);
     o.connect(lp); o2.connect(lp); lp.connect(g); g.connect(this.leadBus);
