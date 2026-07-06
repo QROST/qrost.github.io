@@ -1360,6 +1360,9 @@ async function requestGyro() {                           // 陀螺仪权限（iO
 async function enableMic() {                              // 仅律动模式按需打开麦克风；复用同一 AudioContext 作分析输入（不接 destination → 无回授/无回声）
   if (analyser) { micActive = true; return; }
   try {
+    // iOS：我们平时把会话设成 'playback'（只输出、越过静音键），但那会挡掉 getUserMedia 录音 →
+    // 进 mic 模式前切到 'play-and-record'（既能录又能放）。律动模式音乐已静音，输出路由无所谓。
+    try { if (navigator.audioSession) navigator.audioSession.type = 'play-and-record'; } catch (_) {}
     const ctx = ensureCtx();
     if (ctx) {
       micStream = await navigator.mediaDevices.getUserMedia({ audio: true });
@@ -1367,13 +1370,17 @@ async function enableMic() {                              // 仅律动模式按�
       ctx.createMediaStreamSource(micStream).connect(an);
       analyser = an; micBuf = new Uint8Array(an.frequencyBinCount); micActive = true;
     }
-  } catch (_) { micActive = false; }                       // 麦克风被拒/不可用 → 律动模式失败，调用方回退音乐
+  } catch (_) {                                            // 麦克风被拒/不可用 → 律动模式失败，调用方回退音乐
+    micActive = false;
+    try { if (navigator.audioSession) navigator.audioSession.type = 'playback'; } catch (__) {}   // 回退：恢复只输出会话
+  }
 }
 
 function disableMic() {                                   // 回音乐模式：停采麦克风轨 → 关闭系统麦克风指示灯（隐私）；下次进律动再重新获取（权限已授，无需重弹）
   micActive = false;
   if (micStream) { try { micStream.getTracks().forEach((tr) => tr.stop()); } catch (_) {} micStream = null; }
   analyser = null; micBuf = null;
+  try { if (navigator.audioSession) navigator.audioSession.type = 'playback'; } catch (_) {}   // iOS：回音乐模式恢复 'playback'（只输出 + 越过静音键）
 }
 
 function updateModeBtn() {                                // 按钮文案反映当前模式（默认=音乐）
