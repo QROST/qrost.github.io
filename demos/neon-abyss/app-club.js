@@ -12,7 +12,7 @@ import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js'
 import {
   applyUi, registerPanelNode, renderCardHtml, sensorBtnLabel, setLang, isZh,
 } from './i18n.js?v=n1';
-import { Sonifier } from './audio-club.js?v=n1';   // 生成式 Trance 音乐引擎（zero-dep Web Audio）+ beatPulse 输出
+import { Sonifier } from './audio-club.js?v=n2';   // 生成式 Trance 音乐引擎（zero-dep Web Audio）+ beatPulse 输出 + groove-style(A/B/C)
 
 const sonifier = new Sonifier();   // 由「Motion & sound」按钮在用户手势内 start()
 

@@ -69,6 +69,13 @@ export class Sonifier {
     this._riserEnv = 0; this._impactEnv = 0;
     this._riserOn = false; this._lastRiserStep = -999;
     this.debug = { steps: 0, kicks: 0, claps: 0, chords: 0, arps: 0, mods: 0, sig: 0 };
+    // —— groove-style 系统：A 每宇宙权重 · B 每 40 小节确定性轮换 · C 交互实时主导 ——
+    this.style = 'trance';          // 本小节生效风格（_onBar 每小节解析）
+    this.cycleStyle = 'trance';     // B：当前 cycle 的 ambient 风格
+    this.styleW = { trance: 1, polka: 0, hardgroove: 0 };   // A：从 musicDNA 算的每宇宙权重
+    this._steerStyle = null; this._steerHold = 0;           // C：交互主导风格 + 剩余保持秒数
+    this._styleFill = false;        // 风格切换 → 本小节头补一记过渡 fill
+    this._sig0 = 0; this._sV = 0;   // 位置哈希种子 / 声部微抖专用 PRNG（与主 _s 流隔离，保 A+B 确定性）
   }
 
   start(ctx, opts = {}) {
@@ -81,6 +88,12 @@ export class Sonifier {
     const warm = clamp(warmRaw == null ? 0.5 : warmRaw, 0, 1);
     this._s = (dna ? (dna.sig >>> 0) : ((Math.round(warm * 1e6) ^ 0x9e3779b9) >>> 0)) | 0;
     this.dna = dna; this.debug.sig = dna ? (dna.sig >>> 0) : 0;
+    // groove-style 隔离种子：_sig0 供位置哈希 _h（不随主 _s 前进）；_sV 供声部微抖（风格变动只扰它、不扰 A+B）。
+    this._sig0 = (dna ? (dna.sig >>> 0) : (this._s >>> 0)) | 0;
+    this._sV = (this._sig0 ^ 0x1234567) | 0;
+    this._computeStyleWeights(dna);                              // A：每宇宙 groove 性格
+    this.cycleStyle = this.style = this._pickStyle(this._rng()); // 首个 cycle 也按权重定味（开页惊喜）
+    this._steerStyle = null; this._steerHold = 0;
 
     // 调性根：warm 选冷/温/暖三档（A minor / D minor / C minor 区间）。
     this.keyRoot = warm < 0.4 ? 45 : warm > 0.7 ? 50 : 48;
@@ -168,6 +181,14 @@ export class Sonifier {
 
     this._focus(s.focus, t);
 
+    // —— C：交互实时主导 groove 风格（focus 强 / 高能注视 弱）。只置 flag，绝不抽 _rng → 不扰动 A+B 确定性流。——
+    if (s.focus && s.focus.group != null) {
+      this._steerStyle = this._styleForGroup(s.focus.group); this._steerHold = 3.5;   // 按住焦点强主导；松开后 3.5s 内衰减回 ambient
+    } else if (s.view && s.view.clEnergy != null && s.view.clEnergy > 0.62 && this._steerHold <= 0) {
+      this._steerStyle = 'hardgroove'; this._steerHold = 1.2;                          // 注视高能簇 → 软推硬核（不覆盖更强的 focus 保持）
+    }
+    if (this._steerHold > 0) this._steerHold -= (s.dt || 0.016);
+
     const stepDur = (60 / this.bpm) / 4;
     while (this.nextTime < t + this.lookahead) {
       this._scheduleStep(this.nextTime, stepDur);
@@ -186,10 +207,35 @@ export class Sonifier {
     // 动机变异（每 4 小节轻微改一个音 → 没有两段完全一样；确定性 PRNG）。
     if (this.bar % 4 === 0) { const k = (this.bar * 5) % this.motif.length; this.motif[k] = clamp(this.motif[k] + (this._rng() < 0.5 ? 1 : -1), 0, 5); }
     this.curProgIdx = this.baseProgIdx;
+    // B：每 40 小节 cycle 边界确定性抽 ambient 风格（主 _s 流、每小节固定次数 → 同宇宙同序列）。
+    if (this.bar % 40 === 0) this.cycleStyle = this._pickStyle(this._rng());
+    // 解析本小节生效风格：C（交互主导，保持/衰减中）优先，否则 B（ambient cycle 风格）。切换只在小节边界 → 不破拍。
+    const prev = this.style;
+    this.style = (this._steerHold > 0 && this._steerStyle) ? this._steerStyle : this.cycleStyle;
+    if (this.style !== prev) this._styleFill = true;   // 风格变了 → 本小节头补一记 tom 过渡
   }
 
   _curProg() { return PROGS[this.curProgIdx] || PROGS[0]; }
   _chord() { const p = this._curProg(); return p[(this.bar >> 1) % p.length]; }
+
+  // 声部微抖专用 PRNG（与主 _s 隔离）：风格切换改变声部调用次数时只扰它、不扰 _onBar 的 A+B 流。
+  _rngV() { this._sV = (this._sV + 0x6D2B79F5) | 0; let x = this._sV; x = Math.imul(x ^ (x >>> 15), 1 | x); x = (x + Math.imul(x ^ (x >>> 7), 61 | x)) ^ x; return ((x ^ (x >>> 14)) >>> 0) / 4294967296; }
+  // 位置哈希 → [0,1)：纯 (宇宙,小节,步,salt) 函数，与调用顺序无关 → 风格/交互门控不会错位任何流。
+  _h(salt) { let x = (this._sig0 ^ Math.imul(this.bar + 1, 0x9e3779b9) ^ Math.imul(this.step + 1, 0x85ebca6b) ^ Math.imul((salt | 0) + 1, 0xc2b2ae35)) | 0; x = Math.imul(x ^ (x >>> 16), 0x7feb352d); x = Math.imul(x ^ (x >>> 15), 0x846ca68b); x ^= x >>> 16; return (x >>> 0) / 4294967296; }
+  // A：musicDNA → 每宇宙 {trance,polka,hardgroove} 权重（trance 保底主导 → 风味"偶现"）。
+  _computeStyleWeights(dna) {
+    let wt = 1.0, wp = 0.0, wh = 0.0;
+    const dt = dna ? dna.domType : 0;
+    if (dt === 2 || dt === 1 || dt === 5) wh += 0.9;              // kernel / 工业产品 / vendor → 硬派
+    else if (dt === 7 || dt === 6) wp += 0.9;                     // 收容所猫 / 医药 → 俏皮
+    else wt += 0.4;                                               // 房价 / 政策 / 其它 → trance
+    wh += (dna ? dna.speedSpread : 0.45) * 0.6;                   // 簇速异质 → 滚动 hard groove
+    wp += (1 - (dna ? dna.concentration : 0.4)) * 0.5;           // 组织松散 → 弹跳 polka
+    const s = wt + wp + wh || 1;
+    this.styleW = { trance: wt / s, polka: wp / s, hardgroove: wh / s };
+  }
+  _pickStyle(r) { const w = this.styleW; return r < w.trance ? 'trance' : (r < w.trance + w.polka ? 'polka' : 'hardgroove'); }
+  _styleForGroup(g) { return (g === 2 || g === 1 || g === 5) ? 'hardgroove' : ((g === 7 || g === 6) ? 'polka' : 'trance'); }
 
   _scheduleStep(gridT, stepDur) {
     const step = this.step % 16, bar = this.bar;
@@ -197,46 +243,68 @@ export class Sonifier {
     const t = gridT + swing;
     const ch = this._chord();
     const sec = sectionOf(bar);
-
-    // —— 鼓：four-on-the-floor —— intro 仅稀 kick；build 加 clap；drop 全开；breakdown 鼓撤。
+    const style = this.style;                                  // 本小节生效 groove 风格（A/B/C 解析于 _onBar）
     const drumOn = sec === 'build' || sec === 'drop';
-    const kickOn = sec !== 'breakdown';   // intro 也打轻 kick 维持律动
-    if (kickOn && step % 4 === 0) this._kick(t, sec === 'drop' ? 1.0 : (sec === 'intro' ? 0.7 : 0.9));
-    if (drumOn && (step === 4 || step === 12)) this._clap(t, 0.7);
-    if (drumOn && step % 2 === 1) this._hat(t, 0.3, false);            // 16 分闭镲（off-beat）
-    if (sec === 'drop' && step % 4 === 2) this._hat(t, 0.4, true);     // off-beat 开镲（drop 专属）
-    // 8 小节末 fill（drum roll）：drop 段每 8 小节最后 1 拍密集军鼓。
-    if (sec === 'drop' && (bar & 7) === 7 && step >= 13) this._clap(t, 0.4);
+    const kickOn = sec !== 'breakdown';                        // intro 也打轻 kick 维持律动
 
-    // —— 贝斯：sub sine + saw，跟 kick 同步（step 0/4/8/12），强 sidechain 泵动 ——
-    if (drumOn && step % 4 === 0) {
-      this._bass(t, mtof(this.sessKey + ch.r - 12), stepDur * 3.2, 0.95);
+    // 风格切换过渡：本小节头一记下行 tom 三连，宣告 groove 变化（不破拍）。
+    if (this._styleFill && step === 0) {
+      this._tom(t, 180, 0.5); this._tom(t + stepDur * 0.5, 140, 0.45); this._tom(t + stepDur, 110, 0.5);
+      this._styleFill = false;
     }
-    // 贝斯 walking 过渡（drop 段 step 14 → 向下和弦铺垫张力）。
-    if (sec === 'drop' && step === 14) this._bass(t, mtof(this.sessKey + ch.r - 12 - 5), stepDur * 1.5, 0.5);
 
-    // —— Pad：intro/breakdown/build 漂浮的持续和弦垫底 ——
-    if (step === 0 && (sec === 'intro' || sec === 'breakdown' || sec === 'build')) {
+    // —— kick：four-on-the-floor；hardgroove 更硬（加高通 click）——
+    if (kickOn && step % 4 === 0) this._kick(t, sec === 'drop' ? 1.0 : (sec === 'intro' ? 0.7 : 0.9), style === 'hardgroove');
+    if (drumOn && (step === 4 || step === 12)) this._clap(t, 0.7);
+    if (drumOn && step % 2 === 1) this._hat(t, style === 'hardgroove' ? 0.34 : 0.3, false);   // 16 分闭镲（off-beat）
+    if (sec === 'drop' && step % 4 === 2) this._hat(t, 0.4, true);                            // off-beat 开镲（drop 专属）
+    if (sec === 'drop' && (bar & 7) === 7 && step >= 13) this._clap(t, 0.4);                  // 8 小节末 fill
+
+    // —— hardgroove 专属：切分滚动 tom（call-response）+ 16 分 shaker 滚（位置哈希门控，绝不抽流）——
+    if (style === 'hardgroove' && drumOn) {
+      if ((step === 3 || step === 6 || step === 7 || step === 10 || step === 14 || step === 15) && this._h(1) < 0.85) {
+        this._tom(t, (step % 2 === 0 ? 120 : 165) + this._h(2) * 20, 0.42);
+      }
+      this._shaker(t, 0.15 + this._h(3) * 0.14 + (step % 4 === 2 ? 0.12 : 0));
+    }
+
+    // —— 贝斯：polka=落拍短断奏(oom)；trance/hardgroove=落拍长贝斯；hardgroove 另加反拍 rumble ghost ——
+    if (drumOn && step % 4 === 0) {
+      this._bass(t, mtof(this.sessKey + ch.r - 12), stepDur * (style === 'polka' ? 0.9 : 3.2), style === 'polka' ? 0.9 : 0.95);
+    }
+    if (style === 'hardgroove' && drumOn && (step === 6 || step === 14)) {
+      this._bass(t, mtof(this.sessKey + ch.r - 12), stepDur * 1.1, 0.5);                       // 反拍切分低音（滚动 rumble）
+    }
+    if (sec === 'drop' && step === 14 && style !== 'polka') this._bass(t, mtof(this.sessKey + ch.r - 12 - 5), stepDur * 1.5, 0.5);
+
+    // —— polka 专属：反拍 oom-pah "pah"（明亮八度断奏 stab，走 chordBus 吃泵）——
+    if (style === 'polka' && drumOn && step % 4 === 2) this._oompah(t, ch, stepDur * 0.7, 0.4);
+
+    // —— Pad：intro/breakdown/build 漂浮垫底；polka 撤 pad（要弹跳不要垫）——
+    if (step === 0 && style !== 'polka' && (sec === 'intro' || sec === 'breakdown' || sec === 'build')) {
       this._pad(t, ch, stepDur * 15, 0.5);
     }
 
-    // —— Supersaw stab：build/drop 段和弦 stabs ——
-    if (sec !== 'intro' && step === 0) this._supersaw(t, ch, stepDur * 3, sec === 'drop' ? 0.6 : 0.4);
-    if (sec === 'drop' && step === 8) this._supersaw(t, ch, stepDur * 2, 0.45);
+    // —— Supersaw stab：hardgroove 收敛让位打击；polka 更短更拨 ——
+    if (sec !== 'intro' && step === 0) {
+      if (style === 'hardgroove') { if (sec === 'drop') this._supersaw(t, ch, stepDur * 1.6, 0.32); }
+      else this._supersaw(t, ch, stepDur * (style === 'polka' ? 1.4 : 3), sec === 'drop' ? (style === 'polka' ? 0.5 : 0.6) : 0.4);
+    }
+    if (sec === 'drop' && step === 8 && style === 'trance') this._supersaw(t, ch, stepDur * 2, 0.45);
 
-    // —— Arp：16 分琶音（drop/build 段持续；breakdown 稀疏）——
-    if (sec === 'drop' || sec === 'build' || (sec === 'breakdown' && step % 4 === 0)) {
+    // —— Arp：16 分琶音（drop/build；breakdown 稀疏）；hardgroove 半密度让位打击 ——
+    if ((sec === 'drop' || sec === 'build' || (sec === 'breakdown' && step % 4 === 0)) && !(style === 'hardgroove' && step % 2 === 1)) {
       this._arp(t, ch, stepDur * 1.5, 0.5, step);
     }
 
-    // —— Lead：drop 段 8 分音符旋律（亮 saw，加 delay）——
-    if (sec === 'drop' && step % 2 === 0 && this._rng() < 0.6) {
+    // —— Lead：drop 段旋律；hardgroove 撤 lead（打击当家）。门用位置哈希 _h（不抽流 → 风格无关）。——
+    if (sec === 'drop' && step % 2 === 0 && style !== 'hardgroove' && this._h(4) < 0.6) {
       this._lead(t, ch, stepDur * 2, 0.4);
     }
   }
 
   // ---------- 乐器 ----------
-  _kick(t, vel) {
+  _kick(t, vel, hard) {
     const o = this.ctx.createOscillator(); o.type = 'sine'; const g = this.ctx.createGain();
     // 硬攻击：50→110Hz 下扫比 lofi(115→42) 更利、attack 更快、tail 更长（sub 撑满）。
     o.frequency.setValueAtTime(110, t); o.frequency.exponentialRampToValueAtTime(50, t + 0.08);
@@ -246,6 +314,12 @@ export class Sonifier {
     const sub = this.ctx.createOscillator(); sub.type = 'sine'; sub.frequency.setValueAtTime(50, t);
     const sg = this.ctx.createGain(); sg.gain.setValueAtTime(0.0001, t); sg.gain.linearRampToValueAtTime(vel * 0.5, t + 0.003); sg.gain.setTargetAtTime(0.0001, t + 0.08, 0.15);
     sub.connect(sg); sg.connect(this.drumBus); sub.start(t); sub.stop(t + 0.5);
+    if (hard) {                       // hardgroove：加一记高通 click transient → 更"点"更硬更 tribal。
+      const c = this.ctx.createBufferSource(); c.buffer = this._noise;
+      const hp = this.ctx.createBiquadFilter(); hp.type = 'highpass'; hp.frequency.value = 1800;
+      const cg = this.ctx.createGain(); cg.gain.setValueAtTime(vel * 0.5, t); cg.gain.setTargetAtTime(0.0001, t + 0.004, 0.012);
+      c.connect(hp); hp.connect(cg); cg.connect(this.drumBus); c.start(t); c.stop(t + 0.05);
+    }
     this._duck(t);                   // 触发全局 sidechain
     this.beatPulse = 1;              // 视觉 beat-sync 出口：每个 kick → pulse 1
     this.debug.kicks++;
@@ -269,6 +343,36 @@ export class Sonifier {
     g.gain.setTargetAtTime(0.0001, t + 0.005, open ? 0.09 : 0.025);
     src.connect(hp); hp.connect(g); g.connect(this.drumBus); src.start(t); src.stop(t + (open ? 0.25 : 0.12));
   }
+  _tom(t, freq, vel) {
+    // 部落 tom/conga：pitched sine + 快速降调 + 一点带通噪声击感。走 drumBus（直连、不被 duck、punchy）。
+    const o = this.ctx.createOscillator(); o.type = 'sine';
+    o.frequency.setValueAtTime(freq, t); o.frequency.exponentialRampToValueAtTime(freq * 0.55, t + 0.14);
+    const g = this.ctx.createGain(); g.gain.setValueAtTime(0.0001, t); g.gain.linearRampToValueAtTime(vel, t + 0.004); g.gain.setTargetAtTime(0.0001, t + 0.05, 0.10);
+    o.connect(g); g.connect(this.drumBus); o.start(t); o.stop(t + 0.4);
+    const n = this.ctx.createBufferSource(); n.buffer = this._noise;
+    const bp = this.ctx.createBiquadFilter(); bp.type = 'bandpass'; bp.frequency.value = freq * 1.5; bp.Q.value = 1.2;
+    const ng = this.ctx.createGain(); ng.gain.setValueAtTime(vel * 0.25, t); ng.gain.setTargetAtTime(0.0001, t + 0.01, 0.03);
+    n.connect(bp); bp.connect(ng); ng.connect(this.drumBus); n.start(t); n.stop(t + 0.15);
+  }
+  _shaker(t, vel) {
+    // 16 分 shaker：高通短噪 tick（hardgroove 的滚动细碎质感）。走 drumBus。
+    const src = this.ctx.createBufferSource(); src.buffer = this._noise;
+    const hp = this.ctx.createBiquadFilter(); hp.type = 'highpass'; hp.frequency.value = 6500;
+    const g = this.ctx.createGain(); g.gain.setValueAtTime(0.0001, t); g.gain.linearRampToValueAtTime(vel, t + 0.002); g.gain.setTargetAtTime(0.0001, t + 0.006, 0.02);
+    src.connect(hp); hp.connect(g); g.connect(this.drumBus); src.start(t); src.stop(t + 0.08);
+  }
+  _oompah(t, ch, dur, vel) {
+    // polka 反拍 "pah"：明亮上八度方波断奏 stab（手风琴/风琴俏皮感）。走 chordBus → 吃 sidechain 泵。
+    const tones = CHORD[ch.c]; const base = this.sessKey + ch.r + 12;
+    for (const semi of tones) {
+      const o = this.ctx.createOscillator(); o.type = 'square'; o.frequency.setValueAtTime(mtof(base + semi), t);
+      const lp = this.ctx.createBiquadFilter(); lp.type = 'lowpass'; lp.frequency.value = 3200; lp.Q.value = 1;
+      const g = this.ctx.createGain();
+      g.gain.setValueAtTime(0.0001, t); g.gain.linearRampToValueAtTime(vel / tones.length, t + 0.004); g.gain.setTargetAtTime(0.0001, t + dur * 0.25, dur * 0.25);
+      o.connect(lp); lp.connect(g); g.connect(this.chordBus);
+      o.start(t); o.stop(t + dur + 0.1);
+    }
+  }
   _bass(t, freq, dur, vel) {
     // sub sine（根）+ saw（谐波）双层；低通收紧。比 lofi(单一 triangle) 更厚更沉。
     const o1 = this.ctx.createOscillator(); o1.type = 'sine'; o1.frequency.setValueAtTime(freq, t);
@@ -285,7 +389,7 @@ export class Sonifier {
     for (const semi of tones) {
       for (let v = 0; v < 7; v++) {
         const o = this.ctx.createOscillator(); o.type = 'sawtooth';
-        const detune = (v - 3) * 8 + (this._rng() - 0.5) * 4;   // ±24 cents 展开 + 微抖
+        const detune = (v - 3) * 8 + (this._rngV() - 0.5) * 4;   // ±24 cents 展开 + 微抖（隔离流）
         o.frequency.setValueAtTime(mtof(base + semi + 12), t); o.detune.setValueAtTime(detune, t);
         const lp = this.ctx.createBiquadFilter(); lp.type = 'lowpass';
         lp.frequency.setValueAtTime(4000, t); lp.frequency.exponentialRampToValueAtTime(1200, t + dur * 0.5);   // 滤波包络（开→关）
@@ -303,7 +407,7 @@ export class Sonifier {
     // 持续 pad：supersaw 的慢起版（attack 1s、长 release），intro/breakdown 漂浮垫底。
     const tones = CHORD[ch.c]; const base = this.sessKey + ch.r;
     for (const semi of tones) {
-      const o = this.ctx.createOscillator(); o.type = 'sawtooth'; o.frequency.setValueAtTime(mtof(base + semi), t); o.detune.setValueAtTime(-6 + this._rng() * 12, t);
+      const o = this.ctx.createOscillator(); o.type = 'sawtooth'; o.frequency.setValueAtTime(mtof(base + semi), t); o.detune.setValueAtTime(-6 + this._rngV() * 12, t);
       const lp = this.ctx.createBiquadFilter(); lp.type = 'lowpass'; lp.frequency.value = 1800; lp.Q.value = 0.5;
       const g = this.ctx.createGain();
       g.gain.setValueAtTime(0.0001, t); g.gain.linearRampToValueAtTime(vel / tones.length, t + 1.0); g.gain.setTargetAtTime(0.0001, t + dur * 0.6, dur * 0.3);
@@ -316,7 +420,7 @@ export class Sonifier {
     const mi = this.motif[this.motifPos % this.motif.length]; this.motifPos++;
     const idx = mi % ARP_SCALE.length;
     const freq = mtof(this.sessKey + ch.r + ARP_SCALE[idx] + 12);
-    const o = this.ctx.createOscillator(); o.type = 'sawtooth'; o.frequency.setValueAtTime(freq, t); o.detune.setValueAtTime(this._rng() * 10 - 5, t);
+    const o = this.ctx.createOscillator(); o.type = 'sawtooth'; o.frequency.setValueAtTime(freq, t); o.detune.setValueAtTime(this._rngV() * 10 - 5, t);
     const lp = this.ctx.createBiquadFilter(); lp.type = 'lowpass'; lp.frequency.value = 5000;
     const g = this.ctx.createGain();
     g.gain.setValueAtTime(0.0001, t); g.gain.linearRampToValueAtTime(vel, t + 0.003); g.gain.setTargetAtTime(0.0001, t + dur * 0.4, dur * 0.3);
