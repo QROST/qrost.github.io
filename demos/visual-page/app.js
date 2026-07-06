@@ -1270,35 +1270,37 @@ let clubMode = false, micActive = false, gyroAsked = false, audioKicked = false,
 // 策略：boot 时不创建 ctx；首个手势的同步栈内按 iOS 要求的顺序解锁 →
 //   ① 在手势内 new AudioContext  ② 立刻播一段与 ctx 同采样率的(略长)静音 buffer 开声道
 //   ③ ctx.resume()  ④ sonifier.start。resume 是异步的，故静音 buffer 必须先于 resume 播放。
-// —— iOS 铃声/静音开关逃逸：纯 AudioContext 在 iOS 上走"遵守静音开关"的音频会话类别；
-//    但静音开关本应只管通知、不该掐媒体。要让生成音乐像媒体一样无视静音开关，须在用户手势内
-//    把会话类别提升到 playback，两条路并用（都不用麦克风）：
-//    (A) navigator.audioSession.type='playback'（W3C，Safari/iOS 16.4+；无此属性的浏览器跳过）
-//    (B) loop 播一个亚感知 dither <audio>（关键：不能纯静音——WebKit 靠"是否真有音频输出"决定翻不翻
-//        会话类别，纯静音会被判为无输出而不翻；故写 ±1 LSB 抖动，对人耳不可闻但对 WebKit 计为有效输出）。
-//    仅 iOS 触发；桌面/Android 无静音开关 → 整体退化为 no-op。
-const _isIosLike = (/iP(hone|ad|od)/.test(navigator.platform) ||
-  (navigator.maxTouchPoints > 1 && /Mac/.test(navigator.platform))) && !!window.webkitAudioContext;
+// —— iOS 静音键逃逸：纯 AudioContext 在 iOS 上默认走 ambient 会话类别 → 跟随静音键被掐；
+//    静音键本应只管通知、不该掐媒体。iOS 17+ 的官方修法（WebKit 维护者 bug 237322 确认）：
+//    把 W3C Audio Session 类型设为 'playback' → Web Audio 无视静音键。设 type 不需要手势。
+//    ⚠️ 关键教训：不要再依赖 window.webkitAudioContext 做 iOS 探测（新 Safari 可能已不暴露该别名，
+//       之前那个 `&& !!webkitAudioContext` 让整个提升在 iOS 26 上被跳过 → 静音键照样掐）。
+//    ⚠️ 也不要再用"静音 <audio> 促会话升级"那套老技巧：在新 iOS 上已失效（播 ~1s 即停），且会把会话
+//       类别顶回 ambient、反而打断上面的 playback。故它只在完全没有 audioSession 的老 iOS(<16.4) 兜底。
+const _isIosLike = /iP(hone|ad|od)/.test(navigator.platform) ||
+  (navigator.maxTouchPoints > 1 && /Mac/.test(navigator.platform));
+try { if (navigator.audioSession) navigator.audioSession.type = 'playback'; } catch (_) {}   // boot 时先设一次
 let _silentEl = null, _silentUrl = null;
-function _makeDitherWavUrl(sr, frames) {                    // 极短 8-bit 单声道 dither WAV（127/129 交替）；Blob+ObjectURL，无网络依赖
+function _makeDitherWavUrl(sr, frames) {                    // 极短 8-bit 单声道 dither WAV（127/129 交替）；仅老 iOS 兜底用
   const buf = new ArrayBuffer(44 + frames), dv = new DataView(buf); let p = 0;
   const u32 = (v) => { dv.setUint32(p, v, true); p += 4; }, u16 = (v) => { dv.setUint16(p, v, true); p += 2; };
   const str = (s) => { for (let i = 0; i < s.length; i++) dv.setUint8(p++, s.charCodeAt(i)); };
   str('RIFF'); u32(36 + frames); str('WAVE'); str('fmt '); u32(16); u16(1); u16(1); u32(sr); u32(sr); u16(1); u16(8); str('data'); u32(frames);
-  for (let i = 0; i < frames; i++) dv.setUint8(p++, (i & 1) ? 129 : 127);   // ±1 LSB 亚感知抖动（非纯静音）
+  for (let i = 0; i < frames; i++) dv.setUint8(p++, (i & 1) ? 129 : 127);
   return URL.createObjectURL(new Blob([buf], { type: 'audio/wav' }));
 }
-function promoteAudioSession() {                            // 必须在用户手势同步栈内、且早于 resume() 调用
-  if (!_isIosLike) return;                                  // 仅 iOS：桌面/Android 无静音开关 → 真 no-op
-  try { if (navigator.audioSession) navigator.audioSession.type = 'playback'; } catch (_) {}   // (A)
-  if (_silentEl) return;                                    // (B) 静音元素只建一次，持续 loop 维持会话类别
+function promoteAudioSession() {                            // 每个手势里再设一次（会话类型可能被系统/其它音频重置）
+  try {
+    if (navigator.audioSession) { navigator.audioSession.type = 'playback'; return; }   // (A) iOS 17+：唯一可靠，成功即返回，绝不碰静音元素
+  } catch (_) {}
+  if (!_isIosLike || _silentEl) return;                    // (B) 仅无 audioSession 的老 iOS(<16.4) 才退回静音元素兜底
   try {
     _silentUrl = _makeDitherWavUrl(44100, 1024);
     const el = document.createElement('audio');
-    el.loop = true; el.preload = 'auto'; el.volume = 1;     // 绝不 muted：muted 元素不翻会话类别
+    el.loop = true; el.preload = 'auto'; el.volume = 1;
     el.setAttribute('playsinline', ''); el.setAttribute('webkit-playsinline', '');
-    el.src = _silentUrl; document.body.appendChild(el); _silentEl = el;   // 挂 DOM + 持引用防 GC
-    const pr = el.play(); if (pr && pr.catch) pr.catch(() => {});         // 被自动播放策略拒 → 下个手势重试
+    el.src = _silentUrl; document.body.appendChild(el); _silentEl = el;
+    const pr = el.play(); if (pr && pr.catch) pr.catch(() => {});
   } catch (_) {}
 }
 function ensureCtx() {
@@ -1415,7 +1417,7 @@ function kickAudio() {                                   // 首个手势内（�
 // iOS 上顺带补一次会话提升（静音元素可能在打断中被释放）。
 document.addEventListener('visibilitychange', () => {
   if (document.hidden) return;
-  if (_isIosLike && audioKicked && !_silentEl) promoteAudioSession();
+  if (audioKicked) promoteAudioSession();   // 回前台重设 playback 会话类型（可能被系统/其它 app 重置回 ambient）
   if (audioCtx && (audioCtx.state === 'suspended' || audioCtx.state === 'interrupted')) { try { audioCtx.resume(); } catch (_) {} }
 });
 
