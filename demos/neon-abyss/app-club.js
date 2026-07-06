@@ -239,6 +239,30 @@ const beamMaterial = new THREE.ShaderMaterial({
   fragmentShader: `varying vec3 vC; varying float vVis; void main(){ if (vVis < 0.5) discard; gl_FragColor = vec4(vC, 0.02); }`
 });
 
+// 几何体棱线加粗（子集）：复用 beam 的屏幕空间 ribbon，但更实（高 alpha + 景深淡出）。只有数据最重要的一小撮棱走这里，
+// 其余全部留 1px（零新增）。宽度 = 数据分布(静态) × 呼吸 × beat（每帧调制），移动端硬封顶边数+宽度。
+const edgeRibbonMat = new THREE.ShaderMaterial({
+  uniforms: { uRes: { value: new THREE.Vector2(innerWidth, innerHeight) }, uOpacity: { value: 0.9 } },
+  transparent: true, depthWrite: false, blending: THREE.NormalBlending, side: THREE.DoubleSide,
+  vertexShader: `
+    attribute vec3 aDir; attribute float aSide; attribute vec3 aColor; attribute float aWidth; attribute float aVis;
+    uniform vec2 uRes; varying vec3 vC; varying float vVis; varying float vDist;
+    void main(){
+      vC = aColor; vVis = aVis;
+      vec4 mvA = modelViewMatrix * vec4(position, 1.0); vDist = -mvA.z;
+      vec4 cA = projectionMatrix * mvA;
+      vec4 cB = projectionMatrix * modelViewMatrix * vec4(aDir, 1.0);
+      float asp = uRes.x / uRes.y;
+      vec2 d = cB.xy / cB.w - cA.xy / cA.w; d.x *= asp;
+      float dl = length(d); d = dl > 0.0001 ? d / dl : vec2(1.0, 0.0);
+      vec2 perp = vec2(-d.y, d.x); perp.x /= asp;
+      cA.xy += perp * aSide * (aWidth / uRes.y) * 2.0 * cA.w;
+      gl_Position = cA;
+    }`,
+  fragmentShader: `varying vec3 vC; varying float vVis; varying float vDist; uniform float uOpacity;
+    void main(){ if (vVis < 0.5) discard; float f = clamp((110.0 - vDist)/80.0, 0.22, 1.0); gl_FragColor = vec4(vC, uOpacity*f); }`
+});
+
 // 几何体棱线材质：彩色细线 + 景深淡出。NormalBlending（非 Additive）→ 密集几何体聚拢时颜色不叠加烧白，只互相遮挡。
 const solidLineMat = new THREE.ShaderMaterial({
   uniforms: { uOpacity: { value: 0.92 } }, transparent: true, depthWrite: false, blending: THREE.NormalBlending,
@@ -728,7 +752,7 @@ async function buildShelterCats() {
 // ---------- typed state (filled after build) ----------
 let N = 0;
 let sys, anc, scl, bh, prm, spd, state, posArr, trail, trailSrc, rotM, head = 0;
-let pointsObj, trailObj, beamObj, beamIdxA, beamIdxB, beamPos;
+let pointsObj, trailObj, beamObj, beamIdxA, beamIdxB, beamPos, edgeRibObj, edgeRib = null;
 let grp, segsG, pointVisArr, pointVisAttr, trailVisArr, trailVisAttr, beamVisArr, beamVisAttr, beamEnds;
 let E = 0, emEnt, emLocal, entMat;   // 轨迹发射点：每个立体的每个顶点各一条
 let featM = null, latticeObj = null, shapeArr = null, szCurve = null;   // SOM 特征矩阵 · 神经晶格 · 每星几何体形 id · 尺寸曲线[0,1]
@@ -989,6 +1013,46 @@ function finalize() {
     bg.setAttribute('aVis', beamVisAttr);
     beamObj = new THREE.Mesh(bg, beamMaterial); beamObj.frustumCulled = false; root.add(beamObj);
     beamObj.userData.posAttr = bposAttr; beamObj.userData.dirAttr = bdirAttr; beamObj.userData.dir = bdir;
+  }
+
+  // —— 几何体棱线加粗（子集）：把数据最重要(szCurve×复杂度)的 3D 形体的棱重画成可变宽 ribbon；其余全部留 1px（零新增）。
+  //    仅 3D 形体（4D 逐帧 morph，静态棱会与之错位 → 排除，保 4D 的 1px morphing 棱）。移动端硬封顶边数 + 宽度。
+  {
+    const CAP = IS_MOBILE ? 120 : 320, MAXW = IS_MOBILE ? 2.2 : 3.6;
+    const scored = [];
+    for (let i = 0; i < N; i++) {
+      const sid = shapeArr[i], sh = sid ? SHAPES[sid] : null;
+      if (!sh || sh.is4d || !sh.edges || sh.edges.length < 6) continue;
+      scored.push([i, (szCurve ? szCurve[i] : 0.5) * (1 + sh.edges.length / 6 * 0.02)]);   // 数据量级 × 复杂度(棱数)
+    }
+    scored.sort((a, b) => b[1] - a[1]);
+    const rib = [];   // {gi, sid, o(边在 edges 起始下标), baseW, phase}
+    for (let s = 0; s < scored.length && rib.length < CAP; s++) {
+      const gi = scored[s][0], sid = shapeArr[gi], sh = SHAPES[sid], ne = sh.edges.length / 6;
+      const bw = 0.7 + (szCurve ? clamp(szCurve[gi], 0, 1) : 0.5) * (MAXW - 0.7);
+      for (let e = 0; e < ne && rib.length < CAP; e++) rib.push({ gi, sid, o: e * 6, baseW: bw, phase: hash01('rw' + gi + '_' + e) * 6.2831 });
+    }
+    if (rib.length) {
+      const K = rib.length, V = K * 6;
+      const rpos = new Float32Array(V * 3), rdir = new Float32Array(V * 3);
+      const rside = new Float32Array(V), rcol = new Float32Array(V * 3), rwid = new Float32Array(V), rvis = new Float32Array(V).fill(1);
+      for (let i = 0; i < K; i++) {
+        const c = rib[i].gi * 3;
+        for (let v = 0; v < 6; v++) { const idx = i * 6 + v;
+          rside[idx] = beamSideTmpl[v]; rwid[idx] = rib[i].baseW;
+          rcol[idx * 3] = D.col[c]; rcol[idx * 3 + 1] = D.col[c + 1]; rcol[idx * 3 + 2] = D.col[c + 2]; }
+      }
+      const rg = new THREE.BufferGeometry();
+      const rposA = new THREE.BufferAttribute(rpos, 3).setUsage(THREE.DynamicDrawUsage);
+      const rdirA = new THREE.BufferAttribute(rdir, 3).setUsage(THREE.DynamicDrawUsage);
+      const rwidA = new THREE.BufferAttribute(rwid, 1).setUsage(THREE.DynamicDrawUsage);
+      const rvisA = new THREE.BufferAttribute(rvis, 1).setUsage(THREE.DynamicDrawUsage);
+      rg.setAttribute('position', rposA); rg.setAttribute('aDir', rdirA); rg.setAttribute('aSide', new THREE.BufferAttribute(rside, 1));
+      rg.setAttribute('aColor', new THREE.BufferAttribute(rcol, 3)); rg.setAttribute('aWidth', rwidA); rg.setAttribute('aVis', rvisA);
+      edgeRibObj = new THREE.Mesh(rg, edgeRibbonMat); edgeRibObj.frustumCulled = false; root.add(edgeRibObj);
+      edgeRibObj.userData = { posA: rposA, dirA: rdirA, widA: rwidA, visA: rvisA, pos: rpos, dir: rdir, wid: rwid, vis: rvis };
+      edgeRib = rib;
+    }
   }
 }
 
@@ -1592,7 +1656,7 @@ renderer.domElement.addEventListener('pointerup', (e) => {
   setMode(0);   // 首屏默认 = 隐藏文字（纯画面沉浸）+ 给一次浮现确认
 }
 
-addEventListener('resize', () => { camera.aspect = innerWidth / innerHeight; camera.updateProjectionMatrix(); renderer.setSize(innerWidth, innerHeight); U.uPixelRatio.value = renderer.getPixelRatio(); beamMaterial.uniforms.uRes.value.set(innerWidth, innerHeight); if (composer) composer.setSize(innerWidth, innerHeight); });
+addEventListener('resize', () => { camera.aspect = innerWidth / innerHeight; camera.updateProjectionMatrix(); renderer.setSize(innerWidth, innerHeight); U.uPixelRatio.value = renderer.getPixelRatio(); beamMaterial.uniforms.uRes.value.set(innerWidth, innerHeight); edgeRibbonMat.uniforms.uRes.value.set(innerWidth, innerHeight); if (composer) composer.setSize(innerWidth, innerHeight); });
 
 // 视野内实体聚合 → 喂给音乐引擎：count/层 → 主导层(选音色=变轨)、色相均值 → 旋律目标音级（gaze 决定听到什么）。节流调用（音符级速率足矣）
 function computeViewAgg() {
@@ -1740,6 +1804,30 @@ function animate() {
         }
         if (inst) { sg.iPosAttr.needsUpdate = true; sg.iQuatAttr.needsUpdate = true; sg.iSclAttr.needsUpdate = true; } else sg.posAttr.needsUpdate = true;
       }
+    }
+
+    // —— 几何体棱线加粗子集：世界端点 = entMat[gi] × 局部棱顶点（同拖尾算法）；宽 = 数据分布 × 呼吸 × beat；离屏即隐(LOD)。——
+    if (edgeRibObj) {
+      const u = edgeRibObj.userData, rp = u.pos, rd = u.dir, rw = u.wid, rv = u.vis;
+      const MAXW = IS_MOBILE ? 2.2 : 3.6, beat = 1 + (U.uPulse.value || 0) * 0.9;
+      for (let i = 0, base = 0; i < edgeRib.length; i++, base += 6) {
+        const R = edgeRib[i], gi = R.gi, m = gi * 16;
+        if (!visArr[gi]) { for (let v = 0; v < 6; v++) rv[base + v] = 0; continue; }   // 离屏 → 隐
+        const ed = SHAPES[R.sid].edges, o = R.o;
+        const ax = ed[o], ay = ed[o + 1], az = ed[o + 2], bx = ed[o + 3], by = ed[o + 4], bz = ed[o + 5];
+        const Ax = entMat[m] * ax + entMat[m + 4] * ay + entMat[m + 8] * az + entMat[m + 12];
+        const Ay = entMat[m + 1] * ax + entMat[m + 5] * ay + entMat[m + 9] * az + entMat[m + 13];
+        const Az = entMat[m + 2] * ax + entMat[m + 6] * ay + entMat[m + 10] * az + entMat[m + 14];
+        const Bx = entMat[m] * bx + entMat[m + 4] * by + entMat[m + 8] * bz + entMat[m + 12];
+        const By = entMat[m + 1] * bx + entMat[m + 5] * by + entMat[m + 9] * bz + entMat[m + 13];
+        const Bz = entMat[m + 2] * bx + entMat[m + 6] * by + entMat[m + 10] * bz + entMat[m + 14];
+        const w = Math.min(MAXW, R.baseW * (1 + 0.22 * Math.sin(tElapsed * 0.7 + R.phase)) * beat);   // 呼吸 × beat 脉冲
+        for (let v = 0; v < 6; v++) { const e = base + v, e3 = e * 3, useA = beamEndTmpl[v] === 0;
+          rp[e3] = useA ? Ax : Bx; rp[e3 + 1] = useA ? Ay : By; rp[e3 + 2] = useA ? Az : Bz;
+          rd[e3] = useA ? Bx : Ax; rd[e3 + 1] = useA ? By : Ay; rd[e3 + 2] = useA ? Bz : Az;
+          rw[e] = w; rv[e] = 1; }
+      }
+      u.posA.needsUpdate = true; u.dirA.needsUpdate = true; u.widA.needsUpdate = true; u.visA.needsUpdate = true;
     }
 
     // 每 STRIDE 帧采样一次轨迹（让缓慢运动也能拉出可见路径）
