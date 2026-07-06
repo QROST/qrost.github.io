@@ -154,7 +154,9 @@ export class Sonifier {
     const sat = ctx.createWaveShaper(); sat.curve = this._satCurve(1.15); sat.oversample = '2x';
     const hiShelf = ctx.createBiquadFilter(); hiShelf.type = 'highshelf'; hiShelf.frequency.value = 3500; hiShelf.gain.value = 3;
     sat.connect(hiShelf); hiShelf.connect(limiter);
-    const mix = ctx.createGain(); mix.gain.value = 1; mix.connect(sat); this.mix = mix;
+    // 母线 lowpass：drop 全开、build 末段收窄蓄力、呼吸谷下沉（DJ: drop 要"挣来"——先 filter-down 再砸开）。
+    const masterLP = ctx.createBiquadFilter(); masterLP.type = 'lowpass'; masterLP.frequency.value = 20000; masterLP.Q.value = 0.7; this.masterLP = masterLP;
+    const mix = ctx.createGain(); mix.gain.value = 1; mix.connect(masterLP); masterLP.connect(sat); this.mix = mix;
     // 长 reverb（2.4s IR，比 lofi 1.4s 长）+ 更湿 send → Trance 空间感。
     const reverb = ctx.createConvolver(); reverb.buffer = this._reverbIR(2.4);
     const revSend = ctx.createGain(); revSend.gain.value = 0.18; const revRet = ctx.createGain(); revRet.gain.value = 0.7;
@@ -231,6 +233,12 @@ export class Sonifier {
     this._htActive = breather && sec === 'breakdown';
     const targetBpm = this._htActive ? (this.bpmBase - 5) : this.bpmBase;
     this.bpm += (targetBpm - this.bpm) * clamp((s.dt || 0.016) * 1.5, 0, 1);   // ~2 小节平滑滑到位
+
+    // 母线 lowpass 自动化：drop 全开(snap)；build 末 2 小节收窄(filter-down 蓄力)；呼吸谷下沉。
+    let lpT = 20000;
+    if (this._htActive) lpT = 1400;                                     // 呼吸谷"下沉"
+    else if (sec === 'build' && b40 >= 14) lpT = 2200 + (15 - b40) * 6000;   // bar14≈8200 → bar15≈2200
+    if (this.masterLP) this.masterLP.frequency.setTargetAtTime(lpT, t, sec === 'drop' ? 0.02 : 0.14);   // drop 快开=砸；否则平滑
 
     const stepDur = (60 / this.bpm) / 4;
     while (this.nextTime < t + this.lookahead) {
