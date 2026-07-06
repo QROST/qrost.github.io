@@ -97,17 +97,20 @@ export class Sonifier {
     this.cycleStyle = this.style = this._pickStyle(this._rng()); // 首个 cycle 也按权重定味（开页惊喜）
     this._steerStyle = null; this._steerHold = 0;
 
-    // 调性根：warm 选冷/温/暖三档（A minor / D minor / C minor 区间）。
-    this.keyRoot = warm < 0.4 ? 45 : warm > 0.7 ? 50 : 48;
+    // 调性根：warm(气候暖度) 定音区中心 → 但每次几乎相同；再叠一个来自 sig(整张密度场指纹, 每次真的变) 的更宽
+    //   spread → 每次不同调，仍是"数据自组织指纹塑形音乐"（非随机）。
+    const warmCtr = warm < 0.4 ? 43 : warm > 0.7 ? 49 : 46;
+    this.keyRoot = warmCtr + (this._sigMix(1) % 10) - 2;      // 中心 −2..+7 半音，跨度更宽（avalanche 混，均匀）
     // 最密簇色相 → 整体移调（听见这片宇宙的主色）。
     const hueStar = dna ? clamp(dna.hueStar, 0, 0.999) : 0.5;
     this.sessKey = this.keyRoot + SESS_TRANSPOSE[Math.floor(hueStar * SESS_TRANSPOSE.length)];
-    // BPM 134–142（speedMean 微调）。Trance 标准区间。
-    this.bpm = Math.round(134 + (dna ? dna.speedMean : 0.5) * 8);
+    // BPM：speedMean(全体星速均值) 近恒定 → 改由 speedSpread(簇速异质度, 会随聚类变) + sig(密度指纹) 驱动更宽区间
+    //   128–146，每次不同速、仍数据驱动。
+    this.bpm = clamp(Math.round(130 + (dna ? dna.speedSpread : 0.45) * 10 + ((this._sigMix(2) % 17) - 8)), 128, 146);
     // 呼吸弧调度（从 sig 派生，确定性）：每 2–4 个 cycle 一次深呼吸，相位错开 → 同宇宙同一条 tempo 旅程。
     this.bpmBase = this.bpm;
-    this.breatherEvery = 2 + ((this._sig0 >>> 5) % 3);              // 2 / 3 / 4 个 cycle 一次
-    this.breatherPhase = ((this._sig0 >>> 9) >>> 0) % this.breatherEvery;
+    this.breatherEvery = 2 + (this._sigMix(3) % 3);                 // 2 / 3 / 4 个 cycle 一次
+    this.breatherPhase = this._sigMix(4) % this.breatherEvery;
     // speedSpread → arp swing（异质度高 → arp 更跳）。
     this.arpSwing = 0.04 + (dna ? dna.speedSpread : 0.45) * 0.06;
     // concentration → 进行索引（越集中 → 越暗 progressive，越散 → 越开放）。
@@ -229,6 +232,8 @@ export class Sonifier {
     this.style = (this._steerHold > 0 && this._steerStyle) ? this._steerStyle : this.cycleStyle;
     // 深呼吸 cycle 全程强制 trance（DJ RED flag：情绪 rest + 经典 trance re-lift 里绝不能出 polka 方波 stab）。
     if ((Math.floor(this.bar / 40) % this.breatherEvery) === this.breatherPhase) this.style = 'trance';
+    // DJ: polka 方波 stab 绝不压在 running drop 上（会把 drop 打成 whiplash）→ drop 段把 polka 顶成 trance（intro/build/breakdown 仍可 polka）。
+    if (this.style === 'polka' && sectionOf(this.bar) === 'drop') this.style = 'trance';
     if (this.style !== prev) this._styleFill = true;   // 风格变了 → 本小节头补一记 tom 过渡
   }
 
@@ -239,6 +244,8 @@ export class Sonifier {
   _rngV() { this._sV = (this._sV + 0x6D2B79F5) | 0; let x = this._sV; x = Math.imul(x ^ (x >>> 15), 1 | x); x = (x + Math.imul(x ^ (x >>> 7), 61 | x)) ^ x; return ((x ^ (x >>> 14)) >>> 0) / 4294967296; }
   // 位置哈希 → [0,1)：纯 (宇宙,小节,步,salt) 函数，与调用顺序无关 → 风格/交互门控不会错位任何流。
   _h(salt) { let x = (this._sig0 ^ Math.imul(this.bar + 1, 0x9e3779b9) ^ Math.imul(this.step + 1, 0x85ebca6b) ^ Math.imul((salt | 0) + 1, 0xc2b2ae35)) | 0; x = Math.imul(x ^ (x >>> 16), 0x7feb352d); x = Math.imul(x ^ (x >>> 15), 0x846ca68b); x ^= x >>> 16; return (x >>> 0) / 4294967296; }
+  // 从密度指纹 _sig0 + salt 派生一个良好去相关的 uint32（avalanche）：用于每宇宙一次性的选调/速/呼吸调度，位切片会有偏、必须混。
+  _sigMix(salt) { let x = (this._sig0 ^ Math.imul((salt | 0) + 1, 0x9e3779b9)) | 0; x = Math.imul(x ^ (x >>> 16), 0x7feb352d); x = Math.imul(x ^ (x >>> 15), 0x846ca68b); x ^= x >>> 16; return x >>> 0; }
   // A：musicDNA → 每宇宙 {trance,polka,hardgroove} 权重（trance 保底主导 → 风味"偶现"）。
   _computeStyleWeights(dna) {
     let wt = 1.0, wp = 0.0, wh = 0.0;
@@ -504,7 +511,7 @@ export class Sonifier {
   // sidechain duck：kick 触发，scBus gain 瞬跌 −8dB、150ms 恢复。
   _duck(t) {
     const g = this.scBus.gain;
-    g.cancelScheduledValues(t); g.setValueAtTime(0.4, t); g.linearRampToValueAtTime(1, t + 0.15);
+    g.cancelScheduledValues(t); g.setValueAtTime(0.4, t); g.setTargetAtTime(1, t + 0.001, 0.06);   // 指数恢复 → 更"泵"的 sidechain 呼吸（DJ：线性太 limp）
   }
 
   // focus = "跟踪哪个数据" → 一记柔和 lead 音（视野→吟唱，原 audio.js 钩子）。
