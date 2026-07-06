@@ -65,11 +65,11 @@ const MODES = {
 };
 const modeForDom = (dt) => (dt === 7) ? 'major' : (dt === 6 || dt === 3) ? 'dorian' : (dt === 2 || dt === 1 || dt === 5) ? 'phrygian' : 'minor';
 
-// 32 小节编排段：返回当前 bar 落在哪段。
-// intro(0–7) → build(8–15) → drop(16–31) → breakdown(32–39) → 循环回 intro(0)。
-// 总循环长度 = 40 小节。drop 是全开段（bloom/strobe 触发），breakdown 鼓撤。
+// 编排段：intro(0–7) → build(8–15) → drop(16–31) → breakdown(32–47) → 循环回 intro(0)。
+// 总循环长度 = BARS=48 小节（breakdown 加长到 16 → 情绪中心有呼吸空间，DJ #4b）。所有 cycle 边界都用 BARS，防相位错位。
+const BARS = 48;
 const sectionOf = (bar) => {
-  const b = ((bar % 40) + 40) % 40;
+  const b = ((bar % BARS) + BARS) % BARS;
   if (b < 8) return 'intro';
   if (b < 16) return 'build';
   if (b < 32) return 'drop';
@@ -92,14 +92,14 @@ export class Sonifier {
     this._riserEnv = 0; this._impactEnv = 0;
     this._riserOn = false; this._lastRiserStep = -999;
     this.debug = { steps: 0, kicks: 0, claps: 0, chords: 0, arps: 0, mods: 0, sig: 0 };
-    // —— groove-style 系统：A 每宇宙权重 · B 每 40 小节确定性轮换 · C 交互实时主导 ——
+    // —— groove-style 系统：A 每宇宙权重 · B 每 cycle(48 小节)确定性轮换 · C 交互实时主导 ——
     this.style = 'trance';          // 本小节生效风格（_onBar 每小节解析）
     this.cycleStyle = 'trance';     // B：当前 cycle 的 ambient 风格
     this.styleW = { trance: 1, polka: 0, hardgroove: 0 };   // A：从 musicDNA 算的每宇宙权重
     this._steerStyle = null; this._steerHold = 0;           // C：交互主导风格 + 剩余保持秒数
     this._styleFill = false;        // 风格切换 → 本小节头补一记过渡 fill
     this._sig0 = 0; this._sV = 0;   // 位置哈希种子 / 声部微抖专用 PRNG（与主 _s 流隔离，保 A+B 确定性）
-    // —— DJ-set 呼吸弧：每 breatherEvery 个 40 小节 cycle 的第 breatherPhase 个做"深呼吸"（half-time + 轻降 BPM）——
+    // —— DJ-set 呼吸弧：每 breatherEvery 个 cycle(48 小节) 的第 breatherPhase 个做"深呼吸"（half-time + 轻降 BPM）——
     this.bpmBase = 138; this.breatherEvery = 3; this.breatherPhase = 2; this._htActive = false;
   }
 
@@ -201,7 +201,7 @@ export class Sonifier {
 
     // riser / impact 包络：随 section 自然演化。build 段渐强；drop 起点爆。
     const sec = sectionOf(this.bar);
-    const b40 = ((this.bar % 40) + 40) % 40;
+    const b40 = ((this.bar % BARS) + BARS) % BARS;
     if (sec === 'build') {
       const frac = clamp((b40 - 8) / 8, 0, 1);   // 0..1 over build
       this._riserEnv = frac * frac;              // 缓入（平方）→ 末段急涨
@@ -237,7 +237,7 @@ export class Sonifier {
     // —— DJ 呼吸弧：深呼吸 cycle 的 breakdown = 谷底（half-time + 轻降 ~5 BPM），其余回基准。
     //    真 BPM 平滑 glide：本引擎是 step-scheduler，改 stepDur 只重排后续音符、不 detune 持续音（修正 DJ 的顾虑）；
     //    beatPulse 随 kick 间距慢/快 → 画面同步呼吸。glide 收敛到确定目标（过渡曲线随帧率极微异，不可闻）。
-    const cyc = Math.floor(this.bar / 40);
+    const cyc = Math.floor(this.bar / BARS);
     const breather = (cyc % this.breatherEvery) === this.breatherPhase;
     this._htActive = breather && sec === 'breakdown';
     const targetBpm = this._htActive ? (this.bpmBase - 5) : this.bpmBase;
@@ -267,13 +267,13 @@ export class Sonifier {
     // 动机变异（每 4 小节轻微改一个音 → 没有两段完全一样；确定性 PRNG）。
     if (this.bar % 4 === 0) { const k = (this.bar * 5) % this.motif.length; this.motif[k] = clamp(this.motif[k] + (this._rng() < 0.5 ? 1 : -1), 0, 5); }
     this.curProgIdx = this.baseProgIdx;
-    // B：每 40 小节 cycle 边界确定性抽 ambient 风格（主 _s 流、每小节固定次数 → 同宇宙同序列）。
-    if (this.bar % 40 === 0) this.cycleStyle = this._pickStyle(this._rng());
+    // B：每 cycle(48 小节)边界确定性抽 ambient 风格（主 _s 流、每小节固定次数 → 同宇宙同序列）。
+    if (this.bar % BARS === 0) this.cycleStyle = this._pickStyle(this._rng());
     // 解析本小节生效风格：C（交互主导，保持/衰减中）优先，否则 B（ambient cycle 风格）。切换只在小节边界 → 不破拍。
     const prev = this.style;
     this.style = (this._steerHold > 0 && this._steerStyle) ? this._steerStyle : this.cycleStyle;
     // 深呼吸 cycle 全程强制 trance（DJ RED flag：情绪 rest + 经典 trance re-lift 里绝不能出 polka 方波 stab）。
-    if ((Math.floor(this.bar / 40) % this.breatherEvery) === this.breatherPhase) this.style = 'trance';
+    if ((Math.floor(this.bar / BARS) % this.breatherEvery) === this.breatherPhase) this.style = 'trance';
     // DJ: polka 方波 stab 绝不压在 running drop 上（会把 drop 打成 whiplash）→ drop 段把 polka 顶成 trance（intro/build/breakdown 仍可 polka）。
     if (this.style === 'polka' && sectionOf(this.bar) === 'drop') this.style = 'trance';
     if (this.style !== prev) this._styleFill = true;   // 风格变了 → 本小节头补一记 tom 过渡
@@ -309,8 +309,8 @@ export class Sonifier {
     const t = gridT + swing;
     const ch = this._chord();
     const sec = sectionOf(bar);
-    const b40 = ((bar % 40) + 40) % 40;
-    const breather = (Math.floor(bar / 40) % this.breatherEvery) === this.breatherPhase;
+    const b40 = ((bar % BARS) + BARS) % BARS;
+    const breather = (Math.floor(bar / BARS) % this.breatherEvery) === this.breatherPhase;
     const valley = breather && sec === 'breakdown';           // 深呼吸谷底（half-time 段）
     const style = this.style;                                  // 本小节生效 groove 风格（呼吸 cycle 已被 _onBar 强制 trance）
     const drumOn = sec === 'build' || sec === 'drop';
