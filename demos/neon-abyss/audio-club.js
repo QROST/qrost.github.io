@@ -82,6 +82,7 @@ export class Sonifier {
     this.bpm = 138; this.step = 0; this.bar = 0; this.nextTime = 0; this.lookahead = 0.14;
     this.keyRoot = 48;
     this.modeName = 'minor'; this.progs = PROGS; this.scale = MODES.minor.scale;   // 默认 minor；start() 按 domType 定
+    this.patch = { leadSquare: false, sawSpread: 8, kickBoom: 0.35, bassReese: false };   // 音色签名；start() 按 domType+sig 定
     this.motif = [0, 2, 1, 3, 2, 0, 3, 1]; this.motifPos = 0;
     this._lastFocusKey = null;
     this.section = 'intro';
@@ -136,6 +137,14 @@ export class Sonifier {
     this.bpmBase = this.bpm;
     this.breatherEvery = 2 + (this._sigMix(3) % 3);                 // 2 / 3 / 4 个 cycle 一次
     this.breatherPhase = this._sigMix(4) % this.breatherEvery;
+    // 每宇宙音色签名（patch）：domType 定性格 + sig 定具体变体 → 波形/失谐/kick 质感/贝斯型，音色也每次不同（数据驱动）。
+    const _pdt = (dna ? dna.domType : 0), _ph = (_pdt === 2 || _pdt === 1 || _pdt === 5);   // kernel/工业/vendor = 硬派
+    this.patch = {
+      leadSquare: (this._sigMix(7) % 3 === 0),           // 1/3 宇宙用方波 lead（更空/更硬）
+      sawSpread: 6 + (this._sigMix(8) % 3) * 4,           // supersaw 失谐展开 6/10/14 cents（窄→宽）
+      kickBoom: _ph ? 0.12 : 0.55,                        // 硬派 punchy(短) / 柔派 boomy(长尾)
+      bassReese: _ph || (this._sigMix(9) % 4 === 0),      // 硬派 + 1/4 其它 → reese 双失谐锯贝斯
+    };
     // speedSpread → arp swing（异质度高 → arp 更跳）。
     this.arpSwing = 0.04 + (dna ? dna.speedSpread : 0.45) * 0.06;
     // concentration → 进行索引（越集中 → 越暗 progressive，越散 → 越开放）。
@@ -387,8 +396,9 @@ export class Sonifier {
   _kick(t, vel, hard) {
     const o = this.ctx.createOscillator(); o.type = 'sine'; const g = this.ctx.createGain();
     // 硬攻击：50→110Hz 下扫比 lofi(115→42) 更利、attack 更快、tail 更长（sub 撑满）。
-    o.frequency.setValueAtTime(110, t); o.frequency.exponentialRampToValueAtTime(50, t + 0.08);
-    g.gain.setValueAtTime(0.0001, t); g.gain.linearRampToValueAtTime(vel, t + 0.002); g.gain.setTargetAtTime(0.0001, t + 0.06, 0.18);
+    const kb = this.patch.kickBoom;   // 音色签名：boomy(长尾低扫) ↔ punchy(短)
+    o.frequency.setValueAtTime(110 - kb * 20, t); o.frequency.exponentialRampToValueAtTime(48, t + 0.08 + kb * 0.05);
+    g.gain.setValueAtTime(0.0001, t); g.gain.linearRampToValueAtTime(vel, t + 0.002); g.gain.setTargetAtTime(0.0001, t + 0.06 + kb * 0.04, 0.18 + kb * 0.18);
     o.connect(g); g.connect(this.drumBus); o.start(t); o.stop(t + 0.6);
     // sub 长尾：再叠一层低 sine 撑 sub 能量。
     const sub = this.ctx.createOscillator(); sub.type = 'sine'; sub.frequency.setValueAtTime(50, t);
@@ -462,6 +472,11 @@ export class Sonifier {
     g.gain.setValueAtTime(0.0001, t); g.gain.linearRampToValueAtTime(vel, t + 0.008); g.gain.setTargetAtTime(0.0001, t + dur * 0.55, dur * 0.35);
     const sawG = this.ctx.createGain(); sawG.gain.value = 0.4; o2.connect(sawG); sawG.connect(lp); o1.connect(lp); lp.connect(g); g.connect(this.bassBus);
     o1.start(t); o2.start(t); o1.stop(t + dur + 0.2); o2.stop(t + dur + 0.2);
+    if (this.patch.bassReese) {   // reese：第二路失谐锯 → 更 growly 更硬（音色签名）
+      o2.detune.setValueAtTime(-9, t);
+      const o3 = this.ctx.createOscillator(); o3.type = 'sawtooth'; o3.frequency.setValueAtTime(freq, t); o3.detune.setValueAtTime(9, t);
+      o3.connect(sawG); o3.start(t); o3.stop(t + dur + 0.2);
+    }
   }
   _supersaw(t, ch, dur, vel) {
     // Supersaw：7 路微失谐 sawtooth（±24 cents 展开）→ 低通滤波包络（开→关，Trance stab 标志）。
@@ -469,7 +484,7 @@ export class Sonifier {
     for (const semi of tones) {
       for (let v = 0; v < 7; v++) {
         const o = this.ctx.createOscillator(); o.type = 'sawtooth';
-        const detune = (v - 3) * 8 + (this._rngV() - 0.5) * 4;   // ±24 cents 展开 + 微抖（隔离流）
+        const detune = (v - 3) * this.patch.sawSpread + (this._rngV() - 0.5) * 4;   // 失谐展开(patch 音色签名) + 微抖（隔离流）
         o.frequency.setValueAtTime(mtof(base + semi + 12), t); o.detune.setValueAtTime(detune, t);
         const lp = this.ctx.createBiquadFilter(); lp.type = 'lowpass';
         lp.frequency.setValueAtTime(4000, t); lp.frequency.exponentialRampToValueAtTime(1200, t + dur * 0.5);   // 滤波包络（开→关）
@@ -514,8 +529,9 @@ export class Sonifier {
     const colorN = (this._clHue != null) ? this._clHue : 0.5;   // 视野主导簇色相 → 选和弦内音
     const ti = Math.round(colorN * (tones.length - 1));
     const freq = mtof(forceNote != null ? forceNote : (this.sessKey + ch.r + tones[ti] + 24));
-    const o = this.ctx.createOscillator(); o.type = 'sawtooth'; o.frequency.setValueAtTime(freq, t);
-    const o2 = this.ctx.createOscillator(); o2.type = 'sawtooth'; o2.frequency.setValueAtTime(freq, t); o2.detune.setValueAtTime(7, t);
+    const lw = this.patch.leadSquare ? 'square' : 'sawtooth';   // 音色签名：方波=更空/更硬
+    const o = this.ctx.createOscillator(); o.type = lw; o.frequency.setValueAtTime(freq, t);
+    const o2 = this.ctx.createOscillator(); o2.type = lw; o2.frequency.setValueAtTime(freq, t); o2.detune.setValueAtTime(7, t);
     const lp = this.ctx.createBiquadFilter(); lp.type = 'lowpass'; lp.frequency.value = 6000;
     const g = this.ctx.createGain();
     g.gain.setValueAtTime(0.0001, t); g.gain.linearRampToValueAtTime(vel, t + 0.006); g.gain.setTargetAtTime(0.0001, t + dur * 0.5, dur * 0.4);
