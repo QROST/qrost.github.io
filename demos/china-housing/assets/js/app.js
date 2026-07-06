@@ -2758,8 +2758,18 @@
   }
 
   function lmSubHtml(d, e) {
-    return `${trProv(d.prov)} · ${trCity(d.city)}${d.dist ? ' · ' + trDist(d.dist) : ''} &nbsp;|&nbsp; ${isEn() ? 'Total' : '总价'} ${fmtWanD(d)} · ${fmtArea(d.area)} · ${trCl(d.climateType || '')} `
-      + `<span class="ml-1 inline-block rounded px-1.5 py-0.5 text-xs ${tcx().badge}">${t('lmGeo')} ${trGeo(e.geoLabel) || '?'}</span>`;
+    // The geo prefix (prov · city · dist) repeats the title when loc === dist — the
+    // overseas zip convention (loc = dist = 邮编). Drop it there to avoid a redundant
+    // line; mainland keeps it (the title ends in the 小区名, so 市/镇 here still adds info).
+    // Subtitle geo: the title already carries prov · city · 小区名. On MOBILE we show only
+    // the district (the one piece the title lacks) to save a line; on desktop (sm+) the
+    // prov · city prefix comes back, so desktop is unchanged. The overseas zip convention
+    // (dist === loc) drops the geo entirely — that postcode is already the title's last token.
+    const geo = (d.dist && d.dist !== d.loc)
+      ? `<span class="hidden sm:inline">${trProv(d.prov)} · ${trCity(d.city)} · </span>${trDist(d.dist)} &nbsp;|&nbsp; `
+      : '';
+    return `${geo}${isEn() ? 'Total' : '总价'} ${fmtWanD(d)} · ${fmtArea(d.area)} · ${trCl(d.climateType || '')} `
+      + `<span class="ml-1 inline-block rounded px-1.5 py-0.5 text-xs ${tcx().badge}" title="${t('lmGeo')}">📍${trGeo(e.geoLabel) || '?'}</span>`;
   }
 
   function openListing(id) {
@@ -2825,7 +2835,9 @@
     const items = Object.keys(POI_META_KEYS).map((cat) => {
       const m = poiMeta(cat);
       if (cat === 'community') {
-        return `<div class="flex items-center gap-2"><span class="${tcx().body} truncate">${nearPoiSwatch(m)} <b>${m.label}</b> ${locName}</span></div>`;
+        // Overseas zip convention (loc === dist === 邮编): "小区 4006" reads oddly → 邮编/Postcode.
+        const cmLabel = (d.loc && d.dist && d.loc === d.dist) ? t('poiPostcode') : m.label;
+        return `<div class="flex items-center gap-2"><span class="${tcx().body} truncate">${nearPoiSwatch(m)} <b>${cmLabel}</b> ${locName}</span></div>`;
       }
       const p = cat === 'hospital' ? hospitalPoi(e) : pois[cat];
       if (!p) return `<div class="flex items-center gap-2 ${tcx().muted}">${nearPoiSwatch(m)}${m.label}: —</div>`;
@@ -2848,7 +2860,8 @@
     Object.keys(POI_META_KEYS).forEach((cat) => {
       const m = poiMeta(cat);
       if (cat === 'community') {
-        L.circleMarker([e.lat, e.lng], nearPoiMarkerOpts(m)).addTo(lmNearMap).bindPopup(`${m.label}: ${locName}`);
+        const cmLabel = (d.loc && d.dist && d.loc === d.dist) ? t('poiPostcode') : m.label;
+        L.circleMarker([e.lat, e.lng], nearPoiMarkerOpts(m)).addTo(lmNearMap).bindPopup(`${cmLabel}: ${locName}`);
         return;
       }
       const p = cat === 'hospital' ? hospitalPoi(e) : pois[cat];
