@@ -36,13 +36,34 @@ const PROGS = [
   [{ r: 0, c: 'min' }, { r: 3, c: 'maj' }, { r: 7, c: 'maj' }, { r: 8, c: 'min' }],      // i – III – VII – iv（暗 progressive）
 ];
 const CHORD = {
-  min: [0, 3, 7], maj: [0, 4, 7], min7: [0, 3, 7, 10], maj9: [0, 4, 7, 11, 14],
+  min: [0, 3, 7], maj: [0, 4, 7], min7: [0, 3, 7, 10], maj7: [0, 4, 7, 11], maj9: [0, 4, 7, 11, 14],
   min9: [0, 3, 7, 10, 14], min11: [0, 3, 7, 10, 17],
 };
 // Trance arp 音阶级数（自然小调扩展，跨两个八度）。落音由 musicDNA.motif 轮廓选。
 const ARP_SCALE = [0, 3, 5, 7, 10, 12, 15, 17, 19, 22, 24];
 // 每次加载的整体移调候选（保持小调听感、不刺耳）。
 const SESS_TRANSPOSE = [0, 2, -2, 3, 5, -4, -5, 7];
+
+// —— 情绪模式：每宇宙由 domType(主导数据集) 选一档 → 换和声进行集 + arp/lead 音阶 → 大小调/调式级情绪差异（数据驱动）。
+//   "哪个数据世界当家"定基调：房价/政策=minor(严肃)，药品/药企=dorian(希望-小调)，猫=major(轻暖)，kernel/工业/vendor=phrygian(暗/硬)。
+//   progs 里 r 相对调根(半音)，c 是和弦类型；scale 均 11 级跨两八度。
+const MODES = {
+  minor: { progs: PROGS, scale: [0, 3, 5, 7, 10, 12, 15, 17, 19, 22, 24] },
+  major: { progs: [
+    [{ r: 0, c: 'maj' }, { r: 7, c: 'maj' }, { r: 9, c: 'min' }, { r: 5, c: 'maj' }],    // I–V–vi–IV（经典 uplifting）
+    [{ r: 0, c: 'maj9' }, { r: 5, c: 'maj' }, { r: 9, c: 'min7' }, { r: 7, c: 'maj' }],   // I–IV–vi–V
+    [{ r: 9, c: 'min9' }, { r: 5, c: 'maj' }, { r: 0, c: 'maj' }, { r: 7, c: 'maj' }],    // vi–IV–I–V
+  ], scale: [0, 2, 4, 5, 7, 9, 11, 12, 14, 16, 19] },
+  dorian: { progs: [
+    [{ r: 0, c: 'min9' }, { r: 5, c: 'maj' }, { r: 0, c: 'min' }, { r: 10, c: 'maj' }],   // i–IV–i–bVII（dorian vamp，特征大 IV）
+    [{ r: 0, c: 'min' }, { r: 5, c: 'maj9' }, { r: 2, c: 'min7' }, { r: 5, c: 'maj' }],    // i–IV–ii–IV
+  ], scale: [0, 2, 3, 5, 7, 9, 10, 12, 14, 15, 17] },
+  phrygian: { progs: [
+    [{ r: 0, c: 'min' }, { r: 1, c: 'maj' }, { r: 0, c: 'min' }, { r: 10, c: 'maj' }],     // i–bII–i–bVII（西班牙/暗）
+    [{ r: 0, c: 'min9' }, { r: 1, c: 'maj' }, { r: 10, c: 'min' }, { r: 1, c: 'maj' }],    // i–bII–bvii–bII
+  ], scale: [0, 1, 3, 5, 7, 8, 10, 12, 13, 15, 17] },
+};
+const modeForDom = (dt) => (dt === 7) ? 'major' : (dt === 6 || dt === 3) ? 'dorian' : (dt === 2 || dt === 1 || dt === 5) ? 'phrygian' : 'minor';
 
 // 32 小节编排段：返回当前 bar 落在哪段。
 // intro(0–7) → build(8–15) → drop(16–31) → breakdown(32–39) → 循环回 intro(0)。
@@ -60,6 +81,7 @@ export class Sonifier {
     this.ctx = null; this.started = false; this.muted = false;
     this.bpm = 138; this.step = 0; this.bar = 0; this.nextTime = 0; this.lookahead = 0.14;
     this.keyRoot = 48;
+    this.modeName = 'minor'; this.progs = PROGS; this.scale = MODES.minor.scale;   // 默认 minor；start() 按 domType 定
     this.motif = [0, 2, 1, 3, 2, 0, 3, 1]; this.motifPos = 0;
     this._lastFocusKey = null;
     this.section = 'intro';
@@ -104,6 +126,9 @@ export class Sonifier {
     // 最密簇色相 → 整体移调（听见这片宇宙的主色）。
     const hueStar = dna ? clamp(dna.hueStar, 0, 0.999) : 0.5;
     this.sessKey = this.keyRoot + SESS_TRANSPOSE[Math.floor(hueStar * SESS_TRANSPOSE.length)];
+    // 情绪模式：domType(主导数据集) 定 minor/major/dorian/phrygian → 换进行集 + 音阶（大小调级情绪差异，数据驱动）。
+    this.modeName = modeForDom(dna ? dna.domType : 0);
+    this.progs = MODES[this.modeName].progs; this.scale = MODES[this.modeName].scale;
     // BPM：speedMean(全体星速均值) 近恒定 → 改由 speedSpread(簇速异质度, 会随聚类变) + sig(密度指纹) 驱动更宽区间
     //   128–146，每次不同速、仍数据驱动。
     this.bpm = clamp(Math.round(130 + (dna ? dna.speedSpread : 0.45) * 10 + ((this._sigMix(2) % 17) - 8)), 128, 146);
@@ -114,7 +139,7 @@ export class Sonifier {
     // speedSpread → arp swing（异质度高 → arp 更跳）。
     this.arpSwing = 0.04 + (dna ? dna.speedSpread : 0.45) * 0.06;
     // concentration → 进行索引（越集中 → 越暗 progressive，越散 → 越开放）。
-    this.baseProgIdx = Math.floor(clamp(dna ? dna.concentration : 0.4, 0, 0.999) * PROGS.length);
+    this.baseProgIdx = Math.floor(clamp(dna ? dna.concentration : 0.4, 0, 0.999) * this.progs.length);
     // 最密簇学习原型 → arp 动机轮廓。
     this.motif = (dna && dna.motif && dna.motif.length >= 8) ? dna.motif.slice(0, 8) : [0, 2, 1, 3, 2, 0, 3, 1];
     this.curProgIdx = this.baseProgIdx;
@@ -237,7 +262,7 @@ export class Sonifier {
     if (this.style !== prev) this._styleFill = true;   // 风格变了 → 本小节头补一记 tom 过渡
   }
 
-  _curProg() { return PROGS[this.curProgIdx] || PROGS[0]; }
+  _curProg() { return this.progs[this.curProgIdx] || this.progs[0]; }
   _chord() { const p = this._curProg(); return p[(this.bar >> 1) % p.length]; }
 
   // 声部微抖专用 PRNG（与主 _s 隔离）：风格切换改变声部调用次数时只扰它、不扰 _onBar 的 A+B 流。
@@ -459,8 +484,8 @@ export class Sonifier {
   _arp(t, ch, dur, vel, step) {
     // 16 分琶音：音符 = ARP_SCALE[motif 轮廓选] + octave up。亮 saw lead。
     const mi = this.motif[this.motifPos % this.motif.length]; this.motifPos++;
-    const idx = mi % ARP_SCALE.length;
-    const freq = mtof(this.sessKey + ch.r + ARP_SCALE[idx] + 12);
+    const idx = mi % this.scale.length;
+    const freq = mtof(this.sessKey + ch.r + this.scale[idx] + 12);
     const o = this.ctx.createOscillator(); o.type = 'sawtooth'; o.frequency.setValueAtTime(freq, t); o.detune.setValueAtTime(this._rngV() * 10 - 5, t);
     const lp = this.ctx.createBiquadFilter(); lp.type = 'lowpass'; lp.frequency.value = 5000;
     const g = this.ctx.createGain();
