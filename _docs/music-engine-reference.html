@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Music Engine Reference · Data Abyss & Neon Abyss</title>
+<!--
+  离线参考文档（internal-only）。
+  放在 _docs/ 下：仓库无 .nojekyll → GitHub Pages 走 Jekyll → 下划线前缀目录被排除出构建 → 本文件不会被线上 serve，也不被任何 index 链接。
+  用途：本地双击打开，速查两套生成音乐引擎的"数据/交互 → 音乐"映射。自包含、零外部依赖、纯离线。
+  权威来源：demos/visual-page/audio.js (lofi) · demos/neon-abyss/audio-club.js (trance) · 两页 app(.js/-club.js) 的 musicDNA + update() 层。
+-->
+<style>
+  :root{
+    --bg:#05060e; --bg2:#0b0d1c; --panel:#0f1226; --panel2:#141834;
+    --ink:#e7e9ff; --dim:#9aa0c8; --faint:#6b6f9c; --line:#242a55;
+    --cyan:#39e6ff; --mag:#ff4fd8; --lime:#9dff5b; --amber:#ffca4f; --violet:#a98bff;
+    --lofi:#ffca4f; --trance:#ff4fd8;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0; background:radial-gradient(1200px 700px at 70% -10%, #17123a 0%, var(--bg) 60%) fixed;
+    color:var(--ink); font:15px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC","Microsoft YaHei",sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:1040px; margin:0 auto; padding:0 22px 120px}
+  header.hero{padding:56px 0 24px; border-bottom:1px solid var(--line)}
+  .kicker{letter-spacing:.34em; font-size:11px; color:var(--faint); text-transform:uppercase}
+  h1{margin:.35em 0 .15em; font-size:34px; font-weight:800; letter-spacing:-.5px;
+     background:linear-gradient(90deg,var(--cyan),var(--mag) 55%,var(--amber)); -webkit-background-clip:text; background-clip:text; color:transparent}
+  .sub{color:var(--dim); font-size:15px; max-width:70ch}
+  .tag{display:inline-block; margin:14px 8px 0 0; padding:4px 11px; border:1px solid var(--line); border-radius:999px; font-size:12px; color:var(--dim); background:var(--panel)}
+  .tag b{color:var(--ink)}
+  code,kbd{font-family:"SF Mono",ui-monospace,Menlo,Consolas,monospace; font-size:.88em}
+  code{color:var(--cyan); background:#0a0f24; border:1px solid var(--line); border-radius:5px; padding:1px 6px}
+  .ref{color:var(--faint); font-size:.82em; font-family:"SF Mono",ui-monospace,monospace}
+  h2{margin:52px 0 6px; font-size:22px; letter-spacing:-.3px; scroll-margin-top:20px}
+  h2 .n{color:var(--violet); font-weight:800; margin-right:.5em}
+  h3{margin:30px 0 8px; font-size:16px; color:var(--cyan)}
+  p{color:#cfd2f2}
+  .lead{color:var(--dim)}
+  a{color:var(--cyan); text-decoration:none} a:hover{text-decoration:underline}
+  nav.toc{position:sticky; top:0; z-index:5; margin:0 -22px 0; padding:10px 22px; background:rgba(5,6,14,.82); backdrop-filter:blur(10px); border-bottom:1px solid var(--line); display:flex; flex-wrap:wrap; gap:6px}
+  nav.toc a{font-size:12.5px; color:var(--dim); padding:5px 10px; border-radius:7px; border:1px solid transparent}
+  nav.toc a:hover{color:var(--ink); border-color:var(--line); background:var(--panel); text-decoration:none}
+  .card{background:linear-gradient(180deg,var(--panel),#0c0f22); border:1px solid var(--line); border-radius:14px; padding:18px 20px; margin:16px 0}
+  .grid2{display:grid; grid-template-columns:1fr 1fr; gap:16px}
+  @media(max-width:720px){.grid2{grid-template-columns:1fr}}
+  table{width:100%; border-collapse:collapse; margin:14px 0; font-size:13.5px; display:block; overflow-x:auto}
+  th,td{text-align:left; padding:9px 12px; border-bottom:1px solid var(--line); vertical-align:top}
+  th{color:var(--faint); font-weight:600; font-size:11.5px; text-transform:uppercase; letter-spacing:.06em; white-space:nowrap}
+  tbody tr:hover{background:#0c1024}
+  td:first-child{white-space:nowrap}
+  .pill{display:inline-block; padding:1px 8px; border-radius:999px; font-size:11px; font-weight:700; letter-spacing:.02em}
+  .pill.lofi{color:#1a1300; background:var(--lofi)}
+  .pill.trance{color:#1a0014; background:var(--trance)}
+  .pill.both{color:#04120a; background:var(--lime)}
+  .legend{display:flex; gap:16px; flex-wrap:wrap; margin:6px 0 0; font-size:12.5px; color:var(--dim)}
+  .swatch{display:inline-block; width:11px; height:11px; border-radius:3px; margin-right:6px; vertical-align:-1px}
+  .note{border-left:3px solid var(--amber); background:#160f00; padding:10px 14px; border-radius:0 8px 8px 0; margin:12px 0; font-size:13.5px; color:#f2e6c8}
+  .note b{color:var(--amber)}
+  svg{width:100%; height:auto; display:block}
+  .diagram{background:#070a18; border:1px solid var(--line); border-radius:14px; padding:8px; margin:16px 0}
+  footer{margin-top:60px; padding-top:20px; border-top:1px solid var(--line); color:var(--faint); font-size:12.5px}
+  .mono-list{font-family:"SF Mono",ui-monospace,monospace; font-size:12.5px; color:var(--dim); line-height:1.9}
+  .mono-list b{color:var(--ink); font-weight:600}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="hero">
+  <div class="kicker">Internal reference · offline only</div>
+  <h1>生成音乐引擎 · 参考</h1>
+  <p class="sub">Data Abyss（lo-fi）与 Neon Abyss（trance）两套 zero-dependency Web Audio 引擎："数据 → 自组织地图 → musicDNA → 曲子"，加上一层实时交互驱动。本页速查每一条映射：谁影响音乐、怎么影响、如何交互引导。</p>
+  <span class="tag"><b>核心律</b> 同一片宇宙 → 同一首曲</span>
+  <span class="tag"><b>引擎内</b> 零 <code>Math.random</code></span>
+  <span class="tag"><b>变化源</b> 涌现签名 <code>sig</code> → 确定性 PRNG</span>
+</header>
+
+<nav class="toc">
+  <a href="#flow">信号流</a>
+  <a href="#l1">① musicDNA</a>
+  <a href="#dna">DNA 溯源</a>
+  <a href="#l2">② 实时交互</a>
+  <a href="#l3">③ 曲式</a>
+  <a href="#diff">两页对比</a>
+  <a href="#cheat">交互速查</a>
+  <a href="#caveats">诚实注记</a>
+  <a href="#refs">文件索引</a>
+</nav>
+
+<h2 id="flow"><span class="n">◇</span>信号流总览</h2>
+<p class="lead">一次性（开页）从数据里烧出 <code>musicDNA</code> 锁定"哪一首歌"；之后每帧把交互态喂进 <code>update()</code>，实时决定"此刻怎么走"。</p>
+<div class="diagram">
+<svg viewBox="0 0 980 470" xmlns="http://www.w3.org/2000/svg" font-family="-apple-system,Segoe UI,Roboto,sans-serif">
+  <defs>
+    <marker id="arw" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="#5b62a8"/></marker>
+    <marker id="arwC" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="#39e6ff"/></marker>
+    <marker id="arwM" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="#ff4fd8"/></marker>
+    <style>
+      .box{fill:#0f1226; stroke:#2b3268; rx:9}
+      .lbl{fill:#e7e9ff; font-size:13px; font-weight:600}
+      .sm{fill:#9aa0c8; font-size:11px}
+      .ttl{fill:#6b6f9c; font-size:10.5px; letter-spacing:.12em; text-transform:uppercase}
+      .edge{stroke:#5b62a8; stroke-width:1.5; fill:none}
+      .edgeC{stroke:#39e6ff; stroke-width:1.6; fill:none; opacity:.9}
+      .edgeM{stroke:#ff4fd8; stroke-width:1.6; fill:none; opacity:.9}
+    </style>
+  </defs>
+
+  <!-- Row 1: build-time chain -->
+  <text x="20" y="28" class="ttl">开页一次性 · build-time</text>
+  <rect class="box" x="20" y="40" width="150" height="86" rx="9"/>
+  <text x="30" y="62" class="lbl">数据集 ×4</text>
+  <text x="30" y="82" class="sm">房价 · 工业软件</text>
+  <text x="30" y="98" class="sm">医药 · 收容所猫</text>
+  <text x="30" y="116" class="sm">→ 每星 spd/hue/feat</text>
+
+  <path class="edge" d="M170,83 H210" marker-end="url(#arw)"/>
+  <rect class="box" x="210" y="40" width="150" height="86" rx="9"/>
+  <text x="220" y="62" class="lbl">SOM 自组织</text>
+  <text x="220" y="82" class="sm">Kohonen 晶格</text>
+  <text x="220" y="98" class="sm">密度场 · 簇 · 原型</text>
+  <text x="220" y="116" class="sm">（唯一用 rand 处）</text>
+
+  <path class="edge" d="M360,83 H400" marker-end="url(#arw)"/>
+  <rect class="box" x="400" y="34" width="176" height="128" rx="9"/>
+  <text x="412" y="56" class="lbl">musicDNA</text>
+  <text x="412" y="76" class="sm">warm · hueStar</text>
+  <text x="412" y="92" class="sm">speedMean/Spread</text>
+  <text x="412" y="108" class="sm">concentration</text>
+  <text x="412" y="124" class="sm">populatedFrac · motif</text>
+  <text x="412" y="140" class="sm">domType · <tspan fill="#9dff5b">sig</tspan></text>
+
+  <path class="edgeC" d="M576,72 H636" marker-end="url(#arwC)"/>
+  <rect class="box" x="636" y="40" width="150" height="86" rx="9" stroke="#2f6d7a"/>
+  <text x="646" y="62" class="lbl" fill="#39e6ff">sig → PRNG</text>
+  <text x="646" y="82" class="sm">splitmix32 种子</text>
+  <text x="646" y="98" class="sm">加花/变异/抖动</text>
+  <text x="646" y="116" class="sm">= 全部"随机"</text>
+
+  <path class="edge" d="M576,124 H826 V150" marker-end="url(#arw)"/>
+  <path class="edgeC" d="M786,83 H846" marker-end="url(#arwC)"/>
+
+  <!-- Sonifier -->
+  <rect class="box" x="846" y="150" width="118" height="150" rx="9" stroke="#7a4f6f"/>
+  <text x="905" y="176" class="lbl" text-anchor="middle">Sonifier</text>
+  <text x="905" y="196" class="sm" text-anchor="middle">.start()</text>
+  <text x="905" y="212" class="sm" text-anchor="middle">.update()</text>
+  <text x="905" y="236" class="sm" text-anchor="middle">调度器</text>
+  <text x="905" y="252" class="sm" text-anchor="middle">nextTime/step/bar</text>
+  <text x="905" y="284" class="lbl" text-anchor="middle" fill="#9dff5b">♪ 曲子</text>
+
+  <!-- Row 2: realtime interaction -->
+  <text x="20" y="228" class="ttl">每帧 · realtime 交互</text>
+  <rect class="box" x="20" y="240" width="200" height="150" rx="9" stroke="#7a4f6f"/>
+  <text x="32" y="262" class="lbl" fill="#ff4fd8">你的交互</text>
+  <text x="32" y="284" class="sm">点击实体 → focus</text>
+  <text x="32" y="302" class="sm">注视 → view.clHue/Energy/dom</text>
+  <text x="32" y="320" class="sm">俯仰 pitch · 转向 yaw</text>
+  <text x="32" y="338" class="sm">缩放 fov · 呼吸 gOrg</text>
+  <text x="32" y="356" class="sm">mic 出声 → pulse (lofi)</text>
+  <text x="32" y="376" class="sm">段落自走 → beatPulse (trance)</text>
+
+  <path class="edgeM" d="M220,315 H300" marker-end="url(#arwM)"/>
+  <rect class="box" x="300" y="288" width="150" height="56" rx="9" stroke="#7a4f6f"/>
+  <text x="375" y="312" class="lbl" text-anchor="middle" fill="#ff4fd8">update({…})</text>
+  <text x="375" y="330" class="sm" text-anchor="middle">10-key payload / 帧</text>
+
+  <path class="edgeM" d="M450,316 C640,316 720,300 846,260" marker-end="url(#arwM)"/>
+  <text x="470" y="360" class="sm" fill="#ff4fd8">→ 实时改：滤波/混响/旋律色/密度/pan/节拍脉冲</text>
+
+  <path class="edge" d="M905,300 V332" marker-end="url(#arw)"/>
+  <rect class="box" x="822" y="332" width="166" height="52" rx="9" stroke="#2f6d7a"/>
+  <text x="905" y="356" class="lbl" text-anchor="middle" fill="#39e6ff">beatPulse → 视觉</text>
+  <text x="905" y="373" class="sm" text-anchor="middle">bloom/抖/FOV/频闪 (trance)</text>
+</svg>
+</div>
+<div class="legend">
+  <span><span class="swatch" style="background:#5b62a8"></span>数据链（一次性）</span>
+  <span><span class="swatch" style="background:#39e6ff"></span>确定性随机 / 反馈给视觉</span>
+  <span><span class="swatch" style="background:#ff4fd8"></span>交互（每帧）</span>
+</div>
+
+<h2 id="l1"><span class="n">①</span>数据定"哪一首歌"</h2>
+<p class="lead">SOM 训练完，从密度场算出 <code>musicDNA</code>，一次性锁定整首曲的骨架。<b>两页这段计算逐字节相同</b>；差异只在各自引擎怎么消费它。</p>
+<div class="legend" style="margin-bottom:2px">
+  <span><span class="pill both">both</span> 两页都用</span>
+  <span><span class="pill lofi">lofi</span> 仅 Data Abyss</span>
+  <span><span class="pill trance">trance</span> 仅 Neon Abyss</span>
+</div>
+<table>
+  <thead><tr><th>DNA 字段</th><th>控制</th><th>音乐效果</th><th>用于</th></tr></thead>
+  <tbody>
+    <tr><td><code>warm</code></td><td>调性中心 keyRoot（MIDI 45/48/50）+ 微推 BPM</td><td>冷→低沉，暖→偏亮</td><td><span class="pill both">both</span></td></tr>
+    <tr><td><code>hueStar</code></td><td>整体移调 <code>SESS_TRANSPOSE[⌊hueStar·8⌋]</code>（半音 [0,2,-2,3,5,-4,-5,7]）</td><td>"把最密簇的主色听成调"</td><td><span class="pill both">both</span></td></tr>
+    <tr><td><code>speedMean</code></td><td>BPM：lofi <code>72+warm·6+speedMean·9</code>→72–87；trance <code>134+·8</code>→134–142</td><td>宇宙整体能量→快慢</td><td><span class="pill both">both</span></td></tr>
+    <tr><td><code>speedSpread</code></td><td>swing：lofi <code>0.24+·0.15</code>；trance arpSwing <code>0.04+·0.06</code></td><td>簇速越不齐→越慵懒/越跳</td><td><span class="pill both">both</span></td></tr>
+    <tr><td><code>concentration</code></td><td>6 条和弦进行选一 <code>⌊·PROGS.length⌋</code></td><td>越集中→越暗/progressive</td><td><span class="pill both">both</span></td></tr>
+    <tr><td><code>populatedFrac</code></td><td>6 个 groove 鼓型模板选一</td><td>越热闹→鼓越忙</td><td><span class="pill lofi">lofi</span></td></tr>
+    <tr><td><code>motif</code></td><td>最密簇学到的原型（8 维）→ 旋律/arp 动机轮廓</td><td>主题的抽象→旋律骨架</td><td><span class="pill both">both</span></td></tr>
+    <tr><td><code>domType</code></td><td>主导数据类型 → e-piano FM 音色比 epRatio</td><td>哪个数据集当家→音色（trance 只进 sig）</td><td><span class="pill lofi">lofi</span></td></tr>
+    <tr><td><code>sig</code></td><td>PRNG 种子（整张密度场 + 统计 + 主题的 FNV-1a 哈希）</td><td>所有"随机"细节（加花/变异/抖动/噪声纹理）都由它确定</td><td><span class="pill both">both</span></td></tr>
+  </tbody>
+</table>
+
+<h2 id="dna"><span class="n">◇</span>musicDNA 的数据溯源</h2>
+<p class="lead">每个 DNA 字段最终都追得到具体数据/SOM 量。（<span class="ref">visual-page/app.js:1073–1091 ≡ neon-abyss/app-club.js:1102–1120</span>）</p>
+<table>
+  <thead><tr><th>字段</th><th>来自</th><th>怎么算</th></tr></thead>
+  <tbody>
+    <tr><td><code>warm</code></td><td>房源年均温</td><td>全国均温 → <code>climWarm=clamp((均温−5)/18, .12, .9)</code></td></tr>
+    <tr><td><code>hueStar</code></td><td>最密簇色相</td><td>密度 argmax 得 <code>dStar</code>；该簇成员 <code>audioTone</code>（渲染 HSL 色相）的<b>圆均值</b></td></tr>
+    <tr><td><code>concentration</code></td><td>密度峰/均比</td><td><code>clamp((density[dStar]/meanD)/6, 0,1)</code></td></tr>
+    <tr><td><code>populatedFrac</code></td><td>簇数量</td><td>有星神经元数 <code>populated / M</code>（晶格占用率）</td></tr>
+    <tr><td><code>speedMean</code></td><td>簇速均值</td><td>各簇平均星速 <code>spd[]</code> 的均值 / 0.6（spd 本身数据驱动，如城市=钱×气候躁动×老龄）</td></tr>
+    <tr><td><code>speedSpread</code></td><td>簇速离散度</td><td>各簇平均速的标准差 / 0.4</td></tr>
+    <tr><td><code>domType</code></td><td>最密簇主导类型</td><td>densest 神经元权重的 type one-hot（列 20..27）argmax</td></tr>
+    <tr><td><code>motif</code></td><td>最密簇原型前 8 维</td><td><code>⌊clamp(W[dStar][k],0,.999)·5⌋</code>, k∈[0,8) → 8 个 [0,4] 整数</td></tr>
+    <tr><td><code>sig</code></td><td>整张涌现态</td><td>FNV-1a 混入 climWarm/concentration/populatedFrac/csMean/speedSpread/hueStar/motif[8] + <b>每个神经元</b>的归一化密度</td></tr>
+  </tbody>
+</table>
+<div class="note"><b>决定性来源：</b>SOM 训练（权重初始化 + 洗牌）是整条管线里<b>唯一</b>用 <code>Math.random</code> 的地方——它就是每次开页"不同宇宙"的来源。往下 DNA→sig→PRNG→曲全部确定：<b>固定 SOM 就会复现一模一样的曲</b>。类型槽：0=房 1=工业产品 2=kernel 3=药企 4=政策 5=vendor 6=药品 7=收容所猫。</div>
+
+<h2 id="l2"><span class="n">②</span>你实时定"此刻怎么走"</h2>
+<p class="lead">每帧 <code>update({dt,pulse,gOrg,yaw,pitch,fov,focus,view})</code>。<b>Data Abyss(lofi) 高度可玩</b>，读全部实时输入；Neon Abyss(trance) 只读 <code>focus</code> + <code>view.clHue</code>。</p>
+<table>
+  <thead><tr><th>实时输入</th><th>控制</th><th>效果</th><th>用于</th></tr></thead>
+  <tbody>
+    <tr><td><code>focus</code>（点击实体）</td><td>lofi：按 <code>TRACK[group]</code> 定 targetKey+进行+能量，弹电钢；trance：一个 lead 音</td><td>"你追踪什么，就唱什么"；调 ≤2 半音/乐句平滑靠拢</td><td><span class="pill both">both</span></td></tr>
+    <tr><td><code>view.clHue</code>（注视的簇色相）</td><td>旋律落音颜色（色环最短弧 ~250ms 平滑）</td><td>看哪片自组织，旋律就染那个色，不跳音</td><td><span class="pill both">both</span></td></tr>
+    <tr><td><code>view.clEnergy</code></td><td><code>melGate</code> 密度 + 八度跳 + 应答概率</td><td>看能量高的簇→旋律更密更跳</td><td><span class="pill lofi">lofi</span></td></tr>
+    <tr><td><code>view.dom</code></td><td>旋律 FM 音色 <code>MEL_TONE[dom]</code></td><td>主导数据层换旋律音色</td><td><span class="pill lofi">lofi</span></td></tr>
+    <tr><td><code>pitch</code>（俯仰）</td><td>master lowpass <code>7600+pitchN·2400</code>Hz</td><td>抬头变亮，低头变暗</td><td><span class="pill lofi">lofi</span></td></tr>
+    <tr><td><code>yaw</code>（转向）</td><td>旋律 stereo pan <code>sin(yaw)·0.4</code></td><td>旋律左右声道摆动</td><td><span class="pill lofi">lofi</span></td></tr>
+    <tr><td><code>fov</code>（缩放）</td><td>reverb send <code>0.07+fovN·0.1</code></td><td>广角更湿更空间，长焦更干更近</td><td><span class="pill lofi">lofi</span></td></tr>
+    <tr><td><code>gOrg</code>（呼气量）</td><td>ghost hats / comp / 旋律密度门（ex&gt;0.35~0.45）</td><td>呼气加花铺开，吸气收</td><td><span class="pill lofi">lofi</span></td></tr>
+    <tr><td><code>pulse</code></td><td>lofi=mic RMS（<b>输入</b>）：顶亮度/氛围/加速宇宙；trance=beatPulse（<b>输出</b>给视觉）</td><td>方向相反：声音驱动画面 vs 节拍驱动画面</td><td><span class="pill both">both</span></td></tr>
+  </tbody>
+</table>
+
+<h2 id="l3"><span class="n">③</span>曲式自走（时间结构）</h2>
+<div class="grid2">
+  <div class="card">
+    <h3 style="margin-top:0"><span class="pill lofi">lofi</span> Data Abyss</h3>
+    <div class="mono-list">
+      <b>4 小节乐句</b> 结构<br>
+      动机每 2 小节微变异（±1）<br>
+      调每乐句 <b>≤2 半音</b>向 targetKey 靠拢<br>
+      每乐句重掷加花开关 → 无两句全同<br>
+      intro（首小节只和弦+底噪）<br>
+      drop-breakdown（每 16 小节前 2 撤鼓）<br>
+      8 小节末尾 snare fill · hat 三连滚<br>
+      kick 侧链 duck 和弦 → lo-fi "pump"
+    </div>
+  </div>
+  <div class="card">
+    <h3 style="margin-top:0"><span class="pill trance">trance</span> Neon Abyss</h3>
+    <div class="mono-list">
+      <b>40 小节段落编排</b><br>
+      intro 0–7 · build 8–15 · drop 16–31 · breakdown 32–39<br>
+      four-on-the-floor（kick 落 0/4/8/12）<br>
+      build：riser <code>env=frac²</code> 渐强扫频<br>
+      drop 入口：一记 impact（60→30Hz thud）<br>
+      supersaw 小调 stab（滤波包络 4k→1.2k）<br>
+      sidechain：非鼓声部每 kick −8dB/150ms 泵<br>
+      <b>beatPulse</b> 每 kick=1 → 甩给视觉
+    </div>
+  </div>
+</div>
+
+<h2 id="diff"><span class="n">◇</span>两页关键区别</h2>
+<table>
+  <thead><tr><th></th><th><span class="pill lofi">lofi</span> Data Abyss</th><th><span class="pill trance">trance</span> Neon Abyss</th></tr></thead>
+  <tbody>
+    <tr><td>musicDNA 计算</td><td colspan="2" style="text-align:center; color:var(--lime)">完全相同（逐字节）</td></tr>
+    <tr><td>消费的 DNA</td><td>全部字段</td><td>子集（不用 populatedFrac / domType / groove）</td></tr>
+    <tr><td>实时交互</td><td><b>相机/注视/呼吸/焦点/mic 全读</b> → 强可玩</td><td>只读 <code>focus</code> + <code>view.clHue</code>；相机/呼吸/pulse 不读</td></tr>
+    <tr><td>pulse 方向</td><td>mic <b>输入</b>：声音驱动宇宙</td><td>beatPulse <b>输出</b>：节拍驱动视觉（无 mic）</td></tr>
+    <tr><td>动态来源</td><td>你的交互</td><td>40 小节段落自走</td></tr>
+    <tr><td>底色</td><td>暖·干·慵懒（高频 −4dB，有黑胶噪）</td><td>亮·响·数字（高频 +3dB，重限制器）</td></tr>
+  </tbody>
+</table>
+<p>一句话：<b>Data Abyss 是"你用视角和动作演奏它"；Neon Abyss 是"曲子自己走段落、把节拍甩给画面"。</b></p>
+
+<h2 id="cheat"><span class="n">◇</span>交互速查 · 如何引导音乐</h2>
+<table>
+  <thead><tr><th>你做</th><th>听到（主要指 lofi）</th></tr></thead>
+  <tbody>
+    <tr><td>点击某个星（尤其某数据类型）</td><td>旋律与调性/和声整体<b>朝那个数据主题偏</b>，并弹一个电钢音；下个乐句边界平滑到位</td></tr>
+    <tr><td>点空白处取消</td><td>缓缓<b>回到基准调</b>（"吟唱"解决回家）</td></tr>
+    <tr><td>看向某片彩色簇</td><td>旋律<b>落音颜色</b>跟着那簇色相走（平滑不跳）</td></tr>
+    <tr><td>看能量高的簇</td><td>旋律<b>更密、更爱跳八度、更多应答</b></td></tr>
+    <tr><td>抬头 / 低头</td><td>整体<b>变亮 / 变暗</b>（master lowpass）</td></tr>
+    <tr><td>左右转</td><td>旋律在<b>左右声道</b>摆动</td></tr>
+    <tr><td>拉广 / 长焦缩放</td><td><b>更湿更空间 / 更干更近</b>（reverb）</td></tr>
+    <tr><td>让它呼吸（呼气）</td><td>编排<b>加花铺开</b>，吸气收</td></tr>
+    <tr><td>进 mic 律动模式 + 出声</td><td>音乐静音，<b>环境声当脉冲</b>加速整个宇宙</td></tr>
+    <tr><td>刷新页面</td><td><b>新 SOM → 全新一首曲</b>（两页都是）</td></tr>
+  </tbody>
+</table>
+
+<h2 id="caveats"><span class="n">◇</span>诚实注记</h2>
+<div class="note">
+  <b>trance 的几处已知实况：</b><br>
+  · <code>domType</code> 与 <code>populatedFrac</code> 在 trance 里<b>只进 <code>sig</code></b>，代码没直接分支消费。<br>
+  · <code>_onBar</code> 每小节把 <code>curProgIdx</code> 重置回 <code>baseProgIdx</code> → trance <b>运行时不换和弦进行</b>（每首固定，只在固定进行内每 2 小节推进和弦 + 每 4 小节动机微变异）。<br>
+  · trance <b>不读</b> pitch/fov/yaw/pulse/gOrg——它的动态全来自段落（bar 计数），FOV/pulse 是<b>单向</b>（引擎 beatPulse → 视觉）。<br>
+  · <code>beatPulse</code> 衰减 <code>*0.86/帧</code>是<b>帧率相关</b>（非 dt 归一），高帧率下墙钟衰减更快。<br>
+  · 旋律 pan 用 <code>createStereoPanner</code>，不支持的 ctx 上静默 no-op。
+</div>
+
+<h2 id="refs"><span class="n">◇</span>文件 / 行号索引</h2>
+<div class="card">
+<div class="mono-list">
+<b>demos/visual-page/audio.js</b> — lo-fi Sonifier<br>
+&nbsp;&nbsp;start() DNA 映射 :60–123 · update() 实时 :125–162 · _scheduleStep :~178–224 · _focus :277–287 · _rollLoop/_onBar :155–172 · _rng :296 · TRACK :32–41 · PROGS :14–21 · GROOVES :23–30 · MEL_TONE :43–46 · SESS_TRANSPOSE :42<br><br>
+<b>demos/neon-abyss/audio-club.js</b> — trance Sonifier<br>
+&nbsp;&nbsp;start() :74–134 · update()/section :137–176 · sectionOf :50–56 · _kick/beatPulse :239–252 · _duck 侧链 :366–370 · riser :345–353 · impact :354–364 · supersaw stab :282–301 · arp :314–326 · lead :327–343 · _focus :373–383 · _rng :393 · PROGS :30–37 · ARP_SCALE :43 · SESS_TRANSPOSE :45<br><br>
+<b>两页 app（.js / -club.js）</b> — DNA 计算 + 交互层<br>
+&nbsp;&nbsp;musicDNA/somFinish：visual :1073–1091 ≡ neon :1102–1120 · sig 哈希 :1087–1090 / :1116–1119 · computeViewAgg：visual :1621–1640 / neon :1598–1617 · sonifier.update payload：visual :1815–1820 / neon :1807–1812 · focus pick：visual :1560–1574 / neon :1537–1551 · gOrg/breath：visual :1664–1666 / neon :1656–1658 · climWarm：visual :92 / neon :117
+</div>
+</div>
+
+<footer>
+  离线内部参考 · 由代码逐条编目生成 · 与线上站点隔离（<code>_docs/</code> 被 Jekyll 排除，无 index 链接）。<br>
+  若引擎改动，请同步本页——权威永远是源码，本页只是地图。
+</footer>
+
+</div>
+</body>
+</html>
