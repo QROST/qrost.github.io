@@ -375,6 +375,12 @@ export class Sonifier {
     if (sec === 'drop' && step % 2 === 0 && style !== 'hardgroove' && this._h(4) < 0.6) {
       this._lead(t, ch, stepDur * 2, 0.4);
     }
+    // —— Breakdown 主旋律 hook（DJ: track 需一条暴露的 topline —— rest 段唱、drop 段再现）：
+    //    motif(主题) + mode scale(情绪) 的慢速歌唱线，压在 pad 之上；音由 (bar,step) 确定性索引 → 同宇宙同旋律。
+    if (sec === 'breakdown' && (step === 0 || step === 6 || step === 10)) {
+      const mi = this.motif[(this.bar * 3 + (step === 0 ? 0 : step === 6 ? 1 : 2)) % this.motif.length];
+      this._lead(t, ch, stepDur * 3, 0.34, this.sessKey + ch.r + this.scale[mi % this.scale.length] + 12);
+    }
   }
 
   // ---------- 乐器 ----------
@@ -502,12 +508,12 @@ export class Sonifier {
     o.start(t); o.stop(t + dur + 0.2);
     this.debug.arps++;
   }
-  _lead(t, ch, dur, vel) {
-    // 亮 saw lead + delay（1/8 三连反馈）→ Trance 主旋律歌唱感。
+  _lead(t, ch, dur, vel, forceNote) {
+    // 亮 saw lead + delay（1/8 三连反馈）→ Trance 主旋律歌唱感。forceNote!=null 时用指定音（breakdown hook 走 motif+mode scale）。
     const tones = CHORD[ch.c];
     const colorN = (this._clHue != null) ? this._clHue : 0.5;   // 视野主导簇色相 → 选和弦内音
     const ti = Math.round(colorN * (tones.length - 1));
-    const freq = mtof(this.sessKey + ch.r + tones[ti] + 24);
+    const freq = mtof(forceNote != null ? forceNote : (this.sessKey + ch.r + tones[ti] + 24));
     const o = this.ctx.createOscillator(); o.type = 'sawtooth'; o.frequency.setValueAtTime(freq, t);
     const o2 = this.ctx.createOscillator(); o2.type = 'sawtooth'; o2.frequency.setValueAtTime(freq, t); o2.detune.setValueAtTime(7, t);
     const lp = this.ctx.createBiquadFilter(); lp.type = 'lowpass'; lp.frequency.value = 6000;
