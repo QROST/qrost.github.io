@@ -76,6 +76,8 @@ export class Sonifier {
     this._steerStyle = null; this._steerHold = 0;           // C：交互主导风格 + 剩余保持秒数
     this._styleFill = false;        // 风格切换 → 本小节头补一记过渡 fill
     this._sig0 = 0; this._sV = 0;   // 位置哈希种子 / 声部微抖专用 PRNG（与主 _s 流隔离，保 A+B 确定性）
+    // —— DJ-set 呼吸弧：每 breatherEvery 个 40 小节 cycle 的第 breatherPhase 个做"深呼吸"（half-time + 轻降 BPM）——
+    this.bpmBase = 138; this.breatherEvery = 3; this.breatherPhase = 2; this._htActive = false;
   }
 
   start(ctx, opts = {}) {
@@ -102,6 +104,10 @@ export class Sonifier {
     this.sessKey = this.keyRoot + SESS_TRANSPOSE[Math.floor(hueStar * SESS_TRANSPOSE.length)];
     // BPM 134–142（speedMean 微调）。Trance 标准区间。
     this.bpm = Math.round(134 + (dna ? dna.speedMean : 0.5) * 8);
+    // 呼吸弧调度（从 sig 派生，确定性）：每 2–4 个 cycle 一次深呼吸，相位错开 → 同宇宙同一条 tempo 旅程。
+    this.bpmBase = this.bpm;
+    this.breatherEvery = 2 + ((this._sig0 >>> 5) % 3);              // 2 / 3 / 4 个 cycle 一次
+    this.breatherPhase = ((this._sig0 >>> 9) >>> 0) % this.breatherEvery;
     // speedSpread → arp swing（异质度高 → arp 更跳）。
     this.arpSwing = 0.04 + (dna ? dna.speedSpread : 0.45) * 0.06;
     // concentration → 进行索引（越集中 → 越暗 progressive，越散 → 越开放）。
@@ -189,6 +195,15 @@ export class Sonifier {
     }
     if (this._steerHold > 0) this._steerHold -= (s.dt || 0.016);
 
+    // —— DJ 呼吸弧：深呼吸 cycle 的 breakdown = 谷底（half-time + 轻降 ~5 BPM），其余回基准。
+    //    真 BPM 平滑 glide：本引擎是 step-scheduler，改 stepDur 只重排后续音符、不 detune 持续音（修正 DJ 的顾虑）；
+    //    beatPulse 随 kick 间距慢/快 → 画面同步呼吸。glide 收敛到确定目标（过渡曲线随帧率极微异，不可闻）。
+    const cyc = Math.floor(this.bar / 40);
+    const breather = (cyc % this.breatherEvery) === this.breatherPhase;
+    this._htActive = breather && sec === 'breakdown';
+    const targetBpm = this._htActive ? (this.bpmBase - 5) : this.bpmBase;
+    this.bpm += (targetBpm - this.bpm) * clamp((s.dt || 0.016) * 1.5, 0, 1);   // ~2 小节平滑滑到位
+
     const stepDur = (60 / this.bpm) / 4;
     while (this.nextTime < t + this.lookahead) {
       this._scheduleStep(this.nextTime, stepDur);
@@ -212,6 +227,8 @@ export class Sonifier {
     // 解析本小节生效风格：C（交互主导，保持/衰减中）优先，否则 B（ambient cycle 风格）。切换只在小节边界 → 不破拍。
     const prev = this.style;
     this.style = (this._steerHold > 0 && this._steerStyle) ? this._steerStyle : this.cycleStyle;
+    // 深呼吸 cycle 全程强制 trance（DJ RED flag：情绪 rest + 经典 trance re-lift 里绝不能出 polka 方波 stab）。
+    if ((Math.floor(this.bar / 40) % this.breatherEvery) === this.breatherPhase) this.style = 'trance';
     if (this.style !== prev) this._styleFill = true;   // 风格变了 → 本小节头补一记 tom 过渡
   }
 
@@ -243,9 +260,26 @@ export class Sonifier {
     const t = gridT + swing;
     const ch = this._chord();
     const sec = sectionOf(bar);
-    const style = this.style;                                  // 本小节生效 groove 风格（A/B/C 解析于 _onBar）
+    const b40 = ((bar % 40) + 40) % 40;
+    const breather = (Math.floor(bar / 40) % this.breatherEvery) === this.breatherPhase;
+    const valley = breather && sec === 'breakdown';           // 深呼吸谷底（half-time 段）
+    const style = this.style;                                  // 本小节生效 groove 风格（呼吸 cycle 已被 _onBar 强制 trance）
     const drumOn = sec === 'build' || sec === 'drop';
     const kickOn = sec !== 'breakdown';                        // intro 也打轻 kick 维持律动
+
+    // 静音缺口：build 最后一小节的最后半拍全体静默 → 紧接的 drop 砸得更狠（DJ: re-lift 的 tension cue 必须有）。
+    if (sec === 'build' && b40 === 15 && step >= 14) return;
+    // build 末段加速拍手 roll（bar 14=8分、bar 15=16分）导入 drop。
+    if (sec === 'build' && (b40 === 14 || b40 === 15) && step % (b40 === 15 ? 1 : 2) === 0) {
+      this._clap(t, 0.22 + (b40 - 14) * 0.18 + step * 0.008);
+    }
+    // 深呼吸谷底：half-time kick（1&3）+ 一记长 sub + 稀疏 hat + 塌入过渡 → "歇一口气、慢下来"（BPM 亦已轻降 ~5）。
+    if (valley) {
+      if (step === 0 || step === 8) this._kick(t, 0.72, false);
+      if (step === 4 || step === 12) this._hat(t, 0.18, false);
+      if (step === 0) this._bass(t, mtof(this.sessKey + ch.r - 12), stepDur * 8, 0.55);
+      if (b40 === 32 && step === 0) { this._tom(t, 100, 0.5); this._tom(t + stepDur * 0.5, 78, 0.45); }
+    }
 
     // 风格切换过渡：本小节头一记下行 tom 三连，宣告 groove 变化（不破拍）。
     if (this._styleFill && step === 0) {
