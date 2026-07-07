@@ -147,10 +147,12 @@ export class Sonifier {
     };
     // speedSpread → arp swing（异质度高 → arp 更跳）。
     this.arpSwing = 0.04 + (dna ? dna.speedSpread : 0.45) * 0.06;
-    // concentration → 进行索引（越集中 → 越暗 progressive，越散 → 越开放）。
-    this.baseProgIdx = Math.floor(clamp(dna ? dna.concentration : 0.4, 0, 0.999) * this.progs.length);
-    // 最密簇学习原型 → arp 动机轮廓。
-    this.motif = (dna && dna.motif && dna.motif.length >= 8) ? dna.motif.slice(0, 8) : [0, 2, 1, 3, 2, 0, 3, 1];
+    // 进行索引：concentration 定基础 + sig(密度指纹, 每次真的变) 旋转 → 每次不同和声走向（concentration 近恒定 → 否则同一条进行）。
+    this.baseProgIdx = (Math.floor(clamp(dna ? dna.concentration : 0.4, 0, 0.999) * this.progs.length) + this._sigMix(10)) % this.progs.length;
+    // motif（旋律轮廓）：最密簇原型是"固定数据的簇均值"、每次几乎不变 → 旋律只换调不换曲（同 warm→调根 的恒定病）。
+    //   用 sig(整张密度场指纹, 每次真的变) 给每位加偏移 → 每次不同旋律，且仍数据驱动（sig = 这片自组织的哈希，"听见这个宇宙"更贴切）。
+    const _bm = (dna && dna.motif && dna.motif.length >= 8) ? dna.motif : [0, 2, 1, 3, 2, 0, 3, 1];
+    this.motif = _bm.slice(0, 8).map((v, k) => (v + this._sigMix(20 + k)) % 5);
     this.curProgIdx = this.baseProgIdx;
 
     // ---------- 母带链（亮·响·数字）----------
