@@ -73,6 +73,22 @@ body.ui-hidden #title.peek { opacity: 0.8; }
 #tip button:hover { background: rgba(255, 255, 255, 0.12); }
 #tip button:active { transform: scale(0.96); }
 
+/* 音频开启后：底部按钮（音乐 ⇄ 麦克风/陀螺律动）默认隐藏，只有 hover（或键盘 Tab 聚焦）才浮现 → 沉浸纯画面。
+   容器不再整体压暗，交由按钮自身 opacity 控制（避免 #tip 的 0.4 又把浮现的按钮压暗）。 */
+body.audio-on #tip { opacity: 1; }
+body.audio-on #tip #tip-text { opacity: 0.4; }                          /* running 时其实为空，仍保持淡 */
+body.audio-on #enable {
+  opacity: 0;                                                           /* 默认隐藏（仍占位、仍是命中/hover 目标） */
+  transition: opacity 0.5s ease, background 0.2s, transform 0.1s;
+}
+body.audio-on #enable:hover,
+body.audio-on #enable:focus-visible { opacity: 1; }                     /* hover / 键盘聚焦 → 浮现 */
+
+/* 触摸设备（无 hover）：常显但更透明，让用户知道可点，又不抢画面 */
+@media (hover: none) {
+  body.audio-on #enable { opacity: 0.4 !important; }
+}
+
 #card {
   position: fixed; left: 50%; bottom: 64px; transform: translateX(-50%);
   max-width: 86vw; min-width: 200px;

@@ -1185,25 +1185,38 @@ const ORBIT_R = 8;
 let focusIdx = -1, focusActive = false;
 const _starSmooth = new THREE.Vector3(), _desPos = new THREE.Vector3(), _lookTmp = new THREE.Vector3(), _starNow = new THREE.Vector3();
 const _camCur = new THREE.Vector3().copy(camPos), _lookCur = new THREE.Vector3(camPos.x, camPos.y, camPos.z + 1);
+const _camFrom = new THREE.Vector3(), _lookFrom = new THREE.Vector3();   // 切换瞬间的相机/视向快照（缓入过渡起点）
+let focusOnset = -1;                                                     // ≥0 = 正在做「切换缓入」过渡(秒)；-1 = 稳态
+const TRANS = 0.62;                                                      // 缓入时长：smoothstep ease-in-out → 有参与感的引导式推镜、不突兀
+const smoothstep01 = (x) => x <= 0 ? 0 : x >= 1 ? 1 : x * x * (3 - 2 * x);
+// 由 pick handler 调用：记录本次切换的起点位姿并起跳缓入过渡（进焦/换焦/退焦通用）。
+function beginFocusTransition() { _camFrom.copy(camera.position); _lookFrom.copy(_lookCur); focusOnset = 0; }
 function applyLook(dt) {
   fwd.set(Math.cos(pitch) * Math.sin(yaw), Math.sin(pitch), Math.cos(pitch) * Math.cos(yaw));
-  const k = 1 - Math.exp(-dt / 0.11);   // 临界阻尼跟随：时间常数 ~110ms，帧率无关 → 切换全程连贯、不跳
+  const k = 1 - Math.exp(-dt / 0.20);   // 稳态临界阻尼跟随：时间常数 ~200ms（较旧 110ms 更柔）→ 跟踪连贯、不甩镜
+  const trans = focusOnset >= 0 && focusOnset < TRANS;
+  const s = trans ? smoothstep01(focusOnset / TRANS) : 1;               // ease-in-out：起步慢(引导)→中段快→收尾稳(不过冲)
   if (focusActive && focusIdx >= 0 && posArr) {
     const o = focusIdx * 3;
     _starSmooth.lerp(_starNow.set(posArr[o], posArr[o + 1], posArr[o + 2]), Math.min(1, dt * 4));   // 平滑跟踪目标（不追混沌瞬抖）
     const r = ORBIT_R + (szCurve ? szCurve[focusIdx] * 6 : 0);                          // 越大的目标，环绕半径越远
     _desPos.copy(_starSmooth).addScaledVector(fwd, -r);                                 // 近端环绕：相机在星的「视向后方」R 处 → 看向 +视向(=星)，不翻面
-    _camCur.lerp(_desPos, k);
-    _lookCur.lerp(_starSmooth, k);
+    if (trans) { _camCur.copy(_camFrom).lerp(_desPos, s); _lookCur.copy(_lookFrom).lerp(_starSmooth, s); }   // 缓入：从点击瞬间位姿 smoothstep 滑向环绕位姿
+    else { _camCur.lerp(_desPos, k); _lookCur.lerp(_starSmooth, k); }                   // 稳态跟随
   } else {
-    _camCur.lerp(camPos, k);                                                            // 连贯退回中心
-    if (_camCur.distanceToSquared(camPos) < 0.04) {                                     // 已归位 → 自由视角即时跟手（拖动无延迟）
-      _camCur.copy(camPos); _lookCur.copy(_lookTmp.copy(camPos).add(fwd));
-      if (focusIdx >= 0) focusIdx = -1;
-    } else {
-      _lookCur.lerp(_lookTmp.copy(camPos).add(fwd), k);                                 // 退出过程中平滑看向
+    _lookTmp.copy(camPos).add(fwd);
+    if (trans) { _camCur.copy(_camFrom).lerp(camPos, s); _lookCur.copy(_lookFrom).lerp(_lookTmp, s); }       // 退焦也缓入：平滑滑回中心视角
+    else {
+      _camCur.lerp(camPos, k);                                                          // 连贯退回中心
+      if (_camCur.distanceToSquared(camPos) < 0.04) {                                   // 已归位 → 自由视角即时跟手（拖动无延迟）
+        _camCur.copy(camPos); _lookCur.copy(_lookTmp);
+        if (focusIdx >= 0) focusIdx = -1;
+      } else {
+        _lookCur.lerp(_lookTmp, k);                                                     // 退出过程中平滑看向
+      }
     }
   }
+  if (trans) { focusOnset += dt; if (focusOnset >= TRANS) focusOnset = -1; }            // 过渡计时 → 到点自动交回稳态跟随（速度在收尾→0，衔接无缝）
   camera.position.copy(_camCur);
   camera.lookAt(_lookCur);
 }
@@ -1263,7 +1276,7 @@ addEventListener('deviceorientation', (e) => {
 // 默认（进入页面）：自动播放由「视觉/SOM 涌现态」生成的音乐(sonifier)，不开麦克风 → 即「通过视觉生成音频」。
 // 按下方按钮 → 「俱乐部律动」模式：音乐停、打开麦克风，画面随环境声(uPulse)脉冲式加速；再按一次切回音乐。
 let analyser = null, micBuf = null, micStream = null;
-let clubMode = false, micActive = false, gyroAsked = false, audioKicked = false, _btnFade = null;
+let clubMode = false, micActive = false, gyroAsked = false, audioKicked = false;
 
 // iOS Safari / Chrome@Android：AudioContext 必须「在用户手势的同步调用栈内」被创建 + 首次发声，
 // 仅 resume() 一个 boot 阶段无手势创建的 suspended ctx 在手机上几乎必然静音。
@@ -1453,8 +1466,7 @@ async function toggleMode() {                             // 下方按钮：音�
     sonifier.setMuted(false);
   }
   updateModeBtn();
-  const btn = document.getElementById('enable');
-  if (btn) { btn.parentElement.style.opacity = ''; clearTimeout(_btnFade); _btnFade = setTimeout(() => { btn.parentElement.style.opacity = '0.3'; }, 2600); }
+  // 按钮显隐由 CSS hover 接管（body.audio-on #enable）：点完鼠标仍悬停 → 保持可见，移开自然淡隐；不再用 JS 操作内联 opacity（会盖过 CSS）。
 }
 document.getElementById('enable').addEventListener('click', toggleMode);
 updateModeBtn();
@@ -1553,7 +1565,7 @@ function updateInspector() {   // 逐帧：实时 trajectory 点 (x,y,z) + 当�
 }
 
 // pick
-const raycaster = new THREE.Raycaster(); raycaster.params.Points.threshold = 2.6;
+const raycaster = new THREE.Raycaster(); raycaster.params.Points.threshold = 3.6;   // 放宽命中半径 → 更少「点了没选中」
 const card = document.getElementById('card'); const ndc = new THREE.Vector2();
 let downX = 0, downY = 0, cardMeta = null;
 renderer.domElement.addEventListener('pointerdown', (e) => { downX = e.clientX; downY = e.clientY; });
@@ -1561,16 +1573,26 @@ renderer.domElement.addEventListener('pointerup', (e) => {
   if (Math.hypot(e.clientX - downX, e.clientY - downY) > 7 || !pointsObj) return;
   ndc.set((e.clientX / innerWidth) * 2 - 1, -(e.clientY / innerHeight) * 2 + 1);
   raycaster.setFromCamera(ndc, camera);
-  const hit = raycaster.intersectObject(pointsObj)[0];
-  if (hit && D.meta[hit.index]) {
+  // 跟手拾取：阈值内的候选里选「离点击射线最近」(distanceToRay 最小 ≈ 手指对准的那颗)，而非 three 默认的「离相机最近」——
+  // 后者常选到没对准、只是恰好离镜头近的星。且**排除当前已选中项**：用户点击永远是为了「切换」，已选中的几何体不该
+  // 遮挡/吸走这一击（用户洞察）——这也解决了聚焦时选中星被环绕到近端、把后续点击全吸走的问题。
+  const hits = raycaster.intersectObject(pointsObj);
+  let hit = null;
+  for (const h of hits) {
+    if (h.index === focusIdx || !D.meta[h.index]) continue;
+    if (!hit || h.distanceToRay < hit.distanceToRay) hit = h;
+  }
+  if (hit) {
     cardMeta = D.meta[hit.index];
-    const o = hit.index * 3; _starSmooth.set(posArr[o], posArr[o + 1], posArr[o + 2]);   // 锚定起点，避免镜头长距飞扑
-    focusIdx = hit.index; focusActive = true;                                              // 锁定追踪
+    beginFocusTransition();                                                                // 记录起点位姿 → smoothstep 缓入（引导式推镜，不突兀）
+    const o = hit.index * 3; _starSmooth.set(posArr[o], posArr[o + 1], posArr[o + 2]);      // 锚定跟踪目标
+    focusIdx = hit.index; focusActive = true;                                              // 锁定追踪（选中态即时切换，参与感来自即时反馈；镜头再缓入）
     openInspector(hit.index);                                                              // 详情：公式 + 实时参数 + 数据映射（名字降为角落小字）
   } else {
     cardMeta = null;
     card.classList.add('hidden');
-    focusActive = false;                                                                    // 点空白 → 退回正中心
+    if (focusActive) beginFocusTransition();                                                // 点空白 → 缓入滑回正中心（仅在原本聚焦时）
+    focusActive = false;
   }
 });
 
