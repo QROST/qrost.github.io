@@ -44,12 +44,23 @@ const MEL_TONE = [
   { ratio: 1, idx: 2.2, dec: 0.9 }, { ratio: 2, idx: 1.6, dec: 0.7 }, { ratio: 1, idx: 1.4, dec: 1.1 }, { ratio: 3, idx: 1.8, dec: 0.6 },
   { ratio: 1, idx: 1.0, dec: 1.3 }, { ratio: 2, idx: 2.0, dec: 0.7 }, { ratio: 1, idx: 1.6, dec: 1.0 }, { ratio: 1, idx: 2.4, dec: 0.8 },
 ];
+// —— 每宇宙情绪倾向（借鉴 neon 02f30e0，但对 lofi 保守化）：由 domType(主导数据世界) 选一档情绪，只在**既有 cozy 进行库**里挑桶，
+//   绝不换成 phrygian/hard 等会破坏慵懒感的调式 → 情绪有别、始终舒适。桶内再由 concentration+sig 变化（每宇宙一致的情绪 + 每次不同的曲）。
+//   PROGS 分档：大调起(0/3/4)=暖亮上行，vi 小调起(2/5)=内省微忧，ii-V-I(1)=中性 jazzy。
+const MOODS = {
+  bright: [0, 3, 4],   // 家·稳 / 提气 / 药品玻璃 / 猫俏皮 → 温暖·明亮·上行
+  mellow: [1, 0, 4],   // 产品 / vendor → 经典中性 chill
+  wistful: [2, 5, 1],  // kernel 深·内省 / policy 低沉空旷 → 微忧·内省（含 1 增变化、不刺）
+};
+const moodForDom = (dt) => (dt === 3 || dt === 6 || dt === 7 || dt === 0) ? 'bright' : (dt === 2 || dt === 4) ? 'wistful' : 'mellow';
 
 export class Sonifier {
   constructor() {
     this.ctx = null; this.started = false; this.muted = false;
     this.bpm = 76; this.step = 0; this.bar = 0; this.nextTime = 0; this.lookahead = 0.14;
     this.keyRoot = 48; this.dom = 0;
+    this.mood = 'mellow';                                                    // 每宇宙情绪档；start() 按 domType 定
+    this.patch = { epBright: 1, kickBoom: 0.46, bassWarm: 420 };             // 每宇宙音色签名；start() 按 domType+sig 定
     this.motif = [0, 2, 1, 3, 2, 0, 3, 1]; this.motifPos = 0;
     this._lastFocusKey = null;
     this.trackEnergy = 0.5; this.lastMelStep = -9;
@@ -79,11 +90,20 @@ export class Sonifier {
     //   每次开页几乎同一首（只换调）。故让均值定"数据倾向"，再折入 sig(整张密度场指纹, 每次真的变) → 每次真的不同，且仍数据驱动。
     this.bpm = Math.round(72 + warm * 6 + (dna ? dna.speedMean : 0.5) * 5 + (this._sigMix(2) % 9) - 4);   // 均值定基 + sig ±4 → 速度 ~68–89（仍 cozy）
     this.swing = clamp(0.22 + (dna ? dna.speedSpread : 0.45) * 0.12 + (this._sigMix(3) % 70) / 1000, 0.20, 0.42);   // 异质度定基 + sig 微散 → swing 松散度
-    this.baseProgIdx = (Math.floor(clamp(dna ? dna.concentration : 0.4, 0, 0.999) * PROGS.length) + this._sigMix(10)) % PROGS.length;   // 集中度定基 + sig 旋转 → 每次不同和声走向
+    // 情绪档：domType(主导数据世界) 定 bright/mellow/wistful → 只在对应 cozy 进行桶内挑（情绪有别、始终舒适）；桶内由 concentration+sig 变化。
+    this.mood = moodForDom(dna ? dna.domType : 0);
+    const _bucket = MOODS[this.mood];
+    this.baseProgIdx = _bucket[(Math.floor(clamp(dna ? dna.concentration : 0.4, 0, 0.999) * _bucket.length) + this._sigMix(10)) % _bucket.length];   // 情绪桶 + 集中度定基 + sig 旋转
     this.groove = GROOVES[(Math.floor(clamp(dna ? dna.populatedFrac : 0.3, 0, 0.999) * GROOVES.length) + this._sigMix(11)) % GROOVES.length];   // 簇数定基 + sig 旋转 → 每次不同 groove
     const _bm = (dna && dna.motif && dna.motif.length >= 8) ? dna.motif.slice(0, 8) : [0, 2, 1, 3, 2, 0, 3, 1];   // 最密簇原型 = 近恒定聚合
     this.motif = _bm.map((v, k) => (Math.round(v) + this._sigMix(20 + k)) % 5);   // 每位折入 sig → 每次不同旋律轮廓（不再"同曲换调"），仍落和弦音故保持协和
     this.epRatio = (dna && (dna.domType % 3) === 1) ? 2 : 1;                         // 最大主题所属层 → 电钢音色
+    // 每宇宙音色签名（借鉴 neon e731d85，保守化）：Rhodes 亮度 / kick 体量 / bass 暖度，由 domType(性格)+sig(变体) 定 → 音色也每次不同，仍全程 cozy。
+    this.patch = {
+      epBright: 0.85 + (this._sigMix(7) % 100) / 100 * 0.4,                                        // Rhodes FM 亮度 0.85–1.25×（暖钝↔明亮）
+      kickBoom: (this.mood === 'wistful' ? 0.6 : this.mood === 'bright' ? 0.34 : 0.46) + (this._sigMix(8) % 20) / 100,   // 内省更 boomy·明亮更紧 ± sig 微变（仍软）
+      bassWarm: 380 + (this._sigMix(9) % 130),                                                      // bass 低通 380–510（暖钝↔略清晰）
+    };
     this.curKey = this.targetKey = this.sessKey;
     this.curProgIdx = this.targetProgIdx = this.baseProgIdx;
     this.subMidi = this.keyRoot;
@@ -94,7 +114,7 @@ export class Sonifier {
     const master = ctx.createGain(); master.gain.value = 0; limiter.connect(master); master.connect(ctx.destination); this.master = master;
     const sat = ctx.createWaveShaper(); sat.curve = this._satCurve(1.3); sat.oversample = '2x';
     const masterLP = ctx.createBiquadFilter(); masterLP.type = 'lowpass'; masterLP.frequency.value = 8500; masterLP.Q.value = 0.5;
-    const hiShelf = ctx.createBiquadFilter(); hiShelf.type = 'highshelf'; hiShelf.frequency.value = 3200; hiShelf.gain.value = -4;
+    const hiShelf = ctx.createBiquadFilter(); hiShelf.type = 'highshelf'; hiShelf.frequency.value = 3200; hiShelf.gain.value = -6 + (this._sigMix(6) % 45) / 10;   // 每宇宙混音暖度 −6..−1.5（暗钝↔略亮，仍隔层玻璃）
     sat.connect(masterLP); masterLP.connect(hiShelf); hiShelf.connect(limiter); this.masterLP = masterLP;
     const mix = ctx.createGain(); mix.gain.value = 1; mix.connect(sat); this.mix = mix;
     const reverb = ctx.createConvolver(); reverb.buffer = this._reverbIR(1.4);
@@ -232,9 +252,10 @@ export class Sonifier {
   // ---------- 乐器 ----------
   _kick(t, vel) {
     const o = this.ctx.createOscillator(); o.type = 'sine'; const g = this.ctx.createGain();
-    o.frequency.setValueAtTime(115, t); o.frequency.exponentialRampToValueAtTime(42, t + 0.12);
-    g.gain.setValueAtTime(0.0001, t); g.gain.linearRampToValueAtTime(vel, t + 0.005); g.gain.setTargetAtTime(0.0001, t + 0.04, 0.09);
-    o.connect(g); g.connect(this.drumBus); o.start(t); o.stop(t + 0.45); this._duck(t); this.debug.kicks++;
+    const kb = this.patch.kickBoom;   // 音色签名：boomy(低扫深·长尾) ↔ 略紧（内省↔明亮），仍是软 lofi kick
+    o.frequency.setValueAtTime(115, t); o.frequency.exponentialRampToValueAtTime(46 - kb * 8, t + 0.10 + kb * 0.05);
+    g.gain.setValueAtTime(0.0001, t); g.gain.linearRampToValueAtTime(vel, t + 0.005); g.gain.setTargetAtTime(0.0001, t + 0.04, 0.07 + kb * 0.06);
+    o.connect(g); g.connect(this.drumBus); o.start(t); o.stop(t + 0.5); this._duck(t); this.debug.kicks++;
   }
   _snare(t, vel) {
     const src = this.ctx.createBufferSource(); src.buffer = this._noise; src.loop = true;
@@ -253,14 +274,14 @@ export class Sonifier {
   }
   _bass(t, freq, dur, vel) {
     const o = this.ctx.createOscillator(); o.type = 'triangle'; o.frequency.setValueAtTime(freq, t);
-    const lp = this.ctx.createBiquadFilter(); lp.type = 'lowpass'; lp.frequency.value = 420; lp.Q.value = 0.7;
+    const lp = this.ctx.createBiquadFilter(); lp.type = 'lowpass'; lp.frequency.value = this.patch.bassWarm; lp.Q.value = 0.7;   // 每宇宙 bass 暖度签名
     const g = this.ctx.createGain(); g.gain.setValueAtTime(0.0001, t); g.gain.linearRampToValueAtTime(vel, t + 0.012); g.gain.setTargetAtTime(0.0001, t + dur * 0.6, dur * 0.4);
     o.connect(lp); lp.connect(g); g.connect(this.bassBus); o.start(t); o.stop(t + dur + 0.2);
   }
   _epiano(t, freq, dur, vel, dest, ratio, idx, dec) {
     const car = this.ctx.createOscillator(); car.type = 'sine'; car.frequency.value = freq; this.wow.connect(car.detune);
     const mod = this.ctx.createOscillator(); mod.type = 'sine'; mod.frequency.value = freq * (ratio || 1);
-    const mg = this.ctx.createGain(); mg.gain.setValueAtTime(freq * (idx || 2), t); mg.gain.exponentialRampToValueAtTime(Math.max(1, freq * 0.25), t + 0.4);
+    const mg = this.ctx.createGain(); mg.gain.setValueAtTime(freq * (idx || 2) * this.patch.epBright, t); mg.gain.exponentialRampToValueAtTime(Math.max(1, freq * 0.25), t + 0.4);   // Rhodes FM 亮度签名（每宇宙）
     mod.connect(mg); mg.connect(car.frequency);
     const g = this.ctx.createGain(); g.gain.setValueAtTime(0.0001, t); g.gain.linearRampToValueAtTime(vel, t + 0.006); g.gain.setTargetAtTime(0.0001, t + 0.05, (dur || 1) * (dec || 0.9));
     car.connect(g); g.connect(dest); car.start(t); mod.start(t); car.stop(t + dur + 0.5); mod.stop(t + dur + 0.5);
