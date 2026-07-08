@@ -36,8 +36,8 @@ const PROGS = [
   [{ r: 0, c: 'min' }, { r: 3, c: 'maj' }, { r: 7, c: 'maj' }, { r: 8, c: 'min' }],      // i – III – VII – iv（暗 progressive）
 ];
 const CHORD = {
-  min: [0, 3, 7], maj: [0, 4, 7], min7: [0, 3, 7, 10], maj7: [0, 4, 7, 11], maj9: [0, 4, 7, 11, 14],
-  min9: [0, 3, 7, 10, 14],
+  min: [0, 3, 7], maj: [0, 4, 7], min7: [0, 3, 7, 10], maj9: [0, 4, 7, 14],   // maj9 实为 add9 voicing：去 maj7(11) —— 11 与旋律高八度根(+12/+24)天生小二度/小九度撞（arp 锚根、lead 唱根时必刺），去源头；9th 色彩由 14 保留
+  min9: [0, 3, 7, 10, 14],                                                     // （maj7 条目已删：progs 全表 0 使用，留着只会被未来误用再引回 11）
 };
 // Trance arp 音阶级数（自然小调扩展，跨两个八度）。落音由 musicDNA.motif 轮廓选。
 const ARP_SCALE = [0, 3, 5, 7, 10, 12, 15, 17, 19, 22, 24];
@@ -381,7 +381,7 @@ export class Sonifier {
 
     // —— Arp：16 分琶音（drop/build；breakdown 稀疏）；hardgroove 半密度让位打击 ——
     if ((sec === 'drop' || sec === 'build' || (sec === 'breakdown' && step % 4 === 0)) && !(style === 'hardgroove' && step % 2 === 1)) {
-      this._arp(t, ch, stepDur * 1.5, 0.5, step);
+      this._arp(t, ch, stepDur * 1.5, (sec === 'drop' && step === 0) ? 0.28 : 0.5, step);   // drop 头拍 supersaw stab 当家 → arp 让位（垂直密度=粗糙感的一部分）
     }
 
     // —— Lead：drop 段旋律；hardgroove 撤 lead（打击当家）。门用位置哈希 _h（不抽流 → 风格无关）。——
@@ -507,8 +507,9 @@ export class Sonifier {
   }
   _pad(t, ch, dur, vel) {
     // 持续 pad：supersaw 的慢起版（attack 1s、长 release），intro/breakdown 漂浮垫底。
+    // 只弹三和弦（前 3 音）：pad 是低区氛围垫，扩展音(9th)交给 stab/arp —— pad 的 9th(+14) 会与 arp 低八度 b3(+15) 半音撞（build 段同响）。
     const tones = CHORD[ch.c]; const base = this.sessKey + ch.r;
-    for (const semi of tones) {
+    for (const semi of tones.slice(0, 3)) {
       const o = this.ctx.createOscillator(); o.type = 'sawtooth'; o.frequency.setValueAtTime(mtof(base + semi), t); o.detune.setValueAtTime(-6 + this._rngV() * 12, t);
       const lp = this.ctx.createBiquadFilter(); lp.type = 'lowpass'; lp.frequency.value = 1800; lp.Q.value = 0.5;
       const g = this.ctx.createGain();
@@ -530,8 +531,10 @@ export class Sonifier {
       note = this.sessKey + ch.r + s + 12; this._spicePrev = true;                                    // 标记：下一音须解决
     } else {
       let idx = mi % tones.length;
+      const oct = Math.floor(mi / tones.length);
+      if (oct > 0) idx = (mi & 1) ? 2 : 0;                                                            // 高八度只落根/五（trance 高区 power 感）：高区 3rd/9th 会与 stab 的 9th(+26) 半音/小九度撞
       if (this._spicePrev) { idx = 0; this._spicePrev = false; }                                      // spice 后解决到根音
-      note = this.sessKey + ch.r + tones[idx] + 12 * Math.floor(mi / tones.length) + 12;              // 和弦内音，随轮廓升八度
+      note = this.sessKey + ch.r + tones[idx] + 12 * oct + 12;                                        // 和弦内音，随轮廓升八度
     }
     const freq = mtof(note);
     const o = this.ctx.createOscillator(); o.type = 'sawtooth'; o.frequency.setValueAtTime(freq, t); o.detune.setValueAtTime(this._rngV() * 10 - 5, t);
@@ -547,7 +550,8 @@ export class Sonifier {
     this._lastLeadT = t;   // _focus 避让：lead 刚发声的窗口内不叠 focus 音（Fix 5）
     const tones = CHORD[ch.c];
     const colorN = (this._clHue != null) ? this._clHue : 0.5;   // 视野主导簇色相 → 选和弦内音
-    const ti = Math.round(colorN * (tones.length - 1));
+    let ti = Math.round(colorN * (tones.length - 1));
+    if (tones.length >= 5 && ti === 1) ti = 2;                  // min9 上 lead 不唱高八度 b3(+27)：与 stab 的 9th(+26) 小二度撞 → 改五度
     const freq = mtof(forceNote != null ? forceNote : (this.sessKey + ch.r + tones[ti] + 24));
     const lw = this.patch.leadSquare ? 'square' : 'sawtooth';   // 音色签名：方波=更空/更硬
     const o = this.ctx.createOscillator(); o.type = lw; o.frequency.setValueAtTime(freq, t);
@@ -557,10 +561,14 @@ export class Sonifier {
     g.gain.setValueAtTime(0.0001, t); g.gain.linearRampToValueAtTime(vel, t + 0.006); g.gain.setTargetAtTime(0.0001, t + dur * 0.5, dur * 0.4);
     o.connect(lp); o2.connect(lp); lp.connect(g); g.connect(this.leadBus);
     // delay：1/8 三连反馈。
-    // delay：1/8 三连反馈。短反馈 + wet 低通（暗），且**和弦切换前最后一拍掐反馈** → 不把旧和弦的音回声拖进新和弦（跨和弦糊音元凶）。
+    // delay：1/8 三连反馈。短反馈 + wet 低通（暗），且**每个 delay 环都预约在下一个和弦边界 ramp-kill** —— 旧方案只掐
+    // "切换前最后一拍新建"的环，更早发的 lead 各自的反馈环(fb 0.24 ≈ 3-4 个回声 ≈ 1.5+ 拍)照样把旧和弦拖进新和弦。
+    // 边界时刻可精确算出（和弦每 2 小节 = 32 步一换），fb/wet 在边界前 50ms 指数收干 → 跨和弦零残响，环内回声不受影响。
     const delay = this.ctx.createDelay(1.0); delay.delayTime.value = (60 / this.bpm / 2) * 0.667;
-    const near = ((this.bar & 1) === 1) && ((this.step % 16) >= 12);   // 和弦每 2 小节换（bar>>1）；奇数小节末拍 = 切换前
-    const fb = this.ctx.createGain(); fb.gain.value = near ? 0 : 0.24; const wet = this.ctx.createGain(); wet.gain.value = near ? 0.15 : 0.4;
+    const stepsTo = (32 - (this.step % 32)) % 32 || 32;                 // 距下一个和弦边界的步数（正好在边界 = 整段 32 步可用）
+    const tB = t + stepsTo * (60 / this.bpm / 4);
+    const fb = this.ctx.createGain(); fb.gain.value = 0.24; const wet = this.ctx.createGain(); wet.gain.value = 0.4;
+    fb.gain.setTargetAtTime(0.0001, tB - 0.05, 0.025); wet.gain.setTargetAtTime(0.12, tB - 0.05, 0.03);
     const dlp = this.ctx.createBiquadFilter(); dlp.type = 'lowpass'; dlp.frequency.value = 2200;   // wet 变暗 → 就算糊也不刺
     g.connect(delay); delay.connect(fb); fb.connect(delay); delay.connect(dlp); dlp.connect(wet); wet.connect(this.leadBus);
     o.start(t); o2.start(t); o.stop(t + dur + 0.3); o2.stop(t + dur + 0.3);
