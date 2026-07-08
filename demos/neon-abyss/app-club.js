@@ -1368,7 +1368,7 @@ addEventListener('deviceorientation', (e) => {
 // ---------- 声音 / 律动 双模式 ----------
 // 默认（进入页面）：自动播放由「视觉/SOM 涌现态」生成的音乐(sonifier)，不开麦克风 → 即「通过视觉生成音频」。
 // 按下方按钮 → 「俱乐部律动」模式：音乐停、打开麦克风，画面随环境声(uPulse)脉冲式加速；再按一次切回音乐。
-let muted = false, audioKicked = false, _btnFade = null;
+let muted = false, audioKicked = false;
 
 // iOS Safari / Chrome@Android：AudioContext 必须「在用户手势的同步调用栈内」被创建 + 首次发声，
 // 仅 resume() 一个 boot 阶段无手势创建的 suspended ctx 在手机上几乎必然静音。
@@ -1507,8 +1507,7 @@ function toggleMode() {                                   // 下方按钮：播�
   muted = !muted;
   sonifier.setMuted(muted);
   updateModeBtn();
-  const btn = document.getElementById('enable');
-  if (btn) { btn.parentElement.style.opacity = ''; clearTimeout(_btnFade); _btnFade = setTimeout(() => { btn.parentElement.style.opacity = '0.3'; }, 2600); }
+  // 按钮显隐由 CSS hover 接管（body.audio-on #enable）：点完鼠标仍悬停 → 保持可见，移开自然淡隐；不再用 JS 操作内联 opacity（会盖过 CSS）。
 }
 document.getElementById('enable').addEventListener('click', toggleMode);
 updateModeBtn();
