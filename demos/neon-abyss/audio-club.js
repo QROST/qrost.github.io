@@ -487,16 +487,17 @@ export class Sonifier {
   _supersaw(t, ch, dur, vel) {
     // Supersaw：7 路微失谐 sawtooth（±24 cents 展开）→ 低通滤波包络（开→关，Trance stab 标志）。
     const tones = CHORD[ch.c]; const base = this.sessKey + ch.r;
+    const nv = tones.length >= 5 ? 5 : 7;   // 五音和弦(min9/maj9)减声部：35 路→25 路，清低频浑浊（音乐理论 agent Fix 4）
     for (const semi of tones) {
-      for (let v = 0; v < 7; v++) {
+      for (let v = 0; v < nv; v++) {
         const o = this.ctx.createOscillator(); o.type = 'sawtooth';
-        const detune = (v - 3) * this.patch.sawSpread + (this._rngV() - 0.5) * 3;   // 失谐展开(patch 音色签名) + 微抖（隔离流）
+        const detune = (v - (nv >> 1)) * this.patch.sawSpread + (this._rngV() - 0.5) * 3;   // 失谐展开(patch 音色签名) + 微抖（隔离流）
         o.frequency.setValueAtTime(mtof(base + semi + 12), t); o.detune.setValueAtTime(detune, t);
         const lp = this.ctx.createBiquadFilter(); lp.type = 'lowpass';
         lp.frequency.setValueAtTime(4000, t); lp.frequency.exponentialRampToValueAtTime(1200, t + dur * 0.5);   // 滤波包络（开→关）
         lp.Q.value = 2;
         const g = this.ctx.createGain();
-        g.gain.setValueAtTime(0.0001, t); g.gain.linearRampToValueAtTime(vel / 7 * 0.5, t + 0.004);
+        g.gain.setValueAtTime(0.0001, t); g.gain.linearRampToValueAtTime(vel / nv * 0.5, t + 0.004);
         g.gain.setTargetAtTime(0.0001, t + dur * 0.3, dur * 0.4);
         o.connect(lp); lp.connect(g); g.connect(this.chordBus);
         o.start(t); o.stop(t + dur + 0.3);
@@ -543,6 +544,7 @@ export class Sonifier {
   }
   _lead(t, ch, dur, vel, forceNote) {
     // 亮 saw lead + delay（1/8 三连反馈）→ Trance 主旋律歌唱感。forceNote!=null 时用指定音（breakdown hook 走 motif+mode scale）。
+    this._lastLeadT = t;   // _focus 避让：lead 刚发声的窗口内不叠 focus 音（Fix 5）
     const tones = CHORD[ch.c];
     const colorN = (this._clHue != null) ? this._clHue : 0.5;   // 视野主导簇色相 → 选和弦内音
     const ti = Math.round(colorN * (tones.length - 1));
@@ -595,11 +597,12 @@ export class Sonifier {
     const key = focus ? (focus.idx + ':' + focus.sys) : null;
     if (key === this._lastFocusKey) return; this._lastFocusKey = key;
     if (!focus) return;
+    if (this._lastLeadT != null && Math.abs(t - this._lastLeadT) < 0.25) return;   // lead 正在唱 → 不叠打（Fix 5）
     const ch = this._chord(), tones = CHORD[ch.c], ti = Math.round((focus.tone || 0.5) * (tones.length - 1));
     const o = this.ctx.createOscillator(); o.type = 'sawtooth'; o.frequency.setValueAtTime(mtof(this.sessKey + ch.r + tones[ti] + 24), t);
     const lp = this.ctx.createBiquadFilter(); lp.type = 'lowpass'; lp.frequency.value = 5000;
     const g = this.ctx.createGain(); g.gain.setValueAtTime(0.0001, t); g.gain.linearRampToValueAtTime(0.3, t + 0.01); g.gain.setTargetAtTime(0.0001, t + 0.3, 0.4);
-    o.connect(lp); lp.connect(g); g.connect(this.leadBus); g.connect(this.revSend);
+    o.connect(lp); lp.connect(g); g.connect(this.arpBus); g.connect(this.revSend);   // arpBus 受 sidechain duck → focus 音随泵呼吸、不顶 lead（Fix 5）
     o.start(t); o.stop(t + 1.5);
   }
 
