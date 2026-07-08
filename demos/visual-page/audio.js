@@ -68,16 +68,21 @@ export class Sonifier {
     const warmRaw = dna ? dna.warm : opts.climWarm;
     const warm = clamp(warmRaw == null ? 0.5 : warmRaw, 0, 1);
     this._s = (dna ? (dna.sig >>> 0) : ((Math.round(warm * 1e6) ^ 0x9e3779b9) >>> 0)) | 0;   // 人性化微抖/噪声 PRNG 种子 = 宇宙涌现签名（确定性，非 Math.random）；无 DNA 兜底也从 climWarm 派生（仍来自数据，非随机）
+    this._sig0 = this._s >>> 0;   // 原始涌现签名快照 → _sigMix 用（独立于 _rng 的推进，同宇宙恒定、跨宇宙每次真的变）
     this.dna = dna; this.debug.sig = dna ? (dna.sig >>> 0) : 0;
 
     this.keyRoot = warm < 0.4 ? 45 : warm > 0.7 ? 50 : 48;                          // climWarm → 暖基调（冷/温/暖）
     const hueStar = dna ? clamp(dna.hueStar, 0, 0.999) : 0.5;                       // 最密簇(宇宙最大自组织主题)的色相 → 整体移调（听见这片宇宙的主色）
     this.sessKey = this.keyRoot + SESS_TRANSPOSE[Math.floor(hueStar * SESS_TRANSPOSE.length)];
-    this.bpm = Math.round(72 + warm * 6 + (dna ? dna.speedMean : 0.5) * 9);         // 宇宙整体能量(平均簇速) → 速度 72–87
-    this.swing = 0.24 + (dna ? dna.speedSpread : 0.45) * 0.15;                       // 簇速异质度 → swing 松散度 0.24–0.39
-    this.baseProgIdx = Math.floor(clamp(dna ? dna.concentration : 0.4, 0, 0.999) * PROGS.length);   // 组织集中度 → 和弦进行
-    this.groove = GROOVES[Math.floor(clamp(dna ? dna.populatedFrac : 0.3, 0, 0.999) * GROOVES.length)];   // 簇数量 → groove 模板
-    this.motif = (dna && dna.motif && dna.motif.length >= 8) ? dna.motif.slice(0, 8) : [0, 2, 1, 3, 2, 0, 3, 1];   // 最密簇学习原型 → 动机轮廓
+    // ⚠ 聚合-vs-指纹修复（借鉴 neon 03bd523）：warm/speedMean/speedSpread/concentration/populatedFrac/densest-motif 都是
+    //   "固定数据的均值/展度"、每次加载近乎恒定 → 只 hueStar 与 sig 真正变。若速度/swing/进行/groove/旋律全靠这些均值，
+    //   每次开页几乎同一首（只换调）。故让均值定"数据倾向"，再折入 sig(整张密度场指纹, 每次真的变) → 每次真的不同，且仍数据驱动。
+    this.bpm = Math.round(72 + warm * 6 + (dna ? dna.speedMean : 0.5) * 5 + (this._sigMix(2) % 9) - 4);   // 均值定基 + sig ±4 → 速度 ~68–89（仍 cozy）
+    this.swing = clamp(0.22 + (dna ? dna.speedSpread : 0.45) * 0.12 + (this._sigMix(3) % 70) / 1000, 0.20, 0.42);   // 异质度定基 + sig 微散 → swing 松散度
+    this.baseProgIdx = (Math.floor(clamp(dna ? dna.concentration : 0.4, 0, 0.999) * PROGS.length) + this._sigMix(10)) % PROGS.length;   // 集中度定基 + sig 旋转 → 每次不同和声走向
+    this.groove = GROOVES[(Math.floor(clamp(dna ? dna.populatedFrac : 0.3, 0, 0.999) * GROOVES.length) + this._sigMix(11)) % GROOVES.length];   // 簇数定基 + sig 旋转 → 每次不同 groove
+    const _bm = (dna && dna.motif && dna.motif.length >= 8) ? dna.motif.slice(0, 8) : [0, 2, 1, 3, 2, 0, 3, 1];   // 最密簇原型 = 近恒定聚合
+    this.motif = _bm.map((v, k) => (Math.round(v) + this._sigMix(20 + k)) % 5);   // 每位折入 sig → 每次不同旋律轮廓（不再"同曲换调"），仍落和弦音故保持协和
     this.epRatio = (dna && (dna.domType % 3) === 1) ? 2 : 1;                         // 最大主题所属层 → 电钢音色
     this.curKey = this.targetKey = this.sessKey;
     this.curProgIdx = this.targetProgIdx = this.baseProgIdx;
@@ -294,4 +299,7 @@ export class Sonifier {
   _noiseBuf(sec) { const ctx = this.ctx, len = Math.floor(ctx.sampleRate * sec), b = ctx.createBuffer(1, len, ctx.sampleRate), d = b.getChannelData(0);
     for (let i = 0; i < len; i++) d[i] = this._rng() * 2 - 1; return b; }
   _rng() { this._s = (this._s == null ? 0x9e3779b9 : this._s + 0x6D2B79F5) | 0; let x = this._s; x = Math.imul(x ^ (x >>> 15), 1 | x); x = (x + Math.imul(x ^ (x >>> 7), 61 | x)) ^ x; return ((x ^ (x >>> 14)) >>> 0) / 4294967296; }
+  // 涌现签名的雪崩混合：sig(整张密度场指纹) + salt → 均匀散开的确定性整数。用于"每宇宙一次性"参数(速度/进行/groove/动机)，
+  // 与 _rng 状态完全隔离（不推进 _s）→ 同宇宙恒定、同宇宙同曲，跨宇宙每次真的不同。（借鉴 neon-abyss audio-club.js）
+  _sigMix(salt) { let x = ((this._sig0 || 0) ^ Math.imul((salt | 0) + 1, 0x9e3779b9)) | 0; x = Math.imul(x ^ (x >>> 16), 0x7feb352d); x = Math.imul(x ^ (x >>> 15), 0x846ca68b); x ^= x >>> 16; return x >>> 0; }
 }
