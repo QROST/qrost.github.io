@@ -37,7 +37,7 @@ const PROGS = [
 ];
 const CHORD = {
   min: [0, 3, 7], maj: [0, 4, 7], min7: [0, 3, 7, 10], maj7: [0, 4, 7, 11], maj9: [0, 4, 7, 11, 14],
-  min9: [0, 3, 7, 10, 14], min11: [0, 3, 7, 10, 17],
+  min9: [0, 3, 7, 10, 14],
 };
 // Trance arp 音阶级数（自然小调扩展，跨两个八度）。落音由 musicDNA.motif 轮廓选。
 const ARP_SCALE = [0, 3, 5, 7, 10, 12, 15, 17, 19, 22, 24];
@@ -83,6 +83,7 @@ export class Sonifier {
     this.keyRoot = 48;
     this.modeName = 'minor'; this.progs = PROGS; this.scale = MODES.minor.scale;   // 默认 minor；start() 按 domType 定
     this.patch = { leadSquare: false, sawSpread: 7, kickBoom: 0.35, bassReese: false };   // 音色签名；start() 按 domType+sig 定
+    this._spicePrev = false; this._spiceSet = [2];   // arp spice 状态 + 安全扩展集（start 按 mode 定）
     this.motif = [0, 2, 1, 3, 2, 0, 3, 1]; this.motifPos = 0;
     this._lastFocusKey = null;
     this.section = 'intro';
@@ -130,6 +131,7 @@ export class Sonifier {
     // 情绪模式：domType(主导数据集) 定 minor/major/dorian/phrygian → 换进行集 + 音阶（大小调级情绪差异，数据驱动）。
     this.modeName = modeForDom(dna ? dna.domType : 0);
     this.progs = MODES[this.modeName].progs; this.scale = MODES[this.modeName].scale;
+    this._spiceSet = [2];   // spice 安全集：只用 9th(add9) —— 对表里每种和弦都 consonant（6th 对小调 b3 是三全音，弃用）→ 最舒适
     // BPM：speedMean(全体星速均值) 近恒定 → 改由 speedSpread(簇速异质度, 会随聚类变) + sig(密度指纹) 驱动更宽区间
     //   128–146，每次不同速、仍数据驱动。
     this.bpm = clamp(Math.round(130 + (dna ? dna.speedSpread : 0.45) * 10 + ((this._sigMix(2) % 17) - 8)), 128, 146);
@@ -515,15 +517,21 @@ export class Sonifier {
     }
   }
   _arp(t, ch, dur, vel, step) {
-    // 16 分琶音：默认选**当前和弦内音**(root/3/5/7/9) → consonant（修：原来把 key 相对音阶叠到 ch.r 上，大调和弦上频繁
-    //   b3 撞 3 —— 最刺耳的音程；改成和弦音后半首曲子的不和谐消失）。motif 轮廓 + 八度铺开仍"跑"；小节头锚根音 → hook 稳；
-    //   ~16% 非拍点允许一个 key 相对音阶经过音做 spice（偶尔出彩；音阶本就相对调根，**不叠 ch.r**）。
+    // 16 分琶音 —— 舒适不变量：每个音默认是**当前和弦内音**；只允许极少数(~6% 弱拍)、来自"安全扩展集"(相对**和弦根** +ch.r)
+    //   的经过音做 spice，且**下一音解决到和弦音**。绝不出 m2/三全音/大调上的 b3。（原来 spice 用 key 相对音阶不加 ch.r，
+    //   在非主和弦上频繁撞 m2/三全音/M7、且 16%×8 拍≈每小节 1.3 个不解决 —— 那是"格外多不和谐"的元凶。）
     const mi = this.motif[this.motifPos % this.motif.length]; this.motifPos++;
     const tones = CHORD[ch.c];
     let note;
-    if (step % 16 === 0) note = this.sessKey + ch.r + tones[0] + 12;                              // 小节头锚和弦根音
-    else if ((step % 2 === 1) && this._h(11) < 0.16) note = this.sessKey + this.scale[(mi + 2) % 6] + 12;   // spice：key 相对经过音（不加 ch.r）
-    else note = this.sessKey + ch.r + tones[mi % tones.length] + 12 * Math.floor(mi / tones.length) + 12;   // 和弦内音，随轮廓升八度
+    if (step % 16 === 0) { note = this.sessKey + ch.r + tones[0] + 12; this._spicePrev = false; }   // 小节头锚和弦根音
+    else if ((step % 2 === 1) && this._h(11) < 0.06) {                                               // 6% 弱拍 spice
+      const s = this._spiceSet[(this._h(12) * this._spiceSet.length) | 0];                            // 安全扩展音（9/6，相对和弦根，+ch.r）
+      note = this.sessKey + ch.r + s + 12; this._spicePrev = true;                                    // 标记：下一音须解决
+    } else {
+      let idx = mi % tones.length;
+      if (this._spicePrev) { idx = 0; this._spicePrev = false; }                                      // spice 后解决到根音
+      note = this.sessKey + ch.r + tones[idx] + 12 * Math.floor(mi / tones.length) + 12;              // 和弦内音，随轮廓升八度
+    }
     const freq = mtof(note);
     const o = this.ctx.createOscillator(); o.type = 'sawtooth'; o.frequency.setValueAtTime(freq, t); o.detune.setValueAtTime(this._rngV() * 10 - 5, t);
     const lp = this.ctx.createBiquadFilter(); lp.type = 'lowpass'; lp.frequency.value = 5000;
@@ -547,9 +555,12 @@ export class Sonifier {
     g.gain.setValueAtTime(0.0001, t); g.gain.linearRampToValueAtTime(vel, t + 0.006); g.gain.setTargetAtTime(0.0001, t + dur * 0.5, dur * 0.4);
     o.connect(lp); o2.connect(lp); lp.connect(g); g.connect(this.leadBus);
     // delay：1/8 三连反馈。
+    // delay：1/8 三连反馈。短反馈 + wet 低通（暗），且**和弦切换前最后一拍掐反馈** → 不把旧和弦的音回声拖进新和弦（跨和弦糊音元凶）。
     const delay = this.ctx.createDelay(1.0); delay.delayTime.value = (60 / this.bpm / 2) * 0.667;
-    const fb = this.ctx.createGain(); fb.gain.value = 0.4; const wet = this.ctx.createGain(); wet.gain.value = 0.5;
-    g.connect(delay); delay.connect(fb); fb.connect(delay); delay.connect(wet); wet.connect(this.leadBus);
+    const near = ((this.bar & 1) === 1) && ((this.step % 16) >= 12);   // 和弦每 2 小节换（bar>>1）；奇数小节末拍 = 切换前
+    const fb = this.ctx.createGain(); fb.gain.value = near ? 0 : 0.24; const wet = this.ctx.createGain(); wet.gain.value = near ? 0.15 : 0.4;
+    const dlp = this.ctx.createBiquadFilter(); dlp.type = 'lowpass'; dlp.frequency.value = 2200;   // wet 变暗 → 就算糊也不刺
+    g.connect(delay); delay.connect(fb); fb.connect(delay); delay.connect(dlp); dlp.connect(wet); wet.connect(this.leadBus);
     o.start(t); o2.start(t); o.stop(t + dur + 0.3); o2.stop(t + dur + 0.3);
   }
   _driveRiser(t) {
