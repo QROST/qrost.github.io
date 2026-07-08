@@ -83,6 +83,7 @@ export class Sonifier {
     this.keyRoot = 48;
     this.modeName = 'minor'; this.progs = PROGS; this.scale = MODES.minor.scale;   // 默认 minor；start() 按 domType 定
     this.patch = { leadSquare: false, sawSpread: 7, kickBoom: 0.35, bassReese: false };   // 音色签名；start() 按 domType+sig 定
+    this.drumVar = 0; this._leadContour = 0; this._leadAlt = false;   // 鼓面变体 / lead 乐句轮廓（start() 按 sig 定）
     this._spicePrev = false; this._spiceSet = [2];   // arp spice 状态 + 安全扩展集（start 按 mode 定）
     this.motif = [0, 2, 1, 3, 2, 0, 3, 1]; this.motifPos = 0;
     this._lastFocusKey = null;
@@ -128,8 +129,11 @@ export class Sonifier {
     // 最密簇色相 → 整体移调（听见这片宇宙的主色）。
     const hueStar = dna ? clamp(dna.hueStar, 0, 0.999) : 0.5;
     this.sessKey = this.keyRoot + SESS_TRANSPOSE[Math.floor(hueStar * SESS_TRANSPOSE.length)];
-    // 情绪模式：domType(主导数据集) 定 minor/major/dorian/phrygian → 换进行集 + 音阶（大小调级情绪差异，数据驱动）。
-    this.modeName = modeForDom(dna ? dna.domType : 0);
+    // 情绪模式：domType(主导数据集) 定基调 —— 但 domType 是聚合量(最密簇=最大数据集, argmax 每次相同)，单靠它 mode 每次恒定
+    //   = "跨 session 熟悉感"的头号来源。sig 折叠(同 03bd523 哲学)：70% 保 domType 基调、30% 换到情绪相邻档（仍确定性、仍数据驱动）。
+    const _baseMode = modeForDom(dna ? dna.domType : 0);
+    const _altMode = { minor: 'dorian', dorian: 'minor', major: 'dorian', phrygian: 'minor' };   // 相邻情绪：暗↔暗亮、明→暗亮、辛辣→标准暗（不跨到反差极端）
+    this.modeName = (this._sigMix(30) % 10 < 3) ? _altMode[_baseMode] : _baseMode;
     this.progs = MODES[this.modeName].progs; this.scale = MODES[this.modeName].scale;
     this._spiceSet = [2];   // spice 安全集：只用 9th(add9) —— 对表里每种和弦都 consonant（6th 对小调 b3 是三全音，弃用）→ 最舒适
     // BPM：speedMean(全体星速均值) 近恒定 → 改由 speedSpread(簇速异质度, 会随聚类变) + sig(密度指纹) 驱动更宽区间
@@ -144,9 +148,11 @@ export class Sonifier {
     this.patch = {
       leadSquare: (this._sigMix(7) % 3 === 0),           // 1/3 宇宙用方波 lead（更空/更硬）
       sawSpread: 5 + (this._sigMix(8) % 3) * 2,           // supersaw 失谐展开 5/7/9 cents（窄→宽，收窄防"走音"感）
-      kickBoom: _ph ? 0.12 : 0.55,                        // 硬派 punchy(短) / 柔派 boomy(长尾)
+      kickBoom: clamp((_ph ? 0.12 : 0.55) + ((this._sigMix(32) % 31) - 15) / 100, 0.05, 0.7),   // domType 定性格 + sig ±0.15 → kick 手感每宇宙微变（原先二值恒定）
       bassReese: _ph || (this._sigMix(9) % 4 === 0),      // 硬派 + 1/4 其它 → reese 双失谐锯贝斯
     };
+    this.drumVar = this._sigMix(33) % 3;                  // 鼓面变体 0/1/2：four-on-floor kick 不动（trance 身份），hat/clap 织体换（原先全硬编码=主节奏每次一模一样）
+    this._leadContour = this._sigMix(34) % 3;             // lead 乐句轮廓型：0=邻上摆 1=邻下摆 2=五度跳（原先 lead 只反复唱 colorN 单音=主旋律记忆点恒定）
     // speedSpread → arp swing（异质度高 → arp 更跳）。
     this.arpSwing = 0.04 + (dna ? dna.speedSpread : 0.45) * 0.06;
     // 进行索引：concentration 定基础 + sig(密度指纹, 每次真的变) 旋转 → 每次不同和声走向（concentration 近恒定 → 否则同一条进行）。
@@ -301,6 +307,8 @@ export class Sonifier {
     else wt += 0.4;                                               // 房价 / 政策 / 其它 → trance
     wh += (dna ? dna.speedSpread : 0.45) * 0.6;                   // 簇速异质 → 滚动 hard groove
     wp += (1 - (dna ? dna.concentration : 0.4)) * 0.5;           // 组织松散 → 弹跳 polka
+    // sig 扰动：dt/speedSpread/concentration 全是近恒定聚合 → 三权重每次一模一样、风味出现率恒定（跨 session 熟悉感来源之一）。
+    wp += (this._sigMix(35) % 100) / 100 * 0.35; wh += (this._sigMix(36) % 100) / 100 * 0.35;   // trance 基线 1.0 仍保底主导
     const s = wt + wp + wh || 1;
     this.styleW = { trance: wt / s, polka: wp / s, hardgroove: wh / s };
   }
@@ -343,8 +351,11 @@ export class Sonifier {
     // —— kick：four-on-the-floor；hardgroove 更硬（加高通 click）——
     if (kickOn && step % 4 === 0) this._kick(t, sec === 'drop' ? 1.0 : (sec === 'intro' ? 0.7 : 0.9), style === 'hardgroove');
     if (drumOn && (step === 4 || step === 12)) this._clap(t, 0.7);
-    if (drumOn && step % 2 === 1) this._hat(t, style === 'hardgroove' ? 0.34 : 0.3, false);   // 16 分闭镲（off-beat）
-    if (sec === 'drop' && step % 4 === 2) this._hat(t, 0.4, true);                            // off-beat 开镲（drop 专属）
+    // 鼓面变体（drumVar 0/1/2，sig 选）：kick 四踩是 trance 身份不动，hat/clap 织体每宇宙不同（原先全硬编码 = 主节奏跨 session 一模一样）。
+    if (drumOn && this.drumVar === 1 && step === 7) this._clap(t, 0.26);                                        // v1：ghost clap（织体签名）
+    if (drumOn && (step % 2 === 1 || this.drumVar === 2)) this._hat(t, (style === 'hardgroove' ? 0.34 : 0.3) * (step % 2 === 1 ? 1 : 0.55), false);   // v2：全 16 分 hat（偶数步弱填充）
+    if (drumOn && this.drumVar === 1 && step % 8 === 6) this._hat(t, 0.38, false);                              // v1：反拍双击加密
+    if (sec === 'drop' && (this.drumVar === 1 ? step % 8 === 2 : step % 4 === 2)) this._hat(t, this.drumVar === 2 ? 0.32 : 0.4, true);   // 开镲密度/收放随变体
     if (sec === 'drop' && (bar & 7) === 7 && step >= 13) this._clap(t, 0.4);                  // 8 小节末 fill
 
     // —— hardgroove 专属：切分滚动 tom（call-response）+ 16 分 shaker 滚（位置哈希门控，绝不抽流）——
@@ -551,7 +562,12 @@ export class Sonifier {
     const tones = CHORD[ch.c];
     const colorN = (this._clHue != null) ? this._clHue : 0.5;   // 视野主导簇色相 → 选和弦内音
     let ti = Math.round(colorN * (tones.length - 1));
-    if (tones.length >= 5 && ti === 1) ti = 2;                  // min9 上 lead 不唱高八度 b3(+27)：与 stab 的 9th(+26) 小二度撞 → 改五度
+    if (forceNote == null) {                                    // lead 乐句摆动：交替 主音↔轮廓音 → 两音 hook。原先只反复唱 colorN 单音 = "长音+回声"记忆点每次相同（跨 session 熟悉感来源）。
+      const L = tones.length, c = this._leadContour;            // 轮廓型每宇宙 sig 定：0=邻上摆 1=邻下摆 2=五度跳
+      if (this._leadAlt) ti = c === 0 ? (ti + 1) % L : c === 1 ? (ti + L - 1) % L : (ti + 2) % L;
+      this._leadAlt = !this._leadAlt;                           // 翻转次数=lead 调用次数（_h 位置哈希门控）→ 确定性保持
+    }
+    if (tones.length >= 5 && ti === 1) ti = 2;                  // min9 上 lead 不唱高八度 b3(+27)：与 stab 的 9th(+26) 小二度撞 → 改五度（放在乐句变换后 = 最终保证）
     const freq = mtof(forceNote != null ? forceNote : (this.sessKey + ch.r + tones[ti] + 24));
     const lw = this.patch.leadSquare ? 'square' : 'sawtooth';   // 音色签名：方波=更空/更硬
     const o = this.ctx.createOscillator(); o.type = lw; o.frequency.setValueAtTime(freq, t);
