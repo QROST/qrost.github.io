@@ -63,16 +63,16 @@
       zh: '数渊 · Data Abyss',
     },
     cardAbyssDesc: {
-      en: 'A full-bleed cosmos that breathes — countless points drift, cluster and self-organize into a living lattice, and its music is read out from the field itself. Chaos · breath · drift · weave.',
-      zh: '一片会呼吸的全屏星海——无数光点漂流、聚拢，自组织为流动的晶格，乐声自星场本身涌出。沌 · 息 · 漂 · 织。',
+      en: 'A full-bleed cosmos that wakes and breathes — countless points drift, cluster and self-organize into a living lattice, its generative lo-fi soundtrack read out from the field itself and turning to a new side as it plays on. Chaos · breath · drift · weave.',
+      zh: '一片会苏醒、会呼吸的全屏星海——无数光点漂流、聚拢，自组织为流动的晶格，生成式 lo-fi 乐声自星场本身涌出，播着播着便翻向新的一面。沌 · 息 · 漂 · 织。',
     },
     cardNeonTitle: {
       en: 'Neon Abyss · 霓虹渊',
       zh: '霓虹渊 · Neon Abyss',
     },
     cardNeonDesc: {
-      en: 'The same cosmos, after dark — the lattice now pulses to a four-on-the-floor, the field lit in neon, every beat strikes the light. The dance-floor twin of the piece above. Kick · build · drop · rise.',
-      zh: '同一片星海，入了夜——晶格随四四鼓机起伏，星场亮成霓虹，每一记鼓点都打在光上。上面那件作品的舞池孪生。鼓 · 升 · 泻 · 起。',
+      en: 'The same cosmos, after dark — the lattice now pulses to a four-on-the-floor trance set that arcs across a whole night, warmup to peak to afterglow, the field lit in neon. The dance-floor twin of the piece above. Kick · build · drop · rise.',
+      zh: '同一片星海，入了夜——晶格随四四鼓机起伏，一整晚的 Trance 长弧从热场铺到高潮再到余韵，星场亮成霓虹。上面那件作品的舞池孪生。鼓 · 升 · 泻 · 起。',
     },
     cardWfoeTitle: {
       en: 'How to open a company in China — entity paths & hiring costs',
