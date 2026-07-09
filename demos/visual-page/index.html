@@ -20,7 +20,7 @@
   <meta name="twitter:description" content="A generative-art data cosmos fusing housing, industrial-software, pharma, and shelter-cat data into a Three.js star field.">
   <meta name="twitter:image" content="https://qrost.github.io/demos/visual-page/assets/og-image.png">
 
-  <link rel="stylesheet" href="style.css?v=e108abe19e" />
+  <link rel="stylesheet" href="style.css?v=cdae35f735" />
 </head>
 <body>
   <div id="scene"></div>
@@ -49,13 +49,48 @@
     </div>
   </div>
 
+  <!-- Parse-time 音频解锁：classic script（不等 ES module 加载）在「Enter」的用户手势同步栈内
+       创建 + 静音解锁 + resume AudioContext，并把它挂到 window.__abyssAudio 供 app.js 晚到时直接
+       复用。彻底消除冷网下"门已可点但 app.js（尤其 three.js 这个 import 大头）还没加载完、那一下
+       确认点击手势被丢弃"的竞态——这个 script 标签本身几乎零体积、瞬间解析执行，不受 import 阻塞。 -->
+  <script>
+    window.__abyssAudio = { ctx: null, entered: false };
+    (function () {
+      var enterBtn = document.getElementById('wg-enter');
+      var gate = document.getElementById('welcome-gate');
+      if (!enterBtn) return;
+      function onEnter() {
+        if (window.__abyssAudio.entered) return;               // 幂等：只处理一次
+        window.__abyssAudio.entered = true;
+        try { if (navigator.audioSession) navigator.audioSession.type = 'playback'; } catch (_) {}   // iOS 17+ 越过静音键
+        try {
+          var AC = window.AudioContext || window.webkitAudioContext;
+          if (AC) {
+            var ctx = new AC();
+            ctx._tries = 0;
+            window.__abyssAudio.ctx = ctx;
+            try {   // 手势同步栈内播一段静音 buffer 打通声道（iOS 要求；与 app.js primeAudioUnlock 同款逻辑）
+              var len = Math.max(1, Math.floor(0.05 * ctx.sampleRate));
+              var b = ctx.createBuffer(1, len, ctx.sampleRate);
+              var s = ctx.createBufferSource(); s.buffer = b; s.connect(ctx.destination); s.start(0);
+            } catch (_) {}
+            if (ctx.resume) { try { ctx.resume(); } catch (_) {} }
+          }
+        } catch (_) {}
+        if (gate) { gate.classList.add('gone'); setTimeout(function () { gate.remove(); }, 1000); }
+        try { window.dispatchEvent(new CustomEvent('abyss-audio-entered')); } catch (_) {}   // 通知 app.js（若已加载完）
+      }
+      enterBtn.addEventListener('click', onEnter, { once: true });
+    })();
+  </script>
+
   <!-- china-housing baked globals (classic scripts run before the module) -->
   <script src="../china-housing/assets/data/listings.js"></script>
   <script src="../china-housing/assets/data/enriched.js"></script>
   <script src="../china-housing/assets/data/hazards.js"></script>
 
-  <!-- 提前并行拉取 three（模块顶部 import 的最大阻塞项）→ 缩短冷网下"门已可点但模块还没加载完、
-       点确认那一下被丢弃"的竞态窗口。非完全消除；彻底解法是把音频解锁原语搬到 parse-time inline script（见后续）。 -->
+  <!-- 提前并行拉取 three（模块顶部 import 的最大阻塞项）→ 缩短冷网下模块加载耗时；音频解锁本身已经不再
+       依赖这条链路（见上方 parse-time inline script），这里只是纯粹的加载优化。 -->
   <link rel="modulepreload" href="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js" crossorigin>
 
   <script type="importmap">
@@ -66,6 +101,6 @@
     }
   }
   </script>
-  <script type="module" src="app.js?v=f177fb9cb2"></script>
+  <script type="module" src="app.js?v=fa5a78f7c9"></script>
 </body>
 </html>

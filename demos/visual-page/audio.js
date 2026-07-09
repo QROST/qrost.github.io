@@ -65,7 +65,12 @@ export class Sonifier {
     this._lastFocusKey = null;
     this.trackEnergy = 0.5; this.lastMelStep = -9;
     this._clHue = null; this._clEnergy = 0;
-    this.debug = { steps: 0, kicks: 0, snares: 0, chords: 0, mels: 0, mods: 0, sig: 0 };
+    this._awake = true; this._wakeAmt = 1; this._pendingDNA = null;           // SOM「觉醒」：fallback 启动=沉睡"未成形"态(_awake=false)，SOM 涌现完成后 updateDNA→乐句边界温柔成形
+    // —— 磁带 A/B 面（lofi 无限电台）：同一片星海、同一 DNA，翻面 = 音乐重新做人。side 折进签名 → "另一首"，仍确定。
+    this._side = 0; this._sig0Original = null; this._warm = 0.5;              // 当前面序号 / 原始涌现签名快照(翻面基准) / 当前 warm
+    this._nextFlipBar = null; this._flipUntil = 0; this._reawakeBar = null;   // 下一次翻面的 bar 阈值 / 停带 SFX 接管 masterLP 的窗口末 / B 面回全觉醒的 bar
+    this._userBusy = false;                                                   // app 报告"用户正在交互/有 focus" → 翻面顺延到下个乐句边界
+    this.debug = { steps: 0, kicks: 0, snares: 0, chords: 0, mels: 0, mods: 0, sig: 0, awaken: 0, flips: 0 };
   }
 
   start(ctx, opts = {}) {
@@ -78,8 +83,66 @@ export class Sonifier {
     const dna = (opts && opts.sig != null) ? opts : null;
     const warmRaw = dna ? dna.warm : opts.climWarm;
     const warm = clamp(warmRaw == null ? 0.5 : warmRaw, 0, 1);
-    this._s = (dna ? (dna.sig >>> 0) : ((Math.round(warm * 1e6) ^ 0x9e3779b9) >>> 0)) | 0;   // 人性化微抖/噪声 PRNG 种子 = 宇宙涌现签名（确定性，非 Math.random）；无 DNA 兜底也从 climWarm 派生（仍来自数据，非随机）
-    this._sig0 = this._s >>> 0;   // 原始涌现签名快照 → _sigMix 用（独立于 _rng 的推进，同宇宙恒定、跨宇宙每次真的变）
+    this._applyDNA(dna, warm);                         // DNA→bpm/swing/prog/groove/motif/mood/timbre 全套推导（觉醒时可整套重跑，见 _applyDNA/updateDNA）
+    this._awake = (dna != null);                       // 有真 DNA=直接成形；fallback(只 climWarm)=沉睡"未成形"态（仅鼓刷+极简 pad），待 SOM 涌现完成后 updateDNA 觉醒
+    this._wakeAmt = this._awake ? 1 : 0;               // 低通/织体开合量（0=闷·极简, 1=全开）；update() 逐帧向 _awake 目标缓入 → 温柔成形
+    this._scheduleNextFlip();                          // 排定 A 面时长（7–10 分钟，由签名导出）→ 到点在乐句边界翻到 B 面
+
+    // ---------- 母带链（暖·干·隔层玻璃）----------
+    const limiter = ctx.createDynamicsCompressor();
+    limiter.threshold.value = -10; limiter.knee.value = 24; limiter.ratio.value = 4; limiter.attack.value = 0.004; limiter.release.value = 0.18;
+    const master = ctx.createGain(); master.gain.value = 0; limiter.connect(master); master.connect(ctx.destination); this.master = master;
+    const sat = ctx.createWaveShaper(); sat.curve = this._satCurve(1.3); sat.oversample = '2x';
+    const masterLP = ctx.createBiquadFilter(); masterLP.type = 'lowpass'; masterLP.frequency.value = 8500; masterLP.Q.value = 0.5;
+    const hiShelf = ctx.createBiquadFilter(); hiShelf.type = 'highshelf'; hiShelf.frequency.value = 3200; hiShelf.gain.value = -6 + (this._sigMix(6) % 45) / 10;   // 每宇宙混音暖度 −6..−1.5（暗钝↔略亮，仍隔层玻璃）
+    sat.connect(masterLP); masterLP.connect(hiShelf); hiShelf.connect(limiter); this.masterLP = masterLP; this.hiShelf = hiShelf;
+    const mix = ctx.createGain(); mix.gain.value = 1; mix.connect(sat); this.mix = mix;
+    const reverb = ctx.createConvolver(); reverb.buffer = this._reverbIR(1.4);
+    const revSend = ctx.createGain(); revSend.gain.value = 0.1; const revRet = ctx.createGain(); revRet.gain.value = 0.8;
+    revSend.connect(reverb); reverb.connect(revRet); revRet.connect(mix); this.revSend = revSend;
+    const wow = ctx.createGain(); wow.gain.value = 4;
+    const lfoA = ctx.createOscillator(); lfoA.type = 'sine'; lfoA.frequency.value = 0.21;
+    const lfoB = ctx.createOscillator(); lfoB.type = 'sine'; lfoB.frequency.value = 0.074; const lfoBg = ctx.createGain(); lfoBg.gain.value = 0.5;
+    lfoA.connect(wow); lfoB.connect(lfoBg); lfoBg.connect(wow); lfoA.start(t); lfoB.start(t); this.wow = wow;
+
+    this.drumBus = ctx.createGain(); this.drumBus.gain.value = 0.9; this.drumBus.connect(mix);
+    this.bassBus = ctx.createGain(); this.bassBus.gain.value = 0.8; this.bassBus.connect(mix);
+    this.melBus = ctx.createGain(); this.melBus.gain.value = 0.5; this._melBaseGain = 0.5;
+    // 微弱空间声像（借鉴 neon leadBus/arpBus 同构，lofi 侧只挑旋律性最强的 1 条：稀疏主旋律 melBus；pad/鼓/贝斯永远居中不动）。
+    // createStereoPanner 不可用 → melPan=null，setSpatial 整体静默跳过，melBus 走原有直连（不改变现有听感）。
+    this.melPan = ctx.createStereoPanner ? ctx.createStereoPanner() : null;
+    if (this.melPan) { this.melBus.connect(this.melPan); this.melPan.connect(mix); this.melPan.connect(revSend); }
+    else { this.melBus.connect(mix); this.melBus.connect(revSend); }
+    this.chordBus = ctx.createGain(); this.chordBus.gain.value = 0.42;
+    this.chordDuck = ctx.createGain(); this.chordDuck.gain.value = 1; this.chordBus.connect(this.chordDuck); this.chordDuck.connect(mix); this.chordBus.connect(revSend);
+    const trem = ctx.createGain(); trem.gain.value = 0.08; const tlfo = ctx.createOscillator(); tlfo.type = 'sine'; tlfo.frequency.value = 4.6; tlfo.connect(trem); trem.connect(this.chordBus.gain); tlfo.start(t);
+
+    this.ambGain = ctx.createGain(); this.ambGain.gain.value = 0.0001; this.ambGain.connect(limiter);
+    this._noise = this._noiseBuf(2.4);
+    const crackle = ctx.createBufferSource(); crackle.buffer = this._noise; crackle.loop = true;
+    const crBP = ctx.createBiquadFilter(); crBP.type = 'bandpass'; crBP.frequency.value = 2400; crBP.Q.value = 0.6;
+    const crG = ctx.createGain(); crG.gain.value = 0.6; crackle.connect(crBP); crBP.connect(crG); crG.connect(this.ambGain); crackle.start(t);
+    const air = ctx.createBufferSource(); air.buffer = this._noise; air.loop = true;
+    const airLP = ctx.createBiquadFilter(); airLP.type = 'lowpass'; airLP.frequency.value = 2600; const airG = ctx.createGain(); airG.gain.value = 0.12;
+    air.connect(airLP); airLP.connect(airG); airG.connect(this.ambGain); air.start(t);
+
+    this.focBus = ctx.createGain(); this.focBus.gain.value = 0.7; this.focBus.connect(mix); this.focBus.connect(revSend);
+    this._rollLoop();   // 初始化首个乐句变化
+    this.master.gain.setTargetAtTime(0.7, t, 1.5);
+    this.nextTime = t + 0.12;
+  }
+
+  // 把这片宇宙的涌现 DNA 折成整套乐曲身份（速度/摇摆/情绪进行/groove/动机轮廓/音色签名）。
+  // 从 start()（首次成形）与 _awaken()（SOM 涌现完成后觉醒重推导）两处调用；只用 _sigMix（与 _rng 状态隔离），
+  // 故可在播放中于乐句边界安全重跑而不扰动人性化 PRNG 流。dna=null → 从 climWarm 兜底派生沉睡态身份（仍数据驱动，非随机）。
+  _applyDNA(dna, warm) {
+    this._warm = warm;   // 记住当前 warm → 翻面用同一 warm 重推导
+    const sigRaw = (dna ? (dna.sig >>> 0) : ((Math.round(warm * 1e6) ^ 0x9e3779b9) >>> 0)) >>> 0;   // 原始涌现签名（同宇宙恒定；无 DNA 兜底从 climWarm 派生，仍来自数据非随机）
+    this._sig0Original = sigRaw;   // 翻面基准：始终 = 当前 DNA 身份的原始签名（start/觉醒建立新身份时刷新；翻面用同一 dna → 幂等一致）
+    // 磁带面：side=0 → A 面原曲（签名不变，与今日行为一致）；side≥1 → 把 side 折进签名 → 同宇宙"另一首"（bpm/进行/groove/motif/音色全变，仍确定）
+    const _side = this._side || 0;
+    this._sig0 = (_side === 0) ? sigRaw : (this._sideMix(sigRaw, _side) >>> 0);   // _sigMix 读 _sig0 → 全套一次性参数随面重生
+    this._s = this._sig0 | 0;   // 人性化 PRNG 也随面重做人（仅在乐句边界重推导，安全；不影响已建的 reverb/noise 缓冲）
     this.dna = dna; this.debug.sig = dna ? (dna.sig >>> 0) : 0;
 
     this.keyRoot = warm < 0.4 ? 45 : warm > 0.7 ? 50 : 48;                          // climWarm → 暖基调（冷/温/暖）
@@ -107,44 +170,21 @@ export class Sonifier {
     this.curKey = this.targetKey = this.sessKey;
     this.curProgIdx = this.targetProgIdx = this.baseProgIdx;
     this.subMidi = this.keyRoot;
+    if (this.hiShelf && this.hiShelf.context === this.ctx) this.hiShelf.gain.setTargetAtTime(-6 + (this._sigMix(6) % 45) / 10, this.ctx.currentTime, 1.4);   // 觉醒时混音暖度随新签名温柔更新（start 期节点尚未建 → 跳过，由建链处赋值；ctx 重建恢复路径上旧 ctx 的残留节点也跳过，建链处会重赋）
+  }
 
-    // ---------- 母带链（暖·干·隔层玻璃）----------
-    const limiter = ctx.createDynamicsCompressor();
-    limiter.threshold.value = -10; limiter.knee.value = 24; limiter.ratio.value = 4; limiter.attack.value = 0.004; limiter.release.value = 0.18;
-    const master = ctx.createGain(); master.gain.value = 0; limiter.connect(master); master.connect(ctx.destination); this.master = master;
-    const sat = ctx.createWaveShaper(); sat.curve = this._satCurve(1.3); sat.oversample = '2x';
-    const masterLP = ctx.createBiquadFilter(); masterLP.type = 'lowpass'; masterLP.frequency.value = 8500; masterLP.Q.value = 0.5;
-    const hiShelf = ctx.createBiquadFilter(); hiShelf.type = 'highshelf'; hiShelf.frequency.value = 3200; hiShelf.gain.value = -6 + (this._sigMix(6) % 45) / 10;   // 每宇宙混音暖度 −6..−1.5（暗钝↔略亮，仍隔层玻璃）
-    sat.connect(masterLP); masterLP.connect(hiShelf); hiShelf.connect(limiter); this.masterLP = masterLP;
-    const mix = ctx.createGain(); mix.gain.value = 1; mix.connect(sat); this.mix = mix;
-    const reverb = ctx.createConvolver(); reverb.buffer = this._reverbIR(1.4);
-    const revSend = ctx.createGain(); revSend.gain.value = 0.1; const revRet = ctx.createGain(); revRet.gain.value = 0.8;
-    revSend.connect(reverb); reverb.connect(revRet); revRet.connect(mix); this.revSend = revSend;
-    const wow = ctx.createGain(); wow.gain.value = 4;
-    const lfoA = ctx.createOscillator(); lfoA.type = 'sine'; lfoA.frequency.value = 0.21;
-    const lfoB = ctx.createOscillator(); lfoB.type = 'sine'; lfoB.frequency.value = 0.074; const lfoBg = ctx.createGain(); lfoBg.gain.value = 0.5;
-    lfoA.connect(wow); lfoB.connect(lfoBg); lfoBg.connect(wow); lfoA.start(t); lfoB.start(t); this.wow = wow;
+  // app.js 在 SOM 涌现完成后调用：若音乐仍以 fallback 沉睡态在播放，则登记"待觉醒"，在下一 4-bar 乐句边界整套重推导 DNA。
+  // 幂等且安全：未播放 / 已是真 DNA（非 fallback） / 无有效 DNA → no-op。真正的重推导与低通开启在 _onBar 的边界处发生。
+  updateDNA(dna) {
+    if (!this.started || this.dna || !dna || dna.sig == null) return;   // 只在"播放中 + 当前为 fallback + 有真 DNA"时觉醒
+    this._pendingDNA = dna;
+  }
 
-    this.drumBus = ctx.createGain(); this.drumBus.gain.value = 0.9; this.drumBus.connect(mix);
-    this.bassBus = ctx.createGain(); this.bassBus.gain.value = 0.8; this.bassBus.connect(mix);
-    this.melBus = ctx.createGain(); this.melBus.gain.value = 0.5; this.melBus.connect(mix); this.melBus.connect(revSend);
-    this.chordBus = ctx.createGain(); this.chordBus.gain.value = 0.42;
-    this.chordDuck = ctx.createGain(); this.chordDuck.gain.value = 1; this.chordBus.connect(this.chordDuck); this.chordDuck.connect(mix); this.chordBus.connect(revSend);
-    const trem = ctx.createGain(); trem.gain.value = 0.08; const tlfo = ctx.createOscillator(); tlfo.type = 'sine'; tlfo.frequency.value = 4.6; tlfo.connect(trem); trem.connect(this.chordBus.gain); tlfo.start(t);
-
-    this.ambGain = ctx.createGain(); this.ambGain.gain.value = 0.0001; this.ambGain.connect(limiter);
-    this._noise = this._noiseBuf(2.4);
-    const crackle = ctx.createBufferSource(); crackle.buffer = this._noise; crackle.loop = true;
-    const crBP = ctx.createBiquadFilter(); crBP.type = 'bandpass'; crBP.frequency.value = 2400; crBP.Q.value = 0.6;
-    const crG = ctx.createGain(); crG.gain.value = 0.6; crackle.connect(crBP); crBP.connect(crG); crG.connect(this.ambGain); crackle.start(t);
-    const air = ctx.createBufferSource(); air.buffer = this._noise; air.loop = true;
-    const airLP = ctx.createBiquadFilter(); airLP.type = 'lowpass'; airLP.frequency.value = 2600; const airG = ctx.createGain(); airG.gain.value = 0.12;
-    air.connect(airLP); airLP.connect(airG); airG.connect(this.ambGain); air.start(t);
-
-    this.focBus = ctx.createGain(); this.focBus.gain.value = 0.7; this.focBus.connect(mix); this.focBus.connect(revSend);
-    this._rollLoop();   // 初始化首个乐句变化
-    this.master.gain.setTargetAtTime(0.7, t, 1.5);
-    this.nextTime = t + 0.12;
+  // 乐句边界处的"觉醒"：整套 DNA 重推导 + 翻起 _awake → update() 逐帧把低通/织体从沉睡态温柔开启（无 riser，靠低通开合 + comp 层/旋律声部醒来）。
+  _awaken(dna) {
+    const warm = clamp(dna.warm == null ? 0.5 : dna.warm, 0, 1);
+    this._applyDNA(dna, warm);
+    this._awake = true; this.debug.awaken++;
   }
 
   update(s) {
@@ -164,28 +204,84 @@ export class Sonifier {
     }
     this._clEnergy += (clE - this._clEnergy) * sm;
     this._yaw = s.yaw || 0;
-    this.masterLP.frequency.setTargetAtTime(7600 + pitchN * 2400 + pulse * 1200, t, 0.3);
+    this._wakeAmt += ((this._awake ? 1 : 0) - this._wakeAmt) * clamp((s.dt || 0.016) / 2.6, 0, 1);   // 觉醒缓入：时间常数 ~2.6s，无 riser（沉睡→成形靠低通温柔开启 + 织体加厚，见 _scheduleStep）
+    const lpBase = 7600 + pitchN * 2400 + pulse * 1200, lpFloor = 1800;                              // lpFloor=沉睡态闷住的低通（暗、"未成形"，鼓刷+pad 仍透气但钝）；_wakeAmt=1 时回到原觉醒态基线
+    if (!this._flipUntil || t >= this._flipUntil) this.masterLP.frequency.setTargetAtTime(lpFloor + this._wakeAmt * (lpBase - lpFloor), t, 0.3);   // 翻面停带 SFX 期间由急闭低通接管 masterLP，不与逐帧写冲突
     this.revSend.gain.setTargetAtTime(0.07 + fovN * 0.1, t, 0.3);
     this.master.gain.setTargetAtTime(0.7 + pulse * 0.1, t, 0.25);
     this.ambGain.gain.setTargetAtTime(0.02 + pulse * 0.02, t, 0.3);
     this._focus(s.focus, t);
-    const stepDur = (60 / this.bpm) / 4;
     while (this.nextTime < t + this.lookahead) {
+      const stepDur = (60 / this.bpm) / 4;   // 逐 step 读 this.bpm → 觉醒在乐句边界改 bpm 后下一 step 立即以新速度 spacing（nextTime 单调推进，无双触发）
       this._scheduleStep(this.nextTime, stepDur);
       this.nextTime += stepDur; this.step++; this.debug.steps++;
-      if (this.step % 16 === 0) this._onBar();
+      if (this.step % 16 === 0) this._onBar(this.nextTime);   // 传下一 downbeat 时刻 → 翻面 SFX 精确对齐乐句边界
     }
   }
 
-  _onBar() {
+  _onBar(barT) {
     this.bar++;
+    if (this._pendingDNA && this.bar % 4 === 0) { this._awaken(this._pendingDNA); this._pendingDNA = null; }   // SOM 涌现完成 → 在 4-bar 乐句边界整套重推导并觉醒（先于本 bar 的转调/换进行，让新身份即刻生效）
+    if (this._reawakeBar != null && this.bar >= this._reawakeBar) { this._awake = true; this._reawakeBar = null; }   // 翻面后 B 面温柔展开数小节 → 回全觉醒
     if (this.bar % 2 === 0) { const k = (this.bar * 5) % this.motif.length; this.motif[k] = clamp(this.motif[k] + (this._rng() < 0.5 ? 1 : -1), 0, 5); }   // 动机变异
-    if (this.bar % 4 === 0) {                                  // 乐句边界：平滑转调（走向）+ 换进行 + 重掷变化
+    if (this.bar % 4 === 0) {                                  // 乐句边界：磁带翻面 + 平滑转调（走向）+ 换进行 + 重掷变化
+      // 磁带翻面（每面 7–10 分钟）：到点 + 已觉醒 + 无待觉醒 + 用户不忙 → 翻面；否则顺延到下个乐句边界（同一盘磁带，不重建宇宙）
+      if (this._nextFlipBar != null && this.bar >= this._nextFlipBar && this._awake && !this._pendingDNA && !this._userBusy) {
+        this._flipSide(barT != null ? barT : this.ctx.currentTime);
+      }
       if (this.curKey !== this.targetKey) { this.curKey += clamp(this.targetKey - this.curKey, -2, 2); this.debug.mods++; }   // ≤2 半音/乐句 → 像有意的 key change
       this.curProgIdx = this.targetProgIdx;
       this._rollLoop();
     }
   }
+
+  // 排定下一次翻面的 bar 阈值：每面 7–10 分钟，由签名(+side) 导出 → 确定且逐面不同。1 小节 = 240/bpm 秒。
+  _scheduleNextFlip() {
+    const mins = 7 + (this._sigMix(41 + (this._side & 7)) % 301) / 100;   // 7.00–10.00 分钟/面
+    const bpm = this.bpm || 76;
+    const bars = Math.max(16, Math.round(mins * bpm / 4));                 // bars = 分钟·60·bpm/240 = 分钟·bpm/4
+    this._nextFlipBar = this.bar + bars;
+  }
+
+  // 磁带翻面：同一片星海、同一 DNA，音乐重新做人（side++ 折进签名 → 另一首，仍确定）。只从 _onBar 乐句边界调用。
+  _flipSide(t) {
+    this._side++; this.debug.flips++;
+    this._applyDNA(this.dna, this._warm);              // 用同一 DNA + 新 side 整套重推导（bpm/进行/groove/motif/情绪/音色）
+    this._lastFocusKey = null;                          // 让 focus 走向翻面后重新适用
+    this._scheduleNextFlip();                           // 排下一面时长（由新 side 的签名导出 → 逐面不同）
+    this._flipSfx(t);                                   // 磁带停带 SFX（合成，不引资源文件）
+    this._awake = false; this._wakeAmt = 0.12;          // B 面沉睡→觉醒式温柔展开（借用低通开合，无 riser）
+    this._reawakeBar = this.bar + 2;                    // ~2 小节后回全觉醒
+    if (typeof window !== 'undefined' && window.dispatchEvent) {   // 通知视觉层做一次缓慢色相/曝光漂移（node/无 DOM 环境安全跳过）
+      try { window.dispatchEvent(new CustomEvent('abyss-tapeflip', { detail: { side: this._side } })); } catch (_) {}
+    }
+  }
+
+  // 磁带停带 SFX（~2.5s，全合成、不引资源）：主总线急闭低通 + 音乐渐隐 + 下坠 groan → 半秒黑胶噪爆 → 交还 masterLP 给 update() 温柔重开。
+  _flipSfx(t) {
+    const ctx = this.ctx, mix = this.mix, lp = this.masterLP;
+    const T_STOP = 1.0, T_NOISE = 0.5;
+    // A) 音乐总线渐隐 + 主低通急闭（停带的闷）
+    mix.gain.cancelScheduledValues(t); mix.gain.setValueAtTime(mix.gain.value, t); mix.gain.linearRampToValueAtTime(0.12, t + T_STOP);
+    lp.frequency.cancelScheduledValues(t); lp.frequency.setValueAtTime(Math.max(lp.frequency.value, 400), t); lp.frequency.exponentialRampToValueAtTime(300, t + T_STOP);
+    // B) pitch 下坠 groan（saw 210→46Hz，模拟停带下坠）
+    const o = ctx.createOscillator(); o.type = 'sawtooth'; o.frequency.setValueAtTime(210, t); o.frequency.exponentialRampToValueAtTime(46, t + T_STOP);
+    const ol = ctx.createBiquadFilter(); ol.type = 'lowpass'; ol.frequency.setValueAtTime(1400, t); ol.frequency.exponentialRampToValueAtTime(240, t + T_STOP);
+    const og = ctx.createGain(); og.gain.setValueAtTime(0.0001, t); og.gain.linearRampToValueAtTime(0.16, t + 0.05); og.gain.setTargetAtTime(0.0001, t + T_STOP * 0.55, 0.28);
+    o.connect(ol); ol.connect(og); og.connect(mix); o.start(t); o.stop(t + T_STOP + 0.2);
+    // C) 黑胶噪爆（复用 _noise 源）
+    const nt = t + T_STOP;
+    const n = ctx.createBufferSource(); n.buffer = this._noise; n.loop = true;
+    const nbp = ctx.createBiquadFilter(); nbp.type = 'bandpass'; nbp.frequency.value = 1800; nbp.Q.value = 0.5;
+    const ng = ctx.createGain(); ng.gain.setValueAtTime(0.0001, nt); ng.gain.linearRampToValueAtTime(0.5, nt + 0.04); ng.gain.setTargetAtTime(0.0001, nt + 0.12, 0.16);
+    n.connect(nbp); nbp.connect(ng); ng.connect(mix); n.start(nt); n.stop(nt + T_NOISE + 0.2);
+    // D) B 面展开：恢复总线增益；masterLP 在窗口后交还 update()（沉睡→觉醒缓入低通）
+    mix.gain.setTargetAtTime(1, nt + T_NOISE * 0.4, 0.5);
+    this._flipUntil = t + T_STOP + T_NOISE + 0.1;   // 此窗口内 update() 不写 masterLP（交给停带急闭，避免逐帧写冲突）
+  }
+
+  // app.js 在 focus/拖动等交互时置位 → 翻面顺延到下个乐句边界（避免打断用户正在关注的乐句）。
+  setUserBusy(b) { this._userBusy = !!b; }
 
   _rollLoop() {   // 每 4 小节重掷"小变化" → 没有两段完全一样
     this.lv = {
@@ -206,44 +302,49 @@ export class Sonifier {
     const ch = this._chord();
     const intro = bar < 1;                                     // 开场 1 小节：仅和弦+噪底
     const drop = !intro && (bar % 16) < 2 && bar >= 4;         // 每 16 小节前 2 小节 breakdown（鼓 drop，和弦/旋律漂浮）
+    const awake = this._awake;                                 // 沉睡态（SOM 未涌现完成、fallback 启动）= 只有鼓刷 + 极简 pad 的"未成形"；觉醒 → kick/贝斯/comp 层/旋律声部醒来（织体加厚）
 
-    // —— 鼓 ——（intro/drop 不打鼓，留 hats 轻点）
-    if (!intro && !drop) {
+    // —— 鼓 ——（intro/drop 不打鼓，留 hats 轻点；沉睡态也只留 hats 当"鼓刷"，kick/军鼓/fill 待觉醒）
+    if (!intro && !drop && awake) {
       if (gr.kick.indexOf(step) >= 0) this._kick(t, 0.88 + this._rng() * 0.1);
       if (gr.snare.indexOf(step) >= 0) this._snare(t, 0.6 + this._rng() * 0.1);
       if ((bar & 7) === 7 && (step === 13 || step === 14 || step === 15)) this._snare(t, 0.34 + this._rng() * 0.12);   // 8 小节末 fill
     }
     if (!intro && (step % 2 === 0 || (lv.ghostHat && ex > 0.4 && step % 2 === 1))) {
       const vel = (step % 4 === 0 ? 0.5 : 0.32) * (step % 2 === 1 ? 0.55 : 1) * (drop ? 0.6 : 1);
-      this._hat(t, vel * (0.8 + this._rng() * 0.3), step === 14);
+      this._hat(t, vel * (0.8 + this._rng() * 0.3) * (awake ? 1 : 0.62), step === 14);   // 沉睡态压低 = 轻柔"鼓刷"
     }
-    if (!intro && !drop && lv.hatRoll && step === 15) { for (let r = 0; r < 3; r++) this._hat(t + r * stepDur / 3, 0.22 + r * 0.04, false); }   // triplet roll fill
+    if (!intro && !drop && awake && lv.hatRoll && step === 15) { for (let r = 0; r < 3; r++) this._hat(t + r * stepDur / 3, 0.22 + r * 0.04, false); }   // triplet roll fill
 
-    // —— 贝斯 ——（drop 时保留 → 撑住）
-    if (!intro) {
+    // —— 贝斯 ——（drop 时保留 → 撑住；沉睡态无贝斯 → 待觉醒撑起低频）
+    if (!intro && awake) {
       if (step === gr.kick[0] || step === 10) this._bass(t, mtof(key + ch.r - 12), stepDur * 5, 0.85);
       else if (step === 6 && ex > 0.4) this._bass(t, mtof(key + ch.r - 12 + 7), stepDur * 2, 0.5);
       else if (lv.walk && step === 14) this._bass(t, mtof(key + ch.r - 12 + 5), stepDur * 2, 0.42);   // walking 过渡音（4音过渡向下一和弦）
     }
 
-    // —— 和弦 ——（intro/drop 也弹 → 漂浮感）
-    if (step === 0) this._strikeChord(t, ch, stepDur * 14, intro || drop ? 0.42 : 0.5);
-    else if (lv.compA && step === 6 && ex > 0.35) this._strikeChord(t, ch, stepDur * 2.4, 0.22, true);
-    else if (lv.compB && step === 11 && ex > 0.45) this._strikeChord(t, ch, stepDur * 2.2, 0.18, true);
+    // —— 和弦 ——（intro/drop 也弹 → 漂浮感；沉睡态只留 step0 的极简 pad 且压低，comp 层待觉醒进来加厚织体）
+    if (step === 0) this._strikeChord(t, ch, stepDur * 14, (intro || drop ? 0.42 : 0.5) * (awake ? 1 : 0.62));
+    else if (awake && lv.compA && step === 6 && ex > 0.35) this._strikeChord(t, ch, stepDur * 2.4, 0.22, true);
+    else if (awake && lv.compB && step === 11 && ex > 0.45) this._strikeChord(t, ch, stepDur * 2.2, 0.18, true);
 
-    // —— 旋律 —— 极稀疏、只落和弦音；落音颜色=主导可见簇色相、密度=该簇能量+focus能量+呼吸（你看着哪片自组织→听见它）+ call-response/八度 ——
+    // —— 旋律 —— 极稀疏、只落和弦音；落音颜色=主导可见簇色相、密度=该簇能量+focus能量+呼吸（你看着哪片自组织→听见它）+ call-response/八度 ——（沉睡态旋律声部尚未醒来）
     const colorN = (this._clHue != null) ? this._clHue : this._toneAvg;   // 主导可见 SOM 簇色相（无则退回整体视野色相）
     const liveE = Math.max(this.trackEnergy, this._clEnergy || 0);
     const melHit = (step === 0 || step === 4 || step === 6 || step === 10 || step === 14);
     const melGate = (ex * 0.42 + liveE * 0.28 + (lv.melBusy ? 0.1 : 0));
-    if (!intro && melHit && this._rng() < melGate && (bar & 1) === 0) {
+    if (awake && !intro && melHit && this._rng() < melGate && (bar & 1) === 0) {
       const tones = CHORD[ch.c];
-      const ti = (Math.round(colorN * (tones.length - 1)) + (this.motif[this.motifPos % this.motif.length] % tones.length)) % tones.length;
+      let ti = (Math.round(colorN * (tones.length - 1)) + (this.motif[this.motifPos % this.motif.length] % tones.length)) % tones.length;
       this.motifPos++;
       const oct = 12 * (this._rng() < (0.2 + liveE * 0.2) ? 2 : 1);
+      // 撞车避让（harmony pass，2026-07-09）：oct=2 时若该 tone 与和弦内某音正好差 11 半音，
+      // 二者的实际发声寄存器（tone+24 对 tone'+12）就贴到一个大七/小九度上（maj7 顶音 vs 高八度根音、
+      // min9 的 9th vs 高八度 b3）——让位到五度(7)，全部 CHORD 类型都含 7，永不新撞。
+      if (oct === 24 && tones.some((tj) => tj - tones[ti] === 11)) ti = tones.indexOf(7);
       this._mel(t, mtof(key + ch.r + tones[ti] + oct), stepDur * 3, 0.3, clamp(Math.sin(this._yaw) * 0.4, -0.5, 0.5), dom);
       this.lastMelStep = this.step;
-    } else if (!intro && !drop && (step === 7 || step === 11) && this.step - this.lastMelStep <= 4 && this._rng() < 0.4 * liveE + 0.15) {
+    } else if (awake && !intro && !drop && (step === 7 || step === 11) && this.step - this.lastMelStep <= 4 && this._rng() < 0.4 * liveE + 0.15) {
       const tones = CHORD[ch.c], ti = (this._rng() * tones.length) | 0;   // call-response 答句
       this._mel(t, mtof(key + ch.r + tones[ti] + 12), stepDur * 2, 0.22, clamp(-Math.sin(this._yaw) * 0.4, -0.5, 0.5), dom);
     }
@@ -308,8 +409,21 @@ export class Sonifier {
     const hueShift = (focus.tone > 0.66 ? 2 : focus.tone < 0.33 ? -2 : 0);   // 色相 → 额外微移调
     this.targetKey = clamp(this.sessKey + tr.key + hueShift, this.sessKey - 9, this.sessKey + 9);
     this.targetProgIdx = tr.prog; this.trackEnergy = tr.energy;
-    const ch = this._chord(), tones = CHORD[ch.c], ti = Math.round((focus.tone || 0.5) * (tones.length - 1));
+    const ch = this._chord(), tones = CHORD[ch.c];
+    let ti = Math.round((focus.tone || 0.5) * (tones.length - 1));
+    if (tones.some((tj) => tj - tones[ti] === 11)) ti = tones.indexOf(7);   // 同一撞车避让（focus 一次性电钢也落在 +24 register）
     this._epiano(t, mtof(this.curKey + 24 + ch.r + tones[ti]), 1.4, 0.32, this.focBus, 1, 2.2, 1.0);
+  }
+
+  // 微弱空间声像：app.js 每 ~250ms 传"主导可见 SOM 簇"质心投影 NDC x（-1..1，含陀螺导航路径同源） + closeness(0..1)。
+  // x → melBus 常量声像（上限 ±0.25，与既有逐音符 yaw 宽度叠加不冲突）；closeness → 仅该声部 ≤+1.5dB 等效增益偏置。
+  // x/closeness 缺省 (0,0) = 居中无偏置。melPan 为 null（无 StereoPannerNode 支持）或未 start() → no-op。
+  setSpatial(x, closeness) {
+    if (!this.melPan || !this.started) return;
+    const t = this.ctx.currentTime;
+    this.melPan.pan.setTargetAtTime(clamp(x || 0, -1, 1) * 0.25, t, 0.3);
+    const g = this._melBaseGain * (1 + clamp(closeness || 0, 0, 1) * 0.1885);   // 10^(1.5/20)≈1.1885 → ≤+1.5dB
+    this.melBus.gain.setTargetAtTime(g, t, 0.3);
   }
 
   setMuted(b) { this.muted = b; if (this.master) this.master.gain.setTargetAtTime(b ? 0.0001 : 0.7, this.ctx.currentTime, 0.25); }
@@ -323,4 +437,6 @@ export class Sonifier {
   // 涌现签名的雪崩混合：sig(整张密度场指纹) + salt → 均匀散开的确定性整数。用于"每宇宙一次性"参数(速度/进行/groove/动机)，
   // 与 _rng 状态完全隔离（不推进 _s）→ 同宇宙恒定、同宇宙同曲，跨宇宙每次真的不同。（借鉴 neon-abyss audio-club.js）
   _sigMix(salt) { let x = ((this._sig0 || 0) ^ Math.imul((salt | 0) + 1, 0x9e3779b9)) | 0; x = Math.imul(x ^ (x >>> 16), 0x7feb352d); x = Math.imul(x ^ (x >>> 15), 0x846ca68b); x ^= x >>> 16; return x >>> 0; }
+  // 磁带面混合：原始签名 + side → 均匀散开的新签名（side 0 由 _applyDNA 保持原曲，side≥1 各成"另一首"，仍确定）。与 _sig0 快照解耦，不推进 _rng。
+  _sideMix(baseSig, side) { let x = ((baseSig >>> 0) ^ Math.imul((side | 0) + 1, 0x85ebca6b)) | 0; x = Math.imul(x ^ (x >>> 16), 0x7feb352d); x = Math.imul(x ^ (x >>> 15), 0x846ca68b); x ^= x >>> 16; return x >>> 0; }
 }

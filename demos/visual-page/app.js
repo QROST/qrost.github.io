@@ -14,7 +14,7 @@ import * as THREE from 'three';
 import {
   applyUi, registerPanelNode, renderCardHtml, sensorBtnLabel, setLang, isZh,
 } from './i18n.js?v=be92743a4a';
-import { Sonifier } from './audio.js?v=a7b31eda60';   // 生成式数据音乐引擎（zero-dep Web Audio）
+import { Sonifier } from './audio.js?v=35e535d2e0';   // 生成式数据音乐引擎（zero-dep Web Audio）
 
 const sonifier = new Sonifier();   // 由「Motion & sound」按钮在用户手势内 start()
 
@@ -735,10 +735,10 @@ let visArr = null, cwArr = null, trOff = null;   // 视锥剔除 + 每实体到�
 let gOrg = 0, breathT = 0, bPhase = null, bRate = null;   // 全局呼吸量(供晶格) + 相位累加器；bPhase/bRate=每实体(按 cluster)的呼吸相位偏移与速率 → 错峰 + 各异速
 let somReady = false, bAmp = 0, bProg = 0;   // SOM 就绪前 bAmp=0（纯重叠混沌、不呼吸不展开）；就绪后从 0 平滑 ramp 到 1 → 随机运动态与神经地图态连续衔接（无瞬变跳位）。bProg=线性进度，bAmp=其 smootherstep 缓动（首尾更柔）
 const BREATH_RAMP = 12;           // bAmp 0→1 的 ramp 时长(秒)：SOM 完成后呼气展开的揭示节奏。3.5→12 + ease，让展开慢慢来、更平缓
-let audioCtx = null, audioTone = null, _aggTick = 0;   // 音乐：用户手势内创建的 AudioContext；每星音高种子(色相 0..1)；视野聚合节流计数
+let audioCtx = null, audioTone = null, _aggTick = 0, _spatialTick = 0;   // 音乐：用户手势内创建的 AudioContext；每星音高种子(色相 0..1)；视野聚合/空间声像节流计数
 let musicDNA = null;                                    // 这片宇宙的涌现态→乐曲身份（buildSOM 后算；替代随机种子，每次开页 SOM 不同→DNA 不同→曲不同）
 let clusterOf = null, clusterHue = null, clusterEnergy = null, somM = 0, clusterVote = null;   // 每实体所属 SOM 簇 + 每簇色相/能量 + 簇数 + 视野投票（主导可见簇→实时旋律色）
-const viewAgg = { n: 0, dom: 0, toneAvg: 0.5, szAvg: 0.3, clHue: 0.5, clEnergy: 0.3, counts: new Int32Array(8) };   // 视野内实体聚合 → 喂给音乐引擎（gaze + 主导可见簇 决定听到什么）
+const viewAgg = { n: 0, dom: 0, toneAvg: 0.5, szAvg: 0.3, clHue: 0.5, clEnergy: 0.3, vcl: -1, counts: new Int32Array(8) };   // 视野内实体聚合 → 喂给音乐引擎（gaze + 主导可见簇 决定听到什么）；vcl=主导可见 SOM 簇 id → 空间声像质心用
 // ---------- 几何体形库：常规多面体 + 特殊数学三维体（每个含棱线 edges + 轨迹发射点 corners）----------
 const SHAPES = (() => {
   const edgesOf = (geo) => Array.from(new THREE.EdgesGeometry(geo, 1).attributes.position.array);   // 只取真实特征棱
@@ -1505,15 +1505,19 @@ document.addEventListener('visibilitychange', () => {
   if (audioCtx && (audioCtx.state === 'suspended' || audioCtx.state === 'interrupted')) { try { audioCtx.resume(); } catch (_) {} }
 });
 
-// 欢迎门：点「Enter」的同步手势内解锁音频 + 起声 + 关门。这一下点击就是移动端 Autoplay Policy 要求的 user gesture，
-// 所以音频在用户确认进入的瞬间就开始播放（无需再额外点屏幕）。
-const welcomeGate = document.getElementById('welcome-gate');
-const wgEnter = document.getElementById('wg-enter');
-if (wgEnter) {
-  wgEnter.addEventListener('click', () => {
-    kickAudio();                                          // 手势同步栈内：解锁 + 起声（与首屏点屏幕等价）
-    if (welcomeGate) { welcomeGate.classList.add('gone'); setTimeout(() => welcomeGate.remove(), 1000); }
-  }, { once: true });
+// 欢迎门：AudioContext 的创建/静音解锁/resume + 关门本身已经交给 index.html 里 #welcome-gate 标记后的
+// parse-time inline classic script（window.__abyssAudio）统一处理——它在「Enter」点击的用户手势同步栈内
+// 立刻执行，不等这个 ES module（含 three.js 等 import）加载完，从根源消灭"门已可点但模块还没跑完、
+// 那一下确认点击手势被丢弃"的竞态。这里只需要接手：把已创建好的 ctx 接进 sonifier。
+function adoptEarlyAudio() {
+  const early = window.__abyssAudio;
+  if (early && early.ctx) audioCtx = early.ctx;           // 复用 inline script 手势内建好/已 resume 的 ctx，不重复 new AudioContext
+  kickAudio();                                             // 幂等：ensureCtx 命中已有 ctx → primeAudioUnlock/resume 均为 no-op → sonifier.start
+}
+if (window.__abyssAudio && window.__abyssAudio.entered) {
+  adoptEarlyAudio();                                       // 模块晚到：门早就被点过、甚至已经关了 → 直接进入后续流程
+} else {
+  addEventListener('abyss-audio-entered', adoptEarlyAudio, { once: true });   // 模块先到：等 inline script 的点击通知
 }
 
 
@@ -1615,6 +1619,7 @@ function openInspector(i) {
     `<div class="ins-eq"><div class="ins-eqh">${A.n}<span class="ins-sys"> · sys ${s}</span>${dv ? ` · <b>${dv}</b> = ${prm[i].toFixed(2)}` : ''}</div>${odeHtml}</div>` +
     `<div class="ins-state">x <i data-l="x">·</i> y <i data-l="y">·</i> z <i data-l="z">·</i> <span class="ins-dt">Δt <i data-l="h">·</i></span></div>` +
     `<div class="ins-rows">${rows}</div>` +
+    `<div class="ins-np"><span class="np-lab">${zh ? '正在播放' : 'now playing'}</span>${_narr.nowPlaying(m, i, zh)}</div>` +   // 一行「正在播放」诗句：数据行是冷的，这一句是暖的（梦呓气质，非工程语；同一颗星保持同句）
     `<div class="ins-meta"><span class="ins-name">${nm}</span></div>`;   // id 隐藏（多为名称 slug 的重述，冗余）；脚注仅留极淡名字
   card.classList.remove('hidden');
   _ins = { i, x: card.querySelector('[data-l=x]'), y: card.querySelector('[data-l=y]'), z: card.querySelector('[data-l=z]'), h: card.querySelector('[data-l=h]') };
@@ -1719,15 +1724,176 @@ function computeViewAgg() {
     viewAgg.dom = dom; viewAgg.toneAvg = tone / n; viewAgg.szAvg = sz / n;
     if (vote && clusterHue) {   // 主导可见簇(真实 SOM 神经元) → 其色相/能量 = 你正看着哪片自组织 → 实时旋律色/密度
       let vcl = 0, vmax = -1; for (let m = 0; m < somM; m++) if (vote[m] > vmax) { vmax = vote[m]; vcl = m; }
-      if (vmax > 0) { viewAgg.clHue = clusterHue[vcl]; viewAgg.clEnergy = clusterEnergy[vcl]; }
+      if (vmax > 0) { viewAgg.clHue = clusterHue[vcl]; viewAgg.clEnergy = clusterEnergy[vcl]; viewAgg.vcl = vcl; }
     }
   }
   viewAgg.n = n;   // n==0 时保留上一帧 dom/tone/簇（避免视野扫空时乱跳）
 }
 
+// 微弱空间声像：~250ms 节流（animate() 内每 15 帧调一次），取"主导可见 SOM 簇"(viewAgg.vcl，由 computeViewAgg 算好) 质心投影 NDC x
+// + 该簇平均相机距离(closeness) → 喂 sonifier.setSpatial(x, closeness)。复用已算好的 _vp/cwArr（视锥剔除同一份数据），零新分配（局部标量累加）。
+// 陀螺导航：yaw/pitch 经 applyLook → camera 矩阵 → _vp 同一条流水线，无需为陀螺路径单独处理，天然生效。
+// 簇数据不可用（未建 SOM / 视野扫空 / 本簇当前无可见成员）→ (0,0) 居中无偏置。
+function computeSpatialCue() {
+  if (!N || !visArr || !clusterOf || !posArr || !cwArr || viewAgg.vcl < 0 || !viewAgg.n) { sonifier.setSpatial(0, 0); return; }
+  const vcl = viewAgg.vcl, m = _vp.elements;
+  let sumX = 0, sumCw = 0, cnt = 0;
+  for (let i = 0; i < N; i++) {
+    if (!visArr[i] || clusterOf[i] !== vcl) continue;
+    const o = i * 3, cw = cwArr[i];
+    sumX += (m[0] * posArr[o] + m[4] * posArr[o + 1] + m[8] * posArr[o + 2] + m[12]) / cw;
+    sumCw += cw; cnt++;
+  }
+  if (!cnt) { sonifier.setSpatial(0, 0); return; }
+  const closeness = clamp(1 - (sumCw / cnt) / 150, 0, 1);   // 150 ≈ 初始机位到原点距离（camera.position (0,44,150)）→ 越贴近镜头越"贴耳"
+  sonifier.setSpatial(clamp(sumX / cnt, -1, 1), closeness);
+}
+
 // ---------- loop ----------
 const clock = new THREE.Clock();
 let pulse = 0, tElapsed = 0, spinTime = 0, frameCount = 0;
+// 磁带翻面视觉挂钩：audio.js 翻到 B/C… 面时派发 abyss-tapeflip → 做一次缓慢的色相/曝光漂移（微弱、几秒内回落，绝不重建/丢弃任何几何或材质）。
+let _flipDrift = 0, _flipHueDir = 0;   // 漂移包络 0..1（衰减回 0 即恢复原色）/ 逐面交替的漂移方向（纯视觉，可用 Math.random 但这里由 side 奇偶决定，稳定可复现）
+addEventListener('abyss-tapeflip', (e) => { _flipDrift = 1; _flipHueDir = (((e.detail && e.detail.side) || 0) % 2 === 0) ? 1 : -1; _narr.fire('flip', tElapsed); });   // 翻面=天然低语时刻：从「翻面」主题组固定取一句梦呓（节流内部处理）
+
+// ============================================================================
+// 数据叙事低语（lofi 版）——focus 卡的「正在播放」诗句 + 翻面/环境时刻的漂浮低语。
+// 纯 UI 瞬时层：只读数据(D.meta)与状态(sonifier.started/tElapsed)，绝不触碰音乐参数；
+// 一切选择用 Math.random（瞬时层，与音乐确定性无关）。气质=梦呓：句短、气轻、声静；
+// 禁工程词汇，只用真实数据事实（城市数/猫数/公司数/真实名字）与感官词。zh/en 各自独立成句。
+// ============================================================================
+const _narr = (() => {
+  // ---- 「正在播放」诗句：按实体类别分桶，{name}=当前聚焦星的真实名字 ----
+  const NP_BUCKET = { CITY: 'place', SHELTER: 'place', VENDOR: 'company', PHARMA: 'company', KERNEL: 'code', PRODUCT: 'code', BREAKTHROUGH: 'code', POLICY: 'code', CAT: 'cat' };
+  const NP = {
+    place: [
+      { zh: '这一小节的慢，是 {name} 的冬天教的', en: 'this slow bar — {name} taught it, one winter' },
+      { zh: '{name} 也在听。灯还亮着，没人说话', en: '{name} is listening too. a light left on, no one talking' },
+      { zh: '星海把 {name} 搁在这里，让它慢慢发亮', en: 'the sea of stars keeps {name} here, glowing slowly' },
+    ],
+    company: [
+      { zh: '{name}，一间还醒着的公司，替这段旋律撑着灯', en: '{name} — an office still awake, holding a light for this melody' },
+      { zh: '很远的地方，{name} 也跟着这拍子呼吸', en: 'somewhere far, {name} breathes along with this beat' },
+      { zh: '这段和弦里，藏着 {name} 没说完的一天', en: 'in this chord hides the unfinished day of {name}' },
+    ],
+    code: [
+      { zh: '{name}，一行没人念出声的字，也在发亮', en: '{name} — a line no one reads aloud, glowing all the same' },
+      { zh: '这段安静，是 {name} 留下的空白', en: 'this quiet is the blank space {name} left behind' },
+      { zh: '{name} 沉在数里，跟着琴键轻轻浮起来', en: '{name} sinks in the numbers, rising softly with each key' },
+    ],
+    cat: [
+      { zh: '{name} 在某个角落打盹，等一个还没写好的名字', en: '{name} naps in some corner, waiting for a name not yet finished' },
+      { zh: '这拍子放得很轻，怕吵醒在睡的 {name}', en: 'this beat stays soft — {name} is sleeping' },
+      { zh: '{name} 蜷成一团，也是这首歌里的一个音', en: '{name} curls up small, another note in this song' },
+    ],
+  };
+  const _np = { i: -2, b: '', k: 0 };   // 记住当前聚焦星的选句：同一颗星（含切语言重开卡片）保持同一句，换星才重掷
+  function nowPlaying(m, i, zh) {
+    const b = NP_BUCKET[m && m.kind] || 'code';
+    const nm = (zh ? (m && (m.nameZh || m.nameEn)) : (m && (m.nameEn || m.nameZh))) || (zh ? '这颗星' : 'this star');
+    if (_np.i !== i || _np.b !== b) { _np.i = i; _np.b = b; _np.k = Math.floor(Math.random() * NP[b].length); }
+    const t = NP[b][_np.k] || NP.code[0];
+    return (zh ? t.zh : t.en).split('{name}').join(nm);
+  }
+
+  // ---- 数据事实（懒算一次并缓存）：只用真实计数与真实名字，供低语数据槽位取用 ----
+  let _f = null;
+  function facts() {
+    if (_f) return _f;
+    if (typeof D === 'undefined' || !D || !D.meta || !D.meta.length) return null;
+    const by = {}; let total = 0;
+    for (const m of D.meta) { if (!m) continue; total++; (by[m.kind] || (by[m.kind] = [])).push(m); }
+    const cnt = (k) => (by[k] ? by[k].length : 0);
+    _f = { by, total, cities: cnt('CITY'), cats: cnt('CAT'), companies: cnt('VENDOR') + cnt('PHARMA') };
+    return _f;
+  }
+  function nameOf(m, zh) { return m ? (zh ? (m.nameZh || m.nameEn) : (m.nameEn || m.nameZh)) : null; }
+  function pickName(zh, kind) {
+    const f = facts(); if (!f) return null;
+    const pool = kind ? f.by[kind] : D.meta;
+    if (!pool || !pool.length) return null;
+    for (let t = 0; t < 6; t++) {   // 随机采一个真实实体名；跳过占位名（猫/Cat）
+      const n = nameOf(pool[Math.floor(Math.random() * pool.length)], zh);
+      if (n && n !== '猫' && n !== 'Cat') return n;
+    }
+    return null;
+  }
+  function slot(s, zh) {
+    const f = facts(); if (!f) return null;
+    switch (s) {
+      case 'cities': return f.cities > 0 ? f.cities : null;
+      case 'cats': return f.cats > 0 ? f.cats : null;
+      case 'total': return f.total > 0 ? f.total : null;
+      case 'name': return pickName(zh, null);
+      case 'city': return pickName(zh, 'CITY');
+      default: return null;
+    }
+  }
+
+  // ---- 环境低语模板：flip=翻面主题组（无槽位，恒可用）；ambient=一般梦呓（带真实数据槽位）----
+  const WH = {
+    flip: [
+      { zh: '翻面了。星星还是那些星星', en: 'flip side. the same stars, still there' },
+      { zh: '换一面。同一片海，另一个梦', en: 'the tape turns. same sea, another dream' },
+      { zh: '磁带翻过去，冬天那头又开始了', en: 'side over. winter starts again on the other end' },
+      { zh: '翻面。灯没关，只是走到了另一间屋', en: 'flip. the light stayed on — just another room' },
+    ],
+    ambient: [
+      { zh: '{cities} 座城，此刻都在慢慢转，没有谁着急', en: '{cities} cities, all turning slowly now — no one in a hurry', need: ['cities'] },
+      { zh: '有 {cats} 只猫，在世界的角落等人来接', en: '{cats} cats, waiting in the corners of the world', need: ['cats'] },
+      { zh: '{name} 的名字浮上来，又沉回星海里', en: 'the name {name} floats up, then sinks back into the stars', need: ['name'] },
+      { zh: '这么多光点，其实都是有人记下的一天', en: 'so many little lights — each one is somebody\'s day, written down' },
+      { zh: '夜里数星星：{total} 颗，一颗没少', en: 'counting stars tonight — {total}, none missing', need: ['total'] },
+      { zh: '远处某家公司还亮着一盏灯，我们听得见', en: 'somewhere a company keeps one light on. we can hear it' },
+      { zh: '{name} 从数里探出头，眨了眨，又睡了', en: '{name} peeks out of the numbers, blinks, and sleeps again', need: ['name'] },
+      { zh: '慢一点。这些数字本来就住在夜里', en: 'slower. these numbers always lived in the night' },
+      { zh: '一座城的房价、一只猫的名字，都在同一首歌里', en: 'a city\'s price, a cat\'s name — all in the same song' },
+      { zh: '{city} 睡了。星海替它守着这盏灯', en: '{city} is asleep. the stars keep its light for it', need: ['city'] },
+    ],
+  };
+
+  // ---- 漂浮低语 DOM（懒建；aria-live polite，8 秒后淡出）----
+  let el = null, hideT = null;
+  function node() {
+    if (el) return el;
+    el = document.createElement('div');
+    el.id = 'whisper'; el.setAttribute('role', 'status'); el.setAttribute('aria-live', 'polite'); el.setAttribute('aria-atomic', 'true');
+    document.body.appendChild(el);
+    return el;
+  }
+  function render(txt) {
+    const e = node(); e.textContent = txt;
+    e.classList.remove('show'); void e.offsetWidth; e.classList.add('show');   // 强制 reflow → 重启淡入
+    clearTimeout(hideT); hideT = setTimeout(() => { e.classList.remove('show'); }, 8000);   // 8 秒淡出
+  }
+
+  // ---- 触发（节流 ≥90s，以 tElapsed 秒计；模板选择用 Math.random）----
+  let last = -1e9, nextAmbient = 0;
+  function shuffle(n) { const a = []; for (let i = 0; i < n; i++) a.push(i); for (let i = n - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); const t = a[i]; a[i] = a[j]; a[j] = t; } return a; }
+  function fire(group, tSec) {
+    if (tSec - last < 90) return;   // 节流 ≥90s
+    const zh = (typeof isZh === 'function') ? isZh() : true;
+    const list = WH[group] || WH.ambient;
+    for (const idx of shuffle(list.length)) {   // 随机顺序取第一个数据槽位齐全的模板
+      const tpl = list[idx], need = tpl.need || [], vals = {};
+      let ok = true;
+      for (const s of need) { const v = slot(s, zh); if (v == null) { ok = false; break; } vals[s] = v; }
+      if (!ok) continue;
+      let txt = zh ? tpl.zh : tpl.en;
+      for (const s in vals) txt = txt.split('{' + s + '}').join(vals[s]);
+      last = tSec; render(txt); return;
+    }
+  }
+  // 环境低语调度：音乐起声后首句 60–120s、其后每 120–200s（由 animate 每帧喂 tElapsed；纯读状态，零新分配）
+  function tick(tSec, playing) {
+    if (!playing) { nextAmbient = 0; return; }
+    if (nextAmbient === 0) { nextAmbient = tSec + 60 + Math.random() * 60; return; }
+    if (tSec >= nextAmbient) { fire('ambient', tSec); nextAmbient = tSec + 120 + Math.random() * 80; }
+  }
+
+  return { nowPlaying, fire, tick };
+})();
+
 function animate() {
   requestAnimationFrame(animate);
   const dt = Math.min(clock.getDelta(), 0.05); tElapsed += dt; U.uTime.value = tElapsed;
@@ -1735,6 +1901,12 @@ function animate() {
   else pulse *= 0.95;                                                                                                                                                                            // 音乐模式：无麦克风采集 → 脉冲自然衰减
   U.uPulse.value = pulse;
   bgMat.uniforms.uTime.value = tElapsed; bgMat.uniforms.uPulse.value = pulse;
+  if (_flipDrift > 0.0005) {   // 翻面漂移：曝光轻微起伏 + 背景色相暖度微移，~4s 内平滑回落（不触碰任何 mesh/geometry）
+    _flipDrift = Math.max(0, _flipDrift - dt / 4);
+    const env = Math.sin(_flipDrift * Math.PI);   // 0→峰→0 的柔和包络（翻面瞬间最弱、中段最明显、结束归零）
+    renderer.toneMappingExposure = 1.0 - env * 0.07;
+    bgMat.uniforms.uWarm.value = climWarm + _flipHueDir * env * 0.1;
+  } else if (renderer.toneMappingExposure !== 1.0) { renderer.toneMappingExposure = 1.0; bgMat.uniforms.uWarm.value = climWarm; }   // 漂移结束 → 精确复位
 
   // 开场缓慢 zoom out → FOV 到 100（smootherstep：起步柔、临近 100 减速、平缓停住）；一旦用户手动缩放即取消（introZoom=false）
   if (introZoom) {
@@ -1922,6 +2094,8 @@ function animate() {
   // 生成式数据音乐：呼吸=曲式、视角=空间乐器、视野=旋律、焦点=吟唱（仅在用户开声后运行）
   if (sonifier.started) {
     if ((_aggTick++ & 3) === 0) computeViewAgg();   // 视野聚合节流（每 4 帧）→ 音符级足够
+    if ((_spatialTick++ % 15) === 0) computeSpatialCue();   // 空间声像节流（~15 帧≈250ms）→ 微弱位移足够，无需逐帧
+    sonifier.setUserBusy(focusActive || dragging);   // 用户拖动或锁定某颗星 → 磁带翻面顺延到下个乐句边界（不打断关注中的乐句）
     sonifier.update({
       dt, t: tElapsed, pulse, gOrg, breathT,
       yaw, pitch, fov: camera.fov,
@@ -1929,6 +2103,7 @@ function animate() {
       view: viewAgg,
     });
   }
+  _narr.tick(tElapsed, sonifier.started);   // 环境低语调度（只在起声后走；纯读状态，不喂音乐）
   renderer.render(scene, camera);
 }
 
@@ -2052,6 +2227,7 @@ function buildPanel() {
   requestAnimationFrame(() => buildSOM((som) => {
     for (let i = 0; i < N; i++) writeWorld(i); if (prevPos) prevPos.set(posArr);   // SOM 设好 anc/bPhase/bRate；此刻 bAmp 仍 = 0 → effAnc≈CENTER、位置与上一帧一致（重叠态），无跳变
     somReady = true;   // 解锁呼吸：从这帧起 bAmp 从 0 平滑 ramp → 星体连续地呼气展开成神经地图（与之前的随机运动态无缝衔接）
+    if (musicDNA && sonifier.started) sonifier.updateDNA(musicDNA);   // 若音乐已在 fallback 沉睡态启动（SOM 涌现前用户就点了「Motion & sound」）→ 用真 DNA 重推导，在下一乐句边界温柔「觉醒」（内部幂等：非 fallback 则 no-op）
     if (DEBUG) console.log(`[Data Abyss] SOM ${som ? som.neurons + ' neurons / ' + som.edges + ' edges' : 'skipped'}${musicDNA ? ` · musicDNA[hue ${musicDNA.hueStar.toFixed(2)} · conc ${musicDNA.concentration.toFixed(2)} · clusters ${musicDNA.clusters} · spd ${musicDNA.speedMean.toFixed(2)}±${musicDNA.speedSpread.toFixed(2)} · domType ${musicDNA.domType} · sig ${musicDNA.sig}]` : ''} (trained off-thread)`);
   }));
 })();
