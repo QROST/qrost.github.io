@@ -21,6 +21,9 @@
 //   · this.beatPulse（0..1）—— 每个 kick 触发 → 1，每帧衰减。供视觉侧 beat-sync（bloom 强度 / 相机微震 /
 //     FOV punch / 粒子尺寸脉冲）。这是替代原 mic 驱动 pulse 的纯生成出口。
 //   · 结构段：this.section ∈ {intro, build, drop, breakdown}。供视觉侧决定是否触发爆闪/剧扩。
+//   · DJ-set 宏弧：15–25 分钟循环的"整晚旅程"（warmup → lift → peak → afterglow；日程长度/顺序/能量顶点
+//     每宇宙由 sig 折叠(salt 41..46) × DNA 聚合量导出，见 _applyDNA 尾部 + _updateSetPhase）。
+//     只读出口 getSetPhase() 供视觉侧做极轻分级（bloom 基线 ±10%），复用对象、零每帧分配。
 
 const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
 const mtof = (m) => 440 * Math.pow(2, (m - 69) / 12);
@@ -64,6 +67,10 @@ const MODES = {
   ], scale: [0, 1, 3, 5, 7, 8, 10, 12, 13, 15, 17] },
 };
 const modeForDom = (dt) => (dt === 7) ? 'major' : (dt === 1) ? 'phrygian' : (dt === 2 || dt === 3 || dt === 5 || dt === 6) ? 'dorian' : 'minor';   // phrygian(最辛辣)只留最硬的 dt=1；其余暗调走 dorian(暗但好蹦)
+// 相邻情绪调式映射（多样性 pass 定义）：暗↔暗亮、明→暗亮、辛辣→标准暗（不跨到反差极端）。
+// 两个消费者共用：_applyDNA 的 30% 情绪翻转 + DJ-set 宏弧 afterglow 调式转换（_updateSetPhase）。
+// 所有 MODES 进行都已过 check-harmony 门禁 → 任意档间切换不会引入新的 m2/m9 撞车。
+const _altMode = { minor: 'dorian', dorian: 'minor', major: 'dorian', phrygian: 'minor' };
 
 // 编排段：intro(0–7) → build(8–15) → drop(16–31) → breakdown(32–47) → 循环回 intro(0)。
 // 总循环长度 = BARS=48 小节（breakdown 加长到 16 → 情绪中心有呼吸空间，DJ #4b）。所有 cycle 边界都用 BARS，防相位错位。
@@ -103,6 +110,17 @@ export class Sonifier {
     this._sig0 = 0; this._sV = 0;   // 位置哈希种子 / 声部微抖专用 PRNG（与主 _s 流隔离，保 A+B 确定性）
     // —— DJ-set 呼吸弧：每 breatherEvery 个 cycle(48 小节) 的第 breatherPhase 个做"深呼吸"（half-time + 轻降 BPM）——
     this.bpmBase = 138; this.breatherEvery = 3; this.breatherPhase = 2; this._htActive = false;
+    // —— SOM 觉醒：页面在 SOM 训完前开声 → start() 吃 fallback DNA（沉睡态：编曲收敛、styleW 保守、hook/lead 按下不表）。
+    //    SOM 训完、musicDNA 到位 → updateDNA() 排到下一个 8-bar 边界重推导 + 音乐化绽放（riser + 滤波扫频 + 编曲层展开），让"宇宙自组织完成"这一刻听得见。
+    this._dnaIsFallback = false; this._pendingDNA = null; this._fallbackWarm = 0.5;
+    this._awakenArmed = false; this._awakenBar = 0; this._awakenFire = false; this._awakenSweepUntil = 0;
+    // —— DJ-set 宏弧（15–25 分钟循环的"整晚旅程"）：warmup → lift → peak → afterglow 相位机 ——
+    //    日程与能量天花板在 _applyDNA 尾部由 sig 折叠(salt 41..46) × DNA 聚合量导出；相位只在 _onBar 边界解析（_updateSetPhase，纯函数、不推进 _rng）。
+    this.setPhase = 'warmup'; this._phaseE = 0.34; this.phaseVis = 0.34;
+    this._setStartBar = 0; this._setLen = BARS * 12; this._setSegPh = ['warmup']; this._setSegEnd = [BARS * 12];
+    this._setPhaseE = { warmup: 0.34, lift: 0.62, peak: 0.9, afterglow: 0.42 };
+    this._modeShiftOn = false; this._modeShifted = false; this._modeBase = 'minor'; this._baseProgIdxBase = 0;
+    this._phaseInfo = { phase: 'warmup', energy: 0.34, energyVis: 0.34 };   // getSetPhase() 复用对象（视觉侧每帧读 → 零每帧分配）
   }
 
   start(ctx, opts = {}) {
@@ -113,55 +131,13 @@ export class Sonifier {
     const dna = (opts && opts.sig != null) ? opts : null;
     const warmRaw = dna ? dna.warm : opts.climWarm;
     const warm = clamp(warmRaw == null ? 0.5 : warmRaw, 0, 1);
+    this._fallbackWarm = warm;                                    // 兜底 warm 快照：fallback→真 DNA 前 _applyDNA 的 fallback 分支复用
     this._s = (dna ? (dna.sig >>> 0) : ((Math.round(warm * 1e6) ^ 0x9e3779b9) >>> 0)) | 0;
-    this.dna = dna; this.debug.sig = dna ? (dna.sig >>> 0) : 0;
-    // groove-style 隔离种子：_sig0 供位置哈希 _h（不随主 _s 前进）；_sV 供声部微抖（风格变动只扰它、不扰 A+B）。
-    this._sig0 = (dna ? (dna.sig >>> 0) : (this._s >>> 0)) | 0;
-    this._sV = (this._sig0 ^ 0x1234567) | 0;
-    this._computeStyleWeights(dna);                              // A：每宇宙 groove 性格
-    this.cycleStyle = this.style = this._pickStyle(this._rng()); // 首个 cycle 也按权重定味（开页惊喜）
+    // 全部依赖 dna 的推导抽到 _applyDNA（纯 _sigMix / _sig0 驱动，不碰 ctx、不推进 _rng）→ start 与"觉醒"共用一条推导路径。
+    this._applyDNA(dna);
+    this.bpm = this.bpmBase;                                      // start 时直接落速；觉醒时留给 update() 平滑 glide 到新 bpmBase
+    this.cycleStyle = this.style = this._pickStyle(this._rng());  // 首个 cycle 按权重定味（开页惊喜）—— 唯一推进 _rng 的一处，仅 start
     this._steerStyle = null; this._steerHold = 0;
-
-    // 调性根：warm(气候暖度) 定音区中心 → 但每次几乎相同；再叠一个来自 sig(整张密度场指纹, 每次真的变) 的更宽
-    //   spread → 每次不同调，仍是"数据自组织指纹塑形音乐"（非随机）。
-    const warmCtr = warm < 0.4 ? 43 : warm > 0.7 ? 49 : 46;
-    this.keyRoot = warmCtr + (this._sigMix(1) % 10) - 2;      // 中心 −2..+7 半音，跨度更宽（avalanche 混，均匀）
-    // 最密簇色相 → 整体移调（听见这片宇宙的主色）。
-    const hueStar = dna ? clamp(dna.hueStar, 0, 0.999) : 0.5;
-    this.sessKey = this.keyRoot + SESS_TRANSPOSE[Math.floor(hueStar * SESS_TRANSPOSE.length)];
-    // 情绪模式：domType(主导数据集) 定基调 —— 但 domType 是聚合量(最密簇=最大数据集, argmax 每次相同)，单靠它 mode 每次恒定
-    //   = "跨 session 熟悉感"的头号来源。sig 折叠(同 03bd523 哲学)：70% 保 domType 基调、30% 换到情绪相邻档（仍确定性、仍数据驱动）。
-    const _baseMode = modeForDom(dna ? dna.domType : 0);
-    const _altMode = { minor: 'dorian', dorian: 'minor', major: 'dorian', phrygian: 'minor' };   // 相邻情绪：暗↔暗亮、明→暗亮、辛辣→标准暗（不跨到反差极端）
-    this.modeName = (this._sigMix(30) % 10 < 3) ? _altMode[_baseMode] : _baseMode;
-    this.progs = MODES[this.modeName].progs; this.scale = MODES[this.modeName].scale;
-    this._spiceSet = [2];   // spice 安全集：只用 9th(add9) —— 对表里每种和弦都 consonant（6th 对小调 b3 是三全音，弃用）→ 最舒适
-    // BPM：speedMean(全体星速均值) 近恒定 → 改由 speedSpread(簇速异质度, 会随聚类变) + sig(密度指纹) 驱动更宽区间
-    //   128–146，每次不同速、仍数据驱动。
-    this.bpm = clamp(Math.round(130 + (dna ? dna.speedSpread : 0.45) * 10 + ((this._sigMix(2) % 17) - 8)), 128, 146);
-    // 呼吸弧调度（从 sig 派生，确定性）：每 2–4 个 cycle 一次深呼吸，相位错开 → 同宇宙同一条 tempo 旅程。
-    this.bpmBase = this.bpm;
-    this.breatherEvery = 2 + (this._sigMix(3) % 3);                 // 2 / 3 / 4 个 cycle 一次
-    this.breatherPhase = this._sigMix(4) % this.breatherEvery;
-    // 每宇宙音色签名（patch）：domType 定性格 + sig 定具体变体 → 波形/失谐/kick 质感/贝斯型，音色也每次不同（数据驱动）。
-    const _pdt = (dna ? dna.domType : 0), _ph = (_pdt === 2 || _pdt === 1 || _pdt === 5);   // kernel/工业/vendor = 硬派
-    this.patch = {
-      leadSquare: (this._sigMix(7) % 3 === 0),           // 1/3 宇宙用方波 lead（更空/更硬）
-      sawSpread: 5 + (this._sigMix(8) % 3) * 2,           // supersaw 失谐展开 5/7/9 cents（窄→宽，收窄防"走音"感）
-      kickBoom: clamp((_ph ? 0.12 : 0.55) + ((this._sigMix(32) % 31) - 15) / 100, 0.05, 0.7),   // domType 定性格 + sig ±0.15 → kick 手感每宇宙微变（原先二值恒定）
-      bassReese: _ph || (this._sigMix(9) % 4 === 0),      // 硬派 + 1/4 其它 → reese 双失谐锯贝斯
-    };
-    this.drumVar = this._sigMix(33) % 3;                  // 鼓面变体 0/1/2：four-on-floor kick 不动（trance 身份），hat/clap 织体换（原先全硬编码=主节奏每次一模一样）
-    this._leadContour = this._sigMix(34) % 3;             // lead 乐句轮廓型：0=邻上摆 1=邻下摆 2=五度跳（原先 lead 只反复唱 colorN 单音=主旋律记忆点恒定）
-    // speedSpread → arp swing（异质度高 → arp 更跳）。
-    this.arpSwing = 0.04 + (dna ? dna.speedSpread : 0.45) * 0.06;
-    // 进行索引：concentration 定基础 + sig(密度指纹, 每次真的变) 旋转 → 每次不同和声走向（concentration 近恒定 → 否则同一条进行）。
-    this.baseProgIdx = (Math.floor(clamp(dna ? dna.concentration : 0.4, 0, 0.999) * this.progs.length) + this._sigMix(10)) % this.progs.length;
-    // motif（旋律轮廓）：最密簇原型是"固定数据的簇均值"、每次几乎不变 → 旋律只换调不换曲（同 warm→调根 的恒定病）。
-    //   用 sig(整张密度场指纹, 每次真的变) 给每位加偏移 → 每次不同旋律，且仍数据驱动（sig = 这片自组织的哈希，"听见这个宇宙"更贴切）。
-    const _bm = (dna && dna.motif && dna.motif.length >= 8) ? dna.motif : [0, 2, 1, 3, 2, 0, 3, 1];
-    this.motif = _bm.slice(0, 8).map((v, k) => (v + this._sigMix(20 + k)) % 5);
-    this.curProgIdx = this.baseProgIdx;
 
     // ---------- 母带链（亮·响·数字）----------
     // 重限制器：threshold −6dB、ratio 12、attack 0.001s → 追求响度（Trance 母带就是"挤到贴脸"）。
@@ -188,8 +164,16 @@ export class Sonifier {
     this.drumBus = ctx.createGain(); this.drumBus.gain.value = 1.0; this.drumBus.connect(mix);   // 鼓直连 mix（不被 duck）
     this.bassBus = ctx.createGain(); this.bassBus.gain.value = 0.9; this.bassBus.connect(this.scBus);   // 贝斯也 sidechain（跟 kick 喘）
     this.chordBus = ctx.createGain(); this.chordBus.gain.value = 0.4; this.chordBus.connect(this.scBus); this.chordBus.connect(revSend);
-    this.leadBus = ctx.createGain(); this.leadBus.gain.value = 0.32; this.leadBus.connect(this.scBus); this.leadBus.connect(revSend);
-    this.arpBus = ctx.createGain(); this.arpBus.gain.value = 0.26; this.arpBus.connect(this.scBus); this.arpBus.connect(revSend);
+    this.leadBus = ctx.createGain(); this.leadBus.gain.value = 0.32;
+    this._arpBaseGain = 0.26; this.arpBus = ctx.createGain(); this.arpBus.gain.value = this._arpBaseGain;
+    // 微弱空间声像（可用时才启用，宁欠勿过）：leadBus/arpBus 各串一个 StereoPannerNode，承载视觉侧"当前主导簇"位置的极轻声像感。
+    // 不支持 createStereoPanner 的浏览器 → 特性整体静默跳过，两条 bus 直连回原有路径。
+    this.leadPan = ctx.createStereoPanner ? ctx.createStereoPanner() : null;
+    this.arpPan = ctx.createStereoPanner ? ctx.createStereoPanner() : null;
+    if (this.leadPan) { this.leadBus.connect(this.leadPan); this.leadPan.connect(this.scBus); this.leadPan.connect(revSend); }
+    else { this.leadBus.connect(this.scBus); this.leadBus.connect(revSend); }
+    if (this.arpPan) { this.arpBus.connect(this.arpPan); this.arpPan.connect(this.scBus); this.arpPan.connect(revSend); }
+    else { this.arpBus.connect(this.scBus); this.arpBus.connect(revSend); }
     this.padBus = ctx.createGain(); this.padBus.gain.value = 0.22; this.padBus.connect(this.scBus); this.padBus.connect(revSend);
 
     // fx bus：riser / impact 走自己的通道（不受 sidechain，独立 swell/blast）。
@@ -202,12 +186,107 @@ export class Sonifier {
     this.nextTime = t + 0.12;
   }
 
+  // 全部依赖 musicDNA 的确定性推导（零 ctx、零 Math.random、只用 _sigMix/_sig0 无状态哈希 → 绝不推进 _rng 流）。
+  //   start() 首次调用（dna 可为 null=兜底沉睡态）；updateDNA() 在觉醒边界二次调用（真 DNA）→ 同一路径重推导所有参数。
+  _applyDNA(dna) {
+    this.dna = dna;
+    this._dnaIsFallback = !dna;
+    this.debug.sig = dna ? (dna.sig >>> 0) : 0;
+    const warmRaw = dna ? dna.warm : this._fallbackWarm;
+    const warm = clamp(warmRaw == null ? 0.5 : warmRaw, 0, 1);
+    // groove-style 隔离种子：_sig0 供位置哈希 _h / _sigMix（不随主 _s 前进）；_sV 供声部微抖（风格变动只扰它、不扰 A+B）。
+    this._sig0 = (dna ? (dna.sig >>> 0) : (this._s >>> 0)) | 0;
+    this._sV = (this._sig0 ^ 0x1234567) | 0;
+    this._computeStyleWeights(dna);                          // A：每宇宙 groove 性格
+    if (this._dnaIsFallback) this.styleW = { trance: 1, polka: 0, hardgroove: 0 };   // 沉睡态：styleW 保守（纯 trance，绝不 polka/hardgroove）
+
+    // 调性根：warm(气候暖度) 定音区中心 → 但每次几乎相同；再叠一个来自 sig(整张密度场指纹, 每次真的变) 的更宽
+    //   spread → 每次不同调，仍是"数据自组织指纹塑形音乐"（非随机）。
+    const warmCtr = warm < 0.4 ? 43 : warm > 0.7 ? 49 : 46;
+    this.keyRoot = warmCtr + (this._sigMix(1) % 10) - 2;      // 中心 −2..+7 半音，跨度更宽（avalanche 混，均匀）
+    // 最密簇色相 → 整体移调（听见这片宇宙的主色）。
+    const hueStar = dna ? clamp(dna.hueStar, 0, 0.999) : 0.5;
+    this.sessKey = this.keyRoot + SESS_TRANSPOSE[Math.floor(hueStar * SESS_TRANSPOSE.length)];
+    // 情绪模式：domType(主导数据集) 定基调 —— 但 domType 是聚合量(最密簇=最大数据集, argmax 每次相同)，单靠它 mode 每次恒定
+    //   = "跨 session 熟悉感"的头号来源。sig 折叠(同 03bd523 哲学)：70% 保 domType 基调、30% 换到情绪相邻档（仍确定性、仍数据驱动）。
+    const _baseMode = modeForDom(dna ? dna.domType : 0);
+    this.modeName = (this._sigMix(30) % 10 < 3) ? _altMode[_baseMode] : _baseMode;
+    this.progs = MODES[this.modeName].progs; this.scale = MODES[this.modeName].scale;
+    this._spiceSet = [2];   // spice 安全集：只用 9th(add9) —— 对表里每种和弦都 consonant（6th 对小调 b3 是三全音，弃用）→ 最舒适
+    // BPM：speedMean(全体星速均值) 近恒定 → 改由 speedSpread(簇速异质度, 会随聚类变) + sig(密度指纹) 驱动更宽区间
+    //   128–146，每次不同速、仍数据驱动。start 直接落到 bpmBase；觉醒时只换 bpmBase，this.bpm 留给 update() 平滑 glide。
+    this.bpmBase = clamp(Math.round(130 + (dna ? dna.speedSpread : 0.45) * 10 + ((this._sigMix(2) % 17) - 8)), 128, 146);
+    // 呼吸弧调度（从 sig 派生，确定性）：每 2–4 个 cycle 一次深呼吸，相位错开 → 同宇宙同一条 tempo 旅程。
+    this.breatherEvery = 2 + (this._sigMix(3) % 3);                 // 2 / 3 / 4 个 cycle 一次
+    this.breatherPhase = this._sigMix(4) % this.breatherEvery;
+    // 每宇宙音色签名（patch）：domType 定性格 + sig 定具体变体 → 波形/失谐/kick 质感/贝斯型，音色也每次不同（数据驱动）。
+    const _pdt = (dna ? dna.domType : 0), _ph = (_pdt === 2 || _pdt === 1 || _pdt === 5);   // kernel/工业/vendor = 硬派
+    this.patch = {
+      leadSquare: (this._sigMix(7) % 3 === 0),           // 1/3 宇宙用方波 lead（更空/更硬）
+      sawSpread: 5 + (this._sigMix(8) % 3) * 2,           // supersaw 失谐展开 5/7/9 cents（窄→宽，收窄防"走音"感）
+      kickBoom: clamp((_ph ? 0.12 : 0.55) + ((this._sigMix(32) % 31) - 15) / 100, 0.05, 0.7),   // domType 定性格 + sig ±0.15 → kick 手感每宇宙微变（原先二值恒定）
+      bassReese: _ph || (this._sigMix(9) % 4 === 0),      // 硬派 + 1/4 其它 → reese 双失谐锯贝斯
+    };
+    this.drumVar = this._sigMix(33) % 3;                  // 鼓面变体 0/1/2：four-on-floor kick 不动（trance 身份），hat/clap 织体换（原先全硬编码=主节奏每次一模一样）
+    this._leadContour = this._sigMix(34) % 3;             // lead 乐句轮廓型：0=邻上摆 1=邻下摆 2=五度跳（原先 lead 只反复唱 colorN 单音=主旋律记忆点恒定）
+    // speedSpread → arp swing（异质度高 → arp 更跳）。
+    this.arpSwing = 0.04 + (dna ? dna.speedSpread : 0.45) * 0.06;
+    // 进行索引：concentration 定基础 + sig(密度指纹, 每次真的变) 旋转 → 每次不同和声走向（concentration 近恒定 → 否则同一条进行）。
+    this.baseProgIdx = (Math.floor(clamp(dna ? dna.concentration : 0.4, 0, 0.999) * this.progs.length) + this._sigMix(10)) % this.progs.length;
+    // motif（旋律轮廓）：最密簇原型是"固定数据的簇均值"、每次几乎不变 → 旋律只换调不换曲（同 warm→调根 的恒定病）。
+    //   用 sig(整张密度场指纹, 每次真的变) 给每位加偏移 → 每次不同旋律，且仍数据驱动（sig = 这片自组织的哈希，"听见这个宇宙"更贴切）。
+    const _bm = (dna && dna.motif && dna.motif.length >= 8) ? dna.motif : [0, 2, 1, 3, 2, 0, 3, 1];
+    this.motif = _bm.slice(0, 8).map((v, k) => (v + this._sigMix(20 + k)) % 5);
+    this.curProgIdx = this.baseProgIdx;
+
+    // —— DJ-set 宏弧日程（循环，非一次性）：1 cycle = BARS(48) 小节 ≈ 79–90s（bpm 128–146）→ 总长 12–16 cycle ≈ 15–24 min。
+    //    日程长度/顺序/能量顶点 = sig 折叠(salt 41..46) × DNA 聚合量（concentration/speedSpread）共同导出 —— 每宇宙一场不同的"整晚"。
+    const _cc = clamp(dna ? dna.concentration : 0.4, 0, 1);
+    const _sp = clamp(dna ? dna.speedSpread : 0.45, 0, 1);
+    const _apex = clamp(0.82 + _sp * 0.06 + (this._sigMix(43) % 13) / 100, 0.82, 1);   // 能量顶点 0.82..1.0（多值分布）
+    this._setPhaseE = { warmup: 0.34, lift: 0.62, peak: _apex, afterglow: 0.42 };
+    const _formR = (this._sigMix(41) % 100) / 100 + _sp * 0.25;                        // 簇速异质度高 → 更易双峰 set
+    const _form = _formR < 0.45 ? 0 : (_formR < 0.8 ? 1 : 2);                          // 0=classic 单峰 1=twin-peak 双峰(peak–re-lift–peak) 2=slow-burn 慢烧(晚峰长暖场)
+    const _j2 = this._sigMix(42) % 2, _j4 = this._sigMix(44) % 2, _j6 = this._sigMix(46) % 2;
+    const _pk = Math.round(_cc * 2);                                                    // 组织越紧 → peak 越长（+0..2 cycle）
+    let _segs;                                                                          // [[相位, cycle 数], ...]（一次性小分配，仅 start/觉醒各一次）
+    if (_form === 0)      _segs = [['warmup', 3 + _j2], ['lift', 3], ['peak', 3 + _pk], ['afterglow', 2 + _j6]];
+    else if (_form === 1) _segs = [['warmup', 2 + _j2], ['lift', 2], ['peak', 2 + Math.round(_cc)], ['lift', 1], ['peak', 2 + _j4], ['afterglow', 2]];
+    else                  _segs = [['warmup', 4 + _j2], ['lift', 3 + _j4], ['peak', 3 + _pk], ['afterglow', 2]];
+    let _totC = 0; for (const sg of _segs) _totC += sg[1];
+    while (_totC < 12) { _segs[_segs.length - 1][1]++; _totC++; }                       // 兜底：总长 ≥ 12 cycle（~15 min 下限）
+    this._setSegPh = _segs.map((sg) => sg[0]);
+    this._setSegEnd = []; { let acc = 0; for (const sg of _segs) { acc += sg[1] * BARS; this._setSegEnd.push(acc); } this._setLen = acc; }
+    this._modeShiftOn = (this._sigMix(45) % 3) === 0;                                   // 1/3 宇宙在 afterglow 转一次相邻情绪调式（_altMode 表，全部 MODES 已过和声门禁）
+    this._modeBase = this.modeName; this._modeShifted = false; this._baseProgIdxBase = this.baseProgIdx;
+    // set 起点（相位状态在觉醒时【重置】而非延续，理由）：fallback 沉睡期的日程来自兜底 sig、与真宇宙无关，延续它没有意义；
+    //   重置保证真 DNA 的日程从头完整走一遍。且沉睡期音乐上就是这场 set 的 warm-up —— 觉醒绽放冲击 = set 正式抬升的那一刻，
+    //   故觉醒(bar>0 且真 DNA)直接落到 lift 段起点（跳过 warmup 段，避免绽放后立刻被 warm-up 的 LP 天花板闷回去）；start(bar=0) 则从 warm-up 开场。
+    this._setStartBar = (dna && this.bar > 0) ? (this.bar - this._setSegEnd[0]) : 0;
+  }
+
+  // SOM「觉醒」：页面若在 SOM 训完前开声，start() 吃 fallback DNA（沉睡态）。SOM 训完、musicDNA 到位后 app 调此。
+  //   只有当前确为 fallback 启动才动作（幂等）；把真 DNA 排到下一个 8-bar 边界，届时 _onBar 重跑 _applyDNA + 触发音乐化绽放（riser+滤波扫频+编曲展开），绝不硬切。
+  //   确定性：仅记 pending + 目标边界，绝不在此推进任何 PRNG 流。
+  updateDNA(dna) {
+    if (!this.started) return;
+    if (!dna || dna.sig == null) return;
+    if (!this._dnaIsFallback) return;                        // 已是真 DNA（或已觉醒）→ no-op
+    this._pendingDNA = dna;
+    if (!this._awakenArmed) {                                // 排到下一个 8-bar 边界（多次调用不推迟已排定时刻）
+      this._awakenArmed = true;
+      this._awakenBar = (Math.floor(this.bar / 8) + 1) * 8;
+    }
+  }
+
   update(s) {
     if (!this.started || this.muted) return;
     const ctx = this.ctx, t = ctx.currentTime;
 
     // beatPulse 每帧自然衰减（kick 时 _kick() 会置 1）。视觉侧读 this.beatPulse。
     this.beatPulse *= 0.86;
+    // DJ-set 相位能量平滑值（视觉基线用，getSetPhase().energyVis）：~2s glide，相位切换不产生视觉跳变。
+    this.phaseVis += (this._phaseE - this.phaseVis) * clamp((s.dt || 0.016) * 0.5, 0, 1);
 
     // riser / impact 包络：随 section 自然演化。build 段渐强；drop 起点爆。
     const sec = sectionOf(this.bar);
@@ -220,10 +299,18 @@ export class Sonifier {
     }
     if (this._impactEnv > 0) this._impactEnv *= 0.82;
 
-    // 段切换：进 drop 时 fire impact（一次性）。
+    // 段切换：进 drop 时 fire impact（一次性）。drop 强度上限随 set 相位缩放：peak 全力，warm-up/afterglow 收着砸。
     if (sec !== this.section) {
-      if (sec === 'drop') this._impact(t);
+      if (sec === 'drop') this._impact(t, this.setPhase === 'peak' ? 1 : (0.6 + 0.4 * this._phaseE));
       this.section = sec;
+    }
+
+    // SOM 觉醒绽放：_onBar 已在 8-bar 边界落真 DNA + 解封编曲层 → 这帧在真实音频时刻放一记 impact + 开母线滤波扫频（沉睡沉底 → 豁然打开），让"宇宙自组织完成"这一刻听得见（音乐化，非硬切）。
+    if (this._awakenFire) {
+      this._impact(t);
+      if (this.masterLP) { this.masterLP.frequency.cancelScheduledValues(t); this.masterLP.frequency.setValueAtTime(700, t); this.masterLP.frequency.setTargetAtTime(20000, t, 0.45); }
+      this._awakenSweepUntil = t + 0.6;   // 扫频窗口：本窗内让下方 section LP 自动化让路，使一次性扫频跑完不被覆盖
+      this._awakenFire = false;
     }
 
     // 视野聚合（旋律落音颜色由视野主导簇色相驱动 —— 原 audio.js 的钩子）。
@@ -257,13 +344,23 @@ export class Sonifier {
     let lpT = 20000;
     if (this._htActive) lpT = 1400;                                     // 呼吸谷"下沉"
     else if (sec === 'build' && b40 >= 14) lpT = 2200 + (15 - b40) * 6000;   // bar14≈8200 → bar15≈2200
-    if (this.masterLP) this.masterLP.frequency.setTargetAtTime(lpT, t, sec === 'drop' ? 0.02 : 0.14);   // drop 快开=砸；否则平滑
+    // DJ-set 能量天花板：单一母线 LP 公式承载相位分级 —— warm-up 高频收敛(≈10.8k，"夜刚开始")、lift 抬起、
+    // peak 全开(apex=1 时 20k)、afterglow 回落。min() 语义：build 蓄力/呼吸谷的更低值原样保留。
+    const phCap = 6000 + this._phaseE * 14000;
+    if (lpT > phCap) lpT = phCap;
+    if (this.masterLP && t >= (this._awakenSweepUntil || 0)) this.masterLP.frequency.setTargetAtTime(lpT, t, sec === 'drop' ? 0.02 : 0.14);   // drop 快开=砸；否则平滑（觉醒扫频窗内让路）
 
     const stepDur = (60 / this.bpm) / 4;
     while (this.nextTime < t + this.lookahead) {
       this._scheduleStep(this.nextTime, stepDur);
       this.nextTime += stepDur; this.step++; this.debug.steps++;
       if (this.step % 16 === 0) this._onBar();
+    }
+
+    // SOM 觉醒 riser：绽放前一小节渐强扫频（平方缓入），把"宇宙自组织完成"这一刻推上舞台；与下方 riser 驱动共用 _riserEnv。
+    if (this._awakenArmed && this.bar === this._awakenBar - 1) {
+      const frac = clamp((this.step % 16) / 16, 0, 1);
+      this._riserEnv = Math.max(this._riserEnv, frac * frac);
     }
 
     // riser 持续音（build 段）：白噪带通扫频 + 音量 swell。节流到每拍一次，避免堆叠。
@@ -274,6 +371,18 @@ export class Sonifier {
 
   _onBar() {
     this.bar++;
+    // SOM 觉醒：pending 真 DNA 到达排定的 8-bar 边界 → 重跑 _applyDNA 落真 DNA（_dnaIsFallback 翻假 → 编曲层解封），并 arm update() 在下一帧音频时刻放绽放冲击。
+    if (this._awakenArmed && this._pendingDNA && this.bar >= this._awakenBar) {
+      this._applyDNA(this._pendingDNA);                                     // bpmBase 换目标（this.bpm 不动 → update 平滑 glide）；只用 _sigMix，不推进 _rng
+      this.cycleStyle = this._pickStyle(this._sigMix(40) / 4294967296);     // 立即揭示真宇宙 groove（无状态哈希 salt 40，不推进 _rng）；下方 this.style 本小节即采用
+      this._pendingDNA = null; this._awakenArmed = false;
+      this._awakenFire = true;                                              // update() 下一帧 fire impact + 开滤波扫频
+    } else if (this._dnaIsFallback && !this._awakenArmed && this.bar >= 24) {
+      // 失效兜底：SOM 无数据/被跳过 → updateDNA 永不到来。~40s 后就地觉醒到 fallback 编曲（参数无真 DNA 可落、保持 fallback），绝不留永眠态。
+      this._dnaIsFallback = false; this._awakenFire = true;
+    }
+    // DJ-set 宏弧：相位解析（纯 bar+日程 函数 + 可选 afterglow 调式转换；无状态哈希级确定性，绝不推进 _rng）。
+    this._updateSetPhase();
     // 动机变异（每 4 小节轻微改一个音 → 没有两段完全一样；确定性 PRNG）。
     if (this.bar % 4 === 0) { const k = (this.bar * 5) % this.motif.length; this.motif[k] = clamp(this.motif[k] + (this._rng() < 0.5 ? 1 : -1), 0, 5); }
     this.curProgIdx = this.baseProgIdx;
@@ -284,10 +393,42 @@ export class Sonifier {
     this.style = (this._steerHold > 0 && this._steerStyle) ? this._steerStyle : this.cycleStyle;
     // 深呼吸 cycle 全程强制 trance（DJ RED flag：情绪 rest + 经典 trance re-lift 里绝不能出 polka 方波 stab）。
     if ((Math.floor(this.bar / BARS) % this.breatherEvery) === this.breatherPhase) this.style = 'trance';
+    // DJ-set 宏弧：warm-up / afterglow 保持纯 trance 身份 —— polka/hardgroove 是 set 中段(lift/peak)的 spice，开场与收尾不抢戏。
+    if (this.setPhase === 'warmup' || this.setPhase === 'afterglow') this.style = 'trance';
     // DJ: polka 方波 stab 绝不压在 running drop 上（会把 drop 打成 whiplash）→ drop 段把 polka 顶成 trance（intro/build/breakdown 仍可 polka）。
     if (this.style === 'polka' && sectionOf(this.bar) === 'drop') this.style = 'trance';
     if (this.style !== prev) this._styleFill = true;   // 风格变了 → 本小节头补一记 tom 过渡
   }
+
+  // —— DJ-set 宏弧：相位解析（_onBar 每小节调一次）。纯 (bar, 日程快照) 函数 + 零分配，绝不推进 _rng ——
+  //    觉醒交互：沉睡态(_dnaIsFallback)锁 warm-up、绝不进 peak —— fallback 宇宙没资格开顶；觉醒后按真日程走。
+  _updateSetPhase() {
+    let ph;
+    if (this._dnaIsFallback) {
+      ph = 'warmup';
+    } else {
+      const off = (((this.bar - this._setStartBar) % this._setLen) + this._setLen) % this._setLen;
+      let i = 0; while (i < this._setSegEnd.length - 1 && off >= this._setSegEnd[i]) i++;
+      ph = this._setSegPh[i];
+    }
+    this.setPhase = ph;
+    this._phaseE = this._setPhaseE[ph] != null ? this._setPhaseE[ph] : 0.5;
+    // set 中段一次调式转换（仅 1/3 宇宙、仅 afterglow）：只转 _altMode 相邻情绪档（多样性 pass 定义、全部 MODES
+    // 进行都过 check-harmony 门禁）。转换点=相位边界：start 起步时对齐 48 小节倍数、觉醒重置后对齐 8-bar 边界
+    // （_awakenBar 是 8 的倍数 + 段长全是 48 的倍数）——两者都是 2-bar 和弦边界，lead delay 环恰在和弦边界收干
+    // → 零跨调残响。回到 warmup 时自动还原基调。
+    const want = this._modeShiftOn && !this._dnaIsFallback && ph === 'afterglow';
+    if (want !== this._modeShifted) {
+      this._modeShifted = want;
+      const m = want ? _altMode[this._modeBase] : this._modeBase;
+      this.modeName = m; this.progs = MODES[m].progs; this.scale = MODES[m].scale;
+      this.baseProgIdx = this._baseProgIdxBase % this.progs.length; this.curProgIdx = this.baseProgIdx;
+    }
+  }
+
+  // 只读接口（视觉侧）：当前 DJ-set 相位 + 能量。energy=相位目标能量（阶跃）；energyVis=引擎内平滑值（~2s glide，
+  // 适合直接驱动视觉基线如 bloom/vignette）。复用 this._phaseInfo —— 每帧调用零分配。
+  getSetPhase() { const p = this._phaseInfo; p.phase = this.setPhase; p.energy = this._phaseE; p.energyVis = this.phaseVis; return p; }
 
   _curProg() { return this.progs[this.curProgIdx] || this.progs[0]; }
   _chord() { const p = this._curProg(); return p[(this.bar >> 1) % p.length]; }
@@ -325,8 +466,12 @@ export class Sonifier {
     const breather = (Math.floor(bar / BARS) % this.breatherEvery) === this.breatherPhase;
     const valley = breather && sec === 'breakdown';           // 深呼吸谷底（half-time 段）
     const style = this.style;                                  // 本小节生效 groove 风格（呼吸 cycle 已被 _onBar 强制 trance）
+    const asleep = this._dnaIsFallback;                        // SOM 觉醒前的沉睡态：编曲收敛（鼓+贝斯+pad 维持脉动），melodic 层（supersaw/arp/lead/hook）按下不表 → 觉醒时豁然展开
+    const ph = this.setPhase, phE = this._phaseE;              // DJ-set 宏弧相位（_onBar 边界更新）→ 本步能量分级
     const drumOn = sec === 'build' || sec === 'drop';
-    const kickOn = sec !== 'breakdown';                        // intro 也打轻 kick 维持律动
+    // intro 也打轻 kick 维持律动 —— 但 warm-up 相位扣留 intro kick（无鼓开场，"夜刚开始"）；drop 四踩全保留（trance 身份），
+    // peak 相位 four-on-the-floor 必然完整。沉睡态豁免扣留：asleep 契约是"鼓+贝斯+pad 维持脉动"，beatPulse 视觉不断供。
+    const kickOn = sec !== 'breakdown' && !(ph === 'warmup' && sec === 'intro' && !asleep);
 
     // 静音缺口：build 最后一小节的最后半拍全体静默 → 紧接的 drop 砸得更狠（DJ: re-lift 的 tension cue 必须有）。
     if (sec === 'build' && b40 === 15 && step >= 14) return;
@@ -348,14 +493,14 @@ export class Sonifier {
       this._styleFill = false;
     }
 
-    // —— kick：four-on-the-floor；hardgroove 更硬（加高通 click）——
-    if (kickOn && step % 4 === 0) this._kick(t, sec === 'drop' ? 1.0 : (sec === 'intro' ? 0.7 : 0.9), style === 'hardgroove');
+    // —— kick：four-on-the-floor；hardgroove 更硬（加高通 click）。力度随 set 相位缩放（peak 显式满力=完整回归）——
+    if (kickOn && step % 4 === 0) this._kick(t, (sec === 'drop' ? 1.0 : (sec === 'intro' ? 0.7 : 0.9)) * (ph === 'peak' ? 1 : (0.78 + 0.22 * phE)), style === 'hardgroove');
     if (drumOn && (step === 4 || step === 12)) this._clap(t, 0.7);
     // 鼓面变体（drumVar 0/1/2，sig 选）：kick 四踩是 trance 身份不动，hat/clap 织体每宇宙不同（原先全硬编码 = 主节奏跨 session 一模一样）。
     if (drumOn && this.drumVar === 1 && step === 7) this._clap(t, 0.26);                                        // v1：ghost clap（织体签名）
     if (drumOn && (step % 2 === 1 || this.drumVar === 2)) this._hat(t, (style === 'hardgroove' ? 0.34 : 0.3) * (step % 2 === 1 ? 1 : 0.55), false);   // v2：全 16 分 hat（偶数步弱填充）
     if (drumOn && this.drumVar === 1 && step % 8 === 6) this._hat(t, 0.38, false);                              // v1：反拍双击加密
-    if (sec === 'drop' && (this.drumVar === 1 ? step % 8 === 2 : step % 4 === 2)) this._hat(t, this.drumVar === 2 ? 0.32 : 0.4, true);   // 开镲密度/收放随变体
+    if (ph !== 'warmup' && sec === 'drop' && (this.drumVar === 1 ? step % 8 === 2 : step % 4 === 2)) this._hat(t, this.drumVar === 2 ? 0.32 : 0.4, true);   // 开镲密度/收放随变体；warm-up 相位扣留开镲（顶层律动留给 lift/peak）
     if (sec === 'drop' && (bar & 7) === 7 && step >= 13) this._clap(t, 0.4);                  // 8 小节末 fill
 
     // —— hardgroove 专属：切分滚动 tom（call-response）+ 16 分 shaker 滚（位置哈希门控，绝不抽流）——
@@ -383,26 +528,26 @@ export class Sonifier {
       this._pad(t, ch, stepDur * 15, 0.5);
     }
 
-    // —— Supersaw stab：hardgroove 收敛让位打击；polka 更短更拨 ——
-    if (sec !== 'intro' && step === 0) {
+    // —— Supersaw stab：hardgroove 收敛让位打击；polka 更短更拨。沉睡态按下不表（觉醒时绽放）——
+    if (!asleep && sec !== 'intro' && step === 0) {
       if (style === 'hardgroove') { if (sec === 'drop') this._supersaw(t, ch, stepDur * 1.6, 0.32); }
       else this._supersaw(t, ch, stepDur * (style === 'polka' ? 1.4 : 3), sec === 'drop' ? (style === 'polka' ? 0.5 : 0.6) : 0.4);
     }
-    if (sec === 'drop' && step === 8 && style === 'trance') this._supersaw(t, ch, stepDur * 2, 0.45);
+    if (!asleep && sec === 'drop' && step === 8 && style === 'trance') this._supersaw(t, ch, stepDur * 2, 0.45);
 
-    // —— Arp：16 分琶音（drop/build；breakdown 稀疏）；hardgroove 半密度让位打击 ——
-    if ((sec === 'drop' || sec === 'build' || (sec === 'breakdown' && step % 4 === 0)) && !(style === 'hardgroove' && step % 2 === 1)) {
+    // —— Arp：16 分琶音（drop/build；breakdown 稀疏）；hardgroove 半密度让位打击。沉睡态收起 ——
+    if (!asleep && (sec === 'drop' || sec === 'build' || (sec === 'breakdown' && step % 4 === 0)) && !(style === 'hardgroove' && step % 2 === 1)) {
       this._arp(t, ch, stepDur * 1.5, (sec === 'drop' && step === 0) ? 0.28 : 0.5, step);   // drop 头拍 supersaw stab 当家 → arp 让位（垂直密度=粗糙感的一部分）
     }
 
-    // —— Lead：drop 段旋律；hardgroove 撤 lead（打击当家）。门用位置哈希 _h（不抽流 → 风格无关）。——
-    if (sec === 'drop' && step % 2 === 0 && style !== 'hardgroove' && this._h(4) < 0.6) {
+    // —— Lead：drop 段旋律；hardgroove 撤 lead（打击当家）。门用位置哈希 _h（不抽流 → 风格无关）。沉睡态 hook/lead 按下不表 ——
+    if (!asleep && sec === 'drop' && step % 2 === 0 && style !== 'hardgroove' && this._h(4) < 0.6) {
       this._lead(t, ch, stepDur * 2, 0.4);
     }
     // —— Breakdown 主旋律 hook（DJ: track 需一条暴露的 topline —— rest 段唱、drop 段再现）：
     //    暴露、拉长的 topline → **永远和弦内音**（consonant；原来用音阶级数叠 ch.r，裸露且长音，不和谐最扎耳）；
     //    色彩来自选的是 3 音/5 音/9 音而非音阶步进。音由 (bar,step) 确定性索引 → 同宇宙同旋律。
-    if (sec === 'breakdown' && (step === 0 || step === 6 || step === 10)) {
+    if (!asleep && sec === 'breakdown' && (step === 0 || step === 6 || step === 10)) {
       const mi = this.motif[(this.bar * 3 + (step === 0 ? 0 : step === 6 ? 1 : 2)) % this.motif.length];
       const tones = CHORD[ch.c];
       this._lead(t, ch, stepDur * 3, 0.34, this.sessKey + ch.r + tones[mi % tones.length] + 12);
@@ -413,7 +558,7 @@ export class Sonifier {
   _kick(t, vel, hard) {
     const o = this.ctx.createOscillator(); o.type = 'sine'; const g = this.ctx.createGain();
     // 硬攻击：50→110Hz 下扫比 lofi(115→42) 更利、attack 更快、tail 更长（sub 撑满）。
-    const kb = this.patch.kickBoom;   // 音色签名：boomy(长尾低扫) ↔ punchy(短)
+    const kb = this.patch.kickBoom * (0.8 + 0.2 * this._phaseE);   // 音色签名：boomy(长尾低扫) ↔ punchy(短)；set 相位微缩放（warm-up 收尾、peak 全 boom），确定性（相位是 bar 的纯函数）
     o.frequency.setValueAtTime(110 - kb * 20, t); o.frequency.exponentialRampToValueAtTime(48, t + 0.08 + kb * 0.05);
     g.gain.setValueAtTime(0.0001, t); g.gain.linearRampToValueAtTime(vel, t + 0.002); g.gain.setTargetAtTime(0.0001, t + 0.06 + kb * 0.04, 0.18 + kb * 0.18);
     o.connect(g); g.connect(this.drumBus); o.start(t); o.stop(t + 0.6);
@@ -598,15 +743,17 @@ export class Sonifier {
     src.connect(bp); bp.connect(g); g.connect(this.fxBus);
     src.start(t); src.stop(t + 0.4);
   }
-  _impact(t) {
-    // drop 起点一次性 impact：低 sine thud + 噪声 burst + 长 reverb 尾。
+  _impact(t, sc) {
+    // drop 起点一次性 impact：低 sine thud + 噪声 burst + 长 reverb 尾。sc=强度缩放（缺省 1）：DJ-set 宏弧的
+    // drop 强度上限 —— warm-up/afterglow 收着砸、peak 全力（觉醒绽放不传 sc = 恒全力）。
+    const k = sc == null ? 1 : sc;
     this._impactEnv = 1;
     const o = this.ctx.createOscillator(); o.type = 'sine'; o.frequency.setValueAtTime(60, t); o.frequency.exponentialRampToValueAtTime(30, t + 0.8);
-    const g = this.ctx.createGain(); g.gain.setValueAtTime(0.9, t); g.gain.setTargetAtTime(0.0001, t + 0.1, 0.4);
+    const g = this.ctx.createGain(); g.gain.setValueAtTime(0.9 * k, t); g.gain.setTargetAtTime(0.0001, t + 0.1, 0.4);
     o.connect(g); g.connect(this.fxBus); g.connect(this.revSend); o.start(t); o.stop(t + 1.2);
     const src = this.ctx.createBufferSource(); src.buffer = this._noise;
     const lp = this.ctx.createBiquadFilter(); lp.type = 'lowpass'; lp.frequency.value = 2000;
-    const ng = this.ctx.createGain(); ng.gain.setValueAtTime(0.6, t); ng.gain.setTargetAtTime(0.0001, t + 0.05, 0.15);
+    const ng = this.ctx.createGain(); ng.gain.setValueAtTime(0.6 * k, t); ng.gain.setTargetAtTime(0.0001, t + 0.05, 0.15);
     src.connect(lp); lp.connect(ng); ng.connect(this.fxBus); src.start(t); src.stop(t + 0.5);
   }
 
@@ -631,6 +778,19 @@ export class Sonifier {
   }
 
   setMuted(b) { this.muted = b; if (this.master) this.master.gain.setTargetAtTime(b ? 0.0001 : 0.85, this.ctx.currentTime, 0.25); }
+
+  // 微弱空间声像：x∈[-1,1]（主导簇质心投影的 NDC x）→ lead/arp 声像 ±0.25 上限；closeness∈[0,1]（相机贴近程度）
+  // → arp 音量 ≤ +1.5dB（线性 ≤×1.19）柔性偏置。无 StereoPannerNode 支持时整体 no-op（特性静默跳过）。
+  // 这是实时外部输入（视觉侧每帧/每 tick 投影），不派生任何音乐参数（调/速/和声/编曲一律不受影响）——不受 _rng/_sigMix 纪律约束。
+  setSpatial(x, closeness) {
+    if (!this.started || !this.ctx || (!this.leadPan && !this.arpPan)) return;
+    const t = this.ctx.currentTime;
+    const xc = clamp(x == null ? 0 : x, -1, 1) * 0.25;
+    if (this.leadPan) this.leadPan.pan.setTargetAtTime(xc, t, 0.3);
+    if (this.arpPan) this.arpPan.pan.setTargetAtTime(xc, t, 0.3);
+    const cl = clamp(closeness == null ? 0 : closeness, 0, 1);
+    if (this.arpBus) this.arpBus.gain.setTargetAtTime(this._arpBaseGain * (1 + cl * 0.19), t, 0.3);
+  }
 
   // ---------- 工具 ----------
   _satCurve(drive) { const n = 1024, c = new Float32Array(n); for (let i = 0; i < n; i++) { const x = (i / (n - 1)) * 2 - 1; c[i] = Math.tanh(x * drive); } return c; }

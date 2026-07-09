@@ -71,7 +71,11 @@ body.ui-hidden #title.peek { opacity: 0.8; }
   transition: background 0.2s, transform 0.1s;
 }
 #tip button:hover { background: rgba(255, 255, 255, 0.12); }
+#tip button:focus-visible { outline: 2px solid #b8f0ff; outline-offset: 2px; }   /* a11y：#enable/#mic-enable 键盘可见焦点（AGENTS.md §4.3），与 .ep-card 控件同款 */
 #tip button:active { transform: scale(0.96); }
+/* mic 驱动次级按钮："带上你自己的 DJ"：仅静音态 + 已过光敏警示门才出现，显隐完全由 JS 切 class（不参与
+   #enable 那套 hover-only 淡隐逻辑，避免用户找不到它）。复用 `#tip button` 的基础样式族。 */
+#mic-enable.mic-hidden { display: none; }
 
 /* 音频开启后：底部按钮默认隐藏，只有 hover（或键盘 Tab 聚焦）才浮现 → 沉浸纯画面。
    容器不再整体压暗，交由按钮自身 opacity 控制（避免 #tip 的 0.4 又把浮现的按钮压暗）。 */
@@ -114,6 +118,14 @@ body.audio-on #enable:focus-visible { opacity: 1; }                     /* hover
   font-family: ui-monospace, 'SF Mono', 'JetBrains Mono', Menlo, Consolas, monospace;
 }
 #card.inspect.hidden { transform: translateY(12px) !important; }
+/* 「此刻在演奏什么」诗句：斜体低亮小字，把这颗星的真实数据与正在发声的东西相连（非等宽 → 与上方参数区拉开质地差） */
+.ins-np {
+  margin-top: 11px; padding-top: 9px;
+  border-top: 1px solid rgba(150, 180, 255, 0.1);
+  font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Segoe UI", sans-serif;
+  font-style: italic; font-size: 11px; line-height: 1.6; letter-spacing: 0.015em;
+  color: rgba(255, 192, 236, 0.52);
+}
 .ins-meta { margin-top: 10px; padding-top: 8px; border-top: 1px solid rgba(150, 180, 255, 0.1); }
 .ins-name { display: block; font-size: 9px; font-weight: 300; letter-spacing: 0.06em; color: rgba(195, 205, 230, 0.3); line-height: 1.3; text-transform: none; }
 .ins-eq { font-size: 12px; line-height: 1.65; color: rgba(220, 232, 255, 0.85); margin-bottom: 8px; }
@@ -141,6 +153,19 @@ body.audio-on #enable:focus-visible { opacity: 1; }                     /* hover
 #panel .prow { display: flex; align-items: center; gap: 7px; font-size: 12px; cursor: pointer; opacity: 0.82; padding: 2px 0; user-select: none; }
 #panel .prow:hover { opacity: 1; }
 #panel .prow input { width: 13px; height: 13px; accent-color: #8fb4ff; cursor: pointer; margin: 0; }
+
+/* 环境低语：段落/相位切换时淡入 ~8s 后淡出的数据诗句（顶部居中，不与底部详情卡/提示争位）。
+   opacity 由 .show 驱动淡入淡出；pointer-events:none → 纯氛围，不拦交互。 */
+#whisper {
+  position: fixed; left: 50%; top: 15%; transform: translateX(-50%) translateY(-6px);
+  max-width: min(560px, 82vw); text-align: center; z-index: 5; pointer-events: none;
+  font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Segoe UI", sans-serif;
+  font-size: 14px; font-weight: 200; font-style: italic; letter-spacing: 0.04em; line-height: 1.7;
+  color: rgba(224, 245, 255, 0.92);
+  text-shadow: 0 0 26px rgba(120, 200, 255, 0.35), 0 0 8px rgba(0, 0, 0, 0.5);
+  opacity: 0; transition: opacity 1.1s ease, transform 1.1s ease;
+}
+#whisper.show { opacity: 0.85; transform: translateX(-50%) translateY(0); }
 
 #vignette {
   position: fixed; inset: 0; pointer-events: none; z-index: 3;
@@ -174,6 +199,7 @@ body.audio-on #enable:focus-visible { opacity: 1; }                     /* hover
   #title { font-size: 21px; letter-spacing: 0.22em; }
   #title span { display: block; margin: 6px 0 0; }
   #sub { font-size: 11px; }
+  #whisper { font-size: 12px; top: 12%; max-width: 88vw; letter-spacing: 0.02em; }   /* 移动端字号收敛 + 略上移，避开顶部标题 */
 }
 
 /* ---------- 光敏性癫痫警示门 ---------- */
@@ -212,6 +238,15 @@ body.audio-on #enable:focus-visible { opacity: 1; }                     /* hover
   border: 1px solid rgba(220, 235, 255, 0.18); transition: background 0.2s;
 }
 .ep-card .ep-leave:hover { background: rgba(255, 255, 255, 0.06); }
+.ep-card .ep-alt {
+  font-size: 12px; letter-spacing: 0.06em; color: rgba(184, 240, 255, 0.7);
+  text-decoration: none; padding: 10px 18px; border-radius: 999px;
+  border: 1px solid rgba(184, 240, 255, 0.28); transition: background 0.2s, color 0.2s;
+}
+.ep-card .ep-alt:hover { background: rgba(184, 240, 255, 0.08); color: rgba(184, 240, 255, 0.95); }
+.ep-card .ep-leave:focus-visible, .ep-card .ep-alt:focus-visible, .ep-card #ep-enter:focus-visible {
+  outline: 2px solid #b8f0ff; outline-offset: 2px;
+}
 .ep-card #ep-enter {
   font-size: 12px; letter-spacing: 0.06em; cursor: pointer;
   color: #04050a; background: #b8f0ff; border: none;

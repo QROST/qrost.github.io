@@ -3,7 +3,8 @@
 //   · 角速度脉冲来源由 麦克风 改为 生成音频引擎的 beatPulse（每个 kick → 脉冲 → 加速整片宇宙）。
 //   · 渲染管线加入 EffectComposer + UnrealBloomPass（夜店辉光的头号来源）。
 //   · 配色调成霓虹饱和（品红/青/酸橙/橙）；节拍同步：相机微震 / FOV punch / bloom 强度脉冲。
-//   · 去掉麦克风/陀螺仪/clubMode 律动模式（纯生成音乐）。
+//   · 去掉麦克风/陀螺仪/clubMode 律动模式（纯生成音乐）。静音态下可选按需重开麦克风（"带上你自己的 DJ"，见下方
+//     「静音态 mic 驱动」小节）：只是给节拍脉冲换一个数据源，绝不碰 Sonifier 内部/音乐参数。
 
 import * as THREE from 'three';
 import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
@@ -12,7 +13,7 @@ import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js'
 import {
   applyUi, registerPanelNode, renderCardHtml, sensorBtnLabel, setLang, isZh,
 } from './i18n.js?v=n1';
-import { Sonifier } from './audio-club.js?v=n15';   // 生成式 Trance 音乐引擎（zero-dep Web Audio）+ beatPulse + groove-style(A/B/C) + DJ 呼吸弧 + 每宇宙调/速多样化
+import { Sonifier } from './audio-club.js?v=n16';   // 生成式 Trance 音乐引擎（zero-dep Web Audio）+ beatPulse + groove-style(A/B/C) + DJ 呼吸弧 + 每宇宙调/速多样化
 
 const sonifier = new Sonifier();   // 由「Motion & sound」按钮在用户手势内 start()
 
@@ -764,8 +765,8 @@ let somReady = false, bAmp = 0, bProg = 0;   // SOM 就绪前 bAmp=0（纯重叠
 const BREATH_RAMP = 12;           // bAmp 0→1 的 ramp 时长(秒)：SOM 完成后呼气展开的揭示节奏。3.5→12 + ease，让展开慢慢来、更平缓
 let audioCtx = null, audioTone = null, _aggTick = 0;   // 音乐：用户手势内创建的 AudioContext；每星音高种子(色相 0..1)；视野聚合节流计数
 let musicDNA = null;                                    // 这片宇宙的涌现态→乐曲身份（buildSOM 后算；替代随机种子，每次开页 SOM 不同→DNA 不同→曲不同）
-let clusterOf = null, clusterHue = null, clusterEnergy = null, somM = 0, clusterVote = null;   // 每实体所属 SOM 簇 + 每簇色相/能量 + 簇数 + 视野投票（主导可见簇→实时旋律色）
-const viewAgg = { n: 0, dom: 0, toneAvg: 0.5, szAvg: 0.3, clHue: 0.5, clEnergy: 0.3, counts: new Int32Array(8) };   // 视野内实体聚合 → 喂给音乐引擎（gaze + 主导可见簇 决定听到什么）
+let clusterOf = null, clusterHue = null, clusterEnergy = null, somM = 0, clusterVote = null, clusterAnc = null;   // 每实体所属 SOM 簇 + 每簇色相/能量 + 簇数 + 视野投票（主导可见簇→实时旋律色）+ 每簇世界锚点（神经元固定坐标，供微弱空间声像投影）
+const viewAgg = { n: 0, dom: 0, toneAvg: 0.5, szAvg: 0.3, clHue: 0.5, clEnergy: 0.3, domCluster: -1, counts: new Int32Array(8) };   // 视野内实体聚合 → 喂给音乐引擎（gaze + 主导可见簇 决定听到什么）；domCluster = 当前主导可见 SOM 簇索引（供空间声像投影）
 // ---------- 几何体形库：常规多面体 + 特殊数学三维体（每个含棱线 edges + 轨迹发射点 corners）----------
 const SHAPES = (() => {
   const edgesOf = (geo) => Array.from(new THREE.EdgesGeometry(geo, 1).attributes.position.array);   // 只取真实特征棱
@@ -1154,9 +1155,11 @@ function somFinish(W, bmuOf, density) {
     return [CENTER[0] + r * sphi * Math.cos(theta), CENTER[1] + r * cphi, CENTER[2] + r * sphi * Math.sin(theta)];
   };
   const nSpd = new Float32Array(M), nCnt = new Float32Array(M);     // bmuOf 已由 worker 给出 → 这里只写锚点/相位、累计速度（无 BMU 搜索）
+  clusterAnc = new Float32Array(M * 3);                             // 每簇（=神经元）固定世界锚点，供微弱空间声像投影（同簇成员的 anc 恒等，取一次即可）
   for (let i = 0; i < N; i++) {
     const bmu = bmuOf[i]; nSpd[bmu] += spd[i]; nCnt[bmu]++;
     const w = nodeWorld(nx(bmu), ny(bmu), nz(bmu)); anc[i * 3] = w[0]; anc[i * 3 + 1] = w[1]; anc[i * 3 + 2] = w[2];
+    const bo = bmu * 3; clusterAnc[bo] = w[0]; clusterAnc[bo + 1] = w[1]; clusterAnc[bo + 2] = w[2];
     bPhase[i] = hash01('bp' + bmu) * TAU;                                  // 每神经元(=cluster)一个相位 → 簇间错峰、簇内同步
   }
   for (let i = 0; i < N; i++) { const bmu = bmuOf[i], avg = nCnt[bmu] ? nSpd[bmu] / nCnt[bmu] : 0.5;
@@ -1410,6 +1413,12 @@ function promoteAudioSession() {                            // 每个手势里�
 }
 function ensureCtx() {
   if (audioCtx) return audioCtx;
+  // 优先复用 index.html 里 parse-time inline script 已经在 #ep-enter 点击手势内建好的 ctx
+  // （window.__abyssAudio.ctx，见该文件注释）——避免二次 new AudioContext，也避免丢掉那次手势解锁的效果。
+  if (window.__abyssAudio && window.__abyssAudio.ctx) {
+    audioCtx = window.__abyssAudio.ctx; audioCtx._tries = audioCtx._tries || 0;
+    return audioCtx;
+  }
   try {
     const AC = window.AudioContext || window.webkitAudioContext;
     if (AC) { audioCtx = new AC(); audioCtx._tries = 0; }
@@ -1421,6 +1430,7 @@ function recreateCtx() {                                    // 僵死 ctx 兜底
   try { old && old.removeEventListener('statechange', onAudioStateChange); } catch (_) {}
   try { old && old.state !== 'closed' && old.close(); } catch (_) {}   // fire-and-forget
   audioCtx = null;
+  if (window.__abyssAudio && window.__abyssAudio.ctx === old) window.__abyssAudio.ctx = null;   // 清掉过期引用：避免 ensureCtx() 又把刚 close 的僵死 ctx 复用回来
   return ensureCtx();
 }
 
@@ -1481,7 +1491,7 @@ function updateTipText(state) {                          // 底部 #tip-text：�
 function onAudioStateChange() {
   const state = refreshAudioState();
   updateTipText(state);
-  if (state === 'running') { audioKicked = true; document.body.classList.add('audio-on'); updateModeBtn(); }
+  if (state === 'running') { audioKicked = true; document.body.classList.add('audio-on'); updateModeBtn(); updateMicBtn(); }
 }
 
 function kickAudio() {                                   // 首个手势内（点任意几何体/屏幕/按键都算）：解锁+起声（幂等）
@@ -1502,15 +1512,90 @@ document.addEventListener('visibilitychange', () => {
   if (audioCtx && (audioCtx.state === 'suspended' || audioCtx.state === 'interrupted')) { try { audioCtx.resume(); } catch (_) {} }
 });
 
-function toggleMode() {                                   // 下方按钮：播放 ⇄ 静音（纯生成音乐，无麦克风）
+function toggleMode() {                                   // 下方按钮：播放 ⇄ 静音（纯生成音乐；静音态另有独立的 mic 按钮，见下方小节）
   if (!audioKicked) { startMusic(); onAudioStateChange(); return; }   // 首次点：先解锁音频
   muted = !muted;
+  if (!muted && micActive) disableMic();                  // 重新开声 → 让位回生成音乐的 beatPulse，停采+释放麦克风
   sonifier.setMuted(muted);
   updateModeBtn();
+  updateMicBtn();
   // 按钮显隐由 CSS hover 接管（body.audio-on #enable）：点完鼠标仍悬停 → 保持可见，移开自然淡隐；不再用 JS 操作内联 opacity（会盖过 CSS）。
 }
 document.getElementById('enable').addEventListener('click', toggleMode);
 updateModeBtn();
+
+// ---------- 静音态 mic 驱动："带上你自己的 DJ" ----------
+// 仅在「声音已静音 且 已过光敏警示门」时可用：把 pulse（原本由生成音乐引擎的 beatPulse 驱动、进而驱动
+// bloom 脉冲/星体加速/相机微震/strobe 的那个单一变量）换成房间里真实声音源（用户自己的 DJ set / 音箱）的
+// 振幅包络 + onset 检测。绝不碰 Sonifier 内部/音乐参数——mic 只是 pulse 的另一个数据源。
+let micAnalyser = null, micBuf = null, micStream = null, micActive = false, micDenied = false;
+let micEnvAvg = 0, micOnset = false, micPulseVal = 0;      // micBuf 每帧复用，零分配
+const micBtn = document.getElementById('mic-enable');
+
+function updateMicBtn() {                                 // 仅静音态 + 已过癫痫门时可见；mic 开时文案变"停用"（toggle 语义）
+  if (!micBtn) return;
+  const show = gateConfirmed && audioKicked && muted;
+  micBtn.classList.toggle('mic-hidden', !show);
+  micBtn.textContent = micActive
+    ? (isZh() ? '停用麦克风 · Stop mic' : 'Stop mic · 停用麦克风')
+    : (isZh() ? '用麦克风驱动 · Use mic' : 'Use mic · 用麦克风驱动');
+  const lbl = micActive
+    ? (isZh() ? '停用麦克风驱动画面' : 'Stop driving visuals with your microphone')
+    : (isZh() ? '用麦克风驱动画面' : 'Drive visuals with your microphone');
+  micBtn.setAttribute('aria-label', lbl); micBtn.title = lbl;   // a11y：aria-label/title 跟随 toggle 状态与语言（AGENTS.md §4.3）
+}
+
+async function enableMic() {                              // 打开麦克风分析节点（不接 destination → 无回授/无回声）；被拒/不可用 → 静默回退慢脉冲
+  if (micActive) return;
+  try {
+    try { if (navigator.audioSession) navigator.audioSession.type = 'play-and-record'; } catch (_) {}   // iOS：mic 录音需要 'play-and-record'（音乐已静音，输出路由无所谓）
+    const ctx = ensureCtx();
+    if (!ctx) throw new Error('no audio context');
+    micStream = await navigator.mediaDevices.getUserMedia({ audio: { echoCancellation: false } });
+    const an = ctx.createAnalyser(); an.fftSize = 512;
+    ctx.createMediaStreamSource(micStream).connect(an);
+    micAnalyser = an; micBuf = new Uint8Array(an.frequencyBinCount);
+    micEnvAvg = 0; micOnset = false; micPulseVal = 0; micActive = true; micDenied = false;
+  } catch (_) {                                            // 拒绝/不可用 → 双语提示一次，不刷 console，回退到静音态原本的慢脉冲衰减
+    micActive = false;
+    try { if (navigator.audioSession) navigator.audioSession.type = 'playback'; } catch (__) {}
+    if (!micDenied) {
+      micDenied = true;
+      const el = document.getElementById('tip-text');
+      if (el) el.textContent = isZh() ? '麦克风权限被拒绝或不可用' : 'microphone access denied or unavailable';
+    }
+  }
+  updateMicBtn();
+}
+
+function disableMic() {                                   // 停采所有轨 + 断开分析节点 + 释放引用（关闭系统麦克风指示灯，隐私；无泄漏）
+  micActive = false;
+  if (micStream) { try { micStream.getTracks().forEach((tr) => tr.stop()); } catch (_) {} micStream = null; }
+  micAnalyser = null; micBuf = null; micEnvAvg = 0; micOnset = false; micPulseVal = 0;
+  try { if (navigator.audioSession) navigator.audioSession.type = 'playback'; } catch (_) {}   // iOS：恢复只输出会话
+  updateMicBtn();
+}
+
+async function toggleMic() {                              // 次级按钮：开 ⇄ 关（toggle，不影响主「声音」按钮/Sonifier）
+  if (micActive) { disableMic(); return; }
+  await enableMic();
+}
+if (micBtn) micBtn.addEventListener('click', toggleMic);
+// 注：此处不在模块顶层立即调用 updateMicBtn() —— 它读 gateConfirmed，而该 let 声明在文件更下方的
+// 「光敏性警示门」小节，此刻还在 TDZ 内。初始隐藏态已由 index.html 里 button 的 mic-hidden 默认 class
+// 保证；真正的显隐刷新交给 onAudioStateChange / confirmGate / toggleMode / 语言切换等运行时回调触发。
+
+// 每帧调用：振幅包络(EMA，复用 micBuf 零分配) 驱动基线脉冲；相对滚动均值的能量突变 = onset，专供 strobe 触发。
+function updateMicPulse() {
+  if (!micActive || !micAnalyser) { micOnset = false; return micPulseVal * 0.9; }
+  micAnalyser.getByteFrequencyData(micBuf);
+  let s = 0; for (let i = 0; i < micBuf.length; i++) s += micBuf[i];
+  const energy = s / micBuf.length / 255;                 // 0..1 频域平均能量
+  micOnset = energy > micEnvAvg * 1.6 + 0.05 && energy > 0.12;   // 相对滚动均值突变 + 绝对底噪门槛（防静默环境误触发）
+  micEnvAvg = micEnvAvg * 0.92 + energy * 0.08;            // 慢速滚动均值，仅供 onset 相对判定
+  micPulseVal = micOnset ? 1 : Math.max(energy * 1.4, micPulseVal * 0.82);   // 包络驱动基线 + onset 瞬时顶到 1
+  return Math.min(micPulseVal, 1);
+}
 
 // ---------- 焦点详情探查：实时显示 id + 定义轨迹的微分方程 + 当前公式参数 + 每个参数所映射的数据；实体名降为角落小字 ----------
 // 每个吸引子的 ODE（与 stepOne 完全一致）；dv = 进入方程且数据可驱动的参数符号（仅 Thomas/Lorenz/Rössler），其余常数固定
@@ -1574,6 +1659,76 @@ function chanVal(id, i) {   // 通道当前值：从 typed arrays 实时取
     default: return '';
   }
 }
+// 「此刻在演奏什么」诗句：把选中实体的真实数据事实与正在发声的东西相连（斜体低亮小字）。
+// 纯文案 + 随机挑一句（UI 瞬时层，Math.random 允许）；禁工程词，只留真实事实 + 乐感词 + 天文隐喻。
+function nowPlayingLine(m, zh) {
+  const r = m.raw || {};
+  const nm = (zh ? (m.nameZh || m.nameEn) : (m.nameEn || m.nameZh)) || '';
+  const pool = [];
+  switch (m.kind) {
+    case 'CITY': {
+      const days = r.comfort;
+      if (days != null) pool.push(zh
+        ? `你正听着的这点暖，是 ${nm} ${days} 个宜居日攒下来的。`
+        : `The warmth you're hearing is ${days} livable days, saved up by ${nm}.`);
+      pool.push(zh
+        ? `旋律悬在 ${r.prov || nm} 的上空，那里的夜比这里长一点。`
+        : `The melody hangs over ${nm}, where the night runs a little longer.`);
+      break;
+    }
+    case 'KERNEL': {
+      const u = r.used;
+      pool.push(zh
+        ? `这条最沉的低音，托着${u != null ? ' ' + u + ' 款' : '一整代'}产品的地基。`
+        : `That heaviest bassline carries ${u != null ? u + ' products' : 'a whole generation'} on its back.`);
+      break;
+    }
+    case 'PRODUCT':
+      pool.push(zh
+        ? `${nm} 踩着四拍往前，是这片星海里的一颗小行星。`
+        : `${nm} rides the four-count forward, a small planet in this sea of stars.`);
+      break;
+    case 'BREAKTHROUGH': {
+      const y = r.y4;
+      pool.push(zh
+        ? `${y ? y + ' 年的' : '某一年的'}一次改写，此刻化成一记落下的鼓点。`
+        : `A rewrite from ${y || 'some year'}, now a single kick, landing.`);
+      break;
+    }
+    case 'POLICY': {
+      const y = r.y4;
+      pool.push(zh
+        ? `一纸${y ? ' ' + y + ' 年' : ''}的远图，正在铺开的长音里慢慢展开。`
+        : `A blueprint from ${y || 'years back'}, unfolding slow across a long, held chord.`);
+      break;
+    }
+    case 'VENDOR': {
+      const hq = [r.hqCity, r.hqCountry].filter(Boolean).join(zh ? ' ' : ', ');
+      pool.push(zh
+        ? `${nm} 悬在${hq ? ' ' + hq + ' ' : ''}上空，是这段旋律的一处支点。`
+        : `${nm} hangs over ${hq || 'the map'}, a quiet pivot in this melody.`);
+      break;
+    }
+    case 'PHARMA':
+      pool.push(zh
+        ? `鼓点落下的地方，${nm} 的灯还亮着，正在过夜。`
+        : `Where the kick lands, the lights are still on at ${nm}, working the night.`);
+      break;
+    case 'CAT':
+      pool.push(zh
+        ? `低音里最软的那一下，是一只叫 ${nm} 的猫。`
+        : `The softest touch in the bass is a cat named ${nm}.`);
+      break;
+    case 'SHELTER':
+      pool.push(zh
+        ? `那一簇暖光的源头，是 ${nm}——一屋子的猫在等。`
+        : `The source of that warm cluster is ${nm} — a house full of waiting cats.`);
+      break;
+  }
+  if (!pool.length) return '';
+  return pool[(Math.random() * pool.length) | 0];
+}
+
 let _ins = null;   // 缓存逐帧更新的节点
 function openInspector(i) {
   const m = D.meta[i]; if (!m || !card) return;
@@ -1587,11 +1742,13 @@ function openInspector(i) {
   }).filter((r) => r.val !== '' && r.val != null)   // 数据为空 → 整行隐藏（不显示「参数名 + 空」）
     .map((r) => `<div class="ir"><span class="ic">${r.lab}</span><span class="iv">${r.val}</span><span class="im">← ${r.src}</span></div>`).join('');
   const nm = (zh ? (m.nameZh || m.nameEn) : (m.nameEn || m.nameZh)) || '';
+  const np = nowPlayingLine(m, zh);   // 「此刻在演奏什么」诗句：真实数据事实 ↔ 正在发声的东西
   card.classList.add('inspect');
   card.innerHTML =
     `<div class="ins-eq"><div class="ins-eqh">${A.n}<span class="ins-sys"> · sys ${s}</span>${dv ? ` · <b>${dv}</b> = ${prm[i].toFixed(2)}` : ''}</div>${odeHtml}</div>` +
     `<div class="ins-state">x <i data-l="x">·</i> y <i data-l="y">·</i> z <i data-l="z">·</i> <span class="ins-dt">Δt <i data-l="h">·</i></span></div>` +
     `<div class="ins-rows">${rows}</div>` +
+    (np ? `<div class="ins-np">${np}</div>` : '') +   // 斜体低亮低语：不解释代码，只把此刻声音与这颗星的真实数据相连
     `<div class="ins-meta"><span class="ins-name">${nm}</span></div>`;   // id 隐藏（多为名称 slug 的重述，冗余）；脚注仅留极淡名字
   card.classList.remove('hidden');
   _ins = { i, x: card.querySelector('[data-l=x]'), y: card.querySelector('[data-l=y]'), z: card.querySelector('[data-l=z]'), h: card.querySelector('[data-l=h]') };
@@ -1643,7 +1800,7 @@ renderer.domElement.addEventListener('pointerup', (e) => {
   let uiMode = 0;                                                   // 0 HIDDEN · 1 EN · 2 ZH（默认 0 = 首屏纯画面）
   let hudT = null, peekT = null, peeking = false, lastPtr = 'mouse';
 
-  const applyLang = () => { applyUi({ clubMode: muted }); if (focusActive && focusIdx >= 0) openInspector(focusIdx); };   // 切语言后重渲染（含模式感知按钮 + 详情面板）
+  const applyLang = () => { applyUi({ clubMode: muted }); updateMicBtn(); if (focusActive && focusIdx >= 0) openInspector(focusIdx); refreshWhisper(); };   // 切语言后重渲染（含模式感知按钮 + mic 按钮文案 + 详情面板 + 环境低语）
   const showHud = () => {                                          // 静置淡隐：仅 EN/ZH 模式有效；隐藏模式由 CSS 接管标题浮现
     if (uiMode === 0) { hud.style.opacity = ''; tip.style.opacity = ''; clearTimeout(hudT); return; }
     hud.style.opacity = ''; tip.style.opacity = ''; clearTimeout(hudT);
@@ -1696,10 +1853,134 @@ function computeViewAgg() {
     viewAgg.dom = dom; viewAgg.toneAvg = tone / n; viewAgg.szAvg = sz / n;
     if (vote && clusterHue) {   // 主导可见簇(真实 SOM 神经元) → 其色相/能量 = 你正看着哪片自组织 → 实时旋律色/密度
       let vcl = 0, vmax = -1; for (let m = 0; m < somM; m++) if (vote[m] > vmax) { vmax = vote[m]; vcl = m; }
-      if (vmax > 0) { viewAgg.clHue = clusterHue[vcl]; viewAgg.clEnergy = clusterEnergy[vcl]; }
+      if (vmax > 0) { viewAgg.clHue = clusterHue[vcl]; viewAgg.clEnergy = clusterEnergy[vcl]; viewAgg.domCluster = vcl; }   // domCluster 供微弱空间声像投影（updateSpatialAudio 低频消费）
     }
   }
   viewAgg.n = n;   // n==0 时保留上一帧 dom/tone/簇（避免视野扫空时乱跳）
+}
+
+// 微弱空间声像（"可以有微弱影响" —— 宁欠勿过）：每 ~250ms 把「主导可见 SOM 簇」的世界锚点投影到相机 NDC，
+// 喂给 sonifier.setSpatial(x, closeness)。低频定时器，受 visibilitychange 暂停，不占每帧预算；不新增每帧分配
+// （复用模块级 _vp，本函数本身也只在低频 tick 上跑）。簇数据不可用/簇锚点落相机背后 → setSpatial(0, 0)（居中、零偏置）。
+function updateSpatialAudio() {
+  if (!sonifier.started) return;
+  const dc = viewAgg.domCluster;
+  if (dc == null || dc < 0 || !clusterAnc) { sonifier.setSpatial(0, 0); return; }
+  const o = dc * 3, x = clusterAnc[o], y = clusterAnc[o + 1], z = clusterAnc[o + 2];
+  const m = _vp.elements;   // _vp 每帧在 animate() 里刷新为最新 projectionMatrix*matrixWorldInverse（视锥剔除用）→ 此处复用，零新分配
+  const cw = m[3] * x + m[7] * y + m[11] * z + m[15];
+  if (cw <= 0.05) { sonifier.setSpatial(0, 0); return; }   // 簇锚点在相机背后 → 投影无意义，居中兜底
+  const cx = (m[0] * x + m[4] * y + m[8] * z + m[12]) / cw;               // NDC x（setSpatial 内部再夹 [-1,1] × 0.25 上限）
+  const closeness = clamp(1 - (cw - SOM_R[0]) / (SOM_R[1] - SOM_R[0]), 0, 1);   // 用 SOM 壳半径 [55,120] 归一「相机到簇锚点」距离
+  sonifier.setSpatial(cx, closeness);
+}
+let _spatialTimer = null;
+function startSpatialTimer() { if (_spatialTimer == null) _spatialTimer = setInterval(updateSpatialAudio, 250); }
+function stopSpatialTimer() { if (_spatialTimer != null) { clearInterval(_spatialTimer); _spatialTimer = null; } }
+document.addEventListener('visibilitychange', () => { if (document.hidden) stopSpatialTimer(); else startSpatialTimer(); });
+if (!document.hidden) startSpatialTimer();
+
+// ---------- 环境低语：section/set 相位切换时，一句与当前声音相关的数据诗句淡入 ~8s 后淡出 ----------
+// 让访客知道"此刻在演奏什么数据"，但保持神秘感——禁工程词，只留真实数据事实 + 乐感词 + 天文隐喻。
+// 数据规模 COSMOS 由 main() 填；真实名字池懒建。选择用 Math.random（UI 瞬时层，确定性纪律不适用）。
+let COSMOS = null;   // { cities, products, kernels, breakthroughs, policies, vendors, pharmaCo, sites, drugs, cats, shelters }
+const whisperEl = (() => { const el = document.createElement('div'); el.id = 'whisper'; el.setAttribute('aria-live', 'polite'); document.body.appendChild(el); return el; })();
+let _namePools = null;
+function namePools() {   // 从 D.meta 一次性抽真实名字（此函数仅在 ≥90s 一次的低语触发时调用，非每帧）
+  if (_namePools) return _namePools;
+  const p = { city: [], pharma: [], cat: [], shelter: [] };
+  for (let i = 0; i < D.meta.length; i++) {
+    const m = D.meta[i]; if (!m) continue;
+    const nz = m.nameZh, ne = m.nameEn; if (!nz && !ne) continue;
+    if (m.kind === 'CITY') p.city.push([nz || ne, ne || nz]);
+    else if (m.kind === 'PHARMA') p.pharma.push([nz || ne, ne || nz]);
+    else if (m.kind === 'CAT') p.cat.push([nz || ne, ne || nz]);
+    else if (m.kind === 'SHELTER') p.shelter.push([nz || ne, ne || nz]);
+  }
+  _namePools = p; return p;
+}
+const _pick = (a) => (a && a.length ? a[(Math.random() * a.length) | 0] : null);
+// 模板骨架（12 条）：need = 必须存在的数据槽；mood 与当前段落的声音质地对齐（kick=有力鼓点段 / pad=铺开和声段 / any=通用）。
+// zh/en 各自独立创作（非翻译腔）。名字槽是 [zh, en]，渲染时按当前语言取一侧。
+const WHISPERS = [
+  { need: ['cities'], mood: 'pad', make: (S, zh) => zh
+    ? `你听到的这点暖，是南北 ${S.cities} 座城的天气，一起呼吸。`
+    : `That warmth you hear is the weather of ${S.cities} cities, breathing together.` },
+  { need: ['cityName'], mood: 'any', make: (S, zh) => zh
+    ? `旋律正落在 ${S.cityName[0]} 的上空，那里的夜比这里长。`
+    : `The melody is settling over ${S.cityName[1]}, where the night runs longer.` },
+  { need: ['pharmaCo'], mood: 'kick', make: (S, zh) => zh
+    ? `鼓点落下的地方，${S.pharmaCo} 家药厂正在过夜。`
+    : `Where the kick lands, ${S.pharmaCo} drugmakers are working through the night.` },
+  { need: ['cats'], mood: 'any', make: (S, zh) => zh
+    ? `高音里最轻的那一串，是 ${S.cats} 只还在等家的猫。`
+    : `The lightest run up top is ${S.cats} cats still waiting for a home.` },
+  { need: ['catName'], mood: 'pad', make: (S, zh) => zh
+    ? `有一只叫 ${S.catName[0]} 的猫，藏在这段和声的最软处。`
+    : `A cat named ${S.catName[1]} is hiding in the softest part of this chord.` },
+  { need: ['shelterName'], mood: 'any', make: (S, zh) => zh
+    ? `那一簇暖光的源头，是 ${S.shelterName[0]}，一屋子的猫。`
+    : `The source of that warm cluster is ${S.shelterName[1]}, a house full of cats.` },
+  { need: ['products'], mood: 'kick', make: (S, zh) => zh
+    ? `四拍稳稳向前，托着 ${S.products} 件机器背后的野心。`
+    : `The four-count keeps rolling, carrying the ambition behind ${S.products} machines.` },
+  { need: ['policies'], mood: 'pad', make: (S, zh) => zh
+    ? `铺开的长音下面，压着 ${S.policies} 纸还没说完的远图。`
+    : `Under that long, held chord lie ${S.policies} blueprints, still unfinished.` },
+  { need: ['sites'], mood: 'kick', make: (S, zh) => zh
+    ? `散在全球的 ${S.sites} 座厂房与实验室，此刻一起打着这个四拍。`
+    : `${S.sites} plants and labs scattered across the globe are all keeping this four-count.` },
+  { need: [], mood: 'pad', make: (S, zh) => zh
+    ? `此刻发声的，是房子、药、机器与猫，挤在同一片星海里。`
+    : `What's sounding now is houses, medicine, machines and cats, crowded into one sea of stars.` },
+  { need: [], mood: 'any', make: (S, zh) => zh
+    ? `每一次和弦转身，都是过去某一年的一次改写。`
+    : `Every turn of the chord is a rewrite from some year now gone.` },
+  { need: ['cats', 'cities'], mood: 'any', make: (S, zh) => zh
+    ? `一头是 ${S.cities} 座城的天气，一头是 ${S.cats} 只猫，都在这一段旋律里。`
+    : `On one side, the weather of ${S.cities} cities; on the other, ${S.cats} cats — both inside this one melody.` },
+];
+function _whisperSlotsBuild() {
+  const C = COSMOS || {}, P = namePools();
+  return {
+    cities: C.cities || 0, pharmaCo: C.pharmaCo || 0, cats: C.cats || 0, shelters: C.shelters || 0,
+    products: C.products || 0, policies: C.policies || 0, sites: C.sites || 0,
+    cityName: _pick(P.city), catName: _pick(P.cat), shelterName: _pick(P.shelter),
+  };
+}
+function _whisperMood(sec, ph) {
+  if (sec === 'drop') return 'kick';
+  if (sec === 'breakdown' || sec === 'intro') return 'pad';
+  if (ph === 'peak') return 'kick';
+  return 'any';
+}
+let _lastSec = null, _lastPhase = null, _lastWhisperT = -1e9, _whisperShowing = false;
+let _whisperTpl = null, _whisperSlots = null, _wHold = 0, _wClear = 0;
+function refreshWhisper() { if (_whisperShowing && _whisperTpl) whisperEl.textContent = _whisperTpl.make(_whisperSlots, isZh()); }   // 语言切换时重渲染当前低语（数据槽不变，仅换语言侧）
+function fireWhisper(sec, ph, t) {
+  const S = _whisperSlotsBuild();
+  const ok = WHISPERS.filter((w) => w.need.every((k) => { const v = S[k]; return typeof v === 'number' ? v > 0 : !!v; }));
+  if (!ok.length) return;
+  const want = _whisperMood(sec, ph);
+  let cand = ok.filter((w) => w.mood === want || w.mood === 'any');
+  if (!cand.length) cand = ok;
+  _whisperTpl = cand[(Math.random() * cand.length) | 0]; _whisperSlots = S;
+  whisperEl.textContent = _whisperTpl.make(S, isZh());
+  _whisperShowing = true; _lastWhisperT = t;
+  whisperEl.classList.add('show');
+  clearTimeout(_wHold); clearTimeout(_wClear);
+  _wHold = setTimeout(() => whisperEl.classList.remove('show'), 7000);                                      // 淡入(CSS ~1.1s) + 停留 → 7s 后开始淡出
+  _wClear = setTimeout(() => { _whisperShowing = false; whisperEl.textContent = ''; _whisperTpl = null; }, 8400);   // 淡出完成后清空（总可见 ~8s）
+}
+const WHISPER_GAP = 90;   // 节流：两条低语间隔 ≥90s
+function maybeWhisper(t) {   // 每帧调用，仅做字符串比较（零分配）；真正触发才建槽（≥90s 一次）
+  if (!sonifier.started || !COSMOS) return;
+  const sec = sonifier.section, ph = sonifier.setPhase;
+  if (_lastSec === null) { _lastSec = sec; _lastPhase = ph; return; }   // 首帧只记基线，不触发
+  const changed = (sec !== _lastSec) || (ph !== _lastPhase);
+  _lastSec = sec; _lastPhase = ph;
+  if (!changed || _whisperShowing || t - _lastWhisperT < WHISPER_GAP) return;
+  fireWhisper(sec, ph, t);
 }
 
 // ---------- loop ----------
@@ -1711,8 +1992,9 @@ function animate() {
   const dt = Math.min(clock.getDelta(), 0.05); tElapsed += dt; U.uTime.value = tElapsed;
   // 撤销上一帧叠加的 FOV punch → 还原到"基础 FOV"（intro-zoom / 手动缩放设的值），再由下方 beat-sync 重新叠加。避免累积漂移。
   if (_fovPunchApplied) { camera.fov -= _fovPunchApplied; _fovPunchApplied = 0; }
-  // 脉冲来源 = 生成音频引擎的 beatPulse（每个 kick → 1，引擎内每帧自衰减）。替代原 mic 驱动：纯生成音乐，无麦克风。
-  pulse = sonifier.started ? sonifier.beatPulse : (pulse * 0.9);
+  // 脉冲来源：默认 = 生成音频引擎的 beatPulse（每个 kick → 1，引擎内每帧自衰减）。
+  // 静音态下若用户开了「带上你自己的 DJ」mic 驱动，pulse 换成房间真实声音的振幅包络（updateMicPulse，零每帧分配）。
+  pulse = micActive ? updateMicPulse() : (sonifier.started ? sonifier.beatPulse : (pulse * 0.9));
   U.uPulse.value = pulse;
   bgMat.uniforms.uTime.value = tElapsed; bgMat.uniforms.uPulse.value = pulse;
 
@@ -1733,9 +2015,16 @@ function animate() {
   // FOV punch：在 intro/手动缩放设的基础 FOV 上叠加（_fovPunchApplied 记录本帧叠加量，下一帧开头撤销 → 不累积漂移）。
   _fovPunchApplied = pulse * (inDrop ? 2.5 : 1.2);
   camera.fov += _fovPunchApplied; camera.updateProjectionMatrix();
-  if (bloomPass) bloomPass.strength = BLOOM_BASE + pulse * (inDrop ? 0.7 : 0.4);   // bloom 强度脉冲：基线 → kick 瞬时更强
-  // 频闪：drop 段每个 kick（pulse > 0.6）闪一下；仅当用户已过光敏警示门（gateConfirmed）。
-  if (strobeEl && gateConfirmed && inDrop && pulse > 0.6) { strobeEl.classList.add('strobe-on'); clearTimeout(strobeEl._t); strobeEl._t = setTimeout(() => strobeEl.classList.remove('strobe-on'), 70); }
+  // bloom 强度脉冲：基线 → kick/mic-onset 瞬时更强。基线另随 DJ-set 宏弧相位 ±~10% 缓变（warm-up 稍暗 → peak 稍亮）：
+  // getSetPhase() 返回引擎内复用对象、energyVis 已在引擎侧平滑（~2s glide）→ 零每帧分配、零额外平滑成本。
+  if (bloomPass) {
+    const setE = sonifier.started ? sonifier.getSetPhase().energyVis : 0.6;   // 0.34(warm-up)..1.0(peak apex)；未起声取中性 0.6（因子≈0.99）
+    bloomPass.strength = BLOOM_BASE * (0.83 + 0.27 * setE) + pulse * (inDrop ? 0.7 : 0.4);
+  }
+  // 频闪：仅当用户已过光敏警示门（gateConfirmed）。生成音乐态 = drop 段每个 kick（pulse > 0.6）闪一下；
+  // mic 驱动态 = 改为 onset 检测（updateMicPulse 里算好的 micOnset），与「原本的 drop 段」逻辑解耦——房间声音没有 drop 段概念。
+  const strobeFire = micActive ? micOnset : (inDrop && pulse > 0.6);
+  if (strobeEl && gateConfirmed && strobeFire) { strobeEl.classList.add('strobe-on'); clearTimeout(strobeEl._t); strobeEl._t = setTimeout(() => strobeEl.classList.remove('strobe-on'), 70); }
 
   // 呼吸式自组织：CENTER(重叠混沌) ⇄ SOM 神经地图；mic 出声提速呼吸；smootherstep 在两端停留
   // SOM 就绪前不推进呼吸(breathT=0、bAmp=0 → 纯重叠混沌运动)；就绪后 bAmp 从 0 平滑 ramp → 从随机运动态连续呼气展开成神经地图，无瞬变
@@ -1921,6 +2210,7 @@ function animate() {
       view: viewAgg,
     });
   }
+  maybeWhisper(tElapsed);   // 环境低语：段落/相位切换时的数据诗句（内部自门控 started + ≥90s 节流）
   if (composer) composer.render(); else renderer.render(scene, camera);   // bloom 开 → 走 composer（含 bloom pass）；否则直渲
 }
 
@@ -2023,13 +2313,21 @@ let gateConfirmed = false;
 const strobeEl = document.getElementById('strobe');
 const gate = document.getElementById('epilepsy-gate');
 const epEnter = document.getElementById('ep-enter');
-if (epEnter) {
-  epEnter.addEventListener('click', () => {
-    gateConfirmed = true;
-    kickAudio();   // 「我已知悉」这次 click 本身就是 iOS 上有效的 user-activation → 在同一手势同步栈内解锁+起声（不再仅依赖全局监听冒泡的时序）
-    if (gate) { gate.classList.add('gone'); setTimeout(() => gate.remove(), 700); }
-  }, { once: true });
+function confirmGate() {                                    // 「我已知悉」确认后的统一流程；可能来自本模块的 click 监听，也可能是下面的冷网竞态兜底补跑
+  if (gateConfirmed) return;
+  gateConfirmed = true;
+  kickAudio();   // 「我已知悉」这次手势本身就是 iOS 上有效的 user-activation → 同步栈内解锁+起声（kickAudio→startMusic→ensureCtx 会优先复用 __abyssAudio.ctx）
+  updateMicBtn();   // mic 按钮的显隐条件之一是 gateConfirmed，门刚过时刷新一次（此时通常仍是"播放"态，按钮仍隐藏，直到用户静音）
+  if (gate) { gate.classList.add('gone'); setTimeout(() => gate.remove(), 700); }
 }
+if (epEnter) {
+  epEnter.addEventListener('click', confirmGate, { once: true });
+}
+// 冷网竞态兜底：index.html 里的 parse-time inline script 早于本 module 就绪，直接在 #ep-enter 的点击
+// 手势同步栈内建好了 AudioContext（window.__abyssAudio.entered）。若本模块加载完成时那次点击已经发生
+// 且被上面刚注册的监听器错过（module 还没到位），这里补跑一次确认流程——门语义不破坏：entered 只在
+// inline script 里真实的 click 回调中才会置位，不是"假装知悉"。
+if (window.__abyssAudio && window.__abyssAudio.entered) confirmGate();
 
 // ---------- boot ----------
 
@@ -2039,6 +2337,13 @@ if (epEnter) {
   try { pharma = await buildPharma(); } catch (err) { if (DEBUG) console.warn('[Data Abyss] pharma load failed:', err); }
   try { scats = await buildShelterCats(); } catch (err) { if (DEBUG) console.warn('[Data Abyss] shelter-cats load failed:', err); }
   const cities = buildHousing();
+  COSMOS = {   // 数据规模快照 → 环境低语的数量槽（缺数据的层为 0，模板会自动跳过）
+    cities, products: info.products || 0, kernels: info.kernels || 0,
+    breakthroughs: (info.milestones || 0) + (pharma.milestones || 0),
+    policies: info.policies || 0, vendors: info.vendors || 0,
+    pharmaCo: pharma.companies || 0, sites: pharma.sites || 0, drugs: pharma.products || 0,
+    cats: scats.cats || 0, shelters: scats.shelters || 0,
+  };
   bgMat.uniforms.uWarm.value = climWarm;
   // CPPN 背景：用数据聚合量确定性播种神经权重（这场梦由数据塑形）
   const cppnSeed = (Math.round(climWarm * 1000) * 131 + (info.products || 0) * 17 + (info.milestones || 0) * 7 + (info.policies || 0) * 3 + cities) >>> 0;
@@ -2059,6 +2364,8 @@ if (epEnter) {
   requestAnimationFrame(() => buildSOM((som) => {
     for (let i = 0; i < N; i++) writeWorld(i); if (prevPos) prevPos.set(posArr);   // SOM 设好 anc/bPhase/bRate；此刻 bAmp 仍 = 0 → effAnc≈CENTER、位置与上一帧一致（重叠态），无跳变
     somReady = true;   // 解锁呼吸：从这帧起 bAmp 从 0 平滑 ramp → 星体连续地呼气展开成神经地图（与之前的随机运动态无缝衔接）
+    // SOM「觉醒」：若用户在 SOM 训完前已开声，sonifier 以 fallback DNA 沉睡启动 → 此刻 musicDNA 到位，交给引擎在下一个 8-bar 边界重推导 + 音乐化绽放（内部幂等：非 fallback 启动则 no-op）。
+    if (musicDNA) sonifier.updateDNA(musicDNA);
     if (DEBUG) console.log(`[Data Abyss] SOM ${som ? som.neurons + ' neurons / ' + som.edges + ' edges' : 'skipped'}${musicDNA ? ` · musicDNA[hue ${musicDNA.hueStar.toFixed(2)} · conc ${musicDNA.concentration.toFixed(2)} · clusters ${musicDNA.clusters} · spd ${musicDNA.speedMean.toFixed(2)}±${musicDNA.speedSpread.toFixed(2)} · domType ${musicDNA.domType} · sig ${musicDNA.sig}]` : ''} (trained off-thread)`);
   }));
 })();
