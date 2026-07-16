@@ -33,13 +33,31 @@ node demos/visual-page/tools/check-lofi.mjs
   只做计数棘轮，不对调用点位置做语义判断。数量变了就去人工核对新增/减少的
   调用点是否合理，再手动更新 `EXPECTED`。
 
-## 已知现状（2026-07-09，首次跑通）
+## 已知现状
 
-`[1/3]` 当前报告 **6 处真实 m2/m9 撞车**（`maj7`/`maj9` 各 2 处、`min9` 2 处，
-都是主旋律 `+24`（两个八度上的根音）撞上和弦的大七度/九度音）。这是这套
-lofi 引擎第一次被这样系统性核查——之前的"harmony pass"只做过 neon-abyss，
-lofi 侧从未被这样审过，所以发现真实、之前未知的问题在预期之内。**本脚本
-不修引擎**，只如实报告；是否要动 `audio.js` 是后续独立的决定。
+- 2026-07-09 首次跑通时 `[1/3]` 报告过 **6 处真实 m2/m9 撞车**（主旋律 `+24`
+  撞和弦大七度/九度音）——已在 harmony pass（commit `17e30e2`）通过"+24 分支
+  撞车让位五度"清零，当前 0 处。
+- 2026-07-16 悦耳度 pass 之后棘轮基线不变（`EXPECTED = 18`），两条 drift-guard
+  needle（mel oct 概率、focus 电钢参数）随源码同步更新。
+
+## measure-harshness.html — 刺耳度离线测量 harness（2026-07-16）
+
+`tools/measure-harshness.html` 用 `OfflineAudioContext` 对引擎做**确定性离线渲染**
+（4 个覆盖三档情绪的固定 DNA 预设 × 40s），量化输出：整体 RMS、6 频段能量占比、
+频谱质心、尖锐度代理（`10·log10(E[2k–22k]/E[200–2k])`，越负越暗越适合背景聆听）、
+瞬时不连续尖峰计数（增益跳变/包络截断的指纹）。同一预设跨版本完全可比——改音色
+前后各跑一次就能拿到 before/after 数字，不再只凭耳朵争论。
+
+```bash
+# 仓库根目录起静态服务后浏览器打开（module import 需要 http）
+python3 -m http.server 8099
+open "http://localhost:8099/demos/visual-page/tools/measure-harshness.html?src=../audio.js%3Fbust"
+# 结果渲染成表格，也挂在 window.__RESULTS 供脚本抓取
+```
+
+参考基线：2026-07-16 悦耳度 pass 把尖锐度从 −17.1..−19.7dB 压到 −20.9..−24.0dB，
+clicks/min 从 13–71 清到 ~0，RMS 保持 ±0.2dB。
 
 ## 源码漂移守卫
 

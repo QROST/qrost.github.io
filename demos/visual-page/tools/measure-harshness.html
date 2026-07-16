@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<title>lofi 刺耳度测量 harness — measure-harshness</title>
+<style>
+  body { background: #0a0c12; color: #cdd6e4; font: 13px/1.5 ui-monospace, Menlo, monospace; padding: 20px; }
+  h1 { font-size: 15px; } table { border-collapse: collapse; margin: 12px 0; }
+  td, th { border: 1px solid #2a3040; padding: 4px 10px; text-align: right; }
+  th { background: #141926; } td:first-child, th:first-child { text-align: left; }
+  .warn { color: #ffb3b3; } .ok { color: #9fe8b0; } #status { color: #8fd0ff; }
+</style>
+</head>
+<body>
+<h1>数渊 lofi 引擎 · 刺耳度离线测量（OfflineAudioContext 确定性渲染）</h1>
+<p>用法：<code>?src=../audio.js</code>（默认）指向被测引擎模块。同一 DNA 预设 → 完全确定性输出，跨版本可比。</p>
+<div id="status">boot…</div>
+<div id="out"></div>
+<script type="module">
+// 4 个覆盖三档情绪 + fallback 的确定性 DNA 预设；40s/个（跳过前 8s 渐入）。
+// 指标：整体 RMS、6 频段能量占比、频谱质心、尖锐度代理（2k–10k vs 200–2k）、
+//        瞬时不连续（增益跳变/包络截断的一阶差分尖峰计数）。
+const PRESETS = [
+  { name: 'bright(city)',   dna: { sig: 0x12345678, warm: 0.55, hueStar: 0.12, speedMean: 0.5,  speedSpread: 0.45, domType: 0, concentration: 0.4,  populatedFrac: 0.3,  motif: [0,2,1,3,2,0,3,1] } },
+  { name: 'mellow(product)',dna: { sig: 0xDEADBEEF, warm: 0.35, hueStar: 0.62, speedMean: 0.45, speedSpread: 0.5,  domType: 1, concentration: 0.55, populatedFrac: 0.45, motif: [1,3,0,2,4,1,2,0] } },
+  { name: 'wistful(kernel)',dna: { sig: 0xCAFEBABE, warm: 0.75, hueStar: 0.85, speedMean: 0.6,  speedSpread: 0.35, domType: 2, concentration: 0.3,  populatedFrac: 0.6,  motif: [2,0,3,1,0,4,1,3] } },
+  { name: 'bright(cat)',    dna: { sig: 0x0BADF00D, warm: 0.5,  hueStar: 0.4,  speedMean: 0.55, speedSpread: 0.6,  domType: 7, concentration: 0.7,  populatedFrac: 0.2,  motif: [3,1,4,0,2,3,0,2] } },
+];
+const DUR = 40, SR = 44100, SKIP = 8, PUMP = 0.08;
+const BANDS = [[0,200],[200,800],[800,2000],[2000,5000],[5000,10000],[10000,22050]];
+const BAND_NAMES = ['sub<200','low 200-800','mid 800-2k','presence 2k-5k','sizzle 5k-10k','air 10k+'];
+
+const params = new URLSearchParams(location.search);
+const srcUrl = params.get('src') || '../audio.js';
+const status = (m) => { document.getElementById('status').textContent = m; };
+
+function fft(re, im) {   // 迭代 radix-2，就地
+  const n = re.length;
+  for (let i = 1, j = 0; i < n; i++) {
+    let bit = n >> 1;
+    for (; j & bit; bit >>= 1) j ^= bit;
+    j ^= bit;
+    if (i < j) { let t = re[i]; re[i] = re[j]; re[j] = t; t = im[i]; im[i] = im[j]; im[j] = t; }
+  }
+  for (let len = 2; len <= n; len <<= 1) {
+    const ang = -2 * Math.PI / len, wr = Math.cos(ang), wi = Math.sin(ang);
+    for (let i = 0; i < n; i += len) {
+      let cwr = 1, cwi = 0;
+      for (let k = 0; k < len / 2; k++) {
+        const ur = re[i + k], ui = im[i + k];
+        const vr = re[i + k + len / 2] * cwr - im[i + k + len / 2] * cwi;
+        const vi = re[i + k + len / 2] * cwi + im[i + k + len / 2] * cwr;
+        re[i + k] = ur + vr; im[i + k] = ui + vi;
+        re[i + k + len / 2] = ur - vr; im[i + k + len / 2] = ui - vi;
+        const nwr = cwr * wr - cwi * wi; cwi = cwr * wi + cwi * wr; cwr = nwr;
+      }
+    }
+  }
+}
+
+function analyze(buf) {
+  const L = buf.getChannelData(0), R = buf.numberOfChannels > 1 ? buf.getChannelData(1) : L;
+  const start = SKIP * SR, n = buf.length - start;
+  const mono = new Float32Array(n);
+  for (let i = 0; i < n; i++) mono[i] = (L[start + i] + R[start + i]) * 0.5;
+
+  let sum2 = 0, peak = 0;
+  for (let i = 0; i < n; i++) { const v = mono[i]; sum2 += v * v; if (Math.abs(v) > peak) peak = Math.abs(v); }
+  const rms = Math.sqrt(sum2 / n);
+
+  // STFT 频段能量
+  const W = 4096, HOP = 2048, hann = new Float32Array(W);
+  for (let i = 0; i < W; i++) hann[i] = 0.5 - 0.5 * Math.cos(2 * Math.PI * i / (W - 1));
+  const bandE = new Float64Array(BANDS.length);
+  let centroidNum = 0, centroidDen = 0, frames = 0;
+  const re = new Float32Array(W), im = new Float32Array(W);
+  for (let off = 0; off + W <= n; off += HOP) {
+    for (let i = 0; i < W; i++) { re[i] = mono[off + i] * hann[i]; im[i] = 0; }
+    fft(re, im);
+    for (let k = 1; k < W / 2; k++) {
+      const f = k * SR / W, p = re[k] * re[k] + im[k] * im[k];
+      centroidNum += f * p; centroidDen += p;
+      for (let b = 0; b < BANDS.length; b++) if (f >= BANDS[b][0] && f < BANDS[b][1]) { bandE[b] += p; break; }
+    }
+    frames++;
+  }
+  const totE = bandE.reduce((a, b) => a + b, 0) || 1e-12;
+  const dB = (x) => 10 * Math.log10(Math.max(x, 1e-15));
+  // 尖锐度代理：高频段能量 vs 主体段能量（越负越暗越舒适）
+  const sharp = dB((bandE[3] + bandE[4] + bandE[5]) / Math.max(bandE[1] + bandE[2], 1e-15));
+
+  // 瞬时不连续检测：一阶差分 |d| > 10×RMS(d) 的样本计数（折算每分钟）
+  let d2 = 0;
+  for (let i = 1; i < n; i++) { const d = mono[i] - mono[i - 1]; d2 += d * d; }
+  const dRms = Math.sqrt(d2 / (n - 1));
+  let clicks = 0, maxD = 0;
+  for (let i = 1; i < n; i++) {
+    const d = Math.abs(mono[i] - mono[i - 1]);
+    if (d > 10 * dRms) clicks++;
+    if (d > maxD) maxD = d;
+  }
+  return {
+    rmsDb: +dB(rms * rms).toFixed(1), peak: +peak.toFixed(3),
+    bandsDb: [...bandE].map((e) => +(dB(e / totE)).toFixed(1)),
+    centroidHz: Math.round(centroidNum / Math.max(centroidDen, 1e-15)),
+    sharpDb: +sharp.toFixed(1),
+    clicksPerMin: Math.round(clicks / ((n / SR) / 60)), maxDiff: +maxD.toFixed(4),
+  };
+}
+
+async function renderPreset(Sonifier, preset) {
+  const ctx = new OfflineAudioContext(2, DUR * SR, SR);
+  const son = new Sonifier();
+  son.start(ctx, preset.dna);
+  const state = {
+    dt: PUMP, pitch: 0, fov: 55, pulse: 0, gOrg: 0.55, yaw: 0.3, focus: null,
+    view: { dom: preset.dna.domType, toneAvg: 0.5, clHue: 0.55, clEnergy: 0.45 },
+  };
+  for (let t = PUMP; t < DUR - 0.1; t += PUMP) {
+    ctx.suspend(t).then(() => { try { son.update(state); } catch (e) { console.error(e); } ctx.resume(); });
+  }
+  son.update(state);   // t=0 先灌一次调度
+  const buf = await ctx.startRendering();
+  return analyze(buf);
+}
+
+(async () => {
+  status(`loading engine: ${srcUrl}`);
+  const mod = await import(srcUrl);
+  const results = {};
+  for (const p of PRESETS) {
+    status(`rendering ${p.name} … (${DUR}s offline)`);
+    results[p.name] = await renderPreset(mod.Sonifier, p);
+  }
+  window.__RESULTS = results;
+  status('done');
+  const rows = Object.entries(results);
+  let html = '<table><tr><th>preset</th><th>RMS dB</th><th>peak</th>';
+  for (const b of BAND_NAMES) html += `<th>${b} (dB占比)</th>`;
+  html += '<th>质心 Hz</th><th>尖锐度 dB</th><th>clicks/min</th><th>maxΔ</th></tr>';
+  for (const [name, r] of rows) {
+    html += `<tr><td>${name}</td><td>${r.rmsDb}</td><td>${r.peak}</td>`;
+    for (const v of r.bandsDb) html += `<td>${v}</td>`;
+    html += `<td>${r.centroidHz}</td><td class="${r.sharpDb > -6 ? 'warn' : 'ok'}">${r.sharpDb}</td>`;
+    html += `<td class="${r.clicksPerMin > 60 ? 'warn' : 'ok'}">${r.clicksPerMin}</td><td>${r.maxDiff}</td></tr>`;
+  }
+  html += '</table><p>尖锐度 = 10·log10(E[2k–22k]/E[200–2k])，越负越暗越适合背景聆听；clicks/min = 一阶差分尖峰（增益跳变/包络截断指纹）。</p>';
+  document.getElementById('out').innerHTML = html;
+})().catch((e) => { status('FAILED: ' + e.message); console.error(e); });
+</script>
+</body>
+</html>

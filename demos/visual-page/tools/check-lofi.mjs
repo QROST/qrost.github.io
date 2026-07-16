@@ -42,12 +42,12 @@ console.log('=== [1/3] 和声穷举 (m2/m9) ===');
     { label: 'bass 主根音分支 (root-12)', needle: 'if (step === gr.kick[0] || step === 10) this._bass(t, mtof(key + ch.r - 12), stepDur * 5, 0.85);' },
     { label: 'bass 五度分支 (root-12+7)', needle: 'else if (step === 6 && ex > 0.4) this._bass(t, mtof(key + ch.r - 12 + 7), stepDur * 2, 0.5);' },
     { label: 'bass walking 分支 (root-12+5)', needle: 'else if (lv.walk && step === 14) this._bass(t, mtof(key + ch.r - 12 + 5), stepDur * 2, 0.42);' },
-    { label: 'mel oct 公式 (12 或 24)', needle: 'const oct = 12 * (this._rng() < (0.2 + liveE * 0.2) ? 2 : 1);' },
+    { label: 'mel oct 公式 (12 或 24)', needle: 'const oct = 12 * (this._rng() < (0.12 + liveE * 0.15) ? 2 : 1);' },   // 2026-07-16 悦耳度 pass：+24 概率 0.2–0.4→0.12–0.27（枚举域不变：仍是 12 或 24）
     { label: 'mel 主音符调用 (+oct)', needle: 'this._mel(t, mtof(key + ch.r + tones[ti] + oct), stepDur * 3, 0.3,' },
     { label: 'mel call-response 调用 (+12)', needle: 'this._mel(t, mtof(key + ch.r + tones[ti] + 12), stepDur * 2, 0.22,' },
     { label: 'mel oct=2 撞车避让 (让位五度)', needle: 'if (oct === 24 && tones.some((tj) => tj - tones[ti] === 11)) ti = tones.indexOf(7);' },
     { label: 'focus 电钢撞车避让 (让位五度)', needle: 'if (tones.some((tj) => tj - tones[ti] === 11)) ti = tones.indexOf(7);' },
-    { label: 'focus 电钢调用 (+24)', needle: 'this._epiano(t, mtof(this.curKey + 24 + ch.r + tones[ti]), 1.4, 0.32, this.focBus, 1, 2.2, 1.0);' },
+    { label: 'focus 电钢调用 (+24)', needle: 'this._epiano(t, mtof(this.curKey + 24 + ch.r + tones[ti]), 1.1, 0.32, this.focBus, 1, 1.4, 1.0);' },   // 2026-07-16 悦耳度 pass：dur 1.4→1.1 / idx 2.2→1.4（寄存器 +24 不变 → 枚举规则不变）
   ];
   const missingGuards = DRIFT_GUARDS.filter((g) => !src.includes(g.needle));
   if (missingGuards.length) {
