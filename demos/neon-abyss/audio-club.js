@@ -91,6 +91,7 @@ export class Sonifier {
     this.modeName = 'minor'; this.progs = PROGS; this.scale = MODES.minor.scale;   // 默认 minor；start() 按 domType 定
     this.patch = { leadSquare: false, sawSpread: 7, kickBoom: 0.35, bassReese: false };   // 音色签名；start() 按 domType+sig 定
     this.drumVar = 0; this._leadContour = 0; this._leadAlt = false;   // 鼓面变体 / lead 乐句轮廓（start() 按 sig 定）
+    this._nat = null;   // 自然乐器（悦耳度二期）预渲染 buffer 缓存：breakdown 钢琴 / pluck 琶音（start 建，觉醒清）
     this._spicePrev = false; this._spiceSet = [2];   // arp spice 状态 + 安全扩展集（start 按 mode 定）
     this.motif = [0, 2, 1, 3, 2, 0, 3, 1]; this.motifPos = 0;
     this._lastFocusKey = null;
@@ -181,6 +182,7 @@ export class Sonifier {
 
     // 噪声 buffer（clap / riser / impact 共用）。
     this._noise = this._noiseBuf(3.0);
+    this._nat = new Map();   // 自然乐器预渲染缓存（激励读 _noise → 依赖它先建好）
 
     this.master.gain.setTargetAtTime(0.85, t, 1.2);
     this.nextTime = t + 0.12;
@@ -228,6 +230,11 @@ export class Sonifier {
       bassReese: _ph || (this._sigMix(9) % 4 === 0),      // 硬派 + 1/4 其它 → reese 双失谐锯贝斯
     };
     this.drumVar = this._sigMix(33) % 3;                  // 鼓面变体 0/1/2：four-on-floor kick 不动（trance 身份），hat/clap 织体换（原先全硬编码=主节奏每次一模一样）
+    // 自然乐器（悦耳度二期，salt 52/53 两引擎均未占用）：~60% 宇宙 breakdown/intro 有情绪钢琴（trance 经典），
+    // ~40% 宇宙 16 分琶音换 Karplus-Strong pluck（同一音高选择路径 → 和声枚举不动）。觉醒/重推导时缓存重建。
+    this.patch.pianoBrk = (this._sigMix(52) % 10) < 6;
+    this.patch.arpPluck = (this._sigMix(53) % 10) < 4;
+    if (this._nat) this._nat.clear();
     this._leadContour = this._sigMix(34) % 3;             // lead 乐句轮廓型：0=邻上摆 1=邻下摆 2=五度跳（原先 lead 只反复唱 colorN 单音=主旋律记忆点恒定）
     // speedSpread → arp swing（异质度高 → arp 更跳）。
     this.arpSwing = 0.04 + (dna ? dna.speedSpread : 0.45) * 0.06;
@@ -436,6 +443,7 @@ export class Sonifier {
   // 声部微抖专用 PRNG（与主 _s 隔离）：风格切换改变声部调用次数时只扰它、不扰 _onBar 的 A+B 流。
   _rngV() { this._sV = (this._sV + 0x6D2B79F5) | 0; let x = this._sV; x = Math.imul(x ^ (x >>> 15), 1 | x); x = (x + Math.imul(x ^ (x >>> 7), 61 | x)) ^ x; return ((x ^ (x >>> 14)) >>> 0) / 4294967296; }
   // 位置哈希 → [0,1)：纯 (宇宙,小节,步,salt) 函数，与调用顺序无关 → 风格/交互门控不会错位任何流。
+  // _h salt 注册表（新增时查此处防撞号）：1/2/3 hardgroove tom+shaker · 4 lead 门 · 11/12 arp spice · 13 pluck 微移速。
   _h(salt) { let x = (this._sig0 ^ Math.imul(this.bar + 1, 0x9e3779b9) ^ Math.imul(this.step + 1, 0x85ebca6b) ^ Math.imul((salt | 0) + 1, 0xc2b2ae35)) | 0; x = Math.imul(x ^ (x >>> 16), 0x7feb352d); x = Math.imul(x ^ (x >>> 15), 0x846ca68b); x ^= x >>> 16; return (x >>> 0) / 4294967296; }
   // 从密度指纹 _sig0 + salt 派生一个良好去相关的 uint32（avalanche）：用于每宇宙一次性的选调/速/呼吸调度，位切片会有偏、必须混。
   _sigMix(salt) { let x = (this._sig0 ^ Math.imul((salt | 0) + 1, 0x9e3779b9)) | 0; x = Math.imul(x ^ (x >>> 16), 0x7feb352d); x = Math.imul(x ^ (x >>> 15), 0x846ca68b); x ^= x >>> 16; return x >>> 0; }
@@ -528,10 +536,18 @@ export class Sonifier {
       this._pad(t, ch, stepDur * 15, 0.5);
     }
 
-    // —— Supersaw stab：hardgroove 收敛让位打击；polka 更短更拨。沉睡态按下不表（觉醒时绽放）——
+    // —— 情绪钢琴（悦耳度二期，~60% 宇宙）：breakdown 和弦边界当家（无 kick → 不泵，正是裸露抒情的 hands-up 时刻；
+    //    supersaw 已让位）；intro 更轻（"夜刚开始"的第一件乐器——intro 在 lift/peak 相位有 kick，此时钢琴走 chordBus 吃泵=
+    //    经典 pumping trance piano，warmup 相位无鼓则安静开场）。沉睡态按下不表；polka 不配钢琴。——
+    if (!asleep && this.patch.pianoBrk && step === 0 && (bar & 1) === 0 && style !== 'polka' && style !== 'hardgroove' && (sec === 'breakdown' || sec === 'intro')) {
+      this._pianoChord(t, ch, sec === 'intro' ? 0.24 : 0.38);   // hardgroove 不配抒情钢琴（部落 breakdown 保持纯打击）
+    }
+
+    // —— Supersaw stab：hardgroove 收敛让位打击；polka 更短更拨。沉睡态按下不表（觉醒时绽放）。
+    //    钢琴宇宙的 breakdown 由钢琴当家 → supersaw 让位（纯音色替换，音高集合只减不增 → 和声门禁零歧义）——
     if (!asleep && sec !== 'intro' && step === 0) {
       if (style === 'hardgroove') { if (sec === 'drop') this._supersaw(t, ch, stepDur * 1.6, 0.32); }
-      else this._supersaw(t, ch, stepDur * (style === 'polka' ? 1.4 : 3), sec === 'drop' ? (style === 'polka' ? 0.5 : 0.6) : 0.4);
+      else if (!(sec === 'breakdown' && this.patch.pianoBrk && style !== 'polka')) this._supersaw(t, ch, stepDur * (style === 'polka' ? 1.4 : 3), sec === 'drop' ? (style === 'polka' ? 0.5 : 0.6) : 0.4);   // 只在钢琴真的接管时让位——polka 不配钢琴，supersaw 必须回来撑和声（verify 抓的 dropout 回归）
     }
     if (!asleep && sec === 'drop' && step === 8 && style === 'trance') this._supersaw(t, ch, stepDur * 2, 0.45);
 
@@ -693,6 +709,15 @@ export class Sonifier {
       note = this.sessKey + ch.r + tones[idx] + 12 * oct + 12;                                        // 和弦内音，随轮廓升八度
     }
     const freq = mtof(note);
+    // pluck 琶音变体（悦耳度二期，~40% 宇宙）：同一音高选择，音色换 Karplus-Strong 拨弦。
+    // 微移速抖动走位置哈希 _h(13)（纯 (宇宙,bar,step) 函数、零流扰动，设计评审裁定优于 _rngV）；
+    // 套用与 saw 路径同形的时值释放包络 → 16 分级联干净不糊。
+    if (this.patch.arpPluck) {
+      const rate = Math.pow(2, (this._h(13) * 8 - 4) / 1200);
+      this._playNat(t, this._pluckBuf(freq), vel * 0.85, this.arpBus, { rate, lp: 4500, hold: dur * 0.4, rel: dur * 0.3 });
+      this.debug.arps++;
+      return;
+    }
     const o = this.ctx.createOscillator(); o.type = 'sawtooth'; o.frequency.setValueAtTime(freq, t); o.detune.setValueAtTime(this._rngV() * 10 - 5, t);
     const lp = this.ctx.createBiquadFilter(); lp.type = 'lowpass'; lp.frequency.value = 5000;
     const g = this.ctx.createGain();
@@ -761,6 +786,71 @@ export class Sonifier {
   _duck(t) {
     const g = this.scBus.gain;
     g.cancelScheduledValues(t); g.setValueAtTime(0.4, t); g.setTargetAtTime(1, t + 0.001, 0.06);   // 指数恢复 → 更"泵"的 sidechain 呼吸（DJ：线性太 limp）
+  }
+
+  // ---------- 自然乐器（悦耳度二期：零采样、零新增 _rng —— 激励读 this._noise 确定性缓冲；预渲染 AudioBuffer 按音高缓存） ----------
+  // Karplus-Strong pluck（trance 拨弦）：激励中亮（a=0.7），弦环 ~0.3s 衰到 −60dB —— 设计评审：138bpm 16 分 =108ms，
+  // 0.5s ring 会 4–5 音叠糊，0.3s = 2–3 音干净级联。
+  _pluckBuf(freq) {
+    const key = 'g' + Math.round(freq * 4);
+    let b = this._nat.get(key); if (b) return b;
+    const sr = this.ctx.sampleRate, N = Math.max(2, Math.round(sr / freq)), ring = 0.3;
+    const len = Math.floor(sr * (ring + 0.15)), d = new Float32Array(len);
+    const src = this._noise.getChannelData(0), off = (Math.imul(N, 2654435761) >>> 0) % Math.max(1, src.length - N - 2);
+    let lp = 0;
+    for (let i = 0; i <= N; i++) { lp += 0.7 * (src[off + i] - lp); d[i] = lp; }
+    const loss = Math.pow(0.001, 1 / (freq * ring));
+    for (let i = N + 1; i < len; i++) d[i] = loss * 0.5 * (d[i - N] + d[i - N - 1]);
+    let pk = 0; for (let i = 0; i < len; i++) { const v = Math.abs(d[i]); if (v > pk) pk = v; }
+    if (pk > 0) { const s = 0.95 / pk; for (let i = 0; i < len; i++) d[i] *= s; }
+    b = this.ctx.createBuffer(1, len, sr); b.getChannelData(0).set(d); this._nat.set(key, b); return b;
+  }
+  // 情绪钢琴（比 lofi 毛毡版亮，但设计评审收敛：7 分音 n^-1.6、顶分音再压 3dB——neon 母带本就 +1.5dB 高架亮，
+  // 分音再多会在 2–4kHz 撞疲劳带；tau 上限 1.8s 防 2.4s 混响糊 + 递推长尾漂移）。2cos 递推，零逐样本 sin。
+  _pianoBuf(freq) {
+    const key = 'p' + Math.round(freq * 4);
+    let b = this._nat.get(key); if (b) return b;
+    const sr = this.ctx.sampleRate, len = Math.floor(sr * 2.0), d = new Float32Array(len);
+    const tauB = clamp(1.6 * Math.sqrt(261 / freq), 0.5, 1.8);
+    for (let n = 1; n <= 7; n++) {
+      const fn = n * freq * Math.sqrt(1 + 0.00038 * n * n);
+      if (fn > sr * 0.45) break;
+      const amp = Math.pow(n, -1.6) * (n === 7 ? 0.7 : 1), tau = tauB / (1 + 0.6 * (n - 1));
+      const w = 2 * Math.PI * fn / sr, dk = Math.exp(-1 / (tau * sr));
+      const c1 = 2 * dk * Math.cos(w), c2 = dk * dk;
+      let y1 = amp * dk * Math.sin(w), y0 = 0;
+      d[1] += y1;
+      for (let i = 2; i < len; i++) { const y = c1 * y1 - c2 * y0; y0 = y1; y1 = y; d[i] += y; }
+    }
+    const src = this._noise.getChannelData(0), off = (Math.imul(Math.round(freq * 4), 40503) >>> 0) % Math.max(1, src.length - 2000);
+    let lp = 0;
+    for (let i = 0; i < 1600 && i < len; i++) { lp += 0.16 * (src[off + i] - lp); d[i] += lp * 0.3 * Math.exp(-i / (sr * 0.018)); }   // 槌噪 thump
+    const atk = Math.floor(sr * 0.008);
+    for (let i = 0; i < atk; i++) d[i] *= i / atk;
+    let pk = 0; for (let i = 0; i < len; i++) { const v = Math.abs(d[i]); if (v > pk) pk = v; }
+    if (pk > 0) { const s = 0.95 / pk; for (let i = 0; i < len; i++) d[i] *= s; }
+    b = this.ctx.createBuffer(1, len, sr); b.getChannelData(0).set(d); this._nat.set(key, b); return b;
+  }
+  // 播放预渲染自然乐器：3ms 起坡（杀 KS 首样本非零的边界咔哒）+ 可选静态低通/音乐时值释放 + buffer 末尾闭。
+  _playNat(t, buf, vel, dest, o) {
+    const src = this.ctx.createBufferSource(); src.buffer = buf;
+    if (o && o.rate) src.playbackRate.value = o.rate;
+    let head = src;
+    if (o && o.lp) { const lp = this.ctx.createBiquadFilter(); lp.type = 'lowpass'; lp.frequency.value = o.lp; src.connect(lp); head = lp; }
+    const g = this.ctx.createGain();
+    g.gain.setValueAtTime(0.0001, t); g.gain.linearRampToValueAtTime(vel, t + 0.003);
+    if (o && o.hold != null) g.gain.setTargetAtTime(0.0001, t + o.hold, o.rel || 0.25);
+    g.gain.setTargetAtTime(0, t + buf.duration - 0.05, 0.012);
+    head.connect(g); g.connect(dest); src.start(t); src.stop(t + buf.duration + 0.05);
+  }
+  // Breakdown/intro 情绪钢琴和弦：三和弦+b7（tones 前 4 音）在 supersaw 的 +12 寄存器（音高集合是既有枚举声部的
+  // 严格子集 → 和声门禁不动；不叠 close 9th 防中频糊）。音量随 DJ-set 相位收放（warmup 裸露、peak 让位 supersaw 墙），
+  // 相位是 bar 的纯函数 → 确定性。
+  _pianoChord(t, ch, vel) {
+    const tones = CHORD[ch.c].slice(0, 4), base = this.sessKey + ch.r + 12;
+    const v = vel * (1.05 - 0.35 * this._phaseE);
+    for (let k = 0; k < tones.length; k++) this._playNat(t + k * 0.011, this._pianoBuf(mtof(base + tones[k])), v * (1 - k * 0.06), this.chordBus, { hold: 1.3, rel: 0.3 });
+    this.debug.chords++;
   }
 
   // focus = "跟踪哪个数据" → 一记柔和 lead 音（视野→吟唱，原 audio.js 钩子）。

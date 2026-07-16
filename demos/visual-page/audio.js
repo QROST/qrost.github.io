@@ -5,6 +5,8 @@
 //   ② 走向随"跟踪哪个数据"变：focus(点选追踪某颗星) → 按其数据层+色相 在乐句边界平滑转调(≤2半音/乐句)+换进行+调能量；松开平滑回基调
 //   ③ 更丰富 variation：进行库 + groove 库 + 每4小节乐句重掷(comp/ghost/fill) + 间歇 breakdown(鼓 drop) + intro + 旋律 call-response/八度/经过音 + 贝斯 walking + 踩镲 triplet roll
 // lofi 配方不变：软 kick + backbeat 军鼓 + swing 踩镲 / 暖 Rhodes FM 电钢爵士和弦 / 软贝斯 / 极稀疏只落和弦音的旋律 / 干暖"隔层玻璃"混音 + 黑胶噪 + kick sidechain 轻泵。
+// 悦耳度二期（2026-07-16）：自然乐器 ensemble —— 每宇宙/每磁带面由 sig 挑配器：尼龙吉他(Karplus-Strong 弦模型)可接管旋律/答句、
+// 毛毡钢琴(非谐加法合成)可接管 comp 敲击；落拍 Rhodes pad 永不换（身份）。零采样零依赖、激励读确定性噪声缓冲 → 零新增 _rng 位点。
 
 const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
 const mtof = (m) => 440 * Math.pow(2, (m - 69) / 12);
@@ -70,6 +72,7 @@ export class Sonifier {
     this._awake = true; this._wakeAmt = 1; this._pendingDNA = null;           // SOM「觉醒」：fallback 启动=沉睡"未成形"态(_awake=false)，SOM 涌现完成后 updateDNA→乐句边界温柔成形
     // —— 磁带 A/B 面（lofi 无限电台）：同一片星海、同一 DNA，翻面 = 音乐重新做人。side 折进签名 → "另一首"，仍确定。
     this._side = 0; this._sig0Original = null; this._warm = 0.5;              // 当前面序号 / 原始涌现签名快照(翻面基准) / 当前 warm
+    this._nat = null; this.ens = { mel: 0, comp: 0, pluckA: 0.45 };           // 自然乐器 buffer 缓存（start 建）/ 每宇宙 ensemble 配器（_applyDNA 推导）
     this._nextFlipBar = null; this._flipUntil = 0; this._reawakeBar = null;   // 下一次翻面的 bar 阈值 / 停带 SFX 接管 masterLP 的窗口末 / B 面回全觉醒的 bar
     this._userBusy = false;                                                   // app 报告"用户正在交互/有 focus" → 翻面顺延到下个乐句边界
     this.debug = { steps: 0, kicks: 0, snares: 0, chords: 0, mels: 0, mods: 0, sig: 0, awaken: 0, flips: 0 };
@@ -117,6 +120,9 @@ export class Sonifier {
     else { this.melBus.connect(mix); this.melBus.connect(revSend); }
     this.chordBus = ctx.createGain(); this.chordBus.gain.value = 0.42;
     this.chordDuck = ctx.createGain(); this.chordDuck.gain.value = 1; this.chordBus.connect(this.chordDuck); this.chordDuck.connect(mix); this.chordBus.connect(revSend);
+    // 毛毡钢琴专用兄弟总线（设计评审）：吃 kick duck（泵感=lofi 胶水）、但绕开 chordBus 的 5.3Hz tremolo——
+    // 原声钢琴没有电钢颤音，走 tremolo 就"又是一台 Rhodes"；磁带同源感由 _playNat 的 wow→detune 提供。
+    this.pianoBus = ctx.createGain(); this.pianoBus.gain.value = 0.38; this.pianoBus.connect(this.chordDuck); this.pianoBus.connect(revSend);
     const trem = ctx.createGain(); trem.gain.value = 0.05; const tlfo = ctx.createOscillator(); tlfo.type = 'sine'; tlfo.frequency.value = 5.3; tlfo.connect(trem); trem.connect(this.chordBus.gain); tlfo.start(t);   // 悦耳度 pass：深度 ±19%→±12%、频率避开 4Hz 波动强度峰（仍是经典 Rhodes 颤音区）
 
     // 悦耳度 pass：噪层不再裸奔——补一道 4.2k 低通再进 limiter（原先绕过整条暖化链，是唯一"永不软化"的常开元素）；
@@ -125,6 +131,7 @@ export class Sonifier {
     const ambLP = ctx.createBiquadFilter(); ambLP.type = 'lowpass'; ambLP.frequency.value = 4200; ambLP.Q.value = 0.5;
     this.ambGain.connect(ambLP); ambLP.connect(limiter);
     this._noise = this._noiseBuf(2.4);
+    this._nat = new Map();   // 自然乐器预渲染缓存（激励读 _noise → 依赖它先建好；换 ctx 重建）
     const crackle = ctx.createBufferSource(); crackle.buffer = this._noise; crackle.loop = true;
     const crBP = ctx.createBiquadFilter(); crBP.type = 'bandpass'; crBP.frequency.value = 1500; crBP.Q.value = 0.55;
     const crG = ctx.createGain(); crG.gain.value = 0.45; crackle.connect(crBP); crBP.connect(crG); crG.connect(this.ambGain); crackle.start(t);
@@ -167,6 +174,16 @@ export class Sonifier {
     const _bm = (dna && dna.motif && dna.motif.length >= 8) ? dna.motif.slice(0, 8) : [0, 2, 1, 3, 2, 0, 3, 1];   // 最密簇原型 = 近恒定聚合
     this.motif = _bm.map((v, k) => (Math.round(v) + this._sigMix(20 + k)) % 5);   // 每位折入 sig → 每次不同旋律轮廓（不再"同曲换调"），仍落和弦音故保持协和
     this.epRatio = (dna && (dna.domType % 3) === 1) ? 2 : 1;                         // 最大主题所属层 → 电钢音色
+    // 自然乐器 ensemble（悦耳度二期，salt 50/51 两引擎均未占用）：每宇宙/每磁带面由 sig 挑配器。
+    // 旋律 0=Rhodes 1=尼龙吉他 2=逐乐句交替；comp 敲击 0=Rhodes 1=毛毡钢琴。落拍主 pad 永远 Rhodes（lofi 身份
+    // 与 wow 颤音不动）；只换既有音符路径的音色、音高选择零改动 → 和声枚举/门禁不受影响。
+    const _eR = this._sigMix(50) % 20;
+    this.ens = {
+      mel: _eR < 12 ? 0 : _eR < 17 ? 1 : 2,                                          // 60% Rhodes / 25% 吉他 / 15% 对话（乐句 Rhodes、答句吉他——设计评审：逐音交替像坏音源，对话式才是编曲）
+      comp: (this._sigMix(51) % 20) < 12 ? 0 : 1,                                    // 40% 宇宙 comp 换毛毡钢琴
+      pluckA: 0.35 + ((this._sigMix(50) >>> 8) % 100) / 100 * 0.2,                   // 吉他激励亮度 0.35–0.55（暖尼龙↔略亮）
+    };
+    if (this._nat) this._nat.clear();                                                // 翻面/觉醒换 ensemble → 缓存重建（激励亮度随面变）
     // 每宇宙音色签名（借鉴 neon e731d85，保守化）：Rhodes 亮度 / kick 体量 / bass 暖度，由 domType(性格)+sig(变体) 定 → 音色也每次不同，仍全程 cozy。
     this.patch = {
       epBright: 0.85 + (this._sigMix(7) % 100) / 100 * 0.4,                                        // Rhodes FM 亮度 0.85–1.25×（暖钝↔明亮）
@@ -354,7 +371,7 @@ export class Sonifier {
       this.lastMelStep = this.step;
     } else if (awake && !intro && !drop && (step === 7 || step === 11) && this.step - this.lastMelStep <= 4 && this._rng() < 0.4 * liveE + 0.15) {
       const tones = CHORD[ch.c], ti = (this._rng() * 3) | 0;   // call-response 答句：只落根/三/五（低位暖音，答句听感=收束而非新亮点；同一 _rng 位点，计数不变）
-      this._mel(t, mtof(key + ch.r + tones[ti] + 12), stepDur * 2, 0.22, clamp(-Math.sin(this._yaw) * 0.4, -0.5, 0.5), dom);
+      this._mel(t, mtof(key + ch.r + tones[ti] + 12), stepDur * 2, 0.22, clamp(-Math.sin(this._yaw) * 0.4, -0.5, 0.5), dom, true);
     }
   }
 
@@ -408,18 +425,88 @@ export class Sonifier {
   }
   _strikeChord(t, ch, dur, vel, upper) {
     const tones = CHORD[ch.c], base = this.curKey + 12 + ch.r, list = upper ? tones.slice(1) : tones;
+    // ensemble 配器（悦耳度二期）：钢琴宇宙的 comp 敲击（upper 变体）换毛毡钢琴——落拍主 pad 永远 Rhodes（lofi 身份）。
+    // 同一 base+list 音高、同一错位 strum → 和声枚举不动，只换音色。
+    if (upper && this.ens.comp === 1) {
+      for (let k = 0; k < list.length; k++) this._playNat(t + k * 0.014, this._pianoBuf(mtof(base + list[k])), vel * (0.9 - k * 0.08) * 1.05, this.pianoBus, { hold: dur * 0.8, rel: 0.22 });
+      this.debug.chords++; return;
+    }
     for (let k = 0; k < list.length; k++) this._epiano(t + k * 0.012, mtof(base + list[k]), dur, vel * (0.9 - k * 0.08), this.chordBus, this.epRatio, 1.5, 0.85);   // 悦耳度 pass：和弦起音 FM idx 2.0→1.5（onset β 2.5→1.9，铃铛铿收敛为暖敲）
     this.debug.chords++;
   }
-  _mel(t, freq, dur, vel, pan, dom) {
+  _mel(t, freq, dur, vel, pan, dom, answer) {
     const tn = MEL_TONE[dom] || MEL_TONE[0];
     const pn = this.ctx.createStereoPanner ? this.ctx.createStereoPanner() : null;
     const dest = pn || this.melBus; if (pn) { pn.pan.value = pan; pn.connect(this.melBus); }
+    // ensemble 配器（悦耳度二期）：吉他宇宙 → 尼龙拨弦唱旋律；对话宇宙 → 乐句 Rhodes、答句吉他（借既有 call-response
+    // 结构的两色对话，设计评审裁定：逐音交替像坏音源）。音高/时值/声像选择完全不变 → 只换乐器，和声枚举不动。
+    const useG = this.ens.mel === 1 || (this.ens.mel === 2 && answer);
+    if (useG) { this._playNat(t, this._pluckBuf(freq), vel * 0.7, dest); this.debug.mels++; return; }
     this._epiano(t, freq, dur, vel, dest, tn.ratio, tn.idx, tn.dec); this.debug.mels++;
   }
   // 悦耳度 pass：原先 setValueAtTime(0.5) 瞬时跳变=每记 kick 一次宽带咔哒；改 12ms 连续下坡，泵感保留。
   // （kick 最小间隔 ≥3 step ≈0.5s > 恢复段 0.21s，到点时增益必已回 1 → setValueAtTime(1) 无缝。）
   _duck(t) { const g = this.chordDuck.gain; g.cancelScheduledValues(t); g.setValueAtTime(1, t); g.linearRampToValueAtTime(0.55, t + 0.012); g.linearRampToValueAtTime(1, t + 0.21); }
+
+  // ---------- 自然乐器（悦耳度二期：零采样、零新增 _rng —— 激励读 this._noise 确定性缓冲；预渲染 AudioBuffer 按音高缓存） ----------
+  // Karplus-Strong 尼龙吉他拨弦：激励 = 一阶低通白噪段（系数 = 每宇宙 pluckA，暖尼龙↔略亮），
+  // 弦环 y[i] = loss·(y[i-N]+y[i-N-1])/2，loss 定 ~1.5s 衰到 −60dB（高音自然更快，物理正确）。
+  _pluckBuf(freq) {
+    const key = 'g' + Math.round(freq * 4);
+    let b = this._nat.get(key); if (b) return b;
+    const sr = this.ctx.sampleRate, N = Math.max(2, Math.round(sr / freq)), ring = 1.5;
+    const len = Math.floor(sr * (ring + 0.25)), d = new Float32Array(len);
+    const src = this._noise.getChannelData(0), off = (Math.imul(N, 2654435761) >>> 0) % Math.max(1, src.length - N - 2);
+    const a = this.ens.pluckA || 0.45;
+    let lp = 0;
+    for (let i = 0; i <= N; i++) { lp += a * (src[off + i] - lp); d[i] = lp; }
+    const loss = Math.pow(0.001, 1 / (freq * ring));
+    for (let i = N + 1; i < len; i++) d[i] = loss * 0.5 * (d[i - N] + d[i - N - 1]);
+    let pk = 0; for (let i = 0; i < len; i++) { const v = Math.abs(d[i]); if (v > pk) pk = v; }
+    if (pk > 0) { const s = 0.95 / pk; for (let i = 0; i < len; i++) d[i] *= s; }
+    b = this.ctx.createBuffer(1, len, sr); b.getChannelData(0).set(d); this._nat.set(key, b); return b;
+  }
+  // 毛毡钢琴（设计评审配方）：8 分音 n^-1.4 给足音高定义，再烘焙 ~2.6kHz 一阶低通做毛毡阻尼——
+  // "少分音装毛毡"只会像正弦；真毛毡 = 分音多 + 高频被毡压掉。轻非谐性（B=0.00038，弦刚性）、
+  // 分音衰减随次数/音高加快（comp 用短 tau=断奏毛毡）、~400Hz 低通软槌噪 thunk、10ms 软起音。2cos 递推，零逐样本 sin。
+  _pianoBuf(freq) {
+    const key = 'p' + Math.round(freq * 4);
+    let b = this._nat.get(key); if (b) return b;
+    const sr = this.ctx.sampleRate, len = Math.floor(sr * 1.6), d = new Float32Array(len);
+    const tauB = clamp(0.95 * Math.sqrt(261 / freq), 0.45, 1.1);
+    for (let n = 1; n <= 8; n++) {
+      const fn = n * freq * Math.sqrt(1 + 0.00038 * n * n);
+      if (fn > sr * 0.45) break;
+      const amp = Math.pow(n, -1.4), tau = tauB / (1 + 0.6 * (n - 1));
+      const w = 2 * Math.PI * fn / sr, dk = Math.exp(-1 / (tau * sr));
+      const c1 = 2 * dk * Math.cos(w), c2 = dk * dk;
+      let y1 = amp * dk * Math.sin(w), y0 = 0;
+      d[1] += y1;
+      for (let i = 2; i < len; i++) { const y = c1 * y1 - c2 * y0; y0 = y1; y1 = y; d[i] += y; }
+    }
+    const src = this._noise.getChannelData(0), off = (Math.imul(Math.round(freq * 4), 40503) >>> 0) % Math.max(1, src.length - 2000);
+    let th = 0;
+    for (let i = 0; i < 1600 && i < len; i++) { th += 0.055 * (src[off + i] - th); d[i] += th * 0.5 * Math.exp(-i / (sr * 0.02)); }   // 软槌噪 thunk（~400Hz 低通、40ms 衰减，毛毡签名）
+    let felt = 0; const fa = 1 - Math.exp(-2 * Math.PI * 2600 / sr);
+    for (let i = 0; i < len; i++) { felt += fa * (d[i] - felt); d[i] = felt; }                                                        // 毛毡阻尼：整体 ~2.6kHz 一阶低通
+    const atk = Math.floor(sr * 0.01);
+    for (let i = 0; i < atk; i++) d[i] *= i / atk;
+    let pk = 0; for (let i = 0; i < len; i++) { const v = Math.abs(d[i]); if (v > pk) pk = v; }
+    if (pk > 0) { const s = 0.95 / pk; for (let i = 0; i < len; i++) d[i] *= s; }
+    b = this.ctx.createBuffer(1, len, sr); b.getChannelData(0).set(d); this._nat.set(key, b); return b;
+  }
+  // 播放预渲染自然乐器：3ms 起坡（杀 KS 首样本非零的边界咔哒）+ 可选音乐时值释放（comp 短敲）+
+  // buffer 末尾闭 + wow→detune（与 Rhodes 同一盘磁带的摆动，买回"数字太干净"的疏离感）。
+  _playNat(t, buf, vel, dest, o) {
+    const src = this.ctx.createBufferSource(); src.buffer = buf;
+    if (o && o.rate) src.playbackRate.value = o.rate;
+    if (this.wow && src.detune) { try { this.wow.connect(src.detune); } catch (_) {} }
+    const g = this.ctx.createGain();
+    g.gain.setValueAtTime(0.0001, t); g.gain.linearRampToValueAtTime(vel, t + 0.003);
+    if (o && o.hold != null) g.gain.setTargetAtTime(0.0001, t + o.hold, o.rel || 0.25);
+    g.gain.setTargetAtTime(0, t + buf.duration - 0.05, 0.012);
+    src.connect(g); g.connect(dest); src.start(t); src.stop(t + buf.duration + 0.05);
+  }
 
   // focus = "跟踪哪个数据" → 设走向 target（乐句边界平滑趋近）+ 一记柔和电钢音
   _focus(focus, t) {

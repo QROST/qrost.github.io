@@ -167,6 +167,28 @@ round-2 裁定要点（防过度矫正）：暗宇宙 hat 曾被四层衰减叠�
 
 ---
 
+## 5c. 自然乐器 ensemble（2026-07-16，双侧同落；owner："增加钢琴、吉他等自然乐器音色"）
+
+流程：2 视角实现前设计评审（lofi 制作人 + trance 制作人，双 SOUND_WITH_CHANGES，11 条修正全采）
+→ 实现 → 2 视角对抗验证（lofi APPROVE / neon 抓 1 真回归后修复）。零采样零依赖：吉他=Karplus-Strong
+弦模型、钢琴=非谐加法合成（2cos 递推），预渲染 AudioBuffer 按音高缓存（`_applyDNA` 清缓存=身份边界）；
+激励读各自既有确定性噪声缓冲 → **零新增 `_rng` 位点**（lofi 18 / neon 5 棘轮均不动）；全部走既有
+音高选择路径（子集/纯替换）→ 和声枚举零新增。salt 注册：`_sigMix` 50/51（lofi ensemble）、
+52/53（neon 钢琴/pluck）；neon `_h(13)` pluck 微移速（`_h` 注册表已加到源码注释）。
+
+| 侧 | 新配器 | 触发 |
+|----|--------|------|
+| lofi | 尼龙吉他（暖 KS，ring 1.5s，wow→detune 同磁带摆动）接管旋律（25% 宇宙）或答句（15% "对话"宇宙：乐句 Rhodes、答句吉他） | `ens.mel`，每宇宙/每磁带面重掷 |
+| lofi | 毛毡钢琴（8 分音 n^-1.4 + 2.6k 毡阻尼 + 400Hz 软槌噪）接管 comp 敲击（40% 宇宙），走新 pianoBus（吃 duck、绕 tremolo） | `ens.comp` |
+| neon | 情绪钢琴（7 分音、tau≤1.8s）breakdown 当家（替换 supersaw，纯音色替换）+ intro 轻弹；音量随 DJ-set 相位收放；polka/hardgroove 不配 | `patch.pianoBrk`（60% 宇宙） |
+| neon | KS pluck 琶音变体（ring 0.3s 防 16 分糊、4.5k 静态低通、`_h(13)` 微移速） | `patch.arpPluck`（40% 宇宙） |
+
+验证抓到并修复：polka×钢琴宇宙的 breakdown 曾双双缺席（钢琴不配 polka + supersaw 被让位逻辑压掉）
+→ supersaw 让位条件补 `style !== 'polka'`。不变量：lofi 落拍 Rhodes pad / focus 一次性音、neon
+supersaw stab/lead/four-on-floor 均原样（身份不换，只加"有些宇宙是原声日"的变化极）。
+
+---
+
 ## 6. 同步流程规则
 
 1. **改一侧前**：先读本文件 §2（不变量，不能碰）与 §3（有意分歧，不要误移植）。

@@ -14,7 +14,7 @@ import * as THREE from 'three';
 import {
   applyUi, registerPanelNode, renderCardHtml, sensorBtnLabel, setLang, isZh,
 } from './i18n.js?v=be92743a4a';
-import { Sonifier } from './audio.js?v=b11d8d0425';   // 生成式数据音乐引擎（zero-dep Web Audio）
+import { Sonifier } from './audio.js?v=caeb2876df';   // 生成式数据音乐引擎（zero-dep Web Audio）
 
 const sonifier = new Sonifier();   // 由「Motion & sound」按钮在用户手势内 start()
 
