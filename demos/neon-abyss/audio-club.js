@@ -234,6 +234,10 @@ export class Sonifier {
     // ~40% 宇宙 16 分琶音换 Karplus-Strong pluck（同一音高选择路径 → 和声枚举不动）。觉醒/重推导时缓存重建。
     this.patch.pianoBrk = (this._sigMix(52) % 10) < 6;
     this.patch.arpPluck = (this._sigMix(53) % 10) < 4;
+    // 三期（salt 58/59 两引擎均未占用）：~40% 宇宙 breakdown 奇数小节竖琴琶音（与偶数小节钢琴成同和弦 call-response）；
+    // ~40% 宇宙 pad 换 string-machine（Solina 式反相慢漩涡双锯）。
+    this.patch.harpBrk = (this._sigMix(58) % 10) < 4;
+    this.patch.strPad = (this._sigMix(59) % 10) < 4;
     if (this._nat) this._nat.clear();
     this._leadContour = this._sigMix(34) % 3;             // lead 乐句轮廓型：0=邻上摆 1=邻下摆 2=五度跳（原先 lead 只反复唱 colorN 单音=主旋律记忆点恒定）
     // speedSpread → arp swing（异质度高 → arp 更跳）。
@@ -542,6 +546,21 @@ export class Sonifier {
     if (!asleep && this.patch.pianoBrk && step === 0 && (bar & 1) === 0 && style !== 'polka' && style !== 'hardgroove' && (sec === 'breakdown' || sec === 'intro')) {
       this._pianoChord(t, ch, sec === 'intro' ? 0.24 : 0.38);   // hardgroove 不配抒情钢琴（部落 breakdown 保持纯打击）
     }
+    // —— Breakdown 竖琴琶音（三期，~40% 宇宙）：奇数小节 step 0——偶数小节钢琴陈述和弦、奇数小节竖琴把同一个和弦
+    //    琶成流水（同和弦 call-response，评审确认结构优秀）。钢琴宇宙 +12 对话主角（vel 0.24）；非钢琴宇宙 +24 高一个
+    //    八度洒在 supersaw 延音之上（vel 0.20，评审：同八度堆根音=flam 糊）。+24 套用 lead 同款 min9-b3 避让（跳过
+    //    idx1）→ 音高集合 = lead 枚举声部子集，门禁零新增。走 arpBus（reverb+pan；breakdown 无 kick 不泵）。
+    const harpNow = !asleep && this.patch.harpBrk && sec === 'breakdown' && step === 0 && (bar & 1) === 1 && style !== 'polka' && style !== 'hardgroove';
+    if (harpNow) {
+      const hT = CHORD[ch.c], up = this.patch.pianoBrk ? 12 : 24;
+      const hv = (this.patch.pianoBrk ? 0.24 : 0.2) * (1.05 - 0.35 * this._phaseE);
+      let kk = 0;
+      for (let i = 0; i < hT.length; i++) {
+        if (up === 24 && hT.length >= 5 && i === 1) continue;
+        this._playNat(t + kk * 0.042, this._harpBuf(mtof(this.sessKey + ch.r + hT[i] + up)), hv, this.arpBus);
+        kk++;
+      }
+    }
 
     // —— Supersaw stab：hardgroove 收敛让位打击；polka 更短更拨。沉睡态按下不表（觉醒时绽放）。
     //    钢琴宇宙的 breakdown 由钢琴当家 → supersaw 让位（纯音色替换，音高集合只减不增 → 和声门禁零歧义）——
@@ -551,8 +570,8 @@ export class Sonifier {
     }
     if (!asleep && sec === 'drop' && step === 8 && style === 'trance') this._supersaw(t, ch, stepDur * 2, 0.45);
 
-    // —— Arp：16 分琶音（drop/build；breakdown 稀疏）；hardgroove 半密度让位打击。沉睡态收起 ——
-    if (!asleep && (sec === 'drop' || sec === 'build' || (sec === 'breakdown' && step % 4 === 0)) && !(style === 'hardgroove' && step % 2 === 1)) {
+    // —— Arp：16 分琶音（drop/build；breakdown 稀疏）；hardgroove 半密度让位打击。沉睡态收起；竖琴滚奏的落拍让位（防双拨弦根音 flam）——
+    if (!asleep && !harpNow && (sec === 'drop' || sec === 'build' || (sec === 'breakdown' && step % 4 === 0)) && !(style === 'hardgroove' && step % 2 === 1)) {
       this._arp(t, ch, stepDur * 1.5, (sec === 'drop' && step === 0) ? 0.28 : 0.5, step);   // drop 头拍 supersaw stab 当家 → arp 让位（垂直密度=粗糙感的一部分）
     }
 
@@ -681,6 +700,33 @@ export class Sonifier {
     // 持续 pad：supersaw 的慢起版（attack 1s、长 release），intro/breakdown 漂浮垫底。
     // 只弹三和弦（前 3 音）：pad 是低区氛围垫，扩展音(9th)交给 stab/arp —— pad 的 9th(+14) 会与 arp 低八度 b3(+15) 半音撞（build 段同响）。
     const tones = CHORD[ch.c]; const base = this.sessKey + ch.r;
+    if (this.patch.strPad) {
+      // string-machine 变体（三期，~40% 宇宙，评审终版配方）：每声部双锯对称失谐 ±4¢（中心 = 原 _rngV 抽样 → 每声部
+      // 恰好一次抽样、隔离流形状不变、整体不偏锐）+ 每声部一只反相慢漩涡 LFO（0.6+k·0.12Hz，声部序号定率零抽样——
+      // Solina/ARP 弦乐机的 BBD 合唱感来自慢速去相关漩涡，齐相快颤只是"带颤音的 pad"）+ HP 160（提弦乐感、保 intro
+      // 低频锚与根音基频）+ LP 1800→2200 + 起音 1.0→1.2s。同音高纯音色替换 → 门禁不动。双锯非相干求和 ≈ ×√2 → 每锯 ×0.70 补平。
+      let k = 0;
+      for (const semi of tones.slice(0, 3)) {
+        const baseDet = -6 + this._rngV() * 12;
+        const lfo = this.ctx.createOscillator(); lfo.type = 'sine'; lfo.frequency.value = 0.6 + k * 0.12;
+        const lg = this.ctx.createGain(); lg.gain.value = 5; lfo.connect(lg);
+        const inv = this.ctx.createGain(); inv.gain.value = -1; lg.connect(inv);
+        const hp = this.ctx.createBiquadFilter(); hp.type = 'highpass'; hp.frequency.value = 160;
+        const lp = this.ctx.createBiquadFilter(); lp.type = 'lowpass'; lp.frequency.value = 2200; lp.Q.value = 0.5;
+        const g = this.ctx.createGain();
+        g.gain.setValueAtTime(0.0001, t); g.gain.linearRampToValueAtTime(vel / tones.length * 0.7, t + 1.2); g.gain.setTargetAtTime(0.0001, t + dur * 0.6, dur * 0.3);
+        for (let s = 0; s < 2; s++) {
+          const o = this.ctx.createOscillator(); o.type = 'sawtooth'; o.frequency.setValueAtTime(mtof(base + semi), t);
+          o.detune.setValueAtTime(baseDet + (s ? 4 : -4), t);
+          (s ? lg : inv).connect(o.detune);
+          o.connect(hp); o.start(t); o.stop(t + dur + 1);
+        }
+        hp.connect(lp); lp.connect(g); g.connect(this.padBus);
+        lfo.start(t); lfo.stop(t + dur + 1);
+        k++;
+      }
+      return;
+    }
     for (const semi of tones.slice(0, 3)) {
       const o = this.ctx.createOscillator(); o.type = 'sawtooth'; o.frequency.setValueAtTime(mtof(base + semi), t); o.detune.setValueAtTime(-6 + this._rngV() * 12, t);
       const lp = this.ctx.createBiquadFilter(); lp.type = 'lowpass'; lp.frequency.value = 1800; lp.Q.value = 0.5;
@@ -827,6 +873,23 @@ export class Sonifier {
     for (let i = 0; i < 1600 && i < len; i++) { lp += 0.16 * (src[off + i] - lp); d[i] += lp * 0.3 * Math.exp(-i / (sr * 0.018)); }   // 槌噪 thump
     const atk = Math.floor(sr * 0.008);
     for (let i = 0; i < atk; i++) d[i] *= i / atk;
+    let pk = 0; for (let i = 0; i < len; i++) { const v = Math.abs(d[i]); if (v > pk) pk = v; }
+    if (pk > 0) { const s = 0.95 / pk; for (let i = 0; i < len; i++) d[i] *= s; }
+    b = this.ctx.createBuffer(1, len, sr); b.getChannelData(0).set(d); this._nat.set(key, b); return b;
+  }
+  // 竖琴（三期）：KS 弦，激励较暗（a=0.35，比 a=0.7 的 arp pluck 柔）；ring 随宇宙类型定——
+  // 钢琴宇宙 1.6s（+12 对话主角）、非钢琴宇宙 1.2s（+24 洒在 supersaw 延音上的高光，短些防糊）。
+  // ring 是宇宙不变量（pianoBrk 定）→ 缓存安全；_applyDNA 清缓存覆盖重推导。
+  _harpBuf(freq) {
+    const key = 'h' + Math.round(freq * 4);
+    let b = this._nat.get(key); if (b) return b;
+    const sr = this.ctx.sampleRate, N = Math.max(2, Math.round(sr / freq)), ring = this.patch.pianoBrk ? 1.6 : 1.2;
+    const len = Math.floor(sr * (ring + 0.2)), d = new Float32Array(len);
+    const src = this._noise.getChannelData(0), off = (Math.imul(N, 2654435761) >>> 0) % Math.max(1, src.length - N - 2);
+    let lp = 0;
+    for (let i = 0; i <= N; i++) { lp += 0.35 * (src[off + i] - lp); d[i] = lp; }
+    const loss = Math.pow(0.001, 1 / (freq * ring));
+    for (let i = N + 1; i < len; i++) d[i] = loss * 0.5 * (d[i - N] + d[i - N - 1]);
     let pk = 0; for (let i = 0; i < len; i++) { const v = Math.abs(d[i]); if (v > pk) pk = v; }
     if (pk > 0) { const s = 0.95 / pk; for (let i = 0; i < len; i++) d[i] *= s; }
     b = this.ctx.createBuffer(1, len, sr); b.getChannelData(0).set(d); this._nat.set(key, b); return b;

@@ -177,11 +177,20 @@ export class Sonifier {
     // 自然乐器 ensemble（悦耳度二期，salt 50/51 两引擎均未占用）：每宇宙/每磁带面由 sig 挑配器。
     // 旋律 0=Rhodes 1=尼龙吉他 2=逐乐句交替；comp 敲击 0=Rhodes 1=毛毡钢琴。落拍主 pad 永远 Rhodes（lofi 身份
     // 与 wow 颤音不动）；只换既有音符路径的音色、音高选择零改动 → 和声枚举/门禁不受影响。
-    const _eR = this._sigMix(50) % 20;
+    // 悦耳度三期扩编（salt 54–57 两引擎均未占用；评审终版分配 —— Rhodes 保 lead 明确多数 + 永远的和弦床）：
+    // mel 0=Rhodes(50%) 1=吉他(15%) 2=对话(15%，乐句 Rhodes 答句吉他) 3=拇指琴(10%) 4=颤音琴(10%)；
+    // comp 0=Rhodes(55%) 1=毛毡钢琴(30%) 2=颤音琴(15%)。vibRate 取 salt50 高位（bits16+，与 mel %20 / pluckA >>>8 不重叠）。
+    const _eR = this._sigMix(50) % 20, _eC = this._sigMix(51) % 20, _eP = this._sigMix(57);
     this.ens = {
-      mel: _eR < 12 ? 0 : _eR < 17 ? 1 : 2,                                          // 60% Rhodes / 25% 吉他 / 15% 对话（乐句 Rhodes、答句吉他——设计评审：逐音交替像坏音源，对话式才是编曲）
-      comp: (this._sigMix(51) % 20) < 12 ? 0 : 1,                                    // 40% 宇宙 comp 换毛毡钢琴
+      mel: _eR < 10 ? 0 : _eR < 13 ? 1 : _eR < 15 ? 3 : _eR < 17 ? 4 : 2,
+      comp: _eC < 11 ? 0 : _eC < 17 ? 1 : 2,
       pluckA: 0.35 + ((this._sigMix(50) >>> 8) % 100) / 100 * 0.2,                   // 吉他激励亮度 0.35–0.55（暖尼龙↔略亮）
+      vibRate: 4 + ((this._sigMix(50) >>> 16) % 100) / 100 * 2,                      // 颤音琴马达 4–6Hz（烘焙进 buffer，绝不 playbackRate 变调 → 速率不随音高漂）
+      bass: (this._sigMix(54) % 10) < 3 ? 1 : 0,                                     // 30% 宇宙贝斯换 KS 指弹
+      beat: (this._sigMix(55) % 20) < 5 ? 1 : 0,                                     // 25% 宇宙 backbeat 换响指（保三角波体）
+      harp: (this._sigMix(56) % 20) < 7 ? 1 : 0,                                     // 35% 宇宙和弦边界竖琴滚奏
+      conga: (_eP % 10) < 3 ? 1 : 0,                                                 // 30% 宇宙康加鬼音
+      congaPat: [[3, 11], [7, 15], [3, 9, 13]][(_eP >>> 8) % 3],                     // 全奇数步=骑 swing 口袋；个别 groove×pattern 组合会与 kick/fill 重合（verify 枚举确认无害：软鬼音叠底、非谐波冲突）
     };
     if (this._nat) this._nat.clear();                                                // 翻面/觉醒换 ensemble → 缓存重建（激励亮度随面变）
     // 每宇宙音色签名（借鉴 neon e731d85，保守化）：Rhodes 亮度 / kick 体量 / bass 暖度，由 domType(性格)+sig(变体) 定 → 音色也每次不同，仍全程 cozy。
@@ -353,6 +362,22 @@ export class Sonifier {
     else if (awake && lv.compA && step === 6 && ex > 0.35) this._strikeChord(t, ch, stepDur * 2.4, 0.22, true);
     else if (awake && lv.compB && step === 11 && ex > 0.45) this._strikeChord(t, ch, stepDur * 2.2, 0.18, true);
 
+    // —— 竖琴滚奏（三期，35% 宇宙）：和弦换新的小节，落拍后 45ms 让和弦先说话、再自低向高绽放在高八度。
+    //    +24 套用 mel 同款撞车避让（跳过与和弦内音差 11 半音的 tone）→ 音高集合 = mel 枚举声部的子集，门禁零新增。
+    //    走 pianoBus（吃 duck、无 tremolo）。drop 段照滚（稀疏漂浮正是要点，评审确认）。
+    if (awake && !intro && this.ens.harp === 1 && step === 0 && (bar & 1) === 0) {
+      const hT = CHORD[ch.c]; let kk = 0;
+      for (let i = 0; i < hT.length; i++) {
+        if (hT.some((tj) => tj - hT[i] === 11)) continue;
+        this._playNat(t + 0.045 + kk * 0.042, this._ksBuf('h', mtof(key + ch.r + hT[i] + 24), 0.32, 2.2), 0.17, this.pianoBus);
+        kk++;
+      }
+    }
+    // —— 康加鬼音（三期，30% 宇宙）：每宇宙固定奇数步 pattern 骑 swing 口袋（少数组合与 kick/fill 重合，软鬼音叠底无害），205/155 交替软音头
+    if (awake && !intro && !drop && this.ens.conga === 1 && this.ens.congaPat.indexOf(step) >= 0) {
+      this._conga(t, (this.ens.congaPat.indexOf(step) & 1) ? 155 : 205, 0.18);
+    }
+
     // —— 旋律 —— 极稀疏、只落和弦音；落音颜色=主导可见簇色相、密度=该簇能量+focus能量+呼吸（你看着哪片自组织→听见它）+ call-response/八度 ——（沉睡态旋律声部尚未醒来）
     const colorN = (this._clHue != null) ? this._clHue : this._toneAvg;   // 主导可见 SOM 簇色相（无则退回整体视野色相）
     const liveE = Math.max(this.trackEnergy, this._clEnergy || 0);
@@ -386,9 +411,17 @@ export class Sonifier {
   }
   _snare(t, vel) {
     // 悦耳度 pass：噪带 1.9k→1.5k 移出 2–5kHz 耳敏峰、起音 3ms→6ms 圆化"纸壳裂"、三角波体加厚补暖；stop 余量放宽消截断。
+    // 三期：响指宇宙（ens.beat=1）把噪声腿换成宽带 snap（1.7k Q1.5——评审：Q2.8 会响成合成"ping"且把能量堆回刚腾出的敏感带），三角波体照留撑重量。
     const src = this.ctx.createBufferSource(); src.buffer = this._noise; src.loop = true;
-    const bp = this.ctx.createBiquadFilter(); bp.type = 'bandpass'; bp.frequency.value = 1500; bp.Q.value = 0.7;
-    const ng = this.ctx.createGain(); ng.gain.setValueAtTime(0.0001, t); ng.gain.linearRampToValueAtTime(vel, t + 0.006); ng.gain.setTargetAtTime(0.0001, t + 0.02, 0.055);
+    const bp = this.ctx.createBiquadFilter(); bp.type = 'bandpass';
+    const ng = this.ctx.createGain();
+    if (this.ens.beat === 1) {
+      bp.frequency.value = 1700; bp.Q.value = 1.5;
+      ng.gain.setValueAtTime(0.0001, t); ng.gain.linearRampToValueAtTime(vel * 0.8, t + 0.002); ng.gain.setTargetAtTime(0.0001, t + 0.004, 0.028);
+    } else {
+      bp.frequency.value = 1500; bp.Q.value = 0.7;
+      ng.gain.setValueAtTime(0.0001, t); ng.gain.linearRampToValueAtTime(vel, t + 0.006); ng.gain.setTargetAtTime(0.0001, t + 0.02, 0.055);
+    }
     src.connect(bp); bp.connect(ng); ng.connect(this.drumBus); src.start(t); src.stop(t + 0.35);
     const o = this.ctx.createOscillator(); o.type = 'triangle'; o.frequency.value = 190;
     const og = this.ctx.createGain(); og.gain.setValueAtTime(0.0001, t); og.gain.linearRampToValueAtTime(vel * 0.6, t + 0.003); og.gain.setTargetAtTime(0.0001, t + 0.02, 0.05);
@@ -404,6 +437,12 @@ export class Sonifier {
     src.connect(hp); hp.connect(lp); lp.connect(g); g.connect(this.drumBus); src.start(t); src.stop(t + 0.32);
   }
   _bass(t, freq, dur, vel) {
+    if (this.ens.bass === 1) {   // 指弹电贝斯（三期，30% 宇宙）：混合合成——KS 低音弦承担指弹起音（专属 800Hz 低通保起音质感，
+      // 评审：bassWarm 380–510 会滤掉"指弹"本身），三角波降压继续做延音体。纯 KS 替换实测整体 RMS −3.7dB（拨弦指数
+      // 衰减 vs 持续波的中段能量，评审预测方向），混合后低频能量不塌、又有"有人在弹"的音头。
+      this._playNat(t, this._ksBuf('b', freq, 0.18, 1.0), vel * 0.9, this.bassBus, { lp: 800, hold: dur * 0.75, rel: 0.2 });
+      vel *= 0.74;
+    }
     const o = this.ctx.createOscillator(); o.type = 'triangle'; o.frequency.setValueAtTime(freq, t);
     const lp = this.ctx.createBiquadFilter(); lp.type = 'lowpass'; lp.frequency.value = this.patch.bassWarm; lp.Q.value = 0.7;   // 每宇宙 bass 暖度签名
     const g = this.ctx.createGain(); g.gain.setValueAtTime(0.0001, t); g.gain.linearRampToValueAtTime(vel, t + 0.012); g.gain.setTargetAtTime(0.0001, t + dur * 0.6, dur * 0.4);
@@ -431,6 +470,10 @@ export class Sonifier {
       for (let k = 0; k < list.length; k++) this._playNat(t + k * 0.014, this._pianoBuf(mtof(base + list[k])), vel * (0.9 - k * 0.08) * 1.05, this.pianoBus, { hold: dur * 0.8, rel: 0.22 });
       this.debug.chords++; return;
     }
+    if (upper && this.ens.comp === 2) {   // 颤音琴 comp（三期）：同 base+list 音高、pianoBus（吃 duck、绕 tremolo——马达颤已烘焙在 buffer 里）
+      for (let k = 0; k < list.length; k++) this._playNat(t + k * 0.014, this._vibesBuf(mtof(base + list[k])), vel * (0.9 - k * 0.08) * 0.9, this.pianoBus, { hold: dur * 0.9, rel: 0.3 });
+      this.debug.chords++; return;
+    }
     for (let k = 0; k < list.length; k++) this._epiano(t + k * 0.012, mtof(base + list[k]), dur, vel * (0.9 - k * 0.08), this.chordBus, this.epRatio, 1.5, 0.85);   // 悦耳度 pass：和弦起音 FM idx 2.0→1.5（onset β 2.5→1.9，铃铛铿收敛为暖敲）
     this.debug.chords++;
   }
@@ -438,15 +481,31 @@ export class Sonifier {
     const tn = MEL_TONE[dom] || MEL_TONE[0];
     const pn = this.ctx.createStereoPanner ? this.ctx.createStereoPanner() : null;
     const dest = pn || this.melBus; if (pn) { pn.pan.value = pan; pn.connect(this.melBus); }
-    // ensemble 配器（悦耳度二期）：吉他宇宙 → 尼龙拨弦唱旋律；对话宇宙 → 乐句 Rhodes、答句吉他（借既有 call-response
-    // 结构的两色对话，设计评审裁定：逐音交替像坏音源）。音高/时值/声像选择完全不变 → 只换乐器，和声枚举不动。
-    const useG = this.ens.mel === 1 || (this.ens.mel === 2 && answer);
-    if (useG) { this._playNat(t, this._pluckBuf(freq), vel * 0.7, dest); this.debug.mels++; return; }
+    // ensemble 配器（悦耳度二/三期）：吉他/拇指琴/颤音琴宇宙换旋律乐器；对话宇宙 → 乐句 Rhodes、答句吉他（借既有
+    // call-response 结构的两色对话，设计评审裁定：逐音交替像坏音源）。音高/时值/声像选择完全不变 → 只换乐器，和声枚举不动。
+    const m = this.ens.mel;
+    if (m === 1 || (m === 2 && answer)) { this._playNat(t, this._pluckBuf(freq), vel * 0.7, dest); this.debug.mels++; return; }
+    if (m === 3) { this._playNat(t, this._kalimbaBuf(freq), vel * 0.8, dest); this.debug.mels++; return; }
+    if (m === 4) { this._playNat(t, this._vibesBuf(freq), vel * 0.7, dest, { hold: dur * 1.2, rel: 0.5 }); this.debug.mels++; return; }
     this._epiano(t, freq, dur, vel, dest, tn.ratio, tn.idx, tn.dec); this.debug.mels++;
   }
   // 悦耳度 pass：原先 setValueAtTime(0.5) 瞬时跳变=每记 kick 一次宽带咔哒；改 12ms 连续下坡，泵感保留。
   // （kick 最小间隔 ≥3 step ≈0.5s > 恢复段 0.21s，到点时增益必已回 1 → setValueAtTime(1) 无缝。）
   _duck(t) { const g = this.chordDuck.gain; g.cancelScheduledValues(t); g.setValueAtTime(1, t); g.linearRampToValueAtTime(0.55, t + 0.012); g.linearRampToValueAtTime(1, t + 0.21); }
+
+  // 康加鬼音（三期）：软音头 sine 下滑 + 极轻 1.2k 噪声 slap tick（≈−18dB，给"手鼓"身份，评审可选项采纳）。
+  // 打击类（音高下滑瞬态），与 kick/军鼓三角体同类 → 和声门禁不计。
+  _conga(t, freq, vel) {
+    const o = this.ctx.createOscillator(); o.type = 'sine';
+    o.frequency.setValueAtTime(freq, t); o.frequency.exponentialRampToValueAtTime(freq * 0.7, t + 0.12);
+    const g = this.ctx.createGain(); g.gain.setValueAtTime(0.0001, t); g.gain.linearRampToValueAtTime(vel, t + 0.005); g.gain.setTargetAtTime(0.0001, t + 0.02, 0.09);
+    g.gain.setTargetAtTime(0, t + 0.34, 0.012);
+    o.connect(g); g.connect(this.drumBus); o.start(t); o.stop(t + 0.4);
+    const n = this.ctx.createBufferSource(); n.buffer = this._noise;
+    const bp = this.ctx.createBiquadFilter(); bp.type = 'bandpass'; bp.frequency.value = 1200; bp.Q.value = 1;
+    const ng = this.ctx.createGain(); ng.gain.setValueAtTime(vel * 0.12, t); ng.gain.setTargetAtTime(0.0001, t + 0.004, 0.008);
+    n.connect(bp); bp.connect(ng); ng.connect(this.drumBus); n.start(t); n.stop(t + 0.06);
+  }
 
   // ---------- 自然乐器（悦耳度二期：零采样、零新增 _rng —— 激励读 this._noise 确定性缓冲；预渲染 AudioBuffer 按音高缓存） ----------
   // Karplus-Strong 尼龙吉他拨弦：激励 = 一阶低通白噪段（系数 = 每宇宙 pluckA，暖尼龙↔略亮），
@@ -462,6 +521,70 @@ export class Sonifier {
     for (let i = 0; i <= N; i++) { lp += a * (src[off + i] - lp); d[i] = lp; }
     const loss = Math.pow(0.001, 1 / (freq * ring));
     for (let i = N + 1; i < len; i++) d[i] = loss * 0.5 * (d[i - N] + d[i - N - 1]);
+    let pk = 0; for (let i = 0; i < len; i++) { const v = Math.abs(d[i]); if (v > pk) pk = v; }
+    if (pk > 0) { const s = 0.95 / pk; for (let i = 0; i < len; i++) d[i] *= s; }
+    b = this.ctx.createBuffer(1, len, sr); b.getChannelData(0).set(d); this._nat.set(key, b); return b;
+  }
+  // 通用 KS 弦核（竖琴 'h' / 指弹贝斯 'b' 共用）：激励亮度 a 与弦环 ring 参数化；同 _pluckBuf 的物理，只是可调。
+  _ksBuf(prefix, freq, a, ring) {
+    const key = prefix + Math.round(freq * 4);
+    let b = this._nat.get(key); if (b) return b;
+    const sr = this.ctx.sampleRate, N = Math.max(2, Math.round(sr / freq));
+    const len = Math.floor(sr * (ring + 0.25)), d = new Float32Array(len);
+    const src = this._noise.getChannelData(0), off = (Math.imul(N, 2654435761) >>> 0) % Math.max(1, src.length - N - 2);
+    let lp = 0;
+    for (let i = 0; i <= N; i++) { lp += a * (src[off + i] - lp); d[i] = lp; }
+    const loss = Math.pow(0.001, 1 / (freq * ring));
+    for (let i = N + 1; i < len; i++) d[i] = loss * 0.5 * (d[i - N] + d[i - N - 1]);
+    let pk = 0; for (let i = 0; i < len; i++) { const v = Math.abs(d[i]); if (v > pk) pk = v; }
+    if (pk > 0) { const s = 0.95 / pk; for (let i = 0; i < len; i++) d[i] *= s; }
+    b = this.ctx.createBuffer(1, len, sr); b.getChannelData(0).set(d); this._nat.set(key, b); return b;
+  }
+  // 拇指琴（悦耳度三期）：悬臂梁本征模比 1 : 6.27 : 17.55（Euler-Bernoulli 悬臂 (βL)² 之比，评审确认教科书级正确，勿动）。
+  // 基频长吟（1.3s 随音高缩放——稀疏旋律配孤独长吟）+ 两个瞬灭高模（60/25ms）给"叮"的起音 + 微噪 tick。
+  _kalimbaBuf(freq) {
+    const key = 'k' + Math.round(freq * 4);
+    let b = this._nat.get(key); if (b) return b;
+    const sr = this.ctx.sampleRate, len = Math.floor(sr * 1.7), d = new Float32Array(len);
+    const modes = [[1, 1, clamp(1.3 * Math.sqrt(261 / freq), 0.5, 1.8)], [6.27, 0.12, 0.06], [17.55, 0.04, 0.025]];
+    for (const [r, amp, tau] of modes) {
+      const fn = freq * r; if (fn > sr * 0.45) continue;
+      const w = 2 * Math.PI * fn / sr, dk = Math.exp(-1 / (tau * sr));
+      const c1 = 2 * dk * Math.cos(w), c2 = dk * dk;
+      let y1 = amp * dk * Math.sin(w), y0 = 0;
+      d[1] += y1;
+      for (let i = 2; i < len; i++) { const y = c1 * y1 - c2 * y0; y0 = y1; y1 = y; d[i] += y; }
+    }
+    const src = this._noise.getChannelData(0), off = (Math.imul(Math.round(freq * 4), 26947) >>> 0) % Math.max(1, src.length - 400);
+    for (let i = 0; i < 260 && i < len; i++) d[i] += src[off + i] * 0.05 * Math.exp(-i / (sr * 0.002));   // 指甲 tick
+    const atk = Math.floor(sr * 0.003);
+    for (let i = 0; i < atk; i++) d[i] *= i / atk;
+    let pk = 0; for (let i = 0; i < len; i++) { const v = Math.abs(d[i]); if (v > pk) pk = v; }
+    if (pk > 0) { const s = 0.95 / pk; for (let i = 0; i < len; i++) d[i] *= s; }
+    b = this.ctx.createBuffer(1, len, sr); b.getChannelData(0).set(d); this._nat.set(key, b); return b;
+  }
+  // 颤音琴（悦耳度三期）：拱形削底调音条 1 : 4 : 10（评审确认正确物理，勿动）+ 软槌 thump +
+  // 马达颤（深度 0.35、速率 = 每宇宙 ens.vibRate 4–6Hz）直接烘焙进 buffer；buffer 截 2.2s（内存上限，评审建议）。
+  _vibesBuf(freq) {
+    const key = 'v' + Math.round(freq * 4);
+    let b = this._nat.get(key); if (b) return b;
+    const sr = this.ctx.sampleRate, len = Math.floor(sr * 2.2), d = new Float32Array(len);
+    const modes = [[1, 1, clamp(2.4 * Math.sqrt(261 / freq), 0.8, 2.6)], [4, 0.22, 0.5], [10, 0.06, 0.12]];
+    for (const [r, amp, tau] of modes) {
+      const fn = freq * r; if (fn > sr * 0.45) continue;
+      const w = 2 * Math.PI * fn / sr, dk = Math.exp(-1 / (tau * sr));
+      const c1 = 2 * dk * Math.cos(w), c2 = dk * dk;
+      let y1 = amp * dk * Math.sin(w), y0 = 0;
+      d[1] += y1;
+      for (let i = 2; i < len; i++) { const y = c1 * y1 - c2 * y0; y0 = y1; y1 = y; d[i] += y; }
+    }
+    const src = this._noise.getChannelData(0), off = (Math.imul(Math.round(freq * 4), 15013) >>> 0) % Math.max(1, src.length - 1200);
+    let th = 0;
+    for (let i = 0; i < 1100 && i < len; i++) { th += 0.09 * (src[off + i] - th); d[i] += th * 0.18 * Math.exp(-i / (sr * 0.012)); }   // 软槌 thump
+    const rate = (this.ens && this.ens.vibRate) || 5, wm = 2 * Math.PI * rate / sr;
+    for (let i = 0; i < len; i++) d[i] *= 1 - 0.175 * (1 - Math.cos(wm * i));   // 马达 AM：[1, 0.65] 起点=1 → 起音不受抑
+    const atk = Math.floor(sr * 0.004);
+    for (let i = 0; i < atk; i++) d[i] *= i / atk;
     let pk = 0; for (let i = 0; i < len; i++) { const v = Math.abs(d[i]); if (v > pk) pk = v; }
     if (pk > 0) { const s = 0.95 / pk; for (let i = 0; i < len; i++) d[i] *= s; }
     b = this.ctx.createBuffer(1, len, sr); b.getChannelData(0).set(d); this._nat.set(key, b); return b;
@@ -501,11 +624,13 @@ export class Sonifier {
     const src = this.ctx.createBufferSource(); src.buffer = buf;
     if (o && o.rate) src.playbackRate.value = o.rate;
     if (this.wow && src.detune) { try { this.wow.connect(src.detune); } catch (_) {} }
+    let head = src;
+    if (o && o.lp) { const lp = this.ctx.createBiquadFilter(); lp.type = 'lowpass'; lp.frequency.value = o.lp; src.connect(lp); head = lp; }   // 可选静态低通（e-bass 走 bassWarm，与 neon 版 _playNat 对齐）
     const g = this.ctx.createGain();
     g.gain.setValueAtTime(0.0001, t); g.gain.linearRampToValueAtTime(vel, t + 0.003);
     if (o && o.hold != null) g.gain.setTargetAtTime(0.0001, t + o.hold, o.rel || 0.25);
     g.gain.setTargetAtTime(0, t + buf.duration - 0.05, 0.012);
-    src.connect(g); g.connect(dest); src.start(t); src.stop(t + buf.duration + 0.05);
+    head.connect(g); g.connect(dest); src.start(t); src.stop(t + buf.duration + 0.05);
   }
 
   // focus = "跟踪哪个数据" → 设走向 target（乐句边界平滑趋近）+ 一记柔和电钢音
