@@ -152,6 +152,17 @@
     wanderGoal: { x: 0, y: 0 },
     nextWanderAt: 0,
     bodySway: 0,
+    rig: {
+      initialized: false,
+      pelvis: { x: 0, y: 0, angle: -0.28, visualRadius: 31 },
+      waist: { x: 0, y: 0, angle: -0.28, visualRadius: 23 },
+      shoulders: { x: 0, y: 0, angle: -0.28, visualRadius: 30 },
+      neck: { x: 0, y: 0, angle: -0.28, visualRadius: 17 },
+      head: { x: 0, y: 0, angle: -0.28, visualRadius: 42 },
+      curvature: 0,
+      previousHeading: -0.28,
+      turnVelocity: 0,
+    },
   };
 
   const LEG_CONFIG = Object.freeze({
@@ -173,18 +184,22 @@
     return current + (target - current) * (1 - Math.exp(-rate * dt));
   }
 
+  function angleExpLerp(current, target, rate, dt) {
+    return current + Gait.angleDelta(current, target) * (1 - Math.exp(-rate * dt));
+  }
+
+  function mixAngle(from, to, amount) {
+    return from + Gait.angleDelta(from, to) * amount;
+  }
+
+  function constrainAngle(parent, child, limit) {
+    return parent + Gait.clamp(Gait.angleDelta(parent, child), -limit, limit);
+  }
+
   function rotatePoint(x, y, angle) {
     const c = Math.cos(angle);
     const s = Math.sin(angle);
     return { x: x * c - y * s, y: x * s + y * c };
-  }
-
-  function worldFromLocal(localX, localY, extraX, extraY) {
-    const rotated = rotatePoint(localX, localY, cat.heading);
-    return {
-      x: cat.x + (extraX || 0) + rotated.x,
-      y: cat.y + (extraY || 0) + rotated.y,
-    };
   }
 
   function anatomy() {
@@ -198,28 +213,135 @@
     };
   }
 
+  function pointFromNode(node, forward, lateral) {
+    const offset = rotatePoint(forward || 0, lateral || 0, node.angle);
+    return { x: node.x + offset.x, y: node.y + offset.y };
+  }
+
+  function positionRigNodes(a) {
+    const rig = cat.rig;
+    const rearSway = cat.bodySway * 1.9 * a.scale;
+    const frontSway = -cat.bodySway * 1.25 * a.scale;
+
+    rig.waist.x = cat.x;
+    rig.waist.y = cat.y;
+
+    const pelvisAxis = mixAngle(rig.waist.angle, rig.pelvis.angle, 0.58);
+    const pelvisOffset = rotatePoint(-31 * a.scale, rearSway, pelvisAxis);
+    rig.pelvis.x = rig.waist.x + pelvisOffset.x;
+    rig.pelvis.y = rig.waist.y + pelvisOffset.y;
+
+    const shoulderAxis = mixAngle(rig.waist.angle, rig.shoulders.angle, 0.56);
+    const shoulderOffset = rotatePoint(32 * a.scale, frontSway, shoulderAxis);
+    rig.shoulders.x = rig.waist.x + shoulderOffset.x;
+    rig.shoulders.y = rig.waist.y + shoulderOffset.y;
+
+    const neckAxis = mixAngle(rig.shoulders.angle, rig.neck.angle, 0.55);
+    const neckOffset = rotatePoint(18 * a.scale, 0, neckAxis);
+    rig.neck.x = rig.shoulders.x + neckOffset.x;
+    rig.neck.y = rig.shoulders.y + neckOffset.y;
+
+    const headAxis = mixAngle(rig.neck.angle, rig.head.angle, 0.52);
+    const headOffset = rotatePoint(15 * a.scale, 0, headAxis);
+    rig.head.x = rig.neck.x + headOffset.x;
+    rig.head.y = rig.neck.y + headOffset.y;
+
+    rig.pelvis.visualRadius = 31 * a.scale;
+    rig.waist.visualRadius = 23 * a.scale;
+    rig.shoulders.visualRadius = 30 * a.scale;
+    rig.neck.visualRadius = 17 * a.scale;
+    // Includes ear and whisker reach, not just the painted skull.
+    rig.head.visualRadius = 42 * a.scale;
+    rig.curvature = Gait.angleDelta(rig.pelvis.angle, rig.head.angle);
+  }
+
+  function initializeRig() {
+    const rig = cat.rig;
+    ['pelvis', 'waist', 'shoulders', 'neck', 'head'].forEach((name) => {
+      rig[name].angle = cat.heading;
+    });
+    rig.previousHeading = cat.heading;
+    rig.turnVelocity = 0;
+    rig.initialized = true;
+    positionRigNodes(anatomy());
+  }
+
+  function updateRig(dt) {
+    const rig = cat.rig;
+    if (!rig.initialized) initializeRig();
+
+    const rawTurnVelocity = Gait.clamp(
+      Gait.angleDelta(rig.previousHeading, cat.heading) / Math.max(0.001, dt),
+      -4.5,
+      4.5,
+    );
+    rig.turnVelocity = expLerp(rig.turnVelocity, rawTurnVelocity, 8.5, dt);
+    rig.previousHeading = cat.heading;
+
+    const a = anatomy();
+    const motionWeight = Gait.clamp(cat.speed / (70 * a.scale), 0, 1);
+    const phaseWave = (limb) => Math.sin((cat.gait.legPhases[limb] || 0) * Gait.TAU);
+    const forePhaseTwist = (phaseWave('rightFore') - phaseWave('leftFore')) * 0.007 * motionWeight;
+    const hindPhaseTwist = -(phaseWave('rightHind') - phaseWave('leftHind')) * 0.0075 * motionWeight;
+    const shoulderLead = Gait.clamp(rig.turnVelocity * 0.026, -0.075, 0.075);
+    const pelvisLag = Gait.clamp(rig.turnVelocity * 0.038, -0.105, 0.105);
+
+    // Gaze leads only the head and neck. The torso follows filtered locomotion
+    // turn velocity: shoulders anticipate a corner slightly while the pelvis
+    // counter-lags, with tiny gait-phase counter-rotation between the girdles.
+    const headTarget = cat.heading + cat.headYaw;
+    rig.head.angle = angleExpLerp(rig.head.angle, headTarget, prey.active ? 15 : 6.8, dt);
+
+    const headOffset = Gait.clamp(Gait.angleDelta(cat.heading, rig.head.angle), -0.7, 0.7);
+    const neckTarget = cat.heading + headOffset * 0.58 + shoulderLead * 0.35;
+    rig.neck.angle = angleExpLerp(rig.neck.angle, neckTarget, prey.active ? 10.5 : 5.4, dt);
+
+    const shoulderTarget = cat.heading + shoulderLead + forePhaseTwist - cat.bodySway * 0.012;
+    rig.shoulders.angle = angleExpLerp(rig.shoulders.angle, shoulderTarget, 7.4, dt);
+
+    const waistTarget = cat.heading - pelvisLag * 0.28 + cat.bodySway * 0.01;
+    rig.waist.angle = angleExpLerp(rig.waist.angle, waistTarget, 5.2, dt);
+
+    const pelvisTarget = cat.heading - pelvisLag + hindPhaseTwist + cat.bodySway * 0.014;
+    rig.pelvis.angle = angleExpLerp(rig.pelvis.angle, pelvisTarget, 3.15, dt);
+
+    // Hard anatomical stops are applied every frame, after the soft filters.
+    // They preserve visible articulation without permitting a broken neck or
+    // an eel-like accumulation of small turns down the whole spine.
+    rig.waist.angle = constrainAngle(rig.pelvis.angle, rig.waist.angle, 0.12);
+    rig.shoulders.angle = constrainAngle(rig.waist.angle, rig.shoulders.angle, 0.18);
+    rig.neck.angle = constrainAngle(rig.shoulders.angle, rig.neck.angle, 0.30);
+    rig.head.angle = constrainAngle(rig.neck.angle, rig.head.angle, 0.42);
+    rig.head.angle = constrainAngle(rig.pelvis.angle, rig.head.angle, 0.84);
+    rig.head.angle = constrainAngle(rig.neck.angle, rig.head.angle, 0.42);
+    positionRigNodes(a);
+  }
+
   function localAnchor(limb) {
     const config = LEG_CONFIG[limb];
     const a = anatomy();
     return {
-      x: (config.fore ? 29 : -31) * a.scale,
-      y: config.side * 17 * a.scale,
+      x: (config.fore ? -1.5 : 1.5) * a.scale,
+      y: config.side * (config.fore ? 16 : 17) * a.scale,
     };
   }
 
   function anchorWorld(limb) {
+    if (!cat.rig.initialized) initializeRig();
+    const config = LEG_CONFIG[limb];
     const anchor = localAnchor(limb);
-    return worldFromLocal(anchor.x, anchor.y);
+    return pointFromNode(config.fore ? cat.rig.shoulders : cat.rig.pelvis, anchor.x, anchor.y);
   }
 
   function expectedPawWorld(limb, sample, futureSeconds) {
     const config = LEG_CONFIG[limb];
     const a = anatomy();
-    const localX = (config.fore ? 35 : -37) * a.scale + sample.longitudinal;
-    const localY = config.side * 34 * a.scale + config.side * sample.lateral;
+    const parent = config.fore ? cat.rig.shoulders : cat.rig.pelvis;
+    const anchor = localAnchor(limb);
+    const localX = anchor.x + (config.fore ? 15.5 : -11.5) * a.scale + sample.longitudinal;
+    const localY = anchor.y + config.side * (config.fore ? 10 : 11) * a.scale + config.side * sample.lateral;
     const forward = Math.max(0, futureSeconds || 0) * cat.speed;
-    const rotated = rotatePoint(localX + forward, localY, cat.heading);
-    return { x: cat.x + rotated.x, y: cat.y + rotated.y };
+    return pointFromNode(parent, localX + forward, localY);
   }
 
   function chooseWanderGoal(force) {
@@ -237,11 +359,13 @@
   function initializeTail() {
     cat.tail.length = 0;
     const a = anatomy();
-    const base = worldFromLocal(-a.bodyLength * 0.45, 0);
+    if (!cat.rig.initialized) initializeRig();
+    const base = pointFromNode(cat.rig.pelvis, -28 * a.scale, 0);
+    const tailHeading = cat.rig.pelvis.angle;
     for (let index = 0; index < 10; index += 1) {
       const distance = a.tailSegment * index;
-      const x = base.x - Math.cos(cat.heading) * distance;
-      const y = base.y - Math.sin(cat.heading) * distance;
+      const x = base.x - Math.cos(tailHeading) * distance;
+      const y = base.y - Math.sin(tailHeading) * distance;
       cat.tail.push({ x, y, oldX: x, oldY: y });
     }
   }
@@ -300,6 +424,7 @@
       cat.wanderGoal.x *= viewport.width / Math.max(1, oldWidth);
       cat.wanderGoal.y *= viewport.height / Math.max(1, oldHeight);
     }
+    initializeRig();
     initializeFeet();
     initializeTail();
     draw();
@@ -433,7 +558,15 @@
     cat.x += Math.cos(cat.heading) * cat.speed * dt;
     cat.y += Math.sin(cat.heading) * cat.speed * dt;
 
-    const margin = Math.min(a.bodyLength * 0.52, Math.min(viewport.width, viewport.height) * 0.16);
+    // The former body-only margin allowed a turned head, ears and whiskers to
+    // cross the viewport edge on compact screens. This radius encloses the
+    // entire leading anatomy at every heading while remaining viable on very
+    // small canvases.
+    const margin = Math.max(12, Math.min(
+      116 * a.scale,
+      viewport.width * 0.5 - 12,
+      viewport.height * 0.5 - 12,
+    ));
     const clampedX = Gait.clamp(cat.x, margin, viewport.width - margin);
     const clampedY = Gait.clamp(cat.y, margin, viewport.height - margin);
     if (clampedX !== cat.x || clampedY !== cat.y) {
@@ -456,6 +589,7 @@
       : expLerp(cat.strideLength, Gait.clamp(cat.speed * cat.gait.dutyFactor / cadence, 9 * a.scale, 72 * a.scale), 6, dt);
     cat.bodySway = Math.sin(cat.gait.masterPhase * Gait.TAU) * Gait.clamp(cat.speed / (150 * a.scale), 0, 1);
 
+    updateRig(dt);
     updateFeet(dt);
     updateTail(dt);
   }
@@ -544,7 +678,8 @@
   function updateTail(dt) {
     if (!cat.tail.length) initializeTail();
     const a = anatomy();
-    const base = worldFromLocal(-a.bodyLength * 0.43, cat.bodySway * 1.3 * a.scale);
+    const base = pointFromNode(cat.rig.pelvis, -28 * a.scale, cat.bodySway * 0.9 * a.scale);
+    const pelvisHeading = cat.rig.pelvis.angle;
     const flickStrength = cat.state === 'watch' || cat.state === 'observe' ? 92 : cat.state === 'chase' ? 18 : 42;
     const flickRate = cat.state === 'watch' ? 2.25 : cat.state === 'chase' ? 0.75 : 1.15;
 
@@ -561,8 +696,8 @@
       point.oldY = point.y;
       const weight = index / (cat.tail.length - 1);
       const wave = Math.sin(elapsed * flickRate * Gait.TAU - index * 0.42) * flickStrength * weight;
-      point.x += velocityX - Math.sin(cat.heading) * wave * dt * dt;
-      point.y += velocityY + Math.cos(cat.heading) * wave * dt * dt;
+      point.x += velocityX - Math.sin(pelvisHeading) * wave * dt * dt;
+      point.y += velocityY + Math.cos(pelvisHeading) * wave * dt * dt;
     }
 
     for (let pass = 0; pass < 5; pass += 1) {
@@ -686,7 +821,9 @@
       const dy = next.y - previous.y;
       const distance = Math.max(0.001, Math.hypot(dx, dy));
       const t = index / lastIndex;
-      const radius = (7.8 - t * 5.05 + Math.sin(t * Math.PI) * 0.45) * scale;
+      // Keep the base plush and finish at a small but visible radius. A cat's
+      // tail is tapered, not needle-pointed.
+      const radius = (6.8 * Math.pow(1 - t, 0.6) + 0.7) * scale;
       const nx = -dy / distance * radius;
       const ny = dx / distance * radius;
       left.push({ x: point.x + nx + offsetX, y: point.y + ny + offsetY });
@@ -694,6 +831,17 @@
     });
     context.beginPath();
     smoothOpenPath(context, left);
+    if (points.length > 1) {
+      const last = points[points.length - 1];
+      const previous = points[points.length - 2];
+      const distance = Math.max(0.001, Math.hypot(last.x - previous.x, last.y - previous.y));
+      context.quadraticCurveTo(
+        last.x + (last.x - previous.x) / distance * 0.85 * scale + offsetX,
+        last.y + (last.y - previous.y) / distance * 0.85 * scale + offsetY,
+        right[right.length - 1].x,
+        right[right.length - 1].y,
+      );
+    }
     const reversed = right.slice().reverse();
     smoothOpenPath(context, reversed, true);
     context.closePath();
@@ -705,7 +853,7 @@
     const dx = foot.x - anchor.x;
     const dy = foot.y - anchor.y;
     const distance = Math.max(1, Math.hypot(dx, dy));
-    const bend = config.side * (config.fore ? 7.2 : -5.6) * a.scale;
+    const bend = config.side * (config.fore ? 4.4 : -3.5) * a.scale;
     const joint = {
       x: (anchor.x + foot.x) * 0.5 - dy / distance * bend,
       y: (anchor.y + foot.y) * 0.5 + dx / distance * bend,
@@ -769,14 +917,6 @@
 
   function drawCatShadow(c) {
     const a = anatomy();
-    const phase = cat.gait.masterPhase * Gait.TAU;
-    const speedNorm = Gait.clamp(cat.speed / 210, 0, 1);
-    const stalking = cat.state === 'stalk' ? 1 : 0;
-    const stretch = 1 + Math.sin(phase * 2) * speedNorm * 0.025;
-    const narrow = 1 - stalking * 0.06 + Math.cos(phase * 2) * speedNorm * 0.012;
-    const rearSway = cat.bodySway * 2.5 * a.scale;
-    const frontSway = -cat.bodySway * 1.5 * a.scale;
-    const headY = frontSway + Math.sin(phase) * cat.speed / 190 * 0.8 * a.scale;
     const offsetX = 2.8 * a.scale;
     const offsetY = 4.6 * a.scale;
 
@@ -814,19 +954,12 @@
       ctx.fill();
     });
 
-    ctx.save();
-    ctx.translate(cat.x + offsetX, cat.y + offsetY);
-    ctx.rotate(cat.heading);
-    ctx.scale(stretch, narrow);
-    traceBodySilhouette(ctx, a, rearSway, frontSway);
+    traceBodySilhouette(ctx, a, offsetX, offsetY);
     ctx.fill();
-    ctx.restore();
 
     ctx.save();
-    ctx.translate(cat.x + offsetX, cat.y + offsetY);
-    ctx.rotate(cat.heading);
-    ctx.translate(57 * a.scale, headY);
-    ctx.rotate(cat.headYaw);
+    ctx.translate(cat.rig.head.x + offsetX, cat.rig.head.y + offsetY);
+    ctx.rotate(cat.rig.head.angle);
     [-1, 1].forEach((side) => {
       traceEarSilhouette(ctx, a, side);
       ctx.fill();
@@ -869,7 +1002,7 @@
 
     ctx.globalAlpha = 0.72;
     ctx.strokeStyle = c.stripe;
-    [3, 5, 7, 9].forEach((index) => {
+    [3, 5, 7].forEach((index) => {
       if (!cat.tail[index]) return;
       const previous = cat.tail[Math.max(0, index - 1)];
       const next = cat.tail[Math.min(cat.tail.length - 1, index + 1)];
@@ -900,8 +1033,8 @@
       const foot = cat.feet[limb];
       if (!foot) return;
       const geometry = legGeometry(limb, foot, a);
-      const outerWidth = (geometry.config.fore ? 12.4 : 15.6) * a.scale;
-      const innerWidth = (geometry.config.fore ? 8.7 : 11.3) * a.scale;
+      const outerWidth = (geometry.config.fore ? 10.8 : 13.2) * a.scale;
+      const innerWidth = (geometry.config.fore ? 7.5 : 9.4) * a.scale;
 
       ctx.save();
       ctx.lineCap = 'round';
@@ -959,164 +1092,181 @@
     });
   }
 
-  function traceBodySilhouette(context, a, rearSway, frontSway) {
+  function bodyStations(a, offsetX, offsetY) {
+    const ox = offsetX || 0;
+    const oy = offsetY || 0;
+    const narrow = cat.state === 'stalk' ? 0.94 : 1;
+    const define = (node, forward, width) => {
+      const point = pointFromNode(node, forward * a.scale, 0);
+      return {
+        x: point.x + ox,
+        y: point.y + oy,
+        angle: node.angle,
+        width: width * a.scale * narrow,
+      };
+    };
+    return [
+      define(cat.rig.pelvis, -27, 9.5),
+      define(cat.rig.pelvis, -17, 22.5),
+      define(cat.rig.pelvis, 1, 28),
+      define(cat.rig.pelvis, 15, 24.5),
+      define(cat.rig.waist, 0, 19.5),
+      define(cat.rig.shoulders, -13, 23),
+      define(cat.rig.shoulders, 1, 27),
+      define(cat.rig.shoulders, 13, 20),
+      define(cat.rig.neck, 3, 12.8),
+    ];
+  }
+
+  function traceBodySilhouette(context, a, offsetX, offsetY) {
+    const stations = bodyStations(a, offsetX, offsetY);
+    const left = stations.map((station) => ({
+      x: station.x - Math.sin(station.angle) * station.width,
+      y: station.y + Math.cos(station.angle) * station.width,
+    }));
+    const right = stations.map((station) => ({
+      x: station.x + Math.sin(station.angle) * station.width,
+      y: station.y - Math.cos(station.angle) * station.width,
+    }));
+    const front = stations[stations.length - 1];
+    const rear = stations[0];
+
     context.beginPath();
-    context.moveTo(-62 * a.scale, rearSway);
-    context.bezierCurveTo(-62 * a.scale, -14 * a.scale + rearSway, -53 * a.scale, -26 * a.scale + rearSway, -41 * a.scale, -28 * a.scale + rearSway);
-    context.bezierCurveTo(-28 * a.scale, -30 * a.scale + rearSway, -20 * a.scale, -23 * a.scale, -8 * a.scale, -22 * a.scale);
-    context.bezierCurveTo(8 * a.scale, -22 * a.scale, 18 * a.scale, -29 * a.scale + frontSway, 34 * a.scale, -27 * a.scale + frontSway);
-    context.bezierCurveTo(46 * a.scale, -25 * a.scale + frontSway, 53 * a.scale, -18 * a.scale + frontSway, 56 * a.scale, -10 * a.scale + frontSway);
-    context.bezierCurveTo(59 * a.scale, -4 * a.scale + frontSway, 59 * a.scale, 4 * a.scale + frontSway, 56 * a.scale, 10 * a.scale + frontSway);
-    context.bezierCurveTo(53 * a.scale, 17 * a.scale + frontSway, 44 * a.scale, 24 * a.scale + frontSway, 31 * a.scale, 26 * a.scale + frontSway);
-    context.bezierCurveTo(16 * a.scale, 28 * a.scale + frontSway, 6 * a.scale, 21 * a.scale, -10 * a.scale, 21.5 * a.scale);
-    context.bezierCurveTo(-22 * a.scale, 23 * a.scale, -30 * a.scale, 29 * a.scale + rearSway, -43 * a.scale, 27 * a.scale + rearSway);
-    context.bezierCurveTo(-55 * a.scale, 24.5 * a.scale + rearSway, -63 * a.scale, 13 * a.scale + rearSway, -62 * a.scale, rearSway);
+    smoothOpenPath(context, left);
+    context.quadraticCurveTo(
+      front.x + Math.cos(front.angle) * 3 * a.scale,
+      front.y + Math.sin(front.angle) * 3 * a.scale,
+      right[right.length - 1].x,
+      right[right.length - 1].y,
+    );
+    smoothOpenPath(context, right.slice().reverse(), true);
+    context.quadraticCurveTo(
+      rear.x - Math.cos(rear.angle) * 3.5 * a.scale,
+      rear.y - Math.sin(rear.angle) * 3.5 * a.scale,
+      left[0].x,
+      left[0].y,
+    );
     context.closePath();
+  }
+
+  function drawNodeEllipse(node, forward, lateral, radiusX, radiusY, rotation, a) {
+    ctx.save();
+    ctx.translate(node.x, node.y);
+    ctx.rotate(node.angle);
+    ctx.beginPath();
+    ctx.ellipse(
+      forward * a.scale,
+      lateral * a.scale,
+      radiusX * a.scale,
+      radiusY * a.scale,
+      rotation || 0,
+      0,
+      Gait.TAU,
+    );
+    ctx.fill();
+    ctx.restore();
+  }
+
+  function drawFlankStripe(node, stripe, a) {
+    const side = stripe.side;
+    ctx.save();
+    ctx.translate(node.x, node.y);
+    ctx.rotate(node.angle);
+    ctx.beginPath();
+    ctx.moveTo(stripe.x * a.scale, side * stripe.edge * a.scale);
+    ctx.bezierCurveTo(
+      (stripe.x + stripe.drift * 0.25) * a.scale,
+      side * (stripe.edge - 3.5) * a.scale,
+      (stripe.x + stripe.drift * 0.78) * a.scale,
+      side * (stripe.inner + 2.5) * a.scale,
+      (stripe.x + stripe.drift) * a.scale,
+      side * stripe.inner * a.scale,
+    );
+    ctx.stroke();
+    ctx.restore();
   }
 
   function drawBody(c) {
     const a = anatomy();
-    const phase = cat.gait.masterPhase * Gait.TAU;
-    const speedNorm = Gait.clamp(cat.speed / 210, 0, 1);
-    const stalking = cat.state === 'stalk' ? 1 : 0;
-    const stretch = 1 + Math.sin(phase * 2) * speedNorm * 0.025;
-    const narrow = 1 - stalking * 0.06 + Math.cos(phase * 2) * speedNorm * 0.012;
-    const rearSway = cat.bodySway * 2.5 * a.scale;
-    const frontSway = -cat.bodySway * 1.5 * a.scale;
+    const waistNormalX = -Math.sin(cat.rig.waist.angle);
+    const waistNormalY = Math.cos(cat.rig.waist.angle);
 
-    ctx.save();
-    ctx.translate(cat.x, cat.y);
-    ctx.rotate(cat.heading);
-    ctx.scale(stretch, narrow);
-
-    traceBodySilhouette(ctx, a, rearSway, frontSway);
+    traceBodySilhouette(ctx, a, 0, 0);
     ctx.fillStyle = linearFill(
       ctx,
-      0,
-      -31 * a.scale,
-      0,
-      31 * a.scale,
+      cat.x + waistNormalX * 31 * a.scale,
+      cat.y + waistNormalY * 31 * a.scale,
+      cat.x - waistNormalX * 31 * a.scale,
+      cat.y - waistNormalY * 31 * a.scale,
       [[0, c.furDark], [0.24, c.fur], [0.5, c.furLight], [0.72, c.fur], [1, c.furDark]],
       c.fur,
     );
     ctx.fill();
     ctx.strokeStyle = c.furDark;
-    ctx.globalAlpha = 0.4;
+    ctx.globalAlpha = 0.42;
     ctx.lineWidth = 0.85 * a.scale;
     ctx.stroke();
     ctx.globalAlpha = 1;
 
     ctx.save();
-    traceBodySilhouette(ctx, a, rearSway, frontSway);
+    traceBodySilhouette(ctx, a, 0, 0);
     ctx.clip();
-    ctx.globalAlpha = 0.19;
+
+    // Soft volumes reveal pelvis, waist and shoulder masses without drawing a
+    // literal spine or mirrored ribs over the animal.
     ctx.fillStyle = c.furLight;
-    ctx.filter = `blur(${5.2 * a.scale}px)`;
-    ctx.beginPath();
-    ctx.ellipse(-6 * a.scale, -3 * a.scale, 52 * a.scale, 10.5 * a.scale, -0.03, 0, Gait.TAU);
-    ctx.fill();
+    ctx.globalAlpha = 0.15;
+    ctx.filter = `blur(${4.8 * a.scale}px)`;
+    drawNodeEllipse(cat.rig.pelvis, -1, -3, 29, 12, -0.06, a);
+    drawNodeEllipse(cat.rig.waist, 1, -2, 23, 8.5, 0.03, a);
+    drawNodeEllipse(cat.rig.shoulders, 0, -3, 28, 11, 0.08, a);
     ctx.filter = 'none';
 
-    ctx.globalAlpha = 0.16;
-    [[-42, -13, 17, 10, -0.18], [-42, 13, 17, 10, 0.18], [28, -13, 19, 9, 0.2], [28, 13, 19, 9, -0.2]].forEach((shape) => {
-      ctx.beginPath();
-      ctx.ellipse(shape[0] * a.scale, shape[1] * a.scale, shape[2] * a.scale, shape[3] * a.scale, shape[4], 0, Gait.TAU);
-      ctx.fill();
-    });
+    ctx.globalAlpha = 0.2;
+    ctx.fillStyle = c.furLight;
+    [
+      [cat.rig.pelvis, -6, -15, 17, 8, -0.18],
+      [cat.rig.pelvis, 4, 14, 15, 7, 0.16],
+      [cat.rig.shoulders, 1, -15, 18, 7.5, 0.17],
+      [cat.rig.shoulders, -3, 14, 16, 7, -0.15],
+    ].forEach((shape) => drawNodeEllipse(shape[0], shape[1], shape[2], shape[3], shape[4], shape[5], a));
 
-    ctx.globalAlpha = 0.25;
-    ctx.strokeStyle = c.furLight;
-    ctx.lineWidth = 2.2 * a.scale;
-    ctx.lineCap = 'round';
-    ctx.beginPath();
-    ctx.moveTo(-53 * a.scale, -9 * a.scale + rearSway);
-    ctx.bezierCurveTo(-45 * a.scale, -18 * a.scale + rearSway, -34 * a.scale, -20 * a.scale + rearSway, -25 * a.scale, -16 * a.scale);
-    ctx.stroke();
-    ctx.beginPath();
-    ctx.moveTo(-53 * a.scale, 9 * a.scale + rearSway);
-    ctx.bezierCurveTo(-45 * a.scale, 18 * a.scale + rearSway, -34 * a.scale, 20 * a.scale + rearSway, -25 * a.scale, 16 * a.scale);
-    ctx.stroke();
-    ctx.beginPath();
-    ctx.moveTo(13 * a.scale, -16 * a.scale);
-    ctx.bezierCurveTo(24 * a.scale, -22 * a.scale + frontSway, 37 * a.scale, -18 * a.scale + frontSway, 44 * a.scale, -11 * a.scale + frontSway);
-    ctx.stroke();
-    ctx.beginPath();
-    ctx.moveTo(13 * a.scale, 16 * a.scale);
-    ctx.bezierCurveTo(24 * a.scale, 22 * a.scale + frontSway, 37 * a.scale, 18 * a.scale + frontSway, 44 * a.scale, 11 * a.scale + frontSway);
-    ctx.stroke();
-
-    ctx.globalAlpha = 0.68;
     ctx.strokeStyle = c.stripe;
-    ctx.lineWidth = 3.1 * a.scale;
+    ctx.globalAlpha = 0.68;
+    ctx.lineWidth = 3 * a.scale;
     ctx.lineCap = 'round';
     [
-      { x: -43, reach: 22, drift: -7 },
-      { x: -25, reach: 19, drift: -5 },
-      { x: -7, reach: 21, drift: -8 },
-      { x: 12, reach: 18, drift: -5 },
-      { x: 29, reach: 15, drift: -3 },
-    ].forEach((stripe) => {
-      ctx.beginPath();
-      ctx.moveTo((stripe.x + 5) * a.scale, -2.5 * a.scale);
-      ctx.bezierCurveTo(
-        (stripe.x + 3) * a.scale,
-        -8 * a.scale,
-        (stripe.x + stripe.drift * 0.7) * a.scale,
-        -14 * a.scale,
-        (stripe.x + stripe.drift) * a.scale,
-        -stripe.reach * a.scale,
-      );
-      ctx.stroke();
-    });
-    [
-      { x: -38, reach: 21, drift: -9 },
-      { x: -18, reach: 17, drift: -4 },
-      { x: 2, reach: 20, drift: -7 },
-      { x: 22, reach: 16, drift: -3 },
-    ].forEach((stripe) => {
-      ctx.beginPath();
-      ctx.moveTo((stripe.x + 5) * a.scale, 2.5 * a.scale);
-      ctx.bezierCurveTo(
-        (stripe.x + 3) * a.scale,
-        8 * a.scale,
-        (stripe.x + stripe.drift * 0.65) * a.scale,
-        13 * a.scale,
-        (stripe.x + stripe.drift) * a.scale,
-        stripe.reach * a.scale,
-      );
-      ctx.stroke();
-    });
-    ctx.lineWidth = 2.2 * a.scale;
-    ctx.globalAlpha = 0.52;
-    ctx.beginPath();
-    ctx.moveTo(-51 * a.scale, 0.8 * a.scale + rearSway);
-    ctx.bezierCurveTo(-27 * a.scale, -1.2 * a.scale, -3 * a.scale, 1.8 * a.scale, 35 * a.scale, -0.5 * a.scale + frontSway);
-    ctx.stroke();
+      [cat.rig.pelvis, { x: -13, side: -1, edge: 25, inner: 11, drift: 7 }],
+      [cat.rig.pelvis, { x: 5, side: -1, edge: 27, inner: 12, drift: -5 }],
+      [cat.rig.pelvis, { x: -4, side: 1, edge: 27, inner: 12, drift: 8 }],
+      [cat.rig.pelvis, { x: 13, side: 1, edge: 24, inner: 11, drift: -4 }],
+      [cat.rig.waist, { x: -3, side: -1, edge: 19, inner: 9.5, drift: 6 }],
+      [cat.rig.waist, { x: 6, side: 1, edge: 19, inner: 9, drift: -5 }],
+      [cat.rig.shoulders, { x: -7, side: -1, edge: 25, inner: 12, drift: 6 }],
+      [cat.rig.shoulders, { x: 8, side: -1, edge: 23, inner: 11, drift: -4 }],
+      [cat.rig.shoulders, { x: -1, side: 1, edge: 26, inner: 12, drift: 7 }],
+    ].forEach(([node, stripe]) => drawFlankStripe(node, stripe, a));
+
+    // A few irregular flank marks keep the coat organic and deliberately
+    // break the bilateral, skeleton-like pattern of the MVP.
+    ctx.fillStyle = c.stripe;
+    ctx.globalAlpha = 0.45;
+    drawNodeEllipse(cat.rig.pelvis, -9, 17, 3.7, 1.8, 0.2, a);
+    drawNodeEllipse(cat.rig.waist, 2, -13, 3.2, 1.5, -0.25, a);
+    drawNodeEllipse(cat.rig.shoulders, 5, 17, 3.4, 1.6, 0.18, a);
 
     ctx.fillStyle = c.cream;
-    ctx.globalAlpha = 0.44;
-    ctx.beginPath();
-    ctx.moveTo(29 * a.scale, -7 * a.scale);
-    ctx.bezierCurveTo(39 * a.scale, -13 * a.scale, 53 * a.scale, -9 * a.scale + frontSway, 57 * a.scale, -2 * a.scale + frontSway);
-    ctx.bezierCurveTo(59 * a.scale, 0, 59 * a.scale, 0, 57 * a.scale, 2 * a.scale + frontSway);
-    ctx.bezierCurveTo(53 * a.scale, 9 * a.scale + frontSway, 39 * a.scale, 13 * a.scale, 29 * a.scale, 7 * a.scale);
-    ctx.bezierCurveTo(24 * a.scale, 4 * a.scale, 24 * a.scale, -4 * a.scale, 29 * a.scale, -7 * a.scale);
-    ctx.closePath();
-    ctx.fill();
+    ctx.globalAlpha = 0.36;
+    drawNodeEllipse(cat.rig.neck, 1, 0, 13, 8.5, 0, a);
     ctx.restore();
 
-    ctx.restore();
-    drawHead(c, a, frontSway);
+    drawHead(c, a);
   }
 
-  function drawHead(c, a, frontSway) {
-    const headX = 57 * a.scale;
-    const headY = frontSway + Math.sin(cat.gait.masterPhase * Gait.TAU) * cat.speed / 190 * 0.8 * a.scale;
+  function drawHead(c, a) {
     ctx.save();
-    ctx.translate(cat.x, cat.y);
-    ctx.rotate(cat.heading);
-    ctx.translate(headX, headY);
-    ctx.rotate(cat.headYaw);
+    ctx.translate(cat.rig.head.x, cat.rig.head.y);
+    ctx.rotate(cat.rig.head.angle);
 
     [-1, 1].forEach((side) => {
       ctx.fillStyle = c.furDark;
@@ -1534,6 +1684,15 @@
       behavior: cat.state,
       gait: cat.gait.profileName,
       cat: { x: cat.x, y: cat.y, heading: cat.heading, speed: cat.speed },
+      rig: Object.fromEntries(['pelvis', 'waist', 'shoulders', 'neck', 'head'].map((name) => [name, {
+        x: cat.rig[name].x,
+        y: cat.rig[name].y,
+        angle: cat.rig[name].angle,
+        visualRadius: cat.rig[name].visualRadius,
+      }])),
+      rigCurvature: cat.rig.curvature,
+      rigScale: anatomy().scale,
+      turnVelocity: cat.rig.turnVelocity,
       mouse: { x: prey.x, y: prey.y, speed: prey.speed, active: prey.active },
       phases: Object.fromEntries(Gait.LIMBS.map((limb) => [limb, cat.feet[limb] ? cat.feet[limb].phase : null])),
       feet: Object.fromEntries(Gait.LIMBS.map((limb) => [limb, cat.feet[limb]

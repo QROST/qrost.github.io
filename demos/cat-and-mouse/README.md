@@ -13,6 +13,8 @@ A dependency-free Canvas 2D interaction: a top-down cat notices, watches, stalks
 
 The rig uses one master gait clock coupled to four limb phases. Slow movement follows the feline lateral-sequence order `RH → RF → LH → LF`; stalking lengthens the stance interval and lowers body motion. A fast pursuit blends into a diagonal trot (`RH + LF`, then `LH + RF`). Each stance paw is held in world space while the body travels over it; the swing paw follows an eased arc and converges before touchdown.
 
+Above the footfall controller, a five-node articulated spine (`pelvis → waist → shoulders → neck → head`) gives each body region its own filtered pose. The head reacts first, the neck and shoulder girdle follow, the waist absorbs the curve, and the pelvis trails the turn. Hind legs and the tail attach to the pelvis; forelegs attach to the shoulders. The renderer wraps those moving stations in one continuous fur silhouette, so the cat bends without looking like disconnected pieces.
+
 The timing and motion cues are grounded in published feline locomotion work:
 
 - [Interlimb coordination and diagonality in walking cats](https://pmc.ncbi.nlm.nih.gov/articles/PMC4044364/)

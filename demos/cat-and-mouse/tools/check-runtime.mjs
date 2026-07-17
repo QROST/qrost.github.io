@@ -7,6 +7,9 @@ import { fileURLToPath } from 'node:url';
 
 const here = path.dirname(fileURLToPath(import.meta.url));
 const demo = path.resolve(here, '..');
+let fakeViewportWidth = 1180;
+let fakeViewportHeight = 720;
+let resizeObserverCallback = null;
 
 class FakeClassList {
   constructor(initial = []) { this.values = new Set(initial); }
@@ -53,7 +56,9 @@ class FakeElement {
   }
   setAttribute(name, value) { this.attributes.set(name, String(value)); }
   getAttribute(name) { return this.attributes.get(name) ?? null; }
-  getBoundingClientRect() { return { left: 0, top: 0, width: 1180, height: 720 }; }
+  getBoundingClientRect() {
+    return { left: 0, top: 0, width: fakeViewportWidth, height: fakeViewportHeight };
+  }
   focus() {}
   setPointerCapture() {}
   releasePointerCapture() {}
@@ -144,7 +149,10 @@ const sandbox = {
   requestAnimationFrame(callback) { rafQueue.push(callback); return ++rafCounter; },
   cancelAnimationFrame() {},
   ResizeObserver: class {
-    constructor(callback) { this.callback = callback; }
+    constructor(callback) {
+      this.callback = callback;
+      resizeObserverCallback = callback;
+    }
     observe() { this.callback(); }
   },
   addEventListener(type, listener) {
@@ -188,16 +196,64 @@ function finiteSnapshot(snapshot) {
   for (const value of [
     snapshot.cat.x, snapshot.cat.y, snapshot.cat.heading, snapshot.cat.speed,
     snapshot.mouse.x, snapshot.mouse.y, snapshot.mouse.speed,
+    snapshot.rigScale, snapshot.turnVelocity, snapshot.rigCurvature,
+    ...Object.values(snapshot.rig).flatMap((segment) => [
+      segment.x, segment.y, segment.angle, segment.visualRadius,
+    ]),
     ...Object.values(snapshot.phases),
     ...Object.values(snapshot.feet).flatMap((foot) => [foot.x, foot.y, foot.angle, foot.lift]),
     snapshot.tailTip.x, snapshot.tailTip.y,
   ]) assert.ok(Number.isFinite(value), `runtime emitted a non-finite value: ${value}`);
 }
 
+const rigNames = ['pelvis', 'waist', 'shoulders', 'neck', 'head'];
+const rigJoints = [
+  ['pelvis', 'waist', 31, 0.12],
+  ['waist', 'shoulders', 32, 0.18],
+  ['shoulders', 'neck', 18, 0.30],
+  ['neck', 'head', 15, 0.42],
+];
+
+function angleDistance(from, to) {
+  return Math.abs(sandbox.CatGait.angleDelta(from, to));
+}
+
+function assertRigSnapshot(snapshot, label = 'rig') {
+  finiteSnapshot(snapshot);
+  const bendSigns = [];
+  for (const [parentName, childName, restLength, limit] of rigJoints) {
+    const parent = snapshot.rig[parentName];
+    const child = snapshot.rig[childName];
+    const distance = Math.hypot(child.x - parent.x, child.y - parent.y);
+    const expected = restLength * snapshot.rigScale;
+    const tolerance = Math.max(0.45, expected * 0.012);
+    assert.ok(Math.abs(distance - expected) <= tolerance, `${label}: ${parentName}-${childName} chain stretched`);
+    const signedBend = sandbox.CatGait.angleDelta(parent.angle, child.angle);
+    assert.ok(Math.abs(signedBend) <= limit + 1e-6, `${label}: ${parentName}-${childName} exceeded joint limit`);
+    if (Math.abs(signedBend) >= 0.025) bendSigns.push(Math.sign(signedBend));
+  }
+  let signChanges = 0;
+  for (let index = 1; index < bendSigns.length; index += 1) {
+    if (bendSigns[index] !== bendSigns[index - 1]) signChanges += 1;
+  }
+  assert.ok(signChanges <= 1, `${label}: articulated spine became an S-shaped snake`);
+  const curvature = sandbox.CatGait.angleDelta(snapshot.rig.pelvis.angle, snapshot.rig.head.angle);
+  assert.ok(Math.abs(curvature) <= 0.84 + 1e-6, `${label}: total rig curvature exceeded limit`);
+  assert.ok(Math.abs(curvature - snapshot.rigCurvature) < 1e-9, `${label}: reported curvature drifted`);
+}
+
+function assertHeadInsideViewport(snapshot, padding = 1) {
+  const head = snapshot.rig.head;
+  assert.ok(head.x - head.visualRadius >= padding, 'head/ears/whiskers crossed left viewport edge');
+  assert.ok(head.y - head.visualRadius >= padding, 'head/ears/whiskers crossed top viewport edge');
+  assert.ok(head.x + head.visualRadius <= snapshot.viewport.width - padding, 'head/ears/whiskers crossed right viewport edge');
+  assert.ok(head.y + head.visualRadius <= snapshot.viewport.height - padding, 'head/ears/whiskers crossed bottom viewport edge');
+}
+
 assert.ok(sandbox.__catMouseDemo, 'debug/test surface must be available');
 step(120);
 let snapshot = sandbox.__catMouseDemo.getSnapshot();
-finiteSnapshot(snapshot);
+assertRigSnapshot(snapshot, 'initial prowl');
 assert.equal(snapshot.behavior, 'prowl');
 assert.equal(snapshot.viewport.width, 1180);
 assert.equal(snapshot.viewport.height, 720);
@@ -206,6 +262,7 @@ let previousStance = snapshot;
 for (let index = 0; index < 150; index += 1) {
   step(1);
   const current = sandbox.__catMouseDemo.getSnapshot();
+  assertRigSnapshot(current, 'prowl');
   for (const limb of ['rightHind', 'rightFore', 'leftHind', 'leftFore']) {
     if (previousStance.feet[limb].planted && current.feet[limb].planted) {
       const slip = Math.hypot(
@@ -229,6 +286,7 @@ let sawSettleSwing = false;
 for (let index = 0; index < 180; index += 1) {
   step(1);
   const current = sandbox.__catMouseDemo.getSnapshot();
+  assertRigSnapshot(current, 'settling');
   for (const limb of ['rightHind', 'rightFore', 'leftHind', 'leftFore']) {
     if (!current.feet[limb].planted && current.feet[limb].lift > 0.02) sawSettleSwing = true;
     if (previousSettle.feet[limb].planted && current.feet[limb].planted) {
@@ -246,10 +304,52 @@ for (let index = 0; index < 180; index += 1) {
   previousSettle = current;
 }
 snapshot = sandbox.__catMouseDemo.getSnapshot();
-finiteSnapshot(snapshot);
+assertRigSnapshot(snapshot, 'settled watch');
 assert.equal(snapshot.behavior, 'watch');
 assert.ok(Object.values(snapshot.feet).every((foot) => foot.planted && foot.lift === 0));
 assert.equal(sawSettleSwing, true, 'an airborne paw should finish with a lift-and-place motion');
+sandbox.__catMouseDemo.releaseMouse();
+step(30);
+
+// A new off-axis target must travel down the articulated chain head-first,
+// while already planted paws remain locked in world space during the turn.
+const articulationBaseline = sandbox.__catMouseDemo.getSnapshot();
+const articulationAngle = articulationBaseline.cat.heading + 0.70;
+sandbox.__catMouseDemo.moveMouse(
+  articulationBaseline.cat.x + Math.cos(articulationAngle) * 180,
+  articulationBaseline.cat.y + Math.sin(articulationAngle) * 180,
+);
+const firstResponseFrame = Object.fromEntries(rigNames.map((name) => [name, null]));
+let previousArticulation = articulationBaseline;
+for (let frameIndex = 0; frameIndex < 36; frameIndex += 1) {
+  step(1);
+  const current = sandbox.__catMouseDemo.getSnapshot();
+  assertRigSnapshot(current, 'head-first articulation');
+  for (const name of rigNames) {
+    const response = angleDistance(articulationBaseline.rig[name].angle, current.rig[name].angle);
+    if (firstResponseFrame[name] === null && response >= 0.035) firstResponseFrame[name] = frameIndex;
+  }
+  for (const limb of ['rightHind', 'rightFore', 'leftHind', 'leftFore']) {
+    if (previousArticulation.feet[limb].planted && current.feet[limb].planted) {
+      const slip = Math.hypot(
+        current.feet[limb].x - previousArticulation.feet[limb].x,
+        current.feet[limb].y - previousArticulation.feet[limb].y,
+      );
+      assert.ok(slip < 1e-7, `${limb} stance paw slipped during articulated turn`);
+      assert.ok(
+        Math.abs(current.feet[limb].angle - previousArticulation.feet[limb].angle) < 1e-12,
+        `${limb} stance paw rotated during articulated turn`,
+      );
+    }
+  }
+  previousArticulation = current;
+}
+for (const name of rigNames) assert.notEqual(firstResponseFrame[name], null, `${name} never responded to turn`);
+assert.ok(firstResponseFrame.head <= firstResponseFrame.neck, 'head must respond before neck');
+assert.ok(firstResponseFrame.neck <= firstResponseFrame.shoulders, 'neck must respond before shoulders');
+assert.ok(firstResponseFrame.shoulders <= firstResponseFrame.waist, 'shoulders must respond before waist');
+assert.ok(firstResponseFrame.waist <= firstResponseFrame.pelvis, 'waist must respond before pelvis');
+assert.ok(firstResponseFrame.head + 3 <= firstResponseFrame.pelvis, 'head needs visible lead over pelvis');
 sandbox.__catMouseDemo.releaseMouse();
 step(30);
 
@@ -266,7 +366,7 @@ clock += 16;
 canvas.dispatch('pointermove', { clientX: 780, clientY: 520, timeStamp: clock + 16, pointerType: 'mouse' });
 step(24);
 snapshot = sandbox.__catMouseDemo.getSnapshot();
-finiteSnapshot(snapshot);
+assertRigSnapshot(snapshot, 'pursuit');
 assert.ok(['chase', 'stalk'].includes(snapshot.behavior), `unexpected pursuit behavior: ${snapshot.behavior}`);
 
 canvas.dispatch('keydown', { key: 'ArrowLeft', shiftKey: true });
@@ -280,6 +380,36 @@ step(20);
 snapshot = sandbox.__catMouseDemo.getSnapshot();
 assert.equal(snapshot.mouse.active, false);
 assert.equal(snapshot.behavior, 'prowl');
+
+// Reproduce the user's 548x536 compact screenshot and drive the target to all
+// four edges. The full head radius includes ears and whiskers.
+assert.equal(typeof resizeObserverCallback, 'function');
+fakeViewportWidth = 548;
+fakeViewportHeight = 536;
+resizeObserverCallback();
+step(1);
+snapshot = sandbox.__catMouseDemo.getSnapshot();
+assert.equal(snapshot.viewport.width, 548);
+assert.equal(snapshot.viewport.height, 536);
+assertRigSnapshot(snapshot, 'compact resize');
+assertHeadInsideViewport(snapshot);
+const edgeTargets = [
+  [fakeViewportWidth * 0.5, 8],
+  [fakeViewportWidth - 8, fakeViewportHeight * 0.5],
+  [fakeViewportWidth * 0.5, fakeViewportHeight - 8],
+  [8, fakeViewportHeight * 0.5],
+];
+for (const [targetX, targetY] of edgeTargets) {
+  sandbox.__catMouseDemo.moveMouse(targetX, targetY);
+  for (let frameIndex = 0; frameIndex < 240; frameIndex += 1) {
+    step(1);
+    const current = sandbox.__catMouseDemo.getSnapshot();
+    assertRigSnapshot(current, 'compact edge pursuit');
+    assertHeadInsideViewport(current);
+  }
+  sandbox.__catMouseDemo.releaseMouse();
+  step(24);
+}
 
 ids.get('language-toggle').dispatch('click');
 assert.equal(documentElement.lang, 'en');
@@ -358,4 +488,4 @@ failureListeners.forEach((listener) => listener());
 assert.equal(failureElements.get('canvas-error').textContent, 'Canvas failed');
 assert.equal(failureElements.get('theme-toggle').getAttribute('title'), 'Light');
 
-console.log('check-runtime: canvas boot, 240+ frames, pointer, pursuit, keyboard, pause, i18n, and theme OK');
+console.log('check-runtime: articulated rig, locked paws, 548x536 edge bounds, pursuit, pause, i18n, and theme OK');
