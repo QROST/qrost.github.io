@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<title>cat-mouse rAF-shim test</title>
+<link rel="stylesheet" href="../assets/css/cat-and-mouse.css">
+<script>
+  // rAF 垫片：隐藏 tab 里 rAF 永不触发 → 手动步进驱动，顺便获得确定性帧控制。
+  window.__frameQueue = [];
+  window.requestAnimationFrame = (cb) => { window.__frameQueue.push(cb); return window.__frameQueue.length; };
+  window.cancelAnimationFrame = () => {};
+  window.__now = 1000;
+  window.__step = (frames, ms) => {
+    for (let i = 0; i < frames; i += 1) {
+      window.__now += (ms || 16.7);
+      const q = window.__frameQueue.splice(0);
+      q.forEach((cb) => { try { cb(window.__now); } catch (e) { window.__stepErr = String(e.stack || e); } });
+    }
+    return window.__frameQueue.length;
+  };
+  // 隐藏 tab 中 ResizeObserver 不投递（rAF 耦合）→ 捕获回调手动触发
+  window.ResizeObserver = class { constructor(cb) { window.__roCb = cb; } observe() {} disconnect() {} };
+  window.__zoomCat = (R) => {
+    const d = window.__catMouseDemo, s = d.getSnapshot();
+    const c = document.getElementById('world'), dpr = s.viewport.dpr;
+    const r = (R || 170) * dpr;
+    const z = document.createElement('canvas'); z.width = 640; z.height = 640;
+    const zc = z.getContext('2d');
+    zc.fillStyle = '#20241e'; zc.fillRect(0, 0, 640, 640);
+    zc.drawImage(c, s.cat.x * dpr - r, s.cat.y * dpr - r, r * 2, r * 2, 0, 0, 640, 640);
+    let img = document.getElementById('zoomview');
+    if (!img) { img = document.createElement('img'); img.id = 'zoomview'; img.style.cssText = 'position:fixed;top:8px;left:8px;width:420px;height:420px;z-index:9999;border:2px solid #999;'; document.body.appendChild(img); }
+    img.src = z.toDataURL();
+    return { x: Math.round(s.cat.x), y: Math.round(s.cat.y), state: s.behavior, speed: Math.round(s.cat.speed) };
+  };
+</script>
+</head>
+<body>
+  <main class="page">
+    <section class="stage-frame">
+      <div class="stage" id="stage">
+        <canvas id="world" tabindex="0" style="width:1200px;height:640px;display:block;background:#20241e;"></canvas>
+        <p id="canvas-error" hidden></p>
+      </div>
+    </section>
+    <div class="hud" hidden>
+      <span id="behavior-label"></span><span id="gait-name"></span>
+      <button id="pause-toggle"></button><button id="theme-toggle"></button>
+    </div>
+  </main>
+  <script src="../assets/js/i18n.js"></script>
+  <script src="../assets/js/gait.js"></script>
+  <script src="../assets/js/app.js"></script>
+</body>
+</html>

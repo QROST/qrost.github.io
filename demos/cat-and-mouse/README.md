@@ -34,3 +34,10 @@ python3 tools/build.py
 ```
 
 The build runs `tools/check-gait.mjs` and a headless runtime smoke harness. The gates cover cadence and swing continuity, fore/hind track registration, locked stance paws, anatomical leg reach during compact edge turns, forward-biased ear geometry, independent swivel/perk variation, continuous illustrated leg/paw topology, continuous spine curvature, the 1200×630 OG image, and required page metadata. The build then stamps every local CSS/JS reference with a content hash and refreshes the root homepage asset token. Do not hand-edit `?v=` values.
+
+## tools/visual-harness.html — 隐藏 tab 可用的确定性视觉验证
+
+无头/隐藏 tab 中 rAF 与 ResizeObserver 均不投递 → 真页面无法驱动动画。此 harness 用
+rAF 垫片手动步进（`__step(frames)`）+ RO 回调捕获（`__roCb()`）+ 猫区放大镜（`__zoomCat(r)`），
+配合 `window.__catMouseDemo` 快照 API 做逐帧行为断言与截图。经静态服务器打开：
+`python3 -m http.server 8099` → `/demos/cat-and-mouse/tools/visual-harness.html`。

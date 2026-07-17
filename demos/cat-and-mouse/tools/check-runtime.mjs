@@ -234,14 +234,18 @@ assert.equal((topDownFaceSource.match(/ctx\.stroke\s*\(/g) || []).length, 2, 'ov
 assert.doesNotMatch(topDownFaceSource, /eyeYaw|lidDrift|lidArch/, 'overhead crown must not expose visible eyes');
 assert.doesNotMatch(
   topDownFaceSource,
-  /c\.(?:eye|cream|pupil|whisker)|ctx\.(?:ellipse|arc)\s*\(/,
-  'overhead cat face must not regress to portrait eyes, cheek patches, highlights, or whiskers',
+  /c\.(?:eye|cream|pupil)|ctx\.(?:ellipse|arc)\s*\(/,
+  'overhead cat face must not regress to portrait eyes, cheek patches, or highlights',
 );
 assert.doesNotMatch(
   drawHeadSource,
-  /c\.(?:eye|cream|pupil|mouseEar|whisker)|ctx\.(?:ellipse|arc)\s*\(/,
+  /c\.(?:eye|cream|pupil|mouseEar)|ctx\.(?:ellipse|arc)\s*\(/,
   'cat head shell must remain free of face-on features',
 );
+// Overhead whiskers ARE a signature feline silhouette feature (they protrude
+// visibly from directly above); they live in a dedicated helper called by drawHead.
+assert.match(appSource, /function drawWhiskers\s*\(/, 'overhead whiskers helper must exist');
+assert.match(drawHeadSource, /drawWhiskers\s*\(/, 'head must paint its protruding whiskers');
 assert.match(drawHeadSource, /traceHeadSilhouette\s*\(/, 'head fill must include the crown-attached ears');
 assert.match(drawHeadSource, /traceHeadCrown\s*\(/, 'head stroke must follow the integrated ear crown');
 assert.doesNotMatch(drawHeadSource, /traceEar|forEach\(\(side\)/, 'head renderer must not paint detached ear pieces');
@@ -323,8 +327,8 @@ function assertRigSnapshot(snapshot, label = 'rig') {
     `${label}: ear tip lost its restrained illustrated rounding`,
   );
   assert.ok(
-    snapshot.earGeometry.rootForward + snapshot.earGeometry.tipForward >= 14.5
-      && snapshot.earGeometry.rootForward + snapshot.earGeometry.tipForward <= 16.5,
+    snapshot.earGeometry.rootForward + snapshot.earGeometry.tipForward >= 19
+      && snapshot.earGeometry.rootForward + snapshot.earGeometry.tipForward <= 23,
     `${label}: neutral ear tips escaped their crown station`,
   );
   assert.ok(
@@ -338,9 +342,9 @@ function assertRigSnapshot(snapshot, label = 'rig') {
     const baseSpan = Math.hypot(baseDx, baseDy);
     const tipHeight = Math.abs(baseDx * (ear.tip.y - ear.rearBase.y) - baseDy * (ear.tip.x - ear.rearBase.x)) / baseSpan;
     const outerBase = Math.max(side * ear.rearBase.y, side * ear.frontBase.y);
-    assert.ok(baseSpan >= 8 && baseSpan <= 9.3, `${label}: ${earName} ear lost its compact crown attachment`);
-    assert.ok(tipHeight >= 4.6 && tipHeight <= 6.8, `${label}: ${earName} ear became a flat tab or a tall horn`);
-    assert.ok(ear.tip.x > ear.frontBase.x + 1.8 && ear.tip.x < 16.5, `${label}: ${earName} ear tip stopped leading from the crown`);
+    assert.ok(baseSpan >= 11 && baseSpan <= 13.5, `${label}: ${earName} ear lost its compact crown attachment`);
+    assert.ok(tipHeight >= 6.5 && tipHeight <= 10.5, `${label}: ${earName} ear became a flat tab or a tall horn`);
+    assert.ok(ear.tip.x > ear.frontBase.x + 1.8 && ear.tip.x < 22, `${label}: ${earName} ear tip stopped leading from the crown`);
     assert.ok(side * ear.tip.y > outerBase + 1.45, `${label}: ${earName} ear tip no longer clears the skull laterally`);
     assert.ok(ear.root.x > ear.rearBase.x && ear.root.x < ear.frontBase.x, `${label}: ${earName} ear root detached from its base span`);
   }
@@ -351,7 +355,10 @@ function assertRigSnapshot(snapshot, label = 'rig') {
   assert.ok(snapshot.skin.narrow >= 0.94 && snapshot.skin.narrow <= 1, `${label}: coat width transition escaped bounds`);
   assert.ok(Math.abs(snapshot.support.foreBias) <= 1.001, `${label}: fore support bias escaped bounds`);
   assert.ok(Math.abs(snapshot.support.hindBias) <= 1.001, `${label}: hind support bias escaped bounds`);
-  assert.ok(Object.values(snapshot.feet).some((foot) => foot.planted), `${label}: all four paws left support at once`);
+  assert.ok(
+    Object.values(snapshot.feet).some((foot) => foot.planted) || snapshot.leapPhase === 'pounce',
+    `${label}: all four paws left support outside a pounce`,
+  );   // 扑击的意义就是短暂腾空：仅 pounce 相位允许四爪离地（短暂性由 edge 循环里的连击计数器约束）
   for (const [limb, foot] of Object.entries(snapshot.feet)) {
     assert.ok(foot.swingProgress >= 0 && foot.swingProgress <= 1, `${label}: ${limb} swing progress escaped bounds`);
     assert.ok(
@@ -548,6 +555,56 @@ snapshot = sandbox.__catMouseDemo.getSnapshot();
 assert.equal(snapshot.mouse.active, false);
 assert.equal(snapshot.behavior, 'prowl');
 
+// The leap chain must be exercised FOR REAL: park a stationary target inside the
+// crouch window (dist in [60,150]*scale, clear of the margin) and let the cat coil,
+// pounce and land. Without this the relaxed some(planted) invariant and the
+// pounceRun ratchet below would be vacuously green (verified: the edge test's
+// closest approach is ~181px — it never pounces).
+{
+  snapshot = sandbox.__catMouseDemo.getSnapshot();
+  const toCenterX = fakeViewportWidth * 0.5 - snapshot.cat.x;
+  const toCenterY = fakeViewportHeight * 0.5 - snapshot.cat.y;
+  const toCenter = Math.max(0.001, Math.hypot(toCenterX, toCenterY));
+  sandbox.__catMouseDemo.moveMouse(
+    snapshot.cat.x + toCenterX / toCenter * 110 * snapshot.rigScale,
+    snapshot.cat.y + toCenterY / toCenter * 110 * snapshot.rigScale,
+  );
+  const seenLeap = new Set();
+  let leapPounceRun = 0;
+  let maxLeapPounceRun = 0;
+  for (let frameIndex = 0; frameIndex < 300; frameIndex += 1) {
+    step(1);
+    const current = sandbox.__catMouseDemo.getSnapshot();
+    assertRigSnapshot(current, 'leap chain');
+    if (current.leapPhase) seenLeap.add(current.leapPhase);
+    leapPounceRun = current.leapPhase === 'pounce' ? leapPounceRun + 1 : 0;
+    maxLeapPounceRun = Math.max(maxLeapPounceRun, leapPounceRun);
+    const anyPlanted = Object.values(current.feet).some((foot) => foot.planted);
+    assert.ok(anyPlanted || current.leapPhase === 'pounce', 'all-airborne outside the pounce phase');
+    if (seenLeap.has('land') && !current.leapPhase) break;
+  }
+  assert.ok(seenLeap.has('crouch'), 'stationary near target must trigger a crouch');
+  assert.ok(seenLeap.has('pounce'), 'crouch must release into a pounce');
+  assert.ok(seenLeap.has('land'), 'pounce must land');
+  assert.ok(maxLeapPounceRun > 0 && maxLeapPounceRun <= 32, `pounce suspension out of bounds (${maxLeapPounceRun} frames)`);
+  sandbox.__catMouseDemo.releaseMouse();
+  step(30);
+}
+
+// The idle repertoire must also fire deterministically: with no target, the wander
+// dwell rhythm has to produce at least one idle episode within a bounded window,
+// and every idle pose must keep the rig/skin envelopes green.
+{
+  const seenIdle = new Set();
+  for (let frameIndex = 0; frameIndex < 4200 && seenIdle.size < 2; frameIndex += 1) {
+    step(1);
+    const current = sandbox.__catMouseDemo.getSnapshot();
+    assertRigSnapshot(current, 'idle repertoire');
+    if (current.idleMode) seenIdle.add(current.idleMode);
+  }
+  assert.ok(seenIdle.size >= 1, 'wander rhythm never produced an idle episode');
+}
+
 // Reproduce the user's 548x536 compact screenshot and drive the target to all
 // four edges. The full head radius includes the compact ear tips.
 assert.equal(typeof resizeObserverCallback, 'function');
@@ -567,6 +624,7 @@ const edgeTargets = [
   [8, fakeViewportHeight * 0.5],
 ];
 let sawReachRecovery = false;
+let pounceRun = 0;
 let earAimMin = Infinity;
 let earAimMax = -Infinity;
 let maxEarAsymmetry = 0;
@@ -584,6 +642,8 @@ for (const [targetX, targetY] of edgeTargets) {
     maxEarAsymmetry = Math.max(maxEarAsymmetry, Math.abs(current.ears.left - current.ears.right));
     maxPerkAsymmetry = Math.max(maxPerkAsymmetry, Math.abs(current.earPerk.left - current.earPerk.right));
     if (Object.values(current.feet).some((foot) => foot.recoveryActive)) sawReachRecovery = true;
+    pounceRun = current.leapPhase === 'pounce' ? pounceRun + 1 : 0;
+    assert.ok(pounceRun <= 32, 'pounce suspension must stay a brief ballistic arc');
   }
   sandbox.__catMouseDemo.releaseMouse();
   step(24);

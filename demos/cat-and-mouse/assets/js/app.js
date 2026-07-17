@@ -95,6 +95,7 @@
       mouseEar: '#cf9d96',
       mouseTail: '#9c756f',
       print: 'rgba(116, 75, 43, 0.15)',
+      cream: '#f0e4cf',
       whisker: 'rgba(71, 48, 31, 0.66)',
       alert: 'rgba(169, 91, 50, 0.38)',
     },
@@ -113,6 +114,7 @@
       mouseEar: '#d9a49e',
       mouseTail: '#bd8f88',
       print: 'rgba(224, 176, 126, 0.11)',
+      cream: '#e8dcc4',
       whisker: 'rgba(244, 226, 202, 0.62)',
       alert: 'rgba(236, 154, 103, 0.38)',
     },
@@ -150,8 +152,16 @@
     tail: [],
     wanderGoal: { x: 0, y: 0 },
     nextWanderAt: 0,
+    restUntil: null,
     bodySway: 0,
     skinNarrow: 1,
+    wiggle: 0,
+    poseSpread: 0,
+    poseStretch: 0,
+    idleYaw: 0,
+    leap: { phase: null, t: 0, crouchDur: 0.7, wiggleHz: 3, launchX: 0, launchY: 0, landX: 0, landY: 0, pinAfter: false, lastLandAt: -10, nearSince: null },
+    idle: { mode: null, t: 0, dur: 0, nextAt: 8, restSince: null },
+    startle: { active: false, t: 0, dur: 0.35, dirX: 0, dirY: 0 },
     support: { foreBias: 0, hindBias: 0, combined: 0 },
     lastForeTouch: { right: null, left: null },
     touchdowns: [],
@@ -179,28 +189,28 @@
   // its joints. These values describe hidden render sockets, not new bones.
   const SKIN_TOPOLOGY = Object.freeze({
     headBridgeT: 0.62,
-    headRearReach: 17,
-    headSocketCenterX: 2,
-    headSocketRadiusX: 18,
-    headSocketRadiusY: 17,
+    headRearReach: 21,
+    headSocketCenterX: 2.5,
+    headSocketRadiusX: 22.5,
+    headSocketRadiusY: 20.5,
     tailSocketForward: -19,
     tailAnchorForward: -28,
-    tailRootRadius: 7.5,
-    tailTipRadius: 0.7,
+    tailRootRadius: 9.5,
+    tailTipRadius: 1.5,
   });
 
   // The ears are landmarks in one continuous skull contour. Their broad roots
   // stay welded to the crown while only the tips swivel, avoiding the detached
   // tabs produced by rotating two separately painted ear shapes.
   const EAR_GEOMETRY = Object.freeze({
-    rearBaseForward: 3.2,
-    frontBaseForward: 11.2,
-    rearBaseOutward: 14.2,
-    frontBaseOutward: 11.8,
-    rootForward: 7.3,
-    rootOutward: 12.9,
-    tipForward: 7.2,
-    tipOutward: 4,
+    rearBaseForward: 3.0,
+    frontBaseForward: 15.5,
+    rearBaseOutward: 18.0,
+    frontBaseOutward: 14.5,
+    rootForward: 8.5,
+    rootOutward: 16.5,
+    tipForward: 11.5,
+    tipOutward: 6.0,
     tipRound: 1.35,
     maxSwivel: 0.09,
   });
@@ -211,7 +221,31 @@
     watch: 0.92,
     stalk: 0.96,
     chase: 0.86,
+    crouch: 1,
+    pounce: 0.9,
+    land: 0.82,
+    pin: 0.78,
+    sit: 0.8,
+    groom: 0.7,
+    stretch: 0.72,
   });
+
+  // 尾语表（设计评审）：每状态 {力度, 频率, 只动尾尖, 卷向体侧}。蓄势=尾尖高频打点、扑击=舵、蹲坐=环卷。
+  const TAIL_BY_STATE = Object.freeze({
+    watch: { strength: 92, rate: 2.25, tip: false, wrap: 0 },
+    observe: { strength: 92, rate: 2.25, tip: false, wrap: 0 },
+    chase: { strength: 18, rate: 0.75, tip: false, wrap: 0 },
+    crouch: { strength: 120, rate: 3.4, tip: true, wrap: 0 },
+    pounce: { strength: 8, rate: 0.4, tip: false, wrap: 0 },
+    land: { strength: 30, rate: 1.0, tip: false, wrap: 0 },
+    pin: { strength: 14, rate: 0.6, tip: false, wrap: 0 },
+    sit: { strength: 46, rate: 0.7, tip: false, wrap: 1 },
+    groom: { strength: 40, rate: 0.9, tip: false, wrap: 0.4 },
+    stretch: { strength: 20, rate: 0.5, tip: false, wrap: 0 },
+    stalk: { strength: 42, rate: 1.15, tip: false, wrap: 0 },
+    prowl: { strength: 42, rate: 1.15, tip: false, wrap: 0 },
+  });
+  const POSE_STATES = Object.freeze(['crouch', 'pounce', 'land', 'pin', 'sit', 'groom', 'stretch']);
 
   function isDark() {
     return document.documentElement.classList.contains('dark');
@@ -309,7 +343,7 @@
 
   function positionRigNodes(a) {
     const rig = cat.rig;
-    const rearSway = (cat.support.hindBias * 2.35 + cat.bodySway * 0.42) * a.scale;
+    const rearSway = (cat.support.hindBias * 2.35 + cat.bodySway * 0.42 + cat.wiggle) * a.scale;
     const frontSway = (cat.support.foreBias * 1.55 - cat.bodySway * 0.28) * a.scale;
 
     rig.waist.x = cat.x;
@@ -340,7 +374,7 @@
     rig.shoulders.visualRadius = 30 * a.scale;
     rig.neck.visualRadius = 17 * a.scale;
     // Includes the ear tips, not just the painted skull.
-    rig.head.visualRadius = 42 * a.scale;
+    rig.head.visualRadius = 46 * a.scale;
     rig.curvature = Gait.angleDelta(rig.pelvis.angle, rig.head.angle);
   }
 
@@ -562,7 +596,18 @@
     prey.y = nextY;
     prey.active = true;
     prey.justAppeared = !wasActive;
-    if (!wasActive) prey.appearedAt = elapsed;
+    if (!wasActive) {
+      prey.appearedAt = elapsed;
+      const startleDx = cat.x - nextX;
+      const startleDy = cat.y - nextY;
+      const startleDist = Math.hypot(startleDx, startleDy);
+      if (!reducedMotion && startleDist > 0.001 && startleDist < 90 * anatomy().scale) {
+        cat.startle.active = true;   // 贴脸乍现 → 后跳半步 + 双耳后贴（observe 的叠加层）
+        cat.startle.t = 0;
+        cat.startle.dirX = startleDx / startleDist;
+        cat.startle.dirY = startleDy / startleDist;
+      }
+    }
     prey.lastInputAt = now;
     prey.lastPointerType = pointerType || prey.lastPointerType;
     if (paused) draw();
@@ -585,15 +630,223 @@
     return `gait${profileName.charAt(0).toUpperCase()}${profileName.slice(1)}`;
   }
 
-  function setBehavior(next) {
+  function setBehavior(next, quietLabel) {
     if (cat.state === next) return;
     cat.state = next;
     cat.stateSince = elapsed;
     document.body.dataset.behavior = next;
-    refreshDynamicUi();
+    if (!quietLabel) refreshDynamicUi();   // 扑击链 crouch→pounce→land→pin 只播报入链与出链（防 aria-live 连读）
+  }
+
+  // 视口内运动边界（含转头/耳尖的整头半径），原 updateCat 内联式抽出供扑击落点与受惊后跳共用。
+  function locomotionMargin(a) {
+    return Math.max(12, Math.min(
+      116 * a.scale,
+      viewport.width * 0.5 - 12,
+      viewport.height * 0.5 - 12,
+    ));
+  }
+
+  // 确定性杂凑（沿用本文件 sine-hash 风格，不引入 Math.random）：扑击时长/闲态选择的每次微变来源。
+  function poseHash(salt) {
+    const v = Math.sin((elapsed + salt) * 12.9898 + cat.x * 0.0173 + cat.y * 0.0131) * 43758.5453;
+    return v - Math.floor(v);
+  }
+
+  // ---------- 扑击链（app 侧自持状态机：蓄势→扑击→扑落→按住；gait.js 与 chooseBehavior 零改动） ----------
+  function beginCrouch() {
+    cat.leap.phase = 'crouch';
+    cat.leap.t = 0;
+    cat.leap.crouchDur = 0.55 + poseHash(1) * 0.35;      // 0.55–0.9s ≈ 摆臀 1.5–3 个周期（真猫蓄势节律）
+    cat.leap.wiggleHz = 2.7 + poseHash(2) * 0.8;
+    cat.leap.pinAfter = false;
+    cat.leap.nearSince = null;
+    setBehavior('crouch');
+  }
+
+  function beginPounce() {
+    const a = anatomy();
+    const aimX = prey.x + prey.vx * 0.12;
+    const aimY = prey.y + prey.vy * 0.12;
+    const dx = aimX - cat.x;
+    const dy = aimY - cat.y;
+    const dist = Math.max(0.001, Math.hypot(dx, dy));
+    const leapDist = Gait.clamp(dist, 40 * a.scale, 150 * a.scale);
+    const margin = locomotionMargin(a);
+    cat.leap.launchX = cat.x;
+    cat.leap.launchY = cat.y;
+    cat.leap.landX = Gait.clamp(cat.x + dx / dist * leapDist, margin, viewport.width - margin);
+    cat.leap.landY = Gait.clamp(cat.y + dy / dist * leapDist, margin, viewport.height - margin);
+    cat.heading = Math.atan2(cat.leap.landY - cat.y, cat.leap.landX - cat.x);
+    cat.steerOmega = 0;
+    cat.wiggle = 0;
+    cat.leap.phase = 'pounce';
+    cat.leap.t = 0;
+    setBehavior('pounce', true);
+  }
+
+  function plantLandingFeet(a) {
+    Gait.LIMBS.forEach((limb) => {
+      const config = LEG_CONFIG[limb];
+      const foot = cat.feet[limb];
+      if (!foot) return;
+      const parent = config.fore ? cat.rig.shoulders : cat.rig.pelvis;
+      const point = pointFromNode(parent, (config.fore ? 12 : -2) * a.scale, config.side * (config.fore ? 14 : 11) * a.scale);
+      const bounded = pointWithinLegReach(limb, point.x, point.y, a);
+      foot.x = bounded.x;
+      foot.y = bounded.y;
+      foot.planted = true;
+      foot.wasPlanted = true;
+      foot.lift = 0;
+      foot.phase = 0;
+      foot.swingProgress = 0;
+      foot.recoveryActive = false;
+      foot.settleActive = false;
+      foot.angle = cat.heading;
+      cat.gait.legPhases[limb] = 0;
+      cat.gait.dutyFactors[limb] = cat.gait.dutyFactor;
+      recordTouchdown(limb, foot, a, true);
+    });
+  }
+
+  function finishLeap() {
+    cat.leap.phase = null;
+    cat.leap.lastLandAt = elapsed;
+    cat.leap.nearSince = null;
+    cat.wiggle = 0;
+    setBehavior(prey.active ? 'observe' : 'prowl');
+  }
+
+  function updateLeap(dt) {
+    const a = anatomy();
+    const L = cat.leap;
+    const dist = Math.hypot(prey.x - cat.x, prey.y - cat.y);
+    if (!L.phase) {
+      if (reducedMotion || !prey.active) { L.nearSince = null; return; }
+      // 追逐收口：贴身即扑（按住收尾）——比原先"减速滑停在旁边"更像猫
+      if (cat.state === 'chase' && elapsed - cat.stateSince >= 0.3 && dist < 34 * a.scale) {
+        L.pinAfter = true;
+        beginPounce();
+        return;
+      }
+      const inWindow = (cat.state === 'stalk' || cat.state === 'watch')
+        && prey.speed < 60 * a.scale
+        && dist >= 60 * a.scale && dist <= 150 * a.scale
+        && elapsed - L.lastLandAt > 1.5;
+      if (inWindow) {
+        if (L.nearSince == null) L.nearSince = elapsed;
+        if (elapsed - L.nearSince >= 0.4) beginCrouch();
+      } else {
+        L.nearSince = null;
+      }
+      return;
+    }
+    L.t += dt;
+    if (L.phase === 'crouch') {
+      if (!prey.active || dist > 220 * a.scale) {   // 目标消失/远离 → 顺势放弃
+        L.phase = null; cat.wiggle = 0; L.nearSince = null;
+        setBehavior(prey.active ? 'stalk' : 'prowl');
+        return;
+      }
+      const half = L.crouchDur * 0.5;
+      cat.wiggle = L.t > half
+        ? Math.sin(elapsed * L.wiggleHz * Gait.TAU) * 2.8 * Gait.clamp((L.t - half) / 0.15, 0, 1)
+        : 0;
+      if (L.t >= L.crouchDur) beginPounce();
+    } else if (L.phase === 'pounce') {
+      if (L.t >= 0.3) {
+        L.phase = 'land';
+        L.t = 0;
+        setBehavior('land', true);
+        plantLandingFeet(a);
+      }
+    } else if (L.phase === 'land') {
+      if (L.t >= 0.22) {
+        if (L.pinAfter && prey.active && dist < 60 * a.scale) {
+          L.phase = 'pin';
+          L.t = 0;
+          setBehavior('pin', true);
+        } else {
+          finishLeap();
+        }
+      }
+    } else if (L.phase === 'pin') {
+      if (L.t >= 0.35 || !prey.active) finishLeap();
+    }
+  }
+
+  // ---------- 闲态编排（走-停-看-坐-理毛-伸展的标点节奏；巡游不再是匀速漂移） ----------
+  function endIdle() {
+    const I = cat.idle;
+    if (I.mode && I.mode !== 'look') setBehavior('prowl');
+    I.mode = null;
+    I.nextAt = elapsed + 4 + poseHash(9) * 3;
+    I.restSince = null;
+  }
+
+  function beginIdle() {
+    const I = cat.idle;
+    const h = poseHash(7);
+    const pool = reducedMotion
+      ? [['look', 0.6], ['sit', 0.4]]
+      : [['look', 0.4], ['sit', 0.25], ['groom', 0.2], ['stretch', 0.15]];
+    let acc = 0;
+    let pick = 'look';
+    for (const [mode, w] of pool) { acc += w; if (h <= acc) { pick = mode; break; } }
+    const h2 = poseHash(8);
+    I.mode = pick;
+    I.t = 0;
+    I.dur = pick === 'look' ? 1.4 + h2 * 0.8
+      : pick === 'sit' ? 2.5 + h2 * 2.5
+        : pick === 'groom' ? 1.8 + h2 * 1.4 : 1.2;
+    if (pick !== 'look') setBehavior(pick);
+  }
+
+  function updateIdle(dt) {
+    const a = anatomy();
+    const I = cat.idle;
+    if (prey.active || cat.leap.phase) {
+      if (I.mode) endIdle();
+      I.restSince = null;
+      cat.idleYaw = expLerp(cat.idleYaw, 0, 6, dt);
+      return;
+    }
+    if (I.mode) {
+      I.t += dt;
+      if (I.mode === 'look') cat.idleYaw = Math.sin(I.t * 1.6) * 0.5;             // 环视：头扫视，身体不动
+      else if (I.mode === 'groom') cat.idleYaw = Math.sin(I.t * Gait.TAU / 2) * 0.62;   // 理毛：头往体侧点头
+      else cat.idleYaw = expLerp(cat.idleYaw, 0, 6, dt);
+      if (I.t >= I.dur) endIdle();
+      return;
+    }
+    cat.idleYaw = expLerp(cat.idleYaw, 0, 6, dt);
+    if (cat.speed < 4 * a.scale && elapsed > 3) {
+      if (I.restSince == null) I.restSince = elapsed;
+      if (elapsed - I.restSince >= 1.0 && elapsed >= I.nextAt) beginIdle();
+    } else {
+      I.restSince = null;
+    }
+  }
+
+  // ---------- 受惊后跳（突然贴脸出现的目标；observe 上的叠加层，不新增状态） ----------
+  function updateStartle(dt) {
+    const S = cat.startle;
+    if (!S.active) return;
+    S.t += dt;
+    if (S.t >= S.dur) { S.active = false; return; }
+    const a = anatomy();
+    const fade = 1 - S.t / S.dur;
+    const margin = locomotionMargin(a);
+    cat.x = Gait.clamp(cat.x + S.dirX * 80 * a.scale * dt * fade, margin, viewport.width - margin);
+    cat.y = Gait.clamp(cat.y + S.dirY * 80 * a.scale * dt * fade, margin, viewport.height - margin);
   }
 
   function updateBehavior() {
+    if (cat.leap.phase) return;                    // 扑击链自持（updateLeap 推进与收尾）
+    if (cat.idle.mode && cat.idle.mode !== 'look') {
+      if (prey.active) endIdle();                  // 新目标立即打断闲态
+      else return;                                 // sit/groom/stretch 自持
+    }
     const dx = prey.x - cat.x;
     const dy = prey.y - cat.y;
     const distance = Math.hypot(dx, dy);
@@ -644,6 +897,9 @@
   }
 
   function updateCat(dt) {
+    updateStartle(dt);
+    updateLeap(dt);
+    updateIdle(dt);
     updateBehavior();
     let goalX = prey.x;
     let goalY = prey.y;
@@ -653,9 +909,25 @@
       const wanderDistance = Math.hypot(cat.wanderGoal.x - cat.x, cat.wanderGoal.y - cat.y);
       if (wanderDistance < 54) {
         cat.speed = expLerp(cat.speed, 0, 2.8, dt);
-        if (elapsed > cat.nextWanderAt - 3.2) chooseWanderGoal(true);
-      } else if (elapsed >= cat.nextWanderAt) {
-        chooseWanderGoal(true);
+        // 到点驻足（猫的移动是"走-停-看-再走"的标点节奏，不是匀速漂移）；驻足窗恰好给闲态编排留出土壤
+        if (cat.restUntil == null) cat.restUntil = elapsed + 1.9 + poseHash(4) * 3.2;
+        if (elapsed >= cat.restUntil && !cat.idle.mode) {
+          cat.restUntil = null;
+          chooseWanderGoal(true);
+        }
+      } else {
+        cat.restUntil = null;   // 出了驻足圈（过冲/切向穿过）→ 作废计时，防陈旧 restUntil 吞掉下一次驻足
+        if (elapsed >= cat.nextWanderAt) {
+          if (poseHash(5) < 0.45) {
+            // 半路驻足：目标常在抵达前就被计时器换掉 → 猫"永远在路上"。45% 概率就地停下看看
+            // （目标=当前位置 → 驻足/闲态接管），才是"走-停-看-再走"的真节奏。
+            cat.wanderGoal.x = cat.x;
+            cat.wanderGoal.y = cat.y;
+            cat.nextWanderAt = elapsed + 2.4;
+          } else {
+            chooseWanderGoal(true);
+          }
+        }
       }
       goalX = cat.wanderGoal.x;
       goalY = cat.wanderGoal.y;
@@ -670,7 +942,7 @@
     const targetAngle = Math.atan2(goalY - cat.y, goalX - cat.x);
     const lookAngle = prey.active ? Math.atan2(prey.y - cat.y, prey.x - cat.x) : targetAngle;
     const lookRelative = Gait.angleDelta(cat.heading, lookAngle);
-    const targetHeadYaw = Gait.clamp(lookRelative, -0.76, 0.76);
+    const targetHeadYaw = Gait.clamp(lookRelative + cat.idleYaw, -0.76, 0.76);
     cat.headYaw = expLerp(cat.headYaw, targetHeadYaw, prey.active ? 10 : 3.6, dt);
 
     // The pinnae begin forward, then finish the gaze after the skull takes most
@@ -707,8 +979,10 @@
       0.66,
       1,
     );
-    cat.earPerk.left = expLerp(cat.earPerk.left, leftPerkTarget, prey.active ? 9 : 4.2, dt);
-    cat.earPerk.right = expLerp(cat.earPerk.right, rightPerkTarget, prey.active ? 9 : 4.2, dt);
+    const perkLeft = cat.startle.active ? 0.66 : leftPerkTarget;    // 受惊：双耳后贴（earPerk 门禁下限恰为 0.66）
+    const perkRight = cat.startle.active ? 0.66 : rightPerkTarget;
+    cat.earPerk.left = expLerp(cat.earPerk.left, perkLeft, cat.startle.active ? 14 : prey.active ? 9 : 4.2, dt);
+    cat.earPerk.right = expLerp(cat.earPerk.right, perkRight, cat.startle.active ? 14 : prey.active ? 9 : 4.2, dt);
 
     let desiredSpeed = Gait.targetSpeedForBehavior(
       cat.state,
@@ -717,8 +991,10 @@
       reducedMotion,
     ) * a.scale;
     if (cat.state === 'prowl') desiredSpeed *= Gait.clamp(goalDistance / 82, 0, 1);
-    if (cat.state === 'watch' || cat.state === 'observe') desiredSpeed = 0;
-    if (prey.active && goalDistance < 58 * a.scale) {
+    if (cat.state === 'watch' || cat.state === 'observe' || cat.idle.mode || POSE_STATES.indexOf(cat.state) >= 0) desiredSpeed = 0;
+    if (prey.active && goalDistance < 58 * a.scale
+      && !(cat.state === 'chase' && elapsed - cat.stateSince >= 0.3)) {
+      // 贴近减速只留给非追逐态——已建立的追逐是"全速压上直到扑住"（否则永远进不了 34 捕获圈，只会绕圈盘旋）
       desiredSpeed *= Gait.clamp((goalDistance - 28 * a.scale) / (30 * a.scale), 0, 1);
     }
 
@@ -726,6 +1002,8 @@
     const bodyMayTurn = cat.state !== 'watch' || Math.abs(turnError) > 0.46;
     const steerLimits = {
       prowl: [0.9, 2.5], observe: [0.72, 2.2], watch: [0.58, 1.9], stalk: [1.2, 3.5], chase: [2.4, 7],
+      crouch: [1.4, 4], pounce: [0.4, 3], land: [0.7, 3], pin: [0.7, 2.5],
+      sit: [0.6, 1.8], groom: [0.5, 1.6], stretch: [0.4, 1.4],
     };
     const [omegaMax, alphaMax] = steerLimits[cat.state] || [1.1, 3];
     const desiredOmega = bodyMayTurn ? Gait.clamp(turnError * 2.35, -omegaMax, omegaMax) : 0;
@@ -736,6 +1014,8 @@
     desiredSpeed *= turnSlowdown;
     const accelerationLimits = {
       prowl: [44, 66], observe: [36, 70], watch: [36, 70], stalk: [64, 92], chase: [220, 295],
+      crouch: [40, 120], pounce: [60, 90], land: [80, 260], pin: [60, 200],
+      sit: [36, 90], groom: [30, 80], stretch: [30, 70],
     };
     const [accelerate, decelerate] = accelerationLimits[cat.state] || [60, 90];
     const previousSpeed = cat.speed;
@@ -749,11 +1029,7 @@
     // cross the viewport edge on compact screens. This radius encloses the
     // entire leading anatomy at every heading while remaining viable on very
     // small canvases.
-    const margin = Math.max(12, Math.min(
-      116 * a.scale,
-      viewport.width * 0.5 - 12,
-      viewport.height * 0.5 - 12,
-    ));
+    const margin = locomotionMargin(a);
     const clampedX = Gait.clamp(cat.x, margin, viewport.width - margin);
     const clampedY = Gait.clamp(cat.y, margin, viewport.height - margin);
     if (clampedX !== cat.x || clampedY !== cat.y) {
@@ -768,6 +1044,14 @@
       chooseWanderGoal(true);
     }
 
+    if (cat.leap.phase === 'pounce') {
+      // 扑击是"蓄力-释放"的一次性弹道，不是稳态运动：0.3s 脚本化位移诚实建模腾空，
+      // cat.speed 保持衰减 → 加速度/速度门禁全程成立（设计评审裁定）。
+      const u = Gait.smootherstep(Gait.clamp(cat.leap.t / 0.3, 0, 1));
+      cat.x = Gait.clamp(cat.leap.launchX + (cat.leap.landX - cat.leap.launchX) * u, margin, viewport.width - margin);
+      cat.y = Gait.clamp(cat.leap.launchY + (cat.leap.landY - cat.leap.launchY) * u, margin, viewport.height - margin);
+    }
+
     Gait.updateController(cat.gait, {
       dt,
       speed: cat.speed / a.scale,
@@ -778,7 +1062,9 @@
     cat.strideLength = cat.speed < 3 * a.scale
       ? expLerp(cat.strideLength, 0, 7, dt)
       : expLerp(cat.strideLength, Gait.clamp(cat.speed * cat.gait.dutyFactor / cadence, 9 * a.scale, 72 * a.scale), 6, dt);
-    cat.skinNarrow = expLerp(cat.skinNarrow, cat.state === 'stalk' ? 0.96 : 1, 6.2, dt);
+    cat.skinNarrow = expLerp(cat.skinNarrow, cat.state === 'stalk' ? 0.96 : (cat.state === 'crouch' || cat.state === 'land') ? 0.95 : 1, 6.2, dt);
+    cat.poseSpread = expLerp(cat.poseSpread, cat.state === 'sit' ? 1 : 0, 4, dt);
+    cat.poseStretch = expLerp(cat.poseStretch, cat.state === 'stretch' ? 1 : 0, 4.5, dt);
     updateSupportPose(dt);
 
     updateRig(dt);
@@ -936,6 +1222,55 @@
 
   function updateFeet(dt) {
     const a = anatomy();
+    if (cat.leap.phase === 'pounce') {   // 腾空收足：四爪拢向体心（空中相；落地由 plantLandingFeet 一次性布置）
+      const u = Gait.clamp(cat.leap.t / 0.3, 0, 1);
+      Gait.LIMBS.forEach((limb) => {
+        const foot = cat.feet[limb];
+        if (!foot) return;
+        const anchor = anchorWorld(limb);
+        foot.x = anchor.x + (cat.x - anchor.x) * 0.4;
+        foot.y = anchor.y + (cat.y - anchor.y) * 0.4;
+        foot.planted = false;
+        foot.wasPlanted = false;
+        foot.lift = 0.9;
+        foot.phase = 0.9;
+        foot.swingProgress = u;
+        foot.recoveryActive = false;
+        foot.settleActive = false;
+        foot.angle = cat.heading;
+      });
+      while (prints.length && elapsed - prints[0].born > 5.2) prints.shift();
+      return;
+    }
+    if (cat.startle.active) {   // 受惊后跳：前爪短收、后爪落桩支撑（some(planted) 门禁恒真——若后爪恰在摆动相则就地落桩）
+      ['rightHind', 'leftHind'].forEach((limb) => {
+        const foot = cat.feet[limb];
+        if (!foot || foot.planted) return;
+        foot.planted = true;
+        foot.wasPlanted = true;
+        foot.lift = 0;
+        foot.phase = 0;
+        foot.swingProgress = 0;
+        foot.recoveryActive = false;
+        foot.settleActive = false;
+        cat.gait.legPhases[limb] = 0;
+        cat.gait.dutyFactors[limb] = cat.gait.dutyFactor;
+      });
+      ['rightFore', 'leftFore'].forEach((limb) => {
+        const foot = cat.feet[limb];
+        if (!foot) return;
+        const anchor = anchorWorld(limb);
+        foot.x = anchor.x + (cat.x - anchor.x) * 0.3;
+        foot.y = anchor.y + (cat.y - anchor.y) * 0.3;
+        foot.planted = false;
+        foot.wasPlanted = false;
+        foot.lift = 0.6;
+        foot.phase = 0.9;
+        foot.swingProgress = Gait.clamp(cat.startle.t / cat.startle.dur, 0, 1);
+        foot.recoveryActive = false;
+        foot.settleActive = false;
+      });
+    }
     const settling = cat.speed < 2.5 * a.scale && cat.gait.cadence < 0.12;
     const airborne = Gait.LIMBS.filter((limb) => {
       const foot = cat.feet[limb];
@@ -961,6 +1296,7 @@
     overextended.forEach(({ limb }) => beginReachRecovery(limb, cat.feet[limb], a));
 
     Gait.LIMBS.forEach((limb) => {
+      if (cat.startle.active && LEG_CONFIG[limb].fore) return;   // 受惊窗口内前爪由上方短收接管
       const foot = cat.feet[limb];
       const sample = Gait.sampleLimb(cat.gait, limb, cat.strideLength);
       if (!foot) return;
@@ -973,8 +1309,21 @@
       if (settling) {
         foot.wasPlanted = foot.planted;
         if (foot.planted && !foot.settleActive) {
-          foot.lift = 0;
-          return;
+          // 静置时身体的微动（头颈摆动/支撑摆/姿态标量）会慢慢把原地的爪子拉向伸展极限 —— 像真猫一样挪个小步
+          // 重新安放（settle 过程中爪子处于非 planted 抬起态 → 不违反"落地爪零滑移"门禁）。
+          if (legReach(limb, foot).distance > legReachLimit(limb, a) * 0.96) {
+            const restPoint = expectedPawWorld(limb, { longitudinal: 0, lateral: 0 }, 0);
+            foot.settleActive = true;
+            foot.settleProgress = 0;
+            foot.settleStartX = foot.x;
+            foot.settleStartY = foot.y;
+            foot.settleStartLift = foot.lift;
+            foot.settleTargetX = restPoint.x;
+            foot.settleTargetY = restPoint.y;
+          } else {
+            foot.lift = 0;
+            return;
+          }
         }
         if (!foot.settleActive) {
           const restPoint = expectedPawWorld(limb, { longitudinal: 0, lateral: 0 }, 0);
@@ -990,6 +1339,7 @@
         const settleEase = Gait.smootherstep(foot.settleProgress);
         foot.x = foot.settleStartX + (foot.settleTargetX - foot.settleStartX) * settleEase;
         foot.y = foot.settleStartY + (foot.settleTargetY - foot.settleStartY) * settleEase;
+        constrainFootReach(limb, foot, a);
         foot.lift = foot.settleStartLift * (1 - settleEase) + Math.sin(Math.PI * foot.settleProgress) * 0.28;
         foot.phase = 0.82 + foot.settleProgress * 0.18;
         if (foot.settleProgress >= 1) {
@@ -1011,6 +1361,9 @@
 
       if (sample.planted) {
         foot.lift = 0;
+        // 紧急贴限：急转贴身追逐时恢复槽可能占满，落桩爪被身体拉过展限 → 沿伸展圆做亚像素滑移
+        // （真猫急转本就会拧爪微滑；慢速场景永不触发，落地零滑移不变量在那些场景原样成立）。
+        if (legReach(limb, foot).distance > legReachLimit(limb, a)) constrainFootReach(limb, foot, a);
         if (!foot.wasPlanted) {
           foot.x = foot.swingTargetX;
           foot.y = foot.swingTargetY;
@@ -1050,11 +1403,12 @@
     const base = pointFromNode(
       cat.rig.pelvis,
       SKIN_TOPOLOGY.tailAnchorForward * a.scale,
-      cat.bodySway * 0.9 * a.scale,
+      (cat.bodySway * 0.9 + cat.wiggle * 0.6) * a.scale,
     );
     const pelvisHeading = cat.rig.pelvis.angle;
-    const flickStrength = cat.state === 'watch' || cat.state === 'observe' ? 92 : cat.state === 'chase' ? 18 : 42;
-    const flickRate = cat.state === 'watch' ? 2.25 : cat.state === 'chase' ? 0.75 : 1.15;
+    const tailCfg = TAIL_BY_STATE[cat.state] || TAIL_BY_STATE.prowl;
+    const flickStrength = tailCfg.strength;
+    const flickRate = tailCfg.rate;
 
     cat.tail[0].x = base.x;
     cat.tail[0].y = base.y;
@@ -1067,8 +1421,10 @@
       const velocityY = (point.y - point.oldY) * damping;
       point.oldX = point.x;
       point.oldY = point.y;
-      const weight = index / (cat.tail.length - 1);
-      const wave = Math.sin(elapsed * flickRate * Gait.TAU - index * 0.42) * flickStrength * weight;
+      const linWeight = index / (cat.tail.length - 1);
+      const weight = tailCfg.tip ? Math.pow(linWeight, 3) : linWeight;   // 尾尖模式：蓄势时只有末段高频打点
+      const wave = Math.sin(elapsed * flickRate * Gait.TAU - index * 0.42) * flickStrength * weight
+        + tailCfg.wrap * 46 * linWeight;   // 卷尾：恒定侧向力 → 蹲坐/理毛时尾巴环向体侧
       point.x += velocityX - Math.sin(pelvisHeading) * wave * dt * dt;
       point.y += velocityY + Math.cos(pelvisHeading) * wave * dt * dt;
     }
@@ -1194,7 +1550,7 @@
       // Keep the base plush and finish at a small but visible radius. A cat's
       // tail is tapered, not needle-pointed.
       const radius = (
-        (SKIN_TOPOLOGY.tailRootRadius - SKIN_TOPOLOGY.tailTipRadius) * Math.pow(1 - t, 0.6)
+        (SKIN_TOPOLOGY.tailRootRadius - SKIN_TOPOLOGY.tailTipRadius) * Math.pow(1 - t, 0.5)
         + SKIN_TOPOLOGY.tailTipRadius
       ) * scale;
       const nx = -dy / distance * radius;
@@ -1227,7 +1583,7 @@
     const socket = pointFromNode(
       cat.rig.pelvis,
       SKIN_TOPOLOGY.tailSocketForward * a.scale,
-      cat.bodySway * 0.9 * a.scale,
+      (cat.bodySway * 0.9 + cat.wiggle * 0.6) * a.scale,
     );
     return [socket, ...cat.tail];
   }
@@ -1336,9 +1692,9 @@
   }
 
   function tracePawSilhouette(context, a, config) {
-    const front = (config.fore ? 7.6 : 8.2) * a.scale;
-    const rear = (config.fore ? -5.9 : -6.6) * a.scale;
-    const half = (config.fore ? 4.45 : 5.05) * a.scale;
+    const front = (config.fore ? 9.0 : 9.6) * a.scale;
+    const rear = (config.fore ? -7.0 : -7.7) * a.scale;
+    const half = (config.fore ? 5.1 : 5.7) * a.scale;
     context.beginPath();
     context.moveTo(rear, -half * 0.62);
     context.bezierCurveTo(-2.6 * a.scale, -half, 2.4 * a.scale, -half * 1.04, front * 0.62, -half * 0.7);
@@ -1350,9 +1706,9 @@
   }
 
   function strokePawOutline(context, a, config) {
-    const front = (config.fore ? 7.6 : 8.2) * a.scale;
-    const rear = (config.fore ? -5.9 : -6.6) * a.scale;
-    const half = (config.fore ? 4.45 : 5.05) * a.scale;
+    const front = (config.fore ? 9.0 : 9.6) * a.scale;
+    const rear = (config.fore ? -7.0 : -7.7) * a.scale;
+    const half = (config.fore ? 5.1 : 5.7) * a.scale;
     context.beginPath();
     context.moveTo(rear, -half * 0.62);
     context.bezierCurveTo(-2.6 * a.scale, -half, 2.4 * a.scale, -half * 1.04, front * 0.62, -half * 0.7);
@@ -1362,8 +1718,8 @@
   }
 
   function strokePawToes(context, a, config) {
-    const front = (config.fore ? 7.6 : 8.2) * a.scale;
-    const spread = (config.fore ? 1.45 : 1.65) * a.scale;
+    const front = (config.fore ? 9.0 : 9.6) * a.scale;
+    const spread = (config.fore ? 1.7 : 1.9) * a.scale;
     [-1, 1].forEach((side) => {
       context.beginPath();
       context.moveTo(front * 0.55, side * spread);
@@ -1454,14 +1810,14 @@
     const rightEar = earLandmarks(1);
     context.beginPath();
     context.moveTo(-SKIN_TOPOLOGY.headRearReach * a.scale, 0);
-    context.bezierCurveTo(-16 * a.scale, -9.5 * a.scale, -10 * a.scale, -14.6 * a.scale, leftEar.rearBase.x * a.scale, leftEar.rearBase.y * a.scale);
+    context.bezierCurveTo(-20 * a.scale, -12 * a.scale, -13 * a.scale, -16 * a.scale, leftEar.rearBase.x * a.scale, leftEar.rearBase.y * a.scale);
     traceEarCrown(context, a, leftEar);
-    context.bezierCurveTo(13 * a.scale, -12.5 * a.scale, 17.2 * a.scale, -9 * a.scale, 18 * a.scale, -7 * a.scale);
-    context.bezierCurveTo(20.3 * a.scale, -5.3 * a.scale, 21.3 * a.scale, -2.5 * a.scale, 21.1 * a.scale, 0);
-    context.bezierCurveTo(21.3 * a.scale, 2.5 * a.scale, 20.3 * a.scale, 5.3 * a.scale, 18 * a.scale, 7 * a.scale);
-    context.bezierCurveTo(17.2 * a.scale, 9 * a.scale, 13 * a.scale, 12.5 * a.scale, rightEar.frontBase.x * a.scale, rightEar.frontBase.y * a.scale);
+    context.bezierCurveTo(16.6 * a.scale, -15.8 * a.scale, 21.5 * a.scale, -11.5 * a.scale, 23 * a.scale, -9 * a.scale);
+    context.bezierCurveTo(26 * a.scale, -6.8 * a.scale, 27.3 * a.scale, -3.2 * a.scale, 27 * a.scale, 0);
+    context.bezierCurveTo(27.3 * a.scale, 3.2 * a.scale, 26 * a.scale, 6.8 * a.scale, 23 * a.scale, 9 * a.scale);
+    context.bezierCurveTo(21.5 * a.scale, 11.5 * a.scale, 16.6 * a.scale, 15.8 * a.scale, rightEar.frontBase.x * a.scale, rightEar.frontBase.y * a.scale);
     traceEarCrown(context, a, rightEar, true);
-    context.bezierCurveTo(-10 * a.scale, 14.6 * a.scale, -16 * a.scale, 9.5 * a.scale, -SKIN_TOPOLOGY.headRearReach * a.scale, 0);
+    context.bezierCurveTo(-13 * a.scale, 16 * a.scale, -20 * a.scale, 12 * a.scale, -SKIN_TOPOLOGY.headRearReach * a.scale, 0);
     context.closePath();
   }
 
@@ -1471,10 +1827,10 @@
     context.beginPath();
     context.moveTo(leftEar.rearBase.x * a.scale, leftEar.rearBase.y * a.scale);
     traceEarCrown(context, a, leftEar);
-    context.bezierCurveTo(13 * a.scale, -12.5 * a.scale, 17.2 * a.scale, -9 * a.scale, 18 * a.scale, -7 * a.scale);
-    context.bezierCurveTo(20.3 * a.scale, -5.3 * a.scale, 21.3 * a.scale, -2.5 * a.scale, 21.1 * a.scale, 0);
-    context.bezierCurveTo(21.3 * a.scale, 2.5 * a.scale, 20.3 * a.scale, 5.3 * a.scale, 18 * a.scale, 7 * a.scale);
-    context.bezierCurveTo(17.2 * a.scale, 9 * a.scale, 13 * a.scale, 12.5 * a.scale, rightEar.frontBase.x * a.scale, rightEar.frontBase.y * a.scale);
+    context.bezierCurveTo(16.6 * a.scale, -15.8 * a.scale, 21.5 * a.scale, -11.5 * a.scale, 23 * a.scale, -9 * a.scale);
+    context.bezierCurveTo(26 * a.scale, -6.8 * a.scale, 27.3 * a.scale, -3.2 * a.scale, 27 * a.scale, 0);
+    context.bezierCurveTo(27.3 * a.scale, 3.2 * a.scale, 26 * a.scale, 6.8 * a.scale, 23 * a.scale, 9 * a.scale);
+    context.bezierCurveTo(21.5 * a.scale, 11.5 * a.scale, 16.6 * a.scale, 15.8 * a.scale, rightEar.frontBase.x * a.scale, rightEar.frontBase.y * a.scale);
     traceEarCrown(context, a, rightEar, true);
   }
 
@@ -1551,7 +1907,19 @@
     smoothOpenPath(ctx, renderTail.slice(0, -1));
     ctx.stroke();
 
-    ctx.globalAlpha = 0.72;
+    // 深色尾尖（虎斑签名）：clip 到尾带轮廓内，在末端画一块深色 → 只染出尾尖
+    ctx.save();
+    traceTailRibbon(ctx, renderTail, a.scale, 0, 0);
+    ctx.clip();
+    const tipCenter = renderTail[renderTail.length - 1];
+    ctx.fillStyle = c.furDark;
+    ctx.globalAlpha = 0.8;
+    ctx.beginPath();
+    ctx.arc(tipCenter.x, tipCenter.y, a.tailSegment * 1.55, 0, Gait.TAU);
+    ctx.fill();
+    ctx.restore();
+
+    ctx.globalAlpha = 0.8;
     ctx.strokeStyle = c.stripe;
     [3, 5, 7].forEach((index) => {
       if (!renderTail[index]) return;
@@ -1564,7 +1932,7 @@
       const halfWidth = (6.4 - t * 3.8) * a.scale;
       const nx = -dy / distance * halfWidth;
       const ny = dx / distance * halfWidth;
-      ctx.lineWidth = (2.5 - t * 0.75) * a.scale;
+      ctx.lineWidth = (2.9 - t * 0.75) * a.scale;
       ctx.beginPath();
       ctx.moveTo(renderTail[index].x + nx, renderTail[index].y + ny);
       ctx.quadraticCurveTo(
@@ -1600,7 +1968,7 @@
       ctx.translate(foot.x, foot.y);
       ctx.rotate(Number.isFinite(foot.angle) ? foot.angle : cat.heading);
       ctx.scale(1 - foot.lift * 0.08, 1 - foot.lift * 0.12);
-      ctx.fillStyle = c.fur;
+      ctx.fillStyle = c.cream;   // 奶油"袜子"：落步一眼可读（步态因此看得见）
       ctx.strokeStyle = c.furDark;
       ctx.lineJoin = 'round';
       ctx.lineWidth = 0.82 * a.scale;
@@ -1630,16 +1998,18 @@
         width: width * a.scale * narrow,
       };
     };
+    const spread = 1 + 0.22 * cat.poseSpread;
+    const shift = 4 * cat.poseSpread - 6 * cat.poseStretch;   // 蹲坐缩短 / 伸展拉长（纯渲染；骨架长度门禁不动）
     const stations = [
-      define(cat.rig.pelvis, -27, 9.5),
-      define(cat.rig.pelvis, -17, 22.5),
-      define(cat.rig.pelvis, 1, 28),
-      define(cat.rig.pelvis, 15, 24.5),
-      define(cat.rig.waist, 0, 19.5),
-      define(cat.rig.shoulders, -13, 23),
-      define(cat.rig.shoulders, 1, 27),
-      define(cat.rig.shoulders, 13, 20),
-      define(cat.rig.neck, 3, 12.8),
+      define(cat.rig.pelvis, -27 + shift, 13 * spread),
+      define(cat.rig.pelvis, -17 + shift, 27 * spread),
+      define(cat.rig.pelvis, 1 + shift * 0.5, 32 * spread),
+      define(cat.rig.pelvis, 15, 26),
+      define(cat.rig.waist, 0, 21),
+      define(cat.rig.shoulders, -13, 24),
+      define(cat.rig.shoulders, 1, 28),
+      define(cat.rig.shoulders, 13, 20.5),
+      define(cat.rig.neck, 3, 13.5),
     ];
     const bridgeT = SKIN_TOPOLOGY.headBridgeT;
     const bridgeDx = cat.rig.head.x - cat.rig.neck.x;
@@ -1648,7 +2018,7 @@
       x: cat.rig.neck.x + bridgeDx * bridgeT + ox,
       y: cat.rig.neck.y + bridgeDy * bridgeT + oy,
       angle: Math.atan2(bridgeDy, bridgeDx),
-      width: 11 * a.scale * narrow,
+      width: 12 * a.scale * narrow,
     });
     return stations;
   }
@@ -1676,8 +2046,8 @@
 
   function bodyFrontCapControl(contours, a) {
     return {
-      x: contours.front.x + Math.cos(contours.front.angle) * 3 * a.scale,
-      y: contours.front.y + Math.sin(contours.front.angle) * 3 * a.scale,
+      x: contours.front.x + Math.cos(contours.front.angle) * 4 * a.scale,
+      y: contours.front.y + Math.sin(contours.front.angle) * 4 * a.scale,
     };
   }
 
@@ -1696,8 +2066,8 @@
     );
     smoothOpenPath(context, right.slice().reverse(), true);
     context.quadraticCurveTo(
-      rear.x - Math.cos(rear.angle) * 3.5 * a.scale,
-      rear.y - Math.sin(rear.angle) * 3.5 * a.scale,
+      rear.x - Math.cos(rear.angle) * 6 * a.scale,
+      rear.y - Math.sin(rear.angle) * 6 * a.scale,
       left[0].x,
       left[0].y,
     );
@@ -1798,6 +2168,68 @@
     ctx.restore();
   }
 
+  // 脊背主纹：沿关节化脊柱 stations 中线描一条深色 mackerel 主干 —— stations 逐帧派生自 rig，
+  // 身体怎么弯纹就怎么弯。定义在未扫描区（drawBody 源码区禁止出现 ctx.stroke）。
+  function drawDorsalStripe(c, contours, a) {
+    ctx.strokeStyle = c.stripe;
+    ctx.globalAlpha = 0.5;
+    ctx.lineWidth = 3.4 * a.scale;
+    ctx.lineCap = 'round';
+    ctx.beginPath();
+    smoothOpenPath(ctx, contours.stations.slice(2, contours.stations.length - 1));
+    ctx.stroke();
+    ctx.globalAlpha = 1;
+  }
+
+  // 耳背暗斑：真虎斑俯视时耳背是深色的（是背面绒毛，不是门禁防的粉色内耳芯）。软平涂、低对比。
+  function paintEarBacks(c, a) {
+    ctx.fillStyle = c.furDark;
+    ctx.globalAlpha = 0.34;
+    [-1, 1].forEach((side) => {
+      const ear = earLandmarks(side);
+      ctx.beginPath();
+      ctx.moveTo(ear.rearBase.x * a.scale, ear.rearBase.y * a.scale);
+      ctx.quadraticCurveTo(ear.root.x * a.scale, ear.root.y * a.scale, ear.tip.x * a.scale, ear.tip.y * a.scale);
+      ctx.quadraticCurveTo(
+        (ear.tip.x + ear.frontBase.x) * 0.5 * a.scale,
+        (ear.tip.y + ear.frontBase.y) * 0.55 * a.scale,
+        ear.frontBase.x * a.scale,
+        ear.frontBase.y * a.scale,
+      );
+      ctx.closePath();
+      ctx.fill();
+    });
+    ctx.globalAlpha = 1;
+  }
+
+  // 俯视胡须：从正上方看胡须确实突出于头轮廓之外（猫的招牌）。头局部坐标系内绘制，随头转。
+  const WHISKER_ROWS = Object.freeze([
+    Object.freeze([15, 3.5, 25, 14]),
+    Object.freeze([16, 5.5, 26, 19.5]),
+    Object.freeze([14.5, 7, 23, 24]),
+  ]);
+  function drawWhiskers(c, a) {
+    ctx.strokeStyle = c.whisker;
+    ctx.globalAlpha = 0.5;
+    ctx.lineCap = 'round';
+    ctx.lineWidth = 0.7 * a.scale;
+    const spread = 1 + 0.12 * ((cat.earPerk.left + cat.earPerk.right) * 0.5);
+    [-1, 1].forEach((side) => {
+      WHISKER_ROWS.forEach(([x0, y0, x1, y1]) => {
+        ctx.beginPath();
+        ctx.moveTo(x0 * a.scale, side * y0 * a.scale);
+        ctx.quadraticCurveTo(
+          (x0 + x1) * 0.55 * a.scale,
+          side * (y0 + y1) * 0.48 * a.scale * spread,
+          x1 * a.scale,
+          side * y1 * a.scale * spread,
+        );
+        ctx.stroke();
+      });
+    });
+    ctx.globalAlpha = 1;
+  }
+
   function drawBody(c) {
     const a = anatomy();
 
@@ -1833,29 +2265,36 @@
       [cat.rig.shoulders, -3, 14, 16, 7, -0.15],
     ].forEach((shape) => drawNodeEllipse(shape[0], shape[1], shape[2], shape[3], shape[4], shape[5], a));
 
+    // 肩胛骨：摆动侧前肢的肩胛随 foot.lift 交替隆起（俯视潜行的招牌律动；静止时 lift=0 自然安静）
+    ctx.globalAlpha = 0.18;
+    drawNodeEllipse(cat.rig.shoulders, 2, -8, 8 + (cat.feet.leftFore ? cat.feet.leftFore.lift : 0) * 2.5, 5.5, -0.1, a);
+    drawNodeEllipse(cat.rig.shoulders, 2, 8, 8 + (cat.feet.rightFore ? cat.feet.rightFore.lift : 0) * 2.5, 5.5, 0.1, a);
+
+    // 奶油胸楔（颈下浅色——虎斑常见的浅胸口，从上方看是颈前一小片）
+    ctx.globalAlpha = 0.5;
+    ctx.fillStyle = c.cream;
+    drawNodeEllipse(cat.rig.neck, 2, 0, 9, 6, 0, a);
+
+    drawDorsalStripe(c, contours, a);
+
+    // Mackerel 肋纹：全部一致后弯（drift 同号）、内端拉近脊柱 → 读作从脊背向两侧放射的虎斑肋条，
+    // 不再是随机短划（悦耳……悦目 pass：设计评审确认这是"薯感"主因之一）。
     ctx.strokeStyle = c.stripe;
-    ctx.globalAlpha = 0.68;
-    ctx.lineWidth = 3 * a.scale;
+    ctx.globalAlpha = 0.6;
+    ctx.lineWidth = 2.8 * a.scale;
     ctx.lineCap = 'round';
     [
-      [cat.rig.pelvis, { x: -13, side: -1, edge: 25, inner: 11, drift: 7 }],
-      [cat.rig.pelvis, { x: 5, side: -1, edge: 27, inner: 12, drift: -5 }],
-      [cat.rig.pelvis, { x: -4, side: 1, edge: 27, inner: 12, drift: 8 }],
-      [cat.rig.pelvis, { x: 13, side: 1, edge: 24, inner: 11, drift: -4 }],
-      [cat.rig.waist, { x: -3, side: -1, edge: 19, inner: 9.5, drift: 6 }],
-      [cat.rig.waist, { x: 6, side: 1, edge: 19, inner: 9, drift: -5 }],
-      [cat.rig.shoulders, { x: -7, side: -1, edge: 25, inner: 12, drift: 6 }],
-      [cat.rig.shoulders, { x: 8, side: -1, edge: 23, inner: 11, drift: -4 }],
-      [cat.rig.shoulders, { x: -1, side: 1, edge: 26, inner: 12, drift: 7 }],
+      [cat.rig.pelvis, { x: -13, side: -1, edge: 28, inner: 8, drift: 7 }],
+      [cat.rig.pelvis, { x: 5, side: -1, edge: 30, inner: 9, drift: 6 }],
+      [cat.rig.pelvis, { x: -4, side: 1, edge: 30, inner: 9, drift: 7 }],
+      [cat.rig.pelvis, { x: 13, side: 1, edge: 26, inner: 8, drift: 5 }],
+      [cat.rig.waist, { x: -3, side: -1, edge: 20, inner: 7, drift: 6 }],
+      [cat.rig.waist, { x: 6, side: 1, edge: 20, inner: 7, drift: 5 }],
+      [cat.rig.shoulders, { x: -7, side: -1, edge: 26, inner: 9, drift: 6 }],
+      [cat.rig.shoulders, { x: 8, side: -1, edge: 24, inner: 8, drift: 5 }],
+      [cat.rig.shoulders, { x: -1, side: 1, edge: 27, inner: 9, drift: 6 }],
+      [cat.rig.shoulders, { x: 12, side: 1, edge: 22, inner: 8, drift: 4 }],
     ].forEach(([node, stripe]) => drawFlankStripe(node, stripe, a));
-
-    // A few irregular flank marks keep the coat organic and deliberately
-    // break the bilateral, skeleton-like pattern of the MVP.
-    ctx.fillStyle = c.stripe;
-    ctx.globalAlpha = 0.45;
-    drawNodeEllipse(cat.rig.pelvis, -9, 17, 3.7, 1.8, 0.2, a);
-    drawNodeEllipse(cat.rig.waist, 2, -13, 3.2, 1.5, -0.25, a);
-    drawNodeEllipse(cat.rig.shoulders, 5, 17, 3.4, 1.6, 0.18, a);
 
     ctx.restore();
 
@@ -1866,18 +2305,19 @@
     // The reference is read from behind and above: the face itself is hidden.
     // Compact ears and three sparse crown marks establish direction without
     // portrait eyes, a muzzle mask, a nose, cheek patches, or cat whiskers.
+    // 含蓄的虎斑 M：中央一竖 + 两侧各一道向前收拢的弧（俯视视角的 M 纹投影），仍是稀疏三笔。
     ctx.strokeStyle = c.stripe;
     ctx.lineCap = 'round';
-    ctx.lineWidth = 1.9 * a.scale;
-    ctx.globalAlpha = 0.68;
+    ctx.lineWidth = 2 * a.scale;
+    ctx.globalAlpha = 0.62;
     ctx.beginPath();
-    ctx.moveTo(1 * a.scale, 0);
-    ctx.bezierCurveTo(2.8 * a.scale, -0.35 * a.scale, 5 * a.scale, -0.25 * a.scale, 7 * a.scale, 0);
+    ctx.moveTo(0.5 * a.scale, 0);
+    ctx.bezierCurveTo(3.5 * a.scale, -0.3 * a.scale, 6.5 * a.scale, -0.2 * a.scale, 9.5 * a.scale, 0);
     ctx.stroke();
     [-1, 1].forEach((side) => {
       ctx.beginPath();
-      ctx.moveTo(2 * a.scale, side * 4.8 * a.scale);
-      ctx.quadraticCurveTo(4.5 * a.scale, side * 3.2 * a.scale, 7.5 * a.scale, side * 2 * a.scale);
+      ctx.moveTo(-1 * a.scale, side * 7.5 * a.scale);
+      ctx.quadraticCurveTo(4 * a.scale, side * 6 * a.scale, 9 * a.scale, side * 3 * a.scale);
       ctx.stroke();
     });
     ctx.globalAlpha = 1;
@@ -1899,7 +2339,9 @@
     ctx.stroke();
     ctx.globalAlpha = 1;
 
+    paintEarBacks(c, a);
     drawTopDownFace(c, a);
+    drawWhiskers(c, a);
     ctx.restore();
   }
 
@@ -2213,6 +2655,8 @@
       tailTip: cat.tail.length
         ? { x: cat.tail[cat.tail.length - 1].x, y: cat.tail[cat.tail.length - 1].y }
         : null,
+      leapPhase: cat.leap.phase,
+      idleMode: cat.idle.mode,
       paused,
       reducedMotion,
       viewport: Object.assign({}, viewport),
