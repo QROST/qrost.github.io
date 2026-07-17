@@ -90,8 +90,6 @@
       furDark: '#7d4126',
       stripe: 'rgba(93, 45, 24, 0.52)',
       earInner: '#a95f4e',
-      cream: '#f3d2a6',
-      eye: '#aebc63',
       pupil: '#241c17',
       mouse: '#736b64',
       mouseLight: '#a39a90',
@@ -111,8 +109,6 @@
       furDark: '#713a24',
       stripe: 'rgba(80, 36, 22, 0.62)',
       earInner: '#b96857',
-      cream: '#f2d0a3',
-      eye: '#c3d174',
       pupil: '#17130f',
       mouse: '#aaa29a',
       mouseLight: '#d0c7bd',
@@ -148,7 +144,6 @@
     state: 'prowl',
     stateSince: 0,
     headYaw: 0,
-    eyeYaw: 0,
     gait: Gait.createController('prowl'),
     strideLength: 0,
     feet: {},
@@ -307,7 +302,7 @@
     rig.waist.visualRadius = 23 * a.scale;
     rig.shoulders.visualRadius = 30 * a.scale;
     rig.neck.visualRadius = 17 * a.scale;
-    // Includes ear and whisker reach, not just the painted skull.
+    // Includes the ear tips, not just the painted skull.
     rig.head.visualRadius = 42 * a.scale;
     rig.curvature = Gait.angleDelta(rig.pelvis.angle, rig.head.angle);
   }
@@ -640,7 +635,6 @@
     const lookRelative = Gait.angleDelta(cat.heading, lookAngle);
     const targetHeadYaw = Gait.clamp(lookRelative, -0.76, 0.76);
     cat.headYaw = expLerp(cat.headYaw, targetHeadYaw, prey.active ? 10 : 3.6, dt);
-    cat.eyeYaw = expLerp(cat.eyeYaw, Gait.clamp(lookRelative - cat.headYaw, -0.34, 0.34), 14, dt);
 
     const a = anatomy();
     let desiredSpeed = Gait.targetSpeedForBehavior(
@@ -678,7 +672,7 @@
     cat.x += Math.cos(cat.heading) * cat.speed * dt;
     cat.y += Math.sin(cat.heading) * cat.speed * dt;
 
-    // The former body-only margin allowed a turned head, ears and whiskers to
+    // The former body-only margin allowed a turned head and ears to
     // cross the viewport edge on compact screens. This radius encloses the
     // entire leading anatomy at every heading while remaining viable on very
     // small canvases.
@@ -1208,16 +1202,16 @@
   function traceHeadSilhouette(context, a) {
     context.beginPath();
     context.moveTo(-SKIN_TOPOLOGY.headRearReach * a.scale, 0);
-    context.bezierCurveTo(-16 * a.scale, -11 * a.scale, -9 * a.scale, -19 * a.scale, 1 * a.scale, -21 * a.scale);
-    context.bezierCurveTo(12 * a.scale, -22 * a.scale, 20 * a.scale, -16 * a.scale, 22 * a.scale, -10 * a.scale);
-    context.bezierCurveTo(26 * a.scale, -7 * a.scale, 28 * a.scale, -3 * a.scale, 27 * a.scale, 0);
-    context.bezierCurveTo(28 * a.scale, 3 * a.scale, 26 * a.scale, 7 * a.scale, 22 * a.scale, 10 * a.scale);
-    context.bezierCurveTo(20 * a.scale, 16 * a.scale, 12 * a.scale, 22 * a.scale, 1 * a.scale, 21 * a.scale);
+    context.bezierCurveTo(-16 * a.scale, -9.5 * a.scale, -10 * a.scale, -15.2 * a.scale, -2 * a.scale, -16 * a.scale);
+    context.bezierCurveTo(7 * a.scale, -16.8 * a.scale, 14 * a.scale, -12.8 * a.scale, 18 * a.scale, -7 * a.scale);
+    context.bezierCurveTo(20.3 * a.scale, -5.3 * a.scale, 21.3 * a.scale, -2.5 * a.scale, 21.1 * a.scale, 0);
+    context.bezierCurveTo(21.3 * a.scale, 2.5 * a.scale, 20.3 * a.scale, 5.3 * a.scale, 18 * a.scale, 7 * a.scale);
+    context.bezierCurveTo(14 * a.scale, 12.8 * a.scale, 7 * a.scale, 16.8 * a.scale, -2 * a.scale, 16 * a.scale);
     context.bezierCurveTo(
-      -9 * a.scale,
-      19 * a.scale,
+      -10 * a.scale,
+      15.2 * a.scale,
       -16 * a.scale,
-      11 * a.scale,
+      9.5 * a.scale,
       -SKIN_TOPOLOGY.headRearReach * a.scale,
       0,
     );
@@ -1225,13 +1219,13 @@
   }
 
   function traceEarSilhouette(context, a, side) {
-    const tipX = side < 0 ? -15.2 : -13.2;
-    const tipY = side * (side < 0 ? 31 : 29.8) * a.scale;
+    const tipX = side < 0 ? 6.4 : 7.4;
+    const tipY = side * (side < 0 ? 22.2 : 21.4) * a.scale;
     context.beginPath();
-    context.moveTo(-11 * a.scale, side * 13 * a.scale);
-    context.bezierCurveTo(-12 * a.scale, side * 19 * a.scale, tipX * a.scale, side * 27.5 * a.scale, tipX * a.scale, tipY);
-    context.bezierCurveTo(-5 * a.scale, side * 28 * a.scale, 5 * a.scale, side * 23 * a.scale, 10 * a.scale, side * 17 * a.scale);
-    context.bezierCurveTo(4 * a.scale, side * 14 * a.scale, -4 * a.scale, side * 13 * a.scale, -11 * a.scale, side * 13 * a.scale);
+    context.moveTo(-2 * a.scale, side * 11.5 * a.scale);
+    context.bezierCurveTo(0 * a.scale, side * 16.5 * a.scale, (tipX - 1) * a.scale, side * 20.3 * a.scale, tipX * a.scale, tipY);
+    context.bezierCurveTo(11.5 * a.scale, side * 20.5 * a.scale, 14.8 * a.scale, side * 16 * a.scale, 15 * a.scale, side * 12.3 * a.scale);
+    context.bezierCurveTo(11 * a.scale, side * 11 * a.scale, 4 * a.scale, side * 10.5 * a.scale, -2 * a.scale, side * 11.5 * a.scale);
     context.closePath();
   }
 
@@ -1654,6 +1648,27 @@
     drawHead(c, a);
   }
 
+  function drawTopDownFace(c, a) {
+    // The reference is read from behind and above: the face itself is hidden.
+    // Compact ears and three sparse crown marks establish direction without
+    // portrait eyes, a muzzle mask, a nose, cheek patches, or cat whiskers.
+    ctx.strokeStyle = c.stripe;
+    ctx.lineCap = 'round';
+    ctx.lineWidth = 1.9 * a.scale;
+    ctx.globalAlpha = 0.68;
+    ctx.beginPath();
+    ctx.moveTo(1 * a.scale, 0);
+    ctx.bezierCurveTo(2.8 * a.scale, -0.35 * a.scale, 5 * a.scale, -0.25 * a.scale, 7 * a.scale, 0);
+    ctx.stroke();
+    [-1, 1].forEach((side) => {
+      ctx.beginPath();
+      ctx.moveTo(2 * a.scale, side * 4.8 * a.scale);
+      ctx.quadraticCurveTo(4.5 * a.scale, side * 3.2 * a.scale, 7.5 * a.scale, side * 2 * a.scale);
+      ctx.stroke();
+    });
+    ctx.globalAlpha = 1;
+  }
+
   function drawHead(c, a) {
     ctx.save();
     ctx.translate(cat.rig.head.x, cat.rig.head.y);
@@ -1667,10 +1682,10 @@
       ctx.fillStyle = c.earInner;
       ctx.globalAlpha = 0.58;
       ctx.beginPath();
-      ctx.moveTo(-9 * a.scale, side * 17 * a.scale);
-      ctx.bezierCurveTo(-11 * a.scale, side * 21 * a.scale, -13 * a.scale, side * 26 * a.scale, -12 * a.scale, side * 27 * a.scale);
-      ctx.bezierCurveTo(-5 * a.scale, side * 25 * a.scale, 1 * a.scale, side * 21 * a.scale, 5 * a.scale, side * 18 * a.scale);
-      ctx.bezierCurveTo(0, side * 17 * a.scale, -5 * a.scale, side * 16 * a.scale, -9 * a.scale, side * 17 * a.scale);
+      ctx.moveTo(1 * a.scale, side * 13.7 * a.scale);
+      ctx.bezierCurveTo(2.7 * a.scale, side * 17.1 * a.scale, 5.8 * a.scale, side * 19.2 * a.scale, 6.8 * a.scale, side * 19.8 * a.scale);
+      ctx.bezierCurveTo(10.7 * a.scale, side * 18.8 * a.scale, 12.8 * a.scale, side * 15.7 * a.scale, 13.1 * a.scale, side * 14.2 * a.scale);
+      ctx.bezierCurveTo(9.4 * a.scale, side * 13.3 * a.scale, 5.2 * a.scale, side * 12.9 * a.scale, 1 * a.scale, side * 13.7 * a.scale);
       ctx.closePath();
       ctx.fill();
       ctx.globalAlpha = 1;
@@ -1683,122 +1698,15 @@
     ctx.globalAlpha = 0.52;
     ctx.lineWidth = 0.85 * a.scale;
     ctx.beginPath();
-    ctx.moveTo(-1 * a.scale, -21 * a.scale);
-    ctx.bezierCurveTo(12 * a.scale, -22 * a.scale, 20 * a.scale, -16 * a.scale, 22 * a.scale, -10 * a.scale);
-    ctx.bezierCurveTo(26 * a.scale, -7 * a.scale, 28 * a.scale, -3 * a.scale, 27 * a.scale, 0);
-    ctx.bezierCurveTo(28 * a.scale, 3 * a.scale, 26 * a.scale, 7 * a.scale, 22 * a.scale, 10 * a.scale);
-    ctx.bezierCurveTo(20 * a.scale, 16 * a.scale, 12 * a.scale, 22 * a.scale, 1 * a.scale, 21 * a.scale);
+    ctx.moveTo(-2 * a.scale, -16 * a.scale);
+    ctx.bezierCurveTo(7 * a.scale, -16.8 * a.scale, 14 * a.scale, -12.8 * a.scale, 18 * a.scale, -7 * a.scale);
+    ctx.bezierCurveTo(20.3 * a.scale, -5.3 * a.scale, 21.3 * a.scale, -2.5 * a.scale, 21.1 * a.scale, 0);
+    ctx.bezierCurveTo(21.3 * a.scale, 2.5 * a.scale, 20.3 * a.scale, 5.3 * a.scale, 18 * a.scale, 7 * a.scale);
+    ctx.bezierCurveTo(14 * a.scale, 12.8 * a.scale, 7 * a.scale, 16.8 * a.scale, -2 * a.scale, 16 * a.scale);
     ctx.stroke();
     ctx.globalAlpha = 1;
 
-    ctx.strokeStyle = c.stripe;
-    ctx.lineCap = 'round';
-    ctx.globalAlpha = 0.65;
-    ctx.lineWidth = 2.5 * a.scale;
-    ctx.beginPath();
-    ctx.moveTo(-13 * a.scale, 0);
-    ctx.bezierCurveTo(-7 * a.scale, -1 * a.scale, -4 * a.scale, -1 * a.scale, 0, 0);
-    ctx.stroke();
-    [-1, 1].forEach((side) => {
-      ctx.beginPath();
-      ctx.moveTo(-10 * a.scale, side * 5 * a.scale);
-      ctx.bezierCurveTo(-5 * a.scale, side * 5.5 * a.scale, -2 * a.scale, side * 8.8 * a.scale, 2 * a.scale, side * 9.2 * a.scale);
-      ctx.stroke();
-      ctx.beginPath();
-      ctx.moveTo(-7 * a.scale, side * 12 * a.scale);
-      ctx.quadraticCurveTo(-1 * a.scale, side * 14.5 * a.scale, 4 * a.scale, side * 14.2 * a.scale);
-      ctx.stroke();
-    });
-    ctx.globalAlpha = 1;
-
-    ctx.fillStyle = c.cream;
-    ctx.globalAlpha = 0.82;
-    [-1, 1].forEach((side) => {
-      ctx.beginPath();
-      ctx.moveTo(9 * a.scale, side * 2 * a.scale);
-      ctx.bezierCurveTo(10 * a.scale, side * 9 * a.scale, 18 * a.scale, side * 12 * a.scale, 23 * a.scale, side * 7 * a.scale);
-      ctx.bezierCurveTo(27 * a.scale, side * 3 * a.scale, 25 * a.scale, side * 0.8 * a.scale, 21 * a.scale, side * 0.7 * a.scale);
-      ctx.bezierCurveTo(16 * a.scale, side * 0.4 * a.scale, 12 * a.scale, side * 0.6 * a.scale, 9 * a.scale, side * 2 * a.scale);
-      ctx.closePath();
-      ctx.fill();
-    });
-    ctx.globalAlpha = 1;
-
-    const gazeX = Math.cos(cat.eyeYaw) * 1.8 * a.scale;
-    const gazeY = Math.sin(cat.eyeYaw) * 2.4 * a.scale;
-    const eyeOpen = cat.state === 'stalk' ? 0.66 : cat.state === 'chase' ? 0.8 : cat.state === 'observe' ? 1.08 : 1;
-    [-8, 8].forEach((side) => {
-      const sign = Math.sign(side);
-      ctx.fillStyle = c.eye;
-      ctx.beginPath();
-      ctx.moveTo(-0.2 * a.scale, side * a.scale);
-      ctx.bezierCurveTo(2.6 * a.scale, (side - sign * 3.5 * eyeOpen) * a.scale, 8.8 * a.scale, (side - sign * 3.2 * eyeOpen) * a.scale, 12.3 * a.scale, side * a.scale);
-      ctx.bezierCurveTo(8.9 * a.scale, (side + sign * 3.2 * eyeOpen) * a.scale, 2.5 * a.scale, (side + sign * 3.4 * eyeOpen) * a.scale, -0.2 * a.scale, side * a.scale);
-      ctx.closePath();
-      ctx.fill();
-      ctx.strokeStyle = c.furDark;
-      ctx.globalAlpha = 0.7;
-      ctx.lineWidth = 0.8 * a.scale;
-      ctx.stroke();
-      ctx.globalAlpha = 1;
-      ctx.fillStyle = c.pupil;
-      ctx.beginPath();
-      ctx.ellipse(6.2 * a.scale + gazeX, side * a.scale + gazeY * eyeOpen, 1.15 * a.scale, 2.7 * eyeOpen * a.scale, 0, 0, Gait.TAU);
-      ctx.fill();
-      ctx.fillStyle = c.cream;
-      ctx.globalAlpha = 0.72;
-      ctx.beginPath();
-      ctx.arc(7.1 * a.scale + gazeX, (side - sign * 0.8) * a.scale + gazeY * eyeOpen, 0.7 * a.scale, 0, Gait.TAU);
-      ctx.fill();
-      ctx.globalAlpha = 1;
-    });
-
-    ctx.fillStyle = c.mouseEar;
-    ctx.beginPath();
-    ctx.moveTo(25.5 * a.scale, 0);
-    ctx.bezierCurveTo(23.7 * a.scale, -3.4 * a.scale, 19.7 * a.scale, -3.2 * a.scale, 19 * a.scale, -0.6 * a.scale);
-    ctx.bezierCurveTo(18.8 * a.scale, 1.7 * a.scale, 23.2 * a.scale, 3.4 * a.scale, 25.5 * a.scale, 0);
-    ctx.closePath();
-    ctx.fill();
-
-    ctx.strokeStyle = c.furDark;
-    ctx.globalAlpha = 0.52;
-    ctx.lineWidth = 0.8 * a.scale;
-    ctx.beginPath();
-    ctx.moveTo(20.2 * a.scale, 0);
-    ctx.quadraticCurveTo(18.5 * a.scale, 1.8 * a.scale, 16.5 * a.scale, 2.4 * a.scale);
-    ctx.moveTo(20.2 * a.scale, 0);
-    ctx.quadraticCurveTo(18.5 * a.scale, -1.8 * a.scale, 16.5 * a.scale, -2.4 * a.scale);
-    ctx.stroke();
-    ctx.globalAlpha = 1;
-
-    ctx.strokeStyle = c.whisker;
-    ctx.lineWidth = 0.7 * a.scale;
-    ctx.lineCap = 'round';
-    [-1, 1].forEach((side) => {
-      for (let index = 0; index < 3; index += 1) {
-        ctx.beginPath();
-        ctx.moveTo((18 - index * 0.7) * a.scale, side * (4.5 + index * 2.1) * a.scale);
-        ctx.bezierCurveTo(
-          27 * a.scale,
-          side * (6.5 + index * 3) * a.scale,
-          34 * a.scale,
-          side * (7 + index * 5) * a.scale,
-          (39 - index * 1.2) * a.scale,
-          side * (6.5 + index * 6.4) * a.scale,
-        );
-        ctx.stroke();
-      }
-
-      ctx.fillStyle = c.furDark;
-      ctx.globalAlpha = 0.45;
-      [5.2, 7.7, 10.1].forEach((offset, index) => {
-        ctx.beginPath();
-        ctx.arc((17.8 - index * 0.65) * a.scale, side * offset * a.scale, 0.65 * a.scale, 0, Gait.TAU);
-        ctx.fill();
-      });
-      ctx.globalAlpha = 1;
-    });
+    drawTopDownFace(c, a);
     ctx.restore();
   }
 

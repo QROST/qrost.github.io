@@ -191,7 +191,8 @@ const appSource = loadedSources.get('assets/js/app.js');
 const tailRibbonSource = appSource.match(/function traceTailRibbon[\s\S]*?(?=\n  function tailRenderPoints)/)?.[0] || '';
 const bodyFlankSource = appSource.match(/function strokeBodyFlanks[\s\S]*?(?=\n  function skinTopologySnapshot)/)?.[0] || '';
 const drawTailSource = appSource.match(/function drawTail[\s\S]*?(?=\n  function drawLegs)/)?.[0] || '';
-const drawBodySource = appSource.match(/function drawBody[\s\S]*?(?=\n  function drawHead)/)?.[0] || '';
+const drawBodySource = appSource.match(/function drawBody[\s\S]*?(?=\n  function drawTopDownFace)/)?.[0] || '';
+const topDownFaceSource = appSource.match(/function drawTopDownFace[\s\S]*?(?=\n  function drawHead)/)?.[0] || '';
 const drawHeadSource = appSource.match(/function drawHead[\s\S]*?(?=\n  function drawMouse)/)?.[0] || '';
 assert.ok(tailRibbonSource, 'tail ribbon renderer must remain discoverable');
 assert.doesNotMatch(tailRibbonSource, /closePath\s*\(/, 'tail ribbon must stay open at its hidden root');
@@ -200,6 +201,20 @@ assert.doesNotMatch(drawBodySource, /ctx\.stroke\s*\(/, 'torso must not stroke i
 assert.doesNotMatch(bodyFlankSource, /closePath\s*\(|traceBodySilhouette\s*\(/, 'body flank strokes must stay open');
 assert.equal((bodyFlankSource.match(/smoothOpenPath\s*\(/g) || []).length, 2, 'body must expose exactly two open flanks');
 assert.equal((bodyFlankSource.match(/context\.stroke\s*\(/g) || []).length, 2, 'body must stroke each open flank once');
+assert.ok(topDownFaceSource, 'top-down face renderer must remain discoverable');
+assert.match(drawHeadSource, /drawTopDownFace\s*\(/, 'head must delegate its markings to the overhead face renderer');
+assert.equal((topDownFaceSource.match(/ctx\.stroke\s*\(/g) || []).length, 2, 'overhead crown must keep only three sparse marks');
+assert.doesNotMatch(topDownFaceSource, /eyeYaw|lidDrift|lidArch/, 'overhead crown must not expose visible eyes');
+assert.doesNotMatch(
+  topDownFaceSource,
+  /c\.(?:eye|cream|pupil|whisker)|ctx\.(?:ellipse|arc)\s*\(/,
+  'overhead cat face must not regress to portrait eyes, cheek patches, highlights, or whiskers',
+);
+assert.doesNotMatch(
+  drawHeadSource,
+  /c\.(?:eye|cream|pupil|mouseEar|whisker)|ctx\.(?:ellipse|arc)\s*\(/,
+  'cat head shell must remain free of face-on features',
+);
 for (const [label, source] of [['tail', drawTailSource], ['body', drawBodySource], ['head', drawHeadSource]]) {
   assert.match(source, /ctx\.fillStyle\s*=\s*c\.fur\s*;/, `${label} must start from the shared base coat`);
 }
@@ -293,10 +308,10 @@ function assertRigSnapshot(snapshot, label = 'rig') {
 
 function assertHeadInsideViewport(snapshot, padding = 1) {
   const head = snapshot.rig.head;
-  assert.ok(head.x - head.visualRadius >= padding, 'head/ears/whiskers crossed left viewport edge');
-  assert.ok(head.y - head.visualRadius >= padding, 'head/ears/whiskers crossed top viewport edge');
-  assert.ok(head.x + head.visualRadius <= snapshot.viewport.width - padding, 'head/ears/whiskers crossed right viewport edge');
-  assert.ok(head.y + head.visualRadius <= snapshot.viewport.height - padding, 'head/ears/whiskers crossed bottom viewport edge');
+  assert.ok(head.x - head.visualRadius >= padding, 'head/ears crossed left viewport edge');
+  assert.ok(head.y - head.visualRadius >= padding, 'head/ears crossed top viewport edge');
+  assert.ok(head.x + head.visualRadius <= snapshot.viewport.width - padding, 'head/ears crossed right viewport edge');
+  assert.ok(head.y + head.visualRadius <= snapshot.viewport.height - padding, 'head/ears crossed bottom viewport edge');
 }
 
 assert.ok(sandbox.__catMouseDemo, 'debug/test surface must be available');
@@ -447,7 +462,7 @@ assert.equal(snapshot.mouse.active, false);
 assert.equal(snapshot.behavior, 'prowl');
 
 // Reproduce the user's 548x536 compact screenshot and drive the target to all
-// four edges. The full head radius includes ears and whiskers.
+// four edges. The full head radius includes the compact ear tips.
 assert.equal(typeof resizeObserverCallback, 'function');
 fakeViewportWidth = 548;
 fakeViewportHeight = 536;
@@ -571,4 +586,4 @@ failureListeners.forEach((listener) => listener());
 assert.equal(failureElements.get('canvas-error').textContent, 'Canvas failed');
 assert.equal(failureElements.get('theme-toggle').getAttribute('title'), 'Light');
 
-console.log('check-runtime: seamless coat, bounded spine, direct register, locked/recovery paws, anatomical reach, 548x536 edges, and UI OK');
+console.log('check-runtime: overhead face, seamless coat, bounded spine, direct register, anatomical reach, 548x536 edges, and UI OK');
