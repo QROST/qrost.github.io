@@ -1096,7 +1096,11 @@
   }
 
   function roundedRectPath(context, x, y, width, height, radius) {
-    const r = Math.min(radius, width * 0.5, height * 0.5);
+    // Deferred scripts can run before the canvas has a laid-out size: a 1×1
+    // viewport makes width/height negative here, arcTo throws on the negative
+    // radius, and the whole init IIFE dies before the raf loop starts (the page
+    // then shows a single static frame painted later by the ResizeObserver).
+    const r = Math.max(0, Math.min(radius, width * 0.5, height * 0.5));
     context.beginPath();
     context.moveTo(x + r, y);
     context.arcTo(x + width, y, x + width, y + height, r);
@@ -1112,6 +1116,7 @@
     const padY = Math.max(78, viewport.height * 0.11);
     const width = viewport.width - padX * 2;
     const height = viewport.height - padY * 1.75;
+    if (width <= 8 || height <= 8) return;   // 布局未就绪的退化尺寸：本帧不画地毯（防负几何）
     roundedRectPath(ctx, padX, padY, width, height, Math.min(58, width * 0.08));
     ctx.fillStyle = c.rug;
     ctx.fill();
