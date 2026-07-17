@@ -193,6 +193,7 @@ const legSilhouetteSource = appSource.match(/function traceLegSilhouette[\s\S]*?
 const pawSilhouetteSource = appSource.match(/function tracePawSilhouette[\s\S]*?(?=\n  function strokePawOutline)/)?.[0] || '';
 const pawOutlineSource = appSource.match(/function strokePawOutline[\s\S]*?(?=\n  function strokePawToes)/)?.[0] || '';
 const earRendererSource = appSource.match(/function earAngle[\s\S]*?(?=\n  function drawCatShadow)/)?.[0] || '';
+const earMotionSource = appSource.match(/function updateCat[\s\S]*?(?=\n  function planPawSwing)/)?.[0] || '';
 const bodyFlankSource = appSource.match(/function strokeBodyFlanks[\s\S]*?(?=\n  function skinTopologySnapshot)/)?.[0] || '';
 const drawShadowSource = appSource.match(/function drawCatShadow[\s\S]*?(?=\n  function drawTail)/)?.[0] || '';
 const drawTailSource = appSource.match(/function drawTail[\s\S]*?(?=\n  function drawLegs)/)?.[0] || '';
@@ -212,7 +213,11 @@ assert.match(drawLegsSource, /strokePawOutline\s*\(/, 'paw outline must leave th
 assert.doesNotMatch(drawLegsSource, /traceLegPath|ctx\.(?:ellipse|arc)\s*\(/, 'visible limbs must not regress to stroked bones or oval feet');
 assert.doesNotMatch(drawShadowSource, /traceLegPath|ctx\.(?:ellipse|arc)\s*\(/, 'cat shadow must follow the illustrated limb silhouettes');
 assert.match(earRendererSource, /cat\.ears\.(?:left|right)/, 'ear renderer must consume independent ear poses');
+assert.match(earRendererSource, /cat\.earPerk\.(?:left|right)/, 'ear renderer must consume independent perk poses');
 assert.match(earRendererSource, /context\.rotate\s*\(earAngle\(side\)\)/, 'each ear silhouette must swivel around its root');
+assert.match(earRendererSource, /EAR_GEOMETRY\.tipForward/, 'ear silhouette must use the forward-axis geometry contract');
+assert.match(earMotionSource, /earFlickPulse\s*\(/, 'ear motion must retain independent short flicks');
+assert.match(earMotionSource, /EAR_PERK_BY_STATE/, 'ear motion must retain state-dependent perk variation');
 assert.match(drawBodySource, /strokeBodyFlanks\s*\(/, 'torso must stroke only its open side contours');
 assert.doesNotMatch(drawBodySource, /ctx\.stroke\s*\(/, 'torso must not stroke its closed fill caps');
 assert.doesNotMatch(bodyFlankSource, /closePath\s*\(|traceBodySilhouette\s*\(/, 'body flank strokes must stay open');
@@ -250,6 +255,8 @@ function finiteSnapshot(snapshot) {
     snapshot.cat.x, snapshot.cat.y, snapshot.cat.heading, snapshot.cat.speed,
     snapshot.cat.acceleration, snapshot.cat.steerOmega,
     snapshot.ears.left, snapshot.ears.right,
+    snapshot.earPerk.left, snapshot.earPerk.right,
+    snapshot.earGeometry.tipForward, snapshot.earGeometry.tipOutward, snapshot.earGeometry.maxSwivel,
     snapshot.mouse.x, snapshot.mouse.y, snapshot.mouse.speed,
     snapshot.rigScale, snapshot.turnVelocity, snapshot.rigCurvature,
     snapshot.skin.headSocketMargin, snapshot.skin.tailRootClearance, snapshot.skin.narrow,
@@ -280,8 +287,19 @@ function angleDistance(from, to) {
 function assertRigSnapshot(snapshot, label = 'rig') {
   finiteSnapshot(snapshot);
   assert.ok(Math.abs(snapshot.cat.steerOmega) <= 2.4 + 1e-6, `${label}: steering velocity escaped its profile limit`);
-  assert.ok(Math.abs(snapshot.ears.left) <= 0.43, `${label}: left ear escaped its swivel stop`);
-  assert.ok(Math.abs(snapshot.ears.right) <= 0.43, `${label}: right ear escaped its swivel stop`);
+  assert.ok(Math.abs(snapshot.ears.left) <= snapshot.earGeometry.maxSwivel + 1e-6, `${label}: left ear escaped its swivel stop`);
+  assert.ok(Math.abs(snapshot.ears.right) <= snapshot.earGeometry.maxSwivel + 1e-6, `${label}: right ear escaped its swivel stop`);
+  assert.ok(snapshot.earPerk.left >= 0.66 && snapshot.earPerk.left <= 1, `${label}: left ear perk escaped bounds`);
+  assert.ok(snapshot.earPerk.right >= 0.66 && snapshot.earPerk.right <= 1, `${label}: right ear perk escaped bounds`);
+  const neutralEarAngle = Math.atan2(snapshot.earGeometry.tipOutward, snapshot.earGeometry.tipForward);
+  assert.ok(
+    snapshot.earGeometry.tipForward > Math.abs(snapshot.earGeometry.tipOutward) * 3.5,
+    `${label}: neutral ears no longer point primarily forward`,
+  );
+  assert.ok(
+    neutralEarAngle + snapshot.earGeometry.maxSwivel < Math.PI / 4,
+    `${label}: full ear swivel can rotate a pinna sideways`,
+  );
   assert.ok(
     Math.abs(snapshot.cat.acceleration) <= 300 * snapshot.rigScale + 1e-6,
     `${label}: acceleration escaped its profile limit`,
@@ -341,6 +359,7 @@ assertRigSnapshot(snapshot, 'initial prowl');
 assert.equal(snapshot.behavior, 'prowl');
 assert.equal(snapshot.viewport.width, 1180);
 assert.equal(snapshot.viewport.height, 720);
+const initialEarPerkMean = (snapshot.earPerk.left + snapshot.earPerk.right) * 0.5;
 
 let previousStance = snapshot;
 for (let index = 0; index < 150; index += 1) {
@@ -400,6 +419,10 @@ for (let index = 0; index < 180; index += 1) {
 snapshot = sandbox.__catMouseDemo.getSnapshot();
 assertRigSnapshot(snapshot, 'settled watch');
 assert.equal(snapshot.behavior, 'watch');
+assert.ok(
+  (snapshot.earPerk.left + snapshot.earPerk.right) * 0.5 > initialEarPerkMean + 0.1,
+  'watching ears must visibly perk above the walking pose',
+);
 assert.ok(Object.values(snapshot.feet).every((foot) => foot.planted && foot.lift === 0));
 assert.equal(sawSettleSwing, true, 'an airborne paw should finish with a lift-and-place motion');
 sandbox.__catMouseDemo.releaseMouse();
@@ -503,6 +526,7 @@ let sawReachRecovery = false;
 let earAimMin = Infinity;
 let earAimMax = -Infinity;
 let maxEarAsymmetry = 0;
+let maxPerkAsymmetry = 0;
 for (const [targetX, targetY] of edgeTargets) {
   sandbox.__catMouseDemo.moveMouse(targetX, targetY);
   for (let frameIndex = 0; frameIndex < 240; frameIndex += 1) {
@@ -514,6 +538,7 @@ for (const [targetX, targetY] of edgeTargets) {
     earAimMin = Math.min(earAimMin, earAim);
     earAimMax = Math.max(earAimMax, earAim);
     maxEarAsymmetry = Math.max(maxEarAsymmetry, Math.abs(current.ears.left - current.ears.right));
+    maxPerkAsymmetry = Math.max(maxPerkAsymmetry, Math.abs(current.earPerk.left - current.earPerk.right));
     if (Object.values(current.feet).some((foot) => foot.recoveryActive)) sawReachRecovery = true;
   }
   sandbox.__catMouseDemo.releaseMouse();
@@ -522,6 +547,7 @@ for (const [targetX, targetY] of edgeTargets) {
 assert.equal(sawReachRecovery, true, 'compact edge turns must exercise anatomical reach recovery');
 assert.ok(earAimMin < -0.025 && earAimMax > 0.025, 'ears must swivel toward targets on both sides of the head');
 assert.ok(maxEarAsymmetry > 0.008, 'target-side ear must lead instead of moving as a rigid pair');
+assert.ok(maxPerkAsymmetry > 0.008, 'target-side ear must perk independently');
 
 for (const [rate, targetX, targetY] of [
   [30, 8, 8],
@@ -615,4 +641,4 @@ failureListeners.forEach((listener) => listener());
 assert.equal(failureElements.get('canvas-error').textContent, 'Canvas failed');
 assert.equal(failureElements.get('theme-toggle').getAttribute('title'), 'Light');
 
-console.log('check-runtime: directional ears, illustrated paws, seamless coat, bounded spine, anatomical reach, 548x536 edges, and UI OK');
+console.log('check-runtime: forward lively ears, illustrated paws, seamless coat, bounded spine, anatomical reach, 548x536 edges, and UI OK');

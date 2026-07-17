@@ -145,6 +145,7 @@
     stateSince: 0,
     headYaw: 0,
     ears: { left: 0, right: 0 },
+    earPerk: { left: 0.74, right: 0.74 },
     gait: Gait.createController('prowl'),
     strideLength: 0,
     feet: {},
@@ -190,6 +191,25 @@
     tailTipRadius: 0.7,
   });
 
+  // In the neutral pose the pinnae aim along the cat's forward axis. The
+  // lateral component stays deliberately small, matching the reference's
+  // rear-overhead silhouette instead of producing side-facing fins.
+  const EAR_GEOMETRY = Object.freeze({
+    rootForward: 6.8,
+    rootLateral: 10.2,
+    tipForward: 15.6,
+    tipOutward: 2.7,
+    maxSwivel: 0.29,
+  });
+
+  const EAR_PERK_BY_STATE = Object.freeze({
+    prowl: 0.74,
+    observe: 1,
+    watch: 0.92,
+    stalk: 0.96,
+    chase: 0.86,
+  });
+
   function isDark() {
     return document.documentElement.classList.contains('dark');
   }
@@ -225,6 +245,11 @@
       x: inv * inv * p0.x + 2 * inv * t * p1.x + t * t * p2.x,
       y: inv * inv * p0.y + 2 * inv * t * p1.y + t * t * p2.y,
     };
+  }
+
+  function earFlickPulse(time, phase) {
+    const envelope = Math.pow(Math.max(0, Math.sin(time * 0.73 + phase)), 9);
+    return Math.sin(time * 8.1 + phase * 2.7) * envelope;
   }
 
   function angleExpLerp(current, target, rate, dt) {
@@ -645,18 +670,43 @@
     const targetHeadYaw = Gait.clamp(lookRelative, -0.76, 0.76);
     cat.headYaw = expLerp(cat.headYaw, targetHeadYaw, prey.active ? 10 : 3.6, dt);
 
-    // The pinnae finish the gaze after the skull has taken most of the turn.
-    // Both swivel toward the target, with the target-side ear leading slightly
-    // so they never read as one rigid badge pasted onto the crown.
-    const residualLook = Gait.clamp(lookRelative - cat.headYaw * 0.7, -0.46, 0.46);
-    const earAim = residualLook * 0.82;
-    const leftEarTarget = earAim * (earAim < 0 ? 1.12 : 0.82);
-    const rightEarTarget = earAim * (earAim > 0 ? 1.12 : 0.82);
+    // The pinnae begin forward, then finish the gaze after the skull takes most
+    // of the turn. Their narrow swivel stop keeps even a hard side glance from
+    // rotating the neutral forward-pointing silhouette back into side fins.
+    const residualLook = Gait.clamp(lookRelative - cat.headYaw * 0.72, -0.46, 0.46);
+    const earAim = residualLook * 0.54;
+    const flickWeight = reducedMotion ? 0 : (prey.active ? 0.45 : 1);
+    const leftFlick = earFlickPulse(elapsed, 0.85) * 0.045 * flickWeight;
+    const rightFlick = earFlickPulse(elapsed, 3.65) * 0.045 * flickWeight;
+    const leftEarTarget = Gait.clamp(
+      earAim * (earAim < 0 ? 1.08 : 0.8) + leftFlick,
+      -EAR_GEOMETRY.maxSwivel,
+      EAR_GEOMETRY.maxSwivel,
+    );
+    const rightEarTarget = Gait.clamp(
+      earAim * (earAim > 0 ? 1.08 : 0.8) + rightFlick,
+      -EAR_GEOMETRY.maxSwivel,
+      EAR_GEOMETRY.maxSwivel,
+    );
     const earRate = prey.active ? 13 : 5.2;
     cat.ears.left = angleExpLerp(cat.ears.left, leftEarTarget, earRate, dt);
     cat.ears.right = angleExpLerp(cat.ears.right, rightEarTarget, earRate, dt);
 
     const a = anatomy();
+    const basePerk = EAR_PERK_BY_STATE[cat.state] || 0.8;
+    const leftPerkTarget = Gait.clamp(
+      basePerk + (earAim < -0.035 ? 0.04 : -0.01) + Math.abs(leftFlick) * 0.45,
+      0.66,
+      1,
+    );
+    const rightPerkTarget = Gait.clamp(
+      basePerk + (earAim > 0.035 ? 0.04 : -0.01) + Math.abs(rightFlick) * 0.45,
+      0.66,
+      1,
+    );
+    cat.earPerk.left = expLerp(cat.earPerk.left, leftPerkTarget, prey.active ? 9 : 4.2, dt);
+    cat.earPerk.right = expLerp(cat.earPerk.right, rightPerkTarget, prey.active ? 9 : 4.2, dt);
+
     let desiredSpeed = Gait.targetSpeedForBehavior(
       cat.state,
       goalDistance / a.scale,
@@ -1337,28 +1387,40 @@
     return side < 0 ? cat.ears.left : cat.ears.right;
   }
 
+  function earPerk(side) {
+    return side < 0 ? cat.earPerk.left : cat.earPerk.right;
+  }
+
+  function applyEarPose(context, a, side) {
+    const perk = earPerk(side);
+    context.translate(
+      EAR_GEOMETRY.rootForward * a.scale,
+      side * EAR_GEOMETRY.rootLateral * a.scale,
+    );
+    context.rotate(earAngle(side));
+    context.scale(0.91 + perk * 0.09, 1.1 - perk * 0.1);
+  }
+
   function traceEarSilhouette(context, a, side) {
     context.save();
-    context.translate(4.2 * a.scale, side * 12.2 * a.scale);
-    context.rotate(earAngle(side));
+    applyEarPose(context, a, side);
     context.beginPath();
-    context.moveTo(-5 * a.scale, side * 0.2 * a.scale);
-    context.bezierCurveTo(-2.5 * a.scale, side * 2.8 * a.scale, 1.8 * a.scale, side * 8.5 * a.scale, 5.4 * a.scale, side * 11.8 * a.scale);
-    context.bezierCurveTo(7.5 * a.scale, side * 9.2 * a.scale, 9.5 * a.scale, side * 5 * a.scale, 9.2 * a.scale, side * 1.2 * a.scale);
-    context.bezierCurveTo(5 * a.scale, side * -0.4 * a.scale, 0.2 * a.scale, side * -0.7 * a.scale, -5 * a.scale, side * 0.2 * a.scale);
+    context.moveTo(-4.2 * a.scale, side * 0.3 * a.scale);
+    context.bezierCurveTo(0.6 * a.scale, side * 0.2 * a.scale, 10 * a.scale, side * 1 * a.scale, EAR_GEOMETRY.tipForward * a.scale, side * EAR_GEOMETRY.tipOutward * a.scale);
+    context.bezierCurveTo(14.2 * a.scale, side * 4.4 * a.scale, 10.8 * a.scale, side * 5.7 * a.scale, 7.2 * a.scale, side * 5.5 * a.scale);
+    context.bezierCurveTo(3.2 * a.scale, side * 4.8 * a.scale, -1 * a.scale, side * 2.1 * a.scale, -4.2 * a.scale, side * 0.3 * a.scale);
     context.closePath();
     context.restore();
   }
 
   function traceInnerEar(context, a, side) {
     context.save();
-    context.translate(4.2 * a.scale, side * 12.2 * a.scale);
-    context.rotate(earAngle(side));
+    applyEarPose(context, a, side);
     context.beginPath();
-    context.moveTo(-1.8 * a.scale, side * 1.2 * a.scale);
-    context.bezierCurveTo(0.6 * a.scale, side * 3.2 * a.scale, 3.2 * a.scale, side * 7.1 * a.scale, 5.2 * a.scale, side * 8.8 * a.scale);
-    context.bezierCurveTo(6.6 * a.scale, side * 6.8 * a.scale, 7.3 * a.scale, side * 4.2 * a.scale, 7.1 * a.scale, side * 2.5 * a.scale);
-    context.bezierCurveTo(4.1 * a.scale, side * 1.3 * a.scale, 1 * a.scale, side * 0.8 * a.scale, -1.8 * a.scale, side * 1.2 * a.scale);
+    context.moveTo(0.5 * a.scale, side * 1.1 * a.scale);
+    context.bezierCurveTo(5 * a.scale, side * 1.1 * a.scale, 10.9 * a.scale, side * 1.75 * a.scale, 13.3 * a.scale, side * 2.65 * a.scale);
+    context.bezierCurveTo(11.9 * a.scale, side * 3.55 * a.scale, 9.8 * a.scale, side * 4.2 * a.scale, 7.4 * a.scale, side * 4.05 * a.scale);
+    context.bezierCurveTo(4.7 * a.scale, side * 3.6 * a.scale, 2.1 * a.scale, side * 2.35 * a.scale, 0.5 * a.scale, side * 1.1 * a.scale);
     context.closePath();
     context.restore();
   }
@@ -2095,6 +2157,8 @@
       rigScale: anatomy().scale,
       turnVelocity: cat.rig.turnVelocity,
       ears: Object.assign({}, cat.ears),
+      earPerk: Object.assign({}, cat.earPerk),
+      earGeometry: Object.assign({}, EAR_GEOMETRY),
       skin: Object.assign(skinTopologySnapshot(), { narrow: cat.skinNarrow }),
       support: Object.assign({}, cat.support),
       touchdowns: cat.touchdowns.map((touchdown) => Object.assign({}, touchdown)),
