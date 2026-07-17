@@ -1678,7 +1678,7 @@
     context.closePath();
   }
 
-  function traceLegSilhouette(context, geometry, foot, a, offsetX, offsetY) {
+  function legRibbon(geometry, foot, a) {
     const points = legRenderPoints(geometry);
     const baseRadius = (geometry.config.fore ? 6.35 : 7.35) * a.scale;
     const ankleRadius = (geometry.config.fore ? 4.15 : 4.85) * a.scale;
@@ -1688,7 +1688,36 @@
       const liftTaper = 1 - foot.lift * t * 0.08;
       return (baseRadius + (ankleRadius - baseRadius) * Math.pow(t, 0.78) + jointVolume) * liftTaper;
     });
-    traceVariableRibbon(context, points, radii, offsetX, offsetY);
+    return { points, radii };
+  }
+
+  function traceLegSilhouette(context, geometry, foot, a, offsetX, offsetY) {
+    const ribbon = legRibbon(geometry, foot, a);
+    traceVariableRibbon(context, ribbon.points, ribbon.radii, offsetX, offsetY);
+  }
+
+  // 腿的可见描边只走两条侧缘（同躯干 strokeBodyFlanks 的处理）：脚踝端不画封口弧，
+  // 侧缘线自然流进爪轮廓 → 腿与爪不再是"两个几何体叠放"。
+  function strokeLegFlanks(context, geometry, foot, a) {
+    const ribbon = legRibbon(geometry, foot, a);
+    const left = [];
+    const right = [];
+    ribbon.points.forEach((point, index) => {
+      const previous = ribbon.points[Math.max(0, index - 1)];
+      const next = ribbon.points[Math.min(ribbon.points.length - 1, index + 1)];
+      const dx = next.x - previous.x;
+      const dy = next.y - previous.y;
+      const distance = Math.max(0.001, Math.hypot(dx, dy));
+      const radius = ribbon.radii[index];
+      left.push({ x: point.x - dy / distance * radius, y: point.y + dx / distance * radius });
+      right.push({ x: point.x + dy / distance * radius, y: point.y - dx / distance * radius });
+    });
+    context.beginPath();
+    smoothOpenPath(context, left);
+    context.stroke();
+    context.beginPath();
+    smoothOpenPath(context, right);
+    context.stroke();
   }
 
   function tracePawSilhouette(context, a, config) {
@@ -1961,19 +1990,25 @@
       traceLegSilhouette(ctx, geometry, foot, a, 0, 0);
       ctx.fill();
       ctx.globalAlpha = 0.46;
-      ctx.stroke();
+      strokeLegFlanks(ctx, geometry, foot, a);
       ctx.restore();
 
       ctx.save();
       ctx.translate(foot.x, foot.y);
       ctx.rotate(Number.isFinite(foot.angle) ? foot.angle : cat.heading);
       ctx.scale(1 - foot.lift * 0.08, 1 - foot.lift * 0.12);
-      ctx.fillStyle = c.cream;   // 奶油"袜子"：落步一眼可读（步态因此看得见）
+      ctx.fillStyle = c.fur;   // 爪先铺底毛：与腿同一块皮毛 → 单一连续肢体
       ctx.strokeStyle = c.furDark;
       ctx.lineJoin = 'round';
       ctx.lineWidth = 0.82 * a.scale;
       tracePawSilhouette(ctx, a, geometry.config);
       ctx.fill();
+      ctx.save();
+      ctx.scale(0.84, 0.84);
+      ctx.fillStyle = c.cream;   // 奶油"袜子"缩进爪缘内 → 读作皮毛上的斑纹而非另一块几何
+      tracePawSilhouette(ctx, a, geometry.config);
+      ctx.fill();
+      ctx.restore();
       ctx.globalAlpha = 0.46;
       strokePawOutline(ctx, a, geometry.config);
       ctx.stroke();
@@ -2345,10 +2380,86 @@
     ctx.restore();
   }
 
+  // 老鼠是否被猫的身体遮住：身体/头部（含耳冠）用 isPointInPath 精确测（路径在变换后空间构建，
+  // 而测试点参数不受当前变换影响 → 需乘 dpr）；尾巴按逐节半径距离测；爪按圆域测。
+  function mouseHiddenUnderCat() {
+    const a = anatomy();
+    const px = prey.x * viewport.dpr;
+    const py = prey.y * viewport.dpr;
+    traceBodySilhouette(ctx, a, 0, 0);
+    let hidden = ctx.isPointInPath(px, py);
+    if (!hidden) {
+      ctx.save();
+      ctx.translate(cat.rig.head.x, cat.rig.head.y);
+      ctx.rotate(cat.rig.head.angle);
+      traceHeadSilhouette(ctx, a);
+      hidden = ctx.isPointInPath(px, py);
+      ctx.restore();
+    }
+    if (!hidden) {
+      const renderTail = tailRenderPoints(a);
+      const lastIndex = Math.max(1, renderTail.length - 1);
+      for (let index = 0; index < renderTail.length; index += 1) {
+        const t = index / lastIndex;
+        const radius = (
+          (SKIN_TOPOLOGY.tailRootRadius - SKIN_TOPOLOGY.tailTipRadius) * Math.pow(1 - t, 0.5)
+          + SKIN_TOPOLOGY.tailTipRadius
+        ) * a.scale + 2;
+        const dx = prey.x - renderTail[index].x;
+        const dy = prey.y - renderTail[index].y;
+        if (dx * dx + dy * dy < radius * radius) { hidden = true; break; }
+      }
+    }
+    if (!hidden) {
+      for (const limb of Gait.LIMBS) {
+        const foot = cat.feet[limb];
+        if (!foot) continue;
+        const dx = prey.x - foot.x;
+        const dy = prey.y - foot.y;
+        if (dx * dx + dy * dy < (11 * a.scale) * (11 * a.scale)) { hidden = true; break; }
+      }
+    }
+    ctx.beginPath();
+    return hidden;
+  }
+
   function drawMouse(c) {
     if (!prey.active) return;
     const scale = Gait.clamp(Math.min(viewport.width, viewport.height) / 800, 0.78, 1.05);
     const speedStretch = Gait.clamp(prey.speed / 700, 0, 0.14);
+    const hidden = mouseHiddenUnderCat();
+    if (hidden) {
+      // 被猫身遮住：改画轮廓线稿（"在猫身下"的正确读法），不再实心叠在猫背上
+      ctx.save();
+      ctx.translate(prey.x, prey.y);
+      ctx.rotate(prey.angle);
+      ctx.strokeStyle = c.mouse;
+      ctx.lineCap = 'round';
+      ctx.globalAlpha = 0.6;
+      ctx.lineWidth = 1.6 * scale;
+      ctx.beginPath();
+      ctx.moveTo(-20 * scale, 0);
+      ctx.bezierCurveTo(
+        -31 * scale,
+        Math.sin(elapsed * 4.2) * 5 * scale,
+        -39 * scale,
+        Math.cos(elapsed * 3.1) * 8 * scale,
+        -48 * scale,
+        Math.sin(elapsed * 2.7) * 9 * scale,
+      );
+      ctx.stroke();
+      ctx.scale(1 + speedStretch, 1 - speedStretch * 0.35);
+      ctx.beginPath();
+      ctx.ellipse(-7 * scale, 0, 17 * scale, 10 * scale, 0, 0, Gait.TAU);
+      ctx.stroke();
+      [-6, 6].forEach((side) => {
+        ctx.beginPath();
+        ctx.arc(-1 * scale, side * scale, 4.5 * scale, 0, Gait.TAU);
+        ctx.stroke();
+      });
+      ctx.restore();
+      return;
+    }
     ctx.save();
     ctx.translate(prey.x, prey.y);
     ctx.rotate(prey.angle);
@@ -2435,8 +2546,8 @@
     drawRoom(c);
     drawPrints(c);
     drawCatShadow(c);
-    drawTail(c);
     drawLegs(c);
+    drawTail(c);   // 尾巴悬空于地面之上 → 压在贴地的爪子上方（图层序修正）
     drawBody(c);
     drawMouse(c);
   }
