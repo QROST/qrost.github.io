@@ -1,14 +1,23 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1200" viewBox="0 0 1200 1200">
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 285 1200 630">
   <defs>
     <linearGradient id="floor" x1="0" y1="0" x2="1" y2="1">
       <stop offset="0" stop-color="#ece4d5"/>
       <stop offset="1" stop-color="#d5c7b1"/>
     </linearGradient>
     <linearGradient id="fur" x1="0" y1="0" x2="1" y2="0">
-      <stop offset="0" stop-color="#b85f35"/>
-      <stop offset="0.58" stop-color="#d5804a"/>
-      <stop offset="1" stop-color="#eca66e"/>
+      <stop offset="0" stop-color="#b95f35"/>
+      <stop offset="0.48" stop-color="#d9824d"/>
+      <stop offset="1" stop-color="#eead78"/>
     </linearGradient>
+    <linearGradient id="legFur" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#c56b3d"/>
+      <stop offset="1" stop-color="#e59a62"/>
+    </linearGradient>
+    <radialGradient id="dorsalGlow" cx="58%" cy="38%" r="68%">
+      <stop offset="0" stop-color="#f3b783" stop-opacity=".7"/>
+      <stop offset=".55" stop-color="#dc864f" stop-opacity=".2"/>
+      <stop offset="1" stop-color="#9d4e2e" stop-opacity=".38"/>
+    </radialGradient>
     <filter id="shadow" x="-40%" y="-80%" width="180%" height="260%">
       <feGaussianBlur stdDeviation="12"/>
     </filter>
@@ -18,6 +27,8 @@
     <pattern id="threads" width="96" height="28" patternUnits="userSpaceOnUse">
       <path d="M0 14 C24 7 72 21 96 14" fill="none" stroke="#765a3d" stroke-opacity=".055" stroke-width="1"/>
     </pattern>
+    <path id="catBody" d="M-148 4C-149-31-130-57-99-69C-74-80-48-77-27-66C-14-60-6-56 7-60C31-68 57-60 76-46C91-35 101-19 101-4C102 14 91 31 75 42C55 57 30 62 8 57C-6 54-14 58-28 64C-50 74-76 76-101 65C-132 52-149 34-148 4Z"/>
+    <path id="catHead" d="M-31-27C-26-40-14-49 2-51L-9-68C-12-74-7-77-2-73L19-56C35-52 48-43 55-29C64-22 70-12 70 0C70 12 64 22 55 29C48 43 35 52 19 56L-2 73C-7 77-12 74-9 68L2 51C-14 49-26 40-31 27C-39 20-43 10-43 0C-43-10-39-20-31-27Z"/>
   </defs>
 
   <g transform="translate(0 285)">
@@ -32,49 +43,106 @@
     <text x="84" y="52" font-family="-apple-system,BlinkMacSystemFont,'PingFang SC','Segoe UI',sans-serif" font-size="14" font-weight="700" letter-spacing="6">QROST · FOUR-PHASE FELINE GAIT</text>
   </g>
 
-  <g transform="translate(490 330) rotate(-7)">
-    <ellipse cx="-8" cy="20" rx="176" ry="66" fill="#5a3b27" fill-opacity=".18" filter="url(#shadow)"/>
+  <g transform="translate(490 330) rotate(-7) scale(1 .84)">
+    <ellipse cx="-3" cy="18" rx="190" ry="73" fill="#533522" fill-opacity=".18" filter="url(#shadow)"/>
 
-    <path d="M-138 9 C-202 17 -238 63 -300 58 C-340 55 -357 29 -337 8" fill="none" stroke="#713b25" stroke-width="31" stroke-linecap="round"/>
-    <path d="M-138 7 C-202 15 -238 58 -300 53 C-337 50 -351 29 -335 10" fill="none" stroke="#cc7343" stroke-width="24" stroke-linecap="round"/>
-    <path d="M-252 46l-2 21M-296 49l-1 18" stroke="#713b25" stroke-width="7" stroke-linecap="round"/>
-
-    <g stroke-linecap="round" stroke-linejoin="round">
-      <path d="M-82 -38L-115 -82L-132 -92" fill="none" stroke="#713b25" stroke-width="28"/>
-      <path d="M-82 -38L-115 -82L-132 -92" fill="none" stroke="#d07a48" stroke-width="21"/>
-      <ellipse cx="-136" cy="-95" rx="17" ry="10" fill="#713b25"/>
-      <path d="M-66 39L-93 88L-76 104" fill="none" stroke="#713b25" stroke-width="28"/>
-      <path d="M-66 39L-93 88L-76 104" fill="none" stroke="#d07a48" stroke-width="21"/>
-      <ellipse cx="-71" cy="107" rx="17" ry="10" fill="#713b25"/>
-      <path d="M57 -38L79 -88L106 -101" fill="none" stroke="#713b25" stroke-width="28"/>
-      <path d="M57 -38L79 -88L106 -101" fill="none" stroke="#da8751" stroke-width="21"/>
-      <ellipse cx="111" cy="-104" rx="18" ry="10" fill="#713b25"/>
-      <path d="M70 36L104 76L132 72" fill="none" stroke="#713b25" stroke-width="28"/>
-      <path d="M70 36L104 76L132 72" fill="none" stroke="#da8751" stroke-width="21"/>
-      <ellipse cx="138" cy="71" rx="18" ry="10" fill="#713b25"/>
+    <!-- A single tapered tail silhouette reads as fur, not connected pipe segments. -->
+    <path d="M-137 18C-199 25-237 77-302 72C-351 68-375 41-357 5C-350-10-340-16-330-9" fill="none" stroke="#784027" stroke-width="38" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M-137 17C-198 24-237 72-301 67C-345 64-365 40-350 9C-344-2-338-7-331-2" fill="none" stroke="#d47a48" stroke-width="29" stroke-linecap="round" stroke-linejoin="round"/>
+    <g fill="none" stroke="#7d4228" stroke-width="6" stroke-linecap="round" opacity=".72">
+      <path d="M-205 43q8 12 6 25"/>
+      <path d="M-250 61q5 8 3 18"/>
+      <path d="M-296 63q3 7 1 16"/>
+      <path d="M-337 49q-2 6-7 11"/>
     </g>
 
-    <path d="M-139 0C-132-59-74-72-18-63C42-72 112-55 133-13C145 8 133 29 110 42C73 64 22 66-23 59C-76 68-133 52-139 0Z" fill="url(#fur)" stroke="#713b25" stroke-width="3"/>
-    <path d="M-104-46q16 18 5 35M-55-56q14 19 4 38M-2-58q13 18 4 37M50-52q13 17 5 34" fill="none" stroke="#743b25" stroke-opacity=".65" stroke-width="10" stroke-linecap="round"/>
-    <path d="M-104 46q16-18 5-35M-55 56q14-19 4-38M-2 58q13-18 4-37M50 52q13-17 5-34" fill="none" stroke="#743b25" stroke-opacity=".65" stroke-width="10" stroke-linecap="round"/>
-    <path d="M-103-16C-53-30 30-29 96-13" fill="none" stroke="#f3b57e" stroke-opacity=".38" stroke-width="15" stroke-linecap="round"/>
+    <!-- Curved limbs share one continuous coat colour; the torso hides their roots. -->
+    <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M-91-35Q-105-56-121-68" stroke="#82452b" stroke-width="23"/>
+      <path d="M-91-35Q-105-56-121-68" stroke="url(#legFur)" stroke-width="16"/>
+      <path d="M-71 38Q-82 58-75 78" stroke="#82452b" stroke-width="24"/>
+      <path d="M-71 38Q-82 58-75 78" stroke="url(#legFur)" stroke-width="17"/>
+      <path d="M48-39Q62-59 84-70" stroke="#82452b" stroke-width="20"/>
+      <path d="M48-39Q62-59 84-70" stroke="url(#legFur)" stroke-width="13.5"/>
+      <path d="M62 38Q82 57 105 58" stroke="#82452b" stroke-width="20"/>
+      <path d="M62 38Q82 57 105 58" stroke="url(#legFur)" stroke-width="13.5"/>
+    </g>
+    <g fill="#d98751" stroke="#81442a" stroke-opacity=".55" stroke-width="1.5">
+      <path d="M-133-70C-132-78-122-83-112-79C-104-76-103-68-109-63C-117-58-131-61-133-70Z"/>
+      <path d="M-86 79C-84 71-75 68-66 72C-58 76-59 84-67 88C-76 91-87 87-86 79Z"/>
+      <path d="M76-73C78-82 89-86 99-81C106-77 105-69 97-65C88-61 75-64 76-73Z"/>
+      <path d="M98 54C106 49 119 50 124 58C128 66 120 72 110 71C101 71 93 62 98 54Z"/>
+    </g>
+    <g fill="none" stroke="#744029" stroke-width="1.8" stroke-linecap="round" opacity=".58">
+      <path d="M-126-72l8 4M-122-77l9 4M-79 79l9-2M-77 84l8-2M84-75l9 3M88-80l8 3M106 58l9 1M105 64l9 1"/>
+    </g>
 
-    <g transform="translate(142 -2) rotate(5)">
-      <path d="M-15-35L-33-61L7-50ZM-15 35L-33 61L7 50Z" fill="#713b25"/>
-      <path d="M-13-39L-27-55L2-48ZM-13 39L-27 55L2 48Z" fill="#cf9184"/>
-      <ellipse rx="55" ry="45" fill="#d9824d" stroke="#713b25" stroke-width="3"/>
-      <ellipse cx="29" rx="25" ry="24" fill="#f0c693" fill-opacity=".78"/>
-      <g fill="#d5e47b" stroke="#33271e" stroke-width="2">
-        <ellipse cx="12" cy="-17" rx="11" ry="7"/>
-        <ellipse cx="12" cy="17" rx="11" ry="7"/>
+    <use href="#catBody" fill="url(#fur)" stroke="#744029" stroke-opacity=".58" stroke-width="2"/>
+    <use href="#catBody" fill="url(#dorsalGlow)" opacity=".48"/>
+    <ellipse cx="-78" cy="-9" rx="46" ry="45" fill="#9f4f2e" fill-opacity=".055"/>
+    <ellipse cx="48" cy="-8" rx="43" ry="38" fill="#f6c08e" fill-opacity=".055"/>
+    <path d="M-119-33C-83-61-41-53-17-42C11-54 50-50 78-28" fill="none" stroke="#f6c08e" stroke-opacity=".32" stroke-width="10" stroke-linecap="round"/>
+
+    <!-- Asymmetric, tapered tabby marks follow the body volume. -->
+    <g fill="#7e4027" fill-opacity=".63">
+      <path d="M-111-54C-99-49-90-39-89-25C-91-17-98-16-103-23C-101-35-108-43-116-47Z"/>
+      <path d="M-72-67C-58-60-52-48-53-34C-56-25-63-25-68-32C-64-45-70-54-78-59Z"/>
+      <path d="M-25-61C-12-56-6-45-8-33C-11-25-17-25-21-31C-18-42-23-50-31-55Z"/>
+      <path d="M23-61C37-55 43-43 39-31C35-23 29-24 26-31C30-42 24-51 17-55Z"/>
+      <path d="M-104 51C-94 44-89 34-91 24C-95 17-101 18-105 24C-101 34-108 42-115 46Z"/>
+      <path d="M-58 68C-47 60-43 49-46 37C-50 29-57 30-60 37C-55 49-62 57-68 61Z"/>
+      <path d="M-8 59C3 52 8 42 5 31C1 24-5 25-9 31C-4 42-11 50-17 54Z"/>
+      <path d="M46 54C57 46 61 36 57 27C53 20 47 21 44 27C49 37 42 46 36 49Z"/>
+    </g>
+
+    <!-- Irregular chest ruff bridges torso and head. -->
+    <path d="M73-25C91-31 108-23 121-12L117-4L125 2L116 10C103 25 88 30 72 24C83 16 86 8 84 1C87-8 83-17 73-25Z" fill="#efd0a5" fill-opacity=".8"/>
+
+    <g transform="translate(128 -2) rotate(3) scale(.88 .76)">
+      <!-- Rounded ears sit behind the head and disappear into its crown. -->
+      <path d="M-17-38C-24-51-29-64-22-71C-16-76 2-65 14-54C3-53-8-47-17-38Z" fill="#9a5030"/>
+      <path d="M-15 38C-24 51-28 65-21 71C-14 76 3 64 14 54C3 53-8 47-15 38Z" fill="#9a5030"/>
+      <path d="M-16-47C-18-56-18-63-14-65C-9-66 2-59 8-54C-1-54-9-51-16-47Z" fill="#d79a91" fill-opacity=".74"/>
+      <path d="M-15 47C-17 56-17 63-13 65C-8 66 2 59 8 54C-1 54-9 51-15 47Z" fill="#d79a91" fill-opacity=".74"/>
+
+      <use href="#catHead" fill="#df8c55"/>
+      <use href="#catHead" fill="url(#dorsalGlow)" opacity=".35"/>
+      <path d="M18-56C37-51 49-41 55-29C65-21 70-11 70 0C70 12 64 22 55 29C48 43 35 52 19 56" fill="none" stroke="#744029" stroke-opacity=".62" stroke-width="2" stroke-linecap="round"/>
+
+      <g fill="#7c4028" fill-opacity=".66">
+        <path d="M-3-48C5-43 10-37 10-30C7-25 3-25 0-30C2-36-2-41-7-44Z"/>
+        <path d="M12-50C19-45 23-39 22-33C19-28 15-29 13-33C15-39 11-43 8-46Z"/>
+        <path d="M-2 48C5 43 10 37 10 30C7 25 3 25 0 30C2 36-2 41-7 44Z"/>
+      </g>
+
+      <!-- Almond eyes with warm olive irises and tiny catchlights. -->
+      <g stroke="#30271f" stroke-width="1.8" stroke-linejoin="round">
+        <path d="M7-20Q20-29 35-20Q21-10 7-16Z" fill="#b9c86c"/>
+        <path d="M7 20Q20 29 35 20Q21 10 7 16Z" fill="#b9c86c"/>
       </g>
       <g fill="#211a15">
-        <ellipse cx="16" cy="-17" rx="2.5" ry="6"/>
-        <ellipse cx="16" cy="17" rx="2.5" ry="6"/>
+        <ellipse cx="24" cy="-19" rx="2.2" ry="6.4"/>
+        <ellipse cx="24" cy="19" rx="2.2" ry="6.4"/>
       </g>
-      <path d="M50 0l-10-7v14z" fill="#d77e76"/>
-      <g fill="none" stroke="#644634" stroke-width="2" stroke-linecap="round">
-        <path d="M39-11Q64-23 80-30M40-7Q69-10 84-11M39 11Q64 23 80 30M40 7Q69 10 84 11"/>
+      <g fill="#fff7e9" opacity=".88">
+        <circle cx="26" cy="-22" r="1.4"/>
+        <circle cx="26" cy="16" r="1.4"/>
+      </g>
+
+      <!-- Two muzzle pads, a small nose, and a soft mouth replace the face disc. -->
+      <ellipse cx="45" cy="-8" rx="17" ry="13" fill="#f2d6ae"/>
+      <ellipse cx="45" cy="8" rx="17" ry="13" fill="#f2d6ae"/>
+      <path d="M59 0C57-5 50-6 47 0C50 6 57 5 59 0Z" fill="#c87871"/>
+      <g fill="none" stroke="#6d4635" stroke-width="1.5" stroke-linecap="round">
+        <path d="M54 5Q52 10 47 11M54 5Q57 10 61 10"/>
+      </g>
+      <g fill="#8c6049" opacity=".58">
+        <circle cx="43" cy="-14" r="1.2"/><circle cx="48" cy="-15" r="1.1"/><circle cx="52" cy="-13" r="1"/>
+        <circle cx="43" cy="14" r="1.2"/><circle cx="48" cy="15" r="1.1"/><circle cx="52" cy="13" r="1"/>
+      </g>
+      <g fill="none" stroke="#624839" stroke-width="1.7" stroke-linecap="round" opacity=".82">
+        <path d="M44-13Q67-27 87-31M47-9Q72-16 91-14M47-5Q73-6 92 0"/>
+        <path d="M44 13Q67 27 87 31M47 9Q72 16 91 14M47 5Q73 6 92 0"/>
       </g>
     </g>
   </g>

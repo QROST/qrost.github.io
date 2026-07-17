@@ -189,7 +189,7 @@ function finiteSnapshot(snapshot) {
     snapshot.cat.x, snapshot.cat.y, snapshot.cat.heading, snapshot.cat.speed,
     snapshot.mouse.x, snapshot.mouse.y, snapshot.mouse.speed,
     ...Object.values(snapshot.phases),
-    ...Object.values(snapshot.feet).flatMap((foot) => [foot.x, foot.y, foot.lift]),
+    ...Object.values(snapshot.feet).flatMap((foot) => [foot.x, foot.y, foot.angle, foot.lift]),
     snapshot.tailTip.x, snapshot.tailTip.y,
   ]) assert.ok(Number.isFinite(value), `runtime emitted a non-finite value: ${value}`);
 }
@@ -213,6 +213,10 @@ for (let index = 0; index < 150; index += 1) {
         current.feet[limb].y - previousStance.feet[limb].y,
       );
       assert.ok(slip < 1e-7, `${limb} stance paw slipped ${slip}px`);
+      assert.ok(
+        Math.abs(current.feet[limb].angle - previousStance.feet[limb].angle) < 1e-12,
+        `${limb} stance paw rotated in place`,
+      );
     }
   }
   previousStance = current;
@@ -233,6 +237,10 @@ for (let index = 0; index < 180; index += 1) {
         current.feet[limb].y - previousSettle.feet[limb].y,
       );
       assert.ok(slip < 1e-7, `${limb} planted paw slipped while settling`);
+      assert.ok(
+        Math.abs(current.feet[limb].angle - previousSettle.feet[limb].angle) < 1e-12,
+        `${limb} planted paw rotated while settling`,
+      );
     }
   }
   previousSettle = current;
