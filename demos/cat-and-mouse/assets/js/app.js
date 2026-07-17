@@ -89,7 +89,6 @@
       furLight: '#e7a36c',
       furDark: '#7d4126',
       stripe: 'rgba(93, 45, 24, 0.52)',
-      earInner: '#a95f4e',
       pupil: '#241c17',
       mouse: '#736b64',
       mouseLight: '#a39a90',
@@ -108,7 +107,6 @@
       furLight: '#f0ad74',
       furDark: '#713a24',
       stripe: 'rgba(80, 36, 22, 0.62)',
-      earInner: '#b96857',
       pupil: '#17130f',
       mouse: '#aaa29a',
       mouseLight: '#d0c7bd',
@@ -191,15 +189,17 @@
     tailTipRadius: 0.7,
   });
 
-  // In the neutral pose the pinnae aim along the cat's forward axis. The
-  // lateral component stays deliberately small, matching the reference's
-  // rear-overhead silhouette instead of producing side-facing fins.
+  // The neutral pinnae are short, broad triangles: forward-leading, but with
+  // enough outward splay and base width to read as feline ears rather than a
+  // pair of upright horns.
   const EAR_GEOMETRY = Object.freeze({
-    rootForward: 6.8,
-    rootLateral: 10.2,
-    tipForward: 15.6,
-    tipOutward: 2.7,
-    maxSwivel: 0.29,
+    rootForward: 10.8,
+    rootLateral: 8.4,
+    tipForward: 10.8,
+    tipOutward: 5.2,
+    tipRound: 1.25,
+    baseOutward: 10.2,
+    maxSwivel: 0.22,
   });
 
   const EAR_PERK_BY_STATE = Object.freeze({
@@ -676,15 +676,15 @@
     const residualLook = Gait.clamp(lookRelative - cat.headYaw * 0.72, -0.46, 0.46);
     const earAim = residualLook * 0.54;
     const flickWeight = reducedMotion ? 0 : (prey.active ? 0.45 : 1);
-    const leftFlick = earFlickPulse(elapsed, 0.85) * 0.045 * flickWeight;
-    const rightFlick = earFlickPulse(elapsed, 3.65) * 0.045 * flickWeight;
+    const leftFlick = earFlickPulse(elapsed, 0.85) * 0.07 * flickWeight;
+    const rightFlick = earFlickPulse(elapsed, 3.65) * 0.07 * flickWeight;
     const leftEarTarget = Gait.clamp(
-      earAim * (earAim < 0 ? 1.08 : 0.8) + leftFlick,
+      earAim * (earAim < 0 ? 1.08 : 0.8) + leftFlick - 0.028,
       -EAR_GEOMETRY.maxSwivel,
       EAR_GEOMETRY.maxSwivel,
     );
     const rightEarTarget = Gait.clamp(
-      earAim * (earAim > 0 ? 1.08 : 0.8) + rightFlick,
+      earAim * (earAim > 0 ? 1.08 : 0.8) + rightFlick + 0.018,
       -EAR_GEOMETRY.maxSwivel,
       EAR_GEOMETRY.maxSwivel,
     );
@@ -1393,34 +1393,31 @@
 
   function applyEarPose(context, a, side) {
     const perk = earPerk(side);
+    const lengthBias = side < 0 ? 0.98 : 1.02;
+    const widthBias = side < 0 ? 1.03 : 0.97;
+    const rootForwardBias = side < 0 ? -0.45 : 0.3;
+    const rootLateralBias = side < 0 ? 0.3 : -0.2;
     context.translate(
-      EAR_GEOMETRY.rootForward * a.scale,
-      side * EAR_GEOMETRY.rootLateral * a.scale,
+      (EAR_GEOMETRY.rootForward + rootForwardBias) * a.scale,
+      side * (EAR_GEOMETRY.rootLateral + rootLateralBias) * a.scale,
     );
     context.rotate(earAngle(side));
-    context.scale(0.91 + perk * 0.09, 1.1 - perk * 0.1);
+    context.scale(
+      (0.96 + perk * 0.04) * lengthBias,
+      (1.04 - perk * 0.04) * widthBias,
+    );
   }
 
   function traceEarSilhouette(context, a, side) {
+    const tipShoulder = EAR_GEOMETRY.tipForward - EAR_GEOMETRY.tipRound;
     context.save();
     applyEarPose(context, a, side);
     context.beginPath();
-    context.moveTo(-4.2 * a.scale, side * 0.3 * a.scale);
-    context.bezierCurveTo(0.6 * a.scale, side * 0.2 * a.scale, 10 * a.scale, side * 1 * a.scale, EAR_GEOMETRY.tipForward * a.scale, side * EAR_GEOMETRY.tipOutward * a.scale);
-    context.bezierCurveTo(14.2 * a.scale, side * 4.4 * a.scale, 10.8 * a.scale, side * 5.7 * a.scale, 7.2 * a.scale, side * 5.5 * a.scale);
-    context.bezierCurveTo(3.2 * a.scale, side * 4.8 * a.scale, -1 * a.scale, side * 2.1 * a.scale, -4.2 * a.scale, side * 0.3 * a.scale);
-    context.closePath();
-    context.restore();
-  }
-
-  function traceInnerEar(context, a, side) {
-    context.save();
-    applyEarPose(context, a, side);
-    context.beginPath();
-    context.moveTo(0.5 * a.scale, side * 1.1 * a.scale);
-    context.bezierCurveTo(5 * a.scale, side * 1.1 * a.scale, 10.9 * a.scale, side * 1.75 * a.scale, 13.3 * a.scale, side * 2.65 * a.scale);
-    context.bezierCurveTo(11.9 * a.scale, side * 3.55 * a.scale, 9.8 * a.scale, side * 4.2 * a.scale, 7.4 * a.scale, side * 4.05 * a.scale);
-    context.bezierCurveTo(4.7 * a.scale, side * 3.6 * a.scale, 2.1 * a.scale, side * 2.35 * a.scale, 0.5 * a.scale, side * 1.1 * a.scale);
+    context.moveTo(-6.2 * a.scale, side * 0.9 * a.scale);
+    context.quadraticCurveTo(2.7 * a.scale, side * 1.1 * a.scale, tipShoulder * a.scale, side * (EAR_GEOMETRY.tipOutward - 1.05) * a.scale);
+    context.quadraticCurveTo(EAR_GEOMETRY.tipForward * a.scale, side * EAR_GEOMETRY.tipOutward * a.scale, tipShoulder * a.scale, side * (EAR_GEOMETRY.tipOutward + 1.05) * a.scale);
+    context.quadraticCurveTo(4.4 * a.scale, side * 10 * a.scale, -2.3 * a.scale, side * EAR_GEOMETRY.baseOutward * a.scale);
+    context.quadraticCurveTo(-5.4 * a.scale, side * 5.5 * a.scale, -6.2 * a.scale, side * 0.9 * a.scale);
     context.closePath();
     context.restore();
   }
@@ -1560,7 +1557,7 @@
       ctx.globalAlpha = 0.46;
       strokePawOutline(ctx, a, geometry.config);
       ctx.stroke();
-      ctx.globalAlpha = 0.3;
+      ctx.globalAlpha = 0.24;
       ctx.lineCap = 'round';
       ctx.lineWidth = 0.72 * a.scale;
       strokePawToes(ctx, a, geometry.config);
@@ -1846,13 +1843,8 @@
       ctx.lineWidth = 0.82 * a.scale;
       traceEarSilhouette(ctx, a, side);
       ctx.fill();
-      ctx.globalAlpha = 0.5;
+      ctx.globalAlpha = 0.3;
       ctx.stroke();
-
-      ctx.fillStyle = c.earInner;
-      ctx.globalAlpha = 0.58;
-      traceInnerEar(ctx, a, side);
-      ctx.fill();
       ctx.globalAlpha = 1;
     });
 
