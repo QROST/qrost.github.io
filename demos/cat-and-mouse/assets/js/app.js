@@ -189,17 +189,20 @@
     tailTipRadius: 0.7,
   });
 
-  // The neutral pinnae are short, broad triangles: forward-leading, but with
-  // enough outward splay and base width to read as feline ears rather than a
-  // pair of upright horns.
+  // The ears are landmarks in one continuous skull contour. Their broad roots
+  // stay welded to the crown while only the tips swivel, avoiding the detached
+  // tabs produced by rotating two separately painted ear shapes.
   const EAR_GEOMETRY = Object.freeze({
-    rootForward: 10.8,
-    rootLateral: 8.4,
-    tipForward: 10.8,
-    tipOutward: 5.2,
-    tipRound: 1.25,
-    baseOutward: 10.2,
-    maxSwivel: 0.22,
+    rearBaseForward: 3.2,
+    frontBaseForward: 11.2,
+    rearBaseOutward: 14.2,
+    frontBaseOutward: 11.8,
+    rootForward: 7.3,
+    rootOutward: 12.9,
+    tipForward: 7.2,
+    tipOutward: 4,
+    tipRound: 1.35,
+    maxSwivel: 0.09,
   });
 
   const EAR_PERK_BY_STATE = Object.freeze({
@@ -676,15 +679,15 @@
     const residualLook = Gait.clamp(lookRelative - cat.headYaw * 0.72, -0.46, 0.46);
     const earAim = residualLook * 0.54;
     const flickWeight = reducedMotion ? 0 : (prey.active ? 0.45 : 1);
-    const leftFlick = earFlickPulse(elapsed, 0.85) * 0.07 * flickWeight;
-    const rightFlick = earFlickPulse(elapsed, 3.65) * 0.07 * flickWeight;
+    const leftFlick = earFlickPulse(elapsed, 0.85) * 0.055 * flickWeight;
+    const rightFlick = earFlickPulse(elapsed, 3.65) * 0.055 * flickWeight;
     const leftEarTarget = Gait.clamp(
-      earAim * (earAim < 0 ? 1.08 : 0.8) + leftFlick - 0.028,
+      earAim * (earAim < 0 ? 1.08 : 0.8) + leftFlick - 0.02,
       -EAR_GEOMETRY.maxSwivel,
       EAR_GEOMETRY.maxSwivel,
     );
     const rightEarTarget = Gait.clamp(
-      earAim * (earAim > 0 ? 1.08 : 0.8) + rightFlick + 0.018,
+      earAim * (earAim > 0 ? 1.08 : 0.8) + rightFlick + 0.014,
       -EAR_GEOMETRY.maxSwivel,
       EAR_GEOMETRY.maxSwivel,
     );
@@ -1364,25 +1367,6 @@
     });
   }
 
-  function traceHeadSilhouette(context, a) {
-    context.beginPath();
-    context.moveTo(-SKIN_TOPOLOGY.headRearReach * a.scale, 0);
-    context.bezierCurveTo(-16 * a.scale, -9.5 * a.scale, -10 * a.scale, -15.2 * a.scale, -2 * a.scale, -16 * a.scale);
-    context.bezierCurveTo(7 * a.scale, -16.8 * a.scale, 14 * a.scale, -12.8 * a.scale, 18 * a.scale, -7 * a.scale);
-    context.bezierCurveTo(20.3 * a.scale, -5.3 * a.scale, 21.3 * a.scale, -2.5 * a.scale, 21.1 * a.scale, 0);
-    context.bezierCurveTo(21.3 * a.scale, 2.5 * a.scale, 20.3 * a.scale, 5.3 * a.scale, 18 * a.scale, 7 * a.scale);
-    context.bezierCurveTo(14 * a.scale, 12.8 * a.scale, 7 * a.scale, 16.8 * a.scale, -2 * a.scale, 16 * a.scale);
-    context.bezierCurveTo(
-      -10 * a.scale,
-      15.2 * a.scale,
-      -16 * a.scale,
-      9.5 * a.scale,
-      -SKIN_TOPOLOGY.headRearReach * a.scale,
-      0,
-    );
-    context.closePath();
-  }
-
   function earAngle(side) {
     return side < 0 ? cat.ears.left : cat.ears.right;
   }
@@ -1391,35 +1375,102 @@
     return side < 0 ? cat.earPerk.left : cat.earPerk.right;
   }
 
-  function applyEarPose(context, a, side) {
+  function pointToward(from, toward, distance) {
+    const dx = toward.x - from.x;
+    const dy = toward.y - from.y;
+    const length = Math.max(0.001, Math.hypot(dx, dy));
+    const amount = Math.min(1, distance / length);
+    return { x: from.x + dx * amount, y: from.y + dy * amount };
+  }
+
+  function earLandmarks(side) {
     const perk = earPerk(side);
-    const lengthBias = side < 0 ? 0.98 : 1.02;
-    const widthBias = side < 0 ? 1.03 : 0.97;
-    const rootForwardBias = side < 0 ? -0.45 : 0.3;
-    const rootLateralBias = side < 0 ? 0.3 : -0.2;
-    context.translate(
-      (EAR_GEOMETRY.rootForward + rootForwardBias) * a.scale,
-      side * (EAR_GEOMETRY.rootLateral + rootLateralBias) * a.scale,
+    const isLeft = side < 0;
+    const lengthBias = isLeft ? 0.985 : 1.015;
+    const widthBias = isLeft ? 1.02 : 0.98;
+    const rearBase = {
+      x: EAR_GEOMETRY.rearBaseForward + (isLeft ? -0.2 : 0.2),
+      y: side * (EAR_GEOMETRY.rearBaseOutward + (isLeft ? 0.2 : -0.15)),
+    };
+    const frontBase = {
+      x: EAR_GEOMETRY.frontBaseForward + (isLeft ? -0.1 : 0.15),
+      y: side * (EAR_GEOMETRY.frontBaseOutward + (isLeft ? 0.15 : -0.15)),
+    };
+    const root = {
+      x: EAR_GEOMETRY.rootForward + (isLeft ? -0.15 : 0.15),
+      y: side * (EAR_GEOMETRY.rootOutward + (isLeft ? 0.2 : -0.15)),
+    };
+    const neutralTip = {
+      x: EAR_GEOMETRY.tipForward * (0.96 + perk * 0.04) * lengthBias,
+      y: side * EAR_GEOMETRY.tipOutward * (0.91 + perk * 0.09) * widthBias,
+    };
+    const rotatedTip = rotatePoint(neutralTip.x, neutralTip.y, earAngle(side));
+    const tip = { x: root.x + rotatedTip.x, y: root.y + rotatedTip.y };
+    return {
+      rearBase,
+      frontBase,
+      root,
+      tip,
+      rearShoulder: pointToward(tip, rearBase, EAR_GEOMETRY.tipRound),
+      frontShoulder: pointToward(tip, frontBase, EAR_GEOMETRY.tipRound),
+    };
+  }
+
+  function traceEarCrown(context, a, ear, reverse = false) {
+    const firstShoulder = reverse ? ear.frontShoulder : ear.rearShoulder;
+    const secondShoulder = reverse ? ear.rearShoulder : ear.frontShoulder;
+    const firstBase = reverse ? ear.frontBase : ear.rearBase;
+    const endBase = reverse ? ear.rearBase : ear.frontBase;
+    const side = Math.sign(ear.tip.y) || 1;
+    const firstBend = reverse ? -side * 0.45 : side * 0.65;
+    const secondBend = reverse ? side * 0.65 : -side * 0.45;
+    context.quadraticCurveTo(
+      (firstShoulder.x + firstBase.x) * 0.5 * a.scale,
+      ((firstShoulder.y + firstBase.y) * 0.5 + firstBend) * a.scale,
+      firstShoulder.x * a.scale,
+      firstShoulder.y * a.scale,
     );
-    context.rotate(earAngle(side));
-    context.scale(
-      (0.96 + perk * 0.04) * lengthBias,
-      (1.04 - perk * 0.04) * widthBias,
+    context.quadraticCurveTo(
+      ear.tip.x * a.scale,
+      ear.tip.y * a.scale,
+      secondShoulder.x * a.scale,
+      secondShoulder.y * a.scale,
+    );
+    context.quadraticCurveTo(
+      (secondShoulder.x + endBase.x) * 0.5 * a.scale,
+      ((secondShoulder.y + endBase.y) * 0.5 + secondBend) * a.scale,
+      endBase.x * a.scale,
+      endBase.y * a.scale,
     );
   }
 
-  function traceEarSilhouette(context, a, side) {
-    const tipShoulder = EAR_GEOMETRY.tipForward - EAR_GEOMETRY.tipRound;
-    context.save();
-    applyEarPose(context, a, side);
+  function traceHeadSilhouette(context, a) {
+    const leftEar = earLandmarks(-1);
+    const rightEar = earLandmarks(1);
     context.beginPath();
-    context.moveTo(-6.2 * a.scale, side * 0.9 * a.scale);
-    context.quadraticCurveTo(2.7 * a.scale, side * 1.1 * a.scale, tipShoulder * a.scale, side * (EAR_GEOMETRY.tipOutward - 1.05) * a.scale);
-    context.quadraticCurveTo(EAR_GEOMETRY.tipForward * a.scale, side * EAR_GEOMETRY.tipOutward * a.scale, tipShoulder * a.scale, side * (EAR_GEOMETRY.tipOutward + 1.05) * a.scale);
-    context.quadraticCurveTo(4.4 * a.scale, side * 10 * a.scale, -2.3 * a.scale, side * EAR_GEOMETRY.baseOutward * a.scale);
-    context.quadraticCurveTo(-5.4 * a.scale, side * 5.5 * a.scale, -6.2 * a.scale, side * 0.9 * a.scale);
+    context.moveTo(-SKIN_TOPOLOGY.headRearReach * a.scale, 0);
+    context.bezierCurveTo(-16 * a.scale, -9.5 * a.scale, -10 * a.scale, -14.6 * a.scale, leftEar.rearBase.x * a.scale, leftEar.rearBase.y * a.scale);
+    traceEarCrown(context, a, leftEar);
+    context.bezierCurveTo(13 * a.scale, -12.5 * a.scale, 17.2 * a.scale, -9 * a.scale, 18 * a.scale, -7 * a.scale);
+    context.bezierCurveTo(20.3 * a.scale, -5.3 * a.scale, 21.3 * a.scale, -2.5 * a.scale, 21.1 * a.scale, 0);
+    context.bezierCurveTo(21.3 * a.scale, 2.5 * a.scale, 20.3 * a.scale, 5.3 * a.scale, 18 * a.scale, 7 * a.scale);
+    context.bezierCurveTo(17.2 * a.scale, 9 * a.scale, 13 * a.scale, 12.5 * a.scale, rightEar.frontBase.x * a.scale, rightEar.frontBase.y * a.scale);
+    traceEarCrown(context, a, rightEar, true);
+    context.bezierCurveTo(-10 * a.scale, 14.6 * a.scale, -16 * a.scale, 9.5 * a.scale, -SKIN_TOPOLOGY.headRearReach * a.scale, 0);
     context.closePath();
-    context.restore();
+  }
+
+  function traceHeadCrown(context, a) {
+    const leftEar = earLandmarks(-1);
+    const rightEar = earLandmarks(1);
+    context.beginPath();
+    context.moveTo(leftEar.rearBase.x * a.scale, leftEar.rearBase.y * a.scale);
+    traceEarCrown(context, a, leftEar);
+    context.bezierCurveTo(13 * a.scale, -12.5 * a.scale, 17.2 * a.scale, -9 * a.scale, 18 * a.scale, -7 * a.scale);
+    context.bezierCurveTo(20.3 * a.scale, -5.3 * a.scale, 21.3 * a.scale, -2.5 * a.scale, 21.1 * a.scale, 0);
+    context.bezierCurveTo(21.3 * a.scale, 2.5 * a.scale, 20.3 * a.scale, 5.3 * a.scale, 18 * a.scale, 7 * a.scale);
+    context.bezierCurveTo(17.2 * a.scale, 9 * a.scale, 13 * a.scale, 12.5 * a.scale, rightEar.frontBase.x * a.scale, rightEar.frontBase.y * a.scale);
+    traceEarCrown(context, a, rightEar, true);
   }
 
   function drawCatShadow(c) {
@@ -1463,10 +1514,6 @@
     ctx.save();
     ctx.translate(cat.rig.head.x + offsetX, cat.rig.head.y + offsetY);
     ctx.rotate(cat.rig.head.angle);
-    [-1, 1].forEach((side) => {
-      traceEarSilhouette(ctx, a, side);
-      ctx.fill();
-    });
     traceHeadSilhouette(ctx, a);
     ctx.fill();
     ctx.restore();
@@ -1836,30 +1883,14 @@
     ctx.translate(cat.rig.head.x, cat.rig.head.y);
     ctx.rotate(cat.rig.head.angle);
 
-    [-1, 1].forEach((side) => {
-      ctx.fillStyle = c.fur;
-      ctx.strokeStyle = c.furDark;
-      ctx.lineJoin = 'round';
-      ctx.lineWidth = 0.82 * a.scale;
-      traceEarSilhouette(ctx, a, side);
-      ctx.fill();
-      ctx.globalAlpha = 0.3;
-      ctx.stroke();
-      ctx.globalAlpha = 1;
-    });
-
     ctx.fillStyle = c.fur;
     traceHeadSilhouette(ctx, a);
     ctx.fill();
     ctx.strokeStyle = c.furDark;
     ctx.globalAlpha = 0.52;
+    ctx.lineJoin = 'round';
     ctx.lineWidth = 0.85 * a.scale;
-    ctx.beginPath();
-    ctx.moveTo(-2 * a.scale, -16 * a.scale);
-    ctx.bezierCurveTo(7 * a.scale, -16.8 * a.scale, 14 * a.scale, -12.8 * a.scale, 18 * a.scale, -7 * a.scale);
-    ctx.bezierCurveTo(20.3 * a.scale, -5.3 * a.scale, 21.3 * a.scale, -2.5 * a.scale, 21.1 * a.scale, 0);
-    ctx.bezierCurveTo(21.3 * a.scale, 2.5 * a.scale, 20.3 * a.scale, 5.3 * a.scale, 18 * a.scale, 7 * a.scale);
-    ctx.bezierCurveTo(14 * a.scale, 12.8 * a.scale, 7 * a.scale, 16.8 * a.scale, -2 * a.scale, 16 * a.scale);
+    traceHeadCrown(ctx, a);
     ctx.stroke();
     ctx.globalAlpha = 1;
 
@@ -2151,6 +2182,10 @@
       ears: Object.assign({}, cat.ears),
       earPerk: Object.assign({}, cat.earPerk),
       earGeometry: Object.assign({}, EAR_GEOMETRY),
+      earLandmarks: {
+        left: earLandmarks(-1),
+        right: earLandmarks(1),
+      },
       skin: Object.assign(skinTopologySnapshot(), { narrow: cat.skinNarrow }),
       support: Object.assign({}, cat.support),
       touchdowns: cat.touchdowns.map((touchdown) => Object.assign({}, touchdown)),
