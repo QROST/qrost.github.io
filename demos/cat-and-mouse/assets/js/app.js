@@ -144,6 +144,7 @@
     state: 'prowl',
     stateSince: 0,
     headYaw: 0,
+    ears: { left: 0, right: 0 },
     gait: Gait.createController('prowl'),
     strideLength: 0,
     feet: {},
@@ -215,6 +216,14 @@
     return {
       x: p0.x * a + p1.x * b + p2.x * c + p3.x * d,
       y: p0.y * a + p1.y * b + p2.y * c + p3.y * d,
+    };
+  }
+
+  function quadraticPoint(p0, p1, p2, t) {
+    const inv = 1 - t;
+    return {
+      x: inv * inv * p0.x + 2 * inv * t * p1.x + t * t * p2.x,
+      y: inv * inv * p0.y + 2 * inv * t * p1.y + t * t * p2.y,
     };
   }
 
@@ -635,6 +644,17 @@
     const lookRelative = Gait.angleDelta(cat.heading, lookAngle);
     const targetHeadYaw = Gait.clamp(lookRelative, -0.76, 0.76);
     cat.headYaw = expLerp(cat.headYaw, targetHeadYaw, prey.active ? 10 : 3.6, dt);
+
+    // The pinnae finish the gaze after the skull has taken most of the turn.
+    // Both swivel toward the target, with the target-side ear leading slightly
+    // so they never read as one rigid badge pasted onto the crown.
+    const residualLook = Gait.clamp(lookRelative - cat.headYaw * 0.7, -0.46, 0.46);
+    const earAim = residualLook * 0.82;
+    const leftEarTarget = earAim * (earAim < 0 ? 1.12 : 0.82);
+    const rightEarTarget = earAim * (earAim > 0 ? 1.12 : 0.82);
+    const earRate = prey.active ? 13 : 5.2;
+    cat.ears.left = angleExpLerp(cat.ears.left, leftEarTarget, earRate, dt);
+    cat.ears.right = angleExpLerp(cat.ears.right, rightEarTarget, earRate, dt);
 
     const a = anatomy();
     let desiredSpeed = Gait.targetSpeedForBehavior(
@@ -1167,6 +1187,7 @@
     };
     return {
       config,
+      foot,
       anchor,
       joint,
       upperControl: {
@@ -1180,23 +1201,117 @@
     };
   }
 
-  function traceLegPath(context, geometry, foot, offsetX, offsetY) {
+  function legRenderPoints(geometry) {
+    const points = [];
+    for (let index = 0; index <= 4; index += 1) {
+      points.push(quadraticPoint(
+        geometry.anchor,
+        geometry.upperControl,
+        geometry.joint,
+        index / 4,
+      ));
+    }
+    for (let index = 1; index <= 5; index += 1) {
+      points.push(quadraticPoint(
+        geometry.joint,
+        geometry.lowerControl,
+        geometry.foot,
+        index / 5,
+      ));
+    }
+    return points;
+  }
+
+  function traceVariableRibbon(context, points, radii, offsetX, offsetY) {
     const ox = offsetX || 0;
     const oy = offsetY || 0;
+    const left = [];
+    const right = [];
+    points.forEach((point, index) => {
+      const previous = points[Math.max(0, index - 1)];
+      const next = points[Math.min(points.length - 1, index + 1)];
+      const dx = next.x - previous.x;
+      const dy = next.y - previous.y;
+      const distance = Math.max(0.001, Math.hypot(dx, dy));
+      const radius = radii[index];
+      const nx = -dy / distance * radius;
+      const ny = dx / distance * radius;
+      left.push({ x: point.x + nx + ox, y: point.y + ny + oy });
+      right.push({ x: point.x - nx + ox, y: point.y - ny + oy });
+    });
+
     context.beginPath();
-    context.moveTo(geometry.anchor.x + ox, geometry.anchor.y + oy);
+    smoothOpenPath(context, left);
+    const last = points[points.length - 1];
+    const beforeLast = points[points.length - 2];
+    const endDistance = Math.max(0.001, Math.hypot(last.x - beforeLast.x, last.y - beforeLast.y));
     context.quadraticCurveTo(
-      geometry.upperControl.x + ox,
-      geometry.upperControl.y + oy,
-      geometry.joint.x + ox,
-      geometry.joint.y + oy,
+      last.x + (last.x - beforeLast.x) / endDistance * radii[radii.length - 1] * 0.34 + ox,
+      last.y + (last.y - beforeLast.y) / endDistance * radii[radii.length - 1] * 0.34 + oy,
+      right[right.length - 1].x,
+      right[right.length - 1].y,
     );
+    smoothOpenPath(context, right.slice().reverse(), true);
+    const first = points[0];
+    const second = points[1];
+    const startDistance = Math.max(0.001, Math.hypot(second.x - first.x, second.y - first.y));
     context.quadraticCurveTo(
-      geometry.lowerControl.x + ox,
-      geometry.lowerControl.y + oy,
-      foot.x + ox,
-      foot.y + oy,
+      first.x - (second.x - first.x) / startDistance * radii[0] * 0.28 + ox,
+      first.y - (second.y - first.y) / startDistance * radii[0] * 0.28 + oy,
+      left[0].x,
+      left[0].y,
     );
+    context.closePath();
+  }
+
+  function traceLegSilhouette(context, geometry, foot, a, offsetX, offsetY) {
+    const points = legRenderPoints(geometry);
+    const baseRadius = (geometry.config.fore ? 6.35 : 7.35) * a.scale;
+    const ankleRadius = (geometry.config.fore ? 4.15 : 4.85) * a.scale;
+    const radii = points.map((point, index) => {
+      const t = index / Math.max(1, points.length - 1);
+      const jointVolume = Math.sin(Math.PI * t) * (geometry.config.fore ? 0.38 : 0.58) * a.scale;
+      const liftTaper = 1 - foot.lift * t * 0.08;
+      return (baseRadius + (ankleRadius - baseRadius) * Math.pow(t, 0.78) + jointVolume) * liftTaper;
+    });
+    traceVariableRibbon(context, points, radii, offsetX, offsetY);
+  }
+
+  function tracePawSilhouette(context, a, config) {
+    const front = (config.fore ? 7.6 : 8.2) * a.scale;
+    const rear = (config.fore ? -5.9 : -6.6) * a.scale;
+    const half = (config.fore ? 4.45 : 5.05) * a.scale;
+    context.beginPath();
+    context.moveTo(rear, -half * 0.62);
+    context.bezierCurveTo(-2.6 * a.scale, -half, 2.4 * a.scale, -half * 1.04, front * 0.62, -half * 0.7);
+    context.bezierCurveTo(front * 0.88, -half * 0.54, front, -half * 0.24, front, 0);
+    context.bezierCurveTo(front, half * 0.24, front * 0.88, half * 0.54, front * 0.62, half * 0.7);
+    context.bezierCurveTo(2.4 * a.scale, half * 1.04, -2.6 * a.scale, half, rear, half * 0.62);
+    context.bezierCurveTo(rear - 1.35 * a.scale, half * 0.34, rear - 1.35 * a.scale, -half * 0.34, rear, -half * 0.62);
+    context.closePath();
+  }
+
+  function strokePawOutline(context, a, config) {
+    const front = (config.fore ? 7.6 : 8.2) * a.scale;
+    const rear = (config.fore ? -5.9 : -6.6) * a.scale;
+    const half = (config.fore ? 4.45 : 5.05) * a.scale;
+    context.beginPath();
+    context.moveTo(rear, -half * 0.62);
+    context.bezierCurveTo(-2.6 * a.scale, -half, 2.4 * a.scale, -half * 1.04, front * 0.62, -half * 0.7);
+    context.bezierCurveTo(front * 0.88, -half * 0.54, front, -half * 0.24, front, 0);
+    context.bezierCurveTo(front, half * 0.24, front * 0.88, half * 0.54, front * 0.62, half * 0.7);
+    context.bezierCurveTo(2.4 * a.scale, half * 1.04, -2.6 * a.scale, half, rear, half * 0.62);
+  }
+
+  function strokePawToes(context, a, config) {
+    const front = (config.fore ? 7.6 : 8.2) * a.scale;
+    const spread = (config.fore ? 1.45 : 1.65) * a.scale;
+    [-1, 1].forEach((side) => {
+      context.beginPath();
+      context.moveTo(front * 0.55, side * spread);
+      context.quadraticCurveTo(front * 0.73, side * spread * 0.72, front * 0.88, side * spread * 0.44);
+      context.stroke();
+    });
   }
 
   function traceHeadSilhouette(context, a) {
@@ -1218,15 +1333,34 @@
     context.closePath();
   }
 
+  function earAngle(side) {
+    return side < 0 ? cat.ears.left : cat.ears.right;
+  }
+
   function traceEarSilhouette(context, a, side) {
-    const tipX = side < 0 ? 6.4 : 7.4;
-    const tipY = side * (side < 0 ? 22.2 : 21.4) * a.scale;
+    context.save();
+    context.translate(4.2 * a.scale, side * 12.2 * a.scale);
+    context.rotate(earAngle(side));
     context.beginPath();
-    context.moveTo(-2 * a.scale, side * 11.5 * a.scale);
-    context.bezierCurveTo(0 * a.scale, side * 16.5 * a.scale, (tipX - 1) * a.scale, side * 20.3 * a.scale, tipX * a.scale, tipY);
-    context.bezierCurveTo(11.5 * a.scale, side * 20.5 * a.scale, 14.8 * a.scale, side * 16 * a.scale, 15 * a.scale, side * 12.3 * a.scale);
-    context.bezierCurveTo(11 * a.scale, side * 11 * a.scale, 4 * a.scale, side * 10.5 * a.scale, -2 * a.scale, side * 11.5 * a.scale);
+    context.moveTo(-5 * a.scale, side * 0.2 * a.scale);
+    context.bezierCurveTo(-2.5 * a.scale, side * 2.8 * a.scale, 1.8 * a.scale, side * 8.5 * a.scale, 5.4 * a.scale, side * 11.8 * a.scale);
+    context.bezierCurveTo(7.5 * a.scale, side * 9.2 * a.scale, 9.5 * a.scale, side * 5 * a.scale, 9.2 * a.scale, side * 1.2 * a.scale);
+    context.bezierCurveTo(5 * a.scale, side * -0.4 * a.scale, 0.2 * a.scale, side * -0.7 * a.scale, -5 * a.scale, side * 0.2 * a.scale);
     context.closePath();
+    context.restore();
+  }
+
+  function traceInnerEar(context, a, side) {
+    context.save();
+    context.translate(4.2 * a.scale, side * 12.2 * a.scale);
+    context.rotate(earAngle(side));
+    context.beginPath();
+    context.moveTo(-1.8 * a.scale, side * 1.2 * a.scale);
+    context.bezierCurveTo(0.6 * a.scale, side * 3.2 * a.scale, 3.2 * a.scale, side * 7.1 * a.scale, 5.2 * a.scale, side * 8.8 * a.scale);
+    context.bezierCurveTo(6.6 * a.scale, side * 6.8 * a.scale, 7.3 * a.scale, side * 4.2 * a.scale, 7.1 * a.scale, side * 2.5 * a.scale);
+    context.bezierCurveTo(4.1 * a.scale, side * 1.3 * a.scale, 1 * a.scale, side * 0.8 * a.scale, -1.8 * a.scale, side * 1.2 * a.scale);
+    context.closePath();
+    context.restore();
   }
 
   function drawCatShadow(c) {
@@ -1253,20 +1387,15 @@
       if (!foot) return;
       const geometry = legGeometry(limb, foot, a);
       const liftOffset = foot.lift * 5.5 * a.scale;
-      ctx.lineWidth = (geometry.config.fore ? 15 : 18) * a.scale;
-      traceLegPath(ctx, geometry, foot, offsetX, offsetY + liftOffset * 0.35);
-      ctx.stroke();
-      ctx.beginPath();
-      ctx.ellipse(
-        foot.x + offsetX,
-        foot.y + offsetY + liftOffset,
-        8.4 * a.scale,
-        5.2 * a.scale,
-        cat.heading,
-        0,
-        Gait.TAU,
-      );
+      traceLegSilhouette(ctx, geometry, foot, a, offsetX, offsetY + liftOffset * 0.35);
       ctx.fill();
+      ctx.save();
+      ctx.translate(foot.x + offsetX, foot.y + offsetY + liftOffset);
+      ctx.rotate(Number.isFinite(foot.angle) ? foot.angle : cat.heading);
+      ctx.scale(1 - foot.lift * 0.08, 1 - foot.lift * 0.12);
+      tracePawSilhouette(ctx, a, geometry.config);
+      ctx.fill();
+      ctx.restore();
     });
 
     traceBodySilhouette(ctx, a, offsetX, offsetY);
@@ -1344,61 +1473,35 @@
       const foot = cat.feet[limb];
       if (!foot) return;
       const geometry = legGeometry(limb, foot, a);
-      const outerWidth = (geometry.config.fore ? 10.8 : 13.2) * a.scale;
-      const innerWidth = (geometry.config.fore ? 7.5 : 9.4) * a.scale;
 
       ctx.save();
-      ctx.lineCap = 'round';
       ctx.lineJoin = 'round';
+      ctx.fillStyle = c.fur;
       ctx.strokeStyle = c.furDark;
-      ctx.globalAlpha = 0.48;
-      ctx.lineWidth = outerWidth;
-      traceLegPath(ctx, geometry, foot, 0, 0);
-      ctx.stroke();
-      ctx.globalAlpha = 1;
-      ctx.strokeStyle = c.fur;
-      ctx.lineWidth = innerWidth;
-      traceLegPath(ctx, geometry, foot, 0, 0);
-      ctx.stroke();
-
-      ctx.globalAlpha = 0.2;
-      ctx.strokeStyle = c.furLight;
-      ctx.lineWidth = 2 * a.scale;
-      traceLegPath(ctx, geometry, foot, -0.8 * a.scale, -0.6 * a.scale);
+      ctx.lineWidth = 0.82 * a.scale;
+      traceLegSilhouette(ctx, geometry, foot, a, 0, 0);
+      ctx.fill();
+      ctx.globalAlpha = 0.46;
       ctx.stroke();
       ctx.restore();
 
       ctx.save();
       ctx.translate(foot.x, foot.y);
       ctx.rotate(Number.isFinite(foot.angle) ? foot.angle : cat.heading);
-      ctx.scale(1 - foot.lift * 0.1, 1 - foot.lift * 0.15);
-      ctx.fillStyle = c.furDark;
-      ctx.globalAlpha = 0.52;
-      ctx.beginPath();
-      ctx.moveTo(8.2 * a.scale, 0);
-      ctx.bezierCurveTo(7.1 * a.scale, -4.4 * a.scale, 1.2 * a.scale, -5.6 * a.scale, -4.8 * a.scale, -3.7 * a.scale);
-      ctx.bezierCurveTo(-8.1 * a.scale, -2.4 * a.scale, -8.4 * a.scale, 2.3 * a.scale, -4.8 * a.scale, 3.7 * a.scale);
-      ctx.bezierCurveTo(1.4 * a.scale, 5.6 * a.scale, 7.2 * a.scale, 4.3 * a.scale, 8.2 * a.scale, 0);
-      ctx.closePath();
-      ctx.fill();
+      ctx.scale(1 - foot.lift * 0.08, 1 - foot.lift * 0.12);
       ctx.fillStyle = c.fur;
-      ctx.globalAlpha = 0.98;
-      ctx.beginPath();
-      ctx.moveTo(6.7 * a.scale, 0);
-      ctx.bezierCurveTo(5.8 * a.scale, -3.2 * a.scale, 1 * a.scale, -4.3 * a.scale, -4.5 * a.scale, -2.8 * a.scale);
-      ctx.bezierCurveTo(-6.8 * a.scale, -1.6 * a.scale, -6.8 * a.scale, 1.6 * a.scale, -4.5 * a.scale, 2.8 * a.scale);
-      ctx.bezierCurveTo(1 * a.scale, 4.3 * a.scale, 5.8 * a.scale, 3.2 * a.scale, 6.7 * a.scale, 0);
-      ctx.closePath();
+      ctx.strokeStyle = c.furDark;
+      ctx.lineJoin = 'round';
+      ctx.lineWidth = 0.82 * a.scale;
+      tracePawSilhouette(ctx, a, geometry.config);
       ctx.fill();
-      ctx.globalAlpha = 0.38;
-      ctx.strokeStyle = c.furLight;
-      ctx.lineWidth = 0.85 * a.scale;
-      [-2.15, 0, 2.15].forEach((offset) => {
-        ctx.beginPath();
-        ctx.moveTo(3.9 * a.scale, offset * a.scale);
-        ctx.quadraticCurveTo(5.4 * a.scale, offset * a.scale * 1.06, 6.6 * a.scale, offset * 0.72 * a.scale);
-        ctx.stroke();
-      });
+      ctx.globalAlpha = 0.46;
+      strokePawOutline(ctx, a, geometry.config);
+      ctx.stroke();
+      ctx.globalAlpha = 0.3;
+      ctx.lineCap = 'round';
+      ctx.lineWidth = 0.72 * a.scale;
+      strokePawToes(ctx, a, geometry.config);
       ctx.restore();
     });
   }
@@ -1675,18 +1778,18 @@
     ctx.rotate(cat.rig.head.angle);
 
     [-1, 1].forEach((side) => {
-      ctx.fillStyle = c.furDark;
+      ctx.fillStyle = c.fur;
+      ctx.strokeStyle = c.furDark;
+      ctx.lineJoin = 'round';
+      ctx.lineWidth = 0.82 * a.scale;
       traceEarSilhouette(ctx, a, side);
       ctx.fill();
+      ctx.globalAlpha = 0.5;
+      ctx.stroke();
 
       ctx.fillStyle = c.earInner;
       ctx.globalAlpha = 0.58;
-      ctx.beginPath();
-      ctx.moveTo(1 * a.scale, side * 13.7 * a.scale);
-      ctx.bezierCurveTo(2.7 * a.scale, side * 17.1 * a.scale, 5.8 * a.scale, side * 19.2 * a.scale, 6.8 * a.scale, side * 19.8 * a.scale);
-      ctx.bezierCurveTo(10.7 * a.scale, side * 18.8 * a.scale, 12.8 * a.scale, side * 15.7 * a.scale, 13.1 * a.scale, side * 14.2 * a.scale);
-      ctx.bezierCurveTo(9.4 * a.scale, side * 13.3 * a.scale, 5.2 * a.scale, side * 12.9 * a.scale, 1 * a.scale, side * 13.7 * a.scale);
-      ctx.closePath();
+      traceInnerEar(ctx, a, side);
       ctx.fill();
       ctx.globalAlpha = 1;
     });
@@ -1991,6 +2094,7 @@
       rigCurvature: cat.rig.curvature,
       rigScale: anatomy().scale,
       turnVelocity: cat.rig.turnVelocity,
+      ears: Object.assign({}, cat.ears),
       skin: Object.assign(skinTopologySnapshot(), { narrow: cat.skinNarrow }),
       support: Object.assign({}, cat.support),
       touchdowns: cat.touchdowns.map((touchdown) => Object.assign({}, touchdown)),

@@ -189,13 +189,30 @@ document.dispatch('DOMContentLoaded');
 // reliably distinguish an internal cap line from an external silhouette.
 const appSource = loadedSources.get('assets/js/app.js');
 const tailRibbonSource = appSource.match(/function traceTailRibbon[\s\S]*?(?=\n  function tailRenderPoints)/)?.[0] || '';
+const legSilhouetteSource = appSource.match(/function traceLegSilhouette[\s\S]*?(?=\n  function tracePawSilhouette)/)?.[0] || '';
+const pawSilhouetteSource = appSource.match(/function tracePawSilhouette[\s\S]*?(?=\n  function strokePawOutline)/)?.[0] || '';
+const pawOutlineSource = appSource.match(/function strokePawOutline[\s\S]*?(?=\n  function strokePawToes)/)?.[0] || '';
+const earRendererSource = appSource.match(/function earAngle[\s\S]*?(?=\n  function drawCatShadow)/)?.[0] || '';
 const bodyFlankSource = appSource.match(/function strokeBodyFlanks[\s\S]*?(?=\n  function skinTopologySnapshot)/)?.[0] || '';
+const drawShadowSource = appSource.match(/function drawCatShadow[\s\S]*?(?=\n  function drawTail)/)?.[0] || '';
 const drawTailSource = appSource.match(/function drawTail[\s\S]*?(?=\n  function drawLegs)/)?.[0] || '';
+const drawLegsSource = appSource.match(/function drawLegs[\s\S]*?(?=\n  function bodyStations)/)?.[0] || '';
 const drawBodySource = appSource.match(/function drawBody[\s\S]*?(?=\n  function drawTopDownFace)/)?.[0] || '';
 const topDownFaceSource = appSource.match(/function drawTopDownFace[\s\S]*?(?=\n  function drawHead)/)?.[0] || '';
 const drawHeadSource = appSource.match(/function drawHead[\s\S]*?(?=\n  function drawMouse)/)?.[0] || '';
 assert.ok(tailRibbonSource, 'tail ribbon renderer must remain discoverable');
 assert.doesNotMatch(tailRibbonSource, /closePath\s*\(/, 'tail ribbon must stay open at its hidden root');
+assert.match(legSilhouetteSource, /traceVariableRibbon\s*\(/, 'legs must render as variable-width closed silhouettes');
+assert.match(pawSilhouetteSource, /bezierCurveTo\s*\(/, 'paws must use a soft illustrated contour');
+assert.doesNotMatch(pawSilhouetteSource, /(?:ellipse|arc)\s*\(/, 'paws must not regress to geometric ovals');
+assert.doesNotMatch(pawOutlineSource, /closePath\s*\(/, 'paw outline must keep the hidden ankle join open');
+assert.match(drawLegsSource, /traceLegSilhouette\s*\(/, 'leg renderer must fill the continuous fur silhouette');
+assert.match(drawLegsSource, /tracePawSilhouette\s*\(/, 'leg renderer must finish in an illustrated paw');
+assert.match(drawLegsSource, /strokePawOutline\s*\(/, 'paw outline must leave the ankle join open');
+assert.doesNotMatch(drawLegsSource, /traceLegPath|ctx\.(?:ellipse|arc)\s*\(/, 'visible limbs must not regress to stroked bones or oval feet');
+assert.doesNotMatch(drawShadowSource, /traceLegPath|ctx\.(?:ellipse|arc)\s*\(/, 'cat shadow must follow the illustrated limb silhouettes');
+assert.match(earRendererSource, /cat\.ears\.(?:left|right)/, 'ear renderer must consume independent ear poses');
+assert.match(earRendererSource, /context\.rotate\s*\(earAngle\(side\)\)/, 'each ear silhouette must swivel around its root');
 assert.match(drawBodySource, /strokeBodyFlanks\s*\(/, 'torso must stroke only its open side contours');
 assert.doesNotMatch(drawBodySource, /ctx\.stroke\s*\(/, 'torso must not stroke its closed fill caps');
 assert.doesNotMatch(bodyFlankSource, /closePath\s*\(|traceBodySilhouette\s*\(/, 'body flank strokes must stay open');
@@ -232,6 +249,7 @@ function finiteSnapshot(snapshot) {
   for (const value of [
     snapshot.cat.x, snapshot.cat.y, snapshot.cat.heading, snapshot.cat.speed,
     snapshot.cat.acceleration, snapshot.cat.steerOmega,
+    snapshot.ears.left, snapshot.ears.right,
     snapshot.mouse.x, snapshot.mouse.y, snapshot.mouse.speed,
     snapshot.rigScale, snapshot.turnVelocity, snapshot.rigCurvature,
     snapshot.skin.headSocketMargin, snapshot.skin.tailRootClearance, snapshot.skin.narrow,
@@ -262,6 +280,8 @@ function angleDistance(from, to) {
 function assertRigSnapshot(snapshot, label = 'rig') {
   finiteSnapshot(snapshot);
   assert.ok(Math.abs(snapshot.cat.steerOmega) <= 2.4 + 1e-6, `${label}: steering velocity escaped its profile limit`);
+  assert.ok(Math.abs(snapshot.ears.left) <= 0.43, `${label}: left ear escaped its swivel stop`);
+  assert.ok(Math.abs(snapshot.ears.right) <= 0.43, `${label}: right ear escaped its swivel stop`);
   assert.ok(
     Math.abs(snapshot.cat.acceleration) <= 300 * snapshot.rigScale + 1e-6,
     `${label}: acceleration escaped its profile limit`,
@@ -480,6 +500,9 @@ const edgeTargets = [
   [8, fakeViewportHeight * 0.5],
 ];
 let sawReachRecovery = false;
+let earAimMin = Infinity;
+let earAimMax = -Infinity;
+let maxEarAsymmetry = 0;
 for (const [targetX, targetY] of edgeTargets) {
   sandbox.__catMouseDemo.moveMouse(targetX, targetY);
   for (let frameIndex = 0; frameIndex < 240; frameIndex += 1) {
@@ -487,12 +510,18 @@ for (const [targetX, targetY] of edgeTargets) {
     const current = sandbox.__catMouseDemo.getSnapshot();
     assertRigSnapshot(current, 'compact edge pursuit');
     assertHeadInsideViewport(current);
+    const earAim = (current.ears.left + current.ears.right) * 0.5;
+    earAimMin = Math.min(earAimMin, earAim);
+    earAimMax = Math.max(earAimMax, earAim);
+    maxEarAsymmetry = Math.max(maxEarAsymmetry, Math.abs(current.ears.left - current.ears.right));
     if (Object.values(current.feet).some((foot) => foot.recoveryActive)) sawReachRecovery = true;
   }
   sandbox.__catMouseDemo.releaseMouse();
   step(24);
 }
 assert.equal(sawReachRecovery, true, 'compact edge turns must exercise anatomical reach recovery');
+assert.ok(earAimMin < -0.025 && earAimMax > 0.025, 'ears must swivel toward targets on both sides of the head');
+assert.ok(maxEarAsymmetry > 0.008, 'target-side ear must lead instead of moving as a rigid pair');
 
 for (const [rate, targetX, targetY] of [
   [30, 8, 8],
@@ -586,4 +615,4 @@ failureListeners.forEach((listener) => listener());
 assert.equal(failureElements.get('canvas-error').textContent, 'Canvas failed');
 assert.equal(failureElements.get('theme-toggle').getAttribute('title'), 'Light');
 
-console.log('check-runtime: overhead face, seamless coat, bounded spine, direct register, anatomical reach, 548x536 edges, and UI OK');
+console.log('check-runtime: directional ears, illustrated paws, seamless coat, bounded spine, anatomical reach, 548x536 edges, and UI OK');
