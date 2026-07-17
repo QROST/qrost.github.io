@@ -89,6 +89,7 @@
       furLight: '#e7a36c',
       furDark: '#7d4126',
       stripe: 'rgba(93, 45, 24, 0.52)',
+      earInner: '#a95f4e',
       cream: '#f3d2a6',
       eye: '#aebc63',
       pupil: '#241c17',
@@ -109,6 +110,7 @@
       furLight: '#f0ad74',
       furDark: '#713a24',
       stripe: 'rgba(80, 36, 22, 0.62)',
+      earInner: '#b96857',
       cream: '#f2d0a3',
       eye: '#c3d174',
       pupil: '#17130f',
@@ -140,6 +142,8 @@
     x: 0,
     y: 0,
     heading: -0.28,
+    steerOmega: 0,
+    acceleration: 0,
     speed: 0,
     state: 'prowl',
     stateSince: 0,
@@ -152,6 +156,10 @@
     wanderGoal: { x: 0, y: 0 },
     nextWanderAt: 0,
     bodySway: 0,
+    skinNarrow: 1,
+    support: { foreBias: 0, hindBias: 0, combined: 0 },
+    lastForeTouch: { right: null, left: null },
+    touchdowns: [],
     rig: {
       initialized: false,
       pelvis: { x: 0, y: 0, angle: -0.28, visualRadius: 31 },
@@ -166,10 +174,10 @@
   };
 
   const LEG_CONFIG = Object.freeze({
-    rightHind: Object.freeze({ fore: false, side: 1 }),
-    rightFore: Object.freeze({ fore: true, side: 1 }),
-    leftHind: Object.freeze({ fore: false, side: -1 }),
-    leftFore: Object.freeze({ fore: true, side: -1 }),
+    rightHind: Object.freeze({ fore: false, side: 1, reach: 52 }),
+    rightFore: Object.freeze({ fore: true, side: 1, reach: 51 }),
+    leftHind: Object.freeze({ fore: false, side: -1, reach: 52 }),
+    leftFore: Object.freeze({ fore: true, side: -1, reach: 51 }),
   });
 
   // The rig stays articulated, while the painted coat deliberately overlaps
@@ -198,6 +206,23 @@
     return current + (target - current) * (1 - Math.exp(-rate * dt));
   }
 
+  function approach(current, target, maxDelta) {
+    if (current < target) return Math.min(target, current + maxDelta);
+    return Math.max(target, current - maxDelta);
+  }
+
+  function cubicPoint(p0, p1, p2, p3, t) {
+    const inv = 1 - t;
+    const a = inv * inv * inv;
+    const b = 3 * inv * inv * t;
+    const c = 3 * inv * t * t;
+    const d = t * t * t;
+    return {
+      x: p0.x * a + p1.x * b + p2.x * c + p3.x * d,
+      y: p0.y * a + p1.y * b + p2.y * c + p3.y * d,
+    };
+  }
+
   function angleExpLerp(current, target, rate, dt) {
     return current + Gait.angleDelta(current, target) * (1 - Math.exp(-rate * dt));
   }
@@ -208,6 +233,27 @@
 
   function constrainAngle(parent, child, limit) {
     return parent + Gait.clamp(Gait.angleDelta(parent, child), -limit, limit);
+  }
+
+  function constrainSpineCurvature(rig) {
+    const names = ['pelvis', 'waist', 'shoulders', 'neck', 'head'];
+    let direction = 0;
+    let reversals = 0;
+    for (let index = 1; index < names.length; index += 1) {
+      const parent = rig[names[index - 1]];
+      const child = rig[names[index]];
+      const bend = Gait.angleDelta(parent.angle, child.angle);
+      if (Math.abs(bend) < 0.025) continue;
+      const nextDirection = Math.sign(bend);
+      if (direction && nextDirection !== direction) {
+        reversals += 1;
+        if (reversals > 1) {
+          child.angle = parent.angle;
+          continue;
+        }
+      }
+      direction = nextDirection;
+    }
   }
 
   function rotatePoint(x, y, angle) {
@@ -231,8 +277,8 @@
 
   function positionRigNodes(a) {
     const rig = cat.rig;
-    const rearSway = cat.bodySway * 1.9 * a.scale;
-    const frontSway = -cat.bodySway * 1.25 * a.scale;
+    const rearSway = (cat.support.hindBias * 2.35 + cat.bodySway * 0.42) * a.scale;
+    const frontSway = (cat.support.foreBias * 1.55 - cat.bodySway * 0.28) * a.scale;
 
     rig.waist.x = cat.x;
     rig.waist.y = cat.y;
@@ -291,9 +337,8 @@
 
     const a = anatomy();
     const motionWeight = Gait.clamp(cat.speed / (70 * a.scale), 0, 1);
-    const phaseWave = (limb) => Math.sin((cat.gait.legPhases[limb] || 0) * Gait.TAU);
-    const forePhaseTwist = (phaseWave('rightFore') - phaseWave('leftFore')) * 0.007 * motionWeight;
-    const hindPhaseTwist = -(phaseWave('rightHind') - phaseWave('leftHind')) * 0.0075 * motionWeight;
+    const forePhaseTwist = -cat.support.foreBias * 0.038 * motionWeight;
+    const hindPhaseTwist = cat.support.hindBias * 0.048 * motionWeight;
     const shoulderLead = Gait.clamp(rig.turnVelocity * 0.026, -0.075, 0.075);
     const pelvisLag = Gait.clamp(rig.turnVelocity * 0.038, -0.105, 0.105);
 
@@ -325,6 +370,7 @@
     rig.head.angle = constrainAngle(rig.neck.angle, rig.head.angle, 0.42);
     rig.head.angle = constrainAngle(rig.pelvis.angle, rig.head.angle, 0.84);
     rig.head.angle = constrainAngle(rig.neck.angle, rig.head.angle, 0.42);
+    constrainSpineCurvature(rig);
     positionRigNodes(a);
   }
 
@@ -333,7 +379,7 @@
     const a = anatomy();
     return {
       x: (config.fore ? -1.5 : 1.5) * a.scale,
-      y: config.side * (config.fore ? 16 : 17) * a.scale,
+      y: config.side * (config.fore ? 12.5 : 15) * a.scale,
     };
   }
 
@@ -349,8 +395,15 @@
     const a = anatomy();
     const parent = config.fore ? cat.rig.shoulders : cat.rig.pelvis;
     const anchor = localAnchor(limb);
-    const localX = anchor.x + (config.fore ? 15.5 : -11.5) * a.scale + sample.longitudinal;
-    const localY = anchor.y + config.side * (config.fore ? 10 : 11) * a.scale + config.side * sample.lateral;
+    const track = cat.state === 'stalk'
+      ? (config.fore ? 7 : 6.3)
+      : cat.state === 'chase'
+        ? (config.fore ? 12 : 11)
+        : (config.fore ? 9 : 8);
+    const localX = anchor.x + (config.fore ? 13.5 : -9.5) * a.scale + sample.longitudinal;
+    // Swinging paws arc inward toward the centerline. The root remains at the
+    // shoulder/hip, but the visible paw track stays narrow beneath the body.
+    const localY = config.side * track * a.scale - config.side * sample.lateral;
     const forward = Math.max(0, futureSeconds || 0) * cat.speed;
     return pointFromNode(parent, localX + forward, localY);
   }
@@ -383,6 +436,8 @@
 
   function initializeFeet() {
     cat.feet = {};
+    cat.lastForeTouch = { right: null, left: null };
+    cat.touchdowns.length = 0;
     Gait.LIMBS.forEach((limb) => {
       const sample = Gait.sampleLimb(cat.gait, limb, 0);
       const point = expectedPawWorld(limb, sample, 0);
@@ -394,8 +449,21 @@
         phase: sample.phase,
         planted: sample.planted,
         wasPlanted: sample.planted,
-        swingOffsetX: 0,
-        swingOffsetY: 0,
+        swingStartX: point.x,
+        swingStartY: point.y,
+        swingTargetX: point.x,
+        swingTargetY: point.y,
+        swingControl1X: point.x,
+        swingControl1Y: point.y,
+        swingControl2X: point.x,
+        swingControl2Y: point.y,
+        swingProgress: sample.swingProgress,
+        registerReferenceX: null,
+        registerReferenceY: null,
+        registerError: null,
+        recoveryActive: false,
+        recoveryProgress: 0,
+        recoveryDuration: 0.22,
         settleActive: false,
         settleProgress: 0,
         settleStartX: point.x,
@@ -514,6 +582,35 @@
     }
   }
 
+  function updateSupportPose(dt) {
+    let foreWeight = 0;
+    let hindWeight = 0;
+    let foreMoment = 0;
+    let hindMoment = 0;
+    Gait.LIMBS.forEach((limb) => {
+      const config = LEG_CONFIG[limb];
+      const sample = Gait.sampleLimb(cat.gait, limb, cat.strideLength);
+      if (!sample.planted) return;
+      const duty = Math.max(0.001, cat.gait.dutyFactors[limb] || cat.gait.dutyFactor);
+      const u = Gait.clamp(sample.phase / duty, 0, 1);
+      const weight = Gait.smoothstep(u / 0.12) * Gait.smoothstep((1 - u) / 0.16);
+      if (config.fore) {
+        foreWeight += weight;
+        foreMoment += weight * config.side;
+      } else {
+        hindWeight += weight;
+        hindMoment += weight * config.side;
+      }
+    });
+    const foreTarget = foreWeight > 0.001 ? foreMoment / foreWeight : 0;
+    const hindTarget = hindWeight > 0.001 ? hindMoment / hindWeight : 0;
+    cat.support.foreBias = expLerp(cat.support.foreBias, foreTarget, 7.5, dt);
+    cat.support.hindBias = expLerp(cat.support.hindBias, hindTarget, 7.5, dt);
+    const combinedTarget = cat.support.foreBias * 0.44 + cat.support.hindBias * 0.56;
+    cat.support.combined = expLerp(cat.support.combined, combinedTarget, 6.4, dt);
+    cat.bodySway = expLerp(cat.bodySway, cat.support.combined, 6.4, dt);
+  }
+
   function updateCat(dt) {
     updateBehavior();
     let goalX = prey.x;
@@ -558,14 +655,26 @@
       desiredSpeed *= Gait.clamp((goalDistance - 28 * a.scale) / (30 * a.scale), 0, 1);
     }
 
-    const turnRates = { prowl: 1.25, observe: 0.74, watch: 0.62, stalk: 1.58, chase: 3.25 };
-    const turnRate = turnRates[cat.state] || 1.4;
     const turnError = Gait.angleDelta(cat.heading, targetAngle);
     const bodyMayTurn = cat.state !== 'watch' || Math.abs(turnError) > 0.46;
-    if (bodyMayTurn) cat.heading += Gait.clamp(turnError, -turnRate * dt, turnRate * dt);
+    const steerLimits = {
+      prowl: [0.9, 2.5], observe: [0.72, 2.2], watch: [0.58, 1.9], stalk: [1.2, 3.5], chase: [2.4, 7],
+    };
+    const [omegaMax, alphaMax] = steerLimits[cat.state] || [1.1, 3];
+    const desiredOmega = bodyMayTurn ? Gait.clamp(turnError * 2.35, -omegaMax, omegaMax) : 0;
+    cat.steerOmega = approach(cat.steerOmega, desiredOmega, alphaMax * dt);
+    cat.heading += cat.steerOmega * dt;
 
-    const speedResponse = cat.state === 'chase' ? 6.4 : 3.2;
-    cat.speed = expLerp(cat.speed, desiredSpeed, speedResponse, dt);
+    const turnSlowdown = 1 - 0.45 * Gait.smoothstep((Math.abs(turnError) - 0.25) / 0.9);
+    desiredSpeed *= turnSlowdown;
+    const accelerationLimits = {
+      prowl: [44, 66], observe: [36, 70], watch: [36, 70], stalk: [64, 92], chase: [220, 295],
+    };
+    const [accelerate, decelerate] = accelerationLimits[cat.state] || [60, 90];
+    const previousSpeed = cat.speed;
+    const speedLimit = (desiredSpeed >= cat.speed ? accelerate : decelerate) * a.scale;
+    cat.speed = approach(cat.speed, desiredSpeed, speedLimit * dt);
+    cat.acceleration = (cat.speed - previousSpeed) / Math.max(0.001, dt);
     cat.x += Math.cos(cat.heading) * cat.speed * dt;
     cat.y += Math.sin(cat.heading) * cat.speed * dt;
 
@@ -584,7 +693,11 @@
       cat.x = clampedX;
       cat.y = clampedY;
       const inward = Math.atan2(viewport.height * 0.5 - cat.y, viewport.width * 0.5 - cat.x);
-      cat.heading += Gait.angleDelta(cat.heading, inward) * Math.min(1, dt * 3.2);
+      cat.steerOmega = approach(
+        cat.steerOmega,
+        Gait.clamp(Gait.angleDelta(cat.heading, inward) * 2, -omegaMax, omegaMax),
+        alphaMax * dt,
+      );
       chooseWanderGoal(true);
     }
 
@@ -598,22 +711,198 @@
     cat.strideLength = cat.speed < 3 * a.scale
       ? expLerp(cat.strideLength, 0, 7, dt)
       : expLerp(cat.strideLength, Gait.clamp(cat.speed * cat.gait.dutyFactor / cadence, 9 * a.scale, 72 * a.scale), 6, dt);
-    cat.bodySway = Math.sin(cat.gait.masterPhase * Gait.TAU) * Gait.clamp(cat.speed / (150 * a.scale), 0, 1);
+    cat.skinNarrow = expLerp(cat.skinNarrow, cat.state === 'stalk' ? 0.96 : 1, 6.2, dt);
+    updateSupportPose(dt);
 
     updateRig(dt);
     updateFeet(dt);
     updateTail(dt);
   }
 
+  function planPawSwing(limb, foot, options) {
+    const a = anatomy();
+    const config = LEG_CONFIG[limb];
+    const settings = options || {};
+    const duty = Math.max(0.001, cat.gait.dutyFactors[limb] || cat.gait.dutyFactor);
+    const swingDuration = settings.duration || (1 - duty) / Math.max(0.08, cat.gait.cadence);
+    const landingSample = {
+      longitudinal: settings.recovery ? 0 : cat.strideLength * 0.5,
+      lateral: 0,
+    };
+    const lookahead = swingDuration * (settings.recovery ? 0.42 : 0.82);
+    const anatomicalTarget = expectedPawWorld(limb, landingSample, lookahead);
+    let targetX = anatomicalTarget.x;
+    let targetY = anatomicalTarget.y;
+    foot.registerReferenceX = null;
+    foot.registerReferenceY = null;
+
+    if (!config.fore && !settings.recovery) {
+      const side = config.side > 0 ? 'right' : 'left';
+      const foreTouch = cat.lastForeTouch[side];
+      if (foreTouch) {
+        const parent = cat.rig.pelvis;
+        const reach = Math.hypot(foreTouch.x - parent.x, foreTouch.y - parent.y) / a.scale;
+        if (reach >= 17 && reach <= 82 && elapsed - foreTouch.time < 5.5) {
+          const registerWeight = cat.state === 'stalk' ? 0.94 : cat.state === 'chase' ? 0.15 : 0.9;
+          targetX += (foreTouch.x - targetX) * registerWeight;
+          targetY += (foreTouch.y - targetY) * registerWeight;
+          foot.registerReferenceX = foreTouch.x;
+          foot.registerReferenceY = foreTouch.y;
+        }
+      }
+    }
+
+    foot.swingStartX = foot.x;
+    foot.swingStartY = foot.y;
+    foot.swingTargetX = targetX;
+    foot.swingTargetY = targetY;
+    const dx = targetX - foot.x;
+    const dy = targetY - foot.y;
+    const inwardX = Math.sin(cat.heading) * config.side;
+    const inwardY = -Math.cos(cat.heading) * config.side;
+    const inward = (cat.state === 'chase' ? 1.2 : 2.4) * a.scale;
+    foot.swingControl1X = foot.x + dx * 0.2 + inwardX * inward;
+    foot.swingControl1Y = foot.y + dy * 0.2 + inwardY * inward;
+    foot.swingControl2X = targetX - dx * 0.2 + inwardX * inward * 0.35;
+    foot.swingControl2Y = targetY - dy * 0.2 + inwardY * inward * 0.35;
+  }
+
+  function recordTouchdown(limb, foot, a, forced) {
+    const config = LEG_CONFIG[limb];
+    let registerError = null;
+    if (config.fore) {
+      const side = config.side > 0 ? 'right' : 'left';
+      cat.lastForeTouch[side] = { x: foot.x, y: foot.y, heading: foot.angle, time: elapsed };
+    } else if (Number.isFinite(foot.registerReferenceX) && Number.isFinite(foot.registerReferenceY)) {
+      registerError = Math.hypot(foot.x - foot.registerReferenceX, foot.y - foot.registerReferenceY);
+    }
+    foot.registerError = registerError;
+    cat.touchdowns.push({ limb, x: foot.x, y: foot.y, time: elapsed, registerError, forced: Boolean(forced) });
+    if (cat.touchdowns.length > 24) cat.touchdowns.shift();
+    if (cat.speed > 8) {
+      prints.push({ x: foot.x, y: foot.y, heading: foot.angle, born: elapsed, scale: a.scale });
+      if (prints.length > 32) prints.shift();
+    }
+  }
+
+  function legReach(limb, foot) {
+    const anchor = anchorWorld(limb);
+    return {
+      anchor,
+      distance: Math.hypot(foot.x - anchor.x, foot.y - anchor.y),
+    };
+  }
+
+  function legReachLimit(limb, a) {
+    return LEG_CONFIG[limb].reach * a.scale;
+  }
+
+  function pointWithinLegReach(limb, x, y, a) {
+    const anchor = anchorWorld(limb);
+    const dx = x - anchor.x;
+    const dy = y - anchor.y;
+    const distance = Math.hypot(dx, dy);
+    const limit = legReachLimit(limb, a);
+    if (distance <= limit) return { x, y };
+    const ratio = limit / Math.max(0.001, distance);
+    return { x: anchor.x + dx * ratio, y: anchor.y + dy * ratio };
+  }
+
+  function constrainFootReach(limb, foot, a) {
+    const point = pointWithinLegReach(limb, foot.x, foot.y, a);
+    foot.x = point.x;
+    foot.y = point.y;
+  }
+
+  function beginReachRecovery(limb, foot, a) {
+    constrainFootReach(limb, foot, a);
+
+    const duration = cat.state === 'chase' ? 0.15 : cat.state === 'stalk' ? 0.19 : 0.22;
+    foot.wasPlanted = true;
+    foot.planted = false;
+    foot.settleActive = false;
+    foot.recoveryActive = true;
+    foot.recoveryProgress = 0;
+    foot.recoveryDuration = duration;
+    const duty = Math.max(0.001, cat.gait.dutyFactors[limb] || cat.gait.dutyFactor);
+    cat.gait.legPhases[limb] = Math.min(0.999, duty + 0.001);
+    planPawSwing(limb, foot, { duration, recovery: true });
+  }
+
+  function updateReachRecovery(limb, foot, dt, a) {
+    foot.recoveryProgress = Math.min(1, foot.recoveryProgress + dt / foot.recoveryDuration);
+    const u = Gait.smootherstep(foot.recoveryProgress);
+    const point = cubicPoint(
+      { x: foot.swingStartX, y: foot.swingStartY },
+      { x: foot.swingControl1X, y: foot.swingControl1Y },
+      { x: foot.swingControl2X, y: foot.swingControl2Y },
+      { x: foot.swingTargetX, y: foot.swingTargetY },
+      u,
+    );
+    foot.x = point.x;
+    foot.y = point.y;
+    constrainFootReach(limb, foot, a);
+    foot.phase = 0.82 + foot.recoveryProgress * 0.18;
+    foot.swingProgress = foot.recoveryProgress;
+    foot.lift = Math.sin(Math.PI * foot.recoveryProgress) * 0.62;
+    const travelAngle = Math.atan2(
+      foot.swingTargetY - foot.swingStartY,
+      foot.swingTargetX - foot.swingStartX,
+    );
+    foot.angle = cat.heading + Gait.angleDelta(cat.heading, travelAngle) * 0.16;
+
+    if (foot.recoveryProgress >= 1) {
+      foot.x = foot.swingTargetX;
+      foot.y = foot.swingTargetY;
+      constrainFootReach(limb, foot, a);
+      foot.lift = 0;
+      foot.phase = 0;
+      foot.swingProgress = 0;
+      foot.planted = true;
+      foot.wasPlanted = true;
+      foot.recoveryActive = false;
+      cat.gait.legPhases[limb] = 0;
+      cat.gait.dutyFactors[limb] = cat.gait.dutyFactor;
+      recordTouchdown(limb, foot, a, true);
+    }
+  }
+
   function updateFeet(dt) {
     const a = anatomy();
     const settling = cat.speed < 2.5 * a.scale && cat.gait.cadence < 0.12;
+    const airborne = Gait.LIMBS.filter((limb) => {
+      const foot = cat.feet[limb];
+      if (!foot) return false;
+      return foot.recoveryActive || !Gait.sampleLimb(cat.gait, limb, cat.strideLength).planted;
+    }).length;
+    // Begin unloading before the anatomical stop is visible. Up to three feet
+    // may be moving during a tight chase pivot, but one support is retained.
+    const recoverySlots = Math.max(0, 3 - airborne);
+    const overextended = Gait.LIMBS
+      .filter((limb) => (
+        cat.feet[limb]?.planted
+        && !cat.feet[limb].recoveryActive
+        && Gait.sampleLimb(cat.gait, limb, cat.strideLength).planted
+      ))
+      .map((limb) => ({
+        limb,
+        ratio: legReach(limb, cat.feet[limb]).distance / legReachLimit(limb, a),
+      }))
+      .filter((entry) => entry.ratio > 0.86)
+      .sort((left, right) => right.ratio - left.ratio)
+      .slice(0, recoverySlots);
+    overextended.forEach(({ limb }) => beginReachRecovery(limb, cat.feet[limb], a));
+
     Gait.LIMBS.forEach((limb) => {
       const foot = cat.feet[limb];
       const sample = Gait.sampleLimb(cat.gait, limb, cat.strideLength);
-      const expected = expectedPawWorld(limb, sample, sample.planted ? 0 : (1 - sample.swingProgress) * 0.05);
-
       if (!foot) return;
+
+      if (foot.recoveryActive) {
+        updateReachRecovery(limb, foot, dt, a);
+        return;
+      }
+
       if (settling) {
         foot.wasPlanted = foot.planted;
         if (foot.planted && !foot.settleActive) {
@@ -630,11 +919,11 @@
           foot.settleTargetX = restPoint.x;
           foot.settleTargetY = restPoint.y;
         }
-        foot.settleProgress = Math.min(1, foot.settleProgress + dt / 0.24);
-        const settleEase = Gait.smoothstep(foot.settleProgress);
+        foot.settleProgress = Math.min(1, foot.settleProgress + dt / 0.3);
+        const settleEase = Gait.smootherstep(foot.settleProgress);
         foot.x = foot.settleStartX + (foot.settleTargetX - foot.settleStartX) * settleEase;
         foot.y = foot.settleStartY + (foot.settleTargetY - foot.settleStartY) * settleEase;
-        foot.lift = foot.settleStartLift * (1 - settleEase) + Math.sin(Math.PI * foot.settleProgress) * 0.34;
+        foot.lift = foot.settleStartLift * (1 - settleEase) + Math.sin(Math.PI * foot.settleProgress) * 0.28;
         foot.phase = 0.82 + foot.settleProgress * 0.18;
         if (foot.settleProgress >= 1) {
           foot.settleActive = false;
@@ -642,45 +931,47 @@
           foot.planted = true;
           foot.phase = 0;
           foot.lift = 0;
-          foot.swingOffsetX = 0;
-          foot.swingOffsetY = 0;
           foot.angle = cat.heading;
         }
         return;
       }
-      if (foot.settleActive) {
-        foot.swingOffsetX = foot.x - expected.x;
-        foot.swingOffsetY = foot.y - expected.y;
-      }
+
       foot.settleActive = false;
       foot.wasPlanted = foot.planted;
       foot.planted = sample.planted;
       foot.phase = sample.phase;
-      foot.lift = sample.lift;
+      foot.swingProgress = sample.swingProgress;
 
       if (sample.planted) {
+        foot.lift = 0;
         if (!foot.wasPlanted) {
-          foot.x = expected.x;
-          foot.y = expected.y;
+          foot.x = foot.swingTargetX;
+          foot.y = foot.swingTargetY;
+          constrainFootReach(limb, foot, a);
           const touchdownAnchor = anchorWorld(limb);
           const touchdownAngle = Math.atan2(foot.y - touchdownAnchor.y, foot.x - touchdownAnchor.x);
-          foot.angle = cat.heading + Gait.angleDelta(cat.heading, touchdownAngle) * 0.22;
-          if (cat.speed > 8) {
-            prints.push({ x: foot.x, y: foot.y, heading: cat.heading, born: elapsed, scale: a.scale });
-            if (prints.length > 32) prints.shift();
-          }
+          foot.angle = cat.heading + Gait.angleDelta(cat.heading, touchdownAngle) * 0.16;
+          recordTouchdown(limb, foot, a, false);
         }
       } else {
-        if (foot.wasPlanted) {
-          foot.swingOffsetX = foot.x - expected.x;
-          foot.swingOffsetY = foot.y - expected.y;
-        }
-        const correction = 1 - Gait.smoothstep(sample.swingProgress);
-        foot.x = expected.x + foot.swingOffsetX * correction;
-        foot.y = expected.y + foot.swingOffsetY * correction;
-        const swingAnchor = anchorWorld(limb);
-        const swingAngle = Math.atan2(foot.y - swingAnchor.y, foot.x - swingAnchor.x);
-        foot.angle = cat.heading + Gait.angleDelta(cat.heading, swingAngle) * 0.22;
+        if (foot.wasPlanted) planPawSwing(limb, foot);
+        const u = Gait.smootherstep(sample.swingProgress);
+        const point = cubicPoint(
+          { x: foot.swingStartX, y: foot.swingStartY },
+          { x: foot.swingControl1X, y: foot.swingControl1Y },
+          { x: foot.swingControl2X, y: foot.swingControl2Y },
+          { x: foot.swingTargetX, y: foot.swingTargetY },
+          u,
+        );
+        foot.x = point.x;
+        foot.y = point.y;
+        constrainFootReach(limb, foot, a);
+        foot.lift = sample.lift;
+        const swingAngle = Math.atan2(
+          foot.swingTargetY - foot.swingStartY,
+          foot.swingTargetX - foot.swingStartX,
+        );
+        foot.angle = cat.heading + Gait.angleDelta(cat.heading, swingAngle) * 0.16;
       }
     });
     while (prints.length && elapsed - prints[0].born > 5.2) prints.shift();
@@ -1121,7 +1412,7 @@
   function bodyStations(a, offsetX, offsetY) {
     const ox = offsetX || 0;
     const oy = offsetY || 0;
-    const narrow = cat.state === 'stalk' ? 0.94 : 1;
+    const narrow = cat.skinNarrow;
     const define = (node, forward, width) => {
       const point = pointFromNode(node, forward * a.scale, 0);
       return {
@@ -1373,7 +1664,7 @@
       traceEarSilhouette(ctx, a, side);
       ctx.fill();
 
-      ctx.fillStyle = c.mouseEar;
+      ctx.fillStyle = c.earInner;
       ctx.globalAlpha = 0.58;
       ctx.beginPath();
       ctx.moveTo(-9 * a.scale, side * 17 * a.scale);
@@ -1775,7 +2066,14 @@
     getSnapshot: () => ({
       behavior: cat.state,
       gait: cat.gait.profileName,
-      cat: { x: cat.x, y: cat.y, heading: cat.heading, speed: cat.speed },
+      cat: {
+        x: cat.x,
+        y: cat.y,
+        heading: cat.heading,
+        speed: cat.speed,
+        acceleration: cat.acceleration,
+        steerOmega: cat.steerOmega,
+      },
       rig: Object.fromEntries(['pelvis', 'waist', 'shoulders', 'neck', 'head'].map((name) => [name, {
         x: cat.rig[name].x,
         y: cat.rig[name].y,
@@ -1785,7 +2083,9 @@
       rigCurvature: cat.rig.curvature,
       rigScale: anatomy().scale,
       turnVelocity: cat.rig.turnVelocity,
-      skin: skinTopologySnapshot(),
+      skin: Object.assign(skinTopologySnapshot(), { narrow: cat.skinNarrow }),
+      support: Object.assign({}, cat.support),
+      touchdowns: cat.touchdowns.map((touchdown) => Object.assign({}, touchdown)),
       mouse: { x: prey.x, y: prey.y, speed: prey.speed, active: prey.active },
       phases: Object.fromEntries(Gait.LIMBS.map((limb) => [limb, cat.feet[limb] ? cat.feet[limb].phase : null])),
       feet: Object.fromEntries(Gait.LIMBS.map((limb) => [limb, cat.feet[limb]
@@ -1795,6 +2095,11 @@
             angle: cat.feet[limb].angle,
             lift: cat.feet[limb].lift,
             planted: cat.feet[limb].planted,
+            swingProgress: cat.feet[limb].swingProgress,
+            recoveryActive: cat.feet[limb].recoveryActive,
+            registerError: cat.feet[limb].registerError,
+            reach: legReach(limb, cat.feet[limb]).distance,
+            reachLimit: legReachLimit(limb, anatomy()),
           }
         : null])),
       tailTip: cat.tail.length

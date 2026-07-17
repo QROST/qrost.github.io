@@ -31,6 +31,9 @@ assert.deepEqual(Gait.PROFILES.stalk.offsets, {
 });
 assert.ok(Gait.PROFILES.stalk.dutyFactor >= 0.7 && Gait.PROFILES.stalk.dutyFactor <= 0.78);
 assert.ok(Gait.PROFILES.prowl.dutyFactor >= 0.58 && Gait.PROFILES.prowl.dutyFactor <= 0.65);
+assert.ok(Gait.PROFILES.prowl.cycleStride >= 76 && Gait.PROFILES.prowl.cycleStride <= 84);
+assert.ok(Gait.PROFILES.stalk.cycleStride >= 74 && Gait.PROFILES.stalk.cycleStride <= 84);
+assert.ok(Gait.PROFILES.chase.cycleStride >= 100 && Gait.PROFILES.chase.cycleStride <= 116);
 assert.equal(Gait.PROFILES.chase.offsets.rightHind, Gait.PROFILES.chase.offsets.leftFore);
 assert.equal(Gait.PROFILES.chase.offsets.rightFore, Gait.PROFILES.chase.offsets.leftHind);
 assert.equal(phaseDistance(Gait.PROFILES.chase.offsets.rightHind, Gait.PROFILES.chase.offsets.rightFore), 0.5);
@@ -56,6 +59,34 @@ touchdownProbe.legPhases.rightHind = 0;
 const nextTouchdown = Gait.sampleLimb(touchdownProbe, 'rightHind', 40);
 assert.ok(Math.abs(stanceEnd.longitudinal - swingStart.longitudinal) < 0.001, 'stance → swing must be continuous');
 assert.ok(Math.abs(swingEnd.longitudinal - nextTouchdown.longitudinal) < 0.001, 'swing → touchdown must be continuous');
+
+assert.equal(Gait.smootherstep(0), 0);
+assert.equal(Gait.smootherstep(1), 1);
+assert.ok(Gait.smootherstep(0.25) < Gait.smoothstep(0.25), 'swing must ease gently away from the planted paw');
+assert.ok(Gait.smootherstep(0.75) > Gait.smoothstep(0.75), 'swing must ease gently into touchdown');
+
+function settleCadence(behavior, speed, reducedMotion = false) {
+  const controller = Gait.createController(behavior);
+  for (let index = 0; index < 600; index += 1) {
+    Gait.updateController(controller, { dt: 1 / 60, speed, behavior, reducedMotion });
+  }
+  return controller.cadence;
+}
+
+assert.ok(Math.abs(settleCadence('prowl', 24) - 24 / Gait.PROFILES.prowl.cycleStride) < 1e-6);
+assert.ok(Math.abs(settleCadence('stalk', 58) - 58 / Gait.PROFILES.stalk.cycleStride) < 1e-6);
+assert.ok(Math.abs(settleCadence('chase', 216) - 216 / Gait.PROFILES.chase.cycleStride) < 1e-6);
+assert.ok(settleCadence('chase', 248, true) <= 1.15 + 1e-6, 'reduced motion must cap cadence');
+
+const liftProbe = Gait.createController('stalk');
+liftProbe.liftScale = Gait.PROFILES.stalk.liftScale;
+liftProbe.dutyFactors.rightHind = Gait.PROFILES.stalk.dutyFactor;
+const swingSpan = 1 - Gait.PROFILES.stalk.dutyFactor;
+liftProbe.legPhases.rightHind = Gait.PROFILES.stalk.dutyFactor + swingSpan * 0.4;
+const earlyLift = Gait.sampleLimb(liftProbe, 'rightHind', 40).lift;
+liftProbe.legPhases.rightHind = Gait.PROFILES.stalk.dutyFactor + swingSpan * 0.6;
+const lateLift = Gait.sampleLimb(liftProbe, 'rightHind', 40).lift;
+assert.ok(earlyLift > lateLift, 'careful paw lift must peak before the middle of swing');
 
 assert.equal(Gait.chooseBehavior({ targetActive: false }), 'prowl');
 assert.equal(Gait.chooseBehavior({ targetActive: true, justAppeared: true }), 'observe');
@@ -129,4 +160,4 @@ assert.ok(Gait.targetSpeedForBehavior('stalk', 400, 0, false) <= 62);
 assert.ok(Gait.targetSpeedForBehavior('chase', 900, 900, false) <= 248);
 assert.ok(Gait.targetSpeedForBehavior('chase', 900, 900, true) <= 54);
 
-console.log('check-gait: 4-phase walk, trot transition, continuity, behavior hysteresis, and rate invariance OK');
+console.log('check-gait: distance cadence, early paw lift, 4-phase walk, trot transition, continuity, and rate invariance OK');

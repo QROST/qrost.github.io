@@ -20,8 +20,7 @@
     still: Object.freeze({
       name: 'still',
       dutyFactor: 0.72,
-      cadenceBase: 0,
-      cadenceGain: 0,
+      cycleStride: 80,
       liftScale: 0,
       lateralArc: 0,
       offsets: Object.freeze({ rightHind: 0, rightFore: 0.25, leftHind: 0.5, leftFore: 0.75 }),
@@ -29,28 +28,25 @@
     prowl: Object.freeze({
       name: 'prowl',
       dutyFactor: 0.65,
-      cadenceBase: 0.58,
-      cadenceGain: 0.0062,
-      liftScale: 0.72,
-      lateralArc: 0.035,
+      cycleStride: 80,
+      liftScale: 0.62,
+      lateralArc: 0.045,
       offsets: Object.freeze({ rightHind: 0, rightFore: 0.23, leftHind: 0.5, leftFore: 0.73 }),
     }),
     stalk: Object.freeze({
       name: 'stalk',
       dutyFactor: 0.75,
-      cadenceBase: 0.52,
-      cadenceGain: 0.005,
+      cycleStride: 78,
       liftScale: 0.48,
-      lateralArc: 0.024,
+      lateralArc: 0.038,
       offsets: Object.freeze({ rightHind: 0, rightFore: 0.25, leftHind: 0.5, leftFore: 0.75 }),
     }),
     chase: Object.freeze({
       name: 'chase',
       dutyFactor: 0.5,
-      cadenceBase: 1.28,
-      cadenceGain: 0.0065,
+      cycleStride: 108,
       liftScale: 1,
-      lateralArc: 0.045,
+      lateralArc: 0.028,
       offsets: Object.freeze({ rightHind: 0, rightFore: 0.5, leftHind: 0.5, leftFore: 0 }),
     }),
   });
@@ -66,6 +62,11 @@
   function smoothstep(value) {
     const t = clamp(value, 0, 1);
     return t * t * (3 - 2 * t);
+  }
+
+  function smootherstep(value) {
+    const t = clamp(value, 0, 1);
+    return t * t * t * (t * (t * 6 - 15) + 10);
   }
 
   function shortestPhaseDelta(from, to) {
@@ -124,10 +125,13 @@
     controller.liftScale += (desired.liftScale - controller.liftScale) * transition;
     controller.lateralArc += (desired.lateralArc - controller.lateralArc) * transition;
 
-    let targetCadence = desired.cadenceBase + speed * desired.cadenceGain;
+    // Feline walking cadence follows the distance travelled per full limb
+    // cycle. This produces long, unhurried steps instead of high-frequency
+    // shuffling at slow speeds, while chase still transitions into a trot.
+    let targetCadence = speed / Math.max(1, desired.cycleStride);
     if (speed < 3 || desiredName === 'still') targetCadence = 0;
     if (reducedMotion) targetCadence = Math.min(targetCadence, 1.15);
-    targetCadence = clamp(targetCadence, 0, 3.1);
+    targetCadence = clamp(targetCadence, 0, desiredName === 'chase' ? 2.25 : 1.05);
     controller.cadence += (targetCadence - controller.cadence) * (1 - Math.exp(-dt * 5.5));
 
     const previous = controller.masterPhase;
@@ -174,9 +178,13 @@
       longitudinal = stride * (0.5 - u);
     } else {
       swingProgress = (phase - duty) / Math.max(0.001, 1 - duty);
-      const eased = smoothstep(swingProgress);
+      const eased = smootherstep(swingProgress);
       longitudinal = stride * (-0.5 + eased);
-      lift = Math.sin(Math.PI * swingProgress) * controller.liftScale;
+      // The paw clears the floor early, then spends more of the second half
+      // placing carefully. The normalized beta-like curve peaks near u=.4.
+      const liftShape = Math.pow(swingProgress, 0.8) * Math.pow(1 - swingProgress, 1.2);
+      const liftPeak = Math.pow(0.4, 0.8) * Math.pow(0.6, 1.2);
+      lift = liftShape / liftPeak * controller.liftScale;
       lateral = Math.sin(Math.PI * swingProgress) * controller.lateralArc * stride;
     }
 
@@ -222,6 +230,7 @@
     clamp,
     fract,
     smoothstep,
+    smootherstep,
     angleDelta,
     profileForBehavior,
     createController,

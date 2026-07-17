@@ -216,14 +216,18 @@ function step(frames, milliseconds = 1000 / 60) {
 function finiteSnapshot(snapshot) {
   for (const value of [
     snapshot.cat.x, snapshot.cat.y, snapshot.cat.heading, snapshot.cat.speed,
+    snapshot.cat.acceleration, snapshot.cat.steerOmega,
     snapshot.mouse.x, snapshot.mouse.y, snapshot.mouse.speed,
     snapshot.rigScale, snapshot.turnVelocity, snapshot.rigCurvature,
-    snapshot.skin.headSocketMargin, snapshot.skin.tailRootClearance,
+    snapshot.skin.headSocketMargin, snapshot.skin.tailRootClearance, snapshot.skin.narrow,
+    snapshot.support.foreBias, snapshot.support.hindBias, snapshot.support.combined,
     ...Object.values(snapshot.rig).flatMap((segment) => [
       segment.x, segment.y, segment.angle, segment.visualRadius,
     ]),
     ...Object.values(snapshot.phases),
-    ...Object.values(snapshot.feet).flatMap((foot) => [foot.x, foot.y, foot.angle, foot.lift]),
+    ...Object.values(snapshot.feet).flatMap((foot) => [
+      foot.x, foot.y, foot.angle, foot.lift, foot.swingProgress, foot.reach, foot.reachLimit,
+    ]),
     snapshot.tailTip.x, snapshot.tailTip.y,
   ]) assert.ok(Number.isFinite(value), `runtime emitted a non-finite value: ${value}`);
 }
@@ -242,7 +246,24 @@ function angleDistance(from, to) {
 
 function assertRigSnapshot(snapshot, label = 'rig') {
   finiteSnapshot(snapshot);
+  assert.ok(Math.abs(snapshot.cat.steerOmega) <= 2.4 + 1e-6, `${label}: steering velocity escaped its profile limit`);
+  assert.ok(
+    Math.abs(snapshot.cat.acceleration) <= 300 * snapshot.rigScale + 1e-6,
+    `${label}: acceleration escaped its profile limit`,
+  );
+  assert.ok(snapshot.skin.narrow >= 0.94 && snapshot.skin.narrow <= 1, `${label}: coat width transition escaped bounds`);
+  assert.ok(Math.abs(snapshot.support.foreBias) <= 1.001, `${label}: fore support bias escaped bounds`);
+  assert.ok(Math.abs(snapshot.support.hindBias) <= 1.001, `${label}: hind support bias escaped bounds`);
+  assert.ok(Object.values(snapshot.feet).some((foot) => foot.planted), `${label}: all four paws left support at once`);
+  for (const [limb, foot] of Object.entries(snapshot.feet)) {
+    assert.ok(foot.swingProgress >= 0 && foot.swingProgress <= 1, `${label}: ${limb} swing progress escaped bounds`);
+    assert.ok(
+      foot.reach <= foot.reachLimit + 1e-6,
+      `${label}: ${limb} overextended (${foot.reach.toFixed(3)} > ${foot.reachLimit.toFixed(3)})`,
+    );
+  }
   const bendSigns = [];
+  const bendDetails = [];
   for (const [parentName, childName, restLength, limit] of rigJoints) {
     const parent = snapshot.rig[parentName];
     const child = snapshot.rig[childName];
@@ -251,6 +272,7 @@ function assertRigSnapshot(snapshot, label = 'rig') {
     const tolerance = Math.max(0.45, expected * 0.012);
     assert.ok(Math.abs(distance - expected) <= tolerance, `${label}: ${parentName}-${childName} chain stretched`);
     const signedBend = sandbox.CatGait.angleDelta(parent.angle, child.angle);
+    bendDetails.push(`${parentName}-${childName}:${signedBend.toFixed(4)}`);
     assert.ok(Math.abs(signedBend) <= limit + 1e-6, `${label}: ${parentName}-${childName} exceeded joint limit`);
     if (Math.abs(signedBend) >= 0.025) bendSigns.push(Math.sign(signedBend));
   }
@@ -258,7 +280,10 @@ function assertRigSnapshot(snapshot, label = 'rig') {
   for (let index = 1; index < bendSigns.length; index += 1) {
     if (bendSigns[index] !== bendSigns[index - 1]) signChanges += 1;
   }
-  assert.ok(signChanges <= 1, `${label}: articulated spine became an S-shaped snake`);
+  assert.ok(
+    signChanges <= 1,
+    `${label}: articulated spine became an S-shaped snake (${bendDetails.join(', ')})`,
+  );
   const curvature = sandbox.CatGait.angleDelta(snapshot.rig.pelvis.angle, snapshot.rig.head.angle);
   assert.ok(Math.abs(curvature) <= 0.84 + 1e-6, `${label}: total rig curvature exceeded limit`);
   assert.ok(Math.abs(curvature - snapshot.rigCurvature) < 1e-9, `${label}: reported curvature drifted`);
@@ -304,6 +329,16 @@ for (let index = 0; index < 150; index += 1) {
 }
 
 snapshot = sandbox.__catMouseDemo.getSnapshot();
+const registeredHindSteps = snapshot.touchdowns.filter((touchdown) => (
+  touchdown.limb.endsWith('Hind') && Number.isFinite(touchdown.registerError)
+));
+assert.ok(registeredHindSteps.length >= 1, 'slow walk must place a hind paw into a recorded fore-paw track');
+const maxRegisterError = Math.max(...registeredHindSteps.map((touchdown) => touchdown.registerError));
+assert.ok(
+  maxRegisterError <= 7 * snapshot.rigScale,
+  `hind-paw direct register drifted ${maxRegisterError.toFixed(3)}px: ${JSON.stringify(registeredHindSteps)}`,
+);
+
 sandbox.__catMouseDemo.moveMouse(snapshot.cat.x + 45, snapshot.cat.y);
 let previousSettle = snapshot;
 let sawSettleSwing = false;
@@ -429,6 +464,7 @@ const edgeTargets = [
   [fakeViewportWidth * 0.5, fakeViewportHeight - 8],
   [8, fakeViewportHeight * 0.5],
 ];
+let sawReachRecovery = false;
 for (const [targetX, targetY] of edgeTargets) {
   sandbox.__catMouseDemo.moveMouse(targetX, targetY);
   for (let frameIndex = 0; frameIndex < 240; frameIndex += 1) {
@@ -436,9 +472,26 @@ for (const [targetX, targetY] of edgeTargets) {
     const current = sandbox.__catMouseDemo.getSnapshot();
     assertRigSnapshot(current, 'compact edge pursuit');
     assertHeadInsideViewport(current);
+    if (Object.values(current.feet).some((foot) => foot.recoveryActive)) sawReachRecovery = true;
   }
   sandbox.__catMouseDemo.releaseMouse();
   step(24);
+}
+assert.equal(sawReachRecovery, true, 'compact edge turns must exercise anatomical reach recovery');
+
+for (const [rate, targetX, targetY] of [
+  [30, 8, 8],
+  [120, fakeViewportWidth - 8, fakeViewportHeight - 8],
+]) {
+  sandbox.__catMouseDemo.moveMouse(targetX, targetY);
+  for (let frameIndex = 0; frameIndex < rate * 2; frameIndex += 1) {
+    step(1, 1000 / rate);
+    const current = sandbox.__catMouseDemo.getSnapshot();
+    assertRigSnapshot(current, `${rate} Hz compact turn`);
+    assertHeadInsideViewport(current);
+  }
+  sandbox.__catMouseDemo.releaseMouse();
+  step(Math.round(rate * 0.4), 1000 / rate);
 }
 
 ids.get('language-toggle').dispatch('click');
@@ -518,4 +571,4 @@ failureListeners.forEach((listener) => listener());
 assert.equal(failureElements.get('canvas-error').textContent, 'Canvas failed');
 assert.equal(failureElements.get('theme-toggle').getAttribute('title'), 'Light');
 
-console.log('check-runtime: seamless coat, articulated rig, locked paws, 548x536 edge bounds, pursuit, pause, i18n, and theme OK');
+console.log('check-runtime: seamless coat, bounded spine, direct register, locked/recovery paws, anatomical reach, 548x536 edges, and UI OK');
