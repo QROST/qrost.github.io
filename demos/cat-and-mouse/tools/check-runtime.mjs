@@ -177,11 +177,32 @@ sandbox.window = sandbox;
 sandbox.globalThis = sandbox;
 vm.createContext(sandbox);
 
+const loadedSources = new Map();
 for (const relative of ['assets/js/i18n.js', 'assets/js/gait.js', 'assets/js/app.js']) {
   const source = fs.readFileSync(path.join(demo, relative), 'utf8');
+  loadedSources.set(relative, source);
   vm.runInContext(source, sandbox, { filename: relative });
 }
 document.dispatch('DOMContentLoaded');
+
+// Renderer topology is checked structurally because a fake Canvas cannot
+// reliably distinguish an internal cap line from an external silhouette.
+const appSource = loadedSources.get('assets/js/app.js');
+const tailRibbonSource = appSource.match(/function traceTailRibbon[\s\S]*?(?=\n  function tailRenderPoints)/)?.[0] || '';
+const bodyFlankSource = appSource.match(/function strokeBodyFlanks[\s\S]*?(?=\n  function skinTopologySnapshot)/)?.[0] || '';
+const drawTailSource = appSource.match(/function drawTail[\s\S]*?(?=\n  function drawLegs)/)?.[0] || '';
+const drawBodySource = appSource.match(/function drawBody[\s\S]*?(?=\n  function drawHead)/)?.[0] || '';
+const drawHeadSource = appSource.match(/function drawHead[\s\S]*?(?=\n  function drawMouse)/)?.[0] || '';
+assert.ok(tailRibbonSource, 'tail ribbon renderer must remain discoverable');
+assert.doesNotMatch(tailRibbonSource, /closePath\s*\(/, 'tail ribbon must stay open at its hidden root');
+assert.match(drawBodySource, /strokeBodyFlanks\s*\(/, 'torso must stroke only its open side contours');
+assert.doesNotMatch(drawBodySource, /ctx\.stroke\s*\(/, 'torso must not stroke its closed fill caps');
+assert.doesNotMatch(bodyFlankSource, /closePath\s*\(|traceBodySilhouette\s*\(/, 'body flank strokes must stay open');
+assert.equal((bodyFlankSource.match(/smoothOpenPath\s*\(/g) || []).length, 2, 'body must expose exactly two open flanks');
+assert.equal((bodyFlankSource.match(/context\.stroke\s*\(/g) || []).length, 2, 'body must stroke each open flank once');
+for (const [label, source] of [['tail', drawTailSource], ['body', drawBodySource], ['head', drawHeadSource]]) {
+  assert.match(source, /ctx\.fillStyle\s*=\s*c\.fur\s*;/, `${label} must start from the shared base coat`);
+}
 
 function step(frames, milliseconds = 1000 / 60) {
   for (let index = 0; index < frames; index += 1) {
@@ -197,6 +218,7 @@ function finiteSnapshot(snapshot) {
     snapshot.cat.x, snapshot.cat.y, snapshot.cat.heading, snapshot.cat.speed,
     snapshot.mouse.x, snapshot.mouse.y, snapshot.mouse.speed,
     snapshot.rigScale, snapshot.turnVelocity, snapshot.rigCurvature,
+    snapshot.skin.headSocketMargin, snapshot.skin.tailRootClearance,
     ...Object.values(snapshot.rig).flatMap((segment) => [
       segment.x, segment.y, segment.angle, segment.visualRadius,
     ]),
@@ -240,6 +262,8 @@ function assertRigSnapshot(snapshot, label = 'rig') {
   const curvature = sandbox.CatGait.angleDelta(snapshot.rig.pelvis.angle, snapshot.rig.head.angle);
   assert.ok(Math.abs(curvature) <= 0.84 + 1e-6, `${label}: total rig curvature exceeded limit`);
   assert.ok(Math.abs(curvature - snapshot.rigCurvature) < 1e-9, `${label}: reported curvature drifted`);
+  assert.ok(snapshot.skin.headSocketMargin >= 0.08, `${label}: neck cap escaped the hidden skull socket`);
+  assert.ok(snapshot.skin.tailRootClearance >= 3 * snapshot.rigScale, `${label}: tail root escaped the pelvis envelope`);
 }
 
 function assertHeadInsideViewport(snapshot, padding = 1) {
@@ -321,10 +345,15 @@ sandbox.__catMouseDemo.moveMouse(
 );
 const firstResponseFrame = Object.fromEntries(rigNames.map((name) => [name, null]));
 let previousArticulation = articulationBaseline;
+let maxExercisedNeckBend = 0;
 for (let frameIndex = 0; frameIndex < 36; frameIndex += 1) {
   step(1);
   const current = sandbox.__catMouseDemo.getSnapshot();
   assertRigSnapshot(current, 'head-first articulation');
+  maxExercisedNeckBend = Math.max(
+    maxExercisedNeckBend,
+    angleDistance(current.rig.neck.angle, current.rig.head.angle),
+  );
   for (const name of rigNames) {
     const response = angleDistance(articulationBaseline.rig[name].angle, current.rig[name].angle);
     if (firstResponseFrame[name] === null && response >= 0.035) firstResponseFrame[name] = frameIndex;
@@ -350,6 +379,7 @@ assert.ok(firstResponseFrame.neck <= firstResponseFrame.shoulders, 'neck must re
 assert.ok(firstResponseFrame.shoulders <= firstResponseFrame.waist, 'shoulders must respond before waist');
 assert.ok(firstResponseFrame.waist <= firstResponseFrame.pelvis, 'waist must respond before pelvis');
 assert.ok(firstResponseFrame.head + 3 <= firstResponseFrame.pelvis, 'head needs visible lead over pelvis');
+assert.ok(maxExercisedNeckBend >= 0.2, 'skin topology gate must run under a meaningful head-neck bend');
 sandbox.__catMouseDemo.releaseMouse();
 step(30);
 
@@ -488,4 +518,4 @@ failureListeners.forEach((listener) => listener());
 assert.equal(failureElements.get('canvas-error').textContent, 'Canvas failed');
 assert.equal(failureElements.get('theme-toggle').getAttribute('title'), 'Light');
 
-console.log('check-runtime: articulated rig, locked paws, 548x536 edge bounds, pursuit, pause, i18n, and theme OK');
+console.log('check-runtime: seamless coat, articulated rig, locked paws, 548x536 edge bounds, pursuit, pause, i18n, and theme OK');

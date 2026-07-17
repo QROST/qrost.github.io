@@ -172,6 +172,20 @@
     leftFore: Object.freeze({ fore: true, side: -1 }),
   });
 
+  // The rig stays articulated, while the painted coat deliberately overlaps
+  // its joints. These values describe hidden render sockets, not new bones.
+  const SKIN_TOPOLOGY = Object.freeze({
+    headBridgeT: 0.62,
+    headRearReach: 17,
+    headSocketCenterX: 2,
+    headSocketRadiusX: 18,
+    headSocketRadiusY: 17,
+    tailSocketForward: -19,
+    tailAnchorForward: -28,
+    tailRootRadius: 7.5,
+    tailTipRadius: 0.7,
+  });
+
   function isDark() {
     return document.documentElement.classList.contains('dark');
   }
@@ -206,9 +220,6 @@
     const scale = Gait.clamp(Math.min(viewport.width, viewport.height) / 720, 0.68, 1.14);
     return {
       scale,
-      bodyLength: 126 * scale,
-      bodyWidth: 52 * scale,
-      headRadius: 24 * scale,
       tailSegment: 12.5 * scale,
     };
   }
@@ -360,7 +371,7 @@
     cat.tail.length = 0;
     const a = anatomy();
     if (!cat.rig.initialized) initializeRig();
-    const base = pointFromNode(cat.rig.pelvis, -28 * a.scale, 0);
+    const base = pointFromNode(cat.rig.pelvis, SKIN_TOPOLOGY.tailAnchorForward * a.scale, 0);
     const tailHeading = cat.rig.pelvis.angle;
     for (let index = 0; index < 10; index += 1) {
       const distance = a.tailSegment * index;
@@ -678,7 +689,11 @@
   function updateTail(dt) {
     if (!cat.tail.length) initializeTail();
     const a = anatomy();
-    const base = pointFromNode(cat.rig.pelvis, -28 * a.scale, cat.bodySway * 0.9 * a.scale);
+    const base = pointFromNode(
+      cat.rig.pelvis,
+      SKIN_TOPOLOGY.tailAnchorForward * a.scale,
+      cat.bodySway * 0.9 * a.scale,
+    );
     const pelvisHeading = cat.rig.pelvis.angle;
     const flickStrength = cat.state === 'watch' || cat.state === 'observe' ? 92 : cat.state === 'chase' ? 18 : 42;
     const flickRate = cat.state === 'watch' ? 2.25 : cat.state === 'chase' ? 0.75 : 1.15;
@@ -787,14 +802,6 @@
     });
   }
 
-  function linearFill(context, x0, y0, x1, y1, stops, fallback) {
-    let gradient = null;
-    try { gradient = context.createLinearGradient(x0, y0, x1, y1); } catch (_) {}
-    if (!gradient || typeof gradient.addColorStop !== 'function') return fallback;
-    stops.forEach(([offset, color]) => gradient.addColorStop(offset, color));
-    return gradient;
-  }
-
   function smoothOpenPath(context, points, continuePath) {
     if (!points.length) return;
     if (continuePath) context.lineTo(points[0].x, points[0].y);
@@ -823,7 +830,10 @@
       const t = index / lastIndex;
       // Keep the base plush and finish at a small but visible radius. A cat's
       // tail is tapered, not needle-pointed.
-      const radius = (6.8 * Math.pow(1 - t, 0.6) + 0.7) * scale;
+      const radius = (
+        (SKIN_TOPOLOGY.tailRootRadius - SKIN_TOPOLOGY.tailTipRadius) * Math.pow(1 - t, 0.6)
+        + SKIN_TOPOLOGY.tailTipRadius
+      ) * scale;
       const nx = -dy / distance * radius;
       const ny = dx / distance * radius;
       left.push({ x: point.x + nx + offsetX, y: point.y + ny + offsetY });
@@ -844,7 +854,19 @@
     }
     const reversed = right.slice().reverse();
     smoothOpenPath(context, reversed, true);
-    context.closePath();
+    // Leave the root open. fill() closes it implicitly, while stroke() now
+    // follows only the two outer flanks and rounded tip, so no tail-root seam
+    // is painted across the pelvis.
+  }
+
+  function tailRenderPoints(a) {
+    if (!cat.tail.length) return [];
+    const socket = pointFromNode(
+      cat.rig.pelvis,
+      SKIN_TOPOLOGY.tailSocketForward * a.scale,
+      cat.bodySway * 0.9 * a.scale,
+    );
+    return [socket, ...cat.tail];
   }
 
   function legGeometry(limb, foot, a) {
@@ -894,13 +916,20 @@
 
   function traceHeadSilhouette(context, a) {
     context.beginPath();
-    context.moveTo(-17 * a.scale, 0);
+    context.moveTo(-SKIN_TOPOLOGY.headRearReach * a.scale, 0);
     context.bezierCurveTo(-16 * a.scale, -11 * a.scale, -9 * a.scale, -19 * a.scale, 1 * a.scale, -21 * a.scale);
     context.bezierCurveTo(12 * a.scale, -22 * a.scale, 20 * a.scale, -16 * a.scale, 22 * a.scale, -10 * a.scale);
     context.bezierCurveTo(26 * a.scale, -7 * a.scale, 28 * a.scale, -3 * a.scale, 27 * a.scale, 0);
     context.bezierCurveTo(28 * a.scale, 3 * a.scale, 26 * a.scale, 7 * a.scale, 22 * a.scale, 10 * a.scale);
     context.bezierCurveTo(20 * a.scale, 16 * a.scale, 12 * a.scale, 22 * a.scale, 1 * a.scale, 21 * a.scale);
-    context.bezierCurveTo(-9 * a.scale, 19 * a.scale, -16 * a.scale, 11 * a.scale, -17 * a.scale, 0);
+    context.bezierCurveTo(
+      -9 * a.scale,
+      19 * a.scale,
+      -16 * a.scale,
+      11 * a.scale,
+      -SKIN_TOPOLOGY.headRearReach * a.scale,
+      0,
+    );
     context.closePath();
   }
 
@@ -928,8 +957,9 @@
     ctx.lineCap = 'round';
     ctx.lineJoin = 'round';
 
-    if (cat.tail.length > 1) {
-      traceTailRibbon(ctx, cat.tail, a.scale, offsetX, offsetY);
+    const renderTail = tailRenderPoints(a);
+    if (renderTail.length > 2) {
+      traceTailRibbon(ctx, renderTail, a.scale, offsetX, offsetY);
       ctx.fill();
     }
 
@@ -973,18 +1003,14 @@
   function drawTail(c) {
     const a = anatomy();
     if (cat.tail.length < 2) return;
+    const renderTail = tailRenderPoints(a);
 
     ctx.save();
-    traceTailRibbon(ctx, cat.tail, a.scale, 0, 0);
-    ctx.fillStyle = linearFill(
-      ctx,
-      cat.tail[0].x,
-      cat.tail[0].y - 9 * a.scale,
-      cat.tail[0].x,
-      cat.tail[0].y + 9 * a.scale,
-      [[0, c.furLight], [0.34, c.fur], [1, c.furDark]],
-      c.fur,
-    );
+    traceTailRibbon(ctx, renderTail, a.scale, 0, 0);
+    // Every visible fur component starts from the same base coat. Highlights
+    // are layered inside the silhouette, so overlaps cannot reveal different
+    // gradient coordinate systems as a pasted-on joint.
+    ctx.fillStyle = c.fur;
     ctx.fill();
     ctx.strokeStyle = c.furDark;
     ctx.globalAlpha = 0.46;
@@ -997,30 +1023,30 @@
     ctx.lineCap = 'round';
     ctx.lineJoin = 'round';
     ctx.beginPath();
-    smoothOpenPath(ctx, cat.tail.slice(0, -1));
+    smoothOpenPath(ctx, renderTail.slice(0, -1));
     ctx.stroke();
 
     ctx.globalAlpha = 0.72;
     ctx.strokeStyle = c.stripe;
     [3, 5, 7].forEach((index) => {
-      if (!cat.tail[index]) return;
-      const previous = cat.tail[Math.max(0, index - 1)];
-      const next = cat.tail[Math.min(cat.tail.length - 1, index + 1)];
+      if (!renderTail[index]) return;
+      const previous = renderTail[Math.max(0, index - 1)];
+      const next = renderTail[Math.min(renderTail.length - 1, index + 1)];
       const dx = next.x - previous.x;
       const dy = next.y - previous.y;
       const distance = Math.max(0.001, Math.hypot(dx, dy));
-      const t = index / (cat.tail.length - 1);
+      const t = index / (renderTail.length - 1);
       const halfWidth = (6.4 - t * 3.8) * a.scale;
       const nx = -dy / distance * halfWidth;
       const ny = dx / distance * halfWidth;
       ctx.lineWidth = (2.5 - t * 0.75) * a.scale;
       ctx.beginPath();
-      ctx.moveTo(cat.tail[index].x + nx, cat.tail[index].y + ny);
+      ctx.moveTo(renderTail[index].x + nx, renderTail[index].y + ny);
       ctx.quadraticCurveTo(
-        cat.tail[index].x + dx / distance * 0.8 * a.scale,
-        cat.tail[index].y + dy / distance * 0.8 * a.scale,
-        cat.tail[index].x - nx,
-        cat.tail[index].y - ny,
+        renderTail[index].x + dx / distance * 0.8 * a.scale,
+        renderTail[index].y + dy / distance * 0.8 * a.scale,
+        renderTail[index].x - nx,
+        renderTail[index].y - ny,
       );
       ctx.stroke();
     });
@@ -1105,7 +1131,7 @@
         width: width * a.scale * narrow,
       };
     };
-    return [
+    const stations = [
       define(cat.rig.pelvis, -27, 9.5),
       define(cat.rig.pelvis, -17, 22.5),
       define(cat.rig.pelvis, 1, 28),
@@ -1116,10 +1142,28 @@
       define(cat.rig.shoulders, 13, 20),
       define(cat.rig.neck, 3, 12.8),
     ];
+    const bridgeT = SKIN_TOPOLOGY.headBridgeT;
+    const bridgeDx = cat.rig.head.x - cat.rig.neck.x;
+    const bridgeDy = cat.rig.head.y - cat.rig.neck.y;
+    stations.push({
+      x: cat.rig.neck.x + bridgeDx * bridgeT + ox,
+      y: cat.rig.neck.y + bridgeDy * bridgeT + oy,
+      angle: Math.atan2(bridgeDy, bridgeDx),
+      width: 11 * a.scale * narrow,
+    });
+    return stations;
   }
 
-  function traceBodySilhouette(context, a, offsetX, offsetY) {
+  function bodyContours(a, offsetX, offsetY) {
     const stations = bodyStations(a, offsetX, offsetY);
+    // Derive the skin normal from the continuous centerline rather than from
+    // each bone's own angle. The bones can articulate beneath a G1-like coat
+    // envelope without leaving geometric elbows at the joints.
+    stations.forEach((station, index) => {
+      const previous = stations[Math.max(0, index - 1)];
+      const next = stations[Math.min(stations.length - 1, index + 1)];
+      station.angle = Math.atan2(next.y - previous.y, next.x - previous.x);
+    });
     const left = stations.map((station) => ({
       x: station.x - Math.sin(station.angle) * station.width,
       y: station.y + Math.cos(station.angle) * station.width,
@@ -1128,14 +1172,26 @@
       x: station.x + Math.sin(station.angle) * station.width,
       y: station.y - Math.cos(station.angle) * station.width,
     }));
-    const front = stations[stations.length - 1];
-    const rear = stations[0];
+    return { stations, left, right, front: stations[stations.length - 1], rear: stations[0] };
+  }
+
+  function bodyFrontCapControl(contours, a) {
+    return {
+      x: contours.front.x + Math.cos(contours.front.angle) * 3 * a.scale,
+      y: contours.front.y + Math.sin(contours.front.angle) * 3 * a.scale,
+    };
+  }
+
+  function traceBodySilhouette(context, a, offsetX, offsetY) {
+    const contours = bodyContours(a, offsetX, offsetY);
+    const { left, right, front, rear } = contours;
+    const frontControl = bodyFrontCapControl(contours, a);
 
     context.beginPath();
     smoothOpenPath(context, left);
     context.quadraticCurveTo(
-      front.x + Math.cos(front.angle) * 3 * a.scale,
-      front.y + Math.sin(front.angle) * 3 * a.scale,
+      frontControl.x,
+      frontControl.y,
       right[right.length - 1].x,
       right[right.length - 1].y,
     );
@@ -1147,6 +1203,63 @@
       left[0].y,
     );
     context.closePath();
+    return contours;
+  }
+
+  function strokeBodyFlanks(context, contours) {
+    context.beginPath();
+    smoothOpenPath(context, contours.left);
+    context.stroke();
+    context.beginPath();
+    smoothOpenPath(context, contours.right);
+    context.stroke();
+  }
+
+  function skinTopologySnapshot() {
+    const a = anatomy();
+    const contours = bodyContours(a, 0, 0);
+    const renderTail = tailRenderPoints(a);
+    const headCap = [
+      contours.left[contours.left.length - 1],
+      bodyFrontCapControl(contours, a),
+      contours.right[contours.right.length - 1],
+    ];
+    // An ellipse is convex: if both endpoints and the control point of the
+    // quadratic neck cap stay inside this conservative skull socket, the
+    // entire cap stays hidden inside the painted head at every joint angle.
+    const headSocketMaxNorm = Math.max(...headCap.map((point) => {
+      const dx = point.x - cat.rig.head.x;
+      const dy = point.y - cat.rig.head.y;
+      const local = rotatePoint(dx, dy, -cat.rig.head.angle);
+      const normalizedX = (
+        local.x / a.scale - SKIN_TOPOLOGY.headSocketCenterX
+      ) / SKIN_TOPOLOGY.headSocketRadiusX;
+      const normalizedY = local.y / a.scale / SKIN_TOPOLOGY.headSocketRadiusY;
+      return normalizedX * normalizedX + normalizedY * normalizedY;
+    }));
+
+    const rearInner = contours.stations[0];
+    const rearOuter = contours.stations[1];
+    const rearDx = rearOuter.x - rearInner.x;
+    const rearDy = rearOuter.y - rearInner.y;
+    const rearLengthSq = Math.max(0.001, rearDx * rearDx + rearDy * rearDy);
+    const socket = renderTail[0] || { x: rearInner.x, y: rearInner.y };
+    const socketT = Gait.clamp(
+      ((socket.x - rearInner.x) * rearDx + (socket.y - rearInner.y) * rearDy) / rearLengthSq,
+      0,
+      1,
+    );
+    const rearCenter = {
+      x: rearInner.x + rearDx * socketT,
+      y: rearInner.y + rearDy * socketT,
+    };
+    const rearWidth = rearInner.width + (rearOuter.width - rearInner.width) * socketT;
+    const socketLateral = Math.hypot(socket.x - rearCenter.x, socket.y - rearCenter.y);
+    const tailRootClearance = rearWidth - socketLateral - SKIN_TOPOLOGY.tailRootRadius * a.scale;
+    return {
+      headSocketMargin: 1 - headSocketMaxNorm,
+      tailRootClearance,
+    };
   }
 
   function drawNodeEllipse(node, forward, lateral, radiusX, radiusY, rotation, a) {
@@ -1188,24 +1301,14 @@
 
   function drawBody(c) {
     const a = anatomy();
-    const waistNormalX = -Math.sin(cat.rig.waist.angle);
-    const waistNormalY = Math.cos(cat.rig.waist.angle);
 
-    traceBodySilhouette(ctx, a, 0, 0);
-    ctx.fillStyle = linearFill(
-      ctx,
-      cat.x + waistNormalX * 31 * a.scale,
-      cat.y + waistNormalY * 31 * a.scale,
-      cat.x - waistNormalX * 31 * a.scale,
-      cat.y - waistNormalY * 31 * a.scale,
-      [[0, c.furDark], [0.24, c.fur], [0.5, c.furLight], [0.72, c.fur], [1, c.furDark]],
-      c.fur,
-    );
+    const contours = traceBodySilhouette(ctx, a, 0, 0);
+    ctx.fillStyle = c.fur;
     ctx.fill();
     ctx.strokeStyle = c.furDark;
     ctx.globalAlpha = 0.42;
     ctx.lineWidth = 0.85 * a.scale;
-    ctx.stroke();
+    strokeBodyFlanks(ctx, contours);
     ctx.globalAlpha = 1;
 
     ctx.save();
@@ -1255,9 +1358,6 @@
     drawNodeEllipse(cat.rig.waist, 2, -13, 3.2, 1.5, -0.25, a);
     drawNodeEllipse(cat.rig.shoulders, 5, 17, 3.4, 1.6, 0.18, a);
 
-    ctx.fillStyle = c.cream;
-    ctx.globalAlpha = 0.36;
-    drawNodeEllipse(cat.rig.neck, 1, 0, 13, 8.5, 0, a);
     ctx.restore();
 
     drawHead(c, a);
@@ -1285,15 +1385,7 @@
       ctx.globalAlpha = 1;
     });
 
-    ctx.fillStyle = linearFill(
-      ctx,
-      -12 * a.scale,
-      -22 * a.scale,
-      18 * a.scale,
-      21 * a.scale,
-      [[0, c.furLight], [0.44, c.fur], [1, c.furDark]],
-      c.fur,
-    );
+    ctx.fillStyle = c.fur;
     traceHeadSilhouette(ctx, a);
     ctx.fill();
     ctx.strokeStyle = c.furDark;
@@ -1693,6 +1785,7 @@
       rigCurvature: cat.rig.curvature,
       rigScale: anatomy().scale,
       turnVelocity: cat.rig.turnVelocity,
+      skin: skinTopologySnapshot(),
       mouse: { x: prey.x, y: prey.y, speed: prey.speed, active: prey.active },
       phases: Object.fromEntries(Gait.LIMBS.map((limb) => [limb, cat.feet[limb] ? cat.feet[limb].phase : null])),
       feet: Object.fromEntries(Gait.LIMBS.map((limb) => [limb, cat.feet[limb]
