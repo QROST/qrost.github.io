@@ -1,0 +1,109 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1200" viewBox="0 0 1200 1200">
+  <defs>
+    <linearGradient id="floor" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#ece4d5"/>
+      <stop offset="1" stop-color="#d5c7b1"/>
+    </linearGradient>
+    <linearGradient id="fur" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#b85f35"/>
+      <stop offset="0.58" stop-color="#d5804a"/>
+      <stop offset="1" stop-color="#eca66e"/>
+    </linearGradient>
+    <filter id="shadow" x="-40%" y="-80%" width="180%" height="260%">
+      <feGaussianBlur stdDeviation="12"/>
+    </filter>
+    <filter id="soft" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="2"/>
+    </filter>
+    <pattern id="threads" width="96" height="28" patternUnits="userSpaceOnUse">
+      <path d="M0 14 C24 7 72 21 96 14" fill="none" stroke="#765a3d" stroke-opacity=".055" stroke-width="1"/>
+    </pattern>
+  </defs>
+
+  <g transform="translate(0 285)">
+  <rect width="1200" height="630" fill="url(#floor)"/>
+  <g opacity=".14" stroke="#69523a">
+    <path d="M132 0v630M326 0v630M520 0v630M714 0v630M908 0v630M1102 0v630"/>
+  </g>
+  <rect x="70" y="88" width="1060" height="470" rx="70" fill="#f8f2e7" fill-opacity=".85" stroke="#765b3e" stroke-opacity=".16" stroke-width="2"/>
+  <rect x="71" y="89" width="1058" height="468" rx="69" fill="url(#threads)"/>
+
+  <g fill="#332b24">
+    <text x="84" y="52" font-family="-apple-system,BlinkMacSystemFont,'PingFang SC','Segoe UI',sans-serif" font-size="14" font-weight="700" letter-spacing="6">QROST · FOUR-PHASE FELINE GAIT</text>
+  </g>
+
+  <g transform="translate(490 330) rotate(-7)">
+    <ellipse cx="-8" cy="20" rx="176" ry="66" fill="#5a3b27" fill-opacity=".18" filter="url(#shadow)"/>
+
+    <path d="M-138 9 C-202 17 -238 63 -300 58 C-340 55 -357 29 -337 8" fill="none" stroke="#713b25" stroke-width="31" stroke-linecap="round"/>
+    <path d="M-138 7 C-202 15 -238 58 -300 53 C-337 50 -351 29 -335 10" fill="none" stroke="#cc7343" stroke-width="24" stroke-linecap="round"/>
+    <path d="M-252 46l-2 21M-296 49l-1 18" stroke="#713b25" stroke-width="7" stroke-linecap="round"/>
+
+    <g stroke-linecap="round" stroke-linejoin="round">
+      <path d="M-82 -38L-115 -82L-132 -92" fill="none" stroke="#713b25" stroke-width="28"/>
+      <path d="M-82 -38L-115 -82L-132 -92" fill="none" stroke="#d07a48" stroke-width="21"/>
+      <ellipse cx="-136" cy="-95" rx="17" ry="10" fill="#713b25"/>
+      <path d="M-66 39L-93 88L-76 104" fill="none" stroke="#713b25" stroke-width="28"/>
+      <path d="M-66 39L-93 88L-76 104" fill="none" stroke="#d07a48" stroke-width="21"/>
+      <ellipse cx="-71" cy="107" rx="17" ry="10" fill="#713b25"/>
+      <path d="M57 -38L79 -88L106 -101" fill="none" stroke="#713b25" stroke-width="28"/>
+      <path d="M57 -38L79 -88L106 -101" fill="none" stroke="#da8751" stroke-width="21"/>
+      <ellipse cx="111" cy="-104" rx="18" ry="10" fill="#713b25"/>
+      <path d="M70 36L104 76L132 72" fill="none" stroke="#713b25" stroke-width="28"/>
+      <path d="M70 36L104 76L132 72" fill="none" stroke="#da8751" stroke-width="21"/>
+      <ellipse cx="138" cy="71" rx="18" ry="10" fill="#713b25"/>
+    </g>
+
+    <path d="M-139 0C-132-59-74-72-18-63C42-72 112-55 133-13C145 8 133 29 110 42C73 64 22 66-23 59C-76 68-133 52-139 0Z" fill="url(#fur)" stroke="#713b25" stroke-width="3"/>
+    <path d="M-104-46q16 18 5 35M-55-56q14 19 4 38M-2-58q13 18 4 37M50-52q13 17 5 34" fill="none" stroke="#743b25" stroke-opacity=".65" stroke-width="10" stroke-linecap="round"/>
+    <path d="M-104 46q16-18 5-35M-55 56q14-19 4-38M-2 58q13-18 4-37M50 52q13-17 5-34" fill="none" stroke="#743b25" stroke-opacity=".65" stroke-width="10" stroke-linecap="round"/>
+    <path d="M-103-16C-53-30 30-29 96-13" fill="none" stroke="#f3b57e" stroke-opacity=".38" stroke-width="15" stroke-linecap="round"/>
+
+    <g transform="translate(142 -2) rotate(5)">
+      <path d="M-15-35L-33-61L7-50ZM-15 35L-33 61L7 50Z" fill="#713b25"/>
+      <path d="M-13-39L-27-55L2-48ZM-13 39L-27 55L2 48Z" fill="#cf9184"/>
+      <ellipse rx="55" ry="45" fill="#d9824d" stroke="#713b25" stroke-width="3"/>
+      <ellipse cx="29" rx="25" ry="24" fill="#f0c693" fill-opacity=".78"/>
+      <g fill="#d5e47b" stroke="#33271e" stroke-width="2">
+        <ellipse cx="12" cy="-17" rx="11" ry="7"/>
+        <ellipse cx="12" cy="17" rx="11" ry="7"/>
+      </g>
+      <g fill="#211a15">
+        <ellipse cx="16" cy="-17" rx="2.5" ry="6"/>
+        <ellipse cx="16" cy="17" rx="2.5" ry="6"/>
+      </g>
+      <path d="M50 0l-10-7v14z" fill="#d77e76"/>
+      <g fill="none" stroke="#644634" stroke-width="2" stroke-linecap="round">
+        <path d="M39-11Q64-23 80-30M40-7Q69-10 84-11M39 11Q64 23 80 30M40 7Q69 10 84 11"/>
+      </g>
+    </g>
+  </g>
+
+  <path d="M694 303C760 275 811 277 859 297" fill="none" stroke="#a75b34" stroke-opacity=".24" stroke-width="3" stroke-dasharray="7 12"/>
+  <g transform="translate(892 300) rotate(8)">
+    <ellipse cx="-4" cy="13" rx="41" ry="17" fill="#584638" fill-opacity=".16" filter="url(#soft)"/>
+    <path d="M-37 1C-64-2-77 20-101 15C-115 12-120 3-114-4" fill="none" stroke="#9f7771" stroke-width="5" stroke-linecap="round"/>
+    <ellipse cx="-13" rx="34" ry="21" fill="#7f7770"/>
+    <ellipse cx="18" rx="20" ry="16" fill="#aaa198"/>
+    <circle cx="4" cy="-14" r="10" fill="#cf9c95"/>
+    <circle cx="4" cy="14" r="10" fill="#cf9c95"/>
+    <circle cx="24" cy="-7" r="3" fill="#211a15"/>
+    <circle cx="24" cy="7" r="3" fill="#211a15"/>
+    <circle cx="38" r="5" fill="#d87f76"/>
+    <g fill="none" stroke="#665148" stroke-width="1.6" stroke-linecap="round">
+      <path d="M31-5l26-12M32-2l27-2M31 5l26 12M32 2l27 2"/>
+    </g>
+  </g>
+
+  <g transform="translate(84 578)" font-family="-apple-system,BlinkMacSystemFont,'PingFang SC','Segoe UI',sans-serif">
+    <text y="0" fill="#a95b32" font-size="31" font-weight="650" letter-spacing="1">猫鼠之间</text>
+    <text x="150" y="0" fill="#4a4037" font-size="25" font-weight="500" letter-spacing="3">CAT &amp; MOUSE</text>
+  </g>
+  <g transform="translate(903 575)" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="12" font-weight="700" fill="#76685b">
+    <g transform="translate(0 0)"><circle cx="0" cy="-4" r="7" fill="#a95b32" fill-opacity=".22" stroke="#a95b32"/><text x="14">RH</text></g>
+    <g transform="translate(66 0)"><circle cx="0" cy="-4" r="7" fill="none" stroke="#a95b32" stroke-opacity=".45"/><text x="14">RF</text></g>
+    <g transform="translate(132 0)"><circle cx="0" cy="-4" r="7" fill="none" stroke="#a95b32" stroke-opacity=".45"/><text x="14">LH</text></g>
+    <g transform="translate(198 0)"><circle cx="0" cy="-4" r="7" fill="none" stroke="#a95b32" stroke-opacity=".45"/><text x="14">LF</text></g>
+  </g>
+  </g>
+</svg>

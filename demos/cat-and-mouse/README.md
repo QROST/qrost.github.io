@@ -1,0 +1,32 @@
+# Cat & Mouse · 猫鼠之间
+
+A dependency-free Canvas 2D interaction: a top-down cat notices, watches, stalks, approaches, and chases the pointer rendered as a small mouse.
+
+## Controls
+
+- Pointer: move the mouse; leaving the canvas releases it.
+- Touch: tap or drag to position the mouse.
+- Keyboard: focus the canvas, then use Arrow keys to steer, Space to pause, and Escape to release.
+- The top-right controls pause motion and switch language/theme.
+
+## Locomotion model
+
+The rig uses one master gait clock coupled to four limb phases. Slow movement follows the feline lateral-sequence order `RH → RF → LH → LF`; stalking lengthens the stance interval and lowers body motion. A fast pursuit blends into a diagonal trot (`RH + LF`, then `LH + RF`). Each stance paw is held in world space while the body travels over it; the swing paw follows an eased arc and converges before touchdown.
+
+The timing and motion cues are grounded in published feline locomotion work:
+
+- [Interlimb coordination and diagonality in walking cats](https://pmc.ncbi.nlm.nih.gov/articles/PMC4044364/)
+- [Biomechanics of crouched walking in cats](https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0003808)
+- [A coupled central-pattern-generator model for cat locomotion](https://pubmed.ncbi.nlm.nih.gov/15140698/)
+- [Gaze behavior during visually guided walking](https://pmc.ncbi.nlm.nih.gov/articles/PMC4169884/)
+- [Head stabilization during locomotion](https://pmc.ncbi.nlm.nih.gov/articles/PMC4986613/)
+
+## Build and verify
+
+Run from this directory:
+
+```sh
+python3 tools/build.py
+```
+
+The build runs `tools/check-gait.mjs` and a headless runtime smoke harness, validates the 1200×630 OG image and required page metadata, stamps every local CSS/JS reference with a content hash, and refreshes the root homepage asset token. Do not hand-edit `?v=` values.

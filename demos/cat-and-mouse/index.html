@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#e8dfcf">
+  <title>猫鼠之间 · Cat &amp; Mouse</title>
+  <meta name="description" content="一只俯视角的小猫会观察、潜行、慢步靠近或追逐化作小老鼠的指针，由四肢耦合步态控制器驱动。">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <link rel="apple-touch-icon" href="../../favicon.svg">
+
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://qrost.github.io/demos/cat-and-mouse/">
+  <meta property="og:site_name" content="QROST">
+  <meta property="og:title" content="猫鼠之间 · Cat &amp; Mouse">
+  <meta property="og:description" content="一只俯视角的小猫会观察、潜行、慢步靠近或追逐化作小老鼠的指针，由四肢耦合步态控制器驱动。">
+  <meta property="og:image" content="https://qrost.github.io/demos/cat-and-mouse/assets/img/cat-and-mouse-og.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="A top-down orange cat stalking a small mouse across a woven rug">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="猫鼠之间 · Cat &amp; Mouse">
+  <meta name="twitter:description" content="一只俯视角的小猫会观察、潜行、慢步靠近或追逐化作小老鼠的指针，由四肢耦合步态控制器驱动。">
+  <meta name="twitter:image" content="https://qrost.github.io/demos/cat-and-mouse/assets/img/cat-and-mouse-og.png">
+  <meta name="twitter:image:alt" content="A top-down orange cat stalking a small mouse across a woven rug">
+
+  <script>
+    (function () {
+      try {
+        var stored = localStorage.getItem('qrost-cat-and-mouse-theme');
+        var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+        if (stored === 'dark' || (!stored && prefersDark)) document.documentElement.classList.add('dark');
+      } catch (_) {}
+    })();
+  </script>
+  <link rel="stylesheet" href="assets/css/cat-and-mouse.css?v=fde25157ae">
+</head>
+<body data-behavior="prowl">
+  <main id="stage">
+    <canvas
+      id="world"
+      tabindex="0"
+      role="application"
+      aria-label="猫鼠互动区域。移动指针或用方向键控制小老鼠；空格键暂停，Escape 让小老鼠离开。"
+      aria-describedby="keyboard-instructions"
+      data-i18n-aria-label="canvasAria"
+    >您的浏览器不支持 Canvas。</canvas>
+
+    <header class="topbar" aria-label="页面控件" data-i18n-aria-label="pageControlsAria">
+      <div class="brand">
+        <a
+          class="home-link"
+          href="../../index.html"
+          aria-label="返回 QROST 首页"
+          title="QROST"
+          data-i18n-aria-label="homeAria"
+        >QROST</a>
+        <div class="title-lockup">
+          <p class="eyebrow" data-i18n="eyebrow">四相猫科步态</p>
+          <h1 data-i18n="title">猫鼠之间</h1>
+          <p class="subtitle" data-i18n="subtitle">眼睛先动，脚步随后</p>
+        </div>
+      </div>
+
+      <div class="controls" aria-label="显示选项" data-i18n-aria-label="displayOptionsAria">
+        <button
+          id="pause-toggle"
+          class="icon-button"
+          type="button"
+          aria-label="暂停动画"
+          aria-pressed="false"
+          title="暂停动画"
+        >
+          <svg class="pause-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <rect x="6" y="5" width="4" height="14" rx="1"></rect>
+            <rect x="14" y="5" width="4" height="14" rx="1"></rect>
+          </svg>
+          <svg class="play-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M8 5.5v13l10-6.5z"></path>
+          </svg>
+        </button>
+        <button
+          id="language-toggle"
+          class="icon-button"
+          type="button"
+          aria-label="Switch to English"
+          title="English"
+        >EN</button>
+        <button
+          id="theme-toggle"
+          class="icon-button"
+          type="button"
+          aria-label="切换深色模式"
+          title="深色模式"
+        >
+          <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="4"></circle>
+            <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"></path>
+          </svg>
+          <svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M20.4 15.2A8.6 8.6 0 0 1 8.8 3.6 8.7 8.7 0 1 0 20.4 15.2z"></path>
+          </svg>
+        </button>
+      </div>
+    </header>
+
+    <div class="behavior-chip" role="status" aria-live="polite" aria-atomic="true">
+      <span class="behavior-dot" aria-hidden="true"></span>
+      <span id="behavior-label" data-i18n="stateProwl">巡游</span>
+    </div>
+
+    <section class="gait-panel" aria-labelledby="gait-heading-label">
+      <div class="gait-heading">
+        <span id="gait-heading-label" data-i18n="gaitLabel">落足相位</span>
+        <span id="gait-name" data-i18n="gaitProwl">四拍慢步</span>
+      </div>
+      <div class="phase-track" aria-hidden="true">
+        <div class="phase" data-limb="rightHind"><span class="paw-dot"></span><span data-i18n="rightHind">右后</span></div>
+        <div class="phase" data-limb="rightFore"><span class="paw-dot"></span><span data-i18n="rightFore">右前</span></div>
+        <div class="phase" data-limb="leftHind"><span class="paw-dot"></span><span data-i18n="leftHind">左后</span></div>
+        <div class="phase" data-limb="leftFore"><span class="paw-dot"></span><span data-i18n="leftFore">左前</span></div>
+      </div>
+    </section>
+
+    <div class="interaction-help" aria-hidden="true">
+      <span class="pointer-hint" data-i18n="hintPointer">移动小老鼠，看看它会选择盯梢、潜行，还是追逐</span>
+      <span class="touch-hint" data-i18n="hintTouch">点按或拖动，让小老鼠在地毯上跑</span>
+      <span class="keyboard-hint" data-i18n="hintKeyboard">方向键控制 · 空格暂停 · Esc 离开</span>
+    </div>
+    <p id="keyboard-instructions" class="sr-only" data-i18n="canvasAria">猫鼠互动区域。移动指针或用方向键控制小老鼠；空格键暂停，Escape 让小老鼠离开。</p>
+    <p id="canvas-error" class="error-card" role="alert" data-i18n="canvasFailure" hidden></p>
+  </main>
+
+  <noscript><span data-i18n="noscript">请启用 JavaScript，让小猫动起来。</span></noscript>
+  <script src="assets/js/i18n.js?v=fde25157ae" defer></script>
+  <script src="assets/js/gait.js?v=fde25157ae" defer></script>
+  <script src="assets/js/app.js?v=fde25157ae" defer></script>
+</body>
+</html>

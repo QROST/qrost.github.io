@@ -98,9 +98,17 @@
       en: 'Real adoptable shelter cats on one world map (live from open-data shelter feeds) — filter by color, pattern, coat and distance. Every cat gets a deterministic pixel avatar and an attribute-driven personality preview, so you can imagine life with it before adopting. Dark mode · EN/中文.',
       zh: '把各地收容所里真实可领养的猫汇到一张世界地图（数据来自开放数据源）——按颜色、花纹、毛长、距离筛选。每只猫会按真实属性生成专属像素形象与性格预览，让你在领养前先想象与它相处的日常。深色模式 · 中英双语。',
     },
+    cardCatMouseTitle: {
+      en: 'Cat & Mouse — quadruped gait playground',
+      zh: '猫与鼠标 — 四足步态实验',
+    },
+    cardCatMouseDesc: {
+      en: 'A top-down cat watches, stalks, walks toward or chases your pointer-as-mouse, driven by a four-phase alternating gait controller for more natural motion. Dark mode · EN/中文.',
+      zh: '一只俯视角的小猫会盯住、潜行、慢步靠近或追逐化作小老鼠的指针；四相交替步态控制让移动更自然。深色模式 · 中英切换。',
+    },
     footerUpdated: {
-      en: 'Last updated 2026-06. Nothing here is financial, legal or tax advice.',
-      zh: '最后更新 2026-06。本站内容不构成财务、法律或税务建议。',
+      en: 'Last updated 2026-07. Nothing here is financial, legal or tax advice.',
+      zh: '最后更新 2026-07。本站内容不构成财务、法律或税务建议。',
     },
     footerCopyright: { en: '© 2026 QROST. All rights reserved.', zh: '© 2026 QROST. 保留所有权利。' },
     langToggleAria: { en: 'Switch to 中文', zh: 'Switch to English' },
