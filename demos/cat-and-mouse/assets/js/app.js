@@ -215,6 +215,20 @@
     maxSwivel: 0.09,
   });
 
+  // Pounce distances are measured in the same unscaled design units as the
+  // articulated rig. The fore-paw midpoint sits 32 units ahead at the shoulder
+  // station plus another 12 at touchdown, so the body must stop 44 units behind
+  // the target instead of covering it with the waist.
+  const POUNCE_GEOMETRY = Object.freeze({
+    triggerMin: 60,
+    triggerMax: 175,
+    crouchAbort: 245,
+    aimLeadSeconds: 0.12,
+    forePawForward: 44,
+    maxBodyTravel: 150,
+    captureRadius: 30,
+  });
+
   const EAR_PERK_BY_STATE = Object.freeze({
     prowl: 0.74,
     observe: 1,
@@ -666,18 +680,23 @@
 
   function beginPounce() {
     const a = anatomy();
-    const aimX = prey.x + prey.vx * 0.12;
-    const aimY = prey.y + prey.vy * 0.12;
+    const aimX = prey.x + prey.vx * POUNCE_GEOMETRY.aimLeadSeconds;
+    const aimY = prey.y + prey.vy * POUNCE_GEOMETRY.aimLeadSeconds;
     const dx = aimX - cat.x;
     const dy = aimY - cat.y;
     const dist = Math.max(0.001, Math.hypot(dx, dy));
-    const leapDist = Gait.clamp(dist, 40 * a.scale, 150 * a.scale);
+    const heading = Math.hypot(dx, dy) > 0.001 ? Math.atan2(dy, dx) : cat.heading;
+    const bodyTravel = Gait.clamp(
+      dist - POUNCE_GEOMETRY.forePawForward * a.scale,
+      0,
+      POUNCE_GEOMETRY.maxBodyTravel * a.scale,
+    );
     const margin = locomotionMargin(a);
     cat.leap.launchX = cat.x;
     cat.leap.launchY = cat.y;
-    cat.leap.landX = Gait.clamp(cat.x + dx / dist * leapDist, margin, viewport.width - margin);
-    cat.leap.landY = Gait.clamp(cat.y + dy / dist * leapDist, margin, viewport.height - margin);
-    cat.heading = Math.atan2(cat.leap.landY - cat.y, cat.leap.landX - cat.x);
+    cat.leap.landX = Gait.clamp(cat.x + Math.cos(heading) * bodyTravel, margin, viewport.width - margin);
+    cat.leap.landY = Gait.clamp(cat.y + Math.sin(heading) * bodyTravel, margin, viewport.height - margin);
+    cat.heading = heading;
     cat.steerOmega = 0;
     cat.wiggle = 0;
     cat.leap.phase = 'pounce';
@@ -709,6 +728,15 @@
     });
   }
 
+  function landingForePawMidpoint(a) {
+    const right = cat.feet.rightFore;
+    const left = cat.feet.leftFore;
+    if (right && left) {
+      return { x: (right.x + left.x) * 0.5, y: (right.y + left.y) * 0.5 };
+    }
+    return pointFromNode(cat.rig.shoulders, 12 * a.scale, 0);
+  }
+
   function finishLeap() {
     cat.leap.phase = null;
     cat.leap.lastLandAt = elapsed;
@@ -731,7 +759,8 @@
       }
       const inWindow = (cat.state === 'stalk' || cat.state === 'watch')
         && prey.speed < 60 * a.scale
-        && dist >= 60 * a.scale && dist <= 150 * a.scale
+        && dist >= POUNCE_GEOMETRY.triggerMin * a.scale
+        && dist <= POUNCE_GEOMETRY.triggerMax * a.scale
         && elapsed - L.lastLandAt > 1.5;
       if (inWindow) {
         if (L.nearSince == null) L.nearSince = elapsed;
@@ -743,7 +772,7 @@
     }
     L.t += dt;
     if (L.phase === 'crouch') {
-      if (!prey.active || dist > 220 * a.scale) {   // 目标消失/远离 → 顺势放弃
+      if (!prey.active || dist > POUNCE_GEOMETRY.crouchAbort * a.scale) {   // 目标消失/远离 → 顺势放弃
         L.phase = null; cat.wiggle = 0; L.nearSince = null;
         setBehavior(prey.active ? 'stalk' : 'prowl');
         return;
@@ -762,7 +791,9 @@
       }
     } else if (L.phase === 'land') {
       if (L.t >= 0.22) {
-        if (L.pinAfter && prey.active && dist < 60 * a.scale) {
+        const capture = landingForePawMidpoint(a);
+        const captureDistance = Math.hypot(prey.x - capture.x, prey.y - capture.y);
+        if (L.pinAfter && prey.active && captureDistance < POUNCE_GEOMETRY.captureRadius * a.scale) {
           L.phase = 'pin';
           L.t = 0;
           setBehavior('pin', true);
@@ -2740,6 +2771,7 @@
       ears: Object.assign({}, cat.ears),
       earPerk: Object.assign({}, cat.earPerk),
       earGeometry: Object.assign({}, EAR_GEOMETRY),
+      pounceGeometry: Object.assign({}, POUNCE_GEOMETRY),
       earLandmarks: {
         left: earLandmarks(-1),
         right: earLandmarks(1),

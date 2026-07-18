@@ -273,6 +273,10 @@ function finiteSnapshot(snapshot) {
     snapshot.earGeometry.rootForward, snapshot.earGeometry.rootOutward,
     snapshot.earGeometry.tipForward, snapshot.earGeometry.tipOutward,
     snapshot.earGeometry.tipRound, snapshot.earGeometry.maxSwivel,
+    snapshot.pounceGeometry.triggerMin, snapshot.pounceGeometry.triggerMax,
+    snapshot.pounceGeometry.crouchAbort, snapshot.pounceGeometry.aimLeadSeconds,
+    snapshot.pounceGeometry.forePawForward, snapshot.pounceGeometry.maxBodyTravel,
+    snapshot.pounceGeometry.captureRadius,
     ...Object.values(snapshot.earLandmarks).flatMap((ear) => Object.values(ear).flatMap((point) => [point.x, point.y])),
     snapshot.mouse.x, snapshot.mouse.y, snapshot.mouse.speed,
     snapshot.rigScale, snapshot.turnVelocity, snapshot.rigCurvature,
@@ -555,28 +559,36 @@ snapshot = sandbox.__catMouseDemo.getSnapshot();
 assert.equal(snapshot.mouse.active, false);
 assert.equal(snapshot.behavior, 'prowl');
 
-// The leap chain must be exercised FOR REAL: park a stationary target inside the
-// crouch window (dist in [60,150]*scale, clear of the margin) and let the cat coil,
-// pounce and land. Without this the relaxed some(planted) invariant and the
-// pounceRun ratchet below would be vacuously green (verified: the edge test's
-// closest approach is ~181px — it never pounces).
+// The leap chain must be exercised FOR REAL: park a stationary target at the new
+// far edge of the crouch window and let the cat coil, pounce and land. Repeating
+// the same test input removes the synthetic pointer velocity without advancing a
+// frame. The crouch must begin beyond the former 150-unit threshold, and the
+// landing must put the mouse at the fore-paw midpoint rather than under the waist.
 {
   snapshot = sandbox.__catMouseDemo.getSnapshot();
   const toCenterX = fakeViewportWidth * 0.5 - snapshot.cat.x;
   const toCenterY = fakeViewportHeight * 0.5 - snapshot.cat.y;
-  const toCenter = Math.max(0.001, Math.hypot(toCenterX, toCenterY));
-  sandbox.__catMouseDemo.moveMouse(
-    snapshot.cat.x + toCenterX / toCenter * 110 * snapshot.rigScale,
-    snapshot.cat.y + toCenterY / toCenter * 110 * snapshot.rigScale,
-  );
+  const toCenter = Math.hypot(toCenterX, toCenterY);
+  const directionX = toCenter > 0.001 ? toCenterX / toCenter : 1;
+  const directionY = toCenter > 0.001 ? toCenterY / toCenter : 0;
+  const targetDistance = snapshot.pounceGeometry.triggerMax * snapshot.rigScale;
+  const targetX = snapshot.cat.x + directionX * targetDistance;
+  const targetY = snapshot.cat.y + directionY * targetDistance;
+  for (let repeat = 0; repeat < 16; repeat += 1) {
+    sandbox.__catMouseDemo.moveMouse(targetX, targetY);
+  }
   const seenLeap = new Set();
   let leapPounceRun = 0;
   let maxLeapPounceRun = 0;
+  let crouchEntry = null;
+  let landing = null;
   for (let frameIndex = 0; frameIndex < 300; frameIndex += 1) {
     step(1);
     const current = sandbox.__catMouseDemo.getSnapshot();
     assertRigSnapshot(current, 'leap chain');
     if (current.leapPhase) seenLeap.add(current.leapPhase);
+    if (current.leapPhase === 'crouch' && !crouchEntry) crouchEntry = current;
+    if (current.leapPhase === 'land' && !landing) landing = current;
     leapPounceRun = current.leapPhase === 'pounce' ? leapPounceRun + 1 : 0;
     maxLeapPounceRun = Math.max(maxLeapPounceRun, leapPounceRun);
     const anyPlanted = Object.values(current.feet).some((foot) => foot.planted);
@@ -587,6 +599,44 @@ assert.equal(snapshot.behavior, 'prowl');
   assert.ok(seenLeap.has('pounce'), 'crouch must release into a pounce');
   assert.ok(seenLeap.has('land'), 'pounce must land');
   assert.ok(maxLeapPounceRun > 0 && maxLeapPounceRun <= 32, `pounce suspension out of bounds (${maxLeapPounceRun} frames)`);
+  const formerTriggerMax = 150 * crouchEntry.rigScale;
+  const crouchDistance = Math.hypot(
+    crouchEntry.mouse.x - crouchEntry.cat.x,
+    crouchEntry.mouse.y - crouchEntry.cat.y,
+  );
+  assert.ok(
+    crouchDistance > formerTriggerMax,
+    `pounce did not start farther away (${crouchDistance.toFixed(2)} <= ${formerTriggerMax.toFixed(2)})`,
+  );
+  const forePawMidpoint = {
+    x: (landing.feet.rightFore.x + landing.feet.leftFore.x) * 0.5,
+    y: (landing.feet.rightFore.y + landing.feet.leftFore.y) * 0.5,
+  };
+  const pawCaptureDistance = Math.hypot(
+    landing.mouse.x - forePawMidpoint.x,
+    landing.mouse.y - forePawMidpoint.y,
+  );
+  const bodyCaptureDistance = Math.hypot(
+    landing.mouse.x - landing.cat.x,
+    landing.mouse.y - landing.cat.y,
+  );
+  const headingX = Math.cos(landing.cat.heading);
+  const headingY = Math.sin(landing.cat.heading);
+  const bodyToMouseForward = (landing.mouse.x - landing.cat.x) * headingX
+    + (landing.mouse.y - landing.cat.y) * headingY;
+  assert.ok(
+    pawCaptureDistance <= 12 * landing.rigScale,
+    `mouse missed the fore-paw capture zone by ${pawCaptureDistance.toFixed(2)}px`,
+  );
+  assert.ok(
+    pawCaptureDistance * 2 < bodyCaptureDistance,
+    'mouse must be materially closer to the fore paws than the body center',
+  );
+  assert.ok(
+    Math.abs(bodyToMouseForward - landing.pounceGeometry.forePawForward * landing.rigScale)
+      <= 8 * landing.rigScale,
+    `body landing offset missed the fore-paw station (${bodyToMouseForward.toFixed(2)}px)`,
+  );
   sandbox.__catMouseDemo.releaseMouse();
   step(30);
 }
@@ -745,4 +795,4 @@ failureListeners.forEach((listener) => listener());
 assert.equal(failureElements.get('canvas-error').textContent, 'Canvas failed');
 assert.equal(failureElements.get('theme-toggle').getAttribute('title'), 'Light');
 
-console.log('check-runtime: crown-integrated cat ears, illustrated paws, seamless coat, bounded spine, anatomical reach, 548x536 edges, and UI OK');
+console.log('check-runtime: fore-paw pounce capture, crown-integrated ears, illustrated paws, seamless coat, bounded spine, anatomical reach, 548x536 edges, and UI OK');
