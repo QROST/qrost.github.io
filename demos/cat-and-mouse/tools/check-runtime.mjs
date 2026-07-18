@@ -214,6 +214,8 @@ assert.match(visualHarnessSource, /window\.__poseSheet\s*=\s*\(\)\s*=>/, 'visual
 assert.match(visualHarnessSource, /window\.__captureFrame\s*=\s*\(\)\s*=>/, 'visual harness must expose the captured-rest frame');
 assert.match(visualHarnessSource, /window\.__transitionFrame\s*=\s*\(\)\s*=>/, 'visual harness must expose a mid-transition frame');
 assert.match(visualHarnessSource, /window\.__sleepFrame\s*=\s*\(\)\s*=>/, 'visual harness must expose a sleeping micro-motion frame');
+assert.match(visualHarnessSource, /window\.__headFrame\s*=\s*\(\)\s*=>/, 'visual harness must expose the side-lying head review frame');
+assert.match(visualHarnessSource, /window\.__zoomHead\s*=\s*\(R\)\s*=>/, 'visual harness must expose a dedicated head crop');
 assert.ok(tailRibbonSource, 'tail ribbon renderer must remain discoverable');
 assert.doesNotMatch(tailRibbonSource, /closePath\s*\(/, 'tail ribbon must stay open at its hidden root');
 assert.match(legSilhouetteSource, /traceVariableRibbon\s*\(/, 'legs must render as variable-width closed silhouettes');
@@ -243,14 +245,13 @@ assert.equal((bodyFlankSource.match(/smoothOpenPath\s*\(/g) || []).length, 2, 'b
 assert.equal((bodyFlankSource.match(/context\.stroke\s*\(/g) || []).length, 2, 'body must stroke each open flank once');
 assert.ok(topDownFaceSource, 'top-down face renderer must remain discoverable');
 assert.match(drawHeadSource, /drawTopDownFace\s*\(/, 'head must delegate its markings to the overhead face renderer');
-assert.match(topDownFaceSource, /drawEye\(c, a, -1\)[\s\S]*drawEye\(c, a, 1\)/, 'overhead face must articulate both eyes');
-assert.match(topDownFaceSource, /drawMuzzleFeatures\s*\(/, 'overhead face must carry a modeled muzzle wedge');
-assert.match(appSource, /function traceEye\s*\([\s\S]*bezierCurveTo/, 'eyes must use shaped lids rather than pasted circles');
-assert.match(appSource, /function drawHeadPlanes\s*\([\s\S]*traceMuzzlePlane/, 'head must layer forehead, temple and muzzle volumes');
-assert.match(appSource, /function drawFacialFur\s*\(/, 'head silhouette must retain fine cheek and crown fur edges');
-assert.match(drawHeadSource, /drawHeadPlanes\s*\(/, 'head must paint cranial volume beneath its features');
+assert.match(topDownFaceSource, /drawEyeLine\(c, a, -1\)[\s\S]*drawEyeLine\(c, a, 1\)/, 'overhead face must retain two restrained eyelid lines');
+assert.match(topDownFaceSource, /drawNoseMark\s*\(/, 'overhead face must retain one small directional nose mark');
+assert.match(appSource, /function drawEyeLine\s*\([\s\S]*quadraticCurveTo/, 'eyelids must remain soft open curves');
+assert.doesNotMatch(appSource, /function (?:traceEye|drawEye|traceMuzzlePlane|drawHeadPlanes|drawMuzzleFeatures|drawFacialFur)\s*\(/, 'head must not regress to the over-detailed portrait stack');
+assert.doesNotMatch(appSource, /eyeRing|eyeGlint/, 'head palette must not reintroduce jewel-like portrait eyes');
+assert.match(appSource, /const HEAD_GEOMETRY = Object\.freeze/, 'head proportions must have an explicit harmony contract');
 assert.match(drawHeadSource, /paintEarBacks\s*\(/, 'head must include inset pinna planes');
-assert.match(drawHeadSource, /drawFacialFur\s*\(/, 'head must finish with subtle fur-edge detail');
 // Overhead whiskers ARE a signature feline silhouette feature (they protrude
 // visibly from directly above); they live in a dedicated helper called by drawHead.
 assert.match(appSource, /function drawWhiskers\s*\(/, 'overhead whiskers helper must exist');
@@ -277,6 +278,8 @@ function finiteSnapshot(snapshot) {
     snapshot.cat.acceleration, snapshot.cat.steerOmega,
     snapshot.ears.left, snapshot.ears.right,
     snapshot.earPerk.left, snapshot.earPerk.right,
+    snapshot.headGeometry.frontReach, snapshot.headGeometry.skullHalfWidth,
+    snapshot.headGeometry.visualRadius, snapshot.headGeometry.whiskerRows,
     snapshot.earGeometry.rearBaseForward, snapshot.earGeometry.frontBaseForward,
     snapshot.earGeometry.rearBaseOutward, snapshot.earGeometry.frontBaseOutward,
     snapshot.earGeometry.rootForward, snapshot.earGeometry.rootOutward,
@@ -352,30 +355,38 @@ function assertRigSnapshot(snapshot, label = 'rig') {
   assert.ok(snapshot.earPerk.right >= 0.66 && snapshot.earPerk.right <= 1, `${label}: right ear perk escaped bounds`);
   const neutralEarAngle = Math.atan2(snapshot.earGeometry.tipOutward, snapshot.earGeometry.tipForward);
   assert.ok(
-    snapshot.earGeometry.tipForward > Math.abs(snapshot.earGeometry.tipOutward) * 1.7,
-    `${label}: neutral ears no longer point primarily forward`,
+    snapshot.headGeometry.frontReach >= 24 && snapshot.headGeometry.frontReach <= 26,
+    `${label}: muzzle reach escaped the compact head contract`,
   );
   assert.ok(
-    neutralEarAngle >= 0.4 && neutralEarAngle <= 0.56,
-    `${label}: neutral ear splay regressed to horns or side fins`,
+    snapshot.headGeometry.skullHalfWidth >= 13.5 && snapshot.headGeometry.skullHalfWidth <= 14.5,
+    `${label}: skull width no longer matches the narrow neck and shoulders`,
   );
   assert.ok(
-    snapshot.earGeometry.frontBaseForward - snapshot.earGeometry.rearBaseForward
-      >= Math.abs(snapshot.earGeometry.tipOutward) * 1.9,
-    `${label}: crown attachment became too narrow to read as a feline pinna`,
+    snapshot.rig.head.visualRadius <= snapshot.rig.shoulders.visualRadius * 1.36,
+    `${label}: head became oversized relative to the shoulder mass`,
+  );
+  assert.equal(snapshot.headGeometry.whiskerRows, 2, `${label}: face regained excess whisker line density`);
+  assert.ok(
+    snapshot.earGeometry.rearBaseForward <= -9 && snapshot.earGeometry.frontBaseForward <= 4,
+    `${label}: ear roots drifted forward into the eyes and muzzle`,
   );
   assert.ok(
-    snapshot.earGeometry.tipRound >= 0.8 && snapshot.earGeometry.tipRound <= 1.8,
+    neutralEarAngle >= 0.82 && neutralEarAngle <= 0.96,
+    `${label}: neutral ears no longer rise softly from the rear crown`,
+  );
+  assert.ok(
+    snapshot.earGeometry.tipRound >= 1.4 && snapshot.earGeometry.tipRound <= 2,
     `${label}: ear tip lost its restrained illustrated rounding`,
   );
   assert.ok(
-    snapshot.earGeometry.rootForward + snapshot.earGeometry.tipForward >= 19
-      && snapshot.earGeometry.rootForward + snapshot.earGeometry.tipForward <= 23,
-    `${label}: neutral ear tips escaped their crown station`,
+    snapshot.earGeometry.rootForward + snapshot.earGeometry.tipForward >= -1
+      && snapshot.earGeometry.rootForward + snapshot.earGeometry.tipForward <= 2,
+    `${label}: neutral ear tips escaped the rear crown station`,
   );
   assert.ok(
-    neutralEarAngle + snapshot.earGeometry.maxSwivel < Math.PI / 4,
-    `${label}: full ear swivel can rotate a pinna sideways`,
+    neutralEarAngle + snapshot.earGeometry.maxSwivel < 1.05,
+    `${label}: full ear swivel can flatten a pinna into a side spike`,
   );
   for (const [earName, side] of [['left', -1], ['right', 1]]) {
     const ear = snapshot.earLandmarks[earName];
@@ -384,10 +395,10 @@ function assertRigSnapshot(snapshot, label = 'rig') {
     const baseSpan = Math.hypot(baseDx, baseDy);
     const tipHeight = Math.abs(baseDx * (ear.tip.y - ear.rearBase.y) - baseDy * (ear.tip.x - ear.rearBase.x)) / baseSpan;
     const outerBase = Math.max(side * ear.rearBase.y, side * ear.frontBase.y);
-    assert.ok(baseSpan >= 11 && baseSpan <= 13.5, `${label}: ${earName} ear lost its compact crown attachment`);
-    assert.ok(tipHeight >= 6.5 && tipHeight <= 10.5, `${label}: ${earName} ear became a flat tab or a tall horn`);
-    assert.ok(ear.tip.x > ear.frontBase.x + 1.8 && ear.tip.x < 22, `${label}: ${earName} ear tip stopped leading from the crown`);
-    assert.ok(side * ear.tip.y > outerBase + 1.45, `${label}: ${earName} ear tip no longer clears the skull laterally`);
+    assert.ok(baseSpan >= 12 && baseSpan <= 14.5, `${label}: ${earName} ear lost its compact crown attachment`);
+    assert.ok(tipHeight >= 4 && tipHeight <= 7.2, `${label}: ${earName} ear became a flat tab or a tall horn`);
+    assert.ok(ear.tip.x > ear.rearBase.x + 8 && ear.tip.x < ear.frontBase.x + 0.4, `${label}: ${earName} ear tip left the rear crown`);
+    assert.ok(side * ear.tip.y > outerBase + 3.2, `${label}: ${earName} ear tip no longer clears the skull softly`);
     assert.ok(ear.root.x > ear.rearBase.x && ear.root.x < ear.frontBase.x, `${label}: ${earName} ear root detached from its base span`);
   }
   assert.ok(
@@ -1110,4 +1121,4 @@ failureListeners.forEach((listener) => listener());
 assert.equal(failureElements.get('canvas-error').textContent, 'Canvas failed');
 assert.equal(failureElements.get('theme-toggle').getAttribute('title'), 'Light');
 
-console.log('check-runtime: capture/rest/escape, staged pose crossfades, sleep breath/twitches, layered feline head, seamless coat, bounded spine, anatomical reach, 548x536 edges, and minimal UI OK');
+console.log('check-runtime: capture/rest/escape, staged pose crossfades, sleep breath/twitches, restrained feline head, seamless coat, bounded spine, anatomical reach, 548x536 edges, and minimal UI OK');

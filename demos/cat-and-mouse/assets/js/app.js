@@ -82,9 +82,6 @@
       furLight: '#e7a36c',
       furDark: '#7d4126',
       stripe: 'rgba(93, 45, 24, 0.52)',
-      eye: '#b5ad58',
-      eyeRing: 'rgba(82, 48, 27, 0.72)',
-      eyeGlint: 'rgba(255, 245, 214, 0.82)',
       nose: '#a75f57',
       earShade: 'rgba(143, 77, 58, 0.34)',
       pupil: '#241c17',
@@ -106,9 +103,6 @@
       furLight: '#f0ad74',
       furDark: '#713a24',
       stripe: 'rgba(80, 36, 22, 0.62)',
-      eye: '#c8bf68',
-      eyeRing: 'rgba(61, 34, 22, 0.82)',
-      eyeGlint: 'rgba(255, 244, 211, 0.86)',
       nose: '#bd756d',
       earShade: 'rgba(126, 66, 53, 0.42)',
       pupil: '#17130f',
@@ -218,7 +212,7 @@
       waist: { x: 0, y: 0, angle: -0.28, visualRadius: 23 },
       shoulders: { x: 0, y: 0, angle: -0.28, visualRadius: 30 },
       neck: { x: 0, y: 0, angle: -0.28, visualRadius: 17 },
-      head: { x: 0, y: 0, angle: -0.28, visualRadius: 42 },
+      head: { x: 0, y: 0, angle: -0.28, visualRadius: 40 },
       curvature: 0,
       previousHeading: -0.28,
       turnVelocity: 0,
@@ -246,20 +240,29 @@
     tailTipRadius: 1.5,
   });
 
+  // Head proportions are intentionally restrained relative to the shoulders.
+  // The face is a small directional accent on the continuous coat, not a
+  // portrait pasted onto the body.
+  const HEAD_GEOMETRY = Object.freeze({
+    frontReach: 25.6,
+    skullHalfWidth: 14.2,
+    visualRadius: 40,
+  });
+
   // The ears are landmarks in one continuous skull contour. Their broad roots
   // stay welded to the crown while only the tips swivel, avoiding the detached
   // tabs produced by rotating two separately painted ear shapes.
   const EAR_GEOMETRY = Object.freeze({
-    rearBaseForward: 3.0,
-    frontBaseForward: 15.5,
-    rearBaseOutward: 18.0,
-    frontBaseOutward: 14.5,
-    rootForward: 8.5,
-    rootOutward: 16.5,
-    tipForward: 11.5,
-    tipOutward: 6.0,
-    tipRound: 1.35,
-    maxSwivel: 0.09,
+    rearBaseForward: -10.5,
+    frontBaseForward: 2.5,
+    rearBaseOutward: 11.8,
+    frontBaseOutward: 13.2,
+    rootForward: -4.2,
+    rootOutward: 12.8,
+    tipForward: 4.6,
+    tipOutward: 5.6,
+    tipRound: 1.7,
+    maxSwivel: 0.08,
   });
 
   // Pounce distances are measured in the same unscaled design units as the
@@ -645,7 +648,7 @@
     rig.shoulders.visualRadius = 30 * a.scale;
     rig.neck.visualRadius = 17 * a.scale;
     // Includes the ear tips, not just the painted skull.
-    rig.head.visualRadius = 46 * a.scale;
+    rig.head.visualRadius = HEAD_GEOMETRY.visualRadius * a.scale;
     rig.curvature = Gait.angleDelta(rig.pelvis.angle, rig.head.angle);
   }
 
@@ -2581,15 +2584,15 @@
     const rightEar = earLandmarks(1);
     context.beginPath();
     context.moveTo(-SKIN_TOPOLOGY.headRearReach * a.scale, 0);
-    context.bezierCurveTo(-20.5 * a.scale, -11.8 * a.scale, -13.5 * a.scale, -16.4 * a.scale, leftEar.rearBase.x * a.scale, leftEar.rearBase.y * a.scale);
+    context.bezierCurveTo(-20 * a.scale, -9.4 * a.scale, -15.2 * a.scale, -13.2 * a.scale, leftEar.rearBase.x * a.scale, leftEar.rearBase.y * a.scale);
     traceEarCrown(context, a, leftEar);
-    context.bezierCurveTo(18.2 * a.scale, -15.4 * a.scale, 21.6 * a.scale, -13.7 * a.scale, 23.2 * a.scale, -11.1 * a.scale);
-    context.bezierCurveTo(26.8 * a.scale, -10 * a.scale, 29.4 * a.scale, -7.2 * a.scale, 30.1 * a.scale, -3.3 * a.scale);
-    context.quadraticCurveTo(31.5 * a.scale, 0, 30.1 * a.scale, 3.3 * a.scale);
-    context.bezierCurveTo(29.4 * a.scale, 7.2 * a.scale, 26.8 * a.scale, 10 * a.scale, 23.2 * a.scale, 11.1 * a.scale);
-    context.bezierCurveTo(21.6 * a.scale, 13.7 * a.scale, 18.2 * a.scale, 15.4 * a.scale, rightEar.frontBase.x * a.scale, rightEar.frontBase.y * a.scale);
+    context.bezierCurveTo(7.4 * a.scale, -HEAD_GEOMETRY.skullHalfWidth * a.scale, 12.2 * a.scale, -13.3 * a.scale, 15.8 * a.scale, -10.7 * a.scale);
+    context.bezierCurveTo(20 * a.scale, -9.4 * a.scale, 23.1 * a.scale, -6.7 * a.scale, 24.2 * a.scale, -3 * a.scale);
+    context.quadraticCurveTo(HEAD_GEOMETRY.frontReach * a.scale, 0, 24.2 * a.scale, 3 * a.scale);
+    context.bezierCurveTo(23.1 * a.scale, 6.7 * a.scale, 20 * a.scale, 9.4 * a.scale, 15.8 * a.scale, 10.7 * a.scale);
+    context.bezierCurveTo(12.2 * a.scale, 13.3 * a.scale, 7.4 * a.scale, HEAD_GEOMETRY.skullHalfWidth * a.scale, rightEar.frontBase.x * a.scale, rightEar.frontBase.y * a.scale);
     traceEarCrown(context, a, rightEar, true);
-    context.bezierCurveTo(-13.5 * a.scale, 16.4 * a.scale, -20.5 * a.scale, 11.8 * a.scale, -SKIN_TOPOLOGY.headRearReach * a.scale, 0);
+    context.bezierCurveTo(-15.2 * a.scale, 13.2 * a.scale, -20 * a.scale, 9.4 * a.scale, -SKIN_TOPOLOGY.headRearReach * a.scale, 0);
     context.closePath();
   }
 
@@ -2599,11 +2602,11 @@
     context.beginPath();
     context.moveTo(leftEar.rearBase.x * a.scale, leftEar.rearBase.y * a.scale);
     traceEarCrown(context, a, leftEar);
-    context.bezierCurveTo(18.2 * a.scale, -15.4 * a.scale, 21.6 * a.scale, -13.7 * a.scale, 23.2 * a.scale, -11.1 * a.scale);
-    context.bezierCurveTo(26.8 * a.scale, -10 * a.scale, 29.4 * a.scale, -7.2 * a.scale, 30.1 * a.scale, -3.3 * a.scale);
-    context.quadraticCurveTo(31.5 * a.scale, 0, 30.1 * a.scale, 3.3 * a.scale);
-    context.bezierCurveTo(29.4 * a.scale, 7.2 * a.scale, 26.8 * a.scale, 10 * a.scale, 23.2 * a.scale, 11.1 * a.scale);
-    context.bezierCurveTo(21.6 * a.scale, 13.7 * a.scale, 18.2 * a.scale, 15.4 * a.scale, rightEar.frontBase.x * a.scale, rightEar.frontBase.y * a.scale);
+    context.bezierCurveTo(7.4 * a.scale, -HEAD_GEOMETRY.skullHalfWidth * a.scale, 12.2 * a.scale, -13.3 * a.scale, 15.8 * a.scale, -10.7 * a.scale);
+    context.bezierCurveTo(20 * a.scale, -9.4 * a.scale, 23.1 * a.scale, -6.7 * a.scale, 24.2 * a.scale, -3 * a.scale);
+    context.quadraticCurveTo(HEAD_GEOMETRY.frontReach * a.scale, 0, 24.2 * a.scale, 3 * a.scale);
+    context.bezierCurveTo(23.1 * a.scale, 6.7 * a.scale, 20 * a.scale, 9.4 * a.scale, 15.8 * a.scale, 10.7 * a.scale);
+    context.bezierCurveTo(12.2 * a.scale, 13.3 * a.scale, 7.4 * a.scale, HEAD_GEOMETRY.skullHalfWidth * a.scale, rightEar.frontBase.x * a.scale, rightEar.frontBase.y * a.scale);
     traceEarCrown(context, a, rightEar, true);
   }
 
@@ -3008,16 +3011,13 @@
   // 耳背暗斑：真虎斑俯视时耳背是深色的（是背面绒毛，不是门禁防的粉色内耳芯）。软平涂、低对比。
   function paintEarBacks(c, a) {
     ctx.fillStyle = c.earShade;
-    ctx.strokeStyle = c.furDark;
-    ctx.lineCap = 'round';
-    ctx.lineWidth = 0.7 * a.scale;
     [-1, 1].forEach((side) => {
       const ear = earLandmarks(side);
-      ctx.globalAlpha = 0.9;
+      ctx.globalAlpha = 0.42;
       ctx.beginPath();
-      const insetRear = pointToward(ear.rearBase, ear.tip, 3.2);
-      const insetFront = pointToward(ear.frontBase, ear.tip, 3.2);
-      const insetTip = pointToward(ear.tip, ear.root, 3.8);
+      const insetRear = pointToward(ear.rearBase, ear.tip, 2.3);
+      const insetFront = pointToward(ear.frontBase, ear.tip, 2.3);
+      const insetTip = pointToward(ear.tip, ear.root, 2.8);
       ctx.moveTo(insetRear.x * a.scale, insetRear.y * a.scale);
       ctx.quadraticCurveTo(
         ear.root.x * a.scale,
@@ -3033,36 +3033,22 @@
       );
       ctx.closePath();
       ctx.fill();
-
-      // A single soft cartilage fold gives the pinna thickness without
-      // turning it back into a detached pink triangle.
-      ctx.globalAlpha = 0.2;
-      ctx.beginPath();
-      ctx.moveTo(insetRear.x * a.scale, insetRear.y * a.scale);
-      ctx.quadraticCurveTo(
-        ear.root.x * a.scale,
-        ear.root.y * a.scale,
-        insetTip.x * a.scale,
-        insetTip.y * a.scale,
-      );
-      ctx.stroke();
     });
     ctx.globalAlpha = 1;
   }
 
   // 俯视胡须：从正上方看胡须确实突出于头轮廓之外（猫的招牌）。头局部坐标系内绘制，随头转。
   const WHISKER_ROWS = Object.freeze([
-    Object.freeze([20, 5.1, 36, 14.5]),
-    Object.freeze([21.5, 6.7, 38, 20]),
-    Object.freeze([20.2, 8.2, 35, 25]),
+    Object.freeze([18, 4.2, 29.5, 11.5]),
+    Object.freeze([18.7, 5.8, 31, 16]),
   ]);
   function drawWhiskers(c, a) {
     ctx.strokeStyle = c.whisker;
-    ctx.globalAlpha = 0.5;
+    ctx.globalAlpha = 0.32;
     ctx.lineCap = 'round';
-    ctx.lineWidth = 0.7 * a.scale;
-    const spread = 1 + 0.1 * ((cat.earPerk.left + cat.earPerk.right) * 0.5)
-      + cat.idle.breath * 0.025;
+    ctx.lineWidth = 0.55 * a.scale;
+    const spread = 1 + 0.045 * ((cat.earPerk.left + cat.earPerk.right) * 0.5)
+      + cat.idle.breath * 0.018;
     [-1, 1].forEach((side) => {
       WHISKER_ROWS.forEach(([x0, y0, x1, y1]) => {
         ctx.beginPath();
@@ -3094,172 +3080,33 @@
     return Gait.clamp(alert * drowsy * (1 - blinkClosure(side)) - dreamSqueeze, 0.035, 1);
   }
 
-  function traceEye(context, a, side, openness) {
-    const y = (value) => side * value * a.scale;
-    const x = (value) => value * a.scale;
-    context.beginPath();
-    context.moveTo(x(10.4), y(8.45));
-    context.bezierCurveTo(
-      x(13.1), y(9.45 + openness * 0.72),
-      x(17.6), y(9.05 + openness * 0.5),
-      x(20.35), y(6.75),
-    );
-    context.bezierCurveTo(
-      x(17.35), y(6.55 - openness * 0.48),
-      x(13.25), y(6.75 - openness * 0.36),
-      x(10.4), y(8.45),
-    );
-    context.closePath();
-  }
-
-  function drawEye(c, a, side) {
+  function drawEyeLine(c, a, side) {
     const openness = eyeOpenness(side);
-    traceEye(ctx, a, side, openness);
-    ctx.fillStyle = c.eye;
-    ctx.globalAlpha = 0.9;
-    ctx.fill();
-    ctx.strokeStyle = c.eyeRing;
-    ctx.lineWidth = 1.05 * a.scale;
-    ctx.lineJoin = 'round';
-    ctx.globalAlpha = 0.88;
-    ctx.stroke();
-
-    if (openness > 0.16) {
-      const centerX = 16.45 * a.scale;
-      const centerY = side * 7.85 * a.scale;
-      const halfHeight = (0.75 + openness * 0.95) * a.scale;
-      ctx.fillStyle = c.pupil;
-      ctx.globalAlpha = 0.94;
-      ctx.beginPath();
-      ctx.moveTo(centerX - 0.62 * a.scale, centerY);
-      ctx.bezierCurveTo(
-        centerX - 0.42 * a.scale, centerY - halfHeight,
-        centerX + 0.42 * a.scale, centerY - halfHeight,
-        centerX + 0.62 * a.scale, centerY,
-      );
-      ctx.bezierCurveTo(
-        centerX + 0.42 * a.scale, centerY + halfHeight,
-        centerX - 0.42 * a.scale, centerY + halfHeight,
-        centerX - 0.62 * a.scale, centerY,
-      );
-      ctx.fill();
-      ctx.fillStyle = c.eyeGlint;
-      ctx.globalAlpha = openness * 0.82;
-      ctx.beginPath();
-      ctx.arc(centerX + 0.65 * a.scale, centerY - side * 0.7 * a.scale, 0.52 * a.scale, 0, Gait.TAU);
-      ctx.fill();
-    }
-    ctx.globalAlpha = 1;
-  }
-
-  function traceMuzzlePlane(context, a, side) {
-    const y = (value) => side * value * a.scale;
-    const x = (value) => value * a.scale;
-    context.beginPath();
-    context.moveTo(x(18.1), y(4.25));
-    context.bezierCurveTo(x(22), y(3.1), x(27.8), y(2.55), x(29.1), y(0.55));
-    context.bezierCurveTo(x(27.3), y(5.85), x(23), y(8.55), x(18.5), y(8.25));
-    context.bezierCurveTo(x(17.15), y(7.2), x(17.05), y(5.25), x(18.1), y(4.25));
-    context.closePath();
-  }
-
-  function drawHeadPlanes(c, a) {
-    ctx.save();
-    traceHeadSilhouette(ctx, a);
-    ctx.clip();
-
-    // Forehead dome, temples and paired muzzle pads overlap softly. They are
-    // anatomical planes rather than independent circles, so the head reads as
-    // one volume even when the eyes are closed.
-    ctx.fillStyle = c.furLight;
-    ctx.globalAlpha = 0.16;
-    ctx.filter = `blur(${2.8 * a.scale}px)`;
+    const arch = 0.18 + openness * 0.72;
+    ctx.strokeStyle = c.furDark;
+    ctx.globalAlpha = 0.44 + openness * 0.14;
+    ctx.lineCap = 'round';
+    ctx.lineWidth = 0.92 * a.scale;
     ctx.beginPath();
-    ctx.moveTo(-13 * a.scale, 0);
-    ctx.bezierCurveTo(-7 * a.scale, -12 * a.scale, 13 * a.scale, -13 * a.scale, 20 * a.scale, -5 * a.scale);
-    ctx.bezierCurveTo(24 * a.scale, 0, 20 * a.scale, 5 * a.scale, 13 * a.scale, 8 * a.scale);
-    ctx.bezierCurveTo(2 * a.scale, 12 * a.scale, -9 * a.scale, 8 * a.scale, -13 * a.scale, 0);
-    ctx.fill();
-    ctx.filter = 'none';
-
-    [-1, 1].forEach((side) => {
-      ctx.fillStyle = c.cream;
-      ctx.globalAlpha = 0.18;
-      traceMuzzlePlane(ctx, a, side);
-      ctx.fill();
-
-      ctx.fillStyle = c.furDark;
-      ctx.globalAlpha = 0.1;
-      ctx.beginPath();
-      ctx.moveTo(3 * a.scale, side * 14.7 * a.scale);
-      ctx.bezierCurveTo(
-        10 * a.scale, side * 13.5 * a.scale,
-        18 * a.scale, side * 12.5 * a.scale,
-        23.5 * a.scale, side * 10.2 * a.scale,
-      );
-      ctx.bezierCurveTo(
-        19 * a.scale, side * 11.2 * a.scale,
-        11 * a.scale, side * 12.1 * a.scale,
-        3 * a.scale, side * 14.7 * a.scale,
-      );
-      ctx.fill();
-    });
-    ctx.restore();
+    ctx.moveTo(9.2 * a.scale, side * 7.15 * a.scale);
+    ctx.quadraticCurveTo(
+      12.7 * a.scale,
+      side * (7.35 + arch) * a.scale,
+      16.2 * a.scale,
+      side * 6.3 * a.scale,
+    );
+    ctx.stroke();
     ctx.globalAlpha = 1;
   }
 
-  function drawMuzzleFeatures(c, a) {
+  function drawNoseMark(c, a) {
     ctx.fillStyle = c.nose;
-    ctx.globalAlpha = 0.92;
+    ctx.globalAlpha = 0.58;
     ctx.beginPath();
-    ctx.moveTo(30.2 * a.scale, 0);
-    ctx.bezierCurveTo(29.4 * a.scale, -1.85 * a.scale, 27.1 * a.scale, -1.65 * a.scale, 26.9 * a.scale, -0.35 * a.scale);
-    ctx.bezierCurveTo(27.4 * a.scale, 1.6 * a.scale, 29.35 * a.scale, 1.85 * a.scale, 30.2 * a.scale, 0);
+    ctx.moveTo(24.35 * a.scale, 0);
+    ctx.quadraticCurveTo(23.55 * a.scale, -0.85 * a.scale, 22.75 * a.scale, -0.18 * a.scale);
+    ctx.quadraticCurveTo(23.4 * a.scale, 0.82 * a.scale, 24.35 * a.scale, 0);
     ctx.fill();
-
-    ctx.strokeStyle = c.furDark;
-    ctx.lineCap = 'round';
-    ctx.lineWidth = 0.72 * a.scale;
-    ctx.globalAlpha = 0.46;
-    ctx.beginPath();
-    ctx.moveTo(27.35 * a.scale, 0);
-    ctx.bezierCurveTo(26.5 * a.scale, 0, 26.15 * a.scale, 0, 25.65 * a.scale, 0);
-    ctx.moveTo(25.8 * a.scale, 0);
-    ctx.quadraticCurveTo(25.05 * a.scale, -1.3 * a.scale, 23.7 * a.scale, -1.55 * a.scale);
-    ctx.moveTo(25.8 * a.scale, 0);
-    ctx.quadraticCurveTo(25.05 * a.scale, 1.3 * a.scale, 23.7 * a.scale, 1.55 * a.scale);
-    ctx.stroke();
-
-    ctx.fillStyle = c.furDark;
-    ctx.globalAlpha = 0.34;
-    [-1, 1].forEach((side) => {
-      [[21.2, 5.05], [22.6, 6.15], [20.7, 7.2]].forEach(([x, y]) => {
-        ctx.beginPath();
-        ctx.arc(x * a.scale, side * y * a.scale, 0.45 * a.scale, 0, Gait.TAU);
-        ctx.fill();
-      });
-    });
-    ctx.globalAlpha = 1;
-  }
-
-  function drawFacialFur(c, a) {
-    ctx.strokeStyle = c.furDark;
-    ctx.lineCap = 'round';
-    ctx.lineWidth = 0.62 * a.scale;
-    ctx.globalAlpha = 0.3;
-    [-1, 1].forEach((side) => {
-      [[-13.5, 9.1, -16.2, 10.7], [-8.5, 12.6, -10.2, 14.5], [22.8, 9.8, 25.1, 11.2]].forEach((tuft) => {
-        ctx.beginPath();
-        ctx.moveTo(tuft[0] * a.scale, side * tuft[1] * a.scale);
-        ctx.quadraticCurveTo(
-          (tuft[0] + tuft[2]) * 0.5 * a.scale,
-          side * (tuft[1] + tuft[3]) * 0.5 * a.scale,
-          tuft[2] * a.scale,
-          side * tuft[3] * a.scale,
-        );
-        ctx.stroke();
-      });
-    });
     ctx.globalAlpha = 1;
   }
 
@@ -3410,37 +3257,25 @@
   }
 
   function drawTopDownFace(c, a) {
-    // 俯视仍能看到眉弓、窄眼裂与口鼻楔面。细节沿头骨曲率铺开，避免把正面表情贴成一张面具。
+    // The head follows the body's restrained graphic language: three crown
+    // marks, two upper-lid lines and one tiny nose. No portrait mask, iris,
+    // mouth construction or follicle dots compete with the silhouette.
     ctx.strokeStyle = c.stripe;
     ctx.lineCap = 'round';
-    ctx.lineWidth = 1.75 * a.scale;
-    ctx.globalAlpha = 0.66;
+    ctx.lineWidth = 1.6 * a.scale;
+    ctx.globalAlpha = 0.56;
     ctx.beginPath();
-    ctx.moveTo(-1.5 * a.scale, 0);
-    ctx.bezierCurveTo(2.5 * a.scale, -0.4 * a.scale, 6.5 * a.scale, -0.25 * a.scale, 10.5 * a.scale, 0);
-    ctx.moveTo(1.2 * a.scale, -7.5 * a.scale);
-    ctx.bezierCurveTo(5 * a.scale, -6.9 * a.scale, 7.5 * a.scale, -4.1 * a.scale, 10.6 * a.scale, -2.5 * a.scale);
-    ctx.moveTo(1.2 * a.scale, 7.5 * a.scale);
-    ctx.bezierCurveTo(5 * a.scale, 6.9 * a.scale, 7.5 * a.scale, 4.1 * a.scale, 10.6 * a.scale, 2.5 * a.scale);
+    ctx.moveTo(-1.8 * a.scale, 0);
+    ctx.bezierCurveTo(1.8 * a.scale, -0.25 * a.scale, 5.2 * a.scale, -0.15 * a.scale, 8.3 * a.scale, 0);
+    ctx.moveTo(-0.4 * a.scale, -6.3 * a.scale);
+    ctx.quadraticCurveTo(3.4 * a.scale, -5.7 * a.scale, 7.2 * a.scale, -3.7 * a.scale);
+    ctx.moveTo(-0.4 * a.scale, 6.3 * a.scale);
+    ctx.quadraticCurveTo(3.4 * a.scale, 5.7 * a.scale, 7.2 * a.scale, 3.7 * a.scale);
     ctx.stroke();
 
-    [-1, 1].forEach((side) => {
-      ctx.beginPath();
-      ctx.moveTo(7.5 * a.scale, side * 12.1 * a.scale);
-      ctx.bezierCurveTo(
-        11 * a.scale,
-        side * 11.6 * a.scale,
-        14.4 * a.scale,
-        side * 10.5 * a.scale,
-        17.6 * a.scale,
-        side * 9.35 * a.scale,
-      );
-      ctx.stroke();
-    });
-
-    drawEye(c, a, -1);
-    drawEye(c, a, 1);
-    drawMuzzleFeatures(c, a);
+    drawEyeLine(c, a, -1);
+    drawEyeLine(c, a, 1);
+    drawNoseMark(c, a);
     ctx.globalAlpha = 1;
   }
 
@@ -3452,7 +3287,6 @@
     ctx.fillStyle = c.fur;
     traceHeadSilhouette(ctx, a);
     ctx.fill();
-    drawHeadPlanes(c, a);
     paintEarBacks(c, a);
 
     ctx.strokeStyle = c.furDark;
@@ -3464,7 +3298,6 @@
     ctx.globalAlpha = 1;
 
     drawTopDownFace(c, a);
-    drawFacialFur(c, a);
     drawWhiskers(c, a);
     ctx.restore();
   }
@@ -3831,6 +3664,7 @@
       turnVelocity: cat.rig.turnVelocity,
       ears: Object.assign({}, cat.ears),
       earPerk: Object.assign({}, cat.earPerk),
+      headGeometry: Object.assign({}, HEAD_GEOMETRY, { whiskerRows: WHISKER_ROWS.length }),
       earGeometry: Object.assign({}, EAR_GEOMETRY),
       pounceGeometry: Object.assign({}, POUNCE_GEOMETRY),
       earLandmarks: {

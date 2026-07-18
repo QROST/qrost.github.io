@@ -33,6 +33,19 @@
     img.src = z.toDataURL();
     return { x: Math.round(s.cat.x), y: Math.round(s.cat.y), state: s.behavior, speed: Math.round(s.cat.speed) };
   };
+  window.__zoomHead = (R) => {
+    const d = window.__catMouseDemo, s = d.getSnapshot();
+    const c = document.getElementById('world'), dpr = s.viewport.dpr;
+    const r = (R || 58) * dpr;
+    const z = document.createElement('canvas'); z.width = 520; z.height = 520;
+    const zc = z.getContext('2d');
+    zc.fillStyle = '#20241e'; zc.fillRect(0, 0, 520, 520);
+    zc.drawImage(c, s.rig.head.x * dpr - r, s.rig.head.y * dpr - r, r * 2, r * 2, 0, 0, 520, 520);
+    let img = document.getElementById('headview');
+    if (!img) { img = document.createElement('img'); img.id = 'headview'; img.style.cssText = 'position:fixed;top:8px;right:8px;width:420px;height:420px;z-index:10000;border:2px solid #999;'; document.body.appendChild(img); }
+    img.src = z.toDataURL();
+    return { head: s.rig.head, proportions: s.headGeometry, ears: s.earLandmarks, face: s.face };
+  };
   window.__captureFrame = () => {
     const demo = window.__catMouseDemo;
     let snapshot = demo.getSnapshot();
@@ -98,6 +111,20 @@
       sleepDepth: snapshot.idlePose.sleepDepth,
       breath: snapshot.idlePose.breath,
       twitch: snapshot.idlePose.twitch,
+      face: snapshot.face,
+    };
+  };
+  window.__headFrame = () => {
+    const demo = window.__catMouseDemo;
+    demo.previewIdlePose('sideLie', 1);
+    window.__step(150);
+    const snapshot = demo.getSnapshot();
+    window.__zoomHead(58);
+    return {
+      mode: snapshot.idleMode,
+      headToShoulder: snapshot.rig.head.visualRadius / snapshot.rig.shoulders.visualRadius,
+      proportions: snapshot.headGeometry,
+      ears: snapshot.earLandmarks,
       face: snapshot.face,
     };
   };
