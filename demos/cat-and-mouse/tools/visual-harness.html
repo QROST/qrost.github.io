@@ -63,6 +63,44 @@
       mouse: snapshot.mouse.rendered,
     };
   };
+  window.__transitionFrame = () => {
+    const demo = window.__catMouseDemo;
+    demo.previewIdlePose('sit', 1);
+    window.__step(150);
+    demo.previewIdlePose('sideLie', 1);
+    window.__step(42);
+    const snapshot = demo.getSnapshot();
+    window.__zoomCat(180);
+    return {
+      from: snapshot.idlePose.weights.sit,
+      to: snapshot.idlePose.weights.sideLie,
+      pawFrom: snapshot.idlePose.pawWeights.sit,
+      pawTo: snapshot.idlePose.pawWeights.sideLie,
+      progress: snapshot.idlePose.transition.progress,
+      sway: snapshot.idlePose.transitionSway,
+    };
+  };
+  window.__sleepFrame = () => {
+    const demo = window.__catMouseDemo;
+    demo.previewIdlePose('curl', -1);
+    let snapshot = demo.getSnapshot();
+    for (let frame = 0; frame < 1200; frame += 1) {
+      window.__step(1);
+      snapshot = demo.getSnapshot();
+      if (snapshot.idlePose.sleepDepth > 0.72
+        && snapshot.idlePose.twitch.active
+        && Math.abs(snapshot.idlePose.twitch.value) > 0.2) break;
+    }
+    if (snapshot.idlePose.sleepDepth <= 0.72) throw new Error('sleep depth did not settle');
+    window.__zoomCat(180);
+    return {
+      mode: snapshot.idleMode,
+      sleepDepth: snapshot.idlePose.sleepDepth,
+      breath: snapshot.idlePose.breath,
+      twitch: snapshot.idlePose.twitch,
+      face: snapshot.face,
+    };
+  };
   window.__poseSheet = () => {
     const demo = window.__catMouseDemo;
     const source = document.getElementById('world');
@@ -100,7 +138,7 @@
       snapshots.push(snapshot);
     });
     demo.clearIdlePose();
-    window.__step(45);
+    window.__step(100);
     let img = document.getElementById('posesheet');
     if (!img) {
       img = document.createElement('img');

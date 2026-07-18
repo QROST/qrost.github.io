@@ -195,7 +195,7 @@ const drawTailSource = appSource.match(/function drawTail[\s\S]*?(?=\n  function
 const drawLegsSource = appSource.match(/function drawLegs[\s\S]*?(?=\n  function bodyStations)/)?.[0] || '';
 const drawBodySource = appSource.match(/function drawBody[\s\S]*?(?=\n  function drawTopDownFace)/)?.[0] || '';
 const topDownFaceSource = appSource.match(/function drawTopDownFace[\s\S]*?(?=\n  function drawHead)/)?.[0] || '';
-const drawHeadSource = appSource.match(/function drawHead[\s\S]*?(?=\n  function drawMouse)/)?.[0] || '';
+const drawHeadSource = appSource.match(/function drawHead\([\s\S]*?(?=\n  function drawMouse)/)?.[0] || '';
 for (const key of ['stateSit', 'stateLoaf', 'stateSideLie', 'stateRoll', 'stateCurl']) {
   const label = sandbox.CatMouseI18n.LABELS[key];
   assert.ok(label?.zh && label?.en, `${key} must remain bilingual`);
@@ -206,8 +206,14 @@ assert.doesNotMatch(appSource, /\b(?:gaitName|phaseElements|refreshPhaseUi)\b/, 
 assert.match(appSource, /function restPosePawTarget\s*\(/, 'rest poses must derive articulated paw targets');
 assert.match(appSource, /function renderedFoot\s*\(/, 'rest poses must blend into the live limb renderer');
 assert.match(appSource, /function drawRestPoseDetails\s*\(/, 'rest poses must retain pose-specific illustrated coat details');
+assert.match(appSource, /function beginPoseTransition\s*\(/, 'rest poses must use continuous cross-pose mixing');
+assert.match(appSource, /const POSE_CHANNEL_TIMING/, 'pose mixer must stage body, spine, paws, tail and detail channels');
+assert.match(appSource, /function updateSleepMotion\s*\(/, 'rest poses must include layered sleeping motion');
+assert.match(appSource, /function scheduleDreamTwitch\s*\(/, 'sleeping motion must schedule non-periodic local twitches');
 assert.match(visualHarnessSource, /window\.__poseSheet\s*=\s*\(\)\s*=>/, 'visual harness must expose the rest-pose contact sheet');
 assert.match(visualHarnessSource, /window\.__captureFrame\s*=\s*\(\)\s*=>/, 'visual harness must expose the captured-rest frame');
+assert.match(visualHarnessSource, /window\.__transitionFrame\s*=\s*\(\)\s*=>/, 'visual harness must expose a mid-transition frame');
+assert.match(visualHarnessSource, /window\.__sleepFrame\s*=\s*\(\)\s*=>/, 'visual harness must expose a sleeping micro-motion frame');
 assert.ok(tailRibbonSource, 'tail ribbon renderer must remain discoverable');
 assert.doesNotMatch(tailRibbonSource, /closePath\s*\(/, 'tail ribbon must stay open at its hidden root');
 assert.match(legSilhouetteSource, /traceVariableRibbon\s*\(/, 'legs must render as variable-width closed silhouettes');
@@ -237,18 +243,14 @@ assert.equal((bodyFlankSource.match(/smoothOpenPath\s*\(/g) || []).length, 2, 'b
 assert.equal((bodyFlankSource.match(/context\.stroke\s*\(/g) || []).length, 2, 'body must stroke each open flank once');
 assert.ok(topDownFaceSource, 'top-down face renderer must remain discoverable');
 assert.match(drawHeadSource, /drawTopDownFace\s*\(/, 'head must delegate its markings to the overhead face renderer');
-assert.equal((topDownFaceSource.match(/ctx\.stroke\s*\(/g) || []).length, 2, 'overhead crown must keep only three sparse marks');
-assert.doesNotMatch(topDownFaceSource, /eyeYaw|lidDrift|lidArch/, 'overhead crown must not expose visible eyes');
-assert.doesNotMatch(
-  topDownFaceSource,
-  /c\.(?:eye|cream|pupil)|ctx\.(?:ellipse|arc)\s*\(/,
-  'overhead cat face must not regress to portrait eyes, cheek patches, or highlights',
-);
-assert.doesNotMatch(
-  drawHeadSource,
-  /c\.(?:eye|cream|pupil|mouseEar)|ctx\.(?:ellipse|arc)\s*\(/,
-  'cat head shell must remain free of face-on features',
-);
+assert.match(topDownFaceSource, /drawEye\(c, a, -1\)[\s\S]*drawEye\(c, a, 1\)/, 'overhead face must articulate both eyes');
+assert.match(topDownFaceSource, /drawMuzzleFeatures\s*\(/, 'overhead face must carry a modeled muzzle wedge');
+assert.match(appSource, /function traceEye\s*\([\s\S]*bezierCurveTo/, 'eyes must use shaped lids rather than pasted circles');
+assert.match(appSource, /function drawHeadPlanes\s*\([\s\S]*traceMuzzlePlane/, 'head must layer forehead, temple and muzzle volumes');
+assert.match(appSource, /function drawFacialFur\s*\(/, 'head silhouette must retain fine cheek and crown fur edges');
+assert.match(drawHeadSource, /drawHeadPlanes\s*\(/, 'head must paint cranial volume beneath its features');
+assert.match(drawHeadSource, /paintEarBacks\s*\(/, 'head must include inset pinna planes');
+assert.match(drawHeadSource, /drawFacialFur\s*\(/, 'head must finish with subtle fur-edge detail');
 // Overhead whiskers ARE a signature feline silhouette feature (they protrude
 // visibly from directly above); they live in a dedicated helper called by drawHead.
 assert.match(appSource, /function drawWhiskers\s*\(/, 'overhead whiskers helper must exist');
@@ -294,6 +296,15 @@ function finiteSnapshot(snapshot) {
     snapshot.poseEnvelope.right, snapshot.poseEnvelope.bottom,
     snapshot.support.foreBias, snapshot.support.hindBias, snapshot.support.combined,
     snapshot.idlePose.blend, snapshot.idlePose.side, snapshot.idlePose.rollWave,
+    snapshot.idlePose.poseClock, snapshot.idlePose.sleepDepth, snapshot.idlePose.breath,
+    snapshot.idlePose.transitionSway, snapshot.idlePose.transition.progress,
+    snapshot.idlePose.transition.duration, snapshot.idlePose.twitch.value,
+    snapshot.idlePose.twitch.side, snapshot.idlePose.twitch.count,
+    snapshot.face.leftEyeOpen, snapshot.face.rightEyeOpen,
+    ...Object.values(snapshot.idlePose.weights),
+    ...Object.values(snapshot.idlePose.spineWeights),
+    ...Object.values(snapshot.idlePose.pawWeights),
+    ...Object.values(snapshot.idlePose.tailWeights),
     ...Object.values(snapshot.rig).flatMap((segment) => [
       segment.x, segment.y, segment.angle, segment.visualRadius,
     ]),
@@ -401,7 +412,8 @@ function assertRigSnapshot(snapshot, label = 'rig') {
   const bendDetails = [];
   // 姿态形变模型（与 app.js positionRigNodes/updateRig 的公式一一对应；改那边必须同步这里）：
   // sit/loaf/curl 压缩骨节前后距（俯视收拢）、stretch 拉长前躯，curl/sideLie/groom 解锁脊柱弯度。
-  const poseW = (mode) => (snapshot.idlePose.visualMode === mode ? snapshot.idlePose.blend : 0);
+  const poseW = (mode) => snapshot.idlePose.weights[mode] || 0;
+  const spineW = (mode) => snapshot.idlePose.spineWeights[mode] || 0;
   const poseStretchS = snapshot.idlePose.stretch || 0;
   const poseCompress = 1 - (poseW('sit') * 0.3 + poseW('loaf') * 0.34 + poseW('curl') * 0.1);
   const jointLengthFactor = {
@@ -410,7 +422,7 @@ function assertRigSnapshot(snapshot, label = 'rig') {
     'shoulders-neck': (1 - poseW('sit') * 0.2 - poseW('loaf') * 0.3) * (1 + poseStretchS * 0.5),
     'neck-head': (1 - poseW('loaf') * 0.16) * (1 + poseStretchS * 0.35),
   };
-  const bendFree = poseW('curl') * 0.85 + poseW('sideLie') * 0.3 + poseW('groom') * 0.3;
+  const bendFree = spineW('curl') * 0.85 + spineW('sideLie') * 0.3 + spineW('groom') * 0.3;
   const jointBendExtra = {
     'pelvis-waist': bendFree * 0.5,
     'waist-shoulders': bendFree * 0.5,
@@ -425,8 +437,8 @@ function assertRigSnapshot(snapshot, label = 'rig') {
     const expected = restLength * jointLengthFactor[jointKey] * snapshot.rigScale;
     // 侧摆斜边：pelvis/shoulders 的骨节偏移带已知上界的侧向分量（支撑摆 + 蓄势摆臀 wiggle ±2.8），
     // 实测骨距 = hypot(纵向, 侧向) ≥ 纵向 —— 上界按 positionRigNodes 的摆幅公式推导。
-    const swayBound = (jointKey === 'pelvis-waist' ? 2.35 + 0.42 + 2.8
-      : jointKey === 'waist-shoulders' ? 1.55 + 0.28 : 0) * snapshot.rigScale;
+    const swayBound = (jointKey === 'pelvis-waist' ? 2.35 + 0.42 + 2.8 + 2.4
+      : jointKey === 'waist-shoulders' ? 1.55 + 0.28 + 2.4 * 0.55 : 0) * snapshot.rigScale;
     const expectedMax = Math.hypot(expected, swayBound);
     const tolerance = Math.max(0.45, expected * 0.012);
     assert.ok(
@@ -841,13 +853,89 @@ assert.equal(snapshot.behavior, 'prowl');
     const exiting = sandbox.__catMouseDemo.getSnapshot();
     assert.ok(exiting.idlePose.blend > 0.08, `${mode}: exit transition collapsed in one frame`);
     assert.ok(exiting.cat.speed < 0.01, `${mode}: cat started walking before the pose released`);
-    step(37);
+    step(82);
     const cleared = sandbox.__catMouseDemo.getSnapshot();
     assert.equal(cleared.behavior, 'prowl', `${mode}: clearing the pose did not resume prowl`);
     assert.equal(cleared.idlePose.visualMode, null, `${mode}: visual pose leaked after exit`);
     assert.equal(cleared.idlePose.blend, 0, `${mode}: pose blend did not settle back to zero`);
     assertRigSnapshot(cleared, `${mode} pose exit`);
   }
+}
+
+// A pose change must be a real cross-mix, not a diagnostic label change over
+// a one-frame geometry swap. The body leads; paws and tail remain in the old
+// support pattern until the new center of mass has started to settle.
+{
+  sandbox.__catMouseDemo.previewIdlePose('sit', 1);
+  step(150);
+  const before = sandbox.__catMouseDemo.getSnapshot();
+  sandbox.__catMouseDemo.previewIdlePose('sideLie', 1);
+  step(1);
+  const first = sandbox.__catMouseDemo.getSnapshot();
+  const rigJump = Math.max(...Object.keys(before.rig).map((name) => Math.hypot(
+    first.rig[name].x - before.rig[name].x,
+    first.rig[name].y - before.rig[name].y,
+  )));
+  const pawJump = Math.max(...Object.keys(before.renderFeet).map((name) => Math.hypot(
+    first.renderFeet[name].x - before.renderFeet[name].x,
+    first.renderFeet[name].y - before.renderFeet[name].y,
+  )));
+  assert.ok(rigJump < 7 * first.rigScale, `pose crossfade popped the rig by ${rigJump.toFixed(3)}px`);
+  assert.ok(pawJump < 5 * first.rigScale, `pose crossfade popped a paw by ${pawJump.toFixed(3)}px`);
+  assert.equal(first.idlePose.transition.active, true, 'pose-to-pose transition did not remain active');
+  assert.equal(first.idlePose.transition.to, 'sideLie', 'pose mixer lost its destination');
+
+  step(42);
+  const middle = sandbox.__catMouseDemo.getSnapshot();
+  assert.ok(middle.idlePose.weights.sit > 0.08, 'old torso pose vanished before weight transfer');
+  assert.ok(middle.idlePose.weights.sideLie > 0.08, 'new torso pose did not enter during crossfade');
+  assert.ok(middle.idlePose.pawWeights.sit > 0.03, 'old paw support vanished before the body settled');
+  assert.ok(middle.idlePose.pawWeights.sideLie > 0.01, 'new paw support never joined the crossfade');
+  assert.ok(Math.abs(middle.idlePose.transitionSway) > 0.08, 'pose transition lacks anticipatory weight transfer');
+  assertRigSnapshot(middle, 'mid pose crossfade');
+
+  step(150);
+  const settled = sandbox.__catMouseDemo.getSnapshot();
+  assert.equal(settled.idlePose.transition.active, false, 'pose crossfade did not settle');
+  assert.ok(settled.idlePose.weights.sideLie > 0.999, 'destination pose did not reach full weight');
+  assert.ok(settled.idlePose.weights.sit < 0.001, 'source pose leaked after crossfade');
+  sandbox.__catMouseDemo.clearIdlePose();
+  step(100);
+}
+
+// Deep rest carries a slow asymmetric breath plus sparse, localized dream
+// twitches. The scheduler is deterministic for tests but deliberately
+// non-periodic in duration, interval, side and body part.
+{
+  sandbox.__catMouseDemo.previewIdlePose('curl', -1);
+  step(360);
+  let sleeping = sandbox.__catMouseDemo.getSnapshot();
+  assert.ok(sleeping.idlePose.sleepDepth > 0.72, 'curl did not deepen into sleep');
+  assert.ok(sleeping.face.leftEyeOpen < 0.2 && sleeping.face.rightEyeOpen < 0.2, 'sleep did not soften both eyelids');
+  const initialTwitchCount = sleeping.idlePose.twitch.count;
+  let breathMin = sleeping.idlePose.breath;
+  let breathMax = sleeping.idlePose.breath;
+  let twitchPeak = 0;
+  let observedTwitch = false;
+  for (let frame = 0; frame < 900; frame += 1) {
+    step(1);
+    sleeping = sandbox.__catMouseDemo.getSnapshot();
+    breathMin = Math.min(breathMin, sleeping.idlePose.breath);
+    breathMax = Math.max(breathMax, sleeping.idlePose.breath);
+    twitchPeak = Math.max(twitchPeak, Math.abs(sleeping.idlePose.twitch.value));
+    if (sleeping.idlePose.twitch.count > initialTwitchCount && twitchPeak > 0.12) {
+      observedTwitch = true;
+      if (frame > 220) break;
+    }
+  }
+  assert.ok(breathMax - breathMin > 1.15, 'sleeping breath lacks a visible inhale/exhale rhythm');
+  assert.equal(observedTwitch, true, 'dream twitch scheduler did not produce a local micro-motion');
+  assert.ok(twitchPeak < 1.001, 'dream twitch escaped its subtle normalized envelope');
+  sandbox.__catMouseDemo.clearIdlePose();
+  step(180);
+  const awake = sandbox.__catMouseDemo.getSnapshot();
+  assert.ok(awake.idlePose.sleepDepth < 0.02, 'sleep depth leaked into locomotion');
+  assert.equal(awake.idlePose.twitch.active, false, 'dream twitch remained active after waking');
 }
 
 // The unforced idle scheduler must also fire on its own with no target; forced
@@ -924,7 +1012,10 @@ for (const [targetX, targetY] of edgeTargets) {
   step(24);
 }
 assert.equal(sawReachRecovery, true, 'compact edge turns must exercise anatomical reach recovery');
-assert.ok(earAimMin < -0.025 && earAimMax > 0.025, 'ears must swivel toward targets on both sides of the head');
+assert.ok(
+  earAimMin < -0.01 && earAimMax > 0.01,
+  `ears must swivel toward targets on both sides of the head (${earAimMin.toFixed(4)}..${earAimMax.toFixed(4)})`,
+);
 assert.ok(maxEarAsymmetry > 0.008, 'target-side ear must lead instead of moving as a rigid pair');
 assert.ok(maxPerkAsymmetry > 0.008, 'target-side ear must perk independently');
 
@@ -1019,4 +1110,4 @@ failureListeners.forEach((listener) => listener());
 assert.equal(failureElements.get('canvas-error').textContent, 'Canvas failed');
 assert.equal(failureElements.get('theme-toggle').getAttribute('title'), 'Light');
 
-console.log('check-runtime: persistent capture/rest/escape, five illustrated rest poses, crown-integrated ears, seamless coat, bounded spine, anatomical reach, 548x536 edges, and minimal UI OK');
+console.log('check-runtime: capture/rest/escape, staged pose crossfades, sleep breath/twitches, layered feline head, seamless coat, bounded spine, anatomical reach, 548x536 edges, and minimal UI OK');

@@ -82,6 +82,11 @@
       furLight: '#e7a36c',
       furDark: '#7d4126',
       stripe: 'rgba(93, 45, 24, 0.52)',
+      eye: '#b5ad58',
+      eyeRing: 'rgba(82, 48, 27, 0.72)',
+      eyeGlint: 'rgba(255, 245, 214, 0.82)',
+      nose: '#a75f57',
+      earShade: 'rgba(143, 77, 58, 0.34)',
       pupil: '#241c17',
       mouse: '#736b64',
       mouseLight: '#a39a90',
@@ -101,6 +106,11 @@
       furLight: '#f0ad74',
       furDark: '#713a24',
       stripe: 'rgba(80, 36, 22, 0.62)',
+      eye: '#c8bf68',
+      eyeRing: 'rgba(61, 34, 22, 0.82)',
+      eyeGlint: 'rgba(255, 244, 211, 0.86)',
+      nose: '#bd756d',
+      earShade: 'rgba(126, 66, 53, 0.42)',
       pupil: '#17130f',
       mouse: '#aaa29a',
       mouseLight: '#d0c7bd',
@@ -168,11 +178,35 @@
       lastMode: null,
       captured: false,
       poseBlend: 0,
+      poseWeights: {},
+      poseSide: 1,
+      transition: {
+        active: false,
+        from: {},
+        fromChannels: {},
+        to: null,
+        fromSide: 1,
+        toSide: 1,
+        t: 0,
+        dur: 1,
+        progress: 1,
+      },
+      poseClock: 0,
       side: 1,
       t: 0,
       dur: 0,
       nextAt: 8,
       restSince: null,
+      sleepDepth: 0,
+      breath: 0,
+      twitch: 0,
+      twitchActive: false,
+      twitchT: 0,
+      twitchDur: 0.5,
+      twitchSide: 1,
+      twitchKind: 'ear',
+      twitchNextAt: Infinity,
+      twitchCount: 0,
     },
     startle: { active: false, t: 0, dur: 0.35, dirX: 0, dirY: 0 },
     support: { foreBias: 0, hindBias: 0, combined: 0 },
@@ -283,6 +317,14 @@
   const REST_POSES = Object.freeze(['sit', 'loaf', 'sideLie', 'roll', 'curl']);
   const IDLE_MODES = Object.freeze(['look', ...REST_POSES, 'groom', 'stretch']);
   const POSE_STATES = Object.freeze(['crouch', 'pounce', 'land', 'pin', ...REST_POSES, 'groom', 'stretch']);
+  const POSE_BLEND_MODES = Object.freeze([...REST_POSES, 'groom', 'stretch']);
+  const POSE_CHANNEL_TIMING = Object.freeze({
+    body: Object.freeze([0, 0.78]),
+    spine: Object.freeze([0.04, 0.9]),
+    paws: Object.freeze([0.16, 1]),
+    tail: Object.freeze([0.24, 1]),
+    details: Object.freeze([0.08, 0.92]),
+  });
   const IDLE_DURATION_RANGES = Object.freeze({
     look: Object.freeze([2.2, 3.4]),
     sit: Object.freeze([6, 10]),
@@ -302,16 +344,157 @@
   ]);
   const CAPTURE_RELEASE_DISTANCE = 18;
 
+  function ensurePoseWeights() {
+    POSE_BLEND_MODES.forEach((mode) => {
+      if (!Number.isFinite(cat.idle.poseWeights[mode])) cat.idle.poseWeights[mode] = 0;
+    });
+  }
+
+  function rawPoseWeight(mode) {
+    ensurePoseWeights();
+    return cat.idle.poseWeights[mode] || 0;
+  }
+
+  function poseWeightsSnapshot() {
+    ensurePoseWeights();
+    return Object.fromEntries(POSE_BLEND_MODES.map((mode) => [mode, rawPoseWeight(mode)]));
+  }
+
+  function dominantPoseMode(weights) {
+    let bestMode = null;
+    let bestWeight = 0;
+    POSE_BLEND_MODES.forEach((mode) => {
+      const weight = weights ? weights[mode] || 0 : rawPoseWeight(mode);
+      if (weight > bestWeight) {
+        bestMode = mode;
+        bestWeight = weight;
+      }
+    });
+    return bestMode;
+  }
+
+  function poseTransitionDuration(toMode, fromWeights) {
+    if (reducedMotion) return 0.46;
+    const fromMode = dominantPoseMode(fromWeights);
+    const entering = !fromMode;
+    const leaving = !toMode;
+    const baseByMode = {
+      sit: 1.2,
+      loaf: 1.4,
+      sideLie: 1.55,
+      roll: 1.05,
+      curl: 1.65,
+      groom: 0.92,
+      stretch: 1.0,
+    };
+    const base = leaving ? 1.05 : (baseByMode[toMode] || 1.1) + (entering ? 0 : 0.18);
+    return base * (0.92 + poseHash(18) * 0.16);
+  }
+
+  function beginPoseTransition(toMode, duration) {
+    const I = cat.idle;
+    const fromChannels = Object.fromEntries(Object.keys(POSE_CHANNEL_TIMING).map((channel) => [
+      channel,
+      Object.fromEntries(POSE_BLEND_MODES.map((mode) => [mode, poseChannelWeight(mode, channel)])),
+    ]));
+    const from = fromChannels.body;
+    const total = Object.values(from).reduce((sum, weight) => sum + weight, 0);
+    if ((!toMode && total < 0.001)
+      || (toMode && from[toMode] > 0.999 && total > 0.999 && Math.abs(I.poseSide - I.side) < 0.001)) {
+      I.transition.active = false;
+      I.transition.from = {};
+      I.transition.fromChannels = {};
+      I.transition.to = toMode || null;
+      I.poseSide = I.side;
+      I.transition.t = 0;
+      I.transition.dur = 0;
+      I.transition.progress = 1;
+      POSE_BLEND_MODES.forEach((mode) => { I.poseWeights[mode] = mode === toMode ? 1 : 0; });
+      I.visualMode = toMode || null;
+      I.poseBlend = toMode ? 1 : 0;
+      return;
+    }
+    I.transition.active = true;
+    I.transition.from = from;
+    I.transition.fromChannels = fromChannels;
+    I.transition.to = toMode || null;
+    I.transition.fromSide = I.poseSide;
+    I.transition.toSide = I.side;
+    I.transition.t = 0;
+    I.transition.dur = Math.max(0.2, duration || poseTransitionDuration(toMode, from));
+    I.transition.progress = 0;
+    I.visualMode = toMode || dominantPoseMode(from);
+  }
+
+  function poseChannelWeight(mode, channel) {
+    const I = cat.idle;
+    if (!I.transition.active) return rawPoseWeight(mode);
+    const timing = POSE_CHANNEL_TIMING[channel] || POSE_CHANNEL_TIMING.body;
+    const progress = Gait.clamp((I.transition.progress - timing[0]) / Math.max(0.001, timing[1] - timing[0]), 0, 1);
+    const amount = Gait.smootherstep(progress);
+    const from = I.transition.fromChannels[channel]?.[mode] ?? I.transition.from[mode] ?? 0;
+    const to = I.transition.to === mode ? 1 : 0;
+    return from + (to - from) * amount;
+  }
+
+  function updatePoseTransition(dt) {
+    const I = cat.idle;
+    ensurePoseWeights();
+    if (I.transition.active) {
+      I.transition.t = Math.min(I.transition.dur, I.transition.t + dt);
+      I.transition.progress = Gait.clamp(I.transition.t / Math.max(0.001, I.transition.dur), 0, 1);
+      const bodyTiming = POSE_CHANNEL_TIMING.body;
+      const bodyProgress = Gait.clamp(
+        (I.transition.progress - bodyTiming[0]) / (bodyTiming[1] - bodyTiming[0]),
+        0,
+        1,
+      );
+      const amount = Gait.smootherstep(bodyProgress);
+      POSE_BLEND_MODES.forEach((mode) => {
+        const from = I.transition.fromChannels.body?.[mode] ?? I.transition.from[mode] ?? 0;
+        const to = I.transition.to === mode ? 1 : 0;
+        I.poseWeights[mode] = from + (to - from) * amount;
+      });
+      I.poseSide = I.transition.fromSide
+        + (I.transition.toSide - I.transition.fromSide) * Gait.smootherstep(I.transition.progress);
+      if (I.transition.progress >= 1) {
+        const target = I.transition.to;
+        I.transition.active = false;
+        I.transition.from = {};
+        I.transition.fromChannels = {};
+        POSE_BLEND_MODES.forEach((mode) => { I.poseWeights[mode] = mode === target ? 1 : 0; });
+        I.poseSide = I.transition.toSide;
+        I.visualMode = target || null;
+      }
+    }
+    I.poseBlend = Gait.clamp(
+      POSE_BLEND_MODES.reduce((sum, mode) => sum + poseChannelWeight(mode, 'body'), 0),
+      0,
+      1,
+    );
+  }
+
   function restPoseWeight(mode) {
-    return cat.idle.visualMode === mode ? cat.idle.poseBlend : 0;
+    return poseChannelWeight(mode, 'body');
   }
 
   function restPoseSide() {
-    return cat.idle.side < 0 ? -1 : 1;
+    return Gait.clamp(cat.idle.poseSide, -1, 1);
   }
 
   function restRollWave() {
-    return Math.sin(cat.idle.t * 2.7) * restPoseWeight('roll');
+    return Math.sin(cat.idle.poseClock * 2.7) * restPoseWeight('roll');
+  }
+
+  function poseTransitionSway() {
+    const T = cat.idle.transition;
+    if (!T.active || !T.to || T.progress >= 0.52) return 0;
+    const prep = Math.sin(Math.PI * Gait.clamp(T.progress / 0.52, 0, 1));
+    const side = restPoseSide();
+    if (T.to === 'sideLie' || T.to === 'roll' || T.to === 'curl') return side * 2.4 * prep;
+    if (T.to === 'groom') return -side * 2.1 * prep;
+    if (T.to === 'sit' || T.to === 'loaf') return side * 0.7 * prep;
+    return side * 0.35 * prep;
   }
 
   // 后躯皮毛的姿态侧移（设计单位）：bodyStations 的臀部站位与尾根锚点必须同源使用，
@@ -417,8 +600,13 @@
 
   function positionRigNodes(a) {
     const rig = cat.rig;
-    const rearSway = (cat.support.hindBias * 2.35 + cat.bodySway * 0.42 + cat.wiggle) * a.scale;
-    const frontSway = (cat.support.foreBias * 1.55 - cat.bodySway * 0.28) * a.scale;
+    const weightTransfer = poseTransitionSway();
+    const rearSway = (
+      cat.support.hindBias * 2.35 + cat.bodySway * 0.42 + cat.wiggle + weightTransfer
+    ) * a.scale;
+    const frontSway = (
+      cat.support.foreBias * 1.55 - cat.bodySway * 0.28 - weightTransfer * 0.55
+    ) * a.scale;
     // 姿态形变（owner"动作要完整"）：坐/面包卧从头顶看是"收拢"——骨节前后距明显缩短
     // （sit 梨形：后躯着地、肩拉近臀；loaf 收成面包体）；stretch 相反，前躯/颈/头拉长前探。
     const sitW = restPoseWeight('sit');
@@ -491,21 +679,24 @@
     const shoulderLead = Gait.clamp(rig.turnVelocity * 0.026, -0.075, 0.075);
     const pelvisLag = Gait.clamp(rig.turnVelocity * 0.038, -0.105, 0.105);
     const restSide = restPoseSide();
-    const lie = restPoseWeight('sideLie');
-    const curl = restPoseWeight('curl');
-    const groomW = restPoseWeight('groom');
+    const lie = poseChannelWeight('sideLie', 'spine');
+    const curl = poseChannelWeight('curl', 'spine');
+    const groomW = poseChannelWeight('groom', 'spine');
     const rollWave = restRollWave();
+    const dreamNod = dreamTwitchAmount('ear') * 0.024;
 
     // Gaze leads only the head and neck. The torso follows filtered locomotion
     // turn velocity: shoulders anticipate a corner slightly while the pelvis
     // counter-lags, with tiny gait-phase counter-rotation between the girdles.
     const headTarget = cat.heading + cat.headYaw
-      + restSide * (lie * 0.06 + curl * 0.55 + groomW * 0.2) + rollWave * 0.05;
+      + restSide * (lie * 0.06 + curl * 0.55 + groomW * 0.2)
+      + rollWave * 0.05 + dreamNod * restSide;
     rig.head.angle = angleExpLerp(rig.head.angle, headTarget, prey.active ? 15 : 6.8, dt);
 
     const headOffset = Gait.clamp(Gait.angleDelta(cat.heading, rig.head.angle), -0.7, 0.7);
     const neckTarget = cat.heading + headOffset * 0.58 + shoulderLead * 0.35
-      + restSide * (lie * 0.1 + curl * 0.5 + groomW * 0.16) + rollWave * 0.04;
+      + restSide * (lie * 0.1 + curl * 0.5 + groomW * 0.16)
+      + rollWave * 0.04 - dreamNod * restSide * 0.28;
     rig.neck.angle = angleExpLerp(rig.neck.angle, neckTarget, prey.active ? 10.5 : 5.4, dt);
 
     const shoulderTarget = cat.heading + shoulderLead + forePhaseTwist - cat.bodySway * 0.012
@@ -980,6 +1171,85 @@
     return range[0] + (range[1] - range[0]) * poseHash(8);
   }
 
+  function sleepingPoseWeight() {
+    return Gait.clamp(
+      poseChannelWeight('loaf', 'body') * 0.82
+        + poseChannelWeight('sideLie', 'body')
+        + poseChannelWeight('curl', 'body')
+        + poseChannelWeight('sit', 'body') * 0.12,
+      0,
+      1,
+    );
+  }
+
+  function scheduleDreamTwitch() {
+    const I = cat.idle;
+    const salt = 31 + I.twitchCount * 7;
+    I.twitchNextAt = I.poseClock + 5.4 + poseHash(salt) * 7.8;
+  }
+
+  function dreamTwitchAmount(kind, side) {
+    const I = cat.idle;
+    if (!I.twitchActive || I.twitchKind !== kind) return 0;
+    if (Number.isFinite(side) && Math.sign(side) !== I.twitchSide) return 0;
+    return I.twitch * I.sleepDepth;
+  }
+
+  function updateSleepMotion(dt) {
+    const I = cat.idle;
+    const sleepyWeight = sleepingPoseWeight();
+    const sleepyMode = ['loaf', 'sideLie', 'curl'].includes(I.mode);
+    const settledEnough = !I.transition.active || I.transition.progress > 0.58;
+    const alreadyAsleep = I.sleepDepth > 0.24 && sleepyWeight > 0.42;
+    const sleepTarget = sleepyMode && settledEnough && (I.t > 2.15 || alreadyAsleep)
+      ? sleepyWeight
+      : 0;
+    I.sleepDepth = expLerp(I.sleepDepth, sleepTarget, sleepTarget > I.sleepDepth ? 0.72 : 2.8, dt);
+
+    // Cats inhale a little faster than they exhale. The slow asymmetric wave
+    // is deliberately separate from action clocks, so chaining two rest poses
+    // never resets the chest in the middle of a breath.
+    const phase = (I.poseClock * 0.31) % 1;
+    const lung = phase < 0.4
+      ? Gait.smootherstep(phase / 0.4)
+      : 1 - Gait.smootherstep((phase - 0.4) / 0.6);
+    const restingBreath = sleepyWeight * 0.1;
+    const breathDepth = restingBreath + I.sleepDepth * (1 - restingBreath);
+    I.breath = (lung * 2 - 1) * breathDepth * (reducedMotion ? 0.45 : 1);
+
+    if (reducedMotion || I.sleepDepth < 0.58) {
+      I.twitch = 0;
+      I.twitchActive = false;
+      I.twitchT = 0;
+      I.twitchNextAt = Infinity;
+      return;
+    }
+    if (!Number.isFinite(I.twitchNextAt)) scheduleDreamTwitch();
+    if (!I.twitchActive && I.poseClock >= I.twitchNextAt) {
+      const salt = 47 + I.twitchCount * 11;
+      const kindPick = poseHash(salt + 2);
+      I.twitchKind = kindPick < 0.52 ? 'ear' : kindPick < 0.82 ? 'paw' : 'tail';
+      I.twitchSide = poseHash(salt + 3) < 0.5 ? -1 : 1;
+      I.twitchDur = 0.34 + poseHash(salt + 4) * 0.32;
+      I.twitchT = 0;
+      I.twitchActive = true;
+      I.twitchCount += 1;
+    }
+    if (!I.twitchActive) {
+      I.twitch = 0;
+      return;
+    }
+    I.twitchT = Math.min(I.twitchDur, I.twitchT + dt);
+    const u = Gait.clamp(I.twitchT / Math.max(0.001, I.twitchDur), 0, 1);
+    const envelope = Math.sin(Math.PI * u) ** 2;
+    I.twitch = Math.sin(u * Math.PI * 3.25) * envelope;
+    if (u >= 1) {
+      I.twitch = 0;
+      I.twitchActive = false;
+      scheduleDreamTwitch();
+    }
+  }
+
   function endIdle(interrupted) {
     const I = cat.idle;
     const finished = I.mode;
@@ -997,6 +1267,7 @@
       beginIdle(options[(poseHash(12) * options.length) | 0], wasCaptured);
       return;
     }
+    if (finished && finished !== 'look') beginPoseTransition(null);
     if (!interrupted && wasCaptured) {
       resumeCapturePin();
       return;
@@ -1009,10 +1280,10 @@
     if (forcedPick) {
       const I = cat.idle;
       I.mode = forcedPick;
-      I.visualMode = forcedPick;
       I.captured = Boolean(captured);
       I.t = 0;
       I.dur = idleDuration(forcedPick);
+      beginPoseTransition(forcedPick);
       setBehavior(forcedPick);
       return;
     }
@@ -1037,23 +1308,20 @@
       if (reducedMotion && (pick === 'roll' || pick === 'groom' || pick === 'stretch')) pick = 'loaf';
     }
     I.mode = pick;
-    if (pick !== 'look') I.visualMode = pick;
     I.captured = false;
     I.side = poseHash(10) < 0.5 ? -1 : 1;
     I.t = 0;
     I.dur = idleDuration(pick);
+    beginPoseTransition(pick === 'look' ? null : pick);
     if (pick !== 'look') setBehavior(pick);
   }
 
   function updateIdle(dt) {
     const a = anatomy();
     const I = cat.idle;
-    const poseActive = Boolean(I.mode && I.mode !== 'look');
-    I.poseBlend = expLerp(I.poseBlend, poseActive ? 1 : 0, poseActive ? 3.4 : 8, dt);
-    if (!poseActive && I.poseBlend < 0.006) {
-      I.poseBlend = 0;
-      I.visualMode = null;
-    }
+    I.poseClock += dt;
+    updatePoseTransition(dt);
+    updateSleepMotion(dt);
     const holdingCapture = I.captured && cat.capture.active;
     if ((prey.active && !holdingCapture) || cat.leap.phase) {
       if (I.mode) endIdle(true);
@@ -1206,9 +1474,12 @@
     // rotating the neutral forward-pointing silhouette back into side fins.
     const residualLook = Gait.clamp(lookRelative - cat.headYaw * 0.72, -0.46, 0.46);
     const earAim = residualLook * 0.54;
-    const flickWeight = reducedMotion ? 0 : (prey.active ? 0.45 : 1);
-    const leftFlick = earFlickPulse(elapsed, 0.85) * 0.055 * flickWeight;
-    const rightFlick = earFlickPulse(elapsed, 3.65) * 0.055 * flickWeight;
+    const sleepQuiet = 1 - cat.idle.sleepDepth * 0.88;
+    const flickWeight = reducedMotion ? 0 : (prey.active ? 0.45 : 1) * sleepQuiet;
+    const leftFlick = earFlickPulse(elapsed, 0.85) * 0.055 * flickWeight
+      + dreamTwitchAmount('ear', -1) * 0.082;
+    const rightFlick = earFlickPulse(elapsed, 3.65) * 0.055 * flickWeight
+      + dreamTwitchAmount('ear', 1) * 0.082;
     const leftEarTarget = Gait.clamp(
       earAim * (earAim < 0 ? 1.08 : 0.8) + leftFlick - 0.02,
       -EAR_GEOMETRY.maxSwivel,
@@ -1226,12 +1497,14 @@
     const a = anatomy();
     const basePerk = EAR_PERK_BY_STATE[cat.state] || 0.8;
     const leftPerkTarget = Gait.clamp(
-      basePerk + (earAim < -0.035 ? 0.04 : -0.01) + Math.abs(leftFlick) * 0.45,
+      basePerk - cat.idle.sleepDepth * 0.075
+        + (earAim < -0.035 ? 0.04 : -0.01) + Math.abs(leftFlick) * 0.45,
       0.66,
       1,
     );
     const rightPerkTarget = Gait.clamp(
-      basePerk + (earAim > 0.035 ? 0.04 : -0.01) + Math.abs(rightFlick) * 0.45,
+      basePerk - cat.idle.sleepDepth * 0.075
+        + (earAim > 0.035 ? 0.04 : -0.01) + Math.abs(rightFlick) * 0.45,
       0.66,
       1,
     );
@@ -1332,10 +1605,11 @@
     );
     cat.poseSpread = expLerp(cat.poseSpread, spreadTarget, 4, dt);
     // stretch 三段包络：探出（0.55s smoothstep）→ 保持 → 收回（尾段 0.5s）——单调 0/1 只有"贴出去"没有动作过程
-    const stretchEnv = cat.idle.visualMode === 'stretch'
+    const stretchWeight = poseChannelWeight('stretch', 'body');
+    const stretchEnv = cat.idle.mode === 'stretch'
       ? Gait.smoothstep(cat.idle.t / 0.55) * Gait.smoothstep((cat.idle.dur - cat.idle.t) / 0.5)
-      : 0;
-    cat.poseStretch = expLerp(cat.poseStretch, restPoseWeight('stretch') * stretchEnv, 4.5, dt);
+      : (stretchWeight > 0.001 ? 1 : 0);
+    cat.poseStretch = expLerp(cat.poseStretch, stretchWeight * stretchEnv, 4.5, dt);
     updateSupportPose(dt);
 
     updateRig(dt);
@@ -1452,9 +1726,7 @@
     foot.y = point.y;
   }
 
-  function restPosePawTarget(limb, a) {
-    const mode = cat.idle.visualMode;
-    if ((REST_POSES.indexOf(mode) < 0 && mode !== 'groom' && mode !== 'stretch') || cat.idle.poseBlend <= 0.001) return null;
+  function posePawTargetForMode(limb, a, mode) {
     const config = LEG_CONFIG[limb];
     const parent = config.fore ? cat.rig.shoulders : cat.rig.pelvis;
     const side = restPoseSide();
@@ -1476,7 +1748,8 @@
       lift = sameSide ? 0.05 : 0.11;
       angle = cat.heading + side * 0.14;
     } else if (mode === 'roll') {
-      const phase = cat.idle.t * 3.4 + (config.fore ? 0 : Math.PI) + (config.side > 0 ? 0 : Math.PI * 0.5);
+      const phase = cat.idle.poseClock * 3.4
+        + (config.fore ? 0 : Math.PI) + (config.side > 0 ? 0 : Math.PI * 0.5);
       forward = config.fore ? 4 : -2;
       lateral = config.side * (config.fore ? 25 : 27);
       lift = 0.66 + Math.sin(phase) * 0.16;
@@ -1489,7 +1762,7 @@
       // 洗爪循环（理毛的签名动作）：理毛侧前爪抬向下巴、周期性举-收，头随爪点动（updateIdle 同频）；
       // 其余三爪稳定支撑。
       if (config.fore && sameSide) {
-        const cyc = Math.sin(cat.idle.t * 4.4);
+        const cyc = Math.sin(cat.idle.poseClock * 4.4);
         forward = 15 + cyc * 2.5;
         lateral = side * (5.5 + cyc * 1.5);
         lift = 0.3 + Math.max(0, cyc) * 0.32;
@@ -1509,9 +1782,40 @@
       }
     }
 
+    const dream = dreamTwitchAmount('paw', config.side);
+    if (dream) {
+      forward += dream * (config.fore ? 1.7 : 0.9);
+      lateral += config.side * Math.abs(dream) * 0.8;
+      lift += Math.abs(dream) * (config.fore ? 0.085 : 0.055);
+      angle += config.side * dream * 0.035;
+    }
+
     const point = pointFromNode(parent, forward * a.scale, lateral * a.scale);
     const bounded = pointWithinLegReach(limb, point.x, point.y, a);
     return { x: bounded.x, y: bounded.y, lift, angle };
+  }
+
+  function restPosePawTarget(limb, a) {
+    const weighted = POSE_BLEND_MODES.map((mode) => {
+      const weight = poseChannelWeight(mode, 'paws');
+      return weight > 0.0001 ? { mode, weight, target: posePawTargetForMode(limb, a, mode) } : null;
+    }).filter(Boolean);
+    const total = weighted.reduce((sum, item) => sum + item.weight, 0);
+    if (total <= 0.001) return null;
+    const result = weighted.reduce((target, item) => {
+      target.x += item.target.x * item.weight;
+      target.y += item.target.y * item.weight;
+      target.lift += item.target.lift * item.weight;
+      target.angleDelta += Gait.angleDelta(cat.heading, item.target.angle) * item.weight;
+      return target;
+    }, { x: 0, y: 0, lift: 0, angleDelta: 0 });
+    return {
+      x: result.x / total,
+      y: result.y / total,
+      lift: result.lift / total,
+      angle: cat.heading + result.angleDelta / total,
+      weight: Gait.clamp(total, 0, 1),
+    };
   }
 
   function renderedFoot(limb, a) {
@@ -1519,7 +1823,7 @@
     if (!foot) return null;
     const target = restPosePawTarget(limb, a);
     if (!target) return foot;
-    const weight = cat.idle.poseBlend;
+    const weight = target.weight;
     return Object.assign({}, foot, {
       x: foot.x + (target.x - foot.x) * weight,
       y: foot.y + (target.y - foot.y) * weight,
@@ -1551,8 +1855,9 @@
   }
 
   function restLimbLayer(limb) {
-    if (restPoseWeight('roll') > 0.04) return 'over';
-    if (restPoseWeight('sideLie') > 0.04 && LEG_CONFIG[limb].side !== restPoseSide()) return 'over';
+    const lyingSide = restPoseSide() < 0 ? -1 : 1;
+    if (poseChannelWeight('roll', 'paws') > 0.04) return 'over';
+    if (poseChannelWeight('sideLie', 'paws') > 0.04 && LEG_CONFIG[limb].side !== lyingSide) return 'over';
     return 'under';
   }
 
@@ -1816,8 +2121,13 @@
     const tailCfg = TAIL_BY_STATE[cat.state] || TAIL_BY_STATE.prowl;
     const flickStrength = tailCfg.strength;
     const flickRate = tailCfg.rate;
-    const restMode = cat.idle.visualMode;
-    const wrapDirection = REST_POSES.indexOf(restMode) >= 0 ? restPoseSide() : 1;
+    const restTailWeights = Object.fromEntries(REST_POSES.map((mode) => [mode, poseChannelWeight(mode, 'tail')]));
+    const restTailWeight = Gait.clamp(
+      Object.values(restTailWeights).reduce((sum, weight) => sum + weight, 0),
+      0,
+      1,
+    );
+    const wrapDirection = restTailWeight > 0.001 ? restPoseSide() : 1;
 
     cat.tail[0].x = base.x;
     cat.tail[0].y = base.y;
@@ -1833,14 +2143,17 @@
       const linWeight = index / (cat.tail.length - 1);
       const weight = tailCfg.tip ? Math.pow(linWeight, 3) : linWeight;   // 尾尖模式：蓄势时只有末段高频打点
       const wave = Math.sin(elapsed * flickRate * Gait.TAU - index * 0.42) * flickStrength * weight
-        + tailCfg.wrap * wrapDirection * 46 * linWeight;   // 卷尾：恒定侧向力 → 蹲坐/理毛时尾巴环向体侧
+        + tailCfg.wrap * wrapDirection * 46 * linWeight
+        + dreamTwitchAmount('tail') * 18 * Math.pow(linWeight, 2.4);   // 梦中只抽动尾尖，根部保持沉稳
       point.x += velocityX - Math.sin(pelvisHeading) * wave * dt * dt;
       point.y += velocityY + Math.cos(pelvisHeading) * wave * dt * dt;
     }
 
-    if (REST_POSES.indexOf(restMode) >= 0 && cat.idle.poseBlend > 0.001) {
+    if (restTailWeight > 0.001) {
       const arcByMode = { sit: 1.35, loaf: 1.72, sideLie: 1.02, roll: 0.5, curl: 2.45 };
-      const arc = arcByMode[restMode] + (restMode === 'roll' ? restRollWave() * 0.26 : 0);
+      const arc = REST_POSES.reduce((sum, mode) => (
+        sum + (arcByMode[mode] + (mode === 'roll' ? restRollWave() * 0.26 : 0)) * restTailWeights[mode]
+      ), 0) / restTailWeight;
       const target = [{ x: base.x, y: base.y }];
       for (let index = 1; index < cat.tail.length; index += 1) {
         const t = index / Math.max(1, cat.tail.length - 1);
@@ -1851,7 +2164,7 @@
           y: previous.y + Math.sin(tangent) * a.tailSegment,
         });
       }
-      const settle = (1 - Math.exp(-dt * 8.5)) * cat.idle.poseBlend;
+      const settle = (1 - Math.exp(-dt * 8.5)) * restTailWeight;
       for (let index = 1; index < cat.tail.length; index += 1) {
         cat.tail[index].x += (target[index].x - cat.tail[index].x) * settle;
         cat.tail[index].y += (target[index].y - cat.tail[index].y) * settle;
@@ -2268,14 +2581,15 @@
     const rightEar = earLandmarks(1);
     context.beginPath();
     context.moveTo(-SKIN_TOPOLOGY.headRearReach * a.scale, 0);
-    context.bezierCurveTo(-20 * a.scale, -12 * a.scale, -13 * a.scale, -16 * a.scale, leftEar.rearBase.x * a.scale, leftEar.rearBase.y * a.scale);
+    context.bezierCurveTo(-20.5 * a.scale, -11.8 * a.scale, -13.5 * a.scale, -16.4 * a.scale, leftEar.rearBase.x * a.scale, leftEar.rearBase.y * a.scale);
     traceEarCrown(context, a, leftEar);
-    context.bezierCurveTo(16.6 * a.scale, -15.8 * a.scale, 21.5 * a.scale, -11.5 * a.scale, 23 * a.scale, -9 * a.scale);
-    context.bezierCurveTo(26 * a.scale, -6.8 * a.scale, 27.3 * a.scale, -3.2 * a.scale, 27 * a.scale, 0);
-    context.bezierCurveTo(27.3 * a.scale, 3.2 * a.scale, 26 * a.scale, 6.8 * a.scale, 23 * a.scale, 9 * a.scale);
-    context.bezierCurveTo(21.5 * a.scale, 11.5 * a.scale, 16.6 * a.scale, 15.8 * a.scale, rightEar.frontBase.x * a.scale, rightEar.frontBase.y * a.scale);
+    context.bezierCurveTo(18.2 * a.scale, -15.4 * a.scale, 21.6 * a.scale, -13.7 * a.scale, 23.2 * a.scale, -11.1 * a.scale);
+    context.bezierCurveTo(26.8 * a.scale, -10 * a.scale, 29.4 * a.scale, -7.2 * a.scale, 30.1 * a.scale, -3.3 * a.scale);
+    context.quadraticCurveTo(31.5 * a.scale, 0, 30.1 * a.scale, 3.3 * a.scale);
+    context.bezierCurveTo(29.4 * a.scale, 7.2 * a.scale, 26.8 * a.scale, 10 * a.scale, 23.2 * a.scale, 11.1 * a.scale);
+    context.bezierCurveTo(21.6 * a.scale, 13.7 * a.scale, 18.2 * a.scale, 15.4 * a.scale, rightEar.frontBase.x * a.scale, rightEar.frontBase.y * a.scale);
     traceEarCrown(context, a, rightEar, true);
-    context.bezierCurveTo(-13 * a.scale, 16 * a.scale, -20 * a.scale, 12 * a.scale, -SKIN_TOPOLOGY.headRearReach * a.scale, 0);
+    context.bezierCurveTo(-13.5 * a.scale, 16.4 * a.scale, -20.5 * a.scale, 11.8 * a.scale, -SKIN_TOPOLOGY.headRearReach * a.scale, 0);
     context.closePath();
   }
 
@@ -2285,10 +2599,11 @@
     context.beginPath();
     context.moveTo(leftEar.rearBase.x * a.scale, leftEar.rearBase.y * a.scale);
     traceEarCrown(context, a, leftEar);
-    context.bezierCurveTo(16.6 * a.scale, -15.8 * a.scale, 21.5 * a.scale, -11.5 * a.scale, 23 * a.scale, -9 * a.scale);
-    context.bezierCurveTo(26 * a.scale, -6.8 * a.scale, 27.3 * a.scale, -3.2 * a.scale, 27 * a.scale, 0);
-    context.bezierCurveTo(27.3 * a.scale, 3.2 * a.scale, 26 * a.scale, 6.8 * a.scale, 23 * a.scale, 9 * a.scale);
-    context.bezierCurveTo(21.5 * a.scale, 11.5 * a.scale, 16.6 * a.scale, 15.8 * a.scale, rightEar.frontBase.x * a.scale, rightEar.frontBase.y * a.scale);
+    context.bezierCurveTo(18.2 * a.scale, -15.4 * a.scale, 21.6 * a.scale, -13.7 * a.scale, 23.2 * a.scale, -11.1 * a.scale);
+    context.bezierCurveTo(26.8 * a.scale, -10 * a.scale, 29.4 * a.scale, -7.2 * a.scale, 30.1 * a.scale, -3.3 * a.scale);
+    context.quadraticCurveTo(31.5 * a.scale, 0, 30.1 * a.scale, 3.3 * a.scale);
+    context.bezierCurveTo(29.4 * a.scale, 7.2 * a.scale, 26.8 * a.scale, 10 * a.scale, 23.2 * a.scale, 11.1 * a.scale);
+    context.bezierCurveTo(21.6 * a.scale, 13.7 * a.scale, 18.2 * a.scale, 15.4 * a.scale, rightEar.frontBase.x * a.scale, rightEar.frontBase.y * a.scale);
     traceEarCrown(context, a, rightEar, true);
   }
 
@@ -2470,12 +2785,14 @@
     const curl = restPoseWeight('curl');
     const side = restPoseSide();
     const rock = restRollWave();
-    const breath = Math.sin(cat.idle.t * 1.05) * (loaf * 0.018 + lie * 0.012 + curl * 0.015 + sit * 0.01);
-    const spread = 1 + 0.22 * cat.poseSpread + sit * 0.12 + loaf * 0.08 + roll * 0.06 + curl * 0.04 + breath;   // sit：着地后躯从头顶看明显加宽（梨形底座）
+    const breath = cat.idle.breath * (loaf * 0.02 + lie * 0.014 + curl * 0.018 + sit * 0.009);
+    const dream = reducedMotion ? 0 : cat.idle.twitch * cat.idle.sleepDepth;
+    const spread = 1 + 0.22 * cat.poseSpread + sit * 0.12 + loaf * 0.08
+      + roll * 0.06 + curl * 0.04 + breath + dream * 0.0025;   // sit：着地后躯从头顶看明显加宽（梨形底座）
     const shift = 4 * cat.poseSpread - 6 * cat.poseStretch + sit * 6 + loaf * 8 + roll * 2.5 + curl * 5;
-    const rearLateral = restRearLateral();
-    const waistLateral = side * (lie * 3.4 + curl * 2.8) + rock * 1.4;
-    const shoulderLateral = side * (lie * 1.4 + curl * 1.8) - rock * 1.2;
+    const rearLateral = restRearLateral() + dream * side * 0.18;
+    const waistLateral = side * (lie * 3.4 + curl * 2.8) + rock * 1.4 + dream * side * 0.34;
+    const shoulderLateral = side * (lie * 1.4 + curl * 1.8) - rock * 1.2 - dream * side * 0.22;
     const stations = [
       define(cat.rig.pelvis, -27 + shift, 13 * spread, rearLateral),
       define(cat.rig.pelvis, -17 + shift, 27 * spread, rearLateral),
@@ -2690,37 +3007,62 @@
 
   // 耳背暗斑：真虎斑俯视时耳背是深色的（是背面绒毛，不是门禁防的粉色内耳芯）。软平涂、低对比。
   function paintEarBacks(c, a) {
-    ctx.fillStyle = c.furDark;
-    ctx.globalAlpha = 0.34;
+    ctx.fillStyle = c.earShade;
+    ctx.strokeStyle = c.furDark;
+    ctx.lineCap = 'round';
+    ctx.lineWidth = 0.7 * a.scale;
     [-1, 1].forEach((side) => {
       const ear = earLandmarks(side);
+      ctx.globalAlpha = 0.9;
       ctx.beginPath();
-      ctx.moveTo(ear.rearBase.x * a.scale, ear.rearBase.y * a.scale);
-      ctx.quadraticCurveTo(ear.root.x * a.scale, ear.root.y * a.scale, ear.tip.x * a.scale, ear.tip.y * a.scale);
+      const insetRear = pointToward(ear.rearBase, ear.tip, 3.2);
+      const insetFront = pointToward(ear.frontBase, ear.tip, 3.2);
+      const insetTip = pointToward(ear.tip, ear.root, 3.8);
+      ctx.moveTo(insetRear.x * a.scale, insetRear.y * a.scale);
       ctx.quadraticCurveTo(
-        (ear.tip.x + ear.frontBase.x) * 0.5 * a.scale,
-        (ear.tip.y + ear.frontBase.y) * 0.55 * a.scale,
-        ear.frontBase.x * a.scale,
-        ear.frontBase.y * a.scale,
+        ear.root.x * a.scale,
+        ear.root.y * a.scale,
+        insetTip.x * a.scale,
+        insetTip.y * a.scale,
+      );
+      ctx.quadraticCurveTo(
+        (insetTip.x + insetFront.x) * 0.5 * a.scale,
+        (insetTip.y + insetFront.y) * 0.5 * a.scale,
+        insetFront.x * a.scale,
+        insetFront.y * a.scale,
       );
       ctx.closePath();
       ctx.fill();
+
+      // A single soft cartilage fold gives the pinna thickness without
+      // turning it back into a detached pink triangle.
+      ctx.globalAlpha = 0.2;
+      ctx.beginPath();
+      ctx.moveTo(insetRear.x * a.scale, insetRear.y * a.scale);
+      ctx.quadraticCurveTo(
+        ear.root.x * a.scale,
+        ear.root.y * a.scale,
+        insetTip.x * a.scale,
+        insetTip.y * a.scale,
+      );
+      ctx.stroke();
     });
     ctx.globalAlpha = 1;
   }
 
   // 俯视胡须：从正上方看胡须确实突出于头轮廓之外（猫的招牌）。头局部坐标系内绘制，随头转。
   const WHISKER_ROWS = Object.freeze([
-    Object.freeze([15, 3.5, 25, 14]),
-    Object.freeze([16, 5.5, 26, 19.5]),
-    Object.freeze([14.5, 7, 23, 24]),
+    Object.freeze([20, 5.1, 36, 14.5]),
+    Object.freeze([21.5, 6.7, 38, 20]),
+    Object.freeze([20.2, 8.2, 35, 25]),
   ]);
   function drawWhiskers(c, a) {
     ctx.strokeStyle = c.whisker;
     ctx.globalAlpha = 0.5;
     ctx.lineCap = 'round';
     ctx.lineWidth = 0.7 * a.scale;
-    const spread = 1 + 0.12 * ((cat.earPerk.left + cat.earPerk.right) * 0.5);
+    const spread = 1 + 0.1 * ((cat.earPerk.left + cat.earPerk.right) * 0.5)
+      + cat.idle.breath * 0.025;
     [-1, 1].forEach((side) => {
       WHISKER_ROWS.forEach(([x0, y0, x1, y1]) => {
         ctx.beginPath();
@@ -2730,6 +3072,190 @@
           side * (y0 + y1) * 0.48 * a.scale * spread,
           x1 * a.scale,
           side * y1 * a.scale * spread,
+        );
+        ctx.stroke();
+      });
+    });
+    ctx.globalAlpha = 1;
+  }
+
+  function blinkClosure(side) {
+    if (reducedMotion || cat.idle.sleepDepth > 0.72) return 0;
+    const phase = elapsed + (side < 0 ? 0 : 0.055);
+    const primary = Math.max(0, Math.sin(phase * 0.57 + 1.4)) ** 34;
+    const secondary = Math.max(0, Math.sin(phase * 0.83 + 4.1)) ** 48;
+    return Gait.clamp(primary + secondary, 0, 1);
+  }
+
+  function eyeOpenness(side) {
+    const alert = prey.active ? 0.96 : (cat.state === 'prowl' ? 0.76 : 0.82);
+    const drowsy = 1 - cat.idle.sleepDepth * 0.96;
+    const dreamSqueeze = Math.abs(dreamTwitchAmount('ear', side)) * 0.24;
+    return Gait.clamp(alert * drowsy * (1 - blinkClosure(side)) - dreamSqueeze, 0.035, 1);
+  }
+
+  function traceEye(context, a, side, openness) {
+    const y = (value) => side * value * a.scale;
+    const x = (value) => value * a.scale;
+    context.beginPath();
+    context.moveTo(x(10.4), y(8.45));
+    context.bezierCurveTo(
+      x(13.1), y(9.45 + openness * 0.72),
+      x(17.6), y(9.05 + openness * 0.5),
+      x(20.35), y(6.75),
+    );
+    context.bezierCurveTo(
+      x(17.35), y(6.55 - openness * 0.48),
+      x(13.25), y(6.75 - openness * 0.36),
+      x(10.4), y(8.45),
+    );
+    context.closePath();
+  }
+
+  function drawEye(c, a, side) {
+    const openness = eyeOpenness(side);
+    traceEye(ctx, a, side, openness);
+    ctx.fillStyle = c.eye;
+    ctx.globalAlpha = 0.9;
+    ctx.fill();
+    ctx.strokeStyle = c.eyeRing;
+    ctx.lineWidth = 1.05 * a.scale;
+    ctx.lineJoin = 'round';
+    ctx.globalAlpha = 0.88;
+    ctx.stroke();
+
+    if (openness > 0.16) {
+      const centerX = 16.45 * a.scale;
+      const centerY = side * 7.85 * a.scale;
+      const halfHeight = (0.75 + openness * 0.95) * a.scale;
+      ctx.fillStyle = c.pupil;
+      ctx.globalAlpha = 0.94;
+      ctx.beginPath();
+      ctx.moveTo(centerX - 0.62 * a.scale, centerY);
+      ctx.bezierCurveTo(
+        centerX - 0.42 * a.scale, centerY - halfHeight,
+        centerX + 0.42 * a.scale, centerY - halfHeight,
+        centerX + 0.62 * a.scale, centerY,
+      );
+      ctx.bezierCurveTo(
+        centerX + 0.42 * a.scale, centerY + halfHeight,
+        centerX - 0.42 * a.scale, centerY + halfHeight,
+        centerX - 0.62 * a.scale, centerY,
+      );
+      ctx.fill();
+      ctx.fillStyle = c.eyeGlint;
+      ctx.globalAlpha = openness * 0.82;
+      ctx.beginPath();
+      ctx.arc(centerX + 0.65 * a.scale, centerY - side * 0.7 * a.scale, 0.52 * a.scale, 0, Gait.TAU);
+      ctx.fill();
+    }
+    ctx.globalAlpha = 1;
+  }
+
+  function traceMuzzlePlane(context, a, side) {
+    const y = (value) => side * value * a.scale;
+    const x = (value) => value * a.scale;
+    context.beginPath();
+    context.moveTo(x(18.1), y(4.25));
+    context.bezierCurveTo(x(22), y(3.1), x(27.8), y(2.55), x(29.1), y(0.55));
+    context.bezierCurveTo(x(27.3), y(5.85), x(23), y(8.55), x(18.5), y(8.25));
+    context.bezierCurveTo(x(17.15), y(7.2), x(17.05), y(5.25), x(18.1), y(4.25));
+    context.closePath();
+  }
+
+  function drawHeadPlanes(c, a) {
+    ctx.save();
+    traceHeadSilhouette(ctx, a);
+    ctx.clip();
+
+    // Forehead dome, temples and paired muzzle pads overlap softly. They are
+    // anatomical planes rather than independent circles, so the head reads as
+    // one volume even when the eyes are closed.
+    ctx.fillStyle = c.furLight;
+    ctx.globalAlpha = 0.16;
+    ctx.filter = `blur(${2.8 * a.scale}px)`;
+    ctx.beginPath();
+    ctx.moveTo(-13 * a.scale, 0);
+    ctx.bezierCurveTo(-7 * a.scale, -12 * a.scale, 13 * a.scale, -13 * a.scale, 20 * a.scale, -5 * a.scale);
+    ctx.bezierCurveTo(24 * a.scale, 0, 20 * a.scale, 5 * a.scale, 13 * a.scale, 8 * a.scale);
+    ctx.bezierCurveTo(2 * a.scale, 12 * a.scale, -9 * a.scale, 8 * a.scale, -13 * a.scale, 0);
+    ctx.fill();
+    ctx.filter = 'none';
+
+    [-1, 1].forEach((side) => {
+      ctx.fillStyle = c.cream;
+      ctx.globalAlpha = 0.18;
+      traceMuzzlePlane(ctx, a, side);
+      ctx.fill();
+
+      ctx.fillStyle = c.furDark;
+      ctx.globalAlpha = 0.1;
+      ctx.beginPath();
+      ctx.moveTo(3 * a.scale, side * 14.7 * a.scale);
+      ctx.bezierCurveTo(
+        10 * a.scale, side * 13.5 * a.scale,
+        18 * a.scale, side * 12.5 * a.scale,
+        23.5 * a.scale, side * 10.2 * a.scale,
+      );
+      ctx.bezierCurveTo(
+        19 * a.scale, side * 11.2 * a.scale,
+        11 * a.scale, side * 12.1 * a.scale,
+        3 * a.scale, side * 14.7 * a.scale,
+      );
+      ctx.fill();
+    });
+    ctx.restore();
+    ctx.globalAlpha = 1;
+  }
+
+  function drawMuzzleFeatures(c, a) {
+    ctx.fillStyle = c.nose;
+    ctx.globalAlpha = 0.92;
+    ctx.beginPath();
+    ctx.moveTo(30.2 * a.scale, 0);
+    ctx.bezierCurveTo(29.4 * a.scale, -1.85 * a.scale, 27.1 * a.scale, -1.65 * a.scale, 26.9 * a.scale, -0.35 * a.scale);
+    ctx.bezierCurveTo(27.4 * a.scale, 1.6 * a.scale, 29.35 * a.scale, 1.85 * a.scale, 30.2 * a.scale, 0);
+    ctx.fill();
+
+    ctx.strokeStyle = c.furDark;
+    ctx.lineCap = 'round';
+    ctx.lineWidth = 0.72 * a.scale;
+    ctx.globalAlpha = 0.46;
+    ctx.beginPath();
+    ctx.moveTo(27.35 * a.scale, 0);
+    ctx.bezierCurveTo(26.5 * a.scale, 0, 26.15 * a.scale, 0, 25.65 * a.scale, 0);
+    ctx.moveTo(25.8 * a.scale, 0);
+    ctx.quadraticCurveTo(25.05 * a.scale, -1.3 * a.scale, 23.7 * a.scale, -1.55 * a.scale);
+    ctx.moveTo(25.8 * a.scale, 0);
+    ctx.quadraticCurveTo(25.05 * a.scale, 1.3 * a.scale, 23.7 * a.scale, 1.55 * a.scale);
+    ctx.stroke();
+
+    ctx.fillStyle = c.furDark;
+    ctx.globalAlpha = 0.34;
+    [-1, 1].forEach((side) => {
+      [[21.2, 5.05], [22.6, 6.15], [20.7, 7.2]].forEach(([x, y]) => {
+        ctx.beginPath();
+        ctx.arc(x * a.scale, side * y * a.scale, 0.45 * a.scale, 0, Gait.TAU);
+        ctx.fill();
+      });
+    });
+    ctx.globalAlpha = 1;
+  }
+
+  function drawFacialFur(c, a) {
+    ctx.strokeStyle = c.furDark;
+    ctx.lineCap = 'round';
+    ctx.lineWidth = 0.62 * a.scale;
+    ctx.globalAlpha = 0.3;
+    [-1, 1].forEach((side) => {
+      [[-13.5, 9.1, -16.2, 10.7], [-8.5, 12.6, -10.2, 14.5], [22.8, 9.8, 25.1, 11.2]].forEach((tuft) => {
+        ctx.beginPath();
+        ctx.moveTo(tuft[0] * a.scale, side * tuft[1] * a.scale);
+        ctx.quadraticCurveTo(
+          (tuft[0] + tuft[2]) * 0.5 * a.scale,
+          side * (tuft[1] + tuft[3]) * 0.5 * a.scale,
+          tuft[2] * a.scale,
+          side * tuft[3] * a.scale,
         );
         ctx.stroke();
       });
@@ -2750,10 +3276,10 @@
   }
 
   function drawRestPoseDetails(c, a) {
-    const loaf = restPoseWeight('loaf');
-    const lie = restPoseWeight('sideLie');
-    const roll = restPoseWeight('roll');
-    const curl = restPoseWeight('curl');
+    const loaf = poseChannelWeight('loaf', 'details');
+    const lie = poseChannelWeight('sideLie', 'details');
+    const roll = poseChannelWeight('roll', 'details');
+    const curl = poseChannelWeight('curl', 'details');
     const side = restPoseSide();
 
     if (loaf > 0.001) {
@@ -2811,6 +3337,7 @@
 
   function drawBody(c) {
     const a = anatomy();
+    const breathVolume = 1 + cat.idle.breath * 0.024;
 
     const contours = traceBodySilhouette(ctx, a, 0, 0);
     ctx.fillStyle = c.fur;
@@ -2830,9 +3357,9 @@
     ctx.fillStyle = c.furLight;
     ctx.globalAlpha = 0.15;
     ctx.filter = `blur(${4.8 * a.scale}px)`;
-    drawNodeEllipse(cat.rig.pelvis, -1, -3, 29, 12, -0.06, a);
-    drawNodeEllipse(cat.rig.waist, 1, -2, 23, 8.5, 0.03, a);
-    drawNodeEllipse(cat.rig.shoulders, 0, -3, 28, 11, 0.08, a);
+    drawNodeEllipse(cat.rig.pelvis, -1, -3, 29, 12 * breathVolume, -0.06, a);
+    drawNodeEllipse(cat.rig.waist, 1, -2, 23, 8.5 * breathVolume, 0.03, a);
+    drawNodeEllipse(cat.rig.shoulders, 0, -3, 28, 11 * breathVolume, 0.08, a);
     ctx.filter = 'none';
 
     ctx.globalAlpha = 0.2;
@@ -2883,24 +3410,37 @@
   }
 
   function drawTopDownFace(c, a) {
-    // The reference is read from behind and above: the face itself is hidden.
-    // Compact ears and three sparse crown marks establish direction without
-    // portrait eyes, a muzzle mask, a nose, cheek patches, or cat whiskers.
-    // 含蓄的虎斑 M：中央一竖 + 两侧各一道向前收拢的弧（俯视视角的 M 纹投影），仍是稀疏三笔。
+    // 俯视仍能看到眉弓、窄眼裂与口鼻楔面。细节沿头骨曲率铺开，避免把正面表情贴成一张面具。
     ctx.strokeStyle = c.stripe;
     ctx.lineCap = 'round';
-    ctx.lineWidth = 2 * a.scale;
-    ctx.globalAlpha = 0.62;
+    ctx.lineWidth = 1.75 * a.scale;
+    ctx.globalAlpha = 0.66;
     ctx.beginPath();
-    ctx.moveTo(0.5 * a.scale, 0);
-    ctx.bezierCurveTo(3.5 * a.scale, -0.3 * a.scale, 6.5 * a.scale, -0.2 * a.scale, 9.5 * a.scale, 0);
+    ctx.moveTo(-1.5 * a.scale, 0);
+    ctx.bezierCurveTo(2.5 * a.scale, -0.4 * a.scale, 6.5 * a.scale, -0.25 * a.scale, 10.5 * a.scale, 0);
+    ctx.moveTo(1.2 * a.scale, -7.5 * a.scale);
+    ctx.bezierCurveTo(5 * a.scale, -6.9 * a.scale, 7.5 * a.scale, -4.1 * a.scale, 10.6 * a.scale, -2.5 * a.scale);
+    ctx.moveTo(1.2 * a.scale, 7.5 * a.scale);
+    ctx.bezierCurveTo(5 * a.scale, 6.9 * a.scale, 7.5 * a.scale, 4.1 * a.scale, 10.6 * a.scale, 2.5 * a.scale);
     ctx.stroke();
+
     [-1, 1].forEach((side) => {
       ctx.beginPath();
-      ctx.moveTo(-1 * a.scale, side * 7.5 * a.scale);
-      ctx.quadraticCurveTo(4 * a.scale, side * 6 * a.scale, 9 * a.scale, side * 3 * a.scale);
+      ctx.moveTo(7.5 * a.scale, side * 12.1 * a.scale);
+      ctx.bezierCurveTo(
+        11 * a.scale,
+        side * 11.6 * a.scale,
+        14.4 * a.scale,
+        side * 10.5 * a.scale,
+        17.6 * a.scale,
+        side * 9.35 * a.scale,
+      );
       ctx.stroke();
     });
+
+    drawEye(c, a, -1);
+    drawEye(c, a, 1);
+    drawMuzzleFeatures(c, a);
     ctx.globalAlpha = 1;
   }
 
@@ -2912,6 +3452,9 @@
     ctx.fillStyle = c.fur;
     traceHeadSilhouette(ctx, a);
     ctx.fill();
+    drawHeadPlanes(c, a);
+    paintEarBacks(c, a);
+
     ctx.strokeStyle = c.furDark;
     ctx.globalAlpha = 0.52;
     ctx.lineJoin = 'round';
@@ -2920,8 +3463,8 @@
     ctx.stroke();
     ctx.globalAlpha = 1;
 
-    paintEarBacks(c, a);
     drawTopDownFace(c, a);
+    drawFacialFur(c, a);
     drawWhiskers(c, a);
     ctx.restore();
   }
@@ -3130,13 +3673,12 @@
     releasePrey();
     const I = cat.idle;
     I.mode = mode;
-    I.visualMode = mode;
     I.captured = false;
-    I.poseBlend = 0;
     I.side = Number(side) < 0 ? -1 : 1;
     I.t = 0;
     I.dur = 3600;
     I.restSince = null;
+    beginPoseTransition(mode);
     cat.speed = 0;
     cat.steerOmega = 0;
     cat.wanderGoal.x = cat.x;
@@ -3352,10 +3894,35 @@
       idlePose: {
         visualMode: cat.idle.visualMode,
         blend: cat.idle.poseBlend,
+        weights: Object.fromEntries(POSE_BLEND_MODES.map((mode) => [mode, poseChannelWeight(mode, 'body')])),
+        spineWeights: Object.fromEntries(POSE_BLEND_MODES.map((mode) => [mode, poseChannelWeight(mode, 'spine')])),
+        pawWeights: Object.fromEntries(POSE_BLEND_MODES.map((mode) => [mode, poseChannelWeight(mode, 'paws')])),
+        tailWeights: Object.fromEntries(POSE_BLEND_MODES.map((mode) => [mode, poseChannelWeight(mode, 'tail')])),
         side: restPoseSide(),
         rollWave: restRollWave(),
         stretch: cat.poseStretch,
         captured: cat.idle.captured,
+        poseClock: cat.idle.poseClock,
+        sleepDepth: cat.idle.sleepDepth,
+        breath: cat.idle.breath,
+        transitionSway: poseTransitionSway(),
+        transition: {
+          active: cat.idle.transition.active,
+          to: cat.idle.transition.to,
+          progress: cat.idle.transition.progress,
+          duration: cat.idle.transition.dur,
+        },
+        twitch: {
+          active: cat.idle.twitchActive,
+          value: cat.idle.twitch,
+          side: cat.idle.twitchSide,
+          kind: cat.idle.twitchKind,
+          count: cat.idle.twitchCount,
+        },
+      },
+      face: {
+        leftEyeOpen: eyeOpenness(-1),
+        rightEyeOpen: eyeOpenness(1),
       },
       paused,
       reducedMotion,
