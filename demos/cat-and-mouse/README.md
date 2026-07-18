@@ -15,7 +15,7 @@ The rig uses one master gait clock coupled to four limb phases. Slow movement fo
 
 Translation and steering are acceleration-limited. A planted paw stays locked until its shoulder or hip approaches the limb's anatomical reach envelope; a tight turn then unloads that paw into a short recovery step while retaining at least one supporting foot. Swing planning, per-frame motion, and touchdown are all reach-constrained, preventing the articulated legs from stretching to follow a turning torso.
 
-The pounce chain starts with a short stalk-and-crouch window, then commits to one bounded ballistic move. A calm target can now trigger that crouch from up to 175 design units away. The landing solver subtracts the rig's 44-unit body-to-fore-paw offset from the travel distance, so the mouse arrives between the planted front paws instead of underneath the cat's waist.
+The pounce chain starts with a short stalk-and-crouch window, then commits to one bounded ballistic move. A calm target can now trigger that crouch from up to 175 design units away. The landing solver subtracts the rig's 44-unit body-to-fore-paw offset from the travel distance, so the mouse arrives between the planted front paws instead of underneath the cat's waist. A successful landing becomes a persistent capture rather than a momentary overlap: the visible mouse follows the fore paws while the cat settles into a longer rest pose. Small pointer jitter is ignored; moving the target decisively or leaving the canvas releases the capture and resumes pursuit.
 
 When no target is present, the same articulated cat now settles into a broader illustrated rest repertoire: upright sitting, a compact paw-tucked loaf, side-lying with an upper pair of overlapping legs, a belly-up rolling motion, and a C-shaped curl with the head and tail tucked inward. These are not alternate sprites. Each pose reuses the live spine, crown-integrated head, tapered illustrated limbs, coat palette and mackerel markings; smoothed pose weights move the paws, bend the spine and wrap the tail without a visual style cut.
 
@@ -37,11 +37,12 @@ Run from this directory:
 python3 tools/build.py
 ```
 
-The build runs `tools/check-gait.mjs` and a headless runtime smoke harness. The gates cover cadence and swing continuity, fore/hind track registration, locked stance paws, anatomical leg reach during compact edge turns, farther pounce activation and fore-paw landing alignment, all five illustrated rest-pose silhouettes and transitions, forward-biased ear geometry, independent swivel/perk variation, continuous illustrated leg/paw topology, continuous spine curvature, the 1200×630 OG image, and required page metadata. The build then stamps every local CSS/JS reference with a content hash and refreshes the root homepage asset token. Do not hand-edit `?v=` values.
+The build runs `tools/check-gait.mjs` and a headless runtime smoke harness. The gates cover cadence and swing continuity, fore/hind track registration, locked stance paws, anatomical leg reach during compact edge turns, farther pounce activation, persistent capture/rest/escape behavior, all five illustrated rest-pose silhouettes and transitions, forward-biased ear geometry, independent swivel/perk variation, continuous illustrated leg/paw topology, continuous spine curvature, the minimal unobtrusive HUD, the 1200×630 OG image, and required page metadata. The build then stamps every local CSS/JS reference with a content hash and refreshes the root homepage asset token. Do not hand-edit `?v=` values.
 
 ## tools/visual-harness.html — 隐藏 tab 可用的确定性视觉验证
 
 无头/隐藏 tab 中 rAF 与 ResizeObserver 均不投递 → 真页面无法驱动动画。此 harness 用
 rAF 垫片手动步进（`__step(frames)`）+ RO 回调捕获（`__roCb()`）+ 猫区放大镜（`__zoomCat(r)`），
+并提供捕获休息帧（`__captureFrame()`）与五姿态接触表（`__poseSheet()`），
 配合 `window.__catMouseDemo` 快照 API 做逐帧行为断言与截图。经静态服务器打开：
 `python3 -m http.server 8099` → `/demos/cat-and-mouse/tools/visual-harness.html`。

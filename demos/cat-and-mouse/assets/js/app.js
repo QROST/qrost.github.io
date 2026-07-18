@@ -7,11 +7,9 @@
   const canvas = document.getElementById('world');
   const errorCard = document.getElementById('canvas-error');
   const stateLabel = document.getElementById('behavior-label');
-  const gaitName = document.getElementById('gait-name');
   const pauseButton = document.getElementById('pause-toggle');
   const themeButton = document.getElementById('theme-toggle');
   const themeMeta = document.querySelector('meta[name="theme-color"]');
-  const phaseElements = new Map();
   const THEME_KEY = 'qrost-cat-and-mouse-theme';
 
   function wireCanvasFailure() {
@@ -63,10 +61,6 @@
     return;
   }
 
-  document.querySelectorAll('[data-limb]').forEach((element) => {
-    phaseElements.set(element.getAttribute('data-limb'), element);
-  });
-
   const reduceQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
   const darkQuery = window.matchMedia('(prefers-color-scheme: dark)');
   const viewport = { width: 0, height: 0, dpr: 1 };
@@ -76,7 +70,6 @@
   let lastFrame = performance.now();
   let elapsed = 0;
   let rafId = 0;
-  let uiAccumulator = 0;
   let initialized = false;
 
   const palette = {
@@ -159,11 +152,21 @@
     poseSpread: 0,
     poseStretch: 0,
     idleYaw: 0,
-    leap: { phase: null, t: 0, crouchDur: 0.7, wiggleHz: 3, launchX: 0, launchY: 0, landX: 0, landY: 0, pinAfter: false, lastLandAt: -10, nearSince: null },
+    leap: { phase: null, t: 0, crouchDur: 0.7, wiggleHz: 3, launchX: 0, launchY: 0, landX: 0, landY: 0, lastLandAt: -10, nearSince: null },
+    capture: {
+      active: false,
+      since: -10,
+      restAt: Infinity,
+      pointerX: 0,
+      pointerY: 0,
+      renderX: 0,
+      renderY: 0,
+    },
     idle: {
       mode: null,
       visualMode: null,
       lastMode: null,
+      captured: false,
       poseBlend: 0,
       side: 1,
       t: 0,
@@ -280,6 +283,24 @@
   const REST_POSES = Object.freeze(['sit', 'loaf', 'sideLie', 'roll', 'curl']);
   const IDLE_MODES = Object.freeze(['look', ...REST_POSES, 'groom', 'stretch']);
   const POSE_STATES = Object.freeze(['crouch', 'pounce', 'land', 'pin', ...REST_POSES, 'groom', 'stretch']);
+  const IDLE_DURATION_RANGES = Object.freeze({
+    look: Object.freeze([2.2, 3.4]),
+    sit: Object.freeze([6, 10]),
+    loaf: Object.freeze([9, 15]),
+    sideLie: Object.freeze([8, 13]),
+    roll: Object.freeze([4, 7]),
+    curl: Object.freeze([12, 20]),
+    groom: Object.freeze([7, 11]),
+    stretch: Object.freeze([4, 6]),
+  });
+  const CAPTURE_REST_WEIGHTS = Object.freeze([
+    Object.freeze(['sit', 0.2]),
+    Object.freeze(['loaf', 0.25]),
+    Object.freeze(['sideLie', 0.18]),
+    Object.freeze(['roll', 0.12]),
+    Object.freeze(['curl', 0.25]),
+  ]);
+  const CAPTURE_RELEASE_DISTANCE = 18;
 
   function restPoseWeight(mode) {
     return cat.idle.visualMode === mode ? cat.idle.poseBlend : 0;
@@ -643,12 +664,20 @@
       initialized = true;
       chooseWanderGoal(true);
     } else {
-      cat.x *= viewport.width / Math.max(1, oldWidth);
-      cat.y *= viewport.height / Math.max(1, oldHeight);
-      prey.x = Gait.clamp(prey.x * viewport.width / Math.max(1, oldWidth), 0, viewport.width);
-      prey.y = Gait.clamp(prey.y * viewport.height / Math.max(1, oldHeight), 0, viewport.height);
-      cat.wanderGoal.x *= viewport.width / Math.max(1, oldWidth);
-      cat.wanderGoal.y *= viewport.height / Math.max(1, oldHeight);
+      const scaleX = viewport.width / Math.max(1, oldWidth);
+      const scaleY = viewport.height / Math.max(1, oldHeight);
+      cat.x *= scaleX;
+      cat.y *= scaleY;
+      prey.x = Gait.clamp(prey.x * scaleX, 0, viewport.width);
+      prey.y = Gait.clamp(prey.y * scaleY, 0, viewport.height);
+      cat.wanderGoal.x *= scaleX;
+      cat.wanderGoal.y *= scaleY;
+      if (cat.capture.active) {
+        cat.capture.pointerX *= scaleX;
+        cat.capture.pointerY *= scaleY;
+        cat.capture.renderX *= scaleX;
+        cat.capture.renderY *= scaleY;
+      }
     }
     initializeRig();
     initializeFeet();
@@ -660,6 +689,13 @@
     const now = Number.isFinite(inputTime) ? inputTime : performance.now();
     const nextX = Gait.clamp(x, 8, viewport.width - 8);
     const nextY = Gait.clamp(y, 8, viewport.height - 8);
+    if (cat.capture.active) {
+      const escapeDistance = Math.hypot(
+        nextX - cat.capture.pointerX,
+        nextY - cat.capture.pointerY,
+      );
+      if (escapeDistance > CAPTURE_RELEASE_DISTANCE * anatomy().scale) cancelCapture();
+    }
     const wasActive = prey.active;
     const dt = Math.max(0.008, Math.min(0.12, (now - prey.lastInputAt) / 1000 || 0.016));
     const instantVx = (nextX - prey.x) / dt;
@@ -700,15 +736,12 @@
     prey.vx = 0;
     prey.vy = 0;
     prey.speed = 0;
+    cancelCapture();
     if (paused) draw();
   }
 
   function stateKey(state) {
     return `state${state.charAt(0).toUpperCase()}${state.slice(1)}`;
-  }
-
-  function gaitKey(profileName) {
-    return `gait${profileName.charAt(0).toUpperCase()}${profileName.slice(1)}`;
   }
 
   function setBehavior(next, quietLabel) {
@@ -740,7 +773,6 @@
     cat.leap.t = 0;
     cat.leap.crouchDur = 0.55 + poseHash(1) * 0.35;      // 0.55–0.9s ≈ 摆臀 1.5–3 个周期（真猫蓄势节律）
     cat.leap.wiggleHz = 2.7 + poseHash(2) * 0.8;
-    cat.leap.pinAfter = false;
     cat.leap.nearSince = null;
     setBehavior('crouch');
   }
@@ -804,6 +836,66 @@
     return pointFromNode(cat.rig.shoulders, 12 * a.scale, 0);
   }
 
+  function beginCapture() {
+    const C = cat.capture;
+    C.active = true;
+    C.since = elapsed;
+    C.restAt = elapsed + 3.5 + poseHash(13) * 3;
+    C.pointerX = prey.x;
+    C.pointerY = prey.y;
+    C.renderX = prey.x;
+    C.renderY = prey.y;
+    prey.vx = 0;
+    prey.vy = 0;
+    prey.speed = 0;
+  }
+
+  function resumeCapturePin() {
+    if (!cat.capture.active) return;
+    cat.capture.restAt = elapsed + 3.5 + poseHash(14) * 3;
+    cat.leap.phase = 'pin';
+    cat.leap.t = 0;
+    setBehavior('pin');
+  }
+
+  function beginCapturedRest() {
+    if (!cat.capture.active) return;
+    const choices = reducedMotion
+      ? CAPTURE_REST_WEIGHTS.filter(([mode]) => mode !== 'roll')
+      : CAPTURE_REST_WEIGHTS;
+    const total = choices.reduce((sum, [, weight]) => sum + weight, 0);
+    const roll = poseHash(15) * total;
+    let acc = 0;
+    let pick = choices[choices.length - 1][0];
+    for (const [mode, weight] of choices) {
+      acc += weight;
+      if (roll <= acc) { pick = mode; break; }
+    }
+    if (pick === cat.idle.lastMode) {
+      const index = choices.findIndex(([mode]) => mode === pick);
+      pick = choices[(index + 1) % choices.length][0];
+    }
+    cat.idle.side = poseHash(16) < 0.5 ? -1 : 1;
+    cat.capture.restAt = Infinity;
+    cat.leap.phase = null;
+    cat.leap.lastLandAt = elapsed;
+    cat.leap.nearSince = null;
+    beginIdle(pick, true);
+  }
+
+  function cancelCapture() {
+    const C = cat.capture;
+    if (!C.active) return;
+    C.active = false;
+    C.restAt = Infinity;
+    if (cat.idle.captured) {
+      cat.idle.captured = false;
+      if (cat.idle.mode) endIdle(true);
+    }
+    if (cat.leap.phase === 'pin') finishLeap();
+    else if (!cat.leap.phase) setBehavior(prey.active ? 'observe' : 'prowl');
+  }
+
   function finishLeap() {
     cat.leap.phase = null;
     cat.leap.lastLandAt = elapsed;
@@ -820,7 +912,6 @@
       if (reducedMotion || !prey.active) { L.nearSince = null; return; }
       // 追逐收口：贴身即扑（按住收尾）——比原先"减速滑停在旁边"更像猫
       if (cat.state === 'chase' && elapsed - cat.stateSince >= 0.3 && dist < 34 * a.scale) {
-        L.pinAfter = true;
         beginPounce();
         return;
       }
@@ -860,7 +951,8 @@
       if (L.t >= 0.22) {
         const capture = landingForePawMidpoint(a);
         const captureDistance = Math.hypot(prey.x - capture.x, prey.y - capture.y);
-        if (L.pinAfter && prey.active && captureDistance < POUNCE_GEOMETRY.captureRadius * a.scale) {
+        if (prey.active && captureDistance < POUNCE_GEOMETRY.captureRadius * a.scale) {
+          beginCapture();
           L.phase = 'pin';
           L.t = 0;
           setBehavior('pin', true);
@@ -869,7 +961,9 @@
         }
       }
     } else if (L.phase === 'pin') {
-      if (L.t >= 0.35 || !prey.active) finishLeap();
+      if (!cat.capture.active) finishLeap();
+      else if (!prey.active) cancelCapture();
+      else if (elapsed >= cat.capture.restAt) beginCapturedRest();
     }
   }
 
@@ -881,35 +975,44 @@
     roll: ['sideLie'], curl: ['sideLie'], stretch: ['sit'],
   });
 
+  function idleDuration(mode) {
+    const range = IDLE_DURATION_RANGES[mode] || IDLE_DURATION_RANGES.look;
+    return range[0] + (range[1] - range[0]) * poseHash(8);
+  }
+
   function endIdle(interrupted) {
     const I = cat.idle;
     const finished = I.mode;
+    const wasCaptured = I.captured && cat.capture.active;
     if (I.mode) I.lastMode = I.mode;
     I.mode = null;
+    I.captured = false;
     I.restSince = null;
-    if (!interrupted && finished && finished !== 'look' && !reducedMotion
-      && POSE_CHAIN[finished] && poseHash(11) < 0.35) {
-      const options = POSE_CHAIN[finished];
-      beginIdle(options[(poseHash(12) * options.length) | 0]);
+    const chainOptions = finished && POSE_CHAIN[finished]
+      ? POSE_CHAIN[finished].filter((mode) => !wasCaptured || REST_POSES.includes(mode))
+      : [];
+    if (!interrupted && finished !== 'look' && !reducedMotion
+      && chainOptions.length && poseHash(11) < 0.35) {
+      const options = chainOptions;
+      beginIdle(options[(poseHash(12) * options.length) | 0], wasCaptured);
+      return;
+    }
+    if (!interrupted && wasCaptured) {
+      resumeCapturePin();
       return;
     }
     if (finished && finished !== 'look') setBehavior('prowl');
     I.nextAt = elapsed + 4 + poseHash(9) * 3;
   }
 
-  function beginIdle(forcedPick) {
+  function beginIdle(forcedPick, captured) {
     if (forcedPick) {
       const I = cat.idle;
       I.mode = forcedPick;
       I.visualMode = forcedPick;
+      I.captured = Boolean(captured);
       I.t = 0;
-      const h2 = poseHash(8);
-      I.dur = forcedPick === 'groom' ? 3.4 + h2 * 2.4
-        : forcedPick === 'sit' ? 2.2 + h2 * 2
-          : forcedPick === 'curl' ? 4.5 + h2 * 2.5
-            : forcedPick === 'sideLie' ? 3.4 + h2 * 2.2
-              : forcedPick === 'roll' ? 2.4 + h2 * 1.5
-                : forcedPick === 'loaf' ? 3.8 + h2 * 2.4 : 2.6 + h2 * 0.9;
+      I.dur = idleDuration(forcedPick);
       setBehavior(forcedPick);
       return;
     }
@@ -933,18 +1036,12 @@
       pick = IDLE_MODES[nextIndex];
       if (reducedMotion && (pick === 'roll' || pick === 'groom' || pick === 'stretch')) pick = 'loaf';
     }
-    const h2 = poseHash(8);
     I.mode = pick;
     if (pick !== 'look') I.visualMode = pick;
+    I.captured = false;
     I.side = poseHash(10) < 0.5 ? -1 : 1;
     I.t = 0;
-    I.dur = pick === 'look' ? 1.4 + h2 * 0.8
-      : pick === 'sit' ? 2.5 + h2 * 2.5
-        : pick === 'loaf' ? 4.2 + h2 * 2.8
-          : pick === 'sideLie' ? 3.8 + h2 * 2.7
-            : pick === 'roll' ? 2.6 + h2 * 1.7
-              : pick === 'curl' ? 5 + h2 * 3
-                : pick === 'groom' ? 3.4 + h2 * 2.4 : 2.6 + h2 * 0.9;   // 理毛/伸展给足完整周期（原 1.2–1.8s 只够半个动作）
+    I.dur = idleDuration(pick);
     if (pick !== 'look') setBehavior(pick);
   }
 
@@ -957,7 +1054,8 @@
       I.poseBlend = 0;
       I.visualMode = null;
     }
-    if (prey.active || cat.leap.phase) {
+    const holdingCapture = I.captured && cat.capture.active;
+    if ((prey.active && !holdingCapture) || cat.leap.phase) {
       if (I.mode) endIdle(true);
       I.restSince = null;
       cat.idleYaw = expLerp(cat.idleYaw, 0, 6, dt);
@@ -998,6 +1096,7 @@
   }
 
   function updateBehavior() {
+    if (cat.capture.active) return;                 // 按住/带鼠休息由捕获状态机自持，目标仍 active 不应重新触发追逐
     if (cat.leap.phase) return;                    // 扑击链自持（updateLeap 推进与收尾）
     if (cat.idle.mode && cat.idle.mode !== 'look') {
       if (prey.active) endIdle(true);              // 新目标立即打断闲态
@@ -1057,8 +1156,9 @@
     updateLeap(dt);
     updateIdle(dt);
     updateBehavior();
-    let goalX = prey.x;
-    let goalY = prey.y;
+    const visibleMouse = renderedMousePosition();
+    let goalX = visibleMouse.x;
+    let goalY = visibleMouse.y;
     let goalDistance = Math.hypot(goalX - cat.x, goalY - cat.y);
 
     if (!prey.active) {
@@ -1096,7 +1196,7 @@
     }
 
     const targetAngle = Math.atan2(goalY - cat.y, goalX - cat.x);
-    const lookAngle = prey.active ? Math.atan2(prey.y - cat.y, prey.x - cat.x) : targetAngle;
+    const lookAngle = prey.active ? Math.atan2(visibleMouse.y - cat.y, visibleMouse.x - cat.x) : targetAngle;
     const lookRelative = Gait.angleDelta(cat.heading, lookAngle);
     const targetHeadYaw = Gait.clamp(lookRelative + cat.idleYaw, -0.76, 0.76);
     cat.headYaw = expLerp(cat.headYaw, targetHeadYaw, prey.active ? 10 : 3.6, dt);
@@ -1240,6 +1340,7 @@
 
     updateRig(dt);
     updateFeet(dt);
+    updateCapturedMouse(dt);
     updateTail(dt);
   }
 
@@ -1426,6 +1527,27 @@
       angle: mixAngle(foot.angle, target.angle, weight),
       planted: target.lift * weight < 0.12 && foot.planted,
     });
+  }
+
+  function capturedMouseTarget(a) {
+    const right = renderedFoot('rightFore', a);
+    const left = renderedFoot('leftFore', a);
+    if (right && left) return { x: (right.x + left.x) * 0.5, y: (right.y + left.y) * 0.5 };
+    return landingForePawMidpoint(a);
+  }
+
+  function updateCapturedMouse(dt) {
+    if (!cat.capture.active) return;
+    const target = capturedMouseTarget(anatomy());
+    const rate = cat.idle.captured ? 4.2 : 11;
+    cat.capture.renderX = expLerp(cat.capture.renderX, target.x, rate, dt);
+    cat.capture.renderY = expLerp(cat.capture.renderY, target.y, rate, dt);
+  }
+
+  function renderedMousePosition() {
+    return cat.capture.active
+      ? { x: cat.capture.renderX, y: cat.capture.renderY }
+      : { x: prey.x, y: prey.y };
   }
 
   function restLimbLayer(limb) {
@@ -2806,10 +2928,10 @@
 
   // 老鼠是否被猫的身体遮住：身体/头部（含耳冠）用 isPointInPath 精确测（路径在变换后空间构建，
   // 而测试点参数不受当前变换影响 → 需乘 dpr）；尾巴按逐节半径距离测；爪按圆域测。
-  function mouseHiddenUnderCat() {
+  function mouseHiddenUnderCat(mouse) {
     const a = anatomy();
-    const px = prey.x * viewport.dpr;
-    const py = prey.y * viewport.dpr;
+    const px = mouse.x * viewport.dpr;
+    const py = mouse.y * viewport.dpr;
     traceBodySilhouette(ctx, a, 0, 0);
     let hidden = ctx.isPointInPath(px, py);
     if (!hidden) {
@@ -2829,8 +2951,8 @@
           (SKIN_TOPOLOGY.tailRootRadius - SKIN_TOPOLOGY.tailTipRadius) * Math.pow(1 - t, 0.5)
           + SKIN_TOPOLOGY.tailTipRadius
         ) * a.scale + 2;
-        const dx = prey.x - renderTail[index].x;
-        const dy = prey.y - renderTail[index].y;
+        const dx = mouse.x - renderTail[index].x;
+        const dy = mouse.y - renderTail[index].y;
         if (dx * dx + dy * dy < radius * radius) { hidden = true; break; }
       }
     }
@@ -2838,8 +2960,8 @@
       for (const limb of Gait.LIMBS) {
         const foot = renderedFoot(limb, a);
         if (!foot) continue;
-        const dx = prey.x - foot.x;
-        const dy = prey.y - foot.y;
+        const dx = mouse.x - foot.x;
+        const dy = mouse.y - foot.y;
         if (dx * dx + dy * dy < (11 * a.scale) * (11 * a.scale)) { hidden = true; break; }
       }
     }
@@ -2849,13 +2971,14 @@
 
   function drawMouse(c) {
     if (!prey.active) return;
+    const mouse = renderedMousePosition();
     const scale = Gait.clamp(Math.min(viewport.width, viewport.height) / 800, 0.78, 1.05);
     const speedStretch = Gait.clamp(prey.speed / 700, 0, 0.14);
-    const hidden = mouseHiddenUnderCat();
+    const hidden = mouseHiddenUnderCat(mouse);
     if (hidden) {
       // 被猫身遮住：改画轮廓线稿（"在猫身下"的正确读法），不再实心叠在猫背上
       ctx.save();
-      ctx.translate(prey.x, prey.y);
+      ctx.translate(mouse.x, mouse.y);
       ctx.rotate(prey.angle);
       ctx.strokeStyle = c.mouse;
       ctx.lineCap = 'round';
@@ -2885,7 +3008,7 @@
       return;
     }
     ctx.save();
-    ctx.translate(prey.x, prey.y);
+    ctx.translate(mouse.x, mouse.y);
     ctx.rotate(prey.angle);
 
     ctx.globalAlpha = 0.22;
@@ -2958,7 +3081,7 @@
       ctx.strokeStyle = c.alert;
       ctx.lineWidth = 1.2;
       ctx.beginPath();
-      ctx.arc(prey.x, prey.y, 18 + arrivalAge * 27, 0, Gait.TAU);
+      ctx.arc(mouse.x, mouse.y, 18 + arrivalAge * 27, 0, Gait.TAU);
       ctx.stroke();
       ctx.restore();
     }
@@ -2979,7 +3102,6 @@
 
   function refreshDynamicUi() {
     if (stateLabel) stateLabel.textContent = paused ? I18n.t('paused') : I18n.t(stateKey(cat.state));
-    if (gaitName) gaitName.textContent = I18n.t(gaitKey(cat.gait.profileName));
     if (pauseButton) {
       const key = paused ? 'resumeAria' : 'pauseAria';
       pauseButton.setAttribute('aria-label', I18n.t(key));
@@ -2992,22 +3114,6 @@
       themeButton.setAttribute('aria-label', I18n.t(key));
       themeButton.setAttribute('title', I18n.t(titleKey));
     }
-    Gait.LIMBS.forEach((limb) => {
-      const element = phaseElements.get(limb);
-      if (element) element.setAttribute('title', I18n.t(`${limb}Long`));
-    });
-  }
-
-  function refreshPhaseUi() {
-    if (gaitName) gaitName.textContent = I18n.t(gaitKey(cat.gait.profileName));
-    Gait.LIMBS.forEach((limb) => {
-      const element = phaseElements.get(limb);
-      const foot = cat.feet[limb];
-      if (!element || !foot) return;
-      element.classList.toggle('is-contact', foot.planted);
-      element.classList.toggle('is-swing', !foot.planted && foot.lift > 0.12);
-      element.style.setProperty('--phase', String(foot.phase));
-    });
   }
 
   function setPaused(next) {
@@ -3025,6 +3131,7 @@
     const I = cat.idle;
     I.mode = mode;
     I.visualMode = mode;
+    I.captured = false;
     I.poseBlend = 0;
     I.side = Number(side) < 0 ? -1 : 1;
     I.t = 0;
@@ -3069,11 +3176,6 @@
       elapsed += dt;
       updatePrey(dt);
       updateCat(dt);
-      uiAccumulator += dt;
-      if (uiAccumulator > 0.075) {
-        uiAccumulator = 0;
-        refreshPhaseUi();
-      }
     }
     draw();
     rafId = requestAnimationFrame(frame);
@@ -3162,7 +3264,6 @@
   resizeCanvas();
   applyTheme(isDark(), false);
   refreshDynamicUi();
-  refreshPhaseUi();
   rafId = requestAnimationFrame(frame);
 
   window.__catMouseDemo = Object.freeze({
@@ -3198,7 +3299,20 @@
       poseEnvelope: poseEnvelopeSnapshot(),
       support: Object.assign({}, cat.support),
       touchdowns: cat.touchdowns.map((touchdown) => Object.assign({}, touchdown)),
-      mouse: { x: prey.x, y: prey.y, speed: prey.speed, active: prey.active },
+      mouse: {
+        x: prey.x,
+        y: prey.y,
+        speed: prey.speed,
+        active: prey.active,
+        rendered: renderedMousePosition(),
+      },
+      capture: {
+        active: cat.capture.active,
+        since: cat.capture.since,
+        restAt: cat.capture.restAt,
+        pointerX: cat.capture.pointerX,
+        pointerY: cat.capture.pointerY,
+      },
       phases: Object.fromEntries(Gait.LIMBS.map((limb) => [limb, cat.feet[limb] ? cat.feet[limb].phase : null])),
       feet: Object.fromEntries(Gait.LIMBS.map((limb) => [limb, cat.feet[limb]
         ? {
@@ -3241,6 +3355,7 @@
         side: restPoseSide(),
         rollWave: restRollWave(),
         stretch: cat.poseStretch,
+        captured: cat.idle.captured,
       },
       paused,
       reducedMotion,

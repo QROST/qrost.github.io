@@ -80,16 +80,10 @@ const storage = new Map();
 const ids = new Map();
 
 for (const id of [
-  'world', 'canvas-error', 'behavior-label', 'gait-name', 'pause-toggle', 'theme-toggle',
+  'world', 'canvas-error', 'behavior-label', 'pause-toggle', 'theme-toggle',
   'language-toggle', 'keyboard-instructions',
 ]) ids.set(id, new FakeElement(id));
 ids.get('world').getContext = () => contextMethods;
-
-const limbElements = ['rightHind', 'rightFore', 'leftHind', 'leftFore'].map((limb) => {
-  const element = new FakeElement();
-  element.setAttribute('data-limb', limb);
-  return element;
-});
 
 const metas = {
   'meta[name="theme-color"]': new FakeElement(),
@@ -109,7 +103,6 @@ const document = {
   getElementById(id) { return ids.get(id) || null; },
   querySelector(selector) { return metas[selector] || null; },
   querySelectorAll(selector) {
-    if (selector === '[data-limb]') return limbElements;
     if (selector === '[data-i18n]') return [];
     if (selector === '[data-i18n-aria-label]') return [];
     if (selector === '[data-i18n-title]') return [];
@@ -188,6 +181,7 @@ document.dispatch('DOMContentLoaded');
 // Renderer topology is checked structurally because a fake Canvas cannot
 // reliably distinguish an internal cap line from an external silhouette.
 const appSource = loadedSources.get('assets/js/app.js');
+const indexSource = fs.readFileSync(path.join(demo, 'index.html'), 'utf8');
 const visualHarnessSource = fs.readFileSync(path.join(demo, 'tools/visual-harness.html'), 'utf8');
 const tailRibbonSource = appSource.match(/function traceTailRibbon[\s\S]*?(?=\n  function tailRenderPoints)/)?.[0] || '';
 const legSilhouetteSource = appSource.match(/function traceLegSilhouette[\s\S]*?(?=\n  function tracePawSilhouette)/)?.[0] || '';
@@ -207,10 +201,13 @@ for (const key of ['stateSit', 'stateLoaf', 'stateSideLie', 'stateRoll', 'stateC
   assert.ok(label?.zh && label?.en, `${key} must remain bilingual`);
 }
 assert.match(appSource, /const REST_POSES = Object\.freeze\(\['sit', 'loaf', 'sideLie', 'roll', 'curl'\]\)/, 'rest repertoire contract drifted');
+assert.doesNotMatch(indexSource, /class="(?:gait-panel|interaction-help)"/, 'canvas must stay free of instructional HUD panels');
+assert.doesNotMatch(appSource, /\b(?:gaitName|phaseElements|refreshPhaseUi)\b/, 'removed gait HUD must not retain runtime work');
 assert.match(appSource, /function restPosePawTarget\s*\(/, 'rest poses must derive articulated paw targets');
 assert.match(appSource, /function renderedFoot\s*\(/, 'rest poses must blend into the live limb renderer');
 assert.match(appSource, /function drawRestPoseDetails\s*\(/, 'rest poses must retain pose-specific illustrated coat details');
 assert.match(visualHarnessSource, /window\.__poseSheet\s*=\s*\(\)\s*=>/, 'visual harness must expose the rest-pose contact sheet');
+assert.match(visualHarnessSource, /window\.__captureFrame\s*=\s*\(\)\s*=>/, 'visual harness must expose the captured-rest frame');
 assert.ok(tailRibbonSource, 'tail ribbon renderer must remain discoverable');
 assert.doesNotMatch(tailRibbonSource, /closePath\s*\(/, 'tail ribbon must stay open at its hidden root');
 assert.match(legSilhouetteSource, /traceVariableRibbon\s*\(/, 'legs must render as variable-width closed silhouettes');
@@ -287,6 +284,8 @@ function finiteSnapshot(snapshot) {
     snapshot.pounceGeometry.crouchAbort, snapshot.pounceGeometry.aimLeadSeconds,
     snapshot.pounceGeometry.forePawForward, snapshot.pounceGeometry.maxBodyTravel,
     snapshot.pounceGeometry.captureRadius,
+    snapshot.mouse.rendered.x, snapshot.mouse.rendered.y,
+    snapshot.capture.pointerX, snapshot.capture.pointerY,
     ...Object.values(snapshot.earLandmarks).flatMap((ear) => Object.values(ear).flatMap((point) => [point.x, point.y])),
     snapshot.mouse.x, snapshot.mouse.y, snapshot.mouse.speed,
     snapshot.rigScale, snapshot.turnVelocity, snapshot.rigCurvature,
@@ -626,6 +625,9 @@ assert.equal(snapshot.behavior, 'prowl');
 // the same test input removes the synthetic pointer velocity without advancing a
 // frame. The crouch must begin beyond the former 150-unit threshold, and the
 // landing must put the mouse at the fore-paw midpoint rather than under the waist.
+// A successful landing then becomes a persistent capture: the visible mouse
+// follows the fore paws through a rest pose, tolerates small pointer jitter and
+// releases only when the target makes a deliberate escape move.
 {
   snapshot = sandbox.__catMouseDemo.getSnapshot();
   const toCenterX = fakeViewportWidth * 0.5 - snapshot.cat.x;
@@ -644,22 +646,31 @@ assert.equal(snapshot.behavior, 'prowl');
   let maxLeapPounceRun = 0;
   let crouchEntry = null;
   let landing = null;
-  for (let frameIndex = 0; frameIndex < 300; frameIndex += 1) {
+  let captureEntry = null;
+  let capturedRest = null;
+  for (let frameIndex = 0; frameIndex < 720; frameIndex += 1) {
     step(1);
     const current = sandbox.__catMouseDemo.getSnapshot();
     assertRigSnapshot(current, 'leap chain');
     if (current.leapPhase) seenLeap.add(current.leapPhase);
     if (current.leapPhase === 'crouch' && !crouchEntry) crouchEntry = current;
     if (current.leapPhase === 'land' && !landing) landing = current;
+    if (current.capture.active && !captureEntry) captureEntry = current;
+    if (current.capture.active && current.idlePose.captured && current.idleMode) {
+      capturedRest = current;
+    }
     leapPounceRun = current.leapPhase === 'pounce' ? leapPounceRun + 1 : 0;
     maxLeapPounceRun = Math.max(maxLeapPounceRun, leapPounceRun);
     const anyPlanted = Object.values(current.feet).some((foot) => foot.planted);
     assert.ok(anyPlanted || current.leapPhase === 'pounce', 'all-airborne outside the pounce phase');
-    if (seenLeap.has('land') && !current.leapPhase) break;
+    if (capturedRest) break;
   }
   assert.ok(seenLeap.has('crouch'), 'stationary near target must trigger a crouch');
   assert.ok(seenLeap.has('pounce'), 'crouch must release into a pounce');
   assert.ok(seenLeap.has('land'), 'pounce must land');
+  assert.ok(seenLeap.has('pin'), 'successful landing must become a persistent fore-paw pin');
+  assert.ok(captureEntry, 'fore-paw pin never activated capture state');
+  assert.ok(capturedRest, 'captured mouse never transitioned into a rest pose');
   assert.ok(maxLeapPounceRun > 0 && maxLeapPounceRun <= 32, `pounce suspension out of bounds (${maxLeapPounceRun} frames)`);
   const formerTriggerMax = 150 * crouchEntry.rigScale;
   const crouchDistance = Math.hypot(
@@ -699,6 +710,58 @@ assert.equal(snapshot.behavior, 'prowl');
       <= 8 * landing.rigScale,
     `body landing offset missed the fore-paw station (${bodyToMouseForward.toFixed(2)}px)`,
   );
+
+  step(90);
+  let holding = sandbox.__catMouseDemo.getSnapshot();
+  assert.equal(holding.capture.active, true, 'capture ended while the cat was resting');
+  assert.equal(holding.mouse.active, true, 'captured target must remain logically active');
+  assert.equal(holding.idlePose.captured, true, 'rest pose lost its capture ownership');
+  assert.ok(
+    ['sit', 'loaf', 'sideLie', 'roll', 'curl'].includes(holding.idleMode),
+    `capture selected a non-rest pose: ${holding.idleMode}`,
+  );
+  const renderedForePawMidpoint = {
+    x: (holding.renderFeet.rightFore.x + holding.renderFeet.leftFore.x) * 0.5,
+    y: (holding.renderFeet.rightFore.y + holding.renderFeet.leftFore.y) * 0.5,
+  };
+  const heldMouseDistance = Math.hypot(
+    holding.mouse.rendered.x - renderedForePawMidpoint.x,
+    holding.mouse.rendered.y - renderedForePawMidpoint.y,
+  );
+  assert.ok(
+    heldMouseDistance <= 12 * holding.rigScale,
+    `captured mouse drifted ${heldMouseDistance.toFixed(2)}px from the resting fore paws`,
+  );
+
+  const captureRestModes = new Set();
+  for (let frameIndex = 0; frameIndex < 2400; frameIndex += 1) {
+    step(1);
+    holding = sandbox.__catMouseDemo.getSnapshot();
+    assert.equal(holding.capture.active, true, 'capture ended without an escape input');
+    if (holding.idlePose.captured) {
+      captureRestModes.add(holding.idleMode);
+      assert.ok(
+        ['sit', 'loaf', 'sideLie', 'roll', 'curl'].includes(holding.idleMode),
+        `capture chained into an incompatible action: ${holding.idleMode}`,
+      );
+    } else {
+      assert.equal(holding.leapPhase, 'pin', 'capture must alternate only between resting and fore-paw pinning');
+    }
+  }
+  assert.ok(captureRestModes.size >= 1, 'long capture never held a complete rest pose');
+
+  const capturePointer = { x: holding.capture.pointerX, y: holding.capture.pointerY };
+  sandbox.__catMouseDemo.moveMouse(capturePointer.x + 6 * holding.rigScale, capturePointer.y);
+  step(20);
+  holding = sandbox.__catMouseDemo.getSnapshot();
+  assert.equal(holding.capture.active, true, 'minor pointer jitter must not release capture');
+
+  sandbox.__catMouseDemo.moveMouse(capturePointer.x + 32 * holding.rigScale, capturePointer.y);
+  step(1);
+  const escaped = sandbox.__catMouseDemo.getSnapshot();
+  assert.equal(escaped.capture.active, false, 'deliberate target movement must release capture');
+  assert.equal(escaped.idlePose.captured, false, 'capture ownership leaked after escape');
+  assert.equal(escaped.mouse.active, true, 'escape movement should resume pursuit, not remove the target');
   sandbox.__catMouseDemo.releaseMouse();
   step(30);
 }
@@ -907,7 +970,6 @@ const failureElements = new Map([
   ['world', new FakeElement('world')],
   ['canvas-error', new FakeElement('canvas-error')],
   ['behavior-label', new FakeElement('behavior-label')],
-  ['gait-name', new FakeElement('gait-name')],
   ['pause-toggle', new FakeElement('pause-toggle')],
   ['theme-toggle', new FakeElement('theme-toggle')],
 ]);
@@ -957,4 +1019,4 @@ failureListeners.forEach((listener) => listener());
 assert.equal(failureElements.get('canvas-error').textContent, 'Canvas failed');
 assert.equal(failureElements.get('theme-toggle').getAttribute('title'), 'Light');
 
-console.log('check-runtime: five illustrated rest poses, fore-paw pounce capture, crown-integrated ears, seamless coat, bounded spine, anatomical reach, 548x536 edges, and UI OK');
+console.log('check-runtime: persistent capture/rest/escape, five illustrated rest poses, crown-integrated ears, seamless coat, bounded spine, anatomical reach, 548x536 edges, and minimal UI OK');

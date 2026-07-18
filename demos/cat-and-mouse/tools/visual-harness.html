@@ -33,6 +33,36 @@
     img.src = z.toDataURL();
     return { x: Math.round(s.cat.x), y: Math.round(s.cat.y), state: s.behavior, speed: Math.round(s.cat.speed) };
   };
+  window.__captureFrame = () => {
+    const demo = window.__catMouseDemo;
+    let snapshot = demo.getSnapshot();
+    const centerDx = snapshot.viewport.width * 0.5 - snapshot.cat.x;
+    const centerDy = snapshot.viewport.height * 0.5 - snapshot.cat.y;
+    const centerDistance = Math.hypot(centerDx, centerDy);
+    const directionX = centerDistance > 0.001 ? centerDx / centerDistance : 1;
+    const directionY = centerDistance > 0.001 ? centerDy / centerDistance : 0;
+    const targetDistance = snapshot.pounceGeometry.triggerMax * snapshot.rigScale;
+    const targetX = snapshot.cat.x + directionX * targetDistance;
+    const targetY = snapshot.cat.y + directionY * targetDistance;
+    for (let repeat = 0; repeat < 16; repeat += 1) demo.moveMouse(targetX, targetY);
+    for (let frame = 0; frame < 720; frame += 1) {
+      window.__step(1);
+      snapshot = demo.getSnapshot();
+      if (snapshot.capture.active && snapshot.idlePose.captured && snapshot.idleMode) break;
+    }
+    if (!(snapshot.capture.active && snapshot.idlePose.captured)) {
+      throw new Error('capture/rest sequence did not settle');
+    }
+    window.__step(90);
+    snapshot = demo.getSnapshot();
+    window.__zoomCat(180);
+    return {
+      behavior: snapshot.behavior,
+      idleMode: snapshot.idleMode,
+      capture: snapshot.capture.active,
+      mouse: snapshot.mouse.rendered,
+    };
+  };
   window.__poseSheet = () => {
     const demo = window.__catMouseDemo;
     const source = document.getElementById('world');
@@ -96,7 +126,7 @@
       </div>
     </section>
     <div class="hud" hidden>
-      <span id="behavior-label"></span><span id="gait-name"></span>
+      <span id="behavior-label"></span>
       <button id="pause-toggle"></button><button id="theme-toggle"></button>
     </div>
   </main>

@@ -237,34 +237,28 @@ h1 {
 
 .behavior-chip {
   position: fixed;
-  top: calc(var(--safe-top) + 60px);
-  left: 50%;
+  right: calc(var(--safe-right) + 2px);
+  bottom: calc(var(--safe-bottom) + 2px);
   z-index: 4;
   display: flex;
   align-items: center;
-  gap: 8px;
-  min-height: 34px;
-  padding: 7px 13px;
-  border: 1px solid var(--panel-edge);
-  border-radius: 999px;
-  background: var(--panel);
-  box-shadow: 0 8px 24px var(--shadow);
+  gap: 5px;
+  padding: 2px 3px;
   color: var(--muted);
-  font-size: 0.66rem;
-  font-weight: 600;
-  letter-spacing: 0.1em;
+  font-size: 0.54rem;
+  font-weight: 550;
+  letter-spacing: 0.08em;
+  line-height: 1.2;
   pointer-events: none;
-  transform: translateX(-50%);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  text-shadow: 0 1px 8px var(--panel);
 }
 
 .behavior-dot {
-  width: 6px;
-  height: 6px;
+  width: 3px;
+  height: 3px;
   border-radius: 50%;
   background: var(--accent);
-  box-shadow: 0 0 0 5px var(--accent-soft);
+  opacity: 0.68;
   transition: transform 180ms ease;
 }
 
@@ -275,124 +269,6 @@ body[data-behavior="chase"] .behavior-dot {
 @keyframes alert-pulse {
   to { transform: scale(1.42); }
 }
-
-.gait-panel {
-  position: fixed;
-  bottom: var(--safe-bottom);
-  left: var(--safe-left);
-  z-index: 4;
-  min-width: 196px;
-  padding: 12px 14px 11px;
-  border: 1px solid var(--panel-edge);
-  border-radius: 16px;
-  background: var(--panel);
-  box-shadow: 0 10px 28px var(--shadow);
-  pointer-events: none;
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-}
-
-.gait-heading {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 12px;
-  margin-bottom: 9px;
-}
-
-.gait-heading span:first-child {
-  color: var(--muted);
-  font-size: 0.54rem;
-  font-weight: 700;
-  letter-spacing: 0.18em;
-}
-
-#gait-name {
-  color: var(--accent);
-  font-size: 0.6rem;
-  font-weight: 650;
-}
-
-.phase-track {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 7px;
-}
-
-.phase {
-  display: grid;
-  place-items: center;
-  gap: 5px;
-  color: var(--muted);
-  font-size: 0.52rem;
-  font-weight: 700;
-  letter-spacing: 0.04em;
-}
-
-.paw-dot {
-  position: relative;
-  width: 17px;
-  height: 14px;
-  border: 1px solid color-mix(in srgb, var(--muted) 45%, transparent);
-  border-radius: 54% 54% 48% 48%;
-  opacity: 0.45;
-  transform: scale(0.78);
-  transition: opacity 90ms linear, transform 110ms ease, background 110ms ease;
-}
-
-.paw-dot::before,
-.paw-dot::after {
-  position: absolute;
-  top: -5px;
-  width: 5px;
-  height: 6px;
-  border: inherit;
-  border-radius: 50%;
-  content: "";
-  background: inherit;
-}
-
-.paw-dot::before { left: 1px; }
-.paw-dot::after { right: 1px; }
-
-.phase.is-contact .paw-dot {
-  background: var(--accent-soft);
-  border-color: var(--accent);
-  opacity: 0.88;
-  transform: scale(1);
-}
-
-.phase.is-swing .paw-dot {
-  opacity: 0.62;
-  transform: translateY(-3px) scale(0.84);
-}
-
-.interaction-help {
-  position: fixed;
-  bottom: calc(var(--safe-bottom) + 2px);
-  left: 50%;
-  z-index: 4;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 5px;
-  width: min(560px, calc(100vw - 480px));
-  color: var(--muted);
-  font-size: 0.68rem;
-  line-height: 1.45;
-  text-align: center;
-  pointer-events: none;
-  transform: translateX(-50%);
-  text-shadow: 0 1px 12px var(--panel-hover);
-}
-
-.keyboard-hint {
-  font-size: 0.55rem;
-  letter-spacing: 0.08em;
-  opacity: 0.9;
-}
-
-.touch-hint { display: none; }
 
 .error-card,
 noscript {
@@ -430,12 +306,6 @@ noscript {
 body.paused #world { filter: saturate(0.78); }
 body.paused .behavior-dot { animation: none; opacity: 0.42; }
 
-@media (hover: none), (pointer: coarse) {
-  .pointer-hint,
-  .keyboard-hint { display: none; }
-  .touch-hint { display: inline; }
-}
-
 @media (max-width: 700px) {
   :root {
     --safe-top: max(env(safe-area-inset-top), 12px);
@@ -451,36 +321,12 @@ body.paused .behavior-dot { animation: none; opacity: 0.42; }
   .subtitle { display: none; }
   .controls { gap: 6px; }
   .icon-button { width: 36px; height: 36px; }
-  .behavior-chip { top: calc(var(--safe-top) + 50px); }
-
-  .gait-panel {
-    min-width: 0;
-    padding: 9px 10px 8px;
-    border-radius: 14px;
-  }
-
-  .gait-heading { margin-bottom: 7px; }
-  .gait-heading span:first-child { display: none; }
-  #gait-name { font-size: 0.55rem; }
-  .phase-track { gap: 5px; }
-  .phase span:last-child { display: none; }
-  .paw-dot { width: 15px; height: 12px; }
-
-  .interaction-help {
-    right: calc(var(--safe-right) + 70px);
-    bottom: calc(var(--safe-bottom) + 5px);
-    left: calc(var(--safe-left) + 70px);
-    width: auto;
-    font-size: 0.62rem;
-    transform: none;
-  }
 }
 
 @media (max-width: 430px) {
   .title-lockup { padding-top: 7px; }
   .title-lockup .eyebrow { display: none; }
   .title-lockup h1 { font-size: 0.96rem; letter-spacing: 0.02em; }
-  .behavior-chip { top: calc(var(--safe-top) + 48px); }
 }
 
 @media (prefers-reduced-motion: reduce) {
