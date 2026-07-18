@@ -268,10 +268,10 @@
     land: { strength: 30, rate: 1.0, tip: false, wrap: 0 },
     pin: { strength: 14, rate: 0.6, tip: false, wrap: 0 },
     sit: { strength: 46, rate: 0.7, tip: false, wrap: 1 },
-    loaf: { strength: 14, rate: 0.42, tip: false, wrap: 0.2 },
+    loaf: { strength: 14, rate: 0.42, tip: false, wrap: 0.55 },   // 面包卧尾巴贴身环卷
     sideLie: { strength: 18, rate: 0.48, tip: false, wrap: 0.2 },
     roll: { strength: 24, rate: 0.7, tip: false, wrap: 0 },
-    curl: { strength: 10, rate: 0.34, tip: false, wrap: 0.2 },
+    curl: { strength: 10, rate: 0.34, tip: false, wrap: 0.85 },   // 环卷姿尾巴抱住身体（月牙合拢）
     groom: { strength: 40, rate: 0.9, tip: false, wrap: 0.4 },
     stretch: { strength: 20, rate: 0.5, tip: false, wrap: 0 },
     stalk: { strength: 42, rate: 1.15, tip: false, wrap: 0 },
@@ -291,6 +291,13 @@
 
   function restRollWave() {
     return Math.sin(cat.idle.t * 2.7) * restPoseWeight('roll');
+  }
+
+  // 后躯皮毛的姿态侧移（设计单位）：bodyStations 的臀部站位与尾根锚点必须同源使用，
+  // 否则 curl/sideLie 加深时尾根会脱出骨盆皮毛包络（门禁 tailRootClearance 抓的就是这个）。
+  function restRearLateral() {
+    return restPoseSide() * (restPoseWeight('sideLie') * 4.8 + restPoseWeight('curl') * 3.6)
+      + restRollWave() * 2.8;
   }
 
   function isDark() {
@@ -391,27 +398,36 @@
     const rig = cat.rig;
     const rearSway = (cat.support.hindBias * 2.35 + cat.bodySway * 0.42 + cat.wiggle) * a.scale;
     const frontSway = (cat.support.foreBias * 1.55 - cat.bodySway * 0.28) * a.scale;
+    // 姿态形变（owner"动作要完整"）：坐/面包卧从头顶看是"收拢"——骨节前后距明显缩短
+    // （sit 梨形：后躯着地、肩拉近臀；loaf 收成面包体）；stretch 相反，前躯/颈/头拉长前探。
+    const sitW = restPoseWeight('sit');
+    const loafW = restPoseWeight('loaf');
+    const curlW = restPoseWeight('curl');
+    const compress = 1 - (sitW * 0.3 + loafW * 0.34 + curlW * 0.1);
+    const frontLen = 1 + cat.poseStretch * 0.2;
+    const neckLen = (1 - sitW * 0.2 - loafW * 0.3) * (1 + cat.poseStretch * 0.5);
+    const headLen = (1 - loafW * 0.16) * (1 + cat.poseStretch * 0.35);
 
     rig.waist.x = cat.x;
     rig.waist.y = cat.y;
 
     const pelvisAxis = mixAngle(rig.waist.angle, rig.pelvis.angle, 0.58);
-    const pelvisOffset = rotatePoint(-31 * a.scale, rearSway, pelvisAxis);
+    const pelvisOffset = rotatePoint(-31 * compress * a.scale, rearSway, pelvisAxis);
     rig.pelvis.x = rig.waist.x + pelvisOffset.x;
     rig.pelvis.y = rig.waist.y + pelvisOffset.y;
 
     const shoulderAxis = mixAngle(rig.waist.angle, rig.shoulders.angle, 0.56);
-    const shoulderOffset = rotatePoint(32 * a.scale, frontSway, shoulderAxis);
+    const shoulderOffset = rotatePoint(32 * compress * frontLen * a.scale, frontSway, shoulderAxis);
     rig.shoulders.x = rig.waist.x + shoulderOffset.x;
     rig.shoulders.y = rig.waist.y + shoulderOffset.y;
 
     const neckAxis = mixAngle(rig.shoulders.angle, rig.neck.angle, 0.55);
-    const neckOffset = rotatePoint(18 * a.scale, 0, neckAxis);
+    const neckOffset = rotatePoint(18 * neckLen * a.scale, 0, neckAxis);
     rig.neck.x = rig.shoulders.x + neckOffset.x;
     rig.neck.y = rig.shoulders.y + neckOffset.y;
 
     const headAxis = mixAngle(rig.neck.angle, rig.head.angle, 0.52);
-    const headOffset = rotatePoint(15 * a.scale, 0, headAxis);
+    const headOffset = rotatePoint(15 * headLen * a.scale, 0, headAxis);
     rig.head.x = rig.neck.x + headOffset.x;
     rig.head.y = rig.neck.y + headOffset.y;
 
@@ -456,41 +472,45 @@
     const restSide = restPoseSide();
     const lie = restPoseWeight('sideLie');
     const curl = restPoseWeight('curl');
+    const groomW = restPoseWeight('groom');
     const rollWave = restRollWave();
 
     // Gaze leads only the head and neck. The torso follows filtered locomotion
     // turn velocity: shoulders anticipate a corner slightly while the pelvis
     // counter-lags, with tiny gait-phase counter-rotation between the girdles.
     const headTarget = cat.heading + cat.headYaw
-      + restSide * (lie * 0.06 + curl * 0.12) + rollWave * 0.05;
+      + restSide * (lie * 0.06 + curl * 0.55 + groomW * 0.2) + rollWave * 0.05;
     rig.head.angle = angleExpLerp(rig.head.angle, headTarget, prey.active ? 15 : 6.8, dt);
 
     const headOffset = Gait.clamp(Gait.angleDelta(cat.heading, rig.head.angle), -0.7, 0.7);
     const neckTarget = cat.heading + headOffset * 0.58 + shoulderLead * 0.35
-      + restSide * (lie * 0.1 + curl * 0.22) + rollWave * 0.04;
+      + restSide * (lie * 0.1 + curl * 0.5 + groomW * 0.16) + rollWave * 0.04;
     rig.neck.angle = angleExpLerp(rig.neck.angle, neckTarget, prey.active ? 10.5 : 5.4, dt);
 
     const shoulderTarget = cat.heading + shoulderLead + forePhaseTwist - cat.bodySway * 0.012
-      + restSide * (lie * 0.08 + curl * 0.16) + rollWave * 0.035;
+      + restSide * (lie * 0.08 + curl * 0.34 + groomW * 0.1) + rollWave * 0.035;
     rig.shoulders.angle = angleExpLerp(rig.shoulders.angle, shoulderTarget, 7.4, dt);
 
     const waistTarget = cat.heading - pelvisLag * 0.28 + cat.bodySway * 0.01
-      - restSide * (lie * 0.03 + curl * 0.04) - rollWave * 0.018;
+      - restSide * (lie * 0.03 + curl * 0.18) - rollWave * 0.018;
     rig.waist.angle = angleExpLerp(rig.waist.angle, waistTarget, 5.2, dt);
 
     const pelvisTarget = cat.heading - pelvisLag + hindPhaseTwist + cat.bodySway * 0.014
-      - restSide * (lie * 0.08 + curl * 0.14) - rollWave * 0.035;
+      - restSide * (lie * 0.08 + curl * 0.42) - rollWave * 0.035;
     rig.pelvis.angle = angleExpLerp(rig.pelvis.angle, pelvisTarget, 3.15, dt);
 
     // Hard anatomical stops are applied every frame, after the soft filters.
     // They preserve visible articulation without permitting a broken neck or
     // an eel-like accumulation of small turns down the whole spine.
-    rig.waist.angle = constrainAngle(rig.pelvis.angle, rig.waist.angle, 0.12);
-    rig.shoulders.angle = constrainAngle(rig.waist.angle, rig.shoulders.angle, 0.18);
-    rig.neck.angle = constrainAngle(rig.shoulders.angle, rig.neck.angle, 0.30);
-    rig.head.angle = constrainAngle(rig.neck.angle, rig.head.angle, 0.42);
-    rig.head.angle = constrainAngle(rig.pelvis.angle, rig.head.angle, 0.84);
-    rig.head.angle = constrainAngle(rig.neck.angle, rig.head.angle, 0.42);
+    // 行走限位防"鳗鱼化"；环卷/侧卧/理毛的蜷曲是真实猫姿 → 随姿态权重解锁弯度
+    //（curl 全量时脊柱总弯 ~2.4rad，头贴近尾根的"羊角面包"）。
+    const bendFree = curl * 0.85 + lie * 0.3 + groomW * 0.3;
+    rig.waist.angle = constrainAngle(rig.pelvis.angle, rig.waist.angle, 0.12 + bendFree * 0.5);
+    rig.shoulders.angle = constrainAngle(rig.waist.angle, rig.shoulders.angle, 0.18 + bendFree * 0.5);
+    rig.neck.angle = constrainAngle(rig.shoulders.angle, rig.neck.angle, 0.30 + bendFree * 0.45);
+    rig.head.angle = constrainAngle(rig.neck.angle, rig.head.angle, 0.42 + bendFree * 0.4);
+    rig.head.angle = constrainAngle(rig.pelvis.angle, rig.head.angle, 0.84 + bendFree * 1.6);
+    rig.head.angle = constrainAngle(rig.neck.angle, rig.head.angle, 0.42 + bendFree * 0.4);
     constrainSpineCurvature(rig);
     positionRigNodes(a);
   }
@@ -516,17 +536,23 @@
     const a = anatomy();
     const parent = config.fore ? cat.rig.shoulders : cat.rig.pelvis;
     const anchor = localAnchor(limb);
-    const track = cat.state === 'stalk'
+    // 转弯收窄足迹线：真猫转向时爪子收拢在身体投影线内、绝不向外撇开（外撇是"机器人转弯"的头号破绽）。
+    const turnNarrow = 1 - Gait.clamp(Math.abs(cat.rig.turnVelocity) * 0.16, 0, 0.3);
+    const track = (cat.state === 'stalk'
       ? (config.fore ? 7 : 6.3)
       : cat.state === 'chase'
         ? (config.fore ? 12 : 11)
-        : (config.fore ? 9 : 8);
+        : (config.fore ? 9 : 8)) * turnNarrow;
     const localX = anchor.x + (config.fore ? 13.5 : -9.5) * a.scale + sample.longitudinal;
     // Swinging paws arc inward toward the centerline. The root remains at the
     // shoulder/hip, but the visible paw track stays narrow beneath the body.
     const localY = config.side * track * a.scale - config.side * sample.lateral;
     const forward = Math.max(0, futureSeconds || 0) * cat.speed;
-    return pointFromNode(parent, localX + forward, localY);
+    // 曲线预测：落点沿"未来朝向"投出（按当前转向角速度外推），不再沿直线外推——
+    // 转弯中的直线外推正是内侧腿交叉/外侧腿甩开的根源。futureSeconds=0（静置安放）时零影响。
+    const futureTurn = Gait.clamp(cat.steerOmega * Math.max(0, futureSeconds || 0) * 0.75, -0.5, 0.5);
+    const offset = rotatePoint(localX + forward, localY, parent.angle + futureTurn);
+    return { x: parent.x + offset.x, y: parent.y + offset.y };
   }
 
   function chooseWanderGoal(force) {
@@ -848,23 +874,56 @@
   }
 
   // ---------- 闲态编排（走-停-看-坐-卧-滚-蜷的标点节奏；巡游不再是匀速漂移） ----------
-  function endIdle() {
+  // 姿态链（真猫的休息是"组曲"：坐下→理毛→再坐一会 / 面包卧→蜷成环）：结束时 35% 概率
+  // 顺势接一个相邻姿态而不是起身走人——节奏因此"多变而连贯"。被打断（prey/扑击）时走 interrupt 分支不接续。
+  const POSE_CHAIN = Object.freeze({
+    sit: ['groom', 'loaf'], groom: ['sit'], loaf: ['curl', 'sideLie'], sideLie: ['roll', 'curl'],
+    roll: ['sideLie'], curl: ['sideLie'], stretch: ['sit'],
+  });
+
+  function endIdle(interrupted) {
     const I = cat.idle;
-    if (I.mode && I.mode !== 'look') setBehavior('prowl');
+    const finished = I.mode;
     if (I.mode) I.lastMode = I.mode;
     I.mode = null;
-    I.nextAt = elapsed + 4 + poseHash(9) * 3;
     I.restSince = null;
+    if (!interrupted && finished && finished !== 'look' && !reducedMotion
+      && POSE_CHAIN[finished] && poseHash(11) < 0.35) {
+      const options = POSE_CHAIN[finished];
+      beginIdle(options[(poseHash(12) * options.length) | 0]);
+      return;
+    }
+    if (finished && finished !== 'look') setBehavior('prowl');
+    I.nextAt = elapsed + 4 + poseHash(9) * 3;
   }
 
-  function beginIdle() {
+  function beginIdle(forcedPick) {
+    if (forcedPick) {
+      const I = cat.idle;
+      I.mode = forcedPick;
+      I.visualMode = forcedPick;
+      I.t = 0;
+      const h2 = poseHash(8);
+      I.dur = forcedPick === 'groom' ? 3.4 + h2 * 2.4
+        : forcedPick === 'sit' ? 2.2 + h2 * 2
+          : forcedPick === 'curl' ? 4.5 + h2 * 2.5
+            : forcedPick === 'sideLie' ? 3.4 + h2 * 2.2
+              : forcedPick === 'roll' ? 2.4 + h2 * 1.5
+                : forcedPick === 'loaf' ? 3.8 + h2 * 2.4 : 2.6 + h2 * 0.9;
+      setBehavior(forcedPick);
+      return;
+    }
+    beginIdleFresh();
+  }
+
+  function beginIdleFresh() {
     const I = cat.idle;
     const h = poseHash(7);
     const pool = reducedMotion
       ? [['look', 0.28], ['sit', 0.2], ['loaf', 0.25], ['sideLie', 0.12], ['curl', 0.15]]
       : [
-        ['look', 0.18], ['sit', 0.13], ['loaf', 0.18], ['sideLie', 0.15],
-        ['roll', 0.12], ['curl', 0.16], ['groom', 0.05], ['stretch', 0.03],
+        ['look', 0.16], ['sit', 0.13], ['loaf', 0.17], ['sideLie', 0.14],
+        ['roll', 0.11], ['curl', 0.15], ['groom', 0.08], ['stretch', 0.06],
       ];
     let acc = 0;
     let pick = 'look';
@@ -885,7 +944,7 @@
           : pick === 'sideLie' ? 3.8 + h2 * 2.7
             : pick === 'roll' ? 2.6 + h2 * 1.7
               : pick === 'curl' ? 5 + h2 * 3
-                : pick === 'groom' ? 1.8 + h2 * 1.4 : 1.2;
+                : pick === 'groom' ? 3.4 + h2 * 2.4 : 2.6 + h2 * 0.9;   // 理毛/伸展给足完整周期（原 1.2–1.8s 只够半个动作）
     if (pick !== 'look') setBehavior(pick);
   }
 
@@ -899,7 +958,7 @@
       I.visualMode = null;
     }
     if (prey.active || cat.leap.phase) {
-      if (I.mode) endIdle();
+      if (I.mode) endIdle(true);
       I.restSince = null;
       cat.idleYaw = expLerp(cat.idleYaw, 0, 6, dt);
       return;
@@ -907,7 +966,7 @@
     if (I.mode) {
       I.t += dt;
       if (I.mode === 'look') cat.idleYaw = Math.sin(I.t * 1.6) * 0.5;             // 环视：头扫视，身体不动
-      else if (I.mode === 'groom') cat.idleYaw = Math.sin(I.t * Gait.TAU / 2) * 0.62;   // 理毛：头往体侧点头
+      else if (I.mode === 'groom') cat.idleYaw = I.side * (0.46 + Math.sin(I.t * 4.4 + 0.9) * 0.2);   // 理毛：头俯向理毛侧、随洗爪同频点动（滞后 0.9rad=舔在爪抬起后）
       else if (I.mode === 'sideLie') cat.idleYaw = I.side * (0.42 + Math.sin(I.t * 1.2) * 0.04);
       else if (I.mode === 'roll') cat.idleYaw = Math.sin(I.t * 2.7) * 0.3;
       else if (I.mode === 'curl') cat.idleYaw = I.side * 0.68;
@@ -941,7 +1000,7 @@
   function updateBehavior() {
     if (cat.leap.phase) return;                    // 扑击链自持（updateLeap 推进与收尾）
     if (cat.idle.mode && cat.idle.mode !== 'look') {
-      if (prey.active) endIdle();                  // 新目标立即打断闲态
+      if (prey.active) endIdle(true);              // 新目标立即打断闲态
       else return;                                 // sit/groom/stretch 自持
     }
     const dx = prey.x - cat.x;
@@ -1172,7 +1231,11 @@
       1,
     );
     cat.poseSpread = expLerp(cat.poseSpread, spreadTarget, 4, dt);
-    cat.poseStretch = expLerp(cat.poseStretch, restPoseWeight('stretch'), 4.5, dt);
+    // stretch 三段包络：探出（0.55s smoothstep）→ 保持 → 收回（尾段 0.5s）——单调 0/1 只有"贴出去"没有动作过程
+    const stretchEnv = cat.idle.visualMode === 'stretch'
+      ? Gait.smoothstep(cat.idle.t / 0.55) * Gait.smoothstep((cat.idle.dur - cat.idle.t) / 0.5)
+      : 0;
+    cat.poseStretch = expLerp(cat.poseStretch, restPoseWeight('stretch') * stretchEnv, 4.5, dt);
     updateSupportPose(dt);
 
     updateRig(dt);
@@ -1213,6 +1276,19 @@
       }
     }
 
+    // 落点侧向纪律（owner 反馈：转弯时爪不左右外撇）：把目标投回父节点的未来体框，
+    // 侧向坐标钳在本侧 [2, 铰位+7] 设计单位内 —— 无论直线外推残差还是 register 融合，
+    // 都不允许把落点推到身体投影线以外或越过中线。
+    {
+      const parentNode = config.fore ? cat.rig.shoulders : cat.rig.pelvis;
+      const futureAngle = parentNode.angle + Gait.clamp(cat.steerOmega * lookahead * 0.75, -0.5, 0.5);
+      const rel = rotatePoint(targetX - parentNode.x, targetY - parentNode.y, -futureAngle);
+      const anchorLat = Math.abs(localAnchor(limb).y);
+      const lat = Gait.clamp(rel.y * config.side, 2 * a.scale, anchorLat + 7 * a.scale);
+      const fixed = rotatePoint(rel.x, config.side * lat, futureAngle);
+      targetX = parentNode.x + fixed.x;
+      targetY = parentNode.y + fixed.y;
+    }
     foot.swingStartX = foot.x;
     foot.swingStartY = foot.y;
     foot.swingTargetX = targetX;
@@ -1277,7 +1353,7 @@
 
   function restPosePawTarget(limb, a) {
     const mode = cat.idle.visualMode;
-    if (REST_POSES.indexOf(mode) < 0 || cat.idle.poseBlend <= 0.001) return null;
+    if ((REST_POSES.indexOf(mode) < 0 && mode !== 'groom' && mode !== 'stretch') || cat.idle.poseBlend <= 0.001) return null;
     const config = LEG_CONFIG[limb];
     const parent = config.fore ? cat.rig.shoulders : cat.rig.pelvis;
     const side = restPoseSide();
@@ -1308,6 +1384,28 @@
       forward = config.fore ? 7 : 5;
       lateral = side * (sameSide ? 12 : 5);
       angle = cat.heading + side * 0.22;
+    } else if (mode === 'groom') {
+      // 洗爪循环（理毛的签名动作）：理毛侧前爪抬向下巴、周期性举-收，头随爪点动（updateIdle 同频）；
+      // 其余三爪稳定支撑。
+      if (config.fore && sameSide) {
+        const cyc = Math.sin(cat.idle.t * 4.4);
+        forward = 15 + cyc * 2.5;
+        lateral = side * (5.5 + cyc * 1.5);
+        lift = 0.3 + Math.max(0, cyc) * 0.32;
+        angle = cat.heading + side * 0.3;
+      } else {
+        forward = config.fore ? 12 : -4;
+        lateral = config.side * (config.fore ? 9 : 16);
+      }
+    } else if (mode === 'stretch') {
+      // 前伸展（醒来的招牌）：前爪远探前方、后爪蹬在原位——三段包络（探出-保持-收回）由 poseStretch 驱动。
+      if (config.fore) {
+        forward = 12 + cat.poseStretch * 17;
+        lateral = config.side * 6.5;
+      } else {
+        forward = -7;
+        lateral = config.side * 14;
+      }
     }
 
     const point = pointFromNode(parent, forward * a.scale, lateral * a.scale);
@@ -1444,11 +1542,14 @@
     const airborne = Gait.LIMBS.filter((limb) => {
       const foot = cat.feet[limb];
       if (!foot) return false;
-      return foot.recoveryActive || !Gait.sampleLimb(cat.gait, limb, cat.strideLength).planted;
+      // 按爪的"实况支撑态"计数，不看步态样本——样本与实况会背离（受惊短收、settle 途中冻结的
+      // 摆动爪：样本说落地、实爪悬空），凭样本计数会超发恢复槽 → 多爪同时离地（门禁抓过的真实回归）。
+      return !(foot.planted && !foot.recoveryActive && !foot.settleActive);
     }).length;
-    // Begin unloading before the anatomical stop is visible. Up to three feet
-    // may be moving during a tight chase pivot, but one support is retained.
-    const recoverySlots = Math.max(0, 3 - airborne);
+    // Begin unloading before the anatomical stop is visible. 恢复槽保留两爪支撑余量：
+    // 步态随时可能自然抬起下一只爪（选槽时无法预知），余量 1 会被这只爪抢走最后支撑
+    //（门禁抓过的真实回归）；侧序步态的真猫本就任何时刻 ≥2 爪着地。
+    const recoverySlots = Math.max(0, 2 - airborne);
     const overextended = Gait.LIMBS
       .filter((limb) => (
         cat.feet[limb]?.planted
@@ -1459,7 +1560,16 @@
         limb,
         ratio: legReach(limb, cat.feet[limb]).distance / legReachLimit(limb, a),
       }))
-      .filter((entry) => entry.ratio > 0.86)
+      // 转弯提前碎步（owner 反馈）：原地转体时步频≈0，落桩爪会被身体旋转扫向伸展极限——
+      // 真猫用连续小碎步跟着转。慢速行进转弯也按角速度提前挪步；chase 快步态本就两爪腾空、
+      // 再降阈会与步态摆动抢走最后支撑（门禁抓过），保持 0.86。
+      .filter((entry) => entry.ratio > (
+        cat.state === 'chase'
+          ? 0.86
+          : (cat.speed < 10 * a.scale && Math.abs(cat.rig.turnVelocity) > 0.55)
+            ? 0.64
+            : 0.86 - Gait.clamp(Math.abs(cat.rig.turnVelocity) * 0.08, 0, 0.14)
+      ))
       .sort((left, right) => right.ratio - left.ratio)
       .slice(0, recoverySlots);
     overextended.forEach(({ limb }) => beginReachRecovery(limb, cat.feet[limb], a));
@@ -1480,7 +1590,13 @@
         if (foot.planted && !foot.settleActive) {
           // 静置时身体的微动（头颈摆动/支撑摆/姿态标量）会慢慢把原地的爪子拉向伸展极限 —— 像真猫一样挪个小步
           // 重新安放（settle 过程中爪子处于非 planted 抬起态 → 不违反"落地爪零滑移"门禁）。
-          if (legReach(limb, foot).distance > legReachLimit(limb, a) * 0.96) {
+          const settleSupport = Gait.LIMBS.filter((other) => {
+            const f = cat.feet[other];
+            return f && f.planted && !f.settleActive && !f.recoveryActive;
+          }).length;
+          // 挪步也要守支撑（转弯放宽触发后，同帧多爪齐挪会四脚离地）：≥3 爪在地才准起一只
+          if (settleSupport >= 3
+            && legReach(limb, foot).distance > legReachLimit(limb, a) * (Math.abs(cat.rig.turnVelocity) > 0.35 ? 0.7 : 0.96)) {
             const restPoint = expectedPawWorld(limb, { longitudinal: 0, lateral: 0 }, 0);
             foot.settleActive = true;
             foot.settleProgress = 0;
@@ -1572,7 +1688,7 @@
     const base = pointFromNode(
       cat.rig.pelvis,
       SKIN_TOPOLOGY.tailAnchorForward * a.scale,
-      (cat.bodySway * 0.9 + cat.wiggle * 0.6) * a.scale,
+      (cat.bodySway * 0.9 + cat.wiggle * 0.6 + restRearLateral()) * a.scale,
     );
     const pelvisHeading = cat.rig.pelvis.angle;
     const tailCfg = TAIL_BY_STATE[cat.state] || TAIL_BY_STATE.prowl;
@@ -1774,7 +1890,7 @@
     const socket = pointFromNode(
       cat.rig.pelvis,
       SKIN_TOPOLOGY.tailSocketForward * a.scale,
-      (cat.bodySway * 0.9 + cat.wiggle * 0.6) * a.scale,
+      (cat.bodySway * 0.9 + cat.wiggle * 0.6 + restRearLateral()) * a.scale,
     );
     return [socket, ...cat.tail];
   }
@@ -2225,16 +2341,17 @@
         width: width * a.scale * narrow,
       };
     };
+    const sit = restPoseWeight('sit');
     const loaf = restPoseWeight('loaf');
     const lie = restPoseWeight('sideLie');
     const roll = restPoseWeight('roll');
     const curl = restPoseWeight('curl');
     const side = restPoseSide();
     const rock = restRollWave();
-    const breath = Math.sin(cat.idle.t * 1.05) * (loaf * 0.018 + lie * 0.012 + curl * 0.015);
-    const spread = 1 + 0.22 * cat.poseSpread + loaf * 0.08 + roll * 0.06 + curl * 0.04 + breath;
-    const shift = 4 * cat.poseSpread - 6 * cat.poseStretch + loaf * 8 + roll * 2.5 + curl * 5;
-    const rearLateral = side * (lie * 4.8 + curl * 3.6) + rock * 2.8;
+    const breath = Math.sin(cat.idle.t * 1.05) * (loaf * 0.018 + lie * 0.012 + curl * 0.015 + sit * 0.01);
+    const spread = 1 + 0.22 * cat.poseSpread + sit * 0.12 + loaf * 0.08 + roll * 0.06 + curl * 0.04 + breath;   // sit：着地后躯从头顶看明显加宽（梨形底座）
+    const shift = 4 * cat.poseSpread - 6 * cat.poseStretch + sit * 6 + loaf * 8 + roll * 2.5 + curl * 5;
+    const rearLateral = restRearLateral();
     const waistLateral = side * (lie * 3.4 + curl * 2.8) + rock * 1.4;
     const shoulderLateral = side * (lie * 1.4 + curl * 1.8) - rock * 1.2;
     const stations = [
@@ -2903,7 +3020,7 @@
   }
 
   function previewIdlePose(mode, side) {
-    if (REST_POSES.indexOf(mode) < 0) throw new Error(`Unknown rest pose: ${mode}`);
+    if (REST_POSES.indexOf(mode) < 0 && mode !== 'groom' && mode !== 'stretch') throw new Error(`Unknown rest pose: ${mode}`);
     releasePrey();
     const I = cat.idle;
     I.mode = mode;
@@ -2922,7 +3039,7 @@
   }
 
   function clearIdlePose() {
-    if (cat.idle.mode) endIdle();
+    if (cat.idle.mode) endIdle(true);   // 预览 API 必须确定性退出（interrupted → 不走 35% 姿态链）
     if (paused) draw();
   }
 
@@ -3123,6 +3240,7 @@
         blend: cat.idle.poseBlend,
         side: restPoseSide(),
         rollWave: restRollWave(),
+        stretch: cat.poseStretch,
       },
       paused,
       reducedMotion,

@@ -400,16 +400,46 @@ function assertRigSnapshot(snapshot, label = 'rig') {
   }
   const bendSigns = [];
   const bendDetails = [];
+  // 姿态形变模型（与 app.js positionRigNodes/updateRig 的公式一一对应；改那边必须同步这里）：
+  // sit/loaf/curl 压缩骨节前后距（俯视收拢）、stretch 拉长前躯，curl/sideLie/groom 解锁脊柱弯度。
+  const poseW = (mode) => (snapshot.idlePose.visualMode === mode ? snapshot.idlePose.blend : 0);
+  const poseStretchS = snapshot.idlePose.stretch || 0;
+  const poseCompress = 1 - (poseW('sit') * 0.3 + poseW('loaf') * 0.34 + poseW('curl') * 0.1);
+  const jointLengthFactor = {
+    'pelvis-waist': poseCompress,
+    'waist-shoulders': poseCompress * (1 + poseStretchS * 0.2),
+    'shoulders-neck': (1 - poseW('sit') * 0.2 - poseW('loaf') * 0.3) * (1 + poseStretchS * 0.5),
+    'neck-head': (1 - poseW('loaf') * 0.16) * (1 + poseStretchS * 0.35),
+  };
+  const bendFree = poseW('curl') * 0.85 + poseW('sideLie') * 0.3 + poseW('groom') * 0.3;
+  const jointBendExtra = {
+    'pelvis-waist': bendFree * 0.5,
+    'waist-shoulders': bendFree * 0.5,
+    'shoulders-neck': bendFree * 0.45,
+    'neck-head': bendFree * 0.4,
+  };
   for (const [parentName, childName, restLength, limit] of rigJoints) {
     const parent = snapshot.rig[parentName];
     const child = snapshot.rig[childName];
+    const jointKey = `${parentName}-${childName}`;
     const distance = Math.hypot(child.x - parent.x, child.y - parent.y);
-    const expected = restLength * snapshot.rigScale;
+    const expected = restLength * jointLengthFactor[jointKey] * snapshot.rigScale;
+    // 侧摆斜边：pelvis/shoulders 的骨节偏移带已知上界的侧向分量（支撑摆 + 蓄势摆臀 wiggle ±2.8），
+    // 实测骨距 = hypot(纵向, 侧向) ≥ 纵向 —— 上界按 positionRigNodes 的摆幅公式推导。
+    const swayBound = (jointKey === 'pelvis-waist' ? 2.35 + 0.42 + 2.8
+      : jointKey === 'waist-shoulders' ? 1.55 + 0.28 : 0) * snapshot.rigScale;
+    const expectedMax = Math.hypot(expected, swayBound);
     const tolerance = Math.max(0.45, expected * 0.012);
-    assert.ok(Math.abs(distance - expected) <= tolerance, `${label}: ${parentName}-${childName} chain stretched`);
+    assert.ok(
+      distance >= expected - tolerance && distance <= expectedMax + tolerance,
+      `${label}: ${parentName}-${childName} chain stretched`,
+    );
     const signedBend = sandbox.CatGait.angleDelta(parent.angle, child.angle);
     bendDetails.push(`${parentName}-${childName}:${signedBend.toFixed(4)}`);
-    assert.ok(Math.abs(signedBend) <= limit + 1e-6, `${label}: ${parentName}-${childName} exceeded joint limit`);
+    assert.ok(
+      Math.abs(signedBend) <= limit + jointBendExtra[jointKey] + 1e-6,
+      `${label}: ${parentName}-${childName} exceeded joint limit`,
+    );
     if (Math.abs(signedBend) >= 0.025) bendSigns.push(Math.sign(signedBend));
   }
   let signChanges = 0;
@@ -421,7 +451,11 @@ function assertRigSnapshot(snapshot, label = 'rig') {
     `${label}: articulated spine became an S-shaped snake (${bendDetails.join(', ')})`,
   );
   const curvature = sandbox.CatGait.angleDelta(snapshot.rig.pelvis.angle, snapshot.rig.head.angle);
-  assert.ok(Math.abs(curvature) <= 0.84 + 1e-6, `${label}: total rig curvature exceeded limit`);
+  // 总弯度上限随姿态解锁（与 updateRig 的 0.84 + bendFree*1.6 一致）：curl 全量 ≈2.2rad 的环卷是真实猫姿
+  assert.ok(
+    Math.abs(curvature) <= 0.84 + bendFree * 1.6 + 1e-6,
+    `${label}: total rig curvature exceeded limit`,
+  );
   assert.ok(Math.abs(curvature - snapshot.rigCurvature) < 1e-9, `${label}: reported curvature drifted`);
   assert.ok(snapshot.skin.headSocketMargin >= 0.08, `${label}: neck cap escaped the hidden skull socket`);
   assert.ok(snapshot.skin.tailRootClearance >= 3 * snapshot.rigScale, `${label}: tail root escaped the pelvis envelope`);
@@ -757,7 +791,8 @@ assert.equal(snapshot.behavior, 'prowl');
 // preview coverage above does not substitute for the real wander/dwell rhythm.
 {
   const seenIdle = new Set();
-  for (let frameIndex = 0; frameIndex < 4200 && seenIdle.size < 2; frameIndex += 1) {
+  const hasExpanded = () => [...seenIdle].some((mode) => ['loaf', 'sideLie', 'roll', 'curl'].includes(mode));
+  for (let frameIndex = 0; frameIndex < 9000 && !(seenIdle.size >= 2 && hasExpanded()); frameIndex += 1) {   // 时长/链化后闲态单集更长 → 放宽观察窗（确定性时间线，非侥幸重试）
     step(1);
     const current = sandbox.__catMouseDemo.getSnapshot();
     assertRigSnapshot(current, 'idle repertoire');
