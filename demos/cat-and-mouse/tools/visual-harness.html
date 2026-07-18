@@ -33,6 +33,58 @@
     img.src = z.toDataURL();
     return { x: Math.round(s.cat.x), y: Math.round(s.cat.y), state: s.behavior, speed: Math.round(s.cat.speed) };
   };
+  window.__poseSheet = () => {
+    const demo = window.__catMouseDemo;
+    const source = document.getElementById('world');
+    const poses = [['sit', 1], ['loaf', -1], ['sideLie', 1], ['roll', -1], ['curl', 1]];
+    const cell = 300;
+    const sheet = document.createElement('canvas');
+    sheet.width = cell * poses.length;
+    sheet.height = cell + 38;
+    const sc = sheet.getContext('2d');
+    sc.fillStyle = '#20241e';
+    sc.fillRect(0, 0, sheet.width, sheet.height);
+    sc.font = '600 16px system-ui, sans-serif';
+    sc.textAlign = 'center';
+    sc.textBaseline = 'middle';
+    const snapshots = [];
+    poses.forEach(([mode, side], index) => {
+      demo.previewIdlePose(mode, side);
+      window.__step(150);
+      const snapshot = demo.getSnapshot();
+      const dpr = snapshot.viewport.dpr;
+      const radius = 150 * dpr;
+      sc.drawImage(
+        source,
+        snapshot.cat.x * dpr - radius,
+        snapshot.cat.y * dpr - radius,
+        radius * 2,
+        radius * 2,
+        index * cell,
+        0,
+        cell,
+        cell,
+      );
+      sc.fillStyle = '#e8dfcf';
+      sc.fillText(mode, index * cell + cell * 0.5, cell + 19);
+      snapshots.push(snapshot);
+    });
+    demo.clearIdlePose();
+    window.__step(45);
+    let img = document.getElementById('posesheet');
+    if (!img) {
+      img = document.createElement('img');
+      img.id = 'posesheet';
+      img.style.cssText = 'position:fixed;left:8px;right:8px;bottom:8px;width:calc(100% - 16px);height:auto;z-index:9999;border:2px solid #999;background:#20241e;';
+      document.body.appendChild(img);
+    }
+    img.src = sheet.toDataURL();
+    return snapshots.map((snapshot) => ({
+      mode: snapshot.idlePose.visualMode,
+      blend: snapshot.idlePose.blend,
+      envelope: snapshot.poseEnvelope,
+    }));
+  };
 </script>
 </head>
 <body>

@@ -8,7 +8,7 @@
 - `demos/pharm-companies/` — global pharmaceutical industry atlas.
 - `demos/visual-page/` — 数渊 · Data Abyss (generative-art cosmos fusing housing + industrial + pharma + shelter-cats data into a self-organizing star field, with a waking intro, an emergent generative lo-fi soundtrack, and a tape-flip "radio side" mechanic that periodically turns to a new mix).
 - `demos/neon-abyss/` — 霓虹渊 · Neon Abyss, the after-dark twin of Data Abyss: the same chaotic-attractor star field + SOM, set to a generative 138 BPM trance soundtrack with a 15–25 min DJ-set arc (warmup → lift → peak → afterglow) and an optional silent-mode "bring your own DJ" mic-driven beat pulse.
-- `demos/cat-and-mouse/` — Cat & Mouse · 猫鼠之间, a top-down interactive cat that watches, stalks, approaches and chases the pointer through a four-phase alternating gait controller.
+- `demos/cat-and-mouse/` — Cat & Mouse · 猫鼠之间, a top-down interactive cat that watches, stalks and chases through an articulated four-phase gait, then sits, loafs, lies down, rolls or curls up when left alone.
 - `demos/makoauto/` is reserved for the BrianWebsite frontend snapshot.
 - `demos/shelter-cats/` — world platform for shelter-cat adoption.
 

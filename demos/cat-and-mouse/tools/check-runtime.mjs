@@ -188,6 +188,7 @@ document.dispatch('DOMContentLoaded');
 // Renderer topology is checked structurally because a fake Canvas cannot
 // reliably distinguish an internal cap line from an external silhouette.
 const appSource = loadedSources.get('assets/js/app.js');
+const visualHarnessSource = fs.readFileSync(path.join(demo, 'tools/visual-harness.html'), 'utf8');
 const tailRibbonSource = appSource.match(/function traceTailRibbon[\s\S]*?(?=\n  function tailRenderPoints)/)?.[0] || '';
 const legSilhouetteSource = appSource.match(/function traceLegSilhouette[\s\S]*?(?=\n  function tracePawSilhouette)/)?.[0] || '';
 const pawSilhouetteSource = appSource.match(/function tracePawSilhouette[\s\S]*?(?=\n  function strokePawOutline)/)?.[0] || '';
@@ -201,6 +202,15 @@ const drawLegsSource = appSource.match(/function drawLegs[\s\S]*?(?=\n  function
 const drawBodySource = appSource.match(/function drawBody[\s\S]*?(?=\n  function drawTopDownFace)/)?.[0] || '';
 const topDownFaceSource = appSource.match(/function drawTopDownFace[\s\S]*?(?=\n  function drawHead)/)?.[0] || '';
 const drawHeadSource = appSource.match(/function drawHead[\s\S]*?(?=\n  function drawMouse)/)?.[0] || '';
+for (const key of ['stateSit', 'stateLoaf', 'stateSideLie', 'stateRoll', 'stateCurl']) {
+  const label = sandbox.CatMouseI18n.LABELS[key];
+  assert.ok(label?.zh && label?.en, `${key} must remain bilingual`);
+}
+assert.match(appSource, /const REST_POSES = Object\.freeze\(\['sit', 'loaf', 'sideLie', 'roll', 'curl'\]\)/, 'rest repertoire contract drifted');
+assert.match(appSource, /function restPosePawTarget\s*\(/, 'rest poses must derive articulated paw targets');
+assert.match(appSource, /function renderedFoot\s*\(/, 'rest poses must blend into the live limb renderer');
+assert.match(appSource, /function drawRestPoseDetails\s*\(/, 'rest poses must retain pose-specific illustrated coat details');
+assert.match(visualHarnessSource, /window\.__poseSheet\s*=\s*\(\)\s*=>/, 'visual harness must expose the rest-pose contact sheet');
 assert.ok(tailRibbonSource, 'tail ribbon renderer must remain discoverable');
 assert.doesNotMatch(tailRibbonSource, /closePath\s*\(/, 'tail ribbon must stay open at its hidden root');
 assert.match(legSilhouetteSource, /traceVariableRibbon\s*\(/, 'legs must render as variable-width closed silhouettes');
@@ -281,7 +291,10 @@ function finiteSnapshot(snapshot) {
     snapshot.mouse.x, snapshot.mouse.y, snapshot.mouse.speed,
     snapshot.rigScale, snapshot.turnVelocity, snapshot.rigCurvature,
     snapshot.skin.headSocketMargin, snapshot.skin.tailRootClearance, snapshot.skin.narrow,
+    snapshot.poseEnvelope.left, snapshot.poseEnvelope.top,
+    snapshot.poseEnvelope.right, snapshot.poseEnvelope.bottom,
     snapshot.support.foreBias, snapshot.support.hindBias, snapshot.support.combined,
+    snapshot.idlePose.blend, snapshot.idlePose.side, snapshot.idlePose.rollWave,
     ...Object.values(snapshot.rig).flatMap((segment) => [
       segment.x, segment.y, segment.angle, segment.visualRadius,
     ]),
@@ -289,8 +302,23 @@ function finiteSnapshot(snapshot) {
     ...Object.values(snapshot.feet).flatMap((foot) => [
       foot.x, foot.y, foot.angle, foot.lift, foot.swingProgress, foot.reach, foot.reachLimit,
     ]),
+    ...Object.values(snapshot.renderFeet).flatMap((foot) => [
+      foot.x, foot.y, foot.angle, foot.lift, foot.reach, foot.reachLimit,
+    ]),
+    ...snapshot.tailPoints.flatMap((point) => [point.x, point.y]),
     snapshot.tailTip.x, snapshot.tailTip.y,
   ]) assert.ok(Number.isFinite(value), `runtime emitted a non-finite value: ${value}`);
+}
+
+function catLocalPoint(snapshot, point) {
+  const dx = point.x - snapshot.cat.x;
+  const dy = point.y - snapshot.cat.y;
+  const c = Math.cos(snapshot.cat.heading);
+  const s = Math.sin(snapshot.cat.heading);
+  return {
+    forward: dx * c + dy * s,
+    lateral: -dx * s + dy * c,
+  };
 }
 
 const rigNames = ['pelvis', 'waist', 'shoulders', 'neck', 'head'];
@@ -641,9 +669,92 @@ assert.equal(snapshot.behavior, 'prowl');
   step(30);
 }
 
-// The idle repertoire must also fire deterministically: with no target, the wander
-// dwell rhythm has to produce at least one idle episode within a bounded window,
-// and every idle pose must keep the rig/skin envelopes green.
+// Every illustrated rest pose gets a deterministic preview pass. This is both a
+// runtime gate and the control surface used by visual-harness screenshots: the
+// poses must remain distinct in paw layout, spine/tail gesture and layer order.
+{
+  const poses = [
+    ['sit', 1],
+    ['loaf', -1],
+    ['sideLie', 1],
+    ['roll', -1],
+    ['curl', 1],
+  ];
+  for (const [mode, side] of poses) {
+    sandbox.__catMouseDemo.previewIdlePose(mode, side);
+    step(150);
+    const current = sandbox.__catMouseDemo.getSnapshot();
+    assert.equal(current.behavior, mode, `${mode}: preview did not hold its behavior`);
+    assert.equal(current.idleMode, mode, `${mode}: idle state was not active`);
+    assert.equal(current.idlePose.visualMode, mode, `${mode}: visual pose was not active`);
+    assert.ok(current.idlePose.blend > 0.995, `${mode}: pose transition did not settle`);
+    assert.equal(current.idlePose.side, side, `${mode}: requested side was not preserved`);
+    assertRigSnapshot(current, `${mode} rest pose`);
+    assert.ok(current.poseEnvelope.left >= -1, `${mode}: pose escaped the left edge`);
+    assert.ok(current.poseEnvelope.top >= -1, `${mode}: pose escaped the top edge`);
+    assert.ok(current.poseEnvelope.right <= current.viewport.width + 1, `${mode}: pose escaped the right edge`);
+    assert.ok(current.poseEnvelope.bottom <= current.viewport.height + 1, `${mode}: pose escaped the bottom edge`);
+    for (const [limb, foot] of Object.entries(current.renderFeet)) {
+      assert.ok(foot.reach <= foot.reachLimit + 1e-6, `${mode}: rendered ${limb} escaped anatomical reach`);
+    }
+
+    if (mode === 'sit') {
+      const hindSpan = Math.hypot(
+        current.renderFeet.rightHind.x - current.renderFeet.leftHind.x,
+        current.renderFeet.rightHind.y - current.renderFeet.leftHind.y,
+      );
+      const foreSpan = Math.hypot(
+        current.renderFeet.rightFore.x - current.renderFeet.leftFore.x,
+        current.renderFeet.rightFore.y - current.renderFeet.leftFore.y,
+      );
+      assert.ok(hindSpan > foreSpan * 1.8, 'sit: haunches must spread wider than the paired fore paws');
+    } else if (mode === 'loaf') {
+      const furthestPaw = Math.max(...Object.values(current.renderFeet).map((foot) => (
+        Math.hypot(foot.x - current.cat.x, foot.y - current.cat.y)
+      )));
+      assert.ok(furthestPaw < 43 * current.rigScale, 'loaf: paws must tuck beneath the compact body');
+    } else if (mode === 'sideLie') {
+      const signedLaterals = Object.values(current.renderFeet).map((foot) => (
+        catLocalPoint(current, foot).lateral * side
+      ));
+      assert.ok(Math.min(...signedLaterals) > 5 * current.rigScale, 'sideLie: all paws must settle to the lying side');
+      assert.equal(
+        Object.values(current.renderFeet).filter((foot) => foot.layer === 'over').length,
+        2,
+        'sideLie: exactly the upper pair of legs should cross the body',
+      );
+    } else if (mode === 'roll') {
+      assert.ok(
+        Object.values(current.renderFeet).every((foot) => foot.lift > 0.45 && foot.layer === 'over'),
+        'roll: all four paws must lift above the belly',
+      );
+    } else if (mode === 'curl') {
+      assert.ok(side * current.rigCurvature > 0.48, 'curl: spine must form a clear C-shaped bend');
+      const tail = current.tailPoints;
+      const firstHeading = Math.atan2(tail[2].y - tail[1].y, tail[2].x - tail[1].x);
+      const lastHeading = Math.atan2(
+        tail[tail.length - 1].y - tail[tail.length - 2].y,
+        tail[tail.length - 1].x - tail[tail.length - 2].x,
+      );
+      const tailTurn = sandbox.CatGait.angleDelta(firstHeading, lastHeading) * side;
+      assert.ok(tailTurn > 1.35, `curl: tail did not wrap around the body (${tailTurn.toFixed(3)})`);
+    }
+    sandbox.__catMouseDemo.clearIdlePose();
+    step(8);
+    const exiting = sandbox.__catMouseDemo.getSnapshot();
+    assert.ok(exiting.idlePose.blend > 0.08, `${mode}: exit transition collapsed in one frame`);
+    assert.ok(exiting.cat.speed < 0.01, `${mode}: cat started walking before the pose released`);
+    step(37);
+    const cleared = sandbox.__catMouseDemo.getSnapshot();
+    assert.equal(cleared.behavior, 'prowl', `${mode}: clearing the pose did not resume prowl`);
+    assert.equal(cleared.idlePose.visualMode, null, `${mode}: visual pose leaked after exit`);
+    assert.equal(cleared.idlePose.blend, 0, `${mode}: pose blend did not settle back to zero`);
+    assertRigSnapshot(cleared, `${mode} pose exit`);
+  }
+}
+
+// The unforced idle scheduler must also fire on its own with no target; forced
+// preview coverage above does not substitute for the real wander/dwell rhythm.
 {
   const seenIdle = new Set();
   for (let frameIndex = 0; frameIndex < 4200 && seenIdle.size < 2; frameIndex += 1) {
@@ -652,7 +763,11 @@ assert.equal(snapshot.behavior, 'prowl');
     assertRigSnapshot(current, 'idle repertoire');
     if (current.idleMode) seenIdle.add(current.idleMode);
   }
-  assert.ok(seenIdle.size >= 1, 'wander rhythm never produced an idle episode');
+  assert.ok(seenIdle.size >= 2, 'wander rhythm did not produce varied idle episodes');
+  assert.ok(
+    [...seenIdle].some((mode) => ['loaf', 'sideLie', 'roll', 'curl'].includes(mode)),
+    'wander rhythm never selected an expanded illustrated rest pose',
+  );
 }
 
 // Reproduce the user's 548x536 compact screenshot and drive the target to all
@@ -667,6 +782,18 @@ assert.equal(snapshot.viewport.width, 548);
 assert.equal(snapshot.viewport.height, 536);
 assertRigSnapshot(snapshot, 'compact resize');
 assertHeadInsideViewport(snapshot);
+for (const [mode, side] of [['sit', -1], ['loaf', 1], ['sideLie', -1], ['roll', 1], ['curl', -1]]) {
+  sandbox.__catMouseDemo.previewIdlePose(mode, side);
+  step(120);
+  const compactPose = sandbox.__catMouseDemo.getSnapshot();
+  assertRigSnapshot(compactPose, `compact ${mode} pose`);
+  assert.ok(compactPose.poseEnvelope.left >= -1, `compact ${mode}: escaped left edge`);
+  assert.ok(compactPose.poseEnvelope.top >= -1, `compact ${mode}: escaped top edge`);
+  assert.ok(compactPose.poseEnvelope.right <= compactPose.viewport.width + 1, `compact ${mode}: escaped right edge`);
+  assert.ok(compactPose.poseEnvelope.bottom <= compactPose.viewport.height + 1, `compact ${mode}: escaped bottom edge`);
+  sandbox.__catMouseDemo.clearIdlePose();
+  step(36);
+}
 const edgeTargets = [
   [fakeViewportWidth * 0.5, 8],
   [fakeViewportWidth - 8, fakeViewportHeight * 0.5],
@@ -795,4 +922,4 @@ failureListeners.forEach((listener) => listener());
 assert.equal(failureElements.get('canvas-error').textContent, 'Canvas failed');
 assert.equal(failureElements.get('theme-toggle').getAttribute('title'), 'Light');
 
-console.log('check-runtime: fore-paw pounce capture, crown-integrated ears, illustrated paws, seamless coat, bounded spine, anatomical reach, 548x536 edges, and UI OK');
+console.log('check-runtime: five illustrated rest poses, fore-paw pounce capture, crown-integrated ears, seamless coat, bounded spine, anatomical reach, 548x536 edges, and UI OK');

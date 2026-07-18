@@ -160,7 +160,17 @@
     poseStretch: 0,
     idleYaw: 0,
     leap: { phase: null, t: 0, crouchDur: 0.7, wiggleHz: 3, launchX: 0, launchY: 0, landX: 0, landY: 0, pinAfter: false, lastLandAt: -10, nearSince: null },
-    idle: { mode: null, t: 0, dur: 0, nextAt: 8, restSince: null },
+    idle: {
+      mode: null,
+      visualMode: null,
+      lastMode: null,
+      poseBlend: 0,
+      side: 1,
+      t: 0,
+      dur: 0,
+      nextAt: 8,
+      restSince: null,
+    },
     startle: { active: false, t: 0, dur: 0.35, dirX: 0, dirY: 0 },
     support: { foreBias: 0, hindBias: 0, combined: 0 },
     lastForeTouch: { right: null, left: null },
@@ -240,6 +250,10 @@
     land: 0.82,
     pin: 0.78,
     sit: 0.8,
+    loaf: 0.86,
+    sideLie: 0.72,
+    roll: 0.68,
+    curl: 0.74,
     groom: 0.7,
     stretch: 0.72,
   });
@@ -254,12 +268,30 @@
     land: { strength: 30, rate: 1.0, tip: false, wrap: 0 },
     pin: { strength: 14, rate: 0.6, tip: false, wrap: 0 },
     sit: { strength: 46, rate: 0.7, tip: false, wrap: 1 },
+    loaf: { strength: 14, rate: 0.42, tip: false, wrap: 0.2 },
+    sideLie: { strength: 18, rate: 0.48, tip: false, wrap: 0.2 },
+    roll: { strength: 24, rate: 0.7, tip: false, wrap: 0 },
+    curl: { strength: 10, rate: 0.34, tip: false, wrap: 0.2 },
     groom: { strength: 40, rate: 0.9, tip: false, wrap: 0.4 },
     stretch: { strength: 20, rate: 0.5, tip: false, wrap: 0 },
     stalk: { strength: 42, rate: 1.15, tip: false, wrap: 0 },
     prowl: { strength: 42, rate: 1.15, tip: false, wrap: 0 },
   });
-  const POSE_STATES = Object.freeze(['crouch', 'pounce', 'land', 'pin', 'sit', 'groom', 'stretch']);
+  const REST_POSES = Object.freeze(['sit', 'loaf', 'sideLie', 'roll', 'curl']);
+  const IDLE_MODES = Object.freeze(['look', ...REST_POSES, 'groom', 'stretch']);
+  const POSE_STATES = Object.freeze(['crouch', 'pounce', 'land', 'pin', ...REST_POSES, 'groom', 'stretch']);
+
+  function restPoseWeight(mode) {
+    return cat.idle.visualMode === mode ? cat.idle.poseBlend : 0;
+  }
+
+  function restPoseSide() {
+    return cat.idle.side < 0 ? -1 : 1;
+  }
+
+  function restRollWave() {
+    return Math.sin(cat.idle.t * 2.7) * restPoseWeight('roll');
+  }
 
   function isDark() {
     return document.documentElement.classList.contains('dark');
@@ -421,24 +453,33 @@
     const hindPhaseTwist = cat.support.hindBias * 0.048 * motionWeight;
     const shoulderLead = Gait.clamp(rig.turnVelocity * 0.026, -0.075, 0.075);
     const pelvisLag = Gait.clamp(rig.turnVelocity * 0.038, -0.105, 0.105);
+    const restSide = restPoseSide();
+    const lie = restPoseWeight('sideLie');
+    const curl = restPoseWeight('curl');
+    const rollWave = restRollWave();
 
     // Gaze leads only the head and neck. The torso follows filtered locomotion
     // turn velocity: shoulders anticipate a corner slightly while the pelvis
     // counter-lags, with tiny gait-phase counter-rotation between the girdles.
-    const headTarget = cat.heading + cat.headYaw;
+    const headTarget = cat.heading + cat.headYaw
+      + restSide * (lie * 0.06 + curl * 0.12) + rollWave * 0.05;
     rig.head.angle = angleExpLerp(rig.head.angle, headTarget, prey.active ? 15 : 6.8, dt);
 
     const headOffset = Gait.clamp(Gait.angleDelta(cat.heading, rig.head.angle), -0.7, 0.7);
-    const neckTarget = cat.heading + headOffset * 0.58 + shoulderLead * 0.35;
+    const neckTarget = cat.heading + headOffset * 0.58 + shoulderLead * 0.35
+      + restSide * (lie * 0.1 + curl * 0.22) + rollWave * 0.04;
     rig.neck.angle = angleExpLerp(rig.neck.angle, neckTarget, prey.active ? 10.5 : 5.4, dt);
 
-    const shoulderTarget = cat.heading + shoulderLead + forePhaseTwist - cat.bodySway * 0.012;
+    const shoulderTarget = cat.heading + shoulderLead + forePhaseTwist - cat.bodySway * 0.012
+      + restSide * (lie * 0.08 + curl * 0.16) + rollWave * 0.035;
     rig.shoulders.angle = angleExpLerp(rig.shoulders.angle, shoulderTarget, 7.4, dt);
 
-    const waistTarget = cat.heading - pelvisLag * 0.28 + cat.bodySway * 0.01;
+    const waistTarget = cat.heading - pelvisLag * 0.28 + cat.bodySway * 0.01
+      - restSide * (lie * 0.03 + curl * 0.04) - rollWave * 0.018;
     rig.waist.angle = angleExpLerp(rig.waist.angle, waistTarget, 5.2, dt);
 
-    const pelvisTarget = cat.heading - pelvisLag + hindPhaseTwist + cat.bodySway * 0.014;
+    const pelvisTarget = cat.heading - pelvisLag + hindPhaseTwist + cat.bodySway * 0.014
+      - restSide * (lie * 0.08 + curl * 0.14) - rollWave * 0.035;
     rig.pelvis.angle = angleExpLerp(rig.pelvis.angle, pelvisTarget, 3.15, dt);
 
     // Hard anatomical stops are applied every frame, after the soft filters.
@@ -806,10 +847,11 @@
     }
   }
 
-  // ---------- 闲态编排（走-停-看-坐-理毛-伸展的标点节奏；巡游不再是匀速漂移） ----------
+  // ---------- 闲态编排（走-停-看-坐-卧-滚-蜷的标点节奏；巡游不再是匀速漂移） ----------
   function endIdle() {
     const I = cat.idle;
     if (I.mode && I.mode !== 'look') setBehavior('prowl');
+    if (I.mode) I.lastMode = I.mode;
     I.mode = null;
     I.nextAt = elapsed + 4 + poseHash(9) * 3;
     I.restSince = null;
@@ -819,23 +861,43 @@
     const I = cat.idle;
     const h = poseHash(7);
     const pool = reducedMotion
-      ? [['look', 0.6], ['sit', 0.4]]
-      : [['look', 0.4], ['sit', 0.25], ['groom', 0.2], ['stretch', 0.15]];
+      ? [['look', 0.28], ['sit', 0.2], ['loaf', 0.25], ['sideLie', 0.12], ['curl', 0.15]]
+      : [
+        ['look', 0.18], ['sit', 0.13], ['loaf', 0.18], ['sideLie', 0.15],
+        ['roll', 0.12], ['curl', 0.16], ['groom', 0.05], ['stretch', 0.03],
+      ];
     let acc = 0;
     let pick = 'look';
     for (const [mode, w] of pool) { acc += w; if (h <= acc) { pick = mode; break; } }
+    if (pick === I.lastMode) {
+      const nextIndex = (IDLE_MODES.indexOf(pick) + 1) % IDLE_MODES.length;
+      pick = IDLE_MODES[nextIndex];
+      if (reducedMotion && (pick === 'roll' || pick === 'groom' || pick === 'stretch')) pick = 'loaf';
+    }
     const h2 = poseHash(8);
     I.mode = pick;
+    if (pick !== 'look') I.visualMode = pick;
+    I.side = poseHash(10) < 0.5 ? -1 : 1;
     I.t = 0;
     I.dur = pick === 'look' ? 1.4 + h2 * 0.8
       : pick === 'sit' ? 2.5 + h2 * 2.5
-        : pick === 'groom' ? 1.8 + h2 * 1.4 : 1.2;
+        : pick === 'loaf' ? 4.2 + h2 * 2.8
+          : pick === 'sideLie' ? 3.8 + h2 * 2.7
+            : pick === 'roll' ? 2.6 + h2 * 1.7
+              : pick === 'curl' ? 5 + h2 * 3
+                : pick === 'groom' ? 1.8 + h2 * 1.4 : 1.2;
     if (pick !== 'look') setBehavior(pick);
   }
 
   function updateIdle(dt) {
     const a = anatomy();
     const I = cat.idle;
+    const poseActive = Boolean(I.mode && I.mode !== 'look');
+    I.poseBlend = expLerp(I.poseBlend, poseActive ? 1 : 0, poseActive ? 3.4 : 8, dt);
+    if (!poseActive && I.poseBlend < 0.006) {
+      I.poseBlend = 0;
+      I.visualMode = null;
+    }
     if (prey.active || cat.leap.phase) {
       if (I.mode) endIdle();
       I.restSince = null;
@@ -846,6 +908,10 @@
       I.t += dt;
       if (I.mode === 'look') cat.idleYaw = Math.sin(I.t * 1.6) * 0.5;             // 环视：头扫视，身体不动
       else if (I.mode === 'groom') cat.idleYaw = Math.sin(I.t * Gait.TAU / 2) * 0.62;   // 理毛：头往体侧点头
+      else if (I.mode === 'sideLie') cat.idleYaw = I.side * (0.42 + Math.sin(I.t * 1.2) * 0.04);
+      else if (I.mode === 'roll') cat.idleYaw = Math.sin(I.t * 2.7) * 0.3;
+      else if (I.mode === 'curl') cat.idleYaw = I.side * 0.68;
+      else if (I.mode === 'loaf') cat.idleYaw = Math.sin(I.t * 0.72) * 0.12;
       else cat.idleYaw = expLerp(cat.idleYaw, 0, 6, dt);
       if (I.t >= I.dur) endIdle();
       return;
@@ -1022,7 +1088,9 @@
       reducedMotion,
     ) * a.scale;
     if (cat.state === 'prowl') desiredSpeed *= Gait.clamp(goalDistance / 82, 0, 1);
-    if (cat.state === 'watch' || cat.state === 'observe' || cat.idle.mode || POSE_STATES.indexOf(cat.state) >= 0) desiredSpeed = 0;
+    const poseTransitioning = cat.idle.poseBlend > 0.08;
+    if (cat.state === 'watch' || cat.state === 'observe' || cat.idle.mode
+      || poseTransitioning || POSE_STATES.indexOf(cat.state) >= 0) desiredSpeed = 0;
     if (prey.active && goalDistance < 58 * a.scale
       && !(cat.state === 'chase' && elapsed - cat.stateSince >= 0.3)) {
       // 贴近减速只留给非追逐态——已建立的追逐是"全速压上直到扑住"（否则永远进不了 34 捕获圈，只会绕圈盘旋）
@@ -1030,11 +1098,13 @@
     }
 
     const turnError = Gait.angleDelta(cat.heading, targetAngle);
-    const bodyMayTurn = cat.state !== 'watch' || Math.abs(turnError) > 0.46;
+    const holdingRestPose = Boolean((cat.idle.mode && cat.idle.mode !== 'look') || poseTransitioning);
+    const bodyMayTurn = !holdingRestPose && (cat.state !== 'watch' || Math.abs(turnError) > 0.46);
     const steerLimits = {
       prowl: [0.9, 2.5], observe: [0.72, 2.2], watch: [0.58, 1.9], stalk: [1.2, 3.5], chase: [2.4, 7],
       crouch: [1.4, 4], pounce: [0.4, 3], land: [0.7, 3], pin: [0.7, 2.5],
-      sit: [0.6, 1.8], groom: [0.5, 1.6], stretch: [0.4, 1.4],
+      sit: [0.6, 1.8], loaf: [0.35, 1.2], sideLie: [0.3, 1], roll: [0.35, 1.1], curl: [0.3, 1],
+      groom: [0.5, 1.6], stretch: [0.4, 1.4],
     };
     const [omegaMax, alphaMax] = steerLimits[cat.state] || [1.1, 3];
     const desiredOmega = bodyMayTurn ? Gait.clamp(turnError * 2.35, -omegaMax, omegaMax) : 0;
@@ -1046,7 +1116,8 @@
     const accelerationLimits = {
       prowl: [44, 66], observe: [36, 70], watch: [36, 70], stalk: [64, 92], chase: [220, 295],
       crouch: [40, 120], pounce: [60, 90], land: [80, 260], pin: [60, 200],
-      sit: [36, 90], groom: [30, 80], stretch: [30, 70],
+      sit: [36, 90], loaf: [28, 82], sideLie: [24, 76], roll: [30, 88], curl: [24, 72],
+      groom: [30, 80], stretch: [30, 70],
     };
     const [accelerate, decelerate] = accelerationLimits[cat.state] || [60, 90];
     const previousSpeed = cat.speed;
@@ -1094,8 +1165,14 @@
       ? expLerp(cat.strideLength, 0, 7, dt)
       : expLerp(cat.strideLength, Gait.clamp(cat.speed * cat.gait.dutyFactor / cadence, 9 * a.scale, 72 * a.scale), 6, dt);
     cat.skinNarrow = expLerp(cat.skinNarrow, cat.state === 'stalk' ? 0.96 : (cat.state === 'crouch' || cat.state === 'land') ? 0.95 : 1, 6.2, dt);
-    cat.poseSpread = expLerp(cat.poseSpread, cat.state === 'sit' ? 1 : 0, 4, dt);
-    cat.poseStretch = expLerp(cat.poseStretch, cat.state === 'stretch' ? 1 : 0, 4.5, dt);
+    const spreadTarget = Gait.clamp(
+      restPoseWeight('sit') + restPoseWeight('loaf') * 0.72
+        + restPoseWeight('roll') * 0.9 + restPoseWeight('curl') * 0.48,
+      0,
+      1,
+    );
+    cat.poseSpread = expLerp(cat.poseSpread, spreadTarget, 4, dt);
+    cat.poseStretch = expLerp(cat.poseStretch, restPoseWeight('stretch'), 4.5, dt);
     updateSupportPose(dt);
 
     updateRig(dt);
@@ -1196,6 +1273,67 @@
     const point = pointWithinLegReach(limb, foot.x, foot.y, a);
     foot.x = point.x;
     foot.y = point.y;
+  }
+
+  function restPosePawTarget(limb, a) {
+    const mode = cat.idle.visualMode;
+    if (REST_POSES.indexOf(mode) < 0 || cat.idle.poseBlend <= 0.001) return null;
+    const config = LEG_CONFIG[limb];
+    const parent = config.fore ? cat.rig.shoulders : cat.rig.pelvis;
+    const side = restPoseSide();
+    const sameSide = config.side === side;
+    let forward = config.fore ? 10 : -5;
+    let lateral = config.side * (config.fore ? 9 : 15);
+    let lift = 0;
+    let angle = cat.heading;
+
+    if (mode === 'sit') {
+      forward = config.fore ? 14 : -5;
+      lateral = config.side * (config.fore ? 8 : 27);
+    } else if (mode === 'loaf') {
+      forward = config.fore ? 1 : 6;
+      lateral = config.side * (config.fore ? 7 : 10);
+    } else if (mode === 'sideLie') {
+      forward = config.fore ? (sameSide ? 7 : 15) : (sameSide ? -8 : 2);
+      lateral = side * (sameSide ? 35 : 25);
+      lift = sameSide ? 0.05 : 0.11;
+      angle = cat.heading + side * 0.14;
+    } else if (mode === 'roll') {
+      const phase = cat.idle.t * 3.4 + (config.fore ? 0 : Math.PI) + (config.side > 0 ? 0 : Math.PI * 0.5);
+      forward = config.fore ? 4 : -2;
+      lateral = config.side * (config.fore ? 25 : 27);
+      lift = 0.66 + Math.sin(phase) * 0.16;
+      angle = cat.heading + config.side * 0.2;
+    } else if (mode === 'curl') {
+      forward = config.fore ? 7 : 5;
+      lateral = side * (sameSide ? 12 : 5);
+      angle = cat.heading + side * 0.22;
+    }
+
+    const point = pointFromNode(parent, forward * a.scale, lateral * a.scale);
+    const bounded = pointWithinLegReach(limb, point.x, point.y, a);
+    return { x: bounded.x, y: bounded.y, lift, angle };
+  }
+
+  function renderedFoot(limb, a) {
+    const foot = cat.feet[limb];
+    if (!foot) return null;
+    const target = restPosePawTarget(limb, a);
+    if (!target) return foot;
+    const weight = cat.idle.poseBlend;
+    return Object.assign({}, foot, {
+      x: foot.x + (target.x - foot.x) * weight,
+      y: foot.y + (target.y - foot.y) * weight,
+      lift: foot.lift + (target.lift - foot.lift) * weight,
+      angle: mixAngle(foot.angle, target.angle, weight),
+      planted: target.lift * weight < 0.12 && foot.planted,
+    });
+  }
+
+  function restLimbLayer(limb) {
+    if (restPoseWeight('roll') > 0.04) return 'over';
+    if (restPoseWeight('sideLie') > 0.04 && LEG_CONFIG[limb].side !== restPoseSide()) return 'over';
+    return 'under';
   }
 
   function beginReachRecovery(limb, foot, a) {
@@ -1440,6 +1578,8 @@
     const tailCfg = TAIL_BY_STATE[cat.state] || TAIL_BY_STATE.prowl;
     const flickStrength = tailCfg.strength;
     const flickRate = tailCfg.rate;
+    const restMode = cat.idle.visualMode;
+    const wrapDirection = REST_POSES.indexOf(restMode) >= 0 ? restPoseSide() : 1;
 
     cat.tail[0].x = base.x;
     cat.tail[0].y = base.y;
@@ -1455,9 +1595,29 @@
       const linWeight = index / (cat.tail.length - 1);
       const weight = tailCfg.tip ? Math.pow(linWeight, 3) : linWeight;   // 尾尖模式：蓄势时只有末段高频打点
       const wave = Math.sin(elapsed * flickRate * Gait.TAU - index * 0.42) * flickStrength * weight
-        + tailCfg.wrap * 46 * linWeight;   // 卷尾：恒定侧向力 → 蹲坐/理毛时尾巴环向体侧
+        + tailCfg.wrap * wrapDirection * 46 * linWeight;   // 卷尾：恒定侧向力 → 蹲坐/理毛时尾巴环向体侧
       point.x += velocityX - Math.sin(pelvisHeading) * wave * dt * dt;
       point.y += velocityY + Math.cos(pelvisHeading) * wave * dt * dt;
+    }
+
+    if (REST_POSES.indexOf(restMode) >= 0 && cat.idle.poseBlend > 0.001) {
+      const arcByMode = { sit: 1.35, loaf: 1.72, sideLie: 1.02, roll: 0.5, curl: 2.45 };
+      const arc = arcByMode[restMode] + (restMode === 'roll' ? restRollWave() * 0.26 : 0);
+      const target = [{ x: base.x, y: base.y }];
+      for (let index = 1; index < cat.tail.length; index += 1) {
+        const t = index / Math.max(1, cat.tail.length - 1);
+        const tangent = pelvisHeading + Math.PI + restPoseSide() * arc * t;
+        const previous = target[index - 1];
+        target.push({
+          x: previous.x + Math.cos(tangent) * a.tailSegment,
+          y: previous.y + Math.sin(tangent) * a.tailSegment,
+        });
+      }
+      const settle = (1 - Math.exp(-dt * 8.5)) * cat.idle.poseBlend;
+      for (let index = 1; index < cat.tail.length; index += 1) {
+        cat.tail[index].x += (target[index].x - cat.tail[index].x) * settle;
+        cat.tail[index].y += (target[index].y - cat.tail[index].y) * settle;
+      }
     }
 
     for (let pass = 0; pass < 5; pass += 1) {
@@ -1914,7 +2074,7 @@
     }
 
     Gait.LIMBS.forEach((limb) => {
-      const foot = cat.feet[limb];
+      const foot = renderedFoot(limb, a);
       if (!foot) return;
       const geometry = legGeometry(limb, foot, a);
       const liftOffset = foot.lift * 5.5 * a.scale;
@@ -2006,10 +2166,11 @@
     ctx.restore();
   }
 
-  function drawLegs(c) {
+  function drawLegs(c, layer) {
     const a = anatomy();
     Gait.LIMBS.forEach((limb) => {
-      const foot = cat.feet[limb];
+      if (restLimbLayer(limb) !== layer) return;
+      const foot = renderedFoot(limb, a);
       if (!foot) return;
       const geometry = legGeometry(limb, foot, a);
 
@@ -2055,8 +2216,8 @@
     const ox = offsetX || 0;
     const oy = offsetY || 0;
     const narrow = cat.skinNarrow;
-    const define = (node, forward, width) => {
-      const point = pointFromNode(node, forward * a.scale, 0);
+    const define = (node, forward, width, lateral) => {
+      const point = pointFromNode(node, forward * a.scale, (lateral || 0) * a.scale);
       return {
         x: point.x + ox,
         y: point.y + oy,
@@ -2064,17 +2225,27 @@
         width: width * a.scale * narrow,
       };
     };
-    const spread = 1 + 0.22 * cat.poseSpread;
-    const shift = 4 * cat.poseSpread - 6 * cat.poseStretch;   // 蹲坐缩短 / 伸展拉长（纯渲染；骨架长度门禁不动）
+    const loaf = restPoseWeight('loaf');
+    const lie = restPoseWeight('sideLie');
+    const roll = restPoseWeight('roll');
+    const curl = restPoseWeight('curl');
+    const side = restPoseSide();
+    const rock = restRollWave();
+    const breath = Math.sin(cat.idle.t * 1.05) * (loaf * 0.018 + lie * 0.012 + curl * 0.015);
+    const spread = 1 + 0.22 * cat.poseSpread + loaf * 0.08 + roll * 0.06 + curl * 0.04 + breath;
+    const shift = 4 * cat.poseSpread - 6 * cat.poseStretch + loaf * 8 + roll * 2.5 + curl * 5;
+    const rearLateral = side * (lie * 4.8 + curl * 3.6) + rock * 2.8;
+    const waistLateral = side * (lie * 3.4 + curl * 2.8) + rock * 1.4;
+    const shoulderLateral = side * (lie * 1.4 + curl * 1.8) - rock * 1.2;
     const stations = [
-      define(cat.rig.pelvis, -27 + shift, 13 * spread),
-      define(cat.rig.pelvis, -17 + shift, 27 * spread),
-      define(cat.rig.pelvis, 1 + shift * 0.5, 32 * spread),
-      define(cat.rig.pelvis, 15, 26),
-      define(cat.rig.waist, 0, 21),
-      define(cat.rig.shoulders, -13, 24),
-      define(cat.rig.shoulders, 1, 28),
-      define(cat.rig.shoulders, 13, 20.5),
+      define(cat.rig.pelvis, -27 + shift, 13 * spread, rearLateral),
+      define(cat.rig.pelvis, -17 + shift, 27 * spread, rearLateral),
+      define(cat.rig.pelvis, 1 + shift * 0.5, 32 * spread, rearLateral * 0.72),
+      define(cat.rig.pelvis, 15, 26 * (1 + roll * 0.08), rearLateral * 0.42),
+      define(cat.rig.waist, 0, 21 * (1 + lie * 0.08 + roll * 0.14), waistLateral),
+      define(cat.rig.shoulders, -13, 24 * (1 + roll * 0.08), shoulderLateral),
+      define(cat.rig.shoulders, 1, 28 * (1 + loaf * 0.05 + roll * 0.1), shoulderLateral * 0.72),
+      define(cat.rig.shoulders, 13, 20.5, shoulderLateral * 0.28),
       define(cat.rig.neck, 3, 13.5),
     ];
     const bridgeT = SKIN_TOPOLOGY.headBridgeT;
@@ -2197,6 +2368,37 @@
     };
   }
 
+  function poseEnvelopeSnapshot() {
+    const a = anatomy();
+    const contours = bodyContours(a, 0, 0);
+    const points = [...contours.left, ...contours.right];
+    const headRadius = cat.rig.head.visualRadius;
+    points.push(
+      { x: cat.rig.head.x - headRadius, y: cat.rig.head.y - headRadius },
+      { x: cat.rig.head.x + headRadius, y: cat.rig.head.y + headRadius },
+    );
+    tailRenderPoints(a).forEach((point) => {
+      points.push(
+        { x: point.x - SKIN_TOPOLOGY.tailRootRadius * a.scale, y: point.y - SKIN_TOPOLOGY.tailRootRadius * a.scale },
+        { x: point.x + SKIN_TOPOLOGY.tailRootRadius * a.scale, y: point.y + SKIN_TOPOLOGY.tailRootRadius * a.scale },
+      );
+    });
+    Gait.LIMBS.forEach((limb) => {
+      const foot = renderedFoot(limb, a);
+      if (!foot) return;
+      points.push(
+        { x: foot.x - 11 * a.scale, y: foot.y - 11 * a.scale },
+        { x: foot.x + 11 * a.scale, y: foot.y + 11 * a.scale },
+      );
+    });
+    return {
+      left: Math.min(...points.map((point) => point.x)),
+      top: Math.min(...points.map((point) => point.y)),
+      right: Math.max(...points.map((point) => point.x)),
+      bottom: Math.max(...points.map((point) => point.y)),
+    };
+  }
+
   function drawNodeEllipse(node, forward, lateral, radiusX, radiusY, rotation, a) {
     ctx.save();
     ctx.translate(node.x, node.y);
@@ -2296,6 +2498,78 @@
     ctx.globalAlpha = 1;
   }
 
+  function traceSoftFurPatch(context, a, length, halfWidth) {
+    const rear = -length * 0.52 * a.scale;
+    const front = length * 0.48 * a.scale;
+    const half = halfWidth * a.scale;
+    context.beginPath();
+    context.moveTo(rear, -half * 0.3);
+    context.bezierCurveTo(rear * 0.72, -half, front * 0.28, -half * 1.08, front, -half * 0.34);
+    context.bezierCurveTo(front * 1.05, half * 0.18, front * 0.42, half * 0.88, rear * 0.12, half);
+    context.bezierCurveTo(rear * 0.72, half * 0.88, rear * 1.08, half * 0.28, rear, -half * 0.3);
+    context.closePath();
+  }
+
+  function drawRestPoseDetails(c, a) {
+    const loaf = restPoseWeight('loaf');
+    const lie = restPoseWeight('sideLie');
+    const roll = restPoseWeight('roll');
+    const curl = restPoseWeight('curl');
+    const side = restPoseSide();
+
+    if (loaf > 0.001) {
+      // 两枚低对比前爪尖从胸口下露出一点，身体仍覆盖脚踝，读作“香箱”而不是四根短腿。
+      ctx.fillStyle = c.cream;
+      ctx.globalAlpha = 0.34 * loaf;
+      drawNodeEllipse(cat.rig.shoulders, 12, -5.2, 7.2, 3.2, -0.08, a);
+      drawNodeEllipse(cat.rig.shoulders, 12, 5.2, 7.2, 3.2, 0.08, a);
+    }
+
+    if (lie > 0.001) {
+      ctx.save();
+      const flank = pointFromNode(cat.rig.waist, -2 * a.scale, -side * 11 * a.scale);
+      ctx.translate(flank.x, flank.y);
+      ctx.rotate(cat.rig.waist.angle + side * 0.1);
+      ctx.fillStyle = c.furLight;
+      ctx.globalAlpha = 0.34 * lie;
+      traceSoftFurPatch(ctx, a, 42, 9.5);
+      ctx.fill();
+      ctx.restore();
+    }
+
+    if (roll > 0.001) {
+      // 打滚时露出的腹毛是一块不规则软斑，不使用规则椭圆；四只抬起的爪由 over-limb 图层覆盖其上。
+      ctx.save();
+      ctx.translate(cat.rig.waist.x, cat.rig.waist.y);
+      ctx.rotate(cat.rig.waist.angle + restRollWave() * 0.06);
+      ctx.fillStyle = c.cream;
+      ctx.globalAlpha = 0.64 * roll;
+      traceSoftFurPatch(ctx, a, 55, 16);
+      ctx.fill();
+      ctx.fillStyle = c.furLight;
+      ctx.globalAlpha = 0.32 * roll;
+      traceSoftFurPatch(ctx, a, 31, 8.5);
+      ctx.fill();
+      ctx.restore();
+    }
+
+    if (curl > 0.001) {
+      // 内侧浅毛沿弯曲的脊柱形成月牙，强化头朝腹侧收拢的“蜷卧”读法。
+      const pelvis = pointFromNode(cat.rig.pelvis, 4 * a.scale, side * 13 * a.scale);
+      const waist = pointFromNode(cat.rig.waist, 2 * a.scale, side * 10 * a.scale);
+      const shoulder = pointFromNode(cat.rig.shoulders, -2 * a.scale, side * 9 * a.scale);
+      ctx.strokeStyle = c.cream;
+      ctx.globalAlpha = 0.25 * curl;
+      ctx.lineWidth = 7 * a.scale;
+      ctx.lineCap = 'round';
+      ctx.beginPath();
+      ctx.moveTo(pelvis.x, pelvis.y);
+      ctx.quadraticCurveTo(waist.x, waist.y, shoulder.x, shoulder.y);
+      ctx.stroke();
+    }
+    ctx.globalAlpha = 1;
+  }
+
   function drawBody(c) {
     const a = anatomy();
 
@@ -2361,6 +2635,8 @@
       [cat.rig.shoulders, { x: -1, side: 1, edge: 27, inner: 9, drift: 6 }],
       [cat.rig.shoulders, { x: 12, side: 1, edge: 22, inner: 8, drift: 4 }],
     ].forEach(([node, stripe]) => drawFlankStripe(node, stripe, a));
+
+    drawRestPoseDetails(c, a);
 
     ctx.restore();
 
@@ -2443,7 +2719,7 @@
     }
     if (!hidden) {
       for (const limb of Gait.LIMBS) {
-        const foot = cat.feet[limb];
+        const foot = renderedFoot(limb, a);
         if (!foot) continue;
         const dx = prey.x - foot.x;
         const dy = prey.y - foot.y;
@@ -2577,9 +2853,10 @@
     drawRoom(c);
     drawPrints(c);
     drawCatShadow(c);
-    drawLegs(c);
+    drawLegs(c, 'under');
     drawTail(c);   // 尾巴悬空于地面之上 → 压在贴地的爪子上方（图层序修正）
     drawBody(c);
+    drawLegs(c, 'over');   // 侧躺的上侧腿与打滚时抬起的四爪必须覆盖躯干，才能读出体位层次
     drawMouse(c);
   }
 
@@ -2623,6 +2900,30 @@
     refreshDynamicUi();
     draw();
     if (!paused && !rafId) rafId = requestAnimationFrame(frame);
+  }
+
+  function previewIdlePose(mode, side) {
+    if (REST_POSES.indexOf(mode) < 0) throw new Error(`Unknown rest pose: ${mode}`);
+    releasePrey();
+    const I = cat.idle;
+    I.mode = mode;
+    I.visualMode = mode;
+    I.poseBlend = 0;
+    I.side = Number(side) < 0 ? -1 : 1;
+    I.t = 0;
+    I.dur = 3600;
+    I.restSince = null;
+    cat.speed = 0;
+    cat.steerOmega = 0;
+    cat.wanderGoal.x = cat.x;
+    cat.wanderGoal.y = cat.y;
+    setBehavior(mode);
+    if (paused) draw();
+  }
+
+  function clearIdlePose() {
+    if (cat.idle.mode) endIdle();
+    if (paused) draw();
   }
 
   function readStoredTheme() {
@@ -2777,6 +3078,7 @@
         right: earLandmarks(1),
       },
       skin: Object.assign(skinTopologySnapshot(), { narrow: cat.skinNarrow }),
+      poseEnvelope: poseEnvelopeSnapshot(),
       support: Object.assign({}, cat.support),
       touchdowns: cat.touchdowns.map((touchdown) => Object.assign({}, touchdown)),
       mouse: { x: prey.x, y: prey.y, speed: prey.speed, active: prey.active },
@@ -2795,17 +3097,41 @@
             reachLimit: legReachLimit(limb, anatomy()),
           }
         : null])),
+      renderFeet: Object.fromEntries(Gait.LIMBS.map((limb) => {
+        const foot = renderedFoot(limb, anatomy());
+        return [limb, foot
+          ? {
+              x: foot.x,
+              y: foot.y,
+              angle: foot.angle,
+              lift: foot.lift,
+              planted: foot.planted,
+              reach: legReach(limb, foot).distance,
+              reachLimit: legReachLimit(limb, anatomy()),
+              layer: restLimbLayer(limb),
+            }
+          : null];
+      })),
+      tailPoints: tailRenderPoints(anatomy()).map((point) => ({ x: point.x, y: point.y })),
       tailTip: cat.tail.length
         ? { x: cat.tail[cat.tail.length - 1].x, y: cat.tail[cat.tail.length - 1].y }
         : null,
       leapPhase: cat.leap.phase,
       idleMode: cat.idle.mode,
+      idlePose: {
+        visualMode: cat.idle.visualMode,
+        blend: cat.idle.poseBlend,
+        side: restPoseSide(),
+        rollWave: restRollWave(),
+      },
       paused,
       reducedMotion,
       viewport: Object.assign({}, viewport),
     }),
     moveMouse: (x, y) => setPreyPosition(Number(x), Number(y), performance.now(), 'test'),
     releaseMouse: releasePrey,
+    previewIdlePose,
+    clearIdlePose,
     setPaused,
     setTheme: (mode) => applyTheme(mode === 'dark', true),
     setLanguage: I18n.setLanguage,

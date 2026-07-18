@@ -103,8 +103,8 @@
       zh: '猫与鼠标 — 四足步态实验',
     },
     cardCatMouseDesc: {
-      en: 'A top-down cat watches, stalks, walks toward or chases your pointer-as-mouse, driven by a four-phase alternating gait controller for more natural motion. Dark mode · EN/中文.',
-      zh: '一只俯视角的小猫会盯住、潜行、慢步靠近或追逐化作小老鼠的指针；四相交替步态控制让移动更自然。深色模式 · 中英切换。',
+      en: 'A top-down illustrated cat watches, stalks and chases your pointer-as-mouse with an articulated four-phase gait, then sits, loafs, lies down, rolls or curls up when left alone. Dark mode · EN/中文.',
+      zh: '一只俯视角插画小猫会盯梢、潜行并追逐化作小老鼠的指针；安静时则会蹲坐、揣手、侧躺、打滚或蜷卧。关节化四相步态 · 深色模式 · 中英切换。',
     },
     footerUpdated: {
       en: 'Last updated 2026-07. Nothing here is financial, legal or tax advice.',
