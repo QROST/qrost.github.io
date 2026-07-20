@@ -235,6 +235,8 @@ assert.match(earRendererSource, /EAR_GEOMETRY\.tipForward/, 'ear silhouette must
 assert.match(earRendererSource, /EAR_GEOMETRY\.tipRound/, 'ear silhouette must round the tip instead of drawing a sharp horn point');
 assert.match(earRendererSource, /function traceHeadSilhouette[\s\S]*traceEarCrown/, 'filled skull and ears must share one continuous silhouette');
 assert.match(earRendererSource, /function traceHeadCrown[\s\S]*traceEarCrown/, 'visible skull and ears must share one continuous outline');
+assert.match(earRendererSource, /function traceHeadSilhouette[\s\S]*?traceSkullFront\(/, 'head fill must reuse the shared cheek-and-muzzle front path');
+assert.match(earRendererSource, /function traceHeadCrown[\s\S]*?traceSkullFront\(/, 'crown stroke must reuse the shared cheek-and-muzzle front path');
 assert.doesNotMatch(earRendererSource, /earInner|traceInnerEar|traceEarAccent|traceEarSilhouette|applyEarPose/, 'ears must not regress to separately painted tabs or high-contrast inner cores');
 assert.match(earMotionSource, /earFlickPulse\s*\(/, 'ear motion must retain independent short flicks');
 assert.match(earMotionSource, /EAR_PERK_BY_STATE/, 'ear motion must retain state-dependent perk variation');
@@ -279,6 +281,8 @@ function finiteSnapshot(snapshot) {
     snapshot.ears.left, snapshot.ears.right,
     snapshot.earPerk.left, snapshot.earPerk.right,
     snapshot.headGeometry.frontReach, snapshot.headGeometry.skullHalfWidth,
+    snapshot.headGeometry.muzzleCornerForward, snapshot.headGeometry.muzzleHalfWidth,
+    snapshot.headGeometry.cheekApexForward,
     snapshot.headGeometry.visualRadius, snapshot.headGeometry.whiskerRows,
     snapshot.earGeometry.rearBaseForward, snapshot.earGeometry.frontBaseForward,
     snapshot.earGeometry.rearBaseOutward, snapshot.earGeometry.frontBaseOutward,
@@ -362,6 +366,20 @@ function assertRigSnapshot(snapshot, label = 'rig') {
     snapshot.headGeometry.skullHalfWidth >= 13.5 && snapshot.headGeometry.skullHalfWidth <= 14.5,
     `${label}: skull width no longer matches the narrow neck and shoulders`,
   );
+  // 钝吻契约：吻端是一段有宽度的浅弧（猫），不是收拢到一点的锥（鼠/狐）。
+  // 三个窗口共同锁定"颊部把宽度带到前方、吻块短而钝"的正面轮廓。
+  assert.ok(
+    snapshot.headGeometry.muzzleHalfWidth >= 3.8 && snapshot.headGeometry.muzzleHalfWidth <= 5.2,
+    `${label}: muzzle front face collapsed toward a point or bloated into a slab`,
+  );
+  assert.ok(
+    snapshot.headGeometry.muzzleCornerForward >= 22.4 && snapshot.headGeometry.muzzleCornerForward <= 23.8,
+    `${label}: muzzle corners left their short blunt-block station`,
+  );
+  assert.ok(
+    snapshot.headGeometry.cheekApexForward >= 8.4 && snapshot.headGeometry.cheekApexForward <= 10.6,
+    `${label}: cheeks no longer carry the skull's width forward`,
+  );
   assert.ok(
     snapshot.rig.head.visualRadius <= snapshot.rig.shoulders.visualRadius * 1.36,
     `${label}: head became oversized relative to the shoulder mass`,
@@ -396,9 +414,11 @@ function assertRigSnapshot(snapshot, label = 'rig') {
     const tipHeight = Math.abs(baseDx * (ear.tip.y - ear.rearBase.y) - baseDy * (ear.tip.x - ear.rearBase.x)) / baseSpan;
     const outerBase = Math.max(side * ear.rearBase.y, side * ear.frontBase.y);
     assert.ok(baseSpan >= 12 && baseSpan <= 14.5, `${label}: ${earName} ear lost its compact crown attachment`);
-    assert.ok(tipHeight >= 4 && tipHeight <= 7.2, `${label}: ${earName} ear became a flat tab or a tall horn`);
+    // 2026-07-19 重校：耳尖高度从"低扇贝"窗口 [4,7.2] 上移——俯视猫的耳朵是
+    // 醒目的三角 pinna，旧的 5.4 高度读作后脑上的波纹（用户反馈"畸形"主因之一）。
+    assert.ok(tipHeight >= 7.8 && tipHeight <= 11.8, `${label}: ${earName} ear became a flat scallop or a tall horn`);
     assert.ok(ear.tip.x > ear.rearBase.x + 8 && ear.tip.x < ear.frontBase.x + 0.4, `${label}: ${earName} ear tip left the rear crown`);
-    assert.ok(side * ear.tip.y > outerBase + 3.2, `${label}: ${earName} ear tip no longer clears the skull softly`);
+    assert.ok(side * ear.tip.y > outerBase + 7.2, `${label}: ${earName} ear tip no longer clears the skull decisively`);
     assert.ok(ear.root.x > ear.rearBase.x && ear.root.x < ear.frontBase.x, `${label}: ${earName} ear root detached from its base span`);
   }
   assert.ok(
