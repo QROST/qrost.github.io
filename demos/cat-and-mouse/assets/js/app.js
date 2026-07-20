@@ -242,15 +242,15 @@
 
   // Head proportions are intentionally restrained relative to the shoulders.
   // The face is a small directional accent on the continuous coat, not a
-  // portrait pasted onto the body. The overhead skull reads feline through
-  // three quantities: cheeks carry the full width forward (cheekApexForward),
-  // the muzzle ends in a blunt block instead of a point (muzzleHalfWidth at
-  // muzzleCornerForward), and the nose apex stays just short of frontReach.
+  // portrait pasted onto the body. The cat reads as walking with its head
+  // LOWERED: from above we mostly see the crown of a rounded-square skull,
+  // the muzzle hides under the forehead edge and only a small nose tip peeks
+  // past it (muzzleHalfWidth wide at muzzleCornerForward, apex short of
+  // frontReach).
   const HEAD_GEOMETRY = Object.freeze({
-    frontReach: 24.4,
-    muzzleCornerForward: 22.6,
-    muzzleHalfWidth: 5,
-    cheekApexForward: 10,
+    frontReach: 22.8,
+    muzzleCornerForward: 21.6,
+    muzzleHalfWidth: 3.2,
     skullHalfWidth: 14.2,
     visualRadius: 40,
   });
@@ -258,19 +258,20 @@
   // The ears are landmarks in one continuous skull contour. Their broad roots
   // stay welded to the crown while only the tips swivel, avoiding the detached
   // tabs produced by rotating two separately painted ear shapes. The overhead
-  // skull is a rounded SQUARE and each ear sits on one rear corner of it —
-  // base spanning from the flat rear edge around the corner onto the straight
-  // side edge, tip rising almost straight outward. Tip height above the base
-  // span is what makes them read as pinnae instead of scallops.
+  // skull is a rounded SQUARE seen from above a lowered head, and each ear
+  // covers one FAR corner (the pair away from the body): the base spans from
+  // the straight side edge (rearBase, at full skull width) around the corner
+  // onto the forehead edge (frontBase), and the tip extends the corner
+  // diagonal forward-outward past both edges.
   const EAR_GEOMETRY = Object.freeze({
-    rearBaseForward: -13.5,
-    frontBaseForward: -1.6,
-    rearBaseOutward: 11.2,
-    frontBaseOutward: 14,
-    rootForward: -8.4,
-    rootOutward: 12.4,
-    tipForward: 3,
-    tipOutward: 10.2,
+    rearBaseForward: 8.5,
+    frontBaseForward: 19.5,
+    rearBaseOutward: 14,
+    frontBaseOutward: 7.5,
+    rootForward: 13.5,
+    rootOutward: 11.3,
+    tipForward: 9.6,
+    tipOutward: 7,
     tipRound: 1.9,
     maxSwivel: 0.08,
   });
@@ -2589,23 +2590,18 @@
     );
   }
 
-  // Shared front half of the skull, from the left ear's front base around the
-  // nose to the right ear's front base. One path feeds both the fill and the
-  // crown stroke so the two can never drift apart. The sides run nearly
-  // parallel (the two sides of the rounded square) until the front corners,
-  // which round quickly into a blunt muzzle block whose front face is a
-  // shallow arc — never a point.
+  // Shared forehead edge between the two ears' front bases, from the left
+  // ear's front base across the nose peek to the right ear's front base. One
+  // path feeds both the fill and the crown stroke so the two can never drift
+  // apart. On a lowered head this edge is nearly flat; only a small nose tip
+  // bulges past it at the centre — never a snout.
   function traceSkullFront(context, a, rightEar) {
     const s = a.scale;
-    const cheekX = HEAD_GEOMETRY.cheekApexForward;
-    const cheekY = HEAD_GEOMETRY.skullHalfWidth;
     const cornerX = HEAD_GEOMETRY.muzzleCornerForward;
     const cornerY = HEAD_GEOMETRY.muzzleHalfWidth;
-    context.bezierCurveTo(1.5 * s, -14.1 * s, 5 * s, -cheekY * s, cheekX * s, -cheekY * s);
-    context.bezierCurveTo(16.2 * s, -14.05 * s, 20.9 * s, -11.9 * s, cornerX * s, -cornerY * s);
+    context.bezierCurveTo(20.4 * s, -6.6 * s, 21.2 * s, -4.8 * s, cornerX * s, -cornerY * s);
     context.quadraticCurveTo(HEAD_GEOMETRY.frontReach * s, 0, cornerX * s, cornerY * s);
-    context.bezierCurveTo(20.9 * s, 11.9 * s, 16.2 * s, 14.05 * s, cheekX * s, cheekY * s);
-    context.bezierCurveTo(5 * s, cheekY * s, 1.5 * s, 14.1 * s, rightEar.frontBase.x * s, rightEar.frontBase.y * s);
+    context.bezierCurveTo(21.2 * s, 4.8 * s, 20.4 * s, 6.6 * s, rightEar.frontBase.x * s, rightEar.frontBase.y * s);
   }
 
   function traceHeadSilhouette(context, a) {
@@ -2613,11 +2609,13 @@
     const rightEar = earLandmarks(1);
     context.beginPath();
     context.moveTo(-SKIN_TOPOLOGY.headRearReach * a.scale, 0);
-    context.bezierCurveTo(-20.6 * a.scale, -6.5 * a.scale, -17.6 * a.scale, -10.4 * a.scale, leftEar.rearBase.x * a.scale, leftEar.rearBase.y * a.scale);
+    context.bezierCurveTo(-20.7 * a.scale, -7 * a.scale, -18.6 * a.scale, -11.5 * a.scale, -14.5 * a.scale, -13.3 * a.scale);
+    context.bezierCurveTo(-9.5 * a.scale, -14.1 * a.scale, -1 * a.scale, -14.2 * a.scale, leftEar.rearBase.x * a.scale, leftEar.rearBase.y * a.scale);
     traceEarCrown(context, a, leftEar);
     traceSkullFront(context, a, rightEar);
     traceEarCrown(context, a, rightEar, true);
-    context.bezierCurveTo(-17.6 * a.scale, 10.4 * a.scale, -20.6 * a.scale, 6.5 * a.scale, -SKIN_TOPOLOGY.headRearReach * a.scale, 0);
+    context.bezierCurveTo(-1 * a.scale, 14.2 * a.scale, -9.5 * a.scale, 14.1 * a.scale, -14.5 * a.scale, 13.3 * a.scale);
+    context.bezierCurveTo(-18.6 * a.scale, 11.5 * a.scale, -20.7 * a.scale, 7 * a.scale, -SKIN_TOPOLOGY.headRearReach * a.scale, 0);
     context.closePath();
   }
 
@@ -2625,10 +2623,12 @@
     const leftEar = earLandmarks(-1);
     const rightEar = earLandmarks(1);
     context.beginPath();
-    context.moveTo(leftEar.rearBase.x * a.scale, leftEar.rearBase.y * a.scale);
+    context.moveTo(-14.5 * a.scale, -13.3 * a.scale);
+    context.bezierCurveTo(-9.5 * a.scale, -14.1 * a.scale, -1 * a.scale, -14.2 * a.scale, leftEar.rearBase.x * a.scale, leftEar.rearBase.y * a.scale);
     traceEarCrown(context, a, leftEar);
     traceSkullFront(context, a, rightEar);
     traceEarCrown(context, a, rightEar, true);
+    context.bezierCurveTo(-1 * a.scale, 14.2 * a.scale, -9.5 * a.scale, 14.1 * a.scale, -14.5 * a.scale, 13.3 * a.scale);
   }
 
   function drawCatShadow(c) {
@@ -3060,8 +3060,8 @@
 
   // 俯视胡须：从正上方看胡须确实突出于头轮廓之外（猫的招牌）。头局部坐标系内绘制，随头转。
   const WHISKER_ROWS = Object.freeze([
-    Object.freeze([19.6, 4.3, 30, 11.5]),
-    Object.freeze([20.2, 5.6, 31, 16]),
+    Object.freeze([20, 3.6, 29.5, 10.5]),
+    Object.freeze([20.4, 5, 30.5, 14.5]),
   ]);
   function drawWhiskers(c, a) {
     ctx.strokeStyle = c.whisker;
@@ -3109,12 +3109,12 @@
     ctx.lineCap = 'round';
     ctx.lineWidth = 1.05 * a.scale;
     ctx.beginPath();
-    ctx.moveTo(11.8 * a.scale, side * 8.5 * a.scale);
+    ctx.moveTo(16.6 * a.scale, side * 5.4 * a.scale);
     ctx.quadraticCurveTo(
-      14.8 * a.scale,
-      side * (8.3 + arch) * a.scale,
-      17.6 * a.scale,
-      side * 6.9 * a.scale,
+      18.3 * a.scale,
+      side * (5.2 + arch * 0.6) * a.scale,
+      19.8 * a.scale,
+      side * 4 * a.scale,
     );
     ctx.stroke();
     ctx.globalAlpha = 1;
@@ -3124,9 +3124,9 @@
     ctx.fillStyle = c.nose;
     ctx.globalAlpha = 0.58;
     ctx.beginPath();
-    ctx.moveTo(23.4 * a.scale, 0);
-    ctx.quadraticCurveTo(22.55 * a.scale, -0.95 * a.scale, 21.8 * a.scale, -0.2 * a.scale);
-    ctx.quadraticCurveTo(22.45 * a.scale, 0.9 * a.scale, 23.4 * a.scale, 0);
+    ctx.moveTo(22.5 * a.scale, 0);
+    ctx.quadraticCurveTo(21.85 * a.scale, -0.85 * a.scale, 21.2 * a.scale, -0.18 * a.scale);
+    ctx.quadraticCurveTo(21.8 * a.scale, 0.8 * a.scale, 22.5 * a.scale, 0);
     ctx.fill();
     ctx.globalAlpha = 1;
   }
@@ -3286,12 +3286,12 @@
     ctx.lineWidth = 1.35 * a.scale;
     ctx.globalAlpha = 0.5;
     ctx.beginPath();
-    ctx.moveTo(-9 * a.scale, 0);
-    ctx.bezierCurveTo(-6.4 * a.scale, -0.3 * a.scale, -3.8 * a.scale, -0.2 * a.scale, -1.4 * a.scale, 0);
-    ctx.moveTo(-8.2 * a.scale, -5.3 * a.scale);
-    ctx.quadraticCurveTo(-5.2 * a.scale, -4.9 * a.scale, -2.8 * a.scale, -3.7 * a.scale);
-    ctx.moveTo(-8.2 * a.scale, 5.3 * a.scale);
-    ctx.quadraticCurveTo(-5.2 * a.scale, 4.9 * a.scale, -2.8 * a.scale, 3.7 * a.scale);
+    ctx.moveTo(2.5 * a.scale, 0);
+    ctx.bezierCurveTo(5.5 * a.scale, -0.3 * a.scale, 8.5 * a.scale, -0.2 * a.scale, 11.5 * a.scale, 0);
+    ctx.moveTo(3.5 * a.scale, -4.8 * a.scale);
+    ctx.quadraticCurveTo(7 * a.scale, -4.4 * a.scale, 10.5 * a.scale, -3.3 * a.scale);
+    ctx.moveTo(3.5 * a.scale, 4.8 * a.scale);
+    ctx.quadraticCurveTo(7 * a.scale, 4.4 * a.scale, 10.5 * a.scale, 3.3 * a.scale);
     ctx.stroke();
 
     drawEyeLine(c, a, -1);

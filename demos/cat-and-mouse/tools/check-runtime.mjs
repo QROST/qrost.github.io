@@ -282,7 +282,6 @@ function finiteSnapshot(snapshot) {
     snapshot.earPerk.left, snapshot.earPerk.right,
     snapshot.headGeometry.frontReach, snapshot.headGeometry.skullHalfWidth,
     snapshot.headGeometry.muzzleCornerForward, snapshot.headGeometry.muzzleHalfWidth,
-    snapshot.headGeometry.cheekApexForward,
     snapshot.headGeometry.visualRadius, snapshot.headGeometry.whiskerRows,
     snapshot.earGeometry.rearBaseForward, snapshot.earGeometry.frontBaseForward,
     snapshot.earGeometry.rearBaseOutward, snapshot.earGeometry.frontBaseOutward,
@@ -359,55 +358,58 @@ function assertRigSnapshot(snapshot, label = 'rig') {
   assert.ok(snapshot.earPerk.right >= 0.66 && snapshot.earPerk.right <= 1, `${label}: right ear perk escaped bounds`);
   const neutralEarAngle = Math.atan2(snapshot.earGeometry.tipOutward, snapshot.earGeometry.tipForward);
   assert.ok(
-    snapshot.headGeometry.frontReach >= 24 && snapshot.headGeometry.frontReach <= 26,
-    `${label}: muzzle reach escaped the compact head contract`,
+    snapshot.headGeometry.frontReach >= 21.8 && snapshot.headGeometry.frontReach <= 23.6,
+    `${label}: nose-peek apex escaped the lowered-head contract`,
   );
   assert.ok(
     snapshot.headGeometry.skullHalfWidth >= 13.5 && snapshot.headGeometry.skullHalfWidth <= 14.5,
     `${label}: skull width no longer matches the narrow neck and shoulders`,
   );
-  // 钝吻契约：吻端是一段有宽度的浅弧（猫），不是收拢到一点的锥（鼠/狐）。
-  // 三个窗口共同锁定"颊部把宽度带到前方、吻块短而钝"的正面轮廓。
+  // 低头契约（2026-07-20 用户参考图第二轮）：俯视看到的是头顶——吻部藏在前额缘
+  // 之下，只在中央露一小点鼻尖；前额缘几乎平直。旧的外凸吻块（muzzleHalfWidth 5 /
+  // muzzleCornerForward 22.6 / frontReach 24.4）被下列窗口拒绝。
   assert.ok(
-    snapshot.headGeometry.muzzleHalfWidth >= 3.8 && snapshot.headGeometry.muzzleHalfWidth <= 5.2,
-    `${label}: muzzle front face collapsed toward a point or bloated into a slab`,
+    snapshot.headGeometry.muzzleHalfWidth >= 2.6 && snapshot.headGeometry.muzzleHalfWidth <= 4,
+    `${label}: nose peek vanished or regrew into a protruding muzzle`,
   );
   assert.ok(
-    snapshot.headGeometry.muzzleCornerForward >= 22.4 && snapshot.headGeometry.muzzleCornerForward <= 23.8,
-    `${label}: muzzle corners left their short blunt-block station`,
-  );
-  assert.ok(
-    snapshot.headGeometry.cheekApexForward >= 8.4 && snapshot.headGeometry.cheekApexForward <= 10.6,
-    `${label}: cheeks no longer carry the skull's width forward`,
+    snapshot.headGeometry.muzzleCornerForward >= 20.5 && snapshot.headGeometry.muzzleCornerForward <= 22.3,
+    `${label}: forehead edge left its lowered-head station`,
   );
   assert.ok(
     snapshot.rig.head.visualRadius <= snapshot.rig.shoulders.visualRadius * 1.36,
     `${label}: head became oversized relative to the shoulder mass`,
   );
   assert.equal(snapshot.headGeometry.whiskerRows, 2, `${label}: face regained excess whisker line density`);
-  // 2026-07-20 方形头重校（用户参考图）：俯视颅骨是圆角方形，耳朵骑在两个后角上
-  // ——耳基必须横跨后角（rearBase 在平后缘上、frontBase 在平侧缘上），耳尖近乎正外张。
-  // 旧的"前中段侧沿耳 + 前倾耳尖"（rearBase -10.6 / frontBase 3.2 / 角度 0.88）被下列窗口拒绝。
+  // 2026-07-20 低头重校（用户参考图第二轮）：耳朵盖住方形颅**离身体远的两个前角**
+  // ——rearBase 在直侧缘上（全颅宽处）、frontBase 在前额缘上，耳尖沿对角线指向前外，
+  // 读作"猫低着头前进"。上一稿"骑后角 + 正外张"（rearBase -13.5 / frontBase -1.6 /
+  // 角度 1.29）被下列窗口拒绝。
   assert.ok(
-    snapshot.earGeometry.rearBaseForward <= -12 && snapshot.earGeometry.frontBaseForward <= 0,
-    `${label}: ear base left the rear corner of the square skull`,
+    snapshot.earGeometry.rearBaseForward >= 6 && snapshot.earGeometry.rearBaseForward <= 11
+      && snapshot.earGeometry.frontBaseForward >= 17.5 && snapshot.earGeometry.frontBaseForward <= 21,
+    `${label}: ear base left the far (front) corner of the square skull`,
   );
   assert.ok(
-    neutralEarAngle >= 1.15 && neutralEarAngle <= 1.42,
-    `${label}: neutral ears no longer rise nearly straight outward over the corners`,
+    snapshot.earGeometry.rearBaseOutward >= 13.5 && snapshot.earGeometry.rearBaseOutward <= 14.5,
+    `${label}: ear no longer attaches at the skull's full side width`,
+  );
+  assert.ok(
+    neutralEarAngle >= 0.5 && neutralEarAngle <= 0.78,
+    `${label}: neutral ears no longer extend the far-corner diagonal forward-outward`,
   );
   assert.ok(
     snapshot.earGeometry.tipRound >= 1.4 && snapshot.earGeometry.tipRound <= 2,
     `${label}: ear tip lost its restrained illustrated rounding`,
   );
   assert.ok(
-    snapshot.earGeometry.rootForward + snapshot.earGeometry.tipForward >= -7
-      && snapshot.earGeometry.rootForward + snapshot.earGeometry.tipForward <= -3.5,
-    `${label}: neutral ear tips escaped the rear corner station`,
+    snapshot.earGeometry.rootForward + snapshot.earGeometry.tipForward >= 21.8
+      && snapshot.earGeometry.rootForward + snapshot.earGeometry.tipForward <= 24.5,
+    `${label}: neutral ear tips escaped the far corner station`,
   );
   assert.ok(
-    neutralEarAngle + snapshot.earGeometry.maxSwivel < 1.5,
-    `${label}: full ear swivel can flatten a pinna into a rearward spike`,
+    neutralEarAngle - snapshot.earGeometry.maxSwivel > 0.42,
+    `${label}: full ear swivel can flatten a pinna into a forward spike`,
   );
   for (const [earName, side] of [['left', -1], ['right', 1]]) {
     const ear = snapshot.earLandmarks[earName];
@@ -419,9 +421,10 @@ function assertRigSnapshot(snapshot, label = 'rig') {
     assert.ok(baseSpan >= 12 && baseSpan <= 14.5, `${label}: ${earName} ear lost its compact crown attachment`);
     // 2026-07-19 重校：耳尖高度从"低扇贝"窗口 [4,7.2] 上移——俯视猫的耳朵是
     // 醒目的三角 pinna，旧的 5.4 高度读作后脑上的波纹（用户反馈"畸形"主因之一）。
-    assert.ok(tipHeight >= 7.8 && tipHeight <= 11.8, `${label}: ${earName} ear became a flat scallop or a tall horn`);
-    assert.ok(ear.tip.x > ear.rearBase.x + 6.5 && ear.tip.x < ear.frontBase.x + 0.4, `${label}: ${earName} ear tip left its corner base`);
-    assert.ok(side * ear.tip.y > outerBase + 7.2, `${label}: ${earName} ear tip no longer clears the skull decisively`);
+    assert.ok(tipHeight >= 7.8 && tipHeight <= 12.2, `${label}: ${earName} ear became a flat scallop or a tall horn`);
+    // 低头前角耳：耳尖必须同时越过前额缘（向前）和侧缘（向外），才读作"盖住远角"。
+    assert.ok(ear.tip.x > ear.frontBase.x + 1.8 && ear.tip.x < ear.frontBase.x + 5.5, `${label}: ${earName} ear tip left its far-corner diagonal`);
+    assert.ok(side * ear.tip.y > side * ear.rearBase.y + 2.6, `${label}: ${earName} ear tip no longer clears the skull side`);
     assert.ok(ear.root.x > ear.rearBase.x && ear.root.x < ear.frontBase.x, `${label}: ${earName} ear root detached from its base span`);
   }
   assert.ok(
