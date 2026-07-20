@@ -362,8 +362,8 @@ function assertRigSnapshot(snapshot, label = 'rig') {
     `${label}: nose-peek apex escaped the lowered-head contract`,
   );
   assert.ok(
-    snapshot.headGeometry.skullHalfWidth >= 13.5 && snapshot.headGeometry.skullHalfWidth <= 14.5,
-    `${label}: skull width no longer matches the narrow neck and shoulders`,
+    snapshot.headGeometry.skullHalfWidth >= 16.4 && snapshot.headGeometry.skullHalfWidth <= 18.0,
+    `${label}: skull width no longer matches the chamfered-square overhead contract`,
   );
   // 低头契约（2026-07-20 用户参考图第二轮）：俯视看到的是头顶——吻部藏在前额缘
   // 之下，只在中央露一小点鼻尖；前额缘几乎平直。旧的外凸吻块（muzzleHalfWidth 5 /
@@ -377,7 +377,7 @@ function assertRigSnapshot(snapshot, label = 'rig') {
     `${label}: forehead edge left its lowered-head station`,
   );
   assert.ok(
-    snapshot.rig.head.visualRadius <= snapshot.rig.shoulders.visualRadius * 1.36,
+    snapshot.rig.head.visualRadius <= snapshot.rig.shoulders.visualRadius * 1.40,
     `${label}: head became oversized relative to the shoulder mass`,
   );
   assert.equal(snapshot.headGeometry.whiskerRows, 2, `${label}: face regained excess whisker line density`);
@@ -391,7 +391,7 @@ function assertRigSnapshot(snapshot, label = 'rig') {
     `${label}: ear base left the far (front) corner of the square skull`,
   );
   assert.ok(
-    snapshot.earGeometry.rearBaseOutward >= 13.5 && snapshot.earGeometry.rearBaseOutward <= 14.5,
+    snapshot.earGeometry.rearBaseOutward >= 16.4 && snapshot.earGeometry.rearBaseOutward <= 17.6,
     `${label}: ear no longer attaches at the skull's full side width`,
   );
   assert.ok(
@@ -421,7 +421,7 @@ function assertRigSnapshot(snapshot, label = 'rig') {
     assert.ok(baseSpan >= 12 && baseSpan <= 14.5, `${label}: ${earName} ear lost its compact crown attachment`);
     // 2026-07-19 重校：耳尖高度从"低扇贝"窗口 [4,7.2] 上移——俯视猫的耳朵是
     // 醒目的三角 pinna，旧的 5.4 高度读作后脑上的波纹（用户反馈"畸形"主因之一）。
-    assert.ok(tipHeight >= 7.8 && tipHeight <= 12.2, `${label}: ${earName} ear became a flat scallop or a tall horn`);
+    assert.ok(tipHeight >= 7.8 && tipHeight <= 13.2, `${label}: ${earName} ear became a flat scallop or a tall horn`);
     // 低头前角耳：耳尖必须同时越过前额缘（向前）和侧缘（向外），才读作"盖住远角"。
     assert.ok(ear.tip.x > ear.frontBase.x + 1.8 && ear.tip.x < ear.frontBase.x + 5.5, `${label}: ${earName} ear tip left its far-corner diagonal`);
     assert.ok(side * ear.tip.y > side * ear.rearBase.y + 2.6, `${label}: ${earName} ear tip no longer clears the skull side`);

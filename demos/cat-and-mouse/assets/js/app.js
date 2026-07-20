@@ -230,10 +230,10 @@
   // its joints. These values describe hidden render sockets, not new bones.
   const SKIN_TOPOLOGY = Object.freeze({
     headBridgeT: 0.62,
-    headRearReach: 21,
+    headRearReach: 20,
     headSocketCenterX: 2.5,
-    headSocketRadiusX: 22.5,
-    headSocketRadiusY: 20.5,
+    headSocketRadiusX: 24.5,
+    headSocketRadiusY: 22.5,
     tailSocketForward: -19,
     tailAnchorForward: -28,
     tailRootRadius: 9.5,
@@ -243,22 +243,22 @@
   // Head proportions are intentionally restrained relative to the shoulders.
   // The face is a small directional accent on the continuous coat, not a
   // portrait pasted onto the body. The cat reads as walking with its head
-  // LOWERED: from above we mostly see the crown of a rounded-square skull,
-  // the muzzle hides under the forehead edge and only a small nose tip peeks
-  // past it (muzzleHalfWidth wide at muzzleCornerForward, apex short of
-  // frontReach).
+  // LOWERED: from above we mostly see the crown of a chamfered-square skull
+  // (wider than an ellipsoid, with straighter side flats), the muzzle hides
+  // under the forehead edge and only a small nose tip peeks past it
+  // (muzzleHalfWidth wide at muzzleCornerForward, apex short of frontReach).
   const HEAD_GEOMETRY = Object.freeze({
     frontReach: 22.8,
     muzzleCornerForward: 21.6,
     muzzleHalfWidth: 3.2,
-    skullHalfWidth: 15.4,
-    visualRadius: 40,
+    skullHalfWidth: 17.2,
+    visualRadius: 41,
   });
 
   // The ears are landmarks in one continuous skull contour. Their broad roots
   // stay welded to the crown while only the tips swivel, avoiding the detached
   // tabs produced by rotating two separately painted ear shapes. The overhead
-  // skull is a rounded SQUARE seen from above a lowered head, and each ear
+  // skull is a chamfered SQUARE seen from above a lowered head, and each ear
   // covers one FAR corner (the pair away from the body): the base spans from
   // the straight side edge (rearBase, at full skull width) around the corner
   // onto the forehead edge (frontBase), and the tip extends the corner
@@ -266,10 +266,10 @@
   const EAR_GEOMETRY = Object.freeze({
     rearBaseForward: 8.5,
     frontBaseForward: 19.5,
-    rearBaseOutward: 15.2,
-    frontBaseOutward: 8.2,
+    rearBaseOutward: 17.0,
+    frontBaseOutward: 8.4,
     rootForward: 13.5,
-    rootOutward: 12.2,
+    rootOutward: 13.2,
     tipForward: 9.6,
     tipOutward: 7.6,
     tipRound: 1.9,
@@ -2599,36 +2599,42 @@
     const s = a.scale;
     const cornerX = HEAD_GEOMETRY.muzzleCornerForward;
     const cornerY = HEAD_GEOMETRY.muzzleHalfWidth;
-    context.bezierCurveTo(20.5 * s, -7.2 * s, 21.2 * s, -4.9 * s, cornerX * s, -cornerY * s);
+    context.bezierCurveTo(20.8 * s, -7.6 * s, 21.2 * s, -4.9 * s, cornerX * s, -cornerY * s);
     context.quadraticCurveTo(HEAD_GEOMETRY.frontReach * s, 0, cornerX * s, cornerY * s);
-    context.bezierCurveTo(21.2 * s, 4.9 * s, 20.5 * s, 7.2 * s, rightEar.frontBase.x * s, rightEar.frontBase.y * s);
+    context.bezierCurveTo(21.2 * s, 4.9 * s, 20.8 * s, 7.6 * s, rightEar.frontBase.x * s, rightEar.frontBase.y * s);
   }
 
+  // Chamfered-square overhead skull: straighter side flats at skullHalfWidth,
+  // shorter rear face, softer rear corners — not an elongated ellipsoid.
   function traceHeadSilhouette(context, a) {
+    const s = a.scale;
+    const w = HEAD_GEOMETRY.skullHalfWidth;
     const leftEar = earLandmarks(-1);
     const rightEar = earLandmarks(1);
     context.beginPath();
-    context.moveTo(-SKIN_TOPOLOGY.headRearReach * a.scale, 0);
-    context.bezierCurveTo(-20.7 * a.scale, -7.4 * a.scale, -18.6 * a.scale, -12.4 * a.scale, -14.5 * a.scale, -14.3 * a.scale);
-    context.bezierCurveTo(-9.5 * a.scale, -15.2 * a.scale, -1 * a.scale, -15.4 * a.scale, leftEar.rearBase.x * a.scale, leftEar.rearBase.y * a.scale);
+    context.moveTo(-SKIN_TOPOLOGY.headRearReach * s, 0);
+    context.bezierCurveTo(-20.2 * s, -5.8 * s, -16.5 * s, -15.2 * s, -13.5 * s, -16.0 * s);
+    context.bezierCurveTo(-7.0 * s, -w * s, -0.8 * s, -w * s, leftEar.rearBase.x * s, leftEar.rearBase.y * s);
     traceEarCrown(context, a, leftEar);
     traceSkullFront(context, a, rightEar);
     traceEarCrown(context, a, rightEar, true);
-    context.bezierCurveTo(-1 * a.scale, 15.4 * a.scale, -9.5 * a.scale, 15.2 * a.scale, -14.5 * a.scale, 14.3 * a.scale);
-    context.bezierCurveTo(-18.6 * a.scale, 12.4 * a.scale, -20.7 * a.scale, 7.4 * a.scale, -SKIN_TOPOLOGY.headRearReach * a.scale, 0);
+    context.bezierCurveTo(-0.8 * s, w * s, -7.0 * s, w * s, -13.5 * s, 16.0 * s);
+    context.bezierCurveTo(-16.5 * s, 15.2 * s, -20.2 * s, 5.8 * s, -SKIN_TOPOLOGY.headRearReach * s, 0);
     context.closePath();
   }
 
   function traceHeadCrown(context, a) {
+    const s = a.scale;
+    const w = HEAD_GEOMETRY.skullHalfWidth;
     const leftEar = earLandmarks(-1);
     const rightEar = earLandmarks(1);
     context.beginPath();
-    context.moveTo(-14.5 * a.scale, -14.3 * a.scale);
-    context.bezierCurveTo(-9.5 * a.scale, -15.2 * a.scale, -1 * a.scale, -15.4 * a.scale, leftEar.rearBase.x * a.scale, leftEar.rearBase.y * a.scale);
+    context.moveTo(-13.5 * s, -16.0 * s);
+    context.bezierCurveTo(-7.0 * s, -w * s, -0.8 * s, -w * s, leftEar.rearBase.x * s, leftEar.rearBase.y * s);
     traceEarCrown(context, a, leftEar);
     traceSkullFront(context, a, rightEar);
     traceEarCrown(context, a, rightEar, true);
-    context.bezierCurveTo(-1 * a.scale, 15.4 * a.scale, -9.5 * a.scale, 15.2 * a.scale, -14.5 * a.scale, 14.3 * a.scale);
+    context.bezierCurveTo(-0.8 * s, w * s, -7.0 * s, w * s, -13.5 * s, 16.0 * s);
   }
 
   function drawCatShadow(c) {
@@ -2823,9 +2829,9 @@
       define(cat.rig.pelvis, 1 + shift * 0.5, 32 * spread, rearLateral * 0.72),
       define(cat.rig.pelvis, 15, 26 * (1 + roll * 0.08), rearLateral * 0.42),
       define(cat.rig.waist, 0, 21 * (1 + lie * 0.08 + roll * 0.14), waistLateral),
-      define(cat.rig.shoulders, -13, 24 * (1 + roll * 0.08), shoulderLateral),
-      define(cat.rig.shoulders, 1, 28 * (1 + loaf * 0.05 + roll * 0.1), shoulderLateral * 0.72),
-      define(cat.rig.shoulders, 13, 21, shoulderLateral * 0.28),
+      define(cat.rig.shoulders, -13, 23 * (1 + roll * 0.08), shoulderLateral),
+      define(cat.rig.shoulders, 1, 26.5 * (1 + loaf * 0.05 + roll * 0.1), shoulderLateral * 0.72),
+      define(cat.rig.shoulders, 13, 20, shoulderLateral * 0.28),
       define(cat.rig.neck, 3, 14.5),
     ];
     const bridgeT = SKIN_TOPOLOGY.headBridgeT;
@@ -3229,7 +3235,7 @@
     ctx.filter = `blur(${4.8 * a.scale}px)`;
     drawNodeEllipse(cat.rig.pelvis, -1, -3, 29, 12 * breathVolume, -0.06, a);
     drawNodeEllipse(cat.rig.waist, 1, -2, 23, 8.5 * breathVolume, 0.03, a);
-    drawNodeEllipse(cat.rig.shoulders, 0, -3, 28, 11 * breathVolume, 0.08, a);
+    drawNodeEllipse(cat.rig.shoulders, 0, -3, 26.5, 10.5 * breathVolume, 0.08, a);
     ctx.filter = 'none';
 
     ctx.globalAlpha = 0.2;
@@ -3237,14 +3243,15 @@
     [
       [cat.rig.pelvis, -6, -15, 17, 8, -0.18],
       [cat.rig.pelvis, 4, 14, 15, 7, 0.16],
-      [cat.rig.shoulders, 1, -15, 18, 7.5, 0.17],
-      [cat.rig.shoulders, -3, 14, 16, 7, -0.15],
+      [cat.rig.shoulders, 1, -15, 17, 7.5, 0.17],
+      [cat.rig.shoulders, -3, 14, 15, 7, -0.15],
     ].forEach((shape) => drawNodeEllipse(shape[0], shape[1], shape[2], shape[3], shape[4], shape[5], a));
 
     // 肩胛骨：摆动侧前肢的肩胛随 foot.lift 交替隆起（俯视潜行的招牌律动；静止时 lift=0 自然安静）
+    // 宽度刻意收窄——旧的 ±8 / ry 5.5 读作过度外凸的肩胛板。
     ctx.globalAlpha = 0.18;
-    drawNodeEllipse(cat.rig.shoulders, 2, -8, 8 + (cat.feet.leftFore ? cat.feet.leftFore.lift : 0) * 2.5, 5.5, -0.1, a);
-    drawNodeEllipse(cat.rig.shoulders, 2, 8, 8 + (cat.feet.rightFore ? cat.feet.rightFore.lift : 0) * 2.5, 5.5, 0.1, a);
+    drawNodeEllipse(cat.rig.shoulders, 2, -7, 6.5 + (cat.feet.leftFore ? cat.feet.leftFore.lift : 0) * 2.2, 5.0, -0.1, a);
+    drawNodeEllipse(cat.rig.shoulders, 2, 7, 6.5 + (cat.feet.rightFore ? cat.feet.rightFore.lift : 0) * 2.2, 5.0, 0.1, a);
 
     // 奶油胸楔（颈下浅色——虎斑常见的浅胸口，从上方看是颈前一小片）
     ctx.globalAlpha = 0.5;
@@ -3266,10 +3273,10 @@
       [cat.rig.pelvis, { x: 13, side: 1, edge: 26, inner: 8, drift: 5 }],
       [cat.rig.waist, { x: -3, side: -1, edge: 20, inner: 7, drift: 6 }],
       [cat.rig.waist, { x: 6, side: 1, edge: 20, inner: 7, drift: 5 }],
-      [cat.rig.shoulders, { x: -7, side: -1, edge: 26, inner: 9, drift: 6 }],
-      [cat.rig.shoulders, { x: 8, side: -1, edge: 24, inner: 8, drift: 5 }],
-      [cat.rig.shoulders, { x: -1, side: 1, edge: 27, inner: 9, drift: 6 }],
-      [cat.rig.shoulders, { x: 12, side: 1, edge: 22, inner: 8, drift: 4 }],
+      [cat.rig.shoulders, { x: -7, side: -1, edge: 25, inner: 9, drift: 6 }],
+      [cat.rig.shoulders, { x: 8, side: -1, edge: 23, inner: 8, drift: 5 }],
+      [cat.rig.shoulders, { x: -1, side: 1, edge: 26, inner: 9, drift: 6 }],
+      [cat.rig.shoulders, { x: 12, side: 1, edge: 21, inner: 8, drift: 4 }],
     ].forEach(([node, stripe]) => drawFlankStripe(node, stripe, a));
 
     drawRestPoseDetails(c, a);
