@@ -385,26 +385,29 @@ function assertRigSnapshot(snapshot, label = 'rig') {
     `${label}: head became oversized relative to the shoulder mass`,
   );
   assert.equal(snapshot.headGeometry.whiskerRows, 2, `${label}: face regained excess whisker line density`);
+  // 2026-07-20 方形头重校（用户参考图）：俯视颅骨是圆角方形，耳朵骑在两个后角上
+  // ——耳基必须横跨后角（rearBase 在平后缘上、frontBase 在平侧缘上），耳尖近乎正外张。
+  // 旧的"前中段侧沿耳 + 前倾耳尖"（rearBase -10.6 / frontBase 3.2 / 角度 0.88）被下列窗口拒绝。
   assert.ok(
-    snapshot.earGeometry.rearBaseForward <= -9 && snapshot.earGeometry.frontBaseForward <= 4,
-    `${label}: ear roots drifted forward into the eyes and muzzle`,
+    snapshot.earGeometry.rearBaseForward <= -12 && snapshot.earGeometry.frontBaseForward <= 0,
+    `${label}: ear base left the rear corner of the square skull`,
   );
   assert.ok(
-    neutralEarAngle >= 0.82 && neutralEarAngle <= 0.96,
-    `${label}: neutral ears no longer rise softly from the rear crown`,
+    neutralEarAngle >= 1.15 && neutralEarAngle <= 1.42,
+    `${label}: neutral ears no longer rise nearly straight outward over the corners`,
   );
   assert.ok(
     snapshot.earGeometry.tipRound >= 1.4 && snapshot.earGeometry.tipRound <= 2,
     `${label}: ear tip lost its restrained illustrated rounding`,
   );
   assert.ok(
-    snapshot.earGeometry.rootForward + snapshot.earGeometry.tipForward >= -1
-      && snapshot.earGeometry.rootForward + snapshot.earGeometry.tipForward <= 2,
-    `${label}: neutral ear tips escaped the rear crown station`,
+    snapshot.earGeometry.rootForward + snapshot.earGeometry.tipForward >= -7
+      && snapshot.earGeometry.rootForward + snapshot.earGeometry.tipForward <= -3.5,
+    `${label}: neutral ear tips escaped the rear corner station`,
   );
   assert.ok(
-    neutralEarAngle + snapshot.earGeometry.maxSwivel < 1.05,
-    `${label}: full ear swivel can flatten a pinna into a side spike`,
+    neutralEarAngle + snapshot.earGeometry.maxSwivel < 1.5,
+    `${label}: full ear swivel can flatten a pinna into a rearward spike`,
   );
   for (const [earName, side] of [['left', -1], ['right', 1]]) {
     const ear = snapshot.earLandmarks[earName];
@@ -417,7 +420,7 @@ function assertRigSnapshot(snapshot, label = 'rig') {
     // 2026-07-19 重校：耳尖高度从"低扇贝"窗口 [4,7.2] 上移——俯视猫的耳朵是
     // 醒目的三角 pinna，旧的 5.4 高度读作后脑上的波纹（用户反馈"畸形"主因之一）。
     assert.ok(tipHeight >= 7.8 && tipHeight <= 11.8, `${label}: ${earName} ear became a flat scallop or a tall horn`);
-    assert.ok(ear.tip.x > ear.rearBase.x + 8 && ear.tip.x < ear.frontBase.x + 0.4, `${label}: ${earName} ear tip left the rear crown`);
+    assert.ok(ear.tip.x > ear.rearBase.x + 6.5 && ear.tip.x < ear.frontBase.x + 0.4, `${label}: ${earName} ear tip left its corner base`);
     assert.ok(side * ear.tip.y > outerBase + 7.2, `${label}: ${earName} ear tip no longer clears the skull decisively`);
     assert.ok(ear.root.x > ear.rearBase.x && ear.root.x < ear.frontBase.x, `${label}: ${earName} ear root detached from its base span`);
   }

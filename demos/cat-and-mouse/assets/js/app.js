@@ -257,18 +257,20 @@
 
   // The ears are landmarks in one continuous skull contour. Their broad roots
   // stay welded to the crown while only the tips swivel, avoiding the detached
-  // tabs produced by rotating two separately painted ear shapes. Tip height
-  // above the base span is what makes them read as pinnae instead of scallops
-  // on the rear crown, so the tips clear the skull sides decisively.
+  // tabs produced by rotating two separately painted ear shapes. The overhead
+  // skull is a rounded SQUARE and each ear sits on one rear corner of it —
+  // base spanning from the flat rear edge around the corner onto the straight
+  // side edge, tip rising almost straight outward. Tip height above the base
+  // span is what makes them read as pinnae instead of scallops.
   const EAR_GEOMETRY = Object.freeze({
-    rearBaseForward: -10.6,
-    frontBaseForward: 3.2,
-    rearBaseOutward: 11.6,
-    frontBaseOutward: 13,
-    rootForward: -6.6,
-    rootOutward: 12.6,
-    tipForward: 8.4,
-    tipOutward: 10.6,
+    rearBaseForward: -13.5,
+    frontBaseForward: -1.6,
+    rearBaseOutward: 11.2,
+    frontBaseOutward: 14,
+    rootForward: -8.4,
+    rootOutward: 12.4,
+    tipForward: 3,
+    tipOutward: 10.2,
     tipRound: 1.9,
     maxSwivel: 0.08,
   });
@@ -2589,20 +2591,21 @@
 
   // Shared front half of the skull, from the left ear's front base around the
   // nose to the right ear's front base. One path feeds both the fill and the
-  // crown stroke so the two can never drift apart. Full cheeks carry the
-  // skull's width forward, then a short jowl taper meets a blunt muzzle block
-  // whose front face is a shallow arc — never a point.
+  // crown stroke so the two can never drift apart. The sides run nearly
+  // parallel (the two sides of the rounded square) until the front corners,
+  // which round quickly into a blunt muzzle block whose front face is a
+  // shallow arc — never a point.
   function traceSkullFront(context, a, rightEar) {
     const s = a.scale;
     const cheekX = HEAD_GEOMETRY.cheekApexForward;
     const cheekY = HEAD_GEOMETRY.skullHalfWidth;
     const cornerX = HEAD_GEOMETRY.muzzleCornerForward;
     const cornerY = HEAD_GEOMETRY.muzzleHalfWidth;
-    context.bezierCurveTo(5.6 * s, -13.9 * s, 7.6 * s, -cheekY * s, cheekX * s, -cheekY * s);
-    context.bezierCurveTo(16.4 * s, -13 * s, 20.4 * s, -9.8 * s, cornerX * s, -cornerY * s);
+    context.bezierCurveTo(1.5 * s, -14.1 * s, 5 * s, -cheekY * s, cheekX * s, -cheekY * s);
+    context.bezierCurveTo(16.2 * s, -14.05 * s, 20.9 * s, -11.9 * s, cornerX * s, -cornerY * s);
     context.quadraticCurveTo(HEAD_GEOMETRY.frontReach * s, 0, cornerX * s, cornerY * s);
-    context.bezierCurveTo(20.4 * s, 9.8 * s, 16.4 * s, 13 * s, cheekX * s, cheekY * s);
-    context.bezierCurveTo(7.6 * s, cheekY * s, 5.6 * s, 13.9 * s, rightEar.frontBase.x * s, rightEar.frontBase.y * s);
+    context.bezierCurveTo(20.9 * s, 11.9 * s, 16.2 * s, 14.05 * s, cheekX * s, cheekY * s);
+    context.bezierCurveTo(5 * s, cheekY * s, 1.5 * s, 14.1 * s, rightEar.frontBase.x * s, rightEar.frontBase.y * s);
   }
 
   function traceHeadSilhouette(context, a) {
@@ -2610,11 +2613,11 @@
     const rightEar = earLandmarks(1);
     context.beginPath();
     context.moveTo(-SKIN_TOPOLOGY.headRearReach * a.scale, 0);
-    context.bezierCurveTo(-20.3 * a.scale, -10 * a.scale, -15.6 * a.scale, -13 * a.scale, leftEar.rearBase.x * a.scale, leftEar.rearBase.y * a.scale);
+    context.bezierCurveTo(-20.6 * a.scale, -6.5 * a.scale, -17.6 * a.scale, -10.4 * a.scale, leftEar.rearBase.x * a.scale, leftEar.rearBase.y * a.scale);
     traceEarCrown(context, a, leftEar);
     traceSkullFront(context, a, rightEar);
     traceEarCrown(context, a, rightEar, true);
-    context.bezierCurveTo(-15.6 * a.scale, 13 * a.scale, -20.3 * a.scale, 10 * a.scale, -SKIN_TOPOLOGY.headRearReach * a.scale, 0);
+    context.bezierCurveTo(-17.6 * a.scale, 10.4 * a.scale, -20.6 * a.scale, 6.5 * a.scale, -SKIN_TOPOLOGY.headRearReach * a.scale, 0);
     context.closePath();
   }
 
@@ -3283,12 +3286,12 @@
     ctx.lineWidth = 1.35 * a.scale;
     ctx.globalAlpha = 0.5;
     ctx.beginPath();
-    ctx.moveTo(-7.4 * a.scale, 0);
-    ctx.bezierCurveTo(-4.8 * a.scale, -0.3 * a.scale, -2.2 * a.scale, -0.2 * a.scale, 0.2 * a.scale, 0);
-    ctx.moveTo(-6.6 * a.scale, -5.4 * a.scale);
-    ctx.quadraticCurveTo(-3.6 * a.scale, -5 * a.scale, -1.2 * a.scale, -3.8 * a.scale);
-    ctx.moveTo(-6.6 * a.scale, 5.4 * a.scale);
-    ctx.quadraticCurveTo(-3.6 * a.scale, 5 * a.scale, -1.2 * a.scale, 3.8 * a.scale);
+    ctx.moveTo(-9 * a.scale, 0);
+    ctx.bezierCurveTo(-6.4 * a.scale, -0.3 * a.scale, -3.8 * a.scale, -0.2 * a.scale, -1.4 * a.scale, 0);
+    ctx.moveTo(-8.2 * a.scale, -5.3 * a.scale);
+    ctx.quadraticCurveTo(-5.2 * a.scale, -4.9 * a.scale, -2.8 * a.scale, -3.7 * a.scale);
+    ctx.moveTo(-8.2 * a.scale, 5.3 * a.scale);
+    ctx.quadraticCurveTo(-5.2 * a.scale, 4.9 * a.scale, -2.8 * a.scale, 3.7 * a.scale);
     ctx.stroke();
 
     drawEyeLine(c, a, -1);
@@ -3302,15 +3305,27 @@
     ctx.translate(cat.rig.head.x, cat.rig.head.y);
     ctx.rotate(cat.rig.head.angle);
 
+    // The head rides above the shoulders, so it drops a soft contact shadow
+    // rearward onto the neck fur. Without it the same-color head and body
+    // fuse into one mass and the corner-mounted ears lose their attachment.
+    ctx.save();
+    ctx.translate(-2.6 * a.scale, 0);
+    ctx.fillStyle = c.furDark;
+    ctx.globalAlpha = 0.2;
+    ctx.filter = `blur(${2.2 * a.scale}px)`;
+    traceHeadSilhouette(ctx, a);
+    ctx.fill();
+    ctx.restore();
+
     ctx.fillStyle = c.fur;
     traceHeadSilhouette(ctx, a);
     ctx.fill();
     paintEarBacks(c, a);
 
     ctx.strokeStyle = c.furDark;
-    ctx.globalAlpha = 0.52;
+    ctx.globalAlpha = 0.58;
     ctx.lineJoin = 'round';
-    ctx.lineWidth = 0.85 * a.scale;
+    ctx.lineWidth = 1 * a.scale;
     traceHeadCrown(ctx, a);
     ctx.stroke();
     ctx.globalAlpha = 1;
