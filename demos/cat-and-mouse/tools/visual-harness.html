@@ -248,38 +248,44 @@
     const demo = window.__catMouseDemo;
     const source = document.getElementById('world');
     const lengths = ['short', 'medium', 'long', 'hairless'];
+    const furPoses = [['sit', 1], ['sideLie', 1], ['curl', -1]];
     const cell = 300;
     const sheet = document.createElement('canvas');
     sheet.width = cell * lengths.length;
-    sheet.height = cell + 36;
+    sheet.height = (cell + 36) * furPoses.length;
     const sc = sheet.getContext('2d');
     sc.fillStyle = '#20241e';
     sc.fillRect(0, 0, sheet.width, sheet.height);
     sc.font = '600 15px system-ui, sans-serif';
     sc.textAlign = 'center';
     sc.textBaseline = 'middle';
-    demo.previewIdlePose('sideLie', 1);
-    window.__step(150);
     const results = [];
-    lengths.forEach((furLength, index) => {
-      demo.setAppearance({ pattern: 'tabby', colorway: 'orange', whiteLevel: 'low', furLength });
-      const snapshot = demo.getSnapshot();
-      const dpr = snapshot.viewport.dpr;
-      const radius = 155 * dpr;
-      sc.drawImage(
-        source,
-        snapshot.cat.x * dpr - radius,
-        snapshot.cat.y * dpr - radius,
-        radius * 2,
-        radius * 2,
-        index * cell,
-        0,
-        cell,
-        cell,
-      );
-      sc.fillStyle = '#e8dfcf';
-      sc.fillText(furLength, index * cell + cell * 0.5, cell + 18);
-      results.push(snapshot.appearance);
+    furPoses.forEach(([mode, side], row) => {
+      // The preview-only duration preserves the production transition default
+      // while settling each comparison pose in eight deterministic frames.
+      demo.previewIdlePose(mode, side, 0.2);
+      window.__step(8, 50);
+      lengths.forEach((furLength, column) => {
+        demo.setAppearance({ pattern: 'solid', colorway: 'orange', whiteLevel: 'none', furLength });
+        const snapshot = demo.getSnapshot();
+        const dpr = snapshot.viewport.dpr;
+        const radius = 155 * dpr;
+        const y = row * (cell + 36);
+        sc.drawImage(
+          source,
+          snapshot.cat.x * dpr - radius,
+          snapshot.cat.y * dpr - radius,
+          radius * 2,
+          radius * 2,
+          column * cell,
+          y,
+          cell,
+          cell,
+        );
+        sc.fillStyle = '#e8dfcf';
+        sc.fillText(`${mode} · ${furLength}`, column * cell + cell * 0.5, y + cell + 18);
+        results.push({ pose: mode, appearance: snapshot.appearance, furGeometry: snapshot.furGeometry });
+      });
     });
     demo.setAppearance(window.CatAppearance.DEFAULT);
     demo.clearIdlePose();
@@ -287,7 +293,7 @@
     if (!img) {
       img = document.createElement('img');
       img.id = 'fursheet';
-      img.style.cssText = 'position:fixed;left:8px;right:8px;bottom:8px;width:calc(100% - 16px);height:auto;z-index:10001;border:2px solid #999;background:#20241e;';
+      img.style.cssText = 'position:fixed;top:46px;left:50%;transform:translateX(-50%);max-width:calc(100% - 16px);max-height:calc(100% - 54px);width:auto;height:auto;z-index:10001;border:2px solid #999;background:#20241e;';
       document.body.appendChild(img);
     }
     img.src = sheet.toDataURL();
@@ -296,6 +302,13 @@
 </script>
 </head>
 <body>
+  <nav aria-label="Visual harness controls" style="position:fixed;top:8px;left:8px;z-index:11000;display:flex;gap:6px">
+    <button id="fur-sheet-trigger" type="button" aria-label="Render fur-length comparison sheet" onclick="window.__furSheet()">fur sheet</button>
+    <button type="button" aria-label="Show short hair in solid orange" onclick="window.__catMouseDemo.setAppearance({pattern:'solid',colorway:'orange',whiteLevel:'none',furLength:'short'})">short</button>
+    <button type="button" aria-label="Show medium hair in solid orange" onclick="window.__catMouseDemo.setAppearance({pattern:'solid',colorway:'orange',whiteLevel:'none',furLength:'medium'})">medium</button>
+    <button type="button" aria-label="Show long hair in solid orange" onclick="window.__catMouseDemo.setAppearance({pattern:'solid',colorway:'orange',whiteLevel:'none',furLength:'long'})">long</button>
+    <button type="button" aria-label="Show hairless cat in solid orange" onclick="window.__catMouseDemo.setAppearance({pattern:'solid',colorway:'orange',whiteLevel:'none',furLength:'hairless'})">hairless</button>
+  </nav>
   <main class="page">
     <section class="stage-frame">
       <div class="stage" id="stage">

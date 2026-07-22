@@ -294,7 +294,11 @@ const bodyFlankSource = appSource.match(/function strokeBodyFlanks[\s\S]*?(?=\n 
 const drawShadowSource = appSource.match(/function drawCatShadow[\s\S]*?(?=\n  function (?:paintTailCoat|drawTail))/)?.[0] || '';
 const drawTailSource = appSource.match(/function drawTail[\s\S]*?(?=\n  function drawLegs)/)?.[0] || '';
 const drawLegsSource = appSource.match(/function drawLegs[\s\S]*?(?=\n  function bodyStations)/)?.[0] || '';
-const drawBodySource = appSource.match(/function drawBody[\s\S]*?(?=\n  function (?:paintHeadFurFringe|drawTopDownFace))/)?.[0] || '';
+const tailFurFlowSource = appSource.match(/function paintTailFurFlow[\s\S]*?(?=\n  function drawTail)/)?.[0] || '';
+const bodyFurFlowSource = appSource.match(/function paintBodyFurFlow[\s\S]*?(?=\n  function paintBodyCoat)/)?.[0] || '';
+const headFurFlowSource = appSource.match(/function paintHeadFurFlow[\s\S]*?(?=\n  function paintHeadCoat)/)?.[0] || '';
+const previewFurFlowSource = appSource.match(/function paintPreviewFurFlow[\s\S]*?(?=\n  function paintPreviewBodyCoat)/)?.[0] || '';
+const drawBodySource = appSource.match(/function drawBody[\s\S]*?(?=\n  function (?:paintHeadFurFlow|drawTopDownFace))/)?.[0] || '';
 const topDownFaceSource = appSource.match(/function drawTopDownFace[\s\S]*?(?=\n  function drawHead)/)?.[0] || '';
 const drawHeadSource = appSource.match(/function drawHead\([\s\S]*?(?=\n  function drawMouse)/)?.[0] || '';
 for (const key of ['stateSit', 'stateLoaf', 'stateSideLie', 'stateRoll', 'stateCurl']) {
@@ -386,10 +390,28 @@ assert.match(visualHarnessSource, /window\.__headFrame\s*=\s*\(\)\s*=>/, 'visual
 assert.match(visualHarnessSource, /window\.__zoomHead\s*=\s*\(R\)\s*=>/, 'visual harness must expose a dedicated head crop');
 assert.match(visualHarnessSource, /window\.__appearanceSheet\s*=\s*\(\)\s*=>/, 'visual harness must expose all eight coat patterns');
 assert.match(visualHarnessSource, /window\.__furSheet\s*=\s*\(\)\s*=>/, 'visual harness must expose all four fur lengths');
+assert.match(visualHarnessSource, /const furPoses = \[\['sit', 1\], \['sideLie', 1\], \['curl', -1\]\]/, 'fur contact sheet must attack straight, side-lying and curled silhouettes');
+assert.match(visualHarnessSource, /previewIdlePose\(mode, side, 0\.2\)/, 'fur contact sheet must settle every pose without hundreds of full-canvas frames');
+assert.match(visualHarnessSource, /pattern: 'solid', colorway: 'orange', whiteLevel: 'none', furLength/, 'fur contact sheet must isolate silhouette and flow from coat markings');
 assert.match(appSource, /function paintTailCoat\s*\(/, 'tail markings must be recipe-driven');
 assert.match(appSource, /function paintBodyCoat\s*\(/, 'body markings must be recipe-driven');
 assert.match(appSource, /function paintHeadCoat\s*\(/, 'head markings must be recipe-driven');
-assert.match(appSource, /function paintBodyFurFringe\s*\(/, 'medium and long coats must have a render-only fringe');
+assert.doesNotMatch(appSource, /function paint(?:Body|Head)FurFringe\s*\(/, 'closed geometric fringe blocks must not return');
+for (const [label, source] of [['tail', tailFurFlowSource], ['body', bodyFurFlowSource], ['head', headFurFlowSource], ['preview', previewFurFlowSource]]) {
+  assert.ok(source, `${label} fur flow renderer must remain discoverable`);
+  assert.match(source, /quadraticCurveTo\s*\(/, `${label} fur must use open curved strokes`);
+  assert.match(source, /lineCap\s*=\s*['"]round['"]/, `${label} fur strokes must have rounded ends`);
+  assert.doesNotMatch(source, /closePath\s*\(|\.fill\s*\(/, `${label} fur must not regress to filled triangular blocks`);
+  assert.doesNotMatch(source, /Math\.random\s*\(/, `${label} fur guides must remain temporally stable`);
+}
+assert.match(appSource, /const BODY_FUR_PROFILE = Object\.freeze/, 'body fur volume must use one explicit regional profile');
+assert.match(appSource, /function furGeometrySnapshot\s*\(/, 'fur geometry must expose a deterministic regression snapshot');
+assert.match(appSource, /tailRootClearance = rearWidth - socketLateral - tailCoatRadius\(0, a\.scale\)/, 'tail seam oracle must use the rendered root radius');
+assert.match(appSource, /function bodyFurFlowReach\s*\(/, 'body guard hairs must expose a conservative visible reach');
+assert.match(appSource, /function tailFurFlowReach\s*\(/, 'tail guard hairs must expose a conservative visible reach');
+const poseEnvelopeSource = appSource.match(/function poseEnvelopeSnapshot[\s\S]*?(?=\n  function drawNodeEllipse)/)?.[0] || '';
+assert.match(poseEnvelopeSource, /bodyFurFlowReach\s*\(/, 'pose envelope must include protruding body guard hairs');
+assert.match(poseEnvelopeSource, /tailFurFlowReach\s*\(/, 'pose envelope must include protruding tail guard hairs');
 assert.match(appSource, /function paintHairlessBodyDetails\s*\(/, 'hairless coats must retain subtle skin articulation');
 assert.ok(tailRibbonSource, 'tail ribbon renderer must remain discoverable');
 assert.doesNotMatch(tailRibbonSource, /closePath\s*\(/, 'tail ribbon must stay open at its hidden root');
@@ -473,6 +495,10 @@ function finiteSnapshot(snapshot) {
     snapshot.mouse.x, snapshot.mouse.y, snapshot.mouse.speed,
     snapshot.rigScale, snapshot.turnVelocity, snapshot.rigCurvature,
     snapshot.skin.headSocketMargin, snapshot.skin.tailRootClearance, snapshot.skin.narrow,
+    snapshot.furGeometry.maxBodyOffset, snapshot.furGeometry.bodyGuideReach,
+    snapshot.furGeometry.headRuff, snapshot.furGeometry.tailRootRadius,
+    snapshot.furGeometry.maxTailCoreRadius, snapshot.furGeometry.tailGuideReach,
+    snapshot.furGeometry.tailPlumeExpansion, snapshot.furGeometry.tailSampleCount,
     snapshot.poseEnvelope.left, snapshot.poseEnvelope.top,
     snapshot.poseEnvelope.right, snapshot.poseEnvelope.bottom,
     snapshot.support.foreBias, snapshot.support.hindBias, snapshot.support.combined,
@@ -692,6 +718,13 @@ function assertHeadInsideViewport(snapshot, padding = 1) {
   assert.ok(head.y + head.visualRadius <= snapshot.viewport.height - padding, 'head/ears crossed bottom viewport edge');
 }
 
+function assertPoseEnvelopeInsideViewport(snapshot, label) {
+  assert.ok(snapshot.poseEnvelope.left >= -1, `${label}: visible coat escaped the left edge`);
+  assert.ok(snapshot.poseEnvelope.top >= -1, `${label}: visible coat escaped the top edge`);
+  assert.ok(snapshot.poseEnvelope.right <= snapshot.viewport.width + 1, `${label}: visible coat escaped the right edge`);
+  assert.ok(snapshot.poseEnvelope.bottom <= snapshot.viewport.height + 1, `${label}: visible coat escaped the bottom edge`);
+}
+
 assert.ok(sandbox.__catMouseDemo, 'debug/test surface must be available');
 step(120);
 let snapshot = sandbox.__catMouseDemo.getSnapshot();
@@ -749,6 +782,106 @@ for (const pattern of Object.keys(sandbox.CatAppearance.PATTERNS)) {
     }
   }
 }
+
+const furSnapshotsByLength = Object.fromEntries(
+  ['hairless', 'short', 'medium', 'long'].map((selectedFur) => {
+    sandbox.__catMouseDemo.setAppearance({
+      pattern: 'tabby', colorway: 'orange', whiteLevel: 'low', furLength: selectedFur,
+    });
+    return [selectedFur, JSON.parse(JSON.stringify(sandbox.__catMouseDemo.getSnapshot()))];
+  }),
+);
+const furGeometryByLength = Object.fromEntries(
+  Object.entries(furSnapshotsByLength).map(([selectedFur, current]) => [selectedFur, current.furGeometry]),
+);
+assert.equal(furGeometryByLength.short.maxBodyOffset, 0, 'short hair must preserve the established body silhouette');
+assert.equal(furGeometryByLength.hairless.maxBodyOffset, 0, 'hairless skin must not grow a fur halo');
+assert.ok(furGeometryByLength.medium.maxBodyOffset >= 2, 'medium hair needs a readable continuous coat volume');
+assert.ok(
+  furGeometryByLength.long.maxBodyOffset >= furGeometryByLength.medium.maxBodyOffset + 2,
+  'long hair must add another visible coat-volume step beyond medium hair',
+);
+assert.ok(furGeometryByLength.long.maxBodyOffset <= 6.5, 'long hair must not inflate the cat into a uniform blob');
+assert.equal(furGeometryByLength.medium.bodyGuideCount, 8, 'medium hair should use eight restrained body guides');
+assert.equal(furGeometryByLength.long.bodyGuideCount, 14, 'long hair should use fourteen stable body guides');
+assert.equal(furGeometryByLength.medium.tailGuideCount, 4, 'medium hair should use four restrained tail guides');
+assert.equal(furGeometryByLength.long.tailGuideCount, 8, 'long hair should use eight stable tail guides');
+assert.ok(
+  furGeometryByLength.long.tailRadiusMultiplier <= 1.3,
+  'long hair must use guard-hair flow instead of inflating the tail into a thick tube',
+);
+const sharedTailRootRadius = furGeometryByLength.short.tailRootRadius;
+assert.ok(sharedTailRootRadius > 0, 'shared rendered tail root radius must remain positive');
+for (const selectedFur of ['hairless', 'short', 'medium', 'long']) {
+  assert.equal(
+    furGeometryByLength[selectedFur].tailSampleCount,
+    furSnapshotsByLength[selectedFur].tailPoints.length,
+    `${selectedFur}: fur geometry must sample the same socket-inclusive tail used by the renderer`,
+  );
+  assert.ok(
+    Math.abs(furGeometryByLength[selectedFur].tailRootRadius - sharedTailRootRadius) < 0.001,
+    `${selectedFur}: rendered tail root must preserve the shared socket radius (${furGeometryByLength[selectedFur].tailRootRadius})`,
+  );
+  assert.ok(
+    furSnapshotsByLength[selectedFur].skin.tailRootClearance >= 3 * furSnapshotsByLength[selectedFur].rigScale,
+    `${selectedFur}: rendered tail root escaped the pelvis envelope`,
+  );
+}
+assert.ok(
+  furGeometryByLength.medium.bodyGuideReach > furGeometryByLength.short.bodyGuideReach
+    && furGeometryByLength.long.bodyGuideReach > furGeometryByLength.medium.bodyGuideReach,
+  'visible body guard-hair reach must increase with coat length',
+);
+assert.ok(
+  furGeometryByLength.long.tailGuideReach > furGeometryByLength.long.maxTailCoreRadius
+    && furGeometryByLength.long.tailGuideReach <= 20,
+  `long tail guide endpoints must extend beyond the core but remain bounded: ${JSON.stringify(furGeometryByLength.long)}`,
+);
+assert.equal(furGeometryByLength.short.tailPlumeExpansion, 0, 'short hair must preserve the established tail taper');
+assert.ok(
+  furGeometryByLength.medium.tailPlumeExpansion > 0
+    && furGeometryByLength.long.tailPlumeExpansion >= furGeometryByLength.medium.tailPlumeExpansion + 1.5
+    && furGeometryByLength.long.tailPlumeExpansion <= 4,
+  'tail plume must add a bounded, length-specific bell profile instead of uniform thickness',
+);
+assert.ok(
+  furGeometryByLength.medium.headRuff > 0
+    && furGeometryByLength.long.headRuff > furGeometryByLength.medium.headRuff,
+  'cheek ruff volume must increase monotonically without changing the face front',
+);
+assert.deepEqual(
+  [furGeometryByLength.long.bodyOffsets[0], furGeometryByLength.long.bodyOffsets.at(-1)],
+  [0, 0],
+  'fur expansion must taper to zero at the tail and head sockets',
+);
+
+function furDrawMetrics(selectedFur) {
+  contextCalls.length = 0;
+  recordContextCalls = true;
+  try {
+    sandbox.__catMouseDemo.setAppearance({
+      pattern: 'tabby', colorway: 'orange', whiteLevel: 'low', furLength: selectedFur,
+    });
+  } finally {
+    recordContextCalls = false;
+  }
+  return {
+    total: contextCalls.length,
+    curves: contextCalls.filter((call) => call.property === 'quadraticCurveTo').length,
+    strokes: contextCalls.filter((call) => call.property === 'stroke').length,
+  };
+}
+const shortFurMetrics = furDrawMetrics('short');
+const mediumFurMetrics = furDrawMetrics('medium');
+const longFurMetrics = furDrawMetrics('long');
+assert.ok(mediumFurMetrics.curves > shortFurMetrics.curves, 'medium hair must add visible curved flow strokes');
+assert.ok(longFurMetrics.curves > mediumFurMetrics.curves, 'long hair must add more curved flow strokes than medium hair');
+assert.ok(
+  longFurMetrics.curves - shortFurMetrics.curves <= 60
+    && longFurMetrics.strokes - shortFurMetrics.strokes <= 8
+    && longFurMetrics.total - shortFurMetrics.total <= 140,
+  `long-hair detail must stay within a bounded Canvas 2D draw-call budget: ${JSON.stringify({ shortFurMetrics, mediumFurMetrics, longFurMetrics })}`,
+);
 
 function appearanceDrawSignature(state) {
   contextCalls.length = 0;
@@ -1314,6 +1447,9 @@ const edgeTargets = [
   [fakeViewportWidth * 0.5, fakeViewportHeight - 8],
   [8, fakeViewportHeight * 0.5],
 ];
+sandbox.__catMouseDemo.setAppearance({
+  pattern: 'solid', colorway: 'black', whiteLevel: 'none', furLength: 'long',
+});
 let sawReachRecovery = false;
 let pounceRun = 0;
 let earAimMin = Infinity;
@@ -1327,6 +1463,7 @@ for (const [targetX, targetY] of edgeTargets) {
     const current = sandbox.__catMouseDemo.getSnapshot();
     assertRigSnapshot(current, 'compact edge pursuit');
     assertHeadInsideViewport(current);
+    assertPoseEnvelopeInsideViewport(current, 'compact long-hair edge pursuit');
     const earAim = (current.ears.left + current.ears.right) * 0.5;
     earAimMin = Math.min(earAimMin, earAim);
     earAimMax = Math.max(earAimMax, earAim);
@@ -1357,10 +1494,12 @@ for (const [rate, targetX, targetY] of [
     const current = sandbox.__catMouseDemo.getSnapshot();
     assertRigSnapshot(current, `${rate} Hz compact turn`);
     assertHeadInsideViewport(current);
+    assertPoseEnvelopeInsideViewport(current, `${rate} Hz compact long-hair turn`);
   }
   sandbox.__catMouseDemo.releaseMouse();
   step(Math.round(rate * 0.4), 1000 / rate);
 }
+sandbox.__catMouseDemo.setAppearance(sandbox.CatAppearance.DEFAULT);
 
 ids.get('appearance-toggle').dispatch('click');
 assert.equal(ids.get('appearance-panel').hidden, false, 'appearance disclosure must open');

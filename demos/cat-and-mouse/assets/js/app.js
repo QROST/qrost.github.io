@@ -263,6 +263,28 @@
     tailTipRadius: 1.5,
   });
 
+  // Medium/long coats change the continuous coat volume first, then add a
+  // handful of open, directionally-combed strokes.  The profile deliberately
+  // returns to zero at both hidden sockets so the tail root and neck bridge
+  // keep the same watertight joins as the short-haired cat.
+  const BODY_FUR_PROFILE = Object.freeze([0, 0.62, 1, 0.88, 0.66, 0.76, 0.94, 0.48, 0.14, 0]);
+  const BODY_FUR_GUIDES = Object.freeze({
+    medium: Object.freeze([2, 4, 6, 7]),
+    long: Object.freeze([1, 2, 3, 4, 5, 6, 7]),
+  });
+  const TAIL_FUR_GUIDES = Object.freeze({
+    medium: Object.freeze([3, 6]),
+    long: Object.freeze([2, 4, 6, 8]),
+  });
+  const BODY_FUR_FLOW = Object.freeze({
+    medium: Object.freeze({ extraLength: 1.5, darkRearward: 0.72, darkOutward: 0.68, lightRearward: 0.6, lightOutward: 0.5 }),
+    long: Object.freeze({ extraLength: 1.4, darkRearward: 0.82, darkOutward: 0.64, lightRearward: 0.68, lightOutward: 0.46 }),
+  });
+  const TAIL_FUR_FLOW = Object.freeze({
+    medium: Object.freeze({ darkOutward: 1.22, darkForward: 0.3, lightOutward: 1.12, lightForward: 0.24 }),
+    long: Object.freeze({ darkOutward: 1.42, darkForward: 0.42, lightOutward: 1.28, lightForward: 0.34 }),
+  });
+
   // Head proportions are intentionally restrained relative to the shoulders.
   // The face is a small directional accent on the continuous coat, not a
   // portrait pasted onto the body. The cat reads as walking with its head
@@ -566,20 +588,78 @@
     return appearance.furLength;
   }
 
+  function bodyFurExpansion() {
+    return { medium: 2.8, long: 5.2 }[furLength()] || 0;
+  }
+
+  function headRuffAmount() {
+    return { medium: 2.4, long: 4.6 }[furLength()] || 0;
+  }
+
+  function bodyFurGuideIndices() {
+    return BODY_FUR_GUIDES[furLength()] || [];
+  }
+
+  function tailFurGuideIndices() {
+    return TAIL_FUR_GUIDES[furLength()] || [];
+  }
+
+  function bodyFurFlowConfig() {
+    return BODY_FUR_FLOW[furLength()] || null;
+  }
+
+  function tailFurFlowConfig() {
+    return TAIL_FUR_FLOW[furLength()] || null;
+  }
+
   function hasWhiteMarkings() {
     return appearance.whiteLevel !== 'none';
   }
 
   function tailCoatRadiusMultiplier() {
+    // Keep the solid tail core restrained. Medium/long coats read through the
+    // open guard-hair flow outside this ribbon, not a uniformly inflated tube.
     return { hairless: 0.72, short: 1, medium: 1.12, long: 1.28 }[furLength()] || 1;
+  }
+
+  function tailFurExpansion(t) {
+    const amount = { medium: 1.45, long: 3.35 }[furLength()] || 0;
+    // Shift the plume peak toward the distal half: a bushy tail should keep
+    // volume beyond the base instead of reading as a root-heavy carrot.
+    const phase = Math.pow(Gait.clamp(t, 0, 1), 1.45);
+    const bell = Math.pow(Math.max(0, Math.sin(Math.PI * phase)), 0.68);
+    return amount * bell;
+  }
+
+  function tailCoatRadius(t, scale) {
+    const base = (
+      (SKIN_TOPOLOGY.tailRootRadius - SKIN_TOPOLOGY.tailTipRadius) * Math.pow(1 - t, 0.5)
+      + SKIN_TOPOLOGY.tailTipRadius
+    );
+    // The buried root always retains the established socket radius. Coat
+    // thickness eases in only after the root so every fur length shares the
+    // same watertight pelvis join.
+    const rootBlend = Gait.smootherstep(Gait.clamp(t / 0.24, 0, 1));
+    const coatMultiplier = 1 + (tailCoatRadiusMultiplier() - 1) * rootBlend;
+    return (base * coatMultiplier + tailFurExpansion(t)) * scale;
+  }
+
+  function bodyFurFlowReach(a) {
+    const flow = bodyFurFlowConfig();
+    if (!flow) return 0;
+    const length = (bodyFurExpansion() + flow.extraLength) * a.scale;
+    return length * Math.hypot(flow.darkRearward, flow.darkOutward) + 0.5 * a.scale;
+  }
+
+  function tailFurFlowReach(t, a) {
+    const radius = tailCoatRadius(t, a.scale);
+    const flow = tailFurFlowConfig();
+    if (!flow) return radius;
+    return radius * Math.hypot(flow.darkOutward, flow.darkForward) + 0.5 * a.scale;
   }
 
   function limbCoatRadiusMultiplier() {
     return { hairless: 0.9, short: 1, medium: 1.035, long: 1.08 }[furLength()] || 1;
-  }
-
-  function furFringeAmount() {
-    return { hairless: 0, short: 0, medium: 1.8, long: 4.2 }[furLength()] || 0;
   }
 
   function calicoColorCoverage() {
@@ -2372,10 +2452,7 @@
       const t = index / lastIndex;
       // Keep the base plush and finish at a small but visible radius. A cat's
       // tail is tapered, not needle-pointed.
-      const radius = (
-        (SKIN_TOPOLOGY.tailRootRadius - SKIN_TOPOLOGY.tailTipRadius) * Math.pow(1 - t, 0.5)
-        + SKIN_TOPOLOGY.tailTipRadius
-      ) * scale * tailCoatRadiusMultiplier();
+      const radius = tailCoatRadius(t, scale);
       const nx = -dy / distance * radius;
       const ny = dx / distance * radius;
       left.push({ x: point.x + nx + offsetX, y: point.y + ny + offsetY });
@@ -2677,32 +2754,53 @@
   function traceHeadSilhouette(context, a) {
     const s = a.scale;
     const w = HEAD_GEOMETRY.skullHalfWidth;
+    const ruff = headRuffAmount();
+    const rearReach = SKIN_TOPOLOGY.headRearReach + ruff * 0.22;
+    const cheekReach = 16 + ruff;
+    const sideReach = w + ruff * 0.68;
     const leftEar = earLandmarks(-1);
     const rightEar = earLandmarks(1);
     context.beginPath();
-    context.moveTo(-SKIN_TOPOLOGY.headRearReach * s, 0);
-    context.bezierCurveTo(-20.2 * s, -5.8 * s, -16.5 * s, -15.2 * s, -13.5 * s, -16.0 * s);
-    context.bezierCurveTo(-7.0 * s, -w * s, -0.8 * s, -w * s, leftEar.rearBase.x * s, leftEar.rearBase.y * s);
+    context.moveTo(-rearReach * s, 0);
+    context.bezierCurveTo(
+      (-20.2 - ruff * 0.08) * s,
+      -(5.8 + ruff * 0.24) * s,
+      (-16.5 - ruff * 0.08) * s,
+      -(15.2 + ruff * 0.82) * s,
+      -13.5 * s,
+      -cheekReach * s,
+    );
+    context.bezierCurveTo(-7.0 * s, -sideReach * s, -0.8 * s, -(w + ruff * 0.2) * s, leftEar.rearBase.x * s, leftEar.rearBase.y * s);
     traceEarCrown(context, a, leftEar);
     traceSkullFront(context, a, rightEar);
     traceEarCrown(context, a, rightEar, true);
-    context.bezierCurveTo(-0.8 * s, w * s, -7.0 * s, w * s, -13.5 * s, 16.0 * s);
-    context.bezierCurveTo(-16.5 * s, 15.2 * s, -20.2 * s, 5.8 * s, -SKIN_TOPOLOGY.headRearReach * s, 0);
+    context.bezierCurveTo(-0.8 * s, (w + ruff * 0.2) * s, -7.0 * s, sideReach * s, -13.5 * s, cheekReach * s);
+    context.bezierCurveTo(
+      (-16.5 - ruff * 0.08) * s,
+      (15.2 + ruff * 0.82) * s,
+      (-20.2 - ruff * 0.08) * s,
+      (5.8 + ruff * 0.24) * s,
+      -rearReach * s,
+      0,
+    );
     context.closePath();
   }
 
   function traceHeadCrown(context, a) {
     const s = a.scale;
     const w = HEAD_GEOMETRY.skullHalfWidth;
+    const ruff = headRuffAmount();
+    const cheekReach = 16 + ruff;
+    const sideReach = w + ruff * 0.68;
     const leftEar = earLandmarks(-1);
     const rightEar = earLandmarks(1);
     context.beginPath();
-    context.moveTo(-13.5 * s, -16.0 * s);
-    context.bezierCurveTo(-7.0 * s, -w * s, -0.8 * s, -w * s, leftEar.rearBase.x * s, leftEar.rearBase.y * s);
+    context.moveTo(-13.5 * s, -cheekReach * s);
+    context.bezierCurveTo(-7.0 * s, -sideReach * s, -0.8 * s, -(w + ruff * 0.2) * s, leftEar.rearBase.x * s, leftEar.rearBase.y * s);
     traceEarCrown(context, a, leftEar);
     traceSkullFront(context, a, rightEar);
     traceEarCrown(context, a, rightEar, true);
-    context.bezierCurveTo(-0.8 * s, w * s, -7.0 * s, w * s, -13.5 * s, 16.0 * s);
+    context.bezierCurveTo(-0.8 * s, (w + ruff * 0.2) * s, -7.0 * s, sideReach * s, -13.5 * s, cheekReach * s);
   }
 
   function drawCatShadow(c) {
@@ -2815,7 +2913,7 @@
         const dy = next.y - previous.y;
         const distance = Math.max(0.001, Math.hypot(dx, dy));
         const t = index / (renderTail.length - 1);
-        const halfWidth = (6.4 - t * 3.8) * a.scale * tailCoatRadiusMultiplier();
+        const halfWidth = tailCoatRadius(t, a.scale);
         const nx = -dy / distance * halfWidth;
         const ny = dx / distance * halfWidth;
         ctx.lineWidth = (2.9 - t * 0.75) * a.scale;
@@ -2830,6 +2928,60 @@
         ctx.stroke();
       });
     }
+    ctx.restore();
+  }
+
+  function paintTailFurFlow(c, a, renderTail) {
+    const guides = tailFurGuideIndices();
+    const flow = tailFurFlowConfig();
+    if (!flow || !guides.length || renderTail.length < 3) return;
+    const long = furLength() === 'long';
+    const lastIndex = Math.max(1, renderTail.length - 1);
+
+    const traceLayer = (outwardScale, forwardScale) => {
+      ctx.beginPath();
+      guides.forEach((index) => {
+        if (!renderTail[index]) return;
+        const previous = renderTail[Math.max(0, index - 1)];
+        const point = renderTail[index];
+        const next = renderTail[Math.min(lastIndex, index + 1)];
+        const dx = next.x - previous.x;
+        const dy = next.y - previous.y;
+        const distance = Math.max(0.001, Math.hypot(dx, dy));
+        const tx = dx / distance;
+        const ty = dy / distance;
+        const t = index / lastIndex;
+        const radius = tailCoatRadius(t, a.scale);
+        [-1, 1].forEach((side) => {
+          const nx = -ty * side;
+          const ny = tx * side;
+          ctx.moveTo(
+            point.x + nx * radius * 0.72 - tx * 0.55 * a.scale,
+            point.y + ny * radius * 0.72 - ty * 0.55 * a.scale,
+          );
+          ctx.quadraticCurveTo(
+            point.x + nx * radius * (0.86 + (outwardScale - 1) * 0.42) + tx * radius * forwardScale * 0.42,
+            point.y + ny * radius * (0.86 + (outwardScale - 1) * 0.42) + ty * radius * forwardScale * 0.42,
+            point.x + nx * radius * outwardScale + tx * radius * forwardScale,
+            point.y + ny * radius * outwardScale + ty * radius * forwardScale,
+          );
+        });
+      });
+    };
+
+    ctx.save();
+    ctx.lineCap = 'round';
+    ctx.lineJoin = 'round';
+    ctx.strokeStyle = c.furDark;
+    ctx.globalAlpha = long ? 0.46 : 0.32;
+    ctx.lineWidth = (long ? 0.9 : 0.76) * a.scale;
+    traceLayer(flow.darkOutward, flow.darkForward);
+    ctx.stroke();
+    ctx.strokeStyle = c.furLight;
+    ctx.globalAlpha = long ? 0.28 : 0.2;
+    ctx.lineWidth = (long ? 0.48 : 0.4) * a.scale;
+    traceLayer(flow.lightOutward, flow.lightForward);
+    ctx.stroke();
     ctx.restore();
   }
 
@@ -2859,6 +3011,8 @@
     ctx.beginPath();
     smoothOpenPath(ctx, renderTail.slice(0, -1));
     ctx.stroke();
+
+    paintTailFurFlow(c, a, renderTail);
 
     ctx.restore();
   }
@@ -3006,15 +3160,16 @@
       const next = stations[Math.min(stations.length - 1, index + 1)];
       station.angle = Math.atan2(next.y - previous.y, next.x - previous.x);
     });
-    const left = stations.map((station) => ({
-      x: station.x - Math.sin(station.angle) * station.width,
-      y: station.y + Math.cos(station.angle) * station.width,
+    const furOffsets = BODY_FUR_PROFILE.map((weight) => weight * bodyFurExpansion() * a.scale);
+    const left = stations.map((station, index) => ({
+      x: station.x - Math.sin(station.angle) * (station.width + furOffsets[index]),
+      y: station.y + Math.cos(station.angle) * (station.width + furOffsets[index]),
     }));
-    const right = stations.map((station) => ({
-      x: station.x + Math.sin(station.angle) * station.width,
-      y: station.y - Math.cos(station.angle) * station.width,
+    const right = stations.map((station, index) => ({
+      x: station.x + Math.sin(station.angle) * (station.width + furOffsets[index]),
+      y: station.y - Math.cos(station.angle) * (station.width + furOffsets[index]),
     }));
-    return { stations, left, right, front: stations[stations.length - 1], rear: stations[0] };
+    return { stations, left, right, furOffsets, front: stations[stations.length - 1], rear: stations[0] };
   }
 
   function bodyFrontCapControl(contours, a) {
@@ -3097,10 +3252,42 @@
     };
     const rearWidth = rearInner.width + (rearOuter.width - rearInner.width) * socketT;
     const socketLateral = Math.hypot(socket.x - rearCenter.x, socket.y - rearCenter.y);
-    const tailRootClearance = rearWidth - socketLateral - SKIN_TOPOLOGY.tailRootRadius * a.scale;
+    const tailRootClearance = rearWidth - socketLateral - tailCoatRadius(0, a.scale);
     return {
       headSocketMargin: 1 - headSocketMaxNorm,
       tailRootClearance,
+    };
+  }
+
+  function furGeometrySnapshot() {
+    const a = anatomy();
+    const contours = bodyContours(a, 0, 0);
+    const bodyOffsets = contours.furOffsets.map((offset) => Number((offset / a.scale).toFixed(3)));
+    const bodyGuides = bodyFurGuideIndices();
+    const tailGuides = tailFurGuideIndices();
+    const renderTail = tailRenderPoints(a);
+    const lastTailIndex = Math.max(1, renderTail.length - 1);
+    const tailCoreRadii = renderTail.map((_, index) => (
+      tailCoatRadius(index / lastTailIndex, a.scale) / a.scale
+    ));
+    const tailGuideReach = tailGuides.length
+      ? Math.max(...tailGuides.map((index) => tailFurFlowReach(index / lastTailIndex, a) / a.scale))
+      : Math.max(...tailCoreRadii);
+    return {
+      bodyOffsets,
+      maxBodyOffset: Math.max(...bodyOffsets),
+      bodyGuideReach: bodyFurFlowReach(a) / a.scale,
+      headRuff: headRuffAmount(),
+      bodyGuideCount: bodyGuides.length * 2,
+      headGuideCount: furLength() === 'long' ? 4 : (furLength() === 'medium' ? 2 : 0),
+      tailGuideCount: tailGuides.length * 2,
+      tailSampleCount: renderTail.length,
+      tailRadiusMultiplier: tailCoatRadiusMultiplier(),
+      tailRootRadius: tailCoatRadius(0, a.scale) / a.scale,
+      maxTailCoreRadius: Math.max(...tailCoreRadii),
+      tailGuideReach,
+      tailPlumeExpansion: tailFurExpansion(0.62),
+      limbRadiusMultiplier: limbCoatRadiusMultiplier(),
     };
   }
 
@@ -3108,16 +3295,34 @@
     const a = anatomy();
     const contours = bodyContours(a, 0, 0);
     const points = [...contours.left, ...contours.right];
+    const bodyGuideReach = bodyFurFlowReach(a);
+    if (bodyGuideReach > 0) {
+      [contours.left, contours.right].forEach((flank) => {
+        bodyFurGuideIndices().forEach((index) => {
+          const point = flank[index];
+          points.push(
+            { x: point.x - bodyGuideReach, y: point.y - bodyGuideReach },
+            { x: point.x + bodyGuideReach, y: point.y + bodyGuideReach },
+          );
+        });
+      });
+    }
     const headRadius = cat.rig.head.visualRadius;
     points.push(
       { x: cat.rig.head.x - headRadius, y: cat.rig.head.y - headRadius },
       { x: cat.rig.head.x + headRadius, y: cat.rig.head.y + headRadius },
     );
-    tailRenderPoints(a).forEach((point) => {
-      const tailRadius = SKIN_TOPOLOGY.tailRootRadius * a.scale * tailCoatRadiusMultiplier();
+    const tailGuides = tailFurGuideIndices();
+    const renderTail = tailRenderPoints(a);
+    const lastTailIndex = Math.max(1, renderTail.length - 1);
+    renderTail.forEach((point, index) => {
+      const t = index / lastTailIndex;
+      const tailEnvelopeRadius = tailGuides.includes(index)
+        ? tailFurFlowReach(t, a)
+        : tailCoatRadius(t, a.scale);
       points.push(
-        { x: point.x - tailRadius, y: point.y - tailRadius },
-        { x: point.x + tailRadius, y: point.y + tailRadius },
+        { x: point.x - tailEnvelopeRadius, y: point.y - tailEnvelopeRadius },
+        { x: point.x + tailEnvelopeRadius, y: point.y + tailEnvelopeRadius },
       );
     });
     Gait.LIMBS.forEach((limb) => {
@@ -3186,42 +3391,58 @@
     ctx.globalAlpha = 1;
   }
 
-  function paintBodyFurFringe(c, contours, a) {
-    const amount = furFringeAmount() * a.scale;
-    if (amount <= 0) return;
-    ctx.fillStyle = c.fur;
-    ctx.globalAlpha = furLength() === 'long' ? 0.94 : 0.78;
-    [contours.left, contours.right].forEach((flank) => {
-      [1, 3, 5, 7].forEach((index) => {
-        const point = flank[Math.min(index, flank.length - 1)];
-        const center = contours.stations[Math.min(index, contours.stations.length - 1)];
-        const dx = point.x - center.x;
-        const dy = point.y - center.y;
-        const length = Math.max(0.001, Math.hypot(dx, dy));
-        const nx = dx / length;
-        const ny = dy / length;
-        const tx = -ny;
-        const ty = nx;
-        const half = amount * 0.72;
-        ctx.beginPath();
-        ctx.moveTo(point.x - tx * half, point.y - ty * half);
-        ctx.quadraticCurveTo(
-          point.x + nx * amount * 0.48,
-          point.y + ny * amount * 0.48,
-          point.x + nx * amount,
-          point.y + ny * amount,
-        );
-        ctx.quadraticCurveTo(
-          point.x + nx * amount * 0.38,
-          point.y + ny * amount * 0.38,
-          point.x + tx * half,
-          point.y + ty * half,
-        );
-        ctx.closePath();
-        ctx.fill();
+  function paintBodyFurFlow(c, contours, a) {
+    const guides = bodyFurGuideIndices();
+    const flow = bodyFurFlowConfig();
+    if (!flow || !guides.length) return;
+    const long = furLength() === 'long';
+    const coatLength = (bodyFurExpansion() + flow.extraLength) * a.scale;
+
+    const traceLayer = (rootInset, rearwardScale, outwardScale, tangentOffset) => {
+      ctx.beginPath();
+      [contours.left, contours.right].forEach((flank, flankIndex) => {
+        guides.forEach((index, guideIndex) => {
+          const point = flank[index];
+          const center = contours.stations[index];
+          const dx = point.x - center.x;
+          const dy = point.y - center.y;
+          const normalLength = Math.max(0.001, Math.hypot(dx, dy));
+          const nx = dx / normalLength;
+          const ny = dy / normalLength;
+          const tx = Math.cos(contours.stations[index].angle);
+          const ty = Math.sin(contours.stations[index].angle);
+          // Stable, tiny asymmetry breaks the old mirrored-tooth rhythm while
+          // remaining tied to the same local station on every frame.
+          const phase = ((index * 5 + guideIndex * 3 + flankIndex * 2) % 7 - 3) * 0.075
+            + tangentOffset * (((guideIndex + flankIndex) % 2) ? 1 : -1);
+          const length = coatLength * (0.78 + BODY_FUR_PROFILE[index] * 0.22);
+          const rootX = point.x - nx * rootInset * a.scale + tx * phase * a.scale;
+          const rootY = point.y - ny * rootInset * a.scale + ty * phase * a.scale;
+          const controlX = point.x + nx * length * outwardScale * 0.36 - tx * length * rearwardScale * 0.42;
+          const controlY = point.y + ny * length * outwardScale * 0.36 - ty * length * rearwardScale * 0.42;
+          const tipX = point.x + nx * length * outwardScale - tx * length * rearwardScale;
+          const tipY = point.y + ny * length * outwardScale - ty * length * rearwardScale;
+          ctx.moveTo(rootX, rootY);
+          ctx.quadraticCurveTo(controlX, controlY, tipX, tipY);
+        });
       });
-    });
-    ctx.globalAlpha = 1;
+    };
+
+    ctx.save();
+    ctx.lineCap = 'round';
+    ctx.lineJoin = 'round';
+    ctx.strokeStyle = c.furDark;
+    ctx.globalAlpha = long ? 0.48 : 0.4;
+    ctx.lineWidth = (long ? 0.94 : 0.8) * a.scale;
+    traceLayer(1.05, flow.darkRearward, flow.darkOutward, 0);
+    ctx.stroke();
+
+    ctx.strokeStyle = c.furLight;
+    ctx.globalAlpha = long ? 0.28 : 0.25;
+    ctx.lineWidth = (long ? 0.5 : 0.43) * a.scale;
+    traceLayer(0.45, flow.lightRearward, flow.lightOutward, long ? 0.72 : 0.5);
+    ctx.stroke();
+    ctx.restore();
   }
 
   function paintBodyCoat(c, a) {
@@ -3481,7 +3702,6 @@
     const contours = traceBodySilhouette(ctx, a, 0, 0);
     ctx.fillStyle = c.fur;
     ctx.fill();
-    paintBodyFurFringe(c, contours, a);
     ctx.strokeStyle = c.furDark;
     ctx.globalAlpha = 0.42;
     ctx.lineWidth = 0.85 * a.scale;
@@ -3547,30 +3767,54 @@
 
     ctx.restore();
 
+    paintBodyFurFlow(c, contours, a);
+
     drawHead(c, a);
   }
 
-  function paintHeadFurFringe(c, a) {
-    const amount = furFringeAmount();
-    if (amount <= 0) return;
-    ctx.fillStyle = c.fur;
-    ctx.globalAlpha = furLength() === 'long' ? 0.94 : 0.76;
-    [-1, 1].forEach((side) => {
-      const x = -11.5 * a.scale;
-      const y = side * (HEAD_GEOMETRY.skullHalfWidth - 1) * a.scale;
+  function paintHeadFurFlow(c, a) {
+    const ruff = headRuffAmount();
+    if (ruff <= 0) return;
+    const long = furLength() === 'long';
+    const visibleLength = long ? 3.6 : 2.4;
+    const traceLayer = (outwardScale, rearwardScale) => {
       ctx.beginPath();
-      ctx.moveTo(x - 3 * a.scale, y - side * 1.8 * a.scale);
-      ctx.quadraticCurveTo(
-        (x - amount * 0.35 * a.scale),
-        y + side * amount * 0.45 * a.scale,
-        (x - amount * 0.7 * a.scale),
-        y + side * amount * a.scale,
-      );
-      ctx.quadraticCurveTo(x + 2 * a.scale, y + side * 1.8 * a.scale, x + 3 * a.scale, y);
-      ctx.closePath();
-      ctx.fill();
-    });
-    ctx.globalAlpha = 1;
+      [-1, 1].forEach((side) => {
+        const rootX = -8.5 * a.scale;
+        const rootY = side * (HEAD_GEOMETRY.skullHalfWidth - 1.2) * a.scale;
+        ctx.moveTo(rootX, rootY);
+        ctx.quadraticCurveTo(
+          (-11.5 - ruff * rearwardScale * 0.35) * a.scale,
+          side * (HEAD_GEOMETRY.skullHalfWidth + ruff * outwardScale * 0.45) * a.scale,
+          (-14.2 - ruff * rearwardScale - visibleLength * 0.42) * a.scale,
+          side * (16 + ruff + visibleLength * outwardScale) * a.scale,
+        );
+        if (long) {
+          ctx.moveTo(-2.5 * a.scale, side * (HEAD_GEOMETRY.skullHalfWidth - 0.8) * a.scale);
+          ctx.quadraticCurveTo(
+            (-5.5 - ruff * rearwardScale * 0.2) * a.scale,
+            side * (HEAD_GEOMETRY.skullHalfWidth + ruff * outwardScale * 0.26) * a.scale,
+            (-9.2 - ruff * rearwardScale * 0.5 - visibleLength * 0.3) * a.scale,
+            side * (HEAD_GEOMETRY.skullHalfWidth + ruff * 0.7 + visibleLength * outwardScale * 0.72) * a.scale,
+          );
+        }
+      });
+    };
+
+    ctx.save();
+    ctx.lineCap = 'round';
+    ctx.lineJoin = 'round';
+    ctx.strokeStyle = c.furDark;
+    ctx.globalAlpha = long ? 0.48 : 0.39;
+    ctx.lineWidth = (long ? 0.92 : 0.78) * a.scale;
+    traceLayer(long ? 0.96 : 0.82, long ? 0.72 : 0.58);
+    ctx.stroke();
+    ctx.strokeStyle = c.furLight;
+    ctx.globalAlpha = long ? 0.28 : 0.24;
+    ctx.lineWidth = (long ? 0.5 : 0.42) * a.scale;
+    traceLayer(long ? 0.78 : 0.68, long ? 0.58 : 0.46);
+    ctx.stroke();
+    ctx.restore();
   }
 
   function paintHeadCoat(c, a) {
@@ -3695,7 +3939,6 @@
     ctx.fillStyle = c.fur;
     traceHeadSilhouette(ctx, a);
     ctx.fill();
-    paintHeadFurFringe(c, a);
     paintHeadCoat(c, a);
     paintEarBacks(c, a);
 
@@ -3706,6 +3949,8 @@
     traceHeadCrown(ctx, a);
     ctx.stroke();
     ctx.globalAlpha = 1;
+
+    paintHeadFurFlow(c, a);
 
     drawTopDownFace(c, a);
     paintHairlessHeadDetails(c, a);
@@ -3734,10 +3979,7 @@
       const lastIndex = Math.max(1, renderTail.length - 1);
       for (let index = 0; index < renderTail.length; index += 1) {
         const t = index / lastIndex;
-        const radius = (
-          (SKIN_TOPOLOGY.tailRootRadius - SKIN_TOPOLOGY.tailTipRadius) * Math.pow(1 - t, 0.5)
-          + SKIN_TOPOLOGY.tailTipRadius
-        ) * a.scale * tailCoatRadiusMultiplier() + 2;
+        const radius = tailCoatRadius(t, a.scale) + 2;
         const dx = mouse.x - renderTail[index].x;
         const dy = mouse.y - renderTail[index].y;
         if (dx * dx + dy * dy < radius * radius) { hidden = true; break; }
@@ -4253,7 +4495,7 @@
     p.beginPath();
     p.moveTo(0, 0);
     p.bezierCurveTo(-22, -4, -38, 18, -50, 6);
-    p.lineWidth = furLong ? 12 : 9;
+    p.lineWidth = furLong ? 11.5 : (furMedium ? 10 : 9);
     p.lineCap = 'round';
     p.strokeStyle = c.fur;
     p.stroke();
@@ -4286,6 +4528,7 @@
     p.ellipse(0, 0, bodyLen * 0.5, bodyW * 0.5, 0, 0, Gait.TAU);
     p.stroke();
     p.globalAlpha = 1;
+    paintPreviewFurFlow(p, c, bodyLen, bodyW);
     p.restore();
 
     // Head.
@@ -4355,6 +4598,47 @@
       }
       p.globalAlpha = 1;
     }
+    p.restore();
+  }
+
+  function paintPreviewFurFlow(p, c, bodyLen, bodyW) {
+    const selectedFur = appearance.furLength;
+    if (selectedFur !== 'medium' && selectedFur !== 'long') return;
+    const long = selectedFur === 'long';
+    const anchors = long ? [-0.34, -0.12, 0.1, 0.31] : [-0.28, 0, 0.26];
+    const strandLength = long ? 6.8 : 5;
+
+    const traceLayer = (outwardScale, rearwardScale) => {
+      p.beginPath();
+      anchors.forEach((ratio, index) => {
+        [-1, 1].forEach((side) => {
+          const rootX = bodyLen * ratio;
+          const rootY = side * (bodyW * 0.5 - 1.2);
+          const phase = ((index * 3 + (side > 0 ? 1 : 0)) % 4 - 1.5) * 0.28;
+          p.moveTo(rootX + phase, rootY - side * 1.2);
+          p.quadraticCurveTo(
+            rootX - strandLength * rearwardScale * 0.42,
+            rootY + side * strandLength * outwardScale * 0.38,
+            rootX - strandLength * rearwardScale,
+            rootY + side * strandLength * outwardScale,
+          );
+        });
+      });
+    };
+
+    p.save();
+    p.lineCap = 'round';
+    p.lineJoin = 'round';
+    p.strokeStyle = c.furDark;
+    p.globalAlpha = long ? 0.42 : 0.38;
+    p.lineWidth = long ? 1.05 : 0.9;
+    traceLayer(long ? 0.5 : 0.52, long ? 0.88 : 0.72);
+    p.stroke();
+    p.strokeStyle = c.furLight;
+    p.globalAlpha = long ? 0.24 : 0.22;
+    p.lineWidth = long ? 0.58 : 0.5;
+    traceLayer(long ? 0.38 : 0.4, long ? 0.72 : 0.58);
+    p.stroke();
     p.restore();
   }
 
@@ -4510,7 +4794,7 @@
     if (!paused && !rafId) rafId = requestAnimationFrame(frame);
   }
 
-  function previewIdlePose(mode, side) {
+  function previewIdlePose(mode, side, transitionDuration) {
     if (REST_POSES.indexOf(mode) < 0 && mode !== 'groom' && mode !== 'stretch') throw new Error(`Unknown rest pose: ${mode}`);
     releasePrey();
     const I = cat.idle;
@@ -4520,7 +4804,7 @@
     I.t = 0;
     I.dur = 3600;
     I.restSince = null;
-    beginPoseTransition(mode);
+    beginPoseTransition(mode, transitionDuration);
     cat.speed = 0;
     cat.steerOmega = 0;
     cat.wanderGoal.x = cat.x;
@@ -4725,6 +5009,7 @@
         right: earLandmarks(1),
       },
       skin: Object.assign(skinTopologySnapshot(), { narrow: cat.skinNarrow }),
+      furGeometry: furGeometrySnapshot(),
       poseEnvelope: poseEnvelopeSnapshot(),
       support: Object.assign({}, cat.support),
       touchdowns: cat.touchdowns.map((touchdown) => Object.assign({}, touchdown)),
