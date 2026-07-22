@@ -4,13 +4,31 @@
 
   const Gait = window.CatGait;
   const I18n = window.CatMouseI18n;
+  const Appearance = window.CatAppearance;
   const canvas = document.getElementById('world');
   const errorCard = document.getElementById('canvas-error');
   const stateLabel = document.getElementById('behavior-label');
   const pauseButton = document.getElementById('pause-toggle');
   const themeButton = document.getElementById('theme-toggle');
+  const appearanceToggle = document.getElementById('appearance-toggle');
+  const appearancePanel = document.getElementById('appearance-panel');
+  const appearanceClose = document.getElementById('appearance-close');
+  const appearancePattern = document.getElementById('appearance-pattern');
+  const appearanceColorway = document.getElementById('appearance-colorway');
+  const appearanceWhiteLevel = document.getElementById('appearance-white-level');
+  const appearanceFurLength = document.getElementById('appearance-fur-length');
+  const appearanceRandomize = document.getElementById('appearance-randomize');
+  const appearanceReset = document.getElementById('appearance-reset');
+  const appearancePreviewCanvas = document.getElementById('appearance-preview');
+  const appearancePatternGrid = document.getElementById('appearance-pattern-grid');
+  const appearanceColorwayGrid = document.getElementById('appearance-colorway-grid');
+  const appearanceColorwayMeta = document.getElementById('appearance-colorway-meta');
+  const appearanceColorwayEmpty = document.getElementById('appearance-colorway-empty');
+  const appearanceWhiteLevelGroup = document.getElementById('appearance-white-level-group');
+  const appearanceWhiteLevelRow = document.getElementById('appearance-white-level-row');
   const themeMeta = document.querySelector('meta[name="theme-color"]');
   const THEME_KEY = 'qrost-cat-and-mouse-theme';
+  const APPEARANCE_KEY = 'qrost-cat-and-mouse-appearance-v1';
 
   function wireCanvasFailure() {
     if (errorCard) {
@@ -20,6 +38,10 @@
     if (pauseButton) {
       pauseButton.disabled = true;
       pauseButton.hidden = true;
+    }
+    if (appearanceToggle) {
+      appearanceToggle.disabled = true;
+      appearanceToggle.hidden = true;
     }
     function syncFallbackThemeUi() {
       const dark = document.documentElement.classList.contains('dark');
@@ -44,7 +66,7 @@
     syncFallbackThemeUi();
   }
 
-  if (!canvas || !Gait || !I18n) {
+  if (!canvas || !Gait || !I18n || !Appearance) {
     if (errorCard) {
       errorCard.hidden = false;
       errorCard.textContent = I18n ? I18n.t('canvasFailure') : 'Canvas failed to start.';
@@ -71,6 +93,7 @@
   let elapsed = 0;
   let rafId = 0;
   let initialized = false;
+  let appearance = readStoredAppearance();
 
   const palette = {
     light: {
@@ -522,8 +545,52 @@
     return document.documentElement.classList.contains('dark');
   }
 
+  function readStoredAppearance() {
+    try {
+      const raw = localStorage.getItem(APPEARANCE_KEY);
+      return Appearance.normalize(raw ? JSON.parse(raw) : Appearance.DEFAULT);
+    } catch (_) {
+      return Appearance.normalize(Appearance.DEFAULT);
+    }
+  }
+
+  function persistAppearance() {
+    try { localStorage.setItem(APPEARANCE_KEY, JSON.stringify(appearance)); } catch (_) {}
+  }
+
+  function coatPattern() {
+    return appearance.pattern;
+  }
+
+  function furLength() {
+    return appearance.furLength;
+  }
+
+  function hasWhiteMarkings() {
+    return appearance.whiteLevel !== 'none';
+  }
+
+  function tailCoatRadiusMultiplier() {
+    return { hairless: 0.72, short: 1, medium: 1.12, long: 1.28 }[furLength()] || 1;
+  }
+
+  function limbCoatRadiusMultiplier() {
+    return { hairless: 0.9, short: 1, medium: 1.035, long: 1.08 }[furLength()] || 1;
+  }
+
+  function furFringeAmount() {
+    return { hairless: 0, short: 0, medium: 1.8, long: 4.2 }[furLength()] || 0;
+  }
+
+  function calicoColorCoverage() {
+    // Calico starts from a pale base. Scale the stable colored islands so the
+    // three marking levels actually read as low, medium and high pale coverage.
+    return { low: 1.34, medium: 1, high: 0.68 }[appearance.whiteLevel] || 1;
+  }
+
   function colors() {
-    return isDark() ? palette.dark : palette.light;
+    const dark = isDark();
+    return Object.assign({}, dark ? palette.dark : palette.light, Appearance.resolvePalette(appearance, dark));
   }
 
   function expLerp(current, target, rate, dt) {
@@ -2308,7 +2375,7 @@
       const radius = (
         (SKIN_TOPOLOGY.tailRootRadius - SKIN_TOPOLOGY.tailTipRadius) * Math.pow(1 - t, 0.5)
         + SKIN_TOPOLOGY.tailTipRadius
-      ) * scale;
+      ) * scale * tailCoatRadiusMultiplier();
       const nx = -dy / distance * radius;
       const ny = dx / distance * radius;
       left.push({ x: point.x + nx + offsetX, y: point.y + ny + offsetY });
@@ -2442,7 +2509,8 @@
       const t = index / Math.max(1, points.length - 1);
       const jointVolume = Math.sin(Math.PI * t) * (geometry.config.fore ? 0.38 : 0.58) * a.scale;
       const liftTaper = 1 - foot.lift * t * 0.08;
-      return (baseRadius + (ankleRadius - baseRadius) * Math.pow(t, 0.78) + jointVolume) * liftTaper;
+      return (baseRadius + (ankleRadius - baseRadius) * Math.pow(t, 0.78) + jointVolume)
+        * liftTaper * limbCoatRadiusMultiplier();
     });
     return { points, radii };
   }
@@ -2684,6 +2752,87 @@
     ctx.restore();
   }
 
+  function paintTailCoat(c, a, renderTail) {
+    const pattern = coatPattern();
+    if (!renderTail.length || pattern === 'solid') return;
+
+    ctx.save();
+    traceTailRibbon(ctx, renderTail, a.scale, 0, 0);
+    ctx.clip();
+
+    if (pattern === 'pointed') {
+      ctx.fillStyle = c.coatAccent;
+      ctx.globalAlpha = 0.92;
+      traceTailRibbon(ctx, renderTail, a.scale, 0, 0);
+      ctx.fill();
+    } else if (pattern === 'calico' || pattern === 'tortie') {
+      const coverage = pattern === 'calico' ? calicoColorCoverage() : 1;
+      const placements = [
+        [2, c.coatAccent, 1.35],
+        [5, c.coatThird, 1.25],
+        [8, c.coatAccent, 1.15],
+      ];
+      placements.forEach(([index, fill, radius]) => {
+        if (!renderTail[index]) return;
+        ctx.fillStyle = fill;
+        ctx.globalAlpha = pattern === 'calico' ? 0.9 : 0.76;
+        ctx.beginPath();
+        ctx.arc(renderTail[index].x, renderTail[index].y, a.tailSegment * radius * coverage, 0, Gait.TAU);
+        ctx.fill();
+      });
+    } else if ((pattern === 'bicolor' || pattern === 'tuxedo') && appearance.whiteLevel === 'high') {
+      ctx.fillStyle = c.coatWhite;
+      ctx.globalAlpha = 0.96;
+      const root = renderTail[Math.min(2, renderTail.length - 1)];
+      ctx.beginPath();
+      ctx.arc(root.x, root.y, a.tailSegment * 1.7, 0, Gait.TAU);
+      ctx.fill();
+    } else if (pattern === 'smoke') {
+      ctx.strokeStyle = c.coatAccent;
+      ctx.globalAlpha = 0.22;
+      ctx.lineWidth = 3.2 * a.scale;
+      ctx.lineCap = 'round';
+      ctx.beginPath();
+      smoothOpenPath(ctx, renderTail.slice(1, -1));
+      ctx.stroke();
+    }
+
+    if (pattern === 'tabby') {
+      const tipCenter = renderTail[renderTail.length - 1];
+      ctx.fillStyle = c.furDark;
+      ctx.globalAlpha = 0.8;
+      ctx.beginPath();
+      ctx.arc(tipCenter.x, tipCenter.y, a.tailSegment * 1.55, 0, Gait.TAU);
+      ctx.fill();
+
+      ctx.globalAlpha = 0.8;
+      ctx.strokeStyle = c.stripe;
+      [3, 5, 7].forEach((index) => {
+        if (!renderTail[index]) return;
+        const previous = renderTail[Math.max(0, index - 1)];
+        const next = renderTail[Math.min(renderTail.length - 1, index + 1)];
+        const dx = next.x - previous.x;
+        const dy = next.y - previous.y;
+        const distance = Math.max(0.001, Math.hypot(dx, dy));
+        const t = index / (renderTail.length - 1);
+        const halfWidth = (6.4 - t * 3.8) * a.scale * tailCoatRadiusMultiplier();
+        const nx = -dy / distance * halfWidth;
+        const ny = dx / distance * halfWidth;
+        ctx.lineWidth = (2.9 - t * 0.75) * a.scale;
+        ctx.beginPath();
+        ctx.moveTo(renderTail[index].x + nx, renderTail[index].y + ny);
+        ctx.quadraticCurveTo(
+          renderTail[index].x + dx / distance * 0.8 * a.scale,
+          renderTail[index].y + dy / distance * 0.8 * a.scale,
+          renderTail[index].x - nx,
+          renderTail[index].y - ny,
+        );
+        ctx.stroke();
+      });
+    }
+    ctx.restore();
+  }
+
   function drawTail(c) {
     const a = anatomy();
     if (cat.tail.length < 2) return;
@@ -2696,6 +2845,7 @@
     // gradient coordinate systems as a pasted-on joint.
     ctx.fillStyle = c.fur;
     ctx.fill();
+    paintTailCoat(c, a, renderTail);
     ctx.strokeStyle = c.furDark;
     ctx.globalAlpha = 0.46;
     ctx.lineWidth = 0.85 * a.scale;
@@ -2710,43 +2860,34 @@
     smoothOpenPath(ctx, renderTail.slice(0, -1));
     ctx.stroke();
 
-    // 深色尾尖（虎斑签名）：clip 到尾带轮廓内，在末端画一块深色 → 只染出尾尖
-    ctx.save();
-    traceTailRibbon(ctx, renderTail, a.scale, 0, 0);
-    ctx.clip();
-    const tipCenter = renderTail[renderTail.length - 1];
-    ctx.fillStyle = c.furDark;
-    ctx.globalAlpha = 0.8;
-    ctx.beginPath();
-    ctx.arc(tipCenter.x, tipCenter.y, a.tailSegment * 1.55, 0, Gait.TAU);
-    ctx.fill();
     ctx.restore();
+  }
 
-    ctx.globalAlpha = 0.8;
-    ctx.strokeStyle = c.stripe;
-    [3, 5, 7].forEach((index) => {
-      if (!renderTail[index]) return;
-      const previous = renderTail[Math.max(0, index - 1)];
-      const next = renderTail[Math.min(renderTail.length - 1, index + 1)];
-      const dx = next.x - previous.x;
-      const dy = next.y - previous.y;
-      const distance = Math.max(0.001, Math.hypot(dx, dy));
-      const t = index / (renderTail.length - 1);
-      const halfWidth = (6.4 - t * 3.8) * a.scale;
-      const nx = -dy / distance * halfWidth;
-      const ny = dx / distance * halfWidth;
-      ctx.lineWidth = (2.9 - t * 0.75) * a.scale;
-      ctx.beginPath();
-      ctx.moveTo(renderTail[index].x + nx, renderTail[index].y + ny);
-      ctx.quadraticCurveTo(
-        renderTail[index].x + dx / distance * 0.8 * a.scale,
-        renderTail[index].y + dy / distance * 0.8 * a.scale,
-        renderTail[index].x - nx,
-        renderTail[index].y - ny,
-      );
-      ctx.stroke();
-    });
-    ctx.restore();
+  function limbCoatColor(c, limb) {
+    if (coatPattern() === 'pointed') return c.coatAccent;
+    if (coatPattern() === 'calico') {
+      if (appearance.whiteLevel === 'low') {
+        if (limb === 'leftHind' || limb === 'leftFore') return c.coatThird;
+        if (limb === 'rightHind') return c.coatAccent;
+      }
+      if (appearance.whiteLevel === 'medium' && limb === 'leftHind') return c.coatThird;
+      return c.fur;
+    }
+    if (coatPattern() === 'tortie') {
+      if (limb === 'leftFore') return c.coatAccent;
+      if (limb === 'rightHind') return c.coatThird;
+    }
+    if ((coatPattern() === 'bicolor' || coatPattern() === 'tuxedo') && appearance.whiteLevel === 'high') {
+      return c.coatWhite;
+    }
+    return c.fur;
+  }
+
+  function pawCoat(c, limb) {
+    if (coatPattern() === 'pointed') return { color: c.coatAccent, scale: 1 };
+    if (!hasWhiteMarkings()) return null;
+    const scale = { low: 0.76, medium: 0.9, high: 1 }[appearance.whiteLevel] || 0.76;
+    return { color: c.coatWhite, scale, limb };
   }
 
   function drawLegs(c, layer) {
@@ -2764,6 +2905,12 @@
       ctx.lineWidth = 0.82 * a.scale;
       traceLegSilhouette(ctx, geometry, foot, a, 0, 0);
       ctx.fill();
+      const limbFill = limbCoatColor(c, limb);
+      if (limbFill !== c.fur) {
+        ctx.fillStyle = limbFill;
+        traceLegSilhouette(ctx, geometry, foot, a, 0, 0);
+        ctx.fill();
+      }
       ctx.globalAlpha = 0.46;
       strokeLegFlanks(ctx, geometry, foot, a);
       ctx.restore();
@@ -2778,12 +2925,15 @@
       ctx.lineWidth = 0.82 * a.scale;
       tracePawSilhouette(ctx, a, geometry.config);
       ctx.fill();
-      ctx.save();
-      ctx.scale(0.84, 0.84);
-      ctx.fillStyle = c.cream;   // 奶油"袜子"缩进爪缘内 → 读作皮毛上的斑纹而非另一块几何
-      tracePawSilhouette(ctx, a, geometry.config);
-      ctx.fill();
-      ctx.restore();
+      const paw = pawCoat(c, limb);
+      if (paw) {
+        ctx.save();
+        ctx.scale(paw.scale, paw.scale);
+        ctx.fillStyle = paw.color;   // 袜色缩进爪缘内 → 读作皮毛斑纹，而不是另一块几何。
+        tracePawSilhouette(ctx, a, geometry.config);
+        ctx.fill();
+        ctx.restore();
+      }
       ctx.globalAlpha = 0.46;
       strokePawOutline(ctx, a, geometry.config);
       ctx.stroke();
@@ -2964,9 +3114,10 @@
       { x: cat.rig.head.x + headRadius, y: cat.rig.head.y + headRadius },
     );
     tailRenderPoints(a).forEach((point) => {
+      const tailRadius = SKIN_TOPOLOGY.tailRootRadius * a.scale * tailCoatRadiusMultiplier();
       points.push(
-        { x: point.x - SKIN_TOPOLOGY.tailRootRadius * a.scale, y: point.y - SKIN_TOPOLOGY.tailRootRadius * a.scale },
-        { x: point.x + SKIN_TOPOLOGY.tailRootRadius * a.scale, y: point.y + SKIN_TOPOLOGY.tailRootRadius * a.scale },
+        { x: point.x - tailRadius, y: point.y - tailRadius },
+        { x: point.x + tailRadius, y: point.y + tailRadius },
       );
     });
     Gait.LIMBS.forEach((limb) => {
@@ -3035,9 +3186,120 @@
     ctx.globalAlpha = 1;
   }
 
+  function paintBodyFurFringe(c, contours, a) {
+    const amount = furFringeAmount() * a.scale;
+    if (amount <= 0) return;
+    ctx.fillStyle = c.fur;
+    ctx.globalAlpha = furLength() === 'long' ? 0.94 : 0.78;
+    [contours.left, contours.right].forEach((flank) => {
+      [1, 3, 5, 7].forEach((index) => {
+        const point = flank[Math.min(index, flank.length - 1)];
+        const center = contours.stations[Math.min(index, contours.stations.length - 1)];
+        const dx = point.x - center.x;
+        const dy = point.y - center.y;
+        const length = Math.max(0.001, Math.hypot(dx, dy));
+        const nx = dx / length;
+        const ny = dy / length;
+        const tx = -ny;
+        const ty = nx;
+        const half = amount * 0.72;
+        ctx.beginPath();
+        ctx.moveTo(point.x - tx * half, point.y - ty * half);
+        ctx.quadraticCurveTo(
+          point.x + nx * amount * 0.48,
+          point.y + ny * amount * 0.48,
+          point.x + nx * amount,
+          point.y + ny * amount,
+        );
+        ctx.quadraticCurveTo(
+          point.x + nx * amount * 0.38,
+          point.y + ny * amount * 0.38,
+          point.x + tx * half,
+          point.y + ty * half,
+        );
+        ctx.closePath();
+        ctx.fill();
+      });
+    });
+    ctx.globalAlpha = 1;
+  }
+
+  function paintBodyCoat(c, a) {
+    const pattern = coatPattern();
+    if (pattern === 'calico' || pattern === 'tortie') {
+      const alpha = pattern === 'calico' ? 0.94 : 0.76;
+      const coverage = pattern === 'calico' ? calicoColorCoverage() : 1;
+      ctx.globalAlpha = alpha;
+      ctx.fillStyle = c.coatAccent;
+      drawNodeEllipse(cat.rig.pelvis, -5, -13, 21 * coverage, 13 * coverage, -0.2, a);
+      drawNodeEllipse(cat.rig.shoulders, 2, 13, 16 * coverage, 10 * coverage, 0.14, a);
+      ctx.fillStyle = c.coatThird;
+      drawNodeEllipse(cat.rig.waist, 1, -11, 18 * coverage, 10 * coverage, 0.18, a);
+      drawNodeEllipse(cat.rig.pelvis, 9, 12, 14 * coverage, 9 * coverage, -0.1, a);
+      if (pattern === 'calico' && appearance.whiteLevel === 'low') {
+        ctx.fillStyle = c.coatAccent;
+        drawNodeEllipse(cat.rig.waist, -4, 12, 15, 9, -0.12, a);
+        ctx.fillStyle = c.coatThird;
+        drawNodeEllipse(cat.rig.shoulders, -4, -12, 13, 8, 0.16, a);
+      }
+    } else if (pattern === 'bicolor' || pattern === 'tuxedo') {
+      ctx.fillStyle = c.coatWhite;
+      ctx.globalAlpha = 0.96;
+      drawNodeEllipse(cat.rig.neck, 2, 0, 10, 7, 0, a);
+      if (appearance.whiteLevel === 'medium' || appearance.whiteLevel === 'high') {
+        drawNodeEllipse(cat.rig.shoulders, 0, 10, 23, 13, 0.08, a);
+        drawNodeEllipse(cat.rig.waist, -1, 11, 21, 11, -0.04, a);
+      }
+      if (appearance.whiteLevel === 'high') {
+        drawNodeEllipse(cat.rig.pelvis, -1, 0, 34, 27, 0, a);
+        drawNodeEllipse(cat.rig.shoulders, 1, -7, 28, 19, -0.04, a);
+      }
+    } else if (pattern === 'smoke') {
+      ctx.fillStyle = c.coatAccent;
+      ctx.globalAlpha = 0.16;
+      ctx.filter = `blur(${3.4 * a.scale}px)`;
+      drawNodeEllipse(cat.rig.pelvis, 1, 0, 27, 13, 0, a);
+      drawNodeEllipse(cat.rig.waist, 0, 0, 23, 10, 0, a);
+      drawNodeEllipse(cat.rig.shoulders, 0, 0, 24, 11, 0, a);
+      ctx.filter = 'none';
+    }
+
+    if (hasWhiteMarkings() && !['bicolor', 'tuxedo', 'calico'].includes(pattern)) {
+      ctx.fillStyle = c.coatWhite;
+      ctx.globalAlpha = appearance.whiteLevel === 'low' ? 0.58 : 0.82;
+      drawNodeEllipse(cat.rig.neck, 2, 0, 9, 6, 0, a);
+      if (appearance.whiteLevel !== 'low') {
+        drawNodeEllipse(cat.rig.shoulders, -2, 8, 18, 10, 0.08, a);
+        drawNodeEllipse(cat.rig.waist, 0, 9, 19, 9, -0.04, a);
+      }
+    }
+    ctx.globalAlpha = 1;
+  }
+
+  function paintHairlessBodyDetails(c, a) {
+    if (furLength() !== 'hairless') return;
+    ctx.strokeStyle = c.skinLine;
+    ctx.globalAlpha = 0.28;
+    ctx.lineWidth = 0.72 * a.scale;
+    ctx.lineCap = 'round';
+    [cat.rig.shoulders, cat.rig.waist].forEach((node, index) => {
+      ctx.save();
+      ctx.translate(node.x, node.y);
+      ctx.rotate(node.angle);
+      [-1, 1].forEach((side) => {
+        ctx.beginPath();
+        ctx.moveTo((-5 + index * 2) * a.scale, side * 8 * a.scale);
+        ctx.quadraticCurveTo(0, side * 10 * a.scale, (6 + index) * a.scale, side * 7 * a.scale);
+        ctx.stroke();
+      });
+      ctx.restore();
+    });
+    ctx.globalAlpha = 1;
+  }
+
   // 耳背暗斑：真虎斑俯视时耳背是深色的（是背面绒毛，不是门禁防的粉色内耳芯）。软平涂、低对比。
   function paintEarBacks(c, a) {
-    ctx.fillStyle = c.earShade;
+    ctx.fillStyle = coatPattern() === 'pointed' ? c.coatAccent : c.earShade;
     [-1, 1].forEach((side) => {
       const ear = earLandmarks(side);
       ctx.globalAlpha = 0.85;
@@ -3157,10 +3419,11 @@
     const roll = poseChannelWeight('roll', 'details');
     const curl = poseChannelWeight('curl', 'details');
     const side = restPoseSide();
+    const bellyColor = hasWhiteMarkings() ? c.coatWhite : c.furLight;
 
     if (loaf > 0.001) {
       // 两枚低对比前爪尖从胸口下露出一点，身体仍覆盖脚踝，读作“香箱”而不是四根短腿。
-      ctx.fillStyle = c.cream;
+      ctx.fillStyle = bellyColor;
       ctx.globalAlpha = 0.34 * loaf;
       drawNodeEllipse(cat.rig.shoulders, 12, -5.2, 7.2, 3.2, -0.08, a);
       drawNodeEllipse(cat.rig.shoulders, 12, 5.2, 7.2, 3.2, 0.08, a);
@@ -3183,7 +3446,7 @@
       ctx.save();
       ctx.translate(cat.rig.waist.x, cat.rig.waist.y);
       ctx.rotate(cat.rig.waist.angle + restRollWave() * 0.06);
-      ctx.fillStyle = c.cream;
+      ctx.fillStyle = bellyColor;
       ctx.globalAlpha = 0.64 * roll;
       traceSoftFurPatch(ctx, a, 55, 16);
       ctx.fill();
@@ -3199,7 +3462,7 @@
       const pelvis = pointFromNode(cat.rig.pelvis, 4 * a.scale, side * 13 * a.scale);
       const waist = pointFromNode(cat.rig.waist, 2 * a.scale, side * 10 * a.scale);
       const shoulder = pointFromNode(cat.rig.shoulders, -2 * a.scale, side * 9 * a.scale);
-      ctx.strokeStyle = c.cream;
+      ctx.strokeStyle = bellyColor;
       ctx.globalAlpha = 0.25 * curl;
       ctx.lineWidth = 7 * a.scale;
       ctx.lineCap = 'round';
@@ -3218,6 +3481,7 @@
     const contours = traceBodySilhouette(ctx, a, 0, 0);
     ctx.fillStyle = c.fur;
     ctx.fill();
+    paintBodyFurFringe(c, contours, a);
     ctx.strokeStyle = c.furDark;
     ctx.globalAlpha = 0.42;
     ctx.lineWidth = 0.85 * a.scale;
@@ -3228,10 +3492,12 @@
     traceBodySilhouette(ctx, a, 0, 0);
     ctx.clip();
 
+    paintBodyCoat(c, a);
+
     // Soft volumes reveal pelvis, waist and shoulder masses without drawing a
     // literal spine or mirrored ribs over the animal.
     ctx.fillStyle = c.furLight;
-    ctx.globalAlpha = 0.15;
+    ctx.globalAlpha = furLength() === 'hairless' ? 0.06 : 0.15;
     ctx.filter = `blur(${4.8 * a.scale}px)`;
     drawNodeEllipse(cat.rig.pelvis, -1, -3, 29, 12 * breathVolume, -0.06, a);
     drawNodeEllipse(cat.rig.waist, 1, -2, 23, 8.5 * breathVolume, 0.03, a);
@@ -3253,32 +3519,30 @@
     drawNodeEllipse(cat.rig.shoulders, 2, -7, 6.5 + (cat.feet.leftFore ? cat.feet.leftFore.lift : 0) * 2.2, 5.0, -0.1, a);
     drawNodeEllipse(cat.rig.shoulders, 2, 7, 6.5 + (cat.feet.rightFore ? cat.feet.rightFore.lift : 0) * 2.2, 5.0, 0.1, a);
 
-    // 奶油胸楔（颈下浅色——虎斑常见的浅胸口，从上方看是颈前一小片）
-    ctx.globalAlpha = 0.5;
-    ctx.fillStyle = c.cream;
-    drawNodeEllipse(cat.rig.neck, 2, 0, 9, 6, 0, a);
-
-    drawDorsalStripe(c, contours, a);
+    if (coatPattern() === 'tabby') drawDorsalStripe(c, contours, a);
 
     // Mackerel 肋纹：全部一致后弯（drift 同号）、内端拉近脊柱 → 读作从脊背向两侧放射的虎斑肋条，
     // 不再是随机短划（悦耳……悦目 pass：设计评审确认这是"薯感"主因之一）。
-    ctx.strokeStyle = c.stripe;
-    ctx.globalAlpha = 0.6;
-    ctx.lineWidth = 2.8 * a.scale;
-    ctx.lineCap = 'round';
-    [
-      [cat.rig.pelvis, { x: -13, side: -1, edge: 28, inner: 8, drift: 7 }],
-      [cat.rig.pelvis, { x: 5, side: -1, edge: 30, inner: 9, drift: 6 }],
-      [cat.rig.pelvis, { x: -4, side: 1, edge: 30, inner: 9, drift: 7 }],
-      [cat.rig.pelvis, { x: 13, side: 1, edge: 26, inner: 8, drift: 5 }],
-      [cat.rig.waist, { x: -3, side: -1, edge: 20, inner: 7, drift: 6 }],
-      [cat.rig.waist, { x: 6, side: 1, edge: 20, inner: 7, drift: 5 }],
-      [cat.rig.shoulders, { x: -7, side: -1, edge: 25, inner: 9, drift: 6 }],
-      [cat.rig.shoulders, { x: 8, side: -1, edge: 23, inner: 8, drift: 5 }],
-      [cat.rig.shoulders, { x: -1, side: 1, edge: 26, inner: 9, drift: 6 }],
-      [cat.rig.shoulders, { x: 12, side: 1, edge: 21, inner: 8, drift: 4 }],
-    ].forEach(([node, stripe]) => drawFlankStripe(node, stripe, a));
+    if (coatPattern() === 'tabby') {
+      ctx.strokeStyle = c.stripe;
+      ctx.globalAlpha = 0.6;
+      ctx.lineWidth = 2.8 * a.scale;
+      ctx.lineCap = 'round';
+      [
+        [cat.rig.pelvis, { x: -13, side: -1, edge: 28, inner: 8, drift: 7 }],
+        [cat.rig.pelvis, { x: 5, side: -1, edge: 30, inner: 9, drift: 6 }],
+        [cat.rig.pelvis, { x: -4, side: 1, edge: 30, inner: 9, drift: 7 }],
+        [cat.rig.pelvis, { x: 13, side: 1, edge: 26, inner: 8, drift: 5 }],
+        [cat.rig.waist, { x: -3, side: -1, edge: 20, inner: 7, drift: 6 }],
+        [cat.rig.waist, { x: 6, side: 1, edge: 20, inner: 7, drift: 5 }],
+        [cat.rig.shoulders, { x: -7, side: -1, edge: 25, inner: 9, drift: 6 }],
+        [cat.rig.shoulders, { x: 8, side: -1, edge: 23, inner: 8, drift: 5 }],
+        [cat.rig.shoulders, { x: -1, side: 1, edge: 26, inner: 9, drift: 6 }],
+        [cat.rig.shoulders, { x: 12, side: 1, edge: 21, inner: 8, drift: 4 }],
+      ].forEach(([node, stripe]) => drawFlankStripe(node, stripe, a));
+    }
 
+    paintHairlessBodyDetails(c, a);
     drawRestPoseDetails(c, a);
 
     ctx.restore();
@@ -3286,22 +3550,124 @@
     drawHead(c, a);
   }
 
+  function paintHeadFurFringe(c, a) {
+    const amount = furFringeAmount();
+    if (amount <= 0) return;
+    ctx.fillStyle = c.fur;
+    ctx.globalAlpha = furLength() === 'long' ? 0.94 : 0.76;
+    [-1, 1].forEach((side) => {
+      const x = -11.5 * a.scale;
+      const y = side * (HEAD_GEOMETRY.skullHalfWidth - 1) * a.scale;
+      ctx.beginPath();
+      ctx.moveTo(x - 3 * a.scale, y - side * 1.8 * a.scale);
+      ctx.quadraticCurveTo(
+        (x - amount * 0.35 * a.scale),
+        y + side * amount * 0.45 * a.scale,
+        (x - amount * 0.7 * a.scale),
+        y + side * amount * a.scale,
+      );
+      ctx.quadraticCurveTo(x + 2 * a.scale, y + side * 1.8 * a.scale, x + 3 * a.scale, y);
+      ctx.closePath();
+      ctx.fill();
+    });
+    ctx.globalAlpha = 1;
+  }
+
+  function paintHeadCoat(c, a) {
+    const pattern = coatPattern();
+    ctx.save();
+    traceHeadSilhouette(ctx, a);
+    ctx.clip();
+
+    if (pattern === 'pointed') {
+      ctx.fillStyle = c.coatAccent;
+      ctx.globalAlpha = 0.86;
+      ctx.beginPath();
+      ctx.ellipse(15 * a.scale, 0, 12 * a.scale, 14.5 * a.scale, 0, 0, Gait.TAU);
+      ctx.fill();
+      [-1, 1].forEach((side) => {
+        const ear = earLandmarks(side);
+        ctx.beginPath();
+        ctx.moveTo(ear.rearBase.x * a.scale, ear.rearBase.y * a.scale);
+        ctx.lineTo(ear.tip.x * a.scale, ear.tip.y * a.scale);
+        ctx.lineTo(ear.frontBase.x * a.scale, ear.frontBase.y * a.scale);
+        ctx.closePath();
+        ctx.fill();
+      });
+    } else if (pattern === 'calico' || pattern === 'tortie') {
+      const coverage = pattern === 'calico' ? calicoColorCoverage() : 1;
+      ctx.globalAlpha = pattern === 'calico' ? 0.94 : 0.78;
+      ctx.fillStyle = c.coatAccent;
+      ctx.beginPath();
+      ctx.ellipse(-3 * a.scale, -11 * a.scale, 14 * coverage * a.scale, 10 * coverage * a.scale, -0.26, 0, Gait.TAU);
+      ctx.fill();
+      ctx.fillStyle = c.coatThird;
+      ctx.beginPath();
+      ctx.ellipse(9 * a.scale, 10 * a.scale, 11 * coverage * a.scale, 9 * coverage * a.scale, 0.2, 0, Gait.TAU);
+      ctx.fill();
+    } else if (pattern === 'bicolor' || pattern === 'tuxedo') {
+      ctx.fillStyle = c.coatWhite;
+      ctx.globalAlpha = 0.96;
+      const size = appearance.whiteLevel === 'high' ? 20 : (appearance.whiteLevel === 'medium' ? 13 : 9);
+      ctx.beginPath();
+      ctx.ellipse(14 * a.scale, 0, size * a.scale, (size * 0.72) * a.scale, 0, 0, Gait.TAU);
+      ctx.fill();
+      if (appearance.whiteLevel === 'high') {
+        ctx.beginPath();
+        ctx.ellipse(-5 * a.scale, 3 * a.scale, 17 * a.scale, 15 * a.scale, 0.08, 0, Gait.TAU);
+        ctx.fill();
+      }
+    } else if (pattern === 'smoke') {
+      ctx.fillStyle = c.coatAccent;
+      ctx.globalAlpha = 0.14;
+      ctx.beginPath();
+      ctx.ellipse(-2 * a.scale, 0, 17 * a.scale, 11 * a.scale, 0, 0, Gait.TAU);
+      ctx.fill();
+    }
+
+    if (hasWhiteMarkings() && !['bicolor', 'tuxedo', 'calico'].includes(pattern)) {
+      ctx.fillStyle = c.coatWhite;
+      ctx.globalAlpha = appearance.whiteLevel === 'low' ? 0.58 : 0.86;
+      ctx.beginPath();
+      ctx.ellipse(17 * a.scale, 0, (appearance.whiteLevel === 'low' ? 6 : 9) * a.scale, 7 * a.scale, 0, 0, Gait.TAU);
+      ctx.fill();
+    }
+    ctx.restore();
+  }
+
+  function paintHairlessHeadDetails(c, a) {
+    if (furLength() !== 'hairless') return;
+    ctx.strokeStyle = c.skinLine;
+    ctx.globalAlpha = 0.28;
+    ctx.lineWidth = 0.68 * a.scale;
+    ctx.lineCap = 'round';
+    [-1, 1].forEach((side) => {
+      ctx.beginPath();
+      ctx.moveTo(-9 * a.scale, side * 8 * a.scale);
+      ctx.quadraticCurveTo(-3 * a.scale, side * 10 * a.scale, 2 * a.scale, side * 8.5 * a.scale);
+      ctx.stroke();
+    });
+    ctx.globalAlpha = 1;
+  }
+
   function drawTopDownFace(c, a) {
     // The head follows the body's restrained graphic language: three crown
     // marks, two upper-lid lines and one tiny nose. No portrait mask, iris,
     // mouth construction or follicle dots compete with the silhouette.
-    ctx.strokeStyle = c.stripe;
-    ctx.lineCap = 'round';
-    ctx.lineWidth = 1.35 * a.scale;
-    ctx.globalAlpha = 0.5;
-    ctx.beginPath();
-    ctx.moveTo(2.5 * a.scale, 0);
-    ctx.bezierCurveTo(5.5 * a.scale, -0.3 * a.scale, 8.5 * a.scale, -0.2 * a.scale, 11.5 * a.scale, 0);
-    ctx.moveTo(3.5 * a.scale, -5.4 * a.scale);
-    ctx.quadraticCurveTo(7 * a.scale, -4.9 * a.scale, 10.5 * a.scale, -3.7 * a.scale);
-    ctx.moveTo(3.5 * a.scale, 5.4 * a.scale);
-    ctx.quadraticCurveTo(7 * a.scale, 4.9 * a.scale, 10.5 * a.scale, 3.7 * a.scale);
-    ctx.stroke();
+    if (coatPattern() === 'tabby') {
+      ctx.strokeStyle = c.stripe;
+      ctx.lineCap = 'round';
+      ctx.lineWidth = 1.35 * a.scale;
+      ctx.globalAlpha = 0.5;
+      ctx.beginPath();
+      ctx.moveTo(2.5 * a.scale, 0);
+      ctx.bezierCurveTo(5.5 * a.scale, -0.3 * a.scale, 8.5 * a.scale, -0.2 * a.scale, 11.5 * a.scale, 0);
+      ctx.moveTo(3.5 * a.scale, -5.4 * a.scale);
+      ctx.quadraticCurveTo(7 * a.scale, -4.9 * a.scale, 10.5 * a.scale, -3.7 * a.scale);
+      ctx.moveTo(3.5 * a.scale, 5.4 * a.scale);
+      ctx.quadraticCurveTo(7 * a.scale, 4.9 * a.scale, 10.5 * a.scale, 3.7 * a.scale);
+      ctx.stroke();
+    }
 
     drawEyeLine(c, a, -1);
     drawEyeLine(c, a, 1);
@@ -3329,6 +3695,8 @@
     ctx.fillStyle = c.fur;
     traceHeadSilhouette(ctx, a);
     ctx.fill();
+    paintHeadFurFringe(c, a);
+    paintHeadCoat(c, a);
     paintEarBacks(c, a);
 
     ctx.strokeStyle = c.furDark;
@@ -3340,6 +3708,7 @@
     ctx.globalAlpha = 1;
 
     drawTopDownFace(c, a);
+    paintHairlessHeadDetails(c, a);
     drawWhiskers(c, a);
     ctx.restore();
   }
@@ -3368,7 +3737,7 @@
         const radius = (
           (SKIN_TOPOLOGY.tailRootRadius - SKIN_TOPOLOGY.tailTipRadius) * Math.pow(1 - t, 0.5)
           + SKIN_TOPOLOGY.tailTipRadius
-        ) * a.scale + 2;
+        ) * a.scale * tailCoatRadiusMultiplier() + 2;
         const dx = mouse.x - renderTail[index].x;
         const dy = mouse.y - renderTail[index].y;
         if (dx * dx + dy * dy < radius * radius) { hidden = true; break; }
@@ -3518,6 +3887,603 @@
     drawMouse(c);
   }
 
+  function selectOptions(select) {
+    return select && select.options ? Array.from(select.options) : [];
+  }
+
+  function syncAppearanceControls() {
+    if (appearancePattern) appearancePattern.value = appearance.pattern;
+    if (appearanceColorway) {
+      const valid = new Set(Appearance.validColorways(appearance.pattern).map((key) => `${appearance.pattern}-${key}`));
+      selectOptions(appearanceColorway).forEach((option) => {
+        const enabled = valid.has(option.value);
+        option.hidden = !enabled;
+        option.disabled = !enabled;
+      });
+      appearanceColorway.value = `${appearance.pattern}-${appearance.colorway}`;
+    }
+    if (appearanceWhiteLevel) {
+      const valid = new Set(Appearance.validWhiteLevels(appearance.pattern));
+      selectOptions(appearanceWhiteLevel).forEach((option) => {
+        const enabled = valid.has(option.value);
+        option.hidden = !enabled;
+        option.disabled = !enabled;
+      });
+      appearanceWhiteLevel.value = appearance.whiteLevel;
+      appearanceWhiteLevel.disabled = valid.size < 2;
+    }
+    if (appearanceFurLength) appearanceFurLength.value = appearance.furLength;
+    selectOptions(appearancePattern).forEach((option) => {
+      option.disabled = appearance.furLength === 'hairless' && option.value === 'smoke';
+    });
+    syncAppearanceVisual();
+  }
+
+  // ── Visual appearance UI: chip grid, swatch grid, segmented controls, preview ──
+
+  const PATTERN_ORDER = Object.keys(Appearance.PATTERNS);
+
+  function patternLabel(pattern) {
+    const key = 'pattern' + pattern.charAt(0).toUpperCase() + pattern.slice(1);
+    return I18n.LABELS && I18n.LABELS[key] ? I18n.t(key) : pattern;
+  }
+
+  function colorwayLabel(pattern, colorway) {
+    const way = Appearance.COLORWAYS[pattern] && Appearance.COLORWAYS[pattern][colorway];
+    const language = typeof I18n.getLanguage === 'function' ? I18n.getLanguage() : 'zh';
+    if (way && way[language]) return way[language];
+    return colorway;
+  }
+
+  function whiteLevelLabel(level) {
+    const key = 'whiteLevel' + level.charAt(0).toUpperCase() + level.slice(1);
+    return I18n.LABELS && I18n.LABELS[key] ? I18n.t(key) : level;
+  }
+
+  // Pattern glyphs: a fixed, abstract icon per pattern. Drawn as inline SVG so
+  // the grid stays crisp at any DPR and matches the panel typography.
+  function patternGlyph(pattern) {
+    const stroke = 'stroke="currentColor" stroke-width="1.4" stroke-linejoin="round" fill="none"';
+    const fill = 'fill="currentColor"';
+    switch (pattern) {
+      case 'solid':
+        return `<circle cx="13" cy="13" r="8" ${fill}/>`;
+      case 'tabby':
+        return (
+          `<rect x="4" y="4" width="18" height="18" rx="3" ${fill} fill-opacity="0.18"/>` +
+          `<path d="M9 4v18M13 4v18M17 4v18" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>`
+        );
+      case 'bicolor':
+        return (
+          `<path d="M13 4a9 9 0 0 0-9 9h18a9 9 0 0 0-9-9z" ${fill}/>` +
+          `<path d="M13 22a9 9 0 0 0 9-9H4a9 9 0 0 0 9 9z" ${fill} fill-opacity="0.22"/>`
+        );
+      case 'tuxedo':
+        return (
+          `<path d="M13 4a9 9 0 0 0-9 9v0a9 9 0 0 0 18 0a9 9 0 0 0-9-9z" ${fill} fill-opacity="0.18"/>` +
+          `<path d="M10.5 7.2v14.3a9 9 0 0 0 5 0V7.2z" ${fill}/>`
+        );
+      case 'calico':
+        return (
+          `<circle cx="8" cy="9" r="4.5" ${fill}/>` +
+          `<circle cx="18" cy="9" r="4.5" ${fill} fill-opacity="0.5"/>` +
+          `<path d="M9 16a4.5 4.5 0 0 0 9 0z" ${fill} fill-opacity="0.25"/>`
+        );
+      case 'tortie':
+        return (
+          `<path d="M4 13a9 9 0 0 1 18 0z" ${fill}/>` +
+          `<path d="M5 13c2-1 4-3 8-3s6 2 8 3z" ${fill} fill-opacity="0.45"/>` +
+          `<path d="M9 13c1-2 2-3 4-3s3 1 4 3" stroke="currentColor" stroke-width="1.2" fill="none"/>`
+        );
+      case 'pointed':
+        return (
+          `<circle cx="13" cy="13" r="8.5" ${fill} fill-opacity="0.2"/>` +
+          `<circle cx="6.5" cy="6.5" r="2.4" ${fill}/>` +
+          `<circle cx="19.5" cy="6.5" r="2.4" ${fill}/>` +
+          `<circle cx="6.5" cy="19.5" r="2.4" ${fill}/>` +
+          `<circle cx="19.5" cy="19.5" r="2.4" ${fill}/>`
+        );
+      case 'smoke':
+        return (
+          `<defs><radialGradient id="g-smoke"><stop offset="0%" stop-color="currentColor" stop-opacity="0.18"/><stop offset="100%" stop-color="currentColor" stop-opacity="1"/></radialGradient></defs>` +
+          `<circle cx="13" cy="13" r="8.5" fill="url(#g-smoke)"/>`
+        );
+      default:
+        return `<circle cx="13" cy="13" r="7" ${fill}/>`;
+    }
+  }
+
+  // Colorway swatch: a 3-stripe tile that reads at 26px. Composition depends
+  // on the pattern so a calico swatch shows three regions, a pointed swatch
+  // shows a pale base with darker points, etc.
+  function colorwayTileSvg(pattern, way) {
+    const baseHex = Appearance.COLORS[way.base] ? Appearance.COLORS[way.base].hex : '#c87340';
+    const accentHex = way.accent && Appearance.COLORS[way.accent] ? Appearance.COLORS[way.accent].hex : baseHex;
+    const thirdHex = way.third && Appearance.COLORS[way.third] ? Appearance.COLORS[way.third].hex : accentHex;
+    const whiteHex = way.white && Appearance.COLORS[way.white] ? Appearance.COLORS[way.white].hex : '#f3efe7';
+    const W = 36;
+    const H = 26;
+    const parts = [];
+    switch (pattern) {
+      case 'solid':
+        parts.push(`<rect width="${W}" height="${H}" fill="${baseHex}"/>`);
+        break;
+      case 'tabby':
+        parts.push(`<rect width="${W}" height="${H}" fill="${baseHex}"/>`);
+        for (let i = 0; i < 4; i += 1) {
+          parts.push(`<rect x="${5 + i * 8}" y="0" width="2" height="${H}" fill="${accentHex}" fill-opacity="0.55"/>`);
+        }
+        break;
+      case 'bicolor':
+        parts.push(`<rect width="${W}" height="${H}" fill="${whiteHex}"/>`);
+        parts.push(`<path d="M0 0h${W}v${H * 0.55}L${W * 0.5} ${H * 0.78}L0 ${H * 0.55}z" fill="${baseHex}"/>`);
+        break;
+      case 'tuxedo':
+        parts.push(`<rect width="${W}" height="${H}" fill="${baseHex}"/>`);
+        parts.push(`<path d="M${W * 0.36} 0h${W * 0.28}v${H}L${W * 0.5} ${H * 0.78}L${W * 0.36} ${H}z" fill="${whiteHex}"/>`);
+        break;
+      case 'calico':
+        parts.push(`<rect width="${W}" height="${H}" fill="${whiteHex}"/>`);
+        parts.push(`<circle cx="${W * 0.28}" cy="${H * 0.4}" r="${H * 0.4}" fill="${baseHex}"/>`);
+        parts.push(`<circle cx="${W * 0.72}" cy="${H * 0.6}" r="${H * 0.42}" fill="${accentHex}"/>`);
+        parts.push(`<circle cx="${W * 0.85}" cy="${H * 0.22}" r="${H * 0.22}" fill="${thirdHex}"/>`);
+        break;
+      case 'tortie':
+        parts.push(`<rect width="${W}" height="${H}" fill="${baseHex}"/>`);
+        parts.push(`<ellipse cx="${W * 0.32}" cy="${H * 0.5}" rx="${W * 0.18}" ry="${H * 0.42}" fill="${accentHex}"/>`);
+        parts.push(`<ellipse cx="${W * 0.68}" cy="${H * 0.4}" rx="${W * 0.14}" ry="${H * 0.32}" fill="${thirdHex}"/>`);
+        break;
+      case 'pointed':
+        parts.push(`<rect width="${W}" height="${H}" fill="${baseHex}"/>`);
+        parts.push(`<circle cx="${H * 0.35}" cy="${H * 0.35}" r="${H * 0.28}" fill="${accentHex}"/>`);
+        parts.push(`<circle cx="${W - H * 0.35}" cy="${H * 0.35}" r="${H * 0.28}" fill="${accentHex}"/>`);
+        parts.push(`<rect x="0" y="${H - H * 0.3}" width="${W * 0.22}" height="${H * 0.3}" fill="${accentHex}"/>`);
+        parts.push(`<rect x="${W - W * 0.22}" y="${H - H * 0.3}" width="${W * 0.22}" height="${H * 0.3}" fill="${accentHex}"/>`);
+        break;
+      case 'smoke':
+        parts.push(`<rect width="${W}" height="${H}" fill="${baseHex}"/>`);
+        parts.push(`<rect width="${W}" height="${H * 0.45}" fill="${whiteHex}" fill-opacity="0.7"/>`);
+        break;
+      default:
+        parts.push(`<rect width="${W}" height="${H}" fill="${baseHex}"/>`);
+    }
+    return `<svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">${parts.join('')}</svg>`;
+  }
+
+  function ensureChild(container, tag, className, attrs) {
+    const existing = container.querySelector(`[data-key="${attrs['data-key']}"]`);
+    if (existing) return existing;
+    const node = document.createElement(tag);
+    if (className) node.className = className;
+    Object.keys(attrs || {}).forEach((name) => node.setAttribute(name, attrs[name]));
+    container.appendChild(node);
+    return node;
+  }
+
+  function wireRadioNavigation(container) {
+    if (!container || container.dataset.arrowKeys === '1') return;
+    container.addEventListener('keydown', (event) => {
+      const direction = {
+        ArrowLeft: -1,
+        ArrowUp: -1,
+        ArrowRight: 1,
+        ArrowDown: 1,
+      }[event.key];
+      if (!direction && event.key !== 'Home' && event.key !== 'End') return;
+      const radios = Array.from(container.querySelectorAll('[role="radio"]')).filter((radio) => !radio.disabled);
+      if (!radios.length) return;
+      const currentIndex = Math.max(0, radios.indexOf(event.target));
+      let nextIndex;
+      if (event.key === 'Home') nextIndex = 0;
+      else if (event.key === 'End') nextIndex = radios.length - 1;
+      else nextIndex = (currentIndex + direction + radios.length) % radios.length;
+      radios[nextIndex].focus();
+      radios[nextIndex].click();
+      event.preventDefault();
+    });
+    container.dataset.arrowKeys = '1';
+  }
+
+  function renderPatternChips() {
+    if (!appearancePatternGrid) return;
+    const hairless = appearance.furLength === 'hairless';
+    PATTERN_ORDER.forEach((pattern) => {
+      const disabled = hairless && pattern === 'smoke';
+      const chip = ensureChild(appearancePatternGrid, 'button', 'appearance-chip', {
+        'data-key': pattern,
+        'data-pattern': pattern,
+        type: 'button',
+        role: 'radio',
+        'aria-checked': String(appearance.pattern === pattern),
+      });
+      chip.disabled = disabled;
+      const selected = appearance.pattern === pattern;
+      chip.setAttribute('aria-checked', String(selected));
+      chip.tabIndex = selected ? 0 : -1;
+      chip.classList.toggle('is-selected', selected);
+      if (chip.dataset.bound !== '1') {
+        chip.addEventListener('click', () => applyAppearance({ pattern }, true));
+        chip.dataset.bound = '1';
+      }
+      const labelText = patternLabel(pattern);
+      chip.setAttribute('aria-label', labelText);
+      chip.setAttribute('title', labelText);
+      const iconHtml = `<svg class="appearance-chip-icon" viewBox="0 0 26 26" aria-hidden="true">${patternGlyph(pattern)}</svg>`;
+      chip.innerHTML = `${iconHtml}<span>${labelText}</span>`;
+      appearancePatternGrid.appendChild(chip);
+    });
+    wireRadioNavigation(appearancePatternGrid);
+  }
+
+  function renderColorwaySwatches() {
+    if (!appearanceColorwayGrid) return;
+    const ways = Appearance.validColorways(appearance.pattern);
+    if (appearanceColorwayEmpty) appearanceColorwayEmpty.hidden = ways.length > 0;
+    // Remove swatches for colorways that are no longer legal for this pattern.
+    Array.from(appearanceColorwayGrid.querySelectorAll('.appearance-swatch')).forEach((node) => {
+      const key = node.getAttribute('data-key');
+      if (ways.indexOf(key) === -1) node.remove();
+    });
+    ways.forEach((colorway) => {
+      const way = Appearance.COLORWAYS[appearance.pattern][colorway];
+      const swatch = ensureChild(appearanceColorwayGrid, 'button', 'appearance-swatch', {
+        'data-key': colorway,
+        'data-colorway': colorway,
+        type: 'button',
+        role: 'radio',
+        'aria-checked': String(appearance.colorway === colorway),
+        'aria-label': colorwayLabel(appearance.pattern, colorway),
+        title: colorwayLabel(appearance.pattern, colorway),
+      });
+      const selected = appearance.colorway === colorway;
+      swatch.setAttribute('aria-checked', String(selected));
+      swatch.tabIndex = selected ? 0 : -1;
+      swatch.setAttribute('aria-label', colorwayLabel(appearance.pattern, colorway));
+      swatch.setAttribute('title', colorwayLabel(appearance.pattern, colorway));
+      swatch.classList.toggle('is-selected', selected);
+      if (swatch.dataset.bound !== '1') {
+        swatch.addEventListener('click', () => applyAppearance({ colorway }, true));
+        swatch.dataset.bound = '1';
+      }
+      swatch.innerHTML =
+        `<span class="appearance-swatch-tile">${colorwayTileSvg(appearance.pattern, way)}</span>` +
+        `<span class="appearance-swatch-label">${colorwayLabel(appearance.pattern, colorway)}</span>`;
+      appearanceColorwayGrid.appendChild(swatch);
+    });
+    if (appearanceColorwayMeta) {
+      appearanceColorwayMeta.textContent = ways.length > 0 ? colorwayLabel(appearance.pattern, appearance.colorway) : '';
+    }
+    wireRadioNavigation(appearanceColorwayGrid);
+  }
+
+  function renderWhiteLevelSegments() {
+    if (!appearanceWhiteLevelGroup) return;
+    const valid = Appearance.validWhiteLevels(appearance.pattern);
+    if (appearanceWhiteLevelRow) appearanceWhiteLevelRow.hidden = valid.length < 2;
+    // Remove segments that are no longer legal.
+    Array.from(appearanceWhiteLevelGroup.querySelectorAll('.appearance-seg')).forEach((node) => {
+      if (valid.indexOf(node.getAttribute('data-key')) === -1) node.remove();
+    });
+    valid.forEach((level) => {
+      const seg = ensureChild(appearanceWhiteLevelGroup, 'button', 'appearance-seg', {
+        'data-key': level,
+        'data-white-level': level,
+        type: 'button',
+        role: 'radio',
+        'aria-checked': String(appearance.whiteLevel === level),
+      });
+      const selected = appearance.whiteLevel === level;
+      seg.setAttribute('aria-checked', String(selected));
+      seg.tabIndex = selected ? 0 : -1;
+      seg.classList.toggle('is-selected', selected);
+      if (seg.dataset.bound !== '1') {
+        seg.addEventListener('click', () => applyAppearance({ whiteLevel: level }, true));
+        seg.dataset.bound = '1';
+      }
+      const labelText = whiteLevelLabel(level);
+      seg.setAttribute('aria-label', labelText);
+      seg.setAttribute('title', labelText);
+      seg.textContent = labelText;
+      appearanceWhiteLevelGroup.appendChild(seg);
+    });
+    wireRadioNavigation(appearanceWhiteLevelGroup);
+  }
+
+  // ── Mini preview renderer ──
+  //
+  // A standalone top-down cat on its own canvas, drawn with the same palette
+  // as the main canvas but a simplified, static body/head/tail silhouette. It
+  // does not run on the animation frame; it redraws whenever appearance or
+  // theme changes (cheap, ~1ms).
+  function previewCtx() {
+    if (!appearancePreviewCanvas) return null;
+    if (typeof appearancePreviewCanvas.getContext !== 'function') return null;
+    const dpr = window.devicePixelRatio || 1;
+    const cssW = appearancePreviewCanvas.clientWidth || 168;
+    const cssH = appearancePreviewCanvas.clientHeight || 168;
+    const targetW = Math.max(2, Math.round(cssW * dpr));
+    const targetH = Math.max(2, Math.round(cssH * dpr));
+    if (appearancePreviewCanvas.width !== targetW || appearancePreviewCanvas.height !== targetH) {
+      appearancePreviewCanvas.width = targetW;
+      appearancePreviewCanvas.height = targetH;
+    }
+    let ctx2d = null;
+    try { ctx2d = appearancePreviewCanvas.getContext('2d'); } catch (_) { return null; }
+    if (!ctx2d || typeof ctx2d.setTransform !== 'function') return null;
+    ctx2d.setTransform(dpr, 0, 0, dpr, 0, 0);
+    return { ctx: ctx2d, w: cssW, h: cssH };
+  }
+
+  function drawAppearancePreview() {
+    if (!appearancePreviewCanvas) return;
+    if (appearancePanel && appearancePanel.hidden) return;
+    const env = previewCtx();
+    if (!env) return;
+    const { ctx: p, w, h } = env;
+    p.clearRect(0, 0, w, h);
+    p.save();
+    p.translate(w / 2, h / 2);
+    const scale = Math.min(w, h) / 180;
+    p.scale(scale, scale);
+
+    const c = colors();
+    const pattern = appearance.pattern;
+    const furLong = appearance.furLength === 'long';
+    const furMedium = appearance.furLength === 'medium';
+    const hairless = appearance.furLength === 'hairless';
+
+    // Floor wash covering the whole preview backing so the canvas is opaque
+    // (otherwise the panel shows through at the corners).
+    p.fillStyle = isDark() ? '#1b1d18' : '#e8dfcf';
+    p.fillRect(-w / 2, -h / 2, w, h);
+    // A soft inner vignette suggests a rug without shrinking the floor.
+    p.fillStyle = isDark() ? 'rgba(63, 60, 48, 0.32)' : 'rgba(216, 203, 183, 0.45)';
+    p.beginPath();
+    p.ellipse(0, 0, w * 0.46, h * 0.36, 0, 0, Gait.TAU);
+    p.fill();
+
+    // Layout: head forward (+x), tail backward (-x), body in between.
+    const bodyLen = furLong ? 86 : (furMedium ? 80 : 74);
+    const bodyW = furLong ? 50 : (furMedium ? 46 : 42);
+    const headR = 23;
+
+    // Tail (drawn first so the body overlaps its root).
+    p.save();
+    p.translate(-bodyLen * 0.5, 0);
+    p.beginPath();
+    p.moveTo(0, 0);
+    p.bezierCurveTo(-22, -4, -38, 18, -50, 6);
+    p.lineWidth = furLong ? 12 : 9;
+    p.lineCap = 'round';
+    p.strokeStyle = c.fur;
+    p.stroke();
+    // Tail markings: tip + rings for pointed / tabby.
+    if (pattern === 'pointed' || pattern === 'tabby') {
+      p.beginPath();
+      p.arc(-50, 6, 5, 0, Gait.TAU);
+      p.fillStyle = c.coatAccent;
+      p.fill();
+    }
+    p.restore();
+
+    // Body (a smooth capsule). Drawn rotated slightly so the cat looks alert,
+    // not a top-down diagram.
+    p.save();
+    p.rotate(-0.08);
+    p.fillStyle = c.fur;
+    p.beginPath();
+    p.ellipse(0, 0, bodyLen * 0.5, bodyW * 0.5, 0, 0, Gait.TAU);
+    p.fill();
+
+    // Body coat markings.
+    paintPreviewBodyCoat(p, c, pattern, bodyLen, bodyW);
+
+    // Body outline.
+    p.strokeStyle = c.furDark;
+    p.globalAlpha = 0.55;
+    p.lineWidth = 1.2;
+    p.beginPath();
+    p.ellipse(0, 0, bodyLen * 0.5, bodyW * 0.5, 0, 0, Gait.TAU);
+    p.stroke();
+    p.globalAlpha = 1;
+    p.restore();
+
+    // Head.
+    p.save();
+    p.translate(bodyLen * 0.5 + headR * 0.6, 0);
+    p.rotate(0.12);
+    // Ears (two small triangles behind the skull).
+    [-1, 1].forEach((side) => {
+      p.save();
+      p.rotate(side * 0.5);
+      p.beginPath();
+      p.moveTo(headR * 0.2, side * headR * 0.45);
+      p.lineTo(headR * 0.65, side * headR * 1.05);
+      p.lineTo(headR * 0.78, side * headR * 0.35);
+      p.closePath();
+      p.fillStyle = pattern === 'pointed' ? c.coatAccent : c.fur;
+      p.fill();
+      p.restore();
+    });
+    // Skull.
+    p.fillStyle = c.fur;
+    p.beginPath();
+    p.arc(0, 0, headR, 0, Gait.TAU);
+    p.fill();
+    // Crown marks for tabby.
+    if (pattern === 'tabby') {
+      p.fillStyle = c.stripe;
+      [[-6, -4], [-4, 5], [4, -3]].forEach(([mx, my]) => {
+        p.beginPath();
+        p.ellipse(mx, my, 2.4, 1.6, 0.4, 0, Gait.TAU);
+        p.fill();
+      });
+    }
+    // Face points for pointed coats.
+    if (pattern === 'pointed') {
+      p.fillStyle = c.coatAccent;
+      p.globalAlpha = 0.7;
+      p.beginPath();
+      p.ellipse(headR * 0.4, 0, headR * 0.5, headR * 0.42, 0, 0, Gait.TAU);
+      p.fill();
+      p.globalAlpha = 1;
+    }
+    // Eyes (two small dots).
+    p.fillStyle = c.furDark;
+    [-1, 1].forEach((side) => {
+      p.beginPath();
+      p.arc(headR * 0.25, side * headR * 0.32, 2.1, 0, Gait.TAU);
+      p.fill();
+    });
+    // Nose.
+    p.fillStyle = c.nose;
+    p.beginPath();
+    p.arc(headR * 0.62, 0, 1.6, 0, Gait.TAU);
+    p.fill();
+    p.restore();
+
+    // Hairless skin folds.
+    if (hairless) {
+      p.strokeStyle = c.skinLine;
+      p.globalAlpha = 0.45;
+      p.lineWidth = 0.8;
+      for (let i = -2; i <= 2; i += 1) {
+        p.beginPath();
+        p.moveTo(-bodyLen * 0.4, i * 8);
+        p.bezierCurveTo(-bodyLen * 0.2, i * 8 + 2, bodyLen * 0.2, i * 8 - 2, bodyLen * 0.4, i * 8);
+        p.stroke();
+      }
+      p.globalAlpha = 1;
+    }
+    p.restore();
+  }
+
+  function paintPreviewBodyCoat(p, c, pattern, bodyLen, bodyW) {
+    const half = bodyLen * 0.5;
+    const halfH = bodyW * 0.5;
+    switch (pattern) {
+      case 'tabby': {
+        p.strokeStyle = c.stripe;
+        p.lineWidth = 2.4;
+        for (let i = -2; i <= 2; i += 1) {
+          p.beginPath();
+          p.moveTo(i * 12, -halfH * 0.9);
+          p.lineTo(i * 12 - 2, halfH * 0.9);
+          p.stroke();
+        }
+        // Dorsal stripe.
+        p.lineWidth = 3;
+        p.beginPath();
+        p.moveTo(-half * 0.8, 0);
+        p.lineTo(half * 0.7, 0);
+        p.stroke();
+        if (appearance.whiteLevel !== 'none') {
+          const medium = appearance.whiteLevel === 'medium';
+          p.fillStyle = c.coatWhite;
+          p.globalAlpha = medium ? 0.9 : 0.72;
+          p.beginPath();
+          p.ellipse(half * (medium ? 0.34 : 0.7), 0, half * (medium ? 0.5 : 0.22), halfH * (medium ? 0.72 : 0.48), 0, 0, Gait.TAU);
+          p.fill();
+          p.globalAlpha = 1;
+        }
+        break;
+      }
+      case 'bicolor':
+      case 'tuxedo': {
+        const high = appearance.whiteLevel === 'high';
+        const medium = appearance.whiteLevel === 'medium';
+        p.fillStyle = c.coatWhite;
+        if (high) {
+          // Belly + chest large patch.
+          p.beginPath();
+          p.ellipse(half * 0.1, 0, half * 0.86, halfH * 0.86, 0, 0, Gait.TAU);
+          p.fill();
+        } else if (medium) {
+          p.beginPath();
+          p.ellipse(half * 0.4, 0, half * 0.55, halfH * 0.78, 0, 0, Gait.TAU);
+          p.fill();
+        } else {
+          // Low: small bib + chin.
+          p.beginPath();
+          p.ellipse(half * 0.78, 0, half * 0.22, halfH * 0.55, 0, 0, Gait.TAU);
+          p.fill();
+        }
+        break;
+      }
+      case 'calico': {
+        const coverage = calicoColorCoverage();
+        p.fillStyle = c.coatAccent;
+        p.beginPath();
+        p.ellipse(-half * 0.35, -halfH * 0.2, half * 0.34 * coverage, halfH * 0.56 * coverage, 0.3, 0, Gait.TAU);
+        p.fill();
+        p.fillStyle = c.coatThird;
+        p.beginPath();
+        p.ellipse(half * 0.25, halfH * 0.25, half * 0.3 * coverage, halfH * 0.44 * coverage, -0.2, 0, Gait.TAU);
+        p.fill();
+        break;
+      }
+      case 'tortie': {
+        p.fillStyle = c.coatAccent;
+        p.beginPath();
+        p.ellipse(-half * 0.3, -halfH * 0.25, half * 0.4, halfH * 0.55, 0.3, 0, Gait.TAU);
+        p.fill();
+        p.fillStyle = c.coatThird;
+        p.beginPath();
+        p.ellipse(half * 0.2, halfH * 0.3, half * 0.3, halfH * 0.4, -0.2, 0, Gait.TAU);
+        p.fill();
+        break;
+      }
+      case 'pointed': {
+        p.fillStyle = c.coatAccent;
+        p.globalAlpha = 0.78;
+        // Hindquarter shading (the "points" extend onto the body extremities).
+        p.beginPath();
+        p.ellipse(-half * 0.78, 0, half * 0.32, halfH * 0.78, 0, 0, Gait.TAU);
+        p.fill();
+        p.globalAlpha = 1;
+        break;
+      }
+      case 'smoke': {
+        // Pale undercoat showing on the lower half of the body.
+        p.fillStyle = c.coatWhite;
+        p.globalAlpha = 0.7;
+        p.beginPath();
+        p.ellipse(0, halfH * 0.2, half * 0.88, halfH * 0.42, 0, 0, Gait.TAU);
+        p.fill();
+        p.globalAlpha = 1;
+        break;
+      }
+      default:
+        break;
+    }
+  }
+
+  function syncAppearanceVisual() {
+    renderPatternChips();
+    renderColorwaySwatches();
+    renderWhiteLevelSegments();
+    drawAppearancePreview();
+  }
+
+  function applyAppearance(next, persist) {
+    appearance = Appearance.normalize(Object.assign({}, appearance, next));
+    if (persist !== false) persistAppearance();
+    syncAppearanceControls();
+    draw();
+    return Object.assign({}, appearance);
+  }
+
+  function setAppearancePanelOpen(next, restoreFocus) {
+    if (!appearancePanel || !appearanceToggle) return;
+    const open = Boolean(next);
+    appearancePanel.hidden = !open;
+    appearanceToggle.setAttribute('aria-expanded', String(open));
+    if (open) {
+      syncAppearanceVisual();
+    }
+    if (!open && restoreFocus && typeof appearanceToggle.focus === 'function') appearanceToggle.focus();
+  }
+
   function refreshDynamicUi() {
     if (stateLabel) stateLabel.textContent = paused ? I18n.t('paused') : I18n.t(stateKey(cat.state));
     if (pauseButton) {
@@ -3532,6 +4498,7 @@
       themeButton.setAttribute('aria-label', I18n.t(key));
       themeButton.setAttribute('title', I18n.t(titleKey));
     }
+    syncAppearanceControls();
   }
 
   function setPaused(next) {
@@ -3659,6 +4626,49 @@
   pauseButton.addEventListener('click', () => setPaused(!paused));
   themeButton.addEventListener('click', () => applyTheme(!isDark(), true));
 
+  if (appearanceToggle) {
+    appearanceToggle.addEventListener('click', () => {
+      setAppearancePanelOpen(appearancePanel ? appearancePanel.hidden : false, false);
+    });
+  }
+  if (appearanceClose) appearanceClose.addEventListener('click', () => setAppearancePanelOpen(false, true));
+  if (appearancePattern) {
+    appearancePattern.addEventListener('change', () => applyAppearance({ pattern: appearancePattern.value }, true));
+  }
+  if (appearanceColorway) {
+    appearanceColorway.addEventListener('change', () => {
+      const prefix = `${appearance.pattern}-`;
+      const value = appearanceColorway.value.startsWith(prefix)
+        ? appearanceColorway.value.slice(prefix.length)
+        : appearanceColorway.value;
+      applyAppearance({ colorway: value }, true);
+    });
+  }
+  if (appearanceWhiteLevel) {
+    appearanceWhiteLevel.addEventListener('change', () => applyAppearance({ whiteLevel: appearanceWhiteLevel.value }, true));
+  }
+  if (appearanceFurLength) {
+    appearanceFurLength.addEventListener('change', () => applyAppearance({ furLength: appearanceFurLength.value }, true));
+  }
+  if (appearanceRandomize) {
+    appearanceRandomize.addEventListener('click', () => applyAppearance(Appearance.randomize(Math.random), true));
+  }
+  if (appearanceReset) appearanceReset.addEventListener('click', () => applyAppearance(Appearance.DEFAULT, true));
+
+  document.addEventListener('pointerdown', (event) => {
+    if (!appearancePanel || appearancePanel.hidden) return;
+    const target = event.target;
+    const inPanel = target && typeof appearancePanel.contains === 'function' && appearancePanel.contains(target);
+    const onToggle = target && typeof appearanceToggle.contains === 'function' && appearanceToggle.contains(target);
+    if (!inPanel && !onToggle) setAppearancePanelOpen(false, false);
+  });
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && appearancePanel && !appearancePanel.hidden) {
+      setAppearancePanelOpen(false, true);
+      event.preventDefault();
+    }
+  });
+
   reduceQuery.addEventListener('change', (event) => {
     reducedMotion = event.matches;
   });
@@ -3687,6 +4697,7 @@
     getSnapshot: () => ({
       behavior: cat.state,
       gait: cat.gait.profileName,
+      appearance: Object.assign({}, appearance),
       cat: {
         x: cat.x,
         y: cat.y,
@@ -3811,5 +4822,7 @@
     setPaused,
     setTheme: (mode) => applyTheme(mode === 'dark', true),
     setLanguage: I18n.setLanguage,
+    setAppearance: (next) => applyAppearance(next, true),
+    setAppearancePanelOpen: (next) => setAppearancePanelOpen(next, false),
   });
 })();

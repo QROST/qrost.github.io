@@ -20,6 +20,7 @@ ASSETS = (
     DEMO / "assets/css/cat-and-mouse.css",
     DEMO / "assets/js/i18n.js",
     DEMO / "assets/js/gait.js",
+    DEMO / "assets/js/appearance.js",
     DEMO / "assets/js/app.js",
 )
 
@@ -62,6 +63,8 @@ def validate_html(html: str, version: str) -> None:
         'id="language-toggle"',
         'id="theme-toggle"',
         'id="pause-toggle"',
+        'id="appearance-toggle"',
+        'id="appearance-fur-length"',
         'data-i18n-aria-label="canvasAria"',
         'href="../../favicon.svg"',
     )

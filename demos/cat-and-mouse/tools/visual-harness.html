@@ -180,6 +180,119 @@
       envelope: snapshot.poseEnvelope,
     }));
   };
+  window.__appearanceSheet = () => {
+    const demo = window.__catMouseDemo;
+    const source = document.getElementById('world');
+    const recipes = [
+      ['solid', 'black', 'none'], ['tabby', 'orange', 'low'],
+      ['bicolor', 'gray-white', 'medium'], ['tuxedo', 'black-white', 'medium'],
+      ['calico', 'classic', 'medium'], ['tortie', 'classic', 'none'],
+      ['pointed', 'seal', 'none'], ['smoke', 'black', 'none'],
+      // Extended bicolor / tuxedo colorways added with the visual panel.
+      ['bicolor', 'blue-cream', 'medium'], ['bicolor', 'chocolate-cream', 'medium'],
+      ['bicolor', 'lilac-white', 'high'], ['tuxedo', 'gray-white', 'medium'],
+      ['tuxedo', 'blue-white', 'medium'],
+    ];
+    const columns = 5;
+    const rows = Math.ceil(recipes.length / columns);
+    const cell = 280;
+    const sheet = document.createElement('canvas');
+    sheet.width = cell * columns;
+    sheet.height = (cell + 34) * rows;
+    const sc = sheet.getContext('2d');
+    sc.fillStyle = '#20241e';
+    sc.fillRect(0, 0, sheet.width, sheet.height);
+    sc.font = '600 15px system-ui, sans-serif';
+    sc.textAlign = 'center';
+    sc.textBaseline = 'middle';
+    demo.previewIdlePose('loaf', 1);
+    window.__step(150);
+    const results = [];
+    recipes.forEach(([pattern, colorway, whiteLevel], index) => {
+      demo.setAppearance({ pattern, colorway, whiteLevel, furLength: 'short' });
+      const snapshot = demo.getSnapshot();
+      const dpr = snapshot.viewport.dpr;
+      const radius = 145 * dpr;
+      const column = index % columns;
+      const row = Math.floor(index / columns);
+      const x = column * cell;
+      const y = row * (cell + 34);
+      sc.drawImage(
+        source,
+        snapshot.cat.x * dpr - radius,
+        snapshot.cat.y * dpr - radius,
+        radius * 2,
+        radius * 2,
+        x,
+        y,
+        cell,
+        cell,
+      );
+      sc.fillStyle = '#e8dfcf';
+      sc.fillText(`${pattern}-${colorway}`, x + cell * 0.5, y + cell + 17);
+      results.push(snapshot.appearance);
+    });
+    demo.setAppearance(window.CatAppearance.DEFAULT);
+    demo.clearIdlePose();
+    let img = document.getElementById('appearancesheet');
+    if (!img) {
+      img = document.createElement('img');
+      img.id = 'appearancesheet';
+      img.style.cssText = 'position:fixed;inset:8px;width:calc(100% - 16px);height:auto;z-index:10001;border:2px solid #999;background:#20241e;';
+      document.body.appendChild(img);
+    }
+    img.src = sheet.toDataURL();
+    return results;
+  };
+  window.__furSheet = () => {
+    const demo = window.__catMouseDemo;
+    const source = document.getElementById('world');
+    const lengths = ['short', 'medium', 'long', 'hairless'];
+    const cell = 300;
+    const sheet = document.createElement('canvas');
+    sheet.width = cell * lengths.length;
+    sheet.height = cell + 36;
+    const sc = sheet.getContext('2d');
+    sc.fillStyle = '#20241e';
+    sc.fillRect(0, 0, sheet.width, sheet.height);
+    sc.font = '600 15px system-ui, sans-serif';
+    sc.textAlign = 'center';
+    sc.textBaseline = 'middle';
+    demo.previewIdlePose('sideLie', 1);
+    window.__step(150);
+    const results = [];
+    lengths.forEach((furLength, index) => {
+      demo.setAppearance({ pattern: 'tabby', colorway: 'orange', whiteLevel: 'low', furLength });
+      const snapshot = demo.getSnapshot();
+      const dpr = snapshot.viewport.dpr;
+      const radius = 155 * dpr;
+      sc.drawImage(
+        source,
+        snapshot.cat.x * dpr - radius,
+        snapshot.cat.y * dpr - radius,
+        radius * 2,
+        radius * 2,
+        index * cell,
+        0,
+        cell,
+        cell,
+      );
+      sc.fillStyle = '#e8dfcf';
+      sc.fillText(furLength, index * cell + cell * 0.5, cell + 18);
+      results.push(snapshot.appearance);
+    });
+    demo.setAppearance(window.CatAppearance.DEFAULT);
+    demo.clearIdlePose();
+    let img = document.getElementById('fursheet');
+    if (!img) {
+      img = document.createElement('img');
+      img.id = 'fursheet';
+      img.style.cssText = 'position:fixed;left:8px;right:8px;bottom:8px;width:calc(100% - 16px);height:auto;z-index:10001;border:2px solid #999;background:#20241e;';
+      document.body.appendChild(img);
+    }
+    img.src = sheet.toDataURL();
+    return results;
+  };
 </script>
 </head>
 <body>
@@ -197,6 +310,7 @@
   </main>
   <script src="../assets/js/i18n.js"></script>
   <script src="../assets/js/gait.js"></script>
+  <script src="../assets/js/appearance.js"></script>
   <script src="../assets/js/app.js"></script>
 </body>
 </html>

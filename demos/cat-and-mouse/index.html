@@ -33,7 +33,7 @@
       } catch (_) {}
     })();
   </script>
-  <link rel="stylesheet" href="assets/css/cat-and-mouse.css?v=8c4bd7148d">
+  <link rel="stylesheet" href="assets/css/cat-and-mouse.css?v=27b1ee4a68">
 </head>
 <body data-behavior="prowl">
   <main id="stage">
@@ -63,6 +63,193 @@
       </div>
 
       <div class="controls" aria-label="显示选项" data-i18n-aria-label="displayOptionsAria">
+        <div class="appearance-control">
+          <button
+            id="appearance-toggle"
+            class="icon-button"
+            type="button"
+            aria-expanded="false"
+            aria-controls="appearance-panel"
+            aria-label="定制猫咪外观"
+            title="定制猫咪外观"
+            data-i18n-aria-label="appearanceToggleAria"
+            data-i18n-title="appearanceToggleTitle"
+          >
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M5.2 8.1 3.8 4.9l3.6 1.4A7.9 7.9 0 0 1 12 4.8a7.9 7.9 0 0 1 4.6 1.5l3.6-1.4-1.4 3.2c.7 1.1 1.1 2.4 1.1 3.8 0 4.2-3.5 7.3-7.9 7.3S4.1 16.1 4.1 11.9c0-1.4.4-2.7 1.1-3.8Z"></path>
+              <circle cx="9" cy="11.4" r=".9" fill="currentColor" stroke="none"></circle>
+              <circle cx="15" cy="11.4" r=".9" fill="currentColor" stroke="none"></circle>
+              <path d="M10.4 15c1 .7 2.2.7 3.2 0"></path>
+            </svg>
+          </button>
+
+          <section id="appearance-panel" class="appearance-panel" aria-labelledby="appearance-title" hidden>
+            <div class="appearance-panel-header">
+              <div>
+                <p class="appearance-kicker" data-i18n="appearanceKicker">SHELTER-INSPIRED</p>
+                <h2 id="appearance-title" data-i18n="appearanceTitle">定制猫咪</h2>
+              </div>
+              <button
+                id="appearance-close"
+                class="panel-close"
+                type="button"
+                aria-label="关闭外观选项"
+                title="关闭"
+                data-i18n-aria-label="appearanceCloseAria"
+                data-i18n-title="appearanceCloseTitle"
+              >
+                <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true">
+                  <path d="m5 5 10 10M15 5 5 15"></path>
+                </svg>
+              </button>
+            </div>
+
+            <div class="appearance-fields" aria-hidden="true" hidden>
+              <label class="appearance-field" for="appearance-pattern">
+                <span data-i18n="appearancePatternLabel">花纹类型</span>
+                <select id="appearance-pattern">
+                  <option value="solid" data-i18n="patternSolid">纯色</option>
+                  <option value="tabby" data-i18n="patternTabby" selected>虎斑</option>
+                  <option value="bicolor" data-i18n="patternBicolor">双色</option>
+                  <option value="tuxedo" data-i18n="patternTuxedo">燕尾服</option>
+                  <option value="calico" data-i18n="patternCalico">三花</option>
+                  <option value="tortie" data-i18n="patternTortie">玳瑁</option>
+                  <option value="pointed" data-i18n="patternPointed">重点色</option>
+                  <option value="smoke" data-i18n="patternSmoke">烟色</option>
+                </select>
+              </label>
+
+              <label class="appearance-field" for="appearance-colorway">
+                <span data-i18n="appearanceColorwayLabel">配色组合</span>
+                <select id="appearance-colorway">
+                  <option value="solid-black" data-pattern="solid" data-i18n="colorBlack">黑色</option>
+                  <option value="solid-white" data-pattern="solid" data-i18n="colorWhite">白色</option>
+                  <option value="solid-gray" data-pattern="solid" data-i18n="colorGray">灰色</option>
+                  <option value="solid-blue" data-pattern="solid" data-i18n="colorBlue">蓝灰</option>
+                  <option value="solid-brown" data-pattern="solid" data-i18n="colorBrown">棕色</option>
+                  <option value="solid-chocolate" data-pattern="solid" data-i18n="colorChocolate">巧克力</option>
+                  <option value="solid-orange" data-pattern="solid" data-i18n="colorOrange">橙色</option>
+                  <option value="solid-cream" data-pattern="solid" data-i18n="colorCream">奶油色</option>
+                  <option value="solid-tan" data-pattern="solid" data-i18n="colorTan">浅黄褐</option>
+                  <option value="solid-lilac" data-pattern="solid" data-i18n="colorLilac">丁香灰</option>
+
+                  <option value="tabby-gray" data-pattern="tabby" data-i18n="colorwayGrayTabby">灰色虎斑</option>
+                  <option value="tabby-brown" data-pattern="tabby" data-i18n="colorwayBrownTabby">棕色虎斑</option>
+                  <option value="tabby-orange" data-pattern="tabby" data-i18n="colorwayOrangeTabby" selected>橘色虎斑</option>
+                  <option value="tabby-cream" data-pattern="tabby" data-i18n="colorwayCreamTabby">奶油虎斑</option>
+                  <option value="tabby-tan" data-pattern="tabby" data-i18n="colorwayTanTabby">黄褐虎斑</option>
+                  <option value="tabby-blue" data-pattern="tabby" data-i18n="colorwayBlueTabby">蓝灰虎斑</option>
+
+                  <option value="bicolor-black-white" data-pattern="bicolor" data-i18n="colorwayBlackWhite">黑白</option>
+                  <option value="bicolor-gray-white" data-pattern="bicolor" data-i18n="colorwayGrayWhite">灰白</option>
+                  <option value="bicolor-orange-white" data-pattern="bicolor" data-i18n="colorwayOrangeWhite">橘白</option>
+                  <option value="bicolor-brown-cream" data-pattern="bicolor" data-i18n="colorwayBrownCream">棕色与奶油</option>
+                  <option value="bicolor-blue-cream" data-pattern="bicolor" data-i18n="colorwayBlueCream">蓝灰与奶油</option>
+                  <option value="bicolor-chocolate-cream" data-pattern="bicolor" data-i18n="colorwayChocolateCream">巧克力与奶油</option>
+                  <option value="bicolor-lilac-white" data-pattern="bicolor" data-i18n="colorwayLilacWhite">丁香与白</option>
+
+                  <option value="tuxedo-black-white" data-pattern="tuxedo" data-i18n="colorwayClassicTuxedo">经典黑白</option>
+                  <option value="tuxedo-gray-white" data-pattern="tuxedo" data-i18n="colorwayGrayTuxedo">灰白燕尾服</option>
+                  <option value="tuxedo-blue-white" data-pattern="tuxedo" data-i18n="colorwayBlueTuxedo">蓝灰燕尾服</option>
+
+                  <option value="calico-classic" data-pattern="calico" data-i18n="colorwayClassicCalico">经典三花</option>
+                  <option value="calico-dilute" data-pattern="calico" data-i18n="colorwayDiluteCalico">淡三花</option>
+                  <option value="tortie-classic" data-pattern="tortie" data-i18n="colorwayClassicTortie">经典玳瑁</option>
+                  <option value="tortie-dilute" data-pattern="tortie" data-i18n="colorwayDiluteTortie">淡玳瑁</option>
+
+                  <option value="pointed-seal" data-pattern="pointed" data-i18n="colorwaySealPoint">海豹重点</option>
+                  <option value="pointed-chocolate" data-pattern="pointed" data-i18n="colorwayChocolatePoint">巧克力重点</option>
+                  <option value="pointed-blue" data-pattern="pointed" data-i18n="colorwayBluePoint">蓝灰重点</option>
+                  <option value="pointed-lilac" data-pattern="pointed" data-i18n="colorwayLilacPoint">丁香重点</option>
+                  <option value="pointed-flame" data-pattern="pointed" data-i18n="colorwayFlamePoint">火焰重点</option>
+
+                  <option value="smoke-black" data-pattern="smoke" data-i18n="colorwayBlackSmoke">黑烟色</option>
+                  <option value="smoke-blue" data-pattern="smoke" data-i18n="colorwayBlueSmoke">蓝烟色</option>
+                  <option value="smoke-gray" data-pattern="smoke" data-i18n="colorwayGraySmoke">灰烟色</option>
+                </select>
+              </label>
+
+              <label class="appearance-field" for="appearance-white-level">
+                <span data-i18n="appearanceWhiteLevelLabel">浅色斑区域</span>
+                <select id="appearance-white-level">
+                  <option value="none" data-i18n="whiteLevelNone">无浅色斑</option>
+                  <option value="low" data-i18n="whiteLevelLow" selected>口鼻 · 胸口 · 爪尖</option>
+                  <option value="medium" data-i18n="whiteLevelMedium">面部 · 胸腹 · 四袜</option>
+                  <option value="high" data-i18n="whiteLevelHigh">大面积浅色 · 头尾色块</option>
+                </select>
+              </label>
+
+            </div>
+
+            <div class="appearance-visual">
+              <div class="appearance-preview-wrap">
+                <canvas
+                  id="appearance-preview"
+                  class="appearance-preview"
+                  width="240"
+                  height="240"
+                  role="img"
+                  aria-label="当前配色的实时预览"
+                  data-i18n-aria-label="appearancePreviewAria"
+                ></canvas>
+              </div>
+
+              <div class="appearance-row">
+                <span class="appearance-row-label" data-i18n="appearancePatternLabel">花纹类型</span>
+                <div
+                  id="appearance-pattern-grid"
+                  class="appearance-chip-grid"
+                  role="radiogroup"
+                  aria-label="花纹类型"
+                  data-i18n-aria-label="appearancePatternGroupAria"
+                ></div>
+              </div>
+
+              <div class="appearance-row">
+                <span class="appearance-row-label">
+                  <span data-i18n="appearanceColorwayLabel">配色组合</span>
+                  <span class="appearance-row-meta" id="appearance-colorway-meta" aria-live="polite"></span>
+                </span>
+                <div
+                  id="appearance-colorway-grid"
+                  class="appearance-swatch-grid"
+                  role="radiogroup"
+                  aria-label="配色组合"
+                  data-i18n-aria-label="appearanceColorwayGroupAria"
+                ></div>
+                <p id="appearance-colorway-empty" class="appearance-empty" data-i18n="appearanceNoColorway" hidden>当前花纹无配色变体</p>
+              </div>
+
+              <div class="appearance-row" id="appearance-white-level-row">
+                <span class="appearance-row-label" data-i18n="appearanceWhiteLevelLabel">浅色斑区域</span>
+                <div
+                  id="appearance-white-level-group"
+                  class="appearance-segmented"
+                  role="radiogroup"
+                  aria-label="浅色斑区域"
+                  data-i18n-aria-label="appearanceWhiteLevelGroupAria"
+                ></div>
+              </div>
+
+              <label class="appearance-row appearance-fur-select" for="appearance-fur-length">
+                <span class="appearance-row-label" data-i18n="appearanceFurLengthLabel">毛长</span>
+                <select id="appearance-fur-length" aria-label="毛长" title="毛长" data-i18n-aria-label="appearanceFurLengthLabel" data-i18n-title="appearanceFurLengthLabel">
+                  <option value="short" data-i18n="furShort" selected>短毛</option>
+                  <option value="medium" data-i18n="furMedium">中毛</option>
+                  <option value="long" data-i18n="furLong">长毛</option>
+                  <option value="hairless" data-i18n="furHairless">无毛</option>
+                </select>
+              </label>
+            </div>
+
+            <div class="appearance-actions">
+              <button id="appearance-randomize" type="button" aria-label="换一只" title="换一只" data-i18n="appearanceRandomize" data-i18n-aria-label="appearanceRandomize" data-i18n-title="appearanceRandomize">换一只</button>
+              <button id="appearance-reset" type="button" aria-label="恢复橘猫" title="恢复橘猫" data-i18n="appearanceReset" data-i18n-aria-label="appearanceReset" data-i18n-title="appearanceReset">恢复橘猫</button>
+            </div>
+            <p class="appearance-source" data-i18n="appearanceSource">分类沿用 Shelter Cats 的受控词表；部位分布由本页程序化绘制。</p>
+          </section>
+        </div>
+
         <button
           id="pause-toggle"
           class="icon-button"
@@ -114,8 +301,9 @@
   </main>
 
   <noscript><span data-i18n="noscript">请启用 JavaScript，让小猫动起来。</span></noscript>
-  <script src="assets/js/i18n.js?v=8c4bd7148d" defer></script>
-  <script src="assets/js/gait.js?v=8c4bd7148d" defer></script>
-  <script src="assets/js/app.js?v=874b214ecc" defer></script>
+  <script src="assets/js/i18n.js?v=27b1ee4a68" defer></script>
+  <script src="assets/js/gait.js?v=27b1ee4a68" defer></script>
+  <script src="assets/js/appearance.js?v=27b1ee4a68" defer></script>
+  <script src="assets/js/app.js?v=27b1ee4a68" defer></script>
 </body>
 </html>

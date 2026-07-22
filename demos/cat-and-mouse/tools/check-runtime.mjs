@@ -28,12 +28,19 @@ class FakeElement {
     this.id = id;
     this.attributes = new Map();
     this.classList = new FakeClassList();
+    this.className = '';
     this.dataset = {};
     this.style = { setProperty() {} };
     this.listeners = new Map();
     this.textContent = '';
     this.content = '';
     this.hidden = false;
+    this.disabled = false;
+    this.value = '';
+    this.options = [];
+    this.focused = false;
+    this.children = [];
+    this._innerHTML = '';
   }
   addEventListener(type, listener) {
     if (!this.listeners.has(type)) this.listeners.set(type, []);
@@ -59,14 +66,96 @@ class FakeElement {
   getBoundingClientRect() {
     return { left: 0, top: 0, width: fakeViewportWidth, height: fakeViewportHeight };
   }
-  focus() {}
+  focus() { this.focused = true; }
+  click() { this.dispatch('click'); }
+  contains(node) {
+    if (node === this) return true;
+    return this.children.some((child) => child === node || (child && typeof child.contains === 'function' && child.contains(node)));
+  }
   setPointerCapture() {}
   releasePointerCapture() {}
+  appendChild(node) {
+    this.children = this.children.filter((child) => child !== node);
+    node.parentElement = this;
+    this.children.push(node);
+    return node;
+  }
+  remove() {
+    if (!this.parentElement) return;
+    this.parentElement.children = this.parentElement.children.filter((child) => child !== this);
+    this.parentElement = null;
+  }
+  querySelector(selector) {
+    // Visual grids in the appearance panel use [data-key="..."] selectors. The
+    // sandbox does not keep a real DOM tree, so let ensureChild create fresh
+    // nodes on each first access and re-use them on subsequent passes.
+    if (typeof selector === 'string' && selector.startsWith('[data-key=')) {
+      const match = selector.match(/\[data-key="([^"]+)"\]/);
+      if (!match) return null;
+      const key = match[1];
+      return this.children.find((child) => child && child.getAttribute('data-key') === key) || null;
+    }
+    return null;
+  }
+  querySelectorAll(selector) {
+    if (typeof selector === 'string' && selector.startsWith('.')) {
+      const name = selector.slice(1);
+      return this.children.filter((child) => child && (
+        (child.classList && child.classList.contains(name)) || String(child.className || '').split(/\s+/).includes(name)
+      ));
+    }
+    if (selector === '[role="radio"]') {
+      return this.children.filter((child) => child && child.getAttribute('role') === 'radio');
+    }
+    return [];
+  }
+  get innerHTML() { return this._innerHTML; }
+  set innerHTML(value) { this._innerHTML = String(value || ''); }
+  get clientWidth() { return 168; }
+  get clientHeight() { return 168; }
 }
 
+const contextCalls = [];
+let recordContextCalls = false;
 const contextMethods = new Proxy({}, {
   get(target, property) {
-    if (!(property in target)) target[property] = () => undefined;
+    if (!(property in target)) {
+      target[property] = (...args) => {
+        if (recordContextCalls) {
+          contextCalls.push({
+            property: String(property),
+            args,
+            fillStyle: target.fillStyle,
+            strokeStyle: target.strokeStyle,
+            globalAlpha: target.globalAlpha,
+          });
+        }
+        return undefined;
+      };
+    }
+    return target[property];
+  },
+  set(target, property, value) { target[property] = value; return true; },
+});
+
+const previewContextCalls = [];
+let recordPreviewContextCalls = false;
+const previewContextMethods = new Proxy({}, {
+  get(target, property) {
+    if (!(property in target)) {
+      target[property] = (...args) => {
+        if (recordPreviewContextCalls) {
+          previewContextCalls.push({
+            property: String(property),
+            args,
+            fillStyle: target.fillStyle,
+            strokeStyle: target.strokeStyle,
+            globalAlpha: target.globalAlpha,
+          });
+        }
+        return undefined;
+      };
+    }
     return target[property];
   },
   set(target, property, value) { target[property] = value; return true; },
@@ -81,9 +170,16 @@ const ids = new Map();
 
 for (const id of [
   'world', 'canvas-error', 'behavior-label', 'pause-toggle', 'theme-toggle',
-  'language-toggle', 'keyboard-instructions',
+  'language-toggle', 'keyboard-instructions', 'appearance-toggle', 'appearance-panel',
+  'appearance-close', 'appearance-pattern', 'appearance-colorway', 'appearance-white-level',
+  'appearance-fur-length', 'appearance-randomize', 'appearance-reset',
+  'appearance-preview', 'appearance-pattern-grid', 'appearance-colorway-grid',
+  'appearance-colorway-meta', 'appearance-colorway-empty', 'appearance-white-level-group',
+  'appearance-white-level-row',
 ]) ids.set(id, new FakeElement(id));
 ids.get('world').getContext = () => contextMethods;
+ids.get('appearance-preview').getContext = () => previewContextMethods;
+ids.get('appearance-panel').hidden = true;
 
 const metas = {
   'meta[name="theme-color"]': new FakeElement(),
@@ -101,6 +197,8 @@ const document = {
   body,
   visibilityState: 'visible',
   getElementById(id) { return ids.get(id) || null; },
+  createElement(tag) { return new FakeElement(typeof tag === 'string' ? tag : ''); },
+  createElementNS(ns, tag) { return new FakeElement(typeof tag === 'string' ? tag : ''); },
   querySelector(selector) { return metas[selector] || null; },
   querySelectorAll(selector) {
     if (selector === '[data-i18n]') return [];
@@ -171,7 +269,7 @@ sandbox.globalThis = sandbox;
 vm.createContext(sandbox);
 
 const loadedSources = new Map();
-for (const relative of ['assets/js/i18n.js', 'assets/js/gait.js', 'assets/js/app.js']) {
+for (const relative of ['assets/js/i18n.js', 'assets/js/gait.js', 'assets/js/appearance.js', 'assets/js/app.js']) {
   const source = fs.readFileSync(path.join(demo, relative), 'utf8');
   loadedSources.set(relative, source);
   vm.runInContext(source, sandbox, { filename: relative });
@@ -181,8 +279,11 @@ document.dispatch('DOMContentLoaded');
 // Renderer topology is checked structurally because a fake Canvas cannot
 // reliably distinguish an internal cap line from an external silhouette.
 const appSource = loadedSources.get('assets/js/app.js');
+const appearanceSource = loadedSources.get('assets/js/appearance.js');
 const indexSource = fs.readFileSync(path.join(demo, 'index.html'), 'utf8');
+const cssSource = fs.readFileSync(path.join(demo, 'assets', 'css', 'cat-and-mouse.css'), 'utf8');
 const visualHarnessSource = fs.readFileSync(path.join(demo, 'tools/visual-harness.html'), 'utf8');
+const shelterEnums = JSON.parse(fs.readFileSync(path.join(demo, '..', 'shelter-cats', 'assets', 'data', 'enums.json'), 'utf8'));
 const tailRibbonSource = appSource.match(/function traceTailRibbon[\s\S]*?(?=\n  function tailRenderPoints)/)?.[0] || '';
 const legSilhouetteSource = appSource.match(/function traceLegSilhouette[\s\S]*?(?=\n  function tracePawSilhouette)/)?.[0] || '';
 const pawSilhouetteSource = appSource.match(/function tracePawSilhouette[\s\S]*?(?=\n  function strokePawOutline)/)?.[0] || '';
@@ -190,16 +291,83 @@ const pawOutlineSource = appSource.match(/function strokePawOutline[\s\S]*?(?=\n
 const earRendererSource = appSource.match(/function earAngle[\s\S]*?(?=\n  function drawCatShadow)/)?.[0] || '';
 const earMotionSource = appSource.match(/function updateCat[\s\S]*?(?=\n  function planPawSwing)/)?.[0] || '';
 const bodyFlankSource = appSource.match(/function strokeBodyFlanks[\s\S]*?(?=\n  function skinTopologySnapshot)/)?.[0] || '';
-const drawShadowSource = appSource.match(/function drawCatShadow[\s\S]*?(?=\n  function drawTail)/)?.[0] || '';
+const drawShadowSource = appSource.match(/function drawCatShadow[\s\S]*?(?=\n  function (?:paintTailCoat|drawTail))/)?.[0] || '';
 const drawTailSource = appSource.match(/function drawTail[\s\S]*?(?=\n  function drawLegs)/)?.[0] || '';
 const drawLegsSource = appSource.match(/function drawLegs[\s\S]*?(?=\n  function bodyStations)/)?.[0] || '';
-const drawBodySource = appSource.match(/function drawBody[\s\S]*?(?=\n  function drawTopDownFace)/)?.[0] || '';
+const drawBodySource = appSource.match(/function drawBody[\s\S]*?(?=\n  function (?:paintHeadFurFringe|drawTopDownFace))/)?.[0] || '';
 const topDownFaceSource = appSource.match(/function drawTopDownFace[\s\S]*?(?=\n  function drawHead)/)?.[0] || '';
 const drawHeadSource = appSource.match(/function drawHead\([\s\S]*?(?=\n  function drawMouse)/)?.[0] || '';
 for (const key of ['stateSit', 'stateLoaf', 'stateSideLie', 'stateRoll', 'stateCurl']) {
   const label = sandbox.CatMouseI18n.LABELS[key];
   assert.ok(label?.zh && label?.en, `${key} must remain bilingual`);
 }
+for (const key of [
+  'appearanceToggleAria', 'appearancePatternLabel', 'appearanceColorwayLabel',
+  'appearanceWhiteLevelLabel', 'appearanceFurLengthLabel', 'furShort', 'furMedium',
+  'furLong', 'furHairless',
+]) {
+  const label = sandbox.CatMouseI18n.LABELS[key];
+  assert.ok(label?.zh && label?.en, `${key} must remain bilingual`);
+}
+assert.deepEqual(
+  Object.keys(sandbox.CatAppearance.COLORS).sort(),
+  Object.keys(shelterEnums.colors).sort(),
+  'appearance color tokens must match the Shelter Cats controlled vocabulary',
+);
+assert.deepEqual(
+  Object.keys(sandbox.CatAppearance.PATTERNS).sort(),
+  Object.keys(shelterEnums.patterns).sort(),
+  'appearance pattern tokens must match the Shelter Cats controlled vocabulary',
+);
+assert.deepEqual(
+  Object.keys(sandbox.CatAppearance.FUR_LENGTHS).sort(),
+  Object.keys(shelterEnums.coat).sort(),
+  'fur-length tokens must match the Shelter Cats controlled vocabulary',
+);
+assert.deepEqual(
+  JSON.parse(JSON.stringify(sandbox.CatAppearance.normalize({}))),
+  { pattern: 'tabby', colorway: 'orange', whiteLevel: 'low', furLength: 'short' },
+  'default appearance must remain the existing ginger short-hair tabby',
+);
+assert.deepEqual(
+  JSON.parse(JSON.stringify(sandbox.CatAppearance.validWhiteLevels('tortie'))),
+  ['none'],
+  'tortoiseshell with pale markings belongs in the calico category',
+);
+const expectedColorwayOptions = Object.entries(sandbox.CatAppearance.COLORWAYS)
+  .flatMap(([pattern, colorways]) => Object.keys(colorways).map((colorway) => `${pattern}-${colorway}`))
+  .sort();
+const htmlColorwayOptions = Array.from(indexSource.matchAll(/<option value="([^"]+)" data-pattern="[^"]+"/g))
+  .map((match) => match[1])
+  .sort();
+assert.deepEqual(htmlColorwayOptions, expectedColorwayOptions, 'HTML colorway options must cover the complete legal catalog');
+assert.match(indexSource, /id="appearance-toggle"[\s\S]*aria-expanded="false"[\s\S]*aria-controls="appearance-panel"/, 'appearance disclosure must expose its panel relationship');
+assert.doesNotMatch(indexSource, /id="appearance-panel"[^>]*role="menu"/, 'appearance settings are a form, not an ARIA menu');
+assert.match(indexSource, /class="appearance-fields"[^>]*aria-hidden="true"[^>]*hidden/, 'legacy select state holders must stay out of the accessibility tree');
+assert.doesNotMatch(indexSource, /aria-labelledby="appearance-(?:pattern|colorway|white-level|fur-length)"/, 'visual radiogroups must not derive names from hidden select values');
+assert.match(indexSource, /id="appearance-fur-length"[\s\S]*value="short"[^>]*selected/, 'short hair must be the visible default');
+assert.match(indexSource, /<canvas[^>]+id="appearance-preview"/, 'appearance panel must include a live mini-preview canvas');
+assert.match(indexSource, /id="appearance-pattern-grid"[\s\S]*role="radiogroup"/, 'pattern chooser must be a radiogroup, not a menu');
+assert.match(indexSource, /id="appearance-colorway-grid"[\s\S]*role="radiogroup"/, 'colorway chooser must be a radiogroup, not a menu');
+assert.match(indexSource, /id="appearance-white-level-group"[\s\S]*role="radiogroup"/, 'white-level chooser must be a radiogroup, not a menu');
+assert.match(indexSource, /class="appearance-row appearance-fur-select"[\s\S]*id="appearance-fur-length"/, 'fur length must remain a visible dropdown as requested');
+assert.doesNotMatch(indexSource, /id="appearance-fur-length-group"/, 'fur length must not be replaced by a duplicate custom radiogroup');
+assert.match(appSource, /function drawAppearancePreview\s*\(/, 'mini-preview renderer must be a named function');
+assert.match(appSource, /function syncAppearanceVisual\s*\(/, 'visual UI must have a single sync entrypoint');
+assert.match(appSource, /function wireRadioNavigation\s*\([\s\S]*ArrowLeft[\s\S]*ArrowRight/, 'custom radiogroups must support roving arrow-key navigation');
+assert.match(appSource, /function patternGlyph\s*\(/, 'pattern chip glyphs must come from a single named helper');
+assert.match(appSource, /function colorwayTileSvg\s*\(/, 'colorway swatch tiles must come from a single named helper');
+for (const extra of (Object.keys(sandbox.CatAppearance.COLORWAYS.bicolor).concat(Object.keys(sandbox.CatAppearance.COLORWAYS.tuxedo)))) {
+  if (['black-white', 'gray-white', 'orange-white', 'brown-cream'].includes(extra)) continue;
+  assert.ok(
+    indexSource.includes(`value="bicolor-${extra}"`) || indexSource.includes(`value="tuxedo-${extra}"`),
+    `extended colorway ${extra} must be present in the HTML option catalog`,
+  );
+}
+assert.match(appearanceSource, /Shelter records describe whole-coat categories; they do not annotate[\s\S]*per-part regions/, 'appearance model must preserve the shelter-data provenance boundary');
+const appearanceSourceRule = cssSource.match(/\.appearance-source\s*\{[\s\S]*?\}/)?.[0] || '';
+assert.match(appearanceSourceRule, /font-size:\s*0\.6rem/, 'appearance provenance text must remain readable at the compact size');
+assert.doesNotMatch(appearanceSourceRule, /opacity\s*:/, 'appearance provenance text must not lose WCAG contrast through opacity');
 assert.match(appSource, /const REST_POSES = Object\.freeze\(\['sit', 'loaf', 'sideLie', 'roll', 'curl'\]\)/, 'rest repertoire contract drifted');
 assert.doesNotMatch(indexSource, /class="(?:gait-panel|interaction-help)"/, 'canvas must stay free of instructional HUD panels');
 assert.doesNotMatch(appSource, /\b(?:gaitName|phaseElements|refreshPhaseUi)\b/, 'removed gait HUD must not retain runtime work');
@@ -216,6 +384,13 @@ assert.match(visualHarnessSource, /window\.__transitionFrame\s*=\s*\(\)\s*=>/, '
 assert.match(visualHarnessSource, /window\.__sleepFrame\s*=\s*\(\)\s*=>/, 'visual harness must expose a sleeping micro-motion frame');
 assert.match(visualHarnessSource, /window\.__headFrame\s*=\s*\(\)\s*=>/, 'visual harness must expose the side-lying head review frame');
 assert.match(visualHarnessSource, /window\.__zoomHead\s*=\s*\(R\)\s*=>/, 'visual harness must expose a dedicated head crop');
+assert.match(visualHarnessSource, /window\.__appearanceSheet\s*=\s*\(\)\s*=>/, 'visual harness must expose all eight coat patterns');
+assert.match(visualHarnessSource, /window\.__furSheet\s*=\s*\(\)\s*=>/, 'visual harness must expose all four fur lengths');
+assert.match(appSource, /function paintTailCoat\s*\(/, 'tail markings must be recipe-driven');
+assert.match(appSource, /function paintBodyCoat\s*\(/, 'body markings must be recipe-driven');
+assert.match(appSource, /function paintHeadCoat\s*\(/, 'head markings must be recipe-driven');
+assert.match(appSource, /function paintBodyFurFringe\s*\(/, 'medium and long coats must have a render-only fringe');
+assert.match(appSource, /function paintHairlessBodyDetails\s*\(/, 'hairless coats must retain subtle skin articulation');
 assert.ok(tailRibbonSource, 'tail ribbon renderer must remain discoverable');
 assert.doesNotMatch(tailRibbonSource, /closePath\s*\(/, 'tail ribbon must stay open at its hidden root');
 assert.match(legSilhouetteSource, /traceVariableRibbon\s*\(/, 'legs must render as variable-width closed silhouettes');
@@ -525,6 +700,122 @@ assert.equal(snapshot.behavior, 'prowl');
 assert.equal(snapshot.viewport.width, 1180);
 assert.equal(snapshot.viewport.height, 720);
 const initialEarPerkMean = (snapshot.earPerk.left + snapshot.earPerk.right) * 0.5;
+
+// Every canonical coat recipe and fur length must render through both theme
+// palettes without mutating the locomotion/head contracts. Hairless smoke is
+// intentionally normalized to a solid pigmented skin because smoke requires fur.
+const representativeColorway = {
+  solid: 'black',
+  tabby: 'orange',
+  bicolor: 'gray-white',
+  tuxedo: 'black-white',
+  calico: 'classic',
+  tortie: 'classic',
+  pointed: 'seal',
+  smoke: 'black',
+};
+const geometryBeforeAppearance = JSON.stringify({
+  headGeometry: snapshot.headGeometry,
+  earGeometry: snapshot.earGeometry,
+  pounceGeometry: snapshot.pounceGeometry,
+  rig: snapshot.rig,
+});
+for (const pattern of Object.keys(sandbox.CatAppearance.PATTERNS)) {
+  for (const selectedFur of Object.keys(sandbox.CatAppearance.FUR_LENGTHS)) {
+    const whiteLevel = sandbox.CatAppearance.validWhiteLevels(pattern)[0];
+    const applied = JSON.parse(JSON.stringify(sandbox.__catMouseDemo.setAppearance({
+      pattern,
+      colorway: representativeColorway[pattern],
+      whiteLevel,
+      furLength: selectedFur,
+    })));
+    const expectedPattern = pattern === 'smoke' && selectedFur === 'hairless' ? 'solid' : pattern;
+    assert.equal(applied.pattern, expectedPattern, `${pattern}/${selectedFur}: canonical pattern drifted`);
+    assert.equal(applied.furLength, selectedFur, `${pattern}/${selectedFur}: fur length drifted`);
+    for (const theme of ['light', 'dark']) {
+      sandbox.__catMouseDemo.setTheme(theme);
+      const current = sandbox.__catMouseDemo.getSnapshot();
+      finiteSnapshot(current);
+      assert.equal(JSON.stringify({
+        headGeometry: current.headGeometry,
+        earGeometry: current.earGeometry,
+        pounceGeometry: current.pounceGeometry,
+        rig: current.rig,
+      }), geometryBeforeAppearance, `${pattern}/${selectedFur}/${theme}: appearance changed rig geometry`);
+      const resolved = sandbox.CatAppearance.resolvePalette(current.appearance, theme === 'dark');
+      for (const key of ['fur', 'furLight', 'furDark', 'coatWhite', 'coatAccent', 'coatThird']) {
+        assert.match(resolved[key], /^#[0-9a-f]{6}$/i, `${pattern}/${selectedFur}/${theme}: invalid ${key}`);
+      }
+    }
+  }
+}
+
+function appearanceDrawSignature(state) {
+  contextCalls.length = 0;
+  recordContextCalls = true;
+  try {
+    sandbox.__catMouseDemo.setAppearance(state);
+  } finally {
+    recordContextCalls = false;
+  }
+  return JSON.stringify(contextCalls.filter((call) => ['arc', 'ellipse', 'fill'].includes(call.property)));
+}
+
+const calicoDrawSignatures = ['low', 'medium', 'high'].map((whiteLevel) => appearanceDrawSignature({
+  pattern: 'calico',
+  colorway: 'classic',
+  whiteLevel,
+  furLength: 'short',
+}));
+assert.equal(new Set(calicoDrawSignatures).size, 3, 'all three calico pale-marking levels must render differently');
+
+function previewDrawSignature(state) {
+  previewContextCalls.length = 0;
+  recordPreviewContextCalls = true;
+  try {
+    sandbox.__catMouseDemo.setAppearance(state);
+  } finally {
+    recordPreviewContextCalls = false;
+  }
+  return JSON.stringify(previewContextCalls.filter((call) => ['arc', 'ellipse', 'fill', 'stroke'].includes(call.property)));
+}
+
+sandbox.__catMouseDemo.setAppearancePanelOpen(true);
+const tabbyPreviewSignatures = ['none', 'low', 'medium'].map((whiteLevel) => previewDrawSignature({
+  pattern: 'tabby',
+  colorway: 'orange',
+  whiteLevel,
+  furLength: 'short',
+}));
+assert.equal(new Set(tabbyPreviewSignatures).size, 3, 'tabby mini-preview must reflect all three marking levels');
+const calicoPreviewSignatures = ['low', 'medium', 'high'].map((whiteLevel) => previewDrawSignature({
+  pattern: 'calico',
+  colorway: 'classic',
+  whiteLevel,
+  furLength: 'short',
+}));
+assert.equal(new Set(calicoPreviewSignatures).size, 3, 'calico mini-preview must reflect all three marking levels');
+const workingPreviewGetContext = ids.get('appearance-preview').getContext;
+ids.get('appearance-preview').getContext = () => null;
+assert.doesNotThrow(
+  () => sandbox.__catMouseDemo.setAppearance(sandbox.CatAppearance.DEFAULT),
+  'optional mini-preview must fail soft when its 2D context is unavailable',
+);
+ids.get('appearance-preview').getContext = workingPreviewGetContext;
+sandbox.__catMouseDemo.setAppearancePanelOpen(false);
+sandbox.__catMouseDemo.setTheme('light');
+sandbox.__catMouseDemo.setAppearance(sandbox.CatAppearance.DEFAULT);
+snapshot = sandbox.__catMouseDemo.getSnapshot();
+assert.deepEqual(
+  JSON.parse(JSON.stringify(snapshot.appearance)),
+  { pattern: 'tabby', colorway: 'orange', whiteLevel: 'low', furLength: 'short' },
+  'appearance reset must restore the ginger short-hair default',
+);
+assert.equal(
+  JSON.parse(storage.get('qrost-cat-and-mouse-appearance-v1')).furLength,
+  'short',
+  'appearance selection must persist under the versioned key',
+);
 
 let previousStance = snapshot;
 for (let index = 0; index < 150; index += 1) {
@@ -1071,8 +1362,67 @@ for (const [rate, targetX, targetY] of [
   step(Math.round(rate * 0.4), 1000 / rate);
 }
 
+ids.get('appearance-toggle').dispatch('click');
+assert.equal(ids.get('appearance-panel').hidden, false, 'appearance disclosure must open');
+assert.equal(ids.get('appearance-toggle').getAttribute('aria-expanded'), 'true');
+const orangeSwatchZh = ids.get('appearance-colorway-grid').children.find((node) => node.getAttribute('data-key') === 'orange');
+assert.ok(orangeSwatchZh, 'visual colorway grid must render the selected orange swatch');
+assert.equal(orangeSwatchZh.getAttribute('aria-label'), '橙虎斑', 'colorway swatches must expose localized names instead of raw keys');
+assert.match(orangeSwatchZh.innerHTML, /橙虎斑/, 'visible colorway labels must be localized');
+const tabbyChip = ids.get('appearance-pattern-grid').children.find((node) => node.getAttribute('data-key') === 'tabby');
+const bicolorChip = ids.get('appearance-pattern-grid').children.find((node) => node.getAttribute('data-key') === 'bicolor');
+assert.equal(tabbyChip.tabIndex, 0, 'selected pattern must be the radiogroup Tab stop');
+assert.equal(bicolorChip.tabIndex, -1, 'unselected patterns must leave the radiogroup Tab order');
+let patternArrowPrevented = false;
+ids.get('appearance-pattern-grid').dispatch('keydown', {
+  key: 'ArrowRight',
+  target: tabbyChip,
+  preventDefault() { patternArrowPrevented = true; },
+});
+assert.equal(patternArrowPrevented, true, 'pattern arrow navigation must prevent page scrolling');
+assert.equal(sandbox.__catMouseDemo.getSnapshot().appearance.pattern, 'bicolor', 'ArrowRight must select the next enabled pattern');
+assert.equal(bicolorChip.focused, true, 'arrow navigation must move focus with selection');
+ids.get('appearance-reset').dispatch('click');
+assert.deepEqual(
+  ids.get('appearance-white-level-group').children.map((node) => node.getAttribute('data-key')),
+  ['none', 'low', 'medium'],
+  'dynamic marking controls must return to canonical order after pattern changes',
+);
+const calicoChip = ids.get('appearance-pattern-grid').children.find((node) => node.getAttribute('data-key') === 'calico');
+assert.ok(calicoChip, 'visual pattern grid must render the calico chip');
+calicoChip.dispatch('click');
+assert.equal(sandbox.__catMouseDemo.getSnapshot().appearance.pattern, 'calico', 'visual pattern chips must update appearance state');
+ids.get('appearance-reset').dispatch('click');
+ids.get('appearance-fur-length').value = 'hairless';
+ids.get('appearance-fur-length').dispatch('change');
+const lowMarkingSegment = ids.get('appearance-white-level-group').children.find((node) => node.getAttribute('data-key') === 'low');
+assert.equal(lowMarkingSegment.disabled, false, 'hairless cats must retain selectable pigment/marking regions');
+assert.equal(lowMarkingSegment.getAttribute('aria-checked'), 'true', 'hairless selection must not hide the active marking state');
+ids.get('appearance-reset').dispatch('click');
+ids.get('appearance-pattern').value = 'calico';
+ids.get('appearance-pattern').dispatch('change');
+assert.equal(sandbox.__catMouseDemo.getSnapshot().appearance.pattern, 'calico');
+assert.equal(sandbox.__catMouseDemo.getSnapshot().appearance.colorway, 'classic');
+ids.get('appearance-white-level').value = 'high';
+ids.get('appearance-white-level').dispatch('change');
+ids.get('appearance-fur-length').value = 'long';
+ids.get('appearance-fur-length').dispatch('change');
+assert.deepEqual(
+  JSON.parse(JSON.stringify(sandbox.__catMouseDemo.getSnapshot().appearance)),
+  { pattern: 'calico', colorway: 'classic', whiteLevel: 'high', furLength: 'long' },
+  'appearance form must update pattern, body-part mask and fur length together',
+);
+document.dispatch('keydown', { key: 'Escape', preventDefault() {} });
+assert.equal(ids.get('appearance-panel').hidden, true, 'Escape must close the appearance panel');
+assert.equal(ids.get('appearance-toggle').focused, true, 'Escape must return focus to the disclosure');
+ids.get('appearance-reset').dispatch('click');
+assert.equal(sandbox.__catMouseDemo.getSnapshot().appearance.furLength, 'short');
+
 ids.get('language-toggle').dispatch('click');
 assert.equal(documentElement.lang, 'en');
+const orangeSwatchEn = ids.get('appearance-colorway-grid').children.find((node) => node.getAttribute('data-key') === 'orange');
+assert.equal(orangeSwatchEn.getAttribute('aria-label'), 'Orange tabby', 'language changes must refresh colorway accessible names');
+assert.match(orangeSwatchEn.innerHTML, /Orange tabby/, 'language changes must refresh visible colorway labels');
 ids.get('theme-toggle').dispatch('click');
 assert.equal(documentElement.classList.contains('dark'), true);
 ids.get('pause-toggle').dispatch('click');
@@ -1134,6 +1484,7 @@ failureSandbox.window = failureSandbox;
 failureSandbox.globalThis = failureSandbox;
 failureSandbox.CatGait = {};
 failureSandbox.CatMouseI18n = failureI18n;
+failureSandbox.CatAppearance = sandbox.CatAppearance;
 vm.createContext(failureSandbox);
 vm.runInContext(fs.readFileSync(path.join(demo, 'assets/js/app.js'), 'utf8'), failureSandbox, { filename: 'app-failure.js' });
 assert.equal(failureElements.get('canvas-error').hidden, false);
@@ -1147,4 +1498,4 @@ failureListeners.forEach((listener) => listener());
 assert.equal(failureElements.get('canvas-error').textContent, 'Canvas failed');
 assert.equal(failureElements.get('theme-toggle').getAttribute('title'), 'Light');
 
-console.log('check-runtime: capture/rest/escape, staged pose crossfades, sleep breath/twitches, restrained feline head, seamless coat, bounded spine, anatomical reach, 548x536 edges, and minimal UI OK');
+console.log('check-runtime: capture/rest/escape, staged pose crossfades, sleep breath/twitches, restrained feline head, appearance taxonomy/fur matrix, seamless coat, bounded spine, anatomical reach, 548x536 edges, and accessible minimal UI OK');
