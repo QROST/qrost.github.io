@@ -9,6 +9,7 @@ const here = path.dirname(fileURLToPath(import.meta.url));
 const demo = path.resolve(here, '..');
 let fakeViewportWidth = 1180;
 let fakeViewportHeight = 720;
+let fakePreviewSize = 168;
 let resizeObserverCallback = null;
 
 class FakeClassList {
@@ -111,8 +112,8 @@ class FakeElement {
   }
   get innerHTML() { return this._innerHTML; }
   set innerHTML(value) { this._innerHTML = String(value || ''); }
-  get clientWidth() { return 168; }
-  get clientHeight() { return 168; }
+  get clientWidth() { return this.id === 'appearance-preview' ? fakePreviewSize : 168; }
+  get clientHeight() { return this.id === 'appearance-preview' ? fakePreviewSize : 168; }
 }
 
 const contextCalls = [];
@@ -121,6 +122,10 @@ const contextMethods = new Proxy({}, {
   get(target, property) {
     if (!(property in target)) {
       target[property] = (...args) => {
+        if (property === 'beginPath') target.__pathQuadraticCount = 0;
+        else if (property === 'quadraticCurveTo') {
+          target.__pathQuadraticCount = (target.__pathQuadraticCount || 0) + 1;
+        }
         if (recordContextCalls) {
           contextCalls.push({
             property: String(property),
@@ -128,6 +133,8 @@ const contextMethods = new Proxy({}, {
             fillStyle: target.fillStyle,
             strokeStyle: target.strokeStyle,
             globalAlpha: target.globalAlpha,
+            lineWidth: target.lineWidth,
+            pathQuadraticCount: target.__pathQuadraticCount || 0,
           });
         }
         return undefined;
@@ -144,6 +151,10 @@ const previewContextMethods = new Proxy({}, {
   get(target, property) {
     if (!(property in target)) {
       target[property] = (...args) => {
+        if (property === 'beginPath') target.__pathQuadraticCount = 0;
+        else if (property === 'quadraticCurveTo') {
+          target.__pathQuadraticCount = (target.__pathQuadraticCount || 0) + 1;
+        }
         if (recordPreviewContextCalls) {
           previewContextCalls.push({
             property: String(property),
@@ -151,6 +162,8 @@ const previewContextMethods = new Proxy({}, {
             fillStyle: target.fillStyle,
             strokeStyle: target.strokeStyle,
             globalAlpha: target.globalAlpha,
+            lineWidth: target.lineWidth,
+            pathQuadraticCount: target.__pathQuadraticCount || 0,
           });
         }
         return undefined;
@@ -407,6 +420,11 @@ for (const [label, source] of [['tail', tailFurFlowSource], ['body', bodyFurFlow
 assert.match(appSource, /const BODY_FUR_PROFILE = Object\.freeze/, 'body fur volume must use one explicit regional profile');
 assert.match(appSource, /const FUR_STRAND_CLUSTERS = Object\.freeze/, 'medium and long coats must declare stable strand clusters');
 assert.match(appSource, /const FUR_STRAND_CLUSTER_REACH = Object\.freeze/, 'fur cluster reach must be precomputed outside snapshot hot paths');
+assert.match(appSource, /const FUR_COMPACT_STRAND_INDICES = Object\.freeze/, 'sub-pixel fur must use a stable nested strand subset');
+assert.match(appSource, /function furStrandVariation\s*\(/, 'guard hairs must share root-locked deterministic bundle variation');
+assert.match(appSource, /function prefilterFurStroke\s*\(/, 'sub-pixel fur strokes must preserve screen-space coverage');
+assert.match(appSource, /function updateFurLod\s*\(/, 'fur LOD must update only from viewport scale changes');
+assert.match(appSource, /function paintBodyUndercoatHalo\s*\(/, 'medium and long coats must retain a soft aggregate undercoat edge');
 assert.match(appSource, /const FUR_MAX_LENGTH_SCALE = 1\.11/, 'fur reach must include the renderer maximum strand-length variation');
 assert.match(appSource, /const FUR_FLOW_STROKE_MARGIN = 0\.55/, 'fur reach must include line-cap, side jitter, and antialias margin');
 assert.match(appSource, /function furGeometrySnapshot\s*\(/, 'fur geometry must expose a deterministic regression snapshot');
@@ -442,6 +460,7 @@ assert.doesNotMatch(earRendererSource, /earInner|traceInnerEar|traceEarAccent|tr
 assert.match(earMotionSource, /earFlickPulse\s*\(/, 'ear motion must retain independent short flicks');
 assert.match(earMotionSource, /EAR_PERK_BY_STATE/, 'ear motion must retain state-dependent perk variation');
 assert.match(drawBodySource, /strokeBodyFlanks\s*\(/, 'torso must stroke only its open side contours');
+assert.match(drawBodySource, /paintBodyUndercoatHalo\s*\(/, 'torso must layer the aggregate undercoat beneath guard hairs');
 assert.doesNotMatch(drawBodySource, /ctx\.stroke\s*\(/, 'torso must not stroke its closed fill caps');
 assert.doesNotMatch(bodyFlankSource, /closePath\s*\(|traceBodySilhouette\s*\(/, 'body flank strokes must stay open');
 assert.equal((bodyFlankSource.match(/smoothOpenPath\s*\(/g) || []).length, 2, 'body must expose exactly two open flanks');
@@ -798,6 +817,7 @@ const furSnapshotsByLength = Object.fromEntries(
 const furGeometryByLength = Object.fromEntries(
   Object.entries(furSnapshotsByLength).map(([selectedFur, current]) => [selectedFur, current.furGeometry]),
 );
+assert.equal(furGeometryByLength.long.lod, 'full', 'large high-DPR canvases must retain full strand detail');
 assert.equal(furGeometryByLength.short.maxBodyOffset, 0, 'short hair must preserve the established body silhouette');
 assert.equal(furGeometryByLength.hairless.maxBodyOffset, 0, 'hairless skin must not grow a fur halo');
 assert.ok(furGeometryByLength.medium.maxBodyOffset >= 2, 'medium hair needs a readable continuous coat volume');
@@ -806,26 +826,26 @@ assert.ok(
   'long hair must add another visible coat-volume step beyond medium hair',
 );
 assert.ok(furGeometryByLength.long.maxBodyOffset <= 6.5, 'long hair must not inflate the cat into a uniform blob');
-assert.equal(furGeometryByLength.medium.bodyGuideCount, 16, 'medium hair should cover every visible body station');
-assert.equal(furGeometryByLength.long.bodyGuideCount, 16, 'long hair should cover every visible body station');
-assert.equal(furGeometryByLength.medium.tailGuideCount, 8, 'medium hair should cover four stable tail stations per side');
-assert.equal(furGeometryByLength.long.tailGuideCount, 12, 'long hair should cover six stable tail stations per side');
-assert.equal(furGeometryByLength.medium.bodyStrandCount, 144, 'medium body guides must resolve into dense nine-strand clusters');
-assert.equal(furGeometryByLength.long.bodyStrandCount, 176, 'long body guides must resolve into dense eleven-strand clusters');
+assert.equal(furGeometryByLength.medium.bodyGuideCount, 30, 'medium hair must interpolate fifteen stable body guides per flank');
+assert.equal(furGeometryByLength.long.bodyGuideCount, 30, 'long hair must interpolate fifteen stable body guides per flank');
+assert.equal(furGeometryByLength.medium.tailGuideCount, 14, 'medium hair must distribute seven stable tail guides per side');
+assert.equal(furGeometryByLength.long.tailGuideCount, 18, 'long hair must distribute nine stable tail guides per side');
+assert.equal(furGeometryByLength.medium.bodyStrandCount, 150, 'medium body must distribute five-strand proxies across the full flank');
+assert.equal(furGeometryByLength.long.bodyStrandCount, 210, 'long body must distribute seven-strand proxies across the full flank');
 assert.equal(furGeometryByLength.medium.headStrandCount, 36, 'medium cheek guides must resolve into dense nine-strand clusters');
 assert.equal(furGeometryByLength.long.headStrandCount, 44, 'long cheek guides must resolve into dense eleven-strand clusters');
-assert.equal(furGeometryByLength.medium.tailStrandCount, 72, 'medium tail guides must resolve into dense nine-strand clusters');
-assert.equal(furGeometryByLength.long.tailStrandCount, 132, 'long tail guides must resolve into dense eleven-strand clusters');
-assert.equal(furGeometryByLength.medium.bodyPrimaryStrandCount, 80, 'medium body must retain eighty dark primary strands');
-assert.equal(furGeometryByLength.long.bodyPrimaryStrandCount, 96, 'long body must retain ninety-six dark primary strands');
+assert.equal(furGeometryByLength.medium.tailStrandCount, 70, 'medium tail must distribute five-strand proxies along its full length');
+assert.equal(furGeometryByLength.long.tailStrandCount, 126, 'long tail must distribute seven-strand proxies along its full length');
+assert.equal(furGeometryByLength.medium.bodyPrimaryStrandCount, 90, 'medium body must retain ninety distributed dark strands');
+assert.equal(furGeometryByLength.long.bodyPrimaryStrandCount, 120, 'long body must retain one hundred twenty distributed dark strands');
 assert.equal(furGeometryByLength.medium.headPrimaryStrandCount, 20, 'medium cheeks must retain twenty dark primary strands');
 assert.equal(furGeometryByLength.long.headPrimaryStrandCount, 24, 'long cheeks must retain twenty-four dark primary strands');
-assert.equal(furGeometryByLength.medium.tailPrimaryStrandCount, 40, 'medium tail must retain forty dark primary strands');
+assert.equal(furGeometryByLength.medium.tailPrimaryStrandCount, 42, 'medium tail must retain forty-two distributed dark strands');
 assert.equal(furGeometryByLength.long.tailPrimaryStrandCount, 72, 'long tail must retain seventy-two dark primary strands');
 assert.ok(
-  furGeometryByLength.medium.bodyPrimaryStrandCount >= furGeometryByLength.medium.bodyGuideCount * 5
-    && furGeometryByLength.long.bodyPrimaryStrandCount >= furGeometryByLength.long.bodyGuideCount * 6,
-  'opaque primary-strand density must be high enough to read as a coat without relying on faint highlights',
+  furGeometryByLength.medium.bodyPrimaryStrandCount >= furGeometryByLength.medium.bodyGuideCount * 3
+    && furGeometryByLength.long.bodyPrimaryStrandCount >= furGeometryByLength.long.bodyGuideCount * 4,
+  'opaque primary strands must stay dense while being distributed across more guide positions',
 );
 assert.ok(
   furGeometryByLength.long.tailRadiusMultiplier <= 1.3,
@@ -855,7 +875,7 @@ assert.ok(
 );
 assert.ok(
   furGeometryByLength.long.tailGuideReach > furGeometryByLength.long.maxTailCoreRadius
-    && furGeometryByLength.long.tailGuideReach <= 25,
+    && furGeometryByLength.long.tailGuideReach <= 29,
   `long tail guide endpoints must extend beyond the core but remain bounded: ${JSON.stringify(furGeometryByLength.long)}`,
 );
 assert.equal(furGeometryByLength.short.tailPlumeExpansion, 0, 'short hair must preserve the established tail taper');
@@ -875,6 +895,17 @@ assert.deepEqual(
   [0, 0],
   'fur expansion must taper to zero at the tail and head sockets',
 );
+for (const selectedFur of ['medium', 'long']) {
+  const spread = furGeometryByLength[selectedFur].bundleSpread;
+  assert.ok(
+    spread.root <= spread.tip * 0.25,
+    `${selectedFur}: strand roots must stay bundled instead of translating as parallel comb teeth`,
+  );
+  assert.ok(
+    spread.control > spread.root && spread.control < spread.tip,
+    `${selectedFur}: procedural variation must grow continuously from root to tip`,
+  );
+}
 
 function furDrawMetrics(selectedFur) {
   contextCalls.length = 0;
@@ -886,10 +917,20 @@ function furDrawMetrics(selectedFur) {
   } finally {
     recordContextCalls = false;
   }
+  const curveCalls = contextCalls.filter((call) => call.property === 'quadraticCurveTo');
+  const coverageByStroke = {};
+  contextCalls.filter((call) => call.property === 'stroke' && call.pathQuadraticCount > 0).forEach((call) => {
+    const key = String(call.strokeStyle || 'unset');
+    const lineWidth = Number.isFinite(call.lineWidth) ? call.lineWidth : 1;
+    const alpha = Number.isFinite(call.globalAlpha) ? call.globalAlpha : 1;
+    coverageByStroke[key] = (coverageByStroke[key] || 0)
+      + call.pathQuadraticCount * lineWidth * alpha;
+  });
   return {
     total: contextCalls.length,
-    curves: contextCalls.filter((call) => call.property === 'quadraticCurveTo').length,
+    curves: curveCalls.length,
     strokes: contextCalls.filter((call) => call.property === 'stroke').length,
+    coverageByStroke,
   };
 }
 const shortFurMetrics = furDrawMetrics('short');
@@ -898,15 +939,33 @@ const longFurMetrics = furDrawMetrics('long');
 assert.ok(mediumFurMetrics.curves > shortFurMetrics.curves, 'medium hair must add visible curved flow strokes');
 assert.ok(longFurMetrics.curves > mediumFurMetrics.curves, 'long hair must add more curved flow strokes than medium hair');
 assert.ok(
-  mediumFurMetrics.curves - shortFurMetrics.curves >= 245
-    && longFurMetrics.curves - shortFurMetrics.curves >= 345,
+  mediumFurMetrics.curves - shortFurMetrics.curves === 272
+    && longFurMetrics.curves - shortFurMetrics.curves === 396,
   `medium/long coats must retain dense strand coverage: ${JSON.stringify({ shortFurMetrics, mediumFurMetrics, longFurMetrics })}`,
 );
 assert.ok(
-  longFurMetrics.curves - shortFurMetrics.curves <= 360
+  longFurMetrics.curves - shortFurMetrics.curves <= 400
     && longFurMetrics.strokes - shortFurMetrics.strokes <= 8
-    && longFurMetrics.total - shortFurMetrics.total <= 740,
+    && longFurMetrics.total - shortFurMetrics.total <= 820,
   `long-hair detail must stay within a bounded Canvas 2D draw-call budget: ${JSON.stringify({ shortFurMetrics, mediumFurMetrics, longFurMetrics })}`,
+);
+
+function furDrawSignature(selectedFur) {
+  contextCalls.length = 0;
+  recordContextCalls = true;
+  try {
+    sandbox.__catMouseDemo.setAppearance({
+      pattern: 'solid', colorway: 'black', whiteLevel: 'none', furLength: selectedFur,
+    });
+  } finally {
+    recordContextCalls = false;
+  }
+  return JSON.stringify(contextCalls);
+}
+assert.equal(
+  furDrawSignature('long'),
+  furDrawSignature('long'),
+  'fixed guide interpolation and LOD must render an identical long-hair call signature',
 );
 
 function appearanceDrawSignature(state) {
@@ -1526,6 +1585,153 @@ for (const [rate, targetX, targetY] of [
   step(Math.round(rate * 0.4), 1000 / rate);
 }
 sandbox.__catMouseDemo.setAppearance(sandbox.CatAppearance.DEFAULT);
+
+// Capture full-detail fur at the same minimum anatomy scale used by the
+// sub-pixel probe. Changing only DPR below makes the LOD comparison isolate
+// aggregation instead of mixing in a different body scale.
+fakeViewportWidth = 360;
+fakeViewportHeight = 480;
+sandbox.devicePixelRatio = 1.1;
+resizeObserverCallback();
+const lowScaleFullMetrics = {};
+const lowScaleFullGeometry = {};
+for (const selectedFur of ['short', 'medium', 'long']) {
+  lowScaleFullMetrics[selectedFur] = furDrawMetrics(selectedFur);
+  lowScaleFullGeometry[selectedFur] = JSON.parse(JSON.stringify(
+    sandbox.__catMouseDemo.getSnapshot().furGeometry,
+  ));
+}
+assert.equal(lowScaleFullGeometry.long.lod, 'full', 'minimum anatomy scale must retain full detail above the exit threshold');
+
+// Adversarial sub-pixel case: browser zoom can combine the minimum anatomy
+// scale with a DPR below one. Stable aggregation must reduce geometry while a
+// width/alpha prefilter preserves the expected coverage of each proxy strand.
+sandbox.devicePixelRatio = 0.75;
+resizeObserverCallback();
+const compactMetrics = {};
+const compactGeometry = {};
+for (const selectedFur of ['short', 'medium', 'long']) {
+  compactMetrics[selectedFur] = furDrawMetrics(selectedFur);
+  compactGeometry[selectedFur] = JSON.parse(JSON.stringify(
+    sandbox.__catMouseDemo.getSnapshot().furGeometry,
+  ));
+}
+const compactShortFurMetrics = compactMetrics.short;
+const compactMediumFurMetrics = compactMetrics.medium;
+const compactLongFurMetrics = compactMetrics.long;
+let compactFur = sandbox.__catMouseDemo.getSnapshot().furGeometry;
+assert.equal(compactFur.lod, 'compact', 'sub-pixel strand gaps must select aggregate fur proxies');
+assert.equal(compactMediumFurMetrics.curves - compactShortFurMetrics.curves, 156, 'compact medium fur must use 140 proxy hairs plus sixteen undercoat curves');
+assert.equal(compactLongFurMetrics.curves - compactShortFurMetrics.curves, 240, 'compact long fur must use 224 proxy hairs plus sixteen undercoat curves');
+
+const compactIndices = {
+  medium: { dark: [0, 2, 4], light: [0, 3] },
+  long: { dark: [0, 2, 3, 5], light: [0, 2, 4] },
+};
+for (const selectedFur of ['medium', 'long']) {
+  for (const layer of ['dark', 'light']) {
+    assert.deepEqual(
+      compactGeometry[selectedFur].bundleVariations[layer],
+      compactIndices[selectedFur][layer].map((index) => (
+        lowScaleFullGeometry[selectedFur].bundleVariations[layer][index]
+      )),
+      `${selectedFur}/${layer}: retained strands must keep identical roots and controls across LOD`,
+    );
+  }
+}
+
+function furCoverageDelta(metrics, baseline) {
+  const keys = new Set([
+    ...Object.keys(metrics.coverageByStroke),
+    ...Object.keys(baseline.coverageByStroke),
+  ]);
+  return Object.fromEntries([...keys].map((key) => [
+    key,
+    (metrics.coverageByStroke[key] || 0) - (baseline.coverageByStroke[key] || 0),
+  ]));
+}
+for (const selectedFur of ['medium', 'long']) {
+  const fullCoverage = furCoverageDelta(lowScaleFullMetrics[selectedFur], lowScaleFullMetrics.short);
+  const compactCoverage = furCoverageDelta(compactMetrics[selectedFur], compactMetrics.short);
+  const fullLayers = Object.entries(fullCoverage).filter(([, amount]) => amount > 1e-6);
+  const compactLayers = Object.entries(compactCoverage).filter(([, amount]) => amount > 1e-6);
+  assert.equal(fullLayers.length, 3, `${selectedFur}: full detail must retain undercoat, dark, and light coverage`);
+  assert.deepEqual(
+    compactLayers.map(([stroke]) => stroke).sort(),
+    fullLayers.map(([stroke]) => stroke).sort(),
+    `${selectedFur}: compact LOD must retain every full-detail fur layer`,
+  );
+  for (const [stroke, fullAmount] of fullLayers) {
+    const ratio = (compactCoverage[stroke] || 0) / fullAmount;
+    assert.ok(
+      ratio >= 0.88 && ratio <= 1.12,
+      `${selectedFur}/${stroke}: aggregate LOD coverage must stay within 12% of full detail `
+        + `(full ${fullAmount}, compact ${compactCoverage[stroke] || 0}, ratio ${ratio})`,
+    );
+  }
+}
+
+assert.ok(compactFur.bodyStroke.dark.deviceWidth >= 0.75, 'dark guard hairs must cover at least 0.75 device pixels');
+assert.ok(compactFur.bodyStroke.light.deviceWidth >= 0.6, 'light guard hairs must cover at least 0.60 device pixels');
+for (const layer of ['dark', 'light']) {
+  const stroke = compactFur.bodyStroke[layer];
+  assert.ok(
+    Math.abs(stroke.deviceWidth * stroke.alpha - stroke.nominalDeviceWidth * stroke.baseAlpha) < 1e-6,
+    `${layer} sub-pixel widening must conserve alpha-weighted coverage`,
+  );
+}
+assert.ok(
+  compactLongFurMetrics.strokes - compactShortFurMetrics.strokes <= 8,
+  'aggregate LOD must not add Canvas stroke calls',
+);
+
+// The mini-preview adds another local transform after its backing-store DPR.
+// At the 144px mobile size, both hair layers must still meet their physical
+// device-pixel floors after that transform is applied.
+fakePreviewSize = 144;
+sandbox.__catMouseDemo.setAppearancePanelOpen(true);
+previewContextCalls.length = 0;
+recordPreviewContextCalls = true;
+try {
+  sandbox.__catMouseDemo.setAppearance({
+    pattern: 'solid', colorway: 'black', whiteLevel: 'none', furLength: 'long',
+  });
+} finally {
+  recordPreviewContextCalls = false;
+}
+const previewFurStrokes = previewContextCalls.filter((call) => call.property === 'stroke').slice(-2);
+assert.equal(previewFurStrokes.length, 2, 'long-hair mini-preview must retain two batched fur layers');
+const previewTransformDeviceScale = sandbox.devicePixelRatio * (fakePreviewSize / 180);
+assert.ok(
+  previewFurStrokes[0].lineWidth * previewTransformDeviceScale >= 0.75 - 1e-9,
+  'mini-preview dark guard hairs must remain at least 0.75 device pixels after local scaling',
+);
+assert.ok(
+  previewFurStrokes[1].lineWidth * previewTransformDeviceScale >= 0.6 - 1e-9,
+  'mini-preview light guard hairs must remain at least 0.60 device pixels after local scaling',
+);
+sandbox.__catMouseDemo.setAppearancePanelOpen(false);
+fakePreviewSize = 168;
+sandbox.__catMouseDemo.setAppearance({
+  pattern: 'tabby', colorway: 'orange', whiteLevel: 'low', furLength: 'long',
+});
+
+// Hysteresis prevents resize/zoom noise from toggling geometry near one pixel.
+sandbox.devicePixelRatio = 0.95;
+resizeObserverCallback();
+assert.equal(sandbox.__catMouseDemo.getSnapshot().furGeometry.lod, 'compact');
+sandbox.devicePixelRatio = 1.1;
+resizeObserverCallback();
+assert.equal(sandbox.__catMouseDemo.getSnapshot().furGeometry.lod, 'full');
+sandbox.devicePixelRatio = 0.95;
+resizeObserverCallback();
+assert.equal(sandbox.__catMouseDemo.getSnapshot().furGeometry.lod, 'full');
+
+// Restore the compact browser baseline for the remaining UI checks.
+fakeViewportWidth = 548;
+fakeViewportHeight = 536;
+sandbox.devicePixelRatio = 2;
+resizeObserverCallback();
 
 ids.get('appearance-toggle').dispatch('click');
 assert.equal(ids.get('appearance-panel').hidden, false, 'appearance disclosure must open');

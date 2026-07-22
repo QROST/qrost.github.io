@@ -94,6 +94,7 @@
   let rafId = 0;
   let initialized = false;
   let appearance = readStoredAppearance();
+  let furLod = 'full';
 
   const palette = {
     light: {
@@ -270,30 +271,81 @@
   // root and neck bridge keep the same watertight joins as the short-haired cat.
   const BODY_FUR_PROFILE = Object.freeze([0, 0.62, 1, 0.88, 0.66, 0.76, 0.94, 0.48, 0.14, 0]);
   const BODY_FUR_GUIDES = Object.freeze({
-    medium: Object.freeze([1, 2, 3, 4, 5, 6, 7, 8]),
-    long: Object.freeze([1, 2, 3, 4, 5, 6, 7, 8]),
+    full: Object.freeze({
+      medium: Object.freeze([1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5, 5.5, 6, 6.5, 7, 7.5, 8]),
+      long: Object.freeze([1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5, 5.5, 6, 6.5, 7, 7.5, 8]),
+    }),
+    compact: Object.freeze({
+      medium: Object.freeze([1, 2, 3, 4, 5, 6, 7, 8]),
+      long: Object.freeze([1, 2, 3, 4, 5, 6, 7, 8]),
+    }),
   });
   const TAIL_FUR_GUIDES = Object.freeze({
-    medium: Object.freeze([2, 4, 6, 8]),
-    long: Object.freeze([1, 2, 4, 6, 8, 9]),
+    full: Object.freeze({
+      medium: Object.freeze([2, 3, 4, 5, 6, 7, 8]),
+      long: Object.freeze([1, 2, 3, 4, 5, 6, 7, 8, 9]),
+    }),
+    compact: Object.freeze({
+      medium: Object.freeze([2, 4, 6, 8]),
+      long: Object.freeze([1, 2, 4, 6, 8, 9]),
+    }),
   });
   const BODY_FUR_FLOW = Object.freeze({
     medium: Object.freeze({ extraLength: 2.2, darkRearward: 0.76, darkOutward: 0.72, lightRearward: 0.64, lightOutward: 0.54 }),
-    long: Object.freeze({ extraLength: 1.4, darkRearward: 0.82, darkOutward: 0.64, lightRearward: 0.68, lightOutward: 0.46 }),
+    long: Object.freeze({ extraLength: 2.8, darkRearward: 0.84, darkOutward: 0.68, lightRearward: 0.7, lightOutward: 0.5 }),
   });
   const TAIL_FUR_FLOW = Object.freeze({
-    medium: Object.freeze({ darkOutward: 1.28, darkForward: 0.32, lightOutward: 1.16, lightForward: 0.26 }),
-    long: Object.freeze({ darkOutward: 1.42, darkForward: 0.42, lightOutward: 1.28, lightForward: 0.34 }),
+    medium: Object.freeze({ darkOutward: 1.34, darkForward: 0.34, lightOutward: 1.2, lightForward: 0.28 }),
+    long: Object.freeze({ darkOutward: 1.52, darkForward: 0.46, lightOutward: 1.34, lightForward: 0.38 }),
   });
   const FUR_STRAND_CLUSTERS = Object.freeze({
     medium: Object.freeze({
-      dark: Object.freeze([-3.2, -1.6, 0, 1.6, 3.2]),
-      light: Object.freeze([-2.4, -0.8, 0.8, 2.4]),
+      dark: Object.freeze([-4, -2, 0, 2, 4]),
+      light: Object.freeze([-3, -1, 1, 3]),
     }),
     long: Object.freeze({
-      dark: Object.freeze([-4, -2.4, -0.8, 0.8, 2.4, 4]),
-      light: Object.freeze([-3.2, -1.6, 0, 1.6, 3.2]),
+      dark: Object.freeze([-5, -3, -1, 1, 3, 5]),
+      light: Object.freeze([-4, -2, 0, 2, 4]),
     }),
+  });
+  // Stable nested subsets are selected only when neighbouring strands become
+  // sub-pixel. The retained endpoints preserve the bundle span while thicker,
+  // alpha-compensated proxy strokes carry the missing aggregate coverage.
+  const FUR_COMPACT_STRAND_INDICES = Object.freeze({
+    medium: Object.freeze({
+      dark: Object.freeze([0, 2, 4]),
+      light: Object.freeze([0, 3]),
+    }),
+    long: Object.freeze({
+      dark: Object.freeze([0, 2, 3, 5]),
+      light: Object.freeze([0, 2, 4]),
+    }),
+  });
+  const FUR_COMPACT_STRAND_CLUSTERS = Object.freeze(Object.fromEntries(
+    Object.entries(FUR_STRAND_CLUSTERS).map(([length, layers]) => [
+      length,
+      Object.freeze(Object.fromEntries(['dark', 'light'].map((layer) => [
+        layer,
+        Object.freeze(FUR_COMPACT_STRAND_INDICES[length][layer].map((index) => layers[layer][index])),
+      ]))),
+    ]),
+  ));
+  const FUR_STRAND_VARIATIONS = new Map();
+  Object.entries(FUR_STRAND_CLUSTERS).forEach(([length, layers]) => {
+    ['dark', 'light'].forEach((layer) => {
+      const fullOffsets = layers[layer];
+      const fullVariations = Object.freeze(
+        fullOffsets.map((_, index) => Object.freeze(createFurStrandVariation(fullOffsets, index))),
+      );
+      FUR_STRAND_VARIATIONS.set(fullOffsets, fullVariations);
+      // A compact strand is the same strand, not a newly regrouped proxy.
+      // Reusing the full-detail variation keeps every retained root/control/tip
+      // fixed across the hysteretic LOD transition, so resize cannot pop hairs.
+      FUR_STRAND_VARIATIONS.set(
+        FUR_COMPACT_STRAND_CLUSTERS[length][layer],
+        Object.freeze(FUR_COMPACT_STRAND_INDICES[length][layer].map((index) => fullVariations[index])),
+      );
+    });
   });
   const FUR_STRAND_CLUSTER_REACH = Object.freeze(Object.fromEntries(
     Object.entries(FUR_STRAND_CLUSTERS).map(([length, layers]) => [
@@ -309,6 +361,9 @@
   // never trusts a smaller envelope than the pixels we actually draw.
   const FUR_MAX_LENGTH_SCALE = 1.11;
   const FUR_FLOW_STROKE_MARGIN = 0.55;
+  const FUR_LOD_ENTER_GAP = 0.9;
+  const FUR_LOD_EXIT_GAP = 1.1;
+  const FUR_MIN_DEVICE_WIDTH = Object.freeze({ dark: 0.75, light: 0.6 });
 
   // Head proportions are intentionally restrained relative to the shoulders.
   // The face is a small directional accent on the continuous coat, not a
@@ -622,11 +677,11 @@
   }
 
   function bodyFurGuideIndices() {
-    return BODY_FUR_GUIDES[furLength()] || [];
+    return BODY_FUR_GUIDES[furLod][furLength()] || [];
   }
 
   function tailFurGuideIndices() {
-    return TAIL_FUR_GUIDES[furLength()] || [];
+    return TAIL_FUR_GUIDES[furLod][furLength()] || [];
   }
 
   function bodyFurFlowConfig() {
@@ -637,8 +692,19 @@
     return TAIL_FUR_FLOW[furLength()] || null;
   }
 
-  function furLayerStrandOffsets(layer) {
+  function furLayerFullStrandOffsets(layer) {
     const cluster = FUR_STRAND_CLUSTERS[furLength()];
+    return cluster ? cluster[layer] : [];
+  }
+
+  function furLayerStrandOffsets(layer) {
+    const clusters = furLod === 'compact' ? FUR_COMPACT_STRAND_CLUSTERS : FUR_STRAND_CLUSTERS;
+    const cluster = clusters[furLength()];
+    return cluster ? cluster[layer] : [];
+  }
+
+  function furDistributedStrandOffsets(layer) {
+    const cluster = FUR_COMPACT_STRAND_CLUSTERS[furLength()];
     return cluster ? cluster[layer] : [];
   }
 
@@ -648,6 +714,94 @@
 
   function furClusterReach() {
     return FUR_STRAND_CLUSTER_REACH[furLength()] || 0;
+  }
+
+  function furStrandGapDevice() {
+    return 1.6 * anatomy().scale * viewport.dpr;
+  }
+
+  function updateFurLod() {
+    const gap = furStrandGapDevice();
+    if (furLod === 'compact') {
+      if (gap > FUR_LOD_EXIT_GAP) furLod = 'full';
+    } else if (gap < FUR_LOD_ENTER_GAP) {
+      furLod = 'compact';
+    }
+  }
+
+  function furStrandAggregationScale(layer) {
+    const active = furLayerStrandOffsets(layer).length;
+    const full = furLayerFullStrandOffsets(layer).length;
+    return active > 0 ? full / active : 1;
+  }
+
+  // Each guide resolves into two or three small clumps. Roots remain nearly
+  // coincident, control points separate part-way, and the full offset appears
+  // only at the tip. This avoids the translated parallel-line "comb" produced
+  // when one offset is applied almost unchanged along the whole strand.
+  function createFurStrandVariation(strandOffsets, strandIndex) {
+    const count = strandOffsets.length;
+    const tip = strandOffsets[strandIndex] || 0;
+    const reach = Math.max(
+      0.001,
+      Math.abs(strandOffsets[0] || 0),
+      Math.abs(strandOffsets[count - 1] || 0),
+    );
+    let clumpId = 0;
+    if (count === 2) clumpId = strandIndex === 0 ? -1 : 1;
+    else if (count === 3) clumpId = strandIndex - 1;
+    else if (count === 4) clumpId = strandIndex < 2 ? -1 : 1;
+    else if (count === 5) clumpId = [-1, -1, 0, 1, 1][strandIndex];
+    else if (count >= 6) clumpId = strandIndex < 2 ? -1 : (strandIndex < count - 2 ? 0 : 1);
+    const clump = clumpId * reach * 0.58;
+    const local = tip - clump;
+    return {
+      root: clump * 0.22 + local * 0.08,
+      control: clump * 0.62 + local * 0.45,
+      tip,
+    };
+  }
+
+  function furStrandVariation(strandOffsets, strandIndex) {
+    return FUR_STRAND_VARIATIONS.get(strandOffsets)[strandIndex];
+  }
+
+  function furBundleSpread(layer) {
+    const variations = furBundleVariations(layer);
+    const spread = (key) => {
+      if (!variations.length) return 0;
+      const values = variations.map((variation) => variation[key]);
+      return Math.max(...values) - Math.min(...values);
+    };
+    return { root: spread('root'), control: spread('control'), tip: spread('tip') };
+  }
+
+  function furBundleVariations(layer) {
+    const offsets = furLayerStrandOffsets(layer);
+    return offsets.map((offset, index) => ({
+      offset,
+      ...furStrandVariation(offsets, index),
+    }));
+  }
+
+  function prefilterFurStroke(baseWidth, baseAlpha, scale, layer, dpr) {
+    const renderDpr = Math.max(0.001, dpr || viewport.dpr);
+    const nominalDeviceWidth = baseWidth * scale * furStrandAggregationScale(layer) * renderDpr;
+    const deviceWidth = Math.max(nominalDeviceWidth, FUR_MIN_DEVICE_WIDTH[layer]);
+    return {
+      lineWidth: deviceWidth / renderDpr,
+      alpha: baseAlpha * nominalDeviceWidth / deviceWidth,
+      deviceWidth,
+      nominalDeviceWidth,
+      baseAlpha,
+    };
+  }
+
+  function furStrokeEnvelopeMargin(a) {
+    return Math.max(
+      FUR_FLOW_STROKE_MARGIN * a.scale,
+      FUR_MIN_DEVICE_WIDTH.dark / (2 * Math.max(0.001, viewport.dpr)),
+    );
   }
 
   function hasWhiteMarkings() {
@@ -688,7 +842,8 @@
     const length = (bodyFurExpansion() + flow.extraLength) * a.scale;
     return (
       length * Math.hypot(flow.darkRearward, flow.darkOutward) * FUR_MAX_LENGTH_SCALE
-      + (FUR_FLOW_STROKE_MARGIN + furClusterReach() * 0.82) * a.scale
+      + furClusterReach() * a.scale
+      + furStrokeEnvelopeMargin(a)
     );
   }
 
@@ -698,7 +853,8 @@
     if (!flow) return radius;
     return (
       radius * Math.hypot(flow.darkOutward, flow.darkForward) * FUR_MAX_LENGTH_SCALE
-      + (FUR_FLOW_STROKE_MARGIN + furClusterReach() * 0.82) * a.scale
+      + furClusterReach() * a.scale
+      + furStrokeEnvelopeMargin(a)
     );
   }
 
@@ -1048,6 +1204,7 @@
     const nativeDpr = Math.min(window.devicePixelRatio || 1, 2);
     const areaCappedDpr = Math.sqrt(8_400_000 / Math.max(1, viewport.width * viewport.height));
     viewport.dpr = Math.max(0.75, Math.min(nativeDpr, areaCappedDpr));
+    updateFurLod();
     canvas.width = Math.round(viewport.width * viewport.dpr);
     canvas.height = Math.round(viewport.height * viewport.dpr);
     ctx.setTransform(viewport.dpr, 0, 0, viewport.dpr, 0, 0);
@@ -2999,23 +3156,27 @@
         [-1, 1].forEach((side) => {
           const nx = -ty * side;
           const ny = tx * side;
-          strandOffsets.forEach((strandOffset, strandIndex) => {
-            const shift = (strandOffset + (side > 0 ? 0.22 : -0.18)) * a.scale;
+          strandOffsets.forEach((_, strandIndex) => {
+            const variation = furStrandVariation(strandOffsets, strandIndex);
+            const sideShift = side > 0 ? 0.22 : -0.18;
+            const rootShift = (variation.root + sideShift) * a.scale;
+            const controlShift = (variation.control + sideShift) * a.scale;
+            const tipShift = (variation.tip + sideShift) * a.scale;
             const sidePhase = side > 0 ? 2 : 0;
             const lengthScale = 1 + (((index + strandIndex + sidePhase) % 5) - 2) * 0.055;
             ctx.moveTo(
-              point.x + nx * radius * 0.72 + tx * (-0.55 * a.scale + shift * 0.72),
-              point.y + ny * radius * 0.72 + ty * (-0.55 * a.scale + shift * 0.72),
+              point.x + nx * radius * 0.72 + tx * (-0.55 * a.scale + rootShift),
+              point.y + ny * radius * 0.72 + ty * (-0.55 * a.scale + rootShift),
             );
             ctx.quadraticCurveTo(
               point.x + nx * radius * (0.86 + (outwardScale - 1) * 0.42) * lengthScale
-                + tx * (radius * forwardScale * 0.42 + shift * 0.76),
+                + tx * (radius * forwardScale * 0.42 + controlShift),
               point.y + ny * radius * (0.86 + (outwardScale - 1) * 0.42) * lengthScale
-                + ty * (radius * forwardScale * 0.42 + shift * 0.76),
+                + ty * (radius * forwardScale * 0.42 + controlShift),
               point.x + nx * radius * outwardScale * lengthScale
-                + tx * (radius * forwardScale * lengthScale + shift * 0.82),
+                + tx * (radius * forwardScale * lengthScale + tipShift),
               point.y + ny * radius * outwardScale * lengthScale
-                + ty * (radius * forwardScale * lengthScale + shift * 0.82),
+                + ty * (radius * forwardScale * lengthScale + tipShift),
             );
           });
         });
@@ -3025,15 +3186,17 @@
     ctx.save();
     ctx.lineCap = 'round';
     ctx.lineJoin = 'round';
+    const darkStroke = prefilterFurStroke(long ? 0.82 : 0.78, long ? 0.5 : 0.47, a.scale, 'dark');
     ctx.strokeStyle = c.furDark;
-    ctx.globalAlpha = long ? 0.37 : 0.36;
-    ctx.lineWidth = (long ? 0.66 : 0.65) * a.scale;
-    traceLayer(flow.darkOutward, flow.darkForward, furLayerStrandOffsets('dark'));
+    ctx.globalAlpha = darkStroke.alpha;
+    ctx.lineWidth = darkStroke.lineWidth;
+    traceLayer(flow.darkOutward, flow.darkForward, furDistributedStrandOffsets('dark'));
     ctx.stroke();
+    const lightStroke = prefilterFurStroke(long ? 0.5 : 0.46, long ? 0.3 : 0.27, a.scale, 'light');
     ctx.strokeStyle = c.furLight;
-    ctx.globalAlpha = long ? 0.21 : 0.19;
-    ctx.lineWidth = (long ? 0.38 : 0.35) * a.scale;
-    traceLayer(flow.lightOutward, flow.lightForward, furLayerStrandOffsets('light'));
+    ctx.globalAlpha = lightStroke.alpha;
+    ctx.lineWidth = lightStroke.lineWidth;
+    traceLayer(flow.lightOutward, flow.lightForward, furDistributedStrandOffsets('light'));
     ctx.stroke();
     ctx.restore();
   }
@@ -3265,6 +3428,20 @@
     context.stroke();
   }
 
+  function paintBodyUndercoatHalo(c, contours, a) {
+    if (furLength() !== 'medium' && furLength() !== 'long') return;
+    const long = furLength() === 'long';
+    ctx.save();
+    ctx.strokeStyle = c.fur;
+    ctx.globalAlpha = long ? 0.58 : 0.48;
+    ctx.lineWidth = (long ? 3.4 : 2.4) * a.scale;
+    ctx.lineCap = 'round';
+    ctx.lineJoin = 'round';
+    ctx.filter = `blur(${(long ? 0.62 : 0.48) * a.scale}px)`;
+    strokeBodyFlanks(ctx, contours);
+    ctx.restore();
+  }
+
   function skinTopologySnapshot() {
     const a = anatomy();
     const contours = bodyContours(a, 0, 0);
@@ -3320,6 +3497,8 @@
     const tailGuides = tailFurGuideIndices();
     const primaryStrandsPerGuide = furLayerStrandOffsets('dark').length;
     const strandsPerGuide = furStrandsPerGuide();
+    const distributedPrimaryStrandsPerGuide = furDistributedStrandOffsets('dark').length;
+    const distributedStrandsPerGuide = distributedPrimaryStrandsPerGuide + furDistributedStrandOffsets('light').length;
     const bodyGuideCount = bodyGuides.length * 2;
     const headGuideCount = (furLength() === 'long' || furLength() === 'medium') ? 4 : 0;
     const tailGuideCount = tailGuides.length * 2;
@@ -3331,20 +3510,35 @@
     const tailGuideReach = tailGuides.length
       ? Math.max(...tailGuides.map((index) => tailFurFlowReach(index / lastTailIndex, a) / a.scale))
       : Math.max(...tailCoreRadii);
+    const long = furLength() === 'long';
+    const hasFlow = Boolean(bodyFurFlowConfig());
+    const emptyStroke = { lineWidth: 0, alpha: 0, deviceWidth: 0, nominalDeviceWidth: 0, baseAlpha: 0 };
+    const bodyStroke = hasFlow ? {
+      dark: prefilterFurStroke(long ? 0.84 : 0.8, long ? 0.5 : 0.48, a.scale, 'dark'),
+      light: prefilterFurStroke(long ? 0.52 : 0.48, long ? 0.3 : 0.28, a.scale, 'light'),
+    } : { dark: emptyStroke, light: emptyStroke };
     return {
+      lod: furLod,
+      strandGapDevice: furStrandGapDevice(),
+      bundleSpread: furBundleSpread('dark'),
+      bundleVariations: {
+        dark: furBundleVariations('dark'),
+        light: furBundleVariations('light'),
+      },
+      bodyStroke,
       bodyOffsets,
       maxBodyOffset: Math.max(...bodyOffsets),
       bodyGuideReach: bodyFurFlowReach(a) / a.scale,
       headRuff: headRuffAmount(),
       bodyGuideCount,
-      bodyPrimaryStrandCount: bodyGuideCount * primaryStrandsPerGuide,
-      bodyStrandCount: bodyGuideCount * strandsPerGuide,
+      bodyPrimaryStrandCount: bodyGuideCount * distributedPrimaryStrandsPerGuide,
+      bodyStrandCount: bodyGuideCount * distributedStrandsPerGuide,
       headGuideCount,
       headPrimaryStrandCount: headGuideCount * primaryStrandsPerGuide,
       headStrandCount: headGuideCount * strandsPerGuide,
       tailGuideCount,
-      tailPrimaryStrandCount: tailGuideCount * primaryStrandsPerGuide,
-      tailStrandCount: tailGuideCount * strandsPerGuide,
+      tailPrimaryStrandCount: tailGuideCount * distributedPrimaryStrandsPerGuide,
+      tailStrandCount: tailGuideCount * distributedStrandsPerGuide,
       tailSampleCount: renderTail.length,
       tailRadiusMultiplier: tailCoatRadiusMultiplier(),
       tailRootRadius: tailCoatRadius(0, a.scale) / a.scale,
@@ -3362,8 +3556,8 @@
     const bodyGuideReach = bodyFurFlowReach(a);
     if (bodyGuideReach > 0) {
       [contours.left, contours.right].forEach((flank) => {
-        bodyFurGuideIndices().forEach((index) => {
-          const point = flank[index];
+        bodyFurGuideIndices().forEach((guide) => {
+          const point = sampleBodyFurGuide(contours, flank, guide).point;
           points.push(
             { x: point.x - bodyGuideReach, y: point.y - bodyGuideReach },
             { x: point.x + bodyGuideReach, y: point.y + bodyGuideReach },
@@ -3455,45 +3649,83 @@
     ctx.globalAlpha = 1;
   }
 
+  function sampleBodyFurGuide(contours, flank, guide) {
+    const lower = Math.floor(guide);
+    const upper = Math.min(contours.stations.length - 1, Math.ceil(guide));
+    const mix = guide - lower;
+    const fromPoint = flank[lower];
+    const toPoint = flank[upper];
+    const fromCenter = contours.stations[lower];
+    const toCenter = contours.stations[upper];
+    const angleX = Math.cos(fromCenter.angle) * (1 - mix) + Math.cos(toCenter.angle) * mix;
+    const angleY = Math.sin(fromCenter.angle) * (1 - mix) + Math.sin(toCenter.angle) * mix;
+    return {
+      point: {
+        x: fromPoint.x + (toPoint.x - fromPoint.x) * mix,
+        y: fromPoint.y + (toPoint.y - fromPoint.y) * mix,
+      },
+      center: {
+        x: fromCenter.x + (toCenter.x - fromCenter.x) * mix,
+        y: fromCenter.y + (toCenter.y - fromCenter.y) * mix,
+        angle: Math.atan2(angleY, angleX),
+      },
+      profile: BODY_FUR_PROFILE[lower] + (BODY_FUR_PROFILE[upper] - BODY_FUR_PROFILE[lower]) * mix,
+    };
+  }
+
   function paintBodyFurFlow(c, contours, a) {
     const guides = bodyFurGuideIndices();
     const flow = bodyFurFlowConfig();
     if (!flow || !guides.length) return;
     const long = furLength() === 'long';
     const coatLength = (bodyFurExpansion() + flow.extraLength) * a.scale;
+    const guideSamples = [contours.left, contours.right].map((flank, flankIndex) => (
+      guides.map((guide, guideIndex) => {
+        const sample = sampleBodyFurGuide(contours, flank, guide);
+        const dx = sample.point.x - sample.center.x;
+        const dy = sample.point.y - sample.center.y;
+        const normalLength = Math.max(0.001, Math.hypot(dx, dy));
+        const guidePhase = Math.round(guide * 2);
+        return {
+          ...sample,
+          nx: dx / normalLength,
+          ny: dy / normalLength,
+          tx: Math.cos(sample.center.angle),
+          ty: Math.sin(sample.center.angle),
+          guidePhase,
+          phaseBase: ((guidePhase * 5 + guideIndex * 3 + flankIndex * 2) % 7 - 3) * 0.075,
+          tangentSign: ((guideIndex + flankIndex) % 2) ? 1 : -1,
+          flankIndex,
+        };
+      })
+    ));
 
     const traceLayer = (rootInset, rearwardScale, outwardScale, tangentOffset, strandOffsets) => {
       ctx.beginPath();
-      [contours.left, contours.right].forEach((flank, flankIndex) => {
-        guides.forEach((index, guideIndex) => {
-          const point = flank[index];
-          const center = contours.stations[index];
-          const dx = point.x - center.x;
-          const dy = point.y - center.y;
-          const normalLength = Math.max(0.001, Math.hypot(dx, dy));
-          const nx = dx / normalLength;
-          const ny = dy / normalLength;
-          const tx = Math.cos(contours.stations[index].angle);
-          const ty = Math.sin(contours.stations[index].angle);
+      guideSamples.forEach((flankSamples) => {
+        flankSamples.forEach((sample) => {
+          const { point, nx, ny, tx, ty, guidePhase, flankIndex } = sample;
           // Stable, tiny asymmetry breaks the old mirrored-tooth rhythm while
           // remaining tied to the same local station on every frame.
-          const phase = ((index * 5 + guideIndex * 3 + flankIndex * 2) % 7 - 3) * 0.075
-            + tangentOffset * (((guideIndex + flankIndex) % 2) ? 1 : -1);
-          const length = coatLength * (0.78 + BODY_FUR_PROFILE[index] * 0.22);
-          strandOffsets.forEach((strandOffset, strandIndex) => {
-            const shift = (phase + strandOffset) * a.scale;
-            const lengthScale = 1 + (((index + strandIndex + flankIndex) % 5) - 2) * 0.055;
+          const phase = sample.phaseBase + tangentOffset * sample.tangentSign;
+          const length = coatLength * (0.78 + sample.profile * 0.22);
+          strandOffsets.forEach((_, strandIndex) => {
+            const variation = furStrandVariation(strandOffsets, strandIndex);
+            const rootShift = (phase + variation.root) * a.scale;
+            const controlShift = (phase + variation.control) * a.scale;
+            const tipShift = (phase + variation.tip) * a.scale;
+            const lengthScale = 1 + (((guidePhase + strandIndex + flankIndex) % 5) - 2) * 0.055;
             const strandLength = length * lengthScale;
-            const rootX = point.x - nx * rootInset * a.scale + tx * shift;
-            const rootY = point.y - ny * rootInset * a.scale + ty * shift;
-            const controlX = point.x + nx * strandLength * outwardScale * 0.36
-              - tx * (strandLength * rearwardScale * 0.42 - shift * 0.76);
-            const controlY = point.y + ny * strandLength * outwardScale * 0.36
-              - ty * (strandLength * rearwardScale * 0.42 - shift * 0.76);
+            const rootX = point.x - nx * rootInset * a.scale + tx * rootShift;
+            const rootY = point.y - ny * rootInset * a.scale + ty * rootShift;
+            const controlX = point.x + nx * strandLength * outwardScale * 0.58
+              - tx * (strandLength * rearwardScale * 0.24 - controlShift);
+            const controlY = point.y + ny * strandLength * outwardScale * 0.58
+              - ty * (strandLength * rearwardScale * 0.24 - controlShift);
             const tipX = point.x + nx * strandLength * outwardScale
-              - tx * (strandLength * rearwardScale - shift * 0.82);
+              - tx * (strandLength * rearwardScale - tipShift);
             const tipY = point.y + ny * strandLength * outwardScale
-              - ty * (strandLength * rearwardScale - shift * 0.82);
+              - ty * (strandLength * rearwardScale - tipShift);
             ctx.moveTo(rootX, rootY);
             ctx.quadraticCurveTo(controlX, controlY, tipX, tipY);
           });
@@ -3504,21 +3736,23 @@
     ctx.save();
     ctx.lineCap = 'round';
     ctx.lineJoin = 'round';
+    const darkStroke = prefilterFurStroke(long ? 0.84 : 0.8, long ? 0.5 : 0.48, a.scale, 'dark');
     ctx.strokeStyle = c.furDark;
-    ctx.globalAlpha = long ? 0.38 : 0.37;
-    ctx.lineWidth = (long ? 0.68 : 0.66) * a.scale;
-    traceLayer(1.05, flow.darkRearward, flow.darkOutward, 0, furLayerStrandOffsets('dark'));
+    ctx.globalAlpha = darkStroke.alpha;
+    ctx.lineWidth = darkStroke.lineWidth;
+    traceLayer(long ? 2.4 : 2, flow.darkRearward, flow.darkOutward, 0, furDistributedStrandOffsets('dark'));
     ctx.stroke();
 
+    const lightStroke = prefilterFurStroke(long ? 0.52 : 0.48, long ? 0.3 : 0.28, a.scale, 'light');
     ctx.strokeStyle = c.furLight;
-    ctx.globalAlpha = long ? 0.22 : 0.2;
-    ctx.lineWidth = (long ? 0.39 : 0.35) * a.scale;
+    ctx.globalAlpha = lightStroke.alpha;
+    ctx.lineWidth = lightStroke.lineWidth;
     traceLayer(
-      0.45,
+      long ? 1.6 : 1.3,
       flow.lightRearward,
       flow.lightOutward,
       long ? 0.72 : 0.5,
-      furLayerStrandOffsets('light'),
+      furDistributedStrandOffsets('light'),
     );
     ctx.stroke();
     ctx.restore();
@@ -3781,6 +4015,7 @@
     const contours = traceBodySilhouette(ctx, a, 0, 0);
     ctx.fillStyle = c.fur;
     ctx.fill();
+    paintBodyUndercoatHalo(c, contours, a);
     ctx.strokeStyle = c.furDark;
     ctx.globalAlpha = 0.42;
     ctx.lineWidth = 0.85 * a.scale;
@@ -3855,33 +4090,33 @@
     const ruff = headRuffAmount();
     if (ruff <= 0) return;
     const long = furLength() === 'long';
-    const visibleLength = long ? 3.6 : 3.4;
+    const visibleLength = long ? 4.4 : 3.6;
     const traceLayer = (outwardScale, rearwardScale, strandOffsets) => {
       ctx.beginPath();
       [-1, 1].forEach((side) => {
-        strandOffsets.forEach((strandOffset, strandIndex) => {
+        strandOffsets.forEach((_, strandIndex) => {
+          const variation = furStrandVariation(strandOffsets, strandIndex);
           const lengthScale = 1 + (((strandIndex + (side > 0 ? 1 : 0)) % 5) - 2) * 0.05;
-          const shift = strandOffset * a.scale;
-          const rootX = -8.5 * a.scale + shift * 0.72;
-          const rootY = side * (HEAD_GEOMETRY.skullHalfWidth - 1.2) * a.scale;
+          const rootX = -8.5 * a.scale + variation.root * a.scale;
+          const rootY = side * (HEAD_GEOMETRY.skullHalfWidth - (long ? 2.8 : 2.2)) * a.scale;
           ctx.moveTo(rootX, rootY);
           ctx.quadraticCurveTo(
-            (-11.5 - ruff * rearwardScale * 0.35) * a.scale + shift * 0.76,
+            (-11.5 - ruff * rearwardScale * 0.35 + variation.control) * a.scale,
             side * (HEAD_GEOMETRY.skullHalfWidth + ruff * outwardScale * 0.45 * lengthScale) * a.scale,
-            (-14.2 - (ruff * rearwardScale + visibleLength * 0.42) * lengthScale) * a.scale + shift * 0.82,
+            (-14.2 - (ruff * rearwardScale + visibleLength * 0.42) * lengthScale + variation.tip) * a.scale,
             side * (16 + ruff + visibleLength * outwardScale * lengthScale) * a.scale,
           );
         });
         const secondaryScale = long ? 1 : 0.72;
-        strandOffsets.forEach((strandOffset, strandIndex) => {
+        strandOffsets.forEach((_, strandIndex) => {
+          const variation = furStrandVariation(strandOffsets, strandIndex);
           const lengthScale = 1 + (((strandIndex + (side < 0 ? 1 : 0)) % 5) - 2) * 0.045;
-          const shift = strandOffset * a.scale;
           ctx.moveTo(
-            -2.5 * a.scale + shift * 0.72,
-            side * (HEAD_GEOMETRY.skullHalfWidth - 0.8) * a.scale,
+            (-2.5 + variation.root) * a.scale,
+            side * (HEAD_GEOMETRY.skullHalfWidth - (long ? 2.4 : 1.9)) * a.scale,
           );
           ctx.quadraticCurveTo(
-            (-5.5 - ruff * rearwardScale * 0.2 * secondaryScale) * a.scale + shift * 0.76,
+            (-5.5 - ruff * rearwardScale * 0.2 * secondaryScale + variation.control) * a.scale,
             side * (
               HEAD_GEOMETRY.skullHalfWidth
               + ruff * outwardScale * 0.26 * lengthScale * secondaryScale
@@ -3889,7 +4124,8 @@
             (
               -9.2
               - (ruff * rearwardScale * 0.5 + visibleLength * 0.3) * lengthScale * secondaryScale
-            ) * a.scale + shift * 0.82,
+              + variation.tip
+            ) * a.scale,
             side * (
               HEAD_GEOMETRY.skullHalfWidth
               + (ruff * 0.7 + visibleLength * outwardScale * 0.72 * lengthScale) * secondaryScale
@@ -3902,18 +4138,20 @@
     ctx.save();
     ctx.lineCap = 'round';
     ctx.lineJoin = 'round';
+    const darkStroke = prefilterFurStroke(long ? 0.82 : 0.78, long ? 0.5 : 0.47, a.scale, 'dark');
     ctx.strokeStyle = c.furDark;
-    ctx.globalAlpha = long ? 0.38 : 0.36;
-    ctx.lineWidth = (long ? 0.66 : 0.64) * a.scale;
+    ctx.globalAlpha = darkStroke.alpha;
+    ctx.lineWidth = darkStroke.lineWidth;
     traceLayer(
       long ? 0.96 : 0.82,
       long ? 0.72 : 0.58,
       furLayerStrandOffsets('dark'),
     );
     ctx.stroke();
+    const lightStroke = prefilterFurStroke(long ? 0.5 : 0.46, long ? 0.3 : 0.27, a.scale, 'light');
     ctx.strokeStyle = c.furLight;
-    ctx.globalAlpha = long ? 0.21 : 0.19;
-    ctx.lineWidth = (long ? 0.38 : 0.34) * a.scale;
+    ctx.globalAlpha = lightStroke.alpha;
+    ctx.lineWidth = lightStroke.lineWidth;
     traceLayer(
       long ? 0.78 : 0.68,
       long ? 0.58 : 0.46,
@@ -4634,7 +4872,7 @@
     p.ellipse(0, 0, bodyLen * 0.5, bodyW * 0.5, 0, 0, Gait.TAU);
     p.stroke();
     p.globalAlpha = 1;
-    paintPreviewFurFlow(p, c, bodyLen, bodyW);
+    paintPreviewFurFlow(p, c, bodyLen, bodyW, scale);
     p.restore();
 
     // Head.
@@ -4707,7 +4945,7 @@
     p.restore();
   }
 
-  function paintPreviewFurFlow(p, c, bodyLen, bodyW) {
+  function paintPreviewFurFlow(p, c, bodyLen, bodyW, previewScale) {
     const selectedFur = appearance.furLength;
     if (selectedFur !== 'medium' && selectedFur !== 'long') return;
     const long = selectedFur === 'long';
@@ -4721,14 +4959,17 @@
           const rootX = bodyLen * ratio;
           const rootY = side * (bodyW * 0.5 - 1.2);
           const phase = ((index * 3 + (side > 0 ? 1 : 0)) % 4 - 1.5) * 0.28;
-          strandOffsets.forEach((strandOffset, strandIndex) => {
-            const shift = phase + strandOffset;
+          strandOffsets.forEach((_, strandIndex) => {
+            const variation = furStrandVariation(strandOffsets, strandIndex);
+            const rootShift = phase + variation.root;
+            const controlShift = phase + variation.control;
+            const tipShift = phase + variation.tip;
             const lengthScale = 1 + (((index + strandIndex + (side > 0 ? 1 : 0)) % 5) - 2) * 0.05;
-            p.moveTo(rootX + shift, rootY - side * 1.2);
+            p.moveTo(rootX + rootShift, rootY - side * 1.2);
             p.quadraticCurveTo(
-              rootX - strandLength * rearwardScale * 0.42 * lengthScale + shift * 0.76,
+              rootX - strandLength * rearwardScale * 0.42 * lengthScale + controlShift,
               rootY + side * strandLength * outwardScale * 0.38 * lengthScale,
-              rootX - strandLength * rearwardScale * lengthScale + shift * 0.82,
+              rootX - strandLength * rearwardScale * lengthScale + tipShift,
               rootY + side * strandLength * outwardScale * lengthScale,
             );
           });
@@ -4739,18 +4980,24 @@
     p.save();
     p.lineCap = 'round';
     p.lineJoin = 'round';
+    // Canvas lineWidth is transformed by both the backing-store DPR and the
+    // preview's local scale. Feed their product to the prefilter so its device-
+    // pixel floor survives the 0.8x mobile preview instead of shrinking again.
+    const previewEffectiveDpr = (window.devicePixelRatio || 1) * Math.max(0.001, previewScale);
+    const darkStroke = prefilterFurStroke(long ? 0.82 : 0.76, long ? 0.48 : 0.45, 1, 'dark', previewEffectiveDpr);
     p.strokeStyle = c.furDark;
-    p.globalAlpha = long ? 0.36 : 0.33;
-    p.lineWidth = long ? 0.68 : 0.6;
+    p.globalAlpha = darkStroke.alpha;
+    p.lineWidth = darkStroke.lineWidth;
     traceLayer(
       long ? 0.5 : 0.52,
       long ? 0.88 : 0.72,
       furLayerStrandOffsets('dark'),
     );
     p.stroke();
+    const lightStroke = prefilterFurStroke(long ? 0.5 : 0.44, long ? 0.29 : 0.25, 1, 'light', previewEffectiveDpr);
     p.strokeStyle = c.furLight;
-    p.globalAlpha = long ? 0.2 : 0.18;
-    p.lineWidth = long ? 0.38 : 0.34;
+    p.globalAlpha = lightStroke.alpha;
+    p.lineWidth = lightStroke.lineWidth;
     traceLayer(
       long ? 0.38 : 0.4,
       long ? 0.72 : 0.58,
