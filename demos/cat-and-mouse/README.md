@@ -7,7 +7,15 @@ A dependency-free Canvas 2D interaction: a top-down cat notices, watches, stalks
 - Pointer: move the mouse; leaving the canvas releases it.
 - Touch: tap or drag to position the mouse.
 - Keyboard: focus the canvas, then use Arrow keys to steer, Space to pause, and Escape to release.
-- The top-right controls pause motion and switch language/theme.
+- The top-right controls customize the cat, pause motion, and switch language/theme.
+
+## Appearance system
+
+The cat now uses the same controlled vocabulary as `shelter-cats`: ten canonical colors, eight coat patterns, 38 curated colorways, and short, medium, long or hairless coats. The default remains a short-haired ginger tabby. The appearance panel combines a live mini preview, visual pattern chips, localized color swatches, segmented light-marking controls, and a visible fur-length dropdown. Pattern comes first, then the panel offers only compatible color combinations and light-marking ranges: calico and tortoiseshell stay coherent multi-color recipes, pointed coats keep their darker ears/face/paws/tail, and hairless cats cannot select smoke because smoke depends on colored hair over a pale undercoat. Tortoiseshell stays unmarked; adding pale areas moves the recipe into the calico category, matching the sibling taxonomy.
+
+Shelter records provide whole-cat `colors`, `pattern` and `coat_length` fields; they do not contain per-body-part annotations. The chest, muzzle, paw, flank, head and tail masks in this demo are therefore procedural illustration rules informed by the sibling pixel-cat renderer, not claimed shelter facts. Markings are anchored to the articulated rig rather than randomized per frame, so patches do not slide while the cat walks or rests. The selection is stored locally under the versioned `qrost-cat-and-mouse-appearance-v1` key.
+
+Fur length is render-only and leaves the gait, skeleton and checked head/ear geometry untouched. Medium and long hair add restrained cheek, flank, limb and tail volume; hairless uses a slimmer tail, muted skin palette and low-contrast folds. The existing continuous coat silhouettes and all locomotion/capture state remain shared across every appearance.
 
 ## Locomotion model
 
@@ -37,13 +45,14 @@ Run from this directory:
 python3 tools/build.py
 ```
 
-The build runs `tools/check-gait.mjs` and a headless runtime smoke harness. The gates cover cadence and swing continuity, fore/hind track registration, locked stance paws, anatomical leg reach during compact edge turns, farther pounce activation, persistent capture/rest/escape behavior, all five illustrated rest-pose silhouettes, bounded dual-pose crossfades, sleeping breath/twitch rhythm, restrained head-to-shoulder proportions, rear-crown ear placement, independent swivel/perk variation, continuous illustrated leg/paw topology, continuous spine curvature, the minimal unobtrusive HUD, the 1200×630 OG image, and required page metadata. The build then stamps every local CSS/JS reference with a content hash and refreshes the root homepage asset token. Do not hand-edit `?v=` values.
+The build runs `tools/check-gait.mjs` and a headless runtime smoke harness. The gates cover cadence and swing continuity, fore/hind track registration, locked stance paws, anatomical leg reach during compact edge turns, farther pounce activation, persistent capture/rest/escape behavior, all five illustrated rest-pose silhouettes, bounded dual-pose crossfades, sleeping breath/twitch rhythm, restrained head-to-shoulder proportions, rear-crown ear placement, independent swivel/perk variation, continuous illustrated leg/paw topology, continuous spine curvature, representative coat recipes across four fur lengths and both themes, Shelter Cats vocabulary parity, mini-preview parity, localized visual controls, keyboard radio navigation, the visible fur dropdown, the accessible appearance disclosure, the minimal unobtrusive HUD, the 1200×630 OG image, and required page metadata. The build then stamps every local CSS/JS reference with a content hash and refreshes the root homepage asset token. Do not hand-edit `?v=` values.
 
 ## tools/visual-harness.html — 隐藏 tab 可用的确定性视觉验证
 
 无头/隐藏 tab 中 rAF 与 ResizeObserver 均不投递 → 真页面无法驱动动画。此 harness 用
 rAF 垫片手动步进（`__step(frames)`）+ RO 回调捕获（`__roCb()`）+ 猫区/头部放大镜（`__zoomCat(r)` / `__zoomHead(r)`），
 并提供捕获休息帧（`__captureFrame()`）、姿态混合中间帧（`__transitionFrame()`）、
-睡眠微动帧（`__sleepFrame()`）、侧卧头部复核帧（`__headFrame()`）与五姿态接触表（`__poseSheet()`），
+睡眠微动帧（`__sleepFrame()`）、侧卧头部复核帧（`__headFrame()`）、五姿态接触表（`__poseSheet()`）、
+十三配方外观接触表（`__appearanceSheet()`）与四毛长接触表（`__furSheet()`），
 配合 `window.__catMouseDemo` 快照 API 做逐帧行为断言与截图。经静态服务器打开：
 `python3 -m http.server 8099` → `/demos/cat-and-mouse/tools/visual-harness.html`。
