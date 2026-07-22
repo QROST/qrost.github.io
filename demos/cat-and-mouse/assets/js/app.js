@@ -263,27 +263,52 @@
     tailTipRadius: 1.5,
   });
 
-  // Medium/long coats change the continuous coat volume first, then add a
-  // handful of open, directionally-combed strokes.  The profile deliberately
-  // returns to zero at both hidden sockets so the tail root and neck bridge
-  // keep the same watertight joins as the short-haired cat.
+  // Medium/long coats change the continuous coat volume first, then add
+  // directionally-combed strand clusters. Every cluster is traced into the
+  // same two batched paths, so denser fur does not multiply stroke calls. The
+  // profile deliberately returns to zero at both hidden sockets so the tail
+  // root and neck bridge keep the same watertight joins as the short-haired cat.
   const BODY_FUR_PROFILE = Object.freeze([0, 0.62, 1, 0.88, 0.66, 0.76, 0.94, 0.48, 0.14, 0]);
   const BODY_FUR_GUIDES = Object.freeze({
-    medium: Object.freeze([2, 4, 6, 7]),
-    long: Object.freeze([1, 2, 3, 4, 5, 6, 7]),
+    medium: Object.freeze([1, 2, 3, 4, 5, 6, 7, 8]),
+    long: Object.freeze([1, 2, 3, 4, 5, 6, 7, 8]),
   });
   const TAIL_FUR_GUIDES = Object.freeze({
-    medium: Object.freeze([3, 6]),
-    long: Object.freeze([2, 4, 6, 8]),
+    medium: Object.freeze([2, 4, 6, 8]),
+    long: Object.freeze([1, 2, 4, 6, 8, 9]),
   });
   const BODY_FUR_FLOW = Object.freeze({
-    medium: Object.freeze({ extraLength: 1.5, darkRearward: 0.72, darkOutward: 0.68, lightRearward: 0.6, lightOutward: 0.5 }),
+    medium: Object.freeze({ extraLength: 2.2, darkRearward: 0.76, darkOutward: 0.72, lightRearward: 0.64, lightOutward: 0.54 }),
     long: Object.freeze({ extraLength: 1.4, darkRearward: 0.82, darkOutward: 0.64, lightRearward: 0.68, lightOutward: 0.46 }),
   });
   const TAIL_FUR_FLOW = Object.freeze({
-    medium: Object.freeze({ darkOutward: 1.22, darkForward: 0.3, lightOutward: 1.12, lightForward: 0.24 }),
+    medium: Object.freeze({ darkOutward: 1.28, darkForward: 0.32, lightOutward: 1.16, lightForward: 0.26 }),
     long: Object.freeze({ darkOutward: 1.42, darkForward: 0.42, lightOutward: 1.28, lightForward: 0.34 }),
   });
+  const FUR_STRAND_CLUSTERS = Object.freeze({
+    medium: Object.freeze({
+      dark: Object.freeze([-3.2, -1.6, 0, 1.6, 3.2]),
+      light: Object.freeze([-2.4, -0.8, 0.8, 2.4]),
+    }),
+    long: Object.freeze({
+      dark: Object.freeze([-4, -2.4, -0.8, 0.8, 2.4, 4]),
+      light: Object.freeze([-3.2, -1.6, 0, 1.6, 3.2]),
+    }),
+  });
+  const FUR_STRAND_CLUSTER_REACH = Object.freeze(Object.fromEntries(
+    Object.entries(FUR_STRAND_CLUSTERS).map(([length, layers]) => [
+      length,
+      Math.max(
+        ...layers.dark.map((offset) => Math.abs(offset)),
+        ...layers.light.map((offset) => Math.abs(offset)),
+      ),
+    ]),
+  ));
+  // Renderers vary strand length by at most +/- 11%. Reach helpers must use
+  // the same upper bound, plus a 0.5px cap/antialias margin, so edge steering
+  // never trusts a smaller envelope than the pixels we actually draw.
+  const FUR_MAX_LENGTH_SCALE = 1.11;
+  const FUR_FLOW_STROKE_MARGIN = 0.55;
 
   // Head proportions are intentionally restrained relative to the shoulders.
   // The face is a small directional accent on the continuous coat, not a
@@ -612,6 +637,19 @@
     return TAIL_FUR_FLOW[furLength()] || null;
   }
 
+  function furLayerStrandOffsets(layer) {
+    const cluster = FUR_STRAND_CLUSTERS[furLength()];
+    return cluster ? cluster[layer] : [];
+  }
+
+  function furStrandsPerGuide() {
+    return furLayerStrandOffsets('dark').length + furLayerStrandOffsets('light').length;
+  }
+
+  function furClusterReach() {
+    return FUR_STRAND_CLUSTER_REACH[furLength()] || 0;
+  }
+
   function hasWhiteMarkings() {
     return appearance.whiteLevel !== 'none';
   }
@@ -648,14 +686,20 @@
     const flow = bodyFurFlowConfig();
     if (!flow) return 0;
     const length = (bodyFurExpansion() + flow.extraLength) * a.scale;
-    return length * Math.hypot(flow.darkRearward, flow.darkOutward) + 0.5 * a.scale;
+    return (
+      length * Math.hypot(flow.darkRearward, flow.darkOutward) * FUR_MAX_LENGTH_SCALE
+      + (FUR_FLOW_STROKE_MARGIN + furClusterReach() * 0.82) * a.scale
+    );
   }
 
   function tailFurFlowReach(t, a) {
     const radius = tailCoatRadius(t, a.scale);
     const flow = tailFurFlowConfig();
     if (!flow) return radius;
-    return radius * Math.hypot(flow.darkOutward, flow.darkForward) + 0.5 * a.scale;
+    return (
+      radius * Math.hypot(flow.darkOutward, flow.darkForward) * FUR_MAX_LENGTH_SCALE
+      + (FUR_FLOW_STROKE_MARGIN + furClusterReach() * 0.82) * a.scale
+    );
   }
 
   function limbCoatRadiusMultiplier() {
@@ -2938,7 +2982,7 @@
     const long = furLength() === 'long';
     const lastIndex = Math.max(1, renderTail.length - 1);
 
-    const traceLayer = (outwardScale, forwardScale) => {
+    const traceLayer = (outwardScale, forwardScale, strandOffsets) => {
       ctx.beginPath();
       guides.forEach((index) => {
         if (!renderTail[index]) return;
@@ -2955,16 +2999,25 @@
         [-1, 1].forEach((side) => {
           const nx = -ty * side;
           const ny = tx * side;
-          ctx.moveTo(
-            point.x + nx * radius * 0.72 - tx * 0.55 * a.scale,
-            point.y + ny * radius * 0.72 - ty * 0.55 * a.scale,
-          );
-          ctx.quadraticCurveTo(
-            point.x + nx * radius * (0.86 + (outwardScale - 1) * 0.42) + tx * radius * forwardScale * 0.42,
-            point.y + ny * radius * (0.86 + (outwardScale - 1) * 0.42) + ty * radius * forwardScale * 0.42,
-            point.x + nx * radius * outwardScale + tx * radius * forwardScale,
-            point.y + ny * radius * outwardScale + ty * radius * forwardScale,
-          );
+          strandOffsets.forEach((strandOffset, strandIndex) => {
+            const shift = (strandOffset + (side > 0 ? 0.22 : -0.18)) * a.scale;
+            const sidePhase = side > 0 ? 2 : 0;
+            const lengthScale = 1 + (((index + strandIndex + sidePhase) % 5) - 2) * 0.055;
+            ctx.moveTo(
+              point.x + nx * radius * 0.72 + tx * (-0.55 * a.scale + shift * 0.72),
+              point.y + ny * radius * 0.72 + ty * (-0.55 * a.scale + shift * 0.72),
+            );
+            ctx.quadraticCurveTo(
+              point.x + nx * radius * (0.86 + (outwardScale - 1) * 0.42) * lengthScale
+                + tx * (radius * forwardScale * 0.42 + shift * 0.76),
+              point.y + ny * radius * (0.86 + (outwardScale - 1) * 0.42) * lengthScale
+                + ty * (radius * forwardScale * 0.42 + shift * 0.76),
+              point.x + nx * radius * outwardScale * lengthScale
+                + tx * (radius * forwardScale * lengthScale + shift * 0.82),
+              point.y + ny * radius * outwardScale * lengthScale
+                + ty * (radius * forwardScale * lengthScale + shift * 0.82),
+            );
+          });
         });
       });
     };
@@ -2973,14 +3026,14 @@
     ctx.lineCap = 'round';
     ctx.lineJoin = 'round';
     ctx.strokeStyle = c.furDark;
-    ctx.globalAlpha = long ? 0.46 : 0.32;
-    ctx.lineWidth = (long ? 0.9 : 0.76) * a.scale;
-    traceLayer(flow.darkOutward, flow.darkForward);
+    ctx.globalAlpha = long ? 0.37 : 0.36;
+    ctx.lineWidth = (long ? 0.66 : 0.65) * a.scale;
+    traceLayer(flow.darkOutward, flow.darkForward, furLayerStrandOffsets('dark'));
     ctx.stroke();
     ctx.strokeStyle = c.furLight;
-    ctx.globalAlpha = long ? 0.28 : 0.2;
-    ctx.lineWidth = (long ? 0.48 : 0.4) * a.scale;
-    traceLayer(flow.lightOutward, flow.lightForward);
+    ctx.globalAlpha = long ? 0.21 : 0.19;
+    ctx.lineWidth = (long ? 0.38 : 0.35) * a.scale;
+    traceLayer(flow.lightOutward, flow.lightForward, furLayerStrandOffsets('light'));
     ctx.stroke();
     ctx.restore();
   }
@@ -3265,6 +3318,11 @@
     const bodyOffsets = contours.furOffsets.map((offset) => Number((offset / a.scale).toFixed(3)));
     const bodyGuides = bodyFurGuideIndices();
     const tailGuides = tailFurGuideIndices();
+    const primaryStrandsPerGuide = furLayerStrandOffsets('dark').length;
+    const strandsPerGuide = furStrandsPerGuide();
+    const bodyGuideCount = bodyGuides.length * 2;
+    const headGuideCount = (furLength() === 'long' || furLength() === 'medium') ? 4 : 0;
+    const tailGuideCount = tailGuides.length * 2;
     const renderTail = tailRenderPoints(a);
     const lastTailIndex = Math.max(1, renderTail.length - 1);
     const tailCoreRadii = renderTail.map((_, index) => (
@@ -3278,9 +3336,15 @@
       maxBodyOffset: Math.max(...bodyOffsets),
       bodyGuideReach: bodyFurFlowReach(a) / a.scale,
       headRuff: headRuffAmount(),
-      bodyGuideCount: bodyGuides.length * 2,
-      headGuideCount: furLength() === 'long' ? 4 : (furLength() === 'medium' ? 2 : 0),
-      tailGuideCount: tailGuides.length * 2,
+      bodyGuideCount,
+      bodyPrimaryStrandCount: bodyGuideCount * primaryStrandsPerGuide,
+      bodyStrandCount: bodyGuideCount * strandsPerGuide,
+      headGuideCount,
+      headPrimaryStrandCount: headGuideCount * primaryStrandsPerGuide,
+      headStrandCount: headGuideCount * strandsPerGuide,
+      tailGuideCount,
+      tailPrimaryStrandCount: tailGuideCount * primaryStrandsPerGuide,
+      tailStrandCount: tailGuideCount * strandsPerGuide,
       tailSampleCount: renderTail.length,
       tailRadiusMultiplier: tailCoatRadiusMultiplier(),
       tailRootRadius: tailCoatRadius(0, a.scale) / a.scale,
@@ -3398,7 +3462,7 @@
     const long = furLength() === 'long';
     const coatLength = (bodyFurExpansion() + flow.extraLength) * a.scale;
 
-    const traceLayer = (rootInset, rearwardScale, outwardScale, tangentOffset) => {
+    const traceLayer = (rootInset, rearwardScale, outwardScale, tangentOffset, strandOffsets) => {
       ctx.beginPath();
       [contours.left, contours.right].forEach((flank, flankIndex) => {
         guides.forEach((index, guideIndex) => {
@@ -3416,14 +3480,23 @@
           const phase = ((index * 5 + guideIndex * 3 + flankIndex * 2) % 7 - 3) * 0.075
             + tangentOffset * (((guideIndex + flankIndex) % 2) ? 1 : -1);
           const length = coatLength * (0.78 + BODY_FUR_PROFILE[index] * 0.22);
-          const rootX = point.x - nx * rootInset * a.scale + tx * phase * a.scale;
-          const rootY = point.y - ny * rootInset * a.scale + ty * phase * a.scale;
-          const controlX = point.x + nx * length * outwardScale * 0.36 - tx * length * rearwardScale * 0.42;
-          const controlY = point.y + ny * length * outwardScale * 0.36 - ty * length * rearwardScale * 0.42;
-          const tipX = point.x + nx * length * outwardScale - tx * length * rearwardScale;
-          const tipY = point.y + ny * length * outwardScale - ty * length * rearwardScale;
-          ctx.moveTo(rootX, rootY);
-          ctx.quadraticCurveTo(controlX, controlY, tipX, tipY);
+          strandOffsets.forEach((strandOffset, strandIndex) => {
+            const shift = (phase + strandOffset) * a.scale;
+            const lengthScale = 1 + (((index + strandIndex + flankIndex) % 5) - 2) * 0.055;
+            const strandLength = length * lengthScale;
+            const rootX = point.x - nx * rootInset * a.scale + tx * shift;
+            const rootY = point.y - ny * rootInset * a.scale + ty * shift;
+            const controlX = point.x + nx * strandLength * outwardScale * 0.36
+              - tx * (strandLength * rearwardScale * 0.42 - shift * 0.76);
+            const controlY = point.y + ny * strandLength * outwardScale * 0.36
+              - ty * (strandLength * rearwardScale * 0.42 - shift * 0.76);
+            const tipX = point.x + nx * strandLength * outwardScale
+              - tx * (strandLength * rearwardScale - shift * 0.82);
+            const tipY = point.y + ny * strandLength * outwardScale
+              - ty * (strandLength * rearwardScale - shift * 0.82);
+            ctx.moveTo(rootX, rootY);
+            ctx.quadraticCurveTo(controlX, controlY, tipX, tipY);
+          });
         });
       });
     };
@@ -3432,15 +3505,21 @@
     ctx.lineCap = 'round';
     ctx.lineJoin = 'round';
     ctx.strokeStyle = c.furDark;
-    ctx.globalAlpha = long ? 0.48 : 0.4;
-    ctx.lineWidth = (long ? 0.94 : 0.8) * a.scale;
-    traceLayer(1.05, flow.darkRearward, flow.darkOutward, 0);
+    ctx.globalAlpha = long ? 0.38 : 0.37;
+    ctx.lineWidth = (long ? 0.68 : 0.66) * a.scale;
+    traceLayer(1.05, flow.darkRearward, flow.darkOutward, 0, furLayerStrandOffsets('dark'));
     ctx.stroke();
 
     ctx.strokeStyle = c.furLight;
-    ctx.globalAlpha = long ? 0.28 : 0.25;
-    ctx.lineWidth = (long ? 0.5 : 0.43) * a.scale;
-    traceLayer(0.45, flow.lightRearward, flow.lightOutward, long ? 0.72 : 0.5);
+    ctx.globalAlpha = long ? 0.22 : 0.2;
+    ctx.lineWidth = (long ? 0.39 : 0.35) * a.scale;
+    traceLayer(
+      0.45,
+      flow.lightRearward,
+      flow.lightOutward,
+      long ? 0.72 : 0.5,
+      furLayerStrandOffsets('light'),
+    );
     ctx.stroke();
     ctx.restore();
   }
@@ -3776,28 +3855,47 @@
     const ruff = headRuffAmount();
     if (ruff <= 0) return;
     const long = furLength() === 'long';
-    const visibleLength = long ? 3.6 : 2.4;
-    const traceLayer = (outwardScale, rearwardScale) => {
+    const visibleLength = long ? 3.6 : 3.4;
+    const traceLayer = (outwardScale, rearwardScale, strandOffsets) => {
       ctx.beginPath();
       [-1, 1].forEach((side) => {
-        const rootX = -8.5 * a.scale;
-        const rootY = side * (HEAD_GEOMETRY.skullHalfWidth - 1.2) * a.scale;
-        ctx.moveTo(rootX, rootY);
-        ctx.quadraticCurveTo(
-          (-11.5 - ruff * rearwardScale * 0.35) * a.scale,
-          side * (HEAD_GEOMETRY.skullHalfWidth + ruff * outwardScale * 0.45) * a.scale,
-          (-14.2 - ruff * rearwardScale - visibleLength * 0.42) * a.scale,
-          side * (16 + ruff + visibleLength * outwardScale) * a.scale,
-        );
-        if (long) {
-          ctx.moveTo(-2.5 * a.scale, side * (HEAD_GEOMETRY.skullHalfWidth - 0.8) * a.scale);
+        strandOffsets.forEach((strandOffset, strandIndex) => {
+          const lengthScale = 1 + (((strandIndex + (side > 0 ? 1 : 0)) % 5) - 2) * 0.05;
+          const shift = strandOffset * a.scale;
+          const rootX = -8.5 * a.scale + shift * 0.72;
+          const rootY = side * (HEAD_GEOMETRY.skullHalfWidth - 1.2) * a.scale;
+          ctx.moveTo(rootX, rootY);
           ctx.quadraticCurveTo(
-            (-5.5 - ruff * rearwardScale * 0.2) * a.scale,
-            side * (HEAD_GEOMETRY.skullHalfWidth + ruff * outwardScale * 0.26) * a.scale,
-            (-9.2 - ruff * rearwardScale * 0.5 - visibleLength * 0.3) * a.scale,
-            side * (HEAD_GEOMETRY.skullHalfWidth + ruff * 0.7 + visibleLength * outwardScale * 0.72) * a.scale,
+            (-11.5 - ruff * rearwardScale * 0.35) * a.scale + shift * 0.76,
+            side * (HEAD_GEOMETRY.skullHalfWidth + ruff * outwardScale * 0.45 * lengthScale) * a.scale,
+            (-14.2 - (ruff * rearwardScale + visibleLength * 0.42) * lengthScale) * a.scale + shift * 0.82,
+            side * (16 + ruff + visibleLength * outwardScale * lengthScale) * a.scale,
           );
-        }
+        });
+        const secondaryScale = long ? 1 : 0.72;
+        strandOffsets.forEach((strandOffset, strandIndex) => {
+          const lengthScale = 1 + (((strandIndex + (side < 0 ? 1 : 0)) % 5) - 2) * 0.045;
+          const shift = strandOffset * a.scale;
+          ctx.moveTo(
+            -2.5 * a.scale + shift * 0.72,
+            side * (HEAD_GEOMETRY.skullHalfWidth - 0.8) * a.scale,
+          );
+          ctx.quadraticCurveTo(
+            (-5.5 - ruff * rearwardScale * 0.2 * secondaryScale) * a.scale + shift * 0.76,
+            side * (
+              HEAD_GEOMETRY.skullHalfWidth
+              + ruff * outwardScale * 0.26 * lengthScale * secondaryScale
+            ) * a.scale,
+            (
+              -9.2
+              - (ruff * rearwardScale * 0.5 + visibleLength * 0.3) * lengthScale * secondaryScale
+            ) * a.scale + shift * 0.82,
+            side * (
+              HEAD_GEOMETRY.skullHalfWidth
+              + (ruff * 0.7 + visibleLength * outwardScale * 0.72 * lengthScale) * secondaryScale
+            ) * a.scale,
+          );
+        });
       });
     };
 
@@ -3805,14 +3903,22 @@
     ctx.lineCap = 'round';
     ctx.lineJoin = 'round';
     ctx.strokeStyle = c.furDark;
-    ctx.globalAlpha = long ? 0.48 : 0.39;
-    ctx.lineWidth = (long ? 0.92 : 0.78) * a.scale;
-    traceLayer(long ? 0.96 : 0.82, long ? 0.72 : 0.58);
+    ctx.globalAlpha = long ? 0.38 : 0.36;
+    ctx.lineWidth = (long ? 0.66 : 0.64) * a.scale;
+    traceLayer(
+      long ? 0.96 : 0.82,
+      long ? 0.72 : 0.58,
+      furLayerStrandOffsets('dark'),
+    );
     ctx.stroke();
     ctx.strokeStyle = c.furLight;
-    ctx.globalAlpha = long ? 0.28 : 0.24;
-    ctx.lineWidth = (long ? 0.5 : 0.42) * a.scale;
-    traceLayer(long ? 0.78 : 0.68, long ? 0.58 : 0.46);
+    ctx.globalAlpha = long ? 0.21 : 0.19;
+    ctx.lineWidth = (long ? 0.38 : 0.34) * a.scale;
+    traceLayer(
+      long ? 0.78 : 0.68,
+      long ? 0.58 : 0.46,
+      furLayerStrandOffsets('light'),
+    );
     ctx.stroke();
     ctx.restore();
   }
@@ -4608,20 +4714,24 @@
     const anchors = long ? [-0.34, -0.12, 0.1, 0.31] : [-0.28, 0, 0.26];
     const strandLength = long ? 6.8 : 5;
 
-    const traceLayer = (outwardScale, rearwardScale) => {
+    const traceLayer = (outwardScale, rearwardScale, strandOffsets) => {
       p.beginPath();
       anchors.forEach((ratio, index) => {
         [-1, 1].forEach((side) => {
           const rootX = bodyLen * ratio;
           const rootY = side * (bodyW * 0.5 - 1.2);
           const phase = ((index * 3 + (side > 0 ? 1 : 0)) % 4 - 1.5) * 0.28;
-          p.moveTo(rootX + phase, rootY - side * 1.2);
-          p.quadraticCurveTo(
-            rootX - strandLength * rearwardScale * 0.42,
-            rootY + side * strandLength * outwardScale * 0.38,
-            rootX - strandLength * rearwardScale,
-            rootY + side * strandLength * outwardScale,
-          );
+          strandOffsets.forEach((strandOffset, strandIndex) => {
+            const shift = phase + strandOffset;
+            const lengthScale = 1 + (((index + strandIndex + (side > 0 ? 1 : 0)) % 5) - 2) * 0.05;
+            p.moveTo(rootX + shift, rootY - side * 1.2);
+            p.quadraticCurveTo(
+              rootX - strandLength * rearwardScale * 0.42 * lengthScale + shift * 0.76,
+              rootY + side * strandLength * outwardScale * 0.38 * lengthScale,
+              rootX - strandLength * rearwardScale * lengthScale + shift * 0.82,
+              rootY + side * strandLength * outwardScale * lengthScale,
+            );
+          });
         });
       });
     };
@@ -4630,14 +4740,22 @@
     p.lineCap = 'round';
     p.lineJoin = 'round';
     p.strokeStyle = c.furDark;
-    p.globalAlpha = long ? 0.42 : 0.38;
-    p.lineWidth = long ? 1.05 : 0.9;
-    traceLayer(long ? 0.5 : 0.52, long ? 0.88 : 0.72);
+    p.globalAlpha = long ? 0.36 : 0.33;
+    p.lineWidth = long ? 0.68 : 0.6;
+    traceLayer(
+      long ? 0.5 : 0.52,
+      long ? 0.88 : 0.72,
+      furLayerStrandOffsets('dark'),
+    );
     p.stroke();
     p.strokeStyle = c.furLight;
-    p.globalAlpha = long ? 0.24 : 0.22;
-    p.lineWidth = long ? 0.58 : 0.5;
-    traceLayer(long ? 0.38 : 0.4, long ? 0.72 : 0.58);
+    p.globalAlpha = long ? 0.2 : 0.18;
+    p.lineWidth = long ? 0.38 : 0.34;
+    traceLayer(
+      long ? 0.38 : 0.4,
+      long ? 0.72 : 0.58,
+      furLayerStrandOffsets('light'),
+    );
     p.stroke();
     p.restore();
   }

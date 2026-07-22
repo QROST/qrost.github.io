@@ -405,6 +405,10 @@ for (const [label, source] of [['tail', tailFurFlowSource], ['body', bodyFurFlow
   assert.doesNotMatch(source, /Math\.random\s*\(/, `${label} fur guides must remain temporally stable`);
 }
 assert.match(appSource, /const BODY_FUR_PROFILE = Object\.freeze/, 'body fur volume must use one explicit regional profile');
+assert.match(appSource, /const FUR_STRAND_CLUSTERS = Object\.freeze/, 'medium and long coats must declare stable strand clusters');
+assert.match(appSource, /const FUR_STRAND_CLUSTER_REACH = Object\.freeze/, 'fur cluster reach must be precomputed outside snapshot hot paths');
+assert.match(appSource, /const FUR_MAX_LENGTH_SCALE = 1\.11/, 'fur reach must include the renderer maximum strand-length variation');
+assert.match(appSource, /const FUR_FLOW_STROKE_MARGIN = 0\.55/, 'fur reach must include line-cap, side jitter, and antialias margin');
 assert.match(appSource, /function furGeometrySnapshot\s*\(/, 'fur geometry must expose a deterministic regression snapshot');
 assert.match(appSource, /tailRootClearance = rearWidth - socketLateral - tailCoatRadius\(0, a\.scale\)/, 'tail seam oracle must use the rendered root radius');
 assert.match(appSource, /function bodyFurFlowReach\s*\(/, 'body guard hairs must expose a conservative visible reach');
@@ -802,10 +806,27 @@ assert.ok(
   'long hair must add another visible coat-volume step beyond medium hair',
 );
 assert.ok(furGeometryByLength.long.maxBodyOffset <= 6.5, 'long hair must not inflate the cat into a uniform blob');
-assert.equal(furGeometryByLength.medium.bodyGuideCount, 8, 'medium hair should use eight restrained body guides');
-assert.equal(furGeometryByLength.long.bodyGuideCount, 14, 'long hair should use fourteen stable body guides');
-assert.equal(furGeometryByLength.medium.tailGuideCount, 4, 'medium hair should use four restrained tail guides');
-assert.equal(furGeometryByLength.long.tailGuideCount, 8, 'long hair should use eight stable tail guides');
+assert.equal(furGeometryByLength.medium.bodyGuideCount, 16, 'medium hair should cover every visible body station');
+assert.equal(furGeometryByLength.long.bodyGuideCount, 16, 'long hair should cover every visible body station');
+assert.equal(furGeometryByLength.medium.tailGuideCount, 8, 'medium hair should cover four stable tail stations per side');
+assert.equal(furGeometryByLength.long.tailGuideCount, 12, 'long hair should cover six stable tail stations per side');
+assert.equal(furGeometryByLength.medium.bodyStrandCount, 144, 'medium body guides must resolve into dense nine-strand clusters');
+assert.equal(furGeometryByLength.long.bodyStrandCount, 176, 'long body guides must resolve into dense eleven-strand clusters');
+assert.equal(furGeometryByLength.medium.headStrandCount, 36, 'medium cheek guides must resolve into dense nine-strand clusters');
+assert.equal(furGeometryByLength.long.headStrandCount, 44, 'long cheek guides must resolve into dense eleven-strand clusters');
+assert.equal(furGeometryByLength.medium.tailStrandCount, 72, 'medium tail guides must resolve into dense nine-strand clusters');
+assert.equal(furGeometryByLength.long.tailStrandCount, 132, 'long tail guides must resolve into dense eleven-strand clusters');
+assert.equal(furGeometryByLength.medium.bodyPrimaryStrandCount, 80, 'medium body must retain eighty dark primary strands');
+assert.equal(furGeometryByLength.long.bodyPrimaryStrandCount, 96, 'long body must retain ninety-six dark primary strands');
+assert.equal(furGeometryByLength.medium.headPrimaryStrandCount, 20, 'medium cheeks must retain twenty dark primary strands');
+assert.equal(furGeometryByLength.long.headPrimaryStrandCount, 24, 'long cheeks must retain twenty-four dark primary strands');
+assert.equal(furGeometryByLength.medium.tailPrimaryStrandCount, 40, 'medium tail must retain forty dark primary strands');
+assert.equal(furGeometryByLength.long.tailPrimaryStrandCount, 72, 'long tail must retain seventy-two dark primary strands');
+assert.ok(
+  furGeometryByLength.medium.bodyPrimaryStrandCount >= furGeometryByLength.medium.bodyGuideCount * 5
+    && furGeometryByLength.long.bodyPrimaryStrandCount >= furGeometryByLength.long.bodyGuideCount * 6,
+  'opaque primary-strand density must be high enough to read as a coat without relying on faint highlights',
+);
 assert.ok(
   furGeometryByLength.long.tailRadiusMultiplier <= 1.3,
   'long hair must use guard-hair flow instead of inflating the tail into a thick tube',
@@ -834,7 +855,7 @@ assert.ok(
 );
 assert.ok(
   furGeometryByLength.long.tailGuideReach > furGeometryByLength.long.maxTailCoreRadius
-    && furGeometryByLength.long.tailGuideReach <= 20,
+    && furGeometryByLength.long.tailGuideReach <= 25,
   `long tail guide endpoints must extend beyond the core but remain bounded: ${JSON.stringify(furGeometryByLength.long)}`,
 );
 assert.equal(furGeometryByLength.short.tailPlumeExpansion, 0, 'short hair must preserve the established tail taper');
@@ -877,9 +898,14 @@ const longFurMetrics = furDrawMetrics('long');
 assert.ok(mediumFurMetrics.curves > shortFurMetrics.curves, 'medium hair must add visible curved flow strokes');
 assert.ok(longFurMetrics.curves > mediumFurMetrics.curves, 'long hair must add more curved flow strokes than medium hair');
 assert.ok(
-  longFurMetrics.curves - shortFurMetrics.curves <= 60
+  mediumFurMetrics.curves - shortFurMetrics.curves >= 245
+    && longFurMetrics.curves - shortFurMetrics.curves >= 345,
+  `medium/long coats must retain dense strand coverage: ${JSON.stringify({ shortFurMetrics, mediumFurMetrics, longFurMetrics })}`,
+);
+assert.ok(
+  longFurMetrics.curves - shortFurMetrics.curves <= 360
     && longFurMetrics.strokes - shortFurMetrics.strokes <= 8
-    && longFurMetrics.total - shortFurMetrics.total <= 140,
+    && longFurMetrics.total - shortFurMetrics.total <= 740,
   `long-hair detail must stay within a bounded Canvas 2D draw-call budget: ${JSON.stringify({ shortFurMetrics, mediumFurMetrics, longFurMetrics })}`,
 );
 
