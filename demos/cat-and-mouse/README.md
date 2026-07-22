@@ -19,6 +19,17 @@ Fur length is render-only and leaves the gait, skeleton and checked face/ear geo
 
 This is a deliberately lightweight Canvas 2D adaptation—not a literal implementation—of the volume/silhouette split described by [Lengyel et al.'s real-time fur work](https://hhoppe.com/fur.pdf) and the coherent direction-field strokes used in [real-time hatching](https://hhoppe.com/proj/hatching/). At this scale, continuous regional volume carries the coat mass while a few stable local curves carry the fur-flow cue; no WebGL shells, particles, per-hair physics or new runtime dependency are required.
 
+### Fur-rendering research boundary
+
+The current renderer also borrows a small set of representation and sampling ideas from newer primary research, without claiming to reproduce those GPU or offline systems:
+
+- [Practical Level-of-Detail Aggregation of Fur Appearance (SIGGRAPH 2022)](https://sites.cs.ucsb.edu/~lingqi/project_page/fur_aggregation/index.html) and [Real-time Level-of-detail Strand-based Rendering (EGSR 2025)](https://diglib.eg.org/items/eded9336-bf27-4c28-8c22-39557fbb190f) both treat a sub-pixel cluster as aggregate coverage instead of insisting on every original fibre. Here that becomes device-pixel-aware stroke prefiltering: very thin guard hairs widen only enough to remain sampled, while their alpha falls proportionally so the apparent ink coverage does not jump.
+- [Real-Time Hair Rendering with Hair Meshes (SIGGRAPH 2024)](https://www.cemyuksel.com/research/hairmesh_rendering/) generates dense procedural variation from a much smaller deforming representation and keeps that variation in a stable local frame. The Canvas analogue keeps two or three deterministic strand bundles per guide, locks their roots together, and lets variation grow toward the tips instead of translating a row of parallel hairs.
+- [Real-time Physically Guided Hair Interpolation (SIGGRAPH 2024)](https://kuiwuchn.github.io/hairInterp.html) shows why naive position interpolation between sparse guides can kink or clump incorrectly. This demo does not run a physics solver; it retains the transferable constraint that children share their guide's tangent and only diverge gradually.
+- [Dr.Hair (CVPR 2024)](https://openaccess.thecvf.com/content/CVPR2024/html/Takimoto_Dr.Hair_Reconstructing_Scalp-Connected_Hair_Strands_without_Pre-Training_via_Differentiable_Rendering_CVPR_2024_paper.html) reinforces globally coherent strand orientation, but its multi-view inverse-rendering pipeline solves a different problem and is intentionally not brought into this dependency-free page.
+
+The practical hierarchy is therefore `continuous undercoat volume → stable guide flow → root-locked guard-hair bundles → screen-space coverage filtering`. Neural reconstruction, BCSDF multiple scattering, mesh shaders, temporal accumulation and per-strand simulation remain out of scope: their cost and dependencies would not buy a reliable improvement for one small top-down cat.
+
 ## Locomotion model
 
 The rig uses one master gait clock coupled to four limb phases. Slow movement follows the feline lateral-sequence order `RH → RF → LH → LF`; stalking lengthens the stance interval and lowers body motion. A fast pursuit blends into a diagonal trot (`RH + LF`, then `LH + RF`). Cadence follows distance travelled per limb cycle, so slow movement uses long, deliberate steps instead of rapid shuffling. Each stance paw is held in world space while the body travels over it; the swing paw follows a cubic eased arc, and each hind paw attempts to register in the previous fore-paw track.
