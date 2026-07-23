@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 import assert from 'node:assert/strict';
+import crypto from 'node:crypto';
 import fs from 'node:fs';
 import path from 'node:path';
 import vm from 'node:vm';
@@ -962,6 +963,14 @@ function furDrawSignature(selectedFur) {
   }
   return JSON.stringify(contextCalls);
 }
+const shortHairBaselineSignature = crypto.createHash('sha256')
+  .update(furDrawSignature('short'))
+  .digest('hex');
+assert.equal(
+  shortHairBaselineSignature,
+  'fa1ae042956ae98264e722648bba2207b6171f731e32abbab2e1ab6f262f24cc',
+  'short-hair main-canvas draw signature changed',
+);
 assert.equal(
   furDrawSignature('long'),
   furDrawSignature('long'),
@@ -998,7 +1007,31 @@ function previewDrawSignature(state) {
   return JSON.stringify(previewContextCalls.filter((call) => ['arc', 'ellipse', 'fill', 'stroke'].includes(call.property)));
 }
 
+function fullPreviewDrawSignature(state) {
+  previewContextCalls.length = 0;
+  recordPreviewContextCalls = true;
+  try {
+    sandbox.__catMouseDemo.setAppearance(state);
+  } finally {
+    recordPreviewContextCalls = false;
+  }
+  return JSON.stringify(previewContextCalls);
+}
+
 sandbox.__catMouseDemo.setAppearancePanelOpen(true);
+const shortPreviewState = {
+  pattern: 'solid', colorway: 'black', whiteLevel: 'none', furLength: 'short',
+};
+fullPreviewDrawSignature(shortPreviewState);
+const shortPreviewBaselineSignature = crypto.createHash('sha256')
+  .update(fullPreviewDrawSignature(shortPreviewState))
+  .digest('hex');
+assert.equal(
+  shortPreviewBaselineSignature,
+  '65c88950bea80049f5d8854242bbbfc7f3a5392b74a0ebd0bb3dca71cc91b637',
+  'short-hair mini-preview draw signature changed',
+);
+
 const tabbyPreviewSignatures = ['none', 'low', 'medium'].map((whiteLevel) => previewDrawSignature({
   pattern: 'tabby',
   colorway: 'orange',
