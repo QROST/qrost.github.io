@@ -248,11 +248,15 @@
     const demo = window.__catMouseDemo;
     const source = document.getElementById('world');
     const lengths = ['short', 'medium', 'long', 'hairless'];
-    const furPoses = [['sit', 1], ['sideLie', 1], ['curl', -1]];
+    const furCases = [
+      { mode: 'sit', side: 1, colorway: 'orange' },
+      { mode: 'sideLie', side: 1, colorway: 'black' },
+      { mode: 'curl', side: -1, colorway: 'cream' },
+    ];
     const cell = 300;
     const sheet = document.createElement('canvas');
     sheet.width = cell * lengths.length;
-    sheet.height = (cell + 36) * furPoses.length;
+    sheet.height = (cell + 36) * furCases.length;
     const sc = sheet.getContext('2d');
     sc.fillStyle = '#20241e';
     sc.fillRect(0, 0, sheet.width, sheet.height);
@@ -260,13 +264,13 @@
     sc.textAlign = 'center';
     sc.textBaseline = 'middle';
     const results = [];
-    furPoses.forEach(([mode, side], row) => {
+    furCases.forEach(({ mode, side, colorway }, row) => {
       // The preview-only duration preserves the production transition default
       // while settling each comparison pose in eight deterministic frames.
       demo.previewIdlePose(mode, side, 0.2);
       window.__step(8, 50);
       lengths.forEach((furLength, column) => {
-        demo.setAppearance({ pattern: 'solid', colorway: 'orange', whiteLevel: 'none', furLength });
+        demo.setAppearance({ pattern: 'solid', colorway, whiteLevel: 'none', furLength });
         const snapshot = demo.getSnapshot();
         const dpr = snapshot.viewport.dpr;
         const radius = 155 * dpr;
@@ -283,8 +287,13 @@
           cell,
         );
         sc.fillStyle = '#e8dfcf';
-        sc.fillText(`${mode} · ${furLength}`, column * cell + cell * 0.5, y + cell + 18);
-        results.push({ pose: mode, appearance: snapshot.appearance, furGeometry: snapshot.furGeometry });
+        sc.fillText(`${mode} · ${colorway} · ${furLength}`, column * cell + cell * 0.5, y + cell + 18);
+        results.push({
+          pose: mode,
+          colorway,
+          appearance: snapshot.appearance,
+          furGeometry: snapshot.furGeometry,
+        });
       });
     });
     demo.setAppearance(window.CatAppearance.DEFAULT);
