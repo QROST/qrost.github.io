@@ -5,14 +5,22 @@
 按 lofi 引擎自己的实际源码复刻，**不是照抄 neon 那一套**（lofi 没有
 min9-b3 避让、没有 spice 白名单，`_rng()` 的合法调用点范围也宽得多）。
 
-**何时必须跑**：任何改动 `audio.js` 的 commit **前后**都要跑一遍：
+**何时必须跑**：任何改动 `audio.js` 的 commit **前后**都要跑完整快速门禁：
 
 ```bash
 node demos/visual-page/tools/check-lofi.mjs
+node demos/visual-page/tools/check-scheduler.mjs
+node demos/visual-page/tools/stamp-cache.mjs
+node demos/visual-page/tools/stamp-cache.mjs --check
 ```
 
 要求 Node ≥ 18，零 npm 依赖。三个检查环节合在一个文件里，依次跑完打印汇总，
 任一环节不过 `exit 1`；源码漂移（提取规则用到的片段找不到了）`exit 2`。
+
+另外两个脚本覆盖静态和声门禁之外的运行时/交付契约：
+
+- `check-scheduler.mjs`：复现长静音/后台冻结后的 stale clock，断言恢复时只排 1–2 个 step，不补发历史音符；同时覆盖 ≤50ms RAF 抖动保 grid、明显过期、`NaN`、异常 far-future，以及小节边界 68→89 BPM 不倒序双触发。
+- `stamp-cache.mjs`：先以 `audio.js` 内容更新 `app.js` 的 import token，再以更新后的 `app.js` 内容更新 `index.html`；`--check` 只验证、不写入。不要手改这两级 `?v=`。
 
 ## 三个环节查什么
 

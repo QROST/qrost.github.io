@@ -61,7 +61,7 @@ const moodForDom = (dt) => (dt === 3 || dt === 6 || dt === 7 || dt === 0) ? 'bri
 export class Sonifier {
   constructor() {
     this.ctx = null; this.started = false; this.muted = false;
-    this.bpm = 76; this.step = 0; this.bar = 0; this.nextTime = 0; this.lookahead = 0.14;
+    this.bpm = 76; this.step = 0; this.bar = 0; this.nextTime = 0; this.lookahead = 0.14; this._lastStepDur = 0;
     this.keyRoot = 48; this.dom = 0;
     this.mood = 'mellow';                                                    // 每宇宙情绪档；start() 按 domType 定
     this.patch = { epBright: 1, kickBoom: 0.46, bassWarm: 420 };             // 每宇宙音色签名；start() 按 domType+sig 定
@@ -243,10 +243,20 @@ export class Sonifier {
     this.master.gain.setTargetAtTime(0.8 + pulse * 0.1, t, 0.25);
     this.ambGain.gain.setTargetAtTime(0.02 + pulse * 0.02, t, 0.3);
     this._focus(s.focus, t);
+    // JS/AudioContext 从后台、长静音或主线程冻结恢复时，绝不补发全部历史音符；
+    // 普通 RAF 抖动（≤50ms）保留原 grid，明显落后或异常超前则移到安全的未来 50ms。
+    const currentStepDur = (60 / this.bpm) / 4;
+    const maxLate = Math.min(0.05, currentStepDur * 0.3);
+    // 小节边界可能在 nextTime 已按旧 BPM 前推后改变 BPM；上界必须容纳上一格实际时值，
+    // 否则 68→89 BPM 会把合法 future grid 当成 corruption，再插一枚更早的重叠音。
+    const maxAhead = this.lookahead + Math.max(currentStepDur, this._lastStepDur || 0);
+    if (!Number.isFinite(this.nextTime) || this.nextTime < t - maxLate || this.nextTime > t + maxAhead) {
+      this.nextTime = t + 0.05;
+    }
     while (this.nextTime < t + this.lookahead) {
       const stepDur = (60 / this.bpm) / 4;   // 逐 step 读 this.bpm → 觉醒在乐句边界改 bpm 后下一 step 立即以新速度 spacing（nextTime 单调推进，无双触发）
       this._scheduleStep(this.nextTime, stepDur);
-      this.nextTime += stepDur; this.step++; this.debug.steps++;
+      this.nextTime += stepDur; this._lastStepDur = stepDur; this.step++; this.debug.steps++;
       if (this.step % 16 === 0) this._onBar(this.nextTime);   // 传下一 downbeat 时刻 → 翻面 SFX 精确对齐乐句边界
     }
   }
