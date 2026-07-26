@@ -1,0 +1,214 @@
+{
+  "seed_version": "0.1.0",
+  "seeds": [
+    {
+      "expected_country_code": "CN",
+      "expected_country_qid": "Q148",
+      "label_hint_en": "Forbidden City",
+      "qid": "Q80290",
+      "region": "east_asia",
+      "risk_tags": [
+        "inception_vs_opening",
+        "multi_phase"
+      ]
+    },
+    {
+      "expected_country_code": "IN",
+      "expected_country_qid": "Q668",
+      "label_hint_en": "Taj Mahal",
+      "qid": "Q9141",
+      "region": "south_asia",
+      "risk_tags": [
+        "traditional_attribution",
+        "credit_completeness"
+      ]
+    },
+    {
+      "expected_country_code": "IN",
+      "expected_country_qid": "Q668",
+      "label_hint_en": "Chandigarh Capitol Complex",
+      "qid": "Q25931399",
+      "region": "south_asia",
+      "risk_tags": [
+        "complex_vs_single_work",
+        "team_credit"
+      ]
+    },
+    {
+      "expected_country_code": "KH",
+      "expected_country_qid": "Q424",
+      "label_hint_en": "Angkor Wat",
+      "qid": "Q43473",
+      "region": "southeast_asia",
+      "risk_tags": [
+        "multi_phase",
+        "traditional_attribution"
+      ]
+    },
+    {
+      "expected_country_code": "ID",
+      "expected_country_qid": "Q252",
+      "label_hint_en": "Borobudur",
+      "qid": "Q42798",
+      "region": "southeast_asia",
+      "risk_tags": [
+        "weak_date_references",
+        "credit_reference_quality"
+      ]
+    },
+    {
+      "expected_country_code": "MY",
+      "expected_country_qid": "Q833",
+      "label_hint_en": "Petronas Towers",
+      "qid": "Q83063",
+      "region": "southeast_asia",
+      "risk_tags": [
+        "team_credit",
+        "complex_vs_single_work"
+      ]
+    },
+    {
+      "expected_country_code": "IR",
+      "expected_country_qid": "Q794",
+      "label_hint_en": "Persepolis",
+      "qid": "Q129072",
+      "region": "central_west_asia",
+      "risk_tags": [
+        "site_vs_single_work",
+        "multi_phase"
+      ]
+    },
+    {
+      "expected_country_code": "AE",
+      "expected_country_qid": "Q878",
+      "label_hint_en": "Burj Khalifa",
+      "qid": "Q12495",
+      "region": "central_west_asia",
+      "risk_tags": [
+        "team_credit",
+        "opening_vs_completion"
+      ]
+    },
+    {
+      "expected_country_code": "EG",
+      "expected_country_qid": "Q79",
+      "label_hint_en": "Great Pyramid of Giza",
+      "qid": "Q37200",
+      "region": "africa",
+      "risk_tags": [
+        "traditional_attribution",
+        "ancient_date_precision"
+      ]
+    },
+    {
+      "expected_country_code": "ML",
+      "expected_country_qid": "Q912",
+      "label_hint_en": "Great Mosque of Djenne",
+      "qid": "Q683632",
+      "region": "africa",
+      "risk_tags": [
+        "same_site_predecessors",
+        "current_building_vs_site_history"
+      ]
+    },
+    {
+      "expected_country_code": "IT",
+      "expected_country_qid": "Q38",
+      "label_hint_en": "Pantheon",
+      "qid": "Q99309",
+      "region": "europe",
+      "risk_tags": [
+        "reconstruction",
+        "multi_phase"
+      ]
+    },
+    {
+      "expected_country_code": "FR",
+      "expected_country_qid": "Q142",
+      "label_hint_en": "Notre-Dame de Paris",
+      "qid": "Q2981",
+      "region": "europe",
+      "risk_tags": [
+        "restoration",
+        "multi_phase"
+      ]
+    },
+    {
+      "expected_country_code": "DE",
+      "expected_country_qid": "Q183",
+      "label_hint_en": "Bauhaus Dessau",
+      "qid": "Q516770",
+      "region": "europe",
+      "risk_tags": [
+        "complex_vs_museum",
+        "missing_inception"
+      ]
+    },
+    {
+      "expected_country_code": "US",
+      "expected_country_qid": "Q30",
+      "label_hint_en": "Fallingwater",
+      "qid": "Q463179",
+      "region": "north_america",
+      "risk_tags": [
+        "team_credit",
+        "opening_vs_completion"
+      ]
+    },
+    {
+      "expected_country_code": "US",
+      "expected_country_qid": "Q30",
+      "label_hint_en": "Empire State Building",
+      "qid": "Q9188",
+      "region": "north_america",
+      "risk_tags": [
+        "team_credit",
+        "firm_vs_individual_credit"
+      ]
+    },
+    {
+      "expected_country_code": "MX",
+      "expected_country_qid": "Q96",
+      "label_hint_en": "Templo Mayor",
+      "qid": "Q774021",
+      "region": "latin_america_caribbean",
+      "risk_tags": [
+        "site_vs_single_work",
+        "multi_phase"
+      ]
+    },
+    {
+      "expected_country_code": "BR",
+      "expected_country_qid": "Q155",
+      "label_hint_en": "Cathedral of Brasilia",
+      "qid": "Q201720",
+      "region": "latin_america_caribbean",
+      "risk_tags": [
+        "inception_vs_opening",
+        "team_credit"
+      ]
+    },
+    {
+      "expected_country_code": "AU",
+      "expected_country_qid": "Q408",
+      "label_hint_en": "Sydney Opera House",
+      "qid": "Q45178",
+      "region": "oceania",
+      "risk_tags": [
+        "qualified_credit",
+        "multi_phase"
+      ]
+    },
+    {
+      "expected_country_code": "AU",
+      "expected_country_qid": "Q408",
+      "label_hint_en": "Parliament House Canberra",
+      "qid": "Q1858105",
+      "region": "oceania",
+      "risk_tags": [
+        "inception_vs_opening",
+        "team_credit"
+      ]
+    }
+  ]
+}

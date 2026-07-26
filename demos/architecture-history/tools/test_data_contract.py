@@ -156,6 +156,7 @@ class DataContractTests(unittest.TestCase):
                 "per_cell": 1,
                 "query_limit": 1,
                 "seed": "fixture",
+                "seed_sha256": hashlib.sha256(b"fixture").hexdigest(),
                 "notes_zh": "测试快照，不是公开事实。",
                 "notes_en": "Test snapshot, not a public fact.",
             },
@@ -172,10 +173,17 @@ class DataContractTests(unittest.TestCase):
                     "eligible_credits": [],
                 }
             ],
+            "seeds": [],
             "entities": {
                 "Q1": {
                     "lastrevid": 1,
                     "record_sha256": record_hash,
+                    "pinned_url": (
+                        "https://www.wikidata.org/wiki/Special:EntityData/"
+                        "Q1.json?revision=1"
+                    ),
+                    "retrieved_at": "2026-07-25T00:00:00Z",
+                    "content_type": "application/json; charset=utf-8",
                     "record": record,
                 }
             },
@@ -190,10 +198,13 @@ class DataContractTests(unittest.TestCase):
         evidence = {
             "source_id": evidence_source,
             "snapshot_id": snapshot["snapshot_id"],
-            "native_record_id": "Q1",
-            "native_field_path": "claims.P1066[0]",
+            "native_record_id": "Q1@1",
+            "native_field_path": "/claims/P1066/0",
             "native_predicate": "P1066",
-            "url": "https://www.wikidata.org/w/index.php?title=Q1&oldid=1",
+            "url": (
+                "https://www.wikidata.org/wiki/Special:EntityData/"
+                "Q1.json?revision=1"
+            ),
             "locator": "Q1/P1066/fixture",
             "accessed": "2026-07-25",
             "support": "explicit",
@@ -332,6 +343,48 @@ class DataContractTests(unittest.TestCase):
         self.assertNotEqual(result.returncode, 0)
         self.assertIn("required generated manifest is missing", result.stderr)
 
+    def test_implemented_adapter_requires_snapshot(self):
+        temp = self.isolated_root()
+        self.addCleanup(temp.cleanup)
+        root = Path(temp.name)
+        data = root / "assets" / "data"
+        for path in (data / "source-snapshots").glob("*.json"):
+            path.unlink()
+        (data / "manifest.json").unlink()
+        result = self.run_validator(root)
+        self.assertNotEqual(result.returncode, 0)
+        self.assertIn(
+            "source 'wikidata': implemented adapter status requires "
+            "a committed source snapshot",
+            result.stderr,
+        )
+
+    def test_hydration_seed_geography_must_match_country_authority(self):
+        temp = self.isolated_root()
+        self.addCleanup(temp.cleanup)
+        root = Path(temp.name)
+        snapshot_path = next(
+            (root / "assets" / "data" / "source-snapshots").glob(
+                "wikidata-hydration-*.json"
+            )
+        )
+        payload = json.loads(snapshot_path.read_text(encoding="utf-8"))
+        payload["seeds"][0]["region"] = "oceania"
+        payload["selection"]["seed_sha256"] = validator.canonical_hash(
+            payload["seeds"]
+        )
+        snapshot_path.write_text(
+            json.dumps(payload, ensure_ascii=False, indent=2) + "\n",
+            encoding="utf-8",
+        )
+        (root / "assets" / "data" / "manifest.json").unlink()
+        result = self.run_validator(root)
+        self.assertNotEqual(result.returncode, 0)
+        self.assertIn(
+            "seed geography does not match country authority",
+            result.stderr,
+        )
+
     def test_manifest_semantics_cannot_be_forged(self):
         temp = self.isolated_root()
         self.addCleanup(temp.cleanup)
@@ -350,6 +403,25 @@ class DataContractTests(unittest.TestCase):
         self.assertIn("manifest.schema_version", result.stderr)
         self.assertIn("manifest.counts", result.stderr)
         self.assertIn("manifest.coverage", result.stderr)
+
+    def test_public_graph_must_equal_ordered_catalog_merge(self):
+        temp = self.isolated_root()
+        self.addCleanup(temp.cleanup)
+        root = Path(temp.name)
+        works_path = root / "assets" / "data" / "works.json"
+        payload = json.loads(works_path.read_text(encoding="utf-8"))
+        payload["works"][0]["name_en"] = "Hand-edited public value"
+        works_path.write_text(
+            json.dumps(payload, ensure_ascii=False, indent=2) + "\n",
+            encoding="utf-8",
+        )
+        (root / "assets" / "data" / "manifest.json").unlink()
+        result = self.run_validator(root)
+        self.assertNotEqual(result.returncode, 0)
+        self.assertIn(
+            "works.json: public array does not equal ordered catalog merge",
+            result.stderr,
+        )
 
     def test_verified_lineage_binds_exact_endpoint_and_verified_people(self):
         temp = self.isolated_root()
@@ -711,7 +783,7 @@ class DataContractTests(unittest.TestCase):
             if path.name not in {"source-registry.json", "reviewers.json"}
         }
         catalog = data / "catalog"
-        catalog.mkdir()
+        catalog.mkdir(exist_ok=True)
         malformed = {
             "source_id": "wikidata",
             "generated_from": "missing-snapshot",

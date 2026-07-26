@@ -1,3 +1,356 @@
 {
-  "places": []
+  "places": [
+    {
+      "claim_ids": [
+        "claim-wd-q142-name-en",
+        "claim-wd-q142-name-zh",
+        "claim-wd-q142-country-code"
+      ],
+      "confidence": 0.6,
+      "country_code": "FR",
+      "entity_type": "place",
+      "external_ids": {
+        "wikidata": "Q142"
+      },
+      "id": "place-wd-q142",
+      "last_verified": "2026-07-25",
+      "lat": null,
+      "lng": null,
+      "name_en": "France",
+      "name_native": null,
+      "name_zh": "法国",
+      "region": "europe",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_ids": [
+        "claim-wd-q148-name-en",
+        "claim-wd-q148-name-zh",
+        "claim-wd-q148-country-code"
+      ],
+      "confidence": 0.6,
+      "country_code": "CN",
+      "entity_type": "place",
+      "external_ids": {
+        "wikidata": "Q148"
+      },
+      "id": "place-wd-q148",
+      "last_verified": "2026-07-25",
+      "lat": null,
+      "lng": null,
+      "name_en": "People's Republic of China",
+      "name_native": null,
+      "name_zh": "中华人民共和国",
+      "region": "east_asia",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_ids": [
+        "claim-wd-q155-name-en",
+        "claim-wd-q155-name-zh",
+        "claim-wd-q155-country-code"
+      ],
+      "confidence": 0.6,
+      "country_code": "BR",
+      "entity_type": "place",
+      "external_ids": {
+        "wikidata": "Q155"
+      },
+      "id": "place-wd-q155",
+      "last_verified": "2026-07-25",
+      "lat": null,
+      "lng": null,
+      "name_en": "Brazil",
+      "name_native": null,
+      "name_zh": "巴西",
+      "region": "latin_america_caribbean",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_ids": [
+        "claim-wd-q183-name-en",
+        "claim-wd-q183-name-zh",
+        "claim-wd-q183-country-code"
+      ],
+      "confidence": 0.6,
+      "country_code": "DE",
+      "entity_type": "place",
+      "external_ids": {
+        "wikidata": "Q183"
+      },
+      "id": "place-wd-q183",
+      "last_verified": "2026-07-25",
+      "lat": null,
+      "lng": null,
+      "name_en": "Germany",
+      "name_native": null,
+      "name_zh": "德国",
+      "region": "europe",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_ids": [
+        "claim-wd-q252-name-en",
+        "claim-wd-q252-name-zh",
+        "claim-wd-q252-country-code"
+      ],
+      "confidence": 0.6,
+      "country_code": "ID",
+      "entity_type": "place",
+      "external_ids": {
+        "wikidata": "Q252"
+      },
+      "id": "place-wd-q252",
+      "last_verified": "2026-07-25",
+      "lat": null,
+      "lng": null,
+      "name_en": "Indonesia",
+      "name_native": null,
+      "name_zh": "印度尼西亚",
+      "region": "southeast_asia",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_ids": [
+        "claim-wd-q30-name-en",
+        "claim-wd-q30-name-zh",
+        "claim-wd-q30-country-code"
+      ],
+      "confidence": 0.6,
+      "country_code": "US",
+      "entity_type": "place",
+      "external_ids": {
+        "wikidata": "Q30"
+      },
+      "id": "place-wd-q30",
+      "last_verified": "2026-07-25",
+      "lat": null,
+      "lng": null,
+      "name_en": "United States",
+      "name_native": null,
+      "name_zh": "美国",
+      "region": "north_america",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_ids": [
+        "claim-wd-q38-name-en",
+        "claim-wd-q38-name-zh",
+        "claim-wd-q38-country-code"
+      ],
+      "confidence": 0.6,
+      "country_code": "IT",
+      "entity_type": "place",
+      "external_ids": {
+        "wikidata": "Q38"
+      },
+      "id": "place-wd-q38",
+      "last_verified": "2026-07-25",
+      "lat": null,
+      "lng": null,
+      "name_en": "Italy",
+      "name_native": null,
+      "name_zh": "意大利",
+      "region": "europe",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_ids": [
+        "claim-wd-q408-name-en",
+        "claim-wd-q408-name-zh",
+        "claim-wd-q408-country-code"
+      ],
+      "confidence": 0.6,
+      "country_code": "AU",
+      "entity_type": "place",
+      "external_ids": {
+        "wikidata": "Q408"
+      },
+      "id": "place-wd-q408",
+      "last_verified": "2026-07-25",
+      "lat": null,
+      "lng": null,
+      "name_en": "Australia",
+      "name_native": null,
+      "name_zh": "澳大利亚",
+      "region": "oceania",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_ids": [
+        "claim-wd-q424-name-en",
+        "claim-wd-q424-name-zh",
+        "claim-wd-q424-country-code"
+      ],
+      "confidence": 0.6,
+      "country_code": "KH",
+      "entity_type": "place",
+      "external_ids": {
+        "wikidata": "Q424"
+      },
+      "id": "place-wd-q424",
+      "last_verified": "2026-07-25",
+      "lat": null,
+      "lng": null,
+      "name_en": "Cambodia",
+      "name_native": null,
+      "name_zh": "柬埔寨",
+      "region": "southeast_asia",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_ids": [
+        "claim-wd-q668-name-en",
+        "claim-wd-q668-name-zh",
+        "claim-wd-q668-country-code"
+      ],
+      "confidence": 0.6,
+      "country_code": "IN",
+      "entity_type": "place",
+      "external_ids": {
+        "wikidata": "Q668"
+      },
+      "id": "place-wd-q668",
+      "last_verified": "2026-07-25",
+      "lat": null,
+      "lng": null,
+      "name_en": "India",
+      "name_native": null,
+      "name_zh": "印度",
+      "region": "south_asia",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_ids": [
+        "claim-wd-q79-name-en",
+        "claim-wd-q79-name-zh",
+        "claim-wd-q79-country-code"
+      ],
+      "confidence": 0.6,
+      "country_code": "EG",
+      "entity_type": "place",
+      "external_ids": {
+        "wikidata": "Q79"
+      },
+      "id": "place-wd-q79",
+      "last_verified": "2026-07-25",
+      "lat": null,
+      "lng": null,
+      "name_en": "Egypt",
+      "name_native": null,
+      "name_zh": "埃及",
+      "region": "africa",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_ids": [
+        "claim-wd-q794-name-en",
+        "claim-wd-q794-name-zh",
+        "claim-wd-q794-country-code"
+      ],
+      "confidence": 0.6,
+      "country_code": "IR",
+      "entity_type": "place",
+      "external_ids": {
+        "wikidata": "Q794"
+      },
+      "id": "place-wd-q794",
+      "last_verified": "2026-07-25",
+      "lat": null,
+      "lng": null,
+      "name_en": "Iran",
+      "name_native": null,
+      "name_zh": "伊朗",
+      "region": "central_west_asia",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_ids": [
+        "claim-wd-q833-name-en",
+        "claim-wd-q833-name-zh",
+        "claim-wd-q833-country-code"
+      ],
+      "confidence": 0.6,
+      "country_code": "MY",
+      "entity_type": "place",
+      "external_ids": {
+        "wikidata": "Q833"
+      },
+      "id": "place-wd-q833",
+      "last_verified": "2026-07-25",
+      "lat": null,
+      "lng": null,
+      "name_en": "Malaysia",
+      "name_native": null,
+      "name_zh": "马来西亚",
+      "region": "southeast_asia",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_ids": [
+        "claim-wd-q878-name-en",
+        "claim-wd-q878-name-zh",
+        "claim-wd-q878-country-code"
+      ],
+      "confidence": 0.6,
+      "country_code": "AE",
+      "entity_type": "place",
+      "external_ids": {
+        "wikidata": "Q878"
+      },
+      "id": "place-wd-q878",
+      "last_verified": "2026-07-25",
+      "lat": null,
+      "lng": null,
+      "name_en": "United Arab Emirates",
+      "name_native": null,
+      "name_zh": "阿拉伯联合酋长国",
+      "region": "central_west_asia",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_ids": [
+        "claim-wd-q912-name-en",
+        "claim-wd-q912-name-zh",
+        "claim-wd-q912-country-code"
+      ],
+      "confidence": 0.6,
+      "country_code": "ML",
+      "entity_type": "place",
+      "external_ids": {
+        "wikidata": "Q912"
+      },
+      "id": "place-wd-q912",
+      "last_verified": "2026-07-25",
+      "lat": null,
+      "lng": null,
+      "name_en": "Mali",
+      "name_native": null,
+      "name_zh": "马里",
+      "region": "africa",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_ids": [
+        "claim-wd-q96-name-en",
+        "claim-wd-q96-name-zh",
+        "claim-wd-q96-country-code"
+      ],
+      "confidence": 0.6,
+      "country_code": "MX",
+      "entity_type": "place",
+      "external_ids": {
+        "wikidata": "Q96"
+      },
+      "id": "place-wd-q96",
+      "last_verified": "2026-07-25",
+      "lat": null,
+      "lng": null,
+      "name_en": "Mexico",
+      "name_native": null,
+      "name_zh": "墨西哥",
+      "region": "latin_america_caribbean",
+      "verification_status": "candidate"
+    }
+  ]
 }

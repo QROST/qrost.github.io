@@ -8,6 +8,11 @@ The project is intentionally a **curated pilot**, not a claim to have completed
 global architectural history. Public counts distinguish discovered candidates,
 reviewed facts, contested claims, and gaps in coverage.
 
+The first committed hydration pilot contains 19 cross-regional work fixtures,
+33 people, 2 practices, 16 country-place records, 11 raw relationship review
+edges, and 233 source claims. Every one remains `candidate`; the reviewer
+registry is empty and the published verified count is therefore zero.
+
 ## Data authority
 
 The public data graph lives in `assets/data/`:
@@ -36,6 +41,24 @@ The local schema follows Getty CDWA/CONA cataloging guidance and keeps crosswalk
 to Getty Vocabularies, Wikidata, and other authority files where available.
 Linked Art and CIDOC CRM are integration references; the site schema is a compact
 product model, not a replacement standard.
+
+## Wikidata hydration pilot
+
+The pilot reuses 19 deliberately varied, source-derived QIDs across nine
+macroregions. They are mapping fixtures, not a popularity ranking or a
+representative global sample. For each seed and direct dependency, the adapter:
+
+1. fetches the latest `Special:EntityData` JSON and reads `lastrevid`;
+2. refetches the exact revision through the `revision` query parameter;
+3. rejects redirects, merges, missing entities, or revision mismatches;
+4. saves the pinned URL, canonical minimized-record hash, qualifiers, and
+   references;
+5. derives a source-scoped catalog whose records all remain candidates.
+
+The planned discovery frame is fixed at 9 macroregions × 8 periods (72 cells),
+but every cell is currently `not_run`. No global coverage percentage is claimed.
+The discovery ontology uses an exact P31 allowlist and explicitly avoids an
+unbounded online P279 traversal.
 
 ## Verification states
 

@@ -1,0 +1,267 @@
+{
+  "config_kind": "planned_coverage_frame",
+  "config_version": "0.1.0",
+  "coverage_grid": {
+    "cell_count": 72,
+    "initial_status": "not_run",
+    "periods": [
+      {
+        "id": "before_1000",
+        "year_end_exclusive": 1000,
+        "year_start_inclusive": null
+      },
+      {
+        "id": "1000_1499",
+        "year_end_exclusive": 1500,
+        "year_start_inclusive": 1000
+      },
+      {
+        "id": "1500_1799",
+        "year_end_exclusive": 1800,
+        "year_start_inclusive": 1500
+      },
+      {
+        "id": "1800_1918",
+        "year_end_exclusive": 1919,
+        "year_start_inclusive": 1800
+      },
+      {
+        "id": "1919_1945",
+        "year_end_exclusive": 1946,
+        "year_start_inclusive": 1919
+      },
+      {
+        "id": "1946_1979",
+        "year_end_exclusive": 1980,
+        "year_start_inclusive": 1946
+      },
+      {
+        "id": "1980_1999",
+        "year_end_exclusive": 2000,
+        "year_start_inclusive": 1980
+      },
+      {
+        "id": "2000_present",
+        "year_end_exclusive": null,
+        "year_start_inclusive": 2000
+      }
+    ],
+    "regions": [
+      "east_asia",
+      "south_asia",
+      "southeast_asia",
+      "central_west_asia",
+      "africa",
+      "europe",
+      "north_america",
+      "latin_america_caribbean",
+      "oceania"
+    ],
+    "status_enum": [
+      "not_run",
+      "empty_observed",
+      "sampled",
+      "truncated",
+      "blocked"
+    ]
+  },
+  "date_channels": [
+    "P571",
+    "P1619"
+  ],
+  "country_region_authority": [
+    {
+      "country_qid": "Q148",
+      "iso2": "CN",
+      "region": "east_asia"
+    },
+    {
+      "country_qid": "Q668",
+      "iso2": "IN",
+      "region": "south_asia"
+    },
+    {
+      "country_qid": "Q424",
+      "iso2": "KH",
+      "region": "southeast_asia"
+    },
+    {
+      "country_qid": "Q252",
+      "iso2": "ID",
+      "region": "southeast_asia"
+    },
+    {
+      "country_qid": "Q833",
+      "iso2": "MY",
+      "region": "southeast_asia"
+    },
+    {
+      "country_qid": "Q794",
+      "iso2": "IR",
+      "region": "central_west_asia"
+    },
+    {
+      "country_qid": "Q878",
+      "iso2": "AE",
+      "region": "central_west_asia"
+    },
+    {
+      "country_qid": "Q79",
+      "iso2": "EG",
+      "region": "africa"
+    },
+    {
+      "country_qid": "Q912",
+      "iso2": "ML",
+      "region": "africa"
+    },
+    {
+      "country_qid": "Q38",
+      "iso2": "IT",
+      "region": "europe"
+    },
+    {
+      "country_qid": "Q142",
+      "iso2": "FR",
+      "region": "europe"
+    },
+    {
+      "country_qid": "Q183",
+      "iso2": "DE",
+      "region": "europe"
+    },
+    {
+      "country_qid": "Q30",
+      "iso2": "US",
+      "region": "north_america"
+    },
+    {
+      "country_qid": "Q96",
+      "iso2": "MX",
+      "region": "latin_america_caribbean"
+    },
+    {
+      "country_qid": "Q155",
+      "iso2": "BR",
+      "region": "latin_america_caribbean"
+    },
+    {
+      "country_qid": "Q408",
+      "iso2": "AU",
+      "region": "oceania"
+    }
+  ],
+  "exact_instance_allowlist": [
+    {
+      "label_en": "building",
+      "qid": "Q41176",
+      "work_type": "building"
+    },
+    {
+      "label_en": "building complex",
+      "qid": "Q1497364",
+      "work_type": "building_complex"
+    },
+    {
+      "label_en": "church building",
+      "qid": "Q16970",
+      "work_type": "building"
+    },
+    {
+      "label_en": "mosque",
+      "qid": "Q32815",
+      "work_type": "building"
+    },
+    {
+      "label_en": "synagogue",
+      "qid": "Q34627",
+      "work_type": "building"
+    },
+    {
+      "label_en": "temple",
+      "qid": "Q44539",
+      "work_type": "building"
+    },
+    {
+      "label_en": "religious building",
+      "qid": "Q24398318",
+      "work_type": "building"
+    },
+    {
+      "label_en": "house",
+      "qid": "Q3947",
+      "work_type": "building"
+    },
+    {
+      "label_en": "palace",
+      "qid": "Q16560",
+      "work_type": "building"
+    },
+    {
+      "label_en": "castle",
+      "qid": "Q23413",
+      "work_type": "building"
+    },
+    {
+      "label_en": "bridge",
+      "qid": "Q12280",
+      "work_type": "infrastructure"
+    },
+    {
+      "label_en": "tower",
+      "qid": "Q12518",
+      "work_type": "building"
+    },
+    {
+      "label_en": "skyscraper",
+      "qid": "Q11303",
+      "work_type": "building"
+    }
+  ],
+  "excluded_discovery_classes": [
+    {
+      "qid": "Q811979",
+      "reason_en": "Architectural structure is an upper-class review queue, not a direct discovery class."
+    },
+    {
+      "qid": "Q4989906",
+      "reason_en": "Monument mixes built works with sculpture and memorial objects."
+    }
+  ],
+  "property_allowlist": [
+    "P17",
+    "P27",
+    "P31",
+    "P84",
+    "P88",
+    "P106",
+    "P131",
+    "P149",
+    "P170",
+    "P186",
+    "P279",
+    "P287",
+    "P297",
+    "P569",
+    "P570",
+    "P571",
+    "P576",
+    "P580",
+    "P582",
+    "P585",
+    "P625",
+    "P631",
+    "P793",
+    "P802",
+    "P1066",
+    "P1435",
+    "P1619"
+  ],
+  "selection": {
+    "candidate_limit_sentinel": 201,
+    "max_split_depth": 12,
+    "per_cell": 4,
+    "seed": "wd-coverage-v0.1.0",
+    "strategy": "stable_hash_round_robin_without_popularity_signals"
+  }
+}

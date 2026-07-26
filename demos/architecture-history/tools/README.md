@@ -6,6 +6,7 @@
 python3 tools/validate.py
 python3 tools/build.py
 python3 tools/test_data_contract.py
+python3 tools/test_wikidata_pilot.py
 ```
 
 `validate.py` checks:
@@ -36,3 +37,18 @@ add its own schema and validator instead of imitating QIDs or `lastrevid`.
 The build is offline. Network adapters must first produce a versioned,
 redistributable snapshot or an evidence pack; the public build never depends on
 a live API.
+
+The bounded Wikidata hydration workflow is:
+
+```bash
+python3 tools/fetch_wikidata_pilot.py --accessed YYYY-MM-DD
+python3 tools/import_wikidata_pilot.py \
+  assets/data/source-snapshots/<snapshot>.json
+python3 tools/build.py
+```
+
+`fetch_wikidata_pilot.py` is the only networked step. It hydrates the versioned
+19-work seed list, pins exact revisions, and refuses to overwrite an existing
+snapshot by default. `import_wikidata_pilot.py` is deterministic and offline.
+Neither script promotes records to `verified`, maps inception/opening to a
+construction date, or converts P1066/P802 into mentorship.

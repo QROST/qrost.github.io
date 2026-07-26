@@ -247,17 +247,17 @@
       "delivery_kind": "api_and_dump",
       "native_id_namespace": "wikidata",
       "reuse_class": "structured_ingest_allowed",
-      "adapter_status": "not_implemented",
-      "adapter_id": null,
-      "adapter_version": null,
+      "adapter_status": "fixture_only",
+      "adapter_id": "wikidata-hydration-pilot",
+      "adapter_version": "0.1.0",
       "access": {
         "auth_kind": "none",
         "credential_env_name": null,
         "docs_url": "https://www.wikidata.org/wiki/Help:Data_access",
-        "rate_policy_zh": "按 coverage cell 使用窄查询发现 QID，再以精确实体 JSON 固定 revision；不运行全库交互查询。",
-        "rate_policy_en": "Use narrow coverage-cell discovery queries, then pin exact entity JSON revisions; do not run interactive whole-database queries."
+        "rate_policy_zh": "当前只水合 19 个版本化样本：先读最新 lastrevid，再以 Special:EntityData 的 revision 参数二次获取并核对；覆盖普查尚未实现。",
+        "rate_policy_en": "The current adapter only hydrates 19 versioned fixtures: read the latest lastrevid, refetch through the Special:EntityData revision parameter, and verify it. Coverage discovery is not implemented."
       },
-      "snapshot_strategy": "保存查询、QID 列表、lastrevid、实体原始 JSON 和 SHA-256；公开构建只读固定快照。",
+      "snapshot_strategy": "保存版本化 seed、精确 revision URL、lastrevid、可重算 SHA-256 的最小化规范实体 JSON；公开构建只读固定快照。",
       "provenance_passthrough_fields": ["id", "lastrevid", "labels", "aliases", "claims", "rank", "qualifiers", "references"],
       "metadata_license": "CC0-1.0",
       "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
@@ -276,7 +276,7 @@
         "identity": "candidate",
         "relationships": "candidate",
         "work_credits": "candidate",
-        "coverage": "candidate"
+        "coverage": "none"
       },
       "attribution_zh": "维基数据结构化数据依 CC0 提供。本项目仍保留 QID、revision、qualifier 与 reference，以便核查。",
       "attribution_en": "Wikidata structured data is available under CC0. QIDs, revisions, qualifiers, and references are retained for audit.",

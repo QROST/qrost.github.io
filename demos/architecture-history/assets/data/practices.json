@@ -1,3 +1,71 @@
 {
-  "practices": []
+  "practices": [
+    {
+      "claim_ids": [
+        "claim-wd-q29561372-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "dissolved": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "practice",
+      "external_ids": {
+        "wikidata": "Q29561372"
+      },
+      "founded": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "id": "practice-wd-q29561372",
+      "last_verified": "2026-07-25",
+      "name_en": "Adamson Associates",
+      "name_native": null,
+      "name_zh": null,
+      "practice_type": "architecture_firm",
+      "region": "unknown",
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_ids": [
+        "claim-wd-q617190-name-en",
+        "claim-wd-q617190-name-zh"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "dissolved": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "practice",
+      "external_ids": {
+        "wikidata": "Q617190"
+      },
+      "founded": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "id": "practice-wd-q617190",
+      "last_verified": "2026-07-25",
+      "name_en": "Shreve, Lamb & Harmon",
+      "name_native": null,
+      "name_zh": "施里夫、兰姆与哈蒙建筑公司",
+      "practice_type": "architecture_firm",
+      "region": "unknown",
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    }
+  ]
 }

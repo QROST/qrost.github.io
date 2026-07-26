@@ -24,6 +24,7 @@ CATALOG = DATA / "catalog"
 SNAPSHOTS = DATA / "source-snapshots"
 SCHEMA_PATH = ROOT / "tools" / "schema.json"
 MANIFEST_PATH = DATA / "manifest.json"
+COVERAGE_CONFIG = DATA / "methodology" / "wikidata-coverage-config.json"
 
 FILE_KEYS = {
     "source-registry.json": "sources",
@@ -409,6 +410,7 @@ def verified_field_claims(
         "last_verified",
         "claim_ids",
         "credits",
+        "unresolved_credits",
     }
     by_predicate: dict[str, list[dict]] = {}
     for claim in claims:
@@ -536,6 +538,36 @@ def canonical_hash(value: Any) -> str:
     return hashlib.sha256(raw).hexdigest()
 
 
+def wikidata_item_values(record: dict, property_id: str) -> list[str]:
+    values: list[str] = []
+    for statement in record.get("claims", {}).get(property_id, []):
+        if statement.get("rank") == "deprecated":
+            continue
+        value = (
+            statement.get("mainsnak", {})
+            .get("datavalue", {})
+            .get("value")
+        )
+        if isinstance(value, dict) and isinstance(value.get("id"), str):
+            values.append(value["id"])
+    return values
+
+
+def wikidata_string_values(record: dict, property_id: str) -> list[str]:
+    values: list[str] = []
+    for statement in record.get("claims", {}).get(property_id, []):
+        if statement.get("rank") == "deprecated":
+            continue
+        value = (
+            statement.get("mainsnak", {})
+            .get("datavalue", {})
+            .get("value")
+        )
+        if isinstance(value, str):
+            values.append(value)
+    return values
+
+
 def data_files() -> list[Path]:
     return sorted(
         (
@@ -591,9 +623,9 @@ def expected_manifest(paths: list[Path]) -> dict:
         region = item.get("region", "unknown")
         row = region_rows.setdefault(
             region,
-            {"discovered_entities": 0, "verified_entities": 0, "works": 0},
+            {"entities": 0, "verified_entities": 0, "works": 0},
         )
-        row["discovered_entities"] += 1
+        row["entities"] += 1
         if item["verification_status"] == "verified":
             row["verified_entities"] += 1
         if item["entity_type"] == "work":
@@ -602,10 +634,10 @@ def expected_manifest(paths: list[Path]) -> dict:
     period_rows: dict[str, dict[str, int]] = {}
     for work in payloads["works.json"]:
         period = work["period"]
-        row = period_rows.setdefault(period, {"discovered": 0, "verified": 0})
-        row["discovered"] += 1
+        row = period_rows.setdefault(period, {"works": 0, "verified_works": 0})
+        row["works"] += 1
         if work["verification_status"] == "verified":
-            row["verified"] += 1
+            row["verified_works"] += 1
 
     sources = {source["id"]: source for source in payloads["source-registry.json"]}
     evidence_by_family: Counter[str] = Counter()
@@ -615,9 +647,32 @@ def expected_manifest(paths: list[Path]) -> dict:
             if source:
                 evidence_by_family[source["source_family"]] += 1
 
+    coverage_config = load_json(COVERAGE_CONFIG)
+    coverage_cells_total = coverage_config["coverage_grid"]["cell_count"]
+    coverage_cells_run = 0
+    selection_methods: set[str] = set()
+    if SNAPSHOTS.exists():
+        for path in sorted(SNAPSHOTS.glob("*.json")):
+            snapshot = load_json(path)
+            selection_methods.add(snapshot["selection"]["method"])
+            if snapshot["selection"]["method"] == "coverage_cell_stable_hash":
+                coverage_cells_run += len(snapshot["queries"])
+    fixture_regions: Counter[str] = Counter(
+        work["region"]
+        for work in payloads["works.json"]
+    )
+    fixture_periods: Counter[str] = Counter(
+        work["period"]
+        for work in payloads["works.json"]
+    )
+    work_type_mapping: Counter[str] = Counter(
+        work["work_type_mapping_status"]
+        for work in payloads["works.json"]
+    )
+
     return {
         "schema_id": "architecture-lineages",
-        "schema_version": "1.2.0",
+        "schema_version": "1.4.0",
         "hash_algorithm": "sha256",
         "data_version": data_version(paths),
         "data_as_of": load_json(DATA / "source-registry.json")["data_as_of"],
@@ -636,10 +691,21 @@ def expected_manifest(paths: list[Path]) -> dict:
             "declined_entities_and_relations": verification["declined"],
         },
         "coverage": {
+            "status": "not_run" if coverage_cells_run == 0 else "partial",
+            "cells_total": coverage_cells_total,
+            "cells_run": coverage_cells_run,
+            "selection_methods": sorted(selection_methods),
+            "fixture_distribution": {
+                "periods": dict(sorted(fixture_periods.items())),
+                "regions": dict(sorted(fixture_regions.items())),
+            },
+        },
+        "catalog_profile": {
             "regions": dict(sorted(region_rows.items())),
             "periods": dict(sorted(period_rows.items())),
             "verification": dict(sorted(verification.items())),
             "evidence_by_source_family": dict(sorted(evidence_by_family.items())),
+            "work_type_mapping": dict(sorted(work_type_mapping.items())),
         },
         "files": {
             path.relative_to(DATA).as_posix(): {
@@ -738,7 +804,12 @@ def main() -> int:
         snapshot["snapshot_id"]: snapshot
         for snapshot in snapshot_payloads
     }
-    snapshot_records: dict[tuple[str, str], tuple[str, str]] = {}
+    snapshot_records: dict[tuple[str, str], tuple[str, str, str]] = {}
+    coverage_config = load_json(COVERAGE_CONFIG)
+    country_authority = {
+        row["country_qid"]: row
+        for row in coverage_config["country_region_authority"]
+    }
 
     for snapshot in snapshot_payloads:
         snapshot_id = snapshot["snapshot_id"]
@@ -755,6 +826,36 @@ def main() -> int:
                 errors.append(f"{snapshot_id}: license does not match source registry")
             if not source["allowed_operations"]["retain_snapshot"]:
                 errors.append(f"{snapshot_id}: source registry forbids retained snapshots")
+
+        selection = snapshot["selection"]
+        method = selection["method"]
+        if method == "pinned_hydration_fixtures":
+            if selection["per_cell"] is not None or selection["query_limit"] is not None:
+                errors.append(
+                    f"{snapshot_id}: hydration fixtures require null query limits"
+                )
+            if snapshot["queries"]:
+                errors.append(f"{snapshot_id}: hydration fixtures cannot contain queries")
+            expected_seed_hash = canonical_hash(snapshot["seeds"])
+        else:
+            if selection["per_cell"] is None or selection["query_limit"] is None:
+                errors.append(
+                    f"{snapshot_id}: coverage selection requires positive query limits"
+                )
+            if not snapshot["queries"]:
+                errors.append(f"{snapshot_id}: coverage selection requires queries")
+            if snapshot["seeds"]:
+                errors.append(f"{snapshot_id}: coverage selection cannot contain fixture seeds")
+            expected_seed_hash = hashlib.sha256(
+                selection["seed"].encode("utf-8")
+            ).hexdigest()
+        if selection["seed_sha256"] != expected_seed_hash:
+            errors.append(f"{snapshot_id}: selection seed_sha256 mismatch")
+
+        seed_qids = [seed["qid"] for seed in snapshot["seeds"]]
+        for qid, count in Counter(seed_qids).items():
+            if count > 1:
+                errors.append(f"{snapshot_id}: duplicate hydration seed {qid!r}")
 
         cell_ids: set[str] = set()
         selected_across_cells: set[str] = set()
@@ -794,20 +895,82 @@ def main() -> int:
             actual_hash = canonical_hash(record)
             if actual_hash != wrapper["record_sha256"]:
                 errors.append(f"{snapshot_id}/{qid}: record_sha256 mismatch")
-            snapshot_records[(snapshot_id, qid)] = (
+            revision_id = f"{qid}@{wrapper['lastrevid']}"
+            expected_url = (
+                "https://www.wikidata.org/wiki/Special:EntityData/"
+                f"{qid}.json?revision={wrapper['lastrevid']}"
+            )
+            if wrapper["pinned_url"] != expected_url:
+                errors.append(f"{snapshot_id}/{qid}: pinned_url mismatch")
+            if not wrapper["content_type"].lower().startswith("application/json"):
+                errors.append(f"{snapshot_id}/{qid}: content_type must be JSON")
+            snapshot_records[(snapshot_id, revision_id)] = (
                 source_id,
                 wrapper["record_sha256"],
+                wrapper["pinned_url"],
             )
-        missing_selected = selected_across_cells - set(snapshot["entities"])
+        required_records = selected_across_cells | set(seed_qids)
+        missing_selected = required_records - set(snapshot["entities"])
         if missing_selected:
             errors.append(
-                f"{snapshot_id}: selected work records are missing: "
+                f"{snapshot_id}: selected/seed work records are missing: "
                 f"{sorted(missing_selected)!r}"
             )
+        for seed in snapshot["seeds"]:
+            record = snapshot["entities"].get(seed["qid"], {}).get("record")
+            if record is None:
+                continue
+            english_label = record.get("labels", {}).get("en", {}).get("value")
+            if not english_label:
+                errors.append(
+                    f"{snapshot_id}/{seed['qid']}: seed work requires an English label"
+                )
+            country_values = set(wikidata_item_values(record, "P17"))
+            if seed["expected_country_qid"] not in country_values:
+                errors.append(
+                    f"{snapshot_id}/{seed['qid']}: expected country "
+                    f"{seed['expected_country_qid']!r} is absent from P17"
+                )
+            expected_authority = {
+                "country_qid": seed["expected_country_qid"],
+                "iso2": seed["expected_country_code"],
+                "region": seed["region"],
+            }
+            if country_authority.get(seed["expected_country_qid"]) != expected_authority:
+                errors.append(
+                    f"{snapshot_id}/{seed['qid']}: seed geography does not "
+                    "match country authority"
+                )
+            country_record = (
+                snapshot["entities"]
+                .get(seed["expected_country_qid"], {})
+                .get("record")
+            )
+            if country_record is None:
+                errors.append(
+                    f"{snapshot_id}/{seed['qid']}: country authority record is missing"
+                )
+            elif seed["expected_country_code"] not in set(
+                wikidata_string_values(country_record, "P297")
+            ):
+                errors.append(
+                    f"{snapshot_id}/{seed['expected_country_qid']}: expected "
+                    "ISO code is absent from pinned P297"
+                )
 
+    merged_catalog = {
+        "people": [],
+        "practices": [],
+        "places": [],
+        "works": [],
+        "claims": [],
+        "relations": [],
+    }
     if CATALOG.exists():
         for path in sorted(CATALOG.glob("*.json")):
             shard = load_json(path)
+            for key in merged_catalog:
+                merged_catalog[key].extend(shard[key])
             if shard["source_id"] not in source_ids:
                 errors.append(
                     f"{path.name}: source_id -> unknown source {shard['source_id']!r}"
@@ -822,6 +985,53 @@ def main() -> int:
                 errors.append(
                     f"{path.name}: shard source does not match generating snapshot"
                 )
+            elif shard["generator"] != (
+                f"{snapshot['adapter_id']}@{snapshot['adapter_version']}"
+            ):
+                errors.append(
+                    f"{path.name}: generator does not match generating snapshot"
+                )
+            source = source_by_id.get(shard["source_id"])
+            if source and source["adapter_status"] == "fixture_only":
+                fixture_graph = (
+                    shard["people"]
+                    + shard["practices"]
+                    + shard["places"]
+                    + shard["works"]
+                    + shard["relations"]
+                    + shard["claims"]
+                )
+                if any(
+                    item["verification_status"] != "candidate"
+                    for item in fixture_graph
+                ):
+                    errors.append(
+                        f"{path.name}: fixture-only adapters may emit candidates only"
+                    )
+            for claim in shard["claims"]:
+                for evidence in claim["evidence"]:
+                    if evidence["source_id"] != shard["source_id"]:
+                        errors.append(
+                            f"{path.name}/{claim['id']}: evidence source escapes shard"
+                        )
+                    if evidence["snapshot_id"] != shard["generated_from"]:
+                        errors.append(
+                            f"{path.name}/{claim['id']}: evidence snapshot escapes shard"
+                        )
+
+    public_graph_arrays = {
+        "people": people,
+        "practices": practices,
+        "places": places,
+        "works": works,
+        "claims": claims,
+        "relations": relations,
+    }
+    for key, expected_records in merged_catalog.items():
+        if public_graph_arrays[key] != expected_records:
+            errors.append(
+                f"{key}.json: public array does not equal ordered catalog merge"
+            )
 
     for source in sources:
         operations = source["allowed_operations"]
@@ -837,6 +1047,14 @@ def main() -> int:
             errors.append(
                 f"source {source['id']!r}: implemented adapter status requires "
                 "adapter_id and adapter_version"
+            )
+        if implemented and not any(
+            snapshot["source_id"] == source["id"]
+            for snapshot in snapshot_payloads
+        ):
+            errors.append(
+                f"source {source['id']!r}: implemented adapter status requires "
+                "a committed source snapshot"
             )
         if not implemented and (
             source["adapter_id"] is not None or source["adapter_version"] is not None
@@ -917,8 +1135,39 @@ def main() -> int:
             errors.append(f"{place['id']}: latitude/longitude must be paired")
 
     credit_claim_ids: set[str] = set()
+    unresolved_credit_claim_ids: set[str] = set()
     for work in works:
         work_id = work["id"]
+        type_claims = [
+            claim_by_id[claim_id]
+            for claim_id in work["claim_ids"]
+            if (
+                claim_id in claim_by_id
+                and claim_by_id[claim_id]["predicate"] == "field_work_type"
+            )
+        ]
+        if work["work_type_mapping_status"] == "mapped_exact":
+            if work["work_type"] == "unknown":
+                errors.append(
+                    f"{work_id}: mapped_exact work type cannot be unknown"
+                )
+            if not any(
+                claim["object"].get("value") == work["work_type"]
+                for claim in type_claims
+            ):
+                errors.append(
+                    f"{work_id}: mapped_exact work type requires an exact field claim"
+                )
+        else:
+            if work["work_type"] != "unknown":
+                errors.append(
+                    f"{work_id}: unmapped/ambiguous work type must be unknown"
+                )
+            if type_claims:
+                errors.append(
+                    f"{work_id}: unmapped/ambiguous work type cannot publish "
+                    "a field_work_type claim"
+                )
         for field, date_value in work["dates"].items():
             validate_date_value(work_id, f"dates.{field}", date_value, errors)
         design_year = known_year(work["dates"]["design"])
@@ -945,6 +1194,13 @@ def main() -> int:
         ):
             errors.append(
                 f"{work_id}: empty credits require traditional_or_anonymous or unknown attribution"
+            )
+        if (
+            work["verification_status"] == "verified"
+            and work["unresolved_credits"]
+        ):
+            errors.append(
+                f"{work_id}: verified work cannot retain unresolved credits"
             )
         coordinates = work["coordinates"]
         has_lat = coordinates["lat"] is not None
@@ -1000,13 +1256,53 @@ def main() -> int:
                     entity_by_id.get(credit["entity_id"]),
                     errors,
                 )
+        for unresolved in work["unresolved_credits"]:
+            unresolved_claim_id = unresolved["claim_id"]
+            if unresolved_claim_id not in claim_ids:
+                errors.append(
+                    f"{work_id}: unresolved credit claim_id -> unknown claim "
+                    f"{unresolved_claim_id!r}"
+                )
+                continue
+            unresolved_credit_claim_ids.add(unresolved_claim_id)
+            claim = claim_by_id[unresolved_claim_id]
+            if claim["subject_id"] != work_id:
+                errors.append(
+                    f"{work_id}: unresolved credit claim must have work as subject"
+                )
+            if claim["predicate"] != "unresolved_credited_contributor":
+                errors.append(
+                    f"{work_id}: unresolved credit claim must use "
+                    "unresolved_credited_contributor"
+                )
+            value = claim["object"].get("value")
+            if (
+                not isinstance(value, dict)
+                or value.get("wikidata_qid") != unresolved["source_entity_qid"]
+                or value.get("rejection_reason") != unresolved["rejection_reason"]
+            ):
+                errors.append(
+                    f"{work_id}: unresolved credit claim object mismatch"
+                )
+            if unresolved_claim_id not in work["claim_ids"]:
+                errors.append(
+                    f"{work_id}: unresolved credit claim must be listed in claim_ids"
+                )
 
     for claim in claims:
-        if claim["predicate"] != "credited_contributor":
-            continue
-        if claim["id"] not in credit_claim_ids:
+        if (
+            claim["predicate"] == "credited_contributor"
+            and claim["id"] not in credit_claim_ids
+        ):
             errors.append(
                 f"{claim['id']}: credited_contributor claim has no matching work credit"
+            )
+        if (
+            claim["predicate"] == "unresolved_credited_contributor"
+            and claim["id"] not in unresolved_credit_claim_ids
+        ):
+            errors.append(
+                f"{claim['id']}: unresolved credit claim has no matching queue item"
             )
 
     valid_claim_subjects = entity_ids | relation_ids
@@ -1098,6 +1394,8 @@ def main() -> int:
                     errors.append(
                         f"{claim_id}: evidence source_record_sha256 mismatch"
                     )
+                elif snapshot_record[2] != evidence["url"]:
+                    errors.append(f"{claim_id}: evidence URL is not revision-pinned")
             supports[evidence["support"]] += 1
         if claim["verification_status"] == "verified":
             if not claim["reviewed_by"] or not claim["reviewed_at"]:
