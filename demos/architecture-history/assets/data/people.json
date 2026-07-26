@@ -2,6 +2,48 @@
   "people": [
     {
       "aliases_en": [
+        "Karl, friherre Harleman",
+        "Karl Harleman"
+      ],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "claim_ids": [
+        "claim-wd-q1038985-name-en",
+        "claim-wd-q1038985-name-zh"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q1038985"
+      },
+      "id": "person-wd-q1038985",
+      "last_verified": "2026-07-26",
+      "name_en": "Carl Hårleman",
+      "name_native": null,
+      "name_zh": "卡爾·哈爾曼",
+      "name_zh_status": "source_label_candidate",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [
         "Tingrui",
         "Kuailuban",
         "Kuai xiang"
@@ -33,7 +75,7 @@
         "wikidata": "Q10513613"
       },
       "id": "person-wd-q10513613",
-      "last_verified": "2026-07-25",
+      "last_verified": "2026-07-26",
       "name_en": "Kuai Xiang",
       "name_native": null,
       "name_zh": "蒯祥",
@@ -71,11 +113,172 @@
         "wikidata": "Q106089430"
       },
       "id": "person-wd-q106089430",
-      "last_verified": "2026-07-25",
+      "last_verified": "2026-07-26",
       "name_en": "Gira Sarabhai",
       "name_native": null,
       "name_zh": null,
       "name_zh_status": "missing",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [
+        "Karl Eduard Richard Voigtel"
+      ],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "claim_ids": [
+        "claim-wd-q106263-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q106263"
+      },
+      "id": "person-wd-q106263",
+      "last_verified": "2026-07-26",
+      "name_en": "Richard Voigtel",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [
+        "Eduard von Riedel"
+      ],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "claim_ids": [
+        "claim-wd-q106679-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q106679"
+      },
+      "id": "person-wd-q106679",
+      "last_verified": "2026-07-26",
+      "name_en": "Eduard Riedel",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "claim_ids": [
+        "claim-wd-q110247803-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q110247803"
+      },
+      "id": "person-wd-q110247803",
+      "last_verified": "2026-07-26",
+      "name_en": "Master of Chartres",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [
+        "Kallikratēs",
+        "Kallikrates",
+        "Kallikratis"
+      ],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "claim_ids": [
+        "claim-wd-q114112-name-en",
+        "claim-wd-q114112-name-zh"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q114112"
+      },
+      "id": "person-wd-q114112",
+      "last_verified": "2026-07-26",
+      "name_en": "Callicrates",
+      "name_native": null,
+      "name_zh": "卡利特瑞特",
+      "name_zh_status": "source_label_candidate",
       "region": "unknown",
       "roles": [
         "architect"
@@ -109,11 +312,230 @@
         "wikidata": "Q117937"
       },
       "id": "person-wd-q117937",
-      "last_verified": "2026-07-25",
+      "last_verified": "2026-07-26",
       "name_en": "Charles l'Eplattenier",
       "name_native": null,
       "name_zh": null,
       "name_zh_status": "missing",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [],
+      "aliases_zh": [
+        "卡洛·瑪德爾諾"
+      ],
+      "birth": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "claim_ids": [
+        "claim-wd-q122328-name-en",
+        "claim-wd-q122328-name-zh"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q122328"
+      },
+      "id": "person-wd-q122328",
+      "last_verified": "2026-07-26",
+      "name_en": "Carlo Maderno",
+      "name_native": null,
+      "name_zh": "卡洛·马代尔诺",
+      "name_zh_status": "source_label_candidate",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [
+        "Francesco Castelli",
+        "Francesco Castello",
+        "Francesco Borromino",
+        "Francesco Boromino",
+        "Francesco Boromini",
+        "Fr. Borromini"
+      ],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "claim_ids": [
+        "claim-wd-q123150-name-en",
+        "claim-wd-q123150-name-zh"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q123150"
+      },
+      "id": "person-wd-q123150",
+      "last_verified": "2026-07-26",
+      "name_en": "Francesco Borromini",
+      "name_native": null,
+      "name_zh": "博罗米尼",
+      "name_zh_status": "source_label_candidate",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [
+        "François D'Orbay",
+        "François II d' Orbay",
+        "Francois Dorbay",
+        "François II d'Orbay",
+        "François, II D'Orbay",
+        "François Dorbay",
+        "François d' Orbay",
+        "François II Dorbay",
+        "François D'Orbay II",
+        "Francois II Dorbay"
+      ],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "claim_ids": [
+        "claim-wd-q1270258-name-en",
+        "claim-wd-q1270258-name-zh"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q1270258"
+      },
+      "id": "person-wd-q1270258",
+      "last_verified": "2026-07-26",
+      "name_en": "François d'Orbay",
+      "name_native": null,
+      "name_zh": "弗朗索瓦·多尔贝",
+      "name_zh_status": "source_label_candidate",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "claim_ids": [
+        "claim-wd-q1304570-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q1304570"
+      },
+      "id": "person-wd-q1304570",
+      "last_verified": "2026-07-26",
+      "name_en": "Hans Alex Güldenpfennig",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [
+        "Germain Bossrand",
+        "Germain Boffranc",
+        "Germain Boisfran",
+        "Germain Boisfranc"
+      ],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "claim_ids": [
+        "claim-wd-q1311013-name-en",
+        "claim-wd-q1311013-name-zh"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q1311013"
+      },
+      "id": "person-wd-q1311013",
+      "last_verified": "2026-07-26",
+      "name_en": "Germain Boffrand",
+      "name_native": null,
+      "name_zh": "热尔曼·博弗朗",
+      "name_zh_status": "source_label_candidate",
       "region": "unknown",
       "roles": [
         "architect"
@@ -152,10 +574,52 @@
         "wikidata": "Q1314747"
       },
       "id": "person-wd-q1314747",
-      "last_verified": "2026-07-25",
+      "last_verified": "2026-07-26",
       "name_en": "Pierre de Montreuil",
       "name_native": null,
       "name_zh": "皮埃尔·德·蒙特勒伊",
+      "name_zh_status": "source_label_candidate",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [
+        "Elia da Cortona",
+        "Elías de Asís"
+      ],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "claim_ids": [
+        "claim-wd-q1329212-name-en",
+        "claim-wd-q1329212-name-zh"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q1329212"
+      },
+      "id": "person-wd-q1329212",
+      "last_verified": "2026-07-26",
+      "name_en": "Elias of Cortona",
+      "name_native": null,
+      "name_zh": "科尔托纳的伊莱亚斯",
       "name_zh_status": "source_label_candidate",
       "region": "unknown",
       "roles": [
@@ -198,7 +662,7 @@
         "wikidata": "Q134165"
       },
       "id": "person-wd-q134165",
-      "last_verified": "2026-07-25",
+      "last_verified": "2026-07-26",
       "name_en": "Oscar Niemeyer",
       "name_native": null,
       "name_zh": "奥斯卡·尼迈耶",
@@ -237,11 +701,360 @@
         "wikidata": "Q13647155"
       },
       "id": "person-wd-q13647155",
-      "last_verified": "2026-07-25",
+      "last_verified": "2026-07-26",
       "name_en": "Marshall Strabala",
       "name_native": null,
       "name_zh": "马歇尔·斯特拉巴拉",
       "name_zh_status": "source_label_candidate",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "claim_ids": [
+        "claim-wd-q1441250-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q1441250"
+      },
+      "id": "person-wd-q1441250",
+      "last_verified": "2026-07-26",
+      "name_en": "Francesco Talenti",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "claim_ids": [
+        "claim-wd-q1468148-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q1468148"
+      },
+      "id": "person-wd-q1468148",
+      "last_verified": "2026-07-26",
+      "name_en": "Fritz Schaller",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [
+        "Carl Friedrich Schinkel",
+        "K. F. Schinkel",
+        "karl friedrich schinkel",
+        "Karl Fr. Schinkel",
+        "C. F. Schinkel"
+      ],
+      "aliases_zh": [
+        "申克爾"
+      ],
+      "birth": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "claim_ids": [
+        "claim-wd-q151759-name-en",
+        "claim-wd-q151759-name-zh"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q151759"
+      },
+      "id": "person-wd-q151759",
+      "last_verified": "2026-07-26",
+      "name_en": "Karl Friedrich Schinkel",
+      "name_native": null,
+      "name_zh": "卡尔·弗里德里希·申克尔",
+      "name_zh_status": "source_label_candidate",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "claim_ids": [
+        "claim-wd-q1544728-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q1544728"
+      },
+      "id": "person-wd-q1544728",
+      "last_verified": "2026-07-26",
+      "name_en": "Johannes von Köln",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "claim_ids": [
+        "claim-wd-q15990577-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q15990577"
+      },
+      "id": "person-wd-q15990577",
+      "last_verified": "2026-07-26",
+      "name_en": "Friedrich Adolf Ahlert",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [
+        "Bernini",
+        "Giovanni Lorenzo Bernini",
+        "Gianlorenzo Bernin",
+        "Cavaliere Gian Lorenzo Bernino",
+        "Cavr. Gian Lorenzo Bernino",
+        "Giovan Lorenzo Bernini",
+        "Dzhovanni Lorentso Bernini",
+        "Gian Bernini",
+        "Lorentso Bernini",
+        "Lorenzo Bernini",
+        "Jean Laurent Bernin",
+        "Giovanni Lorenzo, Cavaliere Bernini",
+        "Giovanni Lorenzo Bernino",
+        "Lorent︠s︡o Bernini",
+        "Giovanni-Lorenzo Bernini",
+        "Le Bernin",
+        "Dzhovanni Lorent︠s︡o Bernini",
+        "Cavaliere Giovanni Lorenzo Bernini",
+        "Chevalier Gian Lorenzo Bernini",
+        "Chevalier Bernin",
+        "C. Bernin",
+        "lorenzo bernini",
+        "Cr. Bernini",
+        "Le Cavalier Bernin",
+        "Cavr. Bernino",
+        "gianlorenzo bernini",
+        "C Ter Bernini",
+        "C. Bernini",
+        "Berneni",
+        "Sr. Cav.re Bernino",
+        "Bernino",
+        "Cavaliere Bernino",
+        "Chevalier Bernini",
+        "Cav: Bernino",
+        "Cav. Bernini",
+        "Cav. Bernino",
+        "Cav.e Bernini",
+        "Jean-Laurent Bernin",
+        "cav.re Bernini",
+        "Cavalier Bernin",
+        "Gio: Lorenzo Bernini",
+        "Cavalier Bernerni",
+        "Cav.r Bernino",
+        "cav.o bernino",
+        "Cavalere Berneene",
+        "Cavalier Bernini",
+        "G. L. Bernini",
+        "Cavalier Bernino",
+        "Cav.re Bernino",
+        "Bernin",
+        "Cavalier Bernino Scultore",
+        "C. Bernino",
+        "le Chev. Bernin",
+        "Cavalier Lorenzo Bernini",
+        "dit Le Chevalier Bernin Jean-Laurent",
+        "Cavaliere Bernini",
+        "le Ch. Bernin",
+        "Birnini",
+        "giov. lorenzo bernini",
+        "lor. bernini",
+        "c. l. bernini",
+        "Gianlorenzo F Bernini",
+        "Gianlorenzo Bernini",
+        "Gian Lorenzo"
+      ],
+      "aliases_zh": [
+        "貝尼尼",
+        "贝尔尼尼"
+      ],
+      "birth": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "claim_ids": [
+        "claim-wd-q160538-name-en",
+        "claim-wd-q160538-name-zh"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q160538"
+      },
+      "id": "person-wd-q160538",
+      "last_verified": "2026-07-26",
+      "name_en": "Gian Lorenzo Bernini",
+      "name_native": null,
+      "name_zh": "吉安·洛伦佐·贝尼尼",
+      "name_zh_status": "source_label_candidate",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [
+        "Guglielmo Della Porta",
+        "Guglielmo del Piombo",
+        "Fra Guglielmo della Porta",
+        "Fra Guglielmo del Piombo"
+      ],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "claim_ids": [
+        "claim-wd-q1623328-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q1623328"
+      },
+      "id": "person-wd-q1623328",
+      "last_verified": "2026-07-26",
+      "name_en": "Guglielmo della Porta",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
       "region": "unknown",
       "roles": [
         "architect"
@@ -278,11 +1091,504 @@
         "wikidata": "Q16645563"
       },
       "id": "person-wd-q16645563",
-      "last_verified": "2026-07-25",
+      "last_verified": "2026-07-26",
       "name_en": "Jean Ravy",
       "name_native": null,
       "name_zh": "让·拉维",
       "name_zh_status": "source_label_candidate",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "claim_ids": [
+        "claim-wd-q1695228-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q1695228"
+      },
+      "id": "person-wd-q1695228",
+      "last_verified": "2026-07-26",
+      "name_en": "Johann Kuene van Franckenberg",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [
+        "Jonas Erikson Sundahl"
+      ],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "claim_ids": [
+        "claim-wd-q1702936-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q1702936"
+      },
+      "id": "person-wd-q1702936",
+      "last_verified": "2026-07-26",
+      "name_en": "Jonas Erickson Sundahl",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [
+        "Sir Christopher Michael Wren",
+        "Christopher Michael Wren",
+        "Sir Wren",
+        "Sir Christopher Wren",
+        "Christopher, Sir Wren"
+      ],
+      "aliases_zh": [
+        "克里斯多佛·雷恩爵士",
+        "列恩",
+        "克里斯托弗·列恩"
+      ],
+      "birth": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "claim_ids": [
+        "claim-wd-q170373-name-en",
+        "claim-wd-q170373-name-zh"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q170373"
+      },
+      "id": "person-wd-q170373",
+      "last_verified": "2026-07-26",
+      "name_en": "Christopher Wren",
+      "name_native": null,
+      "name_zh": "克里斯托弗·雷恩",
+      "name_zh_status": "source_label_candidate",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "claim_ids": [
+        "claim-wd-q1712698-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q1712698"
+      },
+      "id": "person-wd-q1712698",
+      "last_verified": "2026-07-26",
+      "name_en": "Julius Hofmann",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [
+        "Filippo Brunellesco",
+        "Filippo di ser Brunellesco Lippi",
+        "Filippo di ser Brunellesco",
+        "Filippo di Ser Brunelleschi",
+        "Filippo Brunelleski",
+        "Brunelleschi",
+        "Brunellesco"
+      ],
+      "aliases_zh": [
+        "菲利波·布鲁内列斯基",
+        "伯鲁乃列斯基"
+      ],
+      "birth": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "claim_ids": [
+        "claim-wd-q174330-name-en",
+        "claim-wd-q174330-name-zh"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q174330"
+      },
+      "id": "person-wd-q174330",
+      "last_verified": "2026-07-26",
+      "name_en": "Filippo Brunelleschi",
+      "name_native": null,
+      "name_zh": "菲利波·布鲁内莱斯基",
+      "name_zh_status": "source_label_candidate",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [
+        "Giacomo Della Porta"
+      ],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "claim_ids": [
+        "claim-wd-q175566-name-en",
+        "claim-wd-q175566-name-zh"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q175566"
+      },
+      "id": "person-wd-q175566",
+      "last_verified": "2026-07-26",
+      "name_en": "Giacomo della Porta",
+      "name_native": null,
+      "name_zh": "贾科莫·德拉·波尔塔",
+      "name_zh_status": "source_label_candidate",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [
+        "Baldassare Tommaso Peruzzi",
+        "Baldazar Peruzzi",
+        "Baldassarre Peruzzi",
+        "Baldassar da Siena",
+        "Baldassare da Siena",
+        "Baldassare Perugo",
+        "Balthaser Peruzzi",
+        "Baldassarre di Siena",
+        "Baldassare Perutio",
+        "Balt. Peruzzi",
+        "Baldassare Tommaso Petrucci",
+        "Baldassar Peruzzi da Siena",
+        "Balthazar Peruzzi",
+        "Balthasar Peruzzi",
+        "Baldasare Peruzzi",
+        "Bald. Perruzzia",
+        "Baldassare Tommaso Perucio",
+        "Baldassare Tommaso Perucci",
+        "Baldassare Tomasso Perutio",
+        "Baldassarre da Siena",
+        "Baldassare Perucio",
+        "Baldassare Tomasso Petrucci",
+        "Baldassare Perucci",
+        "Baldassare Tommaso Perutio",
+        "Baldassare Tommaso Perugo",
+        "Bardassar Peruzzi",
+        "B. Peruzzi",
+        "Baldassaro da Siena",
+        "Balshazar da Sienna",
+        "Baldazzare Peruzzi",
+        "Baltazar de Sienne",
+        "Baltazar Perusi",
+        "baldassa da siena",
+        "Bald. Peruzzi",
+        "Balthazar de Sienna",
+        "Baldassaro di Siena",
+        "Balthasar de Sienne",
+        "Baldassar Peruzzi Siene",
+        "Baltassar da Siena",
+        "Baldassare Peruzzi sanese",
+        "Peruzzi",
+        "Baltazar Peruzzi",
+        "Balthazar de Sienne",
+        "Baldasar da Siena",
+        "Perruzi",
+        "Baldas. Peruzzi",
+        "Baltasar Perusi",
+        "Baldasare da Siena",
+        "Baltazar de Siene",
+        "Bal. Perruzi",
+        "Perruzzi Baldassare",
+        "Balthazare Peruzzi",
+        "Balthazar di Peruzzi",
+        "Baldassar Peruzzi",
+        "Perruzzi",
+        "Baldassar Peruzzi called Baldassar da Siena",
+        "Baldassare"
+      ],
+      "aliases_zh": [
+        "貝魯齊"
+      ],
+      "birth": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "claim_ids": [
+        "claim-wd-q177213-name-en",
+        "claim-wd-q177213-name-zh"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q177213"
+      },
+      "id": "person-wd-q177213",
+      "last_verified": "2026-07-26",
+      "name_en": "Baldassare Peruzzi",
+      "name_native": null,
+      "name_zh": "巴尔达萨雷·佩鲁齐",
+      "name_zh_status": "source_label_candidate",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [
+        "The Great Pheidias",
+        "Pheidias",
+        "Fidias"
+      ],
+      "aliases_zh": [
+        "菲底亚斯",
+        "菲狄亚斯",
+        "菲狄阿斯"
+      ],
+      "birth": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "claim_ids": [
+        "claim-wd-q177302-name-en",
+        "claim-wd-q177302-name-zh"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q177302"
+      },
+      "id": "person-wd-q177302",
+      "last_verified": "2026-07-26",
+      "name_en": "Phidias",
+      "name_native": null,
+      "name_zh": "菲狄亚斯",
+      "name_zh_status": "source_label_candidate",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [
+        "A. Palladio",
+        "André Palladio",
+        "Andrea di Pietro",
+        "Andrea di Pietro della Gondola Palladio",
+        "Andrea di Pietro della Gondola",
+        "Palladio"
+      ],
+      "aliases_zh": [
+        "安卓·帕拉底歐",
+        "安德烈亞·帕拉迪奧",
+        "安君亞·帕拉底歐",
+        "帕拉第奧"
+      ],
+      "birth": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "claim_ids": [
+        "claim-wd-q177692-name-en",
+        "claim-wd-q177692-name-zh"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q177692"
+      },
+      "id": "person-wd-q177692",
+      "last_verified": "2026-07-26",
+      "name_en": "Andrea Palladio",
+      "name_native": null,
+      "name_zh": "安德烈亚·帕拉迪奥",
+      "name_zh_status": "source_label_candidate",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [
+        "Konrad Kuyn"
+      ],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "claim_ids": [
+        "claim-wd-q1782172-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q1782172"
+      },
+      "id": "person-wd-q1782172",
+      "last_verified": "2026-07-26",
+      "name_en": "Konrad Kuene",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
       "region": "unknown",
       "roles": [
         "architect"
@@ -323,7 +1629,7 @@
         "wikidata": "Q180398"
       },
       "id": "person-wd-q180398",
-      "last_verified": "2026-07-25",
+      "last_verified": "2026-07-26",
       "name_en": "Jørn Utzon",
       "name_native": null,
       "name_zh": "约恩·乌松",
@@ -371,11 +1677,130 @@
         "wikidata": "Q189375"
       },
       "id": "person-wd-q189375",
-      "last_verified": "2026-07-25",
+      "last_verified": "2026-07-26",
       "name_en": "Apollodorus of Damascus",
       "name_native": null,
       "name_zh": "大马士革的阿波罗多洛斯",
       "name_zh_status": "source_label_candidate",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [
+        "Niccolo Salvi"
+      ],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "claim_ids": [
+        "claim-wd-q1986231-name-en",
+        "claim-wd-q1986231-name-zh"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q1986231"
+      },
+      "id": "person-wd-q1986231",
+      "last_verified": "2026-07-26",
+      "name_en": "Nicola Salvi",
+      "name_native": null,
+      "name_zh": "尼古拉·萨尔维",
+      "name_zh_status": "source_label_candidate",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "claim_ids": [
+        "claim-wd-q1991761-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q1991761"
+      },
+      "id": "person-wd-q1991761",
+      "last_verified": "2026-07-26",
+      "name_en": "Nikolaus van Bueren",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [
+        "Ioseph Panini"
+      ],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "claim_ids": [
+        "claim-wd-q19985023-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q19985023"
+      },
+      "id": "person-wd-q19985023",
+      "last_verified": "2026-07-26",
+      "name_en": "Giuseppe Pannini",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
       "region": "unknown",
       "roles": [
         "architect"
@@ -410,11 +1835,310 @@
         "wikidata": "Q2134288"
       },
       "id": "person-wd-q2134288",
-      "last_verified": "2026-07-25",
+      "last_verified": "2026-07-26",
       "name_en": "Raymond du Temple",
       "name_native": null,
       "name_zh": "雷蒙·迪唐普勒",
       "name_zh_status": "source_label_candidate",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [],
+      "aliases_zh": [
+        "朱利欧·罗马诺",
+        "朱利歐·羅馬諾",
+        "朱利奥·罗马诺"
+      ],
+      "birth": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "claim_ids": [
+        "claim-wd-q215305-name-en",
+        "claim-wd-q215305-name-zh"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q215305"
+      },
+      "id": "person-wd-q215305",
+      "last_verified": "2026-07-26",
+      "name_en": "Giulio Romano",
+      "name_native": null,
+      "name_zh": "朱利奥·罗马诺",
+      "name_zh_status": "source_label_candidate",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [
+        "Antonio di Ciaccheri Manetti",
+        "Antonio di Manetto Ciaccheri"
+      ],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "claim_ids": [
+        "claim-wd-q21548230-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q21548230"
+      },
+      "id": "person-wd-q21548230",
+      "last_verified": "2026-07-26",
+      "name_en": "Antonio Ciaccheri",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [
+        "Emilio de Fabris"
+      ],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "claim_ids": [
+        "claim-wd-q2252872-name-en",
+        "claim-wd-q2252872-name-zh"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q2252872"
+      },
+      "id": "person-wd-q2252872",
+      "last_verified": "2026-07-26",
+      "name_en": "Emilio De Fabris",
+      "name_native": null,
+      "name_zh": "埃米利奧·德·法布里斯",
+      "name_zh_status": "source_label_candidate",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [
+        "Antonio Cannevari",
+        "Antonio Canevaro",
+        "Antonio Canavari",
+        "Antonio Cannerari",
+        "Giacomo Antonio Canevari"
+      ],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "claim_ids": [
+        "claim-wd-q2253309-name-en",
+        "claim-wd-q2253309-name-zh"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q2253309"
+      },
+      "id": "person-wd-q2253309",
+      "last_verified": "2026-07-26",
+      "name_en": "Antonio Canevari",
+      "name_native": null,
+      "name_zh": "安東尼奧·卡內瓦里",
+      "name_zh_status": "source_label_candidate",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "claim_ids": [
+        "claim-wd-q2255983-name-en",
+        "claim-wd-q2255983-name-zh"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q2255983"
+      },
+      "id": "person-wd-q2255983",
+      "last_verified": "2026-07-26",
+      "name_en": "Luca Fancelli",
+      "name_native": null,
+      "name_zh": "盧卡·范切利",
+      "name_zh_status": "source_label_candidate",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [
+        "Giovanni Trevano"
+      ],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "claim_ids": [
+        "claim-wd-q2343132-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q2343132"
+      },
+      "id": "person-wd-q2343132",
+      "last_verified": "2026-07-26",
+      "name_en": "Giovanni Battista Trevano",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [
+        "Becalor",
+        "Domenico Cortonensi",
+        "Domenico Bernabei",
+        "Dominique de Courtonne",
+        "Dominique de Cortone",
+        "Le Boccador",
+        "Boccador",
+        "Dominico da Cortona",
+        "Boccadoro",
+        "Domenico Da Cortona",
+        "Domenico, detto Domenico da Cortona, il Boccadoro Bernabei"
+      ],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "claim_ids": [
+        "claim-wd-q2361926-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q2361926"
+      },
+      "id": "person-wd-q2361926",
+      "last_verified": "2026-07-26",
+      "name_en": "Domenico da Cortona",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
       "region": "unknown",
       "roles": [
         "architect"
@@ -451,7 +2175,7 @@
         "wikidata": "Q23709838"
       },
       "id": "person-wd-q23709838",
-      "last_verified": "2026-07-25",
+      "last_verified": "2026-07-26",
       "name_en": "Edith Schreiber-Aujame",
       "name_native": null,
       "name_zh": null,
@@ -497,11 +2221,57 @@
         "wikidata": "Q243240"
       },
       "id": "person-wd-q243240",
-      "last_verified": "2026-07-25",
+      "last_verified": "2026-07-26",
       "name_en": "Louis Sullivan",
       "name_native": null,
       "name_zh": "路易斯·沙利文",
       "name_zh_status": "source_label_candidate",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [
+        "Vincitore",
+        "Tommaso Da Bologna",
+        "Tommaso di Andrea Vincidor",
+        "Tommaso da Bologna",
+        "Il Bologna",
+        "Tommaso Vincitore",
+        "Vincidor"
+      ],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "claim_ids": [
+        "claim-wd-q2440881-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q2440881"
+      },
+      "id": "person-wd-q2440881",
+      "last_verified": "2026-07-26",
+      "name_en": "Tommaso Vincidor",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
       "region": "unknown",
       "roles": [
         "architect"
@@ -539,8 +2309,86 @@
         "wikidata": "Q2466368"
       },
       "id": "person-wd-q2466368",
-      "last_verified": "2026-07-25",
+      "last_verified": "2026-07-26",
       "name_en": "James Rossant",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "claim_ids": [
+        "claim-wd-q2509641-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q2509641"
+      },
+      "id": "person-wd-q2509641",
+      "last_verified": "2026-07-26",
+      "name_en": "Willy Weyres",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [
+        "Guillaume de Sens"
+      ],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "claim_ids": [
+        "claim-wd-q2544172-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q2544172"
+      },
+      "id": "person-wd-q2544172",
+      "last_verified": "2026-07-26",
+      "name_en": "William of Sens",
       "name_native": null,
       "name_zh": null,
       "name_zh_status": "missing",
@@ -583,11 +2431,180 @@
         "wikidata": "Q2551253"
       },
       "id": "person-wd-q2551253",
-      "last_verified": "2026-07-25",
+      "last_verified": "2026-07-26",
       "name_en": "Ahmad Lahori",
       "name_native": null,
       "name_zh": "乌斯塔德·艾哈迈德·拉合里",
       "name_zh_status": "source_label_candidate",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [
+        "Sharlʹ Le Bri︠u︡nʹ",
+        "Chevalier Charles Le Brun",
+        "Sharl Le Briun",
+        "Charles LeBrun",
+        "Charles le Brun",
+        "Char. le Brun",
+        "M. Le Brun",
+        "Ch. Le Brun",
+        "Charles le Brün",
+        "ch. lebrun",
+        "M.r Le Brun",
+        "Ch.-Lebrun",
+        "Charles Le, French Brun",
+        "Monsu Libroni",
+        "Charles Lebun",
+        "Carlo Lebrun",
+        "Lebrun",
+        "Carl le Brun",
+        "Charl. le Brün",
+        "Le Brün",
+        "C. Lebrun",
+        "Le Brun Ch.",
+        "Le Bruyn",
+        "Monsieur le Bruen",
+        "Le Brune",
+        "L. Brun",
+        "Carlo le Brun",
+        "Chev. Lebri",
+        "C. Le Brun",
+        "Ch. Lebrun",
+        "Charel Lebrun",
+        "Le Brun",
+        "Le Brüne",
+        "Carl. Le Brun",
+        "Charles de Brün"
+      ],
+      "aliases_zh": [
+        "查尔斯·勒布伦"
+      ],
+      "birth": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "claim_ids": [
+        "claim-wd-q271676-name-en",
+        "claim-wd-q271676-name-zh"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q271676"
+      },
+      "id": "person-wd-q271676",
+      "last_verified": "2026-07-26",
+      "name_en": "Charles Le Brun",
+      "name_native": null,
+      "name_zh": "夏尔·勒布朗",
+      "name_zh_status": "source_label_candidate",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [
+        "André Nostre",
+        "André Le Nostre",
+        "André Lenôtre",
+        "Andre Nostre",
+        "Andre Le Nostre",
+        "Andre Lenotre"
+      ],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "claim_ids": [
+        "claim-wd-q273849-name-en",
+        "claim-wd-q273849-name-zh"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q273849"
+      },
+      "id": "person-wd-q273849",
+      "last_verified": "2026-07-26",
+      "name_en": "André Le Nôtre",
+      "name_native": null,
+      "name_zh": "安德烈·勒诺特尔",
+      "name_zh_status": "source_label_candidate",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [
+        "Andrea di Lazzaro Cavalcanti",
+        "Buggiano",
+        "Buggianino",
+        "Il Buggiano Cavalcanti",
+        "Il Buggiano",
+        "Andrea Di Lazzaro Cavalcanti",
+        "Andrea Cavalcanti Buggiano"
+      ],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "claim_ids": [
+        "claim-wd-q2846320-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q2846320"
+      },
+      "id": "person-wd-q2846320",
+      "last_verified": "2026-07-26",
+      "name_en": "Andrea Cavalcanti",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
       "region": "unknown",
       "roles": [
         "architect"
@@ -623,8 +2640,286 @@
         "wikidata": "Q2851305"
       },
       "id": "person-wd-q2851305",
-      "last_verified": "2026-07-25",
+      "last_verified": "2026-07-26",
       "name_en": "Anne Tyng",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [
+        "Augustin-Charles d' Daviler",
+        "Charles Augustin d' Aviler",
+        "Charles-Augustin d' Aviler",
+        "Augustin-Charles d' Aviler",
+        "A. C. Daviler",
+        "Augustin-Charles d' Aviller",
+        "Augustin-Charles Davillier",
+        "Augustin-Charles Daviler",
+        "Augustin-Charles d' Davillier",
+        "Augustin Charles D'Aviler",
+        "Charles-Augustin Daviler",
+        "C. A. D'Aviler",
+        "Charles-Augustin D'Aviler",
+        "Augustin Charles d' Aviler",
+        "Augustin Charles Daviler"
+      ],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "claim_ids": [
+        "claim-wd-q2871505-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q2871505"
+      },
+      "id": "person-wd-q2871505",
+      "last_verified": "2026-07-26",
+      "name_en": "Augustin-Charles d'Aviler",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [
+        "Benci di Cione"
+      ],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "claim_ids": [
+        "claim-wd-q2895688-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q2895688"
+      },
+      "id": "person-wd-q2895688",
+      "last_verified": "2026-07-26",
+      "name_en": "Benci di Cione Dami",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [
+        "Jacopo Barozzi Vignola",
+        "Iacopo Barozio",
+        "Iacomo Barozzio da Vignola",
+        "Giacomo da Vignuola",
+        "Jacopo Barozzi",
+        "Jacques Barozzio de Vignole",
+        "Jacopo Baroccio da Vignola",
+        "Vignola",
+        "Iacopo Barozzi",
+        "Giacomo Barozzio",
+        "Jacopo da Vignola",
+        "Giacomo Barozzi Vignola",
+        "Jacques Barozzio",
+        "Jacopo. Vignola",
+        "Giacomo Barozzi",
+        "Giacomo Barozio da Vignola",
+        "Giacomo Barozzi da Vignuola",
+        "Giacomo Barozzi Da Vignola",
+        "Barozzi Iacopo",
+        "Jacopo Barozzi da Vignola",
+        "Giacomo Vignola",
+        "Giacomo Barozzio Vignola",
+        "Giacomo Barozio"
+      ],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "claim_ids": [
+        "claim-wd-q297565-name-en",
+        "claim-wd-q297565-name-zh"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q297565"
+      },
+      "id": "person-wd-q297565",
+      "last_verified": "2026-07-26",
+      "name_en": "Giacomo Barozzi da Vignola",
+      "name_native": null,
+      "name_zh": "贾科莫·巴罗齐·达·维尼奥拉",
+      "name_zh_status": "source_label_candidate",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [
+        "Franchesko Bartolomeo Rastrelli",
+        "Varfolomeĭ Varfolomeevich Rastrelli",
+        "Bartolomeo Francesco Rastrelli",
+        "Varfolomeĭ Varfolomeevich, graf Rastrelli",
+        "Bartholomeo Francesco Rastrelli"
+      ],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "claim_ids": [
+        "claim-wd-q299687-name-en",
+        "claim-wd-q299687-name-zh"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q299687"
+      },
+      "id": "person-wd-q299687",
+      "last_verified": "2026-07-26",
+      "name_en": "Francesco Bartolomeo Rastrelli",
+      "name_native": null,
+      "name_zh": "弗朗切斯科·巴尔托洛梅奥·拉斯特雷利",
+      "name_zh_status": "source_label_candidate",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "claim_ids": [
+        "claim-wd-q3014096-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q3014096"
+      },
+      "id": "person-wd-q3014096",
+      "last_verified": "2026-07-26",
+      "name_en": "Daniel Gittard",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "claim_ids": [
+        "claim-wd-q3022753-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q3022753"
+      },
+      "id": "person-wd-q3022753",
+      "last_verified": "2026-07-26",
+      "name_en": "Denis Jossenay",
       "name_native": null,
       "name_zh": null,
       "name_zh_status": "missing",
@@ -664,10 +2959,56 @@
         "wikidata": "Q3036213"
       },
       "id": "person-wd-q3036213",
-      "last_verified": "2026-07-25",
+      "last_verified": "2026-07-26",
       "name_en": "Romaldo Giurgola",
       "name_native": null,
       "name_zh": "羅馬爾多·吉戈拉",
+      "name_zh_status": "source_label_candidate",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [
+        "Libéral Bruand",
+        "Liberal Bruant",
+        "Liberal Bruand",
+        "Bruant"
+      ],
+      "aliases_zh": [
+        "利貝拉爾·布呂昂"
+      ],
+      "birth": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "claim_ids": [
+        "claim-wd-q3090458-name-en",
+        "claim-wd-q3090458-name-zh"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q3090458"
+      },
+      "id": "person-wd-q3090458",
+      "last_verified": "2026-07-26",
+      "name_en": "Libéral Bruant",
+      "name_native": null,
+      "name_zh": "利贝拉尔·布吕昂",
       "name_zh_status": "source_label_candidate",
       "region": "unknown",
       "roles": [
@@ -707,10 +3048,718 @@
         "wikidata": "Q309483"
       },
       "id": "person-wd-q309483",
-      "last_verified": "2026-07-25",
+      "last_verified": "2026-07-26",
       "name_en": "César Pelli",
       "name_native": null,
       "name_zh": "西萨·佩里",
+      "name_zh_status": "source_label_candidate",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [
+        "Vinsent Schamozzy"
+      ],
+      "aliases_zh": [
+        "文森諾·斯卡莫齊",
+        "温琴佐·斯卡莫齐"
+      ],
+      "birth": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "claim_ids": [
+        "claim-wd-q309733-name-en",
+        "claim-wd-q309733-name-zh"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q309733"
+      },
+      "id": "person-wd-q309733",
+      "last_verified": "2026-07-26",
+      "name_en": "Vincenzo Scamozzi",
+      "name_native": null,
+      "name_zh": "文森佐·斯卡默基",
+      "name_zh_status": "source_label_candidate",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [
+        "Michelozzo Di Bartolommeo",
+        "Michelozzo Di Bartolomeo",
+        "Michelozzo di Bartolomeo",
+        "Michelozzo di Bartolommeo",
+        "Michelozzo di Bartolommeo Di Gherardo Borgognone",
+        "Michelozzo di Bartolommeo di Gherardo Borgognone",
+        "Michelozzo di Bartolomeo Michelozzi"
+      ],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "claim_ids": [
+        "claim-wd-q309736-name-en",
+        "claim-wd-q309736-name-zh"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q309736"
+      },
+      "id": "person-wd-q309736",
+      "last_verified": "2026-07-26",
+      "name_en": "Michelozzo",
+      "name_native": null,
+      "name_zh": "米开罗佐",
+      "name_zh_status": "source_label_candidate",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [
+        "Louis le Vau",
+        "Louis Leveau"
+      ],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "claim_ids": [
+        "claim-wd-q310530-name-en",
+        "claim-wd-q310530-name-zh"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q310530"
+      },
+      "id": "person-wd-q310530",
+      "last_verified": "2026-07-26",
+      "name_en": "Louis Le Vau",
+      "name_native": null,
+      "name_zh": "路易·勒沃",
+      "name_zh_status": "source_label_candidate",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "claim_ids": [
+        "claim-wd-q3107540-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q3107540"
+      },
+      "id": "person-wd-q3107540",
+      "last_verified": "2026-07-26",
+      "name_en": "Giovanni di Lapo Ghini",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [
+        "di Ugolino Nini Andrea",
+        "da Pontedera Andrea",
+        "di Ser Ugolino da Pisa Andrea",
+        "Andrea di Ugolino",
+        "da Pisa Andrea",
+        "di Ugolino Andrea",
+        "Andreas Ugolino Nini",
+        "Andrea di Ugolino Nini",
+        "Andrea da Pontedera"
+      ],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "claim_ids": [
+        "claim-wd-q311031-name-en",
+        "claim-wd-q311031-name-zh"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q311031"
+      },
+      "id": "person-wd-q311031",
+      "last_verified": "2026-07-26",
+      "name_en": "Andrea Pisano",
+      "name_native": null,
+      "name_zh": "安德烈亞·皮薩諾",
+      "name_zh_status": "source_label_candidate",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [
+        "Iktinos",
+        "Ictinos"
+      ],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "claim_ids": [
+        "claim-wd-q311502-name-en",
+        "claim-wd-q311502-name-zh"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q311502"
+      },
+      "id": "person-wd-q311502",
+      "last_verified": "2026-07-26",
+      "name_en": "Ictinus",
+      "name_native": null,
+      "name_zh": "伊克提诺斯",
+      "name_zh_status": "source_label_candidate",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [
+        "Giuliano Giamberti",
+        "Giuliano Da Sangallo",
+        "Giuliano da San Gallo",
+        "Giuliano di Francesco da Sangallo",
+        "Guiliano di Francesco da Sangallo"
+      ],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "claim_ids": [
+        "claim-wd-q312365-name-en",
+        "claim-wd-q312365-name-zh"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q312365"
+      },
+      "id": "person-wd-q312365",
+      "last_verified": "2026-07-26",
+      "name_en": "Giuliano da Sangallo",
+      "name_native": null,
+      "name_zh": "朱利亞諾·達·桑迦洛",
+      "name_zh_status": "source_label_candidate",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [
+        "Hernán, I Ruiz",
+        "Fernán, I Ruiz",
+        "Hernan Ruiz",
+        "Hernan Ruiz the Elder",
+        "Fernán Ruiz",
+        "Hernán, the elder Ruiz",
+        "Hernan Ruiz I",
+        "Fernan Ruiz",
+        "Fernán, the elder Ruiz",
+        "Hernán Ruiz le Vieux",
+        "Hernán Ruiz the Elder",
+        "Hernan Ruiz le Vieux",
+        "Hernán Ruiz I"
+      ],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "claim_ids": [
+        "claim-wd-q3134295-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q3134295"
+      },
+      "id": "person-wd-q3134295",
+      "last_verified": "2026-07-26",
+      "name_en": "Hernán Ruiz",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [
+        "Jacques François Mansart",
+        "Francois Mansart",
+        "Francois Mansard",
+        "François Mansard",
+        "François Nicolas Mansart"
+      ],
+      "aliases_zh": [
+        "弗朗索瓦·芒萨尔",
+        "弗朗索瓦·曼萨德",
+        "弗朗索瓦·蒙薩"
+      ],
+      "birth": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "claim_ids": [
+        "claim-wd-q313701-name-en",
+        "claim-wd-q313701-name-zh"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q313701"
+      },
+      "id": "person-wd-q313701",
+      "last_verified": "2026-07-26",
+      "name_en": "François Mansart",
+      "name_native": null,
+      "name_zh": "弗朗索瓦·芒薩爾",
+      "name_zh_status": "source_label_candidate",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [
+        "Arnolfo Fiorentino",
+        "Arnolphus de Colle",
+        "Arnolfo Di Cambio",
+        "Arnolfo di Lapo",
+        "Arnolfo",
+        "di Cambio Arnolfo",
+        "Arnolfo di Firenze"
+      ],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "claim_ids": [
+        "claim-wd-q315249-name-en",
+        "claim-wd-q315249-name-zh"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q315249"
+      },
+      "id": "person-wd-q315249",
+      "last_verified": "2026-07-26",
+      "name_en": "Arnolfo di Cambio",
+      "name_native": null,
+      "name_zh": "阿諾爾·迪·坎比奧",
+      "name_zh_status": "source_label_candidate",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [
+        "Taddeus Gaddi de Florentia",
+        "Taddeo di Gaddo Gaddi",
+        "Taddeo Di Gaddo Gaddi",
+        "Gaddi",
+        "Schüler von Giotto Taddeo Gaddi"
+      ],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "claim_ids": [
+        "claim-wd-q315835-name-en",
+        "claim-wd-q315835-name-zh"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q315835"
+      },
+      "id": "person-wd-q315835",
+      "last_verified": "2026-07-26",
+      "name_en": "Taddeo Gaddi",
+      "name_native": null,
+      "name_zh": "塔迪奧·加迪",
+      "name_zh_status": "source_label_candidate",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [
+        "Baldisera Longhena",
+        "Baldassare Longhena"
+      ],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "claim_ids": [
+        "claim-wd-q316297-name-en",
+        "claim-wd-q316297-name-zh"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q316297"
+      },
+      "id": "person-wd-q316297",
+      "last_verified": "2026-07-26",
+      "name_en": "Baldassarre Longhena",
+      "name_native": null,
+      "name_zh": "巴尔达萨雷·隆盖纳",
+      "name_zh_status": "source_label_candidate",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [
+        "Bernardo Gamberelli",
+        "Bernardo, detto Bernardo Rossellino Gamberelli",
+        "Bernardo di Matteo del Borra Gamberelli"
+      ],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "claim_ids": [
+        "claim-wd-q325930-name-en",
+        "claim-wd-q325930-name-zh"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q325930"
+      },
+      "id": "person-wd-q325930",
+      "last_verified": "2026-07-26",
+      "name_en": "Bernardo Rossellino",
+      "name_native": null,
+      "name_zh": "贝尔纳多·罗塞利诺",
+      "name_zh_status": "source_label_candidate",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "claim_ids": [
+        "claim-wd-q3338342-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q3338342"
+      },
+      "id": "person-wd-q3338342",
+      "last_verified": "2026-07-26",
+      "name_en": "Neri di Fioravante",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [
+        "Nicolas-Marie Potain",
+        "Nicolas Potain",
+        "N. M. Potain",
+        "M. Potain",
+        "Potain"
+      ],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "claim_ids": [
+        "claim-wd-q3340563-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q3340563"
+      },
+      "id": "person-wd-q3340563",
+      "last_verified": "2026-07-26",
+      "name_en": "Nicolas Marie Potain",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [
+        "Dom. Fontana"
+      ],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "claim_ids": [
+        "claim-wd-q336806-name-en",
+        "claim-wd-q336806-name-zh"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q336806"
+      },
+      "id": "person-wd-q336806",
+      "last_verified": "2026-07-26",
+      "name_en": "Domenico Fontana",
+      "name_native": null,
+      "name_zh": "多梅尼科·丰塔纳",
       "name_zh_status": "source_label_candidate",
       "region": "unknown",
       "roles": [
@@ -746,7 +3795,7 @@
         "wikidata": "Q3387499"
       },
       "id": "person-wd-q3387499",
-      "last_verified": "2026-07-25",
+      "last_verified": "2026-07-26",
       "name_en": "Pierre de Chelles",
       "name_native": null,
       "name_zh": "皮埃尔·德·谢勒",
@@ -786,11 +3835,191 @@
         "wikidata": "Q3438660"
       },
       "id": "person-wd-q3438660",
-      "last_verified": "2026-07-25",
+      "last_verified": "2026-07-26",
       "name_en": "Roger Aujame",
       "name_native": null,
       "name_zh": null,
       "name_zh_status": "missing",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [
+        "Claude Perreau",
+        "Perrault"
+      ],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "claim_ids": [
+        "claim-wd-q347699-name-en",
+        "claim-wd-q347699-name-zh"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q347699"
+      },
+      "id": "person-wd-q347699",
+      "last_verified": "2026-07-26",
+      "name_en": "Claude Perrault",
+      "name_native": null,
+      "name_zh": "克洛德·佩羅",
+      "name_zh_status": "source_label_candidate",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [
+        "Jacques-Anges Gabriel",
+        "Jacques Ange Gabriel",
+        "Ange Jacques Gabriel",
+        "Gabriel"
+      ],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "claim_ids": [
+        "claim-wd-q352451-name-en",
+        "claim-wd-q352451-name-zh"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q352451"
+      },
+      "id": "person-wd-q352451",
+      "last_verified": "2026-07-26",
+      "name_en": "Ange-Jacques Gabriel",
+      "name_native": null,
+      "name_zh": "安热-雅克·加布里埃尔",
+      "name_zh_status": "source_label_candidate",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [
+        "Antonio da Sangalio the Younger",
+        "Antonio, il giovane Da Sangallo",
+        "Antonio da Sangallo",
+        "Antonio da, the younger Sangallo",
+        "Antonio da Sangallo il giovane",
+        "Antonio Da, The Younger Sangallo",
+        "Antonio da Sangallo il Giovane",
+        "Sangallo",
+        "Antonio Cordiani",
+        "Antonio Da Sangallo",
+        "Antonio da, the Younger Sangallo",
+        "Antonio Da Sangallo The Younger",
+        "Antonio il Giovane Sangallo",
+        "Antonio Cordini",
+        "Antonio Giamberti"
+      ],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "claim_ids": [
+        "claim-wd-q357276-name-en",
+        "claim-wd-q357276-name-zh"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q357276"
+      },
+      "id": "person-wd-q357276",
+      "last_verified": "2026-07-26",
+      "name_en": "Antonio da Sangallo the Younger",
+      "name_native": null,
+      "name_zh": "小安东尼奥·达·桑加罗",
+      "name_zh_status": "source_label_candidate",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "claim_ids": [
+        "claim-wd-q359424-name-en",
+        "claim-wd-q359424-name-zh"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q359424"
+      },
+      "id": "person-wd-q359424",
+      "last_verified": "2026-07-26",
+      "name_en": "Luigi Vanvitelli",
+      "name_native": null,
+      "name_zh": "路易吉·范维德里",
+      "name_zh_status": "source_label_candidate",
       "region": "unknown",
       "roles": [
         "architect"
@@ -825,11 +4054,145 @@
         "wikidata": "Q3610838"
       },
       "id": "person-wd-q3610838",
-      "last_verified": "2026-07-25",
+      "last_verified": "2026-07-26",
       "name_en": "Gunadharma",
       "name_native": null,
       "name_zh": "古納達摩",
       "name_zh_status": "source_label_candidate",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [
+        "Adolph Lohse"
+      ],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "claim_ids": [
+        "claim-wd-q363184-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q363184"
+      },
+      "id": "person-wd-q363184",
+      "last_verified": "2026-07-26",
+      "name_en": "Adolf Lohse",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [
+        "Niccolò Pisano",
+        "Nicola da Pisa",
+        "Niccolo Pisano"
+      ],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "claim_ids": [
+        "claim-wd-q364413-name-en",
+        "claim-wd-q364413-name-zh"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q364413"
+      },
+      "id": "person-wd-q364413",
+      "last_verified": "2026-07-26",
+      "name_en": "Nicola Pisano",
+      "name_native": null,
+      "name_zh": "尼可拉·乔凡尼",
+      "name_zh_status": "source_label_candidate",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [
+        "Andrea di Cione Orcagna",
+        "Andrea di Cione Orgagna",
+        "Andrea Di Cione Orgagna",
+        "Orgagna",
+        "Andrea Di Cione Arcagnuolo",
+        "Andrea Di Cione Orcagna",
+        "Arcagnuoulo",
+        "Andrea di Cione Arcagnuolo",
+        "Andrea Orcagna",
+        "Andrea di Cione",
+        "Andrea Orgagna",
+        "Andrea di Cione Arcagnolo"
+      ],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "claim_ids": [
+        "claim-wd-q366499-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q366499"
+      },
+      "id": "person-wd-q366499",
+      "last_verified": "2026-07-26",
+      "name_en": "Orcagna",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
       "region": "unknown",
       "roles": [
         "architect"
@@ -867,7 +4230,7 @@
         "wikidata": "Q374131"
       },
       "id": "person-wd-q374131",
-      "last_verified": "2026-07-25",
+      "last_verified": "2026-07-26",
       "name_en": "Jean de Chelles",
       "name_native": null,
       "name_zh": "让·德·谢勒",
@@ -911,10 +4274,442 @@
         "wikidata": "Q374276"
       },
       "id": "person-wd-q374276",
-      "last_verified": "2026-07-25",
+      "last_verified": "2026-07-26",
       "name_en": "Adrian Smith",
       "name_native": null,
       "name_zh": "亞德里恩·史密斯",
+      "name_zh_status": "source_label_candidate",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [
+        "Francesco di Giovanni di Francesco di Matteo",
+        "Franciscus Johannis",
+        "Francesco di Giovanni di Francesco",
+        "Francesco di Giovanni",
+        "Francesco di Giorgio di Matteo Francione"
+      ],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "claim_ids": [
+        "claim-wd-q3750904-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q3750904"
+      },
+      "id": "person-wd-q3750904",
+      "last_verified": "2026-07-26",
+      "name_en": "Francione",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [
+        "Pierre II Lescot",
+        "Pierre I Lescot"
+      ],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "claim_ids": [
+        "claim-wd-q381724-name-en",
+        "claim-wd-q381724-name-zh"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q381724"
+      },
+      "id": "person-wd-q381724",
+      "last_verified": "2026-07-26",
+      "name_en": "Pierre Lescot",
+      "name_native": null,
+      "name_zh": "皮埃尔·莱斯科",
+      "name_zh_status": "source_label_candidate",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [
+        "Jacopo Tedesco"
+      ],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "claim_ids": [
+        "claim-wd-q3827020-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q3827020"
+      },
+      "id": "person-wd-q3827020",
+      "last_verified": "2026-07-26",
+      "name_en": "Lapo Tedesco",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [
+        "Nicolo Barattieri"
+      ],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "claim_ids": [
+        "claim-wd-q3876542-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q3876542"
+      },
+      "id": "person-wd-q3876542",
+      "last_verified": "2026-07-26",
+      "name_en": "Nicolò Barattieri",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [
+        "Matthew of Arras",
+        "Matyáš z Arrasu"
+      ],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "claim_ids": [
+        "claim-wd-q388362-name-en",
+        "claim-wd-q388362-name-zh"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q388362"
+      },
+      "id": "person-wd-q388362",
+      "last_verified": "2026-07-26",
+      "name_en": "Matthias of Arras",
+      "name_native": null,
+      "name_zh": "阿拉斯的马修",
+      "name_zh_status": "source_label_candidate",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "claim_ids": [
+        "claim-wd-q395578-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q395578"
+      },
+      "id": "person-wd-q395578",
+      "last_verified": "2026-07-26",
+      "name_en": "Agostino Barelli",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "claim_ids": [
+        "claim-wd-q445970-name-en",
+        "claim-wd-q445970-name-zh"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q445970"
+      },
+      "id": "person-wd-q445970",
+      "last_verified": "2026-07-26",
+      "name_en": "David Gilly",
+      "name_native": null,
+      "name_zh": "大卫·基利",
+      "name_zh_status": "source_label_candidate",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [
+        "Nicodemus, the Younger Tessin",
+        "Nicodemus, Greve Tessin",
+        "Nicodemus II, Greve Tessin",
+        "Nicodemus Tessin II",
+        "Nicodemus, the younger Tessin",
+        "Nicodemus, II Tessin",
+        "Count Nicodemus Tessin",
+        "Nicodemus Tessin",
+        "Nicodemus II Tessin",
+        "Nicodemus, greve Tessin",
+        "Nicodemus  Tessin (II)"
+      ],
+      "aliases_zh": [
+        "尼哥德慕·提契諾二世"
+      ],
+      "birth": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "claim_ids": [
+        "claim-wd-q455143-name-en",
+        "claim-wd-q455143-name-zh"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q455143"
+      },
+      "id": "person-wd-q455143",
+      "last_verified": "2026-07-26",
+      "name_en": "Nicodemus Tessin the Younger",
+      "name_native": null,
+      "name_zh": "年輕的尼哥德慕·提契諾",
+      "name_zh_status": "source_label_candidate",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [
+        "Hooke"
+      ],
+      "aliases_zh": [
+        "胡克",
+        "虎克",
+        "羅伯特·虎克"
+      ],
+      "birth": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "claim_ids": [
+        "claim-wd-q46830-name-en",
+        "claim-wd-q46830-name-zh"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q46830"
+      },
+      "id": "person-wd-q46830",
+      "last_verified": "2026-07-26",
+      "name_en": "Robert Hooke",
+      "name_native": null,
+      "name_zh": "罗伯特·胡克",
+      "name_zh_status": "source_label_candidate",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [
+        "Ieoh Ming Pei",
+        "Yuming Bei",
+        "Yü-Ming Pei",
+        "Bèi Yù Míng",
+        "Bei Yu Ming",
+        "IM Pei",
+        "I.M. Pei"
+      ],
+      "aliases_zh": [
+        "貝聿銘"
+      ],
+      "birth": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "claim_ids": [
+        "claim-wd-q46868-name-en",
+        "claim-wd-q46868-name-zh"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q46868"
+      },
+      "id": "person-wd-q46868",
+      "last_verified": "2026-07-26",
+      "name_en": "I. M. Pei",
+      "name_native": null,
+      "name_zh": "贝聿铭",
       "name_zh_status": "source_label_candidate",
       "region": "unknown",
       "roles": [
@@ -975,11 +4770,99 @@
         "wikidata": "Q4724"
       },
       "id": "person-wd-q4724",
-      "last_verified": "2026-07-25",
+      "last_verified": "2026-07-26",
       "name_en": "Le Corbusier",
       "name_native": null,
       "name_zh": "勒·柯布西耶",
       "name_zh_status": "source_label_candidate",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [
+        "Andrea Bonaiuti",
+        "Andrea da Firenze",
+        "Andrea da Firenze i",
+        "Andrea Di Bonaiuto",
+        "Andrea di Firenze",
+        "di Bonaiuto Andrea",
+        "Andrea Da Firenze",
+        "Andrea di Bonaiuti",
+        "Andrea da Firenze.",
+        "Bonaiuto",
+        "Andrea da Firenze op.c.1350-1387(?)"
+      ],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "claim_ids": [
+        "claim-wd-q495419-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q495419"
+      },
+      "id": "person-wd-q495419",
+      "last_verified": "2026-07-26",
+      "name_en": "Andrea di Bonaiuto",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "claim_ids": [
+        "claim-wd-q501406-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q501406"
+      },
+      "id": "person-wd-q501406",
+      "last_verified": "2026-07-26",
+      "name_en": "Andreas von Everdingen",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
       "region": "unknown",
       "roles": [
         "architect"
@@ -1014,10 +4897,222 @@
         "wikidata": "Q5540994"
       },
       "id": "person-wd-q5540994",
-      "last_verified": "2026-07-25",
+      "last_verified": "2026-07-26",
       "name_en": "George J. Efstathiou",
       "name_native": null,
       "name_zh": "喬治·埃夫斯塔修",
+      "name_zh_status": "source_label_candidate",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "claim_ids": [
+        "claim-wd-q55761504-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q55761504"
+      },
+      "id": "person-wd-q55761504",
+      "last_verified": "2026-07-26",
+      "name_en": "Lorenzo Perti",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [
+        "Fra Giovanni Giocondo",
+        "Giovanni Ognibene",
+        "Jean Joconde",
+        "fra' Giocondo",
+        "Giovanni da Verona",
+        "Joannes Jucundus",
+        "Jucundus Veronensis",
+        "Joannes Jocundus Veronensis",
+        "Fra Giovanni Giocondo da Verona",
+        "Ioannes Iucundus",
+        "Fra Giovanni da Verona",
+        "Fra' Giocondo",
+        "Jocundus",
+        "Giovanni Da Verona Giocondo",
+        "Fra Giocondo",
+        "Fra Gicondo",
+        "Frere Jean de Vérone",
+        "Johannes ex Verona",
+        "Johannes of Verona",
+        "Johannes von Verona",
+        "Jean, de Vérone"
+      ],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "claim_ids": [
+        "claim-wd-q5585-name-en",
+        "claim-wd-q5585-name-zh"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q5585"
+      },
+      "id": "person-wd-q5585",
+      "last_verified": "2026-07-26",
+      "name_en": "Giovanni Giocondo",
+      "name_native": null,
+      "name_zh": "喬瓦尼·喬康多",
+      "name_zh_status": "source_label_candidate",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [
+        "Michael Agnolo",
+        "Michael Angel",
+        "Michael Angelo Bonalotti",
+        "Michael Angelo Bonnarotti",
+        "Michael Angelo Buona Rota",
+        "Michael Angelo Buona Roti",
+        "Michael Angelo Buonarota",
+        "Michael Angelo Buonaroti",
+        "Michael Angelo Buonarotti",
+        "Michael Angelo de Bonarotti",
+        "Michael Angelo di Buonarotti",
+        "Michael Anglelo",
+        "Michaelangelo",
+        "Micheangiolo Buonarroti"
+      ],
+      "aliases_zh": [
+        "麥開蘭基羅",
+        "米高安捷羅",
+        "米開朗基羅",
+        "米高安哲羅",
+        "米开朗基罗",
+        "米開朗基羅·波納羅蒂",
+        "米開蘭基羅",
+        "米开朗基罗·博纳罗蒂",
+        "米开朗琪罗，B."
+      ],
+      "birth": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "claim_ids": [
+        "claim-wd-q5592-name-en",
+        "claim-wd-q5592-name-zh"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q5592"
+      },
+      "id": "person-wd-q5592",
+      "last_verified": "2026-07-26",
+      "name_en": "Michelangelo",
+      "name_native": null,
+      "name_zh": "米开朗琪罗",
+      "name_zh_status": "source_label_candidate",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [
+        "Raffaello Sanzio da Urbino",
+        "Santi Raphael",
+        "Raffale Sanzio",
+        "Rafael Sanzio"
+      ],
+      "aliases_zh": [
+        "拉斐尔·桑齐奥",
+        "拉斐爾",
+        "拉斐尔",
+        "拉菲爾"
+      ],
+      "birth": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "claim_ids": [
+        "claim-wd-q5597-name-en",
+        "claim-wd-q5597-name-zh"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q5597"
+      },
+      "id": "person-wd-q5597",
+      "last_verified": "2026-07-26",
+      "name_en": "Raphael",
+      "name_native": null,
+      "name_zh": "拉斐尔·圣齐奥",
       "name_zh_status": "source_label_candidate",
       "region": "unknown",
       "roles": [
@@ -1065,11 +5160,92 @@
         "wikidata": "Q5604"
       },
       "id": "person-wd-q5604",
-      "last_verified": "2026-07-25",
+      "last_verified": "2026-07-26",
       "name_en": "Frank Lloyd Wright",
       "name_native": null,
       "name_zh": "弗兰克·劳埃德·赖特",
       "name_zh_status": "source_label_candidate",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [
+        "Robert De Cotte"
+      ],
+      "aliases_zh": [
+        "羅貝爾·德·科特"
+      ],
+      "birth": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "claim_ids": [
+        "claim-wd-q568839-name-en",
+        "claim-wd-q568839-name-zh"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q568839"
+      },
+      "id": "person-wd-q568839",
+      "last_verified": "2026-07-26",
+      "name_en": "Robert de Cotte",
+      "name_native": null,
+      "name_zh": "罗贝尔·德·科特",
+      "name_zh_status": "source_label_candidate",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "claim_ids": [
+        "claim-wd-q573740-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q573740"
+      },
+      "id": "person-wd-q573740",
+      "last_verified": "2026-07-26",
+      "name_en": "Christian Jank",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
       "region": "unknown",
       "roles": [
         "architect"
@@ -1106,7 +5282,7 @@
         "wikidata": "Q59087"
       },
       "id": "person-wd-q59087",
-      "last_verified": "2026-07-25",
+      "last_verified": "2026-07-26",
       "name_en": "Hemiunu",
       "name_native": null,
       "name_zh": "赫米乌努",
@@ -1147,8 +5323,94 @@
         "wikidata": "Q59510574"
       },
       "id": "person-wd-q59510574",
-      "last_verified": "2026-07-25",
+      "last_verified": "2026-07-26",
       "name_en": "William J Conklin",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [
+        "Francois Blondel the Elder",
+        "François, the elder Blondel",
+        "Nicolas François Blondel",
+        "Nicolas-François Blondel",
+        "François, I Blondel"
+      ],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "claim_ids": [
+        "claim-wd-q600701-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q600701"
+      },
+      "id": "person-wd-q600701",
+      "last_verified": "2026-07-26",
+      "name_en": "François Blondel",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [
+        "Antonio Riccio",
+        "Antonio Rizo",
+        "Antonio Bregno"
+      ],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "claim_ids": [
+        "claim-wd-q604631-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q604631"
+      },
+      "id": "person-wd-q604631",
+      "last_verified": "2026-07-26",
+      "name_en": "Antonio Rizzo",
       "name_native": null,
       "name_zh": null,
       "name_zh_status": "missing",
@@ -1199,10 +5461,278 @@
         "wikidata": "Q61071"
       },
       "id": "person-wd-q61071",
-      "last_verified": "2026-07-25",
+      "last_verified": "2026-07-26",
       "name_en": "Walter Gropius",
       "name_native": null,
       "name_zh": "瓦尔特·格罗皮乌斯",
+      "name_zh_status": "source_label_candidate",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [
+        "Nicodemus, I Tessin",
+        "Nicodemus, the elder Tessin",
+        "Nicodemus I Tessin",
+        "Nicodemus, the Elder Tessin",
+        "Nicodemus Tessin"
+      ],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "claim_ids": [
+        "claim-wd-q61188-name-en",
+        "claim-wd-q61188-name-zh"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q61188"
+      },
+      "id": "person-wd-q61188",
+      "last_verified": "2026-07-26",
+      "name_en": "Nicodemus Tessin the Elder",
+      "name_native": null,
+      "name_zh": "尼科德姆斯·特辛父子",
+      "name_zh_status": "source_label_candidate",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [
+        "Peter Parler von Gmünd",
+        "Peter Perler"
+      ],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "claim_ids": [
+        "claim-wd-q61332-name-en",
+        "claim-wd-q61332-name-zh"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q61332"
+      },
+      "id": "person-wd-q61332",
+      "last_verified": "2026-07-26",
+      "name_en": "Peter Parler",
+      "name_native": null,
+      "name_zh": "彼得·帕尔莱日",
+      "name_zh_status": "source_label_candidate",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [
+        "Jean-Baptiste-Alexandre Le Blond",
+        "Jean Baptiste Alexandre Le Blond",
+        "Alexandre Jean Baptiste Le Blond",
+        "Jean Leblond",
+        "Alexandre-Jean-Baptiste Leblond",
+        "Alexandre Jean-Baptiste Le Blond",
+        "Jean Baptiste Alexandre le Blond",
+        "Alexandre-Jean-Baptiste Le Blond",
+        "Jean Baptiste Alexandre LeBlond",
+        "Jean Baptiste Alexandre Leblon",
+        "Alexandre Jean-Babtiste le Blond",
+        "Le Blond fils",
+        "Le Blond"
+      ],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "claim_ids": [
+        "claim-wd-q618237-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q618237"
+      },
+      "id": "person-wd-q618237",
+      "last_verified": "2026-07-26",
+      "name_en": "Jean-Baptiste Alexandre Le Blond",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [
+        "Abraham Svansköld"
+      ],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "claim_ids": [
+        "claim-wd-q6243838-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q6243838"
+      },
+      "id": "person-wd-q6243838",
+      "last_verified": "2026-07-26",
+      "name_en": "Abraham Winantz Svansköld",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [
+        "Matthes Daniel Pöppelmann",
+        "Matthes Pöppelmann",
+        "Matthaus Daniel Poppelmann",
+        "Matthaüs-Daniel Pöppelmann",
+        "Matthaus Daniel Pöppelmann"
+      ],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "claim_ids": [
+        "claim-wd-q62637-name-en",
+        "claim-wd-q62637-name-zh"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q62637"
+      },
+      "id": "person-wd-q62637",
+      "last_verified": "2026-07-26",
+      "name_en": "Matthäus Daniel Pöppelmann",
+      "name_native": null,
+      "name_zh": "马特乌斯•丹尼尔•珀佩尔曼",
+      "name_zh_status": "source_label_candidate",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [
+        "David Friedrich Gilly",
+        "Friedrich David Gilly"
+      ],
+      "aliases_zh": [
+        "弗里德里希·吉利"
+      ],
+      "birth": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "claim_ids": [
+        "claim-wd-q62973-name-en",
+        "claim-wd-q62973-name-zh"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q62973"
+      },
+      "id": "person-wd-q62973",
+      "last_verified": "2026-07-26",
+      "name_en": "Friedrich Gilly",
+      "name_native": null,
+      "name_zh": "弗里德里希·基利",
       "name_zh_status": "source_label_candidate",
       "region": "unknown",
       "roles": [
@@ -1237,7 +5767,7 @@
         "wikidata": "Q640949"
       },
       "id": "person-wd-q640949",
-      "last_verified": "2026-07-25",
+      "last_verified": "2026-07-26",
       "name_en": "Steen Eiler Rasmussen",
       "name_native": null,
       "name_zh": null,
@@ -1277,11 +5807,433 @@
         "wikidata": "Q64797517"
       },
       "id": "person-wd-q64797517",
-      "last_verified": "2026-07-25",
+      "last_verified": "2026-07-26",
       "name_en": "Peter Hall",
       "name_native": null,
       "name_zh": null,
       "name_zh_status": "missing",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [
+        "Erwin",
+        "von Steinbach"
+      ],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "claim_ids": [
+        "claim-wd-q68243-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q68243"
+      },
+      "id": "person-wd-q68243",
+      "last_verified": "2026-07-26",
+      "name_en": "Erwin von Steinbach",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "claim_ids": [
+        "claim-wd-q69207-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q69207"
+      },
+      "id": "person-wd-q69207",
+      "last_verified": "2026-07-26",
+      "name_en": "Ernst Friedrich Zwirner",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "claim_ids": [
+        "claim-wd-q696582-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q696582"
+      },
+      "id": "person-wd-q696582",
+      "last_verified": "2026-07-26",
+      "name_en": "Arnold Wolff",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [
+        "Ludwig Persius",
+        "Persius Ludwig"
+      ],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "claim_ids": [
+        "claim-wd-q700033-name-en",
+        "claim-wd-q700033-name-zh"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q700033"
+      },
+      "id": "person-wd-q700033",
+      "last_verified": "2026-07-26",
+      "name_en": "Friedrich Ludwig Persius",
+      "name_native": null,
+      "name_zh": "路德维希·佩尔修斯",
+      "name_zh_status": "source_label_candidate",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "claim_ids": [
+        "claim-wd-q706549-name-en",
+        "claim-wd-q706549-name-zh"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q706549"
+      },
+      "id": "person-wd-q706549",
+      "last_verified": "2026-07-26",
+      "name_en": "William Van Alen",
+      "name_native": null,
+      "name_zh": "威廉·范·艾倫",
+      "name_zh_status": "source_label_candidate",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "claim_ids": [
+        "claim-wd-q715086-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q715086"
+      },
+      "id": "person-wd-q715086",
+      "last_verified": "2026-07-26",
+      "name_en": "Carlo Antonio Carlone",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [
+        "Gaudenzio de Vince",
+        "Gaudenzio de Vincio",
+        "Gaudenzio da Vincio",
+        "Gaudinzio Ferrari",
+        "Godiancure",
+        "Gaudenzio De Vincio Ferrari",
+        "Gaudenzio de Vincius",
+        "Gaudenzio Milanese",
+        "Guadenzio Ferrari",
+        "Gaudentio Ferrari",
+        "Gandenzio",
+        "Le Gaudentio",
+        "Gaudentius",
+        "Gaudentio",
+        "Gaudentio da Verallo",
+        "Gaudenzio"
+      ],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "claim_ids": [
+        "claim-wd-q734108-name-en",
+        "claim-wd-q734108-name-zh"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q734108"
+      },
+      "id": "person-wd-q734108",
+      "last_verified": "2026-07-26",
+      "name_en": "Gaudenzio Ferrari",
+      "name_native": null,
+      "name_zh": "高登齊奧·費拉里",
+      "name_zh_status": "source_label_candidate",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [
+        "Pyrrhus Ligorius",
+        "Pyrro Ligorio",
+        "Pyrrus Ligorius",
+        "Pirrho Ligorio",
+        "P. Ligorio",
+        "Perino Ligorio"
+      ],
+      "aliases_zh": [
+        "皮洛·利戈里奧",
+        "皮罗·利戈里奥"
+      ],
+      "birth": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "claim_ids": [
+        "claim-wd-q736090-name-en",
+        "claim-wd-q736090-name-zh"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q736090"
+      },
+      "id": "person-wd-q736090",
+      "last_verified": "2026-07-26",
+      "name_en": "Pirro Ligorio",
+      "name_native": null,
+      "name_zh": "皮羅·利高里奧",
+      "name_zh_status": "source_label_candidate",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "claim_ids": [
+        "claim-wd-q7520449-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q7520449"
+      },
+      "id": "person-wd-q7520449",
+      "last_verified": "2026-07-26",
+      "name_en": "Simone da Orsenigo",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [
+        "Dioti Salvi",
+        "Deotisalvi",
+        "Diotosalvi magister"
+      ],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "claim_ids": [
+        "claim-wd-q763522-name-en",
+        "claim-wd-q763522-name-zh"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q763522"
+      },
+      "id": "person-wd-q763522",
+      "last_verified": "2026-07-26",
+      "name_en": "Diotisalvi",
+      "name_native": null,
+      "name_zh": "迪奥提撒威",
+      "name_zh_status": "source_label_candidate",
       "region": "unknown",
       "roles": [
         "architect"
@@ -1316,11 +6268,514 @@
         "wikidata": "Q76726"
       },
       "id": "person-wd-q76726",
-      "last_verified": "2026-07-25",
+      "last_verified": "2026-07-26",
       "name_en": "Peter Behrens",
       "name_native": null,
       "name_zh": "彼得·贝伦斯",
       "name_zh_status": "source_label_candidate",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [
+        "Georg Carl Heinrich von Dollmann"
+      ],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "claim_ids": [
+        "claim-wd-q77138-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q77138"
+      },
+      "id": "person-wd-q77138",
+      "last_verified": "2026-07-26",
+      "name_en": "Georg von Dollmann",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [],
+      "aliases_zh": [
+        "约翰·罗布林",
+        "约翰·A·罗布林",
+        "约翰·奥古斯塔·罗布林",
+        "約翰·A·羅柏林"
+      ],
+      "birth": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "claim_ids": [
+        "claim-wd-q77237-name-en",
+        "claim-wd-q77237-name-zh"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q77237"
+      },
+      "id": "person-wd-q77237",
+      "last_verified": "2026-07-26",
+      "name_en": "John Augustus Roebling",
+      "name_native": null,
+      "name_zh": "約翰·奧古斯塔斯·羅布林",
+      "name_zh_status": "source_label_candidate",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [
+        "Eugène Stéphen Sauvestre"
+      ],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "claim_ids": [
+        "claim-wd-q778243-name-en",
+        "claim-wd-q778243-name-zh"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q778243"
+      },
+      "id": "person-wd-q778243",
+      "last_verified": "2026-07-26",
+      "name_en": "Stéphen Sauvestre",
+      "name_native": null,
+      "name_zh": "斯蒂芬·索韦斯特",
+      "name_zh_status": "source_label_candidate",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [
+        "Donino Bramante",
+        "Donato da Urbino",
+        "Donato Di Angelo di Antonio",
+        "Donnino di Angelo di Antonio",
+        "Donato Bramante da Urbino",
+        "Donnino Di Angelo di Antonio",
+        "Donnino di Angelo Di Antonio",
+        "Bramantes Asdryvaldinus",
+        "Bramante de Asdrubaldinis",
+        "Donato d' Angeli Lazzari",
+        "Donato D'Angeli Lazzari",
+        "Donato di Angelo Di Antonio",
+        "Donato d'Angelo Lazzari Bramante",
+        "Donato, da Urbino Bramante",
+        "Donato Lazzari",
+        "Donnino Bramante",
+        "Donato Lazari",
+        "Donato di Angelo di Antonio",
+        "Donato Bramanti",
+        "Lazzari Bramante Da Urbino",
+        "Donato Bramante Da Urbino",
+        "Donato D'Urbino",
+        "Bramante",
+        "Donato d'Angelo Lazzari",
+        "Bromarti",
+        "Urbino Bramante",
+        "Bramante da Urbino",
+        "Bramanti"
+      ],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "claim_ids": [
+        "claim-wd-q7793-name-en",
+        "claim-wd-q7793-name-zh"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q7793"
+      },
+      "id": "person-wd-q7793",
+      "last_verified": "2026-07-26",
+      "name_en": "Donato Bramante",
+      "name_native": null,
+      "name_zh": "多纳托·伯拉孟特",
+      "name_zh_status": "source_label_candidate",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [
+        "di Bondone Giotto",
+        "Giotti",
+        "Giotto Di Bondone",
+        "Giotto de Bondone",
+        "Giotto Fiorentino",
+        "Ambrogio Bondone",
+        "Ambrogio di Bondone",
+        "Angelus de, detto Giotto Bondonis",
+        "Dzhotto di Bondone",
+        "L. di Giotto",
+        "Giottè",
+        "Giott`e",
+        "Ambrogio Bondone Giotto",
+        "Le Giotto",
+        "Dzhiotto",
+        "Ambrogio di Bondone Giotto",
+        "Giotto da Vespignano"
+      ],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "claim_ids": [
+        "claim-wd-q7814-name-en",
+        "claim-wd-q7814-name-zh"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q7814"
+      },
+      "id": "person-wd-q7814",
+      "last_verified": "2026-07-26",
+      "name_en": "Giotto",
+      "name_native": null,
+      "name_zh": "喬托·迪·邦多內",
+      "name_zh_status": "source_label_candidate",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "claim_ids": [
+        "claim-wd-q78705-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q78705"
+      },
+      "id": "person-wd-q78705",
+      "last_verified": "2026-07-26",
+      "name_en": "Kaspar Kraemer",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [
+        "Nikolaus Pacassi",
+        "Pacassi, Nicolò",
+        "Pacassi, Nikolaus",
+        "Nicolo Pacassi",
+        "Niccolò Paccassi",
+        "Nikolaus Franz Leonhard Pacassi",
+        "Nicolo Paccassi",
+        "Nikolaus Franz Leonhard Paccassi",
+        "Nikolaus Paccassi",
+        "Niccolò Pacassi",
+        "Niccolo Paccassi",
+        "Niccolo Pacassi"
+      ],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "claim_ids": [
+        "claim-wd-q78775-name-en",
+        "claim-wd-q78775-name-zh"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q78775"
+      },
+      "id": "person-wd-q78775",
+      "last_verified": "2026-07-26",
+      "name_en": "Nicolò Pacassi",
+      "name_native": null,
+      "name_zh": "尼科洛·帕卡西",
+      "name_zh_status": "source_label_candidate",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [
+        "English William"
+      ],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "claim_ids": [
+        "claim-wd-q8020916-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q8020916"
+      },
+      "id": "person-wd-q8020916",
+      "last_verified": "2026-07-26",
+      "name_en": "William the Englishman",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [
+        "J. H.- Mansart",
+        "Jules-Hardouin Mansart",
+        "Jules Hardouin",
+        "J. H.-Mansard",
+        "Jacques Hardouin Mansart",
+        "Jules Hardouin Mansard",
+        "Jules Hardoun Mandard"
+      ],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "claim_ids": [
+        "claim-wd-q8053-name-en",
+        "claim-wd-q8053-name-zh"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q8053"
+      },
+      "id": "person-wd-q8053",
+      "last_verified": "2026-07-26",
+      "name_en": "Jules Hardouin-Mansart",
+      "name_native": null,
+      "name_zh": "朱尔·阿杜安-芒萨尔",
+      "name_zh_status": "source_label_candidate",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "claim_ids": [
+        "claim-wd-q8192112-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q8192112"
+      },
+      "id": "person-wd-q8192112",
+      "last_verified": "2026-07-26",
+      "name_en": "Ahmad Ben Baso",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "claim_ids": [
+        "claim-wd-q825230-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q825230"
+      },
+      "id": "person-wd-q825230",
+      "last_verified": "2026-07-26",
+      "name_en": "Bernhard Hertel",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
       "region": "unknown",
       "roles": [
         "architect"
@@ -1356,7 +6811,7 @@
         "wikidata": "Q834068"
       },
       "id": "person-wd-q834068",
-      "last_verified": "2026-07-25",
+      "last_verified": "2026-07-26",
       "name_en": "Ioannis Despotopoulos",
       "name_native": null,
       "name_zh": null,
@@ -1399,11 +6854,385 @@
         "wikidata": "Q834854"
       },
       "id": "person-wd-q834854",
-      "last_verified": "2026-07-25",
+      "last_verified": "2026-07-26",
       "name_en": "William F. Baker",
       "name_native": null,
       "name_zh": "威廉·貝克",
       "name_zh_status": "source_label_candidate",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [
+        "Johann Bernard Fischer Von Erlach",
+        "Johann Bernard Fischer von Erlach"
+      ],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "claim_ids": [
+        "claim-wd-q84305-name-en",
+        "claim-wd-q84305-name-zh"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q84305"
+      },
+      "id": "person-wd-q84305",
+      "last_verified": "2026-07-26",
+      "name_en": "Johann Bernhard Fischer von Erlach",
+      "name_native": null,
+      "name_zh": "约翰·伯恩哈德·菲舍尔·冯·埃尔拉赫",
+      "name_zh_status": "source_label_candidate",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [
+        "Bonanno da Pisa",
+        "Bonanno of Pisa",
+        "Bonnano Pisano",
+        "Bonannus of Pisa",
+        "Bonanus of Pisa"
+      ],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "claim_ids": [
+        "claim-wd-q892084-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q892084"
+      },
+      "id": "person-wd-q892084",
+      "last_verified": "2026-07-26",
+      "name_en": "Bonanno Pisano",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [
+        "Ochoa, Juan de",
+        "Ochoa Méndez, Juan de"
+      ],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "claim_ids": [
+        "claim-wd-q91338534-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q91338534"
+      },
+      "id": "person-wd-q91338534",
+      "last_verified": "2026-07-26",
+      "name_en": "Juan de Ochoa",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "claim_ids": [
+        "claim-wd-q95198-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q95198"
+      },
+      "id": "person-wd-q95198",
+      "last_verified": "2026-07-26",
+      "name_en": "Master Gerhard",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [
+        "Gilles Marie Oppenordt",
+        "Gilles Marie Oppenort",
+        "Gilles-Marie Oppenoordt",
+        "Gilles Marie Oppendort",
+        "Gilles Marie Oppenoordt",
+        "Gilles Marie Oppenord",
+        "Gilles-Marie Oppenort",
+        "Gilles Marie op den Oordt",
+        "Openord",
+        "G. M. Oppenord",
+        "Opnor",
+        "Openor",
+        "Oppenord",
+        "Oppenort",
+        "Oppenor",
+        "Gilles-Marie Oppenordt"
+      ],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "claim_ids": [
+        "claim-wd-q958293-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q958293"
+      },
+      "id": "person-wd-q958293",
+      "last_verified": "2026-07-26",
+      "name_en": "Gilles-Marie Oppenord",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "claim_ids": [
+        "claim-wd-q95950894-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q95950894"
+      },
+      "id": "person-wd-q95950894",
+      "last_verified": "2026-07-26",
+      "name_en": "Guglielmo",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "claim_ids": [
+        "claim-wd-q97571484-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q97571484"
+      },
+      "id": "person-wd-q97571484",
+      "last_verified": "2026-07-26",
+      "name_en": "Tommaso Pisano",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "claim_ids": [
+        "claim-wd-q98089-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q98089"
+      },
+      "id": "person-wd-q98089",
+      "last_verified": "2026-07-26",
+      "name_en": "Barbara Schock-Werner",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [
+        "Francesco De Sanctis"
+      ],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "claim_ids": [
+        "claim-wd-q982003-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q982003"
+      },
+      "id": "person-wd-q982003",
+      "last_verified": "2026-07-26",
+      "name_en": "Francesco de Sanctis",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
       "region": "unknown",
       "roles": [
         "architect"

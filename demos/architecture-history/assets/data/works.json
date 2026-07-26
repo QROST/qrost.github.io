@@ -2,6 +2,258 @@
   "works": [
     {
       "aliases_en": [
+        "Flavian Amphitheatre",
+        "Roman Colosseum",
+        "Roman Coliseum",
+        "Coliseum",
+        "Flavian Amphitheater",
+        "Flavius amphitheatre"
+      ],
+      "aliases_zh": [
+        "古罗马斗兽场",
+        "罗马大角斗场",
+        "罗马角斗场",
+        "羅馬鬥獸場",
+        "大競技場",
+        "古罗马大竞技场",
+        "羅馬競技場",
+        "科洛西姆",
+        "哥罗塞姆",
+        "科罗赛姆",
+        "科里色姆斗兽场"
+      ],
+      "attribution_mode": "unknown",
+      "claim_ids": [
+        "claim-wd-q10285-name-en",
+        "claim-wd-q10285-name-zh",
+        "claim-wd-q10285-coordinates",
+        "claim-wd-q10285-p571-1",
+        "claim-wd-q10285-p1619-1"
+      ],
+      "confidence": 0.6,
+      "coordinates": {
+        "claim_id": "claim-wd-q10285-coordinates",
+        "lat": 41.890277777778,
+        "lng": 12.492222222222,
+        "precision": 0.000277778
+      },
+      "credit_set_completeness": "unknown",
+      "credits": [],
+      "dates": {
+        "completion": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "construction_start": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "design": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        }
+      },
+      "entity_type": "work",
+      "external_ids": {
+        "wikidata": "Q10285"
+      },
+      "id": "work-wd-q10285",
+      "last_verified": "2026-07-26",
+      "name_en": "Colosseum",
+      "name_native": null,
+      "name_zh": "罗马斗兽场",
+      "period": "unknown",
+      "place_id": "place-wd-q38",
+      "region": "europe",
+      "significance_en": [],
+      "significance_zh": [],
+      "status": "unknown",
+      "summary_en": "",
+      "summary_zh": "",
+      "unresolved_credits": [],
+      "verification_status": "candidate",
+      "work_type": "unknown",
+      "work_type_mapping_status": "unmapped"
+    },
+    {
+      "aliases_en": [
+        "Pathenonas",
+        "The Parthenon"
+      ],
+      "aliases_zh": [
+        "巴特農神廟",
+        "巴特農神殿"
+      ],
+      "attribution_mode": "unknown",
+      "claim_ids": [
+        "claim-wd-q10288-name-en",
+        "claim-wd-q10288-name-zh",
+        "claim-wd-q10288-coordinates",
+        "claim-wd-q10288-p84-q311502-1",
+        "claim-wd-q10288-p84-q114112-2",
+        "claim-wd-q10288-p84-q177302-3",
+        "claim-wd-q10288-p571-1"
+      ],
+      "confidence": 0.6,
+      "coordinates": {
+        "claim_id": "claim-wd-q10288-coordinates",
+        "lat": 37.971527,
+        "lng": 23.726601,
+        "precision": 1e-06
+      },
+      "credit_set_completeness": "unknown",
+      "credits": [
+        {
+          "claim_id": "claim-wd-q10288-p84-q311502-1",
+          "credit_status": "candidate",
+          "entity_id": "person-wd-q311502",
+          "entity_type": "person",
+          "phase": "unknown",
+          "role": "architect"
+        },
+        {
+          "claim_id": "claim-wd-q10288-p84-q114112-2",
+          "credit_status": "candidate",
+          "entity_id": "person-wd-q114112",
+          "entity_type": "person",
+          "phase": "unknown",
+          "role": "architect"
+        },
+        {
+          "claim_id": "claim-wd-q10288-p84-q177302-3",
+          "credit_status": "candidate",
+          "entity_id": "person-wd-q177302",
+          "entity_type": "person",
+          "phase": "unknown",
+          "role": "architect"
+        }
+      ],
+      "dates": {
+        "completion": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "construction_start": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "design": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        }
+      },
+      "entity_type": "work",
+      "external_ids": {
+        "wikidata": "Q10288"
+      },
+      "id": "work-wd-q10288",
+      "last_verified": "2026-07-26",
+      "name_en": "Parthenon",
+      "name_native": null,
+      "name_zh": "帕德嫩神廟",
+      "period": "unknown",
+      "place_id": "place-wd-q41",
+      "region": "europe",
+      "significance_en": [],
+      "significance_zh": [],
+      "status": "unknown",
+      "summary_en": "",
+      "summary_zh": "",
+      "unresolved_credits": [],
+      "verification_status": "candidate",
+      "work_type": "unknown",
+      "work_type_mapping_status": "unmapped"
+    },
+    {
+      "aliases_en": [
+        "The Chrysler Building",
+        "405 Lexington Avenue"
+      ],
+      "aliases_zh": [],
+      "attribution_mode": "unknown",
+      "claim_ids": [
+        "claim-wd-q11274-name-en",
+        "claim-wd-q11274-name-zh",
+        "claim-wd-q11274-work-type",
+        "claim-wd-q11274-coordinates",
+        "claim-wd-q11274-p84-q706549-1",
+        "claim-wd-q11274-p571-1",
+        "claim-wd-q11274-p1619-1"
+      ],
+      "confidence": 0.6,
+      "coordinates": {
+        "claim_id": "claim-wd-q11274-coordinates",
+        "lat": 40.751430555556,
+        "lng": -73.975719444444,
+        "precision": 2.7777777777778e-06
+      },
+      "credit_set_completeness": "unknown",
+      "credits": [
+        {
+          "claim_id": "claim-wd-q11274-p84-q706549-1",
+          "credit_status": "candidate",
+          "entity_id": "person-wd-q706549",
+          "entity_type": "person",
+          "phase": "unknown",
+          "role": "architect"
+        }
+      ],
+      "dates": {
+        "completion": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "construction_start": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "design": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        }
+      },
+      "entity_type": "work",
+      "external_ids": {
+        "wikidata": "Q11274"
+      },
+      "id": "work-wd-q11274",
+      "last_verified": "2026-07-26",
+      "name_en": "Chrysler Building",
+      "name_native": null,
+      "name_zh": "克萊斯勒大廈",
+      "period": "unknown",
+      "place_id": "place-wd-q30",
+      "region": "north_america",
+      "significance_en": [],
+      "significance_zh": [],
+      "status": "unknown",
+      "summary_en": "",
+      "summary_zh": "",
+      "unresolved_credits": [],
+      "verification_status": "candidate",
+      "work_type": "building",
+      "work_type_mapping_status": "mapped_exact"
+    },
+    {
+      "aliases_en": [
         "Khalifa Tower",
         "1 Sheikh Mohammed bin Rashid Boulevard"
       ],
@@ -92,7 +344,7 @@
         "wikidata": "Q12495"
       },
       "id": "work-wd-q12495",
-      "last_verified": "2026-07-25",
+      "last_verified": "2026-07-26",
       "name_en": "Burj Khalifa",
       "name_native": null,
       "name_zh": "哈利法塔",
@@ -117,6 +369,477 @@
       "verification_status": "candidate",
       "work_type": "building",
       "work_type_mapping_status": "mapped_exact"
+    },
+    {
+      "aliases_en": [
+        "New York and Brooklyn Bridge",
+        "East River Bridge"
+      ],
+      "aliases_zh": [
+        "布鲁克林桥"
+      ],
+      "attribution_mode": "unknown",
+      "claim_ids": [
+        "claim-wd-q125006-name-en",
+        "claim-wd-q125006-name-zh",
+        "claim-wd-q125006-coordinates",
+        "claim-wd-q125006-p84-q77237-1",
+        "claim-wd-q125006-p1619-1"
+      ],
+      "confidence": 0.6,
+      "coordinates": {
+        "claim_id": "claim-wd-q125006-coordinates",
+        "lat": 40.705666666666666,
+        "lng": -73.99633333333334,
+        "precision": 2.777777777777778e-05
+      },
+      "credit_set_completeness": "unknown",
+      "credits": [
+        {
+          "claim_id": "claim-wd-q125006-p84-q77237-1",
+          "credit_status": "candidate",
+          "entity_id": "person-wd-q77237",
+          "entity_type": "person",
+          "phase": "unknown",
+          "role": "architect"
+        }
+      ],
+      "dates": {
+        "completion": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "construction_start": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "design": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        }
+      },
+      "entity_type": "work",
+      "external_ids": {
+        "wikidata": "Q125006"
+      },
+      "id": "work-wd-q125006",
+      "last_verified": "2026-07-26",
+      "name_en": "Brooklyn Bridge",
+      "name_native": null,
+      "name_zh": "布鲁克林大桥",
+      "period": "unknown",
+      "place_id": "place-wd-q30",
+      "region": "north_america",
+      "significance_en": [],
+      "significance_zh": [],
+      "status": "unknown",
+      "summary_en": "",
+      "summary_zh": "",
+      "unresolved_credits": [],
+      "verification_status": "candidate",
+      "work_type": "unknown",
+      "work_type_mapping_status": "unmapped"
+    },
+    {
+      "aliases_en": [
+        "St Peter's Basilica",
+        "Saint Peter's Basilica",
+        "Papal Basilica of Saint Peter in the Vatican",
+        "Saint Peter's, Vatican",
+        "Basilica of Saint Peter",
+        "Saint Peter's",
+        "St. Peter's",
+        "St Peter's"
+      ],
+      "aliases_zh": [],
+      "attribution_mode": "unknown",
+      "claim_ids": [
+        "claim-wd-q12512-name-en",
+        "claim-wd-q12512-name-zh",
+        "claim-wd-q12512-coordinates",
+        "claim-wd-q12512-p84-q5592-1",
+        "claim-wd-q12512-p84-q312365-2",
+        "claim-wd-q12512-p84-q7793-3",
+        "claim-wd-q12512-p84-q5597-4",
+        "claim-wd-q12512-p84-q5585-5",
+        "claim-wd-q12512-p84-q357276-6",
+        "claim-wd-q12512-p84-q177213-7",
+        "claim-wd-q12512-p84-q325930-8",
+        "claim-wd-q12512-p84-q175566-9",
+        "claim-wd-q12512-p84-q297565-10",
+        "claim-wd-q12512-p84-q736090-11",
+        "claim-wd-q12512-p84-q122328-12",
+        "claim-wd-q12512-p84-q160538-13",
+        "claim-wd-q12512-p571-1"
+      ],
+      "confidence": 0.6,
+      "coordinates": {
+        "claim_id": "claim-wd-q12512-coordinates",
+        "lat": 41.90222222222222,
+        "lng": 12.453416666666667,
+        "precision": 2.777777777777778e-05
+      },
+      "credit_set_completeness": "unknown",
+      "credits": [
+        {
+          "claim_id": "claim-wd-q12512-p84-q5592-1",
+          "credit_status": "candidate",
+          "entity_id": "person-wd-q5592",
+          "entity_type": "person",
+          "phase": "unknown",
+          "role": "architect"
+        },
+        {
+          "claim_id": "claim-wd-q12512-p84-q312365-2",
+          "credit_status": "candidate",
+          "entity_id": "person-wd-q312365",
+          "entity_type": "person",
+          "phase": "unknown",
+          "role": "architect"
+        },
+        {
+          "claim_id": "claim-wd-q12512-p84-q7793-3",
+          "credit_status": "candidate",
+          "entity_id": "person-wd-q7793",
+          "entity_type": "person",
+          "phase": "unknown",
+          "role": "architect"
+        },
+        {
+          "claim_id": "claim-wd-q12512-p84-q5597-4",
+          "credit_status": "candidate",
+          "entity_id": "person-wd-q5597",
+          "entity_type": "person",
+          "phase": "unknown",
+          "role": "architect"
+        },
+        {
+          "claim_id": "claim-wd-q12512-p84-q5585-5",
+          "credit_status": "candidate",
+          "entity_id": "person-wd-q5585",
+          "entity_type": "person",
+          "phase": "unknown",
+          "role": "architect"
+        },
+        {
+          "claim_id": "claim-wd-q12512-p84-q357276-6",
+          "credit_status": "candidate",
+          "entity_id": "person-wd-q357276",
+          "entity_type": "person",
+          "phase": "unknown",
+          "role": "architect"
+        },
+        {
+          "claim_id": "claim-wd-q12512-p84-q177213-7",
+          "credit_status": "candidate",
+          "entity_id": "person-wd-q177213",
+          "entity_type": "person",
+          "phase": "unknown",
+          "role": "architect"
+        },
+        {
+          "claim_id": "claim-wd-q12512-p84-q325930-8",
+          "credit_status": "candidate",
+          "entity_id": "person-wd-q325930",
+          "entity_type": "person",
+          "phase": "unknown",
+          "role": "architect"
+        },
+        {
+          "claim_id": "claim-wd-q12512-p84-q175566-9",
+          "credit_status": "candidate",
+          "entity_id": "person-wd-q175566",
+          "entity_type": "person",
+          "phase": "unknown",
+          "role": "architect"
+        },
+        {
+          "claim_id": "claim-wd-q12512-p84-q297565-10",
+          "credit_status": "candidate",
+          "entity_id": "person-wd-q297565",
+          "entity_type": "person",
+          "phase": "unknown",
+          "role": "architect"
+        },
+        {
+          "claim_id": "claim-wd-q12512-p84-q736090-11",
+          "credit_status": "candidate",
+          "entity_id": "person-wd-q736090",
+          "entity_type": "person",
+          "phase": "unknown",
+          "role": "architect"
+        },
+        {
+          "claim_id": "claim-wd-q12512-p84-q122328-12",
+          "credit_status": "candidate",
+          "entity_id": "person-wd-q122328",
+          "entity_type": "person",
+          "phase": "unknown",
+          "role": "architect"
+        },
+        {
+          "claim_id": "claim-wd-q12512-p84-q160538-13",
+          "credit_status": "candidate",
+          "entity_id": "person-wd-q160538",
+          "entity_type": "person",
+          "phase": "unknown",
+          "role": "architect"
+        }
+      ],
+      "dates": {
+        "completion": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "construction_start": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "design": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        }
+      },
+      "entity_type": "work",
+      "external_ids": {
+        "wikidata": "Q12512"
+      },
+      "id": "work-wd-q12512",
+      "last_verified": "2026-07-26",
+      "name_en": "St. Peter's Basilica",
+      "name_native": null,
+      "name_zh": "圣彼得大教堂",
+      "period": "unknown",
+      "place_id": "place-wd-q237",
+      "region": "europe",
+      "significance_en": [],
+      "significance_zh": [],
+      "status": "unknown",
+      "summary_en": "",
+      "summary_zh": "",
+      "unresolved_credits": [],
+      "verification_status": "candidate",
+      "work_type": "unknown",
+      "work_type_mapping_status": "unmapped"
+    },
+    {
+      "aliases_en": [
+        "Imperial temple of heaven",
+        "Temple of Heaven, Bejing"
+      ],
+      "aliases_zh": [
+        "祭天的寺庙",
+        "北京天坛",
+        "天坛公园",
+        "天壇",
+        "天壇公園"
+      ],
+      "attribution_mode": "unknown",
+      "claim_ids": [
+        "claim-wd-q125445-name-en",
+        "claim-wd-q125445-name-zh",
+        "claim-wd-q125445-work-type",
+        "claim-wd-q125445-coordinates"
+      ],
+      "confidence": 0.6,
+      "coordinates": {
+        "claim_id": "claim-wd-q125445-coordinates",
+        "lat": 39.8822,
+        "lng": 116.4066,
+        "precision": 0.0001
+      },
+      "credit_set_completeness": "unknown",
+      "credits": [],
+      "dates": {
+        "completion": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "construction_start": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "design": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        }
+      },
+      "entity_type": "work",
+      "external_ids": {
+        "wikidata": "Q125445"
+      },
+      "id": "work-wd-q125445",
+      "last_verified": "2026-07-26",
+      "name_en": "Temple of Heaven",
+      "name_native": null,
+      "name_zh": "天坛",
+      "period": "unknown",
+      "place_id": "place-wd-q148",
+      "region": "east_asia",
+      "significance_en": [],
+      "significance_zh": [],
+      "status": "unknown",
+      "summary_en": "",
+      "summary_zh": "",
+      "unresolved_credits": [],
+      "verification_status": "candidate",
+      "work_type": "building",
+      "work_type_mapping_status": "mapped_exact"
+    },
+    {
+      "aliases_en": [
+        "Peterhof palaces & park complex"
+      ],
+      "aliases_zh": [],
+      "attribution_mode": "unknown",
+      "claim_ids": [
+        "claim-wd-q1258473-name-en",
+        "claim-wd-q1258473-name-zh",
+        "claim-wd-q1258473-coordinates",
+        "claim-wd-q1258473-p84-q618237-1",
+        "claim-wd-q1258473-p571-1"
+      ],
+      "confidence": 0.6,
+      "coordinates": {
+        "claim_id": "claim-wd-q1258473-coordinates",
+        "lat": 59.88629,
+        "lng": 29.909722,
+        "precision": 1e-06
+      },
+      "credit_set_completeness": "unknown",
+      "credits": [
+        {
+          "claim_id": "claim-wd-q1258473-p84-q618237-1",
+          "credit_status": "candidate",
+          "entity_id": "person-wd-q618237",
+          "entity_type": "person",
+          "phase": "unknown",
+          "role": "architect"
+        }
+      ],
+      "dates": {
+        "completion": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "construction_start": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "design": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        }
+      },
+      "entity_type": "work",
+      "external_ids": {
+        "wikidata": "Q1258473"
+      },
+      "id": "work-wd-q1258473",
+      "last_verified": "2026-07-26",
+      "name_en": "Peterhof Palaces and complex",
+      "name_native": null,
+      "name_zh": "彼得霍夫宮",
+      "period": "unknown",
+      "place_id": "place-wd-q159",
+      "region": "europe",
+      "significance_en": [],
+      "significance_zh": [],
+      "status": "unknown",
+      "summary_en": "",
+      "summary_zh": "",
+      "unresolved_credits": [],
+      "verification_status": "candidate",
+      "work_type": "unknown",
+      "work_type_mapping_status": "unmapped"
+    },
+    {
+      "aliases_en": [
+        "Novgorod Detinets"
+      ],
+      "aliases_zh": [
+        "諾夫哥羅德克里姆林宮"
+      ],
+      "attribution_mode": "unknown",
+      "claim_ids": [
+        "claim-wd-q1277545-name-en",
+        "claim-wd-q1277545-name-zh",
+        "claim-wd-q1277545-coordinates"
+      ],
+      "confidence": 0.6,
+      "coordinates": {
+        "claim_id": "claim-wd-q1277545-coordinates",
+        "lat": 58.521549,
+        "lng": 31.27568,
+        "precision": 1e-06
+      },
+      "credit_set_completeness": "unknown",
+      "credits": [],
+      "dates": {
+        "completion": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "construction_start": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "design": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        }
+      },
+      "entity_type": "work",
+      "external_ids": {
+        "wikidata": "Q1277545"
+      },
+      "id": "work-wd-q1277545",
+      "last_verified": "2026-07-26",
+      "name_en": "Novgorod Kremlin",
+      "name_native": null,
+      "name_zh": "諾夫哥羅德克里姆林",
+      "period": "unknown",
+      "place_id": "place-wd-q159",
+      "region": "europe",
+      "significance_en": [],
+      "significance_zh": [],
+      "status": "unknown",
+      "summary_en": "",
+      "summary_zh": "",
+      "unresolved_credits": [],
+      "verification_status": "candidate",
+      "work_type": "unknown",
+      "work_type_mapping_status": "unmapped"
     },
     {
       "aliases_en": [
@@ -174,13 +897,849 @@
         "wikidata": "Q129072"
       },
       "id": "work-wd-q129072",
-      "last_verified": "2026-07-25",
+      "last_verified": "2026-07-26",
       "name_en": "Persepolis",
       "name_native": null,
       "name_zh": "波斯波利斯",
       "period": "unknown",
       "place_id": "place-wd-q794",
       "region": "central_west_asia",
+      "significance_en": [],
+      "significance_zh": [],
+      "status": "unknown",
+      "summary_en": "",
+      "summary_zh": "",
+      "unresolved_credits": [],
+      "verification_status": "candidate",
+      "work_type": "unknown",
+      "work_type_mapping_status": "unmapped"
+    },
+    {
+      "aliases_en": [
+        "Acropolis (Athens)"
+      ],
+      "aliases_zh": [
+        "雅典卫城",
+        "西哥罗佩"
+      ],
+      "attribution_mode": "unknown",
+      "claim_ids": [
+        "claim-wd-q131013-name-en",
+        "claim-wd-q131013-name-zh",
+        "claim-wd-q131013-coordinates",
+        "claim-wd-q131013-p571-1"
+      ],
+      "confidence": 0.6,
+      "coordinates": {
+        "claim_id": "claim-wd-q131013-coordinates",
+        "lat": 37.971666666666664,
+        "lng": 23.726111111111113,
+        "precision": 0.0002777777777777778
+      },
+      "credit_set_completeness": "unknown",
+      "credits": [],
+      "dates": {
+        "completion": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "construction_start": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "design": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        }
+      },
+      "entity_type": "work",
+      "external_ids": {
+        "wikidata": "Q131013"
+      },
+      "id": "work-wd-q131013",
+      "last_verified": "2026-07-26",
+      "name_en": "Acropolis of Athens",
+      "name_native": null,
+      "name_zh": "雅典卫城",
+      "period": "unknown",
+      "place_id": "place-wd-q41",
+      "region": "europe",
+      "significance_en": [],
+      "significance_zh": [],
+      "status": "unknown",
+      "summary_en": "",
+      "summary_zh": "",
+      "unresolved_credits": [],
+      "verification_status": "candidate",
+      "work_type": "unknown",
+      "work_type_mapping_status": "unmapped"
+    },
+    {
+      "aliases_en": [
+        "Schönbrunn"
+      ],
+      "aliases_zh": [
+        "申布倫府邸",
+        "申布伦宫",
+        "申布伦",
+        "申布倫宮"
+      ],
+      "attribution_mode": "unknown",
+      "claim_ids": [
+        "claim-wd-q131330-name-en",
+        "claim-wd-q131330-name-zh",
+        "claim-wd-q131330-coordinates",
+        "claim-wd-q131330-p84-q84305-1",
+        "claim-wd-q131330-p84-q78775-2",
+        "claim-wd-q131330-p571-1"
+      ],
+      "confidence": 0.6,
+      "coordinates": {
+        "claim_id": "claim-wd-q131330-coordinates",
+        "lat": 48.18479,
+        "lng": 16.31227,
+        "precision": 1e-05
+      },
+      "credit_set_completeness": "unknown",
+      "credits": [
+        {
+          "claim_id": "claim-wd-q131330-p84-q84305-1",
+          "credit_status": "candidate",
+          "entity_id": "person-wd-q84305",
+          "entity_type": "person",
+          "phase": "unknown",
+          "role": "architect"
+        },
+        {
+          "claim_id": "claim-wd-q131330-p84-q78775-2",
+          "credit_status": "candidate",
+          "entity_id": "person-wd-q78775",
+          "entity_type": "person",
+          "phase": "unknown",
+          "role": "architect"
+        }
+      ],
+      "dates": {
+        "completion": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "construction_start": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "design": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        }
+      },
+      "entity_type": "work",
+      "external_ids": {
+        "wikidata": "Q131330"
+      },
+      "id": "work-wd-q131330",
+      "last_verified": "2026-07-26",
+      "name_en": "Schönbrunn Palace",
+      "name_native": null,
+      "name_zh": "美泉宫",
+      "period": "unknown",
+      "place_id": "place-wd-q40",
+      "region": "europe",
+      "significance_en": [],
+      "significance_zh": [],
+      "status": "unknown",
+      "summary_en": "",
+      "summary_zh": "",
+      "unresolved_credits": [],
+      "verification_status": "candidate",
+      "work_type": "unknown",
+      "work_type_mapping_status": "unmapped"
+    },
+    {
+      "aliases_en": [
+        "Schloss Nymphenburg"
+      ],
+      "aliases_zh": [
+        "纽芬堡宫",
+        "纽芬堡",
+        "宁芬堡"
+      ],
+      "attribution_mode": "unknown",
+      "claim_ids": [
+        "claim-wd-q131631-name-en",
+        "claim-wd-q131631-name-zh",
+        "claim-wd-q131631-coordinates",
+        "claim-wd-q131631-p84-q395578-1",
+        "claim-wd-q131631-p84-q55761504-2",
+        "claim-wd-q131631-p571-1"
+      ],
+      "confidence": 0.6,
+      "coordinates": {
+        "claim_id": "claim-wd-q131631-coordinates",
+        "lat": 48.158056,
+        "lng": 11.503611,
+        "precision": 1e-05
+      },
+      "credit_set_completeness": "unknown",
+      "credits": [
+        {
+          "claim_id": "claim-wd-q131631-p84-q395578-1",
+          "credit_status": "candidate",
+          "entity_id": "person-wd-q395578",
+          "entity_type": "person",
+          "phase": "unknown",
+          "role": "architect"
+        },
+        {
+          "claim_id": "claim-wd-q131631-p84-q55761504-2",
+          "credit_status": "candidate",
+          "entity_id": "person-wd-q55761504",
+          "entity_type": "person",
+          "phase": "unknown",
+          "role": "architect"
+        }
+      ],
+      "dates": {
+        "completion": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "construction_start": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "design": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        }
+      },
+      "entity_type": "work",
+      "external_ids": {
+        "wikidata": "Q131631"
+      },
+      "id": "work-wd-q131631",
+      "last_verified": "2026-07-26",
+      "name_en": "Nymphenburg Palace",
+      "name_native": null,
+      "name_zh": "宁芬堡宫",
+      "period": "unknown",
+      "place_id": "place-wd-q183",
+      "region": "europe",
+      "significance_en": [],
+      "significance_zh": [],
+      "status": "unknown",
+      "summary_en": "",
+      "summary_zh": "",
+      "unresolved_credits": [],
+      "verification_status": "candidate",
+      "work_type": "unknown",
+      "work_type_mapping_status": "unmapped"
+    },
+    {
+      "aliases_en": [],
+      "aliases_zh": [],
+      "attribution_mode": "unknown",
+      "claim_ids": [
+        "claim-wd-q155107-name-en",
+        "claim-wd-q155107-name-zh",
+        "claim-wd-q155107-work-type",
+        "claim-wd-q155107-coordinates",
+        "claim-wd-q155107-p84-q62637-1",
+        "claim-wd-q155107-p571-1"
+      ],
+      "confidence": 0.6,
+      "coordinates": {
+        "claim_id": "claim-wd-q155107-coordinates",
+        "lat": 51.053055555556,
+        "lng": 13.733888888889,
+        "precision": null
+      },
+      "credit_set_completeness": "unknown",
+      "credits": [
+        {
+          "claim_id": "claim-wd-q155107-p84-q62637-1",
+          "credit_status": "candidate",
+          "entity_id": "person-wd-q62637",
+          "entity_type": "person",
+          "phase": "unknown",
+          "role": "architect"
+        }
+      ],
+      "dates": {
+        "completion": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "construction_start": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "design": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        }
+      },
+      "entity_type": "work",
+      "external_ids": {
+        "wikidata": "Q155107"
+      },
+      "id": "work-wd-q155107",
+      "last_verified": "2026-07-26",
+      "name_en": "Zwinger",
+      "name_native": null,
+      "name_zh": "茨温格宫",
+      "period": "unknown",
+      "place_id": "place-wd-q183",
+      "region": "europe",
+      "significance_en": [],
+      "significance_zh": [],
+      "status": "unknown",
+      "summary_en": "",
+      "summary_zh": "",
+      "unresolved_credits": [],
+      "verification_status": "candidate",
+      "work_type": "building",
+      "work_type_mapping_status": "mapped_exact"
+    },
+    {
+      "aliases_en": [
+        "Cathedral Church of St Paul the Apostle",
+        "St Paul's",
+        "New St Paul's",
+        "London Cathedral",
+        "Cathedral of London"
+      ],
+      "aliases_zh": [
+        "圣保罗大教堂",
+        "聖保羅大教堂"
+      ],
+      "attribution_mode": "unknown",
+      "claim_ids": [
+        "claim-wd-q173882-name-en",
+        "claim-wd-q173882-name-zh",
+        "claim-wd-q173882-coordinates",
+        "claim-wd-q173882-p84-q170373-1",
+        "claim-wd-q173882-p571-1"
+      ],
+      "confidence": 0.6,
+      "coordinates": {
+        "claim_id": "claim-wd-q173882-coordinates",
+        "lat": 51.513777777777776,
+        "lng": -0.09830555555555556,
+        "precision": 2.777777777777778e-05
+      },
+      "credit_set_completeness": "unknown",
+      "credits": [
+        {
+          "claim_id": "claim-wd-q173882-p84-q170373-1",
+          "credit_status": "candidate",
+          "entity_id": "person-wd-q170373",
+          "entity_type": "person",
+          "phase": "unknown",
+          "role": "architect"
+        }
+      ],
+      "dates": {
+        "completion": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "construction_start": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "design": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        }
+      },
+      "entity_type": "work",
+      "external_ids": {
+        "wikidata": "Q173882"
+      },
+      "id": "work-wd-q173882",
+      "last_verified": "2026-07-26",
+      "name_en": "St Paul's Cathedral",
+      "name_native": null,
+      "name_zh": "圣保罗座堂",
+      "period": "unknown",
+      "place_id": "place-wd-q145",
+      "region": "europe",
+      "significance_en": [],
+      "significance_zh": [],
+      "status": "unknown",
+      "summary_en": "",
+      "summary_zh": "",
+      "unresolved_credits": [],
+      "verification_status": "candidate",
+      "work_type": "unknown",
+      "work_type_mapping_status": "unmapped"
+    },
+    {
+      "aliases_en": [
+        "Duomo (Pisa, Italy)",
+        "Pisa (Italy). Cattedrale",
+        "Pisa. Duomo",
+        "Cathedral (Pisa)",
+        "Duomo (Pisa)"
+      ],
+      "aliases_zh": [],
+      "attribution_mode": "unknown",
+      "claim_ids": [
+        "claim-wd-q1754247-name-en",
+        "claim-wd-q1754247-name-zh",
+        "claim-wd-q1754247-work-type",
+        "claim-wd-q1754247-coordinates",
+        "claim-wd-q1754247-p571-1"
+      ],
+      "confidence": 0.6,
+      "coordinates": {
+        "claim_id": "claim-wd-q1754247-coordinates",
+        "lat": 43.723293,
+        "lng": 10.395502,
+        "precision": 1e-06
+      },
+      "credit_set_completeness": "unknown",
+      "credits": [],
+      "dates": {
+        "completion": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "construction_start": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "design": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        }
+      },
+      "entity_type": "work",
+      "external_ids": {
+        "wikidata": "Q1754247"
+      },
+      "id": "work-wd-q1754247",
+      "last_verified": "2026-07-26",
+      "name_en": "Pisa Cathedral",
+      "name_native": null,
+      "name_zh": "比萨主教座堂",
+      "period": "unknown",
+      "place_id": "place-wd-q38",
+      "region": "europe",
+      "significance_en": [],
+      "significance_zh": [],
+      "status": "unknown",
+      "summary_en": "",
+      "summary_zh": "",
+      "unresolved_credits": [],
+      "verification_status": "candidate",
+      "work_type": "building",
+      "work_type_mapping_status": "mapped_exact"
+    },
+    {
+      "aliases_en": [],
+      "aliases_zh": [
+        "古罗马遗迹"
+      ],
+      "attribution_mode": "unknown",
+      "claim_ids": [
+        "claim-wd-q180212-name-en",
+        "claim-wd-q180212-name-zh",
+        "claim-wd-q180212-coordinates",
+        "claim-wd-q180212-p571-1"
+      ],
+      "confidence": 0.6,
+      "coordinates": {
+        "claim_id": "claim-wd-q180212-coordinates",
+        "lat": 41.8922,
+        "lng": 12.4852,
+        "precision": null
+      },
+      "credit_set_completeness": "unknown",
+      "credits": [],
+      "dates": {
+        "completion": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "construction_start": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "design": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        }
+      },
+      "entity_type": "work",
+      "external_ids": {
+        "wikidata": "Q180212"
+      },
+      "id": "work-wd-q180212",
+      "last_verified": "2026-07-26",
+      "name_en": "Roman Forum",
+      "name_native": null,
+      "name_zh": "古罗马广场",
+      "period": "unknown",
+      "place_id": "place-wd-q38",
+      "region": "europe",
+      "significance_en": [],
+      "significance_zh": [],
+      "status": "unknown",
+      "summary_en": "",
+      "summary_zh": "",
+      "unresolved_credits": [],
+      "verification_status": "candidate",
+      "work_type": "unknown",
+      "work_type_mapping_status": "unmapped"
+    },
+    {
+      "aliases_en": [
+        "Chartres Cathedral",
+        "Our Lady of Chartres"
+      ],
+      "aliases_zh": [
+        "沙特尔大教堂",
+        "沙特尔圣母大教堂"
+      ],
+      "attribution_mode": "unknown",
+      "claim_ids": [
+        "claim-wd-q180274-name-en",
+        "claim-wd-q180274-name-zh",
+        "claim-wd-q180274-coordinates",
+        "claim-wd-q180274-p84-q110247803-1",
+        "claim-wd-q180274-p571-1",
+        "claim-wd-q180274-p1619-1"
+      ],
+      "confidence": 0.6,
+      "coordinates": {
+        "claim_id": "claim-wd-q180274-coordinates",
+        "lat": 48.44777777777778,
+        "lng": 1.4877777777777776,
+        "precision": 0.0002777777777777778
+      },
+      "credit_set_completeness": "unknown",
+      "credits": [
+        {
+          "claim_id": "claim-wd-q180274-p84-q110247803-1",
+          "credit_status": "candidate",
+          "entity_id": "person-wd-q110247803",
+          "entity_type": "person",
+          "phase": "unknown",
+          "role": "architect"
+        }
+      ],
+      "dates": {
+        "completion": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "construction_start": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "design": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        }
+      },
+      "entity_type": "work",
+      "external_ids": {
+        "wikidata": "Q180274"
+      },
+      "id": "work-wd-q180274",
+      "last_verified": "2026-07-26",
+      "name_en": "Notre-Dame de Chartres",
+      "name_native": null,
+      "name_zh": "沙特尔主教座堂",
+      "period": "unknown",
+      "place_id": "place-wd-q142",
+      "region": "europe",
+      "significance_en": [],
+      "significance_zh": [],
+      "status": "unknown",
+      "summary_en": "",
+      "summary_zh": "",
+      "unresolved_credits": [],
+      "verification_status": "candidate",
+      "work_type": "unknown",
+      "work_type_mapping_status": "unmapped"
+    },
+    {
+      "aliases_en": [
+        "Duomo of Milan",
+        "Duomo di Milano",
+        "Cathedral of Milan"
+      ],
+      "aliases_zh": [
+        "米兰主教座堂",
+        "米兰大教堂",
+        "米蘭大教堂",
+        "多摩大教堂"
+      ],
+      "attribution_mode": "unknown",
+      "claim_ids": [
+        "claim-wd-q18068-name-en",
+        "claim-wd-q18068-name-zh",
+        "claim-wd-q18068-work-type",
+        "claim-wd-q18068-coordinates",
+        "claim-wd-q18068-p84-q7520449-1",
+        "claim-wd-q18068-p571-1"
+      ],
+      "confidence": 0.6,
+      "coordinates": {
+        "claim_id": "claim-wd-q18068-coordinates",
+        "lat": 45.463968,
+        "lng": 9.190578,
+        "precision": 1e-06
+      },
+      "credit_set_completeness": "unknown",
+      "credits": [
+        {
+          "claim_id": "claim-wd-q18068-p84-q7520449-1",
+          "credit_status": "candidate",
+          "entity_id": "person-wd-q7520449",
+          "entity_type": "person",
+          "phase": "unknown",
+          "role": "architect"
+        }
+      ],
+      "dates": {
+        "completion": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "construction_start": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "design": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        }
+      },
+      "entity_type": "work",
+      "external_ids": {
+        "wikidata": "Q18068"
+      },
+      "id": "work-wd-q18068",
+      "last_verified": "2026-07-26",
+      "name_en": "Milan Cathedral",
+      "name_native": null,
+      "name_zh": "米蘭主教座堂",
+      "period": "unknown",
+      "place_id": "place-wd-q38",
+      "region": "europe",
+      "significance_en": [],
+      "significance_zh": [],
+      "status": "unknown",
+      "summary_en": "",
+      "summary_zh": "",
+      "unresolved_credits": [],
+      "verification_status": "candidate",
+      "work_type": "building",
+      "work_type_mapping_status": "mapped_exact"
+    },
+    {
+      "aliases_en": [],
+      "aliases_zh": [],
+      "attribution_mode": "unknown",
+      "claim_ids": [
+        "claim-wd-q182147-name-en",
+        "claim-wd-q182147-name-zh",
+        "claim-wd-q182147-work-type",
+        "claim-wd-q182147-p84-q299687-1",
+        "claim-wd-q182147-p571-1",
+        "claim-wd-q182147-p1619-1"
+      ],
+      "confidence": 0.6,
+      "coordinates": {
+        "claim_id": null,
+        "lat": null,
+        "lng": null,
+        "precision": null
+      },
+      "credit_set_completeness": "unknown",
+      "credits": [
+        {
+          "claim_id": "claim-wd-q182147-p84-q299687-1",
+          "credit_status": "candidate",
+          "entity_id": "person-wd-q299687",
+          "entity_type": "person",
+          "phase": "unknown",
+          "role": "architect"
+        }
+      ],
+      "dates": {
+        "completion": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "construction_start": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "design": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        }
+      },
+      "entity_type": "work",
+      "external_ids": {
+        "wikidata": "Q182147"
+      },
+      "id": "work-wd-q182147",
+      "last_verified": "2026-07-26",
+      "name_en": "Winter Palace",
+      "name_native": null,
+      "name_zh": "冬宫",
+      "period": "unknown",
+      "place_id": "place-wd-q159",
+      "region": "europe",
+      "significance_en": [],
+      "significance_zh": [],
+      "status": "unknown",
+      "summary_en": "",
+      "summary_zh": "",
+      "unresolved_credits": [],
+      "verification_status": "candidate",
+      "work_type": "building",
+      "work_type_mapping_status": "mapped_exact"
+    },
+    {
+      "aliases_en": [
+        "Fontana di Trevi"
+      ],
+      "aliases_zh": [],
+      "attribution_mode": "unknown",
+      "claim_ids": [
+        "claim-wd-q185382-name-en",
+        "claim-wd-q185382-name-zh",
+        "claim-wd-q185382-coordinates",
+        "claim-wd-q185382-p84-q1986231-1",
+        "claim-wd-q185382-p84-q19985023-2",
+        "claim-wd-q185382-p571-1",
+        "claim-wd-q185382-p1619-1"
+      ],
+      "confidence": 0.6,
+      "coordinates": {
+        "claim_id": "claim-wd-q185382-coordinates",
+        "lat": 41.90083333333333,
+        "lng": 12.483055555555556,
+        "precision": 0.000277778
+      },
+      "credit_set_completeness": "unknown",
+      "credits": [
+        {
+          "claim_id": "claim-wd-q185382-p84-q1986231-1",
+          "credit_status": "candidate",
+          "entity_id": "person-wd-q1986231",
+          "entity_type": "person",
+          "phase": "unknown",
+          "role": "architect"
+        },
+        {
+          "claim_id": "claim-wd-q185382-p84-q19985023-2",
+          "credit_status": "candidate",
+          "entity_id": "person-wd-q19985023",
+          "entity_type": "person",
+          "phase": "unknown",
+          "role": "architect"
+        }
+      ],
+      "dates": {
+        "completion": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "construction_start": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "design": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        }
+      },
+      "entity_type": "work",
+      "external_ids": {
+        "wikidata": "Q185382"
+      },
+      "id": "work-wd-q185382",
+      "last_verified": "2026-07-26",
+      "name_en": "Trevi Fountain",
+      "name_native": null,
+      "name_zh": "特莱维喷泉",
+      "period": "unknown",
+      "place_id": "place-wd-q38",
+      "region": "europe",
       "significance_en": [],
       "significance_zh": [],
       "status": "unknown",
@@ -249,13 +1808,616 @@
         "wikidata": "Q1858105"
       },
       "id": "work-wd-q1858105",
-      "last_verified": "2026-07-25",
+      "last_verified": "2026-07-26",
       "name_en": "Parliament House",
       "name_native": null,
       "name_zh": "澳洲国会大厦",
       "period": "unknown",
       "place_id": "place-wd-q408",
       "region": "oceania",
+      "significance_en": [],
+      "significance_zh": [],
+      "status": "unknown",
+      "summary_en": "",
+      "summary_zh": "",
+      "unresolved_credits": [],
+      "verification_status": "candidate",
+      "work_type": "unknown",
+      "work_type_mapping_status": "unmapped"
+    },
+    {
+      "aliases_en": [
+        "Hôtel des Invalides",
+        "Hôtel national des Invalides",
+        "Hotel des Invalides",
+        "Hotel national des Invalides"
+      ],
+      "aliases_zh": [
+        "巴黎残废军人院",
+        "法国荣军院",
+        "榮譽軍人院"
+      ],
+      "attribution_mode": "unknown",
+      "claim_ids": [
+        "claim-wd-q188977-name-en",
+        "claim-wd-q188977-name-zh",
+        "claim-wd-q188977-work-type",
+        "claim-wd-q188977-coordinates",
+        "claim-wd-q188977-p84-q3090458-1",
+        "claim-wd-q188977-p84-q8053-2",
+        "claim-wd-q188977-p571-1",
+        "claim-wd-q188977-p1619-1"
+      ],
+      "confidence": 0.6,
+      "coordinates": {
+        "claim_id": "claim-wd-q188977-coordinates",
+        "lat": 48.855,
+        "lng": 2.3125,
+        "precision": 0.00027777777777778
+      },
+      "credit_set_completeness": "unknown",
+      "credits": [
+        {
+          "claim_id": "claim-wd-q188977-p84-q3090458-1",
+          "credit_status": "candidate",
+          "entity_id": "person-wd-q3090458",
+          "entity_type": "person",
+          "phase": "unknown",
+          "role": "architect"
+        },
+        {
+          "claim_id": "claim-wd-q188977-p84-q8053-2",
+          "credit_status": "candidate",
+          "entity_id": "person-wd-q8053",
+          "entity_type": "person",
+          "phase": "unknown",
+          "role": "architect"
+        }
+      ],
+      "dates": {
+        "completion": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "construction_start": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "design": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        }
+      },
+      "entity_type": "work",
+      "external_ids": {
+        "wikidata": "Q188977"
+      },
+      "id": "work-wd-q188977",
+      "last_verified": "2026-07-26",
+      "name_en": "Les Invalides",
+      "name_native": null,
+      "name_zh": "荣军院",
+      "period": "unknown",
+      "place_id": "place-wd-q142",
+      "region": "europe",
+      "significance_en": [],
+      "significance_zh": [],
+      "status": "unknown",
+      "summary_en": "",
+      "summary_zh": "",
+      "unresolved_credits": [],
+      "verification_status": "candidate",
+      "work_type": "building_complex",
+      "work_type_mapping_status": "mapped_exact"
+    },
+    {
+      "aliases_en": [],
+      "aliases_zh": [],
+      "attribution_mode": "unknown",
+      "claim_ids": [
+        "claim-wd-q189764-name-en",
+        "claim-wd-q189764-name-zh",
+        "claim-wd-q189764-coordinates",
+        "claim-wd-q189764-p571-1"
+      ],
+      "confidence": 0.6,
+      "coordinates": {
+        "claim_id": "claim-wd-q189764-coordinates",
+        "lat": 43.9473,
+        "lng": 4.5355,
+        "precision": 0.00027777777777778
+      },
+      "credit_set_completeness": "unknown",
+      "credits": [],
+      "dates": {
+        "completion": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "construction_start": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "design": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        }
+      },
+      "entity_type": "work",
+      "external_ids": {
+        "wikidata": "Q189764"
+      },
+      "id": "work-wd-q189764",
+      "last_verified": "2026-07-26",
+      "name_en": "Pont du Gard",
+      "name_native": null,
+      "name_zh": "加尔桥",
+      "period": "unknown",
+      "place_id": "place-wd-q142",
+      "region": "europe",
+      "significance_en": [],
+      "significance_zh": [],
+      "status": "unknown",
+      "summary_en": "",
+      "summary_zh": "",
+      "unresolved_credits": [],
+      "verification_status": "candidate",
+      "work_type": "unknown",
+      "work_type_mapping_status": "unmapped"
+    },
+    {
+      "aliases_en": [
+        "Palazzo ducale",
+        "Palazzo Ducale"
+      ],
+      "aliases_zh": [
+        "總督府 (威尼斯)"
+      ],
+      "attribution_mode": "unknown",
+      "claim_ids": [
+        "claim-wd-q189883-name-en",
+        "claim-wd-q189883-name-zh",
+        "claim-wd-q189883-work-type",
+        "claim-wd-q189883-coordinates",
+        "claim-wd-q189883-p84-q3876542-1",
+        "claim-wd-q189883-p84-q604631-2",
+        "claim-wd-q189883-p571-1"
+      ],
+      "confidence": 0.6,
+      "coordinates": {
+        "claim_id": "claim-wd-q189883-coordinates",
+        "lat": 45.43366666666667,
+        "lng": 12.340416666666666,
+        "precision": 2.777777777777778e-05
+      },
+      "credit_set_completeness": "unknown",
+      "credits": [
+        {
+          "claim_id": "claim-wd-q189883-p84-q3876542-1",
+          "credit_status": "candidate",
+          "entity_id": "person-wd-q3876542",
+          "entity_type": "person",
+          "phase": "unknown",
+          "role": "architect"
+        },
+        {
+          "claim_id": "claim-wd-q189883-p84-q604631-2",
+          "credit_status": "candidate",
+          "entity_id": "person-wd-q604631",
+          "entity_type": "person",
+          "phase": "unknown",
+          "role": "architect"
+        }
+      ],
+      "dates": {
+        "completion": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "construction_start": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "design": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        }
+      },
+      "entity_type": "work",
+      "external_ids": {
+        "wikidata": "Q189883"
+      },
+      "id": "work-wd-q189883",
+      "last_verified": "2026-07-26",
+      "name_en": "Doge's Palace",
+      "name_native": null,
+      "name_zh": "总督宫",
+      "period": "unknown",
+      "place_id": "place-wd-q38",
+      "region": "europe",
+      "significance_en": [],
+      "significance_zh": [],
+      "status": "unknown",
+      "summary_en": "",
+      "summary_zh": "",
+      "unresolved_credits": [],
+      "verification_status": "candidate",
+      "work_type": "building",
+      "work_type_mapping_status": "mapped_exact"
+    },
+    {
+      "aliases_en": [
+        "Cathedral of Our Lady of the Flower, Duomo in Florence",
+        "Duomo di Firenze"
+      ],
+      "aliases_zh": [
+        "百花大教堂",
+        "聖母百花大教堂",
+        "圣母百花大教堂"
+      ],
+      "attribution_mode": "unknown",
+      "claim_ids": [
+        "claim-wd-q191739-name-en",
+        "claim-wd-q191739-name-zh",
+        "claim-wd-q191739-coordinates",
+        "claim-wd-q191739-p84-q315249-1",
+        "claim-wd-q191739-p84-q174330-2",
+        "claim-wd-q191739-p84-q2252872-3",
+        "claim-wd-q191739-p84-q3107540-4",
+        "claim-wd-q191739-p84-q495419-5",
+        "claim-wd-q191739-p84-q315835-6",
+        "claim-wd-q191739-p84-q2895688-7",
+        "claim-wd-q191739-p84-q3338342-8",
+        "claim-wd-q191739-p84-q311031-9",
+        "claim-wd-q191739-p84-q1441250-10",
+        "claim-wd-q191739-p84-q7814-11",
+        "claim-wd-q191739-p84-q21548230-12",
+        "claim-wd-q191739-p571-1"
+      ],
+      "confidence": 0.6,
+      "coordinates": {
+        "claim_id": "claim-wd-q191739-coordinates",
+        "lat": 43.77305555555556,
+        "lng": 11.256944444444445,
+        "precision": 0.0002777777777777778
+      },
+      "credit_set_completeness": "unknown",
+      "credits": [
+        {
+          "claim_id": "claim-wd-q191739-p84-q315249-1",
+          "credit_status": "candidate",
+          "entity_id": "person-wd-q315249",
+          "entity_type": "person",
+          "phase": "unknown",
+          "role": "architect"
+        },
+        {
+          "claim_id": "claim-wd-q191739-p84-q174330-2",
+          "credit_status": "candidate",
+          "entity_id": "person-wd-q174330",
+          "entity_type": "person",
+          "phase": "unknown",
+          "role": "architect"
+        },
+        {
+          "claim_id": "claim-wd-q191739-p84-q2252872-3",
+          "credit_status": "candidate",
+          "entity_id": "person-wd-q2252872",
+          "entity_type": "person",
+          "phase": "unknown",
+          "role": "architect"
+        },
+        {
+          "claim_id": "claim-wd-q191739-p84-q3107540-4",
+          "credit_status": "candidate",
+          "entity_id": "person-wd-q3107540",
+          "entity_type": "person",
+          "phase": "unknown",
+          "role": "architect"
+        },
+        {
+          "claim_id": "claim-wd-q191739-p84-q495419-5",
+          "credit_status": "candidate",
+          "entity_id": "person-wd-q495419",
+          "entity_type": "person",
+          "phase": "unknown",
+          "role": "architect"
+        },
+        {
+          "claim_id": "claim-wd-q191739-p84-q315835-6",
+          "credit_status": "candidate",
+          "entity_id": "person-wd-q315835",
+          "entity_type": "person",
+          "phase": "unknown",
+          "role": "architect"
+        },
+        {
+          "claim_id": "claim-wd-q191739-p84-q2895688-7",
+          "credit_status": "candidate",
+          "entity_id": "person-wd-q2895688",
+          "entity_type": "person",
+          "phase": "unknown",
+          "role": "architect"
+        },
+        {
+          "claim_id": "claim-wd-q191739-p84-q3338342-8",
+          "credit_status": "candidate",
+          "entity_id": "person-wd-q3338342",
+          "entity_type": "person",
+          "phase": "unknown",
+          "role": "architect"
+        },
+        {
+          "claim_id": "claim-wd-q191739-p84-q311031-9",
+          "credit_status": "candidate",
+          "entity_id": "person-wd-q311031",
+          "entity_type": "person",
+          "phase": "unknown",
+          "role": "architect"
+        },
+        {
+          "claim_id": "claim-wd-q191739-p84-q1441250-10",
+          "credit_status": "candidate",
+          "entity_id": "person-wd-q1441250",
+          "entity_type": "person",
+          "phase": "unknown",
+          "role": "architect"
+        },
+        {
+          "claim_id": "claim-wd-q191739-p84-q7814-11",
+          "credit_status": "candidate",
+          "entity_id": "person-wd-q7814",
+          "entity_type": "person",
+          "phase": "unknown",
+          "role": "architect"
+        },
+        {
+          "claim_id": "claim-wd-q191739-p84-q21548230-12",
+          "credit_status": "candidate",
+          "entity_id": "person-wd-q21548230",
+          "entity_type": "person",
+          "phase": "unknown",
+          "role": "architect"
+        }
+      ],
+      "dates": {
+        "completion": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "construction_start": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "design": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        }
+      },
+      "entity_type": "work",
+      "external_ids": {
+        "wikidata": "Q191739"
+      },
+      "id": "work-wd-q191739",
+      "last_verified": "2026-07-26",
+      "name_en": "Florence Cathedral",
+      "name_native": null,
+      "name_zh": "圣母百花圣殿",
+      "period": "unknown",
+      "place_id": "place-wd-q38",
+      "region": "europe",
+      "significance_en": [],
+      "significance_zh": [],
+      "status": "unknown",
+      "summary_en": "",
+      "summary_zh": "",
+      "unresolved_credits": [],
+      "verification_status": "candidate",
+      "work_type": "unknown",
+      "work_type_mapping_status": "unmapped"
+    },
+    {
+      "aliases_en": [
+        "Sainte-Chapelle"
+      ],
+      "aliases_zh": [],
+      "attribution_mode": "unknown",
+      "claim_ids": [
+        "claim-wd-q193193-name-en",
+        "claim-wd-q193193-name-zh",
+        "claim-wd-q193193-coordinates",
+        "claim-wd-q193193-p84-q1314747-1",
+        "claim-wd-q193193-p571-1"
+      ],
+      "confidence": 0.6,
+      "coordinates": {
+        "claim_id": "claim-wd-q193193-coordinates",
+        "lat": 48.855369,
+        "lng": 2.345028,
+        "precision": 2.7777777777778e-06
+      },
+      "credit_set_completeness": "unknown",
+      "credits": [
+        {
+          "claim_id": "claim-wd-q193193-p84-q1314747-1",
+          "credit_status": "candidate",
+          "entity_id": "person-wd-q1314747",
+          "entity_type": "person",
+          "phase": "unknown",
+          "role": "architect"
+        }
+      ],
+      "dates": {
+        "completion": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "construction_start": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "design": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        }
+      },
+      "entity_type": "work",
+      "external_ids": {
+        "wikidata": "Q193193"
+      },
+      "id": "work-wd-q193193",
+      "last_verified": "2026-07-26",
+      "name_en": "Sainte Chapelle",
+      "name_native": null,
+      "name_zh": "圣礼拜堂",
+      "period": "unknown",
+      "place_id": "place-wd-q142",
+      "region": "europe",
+      "significance_en": [],
+      "significance_zh": [],
+      "status": "unknown",
+      "summary_en": "",
+      "summary_zh": "",
+      "unresolved_credits": [],
+      "verification_status": "candidate",
+      "work_type": "unknown",
+      "work_type_mapping_status": "unmapped"
+    },
+    {
+      "aliases_en": [
+        "The Louvre",
+        "Musée Napoléon",
+        "Musée national du Louvre",
+        "France. Musée du Louvre Paris",
+        "The Louvre Museum",
+        "Musee Napoleon",
+        "Musee national du Louvre",
+        "France. Musee du Louvre Paris"
+      ],
+      "aliases_zh": [
+        "罗浮宫",
+        "羅浮宮博物館",
+        "法國國家博物館",
+        "盧浮宮",
+        "羅浮宮",
+        "卢浮宫"
+      ],
+      "attribution_mode": "unknown",
+      "claim_ids": [
+        "claim-wd-q19675-name-en",
+        "claim-wd-q19675-name-zh",
+        "claim-wd-q19675-coordinates",
+        "claim-wd-q19675-p84-q381724-1",
+        "claim-wd-q19675-p84-q347699-2",
+        "claim-wd-q19675-p84-q271676-3",
+        "claim-wd-q19675-p84-q46868-4",
+        "claim-wd-q19675-p571-1",
+        "claim-wd-q19675-p1619-1"
+      ],
+      "confidence": 0.6,
+      "coordinates": {
+        "claim_id": "claim-wd-q19675-coordinates",
+        "lat": 48.861111111111114,
+        "lng": 2.3358333333333334,
+        "precision": 0.0002777777777777778
+      },
+      "credit_set_completeness": "unknown",
+      "credits": [
+        {
+          "claim_id": "claim-wd-q19675-p84-q381724-1",
+          "credit_status": "candidate",
+          "entity_id": "person-wd-q381724",
+          "entity_type": "person",
+          "phase": "unknown",
+          "role": "architect"
+        },
+        {
+          "claim_id": "claim-wd-q19675-p84-q347699-2",
+          "credit_status": "candidate",
+          "entity_id": "person-wd-q347699",
+          "entity_type": "person",
+          "phase": "unknown",
+          "role": "architect"
+        },
+        {
+          "claim_id": "claim-wd-q19675-p84-q271676-3",
+          "credit_status": "candidate",
+          "entity_id": "person-wd-q271676",
+          "entity_type": "person",
+          "phase": "unknown",
+          "role": "architect"
+        },
+        {
+          "claim_id": "claim-wd-q19675-p84-q46868-4",
+          "credit_status": "candidate",
+          "entity_id": "person-wd-q46868",
+          "entity_type": "person",
+          "phase": "unknown",
+          "role": "architect"
+        }
+      ],
+      "dates": {
+        "completion": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "construction_start": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "design": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        }
+      },
+      "entity_type": "work",
+      "external_ids": {
+        "wikidata": "Q19675"
+      },
+      "id": "work-wd-q19675",
+      "last_verified": "2026-07-26",
+      "name_en": "Louvre Museum",
+      "name_native": null,
+      "name_zh": "卢浮宫博物馆",
+      "period": "unknown",
+      "place_id": "place-wd-q142",
+      "region": "europe",
       "significance_en": [],
       "significance_zh": [],
       "status": "unknown",
@@ -326,7 +2488,7 @@
         "wikidata": "Q201720"
       },
       "id": "work-wd-q201720",
-      "last_verified": "2026-07-25",
+      "last_verified": "2026-07-26",
       "name_en": "Cathedral of Brasília",
       "name_native": null,
       "name_zh": "巴西利亞大教堂",
@@ -342,6 +2504,402 @@
       "verification_status": "candidate",
       "work_type": "unknown",
       "work_type_mapping_status": "unmapped"
+    },
+    {
+      "aliases_en": [],
+      "aliases_zh": [
+        "阿西西圣方济各圣殿"
+      ],
+      "attribution_mode": "unknown",
+      "claim_ids": [
+        "claim-wd-q207486-name-en",
+        "claim-wd-q207486-name-zh",
+        "claim-wd-q207486-coordinates",
+        "claim-wd-q207486-p84-q1329212-1",
+        "claim-wd-q207486-p84-q3827020-2",
+        "claim-wd-q207486-p84-q325930-3",
+        "claim-wd-q207486-p84-q325930-4",
+        "claim-wd-q207486-p571-1"
+      ],
+      "confidence": 0.6,
+      "coordinates": {
+        "claim_id": "claim-wd-q207486-coordinates",
+        "lat": 43.07484,
+        "lng": 12.60581,
+        "precision": 1e-05
+      },
+      "credit_set_completeness": "unknown",
+      "credits": [
+        {
+          "claim_id": "claim-wd-q207486-p84-q1329212-1",
+          "credit_status": "candidate",
+          "entity_id": "person-wd-q1329212",
+          "entity_type": "person",
+          "phase": "unknown",
+          "role": "architect"
+        },
+        {
+          "claim_id": "claim-wd-q207486-p84-q3827020-2",
+          "credit_status": "candidate",
+          "entity_id": "person-wd-q3827020",
+          "entity_type": "person",
+          "phase": "unknown",
+          "role": "architect"
+        },
+        {
+          "claim_id": "claim-wd-q207486-p84-q325930-3",
+          "credit_status": "candidate",
+          "entity_id": "person-wd-q325930",
+          "entity_type": "person",
+          "phase": "unknown",
+          "role": "architect"
+        },
+        {
+          "claim_id": "claim-wd-q207486-p84-q325930-4",
+          "credit_status": "candidate",
+          "entity_id": "person-wd-q325930",
+          "entity_type": "person",
+          "phase": "unknown",
+          "role": "architect"
+        }
+      ],
+      "dates": {
+        "completion": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "construction_start": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "design": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        }
+      },
+      "entity_type": "work",
+      "external_ids": {
+        "wikidata": "Q207486"
+      },
+      "id": "work-wd-q207486",
+      "last_verified": "2026-07-26",
+      "name_en": "Basilica of San Francesco d'Assisi",
+      "name_native": null,
+      "name_zh": "亚西西的圣方济各圣殿",
+      "period": "unknown",
+      "place_id": "place-wd-q38",
+      "region": "europe",
+      "significance_en": [],
+      "significance_zh": [],
+      "status": "unknown",
+      "summary_en": "",
+      "summary_zh": "",
+      "unresolved_credits": [],
+      "verification_status": "candidate",
+      "work_type": "unknown",
+      "work_type_mapping_status": "unmapped"
+    },
+    {
+      "aliases_en": [
+        "Blenheim Park"
+      ],
+      "aliases_zh": [
+        "布倫海姆宮"
+      ],
+      "attribution_mode": "unknown",
+      "claim_ids": [
+        "claim-wd-q208181-name-en",
+        "claim-wd-q208181-name-zh",
+        "claim-wd-q208181-coordinates",
+        "claim-wd-q208181-p571-1"
+      ],
+      "confidence": 0.6,
+      "coordinates": {
+        "claim_id": "claim-wd-q208181-coordinates",
+        "lat": 51.8413626656391,
+        "lng": -1.36094830755894,
+        "precision": 1e-08
+      },
+      "credit_set_completeness": "unknown",
+      "credits": [],
+      "dates": {
+        "completion": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "construction_start": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "design": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        }
+      },
+      "entity_type": "work",
+      "external_ids": {
+        "wikidata": "Q208181"
+      },
+      "id": "work-wd-q208181",
+      "last_verified": "2026-07-26",
+      "name_en": "Blenheim Palace",
+      "name_native": null,
+      "name_zh": "布莱尼姆宫",
+      "period": "unknown",
+      "place_id": "place-wd-q145",
+      "region": "europe",
+      "significance_en": [],
+      "significance_zh": [],
+      "status": "unknown",
+      "summary_en": "",
+      "summary_zh": "",
+      "unresolved_credits": [],
+      "verification_status": "candidate",
+      "work_type": "unknown",
+      "work_type_mapping_status": "unmapped"
+    },
+    {
+      "aliases_en": [
+        "Drottningholms slott"
+      ],
+      "aliases_zh": [
+        "德罗特宁霍尔姆宫",
+        "皇后岛宫",
+        "王后島宮",
+        "卓宁霍姆皇宫",
+        "德寧翰宮"
+      ],
+      "attribution_mode": "unknown",
+      "claim_ids": [
+        "claim-wd-q208559-name-en",
+        "claim-wd-q208559-name-zh",
+        "claim-wd-q208559-coordinates",
+        "claim-wd-q208559-p84-q61188-1",
+        "claim-wd-q208559-p84-q455143-2",
+        "claim-wd-q208559-p571-1"
+      ],
+      "confidence": 0.6,
+      "coordinates": {
+        "claim_id": "claim-wd-q208559-coordinates",
+        "lat": 59.321694,
+        "lng": 17.886383,
+        "precision": 1e-05
+      },
+      "credit_set_completeness": "unknown",
+      "credits": [
+        {
+          "claim_id": "claim-wd-q208559-p84-q61188-1",
+          "credit_status": "candidate",
+          "entity_id": "person-wd-q61188",
+          "entity_type": "person",
+          "phase": "unknown",
+          "role": "architect"
+        },
+        {
+          "claim_id": "claim-wd-q208559-p84-q455143-2",
+          "credit_status": "candidate",
+          "entity_id": "person-wd-q455143",
+          "entity_type": "person",
+          "phase": "unknown",
+          "role": "architect"
+        }
+      ],
+      "dates": {
+        "completion": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "construction_start": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "design": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        }
+      },
+      "entity_type": "work",
+      "external_ids": {
+        "wikidata": "Q208559"
+      },
+      "id": "work-wd-q208559",
+      "last_verified": "2026-07-26",
+      "name_en": "Drottningholm Palace",
+      "name_native": null,
+      "name_zh": "卓宁霍姆宫",
+      "period": "unknown",
+      "place_id": "place-wd-q34",
+      "region": "europe",
+      "significance_en": [],
+      "significance_zh": [],
+      "status": "unknown",
+      "summary_en": "",
+      "summary_zh": "",
+      "unresolved_credits": [],
+      "verification_status": "candidate",
+      "work_type": "unknown",
+      "work_type_mapping_status": "unmapped"
+    },
+    {
+      "aliases_en": [],
+      "aliases_zh": [
+        "艾菲爾鐵塔",
+        "埃菲爾鐵塔"
+      ],
+      "attribution_mode": "unknown",
+      "claim_ids": [
+        "claim-wd-q243-name-en",
+        "claim-wd-q243-name-zh",
+        "claim-wd-q243-coordinates",
+        "claim-wd-q243-p84-q778243-1",
+        "claim-wd-q243-p571-1",
+        "claim-wd-q243-p571-2",
+        "claim-wd-q243-p1619-1",
+        "claim-wd-q243-p1619-2"
+      ],
+      "confidence": 0.6,
+      "coordinates": {
+        "claim_id": "claim-wd-q243-coordinates",
+        "lat": 48.858296,
+        "lng": 2.294479,
+        "precision": 2.777777777778e-06
+      },
+      "credit_set_completeness": "unknown",
+      "credits": [
+        {
+          "claim_id": "claim-wd-q243-p84-q778243-1",
+          "credit_status": "candidate",
+          "entity_id": "person-wd-q778243",
+          "entity_type": "person",
+          "phase": "unknown",
+          "role": "architect"
+        }
+      ],
+      "dates": {
+        "completion": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "construction_start": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "design": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        }
+      },
+      "entity_type": "work",
+      "external_ids": {
+        "wikidata": "Q243"
+      },
+      "id": "work-wd-q243",
+      "last_verified": "2026-07-26",
+      "name_en": "Eiffel Tower",
+      "name_native": null,
+      "name_zh": "埃菲尔铁塔",
+      "period": "unknown",
+      "place_id": "place-wd-q142",
+      "region": "europe",
+      "significance_en": [],
+      "significance_zh": [],
+      "status": "unknown",
+      "summary_en": "",
+      "summary_zh": "",
+      "unresolved_credits": [],
+      "verification_status": "candidate",
+      "work_type": "unknown",
+      "work_type_mapping_status": "unmapped"
+    },
+    {
+      "aliases_en": [
+        "Cathedral and Metropolitical Church of St Peter",
+        "Cathedral and Metropolitical Church of Saint Peter in York",
+        "York Minster Cathedral"
+      ],
+      "aliases_zh": [],
+      "attribution_mode": "unknown",
+      "claim_ids": [
+        "claim-wd-q252575-name-en",
+        "claim-wd-q252575-name-zh",
+        "claim-wd-q252575-work-type",
+        "claim-wd-q252575-coordinates",
+        "claim-wd-q252575-p571-1"
+      ],
+      "confidence": 0.6,
+      "coordinates": {
+        "claim_id": "claim-wd-q252575-coordinates",
+        "lat": 53.961944,
+        "lng": -1.081944,
+        "precision": 1e-05
+      },
+      "credit_set_completeness": "unknown",
+      "credits": [],
+      "dates": {
+        "completion": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "construction_start": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "design": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        }
+      },
+      "entity_type": "work",
+      "external_ids": {
+        "wikidata": "Q252575"
+      },
+      "id": "work-wd-q252575",
+      "last_verified": "2026-07-26",
+      "name_en": "York Minster",
+      "name_native": null,
+      "name_zh": "約克座堂",
+      "period": "unknown",
+      "place_id": "place-wd-q145",
+      "region": "europe",
+      "significance_en": [],
+      "significance_zh": [],
+      "status": "unknown",
+      "summary_en": "",
+      "summary_zh": "",
+      "unresolved_credits": [],
+      "verification_status": "candidate",
+      "work_type": "building",
+      "work_type_mapping_status": "mapped_exact"
     },
     {
       "aliases_en": [],
@@ -397,7 +2955,7 @@
         "wikidata": "Q25931399"
       },
       "id": "work-wd-q25931399",
-      "last_verified": "2026-07-25",
+      "last_verified": "2026-07-26",
       "name_en": "Chandigarh Capitol Complex",
       "name_native": null,
       "name_zh": "昌迪加尔政治中心建筑群",
@@ -413,6 +2971,388 @@
       "verification_status": "candidate",
       "work_type": "unknown",
       "work_type_mapping_status": "unmapped"
+    },
+    {
+      "aliases_en": [
+        "Royal Seat of San Lorenzo de El Escorial",
+        "Royal Palace, El Escorial",
+        "Monastery of El Escorial",
+        "Escurial",
+        "El Escorial"
+      ],
+      "aliases_zh": [
+        "艾尔·艾斯克里亚宫",
+        "埃斯科里亚尔宫"
+      ],
+      "attribution_mode": "unknown",
+      "claim_ids": [
+        "claim-wd-q28471-name-en",
+        "claim-wd-q28471-name-zh",
+        "claim-wd-q28471-coordinates",
+        "claim-wd-q28471-p571-1"
+      ],
+      "confidence": 0.6,
+      "coordinates": {
+        "claim_id": "claim-wd-q28471-coordinates",
+        "lat": 40.589167,
+        "lng": -4.147778,
+        "precision": 1e-05
+      },
+      "credit_set_completeness": "unknown",
+      "credits": [],
+      "dates": {
+        "completion": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "construction_start": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "design": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        }
+      },
+      "entity_type": "work",
+      "external_ids": {
+        "wikidata": "Q28471"
+      },
+      "id": "work-wd-q28471",
+      "last_verified": "2026-07-26",
+      "name_en": "Royal Monastery of San Lorenzo de El Escorial",
+      "name_native": null,
+      "name_zh": "埃斯科里亚尔修道院",
+      "period": "unknown",
+      "place_id": "place-wd-q29",
+      "region": "europe",
+      "significance_en": [],
+      "significance_zh": [],
+      "status": "unknown",
+      "summary_en": "",
+      "summary_zh": "",
+      "unresolved_credits": [],
+      "verification_status": "candidate",
+      "work_type": "unknown",
+      "work_type_mapping_status": "unmapped"
+    },
+    {
+      "aliases_en": [
+        "Cathedral and Metropolitical Church of Christ at Canterbury"
+      ],
+      "aliases_zh": [
+        "坎特伯里大教堂",
+        "坎特伯里座堂",
+        "坎特伯雷大教堂",
+        "坎特伯雷主教座堂",
+        "坎特布雷大教堂"
+      ],
+      "attribution_mode": "unknown",
+      "claim_ids": [
+        "claim-wd-q29265-name-en",
+        "claim-wd-q29265-name-zh",
+        "claim-wd-q29265-coordinates",
+        "claim-wd-q29265-p84-q2544172-1",
+        "claim-wd-q29265-p84-q8020916-2",
+        "claim-wd-q29265-p571-1",
+        "claim-wd-q29265-p571-2"
+      ],
+      "confidence": 0.6,
+      "coordinates": {
+        "claim_id": "claim-wd-q29265-coordinates",
+        "lat": 51.279811,
+        "lng": 1.083001,
+        "precision": 1e-06
+      },
+      "credit_set_completeness": "unknown",
+      "credits": [
+        {
+          "claim_id": "claim-wd-q29265-p84-q2544172-1",
+          "credit_status": "candidate",
+          "entity_id": "person-wd-q2544172",
+          "entity_type": "person",
+          "phase": "unknown",
+          "role": "architect"
+        },
+        {
+          "claim_id": "claim-wd-q29265-p84-q8020916-2",
+          "credit_status": "candidate",
+          "entity_id": "person-wd-q8020916",
+          "entity_type": "person",
+          "phase": "unknown",
+          "role": "architect"
+        }
+      ],
+      "dates": {
+        "completion": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "construction_start": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "design": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        }
+      },
+      "entity_type": "work",
+      "external_ids": {
+        "wikidata": "Q29265"
+      },
+      "id": "work-wd-q29265",
+      "last_verified": "2026-07-26",
+      "name_en": "Canterbury Cathedral",
+      "name_native": null,
+      "name_zh": "坎特伯雷座堂",
+      "period": "unknown",
+      "place_id": "place-wd-q145",
+      "region": "europe",
+      "significance_en": [],
+      "significance_zh": [],
+      "status": "unknown",
+      "summary_en": "",
+      "summary_zh": "",
+      "unresolved_credits": [],
+      "verification_status": "candidate",
+      "work_type": "unknown",
+      "work_type_mapping_status": "unmapped"
+    },
+    {
+      "aliases_en": [
+        "Pitti Palace"
+      ],
+      "aliases_zh": [
+        "皮蒂宫",
+        "碧提宫"
+      ],
+      "attribution_mode": "unknown",
+      "claim_ids": [
+        "claim-wd-q29286-name-en",
+        "claim-wd-q29286-name-zh",
+        "claim-wd-q29286-coordinates",
+        "claim-wd-q29286-p84-q174330-1",
+        "claim-wd-q29286-p84-q2255983-2",
+        "claim-wd-q29286-p571-1",
+        "claim-wd-q29286-p1619-1"
+      ],
+      "confidence": 0.6,
+      "coordinates": {
+        "claim_id": "claim-wd-q29286-coordinates",
+        "lat": 43.765153,
+        "lng": 11.250008,
+        "precision": 1e-06
+      },
+      "credit_set_completeness": "unknown",
+      "credits": [
+        {
+          "claim_id": "claim-wd-q29286-p84-q174330-1",
+          "credit_status": "candidate",
+          "entity_id": "person-wd-q174330",
+          "entity_type": "person",
+          "phase": "unknown",
+          "role": "architect"
+        },
+        {
+          "claim_id": "claim-wd-q29286-p84-q2255983-2",
+          "credit_status": "candidate",
+          "entity_id": "person-wd-q2255983",
+          "entity_type": "person",
+          "phase": "unknown",
+          "role": "architect"
+        }
+      ],
+      "dates": {
+        "completion": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "construction_start": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "design": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        }
+      },
+      "entity_type": "work",
+      "external_ids": {
+        "wikidata": "Q29286"
+      },
+      "id": "work-wd-q29286",
+      "last_verified": "2026-07-26",
+      "name_en": "Palazzo Pitti",
+      "name_native": null,
+      "name_zh": "彼提宫",
+      "period": "unknown",
+      "place_id": "place-wd-q38",
+      "region": "europe",
+      "significance_en": [],
+      "significance_zh": [],
+      "status": "unknown",
+      "summary_en": "",
+      "summary_zh": "",
+      "unresolved_credits": [],
+      "verification_status": "candidate",
+      "work_type": "unknown",
+      "work_type_mapping_status": "unmapped"
+    },
+    {
+      "aliases_en": [
+        "Versailles. Château",
+        "Versailles. Palais",
+        "Versailles Palace",
+        "Chateau de Versailles",
+        "France. Chateau Versailles",
+        "Versailles",
+        "Château de Versailles",
+        "Versailles. Chateau",
+        "Versailles Castle",
+        "Palais de Versailles"
+      ],
+      "aliases_zh": [],
+      "attribution_mode": "unknown",
+      "claim_ids": [
+        "claim-wd-q2946-name-en",
+        "claim-wd-q2946-name-zh",
+        "claim-wd-q2946-work-type",
+        "claim-wd-q2946-coordinates",
+        "claim-wd-q2946-p84-q310530-1",
+        "claim-wd-q2946-p84-q1270258-2",
+        "claim-wd-q2946-p84-q8053-3",
+        "claim-wd-q2946-p84-q273849-4",
+        "claim-wd-q2946-p84-q271676-5",
+        "claim-wd-q2946-p84-q568839-6",
+        "claim-wd-q2946-p84-q352451-7",
+        "claim-wd-q2946-p571-1"
+      ],
+      "confidence": 0.6,
+      "coordinates": {
+        "claim_id": "claim-wd-q2946-coordinates",
+        "lat": 48.804722222222225,
+        "lng": 2.120277777777778,
+        "precision": 0.0002777777777777778
+      },
+      "credit_set_completeness": "unknown",
+      "credits": [
+        {
+          "claim_id": "claim-wd-q2946-p84-q310530-1",
+          "credit_status": "candidate",
+          "entity_id": "person-wd-q310530",
+          "entity_type": "person",
+          "phase": "unknown",
+          "role": "architect"
+        },
+        {
+          "claim_id": "claim-wd-q2946-p84-q1270258-2",
+          "credit_status": "candidate",
+          "entity_id": "person-wd-q1270258",
+          "entity_type": "person",
+          "phase": "unknown",
+          "role": "architect"
+        },
+        {
+          "claim_id": "claim-wd-q2946-p84-q8053-3",
+          "credit_status": "candidate",
+          "entity_id": "person-wd-q8053",
+          "entity_type": "person",
+          "phase": "unknown",
+          "role": "architect"
+        },
+        {
+          "claim_id": "claim-wd-q2946-p84-q273849-4",
+          "credit_status": "candidate",
+          "entity_id": "person-wd-q273849",
+          "entity_type": "person",
+          "phase": "unknown",
+          "role": "architect"
+        },
+        {
+          "claim_id": "claim-wd-q2946-p84-q271676-5",
+          "credit_status": "candidate",
+          "entity_id": "person-wd-q271676",
+          "entity_type": "person",
+          "phase": "unknown",
+          "role": "architect"
+        },
+        {
+          "claim_id": "claim-wd-q2946-p84-q568839-6",
+          "credit_status": "candidate",
+          "entity_id": "person-wd-q568839",
+          "entity_type": "person",
+          "phase": "unknown",
+          "role": "architect"
+        },
+        {
+          "claim_id": "claim-wd-q2946-p84-q352451-7",
+          "credit_status": "candidate",
+          "entity_id": "person-wd-q352451",
+          "entity_type": "person",
+          "phase": "unknown",
+          "role": "architect"
+        }
+      ],
+      "dates": {
+        "completion": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "construction_start": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "design": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        }
+      },
+      "entity_type": "work",
+      "external_ids": {
+        "wikidata": "Q2946"
+      },
+      "id": "work-wd-q2946",
+      "last_verified": "2026-07-26",
+      "name_en": "Palace of Versailles",
+      "name_native": null,
+      "name_zh": "凡尔赛宫",
+      "period": "unknown",
+      "place_id": "place-wd-q142",
+      "region": "europe",
+      "significance_en": [],
+      "significance_zh": [],
+      "status": "unknown",
+      "summary_en": "",
+      "summary_zh": "",
+      "unresolved_credits": [],
+      "verification_status": "candidate",
+      "work_type": "building",
+      "work_type_mapping_status": "mapped_exact"
     },
     {
       "aliases_en": [
@@ -510,12 +3450,166 @@
         "wikidata": "Q2981"
       },
       "id": "work-wd-q2981",
-      "last_verified": "2026-07-25",
+      "last_verified": "2026-07-26",
       "name_en": "Notre-Dame de Paris",
       "name_native": null,
       "name_zh": "巴黎圣母院",
       "period": "unknown",
       "place_id": "place-wd-q142",
+      "region": "europe",
+      "significance_en": [],
+      "significance_zh": [],
+      "status": "unknown",
+      "summary_en": "",
+      "summary_zh": "",
+      "unresolved_credits": [],
+      "verification_status": "candidate",
+      "work_type": "unknown",
+      "work_type_mapping_status": "unmapped"
+    },
+    {
+      "aliases_en": [],
+      "aliases_zh": [],
+      "attribution_mode": "unknown",
+      "claim_ids": [
+        "claim-wd-q33200-name-en",
+        "claim-wd-q33200-name-zh",
+        "claim-wd-q33200-p84-q3134295-1",
+        "claim-wd-q33200-p84-q91338534-2",
+        "claim-wd-q33200-p84-q8192112-3",
+        "claim-wd-q33200-p571-1"
+      ],
+      "confidence": 0.6,
+      "coordinates": {
+        "claim_id": null,
+        "lat": null,
+        "lng": null,
+        "precision": null
+      },
+      "credit_set_completeness": "unknown",
+      "credits": [
+        {
+          "claim_id": "claim-wd-q33200-p84-q3134295-1",
+          "credit_status": "candidate",
+          "entity_id": "person-wd-q3134295",
+          "entity_type": "person",
+          "phase": "unknown",
+          "role": "architect"
+        },
+        {
+          "claim_id": "claim-wd-q33200-p84-q91338534-2",
+          "credit_status": "candidate",
+          "entity_id": "person-wd-q91338534",
+          "entity_type": "person",
+          "phase": "unknown",
+          "role": "architect"
+        },
+        {
+          "claim_id": "claim-wd-q33200-p84-q8192112-3",
+          "credit_status": "candidate",
+          "entity_id": "person-wd-q8192112",
+          "entity_type": "person",
+          "phase": "unknown",
+          "role": "architect"
+        }
+      ],
+      "dates": {
+        "completion": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "construction_start": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "design": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        }
+      },
+      "entity_type": "work",
+      "external_ids": {
+        "wikidata": "Q33200"
+      },
+      "id": "work-wd-q33200",
+      "last_verified": "2026-07-26",
+      "name_en": "Mosque-Cathedral of Cordoba",
+      "name_native": null,
+      "name_zh": "科尔多瓦主教座堂",
+      "period": "unknown",
+      "place_id": "place-wd-q29",
+      "region": "europe",
+      "significance_en": [],
+      "significance_zh": [],
+      "status": "unknown",
+      "summary_en": "",
+      "summary_zh": "",
+      "unresolved_credits": [],
+      "verification_status": "candidate",
+      "work_type": "unknown",
+      "work_type_mapping_status": "unmapped"
+    },
+    {
+      "aliases_en": [
+        "Basilica of Maxentius and Constantine",
+        "Basilica Nova"
+      ],
+      "aliases_zh": [
+        "马克森提乌斯和君士坦丁巴西利卡"
+      ],
+      "attribution_mode": "unknown",
+      "claim_ids": [
+        "claim-wd-q371921-name-en",
+        "claim-wd-q371921-name-zh",
+        "claim-wd-q371921-coordinates",
+        "claim-wd-q371921-p571-1"
+      ],
+      "confidence": 0.6,
+      "coordinates": {
+        "claim_id": "claim-wd-q371921-coordinates",
+        "lat": 41.89194444444445,
+        "lng": 12.488333333333333,
+        "precision": 0.0002777777777777778
+      },
+      "credit_set_completeness": "unknown",
+      "credits": [],
+      "dates": {
+        "completion": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "construction_start": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "design": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        }
+      },
+      "entity_type": "work",
+      "external_ids": {
+        "wikidata": "Q371921"
+      },
+      "id": "work-wd-q371921",
+      "last_verified": "2026-07-26",
+      "name_en": "Basilica of Maxentius",
+      "name_native": null,
+      "name_zh": "君士坦丁大会堂",
+      "period": "unknown",
+      "place_id": "place-wd-q38",
       "region": "europe",
       "significance_en": [],
       "significance_zh": [],
@@ -589,7 +3683,7 @@
         "wikidata": "Q37200"
       },
       "id": "work-wd-q37200",
-      "last_verified": "2026-07-25",
+      "last_verified": "2026-07-26",
       "name_en": "Great Pyramid of Giza",
       "name_native": null,
       "name_zh": "胡夫金字塔",
@@ -605,6 +3699,527 @@
       "verification_status": "candidate",
       "work_type": "unknown",
       "work_type_mapping_status": "unmapped"
+    },
+    {
+      "aliases_en": [
+        "Tower of Pisa",
+        "Leaning Tower (Pisa)",
+        "Pisa Tower",
+        "Leaning Tower",
+        "The Leaning Tower",
+        "The Leaning Tower of Pisa"
+      ],
+      "aliases_zh": [
+        "比萨塔",
+        "比蕯斜塔",
+        "比薩斜塔"
+      ],
+      "attribution_mode": "unknown",
+      "claim_ids": [
+        "claim-wd-q39054-name-en",
+        "claim-wd-q39054-name-zh",
+        "claim-wd-q39054-coordinates",
+        "claim-wd-q39054-p84-q892084-1",
+        "claim-wd-q39054-p84-q95950894-2",
+        "claim-wd-q39054-p84-q763522-3",
+        "claim-wd-q39054-p571-1",
+        "claim-wd-q39054-p1619-1"
+      ],
+      "confidence": 0.6,
+      "coordinates": {
+        "claim_id": "claim-wd-q39054-coordinates",
+        "lat": 43.72301,
+        "lng": 10.396624,
+        "precision": 1e-06
+      },
+      "credit_set_completeness": "unknown",
+      "credits": [
+        {
+          "claim_id": "claim-wd-q39054-p84-q892084-1",
+          "credit_status": "candidate",
+          "entity_id": "person-wd-q892084",
+          "entity_type": "person",
+          "phase": "unknown",
+          "role": "architect"
+        },
+        {
+          "claim_id": "claim-wd-q39054-p84-q95950894-2",
+          "credit_status": "candidate",
+          "entity_id": "person-wd-q95950894",
+          "entity_type": "person",
+          "phase": "unknown",
+          "role": "architect"
+        },
+        {
+          "claim_id": "claim-wd-q39054-p84-q763522-3",
+          "credit_status": "candidate",
+          "entity_id": "person-wd-q763522",
+          "entity_type": "person",
+          "phase": "unknown",
+          "role": "architect"
+        }
+      ],
+      "dates": {
+        "completion": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "construction_start": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "design": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        }
+      },
+      "entity_type": "work",
+      "external_ids": {
+        "wikidata": "Q39054"
+      },
+      "id": "work-wd-q39054",
+      "last_verified": "2026-07-26",
+      "name_en": "Leaning Tower of Pisa",
+      "name_native": null,
+      "name_zh": "比萨斜塔",
+      "period": "unknown",
+      "place_id": "place-wd-q38",
+      "region": "europe",
+      "significance_en": [],
+      "significance_zh": [],
+      "status": "unknown",
+      "summary_en": "",
+      "summary_zh": "",
+      "unresolved_credits": [],
+      "verification_status": "candidate",
+      "work_type": "unknown",
+      "work_type_mapping_status": "unmapped"
+    },
+    {
+      "aliases_en": [
+        "Stonehenge, the Avenue, and Three Barrows Adjacent to the Avenue Forming Part of a Round Barrow Cemetery on Countess Farm"
+      ],
+      "aliases_zh": [
+        "史前巨石阵",
+        "巨石圈",
+        "石围圈"
+      ],
+      "attribution_mode": "unknown",
+      "claim_ids": [
+        "claim-wd-q39671-name-en",
+        "claim-wd-q39671-name-zh",
+        "claim-wd-q39671-coordinates",
+        "claim-wd-q39671-p571-1",
+        "claim-wd-q39671-p571-2"
+      ],
+      "confidence": 0.6,
+      "coordinates": {
+        "claim_id": "claim-wd-q39671-coordinates",
+        "lat": 51.17888888888889,
+        "lng": -1.826111111111111,
+        "precision": 2.77778e-06
+      },
+      "credit_set_completeness": "unknown",
+      "credits": [],
+      "dates": {
+        "completion": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "construction_start": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "design": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        }
+      },
+      "entity_type": "work",
+      "external_ids": {
+        "wikidata": "Q39671"
+      },
+      "id": "work-wd-q39671",
+      "last_verified": "2026-07-26",
+      "name_en": "Stonehenge",
+      "name_native": null,
+      "name_zh": "巨石阵",
+      "period": "unknown",
+      "place_id": "place-wd-q145",
+      "region": "europe",
+      "significance_en": [],
+      "significance_zh": [],
+      "status": "unknown",
+      "summary_en": "",
+      "summary_zh": "",
+      "unresolved_credits": [],
+      "verification_status": "candidate",
+      "work_type": "unknown",
+      "work_type_mapping_status": "unmapped"
+    },
+    {
+      "aliases_en": [
+        "Neuschwanstein"
+      ],
+      "aliases_zh": [
+        "新天鹅城堡",
+        "新天鵝石城堡",
+        "新天鹅石宫"
+      ],
+      "attribution_mode": "unknown",
+      "claim_ids": [
+        "claim-wd-q4152-name-en",
+        "claim-wd-q4152-name-zh",
+        "claim-wd-q4152-work-type",
+        "claim-wd-q4152-coordinates",
+        "claim-wd-q4152-p84-q573740-1",
+        "claim-wd-q4152-p84-q106679-2",
+        "claim-wd-q4152-p84-q77138-3",
+        "claim-wd-q4152-p84-q1712698-4",
+        "claim-wd-q4152-p571-1"
+      ],
+      "confidence": 0.6,
+      "coordinates": {
+        "claim_id": "claim-wd-q4152-coordinates",
+        "lat": 47.5574885428434,
+        "lng": 10.74944180794,
+        "precision": 1e-06
+      },
+      "credit_set_completeness": "unknown",
+      "credits": [
+        {
+          "claim_id": "claim-wd-q4152-p84-q573740-1",
+          "credit_status": "candidate",
+          "entity_id": "person-wd-q573740",
+          "entity_type": "person",
+          "phase": "unknown",
+          "role": "architect"
+        },
+        {
+          "claim_id": "claim-wd-q4152-p84-q106679-2",
+          "credit_status": "candidate",
+          "entity_id": "person-wd-q106679",
+          "entity_type": "person",
+          "phase": "unknown",
+          "role": "architect"
+        },
+        {
+          "claim_id": "claim-wd-q4152-p84-q77138-3",
+          "credit_status": "candidate",
+          "entity_id": "person-wd-q77138",
+          "entity_type": "person",
+          "phase": "unknown",
+          "role": "architect"
+        },
+        {
+          "claim_id": "claim-wd-q4152-p84-q1712698-4",
+          "credit_status": "candidate",
+          "entity_id": "person-wd-q1712698",
+          "entity_type": "person",
+          "phase": "unknown",
+          "role": "architect"
+        }
+      ],
+      "dates": {
+        "completion": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "construction_start": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "design": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        }
+      },
+      "entity_type": "work",
+      "external_ids": {
+        "wikidata": "Q4152"
+      },
+      "id": "work-wd-q4152",
+      "last_verified": "2026-07-26",
+      "name_en": "Neuschwanstein Castle",
+      "name_native": null,
+      "name_zh": "新天鹅堡",
+      "period": "unknown",
+      "place_id": "place-wd-q183",
+      "region": "europe",
+      "significance_en": [],
+      "significance_zh": [],
+      "status": "unknown",
+      "summary_en": "",
+      "summary_zh": "",
+      "unresolved_credits": [],
+      "verification_status": "candidate",
+      "work_type": "building",
+      "work_type_mapping_status": "mapped_exact"
+    },
+    {
+      "aliases_en": [
+        "High Cathedral of St. Peter"
+      ],
+      "aliases_zh": [],
+      "attribution_mode": "unknown",
+      "claim_ids": [
+        "claim-wd-q4176-name-en",
+        "claim-wd-q4176-name-zh",
+        "claim-wd-q4176-work-type",
+        "claim-wd-q4176-coordinates",
+        "claim-wd-q4176-p84-q501406-1",
+        "claim-wd-q4176-p84-q696582-2",
+        "claim-wd-q4176-p84-q98089-3",
+        "claim-wd-q4176-p84-q825230-4",
+        "claim-wd-q4176-p84-q69207-5",
+        "claim-wd-q4176-p84-q68243-6",
+        "claim-wd-q4176-p84-q15990577-7",
+        "claim-wd-q4176-p84-q1468148-8",
+        "claim-wd-q4176-p84-q1304570-9",
+        "claim-wd-q4176-p84-q1695228-10",
+        "claim-wd-q4176-p84-q1544728-11",
+        "claim-wd-q4176-p84-q151759-12",
+        "claim-wd-q4176-p84-q78705-13",
+        "claim-wd-q4176-p84-unresolved-14",
+        "claim-wd-q4176-p84-q1782172-15",
+        "claim-wd-q4176-p84-q95198-16",
+        "claim-wd-q4176-p84-q1991761-17",
+        "claim-wd-q4176-p84-q61332-18",
+        "claim-wd-q4176-p84-q106263-19",
+        "claim-wd-q4176-p84-q2509641-20",
+        "claim-wd-q4176-p571-1",
+        "claim-wd-q4176-p1619-1"
+      ],
+      "confidence": 0.6,
+      "coordinates": {
+        "claim_id": "claim-wd-q4176-coordinates",
+        "lat": 50.94138888888889,
+        "lng": 6.958333333333333,
+        "precision": 0.0002777777777777778
+      },
+      "credit_set_completeness": "unknown",
+      "credits": [
+        {
+          "claim_id": "claim-wd-q4176-p84-q501406-1",
+          "credit_status": "candidate",
+          "entity_id": "person-wd-q501406",
+          "entity_type": "person",
+          "phase": "unknown",
+          "role": "architect"
+        },
+        {
+          "claim_id": "claim-wd-q4176-p84-q696582-2",
+          "credit_status": "candidate",
+          "entity_id": "person-wd-q696582",
+          "entity_type": "person",
+          "phase": "unknown",
+          "role": "architect"
+        },
+        {
+          "claim_id": "claim-wd-q4176-p84-q98089-3",
+          "credit_status": "candidate",
+          "entity_id": "person-wd-q98089",
+          "entity_type": "person",
+          "phase": "unknown",
+          "role": "architect"
+        },
+        {
+          "claim_id": "claim-wd-q4176-p84-q825230-4",
+          "credit_status": "candidate",
+          "entity_id": "person-wd-q825230",
+          "entity_type": "person",
+          "phase": "unknown",
+          "role": "architect"
+        },
+        {
+          "claim_id": "claim-wd-q4176-p84-q69207-5",
+          "credit_status": "candidate",
+          "entity_id": "person-wd-q69207",
+          "entity_type": "person",
+          "phase": "unknown",
+          "role": "architect"
+        },
+        {
+          "claim_id": "claim-wd-q4176-p84-q68243-6",
+          "credit_status": "candidate",
+          "entity_id": "person-wd-q68243",
+          "entity_type": "person",
+          "phase": "unknown",
+          "role": "architect"
+        },
+        {
+          "claim_id": "claim-wd-q4176-p84-q15990577-7",
+          "credit_status": "candidate",
+          "entity_id": "person-wd-q15990577",
+          "entity_type": "person",
+          "phase": "unknown",
+          "role": "architect"
+        },
+        {
+          "claim_id": "claim-wd-q4176-p84-q1468148-8",
+          "credit_status": "candidate",
+          "entity_id": "person-wd-q1468148",
+          "entity_type": "person",
+          "phase": "unknown",
+          "role": "architect"
+        },
+        {
+          "claim_id": "claim-wd-q4176-p84-q1304570-9",
+          "credit_status": "candidate",
+          "entity_id": "person-wd-q1304570",
+          "entity_type": "person",
+          "phase": "unknown",
+          "role": "architect"
+        },
+        {
+          "claim_id": "claim-wd-q4176-p84-q1695228-10",
+          "credit_status": "candidate",
+          "entity_id": "person-wd-q1695228",
+          "entity_type": "person",
+          "phase": "unknown",
+          "role": "architect"
+        },
+        {
+          "claim_id": "claim-wd-q4176-p84-q1544728-11",
+          "credit_status": "candidate",
+          "entity_id": "person-wd-q1544728",
+          "entity_type": "person",
+          "phase": "unknown",
+          "role": "architect"
+        },
+        {
+          "claim_id": "claim-wd-q4176-p84-q151759-12",
+          "credit_status": "candidate",
+          "entity_id": "person-wd-q151759",
+          "entity_type": "person",
+          "phase": "unknown",
+          "role": "architect"
+        },
+        {
+          "claim_id": "claim-wd-q4176-p84-q78705-13",
+          "credit_status": "candidate",
+          "entity_id": "person-wd-q78705",
+          "entity_type": "person",
+          "phase": "unknown",
+          "role": "architect"
+        },
+        {
+          "claim_id": "claim-wd-q4176-p84-q1782172-15",
+          "credit_status": "candidate",
+          "entity_id": "person-wd-q1782172",
+          "entity_type": "person",
+          "phase": "unknown",
+          "role": "architect"
+        },
+        {
+          "claim_id": "claim-wd-q4176-p84-q95198-16",
+          "credit_status": "candidate",
+          "entity_id": "person-wd-q95198",
+          "entity_type": "person",
+          "phase": "unknown",
+          "role": "architect"
+        },
+        {
+          "claim_id": "claim-wd-q4176-p84-q1991761-17",
+          "credit_status": "candidate",
+          "entity_id": "person-wd-q1991761",
+          "entity_type": "person",
+          "phase": "unknown",
+          "role": "architect"
+        },
+        {
+          "claim_id": "claim-wd-q4176-p84-q61332-18",
+          "credit_status": "candidate",
+          "entity_id": "person-wd-q61332",
+          "entity_type": "person",
+          "phase": "unknown",
+          "role": "architect"
+        },
+        {
+          "claim_id": "claim-wd-q4176-p84-q106263-19",
+          "credit_status": "candidate",
+          "entity_id": "person-wd-q106263",
+          "entity_type": "person",
+          "phase": "unknown",
+          "role": "architect"
+        },
+        {
+          "claim_id": "claim-wd-q4176-p84-q2509641-20",
+          "credit_status": "candidate",
+          "entity_id": "person-wd-q2509641",
+          "entity_type": "person",
+          "phase": "unknown",
+          "role": "architect"
+        }
+      ],
+      "dates": {
+        "completion": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "construction_start": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "design": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        }
+      },
+      "entity_type": "work",
+      "external_ids": {
+        "wikidata": "Q4176"
+      },
+      "id": "work-wd-q4176",
+      "last_verified": "2026-07-26",
+      "name_en": "Cologne Cathedral",
+      "name_native": null,
+      "name_zh": "科隆主教座堂",
+      "period": "unknown",
+      "place_id": "place-wd-q183",
+      "region": "europe",
+      "significance_en": [],
+      "significance_zh": [],
+      "status": "unknown",
+      "summary_en": "",
+      "summary_zh": "",
+      "unresolved_credits": [
+        {
+          "claim_id": "claim-wd-q4176-p84-unresolved-14",
+          "rejection_reason": "missing_english_label",
+          "source_entity_qid": "Q1795810",
+          "source_label_en": null,
+          "source_label_zh": null,
+          "source_property": "P84"
+        }
+      ],
+      "verification_status": "candidate",
+      "work_type": "building",
+      "work_type_mapping_status": "mapped_exact"
     },
     {
       "aliases_en": [
@@ -665,13 +4280,81 @@
         "wikidata": "Q42798"
       },
       "id": "work-wd-q42798",
-      "last_verified": "2026-07-25",
+      "last_verified": "2026-07-26",
       "name_en": "Borobudur Temple",
       "name_native": null,
       "name_zh": "婆羅浮屠",
       "period": "unknown",
       "place_id": "place-wd-q252",
       "region": "southeast_asia",
+      "significance_en": [],
+      "significance_zh": [],
+      "status": "unknown",
+      "summary_en": "",
+      "summary_zh": "",
+      "unresolved_credits": [],
+      "verification_status": "candidate",
+      "work_type": "unknown",
+      "work_type_mapping_status": "unmapped"
+    },
+    {
+      "aliases_en": [],
+      "aliases_zh": [
+        "庞培城",
+        "潘沛依",
+        "庞贝城",
+        "龐培城",
+        "龐貝古城",
+        "龐貝城"
+      ],
+      "attribution_mode": "unknown",
+      "claim_ids": [
+        "claim-wd-q43332-name-en",
+        "claim-wd-q43332-name-zh",
+        "claim-wd-q43332-coordinates",
+        "claim-wd-q43332-p571-1"
+      ],
+      "confidence": 0.6,
+      "coordinates": {
+        "claim_id": "claim-wd-q43332-coordinates",
+        "lat": 40.750556,
+        "lng": 14.489722,
+        "precision": 1e-05
+      },
+      "credit_set_completeness": "unknown",
+      "credits": [],
+      "dates": {
+        "completion": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "construction_start": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "design": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        }
+      },
+      "entity_type": "work",
+      "external_ids": {
+        "wikidata": "Q43332"
+      },
+      "id": "work-wd-q43332",
+      "last_verified": "2026-07-26",
+      "name_en": "Pompeii",
+      "name_native": null,
+      "name_zh": "庞贝",
+      "period": "unknown",
+      "place_id": "place-wd-q38",
+      "region": "europe",
       "significance_en": [],
       "significance_zh": [],
       "status": "unknown",
@@ -741,7 +4424,7 @@
         "wikidata": "Q43473"
       },
       "id": "work-wd-q43473",
-      "last_verified": "2026-07-25",
+      "last_verified": "2026-07-26",
       "name_en": "Angkor Wat",
       "name_native": null,
       "name_zh": "吴哥窟",
@@ -829,7 +4512,7 @@
         "wikidata": "Q45178"
       },
       "id": "work-wd-q45178",
-      "last_verified": "2026-07-25",
+      "last_verified": "2026-07-26",
       "name_en": "Sydney Opera House",
       "name_native": null,
       "name_zh": "悉尼歌剧院",
@@ -902,13 +4585,233 @@
         "wikidata": "Q463179"
       },
       "id": "work-wd-q463179",
-      "last_verified": "2026-07-25",
+      "last_verified": "2026-07-26",
       "name_en": "Fallingwater",
       "name_native": null,
       "name_zh": "落水山庄",
       "period": "unknown",
       "place_id": "place-wd-q30",
       "region": "north_america",
+      "significance_en": [],
+      "significance_zh": [],
+      "status": "unknown",
+      "summary_en": "",
+      "summary_zh": "",
+      "unresolved_credits": [],
+      "verification_status": "candidate",
+      "work_type": "unknown",
+      "work_type_mapping_status": "unmapped"
+    },
+    {
+      "aliases_en": [
+        "La Alhambra",
+        "The Alhambra",
+        "Alhambra fortress"
+      ],
+      "aliases_zh": [
+        "阿尔汗布拉宫",
+        "阿罕布拉宮",
+        "阿爾罕布拉宮",
+        "阿兰布拉宫"
+      ],
+      "attribution_mode": "unknown",
+      "claim_ids": [
+        "claim-wd-q47476-name-en",
+        "claim-wd-q47476-name-zh",
+        "claim-wd-q47476-work-type",
+        "claim-wd-q47476-coordinates",
+        "claim-wd-q47476-p571-1"
+      ],
+      "confidence": 0.6,
+      "coordinates": {
+        "claim_id": "claim-wd-q47476-coordinates",
+        "lat": 37.17634,
+        "lng": -3.58821,
+        "precision": 1e-05
+      },
+      "credit_set_completeness": "unknown",
+      "credits": [],
+      "dates": {
+        "completion": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "construction_start": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "design": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        }
+      },
+      "entity_type": "work",
+      "external_ids": {
+        "wikidata": "Q47476"
+      },
+      "id": "work-wd-q47476",
+      "last_verified": "2026-07-26",
+      "name_en": "Alhambra",
+      "name_native": null,
+      "name_zh": "阿尔罕布拉宫",
+      "period": "unknown",
+      "place_id": "place-wd-q29",
+      "region": "europe",
+      "significance_en": [],
+      "significance_zh": [],
+      "status": "unknown",
+      "summary_en": "",
+      "summary_zh": "",
+      "unresolved_credits": [],
+      "verification_status": "candidate",
+      "work_type": "building",
+      "work_type_mapping_status": "mapped_exact"
+    },
+    {
+      "aliases_en": [],
+      "aliases_zh": [
+        "溫徹斯特大教堂",
+        "温彻斯特大教堂"
+      ],
+      "attribution_mode": "unknown",
+      "claim_ids": [
+        "claim-wd-q476529-name-en",
+        "claim-wd-q476529-name-zh",
+        "claim-wd-q476529-coordinates",
+        "claim-wd-q476529-p571-1"
+      ],
+      "confidence": 0.6,
+      "coordinates": {
+        "claim_id": "claim-wd-q476529-coordinates",
+        "lat": 51.060722,
+        "lng": -1.313333,
+        "precision": 1e-05
+      },
+      "credit_set_completeness": "unknown",
+      "credits": [],
+      "dates": {
+        "completion": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "construction_start": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "design": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        }
+      },
+      "entity_type": "work",
+      "external_ids": {
+        "wikidata": "Q476529"
+      },
+      "id": "work-wd-q476529",
+      "last_verified": "2026-07-26",
+      "name_en": "Winchester Cathedral",
+      "name_native": null,
+      "name_zh": "温彻斯特座堂",
+      "period": "unknown",
+      "place_id": "place-wd-q145",
+      "region": "europe",
+      "significance_en": [],
+      "significance_zh": [],
+      "status": "unknown",
+      "summary_en": "",
+      "summary_zh": "",
+      "unresolved_credits": [],
+      "verification_status": "candidate",
+      "work_type": "unknown",
+      "work_type_mapping_status": "unmapped"
+    },
+    {
+      "aliases_en": [
+        "Villa La Rotonda",
+        "La Rotonda",
+        "Villa Capra",
+        "Villa Almerico",
+        "Villa Capra \"La Rotonda\""
+      ],
+      "aliases_zh": [],
+      "attribution_mode": "unknown",
+      "claim_ids": [
+        "claim-wd-q505574-name-en",
+        "claim-wd-q505574-name-zh",
+        "claim-wd-q505574-coordinates",
+        "claim-wd-q505574-p84-q177692-1",
+        "claim-wd-q505574-p84-q309733-2"
+      ],
+      "confidence": 0.6,
+      "coordinates": {
+        "claim_id": "claim-wd-q505574-coordinates",
+        "lat": 45.531524,
+        "lng": 11.560268,
+        "precision": 1e-06
+      },
+      "credit_set_completeness": "unknown",
+      "credits": [
+        {
+          "claim_id": "claim-wd-q505574-p84-q177692-1",
+          "credit_status": "candidate",
+          "entity_id": "person-wd-q177692",
+          "entity_type": "person",
+          "phase": "unknown",
+          "role": "architect"
+        },
+        {
+          "claim_id": "claim-wd-q505574-p84-q309733-2",
+          "credit_status": "candidate",
+          "entity_id": "person-wd-q309733",
+          "entity_type": "person",
+          "phase": "unknown",
+          "role": "architect"
+        }
+      ],
+      "dates": {
+        "completion": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "construction_start": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "design": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        }
+      },
+      "entity_type": "work",
+      "external_ids": {
+        "wikidata": "Q505574"
+      },
+      "id": "work-wd-q505574",
+      "last_verified": "2026-07-26",
+      "name_en": "Villa Almerico Capra (La Rotonda)",
+      "name_native": null,
+      "name_zh": "圓廳別墅",
+      "period": "unknown",
+      "place_id": "place-wd-q38",
+      "region": "europe",
       "significance_en": [],
       "significance_zh": [],
       "status": "unknown",
@@ -973,7 +4876,7 @@
         "wikidata": "Q516770"
       },
       "id": "work-wd-q516770",
-      "last_verified": "2026-07-25",
+      "last_verified": "2026-07-26",
       "name_en": "Bauhaus Dessau",
       "name_native": null,
       "name_zh": "包浩斯",
@@ -988,6 +4891,428 @@
       "unresolved_credits": [],
       "verification_status": "candidate",
       "work_type": "building_complex",
+      "work_type_mapping_status": "mapped_exact"
+    },
+    {
+      "aliases_en": [
+        "Vallum Aelium",
+        "Hadrians Wall",
+        "Picts' Wall",
+        "Roman Wall"
+      ],
+      "aliases_zh": [],
+      "attribution_mode": "unknown",
+      "claim_ids": [
+        "claim-wd-q57357-name-en",
+        "claim-wd-q57357-name-zh",
+        "claim-wd-q57357-coordinates",
+        "claim-wd-q57357-p571-1"
+      ],
+      "confidence": 0.6,
+      "coordinates": {
+        "claim_id": "claim-wd-q57357-coordinates",
+        "lat": 55.024166666667,
+        "lng": -2.2925,
+        "precision": 0.00027777777777778
+      },
+      "credit_set_completeness": "unknown",
+      "credits": [],
+      "dates": {
+        "completion": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "construction_start": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "design": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        }
+      },
+      "entity_type": "work",
+      "external_ids": {
+        "wikidata": "Q57357"
+      },
+      "id": "work-wd-q57357",
+      "last_verified": "2026-07-26",
+      "name_en": "Hadrian's Wall",
+      "name_native": null,
+      "name_zh": "哈德良长城",
+      "period": "unknown",
+      "place_id": "place-wd-q145",
+      "region": "europe",
+      "significance_en": [],
+      "significance_zh": [],
+      "status": "unknown",
+      "summary_en": "",
+      "summary_zh": "",
+      "unresolved_credits": [],
+      "verification_status": "candidate",
+      "work_type": "unknown",
+      "work_type_mapping_status": "unmapped"
+    },
+    {
+      "aliases_en": [
+        "Collegiate Church of St Peter at Westminster"
+      ],
+      "aliases_zh": [
+        "威斯敏斯特大教堂",
+        "威斯敏斯特圣彼得协同教堂",
+        "威斯敏斯特教堂",
+        "威斯敏斯特修道院",
+        "西敏寺大教堂",
+        "西敏聖彼得協同教堂"
+      ],
+      "attribution_mode": "unknown",
+      "claim_ids": [
+        "claim-wd-q5933-name-en",
+        "claim-wd-q5933-name-zh",
+        "claim-wd-q5933-coordinates",
+        "claim-wd-q5933-p571-1",
+        "claim-wd-q5933-p571-2"
+      ],
+      "confidence": 0.6,
+      "coordinates": {
+        "claim_id": "claim-wd-q5933-coordinates",
+        "lat": 51.4994,
+        "lng": -0.127367,
+        "precision": 1e-06
+      },
+      "credit_set_completeness": "unknown",
+      "credits": [],
+      "dates": {
+        "completion": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "construction_start": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "design": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        }
+      },
+      "entity_type": "work",
+      "external_ids": {
+        "wikidata": "Q5933"
+      },
+      "id": "work-wd-q5933",
+      "last_verified": "2026-07-26",
+      "name_en": "Westminster Abbey",
+      "name_native": null,
+      "name_zh": "威斯敏斯特教堂",
+      "period": "unknown",
+      "place_id": "place-wd-q145",
+      "region": "europe",
+      "significance_en": [],
+      "significance_zh": [],
+      "status": "unknown",
+      "summary_en": "",
+      "summary_zh": "",
+      "unresolved_credits": [],
+      "verification_status": "candidate",
+      "work_type": "unknown",
+      "work_type_mapping_status": "unmapped"
+    },
+    {
+      "aliases_en": [
+        "Saint Vitus Cathedral",
+        "Cathedral of Saint Vitus",
+        "Metropolitan Cathedral of Saints Vitus, Wenceslaus and Adalbert",
+        "Cathedral of Saints Vitus, Wenceslaus and Adalbert"
+      ],
+      "aliases_zh": [],
+      "attribution_mode": "unknown",
+      "claim_ids": [
+        "claim-wd-q5949-name-en",
+        "claim-wd-q5949-name-zh",
+        "claim-wd-q5949-coordinates",
+        "claim-wd-q5949-p84-q388362-1",
+        "claim-wd-q5949-p84-q61332-2",
+        "claim-wd-q5949-p571-1",
+        "claim-wd-q5949-p1619-1"
+      ],
+      "confidence": 0.6,
+      "coordinates": {
+        "claim_id": "claim-wd-q5949-coordinates",
+        "lat": 50.090833333333336,
+        "lng": 14.400555555555556,
+        "precision": 0.0002777777777777778
+      },
+      "credit_set_completeness": "unknown",
+      "credits": [
+        {
+          "claim_id": "claim-wd-q5949-p84-q388362-1",
+          "credit_status": "candidate",
+          "entity_id": "person-wd-q388362",
+          "entity_type": "person",
+          "phase": "unknown",
+          "role": "architect"
+        },
+        {
+          "claim_id": "claim-wd-q5949-p84-q61332-2",
+          "credit_status": "candidate",
+          "entity_id": "person-wd-q61332",
+          "entity_type": "person",
+          "phase": "unknown",
+          "role": "architect"
+        }
+      ],
+      "dates": {
+        "completion": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "construction_start": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "design": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        }
+      },
+      "entity_type": "work",
+      "external_ids": {
+        "wikidata": "Q5949"
+      },
+      "id": "work-wd-q5949",
+      "last_verified": "2026-07-26",
+      "name_en": "St. Vitus Cathedral",
+      "name_native": null,
+      "name_zh": "圣维特主教座堂",
+      "period": "unknown",
+      "place_id": "place-wd-q213",
+      "region": "europe",
+      "significance_en": [],
+      "significance_zh": [],
+      "status": "unknown",
+      "summary_en": "",
+      "summary_zh": "",
+      "unresolved_credits": [],
+      "verification_status": "candidate",
+      "work_type": "unknown",
+      "work_type_mapping_status": "unmapped"
+    },
+    {
+      "aliases_en": [
+        "Her Majesty's Royal Palace and Fortress",
+        "The Tower of London",
+        "The Tower",
+        "Tower of London (London, England)",
+        "His Majesty's Royal Palace and Fortress"
+      ],
+      "aliases_zh": [
+        "伦敦塔"
+      ],
+      "attribution_mode": "unknown",
+      "claim_ids": [
+        "claim-wd-q62378-name-en",
+        "claim-wd-q62378-name-zh",
+        "claim-wd-q62378-work-type",
+        "claim-wd-q62378-coordinates",
+        "claim-wd-q62378-p571-1"
+      ],
+      "confidence": 0.6,
+      "coordinates": {
+        "claim_id": "claim-wd-q62378-coordinates",
+        "lat": 51.5082,
+        "lng": -0.076198055555556,
+        "precision": 2.7777777777778e-07
+      },
+      "credit_set_completeness": "unknown",
+      "credits": [],
+      "dates": {
+        "completion": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "construction_start": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "design": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        }
+      },
+      "entity_type": "work",
+      "external_ids": {
+        "wikidata": "Q62378"
+      },
+      "id": "work-wd-q62378",
+      "last_verified": "2026-07-26",
+      "name_en": "Tower of London",
+      "name_native": null,
+      "name_zh": "倫敦塔",
+      "period": "unknown",
+      "place_id": "place-wd-q145",
+      "region": "europe",
+      "significance_en": [],
+      "significance_zh": [],
+      "status": "unknown",
+      "summary_en": "",
+      "summary_zh": "",
+      "unresolved_credits": [],
+      "verification_status": "candidate",
+      "work_type": "building",
+      "work_type_mapping_status": "mapped_exact"
+    },
+    {
+      "aliases_en": [],
+      "aliases_zh": [
+        "梅韋勒隱修院",
+        "圣米歇尔山修道院",
+        "聖米歇爾山隱修院",
+        "梅爾韋耶隱修院"
+      ],
+      "attribution_mode": "unknown",
+      "claim_ids": [
+        "claim-wd-q651388-name-en",
+        "claim-wd-q651388-name-zh",
+        "claim-wd-q651388-coordinates",
+        "claim-wd-q651388-p571-1"
+      ],
+      "confidence": 0.6,
+      "coordinates": {
+        "claim_id": "claim-wd-q651388-coordinates",
+        "lat": 48.63605079548847,
+        "lng": -1.5113850353584308,
+        "precision": 0.0001
+      },
+      "credit_set_completeness": "unknown",
+      "credits": [],
+      "dates": {
+        "completion": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "construction_start": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "design": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        }
+      },
+      "entity_type": "work",
+      "external_ids": {
+        "wikidata": "Q651388"
+      },
+      "id": "work-wd-q651388",
+      "last_verified": "2026-07-26",
+      "name_en": "Mont-Saint-Michel Abbey",
+      "name_native": null,
+      "name_zh": "聖彌額爾山隱修院",
+      "period": "unknown",
+      "place_id": "place-wd-q142",
+      "region": "europe",
+      "significance_en": [],
+      "significance_zh": [],
+      "status": "unknown",
+      "summary_en": "",
+      "summary_zh": "",
+      "unresolved_credits": [],
+      "verification_status": "candidate",
+      "work_type": "unknown",
+      "work_type_mapping_status": "unmapped"
+    },
+    {
+      "aliases_en": [
+        "Maison Carree"
+      ],
+      "aliases_zh": [],
+      "attribution_mode": "unknown",
+      "claim_ids": [
+        "claim-wd-q677659-name-en",
+        "claim-wd-q677659-name-zh",
+        "claim-wd-q677659-work-type",
+        "claim-wd-q677659-coordinates"
+      ],
+      "confidence": 0.6,
+      "coordinates": {
+        "claim_id": "claim-wd-q677659-coordinates",
+        "lat": 43.838194,
+        "lng": 4.356111,
+        "precision": 2.7777777777778e-05
+      },
+      "credit_set_completeness": "unknown",
+      "credits": [],
+      "dates": {
+        "completion": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "construction_start": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "design": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        }
+      },
+      "entity_type": "work",
+      "external_ids": {
+        "wikidata": "Q677659"
+      },
+      "id": "work-wd-q677659",
+      "last_verified": "2026-07-26",
+      "name_en": "Maison Carrée",
+      "name_native": null,
+      "name_zh": "方形神殿",
+      "period": "unknown",
+      "place_id": "place-wd-q142",
+      "region": "europe",
+      "significance_en": [],
+      "significance_zh": [],
+      "status": "unknown",
+      "summary_en": "",
+      "summary_zh": "",
+      "unresolved_credits": [],
+      "verification_status": "candidate",
+      "work_type": "building",
       "work_type_mapping_status": "mapped_exact"
     },
     {
@@ -1038,7 +5363,7 @@
         "wikidata": "Q683632"
       },
       "id": "work-wd-q683632",
-      "last_verified": "2026-07-25",
+      "last_verified": "2026-07-26",
       "name_en": "Great Mosque of Djenné",
       "name_native": null,
       "name_zh": "杰内大清真寺",
@@ -1054,6 +5379,160 @@
       "verification_status": "candidate",
       "work_type": "building",
       "work_type_mapping_status": "mapped_exact"
+    },
+    {
+      "aliases_en": [],
+      "aliases_zh": [],
+      "attribution_mode": "unknown",
+      "claim_ids": [
+        "claim-wd-q688659-name-en",
+        "claim-wd-q688659-name-zh",
+        "claim-wd-q688659-coordinates",
+        "claim-wd-q688659-p84-q715086-1",
+        "claim-wd-q688659-p571-1"
+      ],
+      "confidence": 0.6,
+      "coordinates": {
+        "claim_id": "claim-wd-q688659-coordinates",
+        "lat": 48.0545,
+        "lng": 14.129,
+        "precision": 0.0001
+      },
+      "credit_set_completeness": "unknown",
+      "credits": [
+        {
+          "claim_id": "claim-wd-q688659-p84-q715086-1",
+          "credit_status": "candidate",
+          "entity_id": "person-wd-q715086",
+          "entity_type": "person",
+          "phase": "unknown",
+          "role": "architect"
+        }
+      ],
+      "dates": {
+        "completion": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "construction_start": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "design": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        }
+      },
+      "entity_type": "work",
+      "external_ids": {
+        "wikidata": "Q688659"
+      },
+      "id": "work-wd-q688659",
+      "last_verified": "2026-07-26",
+      "name_en": "Kremsmünster Abbey",
+      "name_native": null,
+      "name_zh": "克雷姆斯明斯特修道院",
+      "period": "unknown",
+      "place_id": "place-wd-q40",
+      "region": "europe",
+      "significance_en": [],
+      "significance_zh": [],
+      "status": "unknown",
+      "summary_en": "",
+      "summary_zh": "",
+      "unresolved_credits": [],
+      "verification_status": "candidate",
+      "work_type": "unknown",
+      "work_type_mapping_status": "unmapped"
+    },
+    {
+      "aliases_en": [
+        "The Royal Palace of Stockholm",
+        "The Royal Palace"
+      ],
+      "aliases_zh": [],
+      "attribution_mode": "unknown",
+      "claim_ids": [
+        "claim-wd-q750444-name-en",
+        "claim-wd-q750444-name-zh",
+        "claim-wd-q750444-coordinates",
+        "claim-wd-q750444-p84-q455143-1",
+        "claim-wd-q750444-p84-q1038985-2",
+        "claim-wd-q750444-p571-1"
+      ],
+      "confidence": 0.6,
+      "coordinates": {
+        "claim_id": "claim-wd-q750444-coordinates",
+        "lat": 59.326666666667,
+        "lng": 18.071666666667,
+        "precision": null
+      },
+      "credit_set_completeness": "unknown",
+      "credits": [
+        {
+          "claim_id": "claim-wd-q750444-p84-q455143-1",
+          "credit_status": "candidate",
+          "entity_id": "person-wd-q455143",
+          "entity_type": "person",
+          "phase": "unknown",
+          "role": "architect"
+        },
+        {
+          "claim_id": "claim-wd-q750444-p84-q1038985-2",
+          "credit_status": "candidate",
+          "entity_id": "person-wd-q1038985",
+          "entity_type": "person",
+          "phase": "unknown",
+          "role": "architect"
+        }
+      ],
+      "dates": {
+        "completion": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "construction_start": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "design": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        }
+      },
+      "entity_type": "work",
+      "external_ids": {
+        "wikidata": "Q750444"
+      },
+      "id": "work-wd-q750444",
+      "last_verified": "2026-07-26",
+      "name_en": "Stockholm Palace",
+      "name_native": null,
+      "name_zh": "斯德哥尔摩王宫",
+      "period": "unknown",
+      "place_id": "place-wd-q34",
+      "region": "europe",
+      "significance_en": [],
+      "significance_zh": [],
+      "status": "unknown",
+      "summary_en": "",
+      "summary_zh": "",
+      "unresolved_credits": [],
+      "verification_status": "candidate",
+      "work_type": "unknown",
+      "work_type_mapping_status": "unmapped"
     },
     {
       "aliases_en": [
@@ -1105,7 +5584,7 @@
         "wikidata": "Q774021"
       },
       "id": "work-wd-q774021",
-      "last_verified": "2026-07-25",
+      "last_verified": "2026-07-26",
       "name_en": "Templo Mayor",
       "name_native": null,
       "name_zh": "主神庙",
@@ -1192,7 +5671,7 @@
         "wikidata": "Q80290"
       },
       "id": "work-wd-q80290",
-      "last_verified": "2026-07-25",
+      "last_verified": "2026-07-26",
       "name_en": "Forbidden City",
       "name_native": null,
       "name_zh": "故宫",
@@ -1290,7 +5769,7 @@
         "wikidata": "Q83063"
       },
       "id": "work-wd-q83063",
-      "last_verified": "2026-07-25",
+      "last_verified": "2026-07-26",
       "name_en": "Petronas Towers",
       "name_native": null,
       "name_zh": "双峰塔",
@@ -1306,6 +5785,80 @@
       "verification_status": "candidate",
       "work_type": "building",
       "work_type_mapping_status": "mapped_exact"
+    },
+    {
+      "aliases_en": [],
+      "aliases_zh": [
+        "西班牙广场"
+      ],
+      "attribution_mode": "unknown",
+      "claim_ids": [
+        "claim-wd-q848072-name-en",
+        "claim-wd-q848072-name-zh",
+        "claim-wd-q848072-coordinates",
+        "claim-wd-q848072-p84-q982003-1",
+        "claim-wd-q848072-p571-1",
+        "claim-wd-q848072-p1619-1"
+      ],
+      "confidence": 0.6,
+      "coordinates": {
+        "claim_id": "claim-wd-q848072-coordinates",
+        "lat": 41.90611,
+        "lng": 12.48278,
+        "precision": 0.0001
+      },
+      "credit_set_completeness": "unknown",
+      "credits": [
+        {
+          "claim_id": "claim-wd-q848072-p84-q982003-1",
+          "credit_status": "candidate",
+          "entity_id": "person-wd-q982003",
+          "entity_type": "person",
+          "phase": "unknown",
+          "role": "architect"
+        }
+      ],
+      "dates": {
+        "completion": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "construction_start": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "design": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        }
+      },
+      "entity_type": "work",
+      "external_ids": {
+        "wikidata": "Q848072"
+      },
+      "id": "work-wd-q848072",
+      "last_verified": "2026-07-26",
+      "name_en": "Spanish Steps",
+      "name_native": null,
+      "name_zh": "西班牙广场",
+      "period": "unknown",
+      "place_id": "place-wd-q38",
+      "region": "europe",
+      "significance_en": [],
+      "significance_zh": [],
+      "status": "unknown",
+      "summary_en": "",
+      "summary_zh": "",
+      "unresolved_credits": [],
+      "verification_status": "candidate",
+      "work_type": "unknown",
+      "work_type_mapping_status": "unmapped"
     },
     {
       "aliases_en": [
@@ -1365,7 +5918,7 @@
         "wikidata": "Q9141"
       },
       "id": "work-wd-q9141",
-      "last_verified": "2026-07-25",
+      "last_verified": "2026-07-26",
       "name_en": "Taj Mahal",
       "name_native": null,
       "name_zh": "泰姬陵",
@@ -1443,7 +5996,7 @@
         "wikidata": "Q9188"
       },
       "id": "work-wd-q9188",
-      "last_verified": "2026-07-25",
+      "last_verified": "2026-07-26",
       "name_en": "Empire State Building",
       "name_native": null,
       "name_zh": "帝国大厦",
@@ -1459,6 +6012,65 @@
       "verification_status": "candidate",
       "work_type": "building",
       "work_type_mapping_status": "mapped_exact"
+    },
+    {
+      "aliases_en": [],
+      "aliases_zh": [],
+      "attribution_mode": "unknown",
+      "claim_ids": [
+        "claim-wd-q9724840-name-en",
+        "claim-wd-q9724840-coordinates"
+      ],
+      "confidence": 0.6,
+      "coordinates": {
+        "claim_id": "claim-wd-q9724840-coordinates",
+        "lat": 43.467057116273374,
+        "lng": 11.042804439789789,
+        "precision": 1e-08
+      },
+      "credit_set_completeness": "unknown",
+      "credits": [],
+      "dates": {
+        "completion": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "construction_start": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "design": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        }
+      },
+      "entity_type": "work",
+      "external_ids": {
+        "wikidata": "Q9724840"
+      },
+      "id": "work-wd-q9724840",
+      "last_verified": "2026-07-26",
+      "name_en": "Historic Centre of San Gimignano",
+      "name_native": null,
+      "name_zh": null,
+      "period": "unknown",
+      "place_id": "place-wd-q38",
+      "region": "europe",
+      "significance_en": [],
+      "significance_zh": [],
+      "status": "unknown",
+      "summary_en": "",
+      "summary_zh": "",
+      "unresolved_credits": [],
+      "verification_status": "candidate",
+      "work_type": "unknown",
+      "work_type_mapping_status": "unmapped"
     },
     {
       "aliases_en": [
@@ -1521,7 +6133,7 @@
         "wikidata": "Q99309"
       },
       "id": "work-wd-q99309",
-      "last_verified": "2026-07-25",
+      "last_verified": "2026-07-26",
       "name_en": "Pantheon",
       "name_native": null,
       "name_zh": "万神庙",

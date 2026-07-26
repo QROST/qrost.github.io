@@ -209,6 +209,566 @@
         "inception_vs_opening",
         "team_credit"
       ]
+    },
+    {
+      "qid": "Q39054",
+      "label_hint_en": "Leaning Tower of Pisa",
+      "expected_country_code": "IT",
+      "expected_country_qid": "Q38",
+      "region": "europe",
+      "risk_tags": [
+        "multi_phase"
+      ]
+    },
+    {
+      "qid": "Q191739",
+      "label_hint_en": "Florence Cathedral",
+      "expected_country_code": "IT",
+      "expected_country_qid": "Q38",
+      "region": "europe",
+      "risk_tags": [
+        "multi_phase",
+        "credit_completeness"
+      ]
+    },
+    {
+      "qid": "Q2946",
+      "label_hint_en": "Palace of Versailles",
+      "expected_country_code": "FR",
+      "expected_country_qid": "Q142",
+      "region": "europe",
+      "risk_tags": [
+        "multi_phase"
+      ]
+    },
+    {
+      "qid": "Q243",
+      "label_hint_en": "Eiffel Tower",
+      "expected_country_code": "FR",
+      "expected_country_qid": "Q142",
+      "region": "europe",
+      "risk_tags": [
+        "single_phase"
+      ]
+    },
+    {
+      "qid": "Q19675",
+      "label_hint_en": "Louvre Museum",
+      "expected_country_code": "FR",
+      "expected_country_qid": "Q142",
+      "region": "europe",
+      "risk_tags": [
+        "multi_phase"
+      ]
+    },
+    {
+      "qid": "Q4176",
+      "label_hint_en": "Cologne Cathedral",
+      "expected_country_code": "DE",
+      "expected_country_qid": "Q183",
+      "region": "europe",
+      "risk_tags": [
+        "multi_phase",
+        "credit_completeness"
+      ]
+    },
+    {
+      "qid": "Q4152",
+      "label_hint_en": "Neuschwanstein Castle",
+      "expected_country_code": "DE",
+      "expected_country_qid": "Q183",
+      "region": "europe",
+      "risk_tags": [
+        "credit_completeness"
+      ]
+    },
+    {
+      "qid": "Q125006",
+      "label_hint_en": "Brooklyn Bridge",
+      "expected_country_code": "US",
+      "expected_country_qid": "Q30",
+      "region": "north_america",
+      "risk_tags": [
+        "credit_completeness"
+      ]
+    },
+    {
+      "qid": "Q11274",
+      "label_hint_en": "Chrysler Building",
+      "expected_country_code": "US",
+      "expected_country_qid": "Q30",
+      "region": "north_america",
+      "risk_tags": [
+        "single_phase"
+      ]
+    },
+    {
+      "qid": "Q125445",
+      "label_hint_en": "Temple of Heaven",
+      "expected_country_code": "CN",
+      "expected_country_qid": "Q148",
+      "region": "east_asia",
+      "risk_tags": [
+        "traditional_attribution",
+        "multi_phase"
+      ]
+    },
+    {
+      "qid": "Q10288",
+      "label_hint_en": "Parthenon",
+      "expected_country_code": "GR",
+      "expected_country_qid": "Q41",
+      "region": "europe",
+      "risk_tags": [
+        "multi_phase",
+        "traditional_attribution"
+      ]
+    },
+    {
+      "qid": "Q131013",
+      "label_hint_en": "Acropolis of Athens",
+      "expected_country_code": "GR",
+      "expected_country_qid": "Q41",
+      "region": "europe",
+      "risk_tags": [
+        "multi_phase",
+        "site_vs_single_work"
+      ]
+    },
+    {
+      "qid": "Q10285",
+      "label_hint_en": "Colosseum",
+      "expected_country_code": "IT",
+      "expected_country_qid": "Q38",
+      "region": "europe",
+      "risk_tags": [
+        "multi_phase"
+      ]
+    },
+    {
+      "qid": "Q180212",
+      "label_hint_en": "Roman Forum",
+      "expected_country_code": "IT",
+      "expected_country_qid": "Q38",
+      "region": "europe",
+      "risk_tags": [
+        "multi_phase",
+        "site_vs_single_work"
+      ]
+    },
+    {
+      "qid": "Q43332",
+      "label_hint_en": "Pompeii",
+      "expected_country_code": "IT",
+      "expected_country_qid": "Q38",
+      "region": "europe",
+      "risk_tags": [
+        "multi_phase",
+        "site_vs_single_work"
+      ]
+    },
+    {
+      "qid": "Q39671",
+      "label_hint_en": "Stonehenge",
+      "expected_country_code": "GB",
+      "expected_country_qid": "Q145",
+      "region": "europe",
+      "risk_tags": [
+        "multi_phase",
+        "ancient_date_precision",
+        "traditional_attribution"
+      ]
+    },
+    {
+      "qid": "Q57357",
+      "label_hint_en": "Hadrian's Wall",
+      "expected_country_code": "GB",
+      "expected_country_qid": "Q145",
+      "region": "europe",
+      "risk_tags": [
+        "multi_phase"
+      ]
+    },
+    {
+      "qid": "Q371921",
+      "label_hint_en": "Basilica of Maxentius",
+      "expected_country_code": "IT",
+      "expected_country_qid": "Q38",
+      "region": "europe",
+      "risk_tags": [
+        "multi_phase"
+      ]
+    },
+    {
+      "qid": "Q677659",
+      "label_hint_en": "Maison Carrée",
+      "expected_country_code": "FR",
+      "expected_country_qid": "Q142",
+      "region": "europe",
+      "risk_tags": [
+        "multi_phase"
+      ]
+    },
+    {
+      "qid": "Q189764",
+      "label_hint_en": "Pont du Gard",
+      "expected_country_code": "FR",
+      "expected_country_qid": "Q142",
+      "region": "europe",
+      "risk_tags": [
+        "multi_phase",
+        "traditional_attribution"
+      ]
+    },
+    {
+      "qid": "Q47476",
+      "label_hint_en": "Alhambra",
+      "expected_country_code": "ES",
+      "expected_country_qid": "Q29",
+      "region": "europe",
+      "risk_tags": [
+        "multi_phase",
+        "site_vs_single_work"
+      ]
+    },
+    {
+      "qid": "Q33200",
+      "label_hint_en": "Mosque-Cathedral of Cordoba",
+      "expected_country_code": "ES",
+      "expected_country_qid": "Q29",
+      "region": "europe",
+      "risk_tags": [
+        "multi_phase",
+        "reconstruction"
+      ]
+    },
+    {
+      "qid": "Q180274",
+      "label_hint_en": "Notre-Dame de Chartres",
+      "expected_country_code": "FR",
+      "expected_country_qid": "Q142",
+      "region": "europe",
+      "risk_tags": [
+        "multi_phase"
+      ]
+    },
+    {
+      "qid": "Q5933",
+      "label_hint_en": "Westminster Abbey",
+      "expected_country_code": "GB",
+      "expected_country_qid": "Q145",
+      "region": "europe",
+      "risk_tags": [
+        "multi_phase"
+      ]
+    },
+    {
+      "qid": "Q62378",
+      "label_hint_en": "Tower of London",
+      "expected_country_code": "GB",
+      "expected_country_qid": "Q145",
+      "region": "europe",
+      "risk_tags": [
+        "multi_phase"
+      ]
+    },
+    {
+      "qid": "Q651388",
+      "label_hint_en": "Mont-Saint-Michel Abbey",
+      "expected_country_code": "FR",
+      "expected_country_qid": "Q142",
+      "region": "europe",
+      "risk_tags": [
+        "multi_phase",
+        "site_vs_single_work"
+      ]
+    },
+    {
+      "qid": "Q189883",
+      "label_hint_en": "Doge's Palace",
+      "expected_country_code": "IT",
+      "expected_country_qid": "Q38",
+      "region": "europe",
+      "risk_tags": [
+        "multi_phase"
+      ]
+    },
+    {
+      "qid": "Q18068",
+      "label_hint_en": "Milan Cathedral",
+      "expected_country_code": "IT",
+      "expected_country_qid": "Q38",
+      "region": "europe",
+      "risk_tags": [
+        "multi_phase",
+        "credit_completeness"
+      ]
+    },
+    {
+      "qid": "Q193193",
+      "label_hint_en": "Sainte Chapelle",
+      "expected_country_code": "FR",
+      "expected_country_qid": "Q142",
+      "region": "europe",
+      "risk_tags": [
+        "multi_phase"
+      ]
+    },
+    {
+      "qid": "Q476529",
+      "label_hint_en": "Winchester Cathedral",
+      "expected_country_code": "GB",
+      "expected_country_qid": "Q145",
+      "region": "europe",
+      "risk_tags": [
+        "multi_phase"
+      ]
+    },
+    {
+      "qid": "Q1277545",
+      "label_hint_en": "Novgorod Kremlin",
+      "expected_country_code": "RU",
+      "expected_country_qid": "Q159",
+      "region": "europe",
+      "risk_tags": [
+        "multi_phase"
+      ]
+    },
+    {
+      "qid": "Q1754247",
+      "label_hint_en": "Pisa Cathedral",
+      "expected_country_code": "IT",
+      "expected_country_qid": "Q38",
+      "region": "europe",
+      "risk_tags": [
+        "multi_phase"
+      ]
+    },
+    {
+      "qid": "Q9724840",
+      "label_hint_en": "Historic Centre of San Gimignano",
+      "expected_country_code": "IT",
+      "expected_country_qid": "Q38",
+      "region": "europe",
+      "risk_tags": [
+        "multi_phase",
+        "site_vs_single_work"
+      ]
+    },
+    {
+      "qid": "Q207486",
+      "label_hint_en": "Basilica of San Francesco di Assisi",
+      "expected_country_code": "IT",
+      "expected_country_qid": "Q38",
+      "region": "europe",
+      "risk_tags": [
+        "multi_phase"
+      ]
+    },
+    {
+      "qid": "Q252575",
+      "label_hint_en": "York Minster",
+      "expected_country_code": "GB",
+      "expected_country_qid": "Q145",
+      "region": "europe",
+      "risk_tags": [
+        "multi_phase"
+      ]
+    },
+    {
+      "qid": "Q29265",
+      "label_hint_en": "Canterbury Cathedral",
+      "expected_country_code": "GB",
+      "expected_country_qid": "Q145",
+      "region": "europe",
+      "risk_tags": [
+        "multi_phase"
+      ]
+    },
+    {
+      "qid": "Q5949",
+      "label_hint_en": "St. Vitus Cathedral",
+      "expected_country_code": "CZ",
+      "expected_country_qid": "Q213",
+      "region": "europe",
+      "risk_tags": [
+        "multi_phase"
+      ]
+    },
+    {
+      "qid": "Q688659",
+      "label_hint_en": "Kremsmünster Abbey",
+      "expected_country_code": "AT",
+      "expected_country_qid": "Q40",
+      "region": "europe",
+      "risk_tags": [
+        "multi_phase"
+      ]
+    },
+    {
+      "qid": "Q12512",
+      "label_hint_en": "St. Peter's Basilica",
+      "expected_country_code": "VA",
+      "expected_country_qid": "Q237",
+      "region": "europe",
+      "risk_tags": [
+        "multi_phase",
+        "credit_completeness"
+      ]
+    },
+    {
+      "qid": "Q505574",
+      "label_hint_en": "Villa Almerico Capra (La Rotonda)",
+      "expected_country_code": "IT",
+      "expected_country_qid": "Q38",
+      "region": "europe",
+      "risk_tags": [
+        "single_phase",
+        "qualified_credit"
+      ]
+    },
+    {
+      "qid": "Q29286",
+      "label_hint_en": "Palazzo Pitti",
+      "expected_country_code": "IT",
+      "expected_country_qid": "Q38",
+      "region": "europe",
+      "risk_tags": [
+        "multi_phase"
+      ]
+    },
+    {
+      "qid": "Q28471",
+      "label_hint_en": "Royal Monastery of San Lorenzo de El Escorial",
+      "expected_country_code": "ES",
+      "expected_country_qid": "Q29",
+      "region": "europe",
+      "risk_tags": [
+        "multi_phase"
+      ]
+    },
+    {
+      "qid": "Q173882",
+      "label_hint_en": "St Paul's Cathedral",
+      "expected_country_code": "GB",
+      "expected_country_qid": "Q145",
+      "region": "europe",
+      "risk_tags": [
+        "multi_phase",
+        "team_credit"
+      ]
+    },
+    {
+      "qid": "Q208181",
+      "label_hint_en": "Blenheim Palace",
+      "expected_country_code": "GB",
+      "expected_country_qid": "Q145",
+      "region": "europe",
+      "risk_tags": [
+        "multi_phase",
+        "credit_completeness"
+      ]
+    },
+    {
+      "qid": "Q182147",
+      "label_hint_en": "Winter Palace",
+      "expected_country_code": "RU",
+      "expected_country_qid": "Q159",
+      "region": "europe",
+      "risk_tags": [
+        "multi_phase"
+      ]
+    },
+    {
+      "qid": "Q1258473",
+      "label_hint_en": "Peterhof Palaces and complex",
+      "expected_country_code": "RU",
+      "expected_country_qid": "Q159",
+      "region": "europe",
+      "risk_tags": [
+        "multi_phase",
+        "site_vs_single_work"
+      ]
+    },
+    {
+      "qid": "Q131330",
+      "label_hint_en": "Schönbrunn Palace",
+      "expected_country_code": "AT",
+      "expected_country_qid": "Q40",
+      "region": "europe",
+      "risk_tags": [
+        "multi_phase"
+      ]
+    },
+    {
+      "qid": "Q155107",
+      "label_hint_en": "Zwinger",
+      "expected_country_code": "DE",
+      "expected_country_qid": "Q183",
+      "region": "europe",
+      "risk_tags": [
+        "multi_phase"
+      ]
+    },
+    {
+      "qid": "Q131631",
+      "label_hint_en": "Nymphenburg Palace",
+      "expected_country_code": "DE",
+      "expected_country_qid": "Q183",
+      "region": "europe",
+      "risk_tags": [
+        "multi_phase"
+      ]
+    },
+    {
+      "qid": "Q185382",
+      "label_hint_en": "Trevi Fountain",
+      "expected_country_code": "IT",
+      "expected_country_qid": "Q38",
+      "region": "europe",
+      "risk_tags": [
+        "multi_phase"
+      ]
+    },
+    {
+      "qid": "Q848072",
+      "label_hint_en": "Spanish Steps",
+      "expected_country_code": "IT",
+      "expected_country_qid": "Q38",
+      "region": "europe",
+      "risk_tags": [
+        "multi_phase"
+      ]
+    },
+    {
+      "qid": "Q188977",
+      "label_hint_en": "Les Invalides",
+      "expected_country_code": "FR",
+      "expected_country_qid": "Q142",
+      "region": "europe",
+      "risk_tags": [
+        "multi_phase"
+      ]
+    },
+    {
+      "qid": "Q750444",
+      "label_hint_en": "Stockholm Palace",
+      "expected_country_code": "SE",
+      "expected_country_qid": "Q34",
+      "region": "europe",
+      "risk_tags": [
+        "multi_phase"
+      ]
+    },
+    {
+      "qid": "Q208559",
+      "label_hint_en": "Drottningholm Palace",
+      "expected_country_code": "SE",
+      "expected_country_qid": "Q34",
+      "region": "europe",
+      "risk_tags": [
+        "multi_phase"
+      ]
     }
   ]
 }
