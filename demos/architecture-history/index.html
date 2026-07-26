@@ -1,0 +1,388 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>建筑谱系 · Architecture Lineages — QROST</title>
+  <meta name="description" content="一个来源优先、候选与核验分离的全球建筑史双语浏览器：建筑、建筑师、事务所、地点与待审知识传递线索。">
+  <meta name="theme-color" content="#f4f0e8">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://qrost.com/demos/architecture-history/">
+  <meta property="og:site_name" content="QROST">
+  <meta property="og:title" content="建筑谱系 · Architecture Lineages">
+  <meta property="og:description" content="来源优先的全球建筑史双语浏览器：候选样本、证据、覆盖缺口与待审知识传递线索。">
+  <meta property="og:image" content="https://qrost.com/demos/architecture-history/assets/img/architecture-history-og.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="建筑谱系 · Architecture Lineages">
+  <meta name="twitter:description" content="来源优先的全球建筑史双语浏览器：候选样本、证据、覆盖缺口与待审知识传递线索。">
+  <meta name="twitter:image" content="https://qrost.com/demos/architecture-history/assets/img/architecture-history-og.png">
+  <link rel="icon" href="../../favicon.svg" type="image/svg+xml">
+  <script>
+    (function () {
+      try {
+        var saved = localStorage.getItem('qrost-architecture-history-theme');
+        var dark = saved ? saved === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches;
+        document.documentElement.classList.toggle('dark', dark);
+      } catch (_) {}
+    })();
+  </script>
+  <link rel="stylesheet" href="assets/css/tailwind-built.css?v=cabadb5821">
+  <link rel="stylesheet" href="assets/css/architecture-history.css?v=ac675012ef">
+</head>
+<body>
+  <a class="skip-link" href="#main-content" data-i18n="skipToContent">跳到主要内容</a>
+
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="../../index.html" aria-label="QROST 首页" data-i18n-aria-label="homeLabel">
+        <span class="brand-mark" aria-hidden="true">
+          <span></span><span></span><span></span>
+        </span>
+        <span>
+          <strong>QROST</strong>
+          <small data-i18n="brandSub">建筑谱系</small>
+        </span>
+      </a>
+
+      <nav class="desktop-nav" aria-label="主要导航" data-i18n-aria-label="mainNavLabel">
+        <a href="#atlas" data-i18n="navAtlas">图谱</a>
+        <a href="#catalog" data-i18n="navCatalog">目录</a>
+        <a href="#lineage" data-i18n="navLineage">关系</a>
+        <a href="#coverage" data-i18n="navCoverage">覆盖</a>
+        <a href="#methodology" data-i18n="navMethod">方法</a>
+      </nav>
+
+      <div class="header-actions">
+        <button id="lang-toggle" class="icon-button lang-button" type="button" aria-label="Switch to English" title="English">EN</button>
+        <button id="theme-toggle" class="icon-button" type="button" aria-label="切换深色模式" title="深色模式">
+          <svg class="sun-icon" viewBox="0 0 24 24" aria-hidden="true">
+            <circle cx="12" cy="12" r="4"></circle>
+            <path d="M12 2v2M12 20v2M4.93 4.93l1.42 1.42M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.42-1.42M17.66 6.34l1.41-1.41"></path>
+          </svg>
+          <svg class="moon-icon" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M20.5 14.2A8.3 8.3 0 0 1 9.8 3.5 8.5 8.5 0 1 0 20.5 14.2Z"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+    <nav class="mobile-nav" aria-label="章节导航" data-i18n-aria-label="sectionNavLabel">
+      <a href="#atlas" data-i18n="navAtlas">图谱</a>
+      <a href="#catalog" data-i18n="navCatalog">目录</a>
+      <a href="#lineage" data-i18n="navLineage">关系</a>
+      <a href="#coverage" data-i18n="navCoverage">覆盖</a>
+      <a href="#methodology" data-i18n="navMethod">方法</a>
+    </nav>
+  </header>
+
+  <main id="main-content">
+    <section class="hero" aria-labelledby="page-title">
+      <div class="hero-grid">
+        <div>
+          <p class="eyebrow">
+            <span class="eyebrow-line" aria-hidden="true"></span>
+            <span data-i18n="heroEyebrow">ARCHITECTURE LINEAGES · 数据基线 01</span>
+          </p>
+          <h1 id="page-title">
+            <span data-i18n="heroTitle">建筑谱系</span>
+            <em data-i18n="heroSubtitle">Architecture Lineages</em>
+          </h1>
+          <p class="hero-lead" data-i18n="heroLead">
+            把建筑、建筑师、工作室与知识传递关系放进同一张可追溯的历史图谱。现在展示的是用于校验数据管线的跨区域候选样本，不是全球建筑史全集。
+          </p>
+          <div class="hero-actions">
+            <a class="primary-button" href="#catalog">
+              <span data-i18n="browseCatalog">浏览候选目录</span>
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
+            </a>
+            <a class="text-link" href="#methodology" data-i18n="readMethod">先看方法与边界</a>
+          </div>
+        </div>
+
+        <aside class="truth-card" aria-labelledby="truth-title">
+          <div class="truth-card-top">
+            <span class="status-light" aria-hidden="true"></span>
+            <p id="truth-title" data-i18n="truthTitle">当前发布状态</p>
+            <span class="candidate-chip" data-i18n="candidate">候选</span>
+          </div>
+          <p class="truth-number"><strong id="hero-verified">0</strong><span data-i18n="verifiedFacts">条已核验实体或关系</span></p>
+          <p class="truth-copy" data-i18n="truthCopy">
+            现有记录全部来自固定版本的 Wikidata 水合样本，尚未经过本项目人工编辑核验。师承边仅供复核，不能进入游戏升级树。
+          </p>
+          <dl class="truth-meta">
+            <div><dt data-i18n="dataAsOf">数据时点</dt><dd id="data-as-of">—</dd></div>
+            <div><dt data-i18n="coverageRun">覆盖单元</dt><dd><span id="coverage-run">0</span>/<span id="coverage-total">72</span></dd></div>
+            <div><dt data-i18n="dataVersion">数据版本</dt><dd id="data-version">—</dd></div>
+          </dl>
+        </aside>
+      </div>
+
+      <div class="metric-grid" aria-label="数据规模" data-i18n-aria-label="dataScaleLabel">
+        <article><strong id="metric-works">—</strong><span data-i18n="metricWorks">标志性建筑候选</span><small data-i18n="metricWorksSub">跨 9 个宏观区域的水合夹具</small></article>
+        <article><strong id="metric-people">—</strong><span data-i18n="metricPeople">建筑师与相关人物</span><small data-i18n="metricPeopleSub">中文名缺失会被明确标出</small></article>
+        <article><strong id="metric-practices">—</strong><span data-i18n="metricPractices">工作室 / 事务所</span><small data-i18n="metricPracticesSub">不把个人与机构混为一谈</small></article>
+        <article><strong id="metric-claims">—</strong><span data-i18n="metricClaims">字段级来源主张</span><small data-i18n="metricClaimsSub">绑定固定修订与记录哈希</small></article>
+      </div>
+    </section>
+
+    <section class="boundary-strip" aria-label="范围声明" data-i18n-aria-label="scopeNoticeLabel">
+      <div class="boundary-icon" aria-hidden="true">!</div>
+      <div>
+        <strong data-i18n="boundaryTitle">先读这条边界</strong>
+        <p data-i18n="boundaryCopy">19 件作品是校验来源映射的固定候选夹具，不是排名、代表性抽样或全球覆盖率。所有 72 个“区域 × 时期”发现单元仍未运行。</p>
+      </div>
+      <a href="#coverage" data-i18n="inspectCoverage">查看覆盖矩阵</a>
+    </section>
+
+    <section id="atlas" class="section-shell" aria-labelledby="atlas-title">
+      <div class="section-heading">
+        <div>
+          <p class="section-kicker" data-i18n="atlasKicker">01 · 地理浏览</p>
+          <h2 id="atlas-title" data-i18n="atlasTitle">候选作品世界图谱</h2>
+          <p data-i18n="atlasIntro">地图只绘制数据中带坐标的作品；点击标记打开同一份证据详情。缺失坐标不会被猜测补齐。</p>
+        </div>
+        <div class="section-stat"><strong id="map-visible-count">—</strong><span data-i18n="mapVisible">当前可见坐标点</span></div>
+      </div>
+      <div class="map-card">
+        <div id="world-map" class="world-map" role="img" aria-label="候选建筑物世界地图" data-i18n-aria-label="mapAria"></div>
+        <div id="map-loading" class="map-state" role="status" data-i18n="loadingMap">正在加载地图…</div>
+        <div id="map-fallback" class="map-fallback hidden" role="alert">
+          <strong data-i18n="mapUnavailableTitle">交互地图未能加载</strong>
+          <p data-i18n="mapUnavailableCopy">目录与坐标清单仍可正常使用；这不影响数据本身。</p>
+        </div>
+        <div class="map-footer">
+          <div id="map-legend" class="map-legend" aria-label="区域图例" data-i18n-aria-label="regionLegendLabel"></div>
+          <p id="map-note" data-i18n="mapNote">18/19 件夹具作品带来源坐标；波斯波利斯保持坐标缺失。</p>
+        </div>
+      </div>
+      <details class="coordinate-details">
+        <summary data-i18n="coordinateListTitle">不用地图浏览：坐标作品清单</summary>
+        <ul id="coordinate-list"></ul>
+      </details>
+    </section>
+
+    <section id="catalog" class="section-shell catalog-section" aria-labelledby="catalog-title">
+      <div class="section-heading">
+        <div>
+          <p class="section-kicker" data-i18n="catalogKicker">02 · 检索与证据</p>
+          <h2 id="catalog-title" data-i18n="catalogTitle">建筑史候选目录</h2>
+          <p data-i18n="catalogIntro">中英文名、别名、Wikidata ID、地点与署名均可搜索。搜索、区域与证据筛选同步驱动地图和目录；实体类型标签只整理目录。</p>
+        </div>
+      </div>
+
+      <div class="catalog-toolbar">
+        <label class="search-field" for="catalog-search">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.8-3.8"></path></svg>
+          <span class="sr-only" data-i18n="searchLabel">搜索目录</span>
+          <input id="catalog-search" type="search" autocomplete="off" placeholder="搜索中文名、英文名、别名或 ID…" data-i18n-placeholder="searchPlaceholder">
+          <kbd aria-hidden="true">⌘ K</kbd>
+        </label>
+        <button id="reset-filters" class="secondary-button" type="button" data-i18n="resetFilters">重置筛选</button>
+      </div>
+
+      <div class="filter-panel">
+        <div class="entity-tabs" role="group" aria-label="实体类型" data-i18n-aria-label="entityTypeLabel">
+          <button class="active" type="button" data-entity-filter="all" aria-pressed="true"><span data-i18n="typeAll">全部</span><small id="tab-count-all">—</small></button>
+          <button type="button" data-entity-filter="work" aria-pressed="false"><span data-i18n="typeWork">建筑</span><small id="tab-count-work">—</small></button>
+          <button type="button" data-entity-filter="person" aria-pressed="false"><span data-i18n="typePerson">人物</span><small id="tab-count-person">—</small></button>
+          <button type="button" data-entity-filter="practice" aria-pressed="false"><span data-i18n="typePractice">事务所</span><small id="tab-count-practice">—</small></button>
+          <button type="button" data-entity-filter="place" aria-pressed="false"><span data-i18n="typePlace">地点</span><small id="tab-count-place">—</small></button>
+        </div>
+
+        <div class="select-filters">
+          <label>
+            <span data-i18n="regionFilter">区域</span>
+            <select id="region-filter" aria-label="按区域筛选" data-i18n-aria-label="regionFilterAria">
+              <option value="all" data-i18n="regionAll">全部区域</option>
+            </select>
+          </label>
+          <label>
+            <span data-i18n="statusFilter">核验状态</span>
+            <select id="status-filter" aria-label="按核验状态筛选" data-i18n-aria-label="statusFilterAria">
+              <option value="all" data-i18n="statusAll">全部状态</option>
+              <option value="candidate" data-i18n="candidate">候选</option>
+              <option value="verified" data-i18n="verified">已核验</option>
+              <option value="contested" data-i18n="contested">有争议</option>
+              <option value="declined" data-i18n="declined">已拒绝</option>
+            </select>
+          </label>
+          <label>
+            <span data-i18n="workTypeFilter">建筑类型映射</span>
+            <select id="work-type-filter" aria-label="按建筑类型映射筛选" data-i18n-aria-label="workTypeFilterAria">
+              <option value="all" data-i18n="workTypeAll">全部映射状态</option>
+              <option value="mapped_exact" data-i18n="mappedExact">精确映射</option>
+              <option value="ambiguous" data-i18n="ambiguous">含混</option>
+              <option value="unmapped" data-i18n="unmapped">未映射</option>
+            </select>
+          </label>
+        </div>
+
+        <div class="toggle-filters">
+          <label><input id="has-zh-filter" type="checkbox"><span data-i18n="hasChinese">有中文来源名</span></label>
+          <label><input id="has-coordinates-filter" type="checkbox"><span data-i18n="hasCoordinates">有来源坐标</span></label>
+          <label><input id="has-credits-filter" type="checkbox"><span data-i18n="hasCredits">有候选署名</span></label>
+        </div>
+      </div>
+
+      <div class="result-heading">
+        <p id="result-summary" aria-live="polite">—</p>
+        <p class="result-hint" data-i18n="openHint">点击一行查看来源与关联记录</p>
+      </div>
+
+      <div class="catalog-table-wrap">
+        <table class="catalog-table">
+          <thead>
+            <tr>
+              <th scope="col" aria-sort="ascending"><button type="button" data-sort="name"><span data-i18n="columnName">名称</span><span class="sort-mark" aria-hidden="true">↕</span></button></th>
+              <th scope="col"><button type="button" data-sort="entity_type"><span data-i18n="columnType">类型</span><span class="sort-mark" aria-hidden="true">↕</span></button></th>
+              <th scope="col"><button type="button" data-sort="region"><span data-i18n="columnRegion">区域</span><span class="sort-mark" aria-hidden="true">↕</span></button></th>
+              <th scope="col" data-i18n="columnContext">地点 / 关联</th>
+              <th scope="col" data-i18n="columnEvidence">证据</th>
+              <th scope="col" data-i18n="columnStatus">状态</th>
+            </tr>
+          </thead>
+          <tbody id="catalog-table-body"></tbody>
+        </table>
+      </div>
+      <div id="catalog-card-list" class="catalog-card-list"></div>
+      <div id="catalog-empty" class="empty-state hidden">
+        <strong data-i18n="emptyTitle">没有符合条件的记录</strong>
+        <p data-i18n="emptyCopy">请放宽筛选条件，或重置后重新搜索。</p>
+      </div>
+    </section>
+
+    <section id="lineage" class="section-shell" aria-labelledby="lineage-title">
+      <div class="section-heading">
+        <div>
+          <p class="section-kicker" data-i18n="lineageKicker">03 · 待审知识传递</p>
+          <h2 id="lineage-title" data-i18n="lineageTitle">原始关系复核图</h2>
+          <p data-i18n="lineageIntro">这些虚线边来自 Wikidata P1066/P802 的原始记录，只表示待审的“前序人物 → 后续人物”线索；不能自动解释为教师、导师或师徒。</p>
+        </div>
+        <div class="section-stat"><strong id="lineage-count">—</strong><span data-i18n="lineageCountLabel">条候选待审边</span></div>
+      </div>
+      <div class="lineage-warning">
+        <span aria-hidden="true">≠</span>
+        <p><strong data-i18n="lineageWarningTitle">不是游戏升级树。</strong> <span data-i18n="lineageWarningCopy">只有经人工核验、无冲突且关系类型明确的边，未来才可能由游戏项目另行派生。</span></p>
+      </div>
+      <div class="lineage-layout">
+        <div class="lineage-graph-card">
+          <div id="lineage-graph" class="lineage-graph" role="img" aria-label="候选知识传递关系图" data-i18n-aria-label="lineageGraphAria"></div>
+          <div id="lineage-fallback" class="map-fallback hidden" role="alert">
+            <strong data-i18n="graphUnavailableTitle">关系图未能加载</strong>
+            <p data-i18n="graphUnavailableCopy">右侧的语义化关系清单仍可完整浏览。</p>
+          </div>
+        </div>
+        <ol id="lineage-list" class="lineage-list"></ol>
+      </div>
+    </section>
+
+    <section id="coverage" class="section-shell" aria-labelledby="coverage-title">
+      <div class="section-heading">
+        <div>
+          <p class="section-kicker" data-i18n="coverageKicker">04 · 覆盖诚实度</p>
+          <h2 id="coverage-title" data-i18n="coverageTitle">9 区域 × 8 时期发现矩阵</h2>
+          <p data-i18n="coverageIntro">矩阵固定了未来系统收集的抽样框架。当前 72 个单元全部未运行；下方样本分布不能替代覆盖进度。</p>
+        </div>
+        <div class="coverage-progress" aria-label="覆盖进度" data-i18n-aria-label="coverageProgressAria">
+          <span><strong id="coverage-percent">0%</strong><small data-i18n="coverageComplete">发现单元已运行</small></span>
+          <div class="progress-track"><span id="coverage-progress-bar"></span></div>
+        </div>
+      </div>
+      <div class="coverage-card">
+        <div id="coverage-matrix" class="coverage-matrix" role="table" aria-label="区域与时期覆盖矩阵" data-i18n-aria-label="coverageMatrixAria"></div>
+        <div class="coverage-key">
+          <span><i class="not-run"></i><span data-i18n="notRun">未运行</span></span>
+        </div>
+      </div>
+      <div class="fixture-panel">
+        <div>
+          <h3 data-i18n="fixtureTitle">固定水合夹具的区域分布</h3>
+          <p data-i18n="fixtureCopy">仅用于证伪映射与来源链；不代表每个区域的重要性、完整性或可比性。</p>
+        </div>
+        <div id="fixture-bars" class="fixture-bars"></div>
+      </div>
+    </section>
+
+    <section id="methodology" class="section-shell" aria-labelledby="method-title">
+      <div class="section-heading">
+        <div>
+          <p class="section-kicker" data-i18n="methodKicker">05 · 方法、来源与许可</p>
+          <h2 id="method-title" data-i18n="methodTitle">复用前人研究，但不跳过证据治理</h2>
+          <p data-i18n="methodIntro">来源登记表区分“可以发现候选”“可以发布字段”“适合证明关系”与“适合覆盖研究”。适配器可用性也与来源权威性分开记录。</p>
+        </div>
+      </div>
+      <div class="method-grid">
+        <article>
+          <span class="method-number">01</span>
+          <h3 data-i18n="methodOneTitle">先接权威聚合</h3>
+          <p data-i18n="methodOneCopy">优先接入 Wikidata、Getty Vocabularies、Archnet、SAH Archipedia 等已有知识组织，减少重复劳动。</p>
+        </article>
+        <article>
+          <span class="method-number">02</span>
+          <h3 data-i18n="methodTwoTitle">字段级溯源</h3>
+          <p data-i18n="methodTwoCopy">名称、坐标、署名与关系分别保存证据；一个来源的“有记录”不等于本项目“已核验”。</p>
+        </article>
+        <article>
+          <span class="method-number">03</span>
+          <h3 data-i18n="methodThreeTitle">师承严格分型</h3>
+          <p data-i18n="methodThreeCopy">教育、任职、合作者与风格相似都不能自动推断师承；关系冲突时保持候选或争议状态。</p>
+        </article>
+        <article>
+          <span class="method-number">04</span>
+          <h3 data-i18n="methodFourTitle">游戏只读已核验子图</h3>
+          <p data-i18n="methodFourCopy">第二个 demo 将按独立、版本化规则读取无冲突的已核验关系，而不修改历史数据。</p>
+        </article>
+      </div>
+
+      <div class="source-heading">
+        <div>
+          <h3 data-i18n="sourceRegistryTitle">来源登记表</h3>
+          <p data-i18n="sourceRegistryCopy">显示本项目计划复用的来源、许可决策与当前适配状态。当前发布候选记录仅来自 Wikidata 固定修订夹具。</p>
+        </div>
+        <span id="source-count">—</span>
+      </div>
+      <div id="source-grid" class="source-grid"></div>
+
+      <div class="license-note">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 4 7v5c0 4.7 3.2 7.8 8 9 4.8-1.2 8-4.3 8-9V7l-8-4Z"></path><path d="m9 12 2 2 4-4"></path></svg>
+        <div>
+          <strong data-i18n="licenseTitle">许可与快照边界</strong>
+          <p data-i18n="licenseCopy">结构化 Wikidata 数据按 CC0 复用；页面保留固定修订链接与记录哈希。其他来源只有在登记的 allowed_operations 允许时才会进入发布数据。</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div>
+      <strong>QROST · Architecture Lineages</strong>
+      <p data-i18n="footerScope">开放研究原型 · 候选数据不构成完整或权威的全球建筑史。</p>
+    </div>
+    <div class="footer-links">
+      <a href="../../index.html" data-i18n="backHome">返回 QROST 首页</a>
+      <a href="https://www.wikidata.org/wiki/Wikidata:Licensing" target="_blank" rel="noopener noreferrer">Wikidata CC0</a>
+    </div>
+  </footer>
+
+  <div id="detail-modal" class="modal-backdrop hidden" aria-hidden="true">
+    <section class="detail-panel" role="dialog" aria-modal="true" aria-labelledby="detail-title" tabindex="-1">
+      <button id="detail-close" class="modal-close" type="button" aria-label="关闭详情" data-i18n-aria-label="closeDetail">×</button>
+      <div id="detail-content"></div>
+    </section>
+  </div>
+
+  <div id="init-error" class="init-error hidden" role="alert">
+    <strong data-i18n="initErrorTitle">数据浏览器未能初始化</strong>
+    <p data-i18n="initErrorCopy">请通过本地 HTTP 服务器或 GitHub Pages 打开；静态说明仍可阅读。</p>
+  </div>
+
+  <script src="assets/js/world-geo.js?v=8f965fc837"></script>
+  <script
+    src="https://cdn.jsdelivr.net/npm/echarts@5.5.1/dist/echarts.min.js"
+    integrity="sha384-Mx5lkUEQPM1pOJCwFtUICyX45KNojXbkWdYhkKUKsbv391mavbfoAmONbzkgYPzR"
+    crossorigin="anonymous"></script>
+  <script src="assets/js/i18n.js?v=fcf1c2fe62"></script>
+  <script src="assets/js/data-loader.js?v=9a16a5fae5"></script>
+  <script src="assets/js/maps.js?v=73c3e5fa66"></script>
+  <script src="assets/js/app.js?v=622b13c797"></script>
+</body>
+</html>

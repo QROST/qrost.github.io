@@ -1,0 +1,13 @@
+{
+  "name": "qrost-architecture-history",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Local Tailwind build for QROST's bilingual architecture-history atlas.",
+  "scripts": {
+    "build:css": "tailwindcss -i ./src/tailwind-input.css -o ./assets/css/tailwind-built.css --minify",
+    "watch:css": "tailwindcss -i ./src/tailwind-input.css -o ./assets/css/tailwind-built.css --watch"
+  },
+  "devDependencies": {
+    "tailwindcss": "3.4.17"
+  }
+}

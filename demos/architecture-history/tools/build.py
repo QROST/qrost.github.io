@@ -248,16 +248,22 @@ def derive_manifest(paths: list[Path], version: str) -> dict:
     }
 
 
-def refresh_loader_version(version: str) -> None:
+def refresh_loader_constants(version: str, manifest_sha256: str) -> None:
     if not LOADER.exists():
         return
     text = LOADER.read_text(encoding="utf-8")
-    pattern = r"(const DATA_VERSION = ')[0-9a-f]{64}(';)"
-    updated, count = re.subn(pattern, rf"\g<1>{version}\g<2>", text)
-    if count != 1:
-        raise SystemExit(
-            f"build: expected exactly one DATA_VERSION constant in {LOADER}, found {count}"
-        )
+    updated = text
+    replacements = (
+        ("DATA_VERSION", version),
+        ("MANIFEST_SHA256", manifest_sha256),
+    )
+    for name, value in replacements:
+        pattern = rf"(const {name} = ')[0-9a-f]{{64}}(';)"
+        updated, count = re.subn(pattern, rf"\g<1>{value}\g<2>", updated)
+        if count != 1:
+            raise SystemExit(
+                f"build: expected exactly one {name} constant in {LOADER}, found {count}"
+            )
     if updated != text:
         atomic_write_bytes(LOADER, updated.encode("utf-8"))
 
@@ -326,10 +332,15 @@ def main() -> int:
         paths = input_paths()
         version = data_version(paths)
         write_json(MANIFEST, derive_manifest(paths, version))
-        refresh_loader_version(version)
+        refresh_loader_constants(version, sha256(MANIFEST))
         refresh_html_tokens()
         subprocess.run(
             [sys.executable, str(ROOT / "tools" / "validate.py")],
+            cwd=ROOT,
+            check=True,
+        )
+        subprocess.run(
+            [sys.executable, str(ROOT / "tools" / "test_page_contract.py")],
             cwd=ROOT,
             check=True,
         )
