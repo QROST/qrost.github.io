@@ -17,7 +17,7 @@ python3 tools/test_data_contract.py
 - credit preservation and attribution modes;
 - exact field claims for every non-empty fact on a verified entity;
 - date, coordinate, region, period, and enum constraints;
-- strict lineage/game eligibility gates;
+- strict lineage endpoint, conflict, and cycle gates;
 - a required manifest whose complete counts, coverage, version, and hashes are
   independently re-derived.
 

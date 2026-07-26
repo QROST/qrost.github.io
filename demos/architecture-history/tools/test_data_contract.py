@@ -239,7 +239,6 @@ class DataContractTests(unittest.TestCase):
             "confidence": 0.95,
             "last_verified": "2026-07-25",
             "claim_id": "claim-relation",
-            "game_eligibility": True,
             "rejection_reasons": [],
         }
         (data / "relations.json").write_text(
@@ -352,7 +351,7 @@ class DataContractTests(unittest.TestCase):
         self.assertIn("manifest.counts", result.stderr)
         self.assertIn("manifest.coverage", result.stderr)
 
-    def test_game_relation_binds_exact_endpoint_and_verified_people(self):
+    def test_verified_lineage_binds_exact_endpoint_and_verified_people(self):
         temp = self.isolated_root()
         self.addCleanup(temp.cleanup)
         root = Path(temp.name)
@@ -362,6 +361,97 @@ class DataContractTests(unittest.TestCase):
         self.assertIn("claim object must match relation to_id", result.stderr)
         self.assertIn("verified lineage requires verified person endpoints", result.stderr)
         self.assertIn("lacks claim-evidence authority for relationships", result.stderr)
+
+    def test_duplicate_logical_relation_is_rejected(self):
+        temp = self.isolated_root()
+        self.addCleanup(temp.cleanup)
+        root = Path(temp.name)
+        self.add_malicious_relation_fixture(root)
+        data = root / "assets" / "data"
+
+        claims_path = data / "claims.json"
+        claims_payload = json.loads(claims_path.read_text(encoding="utf-8"))
+        duplicate_claim = dict(claims_payload["claims"][0])
+        duplicate_claim["id"] = "claim-relation-duplicate"
+        duplicate_claim["subject_id"] = "relation-a-b-duplicate"
+        claims_payload["claims"].append(duplicate_claim)
+        claims_path.write_text(
+            json.dumps(claims_payload, ensure_ascii=False, indent=2) + "\n",
+            encoding="utf-8",
+        )
+
+        relations_path = data / "relations.json"
+        relations_payload = json.loads(relations_path.read_text(encoding="utf-8"))
+        duplicate_relation = dict(relations_payload["relations"][0])
+        duplicate_relation["id"] = "relation-a-b-duplicate"
+        duplicate_relation["claim_id"] = "claim-relation-duplicate"
+        relations_payload["relations"].append(duplicate_relation)
+        relations_path.write_text(
+            json.dumps(relations_payload, ensure_ascii=False, indent=2) + "\n",
+            encoding="utf-8",
+        )
+
+        result = self.run_validator(root)
+        self.assertNotEqual(result.returncode, 0)
+        self.assertIn("duplicates logical relation 'relation-a-b'", result.stderr)
+
+    def test_verified_relation_rejects_competing_claim(self):
+        temp = self.isolated_root()
+        self.addCleanup(temp.cleanup)
+        root = Path(temp.name)
+        self.add_malicious_relation_fixture(root)
+        claims_path = root / "assets" / "data" / "claims.json"
+        payload = json.loads(claims_path.read_text(encoding="utf-8"))
+        competing = dict(payload["claims"][0])
+        competing["id"] = "claim-relation-contested"
+        competing["verification_status"] = "contested"
+        competing["confidence"] = 0.8
+        competing["reviewed_by"] = None
+        competing["reviewed_at"] = None
+        payload["claims"].append(competing)
+        claims_path.write_text(
+            json.dumps(payload, ensure_ascii=False, indent=2) + "\n",
+            encoding="utf-8",
+        )
+        result = self.run_validator(root)
+        self.assertNotEqual(result.returncode, 0)
+        self.assertIn(
+            "relation-a-b: verified relation has competing claims "
+            "['claim-relation-contested']",
+            result.stderr,
+        )
+
+    def test_entity_must_reverse_list_every_subject_claim(self):
+        temp = self.isolated_root()
+        self.addCleanup(temp.cleanup)
+        root = Path(temp.name)
+        self.add_malicious_relation_fixture(root)
+        claims_path = root / "assets" / "data" / "claims.json"
+        payload = json.loads(claims_path.read_text(encoding="utf-8"))
+        payload["claims"].append(
+            {
+                "id": "claim-hidden",
+                "subject_id": "person-a",
+                "predicate": "field_name_en",
+                "object": {"value": "Hidden candidate"},
+                "qualifiers": {},
+                "evidence": [],
+                "verification_status": "candidate",
+                "confidence": 0.5,
+                "reviewed_by": None,
+                "reviewed_at": None,
+            }
+        )
+        claims_path.write_text(
+            json.dumps(payload, ensure_ascii=False, indent=2) + "\n",
+            encoding="utf-8",
+        )
+        result = self.run_validator(root)
+        self.assertNotEqual(result.returncode, 0)
+        self.assertIn(
+            "claim-hidden: entity subject must list every claim in claim_ids",
+            result.stderr,
+        )
 
     def test_discovery_only_source_cannot_support_public_claim(self):
         temp = self.isolated_root()
@@ -433,6 +523,120 @@ class DataContractTests(unittest.TestCase):
             errors,
         )
 
+    def test_verified_field_rejects_hidden_contested_claim(self):
+        item = {
+            "id": "person-a",
+            "entity_type": "person",
+            "name_en": "Supported Name",
+            "verification_status": "verified",
+            "confidence": 0.9,
+            "last_verified": "2026-07-25",
+            "claim_ids": ["claim-name"],
+        }
+        claims = [
+            {
+                "id": "claim-name",
+                "subject_id": "person-a",
+                "predicate": "field_name_en",
+                "object": {"value": "Supported Name"},
+                "verification_status": "verified",
+                "confidence": 0.9,
+                "evidence": [],
+            },
+            {
+                "id": "claim-name-contested",
+                "subject_id": "person-a",
+                "predicate": "field_name_en",
+                "object": {"value": "Other Name"},
+                "verification_status": "contested",
+                "confidence": 0.8,
+                "evidence": [],
+            },
+        ]
+        errors: list[str] = []
+        validator.verified_field_claims(item, claims, errors)
+        self.assertIn(
+            "person-a: verified field 'name_en' has competing claims "
+            "['claim-name-contested']",
+            errors,
+        )
+
+    def test_verified_field_rejects_different_verified_value(self):
+        item = {
+            "id": "person-a",
+            "entity_type": "person",
+            "name_en": "Canonical Name",
+            "verification_status": "verified",
+            "confidence": 0.9,
+            "last_verified": "2026-07-25",
+            "claim_ids": ["claim-name", "claim-name-other"],
+        }
+        claims = [
+            {
+                "id": "claim-name",
+                "subject_id": "person-a",
+                "predicate": "field_name_en",
+                "object": {"value": "Canonical Name"},
+                "verification_status": "verified",
+                "confidence": 0.9,
+                "evidence": [],
+            },
+            {
+                "id": "claim-name-other",
+                "subject_id": "person-a",
+                "predicate": "field_name_en",
+                "object": {"value": "Different Name"},
+                "verification_status": "verified",
+                "confidence": 0.9,
+                "evidence": [],
+            },
+        ]
+        errors: list[str] = []
+        validator.verified_field_claims(item, claims, errors)
+        self.assertIn(
+            "person-a: verified field 'name_en' has competing claims "
+            "['claim-name-other']",
+            errors,
+        )
+
+    def test_verified_work_rejects_candidate_credit(self):
+        errors: list[str] = []
+        validator.validate_verified_work_credit(
+            {"id": "work-a", "verification_status": "verified"},
+            {"credit_status": "candidate"},
+            {"verification_status": "candidate"},
+            {"verification_status": "candidate"},
+            errors,
+        )
+        self.assertIn(
+            "work-a: verified work cannot include a non-verified credit",
+            errors,
+        )
+        self.assertIn(
+            "work-a: verified work cannot include a non-verified credit claim",
+            errors,
+        )
+        self.assertIn(
+            "work-a: verified work credit requires a verified contributor entity",
+            errors,
+        )
+
+    def test_symmetric_relation_key_normalizes_endpoint_order(self):
+        forward = {
+            "from_id": "person-a",
+            "to_id": "person-b",
+            "relation_type": "collaborated_with",
+        }
+        reverse = {
+            "from_id": "person-b",
+            "to_id": "person-a",
+            "relation_type": "collaborated_with",
+        }
+        self.assertEqual(
+            validator.logical_relation_key(forward),
+            validator.logical_relation_key(reverse),
+        )
+
     def test_date_semantics_reject_reverse_range(self):
         errors: list[str] = []
         validator.validate_date_value(
@@ -448,6 +652,42 @@ class DataContractTests(unittest.TestCase):
         )
         self.assertIn(
             "work-a.completion: earliest year exceeds latest year",
+            errors,
+        )
+
+    def test_date_semantics_bind_display_to_bounds(self):
+        errors: list[str] = []
+        validator.validate_date_value(
+            "work-a",
+            "completion",
+            {
+                "value": "1900",
+                "earliest": 2000,
+                "latest": 2000,
+                "precision": "year",
+            },
+            errors,
+        )
+        self.assertIn(
+            "work-a.completion: display year must equal earliest/latest bounds",
+            errors,
+        )
+
+    def test_date_semantics_reject_invalid_calendar_day(self):
+        errors: list[str] = []
+        validator.validate_date_value(
+            "work-a",
+            "completion",
+            {
+                "value": "1900-02-29",
+                "earliest": 1900,
+                "latest": 1900,
+                "precision": "day",
+            },
+            errors,
+        )
+        self.assertIn(
+            "work-a.completion: day is invalid for its calendar month",
             errors,
         )
 

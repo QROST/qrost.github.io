@@ -20,7 +20,7 @@
     "verification": {}
   },
   "data_as_of": "2026-07-25",
-  "data_version": "9ee9aca521e0f727ee48d981ce61eaeef5aa96b7005d61842cfc197ef6b1a35c",
+  "data_version": "2e90724e6aae17a413f13b133b73a586131204c997745f34d237255f3c94dd30",
   "files": {
     "claims.json": {
       "count": 0,
@@ -48,7 +48,7 @@
     },
     "source-registry.json": {
       "count": 12,
-      "sha256": "23c5e79533d53a3b91363dd03ca94ede4a8ed633349003472110135f8b16463b"
+      "sha256": "cc313b560bfb8a9b8bffda8a032991745d324c9662cb4696dcb65e40366fa00b"
     },
     "works.json": {
       "count": 0,
@@ -57,5 +57,5 @@
   },
   "hash_algorithm": "sha256",
   "schema_id": "architecture-lineages",
-  "schema_version": "1.1.0"
+  "schema_version": "1.2.0"
 }

@@ -37,7 +37,7 @@ FILE_KEYS = {
 }
 
 LINEAGE_TYPES = {"direct_mentor", "master_of_apprentice", "formal_teacher"}
-GAME_TYPES = LINEAGE_TYPES
+SYMMETRIC_RELATION_TYPES = {"collaborated_with", "cofounded_with"}
 UNREVIEWABLE_EXTRACTIONS = {"ocr_candidate", "llm_candidate"}
 VERIFIED_AUTHORITY = "claim_evidence"
 SUPPORTED_SCHEMA_KEYWORDS = {
@@ -315,15 +315,73 @@ def validate_date_value(
         return
     if earliest > latest:
         errors.append(f"{owner_id}.{field}: earliest year exceeds latest year")
-    patterns = {
-        "day": r"^-?\d{1,6}-\d{2}-\d{2}$",
-        "month": r"^-?\d{1,6}-\d{2}$",
-        "year": r"^-?\d{1,6}$",
+
+    year_match = re.fullmatch(r"(-?\d{1,6})", display)
+    month_match = re.fullmatch(r"(-?\d{1,6})-(\d{2})", display)
+    day_match = re.fullmatch(r"(-?\d{1,6})-(\d{2})-(\d{2})", display)
+    range_match = re.fullmatch(
+        r"(-?\d{1,6})\s*[–—]\s*(-?\d{1,6})",
+        display,
+    )
+    circa_match = re.fullmatch(
+        r"(?:c\.?|ca\.?|circa|约)\s*(-?\d{1,6})",
+        display,
+        flags=re.IGNORECASE,
+    )
+    matches = {
+        "year": year_match,
+        "month": month_match,
+        "day": day_match,
+        "range": range_match,
+        "circa": circa_match,
     }
-    pattern = patterns.get(precision)
-    if pattern and not re.fullmatch(pattern, display):
+    match = matches[precision]
+    if not match:
         errors.append(
             f"{owner_id}.{field}: value {display!r} does not match {precision} precision"
+        )
+        return
+
+    parsed_year = int(match.group(1))
+    if parsed_year == 0:
+        errors.append(f"{owner_id}.{field}: year zero is not supported")
+        return
+
+    if precision in {"year", "month", "day"}:
+        if earliest != parsed_year or latest != parsed_year:
+            errors.append(
+                f"{owner_id}.{field}: display year must equal earliest/latest bounds"
+            )
+
+    if precision in {"month", "day"}:
+        month = int(match.group(2))
+        if not 1 <= month <= 12:
+            errors.append(f"{owner_id}.{field}: month is outside 01-12")
+            return
+
+    if precision == "day":
+        day = int(match.group(3))
+        month_lengths = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+        leap_year = parsed_year % 4 == 0 and (
+            parsed_year % 100 != 0 or parsed_year % 400 == 0
+        )
+        if leap_year:
+            month_lengths[1] = 29
+        if not 1 <= day <= month_lengths[month - 1]:
+            errors.append(f"{owner_id}.{field}: day is invalid for its calendar month")
+
+    if precision == "range":
+        parsed_latest = int(match.group(2))
+        if parsed_latest == 0:
+            errors.append(f"{owner_id}.{field}: year zero is not supported")
+        if earliest != parsed_year or latest != parsed_latest:
+            errors.append(
+                f"{owner_id}.{field}: displayed range must equal earliest/latest bounds"
+            )
+
+    if precision == "circa" and not earliest <= parsed_year <= latest:
+        errors.append(
+            f"{owner_id}.{field}: circa year must fall within earliest/latest bounds"
         )
 
 
@@ -354,11 +412,7 @@ def verified_field_claims(
     }
     by_predicate: dict[str, list[dict]] = {}
     for claim in claims:
-        if (
-            claim["id"] in item["claim_ids"]
-            and claim["subject_id"] == item["id"]
-            and claim["verification_status"] == "verified"
-        ):
+        if claim["subject_id"] == item["id"]:
             by_predicate.setdefault(claim["predicate"], []).append(claim)
     for field, expected in item.items():
         if field in administrative or not meaningful_fact(expected):
@@ -367,7 +421,11 @@ def verified_field_claims(
         matches = [
             claim
             for claim in by_predicate.get(predicate, [])
-            if claim["object"].get("value") == expected
+            if (
+                claim["id"] in item["claim_ids"]
+                and claim["verification_status"] == "verified"
+                and claim["object"].get("value") == expected
+            )
         ]
         if not matches:
             errors.append(
@@ -375,7 +433,59 @@ def verified_field_claims(
             )
         else:
             relevant.extend(matches)
+        competing = [
+            claim["id"]
+            for claim in by_predicate.get(predicate, [])
+            if (
+                claim["verification_status"] in {"contested", "declined"}
+                or (
+                    claim["verification_status"] == "verified"
+                    and claim["object"].get("value") != expected
+                )
+                or any(
+                    evidence["support"] == "conflicting"
+                    for evidence in claim.get("evidence", [])
+                )
+            )
+        ]
+        if competing:
+            errors.append(
+                f"{item['id']}: verified field {field!r} has competing claims "
+                f"{sorted(competing)!r}"
+            )
     return relevant
+
+
+def validate_verified_work_credit(
+    work: dict,
+    credit: dict,
+    claim: dict,
+    contributor: Optional[dict],
+    errors: list[str],
+) -> None:
+    if work["verification_status"] != "verified":
+        return
+    if credit["credit_status"] != "verified":
+        errors.append(
+            f"{work['id']}: verified work cannot include a non-verified credit"
+        )
+    if claim["verification_status"] != "verified":
+        errors.append(
+            f"{work['id']}: verified work cannot include a non-verified credit claim"
+        )
+    if contributor is None or contributor["verification_status"] != "verified":
+        errors.append(
+            f"{work['id']}: verified work credit requires a verified contributor entity"
+        )
+
+
+def logical_relation_key(relation: dict) -> tuple[str, str, str]:
+    from_id = relation["from_id"]
+    to_id = relation["to_id"]
+    relation_type = relation["relation_type"]
+    if relation_type in SYMMETRIC_RELATION_TYPES:
+        from_id, to_id = sorted((from_id, to_id))
+    return from_id, to_id, relation_type
 
 
 def has_cycle(edges: list[tuple[str, str]]) -> Optional[list[str]]:
@@ -507,7 +617,7 @@ def expected_manifest(paths: list[Path]) -> dict:
 
     return {
         "schema_id": "architecture-lineages",
-        "schema_version": "1.1.0",
+        "schema_version": "1.2.0",
         "hash_algorithm": "sha256",
         "data_version": data_version(paths),
         "data_as_of": load_json(DATA / "source-registry.json")["data_as_of"],
@@ -607,6 +717,10 @@ def main() -> int:
     claim_by_id = {item["id"]: item for item in claims}
     relation_by_id = {item["id"]: item for item in relations}
     person_by_id = {item["id"]: item for item in people}
+    entity_by_id = {
+        item["id"]: item
+        for item in people + practices + places + works
+    }
 
     snapshot_payloads = [
         load_json(path)
@@ -775,6 +889,13 @@ def main() -> int:
         elif not item["claim_ids"]:
             warnings.append(f"{item_id}: candidate entity has no source claim yet")
 
+    for claim in claims:
+        subject = entity_by_id.get(claim["subject_id"])
+        if subject is not None and claim["id"] not in subject["claim_ids"]:
+            errors.append(
+                f"{claim['id']}: entity subject must list every claim in claim_ids"
+            )
+
     for person in people:
         validate_date_value(person["id"], "birth", person["birth"], errors)
         validate_date_value(person["id"], "death", person["death"], errors)
@@ -872,6 +993,13 @@ def main() -> int:
                     errors.append(f"{work_id}: credit and claim verification status differ")
                 if credit["claim_id"] not in work["claim_ids"]:
                     errors.append(f"{work_id}: credit claim must be listed in claim_ids")
+                validate_verified_work_credit(
+                    work,
+                    credit,
+                    claim,
+                    entity_by_id.get(credit["entity_id"]),
+                    errors,
+                )
 
     for claim in claims:
         if claim["predicate"] != "credited_contributor":
@@ -991,6 +1119,18 @@ def main() -> int:
         if claim["verification_status"] == "contested" and not supports["conflicting"]:
             warnings.append(f"{claim_id}: contested claim has no evidence marked conflicting")
 
+    logical_relation_keys: dict[tuple[str, str, str], str] = {}
+    for relation in relations:
+        logical_key = logical_relation_key(relation)
+        prior_id = logical_relation_keys.get(logical_key)
+        if prior_id is not None:
+            errors.append(
+                f"{relation['id']}: duplicates logical relation {prior_id!r} "
+                f"for {logical_key!r}"
+            )
+        else:
+            logical_relation_keys[logical_key] = relation["id"]
+
     lineage_edges: list[tuple[str, str]] = []
     for relation in relations:
         relation_id = relation["id"]
@@ -1062,56 +1202,33 @@ def main() -> int:
                 errors.append(
                     f"{relation_id}: verified lineage requires verified person endpoints"
                 )
+        if relation["verification_status"] == "verified":
+            competing = [
+                other["id"]
+                for other in claims
+                if (
+                    other["subject_id"] == relation_id
+                    and other["id"] != claim["id"]
+                    and (
+                        other["verification_status"] in {"contested", "declined"}
+                        or any(
+                            evidence["support"] == "conflicting"
+                            for evidence in other["evidence"]
+                        )
+                    )
+                )
+            ]
+            if competing:
+                errors.append(
+                    f"{relation_id}: verified relation has competing claims "
+                    f"{sorted(competing)!r}"
+                )
         if relation["relation_type"] in LINEAGE_TYPES and relation["verification_status"] == "verified":
             lineage_edges.append((relation["from_id"], relation["to_id"]))
             source_birth = known_year(person_by_id.get(relation["from_id"], {}).get("birth"))
             target_birth = known_year(person_by_id.get(relation["to_id"], {}).get("birth"))
             if source_birth is not None and target_birth is not None and source_birth > target_birth:
                 errors.append(f"{relation_id}: mentor/teacher born after student")
-        if relation["game_eligibility"]:
-            if relation["relation_type"] not in GAME_TYPES:
-                errors.append(f"{relation_id}: relation type is not eligible for game upgrades")
-            if relation["verification_status"] != "verified" or relation["confidence"] < 0.9:
-                errors.append(
-                    f"{relation_id}: game eligibility requires verified status and confidence>=0.9"
-                )
-            if relation["rejection_reasons"]:
-                errors.append(f"{relation_id}: eligible relation cannot have rejection reasons")
-            if claim["verification_status"] != "verified" or claim["confidence"] < 0.9:
-                errors.append(
-                    f"{relation_id}: eligible relation requires a verified claim at confidence>=0.9"
-                )
-            competing = [
-                other
-                for other in claims
-                if other["subject_id"] == relation_id
-                and other["id"] != claim["id"]
-                and (
-                    other["verification_status"] in {"contested", "declined"}
-                    or any(
-                        evidence["support"] == "conflicting"
-                        for evidence in other["evidence"]
-                    )
-                )
-            ]
-            if competing:
-                errors.append(
-                    f"{relation_id}: eligible relation has contested/declined competing claims"
-                )
-            families = {
-                source_by_id[evidence["source_id"]]["source_family"]
-                for evidence in claim["evidence"]
-                if (
-                    evidence["source_id"] in source_by_id
-                    and evidence["support"] == "explicit"
-                    and source_by_id[evidence["source_id"]]["authority_profile"][
-                        "relationships"
-                    ]
-                    == VERIFIED_AUTHORITY
-                )
-            }
-            if not families:
-                errors.append(f"{relation_id}: eligible relation needs explicit source evidence")
 
     cycle = has_cycle(lineage_edges)
     if cycle:

@@ -957,7 +957,6 @@
         "confidence",
         "last_verified",
         "claim_id",
-        "game_eligibility",
         "rejection_reasons"
       ],
       "properties": {
@@ -1003,7 +1002,6 @@
         "confidence": {"type": "number", "minimum": 0, "maximum": 1},
         "last_verified": {"$ref": "#/$defs/date"},
         "claim_id": {"$ref": "#/$defs/id"},
-        "game_eligibility": {"type": "boolean"},
         "rejection_reasons": {
           "type": "array",
           "items": {"type": "string", "minLength": 1}

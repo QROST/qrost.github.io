@@ -179,7 +179,7 @@ def derive_manifest(paths: list[Path], version: str) -> dict:
     data_as_of = load_json(DATA / "source-registry.json")["data_as_of"]
     return {
         "schema_id": "architecture-lineages",
-        "schema_version": "1.1.0",
+        "schema_version": "1.2.0",
         "hash_algorithm": "sha256",
         "data_version": version,
         "data_as_of": data_as_of,

@@ -45,7 +45,8 @@ product model, not a replacement standard.
 - `declined` — the proposed claim is not supported.
 
 Only explicitly documented `direct_mentor`, `master_of_apprentice`, and
-`formal_teacher` relationships can ever become game-upgrade candidates.
+`formal_teacher` relationships may later be considered by the separate game
+build.
 Employment, co-location, shared schools, collaboration, chronology, and stylistic
 similarity do not imply mentorship.
 
@@ -53,7 +54,10 @@ All directional knowledge-transfer edges run from predecessor to successor:
 mentor → mentee, master → apprentice, and teacher → student. The relation type is
 `master_of_apprentice`, avoiding the ambiguous direction of “apprenticed under.”
 Raw Wikidata P1066 discovery is stored separately as `student_of_recorded` and is
-never game-eligible without human reclassification and stronger evidence.
+not treated as mentorship without human reclassification and stronger evidence.
+Game readiness is deliberately not stored as an editable historical-data field:
+the future game project must derive it from the then-current verified,
+conflict-free graph and its own versioned rules.
 
 ## Build
 
@@ -63,7 +67,7 @@ python3 tools/build.py
 
 The build regenerates `assets/data/manifest.json`, validates the full foreign-key
 graph, refreshes content-derived asset tokens when the page exists, and fails
-closed on provenance or eligibility errors. Generated public arrays are merged
+closed on provenance or verification errors. Generated public arrays are merged
 from source-scoped `assets/data/catalog/*.json` shards; failed builds restore all
 generated outputs instead of leaving a half-written tree.
 
