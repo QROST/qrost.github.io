@@ -211,6 +211,37 @@ polka/hardgroove 不配抒情乐器（wave-2 dropout 教训已内建到 harpNow 
 
 ---
 
+## 5e. Web 轻量背景聆听 pass（2026-07-25，lofi 单侧）
+
+从 DataAbyssLofi App 的 2026-07-24 采样实验只取“真实触键增加微观复杂度”这一经验，
+没有照搬通用 SampleBank、drum samples 或 warm drone。网页侧用更窄的 purpose-built 切片：
+
+- scheduler 保留 ≤50ms 的普通 RAF 抖动；遇到非有限、明显落后或异常超前的 `nextTime`，
+  重基到未来 50ms，长静音、后台冻结、mic 模式恢复时不再补发历史 step 或长期静音。
+- 只部署 felt piano C4+C5，两枚 content-addressed AAC/M4A 共 **74,691 bytes（72.9 KiB）**；
+  C3 对当前 upper-comp 音域几乎不增加覆盖，却多 43,767 bytes，明确不带。
+- 首音永远 procedural；仅约 30% 的 felt-comp universe 在首音 350ms 后按需加载，
+  其他 universe 初始额外传输为 0；静音/club mode/后台页也不启动可选 fetch/decode，恢复音乐或回前台才重臂。
+  两枚串行 decode、整族 `armed`，只在下一 4-bar 边界变 `active`。
+- 真实采样不替换合成毛毡钢琴，只在最低 upper-comp voice 叠一枚低约 9–12dB、
+  4.2kHz 低通、短尾的 attack anchor；生产初始调性域穷举保证每套 4 和弦进行至少 2 次可命中。
+  任一 fetch/decode/音域失败都保持完整 procedural 主体，Rhodes 落拍床与全部 anti-elevator 宏结构不动。
+- 有意不移植：warm drone（低频 masking / elevator-risk 尚未解决）、鼓采样（App oneshot schema
+  与 hat 响度问题尚未闭环）、runtime manifest、逐根音 hot switch。
+
+快速门禁：`check-lofi.mjs`、`check-scheduler.mjs`、`check-felt-piano.mjs`；
+`stamp-cache.mjs` 自动刷新 `audio.js → app.js → index.html` 两级 content hash，随后用 `--check` fail closed。
+`measure-harshness.html&felt=1` 用于与默认 procedural baseline 做当前 HEAD 的离线频谱 A/B；
+自动门禁、实际浏览器 decode 和真人长听是三种不同证据，不互相替代。
+
+2026-07-25 本地 in-app browser 最终候选证据：两枚 AAC 均可由 `decodeAudioData` 解码；
+felt preset 为 `bank=active / error=null / 16 attack hits`。同一 `bright(cat)` 的
+procedural → felt 指标为 RMS `−12.22 → −12.22 dB`、尖锐度 `−23.20 → −23.19 dB`、
+频谱质心 `240.1 → 240.2 Hz`、clicks/min `0 → 0`；其余未抽到 felt comp 的三个 preset
+保持相同。这个结果证明低电平纹理没有形成可见的频谱/瞬态回退，但仍不等于 Safari 真机或真人长听。
+
+---
+
 ## 6. 同步流程规则
 
 1. **改一侧前**：先读本文件 §2（不变量，不能碰）与 §3（有意分歧，不要误移植）。
@@ -225,6 +256,10 @@ polka/hardgroove 不配抒情乐器（wave-2 dropout 教训已内建到 harpNow 
    ```bash
    # 改 demos/visual-page/audio.js 前后
    node demos/visual-page/tools/check-lofi.mjs
+   node demos/visual-page/tools/check-scheduler.mjs
+   node demos/visual-page/tools/check-felt-piano.mjs
+   node demos/visual-page/tools/stamp-cache.mjs
+   node demos/visual-page/tools/stamp-cache.mjs --check
 
    # 改 demos/neon-abyss/audio-club.js 前后
    node demos/neon-abyss/tools/check-harmony.mjs

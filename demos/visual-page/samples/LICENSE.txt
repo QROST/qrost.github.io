@@ -1,0 +1,26 @@
+Data Abyss · lightweight felt-piano texture samples
+===================================================
+
+The two recorded samples in this directory are derived from the
+Versilian Community Sample Library (VCSL) by Sam Gossner / Versilian Studios LLC:
+
+  Chordophones/Zithers/Upright Piano/Yamaha/Sustains, velocity layer 2
+  https://github.com/sgossner/VCSL
+
+VCSL dedicates these recordings to the public domain under the Creative
+Commons Zero v1.0 Universal license (CC0-1.0):
+
+  https://creativecommons.org/publicdomain/zero/1.0/
+
+The files are mono AAC-LC/M4A, trimmed to four seconds. Their content-addressed
+filenames and full SHA-256 digests are:
+
+  felt-piano-c4.f6e3a0e551.m4a
+  f6e3a0e5511ceed53867bd6238b6445b2dfe66e138cd1e76ea89fe9983cc2a12
+
+  felt-piano-c5.2e01e4935c.m4a
+  2e01e4935cf60b18fd20d169c9b2ba9c1c1504749ab7b4772cae9c80da6326b2
+
+The soundtrack remains fully functional without these files. They are fetched
+only after the procedural first note, and any fetch or decode failure leaves
+the existing synthesized felt-piano path active.

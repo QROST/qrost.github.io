@@ -10,16 +10,18 @@ min9-b3 避让、没有 spice 白名单，`_rng()` 的合法调用点范围也�
 ```bash
 node demos/visual-page/tools/check-lofi.mjs
 node demos/visual-page/tools/check-scheduler.mjs
+node demos/visual-page/tools/check-felt-piano.mjs
 node demos/visual-page/tools/stamp-cache.mjs
 node demos/visual-page/tools/stamp-cache.mjs --check
 ```
 
-要求 Node ≥ 18，零 npm 依赖。三个检查环节合在一个文件里，依次跑完打印汇总，
+要求 Node ≥ 18，零 npm 依赖。`check-lofi.mjs` 的三个检查环节合在一个文件里，依次跑完打印汇总，
 任一环节不过 `exit 1`；源码漂移（提取规则用到的片段找不到了）`exit 2`。
 
-另外两个脚本覆盖静态和声门禁之外的运行时/交付契约：
+另外两个脚本覆盖容易在静态和声门禁里漏掉的运行时契约：
 
 - `check-scheduler.mjs`：复现长静音/后台冻结后的 stale clock，断言恢复时只排 1–2 个 step，不补发历史音符；同时覆盖 ≤50ms RAF 抖动保 grid、明显过期、`NaN`、异常 far-future，以及小节边界 68→89 BPM 不倒序双触发。
+- `check-felt-piano.mjs`：验证 C4+C5 恰好两枚、文件名 content hash、总传输 ≤80 KiB、CC0 provenance、single-flight、串行 decode、context-reset 取消后续解码、整族失败降级、4-bar 原子启用、最低 upper voice ±6 semitone attack anchor、每套 baseline progression ≥2/4 命中，以及首音/静音/后台状态内零 fetch/decode。
 - `stamp-cache.mjs`：先以 `audio.js` 内容更新 `app.js` 的 import token，再以更新后的 `app.js` 内容更新 `index.html`；`--check` 只验证、不写入。不要手改这两级 `?v=`。
 
 ## 三个环节查什么
@@ -61,6 +63,8 @@ node demos/visual-page/tools/stamp-cache.mjs --check
 # 仓库根目录起静态服务后浏览器打开（module import 需要 http）
 python3 -m http.server 8099
 open "http://localhost:8099/demos/visual-page/tools/measure-harshness.html?src=../audio.js%3Fbust"
+# 带上 felt=1 可测量已激活的轻量触键层；默认仍是 procedural baseline
+open "http://localhost:8099/demos/visual-page/tools/measure-harshness.html?src=../audio.js%3Fbust&felt=1"
 # 结果渲染成表格，也挂在 window.__RESULTS 供脚本抓取
 ```
 

@@ -6,6 +6,9 @@
 
 - `index.html` — full-bleed 容器 + 引入 housing 全局 script + Three.js importmap
 - `app.js` — 全部场景逻辑（数据载入、通感编码、渲染、交互）
+- `audio.js` — zero-dependency Web Audio 生成乐引擎 + 轻量 felt-piano 触键层
+- `samples/` — 两枚 content-addressed CC0 M4A 根音（C4/C5，共 72.9 KiB）及许可说明
+- `tools/` — 和声/多样性、scheduler 恢复、采样状态机与离线频谱门禁
 - `style.css` — full-bleed / overlay UI
 
 数据来自**同仓库的四个兄弟 demo**（相对路径引用，不复制）：
@@ -161,6 +164,9 @@ network）逐像素前向：输入 `[dir.xyz, sin t, cos t]`，tanh 层 + sin �
   ④**单帧限幅** `GYRO_MAX_STEP=0.018rad` → 即便快速转头/手抖也不会让镜头骤然翻转或跳跃。
 - **声音 / 律动 双模式**（下方按钮 toggle）：
   - **默认 = 音乐模式**：进入页面后（受浏览器自动播放策略约束，于首个手势内解锁）自动播放由**视觉/SOM 涌现态**确定性生成的音乐（`sonifier`，`musicDNA` 派生），**不开麦克风** → 即「通过视觉生成音频」。
+    首音始终由 procedural Web Audio 立即生成；只有抽到毛毡钢琴 comp 的 universe（约 30%）才会在首音后懒加载 C4/C5 两枚真实触键。
+    两枚全部解码成功后再等到下一 4-bar 乐句边界，只给最低 upper-comp voice 叠一枚低电平 attack anchor；
+    完整和弦仍由合成主体负责，任何网络/codec/音域失败都不阻塞、不静音。
   - **点按按钮 = 俱乐部律动模式**：音乐静音、打开麦克风，环境声 → `uPulse` 驱动画面**脉冲式加速**（明灭/呼吸/积分提速），适合夜店等场景按音乐律动生成视觉；再按一次切回音乐模式。
 - 传感器（陀螺仪/麦克风）需 **https + 用户授权**，仅在真机部署页生效
 
@@ -175,6 +181,16 @@ python3 -m http.server 8099
 ```
 
 GitHub Pages 上直接访问 `/demos/visual-page/` 即可，sensors 自动可用。
+
+音频代码改动后的本地门禁：
+
+```bash
+node demos/visual-page/tools/check-lofi.mjs
+node demos/visual-page/tools/check-scheduler.mjs
+node demos/visual-page/tools/check-felt-piano.mjs
+node demos/visual-page/tools/stamp-cache.mjs
+node demos/visual-page/tools/stamp-cache.mjs --check
+```
 
 ## TODO / 后续
 

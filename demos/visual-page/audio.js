@@ -11,6 +11,136 @@
 const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
 const mtof = (m) => 440 * Math.pow(2, (m - 69) / 12);
 
+// 轻量真实触键层：只带当前 upper-comp 音域真正会用到的 C4/C5 两枚 CC0 根音。
+// 文件名直接携内容 hash；C4 −2dB / C5 0dB 是按 0.5–1s comp 窗口实测得到的保守校平。
+// 它们不会替换合成毛毡钢琴，只以低电平叠加起音纹理；任一文件失败则整族保持 procedural。
+export const FELT_PIANO_ASSETS = Object.freeze([
+  Object.freeze({
+    file: 'felt-piano-c4.f6e3a0e551.m4a',
+    rootHz: 261.63,
+    gain: 0.794,
+  }),
+  Object.freeze({
+    file: 'felt-piano-c5.2e01e4935c.m4a',
+    rootHz: 523.25,
+    gain: 1,
+  }),
+]);
+
+// Purpose-built、两根音、整族原子启用的 loader。状态机避免 App 版通用 SampleBank 的
+// partial-ready / per-note 热切问题：idle → preparing → armed → active，任一失败 → failed。
+export class FeltPianoBank {
+  constructor(fetchImpl) {
+    this._fetch = fetchImpl || ((...args) => globalThis.fetch(...args));
+    this.ctx = null;
+    this.state = 'idle';
+    this.error = null;
+    this._generation = 0;
+    this._loading = null;
+    this._pending = null;
+    this._active = null;
+  }
+
+  resetForContext(ctx) {
+    if (this.ctx === ctx) return false;
+    this.ctx = ctx;
+    this.state = 'idle';
+    this.error = null;
+    this._generation++;
+    this._loading = null;
+    this._pending = null;
+    this._active = null;
+    return true;
+  }
+
+  prepare(ctx, baseURL = new URL('./samples/', import.meta.url)) {
+    if (this.ctx !== ctx) this.resetForContext(ctx);
+    if (this.state === 'preparing' && this._loading) return this._loading;
+    if (this.state === 'armed' || this.state === 'active') return Promise.resolve(true);
+    if (this.state === 'failed') return Promise.resolve(false);
+
+    this.state = 'preparing';
+    const generation = this._generation;
+    this._loading = this._prepare(ctx, baseURL, generation);
+    return this._loading;
+  }
+
+  async _prepare(ctx, baseURL, generation) {
+    try {
+      if (typeof this._fetch !== 'function') throw new Error('fetch unavailable');
+      const encoded = await Promise.all(FELT_PIANO_ASSETS.map(async (asset) => {
+        const response = await this._fetch(new URL(asset.file, baseURL), { cache: 'force-cache' });
+        if (!response || !response.ok) throw new Error(`sample fetch ${response ? response.status : 'failed'}`);
+        return { asset, bytes: await response.arrayBuffer() };
+      }));
+
+      // 串行 decode：两次小解码不在移动端争抢主线程，且不会阻塞首音（prepare 本身已延后）。
+      const decoded = [];
+      for (const entry of encoded) {
+        if (generation !== this._generation || ctx !== this.ctx) return false;
+        const buffer = await this._decode(ctx, entry.bytes);
+        if (generation !== this._generation || ctx !== this.ctx) return false;
+        if (!buffer || buffer.numberOfChannels < 1 || !Number.isFinite(buffer.duration) ||
+            buffer.duration < 0.1 || buffer.duration > 8 || typeof buffer.getChannelData !== 'function') {
+          throw new Error(`invalid sample ${entry.asset.file}`);
+        }
+        decoded.push(Object.freeze({ ...entry.asset, buffer }));
+      }
+
+      if (generation !== this._generation || ctx !== this.ctx) return false;
+      this._pending = Object.freeze(decoded);
+      this.state = 'armed';
+      this.error = null;
+      return true;
+    } catch (error) {
+      if (generation === this._generation) {
+        this._pending = null;
+        this._active = null;
+        this.state = 'failed';
+        this.error = error instanceof Error ? error.message : String(error);
+      }
+      return false;
+    } finally {
+      if (generation === this._generation) this._loading = null;
+    }
+  }
+
+  _decode(ctx, bytes) {
+    return new Promise((resolve, reject) => {
+      let settled = false;
+      const done = (buffer) => { if (!settled) { settled = true; resolve(buffer); } };
+      const fail = (error) => { if (!settled) { settled = true; reject(error); } };
+      try {
+        const result = ctx.decodeAudioData(bytes.slice(0), done, fail);
+        if (result && typeof result.then === 'function') result.then(done, fail);
+      } catch (error) {
+        fail(error);
+      }
+    });
+  }
+
+  commitAtPhrase(bar) {
+    if (this.state !== 'armed' || bar % 4 !== 0) return false;
+    this._active = this._pending;
+    this._pending = null;
+    this.state = 'active';
+    return true;
+  }
+
+  resolveAttackAnchor(freq) {
+    if (this.state !== 'active' || !this._active || !Number.isFinite(freq) || freq <= 0) return null;
+    let best = null, semitones = Infinity;
+    for (const root of this._active) {
+      const distance = Math.abs(12 * Math.log2(freq / root.rootHz));
+      if (distance < semitones) { semitones = distance; best = root; }
+    }
+    if (!best || semitones > 6.0001) return null;
+    const rate = freq / best.rootHz;
+    if (!Number.isFinite(rate) || rate <= 0) return null;
+    return { buffer: best.buffer, rate, gain: best.gain };
+  }
+}
+
 const CHORD = { maj7: [0, 4, 7, 11], min7: [0, 3, 7, 10], maj9: [0, 4, 7, 11, 14], min9: [0, 3, 7, 10, 14], dom9: [0, 4, 7, 10, 14], min11: [0, 3, 7, 10, 17] };
 // 和弦进行库（每首随机挑一个；每和弦 2 小节 → 8 小节大循环）。全部暖爵士、相对调性根 root（半音）→ 移调后仍协和
 const PROGS = [
@@ -73,13 +203,19 @@ export class Sonifier {
     // —— 磁带 A/B 面（lofi 无限电台）：同一片星海、同一 DNA，翻面 = 音乐重新做人。side 折进签名 → "另一首"，仍确定。
     this._side = 0; this._sig0Original = null; this._warm = 0.5;              // 当前面序号 / 原始涌现签名快照(翻面基准) / 当前 warm
     this._nat = null; this.ens = { mel: 0, comp: 0, pluckA: 0.45 };           // 自然乐器 buffer 缓存（start 建）/ 每宇宙 ensemble 配器（_applyDNA 推导）
+    this._feltBank = new FeltPianoBank(); this._feltSamplesEnabled = false;    // 两根音真实触键纹理：首音后懒加载、整族在 4-bar 边界启用
+    this._feltBaseURL = null; this._feltPrepareTimer = null; this._pageHidden = false;
     this._nextFlipBar = null; this._flipUntil = 0; this._reawakeBar = null;   // 下一次翻面的 bar 阈值 / 停带 SFX 接管 masterLP 的窗口末 / B 面回全觉醒的 bar
     this._userBusy = false;                                                   // app 报告"用户正在交互/有 focus" → 翻面顺延到下个乐句边界
-    this.debug = { steps: 0, kicks: 0, snares: 0, chords: 0, mels: 0, mods: 0, sig: 0, awaken: 0, flips: 0 };
+    this.debug = { steps: 0, kicks: 0, snares: 0, chords: 0, mels: 0, mods: 0, sig: 0, awaken: 0, flips: 0, feltHits: 0 };
   }
 
   start(ctx, opts = {}) {
     if (this.started) { try { ctx.resume && ctx.resume(); } catch (_) {} this.setMuted(false); return; }
+    if (this._feltBank.ctx && this._feltBank.ctx !== ctx && this._feltPrepareTimer) {
+      clearTimeout(this._feltPrepareTimer); this._feltPrepareTimer = null;
+    }
+    this._feltBank.resetForContext(ctx);
     this.ctx = ctx; this.started = true;
     const t = ctx.currentTime;
     // 一切"不同"都来自这片宇宙的涌现态（SOM 自组织 + 数据），不是随机种子。
@@ -143,6 +279,7 @@ export class Sonifier {
     this._rollLoop();   // 初始化首个乐句变化
     this.master.gain.setTargetAtTime(0.8, t, 1.5);
     this.nextTime = t + 0.12;
+    if (this._feltSamplesEnabled) this._scheduleFeltPianoPrepare();
   }
 
   // 把这片宇宙的涌现 DNA 折成整套乐曲身份（速度/摇摆/情绪进行/groove/动机轮廓/音色签名）。
@@ -203,6 +340,7 @@ export class Sonifier {
     this.curProgIdx = this.targetProgIdx = this.baseProgIdx;
     this.subMidi = this.keyRoot;
     if (this.hiShelf && this.hiShelf.context === this.ctx) this.hiShelf.gain.setTargetAtTime(-8 + (this._sigMix(6) % 45) / 10, this.ctx.currentTime, 1.4);   // 觉醒时混音暖度随新签名温柔更新（start 期节点尚未建 → 跳过，由建链处赋值；ctx 重建恢复路径上旧 ctx 的残留节点也跳过，建链处会重赋）
+    if (this._feltSamplesEnabled) this._scheduleFeltPianoPrepare();             // 翻面后首次抽到 felt comp 才下载；其他 universe 零额外传输
   }
 
   // app.js 在 SOM 涌现完成后调用：若音乐仍以 fallback 沉睡态在播放，则登记"待觉醒"，在下一 4-bar 乐句边界整套重推导 DNA。
@@ -210,6 +348,26 @@ export class Sonifier {
   updateDNA(dna) {
     if (!this.started || this.dna || !dna || dna.sig == null) return;   // 只在"播放中 + 当前为 fallback + 有真 DNA"时觉醒
     this._pendingDNA = dna;
+  }
+
+  // 用户手势中的 start() 只起 procedural 首音；真实触键资源至少延后 350ms，再按需加载。
+  // 未抽到 felt comp 的 universe 不下载；未来磁带面若抽到，_applyDNA 会再次触发此轻量准备。
+  enableFeltPianoSamples(baseURL = new URL('./samples/', import.meta.url)) {
+    this._feltSamplesEnabled = true;
+    this._feltBaseURL = baseURL;
+    this._scheduleFeltPianoPrepare();
+  }
+
+  _scheduleFeltPianoPrepare() {
+    if (!this.started || !this.ctx || !this.ens || this.ens.comp !== 1 ||
+        !this._feltBaseURL || this._feltBank.state !== 'idle' || this._feltPrepareTimer ||
+        this.muted || this._pageHidden) return;
+    this._feltPrepareTimer = setTimeout(() => {
+      this._feltPrepareTimer = null;
+      if (!this.started || this.ens.comp !== 1 || this._feltBank.state !== 'idle' ||
+          this.muted || this._pageHidden) return;
+      this._feltBank.prepare(this.ctx, this._feltBaseURL);
+    }, 350);
   }
 
   // 乐句边界处的"觉醒"：整套 DNA 重推导 + 翻起 _awake → update() 逐帧把低通/织体从沉睡态温柔开启（无 riser，靠低通开合 + comp 层/旋律声部醒来）。
@@ -221,6 +379,7 @@ export class Sonifier {
 
   update(s) {
     if (!this.started || this.muted) return;
+    if (this._feltSamplesEnabled && this._feltBank.state === 'idle') this._scheduleFeltPianoPrepare();
     const ctx = this.ctx, t = ctx.currentTime;
     this.dom = (s.view && s.view.dom != null) ? s.view.dom : this.dom;
     const pitchN = clamp((s.pitch + 1.45) / 2.9, 0, 1), fovN = clamp((s.fov - 10) / 115, 0, 1), pulse = s.pulse || 0;
@@ -263,6 +422,7 @@ export class Sonifier {
 
   _onBar(barT) {
     this.bar++;
+    this._feltBank.commitAtPhrase(this.bar);                              // armed 只在 4-bar 乐句边界变 active，绝不逐音热切
     if (this._pendingDNA && this.bar % 4 === 0) { this._awaken(this._pendingDNA); this._pendingDNA = null; }   // SOM 涌现完成 → 在 4-bar 乐句边界整套重推导并觉醒（先于本 bar 的转调/换进行，让新身份即刻生效）
     if (this._reawakeBar != null && this.bar >= this._reawakeBar) { this._awake = true; this._reawakeBar = null; }   // 翻面后 B 面温柔展开数小节 → 回全觉醒
     if (this.bar % 2 === 0) { const k = (this.bar * 5) % this.motif.length; this.motif[k] = clamp(this.motif[k] + (this._rng() < 0.5 ? 1 : -1), 0, 5); }   // 动机变异
@@ -477,7 +637,18 @@ export class Sonifier {
     // ensemble 配器（悦耳度二期）：钢琴宇宙的 comp 敲击（upper 变体）换毛毡钢琴——落拍主 pad 永远 Rhodes（lofi 身份）。
     // 同一 base+list 音高、同一错位 strum → 和声枚举不动，只换音色。
     if (upper && this.ens.comp === 1) {
-      for (let k = 0; k < list.length; k++) this._playNat(t + k * 0.014, this._pianoBuf(mtof(base + list[k])), vel * (0.9 - k * 0.08) * 1.05, this.pianoBus, { hold: dur * 0.8, rel: 0.22 });
+      const freqs = list.map((tone) => mtof(base + tone));
+      // 完整和弦始终由 procedural 弹；真实录音只给最低 upper voice 一枚低电平触键，
+      // 避免 3–4 个 sample source 抬高瞬态/CPU，也避免“整和弦全命中”导致下载后零收益。
+      const attackAnchor = this._feltBank.resolveAttackAnchor(freqs[0]);
+      for (let k = 0; k < list.length; k++) {
+        const voiceVel = vel * (0.9 - k * 0.08) * 1.05;
+        this._playNat(t + k * 0.014, this._pianoBuf(freqs[k]), voiceVel, this.pianoBus, { hold: dur * 0.8, rel: 0.22 });
+        if (k === 0 && attackAnchor) {
+          this._playFeltTexture(t, attackAnchor, voiceVel, this.pianoBus);
+          this.debug.feltHits++;
+        }
+      }
       this.debug.chords++; return;
     }
     if (upper && this.ens.comp === 2) {   // 颤音琴 comp（三期）：同 base+list 音高、pianoBus（吃 duck、绕 tremolo——马达颤已烘焙在 buffer 里）
@@ -643,6 +814,22 @@ export class Sonifier {
     head.connect(g); g.connect(dest); src.start(t); src.stop(t + buf.duration + 0.05);
   }
 
+  // 两枚真实根音只提供比 procedural 主体低约 9–12dB 的触键纹理；4.2kHz 低通和短尾
+  // 让它增加"有人弹"的微观复杂度，而不把已去刺的混音重新点亮。时长按 playbackRate 修正。
+  _playFeltTexture(t, voice, vel, dest) {
+    const src = this.ctx.createBufferSource(); src.buffer = voice.buffer; src.playbackRate.value = voice.rate;
+    if (this.wow && src.detune) { try { this.wow.connect(src.detune); } catch (_) {} }
+    const lp = this.ctx.createBiquadFilter(); lp.type = 'lowpass'; lp.frequency.value = 4200; lp.Q.value = 0.5;
+    const g = this.ctx.createGain();
+    const audible = Math.min(0.95, voice.buffer.duration / voice.rate);
+    const peak = vel * voice.gain * 2.4;
+    g.gain.setValueAtTime(0.0001, t);
+    g.gain.linearRampToValueAtTime(peak, t + 0.008);
+    g.gain.setTargetAtTime(0.0001, t + Math.min(0.24, audible * 0.35), 0.12);
+    g.gain.setTargetAtTime(0, t + Math.max(0.16, audible - 0.06), 0.012);
+    src.connect(lp); lp.connect(g); g.connect(dest); src.start(t); src.stop(t + audible + 0.03);
+  }
+
   // focus = "跟踪哪个数据" → 设走向 target（乐句边界平滑趋近）+ 一记柔和电钢音
   _focus(focus, t) {
     const key = focus ? (focus.idx + ':' + focus.sys) : null;
@@ -669,7 +856,15 @@ export class Sonifier {
     this.melBus.gain.setTargetAtTime(g, t, 0.3);
   }
 
-  setMuted(b) { this.muted = b; if (this.master) this.master.gain.setTargetAtTime(b ? 0.0001 : 0.8, this.ctx.currentTime, 0.25); }
+  setMuted(b) {
+    this.muted = b;
+    if (this.master) this.master.gain.setTargetAtTime(b ? 0.0001 : 0.8, this.ctx.currentTime, 0.25);
+    if (!b && this.started) this._scheduleFeltPianoPrepare();
+  }
+  setPageHidden(b) {
+    this._pageHidden = !!b;
+    if (!this._pageHidden && this.started) this._scheduleFeltPianoPrepare();
+  }
 
   _satCurve(drive) { const n = 1024, c = new Float32Array(n); for (let i = 0; i < n; i++) { const x = (i / (n - 1)) * 2 - 1; c[i] = Math.tanh(x * drive); } return c; }
   // 悦耳度 pass：IR 烘焙时过一阶低通（a=0.35 ≈ 2.8kHz@44.1k）——白噪 IR 的平坦频谱会给每记 hat/军鼓/和弦

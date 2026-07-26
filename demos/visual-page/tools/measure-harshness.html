@@ -32,6 +32,8 @@ const BAND_NAMES = ['sub<200','low 200-800','mid 800-2k','presence 2k-5k','sizzl
 
 const params = new URLSearchParams(location.search);
 const srcUrl = params.get('src') || '../audio.js';
+const useFelt = params.get('felt') === '1';
+const feltDiagnostics = {};
 const status = (m) => { document.getElementById('status').textContent = m; };
 
 function fft(re, im) {   // 迭代 radix-2，就地
@@ -100,11 +102,11 @@ function analyze(buf) {
     if (d > maxD) maxD = d;
   }
   return {
-    rmsDb: +dB(rms * rms).toFixed(1), peak: +peak.toFixed(3),
-    bandsDb: [...bandE].map((e) => +(dB(e / totE)).toFixed(1)),
-    centroidHz: Math.round(centroidNum / Math.max(centroidDen, 1e-15)),
-    sharpDb: +sharp.toFixed(1),
-    clicksPerMin: Math.round(clicks / ((n / SR) / 60)), maxDiff: +maxD.toFixed(4),
+    rmsDb: dB(rms * rms), peak,
+    bandsDb: [...bandE].map((e) => dB(e / totE)),
+    centroidHz: centroidNum / Math.max(centroidDen, 1e-15),
+    sharpDb: sharp,
+    clicksPerMin: clicks / ((n / SR) / 60), maxDiff: maxD,
   };
 }
 
@@ -112,6 +114,12 @@ async function renderPreset(Sonifier, preset) {
   const ctx = new OfflineAudioContext(2, DUR * SR, SR);
   const son = new Sonifier();
   son.start(ctx, preset.dna);
+  // 测量专用：绕过产品路径的 350ms real-time 延迟，但仍使用同一 loader/decoder，
+  // 并把 armed family 原子 commit；只有本来就是 felt comp 的 preset 会实际叠纹理。
+  if (useFelt && son.ens.comp === 1) {
+    const ok = await son._feltBank.prepare(ctx, new URL('../samples/', location.href));
+    if (ok) son._feltBank.commitAtPhrase(0);
+  }
   const state = {
     dt: PUMP, pitch: 0, fov: 55, pulse: 0, gOrg: 0.55, yaw: 0.3, focus: null,
     view: { dom: preset.dna.domType, toneAvg: 0.5, clHue: 0.55, clEnergy: 0.45 },
@@ -121,31 +129,47 @@ async function renderPreset(Sonifier, preset) {
   }
   son.update(state);   // t=0 先灌一次调度
   const buf = await ctx.startRendering();
+  feltDiagnostics[preset.name] = {
+    comp: son.ens.comp,
+    bank: son._feltBank.state,
+    error: son._feltBank.error,
+    hits: son.debug.feltHits,
+  };
   return analyze(buf);
 }
 
 (async () => {
-  status(`loading engine: ${srcUrl}`);
+  status(`loading engine: ${srcUrl}${useFelt ? ' · felt texture on' : ' · procedural baseline'}`);
   const mod = await import(srcUrl);
   const results = {};
   for (const p of PRESETS) {
     status(`rendering ${p.name} … (${DUR}s offline)`);
     results[p.name] = await renderPreset(mod.Sonifier, p);
   }
+  const feltPresets = Object.values(feltDiagnostics).filter((diag) => diag.comp === 1);
+  if (useFelt && (!feltPresets.length || feltPresets.some((diag) => diag.bank !== 'active' || diag.hits < 1))) {
+    throw new Error('felt A/B requested but no active sample attack was measured');
+  }
   window.__RESULTS = results;
+  window.__RESULT_META = { felt: useFelt, diagnostics: feltDiagnostics };
   status('done');
   const rows = Object.entries(results);
+  const fmt = (value, digits) => Number.isFinite(value) ? value.toFixed(digits) : String(value);
   let html = '<table><tr><th>preset</th><th>RMS dB</th><th>peak</th>';
   for (const b of BAND_NAMES) html += `<th>${b} (dB占比)</th>`;
   html += '<th>质心 Hz</th><th>尖锐度 dB</th><th>clicks/min</th><th>maxΔ</th></tr>';
   for (const [name, r] of rows) {
-    html += `<tr><td>${name}</td><td>${r.rmsDb}</td><td>${r.peak}</td>`;
-    for (const v of r.bandsDb) html += `<td>${v}</td>`;
-    html += `<td>${r.centroidHz}</td><td class="${r.sharpDb > -6 ? 'warn' : 'ok'}">${r.sharpDb}</td>`;
-    html += `<td class="${r.clicksPerMin > 60 ? 'warn' : 'ok'}">${r.clicksPerMin}</td><td>${r.maxDiff}</td></tr>`;
+    html += `<tr><td>${name}</td><td>${fmt(r.rmsDb, 2)}</td><td>${fmt(r.peak, 4)}</td>`;
+    for (const v of r.bandsDb) html += `<td>${fmt(v, 2)}</td>`;
+    html += `<td>${fmt(r.centroidHz, 1)}</td><td class="${r.sharpDb > -6 ? 'warn' : 'ok'}">${fmt(r.sharpDb, 2)}</td>`;
+    html += `<td class="${r.clicksPerMin > 60 ? 'warn' : 'ok'}">${fmt(r.clicksPerMin, 1)}</td><td>${fmt(r.maxDiff, 5)}</td></tr>`;
   }
   html += '</table><p>尖锐度 = 10·log10(E[2k–22k]/E[200–2k])，越负越暗越适合背景聆听；clicks/min = 一阶差分尖峰（增益跳变/包络截断指纹）。</p>';
   document.getElementById('out').innerHTML = html;
+  const diag = document.createElement('pre');
+  diag.id = 'felt-diagnostics';
+  diag.textContent = JSON.stringify(feltDiagnostics, null, 2);
+  document.getElementById('out').appendChild(diag);
 })().catch((e) => { status('FAILED: ' + e.message); console.error(e); });
 </script>
 </body>

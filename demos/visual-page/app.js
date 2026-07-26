@@ -14,7 +14,7 @@ import * as THREE from 'three';
 import {
   applyUi, registerPanelNode, renderCardHtml, sensorBtnLabel, setLang, isZh,
 } from './i18n.js?v=be92743a4a';
-import { Sonifier } from './audio.js?v=95d32c87cf';   // 生成式数据音乐引擎（zero-dep Web Audio）
+import { Sonifier } from './audio.js?v=14058fe24f';   // 生成式数据音乐引擎（zero-dep Web Audio）
 
 const sonifier = new Sonifier();   // 由「Motion & sound」按钮在用户手势内 start()
 
@@ -1425,6 +1425,7 @@ function startMusic() {                                   // 提升会话 → �
       const p = ctx.resume(); if (p && p.then) p.then(onAudioStateChange, () => {});
     }
     sonifier.start(ctx, musicDNA || { climWarm });        // sonifier.start 幂等（内部 if(this.started) return）
+    sonifier.enableFeltPianoSamples();                     // 首音后按需懒加载 72.9KiB felt 触键层；失败/未抽中 felt comp 都保持 procedural
     if (!clubMode) sonifier.setMuted(false);
   } catch (_) {}
 }
@@ -1500,6 +1501,7 @@ function kickAudio() {                                   // 首个手势内（�
 // 页面从后台切回前台：移动端浏览器常把 AudioContext 自动 suspend；电话/Siri 会置 interrupted。回来后 resume；
 // iOS 上顺带补一次会话提升（静音元素可能在打断中被释放）。
 document.addEventListener('visibilitychange', () => {
+  sonifier.setPageHidden(document.hidden);   // hidden 时不做可选采样 fetch/decode；回前台显式重臂
   if (document.hidden) return;
   if (audioKicked) promoteAudioSession();   // 回前台重设 playback 会话类型（可能被系统/其它 app 重置回 ambient）
   if (audioCtx && (audioCtx.state === 'suspended' || audioCtx.state === 'interrupted')) { try { audioCtx.resume(); } catch (_) {} }
