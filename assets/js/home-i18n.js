@@ -111,8 +111,8 @@
       zh: '猫与鼠标 — 四足步态实验',
     },
     cardCatMouseDesc: {
-      en: 'A top-down illustrated cat watches, stalks and chases your pointer-as-mouse with an articulated four-phase gait, then sits, loafs, lies down, rolls or curls up when left alone. Dark mode · EN/中文.',
-      zh: '一只俯视角插画小猫会盯梢、潜行并追逐化作小老鼠的指针；安静时则会蹲坐、揣手、侧躺、打滚或蜷卧。关节化四相步态 · 深色模式 · 中英切换。',
+      en: 'A top-down illustrated cat watches, stalks and chases your pointer-as-mouse with an articulated four-phase gait, then sits, loafs, lies down, rolls or curls up when left alone. A live-preview appearance panel lets you restyle the coat — pattern chips, real-color swatches, fur length and light markings — using the Shelter Cats vocabulary. Dark mode · EN/中文.',
+      zh: '一只俯视角插画小猫会盯梢、潜行并追逐化作小老鼠的指针；安静时则会蹲坐、揣手、侧躺、打滚或蜷卧。外观面板带实时预览，可用花纹芯片、真实配色色卡、毛长与浅色斑区域自定义猫咪，分类沿用 Shelter Cats 受控词表。关节化四相步态 · 深色模式 · 中英切换。',
     },
     footerUpdated: {
       en: 'Last updated 2026-07. Nothing here is financial, legal or tax advice.',

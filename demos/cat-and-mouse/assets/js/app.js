@@ -4374,7 +4374,7 @@
 
   function patternLabel(pattern) {
     const key = 'pattern' + pattern.charAt(0).toUpperCase() + pattern.slice(1);
-    return I18n.LABELS && I18n.LABELS[key] ? I18n.t(key) : pattern;
+    return I18n.t(key);
   }
 
   function colorwayLabel(pattern, colorway) {
@@ -4386,7 +4386,7 @@
 
   function whiteLevelLabel(level) {
     const key = 'whiteLevel' + level.charAt(0).toUpperCase() + level.slice(1);
-    return I18n.LABELS && I18n.LABELS[key] ? I18n.t(key) : level;
+    return I18n.t(key);
   }
 
   // Pattern glyphs: a fixed, abstract icon per pattern. Drawn as inline SVG so
@@ -4549,7 +4549,6 @@
       const selected = appearance.pattern === pattern;
       chip.setAttribute('aria-checked', String(selected));
       chip.tabIndex = selected ? 0 : -1;
-      chip.classList.toggle('is-selected', selected);
       if (chip.dataset.bound !== '1') {
         chip.addEventListener('click', () => applyAppearance({ pattern }, true));
         chip.dataset.bound = '1';
@@ -4589,7 +4588,6 @@
       swatch.tabIndex = selected ? 0 : -1;
       swatch.setAttribute('aria-label', colorwayLabel(appearance.pattern, colorway));
       swatch.setAttribute('title', colorwayLabel(appearance.pattern, colorway));
-      swatch.classList.toggle('is-selected', selected);
       if (swatch.dataset.bound !== '1') {
         swatch.addEventListener('click', () => applyAppearance({ colorway }, true));
         swatch.dataset.bound = '1';
@@ -4624,7 +4622,6 @@
       const selected = appearance.whiteLevel === level;
       seg.setAttribute('aria-checked', String(selected));
       seg.tabIndex = selected ? 0 : -1;
-      seg.classList.toggle('is-selected', selected);
       if (seg.dataset.bound !== '1') {
         seg.addEventListener('click', () => applyAppearance({ whiteLevel: level }, true));
         seg.dataset.bound = '1';

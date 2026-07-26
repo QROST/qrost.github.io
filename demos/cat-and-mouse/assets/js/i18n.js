@@ -35,7 +35,6 @@
     appearancePatternGroupAria: { zh: '花纹类型选择', en: 'Coat pattern chooser' },
     appearanceColorwayGroupAria: { zh: '配色组合选择', en: 'Color combination chooser' },
     appearanceWhiteLevelGroupAria: { zh: '浅色斑区域选择', en: 'Light marking chooser' },
-    appearanceCurrentColorway: { zh: '当前配色', en: 'Current color' },
     appearanceNoColorway: { zh: '当前花纹无配色变体', en: 'No color variants for this pattern' },
     patternSolid: { zh: '纯色', en: 'Solid' },
     patternTabby: { zh: '虎斑', en: 'Tabby' },
