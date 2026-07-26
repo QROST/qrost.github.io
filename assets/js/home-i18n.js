@@ -12,12 +12,12 @@
       zh: 'QROST — 研究笔记与交互式数据图谱',
     },
     metaDescription: {
-      en: 'A personal research shelf of interactive data atlases and notes — a global pharma industry map, worldwide shelter-cat adoption, China small-city housing, China industrial software, and how to open a company in China — plus product prototypes. Bilingual EN/中文.',
-      zh: '一个个人站点：几份交互式数据图谱与笔记——全球医药行业、全球收容所猫领养、中国小城市住房、中国工业软件、在华开公司实务，外加一些产品原型。中英双语。',
+      en: 'A personal research shelf of interactive data atlases and notes — global architectural history, pharma, shelter-cat adoption, China housing, industrial software, and company setup — plus product prototypes. Bilingual EN/中文.',
+      zh: '一个个人站点：几份交互式数据图谱与笔记——全球建筑史、全球医药、收容所猫领养、中国住房、工业软件与开公司实务，外加一些产品原型。中英双语。',
     },
     ogDescription: {
-      en: 'Research notes and interactive data atlases — global pharma, shelter cats, China housing, industrial software, company setup — plus product prototypes.',
-      zh: '研究笔记与交互式数据图谱——全球医药、收容所猫、中国住房、工业软件、开公司实务，以及产品原型。',
+      en: 'Research notes and interactive data atlases — global architectural history, pharma, shelter cats, China housing, industrial software and company setup.',
+      zh: '研究笔记与交互式数据图谱——全球建筑史、医药、收容所猫、中国住房、工业软件与开公司实务。',
     },
     navResearch: { en: 'Research', zh: '研究' },
     navDemos: { en: 'Demos', zh: '演示' },
@@ -34,6 +34,14 @@
     badgeGenerative: { en: 'Generative art', zh: '生成艺术' },
     badgePrototype: { en: 'Prototype · interactive', zh: '原型 · 交互' },
     openPage: { en: 'Open page', zh: '打开页面' },
+    cardArchitectureTitle: {
+      en: 'Architecture Lineages · global architectural-history evidence atlas',
+      zh: '建筑谱系 · 全球建筑史证据图谱',
+    },
+    cardArchitectureDesc: {
+      en: 'A source-first bilingual browser for 19 revision-pinned candidate works, 33 people, 2 practices and 16 places — searchable map, field-level evidence, raw relation review and a 9 × 8 coverage ledger. 0 records verified; all 72 discovery cells remain unrun.',
+      zh: '来源优先的双语浏览器：19 件固定修订候选作品、33 位人物、2 家事务所与 16 个地点；可搜索地图、字段级证据、原始关系复核及 9 × 8 覆盖账本。当前已核验 0 条，72 个发现单元全部未运行。',
+    },
     cardHousingTitle: {
       en: 'Where to live well — and cheap · China small-city housing',
       zh: '哪里既宜居又便宜 · 全国小城市住房数据',

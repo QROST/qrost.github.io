@@ -2,6 +2,7 @@
 
 ## Demo structure
 
+- `demos/architecture-history/` — 建筑谱系 · Architecture Lineages, a bilingual source-first architectural-history evidence browser with revision-pinned candidate records, searchable map/catalog, field-level provenance, raw relation review, and an explicit 9-region × 8-period coverage ledger.
 - `demos/wfoe-china/` contains the China WFOE + hiring costs interactive page.
 - `demos/china-housing/` — small-city housing & rent data visualization.
 - `demos/china-industrial-software/` — China industrial software survey.
