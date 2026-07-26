@@ -48,6 +48,10 @@ demos/wfoe-china/tmp/
 demos/china-industrial-software/tmp/
 demos/pharm-companies/tmp/
 demos/makoauto/_tmp/
+# architecture-history: local concept/research drafts, never deployed
+/demos/architecture-history/tmp/research/
+# architecture-tower-defense: local concept/research drafts, never deployed
+/demos/architecture-tower-defense/tmp/research/
 
 # makoauto: unused raw source-photo dump (site actually serves demos/makoauto/assets/legacy/photos/).
 # Purged from history 2026-07-02 — keep this guard so it can't silently regrow.

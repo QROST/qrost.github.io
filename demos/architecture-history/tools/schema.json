@@ -1,0 +1,891 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://qrost.github.io/demos/architecture-history/tools/schema.json",
+  "title": "Architecture Lineages data contract",
+  "$defs": {
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9-]*$"
+    },
+    "url": {
+      "type": "string",
+      "pattern": "^https?://"
+    },
+    "date": {
+      "type": "string",
+      "pattern": "^\\d{4}-\\d{2}(-\\d{2})?$"
+    },
+    "region": {
+      "enum": [
+        "east_asia",
+        "south_asia",
+        "southeast_asia",
+        "central_west_asia",
+        "africa",
+        "europe",
+        "north_america",
+        "latin_america_caribbean",
+        "oceania",
+        "transregional",
+        "unknown"
+      ]
+    },
+    "period": {
+      "enum": [
+        "before_1000",
+        "1000_1499",
+        "1500_1799",
+        "1800_1918",
+        "1919_1945",
+        "1946_1979",
+        "1980_1999",
+        "2000_present",
+        "unknown"
+      ]
+    },
+    "verificationStatus": {
+      "enum": ["candidate", "verified", "contested", "declined"]
+    },
+    "dateValue": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["value", "earliest", "latest", "precision"],
+      "properties": {
+        "value": {
+          "type": ["string", "null"]
+        },
+        "earliest": {
+          "type": ["integer", "null"]
+        },
+        "latest": {
+          "type": ["integer", "null"]
+        },
+        "precision": {
+          "enum": ["day", "month", "year", "circa", "range", "unknown"]
+        }
+      }
+    },
+    "externalIds": {
+      "type": "object",
+      "propertyNames": {
+        "pattern": "^[a-z0-9][a-z0-9-]*$"
+      },
+      "additionalProperties": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "verificationFields": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["verification_status", "confidence", "last_verified", "claim_ids"],
+      "properties": {
+        "verification_status": {
+          "$ref": "#/$defs/verificationStatus"
+        },
+        "confidence": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "last_verified": {
+          "$ref": "#/$defs/date"
+        },
+        "claim_ids": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/id"
+          },
+          "uniqueItems": true
+        }
+      }
+    },
+    "allowedOperations": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "download",
+        "retain_snapshot",
+        "derive_facts",
+        "redistribute_metadata",
+        "redistribute_text",
+        "redistribute_media"
+      ],
+      "properties": {
+        "download": {"type": "boolean"},
+        "retain_snapshot": {"type": "boolean"},
+        "derive_facts": {"type": "boolean"},
+        "redistribute_metadata": {"type": "boolean"},
+        "redistribute_text": {"type": "boolean"},
+        "redistribute_media": {"type": "boolean"}
+      }
+    },
+    "authorityProfile": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["names", "identity", "relationships", "work_credits", "coverage"],
+      "properties": {
+        "names": {
+          "enum": ["none", "coverage_only", "candidate", "strong_candidate", "claim_evidence"]
+        },
+        "identity": {
+          "enum": ["none", "coverage_only", "candidate", "strong_candidate", "claim_evidence"]
+        },
+        "relationships": {
+          "enum": ["none", "coverage_only", "candidate", "strong_candidate", "claim_evidence"]
+        },
+        "work_credits": {
+          "enum": ["none", "coverage_only", "candidate", "strong_candidate", "claim_evidence"]
+        },
+        "coverage": {
+          "enum": ["none", "coverage_only", "candidate", "strong_candidate", "claim_evidence"]
+        }
+      }
+    },
+    "sourceAccess": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "auth_kind",
+        "credential_env_name",
+        "docs_url",
+        "rate_policy_zh",
+        "rate_policy_en"
+      ],
+      "properties": {
+        "auth_kind": {
+          "enum": ["none", "api_key", "institution_subscription", "manual"]
+        },
+        "credential_env_name": {
+          "type": ["string", "null"]
+        },
+        "docs_url": {"$ref": "#/$defs/url"},
+        "rate_policy_zh": {"type": "string", "minLength": 1},
+        "rate_policy_en": {"type": "string", "minLength": 1}
+      }
+    },
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "title_zh",
+        "title_en",
+        "publisher",
+        "landing_url",
+        "source_family",
+        "scope",
+        "delivery_kind",
+        "native_id_namespace",
+        "reuse_class",
+        "adapter_status",
+        "adapter_id",
+        "adapter_version",
+        "access",
+        "snapshot_strategy",
+        "provenance_passthrough_fields",
+        "metadata_license",
+        "license_url",
+        "terms_url",
+        "accessed",
+        "allowed_operations",
+        "authority_profile",
+        "attribution_zh",
+        "attribution_en",
+        "known_biases_zh",
+        "known_biases_en"
+      ],
+      "properties": {
+        "id": {"$ref": "#/$defs/id"},
+        "title_zh": {"type": "string", "minLength": 1},
+        "title_en": {"type": "string", "minLength": 1},
+        "publisher": {"type": "string", "minLength": 1},
+        "landing_url": {"$ref": "#/$defs/url"},
+        "source_family": {"$ref": "#/$defs/id"},
+        "scope": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {"type": "string", "minLength": 1}
+        },
+        "delivery_kind": {
+          "enum": [
+            "lod_dump",
+            "api_and_dump",
+            "api_and_snapshot",
+            "api",
+            "web_records",
+            "web_resources",
+            "subscription_index"
+          ]
+        },
+        "native_id_namespace": {
+          "type": ["string", "null"]
+        },
+        "reuse_class": {
+          "enum": [
+            "structured_ingest_allowed",
+            "metadata_ingest_only",
+            "discovery_and_citation_only",
+            "permission_required",
+            "unknown_fail_closed"
+          ]
+        },
+        "adapter_status": {
+          "enum": [
+            "ready",
+            "ready_after_user_key",
+            "blocked_bulk",
+            "discovery_only"
+          ]
+        },
+        "adapter_id": {"type": ["string", "null"]},
+        "adapter_version": {"type": ["string", "null"]},
+        "access": {"$ref": "#/$defs/sourceAccess"},
+        "snapshot_strategy": {"type": "string", "minLength": 1},
+        "provenance_passthrough_fields": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {"type": "string", "minLength": 1}
+        },
+        "metadata_license": {"type": "string", "minLength": 1},
+        "license_url": {
+          "anyOf": [
+            {"$ref": "#/$defs/url"},
+            {"type": "null"}
+          ]
+        },
+        "terms_url": {"$ref": "#/$defs/url"},
+        "accessed": {"$ref": "#/$defs/date"},
+        "allowed_operations": {"$ref": "#/$defs/allowedOperations"},
+        "authority_profile": {"$ref": "#/$defs/authorityProfile"},
+        "attribution_zh": {"type": "string", "minLength": 1},
+        "attribution_en": {"type": "string", "minLength": 1},
+        "known_biases_zh": {
+          "type": "array",
+          "minItems": 1,
+          "items": {"type": "string", "minLength": 1}
+        },
+        "known_biases_en": {
+          "type": "array",
+          "minItems": 1,
+          "items": {"type": "string", "minLength": 1}
+        }
+      }
+    },
+    "person": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "entity_type",
+        "name_zh",
+        "name_en",
+        "name_native",
+        "name_zh_status",
+        "aliases_zh",
+        "aliases_en",
+        "roles",
+        "birth",
+        "death",
+        "region",
+        "country_codes",
+        "external_ids",
+        "summary_zh",
+        "summary_en",
+        "verification_status",
+        "confidence",
+        "last_verified",
+        "claim_ids"
+      ],
+      "properties": {
+        "id": {"$ref": "#/$defs/id"},
+        "entity_type": {"const": "person"},
+        "name_zh": {"type": ["string", "null"]},
+        "name_en": {"type": "string", "minLength": 1},
+        "name_native": {"type": ["string", "null"]},
+        "name_zh_status": {
+          "enum": [
+            "common_translation",
+            "institutional_translation",
+            "transliterated_candidate",
+            "project_translation",
+            "missing"
+          ]
+        },
+        "aliases_zh": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {"type": "string", "minLength": 1}
+        },
+        "aliases_en": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {"type": "string", "minLength": 1}
+        },
+        "roles": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "enum": [
+              "architect",
+              "master_builder",
+              "engineer",
+              "landscape_architect",
+              "urban_planner",
+              "designer",
+              "educator",
+              "craftsperson",
+              "patron",
+              "historian"
+            ]
+          }
+        },
+        "birth": {"$ref": "#/$defs/dateValue"},
+        "death": {"$ref": "#/$defs/dateValue"},
+        "region": {"$ref": "#/$defs/region"},
+        "country_codes": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "pattern": "^[A-Z]{2}$"
+          }
+        },
+        "external_ids": {"$ref": "#/$defs/externalIds"},
+        "summary_zh": {"type": "string"},
+        "summary_en": {"type": "string"},
+        "verification_status": {"$ref": "#/$defs/verificationStatus"},
+        "confidence": {"type": "number", "minimum": 0, "maximum": 1},
+        "last_verified": {"$ref": "#/$defs/date"},
+        "claim_ids": {
+          "type": "array",
+          "items": {"$ref": "#/$defs/id"},
+          "uniqueItems": true
+        }
+      }
+    },
+    "practice": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "entity_type",
+        "name_zh",
+        "name_en",
+        "name_native",
+        "practice_type",
+        "founded",
+        "dissolved",
+        "region",
+        "country_codes",
+        "external_ids",
+        "summary_zh",
+        "summary_en",
+        "verification_status",
+        "confidence",
+        "last_verified",
+        "claim_ids"
+      ],
+      "properties": {
+        "id": {"$ref": "#/$defs/id"},
+        "entity_type": {"const": "practice"},
+        "name_zh": {"type": ["string", "null"]},
+        "name_en": {"type": "string", "minLength": 1},
+        "name_native": {"type": ["string", "null"]},
+        "practice_type": {
+          "enum": [
+            "architecture_firm",
+            "studio",
+            "design_collective",
+            "workshop",
+            "court_office",
+            "institutional_office"
+          ]
+        },
+        "founded": {"$ref": "#/$defs/dateValue"},
+        "dissolved": {"$ref": "#/$defs/dateValue"},
+        "region": {"$ref": "#/$defs/region"},
+        "country_codes": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {"type": "string", "pattern": "^[A-Z]{2}$"}
+        },
+        "external_ids": {"$ref": "#/$defs/externalIds"},
+        "summary_zh": {"type": "string"},
+        "summary_en": {"type": "string"},
+        "verification_status": {"$ref": "#/$defs/verificationStatus"},
+        "confidence": {"type": "number", "minimum": 0, "maximum": 1},
+        "last_verified": {"$ref": "#/$defs/date"},
+        "claim_ids": {
+          "type": "array",
+          "items": {"$ref": "#/$defs/id"},
+          "uniqueItems": true
+        }
+      }
+    },
+    "place": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "entity_type",
+        "name_zh",
+        "name_en",
+        "name_native",
+        "region",
+        "country_code",
+        "lat",
+        "lng",
+        "external_ids",
+        "verification_status",
+        "confidence",
+        "last_verified",
+        "claim_ids"
+      ],
+      "properties": {
+        "id": {"$ref": "#/$defs/id"},
+        "entity_type": {"const": "place"},
+        "name_zh": {"type": ["string", "null"]},
+        "name_en": {"type": "string", "minLength": 1},
+        "name_native": {"type": ["string", "null"]},
+        "region": {"$ref": "#/$defs/region"},
+        "country_code": {
+          "type": ["string", "null"],
+          "pattern": "^[A-Z]{2}$"
+        },
+        "lat": {"type": ["number", "null"], "minimum": -90, "maximum": 90},
+        "lng": {"type": ["number", "null"], "minimum": -180, "maximum": 180},
+        "external_ids": {"$ref": "#/$defs/externalIds"},
+        "verification_status": {"$ref": "#/$defs/verificationStatus"},
+        "confidence": {"type": "number", "minimum": 0, "maximum": 1},
+        "last_verified": {"$ref": "#/$defs/date"},
+        "claim_ids": {
+          "type": "array",
+          "items": {"$ref": "#/$defs/id"},
+          "uniqueItems": true
+        }
+      }
+    },
+    "workCredit": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "entity_id",
+        "entity_type",
+        "role",
+        "phase",
+        "credit_status",
+        "claim_id"
+      ],
+      "properties": {
+        "entity_id": {"$ref": "#/$defs/id"},
+        "entity_type": {"enum": ["person", "practice"]},
+        "role": {
+          "enum": [
+            "architect",
+            "design_architect",
+            "architect_of_record",
+            "master_builder",
+            "engineer",
+            "landscape_architect",
+            "urban_planner",
+            "interior_designer",
+            "craftsperson",
+            "patron",
+            "attributed_creator",
+            "unknown_contributor"
+          ]
+        },
+        "phase": {
+          "enum": [
+            "original_design",
+            "construction",
+            "extension",
+            "renovation",
+            "restoration",
+            "multiple",
+            "unknown"
+          ]
+        },
+        "credit_status": {"$ref": "#/$defs/verificationStatus"},
+        "claim_id": {"$ref": "#/$defs/id"}
+      }
+    },
+    "work": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "entity_type",
+        "name_zh",
+        "name_en",
+        "name_native",
+        "aliases_zh",
+        "aliases_en",
+        "work_type",
+        "status",
+        "period",
+        "dates",
+        "place_id",
+        "region",
+        "attribution_mode",
+        "credit_set_completeness",
+        "credits",
+        "external_ids",
+        "summary_zh",
+        "summary_en",
+        "significance_zh",
+        "significance_en",
+        "verification_status",
+        "confidence",
+        "last_verified",
+        "claim_ids"
+      ],
+      "properties": {
+        "id": {"$ref": "#/$defs/id"},
+        "entity_type": {"const": "work"},
+        "name_zh": {"type": ["string", "null"]},
+        "name_en": {"type": "string", "minLength": 1},
+        "name_native": {"type": ["string", "null"]},
+        "aliases_zh": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {"type": "string", "minLength": 1}
+        },
+        "aliases_en": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {"type": "string", "minLength": 1}
+        },
+        "work_type": {
+          "enum": [
+            "building",
+            "building_complex",
+            "landscape",
+            "urban_plan",
+            "infrastructure",
+            "interior",
+            "monument",
+            "unbuilt_project",
+            "other"
+          ]
+        },
+        "status": {
+          "enum": [
+            "built",
+            "altered",
+            "destroyed",
+            "ruin",
+            "unbuilt",
+            "unknown"
+          ]
+        },
+        "period": {"$ref": "#/$defs/period"},
+        "dates": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["design", "construction_start", "completion"],
+          "properties": {
+            "design": {"$ref": "#/$defs/dateValue"},
+            "construction_start": {"$ref": "#/$defs/dateValue"},
+            "completion": {"$ref": "#/$defs/dateValue"}
+          }
+        },
+        "place_id": {"$ref": "#/$defs/id"},
+        "region": {"$ref": "#/$defs/region"},
+        "attribution_mode": {
+          "enum": [
+            "named_individual",
+            "named_team",
+            "practice",
+            "workshop_or_collective",
+            "traditional_or_anonymous",
+            "disputed",
+            "unknown"
+          ]
+        },
+        "credit_set_completeness": {
+          "enum": [
+            "unknown",
+            "partial",
+            "source_declared",
+            "reviewed_complete"
+          ]
+        },
+        "credits": {
+          "type": "array",
+          "items": {"$ref": "#/$defs/workCredit"}
+        },
+        "external_ids": {"$ref": "#/$defs/externalIds"},
+        "summary_zh": {"type": "string"},
+        "summary_en": {"type": "string"},
+        "significance_zh": {"type": "array", "items": {"type": "string"}},
+        "significance_en": {"type": "array", "items": {"type": "string"}},
+        "verification_status": {"$ref": "#/$defs/verificationStatus"},
+        "confidence": {"type": "number", "minimum": 0, "maximum": 1},
+        "last_verified": {"$ref": "#/$defs/date"},
+        "claim_ids": {
+          "type": "array",
+          "items": {"$ref": "#/$defs/id"},
+          "uniqueItems": true
+        }
+      }
+    },
+    "claimObject": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "entity_id": {"$ref": "#/$defs/id"},
+        "value": {},
+        "value_zh": {"type": "string"},
+        "value_en": {"type": "string"}
+      },
+      "anyOf": [
+        {"required": ["entity_id"]},
+        {"required": ["value"]},
+        {"required": ["value_zh", "value_en"]}
+      ]
+    },
+    "claimEvidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "source_id",
+        "snapshot_id",
+        "native_record_id",
+        "native_field_path",
+        "native_predicate",
+        "url",
+        "locator",
+        "accessed",
+        "support",
+        "extraction_method",
+        "language",
+        "rank",
+        "qualifiers",
+        "references",
+        "contributors",
+        "source_record_sha256"
+      ],
+      "properties": {
+        "source_id": {"$ref": "#/$defs/id"},
+        "snapshot_id": {"$ref": "#/$defs/id"},
+        "native_record_id": {"type": ["string", "null"]},
+        "native_field_path": {"type": "string", "minLength": 1},
+        "native_predicate": {"type": ["string", "null"]},
+        "url": {"$ref": "#/$defs/url"},
+        "locator": {"type": "string", "minLength": 1},
+        "accessed": {"$ref": "#/$defs/date"},
+        "support": {"enum": ["explicit", "indirect", "conflicting"]},
+        "extraction_method": {
+          "enum": [
+            "structured_mapping",
+            "manual_cataloging",
+            "human_excerpt",
+            "ocr_candidate",
+            "llm_candidate"
+          ]
+        },
+        "language": {"type": ["string", "null"]},
+        "rank": {"type": ["string", "null"]},
+        "qualifiers": {"type": "array"},
+        "references": {"type": "array"},
+        "contributors": {"type": "array"},
+        "source_record_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        }
+      }
+    },
+    "claim": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "subject_id",
+        "predicate",
+        "object",
+        "qualifiers",
+        "evidence",
+        "verification_status",
+        "confidence",
+        "reviewed_by",
+        "reviewed_at"
+      ],
+      "properties": {
+        "id": {"$ref": "#/$defs/id"},
+        "subject_id": {"$ref": "#/$defs/id"},
+        "predicate": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_]*$"
+        },
+        "object": {"$ref": "#/$defs/claimObject"},
+        "qualifiers": {
+          "type": "object"
+        },
+        "evidence": {
+          "type": "array",
+          "items": {"$ref": "#/$defs/claimEvidence"}
+        },
+        "verification_status": {"$ref": "#/$defs/verificationStatus"},
+        "confidence": {"type": "number", "minimum": 0, "maximum": 1},
+        "reviewed_by": {"type": ["string", "null"]},
+        "reviewed_at": {
+          "anyOf": [
+            {"$ref": "#/$defs/date"},
+            {"type": "null"}
+          ]
+        }
+      }
+    },
+    "relation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "from_id",
+        "to_id",
+        "relation_type",
+        "context",
+        "verification_status",
+        "confidence",
+        "last_verified",
+        "claim_id",
+        "game_eligibility",
+        "rejection_reasons"
+      ],
+      "properties": {
+        "id": {"$ref": "#/$defs/id"},
+        "from_id": {"$ref": "#/$defs/id"},
+        "to_id": {"$ref": "#/$defs/id"},
+        "relation_type": {
+          "enum": [
+            "direct_mentor",
+            "apprenticed_under",
+            "formal_teacher",
+            "worked_at_practice",
+            "practice_successor",
+            "collaborated_with",
+            "cofounded_with",
+            "documented_influence",
+            "member_of_movement",
+            "institutional_continuity"
+          ]
+        },
+        "context": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "institution_id",
+            "practice_id",
+            "work_id",
+            "date_start",
+            "date_end",
+            "note_zh",
+            "note_en"
+          ],
+          "properties": {
+            "institution_id": {"type": ["string", "null"]},
+            "practice_id": {"type": ["string", "null"]},
+            "work_id": {"type": ["string", "null"]},
+            "date_start": {"type": ["integer", "null"]},
+            "date_end": {"type": ["integer", "null"]},
+            "note_zh": {"type": "string"},
+            "note_en": {"type": "string"}
+          }
+        },
+        "verification_status": {"$ref": "#/$defs/verificationStatus"},
+        "confidence": {"type": "number", "minimum": 0, "maximum": 1},
+        "last_verified": {"$ref": "#/$defs/date"},
+        "claim_id": {"$ref": "#/$defs/id"},
+        "game_eligibility": {"type": "boolean"},
+        "rejection_reasons": {
+          "type": "array",
+          "items": {"type": "string", "minLength": 1}
+        }
+      }
+    }
+  },
+  "file_schemas": {
+    "source-registry.json": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["data_as_of", "sources"],
+      "properties": {
+        "data_as_of": {"$ref": "#/$defs/date"},
+        "sources": {
+          "type": "array",
+          "items": {"$ref": "#/$defs/source"}
+        }
+      }
+    },
+    "people.json": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["people"],
+      "properties": {
+        "people": {
+          "type": "array",
+          "items": {"$ref": "#/$defs/person"}
+        }
+      }
+    },
+    "practices.json": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["practices"],
+      "properties": {
+        "practices": {
+          "type": "array",
+          "items": {"$ref": "#/$defs/practice"}
+        }
+      }
+    },
+    "places.json": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["places"],
+      "properties": {
+        "places": {
+          "type": "array",
+          "items": {"$ref": "#/$defs/place"}
+        }
+      }
+    },
+    "works.json": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["works"],
+      "properties": {
+        "works": {
+          "type": "array",
+          "items": {"$ref": "#/$defs/work"}
+        }
+      }
+    },
+    "claims.json": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["claims"],
+      "properties": {
+        "claims": {
+          "type": "array",
+          "items": {"$ref": "#/$defs/claim"}
+        }
+      }
+    },
+    "relations.json": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["relations"],
+      "properties": {
+        "relations": {
+          "type": "array",
+          "items": {"$ref": "#/$defs/relation"}
+        }
+      }
+    }
+  }
+}

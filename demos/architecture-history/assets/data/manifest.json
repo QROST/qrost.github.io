@@ -1,0 +1,56 @@
+{
+  "counts": {
+    "candidate_entities_and_relations": 0,
+    "claims": 0,
+    "contested_entities_and_relations": 0,
+    "declined_entities_and_relations": 0,
+    "people": 0,
+    "places": 0,
+    "practices": 0,
+    "relations": 0,
+    "sources": 11,
+    "verified_entities_and_relations": 0,
+    "works": 0
+  },
+  "coverage": {
+    "evidence_by_source_family": {},
+    "periods": {},
+    "regions": {},
+    "verification": {}
+  },
+  "data_as_of": "2026-07-25",
+  "data_version": "2a7fdbe255c30c5875398c99461f32c9c54b408b2d6257b548ffeb0905faaced",
+  "files": {
+    "claims.json": {
+      "count": 0,
+      "sha256": "6a3801a542abf8cd917c226f560b82bca5adc200e86050a90950c331ea755fd8"
+    },
+    "people.json": {
+      "count": 0,
+      "sha256": "c22c04300ec10e51778c9eae16e896fe568f3d702b308aad0dfeb3017289fa39"
+    },
+    "places.json": {
+      "count": 0,
+      "sha256": "d0196d0a3198088401de7db2535e1c1b9e79791efe33a63ec0c9a2ea70ed59dc"
+    },
+    "practices.json": {
+      "count": 0,
+      "sha256": "1add29f642730986f98b7efbf6ca435ecc813b1ed5387dc49d954a9ac3789b34"
+    },
+    "relations.json": {
+      "count": 0,
+      "sha256": "d0bfbe7d404dc0cdae997ba38f724e123db17aba406afce3a9ccd14266822cad"
+    },
+    "source-registry.json": {
+      "count": 11,
+      "sha256": "adcbfbab517d9bcfd89fb73e3c0fcf359485b0b864e227c15878baff0d158fb9"
+    },
+    "works.json": {
+      "count": 0,
+      "sha256": "185a10d41432430940af315109490eb902d5df88d1fc9a25dd3c0a5875624d44"
+    }
+  },
+  "hash_algorithm": "sha256",
+  "schema_id": "architecture-lineages",
+  "schema_version": "1.0.0"
+}
