@@ -13,6 +13,7 @@ reviewed facts, contested claims, and gaps in coverage.
 The public data graph lives in `assets/data/`:
 
 - `source-registry.json` — source access, reuse, attribution, and bias decisions;
+- `reviewers.json` — explicitly authorized human editorial reviewers;
 - `people.json`, `practices.json`, `places.json`, `works.json` — entities;
 - `claims.json` — field- and relation-level evidence;
 - `relations.json` — typed relationships, never inferred from visual similarity;
@@ -22,6 +23,14 @@ Work records preserve each named contributor, role, project phase, and claim.
 `credit_set_completeness` separately records whether that list is unknown,
 partial, merely complete according to one source, or independently reviewed as
 complete. A missing name is never silently treated as a sole-author credit.
+
+Source availability is not adapter readiness. `adapter_status` reports
+implementation evidence (`not_implemented`, `fixture_only`, `tested`, or
+`production_ready`) independently from API keys, subscriptions, and legal reuse.
+Discovery-only sources may locate bibliography but cannot directly publish facts.
+`allowed_operations` is this project's fail-closed decision after considering
+source rights, access terms, and local policy; it does not describe every action
+the provider might technically or legally permit.
 
 The local schema follows Getty CDWA/CONA cataloging guidance and keeps crosswalks
 to Getty Vocabularies, Wikidata, and other authority files where available.
@@ -35,10 +44,16 @@ product model, not a replacement standard.
 - `contested` — reliable evidence conflicts;
 - `declined` — the proposed claim is not supported.
 
-Only explicitly documented `direct_mentor`, `apprenticed_under`, and
+Only explicitly documented `direct_mentor`, `master_of_apprentice`, and
 `formal_teacher` relationships can ever become game-upgrade candidates.
 Employment, co-location, shared schools, collaboration, chronology, and stylistic
 similarity do not imply mentorship.
+
+All directional knowledge-transfer edges run from predecessor to successor:
+mentor → mentee, master → apprentice, and teacher → student. The relation type is
+`master_of_apprentice`, avoiding the ambiguous direction of “apprenticed under.”
+Raw Wikidata P1066 discovery is stored separately as `student_of_recorded` and is
+never game-eligible without human reclassification and stronger evidence.
 
 ## Build
 
@@ -48,7 +63,9 @@ python3 tools/build.py
 
 The build regenerates `assets/data/manifest.json`, validates the full foreign-key
 graph, refreshes content-derived asset tokens when the page exists, and fails
-closed on provenance or eligibility errors.
+closed on provenance or eligibility errors. Generated public arrays are merged
+from source-scoped `assets/data/catalog/*.json` shards; failed builds restore all
+generated outputs instead of leaving a half-written tree.
 
 Research notes and raw working material live under `tmp/research/` and are
 gitignored. Redistributable, minimized source snapshots used for reproducible

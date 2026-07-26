@@ -5,21 +5,31 @@ from __future__ import annotations
 
 import hashlib
 import json
+import os
 import re
 import subprocess
 import sys
+import tempfile
 from collections import Counter
 from pathlib import Path
+from typing import Optional
 
 
-ROOT = Path(__file__).resolve().parent.parent
+ROOT = Path(
+    os.environ.get(
+        "ARCH_HISTORY_ROOT",
+        str(Path(__file__).resolve().parent.parent),
+    )
+).resolve()
 DATA = ROOT / "assets" / "data"
+CATALOG = DATA / "catalog"
 HTML = ROOT / "index.html"
 LOADER = ROOT / "assets" / "js" / "data-loader.js"
 MANIFEST = DATA / "manifest.json"
 
 FILE_KEYS = {
     "source-registry.json": "sources",
+    "reviewers.json": "reviewers",
     "people.json": "people",
     "practices.json": "practices",
     "places.json": "places",
@@ -28,6 +38,8 @@ FILE_KEYS = {
     "relations.json": "relations",
 }
 
+CATALOG_KEYS = ("people", "practices", "places", "works", "claims", "relations")
+
 
 def load_json(path: Path):
     with path.open(encoding="utf-8") as handle:
@@ -35,10 +47,51 @@ def load_json(path: Path):
 
 
 def write_json(path: Path, payload) -> None:
-    path.write_text(
-        json.dumps(payload, ensure_ascii=False, indent=2, sort_keys=True) + "\n",
-        encoding="utf-8",
+    atomic_write_bytes(
+        path,
+        (
+            json.dumps(payload, ensure_ascii=False, indent=2, sort_keys=True)
+            + "\n"
+        ).encode("utf-8"),
     )
+
+
+def atomic_write_bytes(path: Path, content: bytes) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    mode = path.stat().st_mode & 0o777 if path.exists() else 0o644
+    handle = tempfile.NamedTemporaryFile(
+        dir=path.parent,
+        prefix=f".{path.name}.",
+        delete=False,
+    )
+    temp_path = Path(handle.name)
+    try:
+        with handle:
+            handle.write(content)
+            handle.flush()
+            os.fsync(handle.fileno())
+        os.chmod(temp_path, mode)
+        os.replace(temp_path, path)
+    finally:
+        if temp_path.exists():
+            temp_path.unlink()
+
+
+def merge_catalog_shards() -> None:
+    """Regenerate the public graph from immutable, source-scoped catalog shards."""
+    merged = {key: [] for key in CATALOG_KEYS}
+    if CATALOG.exists():
+        for path in sorted(
+            CATALOG.glob("*.json"),
+            key=lambda item: item.name.encode("utf-8"),
+        ):
+            payload = load_json(path)
+            for key in CATALOG_KEYS:
+                merged[key].extend(payload[key])
+    for filename, key in FILE_KEYS.items():
+        if filename in {"source-registry.json", "reviewers.json"}:
+            continue
+        write_json(DATA / filename, {key: merged[key]})
 
 
 def sha256(path: Path) -> str:
@@ -126,12 +179,13 @@ def derive_manifest(paths: list[Path], version: str) -> dict:
     data_as_of = load_json(DATA / "source-registry.json")["data_as_of"]
     return {
         "schema_id": "architecture-lineages",
-        "schema_version": "1.0.0",
+        "schema_version": "1.1.0",
         "hash_algorithm": "sha256",
         "data_version": version,
         "data_as_of": data_as_of,
         "counts": {
             "sources": len(payloads["source-registry.json"]),
+            "reviewers": len(payloads["reviewers.json"]),
             "people": len(payloads["people.json"]),
             "practices": len(payloads["practices.json"]),
             "places": len(payloads["places.json"]),
@@ -170,7 +224,7 @@ def refresh_loader_version(version: str) -> None:
             f"build: expected exactly one DATA_VERSION constant in {LOADER}, found {count}"
         )
     if updated != text:
-        LOADER.write_text(updated, encoding="utf-8")
+        atomic_write_bytes(LOADER, updated.encode("utf-8"))
 
 
 def refresh_html_tokens() -> None:
@@ -200,20 +254,53 @@ def refresh_html_tokens() -> None:
     stamped = pattern.sub(replace, html)
     if len(seen) != len(matches):
         raise SystemExit("build: duplicate local CSS/JS asset tags are not allowed")
-    HTML.write_text(stamped, encoding="utf-8")
+    atomic_write_bytes(HTML, stamped.encode("utf-8"))
+
+
+def mutable_outputs() -> list[Path]:
+    paths = [
+        DATA / filename
+        for filename in FILE_KEYS
+        if filename not in {"source-registry.json", "reviewers.json"}
+    ]
+    paths.append(MANIFEST)
+    if LOADER.exists():
+        paths.append(LOADER)
+    if HTML.exists():
+        paths.append(HTML)
+    return paths
+
+
+def restore_outputs(before: dict[Path, Optional[bytes]]) -> None:
+    for path, content in before.items():
+        if content is None:
+            if path.exists():
+                path.unlink()
+        else:
+            atomic_write_bytes(path, content)
 
 
 def main() -> int:
-    paths = input_paths()
-    version = data_version(paths)
-    write_json(MANIFEST, derive_manifest(paths, version))
-    refresh_loader_version(version)
-    refresh_html_tokens()
-    subprocess.run(
-        [sys.executable, str(ROOT / "tools" / "validate.py")],
-        cwd=ROOT,
-        check=True,
-    )
+    outputs = mutable_outputs()
+    before = {
+        path: path.read_bytes() if path.exists() else None
+        for path in outputs
+    }
+    try:
+        merge_catalog_shards()
+        paths = input_paths()
+        version = data_version(paths)
+        write_json(MANIFEST, derive_manifest(paths, version))
+        refresh_loader_version(version)
+        refresh_html_tokens()
+        subprocess.run(
+            [sys.executable, str(ROOT / "tools" / "validate.py")],
+            cwd=ROOT,
+            check=True,
+        )
+    except BaseException:
+        restore_outputs(before)
+        raise
     print(
         f"Build OK: {len(paths)} input file(s), data_version={version[:12]}, "
         f"manifest={MANIFEST.relative_to(ROOT)}"

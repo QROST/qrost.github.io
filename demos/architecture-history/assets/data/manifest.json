@@ -8,7 +8,8 @@
     "places": 0,
     "practices": 0,
     "relations": 0,
-    "sources": 11,
+    "reviewers": 0,
+    "sources": 12,
     "verified_entities_and_relations": 0,
     "works": 0
   },
@@ -19,7 +20,7 @@
     "verification": {}
   },
   "data_as_of": "2026-07-25",
-  "data_version": "2a7fdbe255c30c5875398c99461f32c9c54b408b2d6257b548ffeb0905faaced",
+  "data_version": "9ee9aca521e0f727ee48d981ce61eaeef5aa96b7005d61842cfc197ef6b1a35c",
   "files": {
     "claims.json": {
       "count": 0,
@@ -41,9 +42,13 @@
       "count": 0,
       "sha256": "d0bfbe7d404dc0cdae997ba38f724e123db17aba406afce3a9ccd14266822cad"
     },
+    "reviewers.json": {
+      "count": 0,
+      "sha256": "2962aedc8b875547aaf85f47e1c2598d74253ca5d92bb947c07d2c8b137e8154"
+    },
     "source-registry.json": {
-      "count": 11,
-      "sha256": "adcbfbab517d9bcfd89fb73e3c0fcf359485b0b864e227c15878baff0d158fb9"
+      "count": 12,
+      "sha256": "23c5e79533d53a3b91363dd03ca94ede4a8ed633349003472110135f8b16463b"
     },
     "works.json": {
       "count": 0,
@@ -52,5 +57,5 @@
   },
   "hash_algorithm": "sha256",
   "schema_id": "architecture-lineages",
-  "schema_version": "1.0.0"
+  "schema_version": "1.1.0"
 }

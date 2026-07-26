@@ -154,7 +154,15 @@
       ],
       "properties": {
         "auth_kind": {
-          "enum": ["none", "api_key", "institution_subscription", "manual"]
+          "enum": [
+            "none",
+            "api_key",
+            "api_key_query_parameter",
+            "institution_subscription",
+            "subscription_or_alumni_entitlement",
+            "verified_teacher_membership",
+            "manual"
+          ]
         },
         "credential_env_name": {
           "type": ["string", "null"]
@@ -213,6 +221,7 @@
             "lod_dump",
             "api_and_dump",
             "api_and_snapshot",
+            "api_and_bulk",
             "api",
             "web_records",
             "web_resources",
@@ -233,8 +242,10 @@
         },
         "adapter_status": {
           "enum": [
-            "ready",
-            "ready_after_user_key",
+            "not_implemented",
+            "fixture_only",
+            "tested",
+            "production_ready",
             "blocked_bulk",
             "discovery_only"
           ]
@@ -273,6 +284,17 @@
         }
       }
     },
+    "reviewer": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "display_name", "reviewer_type", "active"],
+      "properties": {
+        "id": {"$ref": "#/$defs/id"},
+        "display_name": {"type": "string", "minLength": 1},
+        "reviewer_type": {"const": "human"},
+        "active": {"type": "boolean"}
+      }
+    },
     "person": {
       "type": "object",
       "additionalProperties": false,
@@ -308,6 +330,7 @@
           "enum": [
             "common_translation",
             "institutional_translation",
+            "source_label_candidate",
             "transliterated_candidate",
             "project_translation",
             "missing"
@@ -530,6 +553,7 @@
         "dates",
         "place_id",
         "region",
+        "coordinates",
         "attribution_mode",
         "credit_set_completeness",
         "credits",
@@ -595,6 +619,22 @@
         },
         "place_id": {"$ref": "#/$defs/id"},
         "region": {"$ref": "#/$defs/region"},
+        "coordinates": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["lat", "lng", "precision", "claim_id"],
+          "properties": {
+            "lat": {"type": ["number", "null"], "minimum": -90, "maximum": 90},
+            "lng": {"type": ["number", "null"], "minimum": -180, "maximum": 180},
+            "precision": {"type": ["number", "null"], "minimum": 0},
+            "claim_id": {
+              "anyOf": [
+                {"$ref": "#/$defs/id"},
+                {"type": "null"}
+              ]
+            }
+          }
+        },
         "attribution_mode": {
           "enum": [
             "named_individual",
@@ -740,6 +780,170 @@
         }
       }
     },
+    "catalogShard": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "source_id",
+        "generated_from",
+        "generator",
+        "people",
+        "practices",
+        "places",
+        "works",
+        "claims",
+        "relations"
+      ],
+      "properties": {
+        "source_id": {"$ref": "#/$defs/id"},
+        "generated_from": {"$ref": "#/$defs/id"},
+        "generator": {"type": "string", "minLength": 1},
+        "people": {
+          "type": "array",
+          "items": {"$ref": "#/$defs/person"}
+        },
+        "practices": {
+          "type": "array",
+          "items": {"$ref": "#/$defs/practice"}
+        },
+        "places": {
+          "type": "array",
+          "items": {"$ref": "#/$defs/place"}
+        },
+        "works": {
+          "type": "array",
+          "items": {"$ref": "#/$defs/work"}
+        },
+        "claims": {
+          "type": "array",
+          "items": {"$ref": "#/$defs/claim"}
+        },
+        "relations": {
+          "type": "array",
+          "items": {"$ref": "#/$defs/relation"}
+        }
+      }
+    },
+    "wikidataSnapshotQuery": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "cell_id",
+        "region",
+        "country_code",
+        "country_qid",
+        "query",
+        "query_sha256",
+        "candidate_work_qids",
+        "selected_work_qids",
+        "eligible_credits"
+      ],
+      "properties": {
+        "cell_id": {"$ref": "#/$defs/id"},
+        "region": {"$ref": "#/$defs/region"},
+        "country_code": {"type": "string", "pattern": "^[A-Z]{2}$"},
+        "country_qid": {"type": "string", "pattern": "^Q[1-9][0-9]*$"},
+        "query": {"type": "string", "minLength": 1},
+        "query_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "candidate_work_qids": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {"type": "string", "pattern": "^Q[1-9][0-9]*$"}
+        },
+        "selected_work_qids": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {"type": "string", "pattern": "^Q[1-9][0-9]*$"}
+        },
+        "eligible_credits": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["work_qid", "creator_qid", "creator_kind"],
+            "properties": {
+              "work_qid": {"type": "string", "pattern": "^Q[1-9][0-9]*$"},
+              "creator_qid": {"type": "string", "pattern": "^Q[1-9][0-9]*$"},
+              "creator_kind": {"enum": ["person", "practice"]}
+            }
+          }
+        }
+      }
+    },
+    "wikidataSnapshotEntity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["lastrevid", "record_sha256", "record"],
+      "properties": {
+        "lastrevid": {"type": "integer", "minimum": 1},
+        "record_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "record": {"type": "object"}
+      }
+    },
+    "wikidataSnapshot": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "snapshot_id",
+        "source_id",
+        "adapter_id",
+        "adapter_version",
+        "accessed",
+        "license",
+        "endpoint",
+        "selection",
+        "queries",
+        "entities"
+      ],
+      "properties": {
+        "snapshot_id": {"$ref": "#/$defs/id"},
+        "source_id": {"$ref": "#/$defs/id"},
+        "adapter_id": {"$ref": "#/$defs/id"},
+        "adapter_version": {
+          "type": "string",
+          "pattern": "^\\d+\\.\\d+\\.\\d+$"
+        },
+        "accessed": {"$ref": "#/$defs/date"},
+        "license": {"type": "string", "minLength": 1},
+        "endpoint": {"$ref": "#/$defs/url"},
+        "selection": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "method",
+            "per_cell",
+            "query_limit",
+            "seed",
+            "notes_zh",
+            "notes_en"
+          ],
+          "properties": {
+            "method": {"const": "coverage_cell_stable_hash"},
+            "per_cell": {"type": "integer", "minimum": 1},
+            "query_limit": {"type": "integer", "minimum": 1},
+            "seed": {"type": "string", "minLength": 1},
+            "notes_zh": {"type": "string", "minLength": 1},
+            "notes_en": {"type": "string", "minLength": 1}
+          }
+        },
+        "queries": {
+          "type": "array",
+          "minItems": 1,
+          "items": {"$ref": "#/$defs/wikidataSnapshotQuery"}
+        },
+        "entities": {
+          "type": "object",
+          "propertyNames": {"pattern": "^Q[1-9][0-9]*$"},
+          "additionalProperties": {"$ref": "#/$defs/wikidataSnapshotEntity"}
+        }
+      }
+    },
     "relation": {
       "type": "object",
       "additionalProperties": false,
@@ -763,15 +967,14 @@
         "relation_type": {
           "enum": [
             "direct_mentor",
-            "apprenticed_under",
+            "master_of_apprentice",
             "formal_teacher",
+            "student_of_recorded",
             "worked_at_practice",
             "practice_successor",
             "collaborated_with",
             "cofounded_with",
-            "documented_influence",
-            "member_of_movement",
-            "institutional_continuity"
+            "documented_influence"
           ]
         },
         "context": {
@@ -829,6 +1032,17 @@
         "people": {
           "type": "array",
           "items": {"$ref": "#/$defs/person"}
+        }
+      }
+    },
+    "reviewers.json": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["reviewers"],
+      "properties": {
+        "reviewers": {
+          "type": "array",
+          "items": {"$ref": "#/$defs/reviewer"}
         }
       }
     },
