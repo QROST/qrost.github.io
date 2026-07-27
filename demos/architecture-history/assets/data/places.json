@@ -112,6 +112,28 @@
     },
     {
       "claim_ids": [
+        "claim-wd-q16-name-en",
+        "claim-wd-q16-name-zh",
+        "claim-wd-q16-country-code"
+      ],
+      "confidence": 0.6,
+      "country_code": "CA",
+      "entity_type": "place",
+      "external_ids": {
+        "wikidata": "Q16"
+      },
+      "id": "place-wd-q16",
+      "last_verified": "2026-07-27",
+      "lat": null,
+      "lng": null,
+      "name_en": "Canada",
+      "name_native": null,
+      "name_zh": "加拿大",
+      "region": "north_america",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_ids": [
         "claim-wd-q17-name-en",
         "claim-wd-q17-name-zh",
         "claim-wd-q17-country-code"

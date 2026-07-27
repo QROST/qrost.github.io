@@ -473,6 +473,39 @@
     },
     {
       "claim_ids": [
+        "claim-wd-q5665458-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "dissolved": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "practice",
+      "external_ids": {
+        "wikidata": "Q5665458"
+      },
+      "founded": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "id": "practice-wd-q5665458",
+      "last_verified": "2026-07-27",
+      "name_en": "Harrison & Abramovitz",
+      "name_native": null,
+      "name_zh": null,
+      "practice_type": "architecture_firm",
+      "region": "unknown",
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_ids": [
         "claim-wd-q617190-name-en",
         "claim-wd-q617190-name-zh"
       ],

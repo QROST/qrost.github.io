@@ -3037,6 +3037,446 @@
       "risk_tags": [
         "no_completion_date_in_p1619_p571"
       ]
+    },
+    {
+      "expected_country_code": "FR",
+      "expected_country_qid": "Q142",
+      "label_hint_en": "Centre Georges Pompidou",
+      "qid": "Q178065",
+      "region": "europe",
+      "risk_tags": [
+        "team_credit",
+        "high_tech"
+      ]
+    },
+    {
+      "expected_country_code": "FR",
+      "expected_country_qid": "Q142",
+      "label_hint_en": "Notre Dame du Haut",
+      "qid": "Q638250",
+      "region": "europe",
+      "risk_tags": [
+        "single_phase",
+        "modern_sacred"
+      ]
+    },
+    {
+      "expected_country_code": "FR",
+      "expected_country_qid": "Q142",
+      "label_hint_en": "Unité d'Habitation de Marseille",
+      "qid": "Q2587975",
+      "region": "europe",
+      "risk_tags": [
+        "complex_vs_single_work",
+        "team_credit"
+      ]
+    },
+    {
+      "expected_country_code": "FR",
+      "expected_country_qid": "Q142",
+      "label_hint_en": "Grande Arche",
+      "qid": "Q216357",
+      "region": "europe",
+      "risk_tags": [
+        "monument",
+        "team_credit"
+      ]
+    },
+    {
+      "expected_country_code": "GB",
+      "expected_country_qid": "Q145",
+      "label_hint_en": "Lloyd's building",
+      "qid": "Q1814818",
+      "region": "europe",
+      "risk_tags": [
+        "team_credit",
+        "high_tech"
+      ]
+    },
+    {
+      "expected_country_code": "GB",
+      "expected_country_qid": "Q145",
+      "label_hint_en": "Sainsbury Centre",
+      "qid": "Q7400532",
+      "region": "europe",
+      "risk_tags": [
+        "team_credit",
+        "museum"
+      ]
+    },
+    {
+      "expected_country_code": "GB",
+      "expected_country_qid": "Q145",
+      "label_hint_en": "Tate Modern",
+      "qid": "Q193375",
+      "region": "europe",
+      "risk_tags": [
+        "repurposing",
+        "power_station"
+      ]
+    },
+    {
+      "expected_country_code": "ES",
+      "expected_country_qid": "Q29",
+      "label_hint_en": "Guggenheim Museum Bilbao",
+      "qid": "Q179199",
+      "region": "europe",
+      "risk_tags": [
+        "team_credit",
+        "deconstructivist"
+      ]
+    },
+    {
+      "expected_country_code": "DE",
+      "expected_country_qid": "Q183",
+      "label_hint_en": "Berliner Philharmonie",
+      "qid": "Q32653910",
+      "region": "europe",
+      "risk_tags": [
+        "team_credit",
+        "expressionist"
+      ]
+    },
+    {
+      "expected_country_code": "DE",
+      "expected_country_qid": "Q183",
+      "label_hint_en": "Sony Center",
+      "qid": "Q641108",
+      "region": "europe",
+      "risk_tags": [
+        "complex_vs_single_work",
+        "team_credit"
+      ]
+    },
+    {
+      "expected_country_code": "CZ",
+      "expected_country_qid": "Q213",
+      "label_hint_en": "Dancing House",
+      "qid": "Q244816",
+      "region": "europe",
+      "risk_tags": [
+        "deconstructivist",
+        "team_credit"
+      ]
+    },
+    {
+      "expected_country_code": "US",
+      "expected_country_qid": "Q30",
+      "label_hint_en": "Seagram Building",
+      "qid": "Q737484",
+      "region": "north_america",
+      "risk_tags": [
+        "team_credit",
+        "modernist"
+      ]
+    },
+    {
+      "expected_country_code": "US",
+      "expected_country_qid": "Q30",
+      "label_hint_en": "Lever House",
+      "qid": "Q1821821",
+      "region": "north_america",
+      "risk_tags": [
+        "curtain_wall",
+        "corporate"
+      ]
+    },
+    {
+      "expected_country_code": "US",
+      "expected_country_qid": "Q30",
+      "label_hint_en": "Farnsworth House",
+      "qid": "Q1397013",
+      "region": "north_america",
+      "risk_tags": [
+        "single_phase",
+        "residential"
+      ]
+    },
+    {
+      "expected_country_code": "US",
+      "expected_country_qid": "Q30",
+      "label_hint_en": "Salk Institute for Biological Studies",
+      "qid": "Q1351061",
+      "region": "north_america",
+      "risk_tags": [
+        "team_credit",
+        "campus"
+      ]
+    },
+    {
+      "expected_country_code": "US",
+      "expected_country_qid": "Q30",
+      "label_hint_en": "East Building of the National Gallery of Art",
+      "qid": "Q118314575",
+      "region": "north_america",
+      "risk_tags": [
+        "team_credit",
+        "geometric"
+      ]
+    },
+    {
+      "expected_country_code": "US",
+      "expected_country_qid": "Q30",
+      "label_hint_en": "Marina City",
+      "qid": "Q653584",
+      "region": "north_america",
+      "risk_tags": [
+        "complex_vs_single_work",
+        "team_credit"
+      ]
+    },
+    {
+      "expected_country_code": "US",
+      "expected_country_qid": "Q30",
+      "label_hint_en": "Vanna Venturi House",
+      "qid": "Q2060721",
+      "region": "north_america",
+      "risk_tags": [
+        "postmodern",
+        "single_phase"
+      ]
+    },
+    {
+      "expected_country_code": "US",
+      "expected_country_qid": "Q30",
+      "label_hint_en": "Headquarters of the United Nations",
+      "qid": "Q11297",
+      "region": "north_america",
+      "risk_tags": [
+        "complex_vs_single_work",
+        "team_credit"
+      ]
+    },
+    {
+      "expected_country_code": "US",
+      "expected_country_qid": "Q30",
+      "label_hint_en": "TWA Flight Center",
+      "qid": "Q29257",
+      "region": "north_america",
+      "risk_tags": [
+        "airport",
+        "expressionist"
+      ]
+    },
+    {
+      "expected_country_code": "US",
+      "expected_country_qid": "Q30",
+      "label_hint_en": "Washington Dulles International Airport",
+      "qid": "Q466835",
+      "region": "north_america",
+      "risk_tags": [
+        "airport",
+        "team_credit"
+      ]
+    },
+    {
+      "expected_country_code": "CA",
+      "expected_country_qid": "Q16",
+      "label_hint_en": "Habitat 67",
+      "qid": "Q1032248",
+      "region": "north_america",
+      "risk_tags": [
+        "housing_experiment",
+        "expo67"
+      ]
+    },
+    {
+      "expected_country_code": "CA",
+      "expected_country_qid": "Q16",
+      "label_hint_en": "Toronto City Hall",
+      "qid": "Q1093941",
+      "region": "north_america",
+      "risk_tags": [
+        "team_credit",
+        "modernist"
+      ]
+    },
+    {
+      "expected_country_code": "MX",
+      "expected_country_qid": "Q96",
+      "label_hint_en": "Torre Latinoamericana",
+      "qid": "Q947870",
+      "region": "latin_america_caribbean",
+      "risk_tags": [
+        "skyscraper",
+        "earthquake_resistant"
+      ]
+    },
+    {
+      "expected_country_code": "MX",
+      "expected_country_qid": "Q96",
+      "label_hint_en": "Luis Barragán House and Studio",
+      "qid": "Q1046414",
+      "region": "latin_america_caribbean",
+      "risk_tags": [
+        "modernist",
+        "residential"
+      ]
+    },
+    {
+      "expected_country_code": "BR",
+      "expected_country_qid": "Q155",
+      "label_hint_en": "Niterói Contemporary Art Museum",
+      "qid": "Q1573239",
+      "region": "latin_america_caribbean",
+      "risk_tags": [
+        "single_phase",
+        "flying_saucer"
+      ]
+    },
+    {
+      "expected_country_code": "JP",
+      "expected_country_qid": "Q17",
+      "label_hint_en": "Yoyogi National Gymnasium",
+      "qid": "Q1069457",
+      "region": "east_asia",
+      "risk_tags": [
+        "team_credit",
+        "olympic"
+      ]
+    },
+    {
+      "expected_country_code": "JP",
+      "expected_country_qid": "Q17",
+      "label_hint_en": "National Museum of Western Art",
+      "qid": "Q1362629",
+      "region": "east_asia",
+      "risk_tags": [
+        "museum",
+        "le_corbusier"
+      ]
+    },
+    {
+      "expected_country_code": "JP",
+      "expected_country_qid": "Q17",
+      "label_hint_en": "Tokyo Metropolitan Government Building",
+      "qid": "Q111973",
+      "region": "east_asia",
+      "risk_tags": [
+        "skyscraper",
+        "team_credit"
+      ]
+    },
+    {
+      "expected_country_code": "JP",
+      "expected_country_qid": "Q17",
+      "label_hint_en": "Church of the Light",
+      "qid": "Q1655766",
+      "region": "east_asia",
+      "risk_tags": [
+        "modern_sacred",
+        "single_phase"
+      ]
+    },
+    {
+      "expected_country_code": "CN",
+      "expected_country_qid": "Q148",
+      "label_hint_en": "Jin Mao Tower",
+      "qid": "Q80813",
+      "region": "east_asia",
+      "risk_tags": [
+        "skyscraper",
+        "team_credit"
+      ]
+    },
+    {
+      "expected_country_code": "KR",
+      "expected_country_qid": "Q884",
+      "label_hint_en": "63 Building",
+      "qid": "Q22968",
+      "region": "east_asia",
+      "risk_tags": [
+        "skyscraper",
+        "team_credit"
+      ]
+    },
+    {
+      "expected_country_code": "IN",
+      "expected_country_qid": "Q668",
+      "label_hint_en": "Lotus Temple",
+      "qid": "Q940843",
+      "region": "south_asia",
+      "risk_tags": [
+        "modern_sacred",
+        "single_phase"
+      ]
+    },
+    {
+      "expected_country_code": "IN",
+      "expected_country_qid": "Q668",
+      "label_hint_en": "Palace of Assembly",
+      "qid": "Q7126217",
+      "region": "south_asia",
+      "risk_tags": [
+        "team_credit",
+        "modernist"
+      ]
+    },
+    {
+      "expected_country_code": "MY",
+      "expected_country_qid": "Q833",
+      "label_hint_en": "National Mosque of Malaysia",
+      "qid": "Q1356818",
+      "region": "southeast_asia",
+      "risk_tags": [
+        "modern_sacred",
+        "team_credit"
+      ]
+    },
+    {
+      "expected_country_code": "ID",
+      "expected_country_qid": "Q252",
+      "label_hint_en": "Istiqlal Mosque",
+      "qid": "Q475379",
+      "region": "southeast_asia",
+      "risk_tags": [
+        "modern_sacred",
+        "team_credit"
+      ]
+    },
+    {
+      "expected_country_code": "IR",
+      "expected_country_qid": "Q794",
+      "label_hint_en": "Azadi Tower",
+      "qid": "Q1140026",
+      "region": "central_west_asia",
+      "risk_tags": [
+        "monument",
+        "team_credit"
+      ]
+    },
+    {
+      "expected_country_code": "AE",
+      "expected_country_qid": "Q878",
+      "label_hint_en": "Burj al-Arab",
+      "qid": "Q62939",
+      "region": "central_west_asia",
+      "risk_tags": [
+        "hotel",
+        "team_credit"
+      ]
+    },
+    {
+      "expected_country_code": "AU",
+      "expected_country_qid": "Q408",
+      "label_hint_en": "National Gallery of Australia",
+      "qid": "Q795228",
+      "region": "oceania",
+      "risk_tags": [
+        "brutalist",
+        "team_credit"
+      ]
+    },
+    {
+      "expected_country_code": "EG",
+      "expected_country_qid": "Q79",
+      "label_hint_en": "Cairo Tower",
+      "qid": "Q614684",
+      "region": "africa",
+      "risk_tags": [
+        "tower",
+        "team_credit"
+      ]
     }
   ]
 }
