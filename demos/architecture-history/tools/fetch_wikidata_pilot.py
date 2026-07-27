@@ -184,6 +184,30 @@ def string_values(record: dict, property_id: str) -> list[str]:
     return values
 
 
+def string_values_with_deprecated_fallback(record: dict, property_id: str) -> list[str]:
+    """Like string_values, but falls back to deprecated-rank statements.
+
+    Used for ISO country codes: Wikidata occasionally marks a country's only
+    P297 (alpha-2) statement as deprecated for editorial reasons (e.g. the
+    Kingdom vs. country-of-the-Netherlands distinction), while the value
+    itself remains the correct ISO 3166-1 code. Rejecting the seed on that
+    basis would block legitimate works; the seed's expected_country_code is
+    already authoritative for this demo.
+    """
+    preferred = string_values(record, property_id)
+    if preferred:
+        return preferred
+    values: list[str] = []
+    for statement in record.get("claims", {}).get(property_id, []):
+        snak = statement.get("mainsnak", {})
+        if snak.get("snaktype") != "value":
+            continue
+        value = snak.get("datavalue", {}).get("value")
+        if isinstance(value, str):
+            values.append(value)
+    return values
+
+
 def minimize_language_map(value: Any) -> dict:
     if not isinstance(value, dict):
         return {}
@@ -370,7 +394,7 @@ def hydrate_snapshot(
 
     for seed in seeds:
         country_record = entities[seed["expected_country_qid"]]["record"]
-        iso_codes = set(string_values(country_record, "P297"))
+        iso_codes = set(string_values_with_deprecated_fallback(country_record, "P297"))
         if seed["expected_country_code"] not in iso_codes:
             raise RuntimeError(
                 f"{seed['expected_country_qid']}: expected ISO 3166-1 alpha-2 "

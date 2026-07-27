@@ -1871,6 +1871,685 @@
         "site_vs_single_work",
         "ruins"
       ]
+    },
+    {
+      "qid": "Q54109",
+      "label_hint_en": "United States Capitol",
+      "expected_country_code": "US",
+      "expected_country_qid": "Q30",
+      "region": "north_america",
+      "risk_tags": [
+        "multi_phase",
+        "credit_completeness",
+        "restoration"
+      ]
+    },
+    {
+      "qid": "Q35525",
+      "label_hint_en": "White House",
+      "expected_country_code": "US",
+      "expected_country_qid": "Q30",
+      "region": "north_america",
+      "risk_tags": [
+        "restoration",
+        "multi_phase"
+      ]
+    },
+    {
+      "qid": "Q199618",
+      "label_hint_en": "Monticello",
+      "expected_country_code": "US",
+      "expected_country_qid": "Q30",
+      "region": "north_america",
+      "risk_tags": [
+        "multi_phase"
+      ]
+    },
+    {
+      "qid": "Q585521",
+      "label_hint_en": "Biltmore Estate",
+      "expected_country_code": "US",
+      "expected_country_qid": "Q30",
+      "region": "north_america",
+      "risk_tags": [
+        "single_phase"
+      ]
+    },
+    {
+      "qid": "Q11290",
+      "label_hint_en": "Grand Central Terminal",
+      "expected_country_code": "US",
+      "expected_country_qid": "Q30",
+      "region": "north_america",
+      "risk_tags": [
+        "multi_phase",
+        "restoration"
+      ]
+    },
+    {
+      "qid": "Q217652",
+      "label_hint_en": "Woolworth Building",
+      "expected_country_code": "US",
+      "expected_country_qid": "Q30",
+      "region": "north_america",
+      "risk_tags": [
+        "single_phase"
+      ]
+    },
+    {
+      "qid": "Q220728",
+      "label_hint_en": "Flatiron Building",
+      "expected_country_code": "US",
+      "expected_country_qid": "Q30",
+      "region": "north_america",
+      "risk_tags": [
+        "single_phase"
+      ]
+    },
+    {
+      "qid": "Q1138183",
+      "label_hint_en": "Philadelphia City Hall",
+      "expected_country_code": "US",
+      "expected_country_qid": "Q30",
+      "region": "north_america",
+      "risk_tags": [
+        "multi_phase"
+      ]
+    },
+    {
+      "qid": "Q1143548",
+      "label_hint_en": "Wainwright Building",
+      "expected_country_code": "US",
+      "expected_country_qid": "Q30",
+      "region": "north_america",
+      "risk_tags": [
+        "single_phase"
+      ]
+    },
+    {
+      "qid": "Q901259",
+      "label_hint_en": "Trinity Church Boston",
+      "expected_country_code": "US",
+      "expected_country_qid": "Q30",
+      "region": "north_america",
+      "risk_tags": [
+        "single_phase"
+      ]
+    },
+    {
+      "qid": "Q929965",
+      "label_hint_en": "Robie House",
+      "expected_country_code": "US",
+      "expected_country_qid": "Q30",
+      "region": "north_america",
+      "risk_tags": [
+        "single_phase",
+        "restoration"
+      ]
+    },
+    {
+      "qid": "Q1680814",
+      "label_hint_en": "Unity Temple",
+      "expected_country_code": "US",
+      "expected_country_qid": "Q30",
+      "region": "north_america",
+      "risk_tags": [
+        "single_phase",
+        "restoration"
+      ]
+    },
+    {
+      "qid": "Q734970",
+      "label_hint_en": "Taliesin",
+      "expected_country_code": "US",
+      "expected_country_qid": "Q30",
+      "region": "north_america",
+      "risk_tags": [
+        "multi_phase",
+        "reconstruction",
+        "fire_rebuild"
+      ]
+    },
+    {
+      "qid": "Q1208310",
+      "label_hint_en": "Taliesin West",
+      "expected_country_code": "US",
+      "expected_country_qid": "Q30",
+      "region": "north_america",
+      "risk_tags": [
+        "multi_phase"
+      ]
+    },
+    {
+      "qid": "Q1702484",
+      "label_hint_en": "Johnson Wax Headquarters",
+      "expected_country_code": "US",
+      "expected_country_qid": "Q30",
+      "region": "north_america",
+      "risk_tags": [
+        "single_phase"
+      ]
+    },
+    {
+      "qid": "Q11277",
+      "label_hint_en": "Rockefeller Center",
+      "expected_country_code": "US",
+      "expected_country_qid": "Q30",
+      "region": "north_america",
+      "risk_tags": [
+        "complex_vs_single_work",
+        "team_credit",
+        "multi_phase"
+      ]
+    },
+    {
+      "qid": "Q44440",
+      "label_hint_en": "Golden Gate Bridge",
+      "expected_country_code": "US",
+      "expected_country_qid": "Q30",
+      "region": "north_america",
+      "risk_tags": [
+        "team_credit"
+      ]
+    },
+    {
+      "qid": "Q6373",
+      "label_hint_en": "British Museum",
+      "expected_country_code": "GB",
+      "expected_country_qid": "Q145",
+      "region": "europe",
+      "risk_tags": [
+        "multi_phase",
+        "expansion_wings"
+      ]
+    },
+    {
+      "qid": "Q62408",
+      "label_hint_en": "Palace of Westminster",
+      "expected_country_code": "GB",
+      "expected_country_qid": "Q145",
+      "region": "europe",
+      "risk_tags": [
+        "multi_phase",
+        "credit_completeness",
+        "rebuild_after_fire"
+      ]
+    },
+    {
+      "qid": "Q41225",
+      "label_hint_en": "Big Ben",
+      "expected_country_code": "GB",
+      "expected_country_qid": "Q145",
+      "region": "europe",
+      "risk_tags": [
+        "bell_vs_tower_naming"
+      ]
+    },
+    {
+      "qid": "Q83125",
+      "label_hint_en": "Tower Bridge",
+      "expected_country_code": "GB",
+      "expected_country_qid": "Q145",
+      "region": "europe",
+      "risk_tags": [
+        "team_credit"
+      ]
+    },
+    {
+      "qid": "Q62364",
+      "label_hint_en": "Royal Pavilion Brighton",
+      "expected_country_code": "GB",
+      "expected_country_qid": "Q145",
+      "region": "europe",
+      "risk_tags": [
+        "multi_phase"
+      ]
+    },
+    {
+      "qid": "Q720102",
+      "label_hint_en": "St Pancras railway station",
+      "expected_country_code": "GB",
+      "expected_country_qid": "Q145",
+      "region": "europe",
+      "risk_tags": [
+        "restoration"
+      ]
+    },
+    {
+      "qid": "Q940507",
+      "label_hint_en": "Highpoint I",
+      "expected_country_code": "GB",
+      "expected_country_qid": "Q145",
+      "region": "europe",
+      "risk_tags": [
+        "team_credit"
+      ]
+    },
+    {
+      "qid": "Q64436",
+      "label_hint_en": "Arc de Triomphe",
+      "expected_country_code": "FR",
+      "expected_country_qid": "Q142",
+      "region": "europe",
+      "risk_tags": [
+        "multi_phase"
+      ]
+    },
+    {
+      "qid": "Q187840",
+      "label_hint_en": "Palais Garnier",
+      "expected_country_code": "FR",
+      "expected_country_qid": "Q142",
+      "region": "europe",
+      "risk_tags": [
+        "single_phase"
+      ]
+    },
+    {
+      "qid": "Q517249",
+      "label_hint_en": "Sainte-Genevieve Library",
+      "expected_country_code": "FR",
+      "expected_country_qid": "Q142",
+      "region": "europe",
+      "risk_tags": [
+        "single_phase"
+      ]
+    },
+    {
+      "qid": "Q188856",
+      "label_hint_en": "Pantheon Paris",
+      "expected_country_code": "FR",
+      "expected_country_qid": "Q142",
+      "region": "europe",
+      "risk_tags": [
+        "repurposing_church_to_mausoleum"
+      ]
+    },
+    {
+      "qid": "Q330564",
+      "label_hint_en": "La Madeleine",
+      "expected_country_code": "FR",
+      "expected_country_qid": "Q142",
+      "region": "europe",
+      "risk_tags": [
+        "design_changes_mid_build"
+      ]
+    },
+    {
+      "qid": "Q940746",
+      "label_hint_en": "Villa Savoye",
+      "expected_country_code": "FR",
+      "expected_country_qid": "Q142",
+      "region": "europe",
+      "risk_tags": [
+        "restoration",
+        "wwii_damage"
+      ]
+    },
+    {
+      "qid": "Q24932303",
+      "label_hint_en": "Cite de la Muette",
+      "expected_country_code": "FR",
+      "expected_country_qid": "Q142",
+      "region": "europe",
+      "risk_tags": [
+        "wwii_uses_camp",
+        "complex_vs_single_work"
+      ]
+    },
+    {
+      "qid": "Q291123",
+      "label_hint_en": "AEG Turbine Factory",
+      "expected_country_code": "DE",
+      "expected_country_qid": "Q183",
+      "region": "europe",
+      "risk_tags": [
+        "single_phase"
+      ]
+    },
+    {
+      "qid": "Q685476",
+      "label_hint_en": "Fagus Factory",
+      "expected_country_code": "DE",
+      "expected_country_qid": "Q183",
+      "region": "europe",
+      "risk_tags": [
+        "team_credit",
+        "multi_phase"
+      ]
+    },
+    {
+      "qid": "Q151897",
+      "label_hint_en": "Reichstag building",
+      "expected_country_code": "DE",
+      "expected_country_qid": "Q183",
+      "region": "europe",
+      "risk_tags": [
+        "restoration",
+        "fire_1933",
+        "post_reunification_rebuild"
+      ]
+    },
+    {
+      "qid": "Q127097",
+      "label_hint_en": "Semperoper",
+      "expected_country_code": "DE",
+      "expected_country_qid": "Q183",
+      "region": "europe",
+      "risk_tags": [
+        "rebuild_after_fire",
+        "multi_phase"
+      ]
+    },
+    {
+      "qid": "Q162052",
+      "label_hint_en": "Linderhof Palace",
+      "expected_country_code": "DE",
+      "expected_country_qid": "Q183",
+      "region": "europe",
+      "risk_tags": [
+        "multi_phase"
+      ]
+    },
+    {
+      "qid": "Q48435",
+      "label_hint_en": "Sagrada Familia",
+      "expected_country_code": "ES",
+      "expected_country_qid": "Q29",
+      "region": "europe",
+      "risk_tags": [
+        "multi_phase",
+        "unbuilt_at_1945",
+        "ongoing_construction"
+      ]
+    },
+    {
+      "qid": "Q461371",
+      "label_hint_en": "Casa Batllo",
+      "expected_country_code": "ES",
+      "expected_country_qid": "Q29",
+      "region": "europe",
+      "risk_tags": [
+        "remodel_vs_new",
+        "restoration"
+      ]
+    },
+    {
+      "qid": "Q207870",
+      "label_hint_en": "Casa Milla",
+      "expected_country_code": "ES",
+      "expected_country_qid": "Q29",
+      "region": "europe",
+      "risk_tags": [
+        "restoration"
+      ]
+    },
+    {
+      "qid": "Q807915",
+      "label_hint_en": "German Pavilion Barcelona",
+      "expected_country_code": "ES",
+      "expected_country_qid": "Q29",
+      "region": "europe",
+      "risk_tags": [
+        "demolished_then_reconstructed_1986",
+        "temporary_exhibit"
+      ]
+    },
+    {
+      "qid": "Q5471",
+      "label_hint_en": "La Scala",
+      "expected_country_code": "IT",
+      "expected_country_qid": "Q38",
+      "region": "europe",
+      "risk_tags": [
+        "rebuild_after_bombing",
+        "multi_phase"
+      ]
+    },
+    {
+      "qid": "Q51112",
+      "label_hint_en": "Galleria Vittorio Emanuele II",
+      "expected_country_code": "IT",
+      "expected_country_qid": "Q38",
+      "region": "europe",
+      "risk_tags": [
+        "single_phase"
+      ]
+    },
+    {
+      "qid": "Q201902",
+      "label_hint_en": "Mole Antonelliana",
+      "expected_country_code": "IT",
+      "expected_country_qid": "Q38",
+      "region": "europe",
+      "risk_tags": [
+        "multi_phase",
+        "repurposing_synagogue_to_museum"
+      ]
+    },
+    {
+      "qid": "Q2719120",
+      "label_hint_en": "Casa del Fascio Como",
+      "expected_country_code": "IT",
+      "expected_country_qid": "Q38",
+      "region": "europe",
+      "risk_tags": [
+        "label_en_differs_from_common_name",
+        "post_war_repurposing"
+      ]
+    },
+    {
+      "qid": "Q209937",
+      "label_hint_en": "Vienna State Opera",
+      "expected_country_code": "AT",
+      "expected_country_qid": "Q40",
+      "region": "europe",
+      "risk_tags": [
+        "rebuild_after_bombing",
+        "multi_phase"
+      ]
+    },
+    {
+      "qid": "Q408847",
+      "label_hint_en": "Karlskirche",
+      "expected_country_code": "AT",
+      "expected_country_qid": "Q40",
+      "region": "europe",
+      "risk_tags": [
+        "multi_phase",
+        "restoration"
+      ]
+    },
+    {
+      "qid": "Q513211",
+      "label_hint_en": "Karl Marx-Hof",
+      "expected_country_code": "AT",
+      "expected_country_qid": "Q40",
+      "region": "europe",
+      "risk_tags": [
+        "complex_vs_single_work"
+      ]
+    },
+    {
+      "qid": "Q874557",
+      "label_hint_en": "Wittgenstein House",
+      "expected_country_code": "AT",
+      "expected_country_qid": "Q40",
+      "region": "europe",
+      "risk_tags": [
+        "demolished_then_rebuilt",
+        "single_phase"
+      ]
+    },
+    {
+      "qid": "Q265129",
+      "label_hint_en": "Secession Building",
+      "expected_country_code": "AT",
+      "expected_country_qid": "Q40",
+      "region": "europe",
+      "risk_tags": [
+        "single_phase"
+      ]
+    },
+    {
+      "qid": "Q215423",
+      "label_hint_en": "Saint Isaacs Cathedral",
+      "expected_country_code": "RU",
+      "expected_country_qid": "Q159",
+      "region": "europe",
+      "risk_tags": [
+        "multi_phase",
+        "repurposing_to_museum"
+      ]
+    },
+    {
+      "qid": "Q2854543",
+      "label_hint_en": "Catherine Palace",
+      "expected_country_code": "RU",
+      "expected_country_qid": "Q159",
+      "region": "europe",
+      "risk_tags": [
+        "wwii_destruction",
+        "reconstruction"
+      ]
+    },
+    {
+      "qid": "Q191414",
+      "label_hint_en": "Lenins Mausoleum",
+      "expected_country_code": "RU",
+      "expected_country_qid": "Q159",
+      "region": "europe",
+      "risk_tags": [
+        "multiple_build_versions",
+        "single_phase"
+      ]
+    },
+    {
+      "qid": "Q671311",
+      "label_hint_en": "Narkomfin building",
+      "expected_country_code": "RU",
+      "expected_country_qid": "Q159",
+      "region": "europe",
+      "risk_tags": [
+        "restoration_delayed",
+        "team_credit"
+      ]
+    },
+    {
+      "qid": "Q2454624",
+      "label_hint_en": "Tsentrosoyuz building",
+      "expected_country_code": "RU",
+      "expected_country_qid": "Q159",
+      "region": "europe",
+      "risk_tags": [
+        "team_credit",
+        "foreign_architect"
+      ]
+    },
+    {
+      "qid": "Q1190921",
+      "label_hint_en": "Mayakovskaya metro",
+      "expected_country_code": "RU",
+      "expected_country_qid": "Q159",
+      "region": "europe",
+      "risk_tags": [
+        "team_credit"
+      ]
+    },
+    {
+      "qid": "Q190804",
+      "label_hint_en": "Rijksmuseum",
+      "expected_country_code": "NL",
+      "expected_country_qid": "Q55",
+      "region": "europe",
+      "risk_tags": [
+        "multi_phase",
+        "major_renovation_21c"
+      ]
+    },
+    {
+      "qid": "Q914231",
+      "label_hint_en": "Rietveld Schroder House",
+      "expected_country_code": "NL",
+      "expected_country_qid": "Q55",
+      "region": "europe",
+      "risk_tags": [
+        "single_phase"
+      ]
+    },
+    {
+      "qid": "Q2328849",
+      "label_hint_en": "Van Nelle Factory",
+      "expected_country_code": "NL",
+      "expected_country_qid": "Q55",
+      "region": "europe",
+      "risk_tags": [
+        "repurposing_to_office",
+        "team_credit"
+      ]
+    },
+    {
+      "qid": "Q648483",
+      "label_hint_en": "Stockholm City Hall",
+      "expected_country_code": "SE",
+      "expected_country_qid": "Q34",
+      "region": "europe",
+      "risk_tags": [
+        "team_credit"
+      ]
+    },
+    {
+      "qid": "Q11819",
+      "label_hint_en": "Hungarian Parliament Building",
+      "expected_country_code": "HU",
+      "expected_country_qid": "Q28",
+      "region": "europe",
+      "risk_tags": [
+        "multi_phase",
+        "team_credit"
+      ]
+    },
+    {
+      "qid": "Q917702",
+      "label_hint_en": "Peleș Castle",
+      "expected_country_code": "RO",
+      "expected_country_qid": "Q218",
+      "region": "europe",
+      "risk_tags": [
+        "multi_phase"
+      ]
+    },
+    {
+      "qid": "Q1468582",
+      "label_hint_en": "Villa Muller",
+      "expected_country_code": "CZ",
+      "expected_country_qid": "Q213",
+      "region": "europe",
+      "risk_tags": [
+        "restoration"
+      ]
+    },
+    {
+      "qid": "Q457453",
+      "label_hint_en": "Villa Tugendhat",
+      "expected_country_code": "CZ",
+      "expected_country_qid": "Q213",
+      "region": "europe",
+      "risk_tags": [
+        "wwii_uses",
+        "restoration"
+      ]
+    },
+    {
+      "qid": "Q712476",
+      "label_hint_en": "Imperial Hotel Tokyo",
+      "expected_country_code": "JP",
+      "expected_country_qid": "Q17",
+      "region": "east_asia",
+      "risk_tags": [
+        "wright_wing_demolished_1968",
+        "multi_phase"
+      ]
     }
   ]
 }

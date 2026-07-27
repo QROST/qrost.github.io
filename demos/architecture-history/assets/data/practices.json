@@ -2,6 +2,39 @@
   "practices": [
     {
       "claim_ids": [
+        "claim-wd-q108395615-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "dissolved": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "practice",
+      "external_ids": {
+        "wikidata": "Q108395615"
+      },
+      "founded": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "id": "practice-wd-q108395615",
+      "last_verified": "2026-07-26",
+      "name_en": "Brinkman & Van der Vlugt",
+      "name_native": null,
+      "name_zh": null,
+      "practice_type": "architecture_firm",
+      "region": "unknown",
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_ids": [
         "claim-wd-q29561372-name-en"
       ],
       "confidence": 0.6,
@@ -25,6 +58,73 @@
       "id": "practice-wd-q29561372",
       "last_verified": "2026-07-26",
       "name_en": "Adamson Associates",
+      "name_native": null,
+      "name_zh": null,
+      "practice_type": "architecture_firm",
+      "region": "unknown",
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_ids": [
+        "claim-wd-q3567818-name-en",
+        "claim-wd-q3567818-name-zh"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "dissolved": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "practice",
+      "external_ids": {
+        "wikidata": "Q3567818"
+      },
+      "founded": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "id": "practice-wd-q3567818",
+      "last_verified": "2026-07-26",
+      "name_en": "Warren and Wetmore",
+      "name_native": null,
+      "name_zh": "沃伦怀特茂公司",
+      "practice_type": "architecture_firm",
+      "region": "unknown",
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_ids": [
+        "claim-wd-q4683278-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "dissolved": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "practice",
+      "external_ids": {
+        "wikidata": "Q4683278"
+      },
+      "founded": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "id": "practice-wd-q4683278",
+      "last_verified": "2026-07-26",
+      "name_en": "Adler & Sullivan",
       "name_native": null,
       "name_zh": null,
       "practice_type": "architecture_firm",
@@ -61,6 +161,40 @@
       "name_en": "Shreve, Lamb & Harmon",
       "name_native": null,
       "name_zh": "施里夫、兰姆与哈蒙建筑公司",
+      "practice_type": "architecture_firm",
+      "region": "unknown",
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_ids": [
+        "claim-wd-q7306714-name-en",
+        "claim-wd-q7306714-name-zh"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "dissolved": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "practice",
+      "external_ids": {
+        "wikidata": "Q7306714"
+      },
+      "founded": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "id": "practice-wd-q7306714",
+      "last_verified": "2026-07-26",
+      "name_en": "Reed and Stem",
+      "name_native": null,
+      "name_zh": "Reed and Stem",
       "practice_type": "architecture_firm",
       "region": "unknown",
       "summary_en": "",

@@ -178,6 +178,28 @@
     },
     {
       "claim_ids": [
+        "claim-wd-q218-name-en",
+        "claim-wd-q218-name-zh",
+        "claim-wd-q218-country-code"
+      ],
+      "confidence": 0.6,
+      "country_code": "RO",
+      "entity_type": "place",
+      "external_ids": {
+        "wikidata": "Q218"
+      },
+      "id": "place-wd-q218",
+      "last_verified": "2026-07-26",
+      "lat": null,
+      "lng": null,
+      "name_en": "Romania",
+      "name_native": null,
+      "name_zh": "罗马尼亚",
+      "region": "europe",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_ids": [
         "claim-wd-q237-name-en",
         "claim-wd-q237-name-zh",
         "claim-wd-q237-country-code"
@@ -218,6 +240,28 @@
       "name_native": null,
       "name_zh": "印度尼西亚",
       "region": "southeast_asia",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_ids": [
+        "claim-wd-q28-name-en",
+        "claim-wd-q28-name-zh",
+        "claim-wd-q28-country-code"
+      ],
+      "confidence": 0.6,
+      "country_code": "HU",
+      "entity_type": "place",
+      "external_ids": {
+        "wikidata": "Q28"
+      },
+      "id": "place-wd-q28",
+      "last_verified": "2026-07-26",
+      "lat": null,
+      "lng": null,
+      "name_en": "Hungary",
+      "name_native": null,
+      "name_zh": "匈牙利",
+      "region": "europe",
       "verification_status": "candidate"
     },
     {
@@ -438,6 +482,28 @@
       "name_native": null,
       "name_zh": "土耳其",
       "region": "central_west_asia",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_ids": [
+        "claim-wd-q55-name-en",
+        "claim-wd-q55-name-zh",
+        "claim-wd-q55-country-code"
+      ],
+      "confidence": 0.6,
+      "country_code": "NL",
+      "entity_type": "place",
+      "external_ids": {
+        "wikidata": "Q55"
+      },
+      "id": "place-wd-q55",
+      "last_verified": "2026-07-26",
+      "lat": null,
+      "lng": null,
+      "name_en": "Netherlands",
+      "name_native": null,
+      "name_zh": "荷兰",
+      "region": "europe",
       "verification_status": "candidate"
     },
     {

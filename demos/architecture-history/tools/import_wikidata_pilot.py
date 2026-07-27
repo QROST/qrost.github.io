@@ -492,16 +492,25 @@ class CatalogBuilder:
             english=english,
         )
         iso_statement: Optional[tuple[int, dict]] = None
+        fallback_statement: Optional[tuple[int, dict]] = None
         for index, statement in enumerate(record.get("claims", {}).get("P297", [])):
-            if statement.get("rank") == "deprecated":
+            snak = statement.get("mainsnak", {})
+            if snak.get("snaktype") != "value":
                 continue
-            values = string_values(
-                {"claims": {"P297": [statement]}},
-                "P297",
-            )
-            if values == [authority["iso2"]]:
-                iso_statement = (index, statement)
-                break
+            value = snak.get("datavalue", {}).get("value")
+            if value != authority["iso2"]:
+                continue
+            if statement.get("rank") == "deprecated":
+                # Hold as a fallback only — Wikidata occasionally marks a
+                # country's sole P297 statement deprecated for editorial
+                # reasons while the ISO 3166-1 alpha-2 value is still correct.
+                if fallback_statement is None:
+                    fallback_statement = (index, statement)
+                continue
+            iso_statement = (index, statement)
+            break
+        if iso_statement is None:
+            iso_statement = fallback_statement
         if iso_statement is None:
             raise ValueError(
                 f"{qid}: country authority ISO code is absent from pinned P297"

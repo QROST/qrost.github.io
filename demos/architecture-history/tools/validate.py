@@ -568,6 +568,31 @@ def wikidata_string_values(record: dict, property_id: str) -> list[str]:
     return values
 
 
+def wikidata_iso_values(record: dict) -> list[str]:
+    """ISO 3166-1 alpha-2 values from P297, including deprecated statements.
+
+    Wikidata occasionally marks a country's sole P297 statement as deprecated
+    for editorial reasons (e.g. the Kingdom-of-the-Netherlands vs. European-
+    Netherlands distinction) while the value itself is still the correct ISO
+    code. For country-authority verification the seed's expected code is
+    already authoritative, so we accept a deprecated-rank value as a fallback
+    when no preferred/normal statement is present.
+    """
+    preferred = wikidata_string_values(record, "P297")
+    if preferred:
+        return preferred
+    values: list[str] = []
+    for statement in record.get("claims", {}).get("P297", []):
+        value = (
+            statement.get("mainsnak", {})
+            .get("datavalue", {})
+            .get("value")
+        )
+        if isinstance(value, str):
+            values.append(value)
+    return values
+
+
 def data_files() -> list[Path]:
     return sorted(
         (
@@ -951,7 +976,7 @@ def main() -> int:
                     f"{snapshot_id}/{seed['qid']}: country authority record is missing"
                 )
             elif seed["expected_country_code"] not in set(
-                wikidata_string_values(country_record, "P297")
+                wikidata_iso_values(country_record)
             ):
                 errors.append(
                     f"{snapshot_id}/{seed['expected_country_qid']}: expected "
