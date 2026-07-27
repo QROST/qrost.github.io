@@ -331,6 +331,121 @@
       "label_en": "skyscraper",
       "qid": "Q11303",
       "work_type": "building"
+    },
+    {
+      "label_en": "catholic cathedral",
+      "qid": "Q56242215",
+      "work_type": "building"
+    },
+    {
+      "label_en": "anglican or episcopal cathedral",
+      "qid": "Q56242250",
+      "work_type": "building"
+    },
+    {
+      "label_en": "major basilica",
+      "qid": "Q124936",
+      "work_type": "building"
+    },
+    {
+      "label_en": "domus (major church)",
+      "qid": "Q16966",
+      "work_type": "building"
+    },
+    {
+      "label_en": "abbey church",
+      "qid": "Q334383",
+      "work_type": "building"
+    },
+    {
+      "label_en": "collegiate church",
+      "qid": "Q1509716",
+      "work_type": "building"
+    },
+    {
+      "label_en": "parish church",
+      "qid": "Q317557",
+      "work_type": "building"
+    },
+    {
+      "label_en": "anglican church building",
+      "qid": "Q56242045",
+      "work_type": "building"
+    },
+    {
+      "label_en": "architectural ensemble",
+      "qid": "Q1497375",
+      "work_type": "building_complex"
+    },
+    {
+      "label_en": "archaeological site",
+      "qid": "Q839954",
+      "work_type": "building_complex"
+    },
+    {
+      "label_en": "kremlin",
+      "qid": "Q263274",
+      "work_type": "building_complex"
+    },
+    {
+      "label_en": "roman amphitheatre",
+      "qid": "Q7362268",
+      "work_type": "building"
+    },
+    {
+      "label_en": "stadium",
+      "qid": "Q483110",
+      "work_type": "building"
+    },
+    {
+      "label_en": "roman bridge",
+      "qid": "Q1223230",
+      "work_type": "infrastructure"
+    },
+    {
+      "label_en": "roman aqueduct",
+      "qid": "Q13218676",
+      "work_type": "infrastructure"
+    },
+    {
+      "label_en": "arch bridge",
+      "qid": "Q158438",
+      "work_type": "infrastructure"
+    },
+    {
+      "label_en": "stone bridge",
+      "qid": "Q3397526",
+      "work_type": "infrastructure"
+    },
+    {
+      "label_en": "fountain",
+      "qid": "Q483453",
+      "work_type": "monument"
+    },
+    {
+      "label_en": "monument",
+      "qid": "Q4989906",
+      "work_type": "monument"
+    },
+    {
+      "label_en": "garden",
+      "qid": "Q1107656",
+      "work_type": "landscape"
+    },
+    {
+      "label_en": "ancient roman structure",
+      "qid": "Q14752696",
+      "work_type": "building"
+    },
+    {
+      "label_en": "private museum",
+      "qid": "Q614316",
+      "work_type": "building"
+    },
+    {
+      "label_en": "history museum",
+      "qid": "Q16735822",
+      "work_type": "building"
     }
   ],
   "excluded_discovery_classes": [

@@ -769,6 +769,493 @@
       "risk_tags": [
         "multi_phase"
       ]
+    },
+    {
+      "qid": "Q12506",
+      "label_hint_en": "Hagia Sophia",
+      "expected_country_code": "TR",
+      "expected_country_qid": "Q43",
+      "region": "central_west_asia",
+      "risk_tags": [
+        "byzantine_origin",
+        "converted_mosque_museum"
+      ]
+    },
+    {
+      "qid": "Q80541",
+      "label_hint_en": "Sultan Ahmed Mosque",
+      "expected_country_code": "TR",
+      "expected_country_qid": "Q43",
+      "region": "central_west_asia",
+      "risk_tags": [
+        "aka_blue_mosque"
+      ]
+    },
+    {
+      "qid": "Q178643",
+      "label_hint_en": "Süleymaniye Mosque",
+      "expected_country_code": "TR",
+      "expected_country_qid": "Q43",
+      "region": "central_west_asia",
+      "risk_tags": [
+        "ottoman_imperial_mosque"
+      ]
+    },
+    {
+      "qid": "Q170495",
+      "label_hint_en": "Topkapı Palace",
+      "expected_country_code": "TR",
+      "expected_country_qid": "Q43",
+      "region": "central_west_asia",
+      "risk_tags": [
+        "palace_museum",
+        "ottoman"
+      ]
+    },
+    {
+      "qid": "Q428858",
+      "label_hint_en": "Al-Masjid Al-Haram",
+      "expected_country_code": "SA",
+      "expected_country_qid": "Q851",
+      "region": "central_west_asia",
+      "risk_tags": [
+        "holiest_site_islam",
+        "greatly_expanded_modern"
+      ]
+    },
+    {
+      "qid": "Q486080",
+      "label_hint_en": "Prophet's Mosque",
+      "expected_country_code": "SA",
+      "expected_country_qid": "Q851",
+      "region": "central_west_asia",
+      "risk_tags": [
+        "holiest_site_islam",
+        "green_dome"
+      ]
+    },
+    {
+      "qid": "Q27356",
+      "label_hint_en": "Hegra",
+      "expected_country_code": "SA",
+      "expected_country_qid": "Q851",
+      "region": "central_west_asia",
+      "risk_tags": [
+        "nabataean",
+        "aka_madain_saleh",
+        "unesco"
+      ]
+    },
+    {
+      "qid": "Q4519",
+      "label_hint_en": "Naqsh-e Jahan Square",
+      "expected_country_code": "IR",
+      "expected_country_qid": "Q794",
+      "region": "central_west_asia",
+      "risk_tags": [
+        "safavid",
+        "unesco",
+        "public_square"
+      ]
+    },
+    {
+      "qid": "Q643098",
+      "label_hint_en": "Shah Mosque",
+      "expected_country_code": "IR",
+      "expected_country_qid": "Q794",
+      "region": "central_west_asia",
+      "risk_tags": [
+        "safavid",
+        "aka_imam_mosque"
+      ]
+    },
+    {
+      "qid": "Q1256501",
+      "label_hint_en": "Jameh Mosque of Isfahan",
+      "expected_country_code": "IR",
+      "expected_country_qid": "Q794",
+      "region": "central_west_asia",
+      "risk_tags": [
+        "seljuk_foundation",
+        "unesco",
+        "multiple_phases"
+      ]
+    },
+    {
+      "qid": "Q2635530",
+      "label_hint_en": "Tomb of Cyrus the Great",
+      "expected_country_code": "IR",
+      "expected_country_qid": "Q794",
+      "region": "central_west_asia",
+      "risk_tags": [
+        "achaemenid"
+      ]
+    },
+    {
+      "qid": "Q230025",
+      "label_hint_en": "Pasargadae",
+      "expected_country_code": "IR",
+      "expected_country_qid": "Q794",
+      "region": "central_west_asia",
+      "risk_tags": [
+        "achaemenid",
+        "unesco"
+      ]
+    },
+    {
+      "qid": "Q43277",
+      "label_hint_en": "Bam Citadel",
+      "expected_country_code": "IR",
+      "expected_country_qid": "Q794",
+      "region": "central_west_asia",
+      "risk_tags": [
+        "adobe",
+        "earthquake_damaged_2003",
+        "unesco"
+      ]
+    },
+    {
+      "qid": "Q856356",
+      "label_hint_en": "Sheikh Lotfollah Mosque",
+      "expected_country_code": "IR",
+      "expected_country_qid": "Q794",
+      "region": "central_west_asia",
+      "risk_tags": [
+        "safavid"
+      ]
+    },
+    {
+      "qid": "Q2429287",
+      "label_hint_en": "Ali Qapu",
+      "expected_country_code": "IR",
+      "expected_country_qid": "Q794",
+      "region": "central_west_asia",
+      "risk_tags": [
+        "safavid_palace"
+      ]
+    },
+    {
+      "qid": "Q16566",
+      "label_hint_en": "Chehel Sotun",
+      "expected_country_code": "IR",
+      "expected_country_qid": "Q794",
+      "region": "central_west_asia",
+      "risk_tags": [
+        "safavid_pavilion",
+        "unesco"
+      ]
+    },
+    {
+      "qid": "Q210610",
+      "label_hint_en": "Golestan Palace",
+      "expected_country_code": "IR",
+      "expected_country_qid": "Q794",
+      "region": "central_west_asia",
+      "risk_tags": [
+        "qajar_core",
+        "unesco",
+        "later_additions_19th_c"
+      ]
+    },
+    {
+      "qid": "Q208358",
+      "label_hint_en": "Pyramid of Khafre",
+      "expected_country_code": "EG",
+      "expected_country_qid": "Q79",
+      "region": "africa",
+      "risk_tags": [
+        "old_kingdom",
+        "giza_necropolis"
+      ]
+    },
+    {
+      "qid": "Q238623",
+      "label_hint_en": "Pyramid of Menkaure",
+      "expected_country_code": "EG",
+      "expected_country_qid": "Q79",
+      "region": "africa",
+      "risk_tags": [
+        "old_kingdom",
+        "giza_necropolis"
+      ]
+    },
+    {
+      "qid": "Q130958",
+      "label_hint_en": "The Great Sphinx",
+      "expected_country_code": "EG",
+      "expected_country_qid": "Q79",
+      "region": "africa",
+      "risk_tags": [
+        "monumental_sculpture_not_building",
+        "giza_necropolis"
+      ]
+    },
+    {
+      "qid": "Q319841",
+      "label_hint_en": "Luxor Temple",
+      "expected_country_code": "EG",
+      "expected_country_qid": "Q79",
+      "region": "africa",
+      "risk_tags": [
+        "new_kingdom"
+      ]
+    },
+    {
+      "qid": "Q522862",
+      "label_hint_en": "Karnak Temple Complex",
+      "expected_country_code": "EG",
+      "expected_country_qid": "Q79",
+      "region": "africa",
+      "risk_tags": [
+        "new_kingdom",
+        "multiple_phases"
+      ]
+    },
+    {
+      "qid": "Q660692",
+      "label_hint_en": "Mortuary temple of Hatshepsut",
+      "expected_country_code": "EG",
+      "expected_country_qid": "Q79",
+      "region": "africa",
+      "risk_tags": [
+        "new_kingdom"
+      ]
+    },
+    {
+      "qid": "Q134140",
+      "label_hint_en": "Abu Simbel",
+      "expected_country_code": "EG",
+      "expected_country_qid": "Q79",
+      "region": "africa",
+      "risk_tags": [
+        "new_kingdom",
+        "relocated",
+        "unesco"
+      ]
+    },
+    {
+      "qid": "Q1430119",
+      "label_hint_en": "Mosque-Madrassa of Sultan Hassan",
+      "expected_country_code": "EG",
+      "expected_country_qid": "Q79",
+      "region": "africa",
+      "risk_tags": [
+        "mamluk",
+        "no_zh_label_wikidata"
+      ]
+    },
+    {
+      "qid": "Q1988240",
+      "label_hint_en": "Cairo Citadel",
+      "expected_country_code": "EG",
+      "expected_country_qid": "Q79",
+      "region": "africa",
+      "risk_tags": [
+        "ayyubid_mamluk",
+        "fortification"
+      ]
+    },
+    {
+      "qid": "Q2422298",
+      "label_hint_en": "Hanging Church",
+      "expected_country_code": "EG",
+      "expected_country_qid": "Q79",
+      "region": "africa",
+      "risk_tags": [
+        "coptic_christian"
+      ]
+    },
+    {
+      "qid": "Q2480949",
+      "label_hint_en": "Djinguereber Mosque",
+      "expected_country_code": "ML",
+      "expected_country_qid": "Q912",
+      "region": "africa",
+      "risk_tags": [
+        "adobe",
+        "timbuktu",
+        "unesco"
+      ]
+    },
+    {
+      "qid": "Q1265294",
+      "label_hint_en": "Sankore Madrasah",
+      "expected_country_code": "ML",
+      "expected_country_qid": "Q912",
+      "region": "africa",
+      "risk_tags": [
+        "adobe",
+        "timbuktu_center_of_learning"
+      ]
+    },
+    {
+      "qid": "Q2843735",
+      "label_hint_en": "Sidi Yahya Mosque",
+      "expected_country_code": "ML",
+      "expected_country_qid": "Q912",
+      "region": "africa",
+      "risk_tags": [
+        "adobe",
+        "timbuktu",
+        "unesco"
+      ]
+    },
+    {
+      "qid": "Q5859",
+      "label_hint_en": "Chichen Itza",
+      "expected_country_code": "MX",
+      "expected_country_qid": "Q96",
+      "region": "latin_america_caribbean",
+      "risk_tags": [
+        "maya",
+        "unesco"
+      ]
+    },
+    {
+      "qid": "Q172613",
+      "label_hint_en": "Teotihuacan",
+      "expected_country_code": "MX",
+      "expected_country_qid": "Q96",
+      "region": "latin_america_caribbean",
+      "risk_tags": [
+        "pre_columbian",
+        "unesco",
+        "pyramid_of_sun_moon"
+      ]
+    },
+    {
+      "qid": "Q464899",
+      "label_hint_en": "Monte Albán",
+      "expected_country_code": "MX",
+      "expected_country_qid": "Q96",
+      "region": "latin_america_caribbean",
+      "risk_tags": [
+        "zapotec",
+        "unesco"
+      ]
+    },
+    {
+      "qid": "Q181427",
+      "label_hint_en": "Palenque",
+      "expected_country_code": "MX",
+      "expected_country_qid": "Q96",
+      "region": "latin_america_caribbean",
+      "risk_tags": [
+        "classic_maya",
+        "unesco"
+      ]
+    },
+    {
+      "qid": "Q213232",
+      "label_hint_en": "Uxmal",
+      "expected_country_code": "MX",
+      "expected_country_qid": "Q96",
+      "region": "latin_america_caribbean",
+      "risk_tags": [
+        "maya_puuc",
+        "unesco"
+      ]
+    },
+    {
+      "qid": "Q272771",
+      "label_hint_en": "Calakmul",
+      "expected_country_code": "MX",
+      "expected_country_qid": "Q96",
+      "region": "latin_america_caribbean",
+      "risk_tags": [
+        "classic_maya",
+        "unesco"
+      ]
+    },
+    {
+      "qid": "Q753895",
+      "label_hint_en": "Tajín Veracruz",
+      "expected_country_code": "MX",
+      "expected_country_qid": "Q96",
+      "region": "latin_america_caribbean",
+      "risk_tags": [
+        "el_tajin_culture",
+        "unesco",
+        "niche_pyramid"
+      ]
+    },
+    {
+      "qid": "Q568672",
+      "label_hint_en": "Tula",
+      "expected_country_code": "MX",
+      "expected_country_qid": "Q96",
+      "region": "latin_america_caribbean",
+      "risk_tags": [
+        "toltec_capital",
+        "wikidata_label_tulasas"
+      ]
+    },
+    {
+      "qid": "Q725883",
+      "label_hint_en": "Tulum",
+      "expected_country_code": "MX",
+      "expected_country_qid": "Q96",
+      "region": "latin_america_caribbean",
+      "risk_tags": [
+        "late_postclassic_maya",
+        "walled_coastal_city",
+        "wikidata_label_maya_ruins_of_tulum"
+      ]
+    },
+    {
+      "qid": "Q676203",
+      "label_hint_en": "Machu Picchu",
+      "expected_country_code": "PE",
+      "expected_country_qid": "Q419",
+      "region": "latin_america_caribbean",
+      "risk_tags": [
+        "inca",
+        "unesco"
+      ]
+    },
+    {
+      "qid": "Q828336",
+      "label_hint_en": "Saqsaywaman",
+      "expected_country_code": "PE",
+      "expected_country_qid": "Q419",
+      "region": "latin_america_caribbean",
+      "risk_tags": [
+        "inca_fortress",
+        "cyclopean_masonry"
+      ]
+    },
+    {
+      "qid": "Q277540",
+      "label_hint_en": "Chan Chan",
+      "expected_country_code": "PE",
+      "expected_country_qid": "Q419",
+      "region": "latin_america_caribbean",
+      "risk_tags": [
+        "chimu",
+        "adobe_city",
+        "unesco"
+      ]
+    },
+    {
+      "qid": "Q1361820",
+      "label_hint_en": "Kuelap",
+      "expected_country_code": "PE",
+      "expected_country_qid": "Q419",
+      "region": "latin_america_caribbean",
+      "risk_tags": [
+        "chachapoya_fortress"
+      ]
+    },
+    {
+      "qid": "Q817594",
+      "label_hint_en": "Coricancha",
+      "expected_country_code": "PE",
+      "expected_country_qid": "Q419",
+      "region": "latin_america_caribbean",
+      "risk_tags": [
+        "inca_sun_temple",
+        "colonial_church_above"
+      ]
     }
   ]
 }

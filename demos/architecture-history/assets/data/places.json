@@ -236,7 +236,7 @@
       "last_verified": "2026-07-26",
       "lat": null,
       "lng": null,
-      "name_en": "United States",
+      "name_en": "United States of America",
       "name_native": null,
       "name_zh": "美国",
       "region": "north_america",
@@ -354,6 +354,28 @@
     },
     {
       "claim_ids": [
+        "claim-wd-q419-name-en",
+        "claim-wd-q419-name-zh",
+        "claim-wd-q419-country-code"
+      ],
+      "confidence": 0.6,
+      "country_code": "PE",
+      "entity_type": "place",
+      "external_ids": {
+        "wikidata": "Q419"
+      },
+      "id": "place-wd-q419",
+      "last_verified": "2026-07-26",
+      "lat": null,
+      "lng": null,
+      "name_en": "Peru",
+      "name_native": null,
+      "name_zh": "秘鲁",
+      "region": "latin_america_caribbean",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_ids": [
         "claim-wd-q424-name-en",
         "claim-wd-q424-name-zh",
         "claim-wd-q424-country-code"
@@ -372,6 +394,28 @@
       "name_native": null,
       "name_zh": "柬埔寨",
       "region": "southeast_asia",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_ids": [
+        "claim-wd-q43-name-en",
+        "claim-wd-q43-name-zh",
+        "claim-wd-q43-country-code"
+      ],
+      "confidence": 0.6,
+      "country_code": "TR",
+      "entity_type": "place",
+      "external_ids": {
+        "wikidata": "Q43"
+      },
+      "id": "place-wd-q43",
+      "last_verified": "2026-07-26",
+      "lat": null,
+      "lng": null,
+      "name_en": "Turkey",
+      "name_native": null,
+      "name_zh": "土耳其",
+      "region": "central_west_asia",
       "verification_status": "candidate"
     },
     {
@@ -460,6 +504,28 @@
       "name_native": null,
       "name_zh": "马来西亚",
       "region": "southeast_asia",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_ids": [
+        "claim-wd-q851-name-en",
+        "claim-wd-q851-name-zh",
+        "claim-wd-q851-country-code"
+      ],
+      "confidence": 0.6,
+      "country_code": "SA",
+      "entity_type": "place",
+      "external_ids": {
+        "wikidata": "Q851"
+      },
+      "id": "place-wd-q851",
+      "last_verified": "2026-07-26",
+      "lat": null,
+      "lng": null,
+      "name_en": "Saudi Arabia",
+      "name_native": null,
+      "name_zh": "沙特阿拉伯",
+      "region": "central_west_asia",
       "verification_status": "candidate"
     },
     {
