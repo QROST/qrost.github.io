@@ -27,7 +27,7 @@
         "wikidata": "Q10285676"
       },
       "id": "person-wd-q10285676",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "François-Joseph Nolau",
       "name_native": null,
       "name_zh": null,
@@ -69,7 +69,7 @@
         "wikidata": "Q1038985"
       },
       "id": "person-wd-q1038985",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Carl Hårleman",
       "name_native": null,
       "name_zh": "卡爾·哈爾曼",
@@ -108,7 +108,7 @@
         "wikidata": "Q1041068"
       },
       "id": "person-wd-q1041068",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Carl Wilhelm Christian von Doderer",
       "name_native": null,
       "name_zh": "卡尔·威廉·克里斯蒂安·冯·多德雷尔",
@@ -158,7 +158,7 @@
         "wikidata": "Q104898"
       },
       "id": "person-wd-q104898",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Norman Foster",
       "name_native": null,
       "name_zh": "诺曼·福斯特",
@@ -204,7 +204,7 @@
         "wikidata": "Q10513613"
       },
       "id": "person-wd-q10513613",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Kuai Xiang",
       "name_native": null,
       "name_zh": "蒯祥",
@@ -242,7 +242,7 @@
         "wikidata": "Q106089430"
       },
       "id": "person-wd-q106089430",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Gira Sarabhai",
       "name_native": null,
       "name_zh": null,
@@ -282,7 +282,7 @@
         "wikidata": "Q106263"
       },
       "id": "person-wd-q106263",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Richard Voigtel",
       "name_native": null,
       "name_zh": null,
@@ -320,7 +320,7 @@
         "wikidata": "Q106300367"
       },
       "id": "person-wd-q106300367",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Armand Lemay",
       "name_native": null,
       "name_zh": null,
@@ -359,7 +359,7 @@
         "wikidata": "Q1063849"
       },
       "id": "person-wd-q1063849",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Charles Bulfinch",
       "name_native": null,
       "name_zh": "查爾斯·布爾芬奇",
@@ -399,7 +399,7 @@
         "wikidata": "Q106679"
       },
       "id": "person-wd-q106679",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Eduard Riedel",
       "name_native": null,
       "name_zh": null,
@@ -439,7 +439,7 @@
         "wikidata": "Q109837"
       },
       "id": "person-wd-q109837",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "August Schoenborn",
       "name_native": null,
       "name_zh": null,
@@ -477,7 +477,7 @@
         "wikidata": "Q110247803"
       },
       "id": "person-wd-q110247803",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Master of Chartres",
       "name_native": null,
       "name_zh": null,
@@ -517,7 +517,7 @@
         "wikidata": "Q111676934"
       },
       "id": "person-wd-q111676934",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Henry Clifford Boles",
       "name_native": null,
       "name_zh": null,
@@ -559,7 +559,7 @@
         "wikidata": "Q111698711"
       },
       "id": "person-wd-q111698711",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Kenneth Roderick O'Neal",
       "name_native": null,
       "name_zh": null,
@@ -597,7 +597,7 @@
         "wikidata": "Q112978754"
       },
       "id": "person-wd-q112978754",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Jean Vernon",
       "name_native": null,
       "name_zh": null,
@@ -640,11 +640,51 @@
         "wikidata": "Q114112"
       },
       "id": "person-wd-q114112",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Callicrates",
       "name_native": null,
       "name_zh": "卡利特瑞特",
       "name_zh_status": "source_label_candidate",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [
+        "Wolf Dieter Prix"
+      ],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1942,
+        "latest": 1942,
+        "precision": "day",
+        "value": "1942-12-12"
+      },
+      "claim_ids": [
+        "claim-wd-q114444-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q114444"
+      },
+      "id": "person-wd-q114444",
+      "last_verified": "2026-07-27",
+      "name_en": "Wolf D. Prix",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
       "region": "unknown",
       "roles": [
         "architect"
@@ -684,7 +724,7 @@
         "wikidata": "Q1150065"
       },
       "id": "person-wd-q1150065",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Cèsar Martinell i Brunet",
       "name_native": null,
       "name_zh": null,
@@ -722,7 +762,7 @@
         "wikidata": "Q115662111"
       },
       "id": "person-wd-q115662111",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Michel Duplay",
       "name_native": null,
       "name_zh": null,
@@ -760,11 +800,53 @@
         "wikidata": "Q116246344"
       },
       "id": "person-wd-q116246344",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Alphonse de Metz",
       "name_native": null,
       "name_zh": null,
       "name_zh_status": "missing",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [],
+      "aliases_zh": [
+        "大衛·查爾茲",
+        "大衛·蔡爾茲"
+      ],
+      "birth": {
+        "earliest": 1941,
+        "latest": 1941,
+        "precision": "day",
+        "value": "1941-04-01"
+      },
+      "claim_ids": [
+        "claim-wd-q1173984-name-en",
+        "claim-wd-q1173984-name-zh"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": 2025,
+        "latest": 2025,
+        "precision": "day",
+        "value": "2025-03-26"
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q1173984"
+      },
+      "id": "person-wd-q1173984",
+      "last_verified": "2026-07-27",
+      "name_en": "David Childs",
+      "name_native": null,
+      "name_zh": "大衛·柴爾斯",
+      "name_zh_status": "source_label_candidate",
       "region": "unknown",
       "roles": [
         "architect"
@@ -798,7 +880,7 @@
         "wikidata": "Q117937"
       },
       "id": "person-wd-q117937",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Charles l'Eplattenier",
       "name_native": null,
       "name_zh": null,
@@ -840,7 +922,7 @@
         "wikidata": "Q11812"
       },
       "id": "person-wd-q11812",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Thomas Jefferson",
       "name_native": null,
       "name_zh": "托马斯·杰斐逊",
@@ -881,7 +963,7 @@
         "wikidata": "Q11925879"
       },
       "id": "person-wd-q11925879",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Vojtěch Ignác Ullmann",
       "name_native": null,
       "name_zh": null,
@@ -922,7 +1004,7 @@
         "wikidata": "Q122328"
       },
       "id": "person-wd-q122328",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Carlo Maderno",
       "name_native": null,
       "name_zh": "卡洛·马代尔诺",
@@ -963,7 +1045,7 @@
         "wikidata": "Q122363"
       },
       "id": "person-wd-q122363",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Mario Botta",
       "name_native": null,
       "name_zh": "马里奥·博塔",
@@ -1009,7 +1091,7 @@
         "wikidata": "Q123150"
       },
       "id": "person-wd-q123150",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Francesco Borromini",
       "name_native": null,
       "name_zh": "博罗米尼",
@@ -1049,11 +1131,54 @@
         "wikidata": "Q124538"
       },
       "id": "person-wd-q124538",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Melchior Berri",
       "name_native": null,
       "name_zh": null,
       "name_zh_status": "missing",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [
+        "Peter Frederic Chester Cook",
+        "Sir Peter Cook RA",
+        "Sir Peter Cook"
+      ],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1936,
+        "latest": 1936,
+        "precision": "day",
+        "value": "1936-10-22"
+      },
+      "claim_ids": [
+        "claim-wd-q1249215-name-en",
+        "claim-wd-q1249215-name-zh"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q1249215"
+      },
+      "id": "person-wd-q1249215",
+      "last_verified": "2026-07-27",
+      "name_en": "Peter Cook",
+      "name_native": null,
+      "name_zh": "彼得·庫克",
+      "name_zh_status": "source_label_candidate",
       "region": "unknown",
       "roles": [
         "architect"
@@ -1087,7 +1212,7 @@
         "wikidata": "Q125243237"
       },
       "id": "person-wd-q125243237",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Pierre Venencie",
       "name_native": null,
       "name_zh": null,
@@ -1137,7 +1262,7 @@
         "wikidata": "Q1270258"
       },
       "id": "person-wd-q1270258",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "François d'Orbay",
       "name_native": null,
       "name_zh": "弗朗索瓦·多尔贝",
@@ -1175,7 +1300,7 @@
         "wikidata": "Q1291898"
       },
       "id": "person-wd-q1291898",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Edward Clark",
       "name_native": null,
       "name_zh": null,
@@ -1215,7 +1340,7 @@
         "wikidata": "Q1302691"
       },
       "id": "person-wd-q1302691",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Victor Luntz",
       "name_native": null,
       "name_zh": null,
@@ -1253,7 +1378,7 @@
         "wikidata": "Q1304570"
       },
       "id": "person-wd-q1304570",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Hans Alex Güldenpfennig",
       "name_native": null,
       "name_zh": null,
@@ -1291,7 +1416,7 @@
         "wikidata": "Q13103878"
       },
       "id": "person-wd-q13103878",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Léon Loschetter",
       "name_native": null,
       "name_zh": null,
@@ -1335,7 +1460,7 @@
         "wikidata": "Q1311013"
       },
       "id": "person-wd-q1311013",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Germain Boffrand",
       "name_native": null,
       "name_zh": "热尔曼·博弗朗",
@@ -1378,7 +1503,7 @@
         "wikidata": "Q1314747"
       },
       "id": "person-wd-q1314747",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Pierre de Montreuil",
       "name_native": null,
       "name_zh": "皮埃尔·德·蒙特勒伊",
@@ -1416,7 +1541,7 @@
         "wikidata": "Q131550216"
       },
       "id": "person-wd-q131550216",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Florent Margaritis",
       "name_native": null,
       "name_zh": null,
@@ -1458,7 +1583,7 @@
         "wikidata": "Q1329212"
       },
       "id": "person-wd-q1329212",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Elias of Cortona",
       "name_native": null,
       "name_zh": "科尔托纳的伊莱亚斯",
@@ -1504,7 +1629,7 @@
         "wikidata": "Q134165"
       },
       "id": "person-wd-q134165",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Oscar Niemeyer",
       "name_native": null,
       "name_zh": "奥斯卡·尼迈耶",
@@ -1546,7 +1671,7 @@
         "wikidata": "Q1347934"
       },
       "id": "person-wd-q1347934",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "William Thornton",
       "name_native": null,
       "name_zh": "威廉·桑顿",
@@ -1585,11 +1710,51 @@
         "wikidata": "Q13647155"
       },
       "id": "person-wd-q13647155",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Marshall Strabala",
       "name_native": null,
       "name_zh": "马歇尔·斯特拉巴拉",
       "name_zh_status": "source_label_candidate",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [
+        "Marco Zanuso Sr."
+      ],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1916,
+        "latest": 1916,
+        "precision": "day",
+        "value": "1916-05-14"
+      },
+      "claim_ids": [
+        "claim-wd-q1394730-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": 2001,
+        "latest": 2001,
+        "precision": "day",
+        "value": "2001-07-11"
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q1394730"
+      },
+      "id": "person-wd-q1394730",
+      "last_verified": "2026-07-27",
+      "name_en": "Marco Zanuso",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
       "region": "unknown",
       "roles": [
         "architect"
@@ -1623,7 +1788,7 @@
         "wikidata": "Q1441250"
       },
       "id": "person-wd-q1441250",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Francesco Talenti",
       "name_native": null,
       "name_zh": null,
@@ -1661,8 +1826,46 @@
         "wikidata": "Q14549819"
       },
       "id": "person-wd-q14549819",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Karl Hauschka",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1902,
+        "latest": 1902,
+        "precision": "day",
+        "value": "1902-08-15"
+      },
+      "claim_ids": [
+        "claim-wd-q1456008-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": 1979,
+        "latest": 1979,
+        "precision": "day",
+        "value": "1979-01-26"
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q1456008"
+      },
+      "id": "person-wd-q1456008",
+      "last_verified": "2026-07-27",
+      "name_en": "Werner Kallmorgen",
       "name_native": null,
       "name_zh": null,
       "name_zh_status": "missing",
@@ -1699,7 +1902,7 @@
         "wikidata": "Q1468148"
       },
       "id": "person-wd-q1468148",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Fritz Schaller",
       "name_native": null,
       "name_zh": null,
@@ -1746,7 +1949,7 @@
         "wikidata": "Q151759"
       },
       "id": "person-wd-q151759",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Karl Friedrich Schinkel",
       "name_native": null,
       "name_zh": "卡尔·弗里德里希·申克尔",
@@ -1784,7 +1987,7 @@
         "wikidata": "Q1544728"
       },
       "id": "person-wd-q1544728",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Johannes von Köln",
       "name_native": null,
       "name_zh": null,
@@ -1824,11 +2027,52 @@
         "wikidata": "Q15453206"
       },
       "id": "person-wd-q15453206",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Anton Brenner",
       "name_native": null,
       "name_zh": null,
       "name_zh_status": "missing",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [
+        "Daniyel Libesḳind"
+      ],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1946,
+        "latest": 1946,
+        "precision": "day",
+        "value": "1946-05-12"
+      },
+      "claim_ids": [
+        "claim-wd-q154538-name-en",
+        "claim-wd-q154538-name-zh"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q154538"
+      },
+      "id": "person-wd-q154538",
+      "last_verified": "2026-07-27",
+      "name_en": "Daniel Libeskind",
+      "name_native": null,
+      "name_zh": "丹尼爾·里伯斯金",
+      "name_zh_status": "source_label_candidate",
       "region": "unknown",
       "roles": [
         "architect"
@@ -1862,11 +2106,95 @@
         "wikidata": "Q15990577"
       },
       "id": "person-wd-q15990577",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Friedrich Adolf Ahlert",
       "name_native": null,
       "name_zh": null,
       "name_zh_status": "missing",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1889,
+        "latest": 1889,
+        "precision": "year",
+        "value": "1889"
+      },
+      "claim_ids": [
+        "claim-wd-q16007829-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": 1975,
+        "latest": 1975,
+        "precision": "year",
+        "value": "1975"
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q16007829"
+      },
+      "id": "person-wd-q16007829",
+      "last_verified": "2026-07-27",
+      "name_en": "Mark Lemmon",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [
+        "Wei-wei Ai",
+        "Ai Wei Wei",
+        "Weiwei Ai"
+      ],
+      "aliases_zh": [
+        "艾神",
+        "艾末末"
+      ],
+      "birth": {
+        "earliest": 1957,
+        "latest": 1957,
+        "precision": "day",
+        "value": "1957-08-28"
+      },
+      "claim_ids": [
+        "claim-wd-q160115-name-en",
+        "claim-wd-q160115-name-zh"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q160115"
+      },
+      "id": "person-wd-q160115",
+      "last_verified": "2026-07-27",
+      "name_en": "Ai Weiwei",
+      "name_native": null,
+      "name_zh": "艾未未",
+      "name_zh_status": "source_label_candidate",
       "region": "unknown",
       "roles": [
         "architect"
@@ -1900,7 +2228,7 @@
         "wikidata": "Q16029426"
       },
       "id": "person-wd-q16029426",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Otto Breuer",
       "name_native": null,
       "name_zh": null,
@@ -1942,7 +2270,7 @@
         "wikidata": "Q160435"
       },
       "id": "person-wd-q160435",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Gerrit Rietveld",
       "name_native": null,
       "name_zh": "赫里特·里特费尔德",
@@ -2049,7 +2377,7 @@
         "wikidata": "Q160538"
       },
       "id": "person-wd-q160538",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Gian Lorenzo Bernini",
       "name_native": null,
       "name_zh": "吉安·洛伦佐·贝尼尼",
@@ -2089,7 +2417,7 @@
         "wikidata": "Q1605748"
       },
       "id": "person-wd-q1605748",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Jean Welz",
       "name_native": null,
       "name_zh": null,
@@ -2132,7 +2460,7 @@
         "wikidata": "Q1623328"
       },
       "id": "person-wd-q1623328",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Guglielmo della Porta",
       "name_native": null,
       "name_zh": null,
@@ -2173,7 +2501,7 @@
         "wikidata": "Q16645563"
       },
       "id": "person-wd-q16645563",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Jean Ravy",
       "name_native": null,
       "name_zh": "让·拉维",
@@ -2213,7 +2541,7 @@
         "wikidata": "Q1686814"
       },
       "id": "person-wd-q1686814",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Maximilien Brébion",
       "name_native": null,
       "name_zh": null,
@@ -2251,7 +2579,7 @@
         "wikidata": "Q1695228"
       },
       "id": "person-wd-q1695228",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Johann Kuene van Franckenberg",
       "name_native": null,
       "name_zh": null,
@@ -2291,7 +2619,7 @@
         "wikidata": "Q1702936"
       },
       "id": "person-wd-q1702936",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Jonas Erickson Sundahl",
       "name_native": null,
       "name_zh": null,
@@ -2340,7 +2668,7 @@
         "wikidata": "Q170373"
       },
       "id": "person-wd-q170373",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Christopher Wren",
       "name_native": null,
       "name_zh": "克里斯托弗·雷恩",
@@ -2378,7 +2706,7 @@
         "wikidata": "Q1704305"
       },
       "id": "person-wd-q1704305",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Josef Berger",
       "name_native": null,
       "name_zh": null,
@@ -2416,7 +2744,7 @@
         "wikidata": "Q1712698"
       },
       "id": "person-wd-q1712698",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Julius Hofmann",
       "name_native": null,
       "name_zh": null,
@@ -2454,7 +2782,7 @@
         "wikidata": "Q17329022"
       },
       "id": "person-wd-q17329022",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Luigi Lorenzo Secchi",
       "name_native": null,
       "name_zh": null,
@@ -2504,7 +2832,7 @@
         "wikidata": "Q174330"
       },
       "id": "person-wd-q174330",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Filippo Brunelleschi",
       "name_native": null,
       "name_zh": "菲利波·布鲁内莱斯基",
@@ -2545,7 +2873,7 @@
         "wikidata": "Q175566"
       },
       "id": "person-wd-q175566",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Giacomo della Porta",
       "name_native": null,
       "name_zh": "贾科莫·德拉·波尔塔",
@@ -2644,7 +2972,7 @@
         "wikidata": "Q177213"
       },
       "id": "person-wd-q177213",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Baldassare Peruzzi",
       "name_native": null,
       "name_zh": "巴尔达萨雷·佩鲁齐",
@@ -2691,7 +3019,7 @@
         "wikidata": "Q177302"
       },
       "id": "person-wd-q177302",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Phidias",
       "name_native": null,
       "name_zh": "菲狄亚斯",
@@ -2729,7 +3057,7 @@
         "wikidata": "Q177547"
       },
       "id": "person-wd-q177547",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Elliott Woods",
       "name_native": null,
       "name_zh": null,
@@ -2780,7 +3108,7 @@
         "wikidata": "Q177692"
       },
       "id": "person-wd-q177692",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Andrea Palladio",
       "name_native": null,
       "name_zh": "安德烈亚·帕拉迪奥",
@@ -2820,11 +3148,61 @@
         "wikidata": "Q1782172"
       },
       "id": "person-wd-q1782172",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Konrad Kuene",
       "name_native": null,
       "name_zh": null,
       "name_zh_status": "missing",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [
+        "Frank Owen Gehry",
+        "Frank O. Gehry",
+        "Ephraim Owen Goldberg",
+        "Frank Goldberg",
+        "Frank Owen Goldberg"
+      ],
+      "aliases_zh": [
+        "法蘭克·蓋瑞",
+        "格里",
+        "弗兰克·格里",
+        "蓋瑞住宅"
+      ],
+      "birth": {
+        "earliest": 1929,
+        "latest": 1929,
+        "precision": "day",
+        "value": "1929-02-28"
+      },
+      "claim_ids": [
+        "claim-wd-q180374-name-en",
+        "claim-wd-q180374-name-zh"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": 2025,
+        "latest": 2025,
+        "precision": "day",
+        "value": "2025-12-05"
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q180374"
+      },
+      "id": "person-wd-q180374",
+      "last_verified": "2026-07-27",
+      "name_en": "Frank Gehry",
+      "name_native": null,
+      "name_zh": "弗兰克·盖里",
+      "name_zh_status": "source_label_candidate",
       "region": "unknown",
       "roles": [
         "architect"
@@ -2865,7 +3243,7 @@
         "wikidata": "Q180398"
       },
       "id": "person-wd-q180398",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Jørn Utzon",
       "name_native": null,
       "name_zh": "约恩·乌松",
@@ -2912,7 +3290,7 @@
         "wikidata": "Q1812135"
       },
       "id": "person-wd-q1812135",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Leendert van der Vlugt",
       "name_native": null,
       "name_zh": "林達特·范·德·弗盧特",
@@ -2950,7 +3328,7 @@
         "wikidata": "Q18596148"
       },
       "id": "person-wd-q18596148",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Aristide Tourneux",
       "name_native": null,
       "name_zh": null,
@@ -2998,10 +3376,51 @@
         "wikidata": "Q189375"
       },
       "id": "person-wd-q189375",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Apollodorus of Damascus",
       "name_native": null,
       "name_zh": "大马士革的阿波罗多洛斯",
+      "name_zh_status": "source_label_candidate",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [
+        "R. Piano"
+      ],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1937,
+        "latest": 1937,
+        "precision": "day",
+        "value": "1937-09-14"
+      },
+      "claim_ids": [
+        "claim-wd-q190148-name-en",
+        "claim-wd-q190148-name-zh"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q190148"
+      },
+      "id": "person-wd-q190148",
+      "last_verified": "2026-07-27",
+      "name_en": "Renzo Piano",
+      "name_native": null,
+      "name_zh": "伦佐·皮亚诺",
       "name_zh_status": "source_label_candidate",
       "region": "unknown",
       "roles": [
@@ -3039,7 +3458,7 @@
         "wikidata": "Q19258118"
       },
       "id": "person-wd-q19258118",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Karel Zdeněk Líman",
       "name_native": null,
       "name_zh": "卡雷尔·利曼",
@@ -3080,7 +3499,7 @@
         "wikidata": "Q1986231"
       },
       "id": "person-wd-q1986231",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Nicola Salvi",
       "name_native": null,
       "name_zh": "尼古拉·萨尔维",
@@ -3118,7 +3537,7 @@
         "wikidata": "Q1991761"
       },
       "id": "person-wd-q1991761",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Nikolaus van Bueren",
       "name_native": null,
       "name_zh": null,
@@ -3156,7 +3575,7 @@
         "wikidata": "Q19959478"
       },
       "id": "person-wd-q19959478",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Wilhelm Fränkel",
       "name_native": null,
       "name_zh": null,
@@ -3196,11 +3615,52 @@
         "wikidata": "Q19985023"
       },
       "id": "person-wd-q19985023",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Giuseppe Pannini",
       "name_native": null,
       "name_zh": null,
       "name_zh_status": "missing",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [
+        "Francine Marie Jeanne Houben"
+      ],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1955,
+        "latest": 1955,
+        "precision": "day",
+        "value": "1955-07-02"
+      },
+      "claim_ids": [
+        "claim-wd-q2009000-name-en",
+        "claim-wd-q2009000-name-zh"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q2009000"
+      },
+      "id": "person-wd-q2009000",
+      "last_verified": "2026-07-27",
+      "name_en": "Francine Houben",
+      "name_native": null,
+      "name_zh": "法蘭馨·侯班",
+      "name_zh_status": "source_label_candidate",
       "region": "unknown",
       "roles": [
         "architect"
@@ -3236,11 +3696,55 @@
         "wikidata": "Q2069774"
       },
       "id": "person-wd-q2069774",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Michiel Brinkman",
       "name_native": null,
       "name_zh": null,
       "name_zh_status": "missing",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [
+        "Tadao Andō",
+        "Andō Tadao"
+      ],
+      "aliases_zh": [
+        "Ando Tadao"
+      ],
+      "birth": {
+        "earliest": 1941,
+        "latest": 1941,
+        "precision": "day",
+        "value": "1941-09-13"
+      },
+      "claim_ids": [
+        "claim-wd-q208220-name-en",
+        "claim-wd-q208220-name-zh"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q208220"
+      },
+      "id": "person-wd-q208220",
+      "last_verified": "2026-07-27",
+      "name_en": "Tadao Ando",
+      "name_native": null,
+      "name_zh": "安藤忠雄",
+      "name_zh_status": "source_label_candidate",
       "region": "unknown",
       "roles": [
         "architect"
@@ -3274,7 +3778,7 @@
         "wikidata": "Q2093755"
       },
       "id": "person-wd-q2093755",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Pierre Parat",
       "name_native": null,
       "name_zh": null,
@@ -3312,7 +3816,7 @@
         "wikidata": "Q21012937"
       },
       "id": "person-wd-q21012937",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Charles Fréchot",
       "name_native": null,
       "name_zh": null,
@@ -3351,7 +3855,7 @@
         "wikidata": "Q2134288"
       },
       "id": "person-wd-q2134288",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Raymond du Temple",
       "name_native": null,
       "name_zh": "雷蒙·迪唐普勒",
@@ -3389,11 +3893,53 @@
         "wikidata": "Q2143077"
       },
       "id": "person-wd-q2143077",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Alessandro Antonelli",
       "name_native": null,
       "name_zh": null,
       "name_zh_status": "missing",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [],
+      "aliases_zh": [
+        "让·努维勒",
+        "让·努韦尔"
+      ],
+      "birth": {
+        "earliest": 1945,
+        "latest": 1945,
+        "precision": "day",
+        "value": "1945-08-12"
+      },
+      "claim_ids": [
+        "claim-wd-q214317-name-en",
+        "claim-wd-q214317-name-zh"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q214317"
+      },
+      "id": "person-wd-q214317",
+      "last_verified": "2026-07-27",
+      "name_en": "Jean Nouvel",
+      "name_native": null,
+      "name_zh": "让·努维尔",
+      "name_zh_status": "source_label_candidate",
       "region": "unknown",
       "roles": [
         "architect"
@@ -3432,7 +3978,7 @@
         "wikidata": "Q215305"
       },
       "id": "person-wd-q215305",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Giulio Romano",
       "name_native": null,
       "name_zh": "朱利奥·罗马诺",
@@ -3473,7 +4019,7 @@
         "wikidata": "Q21548230"
       },
       "id": "person-wd-q21548230",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Antonio Ciaccheri",
       "name_native": null,
       "name_zh": null,
@@ -3516,7 +4062,7 @@
         "wikidata": "Q21553027"
       },
       "id": "person-wd-q21553027",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Jan de Meyer",
       "name_native": null,
       "name_zh": null,
@@ -3560,7 +4106,7 @@
         "wikidata": "Q21568081"
       },
       "id": "person-wd-q21568081",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Charles-François Viel de Saint-Maux",
       "name_native": null,
       "name_zh": null,
@@ -3601,7 +4147,7 @@
         "wikidata": "Q2252872"
       },
       "id": "person-wd-q2252872",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Emilio De Fabris",
       "name_native": null,
       "name_zh": "埃米利奧·德·法布里斯",
@@ -3646,7 +4192,7 @@
         "wikidata": "Q2253309"
       },
       "id": "person-wd-q2253309",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Antonio Canevari",
       "name_native": null,
       "name_zh": "安東尼奧·卡內瓦里",
@@ -3685,7 +4231,7 @@
         "wikidata": "Q2255983"
       },
       "id": "person-wd-q2255983",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Luca Fancelli",
       "name_native": null,
       "name_zh": "盧卡·范切利",
@@ -3731,7 +4277,7 @@
         "wikidata": "Q2258655"
       },
       "id": "person-wd-q2258655",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Jo van den Broek",
       "name_native": null,
       "name_zh": null,
@@ -3769,7 +4315,7 @@
         "wikidata": "Q22616892"
       },
       "id": "person-wd-q22616892",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Karel Lhota",
       "name_native": null,
       "name_zh": null,
@@ -3815,10 +4361,54 @@
         "wikidata": "Q2272304"
       },
       "id": "person-wd-q2272304",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Thomas Ustick Walter",
       "name_native": null,
       "name_zh": "湯瑪斯·烏斯蒂克·沃爾特",
+      "name_zh_status": "source_label_candidate",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [
+        "Remment Lucas Koolhaas",
+        "Remment Koolhaas"
+      ],
+      "aliases_zh": [
+        "库哈斯"
+      ],
+      "birth": {
+        "earliest": 1944,
+        "latest": 1944,
+        "precision": "day",
+        "value": "1944-11-17"
+      },
+      "claim_ids": [
+        "claim-wd-q232364-name-en",
+        "claim-wd-q232364-name-zh"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q232364"
+      },
+      "id": "person-wd-q232364",
+      "last_verified": "2026-07-27",
+      "name_en": "Rem Koolhaas",
+      "name_native": null,
+      "name_zh": "雷姆·库哈斯",
       "name_zh_status": "source_label_candidate",
       "region": "unknown",
       "roles": [
@@ -3855,7 +4445,7 @@
         "wikidata": "Q2343132"
       },
       "id": "person-wd-q2343132",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Giovanni Battista Trevano",
       "name_native": null,
       "name_zh": null,
@@ -3940,7 +4530,7 @@
         "wikidata": "Q2356668"
       },
       "id": "person-wd-q2356668",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Giovanni Niccolò Servandoni",
       "name_native": null,
       "name_zh": "喬凡尼‧尼科洛‧塞萬多尼",
@@ -3990,7 +4580,7 @@
         "wikidata": "Q2361926"
       },
       "id": "person-wd-q2361926",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Domenico da Cortona",
       "name_native": null,
       "name_zh": null,
@@ -4031,11 +4621,57 @@
         "wikidata": "Q23709838"
       },
       "id": "person-wd-q23709838",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Edith Schreiber-Aujame",
       "name_native": null,
       "name_zh": null,
       "name_zh_status": "missing",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [
+        "Richard George Rogers, Baron Rogers of Riverside",
+        "The Lord Rogers of Riverside",
+        "Richard George Rogers of Riverside"
+      ],
+      "aliases_zh": [
+        "理查·羅杰斯",
+        "理察·羅傑斯"
+      ],
+      "birth": {
+        "earliest": 1933,
+        "latest": 1933,
+        "precision": "day",
+        "value": "1933-07-23"
+      },
+      "claim_ids": [
+        "claim-wd-q237412-name-en",
+        "claim-wd-q237412-name-zh"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": 2021,
+        "latest": 2021,
+        "precision": "day",
+        "value": "2021-12-18"
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q237412"
+      },
+      "id": "person-wd-q237412",
+      "last_verified": "2026-07-27",
+      "name_en": "Richard Rogers",
+      "name_native": null,
+      "name_zh": "理查德·罗杰斯",
+      "name_zh_status": "source_label_candidate",
       "region": "unknown",
       "roles": [
         "architect"
@@ -4077,7 +4713,7 @@
         "wikidata": "Q243240"
       },
       "id": "person-wd-q243240",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Louis Sullivan",
       "name_native": null,
       "name_zh": "路易斯·沙利文",
@@ -4123,7 +4759,7 @@
         "wikidata": "Q2440881"
       },
       "id": "person-wd-q2440881",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Tommaso Vincidor",
       "name_native": null,
       "name_zh": null,
@@ -4165,7 +4801,7 @@
         "wikidata": "Q2466368"
       },
       "id": "person-wd-q2466368",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "James Rossant",
       "name_native": null,
       "name_zh": null,
@@ -4203,7 +4839,7 @@
         "wikidata": "Q2489826"
       },
       "id": "person-wd-q2489826",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Henry Van Brunt",
       "name_native": null,
       "name_zh": null,
@@ -4253,7 +4889,7 @@
         "wikidata": "Q2493977"
       },
       "id": "person-wd-q2493977",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Moisei Ginzburg",
       "name_native": null,
       "name_zh": "莫伊西·金茨堡",
@@ -4291,7 +4927,7 @@
         "wikidata": "Q2509641"
       },
       "id": "person-wd-q2509641",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Willy Weyres",
       "name_native": null,
       "name_zh": null,
@@ -4350,7 +4986,7 @@
         "wikidata": "Q25328"
       },
       "id": "person-wd-q25328",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Antoni Gaudí",
       "name_native": null,
       "name_zh": "安东尼·高迪",
@@ -4391,10 +5027,49 @@
         "wikidata": "Q2533343"
       },
       "id": "person-wd-q2533343",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Sedefkar Mehmed Ağa",
       "name_native": null,
       "name_zh": "赛德夫哈尔·穆罕默德阿加",
+      "name_zh_status": "source_label_candidate",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1956,
+        "latest": 1956,
+        "precision": "year",
+        "value": "1956"
+      },
+      "claim_ids": [
+        "claim-wd-q253350-name-en",
+        "claim-wd-q253350-name-zh"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q253350"
+      },
+      "id": "person-wd-q253350",
+      "last_verified": "2026-07-27",
+      "name_en": "Kazuyo Sejima",
+      "name_native": null,
+      "name_zh": "妹岛和世",
       "name_zh_status": "source_label_candidate",
       "region": "unknown",
       "roles": [
@@ -4431,7 +5106,7 @@
         "wikidata": "Q2544172"
       },
       "id": "person-wd-q2544172",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "William of Sens",
       "name_native": null,
       "name_zh": null,
@@ -4475,7 +5150,7 @@
         "wikidata": "Q2551253"
       },
       "id": "person-wd-q2551253",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Ahmad Lahori",
       "name_native": null,
       "name_zh": "乌斯塔德·艾哈迈德·拉合里",
@@ -4515,7 +5190,7 @@
         "wikidata": "Q258732"
       },
       "id": "person-wd-q258732",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "J. George Stewart",
       "name_native": null,
       "name_zh": null,
@@ -4557,7 +5232,7 @@
         "wikidata": "Q261174"
       },
       "id": "person-wd-q261174",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Joseph Strauss",
       "name_native": null,
       "name_zh": "斯特劳斯上开桥公司",
@@ -4595,7 +5270,7 @@
         "wikidata": "Q26202646"
       },
       "id": "person-wd-q26202646",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Louis Waldemar Clouet",
       "name_native": null,
       "name_zh": null,
@@ -4633,7 +5308,7 @@
         "wikidata": "Q26224490"
       },
       "id": "person-wd-q26224490",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Arthur Baker",
       "name_native": null,
       "name_zh": null,
@@ -4671,7 +5346,7 @@
         "wikidata": "Q26268272"
       },
       "id": "person-wd-q26268272",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Michel Andrault",
       "name_native": null,
       "name_zh": null,
@@ -4721,7 +5396,7 @@
         "wikidata": "Q2641514"
       },
       "id": "person-wd-q2641514",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Alexey Dushkin",
       "name_native": null,
       "name_zh": "阿列克谢·尼科拉也维奇·杜什金",
@@ -4764,7 +5439,7 @@
         "wikidata": "Q2658411"
       },
       "id": "person-wd-q2658411",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Bahāʾ al-dīn al-ʿĀmilī",
       "name_native": null,
       "name_zh": "巴哈丁·阿米里",
@@ -4802,7 +5477,7 @@
         "wikidata": "Q2682321"
       },
       "id": "person-wd-q2682321",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Caspar Franssen",
       "name_native": null,
       "name_zh": null,
@@ -4840,7 +5515,7 @@
         "wikidata": "Q2706012"
       },
       "id": "person-wd-q2706012",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Jos Tonnaer",
       "name_native": null,
       "name_zh": null,
@@ -4917,7 +5592,7 @@
         "wikidata": "Q271676"
       },
       "id": "person-wd-q271676",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Charles Le Brun",
       "name_native": null,
       "name_zh": "夏尔·勒布朗",
@@ -4963,7 +5638,7 @@
         "wikidata": "Q273849"
       },
       "id": "person-wd-q273849",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "André Le Nôtre",
       "name_native": null,
       "name_zh": "安德烈·勒诺特尔",
@@ -5001,7 +5676,7 @@
         "wikidata": "Q281577"
       },
       "id": "person-wd-q281577",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Christian Ulrich",
       "name_native": null,
       "name_zh": null,
@@ -5043,7 +5718,7 @@
         "wikidata": "Q2821734"
       },
       "id": "person-wd-q2821734",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Abu Ishap Es-Saheli Altouwaidjin",
       "name_native": null,
       "name_zh": null,
@@ -5081,7 +5756,7 @@
         "wikidata": "Q282642"
       },
       "id": "person-wd-q282642",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Jean-Louis Victor Grisart",
       "name_native": null,
       "name_zh": null,
@@ -5119,7 +5794,7 @@
         "wikidata": "Q2834614"
       },
       "id": "person-wd-q2834614",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Alexis Paccard",
       "name_native": null,
       "name_zh": null,
@@ -5165,7 +5840,7 @@
         "wikidata": "Q2846320"
       },
       "id": "person-wd-q2846320",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Andrea Cavalcanti",
       "name_native": null,
       "name_zh": null,
@@ -5205,7 +5880,7 @@
         "wikidata": "Q2851305"
       },
       "id": "person-wd-q2851305",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Anne Tyng",
       "name_native": null,
       "name_zh": null,
@@ -5259,7 +5934,7 @@
         "wikidata": "Q2871505"
       },
       "id": "person-wd-q2871505",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Augustin-Charles d'Aviler",
       "name_native": null,
       "name_zh": null,
@@ -5299,7 +5974,7 @@
         "wikidata": "Q2886701"
       },
       "id": "person-wd-q2886701",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "George M. White",
       "name_native": null,
       "name_zh": null,
@@ -5351,7 +6026,7 @@
         "wikidata": "Q289220"
       },
       "id": "person-wd-q289220",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Étienne-Louis Boullée",
       "name_native": null,
       "name_zh": "艾蒂安-路易·布莱",
@@ -5391,7 +6066,7 @@
         "wikidata": "Q2895688"
       },
       "id": "person-wd-q2895688",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Benci di Cione Dami",
       "name_native": null,
       "name_zh": null,
@@ -5454,7 +6129,7 @@
         "wikidata": "Q297565"
       },
       "id": "person-wd-q297565",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Giacomo Barozzi da Vignola",
       "name_native": null,
       "name_zh": "贾科莫·巴罗齐·达·维尼奥拉",
@@ -5496,7 +6171,7 @@
         "wikidata": "Q29761"
       },
       "id": "person-wd-q29761",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Trdat the Architect",
       "name_native": null,
       "name_zh": "梯里达底",
@@ -5542,8 +6217,46 @@
         "wikidata": "Q2977590"
       },
       "id": "person-wd-q2977590",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Claude Jean-Baptiste Jallier de Savault",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1923,
+        "latest": 1923,
+        "precision": "day",
+        "value": "1923-02-26"
+      },
+      "claim_ids": [
+        "claim-wd-q2977923-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": 2016,
+        "latest": 2016,
+        "precision": "day",
+        "value": "2016-02-27"
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q2977923"
+      },
+      "id": "person-wd-q2977923",
+      "last_verified": "2026-07-27",
+      "name_en": "Claude Parent",
       "name_native": null,
       "name_zh": null,
       "name_zh_status": "missing",
@@ -5586,7 +6299,7 @@
         "wikidata": "Q298226"
       },
       "id": "person-wd-q298226",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Anthemius of Tralles",
       "name_native": null,
       "name_zh": "特拉勒斯的安提莫斯",
@@ -5631,7 +6344,7 @@
         "wikidata": "Q299687"
       },
       "id": "person-wd-q299687",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Francesco Bartolomeo Rastrelli",
       "name_native": null,
       "name_zh": "弗朗切斯科·巴尔托洛梅奥·拉斯特雷利",
@@ -5669,7 +6382,7 @@
         "wikidata": "Q3014096"
       },
       "id": "person-wd-q3014096",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Daniel Gittard",
       "name_native": null,
       "name_zh": null,
@@ -5707,7 +6420,7 @@
         "wikidata": "Q3022753"
       },
       "id": "person-wd-q3022753",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Denis Jossenay",
       "name_native": null,
       "name_zh": null,
@@ -5745,7 +6458,7 @@
         "wikidata": "Q30243458"
       },
       "id": "person-wd-q30243458",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Jean-Francois Lagneau",
       "name_native": null,
       "name_zh": null,
@@ -5786,10 +6499,51 @@
         "wikidata": "Q3036213"
       },
       "id": "person-wd-q3036213",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Romaldo Giurgola",
       "name_native": null,
       "name_zh": "羅馬爾多·吉戈拉",
+      "name_zh_status": "source_label_candidate",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [
+        "Thomas Alexander Heatherwick"
+      ],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1970,
+        "latest": 1970,
+        "precision": "day",
+        "value": "1970-02-17"
+      },
+      "claim_ids": [
+        "claim-wd-q3051023-name-en",
+        "claim-wd-q3051023-name-zh"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q3051023"
+      },
+      "id": "person-wd-q3051023",
+      "last_verified": "2026-07-27",
+      "name_en": "Thomas Heatherwick",
+      "name_native": null,
+      "name_zh": "托馬斯·赫斯維克",
       "name_zh_status": "source_label_candidate",
       "region": "unknown",
       "roles": [
@@ -5842,7 +6596,7 @@
         "wikidata": "Q3051129"
       },
       "id": "person-wd-q3051129",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Josep Francesc Ràfols i Fontanals",
       "name_native": null,
       "name_zh": null,
@@ -5885,7 +6639,7 @@
         "wikidata": "Q3059718"
       },
       "id": "person-wd-q3059718",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Eugène Beaudouin",
       "name_native": null,
       "name_zh": null,
@@ -5929,7 +6683,7 @@
         "wikidata": "Q3082622"
       },
       "id": "person-wd-q3082622",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Frank Furness",
       "name_native": null,
       "name_zh": "弗兰克·弗内斯",
@@ -5975,7 +6729,7 @@
         "wikidata": "Q3090458"
       },
       "id": "person-wd-q3090458",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Libéral Bruant",
       "name_native": null,
       "name_zh": "利贝拉尔·布吕昂",
@@ -6018,7 +6772,7 @@
         "wikidata": "Q309483"
       },
       "id": "person-wd-q309483",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "César Pelli",
       "name_native": null,
       "name_zh": "西萨·佩里",
@@ -6062,7 +6816,7 @@
         "wikidata": "Q309733"
       },
       "id": "person-wd-q309733",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Vincenzo Scamozzi",
       "name_native": null,
       "name_zh": "文森佐·斯卡默基",
@@ -6109,7 +6863,7 @@
         "wikidata": "Q309736"
       },
       "id": "person-wd-q309736",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Michelozzo",
       "name_native": null,
       "name_zh": "米开罗佐",
@@ -6148,7 +6902,7 @@
         "wikidata": "Q309905"
       },
       "id": "person-wd-q309905",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "John Nash",
       "name_native": null,
       "name_zh": "约翰·纳什",
@@ -6192,7 +6946,7 @@
         "wikidata": "Q310028"
       },
       "id": "person-wd-q310028",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Isidore of Miletus",
       "name_native": null,
       "name_zh": "米利都的伊西多尔",
@@ -6234,7 +6988,7 @@
         "wikidata": "Q310530"
       },
       "id": "person-wd-q310530",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Louis Le Vau",
       "name_native": null,
       "name_zh": "路易·勒沃",
@@ -6272,7 +7026,7 @@
         "wikidata": "Q3107540"
       },
       "id": "person-wd-q3107540",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Giovanni di Lapo Ghini",
       "name_native": null,
       "name_zh": null,
@@ -6321,7 +7075,7 @@
         "wikidata": "Q311031"
       },
       "id": "person-wd-q311031",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Andrea Pisano",
       "name_native": null,
       "name_zh": "安德烈亞·皮薩諾",
@@ -6363,7 +7117,7 @@
         "wikidata": "Q311502"
       },
       "id": "person-wd-q311502",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Ictinus",
       "name_native": null,
       "name_zh": "伊克提诺斯",
@@ -6406,7 +7160,7 @@
         "wikidata": "Q3119629"
       },
       "id": "person-wd-q3119629",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Guillaume Abel Blouet",
       "name_native": null,
       "name_zh": "纪尧姆 阿贝尔·布卢埃",
@@ -6447,7 +7201,7 @@
         "wikidata": "Q3122254"
       },
       "id": "person-wd-q3122254",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Guy de Gisors",
       "name_native": null,
       "name_zh": null,
@@ -6492,10 +7246,53 @@
         "wikidata": "Q312365"
       },
       "id": "person-wd-q312365",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Giuliano da Sangallo",
       "name_native": null,
       "name_zh": "朱利亞諾·達·桑迦洛",
+      "name_zh_status": "source_label_candidate",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [
+        "Christian Urvoy de Portzamparc",
+        "Christian Urvoy De Portzamparc",
+        "Christian De Portzamparc"
+      ],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1944,
+        "latest": 1944,
+        "precision": "day",
+        "value": "1944-05-09"
+      },
+      "claim_ids": [
+        "claim-wd-q312838-name-en",
+        "claim-wd-q312838-name-zh"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q312838"
+      },
+      "id": "person-wd-q312838",
+      "last_verified": "2026-07-27",
+      "name_en": "Christian de Portzamparc",
+      "name_native": null,
+      "name_zh": "克里斯蒂安·德波尔藏帕克",
       "name_zh_status": "source_label_candidate",
       "region": "unknown",
       "roles": [
@@ -6539,7 +7336,7 @@
         "wikidata": "Q313288"
       },
       "id": "person-wd-q313288",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Augustus Pugin",
       "name_native": null,
       "name_zh": "奥古斯塔斯·普金",
@@ -6591,7 +7388,7 @@
         "wikidata": "Q3134295"
       },
       "id": "person-wd-q3134295",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Hernán Ruiz",
       "name_native": null,
       "name_zh": null,
@@ -6639,7 +7436,7 @@
         "wikidata": "Q313556"
       },
       "id": "person-wd-q313556",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Charles Garnier",
       "name_native": null,
       "name_zh": "夏尔·加尼耶",
@@ -6688,7 +7485,7 @@
         "wikidata": "Q313701"
       },
       "id": "person-wd-q313701",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "François Mansart",
       "name_native": null,
       "name_zh": "弗朗索瓦·芒薩爾",
@@ -6733,7 +7530,7 @@
         "wikidata": "Q3140459"
       },
       "id": "person-wd-q3140459",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Horace Jones",
       "name_native": null,
       "name_zh": "霍拉斯·琼斯",
@@ -6780,7 +7577,7 @@
         "wikidata": "Q315249"
       },
       "id": "person-wd-q315249",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Arnolfo di Cambio",
       "name_native": null,
       "name_zh": "阿諾爾·迪·坎比奧",
@@ -6821,7 +7618,7 @@
         "wikidata": "Q3158020"
       },
       "id": "person-wd-q3158020",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Jacques-Martin Tétaz",
       "name_native": null,
       "name_zh": "雅克-马丁·泰塔",
@@ -6866,7 +7663,7 @@
         "wikidata": "Q315835"
       },
       "id": "person-wd-q315835",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Taddeo Gaddi",
       "name_native": null,
       "name_zh": "塔迪奧·加迪",
@@ -6908,7 +7705,7 @@
         "wikidata": "Q316297"
       },
       "id": "person-wd-q316297",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Baldassarre Longhena",
       "name_native": null,
       "name_zh": "巴尔达萨雷·隆盖纳",
@@ -6946,7 +7743,7 @@
         "wikidata": "Q3163717"
       },
       "id": "person-wd-q3163717",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Jean-Antoine Morand",
       "name_native": null,
       "name_zh": null,
@@ -6984,7 +7781,7 @@
         "wikidata": "Q3165689"
       },
       "id": "person-wd-q3165689",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Jean-François Jodry",
       "name_native": null,
       "name_zh": null,
@@ -7031,7 +7828,7 @@
         "wikidata": "Q316639"
       },
       "id": "person-wd-q316639",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Daniel Burnham",
       "name_native": null,
       "name_zh": "丹尼尔·伯纳姆",
@@ -7074,10 +7871,53 @@
         "wikidata": "Q3168208"
       },
       "id": "person-wd-q3168208",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Jean-Nicolas Huyot",
       "name_native": null,
       "name_zh": "让-尼古拉·于约",
+      "name_zh_status": "source_label_candidate",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [
+        "ISO"
+      ],
+      "aliases_zh": [
+        "磯崎新"
+      ],
+      "birth": {
+        "earliest": 1931,
+        "latest": 1931,
+        "precision": "day",
+        "value": "1931-07-23"
+      },
+      "claim_ids": [
+        "claim-wd-q317135-name-en",
+        "claim-wd-q317135-name-zh"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": 2022,
+        "latest": 2022,
+        "precision": "day",
+        "value": "2022-12-28"
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q317135"
+      },
+      "id": "person-wd-q317135",
+      "last_verified": "2026-07-27",
+      "name_en": "Arata Isozaki",
+      "name_native": null,
+      "name_zh": "矶崎新",
       "name_zh_status": "source_label_candidate",
       "region": "unknown",
       "roles": [
@@ -7114,7 +7954,7 @@
         "wikidata": "Q3184714"
       },
       "id": "person-wd-q3184714",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Joseph Cassien-Bernard",
       "name_native": null,
       "name_zh": null,
@@ -7164,7 +8004,7 @@
         "wikidata": "Q319302"
       },
       "id": "person-wd-q319302",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Jean Baptiste Kléber",
       "name_native": null,
       "name_zh": "让-巴蒂斯特·克莱贝尔",
@@ -7206,7 +8046,7 @@
         "wikidata": "Q323877"
       },
       "id": "person-wd-q323877",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Hector-Martin Lefuel",
       "name_native": null,
       "name_zh": "埃克托尔·勒菲埃尔",
@@ -7249,7 +8089,7 @@
         "wikidata": "Q325930"
       },
       "id": "person-wd-q325930",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Bernardo Rossellino",
       "name_native": null,
       "name_zh": "贝尔纳多·罗塞利诺",
@@ -7287,7 +8127,7 @@
         "wikidata": "Q3260263"
       },
       "id": "person-wd-q3260263",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Louis-Adam Loriot",
       "name_native": null,
       "name_zh": null,
@@ -7326,7 +8166,7 @@
         "wikidata": "Q3260862"
       },
       "id": "person-wd-q3260862",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Louis-Robert Goust",
       "name_native": null,
       "name_zh": "路易-罗贝尔·古斯特",
@@ -7364,7 +8204,7 @@
         "wikidata": "Q3263481"
       },
       "id": "person-wd-q3263481",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Louis de Hoÿm de Marien",
       "name_native": null,
       "name_zh": null,
@@ -7405,7 +8245,7 @@
         "wikidata": "Q327258"
       },
       "id": "person-wd-q327258",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "François Spoerry",
       "name_native": null,
       "name_zh": "弗朗索瓦·斯波里",
@@ -7446,7 +8286,7 @@
         "wikidata": "Q330997"
       },
       "id": "person-wd-q330997",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Pietro Nobile",
       "name_native": null,
       "name_zh": null,
@@ -7484,7 +8324,7 @@
         "wikidata": "Q331020"
       },
       "id": "person-wd-q331020",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Marcel Lods",
       "name_native": null,
       "name_zh": null,
@@ -7522,7 +8362,7 @@
         "wikidata": "Q33106506"
       },
       "id": "person-wd-q33106506",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Michel Ducharme",
       "name_native": null,
       "name_zh": null,
@@ -7581,7 +8421,7 @@
         "wikidata": "Q332189"
       },
       "id": "person-wd-q332189",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Antoine-François Peyre",
       "name_native": null,
       "name_zh": null,
@@ -7624,10 +8464,54 @@
         "wikidata": "Q3322718"
       },
       "id": "person-wd-q3322718",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Montgomery C. Meigs",
       "name_native": null,
       "name_zh": "蒙哥马利·C·梅格斯",
+      "name_zh_status": "source_label_candidate",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [
+        "Ito Toyo"
+      ],
+      "aliases_zh": [
+        "伊東豐雄",
+        "伊东丰雄,"
+      ],
+      "birth": {
+        "earliest": 1941,
+        "latest": 1941,
+        "precision": "day",
+        "value": "1941-06-01"
+      },
+      "claim_ids": [
+        "claim-wd-q333585-name-en",
+        "claim-wd-q333585-name-zh"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q333585"
+      },
+      "id": "person-wd-q333585",
+      "last_verified": "2026-07-27",
+      "name_en": "Toyo Ito",
+      "name_native": null,
+      "name_zh": "伊东豊雄",
       "name_zh_status": "source_label_candidate",
       "region": "unknown",
       "roles": [
@@ -7662,7 +8546,7 @@
         "wikidata": "Q3338342"
       },
       "id": "person-wd-q3338342",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Neri di Fioravante",
       "name_native": null,
       "name_zh": null,
@@ -7706,7 +8590,7 @@
         "wikidata": "Q3340563"
       },
       "id": "person-wd-q3340563",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Nicolas Marie Potain",
       "name_native": null,
       "name_zh": null,
@@ -7747,7 +8631,7 @@
         "wikidata": "Q336806"
       },
       "id": "person-wd-q336806",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Domenico Fontana",
       "name_native": null,
       "name_zh": "多梅尼科·丰塔纳",
@@ -7789,7 +8673,7 @@
         "wikidata": "Q337876"
       },
       "id": "person-wd-q337876",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Imre Steindl",
       "name_native": null,
       "name_zh": "什泰因泰爾·伊姆雷",
@@ -7829,7 +8713,7 @@
         "wikidata": "Q3383232"
       },
       "id": "person-wd-q3383232",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Pierre-Jules Delespine",
       "name_native": null,
       "name_zh": null,
@@ -7868,7 +8752,7 @@
         "wikidata": "Q3387499"
       },
       "id": "person-wd-q3387499",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Pierre de Chelles",
       "name_native": null,
       "name_zh": "皮埃尔·德·谢勒",
@@ -7908,7 +8792,7 @@
         "wikidata": "Q3438660"
       },
       "id": "person-wd-q3438660",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Roger Aujame",
       "name_native": null,
       "name_zh": null,
@@ -7946,7 +8830,7 @@
         "wikidata": "Q3439949"
       },
       "id": "person-wd-q3439949",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Roland Bechmann",
       "name_native": null,
       "name_zh": null,
@@ -7990,7 +8874,7 @@
         "wikidata": "Q34503"
       },
       "id": "person-wd-q34503",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Mehmed II",
       "name_native": null,
       "name_zh": "穆罕默德二世",
@@ -8032,7 +8916,7 @@
         "wikidata": "Q347699"
       },
       "id": "person-wd-q347699",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Claude Perrault",
       "name_native": null,
       "name_zh": "克洛德·佩羅",
@@ -8070,7 +8954,7 @@
         "wikidata": "Q3499274"
       },
       "id": "person-wd-q3499274",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Isidre Puig Boada",
       "name_native": null,
       "name_zh": null,
@@ -8114,7 +8998,7 @@
         "wikidata": "Q352451"
       },
       "id": "person-wd-q352451",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Ange-Jacques Gabriel",
       "name_native": null,
       "name_zh": "安热-雅克·加布里埃尔",
@@ -8164,7 +9048,7 @@
         "wikidata": "Q354052"
       },
       "id": "person-wd-q354052",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Jean-Baptiste Bethune",
       "name_native": null,
       "name_zh": "让-巴蒂斯特·贝蒂纳",
@@ -8208,7 +9092,7 @@
         "wikidata": "Q3565469"
       },
       "id": "person-wd-q3565469",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Wallace Harrison",
       "name_native": null,
       "name_zh": "华莱士·哈里森",
@@ -8249,7 +9133,7 @@
         "wikidata": "Q3568691"
       },
       "id": "person-wd-q3568691",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "William Henry Barlow",
       "name_native": null,
       "name_zh": null,
@@ -8291,7 +9175,7 @@
         "wikidata": "Q3568911"
       },
       "id": "person-wd-q3568911",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "William Robert Ware",
       "name_native": null,
       "name_zh": "威廉·羅伯特·韋爾",
@@ -8346,7 +9230,7 @@
         "wikidata": "Q357276"
       },
       "id": "person-wd-q357276",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Antonio da Sangallo the Younger",
       "name_native": null,
       "name_zh": "小安东尼奥·达·桑加罗",
@@ -8385,7 +9269,7 @@
         "wikidata": "Q359424"
       },
       "id": "person-wd-q359424",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Luigi Vanvitelli",
       "name_native": null,
       "name_zh": "路易吉·范维德里",
@@ -8423,7 +9307,7 @@
         "wikidata": "Q3610289"
       },
       "id": "person-wd-q3610289",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Alessandro Sanquirico",
       "name_native": null,
       "name_zh": null,
@@ -8462,7 +9346,7 @@
         "wikidata": "Q3610838"
       },
       "id": "person-wd-q3610838",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Gunadharma",
       "name_native": null,
       "name_zh": "古納達摩",
@@ -8502,7 +9386,7 @@
         "wikidata": "Q363184"
       },
       "id": "person-wd-q363184",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Adolf Lohse",
       "name_native": null,
       "name_zh": null,
@@ -8553,7 +9437,7 @@
         "wikidata": "Q364187"
       },
       "id": "person-wd-q364187",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Frederick Law Olmsted",
       "name_native": null,
       "name_zh": "弗里德里克·劳·奥尔姆斯特德",
@@ -8596,7 +9480,7 @@
         "wikidata": "Q364413"
       },
       "id": "person-wd-q364413",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Nicola Pisano",
       "name_native": null,
       "name_zh": "尼可拉·乔凡尼",
@@ -8647,11 +9531,52 @@
         "wikidata": "Q366499"
       },
       "id": "person-wd-q366499",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Orcagna",
       "name_native": null,
       "name_zh": null,
       "name_zh_status": "missing",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [
+        "Ryūe Nishizawa"
+      ],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1966,
+        "latest": 1966,
+        "precision": "day",
+        "value": "1966-02-07"
+      },
+      "claim_ids": [
+        "claim-wd-q369645-name-en",
+        "claim-wd-q369645-name-zh"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q369645"
+      },
+      "id": "person-wd-q369645",
+      "last_verified": "2026-07-27",
+      "name_en": "Ryue Nishizawa",
+      "name_native": null,
+      "name_zh": "西泽立卫",
+      "name_zh_status": "source_label_candidate",
       "region": "unknown",
       "roles": [
         "architect"
@@ -8689,7 +9614,7 @@
         "wikidata": "Q374131"
       },
       "id": "person-wd-q374131",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Jean de Chelles",
       "name_native": null,
       "name_zh": "让·德·谢勒",
@@ -8733,7 +9658,7 @@
         "wikidata": "Q374276"
       },
       "id": "person-wd-q374276",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Adrian Smith",
       "name_native": null,
       "name_zh": "亞德里恩·史密斯",
@@ -8777,7 +9702,7 @@
         "wikidata": "Q3750904"
       },
       "id": "person-wd-q3750904",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Francione",
       "name_native": null,
       "name_zh": null,
@@ -8816,7 +9741,7 @@
         "wikidata": "Q3760513"
       },
       "id": "person-wd-q3760513",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "George Hadfield",
       "name_native": null,
       "name_zh": "喬治·哈德菲爾德",
@@ -8854,7 +9779,7 @@
         "wikidata": "Q377030"
       },
       "id": "person-wd-q377030",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Adrien Fainsilber",
       "name_native": null,
       "name_zh": null,
@@ -8910,7 +9835,7 @@
         "wikidata": "Q380282"
       },
       "id": "person-wd-q380282",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Alexey Shchusev",
       "name_native": null,
       "name_zh": "阿列克谢·休谢夫",
@@ -8952,10 +9877,90 @@
         "wikidata": "Q381724"
       },
       "id": "person-wd-q381724",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Pierre Lescot",
       "name_native": null,
       "name_zh": "皮埃尔·莱斯科",
+      "name_zh_status": "source_label_candidate",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1938,
+        "latest": 1938,
+        "precision": "day",
+        "value": "1938-07-10"
+      },
+      "claim_ids": [
+        "claim-wd-q381827-name-en",
+        "claim-wd-q381827-name-zh"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": 2018,
+        "latest": 2018,
+        "precision": "day",
+        "value": "2018-10-11"
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q381827"
+      },
+      "id": "person-wd-q381827",
+      "last_verified": "2026-07-27",
+      "name_en": "Paul Andreu",
+      "name_native": null,
+      "name_zh": "保罗·安德鲁",
+      "name_zh_status": "source_label_candidate",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [
+        "Jean Prouve"
+      ],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1901,
+        "latest": 1901,
+        "precision": "day",
+        "value": "1901-04-08"
+      },
+      "claim_ids": [
+        "claim-wd-q381924-name-en",
+        "claim-wd-q381924-name-zh"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": 1984,
+        "latest": 1984,
+        "precision": "day",
+        "value": "1984-03-23"
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q381924"
+      },
+      "id": "person-wd-q381924",
+      "last_verified": "2026-07-27",
+      "name_en": "Jean Prouvé",
+      "name_native": null,
+      "name_zh": "让·普鲁韦",
       "name_zh_status": "source_label_candidate",
       "region": "unknown",
       "roles": [
@@ -8992,7 +9997,7 @@
         "wikidata": "Q3827020"
       },
       "id": "person-wd-q3827020",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Lapo Tedesco",
       "name_native": null,
       "name_zh": null,
@@ -9032,7 +10037,7 @@
         "wikidata": "Q3876542"
       },
       "id": "person-wd-q3876542",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Nicolò Barattieri",
       "name_native": null,
       "name_zh": null,
@@ -9074,11 +10079,49 @@
         "wikidata": "Q388362"
       },
       "id": "person-wd-q388362",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Matthias of Arras",
       "name_native": null,
       "name_zh": "阿拉斯的马修",
       "name_zh_status": "source_label_candidate",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1905,
+        "latest": 1905,
+        "precision": "day",
+        "value": "1905-10-17"
+      },
+      "claim_ids": [
+        "claim-wd-q388683-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": 1977,
+        "latest": 1977,
+        "precision": "day",
+        "value": "1977-11-01"
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q388683"
+      },
+      "id": "person-wd-q388683",
+      "last_verified": "2026-07-27",
+      "name_en": "Franco Albini",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
       "region": "unknown",
       "roles": [
         "architect"
@@ -9117,7 +10160,7 @@
         "wikidata": "Q3938437"
       },
       "id": "person-wd-q3938437",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Robert Taylor",
       "name_native": null,
       "name_zh": null,
@@ -9155,7 +10198,7 @@
         "wikidata": "Q395578"
       },
       "id": "person-wd-q395578",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Agostino Barelli",
       "name_native": null,
       "name_zh": null,
@@ -9200,7 +10243,7 @@
         "wikidata": "Q4081313"
       },
       "id": "person-wd-q4081313",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Alexei Beketov",
       "name_native": null,
       "name_zh": null,
@@ -9257,7 +10300,7 @@
         "wikidata": "Q41508"
       },
       "id": "person-wd-q41508",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Ludwig Mies van der Rohe",
       "name_native": null,
       "name_zh": "路德維希·密斯·凡德羅",
@@ -9298,7 +10341,7 @@
         "wikidata": "Q422668"
       },
       "id": "person-wd-q422668",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Carl Roesner",
       "name_native": null,
       "name_zh": null,
@@ -9340,11 +10383,51 @@
         "wikidata": "Q432786"
       },
       "id": "person-wd-q432786",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Jean-Baptiste Rondelet",
       "name_native": null,
       "name_zh": "让-巴蒂斯特·龙德莱",
       "name_zh_status": "source_label_candidate",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [
+        "Amanda Jane Levete"
+      ],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1955,
+        "latest": 1955,
+        "precision": "day",
+        "value": "1955-11-17"
+      },
+      "claim_ids": [
+        "claim-wd-q440786-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q440786"
+      },
+      "id": "person-wd-q440786",
+      "last_verified": "2026-07-27",
+      "name_en": "Amanda Levete",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
       "region": "unknown",
       "roles": [
         "architect"
@@ -9385,7 +10468,7 @@
         "wikidata": "Q44323"
       },
       "id": "person-wd-q44323",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Adolf Loos",
       "name_native": null,
       "name_zh": "阿道夫·路斯",
@@ -9424,7 +10507,7 @@
         "wikidata": "Q445970"
       },
       "id": "person-wd-q445970",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "David Gilly",
       "name_native": null,
       "name_zh": "大卫·基利",
@@ -9467,10 +10550,51 @@
         "wikidata": "Q44911"
       },
       "id": "person-wd-q44911",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Joseph Maria Olbrich",
       "name_native": null,
       "name_zh": "约瑟夫·马里亚·欧尔布里希",
+      "name_zh_status": "source_label_candidate",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [
+        "Steven Myron Holl"
+      ],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1947,
+        "latest": 1947,
+        "precision": "day",
+        "value": "1947-12-09"
+      },
+      "claim_ids": [
+        "claim-wd-q451141-name-en",
+        "claim-wd-q451141-name-zh"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q451141"
+      },
+      "id": "person-wd-q451141",
+      "last_verified": "2026-07-27",
+      "name_en": "Steven Holl",
+      "name_native": null,
+      "name_zh": "史蒂芬·霍爾",
       "name_zh_status": "source_label_candidate",
       "region": "unknown",
       "roles": [
@@ -9520,7 +10644,7 @@
         "wikidata": "Q455143"
       },
       "id": "person-wd-q455143",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Nicodemus Tessin the Younger",
       "name_native": null,
       "name_zh": "年輕的尼哥德慕·提契諾",
@@ -9563,7 +10687,7 @@
         "wikidata": "Q458653"
       },
       "id": "person-wd-q458653",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Giuseppe Terragni",
       "name_native": null,
       "name_zh": "特拉尼",
@@ -9605,7 +10729,7 @@
         "wikidata": "Q464603"
       },
       "id": "person-wd-q464603",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Cass Gilbert",
       "name_native": null,
       "name_zh": "卡斯·吉尔伯特",
@@ -9648,7 +10772,7 @@
         "wikidata": "Q466064"
       },
       "id": "person-wd-q466064",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Béla Lajta",
       "name_native": null,
       "name_zh": null,
@@ -9693,7 +10817,7 @@
         "wikidata": "Q46830"
       },
       "id": "person-wd-q46830",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Robert Hooke",
       "name_native": null,
       "name_zh": "罗伯特·胡克",
@@ -9742,7 +10866,7 @@
         "wikidata": "Q46868"
       },
       "id": "person-wd-q46868",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "I. M. Pei",
       "name_native": null,
       "name_zh": "贝聿铭",
@@ -9782,7 +10906,7 @@
         "wikidata": "Q4706812"
       },
       "id": "person-wd-q4706812",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Alan Hantman",
       "name_native": null,
       "name_zh": null,
@@ -9823,7 +10947,7 @@
         "wikidata": "Q470765"
       },
       "id": "person-wd-q470765",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "James Hoban",
       "name_native": null,
       "name_zh": "詹姆斯·霍本",
@@ -9887,7 +11011,7 @@
         "wikidata": "Q4724"
       },
       "id": "person-wd-q4724",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Le Corbusier",
       "name_native": null,
       "name_zh": "勒·柯布西耶",
@@ -9925,11 +11049,60 @@
         "wikidata": "Q47346294"
       },
       "id": "person-wd-q47346294",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Antoine Debré",
       "name_native": null,
       "name_zh": null,
       "name_zh_status": "missing",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [
+        "Zaha Mohammad Hadid",
+        "Dame Zaha Mohammad Hadid",
+        "Zaha M. Hadid",
+        "Zaha Hadid CBE",
+        "Dame Zaha Hadid"
+      ],
+      "aliases_zh": [
+        "Zaha Hadid",
+        "札哈·哈蒂",
+        "扎哈·哈迪德"
+      ],
+      "birth": {
+        "earliest": 1950,
+        "latest": 1950,
+        "precision": "day",
+        "value": "1950-10-31"
+      },
+      "claim_ids": [
+        "claim-wd-q47780-name-en",
+        "claim-wd-q47780-name-zh"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": 2016,
+        "latest": 2016,
+        "precision": "day",
+        "value": "2016-03-31"
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q47780"
+      },
+      "id": "person-wd-q47780",
+      "last_verified": "2026-07-27",
+      "name_en": "Zaha Hadid",
+      "name_native": null,
+      "name_zh": "薩哈·哈帝",
+      "name_zh_status": "source_label_candidate",
       "region": "unknown",
       "roles": [
         "architect"
@@ -9975,7 +11148,7 @@
         "wikidata": "Q495419"
       },
       "id": "person-wd-q495419",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Andrea di Bonaiuto",
       "name_native": null,
       "name_zh": null,
@@ -10013,7 +11186,7 @@
         "wikidata": "Q501406"
       },
       "id": "person-wd-q501406",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Andreas von Everdingen",
       "name_native": null,
       "name_zh": null,
@@ -10051,11 +11224,53 @@
         "wikidata": "Q5044256"
       },
       "id": "person-wd-q5044256",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Carol Benesch",
       "name_native": null,
       "name_zh": null,
       "name_zh_status": "missing",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [],
+      "aliases_zh": [
+        "保羅·維瑞利奧",
+        "保罗·维希留"
+      ],
+      "birth": {
+        "earliest": 1932,
+        "latest": 1932,
+        "precision": "day",
+        "value": "1932-01-04"
+      },
+      "claim_ids": [
+        "claim-wd-q507014-name-en",
+        "claim-wd-q507014-name-zh"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": 2018,
+        "latest": 2018,
+        "precision": "day",
+        "value": "2018-09-10"
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q507014"
+      },
+      "id": "person-wd-q507014",
+      "last_verified": "2026-07-27",
+      "name_en": "Paul Virilio",
+      "name_native": null,
+      "name_zh": "保罗·维希留",
+      "name_zh_status": "source_label_candidate",
       "region": "unknown",
       "roles": [
         "architect"
@@ -10098,7 +11313,7 @@
         "wikidata": "Q5075445"
       },
       "id": "person-wd-q5075445",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Charles Barry, Jr.",
       "name_native": null,
       "name_zh": "小查爾斯·巴里",
@@ -10136,11 +11351,52 @@
         "wikidata": "Q51438974"
       },
       "id": "person-wd-q51438974",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Zlatko Neumann",
       "name_native": null,
       "name_zh": null,
       "name_zh_status": "missing",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [
+        "Professor Colin Fournier"
+      ],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1944,
+        "latest": 1944,
+        "precision": "year",
+        "value": "1944"
+      },
+      "claim_ids": [
+        "claim-wd-q5145102-name-en",
+        "claim-wd-q5145102-name-zh"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": 2024,
+        "latest": 2024,
+        "precision": "day",
+        "value": "2024-09-04"
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q5145102"
+      },
+      "id": "person-wd-q5145102",
+      "last_verified": "2026-07-27",
+      "name_en": "Colin Fournier",
+      "name_native": null,
+      "name_zh": "科林·富尼尔",
+      "name_zh_status": "source_label_candidate",
       "region": "unknown",
       "roles": [
         "architect"
@@ -10174,7 +11430,7 @@
         "wikidata": "Q51840843"
       },
       "id": "person-wd-q51840843",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "François Napoléon Develle",
       "name_native": null,
       "name_zh": null,
@@ -10212,7 +11468,7 @@
         "wikidata": "Q5236857"
       },
       "id": "person-wd-q5236857",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "David Lynn",
       "name_native": null,
       "name_zh": null,
@@ -10262,7 +11518,7 @@
         "wikidata": "Q525487"
       },
       "id": "person-wd-q525487",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Jean-François Chalgrin",
       "name_native": null,
       "name_zh": "让-弗朗索瓦·沙尔格兰",
@@ -10308,11 +11564,88 @@
         "wikidata": "Q540431"
       },
       "id": "person-wd-q540431",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Pierre Cuypers",
       "name_native": null,
       "name_zh": "皮埃尔·克伊珀斯",
       "name_zh_status": "source_label_candidate",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1959,
+        "latest": 1959,
+        "precision": "year",
+        "value": "1959"
+      },
+      "claim_ids": [
+        "claim-wd-q547004-name-en",
+        "claim-wd-q547004-name-zh"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q547004"
+      },
+      "id": "person-wd-q547004",
+      "last_verified": "2026-07-27",
+      "name_en": "Caroline Bos",
+      "name_native": null,
+      "name_zh": "卡羅琳·博斯",
+      "name_zh_status": "source_label_candidate",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1963,
+        "latest": 1963,
+        "precision": "year",
+        "value": "1963"
+      },
+      "claim_ids": [
+        "claim-wd-q5483055-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q5483055"
+      },
+      "id": "person-wd-q5483055",
+      "last_verified": "2026-07-27",
+      "name_en": "Ellen van Loon",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
       "region": "unknown",
       "roles": [
         "architect"
@@ -10356,7 +11689,7 @@
         "wikidata": "Q550244"
       },
       "id": "person-wd-q550244",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Jacques-Germain Soufflot",
       "name_native": null,
       "name_zh": "雅克-日梅恩·索弗洛",
@@ -10402,7 +11735,7 @@
         "wikidata": "Q552584"
       },
       "id": "person-wd-q552584",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Charles Barry",
       "name_native": null,
       "name_zh": "查尔斯·巴里",
@@ -10442,7 +11775,7 @@
         "wikidata": "Q55385678"
       },
       "id": "person-wd-q55385678",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Carl Schlimp",
       "name_native": null,
       "name_zh": null,
@@ -10481,11 +11814,51 @@
         "wikidata": "Q5540994"
       },
       "id": "person-wd-q5540994",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "George J. Efstathiou",
       "name_native": null,
       "name_zh": "喬治·埃夫斯塔修",
       "name_zh_status": "source_label_candidate",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [
+        "Jan Kaplicky"
+      ],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1937,
+        "latest": 1937,
+        "precision": "day",
+        "value": "1937-04-18"
+      },
+      "claim_ids": [
+        "claim-wd-q555682-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": 2009,
+        "latest": 2009,
+        "precision": "day",
+        "value": "2009-01-14"
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q555682"
+      },
+      "id": "person-wd-q555682",
+      "last_verified": "2026-07-27",
+      "name_en": "Jan Kaplický",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
       "region": "unknown",
       "roles": [
         "architect"
@@ -10521,7 +11894,7 @@
         "wikidata": "Q55687029"
       },
       "id": "person-wd-q55687029",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Melchior Munet",
       "name_native": null,
       "name_zh": null,
@@ -10559,7 +11932,7 @@
         "wikidata": "Q55761504"
       },
       "id": "person-wd-q55761504",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Lorenzo Perti",
       "name_native": null,
       "name_zh": null,
@@ -10620,7 +11993,7 @@
         "wikidata": "Q5585"
       },
       "id": "person-wd-q5585",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Giovanni Giocondo",
       "name_native": null,
       "name_zh": "喬瓦尼·喬康多",
@@ -10684,7 +12057,7 @@
         "wikidata": "Q5592"
       },
       "id": "person-wd-q5592",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Michelangelo",
       "name_native": null,
       "name_zh": "米开朗琪罗",
@@ -10733,7 +12106,7 @@
         "wikidata": "Q5597"
       },
       "id": "person-wd-q5597",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Raphael",
       "name_native": null,
       "name_zh": "拉斐尔·圣齐奥",
@@ -10787,7 +12160,7 @@
         "wikidata": "Q5600"
       },
       "id": "person-wd-q5600",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Mimar Sinan",
       "name_native": null,
       "name_zh": "米馬爾·希南",
@@ -10838,10 +12211,55 @@
         "wikidata": "Q5604"
       },
       "id": "person-wd-q5604",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Frank Lloyd Wright",
       "name_native": null,
       "name_zh": "弗兰克·劳埃德·赖特",
+      "name_zh_status": "source_label_candidate",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [
+        "Ben Van Berkel",
+        "Bernard Franciscus van Berkel",
+        "B.F. van Berkel"
+      ],
+      "aliases_zh": [
+        "本·范·伯克爾"
+      ],
+      "birth": {
+        "earliest": 1957,
+        "latest": 1957,
+        "precision": "day",
+        "value": "1957-01-25"
+      },
+      "claim_ids": [
+        "claim-wd-q565390-name-en",
+        "claim-wd-q565390-name-zh"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q565390"
+      },
+      "id": "person-wd-q565390",
+      "last_verified": "2026-07-27",
+      "name_en": "Ben van Berkel",
+      "name_native": null,
+      "name_zh": "班·范·伯克",
       "name_zh_status": "source_label_candidate",
       "region": "unknown",
       "roles": [
@@ -10881,7 +12299,7 @@
         "wikidata": "Q568839"
       },
       "id": "person-wd-q568839",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Robert de Cotte",
       "name_native": null,
       "name_zh": "罗贝尔·德·科特",
@@ -10919,7 +12337,7 @@
         "wikidata": "Q573740"
       },
       "id": "person-wd-q573740",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Christian Jank",
       "name_native": null,
       "name_zh": null,
@@ -10960,7 +12378,7 @@
         "wikidata": "Q59087"
       },
       "id": "person-wd-q59087",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Hemiunu",
       "name_native": null,
       "name_zh": "赫米乌努",
@@ -11001,7 +12419,7 @@
         "wikidata": "Q59510574"
       },
       "id": "person-wd-q59510574",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "William J Conklin",
       "name_native": null,
       "name_zh": null,
@@ -11045,7 +12463,7 @@
         "wikidata": "Q600701"
       },
       "id": "person-wd-q600701",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "François Blondel",
       "name_native": null,
       "name_zh": null,
@@ -11087,7 +12505,7 @@
         "wikidata": "Q604631"
       },
       "id": "person-wd-q604631",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Antonio Rizzo",
       "name_native": null,
       "name_zh": null,
@@ -11139,7 +12557,7 @@
         "wikidata": "Q61071"
       },
       "id": "person-wd-q61071",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Walter Gropius",
       "name_native": null,
       "name_zh": "瓦尔特·格罗皮乌斯",
@@ -11184,7 +12602,7 @@
         "wikidata": "Q61188"
       },
       "id": "person-wd-q61188",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Nicodemus Tessin the Elder",
       "name_native": null,
       "name_zh": "尼科德姆斯·特辛父子",
@@ -11226,7 +12644,7 @@
         "wikidata": "Q61332"
       },
       "id": "person-wd-q61332",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Peter Parler",
       "name_native": null,
       "name_zh": "彼得·帕尔莱日",
@@ -11265,7 +12683,7 @@
         "wikidata": "Q61342"
       },
       "id": "person-wd-q61342",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Gottfried Semper",
       "name_native": null,
       "name_zh": "戈特弗里德·森佩尔",
@@ -11306,7 +12724,7 @@
         "wikidata": "Q6169041"
       },
       "id": "person-wd-q6169041",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Jean-Charles Danjoy",
       "name_native": null,
       "name_zh": null,
@@ -11358,7 +12776,7 @@
         "wikidata": "Q618237"
       },
       "id": "person-wd-q618237",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Jean-Baptiste Alexandre Le Blond",
       "name_native": null,
       "name_zh": null,
@@ -11398,7 +12816,7 @@
         "wikidata": "Q6243838"
       },
       "id": "person-wd-q6243838",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Abraham Winantz Svansköld",
       "name_native": null,
       "name_zh": null,
@@ -11438,7 +12856,7 @@
         "wikidata": "Q6247385"
       },
       "id": "person-wd-q6247385",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "John McArthur, Jr.",
       "name_native": null,
       "name_zh": null,
@@ -11477,7 +12895,7 @@
         "wikidata": "Q62629"
       },
       "id": "person-wd-q62629",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Adolf Meyer",
       "name_native": null,
       "name_zh": "阿道夫·迈尔",
@@ -11522,10 +12940,51 @@
         "wikidata": "Q62637"
       },
       "id": "person-wd-q62637",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Matthäus Daniel Pöppelmann",
       "name_native": null,
       "name_zh": "马特乌斯•丹尼尔•珀佩尔曼",
+      "name_zh_status": "source_label_candidate",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [
+        "Joshua Prince-Ramus"
+      ],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1969,
+        "latest": 1969,
+        "precision": "day",
+        "value": "1969-08-11"
+      },
+      "claim_ids": [
+        "claim-wd-q6290134-name-en",
+        "claim-wd-q6290134-name-zh"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q6290134"
+      },
+      "id": "person-wd-q6290134",
+      "last_verified": "2026-07-27",
+      "name_en": "Joshua Ramus",
+      "name_native": null,
+      "name_zh": "約書亞·普林斯-雷默斯",
       "name_zh_status": "source_label_candidate",
       "region": "unknown",
       "roles": [
@@ -11566,11 +13025,49 @@
         "wikidata": "Q62973"
       },
       "id": "person-wd-q62973",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Friedrich Gilly",
       "name_native": null,
       "name_zh": "弗里德里希·基利",
       "name_zh_status": "source_label_candidate",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1952,
+        "latest": 1952,
+        "precision": "year",
+        "value": "1952"
+      },
+      "claim_ids": [
+        "claim-wd-q6388488-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q6388488"
+      },
+      "id": "person-wd-q6388488",
+      "last_verified": "2026-07-27",
+      "name_en": "Ken Shuttleworth",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
       "region": "unknown",
       "roles": [
         "architect"
@@ -11604,7 +13101,7 @@
         "wikidata": "Q640949"
       },
       "id": "person-wd-q640949",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Steen Eiler Rasmussen",
       "name_native": null,
       "name_zh": null,
@@ -11643,7 +13140,7 @@
         "wikidata": "Q64648"
       },
       "id": "person-wd-q64648",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Lilly Reich",
       "name_native": null,
       "name_zh": "莉莉·赖希",
@@ -11684,7 +13181,7 @@
         "wikidata": "Q647911"
       },
       "id": "person-wd-q647911",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Giuseppe Piermarini",
       "name_native": null,
       "name_zh": "朱塞佩·皮耶尔马里尼",
@@ -11724,7 +13221,7 @@
         "wikidata": "Q64797517"
       },
       "id": "person-wd-q64797517",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Peter Hall",
       "name_native": null,
       "name_zh": null,
@@ -11762,7 +13259,7 @@
         "wikidata": "Q65524259"
       },
       "id": "person-wd-q65524259",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Isidore Loirette",
       "name_native": null,
       "name_zh": null,
@@ -11800,8 +13297,48 @@
         "wikidata": "Q65560029"
       },
       "id": "person-wd-q65560029",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Jacques Delrue",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [
+        "Hala Warde"
+      ],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1965,
+        "latest": 1965,
+        "precision": "day",
+        "value": "1965-12-01"
+      },
+      "claim_ids": [
+        "claim-wd-q66589991-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q66589991"
+      },
+      "id": "person-wd-q66589991",
+      "last_verified": "2026-07-27",
+      "name_en": "Hala Wardé",
       "name_native": null,
       "name_zh": null,
       "name_zh_status": "missing",
@@ -11841,7 +13378,7 @@
         "wikidata": "Q670136"
       },
       "id": "person-wd-q670136",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "George B. Post",
       "name_native": null,
       "name_zh": "喬治·B·波斯特",
@@ -11891,7 +13428,7 @@
         "wikidata": "Q681007"
       },
       "id": "person-wd-q681007",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "George Gilbert Scott",
       "name_native": null,
       "name_zh": "乔治·吉尔伯特·斯科特",
@@ -11932,7 +13469,7 @@
         "wikidata": "Q68243"
       },
       "id": "person-wd-q68243",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Erwin von Steinbach",
       "name_native": null,
       "name_zh": null,
@@ -11970,7 +13507,7 @@
         "wikidata": "Q69041858"
       },
       "id": "person-wd-q69041858",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Josef Becvar",
       "name_native": null,
       "name_zh": null,
@@ -12008,7 +13545,7 @@
         "wikidata": "Q69207"
       },
       "id": "person-wd-q69207",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Ernst Friedrich Zwirner",
       "name_native": null,
       "name_zh": null,
@@ -12046,7 +13583,7 @@
         "wikidata": "Q696582"
       },
       "id": "person-wd-q696582",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Arnold Wolff",
       "name_native": null,
       "name_zh": null,
@@ -12088,7 +13625,7 @@
         "wikidata": "Q700033"
       },
       "id": "person-wd-q700033",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Friedrich Ludwig Persius",
       "name_native": null,
       "name_zh": "路德维希·佩尔修斯",
@@ -12127,7 +13664,7 @@
         "wikidata": "Q706549"
       },
       "id": "person-wd-q706549",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "William Van Alen",
       "name_native": null,
       "name_zh": "威廉·范·艾倫",
@@ -12169,7 +13706,7 @@
         "wikidata": "Q708333"
       },
       "id": "person-wd-q708333",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Mart Stam",
       "name_native": null,
       "name_zh": "马特·斯塔姆",
@@ -12213,7 +13750,7 @@
         "wikidata": "Q712867"
       },
       "id": "person-wd-q712867",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Hippolyte Le Bas",
       "name_native": null,
       "name_zh": null,
@@ -12251,7 +13788,7 @@
         "wikidata": "Q715086"
       },
       "id": "person-wd-q715086",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Carlo Antonio Carlone",
       "name_native": null,
       "name_zh": null,
@@ -12292,10 +13829,95 @@
         "wikidata": "Q723234"
       },
       "id": "person-wd-q723234",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Henry Hobson Richardson",
       "name_native": null,
       "name_zh": "亨利·霍布森·理查森",
+      "name_zh_status": "source_label_candidate",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [
+        "Enric Miralles-Moya",
+        "Enrique Miralles",
+        "Enric Miralles i Moya",
+        "Enric Miralles Moya"
+      ],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1955,
+        "latest": 1955,
+        "precision": "day",
+        "value": "1955-02-25"
+      },
+      "claim_ids": [
+        "claim-wd-q723669-name-en",
+        "claim-wd-q723669-name-zh"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": 2000,
+        "latest": 2000,
+        "precision": "day",
+        "value": "2000-07-03"
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q723669"
+      },
+      "id": "person-wd-q723669",
+      "last_verified": "2026-07-27",
+      "name_en": "Enric Miralles",
+      "name_native": null,
+      "name_zh": "恩里克·米拉列斯",
+      "name_zh_status": "source_label_candidate",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [
+        "Kuma Kengo"
+      ],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1954,
+        "latest": 1954,
+        "precision": "day",
+        "value": "1954-08-08"
+      },
+      "claim_ids": [
+        "claim-wd-q725462-name-en",
+        "claim-wd-q725462-name-zh"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q725462"
+      },
+      "id": "person-wd-q725462",
+      "last_verified": "2026-07-27",
+      "name_en": "Kengo Kuma",
+      "name_native": null,
+      "name_zh": "隈研吾",
       "name_zh_status": "source_label_candidate",
       "region": "unknown",
       "roles": [
@@ -12342,11 +13964,49 @@
         "wikidata": "Q726082"
       },
       "id": "person-wd-q726082",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Benjamin Henry Latrobe",
       "name_native": null,
       "name_zh": "班傑明·亨利·拉特羅布",
       "name_zh_status": "source_label_candidate",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1963,
+        "latest": 1963,
+        "precision": "day",
+        "value": "1963-06-24"
+      },
+      "claim_ids": [
+        "claim-wd-q727525-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q727525"
+      },
+      "id": "person-wd-q727525",
+      "last_verified": "2026-07-27",
+      "name_en": "Benedetta Tagliabue",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
       "region": "unknown",
       "roles": [
         "architect"
@@ -12398,7 +14058,7 @@
         "wikidata": "Q734108"
       },
       "id": "person-wd-q734108",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Gaudenzio Ferrari",
       "name_native": null,
       "name_zh": "高登齊奧·費拉里",
@@ -12447,7 +14107,7 @@
         "wikidata": "Q736090"
       },
       "id": "person-wd-q736090",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Pirro Ligorio",
       "name_native": null,
       "name_zh": "皮羅·利高里奧",
@@ -12488,7 +14148,7 @@
         "wikidata": "Q7412384"
       },
       "id": "person-wd-q7412384",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Samuel Pepys Cockerell",
       "name_native": null,
       "name_zh": null,
@@ -12531,7 +14191,7 @@
         "wikidata": "Q745903"
       },
       "id": "person-wd-q745903",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Raymond Hood",
       "name_native": null,
       "name_zh": "雷蒙德·胡德",
@@ -12569,7 +14229,7 @@
         "wikidata": "Q7520449"
       },
       "id": "person-wd-q7520449",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Simone da Orsenigo",
       "name_native": null,
       "name_zh": null,
@@ -12610,7 +14270,7 @@
         "wikidata": "Q75583053"
       },
       "id": "person-wd-q75583053",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Thomas Walter Cane",
       "name_native": null,
       "name_zh": null,
@@ -12648,7 +14308,7 @@
         "wikidata": "Q7610635"
       },
       "id": "person-wd-q7610635",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Stephen T. Ayers",
       "name_native": null,
       "name_zh": null,
@@ -12691,7 +14351,7 @@
         "wikidata": "Q763522"
       },
       "id": "person-wd-q763522",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Diotisalvi",
       "name_native": null,
       "name_zh": "迪奥提撒威",
@@ -12730,7 +14390,7 @@
         "wikidata": "Q76726"
       },
       "id": "person-wd-q76726",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Peter Behrens",
       "name_native": null,
       "name_zh": "彼得·贝伦斯",
@@ -12778,7 +14438,7 @@
         "wikidata": "Q767288"
       },
       "id": "person-wd-q767288",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Auguste de Montferrand",
       "name_native": null,
       "name_zh": "奥古斯特·德·蒙费朗",
@@ -12818,7 +14478,7 @@
         "wikidata": "Q77138"
       },
       "id": "person-wd-q77138",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Georg von Dollmann",
       "name_native": null,
       "name_zh": null,
@@ -12862,7 +14522,7 @@
         "wikidata": "Q77237"
       },
       "id": "person-wd-q77237",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "John Augustus Roebling",
       "name_native": null,
       "name_zh": "約翰·奧古斯塔斯·羅布林",
@@ -12904,7 +14564,7 @@
         "wikidata": "Q77357"
       },
       "id": "person-wd-q77357",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Paul Wallot",
       "name_native": null,
       "name_zh": "保罗·瓦洛特",
@@ -12945,7 +14605,7 @@
         "wikidata": "Q778243"
       },
       "id": "person-wd-q778243",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Stéphen Sauvestre",
       "name_native": null,
       "name_zh": "斯蒂芬·索韦斯特",
@@ -13013,7 +14673,7 @@
         "wikidata": "Q7793"
       },
       "id": "person-wd-q7793",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Donato Bramante",
       "name_native": null,
       "name_zh": "多纳托·伯拉孟特",
@@ -13070,7 +14730,7 @@
         "wikidata": "Q7814"
       },
       "id": "person-wd-q7814",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Giotto",
       "name_native": null,
       "name_zh": "喬托·迪·邦多內",
@@ -13111,7 +14771,7 @@
         "wikidata": "Q7848367"
       },
       "id": "person-wd-q7848367",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Truus Schröder-Schräder",
       "name_native": null,
       "name_zh": "特鲁斯·施勒德-施雷德",
@@ -13149,7 +14809,7 @@
         "wikidata": "Q78705"
       },
       "id": "person-wd-q78705",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Kaspar Kraemer",
       "name_native": null,
       "name_zh": null,
@@ -13201,7 +14861,7 @@
         "wikidata": "Q78775"
       },
       "id": "person-wd-q78775",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Nicolò Pacassi",
       "name_native": null,
       "name_zh": "尼科洛·帕卡西",
@@ -13246,7 +14906,7 @@
         "wikidata": "Q78792"
       },
       "id": "person-wd-q78792",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Heinrich von Ferstel",
       "name_native": null,
       "name_zh": null,
@@ -13294,7 +14954,7 @@
         "wikidata": "Q78968"
       },
       "id": "person-wd-q78968",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "August Sicard von Sicardsburg",
       "name_native": null,
       "name_zh": "奧古斯特·西卡德·馮·西卡德斯堡",
@@ -13337,7 +14997,7 @@
         "wikidata": "Q78979"
       },
       "id": "person-wd-q78979",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Eduard van der Nüll",
       "name_native": null,
       "name_zh": "愛德華·范德努爾",
@@ -13378,7 +15038,7 @@
         "wikidata": "Q79251235"
       },
       "id": "person-wd-q79251235",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Brett Blanton",
       "name_native": null,
       "name_zh": null,
@@ -13418,11 +15078,50 @@
         "wikidata": "Q8020916"
       },
       "id": "person-wd-q8020916",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "William the Englishman",
       "name_native": null,
       "name_zh": null,
       "name_zh_status": "missing",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1975,
+        "latest": 1975,
+        "precision": "year",
+        "value": "1975"
+      },
+      "claim_ids": [
+        "claim-wd-q8048959-name-en",
+        "claim-wd-q8048959-name-zh"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q8048959"
+      },
+      "id": "person-wd-q8048959",
+      "last_verified": "2026-07-27",
+      "name_en": "Ma Yansong",
+      "name_native": null,
+      "name_zh": "马岩松",
+      "name_zh_status": "source_label_candidate",
       "region": "unknown",
       "roles": [
         "architect"
@@ -13465,7 +15164,7 @@
         "wikidata": "Q8053"
       },
       "id": "person-wd-q8053",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Jules Hardouin-Mansart",
       "name_native": null,
       "name_zh": "朱尔·阿杜安-芒萨尔",
@@ -13507,7 +15206,7 @@
         "wikidata": "Q8078495"
       },
       "id": "person-wd-q8078495",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Étienne Sulpice Hallet",
       "name_native": null,
       "name_zh": null,
@@ -13545,7 +15244,7 @@
         "wikidata": "Q8192112"
       },
       "id": "person-wd-q8192112",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Ahmad Ben Baso",
       "name_native": null,
       "name_zh": null,
@@ -13583,7 +15282,7 @@
         "wikidata": "Q825230"
       },
       "id": "person-wd-q825230",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Bernhard Hertel",
       "name_native": null,
       "name_zh": null,
@@ -13625,7 +15324,7 @@
         "wikidata": "Q827997"
       },
       "id": "person-wd-q827997",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Berthold Lubetkin",
       "name_native": null,
       "name_zh": "貝特洛·萊伯金",
@@ -13665,7 +15364,7 @@
         "wikidata": "Q834068"
       },
       "id": "person-wd-q834068",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Ioannis Despotopoulos",
       "name_native": null,
       "name_zh": null,
@@ -13708,7 +15407,7 @@
         "wikidata": "Q834854"
       },
       "id": "person-wd-q834854",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "William F. Baker",
       "name_native": null,
       "name_zh": "威廉·貝克",
@@ -13750,7 +15449,7 @@
         "wikidata": "Q84305"
       },
       "id": "person-wd-q84305",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Johann Bernhard Fischer von Erlach",
       "name_native": null,
       "name_zh": "约翰·伯恩哈德·菲舍尔·冯·埃尔拉赫",
@@ -13800,7 +15499,7 @@
         "wikidata": "Q84541"
       },
       "id": "person-wd-q84541",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Karl von Hasenauer",
       "name_native": null,
       "name_zh": null,
@@ -13843,10 +15542,52 @@
         "wikidata": "Q84588"
       },
       "id": "person-wd-q84588",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Joseph Emanuel Fischer von Erlach",
       "name_native": null,
       "name_zh": "約瑟夫·伊曼紐爾·菲舍爾·馮·埃拉赫",
+      "name_zh_status": "source_label_candidate",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [
+        "Urban",
+        "Josef Urban"
+      ],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1872,
+        "latest": 1872,
+        "precision": "day",
+        "value": "1872-05-26"
+      },
+      "claim_ids": [
+        "claim-wd-q85017-name-en",
+        "claim-wd-q85017-name-zh"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": 1933,
+        "latest": 1933,
+        "precision": "day",
+        "value": "1933-07-10"
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q85017"
+      },
+      "id": "person-wd-q85017",
+      "last_verified": "2026-07-27",
+      "name_en": "Joseph Urban",
+      "name_native": null,
+      "name_zh": "约瑟夫·厄本",
       "name_zh_status": "source_label_candidate",
       "region": "unknown",
       "roles": [
@@ -13882,7 +15623,7 @@
         "wikidata": "Q85557"
       },
       "id": "person-wd-q85557",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Paul Engelmann",
       "name_native": null,
       "name_zh": "保罗·伊格尔曼",
@@ -13920,7 +15661,7 @@
         "wikidata": "Q86616"
       },
       "id": "person-wd-q86616",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Karl Ehn",
       "name_native": null,
       "name_zh": null,
@@ -13964,7 +15705,7 @@
         "wikidata": "Q892084"
       },
       "id": "person-wd-q892084",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Bonanno Pisano",
       "name_native": null,
       "name_zh": null,
@@ -14002,7 +15743,7 @@
         "wikidata": "Q90052"
       },
       "id": "person-wd-q90052",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Adolf Hoch",
       "name_native": null,
       "name_zh": null,
@@ -14042,7 +15783,7 @@
         "wikidata": "Q9011849"
       },
       "id": "person-wd-q9011849",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Joan Bergós i Massó",
       "name_native": null,
       "name_zh": null,
@@ -14083,7 +15824,7 @@
         "wikidata": "Q91338534"
       },
       "id": "person-wd-q91338534",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Juan de Ochoa",
       "name_native": null,
       "name_zh": null,
@@ -14131,7 +15872,7 @@
         "wikidata": "Q9391"
       },
       "id": "person-wd-q9391",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Ludwig Wittgenstein",
       "name_native": null,
       "name_zh": "路德维希·维特根斯坦",
@@ -14169,7 +15910,7 @@
         "wikidata": "Q940229"
       },
       "id": "person-wd-q940229",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Giuseppe Mengoni",
       "name_native": null,
       "name_zh": null,
@@ -14211,7 +15952,7 @@
         "wikidata": "Q940298"
       },
       "id": "person-wd-q940298",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Richard Morris Hunt",
       "name_native": null,
       "name_zh": "理查德·莫里斯·亨特",
@@ -14249,7 +15990,7 @@
         "wikidata": "Q944344"
       },
       "id": "person-wd-q944344",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Ragnar Östberg",
       "name_native": null,
       "name_zh": null,
@@ -14287,7 +16028,7 @@
         "wikidata": "Q94497995"
       },
       "id": "person-wd-q94497995",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Philippe Mornet",
       "name_native": null,
       "name_zh": null,
@@ -14325,7 +16066,7 @@
         "wikidata": "Q94944288"
       },
       "id": "person-wd-q94944288",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Fritz Zügner",
       "name_native": null,
       "name_zh": null,
@@ -14363,7 +16104,7 @@
         "wikidata": "Q95198"
       },
       "id": "person-wd-q95198",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Master Gerhard",
       "name_native": null,
       "name_zh": null,
@@ -14402,7 +16143,7 @@
         "wikidata": "Q956665"
       },
       "id": "person-wd-q956665",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Robert Mills",
       "name_native": null,
       "name_zh": "羅伯特·米爾斯",
@@ -14443,7 +16184,7 @@
         "wikidata": "Q95791770"
       },
       "id": "person-wd-q95791770",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Matthäus Jiszda II.",
       "name_native": null,
       "name_zh": null,
@@ -14498,7 +16239,7 @@
         "wikidata": "Q958293"
       },
       "id": "person-wd-q958293",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Gilles-Marie Oppenord",
       "name_native": null,
       "name_zh": null,
@@ -14536,7 +16277,7 @@
         "wikidata": "Q95900021"
       },
       "id": "person-wd-q95900021",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Walter Pind",
       "name_native": null,
       "name_zh": null,
@@ -14574,7 +16315,7 @@
         "wikidata": "Q95950894"
       },
       "id": "person-wd-q95950894",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Guglielmo",
       "name_native": null,
       "name_zh": null,
@@ -14614,7 +16355,7 @@
         "wikidata": "Q96285535"
       },
       "id": "person-wd-q96285535",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Joseph Paul Collart",
       "name_native": null,
       "name_zh": null,
@@ -14654,7 +16395,7 @@
         "wikidata": "Q96793"
       },
       "id": "person-wd-q96793",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Oscar Mothes",
       "name_native": null,
       "name_zh": null,
@@ -14699,7 +16440,7 @@
         "wikidata": "Q969714"
       },
       "id": "person-wd-q969714",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Charles Percier Bassant",
       "name_native": null,
       "name_zh": "夏尔·佩西耶",
@@ -14737,7 +16478,7 @@
         "wikidata": "Q97571484"
       },
       "id": "person-wd-q97571484",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Tommaso Pisano",
       "name_native": null,
       "name_zh": null,
@@ -14775,7 +16516,7 @@
         "wikidata": "Q98089"
       },
       "id": "person-wd-q98089",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Barbara Schock-Werner",
       "name_native": null,
       "name_zh": null,
@@ -14815,7 +16556,7 @@
         "wikidata": "Q982003"
       },
       "id": "person-wd-q982003",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Francesco de Sanctis",
       "name_native": null,
       "name_zh": null,
@@ -14870,7 +16611,7 @@
         "wikidata": "Q983719"
       },
       "id": "person-wd-q983719",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Robert Smirke",
       "name_native": null,
       "name_zh": "罗伯特·斯默克",
@@ -14910,7 +16651,7 @@
         "wikidata": "Q99324"
       },
       "id": "person-wd-q99324",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Paul Baumgarten",
       "name_native": null,
       "name_zh": null,

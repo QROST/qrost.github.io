@@ -14,7 +14,7 @@
       },
       "from_id": "person-wd-q117937",
       "id": "relation-wd-student-recorded-q117937-q4724",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "rejection_reasons": [
         "Requires human classification and stronger relationship evidence."
       ],
@@ -36,7 +36,7 @@
       },
       "from_id": "person-wd-q122328",
       "id": "relation-wd-student-recorded-q122328-q123150",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "rejection_reasons": [
         "Requires human classification and stronger relationship evidence."
       ],
@@ -58,12 +58,34 @@
       },
       "from_id": "person-wd-q122328",
       "id": "relation-wd-student-recorded-q122328-q2343132",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "rejection_reasons": [
         "Requires human classification and stronger relationship evidence."
       ],
       "relation_type": "student_of_recorded",
       "to_id": "person-wd-q2343132",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-wd-student-recorded-q1394730-q190148",
+      "confidence": 0.45,
+      "context": {
+        "date_end": null,
+        "date_start": null,
+        "institution_id": null,
+        "note_en": "Raw Wikidata P1066/P802 review edge; it does not by itself establish teacher, mentor, or apprenticeship.",
+        "note_zh": "Wikidata P1066/P802 原始待审边；本身不能证明教师、导师或学徒关系。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q1394730",
+      "id": "relation-wd-student-recorded-q1394730-q190148",
+      "last_verified": "2026-07-27",
+      "rejection_reasons": [
+        "Requires human classification and stronger relationship evidence."
+      ],
+      "relation_type": "student_of_recorded",
+      "to_id": "person-wd-q190148",
       "verification_status": "candidate"
     },
     {
@@ -80,7 +102,7 @@
       },
       "from_id": "person-wd-q151759",
       "id": "relation-wd-student-recorded-q151759-q363184",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "rejection_reasons": [
         "Requires human classification and stronger relationship evidence."
       ],
@@ -102,7 +124,7 @@
       },
       "from_id": "person-wd-q151759",
       "id": "relation-wd-student-recorded-q151759-q69207",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "rejection_reasons": [
         "Requires human classification and stronger relationship evidence."
       ],
@@ -124,7 +146,7 @@
       },
       "from_id": "person-wd-q151759",
       "id": "relation-wd-student-recorded-q151759-q700033",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "rejection_reasons": [
         "Requires human classification and stronger relationship evidence."
       ],
@@ -146,7 +168,7 @@
       },
       "from_id": "person-wd-q170373",
       "id": "relation-wd-student-recorded-q170373-q46830",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "rejection_reasons": [
         "Requires human classification and stronger relationship evidence."
       ],
@@ -168,7 +190,7 @@
       },
       "from_id": "person-wd-q174330",
       "id": "relation-wd-student-recorded-q174330-q2846320",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "rejection_reasons": [
         "Requires human classification and stronger relationship evidence."
       ],
@@ -190,7 +212,7 @@
       },
       "from_id": "person-wd-q174330",
       "id": "relation-wd-student-recorded-q174330-q309736",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "rejection_reasons": [
         "Requires human classification and stronger relationship evidence."
       ],
@@ -212,7 +234,7 @@
       },
       "from_id": "person-wd-q177213",
       "id": "relation-wd-student-recorded-q177213-q357276",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "rejection_reasons": [
         "Requires human classification and stronger relationship evidence."
       ],
@@ -234,7 +256,7 @@
       },
       "from_id": "person-wd-q177692",
       "id": "relation-wd-student-recorded-q177692-q309733",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "rejection_reasons": [
         "Requires human classification and stronger relationship evidence."
       ],
@@ -256,12 +278,34 @@
       },
       "from_id": "person-wd-q1986231",
       "id": "relation-wd-student-recorded-q1986231-q359424",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "rejection_reasons": [
         "Requires human classification and stronger relationship evidence."
       ],
       "relation_type": "student_of_recorded",
       "to_id": "person-wd-q359424",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-wd-student-recorded-q214317-q66589991",
+      "confidence": 0.45,
+      "context": {
+        "date_end": null,
+        "date_start": null,
+        "institution_id": null,
+        "note_en": "Raw Wikidata P1066/P802 review edge; it does not by itself establish teacher, mentor, or apprenticeship.",
+        "note_zh": "Wikidata P1066/P802 原始待审边；本身不能证明教师、导师或学徒关系。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q214317",
+      "id": "relation-wd-student-recorded-q214317-q66589991",
+      "last_verified": "2026-07-27",
+      "rejection_reasons": [
+        "Requires human classification and stronger relationship evidence."
+      ],
+      "relation_type": "student_of_recorded",
+      "to_id": "person-wd-q66589991",
       "verification_status": "candidate"
     },
     {
@@ -278,7 +322,7 @@
       },
       "from_id": "person-wd-q2253309",
       "id": "relation-wd-student-recorded-q2253309-q1986231",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "rejection_reasons": [
         "Requires human classification and stronger relationship evidence."
       ],
@@ -300,7 +344,7 @@
       },
       "from_id": "person-wd-q2356668",
       "id": "relation-wd-student-recorded-q2356668-q525487",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "rejection_reasons": [
         "Requires human classification and stronger relationship evidence."
       ],
@@ -322,7 +366,7 @@
       },
       "from_id": "person-wd-q243240",
       "id": "relation-wd-student-recorded-q243240-q5604",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "rejection_reasons": [
         "Requires human classification and stronger relationship evidence."
       ],
@@ -344,7 +388,7 @@
       },
       "from_id": "person-wd-q25328",
       "id": "relation-wd-student-recorded-q25328-q1150065",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "rejection_reasons": [
         "Requires human classification and stronger relationship evidence."
       ],
@@ -366,7 +410,7 @@
       },
       "from_id": "person-wd-q25328",
       "id": "relation-wd-student-recorded-q25328-q3051129",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "rejection_reasons": [
         "Requires human classification and stronger relationship evidence."
       ],
@@ -388,7 +432,7 @@
       },
       "from_id": "person-wd-q25328",
       "id": "relation-wd-student-recorded-q25328-q3499274",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "rejection_reasons": [
         "Requires human classification and stronger relationship evidence."
       ],
@@ -410,7 +454,7 @@
       },
       "from_id": "person-wd-q25328",
       "id": "relation-wd-student-recorded-q25328-q9011849",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "rejection_reasons": [
         "Requires human classification and stronger relationship evidence."
       ],
@@ -432,7 +476,7 @@
       },
       "from_id": "person-wd-q273849",
       "id": "relation-wd-student-recorded-q273849-q618237",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "rejection_reasons": [
         "Requires human classification and stronger relationship evidence."
       ],
@@ -454,7 +498,7 @@
       },
       "from_id": "person-wd-q289220",
       "id": "relation-wd-student-recorded-q289220-q525487",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "rejection_reasons": [
         "Requires human classification and stronger relationship evidence."
       ],
@@ -476,12 +520,34 @@
       },
       "from_id": "person-wd-q297565",
       "id": "relation-wd-student-recorded-q297565-q175566",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "rejection_reasons": [
         "Requires human classification and stronger relationship evidence."
       ],
       "relation_type": "student_of_recorded",
       "to_id": "person-wd-q175566",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-wd-student-recorded-q2977923-q214317",
+      "confidence": 0.45,
+      "context": {
+        "date_end": null,
+        "date_start": null,
+        "institution_id": null,
+        "note_en": "Raw Wikidata P1066/P802 review edge; it does not by itself establish teacher, mentor, or apprenticeship.",
+        "note_zh": "Wikidata P1066/P802 原始待审边；本身不能证明教师、导师或学徒关系。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q2977923",
+      "id": "relation-wd-student-recorded-q2977923-q214317",
+      "last_verified": "2026-07-27",
+      "rejection_reasons": [
+        "Requires human classification and stronger relationship evidence."
+      ],
+      "relation_type": "student_of_recorded",
+      "to_id": "person-wd-q214317",
       "verification_status": "candidate"
     },
     {
@@ -498,7 +564,7 @@
       },
       "from_id": "person-wd-q3059718",
       "id": "relation-wd-student-recorded-q3059718-q106300367",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "rejection_reasons": [
         "Requires human classification and stronger relationship evidence."
       ],
@@ -520,7 +586,7 @@
       },
       "from_id": "person-wd-q3059718",
       "id": "relation-wd-student-recorded-q3059718-q112978754",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "rejection_reasons": [
         "Requires human classification and stronger relationship evidence."
       ],
@@ -542,7 +608,7 @@
       },
       "from_id": "person-wd-q3059718",
       "id": "relation-wd-student-recorded-q3059718-q115662111",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "rejection_reasons": [
         "Requires human classification and stronger relationship evidence."
       ],
@@ -564,7 +630,7 @@
       },
       "from_id": "person-wd-q3059718",
       "id": "relation-wd-student-recorded-q3059718-q125243237",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "rejection_reasons": [
         "Requires human classification and stronger relationship evidence."
       ],
@@ -586,7 +652,7 @@
       },
       "from_id": "person-wd-q3059718",
       "id": "relation-wd-student-recorded-q3059718-q13103878",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "rejection_reasons": [
         "Requires human classification and stronger relationship evidence."
       ],
@@ -608,7 +674,7 @@
       },
       "from_id": "person-wd-q3059718",
       "id": "relation-wd-student-recorded-q3059718-q131550216",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "rejection_reasons": [
         "Requires human classification and stronger relationship evidence."
       ],
@@ -630,7 +696,7 @@
       },
       "from_id": "person-wd-q3059718",
       "id": "relation-wd-student-recorded-q3059718-q2093755",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "rejection_reasons": [
         "Requires human classification and stronger relationship evidence."
       ],
@@ -652,7 +718,7 @@
       },
       "from_id": "person-wd-q3059718",
       "id": "relation-wd-student-recorded-q3059718-q26268272",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "rejection_reasons": [
         "Requires human classification and stronger relationship evidence."
       ],
@@ -674,12 +740,34 @@
       },
       "from_id": "person-wd-q3059718",
       "id": "relation-wd-student-recorded-q3059718-q30243458",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "rejection_reasons": [
         "Requires human classification and stronger relationship evidence."
       ],
       "relation_type": "student_of_recorded",
       "to_id": "person-wd-q30243458",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-wd-student-recorded-q3059718-q312838",
+      "confidence": 0.45,
+      "context": {
+        "date_end": null,
+        "date_start": null,
+        "institution_id": null,
+        "note_en": "Raw Wikidata P1066/P802 review edge; it does not by itself establish teacher, mentor, or apprenticeship.",
+        "note_zh": "Wikidata P1066/P802 原始待审边；本身不能证明教师、导师或学徒关系。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q3059718",
+      "id": "relation-wd-student-recorded-q3059718-q312838",
+      "last_verified": "2026-07-27",
+      "rejection_reasons": [
+        "Requires human classification and stronger relationship evidence."
+      ],
+      "relation_type": "student_of_recorded",
+      "to_id": "person-wd-q312838",
       "verification_status": "candidate"
     },
     {
@@ -696,7 +784,7 @@
       },
       "from_id": "person-wd-q3059718",
       "id": "relation-wd-student-recorded-q3059718-q3165689",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "rejection_reasons": [
         "Requires human classification and stronger relationship evidence."
       ],
@@ -718,7 +806,7 @@
       },
       "from_id": "person-wd-q3059718",
       "id": "relation-wd-student-recorded-q3059718-q3263481",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "rejection_reasons": [
         "Requires human classification and stronger relationship evidence."
       ],
@@ -740,7 +828,7 @@
       },
       "from_id": "person-wd-q3059718",
       "id": "relation-wd-student-recorded-q3059718-q327258",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "rejection_reasons": [
         "Requires human classification and stronger relationship evidence."
       ],
@@ -762,7 +850,7 @@
       },
       "from_id": "person-wd-q3059718",
       "id": "relation-wd-student-recorded-q3059718-q33106506",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "rejection_reasons": [
         "Requires human classification and stronger relationship evidence."
       ],
@@ -784,7 +872,7 @@
       },
       "from_id": "person-wd-q3059718",
       "id": "relation-wd-student-recorded-q3059718-q3439949",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "rejection_reasons": [
         "Requires human classification and stronger relationship evidence."
       ],
@@ -806,7 +894,7 @@
       },
       "from_id": "person-wd-q3059718",
       "id": "relation-wd-student-recorded-q3059718-q377030",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "rejection_reasons": [
         "Requires human classification and stronger relationship evidence."
       ],
@@ -828,7 +916,7 @@
       },
       "from_id": "person-wd-q3059718",
       "id": "relation-wd-student-recorded-q3059718-q47346294",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "rejection_reasons": [
         "Requires human classification and stronger relationship evidence."
       ],
@@ -850,7 +938,7 @@
       },
       "from_id": "person-wd-q3059718",
       "id": "relation-wd-student-recorded-q3059718-q65560029",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "rejection_reasons": [
         "Requires human classification and stronger relationship evidence."
       ],
@@ -872,7 +960,7 @@
       },
       "from_id": "person-wd-q3059718",
       "id": "relation-wd-student-recorded-q3059718-q94497995",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "rejection_reasons": [
         "Requires human classification and stronger relationship evidence."
       ],
@@ -894,7 +982,7 @@
       },
       "from_id": "person-wd-q3090458",
       "id": "relation-wd-student-recorded-q3090458-q8053",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "rejection_reasons": [
         "Requires human classification and stronger relationship evidence."
       ],
@@ -916,7 +1004,7 @@
       },
       "from_id": "person-wd-q309733",
       "id": "relation-wd-student-recorded-q309733-q316297",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "rejection_reasons": [
         "Requires human classification and stronger relationship evidence."
       ],
@@ -938,7 +1026,7 @@
       },
       "from_id": "person-wd-q310530",
       "id": "relation-wd-student-recorded-q310530-q3014096",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "rejection_reasons": [
         "Requires human classification and stronger relationship evidence."
       ],
@@ -960,7 +1048,7 @@
       },
       "from_id": "person-wd-q311031",
       "id": "relation-wd-student-recorded-q311031-q97571484",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "rejection_reasons": [
         "Requires human classification and stronger relationship evidence."
       ],
@@ -982,7 +1070,7 @@
       },
       "from_id": "person-wd-q312365",
       "id": "relation-wd-student-recorded-q312365-q2361926",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "rejection_reasons": [
         "Requires human classification and stronger relationship evidence."
       ],
@@ -1004,7 +1092,7 @@
       },
       "from_id": "person-wd-q312365",
       "id": "relation-wd-student-recorded-q312365-q357276",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "rejection_reasons": [
         "Requires human classification and stronger relationship evidence."
       ],
@@ -1026,7 +1114,7 @@
       },
       "from_id": "person-wd-q313288",
       "id": "relation-wd-student-recorded-q313288-q354052",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "rejection_reasons": [
         "Requires human classification and stronger relationship evidence."
       ],
@@ -1048,7 +1136,7 @@
       },
       "from_id": "person-wd-q313556",
       "id": "relation-wd-student-recorded-q313556-q3184714",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "rejection_reasons": [
         "Requires human classification and stronger relationship evidence."
       ],
@@ -1070,7 +1158,7 @@
       },
       "from_id": "person-wd-q313701",
       "id": "relation-wd-student-recorded-q313701-q8053",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "rejection_reasons": [
         "Requires human classification and stronger relationship evidence."
       ],
@@ -1092,7 +1180,7 @@
       },
       "from_id": "person-wd-q3168208",
       "id": "relation-wd-student-recorded-q3168208-q10285676",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "rejection_reasons": [
         "Requires human classification and stronger relationship evidence."
       ],
@@ -1114,7 +1202,7 @@
       },
       "from_id": "person-wd-q3168208",
       "id": "relation-wd-student-recorded-q3168208-q116246344",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "rejection_reasons": [
         "Requires human classification and stronger relationship evidence."
       ],
@@ -1136,7 +1224,7 @@
       },
       "from_id": "person-wd-q3168208",
       "id": "relation-wd-student-recorded-q3168208-q124538",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "rejection_reasons": [
         "Requires human classification and stronger relationship evidence."
       ],
@@ -1158,7 +1246,7 @@
       },
       "from_id": "person-wd-q3168208",
       "id": "relation-wd-student-recorded-q3168208-q18596148",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "rejection_reasons": [
         "Requires human classification and stronger relationship evidence."
       ],
@@ -1180,7 +1268,7 @@
       },
       "from_id": "person-wd-q3168208",
       "id": "relation-wd-student-recorded-q3168208-q21012937",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "rejection_reasons": [
         "Requires human classification and stronger relationship evidence."
       ],
@@ -1202,7 +1290,7 @@
       },
       "from_id": "person-wd-q3168208",
       "id": "relation-wd-student-recorded-q3168208-q26202646",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "rejection_reasons": [
         "Requires human classification and stronger relationship evidence."
       ],
@@ -1224,7 +1312,7 @@
       },
       "from_id": "person-wd-q3168208",
       "id": "relation-wd-student-recorded-q3168208-q282642",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "rejection_reasons": [
         "Requires human classification and stronger relationship evidence."
       ],
@@ -1246,7 +1334,7 @@
       },
       "from_id": "person-wd-q3168208",
       "id": "relation-wd-student-recorded-q3168208-q2834614",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "rejection_reasons": [
         "Requires human classification and stronger relationship evidence."
       ],
@@ -1268,7 +1356,7 @@
       },
       "from_id": "person-wd-q3168208",
       "id": "relation-wd-student-recorded-q3168208-q3158020",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "rejection_reasons": [
         "Requires human classification and stronger relationship evidence."
       ],
@@ -1290,7 +1378,7 @@
       },
       "from_id": "person-wd-q3168208",
       "id": "relation-wd-student-recorded-q3168208-q323877",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "rejection_reasons": [
         "Requires human classification and stronger relationship evidence."
       ],
@@ -1312,7 +1400,7 @@
       },
       "from_id": "person-wd-q3168208",
       "id": "relation-wd-student-recorded-q3168208-q51840843",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "rejection_reasons": [
         "Requires human classification and stronger relationship evidence."
       ],
@@ -1334,7 +1422,7 @@
       },
       "from_id": "person-wd-q3168208",
       "id": "relation-wd-student-recorded-q3168208-q6169041",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "rejection_reasons": [
         "Requires human classification and stronger relationship evidence."
       ],
@@ -1356,7 +1444,7 @@
       },
       "from_id": "person-wd-q3168208",
       "id": "relation-wd-student-recorded-q3168208-q65524259",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "rejection_reasons": [
         "Requires human classification and stronger relationship evidence."
       ],
@@ -1378,7 +1466,7 @@
       },
       "from_id": "person-wd-q3168208",
       "id": "relation-wd-student-recorded-q3168208-q96285535",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "rejection_reasons": [
         "Requires human classification and stronger relationship evidence."
       ],
@@ -1400,7 +1488,7 @@
       },
       "from_id": "person-wd-q323877",
       "id": "relation-wd-student-recorded-q323877-q940298",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "rejection_reasons": [
         "Requires human classification and stronger relationship evidence."
       ],
@@ -1422,7 +1510,7 @@
       },
       "from_id": "person-wd-q3260263",
       "id": "relation-wd-student-recorded-q3260263-q525487",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "rejection_reasons": [
         "Requires human classification and stronger relationship evidence."
       ],
@@ -1444,7 +1532,7 @@
       },
       "from_id": "person-wd-q330997",
       "id": "relation-wd-student-recorded-q330997-q78968",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "rejection_reasons": [
         "Requires human classification and stronger relationship evidence."
       ],
@@ -1466,7 +1554,7 @@
       },
       "from_id": "person-wd-q330997",
       "id": "relation-wd-student-recorded-q330997-q78979",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "rejection_reasons": [
         "Requires human classification and stronger relationship evidence."
       ],
@@ -1488,12 +1576,34 @@
       },
       "from_id": "person-wd-q332189",
       "id": "relation-wd-student-recorded-q332189-q3168208",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "rejection_reasons": [
         "Requires human classification and stronger relationship evidence."
       ],
       "relation_type": "student_of_recorded",
       "to_id": "person-wd-q3168208",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-wd-student-recorded-q333585-q253350",
+      "confidence": 0.45,
+      "context": {
+        "date_end": null,
+        "date_start": null,
+        "institution_id": null,
+        "note_en": "Raw Wikidata P1066/P802 review edge; it does not by itself establish teacher, mentor, or apprenticeship.",
+        "note_zh": "Wikidata P1066/P802 原始待审边；本身不能证明教师、导师或学徒关系。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q333585",
+      "id": "relation-wd-student-recorded-q333585-q253350",
+      "last_verified": "2026-07-27",
+      "rejection_reasons": [
+        "Requires human classification and stronger relationship evidence."
+      ],
+      "relation_type": "student_of_recorded",
+      "to_id": "person-wd-q253350",
       "verification_status": "candidate"
     },
     {
@@ -1510,7 +1620,7 @@
       },
       "from_id": "person-wd-q336806",
       "id": "relation-wd-student-recorded-q336806-q122328",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "rejection_reasons": [
         "Requires human classification and stronger relationship evidence."
       ],
@@ -1532,7 +1642,7 @@
       },
       "from_id": "person-wd-q337876",
       "id": "relation-wd-student-recorded-q337876-q466064",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "rejection_reasons": [
         "Requires human classification and stronger relationship evidence."
       ],
@@ -1554,7 +1664,7 @@
       },
       "from_id": "person-wd-q3383232",
       "id": "relation-wd-student-recorded-q3383232-q3119629",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "rejection_reasons": [
         "Requires human classification and stronger relationship evidence."
       ],
@@ -1576,7 +1686,7 @@
       },
       "from_id": "person-wd-q352451",
       "id": "relation-wd-student-recorded-q352451-q3340563",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "rejection_reasons": [
         "Requires human classification and stronger relationship evidence."
       ],
@@ -1598,7 +1708,7 @@
       },
       "from_id": "person-wd-q364413",
       "id": "relation-wd-student-recorded-q364413-q315249",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "rejection_reasons": [
         "Requires human classification and stronger relationship evidence."
       ],
@@ -1620,7 +1730,7 @@
       },
       "from_id": "person-wd-q366499",
       "id": "relation-wd-student-recorded-q366499-q2895688",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "rejection_reasons": [
         "Requires human classification and stronger relationship evidence."
       ],
@@ -1642,12 +1752,56 @@
       },
       "from_id": "person-wd-q3750904",
       "id": "relation-wd-student-recorded-q3750904-q312365",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "rejection_reasons": [
         "Requires human classification and stronger relationship evidence."
       ],
       "relation_type": "student_of_recorded",
       "to_id": "person-wd-q312365",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-wd-student-recorded-q381924-q190148",
+      "confidence": 0.45,
+      "context": {
+        "date_end": null,
+        "date_start": null,
+        "institution_id": null,
+        "note_en": "Raw Wikidata P1066/P802 review edge; it does not by itself establish teacher, mentor, or apprenticeship.",
+        "note_zh": "Wikidata P1066/P802 原始待审边；本身不能证明教师、导师或学徒关系。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q381924",
+      "id": "relation-wd-student-recorded-q381924-q190148",
+      "last_verified": "2026-07-27",
+      "rejection_reasons": [
+        "Requires human classification and stronger relationship evidence."
+      ],
+      "relation_type": "student_of_recorded",
+      "to_id": "person-wd-q190148",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-wd-student-recorded-q388683-q190148",
+      "confidence": 0.45,
+      "context": {
+        "date_end": null,
+        "date_start": null,
+        "institution_id": null,
+        "note_en": "Raw Wikidata P1066/P802 review edge; it does not by itself establish teacher, mentor, or apprenticeship.",
+        "note_zh": "Wikidata P1066/P802 原始待审边；本身不能证明教师、导师或学徒关系。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q388683",
+      "id": "relation-wd-student-recorded-q388683-q190148",
+      "last_verified": "2026-07-27",
+      "rejection_reasons": [
+        "Requires human classification and stronger relationship evidence."
+      ],
+      "relation_type": "student_of_recorded",
+      "to_id": "person-wd-q190148",
       "verification_status": "candidate"
     },
     {
@@ -1664,7 +1818,7 @@
       },
       "from_id": "person-wd-q3938437",
       "id": "relation-wd-student-recorded-q3938437-q309905",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "rejection_reasons": [
         "Requires human classification and stronger relationship evidence."
       ],
@@ -1686,7 +1840,7 @@
       },
       "from_id": "person-wd-q4081313",
       "id": "relation-wd-student-recorded-q4081313-q2641514",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "rejection_reasons": [
         "Requires human classification and stronger relationship evidence."
       ],
@@ -1708,7 +1862,7 @@
       },
       "from_id": "person-wd-q41508",
       "id": "relation-wd-student-recorded-q41508-q111676934",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "rejection_reasons": [
         "Requires human classification and stronger relationship evidence."
       ],
@@ -1730,7 +1884,7 @@
       },
       "from_id": "person-wd-q41508",
       "id": "relation-wd-student-recorded-q41508-q111698711",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "rejection_reasons": [
         "Requires human classification and stronger relationship evidence."
       ],
@@ -1752,7 +1906,7 @@
       },
       "from_id": "person-wd-q422668",
       "id": "relation-wd-student-recorded-q422668-q78979",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "rejection_reasons": [
         "Requires human classification and stronger relationship evidence."
       ],
@@ -1774,7 +1928,7 @@
       },
       "from_id": "person-wd-q44323",
       "id": "relation-wd-student-recorded-q44323-q16029426",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "rejection_reasons": [
         "Requires human classification and stronger relationship evidence."
       ],
@@ -1796,7 +1950,7 @@
       },
       "from_id": "person-wd-q44323",
       "id": "relation-wd-student-recorded-q44323-q1605748",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "rejection_reasons": [
         "Requires human classification and stronger relationship evidence."
       ],
@@ -1818,7 +1972,7 @@
       },
       "from_id": "person-wd-q44323",
       "id": "relation-wd-student-recorded-q44323-q1704305",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "rejection_reasons": [
         "Requires human classification and stronger relationship evidence."
       ],
@@ -1840,7 +1994,7 @@
       },
       "from_id": "person-wd-q44323",
       "id": "relation-wd-student-recorded-q44323-q51438974",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "rejection_reasons": [
         "Requires human classification and stronger relationship evidence."
       ],
@@ -1862,7 +2016,7 @@
       },
       "from_id": "person-wd-q44323",
       "id": "relation-wd-student-recorded-q44323-q85557",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "rejection_reasons": [
         "Requires human classification and stronger relationship evidence."
       ],
@@ -1884,7 +2038,7 @@
       },
       "from_id": "person-wd-q445970",
       "id": "relation-wd-student-recorded-q445970-q151759",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "rejection_reasons": [
         "Requires human classification and stronger relationship evidence."
       ],
@@ -1906,7 +2060,7 @@
       },
       "from_id": "person-wd-q455143",
       "id": "relation-wd-student-recorded-q455143-q1702936",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "rejection_reasons": [
         "Requires human classification and stronger relationship evidence."
       ],
@@ -1928,7 +2082,7 @@
       },
       "from_id": "person-wd-q4724",
       "id": "relation-wd-student-recorded-q4724-q23709838",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "rejection_reasons": [
         "Requires human classification and stronger relationship evidence."
       ],
@@ -1950,12 +2104,34 @@
       },
       "from_id": "person-wd-q4724",
       "id": "relation-wd-student-recorded-q4724-q3438660",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "rejection_reasons": [
         "Requires human classification and stronger relationship evidence."
       ],
       "relation_type": "student_of_recorded",
       "to_id": "person-wd-q3438660",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-wd-student-recorded-q507014-q214317",
+      "confidence": 0.45,
+      "context": {
+        "date_end": null,
+        "date_start": null,
+        "institution_id": null,
+        "note_en": "Raw Wikidata P1066/P802 review edge; it does not by itself establish teacher, mentor, or apprenticeship.",
+        "note_zh": "Wikidata P1066/P802 原始待审边；本身不能证明教师、导师或学徒关系。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q507014",
+      "id": "relation-wd-student-recorded-q507014-q214317",
+      "last_verified": "2026-07-27",
+      "rejection_reasons": [
+        "Requires human classification and stronger relationship evidence."
+      ],
+      "relation_type": "student_of_recorded",
+      "to_id": "person-wd-q214317",
       "verification_status": "candidate"
     },
     {
@@ -1972,7 +2148,7 @@
       },
       "from_id": "person-wd-q525487",
       "id": "relation-wd-student-recorded-q525487-q21568081",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "rejection_reasons": [
         "Requires human classification and stronger relationship evidence."
       ],
@@ -1994,7 +2170,7 @@
       },
       "from_id": "person-wd-q525487",
       "id": "relation-wd-student-recorded-q525487-q3122254",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "rejection_reasons": [
         "Requires human classification and stronger relationship evidence."
       ],
@@ -2016,7 +2192,7 @@
       },
       "from_id": "person-wd-q525487",
       "id": "relation-wd-student-recorded-q525487-q319302",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "rejection_reasons": [
         "Requires human classification and stronger relationship evidence."
       ],
@@ -2038,7 +2214,7 @@
       },
       "from_id": "person-wd-q525487",
       "id": "relation-wd-student-recorded-q525487-q3260862",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "rejection_reasons": [
         "Requires human classification and stronger relationship evidence."
       ],
@@ -2060,7 +2236,7 @@
       },
       "from_id": "person-wd-q540431",
       "id": "relation-wd-student-recorded-q540431-q21553027",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "rejection_reasons": [
         "Requires human classification and stronger relationship evidence."
       ],
@@ -2082,7 +2258,7 @@
       },
       "from_id": "person-wd-q540431",
       "id": "relation-wd-student-recorded-q540431-q2682321",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "rejection_reasons": [
         "Requires human classification and stronger relationship evidence."
       ],
@@ -2104,7 +2280,7 @@
       },
       "from_id": "person-wd-q540431",
       "id": "relation-wd-student-recorded-q540431-q2706012",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "rejection_reasons": [
         "Requires human classification and stronger relationship evidence."
       ],
@@ -2126,7 +2302,7 @@
       },
       "from_id": "person-wd-q550244",
       "id": "relation-wd-student-recorded-q550244-q1686814",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "rejection_reasons": [
         "Requires human classification and stronger relationship evidence."
       ],
@@ -2148,7 +2324,7 @@
       },
       "from_id": "person-wd-q550244",
       "id": "relation-wd-student-recorded-q550244-q2977590",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "rejection_reasons": [
         "Requires human classification and stronger relationship evidence."
       ],
@@ -2170,7 +2346,7 @@
       },
       "from_id": "person-wd-q550244",
       "id": "relation-wd-student-recorded-q550244-q3163717",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "rejection_reasons": [
         "Requires human classification and stronger relationship evidence."
       ],
@@ -2192,7 +2368,7 @@
       },
       "from_id": "person-wd-q550244",
       "id": "relation-wd-student-recorded-q550244-q432786",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "rejection_reasons": [
         "Requires human classification and stronger relationship evidence."
       ],
@@ -2214,7 +2390,7 @@
       },
       "from_id": "person-wd-q550244",
       "id": "relation-wd-student-recorded-q550244-q55687029",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "rejection_reasons": [
         "Requires human classification and stronger relationship evidence."
       ],
@@ -2236,7 +2412,7 @@
       },
       "from_id": "person-wd-q5592",
       "id": "relation-wd-student-recorded-q5592-q1623328",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "rejection_reasons": [
         "Requires human classification and stronger relationship evidence."
       ],
@@ -2258,7 +2434,7 @@
       },
       "from_id": "person-wd-q5592",
       "id": "relation-wd-student-recorded-q5592-q175566",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "rejection_reasons": [
         "Requires human classification and stronger relationship evidence."
       ],
@@ -2280,7 +2456,7 @@
       },
       "from_id": "person-wd-q5597",
       "id": "relation-wd-student-recorded-q5597-q215305",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "rejection_reasons": [
         "Requires human classification and stronger relationship evidence."
       ],
@@ -2302,7 +2478,7 @@
       },
       "from_id": "person-wd-q5597",
       "id": "relation-wd-student-recorded-q5597-q2440881",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "rejection_reasons": [
         "Requires human classification and stronger relationship evidence."
       ],
@@ -2324,7 +2500,7 @@
       },
       "from_id": "person-wd-q5597",
       "id": "relation-wd-student-recorded-q5597-q734108",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "rejection_reasons": [
         "Requires human classification and stronger relationship evidence."
       ],
@@ -2346,7 +2522,7 @@
       },
       "from_id": "person-wd-q5604",
       "id": "relation-wd-student-recorded-q5604-q106089430",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "rejection_reasons": [
         "Requires human classification and stronger relationship evidence."
       ],
@@ -2368,7 +2544,7 @@
       },
       "from_id": "person-wd-q568839",
       "id": "relation-wd-student-recorded-q568839-q3022753",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "rejection_reasons": [
         "Requires human classification and stronger relationship evidence."
       ],
@@ -2390,7 +2566,7 @@
       },
       "from_id": "person-wd-q600701",
       "id": "relation-wd-student-recorded-q600701-q3090458",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "rejection_reasons": [
         "Requires human classification and stronger relationship evidence."
       ],
@@ -2412,7 +2588,7 @@
       },
       "from_id": "person-wd-q61071",
       "id": "relation-wd-student-recorded-q61071-q2466368",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "rejection_reasons": [
         "Requires human classification and stronger relationship evidence."
       ],
@@ -2434,7 +2610,7 @@
       },
       "from_id": "person-wd-q61071",
       "id": "relation-wd-student-recorded-q61071-q2851305",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "rejection_reasons": [
         "Requires human classification and stronger relationship evidence."
       ],
@@ -2456,7 +2632,7 @@
       },
       "from_id": "person-wd-q61071",
       "id": "relation-wd-student-recorded-q61071-q59510574",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "rejection_reasons": [
         "Requires human classification and stronger relationship evidence."
       ],
@@ -2478,7 +2654,7 @@
       },
       "from_id": "person-wd-q61071",
       "id": "relation-wd-student-recorded-q61071-q834068",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "rejection_reasons": [
         "Requires human classification and stronger relationship evidence."
       ],
@@ -2500,7 +2676,7 @@
       },
       "from_id": "person-wd-q61188",
       "id": "relation-wd-student-recorded-q61188-q6243838",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "rejection_reasons": [
         "Requires human classification and stronger relationship evidence."
       ],
@@ -2522,7 +2698,7 @@
       },
       "from_id": "person-wd-q61342",
       "id": "relation-wd-student-recorded-q61342-q96793",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "rejection_reasons": [
         "Requires human classification and stronger relationship evidence."
       ],
@@ -2544,7 +2720,7 @@
       },
       "from_id": "person-wd-q62973",
       "id": "relation-wd-student-recorded-q62973-q151759",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "rejection_reasons": [
         "Requires human classification and stronger relationship evidence."
       ],
@@ -2566,7 +2742,7 @@
       },
       "from_id": "person-wd-q640949",
       "id": "relation-wd-student-recorded-q640949-q180398",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "rejection_reasons": [
         "Requires human classification and stronger relationship evidence."
       ],
@@ -2588,7 +2764,7 @@
       },
       "from_id": "person-wd-q681007",
       "id": "relation-wd-student-recorded-q681007-q26224490",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "rejection_reasons": [
         "Requires human classification and stronger relationship evidence."
       ],
@@ -2610,7 +2786,7 @@
       },
       "from_id": "person-wd-q681007",
       "id": "relation-wd-student-recorded-q681007-q75583053",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "rejection_reasons": [
         "Requires human classification and stronger relationship evidence."
       ],
@@ -2632,7 +2808,7 @@
       },
       "from_id": "person-wd-q712867",
       "id": "relation-wd-student-recorded-q712867-q313556",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "rejection_reasons": [
         "Requires human classification and stronger relationship evidence."
       ],
@@ -2654,7 +2830,7 @@
       },
       "from_id": "person-wd-q726082",
       "id": "relation-wd-student-recorded-q726082-q956665",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "rejection_reasons": [
         "Requires human classification and stronger relationship evidence."
       ],
@@ -2676,7 +2852,7 @@
       },
       "from_id": "person-wd-q7412384",
       "id": "relation-wd-student-recorded-q7412384-q726082",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "rejection_reasons": [
         "Requires human classification and stronger relationship evidence."
       ],
@@ -2698,7 +2874,7 @@
       },
       "from_id": "person-wd-q76726",
       "id": "relation-wd-student-recorded-q76726-q14549819",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "rejection_reasons": [
         "Requires human classification and stronger relationship evidence."
       ],
@@ -2720,7 +2896,7 @@
       },
       "from_id": "person-wd-q76726",
       "id": "relation-wd-student-recorded-q76726-q15453206",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "rejection_reasons": [
         "Requires human classification and stronger relationship evidence."
       ],
@@ -2742,7 +2918,7 @@
       },
       "from_id": "person-wd-q76726",
       "id": "relation-wd-student-recorded-q76726-q41508",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "rejection_reasons": [
         "Requires human classification and stronger relationship evidence."
       ],
@@ -2764,7 +2940,7 @@
       },
       "from_id": "person-wd-q76726",
       "id": "relation-wd-student-recorded-q76726-q61071",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "rejection_reasons": [
         "Requires human classification and stronger relationship evidence."
       ],
@@ -2786,7 +2962,7 @@
       },
       "from_id": "person-wd-q76726",
       "id": "relation-wd-student-recorded-q76726-q69041858",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "rejection_reasons": [
         "Requires human classification and stronger relationship evidence."
       ],
@@ -2808,7 +2984,7 @@
       },
       "from_id": "person-wd-q76726",
       "id": "relation-wd-student-recorded-q76726-q90052",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "rejection_reasons": [
         "Requires human classification and stronger relationship evidence."
       ],
@@ -2830,7 +3006,7 @@
       },
       "from_id": "person-wd-q76726",
       "id": "relation-wd-student-recorded-q76726-q94944288",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "rejection_reasons": [
         "Requires human classification and stronger relationship evidence."
       ],
@@ -2852,7 +3028,7 @@
       },
       "from_id": "person-wd-q76726",
       "id": "relation-wd-student-recorded-q76726-q95791770",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "rejection_reasons": [
         "Requires human classification and stronger relationship evidence."
       ],
@@ -2874,7 +3050,7 @@
       },
       "from_id": "person-wd-q76726",
       "id": "relation-wd-student-recorded-q76726-q95900021",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "rejection_reasons": [
         "Requires human classification and stronger relationship evidence."
       ],
@@ -2896,7 +3072,7 @@
       },
       "from_id": "person-wd-q77357",
       "id": "relation-wd-student-recorded-q77357-q19959478",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "rejection_reasons": [
         "Requires human classification and stronger relationship evidence."
       ],
@@ -2918,7 +3094,7 @@
       },
       "from_id": "person-wd-q7793",
       "id": "relation-wd-student-recorded-q7793-q357276",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "rejection_reasons": [
         "Requires human classification and stronger relationship evidence."
       ],
@@ -2940,7 +3116,7 @@
       },
       "from_id": "person-wd-q7814",
       "id": "relation-wd-student-recorded-q7814-q315835",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "rejection_reasons": [
         "Requires human classification and stronger relationship evidence."
       ],
@@ -2962,7 +3138,7 @@
       },
       "from_id": "person-wd-q78968",
       "id": "relation-wd-student-recorded-q78968-q11925879",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "rejection_reasons": [
         "Requires human classification and stronger relationship evidence."
       ],
@@ -2984,7 +3160,7 @@
       },
       "from_id": "person-wd-q78968",
       "id": "relation-wd-student-recorded-q78968-q1302691",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "rejection_reasons": [
         "Requires human classification and stronger relationship evidence."
       ],
@@ -3006,7 +3182,7 @@
       },
       "from_id": "person-wd-q78968",
       "id": "relation-wd-student-recorded-q78968-q281577",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "rejection_reasons": [
         "Requires human classification and stronger relationship evidence."
       ],
@@ -3028,7 +3204,7 @@
       },
       "from_id": "person-wd-q78968",
       "id": "relation-wd-student-recorded-q78968-q55385678",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "rejection_reasons": [
         "Requires human classification and stronger relationship evidence."
       ],
@@ -3050,7 +3226,7 @@
       },
       "from_id": "person-wd-q78968",
       "id": "relation-wd-student-recorded-q78968-q78792",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "rejection_reasons": [
         "Requires human classification and stronger relationship evidence."
       ],
@@ -3072,7 +3248,7 @@
       },
       "from_id": "person-wd-q78968",
       "id": "relation-wd-student-recorded-q78968-q84541",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "rejection_reasons": [
         "Requires human classification and stronger relationship evidence."
       ],
@@ -3094,7 +3270,7 @@
       },
       "from_id": "person-wd-q78979",
       "id": "relation-wd-student-recorded-q78979-q11925879",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "rejection_reasons": [
         "Requires human classification and stronger relationship evidence."
       ],
@@ -3116,7 +3292,7 @@
       },
       "from_id": "person-wd-q78979",
       "id": "relation-wd-student-recorded-q78979-q1302691",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "rejection_reasons": [
         "Requires human classification and stronger relationship evidence."
       ],
@@ -3138,7 +3314,7 @@
       },
       "from_id": "person-wd-q78979",
       "id": "relation-wd-student-recorded-q78979-q281577",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "rejection_reasons": [
         "Requires human classification and stronger relationship evidence."
       ],
@@ -3160,7 +3336,7 @@
       },
       "from_id": "person-wd-q78979",
       "id": "relation-wd-student-recorded-q78979-q55385678",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "rejection_reasons": [
         "Requires human classification and stronger relationship evidence."
       ],
@@ -3182,7 +3358,7 @@
       },
       "from_id": "person-wd-q78979",
       "id": "relation-wd-student-recorded-q78979-q78792",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "rejection_reasons": [
         "Requires human classification and stronger relationship evidence."
       ],
@@ -3204,7 +3380,7 @@
       },
       "from_id": "person-wd-q78979",
       "id": "relation-wd-student-recorded-q78979-q84541",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "rejection_reasons": [
         "Requires human classification and stronger relationship evidence."
       ],
@@ -3226,7 +3402,7 @@
       },
       "from_id": "person-wd-q8053",
       "id": "relation-wd-student-recorded-q8053-q1311013",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "rejection_reasons": [
         "Requires human classification and stronger relationship evidence."
       ],
@@ -3248,7 +3424,7 @@
       },
       "from_id": "person-wd-q8053",
       "id": "relation-wd-student-recorded-q8053-q2871505",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "rejection_reasons": [
         "Requires human classification and stronger relationship evidence."
       ],
@@ -3270,7 +3446,7 @@
       },
       "from_id": "person-wd-q8053",
       "id": "relation-wd-student-recorded-q8053-q568839",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "rejection_reasons": [
         "Requires human classification and stronger relationship evidence."
       ],
@@ -3292,7 +3468,7 @@
       },
       "from_id": "person-wd-q8053",
       "id": "relation-wd-student-recorded-q8053-q958293",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "rejection_reasons": [
         "Requires human classification and stronger relationship evidence."
       ],
@@ -3314,7 +3490,7 @@
       },
       "from_id": "person-wd-q940298",
       "id": "relation-wd-student-recorded-q940298-q2489826",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "rejection_reasons": [
         "Requires human classification and stronger relationship evidence."
       ],
@@ -3336,7 +3512,7 @@
       },
       "from_id": "person-wd-q940298",
       "id": "relation-wd-student-recorded-q940298-q3082622",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "rejection_reasons": [
         "Requires human classification and stronger relationship evidence."
       ],
@@ -3358,7 +3534,7 @@
       },
       "from_id": "person-wd-q940298",
       "id": "relation-wd-student-recorded-q940298-q3568911",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "rejection_reasons": [
         "Requires human classification and stronger relationship evidence."
       ],
@@ -3380,7 +3556,7 @@
       },
       "from_id": "person-wd-q940298",
       "id": "relation-wd-student-recorded-q940298-q670136",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "rejection_reasons": [
         "Requires human classification and stronger relationship evidence."
       ],
@@ -3402,7 +3578,7 @@
       },
       "from_id": "person-wd-q969714",
       "id": "relation-wd-student-recorded-q969714-q767288",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "rejection_reasons": [
         "Requires human classification and stronger relationship evidence."
       ],

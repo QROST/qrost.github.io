@@ -2550,6 +2550,493 @@
         "wright_wing_demolished_1968",
         "multi_phase"
       ]
+    },
+    {
+      "expected_country_code": "GB",
+      "expected_country_qid": "Q145",
+      "label_hint_en": "30 St Mary Axe",
+      "qid": "Q191161",
+      "region": "europe",
+      "risk_tags": []
+    },
+    {
+      "expected_country_code": "GB",
+      "expected_country_qid": "Q145",
+      "label_hint_en": "Scottish Parliament Building",
+      "qid": "Q2746031",
+      "region": "europe",
+      "risk_tags": []
+    },
+    {
+      "expected_country_code": "GB",
+      "expected_country_qid": "Q145",
+      "label_hint_en": "Peckham Library",
+      "qid": "Q3511923",
+      "region": "europe",
+      "risk_tags": [
+        "no_completion_date_in_p1619_p571"
+      ]
+    },
+    {
+      "expected_country_code": "GB",
+      "expected_country_qid": "Q145",
+      "label_hint_en": "Millennium Dome",
+      "qid": "Q29014",
+      "region": "europe",
+      "risk_tags": []
+    },
+    {
+      "expected_country_code": "GB",
+      "expected_country_qid": "Q145",
+      "label_hint_en": "Selfridges Building, Birmingham",
+      "qid": "Q7448350",
+      "region": "europe",
+      "risk_tags": []
+    },
+    {
+      "expected_country_code": "GB",
+      "expected_country_qid": "Q145",
+      "label_hint_en": "The Shard",
+      "qid": "Q18536",
+      "region": "europe",
+      "risk_tags": []
+    },
+    {
+      "expected_country_code": "GB",
+      "expected_country_qid": "Q145",
+      "label_hint_en": "London Stadium",
+      "qid": "Q172190",
+      "region": "europe",
+      "risk_tags": []
+    },
+    {
+      "expected_country_code": "GB",
+      "expected_country_qid": "Q145",
+      "label_hint_en": "Bloomberg London",
+      "qid": "Q46996829",
+      "region": "europe",
+      "risk_tags": []
+    },
+    {
+      "expected_country_code": "GB",
+      "expected_country_qid": "Q145",
+      "label_hint_en": "Library of Birmingham",
+      "qid": "Q6542576",
+      "region": "europe",
+      "risk_tags": []
+    },
+    {
+      "expected_country_code": "GB",
+      "expected_country_qid": "Q145",
+      "label_hint_en": "22 Bishopsgate",
+      "qid": "Q18602",
+      "region": "europe",
+      "risk_tags": [
+        "no_completion_date_in_p1619_p571"
+      ]
+    },
+    {
+      "expected_country_code": "GB",
+      "expected_country_qid": "Q145",
+      "label_hint_en": "100 Leadenhall",
+      "qid": "Q55600332",
+      "region": "europe",
+      "risk_tags": [
+        "no_completion_date_in_p1619_p571"
+      ]
+    },
+    {
+      "expected_country_code": "US",
+      "expected_country_qid": "Q30",
+      "label_hint_en": "Walt Disney Concert Hall",
+      "qid": "Q474326",
+      "region": "north_america",
+      "risk_tags": []
+    },
+    {
+      "expected_country_code": "US",
+      "expected_country_qid": "Q30",
+      "label_hint_en": "Milstein Hall",
+      "qid": "Q135725826",
+      "region": "north_america",
+      "risk_tags": []
+    },
+    {
+      "expected_country_code": "US",
+      "expected_country_qid": "Q30",
+      "label_hint_en": "IAC Building",
+      "qid": "Q3146488",
+      "region": "north_america",
+      "risk_tags": []
+    },
+    {
+      "expected_country_code": "US",
+      "expected_country_qid": "Q30",
+      "label_hint_en": "New York Times Building",
+      "qid": "Q192680",
+      "region": "north_america",
+      "risk_tags": []
+    },
+    {
+      "expected_country_code": "US",
+      "expected_country_qid": "Q30",
+      "label_hint_en": "Hearst Tower",
+      "qid": "Q859452",
+      "region": "north_america",
+      "risk_tags": [
+        "no_completion_date_in_p1619_p571"
+      ]
+    },
+    {
+      "expected_country_code": "US",
+      "expected_country_qid": "Q30",
+      "label_hint_en": "Seattle Central Library",
+      "qid": "Q2531939",
+      "region": "north_america",
+      "risk_tags": []
+    },
+    {
+      "expected_country_code": "US",
+      "expected_country_qid": "Q30",
+      "label_hint_en": "One World Trade Center",
+      "qid": "Q11245",
+      "region": "north_america",
+      "risk_tags": []
+    },
+    {
+      "expected_country_code": "US",
+      "expected_country_qid": "Q30",
+      "label_hint_en": "Vessel",
+      "qid": "Q27988215",
+      "region": "north_america",
+      "risk_tags": []
+    },
+    {
+      "expected_country_code": "US",
+      "expected_country_qid": "Q30",
+      "label_hint_en": "99 Gansevoort Street",
+      "qid": "Q106843470",
+      "region": "north_america",
+      "risk_tags": [
+        "label_is_address_not_name"
+      ]
+    },
+    {
+      "expected_country_code": "US",
+      "expected_country_qid": "Q30",
+      "label_hint_en": "Perot Museum of Nature and Science",
+      "qid": "Q7169478",
+      "region": "north_america",
+      "risk_tags": []
+    },
+    {
+      "expected_country_code": "US",
+      "expected_country_qid": "Q30",
+      "label_hint_en": "Apple Park",
+      "qid": "Q22041180",
+      "region": "north_america",
+      "risk_tags": [
+        "institution_typed"
+      ]
+    },
+    {
+      "expected_country_code": "US",
+      "expected_country_qid": "Q30",
+      "label_hint_en": "270 Park Avenue",
+      "qid": "Q109648853",
+      "region": "north_america",
+      "risk_tags": [
+        "no_completion_date_in_p1619_p571"
+      ]
+    },
+    {
+      "expected_country_code": "FR",
+      "expected_country_qid": "Q142",
+      "label_hint_en": "Musée du quai Branly",
+      "qid": "Q167863",
+      "region": "europe",
+      "risk_tags": []
+    },
+    {
+      "expected_country_code": "FR",
+      "expected_country_qid": "Q142",
+      "label_hint_en": "Louvre-Lens",
+      "qid": "Q405543",
+      "region": "europe",
+      "risk_tags": []
+    },
+    {
+      "expected_country_code": "FR",
+      "expected_country_qid": "Q142",
+      "label_hint_en": "Louis Vuitton Foundation",
+      "qid": "Q3075489",
+      "region": "europe",
+      "risk_tags": []
+    },
+    {
+      "expected_country_code": "FR",
+      "expected_country_qid": "Q142",
+      "label_hint_en": "Philharmonie de Paris",
+      "qid": "Q3378907",
+      "region": "europe",
+      "risk_tags": []
+    },
+    {
+      "expected_country_code": "DE",
+      "expected_country_qid": "Q183",
+      "label_hint_en": "Jewish Museum Berlin",
+      "qid": "Q157003",
+      "region": "europe",
+      "risk_tags": []
+    },
+    {
+      "expected_country_code": "DE",
+      "expected_country_qid": "Q183",
+      "label_hint_en": "BMW Welt",
+      "qid": "Q699614",
+      "region": "europe",
+      "risk_tags": []
+    },
+    {
+      "expected_country_code": "DE",
+      "expected_country_qid": "Q183",
+      "label_hint_en": "Mercedes-Benz Museum",
+      "qid": "Q707377",
+      "region": "europe",
+      "risk_tags": []
+    },
+    {
+      "expected_country_code": "DE",
+      "expected_country_qid": "Q183",
+      "label_hint_en": "Elbphilharmonie",
+      "qid": "Q673223",
+      "region": "europe",
+      "risk_tags": []
+    },
+    {
+      "expected_country_code": "DE",
+      "expected_country_qid": "Q183",
+      "label_hint_en": "Humboldt Forum",
+      "qid": "Q20196262",
+      "region": "europe",
+      "risk_tags": [
+        "institution_typed"
+      ]
+    },
+    {
+      "expected_country_code": "ES",
+      "expected_country_qid": "Q29",
+      "label_hint_en": "Torre Glòries",
+      "qid": "Q336246",
+      "region": "europe",
+      "risk_tags": []
+    },
+    {
+      "expected_country_code": "ES",
+      "expected_country_qid": "Q29",
+      "label_hint_en": "University Museum of Navarra",
+      "qid": "Q21094945",
+      "region": "europe",
+      "risk_tags": [
+        "institution_typed",
+        "no_en_description",
+        "mild_notability"
+      ]
+    },
+    {
+      "expected_country_code": "IT",
+      "expected_country_qid": "Q38",
+      "label_hint_en": "MAXXI",
+      "qid": "Q1881229",
+      "region": "europe",
+      "risk_tags": [
+        "institution_typed"
+      ]
+    },
+    {
+      "expected_country_code": "IT",
+      "expected_country_qid": "Q38",
+      "label_hint_en": "Generali Tower",
+      "qid": "Q3995195",
+      "region": "europe",
+      "risk_tags": []
+    },
+    {
+      "expected_country_code": "IT",
+      "expected_country_qid": "Q38",
+      "label_hint_en": "CityLife",
+      "qid": "Q3678603",
+      "region": "europe",
+      "risk_tags": [
+        "district_scale_complex"
+      ]
+    },
+    {
+      "expected_country_code": "PT",
+      "expected_country_qid": "Q45",
+      "label_hint_en": "Casa da Música",
+      "qid": "Q917274",
+      "region": "europe",
+      "risk_tags": [
+        "has_organization_type"
+      ]
+    },
+    {
+      "expected_country_code": "AT",
+      "expected_country_qid": "Q40",
+      "label_hint_en": "Kunsthaus Graz",
+      "qid": "Q597137",
+      "region": "europe",
+      "risk_tags": []
+    },
+    {
+      "expected_country_code": "CN",
+      "expected_country_qid": "Q148",
+      "label_hint_en": "China Media Group Guanghua Road Office Area",
+      "qid": "Q754321",
+      "region": "east_asia",
+      "risk_tags": [
+        "label_renamed_in_wikidata_alias_is_cctv_headquarters"
+      ]
+    },
+    {
+      "expected_country_code": "CN",
+      "expected_country_qid": "Q148",
+      "label_hint_en": "National Centre for the Performing Arts",
+      "qid": "Q860188",
+      "region": "east_asia",
+      "risk_tags": []
+    },
+    {
+      "expected_country_code": "CN",
+      "expected_country_qid": "Q148",
+      "label_hint_en": "Beijing National Stadium",
+      "qid": "Q133525",
+      "region": "east_asia",
+      "risk_tags": []
+    },
+    {
+      "expected_country_code": "CN",
+      "expected_country_qid": "Q148",
+      "label_hint_en": "Beijing National Aquatics Center",
+      "qid": "Q244877",
+      "region": "east_asia",
+      "risk_tags": []
+    },
+    {
+      "expected_country_code": "CN",
+      "expected_country_qid": "Q148",
+      "label_hint_en": "Shanghai Tower",
+      "qid": "Q18547",
+      "region": "east_asia",
+      "risk_tags": []
+    },
+    {
+      "expected_country_code": "CN",
+      "expected_country_qid": "Q148",
+      "label_hint_en": "Linked Hybrid",
+      "qid": "Q3241606",
+      "region": "east_asia",
+      "risk_tags": []
+    },
+    {
+      "expected_country_code": "CN",
+      "expected_country_qid": "Q148",
+      "label_hint_en": "Harbin Grand Theatre",
+      "qid": "Q24838343",
+      "region": "east_asia",
+      "risk_tags": [
+        "no_completion_date_in_p1619_p571"
+      ]
+    },
+    {
+      "expected_country_code": "CN",
+      "expected_country_qid": "Q148",
+      "label_hint_en": "Shanghai Planetarium",
+      "qid": "Q30595198",
+      "region": "east_asia",
+      "risk_tags": [
+        "institution_typed"
+      ]
+    },
+    {
+      "expected_country_code": "CN",
+      "expected_country_qid": "Q148",
+      "label_hint_en": "Galaxy SOHO",
+      "qid": "Q15913208",
+      "region": "east_asia",
+      "risk_tags": []
+    },
+    {
+      "expected_country_code": "CN",
+      "expected_country_qid": "Q148",
+      "label_hint_en": "Beijing Daxing International Airport",
+      "qid": "Q1139574",
+      "region": "east_asia",
+      "risk_tags": []
+    },
+    {
+      "expected_country_code": "JP",
+      "expected_country_qid": "Q17",
+      "label_hint_en": "Prada Aoyama",
+      "qid": "Q56322351",
+      "region": "east_asia",
+      "risk_tags": [
+        "no_en_description",
+        "no_completion_date_in_p1619_p571"
+      ]
+    },
+    {
+      "expected_country_code": "JP",
+      "expected_country_qid": "Q17",
+      "label_hint_en": "21 21 DESIGN SIGHT",
+      "qid": "Q863044",
+      "region": "east_asia",
+      "risk_tags": []
+    },
+    {
+      "expected_country_code": "JP",
+      "expected_country_qid": "Q17",
+      "label_hint_en": "Teshima Art Museum",
+      "qid": "Q2379884",
+      "region": "east_asia",
+      "risk_tags": []
+    },
+    {
+      "expected_country_code": "JP",
+      "expected_country_qid": "Q17",
+      "label_hint_en": "Japan National Stadium",
+      "qid": "Q14862239",
+      "region": "east_asia",
+      "risk_tags": []
+    },
+    {
+      "expected_country_code": "AE",
+      "expected_country_qid": "Q878",
+      "label_hint_en": "Museum of the Future",
+      "qid": "Q22948398",
+      "region": "central_west_asia",
+      "risk_tags": [
+        "institution_typed"
+      ]
+    },
+    {
+      "expected_country_code": "AE",
+      "expected_country_qid": "Q878",
+      "label_hint_en": "Louvre Abu Dhabi",
+      "qid": "Q3176133",
+      "region": "central_west_asia",
+      "risk_tags": []
+    },
+    {
+      "expected_country_code": "US",
+      "expected_country_qid": "Q30",
+      "label_hint_en": "The Spiral",
+      "qid": "Q21281579",
+      "region": "north_america",
+      "risk_tags": [
+        "no_completion_date_in_p1619_p571"
+      ]
     }
   ]
 }

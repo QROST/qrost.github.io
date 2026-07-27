@@ -2,6 +2,73 @@
   "practices": [
     {
       "claim_ids": [
+        "claim-wd-q100604548-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "dissolved": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "practice",
+      "external_ids": {
+        "wikidata": "Q100604548"
+      },
+      "founded": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "id": "practice-wd-q100604548",
+      "last_verified": "2026-07-27",
+      "name_en": "Renzo Piano Building Workshop",
+      "name_native": null,
+      "name_zh": null,
+      "practice_type": "architecture_firm",
+      "region": "unknown",
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_ids": [
+        "claim-wd-q1082849-name-en",
+        "claim-wd-q1082849-name-zh"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "dissolved": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "practice",
+      "external_ids": {
+        "wikidata": "Q1082849"
+      },
+      "founded": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "id": "practice-wd-q1082849",
+      "last_verified": "2026-07-27",
+      "name_en": "Populous",
+      "name_native": null,
+      "name_zh": "Populous",
+      "practice_type": "architecture_firm",
+      "region": "unknown",
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_ids": [
         "claim-wd-q108395615-name-en"
       ],
       "confidence": 0.6,
@@ -23,10 +90,112 @@
         "value": null
       },
       "id": "practice-wd-q108395615",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Brinkman & Van der Vlugt",
       "name_native": null,
       "name_zh": null,
+      "practice_type": "architecture_firm",
+      "region": "unknown",
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_ids": [
+        "claim-wd-q1208016-name-en",
+        "claim-wd-q1208016-name-zh"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "dissolved": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "practice",
+      "external_ids": {
+        "wikidata": "Q1208016"
+      },
+      "founded": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "id": "practice-wd-q1208016",
+      "last_verified": "2026-07-27",
+      "name_en": "Foster and Partners",
+      "name_native": null,
+      "name_zh": "福斯特建築事務所",
+      "practice_type": "architecture_firm",
+      "region": "unknown",
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_ids": [
+        "claim-wd-q2015762-name-en",
+        "claim-wd-q2015762-name-zh"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "dissolved": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "practice",
+      "external_ids": {
+        "wikidata": "Q2015762"
+      },
+      "founded": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "id": "practice-wd-q2015762",
+      "last_verified": "2026-07-27",
+      "name_en": "Office for Metropolitan Architecture",
+      "name_native": null,
+      "name_zh": "大都會建築事務所",
+      "practice_type": "architecture_firm",
+      "region": "unknown",
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_ids": [
+        "claim-wd-q212487-name-en",
+        "claim-wd-q212487-name-zh"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "dissolved": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "practice",
+      "external_ids": {
+        "wikidata": "Q212487"
+      },
+      "founded": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "id": "practice-wd-q212487",
+      "last_verified": "2026-07-27",
+      "name_en": "Kohn Pedersen Fox",
+      "name_native": null,
+      "name_zh": "美國KPF建築師事務所",
       "practice_type": "architecture_firm",
       "region": "unknown",
       "summary_en": "",
@@ -56,10 +225,146 @@
         "value": null
       },
       "id": "practice-wd-q29561372",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Adamson Associates",
       "name_native": null,
       "name_zh": null,
+      "practice_type": "architecture_firm",
+      "region": "unknown",
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_ids": [
+        "claim-wd-q308776-name-en",
+        "claim-wd-q308776-name-zh"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "dissolved": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "practice",
+      "external_ids": {
+        "wikidata": "Q308776"
+      },
+      "founded": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "id": "practice-wd-q308776",
+      "last_verified": "2026-07-27",
+      "name_en": "Herzog & de Meuron",
+      "name_native": null,
+      "name_zh": "赫尔佐格和德梅隆",
+      "practice_type": "architecture_firm",
+      "region": "unknown",
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_ids": [
+        "claim-wd-q3091301-name-en",
+        "claim-wd-q3091301-name-zh"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "dissolved": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "practice",
+      "external_ids": {
+        "wikidata": "Q3091301"
+      },
+      "founded": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "id": "practice-wd-q3091301",
+      "last_verified": "2026-07-27",
+      "name_en": "Future Systems",
+      "name_native": null,
+      "name_zh": "未来系统公司",
+      "practice_type": "architecture_firm",
+      "region": "unknown",
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_ids": [
+        "claim-wd-q3100834-name-en",
+        "claim-wd-q3100834-name-zh"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "dissolved": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "practice",
+      "external_ids": {
+        "wikidata": "Q3100834"
+      },
+      "founded": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "id": "practice-wd-q3100834",
+      "last_verified": "2026-07-27",
+      "name_en": "Gensler",
+      "name_native": null,
+      "name_zh": "Gensler建筑设计事务所",
+      "practice_type": "architecture_firm",
+      "region": "unknown",
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_ids": [
+        "claim-wd-q3415248-name-en",
+        "claim-wd-q3415248-name-zh"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "dissolved": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "practice",
+      "external_ids": {
+        "wikidata": "Q3415248"
+      },
+      "founded": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "id": "practice-wd-q3415248",
+      "last_verified": "2026-07-27",
+      "name_en": "RMJM",
+      "name_native": null,
+      "name_zh": "英国RMJM公司",
       "practice_type": "architecture_firm",
       "region": "unknown",
       "summary_en": "",
@@ -90,7 +395,7 @@
         "value": null
       },
       "id": "practice-wd-q3567818",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Warren and Wetmore",
       "name_native": null,
       "name_zh": "沃伦怀特茂公司",
@@ -123,8 +428,41 @@
         "value": null
       },
       "id": "practice-wd-q4683278",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Adler & Sullivan",
+      "name_native": null,
+      "name_zh": null,
+      "practice_type": "architecture_firm",
+      "region": "unknown",
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_ids": [
+        "claim-wd-q5167728-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "dissolved": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "practice",
+      "external_ids": {
+        "wikidata": "Q5167728"
+      },
+      "founded": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "id": "practice-wd-q5167728",
+      "last_verified": "2026-07-27",
+      "name_en": "Cooper Robertson",
       "name_native": null,
       "name_zh": null,
       "practice_type": "architecture_firm",
@@ -157,10 +495,44 @@
         "value": null
       },
       "id": "practice-wd-q617190",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Shreve, Lamb & Harmon",
       "name_native": null,
       "name_zh": "施里夫、兰姆与哈蒙建筑公司",
+      "practice_type": "architecture_firm",
+      "region": "unknown",
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_ids": [
+        "claim-wd-q6804385-name-en",
+        "claim-wd-q6804385-name-zh"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "dissolved": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "practice",
+      "external_ids": {
+        "wikidata": "Q6804385"
+      },
+      "founded": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "id": "practice-wd-q6804385",
+      "last_verified": "2026-07-27",
+      "name_en": "Mecanoo",
+      "name_native": null,
+      "name_zh": "Mecanoo",
       "practice_type": "architecture_firm",
       "region": "unknown",
       "summary_en": "",
@@ -191,10 +563,78 @@
         "value": null
       },
       "id": "practice-wd-q7306714",
-      "last_verified": "2026-07-26",
+      "last_verified": "2026-07-27",
       "name_en": "Reed and Stem",
       "name_native": null,
       "name_zh": "Reed and Stem",
+      "practice_type": "architecture_firm",
+      "region": "unknown",
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_ids": [
+        "claim-wd-q8064602-name-en",
+        "claim-wd-q8064602-name-zh"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "dissolved": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "practice",
+      "external_ids": {
+        "wikidata": "Q8064602"
+      },
+      "founded": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "id": "practice-wd-q8064602",
+      "last_verified": "2026-07-27",
+      "name_en": "Zaha Hadid Architects",
+      "name_native": null,
+      "name_zh": "扎哈·哈迪德建筑事务所",
+      "practice_type": "architecture_firm",
+      "region": "unknown",
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_ids": [
+        "claim-wd-q867205-name-en",
+        "claim-wd-q867205-name-zh"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "dissolved": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "practice",
+      "external_ids": {
+        "wikidata": "Q867205"
+      },
+      "founded": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "id": "practice-wd-q867205",
+      "last_verified": "2026-07-27",
+      "name_en": "Coop Himmelb(l)au",
+      "name_native": null,
+      "name_zh": "库柏·西梅布芬事务所",
       "practice_type": "architecture_firm",
       "region": "unknown",
       "summary_en": "",

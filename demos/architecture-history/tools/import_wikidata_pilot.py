@@ -600,13 +600,18 @@ class CatalogBuilder:
                 continue
             if precision is not None and not isinstance(precision, (int, float)):
                 continue
+            # Wikidata globe-coordinate precision is degrees and must be >= 0
+            # for our schema; a few statements store a signed magnitude.
+            normalized_precision = (
+                abs(float(precision)) if precision is not None else None
+            )
             candidates.append(
                 (
                     index,
                     statement,
                     float(latitude),
                     float(longitude),
-                    float(precision) if precision is not None else None,
+                    normalized_precision,
                 )
             )
         unique = {
