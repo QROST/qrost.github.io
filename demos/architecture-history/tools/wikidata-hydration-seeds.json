@@ -4247,6 +4247,792 @@
         "bridge",
         "steel_arch"
       ]
+    },
+    {
+      "expected_country_code": "EG",
+      "expected_country_qid": "Q79",
+      "label_hint_en": "Temple of Edfu",
+      "qid": "Q613037",
+      "region": "africa",
+      "risk_tags": [
+        "multi_phase",
+        "ancient_egypt",
+        "no_completion_date_in_p1619_p571"
+      ]
+    },
+    {
+      "expected_country_code": "EG",
+      "expected_country_qid": "Q79",
+      "label_hint_en": "Temple of Kom Ombo",
+      "qid": "Q1243401",
+      "region": "africa",
+      "risk_tags": [
+        "multi_phase",
+        "ancient_egypt",
+        "no_completion_date_in_p1619_p571"
+      ]
+    },
+    {
+      "expected_country_code": "EG",
+      "expected_country_qid": "Q79",
+      "label_hint_en": "Dendera Temple complex",
+      "qid": "Q735254",
+      "region": "africa",
+      "risk_tags": [
+        "multi_phase",
+        "ancient_egypt",
+        "no_completion_date_in_p1619_p571"
+      ]
+    },
+    {
+      "expected_country_code": "EG",
+      "expected_country_qid": "Q79",
+      "label_hint_en": "Medinet Habu",
+      "qid": "Q932622",
+      "region": "africa",
+      "risk_tags": [
+        "multi_phase",
+        "ancient_egypt",
+        "no_completion_date_in_p1619_p571"
+      ]
+    },
+    {
+      "expected_country_code": "EG",
+      "expected_country_qid": "Q79",
+      "label_hint_en": "Ramesseum",
+      "qid": "Q311581",
+      "region": "africa",
+      "risk_tags": [
+        "ruin",
+        "ancient_egypt",
+        "no_completion_date_in_p1619_p571"
+      ]
+    },
+    {
+      "expected_country_code": "EG",
+      "expected_country_qid": "Q79",
+      "label_hint_en": "Ibn Tulun Mosque",
+      "qid": "Q138135958",
+      "region": "africa",
+      "risk_tags": [
+        "islamic",
+        "single_phase",
+        "no_completion_date_in_p1619_p571"
+      ]
+    },
+    {
+      "expected_country_code": "IR",
+      "expected_country_qid": "Q794",
+      "label_hint_en": "Jameh Mosque of Yazd",
+      "qid": "Q1454816",
+      "region": "central_west_asia",
+      "risk_tags": [
+        "multi_phase",
+        "islamic"
+      ]
+    },
+    {
+      "expected_country_code": "IR",
+      "expected_country_qid": "Q794",
+      "label_hint_en": "Si-o-se Pol",
+      "qid": "Q667674",
+      "region": "central_west_asia",
+      "risk_tags": [
+        "bridge",
+        "safavid"
+      ]
+    },
+    {
+      "expected_country_code": "IR",
+      "expected_country_qid": "Q794",
+      "label_hint_en": "Jameh Mosque of Tabriz",
+      "qid": "Q4819526",
+      "region": "central_west_asia",
+      "risk_tags": [
+        "multi_phase",
+        "islamic",
+        "no_completion_date_in_p1619_p571"
+      ]
+    },
+    {
+      "expected_country_code": "TR",
+      "expected_country_qid": "Q43",
+      "label_hint_en": "Rüstem Pasha Mosque",
+      "qid": "Q1137511",
+      "region": "central_west_asia",
+      "risk_tags": [
+        "sinan",
+        "ottoman"
+      ]
+    },
+    {
+      "expected_country_code": "TR",
+      "expected_country_qid": "Q43",
+      "label_hint_en": "Mihrimah Üsküdar Mosque",
+      "qid": "Q2537376",
+      "region": "central_west_asia",
+      "risk_tags": [
+        "sinan",
+        "ottoman"
+      ]
+    },
+    {
+      "expected_country_code": "TR",
+      "expected_country_qid": "Q43",
+      "label_hint_en": "Dolmabahçe Palace",
+      "qid": "Q274141",
+      "region": "central_west_asia",
+      "risk_tags": [
+        "ottoman",
+        "palace"
+      ]
+    },
+    {
+      "expected_country_code": "TR",
+      "expected_country_qid": "Q43",
+      "label_hint_en": "Beylerbeyi Palace",
+      "qid": "Q794349",
+      "region": "central_west_asia",
+      "risk_tags": [
+        "ottoman",
+        "palace"
+      ]
+    },
+    {
+      "expected_country_code": "TR",
+      "expected_country_qid": "Q43",
+      "label_hint_en": "Ishak Pasha Palace",
+      "qid": "Q1501534",
+      "region": "central_west_asia",
+      "risk_tags": [
+        "ottoman",
+        "palace"
+      ]
+    },
+    {
+      "expected_country_code": "TR",
+      "expected_country_qid": "Q43",
+      "label_hint_en": "Divriği Great Mosque and Hospital",
+      "qid": "Q581641",
+      "region": "central_west_asia",
+      "risk_tags": [
+        "seljuk",
+        "anatolian",
+        "no_completion_date_in_p1619_p571"
+      ]
+    },
+    {
+      "expected_country_code": "TR",
+      "expected_country_qid": "Q43",
+      "label_hint_en": "Galata Tower",
+      "qid": "Q91274",
+      "region": "central_west_asia",
+      "risk_tags": [
+        "tower",
+        "genoese"
+      ]
+    },
+    {
+      "expected_country_code": "SA",
+      "expected_country_qid": "Q851",
+      "label_hint_en": "Al-Ula Old Town",
+      "qid": "Q29513737",
+      "region": "central_west_asia",
+      "risk_tags": [
+        "heritage_town",
+        "no_completion_date_in_p1619_p571"
+      ]
+    },
+    {
+      "expected_country_code": "IN",
+      "expected_country_qid": "Q668",
+      "label_hint_en": "Agra Fort",
+      "qid": "Q171857",
+      "region": "south_asia",
+      "risk_tags": [
+        "mughal",
+        "multi_phase"
+      ]
+    },
+    {
+      "expected_country_code": "IN",
+      "expected_country_qid": "Q668",
+      "label_hint_en": "City Palace, Udaipur",
+      "qid": "Q2723521",
+      "region": "south_asia",
+      "risk_tags": [
+        "rajput",
+        "palace",
+        "no_completion_date_in_p1619_p571"
+      ]
+    },
+    {
+      "expected_country_code": "KH",
+      "expected_country_qid": "Q424",
+      "label_hint_en": "Banteay Srei",
+      "qid": "Q790099",
+      "region": "southeast_asia",
+      "risk_tags": [
+        "khmer",
+        "temple"
+      ]
+    },
+    {
+      "expected_country_code": "KH",
+      "expected_country_qid": "Q424",
+      "label_hint_en": "Baphuon",
+      "qid": "Q790118",
+      "region": "southeast_asia",
+      "risk_tags": [
+        "khmer",
+        "temple"
+      ]
+    },
+    {
+      "expected_country_code": "KH",
+      "expected_country_qid": "Q424",
+      "label_hint_en": "Phimeanakas",
+      "qid": "Q584347",
+      "region": "southeast_asia",
+      "risk_tags": [
+        "khmer",
+        "temple",
+        "no_completion_date_in_p1619_p571"
+      ]
+    },
+    {
+      "expected_country_code": "ID",
+      "expected_country_qid": "Q252",
+      "label_hint_en": "Mendut Temple",
+      "qid": "Q2746626",
+      "region": "southeast_asia",
+      "risk_tags": [
+        "java",
+        "buddhist",
+        "no_completion_date_in_p1619_p571"
+      ]
+    },
+    {
+      "expected_country_code": "ID",
+      "expected_country_qid": "Q252",
+      "label_hint_en": "Plaosan temple",
+      "qid": "Q2750324",
+      "region": "southeast_asia",
+      "risk_tags": [
+        "java",
+        "buddhist",
+        "no_completion_date_in_p1619_p571"
+      ]
+    },
+    {
+      "expected_country_code": "ID",
+      "expected_country_qid": "Q252",
+      "label_hint_en": "Taman Sari",
+      "qid": "Q3135945",
+      "region": "southeast_asia",
+      "risk_tags": [
+        "java",
+        "water_castle"
+      ]
+    },
+    {
+      "expected_country_code": "TH",
+      "expected_country_qid": "Q869",
+      "label_hint_en": "Wat Chaiwatthanaram",
+      "qid": "Q2063779",
+      "region": "southeast_asia",
+      "risk_tags": [
+        "thai",
+        "temple"
+      ]
+    },
+    {
+      "expected_country_code": "MM",
+      "expected_country_qid": "Q836",
+      "label_hint_en": "Shwedagon Pagoda",
+      "qid": "Q464535",
+      "region": "southeast_asia",
+      "risk_tags": [
+        "burmese",
+        "pagoda",
+        "no_completion_date_in_p1619_p571"
+      ]
+    },
+    {
+      "expected_country_code": "MM",
+      "expected_country_qid": "Q836",
+      "label_hint_en": "Thatbyinnyu Temple",
+      "qid": "Q2093752",
+      "region": "southeast_asia",
+      "risk_tags": [
+        "burmese",
+        "temple",
+        "no_completion_date_in_p1619_p571"
+      ]
+    },
+    {
+      "expected_country_code": "MM",
+      "expected_country_qid": "Q836",
+      "label_hint_en": "Dhammayangyi Temple",
+      "qid": "Q1207545",
+      "region": "southeast_asia",
+      "risk_tags": [
+        "burmese",
+        "temple"
+      ]
+    },
+    {
+      "expected_country_code": "PE",
+      "expected_country_qid": "Q419",
+      "label_hint_en": "Choquequirao",
+      "qid": "Q1076285",
+      "region": "latin_america_caribbean",
+      "risk_tags": [
+        "inca",
+        "remote"
+      ]
+    },
+    {
+      "expected_country_code": "PE",
+      "expected_country_qid": "Q419",
+      "label_hint_en": "Nazca Lines",
+      "qid": "Q2620036",
+      "region": "latin_america_caribbean",
+      "risk_tags": [
+        "geoglyph"
+      ]
+    },
+    {
+      "expected_country_code": "PE",
+      "expected_country_qid": "Q419",
+      "label_hint_en": "Huaca del Sol",
+      "qid": "Q1632711",
+      "region": "latin_america_caribbean",
+      "risk_tags": [
+        "moche",
+        "adobe",
+        "no_completion_date_in_p1619_p571"
+      ]
+    },
+    {
+      "expected_country_code": "PE",
+      "expected_country_qid": "Q419",
+      "label_hint_en": "Huaca de la Luna",
+      "qid": "Q1544441",
+      "region": "latin_america_caribbean",
+      "risk_tags": [
+        "moche",
+        "adobe",
+        "no_completion_date_in_p1619_p571"
+      ]
+    },
+    {
+      "expected_country_code": "PE",
+      "expected_country_qid": "Q419",
+      "label_hint_en": "Cathedral of Lima",
+      "qid": "Q2446793",
+      "region": "latin_america_caribbean",
+      "risk_tags": [
+        "colonial",
+        "cathedral"
+      ]
+    },
+    {
+      "expected_country_code": "PE",
+      "expected_country_qid": "Q419",
+      "label_hint_en": "Cusco Cathedral",
+      "qid": "Q2942242",
+      "region": "latin_america_caribbean",
+      "risk_tags": [
+        "colonial",
+        "cathedral"
+      ]
+    },
+    {
+      "expected_country_code": "MX",
+      "expected_country_qid": "Q96",
+      "label_hint_en": "Palace of Fine arts",
+      "qid": "Q1139081",
+      "region": "latin_america_caribbean",
+      "risk_tags": [
+        "beaux_arts"
+      ]
+    },
+    {
+      "expected_country_code": "MX",
+      "expected_country_qid": "Q96",
+      "label_hint_en": "Basilica of Our Lady of Guadalupe",
+      "qid": "Q305419",
+      "region": "latin_america_caribbean",
+      "risk_tags": [
+        "colonial_sacred"
+      ]
+    },
+    {
+      "expected_country_code": "BR",
+      "expected_country_qid": "Q155",
+      "label_hint_en": "Fort Copacabana",
+      "qid": "Q5470982",
+      "region": "latin_america_caribbean",
+      "risk_tags": [
+        "fortress"
+      ]
+    },
+    {
+      "expected_country_code": "EG",
+      "expected_country_qid": "Q79",
+      "label_hint_en": "Temple of Seti I",
+      "qid": "Q1536148",
+      "region": "africa",
+      "risk_tags": [
+        "ancient_egypt",
+        "no_completion_date_in_p1619_p571"
+      ]
+    },
+    {
+      "expected_country_code": "EG",
+      "expected_country_qid": "Q79",
+      "label_hint_en": "Al-Azhar Mosque",
+      "qid": "Q312342",
+      "region": "africa",
+      "risk_tags": [
+        "islamic",
+        "multi_phase"
+      ]
+    },
+    {
+      "expected_country_code": "EG",
+      "expected_country_qid": "Q79",
+      "label_hint_en": "Ben Ezra Synagogue",
+      "qid": "Q2474653",
+      "region": "africa",
+      "risk_tags": [
+        "sacred_building"
+      ]
+    },
+    {
+      "expected_country_code": "IR",
+      "expected_country_qid": "Q794",
+      "label_hint_en": "Imam Reza Shrine",
+      "qid": "Q1791841",
+      "region": "central_west_asia",
+      "risk_tags": [
+        "islamic",
+        "shrine",
+        "no_completion_date_in_p1619_p571"
+      ]
+    },
+    {
+      "expected_country_code": "IR",
+      "expected_country_qid": "Q794",
+      "label_hint_en": "Fin Garden",
+      "qid": "Q1415856",
+      "region": "central_west_asia",
+      "risk_tags": [
+        "garden_complex"
+      ]
+    },
+    {
+      "expected_country_code": "IR",
+      "expected_country_qid": "Q794",
+      "label_hint_en": "Khaju Bridge",
+      "qid": "Q1740490",
+      "region": "central_west_asia",
+      "risk_tags": [
+        "bridge",
+        "safavid"
+      ]
+    },
+    {
+      "expected_country_code": "IR",
+      "expected_country_qid": "Q794",
+      "label_hint_en": "Vakil Mosque",
+      "qid": "Q1831907",
+      "region": "central_west_asia",
+      "risk_tags": [
+        "islamic"
+      ]
+    },
+    {
+      "expected_country_code": "IR",
+      "expected_country_qid": "Q794",
+      "label_hint_en": "Nasir-ol-Molk Mosque",
+      "qid": "Q1962312",
+      "region": "central_west_asia",
+      "risk_tags": [
+        "islamic"
+      ]
+    },
+    {
+      "expected_country_code": "IR",
+      "expected_country_qid": "Q794",
+      "label_hint_en": "Karim Khan Citadel",
+      "qid": "Q206220",
+      "region": "central_west_asia",
+      "risk_tags": [
+        "citadel"
+      ]
+    },
+    {
+      "expected_country_code": "IR",
+      "expected_country_qid": "Q794",
+      "label_hint_en": "Tomb of Hafez",
+      "qid": "Q129479",
+      "region": "central_west_asia",
+      "risk_tags": [
+        "memorial_structure"
+      ]
+    },
+    {
+      "expected_country_code": "IR",
+      "expected_country_qid": "Q794",
+      "label_hint_en": "Gonbad-e Qabus",
+      "qid": "Q606763",
+      "region": "central_west_asia",
+      "risk_tags": [
+        "tower"
+      ]
+    },
+    {
+      "expected_country_code": "TR",
+      "expected_country_qid": "Q43",
+      "label_hint_en": "Selimiye Mosque",
+      "qid": "Q184534",
+      "region": "central_west_asia",
+      "risk_tags": [
+        "sinan",
+        "ottoman"
+      ]
+    },
+    {
+      "expected_country_code": "TR",
+      "expected_country_qid": "Q43",
+      "label_hint_en": "Şehzade Mosque",
+      "qid": "Q644677",
+      "region": "central_west_asia",
+      "risk_tags": [
+        "sinan",
+        "ottoman"
+      ]
+    },
+    {
+      "expected_country_code": "TR",
+      "expected_country_qid": "Q43",
+      "label_hint_en": "Bayezid II Mosque",
+      "qid": "Q853064",
+      "region": "central_west_asia",
+      "risk_tags": [
+        "ottoman"
+      ]
+    },
+    {
+      "expected_country_code": "TR",
+      "expected_country_qid": "Q43",
+      "label_hint_en": "Fatih Istanbul Mosque",
+      "qid": "Q756189",
+      "region": "central_west_asia",
+      "risk_tags": [
+        "ottoman",
+        "multi_phase",
+        "corrected_from_foca_qid"
+      ]
+    },
+    {
+      "expected_country_code": "TR",
+      "expected_country_qid": "Q43",
+      "label_hint_en": "Chora Church",
+      "qid": "Q849489",
+      "region": "central_west_asia",
+      "risk_tags": [
+        "byzantine_ottoman"
+      ]
+    },
+    {
+      "expected_country_code": "SA",
+      "expected_country_qid": "Q851",
+      "label_hint_en": "Masmak Fort",
+      "qid": "Q751987",
+      "region": "central_west_asia",
+      "risk_tags": [
+        "fortress"
+      ]
+    },
+    {
+      "expected_country_code": "IN",
+      "expected_country_qid": "Q668",
+      "label_hint_en": "Jama Masjid",
+      "qid": "Q6127147",
+      "region": "south_asia",
+      "risk_tags": [
+        "mughal",
+        "mosque",
+        "no_completion_date_in_p1619_p571"
+      ]
+    },
+    {
+      "expected_country_code": "IN",
+      "expected_country_qid": "Q668",
+      "label_hint_en": "Tomb of I'timād-ud-Daulah",
+      "qid": "Q1318766",
+      "region": "south_asia",
+      "risk_tags": [
+        "mughal",
+        "tomb",
+        "no_completion_date_in_p1619_p571"
+      ]
+    },
+    {
+      "expected_country_code": "IN",
+      "expected_country_qid": "Q668",
+      "label_hint_en": "Bibi Ka Maqbara",
+      "qid": "Q856259",
+      "region": "south_asia",
+      "risk_tags": [
+        "mughal",
+        "deccan",
+        "tomb",
+        "no_completion_date_in_p1619_p571"
+      ]
+    },
+    {
+      "expected_country_code": "IN",
+      "expected_country_qid": "Q668",
+      "label_hint_en": "Hawa Mahal",
+      "qid": "Q836531",
+      "region": "south_asia",
+      "risk_tags": [
+        "rajput",
+        "palace"
+      ]
+    },
+    {
+      "expected_country_code": "IN",
+      "expected_country_qid": "Q668",
+      "label_hint_en": "Amber Fort",
+      "qid": "Q456817",
+      "region": "south_asia",
+      "risk_tags": [
+        "rajput",
+        "fort"
+      ]
+    },
+    {
+      "expected_country_code": "KH",
+      "expected_country_qid": "Q424",
+      "label_hint_en": "Preah Khan",
+      "qid": "Q944217",
+      "region": "southeast_asia",
+      "risk_tags": [
+        "khmer",
+        "temple",
+        "no_completion_date_in_p1619_p571"
+      ]
+    },
+    {
+      "expected_country_code": "ID",
+      "expected_country_qid": "Q252",
+      "label_hint_en": "Sewu",
+      "qid": "Q2936254",
+      "region": "southeast_asia",
+      "risk_tags": [
+        "java",
+        "buddhist",
+        "no_completion_date_in_p1619_p571"
+      ]
+    },
+    {
+      "expected_country_code": "ID",
+      "expected_country_qid": "Q252",
+      "label_hint_en": "Ratu Boko Temple",
+      "qid": "Q3111557",
+      "region": "southeast_asia",
+      "risk_tags": [
+        "java",
+        "palace",
+        "no_completion_date_in_p1619_p571"
+      ]
+    },
+    {
+      "expected_country_code": "VN",
+      "expected_country_qid": "Q881",
+      "label_hint_en": "Thiên Mụ Temple",
+      "qid": "Q975568",
+      "region": "southeast_asia",
+      "risk_tags": [
+        "vietnamese",
+        "pagoda",
+        "no_completion_date_in_p1619_p571"
+      ]
+    },
+    {
+      "expected_country_code": "VN",
+      "expected_country_qid": "Q881",
+      "label_hint_en": "Temple of Literature, Huế",
+      "qid": "Q10833485",
+      "region": "southeast_asia",
+      "risk_tags": [
+        "vietnamese",
+        "confucian",
+        "no_completion_date_in_p1619_p571"
+      ]
+    },
+    {
+      "expected_country_code": "VN",
+      "expected_country_qid": "Q881",
+      "label_hint_en": "One Pillar Pagoda",
+      "qid": "Q1186292",
+      "region": "southeast_asia",
+      "risk_tags": [
+        "vietnamese",
+        "pagoda",
+        "no_completion_date_in_p1619_p571"
+      ]
+    },
+    {
+      "expected_country_code": "MM",
+      "expected_country_qid": "Q836",
+      "label_hint_en": "Ananda Temple",
+      "qid": "Q485727",
+      "region": "southeast_asia",
+      "risk_tags": [
+        "burmese",
+        "temple"
+      ]
+    },
+    {
+      "expected_country_code": "PE",
+      "expected_country_qid": "Q419",
+      "label_hint_en": "Ollantaytambo Sun Temple",
+      "qid": "Q48785045",
+      "region": "latin_america_caribbean",
+      "risk_tags": [
+        "inca",
+        "site",
+        "no_completion_date_in_p1619_p571"
+      ]
+    },
+    {
+      "expected_country_code": "PE",
+      "expected_country_qid": "Q419",
+      "label_hint_en": "Pisac Archeological Park",
+      "qid": "Q106298850",
+      "region": "latin_america_caribbean",
+      "risk_tags": [
+        "inca",
+        "site",
+        "no_completion_date_in_p1619_p571"
+      ]
+    },
+    {
+      "expected_country_code": "MX",
+      "expected_country_qid": "Q96",
+      "label_hint_en": "Mexico City Metropolitan Cathedral",
+      "qid": "Q610961",
+      "region": "latin_america_caribbean",
+      "risk_tags": [
+        "colonial",
+        "cathedral"
+      ]
     }
   ]
 }

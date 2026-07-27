@@ -1192,6 +1192,44 @@
       "verification_status": "candidate"
     },
     {
+      "aliases_en": [],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1412,
+        "latest": 1412,
+        "precision": "year",
+        "value": "1412"
+      },
+      "claim_ids": [
+        "claim-wd-q11882869-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": 1512,
+        "latest": 1512,
+        "precision": "year",
+        "value": "1512"
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q11882869"
+      },
+      "id": "person-wd-q11882869",
+      "last_verified": "2026-07-27",
+      "name_en": "Mimar Hayruddin",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
       "aliases_en": [
         "Vojtech Ignac Ullmann",
         "Ignác Ullmann"
@@ -1734,6 +1772,45 @@
       "aliases_en": [],
       "aliases_zh": [],
       "birth": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "claim_ids": [
+        "claim-wd-q130383-name-en",
+        "claim-wd-q130383-name-zh"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": 968,
+        "latest": 968,
+        "precision": "year",
+        "value": "0968"
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q130383"
+      },
+      "id": "person-wd-q130383",
+      "last_verified": "2026-07-27",
+      "name_en": "Rajendravarman II",
+      "name_native": null,
+      "name_zh": "罗贞陀罗跋摩二世",
+      "name_zh_status": "source_label_candidate",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [],
+      "aliases_zh": [],
+      "birth": {
         "earliest": 1875,
         "latest": 1875,
         "precision": "day",
@@ -2222,6 +2299,50 @@
     },
     {
       "aliases_en": [
+        "Manuel Tolsá Sarrión",
+        "Manuel Tolsa Sarrion",
+        "Manuel Tolsa",
+        "Manuel Vicente Tolsá Sarrión"
+      ],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1757,
+        "latest": 1757,
+        "precision": "day",
+        "value": "1757-05-04"
+      },
+      "claim_ids": [
+        "claim-wd-q1374668-name-en",
+        "claim-wd-q1374668-name-zh"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": 1816,
+        "latest": 1816,
+        "precision": "day",
+        "value": "1816-12-25"
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q1374668"
+      },
+      "id": "person-wd-q1374668",
+      "last_verified": "2026-07-27",
+      "name_en": "Manuel Tolsá",
+      "name_native": null,
+      "name_zh": "曼努埃爾·托薩",
+      "name_zh_status": "source_label_candidate",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [
         "Marco Zanuso Sr."
       ],
       "aliases_zh": [],
@@ -2252,6 +2373,47 @@
       "name_native": null,
       "name_zh": null,
       "name_zh_status": "missing",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [],
+      "aliases_zh": [
+        "白象王"
+      ],
+      "birth": {
+        "earliest": 1736,
+        "latest": 1736,
+        "precision": "day",
+        "value": "1736-09-12"
+      },
+      "claim_ids": [
+        "claim-wd-q1395046-name-en",
+        "claim-wd-q1395046-name-zh"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": 1776,
+        "latest": 1776,
+        "precision": "day",
+        "value": "1776-07-10"
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q1395046"
+      },
+      "id": "person-wd-q1395046",
+      "last_verified": "2026-07-27",
+      "name_en": "Hsinbyushin",
+      "name_native": null,
+      "name_zh": "辛标信",
+      "name_zh_status": "source_label_candidate",
       "region": "unknown",
       "roles": [
         "architect"
@@ -4172,6 +4334,44 @@
       "name_native": null,
       "name_zh": "林達特·范·德·弗盧特",
       "name_zh_status": "source_label_candidate",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1690,
+        "latest": 1690,
+        "precision": "year",
+        "value": "1690"
+      },
+      "claim_ids": [
+        "claim-wd-q18223765-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": 1758,
+        "latest": 1758,
+        "precision": "year",
+        "value": "1758"
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q18223765"
+      },
+      "id": "person-wd-q18223765",
+      "last_verified": "2026-07-27",
+      "name_en": "José Eduardo de Herrera",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
       "region": "unknown",
       "roles": [
         "architect"
@@ -7554,6 +7754,48 @@
     },
     {
       "aliases_en": [
+        "Christodoulos",
+        "Atik Sinan"
+      ],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "claim_ids": [
+        "claim-wd-q2869352-name-en",
+        "claim-wd-q2869352-name-zh"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": 1471,
+        "latest": 1471,
+        "precision": "year",
+        "value": "1471"
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q2869352"
+      },
+      "id": "person-wd-q2869352",
+      "last_verified": "2026-07-27",
+      "name_en": "Atik Sinan",
+      "name_native": null,
+      "name_zh": "阿提克·錫南",
+      "name_zh_status": "source_label_candidate",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [
         "Augustin-Charles d' Daviler",
         "Charles Augustin d' Aviler",
         "Charles-Augustin d' Aviler",
@@ -8579,6 +8821,51 @@
       "id": "person-wd-q3059718",
       "last_verified": "2026-07-27",
       "name_en": "Eugène Beaudouin",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [
+        "Garabad Balyan",
+        "Garabed Balyan",
+        "Karapet Grigori Balyan",
+        "Karabed Amira Balyan",
+        "Garabed Amira Balyan",
+        "Garabad Grigori Balyan"
+      ],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1800,
+        "latest": 1800,
+        "precision": "year",
+        "value": "1800"
+      },
+      "claim_ids": [
+        "claim-wd-q3072081-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": 1866,
+        "latest": 1866,
+        "precision": "day",
+        "value": "1866-11-15"
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q3072081"
+      },
+      "id": "person-wd-q3072081",
+      "last_verified": "2026-07-27",
+      "name_en": "Garabet Amira Balyan",
       "name_native": null,
       "name_zh": null,
       "name_zh_status": "missing",
@@ -10419,6 +10706,45 @@
       "verification_status": "candidate"
     },
     {
+      "aliases_en": [],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1545,
+        "latest": 1545,
+        "precision": "year",
+        "value": "1545"
+      },
+      "claim_ids": [
+        "claim-wd-q3296875-name-en",
+        "claim-wd-q3296875-name-zh"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": 1605,
+        "latest": 1605,
+        "precision": "year",
+        "value": "1605"
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q3296875"
+      },
+      "id": "person-wd-q3296875",
+      "last_verified": "2026-07-27",
+      "name_en": "Francisco Becerra",
+      "name_native": null,
+      "name_zh": "弗朗西斯科·贝塞拉",
+      "name_zh_status": "source_label_candidate",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
       "aliases_en": [
         "Peter Nobile",
         "Peter von Nobile"
@@ -11238,6 +11564,87 @@
       "id": "person-wd-q3499274",
       "last_verified": "2026-07-27",
       "name_en": "Isidre Puig Boada",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [
+        "Pedro Ramirez Vazquez"
+      ],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1919,
+        "latest": 1919,
+        "precision": "day",
+        "value": "1919-04-16"
+      },
+      "claim_ids": [
+        "claim-wd-q350915-name-en",
+        "claim-wd-q350915-name-zh"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": 2013,
+        "latest": 2013,
+        "precision": "day",
+        "value": "2013-04-16"
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q350915"
+      },
+      "id": "person-wd-q350915",
+      "last_verified": "2026-07-27",
+      "name_en": "Pedro Ramírez Vázquez",
+      "name_native": null,
+      "name_zh": "佩德罗·拉米雷斯·巴斯克斯",
+      "name_zh_status": "source_label_candidate",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [
+        "Adamo Boari Dandini"
+      ],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1863,
+        "latest": 1863,
+        "precision": "day",
+        "value": "1863-10-22"
+      },
+      "claim_ids": [
+        "claim-wd-q351644-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": 1928,
+        "latest": 1928,
+        "precision": "day",
+        "value": "1928-02-24"
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q351644"
+      },
+      "id": "person-wd-q351644",
+      "last_verified": "2026-07-27",
+      "name_en": "Adamo Boari",
       "name_native": null,
       "name_zh": null,
       "name_zh_status": "missing",
@@ -14233,6 +14640,46 @@
       "verification_status": "candidate"
     },
     {
+      "aliases_en": [
+        "Claudio de Arziniega"
+      ],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1525,
+        "latest": 1525,
+        "precision": "year",
+        "value": "1525"
+      },
+      "claim_ids": [
+        "claim-wd-q5129432-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": 1593,
+        "latest": 1593,
+        "precision": "year",
+        "value": "1593"
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q5129432"
+      },
+      "id": "person-wd-q5129432",
+      "last_verified": "2026-07-27",
+      "name_en": "Claudio de Arciniega",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
       "aliases_en": [],
       "aliases_zh": [],
       "birth": {
@@ -14381,6 +14828,49 @@
       "name_native": null,
       "name_zh": null,
       "name_zh_status": "missing",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [
+        "Andre Godard"
+      ],
+      "aliases_zh": [
+        "安德烈·戈达尔"
+      ],
+      "birth": {
+        "earliest": 1881,
+        "latest": 1881,
+        "precision": "day",
+        "value": "1881-01-24"
+      },
+      "claim_ids": [
+        "claim-wd-q518977-name-en",
+        "claim-wd-q518977-name-zh"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": 1965,
+        "latest": 1965,
+        "precision": "day",
+        "value": "1965-07-31"
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q518977"
+      },
+      "id": "person-wd-q518977",
+      "last_verified": "2026-07-27",
+      "name_en": "André Godard",
+      "name_native": null,
+      "name_zh": "安德烈·戈达尔",
+      "name_zh_status": "source_label_candidate",
       "region": "unknown",
       "roles": [
         "architect"
@@ -15593,6 +16083,88 @@
     },
     {
       "aliases_en": [
+        "Jose Damian Ortiz de Castro"
+      ],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1750,
+        "latest": 1750,
+        "precision": "day",
+        "value": "1750-09-28"
+      },
+      "claim_ids": [
+        "claim-wd-q5836674-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": 1793,
+        "latest": 1793,
+        "precision": "day",
+        "value": "1793-05-06"
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q5836674"
+      },
+      "id": "person-wd-q5836674",
+      "last_verified": "2026-07-27",
+      "name_en": "José Damián Ortiz de Castro",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [
+        "Federico E. Mariscal",
+        "Federico Mariscal y Pina",
+        "Federico Mariscal"
+      ],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1881,
+        "latest": 1881,
+        "precision": "day",
+        "value": "1881-11-07"
+      },
+      "claim_ids": [
+        "claim-wd-q5857593-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": 1971,
+        "latest": 1971,
+        "precision": "year",
+        "value": "1971"
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q5857593"
+      },
+      "id": "person-wd-q5857593",
+      "last_verified": "2026-07-27",
+      "name_en": "Federico Ernesto Mariscal Piña",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [
         "Hemium"
       ],
       "aliases_zh": [],
@@ -15624,6 +16196,44 @@
       "name_native": null,
       "name_zh": "赫米乌努",
       "name_zh_status": "source_label_candidate",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "claim_ids": [
+        "claim-wd-q5949928-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": 1647,
+        "latest": 1647,
+        "precision": "year",
+        "value": "1647"
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q5949928"
+      },
+      "id": "person-wd-q5949928",
+      "last_verified": "2026-07-27",
+      "name_en": "Juan Gómez de Trasmonte",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
       "region": "unknown",
       "roles": [
         "architect"
@@ -15719,6 +16329,46 @@
     },
     {
       "aliases_en": [
+        "Nigoğos Balyan"
+      ],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1826,
+        "latest": 1826,
+        "precision": "day",
+        "value": "1826-11-19"
+      },
+      "claim_ids": [
+        "claim-wd-q6007289-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": 1858,
+        "latest": 1858,
+        "precision": "day",
+        "value": "1858-02-27"
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q6007289"
+      },
+      "id": "person-wd-q6007289",
+      "last_verified": "2026-07-27",
+      "name_en": "Nigoğayos Balyan",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [
         "Antonio Riccio",
         "Antonio Rizo",
         "Antonio Bregno"
@@ -15748,6 +16398,46 @@
       "id": "person-wd-q604631",
       "last_verified": "2026-07-27",
       "name_en": "Antonio Rizzo",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [
+        "Mimar Mehmet Tahir"
+      ],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "claim_ids": [
+        "claim-wd-q6062280-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": 1788,
+        "latest": 1788,
+        "precision": "year",
+        "value": "1788"
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q6062280"
+      },
+      "id": "person-wd-q6062280",
+      "last_verified": "2026-07-27",
+      "name_en": "Mimar Mehmet Tahir",
       "name_native": null,
       "name_zh": null,
       "name_zh_status": "missing",
@@ -16669,6 +17359,44 @@
       "id": "person-wd-q64797517",
       "last_verified": "2026-07-27",
       "name_en": "Peter Hall",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "claim_ids": [
+        "claim-wd-q6480034-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q6480034"
+      },
+      "id": "person-wd-q6480034",
+      "last_verified": "2026-07-27",
+      "name_en": "Lal Chand Ustad",
       "name_native": null,
       "name_zh": null,
       "name_zh_status": "missing",

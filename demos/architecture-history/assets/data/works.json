@@ -828,6 +828,68 @@
     },
     {
       "aliases_en": [
+        "Inca complex at Písac"
+      ],
+      "aliases_zh": [],
+      "attribution_mode": "unknown",
+      "claim_ids": [
+        "claim-wd-q106298850-name-en",
+        "claim-wd-q106298850-work-type",
+        "claim-wd-q106298850-coordinates"
+      ],
+      "confidence": 0.6,
+      "coordinates": {
+        "claim_id": "claim-wd-q106298850-coordinates",
+        "lat": -13.408886,
+        "lng": -71.842872,
+        "precision": 1e-06
+      },
+      "credit_set_completeness": "unknown",
+      "credits": [],
+      "dates": {
+        "completion": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "construction_start": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "design": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        }
+      },
+      "entity_type": "work",
+      "external_ids": {
+        "wikidata": "Q106298850"
+      },
+      "id": "work-wd-q106298850",
+      "last_verified": "2026-07-27",
+      "name_en": "Pisac Archeological Park",
+      "name_native": null,
+      "name_zh": null,
+      "period": "unknown",
+      "place_id": "place-wd-q419",
+      "region": "latin_america_caribbean",
+      "significance_en": [],
+      "significance_zh": [],
+      "status": "unknown",
+      "summary_en": "",
+      "summary_zh": "",
+      "unresolved_credits": [],
+      "verification_status": "candidate",
+      "work_type": "building_complex",
+      "work_type_mapping_status": "mapped_exact"
+    },
+    {
+      "aliases_en": [
         "National Art Gallery of Canada"
       ],
       "aliases_zh": [],
@@ -1129,6 +1191,128 @@
       "period": "unknown",
       "place_id": "place-wd-q148",
       "region": "east_asia",
+      "significance_en": [],
+      "significance_zh": [],
+      "status": "unknown",
+      "summary_en": "",
+      "summary_zh": "",
+      "unresolved_credits": [],
+      "verification_status": "candidate",
+      "work_type": "unknown",
+      "work_type_mapping_status": "unmapped"
+    },
+    {
+      "aliases_en": [],
+      "aliases_zh": [],
+      "attribution_mode": "unknown",
+      "claim_ids": [
+        "claim-wd-q1076285-name-en",
+        "claim-wd-q1076285-name-zh",
+        "claim-wd-q1076285-work-type",
+        "claim-wd-q1076285-coordinates",
+        "claim-wd-q1076285-p571-1"
+      ],
+      "confidence": 0.6,
+      "coordinates": {
+        "claim_id": "claim-wd-q1076285-coordinates",
+        "lat": -13.394742,
+        "lng": -72.872243,
+        "precision": 0.000277778
+      },
+      "credit_set_completeness": "unknown",
+      "credits": [],
+      "dates": {
+        "completion": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "construction_start": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "design": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        }
+      },
+      "entity_type": "work",
+      "external_ids": {
+        "wikidata": "Q1076285"
+      },
+      "id": "work-wd-q1076285",
+      "last_verified": "2026-07-27",
+      "name_en": "Choquequirao",
+      "name_native": null,
+      "name_zh": "乔昆丘拉城",
+      "period": "unknown",
+      "place_id": "place-wd-q419",
+      "region": "latin_america_caribbean",
+      "significance_en": [],
+      "significance_zh": [],
+      "status": "unknown",
+      "summary_en": "",
+      "summary_zh": "",
+      "unresolved_credits": [],
+      "verification_status": "candidate",
+      "work_type": "building_complex",
+      "work_type_mapping_status": "mapped_exact"
+    },
+    {
+      "aliases_en": [],
+      "aliases_zh": [],
+      "attribution_mode": "unknown",
+      "claim_ids": [
+        "claim-wd-q10833485-name-en",
+        "claim-wd-q10833485-name-zh",
+        "claim-wd-q10833485-coordinates"
+      ],
+      "confidence": 0.6,
+      "coordinates": {
+        "claim_id": "claim-wd-q10833485-coordinates",
+        "lat": 16.4529,
+        "lng": 107.539,
+        "precision": 0.01
+      },
+      "credit_set_completeness": "unknown",
+      "credits": [],
+      "dates": {
+        "completion": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "construction_start": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "design": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        }
+      },
+      "entity_type": "work",
+      "external_ids": {
+        "wikidata": "Q10833485"
+      },
+      "id": "work-wd-q10833485",
+      "last_verified": "2026-07-27",
+      "name_en": "Temple of Literature, Huế",
+      "name_native": null,
+      "name_zh": "順化文廟",
+      "period": "unknown",
+      "place_id": "place-wd-q881",
+      "region": "southeast_asia",
       "significance_en": [],
       "significance_zh": [],
       "status": "unknown",
@@ -1960,6 +2144,80 @@
     },
     {
       "aliases_en": [
+        "Rüstem Paşa Camii"
+      ],
+      "aliases_zh": [],
+      "attribution_mode": "unknown",
+      "claim_ids": [
+        "claim-wd-q1137511-name-en",
+        "claim-wd-q1137511-name-zh",
+        "claim-wd-q1137511-work-type",
+        "claim-wd-q1137511-coordinates",
+        "claim-wd-q1137511-p84-q5600-1",
+        "claim-wd-q1137511-p571-1"
+      ],
+      "confidence": 0.6,
+      "coordinates": {
+        "claim_id": "claim-wd-q1137511-coordinates",
+        "lat": 41.01759104,
+        "lng": 28.96874786,
+        "precision": 2.77777777778e-06
+      },
+      "credit_set_completeness": "unknown",
+      "credits": [
+        {
+          "claim_id": "claim-wd-q1137511-p84-q5600-1",
+          "credit_status": "candidate",
+          "entity_id": "person-wd-q5600",
+          "entity_type": "person",
+          "phase": "unknown",
+          "role": "architect"
+        }
+      ],
+      "dates": {
+        "completion": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "construction_start": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "design": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        }
+      },
+      "entity_type": "work",
+      "external_ids": {
+        "wikidata": "Q1137511"
+      },
+      "id": "work-wd-q1137511",
+      "last_verified": "2026-07-27",
+      "name_en": "Rüstem Pasha Mosque",
+      "name_native": null,
+      "name_zh": "鲁斯坦帕夏清真寺",
+      "period": "unknown",
+      "place_id": "place-wd-q43",
+      "region": "central_west_asia",
+      "significance_en": [],
+      "significance_zh": [],
+      "status": "unknown",
+      "summary_en": "",
+      "summary_zh": "",
+      "unresolved_credits": [],
+      "verification_status": "candidate",
+      "work_type": "building",
+      "work_type_mapping_status": "mapped_exact"
+    },
+    {
+      "aliases_en": [
         "St Michael's Cathedral"
       ],
       "aliases_zh": [
@@ -2111,6 +2369,93 @@
       "verification_status": "candidate",
       "work_type": "building",
       "work_type_mapping_status": "mapped_exact"
+    },
+    {
+      "aliases_en": [
+        "Palace of Fine Arts, Mexico City",
+        "Palacio de Bellas Artes, Mexico City",
+        "Palacio de Bellas Artes"
+      ],
+      "aliases_zh": [
+        "美术宫"
+      ],
+      "attribution_mode": "unknown",
+      "claim_ids": [
+        "claim-wd-q1139081-name-en",
+        "claim-wd-q1139081-name-zh",
+        "claim-wd-q1139081-coordinates",
+        "claim-wd-q1139081-p84-q351644-1",
+        "claim-wd-q1139081-p84-q5857593-2",
+        "claim-wd-q1139081-p571-1",
+        "claim-wd-q1139081-p1619-1"
+      ],
+      "confidence": 0.6,
+      "coordinates": {
+        "claim_id": "claim-wd-q1139081-coordinates",
+        "lat": 19.435277777777777,
+        "lng": -99.14138888888888,
+        "precision": 0.0002777777777777778
+      },
+      "credit_set_completeness": "unknown",
+      "credits": [
+        {
+          "claim_id": "claim-wd-q1139081-p84-q351644-1",
+          "credit_status": "candidate",
+          "entity_id": "person-wd-q351644",
+          "entity_type": "person",
+          "phase": "unknown",
+          "role": "architect"
+        },
+        {
+          "claim_id": "claim-wd-q1139081-p84-q5857593-2",
+          "credit_status": "candidate",
+          "entity_id": "person-wd-q5857593",
+          "entity_type": "person",
+          "phase": "unknown",
+          "role": "architect"
+        }
+      ],
+      "dates": {
+        "completion": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "construction_start": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "design": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        }
+      },
+      "entity_type": "work",
+      "external_ids": {
+        "wikidata": "Q1139081"
+      },
+      "id": "work-wd-q1139081",
+      "last_verified": "2026-07-27",
+      "name_en": "Palace of Fine arts",
+      "name_native": null,
+      "name_zh": "艺术宫",
+      "period": "unknown",
+      "place_id": "place-wd-q96",
+      "region": "latin_america_caribbean",
+      "significance_en": [],
+      "significance_zh": [],
+      "status": "unknown",
+      "summary_en": "",
+      "summary_zh": "",
+      "unresolved_credits": [],
+      "verification_status": "candidate",
+      "work_type": "unknown",
+      "work_type_mapping_status": "unmapped"
     },
     {
       "aliases_en": [
@@ -2724,6 +3069,72 @@
     {
       "aliases_en": [],
       "aliases_zh": [
+        "独柱寺",
+        "莲花台",
+        "延祐寺",
+        "蓮花臺",
+        "廚𠬠榾"
+      ],
+      "attribution_mode": "unknown",
+      "claim_ids": [
+        "claim-wd-q1186292-name-en",
+        "claim-wd-q1186292-name-zh",
+        "claim-wd-q1186292-coordinates"
+      ],
+      "confidence": 0.6,
+      "coordinates": {
+        "claim_id": "claim-wd-q1186292-coordinates",
+        "lat": 21.035745,
+        "lng": 105.833428,
+        "precision": 2.77777777778e-06
+      },
+      "credit_set_completeness": "unknown",
+      "credits": [],
+      "dates": {
+        "completion": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "construction_start": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "design": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        }
+      },
+      "entity_type": "work",
+      "external_ids": {
+        "wikidata": "Q1186292"
+      },
+      "id": "work-wd-q1186292",
+      "last_verified": "2026-07-27",
+      "name_en": "One Pillar Pagoda",
+      "name_native": null,
+      "name_zh": "一柱寺",
+      "period": "unknown",
+      "place_id": "place-wd-q881",
+      "region": "southeast_asia",
+      "significance_en": [],
+      "significance_zh": [],
+      "status": "unknown",
+      "summary_en": "",
+      "summary_zh": "",
+      "unresolved_credits": [],
+      "verification_status": "candidate",
+      "work_type": "unknown",
+      "work_type_mapping_status": "unmapped"
+    },
+    {
+      "aliases_en": [],
+      "aliases_zh": [
         "马雅科夫斯基站",
         "馬雅科夫斯卡婭站"
       ],
@@ -2871,6 +3282,68 @@
       "aliases_zh": [],
       "attribution_mode": "unknown",
       "claim_ids": [
+        "claim-wd-q1207545-name-en",
+        "claim-wd-q1207545-name-zh",
+        "claim-wd-q1207545-work-type",
+        "claim-wd-q1207545-coordinates",
+        "claim-wd-q1207545-p571-1"
+      ],
+      "confidence": 0.6,
+      "coordinates": {
+        "claim_id": "claim-wd-q1207545-coordinates",
+        "lat": 21.15925,
+        "lng": 94.87111111,
+        "precision": 2.777777777778e-05
+      },
+      "credit_set_completeness": "unknown",
+      "credits": [],
+      "dates": {
+        "completion": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "construction_start": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "design": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        }
+      },
+      "entity_type": "work",
+      "external_ids": {
+        "wikidata": "Q1207545"
+      },
+      "id": "work-wd-q1207545",
+      "last_verified": "2026-07-27",
+      "name_en": "Dhammayangyi Temple",
+      "name_native": null,
+      "name_zh": "檀摩衍寺",
+      "period": "unknown",
+      "place_id": "place-wd-q836",
+      "region": "southeast_asia",
+      "significance_en": [],
+      "significance_zh": [],
+      "status": "unknown",
+      "summary_en": "",
+      "summary_zh": "",
+      "unresolved_credits": [],
+      "verification_status": "candidate",
+      "work_type": "building",
+      "work_type_mapping_status": "mapped_exact"
+    },
+    {
+      "aliases_en": [],
+      "aliases_zh": [],
+      "attribution_mode": "unknown",
+      "claim_ids": [
         "claim-wd-q1208310-name-en",
         "claim-wd-q1208310-name-zh",
         "claim-wd-q1208310-coordinates",
@@ -2936,6 +3409,68 @@
       "verification_status": "candidate",
       "work_type": "unknown",
       "work_type_mapping_status": "unmapped"
+    },
+    {
+      "aliases_en": [],
+      "aliases_zh": [
+        "康翁波神庙"
+      ],
+      "attribution_mode": "unknown",
+      "claim_ids": [
+        "claim-wd-q1243401-name-en",
+        "claim-wd-q1243401-name-zh",
+        "claim-wd-q1243401-coordinates"
+      ],
+      "confidence": 0.6,
+      "coordinates": {
+        "claim_id": "claim-wd-q1243401-coordinates",
+        "lat": 24.451944444444,
+        "lng": 32.928055555556,
+        "precision": null
+      },
+      "credit_set_completeness": "unknown",
+      "credits": [],
+      "dates": {
+        "completion": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "construction_start": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "design": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        }
+      },
+      "entity_type": "work",
+      "external_ids": {
+        "wikidata": "Q1243401"
+      },
+      "id": "work-wd-q1243401",
+      "last_verified": "2026-07-27",
+      "name_en": "Temple of Kom Ombo",
+      "name_native": null,
+      "name_zh": "康翁波神庙",
+      "period": "unknown",
+      "place_id": "place-wd-q79",
+      "region": "africa",
+      "significance_en": [],
+      "significance_zh": [],
+      "status": "unknown",
+      "summary_en": "",
+      "summary_zh": "",
+      "unresolved_credits": [],
+      "verification_status": "candidate",
+      "work_type": "unknown",
+      "work_type_mapping_status": "ambiguous"
     },
     {
       "aliases_en": [
@@ -4096,6 +4631,77 @@
       "work_type_mapping_status": "mapped_exact"
     },
     {
+      "aliases_en": [],
+      "aliases_zh": [],
+      "attribution_mode": "unknown",
+      "claim_ids": [
+        "claim-wd-q129479-name-en",
+        "claim-wd-q129479-name-zh",
+        "claim-wd-q129479-coordinates",
+        "claim-wd-q129479-p84-q518977-1",
+        "claim-wd-q129479-p571-1"
+      ],
+      "confidence": 0.6,
+      "coordinates": {
+        "claim_id": "claim-wd-q129479-coordinates",
+        "lat": 29.625805555555555,
+        "lng": 52.55844444444445,
+        "precision": 2.777777777777778e-05
+      },
+      "credit_set_completeness": "unknown",
+      "credits": [
+        {
+          "claim_id": "claim-wd-q129479-p84-q518977-1",
+          "credit_status": "candidate",
+          "entity_id": "person-wd-q518977",
+          "entity_type": "person",
+          "phase": "unknown",
+          "role": "architect"
+        }
+      ],
+      "dates": {
+        "completion": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "construction_start": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "design": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        }
+      },
+      "entity_type": "work",
+      "external_ids": {
+        "wikidata": "Q129479"
+      },
+      "id": "work-wd-q129479",
+      "last_verified": "2026-07-27",
+      "name_en": "Tomb of Hafez",
+      "name_native": null,
+      "name_zh": "哈菲兹墓",
+      "period": "unknown",
+      "place_id": "place-wd-q794",
+      "region": "central_west_asia",
+      "significance_en": [],
+      "significance_zh": [],
+      "status": "unknown",
+      "summary_en": "",
+      "summary_zh": "",
+      "unresolved_credits": [],
+      "verification_status": "candidate",
+      "work_type": "unknown",
+      "work_type_mapping_status": "unmapped"
+    },
+    {
       "aliases_en": [
         "Great Sphinx of Giza",
         "Sphinx"
@@ -4395,6 +5001,71 @@
       "period": "unknown",
       "place_id": "place-wd-q183",
       "region": "europe",
+      "significance_en": [],
+      "significance_zh": [],
+      "status": "unknown",
+      "summary_en": "",
+      "summary_zh": "",
+      "unresolved_credits": [],
+      "verification_status": "candidate",
+      "work_type": "unknown",
+      "work_type_mapping_status": "unmapped"
+    },
+    {
+      "aliases_en": [
+        "Itimad ud-Daulah Tomb"
+      ],
+      "aliases_zh": [
+        "國柱陵",
+        "国柱陵"
+      ],
+      "attribution_mode": "unknown",
+      "claim_ids": [
+        "claim-wd-q1318766-name-en",
+        "claim-wd-q1318766-name-zh",
+        "claim-wd-q1318766-coordinates"
+      ],
+      "confidence": 0.6,
+      "coordinates": {
+        "claim_id": "claim-wd-q1318766-coordinates",
+        "lat": 27.1925,
+        "lng": 78.03138889,
+        "precision": 0.00027777777777778
+      },
+      "credit_set_completeness": "unknown",
+      "credits": [],
+      "dates": {
+        "completion": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "construction_start": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "design": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        }
+      },
+      "entity_type": "work",
+      "external_ids": {
+        "wikidata": "Q1318766"
+      },
+      "id": "work-wd-q1318766",
+      "last_verified": "2026-07-27",
+      "name_en": "Tomb of I'timād-ud-Daulah",
+      "name_native": null,
+      "name_zh": "国柱陵",
+      "period": "unknown",
+      "place_id": "place-wd-q668",
+      "region": "south_asia",
       "significance_en": [],
       "significance_zh": [],
       "status": "unknown",
@@ -5160,6 +5831,66 @@
       "aliases_zh": [],
       "attribution_mode": "unknown",
       "claim_ids": [
+        "claim-wd-q138135958-name-en",
+        "claim-wd-q138135958-work-type",
+        "claim-wd-q138135958-coordinates"
+      ],
+      "confidence": 0.6,
+      "coordinates": {
+        "claim_id": "claim-wd-q138135958-coordinates",
+        "lat": 30.0288197999999,
+        "lng": 31.2495214,
+        "precision": 1e-06
+      },
+      "credit_set_completeness": "unknown",
+      "credits": [],
+      "dates": {
+        "completion": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "construction_start": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "design": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        }
+      },
+      "entity_type": "work",
+      "external_ids": {
+        "wikidata": "Q138135958"
+      },
+      "id": "work-wd-q138135958",
+      "last_verified": "2026-07-27",
+      "name_en": "Ibn Tulun Mosque",
+      "name_native": null,
+      "name_zh": null,
+      "period": "unknown",
+      "place_id": "place-wd-q79",
+      "region": "africa",
+      "significance_en": [],
+      "significance_zh": [],
+      "status": "unknown",
+      "summary_en": "",
+      "summary_zh": "",
+      "unresolved_credits": [],
+      "verification_status": "candidate",
+      "work_type": "building",
+      "work_type_mapping_status": "mapped_exact"
+    },
+    {
+      "aliases_en": [],
+      "aliases_zh": [],
+      "attribution_mode": "unknown",
+      "claim_ids": [
         "claim-wd-q1397013-name-en",
         "claim-wd-q1397013-name-zh",
         "claim-wd-q1397013-coordinates",
@@ -5289,6 +6020,71 @@
       "period": "unknown",
       "place_id": "place-wd-q213",
       "region": "europe",
+      "significance_en": [],
+      "significance_zh": [],
+      "status": "unknown",
+      "summary_en": "",
+      "summary_zh": "",
+      "unresolved_credits": [],
+      "verification_status": "candidate",
+      "work_type": "unknown",
+      "work_type_mapping_status": "unmapped"
+    },
+    {
+      "aliases_en": [
+        "Bagh-e Fin"
+      ],
+      "aliases_zh": [],
+      "attribution_mode": "unknown",
+      "claim_ids": [
+        "claim-wd-q1415856-name-en",
+        "claim-wd-q1415856-name-zh",
+        "claim-wd-q1415856-coordinates",
+        "claim-wd-q1415856-p1619-1",
+        "claim-wd-q1415856-p1619-2",
+        "claim-wd-q1415856-p1619-3"
+      ],
+      "confidence": 0.6,
+      "coordinates": {
+        "claim_id": "claim-wd-q1415856-coordinates",
+        "lat": 33.94627777777778,
+        "lng": 51.37261111111111,
+        "precision": 2.777777777777778e-05
+      },
+      "credit_set_completeness": "unknown",
+      "credits": [],
+      "dates": {
+        "completion": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "construction_start": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "design": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        }
+      },
+      "entity_type": "work",
+      "external_ids": {
+        "wikidata": "Q1415856"
+      },
+      "id": "work-wd-q1415856",
+      "last_verified": "2026-07-27",
+      "name_en": "Fin Garden",
+      "name_native": null,
+      "name_zh": "菲恩花園",
+      "period": "unknown",
+      "place_id": "place-wd-q794",
+      "region": "central_west_asia",
       "significance_en": [],
       "significance_zh": [],
       "status": "unknown",
@@ -5509,6 +6305,79 @@
       "verification_status": "candidate",
       "work_type": "unknown",
       "work_type_mapping_status": "unmapped"
+    },
+    {
+      "aliases_en": [],
+      "aliases_zh": [],
+      "attribution_mode": "unknown",
+      "claim_ids": [
+        "claim-wd-q1454816-name-en",
+        "claim-wd-q1454816-name-zh",
+        "claim-wd-q1454816-work-type",
+        "claim-wd-q1454816-coordinates",
+        "claim-wd-q1454816-p1619-1",
+        "claim-wd-q1454816-p1619-2",
+        "claim-wd-q1454816-p1619-3",
+        "claim-wd-q1454816-p1619-4",
+        "claim-wd-q1454816-p1619-5",
+        "claim-wd-q1454816-p1619-6",
+        "claim-wd-q1454816-p1619-7",
+        "claim-wd-q1454816-p1619-8",
+        "claim-wd-q1454816-p1619-9",
+        "claim-wd-q1454816-p1619-10",
+        "claim-wd-q1454816-p1619-11",
+        "claim-wd-q1454816-p1619-12"
+      ],
+      "confidence": 0.6,
+      "coordinates": {
+        "claim_id": "claim-wd-q1454816-coordinates",
+        "lat": 31.90138888888889,
+        "lng": 54.368611111111115,
+        "precision": 0.0002777777777777778
+      },
+      "credit_set_completeness": "unknown",
+      "credits": [],
+      "dates": {
+        "completion": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "construction_start": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "design": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        }
+      },
+      "entity_type": "work",
+      "external_ids": {
+        "wikidata": "Q1454816"
+      },
+      "id": "work-wd-q1454816",
+      "last_verified": "2026-07-27",
+      "name_en": "Jameh Mosque of Yazd",
+      "name_native": null,
+      "name_zh": "亚兹德聚礼清真寺",
+      "period": "unknown",
+      "place_id": "place-wd-q794",
+      "region": "central_west_asia",
+      "significance_en": [],
+      "significance_zh": [],
+      "status": "unknown",
+      "summary_en": "",
+      "summary_zh": "",
+      "unresolved_credits": [],
+      "verification_status": "candidate",
+      "work_type": "building",
+      "work_type_mapping_status": "mapped_exact"
     },
     {
       "aliases_en": [],
@@ -5850,6 +6719,71 @@
     },
     {
       "aliases_en": [
+        "İshak Paşa Palace",
+        "İshak Paşa Sarayı"
+      ],
+      "aliases_zh": [],
+      "attribution_mode": "unknown",
+      "claim_ids": [
+        "claim-wd-q1501534-name-en",
+        "claim-wd-q1501534-name-zh",
+        "claim-wd-q1501534-work-type",
+        "claim-wd-q1501534-coordinates",
+        "claim-wd-q1501534-p571-1"
+      ],
+      "confidence": 0.6,
+      "coordinates": {
+        "claim_id": "claim-wd-q1501534-coordinates",
+        "lat": 39.52059504,
+        "lng": 44.1289258,
+        "precision": 2.77777777778e-06
+      },
+      "credit_set_completeness": "unknown",
+      "credits": [],
+      "dates": {
+        "completion": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "construction_start": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "design": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        }
+      },
+      "entity_type": "work",
+      "external_ids": {
+        "wikidata": "Q1501534"
+      },
+      "id": "work-wd-q1501534",
+      "last_verified": "2026-07-27",
+      "name_en": "Ishak Pasha Palace",
+      "name_native": null,
+      "name_zh": "伊沙克帕夏宫",
+      "period": "unknown",
+      "place_id": "place-wd-q43",
+      "region": "central_west_asia",
+      "significance_en": [],
+      "significance_zh": [],
+      "status": "unknown",
+      "summary_en": "",
+      "summary_zh": "",
+      "unresolved_credits": [],
+      "verification_status": "candidate",
+      "work_type": "building",
+      "work_type_mapping_status": "mapped_exact"
+    },
+    {
+      "aliases_en": [
         "Reichstag building"
       ],
       "aliases_zh": [
@@ -5942,6 +6876,125 @@
       "verification_status": "candidate",
       "work_type": "unknown",
       "work_type_mapping_status": "unmapped"
+    },
+    {
+      "aliases_en": [],
+      "aliases_zh": [],
+      "attribution_mode": "unknown",
+      "claim_ids": [
+        "claim-wd-q1536148-name-en",
+        "claim-wd-q1536148-coordinates"
+      ],
+      "confidence": 0.6,
+      "coordinates": {
+        "claim_id": "claim-wd-q1536148-coordinates",
+        "lat": 26.18333333,
+        "lng": 31.91666667,
+        "precision": 0.016666666666667
+      },
+      "credit_set_completeness": "unknown",
+      "credits": [],
+      "dates": {
+        "completion": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "construction_start": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "design": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        }
+      },
+      "entity_type": "work",
+      "external_ids": {
+        "wikidata": "Q1536148"
+      },
+      "id": "work-wd-q1536148",
+      "last_verified": "2026-07-27",
+      "name_en": "Temple of Seti I",
+      "name_native": null,
+      "name_zh": null,
+      "period": "unknown",
+      "place_id": "place-wd-q79",
+      "region": "africa",
+      "significance_en": [],
+      "significance_zh": [],
+      "status": "unknown",
+      "summary_en": "",
+      "summary_zh": "",
+      "unresolved_credits": [],
+      "verification_status": "candidate",
+      "work_type": "unknown",
+      "work_type_mapping_status": "unmapped"
+    },
+    {
+      "aliases_en": [],
+      "aliases_zh": [],
+      "attribution_mode": "unknown",
+      "claim_ids": [
+        "claim-wd-q1544441-name-en",
+        "claim-wd-q1544441-work-type",
+        "claim-wd-q1544441-coordinates"
+      ],
+      "confidence": 0.6,
+      "coordinates": {
+        "claim_id": "claim-wd-q1544441-coordinates",
+        "lat": -8.135,
+        "lng": -78.991388888889,
+        "precision": 0.00027777777777778
+      },
+      "credit_set_completeness": "unknown",
+      "credits": [],
+      "dates": {
+        "completion": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "construction_start": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "design": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        }
+      },
+      "entity_type": "work",
+      "external_ids": {
+        "wikidata": "Q1544441"
+      },
+      "id": "work-wd-q1544441",
+      "last_verified": "2026-07-27",
+      "name_en": "Huaca de la Luna",
+      "name_native": null,
+      "name_zh": null,
+      "period": "unknown",
+      "place_id": "place-wd-q419",
+      "region": "latin_america_caribbean",
+      "significance_en": [],
+      "significance_zh": [],
+      "status": "unknown",
+      "summary_en": "",
+      "summary_zh": "",
+      "unresolved_credits": [],
+      "verification_status": "candidate",
+      "work_type": "building_complex",
+      "work_type_mapping_status": "mapped_exact"
     },
     {
       "aliases_en": [
@@ -6530,6 +7583,66 @@
       "unresolved_credits": [],
       "verification_status": "candidate",
       "work_type": "building",
+      "work_type_mapping_status": "mapped_exact"
+    },
+    {
+      "aliases_en": [],
+      "aliases_zh": [],
+      "attribution_mode": "unknown",
+      "claim_ids": [
+        "claim-wd-q1632711-name-en",
+        "claim-wd-q1632711-work-type",
+        "claim-wd-q1632711-coordinates"
+      ],
+      "confidence": 0.6,
+      "coordinates": {
+        "claim_id": "claim-wd-q1632711-coordinates",
+        "lat": -8.132222222222222,
+        "lng": -78.99472222222222,
+        "precision": 0.0002777777777777778
+      },
+      "credit_set_completeness": "unknown",
+      "credits": [],
+      "dates": {
+        "completion": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "construction_start": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "design": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        }
+      },
+      "entity_type": "work",
+      "external_ids": {
+        "wikidata": "Q1632711"
+      },
+      "id": "work-wd-q1632711",
+      "last_verified": "2026-07-27",
+      "name_en": "Huaca del Sol",
+      "name_native": null,
+      "name_zh": null,
+      "period": "unknown",
+      "place_id": "place-wd-q419",
+      "region": "latin_america_caribbean",
+      "significance_en": [],
+      "significance_zh": [],
+      "status": "unknown",
+      "summary_en": "",
+      "summary_zh": "",
+      "unresolved_credits": [],
+      "verification_status": "candidate",
+      "work_type": "building_complex",
       "work_type_mapping_status": "mapped_exact"
     },
     {
@@ -7209,6 +8322,73 @@
     },
     {
       "aliases_en": [
+        "Red Fort",
+        "Agra's Red Fort"
+      ],
+      "aliases_zh": [
+        "阿格拉红堡",
+        "阿格拉古堡"
+      ],
+      "attribution_mode": "unknown",
+      "claim_ids": [
+        "claim-wd-q171857-name-en",
+        "claim-wd-q171857-name-zh",
+        "claim-wd-q171857-coordinates",
+        "claim-wd-q171857-p571-1"
+      ],
+      "confidence": 0.6,
+      "coordinates": {
+        "claim_id": "claim-wd-q171857-coordinates",
+        "lat": 27.179583333333,
+        "lng": 78.021297222222,
+        "precision": 2.7777777777778e-06
+      },
+      "credit_set_completeness": "unknown",
+      "credits": [],
+      "dates": {
+        "completion": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "construction_start": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "design": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        }
+      },
+      "entity_type": "work",
+      "external_ids": {
+        "wikidata": "Q171857"
+      },
+      "id": "work-wd-q171857",
+      "last_verified": "2026-07-27",
+      "name_en": "Agra Fort",
+      "name_native": null,
+      "name_zh": "阿格拉堡",
+      "period": "unknown",
+      "place_id": "place-wd-q668",
+      "region": "south_asia",
+      "significance_en": [],
+      "significance_zh": [],
+      "status": "unknown",
+      "summary_en": "",
+      "summary_zh": "",
+      "unresolved_credits": [],
+      "verification_status": "candidate",
+      "work_type": "unknown",
+      "work_type_mapping_status": "unmapped"
+    },
+    {
+      "aliases_en": [
         "London Olympic Stadium",
         "Olympic Stadium in London",
         "Olympic Stadium London"
@@ -7506,6 +8686,68 @@
       "work_type_mapping_status": "mapped_exact"
     },
     {
+      "aliases_en": [],
+      "aliases_zh": [],
+      "attribution_mode": "unknown",
+      "claim_ids": [
+        "claim-wd-q1740490-name-en",
+        "claim-wd-q1740490-name-zh",
+        "claim-wd-q1740490-work-type",
+        "claim-wd-q1740490-coordinates",
+        "claim-wd-q1740490-p1619-1"
+      ],
+      "confidence": 0.6,
+      "coordinates": {
+        "claim_id": "claim-wd-q1740490-coordinates",
+        "lat": 32.636666666667,
+        "lng": 51.683333333333,
+        "precision": 0.00027777777777778
+      },
+      "credit_set_completeness": "unknown",
+      "credits": [],
+      "dates": {
+        "completion": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "construction_start": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "design": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        }
+      },
+      "entity_type": "work",
+      "external_ids": {
+        "wikidata": "Q1740490"
+      },
+      "id": "work-wd-q1740490",
+      "last_verified": "2026-07-27",
+      "name_en": "Khaju Bridge",
+      "name_native": null,
+      "name_zh": "郝久古桥",
+      "period": "unknown",
+      "place_id": "place-wd-q794",
+      "region": "central_west_asia",
+      "significance_en": [],
+      "significance_zh": [],
+      "status": "unknown",
+      "summary_en": "",
+      "summary_zh": "",
+      "unresolved_credits": [],
+      "verification_status": "candidate",
+      "work_type": "infrastructure",
+      "work_type_mapping_status": "mapped_exact"
+    },
+    {
       "aliases_en": [
         "Duomo (Pisa, Italy)",
         "Pisa (Italy). Cattedrale",
@@ -7741,6 +8983,72 @@
       "unresolved_credits": [],
       "verification_status": "candidate",
       "work_type": "building",
+      "work_type_mapping_status": "mapped_exact"
+    },
+    {
+      "aliases_en": [
+        "Imam Reza shrine"
+      ],
+      "aliases_zh": [
+        "伊玛目里达圣陵",
+        "馬什哈德"
+      ],
+      "attribution_mode": "unknown",
+      "claim_ids": [
+        "claim-wd-q1791841-name-en",
+        "claim-wd-q1791841-name-zh",
+        "claim-wd-q1791841-work-type",
+        "claim-wd-q1791841-coordinates"
+      ],
+      "confidence": 0.6,
+      "coordinates": {
+        "claim_id": "claim-wd-q1791841-coordinates",
+        "lat": 36.287972222222,
+        "lng": 59.615694444444,
+        "precision": 2.7777777777778e-05
+      },
+      "credit_set_completeness": "unknown",
+      "credits": [],
+      "dates": {
+        "completion": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "construction_start": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "design": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        }
+      },
+      "entity_type": "work",
+      "external_ids": {
+        "wikidata": "Q1791841"
+      },
+      "id": "work-wd-q1791841",
+      "last_verified": "2026-07-27",
+      "name_en": "Imam Reza Shrine",
+      "name_native": null,
+      "name_zh": "伊玛目礼萨圣陵",
+      "period": "unknown",
+      "place_id": "place-wd-q794",
+      "region": "central_west_asia",
+      "significance_en": [],
+      "significance_zh": [],
+      "status": "unknown",
+      "summary_en": "",
+      "summary_zh": "",
+      "unresolved_credits": [],
+      "verification_status": "candidate",
+      "work_type": "building_complex",
       "work_type_mapping_status": "mapped_exact"
     },
     {
@@ -8440,6 +9748,67 @@
     },
     {
       "aliases_en": [],
+      "aliases_zh": [],
+      "attribution_mode": "unknown",
+      "claim_ids": [
+        "claim-wd-q1831907-name-en",
+        "claim-wd-q1831907-work-type",
+        "claim-wd-q1831907-coordinates",
+        "claim-wd-q1831907-p1619-1"
+      ],
+      "confidence": 0.6,
+      "coordinates": {
+        "claim_id": "claim-wd-q1831907-coordinates",
+        "lat": 29.614166666667,
+        "lng": 52.545277777778,
+        "precision": 0.00027777777777778
+      },
+      "credit_set_completeness": "unknown",
+      "credits": [],
+      "dates": {
+        "completion": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "construction_start": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "design": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        }
+      },
+      "entity_type": "work",
+      "external_ids": {
+        "wikidata": "Q1831907"
+      },
+      "id": "work-wd-q1831907",
+      "last_verified": "2026-07-27",
+      "name_en": "Vakil Mosque",
+      "name_native": null,
+      "name_zh": null,
+      "period": "unknown",
+      "place_id": "place-wd-q794",
+      "region": "central_west_asia",
+      "significance_en": [],
+      "significance_zh": [],
+      "status": "unknown",
+      "summary_en": "",
+      "summary_zh": "",
+      "unresolved_credits": [],
+      "verification_status": "candidate",
+      "work_type": "building",
+      "work_type_mapping_status": "mapped_exact"
+    },
+    {
+      "aliases_en": [],
       "aliases_zh": [
         "阿旃陀石窟",
         "阿旃陀洞穴",
@@ -8494,6 +9863,81 @@
       "period": "unknown",
       "place_id": "place-wd-q668",
       "region": "south_asia",
+      "significance_en": [],
+      "significance_zh": [],
+      "status": "unknown",
+      "summary_en": "",
+      "summary_zh": "",
+      "unresolved_credits": [],
+      "verification_status": "candidate",
+      "work_type": "building",
+      "work_type_mapping_status": "mapped_exact"
+    },
+    {
+      "aliases_en": [],
+      "aliases_zh": [
+        "Selimiye清真寺"
+      ],
+      "attribution_mode": "unknown",
+      "claim_ids": [
+        "claim-wd-q184534-name-en",
+        "claim-wd-q184534-name-zh",
+        "claim-wd-q184534-work-type",
+        "claim-wd-q184534-coordinates",
+        "claim-wd-q184534-p84-q5600-1",
+        "claim-wd-q184534-p571-1",
+        "claim-wd-q184534-p1619-1"
+      ],
+      "confidence": 0.6,
+      "coordinates": {
+        "claim_id": "claim-wd-q184534-coordinates",
+        "lat": 41.678056,
+        "lng": 26.559444,
+        "precision": 1e-05
+      },
+      "credit_set_completeness": "unknown",
+      "credits": [
+        {
+          "claim_id": "claim-wd-q184534-p84-q5600-1",
+          "credit_status": "candidate",
+          "entity_id": "person-wd-q5600",
+          "entity_type": "person",
+          "phase": "unknown",
+          "role": "architect"
+        }
+      ],
+      "dates": {
+        "completion": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "construction_start": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "design": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        }
+      },
+      "entity_type": "work",
+      "external_ids": {
+        "wikidata": "Q184534"
+      },
+      "id": "work-wd-q184534",
+      "last_verified": "2026-07-27",
+      "name_en": "Selimiye Mosque",
+      "name_native": null,
+      "name_zh": "塞利米耶清真寺",
+      "period": "unknown",
+      "place_id": "place-wd-q43",
+      "region": "central_west_asia",
       "significance_en": [],
       "significance_zh": [],
       "status": "unknown",
@@ -10839,6 +12283,74 @@
     },
     {
       "aliases_en": [
+        "Masjed-e Nasir ol Molk",
+        "Pink Mosque",
+        "Nasir al-Mulk Mosque",
+        "Nasir al-Molk Mosque"
+      ],
+      "aliases_zh": [],
+      "attribution_mode": "unknown",
+      "claim_ids": [
+        "claim-wd-q1962312-name-en",
+        "claim-wd-q1962312-name-zh",
+        "claim-wd-q1962312-work-type",
+        "claim-wd-q1962312-coordinates",
+        "claim-wd-q1962312-p571-1",
+        "claim-wd-q1962312-p1619-1"
+      ],
+      "confidence": 0.6,
+      "coordinates": {
+        "claim_id": "claim-wd-q1962312-coordinates",
+        "lat": 29.608555555555554,
+        "lng": 52.54847222222222,
+        "precision": 2.777777777777778e-05
+      },
+      "credit_set_completeness": "unknown",
+      "credits": [],
+      "dates": {
+        "completion": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "construction_start": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "design": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        }
+      },
+      "entity_type": "work",
+      "external_ids": {
+        "wikidata": "Q1962312"
+      },
+      "id": "work-wd-q1962312",
+      "last_verified": "2026-07-27",
+      "name_en": "Nasir-ol-Molk Mosque",
+      "name_native": null,
+      "name_zh": "莫克清真寺",
+      "period": "unknown",
+      "place_id": "place-wd-q794",
+      "region": "central_west_asia",
+      "significance_en": [],
+      "significance_zh": [],
+      "status": "unknown",
+      "summary_en": "",
+      "summary_zh": "",
+      "unresolved_credits": [],
+      "verification_status": "candidate",
+      "work_type": "building",
+      "work_type_mapping_status": "mapped_exact"
+    },
+    {
+      "aliases_en": [
         "The Louvre",
         "Musée Napoléon",
         "Musée national du Louvre",
@@ -11467,6 +12979,138 @@
       "work_type_mapping_status": "unmapped"
     },
     {
+      "aliases_en": [
+        "Arg of Karim Khan",
+        "Arg-e Karim Khan"
+      ],
+      "aliases_zh": [
+        "卡里姆汗城堡"
+      ],
+      "attribution_mode": "unknown",
+      "claim_ids": [
+        "claim-wd-q206220-name-en",
+        "claim-wd-q206220-name-zh",
+        "claim-wd-q206220-coordinates",
+        "claim-wd-q206220-p1619-1"
+      ],
+      "confidence": 0.6,
+      "coordinates": {
+        "claim_id": "claim-wd-q206220-coordinates",
+        "lat": 29.6174,
+        "lng": 52.5446,
+        "precision": 0.0001
+      },
+      "credit_set_completeness": "unknown",
+      "credits": [],
+      "dates": {
+        "completion": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "construction_start": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "design": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        }
+      },
+      "entity_type": "work",
+      "external_ids": {
+        "wikidata": "Q206220"
+      },
+      "id": "work-wd-q206220",
+      "last_verified": "2026-07-27",
+      "name_en": "Karim Khan Citadel",
+      "name_native": null,
+      "name_zh": "卡里姆汗堡",
+      "period": "unknown",
+      "place_id": "place-wd-q794",
+      "region": "central_west_asia",
+      "significance_en": [],
+      "significance_zh": [],
+      "status": "unknown",
+      "summary_en": "",
+      "summary_zh": "",
+      "unresolved_credits": [],
+      "verification_status": "candidate",
+      "work_type": "unknown",
+      "work_type_mapping_status": "unmapped"
+    },
+    {
+      "aliases_en": [
+        "Wat Chai Watthanaram"
+      ],
+      "aliases_zh": [
+        "貴妃寺"
+      ],
+      "attribution_mode": "unknown",
+      "claim_ids": [
+        "claim-wd-q2063779-name-en",
+        "claim-wd-q2063779-name-zh",
+        "claim-wd-q2063779-work-type",
+        "claim-wd-q2063779-coordinates",
+        "claim-wd-q2063779-p571-1"
+      ],
+      "confidence": 0.6,
+      "coordinates": {
+        "claim_id": "claim-wd-q2063779-coordinates",
+        "lat": 14.343055555556,
+        "lng": 100.54194444444,
+        "precision": 0.00027777777777778
+      },
+      "credit_set_completeness": "unknown",
+      "credits": [],
+      "dates": {
+        "completion": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "construction_start": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "design": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        }
+      },
+      "entity_type": "work",
+      "external_ids": {
+        "wikidata": "Q2063779"
+      },
+      "id": "work-wd-q2063779",
+      "last_verified": "2026-07-27",
+      "name_en": "Wat Chaiwatthanaram",
+      "name_native": null,
+      "name_zh": "柴瓦塔那兰寺",
+      "period": "unknown",
+      "place_id": "place-wd-q869",
+      "region": "southeast_asia",
+      "significance_en": [],
+      "significance_zh": [],
+      "status": "unknown",
+      "summary_en": "",
+      "summary_zh": "",
+      "unresolved_credits": [],
+      "verification_status": "candidate",
+      "work_type": "building_complex",
+      "work_type_mapping_status": "mapped_exact"
+    },
+    {
       "aliases_en": [],
       "aliases_zh": [],
       "attribution_mode": "unknown",
@@ -11940,6 +13584,72 @@
       "unresolved_credits": [],
       "verification_status": "candidate",
       "work_type": "building_complex",
+      "work_type_mapping_status": "mapped_exact"
+    },
+    {
+      "aliases_en": [
+        "That Byin Nyu Temple"
+      ],
+      "aliases_zh": [
+        "他冰瑜寺",
+        "他冰瑜塔寺"
+      ],
+      "attribution_mode": "unknown",
+      "claim_ids": [
+        "claim-wd-q2093752-name-en",
+        "claim-wd-q2093752-name-zh",
+        "claim-wd-q2093752-work-type",
+        "claim-wd-q2093752-coordinates"
+      ],
+      "confidence": 0.6,
+      "coordinates": {
+        "claim_id": "claim-wd-q2093752-coordinates",
+        "lat": 21.16875,
+        "lng": 94.86294444444444,
+        "precision": 2.777777777777778e-05
+      },
+      "credit_set_completeness": "unknown",
+      "credits": [],
+      "dates": {
+        "completion": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "construction_start": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "design": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        }
+      },
+      "entity_type": "work",
+      "external_ids": {
+        "wikidata": "Q2093752"
+      },
+      "id": "work-wd-q2093752",
+      "last_verified": "2026-07-27",
+      "name_en": "Thatbyinnyu Temple",
+      "name_native": null,
+      "name_zh": "他冰喻寺",
+      "period": "unknown",
+      "place_id": "place-wd-q836",
+      "region": "southeast_asia",
+      "significance_en": [],
+      "significance_zh": [],
+      "status": "unknown",
+      "summary_en": "",
+      "summary_zh": "",
+      "unresolved_credits": [],
+      "verification_status": "candidate",
+      "work_type": "building",
       "work_type_mapping_status": "mapped_exact"
     },
     {
@@ -13862,6 +15572,85 @@
       "work_type_mapping_status": "unmapped"
     },
     {
+      "aliases_en": [
+        "Basilica Cathedral of Lima",
+        "Lima Cathedral",
+        "Cathedral Basilica of Lima",
+        "Basilica Metropolitan Cathedral of Lima and Primate of Peru",
+        "Lima Metropolitan Cathedral",
+        "Basilica Metropolitan Cathedral of Lima",
+        "Cathedral Basilica of St. John the Apostle and Evangelist"
+      ],
+      "aliases_zh": [],
+      "attribution_mode": "unknown",
+      "claim_ids": [
+        "claim-wd-q2446793-name-en",
+        "claim-wd-q2446793-name-zh",
+        "claim-wd-q2446793-coordinates",
+        "claim-wd-q2446793-p84-q3296875-1",
+        "claim-wd-q2446793-p571-1"
+      ],
+      "confidence": 0.6,
+      "coordinates": {
+        "claim_id": "claim-wd-q2446793-coordinates",
+        "lat": -12.046472222222222,
+        "lng": -77.03003611111112,
+        "precision": 2.777777777777778e-06
+      },
+      "credit_set_completeness": "unknown",
+      "credits": [
+        {
+          "claim_id": "claim-wd-q2446793-p84-q3296875-1",
+          "credit_status": "candidate",
+          "entity_id": "person-wd-q3296875",
+          "entity_type": "person",
+          "phase": "unknown",
+          "role": "architect"
+        }
+      ],
+      "dates": {
+        "completion": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "construction_start": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "design": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        }
+      },
+      "entity_type": "work",
+      "external_ids": {
+        "wikidata": "Q2446793"
+      },
+      "id": "work-wd-q2446793",
+      "last_verified": "2026-07-27",
+      "name_en": "Cathedral of Lima",
+      "name_native": null,
+      "name_zh": "利马主教座堂",
+      "period": "unknown",
+      "place_id": "place-wd-q419",
+      "region": "latin_america_caribbean",
+      "significance_en": [],
+      "significance_zh": [],
+      "status": "unknown",
+      "summary_en": "",
+      "summary_zh": "",
+      "unresolved_credits": [],
+      "verification_status": "candidate",
+      "work_type": "unknown",
+      "work_type_mapping_status": "unmapped"
+    },
+    {
       "aliases_en": [],
       "aliases_zh": [
         "跳舞樓",
@@ -14086,6 +15875,74 @@
       "period": "unknown",
       "place_id": "place-wd-q159",
       "region": "europe",
+      "significance_en": [],
+      "significance_zh": [],
+      "status": "unknown",
+      "summary_en": "",
+      "summary_zh": "",
+      "unresolved_credits": [],
+      "verification_status": "candidate",
+      "work_type": "building",
+      "work_type_mapping_status": "mapped_exact"
+    },
+    {
+      "aliases_en": [
+        "Synagogue of the Palestinians",
+        "El-Geniza Synagogue",
+        "Synagogue of the Levantines"
+      ],
+      "aliases_zh": [
+        "Ben Ezra 猶太會堂"
+      ],
+      "attribution_mode": "unknown",
+      "claim_ids": [
+        "claim-wd-q2474653-name-en",
+        "claim-wd-q2474653-name-zh",
+        "claim-wd-q2474653-work-type",
+        "claim-wd-q2474653-coordinates",
+        "claim-wd-q2474653-p571-1"
+      ],
+      "confidence": 0.6,
+      "coordinates": {
+        "claim_id": "claim-wd-q2474653-coordinates",
+        "lat": 30.005794,
+        "lng": 31.231022,
+        "precision": 0.0001
+      },
+      "credit_set_completeness": "unknown",
+      "credits": [],
+      "dates": {
+        "completion": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "construction_start": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "design": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        }
+      },
+      "entity_type": "work",
+      "external_ids": {
+        "wikidata": "Q2474653"
+      },
+      "id": "work-wd-q2474653",
+      "last_verified": "2026-07-27",
+      "name_en": "Ben Ezra Synagogue",
+      "name_native": null,
+      "name_zh": "以斯拉猶太會堂",
+      "period": "unknown",
+      "place_id": "place-wd-q79",
+      "region": "africa",
       "significance_en": [],
       "significance_zh": [],
       "status": "unknown",
@@ -14624,6 +16481,80 @@
     },
     {
       "aliases_en": [
+        "Mihrimah Sultan Camii"
+      ],
+      "aliases_zh": [],
+      "attribution_mode": "unknown",
+      "claim_ids": [
+        "claim-wd-q2537376-name-en",
+        "claim-wd-q2537376-name-zh",
+        "claim-wd-q2537376-work-type",
+        "claim-wd-q2537376-coordinates",
+        "claim-wd-q2537376-p84-q5600-1",
+        "claim-wd-q2537376-p571-1"
+      ],
+      "confidence": 0.6,
+      "coordinates": {
+        "claim_id": "claim-wd-q2537376-coordinates",
+        "lat": 41.026792,
+        "lng": 29.01598,
+        "precision": 1e-07
+      },
+      "credit_set_completeness": "unknown",
+      "credits": [
+        {
+          "claim_id": "claim-wd-q2537376-p84-q5600-1",
+          "credit_status": "candidate",
+          "entity_id": "person-wd-q5600",
+          "entity_type": "person",
+          "phase": "unknown",
+          "role": "architect"
+        }
+      ],
+      "dates": {
+        "completion": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "construction_start": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "design": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        }
+      },
+      "entity_type": "work",
+      "external_ids": {
+        "wikidata": "Q2537376"
+      },
+      "id": "work-wd-q2537376",
+      "last_verified": "2026-07-27",
+      "name_en": "Mihrimah Üsküdar Mosque",
+      "name_native": null,
+      "name_zh": "米赫里马赫苏丹清真寺",
+      "period": "unknown",
+      "place_id": "place-wd-q43",
+      "region": "central_west_asia",
+      "significance_en": [],
+      "significance_zh": [],
+      "status": "unknown",
+      "summary_en": "",
+      "summary_zh": "",
+      "unresolved_credits": [],
+      "verification_status": "candidate",
+      "work_type": "building",
+      "work_type_mapping_status": "mapped_exact"
+    },
+    {
+      "aliases_en": [
         "Jisho-ji",
         "Ginkaku-ji",
         "Jishōji",
@@ -14899,6 +16830,71 @@
       "verification_status": "candidate",
       "work_type": "unknown",
       "work_type_mapping_status": "unmapped"
+    },
+    {
+      "aliases_en": [
+        "Nasca lines",
+        "ray roads (Nazca)"
+      ],
+      "aliases_zh": [],
+      "attribution_mode": "unknown",
+      "claim_ids": [
+        "claim-wd-q2620036-name-en",
+        "claim-wd-q2620036-name-zh",
+        "claim-wd-q2620036-work-type",
+        "claim-wd-q2620036-coordinates",
+        "claim-wd-q2620036-p571-1"
+      ],
+      "confidence": 0.6,
+      "coordinates": {
+        "claim_id": "claim-wd-q2620036-coordinates",
+        "lat": -14.6975,
+        "lng": -75.135,
+        "precision": 0.0002777777777777778
+      },
+      "credit_set_completeness": "unknown",
+      "credits": [],
+      "dates": {
+        "completion": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "construction_start": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "design": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        }
+      },
+      "entity_type": "work",
+      "external_ids": {
+        "wikidata": "Q2620036"
+      },
+      "id": "work-wd-q2620036",
+      "last_verified": "2026-07-27",
+      "name_en": "Nazca Lines",
+      "name_native": null,
+      "name_zh": "纳斯卡线条",
+      "period": "unknown",
+      "place_id": "place-wd-q419",
+      "region": "latin_america_caribbean",
+      "significance_en": [],
+      "significance_zh": [],
+      "status": "unknown",
+      "summary_en": "",
+      "summary_zh": "",
+      "unresolved_credits": [],
+      "verification_status": "candidate",
+      "work_type": "building_complex",
+      "work_type_mapping_status": "mapped_exact"
     },
     {
       "aliases_en": [
@@ -15194,6 +17190,67 @@
       "aliases_zh": [],
       "attribution_mode": "unknown",
       "claim_ids": [
+        "claim-wd-q2723521-name-en",
+        "claim-wd-q2723521-name-zh",
+        "claim-wd-q2723521-work-type",
+        "claim-wd-q2723521-coordinates"
+      ],
+      "confidence": 0.6,
+      "coordinates": {
+        "claim_id": "claim-wd-q2723521-coordinates",
+        "lat": 24.576,
+        "lng": 73.683,
+        "precision": 0.01
+      },
+      "credit_set_completeness": "unknown",
+      "credits": [],
+      "dates": {
+        "completion": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "construction_start": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "design": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        }
+      },
+      "entity_type": "work",
+      "external_ids": {
+        "wikidata": "Q2723521"
+      },
+      "id": "work-wd-q2723521",
+      "last_verified": "2026-07-27",
+      "name_en": "City Palace, Udaipur",
+      "name_native": null,
+      "name_zh": "乌代布尔城市宫殿",
+      "period": "unknown",
+      "place_id": "place-wd-q668",
+      "region": "south_asia",
+      "significance_en": [],
+      "significance_zh": [],
+      "status": "unknown",
+      "summary_en": "",
+      "summary_zh": "",
+      "unresolved_credits": [],
+      "verification_status": "candidate",
+      "work_type": "building",
+      "work_type_mapping_status": "mapped_exact"
+    },
+    {
+      "aliases_en": [],
+      "aliases_zh": [],
+      "attribution_mode": "unknown",
+      "claim_ids": [
         "claim-wd-q272771-name-en",
         "claim-wd-q272771-name-zh",
         "claim-wd-q272771-work-type",
@@ -15463,6 +17520,94 @@
       "work_type_mapping_status": "mapped_exact"
     },
     {
+      "aliases_en": [
+        "Dolmabahçe Sarayı",
+        "Dolma Bageheh"
+      ],
+      "aliases_zh": [
+        "多尔马巴赫切宫",
+        "多尔玛巴赫切宫"
+      ],
+      "attribution_mode": "unknown",
+      "claim_ids": [
+        "claim-wd-q274141-name-en",
+        "claim-wd-q274141-name-zh",
+        "claim-wd-q274141-work-type",
+        "claim-wd-q274141-coordinates",
+        "claim-wd-q274141-p84-q3072081-1",
+        "claim-wd-q274141-p84-q6007289-2",
+        "claim-wd-q274141-p571-1",
+        "claim-wd-q274141-p1619-1"
+      ],
+      "confidence": 0.6,
+      "coordinates": {
+        "claim_id": "claim-wd-q274141-coordinates",
+        "lat": 41.039444444444,
+        "lng": 29.001666666667,
+        "precision": null
+      },
+      "credit_set_completeness": "unknown",
+      "credits": [
+        {
+          "claim_id": "claim-wd-q274141-p84-q3072081-1",
+          "credit_status": "candidate",
+          "entity_id": "person-wd-q3072081",
+          "entity_type": "person",
+          "phase": "unknown",
+          "role": "architect"
+        },
+        {
+          "claim_id": "claim-wd-q274141-p84-q6007289-2",
+          "credit_status": "candidate",
+          "entity_id": "person-wd-q6007289",
+          "entity_type": "person",
+          "phase": "unknown",
+          "role": "architect"
+        }
+      ],
+      "dates": {
+        "completion": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "construction_start": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "design": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        }
+      },
+      "entity_type": "work",
+      "external_ids": {
+        "wikidata": "Q274141"
+      },
+      "id": "work-wd-q274141",
+      "last_verified": "2026-07-27",
+      "name_en": "Dolmabahçe Palace",
+      "name_native": null,
+      "name_zh": "多尔玛巴赫切宫",
+      "period": "unknown",
+      "place_id": "place-wd-q43",
+      "region": "central_west_asia",
+      "significance_en": [],
+      "significance_zh": [],
+      "status": "unknown",
+      "summary_en": "",
+      "summary_zh": "",
+      "unresolved_credits": [],
+      "verification_status": "candidate",
+      "work_type": "building",
+      "work_type_mapping_status": "mapped_exact"
+    },
+    {
       "aliases_en": [],
       "aliases_zh": [],
       "attribution_mode": "unknown",
@@ -15541,6 +17686,134 @@
       "period": "unknown",
       "place_id": "place-wd-q145",
       "region": "europe",
+      "significance_en": [],
+      "significance_zh": [],
+      "status": "unknown",
+      "summary_en": "",
+      "summary_zh": "",
+      "unresolved_credits": [],
+      "verification_status": "candidate",
+      "work_type": "unknown",
+      "work_type_mapping_status": "unmapped"
+    },
+    {
+      "aliases_en": [
+        "Mendut",
+        "Candi Mendut"
+      ],
+      "aliases_zh": [],
+      "attribution_mode": "unknown",
+      "claim_ids": [
+        "claim-wd-q2746626-name-en",
+        "claim-wd-q2746626-name-zh",
+        "claim-wd-q2746626-coordinates"
+      ],
+      "confidence": 0.6,
+      "coordinates": {
+        "claim_id": "claim-wd-q2746626-coordinates",
+        "lat": -7.6048,
+        "lng": 110.23008,
+        "precision": 1e-06
+      },
+      "credit_set_completeness": "unknown",
+      "credits": [],
+      "dates": {
+        "completion": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "construction_start": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "design": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        }
+      },
+      "entity_type": "work",
+      "external_ids": {
+        "wikidata": "Q2746626"
+      },
+      "id": "work-wd-q2746626",
+      "last_verified": "2026-07-27",
+      "name_en": "Mendut Temple",
+      "name_native": null,
+      "name_zh": "梅都",
+      "period": "unknown",
+      "place_id": "place-wd-q252",
+      "region": "southeast_asia",
+      "significance_en": [],
+      "significance_zh": [],
+      "status": "unknown",
+      "summary_en": "",
+      "summary_zh": "",
+      "unresolved_credits": [],
+      "verification_status": "candidate",
+      "work_type": "unknown",
+      "work_type_mapping_status": "unmapped"
+    },
+    {
+      "aliases_en": [
+        "Plaosan complex"
+      ],
+      "aliases_zh": [
+        "普拉奧桑禪邸",
+        "蒲牢桑佛寺"
+      ],
+      "attribution_mode": "unknown",
+      "claim_ids": [
+        "claim-wd-q2750324-name-en",
+        "claim-wd-q2750324-name-zh",
+        "claim-wd-q2750324-coordinates"
+      ],
+      "confidence": 0.6,
+      "coordinates": {
+        "claim_id": "claim-wd-q2750324-coordinates",
+        "lat": -7.74054,
+        "lng": 110.50458,
+        "precision": 1e-06
+      },
+      "credit_set_completeness": "unknown",
+      "credits": [],
+      "dates": {
+        "completion": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "construction_start": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "design": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        }
+      },
+      "entity_type": "work",
+      "external_ids": {
+        "wikidata": "Q2750324"
+      },
+      "id": "work-wd-q2750324",
+      "last_verified": "2026-07-27",
+      "name_en": "Plaosan temple",
+      "name_native": null,
+      "name_zh": "普拉奥桑寺",
+      "period": "unknown",
+      "place_id": "place-wd-q252",
+      "region": "southeast_asia",
       "significance_en": [],
       "significance_zh": [],
       "status": "unknown",
@@ -16552,6 +18825,140 @@
     },
     {
       "aliases_en": [
+        "Candi Sewu"
+      ],
+      "aliases_zh": [
+        "色烏禪邸",
+        "塞烏神廟"
+      ],
+      "attribution_mode": "unknown",
+      "claim_ids": [
+        "claim-wd-q2936254-name-en",
+        "claim-wd-q2936254-name-zh",
+        "claim-wd-q2936254-work-type",
+        "claim-wd-q2936254-coordinates"
+      ],
+      "confidence": 0.6,
+      "coordinates": {
+        "claim_id": "claim-wd-q2936254-coordinates",
+        "lat": -7.74393,
+        "lng": 110.49284,
+        "precision": 1e-06
+      },
+      "credit_set_completeness": "unknown",
+      "credits": [],
+      "dates": {
+        "completion": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "construction_start": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "design": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        }
+      },
+      "entity_type": "work",
+      "external_ids": {
+        "wikidata": "Q2936254"
+      },
+      "id": "work-wd-q2936254",
+      "last_verified": "2026-07-27",
+      "name_en": "Sewu",
+      "name_native": null,
+      "name_zh": "塞烏寺",
+      "period": "unknown",
+      "place_id": "place-wd-q252",
+      "region": "southeast_asia",
+      "significance_en": [],
+      "significance_zh": [],
+      "status": "unknown",
+      "summary_en": "",
+      "summary_zh": "",
+      "unresolved_credits": [],
+      "verification_status": "candidate",
+      "work_type": "building_complex",
+      "work_type_mapping_status": "mapped_exact"
+    },
+    {
+      "aliases_en": [
+        "Cathedral Basilica of the Assumption of the Virgin",
+        "Cathedral of Cusco",
+        "Cuzco Cathedral",
+        "Cathedral of Cuzco",
+        "Cathedral Basilica of Our Lady of the Assumption"
+      ],
+      "aliases_zh": [],
+      "attribution_mode": "unknown",
+      "claim_ids": [
+        "claim-wd-q2942242-name-en",
+        "claim-wd-q2942242-name-zh",
+        "claim-wd-q2942242-work-type",
+        "claim-wd-q2942242-coordinates",
+        "claim-wd-q2942242-p571-1"
+      ],
+      "confidence": 0.6,
+      "coordinates": {
+        "claim_id": "claim-wd-q2942242-coordinates",
+        "lat": -13.5163,
+        "lng": -71.9781,
+        "precision": 2.77777777778e-06
+      },
+      "credit_set_completeness": "unknown",
+      "credits": [],
+      "dates": {
+        "completion": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "construction_start": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "design": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        }
+      },
+      "entity_type": "work",
+      "external_ids": {
+        "wikidata": "Q2942242"
+      },
+      "id": "work-wd-q2942242",
+      "last_verified": "2026-07-27",
+      "name_en": "Cusco Cathedral",
+      "name_native": null,
+      "name_zh": "库斯科主教座堂",
+      "period": "unknown",
+      "place_id": "place-wd-q419",
+      "region": "latin_america_caribbean",
+      "significance_en": [],
+      "significance_zh": [],
+      "status": "unknown",
+      "summary_en": "",
+      "summary_zh": "",
+      "unresolved_credits": [],
+      "verification_status": "candidate",
+      "work_type": "building",
+      "work_type_mapping_status": "mapped_exact"
+    },
+    {
+      "aliases_en": [
         "Versailles. Château",
         "Versailles. Palais",
         "Versailles Palace",
@@ -16689,6 +19096,68 @@
     },
     {
       "aliases_en": [
+        "Old Town, AlUla"
+      ],
+      "aliases_zh": [],
+      "attribution_mode": "unknown",
+      "claim_ids": [
+        "claim-wd-q29513737-name-en",
+        "claim-wd-q29513737-work-type",
+        "claim-wd-q29513737-coordinates"
+      ],
+      "confidence": 0.6,
+      "coordinates": {
+        "claim_id": "claim-wd-q29513737-coordinates",
+        "lat": 26.61666667,
+        "lng": 37.91666667,
+        "precision": 0.010048000201423116
+      },
+      "credit_set_completeness": "unknown",
+      "credits": [],
+      "dates": {
+        "completion": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "construction_start": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "design": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        }
+      },
+      "entity_type": "work",
+      "external_ids": {
+        "wikidata": "Q29513737"
+      },
+      "id": "work-wd-q29513737",
+      "last_verified": "2026-07-27",
+      "name_en": "Al-Ula Old Town",
+      "name_native": null,
+      "name_zh": null,
+      "period": "unknown",
+      "place_id": "place-wd-q851",
+      "region": "central_west_asia",
+      "significance_en": [],
+      "significance_zh": [],
+      "status": "unknown",
+      "summary_en": "",
+      "summary_zh": "",
+      "unresolved_credits": [],
+      "verification_status": "candidate",
+      "work_type": "building_complex",
+      "work_type_mapping_status": "mapped_exact"
+    },
+    {
+      "aliases_en": [
         "Cathedral Notre Dame de Paris",
         "Notre Dame cathedral",
         "Notre Dame de Paris",
@@ -16791,6 +19260,80 @@
       "period": "unknown",
       "place_id": "place-wd-q142",
       "region": "europe",
+      "significance_en": [],
+      "significance_zh": [],
+      "status": "unknown",
+      "summary_en": "",
+      "summary_zh": "",
+      "unresolved_credits": [],
+      "verification_status": "candidate",
+      "work_type": "building",
+      "work_type_mapping_status": "mapped_exact"
+    },
+    {
+      "aliases_en": [
+        "Nueva Basílica de Guadalupe"
+      ],
+      "aliases_zh": [],
+      "attribution_mode": "unknown",
+      "claim_ids": [
+        "claim-wd-q305419-name-en",
+        "claim-wd-q305419-name-zh",
+        "claim-wd-q305419-work-type",
+        "claim-wd-q305419-coordinates",
+        "claim-wd-q305419-p84-q350915-1",
+        "claim-wd-q305419-p571-1"
+      ],
+      "confidence": 0.6,
+      "coordinates": {
+        "claim_id": "claim-wd-q305419-coordinates",
+        "lat": 19.484444,
+        "lng": -99.117222,
+        "precision": 1e-05
+      },
+      "credit_set_completeness": "unknown",
+      "credits": [
+        {
+          "claim_id": "claim-wd-q305419-p84-q350915-1",
+          "credit_status": "candidate",
+          "entity_id": "person-wd-q350915",
+          "entity_type": "person",
+          "phase": "unknown",
+          "role": "architect"
+        }
+      ],
+      "dates": {
+        "completion": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "construction_start": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "design": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        }
+      },
+      "entity_type": "work",
+      "external_ids": {
+        "wikidata": "Q305419"
+      },
+      "id": "work-wd-q305419",
+      "last_verified": "2026-07-27",
+      "name_en": "Basilica of Our Lady of Guadalupe",
+      "name_native": null,
+      "name_zh": "瓜达卢佩圣母圣殿",
+      "period": "unknown",
+      "place_id": "place-wd-q96",
+      "region": "latin_america_caribbean",
       "significance_en": [],
       "significance_zh": [],
       "status": "unknown",
@@ -17000,6 +19543,263 @@
       "verification_status": "candidate",
       "work_type": "unknown",
       "work_type_mapping_status": "unmapped"
+    },
+    {
+      "aliases_en": [
+        "Candi Ratu Boko"
+      ],
+      "aliases_zh": [
+        "拉圖·波科"
+      ],
+      "attribution_mode": "unknown",
+      "claim_ids": [
+        "claim-wd-q3111557-name-en",
+        "claim-wd-q3111557-name-zh",
+        "claim-wd-q3111557-work-type",
+        "claim-wd-q3111557-coordinates"
+      ],
+      "confidence": 0.6,
+      "coordinates": {
+        "claim_id": "claim-wd-q3111557-coordinates",
+        "lat": -7.77,
+        "lng": 110.48888888889,
+        "precision": 0.00027777777777778
+      },
+      "credit_set_completeness": "unknown",
+      "credits": [],
+      "dates": {
+        "completion": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "construction_start": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "design": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        }
+      },
+      "entity_type": "work",
+      "external_ids": {
+        "wikidata": "Q3111557"
+      },
+      "id": "work-wd-q3111557",
+      "last_verified": "2026-07-27",
+      "name_en": "Ratu Boko Temple",
+      "name_native": null,
+      "name_zh": "拉圖博科",
+      "period": "unknown",
+      "place_id": "place-wd-q252",
+      "region": "southeast_asia",
+      "significance_en": [],
+      "significance_zh": [],
+      "status": "unknown",
+      "summary_en": "",
+      "summary_zh": "",
+      "unresolved_credits": [],
+      "verification_status": "candidate",
+      "work_type": "building_complex",
+      "work_type_mapping_status": "mapped_exact"
+    },
+    {
+      "aliases_en": [],
+      "aliases_zh": [
+        "拉美西斯二世神殿"
+      ],
+      "attribution_mode": "unknown",
+      "claim_ids": [
+        "claim-wd-q311581-name-en",
+        "claim-wd-q311581-name-zh",
+        "claim-wd-q311581-work-type",
+        "claim-wd-q311581-coordinates"
+      ],
+      "confidence": 0.6,
+      "coordinates": {
+        "claim_id": "claim-wd-q311581-coordinates",
+        "lat": 25.727777777778,
+        "lng": 32.610555555556,
+        "precision": null
+      },
+      "credit_set_completeness": "unknown",
+      "credits": [],
+      "dates": {
+        "completion": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "construction_start": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "design": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        }
+      },
+      "entity_type": "work",
+      "external_ids": {
+        "wikidata": "Q311581"
+      },
+      "id": "work-wd-q311581",
+      "last_verified": "2026-07-27",
+      "name_en": "Ramesseum",
+      "name_native": null,
+      "name_zh": "拉美西姆",
+      "period": "unknown",
+      "place_id": "place-wd-q79",
+      "region": "africa",
+      "significance_en": [],
+      "significance_zh": [],
+      "status": "unknown",
+      "summary_en": "",
+      "summary_zh": "",
+      "unresolved_credits": [],
+      "verification_status": "candidate",
+      "work_type": "building_complex",
+      "work_type_mapping_status": "mapped_exact"
+    },
+    {
+      "aliases_en": [
+        "al-Azhar Mosque",
+        "El-Ezher Camii"
+      ],
+      "aliases_zh": [],
+      "attribution_mode": "unknown",
+      "claim_ids": [
+        "claim-wd-q312342-name-en",
+        "claim-wd-q312342-name-zh",
+        "claim-wd-q312342-work-type",
+        "claim-wd-q312342-coordinates",
+        "claim-wd-q312342-p571-1"
+      ],
+      "confidence": 0.6,
+      "coordinates": {
+        "claim_id": "claim-wd-q312342-coordinates",
+        "lat": 30.045726,
+        "lng": 31.262696,
+        "precision": 1e-06
+      },
+      "credit_set_completeness": "unknown",
+      "credits": [],
+      "dates": {
+        "completion": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "construction_start": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "design": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        }
+      },
+      "entity_type": "work",
+      "external_ids": {
+        "wikidata": "Q312342"
+      },
+      "id": "work-wd-q312342",
+      "last_verified": "2026-07-27",
+      "name_en": "Al-Azhar Mosque",
+      "name_native": null,
+      "name_zh": "爱资哈尔清真寺",
+      "period": "unknown",
+      "place_id": "place-wd-q79",
+      "region": "africa",
+      "significance_en": [],
+      "significance_zh": [],
+      "status": "unknown",
+      "summary_en": "",
+      "summary_zh": "",
+      "unresolved_credits": [],
+      "verification_status": "candidate",
+      "work_type": "building",
+      "work_type_mapping_status": "mapped_exact"
+    },
+    {
+      "aliases_en": [
+        "Tamansari Royal Garden Complex"
+      ],
+      "aliases_zh": [],
+      "attribution_mode": "unknown",
+      "claim_ids": [
+        "claim-wd-q3135945-name-en",
+        "claim-wd-q3135945-name-zh",
+        "claim-wd-q3135945-work-type",
+        "claim-wd-q3135945-coordinates",
+        "claim-wd-q3135945-p571-1"
+      ],
+      "confidence": 0.6,
+      "coordinates": {
+        "claim_id": "claim-wd-q3135945-coordinates",
+        "lat": -7.810151,
+        "lng": 110.358946,
+        "precision": 0.0090672627616032
+      },
+      "credit_set_completeness": "unknown",
+      "credits": [],
+      "dates": {
+        "completion": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "construction_start": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "design": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        }
+      },
+      "entity_type": "work",
+      "external_ids": {
+        "wikidata": "Q3135945"
+      },
+      "id": "work-wd-q3135945",
+      "last_verified": "2026-07-27",
+      "name_en": "Taman Sari",
+      "name_native": null,
+      "name_zh": "Taman Sari",
+      "period": "unknown",
+      "place_id": "place-wd-q252",
+      "region": "southeast_asia",
+      "significance_en": [],
+      "significance_zh": [],
+      "status": "unknown",
+      "summary_en": "",
+      "summary_zh": "",
+      "unresolved_credits": [],
+      "verification_status": "candidate",
+      "work_type": "building_complex",
+      "work_type_mapping_status": "mapped_exact"
     },
     {
       "aliases_en": [],
@@ -20621,6 +23421,75 @@
     },
     {
       "aliases_en": [
+        "Fort of Amer",
+        "Ambar Palace",
+        "Amer Palace",
+        "Amber Palace on Hill, Amber",
+        "Amer Fort",
+        "Amber Palace"
+      ],
+      "aliases_zh": [],
+      "attribution_mode": "unknown",
+      "claim_ids": [
+        "claim-wd-q456817-name-en",
+        "claim-wd-q456817-name-zh",
+        "claim-wd-q456817-work-type",
+        "claim-wd-q456817-coordinates",
+        "claim-wd-q456817-p571-1"
+      ],
+      "confidence": 0.6,
+      "coordinates": {
+        "claim_id": "claim-wd-q456817-coordinates",
+        "lat": 26.9859,
+        "lng": 75.8507,
+        "precision": 2.77777777778e-06
+      },
+      "credit_set_completeness": "unknown",
+      "credits": [],
+      "dates": {
+        "completion": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "construction_start": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "design": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        }
+      },
+      "entity_type": "work",
+      "external_ids": {
+        "wikidata": "Q456817"
+      },
+      "id": "work-wd-q456817",
+      "last_verified": "2026-07-27",
+      "name_en": "Amber Fort",
+      "name_native": null,
+      "name_zh": "琥珀堡",
+      "period": "unknown",
+      "place_id": "place-wd-q668",
+      "region": "south_asia",
+      "significance_en": [],
+      "significance_zh": [],
+      "status": "unknown",
+      "summary_en": "",
+      "summary_zh": "",
+      "unresolved_credits": [],
+      "verification_status": "candidate",
+      "work_type": "building",
+      "work_type_mapping_status": "mapped_exact"
+    },
+    {
+      "aliases_en": [
         "Tugendhat house"
       ],
       "aliases_zh": [],
@@ -21046,6 +23915,79 @@
       "period": "unknown",
       "place_id": "place-wd-q30",
       "region": "north_america",
+      "significance_en": [],
+      "significance_zh": [],
+      "status": "unknown",
+      "summary_en": "",
+      "summary_zh": "",
+      "unresolved_credits": [],
+      "verification_status": "candidate",
+      "work_type": "unknown",
+      "work_type_mapping_status": "unmapped"
+    },
+    {
+      "aliases_en": [],
+      "aliases_zh": [
+        "雪德宮大金塔",
+        "大金塔"
+      ],
+      "attribution_mode": "unknown",
+      "claim_ids": [
+        "claim-wd-q464535-name-en",
+        "claim-wd-q464535-name-zh",
+        "claim-wd-q464535-coordinates",
+        "claim-wd-q464535-p84-q1395046-1"
+      ],
+      "confidence": 0.6,
+      "coordinates": {
+        "claim_id": "claim-wd-q464535-coordinates",
+        "lat": 16.79833333,
+        "lng": 96.14944444,
+        "precision": 0.00027777777777778
+      },
+      "credit_set_completeness": "unknown",
+      "credits": [
+        {
+          "claim_id": "claim-wd-q464535-p84-q1395046-1",
+          "credit_status": "candidate",
+          "entity_id": "person-wd-q1395046",
+          "entity_type": "person",
+          "phase": "unknown",
+          "role": "architect"
+        }
+      ],
+      "dates": {
+        "completion": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "construction_start": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "design": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        }
+      },
+      "entity_type": "work",
+      "external_ids": {
+        "wikidata": "Q464535"
+      },
+      "id": "work-wd-q464535",
+      "last_verified": "2026-07-27",
+      "name_en": "Shwedagon Pagoda",
+      "name_native": null,
+      "name_zh": "仰光大金寺",
+      "period": "unknown",
+      "place_id": "place-wd-q836",
+      "region": "southeast_asia",
       "significance_en": [],
       "significance_zh": [],
       "status": "unknown",
@@ -21825,6 +24767,73 @@
       "work_type_mapping_status": "unmapped"
     },
     {
+      "aliases_en": [
+        "Jame Mosque of Tabriz",
+        "Tabriz Jame Mosque",
+        "Tabriz Jameh Mosque",
+        "Tabriz Jamee Mosque",
+        "Tabriz Grand Mosque"
+      ],
+      "aliases_zh": [],
+      "attribution_mode": "unknown",
+      "claim_ids": [
+        "claim-wd-q4819526-name-en",
+        "claim-wd-q4819526-name-zh",
+        "claim-wd-q4819526-work-type",
+        "claim-wd-q4819526-coordinates"
+      ],
+      "confidence": 0.6,
+      "coordinates": {
+        "claim_id": "claim-wd-q4819526-coordinates",
+        "lat": 38.080992,
+        "lng": 46.290417,
+        "precision": 1e-05
+      },
+      "credit_set_completeness": "unknown",
+      "credits": [],
+      "dates": {
+        "completion": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "construction_start": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "design": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        }
+      },
+      "entity_type": "work",
+      "external_ids": {
+        "wikidata": "Q4819526"
+      },
+      "id": "work-wd-q4819526",
+      "last_verified": "2026-07-27",
+      "name_en": "Jameh Mosque of Tabriz",
+      "name_native": null,
+      "name_zh": "星期五清真寺",
+      "period": "unknown",
+      "place_id": "place-wd-q794",
+      "region": "central_west_asia",
+      "significance_en": [],
+      "significance_zh": [],
+      "status": "unknown",
+      "summary_en": "",
+      "summary_zh": "",
+      "unresolved_credits": [],
+      "verification_status": "candidate",
+      "work_type": "building",
+      "work_type_mapping_status": "mapped_exact"
+    },
+    {
       "aliases_en": [],
       "aliases_zh": [
         "水原华城"
@@ -22039,6 +25048,67 @@
       "work_type_mapping_status": "unmapped"
     },
     {
+      "aliases_en": [],
+      "aliases_zh": [],
+      "attribution_mode": "unknown",
+      "claim_ids": [
+        "claim-wd-q485727-name-en",
+        "claim-wd-q485727-name-zh",
+        "claim-wd-q485727-coordinates",
+        "claim-wd-q485727-p571-1"
+      ],
+      "confidence": 0.6,
+      "coordinates": {
+        "claim_id": "claim-wd-q485727-coordinates",
+        "lat": 21.170903,
+        "lng": 94.867713,
+        "precision": 1e-07
+      },
+      "credit_set_completeness": "unknown",
+      "credits": [],
+      "dates": {
+        "completion": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "construction_start": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "design": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        }
+      },
+      "entity_type": "work",
+      "external_ids": {
+        "wikidata": "Q485727"
+      },
+      "id": "work-wd-q485727",
+      "last_verified": "2026-07-27",
+      "name_en": "Ananda Temple",
+      "name_native": null,
+      "name_zh": "阿难陀寺",
+      "period": "unknown",
+      "place_id": "place-wd-q836",
+      "region": "southeast_asia",
+      "significance_en": [],
+      "significance_zh": [],
+      "status": "unknown",
+      "summary_en": "",
+      "summary_zh": "",
+      "unresolved_credits": [],
+      "verification_status": "candidate",
+      "work_type": "unknown",
+      "work_type_mapping_status": "unmapped"
+    },
+    {
       "aliases_en": [
         "Al-Masjid Al-Nabawī Al-Sharīf",
         "Mosque of the Prophet"
@@ -22103,6 +25173,66 @@
       "verification_status": "candidate",
       "work_type": "unknown",
       "work_type_mapping_status": "unmapped"
+    },
+    {
+      "aliases_en": [],
+      "aliases_zh": [],
+      "attribution_mode": "unknown",
+      "claim_ids": [
+        "claim-wd-q48785045-name-en",
+        "claim-wd-q48785045-work-type",
+        "claim-wd-q48785045-coordinates"
+      ],
+      "confidence": 0.6,
+      "coordinates": {
+        "claim_id": "claim-wd-q48785045-coordinates",
+        "lat": -13.2574,
+        "lng": -72.26715,
+        "precision": 1e-05
+      },
+      "credit_set_completeness": "unknown",
+      "credits": [],
+      "dates": {
+        "completion": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "construction_start": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "design": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        }
+      },
+      "entity_type": "work",
+      "external_ids": {
+        "wikidata": "Q48785045"
+      },
+      "id": "work-wd-q48785045",
+      "last_verified": "2026-07-27",
+      "name_en": "Ollantaytambo Sun Temple",
+      "name_native": null,
+      "name_zh": null,
+      "period": "unknown",
+      "place_id": "place-wd-q419",
+      "region": "latin_america_caribbean",
+      "significance_en": [],
+      "significance_zh": [],
+      "status": "unknown",
+      "summary_en": "",
+      "summary_zh": "",
+      "unresolved_credits": [],
+      "verification_status": "candidate",
+      "work_type": "building_complex",
+      "work_type_mapping_status": "mapped_exact"
     },
     {
       "aliases_en": [],
@@ -23314,6 +26444,67 @@
       "work_type_mapping_status": "unmapped"
     },
     {
+      "aliases_en": [],
+      "aliases_zh": [],
+      "attribution_mode": "unknown",
+      "claim_ids": [
+        "claim-wd-q5470982-name-en",
+        "claim-wd-q5470982-name-zh",
+        "claim-wd-q5470982-coordinates",
+        "claim-wd-q5470982-p571-1"
+      ],
+      "confidence": 0.6,
+      "coordinates": {
+        "claim_id": "claim-wd-q5470982-coordinates",
+        "lat": -22.985833333333332,
+        "lng": -43.18527777777778,
+        "precision": 0.0002777777777777778
+      },
+      "credit_set_completeness": "unknown",
+      "credits": [],
+      "dates": {
+        "completion": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "construction_start": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "design": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        }
+      },
+      "entity_type": "work",
+      "external_ids": {
+        "wikidata": "Q5470982"
+      },
+      "id": "work-wd-q5470982",
+      "last_verified": "2026-07-27",
+      "name_en": "Fort Copacabana",
+      "name_native": null,
+      "name_zh": "科帕卡瓦納砲台",
+      "period": "unknown",
+      "place_id": "place-wd-q155",
+      "region": "latin_america_caribbean",
+      "significance_en": [],
+      "significance_zh": [],
+      "status": "unknown",
+      "summary_en": "",
+      "summary_zh": "",
+      "unresolved_credits": [],
+      "verification_status": "candidate",
+      "work_type": "unknown",
+      "work_type_mapping_status": "unmapped"
+    },
+    {
       "aliases_en": [
         "New Royal-Ducal Theatre at La Scala",
         "Milan Scala",
@@ -23957,6 +27148,134 @@
       "work_type_mapping_status": "unmapped"
     },
     {
+      "aliases_en": [
+        "Great Mosque and Hospital of Divriği"
+      ],
+      "aliases_zh": [
+        "迪夫里伊的大清真寺和医院"
+      ],
+      "attribution_mode": "unknown",
+      "claim_ids": [
+        "claim-wd-q581641-name-en",
+        "claim-wd-q581641-name-zh",
+        "claim-wd-q581641-work-type",
+        "claim-wd-q581641-coordinates"
+      ],
+      "confidence": 0.6,
+      "coordinates": {
+        "claim_id": "claim-wd-q581641-coordinates",
+        "lat": 39.371222222222,
+        "lng": 38.121583333333,
+        "precision": 2.7777777777778e-05
+      },
+      "credit_set_completeness": "unknown",
+      "credits": [],
+      "dates": {
+        "completion": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "construction_start": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "design": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        }
+      },
+      "entity_type": "work",
+      "external_ids": {
+        "wikidata": "Q581641"
+      },
+      "id": "work-wd-q581641",
+      "last_verified": "2026-07-27",
+      "name_en": "Divriği Great Mosque and Hospital",
+      "name_native": null,
+      "name_zh": "迪夫里伊的大清真寺和医院",
+      "period": "unknown",
+      "place_id": "place-wd-q43",
+      "region": "central_west_asia",
+      "significance_en": [],
+      "significance_zh": [],
+      "status": "unknown",
+      "summary_en": "",
+      "summary_zh": "",
+      "unresolved_credits": [],
+      "verification_status": "candidate",
+      "work_type": "building",
+      "work_type_mapping_status": "mapped_exact"
+    },
+    {
+      "aliases_en": [
+        "Vimeanakas"
+      ],
+      "aliases_zh": [],
+      "attribution_mode": "unknown",
+      "claim_ids": [
+        "claim-wd-q584347-name-en",
+        "claim-wd-q584347-name-zh",
+        "claim-wd-q584347-work-type",
+        "claim-wd-q584347-coordinates"
+      ],
+      "confidence": 0.6,
+      "coordinates": {
+        "claim_id": "claim-wd-q584347-coordinates",
+        "lat": 13.445656,
+        "lng": 103.856013,
+        "precision": 2.77777777778e-06
+      },
+      "credit_set_completeness": "unknown",
+      "credits": [],
+      "dates": {
+        "completion": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "construction_start": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "design": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        }
+      },
+      "entity_type": "work",
+      "external_ids": {
+        "wikidata": "Q584347"
+      },
+      "id": "work-wd-q584347",
+      "last_verified": "2026-07-27",
+      "name_en": "Phimeanakas",
+      "name_native": null,
+      "name_zh": "空中宫殿",
+      "period": "unknown",
+      "place_id": "place-wd-q424",
+      "region": "southeast_asia",
+      "significance_en": [],
+      "significance_zh": [],
+      "status": "unknown",
+      "summary_en": "",
+      "summary_zh": "",
+      "unresolved_credits": [],
+      "verification_status": "candidate",
+      "work_type": "building_complex",
+      "work_type_mapping_status": "mapped_exact"
+    },
+    {
       "aliases_en": [],
       "aliases_zh": [
         "比尔特摩庄园"
@@ -24408,6 +27727,71 @@
     },
     {
       "aliases_en": [
+        "Gonbad-e Qabus (tower)",
+        "Qabus Dome"
+      ],
+      "aliases_zh": [],
+      "attribution_mode": "unknown",
+      "claim_ids": [
+        "claim-wd-q606763-name-en",
+        "claim-wd-q606763-name-zh",
+        "claim-wd-q606763-work-type",
+        "claim-wd-q606763-coordinates",
+        "claim-wd-q606763-p1619-1"
+      ],
+      "confidence": 0.6,
+      "coordinates": {
+        "claim_id": "claim-wd-q606763-coordinates",
+        "lat": 37.25812135430305,
+        "lng": 55.16899113363004,
+        "precision": 1e-08
+      },
+      "credit_set_completeness": "unknown",
+      "credits": [],
+      "dates": {
+        "completion": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "construction_start": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "design": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        }
+      },
+      "entity_type": "work",
+      "external_ids": {
+        "wikidata": "Q606763"
+      },
+      "id": "work-wd-q606763",
+      "last_verified": "2026-07-27",
+      "name_en": "Gonbad-e Qabus",
+      "name_native": null,
+      "name_zh": "貢巴德·卡武斯高塔",
+      "period": "unknown",
+      "place_id": "place-wd-q794",
+      "region": "central_west_asia",
+      "significance_en": [],
+      "significance_zh": [],
+      "status": "unknown",
+      "summary_en": "",
+      "summary_zh": "",
+      "unresolved_credits": [],
+      "verification_status": "candidate",
+      "work_type": "building",
+      "work_type_mapping_status": "mapped_exact"
+    },
+    {
+      "aliases_en": [
         "Byōdōin",
         "Byōdō-in"
       ],
@@ -24469,6 +27853,244 @@
       "verification_status": "candidate",
       "work_type": "unknown",
       "work_type_mapping_status": "unmapped"
+    },
+    {
+      "aliases_en": [
+        "Metropolitan Cathedral, Mexico City",
+        "Mexico City Cathedral",
+        "Metropolitan Cathedral of Mexico City"
+      ],
+      "aliases_zh": [],
+      "attribution_mode": "unknown",
+      "claim_ids": [
+        "claim-wd-q610961-name-en",
+        "claim-wd-q610961-name-zh",
+        "claim-wd-q610961-work-type",
+        "claim-wd-q610961-coordinates",
+        "claim-wd-q610961-p84-q5129432-1",
+        "claim-wd-q610961-p84-q5949928-2",
+        "claim-wd-q610961-p84-q18223765-3",
+        "claim-wd-q610961-p84-q5836674-4",
+        "claim-wd-q610961-p84-q1374668-5",
+        "claim-wd-q610961-p571-1"
+      ],
+      "confidence": 0.6,
+      "coordinates": {
+        "claim_id": "claim-wd-q610961-coordinates",
+        "lat": 19.4343942,
+        "lng": -99.1330824,
+        "precision": 1e-07
+      },
+      "credit_set_completeness": "unknown",
+      "credits": [
+        {
+          "claim_id": "claim-wd-q610961-p84-q5129432-1",
+          "credit_status": "candidate",
+          "entity_id": "person-wd-q5129432",
+          "entity_type": "person",
+          "phase": "unknown",
+          "role": "architect"
+        },
+        {
+          "claim_id": "claim-wd-q610961-p84-q5949928-2",
+          "credit_status": "candidate",
+          "entity_id": "person-wd-q5949928",
+          "entity_type": "person",
+          "phase": "unknown",
+          "role": "architect"
+        },
+        {
+          "claim_id": "claim-wd-q610961-p84-q18223765-3",
+          "credit_status": "candidate",
+          "entity_id": "person-wd-q18223765",
+          "entity_type": "person",
+          "phase": "unknown",
+          "role": "architect"
+        },
+        {
+          "claim_id": "claim-wd-q610961-p84-q5836674-4",
+          "credit_status": "candidate",
+          "entity_id": "person-wd-q5836674",
+          "entity_type": "person",
+          "phase": "unknown",
+          "role": "architect"
+        },
+        {
+          "claim_id": "claim-wd-q610961-p84-q1374668-5",
+          "credit_status": "candidate",
+          "entity_id": "person-wd-q1374668",
+          "entity_type": "person",
+          "phase": "unknown",
+          "role": "architect"
+        }
+      ],
+      "dates": {
+        "completion": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "construction_start": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "design": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        }
+      },
+      "entity_type": "work",
+      "external_ids": {
+        "wikidata": "Q610961"
+      },
+      "id": "work-wd-q610961",
+      "last_verified": "2026-07-27",
+      "name_en": "Mexico City Metropolitan Cathedral",
+      "name_native": null,
+      "name_zh": "墨西哥城主教座堂",
+      "period": "unknown",
+      "place_id": "place-wd-q96",
+      "region": "latin_america_caribbean",
+      "significance_en": [],
+      "significance_zh": [],
+      "status": "unknown",
+      "summary_en": "",
+      "summary_zh": "",
+      "unresolved_credits": [],
+      "verification_status": "candidate",
+      "work_type": "building",
+      "work_type_mapping_status": "mapped_exact"
+    },
+    {
+      "aliases_en": [
+        "Jami Masjid"
+      ],
+      "aliases_zh": [],
+      "attribution_mode": "unknown",
+      "claim_ids": [
+        "claim-wd-q6127147-name-en",
+        "claim-wd-q6127147-name-zh",
+        "claim-wd-q6127147-work-type",
+        "claim-wd-q6127147-coordinates"
+      ],
+      "confidence": 0.6,
+      "coordinates": {
+        "claim_id": "claim-wd-q6127147-coordinates",
+        "lat": 27.18194444,
+        "lng": 78.01611111,
+        "precision": 1e-06
+      },
+      "credit_set_completeness": "unknown",
+      "credits": [],
+      "dates": {
+        "completion": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "construction_start": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "design": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        }
+      },
+      "entity_type": "work",
+      "external_ids": {
+        "wikidata": "Q6127147"
+      },
+      "id": "work-wd-q6127147",
+      "last_verified": "2026-07-27",
+      "name_en": "Jama Masjid",
+      "name_native": null,
+      "name_zh": "贾玛清真寺 (阿格拉)",
+      "period": "unknown",
+      "place_id": "place-wd-q668",
+      "region": "south_asia",
+      "significance_en": [],
+      "significance_zh": [],
+      "status": "unknown",
+      "summary_en": "",
+      "summary_zh": "",
+      "unresolved_credits": [],
+      "verification_status": "candidate",
+      "work_type": "building",
+      "work_type_mapping_status": "mapped_exact"
+    },
+    {
+      "aliases_en": [
+        "Edfu Temple",
+        "Temple of Horus"
+      ],
+      "aliases_zh": [],
+      "attribution_mode": "unknown",
+      "claim_ids": [
+        "claim-wd-q613037-name-en",
+        "claim-wd-q613037-name-zh",
+        "claim-wd-q613037-coordinates"
+      ],
+      "confidence": 0.6,
+      "coordinates": {
+        "claim_id": "claim-wd-q613037-coordinates",
+        "lat": 24.977777777778,
+        "lng": 32.873333333333,
+        "precision": 0.00027777777777778
+      },
+      "credit_set_completeness": "unknown",
+      "credits": [],
+      "dates": {
+        "completion": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "construction_start": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "design": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        }
+      },
+      "entity_type": "work",
+      "external_ids": {
+        "wikidata": "Q613037"
+      },
+      "id": "work-wd-q613037",
+      "last_verified": "2026-07-27",
+      "name_en": "Temple of Edfu",
+      "name_native": null,
+      "name_zh": "埃德富神廟",
+      "period": "unknown",
+      "place_id": "place-wd-q79",
+      "region": "africa",
+      "significance_en": [],
+      "significance_zh": [],
+      "status": "unknown",
+      "summary_en": "",
+      "summary_zh": "",
+      "unresolved_credits": [],
+      "verification_status": "candidate",
+      "work_type": "unknown",
+      "work_type_mapping_status": "ambiguous"
     },
     {
       "aliases_en": [
@@ -25354,6 +28976,79 @@
     },
     {
       "aliases_en": [
+        "Şehzade Camii"
+      ],
+      "aliases_zh": [],
+      "attribution_mode": "unknown",
+      "claim_ids": [
+        "claim-wd-q644677-name-en",
+        "claim-wd-q644677-name-zh",
+        "claim-wd-q644677-coordinates",
+        "claim-wd-q644677-p84-q5600-1",
+        "claim-wd-q644677-p571-1"
+      ],
+      "confidence": 0.6,
+      "coordinates": {
+        "claim_id": "claim-wd-q644677-coordinates",
+        "lat": 41.013794444444,
+        "lng": 28.957175,
+        "precision": 2.7777777777778e-06
+      },
+      "credit_set_completeness": "unknown",
+      "credits": [
+        {
+          "claim_id": "claim-wd-q644677-p84-q5600-1",
+          "credit_status": "candidate",
+          "entity_id": "person-wd-q5600",
+          "entity_type": "person",
+          "phase": "unknown",
+          "role": "architect"
+        }
+      ],
+      "dates": {
+        "completion": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "construction_start": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "design": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        }
+      },
+      "entity_type": "work",
+      "external_ids": {
+        "wikidata": "Q644677"
+      },
+      "id": "work-wd-q644677",
+      "last_verified": "2026-07-27",
+      "name_en": "Şehzade Mosque",
+      "name_native": null,
+      "name_zh": "泽扎德清真寺",
+      "period": "unknown",
+      "place_id": "place-wd-q43",
+      "region": "central_west_asia",
+      "significance_en": [],
+      "significance_zh": [],
+      "status": "unknown",
+      "summary_en": "",
+      "summary_zh": "",
+      "unresolved_credits": [],
+      "verification_status": "candidate",
+      "work_type": "unknown",
+      "work_type_mapping_status": "unmapped"
+    },
+    {
+      "aliases_en": [
         "Gellert Baths"
       ],
       "aliases_zh": [],
@@ -25904,6 +29599,75 @@
       "verification_status": "candidate",
       "work_type": "unknown",
       "work_type_mapping_status": "unmapped"
+    },
+    {
+      "aliases_en": [
+        "Allahverdi Khan Bridge",
+        "Si O Se Pol Bridge",
+        "Allah-Verdi Khan Bridge"
+      ],
+      "aliases_zh": [
+        "阿拉-韋爾迪汗橋"
+      ],
+      "attribution_mode": "unknown",
+      "claim_ids": [
+        "claim-wd-q667674-name-en",
+        "claim-wd-q667674-name-zh",
+        "claim-wd-q667674-work-type",
+        "claim-wd-q667674-coordinates",
+        "claim-wd-q667674-p571-1",
+        "claim-wd-q667674-p1619-1"
+      ],
+      "confidence": 0.6,
+      "coordinates": {
+        "claim_id": "claim-wd-q667674-coordinates",
+        "lat": 32.644869,
+        "lng": 51.667594,
+        "precision": 1e-05
+      },
+      "credit_set_completeness": "unknown",
+      "credits": [],
+      "dates": {
+        "completion": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "construction_start": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "design": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        }
+      },
+      "entity_type": "work",
+      "external_ids": {
+        "wikidata": "Q667674"
+      },
+      "id": "work-wd-q667674",
+      "last_verified": "2026-07-27",
+      "name_en": "Si-o-se Pol",
+      "name_native": null,
+      "name_zh": "三十三孔桥",
+      "period": "unknown",
+      "place_id": "place-wd-q794",
+      "region": "central_west_asia",
+      "significance_en": [],
+      "significance_zh": [],
+      "status": "unknown",
+      "summary_en": "",
+      "summary_zh": "",
+      "unresolved_credits": [],
+      "verification_status": "candidate",
+      "work_type": "infrastructure",
+      "work_type_mapping_status": "mapped_exact"
     },
     {
       "aliases_en": [],
@@ -27241,6 +31005,72 @@
     },
     {
       "aliases_en": [
+        "Denderah Temple"
+      ],
+      "aliases_zh": [
+        "丹达拉寺庙群",
+        "丹达腊神庙群",
+        "丹德拉神殿"
+      ],
+      "attribution_mode": "unknown",
+      "claim_ids": [
+        "claim-wd-q735254-name-en",
+        "claim-wd-q735254-name-zh",
+        "claim-wd-q735254-coordinates"
+      ],
+      "confidence": 0.6,
+      "coordinates": {
+        "claim_id": "claim-wd-q735254-coordinates",
+        "lat": 26.141667,
+        "lng": 32.670278,
+        "precision": 1e-05
+      },
+      "credit_set_completeness": "unknown",
+      "credits": [],
+      "dates": {
+        "completion": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "construction_start": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "design": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        }
+      },
+      "entity_type": "work",
+      "external_ids": {
+        "wikidata": "Q735254"
+      },
+      "id": "work-wd-q735254",
+      "last_verified": "2026-07-27",
+      "name_en": "Dendera Temple complex",
+      "name_native": null,
+      "name_zh": "丹达腊神庙群",
+      "period": "unknown",
+      "place_id": "place-wd-q79",
+      "region": "africa",
+      "significance_en": [],
+      "significance_zh": [],
+      "status": "unknown",
+      "summary_en": "",
+      "summary_zh": "",
+      "unresolved_credits": [],
+      "verification_status": "candidate",
+      "work_type": "unknown",
+      "work_type_mapping_status": "ambiguous"
+    },
+    {
+      "aliases_en": [
         "375 Park Avenue",
         "Seagram Building (New York, N.Y.)"
       ],
@@ -27650,6 +31480,73 @@
     },
     {
       "aliases_en": [
+        "Masmak",
+        "Qaṣr al-Maṣmak"
+      ],
+      "aliases_zh": [
+        "馬斯麥堡壘",
+        "马斯马克要塞"
+      ],
+      "attribution_mode": "unknown",
+      "claim_ids": [
+        "claim-wd-q751987-name-en",
+        "claim-wd-q751987-name-zh",
+        "claim-wd-q751987-coordinates",
+        "claim-wd-q751987-p571-1"
+      ],
+      "confidence": 0.6,
+      "coordinates": {
+        "claim_id": "claim-wd-q751987-coordinates",
+        "lat": 24.6311,
+        "lng": 46.7133,
+        "precision": 0.0001
+      },
+      "credit_set_completeness": "unknown",
+      "credits": [],
+      "dates": {
+        "completion": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "construction_start": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "design": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        }
+      },
+      "entity_type": "work",
+      "external_ids": {
+        "wikidata": "Q751987"
+      },
+      "id": "work-wd-q751987",
+      "last_verified": "2026-07-27",
+      "name_en": "Masmak Fort",
+      "name_native": null,
+      "name_zh": "马斯马克要塞",
+      "period": "unknown",
+      "place_id": "place-wd-q851",
+      "region": "central_west_asia",
+      "significance_en": [],
+      "significance_zh": [],
+      "status": "unknown",
+      "summary_en": "",
+      "summary_zh": "",
+      "unresolved_credits": [],
+      "verification_status": "candidate",
+      "work_type": "unknown",
+      "work_type_mapping_status": "unmapped"
+    },
+    {
+      "aliases_en": [
         "Good Black Pagoda",
         "Surya Deula",
         "Sun Temple",
@@ -27944,6 +31841,91 @@
     },
     {
       "aliases_en": [
+        "Fatih Camii"
+      ],
+      "aliases_zh": [
+        "法齐赫清真寺"
+      ],
+      "attribution_mode": "unknown",
+      "claim_ids": [
+        "claim-wd-q756189-name-en",
+        "claim-wd-q756189-name-zh",
+        "claim-wd-q756189-work-type",
+        "claim-wd-q756189-coordinates",
+        "claim-wd-q756189-p84-q2869352-1",
+        "claim-wd-q756189-p84-q6062280-2",
+        "claim-wd-q756189-p571-1"
+      ],
+      "confidence": 0.6,
+      "coordinates": {
+        "claim_id": "claim-wd-q756189-coordinates",
+        "lat": 41.019722,
+        "lng": 28.949722,
+        "precision": 1e-05
+      },
+      "credit_set_completeness": "unknown",
+      "credits": [
+        {
+          "claim_id": "claim-wd-q756189-p84-q2869352-1",
+          "credit_status": "candidate",
+          "entity_id": "person-wd-q2869352",
+          "entity_type": "person",
+          "phase": "unknown",
+          "role": "architect"
+        },
+        {
+          "claim_id": "claim-wd-q756189-p84-q6062280-2",
+          "credit_status": "candidate",
+          "entity_id": "person-wd-q6062280",
+          "entity_type": "person",
+          "phase": "unknown",
+          "role": "architect"
+        }
+      ],
+      "dates": {
+        "completion": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "construction_start": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "design": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        }
+      },
+      "entity_type": "work",
+      "external_ids": {
+        "wikidata": "Q756189"
+      },
+      "id": "work-wd-q756189",
+      "last_verified": "2026-07-27",
+      "name_en": "Fatih Istanbul Mosque",
+      "name_native": null,
+      "name_zh": "法提赫清真寺",
+      "period": "unknown",
+      "place_id": "place-wd-q43",
+      "region": "central_west_asia",
+      "significance_en": [],
+      "significance_zh": [],
+      "status": "unknown",
+      "summary_en": "",
+      "summary_zh": "",
+      "unresolved_credits": [],
+      "verification_status": "candidate",
+      "work_type": "building",
+      "work_type_mapping_status": "mapped_exact"
+    },
+    {
+      "aliases_en": [
         "Templo Mayor archaeological site"
       ],
       "aliases_zh": [
@@ -28078,6 +32060,215 @@
       "verification_status": "candidate",
       "work_type": "unknown",
       "work_type_mapping_status": "unmapped"
+    },
+    {
+      "aliases_en": [],
+      "aliases_zh": [],
+      "attribution_mode": "unknown",
+      "claim_ids": [
+        "claim-wd-q790099-name-en",
+        "claim-wd-q790099-name-zh",
+        "claim-wd-q790099-coordinates",
+        "claim-wd-q790099-p84-q130383-1",
+        "claim-wd-q790099-p571-1"
+      ],
+      "confidence": 0.6,
+      "coordinates": {
+        "claim_id": "claim-wd-q790099-coordinates",
+        "lat": 13.59888275,
+        "lng": 103.96285057,
+        "precision": 2.77777777778e-06
+      },
+      "credit_set_completeness": "unknown",
+      "credits": [
+        {
+          "claim_id": "claim-wd-q790099-p84-q130383-1",
+          "credit_status": "candidate",
+          "entity_id": "person-wd-q130383",
+          "entity_type": "person",
+          "phase": "unknown",
+          "role": "architect"
+        }
+      ],
+      "dates": {
+        "completion": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "construction_start": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "design": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        }
+      },
+      "entity_type": "work",
+      "external_ids": {
+        "wikidata": "Q790099"
+      },
+      "id": "work-wd-q790099",
+      "last_verified": "2026-07-27",
+      "name_en": "Banteay Srei",
+      "name_native": null,
+      "name_zh": "女王宫",
+      "period": "unknown",
+      "place_id": "place-wd-q424",
+      "region": "southeast_asia",
+      "significance_en": [],
+      "significance_zh": [],
+      "status": "unknown",
+      "summary_en": "",
+      "summary_zh": "",
+      "unresolved_credits": [],
+      "verification_status": "candidate",
+      "work_type": "unknown",
+      "work_type_mapping_status": "ambiguous"
+    },
+    {
+      "aliases_en": [],
+      "aliases_zh": [],
+      "attribution_mode": "unknown",
+      "claim_ids": [
+        "claim-wd-q790118-name-en",
+        "claim-wd-q790118-name-zh",
+        "claim-wd-q790118-coordinates",
+        "claim-wd-q790118-p571-1"
+      ],
+      "confidence": 0.6,
+      "coordinates": {
+        "claim_id": "claim-wd-q790118-coordinates",
+        "lat": 13.443767,
+        "lng": 103.856169,
+        "precision": 1e-06
+      },
+      "credit_set_completeness": "unknown",
+      "credits": [],
+      "dates": {
+        "completion": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "construction_start": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "design": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        }
+      },
+      "entity_type": "work",
+      "external_ids": {
+        "wikidata": "Q790118"
+      },
+      "id": "work-wd-q790118",
+      "last_verified": "2026-07-27",
+      "name_en": "Baphuon",
+      "name_native": null,
+      "name_zh": "巴普昂寺",
+      "period": "unknown",
+      "place_id": "place-wd-q424",
+      "region": "southeast_asia",
+      "significance_en": [],
+      "significance_zh": [],
+      "status": "unknown",
+      "summary_en": "",
+      "summary_zh": "",
+      "unresolved_credits": [],
+      "verification_status": "candidate",
+      "work_type": "unknown",
+      "work_type_mapping_status": "ambiguous"
+    },
+    {
+      "aliases_en": [
+        "Beylerbeyi Sarayi",
+        "Beylerbeyi Sarayı"
+      ],
+      "aliases_zh": [
+        "貝拉貝伊皇宮"
+      ],
+      "attribution_mode": "unknown",
+      "claim_ids": [
+        "claim-wd-q794349-name-en",
+        "claim-wd-q794349-name-zh",
+        "claim-wd-q794349-work-type",
+        "claim-wd-q794349-coordinates",
+        "claim-wd-q794349-p84-unresolved-1",
+        "claim-wd-q794349-p571-1"
+      ],
+      "confidence": 0.6,
+      "coordinates": {
+        "claim_id": "claim-wd-q794349-coordinates",
+        "lat": 41.0426,
+        "lng": 29.0399,
+        "precision": 0.01
+      },
+      "credit_set_completeness": "unknown",
+      "credits": [],
+      "dates": {
+        "completion": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "construction_start": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "design": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        }
+      },
+      "entity_type": "work",
+      "external_ids": {
+        "wikidata": "Q794349"
+      },
+      "id": "work-wd-q794349",
+      "last_verified": "2026-07-27",
+      "name_en": "Beylerbeyi Palace",
+      "name_native": null,
+      "name_zh": "贝勒贝伊宫",
+      "period": "unknown",
+      "place_id": "place-wd-q43",
+      "region": "central_west_asia",
+      "significance_en": [],
+      "significance_zh": [],
+      "status": "unknown",
+      "summary_en": "",
+      "summary_zh": "",
+      "unresolved_credits": [
+        {
+          "claim_id": "claim-wd-q794349-p84-unresolved-1",
+          "rejection_reason": "unresolved_entity_type",
+          "source_entity_qid": "Q583628",
+          "source_label_en": "Balyan family",
+          "source_label_zh": "巴利扬家族",
+          "source_property": "P84"
+        }
+      ],
+      "verification_status": "candidate",
+      "work_type": "building",
+      "work_type_mapping_status": "mapped_exact"
     },
     {
       "aliases_en": [
@@ -28858,6 +33049,81 @@
       "work_type_mapping_status": "unmapped"
     },
     {
+      "aliases_en": [
+        "Hawa Mahal, Jaipur"
+      ],
+      "aliases_zh": [],
+      "attribution_mode": "unknown",
+      "claim_ids": [
+        "claim-wd-q836531-name-en",
+        "claim-wd-q836531-name-zh",
+        "claim-wd-q836531-work-type",
+        "claim-wd-q836531-coordinates",
+        "claim-wd-q836531-p84-q6480034-1",
+        "claim-wd-q836531-p571-1",
+        "claim-wd-q836531-p1619-1"
+      ],
+      "confidence": 0.6,
+      "coordinates": {
+        "claim_id": "claim-wd-q836531-coordinates",
+        "lat": 26.924,
+        "lng": 75.82672,
+        "precision": 0.0001
+      },
+      "credit_set_completeness": "unknown",
+      "credits": [
+        {
+          "claim_id": "claim-wd-q836531-p84-q6480034-1",
+          "credit_status": "candidate",
+          "entity_id": "person-wd-q6480034",
+          "entity_type": "person",
+          "phase": "unknown",
+          "role": "architect"
+        }
+      ],
+      "dates": {
+        "completion": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "construction_start": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "design": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        }
+      },
+      "entity_type": "work",
+      "external_ids": {
+        "wikidata": "Q836531"
+      },
+      "id": "work-wd-q836531",
+      "last_verified": "2026-07-27",
+      "name_en": "Hawa Mahal",
+      "name_native": null,
+      "name_zh": "风之宫",
+      "period": "unknown",
+      "place_id": "place-wd-q668",
+      "region": "south_asia",
+      "significance_en": [],
+      "significance_zh": [],
+      "status": "unknown",
+      "summary_en": "",
+      "summary_zh": "",
+      "unresolved_credits": [],
+      "verification_status": "candidate",
+      "work_type": "building",
+      "work_type_mapping_status": "mapped_exact"
+    },
+    {
       "aliases_en": [],
       "aliases_zh": [],
       "attribution_mode": "unknown",
@@ -29093,6 +33359,74 @@
       "work_type_mapping_status": "unmapped"
     },
     {
+      "aliases_en": [
+        "Kariye Church",
+        "Kariye Mosque",
+        "Kariye Museum",
+        "Church of the Holy Saviour in Chora",
+        "Kariye Camii"
+      ],
+      "aliases_zh": [],
+      "attribution_mode": "unknown",
+      "claim_ids": [
+        "claim-wd-q849489-name-en",
+        "claim-wd-q849489-name-zh",
+        "claim-wd-q849489-work-type",
+        "claim-wd-q849489-coordinates",
+        "claim-wd-q849489-p571-1"
+      ],
+      "confidence": 0.6,
+      "coordinates": {
+        "claim_id": "claim-wd-q849489-coordinates",
+        "lat": 41.031111,
+        "lng": 28.939167,
+        "precision": 1e-05
+      },
+      "credit_set_completeness": "unknown",
+      "credits": [],
+      "dates": {
+        "completion": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "construction_start": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "design": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        }
+      },
+      "entity_type": "work",
+      "external_ids": {
+        "wikidata": "Q849489"
+      },
+      "id": "work-wd-q849489",
+      "last_verified": "2026-07-27",
+      "name_en": "Chora Church",
+      "name_native": null,
+      "name_zh": "科拉教堂",
+      "period": "unknown",
+      "place_id": "place-wd-q43",
+      "region": "central_west_asia",
+      "significance_en": [],
+      "significance_zh": [],
+      "status": "unknown",
+      "summary_en": "",
+      "summary_zh": "",
+      "unresolved_credits": [],
+      "verification_status": "candidate",
+      "work_type": "building",
+      "work_type_mapping_status": "mapped_exact"
+    },
+    {
       "aliases_en": [],
       "aliases_zh": [
         "阿姆斯特丹旧证券交易所"
@@ -29157,6 +33491,141 @@
       "period": "unknown",
       "place_id": "place-wd-q55",
       "region": "europe",
+      "significance_en": [],
+      "significance_zh": [],
+      "status": "unknown",
+      "summary_en": "",
+      "summary_zh": "",
+      "unresolved_credits": [],
+      "verification_status": "candidate",
+      "work_type": "unknown",
+      "work_type_mapping_status": "unmapped"
+    },
+    {
+      "aliases_en": [
+        "Bayezid Camii"
+      ],
+      "aliases_zh": [
+        "巴耶济德二世清真寺"
+      ],
+      "attribution_mode": "unknown",
+      "claim_ids": [
+        "claim-wd-q853064-name-en",
+        "claim-wd-q853064-name-zh",
+        "claim-wd-q853064-work-type",
+        "claim-wd-q853064-coordinates",
+        "claim-wd-q853064-p84-q11882869-1",
+        "claim-wd-q853064-p571-1"
+      ],
+      "confidence": 0.6,
+      "coordinates": {
+        "claim_id": "claim-wd-q853064-coordinates",
+        "lat": 41.01027777777778,
+        "lng": 28.96527777777778,
+        "precision": 0.01
+      },
+      "credit_set_completeness": "unknown",
+      "credits": [
+        {
+          "claim_id": "claim-wd-q853064-p84-q11882869-1",
+          "credit_status": "candidate",
+          "entity_id": "person-wd-q11882869",
+          "entity_type": "person",
+          "phase": "unknown",
+          "role": "architect"
+        }
+      ],
+      "dates": {
+        "completion": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "construction_start": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "design": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        }
+      },
+      "entity_type": "work",
+      "external_ids": {
+        "wikidata": "Q853064"
+      },
+      "id": "work-wd-q853064",
+      "last_verified": "2026-07-27",
+      "name_en": "Bayezid II Mosque",
+      "name_native": null,
+      "name_zh": "巴耶塞特二世清真寺",
+      "period": "unknown",
+      "place_id": "place-wd-q43",
+      "region": "central_west_asia",
+      "significance_en": [],
+      "significance_zh": [],
+      "status": "unknown",
+      "summary_en": "",
+      "summary_zh": "",
+      "unresolved_credits": [],
+      "verification_status": "candidate",
+      "work_type": "building",
+      "work_type_mapping_status": "mapped_exact"
+    },
+    {
+      "aliases_en": [],
+      "aliases_zh": [],
+      "attribution_mode": "unknown",
+      "claim_ids": [
+        "claim-wd-q856259-name-en",
+        "claim-wd-q856259-coordinates"
+      ],
+      "confidence": 0.6,
+      "coordinates": {
+        "claim_id": "claim-wd-q856259-coordinates",
+        "lat": 19.90138889,
+        "lng": 75.32083333,
+        "precision": 0.00027777777777778
+      },
+      "credit_set_completeness": "unknown",
+      "credits": [],
+      "dates": {
+        "completion": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "construction_start": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "design": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        }
+      },
+      "entity_type": "work",
+      "external_ids": {
+        "wikidata": "Q856259"
+      },
+      "id": "work-wd-q856259",
+      "last_verified": "2026-07-27",
+      "name_en": "Bibi Ka Maqbara",
+      "name_native": null,
+      "name_zh": null,
+      "period": "unknown",
+      "place_id": "place-wd-q668",
+      "region": "south_asia",
       "significance_en": [],
       "significance_zh": [],
       "status": "unknown",
@@ -29871,6 +34340,70 @@
     },
     {
       "aliases_en": [
+        "Galata Kulesi"
+      ],
+      "aliases_zh": [],
+      "attribution_mode": "unknown",
+      "claim_ids": [
+        "claim-wd-q91274-name-en",
+        "claim-wd-q91274-name-zh",
+        "claim-wd-q91274-work-type",
+        "claim-wd-q91274-coordinates",
+        "claim-wd-q91274-p571-1"
+      ],
+      "confidence": 0.6,
+      "coordinates": {
+        "claim_id": "claim-wd-q91274-coordinates",
+        "lat": 41.02563232486636,
+        "lng": 28.974153190722507,
+        "precision": 1e-08
+      },
+      "credit_set_completeness": "unknown",
+      "credits": [],
+      "dates": {
+        "completion": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "construction_start": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "design": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        }
+      },
+      "entity_type": "work",
+      "external_ids": {
+        "wikidata": "Q91274"
+      },
+      "id": "work-wd-q91274",
+      "last_verified": "2026-07-27",
+      "name_en": "Galata Tower",
+      "name_native": null,
+      "name_zh": "加拉塔石塔",
+      "period": "unknown",
+      "place_id": "place-wd-q43",
+      "region": "central_west_asia",
+      "significance_en": [],
+      "significance_zh": [],
+      "status": "unknown",
+      "summary_en": "",
+      "summary_zh": "",
+      "unresolved_credits": [],
+      "verification_status": "candidate",
+      "work_type": "building",
+      "work_type_mapping_status": "mapped_exact"
+    },
+    {
+      "aliases_en": [
         "Crown of the Palace",
         "the Taj Mahal"
       ],
@@ -30523,6 +35056,68 @@
     },
     {
       "aliases_en": [
+        "Madīnat Habū"
+      ],
+      "aliases_zh": [],
+      "attribution_mode": "unknown",
+      "claim_ids": [
+        "claim-wd-q932622-name-en",
+        "claim-wd-q932622-name-zh",
+        "claim-wd-q932622-work-type"
+      ],
+      "confidence": 0.6,
+      "coordinates": {
+        "claim_id": null,
+        "lat": null,
+        "lng": null,
+        "precision": null
+      },
+      "credit_set_completeness": "unknown",
+      "credits": [],
+      "dates": {
+        "completion": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "construction_start": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "design": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        }
+      },
+      "entity_type": "work",
+      "external_ids": {
+        "wikidata": "Q932622"
+      },
+      "id": "work-wd-q932622",
+      "last_verified": "2026-07-27",
+      "name_en": "Medinet Habu",
+      "name_native": null,
+      "name_zh": "哈布城",
+      "period": "unknown",
+      "place_id": "place-wd-q79",
+      "region": "africa",
+      "significance_en": [],
+      "significance_zh": [],
+      "status": "unknown",
+      "summary_en": "",
+      "summary_zh": "",
+      "unresolved_credits": [],
+      "verification_status": "candidate",
+      "work_type": "building_complex",
+      "work_type_mapping_status": "mapped_exact"
+    },
+    {
+      "aliases_en": [
         "Highpoint I Highpoint I (Numbers A to D) Highpoint I (Numbers G, H, I, K)"
       ],
       "aliases_zh": [],
@@ -30734,6 +35329,67 @@
       "unresolved_credits": [],
       "verification_status": "candidate",
       "work_type": "building",
+      "work_type_mapping_status": "mapped_exact"
+    },
+    {
+      "aliases_en": [],
+      "aliases_zh": [],
+      "attribution_mode": "unknown",
+      "claim_ids": [
+        "claim-wd-q944217-name-en",
+        "claim-wd-q944217-name-zh",
+        "claim-wd-q944217-work-type",
+        "claim-wd-q944217-coordinates"
+      ],
+      "confidence": 0.6,
+      "coordinates": {
+        "claim_id": "claim-wd-q944217-coordinates",
+        "lat": 13.461959,
+        "lng": 103.871591,
+        "precision": 2.77777777778e-06
+      },
+      "credit_set_completeness": "unknown",
+      "credits": [],
+      "dates": {
+        "completion": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "construction_start": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "design": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        }
+      },
+      "entity_type": "work",
+      "external_ids": {
+        "wikidata": "Q944217"
+      },
+      "id": "work-wd-q944217",
+      "last_verified": "2026-07-27",
+      "name_en": "Preah Khan",
+      "name_native": null,
+      "name_zh": "圣剑寺",
+      "period": "unknown",
+      "place_id": "place-wd-q424",
+      "region": "southeast_asia",
+      "significance_en": [],
+      "significance_zh": [],
+      "status": "unknown",
+      "summary_en": "",
+      "summary_zh": "",
+      "unresolved_credits": [],
+      "verification_status": "candidate",
+      "work_type": "building_complex",
       "work_type_mapping_status": "mapped_exact"
     },
     {
@@ -30994,6 +35650,68 @@
       "period": "unknown",
       "place_id": "place-wd-q38",
       "region": "europe",
+      "significance_en": [],
+      "significance_zh": [],
+      "status": "unknown",
+      "summary_en": "",
+      "summary_zh": "",
+      "unresolved_credits": [],
+      "verification_status": "candidate",
+      "work_type": "unknown",
+      "work_type_mapping_status": "unmapped"
+    },
+    {
+      "aliases_en": [
+        "Thien Mu Pagoda"
+      ],
+      "aliases_zh": [],
+      "attribution_mode": "unknown",
+      "claim_ids": [
+        "claim-wd-q975568-name-en",
+        "claim-wd-q975568-name-zh",
+        "claim-wd-q975568-coordinates"
+      ],
+      "confidence": 0.6,
+      "coordinates": {
+        "claim_id": "claim-wd-q975568-coordinates",
+        "lat": 16.453599,
+        "lng": 107.544812,
+        "precision": 2.77777777778e-06
+      },
+      "credit_set_completeness": "unknown",
+      "credits": [],
+      "dates": {
+        "completion": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "construction_start": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        },
+        "design": {
+          "earliest": null,
+          "latest": null,
+          "precision": "unknown",
+          "value": null
+        }
+      },
+      "entity_type": "work",
+      "external_ids": {
+        "wikidata": "Q975568"
+      },
+      "id": "work-wd-q975568",
+      "last_verified": "2026-07-27",
+      "name_en": "Thiên Mụ Temple",
+      "name_native": null,
+      "name_zh": "天姥寺",
+      "period": "unknown",
+      "place_id": "place-wd-q881",
+      "region": "southeast_asia",
       "significance_en": [],
       "significance_zh": [],
       "status": "unknown",
