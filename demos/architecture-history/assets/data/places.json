@@ -354,6 +354,28 @@
     },
     {
       "claim_ids": [
+        "claim-wd-q36-name-en",
+        "claim-wd-q36-name-zh",
+        "claim-wd-q36-country-code"
+      ],
+      "confidence": 0.6,
+      "country_code": "PL",
+      "entity_type": "place",
+      "external_ids": {
+        "wikidata": "Q36"
+      },
+      "id": "place-wd-q36",
+      "last_verified": "2026-07-27",
+      "lat": null,
+      "lng": null,
+      "name_en": "Poland",
+      "name_native": null,
+      "name_zh": "波兰",
+      "region": "europe",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_ids": [
         "claim-wd-q38-name-en",
         "claim-wd-q38-name-zh",
         "claim-wd-q38-country-code"

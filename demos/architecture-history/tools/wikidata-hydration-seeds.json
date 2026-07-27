@@ -3477,6 +3477,776 @@
         "tower",
         "team_credit"
       ]
+    },
+    {
+      "expected_country_code": "US",
+      "expected_country_qid": "Q30",
+      "label_hint_en": "Solomon R. Guggenheim Museum",
+      "qid": "Q201469",
+      "region": "north_america",
+      "risk_tags": [
+        "museum",
+        "frank_lloyd_wright"
+      ]
+    },
+    {
+      "expected_country_code": "US",
+      "expected_country_qid": "Q30",
+      "label_hint_en": "Marin County Civic Center",
+      "qid": "Q1150950",
+      "region": "north_america",
+      "risk_tags": [
+        "public_civic",
+        "organic_modern"
+      ]
+    },
+    {
+      "expected_country_code": "US",
+      "expected_country_qid": "Q30",
+      "label_hint_en": "Price Tower",
+      "qid": "Q4260261",
+      "region": "north_america",
+      "risk_tags": [
+        "tower",
+        "frank_lloyd_wright"
+      ]
+    },
+    {
+      "expected_country_code": "US",
+      "expected_country_qid": "Q30",
+      "label_hint_en": "Wingspread",
+      "qid": "Q8025338",
+      "region": "north_america",
+      "risk_tags": [
+        "residential",
+        "frank_lloyd_wright"
+      ]
+    },
+    {
+      "expected_country_code": "US",
+      "expected_country_qid": "Q30",
+      "label_hint_en": "Ennis House",
+      "qid": "Q578184",
+      "region": "north_america",
+      "risk_tags": [
+        "residential",
+        "textile_block"
+      ]
+    },
+    {
+      "expected_country_code": "US",
+      "expected_country_qid": "Q30",
+      "label_hint_en": "MIT Chapel",
+      "qid": "Q6716291",
+      "region": "north_america",
+      "risk_tags": [
+        "modern_sacred",
+        "aalto"
+      ]
+    },
+    {
+      "expected_country_code": "PL",
+      "expected_country_qid": "Q36",
+      "label_hint_en": "Palace of Culture and Science",
+      "qid": "Q167566",
+      "region": "europe",
+      "risk_tags": [
+        "stalinist_gothic",
+        "skyscraper"
+      ]
+    },
+    {
+      "expected_country_code": "US",
+      "expected_country_qid": "Q30",
+      "label_hint_en": "Richards Medical Research Laboratories",
+      "qid": "Q954769",
+      "region": "north_america",
+      "risk_tags": [
+        "laboratory",
+        "louis_kahn"
+      ]
+    },
+    {
+      "expected_country_code": "US",
+      "expected_country_qid": "Q30",
+      "label_hint_en": "Phillips Exeter Academy Library",
+      "qid": "Q4176334",
+      "region": "north_america",
+      "risk_tags": [
+        "library",
+        "louis_kahn"
+      ]
+    },
+    {
+      "expected_country_code": "US",
+      "expected_country_qid": "Q30",
+      "label_hint_en": "Yale Center for British Art",
+      "qid": "Q6352575",
+      "region": "north_america",
+      "risk_tags": [
+        "museum",
+        "louis_kahn"
+      ]
+    },
+    {
+      "expected_country_code": "IN",
+      "expected_country_qid": "Q668",
+      "label_hint_en": "Indian Institute of Management Ahmedabad",
+      "qid": "Q46027",
+      "region": "south_asia",
+      "risk_tags": [
+        "campus",
+        "louis_kahn"
+      ]
+    },
+    {
+      "expected_country_code": "BR",
+      "expected_country_qid": "Q155",
+      "label_hint_en": "Palácio da Alvorada",
+      "qid": "Q2330391",
+      "region": "latin_america_caribbean",
+      "risk_tags": [
+        "presidential_palace",
+        "oscar_niemeyer"
+      ]
+    },
+    {
+      "expected_country_code": "BR",
+      "expected_country_qid": "Q155",
+      "label_hint_en": "Palácio do Planalto",
+      "qid": "Q496950",
+      "region": "latin_america_caribbean",
+      "risk_tags": [
+        "government_palace",
+        "oscar_niemeyer"
+      ]
+    },
+    {
+      "expected_country_code": "BR",
+      "expected_country_qid": "Q155",
+      "label_hint_en": "National Congress of Brazil",
+      "qid": "Q949699",
+      "region": "latin_america_caribbean",
+      "risk_tags": [
+        "legislative_complex",
+        "oscar_niemeyer"
+      ]
+    },
+    {
+      "expected_country_code": "BR",
+      "expected_country_qid": "Q155",
+      "label_hint_en": "Oscar Niemeyer Museum",
+      "qid": "Q4991927",
+      "region": "latin_america_caribbean",
+      "risk_tags": [
+        "museum",
+        "oscar_niemeyer"
+      ]
+    },
+    {
+      "expected_country_code": "RU",
+      "expected_country_qid": "Q159",
+      "label_hint_en": "Melnikov House",
+      "qid": "Q4165336",
+      "region": "europe",
+      "risk_tags": [
+        "avant_garde",
+        "residential"
+      ]
+    },
+    {
+      "expected_country_code": "RU",
+      "expected_country_qid": "Q159",
+      "label_hint_en": "Shukhov Tower",
+      "qid": "Q662367",
+      "region": "europe",
+      "risk_tags": [
+        "hyperboloid",
+        "engineering"
+      ]
+    },
+    {
+      "expected_country_code": "RU",
+      "expected_country_qid": "Q159",
+      "label_hint_en": "Russian State Library",
+      "qid": "Q1048694",
+      "region": "europe",
+      "risk_tags": [
+        "stalinist",
+        "library"
+      ]
+    },
+    {
+      "expected_country_code": "HU",
+      "expected_country_qid": "Q28",
+      "label_hint_en": "Gellért Baths",
+      "qid": "Q646140",
+      "region": "europe",
+      "risk_tags": [
+        "art_nouveau",
+        "thermal_bath"
+      ]
+    },
+    {
+      "expected_country_code": "HU",
+      "expected_country_qid": "Q28",
+      "label_hint_en": "Széchenyi thermal bath",
+      "qid": "Q194783",
+      "region": "europe",
+      "risk_tags": [
+        "eclectic",
+        "thermal_bath"
+      ]
+    },
+    {
+      "expected_country_code": "HU",
+      "expected_country_qid": "Q28",
+      "label_hint_en": "Hungarian State Opera House",
+      "qid": "Q36833",
+      "region": "europe",
+      "risk_tags": [
+        "opera_house",
+        "neo_renaissance"
+      ]
+    },
+    {
+      "expected_country_code": "HU",
+      "expected_country_qid": "Q28",
+      "label_hint_en": "Museum of Fine Arts, Budapest",
+      "qid": "Q840886",
+      "region": "europe",
+      "risk_tags": [
+        "museum",
+        "eclectic"
+      ]
+    },
+    {
+      "expected_country_code": "CZ",
+      "expected_country_qid": "Q213",
+      "label_hint_en": "Žižkov Television Tower",
+      "qid": "Q1413217",
+      "region": "europe",
+      "risk_tags": [
+        "tower",
+        "communist_era"
+      ]
+    },
+    {
+      "expected_country_code": "CZ",
+      "expected_country_qid": "Q213",
+      "label_hint_en": "National Museum in Prague",
+      "qid": "Q188112",
+      "region": "europe",
+      "risk_tags": [
+        "museum",
+        "neo_renaissance"
+      ]
+    },
+    {
+      "expected_country_code": "SE",
+      "expected_country_qid": "Q34",
+      "label_hint_en": "Skogskyrkogården",
+      "qid": "Q213988",
+      "region": "europe",
+      "risk_tags": [
+        "cemetery",
+        "modernist_landscape"
+      ]
+    },
+    {
+      "expected_country_code": "SE",
+      "expected_country_qid": "Q34",
+      "label_hint_en": "Malmö City Library",
+      "qid": "Q119684",
+      "region": "europe",
+      "risk_tags": [
+        "library",
+        "modernist"
+      ]
+    },
+    {
+      "expected_country_code": "SE",
+      "expected_country_qid": "Q34",
+      "label_hint_en": "Turning Torso",
+      "qid": "Q206435",
+      "region": "europe",
+      "risk_tags": [
+        "skyscraper",
+        "twisted_form"
+      ]
+    },
+    {
+      "expected_country_code": "NL",
+      "expected_country_qid": "Q55",
+      "label_hint_en": "Kunsthal",
+      "qid": "Q1668856",
+      "region": "europe",
+      "risk_tags": [
+        "museum",
+        "rem_koolhaas"
+      ]
+    },
+    {
+      "expected_country_code": "NL",
+      "expected_country_qid": "Q55",
+      "label_hint_en": "Beurs van Berlage",
+      "qid": "Q851200",
+      "region": "europe",
+      "risk_tags": [
+        "exchange",
+        "amsterdam_school"
+      ]
+    },
+    {
+      "expected_country_code": "US",
+      "expected_country_qid": "Q30",
+      "label_hint_en": "Getty Center",
+      "qid": "Q29247",
+      "region": "north_america",
+      "risk_tags": [
+        "museum_campus",
+        "richard_meier"
+      ]
+    },
+    {
+      "expected_country_code": "US",
+      "expected_country_qid": "Q30",
+      "label_hint_en": "Transamerica Pyramid",
+      "qid": "Q216865",
+      "region": "north_america",
+      "risk_tags": [
+        "skyscraper",
+        "pyramidal"
+      ]
+    },
+    {
+      "expected_country_code": "US",
+      "expected_country_qid": "Q30",
+      "label_hint_en": "Willis Tower",
+      "qid": "Q29294",
+      "region": "north_america",
+      "risk_tags": [
+        "skyscraper",
+        "bundled_tubes"
+      ]
+    },
+    {
+      "expected_country_code": "US",
+      "expected_country_qid": "Q30",
+      "label_hint_en": "Crystal Cathedral",
+      "qid": "Q1051217",
+      "region": "north_america",
+      "risk_tags": [
+        "modern_sacred",
+        "glass"
+      ]
+    },
+    {
+      "expected_country_code": "US",
+      "expected_country_qid": "Q30",
+      "label_hint_en": "550 Madison Avenue",
+      "qid": "Q1477826",
+      "region": "north_america",
+      "risk_tags": [
+        "skyscraper",
+        "postmodern"
+      ]
+    },
+    {
+      "expected_country_code": "US",
+      "expected_country_qid": "Q30",
+      "label_hint_en": "Museum of Modern Art",
+      "qid": "Q188740",
+      "region": "north_america",
+      "risk_tags": [
+        "museum",
+        "expansion_phases"
+      ]
+    },
+    {
+      "expected_country_code": "US",
+      "expected_country_qid": "Q30",
+      "label_hint_en": "National Air and Space Museum",
+      "qid": "Q752669",
+      "region": "north_america",
+      "risk_tags": [
+        "museum",
+        "smithsonian"
+      ]
+    },
+    {
+      "expected_country_code": "US",
+      "expected_country_qid": "Q30",
+      "label_hint_en": "Boston City Hall",
+      "qid": "Q250773",
+      "region": "north_america",
+      "risk_tags": [
+        "civic",
+        "brutalist"
+      ]
+    },
+    {
+      "expected_country_code": "US",
+      "expected_country_qid": "Q30",
+      "label_hint_en": "Thorncrown Chapel",
+      "qid": "Q1136273",
+      "region": "north_america",
+      "risk_tags": [
+        "modern_sacred",
+        "wood"
+      ]
+    },
+    {
+      "expected_country_code": "US",
+      "expected_country_qid": "Q30",
+      "label_hint_en": "Wexner Center for the Arts",
+      "qid": "Q2527311",
+      "region": "north_america",
+      "risk_tags": [
+        "museum",
+        "peter_eisenman"
+      ]
+    },
+    {
+      "expected_country_code": "US",
+      "expected_country_qid": "Q30",
+      "label_hint_en": "Pruitt–Igoe",
+      "qid": "Q165316",
+      "region": "north_america",
+      "risk_tags": [
+        "housing",
+        "demolished"
+      ]
+    },
+    {
+      "expected_country_code": "GB",
+      "expected_country_qid": "Q145",
+      "label_hint_en": "Barbican Estate",
+      "qid": "Q2319878",
+      "region": "europe",
+      "risk_tags": [
+        "housing_complex",
+        "brutalist"
+      ]
+    },
+    {
+      "expected_country_code": "GB",
+      "expected_country_qid": "Q145",
+      "label_hint_en": "Hayward Gallery",
+      "qid": "Q779736",
+      "region": "europe",
+      "risk_tags": [
+        "gallery",
+        "brutalist"
+      ]
+    },
+    {
+      "expected_country_code": "GB",
+      "expected_country_qid": "Q145",
+      "label_hint_en": "Centre Point",
+      "qid": "Q2339039",
+      "region": "europe",
+      "risk_tags": [
+        "skyscraper",
+        "brutalist"
+      ]
+    },
+    {
+      "expected_country_code": "GB",
+      "expected_country_qid": "Q145",
+      "label_hint_en": "Tower 42",
+      "qid": "Q1331574",
+      "region": "europe",
+      "risk_tags": [
+        "skyscraper",
+        "steel_frame"
+      ]
+    },
+    {
+      "expected_country_code": "GB",
+      "expected_country_qid": "Q145",
+      "label_hint_en": "Alexandra Road Estate",
+      "qid": "Q4720740",
+      "region": "europe",
+      "risk_tags": [
+        "housing",
+        "brutalist"
+      ]
+    },
+    {
+      "expected_country_code": "GB",
+      "expected_country_qid": "Q145",
+      "label_hint_en": "Trellick Tower",
+      "qid": "Q1571416",
+      "region": "europe",
+      "risk_tags": [
+        "housing",
+        "brutalist"
+      ]
+    },
+    {
+      "expected_country_code": "GB",
+      "expected_country_qid": "Q145",
+      "label_hint_en": "Coventry Cathedral",
+      "qid": "Q1138070",
+      "region": "europe",
+      "risk_tags": [
+        "modern_sacred",
+        "basil_spence"
+      ]
+    },
+    {
+      "expected_country_code": "GB",
+      "expected_country_qid": "Q145",
+      "label_hint_en": "Liverpool Metropolitan Cathedral",
+      "qid": "Q1470975",
+      "region": "europe",
+      "risk_tags": [
+        "modern_sacred",
+        "frederick_gibberd"
+      ]
+    },
+    {
+      "expected_country_code": "GB",
+      "expected_country_qid": "Q145",
+      "label_hint_en": "Byker Wall",
+      "qid": "Q5004106",
+      "region": "europe",
+      "risk_tags": [
+        "housing",
+        "ralph_erskine"
+      ]
+    },
+    {
+      "expected_country_code": "FR",
+      "expected_country_qid": "Q142",
+      "label_hint_en": "Louvre Pyramid",
+      "qid": "Q13397",
+      "region": "europe",
+      "risk_tags": [
+        "museum_entrance",
+        "i_m_pei"
+      ]
+    },
+    {
+      "expected_country_code": "FR",
+      "expected_country_qid": "Q142",
+      "label_hint_en": "Arab World Institute",
+      "qid": "Q860166",
+      "region": "europe",
+      "risk_tags": [
+        "cultural_center",
+        "jean_nouvel"
+      ]
+    },
+    {
+      "expected_country_code": "FR",
+      "expected_country_qid": "Q142",
+      "label_hint_en": "Bibliothèque nationale de France",
+      "qid": "Q193563",
+      "region": "europe",
+      "risk_tags": [
+        "library",
+        "dominique_perrault"
+      ]
+    },
+    {
+      "expected_country_code": "FR",
+      "expected_country_qid": "Q142",
+      "label_hint_en": "Fondation Maeght",
+      "qid": "Q1435689",
+      "region": "europe",
+      "risk_tags": [
+        "museum",
+        "josep_lluis_sert"
+      ]
+    },
+    {
+      "expected_country_code": "FR",
+      "expected_country_qid": "Q142",
+      "label_hint_en": "Maison de Verre",
+      "qid": "Q839251",
+      "region": "europe",
+      "risk_tags": [
+        "residential",
+        "pierre_chareau"
+      ]
+    },
+    {
+      "expected_country_code": "FR",
+      "expected_country_qid": "Q142",
+      "label_hint_en": "Villa Noailles",
+      "qid": "Q1574432",
+      "region": "europe",
+      "risk_tags": [
+        "residential",
+        "robert_mallet_stevens"
+      ]
+    },
+    {
+      "expected_country_code": "FR",
+      "expected_country_qid": "Q142",
+      "label_hint_en": "Église Sainte-Bernadette du Banlay",
+      "qid": "Q3584934",
+      "region": "europe",
+      "risk_tags": [
+        "modern_sacred",
+        "brutalist"
+      ]
+    },
+    {
+      "expected_country_code": "FR",
+      "expected_country_qid": "Q142",
+      "label_hint_en": "European Court of Human Rights building",
+      "qid": "Q5412477",
+      "region": "europe",
+      "risk_tags": [
+        "courthouse",
+        "richard_rogers"
+      ]
+    },
+    {
+      "expected_country_code": "DE",
+      "expected_country_qid": "Q183",
+      "label_hint_en": "Neue Nationalgalerie",
+      "qid": "Q32659772",
+      "region": "europe",
+      "risk_tags": [
+        "museum",
+        "mies_van_der_rohe"
+      ]
+    },
+    {
+      "expected_country_code": "DE",
+      "expected_country_qid": "Q183",
+      "label_hint_en": "Berlin Cathedral",
+      "qid": "Q154563",
+      "region": "europe",
+      "risk_tags": [
+        "sacred",
+        "neo_renaissance"
+      ]
+    },
+    {
+      "expected_country_code": "IT",
+      "expected_country_qid": "Q38",
+      "label_hint_en": "Pirelli Tower",
+      "qid": "Q920809",
+      "region": "europe",
+      "risk_tags": [
+        "skyscraper",
+        "gio_ponti"
+      ]
+    },
+    {
+      "expected_country_code": "IT",
+      "expected_country_qid": "Q38",
+      "label_hint_en": "Torre Velasca",
+      "qid": "Q1156274",
+      "region": "europe",
+      "risk_tags": [
+        "skyscraper",
+        "brutalist"
+      ]
+    },
+    {
+      "expected_country_code": "IT",
+      "expected_country_qid": "Q38",
+      "label_hint_en": "Parco della Musica",
+      "qid": "Q570949",
+      "region": "europe",
+      "risk_tags": [
+        "concert_hall",
+        "renzo_piano"
+      ]
+    },
+    {
+      "expected_country_code": "IT",
+      "expected_country_qid": "Q38",
+      "label_hint_en": "Brion tomb",
+      "qid": "Q3992600",
+      "region": "europe",
+      "risk_tags": [
+        "memorial",
+        "carlo_scarpa"
+      ]
+    },
+    {
+      "expected_country_code": "IT",
+      "expected_country_qid": "Q38",
+      "label_hint_en": "Palazzo della Civiltà Italiana",
+      "qid": "Q1283476",
+      "region": "europe",
+      "risk_tags": [
+        "exhibition",
+        "fascist_classicism"
+      ]
+    },
+    {
+      "expected_country_code": "JP",
+      "expected_country_qid": "Q17",
+      "label_hint_en": "Kansai International Airport",
+      "qid": "Q193682",
+      "region": "east_asia",
+      "risk_tags": [
+        "airport",
+        "renzo_piano"
+      ]
+    },
+    {
+      "expected_country_code": "JP",
+      "expected_country_qid": "Q17",
+      "label_hint_en": "Tokyo International Forum",
+      "qid": "Q1359892",
+      "region": "east_asia",
+      "risk_tags": [
+        "convention",
+        "rafael_vinoly"
+      ]
+    },
+    {
+      "expected_country_code": "JP",
+      "expected_country_qid": "Q17",
+      "label_hint_en": "Sendai Mediatheque",
+      "qid": "Q988508",
+      "region": "east_asia",
+      "risk_tags": [
+        "library",
+        "toyo_ito"
+      ]
+    },
+    {
+      "expected_country_code": "FR",
+      "expected_country_qid": "Q142",
+      "label_hint_en": "Centre Pompidou-Metz",
+      "qid": "Q1054169",
+      "region": "europe",
+      "risk_tags": [
+        "museum",
+        "shigeru_ban"
+      ]
+    },
+    {
+      "expected_country_code": "CA",
+      "expected_country_qid": "Q16",
+      "label_hint_en": "National Gallery of Canada",
+      "qid": "Q1068063",
+      "region": "north_america",
+      "risk_tags": [
+        "museum",
+        "moshe_safdie"
+      ]
+    },
+    {
+      "expected_country_code": "AU",
+      "expected_country_qid": "Q408",
+      "label_hint_en": "Sydney Harbour Bridge",
+      "qid": "Q54495",
+      "region": "oceania",
+      "risk_tags": [
+        "bridge",
+        "steel_arch"
+      ]
     }
   ]
 }
