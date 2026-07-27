@@ -982,6 +982,45 @@
       "verification_status": "candidate"
     },
     {
+      "aliases_en": [],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1867,
+        "latest": 1867,
+        "precision": "day",
+        "value": "1867-09-28"
+      },
+      "claim_ids": [
+        "claim-wd-q11654164-name-en",
+        "claim-wd-q11654164-name-zh"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": 1937,
+        "latest": 1937,
+        "precision": "day",
+        "value": "1937-12-14"
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q11654164"
+      },
+      "id": "person-wd-q11654164",
+      "last_verified": "2026-07-27",
+      "name_en": "Uheiji Nagano",
+      "name_native": null,
+      "name_zh": "长野宇平治",
+      "name_zh_status": "source_label_candidate",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
       "aliases_en": [
         "Maria Teresa Táboas Veleiro"
       ],
@@ -1192,6 +1231,90 @@
       "verification_status": "candidate"
     },
     {
+      "aliases_en": [
+        "Kingo Tatsuno"
+      ],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1854,
+        "latest": 1854,
+        "precision": "day",
+        "value": "1854-10-13"
+      },
+      "claim_ids": [
+        "claim-wd-q1186865-name-en",
+        "claim-wd-q1186865-name-zh"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": 1919,
+        "latest": 1919,
+        "precision": "day",
+        "value": "1919-03-25"
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q1186865"
+      },
+      "id": "person-wd-q1186865",
+      "last_verified": "2026-07-27",
+      "name_en": "Tatsuno Kingo",
+      "name_native": null,
+      "name_zh": "辰野金吾",
+      "name_zh_status": "source_label_candidate",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [
+        "J. Conder"
+      ],
+      "aliases_zh": [
+        "約西亞·康德爾"
+      ],
+      "birth": {
+        "earliest": 1852,
+        "latest": 1852,
+        "precision": "day",
+        "value": "1852-09-28"
+      },
+      "claim_ids": [
+        "claim-wd-q1187770-name-en",
+        "claim-wd-q1187770-name-zh"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": 1920,
+        "latest": 1920,
+        "precision": "day",
+        "value": "1920-06-21"
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q1187770"
+      },
+      "id": "person-wd-q1187770",
+      "last_verified": "2026-07-27",
+      "name_en": "Josiah Conder",
+      "name_native": null,
+      "name_zh": "喬賽亞·康德",
+      "name_zh_status": "source_label_candidate",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
       "aliases_en": [],
       "aliases_zh": [],
       "birth": {
@@ -1218,6 +1341,44 @@
       "id": "person-wd-q11882869",
       "last_verified": "2026-07-27",
       "name_en": "Mimar Hayruddin",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1738,
+        "latest": 1738,
+        "precision": "day",
+        "value": "1738-09-01"
+      },
+      "claim_ids": [
+        "claim-wd-q119105051-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": 1784,
+        "latest": 1784,
+        "precision": "day",
+        "value": "1784-07-28"
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q119105051"
+      },
+      "id": "person-wd-q119105051",
+      "last_verified": "2026-07-27",
+      "name_en": "Marcos Ibáñez",
       "name_native": null,
       "name_zh": null,
       "name_zh_status": "missing",
@@ -1381,6 +1542,50 @@
       "name_en": "Mario Botta",
       "name_native": null,
       "name_zh": "马里奥·博塔",
+      "name_zh_status": "source_label_candidate",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [
+        "Guglielmo da Modena",
+        "Wiligelmus",
+        "Gulielmo da Modena",
+        "Wiligelmo da Modena"
+      ],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "claim_ids": [
+        "claim-wd-q1226528-name-en",
+        "claim-wd-q1226528-name-zh"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q1226528"
+      },
+      "id": "person-wd-q1226528",
+      "last_verified": "2026-07-27",
+      "name_en": "Wiligelmo",
+      "name_native": null,
+      "name_zh": "维利杰尔莫",
       "name_zh_status": "source_label_candidate",
       "region": "unknown",
       "roles": [
@@ -2080,6 +2285,49 @@
       "name_en": "Tom Wright",
       "name_native": null,
       "name_zh": "汤姆·赖特",
+      "name_zh_status": "source_label_candidate",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [
+        "Tachu Naito",
+        "Tachuu Naitou",
+        "Naitō Tachū"
+      ],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1886,
+        "latest": 1886,
+        "precision": "day",
+        "value": "1886-06-12"
+      },
+      "claim_ids": [
+        "claim-wd-q1340974-name-en",
+        "claim-wd-q1340974-name-zh"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": 1970,
+        "latest": 1970,
+        "precision": "day",
+        "value": "1970-08-25"
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q1340974"
+      },
+      "id": "person-wd-q1340974",
+      "last_verified": "2026-07-27",
+      "name_en": "Tachū Naitō",
+      "name_native": null,
+      "name_zh": "內藤多仲",
       "name_zh_status": "source_label_candidate",
       "region": "unknown",
       "roles": [
@@ -2933,6 +3181,44 @@
       "id": "person-wd-q16007829",
       "last_verified": "2026-07-27",
       "name_en": "Mark Lemmon",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1705,
+        "latest": 1705,
+        "precision": "year",
+        "value": "1705"
+      },
+      "claim_ids": [
+        "claim-wd-q16010165-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": 1769,
+        "latest": 1769,
+        "precision": "year",
+        "value": "1769"
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q16010165"
+      },
+      "id": "person-wd-q16010165",
+      "last_verified": "2026-07-27",
+      "name_en": "Ignazio Agliaudi di Tavigliano",
       "name_native": null,
       "name_zh": null,
       "name_zh_status": "missing",
@@ -4588,6 +4874,47 @@
       "verification_status": "candidate"
     },
     {
+      "aliases_en": [
+        "William Burgess dz"
+      ],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1827,
+        "latest": 1827,
+        "precision": "day",
+        "value": "1827-12-02"
+      },
+      "claim_ids": [
+        "claim-wd-q186265-name-en",
+        "claim-wd-q186265-name-zh"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": 1881,
+        "latest": 1881,
+        "precision": "day",
+        "value": "1881-04-20"
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q186265"
+      },
+      "id": "person-wd-q186265",
+      "last_verified": "2026-07-27",
+      "name_en": "William Burges",
+      "name_native": null,
+      "name_zh": "威廉·伯吉斯",
+      "name_zh_status": "source_label_candidate",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
       "aliases_en": [],
       "aliases_zh": [],
       "birth": {
@@ -4863,6 +5190,48 @@
       "name_en": "Nicola Salvi",
       "name_native": null,
       "name_zh": "尼古拉·萨尔维",
+      "name_zh_status": "source_label_candidate",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [
+        "Robert Aitken",
+        "Robert I. Aitken"
+      ],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1878,
+        "latest": 1878,
+        "precision": "day",
+        "value": "1878-05-08"
+      },
+      "claim_ids": [
+        "claim-wd-q1990223-name-en",
+        "claim-wd-q1990223-name-zh"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": 1949,
+        "latest": 1949,
+        "precision": "day",
+        "value": "1949-01-03"
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q1990223"
+      },
+      "id": "person-wd-q1990223",
+      "last_verified": "2026-07-27",
+      "name_en": "Robert Ingersoll Aitken",
+      "name_native": null,
+      "name_zh": "罗伯特·英格索尔·艾特肯",
       "name_zh_status": "source_label_candidate",
       "region": "unknown",
       "roles": [
@@ -6074,6 +6443,47 @@
     },
     {
       "aliases_en": [
+        "Giovanni Battista Sacchetti",
+        "Giovanni Battista Saqueti"
+      ],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1690,
+        "latest": 1690,
+        "precision": "day",
+        "value": "1690-03-17"
+      },
+      "claim_ids": [
+        "claim-wd-q2327379-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": 1764,
+        "latest": 1764,
+        "precision": "day",
+        "value": "1764-12-03"
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q2327379"
+      },
+      "id": "person-wd-q2327379",
+      "last_verified": "2026-07-27",
+      "name_en": "Juan Bautista Sachetti",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [
         "Giovanni Trevano"
       ],
       "aliases_zh": [],
@@ -6582,6 +6992,47 @@
       "id": "person-wd-q2440881",
       "last_verified": "2026-07-27",
       "name_en": "Tommaso Vincidor",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [
+        "Francisco Sabatini",
+        "Francesco Sabbatini"
+      ],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1721,
+        "latest": 1721,
+        "precision": "year",
+        "value": "1721"
+      },
+      "claim_ids": [
+        "claim-wd-q2454966-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": 1797,
+        "latest": 1797,
+        "precision": "day",
+        "value": "1797-02-19"
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q2454966"
+      },
+      "id": "person-wd-q2454966",
+      "last_verified": "2026-07-27",
+      "name_en": "Francesco Sabatini",
       "name_native": null,
       "name_zh": null,
       "name_zh_status": "missing",
@@ -7655,6 +8106,48 @@
       "id": "person-wd-q2834614",
       "last_verified": "2026-07-27",
       "name_en": "Alexis Paccard",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [
+        "Giovanni Antonio Omodeo",
+        "Giovanni Antonio Degli Amadei",
+        "Giovanni Antonio degli Amadei"
+      ],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1447,
+        "latest": 1447,
+        "precision": "year",
+        "value": "1447"
+      },
+      "claim_ids": [
+        "claim-wd-q284282-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": 1522,
+        "latest": 1522,
+        "precision": "day",
+        "value": "1522-08-27"
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q284282"
+      },
+      "id": "person-wd-q284282",
+      "last_verified": "2026-07-27",
+      "name_en": "Giovanni Antonio Amadeo",
       "name_native": null,
       "name_zh": null,
       "name_zh_status": "missing",
@@ -10329,6 +10822,68 @@
     },
     {
       "aliases_en": [
+        "Luis Doménech y Montaner",
+        "Lluís Domènech Montaner",
+        "Luis Domènech y Montaner",
+        "Lluis Domènech y Montaner",
+        "Luís Doménechi Montaner",
+        "Lluis Domènech",
+        "Lluis Doménech y Montaner",
+        "Lluís Domènech i Fontaner",
+        "Lluís Domènech y Montaner",
+        "Luis Domènech i Montaner",
+        "Lluis Domènech i Montaner",
+        "Lluis Domenech i Montaner",
+        "Luis Domenech y Montaner",
+        "Lluis Domenech Montaner",
+        "Lluis Domenech y Montaner",
+        "Luis Domenechi Montaner",
+        "Lluis Domenech",
+        "Lluis Domenech i Fontaner",
+        "Luis Domenech i Montaner"
+      ],
+      "aliases_zh": [
+        "路易斯·多梅内克·蒙塔内尔",
+        "路易斯·多梅內克·蒙塔內爾"
+      ],
+      "birth": {
+        "earliest": 1850,
+        "latest": 1850,
+        "precision": "day",
+        "value": "1850-12-21"
+      },
+      "claim_ids": [
+        "claim-wd-q317876-name-en",
+        "claim-wd-q317876-name-zh"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": 1923,
+        "latest": 1923,
+        "precision": "day",
+        "value": "1923-12-27"
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q317876"
+      },
+      "id": "person-wd-q317876",
+      "last_verified": "2026-07-27",
+      "name_en": "Lluís Domènech i Montaner",
+      "name_native": null,
+      "name_zh": "路易斯·多梅内克·蒙塔内尔",
+      "name_zh_status": "source_label_candidate",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [
         "Marie-Joseph Bernard Cassien"
       ],
       "aliases_zh": [],
@@ -10735,6 +11290,48 @@
       "name_en": "Francisco Becerra",
       "name_native": null,
       "name_zh": "弗朗西斯科·贝塞拉",
+      "name_zh_status": "source_label_candidate",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [
+        "Junzo Yoshimura",
+        "Junzou Yoshimura"
+      ],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1908,
+        "latest": 1908,
+        "precision": "year",
+        "value": "1908"
+      },
+      "claim_ids": [
+        "claim-wd-q3297694-name-en",
+        "claim-wd-q3297694-name-zh"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": 1997,
+        "latest": 1997,
+        "precision": "year",
+        "value": "1997"
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q3297694"
+      },
+      "id": "person-wd-q3297694",
+      "last_verified": "2026-07-27",
+      "name_en": "Junzō Yoshimura",
+      "name_native": null,
+      "name_zh": "吉村順三",
       "name_zh_status": "source_label_candidate",
       "region": "unknown",
       "roles": [
@@ -11322,6 +11919,51 @@
       "name_native": null,
       "name_zh": "皮埃尔·德·谢勒",
       "name_zh_status": "source_label_candidate",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [
+        "Fernando de Casas",
+        "Fernando Casas y Nóvoa",
+        "Fernando Casas Nova",
+        "Fernando de las Casas",
+        "Fernando Cassas y Noboa",
+        "Fernando Casas y Novoa"
+      ],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1670,
+        "latest": 1670,
+        "precision": "year",
+        "value": "1670"
+      },
+      "claim_ids": [
+        "claim-wd-q3395095-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": 1749,
+        "latest": 1749,
+        "precision": "day",
+        "value": "1749-11-25"
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q3395095"
+      },
+      "id": "person-wd-q3395095",
+      "last_verified": "2026-07-27",
+      "name_en": "Fernando de Casas Novoa",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
       "region": "unknown",
       "roles": [
         "architect"
@@ -12834,6 +13476,46 @@
     },
     {
       "aliases_en": [
+        "Pedro Pérez"
+      ],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "claim_ids": [
+        "claim-wd-q3819663-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": 1291,
+        "latest": 1291,
+        "precision": "year",
+        "value": "1291"
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q3819663"
+      },
+      "id": "person-wd-q3819663",
+      "last_verified": "2026-07-27",
+      "name_en": "Petrus Petri",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [
         "Julio Vilamajo"
       ],
       "aliases_zh": [],
@@ -12873,6 +13555,45 @@
       "verification_status": "candidate"
     },
     {
+      "aliases_en": [],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "claim_ids": [
+        "claim-wd-q3826853-name-en",
+        "claim-wd-q3826853-name-zh"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q3826853"
+      },
+      "id": "person-wd-q3826853",
+      "last_verified": "2026-07-27",
+      "name_en": "Lanfranco",
+      "name_native": null,
+      "name_zh": "兰弗兰科",
+      "name_zh_status": "source_label_candidate",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
       "aliases_en": [
         "Jacopo Tedesco"
       ],
@@ -12901,6 +13622,44 @@
       "id": "person-wd-q3827020",
       "last_verified": "2026-07-27",
       "name_en": "Lapo Tedesco",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1330,
+        "latest": 1330,
+        "precision": "year",
+        "value": "1330"
+      },
+      "claim_ids": [
+        "claim-wd-q383413-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": 1401,
+        "latest": 1401,
+        "precision": "year",
+        "value": "1401"
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q383413"
+      },
+      "id": "person-wd-q383413",
+      "last_verified": "2026-07-27",
+      "name_en": "Afonso Domingues",
       "name_native": null,
       "name_zh": null,
       "name_zh_status": "missing",
@@ -14961,6 +15720,46 @@
     },
     {
       "aliases_en": [
+        "Demetrianus"
+      ],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "claim_ids": [
+        "claim-wd-q5249685-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q5249685"
+      },
+      "id": "person-wd-q5249685",
+      "last_verified": "2026-07-27",
+      "name_en": "Decriannus",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [
         "Jean-François-Thérèse Chalgrin",
         "Jean François Thérèse Chalgrin",
         "Jean-François Thérèse Chalgrin",
@@ -16451,6 +17250,54 @@
     },
     {
       "aliases_en": [
+        "Hermon A. MacNeil",
+        "H. A. MacNeil",
+        "Herman Atkins MacNeil",
+        "Hermon Atkins MacNiel",
+        "Herman A. MacNeil",
+        "Hermon MacNeil",
+        "Hermon Atkins Macneil",
+        "MacNeil, Hermon Atkins"
+      ],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1866,
+        "latest": 1866,
+        "precision": "day",
+        "value": "1866-02-27"
+      },
+      "claim_ids": [
+        "claim-wd-q610214-name-en",
+        "claim-wd-q610214-name-zh"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": 1947,
+        "latest": 1947,
+        "precision": "day",
+        "value": "1947-10-02"
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q610214"
+      },
+      "id": "person-wd-q610214",
+      "last_verified": "2026-07-27",
+      "name_en": "Hermon Atkins MacNeil",
+      "name_native": null,
+      "name_zh": "赫蒙·阿特金斯·麦克尼尔",
+      "name_zh_status": "source_label_candidate",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [
         "Walter Adolph Georg Gropius",
         "Walter Adolf Gropius",
         "Mass",
@@ -17607,6 +18454,44 @@
       "verification_status": "candidate"
     },
     {
+      "aliases_en": [],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "claim_ids": [
+        "claim-wd-q6786671-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": 1515,
+        "latest": 1515,
+        "precision": "day",
+        "value": "1515-04-10"
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q6786671"
+      },
+      "id": "person-wd-q6786671",
+      "last_verified": "2026-07-27",
+      "name_en": "Mateus Fernandes",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
       "aliases_en": [
         "Sir Gilbert Scott",
         "Gilbert Scott",
@@ -17925,6 +18810,44 @@
       "name_native": null,
       "name_zh": "威廉·范·艾倫",
       "name_zh_status": "source_label_candidate",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1953,
+        "latest": 1953,
+        "precision": "day",
+        "value": "1953-05-16"
+      },
+      "claim_ids": [
+        "claim-wd-q70696-name-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q70696"
+      },
+      "id": "person-wd-q70696",
+      "last_verified": "2026-07-27",
+      "name_en": "Werner Sobek",
+      "name_native": null,
+      "name_zh": null,
+      "name_zh_status": "missing",
       "region": "unknown",
       "roles": [
         "architect"
@@ -20103,6 +21026,58 @@
     },
     {
       "aliases_en": [
+        "Filippo Juarra",
+        "Filippo Ivara",
+        "Filippo Ivvara",
+        "Filippo Juvara",
+        "Filippo Hovara",
+        "Filippo Juara",
+        "Iuvara",
+        "Dom Philippe Juvara",
+        "P. Juivarra",
+        "Don Philippe Juvarra",
+        "Filippo Iuvara",
+        "Juvara"
+      ],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1678,
+        "latest": 1678,
+        "precision": "day",
+        "value": "1678-03-07"
+      },
+      "claim_ids": [
+        "claim-wd-q85000-name-en",
+        "claim-wd-q85000-name-zh"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": 1736,
+        "latest": 1736,
+        "precision": "day",
+        "value": "1736-01-31"
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q85000"
+      },
+      "id": "person-wd-q85000",
+      "last_verified": "2026-07-27",
+      "name_en": "Filippo Juvarra",
+      "name_native": null,
+      "name_zh": "菲利波·尤瓦拉",
+      "name_zh_status": "source_label_candidate",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [
         "Urban",
         "Josef Urban"
       ],
@@ -20256,6 +21231,50 @@
       "name_native": null,
       "name_zh": null,
       "name_zh_status": "missing",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [
+        "Tōkuma Katayama",
+        "Katayama Tokuma",
+        "Katayama Toukuma",
+        "Tokuma Katayama"
+      ],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1854,
+        "latest": 1854,
+        "precision": "day",
+        "value": "1854-01-18"
+      },
+      "claim_ids": [
+        "claim-wd-q898689-name-en",
+        "claim-wd-q898689-name-zh"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": 1917,
+        "latest": 1917,
+        "precision": "day",
+        "value": "1917-10-24"
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q898689"
+      },
+      "id": "person-wd-q898689",
+      "last_verified": "2026-07-27",
+      "name_en": "Katayama Tōkuma",
+      "name_native": null,
+      "name_zh": "片山東熊",
+      "name_zh_status": "source_label_candidate",
       "region": "unknown",
       "roles": [
         "architect"
@@ -21170,6 +22189,48 @@
       "name_en": "Charles Percier Bassant",
       "name_native": null,
       "name_zh": "夏尔·佩西耶",
+      "name_zh_status": "source_label_candidate",
+      "region": "unknown",
+      "roles": [
+        "architect"
+      ],
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "candidate"
+    },
+    {
+      "aliases_en": [
+        "J. R. Pope",
+        "John R. Pope"
+      ],
+      "aliases_zh": [],
+      "birth": {
+        "earliest": 1874,
+        "latest": 1874,
+        "precision": "day",
+        "value": "1874-04-24"
+      },
+      "claim_ids": [
+        "claim-wd-q973881-name-en",
+        "claim-wd-q973881-name-zh"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "death": {
+        "earliest": 1937,
+        "latest": 1937,
+        "precision": "day",
+        "value": "1937-08-27"
+      },
+      "entity_type": "person",
+      "external_ids": {
+        "wikidata": "Q973881"
+      },
+      "id": "person-wd-q973881",
+      "last_verified": "2026-07-27",
+      "name_en": "John Russell Pope",
+      "name_native": null,
+      "name_zh": "約翰·羅素·波普",
       "name_zh_status": "source_label_candidate",
       "region": "unknown",
       "roles": [

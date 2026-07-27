@@ -45,6 +45,72 @@
       "verification_status": "candidate"
     },
     {
+      "claim_id": "claim-relation-wd-student-recorded-q1186865-q11654164",
+      "confidence": 0.45,
+      "context": {
+        "date_end": null,
+        "date_start": null,
+        "institution_id": null,
+        "note_en": "Raw Wikidata P1066/P802 review edge; it does not by itself establish teacher, mentor, or apprenticeship.",
+        "note_zh": "Wikidata P1066/P802 原始待审边；本身不能证明教师、导师或学徒关系。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q1186865",
+      "id": "relation-wd-student-recorded-q1186865-q11654164",
+      "last_verified": "2026-07-27",
+      "rejection_reasons": [
+        "Requires human classification and stronger relationship evidence."
+      ],
+      "relation_type": "student_of_recorded",
+      "to_id": "person-wd-q11654164",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-wd-student-recorded-q1187770-q1186865",
+      "confidence": 0.45,
+      "context": {
+        "date_end": null,
+        "date_start": null,
+        "institution_id": null,
+        "note_en": "Raw Wikidata P1066/P802 review edge; it does not by itself establish teacher, mentor, or apprenticeship.",
+        "note_zh": "Wikidata P1066/P802 原始待审边；本身不能证明教师、导师或学徒关系。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q1187770",
+      "id": "relation-wd-student-recorded-q1187770-q1186865",
+      "last_verified": "2026-07-27",
+      "rejection_reasons": [
+        "Requires human classification and stronger relationship evidence."
+      ],
+      "relation_type": "student_of_recorded",
+      "to_id": "person-wd-q1186865",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-wd-student-recorded-q1187770-q898689",
+      "confidence": 0.45,
+      "context": {
+        "date_end": null,
+        "date_start": null,
+        "institution_id": null,
+        "note_en": "Raw Wikidata P1066/P802 review edge; it does not by itself establish teacher, mentor, or apprenticeship.",
+        "note_zh": "Wikidata P1066/P802 原始待审边；本身不能证明教师、导师或学徒关系。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q1187770",
+      "id": "relation-wd-student-recorded-q1187770-q898689",
+      "last_verified": "2026-07-27",
+      "rejection_reasons": [
+        "Requires human classification and stronger relationship evidence."
+      ],
+      "relation_type": "student_of_recorded",
+      "to_id": "person-wd-q898689",
+      "verification_status": "candidate"
+    },
+    {
       "claim_id": "claim-relation-wd-student-recorded-q122328-q123150",
       "confidence": 0.45,
       "context": {
@@ -309,6 +375,28 @@
       "verification_status": "candidate"
     },
     {
+      "claim_id": "claim-relation-wd-student-recorded-q186265-q1186865",
+      "confidence": 0.45,
+      "context": {
+        "date_end": null,
+        "date_start": null,
+        "institution_id": null,
+        "note_en": "Raw Wikidata P1066/P802 review edge; it does not by itself establish teacher, mentor, or apprenticeship.",
+        "note_zh": "Wikidata P1066/P802 原始待审边；本身不能证明教师、导师或学徒关系。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q186265",
+      "id": "relation-wd-student-recorded-q186265-q1186865",
+      "last_verified": "2026-07-27",
+      "rejection_reasons": [
+        "Requires human classification and stronger relationship evidence."
+      ],
+      "relation_type": "student_of_recorded",
+      "to_id": "person-wd-q1186865",
+      "verification_status": "candidate"
+    },
+    {
       "claim_id": "claim-relation-wd-student-recorded-q1986231-q359424",
       "confidence": 0.45,
       "context": {
@@ -504,6 +592,28 @@
       ],
       "relation_type": "student_of_recorded",
       "to_id": "person-wd-q11704334",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-wd-student-recorded-q2454966-q119105051",
+      "confidence": 0.45,
+      "context": {
+        "date_end": null,
+        "date_start": null,
+        "institution_id": null,
+        "note_en": "Raw Wikidata P1066/P802 review edge; it does not by itself establish teacher, mentor, or apprenticeship.",
+        "note_zh": "Wikidata P1066/P802 原始待审边；本身不能证明教师、导师或学徒关系。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q2454966",
+      "id": "relation-wd-student-recorded-q2454966-q119105051",
+      "last_verified": "2026-07-27",
+      "rejection_reasons": [
+        "Requires human classification and stronger relationship evidence."
+      ],
+      "relation_type": "student_of_recorded",
+      "to_id": "person-wd-q119105051",
       "verification_status": "candidate"
     },
     {
@@ -3936,6 +4046,28 @@
       ],
       "relation_type": "student_of_recorded",
       "to_id": "person-wd-q958293",
+      "verification_status": "candidate"
+    },
+    {
+      "claim_id": "claim-relation-wd-student-recorded-q85000-q16010165",
+      "confidence": 0.45,
+      "context": {
+        "date_end": null,
+        "date_start": null,
+        "institution_id": null,
+        "note_en": "Raw Wikidata P1066/P802 review edge; it does not by itself establish teacher, mentor, or apprenticeship.",
+        "note_zh": "Wikidata P1066/P802 原始待审边；本身不能证明教师、导师或学徒关系。",
+        "practice_id": null,
+        "work_id": null
+      },
+      "from_id": "person-wd-q85000",
+      "id": "relation-wd-student-recorded-q85000-q16010165",
+      "last_verified": "2026-07-27",
+      "rejection_reasons": [
+        "Requires human classification and stronger relationship evidence."
+      ],
+      "relation_type": "student_of_recorded",
+      "to_id": "person-wd-q16010165",
       "verification_status": "candidate"
     },
     {

@@ -5033,6 +5033,644 @@
         "colonial",
         "cathedral"
       ]
+    },
+    {
+      "expected_country_code": "KR",
+      "expected_country_qid": "Q884",
+      "label_hint_en": "Deoksugung",
+      "qid": "Q482631",
+      "region": "east_asia",
+      "risk_tags": [
+        "palace",
+        "joseon"
+      ]
+    },
+    {
+      "expected_country_code": "KR",
+      "expected_country_qid": "Q884",
+      "label_hint_en": "Haeinsa Temple Janggyeong Panjeon, the Depositories for the Tripitaka Koreana Woodblocks",
+      "qid": "Q490798",
+      "region": "east_asia",
+      "risk_tags": [
+        "buddhist_temple",
+        "joseon"
+      ]
+    },
+    {
+      "expected_country_code": "KR",
+      "expected_country_qid": "Q884",
+      "label_hint_en": "Lotte World Tower",
+      "qid": "Q494895",
+      "region": "east_asia",
+      "risk_tags": [
+        "skyscraper",
+        "contemporary"
+      ]
+    },
+    {
+      "expected_country_code": "KR",
+      "expected_country_qid": "Q884",
+      "label_hint_en": "Seoul City Hall",
+      "qid": "Q623908",
+      "region": "east_asia",
+      "risk_tags": [
+        "civic",
+        "contemporary"
+      ]
+    },
+    {
+      "expected_country_code": "JP",
+      "expected_country_qid": "Q17",
+      "label_hint_en": "Osaka Castle",
+      "qid": "Q321242",
+      "region": "east_asia",
+      "risk_tags": [
+        "castle",
+        "japanese_castle"
+      ]
+    },
+    {
+      "expected_country_code": "JP",
+      "expected_country_qid": "Q17",
+      "label_hint_en": "Nagoya Castle",
+      "qid": "Q648629",
+      "region": "east_asia",
+      "risk_tags": [
+        "castle",
+        "japanese_castle"
+      ]
+    },
+    {
+      "expected_country_code": "JP",
+      "expected_country_qid": "Q17",
+      "label_hint_en": "Hikone Castle",
+      "qid": "Q1012374",
+      "region": "east_asia",
+      "risk_tags": [
+        "castle",
+        "japanese_castle"
+      ]
+    },
+    {
+      "expected_country_code": "JP",
+      "expected_country_qid": "Q17",
+      "label_hint_en": "Kumamoto Castle",
+      "qid": "Q613355",
+      "region": "east_asia",
+      "risk_tags": [
+        "castle",
+        "japanese_castle"
+      ]
+    },
+    {
+      "expected_country_code": "JP",
+      "expected_country_qid": "Q17",
+      "label_hint_en": "Inuyama Castle",
+      "qid": "Q1155484",
+      "region": "east_asia",
+      "risk_tags": [
+        "castle",
+        "japanese_castle"
+      ]
+    },
+    {
+      "expected_country_code": "JP",
+      "expected_country_qid": "Q17",
+      "label_hint_en": "Ise Jingū",
+      "qid": "Q687168",
+      "region": "east_asia",
+      "risk_tags": [
+        "shinto_shrine",
+        "rebuilt_cycle"
+      ]
+    },
+    {
+      "expected_country_code": "JP",
+      "expected_country_qid": "Q17",
+      "label_hint_en": "Chūson-ji Konjikidō",
+      "qid": "Q11363889",
+      "region": "east_asia",
+      "risk_tags": [
+        "buddhist_temple",
+        "golden_hall"
+      ]
+    },
+    {
+      "expected_country_code": "JP",
+      "expected_country_qid": "Q17",
+      "label_hint_en": "Tokyo Tower",
+      "qid": "Q183536",
+      "region": "east_asia",
+      "risk_tags": [
+        "tower",
+        "steel_lattice"
+      ]
+    },
+    {
+      "expected_country_code": "JP",
+      "expected_country_qid": "Q17",
+      "label_hint_en": "Nara National Museum",
+      "qid": "Q147312",
+      "region": "east_asia",
+      "risk_tags": [
+        "museum",
+        "meiji_era"
+      ]
+    },
+    {
+      "expected_country_code": "CN",
+      "expected_country_qid": "Q148",
+      "label_hint_en": "Chengde Mountain Resort and its outlying temples",
+      "qid": "Q1046818",
+      "region": "east_asia",
+      "risk_tags": [
+        "palace_complex",
+        "qing_dynasty"
+      ]
+    },
+    {
+      "expected_country_code": "CN",
+      "expected_country_qid": "Q148",
+      "label_hint_en": "Shaolin Monastery",
+      "qid": "Q232771",
+      "region": "east_asia",
+      "risk_tags": [
+        "buddhist_temple",
+        "song_dynasty"
+      ]
+    },
+    {
+      "expected_country_code": "ES",
+      "expected_country_qid": "Q29",
+      "label_hint_en": "Burgos Cathedral",
+      "qid": "Q744420",
+      "region": "europe",
+      "risk_tags": [
+        "gothic_cathedral",
+        "unesco"
+      ]
+    },
+    {
+      "expected_country_code": "ES",
+      "expected_country_qid": "Q29",
+      "label_hint_en": "Cathedral of Santiago de Compostela",
+      "qid": "Q205136",
+      "region": "europe",
+      "risk_tags": [
+        "romanesque_cathedral",
+        "pilgrimage"
+      ]
+    },
+    {
+      "expected_country_code": "ES",
+      "expected_country_qid": "Q29",
+      "label_hint_en": "Seville Cathedral",
+      "qid": "Q231606",
+      "region": "europe",
+      "risk_tags": [
+        "gothic_cathedral",
+        "largest_gothic"
+      ]
+    },
+    {
+      "expected_country_code": "ES",
+      "expected_country_qid": "Q29",
+      "label_hint_en": "Reales Alcázares",
+      "qid": "Q498261",
+      "region": "europe",
+      "risk_tags": [
+        "palace",
+        "mudejar"
+      ]
+    },
+    {
+      "expected_country_code": "ES",
+      "expected_country_qid": "Q29",
+      "label_hint_en": "Toledo Cathedral",
+      "qid": "Q1123180",
+      "region": "europe",
+      "risk_tags": [
+        "gothic_cathedral",
+        "spanish_gothic"
+      ]
+    },
+    {
+      "expected_country_code": "ES",
+      "expected_country_qid": "Q29",
+      "label_hint_en": "Palau de la Música Catalana",
+      "qid": "Q327940",
+      "region": "europe",
+      "risk_tags": [
+        "concert_hall",
+        "modernisme"
+      ]
+    },
+    {
+      "expected_country_code": "ES",
+      "expected_country_qid": "Q29",
+      "label_hint_en": "Royal Palace of Madrid",
+      "qid": "Q171517",
+      "region": "europe",
+      "risk_tags": [
+        "palace",
+        "baroque"
+      ]
+    },
+    {
+      "expected_country_code": "ES",
+      "expected_country_qid": "Q29",
+      "label_hint_en": "Aqueduct of Segovia",
+      "qid": "Q244947",
+      "region": "europe",
+      "risk_tags": [
+        "roman_aqueduct",
+        "infrastructure"
+      ]
+    },
+    {
+      "expected_country_code": "ES",
+      "expected_country_qid": "Q29",
+      "label_hint_en": "Girona Cathedral",
+      "qid": "Q2261322",
+      "region": "europe",
+      "risk_tags": [
+        "gothic_cathedral",
+        "wide_nave"
+      ]
+    },
+    {
+      "expected_country_code": "PT",
+      "expected_country_qid": "Q45",
+      "label_hint_en": "Batalha Monastery",
+      "qid": "Q174779",
+      "region": "europe",
+      "risk_tags": [
+        "monastery",
+        "gothic"
+      ]
+    },
+    {
+      "expected_country_code": "PT",
+      "expected_country_qid": "Q45",
+      "label_hint_en": "Alcobaça Monastery",
+      "qid": "Q593147",
+      "region": "europe",
+      "risk_tags": [
+        "monastery",
+        "cistercian"
+      ]
+    },
+    {
+      "expected_country_code": "PT",
+      "expected_country_qid": "Q45",
+      "label_hint_en": "Porto Cathedral",
+      "qid": "Q1441255",
+      "region": "europe",
+      "risk_tags": [
+        "cathedral",
+        "romanesque"
+      ]
+    },
+    {
+      "expected_country_code": "PT",
+      "expected_country_qid": "Q45",
+      "label_hint_en": "University of Coimbra",
+      "qid": "Q368643",
+      "region": "europe",
+      "risk_tags": [
+        "university_campus",
+        "baroque"
+      ]
+    },
+    {
+      "expected_country_code": "PT",
+      "expected_country_qid": "Q45",
+      "label_hint_en": "Sintra National Palace",
+      "qid": "Q532399",
+      "region": "europe",
+      "risk_tags": [
+        "palace",
+        "moorish_revival"
+      ]
+    },
+    {
+      "expected_country_code": "IT",
+      "expected_country_qid": "Q38",
+      "label_hint_en": "Siena Cathedral",
+      "qid": "Q282554",
+      "region": "europe",
+      "risk_tags": [
+        "gothic_cathedral",
+        "black_white_marble"
+      ]
+    },
+    {
+      "expected_country_code": "IT",
+      "expected_country_qid": "Q38",
+      "label_hint_en": "Orvieto Cathedral",
+      "qid": "Q10924",
+      "region": "europe",
+      "risk_tags": [
+        "gothic_cathedral",
+        "striped_facade"
+      ]
+    },
+    {
+      "expected_country_code": "IT",
+      "expected_country_qid": "Q38",
+      "label_hint_en": "Palazzo Vecchio",
+      "qid": "Q271928",
+      "region": "europe",
+      "risk_tags": [
+        "palace",
+        "civic"
+      ]
+    },
+    {
+      "expected_country_code": "IT",
+      "expected_country_qid": "Q38",
+      "label_hint_en": "Castel Sant'Angelo",
+      "qid": "Q486382",
+      "region": "europe",
+      "risk_tags": [
+        "mausoleum_castle",
+        "hadrian"
+      ]
+    },
+    {
+      "expected_country_code": "IT",
+      "expected_country_qid": "Q38",
+      "label_hint_en": "Certosa di Pavia",
+      "qid": "Q654443",
+      "region": "europe",
+      "risk_tags": [
+        "monastery",
+        "gothic_renaissance"
+      ]
+    },
+    {
+      "expected_country_code": "IT",
+      "expected_country_qid": "Q38",
+      "label_hint_en": "Palace of Caserta",
+      "qid": "Q327983",
+      "region": "europe",
+      "risk_tags": [
+        "palace",
+        "baroque"
+      ]
+    },
+    {
+      "expected_country_code": "IT",
+      "expected_country_qid": "Q38",
+      "label_hint_en": "Modena Cathedral",
+      "qid": "Q753721",
+      "region": "europe",
+      "risk_tags": [
+        "romanesque_cathedral",
+        "lanfranco"
+      ]
+    },
+    {
+      "expected_country_code": "IT",
+      "expected_country_qid": "Q38",
+      "label_hint_en": "Verona Arena",
+      "qid": "Q641556",
+      "region": "europe",
+      "risk_tags": [
+        "roman_amphitheatre",
+        "arena"
+      ]
+    },
+    {
+      "expected_country_code": "US",
+      "expected_country_qid": "Q30",
+      "label_hint_en": "Stata Center",
+      "qid": "Q3312712",
+      "region": "north_america",
+      "risk_tags": [
+        "campus",
+        "frank_gehry"
+      ]
+    },
+    {
+      "expected_country_code": "US",
+      "expected_country_qid": "Q30",
+      "label_hint_en": "United States Supreme Court Building",
+      "qid": "Q1579670",
+      "region": "north_america",
+      "risk_tags": [
+        "courthouse",
+        "neoclassical"
+      ]
+    },
+    {
+      "expected_country_code": "US",
+      "expected_country_qid": "Q30",
+      "label_hint_en": "West Building of the National Gallery of Art",
+      "qid": "Q129673434",
+      "region": "north_america",
+      "risk_tags": [
+        "museum",
+        "neoclassical"
+      ]
+    },
+    {
+      "expected_country_code": "US",
+      "expected_country_qid": "Q30",
+      "label_hint_en": "Stanford Memorial Church",
+      "qid": "Q1547699",
+      "region": "north_america",
+      "risk_tags": [
+        "modern_sacred",
+        "romanesque_revival"
+      ]
+    },
+    {
+      "expected_country_code": "US",
+      "expected_country_qid": "Q30",
+      "label_hint_en": "Cranbrook Educational Community",
+      "qid": "Q906437",
+      "region": "north_america",
+      "risk_tags": [
+        "campus",
+        "saarinen_eliel"
+      ]
+    },
+    {
+      "expected_country_code": "JP",
+      "expected_country_qid": "Q17",
+      "label_hint_en": "Hirosaki Castle",
+      "qid": "Q328582",
+      "region": "east_asia",
+      "risk_tags": [
+        "castle",
+        "japanese_castle"
+      ]
+    },
+    {
+      "expected_country_code": "JP",
+      "expected_country_qid": "Q17",
+      "label_hint_en": "Ueda Castle",
+      "qid": "Q2968344",
+      "region": "east_asia",
+      "risk_tags": [
+        "castle",
+        "japanese_castle"
+      ]
+    },
+    {
+      "expected_country_code": "KR",
+      "expected_country_qid": "Q884",
+      "label_hint_en": "Gyeongju National Museum",
+      "qid": "Q390124",
+      "region": "east_asia",
+      "risk_tags": [
+        "museum",
+        "modernist"
+      ]
+    },
+    {
+      "expected_country_code": "KR",
+      "expected_country_qid": "Q884",
+      "label_hint_en": "Gyeongbokgung",
+      "qid": "Q482485",
+      "region": "east_asia",
+      "risk_tags": [
+        "palace",
+        "joseon"
+      ]
+    },
+    {
+      "expected_country_code": "KR",
+      "expected_country_qid": "Q884",
+      "label_hint_en": "Namdaemun",
+      "qid": "Q465345",
+      "region": "east_asia",
+      "risk_tags": [
+        "city_gate",
+        "joseon"
+      ]
+    },
+    {
+      "expected_country_code": "KR",
+      "expected_country_qid": "Q884",
+      "label_hint_en": "Cheomseongdae",
+      "qid": "Q562765",
+      "region": "east_asia",
+      "risk_tags": [
+        "observatory",
+        "silla"
+      ]
+    },
+    {
+      "expected_country_code": "KR",
+      "expected_country_qid": "Q884",
+      "label_hint_en": "Tongdosa",
+      "qid": "Q491454",
+      "region": "east_asia",
+      "risk_tags": [
+        "buddhist_temple",
+        "unesco"
+      ]
+    },
+    {
+      "expected_country_code": "KR",
+      "expected_country_qid": "Q884",
+      "label_hint_en": "Beomeosa",
+      "qid": "Q487662",
+      "region": "east_asia",
+      "risk_tags": [
+        "buddhist_temple",
+        "joseon"
+      ]
+    },
+    {
+      "expected_country_code": "KR",
+      "expected_country_qid": "Q884",
+      "label_hint_en": "Namhansanseong",
+      "qid": "Q562529",
+      "region": "east_asia",
+      "risk_tags": [
+        "fortress",
+        "joseon"
+      ]
+    },
+    {
+      "expected_country_code": "KR",
+      "expected_country_qid": "Q884",
+      "label_hint_en": "Jogyesa",
+      "qid": "Q488824",
+      "region": "east_asia",
+      "risk_tags": [
+        "buddhist_temple",
+        "modern_rebuild"
+      ]
+    },
+    {
+      "expected_country_code": "KR",
+      "expected_country_qid": "Q884",
+      "label_hint_en": "National Museum of Korea",
+      "qid": "Q494407",
+      "region": "east_asia",
+      "risk_tags": [
+        "museum",
+        "modernist"
+      ]
+    },
+    {
+      "expected_country_code": "KR",
+      "expected_country_qid": "Q884",
+      "label_hint_en": "Gyeonghoeru",
+      "qid": "Q12583939",
+      "region": "east_asia",
+      "risk_tags": [
+        "pavilion",
+        "joseon"
+      ]
+    },
+    {
+      "expected_country_code": "KR",
+      "expected_country_qid": "Q884",
+      "label_hint_en": "Buseoksa",
+      "qid": "Q3540839",
+      "region": "east_asia",
+      "risk_tags": [
+        "buddhist_temple",
+        "unesco"
+      ]
+    },
+    {
+      "expected_country_code": "JP",
+      "expected_country_qid": "Q17",
+      "label_hint_en": "Tokyo Station",
+      "qid": "Q283196",
+      "region": "east_asia",
+      "risk_tags": [
+        "train_station",
+        "brick_revival"
+      ]
+    },
+    {
+      "expected_country_code": "CN",
+      "expected_country_qid": "Q148",
+      "label_hint_en": "Drum Tower of Xi'an",
+      "qid": "Q2742315",
+      "region": "east_asia",
+      "risk_tags": [
+        "city_gate_tower",
+        "ming_dynasty"
+      ]
+    },
+    {
+      "expected_country_code": "CN",
+      "expected_country_qid": "Q148",
+      "label_hint_en": "Temple of the Six Banyan Trees",
+      "qid": "Q683127",
+      "region": "east_asia",
+      "risk_tags": [
+        "buddhist_temple",
+        "song_dynasty"
+      ]
     }
   ]
 }
