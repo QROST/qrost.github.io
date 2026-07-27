@@ -1256,6 +1256,621 @@
         "inca_sun_temple",
         "colonial_church_above"
       ]
+    },
+    {
+      "qid": "Q12501",
+      "label_hint_en": "Great Wall of China",
+      "expected_country_code": "CN",
+      "expected_country_qid": "Q148",
+      "region": "east_asia",
+      "risk_tags": [
+        "multi_phase",
+        "ancient_date_precision"
+      ]
+    },
+    {
+      "qid": "Q47672",
+      "label_hint_en": "Terracotta Army",
+      "expected_country_code": "CN",
+      "expected_country_qid": "Q148",
+      "region": "east_asia",
+      "risk_tags": [
+        "traditional_attribution",
+        "ancient_date_precision"
+      ]
+    },
+    {
+      "qid": "Q273834",
+      "label_hint_en": "Longmen Grottoes",
+      "expected_country_code": "CN",
+      "expected_country_qid": "Q148",
+      "region": "east_asia",
+      "risk_tags": [
+        "multi_phase"
+      ]
+    },
+    {
+      "qid": "Q43286",
+      "label_hint_en": "Mogao Caves",
+      "expected_country_code": "CN",
+      "expected_country_qid": "Q148",
+      "region": "east_asia",
+      "risk_tags": [
+        "multi_phase",
+        "weak_date_references"
+      ]
+    },
+    {
+      "qid": "Q308805",
+      "label_hint_en": "Yungang Grottoes",
+      "expected_country_code": "CN",
+      "expected_country_qid": "Q148",
+      "region": "east_asia",
+      "risk_tags": [
+        "multi_phase"
+      ]
+    },
+    {
+      "qid": "Q1047061",
+      "label_hint_en": "Giant Wild Goose Pagoda",
+      "expected_country_code": "CN",
+      "expected_country_qid": "Q148",
+      "region": "east_asia",
+      "risk_tags": [
+        "multi_phase"
+      ]
+    },
+    {
+      "qid": "Q551446",
+      "label_hint_en": "Zhaozhou Bridge",
+      "expected_country_code": "CN",
+      "expected_country_qid": "Q148",
+      "region": "east_asia",
+      "risk_tags": [
+        "traditional_attribution",
+        "ancient_date_precision"
+      ]
+    },
+    {
+      "qid": "Q181123",
+      "label_hint_en": "Sanchi Stupa",
+      "expected_country_code": "IN",
+      "expected_country_qid": "Q668",
+      "region": "south_asia",
+      "risk_tags": [
+        "multi_phase",
+        "ancient_date_precision"
+      ]
+    },
+    {
+      "qid": "Q184427",
+      "label_hint_en": "Ajanta Caves",
+      "expected_country_code": "IN",
+      "expected_country_qid": "Q668",
+      "region": "south_asia",
+      "risk_tags": [
+        "multi_phase",
+        "ancient_date_precision"
+      ]
+    },
+    {
+      "qid": "Q189616",
+      "label_hint_en": "Ellora Caves",
+      "expected_country_code": "IN",
+      "expected_country_qid": "Q668",
+      "region": "south_asia",
+      "risk_tags": [
+        "multi_phase"
+      ]
+    },
+    {
+      "qid": "Q4513",
+      "label_hint_en": "Mahabodhi Temple",
+      "expected_country_code": "IN",
+      "expected_country_qid": "Q668",
+      "region": "south_asia",
+      "risk_tags": [
+        "multi_phase",
+        "reconstruction"
+      ]
+    },
+    {
+      "qid": "Q916943",
+      "label_hint_en": "Brihadisvara Temple Thanjavur",
+      "expected_country_code": "IN",
+      "expected_country_qid": "Q668",
+      "region": "south_asia",
+      "risk_tags": [
+        "traditional_attribution"
+      ]
+    },
+    {
+      "qid": "Q1424358",
+      "label_hint_en": "Meenakshi Temple",
+      "expected_country_code": "IN",
+      "expected_country_qid": "Q668",
+      "region": "south_asia",
+      "risk_tags": [
+        "multi_phase",
+        "traditional_attribution"
+      ]
+    },
+    {
+      "qid": "Q752091",
+      "label_hint_en": "Konark Sun Temple",
+      "expected_country_code": "IN",
+      "expected_country_qid": "Q668",
+      "region": "south_asia",
+      "risk_tags": [
+        "traditional_attribution",
+        "reconstruction"
+      ]
+    },
+    {
+      "qid": "Q261932",
+      "label_hint_en": "Horyu-ji",
+      "expected_country_code": "JP",
+      "expected_country_qid": "Q17",
+      "region": "east_asia",
+      "risk_tags": [
+        "reconstruction",
+        "multi_phase"
+      ]
+    },
+    {
+      "qid": "Q460367",
+      "label_hint_en": "Todai-ji",
+      "expected_country_code": "JP",
+      "expected_country_qid": "Q17",
+      "region": "east_asia",
+      "risk_tags": [
+        "reconstruction",
+        "multi_phase"
+      ]
+    },
+    {
+      "qid": "Q221716",
+      "label_hint_en": "Kiyomizu-dera",
+      "expected_country_code": "JP",
+      "expected_country_qid": "Q17",
+      "region": "east_asia",
+      "risk_tags": [
+        "reconstruction",
+        "multi_phase"
+      ]
+    },
+    {
+      "qid": "Q61094",
+      "label_hint_en": "Byodo-in",
+      "expected_country_code": "JP",
+      "expected_country_qid": "Q17",
+      "region": "east_asia",
+      "risk_tags": [
+        "reconstruction"
+      ]
+    },
+    {
+      "qid": "Q191763",
+      "label_hint_en": "Itsukushima Shrine",
+      "expected_country_code": "JP",
+      "expected_country_qid": "Q17",
+      "region": "east_asia",
+      "risk_tags": [
+        "reconstruction",
+        "multi_phase"
+      ]
+    },
+    {
+      "qid": "Q270983",
+      "label_hint_en": "Kinkaku-ji",
+      "expected_country_code": "JP",
+      "expected_country_qid": "Q17",
+      "region": "east_asia",
+      "risk_tags": [
+        "reconstruction"
+      ]
+    },
+    {
+      "qid": "Q257473",
+      "label_hint_en": "Ginkaku-ji",
+      "expected_country_code": "JP",
+      "expected_country_qid": "Q17",
+      "region": "east_asia",
+      "risk_tags": [
+        "multi_phase"
+      ]
+    },
+    {
+      "qid": "Q3341341",
+      "label_hint_en": "Nigatsu-do",
+      "expected_country_code": "JP",
+      "expected_country_qid": "Q17",
+      "region": "east_asia",
+      "risk_tags": [
+        "reconstruction"
+      ]
+    },
+    {
+      "qid": "Q408318",
+      "label_hint_en": "Bulguksa",
+      "expected_country_code": "KR",
+      "expected_country_qid": "Q884",
+      "region": "east_asia",
+      "risk_tags": [
+        "reconstruction",
+        "multi_phase"
+      ]
+    },
+    {
+      "qid": "Q489820",
+      "label_hint_en": "Seokguram Grotto",
+      "expected_country_code": "KR",
+      "expected_country_qid": "Q884",
+      "region": "east_asia",
+      "risk_tags": [
+        "traditional_attribution"
+      ]
+    },
+    {
+      "qid": "Q491548",
+      "label_hint_en": "Hwangnyongsa",
+      "expected_country_code": "KR",
+      "expected_country_qid": "Q884",
+      "region": "east_asia",
+      "risk_tags": [
+        "lost_or_ruined",
+        "traditional_attribution"
+      ]
+    },
+    {
+      "qid": "Q477157",
+      "label_hint_en": "Changdeokgung",
+      "expected_country_code": "KR",
+      "expected_country_qid": "Q884",
+      "region": "east_asia",
+      "risk_tags": [
+        "reconstruction",
+        "multi_phase"
+      ]
+    },
+    {
+      "qid": "Q223665",
+      "label_hint_en": "Angkor Thom",
+      "expected_country_code": "KH",
+      "expected_country_qid": "Q424",
+      "region": "southeast_asia",
+      "risk_tags": [
+        "multi_phase",
+        "site_vs_single_work"
+      ]
+    },
+    {
+      "qid": "Q654024",
+      "label_hint_en": "Bayon",
+      "expected_country_code": "KH",
+      "expected_country_qid": "Q424",
+      "region": "southeast_asia",
+      "risk_tags": [
+        "multi_phase",
+        "traditional_attribution"
+      ]
+    },
+    {
+      "qid": "Q592846",
+      "label_hint_en": "Ta Prohm",
+      "expected_country_code": "KH",
+      "expected_country_qid": "Q424",
+      "region": "southeast_asia",
+      "risk_tags": [
+        "multi_phase"
+      ]
+    },
+    {
+      "qid": "Q47721",
+      "label_hint_en": "Prambanan Temple",
+      "expected_country_code": "ID",
+      "expected_country_qid": "Q252",
+      "region": "southeast_asia",
+      "risk_tags": [
+        "reconstruction",
+        "multi_phase"
+      ]
+    },
+    {
+      "qid": "Q391406",
+      "label_hint_en": "My Son",
+      "expected_country_code": "VN",
+      "expected_country_qid": "Q881",
+      "region": "southeast_asia",
+      "risk_tags": [
+        "multi_phase",
+        "site_vs_single_work",
+        "ruins"
+      ]
+    },
+    {
+      "qid": "Q423654",
+      "label_hint_en": "Sukhothai Historical Park",
+      "expected_country_code": "TH",
+      "expected_country_qid": "Q869",
+      "region": "southeast_asia",
+      "risk_tags": [
+        "multi_phase",
+        "site_vs_single_work"
+      ]
+    },
+    {
+      "qid": "Q1025100",
+      "label_hint_en": "Ayutthaya Historical Park",
+      "expected_country_code": "TH",
+      "expected_country_qid": "Q869",
+      "region": "southeast_asia",
+      "risk_tags": [
+        "multi_phase",
+        "site_vs_single_work"
+      ]
+    },
+    {
+      "qid": "Q29317",
+      "label_hint_en": "Bagan",
+      "expected_country_code": "MM",
+      "expected_country_qid": "Q836",
+      "region": "southeast_asia",
+      "risk_tags": [
+        "multi_phase",
+        "site_vs_single_work",
+        "earthquake_damage"
+      ]
+    },
+    {
+      "qid": "Q71229",
+      "label_hint_en": "Potala Palace",
+      "expected_country_code": "CN",
+      "expected_country_qid": "Q148",
+      "region": "east_asia",
+      "risk_tags": [
+        "same_site_predecessors",
+        "multi_phase",
+        "current_building_vs_site_history"
+      ]
+    },
+    {
+      "qid": "Q4132",
+      "label_hint_en": "Summer Palace",
+      "expected_country_code": "CN",
+      "expected_country_qid": "Q148",
+      "region": "east_asia",
+      "risk_tags": [
+        "multi_phase",
+        "reconstruction"
+      ]
+    },
+    {
+      "qid": "Q1144337",
+      "label_hint_en": "Classical Gardens of Suzhou",
+      "expected_country_code": "CN",
+      "expected_country_qid": "Q148",
+      "region": "east_asia",
+      "risk_tags": [
+        "complex_vs_single_work",
+        "multi_phase"
+      ]
+    },
+    {
+      "qid": "Q1070228",
+      "label_hint_en": "Lingyin Temple",
+      "expected_country_code": "CN",
+      "expected_country_qid": "Q148",
+      "region": "east_asia",
+      "risk_tags": [
+        "reconstruction",
+        "multi_phase"
+      ]
+    },
+    {
+      "qid": "Q339822",
+      "label_hint_en": "Temple of Confucius Qufu",
+      "expected_country_code": "CN",
+      "expected_country_qid": "Q148",
+      "region": "east_asia",
+      "risk_tags": [
+        "multi_phase",
+        "traditional_attribution"
+      ]
+    },
+    {
+      "qid": "Q41135",
+      "label_hint_en": "Ming Tombs",
+      "expected_country_code": "CN",
+      "expected_country_qid": "Q148",
+      "region": "east_asia",
+      "risk_tags": [
+        "complex_vs_single_work",
+        "multi_phase"
+      ]
+    },
+    {
+      "qid": "Q2741116",
+      "label_hint_en": "Gulou and Zhonglou Beijing",
+      "expected_country_code": "CN",
+      "expected_country_qid": "Q148",
+      "region": "east_asia",
+      "risk_tags": [
+        "reconstruction"
+      ]
+    },
+    {
+      "qid": "Q45957",
+      "label_hint_en": "Red Fort Delhi",
+      "expected_country_code": "IN",
+      "expected_country_qid": "Q668",
+      "region": "south_asia",
+      "risk_tags": [
+        "multi_phase",
+        "reconstruction"
+      ]
+    },
+    {
+      "qid": "Q189648",
+      "label_hint_en": "Humayuns Tomb",
+      "expected_country_code": "IN",
+      "expected_country_qid": "Q668",
+      "region": "south_asia",
+      "risk_tags": [
+        "traditional_attribution"
+      ]
+    },
+    {
+      "qid": "Q187635",
+      "label_hint_en": "Qutb Minar",
+      "expected_country_code": "IN",
+      "expected_country_qid": "Q668",
+      "region": "south_asia",
+      "risk_tags": [
+        "multi_phase"
+      ]
+    },
+    {
+      "qid": "Q192295",
+      "label_hint_en": "Gol Gumbaz",
+      "expected_country_code": "IN",
+      "expected_country_qid": "Q668",
+      "region": "south_asia",
+      "risk_tags": [
+        "traditional_attribution"
+      ]
+    },
+    {
+      "qid": "Q1013399",
+      "label_hint_en": "Nijo Castle",
+      "expected_country_code": "JP",
+      "expected_country_qid": "Q17",
+      "region": "east_asia",
+      "risk_tags": [
+        "reconstruction",
+        "multi_phase"
+      ]
+    },
+    {
+      "qid": "Q1736808",
+      "label_hint_en": "Katsura Imperial Villa",
+      "expected_country_code": "JP",
+      "expected_country_qid": "Q17",
+      "region": "east_asia",
+      "risk_tags": [
+        "multi_phase",
+        "traditional_attribution"
+      ]
+    },
+    {
+      "qid": "Q907052",
+      "label_hint_en": "Shuri Castle",
+      "expected_country_code": "JP",
+      "expected_country_qid": "Q17",
+      "region": "east_asia",
+      "risk_tags": [
+        "reconstruction",
+        "multi_phase",
+        "fire_loss"
+      ]
+    },
+    {
+      "qid": "Q696641",
+      "label_hint_en": "Nikko Toshogu",
+      "expected_country_code": "JP",
+      "expected_country_qid": "Q17",
+      "region": "east_asia",
+      "risk_tags": [
+        "multi_phase"
+      ]
+    },
+    {
+      "qid": "Q739612",
+      "label_hint_en": "Matsumoto Castle",
+      "expected_country_code": "JP",
+      "expected_country_qid": "Q17",
+      "region": "east_asia",
+      "risk_tags": [
+        "multi_phase"
+      ]
+    },
+    {
+      "qid": "Q188754",
+      "label_hint_en": "Himeji Castle",
+      "expected_country_code": "JP",
+      "expected_country_qid": "Q17",
+      "region": "east_asia",
+      "risk_tags": [
+        "multi_phase",
+        "reconstruction"
+      ]
+    },
+    {
+      "qid": "Q482423",
+      "label_hint_en": "Hwaseong Fortress",
+      "expected_country_code": "KR",
+      "expected_country_qid": "Q884",
+      "region": "east_asia",
+      "risk_tags": [
+        "reconstruction",
+        "multi_phase"
+      ]
+    },
+    {
+      "qid": "Q490497",
+      "label_hint_en": "Jongmyo Shrine",
+      "expected_country_code": "KR",
+      "expected_country_qid": "Q884",
+      "region": "east_asia",
+      "risk_tags": [
+        "reconstruction",
+        "multi_phase"
+      ]
+    },
+    {
+      "qid": "Q482852",
+      "label_hint_en": "Changgyeonggung",
+      "expected_country_code": "KR",
+      "expected_country_qid": "Q884",
+      "region": "east_asia",
+      "risk_tags": [
+        "reconstruction",
+        "multi_phase"
+      ]
+    },
+    {
+      "qid": "Q1059910",
+      "label_hint_en": "Wat Pho",
+      "expected_country_code": "TH",
+      "expected_country_qid": "Q869",
+      "region": "southeast_asia",
+      "risk_tags": [
+        "multi_phase",
+        "reconstruction"
+      ]
+    },
+    {
+      "qid": "Q873769",
+      "label_hint_en": "Grand Palace Bangkok",
+      "expected_country_code": "TH",
+      "expected_country_qid": "Q869",
+      "region": "southeast_asia",
+      "risk_tags": [
+        "multi_phase",
+        "reconstruction"
+      ]
+    },
+    {
+      "qid": "Q579860",
+      "label_hint_en": "Vat Phou",
+      "expected_country_code": "LA",
+      "expected_country_qid": "Q819",
+      "region": "southeast_asia",
+      "risk_tags": [
+        "multi_phase",
+        "site_vs_single_work",
+        "ruins"
+      ]
     }
   ]
 }
