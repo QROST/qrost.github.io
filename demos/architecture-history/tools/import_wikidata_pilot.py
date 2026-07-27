@@ -33,6 +33,86 @@ UNKNOWN_DATE = {
     "value": None,
 }
 
+# Wikidata time precision -> schema dateValue precision.
+WD_TIME_PRECISION = {
+    0: "unknown",   # billion years
+    1: "unknown",   # hundred million years
+    2: "unknown",   # ten million years
+    3: "unknown",   # million years
+    4: "unknown",   # 100k years
+    5: "unknown",   # 10k years
+    6: "unknown",   # millennium
+    7: "unknown",   # century
+    8: "unknown",   # decade
+    9: "year",
+    10: "month",
+    11: "day",
+    12: "day",      # hour — collapse to day
+    13: "day",      # minute
+    14: "day",      # second
+}
+
+
+def time_value(record: dict, property_id: str) -> dict:
+    """Read the first non-deprecated P569/P570-style time statement as a dateValue."""
+    for statement in record.get("claims", {}).get(property_id, []):
+        if statement.get("rank") == "deprecated":
+            continue
+        snak = statement.get("mainsnak", {})
+        if snak.get("snaktype") != "value":
+            continue
+        value = snak.get("datavalue", {}).get("value")
+        if not isinstance(value, dict):
+            continue
+        raw = value.get("time")
+        if not isinstance(raw, str) or not raw:
+            continue
+        precision = WD_TIME_PRECISION.get(value.get("precision"), "unknown")
+        # Wikidata dates look like '+1700-08-27T00:00:00Z' or '-0025-01-01T00:00:00Z'.
+        sign = -1 if raw.startswith("-") else 1
+        body = raw.lstrip("+-")
+        # Only ISO-like timestamps carry a usable Y/M/D; very-coarse prehistoric
+        # precisions (0-7) fall through to "unknown" anyway.
+        try:
+            year_part, month_part, day_part = body.split("T", 1)[0].split("-")[:3]
+            year = sign * int(year_part)
+        except (ValueError, IndexError):
+            return dict(UNKNOWN_DATE)
+        # Earliest/latest are inclusive integer year bounds (used by filters).
+        # Respect the statement's own before/after uncertainty windows when present.
+        after = value.get("after", 0) or 0
+        before = value.get("before", 0) or 0
+        if precision == "year":
+            value_str = f"{year:04d}"
+            earliest = year - abs(after)
+            latest = year + abs(before)
+        elif precision == "month":
+            try:
+                month = int(month_part)
+            except ValueError:
+                return dict(UNKNOWN_DATE)
+            value_str = f"{year:04d}-{month:02d}"
+            earliest = year - abs(after)
+            latest = year + abs(before)
+        elif precision == "day":
+            try:
+                month = int(month_part)
+                day = int(day_part)
+            except ValueError:
+                return dict(UNKNOWN_DATE)
+            value_str = f"{year:04d}-{month:02d}-{day:02d}"
+            earliest = year - abs(after)
+            latest = year + abs(before)
+        else:
+            return dict(UNKNOWN_DATE)
+        return {
+            "value": value_str,
+            "earliest": earliest,
+            "latest": latest,
+            "precision": precision,
+        }
+    return dict(UNKNOWN_DATE)
+
 
 def load_json(path: Path) -> Any:
     with path.open(encoding="utf-8") as handle:
@@ -322,11 +402,11 @@ class CatalogBuilder:
         self.people[person_id] = {
             "aliases_en": aliases(record, ("en",)),
             "aliases_zh": aliases(record, ("zh-hans", "zh")),
-            "birth": dict(UNKNOWN_DATE),
+            "birth": time_value(record, "P569"),
             "claim_ids": claim_ids,
             "confidence": 0.6,
             "country_codes": [],
-            "death": dict(UNKNOWN_DATE),
+            "death": time_value(record, "P570"),
             "entity_type": "person",
             "external_ids": {"wikidata": qid},
             "id": person_id,
