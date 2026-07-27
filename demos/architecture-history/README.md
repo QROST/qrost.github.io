@@ -8,9 +8,9 @@ The project is intentionally a **curated pilot**, not a claim to have completed
 global architectural history. Public counts distinguish discovered candidates,
 reviewed facts, contested claims, and gaps in coverage.
 
-The first committed hydration pilot contains 19 cross-regional work fixtures,
-33 people, 2 practices, 16 country-place records, 11 raw relationship review
-edges, and 233 source claims. Every one remains `candidate`; the reviewer
+The current Wikidata hydration corpus contains 532 cross-regional work fixtures,
+527 people, 26 practices, 39 country-place records, 190 raw relationship review
+edges, and 4066 source claims. Every one remains `candidate`; the reviewer
 registry is empty and the published verified count is therefore zero.
 
 ## Data authority
@@ -44,7 +44,7 @@ product model, not a replacement standard.
 
 ## Wikidata hydration pilot
 
-The pilot reuses 19 deliberately varied, source-derived QIDs across nine
+The pilot reuses 532 deliberately curated, source-derived QIDs across nine
 macroregions. They are mapping fixtures, not a popularity ranking or a
 representative global sample. For each seed and direct dependency, the adapter:
 
