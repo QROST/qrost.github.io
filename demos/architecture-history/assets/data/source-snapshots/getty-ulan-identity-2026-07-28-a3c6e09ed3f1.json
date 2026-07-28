@@ -1,0 +1,678 @@
+{
+  "accessed": "2026-07-28",
+  "adapter_id": "getty-ulan-identity-pilot",
+  "adapter_version": "0.1.0",
+  "attribution": "Contains information from the J. Paul Getty Trust, Getty Research Institute, Union List of Artist Names (ULAN), made available under the ODC Attribution License.",
+  "base_catalog_sha256": "fdfc804736402f2d3d022a1d387eeb627f3915ef217d8da0dc5b7a9a9521765c",
+  "claim_evidence_allowed": true,
+  "crosswalk_snapshot_id": "wikidata-ulan-crosswalk-2026-07-28-6c685d52d980",
+  "license": "ODC-By-1.0",
+  "license_url": "https://opendatacommons.org/licenses/by/1-0/",
+  "projection_sha256": "a3c6e09ed3f1eacfe8fc4193aaed9f082c16a7e22126cbce613a7b09a63cfc22",
+  "raw_retained": false,
+  "records": {
+    "500004494": {
+      "projection": {
+        "canonical_uri": "http://vocab.getty.edu/ulan/500004494",
+        "content_type": "application/json",
+        "contributor_uris": [
+          "http://vocab.getty.edu/ulan/contrib/2500000005",
+          "http://vocab.getty.edu/ulan/contrib/2500000008",
+          "http://vocab.getty.edu/ulan/contrib/2500000013",
+          "http://vocab.getty.edu/ulan/contrib/2500000016",
+          "http://vocab.getty.edu/ulan/contrib/2500000189",
+          "http://vocab.getty.edu/ulan/contrib/2500000202",
+          "http://vocab.getty.edu/ulan/contrib/2500000288"
+        ],
+        "entity_id": "person-wd-q333585",
+        "entity_type": "person",
+        "equivalent_qids": [
+          "Q333585"
+        ],
+        "native_record_id": "ulan:500004494",
+        "raw_response_sha256": "0856103313cf1fbbb7b26c7839dbaf4c98f558354f1255f327a4a566823b204e",
+        "raw_retained": false,
+        "representation_url": "https://vocab.getty.edu/ulan/500004494",
+        "retrieved_at": "2026-07-28T17:06:16Z",
+        "source_uris": [
+          "http://vocab.getty.edu/ulan/source/2100039894",
+          "http://vocab.getty.edu/ulan/source/2100042658",
+          "http://vocab.getty.edu/ulan/source/2100154281",
+          "http://vocab.getty.edu/ulan/source/2100154640",
+          "http://vocab.getty.edu/ulan/source/2100167978",
+          "http://vocab.getty.edu/ulan/source/2100181667"
+        ],
+        "subject_id": "500004494",
+        "type": "Person",
+        "wikidata_qid": "Q333585"
+      },
+      "projection_sha256": "2f1e664b4dda6c837a67765c0c9ec1e3374d83ca0a3a4f5456a53c08dba99bb7"
+    },
+    "500007310": {
+      "projection": {
+        "canonical_uri": "http://vocab.getty.edu/ulan/500007310",
+        "content_type": "application/json",
+        "contributor_uris": [
+          "http://vocab.getty.edu/ulan/contrib/2500000005",
+          "http://vocab.getty.edu/ulan/contrib/2500000008",
+          "http://vocab.getty.edu/ulan/contrib/2500000012",
+          "http://vocab.getty.edu/ulan/contrib/2500000013",
+          "http://vocab.getty.edu/ulan/contrib/2500000016",
+          "http://vocab.getty.edu/ulan/contrib/2500000124",
+          "http://vocab.getty.edu/ulan/contrib/2500000189",
+          "http://vocab.getty.edu/ulan/contrib/2500000202",
+          "http://vocab.getty.edu/ulan/contrib/2500000288"
+        ],
+        "entity_id": "person-wd-q134165",
+        "entity_type": "person",
+        "equivalent_qids": [
+          "Q134165"
+        ],
+        "native_record_id": "ulan:500007310",
+        "raw_response_sha256": "63a936ea0a1800ffafe23e6ad5d182e705bc2a159cc2ae3f02af852724bcaa92",
+        "raw_retained": false,
+        "representation_url": "https://vocab.getty.edu/ulan/500007310",
+        "retrieved_at": "2026-07-28T17:06:16Z",
+        "source_uris": [
+          "http://vocab.getty.edu/ulan/source/2100039894",
+          "http://vocab.getty.edu/ulan/source/2100042658",
+          "http://vocab.getty.edu/ulan/source/2100045787",
+          "http://vocab.getty.edu/ulan/source/2100153977",
+          "http://vocab.getty.edu/ulan/source/2100154281",
+          "http://vocab.getty.edu/ulan/source/2100154640",
+          "http://vocab.getty.edu/ulan/source/2100154849",
+          "http://vocab.getty.edu/ulan/source/2100167978",
+          "http://vocab.getty.edu/ulan/source/2100181667"
+        ],
+        "subject_id": "500007310",
+        "type": "Person",
+        "wikidata_qid": "Q134165"
+      },
+      "projection_sha256": "7abb74d9a6c0d9a6957cd3d84001ca5028d0b00ce0efec7670bcfa91e3aa49c3"
+    },
+    "500008414": {
+      "projection": {
+        "canonical_uri": "http://vocab.getty.edu/ulan/500008414",
+        "content_type": "application/json",
+        "contributor_uris": [
+          "http://vocab.getty.edu/ulan/contrib/2500000001",
+          "http://vocab.getty.edu/ulan/contrib/2500000002",
+          "http://vocab.getty.edu/ulan/contrib/2500000003",
+          "http://vocab.getty.edu/ulan/contrib/2500000005",
+          "http://vocab.getty.edu/ulan/contrib/2500000007",
+          "http://vocab.getty.edu/ulan/contrib/2500000008",
+          "http://vocab.getty.edu/ulan/contrib/2500000013",
+          "http://vocab.getty.edu/ulan/contrib/2500000124",
+          "http://vocab.getty.edu/ulan/contrib/2500000130",
+          "http://vocab.getty.edu/ulan/contrib/2500000202"
+        ],
+        "entity_id": "person-wd-q313288",
+        "entity_type": "person",
+        "equivalent_qids": [
+          "Q313288"
+        ],
+        "native_record_id": "ulan:500008414",
+        "raw_response_sha256": "c6374ef3b579e37185f2e07171b8a1e24aca1dd2c6364df80d0fd9a260d4b862",
+        "raw_retained": false,
+        "representation_url": "https://vocab.getty.edu/ulan/500008414",
+        "retrieved_at": "2026-07-28T17:06:16Z",
+        "source_uris": [
+          "http://vocab.getty.edu/ulan/source/2100039588",
+          "http://vocab.getty.edu/ulan/source/2100042658",
+          "http://vocab.getty.edu/ulan/source/2100045787",
+          "http://vocab.getty.edu/ulan/source/2100046453",
+          "http://vocab.getty.edu/ulan/source/2100154281",
+          "http://vocab.getty.edu/ulan/source/2100156698",
+          "http://vocab.getty.edu/ulan/source/2100185916"
+        ],
+        "subject_id": "500008414",
+        "type": "Person",
+        "wikidata_qid": "Q313288"
+      },
+      "projection_sha256": "d2381027b3629781866c018cafba428cf7df60c4cc348fb771222c918f2eb14a"
+    },
+    "500013891": {
+      "projection": {
+        "canonical_uri": "http://vocab.getty.edu/ulan/500013891",
+        "content_type": "application/json",
+        "contributor_uris": [
+          "http://vocab.getty.edu/ulan/contrib/2500000005",
+          "http://vocab.getty.edu/ulan/contrib/2500000007",
+          "http://vocab.getty.edu/ulan/contrib/2500000008",
+          "http://vocab.getty.edu/ulan/contrib/2500000013",
+          "http://vocab.getty.edu/ulan/contrib/2500000189",
+          "http://vocab.getty.edu/ulan/contrib/2500000202",
+          "http://vocab.getty.edu/ulan/contrib/2500000288"
+        ],
+        "entity_id": "person-wd-q708333",
+        "entity_type": "person",
+        "equivalent_qids": [
+          "Q708333"
+        ],
+        "native_record_id": "ulan:500013891",
+        "raw_response_sha256": "946a589ee68df9c85b1b45e94b6d11a0b58ca43ad601bc5997e72fb9651a5322",
+        "raw_retained": false,
+        "representation_url": "https://vocab.getty.edu/ulan/500013891",
+        "retrieved_at": "2026-07-28T17:06:17Z",
+        "source_uris": [
+          "http://vocab.getty.edu/ulan/source/2100039588",
+          "http://vocab.getty.edu/ulan/source/2100039894",
+          "http://vocab.getty.edu/ulan/source/2100042658",
+          "http://vocab.getty.edu/ulan/source/2100046453",
+          "http://vocab.getty.edu/ulan/source/2100046519",
+          "http://vocab.getty.edu/ulan/source/2100154281",
+          "http://vocab.getty.edu/ulan/source/2100154640",
+          "http://vocab.getty.edu/ulan/source/2100167978"
+        ],
+        "subject_id": "500013891",
+        "type": "Person",
+        "wikidata_qid": "Q708333"
+      },
+      "projection_sha256": "a3852ac7aaa72f8729e80099ed82bb17f4aaee6e16476863b0d4cc763d3050f1"
+    },
+    "500014946": {
+      "projection": {
+        "canonical_uri": "http://vocab.getty.edu/ulan/500014946",
+        "content_type": "application/json",
+        "contributor_uris": [
+          "http://vocab.getty.edu/ulan/contrib/2500000003",
+          "http://vocab.getty.edu/ulan/contrib/2500000005",
+          "http://vocab.getty.edu/ulan/contrib/2500000007",
+          "http://vocab.getty.edu/ulan/contrib/2500000008",
+          "http://vocab.getty.edu/ulan/contrib/2500000011",
+          "http://vocab.getty.edu/ulan/contrib/2500000012",
+          "http://vocab.getty.edu/ulan/contrib/2500000013",
+          "http://vocab.getty.edu/ulan/contrib/2500000019",
+          "http://vocab.getty.edu/ulan/contrib/2500000124",
+          "http://vocab.getty.edu/ulan/contrib/2500000202",
+          "http://vocab.getty.edu/ulan/contrib/2500000248",
+          "http://vocab.getty.edu/ulan/contrib/2500000287"
+        ],
+        "entity_id": "person-wd-q309733",
+        "entity_type": "person",
+        "equivalent_qids": [
+          "Q309733"
+        ],
+        "native_record_id": "ulan:500014946",
+        "raw_response_sha256": "e62ce8d2c04f7a7b515681a4f6b2772cad315a50dbd532e3cd67f35123b4c700",
+        "raw_retained": false,
+        "representation_url": "https://vocab.getty.edu/ulan/500014946",
+        "retrieved_at": "2026-07-28T17:06:16Z",
+        "source_uris": [
+          "http://vocab.getty.edu/ulan/source/2100039588",
+          "http://vocab.getty.edu/ulan/source/2100039894",
+          "http://vocab.getty.edu/ulan/source/2100042658",
+          "http://vocab.getty.edu/ulan/source/2100043316",
+          "http://vocab.getty.edu/ulan/source/2100045787",
+          "http://vocab.getty.edu/ulan/source/2100047438",
+          "http://vocab.getty.edu/ulan/source/2100153925",
+          "http://vocab.getty.edu/ulan/source/2100153972",
+          "http://vocab.getty.edu/ulan/source/2100181001",
+          "http://vocab.getty.edu/ulan/source/2100182949"
+        ],
+        "subject_id": "500014946",
+        "type": "Person",
+        "wikidata_qid": "Q309733"
+      },
+      "projection_sha256": "c7af89ff485cf3e2eb5bb731115e80c23beff1b5df3bfeb023d84ffdbae4a14b"
+    },
+    "500019098": {
+      "projection": {
+        "canonical_uri": "http://vocab.getty.edu/ulan/500019098",
+        "content_type": "application/json",
+        "contributor_uris": [
+          "http://vocab.getty.edu/ulan/contrib/2500000001",
+          "http://vocab.getty.edu/ulan/contrib/2500000003",
+          "http://vocab.getty.edu/ulan/contrib/2500000005",
+          "http://vocab.getty.edu/ulan/contrib/2500000007",
+          "http://vocab.getty.edu/ulan/contrib/2500000008",
+          "http://vocab.getty.edu/ulan/contrib/2500000011",
+          "http://vocab.getty.edu/ulan/contrib/2500000012",
+          "http://vocab.getty.edu/ulan/contrib/2500000013",
+          "http://vocab.getty.edu/ulan/contrib/2500000016",
+          "http://vocab.getty.edu/ulan/contrib/2500000019",
+          "http://vocab.getty.edu/ulan/contrib/2500000020",
+          "http://vocab.getty.edu/ulan/contrib/2500000124",
+          "http://vocab.getty.edu/ulan/contrib/2500000130",
+          "http://vocab.getty.edu/ulan/contrib/2500000189",
+          "http://vocab.getty.edu/ulan/contrib/2500000202",
+          "http://vocab.getty.edu/ulan/contrib/2500000248"
+        ],
+        "entity_id": "person-wd-q7793",
+        "entity_type": "person",
+        "equivalent_qids": [
+          "Q7793"
+        ],
+        "native_record_id": "ulan:500019098",
+        "raw_response_sha256": "086a4f1e93fe8bb67e93bad455379e673f3eedfbed8672bad918600b6699d8b6",
+        "raw_retained": false,
+        "representation_url": "https://vocab.getty.edu/ulan/500019098",
+        "retrieved_at": "2026-07-28T17:06:17Z",
+        "source_uris": [
+          "http://vocab.getty.edu/ulan/source/2100039588",
+          "http://vocab.getty.edu/ulan/source/2100039894",
+          "http://vocab.getty.edu/ulan/source/2100042266",
+          "http://vocab.getty.edu/ulan/source/2100042658",
+          "http://vocab.getty.edu/ulan/source/2100043316",
+          "http://vocab.getty.edu/ulan/source/2100045787",
+          "http://vocab.getty.edu/ulan/source/2100046453",
+          "http://vocab.getty.edu/ulan/source/2100046495",
+          "http://vocab.getty.edu/ulan/source/2100047438",
+          "http://vocab.getty.edu/ulan/source/2100153925",
+          "http://vocab.getty.edu/ulan/source/2100153972",
+          "http://vocab.getty.edu/ulan/source/2100154640",
+          "http://vocab.getty.edu/ulan/source/2100181667",
+          "http://vocab.getty.edu/ulan/source/2100185916"
+        ],
+        "subject_id": "500019098",
+        "type": "Person",
+        "wikidata_qid": "Q7793"
+      },
+      "projection_sha256": "dca4fe4e64f2e3f801261a10dae1a6f341e2f7a08dd28eb73f4ef994abcd52a8"
+    },
+    "500023533": {
+      "projection": {
+        "canonical_uri": "http://vocab.getty.edu/ulan/500023533",
+        "content_type": "application/json",
+        "contributor_uris": [
+          "http://vocab.getty.edu/ulan/contrib/2500000005",
+          "http://vocab.getty.edu/ulan/contrib/2500000008",
+          "http://vocab.getty.edu/ulan/contrib/2500000013",
+          "http://vocab.getty.edu/ulan/contrib/2500000189",
+          "http://vocab.getty.edu/ulan/contrib/2500000202",
+          "http://vocab.getty.edu/ulan/contrib/2500000288"
+        ],
+        "entity_id": "person-wd-q309483",
+        "entity_type": "person",
+        "equivalent_qids": [
+          "Q309483"
+        ],
+        "native_record_id": "ulan:500023533",
+        "raw_response_sha256": "e45f38008ce60d7397edf28c127287ae5ce13383be81ce0ef81d23fcf4bd4bc8",
+        "raw_retained": false,
+        "representation_url": "https://vocab.getty.edu/ulan/500023533",
+        "retrieved_at": "2026-07-28T17:06:17Z",
+        "source_uris": [
+          "http://vocab.getty.edu/ulan/source/2100039894",
+          "http://vocab.getty.edu/ulan/source/2100042658",
+          "http://vocab.getty.edu/ulan/source/2100153977",
+          "http://vocab.getty.edu/ulan/source/2100154281",
+          "http://vocab.getty.edu/ulan/source/2100154640",
+          "http://vocab.getty.edu/ulan/source/2100163333",
+          "http://vocab.getty.edu/ulan/source/2100167978"
+        ],
+        "subject_id": "500023533",
+        "type": "Person",
+        "wikidata_qid": "Q309483"
+      },
+      "projection_sha256": "014296167a36bd6b92a67c005d0accda10e26c7a69ee9eee4be6bbe15beade9a"
+    },
+    "500025366": {
+      "projection": {
+        "canonical_uri": "http://vocab.getty.edu/ulan/500025366",
+        "content_type": "application/json",
+        "contributor_uris": [
+          "http://vocab.getty.edu/ulan/contrib/2500000003",
+          "http://vocab.getty.edu/ulan/contrib/2500000005",
+          "http://vocab.getty.edu/ulan/contrib/2500000007",
+          "http://vocab.getty.edu/ulan/contrib/2500000008",
+          "http://vocab.getty.edu/ulan/contrib/2500000013",
+          "http://vocab.getty.edu/ulan/contrib/2500000019",
+          "http://vocab.getty.edu/ulan/contrib/2500000020",
+          "http://vocab.getty.edu/ulan/contrib/2500000124",
+          "http://vocab.getty.edu/ulan/contrib/2500000189",
+          "http://vocab.getty.edu/ulan/contrib/2500000202"
+        ],
+        "entity_id": "person-wd-q175566",
+        "entity_type": "person",
+        "equivalent_qids": [
+          "Q175566"
+        ],
+        "native_record_id": "ulan:500025366",
+        "raw_response_sha256": "50ecea388a7cc893c22e640ff853ba63dc7c742413da67ecaf6ae75ca9bcb0cf",
+        "raw_retained": false,
+        "representation_url": "https://vocab.getty.edu/ulan/500025366",
+        "retrieved_at": "2026-07-28T17:06:17Z",
+        "source_uris": [
+          "http://vocab.getty.edu/ulan/source/2100039588",
+          "http://vocab.getty.edu/ulan/source/2100041042",
+          "http://vocab.getty.edu/ulan/source/2100042658",
+          "http://vocab.getty.edu/ulan/source/2100045787",
+          "http://vocab.getty.edu/ulan/source/2100153972",
+          "http://vocab.getty.edu/ulan/source/2100154640",
+          "http://vocab.getty.edu/ulan/source/2100182949",
+          "http://vocab.getty.edu/ulan/source/2100185916"
+        ],
+        "subject_id": "500025366",
+        "type": "Person",
+        "wikidata_qid": "Q175566"
+      },
+      "projection_sha256": "87fe2a093ea37a63c62a8a5bae16519b3a4b4e701630d8cfbc84c04638d5cda0"
+    },
+    "500030122": {
+      "projection": {
+        "canonical_uri": "http://vocab.getty.edu/ulan/500030122",
+        "content_type": "application/json",
+        "contributor_uris": [
+          "http://vocab.getty.edu/ulan/contrib/2500000001",
+          "http://vocab.getty.edu/ulan/contrib/2500000002",
+          "http://vocab.getty.edu/ulan/contrib/2500000005",
+          "http://vocab.getty.edu/ulan/contrib/2500000007",
+          "http://vocab.getty.edu/ulan/contrib/2500000008",
+          "http://vocab.getty.edu/ulan/contrib/2500000013",
+          "http://vocab.getty.edu/ulan/contrib/2500000124",
+          "http://vocab.getty.edu/ulan/contrib/2500000130",
+          "http://vocab.getty.edu/ulan/contrib/2500000189",
+          "http://vocab.getty.edu/ulan/contrib/2500000202"
+        ],
+        "entity_id": "person-wd-q3140459",
+        "entity_type": "person",
+        "equivalent_qids": [
+          "Q3140459"
+        ],
+        "native_record_id": "ulan:500030122",
+        "raw_response_sha256": "a0828dde20463c317240d53447d252c76a0db55758f2984de7ac1e3ce0dc63a7",
+        "raw_retained": false,
+        "representation_url": "https://vocab.getty.edu/ulan/500030122",
+        "retrieved_at": "2026-07-28T17:06:17Z",
+        "source_uris": [
+          "http://vocab.getty.edu/ulan/source/2100011215",
+          "http://vocab.getty.edu/ulan/source/2100039588",
+          "http://vocab.getty.edu/ulan/source/2100039894",
+          "http://vocab.getty.edu/ulan/source/2100041062",
+          "http://vocab.getty.edu/ulan/source/2100042658",
+          "http://vocab.getty.edu/ulan/source/2100045787",
+          "http://vocab.getty.edu/ulan/source/2100154640",
+          "http://vocab.getty.edu/ulan/source/2100181001",
+          "http://vocab.getty.edu/ulan/source/2100182950"
+        ],
+        "subject_id": "500030122",
+        "type": "Person",
+        "wikidata_qid": "Q3140459"
+      },
+      "projection_sha256": "f1044e62741d367755d7ad3212c9d7f0c1bebc2e5c8bb3a8ba72ae0f04f532cd"
+    },
+    "500067183": {
+      "projection": {
+        "canonical_uri": "http://vocab.getty.edu/ulan/500067183",
+        "content_type": "application/json",
+        "contributor_uris": [
+          "http://vocab.getty.edu/ulan/contrib/2500000008",
+          "http://vocab.getty.edu/ulan/contrib/2500000013",
+          "http://vocab.getty.edu/ulan/contrib/2500000189",
+          "http://vocab.getty.edu/ulan/contrib/2500000202"
+        ],
+        "entity_id": "person-wd-q3297694",
+        "entity_type": "person",
+        "equivalent_qids": [
+          "Q3297694"
+        ],
+        "native_record_id": "ulan:500067183",
+        "raw_response_sha256": "36f2243fe2883cb62a86c8e026d87e36bc3443fa714af18209b4ec46f1216959",
+        "raw_retained": false,
+        "representation_url": "https://vocab.getty.edu/ulan/500067183",
+        "retrieved_at": "2026-07-28T17:06:17Z",
+        "source_uris": [
+          "http://vocab.getty.edu/ulan/source/2100039894",
+          "http://vocab.getty.edu/ulan/source/2100042658",
+          "http://vocab.getty.edu/ulan/source/2100154281",
+          "http://vocab.getty.edu/ulan/source/2100154640"
+        ],
+        "subject_id": "500067183",
+        "type": "Person",
+        "wikidata_qid": "Q3297694"
+      },
+      "projection_sha256": "71236fa7f18458fa864e721030252903a58fb33d58bf4d9ca17452f3c7c53454"
+    },
+    "500092299": {
+      "projection": {
+        "canonical_uri": "http://vocab.getty.edu/ulan/500092299",
+        "content_type": "application/json",
+        "contributor_uris": [
+          "http://vocab.getty.edu/ulan/contrib/2500000008",
+          "http://vocab.getty.edu/ulan/contrib/2500000013",
+          "http://vocab.getty.edu/ulan/contrib/2500000016",
+          "http://vocab.getty.edu/ulan/contrib/2500000202"
+        ],
+        "entity_id": "person-wd-q526725",
+        "entity_type": "person",
+        "equivalent_qids": [
+          "Q526725"
+        ],
+        "native_record_id": "ulan:500092299",
+        "raw_response_sha256": "a6e4567ae6518a50e09acaea721fddb1d3082e150b75b1f603f40d468c62e519",
+        "raw_retained": false,
+        "representation_url": "https://vocab.getty.edu/ulan/500092299",
+        "retrieved_at": "2026-07-28T17:06:17Z",
+        "source_uris": [
+          "http://vocab.getty.edu/ulan/source/2100039894",
+          "http://vocab.getty.edu/ulan/source/2100042658",
+          "http://vocab.getty.edu/ulan/source/2100154281",
+          "http://vocab.getty.edu/ulan/source/2100181667"
+        ],
+        "subject_id": "500092299",
+        "type": "Person",
+        "wikidata_qid": "Q526725"
+      },
+      "projection_sha256": "d491fe697eae08269d4620838ca8212849a62c958b464035709dfe2cb5b29bb3"
+    }
+  },
+  "selection": {
+    "accepted_subject_ids": [
+      "500004494",
+      "500007310",
+      "500008414",
+      "500013891",
+      "500014946",
+      "500019098",
+      "500023533",
+      "500025366",
+      "500030122",
+      "500067183",
+      "500092299"
+    ],
+    "method": "wikidata_p245_exact_getty_identity",
+    "record_count": 11,
+    "rejections": [
+      {
+        "canonical_uri": "http://vocab.getty.edu/ulan/500000129",
+        "content_type": "application/json",
+        "entity_id": "practice-wd-q320788",
+        "entity_type": "practice",
+        "expected_wikidata_qid": "Q320788",
+        "native_record_id": "ulan:500000129",
+        "observed_equivalent_qids": [],
+        "raw_response_sha256": "a71b1a57fb679f1a148e3568c632cb30b5e3fa3cb298b6d0eb0b8f586ba94d97",
+        "reason": "missing_wikidata_equivalent",
+        "representation_url": "https://vocab.getty.edu/ulan/500000129",
+        "retrieved_at": "2026-07-28T17:06:16Z",
+        "subject_id": "500000129",
+        "type": "Group"
+      },
+      {
+        "canonical_uri": "http://vocab.getty.edu/ulan/500009663",
+        "content_type": "application/json",
+        "entity_id": "person-wd-q5590225",
+        "entity_type": "person",
+        "expected_wikidata_qid": "Q5590225",
+        "native_record_id": "ulan:500009663",
+        "observed_equivalent_qids": [],
+        "raw_response_sha256": "a4af2e543fad7b85811c2087f47c3f1e7f2f0c4421d7bd0e63bf132f7e82a116",
+        "reason": "missing_wikidata_equivalent",
+        "representation_url": "https://vocab.getty.edu/ulan/500009663",
+        "retrieved_at": "2026-07-28T17:06:16Z",
+        "subject_id": "500009663",
+        "type": "Person"
+      },
+      {
+        "canonical_uri": "http://vocab.getty.edu/ulan/500009838",
+        "content_type": "application/json",
+        "entity_id": "person-wd-q79098",
+        "entity_type": "person",
+        "expected_wikidata_qid": "Q79098",
+        "native_record_id": "ulan:500009838",
+        "observed_equivalent_qids": [],
+        "raw_response_sha256": "c73a6f0241219779dd04e0da5bb0c2ae2b783b3e20233f0ae2de5a23ad5abe88",
+        "reason": "missing_wikidata_equivalent",
+        "representation_url": "https://vocab.getty.edu/ulan/500009838",
+        "retrieved_at": "2026-07-28T17:06:16Z",
+        "subject_id": "500009838",
+        "type": "Person"
+      },
+      {
+        "canonical_uri": "http://vocab.getty.edu/ulan/500015188",
+        "content_type": "application/json",
+        "entity_id": "person-wd-q3036213",
+        "entity_type": "person",
+        "expected_wikidata_qid": "Q3036213",
+        "native_record_id": "ulan:500015188",
+        "observed_equivalent_qids": [],
+        "raw_response_sha256": "641830317595fb8bbe3211f69d6a6912ea505a1fbd8c21056058820f7ecac79a",
+        "reason": "missing_wikidata_equivalent",
+        "representation_url": "https://vocab.getty.edu/ulan/500015188",
+        "retrieved_at": "2026-07-28T17:06:17Z",
+        "subject_id": "500015188",
+        "type": "Person"
+      },
+      {
+        "canonical_uri": "http://vocab.getty.edu/ulan/500027229",
+        "content_type": "application/json",
+        "entity_id": "person-wd-q5075445",
+        "entity_type": "person",
+        "expected_wikidata_qid": "Q5075445",
+        "native_record_id": "ulan:500027229",
+        "observed_equivalent_qids": [],
+        "raw_response_sha256": "cace97440498dc2b35e9c12af7e4b25b8d588cda7a80b348632679bb136e99a6",
+        "reason": "missing_wikidata_equivalent",
+        "representation_url": "https://vocab.getty.edu/ulan/500027229",
+        "retrieved_at": "2026-07-28T17:06:17Z",
+        "subject_id": "500027229",
+        "type": "Person"
+      },
+      {
+        "canonical_uri": "http://vocab.getty.edu/ulan/500034044",
+        "content_type": "application/json",
+        "entity_id": "practice-wd-q3091301",
+        "entity_type": "practice",
+        "expected_wikidata_qid": "Q3091301",
+        "native_record_id": "ulan:500034044",
+        "observed_equivalent_qids": [],
+        "raw_response_sha256": "acf9a51f82ba3b512f8f75b69f2666face37fc851ae7a45f3e76a729d1500210",
+        "reason": "missing_wikidata_equivalent",
+        "representation_url": "https://vocab.getty.edu/ulan/500034044",
+        "retrieved_at": "2026-07-28T17:06:17Z",
+        "subject_id": "500034044",
+        "type": "Group"
+      },
+      {
+        "canonical_uri": "http://vocab.getty.edu/ulan/500039316",
+        "content_type": "application/json",
+        "entity_id": "person-wd-q3134295",
+        "entity_type": "person",
+        "expected_wikidata_qid": "Q3134295",
+        "native_record_id": "ulan:500039316",
+        "observed_equivalent_qids": [],
+        "raw_response_sha256": "c863f3b2bc955fc2c4238e785cb2ac1ddb4fa3285275cbbbb4be54371509e4bb",
+        "reason": "missing_wikidata_equivalent",
+        "representation_url": "https://vocab.getty.edu/ulan/500039316",
+        "retrieved_at": "2026-07-28T17:06:17Z",
+        "subject_id": "500039316",
+        "type": "Person"
+      },
+      {
+        "canonical_uri": "http://vocab.getty.edu/ulan/500056504",
+        "content_type": "application/json",
+        "entity_id": "person-wd-q769426",
+        "entity_type": "person",
+        "expected_wikidata_qid": "Q769426",
+        "native_record_id": "ulan:500056504",
+        "observed_equivalent_qids": [],
+        "raw_response_sha256": "c6c14a10dd233f8c17237ee60bd8ebf91b2e3f7ca2d11b4980b1e8b239047437",
+        "reason": "missing_wikidata_equivalent",
+        "representation_url": "https://vocab.getty.edu/ulan/500056504",
+        "retrieved_at": "2026-07-28T17:06:18Z",
+        "subject_id": "500056504",
+        "type": "Person"
+      },
+      {
+        "canonical_uri": "http://vocab.getty.edu/ulan/500226928",
+        "content_type": "application/json",
+        "entity_id": "person-wd-q63137817",
+        "entity_type": "person",
+        "expected_wikidata_qid": "Q63137817",
+        "native_record_id": "ulan:500226928",
+        "observed_equivalent_qids": [],
+        "raw_response_sha256": "ee340f832188a712334181a4110ced5e5ffd3772130af12dc5fa420824909bd8",
+        "reason": "missing_wikidata_equivalent",
+        "representation_url": "https://vocab.getty.edu/ulan/500226928",
+        "retrieved_at": "2026-07-28T17:06:19Z",
+        "subject_id": "500226928",
+        "type": "Person"
+      },
+      {
+        "canonical_uri": "http://vocab.getty.edu/ulan/500226978",
+        "content_type": "application/json",
+        "entity_id": "person-wd-q1041068",
+        "entity_type": "person",
+        "expected_wikidata_qid": "Q1041068",
+        "native_record_id": "ulan:500226978",
+        "observed_equivalent_qids": [],
+        "raw_response_sha256": "c5290071e08f63c8224f5cdfbe656d61016584b3a3564149c5c475bab34cce29",
+        "reason": "missing_wikidata_equivalent",
+        "representation_url": "https://vocab.getty.edu/ulan/500226978",
+        "retrieved_at": "2026-07-28T17:06:17Z",
+        "subject_id": "500226978",
+        "type": "Person"
+      },
+      {
+        "canonical_uri": "http://vocab.getty.edu/ulan/500253063",
+        "content_type": "application/json",
+        "entity_id": "person-wd-q34503",
+        "entity_type": "person",
+        "expected_wikidata_qid": "Q34503",
+        "native_record_id": "ulan:500253063",
+        "observed_equivalent_qids": [],
+        "raw_response_sha256": "1b567c0c91a7a25fbf2556db9d06c1107f4bec3e8fc815a9080fd8c268c359f7",
+        "reason": "missing_wikidata_equivalent",
+        "representation_url": "https://vocab.getty.edu/ulan/500253063",
+        "retrieved_at": "2026-07-28T17:06:18Z",
+        "subject_id": "500253063",
+        "type": "Person"
+      },
+      {
+        "canonical_uri": "http://vocab.getty.edu/ulan/500353619",
+        "content_type": "application/json",
+        "entity_id": "person-wd-q2551253",
+        "entity_type": "person",
+        "expected_wikidata_qid": "Q2551253",
+        "native_record_id": "ulan:500353619",
+        "observed_equivalent_qids": [],
+        "raw_response_sha256": "80496f89249b41f6550686b7e7f68f1d8ee243dee7604a94d00510c9cce90aab",
+        "reason": "missing_wikidata_equivalent",
+        "representation_url": "https://vocab.getty.edu/ulan/500353619",
+        "retrieved_at": "2026-07-28T17:06:18Z",
+        "subject_id": "500353619",
+        "type": "Person"
+      },
+      {
+        "canonical_uri": "http://vocab.getty.edu/ulan/500472393",
+        "content_type": "application/json",
+        "entity_id": "person-wd-q313210",
+        "entity_type": "person",
+        "expected_wikidata_qid": "Q313210",
+        "native_record_id": "ulan:500472393",
+        "observed_equivalent_qids": [],
+        "raw_response_sha256": "4ecb4aa446ebc9db1c076b8f8b0bf24346e0db184bf96440c1ec028e2739cacc",
+        "reason": "missing_wikidata_equivalent",
+        "representation_url": "https://vocab.getty.edu/ulan/500472393",
+        "retrieved_at": "2026-07-28T17:06:18Z",
+        "subject_id": "500472393",
+        "type": "Person"
+      }
+    ],
+    "seed_count": 24,
+    "seed_sha256": "a4e6fa408bcef74a16e7332c39117a65026ef8c4496b6dafe2288a87aac98318"
+  },
+  "snapshot_id": "getty-ulan-identity-2026-07-28-a3c6e09ed3f1",
+  "source_id": "getty-ulan"
+}

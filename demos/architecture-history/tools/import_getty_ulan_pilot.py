@@ -61,6 +61,7 @@ QID_RE = re.compile(r"^Q[1-9][0-9]*$")
 ULAN_RE = re.compile(r"^500[0-9]{6}$")
 SHA256_RE = re.compile(r"^[0-9a-f]{64}$")
 DATE_RE = re.compile(r"^\d{4}-\d{2}-\d{2}$")
+DATETIME_RE = re.compile(r"^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z$")
 
 FULL_SHARD_KEYS = {
     "source_id",
@@ -428,10 +429,26 @@ def validate_getty_snapshot(
         raise ValueError("Getty ULAN snapshot does not bind this base catalog")
     accessed = require_string(snapshot["accessed"], "Getty ULAN snapshot.accessed", DATE_RE)
     records = snapshot["records"]
-    if not isinstance(records, dict) or len(records) != ROW_COUNT:
-        raise ValueError(f"Getty ULAN snapshot must contain exactly {ROW_COUNT} records")
-    selection = require_exact_keys(snapshot["selection"], {"method", "record_count", "seed_sha256"}, "Getty ULAN selection")
-    if selection["method"] != "wikidata_p245_exact_getty_identity" or selection["record_count"] != ROW_COUNT:
+    selection = require_exact_keys(
+        snapshot["selection"],
+        {
+            "method",
+            "seed_sha256",
+            "seed_count",
+            "record_count",
+            "accepted_subject_ids",
+            "rejections",
+        },
+        "Getty ULAN selection",
+    )
+    if (
+        selection["method"] != "wikidata_p245_exact_getty_identity"
+        or selection["seed_count"] != ROW_COUNT
+        or not isinstance(selection["record_count"], int)
+        or not 1 <= selection["record_count"] <= ROW_COUNT
+        or not isinstance(records, dict)
+        or len(records) != selection["record_count"]
+    ):
         raise ValueError("Getty ULAN selection contract is incompatible")
     if snapshot["crosswalk_snapshot_id"] != crosswalk_snapshot_id:
         raise ValueError("Getty ULAN snapshot crosswalk dependency does not match the supplied crosswalk")
@@ -458,9 +475,38 @@ def validate_getty_snapshot(
         "equivalent_qids", "native_record_id", "raw_response_sha256", "raw_retained",
         "representation_url", "retrieved_at", "source_uris", "subject_id", "type", "wikidata_qid",
     }
+    rejection_keys = {
+        "canonical_uri", "content_type", "entity_id", "entity_type", "expected_wikidata_qid",
+        "native_record_id", "observed_equivalent_qids", "raw_response_sha256", "reason",
+        "representation_url", "retrieved_at", "subject_id", "type",
+    }
+    expected_by_ulan = {row["ulan_subject_id"]: row for row in crosswalk_rows}
+    accepted_subject_ids = selection["accepted_subject_ids"]
+    rejections = selection["rejections"]
+    if (
+        not isinstance(accepted_subject_ids, list)
+        or not isinstance(rejections, list)
+        or len(accepted_subject_ids) != selection["record_count"]
+        or len(rejections) != ROW_COUNT - selection["record_count"]
+    ):
+        raise ValueError("Getty ULAN selection acceptance/rejection counts are invalid")
+    accepted_subject_ids = [
+        require_string(subject_id, "Getty accepted subject ID", ULAN_RE)
+        for subject_id in accepted_subject_ids
+    ]
+    if (
+        len(set(accepted_subject_ids)) != len(accepted_subject_ids)
+        or accepted_subject_ids != sorted(accepted_subject_ids, key=int)
+        or set(accepted_subject_ids) != set(records)
+        or not set(accepted_subject_ids) <= set(expected_by_ulan)
+    ):
+        raise ValueError("Getty ULAN accepted subjects must exactly and numerically match record keys")
     normalized: list[dict[str, Any]] = []
     for ulan_id, wrapper in records.items():
         ulan_id = require_string(ulan_id, "Getty ULAN record key", ULAN_RE)
+        expected = expected_by_ulan.get(ulan_id)
+        if expected is None:
+            raise ValueError(f"Getty ULAN {ulan_id}: subject is outside the crosswalk")
         wrapper = require_exact_keys(wrapper, wrapper_keys, f"Getty records[{ulan_id}]")
         projection = require_exact_keys(wrapper["projection"], projection_keys, f"Getty records[{ulan_id}].projection")
         if not projection:
@@ -469,20 +515,71 @@ def validate_getty_snapshot(
             raise ValueError(f"Getty ULAN {ulan_id}: projection_sha256 mismatch")
         if (
             projection["canonical_uri"] != f"http://vocab.getty.edu/ulan/{ulan_id}"
+            or projection["content_type"] not in {"application/json", "application/ld+json"}
             or projection["native_record_id"] != f"ulan:{ulan_id}"
+            or projection["representation_url"] != f"https://vocab.getty.edu/ulan/{ulan_id}"
             or projection["subject_id"] != ulan_id
+            or not isinstance(projection["raw_response_sha256"], str)
+            or SHA256_RE.fullmatch(projection["raw_response_sha256"]) is None
+            or not isinstance(projection["retrieved_at"], str)
+            or DATETIME_RE.fullmatch(projection["retrieved_at"]) is None
             or projection["raw_retained"] is not False
-            or projection["entity_type"] not in {"person", "practice"}
-            or projection["type"] != ("Person" if projection["entity_type"] == "person" else "Group")
+            or projection["entity_id"] != expected["entity_id"]
+            or projection["entity_type"] != expected["entity_type"]
+            or projection["wikidata_qid"] != expected["wikidata_qid"]
+            or projection["type"] != ("Person" if expected["entity_type"] == "person" else "Group")
             or not isinstance(projection["equivalent_qids"], list)
-            or not all(isinstance(value, str) for value in projection["equivalent_qids"])
-            or require_string(projection["wikidata_qid"], f"Getty ULAN {ulan_id}.wikidata_qid", QID_RE) not in projection["equivalent_qids"]
+            or projection["equivalent_qids"] != [expected["wikidata_qid"]]
         ):
             raise ValueError(f"Getty ULAN {ulan_id}: projection identity binding is invalid")
         normalized.append({"ulan_id": ulan_id, **wrapper})
     ordered_keys = sorted(records, key=lambda value: int(value))
     if list(records) != ordered_keys:
         raise ValueError("Getty ULAN records must use numeric ULAN order")
+    rejected_subject_ids: list[str] = []
+    for index, rejection in enumerate(rejections):
+        rejection = require_exact_keys(rejection, rejection_keys, f"Getty rejection[{index}]")
+        ulan_id = require_string(rejection["subject_id"], f"Getty rejection[{index}].subject_id", ULAN_RE)
+        expected = expected_by_ulan.get(ulan_id)
+        observed = rejection["observed_equivalent_qids"]
+        if (
+            expected is None
+            or not isinstance(observed, list)
+            or not all(isinstance(qid, str) and QID_RE.fullmatch(qid) for qid in observed)
+            or observed != sorted(set(observed), key=qid_number)
+            or rejection["canonical_uri"] != f"http://vocab.getty.edu/ulan/{ulan_id}"
+            or rejection["content_type"] not in {"application/json", "application/ld+json"}
+            or rejection["native_record_id"] != f"ulan:{ulan_id}"
+            or rejection["representation_url"] != f"https://vocab.getty.edu/ulan/{ulan_id}"
+            or not isinstance(rejection["raw_response_sha256"], str)
+            or SHA256_RE.fullmatch(rejection["raw_response_sha256"]) is None
+            or not isinstance(rejection["retrieved_at"], str)
+            or DATETIME_RE.fullmatch(rejection["retrieved_at"]) is None
+            or rejection["entity_id"] != expected["entity_id"]
+            or rejection["entity_type"] != expected["entity_type"]
+            or rejection["expected_wikidata_qid"] != expected["wikidata_qid"]
+            or rejection["type"] != ("Person" if expected["entity_type"] == "person" else "Group")
+            or rejection["reason"] not in {
+                "missing_wikidata_equivalent",
+                "conflicting_wikidata_equivalent",
+            }
+        ):
+            raise ValueError(f"Getty ULAN {ulan_id}: rejection receipt is invalid")
+        if rejection["reason"] == "missing_wikidata_equivalent" and observed:
+            raise ValueError(f"Getty ULAN {ulan_id}: missing-equivalent rejection has observed QIDs")
+        if (
+            rejection["reason"] == "conflicting_wikidata_equivalent"
+            and (not observed or observed == [expected["wikidata_qid"]])
+        ):
+            raise ValueError(f"Getty ULAN {ulan_id}: conflicting-equivalent rejection lacks a conflict")
+        rejected_subject_ids.append(ulan_id)
+    if (
+        rejected_subject_ids != sorted(rejected_subject_ids, key=int)
+        or len(set(rejected_subject_ids)) != len(rejected_subject_ids)
+        or set(accepted_subject_ids) & set(rejected_subject_ids)
+        or set(accepted_subject_ids) | set(rejected_subject_ids) != set(expected_by_ulan)
+    ):
+        raise ValueError("Getty ULAN accepted and rejected subjects must exactly partition the crosswalk")
     return snapshot_id, accessed, normalized
 
 
@@ -503,8 +600,8 @@ def evidence_row(getty_snapshot_id: str, accessed: str, record: dict[str, Any]) 
         "language": None,
         "rank": None,
         "qualifiers": [],
-        "references": [],
-        "contributors": [],
+        "references": projection["source_uris"],
+        "contributors": projection["contributor_uris"],
         "source_record_sha256": record["projection_sha256"],
     }
 
@@ -523,8 +620,8 @@ def build_overlay(
         crosswalk_rows,
     )
     getty_by_ulan = {record["ulan_id"]: record for record in getty_records}
-    if {row["ulan_id"] for row in crosswalk_rows} != set(getty_by_ulan):
-        raise ValueError("Wikidata crosswalk and Getty snapshot must bind the same 24 ULAN IDs")
+    if not set(getty_by_ulan) <= {row["ulan_id"] for row in crosswalk_rows}:
+        raise ValueError("Getty accepted subjects must be within the 24-row Wikidata crosswalk")
     existing_ulans = {
         value
         for entity in entities.values()
@@ -535,6 +632,8 @@ def build_overlay(
     patches: list[dict[str, Any]] = []
     claims: list[dict[str, Any]] = []
     for row in crosswalk_rows:
+        if row["ulan_id"] not in getty_by_ulan:
+            continue
         entity_id = row["entity_id"]
         entity = entities.get(entity_id)
         if entity is None:
@@ -592,11 +691,12 @@ def build_overlay(
     # Preserve the canonical numeric ULAN order from both source snapshots.
     patches.sort(key=lambda patch: int(patch["add_external_ids"][ULAN_NAMESPACE]))
     claims.sort(key=lambda claim: int(claim["object"]["value"][ULAN_NAMESPACE]))
-    overlay_id = f"getty-ulan-identity-{canonical_hash({
-        'base_catalog_sha256': base_hash,
-        'crosswalk_snapshot_id': crosswalk_snapshot_id,
-        'generated_from': getty_snapshot_id,
-    })[:16]}"
+    overlay_identity = {
+        "base_catalog_sha256": base_hash,
+        "crosswalk_snapshot_id": crosswalk_snapshot_id,
+        "generated_from": getty_snapshot_id,
+    }
+    overlay_id = f"getty-ulan-identity-{canonical_hash(overlay_identity)[:16]}"
     return {
         "kind": OVERLAY_KIND,
         "overlay_id": overlay_id,
@@ -633,7 +733,7 @@ def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("catalog_dir", type=Path, help="directory containing catalog JSON files (overlays excluded)")
     parser.add_argument("wikidata_crosswalk", type=Path, help="closed 24-row Wikidata P245 crosswalk snapshot")
-    parser.add_argument("getty_snapshot", type=Path, help="closed 24-record Getty ULAN projection snapshot")
+    parser.add_argument("getty_snapshot", type=Path, help="closed Getty ULAN screening snapshot for the 24-row crosswalk")
     parser.add_argument("--output", type=Path, default=DEFAULT_OUTPUT, help="immutable overlay output path")
     parser.add_argument("--force", action="store_true", help="allow replacement of the explicit output path")
     return parser.parse_args()

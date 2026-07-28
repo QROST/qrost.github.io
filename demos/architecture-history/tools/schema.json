@@ -1308,6 +1308,72 @@
         }
       }
     },
+    "gettyUlanScreeningRejection": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "canonical_uri",
+        "content_type",
+        "entity_id",
+        "entity_type",
+        "expected_wikidata_qid",
+        "native_record_id",
+        "observed_equivalent_qids",
+        "raw_response_sha256",
+        "reason",
+        "representation_url",
+        "retrieved_at",
+        "subject_id",
+        "type"
+      ],
+      "properties": {
+        "canonical_uri": {
+          "type": "string",
+          "pattern": "^http://vocab\\.getty\\.edu/ulan/500\\d{6}$"
+        },
+        "content_type": {
+          "enum": ["application/json", "application/ld+json"]
+        },
+        "entity_id": {"$ref": "#/$defs/id"},
+        "entity_type": {"enum": ["person", "practice"]},
+        "expected_wikidata_qid": {
+          "type": "string",
+          "pattern": "^Q[1-9][0-9]*$"
+        },
+        "native_record_id": {
+          "type": "string",
+          "pattern": "^ulan:500\\d{6}$"
+        },
+        "observed_equivalent_qids": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "pattern": "^Q[1-9][0-9]*$"
+          }
+        },
+        "raw_response_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "reason": {
+          "enum": [
+            "missing_wikidata_equivalent",
+            "conflicting_wikidata_equivalent"
+          ]
+        },
+        "representation_url": {
+          "type": "string",
+          "pattern": "^https://vocab\\.getty\\.edu/ulan/500\\d{6}$"
+        },
+        "retrieved_at": {"$ref": "#/$defs/dateTime"},
+        "subject_id": {
+          "type": "string",
+          "pattern": "^500\\d{6}$"
+        },
+        "type": {"enum": ["Person", "Group"]}
+      }
+    },
     "gettyUlanIdentitySnapshot": {
       "type": "object",
       "additionalProperties": false,
@@ -1356,10 +1422,36 @@
         "selection": {
           "type": "object",
           "additionalProperties": false,
-          "required": ["method", "record_count", "seed_sha256"],
+          "required": [
+            "accepted_subject_ids",
+            "method",
+            "record_count",
+            "rejections",
+            "seed_count",
+            "seed_sha256"
+          ],
           "properties": {
+            "accepted_subject_ids": {
+              "type": "array",
+              "minItems": 1,
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "pattern": "^500\\d{6}$"
+              }
+            },
             "method": {"const": "wikidata_p245_exact_getty_identity"},
-            "record_count": {"const": 24},
+            "record_count": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 24
+            },
+            "rejections": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {"$ref": "#/$defs/gettyUlanScreeningRejection"}
+            },
+            "seed_count": {"const": 24},
             "seed_sha256": {
               "type": "string",
               "pattern": "^[0-9a-f]{64}$"

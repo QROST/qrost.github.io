@@ -37,6 +37,10 @@ importer = load_module(
     "architecture_history_import_getty_ulan_pilot",
     "import_getty_ulan_pilot.py",
 )
+validator = load_module(
+    "architecture_history_validate_getty_ulan_pilot",
+    "validate.py",
+)
 
 
 def load_json(path: Path):
@@ -98,6 +102,33 @@ def linked_art_payload(
             {"id": "https://example.invalid/ulan/source/99"},
         ],
     }
+
+
+def synthetic_projection(row: dict, *, qids: list[str] | None = None) -> dict:
+    subject_id = row["ulan_subject_id"]
+    if qids is None:
+        qids = [row["wikidata_qid"]]
+    return {
+        "canonical_uri": f"http://vocab.getty.edu/ulan/{subject_id}",
+        "contributor_uris": [f"http://vocab.getty.edu/ulan/contrib/{subject_id}"],
+        "content_type": "application/ld+json",
+        "entity_id": row["entity_id"],
+        "entity_type": row["entity_type"],
+        "equivalent_qids": qids,
+        "native_record_id": f"ulan:{subject_id}",
+        "raw_response_sha256": "0" * 64,
+        "raw_retained": False,
+        "representation_url": f"https://vocab.getty.edu/ulan/{subject_id}",
+        "retrieved_at": "2026-07-28T00:00:00Z",
+        "source_uris": [f"http://vocab.getty.edu/ulan/source/{subject_id}"],
+        "subject_id": subject_id,
+        "type": "Person" if row["entity_type"] == "person" else "Group",
+        "wikidata_qid": row["wikidata_qid"],
+    }
+
+
+def accepted_screening(row: dict) -> dict:
+    return {"projection": synthetic_projection(row), "status": "accepted"}
 
 
 class WikidataUlanCrosswalkTests(unittest.TestCase):
@@ -181,37 +212,21 @@ class GettyUlanPilotTests(unittest.TestCase):
                 self.row, type_mismatch, "application/ld+json", self.representation_url
             )
 
-    def test_snapshot_hashes_and_closed_projection_shape_are_recomputable(self):
+    def test_all_exact_screening_accepts_all_24_and_hashes_are_recomputable(self):
         path = next(SNAPSHOTS.glob("wikidata-ulan-crosswalk-*.json"))
         crosswalk_snapshot = load_json(path)
 
-        def synthetic_fetch(row: dict) -> dict:
-            subject_id = row["ulan_subject_id"]
-            return {
-                "canonical_uri": f"http://vocab.getty.edu/ulan/{subject_id}",
-                "contributor_uris": [f"http://vocab.getty.edu/ulan/contrib/{subject_id}"],
-                "content_type": "application/ld+json",
-                "entity_id": row["entity_id"],
-                "entity_type": row["entity_type"],
-                "equivalent_qids": [row["wikidata_qid"]],
-                "native_record_id": f"ulan:{subject_id}",
-                "raw_response_sha256": "0" * 64,
-                "raw_retained": False,
-                "representation_url": f"https://vocab.getty.edu/ulan/{subject_id}",
-                "retrieved_at": "2026-07-28T00:00:00Z",
-                "source_uris": [f"http://vocab.getty.edu/ulan/source/{subject_id}"],
-                "subject_id": subject_id,
-                "type": "Person" if row["entity_type"] == "person" else "Group",
-                "wikidata_qid": row["wikidata_qid"],
-            }
-
-        with mock.patch.object(getty, "fetch_one", side_effect=synthetic_fetch):
+        with mock.patch.object(getty, "fetch_one", side_effect=accepted_screening):
             snapshot = getty.build_snapshot(copy.deepcopy(crosswalk_snapshot), "2026-07-28")
         self.assertEqual(snapshot["source_id"], "getty-ulan")
         self.assertTrue(snapshot["claim_evidence_allowed"])
         self.assertEqual(snapshot["base_catalog_sha256"], crosswalk_snapshot["base_catalog_sha256"])
         self.assertEqual(len(snapshot["records"]), 24)
         self.assertEqual(list(snapshot["records"]), sorted(snapshot["records"], key=int))
+        self.assertEqual(snapshot["selection"]["accepted_subject_ids"], list(snapshot["records"]))
+        self.assertEqual(snapshot["selection"]["rejections"], [])
+        self.assertEqual(snapshot["selection"]["record_count"], 24)
+        self.assertEqual(snapshot["selection"]["seed_count"], 24)
         preimage = dict(snapshot)
         projection_sha256 = preimage.pop("projection_sha256")
         snapshot_id = preimage.pop("snapshot_id")
@@ -221,39 +236,59 @@ class GettyUlanPilotTests(unittest.TestCase):
             self.assertEqual(set(entry), {"projection", "projection_sha256"})
             self.assertEqual(entry["projection_sha256"], getty.canonical_hash(entry["projection"]))
 
-    def test_identity_snapshot_imports_as_candidate_only_overlay(self):
+    def test_mixed_screening_is_deterministic_and_imports_only_accepted_identities(self):
         path = next(SNAPSHOTS.glob("wikidata-ulan-crosswalk-*.json"))
         crosswalk_snapshot = load_json(path)
+        missing_id = crosswalk_snapshot["records"][0]["ulan_subject_id"]
+        conflicting_id = crosswalk_snapshot["records"][1]["ulan_subject_id"]
 
-        def synthetic_fetch(row: dict) -> dict:
+        def mixed_screening(row: dict) -> dict:
             subject_id = row["ulan_subject_id"]
-            return {
-                "canonical_uri": f"http://vocab.getty.edu/ulan/{subject_id}",
-                "contributor_uris": [],
-                "content_type": "application/json",
-                "entity_id": row["entity_id"],
-                "entity_type": row["entity_type"],
-                "equivalent_qids": [row["wikidata_qid"]],
-                "native_record_id": f"ulan:{subject_id}",
-                "raw_response_sha256": "1" * 64,
-                "raw_retained": False,
-                "representation_url": f"https://vocab.getty.edu/ulan/{subject_id}",
-                "retrieved_at": "2026-07-28T00:00:00Z",
-                "source_uris": [],
-                "subject_id": subject_id,
-                "type": "Person" if row["entity_type"] == "person" else "Group",
-                "wikidata_qid": row["wikidata_qid"],
-            }
+            if subject_id == missing_id:
+                projection = synthetic_projection(row, qids=[])
+                return {
+                    "rejection": getty.rejection_receipt(
+                        projection, "missing_wikidata_equivalent"
+                    ),
+                    "status": "rejected",
+                }
+            if subject_id == conflicting_id:
+                projection = synthetic_projection(row, qids=["Q42"])
+                return {
+                    "rejection": getty.rejection_receipt(
+                        projection, "conflicting_wikidata_equivalent"
+                    ),
+                    "status": "rejected",
+                }
+            return accepted_screening(row)
 
-        with mock.patch.object(getty, "fetch_one", side_effect=synthetic_fetch):
-            snapshot = getty.build_snapshot(
-                copy.deepcopy(crosswalk_snapshot),
-                "2026-07-28",
-            )
+        with mock.patch.object(getty, "fetch_one", side_effect=mixed_screening):
+            first = getty.build_snapshot(copy.deepcopy(crosswalk_snapshot), "2026-07-28")
+        with mock.patch.object(getty, "fetch_one", side_effect=mixed_screening):
+            second = getty.build_snapshot(copy.deepcopy(crosswalk_snapshot), "2026-07-28")
+        self.assertEqual(first, second)
+        self.assertEqual(first["selection"]["accepted_subject_ids"], list(first["records"]))
+        self.assertEqual(first["selection"]["record_count"], 22)
+        self.assertEqual(
+            [row["subject_id"] for row in first["selection"]["rejections"]],
+            sorted([missing_id, conflicting_id], key=int),
+        )
+        self.assertEqual(
+            [row["reason"] for row in first["selection"]["rejections"]],
+            [
+                "missing_wikidata_equivalent" if subject_id == missing_id else "conflicting_wikidata_equivalent"
+                for subject_id in sorted([missing_id, conflicting_id], key=int)
+            ],
+        )
+        preimage = dict(first)
+        self.assertEqual(
+            first["projection_sha256"],
+            getty.canonical_hash({key: value for key, value in preimage.items() if key not in {"projection_sha256", "snapshot_id"}}),
+        )
         with tempfile.TemporaryDirectory() as temporary:
             snapshot_path = Path(temporary) / "getty.json"
             snapshot_path.write_text(
-                json.dumps(snapshot, ensure_ascii=False),
+                json.dumps(first, ensure_ascii=False),
                 encoding="utf-8",
             )
             overlay = importer.build_overlay(
@@ -263,8 +298,8 @@ class GettyUlanPilotTests(unittest.TestCase):
             )
         self.assertEqual(overlay["kind"], "catalog_overlay_v1")
         self.assertRegex(overlay["overlay_id"], r"^getty-ulan-identity-[0-9a-f]{16}$")
-        self.assertEqual(len(overlay["entity_patches"]), 24)
-        self.assertEqual(len(overlay["claims"]), 24)
+        self.assertEqual(len(overlay["entity_patches"]), 22)
+        self.assertEqual(len(overlay["claims"]), 22)
         self.assertNotIn("relations", overlay)
         self.assertNotIn("people", overlay)
         self.assertTrue(
@@ -284,6 +319,121 @@ class GettyUlanPilotTests(unittest.TestCase):
             for patch in overlay["entity_patches"]
         ]
         self.assertEqual(ulan_ids, sorted(ulan_ids, key=int))
+        self.assertNotIn(missing_id, ulan_ids)
+        self.assertNotIn(conflicting_id, ulan_ids)
+
+    def test_malformed_screening_exception_prevents_snapshot(self):
+        path = next(SNAPSHOTS.glob("wikidata-ulan-crosswalk-*.json"))
+        crosswalk_snapshot = load_json(path)
+
+        def malformed_screening(row: dict) -> dict:
+            if row["ulan_subject_id"] == crosswalk_snapshot["records"][0]["ulan_subject_id"]:
+                raise RuntimeError("synthetic malformed Linked Art type")
+            return accepted_screening(row)
+
+        with mock.patch.object(getty, "fetch_one", side_effect=malformed_screening):
+            with self.assertRaisesRegex(RuntimeError, "no snapshot written"):
+                getty.build_snapshot(copy.deepcopy(crosswalk_snapshot), "2026-07-28")
+
+    def test_committed_overlay_exactly_matches_the_accepted_11_of_24(self):
+        crosswalk_path = next(SNAPSHOTS.glob("wikidata-ulan-crosswalk-*.json"))
+        getty_path = next(SNAPSHOTS.glob("getty-ulan-identity-*.json"))
+        overlay_path = ROOT / "assets" / "data" / "catalog" / "getty-ulan-identity.json"
+        crosswalk_snapshot = load_json(crosswalk_path)
+        getty_snapshot = load_json(getty_path)
+        overlay = load_json(overlay_path)
+        accepted = set(getty_snapshot["records"])
+        rejected = {
+            row["subject_id"]
+            for row in getty_snapshot["selection"]["rejections"]
+        }
+        patch_ulans = {
+            patch["add_external_ids"]["ulan"]
+            for patch in overlay["entity_patches"]
+        }
+        claim_ulans = {
+            claim["object"]["value"]["ulan"]
+            for claim in overlay["claims"]
+        }
+        self.assertEqual(len(accepted), 11)
+        self.assertEqual(len(rejected), 13)
+        self.assertFalse(accepted & rejected)
+        self.assertEqual(accepted | rejected, {
+            row["ulan_subject_id"]
+            for row in crosswalk_snapshot["records"]
+        })
+        self.assertEqual(patch_ulans, accepted)
+        self.assertEqual(claim_ulans, accepted)
+
+        payloads = [
+            (path, load_json(path))
+            for path in sorted(
+                (ROOT / "assets" / "data" / "catalog").glob("*.json"),
+                key=lambda item: item.name.encode("utf-8"),
+            )
+        ]
+        errors: list[str] = []
+        base_entities = validator.catalog_base_entity_contracts(payloads, errors)
+        validator.validate_getty_ulan_identity_overlay(
+            overlay_path.name,
+            overlay,
+            getty_snapshot,
+            crosswalk_snapshot,
+            base_entities,
+            errors,
+        )
+        self.assertEqual(errors, [])
+
+    def test_getty_overlay_validator_rejects_identity_and_attribution_tampering(self):
+        crosswalk_snapshot = load_json(
+            next(SNAPSHOTS.glob("wikidata-ulan-crosswalk-*.json"))
+        )
+        getty_snapshot = load_json(
+            next(SNAPSHOTS.glob("getty-ulan-identity-*.json"))
+        )
+        overlay_path = ROOT / "assets" / "data" / "catalog" / "getty-ulan-identity.json"
+        overlay = load_json(overlay_path)
+        payloads = [
+            (path, load_json(path))
+            for path in sorted(
+                (ROOT / "assets" / "data" / "catalog").glob("*.json"),
+                key=lambda item: item.name.encode("utf-8"),
+            )
+        ]
+        base_entities = validator.catalog_base_entity_contracts(payloads, [])
+        rejected_ulan = getty_snapshot["selection"]["rejections"][0]["subject_id"]
+        mutations = {
+            "reference": lambda value: value["claims"][0]["evidence"][0].update(
+                {"references": ["javascript:wrong-attribution"]}
+            ),
+            "contributor": lambda value: value["claims"][0]["evidence"][0].update(
+                {"contributors": ["javascript:wrong-attribution"]}
+            ),
+            "claim_ulan": lambda value: value["claims"][0]["object"]["value"].update(
+                {"ulan": rejected_ulan}
+            ),
+            "patch_ulan": lambda value: value["entity_patches"][0][
+                "add_external_ids"
+            ].update({"ulan": rejected_ulan}),
+        }
+        for name, mutate in mutations.items():
+            with self.subTest(name=name):
+                tampered = copy.deepcopy(overlay)
+                mutate(tampered)
+                errors: list[str] = []
+                validator.validate_getty_ulan_identity_overlay(
+                    overlay_path.name,
+                    tampered,
+                    getty_snapshot,
+                    crosswalk_snapshot,
+                    base_entities,
+                    errors,
+                )
+                self.assertTrue(errors)
+                self.assertTrue(
+                    any("exact" in error for error in errors),
+                    errors,
+                )
 
 
 if __name__ == "__main__":

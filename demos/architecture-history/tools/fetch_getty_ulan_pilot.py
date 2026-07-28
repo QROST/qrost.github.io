@@ -247,7 +247,12 @@ def node_types(node: dict) -> set[str]:
     }
 
 
-def project_response(row: dict, raw: bytes, content_type: str, representation_url: str) -> dict:
+def inspect_response(
+    row: dict,
+    raw: bytes,
+    content_type: str,
+    representation_url: str,
+) -> tuple[dict, str | None]:
     subject_id = row["ulan_subject_id"]
     canonical_uri = canonical_ulan_uri(subject_id)
     expected_representation_url = f"{REPRESENTATION_URI_PREFIX}{subject_id}"
@@ -285,11 +290,19 @@ def project_response(row: dict, raw: bytes, content_type: str, representation_ur
         set(equivalent_qid_values),
         key=lambda qid: int(qid[1:]),
     )
-    if equivalent_qid_values.count(row["wikidata_qid"]) != 1:
+    if (
+        equivalent_qids == [row["wikidata_qid"]]
+        and equivalent_qid_values.count(row["wikidata_qid"]) != 1
+    ):
         raise RuntimeError(
-            f"{subject_id}: selected QID {row['wikidata_qid']} is not exactly once "
-            "in Getty identifies values"
+            f"{subject_id}: Getty repeats the selected Wikidata equivalent"
         )
+    if not equivalent_qids:
+        rejection_reason = "missing_wikidata_equivalent"
+    elif equivalent_qids != [row["wikidata_qid"]]:
+        rejection_reason = "conflicting_wikidata_equivalent"
+    else:
+        rejection_reason = None
     identified_uris = {
         uri
         for item in identifies_values(payload)
@@ -305,7 +318,7 @@ def project_response(row: dict, raw: bytes, content_type: str, representation_ur
         for uri in identified_uris
         if SOURCE_URI_PATTERN.fullmatch(uri)
     )
-    return {
+    projection = {
         "canonical_uri": canonical_uri,
         "contributor_uris": contributor_uris,
         "entity_id": row["entity_id"],
@@ -324,6 +337,47 @@ def project_response(row: dict, raw: bytes, content_type: str, representation_ur
         "wikidata_qid": row["wikidata_qid"],
         "content_type": content_type,
     }
+    return projection, rejection_reason
+
+
+def rejection_receipt(projection: dict, reason: str) -> dict:
+    return {
+        "canonical_uri": projection["canonical_uri"],
+        "content_type": projection["content_type"],
+        "entity_id": projection["entity_id"],
+        "entity_type": projection["entity_type"],
+        "expected_wikidata_qid": projection["wikidata_qid"],
+        "native_record_id": projection["native_record_id"],
+        "observed_equivalent_qids": projection["equivalent_qids"],
+        "raw_response_sha256": projection["raw_response_sha256"],
+        "reason": reason,
+        "representation_url": projection["representation_url"],
+        "retrieved_at": projection["retrieved_at"],
+        "subject_id": projection["subject_id"],
+        "type": projection["type"],
+    }
+
+
+def project_response(
+    row: dict,
+    raw: bytes,
+    content_type: str,
+    representation_url: str,
+) -> dict:
+    projection, rejection_reason = inspect_response(
+        row,
+        raw,
+        content_type,
+        representation_url,
+    )
+    if rejection_reason is not None:
+        raise RuntimeError(
+            f"{projection['subject_id']}: selected QID "
+            f"{row['wikidata_qid']} failed exact Getty reciprocity "
+            f"({rejection_reason}); observed "
+            f"{projection['equivalent_qids']!r}"
+        )
+    return projection
 
 
 def fetch_one(row: dict) -> dict:
@@ -345,23 +399,93 @@ def fetch_one(row: dict) -> dict:
         raise RuntimeError(f"{subject_id}: Getty retrieval failed") from error
     if content_type not in {"application/ld+json", "application/json"}:
         raise RuntimeError(f"{subject_id}: expected JSON-LD, got {content_type!r}")
-    return project_response(row, raw, content_type, representation_url)
+    projection, rejection_reason = inspect_response(
+        row,
+        raw,
+        content_type,
+        representation_url,
+    )
+    if rejection_reason is not None:
+        return {
+            "rejection": rejection_receipt(projection, rejection_reason),
+            "status": "rejected",
+        }
+    return {
+        "projection": projection,
+        "status": "accepted",
+    }
 
 
 def build_snapshot(crosswalk: Any, accessed: str) -> dict:
     crosswalk_snapshot_id, base_catalog_sha256, rows = normalized_crosswalk_records(crosswalk)
     records: dict[str, dict] = {}
+    rejections: dict[str, dict] = {}
+    failures: dict[str, str] = {}
     with concurrent.futures.ThreadPoolExecutor(max_workers=MAX_WORKERS) as executor:
         futures = {executor.submit(fetch_one, row): row["ulan_subject_id"] for row in rows}
         for future in concurrent.futures.as_completed(futures):
             subject_id = futures[future]
-            projection = future.result()
+            try:
+                screening = future.result()
+            except Exception as error:
+                failures[subject_id] = f"{type(error).__name__}: {error}"
+                print(
+                    f"Getty ULAN: failed {subject_id} "
+                    f"({len(failures)} failure(s))",
+                    flush=True,
+                )
+                continue
+            if screening.get("status") == "rejected":
+                rejection = screening.get("rejection")
+                if (
+                    not isinstance(rejection, dict)
+                    or rejection.get("subject_id") != subject_id
+                ):
+                    failures[subject_id] = "invalid rejection receipt"
+                    continue
+                rejections[subject_id] = rejection
+                print(
+                    f"Getty ULAN: screened out {subject_id} "
+                    f"({len(rejections)} rejection(s))",
+                    flush=True,
+                )
+                continue
+            projection = screening.get("projection")
+            if (
+                screening.get("status") != "accepted"
+                or not isinstance(projection, dict)
+                or projection.get("subject_id") != subject_id
+            ):
+                failures[subject_id] = "invalid acceptance receipt"
+                continue
             records[subject_id] = {
                 "projection": projection,
                 "projection_sha256": canonical_hash(projection),
             }
-            print(f"Getty ULAN: fetched {subject_id} ({len(records)}/{RECORD_COUNT})", flush=True)
+            print(
+                f"Getty ULAN: accepted {subject_id} "
+                f"({len(records)} accepted)",
+                flush=True,
+            )
+    if failures:
+        details = "; ".join(
+            f"{subject_id}: {failures[subject_id]}"
+            for subject_id in sorted(failures, key=int)
+        )
+        raise RuntimeError(
+            f"Getty ULAN failed to screen {len(failures)}/{RECORD_COUNT} "
+            f"crosswalk records; no snapshot written: {details}"
+        )
+    if len(records) + len(rejections) != RECORD_COUNT:
+        raise RuntimeError("Getty ULAN screening did not cover every crosswalk record")
+    if not records:
+        raise RuntimeError("Getty ULAN screening produced no reciprocal identities")
     records = {subject_id: records[subject_id] for subject_id in sorted(records, key=int)}
+    ordered_rejections = [
+        rejections[subject_id]
+        for subject_id in sorted(rejections, key=int)
+    ]
+    accepted_subject_ids = sorted(records, key=int)
     selection_sha256 = canonical_hash(rows)
     preimage = {
         "accessed": accessed,
@@ -376,8 +500,11 @@ def build_snapshot(crosswalk: Any, accessed: str) -> dict:
         "raw_retained": False,
         "records": records,
         "selection": {
+            "accepted_subject_ids": accepted_subject_ids,
             "method": "wikidata_p245_exact_getty_identity",
-            "record_count": RECORD_COUNT,
+            "record_count": len(records),
+            "rejections": ordered_rejections,
+            "seed_count": RECORD_COUNT,
             "seed_sha256": selection_sha256,
         },
         "source_id": SOURCE_ID,

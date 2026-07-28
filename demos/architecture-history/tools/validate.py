@@ -99,6 +99,9 @@ CATALOG_KEYS = (
     "relations",
 )
 OVERLAY_KIND = "catalog_overlay_v1"
+GETTY_ULAN_OVERLAY_TRANSFORMER_ID = "getty-ulan-p245-overlay"
+GETTY_ULAN_OVERLAY_TRANSFORMER_VERSION = "0.1.0"
+GETTY_ULAN_IDENTITY_SCOPE = "getty_ulan_exact_p245_crosswalk"
 ULAN_ID_PATTERN = re.compile(r"^500\d{6}$")
 WIKIDATA_TIME_PATTERN = re.compile(
     r"^(?P<sign>[+-])(?P<year>\d{4,})-(?P<month>\d{2})-"
@@ -1528,6 +1531,210 @@ def merge_catalog_payloads(
     return merged, base_hash
 
 
+def catalog_base_entity_contracts(
+    payloads: list[tuple[Path, dict]],
+    errors: list[str],
+) -> dict[str, dict]:
+    """Capture immutable base identity fields before overlays mutate the merge."""
+    contracts: dict[str, dict] = {}
+    for path, payload in payloads:
+        if payload.get("kind") == OVERLAY_KIND:
+            continue
+        for key in ENTITY_CATALOG_KEYS:
+            entities = payload.get(key)
+            if not isinstance(entities, list):
+                continue
+            for entity in entities:
+                if not isinstance(entity, dict):
+                    continue
+                entity_id = entity.get("id")
+                entity_type = entity.get("entity_type")
+                external_ids = entity.get("external_ids")
+                if (
+                    not isinstance(entity_id, str)
+                    or not isinstance(entity_type, str)
+                    or not isinstance(external_ids, dict)
+                ):
+                    continue
+                if entity_id in contracts:
+                    errors.append(
+                        f"{path.name}: duplicate base entity contract {entity_id!r}"
+                    )
+                    continue
+                contracts[entity_id] = {
+                    "entity_type": entity_type,
+                    "external_ids": dict(external_ids),
+                }
+    return contracts
+
+
+def validate_getty_ulan_identity_overlay(
+    path_name: str,
+    overlay: dict,
+    snapshot: dict,
+    crosswalk: dict,
+    base_entities: dict[str, dict],
+    errors: list[str],
+) -> None:
+    """Bind every Getty overlay field to an accepted snapshot projection."""
+    snapshot_id = snapshot["snapshot_id"]
+    crosswalk_snapshot_id = crosswalk["snapshot_id"]
+    base_catalog_sha256 = snapshot["base_catalog_sha256"]
+    overlay_identity = {
+        "base_catalog_sha256": base_catalog_sha256,
+        "crosswalk_snapshot_id": crosswalk_snapshot_id,
+        "generated_from": snapshot_id,
+    }
+    expected_header = {
+        "kind": OVERLAY_KIND,
+        "overlay_id": (
+            "getty-ulan-identity-"
+            f"{canonical_hash(overlay_identity)[:16]}"
+        ),
+        "source_id": "getty-ulan",
+        "generated_from": snapshot_id,
+        "crosswalk_snapshot_id": crosswalk_snapshot_id,
+        "generator": (
+            f"{GETTY_ULAN_OVERLAY_TRANSFORMER_ID}@"
+            f"{GETTY_ULAN_OVERLAY_TRANSFORMER_VERSION}"
+        ),
+        "transformer_id": GETTY_ULAN_OVERLAY_TRANSFORMER_ID,
+        "transformer_version": GETTY_ULAN_OVERLAY_TRANSFORMER_VERSION,
+        "base_catalog_sha256": base_catalog_sha256,
+    }
+    for key, expected in expected_header.items():
+        if overlay.get(key) != expected:
+            errors.append(
+                f"{path_name}: Getty overlay {key} is not bound to its snapshot"
+            )
+
+    crosswalk_by_ulan = {
+        row["ulan_subject_id"]: row
+        for row in crosswalk["records"]
+    }
+    selected_by_ulan = {
+        row["ulan_id"]: row
+        for row in crosswalk["selection"]["selected"]
+    }
+    discovery_by_qid = {
+        row["qid"]: row
+        for row in crosswalk["selection"]["discovery"]
+    }
+    expected_patches: list[dict] = []
+    expected_claims: list[dict] = []
+    for ulan_id in sorted(snapshot["records"], key=int):
+        wrapper = snapshot["records"][ulan_id]
+        projection = wrapper["projection"]
+        row = crosswalk_by_ulan.get(ulan_id)
+        selected = selected_by_ulan.get(ulan_id)
+        if row is None or selected is None:
+            errors.append(
+                f"{path_name}: accepted Getty ULAN {ulan_id} lacks its crosswalk row"
+            )
+            continue
+        entity_id = row["entity_id"]
+        qid = row["wikidata_qid"]
+        base_entity = base_entities.get(entity_id)
+        discovery = discovery_by_qid.get(qid)
+        statement_index = selected["statement_index"]
+        if (
+            base_entity is None
+            or discovery is None
+            or not isinstance(statement_index, int)
+            or statement_index < 0
+            or statement_index >= len(discovery["statements"])
+        ):
+            errors.append(
+                f"{path_name}: accepted Getty ULAN {ulan_id} lacks base evidence"
+            )
+            continue
+        statement = discovery["statements"][statement_index]
+        base_external_ids = base_entity["external_ids"]
+        if (
+            base_entity["entity_type"] != row["entity_type"]
+            or base_external_ids.get("wikidata") != qid
+            or projection["entity_id"] != entity_id
+            or projection["entity_type"] != row["entity_type"]
+            or projection["wikidata_qid"] != qid
+            or projection["equivalent_qids"] != [qid]
+            or statement["value"] != ulan_id
+        ):
+            errors.append(
+                f"{path_name}: accepted Getty ULAN {ulan_id} identity chain differs"
+            )
+            continue
+        p245 = {
+            "property_id": "P245",
+            "value": statement["value"],
+            "rank": statement["rank"],
+            "statement_id": statement["statement_id"],
+            "statement_index": statement_index,
+            "native_field_path": statement["native_field_path"],
+        }
+        claim_id = f"claim-{entity_id}-ulan-{ulan_id}"
+        final_external_ids = {
+            **base_external_ids,
+            "ulan": ulan_id,
+        }
+        expected_patches.append(
+            {
+                "entity_id": entity_id,
+                "entity_type": row["entity_type"],
+                "assert_external_ids": {"wikidata": qid},
+                "add_external_ids": {"ulan": ulan_id},
+                "add_claim_ids": [claim_id],
+            }
+        )
+        expected_claims.append(
+            {
+                "id": claim_id,
+                "subject_id": entity_id,
+                "predicate": "field_external_ids",
+                "object": {"value": final_external_ids},
+                "qualifiers": {
+                    "namespace": "ulan",
+                    "identity_scope": GETTY_ULAN_IDENTITY_SCOPE,
+                    "crosswalk_snapshot_id": crosswalk_snapshot_id,
+                    "wikidata_qid": qid,
+                    "p245": p245,
+                },
+                "evidence": [
+                    {
+                        "source_id": "getty-ulan",
+                        "snapshot_id": snapshot_id,
+                        "native_record_id": projection["native_record_id"],
+                        "native_field_path": "/projection",
+                        "native_predicate": "ulan",
+                        "url": projection["canonical_uri"],
+                        "locator": projection["native_record_id"],
+                        "accessed": snapshot["accessed"],
+                        "support": "explicit",
+                        "extraction_method": "structured_mapping",
+                        "language": None,
+                        "rank": None,
+                        "qualifiers": [],
+                        "references": projection["source_uris"],
+                        "contributors": projection["contributor_uris"],
+                        "source_record_sha256": wrapper["projection_sha256"],
+                    }
+                ],
+                "verification_status": "candidate",
+                "confidence": 0.5,
+                "reviewed_by": None,
+                "reviewed_at": None,
+            }
+        )
+
+    if overlay.get("entity_patches") != expected_patches:
+        errors.append(
+            f"{path_name}: Getty overlay patches are not the exact accepted set"
+        )
+    if overlay.get("claims") != expected_claims:
+        errors.append(
+            f"{path_name}: Getty overlay claims are not exact snapshot projections"
+        )
+
+
 def validate_getty_ulan_identity_snapshot(
     snapshot: dict,
     entity_by_id: dict[str, dict],
@@ -1550,10 +1757,33 @@ def validate_getty_ulan_identity_snapshot(
     if snapshot_id != expected_snapshot_id:
         errors.append(f"{snapshot_id}: snapshot id does not bind its projection")
     records = snapshot["records"]
-    if len(records) != 24:
-        errors.append(f"{snapshot_id}: Getty ULAN pilot requires exactly 24 records")
+    selection = snapshot["selection"]
+    accepted_subject_ids = selection["accepted_subject_ids"]
+    rejections = selection["rejections"]
+    if len(records) != selection["record_count"]:
+        errors.append(f"{snapshot_id}: Getty accepted record_count mismatch")
     if list(records) != sorted(records, key=int):
         errors.append(f"{snapshot_id}: Getty ULAN records must use numeric order")
+    if accepted_subject_ids != sorted(records, key=int):
+        errors.append(
+            f"{snapshot_id}: accepted_subject_ids differ from accepted records"
+        )
+    rejected_subject_ids = [
+        rejection["subject_id"]
+        for rejection in rejections
+    ]
+    if rejected_subject_ids != sorted(rejected_subject_ids, key=int):
+        errors.append(f"{snapshot_id}: Getty rejections must use numeric order")
+    if (
+        set(accepted_subject_ids) & set(rejected_subject_ids)
+        or len(set(rejected_subject_ids)) != len(rejected_subject_ids)
+        or len(accepted_subject_ids) + len(rejected_subject_ids)
+        != selection["seed_count"]
+        or selection["seed_count"] != 24
+    ):
+        errors.append(
+            f"{snapshot_id}: Getty acceptance/rejection partition is invalid"
+        )
     entity_ids: set[str] = set()
     qids: set[str] = set()
     for ulan_id, wrapper in records.items():
@@ -1583,7 +1813,7 @@ def validate_getty_ulan_identity_snapshot(
             or entity.get("entity_type") != projection["entity_type"]
             or entity.get("external_ids", {}).get("wikidata") != qid
             or projection["type"] != expected_type
-            or qid not in projection["equivalent_qids"]
+            or projection["equivalent_qids"] != [qid]
         ):
             errors.append(
                 f"{snapshot_id}/{ulan_id}: Getty identity does not match base entity"
@@ -1604,6 +1834,57 @@ def validate_getty_ulan_identity_snapshot(
             projection_hash,
             expected_uri,
         )
+
+    for rejection in rejections:
+        ulan_id = rejection["subject_id"]
+        entity_id = rejection["entity_id"]
+        qid = rejection["expected_wikidata_qid"]
+        expected_uri = f"http://vocab.getty.edu/ulan/{ulan_id}"
+        expected_representation = f"https://vocab.getty.edu/ulan/{ulan_id}"
+        expected_native_id = f"ulan:{ulan_id}"
+        expected_type = (
+            "Person" if rejection["entity_type"] == "person" else "Group"
+        )
+        entity = entity_by_id.get(entity_id)
+        observed = rejection["observed_equivalent_qids"]
+        observed_is_canonical = (
+            isinstance(observed, list)
+            and all(
+                isinstance(value, str)
+                and re.fullmatch(r"Q[1-9][0-9]*", value)
+                for value in observed
+            )
+            and observed
+            == sorted(set(observed), key=lambda value: int(value[1:]))
+        )
+        invalid_reason = (
+            not observed_is_canonical
+        ) or (
+            rejection["reason"] == "missing_wikidata_equivalent"
+            and observed != []
+        ) or (
+            rejection["reason"] == "conflicting_wikidata_equivalent"
+            and (not observed or observed == [qid])
+        )
+        if (
+            rejection["canonical_uri"] != expected_uri
+            or rejection["representation_url"] != expected_representation
+            or rejection["native_record_id"] != expected_native_id
+            or rejection["type"] != expected_type
+            or entity is None
+            or entity.get("entity_type") != rejection["entity_type"]
+            or entity.get("external_ids", {}).get("wikidata") != qid
+            or invalid_reason
+        ):
+            errors.append(
+                f"{snapshot_id}/{ulan_id}: Getty rejection receipt is invalid"
+            )
+        if entity_id in entity_ids or qid in qids:
+            errors.append(
+                f"{snapshot_id}/{ulan_id}: Getty screening rows must be one-to-one"
+            )
+        entity_ids.add(entity_id)
+        qids.add(qid)
 
 
 def validate_wikidata_ulan_crosswalk_snapshot(
@@ -2677,6 +2958,10 @@ def main() -> int:
             key=lambda item: item.name.encode("utf-8"),
         )
     ] if CATALOG.exists() else []
+    base_entity_contract_by_id = catalog_base_entity_contracts(
+        catalog_payloads,
+        errors,
+    )
     merged_catalog, active_base_catalog_sha256 = merge_catalog_payloads(
         catalog_payloads,
         errors,
@@ -2725,10 +3010,22 @@ def main() -> int:
             for row in crosswalk["records"]
         }
         getty_records = snapshot.get("records", {})
-        if set(getty_records) != set(crosswalk_by_ulan):
+        rejections = snapshot.get("selection", {}).get("rejections", [])
+        rejected_by_ulan = {
+            row.get("subject_id"): row
+            for row in rejections
+            if isinstance(row, dict)
+        }
+        screened_ulans = set(getty_records) | set(rejected_by_ulan)
+        if (
+            screened_ulans != set(crosswalk_by_ulan)
+            or set(getty_records) & set(rejected_by_ulan)
+            or snapshot.get("selection", {}).get("seed_count")
+            != len(crosswalk_by_ulan)
+        ):
             errors.append(
-                f"{snapshot.get('snapshot_id')}: Getty and crosswalk ULAN "
-                "identifier sets differ"
+                f"{snapshot.get('snapshot_id')}: Getty screening partition and "
+                "crosswalk ULAN identifiers differ"
             )
             continue
         for ulan_id, wrapper in getty_records.items():
@@ -2741,6 +3038,18 @@ def main() -> int:
             ):
                 errors.append(
                     f"{snapshot.get('snapshot_id')}/{ulan_id}: Getty projection "
+                    "differs from its crosswalk row"
+                )
+        for ulan_id, rejection in rejected_by_ulan.items():
+            row = crosswalk_by_ulan[ulan_id]
+            if (
+                rejection["entity_id"] != row["entity_id"]
+                or rejection["entity_type"] != row["entity_type"]
+                or rejection["expected_wikidata_qid"]
+                != row["wikidata_qid"]
+            ):
+                errors.append(
+                    f"{snapshot.get('snapshot_id')}/{ulan_id}: Getty rejection "
                     "differs from its crosswalk row"
                 )
 
@@ -2795,6 +3104,19 @@ def main() -> int:
                 errors.append(
                     f"{path.name}: crosswalk snapshot must be Wikidata "
                     "authority-only data"
+                )
+            if (
+                source_id == "getty-ulan"
+                and snapshot is not None
+                and crosswalk is not None
+            ):
+                validate_getty_ulan_identity_overlay(
+                    path.name,
+                    shard,
+                    snapshot,
+                    crosswalk,
+                    base_entity_contract_by_id,
+                    errors,
                 )
         else:
             if (

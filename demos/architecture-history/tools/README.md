@@ -83,6 +83,10 @@ cannot support public claims by itself.
 The Getty fetcher refuses an uncommitted or modified crosswalk. It retains only
 the canonical ULAN URI, exact Wikidata equivalent, entity type, retrieval
 receipt, and Getty contributor/source URIs; display names, descriptions,
-relationships, and raw response bodies are discarded. The offline importer can
-only add candidate ULAN external identifiers to existing entities. It cannot
-create people, practices, works, credits, or lineage relations.
+relationships, and raw response bodies are discarded. Only an exact reciprocal
+Getty → Wikidata link is accepted; missing or conflicting backlinks remain
+screening rejection receipts and never produce public claims. The offline
+importer can only add candidate ULAN external identifiers to existing entities.
+It cannot create people, practices, works, credits, or lineage relations. The
+validator reconstructs the complete expected overlay from the accepted snapshot
+records and rejects any changed identity, claim, attribution URI, or ordering.
