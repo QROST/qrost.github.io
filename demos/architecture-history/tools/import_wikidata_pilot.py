@@ -6,6 +6,7 @@ from __future__ import annotations
 import argparse
 import json
 import os
+import re
 import tempfile
 from collections import defaultdict
 from pathlib import Path
@@ -23,9 +24,26 @@ CONFIG_PATH = (
 CATALOG_DIR = ROOT / "assets" / "data" / "catalog"
 ADAPTER_ID = "wikidata-hydration-pilot"
 ADAPTER_VERSION = "0.1.0"
+TRANSFORMER_ID = "wikidata-hydration-to-architecture-history"
+TRANSFORMER_VERSION = "0.2.0"
+PERIOD_RULE_ID = "wikidata-p571-best-rank-period-v1"
 ARCHITECT_QID = "Q42973"
 HUMAN_QID = "Q5"
 ARCHITECTURE_FIRM_QID = "Q4387609"
+SUPPORTED_PERIODS = (
+    ("before_1000", None, 1000),
+    ("1000_1499", 1000, 1500),
+    ("1500_1799", 1500, 1800),
+    ("1800_1918", 1800, 1919),
+    ("1919_1945", 1919, 1946),
+    ("1946_1979", 1946, 1980),
+    ("1980_1999", 1980, 2000),
+    ("2000_present", 2000, None),
+)
+SUPPORTED_CALENDAR_MODELS = (
+    "http://www.wikidata.org/entity/Q1985727",
+    "http://www.wikidata.org/entity/Q1985786",
+)
 UNKNOWN_DATE = {
     "earliest": None,
     "latest": None,
@@ -51,6 +69,10 @@ WD_TIME_PRECISION = {
     13: "day",      # minute
     14: "day",      # second
 }
+WD_TIME_PATTERN = re.compile(
+    r"^(?P<sign>[+-])(?P<year>\d{4,})-(?P<month>\d{2})-"
+    r"(?P<day>\d{2})T00:00:00Z$"
+)
 
 
 def time_value(record: dict, property_id: str) -> dict:
@@ -112,6 +134,232 @@ def time_value(record: dict, property_id: str) -> dict:
             "precision": precision,
         }
     return dict(UNKNOWN_DATE)
+
+
+def best_rank_statement_rows(
+    record: dict,
+    property_id: str,
+) -> Optional[list[tuple[int, dict]]]:
+    """Return preferred statements, or normal statements when no preferred exists."""
+    rows = [
+        (index, statement)
+        for index, statement in enumerate(
+            record.get("claims", {}).get(property_id, [])
+        )
+        if statement.get("rank") != "deprecated"
+    ]
+    if any(
+        statement.get("rank") not in {"preferred", "normal"}
+        for _, statement in rows
+    ):
+        return None
+    preferred = [
+        (index, statement)
+        for index, statement in rows
+        if statement.get("rank") == "preferred"
+    ]
+    if preferred:
+        return preferred
+    return [
+        (index, statement)
+        for index, statement in rows
+        if statement.get("rank") == "normal"
+    ]
+
+
+def period_for_year(year: int, periods: list[dict]) -> Optional[str]:
+    matches = []
+    for period in periods:
+        start = period["year_start_inclusive"]
+        end = period["year_end_exclusive"]
+        if (start is None or year >= start) and (end is None or year < end):
+            matches.append(period["id"])
+    return matches[0] if len(matches) == 1 else None
+
+
+def is_plain_int(value: Any) -> bool:
+    return isinstance(value, int) and not isinstance(value, bool)
+
+
+def calendar_day_is_valid(
+    year: int,
+    month: int,
+    day: int,
+    calendar_model: str,
+) -> bool:
+    if not 1 <= month <= 12:
+        return False
+    if calendar_model.endswith("/Q1985786"):
+        leap_year = year % 4 == 0
+    else:
+        leap_year = year % 4 == 0 and (
+            year % 100 != 0 or year % 400 == 0
+        )
+    month_lengths = [
+        31,
+        29 if leap_year else 28,
+        31,
+        30,
+        31,
+        30,
+        31,
+        31,
+        30,
+        31,
+        30,
+        31,
+    ]
+    return 1 <= day <= month_lengths[month - 1]
+
+
+def supported_wikidata_year(
+    statement: dict,
+    rule: dict,
+) -> Optional[int]:
+    qualifiers = statement.get("qualifiers", {})
+    if (
+        rule["qualifier_policy"] == "none_allowed"
+        and (not isinstance(qualifiers, dict) or qualifiers)
+    ):
+        return None
+    snak = statement.get("mainsnak", {})
+    if snak.get("snaktype") != "value":
+        return None
+    datavalue = snak.get("datavalue", {})
+    if datavalue.get("type") != "time":
+        return None
+    value = datavalue.get("value")
+    if not isinstance(value, dict):
+        return None
+    precision = value.get("precision")
+    if (
+        not is_plain_int(precision)
+        or precision not in rule["accepted_precisions"]
+    ):
+        return None
+    if value.get("calendarmodel") not in rule["accepted_calendar_models"]:
+        return None
+    before = value.get("before")
+    after = value.get("after")
+    timezone = value.get("timezone")
+    if not is_plain_int(before) or before != rule["required_before"]:
+        return None
+    if not is_plain_int(after) or after != rule["required_after"]:
+        return None
+    if not is_plain_int(timezone) or timezone != 0:
+        return None
+    raw_time = value.get("time")
+    match = (
+        WD_TIME_PATTERN.fullmatch(raw_time)
+        if isinstance(raw_time, str)
+        else None
+    )
+    if match is None:
+        return None
+    year = int(match.group("year"))
+    if match.group("sign") == "-":
+        year = -year
+    if year == 0 or year > rule["latest_year_inclusive"]:
+        return None
+    month = int(match.group("month"))
+    day = int(match.group("day"))
+    if precision == 9 and (month != 0 or day != 0):
+        return None
+    if precision == 10 and (not 1 <= month <= 12 or day != 0):
+        return None
+    if precision == 11 and not calendar_day_is_valid(
+        year,
+        month,
+        day,
+        value["calendarmodel"],
+    ):
+        return None
+    return year
+
+
+def derive_period_from_inception(
+    record: dict,
+    config: dict,
+) -> Optional[dict]:
+    rule = config["period_derivation"]
+    rows = best_rank_statement_rows(record, rule["basis_property"])
+    if not rows:
+        return None
+    derived_rows = []
+    for index, statement in rows:
+        year = supported_wikidata_year(statement, rule)
+        if year is None:
+            return None
+        period = period_for_year(
+            year,
+            config["coverage_grid"]["periods"],
+        )
+        if period is None:
+            return None
+        derived_rows.append(
+            {
+                "index": index,
+                "period": period,
+                "statement": statement,
+                "year": year,
+            }
+        )
+    periods = {row["period"] for row in derived_rows}
+    if len(periods) != 1:
+        return None
+    return {
+        "period": next(iter(periods)),
+        "rows": derived_rows,
+    }
+
+
+def validate_transform_config(config: dict) -> None:
+    transformer = config.get("transformer")
+    if transformer != {
+        "id": TRANSFORMER_ID,
+        "version": TRANSFORMER_VERSION,
+    }:
+        raise ValueError("coverage config transformer does not match importer")
+
+    rule = config.get("period_derivation")
+    if not isinstance(rule, dict):
+        raise ValueError("coverage config lacks a period derivation rule")
+    expected_rule = {
+        "rule_id": PERIOD_RULE_ID,
+        "basis_property": "P571",
+        "accepted_precisions": [9, 10, 11],
+        "accepted_calendar_models": list(SUPPORTED_CALENDAR_MODELS),
+        "latest_year_inclusive": 2026,
+        "qualifier_policy": "none_allowed",
+        "required_before": 0,
+        "required_after": 0,
+        "unsupported_result": "unknown",
+        "official_opening_usage": "source_claim_only",
+    }
+    if rule != expected_rule:
+        raise ValueError("coverage config period derivation rule is unsupported")
+
+    grid = config.get("coverage_grid")
+    if not isinstance(grid, dict):
+        raise ValueError("coverage config lacks a coverage grid")
+    periods = grid.get("periods")
+    expected_periods = [
+        {
+            "id": period_id,
+            "year_start_inclusive": start,
+            "year_end_exclusive": end,
+        }
+        for period_id, start, end in SUPPORTED_PERIODS
+    ]
+    if periods != expected_periods:
+        raise ValueError("coverage config period partition is unsupported")
+    regions = grid.get("regions")
+    if not isinstance(regions, list) or not regions:
+        raise ValueError("coverage config regions must be a non-empty list")
+    if len(regions) != len(set(regions)):
+        raise ValueError("coverage config regions must be unique")
+    if grid.get("cell_count") != len(periods) * len(regions):
+        raise ValueError("coverage config cell_count does not match its grid")
 
 
 def load_json(path: Path) -> Any:
@@ -225,6 +473,7 @@ def statement_qualifiers(statement: dict) -> list[dict]:
 
 class CatalogBuilder:
     def __init__(self, snapshot: dict, config: dict):
+        validate_transform_config(config)
         self.snapshot = snapshot
         self.config = config
         self.snapshot_id = snapshot["snapshot_id"]
@@ -264,6 +513,7 @@ class CatalogBuilder:
         locator: str,
         language: Optional[str] = None,
         statement: Optional[dict] = None,
+        support: str = "explicit",
     ) -> dict:
         wrapper = self.entities[qid]
         return {
@@ -289,7 +539,7 @@ class CatalogBuilder:
             "snapshot_id": self.snapshot_id,
             "source_id": "wikidata",
             "source_record_sha256": wrapper["record_sha256"],
-            "support": "explicit",
+            "support": support,
             "url": wrapper["pinned_url"],
         }
 
@@ -876,6 +1126,46 @@ class CatalogBuilder:
                 }
             )
 
+        period = "unknown"
+        derived_period = derive_period_from_inception(record, self.config)
+        if derived_period is not None:
+            period = derived_period["period"]
+            period_rule = self.config["period_derivation"]
+            period_claim_id = f"claim-wd-{qid_slug(qid)}-period"
+            period_evidence = [
+                self.evidence(
+                    qid,
+                    path=f"/claims/P571/{row['index']}",
+                    predicate="P571",
+                    locator=(
+                        f"{qid}/P571/"
+                        f"{row['statement'].get('id', row['index'])}"
+                    ),
+                    statement=row["statement"],
+                    support="indirect",
+                )
+                for row in derived_period["rows"]
+            ]
+            claim_ids.append(
+                self.add_claim(
+                    claim_id=period_claim_id,
+                    subject_id=work_id,
+                    predicate="field_period",
+                    object_value={"value": period},
+                    qualifiers={
+                        "basis_property": period_rule["basis_property"],
+                        "coverage_config_version": self.config["config_version"],
+                        "derivation_rule_id": period_rule["rule_id"],
+                        "source_years": [
+                            row["year"]
+                            for row in derived_period["rows"]
+                        ],
+                    },
+                    evidence=period_evidence,
+                    confidence=0.55,
+                )
+            )
+
         claim_ids.extend(self.source_date_claims(qid, work_id))
         self.works[work_id] = {
             "aliases_en": aliases(record, ("en",)),
@@ -898,7 +1188,7 @@ class CatalogBuilder:
             "name_en": english,
             "name_native": None,
             "name_zh": chinese,
-            "period": "unknown",
+            "period": period,
             "place_id": place_id,
             "region": authority["region"],
             "significance_en": [],
@@ -1017,12 +1307,14 @@ class CatalogBuilder:
         return {
             "claims": sorted(self.claims.values(), key=lambda item: item["id"]),
             "generated_from": self.snapshot_id,
-            "generator": f"{ADAPTER_ID}@{ADAPTER_VERSION}",
+            "generator": f"{TRANSFORMER_ID}@{TRANSFORMER_VERSION}",
             "people": sorted(self.people.values(), key=lambda item: item["id"]),
             "places": sorted(self.places.values(), key=lambda item: item["id"]),
             "practices": sorted(self.practices.values(), key=lambda item: item["id"]),
             "relations": sorted(self.relations.values(), key=lambda item: item["id"]),
             "source_id": "wikidata",
+            "transformer_id": TRANSFORMER_ID,
+            "transformer_version": TRANSFORMER_VERSION,
             "works": sorted(self.works.values(), key=lambda item: item["id"]),
         }
 

@@ -1,6 +1,25 @@
 {
   "config_kind": "planned_coverage_frame",
-  "config_version": "0.1.0",
+  "config_version": "0.2.0",
+  "transformer": {
+    "id": "wikidata-hydration-to-architecture-history",
+    "version": "0.2.0"
+  },
+  "period_derivation": {
+    "rule_id": "wikidata-p571-best-rank-period-v1",
+    "basis_property": "P571",
+    "accepted_precisions": [9, 10, 11],
+    "accepted_calendar_models": [
+      "http://www.wikidata.org/entity/Q1985727",
+      "http://www.wikidata.org/entity/Q1985786"
+    ],
+    "latest_year_inclusive": 2026,
+    "qualifier_policy": "none_allowed",
+    "required_before": 0,
+    "required_after": 0,
+    "unsupported_result": "unknown",
+    "official_opening_usage": "source_claim_only"
+  },
   "coverage_grid": {
     "cell_count": 72,
     "initial_status": "not_run",

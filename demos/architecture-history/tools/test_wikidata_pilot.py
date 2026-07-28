@@ -26,6 +26,55 @@ def load_json(path: Path):
         return json.load(handle)
 
 
+def wikidata_time_statement(
+    year: int,
+    *,
+    precision: int = 9,
+    rank: str = "normal",
+    month: int | None = None,
+    day: int | None = None,
+    calendar_model: str = importer.SUPPORTED_CALENDAR_MODELS[0],
+    before: int = 0,
+    after: int = 0,
+    timezone: int = 0,
+    snaktype: str = "value",
+    raw_time: str | None = None,
+    qualifiers: dict | None = None,
+) -> dict:
+    statement = {
+        "id": f"fixture-{year}-{precision}-{rank}",
+        "rank": rank,
+        "mainsnak": {
+            "snaktype": snaktype,
+        },
+    }
+    if snaktype != "value":
+        return statement
+    if month is None:
+        month = 0 if precision == 9 else 1
+    if day is None:
+        day = 1 if precision == 11 else 0
+    if raw_time is None:
+        sign = "+" if year >= 0 else "-"
+        raw_time = (
+            f"{sign}{abs(year):04d}-{month:02d}-{day:02d}T00:00:00Z"
+        )
+    statement["mainsnak"]["datavalue"] = {
+        "type": "time",
+        "value": {
+            "after": after,
+            "before": before,
+            "calendarmodel": calendar_model,
+            "precision": precision,
+            "time": raw_time,
+            "timezone": timezone,
+        },
+    }
+    if qualifiers is not None:
+        statement["qualifiers"] = qualifiers
+    return statement
+
+
 class WikidataPilotTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
@@ -64,6 +113,7 @@ class WikidataPilotTests(unittest.TestCase):
 
     def test_seed_set_and_coverage_grid_are_fixed(self):
         self.assertEqual(self.snapshot["seeds"], self.seed_file["seeds"])
+        self.assertEqual(self.snapshot["queries"], [])
         self.assertEqual(len(self.snapshot["seeds"]), len(self.catalog["works"]))
         self.assertGreaterEqual(len(self.snapshot["seeds"]), 500)
         self.assertEqual(
@@ -76,6 +126,144 @@ class WikidataPilotTests(unittest.TestCase):
             * len(self.config["coverage_grid"]["periods"]),
         )
         self.assertEqual(self.config["coverage_grid"]["cell_count"], 72)
+
+    def test_period_boundaries_are_total_and_non_overlapping(self):
+        cases = {
+            -1: "before_1000",
+            999: "before_1000",
+            1000: "1000_1499",
+            1499: "1000_1499",
+            1500: "1500_1799",
+            1799: "1500_1799",
+            1800: "1800_1918",
+            1918: "1800_1918",
+            1919: "1919_1945",
+            1945: "1919_1945",
+            1946: "1946_1979",
+            1979: "1946_1979",
+            1980: "1980_1999",
+            1999: "1980_1999",
+            2000: "2000_present",
+            2026: "2000_present",
+        }
+        for year, expected in cases.items():
+            with self.subTest(year=year):
+                result = importer.derive_period_from_inception(
+                    {
+                        "claims": {
+                            "P571": [wikidata_time_statement(year)],
+                        }
+                    },
+                    self.config,
+                )
+                self.assertIsNotNone(result)
+                self.assertEqual(result["period"], expected)
+
+    def test_period_derivation_uses_best_rank_only(self):
+        result = importer.derive_period_from_inception(
+            {
+                "claims": {
+                    "P571": [
+                        wikidata_time_statement(1800, rank="normal"),
+                        wikidata_time_statement(2001, rank="preferred"),
+                        wikidata_time_statement(1500, rank="deprecated"),
+                    ],
+                }
+            },
+            self.config,
+        )
+        self.assertIsNotNone(result)
+        self.assertEqual(result["period"], "2000_present")
+        self.assertEqual([row["index"] for row in result["rows"]], [1])
+
+    def test_period_derivation_requires_all_best_rank_values_to_agree(self):
+        agreeing = importer.derive_period_from_inception(
+            {
+                "claims": {
+                    "P571": [
+                        wikidata_time_statement(1950),
+                        wikidata_time_statement(1979),
+                    ],
+                }
+            },
+            self.config,
+        )
+        self.assertIsNotNone(agreeing)
+        self.assertEqual(agreeing["period"], "1946_1979")
+
+        conflicting = importer.derive_period_from_inception(
+            {
+                "claims": {
+                    "P571": [
+                        wikidata_time_statement(1979),
+                        wikidata_time_statement(1980),
+                    ],
+                }
+            },
+            self.config,
+        )
+        self.assertIsNone(conflicting)
+
+    def test_unsupported_time_semantics_fail_closed(self):
+        unsupported = {
+            "decade precision": wikidata_time_statement(1900, precision=8),
+            "unsupported calendar": wikidata_time_statement(
+                1900,
+                calendar_model="http://www.wikidata.org/entity/Q999999",
+            ),
+            "before uncertainty": wikidata_time_statement(1900, before=1),
+            "after uncertainty": wikidata_time_statement(1900, after=1),
+            "nonzero timezone": wikidata_time_statement(1900, timezone=1),
+            "novalue": wikidata_time_statement(1900, snaktype="novalue"),
+            "malformed timestamp": wikidata_time_statement(
+                1900,
+                raw_time="+1900-01-01",
+            ),
+            "year zero": wikidata_time_statement(0),
+            "after data cutoff": wikidata_time_statement(2027),
+            "invalid day": wikidata_time_statement(
+                1900,
+                precision=11,
+                month=2,
+                day=29,
+            ),
+            "unsupported rank": wikidata_time_statement(
+                1900,
+                rank="some-new-rank",
+            ),
+            "qualified statement": wikidata_time_statement(
+                1900,
+                qualifiers={
+                    "P1480": [
+                        {
+                            "snaktype": "value",
+                            "datavalue": {
+                                "type": "wikibase-entityid",
+                                "value": {"id": "Q5727902"},
+                            },
+                        }
+                    ],
+                },
+            ),
+        }
+        for label, statement in unsupported.items():
+            with self.subTest(label=label):
+                result = importer.derive_period_from_inception(
+                    {"claims": {"P571": [statement]}},
+                    self.config,
+                )
+                self.assertIsNone(result)
+
+    def test_official_opening_alone_never_derives_period(self):
+        result = importer.derive_period_from_inception(
+            {
+                "claims": {
+                    "P1619": [wikidata_time_statement(2000)],
+                }
+            },
+            self.config,
+        )
+        self.assertIsNone(result)
 
     def test_every_entity_is_revision_pinned(self):
         for qid, wrapper in self.snapshot["entities"].items():
@@ -132,6 +320,104 @@ class WikidataPilotTests(unittest.TestCase):
             <= {"source_inception", "source_official_opening"}
         )
         self.assertIn("source_inception", source_date_claims)
+
+    def test_derived_periods_have_pinned_indirect_provenance(self):
+        self.assertEqual(
+            self.catalog["transformer_id"],
+            self.config["transformer"]["id"],
+        )
+        self.assertEqual(
+            self.catalog["transformer_version"],
+            self.config["transformer"]["version"],
+        )
+        self.assertEqual(
+            self.catalog["generator"],
+            (
+                f"{self.config['transformer']['id']}@"
+                f"{self.config['transformer']['version']}"
+            ),
+        )
+        claims = {
+            claim["id"]: claim
+            for claim in self.catalog["claims"]
+        }
+        known_periods = 0
+        for work in self.catalog["works"]:
+            work_qid = work["external_ids"]["wikidata"]
+            record = self.snapshot["entities"][work_qid]["record"]
+            derived = importer.derive_period_from_inception(
+                record,
+                self.config,
+            )
+            period_claims = [
+                claims[claim_id]
+                for claim_id in work["claim_ids"]
+                if claims[claim_id]["predicate"] == "field_period"
+            ]
+            if work["period"] == "unknown":
+                self.assertEqual(period_claims, [])
+                self.assertIsNone(derived)
+                continue
+            known_periods += 1
+            self.assertIsNotNone(derived)
+            self.assertEqual(derived["period"], work["period"])
+            self.assertEqual(len(period_claims), 1)
+            claim = period_claims[0]
+            self.assertEqual(claim["object"]["value"], work["period"])
+            self.assertEqual(
+                claim["qualifiers"]["basis_property"],
+                "P571",
+            )
+            self.assertEqual(
+                claim["qualifiers"]["derivation_rule_id"],
+                self.config["period_derivation"]["rule_id"],
+            )
+            self.assertEqual(
+                claim["qualifiers"]["coverage_config_version"],
+                self.config["config_version"],
+            )
+            self.assertEqual(
+                len(claim["evidence"]),
+                len(claim["qualifiers"]["source_years"]),
+            )
+            self.assertEqual(
+                claim["qualifiers"]["source_years"],
+                [row["year"] for row in derived["rows"]],
+            )
+            self.assertEqual(
+                [
+                    evidence["native_field_path"]
+                    for evidence in claim["evidence"]
+                ],
+                [
+                    f"/claims/P571/{row['index']}"
+                    for row in derived["rows"]
+                ],
+            )
+            for evidence, row in zip(claim["evidence"], derived["rows"]):
+                self.assertEqual(evidence["support"], "indirect")
+                self.assertEqual(evidence["native_predicate"], "P571")
+                self.assertRegex(
+                    evidence["native_field_path"],
+                    r"^/claims/P571/\d+$",
+                )
+                self.assertEqual(
+                    evidence["rank"],
+                    row["statement"].get("rank"),
+                )
+                self.assertEqual(
+                    evidence["qualifiers"],
+                    importer.statement_qualifiers(row["statement"]),
+                )
+                self.assertEqual(
+                    evidence["references"],
+                    row["statement"].get("references", []),
+                )
+        # The pinned fixture currently yields 293 conservative periods after
+        # rejecting every qualified P571 statement. Keep a regression floor
+        # without turning the fixture census into a universal data promise.
+        self.assertGreaterEqual(known_periods, 275)
+        self.assertLess(known_periods, len(self.catalog["works"]))
 
     def test_raw_lineage_edges_never_become_mentorship(self):
         self.assertTrue(self.catalog["relations"])

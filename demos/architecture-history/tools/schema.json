@@ -127,12 +127,22 @@
     "authorityProfile": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["names", "identity", "relationships", "work_credits", "coverage"],
+      "required": [
+        "names",
+        "identity",
+        "dates",
+        "relationships",
+        "work_credits",
+        "coverage"
+      ],
       "properties": {
         "names": {
           "enum": ["none", "coverage_only", "candidate", "strong_candidate", "claim_evidence"]
         },
         "identity": {
+          "enum": ["none", "coverage_only", "candidate", "strong_candidate", "claim_evidence"]
+        },
+        "dates": {
           "enum": ["none", "coverage_only", "candidate", "strong_candidate", "claim_evidence"]
         },
         "relationships": {
@@ -834,6 +844,8 @@
         "source_id",
         "generated_from",
         "generator",
+        "transformer_id",
+        "transformer_version",
         "people",
         "practices",
         "places",
@@ -845,6 +857,11 @@
         "source_id": {"$ref": "#/$defs/id"},
         "generated_from": {"$ref": "#/$defs/id"},
         "generator": {"type": "string", "minLength": 1},
+        "transformer_id": {"$ref": "#/$defs/id"},
+        "transformer_version": {
+          "type": "string",
+          "pattern": "^\\d+\\.\\d+\\.\\d+$"
+        },
         "people": {
           "type": "array",
           "items": {"$ref": "#/$defs/person"}

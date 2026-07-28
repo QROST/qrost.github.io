@@ -18,6 +18,7 @@
       query: '',
       entityType: 'all',
       region: 'all',
+      period: 'all',
       verification: 'all',
       workTypeMapping: 'all',
       hasChinese: false,
@@ -128,6 +129,9 @@
       return false;
     }
     if (filters.region !== 'all' && entity.region !== filters.region) return false;
+    if (filters.period !== 'all') {
+      if (entity.entity_type !== 'work' || entity.period !== filters.period) return false;
+    }
     if (filters.verification !== 'all' && entity.verification_status !== filters.verification) return false;
     if (filters.workTypeMapping !== 'all') {
       if (entity.entity_type !== 'work' || entity.work_type_mapping_status !== filters.workTypeMapping) return false;
@@ -234,6 +238,30 @@
       select.appendChild(option);
     });
     select.value = previous;
+  }
+
+  function renderPeriodOptions() {
+    const select = $('#period-filter');
+    if (!select) return;
+    const previous = state.filters.period;
+    const periods = state.data.coverageConfig.coverage_grid.periods.map(function (period) {
+      return period.id;
+    });
+    if (state.data.works.some(function (work) { return work.period === 'unknown'; })) {
+      periods.push('unknown');
+    }
+    select.replaceChildren();
+    const all = document.createElement('option');
+    all.value = 'all';
+    all.textContent = i18n.t('periodAll');
+    select.appendChild(all);
+    periods.forEach(function (period) {
+      const option = document.createElement('option');
+      option.value = period;
+      option.textContent = i18n.enumLabel('period', period);
+      select.appendChild(option);
+    });
+    select.value = periods.includes(previous) ? previous : 'all';
   }
 
   function contextFor(entity) {
@@ -693,6 +721,7 @@
     if (entity.entity_type === 'work') {
       const place = state.entitiesById[entity.place_id];
       facts.push(detailFact(i18n.t('detailPlace'), place ? i18n.name(place) : i18n.t('noData')));
+      facts.push(detailFact(i18n.t('detailPeriod'), i18n.enumLabel('period', entity.period)));
       facts.push(detailFact(i18n.t('detailWorkType'), i18n.enumLabel('work_type', entity.work_type)));
       facts.push(detailFact(i18n.t('detailTypeMapping'), i18n.enumLabel('work_type_mapping_status', entity.work_type_mapping_status)));
       facts.push(detailFact(
@@ -852,6 +881,7 @@
       query: '',
       entityType: 'all',
       region: 'all',
+      period: 'all',
       verification: 'all',
       workTypeMapping: 'all',
       hasChinese: false,
@@ -860,6 +890,7 @@
     };
     $('#catalog-search').value = '';
     $('#region-filter').value = 'all';
+    $('#period-filter').value = 'all';
     $('#status-filter').value = 'all';
     $('#work-type-filter').value = 'all';
     $('#has-zh-filter').checked = false;
@@ -882,6 +913,11 @@
     });
     $('#region-filter').addEventListener('change', function (event) {
       state.filters.region = event.target.value;
+      renderCatalog();
+      renderMap();
+    });
+    $('#period-filter').addEventListener('change', function (event) {
+      state.filters.period = event.target.value;
       renderCatalog();
       renderMap();
     });
@@ -970,6 +1006,7 @@
   function renderAll() {
     renderMetrics();
     renderRegionOptions();
+    renderPeriodOptions();
     renderCatalog();
     renderMap();
     renderLineage();

@@ -3,6 +3,7 @@
 
 from __future__ import annotations
 
+import copy
 import importlib.util
 import hashlib
 import json
@@ -763,6 +764,228 @@ class DataContractTests(unittest.TestCase):
             errors,
         )
 
+    def test_coverage_config_and_period_partition_validate(self):
+        config = json.loads(
+            (
+                ROOT
+                / "assets"
+                / "data"
+                / "methodology"
+                / "wikidata-coverage-config.json"
+            ).read_text(encoding="utf-8")
+        )
+        schema = json.loads(
+            (ROOT / "tools" / "schema.json").read_text(encoding="utf-8")
+        )
+        allowed_periods = set(schema["$defs"]["period"]["enum"]) - {"unknown"}
+        errors: list[str] = []
+        validator.validate_coverage_config(config, allowed_periods, errors)
+        self.assertEqual(errors, [])
+        self.assertEqual(config["config_version"], "0.2.0")
+        self.assertEqual(
+            config["period_derivation"]["latest_year_inclusive"],
+            2026,
+        )
+        self.assertEqual(
+            config["period_derivation"]["qualifier_policy"],
+            "none_allowed",
+        )
+
+        malformed = copy.deepcopy(config)
+        malformed["coverage_grid"]["periods"][1]["year_start_inclusive"] = 1001
+        errors = []
+        validator.validate_coverage_config(
+            malformed,
+            allowed_periods,
+            errors,
+        )
+        self.assertTrue(
+            any("contiguous partition" in error for error in errors),
+            errors,
+        )
+
+    def test_period_claim_contract_binds_rule_and_indirect_evidence(self):
+        config = json.loads(
+            (
+                ROOT
+                / "assets"
+                / "data"
+                / "methodology"
+                / "wikidata-coverage-config.json"
+            ).read_text(encoding="utf-8")
+        )
+        statement = {
+            "id": "Q1$period",
+            "rank": "normal",
+            "mainsnak": {
+                "snaktype": "value",
+                "datavalue": {
+                    "type": "time",
+                    "value": {
+                        "after": 0,
+                        "before": 0,
+                        "calendarmodel": (
+                            "http://www.wikidata.org/entity/Q1985727"
+                        ),
+                        "precision": 9,
+                        "time": "+1950-00-00T00:00:00Z",
+                        "timezone": 0,
+                    },
+                },
+            },
+        }
+        snapshot_by_id = {
+            "fixture-snapshot": {
+                "entities": {
+                    "Q1": {
+                        "lastrevid": 1,
+                        "record": {
+                            "claims": {
+                                "P571": [statement],
+                            },
+                        },
+                    },
+                },
+            },
+        }
+        claim = {
+            "id": "claim-period",
+            "predicate": "field_period",
+            "object": {"value": "1946_1979"},
+            "qualifiers": {
+                "basis_property": "P571",
+                "coverage_config_version": config["config_version"],
+                "derivation_rule_id": config["period_derivation"]["rule_id"],
+                "source_years": [1950],
+            },
+            "evidence": [
+                {
+                    "snapshot_id": "fixture-snapshot",
+                    "native_record_id": "Q1@1",
+                    "support": "indirect",
+                    "source_id": "wikidata",
+                    "native_predicate": "P571",
+                    "native_field_path": "/claims/P571/0",
+                    "rank": "normal",
+                    "qualifiers": [],
+                    "references": [],
+                }
+            ],
+        }
+        work = {
+            "id": "work-a",
+            "period": "1946_1979",
+            "claim_ids": ["claim-period"],
+            "external_ids": {"wikidata": "Q1"},
+        }
+        errors: list[str] = []
+        validator.validate_work_period_claim(
+            work,
+            {"claim-period": claim},
+            config,
+            snapshot_by_id,
+            errors,
+        )
+        self.assertEqual(errors, [])
+
+        explicit_claim = copy.deepcopy(claim)
+        explicit_claim["evidence"][0]["support"] = "explicit"
+        errors = []
+        validator.validate_work_period_claim(
+            work,
+            {"claim-period": explicit_claim},
+            config,
+            snapshot_by_id,
+            errors,
+        )
+        self.assertIn(
+            "work-a: field_period evidence must be indirect",
+            errors,
+        )
+
+        unknown_work = dict(work, period="unknown")
+        errors = []
+        validator.validate_work_period_claim(
+            unknown_work,
+            {"claim-period": claim},
+            config,
+            snapshot_by_id,
+            errors,
+        )
+        self.assertIn(
+            "work-a: unknown period cannot publish a field_period claim",
+            errors,
+        )
+
+        stale_year_claim = copy.deepcopy(claim)
+        stale_year_claim["qualifiers"]["source_years"] = [1951]
+        errors = []
+        validator.validate_work_period_claim(
+            work,
+            {"claim-period": stale_year_claim},
+            config,
+            snapshot_by_id,
+            errors,
+        )
+        self.assertIn(
+            "work-a: field_period source years do not match pinned P571 values",
+            errors,
+        )
+
+        stale_path_claim = copy.deepcopy(claim)
+        stale_path_claim["evidence"][0]["native_field_path"] = (
+            "/claims/P571/999999"
+        )
+        errors = []
+        validator.validate_work_period_claim(
+            work,
+            {"claim-period": stale_path_claim},
+            config,
+            snapshot_by_id,
+            errors,
+        )
+        self.assertIn(
+            "work-a: field_period evidence does not match best-rank P571 rows",
+            errors,
+        )
+
+        stale_rank_claim = copy.deepcopy(claim)
+        stale_rank_claim["evidence"][0]["rank"] = "deprecated"
+        errors = []
+        validator.validate_work_period_claim(
+            work,
+            {"claim-period": stale_rank_claim},
+            config,
+            snapshot_by_id,
+            errors,
+        )
+        self.assertIn(
+            "work-a: field_period evidence rank does not match P571",
+            errors,
+        )
+
+    def test_catalog_schema_requires_transformer_provenance(self):
+        schema = json.loads(
+            (ROOT / "tools" / "schema.json").read_text(encoding="utf-8")
+        )
+        catalog = json.loads(
+            (
+                ROOT
+                / "assets"
+                / "data"
+                / "catalog"
+                / "wikidata-hydration.json"
+            ).read_text(encoding="utf-8")
+        )
+        catalog.pop("transformer_id", None)
+        issues = validator.schema_issues(
+            catalog,
+            schema["$defs"]["catalogShard"],
+            schema,
+            "catalog",
+        )
+        self.assertIn("catalog: missing required property 'transformer_id'", issues)
+
     def test_unknown_schema_keyword_fails_closed(self):
         issues = validator.schema_issues(
             "value",
@@ -788,6 +1011,8 @@ class DataContractTests(unittest.TestCase):
             "source_id": "wikidata",
             "generated_from": "missing-snapshot",
             "generator": "test",
+            "transformer_id": "test-transformer",
+            "transformer_version": "0.0.0",
             "people": [],
             "practices": [],
             "places": [],

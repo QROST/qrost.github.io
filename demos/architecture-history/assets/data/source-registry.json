@@ -1,5 +1,5 @@
 {
-  "data_as_of": "2026-07-25",
+  "data_as_of": "2026-07-27",
   "sources": [
     {
       "id": "getty-ulan",
@@ -39,6 +39,7 @@
       "authority_profile": {
         "names": "strong_candidate",
         "identity": "strong_candidate",
+        "dates": "candidate",
         "relationships": "candidate",
         "work_credits": "none",
         "coverage": "candidate"
@@ -86,6 +87,7 @@
       "authority_profile": {
         "names": "candidate",
         "identity": "none",
+        "dates": "none",
         "relationships": "none",
         "work_credits": "none",
         "coverage": "candidate"
@@ -133,6 +135,7 @@
       "authority_profile": {
         "names": "strong_candidate",
         "identity": "strong_candidate",
+        "dates": "none",
         "relationships": "candidate",
         "work_credits": "none",
         "coverage": "candidate"
@@ -180,6 +183,7 @@
       "authority_profile": {
         "names": "strong_candidate",
         "identity": "strong_candidate",
+        "dates": "candidate",
         "relationships": "candidate",
         "work_credits": "candidate",
         "coverage": "candidate"
@@ -227,6 +231,7 @@
       "authority_profile": {
         "names": "none",
         "identity": "none",
+        "dates": "coverage_only",
         "relationships": "none",
         "work_credits": "none",
         "coverage": "coverage_only"
@@ -254,8 +259,8 @@
         "auth_kind": "none",
         "credential_env_name": null,
         "docs_url": "https://www.wikidata.org/wiki/Help:Data_access",
-        "rate_policy_zh": "当前只水合 19 个版本化样本：先读最新 lastrevid，再以 Special:EntityData 的 revision 参数二次获取并核对；覆盖普查尚未实现。",
-        "rate_policy_en": "The current adapter only hydrates 19 versioned fixtures: read the latest lastrevid, refetch through the Special:EntityData revision parameter, and verify it. Coverage discovery is not implemented."
+        "rate_policy_zh": "当前 adapter 只读取 532 个固定版本的候选夹具：先读最新 lastrevid，再以 Special:EntityData 的 revision 参数二次获取并核对；覆盖 discovery 尚未实现。",
+        "rate_policy_en": "The current adapter only reads 532 revision-pinned candidate fixtures: read the latest lastrevid, refetch through the Special:EntityData revision parameter, and verify it. Coverage discovery is not implemented."
       },
       "snapshot_strategy": "保存版本化 seed、精确 revision URL、lastrevid、可重算 SHA-256 的最小化规范实体 JSON；公开构建只读固定快照。",
       "provenance_passthrough_fields": ["id", "lastrevid", "labels", "aliases", "claims", "rank", "qualifiers", "references"],
@@ -274,6 +279,7 @@
       "authority_profile": {
         "names": "candidate",
         "identity": "candidate",
+        "dates": "candidate",
         "relationships": "candidate",
         "work_credits": "candidate",
         "coverage": "none"
@@ -321,6 +327,7 @@
       "authority_profile": {
         "names": "candidate",
         "identity": "candidate",
+        "dates": "none",
         "relationships": "none",
         "work_credits": "none",
         "coverage": "strong_candidate"
@@ -368,6 +375,7 @@
       "authority_profile": {
         "names": "candidate",
         "identity": "candidate",
+        "dates": "none",
         "relationships": "none",
         "work_credits": "none",
         "coverage": "candidate"
@@ -415,6 +423,7 @@
       "authority_profile": {
         "names": "candidate",
         "identity": "candidate",
+        "dates": "candidate",
         "relationships": "none",
         "work_credits": "candidate",
         "coverage": "candidate"
@@ -462,6 +471,7 @@
       "authority_profile": {
         "names": "candidate",
         "identity": "none",
+        "dates": "none",
         "relationships": "none",
         "work_credits": "none",
         "coverage": "strong_candidate"
@@ -509,6 +519,7 @@
       "authority_profile": {
         "names": "candidate",
         "identity": "none",
+        "dates": "none",
         "relationships": "none",
         "work_credits": "none",
         "coverage": "strong_candidate"
@@ -536,15 +547,15 @@
         "auth_kind": "manual",
         "credential_env_name": null,
         "docs_url": "https://next.archnet.org/pages/about",
-        "rate_policy_zh": "人工逐项发现和引用；不批量抓取或再发布站点内容。",
-        "rate_policy_en": "Manual item-level discovery and citation only; no bulk harvesting or republication."
+        "rate_policy_zh": "人工逐项发现和引用；仅按个人、非商业教育或研究用途访问，不批量抓取；复制、发布或分发前须核对单项权利并取得所需许可。",
+        "rate_policy_en": "Manual item-level discovery and citation only; access is limited to personal, noncommercial educational or research use, with no bulk harvesting. Check item-level rights and obtain any required permission before copying, publishing, or distributing."
       },
-      "snapshot_strategy": "citation_plus_excerpt：只保存必要 locator、短证据摘录和单项许可判断。",
+      "snapshot_strategy": "external_only：只保存 record URL、正式 citation、locator 和单项权利判断；未经明确许可不保存或再发布 Archnet 元数据、文本或媒体。",
       "provenance_passthrough_fields": ["record_url", "associated_names", "citation", "item_rights", "source_locator"],
-      "metadata_license": "CC-BY-NC-4.0-default-with-item-exceptions",
-      "license_url": "https://creativecommons.org/licenses/by-nc/4.0/",
+      "metadata_license": "no-blanket-open-license-item-level-rights-vary",
+      "license_url": null,
       "terms_url": "https://next.archnet.org/pages/terms",
-      "accessed": "2026-07-25",
+      "accessed": "2026-07-27",
       "allowed_operations": {
         "download": false,
         "retain_snapshot": false,
@@ -556,14 +567,21 @@
       "authority_profile": {
         "names": "candidate",
         "identity": "candidate",
+        "dates": "candidate",
         "relationships": "none",
         "work_credits": "candidate",
         "coverage": "strong_candidate"
       },
-      "attribution_zh": "用于地区补缺、书目和逐条 claim 定位；总体条款与单项许可分别审核，不批量再发布。",
-      "attribution_en": "Used for regional gap discovery, bibliography, and claim locators; site terms and item-level licenses are evaluated separately and content is not bulk republished.",
-      "known_biases_zh": ["聚焦伊斯兰文明与穆斯林社会，不能代表非洲、亚洲或全球全部建筑史。"],
-      "known_biases_en": ["Its focus on Islamic civilizations and Muslim societies does not represent all of Africa, Asia, or global architectural history."]
+      "attribution_zh": "仅用于逐项地区补缺、书目和 claim locator。Archnet 总体条款不授予统一开放数据许可；复制、发布或再分发须先取得所需许可，并须另行核对每个条目的版权与 Terms of Use。",
+      "attribution_en": "Used only for item-level regional gap discovery, bibliography, and claim locators. Archnet's site terms do not grant a blanket open-data license; copying, publication, or redistribution requires any necessary permission, and each item's copyright and Terms of Use must be checked separately.",
+      "known_biases_zh": [
+        "聚焦伊斯兰文明与穆斯林社会，不能代表非洲、亚洲或全球全部建筑史。",
+        "站点内容由多方提供，版权与 Terms of Use 逐项不同；页面可访问不表示元数据、文本或媒体可批量下载、保存、改作或再发布。"
+      ],
+      "known_biases_en": [
+        "Its focus on Islamic civilizations and Muslim societies does not represent all of Africa, Asia, or global architectural history.",
+        "Content comes from multiple providers and copyright and Terms of Use vary by item; page access does not permit bulk download, retention, adaptation, or republication of metadata, text, or media."
+      ]
     }
   ]
 }

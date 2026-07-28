@@ -41,6 +41,34 @@ LINEAGE_TYPES = {"direct_mentor", "master_of_apprentice", "formal_teacher"}
 SYMMETRIC_RELATION_TYPES = {"collaborated_with", "cofounded_with"}
 UNREVIEWABLE_EXTRACTIONS = {"ocr_candidate", "llm_candidate"}
 VERIFIED_AUTHORITY = "claim_evidence"
+DATE_AUTHORITY_PREDICATES = {
+    "field_birth",
+    "field_death",
+    "field_dissolved",
+    "field_founded",
+    "field_period",
+    "source_inception",
+    "source_official_opening",
+}
+SUPPORTED_PERIOD_RULE = {
+    "rule_id": "wikidata-p571-best-rank-period-v1",
+    "basis_property": "P571",
+    "accepted_precisions": [9, 10, 11],
+    "accepted_calendar_models": [
+        "http://www.wikidata.org/entity/Q1985727",
+        "http://www.wikidata.org/entity/Q1985786",
+    ],
+    "latest_year_inclusive": 2026,
+    "qualifier_policy": "none_allowed",
+    "required_before": 0,
+    "required_after": 0,
+    "unsupported_result": "unknown",
+    "official_opening_usage": "source_claim_only",
+}
+WIKIDATA_TIME_PATTERN = re.compile(
+    r"^(?P<sign>[+-])(?P<year>\d{4,})-(?P<month>\d{2})-"
+    r"(?P<day>\d{2})T00:00:00Z$"
+)
 SUPPORTED_SCHEMA_KEYWORDS = {
     "$ref",
     "type",
@@ -256,6 +284,453 @@ def duplicate_ids(items: list[dict], label: str, errors: list[str]) -> set[str]:
         if count > 1:
             errors.append(f"{label}: duplicate id {item_id!r}")
     return set(ids)
+
+
+def is_plain_int(value: Any) -> bool:
+    return isinstance(value, int) and not isinstance(value, bool)
+
+
+def validate_coverage_config(
+    config: Any,
+    allowed_periods: set[str],
+    errors: list[str],
+) -> None:
+    label = "wikidata coverage config"
+    if not isinstance(config, dict):
+        errors.append(f"{label}: root must be an object")
+        return
+
+    config_version = config.get("config_version")
+    if not isinstance(config_version, str) or not re.fullmatch(
+        r"\d+\.\d+\.\d+",
+        config_version,
+    ):
+        errors.append(f"{label}: config_version must be semantic")
+
+    transformer = config.get("transformer")
+    if not isinstance(transformer, dict):
+        errors.append(f"{label}: transformer must be an object")
+    else:
+        if set(transformer) != {"id", "version"}:
+            errors.append(f"{label}: transformer has unexpected or missing fields")
+        transformer_id = transformer.get("id")
+        transformer_version = transformer.get("version")
+        if not isinstance(transformer_id, str) or not re.fullmatch(
+            r"[a-z0-9][a-z0-9-]*",
+            transformer_id,
+        ):
+            errors.append(f"{label}: transformer.id must be a slug")
+        if not isinstance(transformer_version, str) or not re.fullmatch(
+            r"\d+\.\d+\.\d+",
+            transformer_version,
+        ):
+            errors.append(f"{label}: transformer.version must be semantic")
+
+    rule = config.get("period_derivation")
+    if rule != SUPPORTED_PERIOD_RULE:
+        errors.append(f"{label}: unsupported period_derivation rule")
+
+    grid = config.get("coverage_grid")
+    if not isinstance(grid, dict):
+        errors.append(f"{label}: coverage_grid must be an object")
+        return
+    periods = grid.get("periods")
+    regions = grid.get("regions")
+    if not isinstance(periods, list) or not periods:
+        errors.append(f"{label}: periods must be a non-empty array")
+        return
+    if not isinstance(regions, list) or not regions or not all(
+        isinstance(region, str) and region
+        for region in regions
+    ):
+        errors.append(f"{label}: regions must be a non-empty string array")
+        return
+    if len(regions) != len(set(regions)):
+        errors.append(f"{label}: regions must be unique")
+
+    period_ids: list[str] = []
+    previous_end: Optional[int] = None
+    for index, period in enumerate(periods):
+        if not isinstance(period, dict) or set(period) != {
+            "id",
+            "year_start_inclusive",
+            "year_end_exclusive",
+        }:
+            errors.append(f"{label}: period {index} has an invalid shape")
+            continue
+        period_id = period["id"]
+        start = period["year_start_inclusive"]
+        end = period["year_end_exclusive"]
+        if not isinstance(period_id, str) or not period_id:
+            errors.append(f"{label}: period {index} requires a non-empty id")
+            continue
+        period_ids.append(period_id)
+        if start is not None and not is_plain_int(start):
+            errors.append(f"{label}: period {period_id!r} start must be an integer")
+            continue
+        if end is not None and not is_plain_int(end):
+            errors.append(f"{label}: period {period_id!r} end must be an integer")
+            continue
+        if index == 0:
+            if start is not None:
+                errors.append(f"{label}: first period must have an open start")
+        elif start != previous_end:
+            errors.append(f"{label}: periods must form a contiguous partition")
+        if start is not None and end is not None and start >= end:
+            errors.append(f"{label}: period {period_id!r} is empty or reversed")
+        if index < len(periods) - 1 and end is None:
+            errors.append(f"{label}: only the final period may have an open end")
+        if index == len(periods) - 1 and end is not None:
+            errors.append(f"{label}: final period must have an open end")
+        previous_end = end
+
+    if len(period_ids) != len(set(period_ids)):
+        errors.append(f"{label}: period ids must be unique")
+    if set(period_ids) != allowed_periods:
+        errors.append(f"{label}: period ids do not match the public schema")
+    if not is_plain_int(grid.get("cell_count")) or grid["cell_count"] != (
+        len(periods) * len(regions)
+    ):
+        errors.append(f"{label}: cell_count does not match periods × regions")
+
+
+def configured_period_for_year(year: int, config: dict) -> Optional[str]:
+    matches = []
+    for period in config["coverage_grid"]["periods"]:
+        start = period["year_start_inclusive"]
+        end = period["year_end_exclusive"]
+        if (start is None or year >= start) and (end is None or year < end):
+            matches.append(period["id"])
+    return matches[0] if len(matches) == 1 else None
+
+
+def wikidata_calendar_day_is_valid(
+    year: int,
+    month: int,
+    day: int,
+    calendar_model: str,
+) -> bool:
+    if not 1 <= month <= 12:
+        return False
+    if calendar_model.endswith("/Q1985786"):
+        leap_year = year % 4 == 0
+    else:
+        leap_year = year % 4 == 0 and (
+            year % 100 != 0 or year % 400 == 0
+        )
+    month_lengths = [
+        31,
+        29 if leap_year else 28,
+        31,
+        30,
+        31,
+        30,
+        31,
+        31,
+        30,
+        31,
+        30,
+        31,
+    ]
+    return 1 <= day <= month_lengths[month - 1]
+
+
+def supported_wikidata_period_year(
+    statement: dict,
+    rule: dict,
+) -> Optional[int]:
+    qualifiers = statement.get("qualifiers", {})
+    if (
+        rule["qualifier_policy"] == "none_allowed"
+        and (not isinstance(qualifiers, dict) or qualifiers)
+    ):
+        return None
+    snak = statement.get("mainsnak", {})
+    if snak.get("snaktype") != "value":
+        return None
+    datavalue = snak.get("datavalue", {})
+    if datavalue.get("type") != "time":
+        return None
+    value = datavalue.get("value")
+    if not isinstance(value, dict):
+        return None
+    precision = value.get("precision")
+    if (
+        not is_plain_int(precision)
+        or precision not in rule["accepted_precisions"]
+    ):
+        return None
+    if value.get("calendarmodel") not in rule["accepted_calendar_models"]:
+        return None
+    before = value.get("before")
+    after = value.get("after")
+    timezone = value.get("timezone")
+    if not is_plain_int(before) or before != rule["required_before"]:
+        return None
+    if not is_plain_int(after) or after != rule["required_after"]:
+        return None
+    if not is_plain_int(timezone) or timezone != 0:
+        return None
+    raw_time = value.get("time")
+    match = (
+        WIKIDATA_TIME_PATTERN.fullmatch(raw_time)
+        if isinstance(raw_time, str)
+        else None
+    )
+    if match is None:
+        return None
+    year = int(match.group("year"))
+    if match.group("sign") == "-":
+        year = -year
+    if year == 0 or year > rule["latest_year_inclusive"]:
+        return None
+    month = int(match.group("month"))
+    day = int(match.group("day"))
+    if precision == 9 and (month != 0 or day != 0):
+        return None
+    if precision == 10 and (not 1 <= month <= 12 or day != 0):
+        return None
+    if precision == 11 and not wikidata_calendar_day_is_valid(
+        year,
+        month,
+        day,
+        value["calendarmodel"],
+    ):
+        return None
+    return year
+
+
+def best_rank_wikidata_rows(
+    record: dict,
+    property_id: str,
+) -> Optional[list[tuple[int, dict]]]:
+    rows = [
+        (index, statement)
+        for index, statement in enumerate(
+            record.get("claims", {}).get(property_id, [])
+        )
+        if statement.get("rank") != "deprecated"
+    ]
+    if any(
+        statement.get("rank") not in {"preferred", "normal"}
+        for _, statement in rows
+    ):
+        return None
+    preferred = [
+        (index, statement)
+        for index, statement in rows
+        if statement.get("rank") == "preferred"
+    ]
+    if preferred:
+        return preferred
+    return [
+        (index, statement)
+        for index, statement in rows
+        if statement.get("rank") == "normal"
+    ]
+
+
+def derive_wikidata_period(record: dict, config: dict) -> Optional[dict]:
+    rule = config["period_derivation"]
+    rows = best_rank_wikidata_rows(record, rule["basis_property"])
+    if not rows:
+        return None
+    derived_rows = []
+    for index, statement in rows:
+        year = supported_wikidata_period_year(statement, rule)
+        if year is None:
+            return None
+        period = configured_period_for_year(year, config)
+        if period is None:
+            return None
+        derived_rows.append(
+            {
+                "index": index,
+                "period": period,
+                "statement": statement,
+                "year": year,
+            }
+        )
+    periods = {row["period"] for row in derived_rows}
+    if len(periods) != 1:
+        return None
+    return {
+        "period": next(iter(periods)),
+        "rows": derived_rows,
+    }
+
+
+def wikidata_statement_qualifiers(statement: dict) -> list[dict]:
+    qualifiers = statement.get("qualifiers", {})
+    if not isinstance(qualifiers, dict):
+        return []
+    return [
+        {
+            "property_id": property_id,
+            "snaks": qualifiers[property_id],
+        }
+        for property_id in sorted(qualifiers)
+    ]
+
+
+def validate_work_period_claim(
+    work: dict,
+    claim_by_id: dict[str, dict],
+    config: dict,
+    snapshot_by_id: dict[str, dict],
+    errors: list[str],
+) -> None:
+    work_id = work["id"]
+    period = work["period"]
+    period_claims = [
+        claim_by_id[claim_id]
+        for claim_id in work["claim_ids"]
+        if (
+            claim_id in claim_by_id
+            and claim_by_id[claim_id]["predicate"] == "field_period"
+        )
+    ]
+    if period == "unknown":
+        if period_claims:
+            errors.append(
+                f"{work_id}: unknown period cannot publish a field_period claim"
+            )
+        return
+
+    allowed_periods = {
+        row["id"]
+        for row in config["coverage_grid"]["periods"]
+    }
+    if period not in allowed_periods:
+        errors.append(f"{work_id}: period is absent from the coverage partition")
+    if len(period_claims) != 1:
+        errors.append(
+            f"{work_id}: known period requires exactly one field_period claim"
+        )
+        return
+
+    claim = period_claims[0]
+    if claim["object"].get("value") != period:
+        errors.append(f"{work_id}: field_period claim does not match work period")
+    qualifiers = claim["qualifiers"]
+    expected_qualifier_keys = {
+        "basis_property",
+        "coverage_config_version",
+        "derivation_rule_id",
+        "source_years",
+    }
+    if set(qualifiers) != expected_qualifier_keys:
+        errors.append(f"{work_id}: field_period qualifiers have an invalid shape")
+        return
+    rule = config["period_derivation"]
+    if qualifiers["basis_property"] != rule["basis_property"]:
+        errors.append(f"{work_id}: field_period basis property is stale")
+    if qualifiers["derivation_rule_id"] != rule["rule_id"]:
+        errors.append(f"{work_id}: field_period derivation rule is stale")
+    if qualifiers["coverage_config_version"] != config["config_version"]:
+        errors.append(f"{work_id}: field_period coverage config version is stale")
+
+    years = qualifiers["source_years"]
+    if not isinstance(years, list) or not years or not all(
+        is_plain_int(year)
+        and year != 0
+        and year <= rule["latest_year_inclusive"]
+        for year in years
+    ):
+        errors.append(f"{work_id}: field_period source_years are invalid")
+        return
+    if any(
+        configured_period_for_year(year, config) != period
+        for year in years
+    ):
+        errors.append(f"{work_id}: field_period source years cross period boundaries")
+    if len(claim["evidence"]) != len(years):
+        errors.append(
+            f"{work_id}: field_period evidence count does not match source years"
+        )
+    for evidence in claim["evidence"]:
+        if evidence["support"] != "indirect":
+            errors.append(f"{work_id}: field_period evidence must be indirect")
+        if evidence["source_id"] != "wikidata":
+            errors.append(f"{work_id}: field_period evidence must come from Wikidata")
+        if evidence["native_predicate"] != rule["basis_property"]:
+            errors.append(f"{work_id}: field_period evidence predicate is invalid")
+        if not re.fullmatch(
+            r"/claims/P571/\d+",
+            evidence["native_field_path"],
+        ):
+            errors.append(f"{work_id}: field_period evidence path is invalid")
+
+    snapshot_ids = {
+        evidence["snapshot_id"]
+        for evidence in claim["evidence"]
+    }
+    if len(snapshot_ids) != 1:
+        errors.append(f"{work_id}: field_period evidence must use one snapshot")
+        return
+    snapshot_id = next(iter(snapshot_ids))
+    snapshot = snapshot_by_id.get(snapshot_id)
+    if snapshot is None:
+        errors.append(f"{work_id}: field_period snapshot is unavailable")
+        return
+    qid = work["external_ids"].get("wikidata")
+    wrapper = snapshot["entities"].get(qid) if qid else None
+    if wrapper is None:
+        errors.append(
+            f"{work_id}: field_period source record is absent from its snapshot"
+        )
+        return
+
+    derived = derive_wikidata_period(wrapper["record"], config)
+    if derived is None:
+        errors.append(
+            f"{work_id}: pinned P571 statements do not support a derived period"
+        )
+        return
+    if derived["period"] != period:
+        errors.append(
+            f"{work_id}: pinned P571 statements derive a different period"
+        )
+    expected_paths = [
+        f"/claims/P571/{row['index']}"
+        for row in derived["rows"]
+    ]
+    actual_paths = [
+        evidence["native_field_path"]
+        for evidence in claim["evidence"]
+    ]
+    if actual_paths != expected_paths:
+        errors.append(
+            f"{work_id}: field_period evidence does not match best-rank P571 rows"
+        )
+    expected_years = [
+        row["year"]
+        for row in derived["rows"]
+    ]
+    if years != expected_years:
+        errors.append(
+            f"{work_id}: field_period source years do not match pinned P571 values"
+        )
+
+    expected_record_id = f"{qid}@{wrapper['lastrevid']}"
+    for evidence, row in zip(claim["evidence"], derived["rows"]):
+        statement = row["statement"]
+        if evidence["native_record_id"] != expected_record_id:
+            errors.append(
+                f"{work_id}: field_period evidence targets the wrong revision"
+            )
+        if evidence["rank"] != statement.get("rank"):
+            errors.append(
+                f"{work_id}: field_period evidence rank does not match P571"
+            )
+        if evidence["qualifiers"] != wikidata_statement_qualifiers(statement):
+            errors.append(
+                f"{work_id}: field_period evidence qualifiers do not match P571"
+            )
+        if evidence["references"] != statement.get("references", []):
+            errors.append(
+                f"{work_id}: field_period evidence references do not match P571"
+            )
 
 
 def known_year(date_value: Optional[dict]) -> Optional[int]:
@@ -697,7 +1172,7 @@ def expected_manifest(paths: list[Path]) -> dict:
 
     return {
         "schema_id": "architecture-lineages",
-        "schema_version": "1.4.0",
+        "schema_version": "1.5.0",
         "hash_algorithm": "sha256",
         "data_version": data_version(paths),
         "data_as_of": load_json(DATA / "source-registry.json")["data_as_of"],
@@ -831,6 +1306,15 @@ def main() -> int:
     }
     snapshot_records: dict[tuple[str, str], tuple[str, str, str]] = {}
     coverage_config = load_json(COVERAGE_CONFIG)
+    schema = load_json(SCHEMA_PATH)
+    public_periods = set(schema["$defs"]["period"]["enum"]) - {"unknown"}
+    config_errors: list[str] = []
+    validate_coverage_config(coverage_config, public_periods, config_errors)
+    errors.extend(config_errors)
+    if config_errors:
+        for error in errors:
+            print(f"ERROR: {error}", file=sys.stderr)
+        return 1
     country_authority = {
         row["country_qid"]: row
         for row in coverage_config["country_region_authority"]
@@ -1010,11 +1494,19 @@ def main() -> int:
                 errors.append(
                     f"{path.name}: shard source does not match generating snapshot"
                 )
-            elif shard["generator"] != (
-                f"{snapshot['adapter_id']}@{snapshot['adapter_version']}"
+            elif (
+                shard["transformer_id"]
+                != coverage_config["transformer"]["id"]
+                or shard["transformer_version"]
+                != coverage_config["transformer"]["version"]
+                or shard["generator"]
+                != (
+                    f"{coverage_config['transformer']['id']}@"
+                    f"{coverage_config['transformer']['version']}"
+                )
             ):
                 errors.append(
-                    f"{path.name}: generator does not match generating snapshot"
+                    f"{path.name}: transformer does not match coverage config"
                 )
             source = source_by_id.get(shard["source_id"])
             if source and source["adapter_status"] == "fixture_only":
@@ -1163,6 +1655,13 @@ def main() -> int:
     unresolved_credit_claim_ids: set[str] = set()
     for work in works:
         work_id = work["id"]
+        validate_work_period_claim(
+            work,
+            claim_by_id,
+            coverage_config,
+            snapshot_by_id,
+            errors,
+        )
         type_claims = [
             claim_by_id[claim_id]
             for claim_id in work["claim_ids"]
@@ -1360,6 +1859,11 @@ def main() -> int:
             authority_dimension = "relationships"
         elif claim["predicate"] == "credited_contributor":
             authority_dimension = "work_credits"
+        elif (
+            claim["predicate"] in DATE_AUTHORITY_PREDICATES
+            or claim["predicate"].startswith("field_dates")
+        ):
+            authority_dimension = "dates"
         elif claim["predicate"] in {
             "field_name_zh",
             "field_name_en",

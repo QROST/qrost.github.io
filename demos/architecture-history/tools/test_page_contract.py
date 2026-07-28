@@ -72,6 +72,7 @@ class PageContractTests(unittest.TestCase):
             "coordinate-list",
             "catalog-search",
             "region-filter",
+            "period-filter",
             "status-filter",
             "catalog-table-body",
             "catalog-card-list",
@@ -214,6 +215,26 @@ class PageContractTests(unittest.TestCase):
             "evidence.references",
         ):
             self.assertIn(phrase, self.html + self.app)
+
+    def test_source_derived_period_filter_is_wired_without_claiming_coverage(self) -> None:
+        for phrase in (
+            "period: 'all'",
+            "function renderPeriodOptions()",
+            "entity.period !== filters.period",
+            "i18n.t('detailPeriod')",
+        ):
+            self.assertIn(phrase, self.app)
+        for phrase in (
+            "periodFilter",
+            "periodFilterAria",
+            "periodAll",
+            "detailPeriod",
+            "source-derived period",
+        ):
+            self.assertIn(phrase, self.i18n)
+        self.assertEqual(self.manifest["coverage"]["cells_run"], 0)
+        self.assertEqual(self.manifest["coverage"]["cells_total"], 72)
+        self.assertEqual(self.manifest["coverage"]["status"], "not_run")
 
     def test_truth_boundaries_are_visible_in_both_languages(self) -> None:
         for phrase in (

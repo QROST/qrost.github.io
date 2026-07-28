@@ -203,7 +203,7 @@ def derive_manifest(paths: list[Path], version: str) -> dict:
     data_as_of = load_json(DATA / "source-registry.json")["data_as_of"]
     return {
         "schema_id": "architecture-lineages",
-        "schema_version": "1.4.0",
+        "schema_version": "1.5.0",
         "hash_algorithm": "sha256",
         "data_version": version,
         "data_as_of": data_as_of,
@@ -248,7 +248,11 @@ def derive_manifest(paths: list[Path], version: str) -> dict:
     }
 
 
-def refresh_loader_constants(version: str, manifest_sha256: str) -> None:
+def refresh_loader_constants(
+    version: str,
+    manifest_sha256: str,
+    schema_version: str,
+) -> None:
     if not LOADER.exists():
         return
     text = LOADER.read_text(encoding="utf-8")
@@ -264,6 +268,16 @@ def refresh_loader_constants(version: str, manifest_sha256: str) -> None:
             raise SystemExit(
                 f"build: expected exactly one {name} constant in {LOADER}, found {count}"
             )
+    updated, count = re.subn(
+        r"(const SCHEMA_VERSION = ')[^']+(';)",
+        rf"\g<1>{schema_version}\g<2>",
+        updated,
+    )
+    if count != 1:
+        raise SystemExit(
+            "build: expected exactly one SCHEMA_VERSION constant "
+            f"in {LOADER}, found {count}"
+        )
     if updated != text:
         atomic_write_bytes(LOADER, updated.encode("utf-8"))
 
@@ -331,8 +345,13 @@ def main() -> int:
         merge_catalog_shards()
         paths = input_paths()
         version = data_version(paths)
-        write_json(MANIFEST, derive_manifest(paths, version))
-        refresh_loader_constants(version, sha256(MANIFEST))
+        manifest = derive_manifest(paths, version)
+        write_json(MANIFEST, manifest)
+        refresh_loader_constants(
+            version,
+            sha256(MANIFEST),
+            manifest["schema_version"],
+        )
         refresh_html_tokens()
         subprocess.run(
             [sys.executable, str(ROOT / "tools" / "validate.py")],
@@ -341,6 +360,11 @@ def main() -> int:
         )
         subprocess.run(
             [sys.executable, str(ROOT / "tools" / "test_page_contract.py")],
+            cwd=ROOT,
+            check=True,
+        )
+        subprocess.run(
+            [sys.executable, str(ROOT / "tools" / "test_wikidata_pilot.py")],
             cwd=ROOT,
             check=True,
         )
