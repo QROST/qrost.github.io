@@ -641,7 +641,11 @@
       return state.claimsById[claimId];
     }).filter(Boolean);
     if (!claims.length) return '';
-    return '<section class="detail-section"><h3>' + escapeHtml(i18n.t('detailClaims')) + '</h3>' +
+    return '<details class="detail-section claims-disclosure"><summary>' +
+      escapeHtml(i18n.t('detailClaims')) +
+      '<span class="claims-disclosure-count">' +
+        escapeHtml(i18n.t('claimsCount', { count: claims.length })) +
+      '</span></summary>' +
       '<ul class="claim-list">' + claims.map(function (claim) {
         const evidence = claim.evidence || [];
         return '<li>' +
@@ -659,7 +663,7 @@
             return evidenceHtml(item, index, evidence.length);
           }).join('') +
         '</li>';
-      }).join('') + '</ul></section>';
+      }).join('') + '</ul></details>';
   }
 
   function creditsHtml(work) {

@@ -216,6 +216,17 @@ class PageContractTests(unittest.TestCase):
         ):
             self.assertIn(phrase, self.html + self.app)
 
+    def test_field_level_claims_are_folded_by_default(self) -> None:
+        wrapper = '<details class="detail-section claims-disclosure"><summary>'
+        self.assertIn(wrapper, self.app)
+        self.assertNotIn(
+            '<details class="detail-section claims-disclosure" open>',
+            self.app,
+        )
+        self.assertIn("i18n.t('detailClaims')", self.app)
+        self.assertIn("i18n.t('claimsCount', { count: claims.length })", self.app)
+        self.assertIn("</ul></details>", self.app)
+
     def test_source_derived_period_filter_is_wired_without_claiming_coverage(self) -> None:
         for phrase in (
             "period: 'all'",

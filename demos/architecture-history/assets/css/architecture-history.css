@@ -1704,6 +1704,31 @@ html.dark .primary-button {
   font-size: 0.76rem;
 }
 
+.claims-disclosure > summary {
+  padding-bottom: 0.45rem;
+  border-bottom: 1px solid var(--line);
+  color: var(--ink);
+  font-size: 0.76rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.claims-disclosure > summary::marker {
+  color: var(--cobalt);
+}
+
+.claims-disclosure-count {
+  float: right;
+  color: var(--ink-faint);
+  font-size: 0.56rem;
+  font-weight: 650;
+  letter-spacing: 0.03em;
+}
+
+.claims-disclosure[open] > summary {
+  margin-bottom: 0.75rem;
+}
+
 .detail-list,
 .claim-list {
   margin: 0;
