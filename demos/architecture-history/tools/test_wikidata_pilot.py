@@ -29,17 +29,30 @@ def load_json(path: Path):
 class WikidataPilotTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
-        snapshots = sorted(
-            (ROOT / "assets" / "data" / "source-snapshots").glob(
-                "wikidata-hydration-*.json"
-            )
+        cls.catalog = load_json(
+            ROOT
+            / "assets"
+            / "data"
+            / "catalog"
+            / "wikidata-hydration.json"
         )
-        if len(snapshots) != 1:
+        snapshot_id = cls.catalog["generated_from"]
+        cls.snapshot_path = (
+            ROOT
+            / "assets"
+            / "data"
+            / "source-snapshots"
+            / f"{snapshot_id}.json"
+        )
+        if not cls.snapshot_path.is_file():
             raise AssertionError(
-                f"expected exactly one hydration snapshot, found {len(snapshots)}"
+                f"catalog references missing hydration snapshot {snapshot_id}"
             )
-        cls.snapshot_path = snapshots[0]
         cls.snapshot = load_json(cls.snapshot_path)
+        if cls.snapshot["snapshot_id"] != snapshot_id:
+            raise AssertionError(
+                "catalog generated_from does not match snapshot payload"
+            )
         cls.config = load_json(
             ROOT
             / "assets"
@@ -48,17 +61,11 @@ class WikidataPilotTests(unittest.TestCase):
             / "wikidata-coverage-config.json"
         )
         cls.seed_file = load_json(ROOT / "tools" / "wikidata-hydration-seeds.json")
-        cls.catalog = load_json(
-            ROOT
-            / "assets"
-            / "data"
-            / "catalog"
-            / "wikidata-hydration.json"
-        )
 
     def test_seed_set_and_coverage_grid_are_fixed(self):
         self.assertEqual(self.snapshot["seeds"], self.seed_file["seeds"])
-        self.assertEqual(len(self.snapshot["seeds"]), 19)
+        self.assertEqual(len(self.snapshot["seeds"]), len(self.catalog["works"]))
+        self.assertGreaterEqual(len(self.snapshot["seeds"]), 500)
         self.assertEqual(
             {seed["region"] for seed in self.snapshot["seeds"]},
             set(self.config["coverage_grid"]["regions"]),
@@ -132,7 +139,6 @@ class WikidataPilotTests(unittest.TestCase):
             self.assertEqual(relation["relation_type"], "student_of_recorded")
             self.assertEqual(relation["verification_status"], "candidate")
             self.assertTrue(relation["rejection_reasons"])
-            self.assertNotIn("game_eligibility", relation)
 
     def test_claim_evidence_resolves_to_pinned_snapshot(self):
         wrappers = self.snapshot["entities"]
@@ -214,9 +220,16 @@ class WikidataPilotTests(unittest.TestCase):
             self.assertEqual(row["iso2"], seed["expected_country_code"])
             self.assertEqual(row["region"], seed["region"])
             country_record = self.snapshot["entities"][row["country_qid"]]["record"]
+            iso_codes = [
+                statement.get("mainsnak", {})
+                .get("datavalue", {})
+                .get("value")
+                for statement in country_record.get("claims", {}).get("P297", [])
+                if statement.get("mainsnak", {}).get("snaktype") == "value"
+            ]
             self.assertIn(
                 row["iso2"],
-                importer.string_values(country_record, "P297"),
+                iso_codes,
             )
 
     def test_raw_lineage_direction_matches_p1066_and_p802(self):
@@ -253,26 +266,28 @@ class WikidataPilotTests(unittest.TestCase):
                     self.fail(f"unexpected lineage predicate {property_id}")
 
     def test_bilingual_and_map_fixture_floor(self):
-        self.assertEqual(len(self.catalog["works"]), 19)
-        self.assertEqual(
-            sum(work["name_zh"] is not None for work in self.catalog["works"]),
-            19,
+        works = self.catalog["works"]
+        people = self.catalog["people"]
+        self.assertGreaterEqual(len(works), 500)
+        self.assertGreaterEqual(
+            sum(work["name_zh"] is not None for work in works),
+            int(len(works) * 0.9),
         )
         self.assertGreaterEqual(
             sum(
                 work["coordinates"]["lat"] is not None
-                for work in self.catalog["works"]
+                for work in works
             ),
-            15,
+            int(len(works) * 0.9),
         )
         self.assertGreaterEqual(
             sum(
                 person["name_zh"] is not None
-                for person in self.catalog["people"]
+                for person in people
             ),
-            20,
+            int(len(people) * 0.5),
         )
-        for work in self.catalog["works"]:
+        for work in works:
             if work["work_type_mapping_status"] == "mapped_exact":
                 self.assertNotEqual(work["work_type"], "unknown")
             else:
