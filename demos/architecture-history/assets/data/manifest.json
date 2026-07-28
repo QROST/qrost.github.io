@@ -1,7 +1,7 @@
 {
   "catalog_profile": {
     "evidence_by_source_family": {
-      "wikimedia": 4409
+      "wikimedia": 4453
     },
     "periods": {
       "1000_1499": {
@@ -98,13 +98,13 @@
     },
     "work_type_mapping": {
       "ambiguous": 18,
-      "mapped_exact": 236,
-      "unmapped": 278
+      "mapped_exact": 280,
+      "unmapped": 234
     }
   },
   "counts": {
     "candidate_entities_and_relations": 1314,
-    "claims": 4389,
+    "claims": 4433,
     "contested_entities_and_relations": 0,
     "declined_entities_and_relations": 0,
     "people": 527,
@@ -144,24 +144,25 @@
       }
     },
     "selection_methods": [
+      "exact_instance_allowlist_authority",
       "pinned_hydration_fixtures"
     ],
     "status": "not_run"
   },
-  "data_as_of": "2026-07-27",
-  "data_version": "25652b13d8a9006f5cd09aa0af57c1e3b2cec368ccce644f8aee2dc44bec3a57",
+  "data_as_of": "2026-07-28",
+  "data_version": "9f649631f79b33555f0d97bfa20cd61e47c7aee63f3ea1d27cb03c9ad0b9c61b",
   "files": {
     "catalog/wikidata-hydration.json": {
       "count": 1,
-      "sha256": "d372dc9365ea817480840acea0961f085b0959f9afb290c4f46ac79e3cb13c2c"
+      "sha256": "14305b41bfba6c5b79c8c671d3c5c882035be8b6b536f136a0db87356470c706"
     },
     "claims.json": {
-      "count": 4389,
-      "sha256": "c751780698404501d2193273bbb848da0b6e3aac38ff3e03276f376dbd6a51d1"
+      "count": 4433,
+      "sha256": "7fedd7f9f3fc5c52dafa9d0b1f9bbf804dd0516bbc9ebfa68a547c3505bb3ba0"
     },
     "methodology/wikidata-coverage-config.json": {
       "count": 1,
-      "sha256": "787982cede1b71eaa01877c755b2911d75b949f29347bfffc7866228fca85c3e"
+      "sha256": "75890b4031d10904099649953704b5a47157eeeaa91117b19b86ab1e3fb7c1b9"
     },
     "people.json": {
       "count": 527,
@@ -185,7 +186,7 @@
     },
     "source-registry.json": {
       "count": 12,
-      "sha256": "56ad97f2f0c8e8fad5c7304bb2b7f220f018699d1bbff1916325348917c6542b"
+      "sha256": "e74183074b633987c17a25fce3a4ed3bba57e92c2eb2b0e3df65a01331e9a4d9"
     },
     "source-snapshots/wikidata-hydration-2026-07-25-0855f4599c43.json": {
       "count": 1,
@@ -231,9 +232,13 @@
       "count": 1,
       "sha256": "11d9c0fd6dd34ccb03f5e7e83c5a4d860672c578505f9ff57e8496dc72765567"
     },
+    "source-snapshots/wikidata-work-type-authority-2026-07-28-ad7844fa638e.json": {
+      "count": 1,
+      "sha256": "bdfd8488d3a197d8da8605cff800f10bc6136e5d1da6540d40820f34e6b68bff"
+    },
     "works.json": {
       "count": 532,
-      "sha256": "2c5b158f0ebabe4d111f52f9fd0857cdddb9b7ed5aba8ea689a8f1799010d30d"
+      "sha256": "52319af40e0030375c0a65a0d91a49619f779cba2a58cd8fd42368f035adf50b"
     }
   },
   "hash_algorithm": "sha256",

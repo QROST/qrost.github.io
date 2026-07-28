@@ -1,9 +1,9 @@
 {
   "config_kind": "planned_coverage_frame",
-  "config_version": "0.3.0",
+  "config_version": "0.4.0",
   "transformer": {
     "id": "wikidata-hydration-to-architecture-history",
-    "version": "0.3.0"
+    "version": "0.4.0"
   },
   "period_derivation": {
     "rule_id": "wikidata-p571-best-rank-period-v2",
@@ -301,6 +301,213 @@
       "region": "southeast_asia"
     }
   ],
+  "work_type_derivation": {
+    "authority_bindings": [
+      {
+        "qids": [
+          "Q2977",
+          "Q3950",
+          "Q92026",
+          "Q1060829",
+          "Q1307276",
+          "Q7138926"
+        ],
+        "snapshot_id": "wikidata-work-type-authority-2026-07-28-ad7844fa638e"
+      }
+    ],
+    "authority_policy": "new_mappings_require_revision_pinned_snapshot",
+    "basis_property": "P31",
+    "legacy_allowlist": {
+      "hash_algorithm": "sha256",
+      "rows": [
+        {
+          "label_en": "building",
+          "qid": "Q41176",
+          "work_type": "building"
+        },
+        {
+          "label_en": "building complex",
+          "qid": "Q1497364",
+          "work_type": "building_complex"
+        },
+        {
+          "label_en": "church building",
+          "qid": "Q16970",
+          "work_type": "building"
+        },
+        {
+          "label_en": "mosque",
+          "qid": "Q32815",
+          "work_type": "building"
+        },
+        {
+          "label_en": "synagogue",
+          "qid": "Q34627",
+          "work_type": "building"
+        },
+        {
+          "label_en": "temple",
+          "qid": "Q44539",
+          "work_type": "building"
+        },
+        {
+          "label_en": "religious building",
+          "qid": "Q24398318",
+          "work_type": "building"
+        },
+        {
+          "label_en": "house",
+          "qid": "Q3947",
+          "work_type": "building"
+        },
+        {
+          "label_en": "palace",
+          "qid": "Q16560",
+          "work_type": "building"
+        },
+        {
+          "label_en": "castle",
+          "qid": "Q23413",
+          "work_type": "building"
+        },
+        {
+          "label_en": "bridge",
+          "qid": "Q12280",
+          "work_type": "infrastructure"
+        },
+        {
+          "label_en": "tower",
+          "qid": "Q12518",
+          "work_type": "building"
+        },
+        {
+          "label_en": "skyscraper",
+          "qid": "Q11303",
+          "work_type": "building"
+        },
+        {
+          "label_en": "catholic cathedral",
+          "qid": "Q56242215",
+          "work_type": "building"
+        },
+        {
+          "label_en": "anglican or episcopal cathedral",
+          "qid": "Q56242250",
+          "work_type": "building"
+        },
+        {
+          "label_en": "major basilica",
+          "qid": "Q124936",
+          "work_type": "building"
+        },
+        {
+          "label_en": "domus (major church)",
+          "qid": "Q16966",
+          "work_type": "building"
+        },
+        {
+          "label_en": "abbey church",
+          "qid": "Q334383",
+          "work_type": "building"
+        },
+        {
+          "label_en": "collegiate church",
+          "qid": "Q1509716",
+          "work_type": "building"
+        },
+        {
+          "label_en": "parish church",
+          "qid": "Q317557",
+          "work_type": "building"
+        },
+        {
+          "label_en": "anglican church building",
+          "qid": "Q56242045",
+          "work_type": "building"
+        },
+        {
+          "label_en": "architectural ensemble",
+          "qid": "Q1497375",
+          "work_type": "building_complex"
+        },
+        {
+          "label_en": "archaeological site",
+          "qid": "Q839954",
+          "work_type": "building_complex"
+        },
+        {
+          "label_en": "kremlin",
+          "qid": "Q263274",
+          "work_type": "building_complex"
+        },
+        {
+          "label_en": "roman amphitheatre",
+          "qid": "Q7362268",
+          "work_type": "building"
+        },
+        {
+          "label_en": "stadium",
+          "qid": "Q483110",
+          "work_type": "building"
+        },
+        {
+          "label_en": "roman bridge",
+          "qid": "Q1223230",
+          "work_type": "infrastructure"
+        },
+        {
+          "label_en": "roman aqueduct",
+          "qid": "Q13218676",
+          "work_type": "infrastructure"
+        },
+        {
+          "label_en": "arch bridge",
+          "qid": "Q158438",
+          "work_type": "infrastructure"
+        },
+        {
+          "label_en": "stone bridge",
+          "qid": "Q3397526",
+          "work_type": "infrastructure"
+        },
+        {
+          "label_en": "fountain",
+          "qid": "Q483453",
+          "work_type": "monument"
+        },
+        {
+          "label_en": "monument",
+          "qid": "Q4989906",
+          "work_type": "monument"
+        },
+        {
+          "label_en": "garden",
+          "qid": "Q1107656",
+          "work_type": "landscape"
+        },
+        {
+          "label_en": "ancient roman structure",
+          "qid": "Q14752696",
+          "work_type": "building"
+        },
+        {
+          "label_en": "private museum",
+          "qid": "Q614316",
+          "work_type": "building"
+        },
+        {
+          "label_en": "history museum",
+          "qid": "Q16735822",
+          "work_type": "building"
+        }
+      ],
+      "rows_sha256": "35758ba09c3a00ea6ea3d20776a1870a38ec136c56469b9faa9a42b0d28be4bf",
+      "source_config_version": "0.3.0"
+    },
+    "rank_policy": "non_deprecated",
+    "rule_id": "wikidata-p31-exact-instance-work-type-v1",
+    "subclass_traversal": "forbidden"
+  },
   "exact_instance_allowlist": [
     {
       "label_en": "building",
@@ -480,6 +687,36 @@
     {
       "label_en": "history museum",
       "qid": "Q16735822",
+      "work_type": "building"
+    },
+    {
+      "label_en": "single-family detached home",
+      "qid": "Q1307276",
+      "work_type": "building"
+    },
+    {
+      "label_en": "Japanese castle",
+      "qid": "Q92026",
+      "work_type": "building"
+    },
+    {
+      "label_en": "concert hall",
+      "qid": "Q1060829",
+      "work_type": "building"
+    },
+    {
+      "label_en": "cathedral",
+      "qid": "Q2977",
+      "work_type": "building"
+    },
+    {
+      "label_en": "villa",
+      "qid": "Q3950",
+      "work_type": "building"
+    },
+    {
+      "label_en": "parliament building",
+      "qid": "Q7138926",
       "work_type": "building"
     }
   ],

@@ -25,6 +25,9 @@ SNAPSHOTS = DATA / "source-snapshots"
 SCHEMA_PATH = ROOT / "tools" / "schema.json"
 MANIFEST_PATH = DATA / "manifest.json"
 COVERAGE_CONFIG = DATA / "methodology" / "wikidata-coverage-config.json"
+TYPE_AUTHORITY_SEEDS_PATH = (
+    ROOT / "tools" / "wikidata-work-type-authority-seeds.json"
+)
 
 FILE_KEYS = {
     "source-registry.json": "sources",
@@ -67,6 +70,24 @@ SUPPORTED_PERIOD_RULE = {
     "year_precision_lower_components": (
         "zero_or_valid_calendar_date_ignored"
     ),
+}
+SUPPORTED_WORK_TYPE_RULE = {
+    "rule_id": "wikidata-p31-exact-instance-work-type-v1",
+    "basis_property": "P31",
+    "rank_policy": "non_deprecated",
+    "subclass_traversal": "forbidden",
+    "authority_policy": "new_mappings_require_revision_pinned_snapshot",
+}
+LEGACY_WORK_TYPE_ALLOWLIST_SHA256 = (
+    "35758ba09c3a00ea6ea3d20776a1870a38ec136c56469b9faa9a42b0d28be4bf"
+)
+LEGACY_WORK_TYPE_SOURCE_CONFIG_VERSION = "0.3.0"
+SUPPORTED_WORK_TYPES = {
+    "building",
+    "building_complex",
+    "infrastructure",
+    "landscape",
+    "monument",
 }
 WIKIDATA_TIME_PATTERN = re.compile(
     r"^(?P<sign>[+-])(?P<year>\d{4,})-(?P<month>\d{2})-"
@@ -333,6 +354,169 @@ def validate_coverage_config(
     if rule != SUPPORTED_PERIOD_RULE:
         errors.append(f"{label}: unsupported period_derivation rule")
 
+    work_type_rule = config.get("work_type_derivation")
+    expected_work_type_keys = {
+        "authority_bindings",
+        "authority_policy",
+        "basis_property",
+        "legacy_allowlist",
+        "rank_policy",
+        "rule_id",
+        "subclass_traversal",
+    }
+    if (
+        not isinstance(work_type_rule, dict)
+        or set(work_type_rule) != expected_work_type_keys
+    ):
+        errors.append(f"{label}: work_type_derivation has an invalid shape")
+        work_type_rule = None
+    elif any(
+        work_type_rule[key] != value
+        for key, value in SUPPORTED_WORK_TYPE_RULE.items()
+    ):
+        errors.append(f"{label}: unsupported work_type_derivation rule")
+
+    allowlist = config.get("exact_instance_allowlist")
+    allowlist_qids: list[str] = []
+    if not isinstance(allowlist, list) or not allowlist:
+        errors.append(f"{label}: exact_instance_allowlist must be non-empty")
+    else:
+        for index, row in enumerate(allowlist):
+            if not isinstance(row, dict) or set(row) != {
+                "label_en",
+                "qid",
+                "work_type",
+            }:
+                errors.append(
+                    f"{label}: exact_instance_allowlist[{index}] has an invalid shape"
+                )
+                continue
+            qid = row["qid"]
+            if not isinstance(qid, str) or not re.fullmatch(
+                r"Q[1-9][0-9]*",
+                qid,
+            ):
+                errors.append(
+                    f"{label}: exact_instance_allowlist[{index}] has an invalid QID"
+                )
+            else:
+                allowlist_qids.append(qid)
+            if not isinstance(row["label_en"], str) or not row[
+                "label_en"
+            ].strip():
+                errors.append(
+                    f"{label}: exact_instance_allowlist[{index}] needs label_en"
+                )
+            if row["work_type"] not in SUPPORTED_WORK_TYPES:
+                errors.append(
+                    f"{label}: exact_instance_allowlist[{index}] has unsupported work_type"
+                )
+    if len(allowlist_qids) != len(set(allowlist_qids)):
+        errors.append(f"{label}: exact-instance QIDs must be unique")
+
+    if work_type_rule is not None:
+        bindings = work_type_rule["authority_bindings"]
+        bound_qids: list[str] = []
+        snapshot_ids: list[str] = []
+        if not isinstance(bindings, list) or not bindings:
+            errors.append(f"{label}: authority_bindings must be non-empty")
+        else:
+            if len(bindings) != 1:
+                errors.append(
+                    f"{label}: transformer 0.4.0 requires exactly one "
+                    "authority binding"
+                )
+            for index, binding in enumerate(bindings):
+                if not isinstance(binding, dict) or set(binding) != {
+                    "qids",
+                    "snapshot_id",
+                }:
+                    errors.append(
+                        f"{label}: authority_bindings[{index}] has an invalid shape"
+                    )
+                    continue
+                snapshot_id = binding["snapshot_id"]
+                qids = binding["qids"]
+                if (
+                    not isinstance(snapshot_id, str)
+                    or not snapshot_id.startswith(
+                        "wikidata-work-type-authority-"
+                    )
+                ):
+                    errors.append(
+                        f"{label}: authority_bindings[{index}] snapshot id is invalid"
+                    )
+                else:
+                    snapshot_ids.append(snapshot_id)
+                if (
+                    not isinstance(qids, list)
+                    or not qids
+                    or not all(
+                        isinstance(qid, str)
+                        and re.fullmatch(r"Q[1-9][0-9]*", qid)
+                        for qid in qids
+                    )
+                ):
+                    errors.append(
+                        f"{label}: authority_bindings[{index}] QIDs are invalid"
+                    )
+                    continue
+                if qids != sorted(set(qids), key=lambda qid: int(qid[1:])):
+                    errors.append(
+                        f"{label}: authority_bindings[{index}] QIDs must be "
+                        "unique and numerically ordered"
+                    )
+                bound_qids.extend(qids)
+        if len(snapshot_ids) != len(set(snapshot_ids)):
+            errors.append(f"{label}: authority snapshot ids must be unique")
+        if len(bound_qids) != len(set(bound_qids)):
+            errors.append(f"{label}: authority QIDs must be unique")
+        if not set(bound_qids) <= set(allowlist_qids):
+            errors.append(f"{label}: authority QID is absent from allowlist")
+        legacy = work_type_rule["legacy_allowlist"]
+        if not isinstance(legacy, dict) or set(legacy) != {
+            "hash_algorithm",
+            "rows",
+            "rows_sha256",
+            "source_config_version",
+        }:
+            errors.append(
+                f"{label}: legacy_allowlist has an invalid shape"
+            )
+        else:
+            legacy_rows = legacy["rows"]
+            if (
+                legacy["hash_algorithm"] != "sha256"
+                or legacy["source_config_version"]
+                != LEGACY_WORK_TYPE_SOURCE_CONFIG_VERSION
+                or not isinstance(legacy_rows, list)
+                or not legacy_rows
+                or not isinstance(allowlist, list)
+                or legacy["rows_sha256"]
+                != LEGACY_WORK_TYPE_ALLOWLIST_SHA256
+                or canonical_hash(legacy_rows)
+                != LEGACY_WORK_TYPE_ALLOWLIST_SHA256
+                or allowlist[: len(legacy_rows)] != legacy_rows
+            ):
+                errors.append(
+                    f"{label}: legacy_allowlist is unsupported"
+                )
+            else:
+                new_rows = allowlist[len(legacy_rows) :]
+                new_qids = [
+                    row.get("qid")
+                    for row in new_rows
+                    if isinstance(row, dict)
+                ]
+                if (
+                    len(new_qids) != len(new_rows)
+                    or set(new_qids) != set(bound_qids)
+                ):
+                    errors.append(
+                        f"{label}: every non-legacy work-type mapping "
+                        "requires an authority binding"
+                    )
+
     grid = config.get("coverage_grid")
     if not isinstance(grid, dict):
         errors.append(f"{label}: coverage_grid must be an object")
@@ -587,6 +771,144 @@ def wikidata_statement_qualifiers(statement: dict) -> list[dict]:
         }
         for property_id in sorted(qualifiers)
     ]
+
+
+def derive_wikidata_work_type(record: dict, config: dict) -> dict:
+    work_type_by_class = {
+        row["qid"]: row["work_type"]
+        for row in config["exact_instance_allowlist"]
+    }
+    matches: list[dict] = []
+    for index, statement in enumerate(
+        record.get("claims", {}).get("P31", [])
+    ):
+        if statement.get("rank") == "deprecated":
+            continue
+        values = wikidata_item_values(
+            {"claims": {"P31": [statement]}},
+            "P31",
+        )
+        if len(values) != 1:
+            continue
+        class_qid = values[0]
+        work_type = work_type_by_class.get(class_qid)
+        if work_type is not None:
+            matches.append(
+                {
+                    "class_qid": class_qid,
+                    "index": index,
+                    "statement": statement,
+                    "work_type": work_type,
+                }
+            )
+    mapped_types = {row["work_type"] for row in matches}
+    if not mapped_types:
+        return {
+            "mapping_status": "unmapped",
+            "match": None,
+            "work_type": "unknown",
+        }
+    if len(mapped_types) != 1:
+        return {
+            "mapping_status": "ambiguous",
+            "match": None,
+            "work_type": "unknown",
+        }
+    return {
+        "mapping_status": "mapped_exact",
+        "match": matches[0],
+        "work_type": matches[0]["work_type"],
+    }
+
+
+def validate_work_type_claim(
+    work: dict,
+    claim_by_id: dict[str, dict],
+    config: dict,
+    work_snapshot: dict,
+    errors: list[str],
+) -> None:
+    work_id = work["id"]
+    type_claims = [
+        claim_by_id[claim_id]
+        for claim_id in work["claim_ids"]
+        if (
+            claim_id in claim_by_id
+            and claim_by_id[claim_id]["predicate"] == "field_work_type"
+        )
+    ]
+    qid = work["external_ids"].get("wikidata")
+    wrapper = work_snapshot["entities"].get(qid) if qid else None
+    if wrapper is None:
+        errors.append(
+            f"{work_id}: work-type source record is absent from the work snapshot"
+        )
+        return
+    derived = derive_wikidata_work_type(wrapper["record"], config)
+    if work["work_type_mapping_status"] != derived["mapping_status"]:
+        errors.append(
+            f"{work_id}: work_type_mapping_status does not match pinned P31"
+        )
+    if work["work_type"] != derived["work_type"]:
+        errors.append(f"{work_id}: work_type does not match pinned P31")
+
+    if derived["mapping_status"] != "mapped_exact":
+        if type_claims:
+            errors.append(
+                f"{work_id}: unmapped/ambiguous work type cannot publish "
+                "a field_work_type claim"
+            )
+        return
+    if len(type_claims) != 1:
+        errors.append(
+            f"{work_id}: mapped_exact work type requires exactly one field claim"
+        )
+        return
+
+    match = derived["match"]
+    claim = type_claims[0]
+    if claim["object"].get("value") != derived["work_type"]:
+        errors.append(f"{work_id}: field_work_type object is incorrect")
+    authority_snapshot_by_class = {
+        qid: binding["snapshot_id"]
+        for binding in config["work_type_derivation"]["authority_bindings"]
+        for qid in binding["qids"]
+    }
+    expected_qualifiers = {
+        "authority_snapshot_id": authority_snapshot_by_class.get(
+            match["class_qid"]
+        ),
+        "basis_property": "P31",
+        "coverage_config_version": config["config_version"],
+        "derivation_rule_id": config["work_type_derivation"]["rule_id"],
+        "matched_class_qid": match["class_qid"],
+    }
+    if claim["qualifiers"] != expected_qualifiers:
+        errors.append(f"{work_id}: field_work_type qualifiers are incorrect")
+    if len(claim["evidence"]) != 1:
+        errors.append(
+            f"{work_id}: field_work_type requires one direct P31 evidence row"
+        )
+        return
+    evidence = claim["evidence"][0]
+    statement = match["statement"]
+    expected_path = f"/claims/P31/{match['index']}"
+    expected_record_id = f"{qid}@{wrapper['lastrevid']}"
+    if (
+        evidence["snapshot_id"] != work_snapshot["snapshot_id"]
+        or evidence["source_id"] != "wikidata"
+        or evidence["native_record_id"] != expected_record_id
+        or evidence["native_predicate"] != "P31"
+        or evidence["native_field_path"] != expected_path
+        or evidence["rank"] != statement.get("rank")
+        or evidence["qualifiers"]
+        != wikidata_statement_qualifiers(statement)
+        or evidence["references"] != statement.get("references", [])
+        or evidence["support"] != "explicit"
+    ):
+        errors.append(
+            f"{work_id}: field_work_type evidence does not match pinned P31"
+        )
 
 
 def validate_work_period_claim(
@@ -1029,6 +1351,111 @@ def canonical_hash(value: Any) -> str:
     return hashlib.sha256(raw).hexdigest()
 
 
+def validate_type_authority_seed_contract(
+    seed_contract: Any,
+    label: str,
+    errors: list[str],
+) -> Optional[dict]:
+    start_error_count = len(errors)
+    if not isinstance(seed_contract, dict) or set(seed_contract) != {
+        "authorities",
+        "base_work_snapshot_id",
+        "seed_version",
+    }:
+        errors.append(f"{label}: invalid root shape")
+        return None
+    if (
+        not isinstance(seed_contract["seed_version"], str)
+        or not re.fullmatch(r"\d+\.\d+\.\d+", seed_contract["seed_version"])
+    ):
+        errors.append(f"{label}: seed_version must be semantic")
+    if (
+        not isinstance(seed_contract["base_work_snapshot_id"], str)
+        or not seed_contract["base_work_snapshot_id"].startswith(
+            "wikidata-hydration-"
+        )
+    ):
+        errors.append(f"{label}: base work snapshot id is invalid")
+    authorities = seed_contract["authorities"]
+    qids: list[str] = []
+    if not isinstance(authorities, list) or not authorities:
+        errors.append(f"{label}: authority rows must be non-empty")
+    else:
+        for index, row in enumerate(authorities):
+            row_label = f"{label}.authorities[{index}]"
+            if not isinstance(row, dict) or set(row) != {
+                "label_hint_en",
+                "qid",
+                "risk_tags",
+                "work_type",
+            }:
+                errors.append(f"{row_label}: invalid shape")
+                continue
+            qid = row["qid"]
+            risk_tags = row["risk_tags"]
+            if (
+                not isinstance(qid, str)
+                or not re.fullmatch(r"Q[1-9][0-9]*", qid)
+            ):
+                errors.append(f"{row_label}: invalid QID")
+            else:
+                qids.append(qid)
+            if (
+                not isinstance(row["label_hint_en"], str)
+                or not row["label_hint_en"].strip()
+            ):
+                errors.append(f"{row_label}: label_hint_en is required")
+            if row["work_type"] not in SUPPORTED_WORK_TYPES:
+                errors.append(f"{row_label}: unsupported work_type")
+            if (
+                not isinstance(risk_tags, list)
+                or not risk_tags
+                or risk_tags != sorted(set(risk_tags))
+                or not all(
+                    isinstance(tag, str)
+                    and re.fullmatch(r"[a-z][a-z0-9_]*", tag)
+                    for tag in risk_tags
+                )
+            ):
+                errors.append(
+                    f"{row_label}: risk_tags must be unique and sorted"
+                )
+    if qids and qids != sorted(set(qids), key=lambda qid: int(qid[1:])):
+        errors.append(
+            f"{label}: QIDs must be unique and numerically ordered"
+        )
+    if len(errors) != start_error_count:
+        return None
+    return seed_contract
+
+
+def authority_snapshot_id(snapshot: dict, seed_sha256: str) -> str:
+    aggregate = hashlib.sha256()
+    for value in (
+        snapshot["adapter_id"],
+        snapshot["adapter_version"],
+        snapshot["base_work_snapshot_id"],
+        seed_sha256,
+    ):
+        aggregate.update(value.encode("utf-8"))
+        aggregate.update(b"\0")
+    for qid in sorted(
+        snapshot["entities"],
+        key=lambda value: int(value[1:]),
+    ):
+        wrapper = snapshot["entities"][qid]
+        aggregate.update(qid.encode("ascii"))
+        aggregate.update(b"\0")
+        aggregate.update(str(wrapper["lastrevid"]).encode("ascii"))
+        aggregate.update(b"\0")
+        aggregate.update(wrapper["record_sha256"].encode("ascii"))
+        aggregate.update(b"\0")
+    return (
+        f"wikidata-work-type-authority-{snapshot['accessed']}-"
+        f"{aggregate.hexdigest()[:12]}"
+    )
+
+
 def wikidata_item_values(record: dict, property_id: str) -> list[str]:
     values: list[str] = []
     for statement in record.get("claims", {}).get(property_id, []):
@@ -1331,6 +1758,17 @@ def main() -> int:
         for error in errors:
             print(f"ERROR: {error}", file=sys.stderr)
         return 1
+    committed_authority_seed: Optional[dict] = None
+    if not TYPE_AUTHORITY_SEEDS_PATH.is_file():
+        errors.append(
+            "work-type authority seed file is missing"
+        )
+    else:
+        committed_authority_seed = validate_type_authority_seed_contract(
+            load_json(TYPE_AUTHORITY_SEEDS_PATH),
+            "work-type authority seed",
+            errors,
+        )
     country_authority = {
         row["country_qid"]: row
         for row in coverage_config["country_region_authority"]
@@ -1354,6 +1792,7 @@ def main() -> int:
 
         selection = snapshot["selection"]
         method = selection["method"]
+        authority_qids: list[str] = []
         if method == "pinned_hydration_fixtures":
             if selection["per_cell"] is not None or selection["query_limit"] is not None:
                 errors.append(
@@ -1361,7 +1800,100 @@ def main() -> int:
                 )
             if snapshot["queries"]:
                 errors.append(f"{snapshot_id}: hydration fixtures cannot contain queries")
+            if "authority_qids" in selection:
+                errors.append(
+                    f"{snapshot_id}: hydration fixtures cannot contain authority_qids"
+                )
+            if "authority_seed" in selection:
+                errors.append(
+                    f"{snapshot_id}: hydration fixtures cannot contain authority_seed"
+                )
+            if "base_work_snapshot_id" in snapshot:
+                errors.append(
+                    f"{snapshot_id}: hydration fixtures cannot bind a base snapshot"
+                )
             expected_seed_hash = canonical_hash(snapshot["seeds"])
+        elif method == "exact_instance_allowlist_authority":
+            authority_qids = selection.get("authority_qids", [])
+            authority_seed = selection.get("authority_seed")
+            if (
+                selection["per_cell"] is not None
+                or selection["query_limit"] is not None
+            ):
+                errors.append(
+                    f"{snapshot_id}: type authorities require null query limits"
+                )
+            if snapshot["queries"] or snapshot["seeds"]:
+                errors.append(
+                    f"{snapshot_id}: type authorities cannot contain queries or seeds"
+                )
+            if (
+                not isinstance(authority_qids, list)
+                or not authority_qids
+                or not all(
+                    isinstance(qid, str)
+                    and re.fullmatch(r"Q[1-9][0-9]*", qid)
+                    for qid in authority_qids
+                )
+                or authority_qids
+                != sorted(set(authority_qids), key=lambda qid: int(qid[1:]))
+            ):
+                errors.append(
+                    f"{snapshot_id}: type authority QIDs must be unique and "
+                    "numerically ordered"
+                )
+                authority_qids = []
+            if not snapshot.get("base_work_snapshot_id"):
+                errors.append(
+                    f"{snapshot_id}: type authorities require a base work snapshot"
+                )
+            validated_authority_seed = (
+                validate_type_authority_seed_contract(
+                    authority_seed,
+                    f"{snapshot_id}: embedded authority seed",
+                    errors,
+                )
+            )
+            if (
+                committed_authority_seed is not None
+                and validated_authority_seed is not None
+                and validated_authority_seed != committed_authority_seed
+            ):
+                errors.append(
+                    f"{snapshot_id}: embedded authority seed does not match "
+                    "the committed seed contract"
+                )
+            if validated_authority_seed is None:
+                expected_seed_hash = ""
+            else:
+                expected_seed_hash = canonical_hash(
+                    validated_authority_seed
+                )
+                seed_qids = [
+                    row["qid"]
+                    for row in validated_authority_seed["authorities"]
+                ]
+                if authority_qids != seed_qids:
+                    errors.append(
+                        f"{snapshot_id}: authority_qids do not match "
+                        "the embedded seed contract"
+                    )
+                if (
+                    snapshot.get("base_work_snapshot_id")
+                    != validated_authority_seed["base_work_snapshot_id"]
+                ):
+                    errors.append(
+                        f"{snapshot_id}: base work snapshot does not match "
+                        "the embedded seed contract"
+                    )
+                if snapshot_id != authority_snapshot_id(
+                    snapshot,
+                    expected_seed_hash,
+                ):
+                    errors.append(
+                        f"{snapshot_id}: snapshot id does not bind the "
+                        "authority seed and pinned revisions"
+                    )
         else:
             if selection["per_cell"] is None or selection["query_limit"] is None:
                 errors.append(
@@ -1371,6 +1903,18 @@ def main() -> int:
                 errors.append(f"{snapshot_id}: coverage selection requires queries")
             if snapshot["seeds"]:
                 errors.append(f"{snapshot_id}: coverage selection cannot contain fixture seeds")
+            if "authority_qids" in selection:
+                errors.append(
+                    f"{snapshot_id}: coverage selection cannot contain authority_qids"
+                )
+            if "authority_seed" in selection:
+                errors.append(
+                    f"{snapshot_id}: coverage selection cannot contain authority_seed"
+                )
+            if "base_work_snapshot_id" in snapshot:
+                errors.append(
+                    f"{snapshot_id}: coverage selection cannot bind a base snapshot"
+                )
             expected_seed_hash = hashlib.sha256(
                 selection["seed"].encode("utf-8")
             ).hexdigest()
@@ -1434,13 +1978,22 @@ def main() -> int:
                 wrapper["record_sha256"],
                 wrapper["pinned_url"],
             )
-        required_records = selected_across_cells | set(seed_qids)
+        required_records = (
+            selected_across_cells | set(seed_qids) | set(authority_qids)
+        )
         missing_selected = required_records - set(snapshot["entities"])
         if missing_selected:
             errors.append(
                 f"{snapshot_id}: selected/seed work records are missing: "
                 f"{sorted(missing_selected)!r}"
             )
+        if method == "exact_instance_allowlist_authority":
+            extra_authorities = set(snapshot["entities"]) - set(authority_qids)
+            if extra_authorities:
+                errors.append(
+                    f"{snapshot_id}: type authority snapshot has extra entities: "
+                    f"{sorted(extra_authorities)!r}"
+                )
         for seed in snapshot["seeds"]:
             record = snapshot["entities"].get(seed["qid"], {}).get("record")
             if record is None:
@@ -1483,6 +2036,95 @@ def main() -> int:
                     "ISO code is absent from pinned P297"
                 )
 
+    for snapshot in snapshot_payloads:
+        if (
+            snapshot["selection"]["method"]
+            != "exact_instance_allowlist_authority"
+        ):
+            continue
+        snapshot_id = snapshot["snapshot_id"]
+        base_snapshot_id = snapshot.get("base_work_snapshot_id")
+        base_snapshot = snapshot_by_id.get(base_snapshot_id)
+        if base_snapshot is None:
+            errors.append(
+                f"{snapshot_id}: base work snapshot {base_snapshot_id!r} is unavailable"
+            )
+        elif (
+            base_snapshot["selection"]["method"]
+            != "pinned_hydration_fixtures"
+        ):
+            errors.append(
+                f"{snapshot_id}: base work snapshot must be a hydration fixture"
+            )
+
+    allowlist_by_qid = {
+        row["qid"]: row
+        for row in coverage_config["exact_instance_allowlist"]
+    }
+    committed_seed_by_qid = {
+        row["qid"]: row
+        for row in (
+            committed_authority_seed["authorities"]
+            if committed_authority_seed is not None
+            else []
+        )
+    }
+    for binding in coverage_config["work_type_derivation"][
+        "authority_bindings"
+    ]:
+        snapshot_id = binding["snapshot_id"]
+        expected_qids = binding["qids"]
+        snapshot = snapshot_by_id.get(snapshot_id)
+        if snapshot is None:
+            errors.append(
+                f"work-type authority binding references missing snapshot "
+                f"{snapshot_id!r}"
+            )
+            continue
+        if (
+            snapshot["selection"]["method"]
+            != "exact_instance_allowlist_authority"
+        ):
+            errors.append(
+                f"{snapshot_id}: configured work-type authority has wrong method"
+            )
+            continue
+        if snapshot["selection"].get("authority_qids") != expected_qids:
+            errors.append(
+                f"{snapshot_id}: configured work-type authority QIDs mismatch"
+            )
+        for qid in expected_qids:
+            record = (
+                snapshot["entities"].get(qid, {}).get("record")
+            )
+            if record is None:
+                continue
+            english_label = (
+                record.get("labels", {}).get("en", {}).get("value")
+            )
+            if english_label != allowlist_by_qid[qid]["label_en"]:
+                errors.append(
+                    f"{snapshot_id}/{qid}: authority English label does not "
+                    "match the exact-instance allowlist"
+                )
+            seed_row = committed_seed_by_qid.get(qid)
+            if (
+                seed_row is None
+                or seed_row["label_hint_en"]
+                != allowlist_by_qid[qid]["label_en"]
+                or seed_row["work_type"]
+                != allowlist_by_qid[qid]["work_type"]
+            ):
+                errors.append(
+                    f"{snapshot_id}/{qid}: committed authority seed does not "
+                    "match the exact-instance allowlist"
+                )
+            if not set(record.get("claims", {})) <= {"P279"}:
+                errors.append(
+                    f"{snapshot_id}/{qid}: authority record contains "
+                    "non-P279 claims"
+                )
+
     merged_catalog = {
         "people": [],
         "practices": [],
@@ -1491,6 +2133,7 @@ def main() -> int:
         "claims": [],
         "relations": [],
     }
+    catalog_work_snapshot: Optional[dict] = None
     if CATALOG.exists():
         for path in sorted(CATALOG.glob("*.json")):
             shard = load_json(path)
@@ -1510,15 +2153,32 @@ def main() -> int:
                 errors.append(
                     f"{path.name}: shard source does not match generating snapshot"
                 )
-            elif (
-                shard["transformer_id"]
-                != coverage_config["transformer"]["id"]
-                or shard["transformer_version"]
-                != coverage_config["transformer"]["version"]
-                or shard["generator"]
-                != (
-                    f"{coverage_config['transformer']['id']}@"
-                    f"{coverage_config['transformer']['version']}"
+            if (
+                snapshot is not None
+                and snapshot["source_id"] == shard["source_id"]
+                and shard["source_id"] == "wikidata"
+                and shard["works"]
+                and snapshot["selection"]["method"]
+                == "pinned_hydration_fixtures"
+            ):
+                if catalog_work_snapshot is not None:
+                    errors.append(
+                        "catalog: multiple Wikidata work snapshots are active"
+                    )
+                catalog_work_snapshot = snapshot
+            if (
+                snapshot is not None
+                and snapshot["source_id"] == shard["source_id"]
+                and (
+                    shard["transformer_id"]
+                    != coverage_config["transformer"]["id"]
+                    or shard["transformer_version"]
+                    != coverage_config["transformer"]["version"]
+                    or shard["generator"]
+                    != (
+                        f"{coverage_config['transformer']['id']}@"
+                        f"{coverage_config['transformer']['version']}"
+                    )
                 )
             ):
                 errors.append(
@@ -1551,6 +2211,29 @@ def main() -> int:
                         errors.append(
                             f"{path.name}/{claim['id']}: evidence snapshot escapes shard"
                         )
+
+    if catalog_work_snapshot is None:
+        errors.append("catalog: active Wikidata work snapshot is unavailable")
+        catalog_work_snapshot = {
+            "entities": {},
+            "snapshot_id": "missing-work-snapshot",
+        }
+    else:
+        for binding in coverage_config["work_type_derivation"][
+            "authority_bindings"
+        ]:
+            authority_snapshot = snapshot_by_id.get(
+                binding["snapshot_id"]
+            )
+            if (
+                authority_snapshot is not None
+                and authority_snapshot.get("base_work_snapshot_id")
+                != catalog_work_snapshot["snapshot_id"]
+            ):
+                errors.append(
+                    f"{binding['snapshot_id']}: base work snapshot does not "
+                    "match the active Wikidata catalog"
+                )
 
     public_graph_arrays = {
         "people": people,
@@ -1678,36 +2361,13 @@ def main() -> int:
             snapshot_by_id,
             errors,
         )
-        type_claims = [
-            claim_by_id[claim_id]
-            for claim_id in work["claim_ids"]
-            if (
-                claim_id in claim_by_id
-                and claim_by_id[claim_id]["predicate"] == "field_work_type"
-            )
-        ]
-        if work["work_type_mapping_status"] == "mapped_exact":
-            if work["work_type"] == "unknown":
-                errors.append(
-                    f"{work_id}: mapped_exact work type cannot be unknown"
-                )
-            if not any(
-                claim["object"].get("value") == work["work_type"]
-                for claim in type_claims
-            ):
-                errors.append(
-                    f"{work_id}: mapped_exact work type requires an exact field claim"
-                )
-        else:
-            if work["work_type"] != "unknown":
-                errors.append(
-                    f"{work_id}: unmapped/ambiguous work type must be unknown"
-                )
-            if type_claims:
-                errors.append(
-                    f"{work_id}: unmapped/ambiguous work type cannot publish "
-                    "a field_work_type claim"
-                )
+        validate_work_type_claim(
+            work,
+            claim_by_id,
+            coverage_config,
+            catalog_work_snapshot,
+            errors,
+        )
         for field, date_value in work["dates"].items():
             validate_date_value(work_id, f"dates.{field}", date_value, errors)
         design_year = known_year(work["dates"]["design"])

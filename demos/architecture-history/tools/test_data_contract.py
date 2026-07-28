@@ -33,6 +33,10 @@ class DataContractTests(unittest.TestCase):
         shutil.copytree(ROOT / "assets", root / "assets")
         (root / "tools").mkdir()
         shutil.copy2(ROOT / "tools" / "schema.json", root / "tools" / "schema.json")
+        shutil.copy2(
+            ROOT / "tools" / "wikidata-work-type-authority-seeds.json",
+            root / "tools" / "wikidata-work-type-authority-seeds.json",
+        )
         return temp
 
     def run_validator(self, root: Path) -> subprocess.CompletedProcess:
@@ -350,6 +354,117 @@ class DataContractTests(unittest.TestCase):
             issues,
         )
 
+    def test_wikidata_snapshot_schema_closes_method_specific_shapes(self):
+        schema = json.loads(
+            (ROOT / "tools" / "schema.json").read_text(encoding="utf-8")
+        )
+        snapshot_schema = schema["$defs"]["wikidataSnapshot"]
+        authority_path = next(
+            (
+                ROOT / "assets" / "data" / "source-snapshots"
+            ).glob("wikidata-work-type-authority-*.json")
+        )
+        authority = json.loads(authority_path.read_text(encoding="utf-8"))
+        hydration_path = next(
+            (
+                ROOT / "assets" / "data" / "source-snapshots"
+            ).glob("wikidata-hydration-*.json")
+        )
+        hydration = json.loads(hydration_path.read_text(encoding="utf-8"))
+        coverage = copy.deepcopy(hydration)
+        coverage_qid = next(iter(coverage["entities"]))
+        coverage_query = (
+            f"SELECT ?work WHERE {{ VALUES ?work {{ wd:{coverage_qid} }} }}"
+        )
+        coverage["selection"] = {
+            "method": "coverage_cell_stable_hash",
+            "per_cell": 1,
+            "query_limit": 1,
+            "seed": "schema-coverage-fixture",
+            "seed_sha256": hashlib.sha256(
+                b"schema-coverage-fixture"
+            ).hexdigest(),
+            "notes_zh": "仅用于结构测试。",
+            "notes_en": "Schema-only fixture.",
+        }
+        coverage["queries"] = [
+            {
+                "cell_id": "schema-cell",
+                "region": "unknown",
+                "country_code": "US",
+                "country_qid": "Q30",
+                "query": coverage_query,
+                "query_sha256": hashlib.sha256(
+                    coverage_query.encode("utf-8")
+                ).hexdigest(),
+                "candidate_work_qids": [coverage_qid],
+                "selected_work_qids": [coverage_qid],
+                "eligible_credits": [],
+            }
+        ]
+        coverage["seeds"] = []
+
+        for label, payload in (
+            ("authority", authority),
+            ("hydration", hydration),
+            ("coverage", coverage),
+        ):
+            with self.subTest(valid=label):
+                self.assertEqual(
+                    validator.schema_issues(
+                        payload,
+                        snapshot_schema,
+                        schema,
+                        label,
+                    ),
+                    [],
+                )
+
+        invalid_payloads = []
+        missing_base = copy.deepcopy(authority)
+        missing_base.pop("base_work_snapshot_id")
+        invalid_payloads.append(("authority-missing-base", missing_base))
+        missing_qids = copy.deepcopy(authority)
+        missing_qids["selection"].pop("authority_qids")
+        invalid_payloads.append(("authority-missing-qids", missing_qids))
+        missing_seed = copy.deepcopy(authority)
+        missing_seed["selection"].pop("authority_seed")
+        invalid_payloads.append(("authority-missing-seed", missing_seed))
+        integer_limits = copy.deepcopy(authority)
+        integer_limits["selection"]["per_cell"] = 1
+        invalid_payloads.append(("authority-integer-limits", integer_limits))
+        authority_queries = copy.deepcopy(authority)
+        authority_queries["queries"] = hydration["seeds"][:1]
+        invalid_payloads.append(("authority-with-queries", authority_queries))
+        hydrated_authority = copy.deepcopy(hydration)
+        hydrated_authority["base_work_snapshot_id"] = authority[
+            "base_work_snapshot_id"
+        ]
+        hydrated_authority["selection"]["authority_qids"] = authority[
+            "selection"
+        ]["authority_qids"]
+        invalid_payloads.append(
+            ("hydration-with-authority-fields", hydrated_authority)
+        )
+        coverage_null_limits = copy.deepcopy(coverage)
+        coverage_null_limits["selection"]["per_cell"] = None
+        invalid_payloads.append(
+            ("coverage-null-limits", coverage_null_limits)
+        )
+
+        for label, payload in invalid_payloads:
+            with self.subTest(invalid=label):
+                issues = validator.schema_issues(
+                    payload,
+                    snapshot_schema,
+                    schema,
+                    label,
+                )
+                self.assertIn(
+                    f"{label}: does not match any allowed schema",
+                    issues,
+                )
+
     def test_lineage_cycle_detector(self):
         self.assertIsNone(validator.has_cycle([("a", "b"), ("b", "c")]))
         self.assertEqual(
@@ -407,6 +522,54 @@ class DataContractTests(unittest.TestCase):
             "seed geography does not match country authority",
             result.stderr,
         )
+
+    def test_work_type_authority_label_must_match_allowlist(self):
+        temp = self.isolated_root()
+        self.addCleanup(temp.cleanup)
+        root = Path(temp.name)
+        data = root / "assets" / "data"
+        snapshot_path = next(
+            (data / "source-snapshots").glob(
+                "wikidata-work-type-authority-*.json"
+            )
+        )
+        payload = json.loads(snapshot_path.read_text(encoding="utf-8"))
+        qid = payload["selection"]["authority_qids"][0]
+        wrapper = payload["entities"][qid]
+        wrapper["record"]["labels"]["en"]["value"] = "Drifted class label"
+        wrapper["record_sha256"] = validator.canonical_hash(wrapper["record"])
+        snapshot_path.write_text(
+            json.dumps(payload, ensure_ascii=False, indent=2) + "\n",
+            encoding="utf-8",
+        )
+        (data / "manifest.json").unlink()
+        result = self.run_validator(root)
+        self.assertNotEqual(result.returncode, 0)
+        self.assertIn(
+            "authority English label does not match",
+            result.stderr,
+        )
+
+    def test_work_type_authority_base_snapshot_must_resolve(self):
+        temp = self.isolated_root()
+        self.addCleanup(temp.cleanup)
+        root = Path(temp.name)
+        data = root / "assets" / "data"
+        snapshot_path = next(
+            (data / "source-snapshots").glob(
+                "wikidata-work-type-authority-*.json"
+            )
+        )
+        payload = json.loads(snapshot_path.read_text(encoding="utf-8"))
+        payload["base_work_snapshot_id"] = "wikidata-hydration-missing"
+        snapshot_path.write_text(
+            json.dumps(payload, ensure_ascii=False, indent=2) + "\n",
+            encoding="utf-8",
+        )
+        (data / "manifest.json").unlink()
+        result = self.run_validator(root)
+        self.assertNotEqual(result.returncode, 0)
+        self.assertIn("base work snapshot", result.stderr)
 
     def test_manifest_semantics_cannot_be_forged(self):
         temp = self.isolated_root()
@@ -803,7 +966,7 @@ class DataContractTests(unittest.TestCase):
         errors: list[str] = []
         validator.validate_coverage_config(config, allowed_periods, errors)
         self.assertEqual(errors, [])
-        self.assertEqual(config["config_version"], "0.3.0")
+        self.assertEqual(config["config_version"], "0.4.0")
         self.assertEqual(
             config["period_derivation"]["latest_year_inclusive"],
             2026,
@@ -816,6 +979,26 @@ class DataContractTests(unittest.TestCase):
             config["period_derivation"]["year_precision_lower_components"],
             "zero_or_valid_calendar_date_ignored",
         )
+        self.assertEqual(
+            config["work_type_derivation"]["rule_id"],
+            "wikidata-p31-exact-instance-work-type-v1",
+        )
+        self.assertEqual(
+            config["work_type_derivation"]["subclass_traversal"],
+            "forbidden",
+        )
+        self.assertEqual(
+            config["work_type_derivation"]["legacy_allowlist"][
+                "rows_sha256"
+            ],
+            validator.LEGACY_WORK_TYPE_ALLOWLIST_SHA256,
+        )
+        self.assertEqual(
+            len(
+                config["work_type_derivation"]["legacy_allowlist"]["rows"]
+            ),
+            36,
+        )
 
         malformed = copy.deepcopy(config)
         malformed["coverage_grid"]["periods"][1]["year_start_inclusive"] = 1001
@@ -827,6 +1010,44 @@ class DataContractTests(unittest.TestCase):
         )
         self.assertTrue(
             any("contiguous partition" in error for error in errors),
+            errors,
+        )
+
+        malformed = copy.deepcopy(config)
+        malformed["exact_instance_allowlist"].append(
+            {
+                "label_en": "unreviewed class",
+                "qid": "Q999999999",
+                "work_type": "building",
+            }
+        )
+        errors = []
+        validator.validate_coverage_config(
+            malformed,
+            allowed_periods,
+            errors,
+        )
+        self.assertTrue(
+            any(
+                "requires an authority binding" in error
+                for error in errors
+            ),
+            errors,
+        )
+
+        malformed = copy.deepcopy(config)
+        legacy = malformed["work_type_derivation"]["legacy_allowlist"]
+        legacy["rows"][0]["work_type"] = "monument"
+        legacy["rows_sha256"] = validator.canonical_hash(legacy["rows"])
+        malformed["exact_instance_allowlist"][0]["work_type"] = "monument"
+        errors = []
+        validator.validate_coverage_config(
+            malformed,
+            allowed_periods,
+            errors,
+        )
+        self.assertTrue(
+            any("legacy_allowlist is unsupported" in error for error in errors),
             errors,
         )
 

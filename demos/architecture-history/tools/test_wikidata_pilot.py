@@ -3,6 +3,7 @@
 
 from __future__ import annotations
 
+import copy
 import hashlib
 import importlib.util
 import json
@@ -55,6 +56,17 @@ EXPECTED_NEW_PERIOD_ASSIGNMENTS = {
 }
 PRIOR_PERIOD_ASSIGNMENT_SHA256 = (
     "a90742e93cf2476f0315ba495add6163e131e550a7fbeac6ca1f3fd6769208a3"
+)
+NEW_WORK_TYPE_AUTHORITY_QIDS = {
+    "Q2977",
+    "Q3950",
+    "Q92026",
+    "Q1060829",
+    "Q1307276",
+    "Q7138926",
+}
+NEW_WORK_TYPE_WORK_IDS_SHA256 = (
+    "0a51e352312a5465b1765bd7817e960ae3da832adb97e6f0eec93e22d111eb08"
 )
 
 
@@ -146,7 +158,13 @@ class WikidataPilotTests(unittest.TestCase):
             / "methodology"
             / "wikidata-coverage-config.json"
         )
+        cls.authority_snapshots = importer.load_type_authority_snapshots(
+            cls.config
+        )
         cls.seed_file = load_json(ROOT / "tools" / "wikidata-hydration-seeds.json")
+        cls.authority_seed_file = load_json(
+            ROOT / "tools" / "wikidata-work-type-authority-seeds.json"
+        )
 
     def test_seed_set_and_coverage_grid_are_fixed(self):
         self.assertEqual(self.snapshot["seeds"], self.seed_file["seeds"])
@@ -375,10 +393,224 @@ class WikidataPilotTests(unittest.TestCase):
             self.assertNotIn("source_response_sha256", wrapper)
 
     def test_import_is_deterministic(self):
-        first = importer.CatalogBuilder(self.snapshot, self.config).build()
-        second = importer.CatalogBuilder(self.snapshot, self.config).build()
+        first = importer.CatalogBuilder(
+            self.snapshot,
+            self.config,
+            self.authority_snapshots,
+        ).build()
+        second = importer.CatalogBuilder(
+            self.snapshot,
+            self.config,
+            self.authority_snapshots,
+        ).build()
         self.assertEqual(first, second)
         self.assertEqual(first, self.catalog)
+
+    def test_work_type_authority_sidecar_is_revision_pinned(self):
+        bindings = self.config["work_type_derivation"]["authority_bindings"]
+        self.assertEqual(len(bindings), 1)
+        binding = bindings[0]
+        self.assertEqual(set(binding["qids"]), NEW_WORK_TYPE_AUTHORITY_QIDS)
+        snapshot = self.authority_snapshots[binding["snapshot_id"]]
+        seed_qids = sorted(
+            (
+                row["qid"]
+                for row in self.authority_seed_file["authorities"]
+            ),
+            key=lambda qid: int(qid[1:]),
+        )
+        self.assertEqual(binding["qids"], seed_qids)
+        self.assertEqual(
+            snapshot["base_work_snapshot_id"],
+            self.authority_seed_file["base_work_snapshot_id"],
+        )
+        self.assertEqual(
+            snapshot["base_work_snapshot_id"],
+            self.snapshot["snapshot_id"],
+        )
+        self.assertEqual(
+            snapshot["selection"]["method"],
+            "exact_instance_allowlist_authority",
+        )
+        self.assertEqual(snapshot["selection"]["authority_qids"], binding["qids"])
+        self.assertEqual(
+            snapshot["selection"]["authority_seed"],
+            self.authority_seed_file,
+        )
+        self.assertEqual(
+            snapshot["selection"]["seed_sha256"],
+            importer.canonical_hash(self.authority_seed_file),
+        )
+        self.assertEqual(
+            snapshot["snapshot_id"],
+            importer.authority_snapshot_id(
+                snapshot,
+                snapshot["selection"]["seed_sha256"],
+            ),
+        )
+        self.assertEqual(set(snapshot["entities"]), NEW_WORK_TYPE_AUTHORITY_QIDS)
+        allowlist = {
+            row["qid"]: row
+            for row in self.config["exact_instance_allowlist"]
+        }
+        for qid, wrapper in snapshot["entities"].items():
+            revision = wrapper["lastrevid"]
+            record = wrapper["record"]
+            self.assertEqual(record["id"], qid)
+            self.assertEqual(record["lastrevid"], revision)
+            self.assertEqual(
+                wrapper["pinned_url"],
+                "https://www.wikidata.org/wiki/Special:EntityData/"
+                f"{qid}.json?revision={revision}",
+            )
+            self.assertEqual(
+                wrapper["record_sha256"],
+                importer.canonical_hash(record),
+            )
+            self.assertEqual(
+                record["labels"]["en"]["value"],
+                allowlist[qid]["label_en"],
+            )
+            self.assertLessEqual(set(record["claims"]), {"P279"})
+
+    def test_work_type_authority_seed_hash_binds_full_semantics(self):
+        binding = self.config["work_type_derivation"][
+            "authority_bindings"
+        ][0]
+        snapshot_id = binding["snapshot_id"]
+        mutations = {
+            "work_type": lambda seed: seed["authorities"][0].update(
+                {"work_type": "monument"}
+            ),
+            "risk_tags": lambda seed: seed["authorities"][0][
+                "risk_tags"
+            ].append("semantic_drift"),
+            "label": lambda seed: seed["authorities"][0].update(
+                {"label_hint_en": "Drifted label"}
+            ),
+            "base_snapshot": lambda seed: seed.update(
+                {"base_work_snapshot_id": "wikidata-hydration-missing"}
+            ),
+            "seed_version": lambda seed: seed.update(
+                {"seed_version": "0.1.1"}
+            ),
+        }
+        for label, mutate in mutations.items():
+            with self.subTest(label=label):
+                snapshots = copy.deepcopy(self.authority_snapshots)
+                seed = snapshots[snapshot_id]["selection"][
+                    "authority_seed"
+                ]
+                mutate(seed)
+                with self.assertRaises(ValueError):
+                    importer.validate_type_authority_snapshots(
+                        self.config,
+                        self.snapshot["snapshot_id"],
+                        snapshots,
+                    )
+
+    def test_new_unbound_work_type_mapping_fails_closed(self):
+        malformed = copy.deepcopy(self.config)
+        malformed["exact_instance_allowlist"].append(
+            {
+                "label_en": "unreviewed class",
+                "qid": "Q999999999",
+                "work_type": "building",
+            }
+        )
+        with self.assertRaisesRegex(ValueError, "authority binding"):
+            importer.validate_transform_config(malformed)
+
+        malformed = copy.deepcopy(self.config)
+        legacy = malformed["work_type_derivation"]["legacy_allowlist"]
+        legacy["rows"][0]["work_type"] = "monument"
+        legacy["rows_sha256"] = importer.canonical_hash(legacy["rows"])
+        malformed["exact_instance_allowlist"][0]["work_type"] = "monument"
+        with self.assertRaisesRegex(ValueError, "legacy work-type"):
+            importer.validate_transform_config(malformed)
+
+    def test_new_work_type_mapping_batch_is_exact(self):
+        affected_ids = []
+        claims_by_id = {
+            claim["id"]: claim
+            for claim in self.catalog["claims"]
+        }
+        prior_work_type_by_class = {
+            row["qid"]: row["work_type"]
+            for row in self.config["exact_instance_allowlist"]
+            if row["qid"] not in NEW_WORK_TYPE_AUTHORITY_QIDS
+        }
+        for work in self.catalog["works"]:
+            qid = work["external_ids"]["wikidata"]
+            record = self.snapshot["entities"][qid]["record"]
+            direct_classes = [
+                value
+                for statement in record.get("claims", {}).get("P31", [])
+                if statement.get("rank") != "deprecated"
+                for value in importer.item_values(
+                    {"claims": {"P31": [statement]}},
+                    "P31",
+                )
+            ]
+            if not set(direct_classes) & NEW_WORK_TYPE_AUTHORITY_QIDS:
+                continue
+            claim = next(
+                (
+                    claims_by_id[claim_id]
+                    for claim_id in work["claim_ids"]
+                    if claims_by_id[claim_id]["predicate"]
+                    == "field_work_type"
+                ),
+                None,
+            )
+            self.assertEqual(work["work_type"], "building")
+            self.assertEqual(work["work_type_mapping_status"], "mapped_exact")
+            self.assertIsNotNone(claim)
+            prior_mapped_types = {
+                prior_work_type_by_class[class_qid]
+                for class_qid in direct_classes
+                if class_qid in prior_work_type_by_class
+            }
+            prior_status = (
+                "unmapped"
+                if not prior_mapped_types
+                else "mapped_exact"
+                if len(prior_mapped_types) == 1
+                else "ambiguous"
+            )
+            if prior_status == "unmapped":
+                affected_ids.append(work["id"])
+                self.assertIn(
+                    claim["qualifiers"]["matched_class_qid"],
+                    NEW_WORK_TYPE_AUTHORITY_QIDS,
+                )
+                self.assertEqual(
+                    claim["qualifiers"]["authority_snapshot_id"],
+                    next(iter(self.authority_snapshots)),
+                )
+        affected_ids.sort()
+        self.assertEqual(len(affected_ids), 44)
+        self.assertEqual(
+            hashlib.sha256(
+                json.dumps(
+                    affected_ids,
+                    ensure_ascii=False,
+                    separators=(",", ":"),
+                ).encode("utf-8")
+            ).hexdigest(),
+            NEW_WORK_TYPE_WORK_IDS_SHA256,
+        )
+        statuses = {
+            status: sum(
+                work["work_type_mapping_status"] == status
+                for work in self.catalog["works"]
+            )
+            for status in ("mapped_exact", "unmapped", "ambiguous")
+        }
+        self.assertEqual(
+            statuses,
+            {"mapped_exact": 280, "unmapped": 234, "ambiguous": 18},
+        )
 
     def test_automatic_records_remain_candidates(self):
         graph = (

@@ -10,7 +10,9 @@ reviewed facts, contested claims, and gaps in coverage.
 
 The current Wikidata hydration corpus contains 532 cross-regional work fixtures,
 527 people, 26 practices, 39 country-place records, 190 raw relationship review
-edges, and 4066 source claims. Every one remains `candidate`; the reviewer
+edges, and 4433 source claims. Exact direct-P31 mapping currently classifies 280
+works, while 234 remain unmapped and 18 remain ambiguous. Every public record
+remains `candidate`; the reviewer
 registry is empty and the published verified count is therefore zero.
 
 ## Data authority
@@ -54,6 +56,11 @@ representative global sample. For each seed and direct dependency, the adapter:
 4. saves the pinned URL, canonical minimized-record hash, qualifiers, and
    references;
 5. derives a source-scoped catalog whose records all remain candidates.
+
+A separate six-record work-type authority sidecar pins the exact Wikidata class
+revisions used by the newest P31 mappings. It is bound to the active work
+snapshot, and its P279 statements are retained only for audit context. The
+importer never traverses P279 to classify a work.
 
 The planned discovery frame is fixed at 9 macroregions × 8 periods (72 cells),
 but every cell is currently `not_run`. No global coverage percentage is claimed.

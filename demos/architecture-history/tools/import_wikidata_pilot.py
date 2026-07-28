@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 import os
 import re
@@ -22,11 +23,20 @@ CONFIG_PATH = (
     / "wikidata-coverage-config.json"
 )
 CATALOG_DIR = ROOT / "assets" / "data" / "catalog"
+SNAPSHOT_DIR = ROOT / "assets" / "data" / "source-snapshots"
+TYPE_AUTHORITY_SEEDS_PATH = (
+    ROOT / "tools" / "wikidata-work-type-authority-seeds.json"
+)
 ADAPTER_ID = "wikidata-hydration-pilot"
 ADAPTER_VERSION = "0.1.0"
 TRANSFORMER_ID = "wikidata-hydration-to-architecture-history"
-TRANSFORMER_VERSION = "0.3.0"
+TRANSFORMER_VERSION = "0.4.0"
 PERIOD_RULE_ID = "wikidata-p571-best-rank-period-v2"
+WORK_TYPE_RULE_ID = "wikidata-p31-exact-instance-work-type-v1"
+LEGACY_WORK_TYPE_ALLOWLIST_SHA256 = (
+    "35758ba09c3a00ea6ea3d20776a1870a38ec136c56469b9faa9a42b0d28be4bf"
+)
+LEGACY_WORK_TYPE_SOURCE_CONFIG_VERSION = "0.3.0"
 ARCHITECT_QID = "Q42973"
 HUMAN_QID = "Q5"
 ARCHITECTURE_FIRM_QID = "Q4387609"
@@ -44,6 +54,13 @@ SUPPORTED_CALENDAR_MODELS = (
     "http://www.wikidata.org/entity/Q1985727",
     "http://www.wikidata.org/entity/Q1985786",
 )
+SUPPORTED_WORK_TYPES = {
+    "building",
+    "building_complex",
+    "infrastructure",
+    "landscape",
+    "monument",
+}
 UNKNOWN_DATE = {
     "earliest": None,
     "latest": None,
@@ -355,6 +372,109 @@ def validate_transform_config(config: dict) -> None:
     if rule != expected_rule:
         raise ValueError("coverage config period derivation rule is unsupported")
 
+    work_type_rule = config.get("work_type_derivation")
+    if not isinstance(work_type_rule, dict) or set(work_type_rule) != {
+        "authority_bindings",
+        "authority_policy",
+        "basis_property",
+        "legacy_allowlist",
+        "rank_policy",
+        "rule_id",
+        "subclass_traversal",
+    }:
+        raise ValueError("coverage config work-type derivation rule is invalid")
+    if (
+        work_type_rule["rule_id"] != WORK_TYPE_RULE_ID
+        or work_type_rule["basis_property"] != "P31"
+        or work_type_rule["rank_policy"] != "non_deprecated"
+        or work_type_rule["subclass_traversal"] != "forbidden"
+        or work_type_rule["authority_policy"]
+        != "new_mappings_require_revision_pinned_snapshot"
+    ):
+        raise ValueError("coverage config work-type derivation rule is unsupported")
+
+    allowlist = config.get("exact_instance_allowlist")
+    if not isinstance(allowlist, list) or not allowlist:
+        raise ValueError("coverage config exact-instance allowlist is required")
+    allowlist_qids: list[str] = []
+    for row in allowlist:
+        if not isinstance(row, dict) or set(row) != {
+            "label_en",
+            "qid",
+            "work_type",
+        }:
+            raise ValueError("coverage config exact-instance row is invalid")
+        qid = row["qid"]
+        if (
+            not isinstance(qid, str)
+            or not re.fullmatch(r"Q[1-9][0-9]*", qid)
+            or not isinstance(row["label_en"], str)
+            or not row["label_en"].strip()
+            or row["work_type"] not in SUPPORTED_WORK_TYPES
+        ):
+            raise ValueError("coverage config exact-instance row is unsupported")
+        allowlist_qids.append(qid)
+    if len(allowlist_qids) != len(set(allowlist_qids)):
+        raise ValueError("coverage config exact-instance QIDs must be unique")
+
+    bindings = work_type_rule["authority_bindings"]
+    if not isinstance(bindings, list) or len(bindings) != 1:
+        raise ValueError("coverage config work-type authority bindings are required")
+    bound_qids: list[str] = []
+    snapshot_ids: list[str] = []
+    for binding in bindings:
+        if not isinstance(binding, dict) or set(binding) != {
+            "qids",
+            "snapshot_id",
+        }:
+            raise ValueError("coverage config work-type authority binding is invalid")
+        snapshot_id = binding["snapshot_id"]
+        qids = binding["qids"]
+        if (
+            not isinstance(snapshot_id, str)
+            or not snapshot_id.startswith("wikidata-work-type-authority-")
+            or not isinstance(qids, list)
+            or not qids
+            or qids != ordered_qids(qids)
+        ):
+            raise ValueError("coverage config work-type authority binding is unsupported")
+        snapshot_ids.append(snapshot_id)
+        bound_qids.extend(qids)
+    if len(snapshot_ids) != len(set(snapshot_ids)):
+        raise ValueError("coverage config authority snapshot ids must be unique")
+    if len(bound_qids) != len(set(bound_qids)):
+        raise ValueError("coverage config authority QIDs must be unique")
+    if not set(bound_qids) <= set(allowlist_qids):
+        raise ValueError("coverage config authority QID is absent from allowlist")
+    legacy = work_type_rule["legacy_allowlist"]
+    if not isinstance(legacy, dict) or set(legacy) != {
+        "hash_algorithm",
+        "rows",
+        "rows_sha256",
+        "source_config_version",
+    }:
+        raise ValueError("coverage config legacy work-type allowlist is invalid")
+    legacy_rows = legacy["rows"]
+    if (
+        legacy["hash_algorithm"] != "sha256"
+        or legacy["source_config_version"]
+        != LEGACY_WORK_TYPE_SOURCE_CONFIG_VERSION
+        or not isinstance(legacy_rows, list)
+        or not legacy_rows
+        or legacy["rows_sha256"] != LEGACY_WORK_TYPE_ALLOWLIST_SHA256
+        or canonical_hash(legacy_rows)
+        != LEGACY_WORK_TYPE_ALLOWLIST_SHA256
+        or allowlist[: len(legacy_rows)] != legacy_rows
+    ):
+        raise ValueError(
+            "coverage config legacy work-type allowlist is unsupported"
+        )
+    new_rows = allowlist[len(legacy_rows) :]
+    if {row["qid"] for row in new_rows} != set(bound_qids):
+        raise ValueError(
+            "every non-legacy work-type mapping requires an authority binding"
+        )
+
     grid = config.get("coverage_grid")
     if not isinstance(grid, dict):
         raise ValueError("coverage config lacks a coverage grid")
@@ -411,6 +531,200 @@ def qid_number(qid: str) -> int:
     if not qid.startswith("Q") or not qid[1:].isdigit() or qid[1] == "0":
         raise ValueError(f"invalid Wikidata QID: {qid!r}")
     return int(qid[1:])
+
+
+def ordered_qids(values: list[str]) -> list[str]:
+    return sorted(set(values), key=qid_number)
+
+
+def canonical_hash(value: Any) -> str:
+    payload = json.dumps(
+        value,
+        ensure_ascii=False,
+        sort_keys=True,
+        separators=(",", ":"),
+    ).encode("utf-8")
+    return hashlib.sha256(payload).hexdigest()
+
+
+def validate_type_authority_seed(seed_contract: Any) -> dict:
+    if not isinstance(seed_contract, dict) or set(seed_contract) != {
+        "authorities",
+        "base_work_snapshot_id",
+        "seed_version",
+    }:
+        raise ValueError("work-type authority seed contract is invalid")
+    if (
+        not isinstance(seed_contract["seed_version"], str)
+        or not re.fullmatch(r"\d+\.\d+\.\d+", seed_contract["seed_version"])
+        or not isinstance(seed_contract["base_work_snapshot_id"], str)
+        or not seed_contract["base_work_snapshot_id"].startswith(
+            "wikidata-hydration-"
+        )
+    ):
+        raise ValueError("work-type authority seed metadata is invalid")
+    authorities = seed_contract["authorities"]
+    if not isinstance(authorities, list) or not authorities:
+        raise ValueError("work-type authority seed rows are required")
+    qids: list[str] = []
+    for row in authorities:
+        if not isinstance(row, dict) or set(row) != {
+            "label_hint_en",
+            "qid",
+            "risk_tags",
+            "work_type",
+        }:
+            raise ValueError("work-type authority seed row is invalid")
+        qid = row["qid"]
+        risk_tags = row["risk_tags"]
+        if (
+            not isinstance(qid, str)
+            or not re.fullmatch(r"Q[1-9][0-9]*", qid)
+            or not isinstance(row["label_hint_en"], str)
+            or not row["label_hint_en"].strip()
+            or row["work_type"] not in SUPPORTED_WORK_TYPES
+            or not isinstance(risk_tags, list)
+            or not risk_tags
+            or risk_tags != sorted(set(risk_tags))
+            or not all(
+                isinstance(tag, str)
+                and re.fullmatch(r"[a-z][a-z0-9_]*", tag)
+                for tag in risk_tags
+            )
+        ):
+            raise ValueError("work-type authority seed row is unsupported")
+        qids.append(qid)
+    if qids != ordered_qids(qids):
+        raise ValueError(
+            "work-type authority seed QIDs must be unique and numerically ordered"
+        )
+    return seed_contract
+
+
+def authority_snapshot_id(snapshot: dict, seed_sha256: str) -> str:
+    aggregate = hashlib.sha256()
+    for value in (
+        snapshot["adapter_id"],
+        snapshot["adapter_version"],
+        snapshot["base_work_snapshot_id"],
+        seed_sha256,
+    ):
+        aggregate.update(value.encode("utf-8"))
+        aggregate.update(b"\0")
+    for qid in ordered_qids(list(snapshot.get("entities", {}))):
+        wrapper = snapshot["entities"][qid]
+        aggregate.update(qid.encode("ascii"))
+        aggregate.update(b"\0")
+        aggregate.update(str(wrapper["lastrevid"]).encode("ascii"))
+        aggregate.update(b"\0")
+        aggregate.update(wrapper["record_sha256"].encode("ascii"))
+        aggregate.update(b"\0")
+    return (
+        f"wikidata-work-type-authority-{snapshot['accessed']}-"
+        f"{aggregate.hexdigest()[:12]}"
+    )
+
+
+def authority_snapshot_ids(config: dict) -> list[str]:
+    return [
+        binding["snapshot_id"]
+        for binding in config["work_type_derivation"]["authority_bindings"]
+    ]
+
+
+def load_type_authority_snapshots(config: dict) -> dict[str, dict]:
+    snapshots: dict[str, dict] = {}
+    for snapshot_id in authority_snapshot_ids(config):
+        path = SNAPSHOT_DIR / f"{snapshot_id}.json"
+        if not path.is_file():
+            raise ValueError(
+                f"work-type authority snapshot is missing: {snapshot_id}"
+            )
+        snapshots[snapshot_id] = load_json(path)
+    return snapshots
+
+
+def validate_type_authority_snapshots(
+    config: dict,
+    work_snapshot_id: str,
+    snapshots: dict[str, dict],
+) -> None:
+    bindings = config["work_type_derivation"]["authority_bindings"]
+    if len(bindings) != 1:
+        raise ValueError(
+            "this transformer version requires exactly one authority binding"
+        )
+    committed_seed = validate_type_authority_seed(
+        load_json(TYPE_AUTHORITY_SEEDS_PATH)
+    )
+    expected_snapshot_ids = {binding["snapshot_id"] for binding in bindings}
+    if set(snapshots) != expected_snapshot_ids:
+        raise ValueError("configured work-type authority snapshots do not match")
+    allowlist_by_qid = {
+        row["qid"]: row
+        for row in config["exact_instance_allowlist"]
+    }
+    for binding in bindings:
+        snapshot_id = binding["snapshot_id"]
+        expected_qids = binding["qids"]
+        snapshot = snapshots[snapshot_id]
+        selection = snapshot.get("selection", {})
+        authority_seed = selection.get("authority_seed")
+        seed_sha256 = canonical_hash(committed_seed)
+        if (
+            snapshot.get("snapshot_id") != snapshot_id
+            or snapshot_id != authority_snapshot_id(snapshot, seed_sha256)
+            or snapshot.get("source_id") != "wikidata"
+            or snapshot.get("adapter_id") != ADAPTER_ID
+            or snapshot.get("adapter_version") != ADAPTER_VERSION
+            or snapshot.get("base_work_snapshot_id") != work_snapshot_id
+            or selection.get("method")
+            != "exact_instance_allowlist_authority"
+            or selection.get("authority_qids") != expected_qids
+            or authority_seed != committed_seed
+            or selection.get("seed_sha256") != seed_sha256
+            or committed_seed["base_work_snapshot_id"] != work_snapshot_id
+            or ordered_qids(
+                [row["qid"] for row in committed_seed["authorities"]]
+            )
+            != expected_qids
+            or snapshot.get("queries") != []
+            or snapshot.get("seeds") != []
+            or set(snapshot.get("entities", {})) != set(expected_qids)
+        ):
+            raise ValueError(
+                f"{snapshot_id}: work-type authority snapshot binding is invalid"
+            )
+        seed_by_qid = {
+            row["qid"]: row
+            for row in committed_seed["authorities"]
+        }
+        for qid in expected_qids:
+            wrapper = snapshot["entities"][qid]
+            record = wrapper.get("record", {})
+            revision = wrapper.get("lastrevid")
+            expected_url = (
+                "https://www.wikidata.org/wiki/Special:EntityData/"
+                f"{qid}.json?revision={revision}"
+            )
+            english_label = (
+                record.get("labels", {}).get("en", {}).get("value")
+            )
+            if (
+                record.get("id") != qid
+                or record.get("lastrevid") != revision
+                or wrapper.get("pinned_url") != expected_url
+                or wrapper.get("record_sha256") != canonical_hash(record)
+                or english_label != allowlist_by_qid[qid]["label_en"]
+                or seed_by_qid[qid]["label_hint_en"]
+                != allowlist_by_qid[qid]["label_en"]
+                or seed_by_qid[qid]["work_type"]
+                != allowlist_by_qid[qid]["work_type"]
+                or not set(record.get("claims", {})) <= {"P279"}
+            ):
+                raise ValueError(
+                    f"{snapshot_id}/{qid}: pinned work-type authority is invalid"
+                )
 
 
 def qid_slug(qid: str) -> str:
@@ -488,8 +802,18 @@ def statement_qualifiers(statement: dict) -> list[dict]:
 
 
 class CatalogBuilder:
-    def __init__(self, snapshot: dict, config: dict):
+    def __init__(
+        self,
+        snapshot: dict,
+        config: dict,
+        authority_snapshots: Optional[dict[str, dict]] = None,
+    ):
         validate_transform_config(config)
+        validate_type_authority_snapshots(
+            config,
+            snapshot["snapshot_id"],
+            authority_snapshots or {},
+        )
         self.snapshot = snapshot
         self.config = config
         self.snapshot_id = snapshot["snapshot_id"]
@@ -502,6 +826,11 @@ class CatalogBuilder:
         self.work_type_by_class = {
             row["qid"]: row["work_type"]
             for row in config["exact_instance_allowlist"]
+        }
+        self.work_type_authority_by_class = {
+            qid: binding["snapshot_id"]
+            for binding in config["work_type_derivation"]["authority_bindings"]
+            for qid in binding["qids"]
         }
         self.country_authority = {
             row["country_qid"]: row
@@ -821,7 +1150,7 @@ class CatalogBuilder:
     def mapped_work_type(
         self,
         qid: str,
-    ) -> tuple[str, str, Optional[tuple[int, dict]]]:
+    ) -> tuple[str, str, Optional[tuple[int, dict, str]]]:
         record = self.record(qid)
         matches: list[tuple[int, dict, str]] = []
         for index, statement in enumerate(record.get("claims", {}).get("P31", [])):
@@ -839,7 +1168,11 @@ class CatalogBuilder:
         if len(mapped_types) != 1:
             return "unknown", "ambiguous", None
         first = matches[0]
-        return first[2], "mapped_exact", (first[0], first[1])
+        class_qid = item_values(
+            {"claims": {"P31": [first[1]]}},
+            "P31",
+        )[0]
+        return first[2], "mapped_exact", (first[0], first[1], class_qid)
 
     def coordinate_value(
         self,
@@ -964,7 +1297,7 @@ class CatalogBuilder:
             self.mapped_work_type(qid)
         )
         if type_statement is not None:
-            index, statement = type_statement
+            index, statement, class_qid = type_statement
             type_claim_id = f"claim-wd-{qid_slug(qid)}-work-type"
             claim_ids.append(
                 self.add_claim(
@@ -981,6 +1314,17 @@ class CatalogBuilder:
                             statement=statement,
                         )
                     ],
+                    qualifiers={
+                        "authority_snapshot_id": (
+                            self.work_type_authority_by_class.get(class_qid)
+                        ),
+                        "basis_property": "P31",
+                        "coverage_config_version": self.config["config_version"],
+                        "derivation_rule_id": self.config[
+                            "work_type_derivation"
+                        ]["rule_id"],
+                        "matched_class_qid": class_qid,
+                    },
                 )
             )
 
@@ -1359,7 +1703,12 @@ def main() -> int:
         raise SystemExit(f"refusing to replace existing catalog without --force: {output}")
     snapshot = load_json(snapshot_path)
     config = load_json(CONFIG_PATH)
-    catalog = CatalogBuilder(snapshot, config).build()
+    authority_snapshots = load_type_authority_snapshots(config)
+    catalog = CatalogBuilder(
+        snapshot,
+        config,
+        authority_snapshots,
+    ).build()
     atomic_write_json(output, catalog)
     print(
         f"Wrote {output.relative_to(ROOT) if output.is_relative_to(ROOT) else output}: "

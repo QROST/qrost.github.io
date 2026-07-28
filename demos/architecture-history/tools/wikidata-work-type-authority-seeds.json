@@ -1,0 +1,60 @@
+{
+  "seed_version": "0.1.0",
+  "base_work_snapshot_id": "wikidata-hydration-2026-07-27-1de027b10594",
+  "authorities": [
+    {
+      "label_hint_en": "cathedral",
+      "qid": "Q2977",
+      "risk_tags": [
+        "direct_instance_only",
+        "religious_building"
+      ],
+      "work_type": "building"
+    },
+    {
+      "label_hint_en": "villa",
+      "qid": "Q3950",
+      "risk_tags": [
+        "deprecated_parent_statement",
+        "direct_instance_only"
+      ],
+      "work_type": "building"
+    },
+    {
+      "label_hint_en": "Japanese castle",
+      "qid": "Q92026",
+      "risk_tags": [
+        "direct_instance_only",
+        "missing_zh_hans_label"
+      ],
+      "work_type": "building"
+    },
+    {
+      "label_hint_en": "concert hall",
+      "qid": "Q1060829",
+      "risk_tags": [
+        "direct_instance_only",
+        "venue_vs_building"
+      ],
+      "work_type": "building"
+    },
+    {
+      "label_hint_en": "single-family detached home",
+      "qid": "Q1307276",
+      "risk_tags": [
+        "direct_instance_only",
+        "housing_term_variant"
+      ],
+      "work_type": "building"
+    },
+    {
+      "label_hint_en": "parliament building",
+      "qid": "Q7138926",
+      "risk_tags": [
+        "direct_instance_only",
+        "multiple_parent_classes"
+      ],
+      "work_type": "building"
+    }
+  ]
+}

@@ -42,13 +42,18 @@ The bounded Wikidata hydration workflow is:
 
 ```bash
 python3 tools/fetch_wikidata_pilot.py --accessed YYYY-MM-DD
+python3 tools/fetch_wikidata_type_authorities.py --accessed YYYY-MM-DD
 python3 tools/import_wikidata_pilot.py \
   assets/data/source-snapshots/<snapshot>.json
 python3 tools/build.py
 ```
 
-`fetch_wikidata_pilot.py` is the only networked step. It hydrates the versioned
-19-work seed list, pins exact revisions, and refuses to overwrite an existing
-snapshot by default. `import_wikidata_pilot.py` is deterministic and offline.
-Neither script promotes records to `verified`, maps inception/opening to a
-construction date, or converts P1066/P802 into mentorship.
+The two fetch scripts are the only networked steps. The work fetcher hydrates
+the versioned 532-work seed list. The type-authority fetcher reads exactly six
+reviewed class QIDs into a separate sidecar bound to the active work snapshot.
+Both pin exact revisions and refuse to overwrite an existing snapshot by
+default. `import_wikidata_pilot.py` is deterministic and offline; it requires
+the configured authority sidecar and still maps work types only by direct P31
+equality. No script promotes records to `verified`, maps inception/opening to a
+construction date, traverses P279 for classification, or converts P1066/P802
+into mentorship.

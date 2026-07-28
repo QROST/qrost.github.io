@@ -960,8 +960,134 @@
         "record": {"type": "object"}
       }
     },
+    "wikidataAuthoritySeed": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "authorities",
+        "base_work_snapshot_id",
+        "seed_version"
+      ],
+      "properties": {
+        "authorities": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "label_hint_en",
+              "qid",
+              "risk_tags",
+              "work_type"
+            ],
+            "properties": {
+              "label_hint_en": {"type": "string", "minLength": 1},
+              "qid": {"type": "string", "pattern": "^Q[1-9][0-9]*$"},
+              "risk_tags": {
+                "type": "array",
+                "minItems": 1,
+                "uniqueItems": true,
+                "items": {
+                  "type": "string",
+                  "pattern": "^[a-z][a-z0-9_]*$"
+                }
+              },
+              "work_type": {
+                "enum": [
+                  "building",
+                  "building_complex",
+                  "infrastructure",
+                  "landscape",
+                  "monument"
+                ]
+              }
+            }
+          }
+        },
+        "base_work_snapshot_id": {"$ref": "#/$defs/id"},
+        "seed_version": {
+          "type": "string",
+          "pattern": "^\\d+\\.\\d+\\.\\d+$"
+        }
+      }
+    },
     "wikidataSnapshot": {
       "type": "object",
+      "anyOf": [
+        {
+          "type": "object",
+          "properties": {
+            "base_work_snapshot_id": {"const": "__forbidden__"},
+            "selection": {
+              "type": "object",
+              "required": ["method", "per_cell", "query_limit"],
+              "properties": {
+                "method": {"const": "coverage_cell_stable_hash"},
+                "per_cell": {"type": "integer", "minimum": 1},
+                "query_limit": {"type": "integer", "minimum": 1},
+                "authority_qids": {"const": "__forbidden__"},
+                "authority_seed": {"const": "__forbidden__"}
+              }
+            },
+            "queries": {"type": "array", "minItems": 1},
+            "seeds": {"const": []}
+          }
+        },
+        {
+          "type": "object",
+          "properties": {
+            "base_work_snapshot_id": {"const": "__forbidden__"},
+            "selection": {
+              "type": "object",
+              "required": ["method", "per_cell", "query_limit"],
+              "properties": {
+                "method": {"const": "pinned_hydration_fixtures"},
+                "per_cell": {"const": null},
+                "query_limit": {"const": null},
+                "authority_qids": {"const": "__forbidden__"},
+                "authority_seed": {"const": "__forbidden__"}
+              }
+            },
+            "queries": {"const": []},
+            "seeds": {"type": "array", "minItems": 1}
+          }
+        },
+        {
+          "type": "object",
+          "required": ["base_work_snapshot_id"],
+          "properties": {
+            "base_work_snapshot_id": {"$ref": "#/$defs/id"},
+            "selection": {
+              "type": "object",
+              "required": [
+                "method",
+                "per_cell",
+                "query_limit",
+                "authority_qids",
+                "authority_seed"
+              ],
+              "properties": {
+                "method": {
+                  "const": "exact_instance_allowlist_authority"
+                },
+                "per_cell": {"const": null},
+                "query_limit": {"const": null},
+                "authority_qids": {
+                  "type": "array",
+                  "minItems": 1
+                },
+                "authority_seed": {
+                  "$ref": "#/$defs/wikidataAuthoritySeed"
+                }
+              }
+            },
+            "queries": {"const": []},
+            "seeds": {"const": []}
+          }
+        }
+      ],
       "additionalProperties": false,
       "required": [
         "snapshot_id",
@@ -987,6 +1113,7 @@
         "accessed": {"$ref": "#/$defs/date"},
         "license": {"type": "string", "minLength": 1},
         "endpoint": {"$ref": "#/$defs/url"},
+        "base_work_snapshot_id": {"$ref": "#/$defs/id"},
         "selection": {
           "type": "object",
           "additionalProperties": false,
@@ -1003,11 +1130,24 @@
             "method": {
               "enum": [
                 "coverage_cell_stable_hash",
-                "pinned_hydration_fixtures"
+                "pinned_hydration_fixtures",
+                "exact_instance_allowlist_authority"
               ]
             },
             "per_cell": {"type": ["integer", "null"], "minimum": 1},
             "query_limit": {"type": ["integer", "null"], "minimum": 1},
+            "authority_qids": {
+              "type": "array",
+              "minItems": 1,
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "pattern": "^Q[1-9][0-9]*$"
+              }
+            },
+            "authority_seed": {
+              "$ref": "#/$defs/wikidataAuthoritySeed"
+            },
             "seed": {"type": "string", "minLength": 1},
             "seed_sha256": {
               "type": "string",
