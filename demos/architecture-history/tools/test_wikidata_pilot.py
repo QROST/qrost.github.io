@@ -3,6 +3,7 @@
 
 from __future__ import annotations
 
+import hashlib
 import importlib.util
 import json
 import unittest
@@ -19,6 +20,42 @@ spec = importlib.util.spec_from_file_location(
 assert spec and spec.loader
 importer = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(importer)
+
+EXPECTED_NEW_PERIOD_ASSIGNMENTS = {
+    "work-wd-q1012374": "1500_1799",
+    "work-wd-q1013399": "1500_1799",
+    "work-wd-q1054169": "2000_present",
+    "work-wd-q1068063": "1800_1918",
+    "work-wd-q131330": "1500_1799",
+    "work-wd-q1397013": "1946_1979",
+    "work-wd-q147312": "1800_1918",
+    "work-wd-q1655766": "1980_1999",
+    "work-wd-q173882": "1500_1799",
+    "work-wd-q1881229": "2000_present",
+    "work-wd-q193682": "1980_1999",
+    "work-wd-q208559": "1500_1799",
+    "work-wd-q2379884": "2000_present",
+    "work-wd-q252575": "1000_1499",
+    "work-wd-q265129": "1800_1918",
+    "work-wd-q29247": "1980_1999",
+    "work-wd-q29286": "1000_1499",
+    "work-wd-q390124": "1919_1945",
+    "work-wd-q457453": "1919_1945",
+    "work-wd-q494407": "1919_1945",
+    "work-wd-q570949": "2000_present",
+    "work-wd-q613355": "1500_1799",
+    "work-wd-q6352575": "1946_1979",
+    "work-wd-q6373": "1500_1799",
+    "work-wd-q7169478": "2000_present",
+    "work-wd-q752669": "1946_1979",
+    "work-wd-q779736": "1946_1979",
+    "work-wd-q795228": "1946_1979",
+    "work-wd-q840886": "1800_1918",
+    "work-wd-q874557": "1919_1945",
+}
+PRIOR_PERIOD_ASSIGNMENT_SHA256 = (
+    "a90742e93cf2476f0315ba495add6163e131e550a7fbeac6ca1f3fd6769208a3"
+)
 
 
 def load_json(path: Path):
@@ -203,6 +240,65 @@ class WikidataPilotTests(unittest.TestCase):
             self.config,
         )
         self.assertIsNone(conflicting)
+
+    def test_year_precision_accepts_only_zero_or_valid_date_components(self):
+        valid = {
+            "zero lower components": wikidata_time_statement(1603),
+            "valid lower date": wikidata_time_statement(
+                1603,
+                month=1,
+                day=17,
+            ),
+            "gregorian leap day": wikidata_time_statement(
+                2000,
+                month=2,
+                day=29,
+            ),
+            "julian leap day": wikidata_time_statement(
+                1500,
+                month=2,
+                day=29,
+                calendar_model=importer.SUPPORTED_CALENDAR_MODELS[1],
+            ),
+        }
+        for label, statement in valid.items():
+            with self.subTest(label=label):
+                year = importer.supported_wikidata_year(
+                    statement,
+                    self.config["period_derivation"],
+                )
+                self.assertIsNotNone(year)
+
+        invalid = {
+            "month without day": wikidata_time_statement(
+                1900,
+                month=1,
+                day=0,
+            ),
+            "day without month": wikidata_time_statement(
+                1900,
+                month=0,
+                day=1,
+            ),
+            "invalid gregorian leap day": wikidata_time_statement(
+                1900,
+                month=2,
+                day=29,
+            ),
+            "invalid month": wikidata_time_statement(
+                1900,
+                month=13,
+                day=1,
+            ),
+        }
+        for label, statement in invalid.items():
+            with self.subTest(label=label):
+                self.assertIsNone(
+                    importer.supported_wikidata_year(
+                        statement,
+                        self.config["period_derivation"],
+                    )
+                )
 
     def test_unsupported_time_semantics_fail_closed(self):
         unsupported = {
@@ -413,11 +509,58 @@ class WikidataPilotTests(unittest.TestCase):
                     evidence["references"],
                     row["statement"].get("references", []),
                 )
-        # The pinned fixture currently yields 293 conservative periods after
-        # rejecting every qualified P571 statement. Keep a regression floor
-        # without turning the fixture census into a universal data promise.
+        # The pinned fixture still leaves unsupported or qualified P571 values
+        # unknown. Keep a regression floor without turning its census into a
+        # universal data promise; the exact fixture delta is asserted below.
         self.assertGreaterEqual(known_periods, 275)
         self.assertLess(known_periods, len(self.catalog["works"]))
+
+    def test_period_fixture_census_and_prior_assignments_are_stable(self):
+        assignments = {
+            work["id"]: work["period"]
+            for work in self.catalog["works"]
+        }
+        self.assertEqual(
+            {
+                work_id: assignments[work_id]
+                for work_id in EXPECTED_NEW_PERIOD_ASSIGNMENTS
+            },
+            EXPECTED_NEW_PERIOD_ASSIGNMENTS,
+        )
+        prior_assignments = {
+            work_id: period
+            for work_id, period in assignments.items()
+            if (
+                period != "unknown"
+                and work_id not in EXPECTED_NEW_PERIOD_ASSIGNMENTS
+            )
+        }
+        prior_payload = json.dumps(
+            prior_assignments,
+            ensure_ascii=False,
+            sort_keys=True,
+            separators=(",", ":"),
+        ).encode("utf-8")
+        self.assertEqual(len(prior_assignments), 293)
+        self.assertEqual(
+            hashlib.sha256(prior_payload).hexdigest(),
+            PRIOR_PERIOD_ASSIGNMENT_SHA256,
+        )
+        self.assertEqual(
+            sum(period != "unknown" for period in assignments.values()),
+            323,
+        )
+        self.assertEqual(
+            sum(period == "unknown" for period in assignments.values()),
+            209,
+        )
+        self.assertEqual(
+            sum(
+                claim["predicate"] == "field_period"
+                for claim in self.catalog["claims"]
+            ),
+            323,
+        )
 
     def test_raw_lineage_edges_never_become_mentorship(self):
         self.assertTrue(self.catalog["relations"])

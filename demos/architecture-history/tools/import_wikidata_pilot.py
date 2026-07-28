@@ -25,8 +25,8 @@ CATALOG_DIR = ROOT / "assets" / "data" / "catalog"
 ADAPTER_ID = "wikidata-hydration-pilot"
 ADAPTER_VERSION = "0.1.0"
 TRANSFORMER_ID = "wikidata-hydration-to-architecture-history"
-TRANSFORMER_VERSION = "0.2.0"
-PERIOD_RULE_ID = "wikidata-p571-best-rank-period-v1"
+TRANSFORMER_VERSION = "0.3.0"
+PERIOD_RULE_ID = "wikidata-p571-best-rank-period-v2"
 ARCHITECT_QID = "Q42973"
 HUMAN_QID = "Q5"
 ARCHITECTURE_FIRM_QID = "Q4387609"
@@ -263,8 +263,21 @@ def supported_wikidata_year(
         return None
     month = int(match.group("month"))
     day = int(match.group("day"))
-    if precision == 9 and (month != 0 or day != 0):
-        return None
+    if precision == 9:
+        # Wikibase may retain a concrete month/day below year precision.
+        # Validate those components, then deliberately derive from the year only.
+        lower_components_are_zero = month == 0 and day == 0
+        lower_components_are_valid_date = calendar_day_is_valid(
+            year,
+            month,
+            day,
+            value["calendarmodel"],
+        )
+        if not (
+            lower_components_are_zero
+            or lower_components_are_valid_date
+        ):
+            return None
     if precision == 10 and (not 1 <= month <= 12 or day != 0):
         return None
     if precision == 11 and not calendar_day_is_valid(
@@ -335,6 +348,9 @@ def validate_transform_config(config: dict) -> None:
         "required_after": 0,
         "unsupported_result": "unknown",
         "official_opening_usage": "source_claim_only",
+        "year_precision_lower_components": (
+            "zero_or_valid_calendar_date_ignored"
+        ),
     }
     if rule != expected_rule:
         raise ValueError("coverage config period derivation rule is unsupported")

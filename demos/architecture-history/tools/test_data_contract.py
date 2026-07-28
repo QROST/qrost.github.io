@@ -66,6 +66,28 @@ class DataContractTests(unittest.TestCase):
             "precision": "unknown",
         }
 
+    @staticmethod
+    def wikidata_period_statement(raw_time: str, *, precision: int = 9) -> dict:
+        return {
+            "rank": "normal",
+            "mainsnak": {
+                "snaktype": "value",
+                "datavalue": {
+                    "type": "time",
+                    "value": {
+                        "after": 0,
+                        "before": 0,
+                        "calendarmodel": (
+                            "http://www.wikidata.org/entity/Q1985727"
+                        ),
+                        "precision": precision,
+                        "time": raw_time,
+                        "timezone": 0,
+                    },
+                },
+            },
+        }
+
     def add_malicious_relation_fixture(
         self,
         root: Path,
@@ -781,7 +803,7 @@ class DataContractTests(unittest.TestCase):
         errors: list[str] = []
         validator.validate_coverage_config(config, allowed_periods, errors)
         self.assertEqual(errors, [])
-        self.assertEqual(config["config_version"], "0.2.0")
+        self.assertEqual(config["config_version"], "0.3.0")
         self.assertEqual(
             config["period_derivation"]["latest_year_inclusive"],
             2026,
@@ -789,6 +811,10 @@ class DataContractTests(unittest.TestCase):
         self.assertEqual(
             config["period_derivation"]["qualifier_policy"],
             "none_allowed",
+        )
+        self.assertEqual(
+            config["period_derivation"]["year_precision_lower_components"],
+            "zero_or_valid_calendar_date_ignored",
         )
 
         malformed = copy.deepcopy(config)
@@ -803,6 +829,46 @@ class DataContractTests(unittest.TestCase):
             any("contiguous partition" in error for error in errors),
             errors,
         )
+
+    def test_validator_year_precision_lower_components_fail_closed(self):
+        config = json.loads(
+            (
+                ROOT
+                / "assets"
+                / "data"
+                / "methodology"
+                / "wikidata-coverage-config.json"
+            ).read_text(encoding="utf-8")
+        )
+        rule = config["period_derivation"]
+        for raw_time, expected in (
+            ("+1603-00-00T00:00:00Z", 1603),
+            ("+1603-01-01T00:00:00Z", 1603),
+            ("+1603-01-17T00:00:00Z", 1603),
+            ("+2000-02-29T00:00:00Z", 2000),
+        ):
+            with self.subTest(raw_time=raw_time):
+                self.assertEqual(
+                    validator.supported_wikidata_period_year(
+                        self.wikidata_period_statement(raw_time),
+                        rule,
+                    ),
+                    expected,
+                )
+        for raw_time in (
+            "+1900-00-01T00:00:00Z",
+            "+1900-01-00T00:00:00Z",
+            "+1900-02-29T00:00:00Z",
+            "+1900-13-01T00:00:00Z",
+            "+1900-01-01",
+        ):
+            with self.subTest(raw_time=raw_time):
+                self.assertIsNone(
+                    validator.supported_wikidata_period_year(
+                        self.wikidata_period_statement(raw_time),
+                        rule,
+                    )
+                )
 
     def test_period_claim_contract_binds_rule_and_indirect_evidence(self):
         config = json.loads(

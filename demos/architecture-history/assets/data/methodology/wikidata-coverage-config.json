@@ -1,12 +1,12 @@
 {
   "config_kind": "planned_coverage_frame",
-  "config_version": "0.2.0",
+  "config_version": "0.3.0",
   "transformer": {
     "id": "wikidata-hydration-to-architecture-history",
-    "version": "0.2.0"
+    "version": "0.3.0"
   },
   "period_derivation": {
-    "rule_id": "wikidata-p571-best-rank-period-v1",
+    "rule_id": "wikidata-p571-best-rank-period-v2",
     "basis_property": "P571",
     "accepted_precisions": [9, 10, 11],
     "accepted_calendar_models": [
@@ -18,7 +18,8 @@
     "required_before": 0,
     "required_after": 0,
     "unsupported_result": "unknown",
-    "official_opening_usage": "source_claim_only"
+    "official_opening_usage": "source_claim_only",
+    "year_precision_lower_components": "zero_or_valid_calendar_date_ignored"
   },
   "coverage_grid": {
     "cell_count": 72,

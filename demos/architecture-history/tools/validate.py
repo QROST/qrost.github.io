@@ -51,7 +51,7 @@ DATE_AUTHORITY_PREDICATES = {
     "source_official_opening",
 }
 SUPPORTED_PERIOD_RULE = {
-    "rule_id": "wikidata-p571-best-rank-period-v1",
+    "rule_id": "wikidata-p571-best-rank-period-v2",
     "basis_property": "P571",
     "accepted_precisions": [9, 10, 11],
     "accepted_calendar_models": [
@@ -64,6 +64,9 @@ SUPPORTED_PERIOD_RULE = {
     "required_after": 0,
     "unsupported_result": "unknown",
     "official_opening_usage": "source_claim_only",
+    "year_precision_lower_components": (
+        "zero_or_valid_calendar_date_ignored"
+    ),
 }
 WIKIDATA_TIME_PATTERN = re.compile(
     r"^(?P<sign>[+-])(?P<year>\d{4,})-(?P<month>\d{2})-"
@@ -486,8 +489,21 @@ def supported_wikidata_period_year(
         return None
     month = int(match.group("month"))
     day = int(match.group("day"))
-    if precision == 9 and (month != 0 or day != 0):
-        return None
+    if precision == 9:
+        # Mirror the importer without importing it: lower components may be
+        # present, but must form a real date and never affect the derived year.
+        lower_components_are_zero = month == 0 and day == 0
+        lower_components_are_valid_date = wikidata_calendar_day_is_valid(
+            year,
+            month,
+            day,
+            value["calendarmodel"],
+        )
+        if not (
+            lower_components_are_zero
+            or lower_components_are_valid_date
+        ):
+            return None
     if precision == 10 and (not 1 <= month <= 12 or day != 0):
         return None
     if precision == 11 and not wikidata_calendar_day_is_valid(
