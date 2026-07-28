@@ -219,12 +219,16 @@ class PageContractTests(unittest.TestCase):
         for phrase in (
             "不是全球建筑史全集",
             "not a complete global history",
-            "不是游戏升级树",
-            "not a game upgrade tree",
+            "关系线索不等于已确认师承",
+            "relation clues are not verified lineage",
+            "核验状态与原始记录分离",
+            "verification stays separate from source records",
             "72 个",
             "72 region × period",
         ):
-            self.assertIn(phrase, self.html + self.i18n)
+            self.assertIn(phrase, (self.html + self.i18n).lower())
+        for forbidden in ("游戏", "塔防", "升级树", "game", "gaming", "tower-defense"):
+            self.assertNotIn(forbidden, (self.html + self.i18n).lower())
         self.assertRegex(
             self.html,
             r'id="hero-verified">0</strong>',

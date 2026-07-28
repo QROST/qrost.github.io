@@ -68,8 +68,7 @@ unbounded online P279 traversal.
 - `declined` — the proposed claim is not supported.
 
 Only explicitly documented `direct_mentor`, `master_of_apprentice`, and
-`formal_teacher` relationships may later be considered by the separate game
-build.
+`formal_teacher` relationships may become verified lineage records.
 Employment, co-location, shared schools, collaboration, chronology, and stylistic
 similarity do not imply mentorship.
 
@@ -78,9 +77,9 @@ mentor → mentee, master → apprentice, and teacher → student. The relation 
 `master_of_apprentice`, avoiding the ambiguous direction of “apprenticed under.”
 Raw Wikidata P1066 discovery is stored separately as `student_of_recorded` and is
 not treated as mentorship without human reclassification and stronger evidence.
-Game readiness is deliberately not stored as an editable historical-data field:
-the future game project must derive it from the then-current verified,
-conflict-free graph and its own versioned rules.
+Editorial verification is deliberately stored separately from source records.
+The library preserves candidate, contested, and declined states so readers can
+inspect uncertainty without silently rewriting the historical evidence.
 
 ## Build
 
