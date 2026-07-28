@@ -40,6 +40,8 @@ FILE_KEYS = {
 }
 
 CATALOG_KEYS = ("people", "practices", "places", "works", "claims", "relations")
+ENTITY_KEYS = ("people", "practices", "places", "works")
+OVERLAY_KIND = "catalog_overlay_v1"
 
 
 def load_json(path: Path):
@@ -55,6 +57,49 @@ def write_json(path: Path, payload) -> None:
             + "\n"
         ).encode("utf-8"),
     )
+
+
+def canonical_hash(payload) -> str:
+    encoded = json.dumps(
+        payload,
+        ensure_ascii=False,
+        sort_keys=True,
+        separators=(",", ":"),
+    ).encode("utf-8")
+    return hashlib.sha256(encoded).hexdigest()
+
+
+def ordered_catalog_payloads() -> list[tuple[Path, dict]]:
+    if not CATALOG.exists():
+        return []
+    return [
+        (path, load_json(path))
+        for path in sorted(
+            CATALOG.glob("*.json"),
+            key=lambda item: item.name.encode("utf-8"),
+        )
+    ]
+
+
+def base_catalog_contract(
+    payloads: list[tuple[Path, dict]],
+) -> list[dict]:
+    return [
+        {
+            "path": path.relative_to(DATA).as_posix(),
+            "payload": payload,
+        }
+        for path, payload in payloads
+        if payload.get("kind") != OVERLAY_KIND
+    ]
+
+
+def base_catalog_sha256(
+    payloads: Optional[list[tuple[Path, dict]]] = None,
+) -> str:
+    if payloads is None:
+        payloads = ordered_catalog_payloads()
+    return canonical_hash(base_catalog_contract(payloads))
 
 
 def atomic_write_bytes(path: Path, content: bytes) -> None:
@@ -79,16 +124,113 @@ def atomic_write_bytes(path: Path, content: bytes) -> None:
 
 
 def merge_catalog_shards() -> None:
-    """Regenerate the public graph from immutable, source-scoped catalog shards."""
+    """Regenerate the public graph from full shards, then fail-closed overlays."""
     merged = {key: [] for key in CATALOG_KEYS}
-    if CATALOG.exists():
-        for path in sorted(
-            CATALOG.glob("*.json"),
-            key=lambda item: item.name.encode("utf-8"),
-        ):
-            payload = load_json(path)
-            for key in CATALOG_KEYS:
-                merged[key].extend(payload[key])
+    payloads = ordered_catalog_payloads()
+    full_shards = [
+        (path, payload)
+        for path, payload in payloads
+        if payload.get("kind") != OVERLAY_KIND
+    ]
+    overlays = [
+        (path, payload)
+        for path, payload in payloads
+        if payload.get("kind") == OVERLAY_KIND
+    ]
+    for _, payload in full_shards:
+        for key in CATALOG_KEYS:
+            merged[key].extend(payload[key])
+
+    base_hash = base_catalog_sha256(payloads)
+    entity_by_id: dict[str, dict] = {}
+    entity_type_by_id: dict[str, str] = {}
+    for key in ENTITY_KEYS:
+        for entity in merged[key]:
+            entity_id = entity["id"]
+            if entity_id in entity_by_id:
+                raise ValueError(
+                    f"catalog overlay base contains duplicate entity {entity_id!r}"
+                )
+            entity_by_id[entity_id] = entity
+            entity_type_by_id[entity_id] = entity["entity_type"]
+
+    base_claim_ids = {claim["id"] for claim in merged["claims"]}
+    patched_entities: set[str] = set()
+    overlay_ids: set[str] = set()
+    for path, overlay in sorted(
+        overlays,
+        key=lambda row: row[1].get("overlay_id", "").encode("utf-8"),
+    ):
+        overlay_id = overlay.get("overlay_id")
+        if not isinstance(overlay_id, str) or not overlay_id:
+            raise ValueError(f"{path.name}: catalog overlay requires overlay_id")
+        if overlay_id in overlay_ids:
+            raise ValueError(f"catalog overlay duplicate id {overlay_id!r}")
+        overlay_ids.add(overlay_id)
+        if overlay.get("base_catalog_sha256") != base_hash:
+            raise ValueError(
+                f"{path.name}: catalog overlay base hash does not match full shards"
+            )
+        claims = overlay.get("claims")
+        patches = overlay.get("entity_patches")
+        if not isinstance(claims, list) or not isinstance(patches, list):
+            raise ValueError(
+                f"{path.name}: catalog overlay claims and entity_patches are required"
+            )
+        claim_by_id = {claim["id"]: claim for claim in claims}
+        if len(claim_by_id) != len(claims):
+            raise ValueError(f"{path.name}: catalog overlay has duplicate claim IDs")
+        if base_claim_ids & set(claim_by_id):
+            raise ValueError(f"{path.name}: catalog overlay reuses a base claim ID")
+        listed_claim_ids: set[str] = set()
+        for patch in patches:
+            entity_id = patch["entity_id"]
+            if entity_id in patched_entities:
+                raise ValueError(
+                    f"{path.name}: entity {entity_id!r} is patched more than once"
+                )
+            entity = entity_by_id.get(entity_id)
+            if entity is None:
+                raise ValueError(
+                    f"{path.name}: overlay target {entity_id!r} does not exist"
+                )
+            if entity_type_by_id[entity_id] != patch["entity_type"]:
+                raise ValueError(
+                    f"{path.name}: overlay target {entity_id!r} has wrong type"
+                )
+            for namespace, expected in patch["assert_external_ids"].items():
+                if entity["external_ids"].get(namespace) != expected:
+                    raise ValueError(
+                        f"{path.name}: {entity_id!r} external ID assertion failed"
+                    )
+            for namespace, value in patch["add_external_ids"].items():
+                if namespace in entity["external_ids"]:
+                    raise ValueError(
+                        f"{path.name}: {entity_id!r} cannot replace external ID "
+                        f"{namespace!r}"
+                    )
+                entity["external_ids"][namespace] = value
+            for claim_id in patch["add_claim_ids"]:
+                claim = claim_by_id.get(claim_id)
+                if claim is None or claim["subject_id"] != entity_id:
+                    raise ValueError(
+                        f"{path.name}: overlay claim {claim_id!r} does not match "
+                        f"target {entity_id!r}"
+                    )
+                if claim_id in listed_claim_ids:
+                    raise ValueError(
+                        f"{path.name}: overlay claim {claim_id!r} is listed twice"
+                    )
+                listed_claim_ids.add(claim_id)
+                entity["claim_ids"].append(claim_id)
+            patched_entities.add(entity_id)
+        if listed_claim_ids != set(claim_by_id):
+            raise ValueError(
+                f"{path.name}: every overlay claim must be attached exactly once"
+            )
+        merged["claims"].extend(claims)
+        base_claim_ids.update(claim_by_id)
+
     for filename, key in FILE_KEYS.items():
         if filename in {"source-registry.json", "reviewers.json"}:
             continue
@@ -365,6 +507,11 @@ def main() -> int:
         )
         subprocess.run(
             [sys.executable, str(ROOT / "tools" / "test_wikidata_pilot.py")],
+            cwd=ROOT,
+            check=True,
+        )
+        subprocess.run(
+            [sys.executable, str(ROOT / "tools" / "test_getty_ulan_pilot.py")],
             cwd=ROOT,
             check=True,
         )

@@ -89,6 +89,17 @@ SUPPORTED_WORK_TYPES = {
     "landscape",
     "monument",
 }
+ENTITY_CATALOG_KEYS = ("people", "practices", "places", "works")
+CATALOG_KEYS = (
+    "people",
+    "practices",
+    "places",
+    "works",
+    "claims",
+    "relations",
+)
+OVERLAY_KIND = "catalog_overlay_v1"
+ULAN_ID_PATTERN = re.compile(r"^500\d{6}$")
 WIKIDATA_TIME_PATTERN = re.compile(
     r"^(?P<sign>[+-])(?P<year>\d{4,})-(?P<month>\d{2})-"
     r"(?P<day>\d{2})T00:00:00Z$"
@@ -277,16 +288,28 @@ def add_schema_errors(errors: list[str]) -> None:
             schema_issues(load_json(path), file_schema, schema, filename)
         )
     for path in sorted(CATALOG.glob("*.json")) if CATALOG.exists() else []:
+        payload = load_json(path)
+        shard_schema = (
+            schema["$defs"]["catalogOverlayShard"]
+            if payload.get("kind") == "catalog_overlay_v1"
+            else schema["$defs"]["catalogShard"]
+        )
         errors.extend(
             schema_issues(
-                load_json(path),
-                schema["$defs"]["catalogShard"],
+                payload,
+                shard_schema,
                 schema,
                 path.relative_to(DATA).as_posix(),
             )
         )
     for path in sorted(SNAPSHOTS.glob("*.json")) if SNAPSHOTS.exists() else []:
-        if not path.name.startswith("wikidata-"):
+        if path.name.startswith("getty-ulan-identity-"):
+            snapshot_schema = schema["$defs"]["gettyUlanIdentitySnapshot"]
+        elif path.name.startswith("wikidata-ulan-crosswalk-"):
+            snapshot_schema = schema["$defs"]["wikidataUlanCrosswalkSnapshot"]
+        elif path.name.startswith("wikidata-"):
+            snapshot_schema = schema["$defs"]["wikidataSnapshot"]
+        else:
             errors.append(
                 f"{path.relative_to(DATA).as_posix()}: no source-specific "
                 "snapshot validator is registered"
@@ -295,7 +318,7 @@ def add_schema_errors(errors: list[str]) -> None:
         errors.extend(
             schema_issues(
                 load_json(path),
-                schema["$defs"]["wikidataSnapshot"],
+                snapshot_schema,
                 schema,
                 path.relative_to(DATA).as_posix(),
             )
@@ -1351,6 +1374,493 @@ def canonical_hash(value: Any) -> str:
     return hashlib.sha256(raw).hexdigest()
 
 
+def merge_catalog_payloads(
+    payloads: list[tuple[Path, dict]],
+    errors: list[str],
+) -> tuple[dict[str, list[dict]], str]:
+    merged: dict[str, list[dict]] = {key: [] for key in CATALOG_KEYS}
+    full_shards = [
+        (path, payload)
+        for path, payload in payloads
+        if payload.get("kind") != OVERLAY_KIND
+    ]
+    overlays = [
+        (path, payload)
+        for path, payload in payloads
+        if payload.get("kind") == OVERLAY_KIND
+    ]
+    base_contract = [
+        {
+            "path": path.relative_to(DATA).as_posix(),
+            "payload": payload,
+        }
+        for path, payload in full_shards
+    ]
+    base_hash = canonical_hash(base_contract)
+    for path, shard in full_shards:
+        missing = [key for key in CATALOG_KEYS if not isinstance(shard.get(key), list)]
+        if missing:
+            errors.append(f"{path.name}: full shard lacks arrays {missing!r}")
+            continue
+        for key in CATALOG_KEYS:
+            merged[key].extend(shard[key])
+
+    entity_by_id: dict[str, dict] = {}
+    for key in ENTITY_CATALOG_KEYS:
+        for entity in merged[key]:
+            entity_id = entity.get("id")
+            if not isinstance(entity_id, str):
+                continue
+            if entity_id in entity_by_id:
+                errors.append(
+                    f"catalog overlay base has duplicate entity {entity_id!r}"
+                )
+            else:
+                entity_by_id[entity_id] = entity
+    base_claim_ids = {
+        claim.get("id")
+        for claim in merged["claims"]
+        if isinstance(claim.get("id"), str)
+    }
+    patched_entities: set[str] = set()
+    overlay_ids: set[str] = set()
+    ordered_overlays = sorted(
+        overlays,
+        key=lambda row: str(row[1].get("overlay_id", "")).encode("utf-8"),
+    )
+    for path, overlay in ordered_overlays:
+        overlay_id = overlay.get("overlay_id")
+        if not isinstance(overlay_id, str) or not overlay_id:
+            errors.append(f"{path.name}: overlay_id is required")
+            continue
+        if overlay_id in overlay_ids:
+            errors.append(f"{path.name}: duplicate overlay_id {overlay_id!r}")
+        overlay_ids.add(overlay_id)
+        if overlay.get("base_catalog_sha256") != base_hash:
+            errors.append(
+                f"{path.name}: overlay base_catalog_sha256 does not match full shards"
+            )
+        claims = overlay.get("claims")
+        patches = overlay.get("entity_patches")
+        if not isinstance(claims, list) or not isinstance(patches, list):
+            errors.append(f"{path.name}: overlay claims/patches must be arrays")
+            continue
+        claim_by_id = {
+            claim.get("id"): claim
+            for claim in claims
+            if isinstance(claim, dict) and isinstance(claim.get("id"), str)
+        }
+        if len(claim_by_id) != len(claims):
+            errors.append(f"{path.name}: overlay claim IDs must be unique")
+        collisions = base_claim_ids & set(claim_by_id)
+        if collisions:
+            errors.append(
+                f"{path.name}: overlay reuses claim IDs {sorted(collisions)!r}"
+            )
+        attached: set[str] = set()
+        for patch in patches:
+            if not isinstance(patch, dict):
+                errors.append(f"{path.name}: overlay patch must be an object")
+                continue
+            entity_id = patch.get("entity_id")
+            if not isinstance(entity_id, str):
+                errors.append(f"{path.name}: overlay patch entity_id is invalid")
+                continue
+            if entity_id in patched_entities:
+                errors.append(
+                    f"{path.name}: entity {entity_id!r} is patched more than once"
+                )
+            entity = entity_by_id.get(entity_id)
+            if entity is None:
+                errors.append(
+                    f"{path.name}: overlay target {entity_id!r} does not exist"
+                )
+                continue
+            if entity.get("entity_type") != patch.get("entity_type"):
+                errors.append(
+                    f"{path.name}: overlay target {entity_id!r} type mismatch"
+                )
+            assertions = patch.get("assert_external_ids")
+            additions = patch.get("add_external_ids")
+            claim_ids = patch.get("add_claim_ids")
+            if (
+                not isinstance(assertions, dict)
+                or not isinstance(additions, dict)
+                or not isinstance(claim_ids, list)
+            ):
+                errors.append(f"{path.name}: overlay patch fields are invalid")
+                continue
+            for namespace, expected in assertions.items():
+                if entity.get("external_ids", {}).get(namespace) != expected:
+                    errors.append(
+                        f"{path.name}: {entity_id!r} external ID assertion failed"
+                    )
+            for namespace, value in additions.items():
+                if namespace in entity.get("external_ids", {}):
+                    errors.append(
+                        f"{path.name}: {entity_id!r} cannot replace external ID "
+                        f"{namespace!r}"
+                    )
+                else:
+                    entity["external_ids"][namespace] = value
+            for claim_id in claim_ids:
+                claim = claim_by_id.get(claim_id)
+                if claim is None or claim.get("subject_id") != entity_id:
+                    errors.append(
+                        f"{path.name}: claim {claim_id!r} does not match "
+                        f"target {entity_id!r}"
+                    )
+                    continue
+                if claim_id in attached:
+                    errors.append(
+                        f"{path.name}: claim {claim_id!r} is attached twice"
+                    )
+                else:
+                    attached.add(claim_id)
+                    entity["claim_ids"].append(claim_id)
+            patched_entities.add(entity_id)
+        if attached != set(claim_by_id):
+            errors.append(
+                f"{path.name}: every overlay claim must be attached exactly once"
+            )
+        merged["claims"].extend(claims)
+        base_claim_ids.update(claim_by_id)
+    return merged, base_hash
+
+
+def validate_getty_ulan_identity_snapshot(
+    snapshot: dict,
+    entity_by_id: dict[str, dict],
+    snapshot_records: dict[tuple[str, str], tuple[str, str, str]],
+    errors: list[str],
+) -> None:
+    snapshot_id = snapshot["snapshot_id"]
+    preimage = {
+        key: value
+        for key, value in snapshot.items()
+        if key not in {"projection_sha256", "snapshot_id"}
+    }
+    expected_projection_hash = canonical_hash(preimage)
+    if snapshot["projection_sha256"] != expected_projection_hash:
+        errors.append(f"{snapshot_id}: projection_sha256 mismatch")
+    expected_snapshot_id = (
+        f"getty-ulan-identity-{snapshot['accessed']}-"
+        f"{expected_projection_hash[:12]}"
+    )
+    if snapshot_id != expected_snapshot_id:
+        errors.append(f"{snapshot_id}: snapshot id does not bind its projection")
+    records = snapshot["records"]
+    if len(records) != 24:
+        errors.append(f"{snapshot_id}: Getty ULAN pilot requires exactly 24 records")
+    if list(records) != sorted(records, key=int):
+        errors.append(f"{snapshot_id}: Getty ULAN records must use numeric order")
+    entity_ids: set[str] = set()
+    qids: set[str] = set()
+    for ulan_id, wrapper in records.items():
+        projection = wrapper["projection"]
+        projection_hash = canonical_hash(projection)
+        if wrapper["projection_sha256"] != projection_hash:
+            errors.append(f"{snapshot_id}/{ulan_id}: projection hash mismatch")
+        expected_uri = f"http://vocab.getty.edu/ulan/{ulan_id}"
+        expected_representation = f"https://vocab.getty.edu/ulan/{ulan_id}"
+        expected_native_id = f"ulan:{ulan_id}"
+        if (
+            projection["subject_id"] != ulan_id
+            or projection["canonical_uri"] != expected_uri
+            or projection["representation_url"] != expected_representation
+            or projection["native_record_id"] != expected_native_id
+            or projection["raw_retained"] is not False
+        ):
+            errors.append(
+                f"{snapshot_id}/{ulan_id}: identity projection is not exact"
+            )
+        entity_id = projection["entity_id"]
+        qid = projection["wikidata_qid"]
+        entity = entity_by_id.get(entity_id)
+        expected_type = "Person" if projection["entity_type"] == "person" else "Group"
+        if (
+            entity is None
+            or entity.get("entity_type") != projection["entity_type"]
+            or entity.get("external_ids", {}).get("wikidata") != qid
+            or projection["type"] != expected_type
+            or qid not in projection["equivalent_qids"]
+        ):
+            errors.append(
+                f"{snapshot_id}/{ulan_id}: Getty identity does not match base entity"
+            )
+        if entity_id in entity_ids or qid in qids:
+            errors.append(
+                f"{snapshot_id}/{ulan_id}: Getty identity rows must be one-to-one"
+            )
+        entity_ids.add(entity_id)
+        qids.add(qid)
+        record_key = (snapshot_id, expected_native_id)
+        if record_key in snapshot_records:
+            errors.append(
+                f"{snapshot_id}/{ulan_id}: duplicate native record registration"
+            )
+        snapshot_records[record_key] = (
+            "getty-ulan",
+            projection_hash,
+            expected_uri,
+        )
+
+
+def validate_wikidata_ulan_crosswalk_snapshot(
+    snapshot: dict,
+    entity_by_id: dict[str, dict],
+    snapshot_records: dict[tuple[str, str], tuple[str, str, str]],
+    errors: list[str],
+) -> None:
+    snapshot_id = snapshot["snapshot_id"]
+    preimage = {
+        key: value
+        for key, value in snapshot.items()
+        if key != "snapshot_id"
+    }
+    expected_snapshot_id = (
+        f"wikidata-ulan-crosswalk-{snapshot['accessed']}-"
+        f"{canonical_hash(preimage)[:12]}"
+    )
+    if snapshot_id != expected_snapshot_id:
+        errors.append(f"{snapshot_id}: snapshot id does not bind crosswalk content")
+
+    selection = snapshot["selection"]
+    seed = selection["seed"]
+    discovery = selection["discovery"]
+    selected = selection["selected"]
+    records = snapshot["records"]
+    scoped_entities = {
+        entity_id: entity
+        for entity_id, entity in entity_by_id.items()
+        if entity.get("entity_type") in {"person", "practice"}
+    }
+    if len(seed) != len(scoped_entities) or len(seed) != 553:
+        errors.append(f"{snapshot_id}: crosswalk seed must cover 553 creators")
+    if selection["seed_sha256"] != canonical_hash(seed):
+        errors.append(f"{snapshot_id}: crosswalk seed hash mismatch")
+    seed_qids = [row["qid"] for row in seed]
+    if seed_qids != sorted(set(seed_qids), key=lambda qid: int(qid[1:])):
+        errors.append(f"{snapshot_id}: crosswalk seed QIDs are not canonical")
+    seed_by_qid = {row["qid"]: row for row in seed}
+    if {
+        (row["entity_id"], row["entity_type"], row["qid"])
+        for row in seed
+    } != {
+        (
+            entity["id"],
+            entity["entity_type"],
+            entity.get("external_ids", {}).get("wikidata"),
+        )
+        for entity in scoped_entities.values()
+    }:
+        errors.append(f"{snapshot_id}: crosswalk seed differs from active creators")
+
+    discovery_qids = [row["qid"] for row in discovery]
+    if discovery_qids != seed_qids:
+        errors.append(f"{snapshot_id}: discovery does not cover seed QIDs in order")
+    eligible_rows = [row for row in discovery if row["eligible"]]
+    if selection["eligible_count"] != len(eligible_rows):
+        errors.append(f"{snapshot_id}: eligible_count mismatch")
+
+    base_eligible_by_qid: dict[str, Optional[dict]] = {}
+    base_reasons_by_qid: dict[str, list[str]] = {}
+    ulan_to_qids: dict[str, list[str]] = {}
+    for row in discovery:
+        reasons: list[str] = []
+        current = [
+            statement
+            for statement in row["statements"]
+            if statement["rank"] != "deprecated"
+        ]
+        if len(current) != 1:
+            reasons.append("nondeprecated_statement_count_not_one")
+            eligible_statement = None
+        else:
+            eligible_statement = current[0]
+            if eligible_statement["rank"] not in {"normal", "preferred"}:
+                reasons.append("unsupported_rank")
+            if eligible_statement["snaktype"] != "value":
+                reasons.append("non_value_snak")
+            if eligible_statement["datatype"] != "external-id":
+                reasons.append("not_external_id")
+            if eligible_statement["datavalue_type"] != "string":
+                reasons.append("not_string_value")
+            if not isinstance(eligible_statement["statement_id"], str) or not (
+                eligible_statement["statement_id"]
+            ):
+                reasons.append("missing_statement_id")
+            if (
+                not isinstance(eligible_statement["value"], str)
+                or ULAN_ID_PATTERN.fullmatch(eligible_statement["value"]) is None
+            ):
+                reasons.append("invalid_ulan_id")
+        if reasons:
+            eligible_statement = None
+        base_eligible_by_qid[row["qid"]] = eligible_statement
+        base_reasons_by_qid[row["qid"]] = reasons
+        if eligible_statement is not None:
+            ulan_to_qids.setdefault(eligible_statement["value"], []).append(
+                row["qid"]
+            )
+
+    for row in discovery:
+        for expected_index, statement in enumerate(row["statements"]):
+            if (
+                statement["statement_index"] != expected_index
+                or statement["native_field_path"]
+                != f"/claims/P245/{expected_index}"
+            ):
+                errors.append(
+                    f"{snapshot_id}/{row['qid']}: discovery statement path mismatch"
+                )
+        expected_statement = base_eligible_by_qid[row["qid"]]
+        expected_reasons = base_reasons_by_qid[row["qid"]]
+        if (
+            expected_statement is not None
+            and len(ulan_to_qids[expected_statement["value"]]) > 1
+        ):
+            expected_statement = None
+            expected_reasons = ["duplicate_ulan_id"]
+        expected_eligible = expected_statement is not None
+        expected_statement_id = (
+            expected_statement["statement_id"]
+            if expected_statement is not None
+            else None
+        )
+        expected_statement_index = (
+            expected_statement["statement_index"]
+            if expected_statement is not None
+            else None
+        )
+        expected_ulan_id = (
+            expected_statement["value"]
+            if expected_statement is not None
+            else None
+        )
+        if (
+            row["eligible"] != expected_eligible
+            or row["eligible_statement_id"] != expected_statement_id
+            or row["eligible_statement_index"] != expected_statement_index
+            or row["eligible_ulan_id"] != expected_ulan_id
+            or row["rejection_reasons"] != expected_reasons
+        ):
+            errors.append(
+                f"{snapshot_id}/{row['qid']}: discovery eligibility policy mismatch"
+            )
+
+    if len(selected) != 24 or len(records) != 24:
+        errors.append(f"{snapshot_id}: crosswalk must select exactly 24 records")
+    if [row["selection_order"] for row in selected] != list(range(len(selected))):
+        errors.append(f"{snapshot_id}: crosswalk selection order is invalid")
+    selected_by_qid = {row["qid"]: row for row in selected}
+    if len(selected_by_qid) != len(selected):
+        errors.append(f"{snapshot_id}: crosswalk selected QIDs must be unique")
+    selected_ulans = [row["ulan_id"] for row in selected]
+    selected_entities = [row["entity_id"] for row in selected]
+    if (
+        len(set(selected_ulans)) != len(selected_ulans)
+        or len(set(selected_entities)) != len(selected_entities)
+    ):
+        errors.append(f"{snapshot_id}: crosswalk selection is not one-to-one")
+    discovery_by_qid = {row["qid"]: row for row in discovery}
+    for row in selected:
+        seed_row = seed_by_qid.get(row["qid"])
+        receipt = discovery_by_qid.get(row["qid"])
+        if (
+            seed_row is None
+            or receipt is None
+            or receipt["eligible"] is not True
+            or seed_row["entity_id"] != row["entity_id"]
+            or seed_row["entity_type"] != row["entity_type"]
+            or receipt["eligible_ulan_id"] != row["ulan_id"]
+            or receipt["eligible_statement_id"] != row["statement_id"]
+            or receipt["eligible_statement_index"] != row["statement_index"]
+            or row["work_witness"] not in seed_row["work_witnesses"]
+        ):
+            errors.append(
+                f"{snapshot_id}/{row['qid']}: selected row is not bound to discovery"
+            )
+        witness = row["work_witness"]
+        work = entity_by_id.get(witness["work_id"])
+        if (
+            work is None
+            or work.get("entity_type") != "work"
+            or work.get("external_ids", {}).get("wikidata") != witness["work_qid"]
+            or work.get("region") != witness["region"]
+            or work.get("period") != witness["period"]
+            or not any(
+                credit.get("entity_id") == row["entity_id"]
+                and credit.get("entity_type") == row["entity_type"]
+                for credit in work.get("credits", [])
+            )
+        ):
+            errors.append(
+                f"{snapshot_id}/{row['qid']}: work witness is not exact"
+            )
+
+    expected_records = sorted(
+        [
+            {
+                "entity_id": row["entity_id"],
+                "entity_type": row["entity_type"],
+                "ulan_subject_id": row["ulan_id"],
+                "wikidata_qid": row["qid"],
+            }
+            for row in selected
+        ],
+        key=lambda row: int(row["ulan_subject_id"]),
+    )
+    if records != expected_records:
+        errors.append(f"{snapshot_id}: public records differ from selected rows")
+
+    entities = snapshot["entities"]
+    if set(entities) != set(selected_by_qid):
+        errors.append(f"{snapshot_id}: pinned entity set differs from selection")
+    for qid, wrapper in entities.items():
+        record = wrapper["record"]
+        expected_url = (
+            "https://www.wikidata.org/wiki/Special:EntityData/"
+            f"{qid}.json?revision={wrapper['lastrevid']}"
+        )
+        if (
+            record.get("id") != qid
+            or record.get("lastrevid") != wrapper["lastrevid"]
+            or wrapper["record_sha256"] != canonical_hash(record)
+            or wrapper["pinned_url"] != expected_url
+            or set(record.get("claims", {})) - {"P245"}
+        ):
+            errors.append(f"{snapshot_id}/{qid}: pinned P245 wrapper is invalid")
+            continue
+        current: list[tuple[int, dict, str]] = []
+        for index, statement in enumerate(record.get("claims", {}).get("P245", [])):
+            if statement.get("rank") == "deprecated":
+                continue
+            value = (
+                statement.get("mainsnak", {})
+                .get("datavalue", {})
+                .get("value")
+            )
+            if isinstance(value, str):
+                current.append((index, statement, value))
+        selected_row = selected_by_qid[qid]
+        if (
+            len(current) != 1
+            or current[0][0] != selected_row["statement_index"]
+            or current[0][1].get("id") != selected_row["statement_id"]
+            or current[0][2] != selected_row["ulan_id"]
+        ):
+            errors.append(
+                f"{snapshot_id}/{qid}: pinned P245 differs from selected row"
+            )
+        native_record_id = f"{qid}@{wrapper['lastrevid']}"
+        snapshot_records[(snapshot_id, native_record_id)] = (
+            "wikidata",
+            wrapper["record_sha256"],
+            expected_url,
+        )
+
+
 def validate_type_authority_seed_contract(
     seed_contract: Any,
     label: str,
@@ -1730,6 +2240,20 @@ def main() -> int:
         item["id"]: item
         for item in people + practices + places + works
     }
+    for namespace in ("wikidata", "ulan"):
+        owners: dict[str, str] = {}
+        for entity in entity_by_id.values():
+            value = entity.get("external_ids", {}).get(namespace)
+            if value is None:
+                continue
+            prior = owners.get(value)
+            if prior is not None:
+                errors.append(
+                    f"external_ids.{namespace}: value {value!r} is shared by "
+                    f"{prior!r} and {entity['id']!r}"
+                )
+            else:
+                owners[value] = entity["id"]
 
     snapshot_payloads = [
         load_json(path)
@@ -1789,6 +2313,27 @@ def main() -> int:
                 errors.append(f"{snapshot_id}: license does not match source registry")
             if not source["allowed_operations"]["retain_snapshot"]:
                 errors.append(f"{snapshot_id}: source registry forbids retained snapshots")
+
+        if source_id == "getty-ulan":
+            validate_getty_ulan_identity_snapshot(
+                snapshot,
+                entity_by_id,
+                snapshot_records,
+                errors,
+            )
+            continue
+        if (
+            source_id == "wikidata"
+            and snapshot.get("selection", {}).get("method")
+            == "bounded_p245_crosswalk_stable_hash"
+        ):
+            validate_wikidata_ulan_crosswalk_snapshot(
+                snapshot,
+                entity_by_id,
+                snapshot_records,
+                errors,
+            )
+            continue
 
         selection = snapshot["selection"]
         method = selection["method"]
@@ -2125,38 +2670,137 @@ def main() -> int:
                     "non-P279 claims"
                 )
 
-    merged_catalog = {
-        "people": [],
-        "practices": [],
-        "places": [],
-        "works": [],
-        "claims": [],
-        "relations": [],
-    }
+    catalog_payloads = [
+        (path, load_json(path))
+        for path in sorted(
+            CATALOG.glob("*.json"),
+            key=lambda item: item.name.encode("utf-8"),
+        )
+    ] if CATALOG.exists() else []
+    merged_catalog, active_base_catalog_sha256 = merge_catalog_payloads(
+        catalog_payloads,
+        errors,
+    )
+    for snapshot in snapshot_payloads:
+        source_id = snapshot.get("source_id")
+        selection_method = snapshot.get("selection", {}).get("method")
+        is_ulan_crosswalk = (
+            source_id == "wikidata"
+            and selection_method == "bounded_p245_crosswalk_stable_hash"
+        )
+        is_getty_identity = source_id == "getty-ulan"
+        if (
+            (is_ulan_crosswalk or is_getty_identity)
+            and snapshot.get("base_catalog_sha256")
+            != active_base_catalog_sha256
+        ):
+            errors.append(
+                f"{snapshot.get('snapshot_id')}: base catalog hash does not "
+                "match the active full catalog"
+            )
+        if not is_getty_identity:
+            continue
+        crosswalk = snapshot_by_id.get(snapshot.get("crosswalk_snapshot_id"))
+        if (
+            crosswalk is None
+            or crosswalk.get("source_id") != "wikidata"
+            or crosswalk.get("selection", {}).get("method")
+            != "bounded_p245_crosswalk_stable_hash"
+            or crosswalk.get("claim_evidence_allowed") is not False
+        ):
+            errors.append(
+                f"{snapshot.get('snapshot_id')}: Getty identity snapshot lacks "
+                "its exact Wikidata ULAN crosswalk"
+            )
+            continue
+        if snapshot.get("selection", {}).get("seed_sha256") != canonical_hash(
+            crosswalk["records"]
+        ):
+            errors.append(
+                f"{snapshot.get('snapshot_id')}: Getty selection hash does not "
+                "bind the crosswalk records"
+            )
+        crosswalk_by_ulan = {
+            row["ulan_subject_id"]: row
+            for row in crosswalk["records"]
+        }
+        getty_records = snapshot.get("records", {})
+        if set(getty_records) != set(crosswalk_by_ulan):
+            errors.append(
+                f"{snapshot.get('snapshot_id')}: Getty and crosswalk ULAN "
+                "identifier sets differ"
+            )
+            continue
+        for ulan_id, wrapper in getty_records.items():
+            row = crosswalk_by_ulan[ulan_id]
+            projection = wrapper["projection"]
+            if (
+                projection["entity_id"] != row["entity_id"]
+                or projection["entity_type"] != row["entity_type"]
+                or projection["wikidata_qid"] != row["wikidata_qid"]
+            ):
+                errors.append(
+                    f"{snapshot.get('snapshot_id')}/{ulan_id}: Getty projection "
+                    "differs from its crosswalk row"
+                )
+
     catalog_work_snapshot: Optional[dict] = None
-    if CATALOG.exists():
-        for path in sorted(CATALOG.glob("*.json")):
-            shard = load_json(path)
-            for key in merged_catalog:
-                merged_catalog[key].extend(shard[key])
-            if shard["source_id"] not in source_ids:
+    for path, shard in catalog_payloads:
+        is_overlay = shard.get("kind") == OVERLAY_KIND
+        if not is_overlay:
+            missing_full_keys = [
+                key for key in CATALOG_KEYS if key not in shard
+            ]
+            for key in missing_full_keys:
+                errors.append(f"{path.name}: full shard lacks {key!r}")
+            if missing_full_keys:
+                continue
+        source_id = shard.get("source_id")
+        if source_id not in source_ids:
+            errors.append(
+                f"{path.name}: source_id -> unknown source {source_id!r}"
+            )
+        generated_from = shard.get("generated_from")
+        snapshot = snapshot_by_id.get(generated_from)
+        if snapshot is None:
+            errors.append(
+                f"{path.name}: generated_from -> unknown snapshot "
+                f"{generated_from!r}"
+            )
+        elif snapshot["source_id"] != source_id:
+            errors.append(
+                f"{path.name}: shard source does not match generating snapshot"
+            )
+
+        if is_overlay:
+            if shard.get("base_catalog_sha256") != active_base_catalog_sha256:
                 errors.append(
-                    f"{path.name}: source_id -> unknown source {shard['source_id']!r}"
+                    f"{path.name}: overlay is not bound to the active base catalog"
                 )
-            snapshot = snapshot_by_id.get(shard["generated_from"])
-            if snapshot is None:
+            if snapshot is not None and snapshot.get(
+                "claim_evidence_allowed"
+            ) is not True:
                 errors.append(
-                    f"{path.name}: generated_from -> unknown snapshot "
-                    f"{shard['generated_from']!r}"
+                    f"{path.name}: overlay generating snapshot is not claim evidence"
                 )
-            elif snapshot["source_id"] != shard["source_id"]:
+            crosswalk = snapshot_by_id.get(shard.get("crosswalk_snapshot_id"))
+            if crosswalk is None:
                 errors.append(
-                    f"{path.name}: shard source does not match generating snapshot"
+                    f"{path.name}: crosswalk_snapshot_id is unavailable"
                 )
+            elif (
+                crosswalk.get("source_id") != "wikidata"
+                or crosswalk.get("claim_evidence_allowed") is not False
+            ):
+                errors.append(
+                    f"{path.name}: crosswalk snapshot must be Wikidata "
+                    "authority-only data"
+                )
+        else:
             if (
                 snapshot is not None
-                and snapshot["source_id"] == shard["source_id"]
-                and shard["source_id"] == "wikidata"
+                and snapshot["source_id"] == source_id
+                and source_id == "wikidata"
                 and shard["works"]
                 and snapshot["selection"]["method"]
                 == "pinned_hydration_fixtures"
@@ -2168,7 +2812,7 @@ def main() -> int:
                 catalog_work_snapshot = snapshot
             if (
                 snapshot is not None
-                and snapshot["source_id"] == shard["source_id"]
+                and snapshot["source_id"] == source_id
                 and (
                     shard["transformer_id"]
                     != coverage_config["transformer"]["id"]
@@ -2184,8 +2828,11 @@ def main() -> int:
                 errors.append(
                     f"{path.name}: transformer does not match coverage config"
                 )
-            source = source_by_id.get(shard["source_id"])
-            if source and source["adapter_status"] == "fixture_only":
+            source = source_by_id.get(source_id)
+            if (
+                source
+                and source["adapter_status"] == "fixture_only"
+            ):
                 fixture_graph = (
                     shard["people"]
                     + shard["practices"]
@@ -2201,16 +2848,17 @@ def main() -> int:
                     errors.append(
                         f"{path.name}: fixture-only adapters may emit candidates only"
                     )
-            for claim in shard["claims"]:
-                for evidence in claim["evidence"]:
-                    if evidence["source_id"] != shard["source_id"]:
-                        errors.append(
-                            f"{path.name}/{claim['id']}: evidence source escapes shard"
-                        )
-                    if evidence["snapshot_id"] != shard["generated_from"]:
-                        errors.append(
-                            f"{path.name}/{claim['id']}: evidence snapshot escapes shard"
-                        )
+
+        for claim in shard.get("claims", []):
+            for evidence in claim.get("evidence", []):
+                if evidence.get("source_id") != source_id:
+                    errors.append(
+                        f"{path.name}/{claim.get('id')}: evidence source escapes shard"
+                    )
+                if evidence.get("snapshot_id") != generated_from:
+                    errors.append(
+                        f"{path.name}/{claim.get('id')}: evidence snapshot escapes shard"
+                    )
 
     if catalog_work_snapshot is None:
         errors.append("catalog: active Wikidata work snapshot is unavailable")
@@ -2219,6 +2867,18 @@ def main() -> int:
             "snapshot_id": "missing-work-snapshot",
         }
     else:
+        for snapshot in snapshot_payloads:
+            if (
+                snapshot.get("source_id") == "wikidata"
+                and snapshot.get("selection", {}).get("method")
+                == "bounded_p245_crosswalk_stable_hash"
+                and snapshot.get("base_work_snapshot_id")
+                != catalog_work_snapshot["snapshot_id"]
+            ):
+                errors.append(
+                    f"{snapshot.get('snapshot_id')}: base work snapshot does "
+                    "not match the active Wikidata catalog"
+                )
         for binding in coverage_config["work_type_derivation"][
             "authority_bindings"
         ]:
@@ -2582,6 +3242,11 @@ def main() -> int:
             elif snapshot["source_id"] != source_id:
                 errors.append(
                     f"{claim_id}: evidence source does not match snapshot source"
+                )
+            elif snapshot.get("claim_evidence_allowed", True) is not True:
+                errors.append(
+                    f"{claim_id}: snapshot {snapshot_id!r} is authority-only "
+                    "and cannot support a public claim"
                 )
             native_record_id = evidence["native_record_id"]
             if native_record_id is None:

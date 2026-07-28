@@ -144,13 +144,14 @@
       }
     },
     "selection_methods": [
+      "bounded_p245_crosswalk_stable_hash",
       "exact_instance_allowlist_authority",
       "pinned_hydration_fixtures"
     ],
     "status": "not_run"
   },
   "data_as_of": "2026-07-28",
-  "data_version": "9f649631f79b33555f0d97bfa20cd61e47c7aee63f3ea1d27cb03c9ad0b9c61b",
+  "data_version": "48ac00691ac756de77aec9df49a3fe5043daf737ae86efc75e7e6b9c63114600",
   "files": {
     "catalog/wikidata-hydration.json": {
       "count": 1,
@@ -186,7 +187,7 @@
     },
     "source-registry.json": {
       "count": 12,
-      "sha256": "e74183074b633987c17a25fce3a4ed3bba57e92c2eb2b0e3df65a01331e9a4d9"
+      "sha256": "8818dfd2e125fa1cdd5635ec0b566f59e3bb031963a10c4a15b550dddf46bfd1"
     },
     "source-snapshots/wikidata-hydration-2026-07-25-0855f4599c43.json": {
       "count": 1,
@@ -231,6 +232,10 @@
     "source-snapshots/wikidata-hydration-2026-07-27-e4f149fe2328.json": {
       "count": 1,
       "sha256": "11d9c0fd6dd34ccb03f5e7e83c5a4d860672c578505f9ff57e8496dc72765567"
+    },
+    "source-snapshots/wikidata-ulan-crosswalk-2026-07-28-6c685d52d980.json": {
+      "count": 24,
+      "sha256": "ae94ddc2f39ed2e540f97e08a0311f06211661d172cf4313cfc818e8ac3e7818"
     },
     "source-snapshots/wikidata-work-type-authority-2026-07-28-ad7844fa638e.json": {
       "count": 1,

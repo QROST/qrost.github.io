@@ -888,6 +888,488 @@
         }
       }
     },
+    "catalogOverlayPatch": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "entity_id",
+        "entity_type",
+        "assert_external_ids",
+        "add_external_ids",
+        "add_claim_ids"
+      ],
+      "properties": {
+        "entity_id": {"$ref": "#/$defs/id"},
+        "entity_type": {"enum": ["person", "practice"]},
+        "assert_external_ids": {"$ref": "#/$defs/externalIds"},
+        "add_external_ids": {"$ref": "#/$defs/externalIds"},
+        "add_claim_ids": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {"$ref": "#/$defs/id"}
+        }
+      }
+    },
+    "catalogOverlayShard": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "kind",
+        "overlay_id",
+        "source_id",
+        "generated_from",
+        "crosswalk_snapshot_id",
+        "generator",
+        "transformer_id",
+        "transformer_version",
+        "base_catalog_sha256",
+        "entity_patches",
+        "claims"
+      ],
+      "properties": {
+        "kind": {"const": "catalog_overlay_v1"},
+        "overlay_id": {"$ref": "#/$defs/id"},
+        "source_id": {"$ref": "#/$defs/id"},
+        "generated_from": {"$ref": "#/$defs/id"},
+        "crosswalk_snapshot_id": {"$ref": "#/$defs/id"},
+        "generator": {"type": "string", "minLength": 1},
+        "transformer_id": {"$ref": "#/$defs/id"},
+        "transformer_version": {
+          "type": "string",
+          "pattern": "^\\d+\\.\\d+\\.\\d+$"
+        },
+        "base_catalog_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "entity_patches": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {"$ref": "#/$defs/catalogOverlayPatch"}
+        },
+        "claims": {
+          "type": "array",
+          "minItems": 1,
+          "items": {"$ref": "#/$defs/claim"}
+        }
+      }
+    },
+    "wikidataUlanWorkWitness": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["period", "region", "work_id", "work_qid"],
+      "properties": {
+        "period": {"$ref": "#/$defs/period"},
+        "region": {"$ref": "#/$defs/region"},
+        "work_id": {"$ref": "#/$defs/id"},
+        "work_qid": {
+          "type": "string",
+          "pattern": "^Q[1-9][0-9]*$"
+        }
+      }
+    },
+    "wikidataUlanSeedRow": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["entity_id", "entity_type", "qid", "work_witnesses"],
+      "properties": {
+        "entity_id": {"$ref": "#/$defs/id"},
+        "entity_type": {"enum": ["person", "practice"]},
+        "qid": {
+          "type": "string",
+          "pattern": "^Q[1-9][0-9]*$"
+        },
+        "work_witnesses": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {"$ref": "#/$defs/wikidataUlanWorkWitness"}
+        }
+      }
+    },
+    "wikidataUlanDiscoveryStatement": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "datatype",
+        "datavalue_type",
+        "native_field_path",
+        "rank",
+        "snaktype",
+        "statement_id",
+        "statement_index",
+        "value"
+      ],
+      "properties": {
+        "datatype": {"type": ["string", "null"]},
+        "datavalue_type": {"type": ["string", "null"]},
+        "native_field_path": {
+          "type": "string",
+          "pattern": "^/claims/P245/[0-9]+$"
+        },
+        "rank": {"type": ["string", "null"]},
+        "snaktype": {"type": ["string", "null"]},
+        "statement_id": {"type": ["string", "null"]},
+        "statement_index": {"type": "integer", "minimum": 0},
+        "value": {"type": ["string", "null"]}
+      }
+    },
+    "wikidataUlanDiscoveryRow": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "content_type",
+        "eligible",
+        "eligible_statement_id",
+        "eligible_statement_index",
+        "eligible_ulan_id",
+        "qid",
+        "rejection_reasons",
+        "request_url",
+        "response_sha256",
+        "retrieved_at",
+        "statements"
+      ],
+      "properties": {
+        "content_type": {"type": "string", "minLength": 1},
+        "eligible": {"type": "boolean"},
+        "eligible_statement_id": {"type": ["string", "null"]},
+        "eligible_statement_index": {"type": ["integer", "null"], "minimum": 0},
+        "eligible_ulan_id": {
+          "type": ["string", "null"],
+          "pattern": "^500\\d{6}$"
+        },
+        "qid": {
+          "type": "string",
+          "pattern": "^Q[1-9][0-9]*$"
+        },
+        "rejection_reasons": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_]*$"
+          }
+        },
+        "request_url": {"$ref": "#/$defs/url"},
+        "response_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "retrieved_at": {"$ref": "#/$defs/dateTime"},
+        "statements": {
+          "type": "array",
+          "items": {"$ref": "#/$defs/wikidataUlanDiscoveryStatement"}
+        }
+      }
+    },
+    "wikidataUlanSelectedRow": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "entity_id",
+        "entity_type",
+        "qid",
+        "selection_order",
+        "selection_priority",
+        "statement_id",
+        "statement_index",
+        "ulan_id",
+        "work_witness"
+      ],
+      "properties": {
+        "entity_id": {"$ref": "#/$defs/id"},
+        "entity_type": {"enum": ["person", "practice"]},
+        "qid": {
+          "type": "string",
+          "pattern": "^Q[1-9][0-9]*$"
+        },
+        "selection_order": {"type": "integer", "minimum": 0},
+        "selection_priority": {"type": "string", "minLength": 1},
+        "statement_id": {"type": "string", "minLength": 1},
+        "statement_index": {"type": "integer", "minimum": 0},
+        "ulan_id": {
+          "type": "string",
+          "pattern": "^500\\d{6}$"
+        },
+        "work_witness": {"$ref": "#/$defs/wikidataUlanWorkWitness"}
+      }
+    },
+    "wikidataUlanCrosswalkRecord": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "entity_id",
+        "entity_type",
+        "wikidata_qid",
+        "ulan_subject_id"
+      ],
+      "properties": {
+        "entity_id": {"$ref": "#/$defs/id"},
+        "entity_type": {"enum": ["person", "practice"]},
+        "wikidata_qid": {
+          "type": "string",
+          "pattern": "^Q[1-9][0-9]*$"
+        },
+        "ulan_subject_id": {
+          "type": "string",
+          "pattern": "^500\\d{6}$"
+        }
+      }
+    },
+    "wikidataUlanCrosswalkSnapshot": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "accessed",
+        "adapter_id",
+        "adapter_version",
+        "base_catalog_sha256",
+        "base_work_snapshot_id",
+        "claim_evidence_allowed",
+        "endpoint",
+        "entities",
+        "license",
+        "records",
+        "selection",
+        "snapshot_id",
+        "source_id"
+      ],
+      "properties": {
+        "accessed": {"$ref": "#/$defs/date"},
+        "adapter_id": {"const": "wikidata-hydration-pilot"},
+        "adapter_version": {"const": "0.1.0"},
+        "base_catalog_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "base_work_snapshot_id": {"$ref": "#/$defs/id"},
+        "claim_evidence_allowed": {"const": false},
+        "endpoint": {"$ref": "#/$defs/url"},
+        "entities": {
+          "type": "object",
+          "propertyNames": {"pattern": "^Q[1-9][0-9]*$"},
+          "additionalProperties": {"$ref": "#/$defs/wikidataSnapshotEntity"}
+        },
+        "license": {"const": "CC0-1.0"},
+        "records": {
+          "type": "array",
+          "minItems": 24,
+          "uniqueItems": true,
+          "items": {"$ref": "#/$defs/wikidataUlanCrosswalkRecord"}
+        },
+        "selection": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "discovery",
+            "eligible_count",
+            "method",
+            "priorities",
+            "property_id",
+            "rank_policy",
+            "seed",
+            "seed_sha256",
+            "selected",
+            "selected_order",
+            "selection_limit"
+          ],
+          "properties": {
+            "discovery": {
+              "type": "array",
+              "minItems": 1,
+              "items": {"$ref": "#/$defs/wikidataUlanDiscoveryRow"}
+            },
+            "eligible_count": {"type": "integer", "minimum": 24},
+            "method": {"const": "bounded_p245_crosswalk_stable_hash"},
+            "priorities": {
+              "type": "array",
+              "minItems": 1,
+              "uniqueItems": true,
+              "items": {"type": "string", "minLength": 1}
+            },
+            "property_id": {"const": "P245"},
+            "rank_policy": {
+              "const": "exactly_one_non_deprecated_external_id"
+            },
+            "seed": {
+              "type": "array",
+              "minItems": 1,
+              "items": {"$ref": "#/$defs/wikidataUlanSeedRow"}
+            },
+            "seed_sha256": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{64}$"
+            },
+            "selected": {
+              "type": "array",
+              "minItems": 24,
+              "uniqueItems": true,
+              "items": {"$ref": "#/$defs/wikidataUlanSelectedRow"}
+            },
+            "selected_order": {"const": "priority_then_stable_hash"},
+            "selection_limit": {"const": 24}
+          }
+        },
+        "snapshot_id": {"$ref": "#/$defs/id"},
+        "source_id": {"const": "wikidata"}
+      }
+    },
+    "gettyUlanIdentityProjection": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "canonical_uri",
+        "content_type",
+        "contributor_uris",
+        "entity_id",
+        "entity_type",
+        "equivalent_qids",
+        "native_record_id",
+        "raw_response_sha256",
+        "raw_retained",
+        "representation_url",
+        "retrieved_at",
+        "source_uris",
+        "subject_id",
+        "type",
+        "wikidata_qid"
+      ],
+      "properties": {
+        "canonical_uri": {
+          "type": "string",
+          "pattern": "^http://vocab\\.getty\\.edu/ulan/500\\d{6}$"
+        },
+        "content_type": {
+          "enum": ["application/json", "application/ld+json"]
+        },
+        "contributor_uris": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "pattern": "^http://vocab\\.getty\\.edu/ulan/contrib/[1-9]\\d*$"
+          }
+        },
+        "entity_id": {"$ref": "#/$defs/id"},
+        "entity_type": {"enum": ["person", "practice"]},
+        "equivalent_qids": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "pattern": "^Q[1-9][0-9]*$"
+          }
+        },
+        "native_record_id": {
+          "type": "string",
+          "pattern": "^ulan:500\\d{6}$"
+        },
+        "raw_response_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "raw_retained": {"const": false},
+        "representation_url": {
+          "type": "string",
+          "pattern": "^https://vocab\\.getty\\.edu/ulan/500\\d{6}$"
+        },
+        "retrieved_at": {"$ref": "#/$defs/dateTime"},
+        "source_uris": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "pattern": "^http://vocab\\.getty\\.edu/ulan/source/[1-9]\\d*$"
+          }
+        },
+        "subject_id": {
+          "type": "string",
+          "pattern": "^500\\d{6}$"
+        },
+        "type": {"enum": ["Person", "Group"]},
+        "wikidata_qid": {
+          "type": "string",
+          "pattern": "^Q[1-9][0-9]*$"
+        }
+      }
+    },
+    "gettyUlanIdentityRecord": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["projection", "projection_sha256"],
+      "properties": {
+        "projection": {"$ref": "#/$defs/gettyUlanIdentityProjection"},
+        "projection_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        }
+      }
+    },
+    "gettyUlanIdentitySnapshot": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "accessed",
+        "adapter_id",
+        "adapter_version",
+        "attribution",
+        "base_catalog_sha256",
+        "claim_evidence_allowed",
+        "crosswalk_snapshot_id",
+        "license",
+        "license_url",
+        "projection_sha256",
+        "raw_retained",
+        "records",
+        "selection",
+        "snapshot_id",
+        "source_id"
+      ],
+      "properties": {
+        "accessed": {"$ref": "#/$defs/date"},
+        "adapter_id": {"const": "getty-ulan-identity-pilot"},
+        "adapter_version": {"const": "0.1.0"},
+        "attribution": {"type": "string", "minLength": 1},
+        "base_catalog_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "claim_evidence_allowed": {"const": true},
+        "crosswalk_snapshot_id": {"$ref": "#/$defs/id"},
+        "license": {"const": "ODC-By-1.0"},
+        "license_url": {
+          "const": "https://opendatacommons.org/licenses/by/1-0/"
+        },
+        "projection_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "raw_retained": {"const": false},
+        "records": {
+          "type": "object",
+          "propertyNames": {"pattern": "^500\\d{6}$"},
+          "additionalProperties": {"$ref": "#/$defs/gettyUlanIdentityRecord"}
+        },
+        "selection": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["method", "record_count", "seed_sha256"],
+          "properties": {
+            "method": {"const": "wikidata_p245_exact_getty_identity"},
+            "record_count": {"const": 24},
+            "seed_sha256": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{64}$"
+            }
+          }
+        },
+        "snapshot_id": {"$ref": "#/$defs/id"},
+        "source_id": {"const": "getty-ulan"}
+      }
+    },
     "wikidataSnapshotQuery": {
       "type": "object",
       "additionalProperties": false,

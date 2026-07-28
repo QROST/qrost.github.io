@@ -7,6 +7,7 @@ python3 tools/validate.py
 python3 tools/build.py
 python3 tools/test_data_contract.py
 python3 tools/test_wikidata_pilot.py
+python3 tools/test_getty_ulan_pilot.py
 ```
 
 `validate.py` checks:
@@ -57,3 +58,31 @@ the configured authority sidecar and still maps work types only by direct P31
 equality. No script promotes records to `verified`, maps inception/opening to a
 construction date, traverses P279 for classification, or converts P1066/P802
 into mentorship.
+
+The bounded Getty ULAN identity workflow has an explicit review boundary:
+
+```bash
+python3 tools/fetch_wikidata_ulan_crosswalk.py --accessed YYYY-MM-DD
+# Review, validate, and commit the immutable crosswalk before continuing.
+python3 tools/fetch_getty_ulan_pilot.py \
+  assets/data/source-snapshots/<wikidata-ulan-crosswalk>.json \
+  --accessed YYYY-MM-DD
+python3 tools/import_getty_ulan_pilot.py \
+  assets/data/catalog \
+  assets/data/source-snapshots/<wikidata-ulan-crosswalk>.json \
+  assets/data/source-snapshots/<getty-ulan-identity>.json
+python3 tools/build.py
+```
+
+The crosswalk scans P245 for every person and practice already in the catalog,
+then selects exactly 24 review anchors by available work region, known work
+period, practice representation, and a stable hash. Selected P245 statements
+are pinned to exact Wikidata revisions. The crosswalk is authority-only and
+cannot support public claims by itself.
+
+The Getty fetcher refuses an uncommitted or modified crosswalk. It retains only
+the canonical ULAN URI, exact Wikidata equivalent, entity type, retrieval
+receipt, and Getty contributor/source URIs; display names, descriptions,
+relationships, and raw response bodies are discarded. The offline importer can
+only add candidate ULAN external identifiers to existing entities. It cannot
+create people, practices, works, credits, or lineage relations.

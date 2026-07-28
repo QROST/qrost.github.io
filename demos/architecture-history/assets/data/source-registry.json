@@ -259,10 +259,10 @@
         "auth_kind": "none",
         "credential_env_name": null,
         "docs_url": "https://www.wikidata.org/wiki/Help:Data_access",
-        "rate_policy_zh": "当前 adapter 只读取 532 个固定版本的候选作品夹具及有边界的类型权威记录：先读最新 lastrevid，再以 Special:EntityData 的 revision 参数二次获取并核对；覆盖 discovery 尚未实现。",
-        "rate_policy_en": "The current adapter only reads 532 revision-pinned candidate work fixtures and bounded work-type authority records: read the latest lastrevid, refetch through the Special:EntityData revision parameter, and verify it. Coverage discovery is not implemented."
+        "rate_policy_zh": "当前 adapter 读取 532 个固定版本的候选作品夹具、6 个类型权威记录，以及既有 553 位人物/工作室的有边界 P245 身份交叉表；入选记录先读最新 lastrevid，再以 Special:EntityData 的 revision 参数二次获取并核对。覆盖 discovery 尚未实现。",
+        "rate_policy_en": "The current adapter reads 532 revision-pinned candidate work fixtures, six work-type authority records, and a bounded P245 identity crosswalk for the 553 existing people/practices. Selected records read the latest lastrevid, refetch through the Special:EntityData revision parameter, and verify it. Coverage discovery is not implemented."
       },
-      "snapshot_strategy": "分别保存作品夹具与类型权威 sidecar：均保留版本化 seed、精确 revision URL、lastrevid、可重算 SHA-256 的最小化规范实体 JSON；公开构建只读固定快照。",
+      "snapshot_strategy": "分别保存作品夹具、类型权威 sidecar 与 P245 身份交叉表：保留版本化 seed、发现回执、精确 revision URL、lastrevid、可重算 SHA-256 的最小化规范实体 JSON；公开构建只读固定快照。",
       "provenance_passthrough_fields": ["id", "lastrevid", "labels", "aliases", "claims", "rank", "qualifiers", "references"],
       "metadata_license": "CC0-1.0",
       "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
