@@ -6,19 +6,20 @@
     "version": "0.4.0"
   },
   "period_derivation": {
-    "rule_id": "wikidata-p571-best-rank-period-v2",
+    "rule_id": "wikidata-p571-best-rank-period-v3",
     "basis_property": "P571",
+    "fallback_property": "P1619",
     "accepted_precisions": [9, 10, 11],
     "accepted_calendar_models": [
       "http://www.wikidata.org/entity/Q1985727",
       "http://www.wikidata.org/entity/Q1985786"
     ],
     "latest_year_inclusive": 2026,
-    "qualifier_policy": "none_allowed",
+    "qualifier_policy": "metadata_qualifiers_allowed",
     "required_before": 0,
     "required_after": 0,
     "unsupported_result": "unknown",
-    "official_opening_usage": "source_claim_only",
+    "official_opening_usage": "fallback_after_inception",
     "year_precision_lower_components": "zero_or_valid_calendar_date_ignored"
   },
   "coverage_grid": {

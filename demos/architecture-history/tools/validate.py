@@ -54,19 +54,20 @@ DATE_AUTHORITY_PREDICATES = {
     "source_official_opening",
 }
 SUPPORTED_PERIOD_RULE = {
-    "rule_id": "wikidata-p571-best-rank-period-v2",
+    "rule_id": "wikidata-p571-best-rank-period-v3",
     "basis_property": "P571",
+    "fallback_property": "P1619",
     "accepted_precisions": [9, 10, 11],
     "accepted_calendar_models": [
         "http://www.wikidata.org/entity/Q1985727",
         "http://www.wikidata.org/entity/Q1985786",
     ],
     "latest_year_inclusive": 2026,
-    "qualifier_policy": "none_allowed",
+    "qualifier_policy": "metadata_qualifiers_allowed",
     "required_before": 0,
     "required_after": 0,
     "unsupported_result": "unknown",
-    "official_opening_usage": "source_claim_only",
+    "official_opening_usage": "fallback_after_inception",
     "year_precision_lower_components": (
         "zero_or_valid_calendar_date_ignored"
     ),
@@ -756,9 +757,13 @@ def best_rank_wikidata_rows(
     ]
 
 
-def derive_wikidata_period(record: dict, config: dict) -> Optional[dict]:
-    rule = config["period_derivation"]
-    rows = best_rank_wikidata_rows(record, rule["basis_property"])
+def _derive_wikidata_period_from_property(
+    record: dict,
+    config: dict,
+    rule: dict,
+    property_id: str,
+) -> Optional[list[dict]]:
+    rows = best_rank_wikidata_rows(record, property_id)
     if not rows:
         return None
     derived_rows = []
@@ -775,13 +780,29 @@ def derive_wikidata_period(record: dict, config: dict) -> Optional[dict]:
                 "period": period,
                 "statement": statement,
                 "year": year,
+                "property": property_id,
             }
         )
     periods = {row["period"] for row in derived_rows}
     if len(periods) != 1:
         return None
+    return derived_rows
+
+
+def derive_wikidata_period(record: dict, config: dict) -> Optional[dict]:
+    rule = config["period_derivation"]
+    basis = rule["basis_property"]
+    derived_rows = _derive_wikidata_period_from_property(record, config, rule, basis)
+    if derived_rows is None:
+        fallback = rule.get("fallback_property")
+        if fallback and fallback != basis:
+            derived_rows = _derive_wikidata_period_from_property(
+                record, config, rule, fallback
+            )
+    if derived_rows is None:
+        return None
     return {
-        "period": next(iter(periods)),
+        "period": next(iter({row["period"] for row in derived_rows})),
         "rows": derived_rows,
     }
 
@@ -987,7 +1008,11 @@ def validate_work_period_claim(
         errors.append(f"{work_id}: field_period qualifiers have an invalid shape")
         return
     rule = config["period_derivation"]
-    if qualifiers["basis_property"] != rule["basis_property"]:
+    allowed_basis = {rule["basis_property"]}
+    fallback = rule.get("fallback_property")
+    if fallback:
+        allowed_basis.add(fallback)
+    if qualifiers["basis_property"] not in allowed_basis:
         errors.append(f"{work_id}: field_period basis property is stale")
     if qualifiers["derivation_rule_id"] != rule["rule_id"]:
         errors.append(f"{work_id}: field_period derivation rule is stale")
@@ -1012,15 +1037,18 @@ def validate_work_period_claim(
         errors.append(
             f"{work_id}: field_period evidence count does not match source years"
         )
+    allowed_predicates = {rule["basis_property"]}
+    if fallback:
+        allowed_predicates.add(fallback)
     for evidence in claim["evidence"]:
         if evidence["support"] != "indirect":
             errors.append(f"{work_id}: field_period evidence must be indirect")
         if evidence["source_id"] != "wikidata":
             errors.append(f"{work_id}: field_period evidence must come from Wikidata")
-        if evidence["native_predicate"] != rule["basis_property"]:
+        if evidence["native_predicate"] not in allowed_predicates:
             errors.append(f"{work_id}: field_period evidence predicate is invalid")
         if not re.fullmatch(
-            r"/claims/P571/\d+",
+            r"/claims/(?:P571|P1619)/\d+",
             evidence["native_field_path"],
         ):
             errors.append(f"{work_id}: field_period evidence path is invalid")

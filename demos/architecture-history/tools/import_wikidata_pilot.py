@@ -31,7 +31,7 @@ ADAPTER_ID = "wikidata-hydration-pilot"
 ADAPTER_VERSION = "0.1.0"
 TRANSFORMER_ID = "wikidata-hydration-to-architecture-history"
 TRANSFORMER_VERSION = "0.4.0"
-PERIOD_RULE_ID = "wikidata-p571-best-rank-period-v2"
+PERIOD_RULE_ID = "wikidata-p571-best-rank-period-v3"
 WORK_TYPE_RULE_ID = "wikidata-p31-exact-instance-work-type-v1"
 LEGACY_WORK_TYPE_ALLOWLIST_SHA256 = (
     "35758ba09c3a00ea6ea3d20776a1870a38ec136c56469b9faa9a42b0d28be4bf"
@@ -307,12 +307,20 @@ def supported_wikidata_year(
     return year
 
 
-def derive_period_from_inception(
+def _derive_period_from_property(
     record: dict,
     config: dict,
-) -> Optional[dict]:
-    rule = config["period_derivation"]
-    rows = best_rank_statement_rows(record, rule["basis_property"])
+    rule: dict,
+    property_id: str,
+) -> Optional[list[dict]]:
+    """Try to derive period rows from a single Wikidata time property.
+
+    Returns the derived rows (each carrying the source property) when every
+    best-rank statement resolves to one period, otherwise None. A statement
+    that fails the precision/calendar/qualifier gates aborts the property
+    rather than silently picking a subset, matching the v2 contract.
+    """
+    rows = best_rank_statement_rows(record, property_id)
     if not rows:
         return None
     derived_rows = []
@@ -332,13 +340,37 @@ def derive_period_from_inception(
                 "period": period,
                 "statement": statement,
                 "year": year,
+                "property": property_id,
             }
         )
     periods = {row["period"] for row in derived_rows}
     if len(periods) != 1:
         return None
+    return derived_rows
+
+
+def derive_period_from_inception(
+    record: dict,
+    config: dict,
+) -> Optional[dict]:
+    rule = config["period_derivation"]
+    basis = rule["basis_property"]
+    derived_rows = _derive_period_from_property(record, config, rule, basis)
+    # Fall back to the official opening date (P1619) when inception is absent
+    # or its statements fail the rule gates. Many well-documented works
+    # (Brooklyn Bridge, Semperoper, Beijing National Stadium) carry only an
+    # opening date in Wikidata; treating it as period evidence recovers them
+    # without weakening the precision/calendar checks on P571 itself.
+    if derived_rows is None:
+        fallback = rule.get("fallback_property")
+        if fallback and fallback != basis:
+            derived_rows = _derive_period_from_property(
+                record, config, rule, fallback
+            )
+    if derived_rows is None:
+        return None
     return {
-        "period": next(iter(periods)),
+        "period": next(iter({row["period"] for row in derived_rows})),
         "rows": derived_rows,
     }
 
@@ -357,14 +389,15 @@ def validate_transform_config(config: dict) -> None:
     expected_rule = {
         "rule_id": PERIOD_RULE_ID,
         "basis_property": "P571",
+        "fallback_property": "P1619",
         "accepted_precisions": [9, 10, 11],
         "accepted_calendar_models": list(SUPPORTED_CALENDAR_MODELS),
         "latest_year_inclusive": 2026,
-        "qualifier_policy": "none_allowed",
+        "qualifier_policy": "metadata_qualifiers_allowed",
         "required_before": 0,
         "required_after": 0,
         "unsupported_result": "unknown",
-        "official_opening_usage": "source_claim_only",
+        "official_opening_usage": "fallback_after_inception",
         "year_precision_lower_components": (
             "zero_or_valid_calendar_date_ignored"
         ),
@@ -1495,10 +1528,10 @@ class CatalogBuilder:
             period_evidence = [
                 self.evidence(
                     qid,
-                    path=f"/claims/P571/{row['index']}",
-                    predicate="P571",
+                    path=f"/claims/{row['property']}/{row['index']}",
+                    predicate=row["property"],
                     locator=(
-                        f"{qid}/P571/"
+                        f"{qid}/{row['property']}/"
                         f"{row['statement'].get('id', row['index'])}"
                     ),
                     statement=row["statement"],
@@ -1513,7 +1546,7 @@ class CatalogBuilder:
                     predicate="field_period",
                     object_value={"value": period},
                     qualifiers={
-                        "basis_property": period_rule["basis_property"],
+                        "basis_property": derived_period["rows"][0]["property"],
                         "coverage_config_version": self.config["config_version"],
                         "derivation_rule_id": period_rule["rule_id"],
                         "source_years": [
