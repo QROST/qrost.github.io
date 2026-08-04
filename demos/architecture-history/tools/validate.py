@@ -1084,7 +1084,7 @@ def validate_work_period_claim(
             f"{work_id}: pinned P571 statements derive a different period"
         )
     expected_paths = [
-        f"/claims/P571/{row['index']}"
+        f"/claims/{row['property']}/{row['index']}"
         for row in derived["rows"]
     ]
     actual_paths = [
