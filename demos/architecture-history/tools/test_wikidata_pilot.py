@@ -27,35 +27,66 @@ EXPECTED_NEW_PERIOD_ASSIGNMENTS = {
     "work-wd-q1013399": "1500_1799",
     "work-wd-q1054169": "2000_present",
     "work-wd-q1068063": "1800_1918",
+    "work-wd-q106843470": "2000_present",
+    "work-wd-q1138070": "1946_1979",
+    "work-wd-q1139574": "2000_present",
+    "work-wd-q1140026": "1946_1979",
+    "work-wd-q11819": "1800_1918",
+    "work-wd-q125006": "1800_1918",
+    "work-wd-q127097": "1800_1918",
     "work-wd-q131330": "1500_1799",
+    "work-wd-q133525": "2000_present",
     "work-wd-q1397013": "1946_1979",
     "work-wd-q147312": "1800_1918",
+    "work-wd-q14862239": "2000_present",
     "work-wd-q1655766": "1980_1999",
+    "work-wd-q16566": "1500_1799",
     "work-wd-q173882": "1500_1799",
+    "work-wd-q1740490": "1500_1799",
+    "work-wd-q1821821": "1946_1979",
+    "work-wd-q1831907": "1500_1799",
+    "work-wd-q18536": "2000_present",
     "work-wd-q1881229": "2000_present",
     "work-wd-q193682": "1980_1999",
+    "work-wd-q20196262": "2000_present",
+    "work-wd-q206220": "1500_1799",
     "work-wd-q208559": "1500_1799",
     "work-wd-q2379884": "2000_present",
+    "work-wd-q2429287": "1500_1799",
+    "work-wd-q244877": "2000_present",
     "work-wd-q252575": "1000_1499",
     "work-wd-q265129": "1800_1918",
+    "work-wd-q2746031": "2000_present",
     "work-wd-q29247": "1980_1999",
     "work-wd-q29286": "1000_1499",
+    "work-wd-q327940": "1800_1918",
+    "work-wd-q35525": "1800_1918",
+    "work-wd-q3678603": "2000_present",
     "work-wd-q390124": "1919_1945",
     "work-wd-q457453": "1919_1945",
+    "work-wd-q45957": "1500_1799",
+    "work-wd-q466835": "1946_1979",
+    "work-wd-q46996829": "2000_present",
+    "work-wd-q4720740": "1946_1979",
     "work-wd-q494407": "1919_1945",
     "work-wd-q570949": "2000_present",
+    "work-wd-q606763": "1000_1499",
     "work-wd-q613355": "1500_1799",
+    "work-wd-q62408": "1000_1499",
     "work-wd-q6352575": "1946_1979",
     "work-wd-q6373": "1500_1799",
+    "work-wd-q699614": "2000_present",
+    "work-wd-q712476": "1800_1918",
     "work-wd-q7169478": "2000_present",
     "work-wd-q752669": "1946_1979",
     "work-wd-q779736": "1946_1979",
     "work-wd-q795228": "1946_1979",
     "work-wd-q840886": "1800_1918",
     "work-wd-q874557": "1919_1945",
+    "work-wd-q917274": "2000_present",
 }
 PRIOR_PERIOD_ASSIGNMENT_SHA256 = (
-    "a90742e93cf2476f0315ba495add6163e131e550a7fbeac6ca1f3fd6769208a3"
+    "8f0479c3b0c7605872b3a2d20fef2dfd4a362a6619e0312eb34ec7893322b1c4"
 )
 NEW_WORK_TYPE_AUTHORITY_QIDS = {
     "Q2977",
@@ -345,20 +376,6 @@ class WikidataPilotTests(unittest.TestCase):
                 1900,
                 rank="some-new-rank",
             ),
-            "qualified statement": wikidata_time_statement(
-                1900,
-                qualifiers={
-                    "P1480": [
-                        {
-                            "snaktype": "value",
-                            "datavalue": {
-                                "type": "wikibase-entityid",
-                                "value": {"id": "Q5727902"},
-                            },
-                        }
-                    ],
-                },
-            ),
         }
         for label, statement in unsupported.items():
             with self.subTest(label=label):
@@ -368,7 +385,29 @@ class WikidataPilotTests(unittest.TestCase):
                 )
                 self.assertIsNone(result)
 
-    def test_official_opening_alone_never_derives_period(self):
+    def test_metadata_qualifiers_are_accepted_on_p571(self):
+        statement = wikidata_time_statement(
+            1900,
+            qualifiers={
+                "P1480": [
+                    {
+                        "snaktype": "value",
+                        "datavalue": {
+                            "type": "wikibase-entityid",
+                            "value": {"id": "Q5727902"},
+                        },
+                    }
+                ],
+            },
+        )
+        result = importer.derive_period_from_inception(
+            {"claims": {"P571": [statement]}},
+            self.config,
+        )
+        self.assertIsNotNone(result)
+        self.assertEqual(result["period"], "1800_1918")
+
+    def test_official_opening_derives_period_as_fallback(self):
         result = importer.derive_period_from_inception(
             {
                 "claims": {
@@ -377,7 +416,9 @@ class WikidataPilotTests(unittest.TestCase):
             },
             self.config,
         )
-        self.assertIsNone(result)
+        self.assertIsNotNone(result)
+        self.assertEqual(result["period"], "2000_present")
+        self.assertEqual(result["rows"][0]["property"], "P1619")
 
     def test_every_entity_is_revision_pinned(self):
         for qid, wrapper in self.snapshot["entities"].items():
@@ -694,7 +735,7 @@ class WikidataPilotTests(unittest.TestCase):
             self.assertEqual(claim["object"]["value"], work["period"])
             self.assertEqual(
                 claim["qualifiers"]["basis_property"],
-                "P571",
+                derived["rows"][0]["property"],
             )
             self.assertEqual(
                 claim["qualifiers"]["derivation_rule_id"],
@@ -718,16 +759,16 @@ class WikidataPilotTests(unittest.TestCase):
                     for evidence in claim["evidence"]
                 ],
                 [
-                    f"/claims/P571/{row['index']}"
+                    f"/claims/{row['property']}/{row['index']}"
                     for row in derived["rows"]
                 ],
             )
             for evidence, row in zip(claim["evidence"], derived["rows"]):
                 self.assertEqual(evidence["support"], "indirect")
-                self.assertEqual(evidence["native_predicate"], "P571")
+                self.assertEqual(evidence["native_predicate"], row["property"])
                 self.assertRegex(
                     evidence["native_field_path"],
-                    r"^/claims/P571/\d+$",
+                    rf"^/claims/{row['property']}/\d+$",
                 )
                 self.assertEqual(
                     evidence["rank"],
@@ -773,25 +814,25 @@ class WikidataPilotTests(unittest.TestCase):
             sort_keys=True,
             separators=(",", ":"),
         ).encode("utf-8")
-        self.assertEqual(len(prior_assignments), 293)
+        self.assertEqual(len(prior_assignments), 313)
         self.assertEqual(
             hashlib.sha256(prior_payload).hexdigest(),
             PRIOR_PERIOD_ASSIGNMENT_SHA256,
         )
         self.assertEqual(
             sum(period != "unknown" for period in assignments.values()),
-            323,
+            374,
         )
         self.assertEqual(
             sum(period == "unknown" for period in assignments.values()),
-            209,
+            158,
         )
         self.assertEqual(
             sum(
                 claim["predicate"] == "field_period"
                 for claim in self.catalog["claims"]
             ),
-            323,
+            374,
         )
 
     def test_raw_lineage_edges_never_become_mentorship(self):
