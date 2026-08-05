@@ -5,6 +5,7 @@
 - `demos/architecture-history/` — 建筑谱系 · Architecture Lineages, a bilingual source-first architectural-history evidence browser with revision-pinned candidate records, searchable map/catalog, field-level provenance, raw relation review, and an explicit 9-region × 8-period coverage ledger.
 - `demos/wfoe-china/` contains the China WFOE + hiring costs interactive page.
 - `demos/china-housing/` — small-city housing & rent data visualization.
+- `demos/pebble-beach-2026/` — Pebble Beach 2026 · Monterey Car Week public guide for Aug 13–17, with a bilingual day-by-day itinerary, event and ticket prices, lodging-price snapshot, commute planner, and light/dark themes.
 - `demos/china-industrial-software/` — China industrial software survey.
 - `demos/pharm-companies/` — global pharmaceutical industry atlas.
 - `demos/visual-page/` — 数渊 · Data Abyss (generative-art cosmos fusing housing + industrial + pharma + shelter-cats data into a self-organizing star field, with a waking intro, an emergent generative lo-fi soundtrack, and a tape-flip "radio side" mechanic that periodically turns to a new mix).

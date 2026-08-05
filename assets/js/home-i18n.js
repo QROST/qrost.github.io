@@ -12,12 +12,12 @@
       zh: 'QROST — 研究笔记与交互式数据图谱',
     },
     metaDescription: {
-      en: 'A personal research shelf of interactive data atlases and notes — global architectural history, pharma, shelter-cat adoption, China housing, industrial software, and company setup — plus product prototypes. Bilingual EN/中文.',
-      zh: '一个个人站点：几份交互式数据图谱与笔记——全球建筑史、全球医药、收容所猫领养、中国住房、工业软件与开公司实务，外加一些产品原型。中英双语。',
+      en: 'A personal research shelf of interactive data atlases and notes — global architectural history, pharma, shelter-cat adoption, China housing, a public 2026 Monterey Car Week guide, industrial software, and company setup — plus product prototypes. Bilingual EN/中文.',
+      zh: '一个个人站点：几份交互式数据图谱与笔记——全球建筑史、全球医药、收容所猫领养、中国住房、2026 蒙特雷汽车周公众指南、工业软件与开公司实务，外加一些产品原型。中英双语。',
     },
     ogDescription: {
-      en: 'Research notes and interactive data atlases — global architectural history, pharma, shelter cats, China housing, industrial software and company setup.',
-      zh: '研究笔记与交互式数据图谱——全球建筑史、医药、收容所猫、中国住房、工业软件与开公司实务。',
+      en: 'Research notes and interactive data atlases — including a public Pebble Beach and Monterey Car Week 2026 itinerary, event prices, lodging snapshot and commute planner.',
+      zh: '研究笔记与交互式数据图谱——包括 Pebble Beach 与 2026 蒙特雷汽车周公众行程、活动票价、住宿价格快照及通勤规划。',
     },
     navResearch: { en: 'Research', zh: '研究' },
     navDemos: { en: 'Demos', zh: '演示' },
@@ -49,6 +49,14 @@
     cardHousingDesc: {
       en: 'A growing set of housing listing samples across China — price × livability on an interactive map with ERA5 climate overlays, hazard layers, rankings and a sortable table. Tier-1 outliers hidden by default. Dark mode · EN/中文.',
       zh: '覆盖全国、持续扩充的住房挂牌样本——价格 × 宜居：ERA5 气候底图、灾害层、排行榜与可排序表格。默认隐藏一线城市高价样本。深色模式 · 中英切换。',
+    },
+    cardPebbleTitle: {
+      en: 'Pebble Beach 2026 · Monterey Car Week public guide',
+      zh: 'Pebble Beach 2026 · 蒙特雷汽车周公众指南',
+    },
+    cardPebbleDesc: {
+      en: 'A public Aug 13–17 itinerary for Monterey Car Week and Pebble Beach — what is worth seeing each day, current event and ticket prices, a lodging-price snapshot, and realistic commute planning around the peninsula. Dark mode · EN/中文.',
+      zh: '面向公众的 8 月 13–17 日蒙特雷汽车周与 Pebble Beach 行程——逐日推荐值得看的活动、当前活动与票价、住宿价格快照，以及半岛周边的现实通勤规划。深色模式 · 中英切换。',
     },
     cardIndustrialTitle: {
       en: 'China industrial software survey',
@@ -115,8 +123,8 @@
       zh: '一只俯视角插画小猫会盯梢、潜行并追逐化作小老鼠的指针；安静时则会蹲坐、揣手、侧躺、打滚或蜷卧。外观面板带实时预览，可用花纹芯片、真实配色色卡、毛长与浅色斑区域自定义猫咪，分类沿用 Shelter Cats 受控词表。关节化四相步态 · 深色模式 · 中英切换。',
     },
     footerUpdated: {
-      en: 'Last updated 2026-07. Nothing here is financial, legal or tax advice.',
-      zh: '最后更新 2026-07。本站内容不构成财务、法律或税务建议。',
+      en: 'Last updated 2026-08. Nothing here is financial, legal or tax advice.',
+      zh: '最后更新 2026-08。本站内容不构成财务、法律或税务建议。',
     },
     footerCopyright: { en: '© 2026 QROST. All rights reserved.', zh: '© 2026 QROST. 保留所有权利。' },
     langToggleAria: { en: 'Switch to 中文', zh: 'Switch to English' },
