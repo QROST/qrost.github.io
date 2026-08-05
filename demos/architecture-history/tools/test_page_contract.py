@@ -19,6 +19,7 @@ I18N = ROOT / "assets" / "js" / "i18n.js"
 LOADER = ROOT / "assets" / "js" / "data-loader.js"
 APP = ROOT / "assets" / "js" / "app.js"
 MAPS = ROOT / "assets" / "js" / "maps.js"
+CSS = ROOT / "assets" / "css" / "architecture-history.css"
 MANIFEST = ROOT / "assets" / "data" / "manifest.json"
 
 
@@ -62,6 +63,7 @@ class PageContractTests(unittest.TestCase):
         cls.loader = LOADER.read_text(encoding="utf-8")
         cls.app = APP.read_text(encoding="utf-8")
         cls.maps = MAPS.read_text(encoding="utf-8")
+        cls.css = CSS.read_text(encoding="utf-8")
         cls.manifest = json.loads(MANIFEST.read_text(encoding="utf-8"))
         cls.parser = PageParser()
         cls.parser.feed(cls.html)
@@ -275,6 +277,20 @@ class PageContractTests(unittest.TestCase):
         width, height = struct.unpack(">II", payload[16:24])
         self.assertEqual((width, height), (1200, 630))
         self.assertIn("architecture-history-og.png", self.html)
+
+    def test_site_header_matches_qrost_research_shell(self) -> None:
+        self.assertRegex(
+            self.html,
+            r'<a class="brand"[^>]*>Qrost</a>',
+        )
+        self.assertNotIn("brand-mark", self.html + self.css)
+        for rule in (
+            "width: min(72rem, 100%);",
+            "min-height: 3.5rem;",
+            "border-radius: 0.5rem;",
+            "html.dark #theme-toggle .sun-icon",
+        ):
+            self.assertIn(rule, self.css)
 
 
 if __name__ == "__main__":

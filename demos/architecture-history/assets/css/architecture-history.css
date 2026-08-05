@@ -58,7 +58,7 @@ html.dark {
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 7.5rem;
+  scroll-padding-top: 5rem;
 }
 
 body {
@@ -129,72 +129,39 @@ summary,
 }
 
 .header-inner {
-  width: min(1180px, calc(100% - 2rem));
-  min-height: 4.5rem;
+  width: min(72rem, 100%);
+  min-height: 3.5rem;
   margin: 0 auto;
+  padding: 0 2rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 2rem;
+  gap: 1rem;
 }
 
 .brand {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.75rem;
-  text-decoration: none;
-}
-
-.brand-mark {
-  width: 2.2rem;
-  height: 2.2rem;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  align-items: end;
-  gap: 0.16rem;
-  padding: 0.35rem;
-  border: 1px solid var(--line-strong);
-  border-radius: 50%;
-}
-
-.brand-mark span {
-  display: block;
-  background: var(--cobalt);
-}
-
-.brand-mark span:nth-child(1) { height: 42%; }
-.brand-mark span:nth-child(2) { height: 78%; }
-.brand-mark span:nth-child(3) { height: 58%; }
-
-.brand strong {
-  display: block;
-  font-family: "Iowan Old Style", "Songti SC", Georgia, serif;
-  font-size: 1rem;
-  letter-spacing: 0.16em;
+  flex: 0 0 auto;
+  color: var(--ink);
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.35em;
   line-height: 1;
-}
-
-.brand small {
-  display: block;
-  margin-top: 0.3rem;
-  color: var(--ink-faint);
-  font-size: 0.62rem;
-  letter-spacing: 0.18em;
+  text-decoration: none;
+  text-transform: uppercase;
 }
 
 .desktop-nav {
   display: flex;
   align-items: center;
-  gap: 1.7rem;
+  gap: clamp(1rem, 2.3vw, 2rem);
   margin-left: auto;
 }
 
 .desktop-nav a,
 .mobile-nav a {
   color: var(--ink-soft);
-  font-size: 0.76rem;
-  font-weight: 650;
-  letter-spacing: 0.06em;
+  font-size: 0.875rem;
+  font-weight: 400;
   text-decoration: none;
 }
 
@@ -205,32 +172,35 @@ summary,
 
 .header-actions {
   display: flex;
-  gap: 0.4rem;
+  gap: 0.5rem;
   align-items: center;
 }
 
 .icon-button {
-  width: 2.35rem;
-  height: 2.35rem;
+  position: relative;
+  width: 2.25rem;
+  height: 2.25rem;
   display: inline-grid;
   place-items: center;
   padding: 0;
   border: 1px solid var(--line);
-  border-radius: 50%;
+  border-radius: 0.5rem;
   background: var(--surface);
   color: var(--ink-soft);
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.06);
   cursor: pointer;
-  transition: border-color 160ms ease, color 160ms ease, transform 160ms ease;
+  transition: border-color 160ms ease, background 160ms ease, color 160ms ease;
 }
 
 .icon-button:hover {
   border-color: var(--line-strong);
+  background: var(--paper-deep);
   color: var(--ink);
-  transform: translateY(-1px);
 }
 
 .icon-button svg {
-  width: 1rem;
+  position: absolute;
+  width: 1.125rem;
   fill: none;
   stroke: currentColor;
   stroke-width: 1.7;
@@ -238,19 +208,20 @@ summary,
 }
 
 .lang-button {
-  font-family: "SFMono-Regular", Consolas, monospace;
-  font-size: 0.68rem;
-  font-weight: 750;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.025em;
 }
 
-.moon-icon,
-html.dark .sun-icon {
-  display: none;
+#theme-toggle .sun-icon,
+#theme-toggle .moon-icon {
+  transition: opacity 0.25s, transform 0.3s;
 }
 
-html.dark .moon-icon {
-  display: block;
-}
+#theme-toggle .sun-icon { opacity: 0; transform: rotate(90deg) scale(0.6); }
+#theme-toggle .moon-icon { opacity: 1; transform: rotate(0deg) scale(1); }
+html.dark #theme-toggle .sun-icon { opacity: 1; transform: rotate(0deg) scale(1); }
+html.dark #theme-toggle .moon-icon { opacity: 0; transform: rotate(-90deg) scale(0.6); }
 
 .mobile-nav {
   display: none;
@@ -1950,11 +1921,11 @@ html.dark .primary-button {
   }
 
   .mobile-nav {
-    width: min(1180px, calc(100% - 2rem));
+    width: min(72rem, 100%);
     display: flex;
     gap: 1.25rem;
     margin: 0 auto;
-    padding: 0 0 0.65rem;
+    padding: 0 2rem 0.65rem;
     overflow-x: auto;
   }
 
@@ -2002,21 +1973,18 @@ html.dark .primary-button {
     scroll-padding-top: 7rem;
   }
 
-  .header-inner,
   .hero,
   .section-shell,
   .boundary-strip,
-  .site-footer,
-  .mobile-nav {
+  .site-footer {
     width: min(100% - 1.2rem, 1180px);
   }
 
-  .header-inner {
-    min-height: 4rem;
-  }
-
-  .brand small {
-    display: none;
+  .header-inner,
+  .mobile-nav {
+    width: 100%;
+    padding-right: 1rem;
+    padding-left: 1rem;
   }
 
   .hero {
