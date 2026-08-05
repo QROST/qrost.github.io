@@ -973,7 +973,7 @@ class DataContractTests(unittest.TestCase):
         )
         self.assertEqual(
             config["period_derivation"]["qualifier_policy"],
-            "none_allowed",
+            "metadata_qualifiers_allowed",
         )
         self.assertEqual(
             config["period_derivation"]["year_precision_lower_components"],
