@@ -263,16 +263,30 @@
   function renderStays() {
     const root = document.getElementById('stay-grid');
     if (!root) return;
-    root.innerHTML = DATA.stays.map((stay) => `
-      <article class="stay-card${stay.recommended ? ' recommended' : ''}">
+    root.innerHTML = DATA.stays.map((stay) => {
+      const badge = stay.freeStay
+        ? `<span class="stay-badge free">${escapeHtml(ui('zeroLodging'))}</span>`
+        : (stay.recommended ? `<span class="stay-badge">${escapeHtml(ui('bestBalance'))}</span>` : '');
+      const priceNote = stay.priceNote ? localized(stay.priceNote) : ui('perNight');
+      const metrics = Array.isArray(stay.metrics) && stay.metrics.length
+        ? `<dl class="stay-metrics">${stay.metrics.map((metric) => `
+            <div>
+              <dt>${escapeHtml(ui(metric.key) || localized(metric.label))}</dt>
+              <dd>${escapeHtml(localized(metric.value))}</dd>
+            </div>`).join('')}</dl>`
+        : '';
+      return `
+      <article class="stay-card${stay.recommended ? ' recommended' : ''}${stay.freeStay ? ' free-stay' : ''}">
         <div class="stay-top">
           <h3>${escapeHtml(localized(stay.name))}</h3>
-          ${stay.recommended ? `<span class="stay-badge">${escapeHtml(ui('bestBalance'))}</span>` : ''}
+          ${badge}
         </div>
-        <div class="stay-price">${escapeHtml(stay.price)}<small>${escapeHtml(ui('perNight'))}</small></div>
+        <div class="stay-price">${escapeHtml(stay.price)}<small>${escapeHtml(priceNote)}</small></div>
+        ${metrics}
         <p>${escapeHtml(localized(stay.body))}</p>
         <div class="stay-tradeoff"><span>${escapeHtml(ui('tradeoff'))}</span><strong>${escapeHtml(localized(stay.tradeoff))}</strong></div>
-      </article>`).join('');
+      </article>`;
+    }).join('');
   }
 
   function renderCommuteOptions() {
@@ -287,14 +301,57 @@
     renderCommuteResult();
   }
 
+  function parseMinuteRange(range) {
+    const match = String(range || '').match(/^(\d+)–(\d+)$/);
+    if (!match) return null;
+    return [Number(match[1]), Number(match[2])];
+  }
+
+  function formatHourBand(minLow, minHigh) {
+    const toHours = (minutes) => {
+      const hours = minutes / 60;
+      return (Math.round(hours * 10) / 10).toFixed(1).replace(/\.0$/, '');
+    };
+    return state.lang === 'zh'
+      ? `${toHours(minLow)}–${toHours(minHigh)} 小时`
+      : `${toHours(minLow)}–${toHours(minHigh)} hr`;
+  }
+
   function renderCommuteResult() {
     const root = document.getElementById('commute-result');
     const pair = DATA.commute[state.from] && DATA.commute[state.from][state.to];
     if (!root || !pair) return;
+
+    const miles = DATA.commuteMiles
+      && DATA.commuteMiles[state.from]
+      && DATA.commuteMiles[state.from][state.to];
+    const ordinaryBand = parseMinuteRange(pair[0]);
+    const eventBand = parseMinuteRange(pair[1]);
+    const extra = [];
+    if (typeof miles === 'number') {
+      extra.push(`
+        <div class="time-box miles">
+          <span>${escapeHtml(ui('oneWayMiles'))}</span>
+          <strong>${escapeHtml(String(miles))} ${state.lang === 'zh' ? '英里' : 'mi'}</strong>
+        </div>
+        <div class="time-box miles">
+          <span>${escapeHtml(ui('roundTripMiles'))}</span>
+          <strong>${escapeHtml(String(miles * 2))} ${state.lang === 'zh' ? '英里' : 'mi'}</strong>
+        </div>`);
+      if (ordinaryBand && eventBand) {
+        extra.push(`
+        <div class="time-box miles">
+          <span>${escapeHtml(ui('roundTripTime'))}</span>
+          <strong>${escapeHtml(formatHourBand(ordinaryBand[0] * 2, eventBand[1] * 2))}</strong>
+        </div>`);
+      }
+    }
+
     root.innerHTML = `
-      <div class="time-comparison">
+      <div class="time-comparison${miles ? ' with-miles' : ''}">
         <div class="time-box"><span>${escapeHtml(ui('ordinary'))}</span><strong>${escapeHtml(pair[0])} ${escapeHtml(ui('minutes'))}</strong></div>
         <div class="time-box event-week"><span>${escapeHtml(ui('eventWeek'))}</span><strong>${escapeHtml(pair[1])} ${escapeHtml(ui('minutes'))}</strong></div>
+        ${extra.join('')}
       </div>
       <p class="commute-advice">${escapeHtml(ui('commuteAdvice'))}</p>`;
   }

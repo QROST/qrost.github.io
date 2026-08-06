@@ -364,14 +364,20 @@ main { width: min(1180px, calc(100% - 40px)); margin: 0 auto; }
 .empty-state { padding: 35px; border: 1px dashed var(--line-strong); border-radius: var(--radius-small); color: var(--muted); text-align: center; }
 .noscript { padding: 18px; border: 1px solid var(--line); border-radius: var(--radius-small); }
 
-.stay-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+.stay-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 12px; }
 .stay-card { display: flex; min-height: 315px; flex-direction: column; padding: 20px; border: 1px solid var(--line); border-radius: var(--radius-small); background: var(--surface); }
 .stay-card.recommended { border-color: var(--green); box-shadow: inset 0 4px 0 var(--green); }
+.stay-card.free-stay { border-color: color-mix(in srgb, var(--orange) 55%, var(--line)); box-shadow: inset 0 4px 0 var(--orange); }
 .stay-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 10px; }
 .stay-card h3 { margin: 0; font-family: var(--serif); font-size: 1.28rem; font-weight: 600; }
 .stay-badge { padding: 4px 7px; border-radius: 6px; background: var(--green-soft); color: var(--green); font-size: .59rem; font-weight: 800; }
+.stay-badge.free { background: var(--orange-soft); color: var(--orange); }
 .stay-price { margin-top: 23px; color: var(--orange); font-family: var(--serif); font-size: 1.75rem; line-height: 1.15; }
 .stay-price small { display: block; margin-top: 5px; color: var(--muted); font-family: var(--sans); font-size: .63rem; }
+.stay-metrics { display: grid; gap: 8px; margin: 14px 0 0; padding: 12px 0 0; border-top: 1px solid var(--line); }
+.stay-metrics div { display: grid; gap: 2px; }
+.stay-metrics dt { color: var(--faint); font-size: .58rem; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; }
+.stay-metrics dd { margin: 0; color: var(--ink-soft); font-size: .72rem; line-height: 1.35; font-weight: 650; }
 .stay-card > p { margin: 16px 0 0; color: var(--muted); font-size: .75rem; line-height: 1.58; }
 .stay-tradeoff { margin-top: auto; padding-top: 15px; border-top: 1px solid var(--line); }
 .stay-tradeoff span { display: block; color: var(--faint); font-size: .6rem; font-weight: 800; text-transform: uppercase; letter-spacing: .07em; }
@@ -391,11 +397,14 @@ main { width: min(1180px, calc(100% - 40px)); margin: 0 auto; }
 .select-arrow { padding-bottom: 10px; color: var(--faint); }
 .commute-result { margin-top: 24px; padding-top: 22px; border-top: 1px solid var(--line); }
 .time-comparison { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.time-comparison.with-miles { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 .time-box { padding: 16px; border-radius: 11px; background: var(--bg-soft); }
 .time-box.event-week { background: var(--orange-soft); }
+.time-box.miles { background: color-mix(in srgb, var(--green-soft) 70%, var(--bg-soft)); }
 .time-box span { display: block; color: var(--muted); font-size: .64rem; font-weight: 750; }
 .time-box strong { display: block; margin-top: 4px; font-family: var(--serif); font-size: 1.45rem; line-height: 1.2; }
 .time-box.event-week strong { color: var(--orange); }
+.time-box.miles strong { color: var(--green); font-size: 1.2rem; }
 .commute-advice { margin: 13px 0 0; color: var(--muted); font-size: .73rem; }
 .road-card { padding: 24px; background: color-mix(in srgb, var(--surface) 78%, var(--green-soft)); }
 .road-card-top { display: flex; align-items: center; gap: 15px; }

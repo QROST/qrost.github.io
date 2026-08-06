@@ -71,6 +71,13 @@ if (data) {
     checkBilingual(stay.body, `stays[${index}].body`);
     checkBilingual(stay.tradeoff, `stays[${index}].tradeoff`);
     check(typeof stay.price === 'string' && stay.price.trim(), `stays[${index}].price is required`);
+    if (stay.priceNote) checkBilingual(stay.priceNote, `stays[${index}].priceNote`);
+    for (const [metricIndex, metric] of (stay.metrics || []).entries()) {
+      const metricLabel = `stays[${index}].metrics[${metricIndex}]`;
+      check(typeof metric.key === 'string' && metric.key.trim(), `${metricLabel}.key is required`);
+      checkBilingual(metric.value, `${metricLabel}.value`);
+      if (metric.label) checkBilingual(metric.label, `${metricLabel}.label`);
+    }
   }
 
   const placeIds = new Set((data.places || []).map((place) => place.id));
@@ -84,6 +91,16 @@ if (data) {
     for (const hubId of hubIds) {
       const pair = data.commute && data.commute[placeId] && data.commute[placeId][hubId];
       check(Array.isArray(pair) && pair.length === 2 && pair.every((value) => typeof value === 'string' && /^\d+–\d+$/.test(value)), `commute.${placeId}.${hubId} needs two minute ranges`);
+    }
+  }
+
+  if (data.commuteMiles) {
+    for (const [placeId, hubs] of Object.entries(data.commuteMiles)) {
+      check(placeIds.has(placeId), `commuteMiles.${placeId} is not a known place`);
+      for (const [hubId, miles] of Object.entries(hubs || {})) {
+        check(hubIds.has(hubId), `commuteMiles.${placeId}.${hubId} is not a known hub`);
+        check(typeof miles === 'number' && Number.isFinite(miles) && miles > 0, `commuteMiles.${placeId}.${hubId} must be a positive number`);
+      }
     }
   }
 

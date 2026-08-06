@@ -69,14 +69,14 @@ window.PEBBLE_DATA = {
     stayKicker: { zh: '住宿 · 当前库存快照', en: 'Lodging · inventory snapshot' },
     stayTitle: { zh: '用房价换时间，还是用通勤换房价', en: 'Trade room price for time—or time for price' },
     stayIntro: {
-      zh: '下列区间不是全年均价，而是同一查询口径下仍可见房源的规划带：2026-08-13 至 08-17、1 间房 / 2 位成人、美元每晚页面标价，查询于 2026-08-06。8 月 7–12 日早场夜房价通常低于高峰四晚，若可早到请单独比价。税费、停车、度假村费与取消条款另算。',
-      en: 'These are not annual averages. They are planning bands from remaining listings visible under one search: Aug 13–17, 2026, one room for two adults, advertised nightly USD, checked Aug 6. Nights before Aug 13 are often cheaper than the peak block—price early arrivals separately if you can. Taxes, parking, resort fees and cancellation terms are extra.'
+      zh: '下列区间不是全年均价，而是同一查询口径下仍可见房源的规划带：2026-08-13 至 08-17、1 间房 / 2 位成人、美元每晚页面标价，查询于 2026-08-06。8 月 7–12 日早场夜房价通常低于高峰四晚，若可早到请单独比价。若可住 San Jose 自家/朋友家，把零房费与每日往返路程、时间并列比较。税费、停车、度假村费与取消条款另算。',
+      en: 'These are not annual averages. They are planning bands from remaining listings visible under one search: Aug 13–17, 2026, one room for two adults, advertised nightly USD, checked Aug 6. Nights before Aug 13 are often cheaper than the peak block—price early arrivals separately if you can. If you can stay free in San Jose, compare zero lodging against daily round-trip miles and drive time. Taxes, parking, resort fees and cancellation terms are extra.'
     },
     priceMethodLabel: { zh: '如何读价格', en: 'How to read prices' },
-    priceMethodValue: { zh: '先看四晚总价，再看“每晚”', en: 'Check the four-night total first' },
+    priceMethodValue: { zh: '先看四晚总价，再看“每晚”或往返成本', en: 'Check the four-night total—or the commute cost' },
     priceMethodBody: {
-      zh: '动态平台会混合剩余房型、广告位与不同取消条件。页面将价格作为“现在还剩什么”的快照，不承诺未来可订，也不把最低价当作典型价。',
-      en: 'Dynamic platforms mix remaining room types, promoted placements and cancellation terms. Treat this as a snapshot of what was visible, not future availability or a typical rate.'
+      zh: '动态平台会混合剩余房型、广告位与不同取消条件。页面将价格作为“现在还剩什么”的快照，不承诺未来可订，也不把最低价当作典型价。San Jose 零房费卡用 OSRM 无拥堵路由 + 活动周缓冲估算往返；油费/电费、停车与疲劳另算。',
+      en: 'Dynamic platforms mix remaining room types, promoted placements and cancellation terms. Treat this as a snapshot of what was visible, not future availability or a typical rate. The San Jose zero-lodging card uses uncongested OSRM routing plus Car Week buffers for round trips; fuel/charging, parking and fatigue are extra.'
     },
     rerunSearch: { zh: '重新查询当前库存 ↗', en: 'Rerun the current search ↗' },
     commuteKicker: { zh: '通勤 · 规划器', en: 'Travel · planner' },
@@ -139,7 +139,16 @@ window.PEBBLE_DATA = {
     },
     perNight: { zh: '页面标示每房每晚 · 不含税费', en: 'advertised per room/night · before fees' },
     bestBalance: { zh: '综合推荐', en: 'Best balance' },
+    zeroLodging: { zh: '零房费往返', en: 'Zero lodging commute' },
     tradeoff: { zh: '主要取舍', en: 'Main tradeoff' },
+    stayDistance: { zh: '单程路程', en: 'One-way distance' },
+    stayOrdinary: { zh: '单程普通驾车', en: 'One-way ordinary' },
+    stayEventWeek: { zh: '单程活动周规划', en: 'One-way Car Week plan' },
+    stayRoundTrip: { zh: '每日往返规划', en: 'Daily round-trip plan' },
+    stayFuel: { zh: '燃油粗算（参考）', en: 'Fuel rough cut' },
+    oneWayMiles: { zh: '单程路程', en: 'One-way distance' },
+    roundTripMiles: { zh: '每日往返路程', en: 'Daily round-trip distance' },
+    roundTripTime: { zh: '每日往返时间规划', en: 'Daily round-trip time plan' },
     verified: { zh: '已核对', en: 'checked' },
     tentative: { zh: '出发前复核', en: 'recheck before travel' },
     freeTag: { zh: '免费', en: 'Free' },
@@ -633,13 +642,35 @@ window.PEBBLE_DATA = {
 
   stays: [
     {
+      name: { zh: 'San Jose · 住家往返', en: 'San Jose · home-base commute' },
+      price: '$0',
+      priceNote: { zh: '房费免费 · 油/电、停车另算', en: 'Lodging free · fuel/charging & parking extra' },
+      freeStay: true,
+      recommended: false,
+      metrics: [
+        { key: 'stayDistance', value: { zh: '约 70–76 英里', en: '~70–76 mi' } },
+        { key: 'stayOrdinary', value: { zh: '75–105 分钟', en: '75–105 min' } },
+        { key: 'stayEventWeek', value: { zh: '100–180 分钟', en: '100–180 min' } },
+        { key: 'stayRoundTrip', value: { zh: '约 140–155 英里 · 3–6 小时', en: '~140–155 mi · 3–6 hr' } },
+        { key: 'stayFuel', value: { zh: '约 $25–40 / 天（25 mpg · ~$4.5/gal）', en: '~$25–40 / day (25 mpg · ~$4.5/gal)' } }
+      ],
+      body: {
+        zh: '若 San Jose 有免费住处：到 Monterey / Seaside 约 70–72 英里、普通 75–95 分钟；到 Pebble Beach / Carmel 约 75–76 英里、普通 85–105 分钟（OSRM 无拥堵路由，2026-08-06）。活动周南下与回程拥堵会显著拉长；周日 Concours 更应再加缓冲。通勤规划器可选 San Jose 起点。',
+        en: 'If lodging in San Jose is free: Monterey / Seaside are ~70–72 mi and usually 75–95 min; Pebble Beach / Carmel ~75–76 mi and 85–105 min (OSRM uncongested routing, checked 2026-08-06). Car Week congestion southbound and on the return stretch both; pad more on Concours Sunday. Choose San Jose as the commute origin below.'
+      },
+      tradeoff: {
+        zh: '零房费 · 每日 3–6 小时车上时间，不适合 Dawn Patrol / 早场签到',
+        en: 'Zero lodging · 3–6 hr/day in the car; weak fit for Dawn Patrol or early gates'
+      }
+    },
+    {
       name: { zh: 'Pebble Beach / Carmel Highlands', en: 'Pebble Beach / Carmel Highlands' }, price: '$2,700–3,000+', recommended: false,
       body: { zh: '把周四 Tour 与周日 Concours 通勤压到最短；本次公开查询只剩高端结果，Pebble Beach 本身应直接询价。', en: 'Shortest travel for Thursday’s Tour and Sunday’s Concours. This public search showed only luxury results; request a direct quote for Pebble Beach itself.' },
       tradeoff: { zh: '最省时间 · 价格最高且条款最严', en: 'Least travel · highest cost and strictest terms' }
     },
     {
       name: { zh: 'Monterey / Pacific Grove', en: 'Monterey / Pacific Grove' }, price: '$590–2,700+', recommended: true,
-      body: { zh: '核心活动区之间最均衡，餐饮与市区活动多；剩余库存价差极大，必须逐项看四晚总价。', en: 'Best-balanced base across the key hubs, with walkable dining and city events. Remaining inventory varies wildly, so compare four-night totals.' },
+      body: { zh: '核心活动区之间最均衡，餐饮与市区活动多；剩余库存价差极大，必须逐项看四晚总价。相对 San Jose 往返，高峰四晚房价通常仍远高于油费，但换回睡眠与早场可达性。', en: 'Best-balanced base across the key hubs, with walkable dining and city events. Remaining inventory varies wildly, so compare four-night totals. Versus a San Jose commute, peak lodging usually still dwarfs fuel—but buys sleep and early-gate access.' },
       tradeoff: { zh: '综合最方便 · 仍需应对 Pebble Beach 堵车', en: 'Best overall balance · still faces Pebble Beach traffic' }
     },
     {
@@ -649,12 +680,13 @@ window.PEBBLE_DATA = {
     },
     {
       name: { zh: 'Salinas', en: 'Salinas' }, price: '$370–600+', recommended: false,
-      body: { zh: '本次快照中最便宜的剩余房源集中区，也最接近 Laguna Seca 的东侧入口方向。', en: 'The lowest remaining price cluster in this snapshot and aligned with the east-side approach to Laguna Seca.' },
+      body: { zh: '本次快照中最便宜的剩余房源集中区，也最接近 Laguna Seca 的东侧入口方向。比 San Jose 往返短得多，仍保留每晚入住。', en: 'The lowest remaining price cluster in this snapshot and aligned with the east-side approach to Laguna Seca. Far shorter than a San Jose commute while still sleeping locally.' },
       tradeoff: { zh: '最低房价 · 去 Pebble Beach 可达 60–120 分钟', en: 'Lowest room cost · 60–120 min to Pebble Beach' }
     }
   ],
 
   places: [
+    { id: 'sanjose', name: { zh: 'San Jose（住家往返）', en: 'San Jose (home commute)' } },
     { id: 'pebble', name: { zh: 'Pebble Beach', en: 'Pebble Beach' } },
     { id: 'carmel', name: { zh: 'Carmel', en: 'Carmel' } },
     { id: 'monterey', name: { zh: 'Monterey / Pacific Grove', en: 'Monterey / Pacific Grove' } },
@@ -671,6 +703,9 @@ window.PEBBLE_DATA = {
     { id: 'laguna', name: { zh: 'Laguna Seca 赛道', en: 'Laguna Seca' } }
   ],
   commute: {
+    /* San Jose bands: OSRM uncongested one-way + Car Week peninsula approach padding.
+       Miles (approx one-way): Monterey 72, Seaside 69, Laguna 71, Carmel 75, Pebble 76, Carmel Valley 77. */
+    sanjose: { pebble: ['85–105', '120–180'], carmel: ['85–105', '115–170'], carmelvalley: ['95–120', '125–180'], monterey: ['75–95', '100–150'], seaside: ['75–95', '95–145'], laguna: ['85–105', '105–155'] },
     pebble: { pebble: ['0–10', '10–35'], carmel: ['15–20', '30–60'], carmelvalley: ['25–35', '45–85'], monterey: ['20–25', '40–75'], seaside: ['25–35', '50–90'], laguna: ['25–35', '45–90'] },
     carmel: { pebble: ['10–15', '25–60'], carmel: ['0–10', '10–25'], carmelvalley: ['15–25', '30–60'], monterey: ['10–20', '25–50'], seaside: ['15–25', '30–60'], laguna: ['20–30', '40–75'] },
     monterey: { pebble: ['15–20', '35–75'], carmel: ['10–20', '25–50'], carmelvalley: ['20–30', '35–70'], monterey: ['0–10', '10–25'], seaside: ['10–15', '20–40'], laguna: ['15–20', '30–60'] },
@@ -679,7 +714,19 @@ window.PEBBLE_DATA = {
     salinas: { pebble: ['35–45', '60–120'], carmel: ['30–40', '50–90'], carmelvalley: ['30–40', '45–80'], monterey: ['25–35', '45–75'], seaside: ['20–30', '35–65'], laguna: ['20–30', '30–60'] }
   },
 
+  /* Approximate one-way road miles (OSRM, 2026-08-06). Used for San Jose commute display. */
+  commuteMiles: {
+    sanjose: { pebble: 76, carmel: 75, carmelvalley: 77, monterey: 72, seaside: 69, laguna: 71 }
+  },
+
   transportTips: [
+    {
+      icon: 'SJ', title: { zh: 'San Jose 每日往返账', en: 'San Jose daily-commute math' },
+      body: {
+        zh: '单程约 70–76 英里；普通 75–105 分钟，活动周规划 100–180 分钟。每日往返约 140–155 英里、车上 3–6 小时；油费粗算 $25–40/天。适合午后/晚场，不适合 5:30 Concours 开门。',
+        en: 'One-way ~70–76 mi; ordinary 75–105 min, Car Week plan 100–180 min. Round trip ~140–155 mi and 3–6 hr in the car; fuel roughly $25–40/day. Fine for afternoon shows—weak for 5:30 Concours gates.'
+      }
+    },
     {
       icon: '↗', title: { zh: '周日再加 20–45 分钟', en: 'Add 20–45 min on Sunday' },
       body: { zh: 'Pebble Beach 区间只到入口附近；普通票还要等待分配停车与内部接驳。', en: 'Pebble Beach bands end near the entrance; GA visitors still need assigned parking and an internal shuttle.' }
@@ -720,6 +767,7 @@ window.PEBBLE_DATA = {
     { label: { zh: 'Carmel → Concours 周日接驳', en: 'Carmel → Concours Sunday shuttle' }, url: 'https://members.carmelchamber.org/events/details/carmel-shuttles-to-pebble-beach-concours-d-elegance-2026-63225' },
     { label: { zh: 'Stanton Center · 历史展', en: 'Stanton Center · history exhibit' }, url: 'https://www.montereyhistory.org/stanton-center/exhibits/' },
     { label: { zh: 'Caltrans 实时道路状态', en: 'Caltrans live road conditions' }, url: 'https://roads.dot.ca.gov/' },
+    { label: { zh: 'Pebble Beach · 从 SJC 约 90 分钟', en: 'Pebble Beach · ~90 min from SJC' }, url: 'https://www.pebblebeach.com/insidepebblebeach/how-to-get-to-pebble-beach-resorts/' },
     { label: { zh: '住宿库存查询口径', en: 'Lodging inventory search' }, url: 'https://www.hotels.com/Hotel-Search?destination=Monterey%2C%20California%2C%20United%20States%20of%20America&startDate=2026-08-13&endDate=2026-08-17&adults=2&rooms=1' }
   ]
 };
