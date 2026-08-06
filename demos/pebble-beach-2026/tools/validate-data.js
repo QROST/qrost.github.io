@@ -29,19 +29,19 @@ if (data) {
 
   const dayIds = new Set();
   for (const [index, day] of (data.days || []).entries()) {
-    check(typeof day.id === 'string' && /^2026-08-(13|14|15|16|17)$/.test(day.id), `days[${index}].id is invalid`);
+    check(typeof day.id === 'string' && /^2026-08-(0[7-9]|1[0-7])$/.test(day.id), `days[${index}].id is invalid`);
     check(!dayIds.has(day.id), `duplicate day id: ${day.id}`);
     dayIds.add(day.id);
     checkBilingual(day.short, `days[${index}].short`);
     checkBilingual(day.label, `days[${index}].label`);
     checkBilingual(day.badge, `days[${index}].badge`);
   }
-  check(dayIds.size === 5, `expected 5 planning days, found ${dayIds.size}`);
+  check(dayIds.size === 11, `expected 11 planning days, found ${dayIds.size}`);
 
   for (const [index, item] of (data.quickPlan || []).entries()) {
     for (const key of ['date', 'day', 'title', 'body', 'cost']) checkBilingual(item[key], `quickPlan[${index}].${key}`);
   }
-  check((data.quickPlan || []).length === 5, 'quickPlan must contain 5 days');
+  check((data.quickPlan || []).length >= 7, `quickPlan must contain at least 7 items, found ${(data.quickPlan || []).length}`);
 
   const eventIds = new Set();
   for (const [index, event] of (data.events || []).entries()) {
@@ -90,6 +90,15 @@ if (data) {
   for (const [index, source] of (data.sources || []).entries()) {
     checkBilingual(source.label, `sources[${index}].label`);
     checkUrl(source.url, `sources[${index}].url`);
+  }
+
+  for (const [index, item] of (data.nearby || []).entries()) {
+    const label = `nearby[${index}]`;
+    check(typeof item.id === 'string' && /^[a-z0-9-]+$/.test(item.id), `${label}.id is invalid`);
+    for (const key of ['when', 'title', 'location', 'summary', 'why', 'price', 'drive']) checkBilingual(item[key], `${label}.${key}`);
+    checkUrl(item.source, `${label}.source`);
+    const score = Number(item.score);
+    check(Number.isFinite(score) && score >= 0 && score <= 5, `${label}.score must be 0–5`);
   }
 }
 

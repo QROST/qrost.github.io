@@ -317,8 +317,39 @@
       <li><a href="${escapeHtml(source.url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(localized(source.label))} ↗</a></li>`).join('');
   }
 
+  function renderNearby() {
+    const root = document.getElementById('nearby-grid');
+    if (!root) return;
+    const items = DATA.nearby || [];
+    if (!items.length) {
+      root.innerHTML = '';
+      return;
+    }
+    root.innerHTML = items.map((item) => {
+      const paid = /\$|¥|€/.test(localized(item.price)) && !/免费|Free/i.test(localized(item.price));
+      const priceClass = paid ? 'paid' : 'free';
+      return `
+      <article class="nearby-card" id="nearby-${escapeHtml(item.id)}">
+        <div class="nearby-top">
+          <time>${escapeHtml(localized(item.when))}</time>
+          <div class="event-score"><strong>${escapeHtml(item.score)}/5</strong><span>${escapeHtml(ui('worth'))}</span></div>
+        </div>
+        <h3>${escapeHtml(localized(item.title))}</h3>
+        <p class="event-location">${escapeHtml(localized(item.location))}</p>
+        <p class="nearby-summary">${escapeHtml(localized(item.summary))}</p>
+        <p class="nearby-why"><strong>${escapeHtml(ui('why'))}</strong>${escapeHtml(localized(item.why))}</p>
+        <div class="nearby-meta">
+          <span class="tag ${priceClass}">${escapeHtml(localized(item.price))}</span>
+          <span class="nearby-drive"><span>${escapeHtml(ui('driveLabel'))}</span>${escapeHtml(localized(item.drive))}</span>
+        </div>
+        <a class="event-source" href="${escapeHtml(item.source)}" target="_blank" rel="noopener noreferrer">${escapeHtml(ui('nearbySource'))}</a>
+      </article>`;
+    }).join('');
+  }
+
   function renderDynamicContent() {
     renderQuickPlan();
+    renderNearby();
     renderFilters();
     renderSchedule();
     renderStays();

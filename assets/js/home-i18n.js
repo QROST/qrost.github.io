@@ -55,8 +55,8 @@
       zh: 'Pebble Beach 2026 · 蒙特雷汽车周公众指南',
     },
     cardPebbleDesc: {
-      en: 'A public Aug 13–17 itinerary for Monterey Car Week and Pebble Beach — what is worth seeing each day, current event and ticket prices, a lodging-price snapshot, and realistic commute planning around the peninsula. Dark mode · EN/中文.',
-      zh: '面向公众的 8 月 13–17 日蒙特雷汽车周与 Pebble Beach 行程——逐日推荐值得看的活动、当前活动与票价、住宿价格快照，以及半岛周边的现实通勤规划。深色模式 · 中英切换。',
+      en: 'A public Aug 7–17 itinerary for Monterey Car Week and Pebble Beach — early free street shows, peak-week picks, tickets, lodging snapshot, and commute planning. Dark mode · EN/中文.',
+      zh: '面向公众的 8 月 7–17 日蒙特雷汽车周与 Pebble Beach 行程——早场免费街展、高峰日推荐、票价、住宿快照与半岛通勤规划。深色模式 · 中英切换。',
     },
     cardIndustrialTitle: {
       en: 'China industrial software survey',

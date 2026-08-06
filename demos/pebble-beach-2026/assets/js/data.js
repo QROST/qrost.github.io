@@ -1,23 +1,23 @@
 /* Public, bilingual planning data for Monterey Car Week 2026.
  * Event facts and prices were checked against organizer or authorized ticketing
- * pages on 2026-08-05. Editorial scores and commute bands are QROST planning
+ * pages on 2026-08-06. Editorial scores and commute bands are QROST planning
  * judgments, not organizer guarantees.
  */
 window.PEBBLE_DATA = {
-  checked: '2026-08-05',
+  checked: '2026-08-06',
 
   labels: {
     pageTitle: {
-      zh: '2026 圆石滩车展公众指南 · Monterey Car Week 8.13–8.17 | QROST',
-      en: '2026 Pebble Beach Public Guide · Monterey Car Week Aug 13–17 | QROST'
+      zh: '2026 圆石滩车展公众指南 · Monterey Car Week 8.7–8.17 | QROST',
+      en: '2026 Pebble Beach Public Guide · Monterey Car Week Aug 7–17 | QROST'
     },
     metaDescription: {
-      zh: '2026 Monterey Car Week 与 Pebble Beach Concours 公众行程指南：8 月 13–17 日逐日活动、是否值得去、票价、住宿价格快照、停车接驳与活动周通勤时间。中英双语。',
-      en: 'A public guide to Monterey Car Week and the 2026 Pebble Beach Concours: Aug 13–17 events, value picks, tickets, lodging snapshots, shuttles and event-week travel times. Bilingual EN/中文.'
+      zh: '2026 Monterey Car Week 与 Pebble Beach Concours 公众行程指南：8 月 7–17 日逐日活动、是否值得去、票价、住宿价格快照、停车接驳与活动周通勤时间。中英双语。',
+      en: 'A public guide to Monterey Car Week and the 2026 Pebble Beach Concours: Aug 7–17 events, value picks, tickets, lodging snapshots, shuttles and event-week travel times. Bilingual EN/中文.'
     },
     ogTitle: {
-      zh: '2026 圆石滩车展公众指南 · 8.13–8.17',
-      en: '2026 Pebble Beach Public Guide · Aug 13–17'
+      zh: '2026 圆石滩车展公众指南 · 8.7–8.17',
+      en: '2026 Pebble Beach Public Guide · Aug 7–17'
     },
     ogDescription: {
       zh: '何时去哪里、哪些值得去、住哪里、活动周要留多少通勤时间。官方日程与当期价格快照整理。',
@@ -25,21 +25,22 @@ window.PEBBLE_DATA = {
     },
     skip: { zh: '跳到正文', en: 'Skip to content' },
     navSchedule: { zh: '日程', en: 'Schedule' },
+    navNearby: { zh: '周边早场', en: 'Nearby early' },
     navStay: { zh: '住宿', en: 'Stay' },
     navCommute: { zh: '通勤', en: 'Travel' },
     heroEyebrow: { zh: '公众行程指南 · 2026', en: 'Public trip guide · 2026' },
-    checkedChip: { zh: '已核对 8 月 5 日', en: 'Checked Aug 5' },
+    checkedChip: { zh: '已核对 8 月 6 日', en: 'Checked Aug 6' },
     heroTitleTop: { zh: '圆石滩，不只一场车展', en: 'Pebble Beach is not one show' },
-    heroTitleBottom: { zh: '五天看懂 Monterey Car Week', en: 'Five days across Monterey Car Week' },
+    heroTitleBottom: { zh: '早到一周，再迎旗舰主展', en: 'Arrive early, then hit the flagship' },
     heroLead: {
-      zh: '8 月 13–17 日，经典车、历史赛车、品牌聚会与拍卖散布在半岛各处。这份指南把“何时、去哪里、值不值得、住哪里、路上多久”放在同一张计划里。',
-      en: 'From August 13–17, concours cars, historic racers, marque gatherings and auctions spread across the peninsula. This guide puts when, where, value, lodging and travel time into one plan.'
+      zh: '官方 Monterey Car Week 自 8 月 7 日开场，高峰仍在 13–16 日。这份指南覆盖从免费早场街展到周一返程的完整 11 天：何时、去哪里、值不值得、住哪里、路上多久。',
+      en: 'Official Monterey Car Week opens August 7, with peak days still August 13–16. This guide spans all eleven days from free early street shows through Monday departure: when, where, value, lodging and travel time in one plan.'
     },
     buildTrip: { zh: '开始排日程', en: 'Build your schedule' },
     seeQuickPlan: { zh: '先看推荐方案', en: 'See the quick plan' },
     heroFineprint: {
-      zh: '重点窗口：周四免费 Tour · 周五品牌聚会 · 周六赛车或街展 · 周日 Concours 主展 · 周一返程缓冲',
-      en: 'Key rhythm: free Tour Thursday · marque meets Friday · racing or street shows Saturday · Concours Sunday · departure buffer Monday'
+      zh: '早场 Kickoff · 慈善街展 · 微型车展 · Tour · 品牌/赛道 · Concours · 返程',
+      en: 'Kickoff · charity shows · micro-car day · Tour · marques/track · Concours · depart'
     },
     routeRule: { zh: '活动周法则', en: 'Car Week rule' },
     routeRuleValue: { zh: '一天只选一个主场', en: 'Choose one anchor per day' },
@@ -48,18 +49,18 @@ window.PEBBLE_DATA = {
     kpiHubs: { zh: '个主要活动区', en: 'main event hubs' },
     kpiTickets: { zh: '核心活动票价', en: 'core event prices' },
     kpiBuffer: { zh: '分钟活动周缓冲', en: 'min event-week buffer' },
-    quickKicker: { zh: '第一次去 · 推荐', en: 'First visit · recommended' },
-    quickTitle: { zh: '把五天浓缩成一条不赶场的路线', en: 'A five-day route without the scramble' },
+    quickKicker: { zh: '早到 + 主周 · 推荐', en: 'Early + peak · recommended' },
+    quickTitle: { zh: '先捡免费早场，再进高峰五天', en: 'Grab free early shows, then the peak five' },
     quickIntro: {
-      zh: '预算和兴趣不同，主线仍然很清楚：免费活动先建立尺度，周六选一个主题，周日再决定是否为旗舰主展买单。',
-      en: 'Budgets and interests differ, but the backbone is clear: start with free events, choose one Saturday theme, then decide whether Sunday’s flagship is worth the splurge.'
+      zh: '若能周五至周三提前落地，慈善街展、微型车展与 Asilomar 免费活动能先建立尺度；Tour 前再决定是否要为赛道与主展买单。',
+      en: 'If you can land Friday through Wednesday, charity street shows, the Little Car Show and free Asilomar events build context first—then decide on track and Concours tickets before Tour week.'
     },
     oneRuleTitle: { zh: '只记一条：', en: 'One rule:' },
     oneRuleBody: {
-      zh: '周五和周六的好活动大量重叠。不要把 Werks、The Quail、Laguna Seca、Concorso 和 Exotics 全塞进同一天；半岛不是一个会场。',
-      en: 'Friday and Saturday overlap heavily. Do not cram Werks, The Quail, Laguna Seca, Concorso and Exotics into one day; the peninsula is not a single venue.'
+      zh: '周六 Asilomar Day 与 Pre-Reunion 赛道二选一；周二 Concours for a Cause 与周三 Little Car Show 是早场高性价比免费主场。高峰周五、周六的好活动大量重叠——不要把 Werks、The Quail、Laguna Seca、Concorso 和 Exotics 全塞进同一天；半岛不是一个会场。',
+      en: 'Pick Asilomar Day or Pre-Reunion on Saturday—not both. Tuesday’s Concours for a Cause and Wednesday’s Little Car Show are the strongest free early anchors. Peak Friday and Saturday overlap heavily: do not cram Werks, The Quail, Laguna Seca, Concorso and Exotics into one day; the peninsula is not a single venue.'
     },
-    scheduleKicker: { zh: '8.13–8.17 · 逐日选择', en: 'Aug 13–17 · day by day' },
+    scheduleKicker: { zh: '8.7–8.17 · 逐日选择', en: 'Aug 7–17 · day by day' },
     scheduleTitle: { zh: '什么时候去哪里，哪些真正值得', en: 'Where to go, when—and what is worth it' },
     scheduleIntro: {
       zh: '“推荐”基于公众可达性、内容独特性、价格与转场成本。票价和余票会变，购买前请打开每张卡片里的官方来源复核。',
@@ -68,8 +69,8 @@ window.PEBBLE_DATA = {
     stayKicker: { zh: '住宿 · 当前库存快照', en: 'Lodging · inventory snapshot' },
     stayTitle: { zh: '用房价换时间，还是用通勤换房价', en: 'Trade room price for time—or time for price' },
     stayIntro: {
-      zh: '下列区间不是全年均价，而是同一查询口径下仍可见房源的规划带：2026-08-13 至 08-17、1 间房 / 2 位成人、美元每晚页面标价，查询于 2026-08-05。税费、停车、度假村费与取消条款另算。',
-      en: 'These are not annual averages. They are planning bands from remaining listings visible under one search: Aug 13–17, 2026, one room for two adults, advertised nightly USD, checked Aug 5. Taxes, parking, resort fees and cancellation terms are extra.'
+      zh: '下列区间不是全年均价，而是同一查询口径下仍可见房源的规划带：2026-08-13 至 08-17、1 间房 / 2 位成人、美元每晚页面标价，查询于 2026-08-06。8 月 7–12 日早场夜房价通常低于高峰四晚，若可早到请单独比价。税费、停车、度假村费与取消条款另算。',
+      en: 'These are not annual averages. They are planning bands from remaining listings visible under one search: Aug 13–17, 2026, one room for two adults, advertised nightly USD, checked Aug 6. Nights before Aug 13 are often cheaper than the peak block—price early arrivals separately if you can. Taxes, parking, resort fees and cancellation terms are extra.'
     },
     priceMethodLabel: { zh: '如何读价格', en: 'How to read prices' },
     priceMethodValue: { zh: '先看四晚总价，再看“每晚”', en: 'Check the four-night total first' },
@@ -97,8 +98,8 @@ window.PEBBLE_DATA = {
     sourcePrimary: { zh: '主要来源与复核入口', en: 'Primary sources and live checks' },
     boundaryTitle: { zh: '发布口径', en: 'Publication standard' },
     boundaryBody: {
-      zh: '活动时间、票价、售罄状态与道路规则截至 2026-08-05；酒店价格是单次库存快照；通勤为有意放宽的活动周计划值。任何“值得去”都是编辑判断，不是主办方背书。',
-      en: 'Event times, ticket prices, sold-out status and road rules are current to Aug 5, 2026. Hotel prices are a one-time inventory snapshot, and travel bands are deliberately padded planning values. Every “worth it” score is editorial, not an organizer endorsement.'
+      zh: '活动时间、票价、售罄状态与道路规则截至 2026-08-06；酒店价格是单次库存快照；通勤为有意放宽的活动周计划值。任何“值得去”都是编辑判断，不是主办方背书。',
+      en: 'Event times, ticket prices, sold-out status and road rules are current to Aug 6, 2026. Hotel prices are a one-time inventory snapshot, and travel bands are deliberately padded planning values. Every “worth it” score is editorial, not an organizer endorsement.'
     },
     boundaryUpdate: {
       zh: '临行前 24 小时请重查：官方活动页、票务页、停车图、天气和道路状态。',
@@ -106,8 +107,14 @@ window.PEBBLE_DATA = {
     },
     footerTagline: { zh: '一个面向公众的 Monterey Car Week 独立计划页。', en: 'An independent public planning page for Monterey Car Week.' },
     footerDisclaimer: {
-      zh: '最后核对 2026-08-05。非官方、非主办方关联；不构成票务、住宿或交通保证。',
-      en: 'Last checked Aug 5, 2026. Independent and unaffiliated; no ticket, lodging or transportation guarantee.'
+      zh: '最后核对 2026-08-06。非官方、非主办方关联；不构成票务、住宿或交通保证。',
+      en: 'Last checked Aug 6, 2026. Independent and unaffiliated; no ticket, lodging or transportation guarantee.'
+    },
+    nearbyKicker: { zh: '车展前 · 半岛周边', en: 'Before Car Week · peninsula nearby' },
+    nearbyTitle: { zh: '若能更早抵达，这些也值得顺路', en: 'Worth a detour if you land even earlier' },
+    nearbyIntro: {
+      zh: '7 月 31–8 月 2 日在 Big Sur / Watsonville；非 Car Week 主线，但车程约 40–90 分钟，适合提前落地缓冲。',
+      en: 'Jul 31–Aug 2 in Big Sur and Watsonville—not Car Week core, but roughly 40–90 minutes by car and useful as a pre-arrival buffer.'
     }
   },
 
@@ -144,6 +151,8 @@ window.PEBBLE_DATA = {
     subjectTag: { zh: '赛程或交通会变', en: 'Schedule/access may change' },
     dayLabel: { zh: '活动', en: 'events' },
     dayLabelSingular: { zh: '活动', en: 'event' },
+    driveLabel: { zh: '车程', en: 'Drive' },
+    nearbySource: { zh: '打开活动来源 ↗', en: 'Open event source ↗' },
     langAria: { zh: '切换到英文', en: 'Switch to Chinese' },
     darkAria: { zh: '切换深色模式', en: 'Switch to dark mode' },
     lightAria: { zh: '切换浅色模式', en: 'Switch to light mode' },
@@ -152,6 +161,12 @@ window.PEBBLE_DATA = {
   },
 
   days: [
+    { id: '2026-08-07', short: { zh: '周五 8.7', en: 'Fri Aug 7' }, label: { zh: '周五 · 开场夜', en: 'Friday · opening night' }, badge: { zh: '免费 Kickoff', en: 'Free kickoff' } },
+    { id: '2026-08-08', short: { zh: '周六 8.8', en: 'Sat Aug 8' }, label: { zh: '周六 · 州立公园或赛道', en: 'Saturday · park day or track' }, badge: { zh: '二选一', en: 'Pick one' } },
+    { id: '2026-08-09', short: { zh: '周日 8.9', en: 'Sun Aug 9' }, label: { zh: '周日 · Pre-Reunion 次日', en: 'Sunday · Pre-Reunion day 2' }, badge: { zh: '赛道继续', en: 'Track continues' } },
+    { id: '2026-08-10', short: { zh: '周一 8.10', en: 'Mon Aug 10' }, label: { zh: '周一 · 电动车与英系', en: 'Monday · EVs & British' }, badge: { zh: '轻量免费', en: 'Light & free' } },
+    { id: '2026-08-11', short: { zh: '周二 8.11', en: 'Tue Aug 11' }, label: { zh: '周二 · Carmel 慈善街展', en: 'Tuesday · Carmel charity show' }, badge: { zh: '早场高性价比', en: 'Early free value' } },
+    { id: '2026-08-12', short: { zh: '周三 8.12', en: 'Wed Aug 12' }, label: { zh: '周三 · 微型车与 Reunion 开幕', en: 'Wednesday · little cars & Reunion opens' }, badge: { zh: '免费主场', en: 'Free anchor' } },
     { id: '2026-08-13', short: { zh: '周四 8.13', en: 'Thu Aug 13' }, label: { zh: '周四 · 免费高价值日', en: 'Thursday · free-value day' }, badge: { zh: '先看行驶中的车', en: 'See the cars moving' } },
     { id: '2026-08-14', short: { zh: '周五 8.14', en: 'Fri Aug 14' }, label: { zh: '周五 · 品牌或赛道', en: 'Friday · marques or track' }, badge: { zh: '冲突最多', en: 'Most overlap' } },
     { id: '2026-08-15', short: { zh: '周六 8.15', en: 'Sat Aug 15' }, label: { zh: '周六 · 赛车或街展', en: 'Saturday · racing or street shows' }, badge: { zh: '二选一', en: 'Pick a lane' } },
@@ -161,9 +176,33 @@ window.PEBBLE_DATA = {
 
   quickPlan: [
     {
+      date: { zh: '8 月 7 日', en: 'Aug 7' }, day: { zh: '周五', en: 'Fri' },
+      title: { zh: 'Kickoff on Alvarado → 早到落地', en: 'Kickoff on Alvarado → arrive early' },
+      body: { zh: '17:00 前到 Monterey 市中心 Alvarado St，看历史赛车集结与开幕式；零成本感受车周氛围并摸清停车节奏。', en: 'Reach downtown Alvarado St before 17:00 for historic race cars and the opening ceremony—a zero-cost way to feel Car Week energy and test parking.' },
+      cost: { zh: '$0', en: '$0' }
+    },
+    {
+      date: { zh: '8 月 8 日', en: 'Aug 8' }, day: { zh: '周六', en: 'Sat' },
+      title: { zh: 'Asilomar Day 或 Pre-Reunion', en: 'Asilomar Day or Pre-Reunion' },
+      body: { zh: '免费选 Asilomar 州立公园庆典（老爷车、摇摆舞）；赛车迷则买 Pre-Reunion 单日票，含 Corkscrew Hillclimb。', en: 'Free Asilomar state-parks birthday with vintage rides and swing dance—or buy a Pre-Reunion single-day pass including Corkscrew Hillclimb for race fans.' },
+      cost: { zh: '$0 / ~$82.62', en: '$0 / ~$82.62' }
+    },
+    {
+      date: { zh: '8 月 11 日', en: 'Aug 11' }, day: { zh: '周二', en: 'Tue' },
+      title: { zh: 'Concours for a Cause on Ocean Ave', en: 'Concours for a Cause on Ocean Ave' },
+      body: { zh: 'Carmel Ocean Ave 免费慈善街展，步行尺度友好；同日 Asilomar 有 Electric Coast 可顺路补 EV 主题。', en: 'Free charity show on Carmel’s Ocean Ave, walkable and strong value; pair with Electric Coast at Asilomar if EVs interest you.' },
+      cost: { zh: '$0', en: '$0' }
+    },
+    {
+      date: { zh: '8 月 12 日', en: 'Aug 12' }, day: { zh: '周三', en: 'Wed' },
+      title: { zh: 'Little Car Show（+ Carmel Astons）', en: 'Little Car Show (+ Carmel Astons)' },
+      body: { zh: 'Pacific Grove Lighthouse Ave 免费微型车展；若在 Carmel 可顺看 Astons on the Avenue；傍晚 Pebble Beach 可看 Motoring Classic 车辆抵达。', en: 'Free micro-car show on Pacific Grove’s Lighthouse Ave; add Carmel’s Astons on the Avenue if nearby; catch Motoring Classic arrivals in Pebble Beach at dusk.' },
+      cost: { zh: '$0', en: '$0' }
+    },
+    {
       date: { zh: '8 月 13 日', en: 'Aug 13' }, day: { zh: '周四', en: 'Thu' },
       title: { zh: 'Tour 发车 → 免费展区', en: 'Tour departure → free displays' },
-      body: { zh: '7 点前到 Portola Road；9:30 发车后，下午在 Village，再按品牌偏好选 Carmel Ferrari 或 Legends。', en: 'Reach Portola Road before 7; after the 9:30 departure, use Village, then choose Ferrari Carmel or Legends by marque.' },
+      body: { zh: '7 点前到 Portola Road；9:30 发车后，下午在 Village，再按品牌偏好选 Carmel Ferrari、Legends 或 Asilomar Woodies。', en: 'Reach Portola Road before 7; after the 9:30 departure, use Village, then choose Ferrari Carmel, Legends or Asilomar Woodies by marque.' },
       cost: { zh: '免费项目为主 · 停车另算', en: 'Mostly free · parking varies' }
     },
     {
@@ -194,6 +233,126 @@ window.PEBBLE_DATA = {
 
   events: [
     {
+      id: 'kickoff', date: '2026-08-07', time: '17:00–19:00', timeNote: { zh: '开幕式', en: 'opening ceremony' },
+      title: { zh: 'Monterey Car Week Kickoff', en: 'Monterey Car Week Kickoff' }, location: { zh: 'Alvarado St 市中心 · Monterey', en: 'Downtown Alvarado St · Monterey' },
+      summary: { zh: '免费开幕式：约三十辆历史赛车、车手现身与现场音乐，拉开官方车周序幕。', en: 'Free opening night: roughly thirty historic race cars, driver appearances and live music to kick off official Car Week.' },
+      why: { zh: '如果周四前就到半岛，这是零成本建立车周氛围的最佳起点；也是确认活动周交通与停车节奏的低压力试水。', en: 'If you arrive before Thursday, this is the best zero-cost way to feel Car Week energy and test peninsula traffic and parking at low pressure.' },
+      access: { zh: '市中心步行区；建议提早到场，周五傍晚餐饮与停车位都会收紧。', en: 'Downtown pedestrian zone; arrive early—Friday evening dining and parking tighten quickly.' },
+      price: { zh: '免费', en: 'Free' }, tags: ['free'], categories: ['essential', 'free'], score: '4.5',
+      source: 'https://www.seemonterey.com/monterey-car-week-events-by-day/'
+    },
+    {
+      id: 'asilomar-day', date: '2026-08-08', time: '10:00–16:00', timeNote: { zh: '州立公园生日庆典', en: 'state parks birthday' },
+      title: { zh: 'Asilomar Day', en: 'Asilomar Day' }, location: { zh: 'Asilomar Conference Grounds · Pacific Grove', en: 'Asilomar Conference Grounds · Pacific Grove' },
+      summary: { zh: '加州州立公园生日免费庆典：老爷车乘坐、12:45 摇摆舞、现场音乐与历史讲解。', en: 'Free California State Parks birthday celebration: vintage car rides, swing dance at 12:45, live music and history programming.' },
+      why: { zh: '完全免费且家庭友好；与同日 Pre-Reunion 赛道日二选一，适合不想买票进 Laguna Seca 的访客。', en: 'Completely free and family-friendly; the zero-cost alternative to Pre-Reunion at Laguna Seca on the same Saturday.' },
+      access: { zh: 'Asilomar 园区内活动；按现场指示牌停车，周末车位先到先得。', en: 'Events inside Asilomar grounds; follow onsite parking signs—weekend spots are first come.' },
+      price: { zh: '免费', en: 'Free' }, tags: ['free'], categories: ['free'], score: '4.0',
+      sources: [
+        { url: 'https://www.montereybayparent.com/event/asilomar-day-in-pacific-grove/', label: { zh: '活动详情 ↗', en: 'Event details ↗' } },
+        { url: 'https://www.parks.ca.gov/', label: { zh: '加州州立公园 ↗', en: 'California State Parks ↗' } }
+      ]
+    },
+    {
+      id: 'prereunion-sat', date: '2026-08-08', time: '07:00–17:00+', timeNote: { zh: 'Corkscrew Hillclimb 周六', en: 'Corkscrew Hillclimb Saturday' },
+      title: { zh: 'Monterey Pre-Reunion & Corkscrew Hillclimb · 周六', en: 'Monterey Pre-Reunion & Corkscrew Hillclimb · Saturday' }, location: { zh: 'WeatherTech Raceway Laguna Seca', en: 'WeatherTech Raceway Laguna Seca' },
+      summary: { zh: 'Pre-Reunion 首日：200+ 辆历史赛车，含 Corkscrew Hillclimb 爬坡赛。', en: 'Pre-Reunion day one: 200+ historic race cars including the Corkscrew Hillclimb.' },
+      why: { zh: '想在 Reunion 前先看历史赛车、且预算低于正赛周末的赛道迷首选；与 Asilomar Day 完全冲突，只能二选一。', en: 'The track pick for historic-racing fans who want action before Reunion at a lower price than peak weekend—directly conflicts with Asilomar Day.' },
+      access: { zh: '大型活动走 South Boundary Road；Grounds+Paddock 票含普通停车。', en: 'Major-event access via South Boundary Road; Grounds+Paddock pass includes general parking.' },
+      price: { zh: '单日 ~$82.62 · 2 日 ~$124.15', en: '~$82.62 single day · ~$124.15 two-day' }, tags: ['paid', 'subjectTag'], categories: ['essential', 'paid'], score: '4.5',
+      source: 'https://tickets.weathertechraceway.com/event/2-day-grounds-and-paddock-pass-monterey-pre-reunion--corkscrew-hillclimb---august-8-9-2026'
+    },
+    {
+      id: 'prereunion-sun', date: '2026-08-09', time: '07:00–17:00+', timeNote: { zh: '正赛日', en: 'race day' },
+      title: { zh: 'Monterey Pre-Reunion · 周日', en: 'Monterey Pre-Reunion · Sunday' }, location: { zh: 'WeatherTech Raceway Laguna Seca', en: 'WeatherTech Raceway Laguna Seca' },
+      summary: { zh: 'Pre-Reunion 次日：历史赛车正赛与 paddock 近距离观赏。', en: 'Pre-Reunion day two: historic race action and close paddock access.' },
+      why: { zh: '若周六选了 Asilomar，周日可补赛道；若已买 2 日票则自然接续。单日性价比略低于周六 hillclimb 特色日。', en: 'Catch the track on Sunday if you chose Asilomar Saturday; natural follow-up with a two-day pass. Single-day value is slightly below Saturday’s hillclimb hook.' },
+      access: { zh: '大型活动走 South Boundary Road；Grounds+Paddock 票含普通停车。', en: 'Major-event access via South Boundary Road; Grounds+Paddock pass includes general parking.' },
+      price: { zh: '单日 ~$82.62 · 2 日 ~$124.15', en: '~$82.62 single day · ~$124.15 two-day' }, tags: ['paid', 'subjectTag'], categories: ['paid'], score: '4.0',
+      source: 'https://tickets.weathertechraceway.com/event/2-day-grounds-and-paddock-pass-monterey-pre-reunion--corkscrew-hillclimb---august-8-9-2026'
+    },
+    {
+      id: 'electric-coast-mon', date: '2026-08-10', time: '12:00–16:00', timeNote: { zh: '官方时段', en: 'official hours' },
+      title: { zh: 'Electric Coast on the Coast', en: 'Electric Coast on the Coast' }, location: { zh: 'Asilomar Lot B · Pacific Grove', en: 'Asilomar Lot B · Pacific Grove' },
+      summary: { zh: '免费电动车展示，含 Rivian 试驾；Asilomar 官方时段 12:00–16:00。', en: 'Free EV showcase with Rivian test drives; official Asilomar hours 12:00–16:00.' },
+      why: { zh: '轻量免费补充，适合周一抵达或想先看 EV 趋势再进主周的访客。', en: 'A light free add-on for Monday arrivals or visitors who want an EV preview before peak week.' },
+      access: { zh: 'Asilomar Lot B；按园区指示牌停车。', en: 'Asilomar Lot B; follow grounds parking signs.' },
+      price: { zh: '免费', en: 'Free' }, tags: ['free'], categories: ['free'], score: '3.5',
+      source: 'https://www.visitasilomar.com/things-to-do/car-week'
+    },
+    {
+      id: 'monterey-british', date: '2026-08-10', time: '11:00–14:00', timeNote: { zh: '公众时段', en: 'public hours' },
+      title: { zh: 'Monterey British Car Day', en: 'Monterey British Car Day' }, location: { zh: 'Carmel Valley Historical Society 区域', en: 'Carmel Valley Historical Society area' },
+      summary: { zh: '80+ 辆英系经典车免费展示，宠物友好。', en: '80+ British classics on free display; pet-friendly.' },
+      why: { zh: '英系车迷的轻量免费主场；与同日 Porsche Seaside 可组合成半日双主题。', en: 'A light free anchor for British-marque fans; pairs with Porsche Seaside the same afternoon.' },
+      access: { zh: 'Carmel Valley 区域；给停车与转场留 20–30 分钟。', en: 'Carmel Valley area; allow 20–30 minutes for parking and transfers.' },
+      price: { zh: '免费', en: 'Free' }, tags: ['free'], categories: ['free'], score: '3.5',
+      source: 'https://www.seemonterey.com/monterey-car-week-events-by-day/'
+    },
+    {
+      id: 'porsche-seaside', date: '2026-08-10', time: '15:00–19:00', timeNote: { zh: '公众时段', en: 'public hours' },
+      title: { zh: 'Porsche Monterey', en: 'Porsche Monterey' }, location: { zh: 'Porsche Monterey · Seaside', en: 'Porsche Monterey · Seaside' },
+      summary: { zh: '免费保时捷经典与现代车型展示，含音乐与 food trucks。', en: 'Free vintage and modern Porsche display with music and food trucks.' },
+      why: { zh: '周一傍晚轻松收尾；为周三前 Werks 预热保时捷氛围，但不如 Werks 本身完整。', en: 'An easy Monday-evening wrap; warms up Porsche fans before Werks, though not as complete as the Friday reunion.' },
+      access: { zh: 'Porsche Monterey 展厅区域；Seaside 停车相对宽松。', en: 'Porsche Monterey showroom area; Seaside parking is relatively easier.' },
+      price: { zh: '免费', en: 'Free' }, tags: ['free'], categories: ['free'], score: '3.5',
+      source: 'https://www.seemonterey.com/monterey-car-week-events-by-day/'
+    },
+    {
+      id: 'concours-cause', date: '2026-08-11', time: '10:00–16:00', timeNote: { zh: '慈善街展', en: 'charity show' },
+      title: { zh: 'Concours for a Cause', en: 'Concours for a Cause' }, location: { zh: 'Ocean Ave · Carmel-by-the-Sea', en: 'Ocean Ave · Carmel-by-the-Sea' },
+      summary: { zh: 'Carmel Ocean Ave 免费慈善车展，经典车与步行街区氛围兼具。', en: 'Free charity car show on Carmel’s Ocean Ave with classic cars and a walkable downtown setting.' },
+      why: { zh: '早场最高性价比免费主场之一；在 Tour 前就能感受 Carmel 街展尺度，且完全免费。', en: 'One of the strongest free early anchors—feel Carmel’s street-show scale before Tour week at zero cost.' },
+      access: { zh: 'Ocean Ave 步行区；Carmel 停车紧张，考虑 Larson Field 接驳或早到。', en: 'Ocean Ave pedestrian zone; Carmel parking is tight—consider Larson Field shuttle or arrive early.' },
+      price: { zh: '免费', en: 'Free' }, tags: ['free'], categories: ['essential', 'free'], score: '4.5',
+      source: 'https://www.seemonterey.com/monterey-car-week-events-by-day/'
+    },
+    {
+      id: 'electric-coast-tue', date: '2026-08-11', time: '10:00–14:00', timeNote: { zh: '官方时段', en: 'official hours' },
+      title: { zh: 'Electric Coast on the Coast', en: 'Electric Coast on the Coast' }, location: { zh: 'Asilomar Lot B · Pacific Grove', en: 'Asilomar Lot B · Pacific Grove' },
+      summary: { zh: '免费电动车展示；Asilomar 官方时段 10:00–14:00。', en: 'Free EV showcase; official Asilomar hours 10:00–14:00.' },
+      why: { zh: '可接在 Concours for a Cause 之后，半天完成 Carmel 街展 + PG 电动车主题。', en: 'Follow Concours for a Cause for a half-day pairing Carmel street show with PG’s EV theme.' },
+      access: { zh: 'Asilomar Lot B；从 Carmel 转场约 15–25 分钟。', en: 'Asilomar Lot B; roughly 15–25 minutes from Carmel.' },
+      price: { zh: '免费', en: 'Free' }, tags: ['free'], categories: ['free'], score: '3.5',
+      source: 'https://www.visitasilomar.com/things-to-do/car-week'
+    },
+    {
+      id: 'little-car', date: '2026-08-12', time: '12:00–17:00', timeNote: { zh: '含巡航', en: 'includes cruise' },
+      title: { zh: 'The Little Car Show', en: 'The Little Car Show' }, location: { zh: 'Lighthouse Ave · Pacific Grove', en: 'Lighthouse Ave · Pacific Grove' },
+      summary: { zh: '免费微型/迷你经典车展，展后还有巡航活动。', en: 'Free micro- and mini-classic car show with a post-show cruise.' },
+      why: { zh: '早场最有趣、记忆点最强的免费主场；与同日 Carmel Astons 可组合，但不必两边赶。', en: 'The most memorable free early anchor—pair with Carmel Astons the same day, but do not rush both.' },
+      access: { zh: 'Lighthouse Ave 步行区；Pacific Grove 停车先到先得。', en: 'Lighthouse Ave pedestrian zone; Pacific Grove parking is first come.' },
+      price: { zh: '免费', en: 'Free' }, tags: ['free'], categories: ['essential', 'free'], score: '4.5',
+      source: 'https://www.thelittlecarshow.com/'
+    },
+    {
+      id: 'astons', date: '2026-08-12', time: '11:00–16:00', timeNote: { zh: '公众时段', en: 'public hours' },
+      title: { zh: 'Astons on the Avenue', en: 'Astons on the Avenue' }, location: { zh: 'Ocean Ave · Carmel-by-the-Sea', en: 'Ocean Ave · Carmel-by-the-Sea' },
+      summary: { zh: 'Carmel Ocean Ave 免费阿斯顿·马丁主题街展。', en: 'Free Aston Martin street show on Carmel’s Ocean Ave.' },
+      why: { zh: '阿斯顿车迷 4/5；普通观众若已去 Little Car Show 可跳过，不必专程折返 Carmel。', en: 'A 4/5 for Aston fans; general visitors who hit the Little Car Show can skip unless Aston is a specific draw.' },
+      access: { zh: 'Ocean Ave 步行区；从 Pacific Grove 转场约 15–25 分钟。', en: 'Ocean Ave pedestrian zone; roughly 15–25 minutes from Pacific Grove.' },
+      price: { zh: '免费', en: 'Free' }, tags: ['free'], categories: ['free'], score: '4.0',
+      source: 'https://www.seemonterey.com/monterey-car-week-events-by-day/'
+    },
+    {
+      id: 'motoring-classic', date: '2026-08-12', time: '16:00–', timeNote: { zh: '车辆抵达', en: 'car arrivals' },
+      title: { zh: 'Motoring Classic 车辆抵达', en: 'Motoring Classic car arrivals' }, location: { zh: 'Pebble Beach', en: 'Pebble Beach' },
+      summary: { zh: 'Motoring Classic 参展车辆免费公开抵达观赏。', en: 'Free public viewing as Motoring Classic entrants arrive in Pebble Beach.' },
+      why: { zh: '傍晚轻量收尾，提前感受 Pebble Beach 活动周氛围，为周四 Tour 预热。', en: 'A light evening finish that previews Pebble Beach energy before Thursday’s Tour.' },
+      access: { zh: 'Pebble Beach 区域内按现场标识停车；17-Mile Drive 活动周前交通仍相对宽松。', en: 'Follow event signs for parking in Pebble Beach; 17-Mile Drive traffic is still relatively lighter before peak week.' },
+      price: { zh: '免费', en: 'Free' }, tags: ['free'], categories: ['free'], score: '4.0',
+      source: 'https://www.seemonterey.com/monterey-car-week-events-by-day/'
+    },
+    {
+      id: 'rmmr-wed', date: '2026-08-12', time: '07:00–', timeNote: { zh: 'Reunion 首日', en: 'Reunion day 1' },
+      title: { zh: 'Rolex Monterey Motorsports Reunion · 周三', en: 'Rolex Monterey Motorsports Reunion · Wednesday' }, location: { zh: 'WeatherTech Raceway Laguna Seca', en: 'WeatherTech Raceway Laguna Seca' },
+      summary: { zh: 'Rolex Reunion 开幕日；赛程与票价以官方票务页为准。', en: 'Opening day of Rolex Reunion; schedule and pricing per the official ticket page.' },
+      why: { zh: '赛道迷可提前一天进场；若只能去一天，周四至周六票价与内容组合需对比后再买。', en: 'Track fans can enter a day early; if buying only one day, compare Wednesday through Saturday pricing and programming first.' },
+      access: { zh: '大型活动走 South Boundary Road；购买前重查官方票务页。', en: 'Major-event access via South Boundary Road; recheck the official ticket page before buying.' },
+      price: { zh: '票价见官方', en: 'See official tickets' }, tags: ['unknownTag', 'subjectTag'], categories: ['paid', 'unpriced'], score: '4.0',
+      source: 'https://weathertechraceway.com/pages/rolex-monterey-motorsports-reunion'
+    },
+    {
       id: 'tour', date: '2026-08-13', time: '07:00–12:00', timeNote: { zh: '9:30 发车', en: '9:30 departure' },
       title: { zh: 'Pebble Beach Tour d’Elegance', en: 'Pebble Beach Tour d’Elegance' }, location: { zh: 'Portola Road · Pebble Beach', en: 'Portola Road · Pebble Beach' },
       summary: { zh: '先在起点看主展车辆集结，再听着引擎驶上 17-Mile Drive 与 Highway 1；2026 年不在 Carmel 停靠。', en: 'Watch concours entrants gather, then hear them leave for 17-Mile Drive and Highway 1. The 2026 route does not stop in Carmel.' },
@@ -219,6 +378,18 @@ window.PEBBLE_DATA = {
       access: { zh: '只能停指定活动停车场；街边多为居民限制区。停车预购 $30、现场 $40。', en: 'Use designated event lots only; nearby street parking is resident-restricted. Parking is $30 prepaid or $40 onsite.' },
       price: { zh: '未列单独观众票价 · 停车 $30–40', en: 'No separate spectator price listed · $30–40 parking' }, tags: ['admissionUnstatedTag'], categories: ['unpriced'], score: '4.0',
       source: 'https://legendsoftheautobahn.org/'
+    },
+    {
+      id: 'woodies', date: '2026-08-13', time: '12:00–17:00', timeNote: { zh: '下午主场', en: 'afternoon anchor' },
+      title: { zh: 'Woodies in the Woods', en: 'Woodies in the Woods' }, location: { zh: 'Grand Cypress Meadow · Asilomar · Pacific Grove', en: 'Grand Cypress Meadow · Asilomar · Pacific Grove' },
+      summary: { zh: '免费 woodie 旅行车聚会，含音乐、餐饮与啤酒花园；免费停车。', en: 'Free woodie wagon gathering with music, food and a beer garden; free parking.' },
+      why: { zh: 'Tour 上午之后的轻松下午选择；若不想在 Village/Legends 之间赶场，这里是冲浪文化与老爷车的低压力替代。', en: 'A relaxed Thursday afternoon after the Tour morning; a low-pressure surf-culture alternative if you do not want to rush between Village and Legends.' },
+      access: { zh: 'Asilomar Grand Cypress Meadow；园区内免费停车。', en: 'Asilomar Grand Cypress Meadow; free parking inside the grounds.' },
+      price: { zh: '免费', en: 'Free' }, tags: ['free'], categories: ['free'], score: '4.0',
+      sources: [
+        { url: 'https://www.santacruzwoodies.com/august-14-2025-woodies-in-the-woods/', label: { zh: 'Santa Cruz Woodies：2026 日程 ↗', en: 'Santa Cruz Woodies: 2026 schedule ↗' } },
+        { url: 'https://www.visitasilomar.com/things-to-do/car-week', label: { zh: 'Asilomar Car Week ↗', en: 'Asilomar Car Week ↗' } }
+      ]
     },
     {
       id: 'village-thu', date: '2026-08-13', time: '09:00–18:00', timeNote: { zh: '保守开放时间', en: 'conservative hours' },
@@ -433,6 +604,33 @@ window.PEBBLE_DATA = {
     }
   ],
 
+  nearby: [
+    {
+      id: 'holo-fest',
+      when: { zh: '7 月 31–8 月 2 日', en: 'Jul 31–Aug 2' },
+      title: { zh: 'HOLO-FEST 2.0', en: 'HOLO-FEST 2.0' },
+      location: { zh: 'Big Sur · Highway 1 沿线', en: 'Big Sur · along Highway 1' },
+      summary: { zh: '三日音乐节，含 Jerry Garcia 生日庆典等演出；非车周活动，但适合提前落地缓冲。', en: 'Three-day music festival including a Jerry Garcia birthday bash—not Car Week, but useful as a pre-arrival buffer.' },
+      why: { zh: '若能提前一周到半岛，可在 Monterey 前先在 Big Sur 休整；车程约 60–90 分钟，适合作为车周前的节奏过渡。', en: 'If you can land a week early, decompress in Big Sur before Monterey—roughly 60–90 minutes away and a good rhythm break before Car Week.' },
+      price: { zh: '约 $55–189', en: 'About $55–189' },
+      score: '4.0',
+      drive: { zh: '距 Monterey 约 60–90 分钟 · Highway 1', en: '~60–90 min from Monterey via Hwy 1' },
+      source: 'https://www.eventbrite.com/e/july-31-aug-2nd-holo-fest-20-featuring-jerry-garcia-b-day-bash-and-more-tickets-1993501930939'
+    },
+    {
+      id: 'strawberry-fest',
+      when: { zh: '7 月 31 日晚 + 8 月 1–2 日', en: 'Jul 31 eve + Aug 1–2' },
+      title: { zh: 'Watsonville Strawberry Festival', en: 'Watsonville Strawberry Festival' },
+      location: { zh: 'Historic Downtown Watsonville', en: 'Historic Downtown Watsonville' },
+      summary: { zh: '免费草莓节市集与游行；游乐设施另收费。', en: 'Free strawberry festival with market and parade; rides are paid separately.' },
+      why: { zh: '距 Monterey 仅约 40–50 分钟，适合提前落地后的轻松半日；与车周无重叠，但可填补等待入住的空档。', en: 'Only ~40–50 minutes from Monterey—a relaxed half-day while waiting to check in, with no Car Week overlap.' },
+      price: { zh: '免费入场 · 游乐另计', en: 'Free admission · rides extra' },
+      score: '3.5',
+      drive: { zh: '距 Monterey 约 40–50 分钟 · 北侧', en: '~40–50 min north of Monterey' },
+      source: 'https://www.watsonville.gov/1117/Watsonville-Strawberry-Festival'
+    }
+  ],
+
   stays: [
     {
       name: { zh: 'Pebble Beach / Carmel Highlands', en: 'Pebble Beach / Carmel Highlands' }, price: '$2,700–3,000+', recommended: false,
@@ -501,6 +699,13 @@ window.PEBBLE_DATA = {
   ],
 
   sources: [
+    { label: { zh: 'See Monterey · Car Week 逐日活动', en: 'See Monterey · Car Week by day' }, url: 'https://www.seemonterey.com/monterey-car-week-events-by-day/' },
+    { label: { zh: 'The Little Car Show', en: 'The Little Car Show' }, url: 'https://www.thelittlecarshow.com/' },
+    { label: { zh: 'Asilomar · Car Week 活动', en: 'Asilomar · Car Week events' }, url: 'https://www.visitasilomar.com/things-to-do/car-week' },
+    { label: { zh: 'Pre-Reunion · 官方票务', en: 'Pre-Reunion · official tickets' }, url: 'https://tickets.weathertechraceway.com/event/2-day-grounds-and-paddock-pass-monterey-pre-reunion--corkscrew-hillclimb---august-8-9-2026' },
+    { label: { zh: 'Santa Cruz Woodies · Woodies in the Woods', en: 'Santa Cruz Woodies · Woodies in the Woods' }, url: 'https://www.santacruzwoodies.com/august-14-2025-woodies-in-the-woods/' },
+    { label: { zh: 'HOLO-FEST 2.0 · Eventbrite', en: 'HOLO-FEST 2.0 · Eventbrite' }, url: 'https://www.eventbrite.com/e/july-31-aug-2nd-holo-fest-20-featuring-jerry-garcia-b-day-bash-and-more-tickets-1993501930939' },
+    { label: { zh: 'Watsonville Strawberry Festival', en: 'Watsonville Strawberry Festival' }, url: 'https://www.watsonville.gov/1117/Watsonville-Strawberry-Festival' },
     { label: { zh: 'Pebble Beach Concours · 周日主展', en: 'Pebble Beach Concours · Sunday show' }, url: 'https://www.pebblebeachconcours.net/event/pebble-beach-concours-delegance/' },
     { label: { zh: 'Tour d’Elegance · 官方日程', en: 'Tour d’Elegance · official schedule' }, url: 'https://www.pebblebeachconcours.net/event/pebble-beach-tour-delegance/' },
     { label: { zh: 'Village / 展示与试驾日程', en: 'Village / displays and drives' }, url: 'https://www.pebblebeachconcours.net/displays-and-ride-amp-drive-schedule/' },
