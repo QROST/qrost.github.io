@@ -239,7 +239,7 @@
       ? 'Data is fetched at build time only (never in your browser) from public open-data APIs and the RescueGroups API, throttled + cached + identifying itself, honoring robots.txt for any HTML source. Photos are cached as small thumbnails so a cat’s record survives after it is adopted/removed; the original source and adoption link are always kept. This is a non-commercial demo, not an official adoption channel — always confirm a cat on the shelter’s own page.'
       : '所有数据仅在构建时（本地）抓取，绝不在你的浏览器里发起：来自公共开放数据 API 与 RescueGroups API，限速+缓存+表明身份，HTML 源遵守 robots.txt。照片以小缩略图缓存，使猫被领养/下架后档案仍然保留；始终保留原始来源与领养链接。这是非商业演示，并非官方领养渠道——请以收容所页面为准。';
     $('about-body').innerHTML =
-      '<p><b>' + (I18N.isEn() ? 'Live sources' : '数据来源') + ':</b></p><ul class="list-disc ml-5">' + sources + '</ul>' +
+      '<p><b>' + (I18N.isEn() ? 'Snapshot sources' : '快照数据来源') + ':</b></p><ul class="list-disc ml-5">' + sources + '</ul>' +
       '<p class="mt-2">' + safety + '</p>' +
       '<p class="mt-2 text-faint">' + (I18N.isEn()
         ? 'Step 2 (planned): AIGC/CV-generated avatars & animations replace the procedural pixel-cat; the personality preview becomes LLM-narrated. The schema already reserves the hooks.'

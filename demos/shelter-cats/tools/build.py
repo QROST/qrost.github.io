@@ -114,7 +114,7 @@ def build() -> dict:
 
     region_counts = {r: len(v) for r, v in by_region.items()}
     source_meta = []
-    for s in {sh["source"] for sh in shelters}:
+    for s in sorted({sh["source"] for sh in shelters}):
         source_meta.append({
             "id": s,
             "attribution": db.get_meta(conn, f"attribution_{s}", s),

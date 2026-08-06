@@ -1,6 +1,6 @@
 {
- "build_time": "2026-06-22T01:53:31Z",
- "data_version": "7c60efa52c",
+ "build_time": "2026-08-06T06:11:56Z",
+ "data_version": "0c376690b7",
  "generator": "tools/build.py",
  "total_cats": 258,
  "total_shelters": 5,
@@ -71,14 +71,14 @@
  "enums_file": "enums.json",
  "sources": [
   {
-   "id": "socrata",
-   "attribution": "City/County Open Data (Socrata)",
-   "last_fetch": "2026-06-22T01:53:03Z"
-  },
-  {
    "id": "generic",
    "attribution": "International open data (CKAN / OpenDataSoft / Socrata)",
    "last_fetch": "2026-06-21T09:55:37Z"
+  },
+  {
+   "id": "socrata",
+   "attribution": "City/County Open Data (Socrata)",
+   "last_fetch": "2026-06-22T01:53:03Z"
   }
  ]
 }

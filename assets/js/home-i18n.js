@@ -12,16 +12,16 @@
       zh: 'QROST — 研究笔记与交互式数据图谱',
     },
     metaDescription: {
-      en: 'A personal research shelf of interactive data atlases and notes — global architectural history, pharma, shelter-cat adoption, China housing, a public 2026 Monterey Car Week guide, industrial software, and company setup — plus product prototypes. Bilingual EN/中文.',
-      zh: '一个个人站点：几份交互式数据图谱与笔记——全球建筑史、全球医药、收容所猫领养、中国住房、2026 蒙特雷汽车周公众指南、工业软件与开公司实务，外加一些产品原型。中英双语。',
+      en: 'QROST is a public lab for interactive research, data atlases, generative art, and product prototypes. Bilingual EN/中文.',
+      zh: 'QROST 是一个公开实验室，收录交互研究、数据图谱、生成艺术与产品原型。中英双语。',
     },
     ogDescription: {
-      en: 'Research notes and interactive data atlases — including a public Pebble Beach and Monterey Car Week 2026 itinerary, event prices, lodging snapshot and commute planner.',
-      zh: '研究笔记与交互式数据图谱——包括 Pebble Beach 与 2026 蒙特雷汽车周公众行程、活动票价、住宿价格快照及通勤规划。',
+      en: 'A public lab for interactive research, data atlases, generative art, and product prototypes. Bilingual EN/中文.',
+      zh: '一个收录交互研究、数据图谱、生成艺术与产品原型的公开实验室。中英双语。',
     },
     navResearch: { en: 'Research', zh: '研究' },
     navDemos: { en: 'Demos', zh: '演示' },
-    heroEyebrow: { en: 'Personal site', zh: '个人站点' },
+    heroEyebrow: { en: 'QROST Public Lab', zh: 'QROST 公开实验室' },
     heroH1: { en: 'I build and write.', zh: '我在实践中记录。' },
     heroLead: {
       en: 'Notes and build logs — a few <strong class="font-medium text-slate-800 dark:text-slate-200">interactive data atlases</strong>: a global view seen through Chinese eyes, plus occasional product prototypes. A small public shelf — take what\'s useful.',
@@ -111,8 +111,8 @@
       zh: '全球收容所猫 — 领养统一平台',
     },
     cardSheltercatsDesc: {
-      en: 'Real adoptable shelter cats on one world map (live from open-data shelter feeds) — filter by color, pattern, coat and distance. Every cat gets a deterministic pixel avatar and an attribute-driven personality preview, so you can imagine life with it before adopting. Dark mode · EN/中文.',
-      zh: '把各地收容所里真实可领养的猫汇到一张世界地图（数据来自开放数据源）——按颜色、花纹、毛长、距离筛选。每只猫会按真实属性生成专属像素形象与性格预览，让你在领养前先想象与它相处的日常。深色模式 · 中英双语。',
+      en: 'Cached open-data shelter-cat records on one map — filter by color, pattern, coat and distance, then follow the source link to confirm current availability. Every cat gets a deterministic pixel avatar and an attribute-driven personality preview. Dark mode · EN/中文.',
+      zh: '把开放数据源中的收容所猫缓存档案汇到一张地图——可按颜色、花纹、毛长与距离筛选，并通过来源链接确认当前领养状态。每只猫会按真实属性生成像素形象与性格预览。深色模式 · 中英双语。',
     },
     cardCatMouseTitle: {
       en: 'Cat & Mouse — quadruped gait playground',
@@ -126,6 +126,7 @@
       en: 'Last updated 2026-08. Nothing here is financial, legal or tax advice.',
       zh: '最后更新 2026-08。本站内容不构成财务、法律或税务建议。',
     },
+    footerStudio: { en: 'CuriousArc studio', zh: 'CuriousArc 工作室' },
     footerCopyright: { en: '© 2026 QROST. All rights reserved.', zh: '© 2026 QROST. 保留所有权利。' },
     langToggleAria: { en: 'Switch to 中文', zh: 'Switch to English' },
     themeToggleAriaDark: { en: 'Switch to dark mode', zh: '切换深色模式' },
