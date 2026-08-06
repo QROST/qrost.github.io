@@ -115,6 +115,7 @@ window.PEBBLE_DATA = {
       en: 'Within 24 hours of departure, recheck the event page, ticket page, parking map, weather and road status.'
     },
     footerTagline: { zh: '一个面向公众的 Monterey Car Week 独立计划页。', en: 'An independent public planning page for Monterey Car Week.' },
+    footerContact: { zh: '联系', en: 'Contact' },
     footerDisclaimer: {
       zh: '最后核对 2026-08-06。非官方、非主办方关联；不构成票务、住宿或交通保证。',
       en: 'Last checked Aug 6, 2026. Independent and unaffiliated; no ticket, lodging or transportation guarantee.'
