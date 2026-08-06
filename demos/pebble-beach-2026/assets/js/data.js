@@ -64,6 +64,11 @@ window.PEBBLE_DATA = {
       zh: '周六 Asilomar Day 与 Pre-Reunion 赛道二选一；周二 Concours for a Cause 与周三 Little Car Show 是早场高性价比免费主场。高峰周五、周六的好活动大量重叠——不要把 Werks、The Quail、Laguna Seca、Concorso 和 Exotics 全塞进同一天；半岛不是一个会场。',
       en: 'Pick Asilomar Day or Pre-Reunion on Saturday—not both. Tuesday’s Concours for a Cause and Wednesday’s Little Car Show are the strongest free early anchors. Peak Friday and Saturday overlap heavily: do not cram Werks, The Quail, Laguna Seca, Concorso and Exotics into one day; the peninsula is not a single venue.'
     },
+    planStops: { zh: '当日地点', en: 'Stops today' },
+    planRouteHint: { zh: '实线为推荐驾车顺序；虚线/圆点为二选一地点。', en: 'Solid line = recommended drive order; dashed/dots = either-or picks.' },
+    planRouteOr: { zh: '或', en: 'or' },
+    planRouteLoading: { zh: '路线加载中…', en: 'Loading route…' },
+    planRouteUnavailable: { zh: '路线暂不可用，仍显示地点。', en: 'Route unavailable; stops still shown.' },
     scheduleKicker: { zh: '8.7–8.17 · 逐日选择', en: 'Aug 7–17 · day by day' },
     scheduleTitle: { zh: '什么时候去哪里，哪些真正值得', en: 'Where to go, when—and what is worth it' },
     scheduleIntro: {
@@ -189,58 +194,123 @@ window.PEBBLE_DATA = {
 
   quickPlan: [
     {
+      id: 'qp-0807',
       date: { zh: '8 月 7 日', en: 'Aug 7' }, day: { zh: '周五', en: 'Fri' },
       title: { zh: 'Kickoff on Alvarado → 早到落地', en: 'Kickoff on Alvarado → arrive early' },
       body: { zh: '17:00 前到 Monterey 市中心 Alvarado St，看历史赛车集结与开幕式；零成本感受车周氛围并摸清停车节奏。', en: 'Reach downtown Alvarado St before 17:00 for historic race cars and the opening ceremony—a zero-cost way to feel Car Week energy and test parking.' },
-      cost: { zh: '$0', en: '$0' }
+      cost: { zh: '$0', en: '$0' },
+      route: {
+        mode: 'single',
+        stops: [{ place: 'alvarado', label: { zh: 'Kickoff 开幕', en: 'Kickoff' } }]
+      }
     },
     {
+      id: 'qp-0808',
       date: { zh: '8 月 8 日', en: 'Aug 8' }, day: { zh: '周六', en: 'Sat' },
       title: { zh: 'Asilomar Day 或 Pre-Reunion', en: 'Asilomar Day or Pre-Reunion' },
       body: { zh: '免费选 Asilomar 州立公园庆典（老爷车、摇摆舞）；赛车迷则买 Pre-Reunion 单日票，含 Corkscrew Hillclimb。', en: 'Free Asilomar state-parks birthday with vintage rides and swing dance—or buy a Pre-Reunion single-day pass including Corkscrew Hillclimb for race fans.' },
-      cost: { zh: '$0 / ~$82.62', en: '$0 / ~$82.62' }
+      cost: { zh: '$0 / ~$82.62', en: '$0 / ~$82.62' },
+      route: {
+        mode: 'choice',
+        stops: [
+          { place: 'asilomar', label: { zh: 'Asilomar Day', en: 'Asilomar Day' } },
+          { place: 'laguna', label: { zh: 'Pre-Reunion', en: 'Pre-Reunion' } }
+        ]
+      }
     },
     {
+      id: 'qp-0811',
       date: { zh: '8 月 11 日', en: 'Aug 11' }, day: { zh: '周二', en: 'Tue' },
       title: { zh: 'Concours for a Cause on Ocean Ave', en: 'Concours for a Cause on Ocean Ave' },
       body: { zh: 'Carmel Ocean Ave 免费慈善街展，步行尺度友好；同日 Asilomar 有 Electric Coast 可顺路补 EV 主题。', en: 'Free charity show on Carmel’s Ocean Ave, walkable and strong value; pair with Electric Coast at Asilomar if EVs interest you.' },
-      cost: { zh: '$0', en: '$0' }
+      cost: { zh: '$0', en: '$0' },
+      route: {
+        mode: 'sequence',
+        stops: [
+          { place: 'carmel', label: { zh: 'Concours for a Cause', en: 'Concours for a Cause' } },
+          { place: 'asilomar', label: { zh: 'Electric Coast', en: 'Electric Coast' } }
+        ]
+      }
     },
     {
+      id: 'qp-0812',
       date: { zh: '8 月 12 日', en: 'Aug 12' }, day: { zh: '周三', en: 'Wed' },
       title: { zh: 'Little Car Show（+ Carmel Astons）', en: 'Little Car Show (+ Carmel Astons)' },
       body: { zh: 'Pacific Grove Lighthouse Ave 免费微型车展；若在 Carmel 可顺看 Astons on the Avenue；傍晚 Pebble Beach 可看 Motoring Classic 车辆抵达。', en: 'Free micro-car show on Pacific Grove’s Lighthouse Ave; add Carmel’s Astons on the Avenue if nearby; catch Motoring Classic arrivals in Pebble Beach at dusk.' },
-      cost: { zh: '$0', en: '$0' }
+      cost: { zh: '$0', en: '$0' },
+      route: {
+        mode: 'sequence',
+        stops: [
+          { place: 'lighthouse', label: { zh: 'Little Car Show', en: 'Little Car Show' } },
+          { place: 'carmel', label: { zh: 'Astons on the Avenue', en: 'Astons on the Avenue' } },
+          { place: 'pebble', label: { zh: 'Motoring Classic', en: 'Motoring Classic' } }
+        ]
+      }
     },
     {
+      id: 'qp-0813',
       date: { zh: '8 月 13 日', en: 'Aug 13' }, day: { zh: '周四', en: 'Thu' },
       title: { zh: 'Tour 发车 → 免费展区', en: 'Tour departure → free displays' },
       body: { zh: '7 点前到 Portola Road；9:30 发车后，下午在 Village，再按品牌偏好选 Carmel Ferrari、Legends 或 Asilomar Woodies。', en: 'Reach Portola Road before 7; after the 9:30 departure, use Village, then choose Ferrari Carmel, Legends or Asilomar Woodies by marque.' },
-      cost: { zh: '免费项目为主 · 停车另算', en: 'Mostly free · parking varies' }
+      cost: { zh: '免费项目为主 · 停车另算', en: 'Mostly free · parking varies' },
+      route: {
+        mode: 'sequence',
+        stops: [
+          { place: 'portola', label: { zh: 'Tour d’Elegance', en: 'Tour d’Elegance' } },
+          { place: 'village', label: { zh: 'Concours Village', en: 'Concours Village' } },
+          { place: 'carmel', label: { zh: 'Ferrari Carmel', en: 'Ferrari Carmel' } }
+        ]
+      }
     },
     {
+      id: 'qp-0814',
       date: { zh: '8 月 14 日', en: 'Aug 14' }, day: { zh: '周五', en: 'Fri' },
       title: { zh: 'Werks 或 Laguna Seca', en: 'Werks or Laguna Seca' },
       body: { zh: '保时捷聚会是最佳免费主场；更想听引擎就买周五 Reunion，一整天留给赛道。', en: 'Werks is the free-value anchor; if engines matter more, buy Friday Reunion and give the track the full day.' },
-      cost: { zh: '$0 + $40 现金停车 / $139.67', en: '$0 + $40 cash parking / $139.67' }
+      cost: { zh: '$0 + $40 现金停车 / $139.67', en: '$0 + $40 cash parking / $139.67' },
+      route: {
+        mode: 'choice',
+        stops: [
+          { place: 'werks', label: { zh: 'Werks Reunion', en: 'Werks Reunion' } },
+          { place: 'laguna', label: { zh: 'Reunion 周五', en: 'Reunion Friday' } }
+        ]
+      }
     },
     {
+      id: 'qp-0815',
       date: { zh: '8 月 15 日', en: 'Aug 15' }, day: { zh: '周六', en: 'Sat' },
       title: { zh: 'Lemons → Exotics，或赛道', en: 'Lemons → Exotics, or track' },
       body: { zh: '预算路线两站都免费；赛车迷则不要中途离开 Laguna Seca。', en: 'The two-stop street-show route is free; committed race fans should stay at Laguna Seca instead.' },
-      cost: { zh: '$0 / $181.07', en: '$0 / $181.07' }
+      cost: { zh: '$0 / $181.07', en: '$0 / $181.07' },
+      route: {
+        mode: 'sequence',
+        stops: [
+          { place: 'lemons', label: { zh: 'Concours d’Lemons', en: 'Concours d’Lemons' } },
+          { place: 'exotics', label: { zh: 'Exotics on Broadway', en: 'Exotics on Broadway' } }
+        ]
+      }
     },
     {
+      id: 'qp-0816',
       date: { zh: '8 月 16 日', en: 'Aug 16' }, day: { zh: '周日', en: 'Sun' }, flagship: true,
       title: { zh: 'Concours 主展，或免费 Village', en: 'Concours, or free Village' },
       body: { zh: '想看评审与 Dawn Patrol 就为主展买单；预算优先仍可逛 Village 与 RetroAuto。', en: 'Pay for judging and Dawn Patrol; value-first visitors can still use Village and RetroAuto.' },
-      cost: { zh: '$650 / $0', en: '$650 / $0' }
+      cost: { zh: '$650 / $0', en: '$650 / $0' },
+      route: {
+        mode: 'single',
+        stops: [{ place: 'pebble', label: { zh: 'Concours / Village', en: 'Concours / Village' } }]
+      }
     },
     {
+      id: 'qp-0817',
       date: { zh: '8 月 17 日', en: 'Aug 17' }, day: { zh: '周一', en: 'Mon' },
       title: { zh: 'Stanton Center → 返程', en: 'Stanton Center → depart' },
       body: { zh: '户外大活动已经结束；先退房并寄存行李，中午看历史展，再返程。', en: 'The marquee outdoor events are over; check out and store bags first, see the history exhibit at noon, then depart.' },
-      cost: { zh: '$10 成人', en: '$10 adult' }
+      cost: { zh: '$10 成人', en: '$10 adult' },
+      route: {
+        mode: 'single',
+        stops: [{ place: 'stanton', label: { zh: 'Stanton Center', en: 'Stanton Center' } }]
+      }
     }
   ],
 
@@ -706,6 +776,23 @@ window.PEBBLE_DATA = {
     { id: 'seaside', name: { zh: 'Seaside 街展', en: 'Seaside street shows' } },
     { id: 'laguna', name: { zh: 'Laguna Seca 赛道', en: 'Laguna Seca' } }
   ],
+
+  /* Nominatim-verified coordinates for quick-plan day maps (2026-08-06). */
+  mapPlaces: {
+    alvarado: { lat: 36.59931, lng: -121.89455, name: { zh: '阿尔瓦拉多街 · 蒙特雷', en: 'Alvarado St · Monterey' } },
+    asilomar: { lat: 36.61923, lng: -121.93739, name: { zh: 'Asilomar 会议中心', en: 'Asilomar Conference Grounds' } },
+    laguna: { lat: 36.58441, lng: -121.75339, name: { zh: 'WeatherTech Raceway Laguna Seca', en: 'WeatherTech Raceway Laguna Seca' } },
+    carmel: { lat: 36.55514, lng: -121.92271, name: { zh: '海洋大道 · 卡梅尔', en: 'Ocean Ave · Carmel' } },
+    lighthouse: { lat: 36.61677, lng: -121.90602, name: { zh: '灯塔大道 · 太平洋丛林', en: 'Lighthouse Ave · Pacific Grove' } },
+    portola: { lat: 36.57324, lng: -121.95446, name: { zh: 'Portola Rd · 圆石滩', en: 'Portola Rd · Pebble Beach' } },
+    village: { lat: 36.58230, lng: -121.94987, name: { zh: 'Concours Village · 圆石滩', en: 'Concours Village · Pebble Beach' } },
+    werks: { lat: 36.59040, lng: -121.86216, name: { zh: 'Monterey Pines / Werks', en: 'Monterey Pines / Werks' } },
+    lemons: { lat: 36.60356, lng: -121.85355, name: { zh: 'Seaside 市政厅 / Lemons', en: 'Seaside City Hall / Lemons' } },
+    exotics: { lat: 36.60904, lng: -121.83800, name: { zh: 'Broadway Ave · Seaside', en: 'Broadway Ave · Seaside' } },
+    pebble: { lat: 36.56966, lng: -121.94974, name: { zh: 'Pebble Beach Golf Links', en: 'Pebble Beach Golf Links' } },
+    stanton: { lat: 36.60269, lng: -121.89343, name: { zh: 'Stanton Center · 蒙特雷', en: 'Stanton Center · Monterey' } },
+    pgolf: { lat: 36.63084, lng: -121.92860, name: { zh: 'Pacific Grove Golf Links', en: 'Pacific Grove Golf Links' } }
+  },
 
   /* Real-world anchors for the Leaflet hero map (Nominatim, 2026-08-06). */
   mapHubs: [

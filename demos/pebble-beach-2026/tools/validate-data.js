@@ -40,6 +40,23 @@ if (data) {
 
   for (const [index, item] of (data.quickPlan || []).entries()) {
     for (const key of ['date', 'day', 'title', 'body', 'cost']) checkBilingual(item[key], `quickPlan[${index}].${key}`);
+    check(typeof item.id === 'string' && /^qp-[a-z0-9-]+$/.test(item.id), `quickPlan[${index}].id is invalid`);
+    check(item.route && typeof item.route === 'object', `quickPlan[${index}].route is required`);
+    const mode = item.route && item.route.mode;
+    check(['single', 'sequence', 'choice'].includes(mode), `quickPlan[${index}].route.mode is invalid`);
+    check(Array.isArray(item.route.stops) && item.route.stops.length >= 1, `quickPlan[${index}].route.stops must have at least one stop`);
+    if (mode === 'choice') check(item.route.stops.length >= 2, `quickPlan[${index}] choice route needs at least 2 stops`);
+    for (const [stopIndex, stop] of (item.route.stops || []).entries()) {
+      const stopLabel = `quickPlan[${index}].route.stops[${stopIndex}]`;
+      check(typeof stop.place === 'string' && stop.place.trim(), `${stopLabel}.place is required`);
+      check(data.mapPlaces && data.mapPlaces[stop.place], `${stopLabel}.place "${stop.place}" is not in mapPlaces`);
+      checkBilingual(stop.label, `${stopLabel}.label`);
+    }
+  }
+  const quickPlanIds = new Set();
+  for (const item of data.quickPlan || []) {
+    check(!quickPlanIds.has(item.id), `duplicate quickPlan id: ${item.id}`);
+    quickPlanIds.add(item.id);
   }
   check((data.quickPlan || []).length >= 7, `quickPlan must contain at least 7 items, found ${(data.quickPlan || []).length}`);
 
@@ -132,6 +149,17 @@ if (data) {
     check(['default', 'featured', 'accent'].includes(hub.tone), `${label}.tone is invalid`);
   }
   check((data.mapHubs || []).length >= 6, `expected at least 6 map hubs, found ${(data.mapHubs || []).length}`);
+
+  const mapPlaceIds = new Set();
+  for (const [placeId, place] of Object.entries(data.mapPlaces || {})) {
+    const label = `mapPlaces.${placeId}`;
+    check(!mapPlaceIds.has(placeId), `duplicate mapPlaces id: ${placeId}`);
+    mapPlaceIds.add(placeId);
+    check(typeof place.lat === 'number' && Number.isFinite(place.lat) && place.lat > 36 && place.lat < 37, `${label}.lat out of Monterey range`);
+    check(typeof place.lng === 'number' && Number.isFinite(place.lng) && place.lng > -122.2 && place.lng < -121.5, `${label}.lng out of Monterey range`);
+    checkBilingual(place.name, `${label}.name`);
+  }
+  check(mapPlaceIds.size >= 10, `expected at least 10 map places, found ${mapPlaceIds.size}`);
 }
 
 if (errors.length) {

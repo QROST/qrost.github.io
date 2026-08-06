@@ -14,6 +14,9 @@
   const THEME_KEY = 'qrost-pebble-2026-theme';
   const state = { lang: 'zh', day: 'all', type: 'all', from: 'monterey', to: 'pebble' };
   const mapState = { map: null, layer: null, markers: [] };
+  const routeCache = new Map();
+  const planMaps = new Map();
+  let planMapObserver = null;
 
   function localized(value) {
     if (value && typeof value === 'object' && (value.zh || value.en)) return value[state.lang] || value.zh || value.en;
@@ -106,18 +109,51 @@
     }
   }
 
+  function renderPlanStops(item) {
+    const route = item.route;
+    if (!route || !Array.isArray(route.stops) || !route.stops.length) return '';
+    const orLabel = text('planRouteOr');
+    let seqNum = 0;
+    const chips = route.stops.map((stop, index) => {
+      const num = route.mode === 'choice' ? index + 1 : ++seqNum;
+      const chip = `<span class="plan-stop-chip">${num}. ${escapeHtml(localized(stop.label))}</span>`;
+      if (route.mode === 'choice' && index > 0) {
+        return `<span class="plan-stop-or">${escapeHtml(orLabel)}</span>${chip}`;
+      }
+      return chip;
+    });
+    return `
+      <div class="plan-stops-label">${escapeHtml(text('planStops'))}</div>
+      <div class="plan-stops">${chips.join('')}</div>
+      <p class="plan-route-hint">${escapeHtml(text('planRouteHint'))}</p>`;
+  }
+
+  function destroyPlanMaps() {
+    if (planMapObserver) {
+      planMapObserver.disconnect();
+      planMapObserver = null;
+    }
+    planMaps.forEach(({ map }) => map.remove());
+    planMaps.clear();
+  }
+
   function renderQuickPlan() {
+    destroyPlanMaps();
     const root = document.getElementById('quick-plan-track');
     if (!root) return;
     root.innerHTML = DATA.quickPlan.map((item) => `
       <article class="plan-day${item.flagship ? ' flagship' : ''}">
-        <div class="plan-date">
-          <strong>${escapeHtml(localized(item.date))}</strong>
-          <span>${escapeHtml(localized(item.day))}</span>
+        <div class="plan-day-copy">
+          <div class="plan-date">
+            <strong>${escapeHtml(localized(item.date))}</strong>
+            <span>${escapeHtml(localized(item.day))}</span>
+          </div>
+          <h3>${escapeHtml(localized(item.title))}</h3>
+          <p>${escapeHtml(localized(item.body))}</p>
+          <span class="plan-cost">${escapeHtml(localized(item.cost))}</span>
+          ${renderPlanStops(item)}
         </div>
-        <h3>${escapeHtml(localized(item.title))}</h3>
-        <p>${escapeHtml(localized(item.body))}</p>
-        <span class="plan-cost">${escapeHtml(localized(item.cost))}</span>
+        ${item.id && item.route ? `<div class="plan-day-map" data-plan-map="${escapeHtml(item.id)}" aria-label="${escapeHtml(localized(item.title))}"></div>` : ''}
       </article>`).join('');
   }
 
@@ -421,6 +457,167 @@
       </div>`;
   }
 
+  function makeStopIcon(number, tone) {
+    return window.L.divIcon({
+      className: 'stop-pin-wrap',
+      html: `<span class="stop-pin ${escapeHtml(tone || 'default')}" aria-hidden="true">${escapeHtml(String(number))}</span>`,
+      iconSize: [26, 26],
+      iconAnchor: [13, 13],
+      popupAnchor: [0, -14]
+    });
+  }
+
+  function getMapPlace(placeId) {
+    return DATA.mapPlaces && DATA.mapPlaces[placeId];
+  }
+
+  function stopPopupHtml(stop, place) {
+    const lat = Number(place.lat).toFixed(5);
+    const lng = Number(place.lng).toFixed(5);
+    return `
+      <div class="hub-popup">
+        <strong>${escapeHtml(localized(stop.label))}</strong>
+        <p class="hub-place">${escapeHtml(localized(place.name))}</p>
+        <p class="hub-coords">${escapeHtml(text('mapCoords'))}: ${escapeHtml(lat)}, ${escapeHtml(lng)}</p>
+      </div>`;
+  }
+
+  async function fetchOsrmRoute(fromPlace, toPlace) {
+    const cacheKey = `${fromPlace.lat},${fromPlace.lng}->${toPlace.lat},${toPlace.lng}`;
+    if (routeCache.has(cacheKey)) return routeCache.get(cacheKey);
+    const url = `https://router.project-osrm.org/route/v1/driving/${fromPlace.lng},${fromPlace.lat};${toPlace.lng},${toPlace.lat}?overview=full&geometries=geojson`;
+    try {
+      const response = await fetch(url);
+      if (!response.ok) throw new Error('route failed');
+      const payload = await response.json();
+      if (payload.code !== 'Ok' || !payload.routes || !payload.routes[0]) throw new Error('no route');
+      const coords = payload.routes[0].geometry.coordinates.map((pair) => [pair[1], pair[0]]);
+      routeCache.set(cacheKey, coords);
+      return coords;
+    } catch (_) {
+      routeCache.set(cacheKey, null);
+      return null;
+    }
+  }
+
+  async function initPlanMap(el, planItem) {
+    if (!window.L || !planItem.route) return;
+    const route = planItem.route;
+    const map = window.L.map(el, {
+      scrollWheelZoom: false,
+      zoomControl: true,
+      attributionControl: true
+    });
+    window.L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 18,
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">OpenStreetMap</a>'
+    }).addTo(map);
+    el.addEventListener('wheel', (event) => {
+      if (event.metaKey || event.ctrlKey) map.scrollWheelZoom.enable();
+      else map.scrollWheelZoom.disable();
+    }, { passive: true });
+
+    const layers = { markers: [], polylines: [], statusEl: null };
+    const bounds = [];
+    let seqNum = 0;
+
+    route.stops.forEach((stop, index) => {
+      const place = getMapPlace(stop.place);
+      if (!place) return;
+      const num = route.mode === 'choice' ? index + 1 : ++seqNum;
+      const tone = route.mode === 'choice' ? 'choice' : 'default';
+      const marker = window.L.marker([place.lat, place.lng], {
+        icon: makeStopIcon(num, tone),
+        title: localized(stop.label),
+        keyboard: true,
+        riseOnHover: true
+      }).addTo(map);
+      marker.bindPopup(stopPopupHtml(stop, place), { maxWidth: 240, className: 'hub-leaflet-popup' });
+      marker.bindTooltip(`${num}. ${localized(stop.label)}`, {
+        direction: 'top',
+        offset: [0, -12],
+        opacity: 0.95,
+        className: 'hub-tooltip'
+      });
+      layers.markers.push(marker);
+      bounds.push([place.lat, place.lng]);
+    });
+
+    if (route.mode === 'sequence' && route.stops.length >= 2) {
+      const status = document.createElement('p');
+      status.className = 'plan-map-status';
+      status.textContent = text('planRouteLoading');
+      el.appendChild(status);
+      layers.statusEl = status;
+
+      let routeFailed = false;
+      for (let i = 0; i < route.stops.length - 1; i += 1) {
+        const from = getMapPlace(route.stops[i].place);
+        const to = getMapPlace(route.stops[i + 1].place);
+        if (!from || !to) continue;
+        // eslint-disable-next-line no-await-in-loop
+        const coords = await fetchOsrmRoute(from, to);
+        if (coords) {
+          const line = window.L.polyline(coords, {
+            color: '#ad3c1d',
+            weight: 4,
+            opacity: 0.88,
+            lineCap: 'round',
+            lineJoin: 'round'
+          }).addTo(map);
+          layers.polylines.push(line);
+        } else {
+          routeFailed = true;
+        }
+      }
+      if (status.parentNode) status.remove();
+      layers.statusEl = null;
+      if (routeFailed) {
+        const notice = document.createElement('p');
+        notice.className = 'plan-map-status unavailable';
+        notice.textContent = text('planRouteUnavailable');
+        el.appendChild(notice);
+        layers.statusEl = notice;
+      }
+    }
+
+    if (bounds.length) {
+      map.fitBounds(bounds, { padding: [28, 28], maxZoom: 13 });
+    }
+    planMaps.set(planItem.id, { map, layers, planItem });
+    window.setTimeout(() => map.invalidateSize(), 40);
+  }
+
+  function schedulePlanMaps() {
+    if (!window.L) return;
+    if (planMapObserver) planMapObserver.disconnect();
+    planMapObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting || entry.intersectionRatio < 0.2) return;
+        const el = entry.target;
+        const mapId = el.getAttribute('data-plan-map');
+        if (!mapId || planMaps.has(mapId)) return;
+        const planItem = DATA.quickPlan.find((item) => item.id === mapId);
+        if (planItem) {
+          initPlanMap(el, planItem);
+          planMapObserver.unobserve(el);
+        }
+      });
+    }, { threshold: [0, 0.2, 0.5] });
+
+    document.querySelectorAll('[data-plan-map]').forEach((el) => {
+      if (!planMaps.has(el.getAttribute('data-plan-map'))) {
+        planMapObserver.observe(el);
+      }
+    });
+  }
+
+  function invalidatePlanMaps() {
+    planMaps.forEach(({ map }) => {
+      window.setTimeout(() => map.invalidateSize(), 40);
+    });
+  }
+
   function makeHubIcon(tone) {
     return window.L.divIcon({
       className: 'hub-pin-wrap',
@@ -500,6 +697,7 @@
     renderTransportTips();
     renderSources();
     ensureHubMap();
+    schedulePlanMaps();
   }
 
   function applyLanguage() {
@@ -521,6 +719,7 @@
     }
     updateToggleUi();
     if (mapState.map) window.setTimeout(() => mapState.map.invalidateSize(), 40);
+    invalidatePlanMaps();
   }
 
   function wireInteractions() {
