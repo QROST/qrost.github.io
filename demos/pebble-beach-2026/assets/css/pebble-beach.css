@@ -231,21 +231,93 @@ svg { display: block; }
   background: var(--surface);
   box-shadow: var(--shadow);
   overflow: hidden;
-  transform: rotate(1.25deg);
 }
-.route-map { width: 100%; height: auto; }
-.map-land { fill: var(--surface); }
-.map-coast { fill: none; stroke: var(--green); stroke-width: 3; opacity: .62; }
-.map-road { fill: none; stroke: var(--orange); stroke-width: 3; stroke-dasharray: 7 7; opacity: .8; }
-.map-road-secondary { stroke: var(--green); opacity: .42; }
-.map-stop circle:first-child { fill: var(--surface); stroke: var(--green); stroke-width: 4; }
-.map-stop .pulse { fill: none; stroke: var(--green); stroke-width: 1; opacity: .25; }
-.map-stop.featured circle:first-child, .map-stop.accent circle:first-child { stroke: var(--orange); }
-.map-stop.featured .pulse, .map-stop.accent .pulse { stroke: var(--orange); }
-.map-stop text { fill: var(--ink); font: 700 14px var(--sans); letter-spacing: .01em; }
-.map-stop .map-sub { fill: var(--muted); font-size: 10px; font-weight: 550; }
-.ocean-label { fill: var(--green); opacity: .36; font: 700 12px var(--sans); letter-spacing: .36em; }
-.dark .route-map > rect { opacity: .2; }
+.hub-map {
+  width: 100%;
+  height: min(52vw, 460px);
+  min-height: 320px;
+  background: color-mix(in srgb, var(--green-soft) 55%, var(--bg-soft));
+  z-index: 0;
+}
+.hub-map .leaflet-container {
+  width: 100%;
+  height: 100%;
+  font: inherit;
+  background: transparent;
+}
+.hub-map-fallback {
+  display: grid;
+  place-items: center;
+  height: 100%;
+  padding: 28px;
+  color: var(--muted);
+  text-align: center;
+  font-size: .82rem;
+}
+.hub-pin-wrap {
+  background: transparent !important;
+  border: 0 !important;
+}
+.hub-pin {
+  display: block;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--surface);
+  border: 3px solid var(--green);
+  box-shadow: 0 0 0 6px color-mix(in srgb, var(--green) 18%, transparent), var(--shadow-small);
+}
+.hub-pin.featured,
+.hub-pin.accent {
+  width: 20px;
+  height: 20px;
+  border-color: var(--orange);
+  box-shadow: 0 0 0 7px color-mix(in srgb, var(--orange) 20%, transparent), var(--shadow-small);
+}
+.hub-popup {
+  min-width: 160px;
+  font-family: var(--sans);
+}
+.hub-popup strong {
+  display: block;
+  margin-bottom: 2px;
+  color: var(--ink);
+  font-family: var(--serif);
+  font-size: 1rem;
+}
+.hub-popup .hub-note {
+  margin: 0;
+  color: var(--orange);
+  font-size: .72rem;
+  font-weight: 700;
+}
+.hub-popup .hub-place,
+.hub-popup .hub-coords {
+  margin: 6px 0 0;
+  color: var(--muted);
+  font-size: .68rem;
+  line-height: 1.4;
+}
+.hub-popup a {
+  display: inline-block;
+  margin-top: 8px;
+  color: var(--green);
+  font-size: .68rem;
+  font-weight: 750;
+}
+.dark .hub-map .leaflet-tile-pane { filter: brightness(.78) contrast(1.05) saturate(.9); }
+.dark .hub-map .leaflet-control-attribution { background: rgba(16, 23, 25, .78); color: #b7c2bc; }
+.dark .hub-map .leaflet-control-attribution a { color: #d7e4dc; }
+.hub-tooltip {
+  border: 0 !important;
+  border-radius: 8px !important;
+  background: color-mix(in srgb, var(--surface) 92%, var(--green-soft)) !important;
+  color: var(--ink) !important;
+  box-shadow: var(--shadow-small) !important;
+  font: 700 12px var(--sans) !important;
+  padding: 4px 8px !important;
+}
+.hub-tooltip::before { border-top-color: color-mix(in srgb, var(--surface) 92%, var(--green-soft)) !important; }
 .route-card-footer {
   display: flex;
   align-items: center;
@@ -254,7 +326,6 @@ svg { display: block; }
   padding: 18px 21px;
   border-top: 1px solid var(--line);
   background: var(--surface);
-  transform: rotate(-1.25deg) scale(1.015);
 }
 .route-card-footer div { display: flex; flex-direction: column; }
 .route-card-footer div span, .route-time { color: var(--muted); font-size: .66rem; }
@@ -440,8 +511,9 @@ footer { border-top: 1px solid var(--line); background: var(--surface); }
 @media (max-width: 980px) {
   .hero-grid { grid-template-columns: 1fr; }
   .hero-copy { max-width: 780px; }
-  .route-card { width: min(590px, 100%); justify-self: center; transform: none; }
-  .route-card-footer { transform: none; }
+  .route-card { width: min(590px, 100%); justify-self: center; }
+  .route-card-footer { align-items: flex-start; flex-direction: column; }
+  .hub-map { height: 360px; min-height: 280px; }
   .plan-track { grid-template-columns: repeat(2, 1fr); }
   .plan-track::before { display: none; }
   .nearby-grid { grid-template-columns: 1fr; }

@@ -45,6 +45,10 @@ window.PEBBLE_DATA = {
     routeRule: { zh: '活动周法则', en: 'Car Week rule' },
     routeRuleValue: { zh: '一天只选一个主场', en: 'Choose one anchor per day' },
     routeBuffer: { zh: '转场多留 30–60 分钟', en: 'Add 30–60 min between hubs' },
+    mapAria: { zh: '蒙特雷半岛真实活动地图', en: 'Live Monterey Peninsula event map' },
+    mapFallback: { zh: '地图未能加载。请确认网络后刷新。', en: 'Map failed to load. Check your network and refresh.' },
+    mapCoords: { zh: '坐标', en: 'Coords' },
+    mapOpenOsm: { zh: '在 OpenStreetMap 打开 ↗', en: 'Open in OpenStreetMap ↗' },
     kpiDays: { zh: '天计划窗口', en: 'day planning window' },
     kpiHubs: { zh: '个主要活动区', en: 'main event hubs' },
     kpiTickets: { zh: '核心活动票价', en: 'core event prices' },
@@ -702,6 +706,53 @@ window.PEBBLE_DATA = {
     { id: 'seaside', name: { zh: 'Seaside 街展', en: 'Seaside street shows' } },
     { id: 'laguna', name: { zh: 'Laguna Seca 赛道', en: 'Laguna Seca' } }
   ],
+
+  /* Real-world anchors for the Leaflet hero map (Nominatim, 2026-08-06). */
+  mapHubs: [
+    {
+      id: 'pacificgrove', lat: 36.63084, lng: -121.92860, tone: 'default',
+      name: { zh: 'Pacific Grove', en: 'Pacific Grove' },
+      note: { zh: 'Legends · Little Cars · Asilomar', en: 'Legends · Little Cars · Asilomar' },
+      place: { zh: 'Pacific Grove Golf Links 一带', en: 'Near Pacific Grove Golf Links' }
+    },
+    {
+      id: 'pebble', lat: 36.56966, lng: -121.94974, tone: 'featured',
+      name: { zh: 'Pebble Beach', en: 'Pebble Beach' },
+      note: { zh: 'Tour · Concours · Auction · Village', en: 'Tour · Concours · Auction · Village' },
+      place: { zh: 'Pebble Beach Golf Links', en: 'Pebble Beach Golf Links' }
+    },
+    {
+      id: 'monterey', lat: 36.59040, lng: -121.86216, tone: 'default',
+      name: { zh: 'Monterey', en: 'Monterey' },
+      note: { zh: 'Werks · Kickoff 市区 · Stanton', en: 'Werks · downtown Kickoff · Stanton' },
+      place: { zh: 'Monterey Pines Golf Course', en: 'Monterey Pines Golf Course' }
+    },
+    {
+      id: 'carmel', lat: 36.55514, lng: -121.92271, tone: 'default',
+      name: { zh: 'Carmel', en: 'Carmel' },
+      note: { zh: 'Ferrari · Concours for a Cause · Astons', en: 'Ferrari · Concours for a Cause · Astons' },
+      place: { zh: 'Ocean Avenue', en: 'Ocean Avenue' }
+    },
+    {
+      id: 'quail', lat: 36.53239, lng: -121.85149, tone: 'default',
+      name: { zh: 'Carmel Valley', en: 'Carmel Valley' },
+      note: { zh: 'The Quail', en: 'The Quail' },
+      place: { zh: 'Quail Lodge & Golf Club', en: 'Quail Lodge & Golf Club' }
+    },
+    {
+      id: 'seaside', lat: 36.60904, lng: -121.83800, tone: 'default',
+      name: { zh: 'Seaside', en: 'Seaside' },
+      note: { zh: 'Exotics · Lemons · Concorso', en: 'Exotics · Lemons · Concorso' },
+      place: { zh: 'Broadway Ave 一带', en: 'Around Broadway Ave' }
+    },
+    {
+      id: 'laguna', lat: 36.58441, lng: -121.75339, tone: 'accent',
+      name: { zh: 'Laguna Seca', en: 'Laguna Seca' },
+      note: { zh: 'Rolex Reunion · Pre-Reunion', en: 'Rolex Reunion · Pre-Reunion' },
+      place: { zh: 'WeatherTech Raceway Laguna Seca', en: 'WeatherTech Raceway Laguna Seca' }
+    }
+  ],
+
   commute: {
     /* San Jose bands: OSRM uncongested one-way + Car Week peninsula approach padding.
        Miles (approx one-way): Monterey 72, Seaside 69, Laguna 71, Carmel 75, Pebble 76, Carmel Valley 77. */
@@ -768,6 +819,7 @@ window.PEBBLE_DATA = {
     { label: { zh: 'Stanton Center · 历史展', en: 'Stanton Center · history exhibit' }, url: 'https://www.montereyhistory.org/stanton-center/exhibits/' },
     { label: { zh: 'Caltrans 实时道路状态', en: 'Caltrans live road conditions' }, url: 'https://roads.dot.ca.gov/' },
     { label: { zh: 'Pebble Beach · 从 SJC 约 90 分钟', en: 'Pebble Beach · ~90 min from SJC' }, url: 'https://www.pebblebeach.com/insidepebblebeach/how-to-get-to-pebble-beach-resorts/' },
+    { label: { zh: 'OpenStreetMap · 地图底图与坐标', en: 'OpenStreetMap · basemap & coordinates' }, url: 'https://www.openstreetmap.org/#map=12/36.58/-121.86' },
     { label: { zh: '住宿库存查询口径', en: 'Lodging inventory search' }, url: 'https://www.hotels.com/Hotel-Search?destination=Monterey%2C%20California%2C%20United%20States%20of%20America&startDate=2026-08-13&endDate=2026-08-17&adults=2&rooms=1' }
   ]
 };

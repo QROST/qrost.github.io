@@ -117,6 +117,21 @@ if (data) {
     const score = Number(item.score);
     check(Number.isFinite(score) && score >= 0 && score <= 5, `${label}.score must be 0–5`);
   }
+
+  const mapHubIds = new Set();
+  for (const [index, hub] of (data.mapHubs || []).entries()) {
+    const label = `mapHubs[${index}]`;
+    check(typeof hub.id === 'string' && /^[a-z0-9-]+$/.test(hub.id), `${label}.id is invalid`);
+    check(!mapHubIds.has(hub.id), `duplicate map hub id: ${hub.id}`);
+    mapHubIds.add(hub.id);
+    check(typeof hub.lat === 'number' && Number.isFinite(hub.lat) && hub.lat > 36 && hub.lat < 37, `${label}.lat out of Monterey range`);
+    check(typeof hub.lng === 'number' && Number.isFinite(hub.lng) && hub.lng > -122.2 && hub.lng < -121.5, `${label}.lng out of Monterey range`);
+    checkBilingual(hub.name, `${label}.name`);
+    checkBilingual(hub.note, `${label}.note`);
+    checkBilingual(hub.place, `${label}.place`);
+    check(['default', 'featured', 'accent'].includes(hub.tone), `${label}.tone is invalid`);
+  }
+  check((data.mapHubs || []).length >= 6, `expected at least 6 map hubs, found ${(data.mapHubs || []).length}`);
 }
 
 if (errors.length) {

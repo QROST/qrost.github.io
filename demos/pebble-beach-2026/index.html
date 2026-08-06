@@ -34,7 +34,8 @@
       } catch (_) {}
     })();
   </script>
-  <link rel="stylesheet" href="assets/css/pebble-beach.css?v=457cc80c16">
+  <link rel="stylesheet" href="assets/vendor/leaflet/leaflet.css">
+  <link rel="stylesheet" href="assets/css/pebble-beach.css?v=9971a5ee92">
 </head>
 <body>
   <a class="skip-link" href="#main" data-i18n="skip">跳到正文</a>
@@ -74,28 +75,10 @@
         <p class="hero-fineprint" data-i18n="heroFineprint">早场 Kickoff · 慈善街展 · 微型车展 · Tour · 品牌/赛道 · Concours · 返程</p>
       </div>
 
-      <div class="route-card" aria-label="蒙特雷半岛活动示意图">
-        <svg class="route-map" viewBox="0 0 520 520" role="img" aria-labelledby="map-title map-desc">
-          <title id="map-title">Monterey Peninsula event hubs</title>
-          <desc id="map-desc">A schematic route connecting Pebble Beach, Carmel, Pacific Grove, Monterey, Seaside and Laguna Seca.</desc>
-          <defs>
-            <linearGradient id="sea" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#dbe9e4"/><stop offset="1" stop-color="#b9d6d1"/></linearGradient>
-            <filter id="soft-shadow"><feDropShadow dx="0" dy="7" stdDeviation="8" flood-opacity=".12"/></filter>
-          </defs>
-          <rect x="0" y="0" width="520" height="520" rx="28" fill="url(#sea)"/>
-          <path class="map-land" d="M81 5C114 76 97 110 131 155c26 35 91 43 113 85 18 34-13 70 15 105 40 49 141 14 184 58 28 29 20 78 44 112H520V0H82Z"/>
-          <path class="map-coast" d="M81 5C114 76 97 110 131 155c26 35 91 43 113 85 18 34-13 70 15 105 40 49 141 14 184 58 28 29 20 78 44 112"/>
-          <path class="map-road" d="M160 148C202 187 219 231 247 268c32 43 97 42 136 78 21 20 32 50 49 81"/>
-          <path class="map-road map-road-secondary" d="M247 268c-23 26-54 51-63 89"/>
-          <path class="map-road map-road-secondary" d="M247 268c3 39 8 73 13 107"/>
-          <g class="map-stop" transform="translate(114 143)"><circle r="10"/><circle class="pulse" r="18"/><text x="22" y="-3">Pacific Grove</text><text class="map-sub" x="22" y="16">Little Cars · Legends</text></g>
-          <g class="map-stop featured" transform="translate(185 356)"><circle r="11"/><circle class="pulse" r="20"/><text x="-18" y="-28" text-anchor="end">Pebble Beach</text><text class="map-sub" x="-18" y="-9" text-anchor="end">Tour · Concours · Auction</text></g>
-          <g class="map-stop" transform="translate(252 264)"><circle r="10"/><circle class="pulse" r="18"/><text x="22" y="-3">Monterey</text><text class="map-sub" x="22" y="16">Werks · Stanton</text></g>
-          <g class="map-stop" transform="translate(260 375)"><circle r="10"/><circle class="pulse" r="18"/><text x="22" y="-3">Carmel</text><text class="map-sub" x="22" y="16">Ferrari · The Quail</text></g>
-          <g class="map-stop" transform="translate(346 337)"><circle r="10"/><circle class="pulse" r="18"/><text x="22" y="-3">Seaside</text><text class="map-sub" x="22" y="16">Exotics · Concorso</text></g>
-          <g class="map-stop accent" transform="translate(436 427)"><circle r="11"/><circle class="pulse" r="20"/><text x="-18" y="-27" text-anchor="end">Laguna Seca</text><text class="map-sub" x="-18" y="-8" text-anchor="end">Rolex Reunion</text></g>
-          <text class="ocean-label" x="37" y="455">PACIFIC</text>
-        </svg>
+      <div class="route-card" aria-label="蒙特雷半岛真实活动地图">
+        <div id="hub-map" class="hub-map" role="region" aria-labelledby="map-title" data-i18n-aria="mapAria"></div>
+        <h2 id="map-title" class="sr-only">蒙特雷半岛活动区域</h2>
+        <p id="map-desc" class="sr-only">以真实坐标标注 Pebble Beach、Carmel、Carmel Valley、Pacific Grove、Monterey、Seaside 与 Laguna Seca。</p>
         <div class="route-card-footer">
           <div><span data-i18n="routeRule">活动周法则</span><strong data-i18n="routeRuleValue">一天只选一个主场</strong></div>
           <span class="route-time"><span aria-hidden="true">◷</span><span data-i18n="routeBuffer">转场多留 30–60 分钟</span></span>
@@ -214,7 +197,8 @@
     </div>
   </footer>
 
-  <script src="assets/js/data.js?v=d0e1e1c79b"></script>
-  <script src="assets/js/app.js?v=364d82ba66"></script>
+  <script src="assets/vendor/leaflet/leaflet.js"></script>
+  <script src="assets/js/data.js?v=fb8cb9f139"></script>
+  <script src="assets/js/app.js?v=788c0260c0"></script>
 </body>
 </html>

@@ -13,6 +13,7 @@
   const LANG_KEY = 'qrost-pebble-2026-lang';
   const THEME_KEY = 'qrost-pebble-2026-theme';
   const state = { lang: 'zh', day: 'all', type: 'all', from: 'monterey', to: 'pebble' };
+  const mapState = { map: null, layer: null, markers: [] };
 
   function localized(value) {
     if (value && typeof value === 'object' && (value.zh || value.en)) return value[state.lang] || value.zh || value.en;
@@ -67,13 +68,15 @@
     const navLinks = document.querySelector('.nav-links');
     if (navLinks) navLinks.setAttribute('aria-label', state.lang === 'zh' ? '页面章节' : 'Page sections');
     const routeCard = document.querySelector('.route-card');
-    if (routeCard) routeCard.setAttribute('aria-label', state.lang === 'zh' ? '蒙特雷半岛活动示意图' : 'Monterey Peninsula event map');
+    if (routeCard) routeCard.setAttribute('aria-label', text('mapAria'));
+    const hubMap = document.getElementById('hub-map');
+    if (hubMap) hubMap.setAttribute('aria-label', text('mapAria'));
     const mapTitle = document.getElementById('map-title');
     const mapDesc = document.getElementById('map-desc');
     if (mapTitle) mapTitle.textContent = state.lang === 'zh' ? '蒙特雷半岛活动区域' : 'Monterey Peninsula event hubs';
     if (mapDesc) mapDesc.textContent = state.lang === 'zh'
-      ? '连接 Pebble Beach、Carmel、Pacific Grove、Monterey、Seaside 与 Laguna Seca 的示意路线。'
-      : 'A schematic route connecting Pebble Beach, Carmel, Pacific Grove, Monterey, Seaside and Laguna Seca.';
+      ? '以 OpenStreetMap 底图与真实坐标标注 Pebble Beach、Carmel、Carmel Valley、Pacific Grove、Monterey、Seaside 与 Laguna Seca。'
+      : 'OpenStreetMap basemap with real coordinates for Pebble Beach, Carmel, Carmel Valley, Pacific Grove, Monterey, Seaside and Laguna Seca.';
 
     const wordmark = document.querySelector('.wordmark');
     if (wordmark) wordmark.setAttribute('aria-label', state.lang === 'zh' ? '返回 QROST 首页' : 'Back to QROST home');
@@ -404,6 +407,89 @@
     }).join('');
   }
 
+  function hubPopupHtml(hub) {
+    const lat = Number(hub.lat).toFixed(5);
+    const lng = Number(hub.lng).toFixed(5);
+    const osm = `https://www.openstreetmap.org/?mlat=${encodeURIComponent(hub.lat)}&mlon=${encodeURIComponent(hub.lng)}#map=15/${encodeURIComponent(hub.lat)}/${encodeURIComponent(hub.lng)}`;
+    return `
+      <div class="hub-popup">
+        <strong>${escapeHtml(localized(hub.name))}</strong>
+        <p class="hub-note">${escapeHtml(localized(hub.note))}</p>
+        <p class="hub-place">${escapeHtml(localized(hub.place))}</p>
+        <p class="hub-coords">${escapeHtml(ui('mapCoords'))}: ${escapeHtml(lat)}, ${escapeHtml(lng)}</p>
+        <a href="${escapeHtml(osm)}" target="_blank" rel="noopener noreferrer">${escapeHtml(ui('mapOpenOsm'))}</a>
+      </div>`;
+  }
+
+  function makeHubIcon(tone) {
+    return window.L.divIcon({
+      className: 'hub-pin-wrap',
+      html: `<span class="hub-pin ${escapeHtml(tone || 'default')}" aria-hidden="true"></span>`,
+      iconSize: [20, 20],
+      iconAnchor: [10, 10],
+      popupAnchor: [0, -12]
+    });
+  }
+
+  function syncHubMapMarkers() {
+    if (!mapState.map || !window.L) return;
+    mapState.markers.forEach((marker) => marker.remove());
+    mapState.markers = [];
+    const hubs = DATA.mapHubs || [];
+    const bounds = [];
+    hubs.forEach((hub) => {
+      const marker = window.L.marker([hub.lat, hub.lng], {
+        icon: makeHubIcon(hub.tone),
+        title: localized(hub.name),
+        keyboard: true,
+        riseOnHover: true
+      }).addTo(mapState.map);
+      marker.bindPopup(hubPopupHtml(hub), { maxWidth: 260, className: 'hub-leaflet-popup' });
+      marker.bindTooltip(localized(hub.name), {
+        direction: 'top',
+        offset: [0, -10],
+        opacity: 0.95,
+        className: 'hub-tooltip'
+      });
+      mapState.markers.push(marker);
+      bounds.push([hub.lat, hub.lng]);
+    });
+    if (bounds.length) {
+      mapState.map.fitBounds(bounds, { padding: [36, 36], maxZoom: 12 });
+    }
+  }
+
+  function ensureHubMap() {
+    const root = document.getElementById('hub-map');
+    if (!root) return;
+    if (!window.L) {
+      root.innerHTML = `<div class="hub-map-fallback">${escapeHtml(text('mapFallback'))}</div>`;
+      return;
+    }
+    if (!mapState.map) {
+      mapState.map = window.L.map(root, {
+        scrollWheelZoom: false,
+        zoomControl: true,
+        attributionControl: true
+      });
+      mapState.layer = window.L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 18,
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">OpenStreetMap</a>'
+      }).addTo(mapState.map);
+      root.addEventListener('wheel', (event) => {
+        if (event.metaKey || event.ctrlKey) mapState.map.scrollWheelZoom.enable();
+        else mapState.map.scrollWheelZoom.disable();
+      }, { passive: true });
+      window.setTimeout(() => {
+        mapState.map.invalidateSize();
+        syncHubMapMarkers();
+      }, 40);
+    } else {
+      syncHubMapMarkers();
+      window.setTimeout(() => mapState.map && mapState.map.invalidateSize(), 40);
+    }
+  }
+
   function renderDynamicContent() {
     renderQuickPlan();
     renderNearby();
@@ -413,6 +499,7 @@
     renderCommuteOptions();
     renderTransportTips();
     renderSources();
+    ensureHubMap();
   }
 
   function applyLanguage() {
@@ -433,6 +520,7 @@
       try { localStorage.setItem(THEME_KEY, dark ? 'dark' : 'light'); } catch (_) {}
     }
     updateToggleUi();
+    if (mapState.map) window.setTimeout(() => mapState.map.invalidateSize(), 40);
   }
 
   function wireInteractions() {
