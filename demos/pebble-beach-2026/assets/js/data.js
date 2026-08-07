@@ -615,6 +615,54 @@ window.PEBBLE_DATA = {
       credit: { zh: "Prova MO / CC BY-SA 4.0", en: "Prova MO / CC BY-SA 4.0" },
       sourceUrl: "https://commons.wikimedia.org/wiki/File%3A1965_Lamborghini_350_GT_Interior.jpg"
     },
+    'mecum-thu': {
+      src: "assets/img/events/mecum-thu.webp", width: 240, height: 160, license: "wikimedia-cc",
+      alt: { zh: "Mecum 拍卖帐篷（往年 Kissimmee）", en: "Mecum auction tent (past Kissimmee)" },
+      credit: { zh: "Pokemonprime / CC BY 4.0", en: "Pokemonprime / CC BY 4.0" },
+      sourceUrl: "https://commons.wikimedia.org/wiki/File%3AAuction_tent_at_Mecum_Auctions_Kissimmee.jpg"
+    },
+    'mecum-fri': {
+      src: "assets/img/events/mecum-fri.webp", width: 240, height: 160, license: "wikimedia-cc",
+      alt: { zh: "Mecum 拍卖车辆阵列（往年 Kissimmee）", en: "Mecum auction car lineup (past Kissimmee)" },
+      credit: { zh: "Pokemonprime / CC BY 4.0", en: "Pokemonprime / CC BY 4.0" },
+      sourceUrl: "https://commons.wikimedia.org/wiki/File%3ACar_lineup_at_Mecum_Auctions_Kissimmee_2024.jpg"
+    },
+    'mecum-sat': {
+      src: "assets/img/events/mecum-sat.webp", width: 240, height: 160, license: "wikimedia-cc",
+      alt: { zh: "Mecum 拍卖现场（2015）", en: "Mecum auction scene (2015)" },
+      credit: { zh: "artistmac / CC BY-SA 2.0", en: "artistmac / CC BY-SA 2.0" },
+      sourceUrl: "https://commons.wikimedia.org/wiki/File%3AMecum_auction_%282015%29.jpg"
+    },
+    'rm-wed': {
+      src: "assets/img/events/rm-wed.webp", width: 240, height: 160, license: "wikimedia-cc",
+      alt: { zh: "2018 RM Sotheby’s Monterey 预展车辆", en: "2018 RM Sotheby’s Monterey preview car" },
+      credit: { zh: "Prova MO / CC BY-SA 4.0", en: "Prova MO / CC BY-SA 4.0" },
+      sourceUrl: "https://commons.wikimedia.org/wiki/File%3A1972_Nissan_240ZG_at_RM_Sothebys_Monterey_2018.jpg"
+    },
+    'rm-thu': {
+      src: "assets/img/events/rm-thu.webp", width: 240, height: 160, license: "wikimedia-cc",
+      alt: { zh: "2018 RM Sotheby’s Monterey 拍卖 Ferrari 250 GTO", en: "2018 RM Sotheby’s Monterey auction Ferrari 250 GTO" },
+      credit: { zh: "Prova MO / CC BY-SA 4.0", en: "Prova MO / CC BY-SA 4.0" },
+      sourceUrl: "https://commons.wikimedia.org/wiki/File%3AFerrari_250_GTO_3413GT_at_RM_Sothebys_Auction_Monterey_2018.jpg"
+    },
+    'rm-fri': {
+      src: "assets/img/events/rm-fri.webp", width: 240, height: 160, license: "wikimedia-cc",
+      alt: { zh: "2022 RM Sotheby’s Monterey Ferrari 410", en: "2022 RM Sotheby’s Monterey Ferrari 410" },
+      credit: { zh: "Chad Kaintz / CC BY 2.0", en: "Chad Kaintz / CC BY 2.0" },
+      sourceUrl: "https://commons.wikimedia.org/wiki/File%3A2022-08-18_Monterey_Ferrari_410_0598CM.jpg"
+    },
+    'rm-sat': {
+      src: "assets/img/events/rm-sat.webp", width: 240, height: 160, license: "wikimedia-cc",
+      alt: { zh: "2022 RM Sotheby’s Monterey Maserati 200SI", en: "2022 RM Sotheby’s Monterey Maserati 200SI" },
+      credit: { zh: "Chad Kainz / CC BY 2.0", en: "Chad Kainz / CC BY 2.0" },
+      sourceUrl: "https://commons.wikimedia.org/wiki/File%3A2022-08-18_Monterey_Maserati_200SI_2427.jpg"
+    },
+    'bonhams': {
+      src: "assets/img/events/bonhams.webp", width: 240, height: 160, license: "organizer-press",
+      alt: { zh: "Bonhams Laguna Seca Auction 2026 官方图", en: "Bonhams Laguna Seca Auction 2026 official image" },
+      credit: { zh: "Bonhams 拍卖页", en: "Bonhams auction page" },
+      sourceUrl: "https://cars.bonhams.com/auction/31959/the-laguna-seca-auction"
+    },
     'forum-thu': {
       src: "assets/img/events/forum-thu.webp", width: 240, height: 160, license: "wikimedia-cc",
       alt: { zh: "Concours 会场经典车（论坛同期场地）", en: "Classic car on Concours grounds (Forum venue area)" },
@@ -964,6 +1012,15 @@ window.PEBBLE_DATA = {
       source: 'https://motorlux.com/tickets/'
     },
     {
+      id: 'rm-wed', thumbId: 'rm-wed', area: 'monterey', date: '2026-08-12', time: '10:00–18:00', timeNote: { zh: '公开预展', en: 'public preview' },
+      title: { zh: 'RM Sotheby’s · The Monterey Auction', en: 'RM Sotheby’s · The Monterey Auction' }, location: { zh: 'Monterey Conference Center · 1 Portola Plaza', en: 'Monterey Conference Center · 1 Portola Plaza' },
+      summary: { zh: '周三公开预展；现场周末通票 $60。17:00 后 front drive 对私人活动关闭。', en: 'Wednesday public preview; $60 weekend pass sold onsite. Front drive closes after 17:00 for a private event.' },
+      why: { zh: '周三白天看收藏车性价比不错；若只能去一场 RM，优先预展而非受限的夜场拍卖席。', en: 'A solid Wednesday daytime collector-car option; if choosing one RM visit, preview beats the restricted auction floor.' },
+      access: { zh: '1 Portola Plaza；预展对购票公众开放。拍卖厅仅限注册竞拍人、委托方与合格媒体。', en: '1 Portola Plaza; preview is for ticketed public. The auction floor is limited to registered bidders, consignors and qualified media.' },
+      price: { zh: '预展周末通票 $60（现场）', en: 'Preview weekend pass $60 (onsite)' }, tags: ['paid'], categories: ['essential', 'paid'], score: '4.0',
+      source: 'https://www.rmsothebys.com/auctions/mo26/'
+    },
+    {
       id: 'tour', thumbId: 'tour', area: 'pebble', date: '2026-08-13', time: '07:00–12:00', timeNote: { zh: '9:30 发车', en: '9:30 departure' },
       title: { zh: 'Pebble Beach Tour d’Elegance', en: 'Pebble Beach Tour d’Elegance' }, location: { zh: 'Portola Road · Pebble Beach', en: 'Portola Road · Pebble Beach' },
       summary: { zh: '先在起点看主展车辆集结，再听着引擎驶上 17-Mile Drive 与 Highway 1；2026 年不在 Carmel 停靠。', en: 'Watch concours entrants gather, then hear them leave for 17-Mile Drive and Highway 1. The 2026 route does not stop in Carmel.' },
@@ -1030,6 +1087,28 @@ window.PEBBLE_DATA = {
       source: 'https://www.goodingco.com/auction/pebble-beach-auctions-2026/'
     },
     {
+      id: 'mecum-thu', thumbId: 'mecum-thu', area: 'monterey', date: '2026-08-13', time: '10:00–', timeNote: { zh: '拍卖/区块', en: 'auction / blocks' },
+      title: { zh: 'Mecum Monterey', en: 'Mecum Monterey' }, location: { zh: 'Hyatt Regency / Del Monte Golf Course · 1 Old Golf Course Rd', en: 'Hyatt Regency / Del Monte Golf Course · 1 Old Golf Course Rd' },
+      summary: { zh: '约 600 辆汽车 + 约 100 辆摩托车；8:00 开门，周四 10:00 开拍。白天户外拍卖，公众友好。', en: 'Roughly 600 cars and ~100 motorcycles; gates at 8:00, bidding from 10:00 Thursday. Daytime outdoor auction—visitor-friendly.' },
+      why: { zh: '整周最亲民的大型整车拍卖之一：白天、户外、票价低于多数夜场；适合首次体验拍卖或想多看肌肉车/美式经典的人。', en: 'One of the week’s most visitor-friendly major car auctions—daytime, outdoor and cheaper than most evening sales; ideal for a first auction or muscle/American classics.' },
+      access: { zh: 'Del Monte 高尔夫球场帐篷区；12 岁及以下免费。网上预购可能有折扣，出发前重查 Mecum 票务页。', en: 'Tent campus at Del Monte Golf Course; ages ≤12 free. Online advance purchase may discount—recheck Mecum tickets before travel.' },
+      price: { zh: '$30/日 · $75/三日 · ≤12 岁免费', en: '$30/day · $75/3-day · ages ≤12 free' }, tags: ['paid'], categories: ['essential', 'paid'], score: '4.5',
+      sources: [
+        { url: 'https://www.mecum.com/auctions/monterey-2026/', label: { zh: 'Mecum Monterey 2026 ↗', en: 'Mecum Monterey 2026 ↗' } },
+        { url: 'https://www.mecum.com/tickets/', label: { zh: 'Mecum 票务 ↗', en: 'Mecum tickets ↗' } },
+        { url: 'https://whatsupmonterey.com/events/monterey-car-week/mecum-auto-auctions-muscle-cars-more/447', label: { zh: 'What’s Up Monterey · 票价 ↗', en: 'What’s Up Monterey · pricing ↗' } }
+      ]
+    },
+    {
+      id: 'bonhams', thumbId: 'bonhams', area: 'laguna', date: '2026-08-13', time: '10:00–', timeNote: { zh: '拍卖', en: 'auction' },
+      title: { zh: 'Bonhams · The Laguna Seca Auction', en: 'Bonhams · The Laguna Seca Auction' }, location: { zh: 'Bonhams Marquee · Laguna Seca Lakebed · WeatherTech Raceway', en: 'Bonhams Marquee · Laguna Seca Lakebed · WeatherTech Raceway' },
+      summary: { zh: '周四 10:00 拍卖；周二 9–18 免费公开预展，周三/周四上午需 Reunion 门票。', en: 'Auction Thursday 10:00; Tuesday 9–18 free public preview, while Wed/Thu morning viewing requires Reunion tickets.' },
+      why: { zh: '若能周二免费看预展，性价比极高；周四拍卖与 RMMR 同日，需提前规划赛道门票与转场。', en: 'Tuesday’s free preview is excellent value; Thursday’s sale overlaps RMMR—plan track tickets and transfer time.' },
+      access: { zh: 'Lakebed 大帐篷；8 月 8–9 Pre-Reunion 期间 paddock 也可远观。周三/周四上午预展需有效 Reunion 通行证。', en: 'Lakebed marquee; paddock views possible during Aug 8–9 Pre-Reunion. Wed/Thu morning preview requires a valid Reunion pass.' },
+      price: { zh: '周二预展免费 · 拍卖/其余预展需 Reunion 票', en: 'Tue preview free · auction/other preview needs Reunion pass' }, tags: ['paid'], categories: ['paid'], score: '4.0',
+      source: 'https://cars.bonhams.com/auction/31959/the-laguna-seca-auction'
+    },
+    {
       id: 'forum-thu', thumbId: 'forum-thu', area: 'pebble', date: '2026-08-13', time: '12:00 / 14:00 / 16:00', timeNote: { zh: '需提前注册', en: 'advance registration' },
       title: { zh: 'Pebble Beach Classic Car Forum', en: 'Pebble Beach Classic Car Forum' }, location: { zh: 'Concours Village', en: 'Concours Village' },
       summary: { zh: '周四三场各 $25；截至核对时均显示可购。', en: 'Three Thursday sessions at $25 each; all showed availability when checked.' },
@@ -1037,6 +1116,15 @@ window.PEBBLE_DATA = {
       access: { zh: '必须提前注册；票价与余票会变化，购买前重查官方票务页。', en: 'Advance registration is required. Price and inventory can change; recheck the official store before buying.' },
       price: { zh: '每场 $25', en: '$25 each' }, tags: ['paid'], categories: ['paid'], score: '4.0',
       source: 'https://theconcoursstore.com/collections/forums'
+    },
+    {
+      id: 'rm-thu', thumbId: 'rm-thu', area: 'monterey', date: '2026-08-13', time: '18:00–', timeNote: { zh: '夜场拍卖', en: 'evening auction' },
+      title: { zh: 'RM Sotheby’s · The Monterey Auction', en: 'RM Sotheby’s · The Monterey Auction' }, location: { zh: 'Monterey Conference Center · 1 Portola Plaza', en: 'Monterey Conference Center · 1 Portola Plaza' },
+      summary: { zh: '周四 18:00 夜场开拍；拍卖厅对普通观众受限。', en: 'Thursday evening session from 18:00; the auction floor is restricted for general visitors.' },
+      why: { zh: '分数偏低是因为拍卖席门槛高——未注册竞拍人多半只能在线观看；若只为看车，周三预展或 Mecum 白天场更划算。', en: 'Score is lower because floor access is limited—unregistered visitors mostly watch online; for viewing cars, Wednesday preview or Mecum daytime is better value.' },
+      access: { zh: '拍卖厅：注册竞拍人、委托方、合格媒体；公众预展见周三场次。', en: 'Auction floor: registered bidders, consignors, qualified media; public preview is Wednesday’s session.' },
+      price: { zh: '预展 $60 周末通票 · 拍卖席受限', en: 'Preview $60 weekend pass · floor restricted' }, tags: ['paid'], categories: ['paid'], score: '3.5',
+      source: 'https://www.rmsothebys.com/auctions/mo26/'
     },
     {
       id: 'werks', thumbId: 'werks', area: 'monterey', date: '2026-08-14', time: '09:00–15:00', timeNote: { zh: '7:00 车辆签到', en: '7:00 car check-in' },
@@ -1096,6 +1184,19 @@ window.PEBBLE_DATA = {
       source: 'https://www.goodingco.com/auction/pebble-beach-auctions-2026/'
     },
     {
+      id: 'mecum-fri', thumbId: 'mecum-fri', area: 'monterey', date: '2026-08-14', time: '09:00–', timeNote: { zh: '拍卖/区块', en: 'auction / blocks' },
+      title: { zh: 'Mecum Monterey', en: 'Mecum Monterey' }, location: { zh: 'Hyatt Regency / Del Monte Golf Course · 1 Old Golf Course Rd', en: 'Hyatt Regency / Del Monte Golf Course · 1 Old Golf Course Rd' },
+      summary: { zh: '周五 9:00 开拍；与 Werks、Laguna Seca、The Quail 同日，需二选一或只留半天。', en: 'Friday bidding from 9:00; same day as Werks, Laguna Seca and The Quail—pick one anchor or budget half a day.' },
+      why: { zh: '若周五不去赛道或 Quail，Mecum 是白天看整车拍卖的最佳替代；三日票 $75 若周四已入场则继续有效。', en: 'If skipping the track or Quail on Friday, Mecum is the best daytime car-auction alternative; a $75 3-day pass remains valid if you entered Thursday.' },
+      access: { zh: '8:00 开门；12 岁及以下免费。网上预购可能有折扣。', en: 'Gates at 8:00; ages ≤12 free. Online advance purchase may discount.' },
+      price: { zh: '$30/日 · $75/三日 · ≤12 岁免费', en: '$30/day · $75/3-day · ages ≤12 free' }, tags: ['paid'], categories: ['essential', 'paid'], score: '4.5',
+      sources: [
+        { url: 'https://www.mecum.com/auctions/monterey-2026/', label: { zh: 'Mecum Monterey 2026 ↗', en: 'Mecum Monterey 2026 ↗' } },
+        { url: 'https://www.mecum.com/tickets/', label: { zh: 'Mecum 票务 ↗', en: 'Mecum tickets ↗' } },
+        { url: 'https://whatsupmonterey.com/events/monterey-car-week/mecum-auto-auctions-muscle-cars-more/447', label: { zh: 'What’s Up Monterey · 票价 ↗', en: 'What’s Up Monterey · pricing ↗' } }
+      ]
+    },
+    {
       id: 'quail', thumbId: 'quail', area: 'carmelvalley', date: '2026-08-14', time: '09:00–16:00', timeNote: { zh: '官方时段', en: 'official hours' },
       title: { zh: 'The Quail, A Motorsports Gathering', en: 'The Quail, A Motorsports Gathering' }, location: { zh: 'The Quail Golf Club · Carmel Valley', en: 'The Quail Golf Club · Carmel Valley' },
       summary: { zh: '高端发布与款待型聚会；授权票务页目前显示 Coming Soon，未公布 2026 公共价格。', en: 'A premium launch-and-hospitality gathering. The authorized ticket page currently says Coming Soon with no 2026 public price.' },
@@ -1128,6 +1229,15 @@ window.PEBBLE_DATA = {
       access: { zh: '主办方尚未发布专用观众停车方案；给市区找车位留时间。', en: 'No dedicated spectator parking plan is posted; allow extra time to find downtown parking.' },
       price: { zh: '观众免费', en: 'Spectators free' }, tags: ['free'], categories: ['free'], score: '4.0',
       source: 'https://pgrotary.org/annual-pacific-grove-concours-auto-rally/event-registration-schedule/'
+    },
+    {
+      id: 'rm-fri', thumbId: 'rm-fri', area: 'monterey', date: '2026-08-14', time: '17:30–', timeNote: { zh: '夜场拍卖', en: 'evening auction' },
+      title: { zh: 'RM Sotheby’s · The Monterey Auction', en: 'RM Sotheby’s · The Monterey Auction' }, location: { zh: 'Monterey Conference Center · 1 Portola Plaza', en: 'Monterey Conference Center · 1 Portola Plaza' },
+      summary: { zh: '周五 17:30 夜场；与 Werks、Quail、RMMR 高峰重叠，拍卖席对公众受限。', en: 'Friday evening from 17:30; overlaps peak Werks/Quail/RMMR hours, and the auction floor is restricted.' },
+      why: { zh: '周五白天已被赛道或街展占满时，夜场只适合已注册竞拍人或在线观看；看车优先周三预展。', en: 'When Friday daytime is already booked with track or street shows, this evening is mainly for registered bidders or online viewing—preview Wednesday for car access.' },
+      access: { zh: '拍卖厅：注册竞拍人、委托方、合格媒体。', en: 'Auction floor: registered bidders, consignors, qualified media.' },
+      price: { zh: '预展 $60 周末通票 · 拍卖席受限', en: 'Preview $60 weekend pass · floor restricted' }, tags: ['paid'], categories: ['paid'], score: '3.5',
+      source: 'https://www.rmsothebys.com/auctions/mo26/'
     },
     {
       id: 'lemons', thumbId: 'lemons', area: 'seaside', date: '2026-08-15', time: '08:00–13:30', timeNote: { zh: '时间为县旅游页所列', en: 'hours per county listing' },
@@ -1211,6 +1321,19 @@ window.PEBBLE_DATA = {
       source: 'https://www.goodingco.com/auction/pebble-beach-auctions-2026/'
     },
     {
+      id: 'mecum-sat', thumbId: 'mecum-sat', area: 'monterey', date: '2026-08-15', time: '09:00–', timeNote: { zh: '拍卖/区块', en: 'auction / blocks' },
+      title: { zh: 'Mecum Monterey', en: 'Mecum Monterey' }, location: { zh: 'Hyatt Regency / Del Monte Golf Course · 1 Old Golf Course Rd', en: 'Hyatt Regency / Del Monte Golf Course · 1 Old Golf Course Rd' },
+      summary: { zh: '周六 9:00 最后一日拍卖；与 Lemons、Exotics、Laguna Seca 完全冲突。', en: 'Saturday’s final day from 9:00; in direct conflict with Lemons, Exotics and Laguna Seca.' },
+      why: { zh: '若周六主场在 Seaside 免费街展，不必专程折返；若已买三日票且想看肌肉车收尾，可当作下午备选。', en: 'Skip if Saturday’s anchor is free Seaside street shows; if you bought the 3-day pass and want a muscle-car finale, treat it as an afternoon backup.' },
+      access: { zh: '8:00 开门；12 岁及以下免费。', en: 'Gates at 8:00; ages ≤12 free.' },
+      price: { zh: '$30/日 · $75/三日 · ≤12 岁免费', en: '$30/day · $75/3-day · ages ≤12 free' }, tags: ['paid'], categories: ['essential', 'paid'], score: '4.5',
+      sources: [
+        { url: 'https://www.mecum.com/auctions/monterey-2026/', label: { zh: 'Mecum Monterey 2026 ↗', en: 'Mecum Monterey 2026 ↗' } },
+        { url: 'https://www.mecum.com/tickets/', label: { zh: 'Mecum 票务 ↗', en: 'Mecum tickets ↗' } },
+        { url: 'https://whatsupmonterey.com/events/monterey-car-week/mecum-auto-auctions-muscle-cars-more/447', label: { zh: 'What’s Up Monterey · 票价 ↗', en: 'What’s Up Monterey · pricing ↗' } }
+      ]
+    },
+    {
       id: 'forum-sat', thumbId: 'forum-sat', area: 'pebble', date: '2026-08-15', time: '10:00 / 12:00 / 14:00', timeNote: { zh: '需提前注册', en: 'advance registration' },
       title: { zh: 'Pebble Beach Classic Car Forum', en: 'Pebble Beach Classic Car Forum' }, location: { zh: 'Concours Village', en: 'Concours Village' },
       summary: { zh: '10:00 的 $100 场截至核对时已售罄；12:00 的 $25 与 14:00 的 $50 场仍可购。', en: 'The 10:00 $100 session was sold out when checked; the 12:00 $25 and 14:00 $50 sessions remained available.' },
@@ -1231,6 +1354,15 @@ window.PEBBLE_DATA = {
         { url: 'https://montereymotorsportsfestival.saffire.com/p/tickets', label: { zh: '授权票务：$189 ↗', en: 'Authorized seller: $189 ↗' } },
         { url: 'https://montereymotorsportsfestival.com/general-info/', label: { zh: '主办方停车说明 ↗', en: 'Organizer parking information ↗' } }
       ]
+    },
+    {
+      id: 'rm-sat', thumbId: 'rm-sat', area: 'monterey', date: '2026-08-15', time: '17:30–', timeNote: { zh: '夜场拍卖；15:00 Concierge', en: 'evening auction; 15:00 Concierge' },
+      title: { zh: 'RM Sotheby’s · The Monterey Auction', en: 'RM Sotheby’s · The Monterey Auction' }, location: { zh: 'Monterey Conference Center · 1 Portola Plaza', en: 'Monterey Conference Center · 1 Portola Plaza' },
+      summary: { zh: '周六 17:30 收官夜场；15:00 另有 Concierge 场次。拍卖席对公众受限。', en: 'Saturday finale from 17:30, plus a 15:00 Concierge session. Auction floor is restricted.' },
+      why: { zh: '与 MMF、Exotics 晚间时段冲突；未注册竞拍人更适合在线观看或改看白天 Mecum/Gooding。', en: 'Conflicts with MMF and Exotics evening windows; unregistered visitors are better served online or at daytime Mecum/Gooding.' },
+      access: { zh: '拍卖厅：注册竞拍人、委托方、合格媒体；Concierge 场次规则见官方页。', en: 'Auction floor: registered bidders, consignors, qualified media; see official page for Concierge rules.' },
+      price: { zh: '预展 $60 周末通票 · 拍卖席受限', en: 'Preview $60 weekend pass · floor restricted' }, tags: ['paid'], categories: ['paid'], score: '3.5',
+      source: 'https://www.rmsothebys.com/auctions/mo26/'
     },
     {
       id: 'concours', thumbId: 'concours', area: 'pebble', date: '2026-08-16', time: '05:30–17:00', timeNote: { zh: '8:00 评审', en: '8:00 judging' },
@@ -1494,6 +1626,10 @@ window.PEBBLE_DATA = {
     { label: { zh: 'Werks Reunion · Monterey', en: 'Werks Reunion · Monterey' }, url: 'https://www.werksreunion.com/monterey.cfm' },
     { label: { zh: 'Exotics on Broadway · 到场须知', en: 'Exotics on Broadway · know before you go' }, url: 'https://exoticsonbroadway.com/knowbeforeyougo/' },
     { label: { zh: 'Gooding Christie’s · Pebble Beach', en: 'Gooding Christie’s · Pebble Beach' }, url: 'https://www.goodingco.com/auction/pebble-beach-auctions-2026/' },
+    { label: { zh: 'Mecum Monterey 2026', en: 'Mecum Monterey 2026' }, url: 'https://www.mecum.com/auctions/monterey-2026/' },
+    { label: { zh: 'RM Sotheby’s Monterey 2026', en: 'RM Sotheby’s Monterey 2026' }, url: 'https://www.rmsothebys.com/auctions/mo26/' },
+    { label: { zh: 'Bonhams Laguna Seca Auction 2026', en: 'Bonhams Laguna Seca Auction 2026' }, url: 'https://cars.bonhams.com/auction/31959/the-laguna-seca-auction' },
+    { label: { zh: 'What’s Up Monterey · Mecum', en: 'What’s Up Monterey · Mecum' }, url: 'https://whatsupmonterey.com/events/monterey-car-week/mecum-auto-auctions-muscle-cars-more/447' },
     { label: { zh: 'Monterey Car Week 交通提醒', en: 'Monterey Car Week travel alerts' }, url: 'https://www.seemonterey.com/events/monterey-car-week/monterey-car-week-travel-alerts/' },
     { label: { zh: 'Carmel → Concours 周日接驳', en: 'Carmel → Concours Sunday shuttle' }, url: 'https://members.carmelchamber.org/events/details/carmel-shuttles-to-pebble-beach-concours-d-elegance-2026-63225' },
     { label: { zh: 'Stanton Center · 历史展', en: 'Stanton Center · history exhibit' }, url: 'https://www.montereyhistory.org/stanton-center/exhibits/' },
