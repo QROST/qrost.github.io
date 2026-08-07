@@ -128,6 +128,42 @@
       <p class="plan-route-hint">${escapeHtml(text('planRouteHint'))}</p>`;
   }
 
+  function planToneLabel(tone) {
+    const map = {
+      core: 'planToneCore',
+      optional: 'planToneOptional',
+      alt: 'planToneAlt',
+      transit: 'planToneTransit'
+    };
+    return text(map[tone] || 'planToneCore');
+  }
+
+  function renderPlanTimeline(item) {
+    const slots = item.schedule;
+    if (!Array.isArray(slots) || !slots.length) return '';
+    const rows = slots.map((slot) => {
+      const tone = slot.tone || 'core';
+      const note = slot.note ? `<p class="plan-timeline-note">${escapeHtml(localized(slot.note))}</p>` : '';
+      return `
+        <li class="plan-timeline-item tone-${escapeHtml(tone)}">
+          <div class="plan-timeline-time">
+            <strong>${escapeHtml(slot.time)}</strong>
+            <span class="plan-tone">${escapeHtml(planToneLabel(tone))}</span>
+          </div>
+          <div class="plan-timeline-copy">
+            <p class="plan-timeline-title">${escapeHtml(localized(slot.title))}</p>
+            ${note}
+          </div>
+        </li>`;
+    }).join('');
+    return `
+      <details class="plan-timeline">
+        <summary>${escapeHtml(text('planTimeline'))}</summary>
+        <ol class="plan-timeline-list">${rows}</ol>
+        <p class="plan-timeline-hint">${escapeHtml(text('planTimelineHint'))}</p>
+      </details>`;
+  }
+
   function destroyPlanMaps() {
     if (planMapObserver) {
       planMapObserver.disconnect();
@@ -152,6 +188,7 @@
           <p>${escapeHtml(localized(item.body))}</p>
           <span class="plan-cost">${escapeHtml(localized(item.cost))}</span>
           ${renderPlanStops(item)}
+          ${renderPlanTimeline(item)}
         </div>
         ${item.id && item.route ? `<div class="plan-day-map" data-plan-map="${escapeHtml(item.id)}" aria-label="${escapeHtml(localized(item.title))}"></div>` : ''}
       </article>`).join('');

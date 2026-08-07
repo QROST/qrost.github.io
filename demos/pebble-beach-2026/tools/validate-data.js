@@ -52,6 +52,19 @@ if (data) {
       check(data.mapPlaces && data.mapPlaces[stop.place], `${stopLabel}.place "${stop.place}" is not in mapPlaces`);
       checkBilingual(stop.label, `${stopLabel}.label`);
     }
+    const schedule = item.schedule;
+    check(Array.isArray(schedule) && schedule.length >= 3, `quickPlan[${index}].schedule needs at least 3 slots`);
+    if (Array.isArray(schedule)) {
+      check(schedule.length <= 8, `quickPlan[${index}].schedule should stay ≤8 slots for folded UI`);
+      const allowedTones = new Set(['core', 'optional', 'alt', 'transit']);
+      for (const [slotIndex, slot] of schedule.entries()) {
+        const slotLabel = `quickPlan[${index}].schedule[${slotIndex}]`;
+        check(typeof slot.time === 'string' && slot.time.trim(), `${slotLabel}.time is required`);
+        checkBilingual(slot.title, `${slotLabel}.title`);
+        if (slot.note) checkBilingual(slot.note, `${slotLabel}.note`);
+        check(allowedTones.has(slot.tone), `${slotLabel}.tone is invalid`);
+      }
+    }
   }
   const quickPlanIds = new Set();
   for (const item of data.quickPlan || []) {

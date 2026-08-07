@@ -471,6 +471,93 @@ main { width: min(1180px, calc(100% - 40px)); margin: 0 auto; }
 .plan-day h3 { margin: 16px 0 6px; font-size: .89rem; line-height: 1.4; }
 .plan-day p { margin: 0; color: var(--muted); font-size: .75rem; line-height: 1.58; }
 .plan-cost { display: inline-flex; margin-top: 15px; padding: 4px 7px; border-radius: 6px; background: var(--green-soft); color: var(--green); font-size: .65rem; font-weight: 800; }
+.plan-timeline {
+  margin-top: 14px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: color-mix(in srgb, var(--surface) 88%, var(--ink) 4%);
+  overflow: hidden;
+}
+.plan-timeline summary {
+  list-style: none;
+  padding: 10px 12px;
+  color: var(--muted);
+  font-size: .68rem;
+  font-weight: 750;
+  cursor: pointer;
+}
+.plan-timeline summary::-webkit-details-marker { display: none; }
+.plan-timeline summary::after {
+  content: "+";
+  float: right;
+  color: var(--green);
+  font-size: .95rem;
+  line-height: 1;
+}
+.plan-timeline[open] summary::after { content: "−"; }
+.plan-timeline-list {
+  list-style: none;
+  margin: 0;
+  padding: 0 12px 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+.plan-timeline-item {
+  display: grid;
+  grid-template-columns: minmax(88px, 28%) 1fr;
+  gap: 10px;
+  padding: 10px 0;
+  border-top: 1px solid var(--line);
+}
+.plan-timeline-time {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.plan-timeline-time strong {
+  font-size: .72rem;
+  font-weight: 800;
+  letter-spacing: .01em;
+  color: var(--ink);
+  line-height: 1.25;
+}
+.plan-tone {
+  display: inline-flex;
+  width: fit-content;
+  padding: 2px 6px;
+  border-radius: 999px;
+  font-size: .58rem;
+  font-weight: 800;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  background: var(--line);
+  color: var(--muted);
+}
+.plan-timeline-item.tone-core .plan-tone { background: var(--green-soft); color: var(--green); }
+.plan-timeline-item.tone-optional .plan-tone { background: color-mix(in srgb, var(--orange) 18%, transparent); color: var(--orange); }
+.plan-timeline-item.tone-alt .plan-tone { background: color-mix(in srgb, var(--ink) 8%, transparent); color: var(--ink); }
+.plan-timeline-item.tone-transit .plan-tone { background: transparent; border: 1px dashed var(--line); color: var(--faint); }
+.plan-timeline-title {
+  margin: 0;
+  font-size: .74rem;
+  font-weight: 700;
+  line-height: 1.4;
+  color: var(--ink);
+}
+.plan-timeline-note {
+  margin: 4px 0 0;
+  font-size: .66rem;
+  line-height: 1.45;
+  color: var(--muted);
+}
+.plan-timeline-hint {
+  margin: 0;
+  padding: 0 12px 12px;
+  font-size: .62rem;
+  line-height: 1.45;
+  color: var(--faint);
+}
 .decision-note { display: grid; grid-template-columns: auto 1fr; gap: 13px; align-items: start; margin-top: 18px; padding: 17px 19px; border: 1px solid var(--line); border-radius: var(--radius-small); background: color-mix(in srgb, var(--gold-soft) 58%, var(--surface)); color: var(--ink-soft); font-size: .82rem; }
 .decision-icon { color: var(--gold); font-size: 1.1rem; }
 .decision-note strong { margin-right: 5px; color: var(--ink); }
@@ -615,8 +702,13 @@ footer { border-top: 1px solid var(--line); background: var(--surface); }
 .footer-inner strong { margin-right: 12px; color: var(--ink); font-size: .66rem; letter-spacing: .24em; }
 .footer-contact { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
 .footer-contact span { color: var(--faint); font-size: .62rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
-.footer-contact a { color: var(--green); font-size: .78rem; font-weight: 700; text-underline-offset: 3px; }
+.footer-contact a,
+.footer-handle { color: var(--green); font-size: .78rem; font-weight: 700; text-underline-offset: 3px; }
 .footer-contact a:hover { color: var(--ink); }
+.footer-handle { letter-spacing: .02em; }
+.only-en { display: none; }
+html[lang="en"] .only-en { display: flex; }
+html[lang="en"] .only-zh { display: none; }
 .footer-inner > p:last-child { max-width: 520px; text-align: right; }
 
 @media (max-width: 980px) {
@@ -631,6 +723,7 @@ footer { border-top: 1px solid var(--line); background: var(--surface); }
     border-left: 0;
     border-top: 1px solid var(--line);
   }
+  .plan-timeline-item { grid-template-columns: minmax(78px, 32%) 1fr; gap: 8px; }
   .nearby-grid { grid-template-columns: 1fr; }
   .stay-grid { grid-template-columns: repeat(2, 1fr); }
   .price-method { grid-template-columns: 1fr; gap: 9px; }
