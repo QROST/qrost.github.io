@@ -563,6 +563,8 @@ main { width: min(1180px, calc(100% - 40px)); margin: 0 auto; }
 .decision-note strong { margin-right: 5px; color: var(--ink); }
 
 .filter-panel { margin-bottom: 22px; padding: 15px; border: 1px solid var(--line); border-radius: var(--radius-small); background: var(--surface); }
+.filter-panel .filter-row + .filter-row { margin-top: 10px; }
+.filter-panel .filter-row-secondary { padding-top: 10px; border-top: 1px solid var(--line); }
 .filter-row { display: flex; flex-wrap: wrap; gap: 7px; }
 .filter-row-secondary { margin-top: 10px; padding-top: 10px; border-top: 1px solid var(--line); }
 .filter-button {
@@ -584,13 +586,7 @@ main { width: min(1180px, calc(100% - 40px)); margin: 0 auto; }
 .filter-button-muted:hover { color: var(--muted); background: transparent; }
 .filter-note { margin: 8px 0 0; color: var(--faint); font-size: .7rem; line-height: 1.45; }
 
-.live-section .live-panel {
-  padding: 15px;
-  border: 1px solid var(--line);
-  border-radius: var(--radius-small);
-  background: var(--surface);
-}
-.live-clock-row { display: flex; flex-wrap: wrap; align-items: flex-start; justify-content: space-between; gap: 12px; margin-bottom: 14px; }
+.filter-panel .live-clock-row { display: flex; flex-wrap: wrap; align-items: flex-start; justify-content: space-between; gap: 12px; margin-bottom: 14px; }
 .live-clock {
   display: flex;
   flex-direction: column;
@@ -616,15 +612,15 @@ main { width: min(1180px, calc(100% - 40px)); margin: 0 auto; }
   font-size: .74rem;
   line-height: 1.45;
 }
-.live-actions { margin-top: 12px; }
-.live-status {
+.filter-panel .live-actions { margin-top: 12px; }
+.filter-panel .live-status {
   margin: 14px 0 0;
   color: var(--ink-soft);
   font-size: .8rem;
   font-weight: 650;
   line-height: 1.45;
 }
-.live-hint {
+.filter-panel .live-hint {
   margin: 8px 0 0;
   color: var(--faint);
   font-size: .7rem;

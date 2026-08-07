@@ -373,10 +373,40 @@
     root.innerHTML = html;
   }
 
-  function renderFilters() {
+  function renderScheduleFilters() {
+    const clockEl = document.getElementById('live-clock-value');
+    const windowNote = document.getElementById('live-window-note');
+    const modeRoot = document.getElementById('live');
     const dayRoot = document.getElementById('day-filter');
+    const areaRoot = document.getElementById('live-area-filter');
     const typeRoot = document.getElementById('type-filter');
-    if (!dayRoot || !typeRoot) return;
+    const pastToggle = document.getElementById('live-past-toggle');
+    const statusEl = document.getElementById('live-status');
+    if (!modeRoot || !dayRoot || !areaRoot || !typeRoot) return;
+
+    const clock = getClock();
+    const inWindow = inCarWeekWindow(clock.dateIso);
+    if (clockEl) clockEl.textContent = formatClockDisplay(clock);
+
+    if (windowNote) {
+      if (!inWindow) {
+        windowNote.hidden = false;
+        windowNote.textContent = text('liveOutsideWindow');
+      } else {
+        windowNote.hidden = true;
+        windowNote.textContent = '';
+      }
+    }
+
+    modeRoot.setAttribute('aria-label', state.lang === 'zh' ? '时间筛选模式' : 'Time filter mode');
+    modeRoot.innerHTML = [
+      { id: 'browse', label: text('liveModeBrowse') },
+      { id: 'now', label: text('liveModeNow') },
+      { id: 'today', label: text('liveModeToday') }
+    ].map((item) => `
+      <button type="button" class="filter-button" data-live-mode="${escapeHtml(item.id)}" aria-pressed="${state.liveMode === item.id}">
+        ${escapeHtml(item.label)}
+      </button>`).join('');
 
     const liveOverridesDay = state.liveMode === 'now' || state.liveMode === 'today';
     const dayButtons = [{ id: 'all', label: DATA.ui.allDays }].concat(
@@ -401,6 +431,15 @@
       if (note) note.remove();
     }
 
+    areaRoot.setAttribute('aria-label', text('liveAreaLabel'));
+    const areaButtons = [{ id: 'all', label: text('liveAllAreas') }].concat(
+      (DATA.liveAreas || []).map((area) => ({ id: area.id, label: localized(area.name) }))
+    );
+    areaRoot.innerHTML = areaButtons.map((item) => `
+      <button type="button" class="filter-button" data-live-area="${escapeHtml(item.id)}" aria-pressed="${state.area === item.id}">
+        ${escapeHtml(item.label)}
+      </button>`).join('');
+
     const typeButtons = [
       { id: 'all', label: DATA.ui.allTypes },
       { id: 'essential', label: DATA.ui.topPicks },
@@ -411,70 +450,6 @@
     typeRoot.innerHTML = typeButtons.map((item) => `
       <button type="button" class="filter-button" data-type="${escapeHtml(item.id)}" aria-pressed="${state.type === item.id}">
         ${escapeHtml(localized(item.label))}
-      </button>`).join('');
-
-    dayRoot.querySelectorAll('[data-day]').forEach((button) => {
-      button.addEventListener('click', () => {
-        if (button.getAttribute('aria-disabled') === 'true') return;
-        state.day = button.getAttribute('data-day');
-        state.liveMode = 'browse';
-        renderFilters();
-        renderLivePanel();
-        renderSchedule();
-        restoreFilterFocus('day', state.day);
-      });
-    });
-    typeRoot.querySelectorAll('[data-type]').forEach((button) => {
-      button.addEventListener('click', () => {
-        state.type = button.getAttribute('data-type');
-        renderFilters();
-        renderLivePanel();
-        renderSchedule();
-        restoreFilterFocus('type', state.type);
-      });
-    });
-  }
-
-  function renderLivePanel() {
-    const clockEl = document.getElementById('live-clock-value');
-    const windowNote = document.getElementById('live-window-note');
-    const modeRoot = document.getElementById('live-mode-filter');
-    const areaRoot = document.getElementById('live-area-filter');
-    const pastToggle = document.getElementById('live-past-toggle');
-    const statusEl = document.getElementById('live-status');
-    if (!modeRoot || !areaRoot) return;
-
-    const clock = getClock();
-    const inWindow = inCarWeekWindow(clock.dateIso);
-    if (clockEl) clockEl.textContent = formatClockDisplay(clock);
-
-    if (windowNote) {
-      if (!inWindow) {
-        windowNote.hidden = false;
-        windowNote.textContent = text('liveOutsideWindow');
-      } else {
-        windowNote.hidden = true;
-        windowNote.textContent = '';
-      }
-    }
-
-    modeRoot.setAttribute('aria-label', state.lang === 'zh' ? '动态筛选模式' : 'Live filter mode');
-    modeRoot.innerHTML = [
-      { id: 'browse', label: text('liveModeBrowse') },
-      { id: 'now', label: text('liveModeNow') },
-      { id: 'today', label: text('liveModeToday') }
-    ].map((item) => `
-      <button type="button" class="filter-button" data-live-mode="${escapeHtml(item.id)}" aria-pressed="${state.liveMode === item.id}">
-        ${escapeHtml(item.label)}
-      </button>`).join('');
-
-    areaRoot.setAttribute('aria-label', text('liveAreaLabel'));
-    const areaButtons = [{ id: 'all', label: text('liveAllAreas') }].concat(
-      (DATA.liveAreas || []).map((area) => ({ id: area.id, label: localized(area.name) }))
-    );
-    areaRoot.innerHTML = areaButtons.map((item) => `
-      <button type="button" class="filter-button" data-live-area="${escapeHtml(item.id)}" aria-pressed="${state.area === item.id}">
-        ${escapeHtml(item.label)}
       </button>`).join('');
 
     if (pastToggle) {
@@ -496,25 +471,10 @@
       } else {
         statusText = statusWithCount('liveStatusBrowse', filtered.length);
       }
-      if (state.liveMode === 'now' || state.liveMode === 'today') {
-        statusText += text('liveScheduleSynced');
-      }
       statusEl.textContent = statusText;
     }
-
-    if (state.liveMode === 'now' || state.liveMode === 'today') {
-      renderSchedule();
-    }
-  }
-
-  function restoreFilterFocus(kind, value) {
-    const candidates = document.querySelectorAll(`[data-${kind}]`);
-    for (const candidate of candidates) {
-      if (candidate.getAttribute(`data-${kind}`) === value) {
-        candidate.focus();
-        break;
-      }
-    }
+    const scheduleStatus = document.getElementById('schedule-status');
+    if (scheduleStatus && statusEl) scheduleStatus.textContent = statusEl.textContent;
   }
 
   function tagLabel(tag) {
@@ -1025,8 +985,7 @@
   function renderDynamicContent() {
     renderQuickPlan();
     renderNearby();
-    renderFilters();
-    renderLivePanel();
+    renderScheduleFilters();
     renderSchedule();
     renderStays();
     renderCommuteOptions();
@@ -1039,8 +998,8 @@
   function startClockTimer() {
     if (clockTimer) clearInterval(clockTimer);
     clockTimer = window.setInterval(() => {
-      renderLivePanel();
-      if (state.liveMode === 'now') renderSchedule();
+      renderScheduleFilters();
+      if (state.liveMode === 'now' || state.liveMode === 'today') renderSchedule();
     }, 30000);
   }
 
@@ -1071,23 +1030,46 @@
     const themeButton = document.getElementById('theme-toggle');
     const from = document.getElementById('commute-from');
     const to = document.getElementById('commute-to');
-    const livePanel = document.getElementById('live-panel');
+    const filterPanel = document.querySelector('.filter-panel');
 
     if (langButton) langButton.addEventListener('click', () => setLanguage(state.lang === 'zh' ? 'en' : 'zh'));
     if (themeButton) themeButton.addEventListener('click', () => setTheme(!isDark(), true));
     if (from) from.addEventListener('change', () => { state.from = from.value; renderCommuteResult(); });
     if (to) to.addEventListener('change', () => { state.to = to.value; renderCommuteResult(); });
 
-    if (livePanel) {
-      livePanel.addEventListener('click', (event) => {
+    if (filterPanel) {
+      filterPanel.addEventListener('click', (event) => {
+        const dayButton = event.target.closest('[data-day]');
+        if (dayButton) {
+          if (dayButton.getAttribute('aria-disabled') === 'true') return;
+          const nextDay = dayButton.getAttribute('data-day');
+          if (nextDay && nextDay !== state.day) {
+            state.day = nextDay;
+            state.liveMode = 'browse';
+            renderScheduleFilters();
+            renderSchedule();
+            dayButton.focus();
+          }
+          return;
+        }
+        const typeButton = event.target.closest('[data-type]');
+        if (typeButton) {
+          const nextType = typeButton.getAttribute('data-type');
+          if (nextType && nextType !== state.type) {
+            state.type = nextType;
+            renderScheduleFilters();
+            renderSchedule();
+            typeButton.focus();
+          }
+          return;
+        }
         const modeButton = event.target.closest('[data-live-mode]');
         if (modeButton) {
           const nextMode = modeButton.getAttribute('data-live-mode');
           if (nextMode && nextMode !== state.liveMode) {
             state.liveMode = nextMode;
             if (nextMode === 'now' || nextMode === 'today') state.day = 'all';
-            renderFilters();
-            renderLivePanel();
+            renderScheduleFilters();
             renderQuickPlan();
             renderSchedule();
             schedulePlanMaps();
@@ -1100,7 +1082,7 @@
           const nextArea = areaButton.getAttribute('data-live-area');
           if (nextArea && nextArea !== state.area) {
             state.area = nextArea;
-            renderLivePanel();
+            renderScheduleFilters();
             renderSchedule();
             areaButton.focus();
           }
@@ -1108,7 +1090,7 @@
         }
         if (event.target.id === 'live-past-toggle' || event.target.closest('#live-past-toggle')) {
           state.showPast = !state.showPast;
-          renderLivePanel();
+          renderScheduleFilters();
           renderQuickPlan();
           renderSchedule();
           schedulePlanMaps();

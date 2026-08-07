@@ -28,7 +28,6 @@ window.PEBBLE_DATA = {
     navNearby: { zh: '周边早场', en: 'Nearby early' },
     navStay: { zh: '住宿', en: 'Stay' },
     navCommute: { zh: '通勤', en: 'Travel' },
-    navLive: { zh: '此刻', en: 'Now' },
     heroEyebrow: { zh: '公众行程指南 · 2026', en: 'Public trip guide · 2026' },
     checkedChip: { zh: '已核对 8 月 6 日', en: 'Checked Aug 6' },
     heroTitleTop: { zh: '圆石滩，不只一场车展', en: 'Pebble Beach is not one show' },
@@ -77,12 +76,6 @@ window.PEBBLE_DATA = {
     planToneOptional: { zh: '可选', en: 'Optional' },
     planToneAlt: { zh: '二选一', en: 'Either/or' },
     planToneTransit: { zh: '转场', en: 'Transit' },
-    liveKicker: { zh: '动态 · 半岛本地时', en: 'Live · peninsula local time' },
-    liveTitle: { zh: '此刻去哪、今天哪里有什么', en: 'What’s on now—and where today' },
-    liveIntro: {
-      zh: '时钟按 America/Los_Angeles（太平洋时间）。过期日期默认折叠；可按“此刻 / 今日 / 地点”快速筛选。演示可用 ?demoDate=2026-08-08&demoTime=14:30。',
-      en: 'Clock uses America/Los_Angeles (Pacific Time). Past days fold by default; filter by Now / Today / place. Demo with ?demoDate=2026-08-08&demoTime=14:30.'
-    },
     liveClockLabel: { zh: '当前时间', en: 'Local time' },
     liveModeBrowse: { zh: '浏览全部', en: 'Browse all' },
     liveModeNow: { zh: '此刻进行中', en: 'Happening now' },
@@ -104,14 +97,16 @@ window.PEBBLE_DATA = {
     liveStatusNow: { zh: '此刻 {count} 个进行中', en: '{count} happening now' },
     liveStatusToday: { zh: '今日 {count} 个活动', en: '{count} events today' },
     liveStatusBrowse: { zh: '显示 {count} 个活动', en: 'Showing {count} events' },
-    liveScheduleSynced: { zh: ' · 日程区已同步', en: ' · schedule synced below' },
-    liveDayFilterNote: { zh: '“此刻/今日”模式下日期筛选已放宽', en: 'Day filter widened in Now/Today mode' },
+    liveDayFilterNote: {
+      zh: '“此刻/今日”模式下日期按钮暂不可用；点选日期会回到“浏览全部”。',
+      en: 'Day buttons are disabled in Now/Today mode; picking a day returns to Browse all.'
+    },
     liveParsedHint: { zh: '“此刻”依赖公开时段字符串的近似解析；多场次与开放式结束时间会放宽匹配。', en: '“Now” uses approximate parsing of public time strings; multi-session and open-ended times are matched loosely.' },
-    scheduleKicker: { zh: '8.7–8.17 · 逐日选择', en: 'Aug 7–17 · day by day' },
+    scheduleKicker: { zh: '8.7–8.17 · 筛选日程', en: 'Aug 7–17 · filter the schedule' },
     scheduleTitle: { zh: '什么时候去哪里，哪些真正值得', en: 'Where to go, when—and what is worth it' },
     scheduleIntro: {
-      zh: '“推荐”基于公众可达性、内容独特性、价格与转场成本。票价和余票会变，购买前请打开每张卡片里的官方来源复核。',
-      en: 'Recommendations weigh public access, uniqueness, price and transfer cost. Tickets and availability change; reopen the official source on each card before buying.'
+      zh: '时钟按 America/Los_Angeles（太平洋时间）。用下方筛选浏览全部、此刻进行中、今日活动，或按日期、地点、推荐与价格缩小列表；过期日期默认折叠。票价和余票会变，购买前请打开每张卡片里的官方来源复核。演示可用 ?demoDate=2026-08-08&demoTime=14:30。',
+      en: 'Clock uses America/Los_Angeles (Pacific Time). Filter below: browse all, happening now, today’s events, or narrow by day, place, picks and price; past days fold by default. Tickets change—reopen each card’s official source before buying. Demo: ?demoDate=2026-08-08&demoTime=14:30.'
     },
     stayKicker: { zh: '住宿 · 当前库存快照', en: 'Lodging · inventory snapshot' },
     stayTitle: { zh: '用房价换时间，还是用通勤换房价', en: 'Trade room price for time—or time for price' },
