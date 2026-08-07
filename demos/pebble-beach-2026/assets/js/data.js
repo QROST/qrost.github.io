@@ -348,7 +348,7 @@ window.PEBBLE_DATA = {
         { time: "10:45", title: { zh: "转场至 Carmel", en: "Transit to Carmel" }, note: { zh: "Astons 11:00 开门，先占 Ocean Ave。", en: "Astons opens 11:00—secure Ocean Ave first." }, tone: "transit" },
         { time: "11:00–13:30", title: { zh: "Astons on the Avenue", en: "Astons on the Avenue" }, note: { zh: "Carmel 免费阿斯顿·马丁街展。", en: "Free Aston Martin street show on Carmel's Ocean Ave." }, tone: "core" },
         { time: "13:45", title: { zh: "转场至 Pacific Grove", en: "Transit to Pacific Grove" }, note: { zh: "Lighthouse Ave 约 15–25 分钟。", en: "About 15–25 minutes to Lighthouse Ave." }, tone: "transit" },
-        { time: "14:00–17:00", title: { zh: "The Little Car Show", en: "The Little Car Show" }, note: { zh: "免费微型车展，展后有巡航。", en: "Free micro-car show with a post-show cruise." }, tone: "core" },
+        { time: "14:00–17:00", title: { zh: "The Little Car Show", en: "The Little Car Show" }, note: { zh: "观众免费；参展另收费。", en: "Spectators free; exhibitors pay separately." }, tone: "core" },
         { time: "16:30", title: { zh: "转场 · 晚场只选一个", en: "Transit · pick only one evening" }, note: { zh: "Luau / Motorlux / Motoring Classic 互斥。", en: "Luau, Motorlux and Motoring Classic conflict." }, tone: "transit" },
         { time: "17:00–22:00", title: { zh: "或 Luau / Motorlux / Motoring Classic 抵达", en: "or Luau / Motorlux / Motoring Classic arrivals" }, note: { zh: "Luau $70 · Motorlux $825 · 抵达观赏免费。", en: "Luau $70 · Motorlux $825 · arrivals viewing free." }, tone: "alt" },
       ],
@@ -435,7 +435,7 @@ window.PEBBLE_DATA = {
         { time: "05:30", title: { zh: "或 Dawn Patrol", en: "or Dawn Patrol" }, note: { zh: "主展开门即入场，看黎明车队。", en: "Enter at gates opening for dawn arrivals." }, tone: "alt" },
         { time: "08:00–13:30", title: { zh: "或 Concours 评审", en: "or Concours judging" }, note: { zh: "8:00 评审开始，13:30 起颁奖。", en: "Judging from 8:00; awards from 13:30." }, tone: "alt" },
         { time: "08:00–18:00", title: { zh: "或 Concours Village 免费", en: "or Concours Village free" }, note: { zh: "不含 Golf Links 主展场与颁奖。", en: "Does not include Golf Links show field or awards." }, tone: "alt" },
-        { time: "13:00–16:00", title: { zh: "可选 Car Week Cruise-In", en: "Optional Car Week Cruise-In" }, note: { zh: "主展后轻松收尾，免费。", en: "Easy free wind-down after the flagship." }, tone: "optional" },
+        { time: "13:00–16:00", title: { zh: "可选 Car Week Cruise-In", en: "Optional Car Week Cruise-In" }, note: { zh: "展车位 $30–$100；步行观众或免费，勿当作纯免费场。", en: "Show-car spots $30–$100; walk-up spectators may be free—not a blanket free event." }, tone: "optional" },
       ],
     },
     {
@@ -443,7 +443,7 @@ window.PEBBLE_DATA = {
       date: { zh: '8 月 17 日', en: 'Aug 17' }, day: { zh: '周一', en: 'Mon' },
       title: { zh: 'Stanton Center → 返程', en: 'Stanton Center → depart' },
       body: { zh: '户外大活动已经结束；先退房并寄存行李，中午看历史展，再返程。', en: 'The marquee outdoor events are over; check out and store bags first, see the history exhibit at noon, then depart.' },
-      cost: { zh: '$10 成人', en: '$10 adult' },
+      cost: { zh: '$15 成人 · 18 岁以下免费', en: '$15 adult · under 18 free' },
       route: {
         mode: 'single',
         stops: [{ place: 'stanton', label: { zh: 'Stanton Center', en: 'Stanton Center' } }]
@@ -893,7 +893,7 @@ window.PEBBLE_DATA = {
       summary: { zh: '车周开场藏品展：海报、文献、徽章、模型与文物；8/10–11 10:00–17:00，8/12 10:00–15:00。', en: 'Car Week’s opening automobilia hall—posters, literature, badges, models and artifacts. Hours: Aug 10–11 10:00–17:00; Aug 12 10:00–15:00.' },
       why: { zh: '整周最完整的“非整车”收藏体验；适合拍卖预热或雨天/中场补充。单日 $30、三日 $60，性价比高于多数高价夜场。', en: 'The week’s strongest non-car collecting experience—ideal as auction warm-up or a rainy/midweek filler. 1-day $30 / 3-day $60 beats most luxury evenings on value.' },
       access: { zh: '1441 Canyon Del Rey Blvd；购票页另有 Forum / VIP 升级。周二另有现场藏品拍卖。', en: '1441 Canyon Del Rey Blvd; Forum/VIP upgrades on the ticket page. Live automobilia auction is Tuesday.' },
-      price: { zh: '单日 $30 · 三日 $60 · VIP $165', en: '1-day $30 · 3-day $60 · VIP $165' }, tags: ['paid'], categories: ['essential', 'paid'], score: '4.0',
+      price: { zh: '单日 $30 · 三日 $60 · VIP $165（早鸟标价，以购票页为准）', en: '1-day $30 · 3-day $60 · VIP $165 (early-bird listed; recheck ticket page)' }, tags: ['paid', 'subjectTag'], categories: ['essential', 'paid'], score: '4.0',
       sources: [
         { url: 'https://automobiliacollectorsexpo.com/', label: { zh: 'ACE 官网 ↗', en: 'ACE official ↗' } },
         { url: 'https://automobiliacollectorsexpo.com/attendees/get-tickets', label: { zh: '购票 ↗', en: 'Tickets ↗' } },
@@ -906,7 +906,7 @@ window.PEBBLE_DATA = {
       summary: { zh: '周一 Marina 运动/超跑展示 10:00–15:00 对公众免费；注册车手随后赴 Laguna Seca 巡游圈。', en: 'Monday sports/exotic showcase at Marina is free to the public 10:00–15:00; registered drivers continue to Laguna Seca parade laps.' },
       why: { zh: '周一最轻松的免费看车补充；不要跟车进赛道。若已去 ACE，这里适合当北侧顺路站。', en: 'The easiest free Monday car stop—do not follow drivers onto the track. A natural north-side add-on if you already hit ACE.' },
       access: { zh: 'The Brass Tap at The Dunes（99 General Stillwell Dr, Marina）；参赛套餐另售，赛道段仅限注册车手。', en: 'The Brass Tap at The Dunes (99 General Stillwell Dr, Marina); driver packages sold separately—track segment is registered drivers only.' },
-      price: { zh: '公众展区免费 · 参赛约 $145–247', en: 'Public showcase free · drivers ~$145–247' }, tags: ['free'], categories: ['free'], score: '3.5',
+      price: { zh: '公众展区免费 · 参赛约 $145–247', en: 'Public showcase free · drivers ~$145–247' }, tags: ['mixedTag'], categories: ['free', 'paid'], score: '3.5',
       sources: [
         { url: 'https://centralcoastpokerrally.com/itinerary/', label: { zh: '官方行程 ↗', en: 'Official itinerary ↗' } },
         { url: 'https://centralcoastpokerrally.com/', label: { zh: '报名首页 ↗', en: 'Registration home ↗' } }
@@ -957,10 +957,10 @@ window.PEBBLE_DATA = {
     {
       id: 'little-car', thumbId: 'little-car', area: 'pacificgrove', date: '2026-08-12', time: '12:00–17:00', timeNote: { zh: '含巡航', en: 'includes cruise' },
       title: { zh: 'The Little Car Show', en: 'The Little Car Show' }, location: { zh: 'Lighthouse Ave · Pacific Grove', en: 'Lighthouse Ave · Pacific Grove' },
-      summary: { zh: '免费微型/迷你经典车展，展后还有巡航活动。', en: 'Free micro- and mini-classic car show with a post-show cruise.' },
-      why: { zh: '早场最有趣、记忆点最强的免费主场；与同日 Carmel Astons 可组合，但不必两边赶。', en: 'The most memorable free early anchor—pair with Carmel Astons the same day, but do not rush both.' },
-      access: { zh: 'Lighthouse Ave 步行区；Pacific Grove 停车先到先得。', en: 'Lighthouse Ave pedestrian zone; Pacific Grove parking is first come.' },
-      price: { zh: '免费', en: 'Free' }, tags: ['free'], categories: ['essential', 'free'], score: '4.5',
+      summary: { zh: '观众免费的微型/迷你经典车展，展后有巡航；参展报名另收费（约 $100–$125），勿当作“带车也免费”。', en: 'Spectator-free micro/mini classic show with a post-show cruise; exhibitor registration is separate (~$100–$125)—not free if you bring a car.' },
+      why: { zh: '早场最有趣、记忆点最强的免费主场（对观众）；与同日 Carmel Astons 可组合，但不必两边赶。', en: 'The most memorable free early anchor for spectators—pair with Carmel Astons the same day, but do not rush both.' },
+      access: { zh: 'Lighthouse Ave 步行区；Pacific Grove 停车先到先得。想参展请走官方报名，勿按观众免费理解。', en: 'Lighthouse Ave pedestrian zone; Pacific Grove parking is first come. Exhibitors must register officially—do not treat spectator free as exhibitor free.' },
+      price: { zh: '观众免费 · 参展约 $100–$125', en: 'Spectators free · exhibitors ~$100–$125' }, tags: ['mixedTag'], categories: ['essential', 'free', 'paid'], score: '4.5',
       source: 'https://www.thelittlecarshow.com/'
     },
     {
@@ -1222,11 +1222,11 @@ window.PEBBLE_DATA = {
       ]
     },
     {
-      id: 'pg-rally', thumbId: 'pg-rally', area: 'pacificgrove', date: '2026-08-14', time: '10:00–17:00+', timeNote: { zh: '17:00 发车', en: '17:00 departure' },
+      id: 'pg-rally', thumbId: 'pg-rally', area: 'pacificgrove', date: '2026-08-14', time: '10:00–14:00+', timeNote: { zh: '14:00 发车', en: '14:00 departure' },
       title: { zh: 'Pacific Grove Concours Auto Rally', en: 'Pacific Grove Concours Auto Rally' }, location: { zh: 'Forest Ave × Lighthouse Ave', en: 'Forest Ave at Lighthouse Ave' },
-      summary: { zh: '车辆 10:00–12:30 集结，17:00 沿 Pacific Grove 与 Pebble Beach 海岸出发。', en: 'Cars stage from 10:00–12:30, then depart at 17:00 along the Pacific Grove and Pebble Beach coast.' },
-      why: { zh: '轻松、免费，尤其适合作为 Werks 后的晚间视觉收尾。', en: 'Relaxed and free, especially good as a visual finish after Werks.' },
-      access: { zh: '主办方尚未发布专用观众停车方案；给市区找车位留时间。', en: 'No dedicated spectator parking plan is posted; allow extra time to find downtown parking.' },
+      summary: { zh: '参赛车 10:00 起在 Lighthouse Ave 集结；观众可从 10:00 起观看，14:00 发车巡游。', en: 'Entrants stage from 10:00 along Lighthouse Ave; spectators can view from 10:00, with rally departure at 14:00.' },
+      why: { zh: '轻松、观众免费；适合 Werks 后的下午视觉收尾（不是傍晚 17:00 场）。', en: 'Relaxed and free for spectators—a Friday afternoon visual wrap after Werks (not a 17:00 evening start).' },
+      access: { zh: 'Forest Ave × Lighthouse Ave；主办方尚未发布专用观众停车方案，给市区找车位留时间。', en: 'Forest Ave at Lighthouse Ave; no dedicated spectator parking plan is posted—allow extra time downtown.' },
       price: { zh: '观众免费', en: 'Spectators free' }, tags: ['free'], categories: ['free'], score: '4.0',
       source: 'https://pgrotary.org/annual-pacific-grove-concours-auto-rally/event-registration-schedule/'
     },
@@ -1385,20 +1385,26 @@ window.PEBBLE_DATA = {
     {
       id: 'cruise-in', thumbId: 'cruise-in', area: 'monterey', date: '2026-08-16', time: '13:00–16:00', timeNote: { zh: '主展后轻松场', en: 'post-Concours casual' },
       title: { zh: 'Car Week Cruise-In', en: 'Car Week Cruise-In' }, location: { zh: 'Monterey Touring Vehicles', en: 'Monterey Touring Vehicles' },
-      summary: { zh: '周日下午免费 cruise-in；适合 Concours / Village 之后的轻松收尾。', en: 'Free Sunday-afternoon cruise-in—an easy wind-down after Concours or Village.' },
-      why: { zh: '主展结束后仍想看车、但不想再付费时的轻量选项；以 MTV 官方页为准。', en: 'A light post-flagship option if you still want cars without another ticket; follow the MTV official page.' },
-      access: { zh: 'Monterey Touring Vehicles；VIP 停车若有另售，以官方为准。', en: 'Monterey Touring Vehicles; optional VIP parking if offered—confirm on the official page.' },
-      price: { zh: '免费', en: 'Free' }, tags: ['free'], categories: ['free'], score: '3.5',
-      source: 'https://www.montereytouringvehicles.com/drive-monterey-road-rallies/'
+      summary: { zh: '第 4 届 Car Week Cruise-In（13:00–16:00）。展车登记收费：VIP 车库 $100（10 个）、Preferred 前场 $50、后场 $30；勿与“每月例行 cruise-in 免费”混淆。', en: '4th Annual Car Week Cruise-In (13:00–16:00). Show-car registration is paid: VIP garage $100 (10 spots), preferred front lot $50, backlot $30—do not confuse with MTV’s free monthly cruise-ins.' },
+      why: { zh: '适合 Concours/Village 后想继续看车的人；若只是步行围观，DMO 标为免费，但带车参展必须付费登记。', en: 'A post-Concours/Village car stop; DMO lists spectator entry as free, but bringing a car requires paid registration.' },
+      access: { zh: 'Monterey Touring Vehicles；展车需官方登记（含早到场与部分档位 T 恤）。步行观众规则以 MTV/See Monterey 临行前页为准。', en: 'Monterey Touring Vehicles; show cars require official registration (early load-in and T-shirt on some tiers). Recheck MTV/See Monterey for walk-up spectator rules before travel.' },
+      price: { zh: '观众或免费 · 展车位 $30–$100', en: 'Spectators likely free · show-car spots $30–$100' }, tags: ['mixedTag'], categories: ['free', 'paid'], score: '3.5',
+      sources: [
+        { url: 'https://www.montereytouringvehicles.com/drive-monterey-road-rallies/', label: { zh: 'MTV 官方：展车登记价 ↗', en: 'MTV official: show-car registration prices ↗' } },
+        { url: 'https://www.seemonterey.com/events/monterey-car-week/', label: { zh: 'See Monterey：观众标 Free ↗', en: 'See Monterey: listed Free for spectators ↗' } }
+      ]
     },
     {
       id: 'stanton', thumbId: 'stanton', area: 'monterey', date: '2026-08-17', time: '12:00–16:00', timeNote: { zh: '15:00 最后入场', en: 'last entry 15:00' },
       title: { zh: 'Racing to Del Monte & Pebble Beach 展览', en: 'Racing to Del Monte & Pebble Beach exhibit' }, location: { zh: 'Stanton Center · Custom House Plaza', en: 'Stanton Center · Custom House Plaza' },
       summary: { zh: '以本地赛车与 Pebble Beach 历史为主题的室内展，8 月 17 日为最后一天。', en: 'An indoor exhibit on local racing and Pebble Beach history; August 17 is its final day.' },
       why: { zh: '户外主活动周日结束后，最适合退房日的轻量汽车文化收尾。', en: 'The easiest automotive-history wrap-up after the marquee outdoor events end Sunday.' },
-      access: { zh: '可直接到场；成人 $10、65 岁以上或军人 $8、18 岁以下免费。附近可用 Waterfront Lot 或 East/West garages。', en: 'Walk-ins accepted. Adults $10, seniors 65+/military $8, under 18 free. Use Waterfront Lot or East/West garages nearby.' },
-      price: { zh: '成人 $10', en: '$10 adult' }, tags: ['paid'], categories: ['essential', 'paid'], score: '4.0',
-      source: 'https://www.montereyhistory.org/stanton-center/exhibits/'
+      access: { zh: '8/7–8/17 延长开放每日 12:00–16:00，15:00 最后入场。成人 $15、65+ / 军人 $12、18 岁以下免费；会员免费。附近可用 Waterfront Lot 或 East/West garages。', en: 'Extended hours Aug 7–17 daily 12:00–16:00; last entry 15:00. Adults $15, seniors 65+/military $12, under 18 free; members free. Use Waterfront Lot or East/West garages nearby.' },
+      price: { zh: '成人 $15 · 65+/军人 $12 · 18 岁以下免费', en: '$15 adult · $12 senior/military · under 18 free' }, tags: ['paid'], categories: ['essential', 'paid'], score: '4.0',
+      sources: [
+        { url: 'https://www.montereyhistory.org/stanton-center/', label: { zh: 'Stanton Center：票价与开放时间 ↗', en: 'Stanton Center: admission and hours ↗' } },
+        { url: 'https://www.montereyhistory.org/stanton-center/exhibits/', label: { zh: '展览页 ↗', en: 'Exhibits page ↗' } }
+      ]
     }
   ],
 
