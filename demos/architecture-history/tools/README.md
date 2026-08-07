@@ -110,3 +110,20 @@ importer can only add candidate ULAN external identifiers to existing entities.
 It cannot create people, practices, works, credits, or lineage relations. The
 validator reconstructs the complete expected overlay from the accepted snapshot
 records and rejects any changed identity, claim, attribution URI, or ordering.
+If `vocab.getty.edu` returns HTTP 499 / service-degraded, stop: do not invent
+identity patches from HTML display pages.
+
+Chinese-name seeds for people missing Wikidata `zh`/`zh-hans` labels:
+
+```bash
+python3 tools/fetch_name_zh_seeds.py --accessed YYYY-MM-DD
+# Review tools/name-zh-seeds.json; seeds must stay empty unless reciprocal
+# enwiki/zhwiki → Wikidata ownership matches the person QID.
+python3 tools/apply_name_zh_seeds.py   # optional catalog patch path
+# or re-import; import_wikidata_pilot.py loads tools/name-zh-seeds.json
+python3 tools/build.py
+```
+
+`fetch_name_zh_seeds.py` rejects sitelinks or langlinks whose Wikipedia page
+`wikibase_item` does not equal the person QID (guards against building/work
+pages wrongly attached to people). Do not mass-fill `name_zh` by transliteration.

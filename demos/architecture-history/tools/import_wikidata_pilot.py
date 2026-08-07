@@ -27,6 +27,7 @@ SNAPSHOT_DIR = ROOT / "assets" / "data" / "source-snapshots"
 TYPE_AUTHORITY_SEEDS_PATH = (
     ROOT / "tools" / "wikidata-work-type-authority-seeds.json"
 )
+NAME_ZH_SEEDS_PATH = ROOT / "tools" / "name-zh-seeds.json"
 ADAPTER_ID = "wikidata-hydration-pilot"
 ADAPTER_VERSION = "0.1.0"
 TRANSFORMER_ID = "wikidata-hydration-to-architecture-history"
@@ -536,6 +537,20 @@ def load_json(path: Path) -> Any:
         return json.load(handle)
 
 
+def load_name_zh_seeds(path: Path = NAME_ZH_SEEDS_PATH) -> dict[str, dict]:
+    if not path.is_file():
+        return {}
+    payload = load_json(path)
+    if not isinstance(payload, dict) or not isinstance(payload.get("seeds"), list):
+        raise ValueError(f"{path}: invalid name-zh seed file shape")
+    seeds: dict[str, dict] = {}
+    for row in payload["seeds"]:
+        if not isinstance(row, dict) or not isinstance(row.get("qid"), str):
+            continue
+        seeds[row["qid"]] = row
+    return seeds
+
+
 def atomic_write_json(path: Path, payload: Any) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     content = (
@@ -915,6 +930,36 @@ class CatalogBuilder:
         self.works: dict[str, dict] = {}
         self.claims: dict[str, dict] = {}
         self.relations: dict[str, dict] = {}
+        self.name_zh_seeds = load_name_zh_seeds()
+
+    def langlink_name_zh_evidence(
+        self,
+        qid: str,
+        seed: dict,
+    ) -> dict:
+        wrapper = self.entities[qid]
+        locator = (
+            f"{qid}/sitelinks/enwiki/langlinks/zh/"
+            f"{seed['name_zh'].replace(' ', '_')}"
+        )
+        return {
+            "accessed": self.accessed,
+            "contributors": [],
+            "extraction_method": "structured_mapping",
+            "language": "zh",
+            "locator": locator,
+            "native_field_path": "/sitelinks/enwiki/langlinks/zh",
+            "native_predicate": None,
+            "native_record_id": f"{qid}@{wrapper['lastrevid']}",
+            "qualifiers": [],
+            "rank": None,
+            "references": [],
+            "snapshot_id": self.snapshot_id,
+            "source_id": "wikidata",
+            "source_record_sha256": wrapper["record_sha256"],
+            "support": "explicit",
+            "url": wrapper["pinned_url"],
+        }
 
     def record(self, qid: str) -> dict:
         wrapper = self.entities.get(qid)
@@ -995,6 +1040,7 @@ class CatalogBuilder:
         subject_id: str,
         chinese: Optional[str],
         english: str,
+        name_zh_seed: Optional[dict] = None,
     ) -> list[str]:
         claim_ids: list[str] = []
         en_id = f"claim-wd-{qid_slug(qid)}-name-en"
@@ -1016,27 +1062,31 @@ class CatalogBuilder:
             )
         )
         if chinese:
-            zh_language = (
-                "zh-hans"
-                if label_value(self.record(qid), "zh-hans")
-                else "zh"
-            )
             zh_id = f"claim-wd-{qid_slug(qid)}-name-zh"
+            if name_zh_seed is not None:
+                zh_evidence = [self.langlink_name_zh_evidence(qid, name_zh_seed)]
+            else:
+                zh_language = (
+                    "zh-hans"
+                    if label_value(self.record(qid), "zh-hans")
+                    else "zh"
+                )
+                zh_evidence = [
+                    self.evidence(
+                        qid,
+                        path=f"/labels/{zh_language}",
+                        predicate=None,
+                        locator=f"{qid}/labels/{zh_language}",
+                        language=zh_language,
+                    )
+                ]
             claim_ids.append(
                 self.add_claim(
                     claim_id=zh_id,
                     subject_id=subject_id,
                     predicate="field_name_zh",
                     object_value={"value": chinese},
-                    evidence=[
-                        self.evidence(
-                            qid,
-                            path=f"/labels/{zh_language}",
-                            predicate=None,
-                            locator=f"{qid}/labels/{zh_language}",
-                            language=zh_language,
-                        )
-                    ],
+                    evidence=zh_evidence,
                 )
             )
         return claim_ids
@@ -1061,6 +1111,11 @@ class CatalogBuilder:
             chinese, english = labels(record)
         except ValueError:
             return None
+        name_zh_seed = None
+        if chinese is None:
+            name_zh_seed = self.name_zh_seeds.get(qid)
+            if name_zh_seed is not None:
+                chinese = name_zh_seed["name_zh"]
         summary_en, summary_zh = descriptions(record)
         country_codes, region = nationality_geography(
             record,
@@ -1071,7 +1126,16 @@ class CatalogBuilder:
             subject_id=person_id,
             chinese=chinese,
             english=english,
+            name_zh_seed=name_zh_seed,
         )
+        if name_zh_seed is not None:
+            name_zh_status = name_zh_seed["name_zh_status"]
+        else:
+            name_zh_status = (
+                "source_label_candidate"
+                if chinese
+                else "missing"
+            )
         self.people[person_id] = {
             "aliases_en": aliases(record, ("en",)),
             "aliases_zh": aliases(record, ("zh-hans", "zh")),
@@ -1087,11 +1151,7 @@ class CatalogBuilder:
             "name_en": english,
             "name_native": None,
             "name_zh": chinese,
-            "name_zh_status": (
-                "source_label_candidate"
-                if chinese
-                else "missing"
-            ),
+            "name_zh_status": name_zh_status,
             "region": region,
             "roles": ["architect"],
             "summary_en": summary_en,

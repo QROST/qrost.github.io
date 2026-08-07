@@ -13,9 +13,13 @@ practices, 39 country-place records, 191 raw relationship review edges, and 4669
 source claims. Exact direct-P31 mapping currently classifies 286 works, while
 255 remain unmapped and 18 remain ambiguous. Wikidata is the primary structured
 source; a refreshed 24-anchor Getty ULAN P245 crosswalk is committed, but the
-reciprocal Getty identity overlay has not been re-imported yet. Every public
-record remains `candidate`; the reviewer registry is empty and the published
-verified count is therefore zero.
+reciprocal Getty identity overlay is blocked as of 2026-08-07 because
+`vocab.getty.edu` returns HTTP 499 (`Service temporarily degraded`) for JSON-LD
+and RDF downloads. Public people therefore still carry zero `ulan` external ids.
+Of 539 people, 281 have Wikidata-backed `name_zh`; the remaining 258 lack a safe
+authority Chinese label (enwiki→zh langlink seeds are empty after reciprocal
+Wikidata ownership checks). Every public record remains `candidate`; the
+reviewer registry is empty and the published verified count is therefore zero.
 
 ## Data authority
 
@@ -71,17 +75,23 @@ unbounded online P279 traversal.
 
 ## Getty ULAN identity pilot
 
-The first ULAN pass began with the 553 people and practices in the catalog.
-Wikidata exposed a direct P245 identifier for 399 of them. A deterministic
-coverage rule selected 24 review anchors, then pinned each P245 statement to an
-exact Wikidata revision before any Getty request was made.
+The active catalog crosswalk scans P245 for every person and practice already
+imported, then selects exactly 24 review anchors by region/period coverage and a
+stable hash. Selected P245 statements are pinned to exact Wikidata revisions
+before any Getty request. The crosswalk is authority-only and cannot publish
+identity claims by itself.
 
-Getty returned an exact reciprocal Wikidata link for 11 anchors. Only those 11
-person identifiers enter the public candidate catalog. The other 13 responses
-had no reciprocal Wikidata link; they remain explicit screening rejections and
-produce no entity patch or public claim. The minimized Getty snapshot retains
-identity and provenance fields plus response hashes, but not display names,
-descriptions, relationships, or raw response bodies.
+A live Getty fetch on 2026-08-07 against `https://vocab.getty.edu/ulan/{id}`
+(JSON-LD) and the RDF download redirect both returned HTTP 499. The HTML ULAN
+display pages still respond, but they are not an accepted identity adapter. No
+new `getty-ulan-identity` snapshot was written for the expanded catalog; public
+people keep `ulan` absent until Getty LOD recovers and the reciprocal importer
+re-runs.
+
+Earlier pilot fixtures and offline tests still exercise the accept/screen
+boundary: only an exact Getty → Wikidata reciprocal link may patch an existing
+person. Missing or conflicting backlinks become screening rejections and never
+create entities or lineage edges.
 
 ## Verification states
 
