@@ -543,9 +543,19 @@
     const areaTag = event.area
       ? `<span class="event-area">${escapeHtml(areaName(event.area))}</span>`
       : '';
+    const thumb = event.thumbId && DATA.thumbLibrary && DATA.thumbLibrary[event.thumbId]
+      ? DATA.thumbLibrary[event.thumbId]
+      : null;
+    const thumbHtml = thumb
+      ? `<img class="event-thumb" src="${escapeHtml(thumb.src)}" alt="${escapeHtml(localized(thumb.alt))}" width="${escapeHtml(String(thumb.width))}" height="${escapeHtml(String(thumb.height))}" loading="lazy" decoding="async">`
+      : '';
+    const thumbCreditHtml = thumb
+      ? `<p class="event-thumb-credit">${escapeHtml(text('thumbCredit'))}: <a href="${escapeHtml(thumb.sourceUrl)}" target="_blank" rel="noopener noreferrer">${escapeHtml(localized(thumb.credit))}</a></p>`
+      : '';
     return `
       <article class="event-card" id="event-${escapeHtml(event.id)}">
-        <div class="event-main">
+        <div class="event-main${thumb ? ' has-thumb' : ''}">
+          ${thumbHtml}
           <div class="event-time">${escapeHtml(event.time)}<small>${escapeHtml(localized(event.timeNote))}</small></div>
           <div class="event-copy">
             <h3>${escapeHtml(localized(event.title))}</h3>
@@ -563,6 +573,7 @@
           <div class="event-detail">
             <p><strong>${escapeHtml(ui('why'))}</strong>${escapeHtml(localized(event.why))}</p>
             <p><strong>${escapeHtml(ui('access'))}</strong>${escapeHtml(localized(event.access))}</p>
+            ${thumbCreditHtml}
             <div class="event-sources">
               ${eventSources.map((source) => `<a class="event-source" href="${escapeHtml(source.url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(localized(source.label))}</a>`).join('')}
             </div>

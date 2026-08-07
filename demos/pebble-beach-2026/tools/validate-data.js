@@ -1,6 +1,7 @@
 'use strict';
 
 const path = require('node:path');
+const fs = require('node:fs');
 
 global.window = globalThis;
 require(path.join(__dirname, '..', 'assets', 'js', 'data.js'));
@@ -83,6 +84,27 @@ if (data) {
   }
   check(liveAreaIds.size >= 6, `expected at least 6 live areas, found ${liveAreaIds.size}`);
 
+  const thumbSrcPattern = /^assets\/img\/events\/[a-z0-9-]+\.webp$/;
+  const allowedThumbLicenses = new Set(['wikimedia-cc', 'public-domain', 'organizer-press', 'own-photo']);
+  const thumbIds = new Set();
+  check(data.thumbLibrary && typeof data.thumbLibrary === 'object' && !Array.isArray(data.thumbLibrary), 'thumbLibrary must be an object');
+  for (const [thumbId, thumb] of Object.entries(data.thumbLibrary || {})) {
+    const label = `thumbLibrary.${thumbId}`;
+    check(typeof thumbId === 'string' && thumbId.trim(), `${label} key is invalid`);
+    check(!thumbIds.has(thumbId), `duplicate thumbLibrary id: ${thumbId}`);
+    thumbIds.add(thumbId);
+    check(thumb && typeof thumb === 'object', `${label} must be an object`);
+    check(typeof thumb.src === 'string' && thumbSrcPattern.test(thumb.src), `${label}.src must match assets/img/events/[slug].webp`);
+    checkBilingual(thumb.alt, `${label}.alt`);
+    checkBilingual(thumb.credit, `${label}.credit`);
+    checkUrl(thumb.sourceUrl, `${label}.sourceUrl`);
+    check(Number.isInteger(thumb.width) && thumb.width > 0, `${label}.width must be a positive integer`);
+    check(Number.isInteger(thumb.height) && thumb.height > 0, `${label}.height must be a positive integer`);
+    check(allowedThumbLicenses.has(thumb.license), `${label}.license is invalid`);
+    const thumbPath = path.join(__dirname, '..', thumb.src);
+    check(fs.existsSync(thumbPath), `${label}.src file missing: ${thumb.src}`);
+  }
+
   const eventIds = new Set();
   for (const [index, event] of (data.events || []).entries()) {
     const label = `events[${index}]`;
@@ -104,6 +126,10 @@ if (data) {
     for (const [sourceIndex, source] of sources.entries()) {
       checkUrl(source.url, `${label}.sources[${sourceIndex}].url`);
       if (source.label) checkBilingual(source.label, `${label}.sources[${sourceIndex}].label`);
+    }
+    if (event.thumbId != null && event.thumbId !== '') {
+      check(typeof event.thumbId === 'string' && event.thumbId.trim(), `${label}.thumbId must be a non-empty string`);
+      check(thumbIds.has(event.thumbId), `${label}.thumbId "${event.thumbId}" is not in thumbLibrary`);
     }
   }
   check(eventIds.size >= 20, `expected at least 20 events, found ${eventIds.size}`);
