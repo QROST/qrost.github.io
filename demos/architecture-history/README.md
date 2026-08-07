@@ -8,13 +8,14 @@ The project is intentionally a **curated pilot**, not a claim to have completed
 global architectural history. Public counts distinguish discovered candidates,
 reviewed facts, contested claims, and gaps in coverage.
 
-The current catalog contains 532 cross-regional work fixtures, 527 people, 26
-practices, 39 country-place records, 190 raw relationship review edges, and 4444
-source claims. Exact direct-P31 mapping currently classifies 280 works, while
-234 remain unmapped and 18 remain ambiguous. Wikidata is the primary structured
-source; 11 person records also carry candidate Getty ULAN identifiers that
-passed reciprocal-link screening. Every public record remains `candidate`; the
-reviewer registry is empty and the published verified count is therefore zero.
+The current catalog contains 559 cross-regional work fixtures, 539 people, 29
+practices, 39 country-place records, 191 raw relationship review edges, and 4669
+source claims. Exact direct-P31 mapping currently classifies 286 works, while
+255 remain unmapped and 18 remain ambiguous. Wikidata is the primary structured
+source; a refreshed 24-anchor Getty ULAN P245 crosswalk is committed, but the
+reciprocal Getty identity overlay has not been re-imported yet. Every public
+record remains `candidate`; the reviewer registry is empty and the published
+verified count is therefore zero.
 
 ## Data authority
 
@@ -47,7 +48,7 @@ product model, not a replacement standard.
 
 ## Wikidata hydration pilot
 
-The pilot reuses 532 deliberately curated, source-derived QIDs across nine
+The pilot reuses 559 deliberately curated, source-derived QIDs across nine
 macroregions. They are mapping fixtures, not a popularity ranking or a
 representative global sample. For each seed and direct dependency, the adapter:
 
@@ -64,7 +65,7 @@ snapshot, and its P279 statements are retained only for audit context. The
 importer never traverses P279 to classify a work.
 
 The planned discovery frame is fixed at 9 macroregions × 8 periods (72 cells),
-but every cell is currently `not_run`. No global coverage percentage is claimed.
+and the first coverage discovery snapshot has now run all 72 cells (67 sampled, 5 empty_observed). No global coverage percentage is claimed from fixtures alone.
 The discovery ontology uses an exact P31 allowlist and explicitly avoids an
 unbounded online P279 traversal.
 

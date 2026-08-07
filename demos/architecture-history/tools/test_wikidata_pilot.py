@@ -86,7 +86,7 @@ EXPECTED_NEW_PERIOD_ASSIGNMENTS = {
     "work-wd-q917274": "2000_present",
 }
 PRIOR_PERIOD_ASSIGNMENT_SHA256 = (
-    "8f0479c3b0c7605872b3a2d20fef2dfd4a362a6619e0312eb34ec7893322b1c4"
+    "b32f3e5efc648916453e21ecd06dcc42e8987e8cd03c62aabeed19472f85fd4f"
 )
 NEW_WORK_TYPE_AUTHORITY_QIDS = {
     "Q2977",
@@ -650,7 +650,7 @@ class WikidataPilotTests(unittest.TestCase):
         }
         self.assertEqual(
             statuses,
-            {"mapped_exact": 280, "unmapped": 234, "ambiguous": 18},
+            {"mapped_exact": 286, "unmapped": 255, "ambiguous": 18},
         )
 
     def test_automatic_records_remain_candidates(self):
@@ -814,25 +814,25 @@ class WikidataPilotTests(unittest.TestCase):
             sort_keys=True,
             separators=(",", ":"),
         ).encode("utf-8")
-        self.assertEqual(len(prior_assignments), 313)
+        self.assertEqual(len(prior_assignments), 339)
         self.assertEqual(
             hashlib.sha256(prior_payload).hexdigest(),
             PRIOR_PERIOD_ASSIGNMENT_SHA256,
         )
         self.assertEqual(
             sum(period != "unknown" for period in assignments.values()),
-            374,
+            400,
         )
         self.assertEqual(
             sum(period == "unknown" for period in assignments.values()),
-            158,
+            159,
         )
         self.assertEqual(
             sum(
                 claim["predicate"] == "field_period"
                 for claim in self.catalog["claims"]
             ),
-            374,
+            400,
         )
 
     def test_raw_lineage_edges_never_become_mentorship(self):

@@ -322,13 +322,35 @@ def derive_manifest(paths: list[Path], version: str) -> dict:
     coverage_config = load_json(COVERAGE_CONFIG)
     coverage_cells_total = coverage_config["coverage_grid"]["cell_count"]
     coverage_cells_run = 0
+    coverage_cells: list[dict] = []
     selection_methods: set[str] = set()
     if (DATA / "source-snapshots").exists():
         for path in sorted((DATA / "source-snapshots").glob("*.json")):
             snapshot = load_json(path)
             selection_methods.add(snapshot["selection"]["method"])
-            if snapshot["selection"]["method"] == "coverage_cell_stable_hash":
-                coverage_cells_run += len(snapshot["queries"])
+            if snapshot["selection"]["method"] != "coverage_cell_stable_hash":
+                continue
+            coverage_cells_run += len(snapshot["queries"])
+            for query in snapshot["queries"]:
+                cell_id = query["cell_id"]
+                period = cell_id.split("__", 1)[1] if "__" in cell_id else "unknown"
+                candidate_count = len(query.get("candidate_work_qids") or [])
+                selected_count = len(query.get("selected_work_qids") or [])
+                coverage_cells.append(
+                    {
+                        "candidate_count": candidate_count,
+                        "cell_id": cell_id,
+                        "period": period,
+                        "region": query["region"],
+                        "selected_count": selected_count,
+                        "status": (
+                            "empty_observed"
+                            if candidate_count == 0
+                            else "sampled"
+                        ),
+                    }
+                )
+    coverage_cells.sort(key=lambda row: row["cell_id"])
     fixture_regions: Counter[str] = Counter(
         work["region"]
         for work in payloads["works.json"]
@@ -367,6 +389,7 @@ def derive_manifest(paths: list[Path], version: str) -> dict:
             "status": "not_run" if coverage_cells_run == 0 else "partial",
             "cells_total": coverage_cells_total,
             "cells_run": coverage_cells_run,
+            "cells": coverage_cells,
             "selection_methods": sorted(selection_methods),
             "fixture_distribution": {
                 "periods": dict(sorted(fixture_periods.items())),

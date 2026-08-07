@@ -440,6 +440,11 @@
     putText('#coverage-percent', percent + '%');
     $('#coverage-progress-bar').style.width = percent + '%';
 
+    const cellStatusById = {};
+    (manifest.coverage.cells || []).forEach(function (cell) {
+      cellStatusById[cell.cell_id] = cell;
+    });
+
     const matrix = $('#coverage-matrix');
     matrix.replaceChildren();
     const headerRow = document.createElement('div');
@@ -469,12 +474,25 @@
       row.appendChild(header);
       config.periods.forEach(function (period) {
         const cell = document.createElement('div');
-        cell.className = 'matrix-cell not-run';
+        const cellId = region + '__' + period.id;
+        const record = cellStatusById[cellId];
+        const status = record ? record.status : 'not_run';
+        cell.className = 'matrix-cell ' + status;
         cell.setAttribute('role', 'cell');
+        let statusLabel = i18n.t('notRun');
+        if (status === 'empty_observed') statusLabel = i18n.t('emptyObserved');
+        if (status === 'sampled') statusLabel = i18n.t('sampled');
+        if (status === 'truncated') statusLabel = i18n.t('complete');
+        if (status === 'blocked') statusLabel = i18n.t('blocked');
+        const detail = record
+          ? ' (' + record.selected_count + '/' + record.candidate_count + ')'
+          : '';
         cell.setAttribute('aria-label',
           i18n.enumLabel('region', region) + ', ' +
-          i18n.enumLabel('period', period.id) + ': ' + i18n.t('notRun'));
-        cell.textContent = i18n.t('notRun');
+          i18n.enumLabel('period', period.id) + ': ' + statusLabel + detail);
+        cell.textContent = status === 'not_run'
+          ? statusLabel
+          : statusLabel + detail;
         row.appendChild(cell);
       });
       matrix.appendChild(row);

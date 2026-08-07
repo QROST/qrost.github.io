@@ -9,7 +9,11 @@
     "rule_id": "wikidata-p571-best-rank-period-v3",
     "basis_property": "P571",
     "fallback_property": "P1619",
-    "accepted_precisions": [9, 10, 11],
+    "accepted_precisions": [
+      9,
+      10,
+      11
+    ],
     "accepted_calendar_models": [
       "http://www.wikidata.org/entity/Q1985727",
       "http://www.wikidata.org/entity/Q1985786"
@@ -313,7 +317,7 @@
           "Q1307276",
           "Q7138926"
         ],
-        "snapshot_id": "wikidata-work-type-authority-2026-07-28-ad7844fa638e"
+        "snapshot_id": "wikidata-work-type-authority-2026-08-07-b397f30532e0"
       }
     ],
     "authority_policy": "new_mappings_require_revision_pinned_snapshot",

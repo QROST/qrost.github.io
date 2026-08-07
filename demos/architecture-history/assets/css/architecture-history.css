@@ -1215,6 +1215,22 @@ html.dark .primary-button {
     color-mix(in srgb, var(--paper-deep) 55%, transparent);
 }
 
+.matrix-cell.empty_observed {
+  background: color-mix(in srgb, var(--paper-deep) 80%, #8a6d3b 20%);
+  color: var(--ink-soft);
+}
+
+.matrix-cell.sampled {
+  background: color-mix(in srgb, var(--paper) 70%, #2f6f4e 30%);
+  color: var(--ink);
+  font-weight: 650;
+}
+
+.matrix-cell.blocked {
+  background: color-mix(in srgb, var(--paper-deep) 75%, #8b3a3a 25%);
+  color: var(--ink-soft);
+}
+
 .coverage-key {
   display: flex;
   justify-content: flex-end;
@@ -1238,6 +1254,8 @@ html.dark .primary-button {
 }
 
 .coverage-key .not-run { background: var(--paper-deep); }
+.coverage-key .empty_observed { background: color-mix(in srgb, var(--paper-deep) 80%, #8a6d3b 20%); }
+.coverage-key .sampled { background: color-mix(in srgb, var(--paper) 70%, #2f6f4e 30%); }
 .coverage-key .partial { background: var(--amber-soft); }
 .coverage-key .complete { background: var(--green-soft); }
 

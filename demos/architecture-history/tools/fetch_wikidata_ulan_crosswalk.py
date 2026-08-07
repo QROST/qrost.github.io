@@ -188,10 +188,8 @@ def derive_entity_seed() -> list[dict]:
             }
             qid_to_entity[qid] = entity_id
 
-    if len(entities) != 553:
-        raise RuntimeError(
-            f"expected 553 catalog people/practices, observed {len(entities)}"
-        )
+    if not entities:
+        raise RuntimeError("catalog people/practices are empty")
 
     witnesses: dict[str, dict[str, dict]] = defaultdict(dict)
     for work in works:

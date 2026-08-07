@@ -245,9 +245,19 @@ class PageContractTests(unittest.TestCase):
             "source-derived period",
         ):
             self.assertIn(phrase, self.i18n)
-        self.assertEqual(self.manifest["coverage"]["cells_run"], 0)
         self.assertEqual(self.manifest["coverage"]["cells_total"], 72)
-        self.assertEqual(self.manifest["coverage"]["status"], "not_run")
+        self.assertIn(self.manifest["coverage"]["status"], {"not_run", "partial"})
+        self.assertGreaterEqual(self.manifest["coverage"]["cells_run"], 0)
+        self.assertLessEqual(
+            self.manifest["coverage"]["cells_run"],
+            self.manifest["coverage"]["cells_total"],
+        )
+        self.assertEqual(
+            len(self.manifest["coverage"].get("cells", [])),
+            self.manifest["coverage"]["cells_run"],
+        )
+        if self.manifest["coverage"]["cells_run"] == 0:
+            self.assertEqual(self.manifest["coverage"]["status"], "not_run")
 
     def test_truth_boundaries_are_visible_in_both_languages(self) -> None:
         for phrase in (

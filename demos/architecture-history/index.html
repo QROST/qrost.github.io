@@ -28,7 +28,7 @@
     })();
   </script>
   <link rel="stylesheet" href="assets/css/tailwind-built.css?v=cabadb5821">
-  <link rel="stylesheet" href="assets/css/architecture-history.css?v=0f2c3d3fd6">
+  <link rel="stylesheet" href="assets/css/architecture-history.css?v=e10c78376a">
 </head>
 <body>
   <a class="skip-link" href="#main-content" data-i18n="skipToContent">跳到主要内容</a>
@@ -121,7 +121,7 @@
       <div class="boundary-icon" aria-hidden="true">!</div>
       <div>
         <strong data-i18n="boundaryTitle">先读这条边界</strong>
-        <p data-i18n="boundaryCopy">532 件作品是校验来源映射的固定候选夹具，不是排名、代表性抽样或全球覆盖率。所有 72 个“区域 × 时期”发现单元仍未运行。</p>
+        <p data-i18n="boundaryCopy">559 件作品是校验来源映射的固定候选夹具，不是排名、代表性抽样或全球覆盖率。9×8 发现矩阵已首次跑完（67 抽样 / 5 空查）。</p>
       </div>
       <a href="#coverage" data-i18n="inspectCoverage">查看覆盖矩阵</a>
     </section>
@@ -144,7 +144,7 @@
         </div>
         <div class="map-footer">
           <div id="map-legend" class="map-legend" aria-label="区域图例" data-i18n-aria-label="regionLegendLabel"></div>
-          <p id="map-note" data-i18n="mapNote">514/532 件夹具作品带来源坐标；其余 18 件保持坐标缺失，不猜测补齐。</p>
+          <p id="map-note" data-i18n="mapNote">542/559 件夹具作品带来源坐标；其余 17 件保持坐标缺失，不猜测补齐。</p>
         </div>
       </div>
       <details class="coordinate-details">
@@ -279,7 +279,7 @@
         <div>
           <p class="section-kicker" data-i18n="coverageKicker">04 · 覆盖诚实度</p>
           <h2 id="coverage-title" data-i18n="coverageTitle">9 区域 × 8 时期发现矩阵</h2>
-          <p data-i18n="coverageIntro">矩阵固定了未来系统收集的抽样框架。当前 72 个单元全部未运行；下方样本分布不能替代覆盖进度。</p>
+          <p data-i18n="coverageIntro">矩阵固定了系统收集的抽样框架（72 个区域 × 时期单元）。单元状态来自 coverage discovery 快照；下方夹具分布不能替代发现进度。</p>
         </div>
         <div class="coverage-progress" aria-label="覆盖进度" data-i18n-aria-label="coverageProgressAria">
           <span><strong id="coverage-percent">0%</strong><small data-i18n="coverageComplete">发现单元已运行</small></span>
@@ -290,6 +290,8 @@
         <div id="coverage-matrix" class="coverage-matrix" role="table" aria-label="区域与时期覆盖矩阵" data-i18n-aria-label="coverageMatrixAria"></div>
         <div class="coverage-key">
           <span><i class="not-run"></i><span data-i18n="notRun">未运行</span></span>
+          <span><i class="empty_observed"></i><span data-i18n="emptyObserved">已查无结果</span></span>
+          <span><i class="sampled"></i><span data-i18n="sampled">已抽样</span></span>
         </div>
       </div>
       <div class="fixture-panel">
@@ -380,9 +382,9 @@
     src="https://cdn.jsdelivr.net/npm/echarts@5.5.1/dist/echarts.min.js"
     integrity="sha384-Mx5lkUEQPM1pOJCwFtUICyX45KNojXbkWdYhkKUKsbv391mavbfoAmONbzkgYPzR"
     crossorigin="anonymous"></script>
-  <script src="assets/js/i18n.js?v=ee8ce2b590"></script>
-  <script src="assets/js/data-loader.js?v=e5ce1c9848"></script>
+  <script src="assets/js/i18n.js?v=1c08b425b3"></script>
+  <script src="assets/js/data-loader.js?v=e80f0e3b63"></script>
   <script src="assets/js/maps.js?v=73c3e5fa66"></script>
-  <script src="assets/js/app.js?v=d568a7e938"></script>
+  <script src="assets/js/app.js?v=ab82c3983f"></script>
 </body>
 </html>

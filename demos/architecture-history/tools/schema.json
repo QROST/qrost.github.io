@@ -7,6 +7,10 @@
       "type": "string",
       "pattern": "^[a-z0-9][a-z0-9-]*$"
     },
+    "coverageCellId": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:_[a-z0-9]+)*__[a-z0-9]+(?:_[a-z0-9]+)*$"
+    },
     "url": {
       "type": "string",
       "pattern": "^https?://"
@@ -1477,7 +1481,7 @@
         "eligible_credits"
       ],
       "properties": {
-        "cell_id": {"$ref": "#/$defs/id"},
+        "cell_id": {"$ref": "#/$defs/coverageCellId"},
         "region": {"$ref": "#/$defs/region"},
         "country_code": {"type": "string", "pattern": "^[A-Z]{2}$"},
         "country_qid": {"type": "string", "pattern": "^Q[1-9][0-9]*$"},

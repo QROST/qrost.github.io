@@ -7,6 +7,7 @@ python3 tools/validate.py
 python3 tools/build.py
 python3 tools/test_data_contract.py
 python3 tools/test_wikidata_pilot.py
+python3 tools/test_wikidata_coverage.py
 python3 tools/test_getty_ulan_pilot.py
 ```
 
@@ -50,7 +51,7 @@ python3 tools/build.py
 ```
 
 The two fetch scripts are the only networked steps. The work fetcher hydrates
-the versioned 532-work seed list. The type-authority fetcher reads exactly six
+the versioned 559-work seed list. The type-authority fetcher reads exactly six
 reviewed class QIDs into a separate sidecar bound to the active work snapshot.
 Both pin exact revisions and refuse to overwrite an existing snapshot by
 default. `import_wikidata_pilot.py` is deterministic and offline; it requires
@@ -58,6 +59,25 @@ the configured authority sidecar and still maps work types only by direct P31
 equality. No script promotes records to `verified`, maps inception/opening to a
 construction date, traverses P279 for classification, or converts P1066/P802
 into mentorship.
+
+The Wikidata coverage discovery workflow is separate from hydration fixtures:
+
+```bash
+# Full 72-cell matrix (~78 minutes at 1 SPARQL req/min)
+python3 tools/fetch_wikidata_coverage.py --accessed YYYY-MM-DD
+
+# Smoke test: first N cells only
+python3 tools/fetch_wikidata_coverage.py --accessed YYYY-MM-DD --max-cells 2
+```
+
+`fetch_wikidata_coverage.py` is the only networked coverage step. It runs the
+configured 9×8 region/period grid against `query.wikidata.org`, sleeps at least
+65 seconds between SPARQL requests, selects up to four works per cell by stable
+hash without popularity signals, and pins selected work entities to exact
+revisions via Special:EntityData. Creator entities are classified for
+`eligible_credits` only and are not stored in the snapshot. The script refuses
+to overwrite an existing output path unless `--force` is passed. Coverage cells
+remain `not_run` in the public manifest until a coverage snapshot is committed.
 
 The bounded Getty ULAN identity workflow has an explicit review boundary:
 

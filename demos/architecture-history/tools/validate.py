@@ -1944,8 +1944,11 @@ def validate_wikidata_ulan_crosswalk_snapshot(
         for entity_id, entity in entity_by_id.items()
         if entity.get("entity_type") in {"person", "practice"}
     }
-    if len(seed) != len(scoped_entities) or len(seed) != 553:
-        errors.append(f"{snapshot_id}: crosswalk seed must cover 553 creators")
+    if len(seed) != len(scoped_entities):
+        errors.append(
+            f"{snapshot_id}: crosswalk seed must cover every active creator "
+            f"({len(scoped_entities)}), found {len(seed)}"
+        )
     if selection["seed_sha256"] != canonical_hash(seed):
         errors.append(f"{snapshot_id}: crosswalk seed hash mismatch")
     seed_qids = [row["qid"] for row in seed]
@@ -2412,13 +2415,35 @@ def expected_manifest(paths: list[Path]) -> dict:
     coverage_config = load_json(COVERAGE_CONFIG)
     coverage_cells_total = coverage_config["coverage_grid"]["cell_count"]
     coverage_cells_run = 0
+    coverage_cells: list[dict] = []
     selection_methods: set[str] = set()
     if SNAPSHOTS.exists():
         for path in sorted(SNAPSHOTS.glob("*.json")):
             snapshot = load_json(path)
             selection_methods.add(snapshot["selection"]["method"])
-            if snapshot["selection"]["method"] == "coverage_cell_stable_hash":
-                coverage_cells_run += len(snapshot["queries"])
+            if snapshot["selection"]["method"] != "coverage_cell_stable_hash":
+                continue
+            coverage_cells_run += len(snapshot["queries"])
+            for query in snapshot["queries"]:
+                cell_id = query["cell_id"]
+                period = cell_id.split("__", 1)[1] if "__" in cell_id else "unknown"
+                candidate_count = len(query.get("candidate_work_qids") or [])
+                selected_count = len(query.get("selected_work_qids") or [])
+                coverage_cells.append(
+                    {
+                        "candidate_count": candidate_count,
+                        "cell_id": cell_id,
+                        "period": period,
+                        "region": query["region"],
+                        "selected_count": selected_count,
+                        "status": (
+                            "empty_observed"
+                            if candidate_count == 0
+                            else "sampled"
+                        ),
+                    }
+                )
+    coverage_cells.sort(key=lambda row: row["cell_id"])
     fixture_regions: Counter[str] = Counter(
         work["region"]
         for work in payloads["works.json"]
@@ -2456,6 +2481,7 @@ def expected_manifest(paths: list[Path]) -> dict:
             "status": "not_run" if coverage_cells_run == 0 else "partial",
             "cells_total": coverage_cells_total,
             "cells_run": coverage_cells_run,
+            "cells": coverage_cells,
             "selection_methods": sorted(selection_methods),
             "fixture_distribution": {
                 "periods": dict(sorted(fixture_periods.items())),

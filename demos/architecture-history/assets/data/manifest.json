@@ -1,24 +1,24 @@
 {
   "catalog_profile": {
     "evidence_by_source_family": {
-      "wikimedia": 4515
+      "wikimedia": 4701
     },
     "periods": {
       "1000_1499": {
         "verified_works": 0,
-        "works": 52
+        "works": 53
       },
       "1500_1799": {
         "verified_works": 0,
-        "works": 64
+        "works": 66
       },
       "1800_1918": {
         "verified_works": 0,
-        "works": 55
+        "works": 61
       },
       "1919_1945": {
         "verified_works": 0,
-        "works": 34
+        "works": 40
       },
       "1946_1979": {
         "verified_works": 0,
@@ -26,26 +26,26 @@
       },
       "1980_1999": {
         "verified_works": 0,
-        "works": 29
+        "works": 30
       },
       "2000_present": {
         "verified_works": 0,
-        "works": 53
+        "works": 61
       },
       "before_1000": {
         "verified_works": 0,
-        "works": 31
+        "works": 33
       },
       "unknown": {
         "verified_works": 0,
-        "works": 158
+        "works": 159
       }
     },
     "regions": {
       "africa": {
-        "entities": 27,
+        "entities": 33,
         "verified_entities": 0,
-        "works": 25
+        "works": 30
       },
       "central_west_asia": {
         "entities": 52,
@@ -53,133 +53,717 @@
         "works": 48
       },
       "east_asia": {
-        "entities": 95,
+        "entities": 113,
         "verified_entities": 0,
         "works": 92
       },
       "europe": {
-        "entities": 216,
+        "entities": 491,
         "verified_entities": 0,
         "works": 200
       },
       "latin_america_caribbean": {
-        "entities": 38,
+        "entities": 44,
         "verified_entities": 0,
         "works": 35
       },
       "north_america": {
-        "entities": 74,
+        "entities": 160,
         "verified_entities": 0,
-        "works": 72
+        "works": 73
       },
       "oceania": {
-        "entities": 5,
+        "entities": 19,
         "verified_entities": 0,
-        "works": 4
+        "works": 11
       },
       "south_asia": {
-        "entities": 24,
+        "entities": 34,
         "verified_entities": 0,
-        "works": 23
+        "works": 31
       },
       "southeast_asia": {
-        "entities": 40,
+        "entities": 50,
         "verified_entities": 0,
-        "works": 33
+        "works": 39
+      },
+      "transregional": {
+        "entities": 14,
+        "verified_entities": 0,
+        "works": 0
       },
       "unknown": {
-        "entities": 553,
+        "entities": 156,
         "verified_entities": 0,
         "works": 0
       }
     },
     "verification": {
-      "candidate": 1314
+      "candidate": 1357
     },
     "work_type_mapping": {
       "ambiguous": 18,
-      "mapped_exact": 280,
-      "unmapped": 234
+      "mapped_exact": 286,
+      "unmapped": 255
     }
   },
   "counts": {
-    "candidate_entities_and_relations": 1314,
-    "claims": 4484,
+    "candidate_entities_and_relations": 1357,
+    "claims": 4669,
     "contested_entities_and_relations": 0,
     "declined_entities_and_relations": 0,
-    "people": 527,
+    "people": 539,
     "places": 39,
-    "practices": 26,
-    "relations": 190,
+    "practices": 29,
+    "relations": 191,
     "reviewers": 0,
     "sources": 12,
     "verified_entities_and_relations": 0,
-    "works": 532
+    "works": 559
   },
   "coverage": {
-    "cells_run": 0,
+    "cells": [
+      {
+        "candidate_count": 34,
+        "cell_id": "africa__1000_1499",
+        "period": "1000_1499",
+        "region": "africa",
+        "selected_count": 4,
+        "status": "sampled"
+      },
+      {
+        "candidate_count": 27,
+        "cell_id": "africa__1500_1799",
+        "period": "1500_1799",
+        "region": "africa",
+        "selected_count": 4,
+        "status": "sampled"
+      },
+      {
+        "candidate_count": 50,
+        "cell_id": "africa__1800_1918",
+        "period": "1800_1918",
+        "region": "africa",
+        "selected_count": 4,
+        "status": "sampled"
+      },
+      {
+        "candidate_count": 2,
+        "cell_id": "africa__1919_1945",
+        "period": "1919_1945",
+        "region": "africa",
+        "selected_count": 2,
+        "status": "sampled"
+      },
+      {
+        "candidate_count": 2,
+        "cell_id": "africa__1946_1979",
+        "period": "1946_1979",
+        "region": "africa",
+        "selected_count": 2,
+        "status": "sampled"
+      },
+      {
+        "candidate_count": 27,
+        "cell_id": "africa__1980_1999",
+        "period": "1980_1999",
+        "region": "africa",
+        "selected_count": 4,
+        "status": "sampled"
+      },
+      {
+        "candidate_count": 4,
+        "cell_id": "africa__2000_present",
+        "period": "2000_present",
+        "region": "africa",
+        "selected_count": 4,
+        "status": "sampled"
+      },
+      {
+        "candidate_count": 2,
+        "cell_id": "africa__before_1000",
+        "period": "before_1000",
+        "region": "africa",
+        "selected_count": 2,
+        "status": "sampled"
+      },
+      {
+        "candidate_count": 0,
+        "cell_id": "central_west_asia__1000_1499",
+        "period": "1000_1499",
+        "region": "central_west_asia",
+        "selected_count": 0,
+        "status": "empty_observed"
+      },
+      {
+        "candidate_count": 141,
+        "cell_id": "central_west_asia__1500_1799",
+        "period": "1500_1799",
+        "region": "central_west_asia",
+        "selected_count": 4,
+        "status": "sampled"
+      },
+      {
+        "candidate_count": 2,
+        "cell_id": "central_west_asia__1800_1918",
+        "period": "1800_1918",
+        "region": "central_west_asia",
+        "selected_count": 2,
+        "status": "sampled"
+      },
+      {
+        "candidate_count": 40,
+        "cell_id": "central_west_asia__1919_1945",
+        "period": "1919_1945",
+        "region": "central_west_asia",
+        "selected_count": 4,
+        "status": "sampled"
+      },
+      {
+        "candidate_count": 46,
+        "cell_id": "central_west_asia__1946_1979",
+        "period": "1946_1979",
+        "region": "central_west_asia",
+        "selected_count": 4,
+        "status": "sampled"
+      },
+      {
+        "candidate_count": 22,
+        "cell_id": "central_west_asia__1980_1999",
+        "period": "1980_1999",
+        "region": "central_west_asia",
+        "selected_count": 4,
+        "status": "sampled"
+      },
+      {
+        "candidate_count": 27,
+        "cell_id": "central_west_asia__2000_present",
+        "period": "2000_present",
+        "region": "central_west_asia",
+        "selected_count": 4,
+        "status": "sampled"
+      },
+      {
+        "candidate_count": 113,
+        "cell_id": "central_west_asia__before_1000",
+        "period": "before_1000",
+        "region": "central_west_asia",
+        "selected_count": 4,
+        "status": "sampled"
+      },
+      {
+        "candidate_count": 35,
+        "cell_id": "east_asia__1000_1499",
+        "period": "1000_1499",
+        "region": "east_asia",
+        "selected_count": 4,
+        "status": "sampled"
+      },
+      {
+        "candidate_count": 12,
+        "cell_id": "east_asia__1500_1799",
+        "period": "1500_1799",
+        "region": "east_asia",
+        "selected_count": 4,
+        "status": "sampled"
+      },
+      {
+        "candidate_count": 82,
+        "cell_id": "east_asia__1800_1918",
+        "period": "1800_1918",
+        "region": "east_asia",
+        "selected_count": 4,
+        "status": "sampled"
+      },
+      {
+        "candidate_count": 105,
+        "cell_id": "east_asia__1919_1945",
+        "period": "1919_1945",
+        "region": "east_asia",
+        "selected_count": 4,
+        "status": "sampled"
+      },
+      {
+        "candidate_count": 196,
+        "cell_id": "east_asia__1946_1979",
+        "period": "1946_1979",
+        "region": "east_asia",
+        "selected_count": 4,
+        "status": "sampled"
+      },
+      {
+        "candidate_count": 39,
+        "cell_id": "east_asia__1980_1999",
+        "period": "1980_1999",
+        "region": "east_asia",
+        "selected_count": 4,
+        "status": "sampled"
+      },
+      {
+        "candidate_count": 86,
+        "cell_id": "east_asia__2000_present",
+        "period": "2000_present",
+        "region": "east_asia",
+        "selected_count": 4,
+        "status": "sampled"
+      },
+      {
+        "candidate_count": 10,
+        "cell_id": "east_asia__before_1000",
+        "period": "before_1000",
+        "region": "east_asia",
+        "selected_count": 4,
+        "status": "sampled"
+      },
+      {
+        "candidate_count": 200,
+        "cell_id": "europe__1000_1499",
+        "period": "1000_1499",
+        "region": "europe",
+        "selected_count": 4,
+        "status": "sampled"
+      },
+      {
+        "candidate_count": 60,
+        "cell_id": "europe__1500_1799",
+        "period": "1500_1799",
+        "region": "europe",
+        "selected_count": 4,
+        "status": "sampled"
+      },
+      {
+        "candidate_count": 200,
+        "cell_id": "europe__1800_1918",
+        "period": "1800_1918",
+        "region": "europe",
+        "selected_count": 4,
+        "status": "sampled"
+      },
+      {
+        "candidate_count": 193,
+        "cell_id": "europe__1919_1945",
+        "period": "1919_1945",
+        "region": "europe",
+        "selected_count": 4,
+        "status": "sampled"
+      },
+      {
+        "candidate_count": 201,
+        "cell_id": "europe__1946_1979",
+        "period": "1946_1979",
+        "region": "europe",
+        "selected_count": 4,
+        "status": "sampled"
+      },
+      {
+        "candidate_count": 152,
+        "cell_id": "europe__1980_1999",
+        "period": "1980_1999",
+        "region": "europe",
+        "selected_count": 4,
+        "status": "sampled"
+      },
+      {
+        "candidate_count": 187,
+        "cell_id": "europe__2000_present",
+        "period": "2000_present",
+        "region": "europe",
+        "selected_count": 4,
+        "status": "sampled"
+      },
+      {
+        "candidate_count": 150,
+        "cell_id": "europe__before_1000",
+        "period": "before_1000",
+        "region": "europe",
+        "selected_count": 4,
+        "status": "sampled"
+      },
+      {
+        "candidate_count": 1,
+        "cell_id": "latin_america_caribbean__1000_1499",
+        "period": "1000_1499",
+        "region": "latin_america_caribbean",
+        "selected_count": 1,
+        "status": "sampled"
+      },
+      {
+        "candidate_count": 87,
+        "cell_id": "latin_america_caribbean__1500_1799",
+        "period": "1500_1799",
+        "region": "latin_america_caribbean",
+        "selected_count": 4,
+        "status": "sampled"
+      },
+      {
+        "candidate_count": 26,
+        "cell_id": "latin_america_caribbean__1800_1918",
+        "period": "1800_1918",
+        "region": "latin_america_caribbean",
+        "selected_count": 4,
+        "status": "sampled"
+      },
+      {
+        "candidate_count": 85,
+        "cell_id": "latin_america_caribbean__1919_1945",
+        "period": "1919_1945",
+        "region": "latin_america_caribbean",
+        "selected_count": 4,
+        "status": "sampled"
+      },
+      {
+        "candidate_count": 31,
+        "cell_id": "latin_america_caribbean__1946_1979",
+        "period": "1946_1979",
+        "region": "latin_america_caribbean",
+        "selected_count": 4,
+        "status": "sampled"
+      },
+      {
+        "candidate_count": 5,
+        "cell_id": "latin_america_caribbean__1980_1999",
+        "period": "1980_1999",
+        "region": "latin_america_caribbean",
+        "selected_count": 4,
+        "status": "sampled"
+      },
+      {
+        "candidate_count": 21,
+        "cell_id": "latin_america_caribbean__2000_present",
+        "period": "2000_present",
+        "region": "latin_america_caribbean",
+        "selected_count": 4,
+        "status": "sampled"
+      },
+      {
+        "candidate_count": 0,
+        "cell_id": "latin_america_caribbean__before_1000",
+        "period": "before_1000",
+        "region": "latin_america_caribbean",
+        "selected_count": 0,
+        "status": "empty_observed"
+      },
+      {
+        "candidate_count": 3,
+        "cell_id": "north_america__1000_1499",
+        "period": "1000_1499",
+        "region": "north_america",
+        "selected_count": 3,
+        "status": "sampled"
+      },
+      {
+        "candidate_count": 86,
+        "cell_id": "north_america__1500_1799",
+        "period": "1500_1799",
+        "region": "north_america",
+        "selected_count": 4,
+        "status": "sampled"
+      },
+      {
+        "candidate_count": 199,
+        "cell_id": "north_america__1800_1918",
+        "period": "1800_1918",
+        "region": "north_america",
+        "selected_count": 4,
+        "status": "sampled"
+      },
+      {
+        "candidate_count": 201,
+        "cell_id": "north_america__1919_1945",
+        "period": "1919_1945",
+        "region": "north_america",
+        "selected_count": 4,
+        "status": "sampled"
+      },
+      {
+        "candidate_count": 196,
+        "cell_id": "north_america__1946_1979",
+        "period": "1946_1979",
+        "region": "north_america",
+        "selected_count": 4,
+        "status": "sampled"
+      },
+      {
+        "candidate_count": 200,
+        "cell_id": "north_america__1980_1999",
+        "period": "1980_1999",
+        "region": "north_america",
+        "selected_count": 4,
+        "status": "sampled"
+      },
+      {
+        "candidate_count": 199,
+        "cell_id": "north_america__2000_present",
+        "period": "2000_present",
+        "region": "north_america",
+        "selected_count": 4,
+        "status": "sampled"
+      },
+      {
+        "candidate_count": 1,
+        "cell_id": "north_america__before_1000",
+        "period": "before_1000",
+        "region": "north_america",
+        "selected_count": 1,
+        "status": "sampled"
+      },
+      {
+        "candidate_count": 0,
+        "cell_id": "oceania__1000_1499",
+        "period": "1000_1499",
+        "region": "oceania",
+        "selected_count": 0,
+        "status": "empty_observed"
+      },
+      {
+        "candidate_count": 0,
+        "cell_id": "oceania__1500_1799",
+        "period": "1500_1799",
+        "region": "oceania",
+        "selected_count": 0,
+        "status": "empty_observed"
+      },
+      {
+        "candidate_count": 200,
+        "cell_id": "oceania__1800_1918",
+        "period": "1800_1918",
+        "region": "oceania",
+        "selected_count": 4,
+        "status": "sampled"
+      },
+      {
+        "candidate_count": 127,
+        "cell_id": "oceania__1919_1945",
+        "period": "1919_1945",
+        "region": "oceania",
+        "selected_count": 4,
+        "status": "sampled"
+      },
+      {
+        "candidate_count": 116,
+        "cell_id": "oceania__1946_1979",
+        "period": "1946_1979",
+        "region": "oceania",
+        "selected_count": 4,
+        "status": "sampled"
+      },
+      {
+        "candidate_count": 80,
+        "cell_id": "oceania__1980_1999",
+        "period": "1980_1999",
+        "region": "oceania",
+        "selected_count": 4,
+        "status": "sampled"
+      },
+      {
+        "candidate_count": 59,
+        "cell_id": "oceania__2000_present",
+        "period": "2000_present",
+        "region": "oceania",
+        "selected_count": 4,
+        "status": "sampled"
+      },
+      {
+        "candidate_count": 0,
+        "cell_id": "oceania__before_1000",
+        "period": "before_1000",
+        "region": "oceania",
+        "selected_count": 0,
+        "status": "empty_observed"
+      },
+      {
+        "candidate_count": 36,
+        "cell_id": "south_asia__1000_1499",
+        "period": "1000_1499",
+        "region": "south_asia",
+        "selected_count": 4,
+        "status": "sampled"
+      },
+      {
+        "candidate_count": 201,
+        "cell_id": "south_asia__1500_1799",
+        "period": "1500_1799",
+        "region": "south_asia",
+        "selected_count": 4,
+        "status": "sampled"
+      },
+      {
+        "candidate_count": 200,
+        "cell_id": "south_asia__1800_1918",
+        "period": "1800_1918",
+        "region": "south_asia",
+        "selected_count": 4,
+        "status": "sampled"
+      },
+      {
+        "candidate_count": 64,
+        "cell_id": "south_asia__1919_1945",
+        "period": "1919_1945",
+        "region": "south_asia",
+        "selected_count": 4,
+        "status": "sampled"
+      },
+      {
+        "candidate_count": 64,
+        "cell_id": "south_asia__1946_1979",
+        "period": "1946_1979",
+        "region": "south_asia",
+        "selected_count": 4,
+        "status": "sampled"
+      },
+      {
+        "candidate_count": 40,
+        "cell_id": "south_asia__1980_1999",
+        "period": "1980_1999",
+        "region": "south_asia",
+        "selected_count": 4,
+        "status": "sampled"
+      },
+      {
+        "candidate_count": 111,
+        "cell_id": "south_asia__2000_present",
+        "period": "2000_present",
+        "region": "south_asia",
+        "selected_count": 4,
+        "status": "sampled"
+      },
+      {
+        "candidate_count": 17,
+        "cell_id": "south_asia__before_1000",
+        "period": "before_1000",
+        "region": "south_asia",
+        "selected_count": 4,
+        "status": "sampled"
+      },
+      {
+        "candidate_count": 2,
+        "cell_id": "southeast_asia__1000_1499",
+        "period": "1000_1499",
+        "region": "southeast_asia",
+        "selected_count": 2,
+        "status": "sampled"
+      },
+      {
+        "candidate_count": 33,
+        "cell_id": "southeast_asia__1500_1799",
+        "period": "1500_1799",
+        "region": "southeast_asia",
+        "selected_count": 4,
+        "status": "sampled"
+      },
+      {
+        "candidate_count": 14,
+        "cell_id": "southeast_asia__1800_1918",
+        "period": "1800_1918",
+        "region": "southeast_asia",
+        "selected_count": 4,
+        "status": "sampled"
+      },
+      {
+        "candidate_count": 12,
+        "cell_id": "southeast_asia__1919_1945",
+        "period": "1919_1945",
+        "region": "southeast_asia",
+        "selected_count": 4,
+        "status": "sampled"
+      },
+      {
+        "candidate_count": 39,
+        "cell_id": "southeast_asia__1946_1979",
+        "period": "1946_1979",
+        "region": "southeast_asia",
+        "selected_count": 4,
+        "status": "sampled"
+      },
+      {
+        "candidate_count": 1,
+        "cell_id": "southeast_asia__1980_1999",
+        "period": "1980_1999",
+        "region": "southeast_asia",
+        "selected_count": 1,
+        "status": "sampled"
+      },
+      {
+        "candidate_count": 10,
+        "cell_id": "southeast_asia__2000_present",
+        "period": "2000_present",
+        "region": "southeast_asia",
+        "selected_count": 4,
+        "status": "sampled"
+      },
+      {
+        "candidate_count": 6,
+        "cell_id": "southeast_asia__before_1000",
+        "period": "before_1000",
+        "region": "southeast_asia",
+        "selected_count": 4,
+        "status": "sampled"
+      }
+    ],
+    "cells_run": 72,
     "cells_total": 72,
     "fixture_distribution": {
       "periods": {
-        "1000_1499": 52,
-        "1500_1799": 64,
-        "1800_1918": 55,
-        "1919_1945": 34,
+        "1000_1499": 53,
+        "1500_1799": 66,
+        "1800_1918": 61,
+        "1919_1945": 40,
         "1946_1979": 56,
-        "1980_1999": 29,
-        "2000_present": 53,
-        "before_1000": 31,
-        "unknown": 158
+        "1980_1999": 30,
+        "2000_present": 61,
+        "before_1000": 33,
+        "unknown": 159
       },
       "regions": {
-        "africa": 25,
+        "africa": 30,
         "central_west_asia": 48,
         "east_asia": 92,
         "europe": 200,
         "latin_america_caribbean": 35,
-        "north_america": 72,
-        "oceania": 4,
-        "south_asia": 23,
-        "southeast_asia": 33
+        "north_america": 73,
+        "oceania": 11,
+        "south_asia": 31,
+        "southeast_asia": 39
       }
     },
     "selection_methods": [
       "bounded_p245_crosswalk_stable_hash",
+      "coverage_cell_stable_hash",
       "exact_instance_allowlist_authority",
       "pinned_hydration_fixtures"
     ],
-    "status": "not_run"
+    "status": "partial"
   },
   "data_as_of": "2026-07-28",
-  "data_version": "0a4a196ea52833cc8be448804d09f069edb3ccc9a25925d6180326e8beedbd4c",
+  "data_version": "89bef1bd828479f79052b510124ee7ceb4366f5bf7820bcd24a1c7ec18d8a946",
   "files": {
     "catalog/wikidata-hydration.json": {
       "count": 1,
-      "sha256": "7442368197d576cf99f3ceaccc2a05609935675ea680a3738444a8d493682d6f"
+      "sha256": "493f209df566e1a2e4c81ab95a300344d6e2b93543564c83f428e10247f6d507"
     },
     "claims.json": {
-      "count": 4484,
-      "sha256": "c94a5207fd2c2132770ca720cebb0c2fd12ead7b4f7b81fd20a2e5452daad721"
+      "count": 4669,
+      "sha256": "b34d38535f1cae991fd1bd72e3909eba5f4018d666ae035248058b0623b929a1"
     },
     "methodology/wikidata-coverage-config.json": {
       "count": 1,
-      "sha256": "767c67b70916e34b9148c6b1808deee66dbd77807ba0a4344b40ca6620b1d6df"
+      "sha256": "0acdc1eb2aa78d72944aae7e5a0319454d76f1cf1844d6c1ed27921fdf2bdec2"
     },
     "people.json": {
-      "count": 527,
-      "sha256": "e7535ea0b45b26d9b6b0509f5c6e0e823b6575923f3b1be374ae6bd8a17f7f1a"
+      "count": 539,
+      "sha256": "441e9e7ad7daa632ca7a005b66bdf7959e02c4d05b914986ee4f2ee5d5872fff"
     },
     "places.json": {
       "count": 39,
-      "sha256": "a2d55b4fec4599cbd403c8652b94d198e33019bb260b7421a148f0af327d072b"
+      "sha256": "bdd54e437185fb0e2a08cfdabdf796c7b0f7ffd973470c3784b94a89b6de4ce4"
     },
     "practices.json": {
-      "count": 26,
-      "sha256": "6dc55b1fdcc79f9128ba2562b48fef0190a80532dec608604e87ad7e48450deb"
+      "count": 29,
+      "sha256": "d71c570abaf313fe7077e37a8e0e4c1377cb4516a5611f1eb4e0ec0fdf8ab274"
     },
     "relations.json": {
-      "count": 190,
-      "sha256": "907f9d8fa855dc9f5e07385bfdc88adb0c347555984a941fbb4e538f93ccf40e"
+      "count": 191,
+      "sha256": "ee7cc841015c823bf580022707a6b8c407bc0c0c205508bd8195bc3eea8e4ccc"
     },
     "reviewers.json": {
       "count": 0,
@@ -187,7 +771,11 @@
     },
     "source-registry.json": {
       "count": 12,
-      "sha256": "e40e2c170ed140dedaba1022bc640cfbfbc59d9b1ffa466cd9b8cd9b8a1f1289"
+      "sha256": "b515e9bd008e465d202e235f7fbcce9d2b76122bd5ddb6ddcd14444342e2e9be"
+    },
+    "source-snapshots/wikidata-coverage-2026-08-07-b976a0d3ce82.json": {
+      "count": 1,
+      "sha256": "ce5f345534f45fe4cf67a64f69bb8ec6e05bd13022153bc4e17f6ca7cf7dd2d3"
     },
     "source-snapshots/wikidata-hydration-2026-07-25-0855f4599c43.json": {
       "count": 1,
@@ -233,17 +821,21 @@
       "count": 1,
       "sha256": "11d9c0fd6dd34ccb03f5e7e83c5a4d860672c578505f9ff57e8496dc72765567"
     },
-    "source-snapshots/wikidata-ulan-crosswalk-2026-08-04-a7e463626d64.json": {
-      "count": 24,
-      "sha256": "dc698984c60854627d6ca9a1c9913e7d481d39c673099020b74c4eaaf6b2f4aa"
-    },
-    "source-snapshots/wikidata-work-type-authority-2026-07-28-ad7844fa638e.json": {
+    "source-snapshots/wikidata-hydration-2026-08-07-d37c179db21b.json": {
       "count": 1,
-      "sha256": "bdfd8488d3a197d8da8605cff800f10bc6136e5d1da6540d40820f34e6b68bff"
+      "sha256": "e286a84768b745056dbd069f1243e4f8ceb0270e7d78e85d75e384266541e5b9"
+    },
+    "source-snapshots/wikidata-ulan-crosswalk-2026-08-07-a552f887357d.json": {
+      "count": 24,
+      "sha256": "39cddc0222bf7914cbf461875bf4001422a034f821edeef7bfaf82d58d1584c1"
+    },
+    "source-snapshots/wikidata-work-type-authority-2026-08-07-b397f30532e0.json": {
+      "count": 1,
+      "sha256": "4e59dfec92e55885dd18a432ccdca78acc1c6ebb51e400953f1bad41b0adf099"
     },
     "works.json": {
-      "count": 532,
-      "sha256": "49a43f9b1b082e2f45927c486b29437abe010cd17de61fe4fccb79643e1557d5"
+      "count": 559,
+      "sha256": "138b1e731801c18efce36f37c3c7e709be67f75be2a218a2d4bf581730f13d87"
     }
   },
   "hash_algorithm": "sha256",

@@ -810,6 +810,46 @@ def labels(record: dict) -> tuple[Optional[str], str]:
     return chinese, english
 
 
+def description_value(record: dict, language: str) -> Optional[str]:
+    value = record.get("descriptions", {}).get(language, {}).get("value")
+    return value if isinstance(value, str) and value.strip() else None
+
+
+def descriptions(record: dict) -> tuple[str, str]:
+    summary_en = description_value(record, "en") or ""
+    summary_zh = (
+        description_value(record, "zh-hans")
+        or description_value(record, "zh")
+        or ""
+    )
+    return summary_en, summary_zh
+
+
+def nationality_geography(
+    record: dict,
+    country_authority: dict[str, dict],
+) -> tuple[list[str], str]:
+    """Map P27 citizenship countries onto the project authority table."""
+    codes: list[str] = []
+    regions: list[str] = []
+    for country_qid in item_values(record, "P27"):
+        authority = country_authority.get(country_qid)
+        if authority is None:
+            continue
+        iso2 = authority["iso2"]
+        if iso2 not in codes:
+            codes.append(iso2)
+        region = authority["region"]
+        if region not in regions:
+            regions.append(region)
+    codes.sort()
+    if not regions:
+        return codes, "unknown"
+    if len(regions) == 1:
+        return codes, regions[0]
+    return codes, "transregional"
+
+
 def aliases(record: dict, languages: tuple[str, ...]) -> list[str]:
     values: list[str] = []
     for language in languages:
@@ -1021,6 +1061,11 @@ class CatalogBuilder:
             chinese, english = labels(record)
         except ValueError:
             return None
+        summary_en, summary_zh = descriptions(record)
+        country_codes, region = nationality_geography(
+            record,
+            self.country_authority,
+        )
         claim_ids = self.add_name_claims(
             qid=qid,
             subject_id=person_id,
@@ -1033,7 +1078,7 @@ class CatalogBuilder:
             "birth": time_value(record, "P569"),
             "claim_ids": claim_ids,
             "confidence": 0.6,
-            "country_codes": [],
+            "country_codes": country_codes,
             "death": time_value(record, "P570"),
             "entity_type": "person",
             "external_ids": {"wikidata": qid},
@@ -1047,10 +1092,10 @@ class CatalogBuilder:
                 if chinese
                 else "missing"
             ),
-            "region": "unknown",
+            "region": region,
             "roles": ["architect"],
-            "summary_en": "",
-            "summary_zh": "",
+            "summary_en": summary_en,
+            "summary_zh": summary_zh,
             "verification_status": "candidate",
         }
         return person_id
@@ -1066,6 +1111,25 @@ class CatalogBuilder:
             chinese, english = labels(record)
         except ValueError:
             return None
+        summary_en, summary_zh = descriptions(record)
+        # Firms use HQ/country (P17) rather than citizenship (P27).
+        country_codes: list[str] = []
+        regions: list[str] = []
+        for country_qid in item_values(record, "P17"):
+            authority = self.country_authority.get(country_qid)
+            if authority is None:
+                continue
+            if authority["iso2"] not in country_codes:
+                country_codes.append(authority["iso2"])
+            if authority["region"] not in regions:
+                regions.append(authority["region"])
+        country_codes.sort()
+        if not regions:
+            region = "unknown"
+        elif len(regions) == 1:
+            region = regions[0]
+        else:
+            region = "transregional"
         claim_ids = self.add_name_claims(
             qid=qid,
             subject_id=practice_id,
@@ -1075,7 +1139,7 @@ class CatalogBuilder:
         self.practices[practice_id] = {
             "claim_ids": claim_ids,
             "confidence": 0.6,
-            "country_codes": [],
+            "country_codes": country_codes,
             "dissolved": dict(UNKNOWN_DATE),
             "entity_type": "practice",
             "external_ids": {"wikidata": qid},
@@ -1086,9 +1150,9 @@ class CatalogBuilder:
             "name_native": None,
             "name_zh": chinese,
             "practice_type": "architecture_firm",
-            "region": "unknown",
-            "summary_en": "",
-            "summary_zh": "",
+            "region": region,
+            "summary_en": summary_en,
+            "summary_zh": summary_zh,
             "verification_status": "candidate",
         }
         return practice_id
