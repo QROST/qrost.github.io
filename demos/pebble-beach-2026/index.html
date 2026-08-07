@@ -35,7 +35,7 @@
     })();
   </script>
   <link rel="stylesheet" href="assets/vendor/leaflet/leaflet.css">
-  <link rel="stylesheet" href="assets/css/pebble-beach.css?v=a8c6a28017">
+  <link rel="stylesheet" href="assets/css/pebble-beach.css?v=c84273e18c">
 </head>
 <body>
   <a class="skip-link" href="#main" data-i18n="skip">跳到正文</a>
@@ -44,6 +44,7 @@
     <div class="nav-inner">
       <a class="wordmark" href="../../index.html" aria-label="返回 QROST 首页">QROST</a>
       <div class="nav-links" aria-label="页面章节">
+        <a href="#live" data-i18n="navLive">此刻</a>
         <a href="#schedule" data-i18n="navSchedule">日程</a>
         <a href="#nearby" data-i18n="navNearby">周边早场</a>
         <a href="#stay" data-i18n="navStay">住宿</a>
@@ -104,6 +105,29 @@
       <div class="decision-note">
         <span class="decision-icon" aria-hidden="true">✦</span>
         <div><strong data-i18n="oneRuleTitle">只记一条：</strong><span data-i18n="oneRuleBody">周六 Asilomar Day 与 Pre-Reunion 赛道二选一；周一 ACE 藏品展值得专程；周二 Concours for a Cause 与周三 Little Car Show 是早场高性价比免费主场。高峰周五、周六的好活动大量重叠——不要把 Werks、The Quail、Paddock、Laguna Seca、Concorso 和 Exotics 全塞进同一天；半岛不是一个会场。</span></div>
+      </div>
+    </section>
+
+    <section id="live" class="section-block live-section">
+      <div class="section-heading">
+        <div><span class="section-kicker" data-i18n="liveKicker">动态 · 半岛本地时</span><h2 data-i18n="liveTitle">此刻去哪、今天哪里有什么</h2></div>
+        <p data-i18n="liveIntro">时钟按 America/Los_Angeles（太平洋时间）。过期日期默认折叠；可按“此刻 / 今日 / 地点”快速筛选。演示可用 ?demoDate=2026-08-08&demoTime=14:30。</p>
+      </div>
+      <div class="live-panel" id="live-panel">
+        <div class="live-clock-row">
+          <div class="live-clock">
+            <span data-i18n="liveClockLabel">当前时间</span>
+            <strong id="live-clock-value">—</strong>
+          </div>
+          <p id="live-window-note" class="live-window-note" hidden></p>
+        </div>
+        <div class="filter-row" id="live-mode-filter" role="group" aria-label="Live mode"></div>
+        <div class="filter-row filter-row-secondary" id="live-area-filter" role="group" aria-label="Place filter"></div>
+        <div class="live-actions">
+          <button type="button" class="filter-button" id="live-past-toggle" aria-pressed="false"></button>
+        </div>
+        <p id="live-status" class="live-status" role="status" aria-live="polite"></p>
+        <p class="live-hint" data-i18n="liveParsedHint">“此刻”依赖公开时段字符串的近似解析；多场次与开放式结束时间会放宽匹配。</p>
       </div>
     </section>
 
@@ -212,7 +236,7 @@
   </footer>
 
   <script src="assets/vendor/leaflet/leaflet.js"></script>
-  <script src="assets/js/data.js?v=88b471b5f4"></script>
-  <script src="assets/js/app.js?v=03b7595ca5"></script>
+  <script src="assets/js/data.js?v=a966c80ead"></script>
+  <script src="assets/js/app.js?v=0c2d8982bc"></script>
 </body>
 </html>

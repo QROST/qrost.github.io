@@ -172,7 +172,7 @@ def validate() -> list[str]:
     for date in range(13, 18):
         if f"2026-08-{date:02d}" not in data_js:
             errors.append(f"data is missing 2026-08-{date:02d}")
-    event_count = len(re.findall(r"\bid:\s*'[a-z0-9-]+'\s*,\s*date:\s*'2026-08-", data_js))
+    event_count = len(re.findall(r"area:\s*'[a-z0-9]+'\s*,\s*date:\s*'2026-08-", data_js))
     if event_count < 18:
         errors.append(f"expected at least 18 event records, found {event_count}")
 

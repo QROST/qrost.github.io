@@ -12,11 +12,24 @@
 
   const LANG_KEY = 'qrost-pebble-2026-lang';
   const THEME_KEY = 'qrost-pebble-2026-theme';
-  const state = { lang: 'zh', day: 'all', type: 'all', from: 'monterey', to: 'pebble' };
+  const TIMEZONE = 'America/Los_Angeles';
+  const WINDOW_START = '2026-08-07';
+  const WINDOW_END = '2026-08-17';
+  const state = {
+    lang: 'zh',
+    day: 'all',
+    type: 'all',
+    area: 'all',
+    liveMode: 'browse',
+    showPast: false,
+    from: 'monterey',
+    to: 'pebble'
+  };
   const mapState = { map: null, layer: null, markers: [] };
   const routeCache = new Map();
   const planMaps = new Map();
   let planMapObserver = null;
+  let clockTimer = null;
 
   function localized(value) {
     if (value && typeof value === 'object' && (value.zh || value.en)) return value[state.lang] || value.zh || value.en;
@@ -38,6 +51,138 @@
       .replace(/>/g, '&gt;')
       .replace(/"/g, '&quot;')
       .replace(/'/g, '&#039;');
+  }
+
+  function getClock() {
+    const params = new URLSearchParams(window.location.search);
+    const demoDate = params.get('demoDate');
+    const demoTime = params.get('demoTime');
+    let instant;
+    if (demoDate && /^\d{4}-\d{2}-\d{2}$/.test(demoDate)) {
+      const hm = demoTime && /^\d{1,2}:\d{2}$/.test(demoTime) ? demoTime : '12:00';
+      const hmParts = hm.split(':');
+      const padded = `${String(hmParts[0]).padStart(2, '0')}:${hmParts[1]}`;
+      instant = new Date(`${demoDate}T${padded}:00-07:00`);
+    } else {
+      instant = new Date();
+    }
+    const formatter = new Intl.DateTimeFormat('en-US', {
+      timeZone: TIMEZONE,
+      year: 'numeric',
+      month: '2-digit',
+      day: '2-digit',
+      hour: '2-digit',
+      minute: '2-digit',
+      hour12: false
+    });
+    const parts = formatter.formatToParts(instant);
+    const pick = (type) => {
+      const part = parts.find((entry) => entry.type === type);
+      return part ? part.value : '';
+    };
+    const dateIso = `${pick('year')}-${pick('month')}-${pick('day')}`;
+    let hour = pick('hour');
+    if (hour === '24') hour = '00';
+    const hm = `${hour}:${pick('minute')}`;
+    return { instant, dateIso, hm, minutes: parseHm(hm), demo: Boolean(demoDate) };
+  }
+
+  function inCarWeekWindow(dateIso) {
+    return dateIso >= WINDOW_START && dateIso <= WINDOW_END;
+  }
+
+  function dayRelation(dateIso, todayIso) {
+    if (dateIso < todayIso) return 'past';
+    if (dateIso === todayIso) return 'today';
+    return 'upcoming';
+  }
+
+  function parseHm(hm) {
+    const match = String(hm || '').match(/^(\d{1,2}):(\d{2})$/);
+    if (!match) return null;
+    return Number(match[1]) * 60 + Number(match[2]);
+  }
+
+  function parseTimeWindows(timeStr) {
+    const raw = String(timeStr || '').trim();
+    if (!raw) return [];
+    const segments = raw.split(/\s*\/\s*/);
+    const windows = [];
+    for (let segment of segments) {
+      segment = segment.trim();
+      if (!segment) continue;
+      const segmentPlus = segment.endsWith('+');
+      if (segmentPlus) segment = segment.slice(0, -1).trim();
+      const rangeMatch = segment.match(/^(\d{1,2}:\d{2})\s*[–-]\s*(.*)$/);
+      if (rangeMatch) {
+        const start = parseHm(rangeMatch[1]);
+        const endPart = rangeMatch[2].trim();
+        let end;
+        if (!endPart) {
+          end = start != null ? start + 6 * 60 : null;
+        } else {
+          const endPlus = endPart.endsWith('+');
+          const endHm = endPlus ? endPart.slice(0, -1).trim() : endPart;
+          end = parseHm(endHm);
+          if (end != null && (segmentPlus || endPlus)) end += 60;
+        }
+        if (start != null && end != null) windows.push({ start, end });
+      } else {
+        const single = segment.replace(/\+$/, '').trim();
+        const start = parseHm(single);
+        if (start != null) {
+          const end = start + 90 + (segmentPlus ? 60 : 0);
+          windows.push({ start, end });
+        }
+      }
+    }
+    return windows;
+  }
+
+  function eventHappeningNow(event, clock) {
+    if (event.date !== clock.dateIso) return false;
+    const windows = parseTimeWindows(event.time);
+    if (!windows.length) return false;
+    const now = clock.minutes;
+    if (now == null) return false;
+    return windows.some((window) => now >= window.start && now <= window.end);
+  }
+
+  function quickPlanDateIso(item) {
+    const match = String(item && item.id || '').match(/^qp-(\d{4})$/);
+    if (!match) return '';
+    const mmdd = match[1];
+    return `2026-${mmdd.slice(0, 2)}-${mmdd.slice(2, 4)}`;
+  }
+
+  function areaName(areaId) {
+    const area = (DATA.liveAreas || []).find((entry) => entry.id === areaId);
+    return area ? localized(area.name) : areaId;
+  }
+
+  function matchesLiveFilters(event, clock) {
+    if (state.type !== 'all' && !event.categories.includes(state.type)) return false;
+    if (state.area !== 'all' && event.area !== state.area) return false;
+    if (state.liveMode === 'now') return eventHappeningNow(event, clock);
+    if (state.liveMode === 'today') return event.date === clock.dateIso;
+    if (state.day !== 'all' && event.date !== state.day) return false;
+    // Past days stay in the result set so browse mode can fold them in the UI
+    // (quick plan + day-group details). showPast only controls fold vs expand.
+    return true;
+  }
+
+  function formatClockDisplay(clock) {
+    const dayMeta = DATA.days.find((day) => day.id === clock.dateIso);
+    const dayLabel = dayMeta ? localized(dayMeta.short) : clock.dateIso;
+    const demoNote = clock.demo
+      ? (state.lang === 'zh' ? '（演示）' : ' (demo)')
+      : '';
+    return `${dayLabel} ${clock.hm} PT${demoNote}`;
+  }
+
+  function statusWithCount(key, count) {
+    const template = text(key);
+    return template.replace('{count}', String(count));
   }
 
   function isDark() {
@@ -177,12 +322,24 @@
     destroyPlanMaps();
     const root = document.getElementById('quick-plan-track');
     if (!root) return;
-    root.innerHTML = DATA.quickPlan.map((item) => `
-      <article class="plan-day${item.flagship ? ' flagship' : ''}">
+    const clock = getClock();
+    const inWindow = inCarWeekWindow(clock.dateIso);
+
+    function buildPlanCard(item) {
+      const dateIso = quickPlanDateIso(item);
+      const relation = dayRelation(dateIso, clock.dateIso);
+      const classes = ['plan-day'];
+      if (item.flagship) classes.push('flagship');
+      if (relation === 'past') classes.push('is-past');
+      if (relation === 'today') classes.push('is-today');
+      return `
+      <article class="${classes.join(' ')}">
         <div class="plan-day-copy">
           <div class="plan-date">
             <strong>${escapeHtml(localized(item.date))}</strong>
             <span>${escapeHtml(localized(item.day))}</span>
+            ${relation === 'today' ? `<span class="plan-day-badge">${escapeHtml(text('liveTodayBadge'))}</span>` : ''}
+            ${relation === 'past' ? `<span class="plan-day-badge is-past">${escapeHtml(text('livePastBadge'))}</span>` : ''}
           </div>
           <h3>${escapeHtml(localized(item.title))}</h3>
           <p>${escapeHtml(localized(item.body))}</p>
@@ -191,7 +348,29 @@
           ${renderPlanTimeline(item)}
         </div>
         ${item.id && item.route ? `<div class="plan-day-map" data-plan-map="${escapeHtml(item.id)}" aria-label="${escapeHtml(localized(item.title))}"></div>` : ''}
-      </article>`).join('');
+      </article>`;
+    }
+
+    let html = '';
+    let pastBuffer = [];
+    DATA.quickPlan.forEach((item) => {
+      const dateIso = quickPlanDateIso(item);
+      const relation = dayRelation(dateIso, clock.dateIso);
+      const card = buildPlanCard(item);
+      if (relation === 'past' && !state.showPast && inWindow) {
+        pastBuffer.push(card);
+      } else {
+        if (pastBuffer.length) {
+          html += `<details class="plan-day-past"><summary>${escapeHtml(text('livePastFolded'))}</summary>${pastBuffer.join('')}</details>`;
+          pastBuffer = [];
+        }
+        html += card;
+      }
+    });
+    if (pastBuffer.length) {
+      html += `<details class="plan-day-past"><summary>${escapeHtml(text('livePastFolded'))}</summary>${pastBuffer.join('')}</details>`;
+    }
+    root.innerHTML = html;
   }
 
   function renderFilters() {
@@ -199,14 +378,28 @@
     const typeRoot = document.getElementById('type-filter');
     if (!dayRoot || !typeRoot) return;
 
+    const liveOverridesDay = state.liveMode === 'now' || state.liveMode === 'today';
     const dayButtons = [{ id: 'all', label: DATA.ui.allDays }].concat(
       DATA.days.map((day) => ({ id: day.id, label: day.short }))
     );
     dayRoot.setAttribute('aria-label', state.lang === 'zh' ? '按日期筛选' : 'Filter by day');
     dayRoot.innerHTML = dayButtons.map((item) => `
-      <button type="button" class="filter-button" data-day="${escapeHtml(item.id)}" aria-pressed="${state.day === item.id}">
+      <button type="button" class="filter-button${liveOverridesDay && item.id !== 'all' ? ' filter-button-muted' : ''}" data-day="${escapeHtml(item.id)}" aria-pressed="${state.day === item.id}"${liveOverridesDay && item.id !== 'all' ? ' aria-disabled="true"' : ''}>
         ${escapeHtml(localized(item.label))}
       </button>`).join('');
+    if (liveOverridesDay) {
+      let note = document.getElementById('day-filter-note');
+      if (!note) {
+        note = document.createElement('p');
+        note.id = 'day-filter-note';
+        note.className = 'filter-note';
+        dayRoot.insertAdjacentElement('afterend', note);
+      }
+      note.textContent = text('liveDayFilterNote');
+    } else {
+      const note = document.getElementById('day-filter-note');
+      if (note) note.remove();
+    }
 
     const typeButtons = [
       { id: 'all', label: DATA.ui.allTypes },
@@ -222,8 +415,11 @@
 
     dayRoot.querySelectorAll('[data-day]').forEach((button) => {
       button.addEventListener('click', () => {
+        if (button.getAttribute('aria-disabled') === 'true') return;
         state.day = button.getAttribute('data-day');
+        state.liveMode = 'browse';
         renderFilters();
+        renderLivePanel();
         renderSchedule();
         restoreFilterFocus('day', state.day);
       });
@@ -232,10 +428,83 @@
       button.addEventListener('click', () => {
         state.type = button.getAttribute('data-type');
         renderFilters();
+        renderLivePanel();
         renderSchedule();
         restoreFilterFocus('type', state.type);
       });
     });
+  }
+
+  function renderLivePanel() {
+    const clockEl = document.getElementById('live-clock-value');
+    const windowNote = document.getElementById('live-window-note');
+    const modeRoot = document.getElementById('live-mode-filter');
+    const areaRoot = document.getElementById('live-area-filter');
+    const pastToggle = document.getElementById('live-past-toggle');
+    const statusEl = document.getElementById('live-status');
+    if (!modeRoot || !areaRoot) return;
+
+    const clock = getClock();
+    const inWindow = inCarWeekWindow(clock.dateIso);
+    if (clockEl) clockEl.textContent = formatClockDisplay(clock);
+
+    if (windowNote) {
+      if (!inWindow) {
+        windowNote.hidden = false;
+        windowNote.textContent = text('liveOutsideWindow');
+      } else {
+        windowNote.hidden = true;
+        windowNote.textContent = '';
+      }
+    }
+
+    modeRoot.setAttribute('aria-label', state.lang === 'zh' ? '动态筛选模式' : 'Live filter mode');
+    modeRoot.innerHTML = [
+      { id: 'browse', label: text('liveModeBrowse') },
+      { id: 'now', label: text('liveModeNow') },
+      { id: 'today', label: text('liveModeToday') }
+    ].map((item) => `
+      <button type="button" class="filter-button" data-live-mode="${escapeHtml(item.id)}" aria-pressed="${state.liveMode === item.id}">
+        ${escapeHtml(item.label)}
+      </button>`).join('');
+
+    areaRoot.setAttribute('aria-label', text('liveAreaLabel'));
+    const areaButtons = [{ id: 'all', label: text('liveAllAreas') }].concat(
+      (DATA.liveAreas || []).map((area) => ({ id: area.id, label: localized(area.name) }))
+    );
+    areaRoot.innerHTML = areaButtons.map((item) => `
+      <button type="button" class="filter-button" data-live-area="${escapeHtml(item.id)}" aria-pressed="${state.area === item.id}">
+        ${escapeHtml(item.label)}
+      </button>`).join('');
+
+    if (pastToggle) {
+      pastToggle.textContent = state.showPast ? text('livePastHide') : text('livePastShow');
+      pastToggle.setAttribute('aria-pressed', state.showPast ? 'true' : 'false');
+    }
+
+    const filtered = DATA.events.filter((event) => matchesLiveFilters(event, clock));
+    if (statusEl) {
+      let statusText;
+      if (state.liveMode === 'now') {
+        statusText = filtered.length
+          ? statusWithCount('liveStatusNow', filtered.length)
+          : text('liveNoNow');
+      } else if (state.liveMode === 'today') {
+        statusText = filtered.length
+          ? statusWithCount('liveStatusToday', filtered.length)
+          : text('liveNoToday');
+      } else {
+        statusText = statusWithCount('liveStatusBrowse', filtered.length);
+      }
+      if (state.liveMode === 'now' || state.liveMode === 'today') {
+        statusText += text('liveScheduleSynced');
+      }
+      statusEl.textContent = statusText;
+    }
+
+    if (state.liveMode === 'now' || state.liveMode === 'today') {
+      renderSchedule();
+    }
   }
 
   function restoreFilterFocus(kind, value) {
@@ -271,13 +540,16 @@
   function renderEvent(event) {
     const eventSources = event.sources || [{ url: event.source, label: DATA.ui.officialSource }];
     const priceClass = event.categories.includes('free') ? 'free' : (event.categories.includes('paid') ? 'paid' : 'alert');
+    const areaTag = event.area
+      ? `<span class="event-area">${escapeHtml(areaName(event.area))}</span>`
+      : '';
     return `
       <article class="event-card" id="event-${escapeHtml(event.id)}">
         <div class="event-main">
           <div class="event-time">${escapeHtml(event.time)}<small>${escapeHtml(localized(event.timeNote))}</small></div>
           <div class="event-copy">
             <h3>${escapeHtml(localized(event.title))}</h3>
-            <p class="event-location">${escapeHtml(localized(event.location))}</p>
+            <p class="event-location">${escapeHtml(localized(event.location))}${areaTag}</p>
             <p class="event-summary">${escapeHtml(localized(event.summary))}</p>
             <div class="event-meta">
               <span class="tag ${priceClass}">${escapeHtml(localized(event.price))}</span>
@@ -304,11 +576,9 @@
     const status = document.getElementById('schedule-status');
     if (!root) return;
 
-    const filtered = DATA.events.filter((event) => {
-      const matchesDay = state.day === 'all' || event.date === state.day;
-      const matchesType = state.type === 'all' || event.categories.includes(state.type);
-      return matchesDay && matchesType;
-    });
+    const clock = getClock();
+    const inWindow = inCarWeekWindow(clock.dateIso);
+    const filtered = DATA.events.filter((event) => matchesLiveFilters(event, clock));
 
     if (status) {
       status.textContent = state.lang === 'zh'
@@ -321,18 +591,35 @@
       return;
     }
 
-    root.innerHTML = DATA.days.map((day) => {
-      const events = filtered.filter((event) => event.date === day.id);
-      if (!events.length) return '';
-      return `
-        <section class="day-group" aria-labelledby="day-${escapeHtml(day.id)}">
+    function buildDayGroup(day, events) {
+      const relation = dayRelation(day.id, clock.dateIso);
+      const classes = ['day-group'];
+      if (relation === 'past') classes.push('is-past');
+      if (relation === 'today') classes.push('is-today');
+      const heading = `
           <header class="day-heading" id="day-${escapeHtml(day.id)}">
             <time datetime="${escapeHtml(day.id)}">${escapeHtml(localized(day.short))}</time>
             <span>${escapeHtml(localized(day.label))}</span>
             <em>${events.length} ${escapeHtml(ui(events.length === 1 ? 'dayLabelSingular' : 'dayLabel'))}</em>
           </header>
-          <div class="event-list">${events.map(renderEvent).join('')}</div>
+          <div class="event-list">${events.map(renderEvent).join('')}</div>`;
+      if (relation === 'past' && state.liveMode === 'browse' && !state.showPast && inWindow) {
+        return `
+        <details class="day-group-past">
+          <summary class="day-heading day-heading-past">${escapeHtml(localized(day.short))} · ${escapeHtml(text('livePastFolded'))}</summary>
+          <section class="${classes.join(' ')}" aria-labelledby="day-${escapeHtml(day.id)}">${heading}</section>
+        </details>`;
+      }
+      return `
+        <section class="${classes.join(' ')}" aria-labelledby="day-${escapeHtml(day.id)}">
+          ${heading}
         </section>`;
+    }
+
+    root.innerHTML = DATA.days.map((day) => {
+      const events = filtered.filter((event) => event.date === day.id);
+      if (!events.length) return '';
+      return buildDayGroup(day, events);
     }).join('');
   }
 
@@ -728,6 +1015,7 @@
     renderQuickPlan();
     renderNearby();
     renderFilters();
+    renderLivePanel();
     renderSchedule();
     renderStays();
     renderCommuteOptions();
@@ -735,6 +1023,14 @@
     renderSources();
     ensureHubMap();
     schedulePlanMaps();
+  }
+
+  function startClockTimer() {
+    if (clockTimer) clearInterval(clockTimer);
+    clockTimer = window.setInterval(() => {
+      renderLivePanel();
+      if (state.liveMode === 'now') renderSchedule();
+    }, 30000);
   }
 
   function applyLanguage() {
@@ -764,11 +1060,50 @@
     const themeButton = document.getElementById('theme-toggle');
     const from = document.getElementById('commute-from');
     const to = document.getElementById('commute-to');
+    const livePanel = document.getElementById('live-panel');
 
     if (langButton) langButton.addEventListener('click', () => setLanguage(state.lang === 'zh' ? 'en' : 'zh'));
     if (themeButton) themeButton.addEventListener('click', () => setTheme(!isDark(), true));
     if (from) from.addEventListener('change', () => { state.from = from.value; renderCommuteResult(); });
     if (to) to.addEventListener('change', () => { state.to = to.value; renderCommuteResult(); });
+
+    if (livePanel) {
+      livePanel.addEventListener('click', (event) => {
+        const modeButton = event.target.closest('[data-live-mode]');
+        if (modeButton) {
+          const nextMode = modeButton.getAttribute('data-live-mode');
+          if (nextMode && nextMode !== state.liveMode) {
+            state.liveMode = nextMode;
+            if (nextMode === 'now' || nextMode === 'today') state.day = 'all';
+            renderFilters();
+            renderLivePanel();
+            renderQuickPlan();
+            renderSchedule();
+            schedulePlanMaps();
+            modeButton.focus();
+          }
+          return;
+        }
+        const areaButton = event.target.closest('[data-live-area]');
+        if (areaButton) {
+          const nextArea = areaButton.getAttribute('data-live-area');
+          if (nextArea && nextArea !== state.area) {
+            state.area = nextArea;
+            renderLivePanel();
+            renderSchedule();
+            areaButton.focus();
+          }
+          return;
+        }
+        if (event.target.id === 'live-past-toggle' || event.target.closest('#live-past-toggle')) {
+          state.showPast = !state.showPast;
+          renderLivePanel();
+          renderQuickPlan();
+          renderSchedule();
+          schedulePlanMaps();
+        }
+      });
+    }
 
     try {
       window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (event) => {
@@ -785,5 +1120,6 @@
   document.addEventListener('DOMContentLoaded', () => {
     applyLanguage();
     wireInteractions();
+    startClockTimer();
   });
 })();

@@ -73,6 +73,16 @@ if (data) {
   }
   check((data.quickPlan || []).length >= 7, `quickPlan must contain at least 7 items, found ${(data.quickPlan || []).length}`);
 
+  const liveAreaIds = new Set();
+  for (const [index, area] of (data.liveAreas || []).entries()) {
+    const label = `liveAreas[${index}]`;
+    check(typeof area.id === 'string' && area.id.trim(), `${label}.id is required`);
+    check(!liveAreaIds.has(area.id), `duplicate liveAreas id: ${area.id}`);
+    liveAreaIds.add(area.id);
+    checkBilingual(area.name, `${label}.name`);
+  }
+  check(liveAreaIds.size >= 6, `expected at least 6 live areas, found ${liveAreaIds.size}`);
+
   const eventIds = new Set();
   for (const [index, event] of (data.events || []).entries()) {
     const label = `events[${index}]`;
@@ -80,6 +90,8 @@ if (data) {
     check(!eventIds.has(event.id), `duplicate event id: ${event.id}`);
     eventIds.add(event.id);
     check(dayIds.has(event.date), `${label}.date is outside the planning window`);
+    check(typeof event.area === 'string' && event.area.trim(), `${label}.area is required`);
+    check(liveAreaIds.has(event.area), `${label}.area "${event.area}" is not in liveAreas`);
     check(typeof event.time === 'string' && event.time.trim(), `${label}.time is required`);
     for (const key of ['timeNote', 'title', 'location', 'summary', 'why', 'access', 'price']) checkBilingual(event[key], `${label}.${key}`);
     check(Array.isArray(event.categories), `${label}.categories must be an array`);
