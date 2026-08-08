@@ -8,7 +8,7 @@ The project is intentionally a **curated pilot**, not a claim to have completed
 global architectural history. Public counts distinguish discovered candidates,
 reviewed facts, contested claims, and gaps in coverage.
 
-The current catalog contains 559 cross-regional work fixtures, 539 people, 29
+The current catalog contains 559 cross-regional seed works, 539 people, 29
 practices, 39 country-place records, 191 raw relationship review edges, and 9324
 source claims. Exact direct-P31 mapping currently classifies 286 works, while
 255 remain unmapped and 18 remain ambiguous. Wikidata is the primary structured
@@ -57,7 +57,7 @@ product model, not a replacement standard.
 ## Wikidata hydration pilot
 
 The pilot reuses 559 deliberately curated, source-derived QIDs across nine
-macroregions. They are mapping fixtures, not a popularity ranking or a
+macroregions. They are mapping seed works, not a popularity ranking or a
 representative global sample. For each seed and direct dependency, the adapter:
 
 1. fetches the latest `Special:EntityData` JSON and reads `lastrevid`;
@@ -73,7 +73,7 @@ snapshot, and its P279 statements are retained only for audit context. The
 importer never traverses P279 to classify a work.
 
 The planned discovery frame is fixed at 9 macroregions × 8 periods (72 cells),
-and the first coverage discovery snapshot has now run all 72 cells (67 sampled, 5 empty_observed). No global coverage percentage is claimed from fixtures alone.
+and the first coverage discovery snapshot has now run all 72 cells (67 sampled, 5 empty_observed). No global coverage percentage is claimed from seed works alone.
 The discovery ontology uses an exact P31 allowlist and explicitly avoids an
 unbounded online P279 traversal.
 

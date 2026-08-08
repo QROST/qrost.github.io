@@ -73,7 +73,7 @@ P106 supports `architect` roles. Neither script maps inception/opening to a
 construction date, traverse P279 for classification, or convert P1066/P802
 into mentorship.
 
-The Wikidata coverage discovery workflow is separate from hydration fixtures:
+The Wikidata coverage discovery workflow is separate from curated seed-work import:
 
 ```bash
 # Full 72-cell matrix (~78 minutes at 1 SPARQL req/min)
