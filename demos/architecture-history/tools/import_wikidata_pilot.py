@@ -14,6 +14,13 @@ from pathlib import Path
 from typing import Any, Optional
 
 
+from people_policy import (
+    derive_person_roles,
+    has_architecture_occupation as record_has_architecture_occupation,
+    prune_catalog_people,
+)
+
+
 ROOT = Path(__file__).resolve().parent.parent
 CONFIG_PATH = (
     ROOT
@@ -39,6 +46,8 @@ LEGACY_WORK_TYPE_ALLOWLIST_SHA256 = (
 )
 LEGACY_WORK_TYPE_SOURCE_CONFIG_VERSION = "0.3.0"
 ARCHITECT_QID = "Q42973"
+LANDSCAPE_ARCHITECT_QID = "Q131524"
+ARCHITECT_OCCUPATION_QIDS = frozenset({ARCHITECT_QID, LANDSCAPE_ARCHITECT_QID})
 HUMAN_QID = "Q5"
 ARCHITECTURE_FIRM_QID = "Q4387609"
 SUPPORTED_PERIODS = (
@@ -1238,7 +1247,7 @@ class CatalogBuilder:
         if (
             not role_from_credit
             and not allow_non_architect
-            and ARCHITECT_QID not in occupations
+            and ARCHITECT_OCCUPATION_QIDS.isdisjoint(occupations)
         ):
             return None
         try:
@@ -1270,10 +1279,9 @@ class CatalogBuilder:
                 if chinese
                 else "missing"
             )
-        roles = (
-            ["architect"]
-            if ARCHITECT_QID in occupations
-            else ["architect"]
+        roles = derive_person_roles(
+            record,
+            role_from_credit=role_from_credit,
         )
         self.people[person_id] = {
             "aliases_en": aliases(record, ("en",)),
@@ -1298,6 +1306,42 @@ class CatalogBuilder:
             "verification_status": "candidate",
         }
         return person_id
+
+    def is_architecture_occupation(self, qid: str) -> bool:
+        return record_has_architecture_occupation(self.record(qid))
+
+    def is_practice_qid(self, qid: str) -> bool:
+        return ARCHITECTURE_FIRM_QID in set(item_values(self.record(qid), "P31"))
+
+    def is_lineage_anchor_qid(self, qid: str) -> bool:
+        if self.is_practice_qid(qid):
+            return True
+        return self.is_architecture_occupation(qid)
+
+    def ensure_lineage_person(
+        self,
+        qid: str,
+        *,
+        peer_qid: str | None,
+    ) -> Optional[str]:
+        if self.is_architecture_occupation(qid):
+            return self.ensure_person(
+                qid,
+                role_from_credit=False,
+                allow_non_architect=False,
+            )
+        peer_is_anchor = peer_qid is not None and self.is_lineage_anchor_qid(peer_qid)
+        return self.ensure_person(
+            qid,
+            role_from_credit=False,
+            allow_non_architect=peer_is_anchor,
+        )
+
+    def should_expand_lineage_from(self, qid: str) -> bool:
+        if self.is_lineage_anchor_qid(qid):
+            return True
+        person_id = entity_id("person", qid)
+        return person_id in self.people
 
     def ensure_practice(self, qid: str) -> Optional[str]:
         practice_id = entity_id("practice", qid)
@@ -1866,22 +1910,23 @@ class CatalogBuilder:
         raise KeyError(entity_id_value)
 
     def lineage_source_qids(self) -> list[str]:
-        sources: list[str] = []
+        sources: set[str] = set()
+        for person in self.people.values():
+            qid = person["external_ids"]["wikidata"]
+            if self.is_architecture_occupation(qid) or person["id"] in self.credited_person_ids():
+                sources.add(qid)
         for qid, wrapper in self.entities.items():
             record = wrapper["record"]
             instances = set(item_values(record, "P31"))
-            if (
-                HUMAN_QID not in instances
-                and ARCHITECTURE_FIRM_QID not in instances
-            ):
-                continue
             claims = record.get("claims", {})
-            if any(claims.get(property_id) for property_id in LINEAGE_REVIEW_PROPERTIES):
-                sources.append(qid)
-        for person in self.people.values():
-            qid = person["external_ids"]["wikidata"]
-            if qid not in sources:
-                sources.append(qid)
+            has_lineage = any(
+                claims.get(property_id)
+                for property_id in LINEAGE_REVIEW_PROPERTIES
+            )
+            if ARCHITECTURE_FIRM_QID in instances and has_lineage:
+                sources.add(qid)
+            elif HUMAN_QID in instances and self.is_architecture_occupation(qid):
+                sources.add(qid)
         return ordered_qids(sources)
 
     def resolve_cofounded_endpoints(
@@ -1895,19 +1940,17 @@ class CatalogBuilder:
         linked_instances = set(item_values(linked_record, "P31"))
 
         subject_person = (
-            self.ensure_person(
+            self.ensure_lineage_person(
                 subject_qid,
-                role_from_credit=False,
-                allow_non_architect=True,
+                peer_qid=linked_qid,
             )
             if HUMAN_QID in subject_instances
             else None
         )
         linked_person = (
-            self.ensure_person(
+            self.ensure_lineage_person(
                 linked_qid,
-                role_from_credit=False,
-                allow_non_architect=True,
+                peer_qid=subject_qid,
             )
             if HUMAN_QID in linked_instances
             else None
@@ -1974,15 +2017,13 @@ class CatalogBuilder:
         )
 
         if property_id == "P1066":
-            student_id = self.ensure_person(
+            student_id = self.ensure_lineage_person(
                 source_qid,
-                role_from_credit=False,
-                allow_non_architect=True,
+                peer_qid=linked_qid,
             )
-            teacher_id = self.ensure_person(
+            teacher_id = self.ensure_lineage_person(
                 linked_qid,
-                role_from_credit=False,
-                allow_non_architect=True,
+                peer_qid=source_qid,
             )
             if student_id is None or teacher_id is None:
                 return
@@ -1993,19 +2034,18 @@ class CatalogBuilder:
                 to_id=student_id,
                 evidence=evidence,
             )
-            pending_qids.add(linked_qid)
+            if self.should_expand_lineage_from(linked_qid):
+                pending_qids.add(linked_qid)
             return
 
         if property_id == "P802":
-            teacher_id = self.ensure_person(
+            teacher_id = self.ensure_lineage_person(
                 source_qid,
-                role_from_credit=False,
-                allow_non_architect=True,
+                peer_qid=linked_qid,
             )
-            student_id = self.ensure_person(
+            student_id = self.ensure_lineage_person(
                 linked_qid,
-                role_from_credit=False,
-                allow_non_architect=True,
+                peer_qid=source_qid,
             )
             if teacher_id is None or student_id is None:
                 return
@@ -2016,19 +2056,18 @@ class CatalogBuilder:
                 to_id=student_id,
                 evidence=evidence,
             )
-            pending_qids.add(linked_qid)
+            if self.should_expand_lineage_from(linked_qid):
+                pending_qids.add(linked_qid)
             return
 
         if property_id == "P737":
-            influenced_id = self.ensure_person(
+            influenced_id = self.ensure_lineage_person(
                 source_qid,
-                role_from_credit=False,
-                allow_non_architect=True,
+                peer_qid=linked_qid,
             )
-            influencer_id = self.ensure_person(
+            influencer_id = self.ensure_lineage_person(
                 linked_qid,
-                role_from_credit=False,
-                allow_non_architect=True,
+                peer_qid=source_qid,
             )
             if influenced_id is None or influencer_id is None:
                 return
@@ -2039,14 +2078,14 @@ class CatalogBuilder:
                 to_id=influenced_id,
                 evidence=evidence,
             )
-            pending_qids.add(linked_qid)
+            if self.should_expand_lineage_from(linked_qid):
+                pending_qids.add(linked_qid)
             return
 
         if property_id in {"P108", "P463"}:
-            employee_id = self.ensure_person(
+            employee_id = self.ensure_lineage_person(
                 source_qid,
-                role_from_credit=False,
-                allow_non_architect=True,
+                peer_qid=linked_qid,
             )
             practice_id = self.ensure_practice(linked_qid)
             if employee_id is None or practice_id is None:
@@ -2058,7 +2097,8 @@ class CatalogBuilder:
                 to_id=practice_id,
                 evidence=evidence,
             )
-            pending_qids.add(linked_qid)
+            if self.should_expand_lineage_from(linked_qid):
+                pending_qids.add(linked_qid)
             return
 
         if property_id == "P112":
@@ -2073,7 +2113,8 @@ class CatalogBuilder:
                 to_id=to_id,
                 evidence=evidence,
             )
-            pending_qids.add(linked_qid)
+            if self.should_expand_lineage_from(linked_qid):
+                pending_qids.add(linked_qid)
 
     def process_lineage_for_qid(
         self,
@@ -2083,12 +2124,8 @@ class CatalogBuilder:
     ) -> None:
         record = self.record(source_qid)
         instances = set(item_values(record, "P31"))
-        if HUMAN_QID in instances:
-            self.ensure_person(
-                source_qid,
-                role_from_credit=False,
-                allow_non_architect=True,
-            )
+        if HUMAN_QID in instances and self.should_expand_lineage_from(source_qid):
+            self.ensure_lineage_person(source_qid, peer_qid=None)
         for property_id in LINEAGE_REVIEW_PROPERTIES:
             for index, statement in enumerate(
                 record.get("claims", {}).get(property_id, [])
@@ -2120,8 +2157,10 @@ class CatalogBuilder:
                 len(self.people) > before_people
                 or len(self.practices) > before_practices
             ):
-                for qid, wrapper in self.entities.items():
-                    record = wrapper["record"]
+                for qid in ordered_qids(self.entities):
+                    if not self.should_expand_lineage_from(qid):
+                        continue
+                    record = self.entities[qid]["record"]
                     instances = set(item_values(record, "P31"))
                     if (
                         HUMAN_QID not in instances
@@ -2185,6 +2224,34 @@ class CatalogBuilder:
                 "verification_status": "candidate",
             }
 
+    def credited_person_ids(self) -> set[str]:
+        credited: set[str] = set()
+        for work in self.works.values():
+            for credit in work.get("credits", []):
+                credited.add(credit["entity_id"])
+        return credited
+
+    def entity_records(self) -> dict[str, dict]:
+        return {
+            qid: wrapper["record"]
+            for qid, wrapper in self.entities.items()
+            if isinstance(wrapper.get("record"), dict)
+        }
+
+    def apply_people_policy(self) -> dict[str, int]:
+        catalog = {
+            "people": list(self.people.values()),
+            "works": list(self.works.values()),
+            "practices": list(self.practices.values()),
+            "relations": list(self.relations.values()),
+            "claims": list(self.claims.values()),
+        }
+        pruned, stats = prune_catalog_people(catalog, self.entity_records())
+        self.people = {person["id"]: person for person in pruned["people"]}
+        self.relations = {relation["id"]: relation for relation in pruned["relations"]}
+        self.claims = {claim["id"]: claim for claim in pruned["claims"]}
+        return stats
+
     def build(self) -> dict:
         if self.snapshot["adapter_id"] != ADAPTER_ID:
             raise ValueError("snapshot adapter_id does not match importer")
@@ -2198,6 +2265,7 @@ class CatalogBuilder:
         ):
             self.add_work(seed)
         self.add_lineage_review_relations()
+        self.prune_stats = self.apply_people_policy()
         return {
             "claims": sorted(self.claims.values(), key=lambda item: item["id"]),
             "generated_from": self.snapshot_id,
@@ -2238,11 +2306,12 @@ def main() -> int:
     snapshot = load_json(snapshot_path)
     config = load_json(CONFIG_PATH)
     authority_snapshots = load_type_authority_snapshots(config)
-    catalog = CatalogBuilder(
+    builder = CatalogBuilder(
         snapshot,
         config,
         authority_snapshots,
-    ).build()
+    )
+    catalog = builder.build()
     atomic_write_json(output, catalog)
     print(
         f"Wrote {output.relative_to(ROOT) if output.is_relative_to(ROOT) else output}: "
@@ -2254,6 +2323,17 @@ def main() -> int:
         f"{len(catalog['claims'])} claims",
         flush=True,
     )
+    if hasattr(builder, "prune_stats"):
+        stats = builder.prune_stats
+        print(
+            "people prune: "
+            f"before={stats['before']} "
+            f"after={stats['after']} "
+            f"dropped_people={stats['dropped_people']} "
+            f"dropped_relations={stats['dropped_relations']} "
+            f"dropped_claims={stats['dropped_claims']}",
+            flush=True,
+        )
     return 0
 
 

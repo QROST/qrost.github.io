@@ -335,6 +335,17 @@
       ]
     },
     {
+      "expected_country_code": "US",
+      "expected_country_qid": "Q30",
+      "label_hint_en": "St. Nicholas Greek Orthodox Church",
+      "qid": "Q18157",
+      "region": "north_america",
+      "risk_tags": [
+        "architect_expansion",
+        "architect_calatrava"
+      ]
+    },
+    {
       "expected_country_code": "GB",
       "expected_country_qid": "Q145",
       "label_hint_en": "The Shard",
@@ -401,6 +412,17 @@
       "region": "europe",
       "risk_tags": [
         "multi_phase"
+      ]
+    },
+    {
+      "expected_country_code": "ES",
+      "expected_country_qid": "Q29",
+      "label_hint_en": "Auditorio de Tenerife",
+      "qid": "Q28964",
+      "region": "europe",
+      "risk_tags": [
+        "architect_expansion",
+        "architect_calatrava"
       ]
     },
     {
@@ -718,6 +740,17 @@
       ]
     },
     {
+      "expected_country_code": "IT",
+      "expected_country_qid": "Q38",
+      "label_hint_en": "ponte della Costituzione",
+      "qid": "Q52501",
+      "region": "europe",
+      "risk_tags": [
+        "architect_expansion",
+        "architect_calatrava"
+      ]
+    },
+    {
       "expected_country_code": "US",
       "expected_country_qid": "Q30",
       "label_hint_en": "United States Capitol",
@@ -727,6 +760,17 @@
         "multi_phase",
         "credit_completeness",
         "restoration"
+      ]
+    },
+    {
+      "expected_country_code": "AU",
+      "expected_country_qid": "Q408",
+      "label_hint_en": "Deutsche Bank Place",
+      "qid": "Q54492",
+      "region": "oceania",
+      "risk_tags": [
+        "architect_expansion",
+        "architect_foster"
       ]
     },
     {
@@ -1038,6 +1082,17 @@
       ]
     },
     {
+      "expected_country_code": "AT",
+      "expected_country_qid": "Q40",
+      "label_hint_en": "Spittelau Viaducts Housing Project",
+      "qid": "Q140498",
+      "region": "europe",
+      "risk_tags": [
+        "architect_expansion",
+        "architect_hadid"
+      ]
+    },
+    {
       "expected_country_code": "JP",
       "expected_country_qid": "Q17",
       "label_hint_en": "Nara National Museum",
@@ -1051,6 +1106,17 @@
     {
       "expected_country_code": "DE",
       "expected_country_qid": "Q183",
+      "label_hint_en": "Commerzbank Tower",
+      "qid": "Q151765",
+      "region": "europe",
+      "risk_tags": [
+        "architect_expansion",
+        "architect_foster"
+      ]
+    },
+    {
+      "expected_country_code": "DE",
+      "expected_country_qid": "Q183",
       "label_hint_en": "Reichstag building",
       "qid": "Q151897",
       "region": "europe",
@@ -1058,6 +1124,17 @@
         "restoration",
         "fire_1933",
         "post_reunification_rebuild"
+      ]
+    },
+    {
+      "expected_country_code": "DE",
+      "expected_country_qid": "Q183",
+      "label_hint_en": "Potsdamer Platz",
+      "qid": "Q152252",
+      "region": "europe",
+      "risk_tags": [
+        "architect_expansion",
+        "architect_piano"
       ]
     },
     {
@@ -1743,6 +1820,17 @@
       ]
     },
     {
+      "expected_country_code": "CN",
+      "expected_country_qid": "Q148",
+      "label_hint_en": "Bank of China Tower",
+      "qid": "Q214855",
+      "region": "east_asia",
+      "risk_tags": [
+        "architect_expansion",
+        "architect_pei"
+      ]
+    },
+    {
       "expected_country_code": "RU",
       "expected_country_qid": "Q159",
       "label_hint_en": "Saint Isaacs Cathedral",
@@ -1872,6 +1960,17 @@
       ]
     },
     {
+      "expected_country_code": "ES",
+      "expected_country_qid": "Q29",
+      "label_hint_en": "City of Arts and Sciences",
+      "qid": "Q239935",
+      "region": "europe",
+      "risk_tags": [
+        "architect_expansion",
+        "architect_calatrava"
+      ]
+    },
+    {
       "expected_country_code": "CZ",
       "expected_country_qid": "Q213",
       "label_hint_en": "Dancing House",
@@ -1899,6 +1998,17 @@
       "risk_tags": [
         "roman_aqueduct",
         "infrastructure"
+      ]
+    },
+    {
+      "expected_country_code": "PL",
+      "expected_country_qid": "Q36",
+      "label_hint_en": "Złota 44",
+      "qid": "Q249053",
+      "region": "europe",
+      "risk_tags": [
+        "architect_expansion",
+        "architect_libeskind"
       ]
     },
     {
@@ -2024,6 +2134,17 @@
       "risk_tags": [
         "ottoman",
         "palace"
+      ]
+    },
+    {
+      "expected_country_code": "US",
+      "expected_country_qid": "Q30",
+      "label_hint_en": "8 Spruce Street",
+      "qid": "Q274916",
+      "region": "north_america",
+      "risk_tags": [
+        "architect_expansion",
+        "architect_gehry"
       ]
     },
     {
@@ -2226,6 +2347,16 @@
       ]
     },
     {
+      "expected_country_code": "AR",
+      "expected_country_qid": "Q414",
+      "label_hint_en": "Argentine",
+      "qid": "Q375910",
+      "region": "latin_america_caribbean",
+      "risk_tags": [
+        "coverage_promotion"
+      ]
+    },
+    {
       "expected_country_code": "KR",
       "expected_country_qid": "Q884",
       "label_hint_en": "Gyeongju National Museum",
@@ -2320,6 +2451,17 @@
       "risk_tags": [
         "wwii_uses",
         "restoration"
+      ]
+    },
+    {
+      "expected_country_code": "DE",
+      "expected_country_qid": "Q183",
+      "label_hint_en": "Bundeswehr Military History Museum",
+      "qid": "Q459416",
+      "region": "europe",
+      "risk_tags": [
+        "architect_expansion",
+        "architect_libeskind"
       ]
     },
     {
@@ -2720,6 +2862,17 @@
       ]
     },
     {
+      "expected_country_code": "ES",
+      "expected_country_qid": "Q29",
+      "label_hint_en": "Torre Moeve",
+      "qid": "Q519568",
+      "region": "europe",
+      "risk_tags": [
+        "architect_expansion",
+        "architect_foster"
+      ]
+    },
+    {
       "expected_country_code": "EG",
       "expected_country_qid": "Q79",
       "label_hint_en": "Karnak Temple Complex",
@@ -2750,6 +2903,17 @@
       "risk_tags": [
         "traditional_attribution",
         "ancient_date_precision"
+      ]
+    },
+    {
+      "expected_country_code": "DE",
+      "expected_country_qid": "Q183",
+      "label_hint_en": "Cologne Tower",
+      "qid": "Q555142",
+      "region": "europe",
+      "risk_tags": [
+        "architect_expansion",
+        "architect_nouvel"
       ]
     },
     {
@@ -2968,6 +3132,16 @@
       ]
     },
     {
+      "expected_country_code": "CA",
+      "expected_country_qid": "Q16",
+      "label_hint_en": "Bellevue House",
+      "qid": "Q616460",
+      "region": "north_america",
+      "risk_tags": [
+        "coverage_promotion"
+      ]
+    },
+    {
       "expected_country_code": "KR",
       "expected_country_qid": "Q884",
       "label_hint_en": "Seoul City Hall",
@@ -3151,6 +3325,28 @@
       ]
     },
     {
+      "expected_country_code": "ES",
+      "expected_country_qid": "Q29",
+      "label_hint_en": "Centro Internacional de Ferias y Congresos de Tenerife",
+      "qid": "Q664681",
+      "region": "europe",
+      "risk_tags": [
+        "architect_expansion",
+        "architect_calatrava"
+      ]
+    },
+    {
+      "expected_country_code": "CH",
+      "expected_country_qid": "Q39",
+      "label_hint_en": "Lucerne Culture and Congress Centre",
+      "qid": "Q665311",
+      "region": "europe",
+      "risk_tags": [
+        "architect_expansion",
+        "architect_nouvel"
+      ]
+    },
+    {
       "expected_country_code": "IR",
       "expected_country_qid": "Q794",
       "label_hint_en": "Si-o-se Pol",
@@ -3162,6 +3358,17 @@
       ]
     },
     {
+      "expected_country_code": "US",
+      "expected_country_qid": "Q30",
+      "label_hint_en": "Morton H. Meyerson Symphony Center",
+      "qid": "Q670323",
+      "region": "north_america",
+      "risk_tags": [
+        "architect_expansion",
+        "architect_pei"
+      ]
+    },
+    {
       "expected_country_code": "RU",
       "expected_country_qid": "Q159",
       "label_hint_en": "Narkomfin building",
@@ -3170,6 +3377,17 @@
       "risk_tags": [
         "restoration_delayed",
         "team_credit"
+      ]
+    },
+    {
+      "expected_country_code": "US",
+      "expected_country_qid": "Q30",
+      "label_hint_en": "80 South Street",
+      "qid": "Q672984",
+      "region": "north_america",
+      "risk_tags": [
+        "architect_expansion",
+        "architect_calatrava"
       ]
     },
     {
@@ -3256,6 +3474,17 @@
       ]
     },
     {
+      "expected_country_code": "DE",
+      "expected_country_qid": "Q183",
+      "label_hint_en": "Deutsches Historisches Museum",
+      "qid": "Q688335",
+      "region": "europe",
+      "risk_tags": [
+        "architect_expansion",
+        "architect_pei"
+      ]
+    },
+    {
       "expected_country_code": "AT",
       "expected_country_qid": "Q40",
       "label_hint_en": "Kremsmünster Abbey",
@@ -3263,6 +3492,17 @@
       "region": "europe",
       "risk_tags": [
         "multi_phase"
+      ]
+    },
+    {
+      "expected_country_code": "DE",
+      "expected_country_qid": "Q183",
+      "label_hint_en": "Oberbaum Bridge",
+      "qid": "Q695082",
+      "region": "europe",
+      "risk_tags": [
+        "architect_expansion",
+        "architect_calatrava"
       ]
     },
     {
@@ -3508,6 +3748,17 @@
       ]
     },
     {
+      "expected_country_code": "DE",
+      "expected_country_qid": "Q183",
+      "label_hint_en": "Zentralgebäude (Leuphana)",
+      "qid": "Q758831",
+      "region": "europe",
+      "risk_tags": [
+        "architect_expansion",
+        "architect_libeskind"
+      ]
+    },
+    {
       "expected_country_code": "PL",
       "expected_country_qid": "Q36",
       "label_hint_en": "Q769503",
@@ -3604,6 +3855,17 @@
       ]
     },
     {
+      "expected_country_code": "US",
+      "expected_country_qid": "Q30",
+      "label_hint_en": "John Hancock Tower",
+      "qid": "Q798416",
+      "region": "north_america",
+      "risk_tags": [
+        "architect_expansion",
+        "architect_pei"
+      ]
+    },
+    {
       "expected_country_code": "MY",
       "expected_country_qid": "Q833",
       "label_hint_en": "Malaysian Houses of Parliament",
@@ -3636,6 +3898,17 @@
       ]
     },
     {
+      "expected_country_code": "DE",
+      "expected_country_qid": "Q183",
+      "label_hint_en": "Neuer Zollhof",
+      "qid": "Q822071",
+      "region": "europe",
+      "risk_tags": [
+        "architect_expansion",
+        "architect_gehry"
+      ]
+    },
+    {
       "expected_country_code": "PE",
       "expected_country_qid": "Q419",
       "label_hint_en": "Saqsaywaman",
@@ -3644,6 +3917,28 @@
       "risk_tags": [
         "inca_fortress",
         "cyclopean_masonry"
+      ]
+    },
+    {
+      "expected_country_code": "NL",
+      "expected_country_qid": "Q55",
+      "label_hint_en": "World Port Center",
+      "qid": "Q828343",
+      "region": "europe",
+      "risk_tags": [
+        "architect_expansion",
+        "architect_foster"
+      ]
+    },
+    {
+      "expected_country_code": "DE",
+      "expected_country_qid": "Q183",
+      "label_hint_en": "Langen Foundation",
+      "qid": "Q830675",
+      "region": "europe",
+      "risk_tags": [
+        "architect_expansion",
+        "architect_ando"
       ]
     },
     {
@@ -3799,6 +4094,26 @@
       "qid": "Q863044",
       "region": "east_asia",
       "risk_tags": []
+    },
+    {
+      "expected_country_code": "VN",
+      "expected_country_qid": "Q881",
+      "label_hint_en": "Flag Tower of Hanoi",
+      "qid": "Q864752",
+      "region": "southeast_asia",
+      "risk_tags": [
+        "coverage_promotion"
+      ]
+    },
+    {
+      "expected_country_code": "VN",
+      "expected_country_qid": "Q881",
+      "label_hint_en": "Presidential Palace of Vietnam",
+      "qid": "Q864758",
+      "region": "southeast_asia",
+      "risk_tags": [
+        "coverage_promotion"
+      ]
     },
     {
       "expected_country_code": "TH",
@@ -4037,6 +4352,17 @@
       ]
     },
     {
+      "expected_country_code": "IT",
+      "expected_country_qid": "Q38",
+      "label_hint_en": "Pinacoteca Giovanni e Marella Agnelli",
+      "qid": "Q975240",
+      "region": "europe",
+      "risk_tags": [
+        "architect_expansion",
+        "architect_piano"
+      ]
+    },
+    {
       "expected_country_code": "VN",
       "expected_country_qid": "Q881",
       "label_hint_en": "Thiên Mụ Temple",
@@ -4057,6 +4383,17 @@
       "risk_tags": [
         "library",
         "toyo_ito"
+      ]
+    },
+    {
+      "expected_country_code": "US",
+      "expected_country_qid": "Q30",
+      "label_hint_en": "Four Seasons Hotel New York",
+      "qid": "Q992616",
+      "region": "north_america",
+      "risk_tags": [
+        "architect_expansion",
+        "architect_pei"
       ]
     },
     {
@@ -4210,6 +4547,17 @@
       "risk_tags": [
         "reconstruction",
         "multi_phase"
+      ]
+    },
+    {
+      "expected_country_code": "FR",
+      "expected_country_qid": "Q142",
+      "label_hint_en": "Louvre Palace",
+      "qid": "Q1075988",
+      "region": "europe",
+      "risk_tags": [
+        "architect_expansion",
+        "architect_pei"
       ]
     },
     {
@@ -4392,6 +4740,27 @@
       ]
     },
     {
+      "expected_country_code": "IN",
+      "expected_country_qid": "Q668",
+      "label_hint_en": "Dakshineswar Kali Temple",
+      "qid": "Q1157765",
+      "region": "south_asia",
+      "risk_tags": [
+        "coverage_promotion"
+      ]
+    },
+    {
+      "expected_country_code": "DE",
+      "expected_country_qid": "Q183",
+      "label_hint_en": "Atrium Tower",
+      "qid": "Q1181509",
+      "region": "europe",
+      "risk_tags": [
+        "architect_expansion",
+        "architect_piano"
+      ]
+    },
+    {
       "expected_country_code": "VN",
       "expected_country_qid": "Q881",
       "label_hint_en": "One Pillar Pagoda",
@@ -4401,6 +4770,39 @@
         "vietnamese",
         "pagoda",
         "no_completion_date_in_p1619_p571"
+      ]
+    },
+    {
+      "expected_country_code": "ES",
+      "expected_country_qid": "Q29",
+      "label_hint_en": "Hotel Catalonia Plaza Europa",
+      "qid": "Q1189222",
+      "region": "europe",
+      "risk_tags": [
+        "architect_expansion",
+        "architect_nouvel"
+      ]
+    },
+    {
+      "expected_country_code": "ES",
+      "expected_country_qid": "Q29",
+      "label_hint_en": "Torre Realia BCN",
+      "qid": "Q1189521",
+      "region": "europe",
+      "risk_tags": [
+        "architect_expansion",
+        "architect_toyo_ito"
+      ]
+    },
+    {
+      "expected_country_code": "ES",
+      "expected_country_qid": "Q29",
+      "label_hint_en": "Hotel Porta Fira",
+      "qid": "Q1189944",
+      "region": "europe",
+      "risk_tags": [
+        "architect_expansion",
+        "architect_toyo_ito"
       ]
     },
     {
@@ -4442,6 +4844,17 @@
       "region": "north_america",
       "risk_tags": [
         "multi_phase"
+      ]
+    },
+    {
+      "expected_country_code": "CA",
+      "expected_country_qid": "Q16",
+      "label_hint_en": "The Bow",
+      "qid": "Q1229086",
+      "region": "north_america",
+      "risk_tags": [
+        "architect_expansion",
+        "architect_foster"
       ]
     },
     {
@@ -4545,6 +4958,27 @@
       ]
     },
     {
+      "expected_country_code": "JP",
+      "expected_country_qid": "Q17",
+      "label_hint_en": "National Diet Building",
+      "qid": "Q1338856",
+      "region": "east_asia",
+      "risk_tags": [
+        "coverage_promotion"
+      ]
+    },
+    {
+      "expected_country_code": "CA",
+      "expected_country_qid": "Q16",
+      "label_hint_en": "Place Ville Marie",
+      "qid": "Q1344856",
+      "region": "north_america",
+      "risk_tags": [
+        "architect_expansion",
+        "architect_pei"
+      ]
+    },
+    {
       "expected_country_code": "US",
       "expected_country_qid": "Q30",
       "label_hint_en": "Salk Institute for Biological Studies",
@@ -4609,6 +5043,17 @@
       ]
     },
     {
+      "expected_country_code": "CN",
+      "expected_country_qid": "Q148",
+      "label_hint_en": "HSBC Building",
+      "qid": "Q1372014",
+      "region": "east_asia",
+      "risk_tags": [
+        "architect_expansion",
+        "architect_foster"
+      ]
+    },
+    {
       "expected_country_code": "US",
       "expected_country_qid": "Q30",
       "label_hint_en": "Farnsworth House",
@@ -4617,6 +5062,17 @@
       "risk_tags": [
         "single_phase",
         "residential"
+      ]
+    },
+    {
+      "expected_country_code": "DE",
+      "expected_country_qid": "Q183",
+      "label_hint_en": "Quartier 207",
+      "qid": "Q1406145",
+      "region": "europe",
+      "risk_tags": [
+        "architect_expansion",
+        "architect_nouvel"
       ]
     },
     {
@@ -4638,6 +5094,16 @@
       "region": "central_west_asia",
       "risk_tags": [
         "garden_complex"
+      ]
+    },
+    {
+      "expected_country_code": "TH",
+      "expected_country_qid": "Q869",
+      "label_hint_en": "Klai Kangwon Palace",
+      "qid": "Q1423294",
+      "region": "southeast_asia",
+      "risk_tags": [
+        "coverage_promotion"
       ]
     },
     {
@@ -4756,6 +5222,17 @@
       "region": "north_america",
       "risk_tags": [
         "coverage_promotion"
+      ]
+    },
+    {
+      "expected_country_code": "CA",
+      "expected_country_qid": "Q16",
+      "label_hint_en": "Jameson House",
+      "qid": "Q1531538",
+      "region": "north_america",
+      "risk_tags": [
+        "architect_expansion",
+        "architect_foster"
       ]
     },
     {
@@ -4910,6 +5387,17 @@
       ]
     },
     {
+      "expected_country_code": "NL",
+      "expected_country_qid": "Q55",
+      "label_hint_en": "Paard van Troje",
+      "qid": "Q1704368",
+      "region": "europe",
+      "risk_tags": [
+        "architect_expansion",
+        "architect_koolhaas"
+      ]
+    },
+    {
       "expected_country_code": "JP",
       "expected_country_qid": "Q17",
       "label_hint_en": "Katsura Imperial Villa",
@@ -4954,6 +5442,27 @@
       ]
     },
     {
+      "expected_country_code": "TH",
+      "expected_country_qid": "Q869",
+      "label_hint_en": "Constitution Defense Monument",
+      "qid": "Q1800823",
+      "region": "southeast_asia",
+      "risk_tags": [
+        "coverage_promotion"
+      ]
+    },
+    {
+      "expected_country_code": "ES",
+      "expected_country_qid": "Q29",
+      "label_hint_en": "Torre La Sagrera",
+      "qid": "Q1805449",
+      "region": "europe",
+      "risk_tags": [
+        "architect_expansion",
+        "architect_gehry"
+      ]
+    },
+    {
       "expected_country_code": "GB",
       "expected_country_qid": "Q145",
       "label_hint_en": "Lloyd's building",
@@ -4962,6 +5471,17 @@
       "risk_tags": [
         "team_credit",
         "high_tech"
+      ]
+    },
+    {
+      "expected_country_code": "CN",
+      "expected_country_qid": "Q148",
+      "label_hint_en": "Beijing Television Cultural Center",
+      "qid": "Q1820001",
+      "region": "east_asia",
+      "risk_tags": [
+        "architect_expansion",
+        "architect_koolhaas"
       ]
     },
     {
@@ -5005,6 +5525,16 @@
       ]
     },
     {
+      "expected_country_code": "NL",
+      "expected_country_qid": "Q55",
+      "label_hint_en": "Sint-Hubertuskerk",
+      "qid": "Q1870440",
+      "region": "europe",
+      "risk_tags": [
+        "coverage_promotion"
+      ]
+    },
+    {
       "expected_country_code": "TR",
       "expected_country_qid": "Q43",
       "label_hint_en": "Q1875713",
@@ -5025,6 +5555,36 @@
       ]
     },
     {
+      "expected_country_code": "NL",
+      "expected_country_qid": "Q55",
+      "label_hint_en": "Vredeskerk (Amsterdam)",
+      "qid": "Q1891104",
+      "region": "europe",
+      "risk_tags": [
+        "coverage_promotion"
+      ]
+    },
+    {
+      "expected_country_code": "VN",
+      "expected_country_qid": "Q881",
+      "label_hint_en": "Saint Joseph Cathedral",
+      "qid": "Q1923783",
+      "region": "southeast_asia",
+      "risk_tags": [
+        "coverage_promotion"
+      ]
+    },
+    {
+      "expected_country_code": "TR",
+      "expected_country_qid": "Q43",
+      "label_hint_en": "Mossyna",
+      "qid": "Q1949487",
+      "region": "central_west_asia",
+      "risk_tags": [
+        "coverage_promotion"
+      ]
+    },
+    {
       "expected_country_code": "IR",
       "expected_country_qid": "Q794",
       "label_hint_en": "Nasir-ol-Molk Mosque",
@@ -5042,6 +5602,17 @@
       "region": "africa",
       "risk_tags": [
         "unmapped_work_type"
+      ]
+    },
+    {
+      "expected_country_code": "ES",
+      "expected_country_qid": "Q29",
+      "label_hint_en": "Pont de l'Exposició",
+      "qid": "Q1983772",
+      "region": "europe",
+      "risk_tags": [
+        "architect_expansion",
+        "architect_calatrava"
       ]
     },
     {
@@ -5079,6 +5650,16 @@
     {
       "expected_country_code": "TH",
       "expected_country_qid": "Q869",
+      "label_hint_en": "Victory Monument",
+      "qid": "Q2063737",
+      "region": "southeast_asia",
+      "risk_tags": [
+        "coverage_promotion"
+      ]
+    },
+    {
+      "expected_country_code": "TH",
+      "expected_country_qid": "Q869",
       "label_hint_en": "Wat Chaiwatthanaram",
       "qid": "Q2063779",
       "region": "southeast_asia",
@@ -5100,6 +5681,17 @@
       ]
     },
     {
+      "expected_country_code": "NL",
+      "expected_country_qid": "Q55",
+      "label_hint_en": "Kunstlinie Almere Flevoland",
+      "qid": "Q2131209",
+      "region": "europe",
+      "risk_tags": [
+        "architect_expansion",
+        "architect_sejima"
+      ]
+    },
+    {
       "expected_country_code": "CA",
       "expected_country_qid": "Q16",
       "label_hint_en": "Q2145641",
@@ -5118,6 +5710,17 @@
       "risk_tags": []
     },
     {
+      "expected_country_code": "CA",
+      "expected_country_qid": "Q16",
+      "label_hint_en": "Rogers Building",
+      "qid": "Q2161980",
+      "region": "north_america",
+      "risk_tags": [
+        "architect_expansion",
+        "architect_libeskind"
+      ]
+    },
+    {
       "expected_country_code": "VN",
       "expected_country_qid": "Q881",
       "label_hint_en": "Saigon Central Post Office",
@@ -5125,6 +5728,16 @@
       "region": "southeast_asia",
       "risk_tags": [
         "unmapped_work_type"
+      ]
+    },
+    {
+      "expected_country_code": "NL",
+      "expected_country_qid": "Q55",
+      "label_hint_en": "Heilige Familiekerk",
+      "qid": "Q2237416",
+      "region": "europe",
+      "risk_tags": [
+        "coverage_promotion"
       ]
     },
     {
@@ -5139,11 +5752,53 @@
       ]
     },
     {
+      "expected_country_code": "NL",
+      "expected_country_qid": "Q55",
+      "label_hint_en": "Ito-toren",
+      "qid": "Q2269636",
+      "region": "europe",
+      "risk_tags": [
+        "architect_expansion",
+        "architect_toyo_ito"
+      ]
+    },
+    {
       "expected_country_code": "IN",
       "expected_country_qid": "Q668",
       "label_hint_en": "Villa Shodhan",
       "qid": "Q2275530",
       "region": "south_asia",
+      "risk_tags": [
+        "coverage_promotion"
+      ]
+    },
+    {
+      "expected_country_code": "AE",
+      "expected_country_qid": "Q878",
+      "label_hint_en": "Sheikh Zayed Bridge",
+      "qid": "Q2277764",
+      "region": "central_west_asia",
+      "risk_tags": [
+        "architect_expansion",
+        "architect_hadid"
+      ]
+    },
+    {
+      "expected_country_code": "TH",
+      "expected_country_qid": "Q869",
+      "label_hint_en": "River Kwai bridge",
+      "qid": "Q2282230",
+      "region": "southeast_asia",
+      "risk_tags": [
+        "coverage_promotion"
+      ]
+    },
+    {
+      "expected_country_code": "NL",
+      "expected_country_qid": "Q55",
+      "label_hint_en": "Atak",
+      "qid": "Q2284532",
+      "region": "europe",
       "risk_tags": [
         "coverage_promotion"
       ]
@@ -5203,12 +5858,33 @@
       ]
     },
     {
+      "expected_country_code": "NL",
+      "expected_country_qid": "Q55",
+      "label_hint_en": "Calatrava bridges in Haarlemmermeer",
+      "qid": "Q2369608",
+      "region": "europe",
+      "risk_tags": [
+        "architect_expansion",
+        "architect_calatrava"
+      ]
+    },
+    {
       "expected_country_code": "JP",
       "expected_country_qid": "Q17",
       "label_hint_en": "Teshima Art Museum",
       "qid": "Q2379884",
       "region": "east_asia",
       "risk_tags": []
+    },
+    {
+      "expected_country_code": "ML",
+      "expected_country_qid": "Q912",
+      "label_hint_en": "Mopti Grand Mosque",
+      "qid": "Q2383511",
+      "region": "africa",
+      "risk_tags": [
+        "coverage_promotion"
+      ]
     },
     {
       "expected_country_code": "EG",
@@ -5239,6 +5915,17 @@
       "risk_tags": [
         "colonial",
         "cathedral"
+      ]
+    },
+    {
+      "expected_country_code": "US",
+      "expected_country_qid": "Q30",
+      "label_hint_en": "53W53",
+      "qid": "Q2446907",
+      "region": "north_america",
+      "risk_tags": [
+        "architect_expansion",
+        "architect_nouvel"
       ]
     },
     {
@@ -5336,6 +6023,27 @@
       ]
     },
     {
+      "expected_country_code": "US",
+      "expected_country_qid": "Q30",
+      "label_hint_en": "425 Park Avenue",
+      "qid": "Q2631826",
+      "region": "north_america",
+      "risk_tags": [
+        "architect_expansion",
+        "architect_foster"
+      ]
+    },
+    {
+      "expected_country_code": "TH",
+      "expected_country_qid": "Q869",
+      "label_hint_en": "Rajadamnern Stadium",
+      "qid": "Q2631915",
+      "region": "southeast_asia",
+      "risk_tags": [
+        "coverage_promotion"
+      ]
+    },
+    {
       "expected_country_code": "IR",
       "expected_country_qid": "Q794",
       "label_hint_en": "Tomb of Cyrus the Great",
@@ -5343,6 +6051,17 @@
       "region": "central_west_asia",
       "risk_tags": [
         "achaemenid"
+      ]
+    },
+    {
+      "expected_country_code": "US",
+      "expected_country_qid": "Q30",
+      "label_hint_en": "Gehry Residence",
+      "qid": "Q2655243",
+      "region": "north_america",
+      "risk_tags": [
+        "architect_expansion",
+        "architect_gehry"
       ]
     },
     {
@@ -5376,6 +6095,17 @@
       "region": "east_asia",
       "risk_tags": [
         "reconstruction"
+      ]
+    },
+    {
+      "expected_country_code": "NL",
+      "expected_country_qid": "Q55",
+      "label_hint_en": "De Rotterdam",
+      "qid": "Q2741526",
+      "region": "europe",
+      "risk_tags": [
+        "architect_expansion",
+        "architect_koolhaas"
       ]
     },
     {
@@ -5455,6 +6185,17 @@
       ]
     },
     {
+      "expected_country_code": "ES",
+      "expected_country_qid": "Q29",
+      "label_hint_en": "Llotja de Sant Jordi",
+      "qid": "Q2922441",
+      "region": "europe",
+      "risk_tags": [
+        "architect_expansion",
+        "architect_calatrava"
+      ]
+    },
+    {
       "expected_country_code": "ID",
       "expected_country_qid": "Q252",
       "label_hint_en": "Sewu",
@@ -5475,6 +6216,16 @@
       "risk_tags": [
         "colonial",
         "cathedral"
+      ]
+    },
+    {
+      "expected_country_code": "ML",
+      "expected_country_qid": "Q912",
+      "label_hint_en": "Sacred Heart Cathedral",
+      "qid": "Q2942903",
+      "region": "africa",
+      "risk_tags": [
+        "coverage_promotion"
       ]
     },
     {
@@ -5499,6 +6250,17 @@
       ]
     },
     {
+      "expected_country_code": "FR",
+      "expected_country_qid": "Q142",
+      "label_hint_en": "Paris Tribunal",
+      "qid": "Q2974817",
+      "region": "europe",
+      "risk_tags": [
+        "architect_expansion",
+        "architect_piano"
+      ]
+    },
+    {
       "expected_country_code": "PE",
       "expected_country_qid": "Q419",
       "label_hint_en": "Q3033412",
@@ -5519,12 +6281,45 @@
       ]
     },
     {
+      "expected_country_code": "ES",
+      "expected_country_qid": "Q29",
+      "label_hint_en": "Hilton Valencia",
+      "qid": "Q3062297",
+      "region": "europe",
+      "risk_tags": [
+        "architect_expansion",
+        "architect_foster"
+      ]
+    },
+    {
       "expected_country_code": "FR",
       "expected_country_qid": "Q142",
       "label_hint_en": "Louis Vuitton Foundation",
       "qid": "Q3075489",
       "region": "europe",
       "risk_tags": []
+    },
+    {
+      "expected_country_code": "FR",
+      "expected_country_qid": "Q142",
+      "label_hint_en": "Tour Légende",
+      "qid": "Q3090555",
+      "region": "europe",
+      "risk_tags": [
+        "architect_expansion",
+        "architect_pei"
+      ]
+    },
+    {
+      "expected_country_code": "GB",
+      "expected_country_qid": "Q145",
+      "label_hint_en": "Willis Building",
+      "qid": "Q3109593",
+      "region": "europe",
+      "risk_tags": [
+        "architect_expansion",
+        "architect_foster"
+      ]
     },
     {
       "expected_country_code": "ID",
@@ -5594,6 +6389,17 @@
       ]
     },
     {
+      "expected_country_code": "FR",
+      "expected_country_qid": "Q142",
+      "label_hint_en": "Maison à Bordeaux",
+      "qid": "Q3278843",
+      "region": "europe",
+      "risk_tags": [
+        "architect_expansion",
+        "architect_koolhaas"
+      ]
+    },
+    {
       "expected_country_code": "US",
       "expected_country_qid": "Q30",
       "label_hint_en": "Stata Center",
@@ -5602,6 +6408,17 @@
       "risk_tags": [
         "campus",
         "frank_gehry"
+      ]
+    },
+    {
+      "expected_country_code": "ES",
+      "expected_country_qid": "Q29",
+      "label_hint_en": "Puente de Itsas Aurre",
+      "qid": "Q3314572",
+      "region": "europe",
+      "risk_tags": [
+        "architect_expansion",
+        "architect_calatrava"
       ]
     },
     {
@@ -5615,12 +6432,45 @@
       ]
     },
     {
+      "expected_country_code": "ES",
+      "expected_country_qid": "Q29",
+      "label_hint_en": "Pasarela Jorge Manrique, Murcia",
+      "qid": "Q3368267",
+      "region": "europe",
+      "risk_tags": [
+        "architect_expansion",
+        "architect_calatrava"
+      ]
+    },
+    {
       "expected_country_code": "FR",
       "expected_country_qid": "Q142",
       "label_hint_en": "Philharmonie de Paris",
       "qid": "Q3378907",
       "region": "europe",
       "risk_tags": []
+    },
+    {
+      "expected_country_code": "ES",
+      "expected_country_qid": "Q29",
+      "label_hint_en": "Bac de Roda Bridge",
+      "qid": "Q3396457",
+      "region": "europe",
+      "risk_tags": [
+        "architect_expansion",
+        "architect_calatrava"
+      ]
+    },
+    {
+      "expected_country_code": "FR",
+      "expected_country_qid": "Q142",
+      "label_hint_en": "Pont de l'Europe",
+      "qid": "Q3397217",
+      "region": "europe",
+      "risk_tags": [
+        "architect_expansion",
+        "architect_calatrava"
+      ]
     },
     {
       "expected_country_code": "ML",
@@ -5663,6 +6513,28 @@
       ]
     },
     {
+      "expected_country_code": "FR",
+      "expected_country_qid": "Q142",
+      "label_hint_en": "CMA CGM Tower",
+      "qid": "Q3533034",
+      "region": "europe",
+      "risk_tags": [
+        "architect_expansion",
+        "architect_hadid"
+      ]
+    },
+    {
+      "expected_country_code": "FR",
+      "expected_country_qid": "Q142",
+      "label_hint_en": "Tour Duo",
+      "qid": "Q3533060",
+      "region": "europe",
+      "risk_tags": [
+        "architect_expansion",
+        "architect_nouvel"
+      ]
+    },
+    {
       "expected_country_code": "CA",
       "expected_country_qid": "Q16",
       "label_hint_en": "Q3533104",
@@ -5670,6 +6542,17 @@
       "region": "north_america",
       "risk_tags": [
         "coverage_promotion"
+      ]
+    },
+    {
+      "expected_country_code": "FR",
+      "expected_country_qid": "Q142",
+      "label_hint_en": "Tour Signal",
+      "qid": "Q3533187",
+      "region": "europe",
+      "risk_tags": [
+        "architect_expansion",
+        "architect_nouvel"
       ]
     },
     {
@@ -5695,6 +6578,27 @@
       ]
     },
     {
+      "expected_country_code": "IN",
+      "expected_country_qid": "Q668",
+      "label_hint_en": "Our Lady of Dolours Basilica",
+      "qid": "Q3595219",
+      "region": "south_asia",
+      "risk_tags": [
+        "coverage_promotion"
+      ]
+    },
+    {
+      "expected_country_code": "IT",
+      "expected_country_qid": "Q38",
+      "label_hint_en": "Centro direzionale della Banca Popolare di Lodi",
+      "qid": "Q3664845",
+      "region": "europe",
+      "risk_tags": [
+        "architect_expansion",
+        "architect_piano"
+      ]
+    },
+    {
       "expected_country_code": "IT",
       "expected_country_qid": "Q38",
       "label_hint_en": "CityLife",
@@ -5702,6 +6606,39 @@
       "region": "europe",
       "risk_tags": [
         "district_scale_complex"
+      ]
+    },
+    {
+      "expected_country_code": "IT",
+      "expected_country_qid": "Q38",
+      "label_hint_en": "Intesa Sanpaolo Building",
+      "qid": "Q3775871",
+      "region": "europe",
+      "risk_tags": [
+        "architect_expansion",
+        "architect_piano"
+      ]
+    },
+    {
+      "expected_country_code": "IT",
+      "expected_country_qid": "Q38",
+      "label_hint_en": "Palazzo del Nuoto",
+      "qid": "Q3891379",
+      "region": "europe",
+      "risk_tags": [
+        "architect_expansion",
+        "architect_isozaki"
+      ]
+    },
+    {
+      "expected_country_code": "IT",
+      "expected_country_qid": "Q38",
+      "label_hint_en": "Salerno harbor station",
+      "qid": "Q3971406",
+      "region": "europe",
+      "risk_tags": [
+        "architect_expansion",
+        "architect_hadid"
       ]
     },
     {
@@ -5722,6 +6659,28 @@
       "qid": "Q3995195",
       "region": "europe",
       "risk_tags": []
+    },
+    {
+      "expected_country_code": "IT",
+      "expected_country_qid": "Q38",
+      "label_hint_en": "Allianz Tower",
+      "qid": "Q3995200",
+      "region": "europe",
+      "risk_tags": [
+        "architect_expansion",
+        "architect_isozaki"
+      ]
+    },
+    {
+      "expected_country_code": "IT",
+      "expected_country_qid": "Q38",
+      "label_hint_en": "Libeskind Tower",
+      "qid": "Q3995204",
+      "region": "europe",
+      "risk_tags": [
+        "architect_expansion",
+        "architect_libeskind"
+      ]
     },
     {
       "expected_country_code": "ML",
@@ -5817,11 +6776,53 @@
       ]
     },
     {
+      "expected_country_code": "JP",
+      "expected_country_qid": "Q17",
+      "label_hint_en": "Sacred Heart Cathedral",
+      "qid": "Q4383788",
+      "region": "east_asia",
+      "risk_tags": [
+        "coverage_promotion"
+      ]
+    },
+    {
+      "expected_country_code": "JP",
+      "expected_country_qid": "Q17",
+      "label_hint_en": "Tsukuba Center Building",
+      "qid": "Q4448816",
+      "region": "east_asia",
+      "risk_tags": [
+        "architect_expansion",
+        "architect_isozaki"
+      ]
+    },
+    {
+      "expected_country_code": "JP",
+      "expected_country_qid": "Q17",
+      "label_hint_en": "Row House in Sumiyoshi",
+      "qid": "Q4503738",
+      "region": "east_asia",
+      "risk_tags": [
+        "architect_expansion",
+        "architect_ando"
+      ]
+    },
+    {
       "expected_country_code": "CA",
       "expected_country_qid": "Q16",
       "label_hint_en": "Our Lady Of Victory Church",
       "qid": "Q4504907",
       "region": "north_america",
+      "risk_tags": [
+        "coverage_promotion"
+      ]
+    },
+    {
+      "expected_country_code": "IN",
+      "expected_country_qid": "Q668",
+      "label_hint_en": "Telangana State Archaeology Museum",
+      "qid": "Q4653501",
+      "region": "south_asia",
       "risk_tags": [
         "coverage_promotion"
       ]
@@ -5865,6 +6866,17 @@
       "risk_tags": [
         "housing",
         "brutalist"
+      ]
+    },
+    {
+      "expected_country_code": "US",
+      "expected_country_qid": "Q30",
+      "label_hint_en": "Art Institute of Chicago building",
+      "qid": "Q4796889",
+      "region": "north_america",
+      "risk_tags": [
+        "architect_expansion",
+        "architect_piano"
       ]
     },
     {
@@ -5912,6 +6924,17 @@
       ]
     },
     {
+      "expected_country_code": "US",
+      "expected_country_qid": "Q30",
+      "label_hint_en": "Campbell Sports Center",
+      "qid": "Q5028147",
+      "region": "north_america",
+      "risk_tags": [
+        "architect_expansion",
+        "architect_holl"
+      ]
+    },
+    {
       "expected_country_code": "TR",
       "expected_country_qid": "Q43",
       "label_hint_en": "Q5058732",
@@ -5919,6 +6942,17 @@
       "region": "central_west_asia",
       "risk_tags": [
         "coverage_promotion"
+      ]
+    },
+    {
+      "expected_country_code": "GB",
+      "expected_country_qid": "Q145",
+      "label_hint_en": "Central Saint Giles",
+      "qid": "Q5061785",
+      "region": "europe",
+      "risk_tags": [
+        "architect_expansion",
+        "architect_piano"
       ]
     },
     {
@@ -5932,11 +6966,75 @@
       ]
     },
     {
+      "expected_country_code": "GB",
+      "expected_country_qid": "Q145",
+      "label_hint_en": "Cohen House",
+      "qid": "Q5141321",
+      "region": "europe",
+      "risk_tags": [
+        "architect_expansion",
+        "architect_foster"
+      ]
+    },
+    {
+      "expected_country_code": "PE",
+      "expected_country_qid": "Q419",
+      "label_hint_en": "Osambela House",
+      "qid": "Q5201102",
+      "region": "latin_america_caribbean",
+      "risk_tags": [
+        "coverage_promotion"
+      ]
+    },
+    {
       "expected_country_code": "PE",
       "expected_country_qid": "Q419",
       "label_hint_en": "Gran Teatro Nacional",
       "qid": "Q5201581",
       "region": "latin_america_caribbean",
+      "risk_tags": [
+        "coverage_promotion"
+      ]
+    },
+    {
+      "expected_country_code": "KR",
+      "expected_country_qid": "Q884",
+      "label_hint_en": "Daeyang Gallery and House",
+      "qid": "Q5208295",
+      "region": "east_asia",
+      "risk_tags": [
+        "architect_expansion",
+        "architect_holl"
+      ]
+    },
+    {
+      "expected_country_code": "JP",
+      "expected_country_qid": "Q17",
+      "label_hint_en": "Dentsu Building",
+      "qid": "Q5259646",
+      "region": "east_asia",
+      "risk_tags": [
+        "architect_expansion",
+        "architect_nouvel"
+      ]
+    },
+    {
+      "expected_country_code": "AU",
+      "expected_country_qid": "Q408",
+      "label_hint_en": "Dr Chau Chak Wing Building",
+      "qid": "Q5304516",
+      "region": "oceania",
+      "risk_tags": [
+        "architect_expansion",
+        "architect_gehry"
+      ]
+    },
+    {
+      "expected_country_code": "EG",
+      "expected_country_qid": "Q79",
+      "label_hint_en": "Dubara Palace",
+      "qid": "Q5310643",
+      "region": "africa",
       "risk_tags": [
         "coverage_promotion"
       ]
@@ -6003,6 +7101,26 @@
       ]
     },
     {
+      "expected_country_code": "AR",
+      "expected_country_qid": "Q414",
+      "label_hint_en": "Banco Germánico de la América del Sud",
+      "qid": "Q5484779",
+      "region": "latin_america_caribbean",
+      "risk_tags": [
+        "coverage_promotion"
+      ]
+    },
+    {
+      "expected_country_code": "US",
+      "expected_country_qid": "Q30",
+      "label_hint_en": "George Levy House",
+      "qid": "Q5541700",
+      "region": "north_america",
+      "risk_tags": [
+        "coverage_promotion"
+      ]
+    },
+    {
       "expected_country_code": "MY",
       "expected_country_qid": "Q833",
       "label_hint_en": "St. John's Cathedral",
@@ -6010,6 +7128,39 @@
       "region": "southeast_asia",
       "risk_tags": [
         "coverage_promotion"
+      ]
+    },
+    {
+      "expected_country_code": "CZ",
+      "expected_country_qid": "Q213",
+      "label_hint_en": "Golden Angel",
+      "qid": "Q5579128",
+      "region": "europe",
+      "risk_tags": [
+        "architect_expansion",
+        "architect_nouvel"
+      ]
+    },
+    {
+      "expected_country_code": "US",
+      "expected_country_qid": "Q30",
+      "label_hint_en": "Green Building",
+      "qid": "Q5602382",
+      "region": "north_america",
+      "risk_tags": [
+        "architect_expansion",
+        "architect_pei"
+      ]
+    },
+    {
+      "expected_country_code": "KR",
+      "expected_country_qid": "Q884",
+      "label_hint_en": "Haeundae I Park",
+      "qid": "Q5638300",
+      "region": "east_asia",
+      "risk_tags": [
+        "architect_expansion",
+        "architect_libeskind"
       ]
     },
     {
@@ -6023,10 +7174,41 @@
       ]
     },
     {
+      "expected_country_code": "US",
+      "expected_country_qid": "Q30",
+      "label_hint_en": "Harbor Towers",
+      "qid": "Q5654683",
+      "region": "north_america",
+      "risk_tags": [
+        "architect_expansion",
+        "architect_pei"
+      ]
+    },
+    {
+      "expected_country_code": "AR",
+      "expected_country_qid": "Q414",
+      "label_hint_en": "Casa Colectiva Valentín Alsina",
+      "qid": "Q5754161",
+      "region": "latin_america_caribbean",
+      "risk_tags": [
+        "coverage_promotion"
+      ]
+    },
+    {
       "expected_country_code": "PE",
       "expected_country_qid": "Q419",
       "label_hint_en": "Edificio Javier Alzamora Valdez",
       "qid": "Q5817991",
+      "region": "latin_america_caribbean",
+      "risk_tags": [
+        "coverage_promotion"
+      ]
+    },
+    {
+      "expected_country_code": "AR",
+      "expected_country_qid": "Q414",
+      "label_hint_en": "Banco Argentino Uruguayo Building",
+      "qid": "Q5818015",
       "region": "latin_america_caribbean",
       "risk_tags": [
         "coverage_promotion"
@@ -6043,6 +7225,16 @@
       ]
     },
     {
+      "expected_country_code": "PE",
+      "expected_country_qid": "Q419",
+      "label_hint_en": "Hipódromo de Santa Beatriz",
+      "qid": "Q5898487",
+      "region": "latin_america_caribbean",
+      "risk_tags": [
+        "coverage_promotion"
+      ]
+    },
+    {
       "expected_country_code": "KR",
       "expected_country_qid": "Q884",
       "label_hint_en": "Icheon Sports Complex",
@@ -6053,6 +7245,17 @@
       ]
     },
     {
+      "expected_country_code": "ES",
+      "expected_country_qid": "Q29",
+      "label_hint_en": "Palacio de Exposiciones y Congresos Ciudad de Oviedo",
+      "qid": "Q6057918",
+      "region": "europe",
+      "risk_tags": [
+        "architect_expansion",
+        "architect_calatrava"
+      ]
+    },
+    {
       "expected_country_code": "TR",
       "expected_country_qid": "Q43",
       "label_hint_en": "First Bullet Monument",
@@ -6060,6 +7263,27 @@
       "region": "central_west_asia",
       "risk_tags": [
         "coverage_promotion"
+      ]
+    },
+    {
+      "expected_country_code": "TR",
+      "expected_country_qid": "Q43",
+      "label_hint_en": "Statue of Honor",
+      "qid": "Q6074122",
+      "region": "central_west_asia",
+      "risk_tags": [
+        "coverage_promotion"
+      ]
+    },
+    {
+      "expected_country_code": "ES",
+      "expected_country_qid": "Q29",
+      "label_hint_en": "Lusitania Bridge",
+      "qid": "Q6091200",
+      "region": "europe",
+      "risk_tags": [
+        "architect_expansion",
+        "architect_calatrava"
       ]
     },
     {
@@ -6095,6 +7319,16 @@
       ]
     },
     {
+      "expected_country_code": "TH",
+      "expected_country_qid": "Q869",
+      "label_hint_en": "Chira Nakhon Stadium",
+      "qid": "Q6202973",
+      "region": "southeast_asia",
+      "risk_tags": [
+        "coverage_promotion"
+      ]
+    },
+    {
       "expected_country_code": "US",
       "expected_country_qid": "Q30",
       "label_hint_en": "Yale Center for British Art",
@@ -6116,6 +7350,16 @@
       ]
     },
     {
+      "expected_country_code": "EG",
+      "expected_country_qid": "Q79",
+      "label_hint_en": "Khairy Pasha palace",
+      "qid": "Q6399113",
+      "region": "africa",
+      "risk_tags": [
+        "coverage_promotion"
+      ]
+    },
+    {
       "expected_country_code": "SA",
       "expected_country_qid": "Q851",
       "label_hint_en": "King Fahd Sports City",
@@ -6123,6 +7367,17 @@
       "region": "central_west_asia",
       "risk_tags": [
         "coverage_promotion"
+      ]
+    },
+    {
+      "expected_country_code": "US",
+      "expected_country_qid": "Q30",
+      "label_hint_en": "Kips Bay Towers",
+      "qid": "Q6414703",
+      "region": "north_america",
+      "risk_tags": [
+        "architect_expansion",
+        "architect_pei"
       ]
     },
     {
@@ -6136,12 +7391,44 @@
       ]
     },
     {
+      "expected_country_code": "JP",
+      "expected_country_qid": "Q17",
+      "label_hint_en": "Kusanagi Stadium",
+      "qid": "Q6447772",
+      "region": "east_asia",
+      "risk_tags": [
+        "coverage_promotion"
+      ]
+    },
+    {
+      "expected_country_code": "JP",
+      "expected_country_qid": "Q17",
+      "label_hint_en": "Kyoto Concert Hall",
+      "qid": "Q6452137",
+      "region": "east_asia",
+      "risk_tags": [
+        "architect_expansion",
+        "architect_isozaki"
+      ]
+    },
+    {
       "expected_country_code": "GB",
       "expected_country_qid": "Q145",
       "label_hint_en": "Library of Birmingham",
       "qid": "Q6542576",
       "region": "europe",
       "risk_tags": []
+    },
+    {
+      "expected_country_code": "PL",
+      "expected_country_qid": "Q36",
+      "label_hint_en": "Lilium Tower",
+      "qid": "Q6547865",
+      "region": "europe",
+      "risk_tags": [
+        "architect_expansion",
+        "architect_hadid"
+      ]
     },
     {
       "expected_country_code": "PE",
@@ -6165,6 +7452,16 @@
       ]
     },
     {
+      "expected_country_code": "US",
+      "expected_country_qid": "Q30",
+      "label_hint_en": "Millard–McCarty House",
+      "qid": "Q6858499",
+      "region": "north_america",
+      "risk_tags": [
+        "coverage_promotion"
+      ]
+    },
+    {
       "expected_country_code": "JP",
       "expected_country_qid": "Q17",
       "label_hint_en": "Nagasaki Athletic Stadium",
@@ -6175,11 +7472,54 @@
       ]
     },
     {
+      "expected_country_code": "JP",
+      "expected_country_qid": "Q17",
+      "label_hint_en": "Nara Centennial Hall",
+      "qid": "Q6965228",
+      "region": "east_asia",
+      "risk_tags": [
+        "architect_expansion",
+        "architect_isozaki"
+      ]
+    },
+    {
       "expected_country_code": "IN",
       "expected_country_qid": "Q668",
       "label_hint_en": "Q6998605",
       "qid": "Q6998605",
       "region": "south_asia",
+      "risk_tags": [
+        "coverage_promotion"
+      ]
+    },
+    {
+      "expected_country_code": "US",
+      "expected_country_qid": "Q30",
+      "label_hint_en": "One Madison",
+      "qid": "Q7092848",
+      "region": "north_america",
+      "risk_tags": [
+        "architect_expansion",
+        "architect_koolhaas"
+      ]
+    },
+    {
+      "expected_country_code": "CN",
+      "expected_country_qid": "Q148",
+      "label_hint_en": "Opus Hong Kong",
+      "qid": "Q7099120",
+      "region": "east_asia",
+      "risk_tags": [
+        "architect_expansion",
+        "architect_gehry"
+      ]
+    },
+    {
+      "expected_country_code": "NZ",
+      "expected_country_qid": "Q664",
+      "label_hint_en": "Otahuna",
+      "qid": "Q7108377",
+      "region": "oceania",
       "risk_tags": [
         "coverage_promotion"
       ]
@@ -6198,6 +7538,28 @@
     {
       "expected_country_code": "US",
       "expected_country_qid": "Q30",
+      "label_hint_en": "Palladium",
+      "qid": "Q7127710",
+      "region": "north_america",
+      "risk_tags": [
+        "architect_expansion",
+        "architect_isozaki"
+      ]
+    },
+    {
+      "expected_country_code": "JP",
+      "expected_country_qid": "Q17",
+      "label_hint_en": "Paper Dome",
+      "qid": "Q7132618",
+      "region": "east_asia",
+      "risk_tags": [
+        "architect_expansion",
+        "architect_ban"
+      ]
+    },
+    {
+      "expected_country_code": "US",
+      "expected_country_qid": "Q30",
       "label_hint_en": "Perot Museum of Nature and Science",
       "qid": "Q7169478",
       "region": "north_america",
@@ -6209,6 +7571,16 @@
       "label_hint_en": "Q7169828",
       "qid": "Q7169828",
       "region": "oceania",
+      "risk_tags": [
+        "coverage_promotion"
+      ]
+    },
+    {
+      "expected_country_code": "VN",
+      "expected_country_qid": "Q881",
+      "label_hint_en": "Phùng Khoang Church",
+      "qid": "Q7189862",
+      "region": "southeast_asia",
       "risk_tags": [
         "coverage_promotion"
       ]
@@ -6241,6 +7613,17 @@
       "region": "oceania",
       "risk_tags": [
         "coverage_promotion"
+      ]
+    },
+    {
+      "expected_country_code": "US",
+      "expected_country_qid": "Q30",
+      "label_hint_en": "Richard B. Fisher Center for the Performing Arts",
+      "qid": "Q7323850",
+      "region": "north_america",
+      "risk_tags": [
+        "architect_expansion",
+        "architect_gehry"
       ]
     },
     {
@@ -6293,6 +7676,26 @@
       "risk_tags": []
     },
     {
+      "expected_country_code": "US",
+      "expected_country_qid": "Q30",
+      "label_hint_en": "St. Mary's By the River",
+      "qid": "Q7590091",
+      "region": "north_america",
+      "risk_tags": [
+        "coverage_promotion"
+      ]
+    },
+    {
+      "expected_country_code": "AU",
+      "expected_country_qid": "Q408",
+      "label_hint_en": "State Savings Bank building",
+      "qid": "Q7603516",
+      "region": "oceania",
+      "risk_tags": [
+        "coverage_promotion"
+      ]
+    },
+    {
       "expected_country_code": "IN",
       "expected_country_qid": "Q668",
       "label_hint_en": "Statue of Unity",
@@ -6315,6 +7718,60 @@
     {
       "expected_country_code": "US",
       "expected_country_qid": "Q30",
+      "label_hint_en": "The Century Towers",
+      "qid": "Q7721963",
+      "region": "north_america",
+      "risk_tags": [
+        "architect_expansion",
+        "architect_pei"
+      ]
+    },
+    {
+      "expected_country_code": "GB",
+      "expected_country_qid": "Q145",
+      "label_hint_en": "The Townhouse",
+      "qid": "Q7769791",
+      "region": "europe",
+      "risk_tags": [
+        "coverage_promotion"
+      ]
+    },
+    {
+      "expected_country_code": "GR",
+      "expected_country_qid": "Q41",
+      "label_hint_en": "Thessaloniki Concert Hall",
+      "qid": "Q7783471",
+      "region": "europe",
+      "risk_tags": [
+        "architect_expansion",
+        "architect_isozaki"
+      ]
+    },
+    {
+      "expected_country_code": "US",
+      "expected_country_qid": "Q30",
+      "label_hint_en": "Wiesner building",
+      "qid": "Q7999383",
+      "region": "north_america",
+      "risk_tags": [
+        "architect_expansion",
+        "architect_pei"
+      ]
+    },
+    {
+      "expected_country_code": "US",
+      "expected_country_qid": "Q30",
+      "label_hint_en": "William L. Slayton House",
+      "qid": "Q8014211",
+      "region": "north_america",
+      "risk_tags": [
+        "architect_expansion",
+        "architect_pei"
+      ]
+    },
+    {
+      "expected_country_code": "US",
+      "expected_country_qid": "Q30",
       "label_hint_en": "Wingspread",
       "qid": "Q8025338",
       "region": "north_america",
@@ -6324,11 +7781,31 @@
       ]
     },
     {
+      "expected_country_code": "GB",
+      "expected_country_qid": "Q145",
+      "label_hint_en": "Woodway House",
+      "qid": "Q8033600",
+      "region": "europe",
+      "risk_tags": [
+        "coverage_promotion"
+      ]
+    },
+    {
       "expected_country_code": "KR",
       "expected_country_qid": "Q884",
       "label_hint_en": "Yangsan Stadium",
       "qid": "Q8048650",
       "region": "east_asia",
+      "risk_tags": [
+        "coverage_promotion"
+      ]
+    },
+    {
+      "expected_country_code": "TR",
+      "expected_country_qid": "Q43",
+      "label_hint_en": "Şeref Stadium",
+      "qid": "Q8082488",
+      "region": "central_west_asia",
       "risk_tags": [
         "coverage_promotion"
       ]
@@ -6357,6 +7834,16 @@
     {
       "expected_country_code": "VN",
       "expected_country_qid": "Q881",
+      "label_hint_en": "Imperial City of Hue",
+      "qid": "Q10769129",
+      "region": "southeast_asia",
+      "risk_tags": [
+        "coverage_promotion"
+      ]
+    },
+    {
+      "expected_country_code": "VN",
+      "expected_country_qid": "Q881",
       "label_hint_en": "Temple of Literature, Huế",
       "qid": "Q10833485",
       "region": "southeast_asia",
@@ -6367,11 +7854,31 @@
       ]
     },
     {
+      "expected_country_code": "VN",
+      "expected_country_qid": "Q881",
+      "label_hint_en": "Sở Kiện Basilica",
+      "qid": "Q10834010",
+      "region": "southeast_asia",
+      "risk_tags": [
+        "coverage_promotion"
+      ]
+    },
+    {
       "expected_country_code": "JP",
       "expected_country_qid": "Q17",
       "label_hint_en": "Nakano Broadway",
       "qid": "Q10856007",
       "region": "east_asia",
+      "risk_tags": [
+        "coverage_promotion"
+      ]
+    },
+    {
+      "expected_country_code": "EG",
+      "expected_country_qid": "Q79",
+      "label_hint_en": "Manasterly Palace",
+      "qid": "Q10970027",
+      "region": "africa",
       "risk_tags": [
         "coverage_promotion"
       ]
@@ -6389,6 +7896,61 @@
     {
       "expected_country_code": "JP",
       "expected_country_qid": "Q17",
+      "label_hint_en": "Ceramics Park Mino",
+      "qid": "Q11314499",
+      "region": "east_asia",
+      "risk_tags": [
+        "architect_expansion",
+        "architect_isozaki"
+      ]
+    },
+    {
+      "expected_country_code": "JP",
+      "expected_country_qid": "Q17",
+      "label_hint_en": "Century Tower",
+      "qid": "Q11314752",
+      "region": "east_asia",
+      "risk_tags": [
+        "architect_expansion",
+        "architect_foster"
+      ]
+    },
+    {
+      "expected_country_code": "JP",
+      "expected_country_qid": "Q17",
+      "label_hint_en": "Chaska Chayamachi",
+      "qid": "Q11318114",
+      "region": "east_asia",
+      "risk_tags": [
+        "architect_expansion",
+        "architect_ando"
+      ]
+    },
+    {
+      "expected_country_code": "JP",
+      "expected_country_qid": "Q17",
+      "label_hint_en": "Nova Hall",
+      "qid": "Q11325716",
+      "region": "east_asia",
+      "risk_tags": [
+        "architect_expansion",
+        "architect_isozaki"
+      ]
+    },
+    {
+      "expected_country_code": "JP",
+      "expected_country_qid": "Q17",
+      "label_hint_en": "Beppu B-con Plaza",
+      "qid": "Q11331095",
+      "region": "east_asia",
+      "risk_tags": [
+        "architect_expansion",
+        "architect_isozaki"
+      ]
+    },
+    {
+      "expected_country_code": "JP",
+      "expected_country_qid": "Q17",
       "label_hint_en": "Chūson-ji Konjikidō",
       "qid": "Q11363889",
       "region": "east_asia",
@@ -6400,11 +7962,62 @@
     {
       "expected_country_code": "JP",
       "expected_country_qid": "Q17",
+      "label_hint_en": "Kitahama Retro Building",
+      "qid": "Q11402358",
+      "region": "east_asia",
+      "risk_tags": [
+        "coverage_promotion"
+      ]
+    },
+    {
+      "expected_country_code": "JP",
+      "expected_country_qid": "Q17",
       "label_hint_en": "Q11482224",
       "qid": "Q11482224",
       "region": "east_asia",
       "risk_tags": [
         "coverage_promotion"
+      ]
+    },
+    {
+      "expected_country_code": "JP",
+      "expected_country_qid": "Q17",
+      "label_hint_en": "The Church of Christ in Japan",
+      "qid": "Q11507771",
+      "region": "east_asia",
+      "risk_tags": [
+        "coverage_promotion"
+      ]
+    },
+    {
+      "expected_country_code": "JP",
+      "expected_country_qid": "Q17",
+      "label_hint_en": "Hikawa Bridge",
+      "qid": "Q11549597",
+      "region": "east_asia",
+      "risk_tags": [
+        "coverage_promotion"
+      ]
+    },
+    {
+      "expected_country_code": "JP",
+      "expected_country_qid": "Q17",
+      "label_hint_en": "Gion Bridge",
+      "qid": "Q11588435",
+      "region": "east_asia",
+      "risk_tags": [
+        "coverage_promotion"
+      ]
+    },
+    {
+      "expected_country_code": "JP",
+      "expected_country_qid": "Q17",
+      "label_hint_en": "Church of the Wind",
+      "qid": "Q11665348",
+      "region": "east_asia",
+      "risk_tags": [
+        "architect_expansion",
+        "architect_ando"
       ]
     },
     {
@@ -6426,10 +8039,30 @@
       "risk_tags": []
     },
     {
+      "expected_country_code": "IN",
+      "expected_country_qid": "Q668",
+      "label_hint_en": "Nakhoda Masjid",
+      "qid": "Q12062296",
+      "region": "south_asia",
+      "risk_tags": [
+        "coverage_promotion"
+      ]
+    },
+    {
       "expected_country_code": "SA",
       "expected_country_qid": "Q851",
       "label_hint_en": "Al-Rahmah Mosque",
       "qid": "Q12242734",
+      "region": "central_west_asia",
+      "risk_tags": [
+        "coverage_promotion"
+      ]
+    },
+    {
+      "expected_country_code": "SA",
+      "expected_country_qid": "Q851",
+      "label_hint_en": "Amberiye Mosque",
+      "qid": "Q12242767",
       "region": "central_west_asia",
       "risk_tags": [
         "coverage_promotion"
@@ -6443,6 +8076,17 @@
       "region": "africa",
       "risk_tags": [
         "coverage_promotion"
+      ]
+    },
+    {
+      "expected_country_code": "JP",
+      "expected_country_qid": "Q17",
+      "label_hint_en": "Maison Hermès",
+      "qid": "Q12286421",
+      "region": "east_asia",
+      "risk_tags": [
+        "architect_expansion",
+        "architect_piano"
       ]
     },
     {
@@ -6474,6 +8118,17 @@
       "region": "east_asia",
       "risk_tags": [
         "coverage_promotion"
+      ]
+    },
+    {
+      "expected_country_code": "JP",
+      "expected_country_qid": "Q17",
+      "label_hint_en": "Tower of Winds",
+      "qid": "Q12769041",
+      "region": "east_asia",
+      "risk_tags": [
+        "architect_expansion",
+        "architect_toyo_ito"
       ]
     },
     {
@@ -6537,8 +8192,28 @@
     {
       "expected_country_code": "CA",
       "expected_country_qid": "Q16",
+      "label_hint_en": "Auchmar",
+      "qid": "Q14875079",
+      "region": "north_america",
+      "risk_tags": [
+        "coverage_promotion"
+      ]
+    },
+    {
+      "expected_country_code": "CA",
+      "expected_country_qid": "Q16",
       "label_hint_en": "Q14875205",
       "qid": "Q14875205",
+      "region": "north_america",
+      "risk_tags": [
+        "coverage_promotion"
+      ]
+    },
+    {
+      "expected_country_code": "CA",
+      "expected_country_qid": "Q16",
+      "label_hint_en": "Willowbank Estate",
+      "qid": "Q14875482",
       "region": "north_america",
       "risk_tags": [
         "coverage_promotion"
@@ -6575,6 +8250,17 @@
       ]
     },
     {
+      "expected_country_code": "NZ",
+      "expected_country_qid": "Q664",
+      "label_hint_en": "Cardboard Cathedral",
+      "qid": "Q15207543",
+      "region": "oceania",
+      "risk_tags": [
+        "architect_expansion",
+        "architect_ban"
+      ]
+    },
+    {
       "expected_country_code": "MM",
       "expected_country_qid": "Q836",
       "label_hint_en": "Q15228816",
@@ -6602,6 +8288,28 @@
       "region": "southeast_asia",
       "risk_tags": [
         "coverage_promotion"
+      ]
+    },
+    {
+      "expected_country_code": "FR",
+      "expected_country_qid": "Q142",
+      "label_hint_en": "Villa Dall'Ava",
+      "qid": "Q15713840",
+      "region": "europe",
+      "risk_tags": [
+        "architect_expansion",
+        "architect_koolhaas"
+      ]
+    },
+    {
+      "expected_country_code": "CN",
+      "expected_country_qid": "Q148",
+      "label_hint_en": "Nanjing International Youth Cultural Centre",
+      "qid": "Q15855324",
+      "region": "east_asia",
+      "risk_tags": [
+        "architect_expansion",
+        "architect_hadid"
       ]
     },
     {
@@ -6643,6 +8351,28 @@
       ]
     },
     {
+      "expected_country_code": "FR",
+      "expected_country_qid": "Q142",
+      "label_hint_en": "Louvre-Lens Glass Pavilion",
+      "qid": "Q16510071",
+      "region": "europe",
+      "risk_tags": [
+        "architect_expansion",
+        "architect_sejima"
+      ]
+    },
+    {
+      "expected_country_code": "IT",
+      "expected_country_qid": "Q38",
+      "label_hint_en": "Blue Pavilion",
+      "qid": "Q16585735",
+      "region": "europe",
+      "risk_tags": [
+        "architect_expansion",
+        "architect_nouvel"
+      ]
+    },
+    {
       "expected_country_code": "PE",
       "expected_country_qid": "Q419",
       "label_hint_en": "Q16609778",
@@ -6663,6 +8393,27 @@
       ]
     },
     {
+      "expected_country_code": "US",
+      "expected_country_qid": "Q30",
+      "label_hint_en": "100 Eleventh Avenue",
+      "qid": "Q16823802",
+      "region": "north_america",
+      "risk_tags": [
+        "architect_expansion",
+        "architect_nouvel"
+      ]
+    },
+    {
+      "expected_country_code": "AU",
+      "expected_country_qid": "Q408",
+      "label_hint_en": "Bethanga Bridge",
+      "qid": "Q16840955",
+      "region": "oceania",
+      "risk_tags": [
+        "coverage_promotion"
+      ]
+    },
+    {
       "expected_country_code": "RU",
       "expected_country_qid": "Q159",
       "label_hint_en": "House of Industry, Ufa",
@@ -6670,6 +8421,38 @@
       "region": "europe",
       "risk_tags": [
         "coverage_promotion"
+      ]
+    },
+    {
+      "expected_country_code": "CN",
+      "expected_country_qid": "Q148",
+      "label_hint_en": "Wangjing SOHO",
+      "qid": "Q16925182",
+      "region": "east_asia",
+      "risk_tags": [
+        "architect_expansion",
+        "architect_hadid"
+      ]
+    },
+    {
+      "expected_country_code": "US",
+      "expected_country_qid": "Q30",
+      "label_hint_en": "Everett P. Barrett House",
+      "qid": "Q16930136",
+      "region": "north_america",
+      "risk_tags": [
+        "coverage_promotion"
+      ]
+    },
+    {
+      "expected_country_code": "US",
+      "expected_country_qid": "Q30",
+      "label_hint_en": "Comcast Technology Center",
+      "qid": "Q16958963",
+      "region": "north_america",
+      "risk_tags": [
+        "architect_expansion",
+        "architect_foster"
       ]
     },
     {
@@ -6690,6 +8473,130 @@
       "region": "south_asia",
       "risk_tags": [
         "coverage_promotion"
+      ]
+    },
+    {
+      "expected_country_code": "NL",
+      "expected_country_qid": "Q55",
+      "label_hint_en": "Villa Duysens",
+      "qid": "Q17191478",
+      "region": "europe",
+      "risk_tags": [
+        "coverage_promotion"
+      ]
+    },
+    {
+      "expected_country_code": "JP",
+      "expected_country_qid": "Q17",
+      "label_hint_en": "UCCJ Settsu Sanda Church",
+      "qid": "Q17209996",
+      "region": "east_asia",
+      "risk_tags": [
+        "coverage_promotion"
+      ]
+    },
+    {
+      "expected_country_code": "PE",
+      "expected_country_qid": "Q419",
+      "label_hint_en": "Tacna Courthouse",
+      "qid": "Q17232550",
+      "region": "latin_america_caribbean",
+      "risk_tags": [
+        "coverage_promotion"
+      ]
+    },
+    {
+      "expected_country_code": "NL",
+      "expected_country_qid": "Q55",
+      "label_hint_en": "Prinsegracht 12",
+      "qid": "Q17342913",
+      "region": "europe",
+      "risk_tags": [
+        "architect_expansion",
+        "architect_koolhaas"
+      ]
+    },
+    {
+      "expected_country_code": "CA",
+      "expected_country_qid": "Q16",
+      "label_hint_en": "National Holocaust Monument",
+      "qid": "Q17512667",
+      "region": "north_america",
+      "risk_tags": [
+        "architect_expansion",
+        "architect_libeskind"
+      ]
+    },
+    {
+      "expected_country_code": "GB",
+      "expected_country_qid": "Q145",
+      "label_hint_en": "17, High Street",
+      "qid": "Q17551282",
+      "region": "europe",
+      "risk_tags": [
+        "coverage_promotion"
+      ]
+    },
+    {
+      "expected_country_code": "NL",
+      "expected_country_qid": "Q55",
+      "label_hint_en": "Parklaan 15",
+      "qid": "Q17598416",
+      "region": "europe",
+      "risk_tags": [
+        "coverage_promotion"
+      ]
+    },
+    {
+      "expected_country_code": "NL",
+      "expected_country_qid": "Q55",
+      "label_hint_en": "De Wikke",
+      "qid": "Q17599883",
+      "region": "europe",
+      "risk_tags": [
+        "coverage_promotion"
+      ]
+    },
+    {
+      "expected_country_code": "FR",
+      "expected_country_qid": "Q142",
+      "label_hint_en": "Tour Hekla",
+      "qid": "Q17640070",
+      "region": "europe",
+      "risk_tags": [
+        "architect_expansion",
+        "architect_nouvel"
+      ]
+    },
+    {
+      "expected_country_code": "GB",
+      "expected_country_qid": "Q145",
+      "label_hint_en": "House at 53 Deerpark Road",
+      "qid": "Q17860303",
+      "region": "europe",
+      "risk_tags": [
+        "coverage_promotion"
+      ]
+    },
+    {
+      "expected_country_code": "GB",
+      "expected_country_qid": "Q145",
+      "label_hint_en": "Cultra House",
+      "qid": "Q17861574",
+      "region": "europe",
+      "risk_tags": [
+        "coverage_promotion"
+      ]
+    },
+    {
+      "expected_country_code": "US",
+      "expected_country_qid": "Q30",
+      "label_hint_en": "Margaret McDermott Bridge",
+      "qid": "Q18154095",
+      "region": "north_america",
+      "risk_tags": [
+        "architect_expansion",
+        "architect_calatrava"
       ]
     },
     {
@@ -6731,6 +8638,17 @@
       ]
     },
     {
+      "expected_country_code": "IN",
+      "expected_country_qid": "Q668",
+      "label_hint_en": "Chennai Tech Park",
+      "qid": "Q18648965",
+      "region": "south_asia",
+      "risk_tags": [
+        "architect_expansion",
+        "architect_hadid"
+      ]
+    },
+    {
       "expected_country_code": "SA",
       "expected_country_qid": "Q851",
       "label_hint_en": "Q18712428",
@@ -6746,6 +8664,16 @@
       "label_hint_en": "Te Wharewaka o Pōneke",
       "qid": "Q19605778",
       "region": "oceania",
+      "risk_tags": [
+        "coverage_promotion"
+      ]
+    },
+    {
+      "expected_country_code": "TR",
+      "expected_country_qid": "Q43",
+      "label_hint_en": "Istanbul Armenian Genocide memorial",
+      "qid": "Q19840235",
+      "region": "central_west_asia",
       "risk_tags": [
         "coverage_promotion"
       ]
@@ -6781,6 +8709,28 @@
       ]
     },
     {
+      "expected_country_code": "FR",
+      "expected_country_qid": "Q142",
+      "label_hint_en": "Zénith de Lille",
+      "qid": "Q20055541",
+      "region": "europe",
+      "risk_tags": [
+        "architect_expansion",
+        "architect_koolhaas"
+      ]
+    },
+    {
+      "expected_country_code": "RU",
+      "expected_country_qid": "Q159",
+      "label_hint_en": "Capital Hill Residence",
+      "qid": "Q20127495",
+      "region": "europe",
+      "risk_tags": [
+        "architect_expansion",
+        "architect_hadid"
+      ]
+    },
+    {
       "expected_country_code": "DE",
       "expected_country_qid": "Q183",
       "label_hint_en": "Humboldt Forum",
@@ -6791,6 +8741,26 @@
       ]
     },
     {
+      "expected_country_code": "IN",
+      "expected_country_qid": "Q668",
+      "label_hint_en": "Cashew House",
+      "qid": "Q20576391",
+      "region": "south_asia",
+      "risk_tags": [
+        "coverage_promotion"
+      ]
+    },
+    {
+      "expected_country_code": "IN",
+      "expected_country_qid": "Q668",
+      "label_hint_en": "Cheena Kottaram",
+      "qid": "Q20578573",
+      "region": "south_asia",
+      "risk_tags": [
+        "coverage_promotion"
+      ]
+    },
+    {
       "expected_country_code": "PE",
       "expected_country_qid": "Q419",
       "label_hint_en": "Alto de la Alianza",
@@ -6798,6 +8768,28 @@
       "region": "latin_america_caribbean",
       "risk_tags": [
         "coverage_promotion"
+      ]
+    },
+    {
+      "expected_country_code": "AT",
+      "expected_country_qid": "Q40",
+      "label_hint_en": "Parkapartments am Belvedere",
+      "qid": "Q20972956",
+      "region": "europe",
+      "risk_tags": [
+        "architect_expansion",
+        "architect_piano"
+      ]
+    },
+    {
+      "expected_country_code": "IR",
+      "expected_country_qid": "Q794",
+      "label_hint_en": "Fereshteh Pasargad Hotel",
+      "qid": "Q20987795",
+      "region": "central_west_asia",
+      "risk_tags": [
+        "architect_expansion",
+        "architect_hadid"
       ]
     },
     {
@@ -6833,6 +8825,59 @@
       ]
     },
     {
+      "expected_country_code": "TR",
+      "expected_country_qid": "Q43",
+      "label_hint_en": "Atatürk Monument",
+      "qid": "Q21526451",
+      "region": "central_west_asia",
+      "risk_tags": [
+        "coverage_promotion"
+      ]
+    },
+    {
+      "expected_country_code": "IT",
+      "expected_country_qid": "Q38",
+      "label_hint_en": "Life Electric",
+      "qid": "Q21592570",
+      "region": "europe",
+      "risk_tags": [
+        "architect_expansion",
+        "architect_libeskind"
+      ]
+    },
+    {
+      "expected_country_code": "AU",
+      "expected_country_qid": "Q408",
+      "label_hint_en": "Grace on Coronation",
+      "qid": "Q21609051",
+      "region": "oceania",
+      "risk_tags": [
+        "architect_expansion",
+        "architect_hadid"
+      ]
+    },
+    {
+      "expected_country_code": "JP",
+      "expected_country_qid": "Q17",
+      "label_hint_en": "Catholic Tsuruoka Church",
+      "qid": "Q21653654",
+      "region": "east_asia",
+      "risk_tags": [
+        "coverage_promotion"
+      ]
+    },
+    {
+      "expected_country_code": "NL",
+      "expected_country_qid": "Q55",
+      "label_hint_en": "Byzantium",
+      "qid": "Q21980990",
+      "region": "europe",
+      "risk_tags": [
+        "architect_expansion",
+        "architect_koolhaas"
+      ]
+    },
+    {
       "expected_country_code": "US",
       "expected_country_qid": "Q30",
       "label_hint_en": "Apple Park",
@@ -6860,6 +8905,47 @@
       "region": "oceania",
       "risk_tags": [
         "coverage_promotion"
+      ]
+    },
+    {
+      "expected_country_code": "IN",
+      "expected_country_qid": "Q668",
+      "label_hint_en": "Sadar Bazar Stadium",
+      "qid": "Q23035864",
+      "region": "south_asia",
+      "risk_tags": [
+        "coverage_promotion"
+      ]
+    },
+    {
+      "expected_country_code": "US",
+      "expected_country_qid": "Q30",
+      "label_hint_en": "Dr. Elmo N. Lawrence House",
+      "qid": "Q24041077",
+      "region": "north_america",
+      "risk_tags": [
+        "coverage_promotion"
+      ]
+    },
+    {
+      "expected_country_code": "US",
+      "expected_country_qid": "Q30",
+      "label_hint_en": "Pierson-Betts House",
+      "qid": "Q24062140",
+      "region": "north_america",
+      "risk_tags": [
+        "coverage_promotion"
+      ]
+    },
+    {
+      "expected_country_code": "AE",
+      "expected_country_qid": "Q878",
+      "label_hint_en": "Dubai Creek Tower",
+      "qid": "Q24192494",
+      "region": "central_west_asia",
+      "risk_tags": [
+        "architect_expansion",
+        "architect_calatrava"
       ]
     },
     {
@@ -6944,6 +9030,36 @@
       ]
     },
     {
+      "expected_country_code": "VN",
+      "expected_country_qid": "Q881",
+      "label_hint_en": "Rach Cat bridge",
+      "qid": "Q25418134",
+      "region": "southeast_asia",
+      "risk_tags": [
+        "coverage_promotion"
+      ]
+    },
+    {
+      "expected_country_code": "EG",
+      "expected_country_qid": "Q79",
+      "label_hint_en": "Palace of Said Halim Pasha",
+      "qid": "Q25454722",
+      "region": "africa",
+      "risk_tags": [
+        "coverage_promotion"
+      ]
+    },
+    {
+      "expected_country_code": "CA",
+      "expected_country_qid": "Q16",
+      "label_hint_en": "Maison Benjamin-Tremain",
+      "qid": "Q25706906",
+      "region": "north_america",
+      "risk_tags": [
+        "coverage_promotion"
+      ]
+    },
+    {
       "expected_country_code": "TR",
       "expected_country_qid": "Q43",
       "label_hint_en": "Third building of the Grand National Assembly of Turkey",
@@ -6965,6 +9081,36 @@
       ]
     },
     {
+      "expected_country_code": "GB",
+      "expected_country_qid": "Q145",
+      "label_hint_en": "10, Palace Green W8",
+      "qid": "Q26318935",
+      "region": "europe",
+      "risk_tags": [
+        "coverage_promotion"
+      ]
+    },
+    {
+      "expected_country_code": "GB",
+      "expected_country_qid": "Q145",
+      "label_hint_en": "20, Howley Place W2",
+      "qid": "Q26320222",
+      "region": "europe",
+      "risk_tags": [
+        "coverage_promotion"
+      ]
+    },
+    {
+      "expected_country_code": "GB",
+      "expected_country_qid": "Q145",
+      "label_hint_en": "Back O' T'Thorn",
+      "qid": "Q26327580",
+      "region": "europe",
+      "risk_tags": [
+        "coverage_promotion"
+      ]
+    },
+    {
       "expected_country_code": "PE",
       "expected_country_qid": "Q419",
       "label_hint_en": "Q27877305",
@@ -6981,6 +9127,38 @@
       "qid": "Q27988215",
       "region": "north_america",
       "risk_tags": []
+    },
+    {
+      "expected_country_code": "FR",
+      "expected_country_qid": "Q142",
+      "label_hint_en": "Pathé Foundation",
+      "qid": "Q28045444",
+      "region": "europe",
+      "risk_tags": [
+        "architect_expansion",
+        "architect_piano"
+      ]
+    },
+    {
+      "expected_country_code": "AU",
+      "expected_country_qid": "Q408",
+      "label_hint_en": "Tuxworth Fullwood House",
+      "qid": "Q28219922",
+      "region": "oceania",
+      "risk_tags": [
+        "coverage_promotion"
+      ]
+    },
+    {
+      "expected_country_code": "DE",
+      "expected_country_qid": "Q183",
+      "label_hint_en": "Pierre Boulez Saal",
+      "qid": "Q28870831",
+      "region": "europe",
+      "risk_tags": [
+        "architect_expansion",
+        "architect_gehry"
+      ]
     },
     {
       "expected_country_code": "SA",
@@ -7003,6 +9181,16 @@
       ]
     },
     {
+      "expected_country_code": "CA",
+      "expected_country_qid": "Q16",
+      "label_hint_en": "Presbytère de Saint-Jérôme-de-Matane",
+      "qid": "Q29324621",
+      "region": "north_america",
+      "risk_tags": [
+        "coverage_promotion"
+      ]
+    },
+    {
       "expected_country_code": "SA",
       "expected_country_qid": "Q851",
       "label_hint_en": "Al-Ula Old Town",
@@ -7014,6 +9202,17 @@
       ]
     },
     {
+      "expected_country_code": "RU",
+      "expected_country_qid": "Q159",
+      "label_hint_en": "Dominion Tower",
+      "qid": "Q30233471",
+      "region": "europe",
+      "risk_tags": [
+        "architect_expansion",
+        "architect_hadid"
+      ]
+    },
+    {
       "expected_country_code": "CN",
       "expected_country_qid": "Q148",
       "label_hint_en": "Shanghai Planetarium",
@@ -7021,6 +9220,16 @@
       "region": "east_asia",
       "risk_tags": [
         "institution_typed"
+      ]
+    },
+    {
+      "expected_country_code": "US",
+      "expected_country_qid": "Q30",
+      "label_hint_en": "Herman J. and Ella B. Voigts House",
+      "qid": "Q30624290",
+      "region": "north_america",
+      "risk_tags": [
+        "coverage_promotion"
       ]
     },
     {
@@ -7056,6 +9265,17 @@
       ]
     },
     {
+      "expected_country_code": "CN",
+      "expected_country_qid": "Q148",
+      "label_hint_en": "Leeza Soho",
+      "qid": "Q37914917",
+      "region": "east_asia",
+      "risk_tags": [
+        "architect_expansion",
+        "architect_hadid"
+      ]
+    },
+    {
       "expected_country_code": "TR",
       "expected_country_qid": "Q43",
       "label_hint_en": "Q38252188",
@@ -7072,6 +9292,27 @@
       "qid": "Q46996829",
       "region": "europe",
       "risk_tags": []
+    },
+    {
+      "expected_country_code": "CA",
+      "expected_country_qid": "Q16",
+      "label_hint_en": "Wood House",
+      "qid": "Q47452584",
+      "region": "north_america",
+      "risk_tags": [
+        "coverage_promotion"
+      ]
+    },
+    {
+      "expected_country_code": "FR",
+      "expected_country_qid": "Q142",
+      "label_hint_en": "LUMA Arles",
+      "qid": "Q47488973",
+      "region": "europe",
+      "risk_tags": [
+        "architect_expansion",
+        "architect_gehry"
+      ]
     },
     {
       "expected_country_code": "PE",
@@ -7096,6 +9337,59 @@
       ]
     },
     {
+      "expected_country_code": "IT",
+      "expected_country_qid": "Q38",
+      "label_hint_en": "Residenze Hadid",
+      "qid": "Q48807681",
+      "region": "europe",
+      "risk_tags": [
+        "architect_expansion",
+        "architect_hadid"
+      ]
+    },
+    {
+      "expected_country_code": "IT",
+      "expected_country_qid": "Q38",
+      "label_hint_en": "Residenze Libeskind",
+      "qid": "Q48807772",
+      "region": "europe",
+      "risk_tags": [
+        "architect_expansion",
+        "architect_libeskind"
+      ]
+    },
+    {
+      "expected_country_code": "IT",
+      "expected_country_qid": "Q38",
+      "label_hint_en": "Citylife Shopping District",
+      "qid": "Q48808358",
+      "region": "europe",
+      "risk_tags": [
+        "architect_expansion",
+        "architect_hadid"
+      ]
+    },
+    {
+      "expected_country_code": "CA",
+      "expected_country_qid": "Q16",
+      "label_hint_en": "87 MacKay Street",
+      "qid": "Q49025638",
+      "region": "north_america",
+      "risk_tags": [
+        "coverage_promotion"
+      ]
+    },
+    {
+      "expected_country_code": "CA",
+      "expected_country_qid": "Q16",
+      "label_hint_en": "127 Britannia Road",
+      "qid": "Q49025940",
+      "region": "north_america",
+      "risk_tags": [
+        "coverage_promotion"
+      ]
+    },
+    {
       "expected_country_code": "TR",
       "expected_country_qid": "Q43",
       "label_hint_en": "Cascaded Pool",
@@ -7106,6 +9400,27 @@
       ]
     },
     {
+      "expected_country_code": "TH",
+      "expected_country_qid": "Q869",
+      "label_hint_en": "Chaloem Wan Chat bridge",
+      "qid": "Q50339981",
+      "region": "southeast_asia",
+      "risk_tags": [
+        "coverage_promotion"
+      ]
+    },
+    {
+      "expected_country_code": "FR",
+      "expected_country_qid": "Q142",
+      "label_hint_en": "Maison de l'ordre des avocats",
+      "qid": "Q50532135",
+      "region": "europe",
+      "risk_tags": [
+        "architect_expansion",
+        "architect_piano"
+      ]
+    },
+    {
       "expected_country_code": "NL",
       "expected_country_qid": "Q55",
       "label_hint_en": "Q51579187",
@@ -7113,6 +9428,27 @@
       "region": "europe",
       "risk_tags": [
         "coverage_promotion"
+      ]
+    },
+    {
+      "expected_country_code": "TR",
+      "expected_country_qid": "Q43",
+      "label_hint_en": "Ottoman Bank Building",
+      "qid": "Q54661564",
+      "region": "central_west_asia",
+      "risk_tags": [
+        "coverage_promotion"
+      ]
+    },
+    {
+      "expected_country_code": "DE",
+      "expected_country_qid": "Q183",
+      "label_hint_en": "Ando Conference Pavilion",
+      "qid": "Q54989344",
+      "region": "europe",
+      "risk_tags": [
+        "architect_expansion",
+        "architect_ando"
       ]
     },
     {
@@ -7146,6 +9482,28 @@
       ]
     },
     {
+      "expected_country_code": "IT",
+      "expected_country_qid": "Q38",
+      "label_hint_en": "Fondazione Prada Building",
+      "qid": "Q55832089",
+      "region": "europe",
+      "risk_tags": [
+        "architect_expansion",
+        "architect_koolhaas"
+      ]
+    },
+    {
+      "expected_country_code": "GB",
+      "expected_country_qid": "Q145",
+      "label_hint_en": "London Roca Gallery",
+      "qid": "Q56322331",
+      "region": "europe",
+      "risk_tags": [
+        "architect_expansion",
+        "architect_hadid"
+      ]
+    },
+    {
       "expected_country_code": "JP",
       "expected_country_qid": "Q17",
       "label_hint_en": "Prada Aoyama",
@@ -7154,6 +9512,49 @@
       "risk_tags": [
         "no_en_description",
         "no_completion_date_in_p1619_p571"
+      ]
+    },
+    {
+      "expected_country_code": "FR",
+      "expected_country_qid": "Q142",
+      "label_hint_en": "Tour La Marseillaise",
+      "qid": "Q58208336",
+      "region": "europe",
+      "risk_tags": [
+        "architect_expansion",
+        "architect_nouvel"
+      ]
+    },
+    {
+      "expected_country_code": "IT",
+      "expected_country_qid": "Q38",
+      "label_hint_en": "Messner Mountain Museum Corones",
+      "qid": "Q60533061",
+      "region": "europe",
+      "risk_tags": [
+        "architect_expansion",
+        "architect_hadid"
+      ]
+    },
+    {
+      "expected_country_code": "US",
+      "expected_country_qid": "Q30",
+      "label_hint_en": "Chalet of the Golden Fleece",
+      "qid": "Q60742931",
+      "region": "north_america",
+      "risk_tags": [
+        "coverage_promotion"
+      ]
+    },
+    {
+      "expected_country_code": "IT",
+      "expected_country_qid": "Q38",
+      "label_hint_en": "Monterosa91",
+      "qid": "Q60839096",
+      "region": "europe",
+      "risk_tags": [
+        "architect_expansion",
+        "architect_piano"
       ]
     },
     {
@@ -7169,9 +9570,91 @@
     {
       "expected_country_code": "IN",
       "expected_country_qid": "Q668",
+      "label_hint_en": "Basuli temple",
+      "qid": "Q61832164",
+      "region": "south_asia",
+      "risk_tags": [
+        "coverage_promotion"
+      ]
+    },
+    {
+      "expected_country_code": "JP",
+      "expected_country_qid": "Q17",
+      "label_hint_en": "Hill of the Buddha",
+      "qid": "Q61890364",
+      "region": "east_asia",
+      "risk_tags": [
+        "architect_expansion",
+        "architect_ando"
+      ]
+    },
+    {
+      "expected_country_code": "IN",
+      "expected_country_qid": "Q668",
+      "label_hint_en": "Bunashib temple",
+      "qid": "Q61984478",
+      "region": "south_asia",
+      "risk_tags": [
+        "coverage_promotion"
+      ]
+    },
+    {
+      "expected_country_code": "NL",
+      "expected_country_qid": "Q55",
+      "label_hint_en": "Bridge 509",
+      "qid": "Q62396328",
+      "region": "europe",
+      "risk_tags": [
+        "coverage_promotion"
+      ]
+    },
+    {
+      "expected_country_code": "AU",
+      "expected_country_qid": "Q408",
+      "label_hint_en": "Austral Chambers",
+      "qid": "Q63253098",
+      "region": "oceania",
+      "risk_tags": [
+        "coverage_promotion"
+      ]
+    },
+    {
+      "expected_country_code": "CN",
+      "expected_country_qid": "Q148",
+      "label_hint_en": "Shanghai Symphony Hall",
+      "qid": "Q63396848",
+      "region": "east_asia",
+      "risk_tags": [
+        "architect_expansion",
+        "architect_isozaki"
+      ]
+    },
+    {
+      "expected_country_code": "IN",
+      "expected_country_qid": "Q668",
       "label_hint_en": "Millennium IT Towers",
       "qid": "Q65067794",
       "region": "south_asia",
+      "risk_tags": [
+        "coverage_promotion"
+      ]
+    },
+    {
+      "expected_country_code": "AR",
+      "expected_country_qid": "Q414",
+      "label_hint_en": "Iglesia Dinamarquesa of San Telmo",
+      "qid": "Q65073565",
+      "region": "latin_america_caribbean",
+      "risk_tags": [
+        "coverage_promotion"
+      ]
+    },
+    {
+      "expected_country_code": "JP",
+      "expected_country_qid": "Q17",
+      "label_hint_en": "Dewa Sanzan History Museum",
+      "qid": "Q65249244",
+      "region": "east_asia",
       "risk_tags": [
         "coverage_promotion"
       ]
@@ -7182,6 +9665,16 @@
       "label_hint_en": "Q65265493",
       "qid": "Q65265493",
       "region": "east_asia",
+      "risk_tags": [
+        "coverage_promotion"
+      ]
+    },
+    {
+      "expected_country_code": "PE",
+      "expected_country_qid": "Q419",
+      "label_hint_en": "Palacio del Cabildo del Cusco",
+      "qid": "Q65421930",
+      "region": "latin_america_caribbean",
       "risk_tags": [
         "coverage_promotion"
       ]
@@ -7217,6 +9710,57 @@
       ]
     },
     {
+      "expected_country_code": "IN",
+      "expected_country_qid": "Q668",
+      "label_hint_en": "Imperial Bacteriological Laboratory",
+      "qid": "Q67625512",
+      "region": "south_asia",
+      "risk_tags": [
+        "coverage_promotion"
+      ]
+    },
+    {
+      "expected_country_code": "IN",
+      "expected_country_qid": "Q668",
+      "label_hint_en": "Telegraph Office, Kolkata",
+      "qid": "Q68401334",
+      "region": "south_asia",
+      "risk_tags": [
+        "coverage_promotion"
+      ]
+    },
+    {
+      "expected_country_code": "AU",
+      "expected_country_qid": "Q408",
+      "label_hint_en": "Presbyterian Church (former)",
+      "qid": "Q71262649",
+      "region": "oceania",
+      "risk_tags": [
+        "coverage_promotion"
+      ]
+    },
+    {
+      "expected_country_code": "ES",
+      "expected_country_qid": "Q29",
+      "label_hint_en": "El Palauet",
+      "qid": "Q72049198",
+      "region": "europe",
+      "risk_tags": [
+        "architect_expansion",
+        "architect_isozaki"
+      ]
+    },
+    {
+      "expected_country_code": "JP",
+      "expected_country_qid": "Q17",
+      "label_hint_en": "Former Shiga bank Kōnan branch",
+      "qid": "Q72817326",
+      "region": "east_asia",
+      "risk_tags": [
+        "coverage_promotion"
+      ]
+    },
+    {
       "expected_country_code": "RU",
       "expected_country_qid": "Q159",
       "label_hint_en": "Q76465211",
@@ -7227,10 +9771,91 @@
       ]
     },
     {
+      "expected_country_code": "NZ",
+      "expected_country_qid": "Q664",
+      "label_hint_en": "House",
+      "qid": "Q77981184",
+      "region": "oceania",
+      "risk_tags": [
+        "coverage_promotion"
+      ]
+    },
+    {
+      "expected_country_code": "NZ",
+      "expected_country_qid": "Q664",
+      "label_hint_en": "House (45 Aro Street)",
+      "qid": "Q79302019",
+      "region": "oceania",
+      "risk_tags": [
+        "coverage_promotion"
+      ]
+    },
+    {
+      "expected_country_code": "NZ",
+      "expected_country_qid": "Q664",
+      "label_hint_en": "Sunnydale",
+      "qid": "Q79307727",
+      "region": "oceania",
+      "risk_tags": [
+        "coverage_promotion"
+      ]
+    },
+    {
+      "expected_country_code": "NZ",
+      "expected_country_qid": "Q664",
+      "label_hint_en": "Longwood",
+      "qid": "Q79309460",
+      "region": "oceania",
+      "risk_tags": [
+        "coverage_promotion"
+      ]
+    },
+    {
+      "expected_country_code": "NZ",
+      "expected_country_qid": "Q664",
+      "label_hint_en": "Minniesdale House",
+      "qid": "Q79309817",
+      "region": "oceania",
+      "risk_tags": [
+        "coverage_promotion"
+      ]
+    },
+    {
+      "expected_country_code": "NZ",
+      "expected_country_qid": "Q664",
+      "label_hint_en": "Napier Soldiers' Club",
+      "qid": "Q79311487",
+      "region": "oceania",
+      "risk_tags": [
+        "coverage_promotion"
+      ]
+    },
+    {
+      "expected_country_code": "IT",
+      "expected_country_qid": "Q38",
+      "label_hint_en": "Campus Bocconi University",
+      "qid": "Q85860389",
+      "region": "europe",
+      "risk_tags": [
+        "architect_expansion",
+        "architect_sejima"
+      ]
+    },
+    {
       "expected_country_code": "KR",
       "expected_country_qid": "Q884",
       "label_hint_en": "Haeram Culture Center",
       "qid": "Q85988508",
+      "region": "east_asia",
+      "risk_tags": [
+        "coverage_promotion"
+      ]
+    },
+    {
+      "expected_country_code": "JP",
+      "expected_country_qid": "Q17",
+      "label_hint_en": "Kamitaki Power Station",
+      "qid": "Q93427692",
       "region": "east_asia",
       "risk_tags": [
         "coverage_promotion"
@@ -7297,6 +9922,17 @@
       ]
     },
     {
+      "expected_country_code": "AT",
+      "expected_country_qid": "Q40",
+      "label_hint_en": "Neue Hungerburgbahnbrücke",
+      "qid": "Q98123803",
+      "region": "europe",
+      "risk_tags": [
+        "architect_expansion",
+        "architect_hadid"
+      ]
+    },
+    {
       "expected_country_code": "PE",
       "expected_country_qid": "Q419",
       "label_hint_en": "Monumento a Chabuca Granda, Lima",
@@ -7317,6 +9953,26 @@
       ]
     },
     {
+      "expected_country_code": "SA",
+      "expected_country_qid": "Q851",
+      "label_hint_en": "Murqib Al-Hussain",
+      "qid": "Q100328322",
+      "region": "central_west_asia",
+      "risk_tags": [
+        "coverage_promotion"
+      ]
+    },
+    {
+      "expected_country_code": "AU",
+      "expected_country_qid": "Q408",
+      "label_hint_en": "St Mary's Anglican Church, Kulin",
+      "qid": "Q100333105",
+      "region": "oceania",
+      "risk_tags": [
+        "coverage_promotion"
+      ]
+    },
+    {
       "expected_country_code": "NZ",
       "expected_country_qid": "Q664",
       "label_hint_en": "Q100740507",
@@ -7324,6 +9980,28 @@
       "region": "oceania",
       "risk_tags": [
         "coverage_promotion"
+      ]
+    },
+    {
+      "expected_country_code": "GR",
+      "expected_country_qid": "Q41",
+      "label_hint_en": "Alternative Stage of the Greek National Opera",
+      "qid": "Q102161871",
+      "region": "europe",
+      "risk_tags": [
+        "architect_expansion",
+        "architect_piano"
+      ]
+    },
+    {
+      "expected_country_code": "FR",
+      "expected_country_qid": "Q142",
+      "label_hint_en": "La maison LVMH",
+      "qid": "Q103436867",
+      "region": "europe",
+      "risk_tags": [
+        "architect_expansion",
+        "architect_gehry"
       ]
     },
     {
@@ -7347,6 +10025,16 @@
       ]
     },
     {
+      "expected_country_code": "JP",
+      "expected_country_qid": "Q17",
+      "label_hint_en": "Ōmigishikejūtaku",
+      "qid": "Q105806185",
+      "region": "east_asia",
+      "risk_tags": [
+        "coverage_promotion"
+      ]
+    },
+    {
       "expected_country_code": "IN",
       "expected_country_qid": "Q668",
       "label_hint_en": "Birsa Munda International Hockey Stadium",
@@ -7354,6 +10042,17 @@
       "region": "south_asia",
       "risk_tags": [
         "coverage_promotion"
+      ]
+    },
+    {
+      "expected_country_code": "FR",
+      "expected_country_qid": "Q142",
+      "label_hint_en": "Luma Tower",
+      "qid": "Q106044128",
+      "region": "europe",
+      "risk_tags": [
+        "architect_expansion",
+        "architect_gehry"
       ]
     },
     {
@@ -7379,6 +10078,17 @@
       ]
     },
     {
+      "expected_country_code": "NL",
+      "expected_country_qid": "Q55",
+      "label_hint_en": "Timmerhuis",
+      "qid": "Q106764167",
+      "region": "europe",
+      "risk_tags": [
+        "architect_expansion",
+        "architect_koolhaas"
+      ]
+    },
+    {
       "expected_country_code": "US",
       "expected_country_qid": "Q30",
       "label_hint_en": "99 Gansevoort Street",
@@ -7386,6 +10096,27 @@
       "region": "north_america",
       "risk_tags": [
         "label_is_address_not_name"
+      ]
+    },
+    {
+      "expected_country_code": "FR",
+      "expected_country_qid": "Q142",
+      "label_hint_en": "Résidence Campuséa",
+      "qid": "Q106868216",
+      "region": "europe",
+      "risk_tags": [
+        "architect_expansion",
+        "architect_nouvel"
+      ]
+    },
+    {
+      "expected_country_code": "AU",
+      "expected_country_qid": "Q408",
+      "label_hint_en": "Murrumbidgee Irrigator building",
+      "qid": "Q106914771",
+      "region": "oceania",
+      "risk_tags": [
+        "coverage_promotion"
       ]
     },
     {
@@ -7419,6 +10150,27 @@
       ]
     },
     {
+      "expected_country_code": "TR",
+      "expected_country_qid": "Q43",
+      "label_hint_en": "Second building of the Grand National Assembly of Turkey",
+      "qid": "Q107199995",
+      "region": "central_west_asia",
+      "risk_tags": [
+        "coverage_promotion"
+      ]
+    },
+    {
+      "expected_country_code": "IT",
+      "expected_country_qid": "Q38",
+      "label_hint_en": "Rocca di Frassinello",
+      "qid": "Q107611163",
+      "region": "europe",
+      "risk_tags": [
+        "architect_expansion",
+        "architect_piano"
+      ]
+    },
+    {
       "expected_country_code": "RU",
       "expected_country_qid": "Q159",
       "label_hint_en": "Q108204571",
@@ -7439,6 +10191,28 @@
       ]
     },
     {
+      "expected_country_code": "AT",
+      "expected_country_qid": "Q40",
+      "label_hint_en": "WU Vienna, Library and Learning Center",
+      "qid": "Q108823236",
+      "region": "europe",
+      "risk_tags": [
+        "architect_expansion",
+        "architect_hadid"
+      ]
+    },
+    {
+      "expected_country_code": "FR",
+      "expected_country_qid": "Q142",
+      "label_hint_en": "Fountain of the Louvre Pyramid",
+      "qid": "Q109581251",
+      "region": "europe",
+      "risk_tags": [
+        "architect_expansion",
+        "architect_pei"
+      ]
+    },
+    {
       "expected_country_code": "US",
       "expected_country_qid": "Q30",
       "label_hint_en": "270 Park Avenue",
@@ -7446,6 +10220,16 @@
       "region": "north_america",
       "risk_tags": [
         "no_completion_date_in_p1619_p571"
+      ]
+    },
+    {
+      "expected_country_code": "AU",
+      "expected_country_qid": "Q408",
+      "label_hint_en": "Original building of the Rockingham Beach Primary School",
+      "qid": "Q109731311",
+      "region": "oceania",
+      "risk_tags": [
+        "coverage_promotion"
       ]
     },
     {
@@ -7509,6 +10293,36 @@
       ]
     },
     {
+      "expected_country_code": "JP",
+      "expected_country_qid": "Q17",
+      "label_hint_en": "Nagoya Muslim Mosque",
+      "qid": "Q111756215",
+      "region": "east_asia",
+      "risk_tags": [
+        "coverage_promotion"
+      ]
+    },
+    {
+      "expected_country_code": "TR",
+      "expected_country_qid": "Q43",
+      "label_hint_en": "Bulgur Palace",
+      "qid": "Q111988445",
+      "region": "central_west_asia",
+      "risk_tags": [
+        "coverage_promotion"
+      ]
+    },
+    {
+      "expected_country_code": "EG",
+      "expected_country_qid": "Q79",
+      "label_hint_en": "Kanīsat ad Dabbānah",
+      "qid": "Q112764051",
+      "region": "africa",
+      "risk_tags": [
+        "coverage_promotion"
+      ]
+    },
+    {
       "expected_country_code": "PL",
       "expected_country_qid": "Q36",
       "label_hint_en": "Q112811604",
@@ -7559,11 +10373,42 @@
       ]
     },
     {
+      "expected_country_code": "IN",
+      "expected_country_qid": "Q668",
+      "label_hint_en": "Residential Building S.A. Basil",
+      "qid": "Q114838870",
+      "region": "south_asia",
+      "risk_tags": [
+        "coverage_promotion"
+      ]
+    },
+    {
+      "expected_country_code": "IT",
+      "expected_country_qid": "Q38",
+      "label_hint_en": "The Haunted House",
+      "qid": "Q114968139",
+      "region": "europe",
+      "risk_tags": [
+        "architect_expansion",
+        "architect_koolhaas"
+      ]
+    },
+    {
       "expected_country_code": "NL",
       "expected_country_qid": "Q55",
       "label_hint_en": "2e Berg- en Broekparkbrug",
       "qid": "Q115522182",
       "region": "europe",
+      "risk_tags": [
+        "coverage_promotion"
+      ]
+    },
+    {
+      "expected_country_code": "JP",
+      "expected_country_qid": "Q17",
+      "label_hint_en": "Yukuhashi Red Brick Building",
+      "qid": "Q116755148",
+      "region": "east_asia",
       "risk_tags": [
         "coverage_promotion"
       ]
@@ -7589,6 +10434,26 @@
       ]
     },
     {
+      "expected_country_code": "IN",
+      "expected_country_qid": "Q668",
+      "label_hint_en": "Sri Ma Sarada temple",
+      "qid": "Q116957676",
+      "region": "south_asia",
+      "risk_tags": [
+        "coverage_promotion"
+      ]
+    },
+    {
+      "expected_country_code": "IN",
+      "expected_country_qid": "Q668",
+      "label_hint_en": "Swami Vivekananda temple",
+      "qid": "Q116957753",
+      "region": "south_asia",
+      "risk_tags": [
+        "coverage_promotion"
+      ]
+    },
+    {
       "expected_country_code": "NZ",
       "expected_country_qid": "Q664",
       "label_hint_en": "Q116973640",
@@ -7596,6 +10461,94 @@
       "region": "oceania",
       "risk_tags": [
         "coverage_promotion"
+      ]
+    },
+    {
+      "expected_country_code": "GB",
+      "expected_country_qid": "Q145",
+      "label_hint_en": "Serpentine Gallery Pavilion 2010",
+      "qid": "Q117048850",
+      "region": "europe",
+      "risk_tags": [
+        "architect_expansion",
+        "architect_nouvel"
+      ]
+    },
+    {
+      "expected_country_code": "GB",
+      "expected_country_qid": "Q145",
+      "label_hint_en": "Serpentine Gallery Pavilion 2001",
+      "qid": "Q117048870",
+      "region": "europe",
+      "risk_tags": [
+        "architect_expansion",
+        "architect_libeskind"
+      ]
+    },
+    {
+      "expected_country_code": "GB",
+      "expected_country_qid": "Q145",
+      "label_hint_en": "Serpentine Gallery Pavilion 2000",
+      "qid": "Q117048881",
+      "region": "europe",
+      "risk_tags": [
+        "architect_expansion",
+        "architect_hadid"
+      ]
+    },
+    {
+      "expected_country_code": "GB",
+      "expected_country_qid": "Q145",
+      "label_hint_en": "Serpentine Gallery Pavilion 2002",
+      "qid": "Q117048885",
+      "region": "europe",
+      "risk_tags": [
+        "architect_expansion",
+        "architect_toyo_ito"
+      ]
+    },
+    {
+      "expected_country_code": "GB",
+      "expected_country_qid": "Q145",
+      "label_hint_en": "Serpentine Gallery Pavilion 2008",
+      "qid": "Q117048901",
+      "region": "europe",
+      "risk_tags": [
+        "architect_expansion",
+        "architect_gehry"
+      ]
+    },
+    {
+      "expected_country_code": "GB",
+      "expected_country_qid": "Q145",
+      "label_hint_en": "Serpentine Gallery Pavilion 2009",
+      "qid": "Q117048913",
+      "region": "europe",
+      "risk_tags": [
+        "architect_expansion",
+        "architect_sejima"
+      ]
+    },
+    {
+      "expected_country_code": "GB",
+      "expected_country_qid": "Q145",
+      "label_hint_en": "Serpentine Gallery Pavilion 2006",
+      "qid": "Q117048922",
+      "region": "europe",
+      "risk_tags": [
+        "architect_expansion",
+        "architect_koolhaas"
+      ]
+    },
+    {
+      "expected_country_code": "JP",
+      "expected_country_qid": "Q17",
+      "label_hint_en": "Koga Park Café",
+      "qid": "Q117348221",
+      "region": "east_asia",
+      "risk_tags": [
+        "architect_expansion",
+        "architect_sejima"
       ]
     },
     {
@@ -7640,6 +10593,115 @@
       ]
     },
     {
+      "expected_country_code": "US",
+      "expected_country_qid": "Q30",
+      "label_hint_en": "Peter B. Lewis Building",
+      "qid": "Q118383040",
+      "region": "north_america",
+      "risk_tags": [
+        "architect_expansion",
+        "architect_gehry"
+      ]
+    },
+    {
+      "expected_country_code": "ES",
+      "expected_country_qid": "Q29",
+      "label_hint_en": "Pavilion of Kuwait, Expo'92 Seville",
+      "qid": "Q118384379",
+      "region": "europe",
+      "risk_tags": [
+        "architect_expansion",
+        "architect_calatrava"
+      ]
+    },
+    {
+      "expected_country_code": "US",
+      "expected_country_qid": "Q30",
+      "label_hint_en": "Simmons Hall",
+      "qid": "Q118601571",
+      "region": "north_america",
+      "risk_tags": [
+        "architect_expansion",
+        "architect_holl"
+      ]
+    },
+    {
+      "expected_country_code": "US",
+      "expected_country_qid": "Q30",
+      "label_hint_en": "Wosk House",
+      "qid": "Q118636280",
+      "region": "north_america",
+      "risk_tags": [
+        "architect_expansion",
+        "architect_gehry"
+      ]
+    },
+    {
+      "expected_country_code": "US",
+      "expected_country_qid": "Q30",
+      "label_hint_en": "Vontz Center for Molecular Studies",
+      "qid": "Q118636344",
+      "region": "north_america",
+      "risk_tags": [
+        "architect_expansion",
+        "architect_gehry"
+      ]
+    },
+    {
+      "expected_country_code": "US",
+      "expected_country_qid": "Q30",
+      "label_hint_en": "Center for the Visual Arts",
+      "qid": "Q118636751",
+      "region": "north_america",
+      "risk_tags": [
+        "architect_expansion",
+        "architect_gehry"
+      ]
+    },
+    {
+      "expected_country_code": "US",
+      "expected_country_qid": "Q30",
+      "label_hint_en": "Norton Beach House",
+      "qid": "Q118637231",
+      "region": "north_america",
+      "risk_tags": [
+        "architect_expansion",
+        "architect_gehry"
+      ]
+    },
+    {
+      "expected_country_code": "US",
+      "expected_country_qid": "Q30",
+      "label_hint_en": "27712 Pacific Coast Highway",
+      "qid": "Q119039161",
+      "region": "north_america",
+      "risk_tags": [
+        "architect_expansion",
+        "architect_ando"
+      ]
+    },
+    {
+      "expected_country_code": "GB",
+      "expected_country_qid": "Q145",
+      "label_hint_en": "Skybreak House",
+      "qid": "Q119719801",
+      "region": "europe",
+      "risk_tags": [
+        "architect_expansion",
+        "architect_foster"
+      ]
+    },
+    {
+      "expected_country_code": "PE",
+      "expected_country_qid": "Q419",
+      "label_hint_en": "Cripta de los Héroes (Tacna)",
+      "qid": "Q119851882",
+      "region": "latin_america_caribbean",
+      "risk_tags": [
+        "coverage_promotion"
+      ]
+    },
+    {
       "expected_country_code": "IN",
       "expected_country_qid": "Q668",
       "label_hint_en": "Q122332986",
@@ -7650,6 +10712,47 @@
       ]
     },
     {
+      "expected_country_code": "EG",
+      "expected_country_qid": "Q79",
+      "label_hint_en": "Princess Khadija Palace",
+      "qid": "Q122730216",
+      "region": "africa",
+      "risk_tags": [
+        "coverage_promotion"
+      ]
+    },
+    {
+      "expected_country_code": "TH",
+      "expected_country_qid": "Q869",
+      "label_hint_en": "Suphachalasai Stadium",
+      "qid": "Q122834533",
+      "region": "southeast_asia",
+      "risk_tags": [
+        "coverage_promotion"
+      ]
+    },
+    {
+      "expected_country_code": "EG",
+      "expected_country_qid": "Q79",
+      "label_hint_en": "Alsit Khadra Garden",
+      "qid": "Q123015917",
+      "region": "africa",
+      "risk_tags": [
+        "coverage_promotion"
+      ]
+    },
+    {
+      "expected_country_code": "GB",
+      "expected_country_qid": "Q145",
+      "label_hint_en": "Investcorp Building",
+      "qid": "Q123492551",
+      "region": "europe",
+      "risk_tags": [
+        "architect_expansion",
+        "architect_hadid"
+      ]
+    },
+    {
       "expected_country_code": "SA",
       "expected_country_qid": "Q851",
       "label_hint_en": "Q123638003",
@@ -7657,6 +10760,27 @@
       "region": "central_west_asia",
       "risk_tags": [
         "coverage_promotion"
+      ]
+    },
+    {
+      "expected_country_code": "EG",
+      "expected_country_qid": "Q79",
+      "label_hint_en": "Villa Edwin Goar",
+      "qid": "Q124032532",
+      "region": "africa",
+      "risk_tags": [
+        "coverage_promotion"
+      ]
+    },
+    {
+      "expected_country_code": "JP",
+      "expected_country_qid": "Q17",
+      "label_hint_en": "Ayabe Community Center",
+      "qid": "Q124149355",
+      "region": "east_asia",
+      "risk_tags": [
+        "architect_expansion",
+        "architect_ando"
       ]
     },
     {
@@ -7690,11 +10814,52 @@
       ]
     },
     {
+      "expected_country_code": "JP",
+      "expected_country_qid": "Q17",
+      "label_hint_en": "ONIKURU",
+      "qid": "Q124710195",
+      "region": "east_asia",
+      "risk_tags": [
+        "architect_expansion",
+        "architect_toyo_ito"
+      ]
+    },
+    {
       "expected_country_code": "SA",
       "expected_country_qid": "Q851",
       "label_hint_en": "Q124817870",
       "qid": "Q124817870",
       "region": "central_west_asia",
+      "risk_tags": [
+        "coverage_promotion"
+      ]
+    },
+    {
+      "expected_country_code": "VN",
+      "expected_country_qid": "Q881",
+      "label_hint_en": "Al-Noor Mosque",
+      "qid": "Q124982776",
+      "region": "southeast_asia",
+      "risk_tags": [
+        "coverage_promotion"
+      ]
+    },
+    {
+      "expected_country_code": "PE",
+      "expected_country_qid": "Q419",
+      "label_hint_en": "Casa Castro Iglesias",
+      "qid": "Q125120701",
+      "region": "latin_america_caribbean",
+      "risk_tags": [
+        "coverage_promotion"
+      ]
+    },
+    {
+      "expected_country_code": "PE",
+      "expected_country_qid": "Q419",
+      "label_hint_en": "Casa de la avenida Alfonso Ugarte",
+      "qid": "Q125120900",
+      "region": "latin_america_caribbean",
       "risk_tags": [
         "coverage_promotion"
       ]
@@ -7710,6 +10875,26 @@
       ]
     },
     {
+      "expected_country_code": "IN",
+      "expected_country_qid": "Q668",
+      "label_hint_en": "Ross Hill Church",
+      "qid": "Q125739002",
+      "region": "south_asia",
+      "risk_tags": [
+        "coverage_promotion"
+      ]
+    },
+    {
+      "expected_country_code": "PE",
+      "expected_country_qid": "Q419",
+      "label_hint_en": "Casa Mato",
+      "qid": "Q125907674",
+      "region": "latin_america_caribbean",
+      "risk_tags": [
+        "coverage_promotion"
+      ]
+    },
+    {
       "expected_country_code": "SA",
       "expected_country_qid": "Q851",
       "label_hint_en": "Q126391645",
@@ -7717,6 +10902,17 @@
       "region": "central_west_asia",
       "risk_tags": [
         "coverage_promotion"
+      ]
+    },
+    {
+      "expected_country_code": "JP",
+      "expected_country_qid": "Q17",
+      "label_hint_en": "Moriyama House",
+      "qid": "Q126392059",
+      "region": "east_asia",
+      "risk_tags": [
+        "architect_expansion",
+        "architect_nishizawa"
       ]
     },
     {
@@ -7748,6 +10944,46 @@
       "risk_tags": [
         "museum",
         "neoclassical"
+      ]
+    },
+    {
+      "expected_country_code": "JP",
+      "expected_country_qid": "Q17",
+      "label_hint_en": "Hokkaido Prefectural Government's Old Branch Office in Hakodate",
+      "qid": "Q129900326",
+      "region": "east_asia",
+      "risk_tags": [
+        "coverage_promotion"
+      ]
+    },
+    {
+      "expected_country_code": "AR",
+      "expected_country_qid": "Q414",
+      "label_hint_en": "Euskaldunak Denak Bat Sociedad de Socorros Mutuos",
+      "qid": "Q130465168",
+      "region": "latin_america_caribbean",
+      "risk_tags": [
+        "coverage_promotion"
+      ]
+    },
+    {
+      "expected_country_code": "AR",
+      "expected_country_qid": "Q414",
+      "label_hint_en": "Centro Vasco Denak Bat de Mar del Plata",
+      "qid": "Q130528057",
+      "region": "latin_america_caribbean",
+      "risk_tags": [
+        "coverage_promotion"
+      ]
+    },
+    {
+      "expected_country_code": "NZ",
+      "expected_country_qid": "Q664",
+      "label_hint_en": "Carlquist House (former)",
+      "qid": "Q131417018",
+      "region": "oceania",
+      "risk_tags": [
+        "coverage_promotion"
       ]
     },
     {
@@ -7821,6 +11057,16 @@
     {
       "expected_country_code": "IN",
       "expected_country_qid": "Q668",
+      "label_hint_en": "GEL Church, Purulia",
+      "qid": "Q137645209",
+      "region": "south_asia",
+      "risk_tags": [
+        "coverage_promotion"
+      ]
+    },
+    {
+      "expected_country_code": "IN",
+      "expected_country_qid": "Q668",
       "label_hint_en": "Sri Suryanarayana Swamy Temple, Bangalore",
       "qid": "Q137996716",
       "region": "south_asia",
@@ -7856,6 +11102,27 @@
       "label_hint_en": "Q138681667",
       "qid": "Q138681667",
       "region": "east_asia",
+      "risk_tags": [
+        "coverage_promotion"
+      ]
+    },
+    {
+      "expected_country_code": "DE",
+      "expected_country_qid": "Q183",
+      "label_hint_en": "Maack Schreiter House",
+      "qid": "Q138795817",
+      "region": "europe",
+      "risk_tags": [
+        "architect_expansion",
+        "architect_foster"
+      ]
+    },
+    {
+      "expected_country_code": "AR",
+      "expected_country_qid": "Q414",
+      "label_hint_en": "Natatorio Municipal",
+      "qid": "Q138912309",
+      "region": "latin_america_caribbean",
       "risk_tags": [
         "coverage_promotion"
       ]

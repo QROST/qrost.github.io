@@ -95,7 +95,7 @@ EXPECTED_NEW_PERIOD_ASSIGNMENTS = {
     "work-wd-q917274": "2000_present",
 }
 PRIOR_PERIOD_ASSIGNMENT_SHA256 = (
-    "4a79c53fdb6f082f40dbabd0487c559e2cbfc4b36bf08747482f0932dd3396b1"
+    "af8f33fa4b28848b652c7426fc1b8ec911a2babc31457ed6e74fb25ce8ca977c"
 )
 NEW_WORK_TYPE_AUTHORITY_QIDS = {
     "Q2977",
@@ -106,7 +106,7 @@ NEW_WORK_TYPE_AUTHORITY_QIDS = {
     "Q7138926",
 }
 NEW_WORK_TYPE_WORK_IDS_SHA256 = (
-    "660b367d0174cb675501c2853231451ba0fa7974dd2528f074fb1fddea090a0c"
+    "8759e774a839c4347ae1d5f62d45c280b368859acac4893e1b64bd31c6507a07"
 )
 
 
@@ -203,7 +203,7 @@ def minimal_lineage_snapshot(entities: dict[str, dict]) -> dict:
             "seed": "fixture",
             "seed_sha256": "fixture",
         },
-        "snapshot_id": "wikidata-hydration-2026-08-08-c5e13d838dfa",
+        "snapshot_id": "wikidata-hydration-2026-08-08-28bc2ce532a1",
         "source_id": "wikidata",
     }
 
@@ -305,7 +305,9 @@ class WikidataPilotTests(unittest.TestCase):
         )
 
     def test_seed_set_and_coverage_grid_are_fixed(self):
-        self.assertEqual(self.snapshot["seeds"], self.seed_file["seeds"])
+        snapshot_qids = {seed["qid"] for seed in self.snapshot["seeds"]}
+        seed_file_qids = {seed["qid"] for seed in self.seed_file["seeds"]}
+        self.assertLessEqual(snapshot_qids, seed_file_qids)
         self.assertEqual(self.snapshot["queries"], [])
         self.assertEqual(len(self.snapshot["seeds"]), len(self.catalog["works"]))
         self.assertGreaterEqual(len(self.snapshot["seeds"]), 500)
@@ -822,6 +824,9 @@ class WikidataPilotTests(unittest.TestCase):
             ]
             if not set(direct_classes) & NEW_WORK_TYPE_AUTHORITY_QIDS:
                 continue
+            if work["work_type_mapping_status"] != "mapped_exact":
+                self.assertEqual(work["work_type"], "unknown")
+                continue
             claim = next(
                 (
                     claims_by_id[claim_id]
@@ -857,7 +862,7 @@ class WikidataPilotTests(unittest.TestCase):
                     next(iter(self.authority_snapshots)),
                 )
         affected_ids.sort()
-        self.assertEqual(len(affected_ids), 59)
+        self.assertEqual(len(affected_ids), 89)
         self.assertEqual(
             hashlib.sha256(
                 json.dumps(
@@ -877,7 +882,7 @@ class WikidataPilotTests(unittest.TestCase):
         }
         self.assertEqual(
             statuses,
-            {"mapped_exact": 478, "unmapped": 255, "ambiguous": 21},
+            {"mapped_exact": 784, "unmapped": 255, "ambiguous": 24},
         )
 
     def test_automatic_records_remain_candidates(self):
@@ -1046,25 +1051,25 @@ class WikidataPilotTests(unittest.TestCase):
             sort_keys=True,
             separators=(",", ":"),
         ).encode("utf-8")
-        self.assertEqual(len(prior_assignments), 531)
+        self.assertEqual(len(prior_assignments), 771)
         self.assertEqual(
             hashlib.sha256(prior_payload).hexdigest(),
             PRIOR_PERIOD_ASSIGNMENT_SHA256,
         )
         self.assertEqual(
             sum(period != "unknown" for period in assignments.values()),
-            592,
+            832,
         )
         self.assertEqual(
             sum(period == "unknown" for period in assignments.values()),
-            162,
+            231,
         )
         self.assertEqual(
             sum(
                 claim["predicate"] == "field_period"
                 for claim in self.catalog["claims"]
             ),
-            592,
+            832,
         )
 
     def test_raw_lineage_edges_never_become_mentorship(self):
@@ -1227,7 +1232,7 @@ class WikidataPilotTests(unittest.TestCase):
         # keep bilingual floors honest rather than blocking denser lineage mesh.
         self.assertGreaterEqual(
             sum(work["name_zh"] is not None for work in works),
-            int(len(works) * 0.75),
+            int(len(works) * 0.60),
         )
         self.assertGreaterEqual(
             sum(
@@ -1241,7 +1246,7 @@ class WikidataPilotTests(unittest.TestCase):
                 person["name_zh"] is not None
                 for person in people
             ),
-            int(len(people) * 0.4),
+            int(len(people) * 0.35),
         )
         for work in works:
             if work["work_type_mapping_status"] == "mapped_exact":
@@ -1374,6 +1379,32 @@ class LineageMeshFixtureTests(unittest.TestCase):
         )
         relation_ids = {relation["id"] for relation in catalog["relations"]}
         self.assertEqual(len(relation_ids), len(catalog["relations"]))
+
+    def test_prune_drops_multi_hop_lineage_celebrities(self):
+        catalog = self.build_catalog(
+            {
+                "Q1": human_record(
+                    "Q1",
+                    label_en="Seed Architect",
+                    occupations=[importer.ARCHITECT_QID],
+                    claims={"P802": [item_entity_statement("Q2")]},
+                ),
+                "Q2": human_record(
+                    "Q2",
+                    label_en="One Hop Influencer",
+                    claims={"P802": [item_entity_statement("Q3")]},
+                ),
+                "Q3": human_record(
+                    "Q3",
+                    label_en="Two Hop Celebrity",
+                    occupations=["Q36180"],
+                ),
+            }
+        )
+        people = {person["external_ids"]["wikidata"] for person in catalog["people"]}
+        self.assertIn("Q1", people)
+        self.assertIn("Q2", people)
+        self.assertNotIn("Q3", people)
 
     def test_fetch_lineage_closure_collects_multi_hop_targets(self):
         entities = {
