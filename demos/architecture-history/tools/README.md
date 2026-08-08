@@ -8,6 +8,7 @@ python3 tools/build.py
 python3 tools/test_data_contract.py
 python3 tools/test_wikidata_pilot.py
 python3 tools/test_wikidata_coverage.py
+python3 tools/test_expand_coverage_selection.py
 python3 tools/test_getty_ulan_pilot.py
 ```
 
@@ -85,12 +86,37 @@ python3 tools/fetch_wikidata_coverage.py --accessed YYYY-MM-DD --max-cells 2
 
 `fetch_wikidata_coverage.py` is the only networked coverage step. It runs the
 configured 9×8 region/period grid against `query.wikidata.org`, sleeps at least
-65 seconds between SPARQL requests, selects up to four works per cell by stable
+65 seconds between SPARQL requests, selects up to eight works per cell by stable
 hash without popularity signals, and pins selected work entities to exact
 revisions via Special:EntityData. Creator entities are classified for
 `eligible_credits` only and are not stored in the snapshot. The script refuses
 to overwrite an existing output path unless `--force` is passed. Coverage cells
 remain `not_run` in the public manifest until a coverage snapshot is committed.
+
+To deepen coverage from an existing snapshot without re-running SPARQL, use
+newest-first period waves:
+
+```bash
+python3 tools/expand_coverage_selection.py \
+  --snapshot assets/data/source-snapshots/wikidata-coverage-2026-08-07-b976a0d3ce82.json \
+  --per-cell 8 \
+  --period-order newest_first \
+  --output assets/data/source-snapshots/wikidata-coverage-expanded.json
+
+python3 tools/promote_coverage_to_seeds.py \
+  --coverage assets/data/source-snapshots/wikidata-coverage-expanded.json \
+  --seeds tools/wikidata-hydration-seeds.json \
+  --periods 2000_present,1980_1999,1946_1979 \
+  --output tools/wikidata-hydration-seeds-promoted.json
+
+python3 tools/fetch_wikidata_pilot.py --accessed YYYY-MM-DD \
+  --seeds tools/wikidata-hydration-seeds-promoted.json
+```
+
+`expand_coverage_selection.py` reselects from stored `candidate_work_qids`.
+`promote_coverage_to_seeds.py` appends unseen selected works into the hydration
+seed catalog for pilot fetch/import. Run additional period waves (for example
+`1919_1945,1800_1918`) after earlier waves are hydrated.
 
 The bounded Getty ULAN identity workflow has an explicit review boundary:
 

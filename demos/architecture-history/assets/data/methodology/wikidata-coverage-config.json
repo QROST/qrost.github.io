@@ -317,7 +317,7 @@
           "Q1307276",
           "Q7138926"
         ],
-        "snapshot_id": "wikidata-work-type-authority-2026-08-07-b397f30532e0"
+        "snapshot_id": "wikidata-work-type-authority-2026-08-08-265e6658a43b"
       }
     ],
     "authority_policy": "new_mappings_require_revision_pinned_snapshot",
@@ -742,6 +742,8 @@
     "P84",
     "P88",
     "P106",
+    "P108",
+    "P112",
     "P131",
     "P149",
     "P170",
@@ -749,6 +751,7 @@
     "P279",
     "P287",
     "P297",
+    "P463",
     "P569",
     "P570",
     "P571",
@@ -758,6 +761,7 @@
     "P585",
     "P625",
     "P631",
+    "P737",
     "P793",
     "P802",
     "P1066",
@@ -767,7 +771,7 @@
   "selection": {
     "candidate_limit_sentinel": 201,
     "max_split_depth": 12,
-    "per_cell": 4,
+    "per_cell": 8,
     "seed": "wd-coverage-v0.1.0",
     "strategy": "stable_hash_round_robin_without_popularity_signals"
   }
