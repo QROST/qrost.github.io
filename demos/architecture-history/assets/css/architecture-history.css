@@ -920,6 +920,8 @@ html.dark .primary-button {
 .catalog-table-wrap {
   max-height: min(520px, calc(100vh - 12rem));
   overflow: auto;
+  /* Keep internal table scrollHeight from inflating document height. */
+  contain: paint;
 }
 
 .catalog-table {
@@ -1082,6 +1084,8 @@ html.dark .primary-button {
   margin: 0;
   padding: 0;
   overflow-y: auto;
+  /* Keep internal list scrollHeight from inflating document height past the footer. */
+  contain: paint;
   border: 1px solid var(--line);
   border-radius: 0.65rem;
   background: var(--surface);
@@ -1564,7 +1568,7 @@ html.dark .primary-button {
   align-items: end;
   justify-content: space-between;
   gap: 2rem;
-  margin-top: 8rem;
+  margin-top: clamp(2.5rem, 5vw, 4rem);
   padding: 2rem 0 2.5rem;
   border-top: 1px solid var(--line);
 }
@@ -2097,6 +2101,7 @@ html.dark .primary-button {
     gap: 0.6rem;
     max-height: min(520px, calc(100vh - 14rem));
     overflow-y: auto;
+    contain: paint;
     padding-right: 0.15rem;
   }
 
