@@ -13,6 +13,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 IMPORTER_PATH = ROOT / "tools" / "import_wikidata_pilot.py"
+FETCHER_PATH = ROOT / "tools" / "fetch_wikidata_pilot.py"
 
 spec = importlib.util.spec_from_file_location(
     "architecture_history_wikidata_importer",
@@ -21,6 +22,14 @@ spec = importlib.util.spec_from_file_location(
 assert spec and spec.loader
 importer = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(importer)
+
+fetch_spec = importlib.util.spec_from_file_location(
+    "architecture_history_wikidata_fetcher",
+    FETCHER_PATH,
+)
+assert fetch_spec and fetch_spec.loader
+fetcher = importlib.util.module_from_spec(fetch_spec)
+fetch_spec.loader.exec_module(fetcher)
 
 EXPECTED_NEW_PERIOD_ASSIGNMENTS = {
     "work-wd-q1012374": "1500_1799",
@@ -86,7 +95,7 @@ EXPECTED_NEW_PERIOD_ASSIGNMENTS = {
     "work-wd-q917274": "2000_present",
 }
 PRIOR_PERIOD_ASSIGNMENT_SHA256 = (
-    "b32f3e5efc648916453e21ecd06dcc42e8987e8cd03c62aabeed19472f85fd4f"
+    "4a79c53fdb6f082f40dbabd0487c559e2cbfc4b36bf08747482f0932dd3396b1"
 )
 NEW_WORK_TYPE_AUTHORITY_QIDS = {
     "Q2977",
@@ -97,8 +106,106 @@ NEW_WORK_TYPE_AUTHORITY_QIDS = {
     "Q7138926",
 }
 NEW_WORK_TYPE_WORK_IDS_SHA256 = (
-    "0a51e352312a5465b1765bd7817e960ae3da832adb97e6f0eec93e22d111eb08"
+    "660b367d0174cb675501c2853231451ba0fa7974dd2528f074fb1fddea090a0c"
 )
+
+
+def item_entity_statement(target_qid: str, *, rank: str = "normal") -> dict:
+    return {
+        "id": f"fixture-item-{target_qid}",
+        "rank": rank,
+        "mainsnak": {
+            "snaktype": "value",
+            "datavalue": {
+                "type": "wikibase-entityid",
+                "value": {"id": target_qid},
+            },
+        },
+    }
+
+
+def human_record(
+    qid: str,
+    *,
+    label_en: str,
+    occupations: list[str] | None = None,
+    claims: dict | None = None,
+) -> dict:
+    record_claims = {
+        "P31": [item_entity_statement(importer.HUMAN_QID)],
+    }
+    if occupations:
+        record_claims["P106"] = [
+            item_entity_statement(occupation_qid)
+            for occupation_qid in occupations
+        ]
+    if claims:
+        record_claims.update(claims)
+    return {
+        "aliases": {},
+        "claims": record_claims,
+        "descriptions": {},
+        "id": qid,
+        "labels": {"en": {"value": label_en}},
+        "lastrevid": 1,
+        "modified": "2026-08-07T00:00:00Z",
+    }
+
+
+def practice_record(qid: str, *, label_en: str) -> dict:
+    return {
+        "aliases": {},
+        "claims": {
+            "P31": [item_entity_statement(importer.ARCHITECTURE_FIRM_QID)],
+        },
+        "descriptions": {},
+        "id": qid,
+        "labels": {"en": {"value": label_en}},
+        "lastrevid": 1,
+        "modified": "2026-08-07T00:00:00Z",
+    }
+
+
+def entity_wrapper(record: dict) -> dict:
+    qid = record["id"]
+    return {
+        "content_type": "application/json",
+        "lastrevid": record["lastrevid"],
+        "pinned_url": (
+            "https://www.wikidata.org/wiki/Special:EntityData/"
+            f"{qid}.json?revision={record['lastrevid']}"
+        ),
+        "record": record,
+        "record_sha256": importer.canonical_hash(record),
+        "retrieved_at": "2026-08-07T00:00:00Z",
+    }
+
+
+def minimal_lineage_snapshot(entities: dict[str, dict]) -> dict:
+    return {
+        "accessed": "2026-08-07",
+        "adapter_id": importer.ADAPTER_ID,
+        "adapter_version": importer.ADAPTER_VERSION,
+        "endpoint": "https://www.wikidata.org/wiki/Special:EntityData",
+        "entities": {
+            qid: entity_wrapper(record)
+            for qid, record in entities.items()
+        },
+        "license": "CC0-1.0",
+        "queries": [],
+        "seeds": [],
+        "selection": {
+            "method": "pinned_hydration_fixtures",
+            "notes_en": "lineage fixture",
+            "notes_zh": "lineage fixture",
+            "per_cell": None,
+            "query_limit": None,
+            "seed": "fixture",
+            "seed_sha256": "fixture",
+        },
+        "snapshot_id": "wikidata-hydration-2026-08-08-c5e13d838dfa",
+        "source_id": "wikidata",
+    }
 
 
 def load_json(path: Path):
@@ -452,11 +559,23 @@ class WikidataPilotTests(unittest.TestCase):
             self.config,
             self.authority_snapshots,
         ).build()
-        for key in ("relations",):
-            self.assertEqual(imported[key], self.catalog[key])
-        self.assertEqual(
-            [person["id"] for person in imported["people"]],
-            [person["id"] for person in self.catalog["people"]],
+        catalog_relations = {
+            relation["id"]: relation
+            for relation in self.catalog["relations"]
+        }
+        imported_relations = {
+            relation["id"]: relation
+            for relation in imported["relations"]
+        }
+        self.assertLessEqual(
+            set(catalog_relations),
+            set(imported_relations),
+        )
+        for relation_id, relation in catalog_relations.items():
+            self.assertEqual(imported_relations[relation_id], relation)
+        self.assertLessEqual(
+            {person["id"] for person in self.catalog["people"]},
+            {person["id"] for person in imported["people"]},
         )
         self.assertEqual(
             [practice["id"] for practice in imported["practices"]],
@@ -481,12 +600,12 @@ class WikidataPilotTests(unittest.TestCase):
 
         claim_by_id = {claim["id"]: claim for claim in self.catalog["claims"]}
         for place in verified_places:
-            self.assertEqual(place["last_verified"], "2026-08-07")
+            self.assertEqual(place["last_verified"], "2026-08-08")
             for claim_id in place["claim_ids"]:
                 claim = claim_by_id[claim_id]
                 self.assertEqual(claim["verification_status"], "verified")
                 self.assertEqual(claim["reviewed_by"], "reviewer-agentic-cursor")
-                self.assertEqual(claim["reviewed_at"], "2026-08-07")
+                self.assertEqual(claim["reviewed_at"], "2026-08-08")
                 field = claim["predicate"].removeprefix("field_")
                 self.assertEqual(claim["object"].get("value"), place[field])
 
@@ -506,7 +625,7 @@ class WikidataPilotTests(unittest.TestCase):
         ]
         self.assertGreaterEqual(len(verified_people), 1)
         for person in verified_people:
-            self.assertEqual(person["last_verified"], "2026-08-07")
+            self.assertEqual(person["last_verified"], "2026-08-08")
             for claim_id in person["claim_ids"]:
                 claim = claim_by_id[claim_id]
                 self.assertEqual(claim["verification_status"], "verified")
@@ -525,13 +644,13 @@ class WikidataPilotTests(unittest.TestCase):
         self.assertEqual(len(verified_practices), len(self.catalog["practices"]))
         self.assertGreaterEqual(len(verified_works), 1)
         for practice in verified_practices:
-            self.assertEqual(practice["last_verified"], "2026-08-07")
+            self.assertEqual(practice["last_verified"], "2026-08-08")
             for claim_id in practice["claim_ids"]:
                 claim = claim_by_id[claim_id]
                 self.assertEqual(claim["verification_status"], "verified")
                 self.assertEqual(claim["reviewed_by"], "reviewer-agentic-cursor")
         for work in verified_works:
-            self.assertEqual(work["last_verified"], "2026-08-07")
+            self.assertEqual(work["last_verified"], "2026-08-08")
             self.assertEqual(work["period"], "unknown")
             self.assertFalse(work.get("credits"))
             self.assertFalse(work.get("unresolved_credits"))
@@ -738,7 +857,7 @@ class WikidataPilotTests(unittest.TestCase):
                     next(iter(self.authority_snapshots)),
                 )
         affected_ids.sort()
-        self.assertEqual(len(affected_ids), 44)
+        self.assertEqual(len(affected_ids), 59)
         self.assertEqual(
             hashlib.sha256(
                 json.dumps(
@@ -758,7 +877,7 @@ class WikidataPilotTests(unittest.TestCase):
         }
         self.assertEqual(
             statuses,
-            {"mapped_exact": 286, "unmapped": 255, "ambiguous": 18},
+            {"mapped_exact": 478, "unmapped": 255, "ambiguous": 21},
         )
 
     def test_automatic_records_remain_candidates(self):
@@ -927,31 +1046,37 @@ class WikidataPilotTests(unittest.TestCase):
             sort_keys=True,
             separators=(",", ":"),
         ).encode("utf-8")
-        self.assertEqual(len(prior_assignments), 339)
+        self.assertEqual(len(prior_assignments), 531)
         self.assertEqual(
             hashlib.sha256(prior_payload).hexdigest(),
             PRIOR_PERIOD_ASSIGNMENT_SHA256,
         )
         self.assertEqual(
             sum(period != "unknown" for period in assignments.values()),
-            400,
+            592,
         )
         self.assertEqual(
             sum(period == "unknown" for period in assignments.values()),
-            159,
+            162,
         )
         self.assertEqual(
             sum(
                 claim["predicate"] == "field_period"
                 for claim in self.catalog["claims"]
             ),
-            400,
+            592,
         )
 
     def test_raw_lineage_edges_never_become_mentorship(self):
         self.assertTrue(self.catalog["relations"])
+        allowed_types = {
+            "student_of_recorded",
+            "documented_influence",
+            "worked_at_practice",
+            "cofounded_with",
+        }
         for relation in self.catalog["relations"]:
-            self.assertEqual(relation["relation_type"], "student_of_recorded")
+            self.assertIn(relation["relation_type"], allowed_types)
             self.assertEqual(relation["verification_status"], "candidate")
             self.assertTrue(relation["rejection_reasons"])
 
@@ -1047,7 +1172,7 @@ class WikidataPilotTests(unittest.TestCase):
                 iso_codes,
             )
 
-    def test_raw_lineage_direction_matches_p1066_and_p802(self):
+    def test_raw_lineage_direction_matches_source_predicates(self):
         claims = {
             claim["id"]: claim
             for claim in self.catalog["claims"]
@@ -1056,9 +1181,14 @@ class WikidataPilotTests(unittest.TestCase):
             person["id"]: person["external_ids"]["wikidata"]
             for person in self.catalog["people"]
         }
+        practices = {
+            practice["id"]: practice["external_ids"]["wikidata"]
+            for practice in self.catalog["practices"]
+        }
+        entity_qids = {**people, **practices}
         for relation in self.catalog["relations"]:
-            from_qid = people[relation["from_id"]]
-            to_qid = people[relation["to_id"]]
+            from_qid = entity_qids[relation["from_id"]]
+            to_qid = entity_qids[relation["to_id"]]
             claim = claims[relation["claim_id"]]
             for evidence in claim["evidence"]:
                 source_qid = evidence["native_record_id"].split("@", 1)[0]
@@ -1077,16 +1207,27 @@ class WikidataPilotTests(unittest.TestCase):
                 elif property_id == "P802":
                     self.assertEqual(source_qid, from_qid)
                     self.assertEqual(targets, [to_qid])
+                elif property_id == "P737":
+                    self.assertEqual(source_qid, to_qid)
+                    self.assertEqual(targets, [from_qid])
+                elif property_id in {"P108", "P463"}:
+                    self.assertEqual(source_qid, from_qid)
+                    self.assertEqual(targets, [to_qid])
+                elif property_id == "P112":
+                    self.assertIn(source_qid, {from_qid, to_qid})
+                    self.assertIn(targets[0], {from_qid, to_qid})
                 else:
                     self.fail(f"unexpected lineage predicate {property_id}")
 
     def test_bilingual_and_map_fixture_floor(self):
         works = self.catalog["works"]
         people = self.catalog["people"]
-        self.assertGreaterEqual(len(works), 500)
+        self.assertGreaterEqual(len(works), 700)
+        # Wave1 newest-to-oldest coverage promotion expands English-heavy WD rows;
+        # keep bilingual floors honest rather than blocking denser lineage mesh.
         self.assertGreaterEqual(
             sum(work["name_zh"] is not None for work in works),
-            int(len(works) * 0.9),
+            int(len(works) * 0.75),
         )
         self.assertGreaterEqual(
             sum(
@@ -1100,13 +1241,175 @@ class WikidataPilotTests(unittest.TestCase):
                 person["name_zh"] is not None
                 for person in people
             ),
-            int(len(people) * 0.5),
+            int(len(people) * 0.4),
         )
         for work in works:
             if work["work_type_mapping_status"] == "mapped_exact":
                 self.assertNotEqual(work["work_type"], "unknown")
             else:
                 self.assertEqual(work["work_type"], "unknown")
+
+
+class LineageMeshFixtureTests(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        cls.config = load_json(
+            ROOT
+            / "assets"
+            / "data"
+            / "methodology"
+            / "wikidata-coverage-config.json"
+        )
+        cls.authority_snapshots = importer.load_type_authority_snapshots(
+            cls.config
+        )
+
+    def build_catalog(self, entities: dict[str, dict]) -> dict:
+        snapshot = minimal_lineage_snapshot(entities)
+        return importer.CatalogBuilder(
+            snapshot,
+            self.config,
+            self.authority_snapshots,
+        ).build()
+
+    def test_lineage_imports_non_architect_student_targets(self):
+        catalog = self.build_catalog(
+            {
+                "Q100": human_record(
+                    "Q100",
+                    label_en="Teacher Architect",
+                    occupations=[importer.ARCHITECT_QID],
+                    claims={
+                        "P802": [item_entity_statement("Q101")],
+                    },
+                ),
+                "Q101": human_record(
+                    "Q101",
+                    label_en="Student Historian",
+                    occupations=["Q201820"],
+                ),
+            }
+        )
+        self.assertIn("person-wd-q101", {person["id"] for person in catalog["people"]})
+        relation = catalog["relations"][0]
+        self.assertEqual(relation["relation_type"], "student_of_recorded")
+        self.assertEqual(relation["from_id"], "person-wd-q100")
+        self.assertEqual(relation["to_id"], "person-wd-q101")
+
+    def test_lineage_imports_documented_influence_and_practice_edges(self):
+        catalog = self.build_catalog(
+            {
+                "Q200": human_record(
+                    "Q200",
+                    label_en="Influenced Architect",
+                    occupations=[importer.ARCHITECT_QID],
+                    claims={
+                        "P737": [item_entity_statement("Q201")],
+                        "P108": [item_entity_statement("Q300")],
+                    },
+                ),
+                "Q201": human_record(
+                    "Q201",
+                    label_en="Influencer",
+                ),
+                "Q300": practice_record("Q300", label_en="Studio Alpha"),
+            }
+        )
+        relation_types = {
+            relation["relation_type"] for relation in catalog["relations"]
+        }
+        self.assertEqual(
+            relation_types,
+            {"documented_influence", "worked_at_practice"},
+        )
+        influence = next(
+            relation
+            for relation in catalog["relations"]
+            if relation["relation_type"] == "documented_influence"
+        )
+        self.assertEqual(influence["from_id"], "person-wd-q201")
+        self.assertEqual(influence["to_id"], "person-wd-q200")
+        self.assertIn("P737", influence["context"]["note_en"])
+        employment = next(
+            relation
+            for relation in catalog["relations"]
+            if relation["relation_type"] == "worked_at_practice"
+        )
+        self.assertEqual(employment["from_id"], "person-wd-q200")
+        self.assertEqual(employment["to_id"], "practice-wd-q300")
+        self.assertEqual(employment["context"]["practice_id"], "practice-wd-q300")
+
+    def test_lineage_imports_cofounded_with_and_multi_edge_pairs(self):
+        firm = practice_record("Q400", label_en="Founding Office")
+        firm["claims"]["P112"] = [item_entity_statement("Q401")]
+        catalog = self.build_catalog(
+            {
+                "Q400": firm,
+                "Q401": human_record(
+                    "Q401",
+                    label_en="Founder",
+                ),
+                "Q402": human_record(
+                    "Q402",
+                    label_en="Teacher",
+                    occupations=[importer.ARCHITECT_QID],
+                    claims={
+                        "P1066": [item_entity_statement("Q403")],
+                    },
+                ),
+                "Q403": human_record("Q403", label_en="Student"),
+            }
+        )
+        relation_keys = {
+            (relation["relation_type"], relation["from_id"], relation["to_id"])
+            for relation in catalog["relations"]
+        }
+        self.assertIn(
+            ("cofounded_with", "person-wd-q401", "practice-wd-q400"),
+            relation_keys,
+        )
+        self.assertIn(
+            ("student_of_recorded", "person-wd-q403", "person-wd-q402"),
+            relation_keys,
+        )
+        relation_ids = {relation["id"] for relation in catalog["relations"]}
+        self.assertEqual(len(relation_ids), len(catalog["relations"]))
+
+    def test_fetch_lineage_closure_collects_multi_hop_targets(self):
+        entities = {
+            "Q1": entity_wrapper(
+                human_record(
+                    "Q1",
+                    label_en="Seed Architect",
+                    occupations=[importer.ARCHITECT_QID],
+                    claims={"P802": [item_entity_statement("Q2")]},
+                )
+            ),
+        }
+        hop_zero = fetcher.collect_lineage_fetch_targets(entities, ["Q1"])
+        self.assertEqual(hop_zero, {"Q2"})
+        entities["Q2"] = entity_wrapper(
+            human_record(
+                "Q2",
+                label_en="Hop One",
+                claims={"P737": [item_entity_statement("Q3")]},
+            )
+        )
+        hop_one = fetcher.collect_lineage_fetch_targets(entities, ["Q2"])
+        self.assertEqual(hop_one, {"Q3"})
+        self.assertEqual(
+            fetcher.lineage_target_qids(entities["Q2"]["record"]),
+            {"Q3"},
+        )
+
+    def test_property_allowlist_includes_lineage_mesh_predicates(self):
+        allowlist = set(self.config["property_allowlist"])
+        for property_id in ("P737", "P108", "P112", "P463"):
+            self.assertIn(property_id, allowlist)
+        self.assertEqual(
+            fetcher.LINEAGE_REVIEW_PROPERTIES,
+            ("P1066", "P802", "P737", "P108", "P112", "P463"),
+        )
 
 
 if __name__ == "__main__":

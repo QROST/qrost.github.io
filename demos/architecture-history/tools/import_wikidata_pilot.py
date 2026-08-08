@@ -847,6 +847,34 @@ STUDENT_RECORDED_NOTE_EN_SUFFIX = (
 STUDENT_RECORDED_NOTE_ZH_SUFFIX = (
     "Wikidata P1066/P802 原始待审边；本身不能证明教师、导师或学徒关系。"
 )
+DOCUMENTED_INFLUENCE_NOTE_EN_SUFFIX = (
+    "Raw Wikidata P737 influence edge; it does not by itself establish "
+    "mentorship, apprenticeship, or formal training."
+)
+DOCUMENTED_INFLUENCE_NOTE_ZH_SUFFIX = (
+    "Wikidata P737 原始影响边；本身不能证明师徒、学徒或正式训练关系。"
+)
+WORKED_AT_PRACTICE_NOTE_EN_SUFFIX = (
+    "Raw Wikidata P108/P463 employment or membership edge; it does not by "
+    "itself establish tenure, role, or firm affiliation."
+)
+WORKED_AT_PRACTICE_NOTE_ZH_SUFFIX = (
+    "Wikidata P108/P463 原始雇佣或成员边；本身不能证明任期、职务或事务所归属。"
+)
+COFOUNDED_WITH_NOTE_EN_SUFFIX = (
+    "Raw Wikidata P112 founding edge; it does not by itself establish "
+    "cofounder status or founding partnership."
+)
+COFOUNDED_WITH_NOTE_ZH_SUFFIX = (
+    "Wikidata P112 原始创立边；本身不能证明联合创始人身份或创立合作关系。"
+)
+LINEAGE_REVIEW_PROPERTIES = ("P1066", "P802", "P737", "P108", "P112", "P463")
+LINEAGE_RELATION_ID_PREFIX = {
+    "student_of_recorded": "student-recorded",
+    "documented_influence": "documented-influence",
+    "worked_at_practice": "worked-at-practice",
+    "cofounded_with": "cofounded-with",
+}
 
 
 def person_display_name(person: dict, lang: str) -> str:
@@ -855,6 +883,14 @@ def person_display_name(person: dict, lang: str) -> str:
     else:
         name = person.get("name_en") or person.get("name_zh")
     return name or person["id"]
+
+
+def entity_display_name(entity: dict, lang: str) -> str:
+    if lang == "zh":
+        name = entity.get("name_zh") or entity.get("name_en")
+    else:
+        name = entity.get("name_en") or entity.get("name_zh")
+    return name or entity["id"]
 
 
 def person_birth_year(person: dict) -> Optional[int]:
@@ -872,28 +908,65 @@ def person_birth_year(person: dict) -> Optional[int]:
     return None
 
 
+def lineage_review_context(
+    relation_type: str,
+    from_entity: dict,
+    to_entity: dict,
+    *,
+    practice_id: Optional[str] = None,
+    anchor_year: Optional[int] = None,
+) -> dict[str, Any]:
+    from_en = entity_display_name(from_entity, "en")
+    to_en = entity_display_name(to_entity, "en")
+    from_zh = entity_display_name(from_entity, "zh")
+    to_zh = entity_display_name(to_entity, "zh")
+    if relation_type == "student_of_recorded":
+        note_en_suffix = STUDENT_RECORDED_NOTE_EN_SUFFIX
+        note_zh_suffix = STUDENT_RECORDED_NOTE_ZH_SUFFIX
+        recorded_label_en = "Recorded edge"
+        recorded_label_zh = "待审记录边"
+    elif relation_type == "documented_influence":
+        note_en_suffix = DOCUMENTED_INFLUENCE_NOTE_EN_SUFFIX
+        note_zh_suffix = DOCUMENTED_INFLUENCE_NOTE_ZH_SUFFIX
+        recorded_label_en = "Recorded influence edge"
+        recorded_label_zh = "待审影响边"
+    elif relation_type == "worked_at_practice":
+        note_en_suffix = WORKED_AT_PRACTICE_NOTE_EN_SUFFIX
+        note_zh_suffix = WORKED_AT_PRACTICE_NOTE_ZH_SUFFIX
+        recorded_label_en = "Recorded employment edge"
+        recorded_label_zh = "待审雇佣边"
+    elif relation_type == "cofounded_with":
+        note_en_suffix = COFOUNDED_WITH_NOTE_EN_SUFFIX
+        note_zh_suffix = COFOUNDED_WITH_NOTE_ZH_SUFFIX
+        recorded_label_en = "Recorded founding edge"
+        recorded_label_zh = "待审创立边"
+    else:
+        raise ValueError(f"unsupported lineage relation type: {relation_type}")
+    return {
+        "date_end": None,
+        "date_start": anchor_year,
+        "institution_id": None,
+        "note_en": (
+            f"{recorded_label_en}: {from_en} → {to_en}. {note_en_suffix}"
+        ),
+        "note_zh": (
+            f"{recorded_label_zh}：{from_zh} → {to_zh}。{note_zh_suffix}"
+        ),
+        "practice_id": practice_id,
+        "work_id": None,
+    }
+
+
 def student_recorded_review_context(
     from_person: dict,
     to_person: dict,
 ) -> dict[str, Any]:
-    from_en = person_display_name(from_person, "en")
-    to_en = person_display_name(to_person, "en")
-    from_zh = person_display_name(from_person, "zh")
-    to_zh = person_display_name(to_person, "zh")
-    teacher_year = person_birth_year(to_person)
-    return {
-        "date_end": None,
-        "date_start": teacher_year,
-        "institution_id": None,
-        "note_en": (
-            f"Recorded edge: {from_en} → {to_en}. {STUDENT_RECORDED_NOTE_EN_SUFFIX}"
-        ),
-        "note_zh": (
-            f"待审记录边：{from_zh} → {to_zh}。{STUDENT_RECORDED_NOTE_ZH_SUFFIX}"
-        ),
-        "practice_id": None,
-        "work_id": None,
-    }
+    return lineage_review_context(
+        "student_of_recorded",
+        from_person,
+        to_person,
+        anchor_year=person_birth_year(to_person),
+    )
 
 
 def nationality_geography(
@@ -1152,6 +1225,7 @@ class CatalogBuilder:
         qid: str,
         *,
         role_from_credit: bool,
+        allow_non_architect: bool = False,
     ) -> Optional[str]:
         person_id = entity_id("person", qid)
         if person_id in self.people:
@@ -1161,7 +1235,11 @@ class CatalogBuilder:
         occupations = set(item_values(record, "P106"))
         if HUMAN_QID not in instances:
             return None
-        if not role_from_credit and ARCHITECT_QID not in occupations:
+        if (
+            not role_from_credit
+            and not allow_non_architect
+            and ARCHITECT_QID not in occupations
+        ):
             return None
         try:
             chinese, english = labels(record)
@@ -1192,6 +1270,11 @@ class CatalogBuilder:
                 if chinese
                 else "missing"
             )
+        roles = (
+            ["architect"]
+            if ARCHITECT_QID in occupations
+            else ["architect"]
+        )
         self.people[person_id] = {
             "aliases_en": aliases(record, ("en",)),
             "aliases_zh": aliases(record, ("zh-hans", "zh")),
@@ -1209,7 +1292,7 @@ class CatalogBuilder:
             "name_zh": chinese,
             "name_zh_status": name_zh_status,
             "region": region,
-            "roles": ["architect"],
+            "roles": roles,
             "summary_en": summary_en,
             "summary_zh": summary_zh,
             "verification_status": "candidate",
@@ -1775,72 +1858,321 @@ class CatalogBuilder:
             "unresolved_credits": unresolved_credits,
         }
 
-    def add_lineage_review_relations(self) -> None:
-        edges: dict[tuple[str, str], list[dict]] = defaultdict(list)
-        for person in list(self.people.values()):
-            student_or_teacher_qid = person["external_ids"]["wikidata"]
-            record = self.record(student_or_teacher_qid)
-            statements_by_property = {
-                "P1066": ("target_is_teacher", record.get("claims", {}).get("P1066", [])),
-                "P802": ("target_is_student", record.get("claims", {}).get("P802", [])),
-            }
-            for property_id, (direction, statements) in statements_by_property.items():
-                for index, statement in enumerate(statements):
-                    if statement.get("rank") == "deprecated":
-                        continue
-                    values = item_values(
-                        {"claims": {property_id: [statement]}},
-                        property_id,
-                    )
-                    if len(values) != 1 or values[0] not in self.entities:
-                        continue
-                    linked_qid = values[0]
-                    linked_person_id = self.ensure_person(
-                        linked_qid,
-                        role_from_credit=False,
-                    )
-                    if linked_person_id is None:
-                        continue
-                    current_person_id = entity_id("person", student_or_teacher_qid)
-                    if direction == "target_is_teacher":
-                        from_id, to_id = linked_person_id, current_person_id
-                    else:
-                        from_id, to_id = current_person_id, linked_person_id
-                    evidence = self.evidence(
-                        student_or_teacher_qid,
-                        path=f"/claims/{property_id}/{index}",
-                        predicate=property_id,
-                        locator=(
-                            f"{student_or_teacher_qid}/{property_id}/"
-                            f"{statement.get('id', index)}"
-                        ),
-                        statement=statement,
-                    )
-                    edges[(from_id, to_id)].append(evidence)
+    def entity_by_id(self, entity_id_value: str) -> dict:
+        if entity_id_value in self.people:
+            return self.people[entity_id_value]
+        if entity_id_value in self.practices:
+            return self.practices[entity_id_value]
+        raise KeyError(entity_id_value)
 
-        for from_id, to_id in sorted(edges):
-            from_qid = self.people[from_id]["external_ids"]["wikidata"]
-            to_qid = self.people[to_id]["external_ids"]["wikidata"]
+    def lineage_source_qids(self) -> list[str]:
+        sources: list[str] = []
+        for qid, wrapper in self.entities.items():
+            record = wrapper["record"]
+            instances = set(item_values(record, "P31"))
+            if (
+                HUMAN_QID not in instances
+                and ARCHITECTURE_FIRM_QID not in instances
+            ):
+                continue
+            claims = record.get("claims", {})
+            if any(claims.get(property_id) for property_id in LINEAGE_REVIEW_PROPERTIES):
+                sources.append(qid)
+        for person in self.people.values():
+            qid = person["external_ids"]["wikidata"]
+            if qid not in sources:
+                sources.append(qid)
+        return ordered_qids(sources)
+
+    def resolve_cofounded_endpoints(
+        self,
+        subject_qid: str,
+        linked_qid: str,
+    ) -> Optional[tuple[str, str]]:
+        subject_record = self.record(subject_qid)
+        linked_record = self.record(linked_qid)
+        subject_instances = set(item_values(subject_record, "P31"))
+        linked_instances = set(item_values(linked_record, "P31"))
+
+        subject_person = (
+            self.ensure_person(
+                subject_qid,
+                role_from_credit=False,
+                allow_non_architect=True,
+            )
+            if HUMAN_QID in subject_instances
+            else None
+        )
+        linked_person = (
+            self.ensure_person(
+                linked_qid,
+                role_from_credit=False,
+                allow_non_architect=True,
+            )
+            if HUMAN_QID in linked_instances
+            else None
+        )
+        subject_practice = (
+            self.ensure_practice(subject_qid)
+            if ARCHITECTURE_FIRM_QID in subject_instances
+            else None
+        )
+        linked_practice = (
+            self.ensure_practice(linked_qid)
+            if ARCHITECTURE_FIRM_QID in linked_instances
+            else None
+        )
+
+        if subject_practice and linked_person:
+            return linked_person, subject_practice
+        if subject_person and linked_practice:
+            return subject_person, linked_practice
+        if subject_person and linked_person:
+            return subject_person, linked_person
+        if subject_practice and linked_practice:
+            return subject_practice, linked_practice
+        return None
+
+    def append_lineage_edge(
+        self,
+        edges: dict[tuple[str, str, str], list[dict]],
+        *,
+        relation_type: str,
+        from_id: str,
+        to_id: str,
+        evidence: dict,
+    ) -> None:
+        edges[(relation_type, from_id, to_id)].append(evidence)
+
+    def process_lineage_statement(
+        self,
+        source_qid: str,
+        property_id: str,
+        index: int,
+        statement: dict,
+        edges: dict[tuple[str, str, str], list[dict]],
+        pending_qids: set[str],
+    ) -> None:
+        if statement.get("rank") == "deprecated":
+            return
+        values = item_values(
+            {"claims": {property_id: [statement]}},
+            property_id,
+        )
+        if len(values) != 1 or values[0] not in self.entities:
+            return
+        linked_qid = values[0]
+        evidence = self.evidence(
+            source_qid,
+            path=f"/claims/{property_id}/{index}",
+            predicate=property_id,
+            locator=(
+                f"{source_qid}/{property_id}/"
+                f"{statement.get('id', index)}"
+            ),
+            statement=statement,
+        )
+
+        if property_id == "P1066":
+            student_id = self.ensure_person(
+                source_qid,
+                role_from_credit=False,
+                allow_non_architect=True,
+            )
+            teacher_id = self.ensure_person(
+                linked_qid,
+                role_from_credit=False,
+                allow_non_architect=True,
+            )
+            if student_id is None or teacher_id is None:
+                return
+            self.append_lineage_edge(
+                edges,
+                relation_type="student_of_recorded",
+                from_id=teacher_id,
+                to_id=student_id,
+                evidence=evidence,
+            )
+            pending_qids.add(linked_qid)
+            return
+
+        if property_id == "P802":
+            teacher_id = self.ensure_person(
+                source_qid,
+                role_from_credit=False,
+                allow_non_architect=True,
+            )
+            student_id = self.ensure_person(
+                linked_qid,
+                role_from_credit=False,
+                allow_non_architect=True,
+            )
+            if teacher_id is None or student_id is None:
+                return
+            self.append_lineage_edge(
+                edges,
+                relation_type="student_of_recorded",
+                from_id=teacher_id,
+                to_id=student_id,
+                evidence=evidence,
+            )
+            pending_qids.add(linked_qid)
+            return
+
+        if property_id == "P737":
+            influenced_id = self.ensure_person(
+                source_qid,
+                role_from_credit=False,
+                allow_non_architect=True,
+            )
+            influencer_id = self.ensure_person(
+                linked_qid,
+                role_from_credit=False,
+                allow_non_architect=True,
+            )
+            if influenced_id is None or influencer_id is None:
+                return
+            self.append_lineage_edge(
+                edges,
+                relation_type="documented_influence",
+                from_id=influencer_id,
+                to_id=influenced_id,
+                evidence=evidence,
+            )
+            pending_qids.add(linked_qid)
+            return
+
+        if property_id in {"P108", "P463"}:
+            employee_id = self.ensure_person(
+                source_qid,
+                role_from_credit=False,
+                allow_non_architect=True,
+            )
+            practice_id = self.ensure_practice(linked_qid)
+            if employee_id is None or practice_id is None:
+                return
+            self.append_lineage_edge(
+                edges,
+                relation_type="worked_at_practice",
+                from_id=employee_id,
+                to_id=practice_id,
+                evidence=evidence,
+            )
+            pending_qids.add(linked_qid)
+            return
+
+        if property_id == "P112":
+            endpoints = self.resolve_cofounded_endpoints(source_qid, linked_qid)
+            if endpoints is None:
+                return
+            from_id, to_id = endpoints
+            self.append_lineage_edge(
+                edges,
+                relation_type="cofounded_with",
+                from_id=from_id,
+                to_id=to_id,
+                evidence=evidence,
+            )
+            pending_qids.add(linked_qid)
+
+    def process_lineage_for_qid(
+        self,
+        source_qid: str,
+        edges: dict[tuple[str, str, str], list[dict]],
+        pending_qids: set[str],
+    ) -> None:
+        record = self.record(source_qid)
+        instances = set(item_values(record, "P31"))
+        if HUMAN_QID in instances:
+            self.ensure_person(
+                source_qid,
+                role_from_credit=False,
+                allow_non_architect=True,
+            )
+        for property_id in LINEAGE_REVIEW_PROPERTIES:
+            for index, statement in enumerate(
+                record.get("claims", {}).get(property_id, [])
+            ):
+                self.process_lineage_statement(
+                    source_qid,
+                    property_id,
+                    index,
+                    statement,
+                    edges,
+                    pending_qids,
+                )
+
+    def add_lineage_review_relations(self) -> None:
+        edges: dict[tuple[str, str, str], list[dict]] = defaultdict(list)
+        pending = set(self.lineage_source_qids())
+        processed: set[str] = set()
+
+        while pending:
+            source_qid = min(pending, key=qid_number)
+            pending.remove(source_qid)
+            if source_qid in processed:
+                continue
+            processed.add(source_qid)
+            before_people = len(self.people)
+            before_practices = len(self.practices)
+            self.process_lineage_for_qid(source_qid, edges, pending)
+            if (
+                len(self.people) > before_people
+                or len(self.practices) > before_practices
+            ):
+                for qid, wrapper in self.entities.items():
+                    record = wrapper["record"]
+                    instances = set(item_values(record, "P31"))
+                    if (
+                        HUMAN_QID not in instances
+                        and ARCHITECTURE_FIRM_QID not in instances
+                    ):
+                        continue
+                    claims = record.get("claims", {})
+                    if any(
+                        claims.get(property_id)
+                        for property_id in LINEAGE_REVIEW_PROPERTIES
+                    ):
+                        pending.add(qid)
+
+        for (relation_type, from_id, to_id), evidence_rows in sorted(edges.items()):
+            from_entity = self.entity_by_id(from_id)
+            to_entity = self.entity_by_id(to_id)
+            from_qid = from_entity["external_ids"]["wikidata"]
+            to_qid = to_entity["external_ids"]["wikidata"]
+            relation_slug = LINEAGE_RELATION_ID_PREFIX[relation_type]
             relation_id = (
-                f"relation-wd-student-recorded-"
+                f"relation-wd-{relation_slug}-"
                 f"{qid_slug(from_qid)}-{qid_slug(to_qid)}"
             )
             claim_id = f"claim-{relation_id}"
+            practice_id = (
+                to_id if relation_type == "worked_at_practice" else None
+            )
+            anchor_year = (
+                person_birth_year(to_entity)
+                if relation_type == "student_of_recorded"
+                and to_entity.get("entity_type") == "person"
+                else None
+            )
             self.add_claim(
                 claim_id=claim_id,
                 subject_id=relation_id,
-                predicate="student_of_recorded",
+                predicate=relation_type,
                 object_value={"entity_id": to_id},
                 qualifiers={"from_id": from_id},
-                evidence=edges[(from_id, to_id)],
+                evidence=evidence_rows,
                 confidence=0.45,
             )
             self.relations[relation_id] = {
                 "claim_id": claim_id,
                 "confidence": 0.45,
-                "context": student_recorded_review_context(
-                    self.people[from_id],
-                    self.people[to_id],
+                "context": lineage_review_context(
+                    relation_type,
+                    from_entity,
+                    to_entity,
+                    practice_id=practice_id,
+                    anchor_year=anchor_year,
                 ),
                 "from_id": from_id,
                 "id": relation_id,
@@ -1848,7 +2180,7 @@ class CatalogBuilder:
                 "rejection_reasons": [
                     "Requires human classification and stronger relationship evidence."
                 ],
-                "relation_type": "student_of_recorded",
+                "relation_type": relation_type,
                 "to_id": to_id,
                 "verification_status": "candidate",
             }

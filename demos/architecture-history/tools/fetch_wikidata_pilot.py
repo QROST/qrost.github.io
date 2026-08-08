@@ -44,7 +44,8 @@ LANGUAGES = ("zh-hans", "zh", "en")
 PERSON_QID = "Q5"
 ARCHITECTURE_FIRM_QID = "Q4387609"
 CREDIT_PROPERTIES = ("P84",)
-LINEAGE_REVIEW_PROPERTIES = ("P1066", "P802")
+LINEAGE_REVIEW_PROPERTIES = ("P1066", "P802", "P737", "P108", "P112", "P463")
+LINEAGE_CLOSURE_MAX_HOPS = 3
 
 
 def load_json(path: Path) -> Any:
@@ -318,6 +319,39 @@ def ordered_qids(values: Iterable[str]) -> list[str]:
     return sorted(set(values), key=qid_number)
 
 
+def lineage_target_qids(record: dict) -> set[str]:
+    targets: set[str] = set()
+    for property_id in LINEAGE_REVIEW_PROPERTIES:
+        targets.update(item_values(record, property_id))
+    return targets
+
+
+def is_lineage_source_record(record: dict) -> bool:
+    instances = set(item_values(record, "P31"))
+    if PERSON_QID not in instances and ARCHITECTURE_FIRM_QID not in instances:
+        return False
+    claims = record.get("claims", {})
+    return any(claims.get(property_id) for property_id in LINEAGE_REVIEW_PROPERTIES)
+
+
+def collect_lineage_fetch_targets(
+    entities: dict[str, dict],
+    source_qids: Iterable[str],
+) -> set[str]:
+    targets: set[str] = set()
+    for qid in source_qids:
+        wrapper = entities.get(qid)
+        if wrapper is None:
+            continue
+        record = wrapper["record"]
+        if not is_lineage_source_record(record):
+            continue
+        for target_qid in lineage_target_qids(record):
+            if target_qid not in entities:
+                targets.add(target_qid)
+    return targets
+
+
 def hydrate_snapshot(
     seeds_payload: dict,
     config: dict,
@@ -329,8 +363,12 @@ def hydrate_snapshot(
         "P17",
         "P31",
         "P84",
+        "P108",
+        "P112",
         "P297",
+        "P463",
         "P106",
+        "P737",
         "P802",
         "P1066",
     }
@@ -402,15 +440,18 @@ def hydrate_snapshot(
                 f"observed {sorted(iso_codes)!r}"
             )
 
-    lineage_qids: set[str] = set()
-    for qid in creator_qids:
-        record = entities[qid]["record"]
-        instance_values = set(item_values(record, "P31"))
-        if PERSON_QID not in instance_values:
-            continue
-        for property_id in LINEAGE_REVIEW_PROPERTIES:
-            lineage_qids.update(item_values(record, property_id))
-    fetch_many(lineage_qids, "lineage review links")
+    lineage_seed_qids = [
+        qid
+        for qid in creator_qids
+        if PERSON_QID in set(item_values(entities[qid]["record"], "P31"))
+    ]
+    pending_sources = set(lineage_seed_qids)
+    for hop in range(LINEAGE_CLOSURE_MAX_HOPS + 1):
+        lineage_qids = collect_lineage_fetch_targets(entities, pending_sources)
+        if not lineage_qids:
+            break
+        fetch_many(lineage_qids, f"lineage review links (hop {hop})")
+        pending_sources = lineage_qids
 
     aggregate = hashlib.sha256()
     for qid in ordered_qids(entities):
