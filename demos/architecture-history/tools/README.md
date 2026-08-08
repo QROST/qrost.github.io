@@ -61,11 +61,13 @@ equality. Country-place editorial promotion is the exception:
 ```bash
 python3 tools/promote_place_verification.py --reviewed-at YYYY-MM-DD
 python3 tools/agentic_review_person.py --limit 20 --reviewed-at YYYY-MM-DD
+python3 tools/agentic_review_practice.py --limit 50 --reviewed-at YYYY-MM-DD
+python3 tools/agentic_review_work.py --limit 50 --reviewed-at YYYY-MM-DD
 python3 tools/build.py
 ```
 
 `promote_place_verification.py` verifies place name/identity/region/country fields.
-`agentic_review_person.py` verifies people one-by-one (or in bounded batches) when
+`agentic_review_person.py` / `agentic_review_practice.py` / `agentic_review_work.py` verify people, practices, and no-credit works (or in bounded batches) when
 every meaningful field has revision-pinned `structured_mapping` evidence and
 P106 supports `architect` roles. Neither script maps inception/opening to a
 construction date, traverse P279 for classification, or convert P1066/P802

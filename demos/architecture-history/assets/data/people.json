@@ -14894,8 +14894,19 @@
         "value": "1822-04-26"
       },
       "claim_ids": [
+        "claim-wd-q364187-aliases-en",
+        "claim-wd-q364187-aliases-zh",
+        "claim-wd-q364187-birth",
+        "claim-wd-q364187-country-codes",
+        "claim-wd-q364187-death",
+        "claim-wd-q364187-external-ids",
         "claim-wd-q364187-name-en",
-        "claim-wd-q364187-name-zh"
+        "claim-wd-q364187-name-zh",
+        "claim-wd-q364187-name-zh-status",
+        "claim-wd-q364187-region",
+        "claim-wd-q364187-roles",
+        "claim-wd-q364187-summary-en",
+        "claim-wd-q364187-summary-zh"
       ],
       "confidence": 0.6,
       "country_codes": [
@@ -14919,11 +14930,11 @@
       "name_zh_status": "source_label_candidate",
       "region": "north_america",
       "roles": [
-        "architect"
+        "landscape_architect"
       ],
       "summary_en": "American landscape designer, journalist, social critic, and public administrator (1822-1903)",
       "summary_zh": "美國景觀設計師、記者、社評家、公共行政人員 (1822-1903)",
-      "verification_status": "candidate"
+      "verification_status": "verified"
     },
     {
       "aliases_en": [

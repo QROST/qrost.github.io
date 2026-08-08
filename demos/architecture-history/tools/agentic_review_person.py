@@ -40,6 +40,13 @@ from import_wikidata_pilot import (
 from validate import meaningful_fact
 
 
+LANDSCAPE_ARCHITECT_QID = "Q2374149"
+ROLE_OCCUPATION_QIDS = {
+    "architect": ARCHITECT_QID,
+    "landscape_architect": LANDSCAPE_ARCHITECT_QID,
+}
+
+
 ROOT = Path(__file__).resolve().parent.parent
 DATA = ROOT / "assets" / "data"
 CATALOG_PATH = DATA / "catalog" / "wikidata-hydration.json"
@@ -124,7 +131,7 @@ def matching_time_statement(
     return None
 
 
-def architect_statement(record: dict) -> Optional[tuple[int, dict]]:
+def occupation_statement(record: dict, occupation_qid: str) -> Optional[tuple[int, dict]]:
     for index, statement in enumerate(record.get("claims", {}).get("P106", [])):
         if statement.get("rank") == "deprecated":
             continue
@@ -132,9 +139,13 @@ def architect_statement(record: dict) -> Optional[tuple[int, dict]]:
         if snak.get("snaktype") != "value":
             continue
         value = snak.get("datavalue", {}).get("value")
-        if isinstance(value, dict) and value.get("id") == ARCHITECT_QID:
+        if isinstance(value, dict) and value.get("id") == occupation_qid:
             return index, statement
     return None
+
+
+def architect_statement(record: dict) -> Optional[tuple[int, dict]]:
+    return occupation_statement(record, ARCHITECT_QID)
 
 
 def citizenship_statement_rows(
@@ -268,13 +279,18 @@ def build_field_plan(
                 ],
             }
         elif field == "roles":
-            if person["roles"] != ["architect"]:
+            roles = person["roles"]
+            if len(roles) != 1 or roles[0] not in ROLE_OCCUPATION_QIDS:
                 raise ReviewFailure(
-                    f"roles {person['roles']!r} cannot be verified from architect P106 alone"
+                    f"roles {roles!r} cannot be verified from a single mapped P106 occupation"
                 )
-            matched = architect_statement(record)
+            role = roles[0]
+            occupation_qid = ROLE_OCCUPATION_QIDS[role]
+            matched = occupation_statement(record, occupation_qid)
             if matched is None:
-                raise ReviewFailure("roles claim architect but P106 architect occupation is absent")
+                raise ReviewFailure(
+                    f"roles claim {role!r} but P106 occupation {occupation_qid} is absent"
+                )
             index, statement = matched
             plan[field] = {
                 "claim_id": claim_id,

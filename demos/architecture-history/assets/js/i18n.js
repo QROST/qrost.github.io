@@ -37,8 +37,8 @@
     declined: { zh: '已拒绝', en: 'Declined' },
     verifiedFacts: { zh: '条已核验实体或关系', en: 'verified entities or relations' },
     truthCopy: {
-      zh: '国家地点已全部由 agentic reviewer 核验；具有中文标签且职业证据完整的人物正逐一核验中。作品、事务所与知识传递关系仍为候选。Getty ULAN 互惠身份 overlay 仍受 vocab.getty.edu LOD 故障阻塞。',
-      en: 'All country places have passed agentic verification. People with Chinese labels and complete occupation evidence are being reviewed one by one. Works, practices, and knowledge-transfer relations remain candidates. The Getty ULAN reciprocal identity overlay remains blocked by the vocab.getty.edu LOD outage.',
+      zh: '国家地点、事务所、可映射职业的人物，以及 period 未知的无署名作品，已由 agentic reviewer 基于固定修订证据核验。已知时期作品、署名作品、缺中文名人物与知识传递关系保持候选。Getty ULAN 互惠身份 overlay 仍受 vocab.getty.edu LOD 故障阻塞。',
+      en: 'Country places, practices, occupation-mapped people, and no-credit unknown-period works have passed agentic verification on revision-pinned evidence. Known-period works, credited works, people missing Chinese labels, and knowledge-transfer relations remain candidates. The Getty ULAN reciprocal identity overlay remains blocked by the vocab.getty.edu LOD outage.',
     },
     dataAsOf: { zh: '数据时点', en: 'Data as of' },
     coverageRun: { zh: '覆盖单元', en: 'Coverage cells' },

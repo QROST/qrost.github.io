@@ -452,11 +452,19 @@ class WikidataPilotTests(unittest.TestCase):
             self.config,
             self.authority_snapshots,
         ).build()
-        for key in ("practices", "works", "relations"):
+        for key in ("relations",):
             self.assertEqual(imported[key], self.catalog[key])
         self.assertEqual(
             [person["id"] for person in imported["people"]],
             [person["id"] for person in self.catalog["people"]],
+        )
+        self.assertEqual(
+            [practice["id"] for practice in imported["practices"]],
+            [practice["id"] for practice in self.catalog["practices"]],
+        )
+        self.assertEqual(
+            [work["id"] for work in imported["works"]],
+            [work["id"] for work in self.catalog["works"]],
         )
 
         self.assertEqual(
@@ -504,13 +512,46 @@ class WikidataPilotTests(unittest.TestCase):
                 self.assertEqual(claim["verification_status"], "verified")
                 self.assertEqual(claim["reviewed_by"], "reviewer-agentic-cursor")
 
+        verified_practices = [
+            practice
+            for practice in self.catalog["practices"]
+            if practice["verification_status"] == "verified"
+        ]
+        verified_works = [
+            work
+            for work in self.catalog["works"]
+            if work["verification_status"] == "verified"
+        ]
+        self.assertEqual(len(verified_practices), len(self.catalog["practices"]))
+        self.assertGreaterEqual(len(verified_works), 1)
+        for practice in verified_practices:
+            self.assertEqual(practice["last_verified"], "2026-08-07")
+            for claim_id in practice["claim_ids"]:
+                claim = claim_by_id[claim_id]
+                self.assertEqual(claim["verification_status"], "verified")
+                self.assertEqual(claim["reviewed_by"], "reviewer-agentic-cursor")
+        for work in verified_works:
+            self.assertEqual(work["last_verified"], "2026-08-07")
+            self.assertEqual(work["period"], "unknown")
+            self.assertFalse(work.get("credits"))
+            self.assertFalse(work.get("unresolved_credits"))
+            field_claims = [
+                claim_by_id[claim_id]
+                for claim_id in work["claim_ids"]
+                if claim_by_id[claim_id]["predicate"].startswith("field_")
+            ]
+            self.assertTrue(field_claims)
+            self.assertTrue(
+                any(claim["verification_status"] == "verified" for claim in field_claims)
+            )
+            for claim in field_claims:
+                if claim["verification_status"] != "verified":
+                    continue
+                self.assertEqual(claim["reviewed_by"], "reviewer-agentic-cursor")
+
         non_editorial_statuses = {
             item["verification_status"]
-            for item in (
-                self.catalog["practices"]
-                + self.catalog["works"]
-                + self.catalog["relations"]
-            )
+            for item in self.catalog["relations"]
         }
         self.assertEqual(non_editorial_statuses, {"candidate"})
 
