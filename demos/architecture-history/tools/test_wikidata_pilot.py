@@ -452,8 +452,12 @@ class WikidataPilotTests(unittest.TestCase):
             self.config,
             self.authority_snapshots,
         ).build()
-        for key in ("people", "practices", "works", "relations"):
+        for key in ("practices", "works", "relations"):
             self.assertEqual(imported[key], self.catalog[key])
+        self.assertEqual(
+            [person["id"] for person in imported["people"]],
+            [person["id"] for person in self.catalog["people"]],
+        )
 
         self.assertEqual(
             [place["id"] for place in imported["places"]],
@@ -487,16 +491,28 @@ class WikidataPilotTests(unittest.TestCase):
         self.assertIn("reviewer-agentic-cursor", active)
         self.assertEqual(active["reviewer-agentic-cursor"]["reviewer_type"], "agentic")
 
-        non_place_statuses = {
+        verified_people = [
+            person
+            for person in self.catalog["people"]
+            if person["verification_status"] == "verified"
+        ]
+        self.assertGreaterEqual(len(verified_people), 1)
+        for person in verified_people:
+            self.assertEqual(person["last_verified"], "2026-08-07")
+            for claim_id in person["claim_ids"]:
+                claim = claim_by_id[claim_id]
+                self.assertEqual(claim["verification_status"], "verified")
+                self.assertEqual(claim["reviewed_by"], "reviewer-agentic-cursor")
+
+        non_editorial_statuses = {
             item["verification_status"]
             for item in (
-                self.catalog["people"]
-                + self.catalog["practices"]
+                self.catalog["practices"]
                 + self.catalog["works"]
                 + self.catalog["relations"]
             )
         }
-        self.assertEqual(non_place_statuses, {"candidate"})
+        self.assertEqual(non_editorial_statuses, {"candidate"})
 
     def test_work_type_authority_sidecar_is_revision_pinned(self):
         bindings = self.config["work_type_derivation"]["authority_bindings"]

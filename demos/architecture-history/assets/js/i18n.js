@@ -37,8 +37,8 @@
     declined: { zh: '已拒绝', en: 'Declined' },
     verifiedFacts: { zh: '条已核验实体或关系', en: 'verified entities or relations' },
     truthCopy: {
-      zh: '主体、作品与关系仍以固定版本 Wikidata 水合样本为候选；39 个国家地点已由 agentic reviewer 核验（名称、ISO 国家码、宏观区域与 Wikidata 身份）。人物、作品、事务所与知识传递关系尚未核验。Getty ULAN 互惠身份 overlay 仍受 vocab.getty.edu LOD 故障阻塞。',
-      en: 'People, works, practices, and relations remain revision-pinned Wikidata hydration candidates. Thirty-nine country places have passed agentic editorial verification for names, ISO country codes, macroregions, and Wikidata identity. People, works, practices, and knowledge-transfer relations are not yet verified. The Getty ULAN reciprocal identity overlay remains blocked by the vocab.getty.edu LOD outage.',
+      zh: '国家地点已全部由 agentic reviewer 核验；具有中文标签且职业证据完整的人物正逐一核验中。作品、事务所与知识传递关系仍为候选。Getty ULAN 互惠身份 overlay 仍受 vocab.getty.edu LOD 故障阻塞。',
+      en: 'All country places have passed agentic verification. People with Chinese labels and complete occupation evidence are being reviewed one by one. Works, practices, and knowledge-transfer relations remain candidates. The Getty ULAN reciprocal identity overlay remains blocked by the vocab.getty.edu LOD outage.',
     },
     dataAsOf: { zh: '数据时点', en: 'Data as of' },
     coverageRun: { zh: '覆盖单元', en: 'Coverage cells' },

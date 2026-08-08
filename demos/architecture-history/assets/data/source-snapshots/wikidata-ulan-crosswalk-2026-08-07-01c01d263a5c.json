@@ -2,7 +2,7 @@
   "accessed": "2026-08-07",
   "adapter_id": "wikidata-hydration-pilot",
   "adapter_version": "0.1.0",
-  "base_catalog_sha256": "dc5e49d9b3d284deff979b0d1e8d4479a990baa5e159ff65a074aabb78fd8da3",
+  "base_catalog_sha256": "37fcb4ad16c2ccc6f452425ed3af6f7d9bf54baa8e61166ed38b90a7fa39f846",
   "base_work_snapshot_id": "wikidata-hydration-2026-08-07-d37c179db21b",
   "claim_evidence_allowed": false,
   "endpoint": "https://www.wikidata.org/w/api.php",
@@ -22660,6 +22660,6 @@
     "selected_order": "priority_then_stable_hash",
     "selection_limit": 24
   },
-  "snapshot_id": "wikidata-ulan-crosswalk-2026-08-07-f58d977e80cc",
+  "snapshot_id": "wikidata-ulan-crosswalk-2026-08-07-01c01d263a5c",
   "source_id": "wikidata"
 }

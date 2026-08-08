@@ -9,7 +9,7 @@ global architectural history. Public counts distinguish discovered candidates,
 reviewed facts, contested claims, and gaps in coverage.
 
 The current catalog contains 559 cross-regional work fixtures, 539 people, 29
-practices, 39 country-place records, 191 raw relationship review edges, and 4747
+practices, 39 country-place records, 191 raw relationship review edges, and 7133
 source claims. Exact direct-P31 mapping currently classifies 286 works, while
 255 remain unmapped and 18 remain ambiguous. Wikidata is the primary structured
 source; a refreshed 24-anchor Getty ULAN P245 crosswalk is committed, but the
@@ -18,17 +18,18 @@ reciprocal Getty identity overlay is blocked as of 2026-08-07 because
 and RDF downloads. Public people therefore still carry zero `ulan` external ids.
 Of 539 people, 281 have Wikidata-backed `name_zh`; the remaining 258 lack a safe
 authority Chinese label (enwiki→zh langlink seeds are empty after reciprocal
-Wikidata ownership checks). All 39 country places are agentic-verified
-(`reviewer-agentic-cursor`, 2026-08-07) for names, ISO codes, project macroregions, and
-Wikidata identity; people, works, practices, and relations remain `candidate`.
-The published verified count is therefore 39.
+Wikidata ownership checks). All 39 country places and 273 people are
+agentic-verified (`reviewer-agentic-cursor`, 2026-08-07) under revision-pinned
+structured evidence; 8 remaining people with Chinese labels lack a pinned P106
+architect occupation and stay candidate. Works, practices, and relations remain
+`candidate`. Published verified entities/relations: 312.
 
 ## Data authority
 
 The public data graph lives in `assets/data/`:
 
 - `source-registry.json` — source access, reuse, attribution, and bias decisions;
-- `reviewers.json` — explicitly authorized human editorial reviewers;
+- `reviewers.json` — explicitly authorized human or agentic editorial reviewers;
 - `people.json`, `practices.json`, `places.json`, `works.json` — entities;
 - `claims.json` — field- and relation-level evidence;
 - `relations.json` — typed relationships, never inferred from visual similarity;
