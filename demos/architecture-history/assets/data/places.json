@@ -4,7 +4,9 @@
       "claim_ids": [
         "claim-wd-q142-name-en",
         "claim-wd-q142-name-zh",
-        "claim-wd-q142-country-code"
+        "claim-wd-q142-country-code",
+        "claim-wd-q142-region",
+        "claim-wd-q142-external-ids"
       ],
       "confidence": 0.6,
       "country_code": "FR",
@@ -20,13 +22,15 @@
       "name_native": null,
       "name_zh": "法国",
       "region": "europe",
-      "verification_status": "candidate"
+      "verification_status": "verified"
     },
     {
       "claim_ids": [
         "claim-wd-q145-name-en",
         "claim-wd-q145-name-zh",
-        "claim-wd-q145-country-code"
+        "claim-wd-q145-country-code",
+        "claim-wd-q145-region",
+        "claim-wd-q145-external-ids"
       ],
       "confidence": 0.6,
       "country_code": "GB",
@@ -42,13 +46,15 @@
       "name_native": null,
       "name_zh": "英国",
       "region": "europe",
-      "verification_status": "candidate"
+      "verification_status": "verified"
     },
     {
       "claim_ids": [
         "claim-wd-q148-name-en",
         "claim-wd-q148-name-zh",
-        "claim-wd-q148-country-code"
+        "claim-wd-q148-country-code",
+        "claim-wd-q148-region",
+        "claim-wd-q148-external-ids"
       ],
       "confidence": 0.6,
       "country_code": "CN",
@@ -64,13 +70,15 @@
       "name_native": null,
       "name_zh": "中华人民共和国",
       "region": "east_asia",
-      "verification_status": "candidate"
+      "verification_status": "verified"
     },
     {
       "claim_ids": [
         "claim-wd-q155-name-en",
         "claim-wd-q155-name-zh",
-        "claim-wd-q155-country-code"
+        "claim-wd-q155-country-code",
+        "claim-wd-q155-region",
+        "claim-wd-q155-external-ids"
       ],
       "confidence": 0.6,
       "country_code": "BR",
@@ -86,13 +94,15 @@
       "name_native": null,
       "name_zh": "巴西",
       "region": "latin_america_caribbean",
-      "verification_status": "candidate"
+      "verification_status": "verified"
     },
     {
       "claim_ids": [
         "claim-wd-q159-name-en",
         "claim-wd-q159-name-zh",
-        "claim-wd-q159-country-code"
+        "claim-wd-q159-country-code",
+        "claim-wd-q159-region",
+        "claim-wd-q159-external-ids"
       ],
       "confidence": 0.6,
       "country_code": "RU",
@@ -108,13 +118,15 @@
       "name_native": null,
       "name_zh": "俄罗斯",
       "region": "europe",
-      "verification_status": "candidate"
+      "verification_status": "verified"
     },
     {
       "claim_ids": [
         "claim-wd-q16-name-en",
         "claim-wd-q16-name-zh",
-        "claim-wd-q16-country-code"
+        "claim-wd-q16-country-code",
+        "claim-wd-q16-region",
+        "claim-wd-q16-external-ids"
       ],
       "confidence": 0.6,
       "country_code": "CA",
@@ -130,13 +142,15 @@
       "name_native": null,
       "name_zh": "加拿大",
       "region": "north_america",
-      "verification_status": "candidate"
+      "verification_status": "verified"
     },
     {
       "claim_ids": [
         "claim-wd-q17-name-en",
         "claim-wd-q17-name-zh",
-        "claim-wd-q17-country-code"
+        "claim-wd-q17-country-code",
+        "claim-wd-q17-region",
+        "claim-wd-q17-external-ids"
       ],
       "confidence": 0.6,
       "country_code": "JP",
@@ -152,13 +166,15 @@
       "name_native": null,
       "name_zh": "日本",
       "region": "east_asia",
-      "verification_status": "candidate"
+      "verification_status": "verified"
     },
     {
       "claim_ids": [
         "claim-wd-q183-name-en",
         "claim-wd-q183-name-zh",
-        "claim-wd-q183-country-code"
+        "claim-wd-q183-country-code",
+        "claim-wd-q183-region",
+        "claim-wd-q183-external-ids"
       ],
       "confidence": 0.6,
       "country_code": "DE",
@@ -174,13 +190,15 @@
       "name_native": null,
       "name_zh": "德国",
       "region": "europe",
-      "verification_status": "candidate"
+      "verification_status": "verified"
     },
     {
       "claim_ids": [
         "claim-wd-q213-name-en",
         "claim-wd-q213-name-zh",
-        "claim-wd-q213-country-code"
+        "claim-wd-q213-country-code",
+        "claim-wd-q213-region",
+        "claim-wd-q213-external-ids"
       ],
       "confidence": 0.6,
       "country_code": "CZ",
@@ -196,13 +214,15 @@
       "name_native": null,
       "name_zh": "捷克",
       "region": "europe",
-      "verification_status": "candidate"
+      "verification_status": "verified"
     },
     {
       "claim_ids": [
         "claim-wd-q218-name-en",
         "claim-wd-q218-name-zh",
-        "claim-wd-q218-country-code"
+        "claim-wd-q218-country-code",
+        "claim-wd-q218-region",
+        "claim-wd-q218-external-ids"
       ],
       "confidence": 0.6,
       "country_code": "RO",
@@ -218,13 +238,15 @@
       "name_native": null,
       "name_zh": "罗马尼亚",
       "region": "europe",
-      "verification_status": "candidate"
+      "verification_status": "verified"
     },
     {
       "claim_ids": [
         "claim-wd-q237-name-en",
         "claim-wd-q237-name-zh",
-        "claim-wd-q237-country-code"
+        "claim-wd-q237-country-code",
+        "claim-wd-q237-region",
+        "claim-wd-q237-external-ids"
       ],
       "confidence": 0.6,
       "country_code": "VA",
@@ -240,13 +262,15 @@
       "name_native": null,
       "name_zh": "梵蒂冈",
       "region": "europe",
-      "verification_status": "candidate"
+      "verification_status": "verified"
     },
     {
       "claim_ids": [
         "claim-wd-q252-name-en",
         "claim-wd-q252-name-zh",
-        "claim-wd-q252-country-code"
+        "claim-wd-q252-country-code",
+        "claim-wd-q252-region",
+        "claim-wd-q252-external-ids"
       ],
       "confidence": 0.6,
       "country_code": "ID",
@@ -262,13 +286,15 @@
       "name_native": null,
       "name_zh": "印度尼西亚",
       "region": "southeast_asia",
-      "verification_status": "candidate"
+      "verification_status": "verified"
     },
     {
       "claim_ids": [
         "claim-wd-q28-name-en",
         "claim-wd-q28-name-zh",
-        "claim-wd-q28-country-code"
+        "claim-wd-q28-country-code",
+        "claim-wd-q28-region",
+        "claim-wd-q28-external-ids"
       ],
       "confidence": 0.6,
       "country_code": "HU",
@@ -284,13 +310,15 @@
       "name_native": null,
       "name_zh": "匈牙利",
       "region": "europe",
-      "verification_status": "candidate"
+      "verification_status": "verified"
     },
     {
       "claim_ids": [
         "claim-wd-q29-name-en",
         "claim-wd-q29-name-zh",
-        "claim-wd-q29-country-code"
+        "claim-wd-q29-country-code",
+        "claim-wd-q29-region",
+        "claim-wd-q29-external-ids"
       ],
       "confidence": 0.6,
       "country_code": "ES",
@@ -306,13 +334,15 @@
       "name_native": null,
       "name_zh": "西班牙",
       "region": "europe",
-      "verification_status": "candidate"
+      "verification_status": "verified"
     },
     {
       "claim_ids": [
         "claim-wd-q30-name-en",
         "claim-wd-q30-name-zh",
-        "claim-wd-q30-country-code"
+        "claim-wd-q30-country-code",
+        "claim-wd-q30-region",
+        "claim-wd-q30-external-ids"
       ],
       "confidence": 0.6,
       "country_code": "US",
@@ -328,13 +358,15 @@
       "name_native": null,
       "name_zh": "美国",
       "region": "north_america",
-      "verification_status": "candidate"
+      "verification_status": "verified"
     },
     {
       "claim_ids": [
         "claim-wd-q34-name-en",
         "claim-wd-q34-name-zh",
-        "claim-wd-q34-country-code"
+        "claim-wd-q34-country-code",
+        "claim-wd-q34-region",
+        "claim-wd-q34-external-ids"
       ],
       "confidence": 0.6,
       "country_code": "SE",
@@ -350,13 +382,15 @@
       "name_native": null,
       "name_zh": "瑞典",
       "region": "europe",
-      "verification_status": "candidate"
+      "verification_status": "verified"
     },
     {
       "claim_ids": [
         "claim-wd-q36-name-en",
         "claim-wd-q36-name-zh",
-        "claim-wd-q36-country-code"
+        "claim-wd-q36-country-code",
+        "claim-wd-q36-region",
+        "claim-wd-q36-external-ids"
       ],
       "confidence": 0.6,
       "country_code": "PL",
@@ -372,13 +406,15 @@
       "name_native": null,
       "name_zh": "波兰",
       "region": "europe",
-      "verification_status": "candidate"
+      "verification_status": "verified"
     },
     {
       "claim_ids": [
         "claim-wd-q38-name-en",
         "claim-wd-q38-name-zh",
-        "claim-wd-q38-country-code"
+        "claim-wd-q38-country-code",
+        "claim-wd-q38-region",
+        "claim-wd-q38-external-ids"
       ],
       "confidence": 0.6,
       "country_code": "IT",
@@ -394,13 +430,15 @@
       "name_native": null,
       "name_zh": "意大利",
       "region": "europe",
-      "verification_status": "candidate"
+      "verification_status": "verified"
     },
     {
       "claim_ids": [
         "claim-wd-q40-name-en",
         "claim-wd-q40-name-zh",
-        "claim-wd-q40-country-code"
+        "claim-wd-q40-country-code",
+        "claim-wd-q40-region",
+        "claim-wd-q40-external-ids"
       ],
       "confidence": 0.6,
       "country_code": "AT",
@@ -416,13 +454,15 @@
       "name_native": null,
       "name_zh": "奥地利",
       "region": "europe",
-      "verification_status": "candidate"
+      "verification_status": "verified"
     },
     {
       "claim_ids": [
         "claim-wd-q408-name-en",
         "claim-wd-q408-name-zh",
-        "claim-wd-q408-country-code"
+        "claim-wd-q408-country-code",
+        "claim-wd-q408-region",
+        "claim-wd-q408-external-ids"
       ],
       "confidence": 0.6,
       "country_code": "AU",
@@ -438,13 +478,15 @@
       "name_native": null,
       "name_zh": "澳大利亚",
       "region": "oceania",
-      "verification_status": "candidate"
+      "verification_status": "verified"
     },
     {
       "claim_ids": [
         "claim-wd-q41-name-en",
         "claim-wd-q41-name-zh",
-        "claim-wd-q41-country-code"
+        "claim-wd-q41-country-code",
+        "claim-wd-q41-region",
+        "claim-wd-q41-external-ids"
       ],
       "confidence": 0.6,
       "country_code": "GR",
@@ -460,13 +502,15 @@
       "name_native": null,
       "name_zh": "希腊",
       "region": "europe",
-      "verification_status": "candidate"
+      "verification_status": "verified"
     },
     {
       "claim_ids": [
         "claim-wd-q419-name-en",
         "claim-wd-q419-name-zh",
-        "claim-wd-q419-country-code"
+        "claim-wd-q419-country-code",
+        "claim-wd-q419-region",
+        "claim-wd-q419-external-ids"
       ],
       "confidence": 0.6,
       "country_code": "PE",
@@ -482,13 +526,15 @@
       "name_native": null,
       "name_zh": "秘鲁",
       "region": "latin_america_caribbean",
-      "verification_status": "candidate"
+      "verification_status": "verified"
     },
     {
       "claim_ids": [
         "claim-wd-q424-name-en",
         "claim-wd-q424-name-zh",
-        "claim-wd-q424-country-code"
+        "claim-wd-q424-country-code",
+        "claim-wd-q424-region",
+        "claim-wd-q424-external-ids"
       ],
       "confidence": 0.6,
       "country_code": "KH",
@@ -504,13 +550,15 @@
       "name_native": null,
       "name_zh": "柬埔寨",
       "region": "southeast_asia",
-      "verification_status": "candidate"
+      "verification_status": "verified"
     },
     {
       "claim_ids": [
         "claim-wd-q43-name-en",
         "claim-wd-q43-name-zh",
-        "claim-wd-q43-country-code"
+        "claim-wd-q43-country-code",
+        "claim-wd-q43-region",
+        "claim-wd-q43-external-ids"
       ],
       "confidence": 0.6,
       "country_code": "TR",
@@ -526,13 +574,15 @@
       "name_native": null,
       "name_zh": "土耳其",
       "region": "central_west_asia",
-      "verification_status": "candidate"
+      "verification_status": "verified"
     },
     {
       "claim_ids": [
         "claim-wd-q45-name-en",
         "claim-wd-q45-name-zh",
-        "claim-wd-q45-country-code"
+        "claim-wd-q45-country-code",
+        "claim-wd-q45-region",
+        "claim-wd-q45-external-ids"
       ],
       "confidence": 0.6,
       "country_code": "PT",
@@ -548,13 +598,15 @@
       "name_native": null,
       "name_zh": "葡萄牙",
       "region": "europe",
-      "verification_status": "candidate"
+      "verification_status": "verified"
     },
     {
       "claim_ids": [
         "claim-wd-q55-name-en",
         "claim-wd-q55-name-zh",
-        "claim-wd-q55-country-code"
+        "claim-wd-q55-country-code",
+        "claim-wd-q55-region",
+        "claim-wd-q55-external-ids"
       ],
       "confidence": 0.6,
       "country_code": "NL",
@@ -570,13 +622,15 @@
       "name_native": null,
       "name_zh": "荷兰",
       "region": "europe",
-      "verification_status": "candidate"
+      "verification_status": "verified"
     },
     {
       "claim_ids": [
         "claim-wd-q668-name-en",
         "claim-wd-q668-name-zh",
-        "claim-wd-q668-country-code"
+        "claim-wd-q668-country-code",
+        "claim-wd-q668-region",
+        "claim-wd-q668-external-ids"
       ],
       "confidence": 0.6,
       "country_code": "IN",
@@ -592,13 +646,15 @@
       "name_native": null,
       "name_zh": "印度",
       "region": "south_asia",
-      "verification_status": "candidate"
+      "verification_status": "verified"
     },
     {
       "claim_ids": [
         "claim-wd-q79-name-en",
         "claim-wd-q79-name-zh",
-        "claim-wd-q79-country-code"
+        "claim-wd-q79-country-code",
+        "claim-wd-q79-region",
+        "claim-wd-q79-external-ids"
       ],
       "confidence": 0.6,
       "country_code": "EG",
@@ -614,13 +670,15 @@
       "name_native": null,
       "name_zh": "埃及",
       "region": "africa",
-      "verification_status": "candidate"
+      "verification_status": "verified"
     },
     {
       "claim_ids": [
         "claim-wd-q794-name-en",
         "claim-wd-q794-name-zh",
-        "claim-wd-q794-country-code"
+        "claim-wd-q794-country-code",
+        "claim-wd-q794-region",
+        "claim-wd-q794-external-ids"
       ],
       "confidence": 0.6,
       "country_code": "IR",
@@ -636,13 +694,15 @@
       "name_native": null,
       "name_zh": "伊朗",
       "region": "central_west_asia",
-      "verification_status": "candidate"
+      "verification_status": "verified"
     },
     {
       "claim_ids": [
         "claim-wd-q819-name-en",
         "claim-wd-q819-name-zh",
-        "claim-wd-q819-country-code"
+        "claim-wd-q819-country-code",
+        "claim-wd-q819-region",
+        "claim-wd-q819-external-ids"
       ],
       "confidence": 0.6,
       "country_code": "LA",
@@ -658,13 +718,15 @@
       "name_native": null,
       "name_zh": "老挝",
       "region": "southeast_asia",
-      "verification_status": "candidate"
+      "verification_status": "verified"
     },
     {
       "claim_ids": [
         "claim-wd-q833-name-en",
         "claim-wd-q833-name-zh",
-        "claim-wd-q833-country-code"
+        "claim-wd-q833-country-code",
+        "claim-wd-q833-region",
+        "claim-wd-q833-external-ids"
       ],
       "confidence": 0.6,
       "country_code": "MY",
@@ -680,13 +742,15 @@
       "name_native": null,
       "name_zh": "马来西亚",
       "region": "southeast_asia",
-      "verification_status": "candidate"
+      "verification_status": "verified"
     },
     {
       "claim_ids": [
         "claim-wd-q836-name-en",
         "claim-wd-q836-name-zh",
-        "claim-wd-q836-country-code"
+        "claim-wd-q836-country-code",
+        "claim-wd-q836-region",
+        "claim-wd-q836-external-ids"
       ],
       "confidence": 0.6,
       "country_code": "MM",
@@ -702,13 +766,15 @@
       "name_native": null,
       "name_zh": "缅甸",
       "region": "southeast_asia",
-      "verification_status": "candidate"
+      "verification_status": "verified"
     },
     {
       "claim_ids": [
         "claim-wd-q851-name-en",
         "claim-wd-q851-name-zh",
-        "claim-wd-q851-country-code"
+        "claim-wd-q851-country-code",
+        "claim-wd-q851-region",
+        "claim-wd-q851-external-ids"
       ],
       "confidence": 0.6,
       "country_code": "SA",
@@ -724,13 +790,15 @@
       "name_native": null,
       "name_zh": "沙特阿拉伯",
       "region": "central_west_asia",
-      "verification_status": "candidate"
+      "verification_status": "verified"
     },
     {
       "claim_ids": [
         "claim-wd-q869-name-en",
         "claim-wd-q869-name-zh",
-        "claim-wd-q869-country-code"
+        "claim-wd-q869-country-code",
+        "claim-wd-q869-region",
+        "claim-wd-q869-external-ids"
       ],
       "confidence": 0.6,
       "country_code": "TH",
@@ -746,13 +814,15 @@
       "name_native": null,
       "name_zh": "泰国",
       "region": "southeast_asia",
-      "verification_status": "candidate"
+      "verification_status": "verified"
     },
     {
       "claim_ids": [
         "claim-wd-q878-name-en",
         "claim-wd-q878-name-zh",
-        "claim-wd-q878-country-code"
+        "claim-wd-q878-country-code",
+        "claim-wd-q878-region",
+        "claim-wd-q878-external-ids"
       ],
       "confidence": 0.6,
       "country_code": "AE",
@@ -768,13 +838,15 @@
       "name_native": null,
       "name_zh": "阿拉伯联合酋长国",
       "region": "central_west_asia",
-      "verification_status": "candidate"
+      "verification_status": "verified"
     },
     {
       "claim_ids": [
         "claim-wd-q881-name-en",
         "claim-wd-q881-name-zh",
-        "claim-wd-q881-country-code"
+        "claim-wd-q881-country-code",
+        "claim-wd-q881-region",
+        "claim-wd-q881-external-ids"
       ],
       "confidence": 0.6,
       "country_code": "VN",
@@ -790,13 +862,15 @@
       "name_native": null,
       "name_zh": "越南",
       "region": "southeast_asia",
-      "verification_status": "candidate"
+      "verification_status": "verified"
     },
     {
       "claim_ids": [
         "claim-wd-q884-name-en",
         "claim-wd-q884-name-zh",
-        "claim-wd-q884-country-code"
+        "claim-wd-q884-country-code",
+        "claim-wd-q884-region",
+        "claim-wd-q884-external-ids"
       ],
       "confidence": 0.6,
       "country_code": "KR",
@@ -812,13 +886,15 @@
       "name_native": null,
       "name_zh": "大韩民国",
       "region": "east_asia",
-      "verification_status": "candidate"
+      "verification_status": "verified"
     },
     {
       "claim_ids": [
         "claim-wd-q912-name-en",
         "claim-wd-q912-name-zh",
-        "claim-wd-q912-country-code"
+        "claim-wd-q912-country-code",
+        "claim-wd-q912-region",
+        "claim-wd-q912-external-ids"
       ],
       "confidence": 0.6,
       "country_code": "ML",
@@ -834,13 +910,15 @@
       "name_native": null,
       "name_zh": "马里",
       "region": "africa",
-      "verification_status": "candidate"
+      "verification_status": "verified"
     },
     {
       "claim_ids": [
         "claim-wd-q96-name-en",
         "claim-wd-q96-name-zh",
-        "claim-wd-q96-country-code"
+        "claim-wd-q96-country-code",
+        "claim-wd-q96-region",
+        "claim-wd-q96-external-ids"
       ],
       "confidence": 0.6,
       "country_code": "MX",
@@ -856,7 +934,7 @@
       "name_native": null,
       "name_zh": "墨西哥",
       "region": "latin_america_caribbean",
-      "verification_status": "candidate"
+      "verification_status": "verified"
     }
   ]
 }

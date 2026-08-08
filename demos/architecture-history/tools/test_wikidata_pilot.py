@@ -445,7 +445,58 @@ class WikidataPilotTests(unittest.TestCase):
             self.authority_snapshots,
         ).build()
         self.assertEqual(first, second)
-        self.assertEqual(first, self.catalog)
+
+    def test_editorial_place_verification_layer(self):
+        imported = importer.CatalogBuilder(
+            self.snapshot,
+            self.config,
+            self.authority_snapshots,
+        ).build()
+        for key in ("people", "practices", "works", "relations"):
+            self.assertEqual(imported[key], self.catalog[key])
+
+        self.assertEqual(
+            [place["id"] for place in imported["places"]],
+            [place["id"] for place in self.catalog["places"]],
+        )
+        verified_places = [
+            place
+            for place in self.catalog["places"]
+            if place["verification_status"] == "verified"
+        ]
+        self.assertEqual(len(verified_places), len(self.catalog["places"]))
+        self.assertTrue(verified_places)
+
+        claim_by_id = {claim["id"]: claim for claim in self.catalog["claims"]}
+        for place in verified_places:
+            self.assertEqual(place["last_verified"], "2026-08-07")
+            for claim_id in place["claim_ids"]:
+                claim = claim_by_id[claim_id]
+                self.assertEqual(claim["verification_status"], "verified")
+                self.assertEqual(claim["reviewed_by"], "reviewer-agentic-cursor")
+                self.assertEqual(claim["reviewed_at"], "2026-08-07")
+                field = claim["predicate"].removeprefix("field_")
+                self.assertEqual(claim["object"].get("value"), place[field])
+
+        reviewers = load_json(ROOT / "assets" / "data" / "reviewers.json")
+        active = {
+            row["id"]: row
+            for row in reviewers["reviewers"]
+            if row.get("active")
+        }
+        self.assertIn("reviewer-agentic-cursor", active)
+        self.assertEqual(active["reviewer-agentic-cursor"]["reviewer_type"], "agentic")
+
+        non_place_statuses = {
+            item["verification_status"]
+            for item in (
+                self.catalog["people"]
+                + self.catalog["practices"]
+                + self.catalog["works"]
+                + self.catalog["relations"]
+            )
+        }
+        self.assertEqual(non_place_statuses, {"candidate"})
 
     def test_work_type_authority_sidecar_is_revision_pinned(self):
         bindings = self.config["work_type_derivation"]["authority_bindings"]
@@ -654,12 +705,17 @@ class WikidataPilotTests(unittest.TestCase):
         )
 
     def test_automatic_records_remain_candidates(self):
+        imported = importer.CatalogBuilder(
+            self.snapshot,
+            self.config,
+            self.authority_snapshots,
+        ).build()
         graph = (
-            self.catalog["people"]
-            + self.catalog["practices"]
-            + self.catalog["places"]
-            + self.catalog["works"]
-            + self.catalog["relations"]
+            imported["people"]
+            + imported["practices"]
+            + imported["places"]
+            + imported["works"]
+            + imported["relations"]
         )
         self.assertTrue(graph)
         self.assertEqual(
@@ -667,7 +723,7 @@ class WikidataPilotTests(unittest.TestCase):
             {"candidate"},
         )
         self.assertEqual(
-            {claim["verification_status"] for claim in self.catalog["claims"]},
+            {claim["verification_status"] for claim in imported["claims"]},
             {"candidate"},
         )
 

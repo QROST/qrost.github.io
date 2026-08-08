@@ -9,7 +9,7 @@ global architectural history. Public counts distinguish discovered candidates,
 reviewed facts, contested claims, and gaps in coverage.
 
 The current catalog contains 559 cross-regional work fixtures, 539 people, 29
-practices, 39 country-place records, 191 raw relationship review edges, and 4669
+practices, 39 country-place records, 191 raw relationship review edges, and 4747
 source claims. Exact direct-P31 mapping currently classifies 286 works, while
 255 remain unmapped and 18 remain ambiguous. Wikidata is the primary structured
 source; a refreshed 24-anchor Getty ULAN P245 crosswalk is committed, but the
@@ -18,8 +18,10 @@ reciprocal Getty identity overlay is blocked as of 2026-08-07 because
 and RDF downloads. Public people therefore still carry zero `ulan` external ids.
 Of 539 people, 281 have Wikidata-backed `name_zh`; the remaining 258 lack a safe
 authority Chinese label (enwiki→zh langlink seeds are empty after reciprocal
-Wikidata ownership checks). Every public record remains `candidate`; the
-reviewer registry is empty and the published verified count is therefore zero.
+Wikidata ownership checks). All 39 country places are agentic-verified
+(`reviewer-agentic-cursor`, 2026-08-07) for names, ISO codes, project macroregions, and
+Wikidata identity; people, works, practices, and relations remain `candidate`.
+The published verified count is therefore 39.
 
 ## Data authority
 

@@ -337,15 +337,15 @@
       "delivery_kind": "api_and_dump",
       "native_id_namespace": "wikidata",
       "reuse_class": "structured_ingest_allowed",
-      "adapter_status": "fixture_only",
+      "adapter_status": "tested",
       "adapter_id": "wikidata-hydration-pilot",
       "adapter_version": "0.1.0",
       "access": {
         "auth_kind": "none",
         "credential_env_name": null,
         "docs_url": "https://www.wikidata.org/wiki/Help:Data_access",
-        "rate_policy_zh": "当前 adapter 读取 532 个固定版本的候选作品夹具、6 个类型权威记录、既有人物/事务所的有边界 P245 身份交叉表，以及 9×8 coverage discovery 快照；入选记录先读最新 lastrevid，再以 Special:EntityData 的 revision 参数二次获取并核对。",
-        "rate_policy_en": "The current adapter reads 532 revision-pinned candidate work fixtures, six work-type authority records, a bounded P245 identity crosswalk for existing people/practices, and the 9×8 coverage discovery snapshot. Selected records read the latest lastrevid, refetch through the Special:EntityData revision parameter, and verify it."
+        "rate_policy_zh": "当前 adapter 读取 559 个固定版本的候选作品夹具、6 个类型权威记录、既有人物/事务所的有边界 P245 身份交叉表，以及 9×8 coverage discovery 快照；入选记录先读最新 lastrevid，再以 Special:EntityData 的 revision 参数二次获取并核对。",
+        "rate_policy_en": "The current adapter reads 559 revision-pinned candidate work fixtures, six work-type authority records, a bounded P245 identity crosswalk for existing people/practices, and the 9×8 coverage discovery snapshot. Selected records read the latest lastrevid, refetch through the Special:EntityData revision parameter, and verify it."
       },
       "snapshot_strategy": "分别保存作品夹具、类型权威 sidecar 与 P245 身份交叉表：保留版本化 seed、发现回执、精确 revision URL、lastrevid、可重算 SHA-256 的最小化规范实体 JSON；公开构建只读固定快照。",
       "provenance_passthrough_fields": [
@@ -371,20 +371,20 @@
         "redistribute_media": false
       },
       "authority_profile": {
-        "names": "candidate",
-        "identity": "candidate",
-        "dates": "candidate",
+        "names": "claim_evidence",
+        "identity": "claim_evidence",
+        "dates": "claim_evidence",
         "relationships": "candidate",
         "work_credits": "candidate",
         "coverage": "candidate"
       },
-      "attribution_zh": "维基数据结构化数据依 CC0 提供。本项目仍保留 QID、revision、qualifier 与 reference，以便核查。",
-      "attribution_en": "Wikidata structured data is available under CC0. QIDs, revisions, qualifiers, and references are retained for audit.",
+      "attribution_zh": "维基数据结构化数据依 CC0 提供。本项目仍保留 QID、revision、qualifier 与 reference，以便核查。名称、日期与国家身份字段可在 agentic/人工核验后升为 claim_evidence；署名与知识传递关系仍保持 candidate，不得自动升级。",
+      "attribution_en": "Wikidata structured data is available under CC0. QIDs, revisions, qualifiers, and references are retained for audit. Names, dates, and country-identity fields may become claim_evidence only after agentic or human review; credits and knowledge-transfer relations remain candidate and are never auto-promoted.",
       "known_biases_zh": [
-        "志愿者维护、地区与语言覆盖不均；中文标签可能是地区译法或机器式音译；声明不能自动升级为已验证事实。"
+        "志愿者维护、地区与语言覆盖不均；中文标签可能是地区译法或机器式音译；声明不能自动升级为已验证事实。宏观区域是本项目对 ISO 国家的编辑映射，核验时一并审查。agentic reviewer 只接受固定修订上的 structured_mapping，不接受 llm_candidate。"
       ],
       "known_biases_en": [
-        "Volunteer coverage and references are uneven; Chinese labels may be regional variants or transliterations; statements cannot become verified facts automatically."
+        "Volunteer coverage and references are uneven; Chinese labels may be regional variants or transliterations; statements cannot become verified facts automatically. Macroregions are this project's editorial mapping from ISO countries and are reviewed with those places. The agentic reviewer accepts only revision-pinned structured_mapping evidence, never llm_candidate."
       ]
     },
     {

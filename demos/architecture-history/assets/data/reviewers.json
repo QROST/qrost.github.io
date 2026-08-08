@@ -1,3 +1,10 @@
 {
-  "reviewers": []
+  "reviewers": [
+    {
+      "id": "reviewer-agentic-cursor",
+      "display_name": "Cursor Agentic Reviewer",
+      "reviewer_type": "agentic",
+      "active": true
+    }
+  ]
 }

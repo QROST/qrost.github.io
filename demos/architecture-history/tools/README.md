@@ -16,7 +16,7 @@ python3 tools/test_getty_ulan_pilot.py
 - JSON Schema with closed record shapes;
 - global ID uniqueness and all foreign keys;
 - claim-to-entity and evidence-to-source provenance;
-- snapshot revision/hash foreign keys and an explicit human reviewer registry;
+- snapshot revision/hash foreign keys and an explicit human/agentic reviewer registry;
 - credit preservation and attribution modes;
 - exact field claims for every non-empty fact on a verified entity;
 - date, coordinate, region, period, and enum constraints;
@@ -56,8 +56,16 @@ reviewed class QIDs into a separate sidecar bound to the active work snapshot.
 Both pin exact revisions and refuse to overwrite an existing snapshot by
 default. `import_wikidata_pilot.py` is deterministic and offline; it requires
 the configured authority sidecar and still maps work types only by direct P31
-equality. No script promotes records to `verified`, maps inception/opening to a
-construction date, traverses P279 for classification, or converts P1066/P802
+equality. Country-place editorial promotion is the exception:
+
+```bash
+python3 tools/promote_place_verification.py --reviewed-at YYYY-MM-DD
+python3 tools/build.py
+```
+
+That script only verifies place name/identity/region/country fields under an
+active human or agentic reviewer; it does not map inception/opening to a
+construction date, traverse P279 for classification, or convert P1066/P802
 into mentorship.
 
 The Wikidata coverage discovery workflow is separate from hydration fixtures:

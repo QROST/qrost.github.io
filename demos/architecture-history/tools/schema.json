@@ -309,7 +309,7 @@
       "properties": {
         "id": {"$ref": "#/$defs/id"},
         "display_name": {"type": "string", "minLength": 1},
-        "reviewer_type": {"const": "human"},
+        "reviewer_type": {"enum": ["human", "agentic"]},
         "active": {"type": "boolean"}
       }
     },

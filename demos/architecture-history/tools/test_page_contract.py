@@ -275,9 +275,10 @@ class PageContractTests(unittest.TestCase):
             self.assertNotIn(forbidden, (self.html + self.i18n).lower())
         self.assertRegex(
             self.html,
-            r'id="hero-verified">0</strong>',
+            rf'id="hero-verified">{self.manifest["counts"]["verified_entities_and_relations"]}</strong>',
         )
-
+        self.assertIn("agentic reviewer", self.html + self.i18n)
+        self.assertIn("agentic editorial verification", self.html + self.i18n)
     def test_social_preview_is_declared_and_present(self) -> None:
         expected = ROOT / "assets" / "img" / "architecture-history-og.png"
         self.assertTrue(expected.is_file(), expected)

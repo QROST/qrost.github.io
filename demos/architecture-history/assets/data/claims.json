@@ -46661,10 +46661,45 @@
       },
       "predicate": "field_country_code",
       "qualifiers": {},
-      "reviewed_at": null,
-      "reviewed_by": null,
+      "reviewed_at": "2026-08-07",
+      "reviewed_by": "reviewer-agentic-cursor",
       "subject_id": "place-wd-q142",
-      "verification_status": "candidate"
+      "verification_status": "verified"
+    },
+    {
+      "confidence": 0.6,
+      "evidence": [
+        {
+          "accessed": "2026-08-07",
+          "contributors": [],
+          "extraction_method": "structured_mapping",
+          "language": "en",
+          "locator": "Q142/id",
+          "native_field_path": "/id",
+          "native_predicate": null,
+          "native_record_id": "Q142@2528308322",
+          "qualifiers": [],
+          "rank": null,
+          "references": [],
+          "snapshot_id": "wikidata-hydration-2026-08-07-d37c179db21b",
+          "source_id": "wikidata",
+          "source_record_sha256": "709c3b3671909da2db11837cbe041ee357fd6209847deecd162f0ff0afb51d12",
+          "support": "explicit",
+          "url": "https://www.wikidata.org/wiki/Special:EntityData/Q142.json?revision=2528308322"
+        }
+      ],
+      "id": "claim-wd-q142-external-ids",
+      "object": {
+        "value": {
+          "wikidata": "Q142"
+        }
+      },
+      "predicate": "field_external_ids",
+      "qualifiers": {},
+      "reviewed_at": "2026-08-07",
+      "reviewed_by": "reviewer-agentic-cursor",
+      "subject_id": "place-wd-q142",
+      "verification_status": "verified"
     },
     {
       "confidence": 0.6,
@@ -46694,10 +46729,10 @@
       },
       "predicate": "field_name_en",
       "qualifiers": {},
-      "reviewed_at": null,
-      "reviewed_by": null,
+      "reviewed_at": "2026-08-07",
+      "reviewed_by": "reviewer-agentic-cursor",
       "subject_id": "place-wd-q142",
-      "verification_status": "candidate"
+      "verification_status": "verified"
     },
     {
       "confidence": 0.6,
@@ -46727,10 +46762,43 @@
       },
       "predicate": "field_name_zh",
       "qualifiers": {},
-      "reviewed_at": null,
-      "reviewed_by": null,
+      "reviewed_at": "2026-08-07",
+      "reviewed_by": "reviewer-agentic-cursor",
       "subject_id": "place-wd-q142",
-      "verification_status": "candidate"
+      "verification_status": "verified"
+    },
+    {
+      "confidence": 0.6,
+      "evidence": [
+        {
+          "accessed": "2026-08-07",
+          "contributors": [],
+          "extraction_method": "structured_mapping",
+          "language": null,
+          "locator": "Q142/project_region/europe",
+          "native_field_path": "/claims/P297/0",
+          "native_predicate": "P297",
+          "native_record_id": "Q142@2528308322",
+          "qualifiers": [],
+          "rank": "normal",
+          "references": [],
+          "snapshot_id": "wikidata-hydration-2026-08-07-d37c179db21b",
+          "source_id": "wikidata",
+          "source_record_sha256": "709c3b3671909da2db11837cbe041ee357fd6209847deecd162f0ff0afb51d12",
+          "support": "explicit",
+          "url": "https://www.wikidata.org/wiki/Special:EntityData/Q142.json?revision=2528308322"
+        }
+      ],
+      "id": "claim-wd-q142-region",
+      "object": {
+        "value": "europe"
+      },
+      "predicate": "field_region",
+      "qualifiers": {},
+      "reviewed_at": "2026-08-07",
+      "reviewed_by": "reviewer-agentic-cursor",
+      "subject_id": "place-wd-q142",
+      "verification_status": "verified"
     },
     {
       "confidence": 0.6,
@@ -48031,10 +48099,45 @@
       },
       "predicate": "field_country_code",
       "qualifiers": {},
-      "reviewed_at": null,
-      "reviewed_by": null,
+      "reviewed_at": "2026-08-07",
+      "reviewed_by": "reviewer-agentic-cursor",
       "subject_id": "place-wd-q145",
-      "verification_status": "candidate"
+      "verification_status": "verified"
+    },
+    {
+      "confidence": 0.6,
+      "evidence": [
+        {
+          "accessed": "2026-08-07",
+          "contributors": [],
+          "extraction_method": "structured_mapping",
+          "language": "en",
+          "locator": "Q145/id",
+          "native_field_path": "/id",
+          "native_predicate": null,
+          "native_record_id": "Q145@2528399172",
+          "qualifiers": [],
+          "rank": null,
+          "references": [],
+          "snapshot_id": "wikidata-hydration-2026-08-07-d37c179db21b",
+          "source_id": "wikidata",
+          "source_record_sha256": "e2edb2953f01710e881fb32eebe1a412d727af11a825d0a56004ea78bf079e3e",
+          "support": "explicit",
+          "url": "https://www.wikidata.org/wiki/Special:EntityData/Q145.json?revision=2528399172"
+        }
+      ],
+      "id": "claim-wd-q145-external-ids",
+      "object": {
+        "value": {
+          "wikidata": "Q145"
+        }
+      },
+      "predicate": "field_external_ids",
+      "qualifiers": {},
+      "reviewed_at": "2026-08-07",
+      "reviewed_by": "reviewer-agentic-cursor",
+      "subject_id": "place-wd-q145",
+      "verification_status": "verified"
     },
     {
       "confidence": 0.6,
@@ -48064,10 +48167,10 @@
       },
       "predicate": "field_name_en",
       "qualifiers": {},
-      "reviewed_at": null,
-      "reviewed_by": null,
+      "reviewed_at": "2026-08-07",
+      "reviewed_by": "reviewer-agentic-cursor",
       "subject_id": "place-wd-q145",
-      "verification_status": "candidate"
+      "verification_status": "verified"
     },
     {
       "confidence": 0.6,
@@ -48097,10 +48200,85 @@
       },
       "predicate": "field_name_zh",
       "qualifiers": {},
-      "reviewed_at": null,
-      "reviewed_by": null,
+      "reviewed_at": "2026-08-07",
+      "reviewed_by": "reviewer-agentic-cursor",
       "subject_id": "place-wd-q145",
-      "verification_status": "candidate"
+      "verification_status": "verified"
+    },
+    {
+      "confidence": 0.6,
+      "evidence": [
+        {
+          "accessed": "2026-08-07",
+          "contributors": [],
+          "extraction_method": "structured_mapping",
+          "language": null,
+          "locator": "Q145/project_region/europe",
+          "native_field_path": "/claims/P297/0",
+          "native_predicate": "P297",
+          "native_record_id": "Q145@2528399172",
+          "qualifiers": [
+            {
+              "property_id": "P580",
+              "snaks": [
+                {
+                  "datatype": "time",
+                  "datavalue": {
+                    "type": "time",
+                    "value": {
+                      "after": 0,
+                      "before": 0,
+                      "calendarmodel": "http://www.wikidata.org/entity/Q1985727",
+                      "precision": 9,
+                      "time": "+1974-00-00T00:00:00Z",
+                      "timezone": 0
+                    }
+                  },
+                  "hash": "ec3fad5617d6ec89ebe0e606278f737d999b5450",
+                  "property": "P580",
+                  "snaktype": "value"
+                }
+              ]
+            },
+            {
+              "property_id": "P805",
+              "snaks": [
+                {
+                  "datatype": "wikibase-item",
+                  "datavalue": {
+                    "type": "wikibase-entityid",
+                    "value": {
+                      "entity-type": "item",
+                      "id": "Q27818",
+                      "numeric-id": 27818
+                    }
+                  },
+                  "hash": "cd6155f02980d8a9f13ec668a53fe8ddc07d658e",
+                  "property": "P805",
+                  "snaktype": "value"
+                }
+              ]
+            }
+          ],
+          "rank": "normal",
+          "references": [],
+          "snapshot_id": "wikidata-hydration-2026-08-07-d37c179db21b",
+          "source_id": "wikidata",
+          "source_record_sha256": "e2edb2953f01710e881fb32eebe1a412d727af11a825d0a56004ea78bf079e3e",
+          "support": "explicit",
+          "url": "https://www.wikidata.org/wiki/Special:EntityData/Q145.json?revision=2528399172"
+        }
+      ],
+      "id": "claim-wd-q145-region",
+      "object": {
+        "value": "europe"
+      },
+      "predicate": "field_region",
+      "qualifiers": {},
+      "reviewed_at": "2026-08-07",
+      "reviewed_by": "reviewer-agentic-cursor",
+      "subject_id": "place-wd-q145",
+      "verification_status": "verified"
     },
     {
       "confidence": 0.6,
@@ -52045,10 +52223,45 @@
       },
       "predicate": "field_country_code",
       "qualifiers": {},
-      "reviewed_at": null,
-      "reviewed_by": null,
+      "reviewed_at": "2026-08-07",
+      "reviewed_by": "reviewer-agentic-cursor",
       "subject_id": "place-wd-q148",
-      "verification_status": "candidate"
+      "verification_status": "verified"
+    },
+    {
+      "confidence": 0.6,
+      "evidence": [
+        {
+          "accessed": "2026-08-07",
+          "contributors": [],
+          "extraction_method": "structured_mapping",
+          "language": "en",
+          "locator": "Q148/id",
+          "native_field_path": "/id",
+          "native_predicate": null,
+          "native_record_id": "Q148@2528135453",
+          "qualifiers": [],
+          "rank": null,
+          "references": [],
+          "snapshot_id": "wikidata-hydration-2026-08-07-d37c179db21b",
+          "source_id": "wikidata",
+          "source_record_sha256": "415c9aa6ad099a072b0f5bef2fc5376732a9de7a1bcee35815af9696ed33634e",
+          "support": "explicit",
+          "url": "https://www.wikidata.org/wiki/Special:EntityData/Q148.json?revision=2528135453"
+        }
+      ],
+      "id": "claim-wd-q148-external-ids",
+      "object": {
+        "value": {
+          "wikidata": "Q148"
+        }
+      },
+      "predicate": "field_external_ids",
+      "qualifiers": {},
+      "reviewed_at": "2026-08-07",
+      "reviewed_by": "reviewer-agentic-cursor",
+      "subject_id": "place-wd-q148",
+      "verification_status": "verified"
     },
     {
       "confidence": 0.6,
@@ -52078,10 +52291,10 @@
       },
       "predicate": "field_name_en",
       "qualifiers": {},
-      "reviewed_at": null,
-      "reviewed_by": null,
+      "reviewed_at": "2026-08-07",
+      "reviewed_by": "reviewer-agentic-cursor",
       "subject_id": "place-wd-q148",
-      "verification_status": "candidate"
+      "verification_status": "verified"
     },
     {
       "confidence": 0.6,
@@ -52111,10 +52324,43 @@
       },
       "predicate": "field_name_zh",
       "qualifiers": {},
-      "reviewed_at": null,
-      "reviewed_by": null,
+      "reviewed_at": "2026-08-07",
+      "reviewed_by": "reviewer-agentic-cursor",
       "subject_id": "place-wd-q148",
-      "verification_status": "candidate"
+      "verification_status": "verified"
+    },
+    {
+      "confidence": 0.6,
+      "evidence": [
+        {
+          "accessed": "2026-08-07",
+          "contributors": [],
+          "extraction_method": "structured_mapping",
+          "language": null,
+          "locator": "Q148/project_region/east_asia",
+          "native_field_path": "/claims/P297/0",
+          "native_predicate": "P297",
+          "native_record_id": "Q148@2528135453",
+          "qualifiers": [],
+          "rank": "normal",
+          "references": [],
+          "snapshot_id": "wikidata-hydration-2026-08-07-d37c179db21b",
+          "source_id": "wikidata",
+          "source_record_sha256": "415c9aa6ad099a072b0f5bef2fc5376732a9de7a1bcee35815af9696ed33634e",
+          "support": "explicit",
+          "url": "https://www.wikidata.org/wiki/Special:EntityData/Q148.json?revision=2528135453"
+        }
+      ],
+      "id": "claim-wd-q148-region",
+      "object": {
+        "value": "east_asia"
+      },
+      "predicate": "field_region",
+      "qualifiers": {},
+      "reviewed_at": "2026-08-07",
+      "reviewed_by": "reviewer-agentic-cursor",
+      "subject_id": "place-wd-q148",
+      "verification_status": "verified"
     },
     {
       "confidence": 0.6,
@@ -54529,10 +54775,45 @@
       },
       "predicate": "field_country_code",
       "qualifiers": {},
-      "reviewed_at": null,
-      "reviewed_by": null,
+      "reviewed_at": "2026-08-07",
+      "reviewed_by": "reviewer-agentic-cursor",
       "subject_id": "place-wd-q155",
-      "verification_status": "candidate"
+      "verification_status": "verified"
+    },
+    {
+      "confidence": 0.6,
+      "evidence": [
+        {
+          "accessed": "2026-08-07",
+          "contributors": [],
+          "extraction_method": "structured_mapping",
+          "language": "en",
+          "locator": "Q155/id",
+          "native_field_path": "/id",
+          "native_predicate": null,
+          "native_record_id": "Q155@2528334393",
+          "qualifiers": [],
+          "rank": null,
+          "references": [],
+          "snapshot_id": "wikidata-hydration-2026-08-07-d37c179db21b",
+          "source_id": "wikidata",
+          "source_record_sha256": "6d70750c9e8365ae7aa9c62ddd1d8e343ea86cca7a65a6b225fb2d3063cd538e",
+          "support": "explicit",
+          "url": "https://www.wikidata.org/wiki/Special:EntityData/Q155.json?revision=2528334393"
+        }
+      ],
+      "id": "claim-wd-q155-external-ids",
+      "object": {
+        "value": {
+          "wikidata": "Q155"
+        }
+      },
+      "predicate": "field_external_ids",
+      "qualifiers": {},
+      "reviewed_at": "2026-08-07",
+      "reviewed_by": "reviewer-agentic-cursor",
+      "subject_id": "place-wd-q155",
+      "verification_status": "verified"
     },
     {
       "confidence": 0.6,
@@ -54562,10 +54843,10 @@
       },
       "predicate": "field_name_en",
       "qualifiers": {},
-      "reviewed_at": null,
-      "reviewed_by": null,
+      "reviewed_at": "2026-08-07",
+      "reviewed_by": "reviewer-agentic-cursor",
       "subject_id": "place-wd-q155",
-      "verification_status": "candidate"
+      "verification_status": "verified"
     },
     {
       "confidence": 0.6,
@@ -54595,10 +54876,43 @@
       },
       "predicate": "field_name_zh",
       "qualifiers": {},
-      "reviewed_at": null,
-      "reviewed_by": null,
+      "reviewed_at": "2026-08-07",
+      "reviewed_by": "reviewer-agentic-cursor",
       "subject_id": "place-wd-q155",
-      "verification_status": "candidate"
+      "verification_status": "verified"
+    },
+    {
+      "confidence": 0.6,
+      "evidence": [
+        {
+          "accessed": "2026-08-07",
+          "contributors": [],
+          "extraction_method": "structured_mapping",
+          "language": null,
+          "locator": "Q155/project_region/latin_america_caribbean",
+          "native_field_path": "/claims/P297/0",
+          "native_predicate": "P297",
+          "native_record_id": "Q155@2528334393",
+          "qualifiers": [],
+          "rank": "normal",
+          "references": [],
+          "snapshot_id": "wikidata-hydration-2026-08-07-d37c179db21b",
+          "source_id": "wikidata",
+          "source_record_sha256": "6d70750c9e8365ae7aa9c62ddd1d8e343ea86cca7a65a6b225fb2d3063cd538e",
+          "support": "explicit",
+          "url": "https://www.wikidata.org/wiki/Special:EntityData/Q155.json?revision=2528334393"
+        }
+      ],
+      "id": "claim-wd-q155-region",
+      "object": {
+        "value": "latin_america_caribbean"
+      },
+      "predicate": "field_region",
+      "qualifiers": {},
+      "reviewed_at": "2026-08-07",
+      "reviewed_by": "reviewer-agentic-cursor",
+      "subject_id": "place-wd-q155",
+      "verification_status": "verified"
     },
     {
       "confidence": 0.6,
@@ -58150,10 +58464,45 @@
       },
       "predicate": "field_country_code",
       "qualifiers": {},
-      "reviewed_at": null,
-      "reviewed_by": null,
+      "reviewed_at": "2026-08-07",
+      "reviewed_by": "reviewer-agentic-cursor",
       "subject_id": "place-wd-q159",
-      "verification_status": "candidate"
+      "verification_status": "verified"
+    },
+    {
+      "confidence": 0.6,
+      "evidence": [
+        {
+          "accessed": "2026-08-07",
+          "contributors": [],
+          "extraction_method": "structured_mapping",
+          "language": "en",
+          "locator": "Q159/id",
+          "native_field_path": "/id",
+          "native_predicate": null,
+          "native_record_id": "Q159@2528475628",
+          "qualifiers": [],
+          "rank": null,
+          "references": [],
+          "snapshot_id": "wikidata-hydration-2026-08-07-d37c179db21b",
+          "source_id": "wikidata",
+          "source_record_sha256": "13c2bd0b0ed13c893bc91eb45e20ecb4d9ccb52ed788a12b83195c8f664f9d0a",
+          "support": "explicit",
+          "url": "https://www.wikidata.org/wiki/Special:EntityData/Q159.json?revision=2528475628"
+        }
+      ],
+      "id": "claim-wd-q159-external-ids",
+      "object": {
+        "value": {
+          "wikidata": "Q159"
+        }
+      },
+      "predicate": "field_external_ids",
+      "qualifiers": {},
+      "reviewed_at": "2026-08-07",
+      "reviewed_by": "reviewer-agentic-cursor",
+      "subject_id": "place-wd-q159",
+      "verification_status": "verified"
     },
     {
       "confidence": 0.6,
@@ -58183,10 +58532,10 @@
       },
       "predicate": "field_name_en",
       "qualifiers": {},
-      "reviewed_at": null,
-      "reviewed_by": null,
+      "reviewed_at": "2026-08-07",
+      "reviewed_by": "reviewer-agentic-cursor",
       "subject_id": "place-wd-q159",
-      "verification_status": "candidate"
+      "verification_status": "verified"
     },
     {
       "confidence": 0.6,
@@ -58216,10 +58565,85 @@
       },
       "predicate": "field_name_zh",
       "qualifiers": {},
-      "reviewed_at": null,
-      "reviewed_by": null,
+      "reviewed_at": "2026-08-07",
+      "reviewed_by": "reviewer-agentic-cursor",
       "subject_id": "place-wd-q159",
-      "verification_status": "candidate"
+      "verification_status": "verified"
+    },
+    {
+      "confidence": 0.6,
+      "evidence": [
+        {
+          "accessed": "2026-08-07",
+          "contributors": [],
+          "extraction_method": "structured_mapping",
+          "language": null,
+          "locator": "Q159/project_region/europe",
+          "native_field_path": "/claims/P297/0",
+          "native_predicate": "P297",
+          "native_record_id": "Q159@2528475628",
+          "qualifiers": [
+            {
+              "property_id": "P580",
+              "snaks": [
+                {
+                  "datatype": "time",
+                  "datavalue": {
+                    "type": "time",
+                    "value": {
+                      "after": 0,
+                      "before": 0,
+                      "calendarmodel": "http://www.wikidata.org/entity/Q1985727",
+                      "precision": 9,
+                      "time": "+1992-00-00T00:00:00Z",
+                      "timezone": 0
+                    }
+                  },
+                  "hash": "ed730e4c258f94d6bf2b86c50e53de07ad209ae2",
+                  "property": "P580",
+                  "snaktype": "value"
+                }
+              ]
+            },
+            {
+              "property_id": "P805",
+              "snaks": [
+                {
+                  "datatype": "wikibase-item",
+                  "datavalue": {
+                    "type": "wikibase-entityid",
+                    "value": {
+                      "entity-type": "item",
+                      "id": "Q21031",
+                      "numeric-id": 21031
+                    }
+                  },
+                  "hash": "f6e1f15b6ff83067f38d1143af813bd73ec760ca",
+                  "property": "P805",
+                  "snaktype": "value"
+                }
+              ]
+            }
+          ],
+          "rank": "normal",
+          "references": [],
+          "snapshot_id": "wikidata-hydration-2026-08-07-d37c179db21b",
+          "source_id": "wikidata",
+          "source_record_sha256": "13c2bd0b0ed13c893bc91eb45e20ecb4d9ccb52ed788a12b83195c8f664f9d0a",
+          "support": "explicit",
+          "url": "https://www.wikidata.org/wiki/Special:EntityData/Q159.json?revision=2528475628"
+        }
+      ],
+      "id": "claim-wd-q159-region",
+      "object": {
+        "value": "europe"
+      },
+      "predicate": "field_region",
+      "qualifiers": {},
+      "reviewed_at": "2026-08-07",
+      "reviewed_by": "reviewer-agentic-cursor",
+      "subject_id": "place-wd-q159",
+      "verification_status": "verified"
     },
     {
       "confidence": 0.6,
@@ -58786,10 +59210,45 @@
       },
       "predicate": "field_country_code",
       "qualifiers": {},
-      "reviewed_at": null,
-      "reviewed_by": null,
+      "reviewed_at": "2026-08-07",
+      "reviewed_by": "reviewer-agentic-cursor",
       "subject_id": "place-wd-q16",
-      "verification_status": "candidate"
+      "verification_status": "verified"
+    },
+    {
+      "confidence": 0.6,
+      "evidence": [
+        {
+          "accessed": "2026-08-07",
+          "contributors": [],
+          "extraction_method": "structured_mapping",
+          "language": "en",
+          "locator": "Q16/id",
+          "native_field_path": "/id",
+          "native_predicate": null,
+          "native_record_id": "Q16@2528465455",
+          "qualifiers": [],
+          "rank": null,
+          "references": [],
+          "snapshot_id": "wikidata-hydration-2026-08-07-d37c179db21b",
+          "source_id": "wikidata",
+          "source_record_sha256": "38a5488d802f9136d5a6d96bd1afae9c38b71f1123ad5839b6411b1276d86767",
+          "support": "explicit",
+          "url": "https://www.wikidata.org/wiki/Special:EntityData/Q16.json?revision=2528465455"
+        }
+      ],
+      "id": "claim-wd-q16-external-ids",
+      "object": {
+        "value": {
+          "wikidata": "Q16"
+        }
+      },
+      "predicate": "field_external_ids",
+      "qualifiers": {},
+      "reviewed_at": "2026-08-07",
+      "reviewed_by": "reviewer-agentic-cursor",
+      "subject_id": "place-wd-q16",
+      "verification_status": "verified"
     },
     {
       "confidence": 0.6,
@@ -58819,10 +59278,10 @@
       },
       "predicate": "field_name_en",
       "qualifiers": {},
-      "reviewed_at": null,
-      "reviewed_by": null,
+      "reviewed_at": "2026-08-07",
+      "reviewed_by": "reviewer-agentic-cursor",
       "subject_id": "place-wd-q16",
-      "verification_status": "candidate"
+      "verification_status": "verified"
     },
     {
       "confidence": 0.6,
@@ -58852,10 +59311,43 @@
       },
       "predicate": "field_name_zh",
       "qualifiers": {},
-      "reviewed_at": null,
-      "reviewed_by": null,
+      "reviewed_at": "2026-08-07",
+      "reviewed_by": "reviewer-agentic-cursor",
       "subject_id": "place-wd-q16",
-      "verification_status": "candidate"
+      "verification_status": "verified"
+    },
+    {
+      "confidence": 0.6,
+      "evidence": [
+        {
+          "accessed": "2026-08-07",
+          "contributors": [],
+          "extraction_method": "structured_mapping",
+          "language": null,
+          "locator": "Q16/project_region/north_america",
+          "native_field_path": "/claims/P297/0",
+          "native_predicate": "P297",
+          "native_record_id": "Q16@2528465455",
+          "qualifiers": [],
+          "rank": "normal",
+          "references": [],
+          "snapshot_id": "wikidata-hydration-2026-08-07-d37c179db21b",
+          "source_id": "wikidata",
+          "source_record_sha256": "38a5488d802f9136d5a6d96bd1afae9c38b71f1123ad5839b6411b1276d86767",
+          "support": "explicit",
+          "url": "https://www.wikidata.org/wiki/Special:EntityData/Q16.json?revision=2528465455"
+        }
+      ],
+      "id": "claim-wd-q16-region",
+      "object": {
+        "value": "north_america"
+      },
+      "predicate": "field_region",
+      "qualifiers": {},
+      "reviewed_at": "2026-08-07",
+      "reviewed_by": "reviewer-agentic-cursor",
+      "subject_id": "place-wd-q16",
+      "verification_status": "verified"
     },
     {
       "confidence": 0.6,
@@ -63915,10 +64407,45 @@
       },
       "predicate": "field_country_code",
       "qualifiers": {},
-      "reviewed_at": null,
-      "reviewed_by": null,
+      "reviewed_at": "2026-08-07",
+      "reviewed_by": "reviewer-agentic-cursor",
       "subject_id": "place-wd-q17",
-      "verification_status": "candidate"
+      "verification_status": "verified"
+    },
+    {
+      "confidence": 0.6,
+      "evidence": [
+        {
+          "accessed": "2026-08-07",
+          "contributors": [],
+          "extraction_method": "structured_mapping",
+          "language": "en",
+          "locator": "Q17/id",
+          "native_field_path": "/id",
+          "native_predicate": null,
+          "native_record_id": "Q17@2528443306",
+          "qualifiers": [],
+          "rank": null,
+          "references": [],
+          "snapshot_id": "wikidata-hydration-2026-08-07-d37c179db21b",
+          "source_id": "wikidata",
+          "source_record_sha256": "6671e1219c3efa79cfb6fc08cc09d4a358365b46e6244a6c2d2bd61371126ed4",
+          "support": "explicit",
+          "url": "https://www.wikidata.org/wiki/Special:EntityData/Q17.json?revision=2528443306"
+        }
+      ],
+      "id": "claim-wd-q17-external-ids",
+      "object": {
+        "value": {
+          "wikidata": "Q17"
+        }
+      },
+      "predicate": "field_external_ids",
+      "qualifiers": {},
+      "reviewed_at": "2026-08-07",
+      "reviewed_by": "reviewer-agentic-cursor",
+      "subject_id": "place-wd-q17",
+      "verification_status": "verified"
     },
     {
       "confidence": 0.6,
@@ -63948,10 +64475,10 @@
       },
       "predicate": "field_name_en",
       "qualifiers": {},
-      "reviewed_at": null,
-      "reviewed_by": null,
+      "reviewed_at": "2026-08-07",
+      "reviewed_by": "reviewer-agentic-cursor",
       "subject_id": "place-wd-q17",
-      "verification_status": "candidate"
+      "verification_status": "verified"
     },
     {
       "confidence": 0.6,
@@ -63981,10 +64508,43 @@
       },
       "predicate": "field_name_zh",
       "qualifiers": {},
-      "reviewed_at": null,
-      "reviewed_by": null,
+      "reviewed_at": "2026-08-07",
+      "reviewed_by": "reviewer-agentic-cursor",
       "subject_id": "place-wd-q17",
-      "verification_status": "candidate"
+      "verification_status": "verified"
+    },
+    {
+      "confidence": 0.6,
+      "evidence": [
+        {
+          "accessed": "2026-08-07",
+          "contributors": [],
+          "extraction_method": "structured_mapping",
+          "language": null,
+          "locator": "Q17/project_region/east_asia",
+          "native_field_path": "/claims/P297/0",
+          "native_predicate": "P297",
+          "native_record_id": "Q17@2528443306",
+          "qualifiers": [],
+          "rank": "normal",
+          "references": [],
+          "snapshot_id": "wikidata-hydration-2026-08-07-d37c179db21b",
+          "source_id": "wikidata",
+          "source_record_sha256": "6671e1219c3efa79cfb6fc08cc09d4a358365b46e6244a6c2d2bd61371126ed4",
+          "support": "explicit",
+          "url": "https://www.wikidata.org/wiki/Special:EntityData/Q17.json?revision=2528443306"
+        }
+      ],
+      "id": "claim-wd-q17-region",
+      "object": {
+        "value": "east_asia"
+      },
+      "predicate": "field_region",
+      "qualifiers": {},
+      "reviewed_at": "2026-08-07",
+      "reviewed_by": "reviewer-agentic-cursor",
+      "subject_id": "place-wd-q17",
+      "verification_status": "verified"
     },
     {
       "confidence": 0.6,
@@ -72601,10 +73161,45 @@
       },
       "predicate": "field_country_code",
       "qualifiers": {},
-      "reviewed_at": null,
-      "reviewed_by": null,
+      "reviewed_at": "2026-08-07",
+      "reviewed_by": "reviewer-agentic-cursor",
       "subject_id": "place-wd-q183",
-      "verification_status": "candidate"
+      "verification_status": "verified"
+    },
+    {
+      "confidence": 0.6,
+      "evidence": [
+        {
+          "accessed": "2026-08-07",
+          "contributors": [],
+          "extraction_method": "structured_mapping",
+          "language": "en",
+          "locator": "Q183/id",
+          "native_field_path": "/id",
+          "native_predicate": null,
+          "native_record_id": "Q183@2528135490",
+          "qualifiers": [],
+          "rank": null,
+          "references": [],
+          "snapshot_id": "wikidata-hydration-2026-08-07-d37c179db21b",
+          "source_id": "wikidata",
+          "source_record_sha256": "a12599476eb50a179373669463b1cbe1546696f938d2adcf78882bd90dbeca26",
+          "support": "explicit",
+          "url": "https://www.wikidata.org/wiki/Special:EntityData/Q183.json?revision=2528135490"
+        }
+      ],
+      "id": "claim-wd-q183-external-ids",
+      "object": {
+        "value": {
+          "wikidata": "Q183"
+        }
+      },
+      "predicate": "field_external_ids",
+      "qualifiers": {},
+      "reviewed_at": "2026-08-07",
+      "reviewed_by": "reviewer-agentic-cursor",
+      "subject_id": "place-wd-q183",
+      "verification_status": "verified"
     },
     {
       "confidence": 0.6,
@@ -72634,10 +73229,10 @@
       },
       "predicate": "field_name_en",
       "qualifiers": {},
-      "reviewed_at": null,
-      "reviewed_by": null,
+      "reviewed_at": "2026-08-07",
+      "reviewed_by": "reviewer-agentic-cursor",
       "subject_id": "place-wd-q183",
-      "verification_status": "candidate"
+      "verification_status": "verified"
     },
     {
       "confidence": 0.6,
@@ -72667,10 +73262,43 @@
       },
       "predicate": "field_name_zh",
       "qualifiers": {},
-      "reviewed_at": null,
-      "reviewed_by": null,
+      "reviewed_at": "2026-08-07",
+      "reviewed_by": "reviewer-agentic-cursor",
       "subject_id": "place-wd-q183",
-      "verification_status": "candidate"
+      "verification_status": "verified"
+    },
+    {
+      "confidence": 0.6,
+      "evidence": [
+        {
+          "accessed": "2026-08-07",
+          "contributors": [],
+          "extraction_method": "structured_mapping",
+          "language": null,
+          "locator": "Q183/project_region/europe",
+          "native_field_path": "/claims/P297/0",
+          "native_predicate": "P297",
+          "native_record_id": "Q183@2528135490",
+          "qualifiers": [],
+          "rank": "normal",
+          "references": [],
+          "snapshot_id": "wikidata-hydration-2026-08-07-d37c179db21b",
+          "source_id": "wikidata",
+          "source_record_sha256": "a12599476eb50a179373669463b1cbe1546696f938d2adcf78882bd90dbeca26",
+          "support": "explicit",
+          "url": "https://www.wikidata.org/wiki/Special:EntityData/Q183.json?revision=2528135490"
+        }
+      ],
+      "id": "claim-wd-q183-region",
+      "object": {
+        "value": "europe"
+      },
+      "predicate": "field_region",
+      "qualifiers": {},
+      "reviewed_at": "2026-08-07",
+      "reviewed_by": "reviewer-agentic-cursor",
+      "subject_id": "place-wd-q183",
+      "verification_status": "verified"
     },
     {
       "confidence": 0.6,
@@ -96148,10 +96776,45 @@
       },
       "predicate": "field_country_code",
       "qualifiers": {},
-      "reviewed_at": null,
-      "reviewed_by": null,
+      "reviewed_at": "2026-08-07",
+      "reviewed_by": "reviewer-agentic-cursor",
       "subject_id": "place-wd-q213",
-      "verification_status": "candidate"
+      "verification_status": "verified"
+    },
+    {
+      "confidence": 0.6,
+      "evidence": [
+        {
+          "accessed": "2026-08-07",
+          "contributors": [],
+          "extraction_method": "structured_mapping",
+          "language": "en",
+          "locator": "Q213/id",
+          "native_field_path": "/id",
+          "native_predicate": null,
+          "native_record_id": "Q213@2526643287",
+          "qualifiers": [],
+          "rank": null,
+          "references": [],
+          "snapshot_id": "wikidata-hydration-2026-08-07-d37c179db21b",
+          "source_id": "wikidata",
+          "source_record_sha256": "cf13f8c850ba9419f93375fd6365b23583d099e2742b67531bc474b93b7694c5",
+          "support": "explicit",
+          "url": "https://www.wikidata.org/wiki/Special:EntityData/Q213.json?revision=2526643287"
+        }
+      ],
+      "id": "claim-wd-q213-external-ids",
+      "object": {
+        "value": {
+          "wikidata": "Q213"
+        }
+      },
+      "predicate": "field_external_ids",
+      "qualifiers": {},
+      "reviewed_at": "2026-08-07",
+      "reviewed_by": "reviewer-agentic-cursor",
+      "subject_id": "place-wd-q213",
+      "verification_status": "verified"
     },
     {
       "confidence": 0.6,
@@ -96181,10 +96844,10 @@
       },
       "predicate": "field_name_en",
       "qualifiers": {},
-      "reviewed_at": null,
-      "reviewed_by": null,
+      "reviewed_at": "2026-08-07",
+      "reviewed_by": "reviewer-agentic-cursor",
       "subject_id": "place-wd-q213",
-      "verification_status": "candidate"
+      "verification_status": "verified"
     },
     {
       "confidence": 0.6,
@@ -96214,10 +96877,43 @@
       },
       "predicate": "field_name_zh",
       "qualifiers": {},
-      "reviewed_at": null,
-      "reviewed_by": null,
+      "reviewed_at": "2026-08-07",
+      "reviewed_by": "reviewer-agentic-cursor",
       "subject_id": "place-wd-q213",
-      "verification_status": "candidate"
+      "verification_status": "verified"
+    },
+    {
+      "confidence": 0.6,
+      "evidence": [
+        {
+          "accessed": "2026-08-07",
+          "contributors": [],
+          "extraction_method": "structured_mapping",
+          "language": null,
+          "locator": "Q213/project_region/europe",
+          "native_field_path": "/claims/P297/0",
+          "native_predicate": "P297",
+          "native_record_id": "Q213@2526643287",
+          "qualifiers": [],
+          "rank": "normal",
+          "references": [],
+          "snapshot_id": "wikidata-hydration-2026-08-07-d37c179db21b",
+          "source_id": "wikidata",
+          "source_record_sha256": "cf13f8c850ba9419f93375fd6365b23583d099e2742b67531bc474b93b7694c5",
+          "support": "explicit",
+          "url": "https://www.wikidata.org/wiki/Special:EntityData/Q213.json?revision=2526643287"
+        }
+      ],
+      "id": "claim-wd-q213-region",
+      "object": {
+        "value": "europe"
+      },
+      "predicate": "field_region",
+      "qualifiers": {},
+      "reviewed_at": "2026-08-07",
+      "reviewed_by": "reviewer-agentic-cursor",
+      "subject_id": "place-wd-q213",
+      "verification_status": "verified"
     },
     {
       "confidence": 0.6,
@@ -99039,10 +99735,45 @@
       },
       "predicate": "field_country_code",
       "qualifiers": {},
-      "reviewed_at": null,
-      "reviewed_by": null,
+      "reviewed_at": "2026-08-07",
+      "reviewed_by": "reviewer-agentic-cursor",
       "subject_id": "place-wd-q218",
-      "verification_status": "candidate"
+      "verification_status": "verified"
+    },
+    {
+      "confidence": 0.6,
+      "evidence": [
+        {
+          "accessed": "2026-08-07",
+          "contributors": [],
+          "extraction_method": "structured_mapping",
+          "language": "en",
+          "locator": "Q218/id",
+          "native_field_path": "/id",
+          "native_predicate": null,
+          "native_record_id": "Q218@2527715487",
+          "qualifiers": [],
+          "rank": null,
+          "references": [],
+          "snapshot_id": "wikidata-hydration-2026-08-07-d37c179db21b",
+          "source_id": "wikidata",
+          "source_record_sha256": "9a5b70a6214bea6216c8607a7afb16ebd30f45179d34909947665ee4e982cc1b",
+          "support": "explicit",
+          "url": "https://www.wikidata.org/wiki/Special:EntityData/Q218.json?revision=2527715487"
+        }
+      ],
+      "id": "claim-wd-q218-external-ids",
+      "object": {
+        "value": {
+          "wikidata": "Q218"
+        }
+      },
+      "predicate": "field_external_ids",
+      "qualifiers": {},
+      "reviewed_at": "2026-08-07",
+      "reviewed_by": "reviewer-agentic-cursor",
+      "subject_id": "place-wd-q218",
+      "verification_status": "verified"
     },
     {
       "confidence": 0.6,
@@ -99072,10 +99803,10 @@
       },
       "predicate": "field_name_en",
       "qualifiers": {},
-      "reviewed_at": null,
-      "reviewed_by": null,
+      "reviewed_at": "2026-08-07",
+      "reviewed_by": "reviewer-agentic-cursor",
       "subject_id": "place-wd-q218",
-      "verification_status": "candidate"
+      "verification_status": "verified"
     },
     {
       "confidence": 0.6,
@@ -99105,10 +99836,43 @@
       },
       "predicate": "field_name_zh",
       "qualifiers": {},
-      "reviewed_at": null,
-      "reviewed_by": null,
+      "reviewed_at": "2026-08-07",
+      "reviewed_by": "reviewer-agentic-cursor",
       "subject_id": "place-wd-q218",
-      "verification_status": "candidate"
+      "verification_status": "verified"
+    },
+    {
+      "confidence": 0.6,
+      "evidence": [
+        {
+          "accessed": "2026-08-07",
+          "contributors": [],
+          "extraction_method": "structured_mapping",
+          "language": null,
+          "locator": "Q218/project_region/europe",
+          "native_field_path": "/claims/P297/0",
+          "native_predicate": "P297",
+          "native_record_id": "Q218@2527715487",
+          "qualifiers": [],
+          "rank": "normal",
+          "references": [],
+          "snapshot_id": "wikidata-hydration-2026-08-07-d37c179db21b",
+          "source_id": "wikidata",
+          "source_record_sha256": "9a5b70a6214bea6216c8607a7afb16ebd30f45179d34909947665ee4e982cc1b",
+          "support": "explicit",
+          "url": "https://www.wikidata.org/wiki/Special:EntityData/Q218.json?revision=2527715487"
+        }
+      ],
+      "id": "claim-wd-q218-region",
+      "object": {
+        "value": "europe"
+      },
+      "predicate": "field_region",
+      "qualifiers": {},
+      "reviewed_at": "2026-08-07",
+      "reviewed_by": "reviewer-agentic-cursor",
+      "subject_id": "place-wd-q218",
+      "verification_status": "verified"
     },
     {
       "confidence": 0.6,
@@ -106114,10 +106878,45 @@
       },
       "predicate": "field_country_code",
       "qualifiers": {},
-      "reviewed_at": null,
-      "reviewed_by": null,
+      "reviewed_at": "2026-08-07",
+      "reviewed_by": "reviewer-agentic-cursor",
       "subject_id": "place-wd-q237",
-      "verification_status": "candidate"
+      "verification_status": "verified"
+    },
+    {
+      "confidence": 0.6,
+      "evidence": [
+        {
+          "accessed": "2026-08-07",
+          "contributors": [],
+          "extraction_method": "structured_mapping",
+          "language": "en",
+          "locator": "Q237/id",
+          "native_field_path": "/id",
+          "native_predicate": null,
+          "native_record_id": "Q237@2526643099",
+          "qualifiers": [],
+          "rank": null,
+          "references": [],
+          "snapshot_id": "wikidata-hydration-2026-08-07-d37c179db21b",
+          "source_id": "wikidata",
+          "source_record_sha256": "ada72fb81385837841d114abc8ec5d2a88c1322bf32371e8232452a4b46417f1",
+          "support": "explicit",
+          "url": "https://www.wikidata.org/wiki/Special:EntityData/Q237.json?revision=2526643099"
+        }
+      ],
+      "id": "claim-wd-q237-external-ids",
+      "object": {
+        "value": {
+          "wikidata": "Q237"
+        }
+      },
+      "predicate": "field_external_ids",
+      "qualifiers": {},
+      "reviewed_at": "2026-08-07",
+      "reviewed_by": "reviewer-agentic-cursor",
+      "subject_id": "place-wd-q237",
+      "verification_status": "verified"
     },
     {
       "confidence": 0.6,
@@ -106147,10 +106946,10 @@
       },
       "predicate": "field_name_en",
       "qualifiers": {},
-      "reviewed_at": null,
-      "reviewed_by": null,
+      "reviewed_at": "2026-08-07",
+      "reviewed_by": "reviewer-agentic-cursor",
       "subject_id": "place-wd-q237",
-      "verification_status": "candidate"
+      "verification_status": "verified"
     },
     {
       "confidence": 0.6,
@@ -106180,10 +106979,43 @@
       },
       "predicate": "field_name_zh",
       "qualifiers": {},
-      "reviewed_at": null,
-      "reviewed_by": null,
+      "reviewed_at": "2026-08-07",
+      "reviewed_by": "reviewer-agentic-cursor",
       "subject_id": "place-wd-q237",
-      "verification_status": "candidate"
+      "verification_status": "verified"
+    },
+    {
+      "confidence": 0.6,
+      "evidence": [
+        {
+          "accessed": "2026-08-07",
+          "contributors": [],
+          "extraction_method": "structured_mapping",
+          "language": null,
+          "locator": "Q237/project_region/europe",
+          "native_field_path": "/claims/P297/0",
+          "native_predicate": "P297",
+          "native_record_id": "Q237@2526643099",
+          "qualifiers": [],
+          "rank": "normal",
+          "references": [],
+          "snapshot_id": "wikidata-hydration-2026-08-07-d37c179db21b",
+          "source_id": "wikidata",
+          "source_record_sha256": "ada72fb81385837841d114abc8ec5d2a88c1322bf32371e8232452a4b46417f1",
+          "support": "explicit",
+          "url": "https://www.wikidata.org/wiki/Special:EntityData/Q237.json?revision=2526643099"
+        }
+      ],
+      "id": "claim-wd-q237-region",
+      "object": {
+        "value": "europe"
+      },
+      "predicate": "field_region",
+      "qualifiers": {},
+      "reviewed_at": "2026-08-07",
+      "reviewed_by": "reviewer-agentic-cursor",
+      "subject_id": "place-wd-q237",
+      "verification_status": "verified"
     },
     {
       "confidence": 0.6,
@@ -112127,10 +112959,45 @@
       },
       "predicate": "field_country_code",
       "qualifiers": {},
-      "reviewed_at": null,
-      "reviewed_by": null,
+      "reviewed_at": "2026-08-07",
+      "reviewed_by": "reviewer-agentic-cursor",
       "subject_id": "place-wd-q252",
-      "verification_status": "candidate"
+      "verification_status": "verified"
+    },
+    {
+      "confidence": 0.6,
+      "evidence": [
+        {
+          "accessed": "2026-08-07",
+          "contributors": [],
+          "extraction_method": "structured_mapping",
+          "language": "en",
+          "locator": "Q252/id",
+          "native_field_path": "/id",
+          "native_predicate": null,
+          "native_record_id": "Q252@2528185894",
+          "qualifiers": [],
+          "rank": null,
+          "references": [],
+          "snapshot_id": "wikidata-hydration-2026-08-07-d37c179db21b",
+          "source_id": "wikidata",
+          "source_record_sha256": "4fb4fe196f55f85cefb629263d89176805592401cd3dc9732bce7379f15eec2d",
+          "support": "explicit",
+          "url": "https://www.wikidata.org/wiki/Special:EntityData/Q252.json?revision=2528185894"
+        }
+      ],
+      "id": "claim-wd-q252-external-ids",
+      "object": {
+        "value": {
+          "wikidata": "Q252"
+        }
+      },
+      "predicate": "field_external_ids",
+      "qualifiers": {},
+      "reviewed_at": "2026-08-07",
+      "reviewed_by": "reviewer-agentic-cursor",
+      "subject_id": "place-wd-q252",
+      "verification_status": "verified"
     },
     {
       "confidence": 0.6,
@@ -112160,10 +113027,10 @@
       },
       "predicate": "field_name_en",
       "qualifiers": {},
-      "reviewed_at": null,
-      "reviewed_by": null,
+      "reviewed_at": "2026-08-07",
+      "reviewed_by": "reviewer-agentic-cursor",
       "subject_id": "place-wd-q252",
-      "verification_status": "candidate"
+      "verification_status": "verified"
     },
     {
       "confidence": 0.6,
@@ -112193,10 +113060,43 @@
       },
       "predicate": "field_name_zh",
       "qualifiers": {},
-      "reviewed_at": null,
-      "reviewed_by": null,
+      "reviewed_at": "2026-08-07",
+      "reviewed_by": "reviewer-agentic-cursor",
       "subject_id": "place-wd-q252",
-      "verification_status": "candidate"
+      "verification_status": "verified"
+    },
+    {
+      "confidence": 0.6,
+      "evidence": [
+        {
+          "accessed": "2026-08-07",
+          "contributors": [],
+          "extraction_method": "structured_mapping",
+          "language": null,
+          "locator": "Q252/project_region/southeast_asia",
+          "native_field_path": "/claims/P297/0",
+          "native_predicate": "P297",
+          "native_record_id": "Q252@2528185894",
+          "qualifiers": [],
+          "rank": "normal",
+          "references": [],
+          "snapshot_id": "wikidata-hydration-2026-08-07-d37c179db21b",
+          "source_id": "wikidata",
+          "source_record_sha256": "4fb4fe196f55f85cefb629263d89176805592401cd3dc9732bce7379f15eec2d",
+          "support": "explicit",
+          "url": "https://www.wikidata.org/wiki/Special:EntityData/Q252.json?revision=2528185894"
+        }
+      ],
+      "id": "claim-wd-q252-region",
+      "object": {
+        "value": "southeast_asia"
+      },
+      "predicate": "field_region",
+      "qualifiers": {},
+      "reviewed_at": "2026-08-07",
+      "reviewed_by": "reviewer-agentic-cursor",
+      "subject_id": "place-wd-q252",
+      "verification_status": "verified"
     },
     {
       "confidence": 0.6,
@@ -120819,10 +121719,45 @@
       },
       "predicate": "field_country_code",
       "qualifiers": {},
-      "reviewed_at": null,
-      "reviewed_by": null,
+      "reviewed_at": "2026-08-07",
+      "reviewed_by": "reviewer-agentic-cursor",
       "subject_id": "place-wd-q28",
-      "verification_status": "candidate"
+      "verification_status": "verified"
+    },
+    {
+      "confidence": 0.6,
+      "evidence": [
+        {
+          "accessed": "2026-08-07",
+          "contributors": [],
+          "extraction_method": "structured_mapping",
+          "language": "en",
+          "locator": "Q28/id",
+          "native_field_path": "/id",
+          "native_predicate": null,
+          "native_record_id": "Q28@2528490495",
+          "qualifiers": [],
+          "rank": null,
+          "references": [],
+          "snapshot_id": "wikidata-hydration-2026-08-07-d37c179db21b",
+          "source_id": "wikidata",
+          "source_record_sha256": "e1358b223cc6dbd2d6c91465513c8af70b8a30a37f0b37e7dfcd6096af2f2a36",
+          "support": "explicit",
+          "url": "https://www.wikidata.org/wiki/Special:EntityData/Q28.json?revision=2528490495"
+        }
+      ],
+      "id": "claim-wd-q28-external-ids",
+      "object": {
+        "value": {
+          "wikidata": "Q28"
+        }
+      },
+      "predicate": "field_external_ids",
+      "qualifiers": {},
+      "reviewed_at": "2026-08-07",
+      "reviewed_by": "reviewer-agentic-cursor",
+      "subject_id": "place-wd-q28",
+      "verification_status": "verified"
     },
     {
       "confidence": 0.6,
@@ -120852,10 +121787,10 @@
       },
       "predicate": "field_name_en",
       "qualifiers": {},
-      "reviewed_at": null,
-      "reviewed_by": null,
+      "reviewed_at": "2026-08-07",
+      "reviewed_by": "reviewer-agentic-cursor",
       "subject_id": "place-wd-q28",
-      "verification_status": "candidate"
+      "verification_status": "verified"
     },
     {
       "confidence": 0.6,
@@ -120885,10 +121820,43 @@
       },
       "predicate": "field_name_zh",
       "qualifiers": {},
-      "reviewed_at": null,
-      "reviewed_by": null,
+      "reviewed_at": "2026-08-07",
+      "reviewed_by": "reviewer-agentic-cursor",
       "subject_id": "place-wd-q28",
-      "verification_status": "candidate"
+      "verification_status": "verified"
+    },
+    {
+      "confidence": 0.6,
+      "evidence": [
+        {
+          "accessed": "2026-08-07",
+          "contributors": [],
+          "extraction_method": "structured_mapping",
+          "language": null,
+          "locator": "Q28/project_region/europe",
+          "native_field_path": "/claims/P297/0",
+          "native_predicate": "P297",
+          "native_record_id": "Q28@2528490495",
+          "qualifiers": [],
+          "rank": "normal",
+          "references": [],
+          "snapshot_id": "wikidata-hydration-2026-08-07-d37c179db21b",
+          "source_id": "wikidata",
+          "source_record_sha256": "e1358b223cc6dbd2d6c91465513c8af70b8a30a37f0b37e7dfcd6096af2f2a36",
+          "support": "explicit",
+          "url": "https://www.wikidata.org/wiki/Special:EntityData/Q28.json?revision=2528490495"
+        }
+      ],
+      "id": "claim-wd-q28-region",
+      "object": {
+        "value": "europe"
+      },
+      "predicate": "field_region",
+      "qualifiers": {},
+      "reviewed_at": "2026-08-07",
+      "reviewed_by": "reviewer-agentic-cursor",
+      "subject_id": "place-wd-q28",
+      "verification_status": "verified"
     },
     {
       "confidence": 0.6,
@@ -123054,10 +124022,45 @@
       },
       "predicate": "field_country_code",
       "qualifiers": {},
-      "reviewed_at": null,
-      "reviewed_by": null,
+      "reviewed_at": "2026-08-07",
+      "reviewed_by": "reviewer-agentic-cursor",
       "subject_id": "place-wd-q29",
-      "verification_status": "candidate"
+      "verification_status": "verified"
+    },
+    {
+      "confidence": 0.6,
+      "evidence": [
+        {
+          "accessed": "2026-08-07",
+          "contributors": [],
+          "extraction_method": "structured_mapping",
+          "language": "en",
+          "locator": "Q29/id",
+          "native_field_path": "/id",
+          "native_predicate": null,
+          "native_record_id": "Q29@2528329639",
+          "qualifiers": [],
+          "rank": null,
+          "references": [],
+          "snapshot_id": "wikidata-hydration-2026-08-07-d37c179db21b",
+          "source_id": "wikidata",
+          "source_record_sha256": "4d691b6b035a4beebd9db83e4cea6f4454bc26c7268e4600a629cd2b1d6c96aa",
+          "support": "explicit",
+          "url": "https://www.wikidata.org/wiki/Special:EntityData/Q29.json?revision=2528329639"
+        }
+      ],
+      "id": "claim-wd-q29-external-ids",
+      "object": {
+        "value": {
+          "wikidata": "Q29"
+        }
+      },
+      "predicate": "field_external_ids",
+      "qualifiers": {},
+      "reviewed_at": "2026-08-07",
+      "reviewed_by": "reviewer-agentic-cursor",
+      "subject_id": "place-wd-q29",
+      "verification_status": "verified"
     },
     {
       "confidence": 0.6,
@@ -123087,10 +124090,10 @@
       },
       "predicate": "field_name_en",
       "qualifiers": {},
-      "reviewed_at": null,
-      "reviewed_by": null,
+      "reviewed_at": "2026-08-07",
+      "reviewed_by": "reviewer-agentic-cursor",
       "subject_id": "place-wd-q29",
-      "verification_status": "candidate"
+      "verification_status": "verified"
     },
     {
       "confidence": 0.6,
@@ -123120,10 +124123,43 @@
       },
       "predicate": "field_name_zh",
       "qualifiers": {},
-      "reviewed_at": null,
-      "reviewed_by": null,
+      "reviewed_at": "2026-08-07",
+      "reviewed_by": "reviewer-agentic-cursor",
       "subject_id": "place-wd-q29",
-      "verification_status": "candidate"
+      "verification_status": "verified"
+    },
+    {
+      "confidence": 0.6,
+      "evidence": [
+        {
+          "accessed": "2026-08-07",
+          "contributors": [],
+          "extraction_method": "structured_mapping",
+          "language": null,
+          "locator": "Q29/project_region/europe",
+          "native_field_path": "/claims/P297/0",
+          "native_predicate": "P297",
+          "native_record_id": "Q29@2528329639",
+          "qualifiers": [],
+          "rank": "normal",
+          "references": [],
+          "snapshot_id": "wikidata-hydration-2026-08-07-d37c179db21b",
+          "source_id": "wikidata",
+          "source_record_sha256": "4d691b6b035a4beebd9db83e4cea6f4454bc26c7268e4600a629cd2b1d6c96aa",
+          "support": "explicit",
+          "url": "https://www.wikidata.org/wiki/Special:EntityData/Q29.json?revision=2528329639"
+        }
+      ],
+      "id": "claim-wd-q29-region",
+      "object": {
+        "value": "europe"
+      },
+      "predicate": "field_region",
+      "qualifiers": {},
+      "reviewed_at": "2026-08-07",
+      "reviewed_by": "reviewer-agentic-cursor",
+      "subject_id": "place-wd-q29",
+      "verification_status": "verified"
     },
     {
       "confidence": 0.6,
@@ -128793,10 +129829,45 @@
       },
       "predicate": "field_country_code",
       "qualifiers": {},
-      "reviewed_at": null,
-      "reviewed_by": null,
+      "reviewed_at": "2026-08-07",
+      "reviewed_by": "reviewer-agentic-cursor",
       "subject_id": "place-wd-q30",
-      "verification_status": "candidate"
+      "verification_status": "verified"
+    },
+    {
+      "confidence": 0.6,
+      "evidence": [
+        {
+          "accessed": "2026-08-07",
+          "contributors": [],
+          "extraction_method": "structured_mapping",
+          "language": "en",
+          "locator": "Q30/id",
+          "native_field_path": "/id",
+          "native_predicate": null,
+          "native_record_id": "Q30@2528574265",
+          "qualifiers": [],
+          "rank": null,
+          "references": [],
+          "snapshot_id": "wikidata-hydration-2026-08-07-d37c179db21b",
+          "source_id": "wikidata",
+          "source_record_sha256": "3ad64326e2220de3a248c3c45a756165584aa897ce25c6540ab5c4660dba340e",
+          "support": "explicit",
+          "url": "https://www.wikidata.org/wiki/Special:EntityData/Q30.json?revision=2528574265"
+        }
+      ],
+      "id": "claim-wd-q30-external-ids",
+      "object": {
+        "value": {
+          "wikidata": "Q30"
+        }
+      },
+      "predicate": "field_external_ids",
+      "qualifiers": {},
+      "reviewed_at": "2026-08-07",
+      "reviewed_by": "reviewer-agentic-cursor",
+      "subject_id": "place-wd-q30",
+      "verification_status": "verified"
     },
     {
       "confidence": 0.6,
@@ -128826,10 +129897,10 @@
       },
       "predicate": "field_name_en",
       "qualifiers": {},
-      "reviewed_at": null,
-      "reviewed_by": null,
+      "reviewed_at": "2026-08-07",
+      "reviewed_by": "reviewer-agentic-cursor",
       "subject_id": "place-wd-q30",
-      "verification_status": "candidate"
+      "verification_status": "verified"
     },
     {
       "confidence": 0.6,
@@ -128859,10 +129930,140 @@
       },
       "predicate": "field_name_zh",
       "qualifiers": {},
-      "reviewed_at": null,
-      "reviewed_by": null,
+      "reviewed_at": "2026-08-07",
+      "reviewed_by": "reviewer-agentic-cursor",
       "subject_id": "place-wd-q30",
-      "verification_status": "candidate"
+      "verification_status": "verified"
+    },
+    {
+      "confidence": 0.6,
+      "evidence": [
+        {
+          "accessed": "2026-08-07",
+          "contributors": [],
+          "extraction_method": "structured_mapping",
+          "language": null,
+          "locator": "Q30/project_region/north_america",
+          "native_field_path": "/claims/P297/0",
+          "native_predicate": "P297",
+          "native_record_id": "Q30@2528574265",
+          "qualifiers": [],
+          "rank": "normal",
+          "references": [
+            {
+              "hash": "d1cc320d913d4030065acda8062ab5f34fd968e4",
+              "snaks": {
+                "P248": [
+                  {
+                    "datatype": "wikibase-item",
+                    "datavalue": {
+                      "type": "wikibase-entityid",
+                      "value": {
+                        "entity-type": "item",
+                        "id": "Q25275",
+                        "numeric-id": 25275
+                      }
+                    },
+                    "hash": "062933830c4bf3f110cfe0afce0d35352151fdb5",
+                    "property": "P248",
+                    "snaktype": "value"
+                  }
+                ],
+                "P298": [
+                  {
+                    "datatype": "external-id",
+                    "datavalue": {
+                      "type": "string",
+                      "value": "USA"
+                    },
+                    "hash": "317edc5394c02e9b2b9185405c94c8a1e3b0f471",
+                    "property": "P298",
+                    "snaktype": "value"
+                  }
+                ],
+                "P299": [
+                  {
+                    "datatype": "external-id",
+                    "datavalue": {
+                      "type": "string",
+                      "value": "840"
+                    },
+                    "hash": "5f594d8ad716ebd52c188464c4ba32b82db4be8e",
+                    "property": "P299",
+                    "snaktype": "value"
+                  }
+                ],
+                "P503": [
+                  {
+                    "datatype": "external-id",
+                    "datavalue": {
+                      "type": "string",
+                      "value": "3166"
+                    },
+                    "hash": "6551539d68f6cf0d2f3cbd1c98217662ef2d58ea",
+                    "property": "P503",
+                    "snaktype": "value"
+                  }
+                ],
+                "P813": [
+                  {
+                    "datatype": "time",
+                    "datavalue": {
+                      "type": "time",
+                      "value": {
+                        "after": 0,
+                        "before": 0,
+                        "calendarmodel": "http://www.wikidata.org/entity/Q1985727",
+                        "precision": 11,
+                        "time": "+2018-09-15T00:00:00Z",
+                        "timezone": 0
+                      }
+                    },
+                    "hash": "c6ab2df3a412e3900522655b91c659277b9ac3c1",
+                    "property": "P813",
+                    "snaktype": "value"
+                  }
+                ],
+                "P854": [
+                  {
+                    "datatype": "url",
+                    "datavalue": {
+                      "type": "string",
+                      "value": "https://www.iso.org/obp/ui/#iso:code:3166:US"
+                    },
+                    "hash": "8231c396a6b308d2bf37bcb03379c2a3d57da627",
+                    "property": "P854",
+                    "snaktype": "value"
+                  }
+                ]
+              },
+              "snaks-order": [
+                "P248",
+                "P503",
+                "P299",
+                "P298",
+                "P854",
+                "P813"
+              ]
+            }
+          ],
+          "snapshot_id": "wikidata-hydration-2026-08-07-d37c179db21b",
+          "source_id": "wikidata",
+          "source_record_sha256": "3ad64326e2220de3a248c3c45a756165584aa897ce25c6540ab5c4660dba340e",
+          "support": "explicit",
+          "url": "https://www.wikidata.org/wiki/Special:EntityData/Q30.json?revision=2528574265"
+        }
+      ],
+      "id": "claim-wd-q30-region",
+      "object": {
+        "value": "north_america"
+      },
+      "predicate": "field_region",
+      "qualifiers": {},
+      "reviewed_at": "2026-08-07",
+      "reviewed_by": "reviewer-agentic-cursor",
+      "subject_id": "place-wd-q30",
+      "verification_status": "verified"
     },
     {
       "confidence": 0.6,
@@ -141143,10 +142344,45 @@
       },
       "predicate": "field_country_code",
       "qualifiers": {},
-      "reviewed_at": null,
-      "reviewed_by": null,
+      "reviewed_at": "2026-08-07",
+      "reviewed_by": "reviewer-agentic-cursor",
       "subject_id": "place-wd-q34",
-      "verification_status": "candidate"
+      "verification_status": "verified"
+    },
+    {
+      "confidence": 0.6,
+      "evidence": [
+        {
+          "accessed": "2026-08-07",
+          "contributors": [],
+          "extraction_method": "structured_mapping",
+          "language": "en",
+          "locator": "Q34/id",
+          "native_field_path": "/id",
+          "native_predicate": null,
+          "native_record_id": "Q34@2528128576",
+          "qualifiers": [],
+          "rank": null,
+          "references": [],
+          "snapshot_id": "wikidata-hydration-2026-08-07-d37c179db21b",
+          "source_id": "wikidata",
+          "source_record_sha256": "243901dd0450fe8a12e857b61700491cf52fda193fbb46c8c2c820a9b90a3aae",
+          "support": "explicit",
+          "url": "https://www.wikidata.org/wiki/Special:EntityData/Q34.json?revision=2528128576"
+        }
+      ],
+      "id": "claim-wd-q34-external-ids",
+      "object": {
+        "value": {
+          "wikidata": "Q34"
+        }
+      },
+      "predicate": "field_external_ids",
+      "qualifiers": {},
+      "reviewed_at": "2026-08-07",
+      "reviewed_by": "reviewer-agentic-cursor",
+      "subject_id": "place-wd-q34",
+      "verification_status": "verified"
     },
     {
       "confidence": 0.6,
@@ -141176,10 +142412,10 @@
       },
       "predicate": "field_name_en",
       "qualifiers": {},
-      "reviewed_at": null,
-      "reviewed_by": null,
+      "reviewed_at": "2026-08-07",
+      "reviewed_by": "reviewer-agentic-cursor",
       "subject_id": "place-wd-q34",
-      "verification_status": "candidate"
+      "verification_status": "verified"
     },
     {
       "confidence": 0.6,
@@ -141209,10 +142445,43 @@
       },
       "predicate": "field_name_zh",
       "qualifiers": {},
-      "reviewed_at": null,
-      "reviewed_by": null,
+      "reviewed_at": "2026-08-07",
+      "reviewed_by": "reviewer-agentic-cursor",
       "subject_id": "place-wd-q34",
-      "verification_status": "candidate"
+      "verification_status": "verified"
+    },
+    {
+      "confidence": 0.6,
+      "evidence": [
+        {
+          "accessed": "2026-08-07",
+          "contributors": [],
+          "extraction_method": "structured_mapping",
+          "language": null,
+          "locator": "Q34/project_region/europe",
+          "native_field_path": "/claims/P297/0",
+          "native_predicate": "P297",
+          "native_record_id": "Q34@2528128576",
+          "qualifiers": [],
+          "rank": "normal",
+          "references": [],
+          "snapshot_id": "wikidata-hydration-2026-08-07-d37c179db21b",
+          "source_id": "wikidata",
+          "source_record_sha256": "243901dd0450fe8a12e857b61700491cf52fda193fbb46c8c2c820a9b90a3aae",
+          "support": "explicit",
+          "url": "https://www.wikidata.org/wiki/Special:EntityData/Q34.json?revision=2528128576"
+        }
+      ],
+      "id": "claim-wd-q34-region",
+      "object": {
+        "value": "europe"
+      },
+      "predicate": "field_region",
+      "qualifiers": {},
+      "reviewed_at": "2026-08-07",
+      "reviewed_by": "reviewer-agentic-cursor",
+      "subject_id": "place-wd-q34",
+      "verification_status": "verified"
     },
     {
       "confidence": 0.6,
@@ -143500,10 +144769,45 @@
       },
       "predicate": "field_country_code",
       "qualifiers": {},
-      "reviewed_at": null,
-      "reviewed_by": null,
+      "reviewed_at": "2026-08-07",
+      "reviewed_by": "reviewer-agentic-cursor",
       "subject_id": "place-wd-q36",
-      "verification_status": "candidate"
+      "verification_status": "verified"
+    },
+    {
+      "confidence": 0.6,
+      "evidence": [
+        {
+          "accessed": "2026-08-07",
+          "contributors": [],
+          "extraction_method": "structured_mapping",
+          "language": "en",
+          "locator": "Q36/id",
+          "native_field_path": "/id",
+          "native_predicate": null,
+          "native_record_id": "Q36@2528427745",
+          "qualifiers": [],
+          "rank": null,
+          "references": [],
+          "snapshot_id": "wikidata-hydration-2026-08-07-d37c179db21b",
+          "source_id": "wikidata",
+          "source_record_sha256": "c310cc50469d70563211b47e55a7d1018f24f4f64de7bb0b9e1baa8bad80f525",
+          "support": "explicit",
+          "url": "https://www.wikidata.org/wiki/Special:EntityData/Q36.json?revision=2528427745"
+        }
+      ],
+      "id": "claim-wd-q36-external-ids",
+      "object": {
+        "value": {
+          "wikidata": "Q36"
+        }
+      },
+      "predicate": "field_external_ids",
+      "qualifiers": {},
+      "reviewed_at": "2026-08-07",
+      "reviewed_by": "reviewer-agentic-cursor",
+      "subject_id": "place-wd-q36",
+      "verification_status": "verified"
     },
     {
       "confidence": 0.6,
@@ -143533,10 +144837,10 @@
       },
       "predicate": "field_name_en",
       "qualifiers": {},
-      "reviewed_at": null,
-      "reviewed_by": null,
+      "reviewed_at": "2026-08-07",
+      "reviewed_by": "reviewer-agentic-cursor",
       "subject_id": "place-wd-q36",
-      "verification_status": "candidate"
+      "verification_status": "verified"
     },
     {
       "confidence": 0.6,
@@ -143566,10 +144870,68 @@
       },
       "predicate": "field_name_zh",
       "qualifiers": {},
-      "reviewed_at": null,
-      "reviewed_by": null,
+      "reviewed_at": "2026-08-07",
+      "reviewed_by": "reviewer-agentic-cursor",
       "subject_id": "place-wd-q36",
-      "verification_status": "candidate"
+      "verification_status": "verified"
+    },
+    {
+      "confidence": 0.6,
+      "evidence": [
+        {
+          "accessed": "2026-08-07",
+          "contributors": [],
+          "extraction_method": "structured_mapping",
+          "language": null,
+          "locator": "Q36/project_region/europe",
+          "native_field_path": "/claims/P297/0",
+          "native_predicate": "P297",
+          "native_record_id": "Q36@2528427745",
+          "qualifiers": [],
+          "rank": "normal",
+          "references": [
+            {
+              "hash": "14d2400e3b1d36332748dc330276f099eeaa8800",
+              "snaks": {
+                "P143": [
+                  {
+                    "datatype": "wikibase-item",
+                    "datavalue": {
+                      "type": "wikibase-entityid",
+                      "value": {
+                        "entity-type": "item",
+                        "id": "Q1551807",
+                        "numeric-id": 1551807
+                      }
+                    },
+                    "hash": "39224a9c2e8ce5424defbd16603d25771956c7fc",
+                    "property": "P143",
+                    "snaktype": "value"
+                  }
+                ]
+              },
+              "snaks-order": [
+                "P143"
+              ]
+            }
+          ],
+          "snapshot_id": "wikidata-hydration-2026-08-07-d37c179db21b",
+          "source_id": "wikidata",
+          "source_record_sha256": "c310cc50469d70563211b47e55a7d1018f24f4f64de7bb0b9e1baa8bad80f525",
+          "support": "explicit",
+          "url": "https://www.wikidata.org/wiki/Special:EntityData/Q36.json?revision=2528427745"
+        }
+      ],
+      "id": "claim-wd-q36-region",
+      "object": {
+        "value": "europe"
+      },
+      "predicate": "field_region",
+      "qualifiers": {},
+      "reviewed_at": "2026-08-07",
+      "reviewed_by": "reviewer-agentic-cursor",
+      "subject_id": "place-wd-q36",
+      "verification_status": "verified"
     },
     {
       "confidence": 0.6,
@@ -146132,10 +147494,45 @@
       },
       "predicate": "field_country_code",
       "qualifiers": {},
-      "reviewed_at": null,
-      "reviewed_by": null,
+      "reviewed_at": "2026-08-07",
+      "reviewed_by": "reviewer-agentic-cursor",
       "subject_id": "place-wd-q38",
-      "verification_status": "candidate"
+      "verification_status": "verified"
+    },
+    {
+      "confidence": 0.6,
+      "evidence": [
+        {
+          "accessed": "2026-08-07",
+          "contributors": [],
+          "extraction_method": "structured_mapping",
+          "language": "en",
+          "locator": "Q38/id",
+          "native_field_path": "/id",
+          "native_predicate": null,
+          "native_record_id": "Q38@2528128586",
+          "qualifiers": [],
+          "rank": null,
+          "references": [],
+          "snapshot_id": "wikidata-hydration-2026-08-07-d37c179db21b",
+          "source_id": "wikidata",
+          "source_record_sha256": "c6fd5cc6402e47aa533962344407b9e4900b43fba75d960870c8fdb31b22436f",
+          "support": "explicit",
+          "url": "https://www.wikidata.org/wiki/Special:EntityData/Q38.json?revision=2528128586"
+        }
+      ],
+      "id": "claim-wd-q38-external-ids",
+      "object": {
+        "value": {
+          "wikidata": "Q38"
+        }
+      },
+      "predicate": "field_external_ids",
+      "qualifiers": {},
+      "reviewed_at": "2026-08-07",
+      "reviewed_by": "reviewer-agentic-cursor",
+      "subject_id": "place-wd-q38",
+      "verification_status": "verified"
     },
     {
       "confidence": 0.6,
@@ -146165,10 +147562,10 @@
       },
       "predicate": "field_name_en",
       "qualifiers": {},
-      "reviewed_at": null,
-      "reviewed_by": null,
+      "reviewed_at": "2026-08-07",
+      "reviewed_by": "reviewer-agentic-cursor",
       "subject_id": "place-wd-q38",
-      "verification_status": "candidate"
+      "verification_status": "verified"
     },
     {
       "confidence": 0.6,
@@ -146198,10 +147595,43 @@
       },
       "predicate": "field_name_zh",
       "qualifiers": {},
-      "reviewed_at": null,
-      "reviewed_by": null,
+      "reviewed_at": "2026-08-07",
+      "reviewed_by": "reviewer-agentic-cursor",
       "subject_id": "place-wd-q38",
-      "verification_status": "candidate"
+      "verification_status": "verified"
+    },
+    {
+      "confidence": 0.6,
+      "evidence": [
+        {
+          "accessed": "2026-08-07",
+          "contributors": [],
+          "extraction_method": "structured_mapping",
+          "language": null,
+          "locator": "Q38/project_region/europe",
+          "native_field_path": "/claims/P297/0",
+          "native_predicate": "P297",
+          "native_record_id": "Q38@2528128586",
+          "qualifiers": [],
+          "rank": "normal",
+          "references": [],
+          "snapshot_id": "wikidata-hydration-2026-08-07-d37c179db21b",
+          "source_id": "wikidata",
+          "source_record_sha256": "c6fd5cc6402e47aa533962344407b9e4900b43fba75d960870c8fdb31b22436f",
+          "support": "explicit",
+          "url": "https://www.wikidata.org/wiki/Special:EntityData/Q38.json?revision=2528128586"
+        }
+      ],
+      "id": "claim-wd-q38-region",
+      "object": {
+        "value": "europe"
+      },
+      "predicate": "field_region",
+      "qualifiers": {},
+      "reviewed_at": "2026-08-07",
+      "reviewed_by": "reviewer-agentic-cursor",
+      "subject_id": "place-wd-q38",
+      "verification_status": "verified"
     },
     {
       "confidence": 0.6,
@@ -148821,10 +150251,45 @@
       },
       "predicate": "field_country_code",
       "qualifiers": {},
-      "reviewed_at": null,
-      "reviewed_by": null,
+      "reviewed_at": "2026-08-07",
+      "reviewed_by": "reviewer-agentic-cursor",
       "subject_id": "place-wd-q40",
-      "verification_status": "candidate"
+      "verification_status": "verified"
+    },
+    {
+      "confidence": 0.6,
+      "evidence": [
+        {
+          "accessed": "2026-08-07",
+          "contributors": [],
+          "extraction_method": "structured_mapping",
+          "language": "en",
+          "locator": "Q40/id",
+          "native_field_path": "/id",
+          "native_predicate": null,
+          "native_record_id": "Q40@2526641613",
+          "qualifiers": [],
+          "rank": null,
+          "references": [],
+          "snapshot_id": "wikidata-hydration-2026-08-07-d37c179db21b",
+          "source_id": "wikidata",
+          "source_record_sha256": "bd7775cdbc93ede3f7474b44025d9bebaecfe7861062ae896044f5c11adc872d",
+          "support": "explicit",
+          "url": "https://www.wikidata.org/wiki/Special:EntityData/Q40.json?revision=2526641613"
+        }
+      ],
+      "id": "claim-wd-q40-external-ids",
+      "object": {
+        "value": {
+          "wikidata": "Q40"
+        }
+      },
+      "predicate": "field_external_ids",
+      "qualifiers": {},
+      "reviewed_at": "2026-08-07",
+      "reviewed_by": "reviewer-agentic-cursor",
+      "subject_id": "place-wd-q40",
+      "verification_status": "verified"
     },
     {
       "confidence": 0.6,
@@ -148854,10 +150319,10 @@
       },
       "predicate": "field_name_en",
       "qualifiers": {},
-      "reviewed_at": null,
-      "reviewed_by": null,
+      "reviewed_at": "2026-08-07",
+      "reviewed_by": "reviewer-agentic-cursor",
       "subject_id": "place-wd-q40",
-      "verification_status": "candidate"
+      "verification_status": "verified"
     },
     {
       "confidence": 0.6,
@@ -148887,10 +150352,43 @@
       },
       "predicate": "field_name_zh",
       "qualifiers": {},
-      "reviewed_at": null,
-      "reviewed_by": null,
+      "reviewed_at": "2026-08-07",
+      "reviewed_by": "reviewer-agentic-cursor",
       "subject_id": "place-wd-q40",
-      "verification_status": "candidate"
+      "verification_status": "verified"
+    },
+    {
+      "confidence": 0.6,
+      "evidence": [
+        {
+          "accessed": "2026-08-07",
+          "contributors": [],
+          "extraction_method": "structured_mapping",
+          "language": null,
+          "locator": "Q40/project_region/europe",
+          "native_field_path": "/claims/P297/0",
+          "native_predicate": "P297",
+          "native_record_id": "Q40@2526641613",
+          "qualifiers": [],
+          "rank": "normal",
+          "references": [],
+          "snapshot_id": "wikidata-hydration-2026-08-07-d37c179db21b",
+          "source_id": "wikidata",
+          "source_record_sha256": "bd7775cdbc93ede3f7474b44025d9bebaecfe7861062ae896044f5c11adc872d",
+          "support": "explicit",
+          "url": "https://www.wikidata.org/wiki/Special:EntityData/Q40.json?revision=2526641613"
+        }
+      ],
+      "id": "claim-wd-q40-region",
+      "object": {
+        "value": "europe"
+      },
+      "predicate": "field_region",
+      "qualifiers": {},
+      "reviewed_at": "2026-08-07",
+      "reviewed_by": "reviewer-agentic-cursor",
+      "subject_id": "place-wd-q40",
+      "verification_status": "verified"
     },
     {
       "confidence": 0.6,
@@ -149542,10 +151040,45 @@
       },
       "predicate": "field_country_code",
       "qualifiers": {},
-      "reviewed_at": null,
-      "reviewed_by": null,
+      "reviewed_at": "2026-08-07",
+      "reviewed_by": "reviewer-agentic-cursor",
       "subject_id": "place-wd-q408",
-      "verification_status": "candidate"
+      "verification_status": "verified"
+    },
+    {
+      "confidence": 0.6,
+      "evidence": [
+        {
+          "accessed": "2026-08-07",
+          "contributors": [],
+          "extraction_method": "structured_mapping",
+          "language": "en",
+          "locator": "Q408/id",
+          "native_field_path": "/id",
+          "native_predicate": null,
+          "native_record_id": "Q408@2526814988",
+          "qualifiers": [],
+          "rank": null,
+          "references": [],
+          "snapshot_id": "wikidata-hydration-2026-08-07-d37c179db21b",
+          "source_id": "wikidata",
+          "source_record_sha256": "2ed6837f2f4543ca73f6c8f5d420aacd6d39ee6d9f45aa9bee7eabacf0006583",
+          "support": "explicit",
+          "url": "https://www.wikidata.org/wiki/Special:EntityData/Q408.json?revision=2526814988"
+        }
+      ],
+      "id": "claim-wd-q408-external-ids",
+      "object": {
+        "value": {
+          "wikidata": "Q408"
+        }
+      },
+      "predicate": "field_external_ids",
+      "qualifiers": {},
+      "reviewed_at": "2026-08-07",
+      "reviewed_by": "reviewer-agentic-cursor",
+      "subject_id": "place-wd-q408",
+      "verification_status": "verified"
     },
     {
       "confidence": 0.6,
@@ -149575,10 +151108,10 @@
       },
       "predicate": "field_name_en",
       "qualifiers": {},
-      "reviewed_at": null,
-      "reviewed_by": null,
+      "reviewed_at": "2026-08-07",
+      "reviewed_by": "reviewer-agentic-cursor",
       "subject_id": "place-wd-q408",
-      "verification_status": "candidate"
+      "verification_status": "verified"
     },
     {
       "confidence": 0.6,
@@ -149608,10 +151141,110 @@
       },
       "predicate": "field_name_zh",
       "qualifiers": {},
-      "reviewed_at": null,
-      "reviewed_by": null,
+      "reviewed_at": "2026-08-07",
+      "reviewed_by": "reviewer-agentic-cursor",
       "subject_id": "place-wd-q408",
-      "verification_status": "candidate"
+      "verification_status": "verified"
+    },
+    {
+      "confidence": 0.6,
+      "evidence": [
+        {
+          "accessed": "2026-08-07",
+          "contributors": [],
+          "extraction_method": "structured_mapping",
+          "language": null,
+          "locator": "Q408/project_region/oceania",
+          "native_field_path": "/claims/P297/0",
+          "native_predicate": "P297",
+          "native_record_id": "Q408@2526814988",
+          "qualifiers": [
+            {
+              "property_id": "P580",
+              "snaks": [
+                {
+                  "datatype": "time",
+                  "datavalue": {
+                    "type": "time",
+                    "value": {
+                      "after": 0,
+                      "before": 0,
+                      "calendarmodel": "http://www.wikidata.org/entity/Q1985727",
+                      "precision": 9,
+                      "time": "+1974-00-00T00:00:00Z",
+                      "timezone": 0
+                    }
+                  },
+                  "hash": "ec3fad5617d6ec89ebe0e606278f737d999b5450",
+                  "property": "P580",
+                  "snaktype": "value"
+                }
+              ]
+            },
+            {
+              "property_id": "P805",
+              "snaks": [
+                {
+                  "datatype": "wikibase-item",
+                  "datavalue": {
+                    "type": "wikibase-entityid",
+                    "value": {
+                      "entity-type": "item",
+                      "id": "Q21047",
+                      "numeric-id": 21047
+                    }
+                  },
+                  "hash": "35a627d264aa3d724f90f1666aaee1e955fb5f19",
+                  "property": "P805",
+                  "snaktype": "value"
+                }
+              ]
+            }
+          ],
+          "rank": "normal",
+          "references": [
+            {
+              "hash": "c18985c8eec64ba56d825d795983e1b41e9905fe",
+              "snaks": {
+                "P248": [
+                  {
+                    "datatype": "wikibase-item",
+                    "datavalue": {
+                      "type": "wikibase-entityid",
+                      "value": {
+                        "entity-type": "item",
+                        "id": "Q25275",
+                        "numeric-id": 25275
+                      }
+                    },
+                    "hash": "062933830c4bf3f110cfe0afce0d35352151fdb5",
+                    "property": "P248",
+                    "snaktype": "value"
+                  }
+                ]
+              },
+              "snaks-order": [
+                "P248"
+              ]
+            }
+          ],
+          "snapshot_id": "wikidata-hydration-2026-08-07-d37c179db21b",
+          "source_id": "wikidata",
+          "source_record_sha256": "2ed6837f2f4543ca73f6c8f5d420aacd6d39ee6d9f45aa9bee7eabacf0006583",
+          "support": "explicit",
+          "url": "https://www.wikidata.org/wiki/Special:EntityData/Q408.json?revision=2526814988"
+        }
+      ],
+      "id": "claim-wd-q408-region",
+      "object": {
+        "value": "oceania"
+      },
+      "predicate": "field_region",
+      "qualifiers": {},
+      "reviewed_at": "2026-08-07",
+      "reviewed_by": "reviewer-agentic-cursor",
+      "subject_id": "place-wd-q408",
+      "verification_status": "verified"
     },
     {
       "confidence": 0.6,
@@ -150317,10 +151950,45 @@
       },
       "predicate": "field_country_code",
       "qualifiers": {},
-      "reviewed_at": null,
-      "reviewed_by": null,
+      "reviewed_at": "2026-08-07",
+      "reviewed_by": "reviewer-agentic-cursor",
       "subject_id": "place-wd-q41",
-      "verification_status": "candidate"
+      "verification_status": "verified"
+    },
+    {
+      "confidence": 0.6,
+      "evidence": [
+        {
+          "accessed": "2026-08-07",
+          "contributors": [],
+          "extraction_method": "structured_mapping",
+          "language": "en",
+          "locator": "Q41/id",
+          "native_field_path": "/id",
+          "native_predicate": null,
+          "native_record_id": "Q41@2526101035",
+          "qualifiers": [],
+          "rank": null,
+          "references": [],
+          "snapshot_id": "wikidata-hydration-2026-08-07-d37c179db21b",
+          "source_id": "wikidata",
+          "source_record_sha256": "3b5887fdc1baf4204bbaac14f2a3c550034a5fe460a79b958daf97bc6bb75b57",
+          "support": "explicit",
+          "url": "https://www.wikidata.org/wiki/Special:EntityData/Q41.json?revision=2526101035"
+        }
+      ],
+      "id": "claim-wd-q41-external-ids",
+      "object": {
+        "value": {
+          "wikidata": "Q41"
+        }
+      },
+      "predicate": "field_external_ids",
+      "qualifiers": {},
+      "reviewed_at": "2026-08-07",
+      "reviewed_by": "reviewer-agentic-cursor",
+      "subject_id": "place-wd-q41",
+      "verification_status": "verified"
     },
     {
       "confidence": 0.6,
@@ -150350,10 +152018,10 @@
       },
       "predicate": "field_name_en",
       "qualifiers": {},
-      "reviewed_at": null,
-      "reviewed_by": null,
+      "reviewed_at": "2026-08-07",
+      "reviewed_by": "reviewer-agentic-cursor",
       "subject_id": "place-wd-q41",
-      "verification_status": "candidate"
+      "verification_status": "verified"
     },
     {
       "confidence": 0.6,
@@ -150383,10 +152051,43 @@
       },
       "predicate": "field_name_zh",
       "qualifiers": {},
-      "reviewed_at": null,
-      "reviewed_by": null,
+      "reviewed_at": "2026-08-07",
+      "reviewed_by": "reviewer-agentic-cursor",
       "subject_id": "place-wd-q41",
-      "verification_status": "candidate"
+      "verification_status": "verified"
+    },
+    {
+      "confidence": 0.6,
+      "evidence": [
+        {
+          "accessed": "2026-08-07",
+          "contributors": [],
+          "extraction_method": "structured_mapping",
+          "language": null,
+          "locator": "Q41/project_region/europe",
+          "native_field_path": "/claims/P297/0",
+          "native_predicate": "P297",
+          "native_record_id": "Q41@2526101035",
+          "qualifiers": [],
+          "rank": "normal",
+          "references": [],
+          "snapshot_id": "wikidata-hydration-2026-08-07-d37c179db21b",
+          "source_id": "wikidata",
+          "source_record_sha256": "3b5887fdc1baf4204bbaac14f2a3c550034a5fe460a79b958daf97bc6bb75b57",
+          "support": "explicit",
+          "url": "https://www.wikidata.org/wiki/Special:EntityData/Q41.json?revision=2526101035"
+        }
+      ],
+      "id": "claim-wd-q41-region",
+      "object": {
+        "value": "europe"
+      },
+      "predicate": "field_region",
+      "qualifiers": {},
+      "reviewed_at": "2026-08-07",
+      "reviewed_by": "reviewer-agentic-cursor",
+      "subject_id": "place-wd-q41",
+      "verification_status": "verified"
     },
     {
       "confidence": 0.6,
@@ -154014,10 +155715,45 @@
       },
       "predicate": "field_country_code",
       "qualifiers": {},
-      "reviewed_at": null,
-      "reviewed_by": null,
+      "reviewed_at": "2026-08-07",
+      "reviewed_by": "reviewer-agentic-cursor",
       "subject_id": "place-wd-q419",
-      "verification_status": "candidate"
+      "verification_status": "verified"
+    },
+    {
+      "confidence": 0.6,
+      "evidence": [
+        {
+          "accessed": "2026-08-07",
+          "contributors": [],
+          "extraction_method": "structured_mapping",
+          "language": "en",
+          "locator": "Q419/id",
+          "native_field_path": "/id",
+          "native_predicate": null,
+          "native_record_id": "Q419@2528319086",
+          "qualifiers": [],
+          "rank": null,
+          "references": [],
+          "snapshot_id": "wikidata-hydration-2026-08-07-d37c179db21b",
+          "source_id": "wikidata",
+          "source_record_sha256": "8b8d4aef30f9b757dbf20434aaa2f7046ab80c30af996bd700fd5e52900c8ecf",
+          "support": "explicit",
+          "url": "https://www.wikidata.org/wiki/Special:EntityData/Q419.json?revision=2528319086"
+        }
+      ],
+      "id": "claim-wd-q419-external-ids",
+      "object": {
+        "value": {
+          "wikidata": "Q419"
+        }
+      },
+      "predicate": "field_external_ids",
+      "qualifiers": {},
+      "reviewed_at": "2026-08-07",
+      "reviewed_by": "reviewer-agentic-cursor",
+      "subject_id": "place-wd-q419",
+      "verification_status": "verified"
     },
     {
       "confidence": 0.6,
@@ -154047,10 +155783,10 @@
       },
       "predicate": "field_name_en",
       "qualifiers": {},
-      "reviewed_at": null,
-      "reviewed_by": null,
+      "reviewed_at": "2026-08-07",
+      "reviewed_by": "reviewer-agentic-cursor",
       "subject_id": "place-wd-q419",
-      "verification_status": "candidate"
+      "verification_status": "verified"
     },
     {
       "confidence": 0.6,
@@ -154080,10 +155816,43 @@
       },
       "predicate": "field_name_zh",
       "qualifiers": {},
-      "reviewed_at": null,
-      "reviewed_by": null,
+      "reviewed_at": "2026-08-07",
+      "reviewed_by": "reviewer-agentic-cursor",
       "subject_id": "place-wd-q419",
-      "verification_status": "candidate"
+      "verification_status": "verified"
+    },
+    {
+      "confidence": 0.6,
+      "evidence": [
+        {
+          "accessed": "2026-08-07",
+          "contributors": [],
+          "extraction_method": "structured_mapping",
+          "language": null,
+          "locator": "Q419/project_region/latin_america_caribbean",
+          "native_field_path": "/claims/P297/0",
+          "native_predicate": "P297",
+          "native_record_id": "Q419@2528319086",
+          "qualifiers": [],
+          "rank": "normal",
+          "references": [],
+          "snapshot_id": "wikidata-hydration-2026-08-07-d37c179db21b",
+          "source_id": "wikidata",
+          "source_record_sha256": "8b8d4aef30f9b757dbf20434aaa2f7046ab80c30af996bd700fd5e52900c8ecf",
+          "support": "explicit",
+          "url": "https://www.wikidata.org/wiki/Special:EntityData/Q419.json?revision=2528319086"
+        }
+      ],
+      "id": "claim-wd-q419-region",
+      "object": {
+        "value": "latin_america_caribbean"
+      },
+      "predicate": "field_region",
+      "qualifiers": {},
+      "reviewed_at": "2026-08-07",
+      "reviewed_by": "reviewer-agentic-cursor",
+      "subject_id": "place-wd-q419",
+      "verification_status": "verified"
     },
     {
       "confidence": 0.6,
@@ -154283,10 +156052,45 @@
       },
       "predicate": "field_country_code",
       "qualifiers": {},
-      "reviewed_at": null,
-      "reviewed_by": null,
+      "reviewed_at": "2026-08-07",
+      "reviewed_by": "reviewer-agentic-cursor",
       "subject_id": "place-wd-q424",
-      "verification_status": "candidate"
+      "verification_status": "verified"
+    },
+    {
+      "confidence": 0.6,
+      "evidence": [
+        {
+          "accessed": "2026-08-07",
+          "contributors": [],
+          "extraction_method": "structured_mapping",
+          "language": "en",
+          "locator": "Q424/id",
+          "native_field_path": "/id",
+          "native_predicate": null,
+          "native_record_id": "Q424@2525548124",
+          "qualifiers": [],
+          "rank": null,
+          "references": [],
+          "snapshot_id": "wikidata-hydration-2026-08-07-d37c179db21b",
+          "source_id": "wikidata",
+          "source_record_sha256": "148d4d3837297931bf185e97f75f0e0fa1e00b41b8c02235c7f595278bcdb1a3",
+          "support": "explicit",
+          "url": "https://www.wikidata.org/wiki/Special:EntityData/Q424.json?revision=2525548124"
+        }
+      ],
+      "id": "claim-wd-q424-external-ids",
+      "object": {
+        "value": {
+          "wikidata": "Q424"
+        }
+      },
+      "predicate": "field_external_ids",
+      "qualifiers": {},
+      "reviewed_at": "2026-08-07",
+      "reviewed_by": "reviewer-agentic-cursor",
+      "subject_id": "place-wd-q424",
+      "verification_status": "verified"
     },
     {
       "confidence": 0.6,
@@ -154316,10 +156120,10 @@
       },
       "predicate": "field_name_en",
       "qualifiers": {},
-      "reviewed_at": null,
-      "reviewed_by": null,
+      "reviewed_at": "2026-08-07",
+      "reviewed_by": "reviewer-agentic-cursor",
       "subject_id": "place-wd-q424",
-      "verification_status": "candidate"
+      "verification_status": "verified"
     },
     {
       "confidence": 0.6,
@@ -154349,10 +156153,43 @@
       },
       "predicate": "field_name_zh",
       "qualifiers": {},
-      "reviewed_at": null,
-      "reviewed_by": null,
+      "reviewed_at": "2026-08-07",
+      "reviewed_by": "reviewer-agentic-cursor",
       "subject_id": "place-wd-q424",
-      "verification_status": "candidate"
+      "verification_status": "verified"
+    },
+    {
+      "confidence": 0.6,
+      "evidence": [
+        {
+          "accessed": "2026-08-07",
+          "contributors": [],
+          "extraction_method": "structured_mapping",
+          "language": null,
+          "locator": "Q424/project_region/southeast_asia",
+          "native_field_path": "/claims/P297/0",
+          "native_predicate": "P297",
+          "native_record_id": "Q424@2525548124",
+          "qualifiers": [],
+          "rank": "normal",
+          "references": [],
+          "snapshot_id": "wikidata-hydration-2026-08-07-d37c179db21b",
+          "source_id": "wikidata",
+          "source_record_sha256": "148d4d3837297931bf185e97f75f0e0fa1e00b41b8c02235c7f595278bcdb1a3",
+          "support": "explicit",
+          "url": "https://www.wikidata.org/wiki/Special:EntityData/Q424.json?revision=2525548124"
+        }
+      ],
+      "id": "claim-wd-q424-region",
+      "object": {
+        "value": "southeast_asia"
+      },
+      "predicate": "field_region",
+      "qualifiers": {},
+      "reviewed_at": "2026-08-07",
+      "reviewed_by": "reviewer-agentic-cursor",
+      "subject_id": "place-wd-q424",
+      "verification_status": "verified"
     },
     {
       "confidence": 0.6,
@@ -155178,10 +157015,45 @@
       },
       "predicate": "field_country_code",
       "qualifiers": {},
-      "reviewed_at": null,
-      "reviewed_by": null,
+      "reviewed_at": "2026-08-07",
+      "reviewed_by": "reviewer-agentic-cursor",
       "subject_id": "place-wd-q43",
-      "verification_status": "candidate"
+      "verification_status": "verified"
+    },
+    {
+      "confidence": 0.6,
+      "evidence": [
+        {
+          "accessed": "2026-08-07",
+          "contributors": [],
+          "extraction_method": "structured_mapping",
+          "language": "en",
+          "locator": "Q43/id",
+          "native_field_path": "/id",
+          "native_predicate": null,
+          "native_record_id": "Q43@2528128697",
+          "qualifiers": [],
+          "rank": null,
+          "references": [],
+          "snapshot_id": "wikidata-hydration-2026-08-07-d37c179db21b",
+          "source_id": "wikidata",
+          "source_record_sha256": "ae1ada78c60c563343732bb3e6070b9731c7878c31ddf5b85a80560c0e7d5bb2",
+          "support": "explicit",
+          "url": "https://www.wikidata.org/wiki/Special:EntityData/Q43.json?revision=2528128697"
+        }
+      ],
+      "id": "claim-wd-q43-external-ids",
+      "object": {
+        "value": {
+          "wikidata": "Q43"
+        }
+      },
+      "predicate": "field_external_ids",
+      "qualifiers": {},
+      "reviewed_at": "2026-08-07",
+      "reviewed_by": "reviewer-agentic-cursor",
+      "subject_id": "place-wd-q43",
+      "verification_status": "verified"
     },
     {
       "confidence": 0.6,
@@ -155211,10 +157083,10 @@
       },
       "predicate": "field_name_en",
       "qualifiers": {},
-      "reviewed_at": null,
-      "reviewed_by": null,
+      "reviewed_at": "2026-08-07",
+      "reviewed_by": "reviewer-agentic-cursor",
       "subject_id": "place-wd-q43",
-      "verification_status": "candidate"
+      "verification_status": "verified"
     },
     {
       "confidence": 0.6,
@@ -155244,10 +157116,43 @@
       },
       "predicate": "field_name_zh",
       "qualifiers": {},
-      "reviewed_at": null,
-      "reviewed_by": null,
+      "reviewed_at": "2026-08-07",
+      "reviewed_by": "reviewer-agentic-cursor",
       "subject_id": "place-wd-q43",
-      "verification_status": "candidate"
+      "verification_status": "verified"
+    },
+    {
+      "confidence": 0.6,
+      "evidence": [
+        {
+          "accessed": "2026-08-07",
+          "contributors": [],
+          "extraction_method": "structured_mapping",
+          "language": null,
+          "locator": "Q43/project_region/central_west_asia",
+          "native_field_path": "/claims/P297/0",
+          "native_predicate": "P297",
+          "native_record_id": "Q43@2528128697",
+          "qualifiers": [],
+          "rank": "normal",
+          "references": [],
+          "snapshot_id": "wikidata-hydration-2026-08-07-d37c179db21b",
+          "source_id": "wikidata",
+          "source_record_sha256": "ae1ada78c60c563343732bb3e6070b9731c7878c31ddf5b85a80560c0e7d5bb2",
+          "support": "explicit",
+          "url": "https://www.wikidata.org/wiki/Special:EntityData/Q43.json?revision=2528128697"
+        }
+      ],
+      "id": "claim-wd-q43-region",
+      "object": {
+        "value": "central_west_asia"
+      },
+      "predicate": "field_region",
+      "qualifiers": {},
+      "reviewed_at": "2026-08-07",
+      "reviewed_by": "reviewer-agentic-cursor",
+      "subject_id": "place-wd-q43",
+      "verification_status": "verified"
     },
     {
       "confidence": 0.6,
@@ -156768,10 +158673,45 @@
       },
       "predicate": "field_country_code",
       "qualifiers": {},
-      "reviewed_at": null,
-      "reviewed_by": null,
+      "reviewed_at": "2026-08-07",
+      "reviewed_by": "reviewer-agentic-cursor",
       "subject_id": "place-wd-q45",
-      "verification_status": "candidate"
+      "verification_status": "verified"
+    },
+    {
+      "confidence": 0.6,
+      "evidence": [
+        {
+          "accessed": "2026-08-07",
+          "contributors": [],
+          "extraction_method": "structured_mapping",
+          "language": "en",
+          "locator": "Q45/id",
+          "native_field_path": "/id",
+          "native_predicate": null,
+          "native_record_id": "Q45@2526642878",
+          "qualifiers": [],
+          "rank": null,
+          "references": [],
+          "snapshot_id": "wikidata-hydration-2026-08-07-d37c179db21b",
+          "source_id": "wikidata",
+          "source_record_sha256": "b4d66193bc7f6682c364ae80fc4f452e6a6b123f7b0ca755664bf25086bfe880",
+          "support": "explicit",
+          "url": "https://www.wikidata.org/wiki/Special:EntityData/Q45.json?revision=2526642878"
+        }
+      ],
+      "id": "claim-wd-q45-external-ids",
+      "object": {
+        "value": {
+          "wikidata": "Q45"
+        }
+      },
+      "predicate": "field_external_ids",
+      "qualifiers": {},
+      "reviewed_at": "2026-08-07",
+      "reviewed_by": "reviewer-agentic-cursor",
+      "subject_id": "place-wd-q45",
+      "verification_status": "verified"
     },
     {
       "confidence": 0.6,
@@ -156801,10 +158741,10 @@
       },
       "predicate": "field_name_en",
       "qualifiers": {},
-      "reviewed_at": null,
-      "reviewed_by": null,
+      "reviewed_at": "2026-08-07",
+      "reviewed_by": "reviewer-agentic-cursor",
       "subject_id": "place-wd-q45",
-      "verification_status": "candidate"
+      "verification_status": "verified"
     },
     {
       "confidence": 0.6,
@@ -156834,10 +158774,43 @@
       },
       "predicate": "field_name_zh",
       "qualifiers": {},
-      "reviewed_at": null,
-      "reviewed_by": null,
+      "reviewed_at": "2026-08-07",
+      "reviewed_by": "reviewer-agentic-cursor",
       "subject_id": "place-wd-q45",
-      "verification_status": "candidate"
+      "verification_status": "verified"
+    },
+    {
+      "confidence": 0.6,
+      "evidence": [
+        {
+          "accessed": "2026-08-07",
+          "contributors": [],
+          "extraction_method": "structured_mapping",
+          "language": null,
+          "locator": "Q45/project_region/europe",
+          "native_field_path": "/claims/P297/0",
+          "native_predicate": "P297",
+          "native_record_id": "Q45@2526642878",
+          "qualifiers": [],
+          "rank": "normal",
+          "references": [],
+          "snapshot_id": "wikidata-hydration-2026-08-07-d37c179db21b",
+          "source_id": "wikidata",
+          "source_record_sha256": "b4d66193bc7f6682c364ae80fc4f452e6a6b123f7b0ca755664bf25086bfe880",
+          "support": "explicit",
+          "url": "https://www.wikidata.org/wiki/Special:EntityData/Q45.json?revision=2526642878"
+        }
+      ],
+      "id": "claim-wd-q45-region",
+      "object": {
+        "value": "europe"
+      },
+      "predicate": "field_region",
+      "qualifiers": {},
+      "reviewed_at": "2026-08-07",
+      "reviewed_by": "reviewer-agentic-cursor",
+      "subject_id": "place-wd-q45",
+      "verification_status": "verified"
     },
     {
       "confidence": 0.6,
@@ -178417,10 +180390,45 @@
       },
       "predicate": "field_country_code",
       "qualifiers": {},
-      "reviewed_at": null,
-      "reviewed_by": null,
+      "reviewed_at": "2026-08-07",
+      "reviewed_by": "reviewer-agentic-cursor",
       "subject_id": "place-wd-q55",
-      "verification_status": "candidate"
+      "verification_status": "verified"
+    },
+    {
+      "confidence": 0.6,
+      "evidence": [
+        {
+          "accessed": "2026-08-07",
+          "contributors": [],
+          "extraction_method": "structured_mapping",
+          "language": "en",
+          "locator": "Q55/id",
+          "native_field_path": "/id",
+          "native_predicate": null,
+          "native_record_id": "Q55@2528128713",
+          "qualifiers": [],
+          "rank": null,
+          "references": [],
+          "snapshot_id": "wikidata-hydration-2026-08-07-d37c179db21b",
+          "source_id": "wikidata",
+          "source_record_sha256": "c8bc4ea166f2a4ef985004250b9d7417d5df04a29e24bc8e72fff8abb0146df0",
+          "support": "explicit",
+          "url": "https://www.wikidata.org/wiki/Special:EntityData/Q55.json?revision=2528128713"
+        }
+      ],
+      "id": "claim-wd-q55-external-ids",
+      "object": {
+        "value": {
+          "wikidata": "Q55"
+        }
+      },
+      "predicate": "field_external_ids",
+      "qualifiers": {},
+      "reviewed_at": "2026-08-07",
+      "reviewed_by": "reviewer-agentic-cursor",
+      "subject_id": "place-wd-q55",
+      "verification_status": "verified"
     },
     {
       "confidence": 0.6,
@@ -178450,10 +180458,10 @@
       },
       "predicate": "field_name_en",
       "qualifiers": {},
-      "reviewed_at": null,
-      "reviewed_by": null,
+      "reviewed_at": "2026-08-07",
+      "reviewed_by": "reviewer-agentic-cursor",
       "subject_id": "place-wd-q55",
-      "verification_status": "candidate"
+      "verification_status": "verified"
     },
     {
       "confidence": 0.6,
@@ -178483,10 +180491,104 @@
       },
       "predicate": "field_name_zh",
       "qualifiers": {},
-      "reviewed_at": null,
-      "reviewed_by": null,
+      "reviewed_at": "2026-08-07",
+      "reviewed_by": "reviewer-agentic-cursor",
       "subject_id": "place-wd-q55",
-      "verification_status": "candidate"
+      "verification_status": "verified"
+    },
+    {
+      "confidence": 0.6,
+      "evidence": [
+        {
+          "accessed": "2026-08-07",
+          "contributors": [],
+          "extraction_method": "structured_mapping",
+          "language": null,
+          "locator": "Q55/project_region/europe",
+          "native_field_path": "/claims/P297/0",
+          "native_predicate": "P297",
+          "native_record_id": "Q55@2528128713",
+          "qualifiers": [
+            {
+              "property_id": "P8327",
+              "snaks": [
+                {
+                  "datatype": "wikibase-item",
+                  "datavalue": {
+                    "type": "wikibase-entityid",
+                    "value": {
+                      "entity-type": "item",
+                      "id": "Q29999",
+                      "numeric-id": 29999
+                    }
+                  },
+                  "hash": "42a86bb2628a2074d1cad44976069fef55eae44c",
+                  "property": "P8327",
+                  "snaktype": "value"
+                }
+              ]
+            }
+          ],
+          "rank": "deprecated",
+          "references": [
+            {
+              "hash": "82c286533caa4dab34bd3e66d1c6b9ed9668c6e6",
+              "snaks": {
+                "P813": [
+                  {
+                    "datatype": "time",
+                    "datavalue": {
+                      "type": "time",
+                      "value": {
+                        "after": 0,
+                        "before": 0,
+                        "calendarmodel": "http://www.wikidata.org/entity/Q1985727",
+                        "precision": 11,
+                        "time": "+2023-08-21T00:00:00Z",
+                        "timezone": 0
+                      }
+                    },
+                    "hash": "327accd187ce84d5bce190a38dfefee3e40eb6e9",
+                    "property": "P813",
+                    "snaktype": "value"
+                  }
+                ],
+                "P854": [
+                  {
+                    "datatype": "url",
+                    "datavalue": {
+                      "type": "string",
+                      "value": "https://www.iso.org/obp/ui/#iso:code:3166:NL"
+                    },
+                    "hash": "51b73752ed89cbd863a8ca7674e9cd2daeed5cad",
+                    "property": "P854",
+                    "snaktype": "value"
+                  }
+                ]
+              },
+              "snaks-order": [
+                "P854",
+                "P813"
+              ]
+            }
+          ],
+          "snapshot_id": "wikidata-hydration-2026-08-07-d37c179db21b",
+          "source_id": "wikidata",
+          "source_record_sha256": "c8bc4ea166f2a4ef985004250b9d7417d5df04a29e24bc8e72fff8abb0146df0",
+          "support": "explicit",
+          "url": "https://www.wikidata.org/wiki/Special:EntityData/Q55.json?revision=2528128713"
+        }
+      ],
+      "id": "claim-wd-q55-region",
+      "object": {
+        "value": "europe"
+      },
+      "predicate": "field_region",
+      "qualifiers": {},
+      "reviewed_at": "2026-08-07",
+      "reviewed_by": "reviewer-agentic-cursor",
+      "subject_id": "place-wd-q55",
+      "verification_status": "verified"
     },
     {
       "confidence": 0.6,
@@ -196842,10 +198944,45 @@
       },
       "predicate": "field_country_code",
       "qualifiers": {},
-      "reviewed_at": null,
-      "reviewed_by": null,
+      "reviewed_at": "2026-08-07",
+      "reviewed_by": "reviewer-agentic-cursor",
       "subject_id": "place-wd-q668",
-      "verification_status": "candidate"
+      "verification_status": "verified"
+    },
+    {
+      "confidence": 0.6,
+      "evidence": [
+        {
+          "accessed": "2026-08-07",
+          "contributors": [],
+          "extraction_method": "structured_mapping",
+          "language": "en",
+          "locator": "Q668/id",
+          "native_field_path": "/id",
+          "native_predicate": null,
+          "native_record_id": "Q668@2528007058",
+          "qualifiers": [],
+          "rank": null,
+          "references": [],
+          "snapshot_id": "wikidata-hydration-2026-08-07-d37c179db21b",
+          "source_id": "wikidata",
+          "source_record_sha256": "3c7c1d7e44700054846f1a740373ba882bfea622aec3445523996b05e3d00a01",
+          "support": "explicit",
+          "url": "https://www.wikidata.org/wiki/Special:EntityData/Q668.json?revision=2528007058"
+        }
+      ],
+      "id": "claim-wd-q668-external-ids",
+      "object": {
+        "value": {
+          "wikidata": "Q668"
+        }
+      },
+      "predicate": "field_external_ids",
+      "qualifiers": {},
+      "reviewed_at": "2026-08-07",
+      "reviewed_by": "reviewer-agentic-cursor",
+      "subject_id": "place-wd-q668",
+      "verification_status": "verified"
     },
     {
       "confidence": 0.6,
@@ -196875,10 +199012,10 @@
       },
       "predicate": "field_name_en",
       "qualifiers": {},
-      "reviewed_at": null,
-      "reviewed_by": null,
+      "reviewed_at": "2026-08-07",
+      "reviewed_by": "reviewer-agentic-cursor",
       "subject_id": "place-wd-q668",
-      "verification_status": "candidate"
+      "verification_status": "verified"
     },
     {
       "confidence": 0.6,
@@ -196908,10 +199045,43 @@
       },
       "predicate": "field_name_zh",
       "qualifiers": {},
-      "reviewed_at": null,
-      "reviewed_by": null,
+      "reviewed_at": "2026-08-07",
+      "reviewed_by": "reviewer-agentic-cursor",
       "subject_id": "place-wd-q668",
-      "verification_status": "candidate"
+      "verification_status": "verified"
+    },
+    {
+      "confidence": 0.6,
+      "evidence": [
+        {
+          "accessed": "2026-08-07",
+          "contributors": [],
+          "extraction_method": "structured_mapping",
+          "language": null,
+          "locator": "Q668/project_region/south_asia",
+          "native_field_path": "/claims/P297/0",
+          "native_predicate": "P297",
+          "native_record_id": "Q668@2528007058",
+          "qualifiers": [],
+          "rank": "normal",
+          "references": [],
+          "snapshot_id": "wikidata-hydration-2026-08-07-d37c179db21b",
+          "source_id": "wikidata",
+          "source_record_sha256": "3c7c1d7e44700054846f1a740373ba882bfea622aec3445523996b05e3d00a01",
+          "support": "explicit",
+          "url": "https://www.wikidata.org/wiki/Special:EntityData/Q668.json?revision=2528007058"
+        }
+      ],
+      "id": "claim-wd-q668-region",
+      "object": {
+        "value": "south_asia"
+      },
+      "predicate": "field_region",
+      "qualifiers": {},
+      "reviewed_at": "2026-08-07",
+      "reviewed_by": "reviewer-agentic-cursor",
+      "subject_id": "place-wd-q668",
+      "verification_status": "verified"
     },
     {
       "confidence": 0.6,
@@ -212200,10 +214370,45 @@
       },
       "predicate": "field_country_code",
       "qualifiers": {},
-      "reviewed_at": null,
-      "reviewed_by": null,
+      "reviewed_at": "2026-08-07",
+      "reviewed_by": "reviewer-agentic-cursor",
       "subject_id": "place-wd-q79",
-      "verification_status": "candidate"
+      "verification_status": "verified"
+    },
+    {
+      "confidence": 0.6,
+      "evidence": [
+        {
+          "accessed": "2026-08-07",
+          "contributors": [],
+          "extraction_method": "structured_mapping",
+          "language": "en",
+          "locator": "Q79/id",
+          "native_field_path": "/id",
+          "native_predicate": null,
+          "native_record_id": "Q79@2526641799",
+          "qualifiers": [],
+          "rank": null,
+          "references": [],
+          "snapshot_id": "wikidata-hydration-2026-08-07-d37c179db21b",
+          "source_id": "wikidata",
+          "source_record_sha256": "bb24579e57c84f833f3fc01a116ea70bcf21fb4b77cc1ec21df05cd2c59103b2",
+          "support": "explicit",
+          "url": "https://www.wikidata.org/wiki/Special:EntityData/Q79.json?revision=2526641799"
+        }
+      ],
+      "id": "claim-wd-q79-external-ids",
+      "object": {
+        "value": {
+          "wikidata": "Q79"
+        }
+      },
+      "predicate": "field_external_ids",
+      "qualifiers": {},
+      "reviewed_at": "2026-08-07",
+      "reviewed_by": "reviewer-agentic-cursor",
+      "subject_id": "place-wd-q79",
+      "verification_status": "verified"
     },
     {
       "confidence": 0.6,
@@ -212233,10 +214438,10 @@
       },
       "predicate": "field_name_en",
       "qualifiers": {},
-      "reviewed_at": null,
-      "reviewed_by": null,
+      "reviewed_at": "2026-08-07",
+      "reviewed_by": "reviewer-agentic-cursor",
       "subject_id": "place-wd-q79",
-      "verification_status": "candidate"
+      "verification_status": "verified"
     },
     {
       "confidence": 0.6,
@@ -212266,10 +214471,43 @@
       },
       "predicate": "field_name_zh",
       "qualifiers": {},
-      "reviewed_at": null,
-      "reviewed_by": null,
+      "reviewed_at": "2026-08-07",
+      "reviewed_by": "reviewer-agentic-cursor",
       "subject_id": "place-wd-q79",
-      "verification_status": "candidate"
+      "verification_status": "verified"
+    },
+    {
+      "confidence": 0.6,
+      "evidence": [
+        {
+          "accessed": "2026-08-07",
+          "contributors": [],
+          "extraction_method": "structured_mapping",
+          "language": null,
+          "locator": "Q79/project_region/africa",
+          "native_field_path": "/claims/P297/0",
+          "native_predicate": "P297",
+          "native_record_id": "Q79@2526641799",
+          "qualifiers": [],
+          "rank": "normal",
+          "references": [],
+          "snapshot_id": "wikidata-hydration-2026-08-07-d37c179db21b",
+          "source_id": "wikidata",
+          "source_record_sha256": "bb24579e57c84f833f3fc01a116ea70bcf21fb4b77cc1ec21df05cd2c59103b2",
+          "support": "explicit",
+          "url": "https://www.wikidata.org/wiki/Special:EntityData/Q79.json?revision=2526641799"
+        }
+      ],
+      "id": "claim-wd-q79-region",
+      "object": {
+        "value": "africa"
+      },
+      "predicate": "field_region",
+      "qualifiers": {},
+      "reviewed_at": "2026-08-07",
+      "reviewed_by": "reviewer-agentic-cursor",
+      "subject_id": "place-wd-q79",
+      "verification_status": "verified"
     },
     {
       "confidence": 0.6,
@@ -212895,10 +215133,45 @@
       },
       "predicate": "field_country_code",
       "qualifiers": {},
-      "reviewed_at": null,
-      "reviewed_by": null,
+      "reviewed_at": "2026-08-07",
+      "reviewed_by": "reviewer-agentic-cursor",
       "subject_id": "place-wd-q794",
-      "verification_status": "candidate"
+      "verification_status": "verified"
+    },
+    {
+      "confidence": 0.6,
+      "evidence": [
+        {
+          "accessed": "2026-08-07",
+          "contributors": [],
+          "extraction_method": "structured_mapping",
+          "language": "en",
+          "locator": "Q794/id",
+          "native_field_path": "/id",
+          "native_predicate": null,
+          "native_record_id": "Q794@2526100392",
+          "qualifiers": [],
+          "rank": null,
+          "references": [],
+          "snapshot_id": "wikidata-hydration-2026-08-07-d37c179db21b",
+          "source_id": "wikidata",
+          "source_record_sha256": "8958740adf19c39bc18a66e76b1fbb9a0e95c93505c63a8c711dd6f629376e20",
+          "support": "explicit",
+          "url": "https://www.wikidata.org/wiki/Special:EntityData/Q794.json?revision=2526100392"
+        }
+      ],
+      "id": "claim-wd-q794-external-ids",
+      "object": {
+        "value": {
+          "wikidata": "Q794"
+        }
+      },
+      "predicate": "field_external_ids",
+      "qualifiers": {},
+      "reviewed_at": "2026-08-07",
+      "reviewed_by": "reviewer-agentic-cursor",
+      "subject_id": "place-wd-q794",
+      "verification_status": "verified"
     },
     {
       "confidence": 0.6,
@@ -212928,10 +215201,10 @@
       },
       "predicate": "field_name_en",
       "qualifiers": {},
-      "reviewed_at": null,
-      "reviewed_by": null,
+      "reviewed_at": "2026-08-07",
+      "reviewed_by": "reviewer-agentic-cursor",
       "subject_id": "place-wd-q794",
-      "verification_status": "candidate"
+      "verification_status": "verified"
     },
     {
       "confidence": 0.6,
@@ -212961,10 +215234,43 @@
       },
       "predicate": "field_name_zh",
       "qualifiers": {},
-      "reviewed_at": null,
-      "reviewed_by": null,
+      "reviewed_at": "2026-08-07",
+      "reviewed_by": "reviewer-agentic-cursor",
       "subject_id": "place-wd-q794",
-      "verification_status": "candidate"
+      "verification_status": "verified"
+    },
+    {
+      "confidence": 0.6,
+      "evidence": [
+        {
+          "accessed": "2026-08-07",
+          "contributors": [],
+          "extraction_method": "structured_mapping",
+          "language": null,
+          "locator": "Q794/project_region/central_west_asia",
+          "native_field_path": "/claims/P297/0",
+          "native_predicate": "P297",
+          "native_record_id": "Q794@2526100392",
+          "qualifiers": [],
+          "rank": "normal",
+          "references": [],
+          "snapshot_id": "wikidata-hydration-2026-08-07-d37c179db21b",
+          "source_id": "wikidata",
+          "source_record_sha256": "8958740adf19c39bc18a66e76b1fbb9a0e95c93505c63a8c711dd6f629376e20",
+          "support": "explicit",
+          "url": "https://www.wikidata.org/wiki/Special:EntityData/Q794.json?revision=2526100392"
+        }
+      ],
+      "id": "claim-wd-q794-region",
+      "object": {
+        "value": "central_west_asia"
+      },
+      "predicate": "field_region",
+      "qualifiers": {},
+      "reviewed_at": "2026-08-07",
+      "reviewed_by": "reviewer-agentic-cursor",
+      "subject_id": "place-wd-q794",
+      "verification_status": "verified"
     },
     {
       "confidence": 0.6,
@@ -216456,10 +218762,45 @@
       },
       "predicate": "field_country_code",
       "qualifiers": {},
-      "reviewed_at": null,
-      "reviewed_by": null,
+      "reviewed_at": "2026-08-07",
+      "reviewed_by": "reviewer-agentic-cursor",
       "subject_id": "place-wd-q819",
-      "verification_status": "candidate"
+      "verification_status": "verified"
+    },
+    {
+      "confidence": 0.6,
+      "evidence": [
+        {
+          "accessed": "2026-08-07",
+          "contributors": [],
+          "extraction_method": "structured_mapping",
+          "language": "en",
+          "locator": "Q819/id",
+          "native_field_path": "/id",
+          "native_predicate": null,
+          "native_record_id": "Q819@2525548050",
+          "qualifiers": [],
+          "rank": null,
+          "references": [],
+          "snapshot_id": "wikidata-hydration-2026-08-07-d37c179db21b",
+          "source_id": "wikidata",
+          "source_record_sha256": "b9e93a3e83fd0f9880f908b978f099304878e3eef9e9eafb82b0c2f2dd40c01b",
+          "support": "explicit",
+          "url": "https://www.wikidata.org/wiki/Special:EntityData/Q819.json?revision=2525548050"
+        }
+      ],
+      "id": "claim-wd-q819-external-ids",
+      "object": {
+        "value": {
+          "wikidata": "Q819"
+        }
+      },
+      "predicate": "field_external_ids",
+      "qualifiers": {},
+      "reviewed_at": "2026-08-07",
+      "reviewed_by": "reviewer-agentic-cursor",
+      "subject_id": "place-wd-q819",
+      "verification_status": "verified"
     },
     {
       "confidence": 0.6,
@@ -216489,10 +218830,10 @@
       },
       "predicate": "field_name_en",
       "qualifiers": {},
-      "reviewed_at": null,
-      "reviewed_by": null,
+      "reviewed_at": "2026-08-07",
+      "reviewed_by": "reviewer-agentic-cursor",
       "subject_id": "place-wd-q819",
-      "verification_status": "candidate"
+      "verification_status": "verified"
     },
     {
       "confidence": 0.6,
@@ -216522,10 +218863,43 @@
       },
       "predicate": "field_name_zh",
       "qualifiers": {},
-      "reviewed_at": null,
-      "reviewed_by": null,
+      "reviewed_at": "2026-08-07",
+      "reviewed_by": "reviewer-agentic-cursor",
       "subject_id": "place-wd-q819",
-      "verification_status": "candidate"
+      "verification_status": "verified"
+    },
+    {
+      "confidence": 0.6,
+      "evidence": [
+        {
+          "accessed": "2026-08-07",
+          "contributors": [],
+          "extraction_method": "structured_mapping",
+          "language": null,
+          "locator": "Q819/project_region/southeast_asia",
+          "native_field_path": "/claims/P297/0",
+          "native_predicate": "P297",
+          "native_record_id": "Q819@2525548050",
+          "qualifiers": [],
+          "rank": "normal",
+          "references": [],
+          "snapshot_id": "wikidata-hydration-2026-08-07-d37c179db21b",
+          "source_id": "wikidata",
+          "source_record_sha256": "b9e93a3e83fd0f9880f908b978f099304878e3eef9e9eafb82b0c2f2dd40c01b",
+          "support": "explicit",
+          "url": "https://www.wikidata.org/wiki/Special:EntityData/Q819.json?revision=2525548050"
+        }
+      ],
+      "id": "claim-wd-q819-region",
+      "object": {
+        "value": "southeast_asia"
+      },
+      "predicate": "field_region",
+      "qualifiers": {},
+      "reviewed_at": "2026-08-07",
+      "reviewed_by": "reviewer-agentic-cursor",
+      "subject_id": "place-wd-q819",
+      "verification_status": "verified"
     },
     {
       "confidence": 0.6,
@@ -217653,10 +220027,45 @@
       },
       "predicate": "field_country_code",
       "qualifiers": {},
-      "reviewed_at": null,
-      "reviewed_by": null,
+      "reviewed_at": "2026-08-07",
+      "reviewed_by": "reviewer-agentic-cursor",
       "subject_id": "place-wd-q833",
-      "verification_status": "candidate"
+      "verification_status": "verified"
+    },
+    {
+      "confidence": 0.6,
+      "evidence": [
+        {
+          "accessed": "2026-08-07",
+          "contributors": [],
+          "extraction_method": "structured_mapping",
+          "language": "en",
+          "locator": "Q833/id",
+          "native_field_path": "/id",
+          "native_predicate": null,
+          "native_record_id": "Q833@2528320048",
+          "qualifiers": [],
+          "rank": null,
+          "references": [],
+          "snapshot_id": "wikidata-hydration-2026-08-07-d37c179db21b",
+          "source_id": "wikidata",
+          "source_record_sha256": "1e1debdb4db532033185a2dc4b492f5e51af39ab9784e9686fc43122b0c60507",
+          "support": "explicit",
+          "url": "https://www.wikidata.org/wiki/Special:EntityData/Q833.json?revision=2528320048"
+        }
+      ],
+      "id": "claim-wd-q833-external-ids",
+      "object": {
+        "value": {
+          "wikidata": "Q833"
+        }
+      },
+      "predicate": "field_external_ids",
+      "qualifiers": {},
+      "reviewed_at": "2026-08-07",
+      "reviewed_by": "reviewer-agentic-cursor",
+      "subject_id": "place-wd-q833",
+      "verification_status": "verified"
     },
     {
       "confidence": 0.6,
@@ -217686,10 +220095,10 @@
       },
       "predicate": "field_name_en",
       "qualifiers": {},
-      "reviewed_at": null,
-      "reviewed_by": null,
+      "reviewed_at": "2026-08-07",
+      "reviewed_by": "reviewer-agentic-cursor",
       "subject_id": "place-wd-q833",
-      "verification_status": "candidate"
+      "verification_status": "verified"
     },
     {
       "confidence": 0.6,
@@ -217719,10 +220128,43 @@
       },
       "predicate": "field_name_zh",
       "qualifiers": {},
-      "reviewed_at": null,
-      "reviewed_by": null,
+      "reviewed_at": "2026-08-07",
+      "reviewed_by": "reviewer-agentic-cursor",
       "subject_id": "place-wd-q833",
-      "verification_status": "candidate"
+      "verification_status": "verified"
+    },
+    {
+      "confidence": 0.6,
+      "evidence": [
+        {
+          "accessed": "2026-08-07",
+          "contributors": [],
+          "extraction_method": "structured_mapping",
+          "language": null,
+          "locator": "Q833/project_region/southeast_asia",
+          "native_field_path": "/claims/P297/0",
+          "native_predicate": "P297",
+          "native_record_id": "Q833@2528320048",
+          "qualifiers": [],
+          "rank": "normal",
+          "references": [],
+          "snapshot_id": "wikidata-hydration-2026-08-07-d37c179db21b",
+          "source_id": "wikidata",
+          "source_record_sha256": "1e1debdb4db532033185a2dc4b492f5e51af39ab9784e9686fc43122b0c60507",
+          "support": "explicit",
+          "url": "https://www.wikidata.org/wiki/Special:EntityData/Q833.json?revision=2528320048"
+        }
+      ],
+      "id": "claim-wd-q833-region",
+      "object": {
+        "value": "southeast_asia"
+      },
+      "predicate": "field_region",
+      "qualifiers": {},
+      "reviewed_at": "2026-08-07",
+      "reviewed_by": "reviewer-agentic-cursor",
+      "subject_id": "place-wd-q833",
+      "verification_status": "verified"
     },
     {
       "confidence": 0.6,
@@ -217893,10 +220335,45 @@
       },
       "predicate": "field_country_code",
       "qualifiers": {},
-      "reviewed_at": null,
-      "reviewed_by": null,
+      "reviewed_at": "2026-08-07",
+      "reviewed_by": "reviewer-agentic-cursor",
       "subject_id": "place-wd-q836",
-      "verification_status": "candidate"
+      "verification_status": "verified"
+    },
+    {
+      "confidence": 0.6,
+      "evidence": [
+        {
+          "accessed": "2026-08-07",
+          "contributors": [],
+          "extraction_method": "structured_mapping",
+          "language": "en",
+          "locator": "Q836/id",
+          "native_field_path": "/id",
+          "native_predicate": null,
+          "native_record_id": "Q836@2525548092",
+          "qualifiers": [],
+          "rank": null,
+          "references": [],
+          "snapshot_id": "wikidata-hydration-2026-08-07-d37c179db21b",
+          "source_id": "wikidata",
+          "source_record_sha256": "cc754e88d9ed87dfa4101cd79eef7d371d6ca1e941208746a576f183502215c5",
+          "support": "explicit",
+          "url": "https://www.wikidata.org/wiki/Special:EntityData/Q836.json?revision=2525548092"
+        }
+      ],
+      "id": "claim-wd-q836-external-ids",
+      "object": {
+        "value": {
+          "wikidata": "Q836"
+        }
+      },
+      "predicate": "field_external_ids",
+      "qualifiers": {},
+      "reviewed_at": "2026-08-07",
+      "reviewed_by": "reviewer-agentic-cursor",
+      "subject_id": "place-wd-q836",
+      "verification_status": "verified"
     },
     {
       "confidence": 0.6,
@@ -217926,10 +220403,10 @@
       },
       "predicate": "field_name_en",
       "qualifiers": {},
-      "reviewed_at": null,
-      "reviewed_by": null,
+      "reviewed_at": "2026-08-07",
+      "reviewed_by": "reviewer-agentic-cursor",
       "subject_id": "place-wd-q836",
-      "verification_status": "candidate"
+      "verification_status": "verified"
     },
     {
       "confidence": 0.6,
@@ -217959,10 +220436,85 @@
       },
       "predicate": "field_name_zh",
       "qualifiers": {},
-      "reviewed_at": null,
-      "reviewed_by": null,
+      "reviewed_at": "2026-08-07",
+      "reviewed_by": "reviewer-agentic-cursor",
       "subject_id": "place-wd-q836",
-      "verification_status": "candidate"
+      "verification_status": "verified"
+    },
+    {
+      "confidence": 0.6,
+      "evidence": [
+        {
+          "accessed": "2026-08-07",
+          "contributors": [],
+          "extraction_method": "structured_mapping",
+          "language": null,
+          "locator": "Q836/project_region/southeast_asia",
+          "native_field_path": "/claims/P297/0",
+          "native_predicate": "P297",
+          "native_record_id": "Q836@2525548092",
+          "qualifiers": [
+            {
+              "property_id": "P580",
+              "snaks": [
+                {
+                  "datatype": "time",
+                  "datavalue": {
+                    "type": "time",
+                    "value": {
+                      "after": 0,
+                      "before": 0,
+                      "calendarmodel": "http://www.wikidata.org/entity/Q1985727",
+                      "precision": 9,
+                      "time": "+1989-00-00T00:00:00Z",
+                      "timezone": 0
+                    }
+                  },
+                  "hash": "847ac9cf370c98288b78380b0326f288193bdfe9",
+                  "property": "P580",
+                  "snaktype": "value"
+                }
+              ]
+            },
+            {
+              "property_id": "P805",
+              "snaks": [
+                {
+                  "datatype": "wikibase-item",
+                  "datavalue": {
+                    "type": "wikibase-entityid",
+                    "value": {
+                      "entity-type": "item",
+                      "id": "Q389806",
+                      "numeric-id": 389806
+                    }
+                  },
+                  "hash": "09cfd2d07b165799ac7105dfccd2eb2e83c088ec",
+                  "property": "P805",
+                  "snaktype": "value"
+                }
+              ]
+            }
+          ],
+          "rank": "preferred",
+          "references": [],
+          "snapshot_id": "wikidata-hydration-2026-08-07-d37c179db21b",
+          "source_id": "wikidata",
+          "source_record_sha256": "cc754e88d9ed87dfa4101cd79eef7d371d6ca1e941208746a576f183502215c5",
+          "support": "explicit",
+          "url": "https://www.wikidata.org/wiki/Special:EntityData/Q836.json?revision=2525548092"
+        }
+      ],
+      "id": "claim-wd-q836-region",
+      "object": {
+        "value": "southeast_asia"
+      },
+      "predicate": "field_region",
+      "qualifiers": {},
+      "reviewed_at": "2026-08-07",
+      "reviewed_by": "reviewer-agentic-cursor",
+      "subject_id": "place-wd-q836",
+      "verification_status": "verified"
     },
     {
       "confidence": 0.6,
@@ -220210,10 +222762,45 @@
       },
       "predicate": "field_country_code",
       "qualifiers": {},
-      "reviewed_at": null,
-      "reviewed_by": null,
+      "reviewed_at": "2026-08-07",
+      "reviewed_by": "reviewer-agentic-cursor",
       "subject_id": "place-wd-q851",
-      "verification_status": "candidate"
+      "verification_status": "verified"
+    },
+    {
+      "confidence": 0.6,
+      "evidence": [
+        {
+          "accessed": "2026-08-07",
+          "contributors": [],
+          "extraction_method": "structured_mapping",
+          "language": "en",
+          "locator": "Q851/id",
+          "native_field_path": "/id",
+          "native_predicate": null,
+          "native_record_id": "Q851@2526100939",
+          "qualifiers": [],
+          "rank": null,
+          "references": [],
+          "snapshot_id": "wikidata-hydration-2026-08-07-d37c179db21b",
+          "source_id": "wikidata",
+          "source_record_sha256": "bd921cd2c17bcdc3b452ad6e84f32437de5fd658ce052597ca98f890f699653c",
+          "support": "explicit",
+          "url": "https://www.wikidata.org/wiki/Special:EntityData/Q851.json?revision=2526100939"
+        }
+      ],
+      "id": "claim-wd-q851-external-ids",
+      "object": {
+        "value": {
+          "wikidata": "Q851"
+        }
+      },
+      "predicate": "field_external_ids",
+      "qualifiers": {},
+      "reviewed_at": "2026-08-07",
+      "reviewed_by": "reviewer-agentic-cursor",
+      "subject_id": "place-wd-q851",
+      "verification_status": "verified"
     },
     {
       "confidence": 0.6,
@@ -220243,10 +222830,10 @@
       },
       "predicate": "field_name_en",
       "qualifiers": {},
-      "reviewed_at": null,
-      "reviewed_by": null,
+      "reviewed_at": "2026-08-07",
+      "reviewed_by": "reviewer-agentic-cursor",
       "subject_id": "place-wd-q851",
-      "verification_status": "candidate"
+      "verification_status": "verified"
     },
     {
       "confidence": 0.6,
@@ -220276,10 +222863,43 @@
       },
       "predicate": "field_name_zh",
       "qualifiers": {},
-      "reviewed_at": null,
-      "reviewed_by": null,
+      "reviewed_at": "2026-08-07",
+      "reviewed_by": "reviewer-agentic-cursor",
       "subject_id": "place-wd-q851",
-      "verification_status": "candidate"
+      "verification_status": "verified"
+    },
+    {
+      "confidence": 0.6,
+      "evidence": [
+        {
+          "accessed": "2026-08-07",
+          "contributors": [],
+          "extraction_method": "structured_mapping",
+          "language": null,
+          "locator": "Q851/project_region/central_west_asia",
+          "native_field_path": "/claims/P297/0",
+          "native_predicate": "P297",
+          "native_record_id": "Q851@2526100939",
+          "qualifiers": [],
+          "rank": "normal",
+          "references": [],
+          "snapshot_id": "wikidata-hydration-2026-08-07-d37c179db21b",
+          "source_id": "wikidata",
+          "source_record_sha256": "bd921cd2c17bcdc3b452ad6e84f32437de5fd658ce052597ca98f890f699653c",
+          "support": "explicit",
+          "url": "https://www.wikidata.org/wiki/Special:EntityData/Q851.json?revision=2526100939"
+        }
+      ],
+      "id": "claim-wd-q851-region",
+      "object": {
+        "value": "central_west_asia"
+      },
+      "predicate": "field_region",
+      "qualifiers": {},
+      "reviewed_at": "2026-08-07",
+      "reviewed_by": "reviewer-agentic-cursor",
+      "subject_id": "place-wd-q851",
+      "verification_status": "verified"
     },
     {
       "confidence": 0.6,
@@ -223914,10 +226534,45 @@
       },
       "predicate": "field_country_code",
       "qualifiers": {},
-      "reviewed_at": null,
-      "reviewed_by": null,
+      "reviewed_at": "2026-08-07",
+      "reviewed_by": "reviewer-agentic-cursor",
       "subject_id": "place-wd-q869",
-      "verification_status": "candidate"
+      "verification_status": "verified"
+    },
+    {
+      "confidence": 0.6,
+      "evidence": [
+        {
+          "accessed": "2026-08-07",
+          "contributors": [],
+          "extraction_method": "structured_mapping",
+          "language": "en",
+          "locator": "Q869/id",
+          "native_field_path": "/id",
+          "native_predicate": null,
+          "native_record_id": "Q869@2526643010",
+          "qualifiers": [],
+          "rank": null,
+          "references": [],
+          "snapshot_id": "wikidata-hydration-2026-08-07-d37c179db21b",
+          "source_id": "wikidata",
+          "source_record_sha256": "085d98688a74479e0a239eee425e52780eab68e49bdc59f8c6b986f0557aee48",
+          "support": "explicit",
+          "url": "https://www.wikidata.org/wiki/Special:EntityData/Q869.json?revision=2526643010"
+        }
+      ],
+      "id": "claim-wd-q869-external-ids",
+      "object": {
+        "value": {
+          "wikidata": "Q869"
+        }
+      },
+      "predicate": "field_external_ids",
+      "qualifiers": {},
+      "reviewed_at": "2026-08-07",
+      "reviewed_by": "reviewer-agentic-cursor",
+      "subject_id": "place-wd-q869",
+      "verification_status": "verified"
     },
     {
       "confidence": 0.6,
@@ -223947,10 +226602,10 @@
       },
       "predicate": "field_name_en",
       "qualifiers": {},
-      "reviewed_at": null,
-      "reviewed_by": null,
+      "reviewed_at": "2026-08-07",
+      "reviewed_by": "reviewer-agentic-cursor",
       "subject_id": "place-wd-q869",
-      "verification_status": "candidate"
+      "verification_status": "verified"
     },
     {
       "confidence": 0.6,
@@ -223980,10 +226635,43 @@
       },
       "predicate": "field_name_zh",
       "qualifiers": {},
-      "reviewed_at": null,
-      "reviewed_by": null,
+      "reviewed_at": "2026-08-07",
+      "reviewed_by": "reviewer-agentic-cursor",
       "subject_id": "place-wd-q869",
-      "verification_status": "candidate"
+      "verification_status": "verified"
+    },
+    {
+      "confidence": 0.6,
+      "evidence": [
+        {
+          "accessed": "2026-08-07",
+          "contributors": [],
+          "extraction_method": "structured_mapping",
+          "language": null,
+          "locator": "Q869/project_region/southeast_asia",
+          "native_field_path": "/claims/P297/0",
+          "native_predicate": "P297",
+          "native_record_id": "Q869@2526643010",
+          "qualifiers": [],
+          "rank": "normal",
+          "references": [],
+          "snapshot_id": "wikidata-hydration-2026-08-07-d37c179db21b",
+          "source_id": "wikidata",
+          "source_record_sha256": "085d98688a74479e0a239eee425e52780eab68e49bdc59f8c6b986f0557aee48",
+          "support": "explicit",
+          "url": "https://www.wikidata.org/wiki/Special:EntityData/Q869.json?revision=2526643010"
+        }
+      ],
+      "id": "claim-wd-q869-region",
+      "object": {
+        "value": "southeast_asia"
+      },
+      "predicate": "field_region",
+      "qualifiers": {},
+      "reviewed_at": "2026-08-07",
+      "reviewed_by": "reviewer-agentic-cursor",
+      "subject_id": "place-wd-q869",
+      "verification_status": "verified"
     },
     {
       "confidence": 0.6,
@@ -224801,10 +227489,45 @@
       },
       "predicate": "field_country_code",
       "qualifiers": {},
-      "reviewed_at": null,
-      "reviewed_by": null,
+      "reviewed_at": "2026-08-07",
+      "reviewed_by": "reviewer-agentic-cursor",
       "subject_id": "place-wd-q878",
-      "verification_status": "candidate"
+      "verification_status": "verified"
+    },
+    {
+      "confidence": 0.6,
+      "evidence": [
+        {
+          "accessed": "2026-08-07",
+          "contributors": [],
+          "extraction_method": "structured_mapping",
+          "language": "en",
+          "locator": "Q878/id",
+          "native_field_path": "/id",
+          "native_predicate": null,
+          "native_record_id": "Q878@2528417626",
+          "qualifiers": [],
+          "rank": null,
+          "references": [],
+          "snapshot_id": "wikidata-hydration-2026-08-07-d37c179db21b",
+          "source_id": "wikidata",
+          "source_record_sha256": "452e8d859c01786cdc390aaf38289d691ec42c3026190d4104d3cd9064387cad",
+          "support": "explicit",
+          "url": "https://www.wikidata.org/wiki/Special:EntityData/Q878.json?revision=2528417626"
+        }
+      ],
+      "id": "claim-wd-q878-external-ids",
+      "object": {
+        "value": {
+          "wikidata": "Q878"
+        }
+      },
+      "predicate": "field_external_ids",
+      "qualifiers": {},
+      "reviewed_at": "2026-08-07",
+      "reviewed_by": "reviewer-agentic-cursor",
+      "subject_id": "place-wd-q878",
+      "verification_status": "verified"
     },
     {
       "confidence": 0.6,
@@ -224834,10 +227557,10 @@
       },
       "predicate": "field_name_en",
       "qualifiers": {},
-      "reviewed_at": null,
-      "reviewed_by": null,
+      "reviewed_at": "2026-08-07",
+      "reviewed_by": "reviewer-agentic-cursor",
       "subject_id": "place-wd-q878",
-      "verification_status": "candidate"
+      "verification_status": "verified"
     },
     {
       "confidence": 0.6,
@@ -224867,10 +227590,43 @@
       },
       "predicate": "field_name_zh",
       "qualifiers": {},
-      "reviewed_at": null,
-      "reviewed_by": null,
+      "reviewed_at": "2026-08-07",
+      "reviewed_by": "reviewer-agentic-cursor",
       "subject_id": "place-wd-q878",
-      "verification_status": "candidate"
+      "verification_status": "verified"
+    },
+    {
+      "confidence": 0.6,
+      "evidence": [
+        {
+          "accessed": "2026-08-07",
+          "contributors": [],
+          "extraction_method": "structured_mapping",
+          "language": null,
+          "locator": "Q878/project_region/central_west_asia",
+          "native_field_path": "/claims/P297/0",
+          "native_predicate": "P297",
+          "native_record_id": "Q878@2528417626",
+          "qualifiers": [],
+          "rank": "normal",
+          "references": [],
+          "snapshot_id": "wikidata-hydration-2026-08-07-d37c179db21b",
+          "source_id": "wikidata",
+          "source_record_sha256": "452e8d859c01786cdc390aaf38289d691ec42c3026190d4104d3cd9064387cad",
+          "support": "explicit",
+          "url": "https://www.wikidata.org/wiki/Special:EntityData/Q878.json?revision=2528417626"
+        }
+      ],
+      "id": "claim-wd-q878-region",
+      "object": {
+        "value": "central_west_asia"
+      },
+      "predicate": "field_region",
+      "qualifiers": {},
+      "reviewed_at": "2026-08-07",
+      "reviewed_by": "reviewer-agentic-cursor",
+      "subject_id": "place-wd-q878",
+      "verification_status": "verified"
     },
     {
       "confidence": 0.6,
@@ -224900,10 +227656,45 @@
       },
       "predicate": "field_country_code",
       "qualifiers": {},
-      "reviewed_at": null,
-      "reviewed_by": null,
+      "reviewed_at": "2026-08-07",
+      "reviewed_by": "reviewer-agentic-cursor",
       "subject_id": "place-wd-q881",
-      "verification_status": "candidate"
+      "verification_status": "verified"
+    },
+    {
+      "confidence": 0.6,
+      "evidence": [
+        {
+          "accessed": "2026-08-07",
+          "contributors": [],
+          "extraction_method": "structured_mapping",
+          "language": "en",
+          "locator": "Q881/id",
+          "native_field_path": "/id",
+          "native_predicate": null,
+          "native_record_id": "Q881@2526643136",
+          "qualifiers": [],
+          "rank": null,
+          "references": [],
+          "snapshot_id": "wikidata-hydration-2026-08-07-d37c179db21b",
+          "source_id": "wikidata",
+          "source_record_sha256": "cf3040f87b924db1d5ed77e04d6230e83fb9cdc5f58843fb16c5aa3d963adde4",
+          "support": "explicit",
+          "url": "https://www.wikidata.org/wiki/Special:EntityData/Q881.json?revision=2526643136"
+        }
+      ],
+      "id": "claim-wd-q881-external-ids",
+      "object": {
+        "value": {
+          "wikidata": "Q881"
+        }
+      },
+      "predicate": "field_external_ids",
+      "qualifiers": {},
+      "reviewed_at": "2026-08-07",
+      "reviewed_by": "reviewer-agentic-cursor",
+      "subject_id": "place-wd-q881",
+      "verification_status": "verified"
     },
     {
       "confidence": 0.6,
@@ -224933,10 +227724,10 @@
       },
       "predicate": "field_name_en",
       "qualifiers": {},
-      "reviewed_at": null,
-      "reviewed_by": null,
+      "reviewed_at": "2026-08-07",
+      "reviewed_by": "reviewer-agentic-cursor",
       "subject_id": "place-wd-q881",
-      "verification_status": "candidate"
+      "verification_status": "verified"
     },
     {
       "confidence": 0.6,
@@ -224966,10 +227757,43 @@
       },
       "predicate": "field_name_zh",
       "qualifiers": {},
-      "reviewed_at": null,
-      "reviewed_by": null,
+      "reviewed_at": "2026-08-07",
+      "reviewed_by": "reviewer-agentic-cursor",
       "subject_id": "place-wd-q881",
-      "verification_status": "candidate"
+      "verification_status": "verified"
+    },
+    {
+      "confidence": 0.6,
+      "evidence": [
+        {
+          "accessed": "2026-08-07",
+          "contributors": [],
+          "extraction_method": "structured_mapping",
+          "language": null,
+          "locator": "Q881/project_region/southeast_asia",
+          "native_field_path": "/claims/P297/0",
+          "native_predicate": "P297",
+          "native_record_id": "Q881@2526643136",
+          "qualifiers": [],
+          "rank": "normal",
+          "references": [],
+          "snapshot_id": "wikidata-hydration-2026-08-07-d37c179db21b",
+          "source_id": "wikidata",
+          "source_record_sha256": "cf3040f87b924db1d5ed77e04d6230e83fb9cdc5f58843fb16c5aa3d963adde4",
+          "support": "explicit",
+          "url": "https://www.wikidata.org/wiki/Special:EntityData/Q881.json?revision=2526643136"
+        }
+      ],
+      "id": "claim-wd-q881-region",
+      "object": {
+        "value": "southeast_asia"
+      },
+      "predicate": "field_region",
+      "qualifiers": {},
+      "reviewed_at": "2026-08-07",
+      "reviewed_by": "reviewer-agentic-cursor",
+      "subject_id": "place-wd-q881",
+      "verification_status": "verified"
     },
     {
       "confidence": 0.6,
@@ -224999,10 +227823,45 @@
       },
       "predicate": "field_country_code",
       "qualifiers": {},
-      "reviewed_at": null,
-      "reviewed_by": null,
+      "reviewed_at": "2026-08-07",
+      "reviewed_by": "reviewer-agentic-cursor",
       "subject_id": "place-wd-q884",
-      "verification_status": "candidate"
+      "verification_status": "verified"
+    },
+    {
+      "confidence": 0.6,
+      "evidence": [
+        {
+          "accessed": "2026-08-07",
+          "contributors": [],
+          "extraction_method": "structured_mapping",
+          "language": "en",
+          "locator": "Q884/id",
+          "native_field_path": "/id",
+          "native_predicate": null,
+          "native_record_id": "Q884@2526642204",
+          "qualifiers": [],
+          "rank": null,
+          "references": [],
+          "snapshot_id": "wikidata-hydration-2026-08-07-d37c179db21b",
+          "source_id": "wikidata",
+          "source_record_sha256": "f5082fa4fc5d4ec2ca1c363cb14c35f0b1bab0794021050073ea4cb759dfa584",
+          "support": "explicit",
+          "url": "https://www.wikidata.org/wiki/Special:EntityData/Q884.json?revision=2526642204"
+        }
+      ],
+      "id": "claim-wd-q884-external-ids",
+      "object": {
+        "value": {
+          "wikidata": "Q884"
+        }
+      },
+      "predicate": "field_external_ids",
+      "qualifiers": {},
+      "reviewed_at": "2026-08-07",
+      "reviewed_by": "reviewer-agentic-cursor",
+      "subject_id": "place-wd-q884",
+      "verification_status": "verified"
     },
     {
       "confidence": 0.6,
@@ -225032,10 +227891,10 @@
       },
       "predicate": "field_name_en",
       "qualifiers": {},
-      "reviewed_at": null,
-      "reviewed_by": null,
+      "reviewed_at": "2026-08-07",
+      "reviewed_by": "reviewer-agentic-cursor",
       "subject_id": "place-wd-q884",
-      "verification_status": "candidate"
+      "verification_status": "verified"
     },
     {
       "confidence": 0.6,
@@ -225065,10 +227924,43 @@
       },
       "predicate": "field_name_zh",
       "qualifiers": {},
-      "reviewed_at": null,
-      "reviewed_by": null,
+      "reviewed_at": "2026-08-07",
+      "reviewed_by": "reviewer-agentic-cursor",
       "subject_id": "place-wd-q884",
-      "verification_status": "candidate"
+      "verification_status": "verified"
+    },
+    {
+      "confidence": 0.6,
+      "evidence": [
+        {
+          "accessed": "2026-08-07",
+          "contributors": [],
+          "extraction_method": "structured_mapping",
+          "language": null,
+          "locator": "Q884/project_region/east_asia",
+          "native_field_path": "/claims/P297/0",
+          "native_predicate": "P297",
+          "native_record_id": "Q884@2526642204",
+          "qualifiers": [],
+          "rank": "normal",
+          "references": [],
+          "snapshot_id": "wikidata-hydration-2026-08-07-d37c179db21b",
+          "source_id": "wikidata",
+          "source_record_sha256": "f5082fa4fc5d4ec2ca1c363cb14c35f0b1bab0794021050073ea4cb759dfa584",
+          "support": "explicit",
+          "url": "https://www.wikidata.org/wiki/Special:EntityData/Q884.json?revision=2526642204"
+        }
+      ],
+      "id": "claim-wd-q884-region",
+      "object": {
+        "value": "east_asia"
+      },
+      "predicate": "field_region",
+      "qualifiers": {},
+      "reviewed_at": "2026-08-07",
+      "reviewed_by": "reviewer-agentic-cursor",
+      "subject_id": "place-wd-q884",
+      "verification_status": "verified"
     },
     {
       "confidence": 0.6,
@@ -226226,10 +229118,45 @@
       },
       "predicate": "field_country_code",
       "qualifiers": {},
-      "reviewed_at": null,
-      "reviewed_by": null,
+      "reviewed_at": "2026-08-07",
+      "reviewed_by": "reviewer-agentic-cursor",
       "subject_id": "place-wd-q912",
-      "verification_status": "candidate"
+      "verification_status": "verified"
+    },
+    {
+      "confidence": 0.6,
+      "evidence": [
+        {
+          "accessed": "2026-08-07",
+          "contributors": [],
+          "extraction_method": "structured_mapping",
+          "language": "en",
+          "locator": "Q912/id",
+          "native_field_path": "/id",
+          "native_predicate": null,
+          "native_record_id": "Q912@2525548344",
+          "qualifiers": [],
+          "rank": null,
+          "references": [],
+          "snapshot_id": "wikidata-hydration-2026-08-07-d37c179db21b",
+          "source_id": "wikidata",
+          "source_record_sha256": "906e844ab1f59729c5afd723a429db37037d61520acf8a4b82ec9e33257380a6",
+          "support": "explicit",
+          "url": "https://www.wikidata.org/wiki/Special:EntityData/Q912.json?revision=2525548344"
+        }
+      ],
+      "id": "claim-wd-q912-external-ids",
+      "object": {
+        "value": {
+          "wikidata": "Q912"
+        }
+      },
+      "predicate": "field_external_ids",
+      "qualifiers": {},
+      "reviewed_at": "2026-08-07",
+      "reviewed_by": "reviewer-agentic-cursor",
+      "subject_id": "place-wd-q912",
+      "verification_status": "verified"
     },
     {
       "confidence": 0.6,
@@ -226259,10 +229186,10 @@
       },
       "predicate": "field_name_en",
       "qualifiers": {},
-      "reviewed_at": null,
-      "reviewed_by": null,
+      "reviewed_at": "2026-08-07",
+      "reviewed_by": "reviewer-agentic-cursor",
       "subject_id": "place-wd-q912",
-      "verification_status": "candidate"
+      "verification_status": "verified"
     },
     {
       "confidence": 0.6,
@@ -226292,10 +229219,43 @@
       },
       "predicate": "field_name_zh",
       "qualifiers": {},
-      "reviewed_at": null,
-      "reviewed_by": null,
+      "reviewed_at": "2026-08-07",
+      "reviewed_by": "reviewer-agentic-cursor",
       "subject_id": "place-wd-q912",
-      "verification_status": "candidate"
+      "verification_status": "verified"
+    },
+    {
+      "confidence": 0.6,
+      "evidence": [
+        {
+          "accessed": "2026-08-07",
+          "contributors": [],
+          "extraction_method": "structured_mapping",
+          "language": null,
+          "locator": "Q912/project_region/africa",
+          "native_field_path": "/claims/P297/0",
+          "native_predicate": "P297",
+          "native_record_id": "Q912@2525548344",
+          "qualifiers": [],
+          "rank": "normal",
+          "references": [],
+          "snapshot_id": "wikidata-hydration-2026-08-07-d37c179db21b",
+          "source_id": "wikidata",
+          "source_record_sha256": "906e844ab1f59729c5afd723a429db37037d61520acf8a4b82ec9e33257380a6",
+          "support": "explicit",
+          "url": "https://www.wikidata.org/wiki/Special:EntityData/Q912.json?revision=2525548344"
+        }
+      ],
+      "id": "claim-wd-q912-region",
+      "object": {
+        "value": "africa"
+      },
+      "predicate": "field_region",
+      "qualifiers": {},
+      "reviewed_at": "2026-08-07",
+      "reviewed_by": "reviewer-agentic-cursor",
+      "subject_id": "place-wd-q912",
+      "verification_status": "verified"
     },
     {
       "confidence": 0.6,
@@ -233345,10 +236305,45 @@
       },
       "predicate": "field_country_code",
       "qualifiers": {},
-      "reviewed_at": null,
-      "reviewed_by": null,
+      "reviewed_at": "2026-08-07",
+      "reviewed_by": "reviewer-agentic-cursor",
       "subject_id": "place-wd-q96",
-      "verification_status": "candidate"
+      "verification_status": "verified"
+    },
+    {
+      "confidence": 0.6,
+      "evidence": [
+        {
+          "accessed": "2026-08-07",
+          "contributors": [],
+          "extraction_method": "structured_mapping",
+          "language": "en",
+          "locator": "Q96/id",
+          "native_field_path": "/id",
+          "native_predicate": null,
+          "native_record_id": "Q96@2526642480",
+          "qualifiers": [],
+          "rank": null,
+          "references": [],
+          "snapshot_id": "wikidata-hydration-2026-08-07-d37c179db21b",
+          "source_id": "wikidata",
+          "source_record_sha256": "d7af531c371e554256cb784ad0cd33cf74dfc21d4ba32a333242e57e85294dde",
+          "support": "explicit",
+          "url": "https://www.wikidata.org/wiki/Special:EntityData/Q96.json?revision=2526642480"
+        }
+      ],
+      "id": "claim-wd-q96-external-ids",
+      "object": {
+        "value": {
+          "wikidata": "Q96"
+        }
+      },
+      "predicate": "field_external_ids",
+      "qualifiers": {},
+      "reviewed_at": "2026-08-07",
+      "reviewed_by": "reviewer-agentic-cursor",
+      "subject_id": "place-wd-q96",
+      "verification_status": "verified"
     },
     {
       "confidence": 0.6,
@@ -233378,10 +236373,10 @@
       },
       "predicate": "field_name_en",
       "qualifiers": {},
-      "reviewed_at": null,
-      "reviewed_by": null,
+      "reviewed_at": "2026-08-07",
+      "reviewed_by": "reviewer-agentic-cursor",
       "subject_id": "place-wd-q96",
-      "verification_status": "candidate"
+      "verification_status": "verified"
     },
     {
       "confidence": 0.6,
@@ -233411,10 +236406,120 @@
       },
       "predicate": "field_name_zh",
       "qualifiers": {},
-      "reviewed_at": null,
-      "reviewed_by": null,
+      "reviewed_at": "2026-08-07",
+      "reviewed_by": "reviewer-agentic-cursor",
       "subject_id": "place-wd-q96",
-      "verification_status": "candidate"
+      "verification_status": "verified"
+    },
+    {
+      "confidence": 0.6,
+      "evidence": [
+        {
+          "accessed": "2026-08-07",
+          "contributors": [],
+          "extraction_method": "structured_mapping",
+          "language": null,
+          "locator": "Q96/project_region/latin_america_caribbean",
+          "native_field_path": "/claims/P297/0",
+          "native_predicate": "P297",
+          "native_record_id": "Q96@2526642480",
+          "qualifiers": [],
+          "rank": "normal",
+          "references": [
+            {
+              "hash": "5680e22464e2045d34d023717fabff036d126261",
+              "snaks": {
+                "P248": [
+                  {
+                    "datatype": "wikibase-item",
+                    "datavalue": {
+                      "type": "wikibase-entityid",
+                      "value": {
+                        "entity-type": "item",
+                        "id": "Q25275",
+                        "numeric-id": 25275
+                      }
+                    },
+                    "hash": "062933830c4bf3f110cfe0afce0d35352151fdb5",
+                    "property": "P248",
+                    "snaktype": "value"
+                  }
+                ],
+                "P298": [
+                  {
+                    "datatype": "external-id",
+                    "datavalue": {
+                      "type": "string",
+                      "value": "MEX"
+                    },
+                    "hash": "5b5c13a44d9e7be03b705c7945feed51f19d4e9c",
+                    "property": "P298",
+                    "snaktype": "value"
+                  }
+                ],
+                "P299": [
+                  {
+                    "datatype": "external-id",
+                    "datavalue": {
+                      "type": "string",
+                      "value": "484"
+                    },
+                    "hash": "d208c97a3a6eb58a80c28b0a0940940b5139a829",
+                    "property": "P299",
+                    "snaktype": "value"
+                  }
+                ],
+                "P503": [
+                  {
+                    "datatype": "external-id",
+                    "datavalue": {
+                      "type": "string",
+                      "value": "3166"
+                    },
+                    "hash": "6551539d68f6cf0d2f3cbd1c98217662ef2d58ea",
+                    "property": "P503",
+                    "snaktype": "value"
+                  }
+                ],
+                "P854": [
+                  {
+                    "datatype": "url",
+                    "datavalue": {
+                      "type": "string",
+                      "value": "https://www.iso.org/obp/ui/#iso:code:3166:MX"
+                    },
+                    "hash": "e524a00b9101f2d630aa3e0cc42814a144f68b08",
+                    "property": "P854",
+                    "snaktype": "value"
+                  }
+                ]
+              },
+              "snaks-order": [
+                "P248",
+                "P503",
+                "P299",
+                "P298",
+                "P854"
+              ]
+            }
+          ],
+          "snapshot_id": "wikidata-hydration-2026-08-07-d37c179db21b",
+          "source_id": "wikidata",
+          "source_record_sha256": "d7af531c371e554256cb784ad0cd33cf74dfc21d4ba32a333242e57e85294dde",
+          "support": "explicit",
+          "url": "https://www.wikidata.org/wiki/Special:EntityData/Q96.json?revision=2526642480"
+        }
+      ],
+      "id": "claim-wd-q96-region",
+      "object": {
+        "value": "latin_america_caribbean"
+      },
+      "predicate": "field_region",
+      "qualifiers": {},
+      "reviewed_at": "2026-08-07",
+      "reviewed_by": "reviewer-agentic-cursor",
+      "subject_id": "place-wd-q96",
+      "verification_status": "verified"
     },
     {
       "confidence": 0.6,

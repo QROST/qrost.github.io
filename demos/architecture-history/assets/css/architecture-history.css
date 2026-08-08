@@ -620,9 +620,15 @@ html.dark .primary-button {
 
 .map-card,
 .coverage-card,
-.catalog-table-wrap,
 .lineage-graph-card {
   overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 0.65rem;
+  background: var(--surface);
+  box-shadow: var(--shadow);
+}
+
+.catalog-table-wrap {
   border: 1px solid var(--line);
   border-radius: 0.65rem;
   background: var(--surface);
@@ -912,7 +918,8 @@ html.dark .primary-button {
 }
 
 .catalog-table-wrap {
-  overflow-x: auto;
+  max-height: min(520px, calc(100vh - 12rem));
+  overflow: auto;
 }
 
 .catalog-table {
@@ -922,6 +929,9 @@ html.dark .primary-button {
 }
 
 .catalog-table th {
+  position: sticky;
+  top: 0;
+  z-index: 1;
   padding: 0.72rem 0.85rem;
   border-bottom: 1px solid var(--line);
   background: var(--paper-deep);
@@ -1968,7 +1978,8 @@ html.dark .primary-button {
   }
 
   .lineage-list {
-    max-height: none;
+    max-height: min(430px, calc(100vh - 12rem));
+    overflow-y: auto;
   }
 
   .fixture-panel {
@@ -2084,6 +2095,9 @@ html.dark .primary-button {
   .catalog-card-list {
     display: grid;
     gap: 0.6rem;
+    max-height: min(520px, calc(100vh - 14rem));
+    overflow-y: auto;
+    padding-right: 0.15rem;
   }
 
   .catalog-mobile-card {
