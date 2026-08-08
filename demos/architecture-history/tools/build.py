@@ -477,6 +477,24 @@ def refresh_html_tokens() -> None:
     atomic_write_bytes(HTML, stamped.encode("utf-8"))
 
 
+def refresh_html_verified_count(verified_count: int) -> None:
+    if not HTML.exists():
+        return
+    html = HTML.read_text(encoding="utf-8")
+    updated, count = re.subn(
+        r'(id="hero-verified">)\d+(</strong>)',
+        rf"\g<1>{verified_count}\g<2>",
+        html,
+        count=1,
+    )
+    if count != 1:
+        raise SystemExit(
+            "build: expected exactly one hero-verified count in index.html"
+        )
+    if updated != html:
+        atomic_write_bytes(HTML, updated.encode("utf-8"))
+
+
 def mutable_outputs() -> list[Path]:
     paths = [
         DATA / filename
@@ -516,6 +534,9 @@ def main() -> int:
             version,
             sha256(MANIFEST),
             manifest["schema_version"],
+        )
+        refresh_html_verified_count(
+            manifest["counts"]["verified_entities_and_relations"]
         )
         refresh_html_tokens()
         subprocess.run(

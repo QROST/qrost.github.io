@@ -41,9 +41,13 @@ from validate import meaningful_fact
 
 
 LANDSCAPE_ARCHITECT_QID = "Q2374149"
+SCULPTOR_QID = "Q1281618"
+EDUCATOR_QID = "Q2566598"
 ROLE_OCCUPATION_QIDS = {
     "architect": ARCHITECT_QID,
     "landscape_architect": LANDSCAPE_ARCHITECT_QID,
+    "craftsperson": SCULPTOR_QID,
+    "educator": EDUCATOR_QID,
 }
 
 

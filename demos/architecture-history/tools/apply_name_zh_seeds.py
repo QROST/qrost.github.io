@@ -105,6 +105,61 @@ def langlink_evidence(
     }
 
 
+def zhwiki_sitelink_evidence(
+    *,
+    qid: str,
+    seed: dict,
+    wrapper: dict,
+    snapshot_id: str,
+    accessed: str,
+) -> dict:
+    zh_title = seed.get("zhwiki_title") or seed["name_zh"].replace(" ", "_")
+    locator = f"{qid}/sitelinks/zhwiki/{zh_title.replace(' ', '_')}"
+    return {
+        "accessed": accessed,
+        "contributors": [],
+        "extraction_method": "structured_mapping",
+        "language": "zh",
+        "locator": locator,
+        "native_field_path": "/sitelinks/zhwiki",
+        "native_predicate": None,
+        "native_record_id": f"{qid}@{wrapper['lastrevid']}",
+        "qualifiers": [],
+        "rank": None,
+        "references": [],
+        "snapshot_id": snapshot_id,
+        "source_id": "wikidata",
+        "source_record_sha256": wrapper["record_sha256"],
+        "support": "explicit",
+        "url": wrapper["pinned_url"],
+    }
+
+
+def name_zh_evidence(
+    *,
+    qid: str,
+    seed: dict,
+    wrapper: dict,
+    snapshot_id: str,
+    accessed: str,
+) -> dict:
+    if seed.get("source") == "zhwiki_sitelink":
+        return zhwiki_sitelink_evidence(
+            qid=qid,
+            seed=seed,
+            wrapper=wrapper,
+            snapshot_id=snapshot_id,
+            accessed=accessed,
+        )
+    return langlink_evidence(
+        qid=qid,
+        seed=seed,
+        wrapper=wrapper,
+        snapshot_id=snapshot_id,
+        accessed=accessed,
+    )
+
+
 def apply_seeds(
     catalog: dict,
     seeds_by_qid: dict[str, dict],
@@ -134,7 +189,7 @@ def apply_seeds(
         person["name_zh_status"] = seed["name_zh_status"]
         claim_id = f"claim-wd-{qid_slug(qid)}-name-zh"
         if claim_id not in claims_by_id:
-            evidence = langlink_evidence(
+            evidence = name_zh_evidence(
                 qid=qid,
                 seed=seed,
                 wrapper=wrapper,

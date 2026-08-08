@@ -98,8 +98,10 @@ def chunked(items: list[str], size: int) -> list[list[str]]:
     return [items[index:index + size] for index in range(0, len(items), size)]
 
 
-def fetch_sitelinks(qids: list[str]) -> dict[str, str | None]:
-    titles: dict[str, str | None] = {}
+def fetch_sitelinks(qids: list[str]) -> tuple[dict[str, str | None], dict[str, str | None]]:
+    """Return (enwiki_titles, zhwiki_titles) keyed by QID."""
+    enwiki_titles: dict[str, str | None] = {}
+    zhwiki_titles: dict[str, str | None] = {}
     for batch in chunked(qids, BATCH_SIZE):
         params = urllib.parse.urlencode(
             {
@@ -117,9 +119,16 @@ def fetch_sitelinks(qids: list[str]) -> dict[str, str | None]:
             entity = entities.get(qid, {})
             sitelinks = entity.get("sitelinks", {})
             enwiki = sitelinks.get("enwiki", {})
-            title = enwiki.get("title")
-            titles[qid] = title if isinstance(title, str) and title.strip() else None
-    return titles
+            zhwiki = sitelinks.get("zhwiki", {})
+            en_title = enwiki.get("title")
+            zh_title = zhwiki.get("title")
+            enwiki_titles[qid] = (
+                en_title if isinstance(en_title, str) and en_title.strip() else None
+            )
+            zhwiki_titles[qid] = (
+                zh_title if isinstance(zh_title, str) and zh_title.strip() else None
+            )
+    return enwiki_titles, zhwiki_titles
 
 
 def fetch_zh_langlinks(enwiki_titles: dict[str, str]) -> dict[str, str | None]:
@@ -311,14 +320,22 @@ def missing_people(catalog: dict) -> list[dict]:
 
 def build_seeds(
     people: list[dict],
-    zh_titles: dict[str, str | None],
+    zhwiki_owner_ok: dict[str, str],
+    zh_langlink_owner_ok: dict[str, str],
     accessed: str,
 ) -> list[dict]:
     seeds: list[dict] = []
     for person in people:
         qid = person["external_ids"]["wikidata"]
-        zh_title = zh_titles.get(qid)
-        if not zh_title:
+        zhwiki_title = zhwiki_owner_ok.get(qid)
+        langlink_title = zh_langlink_owner_ok.get(qid)
+        if zhwiki_title:
+            zh_title = zhwiki_title
+            source = "zhwiki_sitelink"
+        elif langlink_title:
+            zh_title = langlink_title
+            source = "enwiki_langlink"
+        else:
             continue
         name_zh = wiki_title_to_name(zh_title)
         seeds.append(
@@ -329,7 +346,8 @@ def build_seeds(
                 "name_zh": name_zh,
                 "name_zh_status": "common_translation",
                 "evidence_url": zh_wiki_url(zh_title),
-                "source": "enwiki_langlink",
+                "source": source,
+                "zhwiki_title": zh_title,
             }
         )
     seeds.sort(key=lambda row: qid_number(row["qid"]))
@@ -358,38 +376,47 @@ def main() -> int:
     people = missing_people(catalog)
     qids = [person["external_ids"]["wikidata"] for person in people]
 
-    enwiki_titles = fetch_sitelinks(qids)
+    enwiki_titles, zhwiki_titles = fetch_sitelinks(qids)
     with_enwiki = sum(
         1 for title in enwiki_titles.values() if isinstance(title, str) and title.strip()
     )
+    with_zhwiki = sum(
+        1 for title in zhwiki_titles.values() if isinstance(title, str) and title.strip()
+    )
     enwiki_owner_ok, enwiki_rejected = filter_enwiki_by_owner(enwiki_titles)
+    zhwiki_owner_ok, zhwiki_rejected = filter_zh_by_owner(zhwiki_titles)
 
     zh_titles_raw = fetch_zh_langlinks(enwiki_owner_ok)
     with_zh_langlink = sum(
         1 for title in zh_titles_raw.values() if isinstance(title, str) and title.strip()
     )
-    zh_owner_ok, zh_rejected = filter_zh_by_owner(zh_titles_raw)
+    zh_langlink_owner_ok, zh_langlink_rejected = filter_zh_by_owner(zh_titles_raw)
 
-    seeds = build_seeds(people, zh_owner_ok, args.accessed)
+    seeds = build_seeds(people, zhwiki_owner_ok, zh_langlink_owner_ok, args.accessed)
 
     print(f"missing: {len(qids)}", flush=True)
     print(f"with_enwiki: {with_enwiki}", flush=True)
     print(f"enwiki_owner_ok: {len(enwiki_owner_ok)}", flush=True)
     if enwiki_rejected:
         print(f"enwiki_owner_mismatch_rejected: {enwiki_rejected}", flush=True)
+    print(f"with_zhwiki: {with_zhwiki}", flush=True)
+    print(f"zhwiki_owner_ok: {len(zhwiki_owner_ok)}", flush=True)
+    if zhwiki_rejected:
+        print(f"zhwiki_owner_mismatch_rejected: {zhwiki_rejected}", flush=True)
     print(f"with_zh_langlink: {with_zh_langlink}", flush=True)
-    print(f"zh_owner_ok: {len(zh_owner_ok)}", flush=True)
-    if zh_rejected:
-        print(f"zh_owner_mismatch_rejected: {zh_rejected}", flush=True)
+    print(f"zh_langlink_owner_ok: {len(zh_langlink_owner_ok)}", flush=True)
+    if zh_langlink_rejected:
+        print(f"zh_langlink_owner_mismatch_rejected: {zh_langlink_rejected}", flush=True)
     print(f"seeds_written: {len(seeds)}", flush=True)
 
     payload = {
         "seed_version": "0.1.0",
         "accessed": args.accessed,
-        "method": "enwiki_langlink_to_zh",
+        "method": "zhwiki_sitelink_preferred_then_enwiki_langlink",
         "rejected": {
             "enwiki_owner_mismatch": enwiki_rejected,
-            "zh_owner_mismatch": zh_rejected,
+            "zhwiki_owner_mismatch": zhwiki_rejected,
+            "zh_langlink_owner_mismatch": zh_langlink_rejected,
         },
         "seeds": seeds,
     }

@@ -1817,8 +1817,13 @@
         "value": null
       },
       "claim_ids": [
+        "claim-wd-q1226528-aliases-en",
+        "claim-wd-q1226528-external-ids",
         "claim-wd-q1226528-name-en",
-        "claim-wd-q1226528-name-zh"
+        "claim-wd-q1226528-name-zh",
+        "claim-wd-q1226528-name-zh-status",
+        "claim-wd-q1226528-roles",
+        "claim-wd-q1226528-summary-en"
       ],
       "confidence": 0.6,
       "country_codes": [],
@@ -1840,11 +1845,11 @@
       "name_zh_status": "source_label_candidate",
       "region": "unknown",
       "roles": [
-        "architect"
+        "craftsperson"
       ],
       "summary_en": "Italian sculptor",
       "summary_zh": "",
-      "verification_status": "candidate"
+      "verification_status": "verified"
     },
     {
       "aliases_en": [
@@ -2357,7 +2362,7 @@
       "name_zh_status": "source_label_candidate",
       "region": "southeast_asia",
       "roles": [
-        "architect"
+        "patron"
       ],
       "summary_en": "Cambodian king",
       "summary_zh": "",
@@ -2604,8 +2609,17 @@
         "value": "1180"
       },
       "claim_ids": [
+        "claim-wd-q1329212-aliases-en",
+        "claim-wd-q1329212-birth",
+        "claim-wd-q1329212-country-codes",
+        "claim-wd-q1329212-death",
+        "claim-wd-q1329212-external-ids",
         "claim-wd-q1329212-name-en",
-        "claim-wd-q1329212-name-zh"
+        "claim-wd-q1329212-name-zh",
+        "claim-wd-q1329212-name-zh-status",
+        "claim-wd-q1329212-region",
+        "claim-wd-q1329212-roles",
+        "claim-wd-q1329212-summary-en"
       ],
       "confidence": 0.6,
       "country_codes": [
@@ -2629,11 +2643,11 @@
       "name_zh_status": "source_label_candidate",
       "region": "europe",
       "roles": [
-        "architect"
+        "educator"
       ],
       "summary_en": "Italian franciscan and politician",
       "summary_zh": "",
-      "verification_status": "candidate"
+      "verification_status": "verified"
     },
     {
       "aliases_en": [],
@@ -3117,7 +3131,7 @@
       "name_zh_status": "source_label_candidate",
       "region": "southeast_asia",
       "roles": [
-        "architect"
+        "patron"
       ],
       "summary_en": "Burmese king",
       "summary_zh": "",
@@ -6068,8 +6082,17 @@
         "value": "1878-05-08"
       },
       "claim_ids": [
+        "claim-wd-q1990223-aliases-en",
+        "claim-wd-q1990223-birth",
+        "claim-wd-q1990223-country-codes",
+        "claim-wd-q1990223-death",
+        "claim-wd-q1990223-external-ids",
         "claim-wd-q1990223-name-en",
-        "claim-wd-q1990223-name-zh"
+        "claim-wd-q1990223-name-zh",
+        "claim-wd-q1990223-name-zh-status",
+        "claim-wd-q1990223-region",
+        "claim-wd-q1990223-roles",
+        "claim-wd-q1990223-summary-en"
       ],
       "confidence": 0.6,
       "country_codes": [
@@ -6093,11 +6116,11 @@
       "name_zh_status": "source_label_candidate",
       "region": "north_america",
       "roles": [
-        "architect"
+        "craftsperson"
       ],
       "summary_en": "American sculptor (1878–1949)",
       "summary_zh": "",
-      "verification_status": "candidate"
+      "verification_status": "verified"
     },
     {
       "aliases_en": [],
@@ -14026,7 +14049,7 @@
       "name_zh_status": "source_label_candidate",
       "region": "unknown",
       "roles": [
-        "architect"
+        "patron"
       ],
       "summary_en": "seventh Sultan of the Ottoman Empire (1444–1446, 1451–1481)",
       "summary_zh": "",
@@ -20079,8 +20102,17 @@
         "value": "1866-02-27"
       },
       "claim_ids": [
+        "claim-wd-q610214-aliases-en",
+        "claim-wd-q610214-birth",
+        "claim-wd-q610214-country-codes",
+        "claim-wd-q610214-death",
+        "claim-wd-q610214-external-ids",
         "claim-wd-q610214-name-en",
-        "claim-wd-q610214-name-zh"
+        "claim-wd-q610214-name-zh",
+        "claim-wd-q610214-name-zh-status",
+        "claim-wd-q610214-region",
+        "claim-wd-q610214-roles",
+        "claim-wd-q610214-summary-en"
       ],
       "confidence": 0.6,
       "country_codes": [
@@ -20104,11 +20136,11 @@
       "name_zh_status": "source_label_candidate",
       "region": "north_america",
       "roles": [
-        "architect"
+        "craftsperson"
       ],
       "summary_en": "American artist (1866–1947)",
       "summary_zh": "",
-      "verification_status": "candidate"
+      "verification_status": "verified"
     },
     {
       "aliases_en": [

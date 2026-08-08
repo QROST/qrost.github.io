@@ -97,7 +97,7 @@
             <p id="truth-title" data-i18n="truthTitle">当前发布状态</p>
             <span class="candidate-chip" data-i18n="candidate">候选</span>
           </div>
-          <p class="truth-number"><strong id="hero-verified">468</strong><span data-i18n="verifiedFacts">条已核验实体或关系</span></p>
+          <p class="truth-number"><strong id="hero-verified">472</strong><span data-i18n="verifiedFacts">条已核验实体或关系</span></p>
           <p class="truth-copy" data-i18n="truthCopy">
             国家地点、事务所、可映射职业的人物，以及 period 未知的无署名作品，已由 agentic reviewer 基于固定修订证据核验。已知时期作品、署名作品、缺中文名人物与知识传递关系保持候选。Getty ULAN 互惠身份 overlay 仍受 vocab.getty.edu LOD 故障阻塞。
           </p>
@@ -121,7 +121,7 @@
       <div class="boundary-icon" aria-hidden="true">!</div>
       <div>
         <strong data-i18n="boundaryTitle">先读这条边界</strong>
-        <p data-i18n="boundaryCopy">559 件作品是校验来源映射的固定候选夹具，不是排名、代表性抽样或全球覆盖率。9×8 发现矩阵已首次跑完（67 抽样 / 5 空查）。</p>
+        <p data-i18n="boundaryCopy">「固定水合夹具」= 事先选定并钉死 Wikidata 修订的 559 件作品种子，用来校验映射与溯源，不是全球全库。发现矩阵 9×8 只做抽样侦察（每格最多 4 条），不会自动扩进目录；人物与关系富集在夹具图上继续推进。</p>
       </div>
       <a href="#coverage" data-i18n="inspectCoverage">查看覆盖矩阵</a>
     </section>
@@ -279,7 +279,7 @@
         <div>
           <p class="section-kicker" data-i18n="coverageKicker">04 · 覆盖诚实度</p>
           <h2 id="coverage-title" data-i18n="coverageTitle">9 区域 × 8 时期发现矩阵</h2>
-          <p data-i18n="coverageIntro">矩阵固定了系统收集的抽样框架（72 个区域 × 时期单元）。单元状态来自 coverage discovery 快照；下方夹具分布不能替代发现进度。</p>
+          <p data-i18n="coverageIntro">发现矩阵共 72 个区域×时期单元，回答“去 Wikidata 侦察时能不能找到候选”；每格最多抽 4 条作为发现回执。它不等于已导入目录，也不替代对人物与关系的逐条审核富集。</p>
         </div>
         <div class="coverage-progress" aria-label="覆盖进度" data-i18n-aria-label="coverageProgressAria">
           <span><strong id="coverage-percent">0%</strong><small data-i18n="coverageComplete">发现单元已运行</small></span>
@@ -297,7 +297,7 @@
       <div class="fixture-panel">
         <div>
           <h3 data-i18n="fixtureTitle">固定水合夹具的区域分布</h3>
-          <p data-i18n="fixtureCopy">仅用于证伪映射与来源链；不代表每个区域的重要性、完整性或可比性。</p>
+          <p data-i18n="fixtureCopy">夹具 = 钉死修订的种子作品集，用来验管线；柱状分布只说明这批种子落在哪些宏观区域，不等于该区域已普查完成。</p>
         </div>
         <div id="fixture-bars" class="fixture-bars"></div>
       </div>
@@ -382,8 +382,8 @@
     src="https://cdn.jsdelivr.net/npm/echarts@5.5.1/dist/echarts.min.js"
     integrity="sha384-Mx5lkUEQPM1pOJCwFtUICyX45KNojXbkWdYhkKUKsbv391mavbfoAmONbzkgYPzR"
     crossorigin="anonymous"></script>
-  <script src="assets/js/i18n.js?v=d25efeb107"></script>
-  <script src="assets/js/data-loader.js?v=03fd1eaa6b"></script>
+  <script src="assets/js/i18n.js?v=4a1b9edb95"></script>
+  <script src="assets/js/data-loader.js?v=24abd9f938"></script>
   <script src="assets/js/maps.js?v=73c3e5fa66"></script>
   <script src="assets/js/app.js?v=ab82c3983f"></script>
 </body>

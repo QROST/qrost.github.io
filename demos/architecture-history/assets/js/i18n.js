@@ -55,8 +55,8 @@
     scopeNoticeLabel: { zh: '范围声明', en: 'Scope notice' },
     boundaryTitle: { zh: '先读这条边界', en: 'Read this boundary first' },
     boundaryCopy: {
-      zh: '559 件作品是校验来源映射的固定候选夹具，不是排名、代表性抽样或全球覆盖率。9×8 发现矩阵已首次跑完（67 抽样 / 5 空查）。',
-      en: 'The 559 works are fixed candidate fixtures for validating source mappings—not a ranking, representative sample, or global coverage measure. The 9×8 discovery matrix has completed its first run (67 sampled / 5 empty observed).',
+      zh: '「固定水合夹具」= 事先选定并钉死 Wikidata 修订的 559 件作品种子，用来校验映射与溯源，不是全球全库。发现矩阵 9×8 只做抽样侦察（每格最多 4 条），不会自动扩进目录；人物与关系富集在夹具图上继续推进。',
+      en: '“Fixed hydration fixtures” = 559 deliberately chosen, revision-pinned Wikidata work seeds for mapping/provenance checks—not a world census. The 9×8 discovery matrix only scouts (≤4 works per cell) and does not auto-expand the catalog; people/relation enrichment continues on this fixture graph.',
     },
     inspectCoverage: { zh: '查看覆盖矩阵', en: 'Inspect coverage matrix' },
     atlasKicker: { zh: '01 · 地理浏览', en: '01 · GEOGRAPHIC BROWSER' },
@@ -133,8 +133,8 @@
     coverageKicker: { zh: '04 · 覆盖诚实度', en: '04 · COVERAGE HONESTY' },
     coverageTitle: { zh: '9 区域 × 8 时期发现矩阵', en: '9-region × 8-period discovery matrix' },
     coverageIntro: {
-      zh: '矩阵固定了系统收集的抽样框架（72 个区域 × 时期单元）。单元状态来自 coverage discovery 快照；下方夹具分布不能替代发现进度。',
-      en: 'The matrix fixes the sampling frame for systematic collection across 72 region × period cells. Cell status comes from the coverage discovery snapshot; fixture distribution below is not discovery progress.',
+      zh: '发现矩阵共 72 个区域×时期单元，回答“去 Wikidata 侦察时能不能找到候选”；每格最多抽 4 条作为发现回执。它不等于已导入目录，也不替代对人物与关系的逐条审核富集。',
+      en: 'The discovery matrix has 72 region × period cells and answers whether Wikidata yields candidates (≤4 scouted receipts each). It is not an import into the catalog and does not replace person/relation review and enrichment.',
     },
     coverageProgressAria: { zh: '覆盖进度', en: 'Coverage progress' },
     coverageComplete: { zh: '发现单元已运行', en: 'discovery cells run' },
@@ -147,8 +147,8 @@
     complete: { zh: '已运行', en: 'Run' },
     fixtureTitle: { zh: '固定水合夹具的区域分布', en: 'Regional distribution of fixed hydration fixtures' },
     fixtureCopy: {
-      zh: '仅用于证伪映射与来源链；不代表每个区域的重要性、完整性或可比性。',
-      en: 'Used only to falsify mappings and provenance chains; it does not represent regional importance, completeness, or comparability.',
+      zh: '夹具 = 钉死修订的种子作品集，用来验管线；柱状分布只说明这批种子落在哪些宏观区域，不等于该区域已普查完成。',
+      en: 'Fixtures = revision-pinned seed works for pipeline validation. The bars show where those seeds land by macroregion—not that each region has been fully surveyed.',
     },
     methodKicker: { zh: '05 · 方法、来源与许可', en: '05 · METHOD, SOURCES, AND RIGHTS' },
     methodTitle: { zh: '复用前人研究，但不跳过证据治理', en: 'Reuse prior research without skipping evidence governance' },

@@ -20,7 +20,7 @@ Of 539 people, 281 have Wikidata-backed `name_zh`; the remaining 258 lack a safe
 authority Chinese label (enwiki→zh langlink seeds are empty after reciprocal
 Wikidata ownership checks). Agentic verification (`reviewer-agentic-cursor`,
 2026-08-07) currently covers all 39 country places, all 29 practices, 274 people,
-and 126 no-credit works with `period=unknown` (468 verified entities). Known-period
+and 126 no-credit works with `period=unknown` (472 verified entities). Known-period
 works stay candidate because `field_period` is only indirectly evidenced from
 P571/P1619. Seven people with Chinese labels still lack a mapped P106 occupation;
 credited works and all 191 relations remain `candidate`.

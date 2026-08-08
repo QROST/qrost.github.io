@@ -1,12 +1,11 @@
 {
-  "seed_version": "0.1.0",
   "accessed": "2026-08-07",
-  "method": "enwiki_langlink_to_zh",
-  "seeds": [],
+  "method": "zhwiki_sitelink_preferred_then_enwiki_langlink",
   "rejected": {
     "enwiki_owner_mismatch": 1,
-    "zh_owner_mismatch": 0
+    "zh_langlink_owner_mismatch": 0,
+    "zhwiki_owner_mismatch": 0
   },
-  "notes_en": "No safe enwiki→zh langlinks for the 258 people lacking Wikidata zh labels. Q6480034→风之宫 rejected: enwiki sitelink owned by building Q836531, not the person.",
-  "notes_zh": "258 位缺中文名人物无可安全采用的 langlink。Q6480034→风之宫 因 enwiki 页面归属建筑 Q836531 而拒绝。"
+  "seed_version": "0.1.0",
+  "seeds": []
 }

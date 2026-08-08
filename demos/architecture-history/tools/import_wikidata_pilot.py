@@ -840,6 +840,62 @@ def descriptions(record: dict) -> tuple[str, str]:
     return summary_en, summary_zh
 
 
+STUDENT_RECORDED_NOTE_EN_SUFFIX = (
+    "Raw Wikidata P1066/P802 review edge; it does not by itself establish "
+    "teacher, mentor, or apprenticeship."
+)
+STUDENT_RECORDED_NOTE_ZH_SUFFIX = (
+    "Wikidata P1066/P802 原始待审边；本身不能证明教师、导师或学徒关系。"
+)
+
+
+def person_display_name(person: dict, lang: str) -> str:
+    if lang == "zh":
+        name = person.get("name_zh") or person.get("name_en")
+    else:
+        name = person.get("name_en") or person.get("name_zh")
+    return name or person["id"]
+
+
+def person_birth_year(person: dict) -> Optional[int]:
+    birth = person.get("birth")
+    if not isinstance(birth, dict):
+        return None
+    earliest = birth.get("earliest")
+    if isinstance(earliest, int):
+        return earliest
+    value = birth.get("value")
+    if isinstance(value, str):
+        match = re.match(r"^(-?\d{4})", value)
+        if match:
+            return int(match.group(1))
+    return None
+
+
+def student_recorded_review_context(
+    from_person: dict,
+    to_person: dict,
+) -> dict[str, Any]:
+    from_en = person_display_name(from_person, "en")
+    to_en = person_display_name(to_person, "en")
+    from_zh = person_display_name(from_person, "zh")
+    to_zh = person_display_name(to_person, "zh")
+    teacher_year = person_birth_year(to_person)
+    return {
+        "date_end": None,
+        "date_start": teacher_year,
+        "institution_id": None,
+        "note_en": (
+            f"Recorded edge: {from_en} → {to_en}. {STUDENT_RECORDED_NOTE_EN_SUFFIX}"
+        ),
+        "note_zh": (
+            f"待审记录边：{from_zh} → {to_zh}。{STUDENT_RECORDED_NOTE_ZH_SUFFIX}"
+        ),
+        "practice_id": None,
+        "work_id": None,
+    }
+
+
 def nationality_geography(
     record: dict,
     country_authority: dict[str, dict],
@@ -1782,21 +1838,10 @@ class CatalogBuilder:
             self.relations[relation_id] = {
                 "claim_id": claim_id,
                 "confidence": 0.45,
-                "context": {
-                    "date_end": None,
-                    "date_start": None,
-                    "institution_id": None,
-                    "note_en": (
-                        "Raw Wikidata P1066/P802 review edge; it does not by "
-                        "itself establish teacher, mentor, or apprenticeship."
-                    ),
-                    "note_zh": (
-                        "Wikidata P1066/P802 原始待审边；本身不能证明教师、导师"
-                        "或学徒关系。"
-                    ),
-                    "practice_id": None,
-                    "work_id": None,
-                },
+                "context": student_recorded_review_context(
+                    self.people[from_id],
+                    self.people[to_id],
+                ),
                 "from_id": from_id,
                 "id": relation_id,
                 "last_verified": self.accessed,

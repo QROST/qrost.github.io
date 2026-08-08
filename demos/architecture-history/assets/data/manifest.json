@@ -1,7 +1,7 @@
 {
   "catalog_profile": {
     "evidence_by_source_family": {
-      "wikimedia": 9379
+      "wikimedia": 9411
     },
     "periods": {
       "1000_1499": {
@@ -59,7 +59,7 @@
       },
       "europe": {
         "entities": 491,
-        "verified_entities": 159,
+        "verified_entities": 160,
         "works": 200
       },
       "latin_america_caribbean": {
@@ -69,7 +69,7 @@
       },
       "north_america": {
         "entities": 160,
-        "verified_entities": 64,
+        "verified_entities": 66,
         "works": 73
       },
       "oceania": {
@@ -94,13 +94,13 @@
       },
       "unknown": {
         "entities": 156,
-        "verified_entities": 85,
+        "verified_entities": 86,
         "works": 0
       }
     },
     "verification": {
-      "candidate": 889,
-      "verified": 468
+      "candidate": 885,
+      "verified": 472
     },
     "work_type_mapping": {
       "ambiguous": 18,
@@ -109,8 +109,8 @@
     }
   },
   "counts": {
-    "candidate_entities_and_relations": 889,
-    "claims": 9324,
+    "candidate_entities_and_relations": 885,
+    "claims": 9356,
     "contested_entities_and_relations": 0,
     "declined_entities_and_relations": 0,
     "people": 539,
@@ -119,7 +119,7 @@
     "relations": 191,
     "reviewers": 1,
     "sources": 12,
-    "verified_entities_and_relations": 468,
+    "verified_entities_and_relations": 472,
     "works": 559
   },
   "coverage": {
@@ -736,15 +736,15 @@
     "status": "partial"
   },
   "data_as_of": "2026-07-28",
-  "data_version": "1508c93e7f5a252eda1f12ae76b81107e02f45cde082f9139170ef20611e807d",
+  "data_version": "ae84f7e3eb709402122ea34cea8aa8cb73329b3df979d7fbc0035dd8133b0878",
   "files": {
     "catalog/wikidata-hydration.json": {
       "count": 1,
-      "sha256": "f1ef812a699b2300fa8f35c833d6dcc30dfd9488e651a3f58aeb6c35f82ff1a6"
+      "sha256": "ef5565ee16ad9bd52db2c9f9854327511a75251d0ff2dfc6e97bfc714d1290d7"
     },
     "claims.json": {
-      "count": 9324,
-      "sha256": "125ec9931aad0c8b1a1b96407cd2d8134fe12d4db64fbbc29d15789b832806a1"
+      "count": 9356,
+      "sha256": "b3f84b3b8ee8f4578a6aff39d7c8f923fbf09b5298700411a37f0013dea058fa"
     },
     "methodology/wikidata-coverage-config.json": {
       "count": 1,
@@ -752,7 +752,7 @@
     },
     "people.json": {
       "count": 539,
-      "sha256": "d6f537c86ca561c6d01f787090b4df30a5606a9bf5baa3fb15087319a736093e"
+      "sha256": "a1f43ea2e23c12bcc295ea8078a902f12221618336e73cd20c409f7b3efc78d4"
     },
     "places.json": {
       "count": 39,
@@ -764,7 +764,7 @@
     },
     "relations.json": {
       "count": 191,
-      "sha256": "ee7cc841015c823bf580022707a6b8c407bc0c0c205508bd8195bc3eea8e4ccc"
+      "sha256": "a4c9a8e72a515b8dbba23079fd7a88bbffb992f288dd6ee1517797f0d63e5700"
     },
     "reviewers.json": {
       "count": 1,
@@ -826,9 +826,9 @@
       "count": 1,
       "sha256": "e286a84768b745056dbd069f1243e4f8ceb0270e7d78e85d75e384266541e5b9"
     },
-    "source-snapshots/wikidata-ulan-crosswalk-2026-08-07-f527f045c57e.json": {
+    "source-snapshots/wikidata-ulan-crosswalk-2026-08-07-d1628e92e84f.json": {
       "count": 24,
-      "sha256": "d6eee10ebbb71f10f589ef90bc915777035a863352d766735e5447922554850c"
+      "sha256": "5c1a234ddf6dc1d10ea22023539c9ab0ec63b35f8d516f0250133445f32e15ff"
     },
     "source-snapshots/wikidata-work-type-authority-2026-08-07-b397f30532e0.json": {
       "count": 1,
