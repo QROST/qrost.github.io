@@ -122,6 +122,22 @@
       en: 'These dashed edges come from raw Wikidata P1066/P802 records. They are review clues from predecessor → successor and cannot automatically be interpreted as teacher, mentor, or apprenticeship.',
     },
     lineageCountLabel: { zh: '条候选待审边', en: 'candidate review edges' },
+    lineageSearchLabel: { zh: '搜索关系端点人物', en: 'Search relation endpoints' },
+    lineageSearchPlaceholder: {
+      zh: '搜索中文名、英文名、别名或 Wikidata ID…',
+      en: 'Search Chinese, English, aliases, or Wikidata ID…',
+    },
+    lineageResetFilters: { zh: '重置筛选', en: 'Reset filters' },
+    lineageTypeFilterAria: { zh: '关系类型筛选', en: 'Relation type filters' },
+    lineageTypeStudent: { zh: '学习关系', en: 'Student relation' },
+    lineageTypeInfluence: { zh: '影响关系', en: 'Influence' },
+    lineageTypePractice: { zh: '任职关系', en: 'Practice employment' },
+    lineageTypeCofounded: { zh: '共同创立', en: 'Co-founded' },
+    lineageEmptyTitle: { zh: '没有符合条件的关系', en: 'No relations match' },
+    lineageEmptyCopy: {
+      zh: '请放宽搜索或关系类型筛选，或重置后重新浏览。',
+      en: 'Broaden the search or relation-type filters, or reset and browse again.',
+    },
     lineageWarningTitle: { zh: '关系线索不等于已确认师承。', en: 'Relation clues are not verified lineage.' },
     lineageWarningCopy: {
       zh: '教育、任职、合作、影响或数据库关系都不能自动等同于教师、导师或学徒关系；需要逐条人工核验。',
@@ -376,6 +392,9 @@
     },
     relation_type: {
       student_of_recorded: { zh: '来源记录的学习关系候选', en: 'Source-recorded student relation candidate' },
+      documented_influence: { zh: '来源记录的影响关系候选', en: 'Source-recorded influence candidate' },
+      worked_at_practice: { zh: '来源记录的任职关系候选', en: 'Source-recorded practice employment candidate' },
+      cofounded_with: { zh: '来源记录的共同创立候选', en: 'Source-recorded co-founded candidate' },
     },
     predicate: {
       student_of_recorded: { zh: '来源记录的学习关系', en: 'Source-recorded student relation' },

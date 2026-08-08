@@ -1064,6 +1064,45 @@ html.dark .primary-button {
 
 .lineage-warning strong { color: var(--terracotta); }
 
+.lineage-toolbar {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 0.8rem;
+}
+
+.lineage-filter-panel {
+  margin-top: 0.8rem;
+  padding: 0.85rem 1rem;
+  border: 1px solid var(--line);
+  border-radius: 0.5rem;
+  background: color-mix(in srgb, var(--surface) 75%, transparent);
+}
+
+.lineage-type-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+
+.lineage-type-tabs button {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.25rem;
+  padding: 0.45rem 0.75rem;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--ink-soft);
+  font-size: 0.7rem;
+  cursor: pointer;
+}
+
+.lineage-type-tabs button.active {
+  border-color: var(--line-strong);
+  background: color-mix(in srgb, var(--cobalt) 12%, var(--surface));
+  color: var(--ink);
+}
+
 .lineage-layout {
   display: grid;
   grid-template-columns: minmax(0, 1.45fr) minmax(280px, 0.7fr);

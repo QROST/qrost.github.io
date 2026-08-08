@@ -29,7 +29,23 @@
     detailEntityId: null,
     detailRelationId: null,
     lastFocused: null,
+    lineageFilters: {
+      query: '',
+      relationTypes: new Set([
+        'student_of_recorded',
+        'documented_influence',
+        'worked_at_practice',
+        'cofounded_with',
+      ]),
+    },
   };
+
+  const LINEAGE_RELATION_TYPES = [
+    'student_of_recorded',
+    'documented_influence',
+    'worked_at_practice',
+    'cofounded_with',
+  ];
 
   const SECTION_IDS = new Set(['atlas', 'catalog', 'lineage', 'coverage', 'methodology']);
 
@@ -210,7 +226,6 @@
     putText('#metric-people', manifest.counts.people);
     putText('#metric-practices', manifest.counts.practices);
     putText('#metric-claims', manifest.counts.claims);
-    putText('#lineage-count', manifest.counts.relations);
     putText('#source-count', i18n.t('sourceCount', { count: manifest.counts.sources }));
     putText('#tab-count-all', state.entities.length);
     putText('#tab-count-work', state.data.works.length);
@@ -394,8 +409,30 @@
     $('#map-fallback').classList.toggle('hidden', Boolean(ok));
   }
 
+  function relationEndpointMatchesQuery(entityId, query) {
+    if (!query) return true;
+    const entity = state.entitiesById[entityId];
+    if (!entity) return normalize(entityId).includes(query);
+    return entitySearchText(entity).includes(query);
+  }
+
+  function filteredLineageRelations() {
+    const filters = state.lineageFilters;
+    const query = normalize(filters.query);
+    return state.data.relations.filter(function (relation) {
+      if (!filters.relationTypes.has(relation.relation_type)) return false;
+      if (!query) return true;
+      return relationEndpointMatchesQuery(relation.from_id, query) ||
+        relationEndpointMatchesQuery(relation.to_id, query);
+    });
+  }
+
   function renderLineage() {
-    const relations = state.data.relations;
+    const total = state.data.relations.length;
+    const relations = filteredLineageRelations();
+    putText('#lineage-count', relations.length + ' / ' + total);
+    const empty = $('#lineage-empty');
+    if (empty) empty.classList.toggle('hidden', relations.length > 0);
     const list = $('#lineage-list');
     list.innerHTML = relations.map(function (relation) {
       const from = state.entitiesById[relation.from_id] || { name_en: relation.from_id };
@@ -898,6 +935,48 @@
     }
   }
 
+  function resetLineageFilters() {
+    state.lineageFilters = {
+      query: '',
+      relationTypes: new Set(LINEAGE_RELATION_TYPES),
+    };
+    const search = $('#lineage-search');
+    if (search) search.value = '';
+    $$('[data-lineage-type]').forEach(function (button) {
+      button.classList.add('active');
+      button.setAttribute('aria-pressed', 'true');
+    });
+    renderLineage();
+  }
+
+  function wireLineageFilters() {
+    const search = $('#lineage-search');
+    if (search) {
+      search.addEventListener('input', function (event) {
+        state.lineageFilters.query = event.target.value;
+        renderLineage();
+      });
+    }
+    const reset = $('#lineage-reset-filters');
+    if (reset) reset.addEventListener('click', resetLineageFilters);
+    $$('[data-lineage-type]').forEach(function (button) {
+      button.addEventListener('click', function () {
+        const relationType = button.dataset.lineageType;
+        if (state.lineageFilters.relationTypes.has(relationType)) {
+          if (state.lineageFilters.relationTypes.size === 1) return;
+          state.lineageFilters.relationTypes.delete(relationType);
+          button.classList.remove('active');
+          button.setAttribute('aria-pressed', 'false');
+        } else {
+          state.lineageFilters.relationTypes.add(relationType);
+          button.classList.add('active');
+          button.setAttribute('aria-pressed', 'true');
+        }
+        renderLineage();
+      });
+    });
+  }
+
   function resetFilters() {
     state.filters = {
       query: '',
@@ -1079,6 +1158,7 @@
       state.data = data;
       buildIndexes(data);
       wireFilters();
+      wireLineageFilters();
       wireDelegation();
       window.addEventListener('architecturehistory:languagechange', renderAll);
       window.addEventListener('architecturehistory:themechange', function () {
