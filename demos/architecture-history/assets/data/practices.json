@@ -444,48 +444,6 @@
     },
     {
       "claim_ids": [
-        "claim-wd-q14634037-country-codes",
-        "claim-wd-q14634037-external-ids",
-        "claim-wd-q14634037-name-en",
-        "claim-wd-q14634037-name-zh",
-        "claim-wd-q14634037-practice-type",
-        "claim-wd-q14634037-region",
-        "claim-wd-q14634037-summary-en",
-        "claim-wd-q14634037-summary-zh"
-      ],
-      "confidence": 0.6,
-      "country_codes": [
-        "US"
-      ],
-      "dissolved": {
-        "earliest": null,
-        "latest": null,
-        "precision": "unknown",
-        "value": null
-      },
-      "entity_type": "practice",
-      "external_ids": {
-        "wikidata": "Q14634037"
-      },
-      "founded": {
-        "earliest": null,
-        "latest": null,
-        "precision": "unknown",
-        "value": null
-      },
-      "id": "practice-wd-q14634037",
-      "last_verified": "2026-08-08",
-      "name_en": "Charles and Ray Eames",
-      "name_native": null,
-      "name_zh": "伊姆斯夫婦",
-      "practice_type": "architecture_firm",
-      "region": "north_america",
-      "summary_en": "American designers and architects",
-      "summary_zh": "美國設計、建築師拍檔",
-      "verification_status": "verified"
-    },
-    {
-      "claim_ids": [
         "claim-wd-q1602991-country-codes",
         "claim-wd-q1602991-external-ids",
         "claim-wd-q1602991-name-en",
@@ -522,6 +480,47 @@
       "practice_type": "architecture_firm",
       "region": "north_america",
       "summary_en": "global design, architecture, engineering and planning firm",
+      "summary_zh": "",
+      "verification_status": "verified"
+    },
+    {
+      "claim_ids": [
+        "claim-wd-q16951458-country-codes",
+        "claim-wd-q16951458-external-ids",
+        "claim-wd-q16951458-name-en",
+        "claim-wd-q16951458-name-zh",
+        "claim-wd-q16951458-practice-type",
+        "claim-wd-q16951458-region",
+        "claim-wd-q16951458-summary-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [
+        "US"
+      ],
+      "dissolved": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "practice",
+      "external_ids": {
+        "wikidata": "Q16951458"
+      },
+      "founded": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "id": "practice-wd-q16951458",
+      "last_verified": "2026-08-08",
+      "name_en": "Beyer Blinder Belle",
+      "name_native": null,
+      "name_zh": "拜尔·布莱德·贝勒事務所",
+      "practice_type": "architecture_firm",
+      "region": "north_america",
+      "summary_en": "international architecture firm",
       "summary_zh": "",
       "verification_status": "verified"
     },
@@ -771,16 +770,15 @@
     },
     {
       "claim_ids": [
-        "claim-wd-q2868849-country-codes",
-        "claim-wd-q2868849-external-ids",
-        "claim-wd-q2868849-name-en",
-        "claim-wd-q2868849-practice-type",
-        "claim-wd-q2868849-region",
-        "claim-wd-q2868849-summary-en"
+        "claim-wd-q27972964-country-codes",
+        "claim-wd-q27972964-external-ids",
+        "claim-wd-q27972964-name-en",
+        "claim-wd-q27972964-practice-type",
+        "claim-wd-q27972964-region"
       ],
       "confidence": 0.6,
       "country_codes": [
-        "FR"
+        "CH"
       ],
       "dissolved": {
         "earliest": null,
@@ -790,7 +788,7 @@
       },
       "entity_type": "practice",
       "external_ids": {
-        "wikidata": "Q2868849"
+        "wikidata": "Q27972964"
       },
       "founded": {
         "earliest": null,
@@ -798,14 +796,53 @@
         "precision": "unknown",
         "value": null
       },
-      "id": "practice-wd-q2868849",
+      "id": "practice-wd-q27972964",
       "last_verified": "2026-08-08",
-      "name_en": "Atelier de Montrouge",
+      "name_en": "Holzer Kobler Architekturen",
       "name_native": null,
       "name_zh": null,
       "practice_type": "architecture_firm",
       "region": "europe",
-      "summary_en": "Architectural and urban planning studio",
+      "summary_en": "",
+      "summary_zh": "",
+      "verification_status": "verified"
+    },
+    {
+      "claim_ids": [
+        "claim-wd-q2879922-country-codes",
+        "claim-wd-q2879922-external-ids",
+        "claim-wd-q2879922-name-en",
+        "claim-wd-q2879922-practice-type",
+        "claim-wd-q2879922-region"
+      ],
+      "confidence": 0.6,
+      "country_codes": [
+        "AR"
+      ],
+      "dissolved": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "practice",
+      "external_ids": {
+        "wikidata": "Q2879922"
+      },
+      "founded": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "id": "practice-wd-q2879922",
+      "last_verified": "2026-08-08",
+      "name_en": "Lagos y De la Torre Sánchez",
+      "name_native": null,
+      "name_zh": null,
+      "practice_type": "architecture_firm",
+      "region": "latin_america_caribbean",
+      "summary_en": "",
       "summary_zh": "",
       "verification_status": "verified"
     },
@@ -1256,6 +1293,42 @@
     },
     {
       "claim_ids": [
+        "claim-wd-q5065687-external-ids",
+        "claim-wd-q5065687-name-en",
+        "claim-wd-q5065687-practice-type",
+        "claim-wd-q5065687-summary-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [],
+      "dissolved": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "practice",
+      "external_ids": {
+        "wikidata": "Q5065687"
+      },
+      "founded": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "id": "practice-wd-q5065687",
+      "last_verified": "2026-08-08",
+      "name_en": "Cetra/Ruddy",
+      "name_native": null,
+      "name_zh": null,
+      "practice_type": "architecture_firm",
+      "region": "unknown",
+      "summary_en": "American architecture and interior design firm",
+      "summary_zh": "",
+      "verification_status": "verified"
+    },
+    {
+      "claim_ids": [
         "claim-wd-q5069606-country-codes",
         "claim-wd-q5069606-external-ids",
         "claim-wd-q5069606-name-en",
@@ -1527,42 +1600,6 @@
     },
     {
       "claim_ids": [
-        "claim-wd-q5964680-external-ids",
-        "claim-wd-q5964680-name-en",
-        "claim-wd-q5964680-practice-type",
-        "claim-wd-q5964680-summary-en"
-      ],
-      "confidence": 0.6,
-      "country_codes": [],
-      "dissolved": {
-        "earliest": null,
-        "latest": null,
-        "precision": "unknown",
-        "value": null
-      },
-      "entity_type": "practice",
-      "external_ids": {
-        "wikidata": "Q5964680"
-      },
-      "founded": {
-        "earliest": null,
-        "latest": null,
-        "precision": "unknown",
-        "value": null
-      },
-      "id": "practice-wd-q5964680",
-      "last_verified": "2026-08-08",
-      "name_en": "Hönigsberg & Deutsch",
-      "name_native": null,
-      "name_zh": null,
-      "practice_type": "architecture_firm",
-      "region": "unknown",
-      "summary_en": "architecture studio in Zagreb",
-      "summary_zh": "",
-      "verification_status": "verified"
-    },
-    {
-      "claim_ids": [
         "claim-wd-q6000974-country-codes",
         "claim-wd-q6000974-external-ids",
         "claim-wd-q6000974-name-en",
@@ -1684,6 +1721,48 @@
     },
     {
       "claim_ids": [
+        "claim-wd-q6623279-country-codes",
+        "claim-wd-q6623279-external-ids",
+        "claim-wd-q6623279-name-en",
+        "claim-wd-q6623279-name-zh",
+        "claim-wd-q6623279-practice-type",
+        "claim-wd-q6623279-region",
+        "claim-wd-q6623279-summary-en",
+        "claim-wd-q6623279-summary-zh"
+      ],
+      "confidence": 0.6,
+      "country_codes": [
+        "US"
+      ],
+      "dissolved": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "practice",
+      "external_ids": {
+        "wikidata": "Q6623279"
+      },
+      "founded": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "id": "practice-wd-q6623279",
+      "last_verified": "2026-08-08",
+      "name_en": "Pei Cobb Freed & Partners",
+      "name_native": null,
+      "name_zh": "贝-考伯-弗里德及合伙人建筑师事务所",
+      "practice_type": "architecture_firm",
+      "region": "north_america",
+      "summary_en": "architectural firm based in New York City",
+      "summary_zh": "總部位於紐約市的建築公司",
+      "verification_status": "verified"
+    },
+    {
+      "claim_ids": [
         "claim-wd-q67173626-country-codes",
         "claim-wd-q67173626-external-ids",
         "claim-wd-q67173626-name-en",
@@ -1759,43 +1838,6 @@
       "practice_type": "architecture_firm",
       "region": "europe",
       "summary_en": "Dutch architecture firm",
-      "summary_zh": "",
-      "verification_status": "verified"
-    },
-    {
-      "claim_ids": [
-        "claim-wd-q694854-external-ids",
-        "claim-wd-q694854-name-en",
-        "claim-wd-q694854-name-zh",
-        "claim-wd-q694854-practice-type",
-        "claim-wd-q694854-summary-en"
-      ],
-      "confidence": 0.6,
-      "country_codes": [],
-      "dissolved": {
-        "earliest": null,
-        "latest": null,
-        "precision": "unknown",
-        "value": null
-      },
-      "entity_type": "practice",
-      "external_ids": {
-        "wikidata": "Q694854"
-      },
-      "founded": {
-        "earliest": null,
-        "latest": null,
-        "precision": "unknown",
-        "value": null
-      },
-      "id": "practice-wd-q694854",
-      "last_verified": "2026-08-08",
-      "name_en": "Fellner & Helmer",
-      "name_native": null,
-      "name_zh": "費迪南德·費爾納",
-      "practice_type": "architecture_firm",
-      "region": "unknown",
-      "summary_en": "Austrian architecture studio",
       "summary_zh": "",
       "verification_status": "verified"
     },
@@ -1881,6 +1923,128 @@
       "region": "east_asia",
       "summary_en": "Architecture firm (est.1995) based in Tokyo",
       "summary_zh": "日本建筑事务所",
+      "verification_status": "verified"
+    },
+    {
+      "claim_ids": [
+        "claim-wd-q7494520-country-codes",
+        "claim-wd-q7494520-external-ids",
+        "claim-wd-q7494520-name-en",
+        "claim-wd-q7494520-name-zh",
+        "claim-wd-q7494520-practice-type",
+        "claim-wd-q7494520-region",
+        "claim-wd-q7494520-summary-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [
+        "US"
+      ],
+      "dissolved": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "practice",
+      "external_ids": {
+        "wikidata": "Q7494520"
+      },
+      "founded": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "id": "practice-wd-q7494520",
+      "last_verified": "2026-08-08",
+      "name_en": "Shepley, Rutan and Coolidge",
+      "name_native": null,
+      "name_zh": "雪普莉、穆坦和柯立芝设计公司",
+      "practice_type": "architecture_firm",
+      "region": "north_america",
+      "summary_en": "architectural firm based in Boston, Massachusetts",
+      "summary_zh": "",
+      "verification_status": "verified"
+    },
+    {
+      "claim_ids": [
+        "claim-wd-q76167085-country-codes",
+        "claim-wd-q76167085-external-ids",
+        "claim-wd-q76167085-name-en",
+        "claim-wd-q76167085-practice-type",
+        "claim-wd-q76167085-region",
+        "claim-wd-q76167085-summary-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [
+        "NL"
+      ],
+      "dissolved": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "practice",
+      "external_ids": {
+        "wikidata": "Q76167085"
+      },
+      "founded": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "id": "practice-wd-q76167085",
+      "last_verified": "2026-08-08",
+      "name_en": "KCAP",
+      "name_native": null,
+      "name_zh": null,
+      "practice_type": "architecture_firm",
+      "region": "europe",
+      "summary_en": "Dutch architecture firm",
+      "summary_zh": "",
+      "verification_status": "verified"
+    },
+    {
+      "claim_ids": [
+        "claim-wd-q7691420-country-codes",
+        "claim-wd-q7691420-external-ids",
+        "claim-wd-q7691420-name-en",
+        "claim-wd-q7691420-name-zh",
+        "claim-wd-q7691420-practice-type",
+        "claim-wd-q7691420-region",
+        "claim-wd-q7691420-summary-en"
+      ],
+      "confidence": 0.6,
+      "country_codes": [
+        "GB"
+      ],
+      "dissolved": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "entity_type": "practice",
+      "external_ids": {
+        "wikidata": "Q7691420"
+      },
+      "founded": {
+        "earliest": null,
+        "latest": null,
+        "precision": "unknown",
+        "value": null
+      },
+      "id": "practice-wd-q7691420",
+      "last_verified": "2026-08-08",
+      "name_en": "Team 4",
+      "name_native": null,
+      "name_zh": "小组四",
+      "practice_type": "architecture_firm",
+      "region": "europe",
+      "summary_en": "British architectural firm",
+      "summary_zh": "",
       "verification_status": "verified"
     },
     {

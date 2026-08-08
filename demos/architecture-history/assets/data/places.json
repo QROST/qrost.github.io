@@ -434,6 +434,30 @@
     },
     {
       "claim_ids": [
+        "claim-wd-q39-name-en",
+        "claim-wd-q39-name-zh",
+        "claim-wd-q39-country-code",
+        "claim-wd-q39-region",
+        "claim-wd-q39-external-ids"
+      ],
+      "confidence": 0.6,
+      "country_code": "CH",
+      "entity_type": "place",
+      "external_ids": {
+        "wikidata": "Q39"
+      },
+      "id": "place-wd-q39",
+      "last_verified": "2026-08-08",
+      "lat": null,
+      "lng": null,
+      "name_en": "Switzerland",
+      "name_native": null,
+      "name_zh": "瑞士",
+      "region": "europe",
+      "verification_status": "verified"
+    },
+    {
+      "claim_ids": [
         "claim-wd-q40-name-en",
         "claim-wd-q40-name-zh",
         "claim-wd-q40-country-code",
@@ -502,6 +526,30 @@
       "name_native": null,
       "name_zh": "希腊",
       "region": "europe",
+      "verification_status": "verified"
+    },
+    {
+      "claim_ids": [
+        "claim-wd-q414-name-en",
+        "claim-wd-q414-name-zh",
+        "claim-wd-q414-country-code",
+        "claim-wd-q414-region",
+        "claim-wd-q414-external-ids"
+      ],
+      "confidence": 0.6,
+      "country_code": "AR",
+      "entity_type": "place",
+      "external_ids": {
+        "wikidata": "Q414"
+      },
+      "id": "place-wd-q414",
+      "last_verified": "2026-08-08",
+      "lat": null,
+      "lng": null,
+      "name_en": "Argentina",
+      "name_native": null,
+      "name_zh": "阿根廷",
+      "region": "latin_america_caribbean",
       "verification_status": "verified"
     },
     {

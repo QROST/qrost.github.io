@@ -1,7 +1,7 @@
 {
   "catalog_profile": {
     "evidence_by_source_family": {
-      "wikimedia": 17294
+      "wikimedia": 9718
     },
     "periods": {
       "1000_1499": {
@@ -14,113 +14,113 @@
       },
       "1800_1918": {
         "verified_works": 0,
-        "works": 61
+        "works": 122
       },
       "1919_1945": {
         "verified_works": 0,
-        "works": 40
+        "works": 101
       },
       "1946_1979": {
         "verified_works": 0,
-        "works": 121
+        "works": 129
       },
       "1980_1999": {
         "verified_works": 0,
-        "works": 92
+        "works": 122
       },
       "2000_present": {
         "verified_works": 0,
-        "works": 126
+        "works": 206
       },
       "before_1000": {
         "verified_works": 0,
         "works": 33
       },
       "unknown": {
-        "verified_works": 50,
-        "works": 162
+        "verified_works": 60,
+        "works": 231
       }
     },
     "regions": {
       "africa": {
-        "entities": 49,
+        "entities": 59,
         "verified_entities": 6,
-        "works": 44
+        "works": 54
       },
       "central_west_asia": {
-        "entities": 80,
+        "entities": 92,
+        "verified_entities": 12,
+        "works": 85
+      },
+      "east_asia": {
+        "entities": 190,
+        "verified_entities": 25,
+        "works": 161
+      },
+      "europe": {
+        "entities": 809,
+        "verified_entities": 47,
+        "works": 345
+      },
+      "latin_america_caribbean": {
+        "entities": 90,
         "verified_entities": 11,
         "works": 72
       },
-      "east_asia": {
-        "entities": 185,
-        "verified_entities": 20,
-        "works": 116
-      },
-      "europe": {
-        "entities": 1800,
-        "verified_entities": 44,
-        "works": 224
-      },
-      "latin_america_caribbean": {
-        "entities": 74,
-        "verified_entities": 8,
-        "works": 56
-      },
       "north_america": {
-        "entities": 247,
-        "verified_entities": 23,
-        "works": 97
+        "entities": 253,
+        "verified_entities": 24,
+        "works": 148
       },
       "oceania": {
-        "entities": 48,
+        "entities": 69,
         "verified_entities": 4,
-        "works": 35
+        "works": 55
       },
       "south_asia": {
-        "entities": 58,
+        "entities": 75,
         "verified_entities": 8,
-        "works": 55
+        "works": 72
       },
       "southeast_asia": {
-        "entities": 67,
-        "verified_entities": 12,
-        "works": 55
+        "entities": 84,
+        "verified_entities": 13,
+        "works": 71
       },
       "transregional": {
-        "entities": 31,
+        "entities": 22,
         "verified_entities": 1,
         "works": 0
       },
       "unknown": {
-        "entities": 1421,
-        "verified_entities": 16,
+        "entities": 272,
+        "verified_entities": 10,
         "works": 0
       }
     },
     "verification": {
-      "candidate": 8258,
-      "verified": 153
+      "candidate": 2431,
+      "verified": 161
     },
     "work_type_mapping": {
-      "ambiguous": 21,
-      "mapped_exact": 478,
+      "ambiguous": 24,
+      "mapped_exact": 784,
       "unmapped": 255
     }
   },
   "counts": {
-    "candidate_entities_and_relations": 8258,
-    "claims": 14509,
+    "candidate_entities_and_relations": 2431,
+    "claims": 9286,
     "contested_entities_and_relations": 0,
     "declined_entities_and_relations": 0,
-    "people": 3213,
-    "places": 40,
-    "practices": 53,
-    "relations": 4351,
+    "people": 853,
+    "places": 42,
+    "practices": 57,
+    "relations": 577,
     "reviewers": 1,
     "sources": 12,
-    "verified_entities_and_relations": 153,
-    "works": 754
+    "verified_entities_and_relations": 161,
+    "works": 1063
   },
   "coverage": {
     "cells": [
@@ -707,24 +707,24 @@
       "periods": {
         "1000_1499": 53,
         "1500_1799": 66,
-        "1800_1918": 61,
-        "1919_1945": 40,
-        "1946_1979": 121,
-        "1980_1999": 92,
-        "2000_present": 126,
+        "1800_1918": 122,
+        "1919_1945": 101,
+        "1946_1979": 129,
+        "1980_1999": 122,
+        "2000_present": 206,
         "before_1000": 33,
-        "unknown": 162
+        "unknown": 231
       },
       "regions": {
-        "africa": 44,
-        "central_west_asia": 72,
-        "east_asia": 116,
-        "europe": 224,
-        "latin_america_caribbean": 56,
-        "north_america": 97,
-        "oceania": 35,
-        "south_asia": 55,
-        "southeast_asia": 55
+        "africa": 54,
+        "central_west_asia": 85,
+        "east_asia": 161,
+        "europe": 345,
+        "latin_america_caribbean": 72,
+        "north_america": 148,
+        "oceania": 55,
+        "south_asia": 72,
+        "southeast_asia": 71
       }
     },
     "selection_methods": [
@@ -736,35 +736,35 @@
     "status": "partial"
   },
   "data_as_of": "2026-07-28",
-  "data_version": "d25dd5b42c8e44c0b07b2cb8a4f7c23fe5d99d94213b0f6d6e47ae4079a44f2e",
+  "data_version": "9a6e6f2694c038357a5d55c28b8e2099797cd3c7382b2c9616da60f17495997d",
   "files": {
     "catalog/wikidata-hydration.json": {
       "count": 1,
-      "sha256": "39f4e6592512b6dc31301396b013b583bb9a6b9b0c251ccb6f3ce1dd03a46eac"
+      "sha256": "2999fadd918537094f0f4ef859d488a0ad7981a015ebfea3bfcf052086a18a05"
     },
     "claims.json": {
-      "count": 14509,
-      "sha256": "5d6739882d960205037a85b85655e975ec1567ad11b49a8c2f6b6e3d721f16a0"
+      "count": 9286,
+      "sha256": "04017e96e9ca7425e279e91af9bccd3033ccc01f33151ddca0c06e630f180d5c"
     },
     "methodology/wikidata-coverage-config.json": {
       "count": 1,
-      "sha256": "8bd00966ef4ffd3e35e467c538e6be0f900d60030b1e5147f1931379151e94ef"
+      "sha256": "8c0c909625a296587b08e1b3ac108b994b9819bf6728bbde04b3f19ccfed6756"
     },
     "people.json": {
-      "count": 3213,
-      "sha256": "ad94b167e7e6bbfa1ee854a813a9743bbff31595fb43a71465f1913fed194771"
+      "count": 853,
+      "sha256": "6f91721a233d04e8b3a4e366a4c17579244a8853bd5c8a5d65433a4e5cb147db"
     },
     "places.json": {
-      "count": 40,
-      "sha256": "5fb5816342131807e71699a4a0fc14666204958046e7305e73637dbb83429b60"
+      "count": 42,
+      "sha256": "224c3f6a9402d73ea42ff3c0a64ef2f866b29da28812afa27072455c4b860e9b"
     },
     "practices.json": {
-      "count": 53,
-      "sha256": "197ef3d4022fb6a4a15ff282eea010da23599c6e4a50f8f2f2f5b3c20ee1757e"
+      "count": 57,
+      "sha256": "aaf287e2ad99e480af27613c404c881a793ee49affaa00da3c2128897d97b0d1"
     },
     "relations.json": {
-      "count": 4351,
-      "sha256": "f328449562c5e9acd80c22e258328359288b3fb97a9dd7999b10c4a5fa5243e7"
+      "count": 577,
+      "sha256": "c6d40514cae6c33c68ae3b9827d17dc754ca1cc19434b8ea74e4268c1d3ec7b0"
     },
     "reviewers.json": {
       "count": 1,
@@ -778,69 +778,21 @@
       "count": 1,
       "sha256": "4fd51d1fd729e607b0378326acc689b70f60135475550160a26afadf013d608b"
     },
-    "source-snapshots/wikidata-hydration-2026-07-25-0855f4599c43.json": {
+    "source-snapshots/wikidata-hydration-2026-08-08-28bc2ce532a1.json": {
       "count": 1,
-      "sha256": "23b628f5ec2035724374137771bfbe15cf8dca4e1272eb0cccbad1cd2510851a"
+      "sha256": "62efec3f2f1cd6e8671fe24e82b5c17554aef66d15d9f0890caf8583b1e6b3a4"
     },
-    "source-snapshots/wikidata-hydration-2026-07-25-f5e81e918a9c.json": {
-      "count": 1,
-      "sha256": "956ef59dd0da905a183ef973aaa81cc411a9afa28789d2a928c303306f2b3b7e"
-    },
-    "source-snapshots/wikidata-hydration-2026-07-26-507f4aec2dd0.json": {
-      "count": 1,
-      "sha256": "fe8e9805b68bdc69f5ea57976862577b183805a2e3862cc9a0f44fddbd9f36cf"
-    },
-    "source-snapshots/wikidata-hydration-2026-07-26-8168da244b70.json": {
-      "count": 1,
-      "sha256": "7357b1c17cf638bb48ec31e2b5df62c8df087410974f6e23f597f848c0f8210f"
-    },
-    "source-snapshots/wikidata-hydration-2026-07-26-c6bab6161fb8.json": {
-      "count": 1,
-      "sha256": "9491242c2fca5ea88ad46d61027586d44d7a87715b6a12e651855d6b01512e26"
-    },
-    "source-snapshots/wikidata-hydration-2026-07-26-fb67d6514126.json": {
-      "count": 1,
-      "sha256": "3db0726e2de3265692e4e9e1741ae20550284adca762c75b1bfcb500babb1664"
-    },
-    "source-snapshots/wikidata-hydration-2026-07-27-1de027b10594.json": {
-      "count": 1,
-      "sha256": "366a63b290b64fa5eb7fb560a239a18b39e622e622def2fc69a856958932375e"
-    },
-    "source-snapshots/wikidata-hydration-2026-07-27-2247458cbe83.json": {
-      "count": 1,
-      "sha256": "63fb4a5fe181439f781ea7c9ea71a9e0edc2a74c87eb90afa25b0a319ccfec26"
-    },
-    "source-snapshots/wikidata-hydration-2026-07-27-37a201bb5dae.json": {
-      "count": 1,
-      "sha256": "10e9620b7d25533b65044d7677f84efdfb4c6888cf18a75a02b4c2792d6b8c6f"
-    },
-    "source-snapshots/wikidata-hydration-2026-07-27-964744417d69.json": {
-      "count": 1,
-      "sha256": "de7d8aa2df052059109585c2750b46c12b939ff42e40eb5bf57d417a1d8d1741"
-    },
-    "source-snapshots/wikidata-hydration-2026-07-27-e4f149fe2328.json": {
-      "count": 1,
-      "sha256": "11d9c0fd6dd34ccb03f5e7e83c5a4d860672c578505f9ff57e8496dc72765567"
-    },
-    "source-snapshots/wikidata-hydration-2026-08-07-d37c179db21b.json": {
-      "count": 1,
-      "sha256": "e286a84768b745056dbd069f1243e4f8ceb0270e7d78e85d75e384266541e5b9"
-    },
-    "source-snapshots/wikidata-hydration-2026-08-08-c5e13d838dfa.json": {
-      "count": 1,
-      "sha256": "45f368db1901a44f4b2ebc926772b19d3969a8862a95c52b5dddcc379e7118db"
-    },
-    "source-snapshots/wikidata-ulan-crosswalk-2026-08-08-101c14d31eb5.json": {
+    "source-snapshots/wikidata-ulan-crosswalk-2026-08-08-c504ebfb3fbb.json": {
       "count": 24,
-      "sha256": "219639d671e50ddcf323ee142ea56cf5ed19b84cd426d76a24d7f7d40f43d627"
+      "sha256": "f989daa352fa4549e10dc7de6c932ccabe7a8228ba902d53c40e03f690ca5bc8"
     },
-    "source-snapshots/wikidata-work-type-authority-2026-08-08-265e6658a43b.json": {
+    "source-snapshots/wikidata-work-type-authority-2026-08-08-6e8a235064d4.json": {
       "count": 1,
-      "sha256": "0e62e79d86b7a4d15dd2dbf2fa977bf7527b7d1a6aae89c4be3768e4142751d2"
+      "sha256": "07786750032cd68f5b9b64277e43255109f4d1e479cc9bacf013ba9a0a5c63af"
     },
     "works.json": {
-      "count": 754,
-      "sha256": "7d5f228742a69ee231f8782e903a17d73bad8ef1c5fb073c0cc5fc1f3df1af1a"
+      "count": 1063,
+      "sha256": "668b75faf9d200cd67e0e6aeef455796563bc91cd8bc0003012b276b11d466cb"
     }
   },
   "hash_algorithm": "sha256",
