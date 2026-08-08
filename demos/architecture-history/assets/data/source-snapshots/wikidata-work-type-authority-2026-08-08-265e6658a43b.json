@@ -1,8 +1,8 @@
 {
-  "accessed": "2026-08-07",
+  "accessed": "2026-08-08",
   "adapter_id": "wikidata-hydration-pilot",
   "adapter_version": "0.1.0",
-  "base_work_snapshot_id": "wikidata-hydration-2026-08-07-d37c179db21b",
+  "base_work_snapshot_id": "wikidata-hydration-2026-08-08-c5e13d838dfa",
   "endpoint": "https://www.wikidata.org/wiki/Special:EntityData",
   "entities": {
     "Q1060829": {
@@ -162,7 +162,7 @@
         "modified": "2026-07-16T05:03:03Z"
       },
       "record_sha256": "65d8e1f8aecb3f7159e9af5f94d74d956c28d372231a942fad6c8370bfa4bc88",
-      "retrieved_at": "2026-08-07T22:25:41Z"
+      "retrieved_at": "2026-08-08T06:05:17Z"
     },
     "Q1307276": {
       "content_type": "application/json; charset=UTF-8",
@@ -302,7 +302,7 @@
         "modified": "2026-07-10T15:01:23Z"
       },
       "record_sha256": "cf509bdf1ea2ed272d3e3d7a0902bc24aef673e67815994428a74c4bc59e5d96",
-      "retrieved_at": "2026-08-07T22:25:42Z"
+      "retrieved_at": "2026-08-08T06:05:17Z"
     },
     "Q2977": {
       "content_type": "application/json; charset=UTF-8",
@@ -379,7 +379,7 @@
         "modified": "2026-07-25T16:30:04Z"
       },
       "record_sha256": "289a17e95a74ee34b1fe6baa7faef267bfedcb31c9bcaae10014f65474bc76a1",
-      "retrieved_at": "2026-08-07T22:25:41Z"
+      "retrieved_at": "2026-08-08T06:05:17Z"
     },
     "Q3950": {
       "content_type": "application/json; charset=UTF-8",
@@ -504,7 +504,7 @@
         "modified": "2026-08-03T16:25:06Z"
       },
       "record_sha256": "3cee312ad268764118f070414ee193d1029ae7a7a49c53cae61b7f05a2e88b3b",
-      "retrieved_at": "2026-08-07T22:25:42Z"
+      "retrieved_at": "2026-08-08T06:05:18Z"
     },
     "Q7138926": {
       "content_type": "application/json; charset=UTF-8",
@@ -802,7 +802,7 @@
         "modified": "2026-06-14T06:43:49Z"
       },
       "record_sha256": "5f90345769b4996c1165b4f665da42ec4452ef5c873ae51c18094151281f4878",
-      "retrieved_at": "2026-08-07T22:25:42Z"
+      "retrieved_at": "2026-08-08T06:05:17Z"
     },
     "Q92026": {
       "content_type": "application/json; charset=UTF-8",
@@ -884,7 +884,7 @@
         "modified": "2026-07-14T08:24:13Z"
       },
       "record_sha256": "33da159890fc2158a703c568470c613189cf00f9c40b712223cc980160a12acd",
-      "retrieved_at": "2026-08-07T22:25:41Z"
+      "retrieved_at": "2026-08-08T06:05:17Z"
     }
   },
   "license": "CC0-1.0",
@@ -956,7 +956,7 @@
           "work_type": "building"
         }
       ],
-      "base_work_snapshot_id": "wikidata-hydration-2026-08-07-d37c179db21b",
+      "base_work_snapshot_id": "wikidata-hydration-2026-08-08-c5e13d838dfa",
       "seed_version": "0.1.0"
     },
     "method": "exact_instance_allowlist_authority",
@@ -965,8 +965,8 @@
     "per_cell": null,
     "query_limit": null,
     "seed": "wikidata-work-type-authority-seeds-v0.1.0",
-    "seed_sha256": "f5091e44b8d2b59c2c9bd24a94de01eab7eda42c973ae7e33fd93074ea5ca7ea"
+    "seed_sha256": "32da848f96fc83a9ba42032f5edab635cfbb38a52b12fdeeca1823a2acbb250e"
   },
-  "snapshot_id": "wikidata-work-type-authority-2026-08-07-b397f30532e0",
+  "snapshot_id": "wikidata-work-type-authority-2026-08-08-265e6658a43b",
   "source_id": "wikidata"
 }
