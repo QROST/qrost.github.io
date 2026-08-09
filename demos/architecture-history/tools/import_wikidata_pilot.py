@@ -2292,14 +2292,15 @@ def preserve_verification_state(
     agentic_review_* run promoted to ``verified``. To keep the import safe
     to rerun, we read the previously written catalog (if present) and, for
     every entity id that still exists, restore ``verification_status``,
-    ``last_verified``, and the higher of the two ``confidence`` values.
-    Reviewed claims (matched by id) likewise keep their verified status,
-    ``reviewed_by`` and ``reviewed_at``.
+    ``last_verified``, the higher of the two ``confidence`` values, and the
+    field_* claims the reviewer added (the importer does not regenerate
+    those). Reviewed claims (matched by id) likewise keep their verified
+    status, ``reviewed_by`` and ``reviewed_at``.
 
-    This only preserves *state*, not content: if the snapshot changed a
-    field, the new value wins and the claim may need re-review. Entities
-    or claims absent from the new catalog are dropped as usual (pruning
-    still applies).
+    Only the *review state* is carried forward: if the snapshot changed a
+    field's value, the entity stays candidate (the claim ids won't line up
+    and the drift check in the reviewer will catch it on the next run).
+    Entities or claims absent from the new catalog are dropped as usual.
     """
     if existing_path is None:
         existing_path = CATALOG_DIR / "wikidata-hydration.json"
@@ -2310,23 +2311,45 @@ def preserve_verification_state(
     except (OSError, ValueError):
         return
 
-    # Map previously-verified entities by id. Keep last_verified and the
-    # higher confidence so a review that lifted confidence is not lost.
+    # Index the old catalog: verified entities carry their claim_ids, and
+    # every old claim is kept by id so we can merge back the reviewer-added
+    # field claims the importer does not regenerate.
     verified_entities: dict[str, dict[str, Any]] = {}
     for key in ("people", "practices", "places", "works"):
         for entity in existing.get(key, []):
             if entity.get("verification_status") == "verified":
-                verified_entities[entity["id"]] = {
-                    "verification_status": "verified",
-                    "last_verified": entity.get("last_verified"),
-                    "confidence": entity.get("confidence"),
-                }
+                verified_entities[entity["id"]] = entity
+
+    old_claims_by_id: dict[str, dict[str, Any]] = {
+        claim["id"]: claim for claim in existing.get("claims", [])
+    }
+    new_claim_ids = {claim["id"] for claim in catalog.get("claims", [])}
+    merged_claims = list(catalog.get("claims", []))
+    claims_restored = 0
 
     for key in ("people", "practices", "places", "works"):
         for entity in catalog.get(key, []):
             prior = verified_entities.get(entity["id"])
             if not prior:
                 continue
+            # Carry the verified field claims the reviewer added. These are
+            # claims listed in the old entity's claim_ids that the fresh
+            # import did not reproduce (they're not name/credit claims the
+            # importer emits). We bring back the claim rows and the id
+            # references so the entity stays fully evidenced.
+            prior_claim_ids = set(prior.get("claim_ids", []))
+            entity_claim_ids = set(entity.get("claim_ids", []))
+            missing = prior_claim_ids - entity_claim_ids - new_claim_ids
+            for claim_id in sorted(missing):
+                old_claim = old_claims_by_id.get(claim_id)
+                if old_claim is None:
+                    continue
+                merged_claims.append(old_claim)
+                new_claim_ids.add(claim_id)
+                claims_restored += 1
+            # Re-attach the full claim id set (old review claims + any new
+            # ones the importer produced).
+            entity["claim_ids"] = sorted(prior_claim_ids | entity_claim_ids)
             entity["verification_status"] = "verified"
             if prior.get("last_verified"):
                 entity["last_verified"] = prior["last_verified"]
@@ -2336,7 +2359,11 @@ def preserve_verification_state(
                 if not isinstance(cur, (int, float)) or prior_conf > cur:
                     entity["confidence"] = prior_conf
 
-    # Reviewed claims: restore verification_status + reviewed_by/at by id.
+    if claims_restored:
+        catalog["claims"] = merged_claims
+
+    # Reviewed claims already present in the new catalog: restore status +
+    # reviewer attribution by id.
     reviewed_claims: dict[str, dict[str, Any]] = {}
     for claim in existing.get("claims", []):
         if claim.get("verification_status") == "verified":

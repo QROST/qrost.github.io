@@ -736,15 +736,15 @@
     "status": "partial"
   },
   "data_as_of": "2026-07-28",
-  "data_version": "54bc52bb5172d66d4b7a541cb76181dff33910a31b4a3f0e6e6932064b173f5d",
+  "data_version": "634fd6165b107ef50acfb50c3481a9bf4efaf27e52822487670fe94a308da8f2",
   "files": {
     "catalog/wikidata-hydration.json": {
       "count": 1,
-      "sha256": "3c564dae67c560086317b3884a58b8ffa2351aa8951383870c38fcea96b69c85"
+      "sha256": "11a7d219ae7555c4f66a08fa1f28f3a9d9b5e9e1283d49b03693f32cd24167f8"
     },
     "claims.json": {
       "count": 11654,
-      "sha256": "1c30805493235bf659a4389754136745768de753e728140f42b78e93fd005aa9"
+      "sha256": "8a7391c1c17940424b7210cc7c14d2d3f10c5337255d2c3060b0f37a113c2c8c"
     },
     "methodology/wikidata-coverage-config.json": {
       "count": 1,
@@ -752,15 +752,15 @@
     },
     "people.json": {
       "count": 853,
-      "sha256": "0b475e00ff6724ecc449a15bfc647ac25ade2d3e26d67a3131f556db6574aba5"
+      "sha256": "137f21b5c9fd9c58924611ebf0c84def8a58ba5e5c7e571d1e1c026ee45380e3"
     },
     "places.json": {
       "count": 42,
-      "sha256": "224c3f6a9402d73ea42ff3c0a64ef2f866b29da28812afa27072455c4b860e9b"
+      "sha256": "9bbb0d5026256773e1106c4ca6291bebf96445003d7a185fd9936f8b4c4081f0"
     },
     "practices.json": {
       "count": 57,
-      "sha256": "aaf287e2ad99e480af27613c404c881a793ee49affaa00da3c2128897d97b0d1"
+      "sha256": "4cd4e00313bb040c22bed3da396c2d77486d6a43bd3fbe159fab369158e99068"
     },
     "relations.json": {
       "count": 577,
@@ -782,9 +782,9 @@
       "count": 1,
       "sha256": "62efec3f2f1cd6e8671fe24e82b5c17554aef66d15d9f0890caf8583b1e6b3a4"
     },
-    "source-snapshots/wikidata-ulan-crosswalk-2026-08-08-5fc49cff6c9e.json": {
+    "source-snapshots/wikidata-ulan-crosswalk-2026-08-08-56ad96e7cbe7.json": {
       "count": 24,
-      "sha256": "0da3ff267769978796ef0fdb48fefd8ea40072be3880415335b08dbb24c246b0"
+      "sha256": "f1142b6b4069e00e751d9b171834e06f325078039ae333f269c1c101c64f4ec3"
     },
     "source-snapshots/wikidata-work-type-authority-2026-08-08-6e8a235064d4.json": {
       "count": 1,
@@ -792,7 +792,7 @@
     },
     "works.json": {
       "count": 1063,
-      "sha256": "0f18120909ce11bac97ee2cede70f29315f379e3324dd0e1fe03837caf858099"
+      "sha256": "ca1c9485f77028edd1b5a96143089337be752211af98503cbc344a905faeae9b"
     }
   },
   "hash_algorithm": "sha256",
