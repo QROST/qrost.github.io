@@ -184,10 +184,13 @@
       const ids = [];
       const degree = {};
       relations.forEach(function (relation) {
-      [relation.from_id, relation.to_id].forEach(function (id) {
-        if (!ids.includes(id)) ids.push(id);
-        degree[id] = (degree[id] || 0) + 1;
-      });
+        const from = entitiesById[relation.from_id];
+        const to = entitiesById[relation.to_id];
+        if (!from || from.entity_type !== 'person' || !to || to.entity_type !== 'person') return;
+        [relation.from_id, relation.to_id].forEach(function (id) {
+          if (!ids.includes(id)) ids.push(id);
+          degree[id] = (degree[id] || 0) + 1;
+        });
       });
       const nodes = ids.map(function (id) {
       const entity = entitiesById[id] || { name_en: id };
@@ -204,19 +207,23 @@
         },
       };
       });
-      const links = relations.map(function (relation) {
-      return {
-        source: relation.from_id,
-        target: relation.to_id,
-        relationId: relation.id,
-        lineStyle: {
-          color: cssVar('--terracotta'),
-          type: 'dashed',
-          width: 1.2,
-          opacity: 0.68,
-          curveness: 0.08,
-        },
-      };
+      const links = relations.filter(function (relation) {
+        const from = entitiesById[relation.from_id];
+        const to = entitiesById[relation.to_id];
+        return from && from.entity_type === 'person' && to && to.entity_type === 'person';
+      }).map(function (relation) {
+        return {
+          source: relation.from_id,
+          target: relation.to_id,
+          relationId: relation.id,
+          lineStyle: {
+            color: cssVar('--terracotta'),
+            type: 'dashed',
+            width: 1.2,
+            opacity: 0.68,
+            curveness: 0.08,
+          },
+        };
       });
 
       chart.setOption({

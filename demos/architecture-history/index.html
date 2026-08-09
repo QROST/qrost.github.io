@@ -254,13 +254,13 @@
         <div>
           <p class="section-kicker" data-i18n="lineageKicker">03 · 待审知识传递</p>
           <h2 id="lineage-title" data-i18n="lineageTitle">原始关系复核图</h2>
-          <p data-i18n="lineageIntro">这些虚线边来自 Wikidata P1066/P802 的原始记录，只表示待审的“前序人物 → 后续人物”线索；不能自动解释为教师、导师或师徒。</p>
+          <p data-i18n="lineageIntro">这些虚线边来自 Wikidata P1066/P802 的原始记录，只表示待审的“前序人物 → 后续人物”线索；不能自动解释为教师、导师或师徒。任职与创立关系见人物详情，不在此图中展示。</p>
         </div>
         <div class="section-stat"><strong id="lineage-count">—</strong><span data-i18n="lineageCountLabel">条候选待审边</span></div>
       </div>
       <div class="lineage-warning">
         <span aria-hidden="true">≠</span>
-        <p><strong data-i18n="lineageWarningTitle">关系线索不等于已确认师承。</strong> <span data-i18n="lineageWarningCopy">教育、任职、合作、影响或数据库关系都不能自动等同于教师、导师或学徒关系；需要逐条人工核验。</span></p>
+        <p><strong data-i18n="lineageWarningTitle">关系线索不等于已确认师承。</strong> <span data-i18n="lineageWarningCopy">本图仅展示人物↔人物知识传递线索；任职与创立关系见人物详情。任何来源记录都不能自动等同于教师、导师或学徒关系，需逐条人工核验。</span></p>
       </div>
       <div class="lineage-toolbar">
         <label class="search-field" for="lineage-search">
@@ -274,8 +274,6 @@
         <div class="lineage-type-tabs">
           <button type="button" class="active" data-lineage-type="student_of_recorded" aria-pressed="true"><span data-i18n="lineageTypeStudent">学习关系</span></button>
           <button type="button" class="active" data-lineage-type="documented_influence" aria-pressed="true"><span data-i18n="lineageTypeInfluence">影响关系</span></button>
-          <button type="button" class="active" data-lineage-type="worked_at_practice" aria-pressed="true"><span data-i18n="lineageTypePractice">任职关系</span></button>
-          <button type="button" class="active" data-lineage-type="cofounded_with" aria-pressed="true"><span data-i18n="lineageTypeCofounded">共同创立</span></button>
         </div>
       </div>
       <div id="lineage-empty" class="empty-state hidden">
@@ -402,9 +400,9 @@
     src="https://cdn.jsdelivr.net/npm/echarts@5.5.1/dist/echarts.min.js"
     integrity="sha384-Mx5lkUEQPM1pOJCwFtUICyX45KNojXbkWdYhkKUKsbv391mavbfoAmONbzkgYPzR"
     crossorigin="anonymous"></script>
-  <script src="assets/js/i18n.js?v=cf86a82ea1"></script>
+  <script src="assets/js/i18n.js?v=09652d149f"></script>
   <script src="assets/js/data-loader.js?v=3f20e9dcfb"></script>
-  <script src="assets/js/maps.js?v=73c3e5fa66"></script>
-  <script src="assets/js/app.js?v=4052fb531f"></script>
+  <script src="assets/js/maps.js?v=d6fe1f36f1"></script>
+  <script src="assets/js/app.js?v=8dd75c2928"></script>
 </body>
 </html>

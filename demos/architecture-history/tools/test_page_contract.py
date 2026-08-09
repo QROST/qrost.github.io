@@ -265,6 +265,8 @@ class PageContractTests(unittest.TestCase):
             "not a complete global history",
             "关系线索不等于已确认师承",
             "relation clues are not verified lineage",
+            "人物↔人物",
+            "person-to-person",
             "核验状态与原始记录分离",
             "verification stays separate from source records",
             "72 个",
@@ -279,6 +281,25 @@ class PageContractTests(unittest.TestCase):
         )
         self.assertIn("agentic reviewer", self.html + self.i18n)
         self.assertIn("agentic verification", self.html + self.i18n)
+
+    def test_lineage_graph_is_person_to_person_only(self) -> None:
+        self.assertNotIn('data-lineage-type="worked_at_practice"', self.html)
+        self.assertNotIn('data-lineage-type="cofounded_with"', self.html)
+        self.assertIn('data-lineage-type="student_of_recorded"', self.html)
+        self.assertIn('data-lineage-type="documented_influence"', self.html)
+        self.assertNotIn("lineageTypePractice", self.html + self.i18n)
+        self.assertNotIn("lineageTypeCofounded", self.html + self.i18n)
+        for phrase in (
+            "isPersonLineageEndpoint",
+            "personLineageReviewRelations",
+            "practiceAffiliationsHtml",
+            "detailPracticeAffiliations",
+            "PRACTICE_AFFILIATION_TYPES",
+        ):
+            self.assertIn(phrase, self.app + self.i18n)
+        self.assertIn("!isPersonLineageEndpoint(relation.from_id)", self.app)
+        self.assertIn("entity_type !== 'person'", self.maps)
+
     def test_social_preview_is_declared_and_present(self) -> None:
         expected = ROOT / "assets" / "img" / "architecture-history-og.png"
         self.assertTrue(expected.is_file(), expected)

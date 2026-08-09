@@ -34,8 +34,6 @@
       relationTypes: new Set([
         'student_of_recorded',
         'documented_influence',
-        'worked_at_practice',
-        'cofounded_with',
       ]),
     },
   };
@@ -43,9 +41,12 @@
   const LINEAGE_RELATION_TYPES = [
     'student_of_recorded',
     'documented_influence',
+  ];
+
+  const PRACTICE_AFFILIATION_TYPES = new Set([
     'worked_at_practice',
     'cofounded_with',
-  ];
+  ]);
 
   const SECTION_IDS = new Set(['atlas', 'catalog', 'lineage', 'coverage', 'methodology']);
 
@@ -416,11 +417,26 @@
     return entitySearchText(entity).includes(query);
   }
 
+  function isPersonLineageEndpoint(entityId) {
+    const entity = state.entitiesById[entityId];
+    return Boolean(entity && entity.entity_type === 'person');
+  }
+
+  function personLineageReviewRelations() {
+    return state.data.relations.filter(function (relation) {
+      if (!LINEAGE_RELATION_TYPES.includes(relation.relation_type)) return false;
+      return isPersonLineageEndpoint(relation.from_id) &&
+        isPersonLineageEndpoint(relation.to_id);
+    });
+  }
+
   function filteredLineageRelations() {
     const filters = state.lineageFilters;
     const query = normalize(filters.query);
     return state.data.relations.filter(function (relation) {
       if (!filters.relationTypes.has(relation.relation_type)) return false;
+      if (!isPersonLineageEndpoint(relation.from_id) ||
+        !isPersonLineageEndpoint(relation.to_id)) return false;
       if (!query) return true;
       return relationEndpointMatchesQuery(relation.from_id, query) ||
         relationEndpointMatchesQuery(relation.to_id, query);
@@ -428,7 +444,7 @@
   }
 
   function renderLineage() {
-    const total = state.data.relations.length;
+    const total = personLineageReviewRelations().length;
     const relations = filteredLineageRelations();
     putText('#lineage-count', relations.length + ' / ' + total);
     const empty = $('#lineage-empty');
@@ -616,8 +632,36 @@
     });
   }
 
+  function practiceAffiliationsHtml(entity) {
+    if (entity.entity_type !== 'person') return '';
+    const affiliations = linkedRelationRows(entity).filter(function (relation) {
+      return PRACTICE_AFFILIATION_TYPES.has(relation.relation_type);
+    });
+    if (!affiliations.length) return '';
+    return '<section class="detail-section"><h3>' +
+      escapeHtml(i18n.t('detailPracticeAffiliations')) + '</h3>' +
+      '<ul class="detail-list">' + affiliations.map(function (relation) {
+        const outbound = relation.from_id === entity.id;
+        const practiceId = outbound ? relation.to_id : relation.from_id;
+        const practice = state.entitiesById[practiceId] || { name_en: practiceId };
+        return '<li>' +
+          '<button type="button" data-open-entity="' + escapeHtml(practiceId) + '">' +
+            escapeHtml(i18n.name(practice)) + '</button> · ' +
+          escapeHtml(i18n.enumLabel('relation_type', relation.relation_type)) + ' · ' +
+          '<button class="relation-audit-button" type="button" data-open-relation="' +
+            escapeHtml(relation.id) + '">' +
+            escapeHtml(i18n.t('relationEvidence')) +
+          '</button>' +
+        '</li>';
+      }).join('') + '</ul></section>';
+  }
+
   function relationListHtml(entity) {
-    const relations = linkedRelationRows(entity);
+    const relations = linkedRelationRows(entity).filter(function (relation) {
+      if (!LINEAGE_RELATION_TYPES.includes(relation.relation_type)) return false;
+      const otherId = relation.from_id === entity.id ? relation.to_id : relation.from_id;
+      return isPersonLineageEndpoint(otherId);
+    });
     if (!relations.length) return '';
     return '<section class="detail-section"><h3>' + escapeHtml(i18n.t('detailRelations')) + '</h3>' +
       '<ul class="detail-list">' + relations.map(function (relation) {
@@ -628,6 +672,7 @@
           (outbound ? '→ ' : '← ') +
           '<button type="button" data-open-entity="' + escapeHtml(otherId) + '">' +
             escapeHtml(i18n.name(other)) + '</button> · ' +
+          escapeHtml(i18n.enumLabel('relation_type', relation.relation_type)) + ' · ' +
           '<button class="relation-audit-button" type="button" data-open-relation="' +
             escapeHtml(relation.id) + '">' +
             escapeHtml(i18n.t('relationEvidence')) +
@@ -813,6 +858,7 @@
       '</div>' +
       '<dl class="detail-summary-grid">' + facts.join('') + '</dl>' +
       (entity.entity_type === 'work' ? creditsHtml(entity) : linkedWorksHtml(entity)) +
+      practiceAffiliationsHtml(entity) +
       relationListHtml(entity) +
       claimsHtml(entity);
   }
