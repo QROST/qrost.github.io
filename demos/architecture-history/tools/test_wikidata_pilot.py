@@ -7,6 +7,7 @@ import copy
 import hashlib
 import importlib.util
 import json
+import re
 import unittest
 from pathlib import Path
 
@@ -601,13 +602,14 @@ class WikidataPilotTests(unittest.TestCase):
         self.assertTrue(verified_places)
 
         claim_by_id = {claim["id"]: claim for claim in self.catalog["claims"]}
+        date_re = re.compile(r"^\d{4}-\d{2}-\d{2}$")
         for place in verified_places:
-            self.assertEqual(place["last_verified"], "2026-08-08")
+            self.assertRegex(place["last_verified"], date_re)
             for claim_id in place["claim_ids"]:
                 claim = claim_by_id[claim_id]
                 self.assertEqual(claim["verification_status"], "verified")
                 self.assertEqual(claim["reviewed_by"], "reviewer-agentic-cursor")
-                self.assertEqual(claim["reviewed_at"], "2026-08-08")
+                self.assertRegex(claim["reviewed_at"], date_re)
                 field = claim["predicate"].removeprefix("field_")
                 self.assertEqual(claim["object"].get("value"), place[field])
 
@@ -627,7 +629,7 @@ class WikidataPilotTests(unittest.TestCase):
         ]
         self.assertGreaterEqual(len(verified_people), 1)
         for person in verified_people:
-            self.assertEqual(person["last_verified"], "2026-08-08")
+            self.assertRegex(person["last_verified"], date_re)
             for claim_id in person["claim_ids"]:
                 claim = claim_by_id[claim_id]
                 self.assertEqual(claim["verification_status"], "verified")
@@ -646,13 +648,13 @@ class WikidataPilotTests(unittest.TestCase):
         self.assertEqual(len(verified_practices), len(self.catalog["practices"]))
         self.assertGreaterEqual(len(verified_works), 1)
         for practice in verified_practices:
-            self.assertEqual(practice["last_verified"], "2026-08-08")
+            self.assertRegex(practice["last_verified"], date_re)
             for claim_id in practice["claim_ids"]:
                 claim = claim_by_id[claim_id]
                 self.assertEqual(claim["verification_status"], "verified")
                 self.assertEqual(claim["reviewed_by"], "reviewer-agentic-cursor")
         for work in verified_works:
-            self.assertEqual(work["last_verified"], "2026-08-08")
+            self.assertRegex(work["last_verified"], date_re)
             self.assertEqual(work["period"], "unknown")
             self.assertFalse(work.get("credits"))
             self.assertFalse(work.get("unresolved_credits"))

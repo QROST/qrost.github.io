@@ -2266,7 +2266,7 @@ class CatalogBuilder:
             self.add_work(seed)
         self.add_lineage_review_relations()
         self.prune_stats = self.apply_people_policy()
-        return {
+        catalog = {
             "claims": sorted(self.claims.values(), key=lambda item: item["id"]),
             "generated_from": self.snapshot_id,
             "generator": f"{TRANSFORMER_ID}@{TRANSFORMER_VERSION}",
@@ -2279,6 +2279,87 @@ class CatalogBuilder:
             "transformer_version": TRANSFORMER_VERSION,
             "works": sorted(self.works.values(), key=lambda item: item["id"]),
         }
+        return catalog
+
+
+def preserve_verification_state(
+    catalog: dict, existing_path: Optional[Path] = None
+) -> None:
+    """Carry forward agentic/human review state from the existing catalog shard.
+
+    A re-import rebuilds every entity as ``candidate`` from the Wikidata
+    snapshot, which would silently discard any verification work a later
+    agentic_review_* run promoted to ``verified``. To keep the import safe
+    to rerun, we read the previously written catalog (if present) and, for
+    every entity id that still exists, restore ``verification_status``,
+    ``last_verified``, and the higher of the two ``confidence`` values.
+    Reviewed claims (matched by id) likewise keep their verified status,
+    ``reviewed_by`` and ``reviewed_at``.
+
+    This only preserves *state*, not content: if the snapshot changed a
+    field, the new value wins and the claim may need re-review. Entities
+    or claims absent from the new catalog are dropped as usual (pruning
+    still applies).
+    """
+    if existing_path is None:
+        existing_path = CATALOG_DIR / "wikidata-hydration.json"
+    if not existing_path.exists():
+        return
+    try:
+        existing = json.loads(existing_path.read_text(encoding="utf-8"))
+    except (OSError, ValueError):
+        return
+
+    # Map previously-verified entities by id. Keep last_verified and the
+    # higher confidence so a review that lifted confidence is not lost.
+    verified_entities: dict[str, dict[str, Any]] = {}
+    for key in ("people", "practices", "places", "works"):
+        for entity in existing.get(key, []):
+            if entity.get("verification_status") == "verified":
+                verified_entities[entity["id"]] = {
+                    "verification_status": "verified",
+                    "last_verified": entity.get("last_verified"),
+                    "confidence": entity.get("confidence"),
+                }
+
+    for key in ("people", "practices", "places", "works"):
+        for entity in catalog.get(key, []):
+            prior = verified_entities.get(entity["id"])
+            if not prior:
+                continue
+            entity["verification_status"] = "verified"
+            if prior.get("last_verified"):
+                entity["last_verified"] = prior["last_verified"]
+            prior_conf = prior.get("confidence")
+            if isinstance(prior_conf, (int, float)):
+                cur = entity.get("confidence")
+                if not isinstance(cur, (int, float)) or prior_conf > cur:
+                    entity["confidence"] = prior_conf
+
+    # Reviewed claims: restore verification_status + reviewed_by/at by id.
+    reviewed_claims: dict[str, dict[str, Any]] = {}
+    for claim in existing.get("claims", []):
+        if claim.get("verification_status") == "verified":
+            reviewed_claims[claim["id"]] = {
+                "verification_status": "verified",
+                "reviewed_by": claim.get("reviewed_by"),
+                "reviewed_at": claim.get("reviewed_at"),
+                "confidence": claim.get("confidence"),
+            }
+    for claim in catalog.get("claims", []):
+        prior = reviewed_claims.get(claim["id"])
+        if not prior:
+            continue
+        claim["verification_status"] = "verified"
+        if prior.get("reviewed_by"):
+            claim["reviewed_by"] = prior["reviewed_by"]
+        if prior.get("reviewed_at"):
+            claim["reviewed_at"] = prior["reviewed_at"]
+        prior_conf = prior.get("confidence")
+        if isinstance(prior_conf, (int, float)):
+            cur = claim.get("confidence")
+            if not isinstance(cur, (int, float)) or prior_conf > cur:
+                claim["confidence"] = prior_conf
 
 
 def parse_args() -> argparse.Namespace:
@@ -2312,6 +2393,7 @@ def main() -> int:
         authority_snapshots,
     )
     catalog = builder.build()
+    preserve_verification_state(catalog, existing_path=output)
     atomic_write_json(output, catalog)
     print(
         f"Wrote {output.relative_to(ROOT) if output.is_relative_to(ROOT) else output}: "
