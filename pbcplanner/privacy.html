@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Privacy policy for PBCPlanner, an independent iPhone and iPad event-planning app.">
+  <meta name="referrer" content="no-referrer">
+  <meta name="robots" content="index,follow">
+  <meta name="theme-color" content="#0b747e">
+  <link rel="canonical" href="https://qrost.github.io/pbcplanner/privacy.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="PBCPlanner">
+  <meta property="og:title" content="PBCPlanner Privacy Policy">
+  <meta property="og:description" content="How PBCPlanner handles local preferences, optional foreground location, maps, and external links.">
+  <meta property="og:url" content="https://qrost.github.io/pbcplanner/privacy.html">
+  <title>PBCPlanner Privacy Policy</title>
+  <style>
+    :root {
+      color-scheme: light dark;
+      --page: #f4f7f6;
+      --surface: #ffffff;
+      --ink: #172326;
+      --muted: #58696c;
+      --line: #d8e3e1;
+      --teal: #0b747e;
+      --teal-soft: #e3f2f1;
+      --coral: #d94f49;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", sans-serif;
+      line-height: 1.65;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --page: #0f1719;
+        --surface: #182326;
+        --ink: #eef7f6;
+        --muted: #b3c4c2;
+        --line: #304144;
+        --teal: #70d4d8;
+        --teal-soft: #18383b;
+        --coral: #ff8b82;
+      }
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: var(--page); color: var(--ink); }
+    main { width: min(820px, calc(100% - 32px)); margin: 0 auto; padding: 42px 0 72px; }
+    header, section, footer { background: var(--surface); border: 1px solid var(--line); border-radius: 20px; }
+    header { padding: clamp(24px, 5vw, 42px); }
+    section { margin-top: 18px; padding: clamp(22px, 4vw, 34px); }
+    footer { margin-top: 18px; padding: 20px 24px; color: var(--muted); }
+    .eyebrow { margin: 0 0 8px; color: var(--teal); font-size: .78rem; font-weight: 750; letter-spacing: .13em; text-transform: uppercase; }
+    h1 { margin: 0; font-size: clamp(2rem, 7vw, 3.4rem); line-height: 1.05; letter-spacing: -.045em; }
+    h2 { margin: 0 0 16px; font-size: clamp(1.35rem, 4vw, 1.75rem); line-height: 1.2; letter-spacing: -.02em; }
+    h3 { margin: 26px 0 8px; font-size: 1.05rem; }
+    p, li { max-width: 72ch; }
+    p { margin: 10px 0; }
+    ul { margin: 10px 0; padding-left: 1.25rem; }
+    li + li { margin-top: 6px; }
+    a { color: var(--teal); text-underline-offset: 3px; }
+    a:hover { color: var(--coral); }
+    .summary { margin-top: 24px; padding: 17px 19px; border-left: 4px solid var(--teal); border-radius: 12px; background: var(--teal-soft); font-weight: 620; }
+    .meta { color: var(--muted); }
+    .language-nav { display: flex; flex-wrap: wrap; gap: 10px 16px; margin-top: 22px; }
+    .language-nav a { font-weight: 700; }
+    .section-label { color: var(--coral); font-size: .78rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
+    .footer-links { display: flex; flex-wrap: wrap; gap: 8px 18px; }
+  </style>
+</head>
+<body>
+<main>
+  <header>
+    <p class="eyebrow">PBCPlanner · Privacy</p>
+    <h1>Privacy Policy</h1>
+    <p class="meta"><strong>Effective:</strong> August 10, 2026</p>
+    <p class="summary">PBCPlanner does not collect personal data, require an account, serve ads, or track people across apps or websites. Optional foreground location is processed only on your device.</p>
+    <nav class="language-nav" aria-label="Language">
+      <a href="#english">English</a>
+      <a href="#chinese" lang="zh-Hans">简体中文</a>
+      <a href="support.html">Support / 支持</a>
+    </nav>
+  </header>
+
+  <section id="english" aria-labelledby="english-title">
+    <p class="section-label">English</p>
+    <h2 id="english-title">How PBCPlanner handles information</h2>
+
+    <h3>Information stored on your device</h3>
+    <p>Your saved events, language choice, and appearance choice are stored only in PBCPlanner’s local app container using Apple UserDefaults. The developer does not receive this information. Deleting the app deletes these local preferences.</p>
+
+    <h3>Optional location</h3>
+    <p>PBCPlanner offers optional foreground location features. Only after you tap a distance or map-location control does the app request <em>While Using the App</em> permission. Your current position is held temporarily in app memory to display your position and calculate an approximate straight-line distance to bundled event planning points.</p>
+    <ul>
+      <li>Your location is not written to persistent storage or a log.</li>
+      <li>Your location is not sent to the developer, shared with advertisers, or used for tracking.</li>
+      <li>The app never requests Always or background location access.</li>
+    </ul>
+    <p>You may deny or later revoke location permission without losing the offline schedule, saved plan, route graphs, event maps, or other core features. If Precise Location is off, distance estimates use the approximate position supplied by iOS.</p>
+
+    <h3>Planning coordinates, Apple services, and external websites</h3>
+    <p>Event-place, approximate-area, and broader event-area coordinates are bundled with the app. Approximate-area pins are planning references, not precise venue entrances. The schedule, route order, planning coordinates, and straight-line distance calculation do not send your position to a developer-controlled server.</p>
+    <p>Apple basemap rendering, handoff to Apple Maps, and external links may require network access. When you choose an event source, ticket, support, email, or map action, iOS opens an Apple service, system app, or third-party website. Apple and those destinations may process information under their own privacy policies. PBCPlanner does not add affiliate tracking parameters or receive browsing or purchase data.</p>
+
+    <h3>Analytics, advertising, and third-party SDKs</h3>
+    <p>The 1.0 app contains no advertising SDK, analytics SDK, third-party crash reporter, social login, or remote-push provider.</p>
+
+    <h3>Retention and deletion</h3>
+    <p>The developer does not maintain a server-side user profile or remote personal-data record. Current location is not persistently stored and disappears when the app process ends. Remove saved items inside the app or delete the app to erase its local preferences.</p>
+
+    <h3>Children</h3>
+    <p>PBCPlanner is a general-audience travel-planning utility. It does not knowingly collect information from children or anyone else.</p>
+
+    <h3>Changes and contact</h3>
+    <p>If a future version changes these practices, this policy and the App Store privacy disclosure will be updated before that version is released.</p>
+    <p>Privacy questions: <a href="mailto:zc@curious-arc.com?subject=PBCPlanner%20Privacy">zc@curious-arc.com</a>.</p>
+  </section>
+
+  <section id="chinese" lang="zh-Hans" aria-labelledby="chinese-title">
+    <p class="section-label">简体中文</p>
+    <h2 id="chinese-title">PBCPlanner 如何处理信息</h2>
+
+    <h3>保存在设备上的信息</h3>
+    <p>你收藏的活动、语言和外观选择仅通过 Apple UserDefaults 保存在 PBCPlanner 的本地应用容器中。开发者不会收到这些信息；删除应用会同时删除这些本地偏好。</p>
+
+    <h3>可选的当前位置功能</h3>
+    <p>PBCPlanner 提供可选的前台定位功能。只有当你主动点按距离或地图定位控件后，应用才会请求“使用 App 期间”的定位权限。当前位置仅暂时保留在应用内存中，用于显示你的位置并计算到应用内置活动规划点的大致直线距离。</p>
+    <ul>
+      <li>当前位置不会写入持久存储或日志。</li>
+      <li>当前位置不会发送给开发者、分享给广告商或用于追踪。</li>
+      <li>应用不会请求“始终允许”或后台定位权限。</li>
+    </ul>
+    <p>拒绝或之后撤销定位权限，不会影响离线日程、收藏计划、路线图、活动地图及其他核心功能。如果关闭“精确位置”，距离估算会使用 iOS 提供的大致位置。</p>
+
+    <h3>规划坐标、Apple 服务与外部网站</h3>
+    <p>活动地点、约略区域和较大活动区的坐标均内置于应用中。约略区域仅是规划参考，不代表精确的场馆入口。日程、路线顺序、规划坐标及直线距离计算不会把当前位置发送到开发者控制的服务器。</p>
+    <p>Apple 底图、交接 Apple 地图和外部链接可能需要网络。选择活动来源、票务、支持、邮件或地图操作时，iOS 会打开 Apple 服务、系统应用或第三方网站；Apple 与目标网站将依照各自的隐私政策处理信息。PBCPlanner 不添加联盟追踪参数，也不会收到你的浏览或购买数据。</p>
+
+    <h3>分析、广告与第三方 SDK</h3>
+    <p>1.0 版本不包含广告 SDK、分析 SDK、第三方崩溃报告工具、社交登录或远程推送服务。</p>
+
+    <h3>保留与删除</h3>
+    <p>开发者不维护服务器端用户账户或远程个人资料。当前位置不会持久保存，并会在应用进程结束后消失。你可以在应用内移除收藏，或删除应用以清除本地偏好。</p>
+
+    <h3>儿童</h3>
+    <p>PBCPlanner 是面向普通公众的旅行规划工具，不会有意收集儿童或其他任何人的信息。</p>
+
+    <h3>变更与联系</h3>
+    <p>如果未来版本改变这些做法，我们会在该版本发布前更新本政策和 App Store 隐私披露。</p>
+    <p>隐私问题请联系：<a href="mailto:zc@curious-arc.com?subject=PBCPlanner%20Privacy">zc@curious-arc.com</a>。</p>
+  </section>
+
+  <footer>
+    <p><strong>Independent status / 独立身份</strong></p>
+    <p>PBCPlanner is an independent, unofficial planning tool and is not affiliated with, authorized by, endorsed by, or sponsored by event organizers, venues, sponsors, ticket sellers, or tourism agencies.</p>
+    <div class="footer-links">
+      <a href="support.html">Support / 支持</a>
+      <a href="https://qrost.github.io/">QROST Public Lab</a>
+    </div>
+  </footer>
+</main>
+</body>
+</html>
