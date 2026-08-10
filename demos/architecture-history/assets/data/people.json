@@ -208,8 +208,10 @@
         "claim-wd-q1041068-roles",
         "claim-wd-q1041068-summary-en"
       ],
-      "confidence": 0.6,
-      "country_codes": [],
+      "confidence": 0.5,
+      "country_codes": [
+        "DE"
+      ],
       "death": {
         "earliest": 1900,
         "latest": 1900,
@@ -226,13 +228,13 @@
       "name_native": null,
       "name_zh": "卡尔·威廉·克里斯蒂安·冯·多德雷尔",
       "name_zh_status": "source_label_candidate",
-      "region": "unknown",
+      "region": "europe",
       "roles": [
         "architect"
       ],
       "summary_en": "German-Austrian architect and university lecturer (1825–1900)",
       "summary_zh": "",
-      "verification_status": "verified"
+      "verification_status": "candidate"
     },
     {
       "aliases_en": [],
@@ -247,7 +249,9 @@
         "claim-wd-q1041207-name-en"
       ],
       "confidence": 0.6,
-      "country_codes": [],
+      "country_codes": [
+        "DE"
+      ],
       "death": {
         "earliest": 1924,
         "latest": 1924,
@@ -264,7 +268,7 @@
       "name_native": null,
       "name_zh": null,
       "name_zh_status": "missing",
-      "region": "unknown",
+      "region": "europe",
       "roles": [
         "architect"
       ],
@@ -385,7 +389,9 @@
         "claim-wd-q10513613-name-zh"
       ],
       "confidence": 0.6,
-      "country_codes": [],
+      "country_codes": [
+        "CN"
+      ],
       "death": {
         "earliest": 1481,
         "latest": 1481,
@@ -402,7 +408,7 @@
       "name_native": null,
       "name_zh": "蒯祥",
       "name_zh_status": "source_label_candidate",
-      "region": "unknown",
+      "region": "east_asia",
       "roles": [
         "architect",
         "engineer"
@@ -427,7 +433,9 @@
         "claim-wd-q105212-name-en"
       ],
       "confidence": 0.6,
-      "country_codes": [],
+      "country_codes": [
+        "DE"
+      ],
       "death": {
         "earliest": 1892,
         "latest": 1892,
@@ -444,7 +452,7 @@
       "name_native": null,
       "name_zh": null,
       "name_zh_status": "missing",
-      "region": "unknown",
+      "region": "europe",
       "roles": [
         "architect"
       ],
@@ -465,7 +473,9 @@
         "claim-wd-q105855717-name-en"
       ],
       "confidence": 0.6,
-      "country_codes": [],
+      "country_codes": [
+        "IT"
+      ],
       "death": {
         "earliest": null,
         "latest": null,
@@ -482,7 +492,7 @@
       "name_native": null,
       "name_zh": null,
       "name_zh_status": "missing",
-      "region": "unknown",
+      "region": "europe",
       "roles": [
         "historian"
       ],
@@ -546,7 +556,9 @@
         "claim-wd-q106263-name-en"
       ],
       "confidence": 0.6,
-      "country_codes": [],
+      "country_codes": [
+        "DE"
+      ],
       "death": {
         "earliest": 1902,
         "latest": 1902,
@@ -563,7 +575,7 @@
       "name_native": null,
       "name_zh": null,
       "name_zh_status": "missing",
-      "region": "unknown",
+      "region": "europe",
       "roles": [
         "architect"
       ],
@@ -666,7 +678,9 @@
         "claim-wd-q106675210-name-en"
       ],
       "confidence": 0.6,
-      "country_codes": [],
+      "country_codes": [
+        "IT"
+      ],
       "death": {
         "earliest": 1562,
         "latest": 1562,
@@ -683,7 +697,7 @@
       "name_native": null,
       "name_zh": null,
       "name_zh_status": "missing",
-      "region": "unknown",
+      "region": "europe",
       "roles": [
         "historian"
       ],
@@ -706,7 +720,9 @@
         "claim-wd-q106679-name-en"
       ],
       "confidence": 0.6,
-      "country_codes": [],
+      "country_codes": [
+        "DE"
+      ],
       "death": {
         "earliest": 1885,
         "latest": 1885,
@@ -723,7 +739,7 @@
       "name_native": null,
       "name_zh": null,
       "name_zh_status": "missing",
-      "region": "unknown",
+      "region": "europe",
       "roles": [
         "architect"
       ],
@@ -799,7 +815,9 @@
         "claim-wd-q1091003-name-en"
       ],
       "confidence": 0.6,
-      "country_codes": [],
+      "country_codes": [
+        "IT"
+      ],
       "death": {
         "earliest": null,
         "latest": null,
@@ -816,7 +834,7 @@
       "name_native": null,
       "name_zh": null,
       "name_zh_status": "missing",
-      "region": "unknown",
+      "region": "europe",
       "roles": [
         "architect",
         "craftsperson"
@@ -841,7 +859,9 @@
         "claim-wd-q1093544-name-en"
       ],
       "confidence": 0.6,
-      "country_codes": [],
+      "country_codes": [
+        "IT"
+      ],
       "death": {
         "earliest": 1350,
         "latest": 1350,
@@ -858,7 +878,7 @@
       "name_native": null,
       "name_zh": null,
       "name_zh_status": "missing",
-      "region": "unknown",
+      "region": "europe",
       "roles": [
         "historian"
       ],
@@ -1406,7 +1426,9 @@
         "claim-wd-q115188412-name-en"
       ],
       "confidence": 0.6,
-      "country_codes": [],
+      "country_codes": [
+        "RU"
+      ],
       "death": {
         "earliest": null,
         "latest": null,
@@ -1423,7 +1445,7 @@
       "name_native": null,
       "name_zh": null,
       "name_zh_status": "missing",
-      "region": "unknown",
+      "region": "europe",
       "roles": [
         "architect"
       ],
@@ -1961,8 +1983,10 @@
         "claim-wd-q1187770-summary-en",
         "claim-wd-q1187770-summary-zh"
       ],
-      "confidence": 0.6,
-      "country_codes": [],
+      "confidence": 0.5,
+      "country_codes": [
+        "GB"
+      ],
       "death": {
         "earliest": 1920,
         "latest": 1920,
@@ -1979,13 +2003,13 @@
       "name_native": null,
       "name_zh": "喬賽亞·康德",
       "name_zh_status": "source_label_candidate",
-      "region": "unknown",
+      "region": "europe",
       "roles": [
         "architect"
       ],
       "summary_en": "British architect (1852-1920)",
       "summary_zh": "英國建築師",
-      "verification_status": "verified"
+      "verification_status": "candidate"
     },
     {
       "aliases_en": [],
@@ -2000,7 +2024,9 @@
         "claim-wd-q11882869-name-en"
       ],
       "confidence": 0.6,
-      "country_codes": [],
+      "country_codes": [
+        "TR"
+      ],
       "death": {
         "earliest": 1512,
         "latest": 1512,
@@ -2017,7 +2043,7 @@
       "name_native": null,
       "name_zh": null,
       "name_zh_status": "missing",
-      "region": "unknown",
+      "region": "central_west_asia",
       "roles": [
         "architect"
       ],
@@ -2081,7 +2107,9 @@
         "claim-wd-q11925879-name-en"
       ],
       "confidence": 0.6,
-      "country_codes": [],
+      "country_codes": [
+        "CZ"
+      ],
       "death": {
         "earliest": 1897,
         "latest": 1897,
@@ -2098,7 +2126,7 @@
       "name_native": null,
       "name_zh": null,
       "name_zh_status": "missing",
-      "region": "unknown",
+      "region": "europe",
       "roles": [
         "architect"
       ],
@@ -2672,8 +2700,10 @@
         "claim-wd-q1270258-roles",
         "claim-wd-q1270258-summary-en"
       ],
-      "confidence": 0.6,
-      "country_codes": [],
+      "confidence": 0.5,
+      "country_codes": [
+        "FR"
+      ],
       "death": {
         "earliest": 1697,
         "latest": 1697,
@@ -2690,13 +2720,13 @@
       "name_native": null,
       "name_zh": "弗朗索瓦·多尔贝",
       "name_zh_status": "source_label_candidate",
-      "region": "unknown",
+      "region": "europe",
       "roles": [
         "architect"
       ],
       "summary_en": "French architect (1634–1697)",
       "summary_zh": "",
-      "verification_status": "verified"
+      "verification_status": "candidate"
     },
     {
       "aliases_en": [
@@ -2807,7 +2837,9 @@
         "claim-wd-q1292457-name-en"
       ],
       "confidence": 0.6,
-      "country_codes": [],
+      "country_codes": [
+        "IT"
+      ],
       "death": {
         "earliest": null,
         "latest": null,
@@ -2824,7 +2856,7 @@
       "name_native": null,
       "name_zh": null,
       "name_zh_status": "missing",
-      "region": "unknown",
+      "region": "europe",
       "roles": [
         "historian"
       ],
@@ -2899,7 +2931,9 @@
         "claim-wd-q1302691-name-en"
       ],
       "confidence": 0.6,
-      "country_codes": [],
+      "country_codes": [
+        "AT"
+      ],
       "death": {
         "earliest": 1903,
         "latest": 1903,
@@ -2916,7 +2950,7 @@
       "name_native": null,
       "name_zh": null,
       "name_zh_status": "missing",
-      "region": "unknown",
+      "region": "europe",
       "roles": [
         "architect"
       ],
@@ -3018,7 +3052,9 @@
         "claim-wd-q13103878-name-en"
       ],
       "confidence": 0.6,
-      "country_codes": [],
+      "country_codes": [
+        "FR"
+      ],
       "death": {
         "earliest": 2013,
         "latest": 2013,
@@ -3035,7 +3071,7 @@
       "name_native": null,
       "name_zh": null,
       "name_zh_status": "missing",
-      "region": "unknown",
+      "region": "europe",
       "roles": [
         "architect"
       ],
@@ -3105,7 +3141,9 @@
         "claim-wd-q131108949-name-en"
       ],
       "confidence": 0.6,
-      "country_codes": [],
+      "country_codes": [
+        "NL"
+      ],
       "death": {
         "earliest": 1961,
         "latest": 1961,
@@ -3122,7 +3160,7 @@
       "name_native": null,
       "name_zh": null,
       "name_zh_status": "missing",
-      "region": "unknown",
+      "region": "europe",
       "roles": [
         "architect"
       ],
@@ -3145,7 +3183,9 @@
         "claim-wd-q13141166-name-en"
       ],
       "confidence": 0.6,
-      "country_codes": [],
+      "country_codes": [
+        "AT"
+      ],
       "death": {
         "earliest": 1912,
         "latest": 1912,
@@ -3162,7 +3202,7 @@
       "name_native": null,
       "name_zh": null,
       "name_zh_status": "missing",
-      "region": "unknown",
+      "region": "europe",
       "roles": [
         "architect"
       ],
@@ -3301,7 +3341,9 @@
         "claim-wd-q1323835-name-en"
       ],
       "confidence": 0.6,
-      "country_codes": [],
+      "country_codes": [
+        "IT"
+      ],
       "death": {
         "earliest": 1566,
         "latest": 1566,
@@ -3318,7 +3360,7 @@
       "name_native": null,
       "name_zh": null,
       "name_zh_status": "missing",
-      "region": "unknown",
+      "region": "europe",
       "roles": [
         "historian"
       ],
@@ -3997,7 +4039,9 @@
         "claim-wd-q137675303-name-en"
       ],
       "confidence": 0.6,
-      "country_codes": [],
+      "country_codes": [
+        "SM"
+      ],
       "death": {
         "earliest": 1920,
         "latest": 1920,
@@ -4014,7 +4058,7 @@
       "name_native": null,
       "name_zh": null,
       "name_zh_status": "missing",
-      "region": "unknown",
+      "region": "europe",
       "roles": [
         "architect",
         "engineer"
@@ -4038,7 +4082,9 @@
         "claim-wd-q1383075-name-en"
       ],
       "confidence": 0.6,
-      "country_codes": [],
+      "country_codes": [
+        "IT"
+      ],
       "death": {
         "earliest": null,
         "latest": null,
@@ -4055,7 +4101,7 @@
       "name_native": null,
       "name_zh": null,
       "name_zh_status": "missing",
-      "region": "unknown",
+      "region": "europe",
       "roles": [
         "historian"
       ],
@@ -4530,7 +4576,9 @@
         "claim-wd-q151759-name-zh"
       ],
       "confidence": 0.6,
-      "country_codes": [],
+      "country_codes": [
+        "DE"
+      ],
       "death": {
         "earliest": 1841,
         "latest": 1841,
@@ -4547,7 +4595,7 @@
       "name_native": null,
       "name_zh": "卡尔·弗里德里希·申克尔",
       "name_zh_status": "source_label_candidate",
-      "region": "unknown",
+      "region": "europe",
       "roles": [
         "architect",
         "designer"
@@ -4822,7 +4870,9 @@
         "claim-wd-q15790-name-zh"
       ],
       "confidence": 0.6,
-      "country_codes": [],
+      "country_codes": [
+        "IT"
+      ],
       "death": {
         "earliest": 1302,
         "latest": 1302,
@@ -4839,7 +4889,7 @@
       "name_native": null,
       "name_zh": "契马布埃",
       "name_zh_status": "source_label_candidate",
-      "region": "unknown",
+      "region": "europe",
       "roles": [
         "historian"
       ],
@@ -4949,7 +4999,9 @@
         "claim-wd-q15990577-name-en"
       ],
       "confidence": 0.6,
-      "country_codes": [],
+      "country_codes": [
+        "DE"
+      ],
       "death": {
         "earliest": 1833,
         "latest": 1833,
@@ -4966,7 +5018,7 @@
       "name_native": null,
       "name_zh": null,
       "name_zh_status": "missing",
-      "region": "unknown",
+      "region": "europe",
       "roles": [
         "architect"
       ],
@@ -5240,7 +5292,9 @@
         "claim-wd-q160435-name-zh"
       ],
       "confidence": 0.6,
-      "country_codes": [],
+      "country_codes": [
+        "NL"
+      ],
       "death": {
         "earliest": 1964,
         "latest": 1964,
@@ -5257,7 +5311,7 @@
       "name_native": null,
       "name_zh": "赫里特·里特费尔德",
       "name_zh_status": "source_label_candidate",
-      "region": "unknown",
+      "region": "europe",
       "roles": [
         "architect",
         "designer"
@@ -5282,7 +5336,9 @@
         "claim-wd-q16052580-name-en"
       ],
       "confidence": 0.6,
-      "country_codes": [],
+      "country_codes": [
+        "IR"
+      ],
       "death": {
         "earliest": 1660,
         "latest": 1660,
@@ -5299,7 +5355,7 @@
       "name_native": null,
       "name_zh": null,
       "name_zh_status": "missing",
-      "region": "unknown",
+      "region": "central_west_asia",
       "roles": [
         "historian"
       ],
@@ -5515,7 +5571,9 @@
         "claim-wd-q16063644-name-en"
       ],
       "confidence": 0.6,
-      "country_codes": [],
+      "country_codes": [
+        "DE"
+      ],
       "death": {
         "earliest": 1864,
         "latest": 1864,
@@ -5532,7 +5590,7 @@
       "name_native": null,
       "name_zh": null,
       "name_zh_status": "missing",
-      "region": "unknown",
+      "region": "europe",
       "roles": [
         "historian"
       ],
@@ -5596,7 +5654,9 @@
         "claim-wd-q16116802-name-en"
       ],
       "confidence": 0.6,
-      "country_codes": [],
+      "country_codes": [
+        "AT"
+      ],
       "death": {
         "earliest": 1927,
         "latest": 1927,
@@ -5613,7 +5673,7 @@
       "name_native": null,
       "name_zh": null,
       "name_zh_status": "missing",
-      "region": "unknown",
+      "region": "europe",
       "roles": [
         "architect"
       ],
@@ -6352,7 +6412,9 @@
         "claim-wd-q170373-name-zh"
       ],
       "confidence": 0.6,
-      "country_codes": [],
+      "country_codes": [
+        "GB"
+      ],
       "death": {
         "earliest": 1723,
         "latest": 1723,
@@ -6369,7 +6431,7 @@
       "name_native": null,
       "name_zh": "克里斯托弗·雷恩",
       "name_zh_status": "source_label_candidate",
-      "region": "unknown",
+      "region": "europe",
       "roles": [
         "architect",
         "patron"
@@ -6447,7 +6509,9 @@
         "claim-wd-q1709100-name-en"
       ],
       "confidence": 0.6,
-      "country_codes": [],
+      "country_codes": [
+        "IT"
+      ],
       "death": {
         "earliest": 1523,
         "latest": 1523,
@@ -6464,7 +6528,7 @@
       "name_native": null,
       "name_zh": null,
       "name_zh_status": "missing",
-      "region": "unknown",
+      "region": "europe",
       "roles": [
         "historian"
       ],
@@ -6485,7 +6549,9 @@
         "claim-wd-q1712698-name-en"
       ],
       "confidence": 0.6,
-      "country_codes": [],
+      "country_codes": [
+        "AT"
+      ],
       "death": {
         "earliest": 1896,
         "latest": 1896,
@@ -6502,7 +6568,7 @@
       "name_native": null,
       "name_zh": null,
       "name_zh_status": "missing",
-      "region": "unknown",
+      "region": "europe",
       "roles": [
         "architect"
       ],
@@ -6745,7 +6811,9 @@
         "claim-wd-q174532-name-en"
       ],
       "confidence": 0.6,
-      "country_codes": [],
+      "country_codes": [
+        "SM"
+      ],
       "death": {
         "earliest": null,
         "latest": null,
@@ -6762,7 +6830,7 @@
       "name_native": null,
       "name_zh": null,
       "name_zh_status": "missing",
-      "region": "unknown",
+      "region": "europe",
       "roles": [
         "craftsperson"
       ],
@@ -6981,7 +7049,9 @@
         "claim-wd-q177213-name-zh"
       ],
       "confidence": 0.6,
-      "country_codes": [],
+      "country_codes": [
+        "IT"
+      ],
       "death": {
         "earliest": 1536,
         "latest": 1536,
@@ -6998,7 +7068,7 @@
       "name_native": null,
       "name_zh": "巴尔达萨雷·佩鲁齐",
       "name_zh_status": "source_label_candidate",
-      "region": "unknown",
+      "region": "europe",
       "roles": [
         "architect",
         "designer"
@@ -7029,7 +7099,9 @@
         "claim-wd-q177302-name-zh"
       ],
       "confidence": 0.6,
-      "country_codes": [],
+      "country_codes": [
+        "SM"
+      ],
       "death": {
         "earliest": -430,
         "latest": -430,
@@ -7046,7 +7118,7 @@
       "name_native": null,
       "name_zh": "菲狄亚斯",
       "name_zh_status": "source_label_candidate",
-      "region": "unknown",
+      "region": "europe",
       "roles": [
         "architect",
         "craftsperson"
@@ -7129,8 +7201,10 @@
         "claim-wd-q177692-summary-en",
         "claim-wd-q177692-summary-zh"
       ],
-      "confidence": 0.6,
-      "country_codes": [],
+      "confidence": 0.5,
+      "country_codes": [
+        "IT"
+      ],
       "death": {
         "earliest": 1580,
         "latest": 1580,
@@ -7147,13 +7221,13 @@
       "name_native": null,
       "name_zh": "安德烈亚·帕拉迪奥",
       "name_zh_status": "source_label_candidate",
-      "region": "unknown",
+      "region": "europe",
       "roles": [
         "architect"
       ],
       "summary_en": "Italian architect (1508–1580)",
       "summary_zh": "意大利建築師",
-      "verification_status": "verified"
+      "verification_status": "candidate"
     },
     {
       "aliases_en": [
@@ -7210,7 +7284,9 @@
         "claim-wd-q18018510-name-en"
       ],
       "confidence": 0.6,
-      "country_codes": [],
+      "country_codes": [
+        "DE"
+      ],
       "death": {
         "earliest": 1887,
         "latest": 1887,
@@ -7227,7 +7303,7 @@
       "name_native": null,
       "name_zh": null,
       "name_zh_status": "missing",
-      "region": "unknown",
+      "region": "europe",
       "roles": [
         "architect"
       ],
@@ -7317,8 +7393,10 @@
         "claim-wd-q180398-summary-en",
         "claim-wd-q180398-summary-zh"
       ],
-      "confidence": 0.6,
-      "country_codes": [],
+      "confidence": 0.5,
+      "country_codes": [
+        "DK"
+      ],
       "death": {
         "earliest": 2008,
         "latest": 2008,
@@ -7335,13 +7413,13 @@
       "name_native": null,
       "name_zh": "约恩·乌松",
       "name_zh_status": "source_label_candidate",
-      "region": "unknown",
+      "region": "europe",
       "roles": [
         "architect"
       ],
       "summary_en": "Danish architect (1918–2008)",
       "summary_zh": "丹麥建築師",
-      "verification_status": "verified"
+      "verification_status": "candidate"
     },
     {
       "aliases_en": [
@@ -7365,7 +7443,9 @@
         "claim-wd-q1812135-name-zh"
       ],
       "confidence": 0.6,
-      "country_codes": [],
+      "country_codes": [
+        "NL"
+      ],
       "death": {
         "earliest": 1936,
         "latest": 1936,
@@ -7382,7 +7462,7 @@
       "name_native": null,
       "name_zh": "林達特·范·德·弗盧特",
       "name_zh_status": "source_label_candidate",
-      "region": "unknown",
+      "region": "europe",
       "roles": [
         "architect",
         "designer"
@@ -7404,7 +7484,9 @@
         "claim-wd-q18223765-name-en"
       ],
       "confidence": 0.6,
-      "country_codes": [],
+      "country_codes": [
+        "MX"
+      ],
       "death": {
         "earliest": 1758,
         "latest": 1758,
@@ -7421,7 +7503,7 @@
       "name_native": null,
       "name_zh": null,
       "name_zh_status": "missing",
-      "region": "unknown",
+      "region": "latin_america_caribbean",
       "roles": [
         "architect"
       ],
@@ -7569,7 +7651,9 @@
         "claim-wd-q183458-name-zh"
       ],
       "confidence": 0.6,
-      "country_codes": [],
+      "country_codes": [
+        "IT"
+      ],
       "death": {
         "earliest": 1488,
         "latest": 1488,
@@ -7586,7 +7670,7 @@
       "name_native": null,
       "name_zh": "安德烈·德尔·韦罗基奥",
       "name_zh_status": "source_label_candidate",
-      "region": "unknown",
+      "region": "europe",
       "roles": [
         "architect",
         "craftsperson"
@@ -7810,7 +7894,9 @@
         "claim-wd-q186265-name-zh"
       ],
       "confidence": 0.6,
-      "country_codes": [],
+      "country_codes": [
+        "GB"
+      ],
       "death": {
         "earliest": 1881,
         "latest": 1881,
@@ -7827,7 +7913,7 @@
       "name_native": null,
       "name_zh": "威廉·伯吉斯",
       "name_zh_status": "source_label_candidate",
-      "region": "unknown",
+      "region": "europe",
       "roles": [
         "architect",
         "designer"
@@ -7900,7 +7986,9 @@
         "claim-wd-q189375-name-zh"
       ],
       "confidence": 0.6,
-      "country_codes": [],
+      "country_codes": [
+        "SM"
+      ],
       "death": {
         "earliest": 125,
         "latest": 125,
@@ -7917,7 +8005,7 @@
       "name_native": null,
       "name_zh": "大马士革的阿波罗多洛斯",
       "name_zh_status": "source_label_candidate",
-      "region": "unknown",
+      "region": "europe",
       "roles": [
         "architect",
         "engineer"
@@ -8065,7 +8153,9 @@
         "claim-wd-q191423-name-zh"
       ],
       "confidence": 0.6,
-      "country_codes": [],
+      "country_codes": [
+        "IT"
+      ],
       "death": {
         "earliest": 1494,
         "latest": 1494,
@@ -8082,7 +8172,7 @@
       "name_native": null,
       "name_zh": "多梅尼科·吉兰达约",
       "name_zh_status": "source_label_candidate",
-      "region": "unknown",
+      "region": "europe",
       "roles": [
         "historian"
       ],
@@ -8111,8 +8201,10 @@
         "claim-wd-q19258118-name-zh-status",
         "claim-wd-q19258118-roles"
       ],
-      "confidence": 0.6,
-      "country_codes": [],
+      "confidence": 0.5,
+      "country_codes": [
+        "CZ"
+      ],
       "death": {
         "earliest": 1929,
         "latest": 1929,
@@ -8129,13 +8221,13 @@
       "name_native": null,
       "name_zh": "卡雷尔·利曼",
       "name_zh_status": "source_label_candidate",
-      "region": "unknown",
+      "region": "europe",
       "roles": [
         "architect"
       ],
       "summary_en": "",
       "summary_zh": "",
-      "verification_status": "verified"
+      "verification_status": "candidate"
     },
     {
       "aliases_en": [
@@ -8197,7 +8289,9 @@
         "claim-wd-q1960380-name-en"
       ],
       "confidence": 0.6,
-      "country_codes": [],
+      "country_codes": [
+        "NL"
+      ],
       "death": {
         "earliest": 1939,
         "latest": 1939,
@@ -8214,7 +8308,7 @@
       "name_native": null,
       "name_zh": null,
       "name_zh_status": "missing",
-      "region": "unknown",
+      "region": "europe",
       "roles": [
         "craftsperson"
       ],
@@ -8358,7 +8452,9 @@
         "claim-wd-q1970026-name-en"
       ],
       "confidence": 0.6,
-      "country_codes": [],
+      "country_codes": [
+        "IT"
+      ],
       "death": {
         "earliest": 1905,
         "latest": 1905,
@@ -8375,7 +8471,7 @@
       "name_native": null,
       "name_zh": null,
       "name_zh_status": "missing",
-      "region": "unknown",
+      "region": "europe",
       "roles": [
         "architect",
         "patron"
@@ -8616,7 +8712,9 @@
         "claim-wd-q19985023-name-en"
       ],
       "confidence": 0.6,
-      "country_codes": [],
+      "country_codes": [
+        "IT"
+      ],
       "death": {
         "earliest": 1751,
         "latest": 1751,
@@ -8633,7 +8731,7 @@
       "name_native": null,
       "name_zh": null,
       "name_zh_status": "missing",
-      "region": "unknown",
+      "region": "europe",
       "roles": [
         "architect"
       ],
@@ -8704,8 +8802,10 @@
         "claim-wd-q2009000-roles",
         "claim-wd-q2009000-summary-en"
       ],
-      "confidence": 0.6,
-      "country_codes": [],
+      "confidence": 0.5,
+      "country_codes": [
+        "NL"
+      ],
       "death": {
         "earliest": null,
         "latest": null,
@@ -8722,13 +8822,13 @@
       "name_native": null,
       "name_zh": "法蘭馨·侯班",
       "name_zh_status": "source_label_candidate",
-      "region": "unknown",
+      "region": "europe",
       "roles": [
         "architect"
       ],
       "summary_en": "Dutch architect (born 1955)",
       "summary_zh": "",
-      "verification_status": "verified"
+      "verification_status": "candidate"
     },
     {
       "aliases_en": [
@@ -8747,7 +8847,9 @@
         "claim-wd-q2010955-name-zh"
       ],
       "confidence": 0.6,
-      "country_codes": [],
+      "country_codes": [
+        "IR"
+      ],
       "death": {
         "earliest": 1641,
         "latest": 1641,
@@ -8764,7 +8866,7 @@
       "name_native": null,
       "name_zh": "穆拉 沙扎",
       "name_zh_status": "source_label_candidate",
-      "region": "unknown",
+      "region": "central_west_asia",
       "roles": [
         "historian"
       ],
@@ -8792,7 +8894,9 @@
         "claim-wd-q206012-name-zh"
       ],
       "confidence": 0.6,
-      "country_codes": [],
+      "country_codes": [
+        "RU"
+      ],
       "death": {
         "earliest": 1894,
         "latest": 1894,
@@ -8809,7 +8913,7 @@
       "name_native": null,
       "name_zh": "巴夫尼提·列波维奇·切比雪夫",
       "name_zh_status": "source_label_candidate",
-      "region": "unknown",
+      "region": "europe",
       "roles": [
         "historian"
       ],
@@ -8874,7 +8978,9 @@
         "claim-wd-q2069774-name-en"
       ],
       "confidence": 0.6,
-      "country_codes": [],
+      "country_codes": [
+        "NL"
+      ],
       "death": {
         "earliest": 1925,
         "latest": 1925,
@@ -8891,7 +8997,7 @@
       "name_native": null,
       "name_zh": null,
       "name_zh_status": "missing",
-      "region": "unknown",
+      "region": "europe",
       "roles": [
         "architect"
       ],
@@ -9002,7 +9108,9 @@
         "claim-wd-q208125-name-zh"
       ],
       "confidence": 0.6,
-      "country_codes": [],
+      "country_codes": [
+        "IT"
+      ],
       "death": {
         "earliest": 1455,
         "latest": 1455,
@@ -9019,7 +9127,7 @@
       "name_native": null,
       "name_zh": "洛伦佐·吉贝尔蒂",
       "name_zh_status": "source_label_candidate",
-      "region": "unknown",
+      "region": "europe",
       "roles": [
         "architect",
         "craftsperson"
@@ -9225,7 +9333,9 @@
         "claim-wd-q20983177-name-en"
       ],
       "confidence": 0.6,
-      "country_codes": [],
+      "country_codes": [
+        "NL"
+      ],
       "death": {
         "earliest": 1945,
         "latest": 1945,
@@ -9242,7 +9352,7 @@
       "name_native": null,
       "name_zh": null,
       "name_zh_status": "missing",
-      "region": "unknown",
+      "region": "europe",
       "roles": [
         "architect",
         "designer"
@@ -9665,7 +9775,9 @@
         "claim-wd-q2132569-name-en"
       ],
       "confidence": 0.6,
-      "country_codes": [],
+      "country_codes": [
+        "BE"
+      ],
       "death": {
         "earliest": null,
         "latest": null,
@@ -9682,7 +9794,7 @@
       "name_native": null,
       "name_zh": null,
       "name_zh_status": "missing",
-      "region": "unknown",
+      "region": "europe",
       "roles": [
         "architect"
       ],
@@ -9752,7 +9864,9 @@
         "claim-wd-q2143077-name-en"
       ],
       "confidence": 0.6,
-      "country_codes": [],
+      "country_codes": [
+        "IT"
+      ],
       "death": {
         "earliest": 1888,
         "latest": 1888,
@@ -9769,7 +9883,7 @@
       "name_native": null,
       "name_zh": null,
       "name_zh_status": "missing",
-      "region": "unknown",
+      "region": "europe",
       "roles": [
         "architect",
         "patron"
@@ -9938,7 +10052,9 @@
         "claim-wd-q21553027-name-en"
       ],
       "confidence": 0.6,
-      "country_codes": [],
+      "country_codes": [
+        "NL"
+      ],
       "death": {
         "earliest": 1950,
         "latest": 1950,
@@ -9955,7 +10071,7 @@
       "name_native": null,
       "name_zh": null,
       "name_zh_status": "missing",
-      "region": "unknown",
+      "region": "europe",
       "roles": [
         "architect",
         "craftsperson",
@@ -10228,7 +10344,9 @@
         "claim-wd-q2186472-name-en"
       ],
       "confidence": 0.6,
-      "country_codes": [],
+      "country_codes": [
+        "NL"
+      ],
       "death": {
         "earliest": 1934,
         "latest": 1934,
@@ -10245,7 +10363,7 @@
       "name_native": null,
       "name_zh": null,
       "name_zh_status": "missing",
-      "region": "unknown",
+      "region": "europe",
       "roles": [
         "architect"
       ],
@@ -10330,7 +10448,9 @@
         "claim-wd-q221043-name-zh"
       ],
       "confidence": 0.6,
-      "country_codes": [],
+      "country_codes": [
+        "IT"
+      ],
       "death": {
         "earliest": 1344,
         "latest": 1344,
@@ -10347,7 +10467,7 @@
       "name_native": null,
       "name_zh": "西蒙尼·马蒂尼",
       "name_zh_status": "source_label_candidate",
-      "region": "unknown",
+      "region": "europe",
       "roles": [
         "historian"
       ],
@@ -10377,8 +10497,10 @@
         "claim-wd-q2252872-roles",
         "claim-wd-q2252872-summary-en"
       ],
-      "confidence": 0.6,
-      "country_codes": [],
+      "confidence": 0.5,
+      "country_codes": [
+        "IT"
+      ],
       "death": {
         "earliest": 1883,
         "latest": 1883,
@@ -10395,13 +10517,13 @@
       "name_native": null,
       "name_zh": "埃米利奧·德·法布里斯",
       "name_zh_status": "source_label_candidate",
-      "region": "unknown",
+      "region": "europe",
       "roles": [
         "architect"
       ],
       "summary_en": "Italian architect (1807-1883)",
       "summary_zh": "",
-      "verification_status": "verified"
+      "verification_status": "candidate"
     },
     {
       "aliases_en": [
@@ -10522,7 +10644,9 @@
         "claim-wd-q2258655-name-en"
       ],
       "confidence": 0.6,
-      "country_codes": [],
+      "country_codes": [
+        "NL"
+      ],
       "death": {
         "earliest": 1978,
         "latest": 1978,
@@ -10539,7 +10663,7 @@
       "name_native": null,
       "name_zh": null,
       "name_zh_status": "missing",
-      "region": "unknown",
+      "region": "europe",
       "roles": [
         "architect"
       ],
@@ -10560,7 +10684,9 @@
         "claim-wd-q22616892-name-en"
       ],
       "confidence": 0.6,
-      "country_codes": [],
+      "country_codes": [
+        "CZ"
+      ],
       "death": {
         "earliest": 1947,
         "latest": 1947,
@@ -10577,7 +10703,7 @@
       "name_native": null,
       "name_zh": null,
       "name_zh_status": "missing",
-      "region": "unknown",
+      "region": "europe",
       "roles": [
         "architect"
       ],
@@ -10598,7 +10724,9 @@
         "claim-wd-q22666035-name-en"
       ],
       "confidence": 0.6,
-      "country_codes": [],
+      "country_codes": [
+        "AT"
+      ],
       "death": {
         "earliest": 1904,
         "latest": 1904,
@@ -10615,7 +10743,7 @@
       "name_native": null,
       "name_zh": null,
       "name_zh_status": "missing",
-      "region": "unknown",
+      "region": "europe",
       "roles": [
         "patron"
       ],
@@ -10699,7 +10827,9 @@
         "claim-wd-q22908529-name-en"
       ],
       "confidence": 0.6,
-      "country_codes": [],
+      "country_codes": [
+        "IR"
+      ],
       "death": {
         "earliest": 1650,
         "latest": 1650,
@@ -10716,7 +10846,7 @@
       "name_native": null,
       "name_zh": null,
       "name_zh_status": "missing",
-      "region": "unknown",
+      "region": "central_west_asia",
       "roles": [
         "historian"
       ],
@@ -10737,7 +10867,9 @@
         "claim-wd-q22911014-name-en"
       ],
       "confidence": 0.6,
-      "country_codes": [],
+      "country_codes": [
+        "IT"
+      ],
       "death": {
         "earliest": 1895,
         "latest": 1895,
@@ -10754,7 +10886,7 @@
       "name_native": null,
       "name_zh": null,
       "name_zh_status": "missing",
-      "region": "unknown",
+      "region": "europe",
       "roles": [
         "architect"
       ],
@@ -10775,7 +10907,9 @@
         "claim-wd-q22962434-name-en"
       ],
       "confidence": 0.6,
-      "country_codes": [],
+      "country_codes": [
+        "ES"
+      ],
       "death": {
         "earliest": 1802,
         "latest": 1802,
@@ -10792,7 +10926,7 @@
       "name_native": null,
       "name_zh": null,
       "name_zh_status": "missing",
-      "region": "unknown",
+      "region": "europe",
       "roles": [
         "architect"
       ],
@@ -10871,8 +11005,10 @@
         "claim-wd-q232364-summary-en",
         "claim-wd-q232364-summary-zh"
       ],
-      "confidence": 0.6,
-      "country_codes": [],
+      "confidence": 0.5,
+      "country_codes": [
+        "NL"
+      ],
       "death": {
         "earliest": null,
         "latest": null,
@@ -10889,13 +11025,13 @@
       "name_native": null,
       "name_zh": "雷姆·库哈斯",
       "name_zh_status": "source_label_candidate",
-      "region": "unknown",
+      "region": "europe",
       "roles": [
         "architect"
       ],
       "summary_en": "Dutch architect (1944-)",
       "summary_zh": "荷兰建筑师",
-      "verification_status": "verified"
+      "verification_status": "candidate"
     },
     {
       "aliases_en": [
@@ -10992,7 +11128,9 @@
         "claim-wd-q2327761-name-zh"
       ],
       "confidence": 0.6,
-      "country_codes": [],
+      "country_codes": [
+        "IT"
+      ],
       "death": {
         "earliest": 1528,
         "latest": 1528,
@@ -11009,7 +11147,7 @@
       "name_native": null,
       "name_zh": "喬萬·弗朗切斯科·佩尼",
       "name_zh_status": "source_label_candidate",
-      "region": "unknown",
+      "region": "europe",
       "roles": [
         "designer"
       ],
@@ -11728,7 +11866,9 @@
         "claim-wd-q2454966-name-en"
       ],
       "confidence": 0.6,
-      "country_codes": [],
+      "country_codes": [
+        "IT"
+      ],
       "death": {
         "earliest": 1797,
         "latest": 1797,
@@ -11745,7 +11885,7 @@
       "name_native": null,
       "name_zh": null,
       "name_zh_status": "missing",
-      "region": "unknown",
+      "region": "europe",
       "roles": [
         "architect"
       ],
@@ -11910,8 +12050,10 @@
         "claim-wd-q2493977-roles",
         "claim-wd-q2493977-summary-en"
       ],
-      "confidence": 0.6,
-      "country_codes": [],
+      "confidence": 0.5,
+      "country_codes": [
+        "RU"
+      ],
       "death": {
         "earliest": 1946,
         "latest": 1946,
@@ -11928,13 +12070,13 @@
       "name_native": null,
       "name_zh": "莫伊西·金茨堡",
       "name_zh_status": "source_label_candidate",
-      "region": "unknown",
+      "region": "europe",
       "roles": [
         "architect"
       ],
       "summary_en": "Russian architect, Soviet writer (1892–1946)",
       "summary_zh": "",
-      "verification_status": "verified"
+      "verification_status": "candidate"
     },
     {
       "aliases_en": [
@@ -11969,7 +12111,9 @@
         "claim-wd-q2500931-name-en"
       ],
       "confidence": 0.6,
-      "country_codes": [],
+      "country_codes": [
+        "NL"
+      ],
       "death": {
         "earliest": 1914,
         "latest": 1914,
@@ -11986,7 +12130,7 @@
       "name_native": null,
       "name_zh": null,
       "name_zh_status": "missing",
-      "region": "unknown",
+      "region": "europe",
       "roles": [
         "historian"
       ],
@@ -12017,7 +12161,9 @@
         "claim-wd-q250414-name-zh"
       ],
       "confidence": 0.6,
-      "country_codes": [],
+      "country_codes": [
+        "IT"
+      ],
       "death": {
         "earliest": 1494,
         "latest": 1494,
@@ -12034,7 +12180,7 @@
       "name_native": null,
       "name_zh": "波利齐亚诺",
       "name_zh_status": "source_label_candidate",
-      "region": "unknown",
+      "region": "europe",
       "roles": [
         "historian"
       ],
@@ -12166,8 +12312,10 @@
         "claim-wd-q2533343-roles",
         "claim-wd-q2533343-summary-en"
       ],
-      "confidence": 0.6,
-      "country_codes": [],
+      "confidence": 0.5,
+      "country_codes": [
+        "AL"
+      ],
       "death": {
         "earliest": 1617,
         "latest": 1617,
@@ -12184,13 +12332,13 @@
       "name_native": null,
       "name_zh": "赛德夫哈尔·穆罕默德阿加",
       "name_zh_status": "source_label_candidate",
-      "region": "unknown",
+      "region": "europe",
       "roles": [
         "architect"
       ],
       "summary_en": "architect of the Sultan Ahmed Mosque in Istanbul",
       "summary_zh": "",
-      "verification_status": "verified"
+      "verification_status": "candidate"
     },
     {
       "aliases_en": [],
@@ -12309,8 +12457,10 @@
         "claim-wd-q2551253-roles",
         "claim-wd-q2551253-summary-en"
       ],
-      "confidence": 0.6,
-      "country_codes": [],
+      "confidence": 0.5,
+      "country_codes": [
+        "PK"
+      ],
       "death": {
         "earliest": 1649,
         "latest": 1649,
@@ -12327,13 +12477,13 @@
       "name_native": null,
       "name_zh": "乌斯塔德·艾哈迈德·拉合里",
       "name_zh_status": "source_label_candidate",
-      "region": "unknown",
+      "region": "south_asia",
       "roles": [
         "architect"
       ],
       "summary_en": "17th century Mughal chief architect",
       "summary_zh": "",
-      "verification_status": "verified"
+      "verification_status": "candidate"
     },
     {
       "aliases_en": [
@@ -12524,7 +12674,9 @@
         "claim-wd-q26224490-name-en"
       ],
       "confidence": 0.6,
-      "country_codes": [],
+      "country_codes": [
+        "GB"
+      ],
       "death": {
         "earliest": 1897,
         "latest": 1897,
@@ -12541,7 +12693,7 @@
       "name_native": null,
       "name_zh": null,
       "name_zh_status": "missing",
-      "region": "unknown",
+      "region": "europe",
       "roles": [
         "architect"
       ],
@@ -12668,8 +12820,10 @@
         "claim-wd-q2641514-summary-en",
         "claim-wd-q2641514-summary-zh"
       ],
-      "confidence": 0.6,
-      "country_codes": [],
+      "confidence": 0.5,
+      "country_codes": [
+        "RU"
+      ],
       "death": {
         "earliest": 1977,
         "latest": 1977,
@@ -12686,13 +12840,13 @@
       "name_native": null,
       "name_zh": "阿列克谢·尼科拉也维奇·杜什金",
       "name_zh_status": "source_label_candidate",
-      "region": "unknown",
+      "region": "europe",
       "roles": [
         "architect"
       ],
       "summary_en": "Soviet architect (1903–1977)",
       "summary_zh": "苏联建筑师（1903—1977）",
-      "verification_status": "verified"
+      "verification_status": "candidate"
     },
     {
       "aliases_en": [
@@ -12754,7 +12908,9 @@
         "claim-wd-q2658411-name-zh"
       ],
       "confidence": 0.6,
-      "country_codes": [],
+      "country_codes": [
+        "IR"
+      ],
       "death": {
         "earliest": 1621,
         "latest": 1621,
@@ -12771,7 +12927,7 @@
       "name_native": null,
       "name_zh": "巴哈丁·阿米里",
       "name_zh_status": "source_label_candidate",
-      "region": "unknown",
+      "region": "central_west_asia",
       "roles": [
         "architect",
         "engineer"
@@ -12793,7 +12949,9 @@
         "claim-wd-q2682321-name-en"
       ],
       "confidence": 0.6,
-      "country_codes": [],
+      "country_codes": [
+        "NL"
+      ],
       "death": {
         "earliest": 1932,
         "latest": 1932,
@@ -12810,7 +12968,7 @@
       "name_native": null,
       "name_zh": null,
       "name_zh_status": "missing",
-      "region": "unknown",
+      "region": "europe",
       "roles": [
         "architect"
       ],
@@ -12871,7 +13029,9 @@
         "claim-wd-q2706012-name-en"
       ],
       "confidence": 0.6,
-      "country_codes": [],
+      "country_codes": [
+        "NL"
+      ],
       "death": {
         "earliest": 1929,
         "latest": 1929,
@@ -12888,7 +13048,7 @@
       "name_native": null,
       "name_zh": null,
       "name_zh_status": "missing",
-      "region": "unknown",
+      "region": "europe",
       "roles": [
         "architect"
       ],
@@ -13043,7 +13203,9 @@
         "claim-wd-q2723390-name-zh"
       ],
       "confidence": 0.6,
-      "country_codes": [],
+      "country_codes": [
+        "IT"
+      ],
       "death": {
         "earliest": 1358,
         "latest": 1358,
@@ -13060,7 +13222,7 @@
       "name_native": null,
       "name_zh": "雅各布·德爾·卡森蒂諾",
       "name_zh_status": "source_label_candidate",
-      "region": "unknown",
+      "region": "europe",
       "roles": [
         "historian"
       ],
@@ -13231,7 +13393,9 @@
         "claim-wd-q2821734-name-en"
       ],
       "confidence": 0.6,
-      "country_codes": [],
+      "country_codes": [
+        "ES"
+      ],
       "death": {
         "earliest": 1346,
         "latest": 1346,
@@ -13248,7 +13412,7 @@
       "name_native": null,
       "name_zh": null,
       "name_zh_status": "missing",
-      "region": "unknown",
+      "region": "europe",
       "roles": [
         "architect"
       ],
@@ -14125,8 +14289,10 @@
         "claim-wd-q286670-roles",
         "claim-wd-q286670-summary-en"
       ],
-      "confidence": 0.6,
-      "country_codes": [],
+      "confidence": 0.5,
+      "country_codes": [
+        "IT"
+      ],
       "death": {
         "earliest": 1765,
         "latest": 1765,
@@ -14143,13 +14309,13 @@
       "name_native": null,
       "name_zh": "乔瓦尼·保罗·帕尼尼",
       "name_zh_status": "source_label_candidate",
-      "region": "unknown",
+      "region": "europe",
       "roles": [
         "architect"
       ],
       "summary_en": "Italian painter and architect (1691–1765)",
       "summary_zh": "",
-      "verification_status": "verified"
+      "verification_status": "candidate"
     },
     {
       "aliases_en": [
@@ -14174,8 +14340,10 @@
         "claim-wd-q2869352-summary-en",
         "claim-wd-q2869352-summary-zh"
       ],
-      "confidence": 0.6,
-      "country_codes": [],
+      "confidence": 0.5,
+      "country_codes": [
+        "TR"
+      ],
       "death": {
         "earliest": 1471,
         "latest": 1471,
@@ -14192,13 +14360,13 @@
       "name_native": null,
       "name_zh": "阿提克·錫南",
       "name_zh_status": "source_label_candidate",
-      "region": "unknown",
+      "region": "central_west_asia",
       "roles": [
         "architect"
       ],
       "summary_en": "Ottoman architect",
       "summary_zh": "奥地幔帝国建筑师",
-      "verification_status": "verified"
+      "verification_status": "candidate"
     },
     {
       "aliases_en": [
@@ -14355,7 +14523,9 @@
         "claim-wd-q28840215-name-en"
       ],
       "confidence": 0.6,
-      "country_codes": [],
+      "country_codes": [
+        "DK"
+      ],
       "death": {
         "earliest": 1993,
         "latest": 1993,
@@ -14372,7 +14542,7 @@
       "name_native": null,
       "name_zh": null,
       "name_zh_status": "missing",
-      "region": "unknown",
+      "region": "europe",
       "roles": [
         "architect",
         "craftsperson",
@@ -14669,7 +14839,9 @@
         "claim-wd-q2926933-name-en"
       ],
       "confidence": 0.6,
-      "country_codes": [],
+      "country_codes": [
+        "BE"
+      ],
       "death": {
         "earliest": 1861,
         "latest": 1861,
@@ -14686,7 +14858,7 @@
       "name_native": null,
       "name_zh": null,
       "name_zh_status": "missing",
-      "region": "unknown",
+      "region": "europe",
       "roles": [
         "architect"
       ],
@@ -14780,8 +14952,10 @@
         "claim-wd-q297565-roles",
         "claim-wd-q297565-summary-en"
       ],
-      "confidence": 0.6,
-      "country_codes": [],
+      "confidence": 0.5,
+      "country_codes": [
+        "IT"
+      ],
       "death": {
         "earliest": 1573,
         "latest": 1573,
@@ -14798,13 +14972,13 @@
       "name_native": null,
       "name_zh": "贾科莫·巴罗齐·达·维尼奥拉",
       "name_zh_status": "source_label_candidate",
-      "region": "unknown",
+      "region": "europe",
       "roles": [
         "architect"
       ],
       "summary_en": "Italian architect (1507–1573)",
       "summary_zh": "",
-      "verification_status": "verified"
+      "verification_status": "candidate"
     },
     {
       "aliases_en": [
@@ -14829,8 +15003,10 @@
         "claim-wd-q29761-roles",
         "claim-wd-q29761-summary-en"
       ],
-      "confidence": 0.6,
-      "country_codes": [],
+      "confidence": 0.5,
+      "country_codes": [
+        "SM"
+      ],
       "death": {
         "earliest": 1020,
         "latest": 1020,
@@ -14847,13 +15023,13 @@
       "name_native": null,
       "name_zh": "梯里达底",
       "name_zh_status": "source_label_candidate",
-      "region": "unknown",
+      "region": "europe",
       "roles": [
         "architect"
       ],
       "summary_en": "chief architect of the Bagratuni kings of Armenia",
       "summary_zh": "",
-      "verification_status": "verified"
+      "verification_status": "candidate"
     },
     {
       "aliases_en": [
@@ -15004,7 +15180,9 @@
         "claim-wd-q298226-name-zh"
       ],
       "confidence": 0.6,
-      "country_codes": [],
+      "country_codes": [
+        "SM"
+      ],
       "death": {
         "earliest": 534,
         "latest": 534,
@@ -15021,7 +15199,7 @@
       "name_native": null,
       "name_zh": "特拉勒斯的安提莫斯",
       "name_zh_status": "source_label_candidate",
-      "region": "unknown",
+      "region": "europe",
       "roles": [
         "architect",
         "engineer",
@@ -15057,8 +15235,10 @@
         "claim-wd-q299687-roles",
         "claim-wd-q299687-summary-en"
       ],
-      "confidence": 0.6,
-      "country_codes": [],
+      "confidence": 0.5,
+      "country_codes": [
+        "FR"
+      ],
       "death": {
         "earliest": 1771,
         "latest": 1771,
@@ -15075,13 +15255,13 @@
       "name_native": null,
       "name_zh": "弗朗切斯科·巴尔托洛梅奥·拉斯特雷利",
       "name_zh_status": "source_label_candidate",
-      "region": "unknown",
+      "region": "europe",
       "roles": [
         "architect"
       ],
       "summary_en": "Italian architect (1700-1771)",
       "summary_zh": "",
-      "verification_status": "verified"
+      "verification_status": "candidate"
     },
     {
       "aliases_en": [],
@@ -15354,7 +15534,9 @@
         "claim-wd-q3047868-name-en"
       ],
       "confidence": 0.6,
-      "country_codes": [],
+      "country_codes": [
+        "BE"
+      ],
       "death": {
         "earliest": 1929,
         "latest": 1929,
@@ -15371,7 +15553,7 @@
       "name_native": null,
       "name_zh": null,
       "name_zh_status": "missing",
-      "region": "unknown",
+      "region": "europe",
       "roles": [
         "architect"
       ],
@@ -15587,7 +15769,9 @@
         "claim-wd-q3056573-name-en"
       ],
       "confidence": 0.6,
-      "country_codes": [],
+      "country_codes": [
+        "DK"
+      ],
       "death": {
         "earliest": 2012,
         "latest": 2012,
@@ -15604,7 +15788,7 @@
       "name_native": null,
       "name_zh": null,
       "name_zh_status": "missing",
-      "region": "unknown",
+      "region": "europe",
       "roles": [
         "engineer"
       ],
@@ -15804,7 +15988,9 @@
         "claim-wd-q3072081-name-en"
       ],
       "confidence": 0.6,
-      "country_codes": [],
+      "country_codes": [
+        "TR"
+      ],
       "death": {
         "earliest": 1866,
         "latest": 1866,
@@ -15821,7 +16007,7 @@
       "name_native": null,
       "name_zh": null,
       "name_zh_status": "missing",
-      "region": "unknown",
+      "region": "central_west_asia",
       "roles": [
         "architect"
       ],
@@ -15846,7 +16032,9 @@
         "claim-wd-q3076598-name-zh"
       ],
       "confidence": 0.6,
-      "country_codes": [],
+      "country_codes": [
+        "FI"
+      ],
       "death": {
         "earliest": 1917,
         "latest": 1917,
@@ -15863,7 +16051,7 @@
       "name_native": null,
       "name_zh": "古斯塔夫·尼斯特倫",
       "name_zh_status": "source_label_candidate",
-      "region": "unknown",
+      "region": "europe",
       "roles": [
         "architect",
         "patron"
@@ -15941,7 +16129,9 @@
         "claim-wd-q30842449-name-en"
       ],
       "confidence": 0.6,
-      "country_codes": [],
+      "country_codes": [
+        "BE"
+      ],
       "death": {
         "earliest": 1902,
         "latest": 1902,
@@ -15958,7 +16148,7 @@
       "name_native": null,
       "name_zh": null,
       "name_zh_status": "missing",
-      "region": "unknown",
+      "region": "europe",
       "roles": [
         "architect",
         "engineer"
@@ -16311,7 +16501,9 @@
         "claim-wd-q309635-name-zh"
       ],
       "confidence": 0.6,
-      "country_codes": [],
+      "country_codes": [
+        "IT"
+      ],
       "death": {
         "earliest": 1348,
         "latest": 1348,
@@ -16328,7 +16520,7 @@
       "name_native": null,
       "name_zh": "伯多祿·洛伦采蒂",
       "name_zh_status": "source_label_candidate",
-      "region": "unknown",
+      "region": "europe",
       "roles": [
         "historian"
       ],
@@ -16362,8 +16554,10 @@
         "claim-wd-q309733-roles",
         "claim-wd-q309733-summary-en"
       ],
-      "confidence": 0.6,
-      "country_codes": [],
+      "confidence": 0.5,
+      "country_codes": [
+        "IT"
+      ],
       "death": {
         "earliest": 1616,
         "latest": 1616,
@@ -16380,13 +16574,13 @@
       "name_native": null,
       "name_zh": "文森佐·斯卡默基",
       "name_zh_status": "source_label_candidate",
-      "region": "unknown",
+      "region": "europe",
       "roles": [
         "architect"
       ],
       "summary_en": "16th century Italian architect (1548–1616)",
       "summary_zh": "",
-      "verification_status": "verified"
+      "verification_status": "candidate"
     },
     {
       "aliases_en": [
@@ -16458,8 +16652,10 @@
         "claim-wd-q309905-summary-en",
         "claim-wd-q309905-summary-zh"
       ],
-      "confidence": 0.6,
-      "country_codes": [],
+      "confidence": 0.5,
+      "country_codes": [
+        "GB"
+      ],
       "death": {
         "earliest": 1835,
         "latest": 1835,
@@ -16476,13 +16672,13 @@
       "name_native": null,
       "name_zh": "约翰·纳什",
       "name_zh_status": "source_label_candidate",
-      "region": "unknown",
+      "region": "europe",
       "roles": [
         "architect"
       ],
       "summary_en": "British architect (1752–1835)",
       "summary_zh": "英国建筑师（1752—1835）",
-      "verification_status": "verified"
+      "verification_status": "candidate"
     },
     {
       "aliases_en": [
@@ -16509,8 +16705,10 @@
         "claim-wd-q310028-roles",
         "claim-wd-q310028-summary-en"
       ],
-      "confidence": 0.6,
-      "country_codes": [],
+      "confidence": 0.5,
+      "country_codes": [
+        "SM"
+      ],
       "death": {
         "earliest": 537,
         "latest": 537,
@@ -16527,13 +16725,13 @@
       "name_native": null,
       "name_zh": "米利都的伊西多尔",
       "name_zh_status": "source_label_candidate",
-      "region": "unknown",
+      "region": "europe",
       "roles": [
         "architect"
       ],
       "summary_en": "Byzantine Greek architect",
       "summary_zh": "",
-      "verification_status": "verified"
+      "verification_status": "candidate"
     },
     {
       "aliases_en": [],
@@ -16824,7 +17022,9 @@
         "claim-wd-q3119292-name-en"
       ],
       "confidence": 0.6,
-      "country_codes": [],
+      "country_codes": [
+        "IT"
+      ],
       "death": {
         "earliest": null,
         "latest": null,
@@ -16841,7 +17041,7 @@
       "name_native": null,
       "name_zh": null,
       "name_zh_status": "missing",
-      "region": "unknown",
+      "region": "europe",
       "roles": [
         "historian"
       ],
@@ -17181,7 +17381,9 @@
         "claim-wd-q313210-name-zh"
       ],
       "confidence": 0.6,
-      "country_codes": [],
+      "country_codes": [
+        "RU"
+      ],
       "death": {
         "earliest": 1939,
         "latest": 1939,
@@ -17198,7 +17400,7 @@
       "name_native": null,
       "name_zh": "弗拉基米尔·舒霍夫",
       "name_zh_status": "source_label_candidate",
-      "region": "unknown",
+      "region": "europe",
       "roles": [
         "architect",
         "engineer"
@@ -17229,7 +17431,9 @@
         "claim-wd-q313288-name-zh"
       ],
       "confidence": 0.6,
-      "country_codes": [],
+      "country_codes": [
+        "GB"
+      ],
       "death": {
         "earliest": 1852,
         "latest": 1852,
@@ -17246,7 +17450,7 @@
       "name_native": null,
       "name_zh": "奥古斯塔斯·普金",
       "name_zh_status": "source_label_candidate",
-      "region": "unknown",
+      "region": "europe",
       "roles": [
         "architect",
         "designer"
@@ -17282,7 +17486,9 @@
         "claim-wd-q3134295-name-en"
       ],
       "confidence": 0.6,
-      "country_codes": [],
+      "country_codes": [
+        "ES"
+      ],
       "death": {
         "earliest": 1547,
         "latest": 1547,
@@ -17299,7 +17505,7 @@
       "name_native": null,
       "name_zh": null,
       "name_zh_status": "missing",
-      "region": "unknown",
+      "region": "europe",
       "roles": [
         "architect"
       ],
@@ -17456,8 +17662,10 @@
         "claim-wd-q3140459-roles",
         "claim-wd-q3140459-summary-en"
       ],
-      "confidence": 0.6,
-      "country_codes": [],
+      "confidence": 0.5,
+      "country_codes": [
+        "GB"
+      ],
       "death": {
         "earliest": 1887,
         "latest": 1887,
@@ -17474,13 +17682,13 @@
       "name_native": null,
       "name_zh": "霍拉斯·琼斯",
       "name_zh_status": "source_label_candidate",
-      "region": "unknown",
+      "region": "europe",
       "roles": [
         "architect"
       ],
       "summary_en": "British architect (1819–1887)",
       "summary_zh": "",
-      "verification_status": "verified"
+      "verification_status": "candidate"
     },
     {
       "aliases_en": [
@@ -17599,7 +17807,9 @@
         "claim-wd-q3154225-name-en"
       ],
       "confidence": 0.6,
-      "country_codes": [],
+      "country_codes": [
+        "IT"
+      ],
       "death": {
         "earliest": 1608,
         "latest": 1608,
@@ -17616,7 +17826,7 @@
       "name_native": null,
       "name_zh": null,
       "name_zh_status": "missing",
-      "region": "unknown",
+      "region": "europe",
       "roles": [
         "historian"
       ],
@@ -17916,7 +18126,9 @@
         "claim-wd-q316009-name-en"
       ],
       "confidence": 0.6,
-      "country_codes": [],
+      "country_codes": [
+        "IT"
+      ],
       "death": {
         "earliest": 1330,
         "latest": 1330,
@@ -17933,7 +18145,7 @@
       "name_native": null,
       "name_zh": null,
       "name_zh_status": "missing",
-      "region": "unknown",
+      "region": "europe",
       "roles": [
         "historian"
       ],
@@ -18001,7 +18213,9 @@
         "claim-wd-q316297-name-zh"
       ],
       "confidence": 0.6,
-      "country_codes": [],
+      "country_codes": [
+        "IT"
+      ],
       "death": {
         "earliest": 1682,
         "latest": 1682,
@@ -18018,7 +18232,7 @@
       "name_native": null,
       "name_zh": "巴尔达萨雷·隆盖纳",
       "name_zh_status": "source_label_candidate",
-      "region": "unknown",
+      "region": "europe",
       "roles": [
         "architect",
         "craftsperson"
@@ -18701,7 +18915,9 @@
         "claim-wd-q318816-name-zh"
       ],
       "confidence": 0.6,
-      "country_codes": [],
+      "country_codes": [
+        "NL"
+      ],
       "death": {
         "earliest": 1934,
         "latest": 1934,
@@ -18718,7 +18934,7 @@
       "name_native": null,
       "name_zh": "汉德瑞克·彼图斯·伯拉吉",
       "name_zh_status": "source_label_candidate",
-      "region": "unknown",
+      "region": "europe",
       "roles": [
         "architect",
         "designer"
@@ -18942,8 +19158,10 @@
         "claim-wd-q320118-roles",
         "claim-wd-q320118-summary-en"
       ],
-      "confidence": 0.6,
-      "country_codes": [],
+      "confidence": 0.5,
+      "country_codes": [
+        "IT"
+      ],
       "death": {
         "earliest": 1641,
         "latest": 1641,
@@ -18960,13 +19178,13 @@
       "name_native": null,
       "name_zh": "多梅尼基諾",
       "name_zh_status": "source_label_candidate",
-      "region": "unknown",
+      "region": "europe",
       "roles": [
         "architect"
       ],
       "summary_en": "Italian painter (1581–1641)",
       "summary_zh": "",
-      "verification_status": "verified"
+      "verification_status": "candidate"
     },
     {
       "aliases_en": [
@@ -19630,7 +19848,9 @@
         "claim-wd-q330997-name-en"
       ],
       "confidence": 0.6,
-      "country_codes": [],
+      "country_codes": [
+        "CH"
+      ],
       "death": {
         "earliest": 1854,
         "latest": 1854,
@@ -19647,7 +19867,7 @@
       "name_native": null,
       "name_zh": null,
       "name_zh_status": "missing",
-      "region": "unknown",
+      "region": "europe",
       "roles": [
         "architect"
       ],
@@ -20236,7 +20456,9 @@
         "claim-wd-q335112-name-zh"
       ],
       "confidence": 0.6,
-      "country_codes": [],
+      "country_codes": [
+        "GB"
+      ],
       "death": {
         "earliest": 1713,
         "latest": 1713,
@@ -20253,7 +20475,7 @@
       "name_native": null,
       "name_zh": "安东尼·阿什利-柯柏，第三代沙夫茨伯里伯爵",
       "name_zh_status": "source_label_candidate",
-      "region": "unknown",
+      "region": "europe",
       "roles": [
         "patron"
       ],
@@ -20274,7 +20496,9 @@
         "claim-wd-q3360032-name-en"
       ],
       "confidence": 0.6,
-      "country_codes": [],
+      "country_codes": [
+        "IT"
+      ],
       "death": {
         "earliest": 1368,
         "latest": 1368,
@@ -20291,7 +20515,7 @@
       "name_native": null,
       "name_zh": null,
       "name_zh_status": "missing",
-      "region": "unknown",
+      "region": "europe",
       "roles": [
         "historian"
       ],
@@ -21248,7 +21472,9 @@
         "claim-wd-q3442414-name-en"
       ],
       "confidence": 0.6,
-      "country_codes": [],
+      "country_codes": [
+        "RU"
+      ],
       "death": {
         "earliest": 1952,
         "latest": 1952,
@@ -21265,7 +21491,7 @@
       "name_native": null,
       "name_zh": null,
       "name_zh_status": "missing",
-      "region": "unknown",
+      "region": "europe",
       "roles": [
         "architect"
       ],
@@ -21292,7 +21518,9 @@
         "claim-wd-q34503-name-zh"
       ],
       "confidence": 0.6,
-      "country_codes": [],
+      "country_codes": [
+        "SM"
+      ],
       "death": {
         "earliest": 1481,
         "latest": 1481,
@@ -21309,7 +21537,7 @@
       "name_native": null,
       "name_zh": "穆罕默德二世",
       "name_zh_status": "source_label_candidate",
-      "region": "unknown",
+      "region": "europe",
       "roles": [
         "architect"
       ],
@@ -21388,7 +21616,9 @@
         "claim-wd-q3476875-name-zh"
       ],
       "confidence": 0.6,
-      "country_codes": [],
+      "country_codes": [
+        "FI"
+      ],
       "death": {
         "earliest": 1925,
         "latest": 1925,
@@ -21405,7 +21635,7 @@
       "name_native": null,
       "name_zh": "塞巴斯蒂安·格里彭贝里",
       "name_zh_status": "source_label_candidate",
-      "region": "unknown",
+      "region": "europe",
       "roles": [
         "architect",
         "patron"
@@ -21437,8 +21667,10 @@
         "claim-wd-q347699-roles",
         "claim-wd-q347699-summary-en"
       ],
-      "confidence": 0.6,
-      "country_codes": [],
+      "confidence": 0.5,
+      "country_codes": [
+        "FR"
+      ],
       "death": {
         "earliest": 1688,
         "latest": 1688,
@@ -21455,13 +21687,13 @@
       "name_native": null,
       "name_zh": "克洛德·佩羅",
       "name_zh_status": "source_label_candidate",
-      "region": "unknown",
+      "region": "europe",
       "roles": [
         "architect"
       ],
       "summary_en": "French architect and doctor of medicine (1613–1688)",
       "summary_zh": "",
-      "verification_status": "verified"
+      "verification_status": "candidate"
     },
     {
       "aliases_en": [],
@@ -21563,7 +21795,9 @@
         "claim-wd-q351644-name-en"
       ],
       "confidence": 0.6,
-      "country_codes": [],
+      "country_codes": [
+        "IT"
+      ],
       "death": {
         "earliest": 1928,
         "latest": 1928,
@@ -21580,7 +21814,7 @@
       "name_native": null,
       "name_zh": null,
       "name_zh_status": "missing",
-      "region": "unknown",
+      "region": "europe",
       "roles": [
         "architect",
         "engineer"
@@ -21602,7 +21836,9 @@
         "claim-wd-q3518521-name-en"
       ],
       "confidence": 0.6,
-      "country_codes": [],
+      "country_codes": [
+        "NL"
+      ],
       "death": {
         "earliest": 1935,
         "latest": 1935,
@@ -21619,7 +21855,7 @@
       "name_native": null,
       "name_zh": null,
       "name_zh_status": "missing",
-      "region": "unknown",
+      "region": "europe",
       "roles": [
         "architect"
       ],
@@ -21707,7 +21943,9 @@
         "claim-wd-q354052-name-zh"
       ],
       "confidence": 0.6,
-      "country_codes": [],
+      "country_codes": [
+        "BE"
+      ],
       "death": {
         "earliest": 1894,
         "latest": 1894,
@@ -21724,7 +21962,7 @@
       "name_native": null,
       "name_zh": "让-巴蒂斯特·贝蒂纳",
       "name_zh_status": "source_label_candidate",
-      "region": "unknown",
+      "region": "europe",
       "roles": [
         "architect",
         "patron",
@@ -21855,7 +22093,9 @@
         "claim-wd-q3568691-name-en"
       ],
       "confidence": 0.6,
-      "country_codes": [],
+      "country_codes": [
+        "GB"
+      ],
       "death": {
         "earliest": 1902,
         "latest": 1902,
@@ -21872,7 +22112,7 @@
       "name_native": null,
       "name_zh": null,
       "name_zh_status": "missing",
-      "region": "unknown",
+      "region": "europe",
       "roles": [
         "engineer"
       ],
@@ -22095,7 +22335,9 @@
         "claim-wd-q3610289-name-en"
       ],
       "confidence": 0.6,
-      "country_codes": [],
+      "country_codes": [
+        "IT"
+      ],
       "death": {
         "earliest": 1849,
         "latest": 1849,
@@ -22112,7 +22354,7 @@
       "name_native": null,
       "name_zh": null,
       "name_zh_status": "missing",
-      "region": "unknown",
+      "region": "europe",
       "roles": [
         "architect"
       ],
@@ -22183,7 +22425,9 @@
         "claim-wd-q3619635-name-en"
       ],
       "confidence": 0.6,
-      "country_codes": [],
+      "country_codes": [
+        "IT"
+      ],
       "death": {
         "earliest": 1723,
         "latest": 1723,
@@ -22200,7 +22444,7 @@
       "name_native": null,
       "name_zh": null,
       "name_zh_status": "missing",
-      "region": "unknown",
+      "region": "europe",
       "roles": [
         "architect"
       ],
@@ -22232,7 +22476,9 @@
         "claim-wd-q362055-name-en"
       ],
       "confidence": 0.6,
-      "country_codes": [],
+      "country_codes": [
+        "DE"
+      ],
       "death": {
         "earliest": 1882,
         "latest": 1882,
@@ -22249,7 +22495,7 @@
       "name_native": null,
       "name_zh": null,
       "name_zh_status": "missing",
-      "region": "unknown",
+      "region": "europe",
       "roles": [
         "historian"
       ],
@@ -22320,7 +22566,9 @@
         "claim-wd-q363296-name-zh"
       ],
       "confidence": 0.6,
-      "country_codes": [],
+      "country_codes": [
+        "IT"
+      ],
       "death": {
         "earliest": 1396,
         "latest": 1396,
@@ -22337,7 +22585,7 @@
       "name_native": null,
       "name_zh": "阿尼奧羅·加迪",
       "name_zh_status": "source_label_candidate",
-      "region": "unknown",
+      "region": "europe",
       "roles": [
         "historian"
       ],
@@ -22561,7 +22809,9 @@
         "claim-wd-q366562-name-zh"
       ],
       "confidence": 0.6,
-      "country_codes": [],
+      "country_codes": [
+        "IT"
+      ],
       "death": {
         "earliest": 1348,
         "latest": 1348,
@@ -22578,7 +22828,7 @@
       "name_native": null,
       "name_zh": "貝爾納多·達迪",
       "name_zh_status": "source_label_candidate",
-      "region": "unknown",
+      "region": "europe",
       "roles": [
         "historian"
       ],
@@ -22664,7 +22914,9 @@
         "claim-wd-q371979-name-en"
       ],
       "confidence": 0.6,
-      "country_codes": [],
+      "country_codes": [
+        "FR"
+      ],
       "death": {
         "earliest": 1694,
         "latest": 1694,
@@ -22681,7 +22933,7 @@
       "name_native": null,
       "name_zh": null,
       "name_zh_status": "missing",
-      "region": "unknown",
+      "region": "europe",
       "roles": [
         "architect",
         "craftsperson"
@@ -22864,8 +23116,10 @@
         "claim-wd-q37562-summary-en",
         "claim-wd-q37562-summary-zh"
       ],
-      "confidence": 0.6,
-      "country_codes": [],
+      "confidence": 0.5,
+      "country_codes": [
+        "IT"
+      ],
       "death": {
         "earliest": 1466,
         "latest": 1466,
@@ -22882,13 +23136,13 @@
       "name_native": null,
       "name_zh": "多那太羅",
       "name_zh_status": "source_label_candidate",
-      "region": "unknown",
+      "region": "europe",
       "roles": [
         "craftsperson"
       ],
       "summary_en": "Early Renaissance Italian sculptor (1386–1466)",
       "summary_zh": "意大利雕刻家（1386—1466）",
-      "verification_status": "verified"
+      "verification_status": "candidate"
     },
     {
       "aliases_en": [
@@ -22909,7 +23163,9 @@
         "claim-wd-q375783-name-en"
       ],
       "confidence": 0.6,
-      "country_codes": [],
+      "country_codes": [
+        "FR"
+      ],
       "death": {
         "earliest": 1734,
         "latest": 1734,
@@ -22926,7 +23182,7 @@
       "name_native": null,
       "name_zh": null,
       "name_zh_status": "missing",
-      "region": "unknown",
+      "region": "europe",
       "roles": [
         "designer"
       ],
@@ -22953,8 +23209,10 @@
         "claim-wd-q3760513-roles",
         "claim-wd-q3760513-summary-en"
       ],
-      "confidence": 0.6,
-      "country_codes": [],
+      "confidence": 0.5,
+      "country_codes": [
+        "IT"
+      ],
       "death": {
         "earliest": 1826,
         "latest": 1826,
@@ -22971,13 +23229,13 @@
       "name_native": null,
       "name_zh": "喬治·哈德菲爾德",
       "name_zh_status": "source_label_candidate",
-      "region": "unknown",
+      "region": "europe",
       "roles": [
         "architect"
       ],
       "summary_en": "American architect (1763–1826)",
       "summary_zh": "",
-      "verification_status": "verified"
+      "verification_status": "candidate"
     },
     {
       "aliases_en": [],
@@ -23112,7 +23370,9 @@
         "claim-wd-q3771406-name-en"
       ],
       "confidence": 0.6,
-      "country_codes": [],
+      "country_codes": [
+        "IT"
+      ],
       "death": {
         "earliest": 1699,
         "latest": 1699,
@@ -23129,7 +23389,7 @@
       "name_native": null,
       "name_zh": null,
       "name_zh_status": "missing",
-      "region": "unknown",
+      "region": "europe",
       "roles": [
         "architect"
       ],
@@ -23328,8 +23588,10 @@
         "claim-wd-q380282-roles",
         "claim-wd-q380282-summary-en"
       ],
-      "confidence": 0.6,
-      "country_codes": [],
+      "confidence": 0.5,
+      "country_codes": [
+        "RU"
+      ],
       "death": {
         "earliest": 1949,
         "latest": 1949,
@@ -23346,13 +23608,13 @@
       "name_native": null,
       "name_zh": "阿列克谢·休谢夫",
       "name_zh_status": "source_label_candidate",
-      "region": "unknown",
+      "region": "europe",
       "roles": [
         "architect"
       ],
       "summary_en": "Russian architect (1873-1949)",
       "summary_zh": "",
-      "verification_status": "verified"
+      "verification_status": "candidate"
     },
     {
       "aliases_en": [
@@ -23505,7 +23767,9 @@
         "claim-wd-q38193-name-zh"
       ],
       "confidence": 0.6,
-      "country_codes": [],
+      "country_codes": [
+        "PL"
+      ],
       "death": {
         "earliest": 1860,
         "latest": 1860,
@@ -23522,7 +23786,7 @@
       "name_native": null,
       "name_zh": "亚瑟·叔本华",
       "name_zh_status": "source_label_candidate",
-      "region": "unknown",
+      "region": "europe",
       "roles": [
         "historian"
       ],
@@ -23812,7 +24076,9 @@
         "claim-wd-q383413-name-en"
       ],
       "confidence": 0.6,
-      "country_codes": [],
+      "country_codes": [
+        "PT"
+      ],
       "death": {
         "earliest": 1401,
         "latest": 1401,
@@ -23829,7 +24095,7 @@
       "name_native": null,
       "name_zh": null,
       "name_zh_status": "missing",
-      "region": "unknown",
+      "region": "europe",
       "roles": [
         "architect"
       ],
@@ -23890,7 +24156,9 @@
         "claim-wd-q3876542-name-en"
       ],
       "confidence": 0.6,
-      "country_codes": [],
+      "country_codes": [
+        "IT"
+      ],
       "death": {
         "earliest": 1181,
         "latest": 1181,
@@ -23907,7 +24175,7 @@
       "name_native": null,
       "name_zh": null,
       "name_zh_status": "missing",
-      "region": "unknown",
+      "region": "europe",
       "roles": [
         "architect",
         "engineer"
@@ -24107,7 +24375,9 @@
         "claim-wd-q3938437-name-en"
       ],
       "confidence": 0.6,
-      "country_codes": [],
+      "country_codes": [
+        "GB"
+      ],
       "death": {
         "earliest": 1788,
         "latest": 1788,
@@ -24124,7 +24394,7 @@
       "name_native": null,
       "name_zh": null,
       "name_zh_status": "missing",
-      "region": "unknown",
+      "region": "europe",
       "roles": [
         "architect"
       ],
@@ -24154,8 +24424,10 @@
         "claim-wd-q395404-roles",
         "claim-wd-q395404-summary-en"
       ],
-      "confidence": 0.6,
-      "country_codes": [],
+      "confidence": 0.5,
+      "country_codes": [
+        "TR"
+      ],
       "death": {
         "earliest": null,
         "latest": null,
@@ -24172,13 +24444,13 @@
       "name_native": null,
       "name_zh": "阿戈拉克里图斯",
       "name_zh_status": "source_label_candidate",
-      "region": "unknown",
+      "region": "central_west_asia",
       "roles": [
         "craftsperson"
       ],
       "summary_en": "5th-century BC Greek sculptor",
       "summary_zh": "",
-      "verification_status": "verified"
+      "verification_status": "candidate"
     },
     {
       "aliases_en": [],
@@ -24410,7 +24682,9 @@
         "claim-wd-q4013486-name-zh"
       ],
       "confidence": 0.6,
-      "country_codes": [],
+      "country_codes": [
+        "IT"
+      ],
       "death": {
         "earliest": 1927,
         "latest": 1927,
@@ -24427,7 +24701,7 @@
       "name_native": null,
       "name_zh": "羅納多",
       "name_zh_status": "source_label_candidate",
-      "region": "unknown",
+      "region": "europe",
       "roles": [
         "architect",
         "designer"
@@ -24456,7 +24730,9 @@
         "claim-wd-q4081313-name-en"
       ],
       "confidence": 0.6,
-      "country_codes": [],
+      "country_codes": [
+        "RU"
+      ],
       "death": {
         "earliest": 1941,
         "latest": 1941,
@@ -24473,7 +24749,7 @@
       "name_native": null,
       "name_zh": null,
       "name_zh_status": "missing",
-      "region": "unknown",
+      "region": "europe",
       "roles": [
         "architect"
       ],
@@ -24796,7 +25072,9 @@
         "claim-wd-q43393-name-zh"
       ],
       "confidence": 0.6,
-      "country_codes": [],
+      "country_codes": [
+        "GB"
+      ],
       "death": {
         "earliest": 1691,
         "latest": 1691,
@@ -24813,7 +25091,7 @@
       "name_native": null,
       "name_zh": "罗伯特·波义耳",
       "name_zh_status": "source_label_candidate",
-      "region": "unknown",
+      "region": "europe",
       "roles": [
         "historian"
       ],
@@ -24885,7 +25163,9 @@
         "claim-wd-q436738-name-zh"
       ],
       "confidence": 0.6,
-      "country_codes": [],
+      "country_codes": [
+        "IT"
+      ],
       "death": {
         "earliest": 1550,
         "latest": 1550,
@@ -24902,7 +25182,7 @@
       "name_native": null,
       "name_zh": "吉安·乔治·特里西诺",
       "name_zh_status": "source_label_candidate",
-      "region": "unknown",
+      "region": "europe",
       "roles": [
         "historian"
       ],
@@ -25020,8 +25300,10 @@
         "claim-wd-q445970-roles",
         "claim-wd-q445970-summary-en"
       ],
-      "confidence": 0.6,
-      "country_codes": [],
+      "confidence": 0.5,
+      "country_codes": [
+        "DE"
+      ],
       "death": {
         "earliest": 1808,
         "latest": 1808,
@@ -25038,13 +25320,13 @@
       "name_native": null,
       "name_zh": "大卫·基利",
       "name_zh_status": "source_label_candidate",
-      "region": "unknown",
+      "region": "europe",
       "roles": [
         "architect"
       ],
       "summary_en": "German architect (1748-1808)",
       "summary_zh": "",
-      "verification_status": "verified"
+      "verification_status": "candidate"
     },
     {
       "aliases_en": [
@@ -25064,7 +25346,9 @@
         "claim-wd-q44911-name-zh"
       ],
       "confidence": 0.6,
-      "country_codes": [],
+      "country_codes": [
+        "CZ"
+      ],
       "death": {
         "earliest": 1908,
         "latest": 1908,
@@ -25081,7 +25365,7 @@
       "name_native": null,
       "name_zh": "约瑟夫·马里亚·欧尔布里希",
       "name_zh_status": "source_label_candidate",
-      "region": "unknown",
+      "region": "europe",
       "roles": [
         "architect",
         "designer"
@@ -25207,8 +25491,10 @@
         "claim-wd-q452033-roles",
         "claim-wd-q452033-summary-en"
       ],
-      "confidence": 0.6,
-      "country_codes": [],
+      "confidence": 0.5,
+      "country_codes": [
+        "DK"
+      ],
       "death": {
         "earliest": 1987,
         "latest": 1987,
@@ -25225,13 +25511,13 @@
       "name_native": null,
       "name_zh": "约翰·奥托·冯·施普雷克尔森",
       "name_zh_status": "source_label_candidate",
-      "region": "unknown",
+      "region": "europe",
       "roles": [
         "architect"
       ],
       "summary_en": "Danish architect (1929-1987)",
       "summary_zh": "",
-      "verification_status": "verified"
+      "verification_status": "candidate"
     },
     {
       "aliases_en": [
@@ -25394,7 +25680,9 @@
         "claim-wd-q458653-name-zh"
       ],
       "confidence": 0.6,
-      "country_codes": [],
+      "country_codes": [
+        "IT"
+      ],
       "death": {
         "earliest": 1943,
         "latest": 1943,
@@ -25411,7 +25699,7 @@
       "name_native": null,
       "name_zh": "特拉尼",
       "name_zh_status": "source_label_candidate",
-      "region": "unknown",
+      "region": "europe",
       "roles": [
         "architect",
         "designer"
@@ -25439,7 +25727,9 @@
         "claim-wd-q460922-name-zh"
       ],
       "confidence": 0.6,
-      "country_codes": [],
+      "country_codes": [
+        "GB"
+      ],
       "death": {
         "earliest": 1792,
         "latest": 1792,
@@ -25456,7 +25746,7 @@
       "name_native": null,
       "name_zh": "约翰·斯密顿",
       "name_zh_status": "source_label_candidate",
-      "region": "unknown",
+      "region": "europe",
       "roles": [
         "engineer"
       ],
@@ -25703,8 +25993,10 @@
         "claim-wd-q46830-summary-en",
         "claim-wd-q46830-summary-zh"
       ],
-      "confidence": 0.6,
-      "country_codes": [],
+      "confidence": 0.5,
+      "country_codes": [
+        "GB"
+      ],
       "death": {
         "earliest": 1703,
         "latest": 1703,
@@ -25721,13 +26013,13 @@
       "name_native": null,
       "name_zh": "罗伯特·胡克",
       "name_zh_status": "source_label_candidate",
-      "region": "unknown",
+      "region": "europe",
       "roles": [
         "architect"
       ],
       "summary_en": "English natural philosopher, architect and polymath (1635 — 1703)",
       "summary_zh": "英国科学家",
-      "verification_status": "verified"
+      "verification_status": "candidate"
     },
     {
       "aliases_en": [
@@ -26136,7 +26428,9 @@
         "claim-wd-q47434-name-zh"
       ],
       "confidence": 0.6,
-      "country_codes": [],
+      "country_codes": [
+        "GB"
+      ],
       "death": {
         "earliest": 1742,
         "latest": 1742,
@@ -26153,7 +26447,7 @@
       "name_native": null,
       "name_zh": "愛德蒙·哈雷",
       "name_zh_status": "source_label_candidate",
-      "region": "unknown",
+      "region": "europe",
       "roles": [
         "historian"
       ],
@@ -26269,7 +26563,9 @@
         "claim-wd-q48798844-name-en"
       ],
       "confidence": 0.6,
-      "country_codes": [],
+      "country_codes": [
+        "ID"
+      ],
       "death": {
         "earliest": null,
         "latest": null,
@@ -26286,7 +26582,7 @@
       "name_native": null,
       "name_zh": null,
       "name_zh_status": "missing",
-      "region": "unknown",
+      "region": "southeast_asia",
       "roles": [
         "architect"
       ],
@@ -26319,7 +26615,9 @@
         "claim-wd-q495419-name-en"
       ],
       "confidence": 0.6,
-      "country_codes": [],
+      "country_codes": [
+        "IT"
+      ],
       "death": {
         "earliest": 1379,
         "latest": 1379,
@@ -26336,7 +26634,7 @@
       "name_native": null,
       "name_zh": null,
       "name_zh_status": "missing",
-      "region": "unknown",
+      "region": "europe",
       "roles": [
         "architect"
       ],
@@ -26357,7 +26655,9 @@
         "claim-wd-q49633273-name-en"
       ],
       "confidence": 0.6,
-      "country_codes": [],
+      "country_codes": [
+        "BE"
+      ],
       "death": {
         "earliest": 1974,
         "latest": 1974,
@@ -26374,7 +26674,7 @@
       "name_native": null,
       "name_zh": null,
       "name_zh_status": "missing",
-      "region": "unknown",
+      "region": "europe",
       "roles": [
         "architect"
       ],
@@ -26587,8 +26887,10 @@
         "claim-wd-q5075445-roles",
         "claim-wd-q5075445-summary-en"
       ],
-      "confidence": 0.6,
-      "country_codes": [],
+      "confidence": 0.5,
+      "country_codes": [
+        "GB"
+      ],
       "death": {
         "earliest": 1900,
         "latest": 1900,
@@ -26605,13 +26907,13 @@
       "name_native": null,
       "name_zh": "小查爾斯·巴里",
       "name_zh_status": "source_label_candidate",
-      "region": "unknown",
+      "region": "europe",
       "roles": [
         "architect"
       ],
       "summary_en": "British architect",
       "summary_zh": "",
-      "verification_status": "verified"
+      "verification_status": "candidate"
     },
     {
       "aliases_en": [],
@@ -26752,7 +27054,9 @@
         "claim-wd-q51438974-name-en"
       ],
       "confidence": 0.6,
-      "country_codes": [],
+      "country_codes": [
+        "HR"
+      ],
       "death": {
         "earliest": 1969,
         "latest": 1969,
@@ -26769,7 +27073,7 @@
       "name_native": null,
       "name_zh": null,
       "name_zh_status": "missing",
-      "region": "unknown",
+      "region": "europe",
       "roles": [
         "architect"
       ],
@@ -27470,7 +27774,9 @@
         "claim-wd-q5321959-name-en"
       ],
       "confidence": 0.6,
-      "country_codes": [],
+      "country_codes": [
+        "GB"
+      ],
       "death": {
         "earliest": 1941,
         "latest": 1941,
@@ -27487,7 +27793,7 @@
       "name_native": null,
       "name_zh": null,
       "name_zh_status": "missing",
-      "region": "unknown",
+      "region": "europe",
       "roles": [
         "architect"
       ],
@@ -27512,7 +27818,9 @@
         "claim-wd-q535607-name-en"
       ],
       "confidence": 0.6,
-      "country_codes": [],
+      "country_codes": [
+        "IT"
+      ],
       "death": {
         "earliest": 1362,
         "latest": 1362,
@@ -27529,7 +27837,7 @@
       "name_native": null,
       "name_zh": null,
       "name_zh_status": "missing",
-      "region": "unknown",
+      "region": "europe",
       "roles": [
         "historian"
       ],
@@ -27558,7 +27866,9 @@
         "claim-wd-q540431-name-zh"
       ],
       "confidence": 0.6,
-      "country_codes": [],
+      "country_codes": [
+        "NL"
+      ],
       "death": {
         "earliest": 1921,
         "latest": 1921,
@@ -27575,7 +27885,7 @@
       "name_native": null,
       "name_zh": "皮埃尔·克伊珀斯",
       "name_zh_status": "source_label_candidate",
-      "region": "unknown",
+      "region": "europe",
       "roles": [
         "architect",
         "craftsperson"
@@ -27605,7 +27915,9 @@
         "claim-wd-q541584-name-en"
       ],
       "confidence": 0.6,
-      "country_codes": [],
+      "country_codes": [
+        "DE"
+      ],
       "death": {
         "earliest": 1863,
         "latest": 1863,
@@ -27622,7 +27934,7 @@
       "name_native": null,
       "name_zh": null,
       "name_zh_status": "missing",
-      "region": "unknown",
+      "region": "europe",
       "roles": [
         "architect"
       ],
@@ -27740,8 +28052,10 @@
         "claim-wd-q547004-summary-en",
         "claim-wd-q547004-summary-zh"
       ],
-      "confidence": 0.6,
-      "country_codes": [],
+      "confidence": 0.5,
+      "country_codes": [
+        "NL"
+      ],
       "death": {
         "earliest": null,
         "latest": null,
@@ -27758,13 +28072,13 @@
       "name_native": null,
       "name_zh": "卡羅琳·博斯",
       "name_zh_status": "source_label_candidate",
-      "region": "unknown",
+      "region": "europe",
       "roles": [
         "architect"
       ],
       "summary_en": "Dutch architect (born 1959)",
       "summary_zh": "荷蘭建築師",
-      "verification_status": "verified"
+      "verification_status": "candidate"
     },
     {
       "aliases_en": [],
@@ -27779,7 +28093,9 @@
         "claim-wd-q5483055-name-en"
       ],
       "confidence": 0.6,
-      "country_codes": [],
+      "country_codes": [
+        "NL"
+      ],
       "death": {
         "earliest": null,
         "latest": null,
@@ -27796,7 +28112,7 @@
       "name_native": null,
       "name_zh": null,
       "name_zh_status": "missing",
-      "region": "unknown",
+      "region": "europe",
       "roles": [
         "architect"
       ],
@@ -27925,8 +28241,10 @@
         "claim-wd-q550244-roles",
         "claim-wd-q550244-summary-en"
       ],
-      "confidence": 0.6,
-      "country_codes": [],
+      "confidence": 0.5,
+      "country_codes": [
+        "FR"
+      ],
       "death": {
         "earliest": 1780,
         "latest": 1780,
@@ -27943,13 +28261,13 @@
       "name_native": null,
       "name_zh": "雅克-日梅恩·索弗洛",
       "name_zh_status": "source_label_candidate",
-      "region": "unknown",
+      "region": "europe",
       "roles": [
         "architect"
       ],
       "summary_en": "French architect (1713–1780)",
       "summary_zh": "",
-      "verification_status": "verified"
+      "verification_status": "candidate"
     },
     {
       "aliases_en": [
@@ -27966,7 +28284,9 @@
         "claim-wd-q55233237-name-en"
       ],
       "confidence": 0.6,
-      "country_codes": [],
+      "country_codes": [
+        "NL"
+      ],
       "death": {
         "earliest": null,
         "latest": null,
@@ -27983,7 +28303,7 @@
       "name_native": null,
       "name_zh": null,
       "name_zh_status": "missing",
-      "region": "unknown",
+      "region": "europe",
       "roles": [
         "architect"
       ],
@@ -28018,8 +28338,10 @@
         "claim-wd-q552584-roles",
         "claim-wd-q552584-summary-en"
       ],
-      "confidence": 0.6,
-      "country_codes": [],
+      "confidence": 0.5,
+      "country_codes": [
+        "GB"
+      ],
       "death": {
         "earliest": 1860,
         "latest": 1860,
@@ -28036,13 +28358,13 @@
       "name_native": null,
       "name_zh": "查尔斯·巴里",
       "name_zh_status": "source_label_candidate",
-      "region": "unknown",
+      "region": "europe",
       "roles": [
         "architect"
       ],
       "summary_en": "British architect (1795–1860)",
       "summary_zh": "",
-      "verification_status": "verified"
+      "verification_status": "candidate"
     },
     {
       "aliases_en": [
@@ -28117,7 +28439,9 @@
         "claim-wd-q55385678-name-en"
       ],
       "confidence": 0.6,
-      "country_codes": [],
+      "country_codes": [
+        "CZ"
+      ],
       "death": {
         "earliest": 1901,
         "latest": 1901,
@@ -28134,7 +28458,7 @@
       "name_native": null,
       "name_zh": null,
       "name_zh_status": "missing",
-      "region": "unknown",
+      "region": "europe",
       "roles": [
         "architect",
         "engineer",
@@ -28206,7 +28530,9 @@
         "claim-wd-q55528915-name-en"
       ],
       "confidence": 0.6,
-      "country_codes": [],
+      "country_codes": [
+        "DE"
+      ],
       "death": {
         "earliest": 1942,
         "latest": 1942,
@@ -28223,7 +28549,7 @@
       "name_native": null,
       "name_zh": null,
       "name_zh_status": "missing",
-      "region": "unknown",
+      "region": "europe",
       "roles": [
         "historian"
       ],
@@ -28244,7 +28570,9 @@
         "claim-wd-q55537281-name-en"
       ],
       "confidence": 0.6,
-      "country_codes": [],
+      "country_codes": [
+        "IT"
+      ],
       "death": {
         "earliest": null,
         "latest": null,
@@ -28261,7 +28589,7 @@
       "name_native": null,
       "name_zh": null,
       "name_zh_status": "missing",
-      "region": "unknown",
+      "region": "europe",
       "roles": [
         "craftsperson"
       ],
@@ -28365,7 +28693,9 @@
         "claim-wd-q55687029-name-en"
       ],
       "confidence": 0.6,
-      "country_codes": [],
+      "country_codes": [
+        "FR"
+      ],
       "death": {
         "earliest": 1771,
         "latest": 1771,
@@ -28382,7 +28712,7 @@
       "name_native": null,
       "name_zh": null,
       "name_zh_status": "missing",
-      "region": "unknown",
+      "region": "europe",
       "roles": [
         "architect"
       ],
@@ -28403,7 +28733,9 @@
         "claim-wd-q55761504-name-en"
       ],
       "confidence": 0.6,
-      "country_codes": [],
+      "country_codes": [
+        "IT"
+      ],
       "death": {
         "earliest": 1692,
         "latest": 1692,
@@ -28420,7 +28752,7 @@
       "name_native": null,
       "name_zh": null,
       "name_zh_status": "missing",
-      "region": "unknown",
+      "region": "europe",
       "roles": [
         "architect"
       ],
@@ -28464,7 +28796,9 @@
         "claim-wd-q5585-name-zh"
       ],
       "confidence": 0.6,
-      "country_codes": [],
+      "country_codes": [
+        "IT"
+      ],
       "death": {
         "earliest": 1515,
         "latest": 1515,
@@ -28481,7 +28815,7 @@
       "name_native": null,
       "name_zh": "喬瓦尼·喬康多",
       "name_zh_status": "source_label_candidate",
-      "region": "unknown",
+      "region": "europe",
       "roles": [
         "architect",
         "engineer"
@@ -28581,7 +28915,9 @@
         "claim-wd-q5592-name-zh"
       ],
       "confidence": 0.6,
-      "country_codes": [],
+      "country_codes": [
+        "IT"
+      ],
       "death": {
         "earliest": 1564,
         "latest": 1564,
@@ -28598,7 +28934,7 @@
       "name_native": null,
       "name_zh": "米开朗琪罗",
       "name_zh_status": "source_label_candidate",
-      "region": "unknown",
+      "region": "europe",
       "roles": [
         "architect",
         "craftsperson"
@@ -28631,7 +28967,9 @@
         "claim-wd-q5597-name-zh"
       ],
       "confidence": 0.6,
-      "country_codes": [],
+      "country_codes": [
+        "IT"
+      ],
       "death": {
         "earliest": 1520,
         "latest": 1520,
@@ -28648,7 +28986,7 @@
       "name_native": null,
       "name_zh": "拉斐尔·圣齐奥",
       "name_zh_status": "source_label_candidate",
-      "region": "unknown",
+      "region": "europe",
       "roles": [
         "architect",
         "craftsperson",
@@ -28695,8 +29033,10 @@
         "claim-wd-q5600-summary-en",
         "claim-wd-q5600-summary-zh"
       ],
-      "confidence": 0.6,
-      "country_codes": [],
+      "confidence": 0.5,
+      "country_codes": [
+        "TR"
+      ],
       "death": {
         "earliest": 1588,
         "latest": 1588,
@@ -28713,13 +29053,13 @@
       "name_native": null,
       "name_zh": "米馬爾·希南",
       "name_zh_status": "source_label_candidate",
-      "region": "unknown",
+      "region": "central_west_asia",
       "roles": [
         "architect"
       ],
       "summary_en": "16th-century Ottoman chief architect and civil engineer",
       "summary_zh": "奥斯曼帝国建筑师",
-      "verification_status": "verified"
+      "verification_status": "candidate"
     },
     {
       "aliases_en": [
@@ -28795,7 +29135,9 @@
         "claim-wd-q560756-name-zh"
       ],
       "confidence": 0.6,
-      "country_codes": [],
+      "country_codes": [
+        "NL"
+      ],
       "death": {
         "earliest": 1974,
         "latest": 1974,
@@ -28812,7 +29154,7 @@
       "name_native": null,
       "name_zh": "威廉·马里努斯·杜多克",
       "name_zh_status": "source_label_candidate",
-      "region": "unknown",
+      "region": "europe",
       "roles": [
         "architect",
         "engineer",
@@ -28849,8 +29191,10 @@
         "claim-wd-q565390-summary-en",
         "claim-wd-q565390-summary-zh"
       ],
-      "confidence": 0.6,
-      "country_codes": [],
+      "confidence": 0.5,
+      "country_codes": [
+        "NL"
+      ],
       "death": {
         "earliest": null,
         "latest": null,
@@ -28867,13 +29211,13 @@
       "name_native": null,
       "name_zh": "班·范·伯克",
       "name_zh_status": "source_label_candidate",
-      "region": "unknown",
+      "region": "europe",
       "roles": [
         "architect"
       ],
       "summary_en": "Dutch architect (born 1957)",
       "summary_zh": "荷蘭建築師",
-      "verification_status": "verified"
+      "verification_status": "candidate"
     },
     {
       "aliases_en": [
@@ -29041,7 +29385,9 @@
         "claim-wd-q573740-name-en"
       ],
       "confidence": 0.6,
-      "country_codes": [],
+      "country_codes": [
+        "DE"
+      ],
       "death": {
         "earliest": 1888,
         "latest": 1888,
@@ -29058,7 +29404,7 @@
       "name_native": null,
       "name_zh": null,
       "name_zh_status": "missing",
-      "region": "unknown",
+      "region": "europe",
       "roles": [
         "architect"
       ],
@@ -29218,7 +29564,9 @@
         "claim-wd-q5802395-name-en"
       ],
       "confidence": 0.6,
-      "country_codes": [],
+      "country_codes": [
+        "IR"
+      ],
       "death": {
         "earliest": 1675,
         "latest": 1675,
@@ -29235,7 +29583,7 @@
       "name_native": null,
       "name_zh": null,
       "name_zh_status": "missing",
-      "region": "unknown",
+      "region": "central_west_asia",
       "roles": [
         "historian"
       ],
@@ -29281,7 +29629,9 @@
         "claim-wd-q5811-name-zh"
       ],
       "confidence": 0.6,
-      "country_codes": [],
+      "country_codes": [
+        "IT"
+      ],
       "death": {
         "earliest": 1428,
         "latest": 1428,
@@ -29298,7 +29648,7 @@
       "name_native": null,
       "name_zh": "马萨乔",
       "name_zh_status": "source_label_candidate",
-      "region": "unknown",
+      "region": "europe",
       "roles": [
         "historian"
       ],
@@ -29443,7 +29793,9 @@
         "claim-wd-q5827-name-zh"
       ],
       "confidence": 0.6,
-      "country_codes": [],
+      "country_codes": [
+        "IT"
+      ],
       "death": {
         "earliest": 1523,
         "latest": 1523,
@@ -29460,7 +29812,7 @@
       "name_native": null,
       "name_zh": "彼得羅·佩魯吉諾",
       "name_zh_status": "source_label_candidate",
-      "region": "unknown",
+      "region": "europe",
       "roles": [
         "historian"
       ],
@@ -29902,7 +30254,9 @@
         "claim-wd-q600701-name-en"
       ],
       "confidence": 0.6,
-      "country_codes": [],
+      "country_codes": [
+        "FR"
+      ],
       "death": {
         "earliest": 1686,
         "latest": 1686,
@@ -29919,7 +30273,7 @@
       "name_native": null,
       "name_zh": null,
       "name_zh_status": "missing",
-      "region": "unknown",
+      "region": "europe",
       "roles": [
         "architect",
         "engineer"
@@ -29943,7 +30297,9 @@
         "claim-wd-q6007289-name-en"
       ],
       "confidence": 0.6,
-      "country_codes": [],
+      "country_codes": [
+        "SM"
+      ],
       "death": {
         "earliest": 1858,
         "latest": 1858,
@@ -29960,7 +30316,7 @@
       "name_native": null,
       "name_zh": null,
       "name_zh_status": "missing",
-      "region": "unknown",
+      "region": "europe",
       "roles": [
         "architect"
       ],
@@ -30026,7 +30382,9 @@
         "claim-wd-q602794-name-en"
       ],
       "confidence": 0.6,
-      "country_codes": [],
+      "country_codes": [
+        "IT"
+      ],
       "death": {
         "earliest": 1946,
         "latest": 1946,
@@ -30043,7 +30401,7 @@
       "name_native": null,
       "name_zh": null,
       "name_zh_status": "missing",
-      "region": "unknown",
+      "region": "europe",
       "roles": [
         "architect",
         "engineer"
@@ -30069,7 +30427,9 @@
         "claim-wd-q604631-name-en"
       ],
       "confidence": 0.6,
-      "country_codes": [],
+      "country_codes": [
+        "IT"
+      ],
       "death": {
         "earliest": 1499,
         "latest": 1499,
@@ -30086,7 +30446,7 @@
       "name_native": null,
       "name_zh": null,
       "name_zh_status": "missing",
-      "region": "unknown",
+      "region": "europe",
       "roles": [
         "architect",
         "craftsperson"
@@ -30110,7 +30470,9 @@
         "claim-wd-q6062280-name-en"
       ],
       "confidence": 0.6,
-      "country_codes": [],
+      "country_codes": [
+        "TR"
+      ],
       "death": {
         "earliest": 1788,
         "latest": 1788,
@@ -30127,7 +30489,7 @@
       "name_native": null,
       "name_zh": null,
       "name_zh_status": "missing",
-      "region": "unknown",
+      "region": "central_west_asia",
       "roles": [
         "architect"
       ],
@@ -30365,7 +30727,9 @@
         "claim-wd-q61332-name-zh"
       ],
       "confidence": 0.6,
-      "country_codes": [],
+      "country_codes": [
+        "DE"
+      ],
       "death": {
         "earliest": 1399,
         "latest": 1399,
@@ -30382,7 +30746,7 @@
       "name_native": null,
       "name_zh": "彼得·帕尔莱日",
       "name_zh_status": "source_label_candidate",
-      "region": "unknown",
+      "region": "europe",
       "roles": [
         "architect",
         "craftsperson"
@@ -30410,8 +30774,10 @@
         "claim-wd-q61342-roles",
         "claim-wd-q61342-summary-en"
       ],
-      "confidence": 0.6,
-      "country_codes": [],
+      "confidence": 0.5,
+      "country_codes": [
+        "DE"
+      ],
       "death": {
         "earliest": 1879,
         "latest": 1879,
@@ -30428,13 +30794,13 @@
       "name_native": null,
       "name_zh": "戈特弗里德·森佩尔",
       "name_zh_status": "source_label_candidate",
-      "region": "unknown",
+      "region": "europe",
       "roles": [
         "architect"
       ],
       "summary_en": "German architect (1803–1879)",
       "summary_zh": "",
-      "verification_status": "verified"
+      "verification_status": "candidate"
     },
     {
       "aliases_en": [
@@ -30491,7 +30857,9 @@
         "claim-wd-q6149201-name-en"
       ],
       "confidence": 0.6,
-      "country_codes": [],
+      "country_codes": [
+        "CZ"
+      ],
       "death": {
         "earliest": 1969,
         "latest": 1969,
@@ -30508,7 +30876,7 @@
       "name_native": null,
       "name_zh": null,
       "name_zh_status": "missing",
-      "region": "unknown",
+      "region": "europe",
       "roles": [
         "architect"
       ],
@@ -31026,8 +31394,10 @@
         "claim-wd-q62637-roles",
         "claim-wd-q62637-summary-en"
       ],
-      "confidence": 0.6,
-      "country_codes": [],
+      "confidence": 0.5,
+      "country_codes": [
+        "DE"
+      ],
       "death": {
         "earliest": 1736,
         "latest": 1736,
@@ -31044,13 +31414,13 @@
       "name_native": null,
       "name_zh": "马特乌斯•丹尼尔•珀佩尔曼",
       "name_zh_status": "source_label_candidate",
-      "region": "unknown",
+      "region": "europe",
       "roles": [
         "architect"
       ],
       "summary_en": "German architect",
       "summary_zh": "",
-      "verification_status": "verified"
+      "verification_status": "candidate"
     },
     {
       "aliases_en": [],
@@ -31115,8 +31485,10 @@
         "claim-wd-q6286523-roles",
         "claim-wd-q6286523-summary-en"
       ],
-      "confidence": 0.6,
-      "country_codes": [],
+      "confidence": 0.5,
+      "country_codes": [
+        "GB"
+      ],
       "death": {
         "earliest": 1890,
         "latest": 1890,
@@ -31133,13 +31505,13 @@
       "name_native": null,
       "name_zh": "约瑟夫·里德",
       "name_zh_status": "source_label_candidate",
-      "region": "unknown",
+      "region": "europe",
       "roles": [
         "architect"
       ],
       "summary_en": "British architect in the Colony of Victoria",
       "summary_zh": "",
-      "verification_status": "verified"
+      "verification_status": "candidate"
     },
     {
       "aliases_en": [
@@ -31266,8 +31638,10 @@
         "claim-wd-q62973-roles",
         "claim-wd-q62973-summary-en"
       ],
-      "confidence": 0.6,
-      "country_codes": [],
+      "confidence": 0.5,
+      "country_codes": [
+        "DE"
+      ],
       "death": {
         "earliest": 1800,
         "latest": 1800,
@@ -31284,13 +31658,13 @@
       "name_native": null,
       "name_zh": "弗里德里希·基利",
       "name_zh_status": "source_label_candidate",
-      "region": "unknown",
+      "region": "europe",
       "roles": [
         "architect"
       ],
       "summary_en": "German architect (1772–1800)",
       "summary_zh": "",
-      "verification_status": "verified"
+      "verification_status": "candidate"
     },
     {
       "aliases_en": [],
@@ -31305,7 +31679,9 @@
         "claim-wd-q6309270-name-en"
       ],
       "confidence": 0.6,
-      "country_codes": [],
+      "country_codes": [
+        "CZ"
+      ],
       "death": {
         "earliest": 1922,
         "latest": 1922,
@@ -31322,7 +31698,7 @@
       "name_native": null,
       "name_zh": null,
       "name_zh_status": "missing",
-      "region": "unknown",
+      "region": "europe",
       "roles": [
         "architect"
       ],
@@ -31463,7 +31839,9 @@
         "claim-wd-q640949-name-en"
       ],
       "confidence": 0.6,
-      "country_codes": [],
+      "country_codes": [
+        "DK"
+      ],
       "death": {
         "earliest": 1990,
         "latest": 1990,
@@ -31480,7 +31858,7 @@
       "name_native": null,
       "name_zh": null,
       "name_zh_status": "missing",
-      "region": "unknown",
+      "region": "europe",
       "roles": [
         "architect",
         "designer"
@@ -31505,7 +31883,9 @@
         "claim-wd-q642072-name-en"
       ],
       "confidence": 0.6,
-      "country_codes": [],
+      "country_codes": [
+        "NL"
+      ],
       "death": {
         "earliest": 1951,
         "latest": 1951,
@@ -31522,7 +31902,7 @@
       "name_native": null,
       "name_zh": null,
       "name_zh_status": "missing",
-      "region": "unknown",
+      "region": "europe",
       "roles": [
         "architect"
       ],
@@ -31784,7 +32164,9 @@
         "claim-wd-q6512-name-zh"
       ],
       "confidence": 0.6,
-      "country_codes": [],
+      "country_codes": [
+        "DK"
+      ],
       "death": {
         "earliest": 1855,
         "latest": 1855,
@@ -31801,7 +32183,7 @@
       "name_native": null,
       "name_zh": "索伦·克尔凯郭尔",
       "name_zh_status": "source_label_candidate",
-      "region": "unknown",
+      "region": "europe",
       "roles": [
         "historian"
       ],
@@ -31822,7 +32204,9 @@
         "claim-wd-q6523843-name-en"
       ],
       "confidence": 0.6,
-      "country_codes": [],
+      "country_codes": [
+        "HR"
+      ],
       "death": {
         "earliest": 1911,
         "latest": 1911,
@@ -31839,7 +32223,7 @@
       "name_native": null,
       "name_zh": null,
       "name_zh_status": "missing",
-      "region": "unknown",
+      "region": "europe",
       "roles": [
         "architect"
       ],
@@ -32229,7 +32613,9 @@
         "claim-wd-q6786671-name-en"
       ],
       "confidence": 0.6,
-      "country_codes": [],
+      "country_codes": [
+        "PT"
+      ],
       "death": {
         "earliest": 1515,
         "latest": 1515,
@@ -32246,7 +32632,7 @@
       "name_native": null,
       "name_zh": null,
       "name_zh_status": "missing",
-      "region": "unknown",
+      "region": "europe",
       "roles": [
         "architect"
       ],
@@ -32307,7 +32693,9 @@
         "claim-wd-q680377-name-en"
       ],
       "confidence": 0.6,
-      "country_codes": [],
+      "country_codes": [
+        "NL"
+      ],
       "death": {
         "earliest": null,
         "latest": null,
@@ -32324,7 +32712,7 @@
       "name_native": null,
       "name_zh": null,
       "name_zh_status": "missing",
-      "region": "unknown",
+      "region": "europe",
       "roles": [
         "architect"
       ],
@@ -32364,8 +32752,10 @@
         "claim-wd-q681007-roles",
         "claim-wd-q681007-summary-en"
       ],
-      "confidence": 0.6,
-      "country_codes": [],
+      "confidence": 0.5,
+      "country_codes": [
+        "GB"
+      ],
       "death": {
         "earliest": 1878,
         "latest": 1878,
@@ -32382,13 +32772,13 @@
       "name_native": null,
       "name_zh": "乔治·吉尔伯特·斯科特",
       "name_zh_status": "source_label_candidate",
-      "region": "unknown",
+      "region": "europe",
       "roles": [
         "architect"
       ],
       "summary_en": "English architect (1811–1878)",
       "summary_zh": "",
-      "verification_status": "verified"
+      "verification_status": "candidate"
     },
     {
       "aliases_en": [
@@ -32406,7 +32796,9 @@
         "claim-wd-q68243-name-en"
       ],
       "confidence": 0.6,
-      "country_codes": [],
+      "country_codes": [
+        "FR"
+      ],
       "death": {
         "earliest": 1318,
         "latest": 1318,
@@ -32423,7 +32815,7 @@
       "name_native": null,
       "name_zh": null,
       "name_zh_status": "missing",
-      "region": "unknown",
+      "region": "europe",
       "roles": [
         "architect",
         "craftsperson"
@@ -32544,7 +32936,9 @@
         "claim-wd-q69207-name-en"
       ],
       "confidence": 0.6,
-      "country_codes": [],
+      "country_codes": [
+        "PL"
+      ],
       "death": {
         "earliest": 1861,
         "latest": 1861,
@@ -32561,7 +32955,7 @@
       "name_native": null,
       "name_zh": null,
       "name_zh_status": "missing",
-      "region": "unknown",
+      "region": "europe",
       "roles": [
         "architect"
       ],
@@ -32631,8 +33025,10 @@
         "claim-wd-q69715-roles",
         "claim-wd-q69715-summary-en"
       ],
-      "confidence": 0.6,
-      "country_codes": [],
+      "confidence": 0.5,
+      "country_codes": [
+        "PL"
+      ],
       "death": {
         "earliest": 1914,
         "latest": 1914,
@@ -32649,13 +33045,13 @@
       "name_native": null,
       "name_zh": "朱利葉斯·卡爾·拉施多夫",
       "name_zh_status": "source_label_candidate",
-      "region": "unknown",
+      "region": "europe",
       "roles": [
         "architect"
       ],
       "summary_en": "German architect and professor (1823–1914)",
       "summary_zh": "",
-      "verification_status": "verified"
+      "verification_status": "candidate"
     },
     {
       "aliases_en": [],
@@ -32729,8 +33125,10 @@
         "claim-wd-q700033-roles",
         "claim-wd-q700033-summary-en"
       ],
-      "confidence": 0.6,
-      "country_codes": [],
+      "confidence": 0.5,
+      "country_codes": [
+        "DE"
+      ],
       "death": {
         "earliest": 1845,
         "latest": 1845,
@@ -32747,13 +33145,13 @@
       "name_native": null,
       "name_zh": "路德维希·佩尔修斯",
       "name_zh_status": "source_label_candidate",
-      "region": "unknown",
+      "region": "europe",
       "roles": [
         "architect"
       ],
       "summary_en": "German architect (1803-1845)",
       "summary_zh": "",
-      "verification_status": "verified"
+      "verification_status": "candidate"
     },
     {
       "aliases_en": [
@@ -33142,7 +33540,9 @@
         "claim-wd-q71685-name-en"
       ],
       "confidence": 0.6,
-      "country_codes": [],
+      "country_codes": [
+        "DE"
+      ],
       "death": {
         "earliest": 1864,
         "latest": 1864,
@@ -33159,7 +33559,7 @@
       "name_native": null,
       "name_zh": null,
       "name_zh_status": "missing",
-      "region": "unknown",
+      "region": "europe",
       "roles": [
         "architect",
         "designer"
@@ -33332,8 +33732,10 @@
         "claim-wd-q723343-roles",
         "claim-wd-q723343-summary-en"
       ],
-      "confidence": 0.6,
-      "country_codes": [],
+      "confidence": 0.5,
+      "country_codes": [
+        "RU"
+      ],
       "death": {
         "earliest": 1956,
         "latest": 1956,
@@ -33350,13 +33752,13 @@
       "name_native": null,
       "name_zh": "列夫·鲁德涅夫",
       "name_zh_status": "source_label_candidate",
-      "region": "unknown",
+      "region": "europe",
       "roles": [
         "architect"
       ],
       "summary_en": "Soviet architect (1885–1956)",
       "summary_zh": "",
-      "verification_status": "verified"
+      "verification_status": "candidate"
     },
     {
       "aliases_en": [
@@ -33656,7 +34058,9 @@
         "claim-wd-q729041-name-zh"
       ],
       "confidence": 0.6,
-      "country_codes": [],
+      "country_codes": [
+        "IT"
+      ],
       "death": {
         "earliest": 1312,
         "latest": 1312,
@@ -33673,7 +34077,7 @@
       "name_native": null,
       "name_zh": "加多·加迪",
       "name_zh_status": "source_label_candidate",
-      "region": "unknown",
+      "region": "europe",
       "roles": [
         "historian"
       ],
@@ -33766,7 +34170,9 @@
         "claim-wd-q7305235-name-en"
       ],
       "confidence": 0.6,
-      "country_codes": [],
+      "country_codes": [
+        "RU"
+      ],
       "death": {
         "earliest": 1913,
         "latest": 1913,
@@ -33783,7 +34189,7 @@
       "name_native": null,
       "name_zh": null,
       "name_zh_status": "missing",
-      "region": "unknown",
+      "region": "europe",
       "roles": [
         "historian"
       ],
@@ -33806,7 +34212,9 @@
         "claim-wd-q7310395-name-en"
       ],
       "confidence": 0.6,
-      "country_codes": [],
+      "country_codes": [
+        "NL"
+      ],
       "death": {
         "earliest": null,
         "latest": null,
@@ -33823,7 +34231,7 @@
       "name_native": null,
       "name_zh": null,
       "name_zh_status": "missing",
-      "region": "unknown",
+      "region": "europe",
       "roles": [
         "architect"
       ],
@@ -33844,7 +34252,9 @@
         "claim-wd-q7324484-name-en"
       ],
       "confidence": 0.6,
-      "country_codes": [],
+      "country_codes": [
+        "GB"
+      ],
       "death": {
         "earliest": 1695,
         "latest": 1695,
@@ -33861,7 +34271,7 @@
       "name_native": null,
       "name_zh": null,
       "name_zh_status": "missing",
-      "region": "unknown",
+      "region": "europe",
       "roles": [
         "historian"
       ],
@@ -33900,7 +34310,9 @@
         "claim-wd-q734108-name-zh"
       ],
       "confidence": 0.6,
-      "country_codes": [],
+      "country_codes": [
+        "IT"
+      ],
       "death": {
         "earliest": 1546,
         "latest": 1546,
@@ -33917,7 +34329,7 @@
       "name_native": null,
       "name_zh": "高登齊奧·費拉里",
       "name_zh_status": "source_label_candidate",
-      "region": "unknown",
+      "region": "europe",
       "roles": [
         "architect",
         "craftsperson"
@@ -34049,7 +34461,9 @@
         "claim-wd-q7412384-name-en"
       ],
       "confidence": 0.6,
-      "country_codes": [],
+      "country_codes": [
+        "GB"
+      ],
       "death": {
         "earliest": 1827,
         "latest": 1827,
@@ -34066,7 +34480,7 @@
       "name_native": null,
       "name_zh": null,
       "name_zh_status": "missing",
-      "region": "unknown",
+      "region": "europe",
       "roles": [
         "architect"
       ],
@@ -34231,7 +34645,9 @@
         "claim-wd-q7527118-name-en"
       ],
       "confidence": 0.6,
-      "country_codes": [],
+      "country_codes": [
+        "GB"
+      ],
       "death": {
         "earliest": 1781,
         "latest": 1781,
@@ -34248,7 +34664,7 @@
       "name_native": null,
       "name_zh": null,
       "name_zh_status": "missing",
-      "region": "unknown",
+      "region": "europe",
       "roles": [
         "craftsperson"
       ],
@@ -34491,7 +34907,9 @@
         "claim-wd-q76359-name-zh"
       ],
       "confidence": 0.6,
-      "country_codes": [],
+      "country_codes": [
+        "DE"
+      ],
       "death": {
         "earliest": 1905,
         "latest": 1905,
@@ -34508,7 +34926,7 @@
       "name_native": null,
       "name_zh": "恩斯特·阿贝",
       "name_zh_status": "source_label_candidate",
-      "region": "unknown",
+      "region": "europe",
       "roles": [
         "landscape_architect"
       ],
@@ -34530,7 +34948,9 @@
         "claim-wd-q76726-name-zh"
       ],
       "confidence": 0.6,
-      "country_codes": [],
+      "country_codes": [
+        "DE"
+      ],
       "death": {
         "earliest": 1940,
         "latest": 1940,
@@ -34547,7 +34967,7 @@
       "name_native": null,
       "name_zh": "彼得·贝伦斯",
       "name_zh_status": "source_label_candidate",
-      "region": "unknown",
+      "region": "europe",
       "roles": [
         "architect",
         "designer"
@@ -34795,7 +35215,9 @@
         "claim-wd-q77138-name-en"
       ],
       "confidence": 0.6,
-      "country_codes": [],
+      "country_codes": [
+        "DE"
+      ],
       "death": {
         "earliest": 1895,
         "latest": 1895,
@@ -34812,7 +35234,7 @@
       "name_native": null,
       "name_zh": null,
       "name_zh_status": "missing",
-      "region": "unknown",
+      "region": "europe",
       "roles": [
         "architect"
       ],
@@ -34989,8 +35411,10 @@
         "claim-wd-q77357-roles",
         "claim-wd-q77357-summary-en"
       ],
-      "confidence": 0.6,
-      "country_codes": [],
+      "confidence": 0.5,
+      "country_codes": [
+        "DE"
+      ],
       "death": {
         "earliest": 1912,
         "latest": 1912,
@@ -35007,13 +35431,13 @@
       "name_native": null,
       "name_zh": "保罗·瓦洛特",
       "name_zh_status": "source_label_candidate",
-      "region": "unknown",
+      "region": "europe",
       "roles": [
         "architect"
       ],
       "summary_en": "German architect (1841–1912)",
       "summary_zh": "",
-      "verification_status": "verified"
+      "verification_status": "candidate"
     },
     {
       "aliases_en": [
@@ -35035,7 +35459,9 @@
         "claim-wd-q77431-name-zh"
       ],
       "confidence": 0.6,
-      "country_codes": [],
+      "country_codes": [
+        "DE"
+      ],
       "death": {
         "earliest": 1891,
         "latest": 1891,
@@ -35052,7 +35478,7 @@
       "name_native": null,
       "name_zh": "施密特",
       "name_zh_status": "source_label_candidate",
-      "region": "unknown",
+      "region": "europe",
       "roles": [
         "architect",
         "craftsperson"
@@ -35156,7 +35582,9 @@
         "claim-wd-q7793-name-zh"
       ],
       "confidence": 0.6,
-      "country_codes": [],
+      "country_codes": [
+        "IT"
+      ],
       "death": {
         "earliest": 1514,
         "latest": 1514,
@@ -35173,7 +35601,7 @@
       "name_native": null,
       "name_zh": "多纳托·伯拉孟特",
       "name_zh_status": "source_label_candidate",
-      "region": "unknown",
+      "region": "europe",
       "roles": [
         "architect",
         "engineer"
@@ -35214,7 +35642,9 @@
         "claim-wd-q7814-name-zh"
       ],
       "confidence": 0.6,
-      "country_codes": [],
+      "country_codes": [
+        "IT"
+      ],
       "death": {
         "earliest": 1337,
         "latest": 1337,
@@ -35231,7 +35661,7 @@
       "name_native": null,
       "name_zh": "喬托·迪·邦多內",
       "name_zh_status": "source_label_candidate",
-      "region": "unknown",
+      "region": "europe",
       "roles": [
         "architect",
         "craftsperson",
@@ -35263,8 +35693,10 @@
         "claim-wd-q7848367-roles",
         "claim-wd-q7848367-summary-en"
       ],
-      "confidence": 0.6,
-      "country_codes": [],
+      "confidence": 0.5,
+      "country_codes": [
+        "NL"
+      ],
       "death": {
         "earliest": 1985,
         "latest": 1985,
@@ -35281,13 +35713,13 @@
       "name_native": null,
       "name_zh": "特鲁斯·施勒德-施雷德",
       "name_zh_status": "source_label_candidate",
-      "region": "unknown",
+      "region": "europe",
       "roles": [
         "architect"
       ],
       "summary_en": "Dutch architect (1889–1985)",
       "summary_zh": "",
-      "verification_status": "verified"
+      "verification_status": "candidate"
     },
     {
       "aliases_en": [],
@@ -35998,8 +36430,10 @@
         "claim-wd-q8053-summary-en",
         "claim-wd-q8053-summary-zh"
       ],
-      "confidence": 0.6,
-      "country_codes": [],
+      "confidence": 0.5,
+      "country_codes": [
+        "FR"
+      ],
       "death": {
         "earliest": 1708,
         "latest": 1708,
@@ -36016,13 +36450,13 @@
       "name_native": null,
       "name_zh": "朱尔·阿杜安-芒萨尔",
       "name_zh_status": "source_label_candidate",
-      "region": "unknown",
+      "region": "europe",
       "roles": [
         "architect"
       ],
       "summary_en": "French Baroque architect (1646–1708)",
       "summary_zh": "法国巴洛克风格建筑师",
-      "verification_status": "verified"
+      "verification_status": "candidate"
     },
     {
       "aliases_en": [
@@ -36261,7 +36695,9 @@
         "claim-wd-q822308-name-en"
       ],
       "confidence": 0.6,
-      "country_codes": [],
+      "country_codes": [
+        "NL"
+      ],
       "death": {
         "earliest": 1979,
         "latest": 1979,
@@ -36278,7 +36714,7 @@
       "name_native": null,
       "name_zh": null,
       "name_zh_status": "missing",
-      "region": "unknown",
+      "region": "europe",
       "roles": [
         "architect",
         "designer"
@@ -36414,8 +36850,10 @@
         "claim-wd-q827997-roles",
         "claim-wd-q827997-summary-en"
       ],
-      "confidence": 0.6,
-      "country_codes": [],
+      "confidence": 0.5,
+      "country_codes": [
+        "RU"
+      ],
       "death": {
         "earliest": 1990,
         "latest": 1990,
@@ -36432,13 +36870,13 @@
       "name_native": null,
       "name_zh": "貝特洛·萊伯金",
       "name_zh_status": "source_label_candidate",
-      "region": "unknown",
+      "region": "europe",
       "roles": [
         "architect"
       ],
       "summary_en": "Russian architect (1901–1990)",
       "summary_zh": "",
-      "verification_status": "verified"
+      "verification_status": "candidate"
     },
     {
       "aliases_en": [
@@ -36657,7 +37095,9 @@
         "claim-wd-q84305-name-zh"
       ],
       "confidence": 0.6,
-      "country_codes": [],
+      "country_codes": [
+        "AT"
+      ],
       "death": {
         "earliest": 1723,
         "latest": 1723,
@@ -36674,7 +37114,7 @@
       "name_native": null,
       "name_zh": "约翰·伯恩哈德·菲舍尔·冯·埃尔拉赫",
       "name_zh_status": "source_label_candidate",
-      "region": "unknown",
+      "region": "europe",
       "roles": [
         "architect",
         "craftsperson"
@@ -36858,7 +37298,9 @@
         "claim-wd-q85000-name-zh"
       ],
       "confidence": 0.6,
-      "country_codes": [],
+      "country_codes": [
+        "IT"
+      ],
       "death": {
         "earliest": 1736,
         "latest": 1736,
@@ -36875,7 +37317,7 @@
       "name_native": null,
       "name_zh": "菲利波·尤瓦拉",
       "name_zh_status": "source_label_candidate",
-      "region": "unknown",
+      "region": "europe",
       "roles": [
         "architect",
         "engineer",
@@ -36949,8 +37391,10 @@
         "claim-wd-q85557-roles",
         "claim-wd-q85557-summary-en"
       ],
-      "confidence": 0.6,
-      "country_codes": [],
+      "confidence": 0.5,
+      "country_codes": [
+        "CZ"
+      ],
       "death": {
         "earliest": 1965,
         "latest": 1965,
@@ -36967,13 +37411,13 @@
       "name_native": null,
       "name_zh": "保罗·伊格尔曼",
       "name_zh_status": "source_label_candidate",
-      "region": "unknown",
+      "region": "europe",
       "roles": [
         "architect"
       ],
       "summary_en": "Czech architect (1891–1965)",
       "summary_zh": "",
-      "verification_status": "verified"
+      "verification_status": "candidate"
     },
     {
       "aliases_en": [],
@@ -37126,7 +37570,9 @@
         "claim-wd-q861385-name-en"
       ],
       "confidence": 0.6,
-      "country_codes": [],
+      "country_codes": [
+        "IT"
+      ],
       "death": {
         "earliest": 1596,
         "latest": 1596,
@@ -37143,7 +37589,7 @@
       "name_native": null,
       "name_zh": null,
       "name_zh_status": "missing",
-      "region": "unknown",
+      "region": "europe",
       "roles": [
         "architect"
       ],
@@ -37290,7 +37736,9 @@
         "claim-wd-q87651848-name-en"
       ],
       "confidence": 0.6,
-      "country_codes": [],
+      "country_codes": [
+        "NL"
+      ],
       "death": {
         "earliest": 1898,
         "latest": 1898,
@@ -37307,7 +37755,7 @@
       "name_native": null,
       "name_zh": null,
       "name_zh_status": "missing",
-      "region": "unknown",
+      "region": "europe",
       "roles": [
         "historian"
       ],
@@ -37568,7 +38016,9 @@
         "claim-wd-q91338534-name-en"
       ],
       "confidence": 0.6,
-      "country_codes": [],
+      "country_codes": [
+        "ES"
+      ],
       "death": {
         "earliest": null,
         "latest": null,
@@ -37585,7 +38035,7 @@
       "name_native": null,
       "name_zh": null,
       "name_zh_status": "missing",
-      "region": "unknown",
+      "region": "europe",
       "roles": [
         "architect"
       ],
@@ -37689,7 +38139,9 @@
         "claim-wd-q918778-name-zh"
       ],
       "confidence": 0.6,
-      "country_codes": [],
+      "country_codes": [
+        "IT"
+      ],
       "death": {
         "earliest": 1547,
         "latest": 1547,
@@ -37706,7 +38158,7 @@
       "name_native": null,
       "name_zh": "佩里诺·德尔瓦加",
       "name_zh_status": "source_label_candidate",
-      "region": "unknown",
+      "region": "europe",
       "roles": [
         "designer"
       ],
@@ -37907,8 +38359,10 @@
         "claim-wd-q930-roles",
         "claim-wd-q930-summary-en"
       ],
-      "confidence": 0.6,
-      "country_codes": [],
+      "confidence": 0.5,
+      "country_codes": [
+        "RU"
+      ],
       "death": {
         "earliest": 1974,
         "latest": 1974,
@@ -37925,13 +38379,13 @@
       "name_native": null,
       "name_zh": "康斯坦丁·梅利尼科夫",
       "name_zh_status": "source_label_candidate",
-      "region": "unknown",
+      "region": "europe",
       "roles": [
         "architect"
       ],
       "summary_en": "Russian architect and painter (1890-1974)",
       "summary_zh": "",
-      "verification_status": "verified"
+      "verification_status": "candidate"
     },
     {
       "aliases_en": [
@@ -37956,8 +38410,10 @@
         "claim-wd-q937566-roles",
         "claim-wd-q937566-summary-en"
       ],
-      "confidence": 0.6,
-      "country_codes": [],
+      "confidence": 0.5,
+      "country_codes": [
+        "FI"
+      ],
       "death": {
         "earliest": 1964,
         "latest": 1964,
@@ -37974,13 +38430,13 @@
       "name_native": null,
       "name_zh": "維爾尤·勒維爾",
       "name_zh_status": "source_label_candidate",
-      "region": "unknown",
+      "region": "europe",
       "roles": [
         "architect"
       ],
       "summary_en": "Finnish functionalist architect (1910–1964)",
       "summary_zh": "",
-      "verification_status": "verified"
+      "verification_status": "candidate"
     },
     {
       "aliases_en": [],
@@ -38099,7 +38555,9 @@
         "claim-wd-q940229-name-en"
       ],
       "confidence": 0.6,
-      "country_codes": [],
+      "country_codes": [
+        "IT"
+      ],
       "death": {
         "earliest": 1877,
         "latest": 1877,
@@ -38116,7 +38574,7 @@
       "name_native": null,
       "name_zh": null,
       "name_zh_status": "missing",
-      "region": "unknown",
+      "region": "europe",
       "roles": [
         "architect",
         "engineer"
@@ -38626,7 +39084,9 @@
         "claim-wd-q950747-name-en"
       ],
       "confidence": 0.6,
-      "country_codes": [],
+      "country_codes": [
+        "IT"
+      ],
       "death": {
         "earliest": null,
         "latest": null,
@@ -38643,7 +39103,7 @@
       "name_native": null,
       "name_zh": null,
       "name_zh_status": "missing",
-      "region": "unknown",
+      "region": "europe",
       "roles": [
         "historian"
       ],
@@ -39066,7 +39526,9 @@
         "claim-wd-q95900021-name-en"
       ],
       "confidence": 0.6,
-      "country_codes": [],
+      "country_codes": [
+        "AT"
+      ],
       "death": {
         "earliest": 1944,
         "latest": 1944,
@@ -39083,7 +39545,7 @@
       "name_native": null,
       "name_zh": null,
       "name_zh_status": "missing",
-      "region": "unknown",
+      "region": "europe",
       "roles": [
         "architect"
       ],
@@ -39187,7 +39649,9 @@
         "claim-wd-q96793-name-en"
       ],
       "confidence": 0.6,
-      "country_codes": [],
+      "country_codes": [
+        "DE"
+      ],
       "death": {
         "earliest": 1903,
         "latest": 1903,
@@ -39204,7 +39668,7 @@
       "name_native": null,
       "name_zh": null,
       "name_zh_status": "missing",
-      "region": "unknown",
+      "region": "europe",
       "roles": [
         "architect"
       ],
@@ -39459,7 +39923,9 @@
         "claim-wd-q982003-name-en"
       ],
       "confidence": 0.6,
-      "country_codes": [],
+      "country_codes": [
+        "IT"
+      ],
       "death": {
         "earliest": 1731,
         "latest": 1731,
@@ -39476,7 +39942,7 @@
       "name_native": null,
       "name_zh": null,
       "name_zh_status": "missing",
-      "region": "unknown",
+      "region": "europe",
       "roles": [
         "architect"
       ],
@@ -39521,8 +39987,10 @@
         "claim-wd-q983719-roles",
         "claim-wd-q983719-summary-en"
       ],
-      "confidence": 0.6,
-      "country_codes": [],
+      "confidence": 0.5,
+      "country_codes": [
+        "GB"
+      ],
       "death": {
         "earliest": 1867,
         "latest": 1867,
@@ -39539,13 +40007,13 @@
       "name_native": null,
       "name_zh": "罗伯特·斯默克",
       "name_zh_status": "source_label_candidate",
-      "region": "unknown",
+      "region": "europe",
       "roles": [
         "architect"
       ],
       "summary_en": "British architect (1780–1867)",
       "summary_zh": "",
-      "verification_status": "verified"
+      "verification_status": "candidate"
     },
     {
       "aliases_en": [],
@@ -39560,7 +40028,9 @@
         "claim-wd-q983736-name-en"
       ],
       "confidence": 0.6,
-      "country_codes": [],
+      "country_codes": [
+        "GB"
+      ],
       "death": {
         "earliest": 1775,
         "latest": 1775,
@@ -39577,7 +40047,7 @@
       "name_native": null,
       "name_zh": null,
       "name_zh_status": "missing",
-      "region": "unknown",
+      "region": "europe",
       "roles": [
         "historian"
       ],
@@ -39600,7 +40070,9 @@
         "claim-wd-q98573050-name-en"
       ],
       "confidence": 0.6,
-      "country_codes": [],
+      "country_codes": [
+        "RU"
+      ],
       "death": {
         "earliest": 1964,
         "latest": 1964,
@@ -39617,7 +40089,7 @@
       "name_native": null,
       "name_zh": null,
       "name_zh_status": "missing",
-      "region": "unknown",
+      "region": "europe",
       "roles": [
         "architect"
       ],

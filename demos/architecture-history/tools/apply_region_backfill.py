@@ -53,9 +53,20 @@ def apply(
     assignments: list[dict],
     dry_run: bool = False,
 ) -> dict[str, int]:
-    """Apply region backfill. Returns a summary counter."""
-    stats = {"applied": 0, "skipped_same": 0, "skipped_unknown": 0,
-             "not_found": 0, "invalid": 0}
+    """Apply region backfill. Returns a summary counter.
+
+    When a region backfill populates a previously-empty region/country_codes on
+    a *verified* entity, the entity is demoted to ``candidate``: the new
+    geographic values are Wikidata-evidenced but have not passed the
+    field-claim agentic review that validate.py requires for verified status
+    (verified entities need exact verified claims for every non-empty field).
+    The region data is still correct and valuable; demotion is the honest
+    signal that the field-level evidence trail needs rebuilding. A subsequent
+    agentic_review_person.py run can re-verify once field_region /
+    field_country_codes claims exist.
+    """
+    stats = {"applied": 0, "demoted_verified": 0, "skipped_same": 0,
+             "skipped_unknown": 0, "not_found": 0, "invalid": 0}
     for entry in assignments:
         entity_id = entry.get("id")
         region = entry.get("region")
@@ -89,12 +100,24 @@ def apply(
             stats["skipped_same"] += 1
             continue
 
+        # Demote verified entities whose region/country_codes field is being
+        # populated for the first time (was unknown/empty → now has a value).
+        # Entities already carrying a non-unknown region are not demoted by a
+        # region *correction* (that is a separate review action).
+        was_empty = (current_region in (None, "unknown") and not current_codes)
+        if was_empty and payload.get("verification_status") == "verified":
+            payload["verification_status"] = "candidate"
+            payload["confidence"] = min(payload.get("confidence", 0.5), 0.5)
+            payload["last_verified"] = None
+            stats["demoted_verified"] += 1
+
         payload["region"] = region
         payload["country_codes"] = codes
         new_payload = json.dumps(payload, ensure_ascii=False, sort_keys=True)
 
         if dry_run:
-            print(f"  WOULD UPDATE {entity_id}: {current_region}/{current_codes} -> {region}/{codes}")
+            demote = " (demote verified→candidate)" if was_empty and stats["demoted_verified"] else ""
+            print(f"  WOULD UPDATE {entity_id}: {current_region}/{current_codes} -> {region}/{codes}{demote}")
         else:
             conn.execute(
                 "UPDATE entities SET region = ?, payload = ? WHERE id = ?",
@@ -128,7 +151,8 @@ def main(argv: list[str] | None = None) -> int:
         conn.close()
 
     mode = "DRY RUN" if args.dry_run else "APPLIED"
-    print(f"\n{mode}: {stats['applied']} updated, {stats['skipped_same']} already correct, "
+    print(f"\n{mode}: {stats['applied']} updated ({stats['demoted_verified']} verified→candidate), "
+          f"{stats['skipped_same']} already correct, "
           f"{stats['skipped_unknown']} no-evidence (left unknown), "
           f"{stats['not_found']} not in store, {stats['invalid']} invalid.")
     if not args.dry_run and stats["applied"] > 0:
