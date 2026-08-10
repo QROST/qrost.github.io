@@ -1,22 +1,23 @@
 #!/usr/bin/env python3
-"""Local SQLite authority store for Architecture Lineages.
+"""Local SQLite authority store for Architecture Lineages — the source of truth.
 
-The public site is served from the 8 projected JSON tables under
-``assets/data/`` (people / practices / works / places / relations /
-claims / source-registry + manifest). Those tables are themselves
-projected from a Wikidata hydration catalog shard. This tool mirrors
-that same catalog into a queryable local SQLite store so the relation
-graph can be analysed across tables (e.g. "relations whose both
-endpoints are verified", "works with no credits").
+The SQLite store at ``data/architecture-history.db`` is the editable authority
+for the entity graph (people / practices / places / works / claims /
+relations). It is gitignored (rebuilt locally from a catalog shard or, on a
+clean clone, from the published JSON). Edits happen here; ``export`` projects
+the store back to a catalog shard, and ``build.py`` (unchanged) turns the
+shard into the 8 public JSON tables served by GitHub Pages.
 
-The store lives at ``data/architecture-history.db`` and is gitignored
-(it is a rebuildable projection, not a source of truth). Rebuild any
-time with ``python3 tools/db.py import``.
+Data flow (single direction)::
+
+    SQLite store  ──db.py export──▶  catalog shard  ──build.py──▶  8 public JSON
 
 Usage::
 
-    python3 tools/db.py import          # load catalog shard + projected JSON
-    python3 tools/db.py verify          # count-check every table vs JSON
+    python3 tools/db.py import          # load catalog shard / projected JSON into the store
+    python3 tools/db.py export          # store → shard → public JSON (runs build.py)
+    python3 tools/db.py export --no-build  # store → shard only (fast iteration)
+    python3 tools/db.py verify          # count-check every table vs the published JSON
     python3 tools/db.py query NAME      # run a canned analysis query
     python3 tools/db.py queries         # list canned queries
 """
@@ -41,7 +42,19 @@ DATA = ROOT / "assets" / "data"
 CATALOG_DIR = DATA / "catalog"
 DB_PATH = ROOT / "data" / "architecture-history.db"
 
-SCHEMA_VERSION = "1"
+SCHEMA_VERSION = "2"
+
+# Top-level shard metadata keys preserved through import→export roundtrip.
+# These are required by validate.py:3110-3136 (shard provenance checks) and
+# must survive a SQLite roundtrip so the exported shard still satisfies the
+# "generated_from -> known snapshot" / "source_id -> known source" contracts.
+SHARD_META_KEYS = (
+    "generated_from",
+    "generator",
+    "source_id",
+    "transformer_id",
+    "transformer_version",
+)
 
 
 def load_json(path: Path) -> Any:
@@ -49,18 +62,29 @@ def load_json(path: Path) -> Any:
         return json.load(handle)
 
 
-def catalog_payload() -> dict[str, list[dict]]:
-    """Return the six entity lists from the merged catalog shard."""
+def catalog_payload() -> tuple[dict[str, list[dict]], dict[str, str]]:
+    """Return ``(six_entity_lists, shard_metadata)`` from the catalog shard.
+
+    The six lists (people/practices/places/works/claims/relations) are the
+    editable graph. ``shard_metadata`` carries the top-level provenance keys
+    (generated_from / generator / source_id / transformer_id /
+    transformer_version) that validate.py requires on every full shard; they
+    are preserved through the SQLite roundtrip so ``db.py export`` can emit a
+    shard that still passes provenance checks.
+    """
     shard_path = CATALOG_DIR / "wikidata-hydration.json"
     if shard_path.exists():
         shard = load_json(shard_path)
-        return {
+        arrays = {
             key: shard.get(key, [])
             for key in ("people", "practices", "places", "works", "claims", "relations")
         }
+        meta = {key: shard[key] for key in SHARD_META_KEYS if key in shard}
+        return arrays, meta
     # Fallback: project from the published JSON tables (smaller, but authoritative
     # for the public surface). Used when the catalog shard is absent (e.g. on a
-    # clean clone that has not rerun fetch+import).
+    # clean clone that has not rerun fetch+import). Provenance metadata is
+    # unavailable in this path; export callers must supply it explicitly.
     payload: dict[str, list[dict]] = {}
     for key, filename in (
         ("people", "people.json"),
@@ -72,7 +96,7 @@ def catalog_payload() -> dict[str, list[dict]]:
     ):
         path = DATA / filename
         payload[key] = load_json(path)[key] if path.exists() else []
-    return payload
+    return payload, {}
 
 
 SCHEMA = """
@@ -104,7 +128,8 @@ CREATE TABLE IF NOT EXISTS relations (
     claim_id TEXT,
     last_verified TEXT,
     context TEXT NOT NULL,
-    rejection_reasons TEXT NOT NULL
+    rejection_reasons TEXT NOT NULL,
+    payload TEXT NOT NULL
 );
 CREATE TABLE IF NOT EXISTS claims (
     id TEXT PRIMARY KEY,
@@ -135,6 +160,7 @@ CREATE TABLE IF NOT EXISTS claim_evidence (
 CREATE TABLE IF NOT EXISTS work_credits (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     work_id TEXT NOT NULL,
+    ord INTEGER NOT NULL,
     claim_id TEXT,
     entity_id TEXT,
     entity_type TEXT,
@@ -171,7 +197,32 @@ def connect(db_path: Path = DB_PATH) -> sqlite3.Connection:
     return conn
 
 
+def _existing_columns(conn: sqlite3.Connection, table: str) -> set[str]:
+    return {row["name"] for row in conn.execute(f"PRAGMA table_info({table})")}
+
+
+def _migrate_schema(conn: sqlite3.Connection) -> None:
+    """Add columns introduced after schema v1 to a pre-existing store.
+
+    SQLite's ``ALTER TABLE ADD COLUMN`` is a safe, non-destructive operation.
+    Guarded by column-existence checks so it is idempotent on fresh stores
+    (where CREATE TABLE already has the columns) and on already-migrated ones.
+    """
+    if not conn.execute(
+        "SELECT 1 FROM sqlite_master WHERE type='table' AND name='relations'"
+    ).fetchone():
+        return  # fresh store; CREATE TABLE in SCHEMA already has all columns
+    rel_cols = _existing_columns(conn, "relations")
+    if "payload" not in rel_cols:
+        conn.execute("ALTER TABLE relations ADD COLUMN payload TEXT NOT NULL DEFAULT '{}'")
+    credit_cols = _existing_columns(conn, "work_credits")
+    if "ord" not in credit_cols:
+        # Existing rows get ord=0; a full re-import repopulates correct ordering.
+        conn.execute("ALTER TABLE work_credits ADD COLUMN ord INTEGER NOT NULL DEFAULT 0")
+
+
 def init_schema(conn: sqlite3.Connection) -> None:
+    _migrate_schema(conn)
     conn.executescript(SCHEMA)
     conn.execute(
         "INSERT OR REPLACE INTO schema_meta(key, value) VALUES (?, ?)",
@@ -235,13 +286,14 @@ def load_relations(conn: sqlite3.Connection, relations: list[dict]) -> int:
                 relation.get("last_verified"),
                 json.dumps(relation.get("context", {}), ensure_ascii=False, sort_keys=True),
                 json.dumps(relation.get("rejection_reasons", []), ensure_ascii=False, sort_keys=True),
+                json.dumps(relation, ensure_ascii=False, sort_keys=True),
             )
         )
     conn.executemany(
         """INSERT INTO relations
            (id, from_id, to_id, relation_type, verification_status, confidence,
-            claim_id, last_verified, context, rejection_reasons)
-           VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)""",
+            claim_id, last_verified, context, rejection_reasons, payload)
+           VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)""",
         rows,
     )
     conn.commit()
@@ -309,10 +361,11 @@ def load_work_credits(conn: sqlite3.Connection, works: list[dict]) -> int:
     conn.execute("DELETE FROM work_credits")
     rows = []
     for work in works:
-        for credit in work.get("credits", []) or []:
+        for ord_, credit in enumerate(work.get("credits", []) or []):
             rows.append(
                 (
                     work["id"],
+                    ord_,
                     credit.get("claim_id"),
                     credit.get("entity_id"),
                     credit.get("entity_type"),
@@ -323,8 +376,8 @@ def load_work_credits(conn: sqlite3.Connection, works: list[dict]) -> int:
             )
     conn.executemany(
         """INSERT INTO work_credits
-           (work_id, claim_id, entity_id, entity_type, role, credit_status, phase)
-           VALUES (?, ?, ?, ?, ?, ?, ?)""",
+           (work_id, ord, claim_id, entity_id, entity_type, role, credit_status, phase)
+           VALUES (?, ?, ?, ?, ?, ?, ?, ?)""",
         rows,
     )
     conn.commit()
@@ -371,23 +424,173 @@ def register_source_snapshots(conn: sqlite3.Connection) -> int:
     return len(rows)
 
 
+def _store_shard_meta(conn: sqlite3.Connection, meta: dict[str, str]) -> None:
+    """Persist shard provenance so ``db.py export`` can rebuild a valid shard.
+
+    Mirrors the top-level keys a Wikidata-hydration shard carries
+    (generated_from / source_id / transformer_*); validate.py requires these
+    on every full catalog shard.
+    """
+    for key, value in meta.items():
+        conn.execute(
+            "INSERT OR REPLACE INTO schema_meta(key, value) VALUES (?, ?)",
+            (f"source_{key}", value),
+        )
+    conn.commit()
+
+
 def cmd_import(conn: sqlite3.Connection) -> int:
-    payload = catalog_payload()
+    payload, shard_meta = catalog_payload()
     init_schema(conn)
     n_entities = load_entities(conn, payload)
     n_relations = load_relations(conn, payload["relations"])
     n_claims = load_claims(conn, payload["claims"])
     n_credits = load_work_credits(conn, payload["works"])
     n_snapshots = register_source_snapshots(conn)
+    _store_shard_meta(conn, shard_meta)
     print(
         f"Imported: {n_entities} entities, {n_relations} relations, "
         f"{n_claims} claims, {n_credits} work credits, {n_snapshots} local snapshots."
     )
+    if shard_meta:
+        print(
+            f"Shard meta: {shard_meta.get('source_id', '?')} "
+            f"via {shard_meta.get('transformer_id', '?')} "
+            f"v{shard_meta.get('transformer_version', '?')}"
+        )
     print(f"Store: {DB_PATH.relative_to(ROOT)}")
     return 0
 
 
-def _json_counts() -> dict[str, int]:
+# --- export path: SQLite → catalog shard → public JSON ----------------------
+
+SHARD_PATH = CATALOG_DIR / "wikidata-hydration.json"
+ENTITY_SOURCE_TABLES = ("people", "practices", "places", "works")
+
+
+def atomic_write_bytes(path: Path, content: bytes) -> None:
+    """Write ``content`` to ``path`` atomically (temp + replace)."""
+    import tempfile
+
+    path.parent.mkdir(parents=True, exist_ok=True)
+    mode = path.stat().st_mode & 0o777 if path.exists() else 0o644
+    handle = tempfile.NamedTemporaryFile(
+        dir=path.parent,
+        prefix=f".{path.name}.",
+        delete=False,
+    )
+    temp_path = Path(handle.name)
+    try:
+        with handle:
+            handle.write(content)
+            handle.flush()
+            os.fsync(handle.fileno())
+        os.chmod(temp_path, mode)
+        os.replace(temp_path, path)
+    finally:
+        if temp_path.exists():
+            temp_path.unlink()
+
+
+def write_json(path: Path, payload: Any) -> None:
+    """Dump ``payload`` in the canonical shard format (matches importer)."""
+    atomic_write_bytes(
+        path,
+        (
+            json.dumps(payload, ensure_ascii=False, indent=2, sort_keys=True)
+            + "\n"
+        ).encode("utf-8"),
+    )
+
+
+def _load_shard_meta(conn: sqlite3.Connection) -> dict[str, str]:
+    """Read the persisted shard provenance keys back from schema_meta."""
+    meta: dict[str, str] = {}
+    for row in conn.execute("SELECT key, value FROM schema_meta"):
+        key = row["key"]
+        if key.startswith("source_") and key not in ("source_",):
+            meta[key[len("source_"):]] = row["value"]
+    return meta
+
+
+def _collect_entities(conn: sqlite3.Connection, source_table: str) -> list[dict]:
+    """Rebuild one entity array from the entities table, ordered by id.
+
+    Entities are stored with their complete original dict in the payload
+    column (see load_entities), so this is a lossless projection. Ordering
+    by id matches the importer's output convention so the exported shard is
+    byte-stable.
+    """
+    rows = conn.execute(
+        "SELECT payload FROM entities WHERE source_table = ? ORDER BY id",
+        (source_table,),
+    ).fetchall()
+    return [json.loads(row["payload"]) for row in rows]
+
+
+def _collect_claims(conn: sqlite3.Connection) -> list[dict]:
+    """Rebuild the claims array from the claims table, ordered by id."""
+    rows = conn.execute("SELECT payload FROM claims ORDER BY id").fetchall()
+    return [json.loads(row["payload"]) for row in rows]
+
+
+def _collect_relations(conn: sqlite3.Connection) -> list[dict]:
+    """Rebuild the relations array from the relations payload column."""
+    rows = conn.execute("SELECT payload FROM relations ORDER BY id").fetchall()
+    return [json.loads(row["payload"]) for row in rows]
+
+
+def build_shard_payload(conn: sqlite3.Connection) -> dict:
+    """Assemble the full catalog-shard dict from the SQLite store.
+
+    The six entity/relation arrays come from the payload columns (lossless);
+    the five top-level provenance keys (generated_from / source_id /
+    transformer_id / transformer_version / generator) come from schema_meta.
+    """
+    shard: dict[str, Any] = {}
+    for source_table in ENTITY_SOURCE_TABLES:
+        shard[source_table] = _collect_entities(conn, source_table)
+    shard["claims"] = _collect_claims(conn)
+    shard["relations"] = _collect_relations(conn)
+    meta = _load_shard_meta(conn)
+    for key in SHARD_META_KEYS:
+        if key in meta:
+            shard[key] = meta[key]
+    return shard
+
+
+def export_catalog_shard(conn: sqlite3.Connection, path: Path = SHARD_PATH) -> int:
+    """Write the SQLite store back to a catalog shard file (lossless)."""
+    shard = build_shard_payload(conn)
+    write_json(path, shard)
+    counts = {key: len(shard[key]) for key in ENTITY_SOURCE_TABLES}
+    counts["claims"] = len(shard["claims"])
+    counts["relations"] = len(shard["relations"])
+    return sum(counts.values())
+
+
+def cmd_export(conn: sqlite3.Connection, shard_path: Path, run_build: bool) -> int:
+    """Export the SQLite store to the catalog shard, then optionally build.
+
+    With ``run_build=True`` (default), after writing the shard it invokes
+    ``tools/build.py`` which regenerates the 8 public JSON tables + manifest
+    + loader constants + html tokens and runs the full validate/test gate.
+    """
+    n = export_catalog_shard(conn, shard_path)
+    rel = shard_path.relative_to(ROOT) if shard_path.is_relative_to(ROOT) else shard_path
+    print(f"Exported {n} records to shard: {rel}")
+    if run_build:
+        import subprocess
+
+        print("Running build.py (shard → public JSON + manifest + validate gate)...")
+        result = subprocess.run(
+            [sys.executable, str(ROOT / "tools" / "build.py")],
+            cwd=ROOT,
+        )
+        if result.returncode != 0:
+            print(f"build.py failed (exit {result.returncode})", file=sys.stderr)
+            return result.returncode
+    return 0
     """Return entity counts from the source-of-truth JSON for verification."""
     counts: dict[str, int] = {}
     for key, filename in (
@@ -549,6 +752,21 @@ def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     sub = parser.add_subparsers(dest="cmd", required=True)
     sub.add_parser("import", help="load catalog shard / projected JSON into the store")
+    ex = sub.add_parser(
+        "export",
+        help="write the SQLite store back to the catalog shard (+ optional build)",
+    )
+    ex.add_argument(
+        "--shard",
+        type=Path,
+        default=SHARD_PATH,
+        help=f"shard output path (default: {SHARD_PATH.relative_to(ROOT)})",
+    )
+    ex.add_argument(
+        "--no-build",
+        action="store_true",
+        help="only write the shard; skip regenerating public JSON via build.py",
+    )
     sub.add_parser("verify", help="count-check every table vs the published JSON")
     q = sub.add_parser("query", help="run a canned analysis query")
     q.add_argument("name", nargs="?", default="", help="query name (or 'queries')")
@@ -558,6 +776,8 @@ def main(argv: list[str] | None = None) -> int:
     try:
         if args.cmd == "import":
             return cmd_import(conn)
+        if args.cmd == "export":
+            return cmd_export(conn, args.shard, run_build=not args.no_build)
         if args.cmd == "verify":
             return cmd_verify(conn)
         if args.cmd == "query":
