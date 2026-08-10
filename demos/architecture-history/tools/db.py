@@ -591,6 +591,9 @@ def cmd_export(conn: sqlite3.Connection, shard_path: Path, run_build: bool) -> i
             print(f"build.py failed (exit {result.returncode})", file=sys.stderr)
             return result.returncode
     return 0
+
+
+def _json_counts() -> dict[str, int]:
     """Return entity counts from the source-of-truth JSON for verification."""
     counts: dict[str, int] = {}
     for key, filename in (
