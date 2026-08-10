@@ -29,6 +29,7 @@
   const routeCache = new Map();
   const planMaps = new Map();
   let planMapObserver = null;
+  let planMapGeneration = 0;
   let clockTimer = null;
 
   function localized(value) {
@@ -256,20 +257,51 @@
 
   function renderPlanStops(item) {
     const route = item.route;
-    if (!route || !Array.isArray(route.stops) || !route.stops.length) return '';
-    const orLabel = text('planRouteOr');
-    let seqNum = 0;
-    const chips = route.stops.map((stop, index) => {
-      const num = route.mode === 'choice' ? index + 1 : ++seqNum;
-      const chip = `<span class="plan-stop-chip">${num}. ${escapeHtml(localized(stop.label))}</span>`;
-      if (route.mode === 'choice' && index > 0) {
-        return `<span class="plan-stop-or">${escapeHtml(orLabel)}</span>${chip}`;
-      }
-      return chip;
-    });
+    if (!route) return '';
+    const rootStops = Array.isArray(route.stops) ? route.stops : [];
+    const branches = Array.isArray(route.branches) ? route.branches : [];
+    if (!rootStops.length && !branches.length) return '';
+
+    function stopChip(stop, kind = 'shared') {
+      const optional = stop.optional
+        ? `<span class="plan-stop-optional">${escapeHtml(text('planStopOptional'))}</span>`
+        : '';
+      return `<span class="plan-stop-chip kind-${escapeHtml(kind)}${stop.optional ? ' is-optional' : ''}" data-route-marker="${escapeHtml(stop.marker)}">
+        <strong>${escapeHtml(stop.marker)}</strong>
+        <span>${escapeHtml(localized(stop.label))}</span>
+        ${optional}
+      </span>`;
+    }
+
+    const sections = [];
+    if (rootStops.length) {
+      const label = branches.length ? `<span class="plan-route-group-label">${escapeHtml(text('planRouteShared'))}</span>` : '';
+      sections.push(`<div class="plan-route-group is-shared">${label}<div class="plan-stops">${rootStops.map((stop) => stopChip(stop)).join('')}</div></div>`);
+    }
+
+    const choiceBranches = branches.filter((branch) => branch.kind !== 'addOn');
+    const addOnBranches = branches.filter((branch) => branch.kind === 'addOn');
+    for (const [group, labelKey, kind] of [
+      [choiceBranches, 'planRouteChoices', 'choice'],
+      [addOnBranches, 'planRouteAddOns', 'add-on']
+    ]) {
+      if (!group.length) continue;
+      const rows = group.map((branch) => {
+        const stops = Array.isArray(branch.stops) ? branch.stops : [];
+        const stopHtml = stops.length
+          ? stops.map((stop) => stopChip(stop, kind)).join('')
+          : `<span class="plan-branch-no-pin">${escapeHtml(text('planNoMapPin'))}</span>`;
+        return `<div class="plan-branch kind-${escapeHtml(kind)}">
+          <span class="plan-branch-label">${escapeHtml(branch.id)} · ${escapeHtml(localized(branch.label))}</span>
+          <div class="plan-stops">${stopHtml}</div>
+        </div>`;
+      }).join('');
+      sections.push(`<div class="plan-route-group kind-${escapeHtml(kind)}"><span class="plan-route-group-label">${escapeHtml(text(labelKey))}</span>${rows}</div>`);
+    }
+
     return `
       <div class="plan-stops-label">${escapeHtml(text('planStops'))}</div>
-      <div class="plan-stops">${chips.join('')}</div>
+      <div class="plan-route-graph">${sections.join('')}</div>
       <p class="plan-route-hint">${escapeHtml(text('planRouteHint'))}</p>`;
   }
 
@@ -289,6 +321,11 @@
     const rows = slots.map((slot) => {
       const tone = slot.tone || 'core';
       const note = slot.note ? `<p class="plan-timeline-note">${escapeHtml(localized(slot.note))}</p>` : '';
+      const markers = Array.isArray(slot.routeMarkers) ? slot.routeMarkers : [];
+      const markerLabel = `${text('planStops')}: ${markers.join(', ')}`;
+      const markerHtml = markers.length
+        ? `<div class="plan-timeline-markers" role="group" aria-label="${escapeHtml(markerLabel)}">${markers.map((marker) => `<span>${escapeHtml(marker)}</span>`).join('')}</div>`
+        : '';
       return `
         <li class="plan-timeline-item tone-${escapeHtml(tone)}">
           <div class="plan-timeline-time">
@@ -296,6 +333,7 @@
             <span class="plan-tone">${escapeHtml(planToneLabel(tone))}</span>
           </div>
           <div class="plan-timeline-copy">
+            ${markerHtml}
             <p class="plan-timeline-title">${escapeHtml(localized(slot.title))}</p>
             ${note}
           </div>
@@ -310,6 +348,7 @@
   }
 
   function destroyPlanMaps() {
+    planMapGeneration += 1;
     if (planMapObserver) {
       planMapObserver.disconnect();
       planMapObserver = null;
@@ -347,7 +386,7 @@
           ${renderPlanStops(item)}
           ${renderPlanTimeline(item)}
         </div>
-        ${item.id && item.route ? `<div class="plan-day-map" data-plan-map="${escapeHtml(item.id)}" aria-label="${escapeHtml(localized(item.title))}"></div>` : ''}
+        ${item.id && item.route ? `<div class="plan-day-map" data-plan-map="${escapeHtml(item.id)}" role="region" aria-label="${escapeHtml(text('planMapLabel'))}: ${escapeHtml(localized(item.title))}"></div>` : ''}
       </article>`;
     }
 
@@ -747,18 +786,119 @@
         <strong>${escapeHtml(localized(hub.name))}</strong>
         <p class="hub-note">${escapeHtml(localized(hub.note))}</p>
         <p class="hub-place">${escapeHtml(localized(hub.place))}</p>
-        <p class="hub-coords">${escapeHtml(ui('mapCoords'))}: ${escapeHtml(lat)}, ${escapeHtml(lng)}</p>
-        <a href="${escapeHtml(osm)}" target="_blank" rel="noopener noreferrer">${escapeHtml(ui('mapOpenOsm'))}</a>
+        <p class="hub-coords">${escapeHtml(text('mapCoords'))}: ${escapeHtml(lat)}, ${escapeHtml(lng)}</p>
+        <a href="${escapeHtml(osm)}" target="_blank" rel="noopener noreferrer">${escapeHtml(text('mapOpenOsm'))}</a>
       </div>`;
   }
 
-  function makeStopIcon(number, tone) {
+  function makeStopIcon(marker, tone, offset = { x: 0, y: 0 }) {
     return window.L.divIcon({
       className: 'stop-pin-wrap',
-      html: `<span class="stop-pin ${escapeHtml(tone || 'default')}" aria-hidden="true">${escapeHtml(String(number))}</span>`,
-      iconSize: [26, 26],
-      iconAnchor: [13, 13],
-      popupAnchor: [0, -14]
+      html: `<span class="stop-pin ${escapeHtml(tone || 'default')}" aria-hidden="true">${escapeHtml(String(marker))}</span>`,
+      iconSize: [44, 44],
+      iconAnchor: [22 - offset.x, 22 - offset.y],
+      popupAnchor: [offset.x, offset.y - 24],
+      tooltipAnchor: [offset.x, offset.y]
+    });
+  }
+
+  function separatePlanMarkers(map, entries, legLayer) {
+    legLayer.clearLayers();
+    if (!entries.length) return;
+    const points = entries.map((entry) => map.latLngToLayerPoint(entry.marker.getLatLng()));
+    const parents = entries.map((_, index) => index);
+    const find = (index) => {
+      let root = index;
+      while (parents[root] !== root) root = parents[root];
+      while (parents[index] !== index) {
+        const next = parents[index];
+        parents[index] = root;
+        index = next;
+      }
+      return root;
+    };
+    const join = (left, right) => {
+      const leftRoot = find(left);
+      const rightRoot = find(right);
+      if (leftRoot === rightRoot) return false;
+      parents[rightRoot] = leftRoot;
+      return true;
+    };
+
+    for (let left = 0; left < points.length; left += 1) {
+      for (let right = left + 1; right < points.length; right += 1) {
+        if (points[left].distanceTo(points[right]) < 50) join(left, right);
+      }
+    }
+
+    let offsets = entries.map(() => ({ x: 0, y: 0 }));
+    let targets = points;
+    for (let pass = 0; pass < entries.length; pass += 1) {
+      const groups = new Map();
+      entries.forEach((entry, index) => {
+        const root = find(index);
+        if (!groups.has(root)) groups.set(root, []);
+        groups.get(root).push(index);
+      });
+
+      offsets = entries.map(() => ({ x: 0, y: 0 }));
+      groups.forEach((indexes) => {
+        if (indexes.length < 2) return;
+        const center = indexes.reduce((sum, index) => ({
+          x: sum.x + points[index].x / indexes.length,
+          y: sum.y + points[index].y / indexes.length
+        }), { x: 0, y: 0 });
+        const radius = Math.max(27, 50 / (2 * Math.sin(Math.PI / indexes.length)) + 4);
+        indexes.forEach((index, position) => {
+          const angle = -Math.PI / 2 + (2 * Math.PI * position) / indexes.length;
+          offsets[index] = {
+            x: Math.round((center.x + radius * Math.cos(angle) - points[index].x) * 10) / 10,
+            y: Math.round((center.y + radius * Math.sin(angle) - points[index].y) * 10) / 10
+          };
+        });
+      });
+      targets = points.map((point, index) => window.L.point(point.x + offsets[index].x, point.y + offsets[index].y));
+
+      let merged = false;
+      for (let left = 0; left < targets.length; left += 1) {
+        for (let right = left + 1; right < targets.length; right += 1) {
+          if (find(left) !== find(right) && targets[left].distanceTo(targets[right]) < 50) {
+            merged = join(left, right) || merged;
+          }
+        }
+      }
+      if (!merged) break;
+    }
+
+    entries.forEach((entry, index) => {
+      const offset = offsets[index];
+      const offsetKey = `${offset.x},${offset.y}`;
+      if (entry.offsetKey !== offsetKey) {
+        entry.offsetKey = offsetKey;
+        entry.marker.setIcon(makeStopIcon(entry.stop.marker, entry.tone, offset));
+      }
+      if (Math.hypot(offset.x, offset.y) < 0.5) return;
+      const origin = entry.marker.getLatLng();
+      const target = map.layerPointToLatLng(targets[index]);
+      window.L.polyline([origin, target], {
+        pane: 'planMarkerLegs',
+        className: 'plan-marker-leg',
+        color: '#52605b',
+        weight: 1.5,
+        opacity: 0.72,
+        dashArray: '2 4',
+        interactive: false
+      }).addTo(legLayer);
+      window.L.circleMarker(origin, {
+        pane: 'planMarkerLegs',
+        className: 'plan-marker-origin',
+        radius: 2.5,
+        color: '#52605b',
+        weight: 1.5,
+        fillColor: '#ffffff',
+        fillOpacity: 0.9,
+        interactive: false
+      }).addTo(legLayer);
     });
   }
 
@@ -769,40 +909,91 @@
   function stopPopupHtml(stop, place) {
     const lat = Number(place.lat).toFixed(5);
     const lng = Number(place.lng).toFixed(5);
+    const precision = stop.precision === 'venue' ? text('planPrecisionVenue') : text('planPrecisionArea');
+    const osm = `https://www.openstreetmap.org/?mlat=${encodeURIComponent(place.lat)}&mlon=${encodeURIComponent(place.lng)}#map=16/${encodeURIComponent(place.lat)}/${encodeURIComponent(place.lng)}`;
     return `
       <div class="hub-popup">
-        <strong>${escapeHtml(localized(stop.label))}</strong>
+        <strong>${escapeHtml(stop.marker)} · ${escapeHtml(localized(stop.label))}</strong>
         <p class="hub-place">${escapeHtml(localized(place.name))}</p>
+        <p class="hub-note">${escapeHtml(precision)}</p>
         <p class="hub-coords">${escapeHtml(text('mapCoords'))}: ${escapeHtml(lat)}, ${escapeHtml(lng)}</p>
+        <a href="${escapeHtml(osm)}" target="_blank" rel="noopener noreferrer">${escapeHtml(text('mapOpenOsm'))}</a>
       </div>`;
+  }
+
+  function routeMapStops(route) {
+    const stops = (route.stops || []).map((stop) => ({ stop, kind: 'shared' }));
+    for (const branch of route.branches || []) {
+      const kind = branch.kind === 'addOn' ? 'add-on' : 'choice';
+      for (const stop of branch.stops || []) stops.push({ stop, kind });
+    }
+    return stops;
+  }
+
+  function routeSegments(route) {
+    const segments = [];
+    const required = (stops) => (stops || []).filter((stop) => !stop.optional && getMapPlace(stop.place));
+    const append = (stops, kind) => {
+      for (let index = 0; index < stops.length - 1; index += 1) {
+        segments.push({ from: stops[index], to: stops[index + 1], kind });
+      }
+    };
+
+    const shared = required(route.stops);
+    append(shared, 'shared');
+
+    for (const branch of route.branches || []) {
+      if (branch.kind === 'addOn') continue;
+      append(required(branch.stops), 'choice');
+    }
+    return segments;
   }
 
   async function fetchOsrmRoute(fromPlace, toPlace) {
     const cacheKey = `${fromPlace.lat},${fromPlace.lng}->${toPlace.lat},${toPlace.lng}`;
     if (routeCache.has(cacheKey)) return routeCache.get(cacheKey);
-    const url = `https://router.project-osrm.org/route/v1/driving/${fromPlace.lng},${fromPlace.lat};${toPlace.lng},${toPlace.lat}?overview=full&geometries=geojson`;
-    try {
-      const response = await fetch(url);
-      if (!response.ok) throw new Error('route failed');
-      const payload = await response.json();
-      if (payload.code !== 'Ok' || !payload.routes || !payload.routes[0]) throw new Error('no route');
-      const coords = payload.routes[0].geometry.coordinates.map((pair) => [pair[1], pair[0]]);
+    const request = (async () => {
+      const url = `https://router.project-osrm.org/route/v1/driving/${fromPlace.lng},${fromPlace.lat};${toPlace.lng},${toPlace.lat}?overview=full&geometries=geojson`;
+      const controller = typeof AbortController === 'function' ? new AbortController() : null;
+      const timeout = controller ? window.setTimeout(() => controller.abort(), 5000) : null;
+      try {
+        const response = await fetch(url, controller ? { signal: controller.signal } : undefined);
+        if (!response.ok) throw new Error('route failed');
+        const payload = await response.json();
+        if (payload.code !== 'Ok' || !payload.routes || !payload.routes[0]) throw new Error('no route');
+        return payload.routes[0].geometry.coordinates.map((pair) => [pair[1], pair[0]]);
+      } catch (_) {
+        return null;
+      } finally {
+        if (timeout != null) window.clearTimeout(timeout);
+      }
+    })();
+    routeCache.set(cacheKey, request);
+    const coords = await request;
+    if (coords) {
       routeCache.set(cacheKey, coords);
-      return coords;
-    } catch (_) {
-      routeCache.set(cacheKey, null);
-      return null;
+    } else if (routeCache.get(cacheKey) === request) {
+      routeCache.delete(cacheKey);
     }
+    return coords;
   }
 
   async function initPlanMap(el, planItem) {
     if (!window.L || !planItem.route) return;
+    const generation = planMapGeneration;
     const route = planItem.route;
+    const coarsePointer = (typeof window.matchMedia === 'function' && window.matchMedia('(any-pointer: coarse)').matches)
+      || (typeof navigator !== 'undefined' && navigator.maxTouchPoints > 0);
     const map = window.L.map(el, {
       scrollWheelZoom: false,
       zoomControl: true,
-      attributionControl: true
+      attributionControl: true,
+      dragging: !coarsePointer,
+      touchZoom: true
     });
+    const markerLegPane = map.createPane('planMarkerLegs');
+    markerLegPane.style.zIndex = '450';
+    markerLegPane.style.pointerEvents = 'none';
     window.L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       maxZoom: 18,
       attribution: '&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">OpenStreetMap</a>'
@@ -812,54 +1003,86 @@
       else map.scrollWheelZoom.disable();
     }, { passive: true });
 
-    const layers = { markers: [], polylines: [], statusEl: null };
+    const layers = {
+      markers: [],
+      markerEntries: [],
+      markerLegs: window.L.layerGroup().addTo(map),
+      polylines: [],
+      statusEl: null
+    };
     const bounds = [];
-    let seqNum = 0;
-
-    route.stops.forEach((stop, index) => {
+    routeMapStops(route).forEach(({ stop, kind }) => {
       const place = getMapPlace(stop.place);
       if (!place) return;
-      const num = route.mode === 'choice' ? index + 1 : ++seqNum;
-      const tone = route.mode === 'choice' ? 'choice' : 'default';
+      const tone = stop.optional ? 'optional' : kind;
+      const title = `${stop.marker}. ${localized(stop.label)}`;
       const marker = window.L.marker([place.lat, place.lng], {
-        icon: makeStopIcon(num, tone),
-        title: localized(stop.label),
+        icon: makeStopIcon(stop.marker, tone),
+        title,
         keyboard: true,
         riseOnHover: true
       }).addTo(map);
       marker.bindPopup(stopPopupHtml(stop, place), { maxWidth: 240, className: 'hub-leaflet-popup' });
-      marker.bindTooltip(`${num}. ${localized(stop.label)}`, {
+      marker.bindTooltip(title, {
         direction: 'top',
-        offset: [0, -12],
+        offset: [0, -16],
         opacity: 0.95,
         className: 'hub-tooltip'
       });
       layers.markers.push(marker);
+      layers.markerEntries.push({ marker, stop, tone, offsetKey: '0,0' });
       bounds.push([place.lat, place.lng]);
     });
 
-    if (route.mode === 'sequence' && route.stops.length >= 2) {
+    const updateMarkerSeparation = () => separatePlanMarkers(map, layers.markerEntries, layers.markerLegs);
+    map.on('zoomend resize', updateMarkerSeparation);
+
+    if (bounds.length) {
+      map.fitBounds(bounds, { padding: [58, 58], maxZoom: 13 });
+      updateMarkerSeparation();
+    }
+    const registration = { map, layers, planItem, el, generation };
+    planMaps.set(planItem.id, registration);
+    window.setTimeout(() => {
+      if (planMaps.get(planItem.id) === registration && el.isConnected) {
+        map.invalidateSize();
+        updateMarkerSeparation();
+      }
+    }, 40);
+
+    const segments = routeSegments(route);
+    if (segments.length) {
       const status = document.createElement('p');
       status.className = 'plan-map-status';
       status.textContent = text('planRouteLoading');
+      status.setAttribute('role', 'status');
+      status.setAttribute('aria-live', 'polite');
       el.appendChild(status);
       layers.statusEl = status;
 
+      const results = await Promise.all(segments.map(async (segment) => {
+        const from = getMapPlace(segment.from.place);
+        const to = getMapPlace(segment.to.place);
+        const coords = from && to ? await fetchOsrmRoute(from, to) : null;
+        return { segment, coords };
+      }));
+
+      if (generation !== planMapGeneration || !el.isConnected || planMaps.get(planItem.id) !== registration) return;
+
       let routeFailed = false;
-      for (let i = 0; i < route.stops.length - 1; i += 1) {
-        const from = getMapPlace(route.stops[i].place);
-        const to = getMapPlace(route.stops[i + 1].place);
-        if (!from || !to) continue;
-        // eslint-disable-next-line no-await-in-loop
-        const coords = await fetchOsrmRoute(from, to);
+      for (const { segment, coords } of results) {
         if (coords) {
-          const line = window.L.polyline(coords, {
-            color: '#ad3c1d',
-            weight: 4,
+          const options = {
+            className: 'plan-route-line',
+            color: segment.kind === 'choice' ? '#ad3c1d' : '#245c4a',
+            weight: segment.kind === 'choice' ? 3.5 : 4,
             opacity: 0.88,
             lineCap: 'round',
-            lineJoin: 'round'
-          }).addTo(map);
+            lineJoin: 'round',
+            interactive: false
+          };
+          if (segment.kind === 'choice') options.dashArray = '8 7';
+          const line = window.L.polyline(coords, options).addTo(map);
           layers.polylines.push(line);
         } else {
           routeFailed = true;
@@ -871,16 +1094,12 @@
         const notice = document.createElement('p');
         notice.className = 'plan-map-status unavailable';
         notice.textContent = text('planRouteUnavailable');
+        notice.setAttribute('role', 'status');
+        notice.setAttribute('aria-live', 'polite');
         el.appendChild(notice);
         layers.statusEl = notice;
       }
     }
-
-    if (bounds.length) {
-      map.fitBounds(bounds, { padding: [28, 28], maxZoom: 13 });
-    }
-    planMaps.set(planItem.id, { map, layers, planItem });
-    window.setTimeout(() => map.invalidateSize(), 40);
   }
 
   function schedulePlanMaps() {

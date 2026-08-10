@@ -4,6 +4,157 @@
  * 2026-08-10. Editorial scores and commute bands are QROST planning judgments,
  * not organizer guarantees.
  */
+const planText = (zh, en) => ({ zh, en });
+const planStop = (marker, place, zh, en, optional = false, precision = 'area') => ({
+  marker,
+  place,
+  label: planText(zh, en),
+  optional,
+  precision
+});
+const planBranch = (id, zh, en, stops = [], kind = 'choice') => ({
+  id,
+  label: planText(zh, en),
+  stops,
+  kind
+});
+
+/*
+ * Reviewed route graphs. Stable markers link every map pin and timeline slot.
+ * Root stops are shared in order; choice branches are mutually exclusive;
+ * add-ons are optional continuations. Optional stops are never forced into a
+ * route line.
+ */
+const reviewedQuickPlanRoutes = {
+  'qp-0807': {
+    mode: 'single',
+    stops: [planStop('1', 'alvarado', '开幕夜', 'Kickoff')],
+    branches: []
+  },
+  'qp-0808': {
+    mode: 'choice',
+    stops: [],
+    branches: [
+      planBranch('A', '公园日', 'Park day', [planStop('A', 'asilomar', 'Asilomar 日', 'Asilomar Day')]),
+      planBranch('B', '赛道日', 'Track day', [planStop('B', 'laguna', 'Pre-Reunion', 'Pre-Reunion', false, 'venue')])
+    ]
+  },
+  'qp-0809': {
+    mode: 'choice',
+    stops: [],
+    branches: [
+      planBranch('A', '赛道日', 'Track day', [planStop('A', 'laguna', 'Pre-Reunion 周日', 'Pre-Reunion Sunday', false, 'venue')]),
+      planBranch('B', '休整与规划', 'Rest and plan')
+    ]
+  },
+  'qp-0810': {
+    mode: 'branching',
+    stops: [planStop('1', 'embassy', 'ACE 展会', 'ACE Expo', false, 'venue')],
+    branches: [
+      planBranch('A', '英伦车日', 'British Car Day', [planStop('2A', 'carmel-valley-history', '英伦车日', 'British Car Day')]),
+      planBranch('B', 'Electric Coast', 'Electric Coast', [planStop('2B', 'asilomar', 'Electric Coast', 'Electric Coast')]),
+      planBranch('C', 'Porsche Seaside', 'Porsche Seaside', [planStop('2C', 'porsche-seaside', 'Porsche Seaside', 'Porsche Seaside')])
+    ]
+  },
+  'qp-0811': {
+    mode: 'branching',
+    stops: [planStop('1', 'carmel', '慈善车展', 'Concours for a Cause')],
+    branches: [
+      planBranch('A', 'ACE 晚间拍卖', 'ACE evening auction', [planStop('2A', 'embassy', 'ACE 晚间拍卖', 'ACE Live Auction', true, 'venue')]),
+      planBranch('B', 'Night Rider', 'Night Rider', [planStop('2B', 'asilomar', 'Night Rider', 'Night Rider', true)])
+    ]
+  },
+  'qp-0812': {
+    mode: 'branching',
+    stops: [
+      planStop('1', 'carmel', 'Astons on the Avenue', 'Astons on the Avenue'),
+      planStop('2', 'lighthouse', '小车展', 'Little Car Show')
+    ],
+    branches: [
+      planBranch('A', 'Luau', 'Luau', [planStop('3A', 'asilomar', 'Luau', 'Luau', true)]),
+      planBranch('B', 'Motorlux', 'Motorlux', [planStop('3B', 'jetcenter', 'Motorlux', 'Motorlux', true, 'venue')]),
+      planBranch('C', 'Motoring Classic', 'Motoring Classic', [planStop('3C', 'pebble', 'Motoring Classic', 'Motoring Classic', true)])
+    ]
+  },
+  'qp-0813': {
+    mode: 'branching',
+    stops: [
+      planStop('1', 'portola', 'Tour d’Elegance', 'Tour d’Elegance'),
+      planStop('2', 'village', 'Concours Village', 'Concours Village')
+    ],
+    branches: [
+      planBranch('A', 'Ferrari Carmel', 'Ferrari Carmel', [planStop('3A', 'carmel', 'Ferrari Carmel', 'Ferrari Carmel')]),
+      planBranch('B', 'Legends', 'Legends', [planStop('3B', 'pgolf', 'Legends of the Autobahn', 'Legends of the Autobahn', false, 'venue')]),
+      planBranch('C', 'Woodies', 'Woodies', [planStop('3C', 'asilomar', 'Woodies in the Woods', 'Woodies in the Woods')])
+    ]
+  },
+  'qp-0814': {
+    mode: 'choice',
+    stops: [],
+    branches: [
+      planBranch('A', 'Werks 路线', 'Werks route', [
+        planStop('A1', 'werks', 'Werks Reunion', 'Werks Reunion', false, 'venue'),
+        planStop('A2', 'bayonet', 'The Paddock', 'The Paddock', true, 'venue')
+      ]),
+      planBranch('B', 'Reunion 赛道日', 'Reunion track day', [planStop('B1', 'laguna', 'Reunion 周五', 'Reunion Friday', false, 'venue')])
+    ]
+  },
+  'qp-0815': {
+    mode: 'choice',
+    stops: [],
+    branches: [
+      planBranch('A', '街展路线', 'Street-show route', [
+        planStop('A0', 'embassy', 'Cars & Coffee', 'Cars & Coffee', true),
+        planStop('A1', 'lemons', 'Concours d’Lemons', 'Concours d’Lemons', false, 'venue'),
+        planStop('A2', 'exotics', 'Exotics on Broadway', 'Exotics on Broadway')
+      ]),
+      planBranch('B', 'Reunion 赛道日', 'Reunion track day', [planStop('B1', 'laguna', 'Reunion 周六', 'Reunion Saturday', false, 'venue')])
+    ]
+  },
+  'qp-0816': {
+    mode: 'choice',
+    stops: [],
+    branches: [
+      planBranch('A', '主赛场付费路线', 'Paid show-field route', [planStop('A', 'pebble', 'Dawn Patrol / Concours', 'Dawn Patrol / Concours', false, 'venue')]),
+      planBranch('B', '免费 Village 路线', 'Free Village route', [planStop('B', 'village', 'Concours Village', 'Concours Village')]),
+      planBranch('C', '下午可选续程', 'Optional afternoon add-on', [planStop('C', 'touring-vehicles', 'Car Week Cruise-In', 'Car Week Cruise-In', true)], 'addOn')
+    ]
+  },
+  'qp-0817': {
+    mode: 'single',
+    stops: [planStop('1', 'stanton', 'Stanton Center', 'Stanton Center', false, 'venue')],
+    branches: []
+  }
+};
+
+const reviewedTimelineMarkers = {
+  'qp-0807': [[], ['1'], ['1'], ['1']],
+  'qp-0808': [['B'], ['B'], ['A'], ['A']],
+  'qp-0809': [['A'], ['A'], ['B'], ['B']],
+  'qp-0810': [['1'], ['1'], ['2A', '2B', '2C'], ['2A', '2B', '2C'], []],
+  'qp-0811': [['1'], ['1'], ['2A', '2B'], ['2A'], ['2B']],
+  'qp-0812': [['1'], ['1'], ['2'], ['2'], ['3A', '3B', '3C'], ['3A', '3B', '3C']],
+  'qp-0813': [['1'], ['1'], ['2'], ['2'], ['3A', '3B', '3C'], ['3A', '3B', '3C']],
+  'qp-0814': [['A1', 'B1'], ['A1'], ['B1'], ['A1'], ['A2'], ['A2']],
+  'qp-0815': [['A0'], ['A1', 'B1'], ['A1'], ['A2'], ['B1'], ['A2']],
+  'qp-0816': [['A', 'B'], ['A'], ['A'], ['B'], ['C']],
+  'qp-0817': [[], ['1'], ['1'], []]
+};
+
+function routeFor(planId) {
+  const route = reviewedQuickPlanRoutes[planId];
+  if (!route) throw new Error(`Missing reviewed route graph: ${planId}`);
+  return route;
+}
+
+function scheduleFor(planId, schedule) {
+  const markers = reviewedTimelineMarkers[planId];
+  if (!markers || markers.length !== schedule.length) {
+    throw new Error(`Timeline marker count mismatch: ${planId}`);
+  }
+  return schedule.map((slot, index) => ({ ...slot, routeMarkers: markers[index] }));
+}
+
 window.PEBBLE_DATA = {
   checked: '2026-08-06',
   dynamicUpdatesChecked: '2026-08-10',
@@ -68,8 +219,16 @@ window.PEBBLE_DATA = {
       en: 'Pick Asilomar Day or Pre-Reunion on Saturday—not both. Monday’s ACE automobilia expo is worth a dedicated stop. Tuesday’s Concours for a Cause and Wednesday’s Little Car Show are the strongest free early anchors. Peak Friday and Saturday overlap heavily: do not cram Werks, The Quail, Paddock, Laguna Seca, Concorso and Exotics into one day; the peninsula is not a single venue.'
     },
     planStops: { zh: '当日地点', en: 'Stops today' },
-    planRouteHint: { zh: '实线为推荐驾车顺序；虚线/圆点为互斥备选地点。', en: 'Solid line = recommended drive order; dashed/dots = mutually exclusive picks.' },
+    planRouteHint: { zh: '编号与时间线一致；绿色实线为共同/单一路线，橙色虚线为互斥分支，可选点不强制连线。相邻编号会散开，灰色细虚线与圆点标明真实规划坐标。', en: 'Numbers match the timeline; green solid lines are shared/single routes, orange dashed lines are exclusive branches, and optional stops are not forced into a route. Nearby pins spread apart; fine gray dashed legs and dots mark their exact planning coordinates.' },
     planRouteOr: { zh: '或', en: 'or' },
+    planRouteShared: { zh: '共同路线', en: 'Shared route' },
+    planRouteChoices: { zh: '互斥分支', en: 'Exclusive branches' },
+    planRouteAddOns: { zh: '可选续程', en: 'Optional add-ons' },
+    planNoMapPin: { zh: '无固定地图点', en: 'No fixed map pin' },
+    planMapLabel: { zh: '路线地图', en: 'Route map' },
+    planStopOptional: { zh: '可选', en: 'optional' },
+    planPrecisionVenue: { zh: '场馆规划点', en: 'Venue planning point' },
+    planPrecisionArea: { zh: '区域近似点', en: 'Approximate area' },
     planRouteLoading: { zh: '路线加载中…', en: 'Loading route…' },
     planRouteUnavailable: { zh: '路线暂不可用，仍显示地点。', en: 'Route unavailable; stops still shown.' },
     planTimeline: { zh: '展开每日时间规划', en: 'Expand day timeline' },
@@ -142,8 +301,8 @@ window.PEBBLE_DATA = {
     sourcePrimary: { zh: '主要来源与复核入口', en: 'Primary sources and live checks' },
     boundaryTitle: { zh: '发布口径', en: 'Publication standard' },
     boundaryBody: {
-      zh: '活动时间、票价、售罄状态与道路规则截至 2026-08-06；酒店价格是单次库存快照；通勤为有意放宽的活动周计划值。任何“值得去”都是编辑判断，不是主办方背书。',
-      en: 'Event times, ticket prices, sold-out status and road rules are current to Aug 6, 2026. Hotel prices are a one-time inventory snapshot, and travel bands are deliberately padded planning values. Every “worth it” score is editorial, not an organizer endorsement.'
+      zh: '全量目录基线核对至 2026-08-06；部分动态时段、票价、售罄状态与来源于 2026-08-10 复核。酒店价格是单次库存快照；通勤为有意放宽的活动周计划值。任何“值得去”都是编辑判断，不是主办方背书。',
+      en: 'The full catalog baseline was checked Aug 6, 2026; selected fast-changing hours, prices, sold-out states and sources were rechecked Aug 10. Hotel prices are a one-time inventory snapshot, and travel bands are deliberately padded planning values. Every “worth it” score is editorial, not an organizer endorsement.'
     },
     boundaryUpdate: {
       zh: '临行前 24 小时请重查：官方活动页、票务页、停车图、天气和道路状态。',
@@ -237,16 +396,13 @@ window.PEBBLE_DATA = {
       title: { zh: 'Kickoff on Alvarado → 早到落地', en: 'Kickoff on Alvarado → arrive early' },
       body: { zh: '17:00 前到 Monterey 市中心 Alvarado St，看历史赛车集结与开幕式；零成本感受车周氛围并摸清停车节奏。', en: 'Reach downtown Alvarado St before 17:00 for historic race cars and the opening ceremony—a zero-cost way to feel Car Week energy and test parking.' },
       cost: { zh: '$0', en: '$0' },
-      route: {
-        mode: 'single',
-        stops: [{ place: 'alvarado', label: { zh: 'Kickoff 开幕', en: 'Kickoff' } }]
-      },
-      schedule: [
+      route: routeFor('qp-0807'),
+      schedule: scheduleFor('qp-0807', [
         { time: "15:30", title: { zh: "抵达半岛 · 入住或寄存行李", en: "Arrive peninsula · check in or drop bags" }, note: { zh: "周五傍晚车位紧，先安顿再出门。", en: "Friday evening parking tightens—settle in before heading out." }, tone: "transit" },
         { time: "16:15", title: { zh: "转场至 Alvarado St", en: "Transit to Alvarado St" }, note: { zh: "市中心步行区，预留找车位时间。", en: "Downtown pedestrian zone; allow time to park." }, tone: "transit" },
         { time: "17:00–19:00", title: { zh: "Monterey Car Week Kickoff", en: "Monterey Car Week Kickoff" }, note: { zh: "免费开幕式，历史赛车集结。", en: "Free opening night with historic race cars." }, tone: "core" },
         { time: "19:15", title: { zh: "市中心晚餐 · 缓冲", en: "Downtown dinner · buffer" }, note: { zh: "餐饮排队长，不必赶下一场。", en: "Restaurant lines grow; no rush to another stop." }, tone: "optional" },
-      ],
+      ]),
     },
     {
       id: 'qp-0808',
@@ -254,19 +410,13 @@ window.PEBBLE_DATA = {
       title: { zh: 'Asilomar Day 或 Pre-Reunion', en: 'Asilomar Day or Pre-Reunion' },
       body: { zh: '免费选 Asilomar 州立公园庆典（老爷车、摇摆舞）；赛车迷则买 Pre-Reunion 单日票，含 Corkscrew Hillclimb。', en: 'Free Asilomar state-parks birthday with vintage rides and swing dance—or buy a Pre-Reunion single-day pass including Corkscrew Hillclimb for race fans.' },
       cost: { zh: '$0 / ~$82.62', en: '$0 / ~$82.62' },
-      route: {
-        mode: 'choice',
-        stops: [
-          { place: 'asilomar', label: { zh: 'Asilomar Day', en: 'Asilomar Day' } },
-          { place: 'laguna', label: { zh: 'Pre-Reunion', en: 'Pre-Reunion' } }
-        ]
-      },
-      schedule: [
+      route: routeFor('qp-0808'),
+      schedule: scheduleFor('qp-0808', [
         { time: "06:30", title: { zh: "早起出发 · 赛道分支", en: "Early departure · track branch" }, note: { zh: "选 Pre-Reunion 时建议 7 点前到 Laguna Seca。", en: "If choosing Pre-Reunion, aim for Laguna Seca before 7:00." }, tone: "transit" },
         { time: "07:00–20:00", title: { zh: "或 Pre-Reunion + Corkscrew Hillclimb", en: "or Pre-Reunion + Corkscrew Hillclimb" }, note: { zh: "官方赛程延续至晚间；与公园日完全冲突。", en: "The official program runs into the evening and fully conflicts with park day." }, tone: "alt" },
         { time: "09:30", title: { zh: "转场至 Asilomar", en: "Transit to Asilomar" }, note: { zh: "Pacific Grove 周末车位先到先得。", en: "Pacific Grove weekend parking is first come." }, tone: "transit" },
         { time: "10:00–16:00", title: { zh: "或 Asilomar Day", en: "or Asilomar Day" }, note: { zh: "免费州立公园生日庆典。", en: "Free state-parks birthday celebration." }, tone: "alt" },
-      ],
+      ]),
     },
     {
       id: 'qp-0809',
@@ -274,16 +424,13 @@ window.PEBBLE_DATA = {
       title: { zh: 'Pre-Reunion 次日，或轻量休整', en: 'Pre-Reunion day 2, or rest light' },
       body: { zh: '若周六买了 2 日票或想补赛道，周日继续 Laguna Seca；否则休息、补票与核对周一 ACE / 街展计划。', en: 'Continue at Laguna Seca with a two-day pass or a Sunday catch-up; otherwise rest, buy tickets and lock Monday ACE / street-show plans.' },
       cost: { zh: '~$82.62 / $0', en: '~$82.62 / $0' },
-      route: {
-        mode: 'single',
-        stops: [{ place: 'laguna', label: { zh: 'Pre-Reunion 周日', en: 'Pre-Reunion Sunday' } }]
-      },
-      schedule: [
+      route: routeFor('qp-0809'),
+      schedule: scheduleFor('qp-0809', [
         { time: "07:00", title: { zh: "转场至 Laguna Seca", en: "Transit to Laguna Seca" }, note: { zh: "大型活动走 South Boundary Road。", en: "Major events use South Boundary Road." }, tone: "transit" },
         { time: "07:00–18:15", title: { zh: "或 Pre-Reunion 次日", en: "or Pre-Reunion day 2" }, note: { zh: "官方赛程至 18:15；周六已买两日票则自然接续。", en: "The official program runs to 18:15; a natural follow-up with a two-day pass." }, tone: "alt" },
         { time: "10:00", title: { zh: "或 休整 · 补票与周一计划", en: "or Rest · tickets and Monday plans" }, note: { zh: "核对 ACE 与街展时段，线上购票。", en: "Lock ACE and street-show windows; buy tickets online." }, tone: "alt" },
         { time: "14:00", title: { zh: "轻量补给 · 缓冲", en: "Light resupply · buffer" }, note: { zh: "周日傍晚交通相对宽松。", en: "Sunday evening traffic is usually lighter." }, tone: "optional" },
-      ],
+      ]),
     },
     {
       id: 'qp-0810',
@@ -291,20 +438,14 @@ window.PEBBLE_DATA = {
       title: { zh: 'ACE 藏品展 → 英系 / EV / 保时捷', en: 'ACE automobilia → British / EV / Porsche' },
       body: { zh: '上午 Embassy Suites 的 Automobilia Collectors Expo（车周最完整藏品展）；下午按兴趣选 Monterey British、Electric Coast 或 Porsche Seaside。', en: 'Morning Automobilia Collectors Expo at Embassy Suites—the week’s best memorabilia hall; afternoon pick Monterey British, Electric Coast or Porsche Seaside.' },
       cost: { zh: 'ACE 单日 $30 · 街展 $0', en: 'ACE 1-day $30 · street shows $0' },
-      route: {
-        mode: 'sequence',
-        stops: [
-          { place: 'embassy', label: { zh: 'ACE 藏品展', en: 'ACE Expo' } },
-          { place: 'asilomar', label: { zh: 'Electric Coast', en: 'Electric Coast' } }
-        ]
-      },
-      schedule: [
+      route: routeFor('qp-0810'),
+      schedule: scheduleFor('qp-0810', [
         { time: "09:30", title: { zh: "转场至 Embassy Suites", en: "Transit to Embassy Suites" }, note: { zh: "Seaside 方向，ACE 10:00 开门。", en: "Head to Seaside; ACE opens at 10:00." }, tone: "transit" },
         { time: "10:00–12:30", title: { zh: "ACE Automobilia Collectors Expo", en: "ACE Automobilia Collectors Expo" }, note: { zh: "车周最完整藏品展，上午优先。", en: "The week's best automobilia hall—prioritize the morning." }, tone: "core" },
         { time: "12:45", title: { zh: "半岛转场 · 下午街展", en: "Peninsula hop · afternoon street shows" }, note: { zh: "预留 20–35 分钟车程。", en: "Allow 20–35 minutes driving time." }, tone: "transit" },
         { time: "13:00–16:00", title: { zh: "或 British / Electric Coast / Porsche Seaside", en: "or British / Electric Coast / Porsche Seaside" }, note: { zh: "三选一：英系 11–14、EV 12–16、保时捷 15–19。", en: "Pick one: British 11–14, EV 12–16, or Porsche 15–19." }, tone: "alt" },
         { time: "16:15", title: { zh: "返程缓冲", en: "Return buffer" }, note: { zh: "周一傍晚仍建议早回住宿。", en: "Monday evening—head back to lodging early." }, tone: "transit" },
-      ],
+      ]),
     },
     {
       id: 'qp-0811',
@@ -312,20 +453,14 @@ window.PEBBLE_DATA = {
       title: { zh: 'Concours for a Cause · 可选 Night Rider', en: 'Concours for a Cause · optional Night Rider' },
       body: { zh: 'Carmel Ocean Ave 免费慈善街展；傍晚可加 Asilomar Night Rider（低底盘文化夜场）。藏品迷可改去 ACE 拍卖日。', en: 'Free charity show on Carmel’s Ocean Ave; optionally add Asilomar Night Rider (lowrider evening). Collectors can pivot to ACE auction day instead.' },
       cost: { zh: '$0 / Night Rider $65', en: '$0 / Night Rider $65' },
-      route: {
-        mode: 'sequence',
-        stops: [
-          { place: 'carmel', label: { zh: 'Concours for a Cause', en: 'Concours for a Cause' } },
-          { place: 'asilomar', label: { zh: 'Night Rider', en: 'Night Rider' } }
-        ]
-      },
-      schedule: [
+      route: routeFor('qp-0811'),
+      schedule: scheduleFor('qp-0811', [
         { time: "09:30", title: { zh: "转场至 Carmel Ocean Ave", en: "Transit to Carmel Ocean Ave" }, note: { zh: "慈善街展步行区，车位紧张。", en: "Charity show in a walkable zone; parking is tight." }, tone: "transit" },
         { time: "10:00–16:00", title: { zh: "Concours for a Cause", en: "Concours for a Cause" }, note: { zh: "免费慈善街展，早场性价比最高。", en: "Free charity street show—best early value." }, tone: "core" },
         { time: "16:15", title: { zh: "转场 · 傍晚二选一", en: "Transit · evening fork" }, note: { zh: "藏品迷可改去 Seaside ACE。", en: "Collectors can pivot to ACE in Seaside." }, tone: "transit" },
         { time: "16:00–20:00", title: { zh: "或 ACE Automobilia Live Auction", en: "or ACE Automobilia Live Auction" }, note: { zh: "替代夜场，适合藏品爱好者。", en: "Evening alternative for automobilia fans." }, tone: "alt" },
         { time: "18:00–21:00", title: { zh: "可选 Night Rider", en: "Optional Night Rider" }, note: { zh: "Asilomar 地下车库低底盘文化夜场。", en: "Lowrider culture evening in Asilomar's underground garage." }, tone: "optional" },
-      ],
+      ]),
     },
     {
       id: 'qp-0812',
@@ -333,22 +468,15 @@ window.PEBBLE_DATA = {
       title: { zh: 'Little Car + Astons · 晚场三选一', en: 'Little Car + Astons · pick one evening' },
       body: { zh: '白天免费串 Pacific Grove 微型车展与 Carmel Astons；傍晚在 Asilomar Luau（$70）与 Jet Center Motorlux（$845）之间只选一个，或看 Motoring Classic 抵达。', en: 'Free daytime link: Pacific Grove Little Car Show and Carmel Astons; evenings pick only one of Asilomar Luau ($70) or Jet Center Motorlux ($845), or watch Motoring Classic arrivals.' },
       cost: { zh: '$0 · 晚场另计', en: '$0 · evening optional' },
-      route: {
-        mode: 'sequence',
-        stops: [
-          { place: 'lighthouse', label: { zh: 'Little Car Show', en: 'Little Car Show' } },
-          { place: 'carmel', label: { zh: 'Astons on the Avenue', en: 'Astons on the Avenue' } },
-          { place: 'pebble', label: { zh: 'Motoring Classic', en: 'Motoring Classic' } }
-        ]
-      },
-      schedule: [
+      route: routeFor('qp-0812'),
+      schedule: scheduleFor('qp-0812', [
         { time: "10:45", title: { zh: "转场至 Carmel", en: "Transit to Carmel" }, note: { zh: "Astons 11:00 开门，先占 Ocean Ave。", en: "Astons opens 11:00—secure Ocean Ave first." }, tone: "transit" },
         { time: "11:00–13:30", title: { zh: "Astons on the Avenue", en: "Astons on the Avenue" }, note: { zh: "Carmel 免费阿斯顿·马丁街展。", en: "Free Aston Martin street show on Carmel's Ocean Ave." }, tone: "core" },
         { time: "13:45", title: { zh: "转场至 Pacific Grove", en: "Transit to Pacific Grove" }, note: { zh: "Lighthouse Ave 约 15–25 分钟。", en: "About 15–25 minutes to Lighthouse Ave." }, tone: "transit" },
         { time: "14:00–16:15", title: { zh: "The Little Car Show · 建议停留", en: "The Little Car Show · suggested stay" }, note: { zh: "官方活动窗口至 17:00；观众免费，若选晚场请提前离开。", en: "The official event runs until 17:00; spectators are free, but leave early if choosing an evening branch." }, tone: "core" },
         { time: "16:30", title: { zh: "转场 · 晚场只选一个", en: "Transit · pick only one evening" }, note: { zh: "Luau / Motorlux / Motoring Classic 互斥。", en: "Luau, Motorlux and Motoring Classic conflict." }, tone: "transit" },
         { time: "17:00–22:00", title: { zh: "或 Luau / Motorlux / Motoring Classic 抵达", en: "or Luau / Motorlux / Motoring Classic arrivals" }, note: { zh: "Luau $70 · Motorlux $845 · 抵达观赏免费。", en: "Luau $70 · Motorlux $845 · arrivals viewing free." }, tone: "alt" },
-      ],
+      ]),
     },
     {
       id: 'qp-0813',
@@ -356,22 +484,15 @@ window.PEBBLE_DATA = {
       title: { zh: 'Tour 发车 → 免费展区', en: 'Tour departure → free displays' },
       body: { zh: '7 点前到 Portola Road；9:30 发车后，下午在 Village，再按品牌偏好选 Carmel Ferrari、Legends 或 Asilomar Woodies。', en: 'Reach Portola Road before 7; after the 9:30 departure, use Village, then choose Ferrari Carmel, Legends or Asilomar Woodies by marque.' },
       cost: { zh: '免费项目为主 · 停车另算', en: 'Mostly free · parking varies' },
-      route: {
-        mode: 'sequence',
-        stops: [
-          { place: 'portola', label: { zh: 'Tour d’Elegance', en: 'Tour d’Elegance' } },
-          { place: 'village', label: { zh: 'Concours Village', en: 'Concours Village' } },
-          { place: 'carmel', label: { zh: 'Ferrari Carmel', en: 'Ferrari Carmel' } }
-        ]
-      },
-      schedule: [
+      route: routeFor('qp-0813'),
+      schedule: scheduleFor('qp-0813', [
         { time: "06:15", title: { zh: "转场至 Portola Road", en: "Transit to Portola Road" }, note: { zh: "7 点前到起点看车辆集结。", en: "Reach the start before 7:00 to see cars stage." }, tone: "transit" },
         { time: "07:00–09:30", title: { zh: "Tour d’Elegance 集结 · 09:30 发车", en: "Tour d’Elegance staging · 9:30 departure" }, note: { zh: "听引擎驶上 17-Mile Drive 与 Highway 1。", en: "Watch entrants depart onto 17-Mile Drive and Highway 1." }, tone: "core" },
         { time: "09:45", title: { zh: "转场至 Concours Village", en: "Transit to Concours Village" }, note: { zh: "发车后前往免费品牌展区。", en: "Head to free manufacturer displays after departure." }, tone: "transit" },
         { time: "10:00–14:00", title: { zh: "Concours Village + RetroAuto", en: "Concours Village + RetroAuto" }, note: { zh: "免费品牌展与市集，试驾先到先得。", en: "Free displays and marketplace; drives are first come." }, tone: "core" },
         { time: "14:15", title: { zh: "转场 · 下午品牌选一", en: "Transit · afternoon marque pick" }, note: { zh: "按品牌偏好只选一个下午主场。", en: "Choose one afternoon anchor by marque interest." }, tone: "transit" },
         { time: "14:30–17:00", title: { zh: "或 Ferrari Carmel / Legends / Woodies", en: "or Ferrari Carmel / Legends / Woodies" }, note: { zh: "法拉利街展、德系聚会或木旅行车。", en: "Ferrari street show, German marques, or woodies." }, tone: "alt" },
-      ],
+      ]),
     },
     {
       id: 'qp-0814',
@@ -379,21 +500,15 @@ window.PEBBLE_DATA = {
       title: { zh: 'Werks 或 Laguna Seca · 可选 Paddock', en: 'Werks or Laguna Seca · optional Paddock' },
       body: { zh: '保时捷聚会是最佳免费主场；更想听引擎就买周五 Reunion。下午若还有精力，Seaside 的 The Paddock 是杂糅车展收尾（与 Quail 冲突）。', en: 'Werks is the free-value anchor; buy Friday Reunion if engines matter more. If energy remains, The Paddock in Seaside is an eclectic late show—conflicts with The Quail.' },
       cost: { zh: '$0 + $40 现金停车 / $139.67', en: '$0 + $40 cash parking / $139.67' },
-      route: {
-        mode: 'choice',
-        stops: [
-          { place: 'werks', label: { zh: 'Werks Reunion', en: 'Werks Reunion' } },
-          { place: 'laguna', label: { zh: 'Reunion 周五', en: 'Reunion Friday' } }
-        ]
-      },
-      schedule: [
+      route: routeFor('qp-0814'),
+      schedule: scheduleFor('qp-0814', [
         { time: "06:45", title: { zh: "转场 · 周五大分流", en: "Transit · Friday fork" }, note: { zh: "Werks 与 Reunion 方向相反，早定路线。", en: "Werks and Reunion point opposite ways—commit early." }, tone: "transit" },
         { time: "07:00", title: { zh: "可选 Werks 车辆签到", en: "Optional Werks car check-in" }, note: { zh: "参展车 7:00 签到，观众可略晚。", en: "Show cars check in at 7:00; spectators can arrive later." }, tone: "optional" },
         { time: "08:00–18:35", title: { zh: "或 Reunion 周五全天", en: "or Reunion full Friday" }, note: { zh: "正赛至约 17:25，含 paddock 与展示。", en: "Racing to ~17:25 with paddock and exhibitions." }, tone: "alt" },
         { time: "09:00–15:00", title: { zh: "或 Werks Reunion（+$40 现金停车）", en: "or Werks Reunion (+$40 cash parking)" }, note: { zh: "最佳免费主场。", en: "Best free-value Friday anchor." }, tone: "alt" },
         { time: "15:15", title: { zh: "转场至 Seaside", en: "Transit to Seaside" }, note: { zh: "与 The Quail 冲突，勿叠加。", en: "Conflicts with The Quail—do not stack both." }, tone: "transit" },
         { time: "15:00–20:00", title: { zh: "可选 The Paddock Monterey", en: "Optional The Paddock Monterey" }, note: { zh: "杂糅车展收尾，需有余力再选。", en: "Eclectic show finale—only if energy remains." }, tone: "optional" },
-      ],
+      ]),
     },
     {
       id: 'qp-0815',
@@ -401,21 +516,15 @@ window.PEBBLE_DATA = {
       title: { zh: 'Lemons → Exotics，或赛道', en: 'Lemons → Exotics, or track' },
       body: { zh: '预算路线两站都免费；赛车迷则不要中途离开 Laguna Seca。', en: 'The two-stop street-show route is free; committed race fans should stay at Laguna Seca instead.' },
       cost: { zh: '$0 / $181.07', en: '$0 / $181.07' },
-      route: {
-        mode: 'sequence',
-        stops: [
-          { place: 'lemons', label: { zh: 'Concours d’Lemons', en: 'Concours d’Lemons' } },
-          { place: 'exotics', label: { zh: 'Exotics on Broadway', en: 'Exotics on Broadway' } }
-        ]
-      },
-      schedule: [
+      route: routeFor('qp-0815'),
+      schedule: scheduleFor('qp-0815', [
         { time: "07:00–09:30", title: { zh: "可选 Peninsula Cars & Coffee", en: "Optional Peninsula Cars & Coffee" }, note: { zh: "Seaside 清晨车友聚会，时段可能漂移。", en: "Informal Seaside morning meet; hours may shift." }, tone: "optional" },
         { time: "07:30", title: { zh: "转场 · 周六路线分流", en: "Transit · Saturday route fork" }, note: { zh: "街展路线与赛道不可兼得。", en: "Street-show route and track day are mutually exclusive." }, tone: "transit" },
         { time: "08:00–13:30", title: { zh: "Concours d’Lemons", en: "Concours d’Lemons" }, note: { zh: "免费幽默车展，最亲民周六早晨。", en: "Free comic car show—most accessible Saturday morning." }, tone: "core" },
         { time: "11:00–16:00", title: { zh: "Exotics on Broadway", en: "Exotics on Broadway" }, note: { zh: "接 Lemons 后转 Broadway，免费区无需买票。", en: "Follow Lemons onto Broadway; free zone needs no ticket." }, tone: "core" },
         { time: "08:00–18:30", title: { zh: "或 Reunion 周六全天", en: "or Reunion full Saturday" }, note: { zh: "07:00 入场；赛车迷主日，勿中途离开赛道。", en: "Gates open 07:00; race fans should stay at the track for the full day." }, tone: "alt" },
         { time: "13:45", title: { zh: "街展路线 · Seaside 接驳缓冲", en: "Street route · Seaside shuttle buffer" }, note: { zh: "远端停车 + 接驳 9:00–17:00。", en: "Remote parking plus shuttle 9:00–17:00." }, tone: "transit" },
-      ],
+      ]),
     },
     {
       id: 'qp-0816',
@@ -423,17 +532,14 @@ window.PEBBLE_DATA = {
       title: { zh: 'Concours 主展，或免费 Village', en: 'Concours, or free Village' },
       body: { zh: '想看评审与 Dawn Patrol 就为主展买单；预算优先仍可逛 Village 与 RetroAuto。', en: 'Pay for judging and Dawn Patrol; value-first visitors can still use Village and RetroAuto.' },
       cost: { zh: '$650 / $0', en: '$650 / $0' },
-      route: {
-        mode: 'single',
-        stops: [{ place: 'pebble', label: { zh: 'Concours / Village', en: 'Concours / Village' } }]
-      },
-      schedule: [
+      route: routeFor('qp-0816'),
+      schedule: scheduleFor('qp-0816', [
         { time: "05:00", title: { zh: "转场至 Pebble Beach", en: "Transit to Pebble Beach" }, note: { zh: "周日清晨交通管制，预留充足时间。", en: "Sunday morning traffic controls—allow extra time." }, tone: "transit" },
         { time: "05:30", title: { zh: "或 Dawn Patrol", en: "or Dawn Patrol" }, note: { zh: "主展开门即入场，看黎明车队。", en: "Enter at gates opening for dawn arrivals." }, tone: "alt" },
         { time: "08:00–13:30", title: { zh: "或 Concours 评审", en: "or Concours judging" }, note: { zh: "8:00 评审开始，13:30 起颁奖。", en: "Judging from 8:00; awards from 13:30." }, tone: "alt" },
         { time: "08:00–18:00", title: { zh: "或 Concours Village 免费", en: "or Concours Village free" }, note: { zh: "不含 Golf Links 主展场与颁奖。", en: "Does not include Golf Links show field or awards." }, tone: "alt" },
         { time: "13:00–16:00", title: { zh: "可选 Car Week Cruise-In", en: "Optional Car Week Cruise-In" }, note: { zh: "展车位 $30–$100；步行观众或免费，勿当作纯免费场。", en: "Show-car spots $30–$100; walk-up spectators may be free—not a blanket free event." }, tone: "optional" },
-      ],
+      ]),
     },
     {
       id: 'qp-0817',
@@ -441,16 +547,13 @@ window.PEBBLE_DATA = {
       title: { zh: 'Stanton Center → 返程', en: 'Stanton Center → depart' },
       body: { zh: '户外大活动已经结束；先退房并寄存行李，中午看历史展，再返程。', en: 'The marquee outdoor events are over; check out and store bags first, see the history exhibit at noon, then depart.' },
       cost: { zh: '$15 成人 · 18 岁以下免费', en: '$15 adult · under 18 free' },
-      route: {
-        mode: 'single',
-        stops: [{ place: 'stanton', label: { zh: 'Stanton Center', en: 'Stanton Center' } }]
-      },
-      schedule: [
+      route: routeFor('qp-0817'),
+      schedule: scheduleFor('qp-0817', [
         { time: "09:30", title: { zh: "退房 · 行李寄存", en: "Checkout · bag storage" }, note: { zh: "户外主活动已结束，节奏放慢。", en: "Marquee outdoor events are over—keep the pace light." }, tone: "core" },
         { time: "10:30", title: { zh: "转场至 Custom House Plaza", en: "Transit to Custom House Plaza" }, note: { zh: "Monterey 市中心 Stanton Center。", en: "Stanton Center in downtown Monterey." }, tone: "transit" },
         { time: "12:00–16:00", title: { zh: "Stanton Center 历史展", en: "Stanton Center history exhibit" }, note: { zh: "最后一天，15:00 最后入场。", en: "Final day; last entry at 15:00." }, tone: "core" },
         { time: "16:15", title: { zh: "取行李 · 返程", en: "Collect bags · depart" }, note: { zh: "周一午后返程交通通常顺畅。", en: "Monday afternoon departures are usually smooth." }, tone: "transit" },
-      ],
+      ]),
     }
   ],
 
@@ -1498,7 +1601,7 @@ window.PEBBLE_DATA = {
     { id: 'laguna', name: { zh: 'Laguna Seca 赛道', en: 'Laguna Seca' } }
   ],
 
-  /* Nominatim-verified coordinates for quick-plan day maps (2026-08-06). */
+  /* Quick-plan coordinates; each route stop declares venue/area precision (reviewed 2026-08-10). */
   mapPlaces: {
     alvarado: { lat: 36.59931, lng: -121.89455, name: { zh: '阿尔瓦拉多街 · 蒙特雷', en: 'Alvarado St · Monterey' } },
     asilomar: { lat: 36.61923, lng: -121.93739, name: { zh: 'Asilomar 会议中心', en: 'Asilomar Conference Grounds' } },
@@ -1515,7 +1618,10 @@ window.PEBBLE_DATA = {
     pgolf: { lat: 36.63084, lng: -121.92860, name: { zh: 'Pacific Grove Golf Links', en: 'Pacific Grove Golf Links' } },
     embassy: { lat: 36.60670, lng: -121.85560, name: { zh: 'Embassy Suites · Seaside / ACE', en: 'Embassy Suites · Seaside / ACE' } },
     jetcenter: { lat: 36.58934, lng: -121.85961, name: { zh: 'Monterey Jet Center', en: 'Monterey Jet Center' } },
-    bayonet: { lat: 36.62759, lng: -121.82266, name: { zh: 'Bayonet Black Horse · Seaside', en: 'Bayonet Black Horse · Seaside' } }
+    bayonet: { lat: 36.62759, lng: -121.82266, name: { zh: 'Bayonet Black Horse · Seaside', en: 'Bayonet Black Horse · Seaside' } },
+    'carmel-valley-history': { lat: 36.48210, lng: -121.73190, name: { zh: 'Carmel Valley 历史区', en: 'Carmel Valley history area' } },
+    'porsche-seaside': { lat: 36.60740, lng: -121.85350, name: { zh: 'Porsche Monterey · Seaside 区域', en: 'Porsche Monterey · Seaside area' } },
+    'touring-vehicles': { lat: 36.61100, lng: -121.85600, name: { zh: 'Monterey Touring Vehicles 区域', en: 'Monterey Touring Vehicles area' } }
   },
 
   /* Real-world anchors for the Leaflet hero map (Nominatim, 2026-08-06). */
@@ -1612,11 +1718,11 @@ window.PEBBLE_DATA = {
     { label: { zh: 'See Monterey · Car Week 逐日活动', en: 'See Monterey · Car Week by day' }, url: 'https://www.seemonterey.com/monterey-car-week-events-by-day/' },
     { label: { zh: 'Automobilia Collectors Expo (ACE)', en: 'Automobilia Collectors Expo (ACE)' }, url: 'https://automobiliacollectorsexpo.com/' },
     { label: { zh: 'Motorlux · Monterey Jet Center', en: 'Motorlux · Monterey Jet Center' }, url: 'https://motorlux.com/tickets/' },
-    { label: { zh: 'Broad Arrow · The Quail Auction', en: 'Broad Arrow · The Quail Auction' }, url: 'https://www.broadarrowauctions.com/events/event/The%20Quail%20Auction%202026' },
+    { label: { zh: 'Broad Arrow · The Quail Auction', en: 'Broad Arrow · The Quail Auction' }, url: 'https://bid.broadarrowauctions.com/auctions/1-CQGJK8/the-quail-auction-2026' },
     { label: { zh: 'The Paddock Monterey · TicketSpice', en: 'The Paddock Monterey · TicketSpice' }, url: 'https://concorso.ticketspice.com/international-car-week' },
     { label: { zh: 'Central Coast Poker Rally', en: 'Central Coast Poker Rally' }, url: 'https://centralcoastpokerrally.com/itinerary/' },
     { label: { zh: 'Ferrari Event at The Barnyard', en: 'Ferrari Event at The Barnyard' }, url: 'https://www.bigsurfoodandwine.org/popup-events/28th-annual-ferrari-event-at-the-barnyard' },
-    { label: { zh: 'The Little Car Show', en: 'The Little Car Show' }, url: 'https://www.thelittlecarshow.com/' },
+    { label: { zh: 'The Little Car Show', en: 'The Little Car Show' }, url: 'https://www.thelittlecarshow.com/the-little-car-show-schedule/' },
     { label: { zh: 'Asilomar · Car Week 活动', en: 'Asilomar · Car Week events' }, url: 'https://www.visitasilomar.com/things-to-do/car-week' },
     { label: { zh: 'Pre-Reunion · 官方活动页', en: 'Pre-Reunion · official event page' }, url: 'https://weathertechraceway.com/pages/monterey-pre-reunion-and-corkscrew-hillclimb' },
     { label: { zh: 'Asilomar · Woodies in the Woods', en: 'Asilomar · Woodies in the Woods' }, url: 'https://www.visitasilomar.com/things-to-do/car-week' },

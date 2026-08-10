@@ -9,6 +9,45 @@ require(path.join(__dirname, '..', 'assets', 'js', 'data.js'));
 const data = global.PEBBLE_DATA;
 const errors = [];
 const allowedCategories = new Set(['essential', 'free', 'paid', 'unpriced']);
+const expectedRouteSignatures = {
+  'qp-0807': 'single::1:alvarado@area::-',
+  'qp-0808': 'choice::-::A:choice:A:asilomar@area|B:choice:B:laguna@venue',
+  'qp-0809': 'choice::-::A:choice:A:laguna@venue|B:choice:-',
+  'qp-0810': 'branching::1:embassy@venue::A:choice:2A:carmel-valley-history@area|B:choice:2B:asilomar@area|C:choice:2C:porsche-seaside@area',
+  'qp-0811': 'branching::1:carmel@area::A:choice:2A:embassy?@venue|B:choice:2B:asilomar?@area',
+  'qp-0812': 'branching::1:carmel@area>2:lighthouse@area::A:choice:3A:asilomar?@area|B:choice:3B:jetcenter?@venue|C:choice:3C:pebble?@area',
+  'qp-0813': 'branching::1:portola@area>2:village@area::A:choice:3A:carmel@area|B:choice:3B:pgolf@venue|C:choice:3C:asilomar@area',
+  'qp-0814': 'choice::-::A:choice:A1:werks@venue>A2:bayonet?@venue|B:choice:B1:laguna@venue',
+  'qp-0815': 'choice::-::A:choice:A0:embassy?@area>A1:lemons@venue>A2:exotics@area|B:choice:B1:laguna@venue',
+  'qp-0816': 'choice::-::A:choice:A:pebble@venue|B:choice:B:village@area|C:addOn:C:touring-vehicles?@area',
+  'qp-0817': 'single::1:stanton@venue::-'
+};
+const expectedTimelineSignatures = {
+  'qp-0807': '-/1/1/1',
+  'qp-0808': 'B/B/A/A',
+  'qp-0809': 'A/A/B/B',
+  'qp-0810': '1/1/2A+2B+2C/2A+2B+2C/-',
+  'qp-0811': '1/1/2A+2B/2A/2B',
+  'qp-0812': '1/1/2/2/3A+3B+3C/3A+3B+3C',
+  'qp-0813': '1/1/2/2/3A+3B+3C/3A+3B+3C',
+  'qp-0814': 'A1+B1/A1/B1/A1/A2/A2',
+  'qp-0815': 'A0/A1+B1/A1/A2/B1/A2',
+  'qp-0816': 'A+B/A/A/B/C',
+  'qp-0817': '-/1/1/-'
+};
+
+function routeSignature(route) {
+  const stopSignature = (stop) => `${stop.marker}:${stop.place}${stop.optional ? '?' : ''}@${stop.precision}`;
+  const root = (route.stops || []).map(stopSignature).join('>') || '-';
+  const branches = (route.branches || []).map((branch) => (
+    `${branch.id}:${branch.kind}:${(branch.stops || []).map(stopSignature).join('>') || '-'}`
+  )).join('|') || '-';
+  return `${route.mode}::${root}::${branches}`;
+}
+
+function timelineSignature(schedule) {
+  return schedule.map((slot) => slot.routeMarkers.join('+') || '-').join('/');
+}
 
 function check(condition, message) {
   if (!condition) errors.push(message);
@@ -39,20 +78,68 @@ if (data) {
   }
   check(dayIds.size === 11, `expected 11 planning days, found ${dayIds.size}`);
 
+  const routeModeCounts = { single: 0, choice: 0, branching: 0 };
   for (const [index, item] of (data.quickPlan || []).entries()) {
     for (const key of ['date', 'day', 'title', 'body', 'cost']) checkBilingual(item[key], `quickPlan[${index}].${key}`);
     check(typeof item.id === 'string' && /^qp-[a-z0-9-]+$/.test(item.id), `quickPlan[${index}].id is invalid`);
     check(item.route && typeof item.route === 'object', `quickPlan[${index}].route is required`);
     const mode = item.route && item.route.mode;
-    check(['single', 'sequence', 'choice'].includes(mode), `quickPlan[${index}].route.mode is invalid`);
-    check(Array.isArray(item.route.stops) && item.route.stops.length >= 1, `quickPlan[${index}].route.stops must have at least one stop`);
-    if (mode === 'choice') check(item.route.stops.length >= 2, `quickPlan[${index}] choice route needs at least 2 stops`);
-    for (const [stopIndex, stop] of (item.route.stops || []).entries()) {
-      const stopLabel = `quickPlan[${index}].route.stops[${stopIndex}]`;
+    check(['single', 'choice', 'branching'].includes(mode), `quickPlan[${index}].route.mode is invalid`);
+    if (routeModeCounts[mode] != null) routeModeCounts[mode] += 1;
+    check(Array.isArray(item.route.stops), `quickPlan[${index}].route.stops must be an array`);
+    check(Array.isArray(item.route.branches), `quickPlan[${index}].route.branches must be an array`);
+
+    const rootStops = item.route.stops || [];
+    const branches = item.route.branches || [];
+    if (mode === 'single') {
+      check(rootStops.length === 1, `quickPlan[${index}] single route needs exactly one root stop`);
+      check(branches.length === 0, `quickPlan[${index}] single route cannot have branches`);
+    } else if (mode === 'choice') {
+      check(rootStops.length === 0, `quickPlan[${index}] choice route cannot have shared root stops`);
+      check(branches.filter((branch) => branch.kind === 'choice').length >= 2, `quickPlan[${index}] choice route needs at least two exclusive branches`);
+    } else if (mode === 'branching') {
+      check(rootStops.length >= 1, `quickPlan[${index}] branching route needs shared root stops`);
+      check(branches.filter((branch) => branch.kind === 'choice').length >= 2, `quickPlan[${index}] branching route needs at least two exclusive branches`);
+    }
+
+    const markerIds = new Set();
+    const referenceIds = new Set();
+    const validateStop = (stop, stopLabel) => {
+      check(typeof stop.marker === 'string' && /^[A-Z0-9]+$/.test(stop.marker), `${stopLabel}.marker is invalid`);
+      check(!markerIds.has(stop.marker), `${stopLabel}.marker is duplicated: ${stop.marker}`);
+      markerIds.add(stop.marker);
+      referenceIds.add(stop.marker);
       check(typeof stop.place === 'string' && stop.place.trim(), `${stopLabel}.place is required`);
       check(data.mapPlaces && data.mapPlaces[stop.place], `${stopLabel}.place "${stop.place}" is not in mapPlaces`);
       checkBilingual(stop.label, `${stopLabel}.label`);
+      check(typeof stop.optional === 'boolean', `${stopLabel}.optional must be boolean`);
+      check(['venue', 'area'].includes(stop.precision), `${stopLabel}.precision is invalid`);
+    };
+    rootStops.forEach((stop, stopIndex) => validateStop(stop, `quickPlan[${index}].route.stops[${stopIndex}]`));
+
+    const branchIds = new Set();
+    for (const [branchIndex, branch] of branches.entries()) {
+      const branchLabel = `quickPlan[${index}].route.branches[${branchIndex}]`;
+      check(typeof branch.id === 'string' && /^[A-Z0-9]+$/.test(branch.id), `${branchLabel}.id is invalid`);
+      check(!branchIds.has(branch.id), `${branchLabel}.id is duplicated: ${branch.id}`);
+      branchIds.add(branch.id);
+      checkBilingual(branch.label, `${branchLabel}.label`);
+      check(['choice', 'addOn'].includes(branch.kind), `${branchLabel}.kind is invalid`);
+      check(Array.isArray(branch.stops), `${branchLabel}.stops must be an array`);
+      if (branch.kind === 'addOn') {
+        check(branch.stops.length >= 1, `${branchLabel} add-on needs at least one stop`);
+        check(branch.stops.every((stop) => stop.optional === true), `${branchLabel} add-on stops must be optional`);
+      }
+      if (!branch.stops.length) referenceIds.add(branch.id);
+      branch.stops.forEach((stop, stopIndex) => validateStop(stop, `${branchLabel}.stops[${stopIndex}]`));
     }
+
+    if (expectedRouteSignatures[item.id]) {
+      check(routeSignature(item.route) === expectedRouteSignatures[item.id], `${item.id} route graph drifted: ${routeSignature(item.route)}`);
+    } else {
+      check(false, `missing golden route signature for ${item.id}`);
+    }
+
     const schedule = item.schedule;
     check(Array.isArray(schedule) && schedule.length >= 3, `quickPlan[${index}].schedule needs at least 3 slots`);
     if (Array.isArray(schedule)) {
@@ -64,6 +151,17 @@ if (data) {
         checkBilingual(slot.title, `${slotLabel}.title`);
         if (slot.note) checkBilingual(slot.note, `${slotLabel}.note`);
         check(allowedTones.has(slot.tone), `${slotLabel}.tone is invalid`);
+        check(Array.isArray(slot.routeMarkers), `${slotLabel}.routeMarkers must be an array`);
+        const uniqueSlotMarkers = new Set(slot.routeMarkers || []);
+        check(uniqueSlotMarkers.size === (slot.routeMarkers || []).length, `${slotLabel}.routeMarkers contains duplicates`);
+        for (const marker of slot.routeMarkers || []) {
+          check(referenceIds.has(marker), `${slotLabel}.routeMarkers has unknown marker: ${marker}`);
+        }
+      }
+      if (schedule.every((slot) => Array.isArray(slot.routeMarkers)) && expectedTimelineSignatures[item.id]) {
+        check(timelineSignature(schedule) === expectedTimelineSignatures[item.id], `${item.id} timeline markers drifted: ${timelineSignature(schedule)}`);
+      } else if (!expectedTimelineSignatures[item.id]) {
+        check(false, `missing golden timeline signature for ${item.id}`);
       }
     }
   }
@@ -72,7 +170,11 @@ if (data) {
     check(!quickPlanIds.has(item.id), `duplicate quickPlan id: ${item.id}`);
     quickPlanIds.add(item.id);
   }
-  check((data.quickPlan || []).length >= 7, `quickPlan must contain at least 7 items, found ${(data.quickPlan || []).length}`);
+  check((data.quickPlan || []).length === 11, `quickPlan must contain exactly 11 items, found ${(data.quickPlan || []).length}`);
+  check(Object.keys(expectedRouteSignatures).every((id) => quickPlanIds.has(id)), 'quickPlan ids do not match golden route fixtures');
+  check(routeModeCounts.single === 2, `expected 2 single routes, found ${routeModeCounts.single}`);
+  check(routeModeCounts.choice === 5, `expected 5 choice routes, found ${routeModeCounts.choice}`);
+  check(routeModeCounts.branching === 4, `expected 4 branching routes, found ${routeModeCounts.branching}`);
 
   const liveAreaIds = new Set();
   for (const [index, area] of (data.liveAreas || []).entries()) {
@@ -132,7 +234,7 @@ if (data) {
       check(thumbIds.has(event.thumbId), `${label}.thumbId "${event.thumbId}" is not in thumbLibrary`);
     }
   }
-  check(eventIds.size >= 20, `expected at least 20 events, found ${eventIds.size}`);
+  check(eventIds.size === 58, `expected exactly 58 events, found ${eventIds.size}`);
 
   for (const [index, stay] of (data.stays || []).entries()) {
     checkBilingual(stay.name, `stays[${index}].name`);
