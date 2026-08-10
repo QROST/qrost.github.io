@@ -2,8 +2,8 @@
 (function () {
   'use strict';
 
-  const DATA_VERSION = '832a38f8eaf365f387ea21975082edf773927189327fcecedc15983c76e7ef51';
-  const MANIFEST_SHA256 = '30a19708303bd44c6b1ec53dbbbc8f7a1b5367aade47320a229a83d76b9c34e9';
+  const DATA_VERSION = 'aba78f2cadedafcecc06df5e6c14b113ddffeb7c765d5b4a3632c3a5b36924c2';
+  const MANIFEST_SHA256 = 'bf37b7ac8bab7cb766e1503f5fc3a4bd1e5216efca86c05a5949b1e624851b90';
   const SCHEMA_ID = 'architecture-lineages';
   const SCHEMA_VERSION = '1.5.0';
   const FILES = {

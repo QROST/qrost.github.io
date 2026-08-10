@@ -4891,7 +4891,7 @@
       "name_zh_status": "source_label_candidate",
       "region": "europe",
       "roles": [
-        "historian"
+        "craftsperson"
       ],
       "summary_en": "Italian artist (1240–1302)",
       "summary_zh": "",
@@ -8174,7 +8174,7 @@
       "name_zh_status": "source_label_candidate",
       "region": "europe",
       "roles": [
-        "historian"
+        "craftsperson"
       ],
       "summary_en": "Italian Renaissance painter from Florence (1448–1494)",
       "summary_zh": "",
@@ -8872,53 +8872,6 @@
       ],
       "summary_en": "17th-century Iranian Shia philosopher and theologian",
       "summary_zh": "",
-      "verification_status": "candidate"
-    },
-    {
-      "aliases_en": [
-        "Pafnuty Lvovich Chebyshev"
-      ],
-      "aliases_zh": [
-        "柴比雪夫",
-        "契比雪夫",
-        "切比雪夫"
-      ],
-      "birth": {
-        "earliest": 1821,
-        "latest": 1821,
-        "precision": "day",
-        "value": "1821-05-04"
-      },
-      "claim_ids": [
-        "claim-wd-q206012-name-en",
-        "claim-wd-q206012-name-zh"
-      ],
-      "confidence": 0.6,
-      "country_codes": [
-        "RU"
-      ],
-      "death": {
-        "earliest": 1894,
-        "latest": 1894,
-        "precision": "day",
-        "value": "1894-11-26"
-      },
-      "entity_type": "person",
-      "external_ids": {
-        "wikidata": "Q206012"
-      },
-      "id": "person-wd-q206012",
-      "last_verified": "2026-08-08",
-      "name_en": "Pafnuty Chebyshev",
-      "name_native": null,
-      "name_zh": "巴夫尼提·列波维奇·切比雪夫",
-      "name_zh_status": "source_label_candidate",
-      "region": "europe",
-      "roles": [
-        "historian"
-      ],
-      "summary_en": "Russian mathematician (1821–1894)",
-      "summary_zh": "俄罗斯数学家（1821—1894）",
       "verification_status": "candidate"
     },
     {
@@ -10469,7 +10422,7 @@
       "name_zh_status": "source_label_candidate",
       "region": "europe",
       "roles": [
-        "historian"
+        "craftsperson"
       ],
       "summary_en": "Italian painter",
       "summary_zh": "意大利画家（128？—1344）",
@@ -16522,7 +16475,7 @@
       "name_zh_status": "source_label_candidate",
       "region": "europe",
       "roles": [
-        "historian"
+        "craftsperson"
       ],
       "summary_en": "Italian painter (c. 1280–1348)",
       "summary_zh": "",
@@ -18147,7 +18100,7 @@
       "name_zh_status": "missing",
       "region": "europe",
       "roles": [
-        "historian"
+        "craftsperson"
       ],
       "summary_en": "Italian painter (1240–1330)",
       "summary_zh": "",
@@ -23750,51 +23703,6 @@
       "verification_status": "candidate"
     },
     {
-      "aliases_en": [],
-      "aliases_zh": [
-        "叔本華",
-        "阿·叔本华",
-        "叔本华"
-      ],
-      "birth": {
-        "earliest": 1788,
-        "latest": 1788,
-        "precision": "day",
-        "value": "1788-02-22"
-      },
-      "claim_ids": [
-        "claim-wd-q38193-name-en",
-        "claim-wd-q38193-name-zh"
-      ],
-      "confidence": 0.6,
-      "country_codes": [
-        "PL"
-      ],
-      "death": {
-        "earliest": 1860,
-        "latest": 1860,
-        "precision": "day",
-        "value": "1860-09-21"
-      },
-      "entity_type": "person",
-      "external_ids": {
-        "wikidata": "Q38193"
-      },
-      "id": "person-wd-q38193",
-      "last_verified": "2026-08-08",
-      "name_en": "Arthur Schopenhauer",
-      "name_native": null,
-      "name_zh": "亚瑟·叔本华",
-      "name_zh_status": "source_label_candidate",
-      "region": "europe",
-      "roles": [
-        "historian"
-      ],
-      "summary_en": "German philosopher (1788-1860)",
-      "summary_zh": "德国哲学家",
-      "verification_status": "candidate"
-    },
-    {
       "aliases_en": [
         "Pedro Pérez"
       ],
@@ -25049,55 +24957,6 @@
       "summary_en": "French architect",
       "summary_zh": "",
       "verification_status": "verified"
-    },
-    {
-      "aliases_en": [
-        "Sir Robert Boyle",
-        "Hon. Robert Boyle",
-        "The Hon. Robert Boyle"
-      ],
-      "aliases_zh": [
-        "波以耳",
-        "波义耳",
-        "玻意耳"
-      ],
-      "birth": {
-        "earliest": 1627,
-        "latest": 1627,
-        "precision": "day",
-        "value": "1627-01-25"
-      },
-      "claim_ids": [
-        "claim-wd-q43393-name-en",
-        "claim-wd-q43393-name-zh"
-      ],
-      "confidence": 0.6,
-      "country_codes": [
-        "GB"
-      ],
-      "death": {
-        "earliest": 1691,
-        "latest": 1691,
-        "precision": "day",
-        "value": "1691-12-31"
-      },
-      "entity_type": "person",
-      "external_ids": {
-        "wikidata": "Q43393"
-      },
-      "id": "person-wd-q43393",
-      "last_verified": "2026-08-08",
-      "name_en": "Robert Boyle",
-      "name_native": null,
-      "name_zh": "罗伯特·波义耳",
-      "name_zh_status": "source_label_candidate",
-      "region": "europe",
-      "roles": [
-        "historian"
-      ],
-      "summary_en": "Anglo-Irish natural philosopher, chemist, physicist, and inventor",
-      "summary_zh": "爱尔兰自然哲学家，炼金术士",
-      "verification_status": "candidate"
     },
     {
       "aliases_en": [
@@ -26407,52 +26266,6 @@
       ],
       "summary_en": "French architect (1886-1971)",
       "summary_zh": "",
-      "verification_status": "candidate"
-    },
-    {
-      "aliases_en": [
-        "Edmund Halley"
-      ],
-      "aliases_zh": [
-        "埃德蒙·哈雷",
-        "爱德蒙·哈雷"
-      ],
-      "birth": {
-        "earliest": 1656,
-        "latest": 1656,
-        "precision": "day",
-        "value": "1656-11-08"
-      },
-      "claim_ids": [
-        "claim-wd-q47434-name-en",
-        "claim-wd-q47434-name-zh"
-      ],
-      "confidence": 0.6,
-      "country_codes": [
-        "GB"
-      ],
-      "death": {
-        "earliest": 1742,
-        "latest": 1742,
-        "precision": "day",
-        "value": "1742-01-14"
-      },
-      "entity_type": "person",
-      "external_ids": {
-        "wikidata": "Q47434"
-      },
-      "id": "person-wd-q47434",
-      "last_verified": "2026-08-08",
-      "name_en": "Edmond Halley",
-      "name_native": null,
-      "name_zh": "愛德蒙·哈雷",
-      "name_zh_status": "source_label_candidate",
-      "region": "europe",
-      "roles": [
-        "historian"
-      ],
-      "summary_en": "English astronomer, mathematician, geophysicist, meteorologist and physicist (1656–1742)",
-      "summary_zh": "英国天文学家，地球物理学家，数学家，气象学家和物理学家",
       "verification_status": "candidate"
     },
     {
@@ -29650,7 +29463,7 @@
       "name_zh_status": "source_label_candidate",
       "region": "europe",
       "roles": [
-        "historian"
+        "craftsperson"
       ],
       "summary_en": "Italian painter (1401-1428)",
       "summary_zh": "",
@@ -29814,7 +29627,7 @@
       "name_zh_status": "source_label_candidate",
       "region": "europe",
       "roles": [
-        "historian"
+        "craftsperson"
       ],
       "summary_en": "Italian Renaissance painter of the Umbrian school (1448-1523)",
       "summary_zh": "",
@@ -32137,58 +31950,6 @@
       ],
       "summary_en": "Indian architect",
       "summary_zh": "",
-      "verification_status": "candidate"
-    },
-    {
-      "aliases_en": [
-        "Kierkegaard",
-        "Victor Eremita",
-        "Climacus",
-        "Anti-Climacus",
-        "Sören Aaby Kierkegaard"
-      ],
-      "aliases_zh": [
-        "克尔凯郭尔",
-        "索倫·奧貝·克爾凱郭爾",
-        "克尔恺郭尔",
-        "索伦·克尔凯郭尔"
-      ],
-      "birth": {
-        "earliest": 1813,
-        "latest": 1813,
-        "precision": "day",
-        "value": "1813-05-05"
-      },
-      "claim_ids": [
-        "claim-wd-q6512-name-en",
-        "claim-wd-q6512-name-zh"
-      ],
-      "confidence": 0.6,
-      "country_codes": [
-        "DK"
-      ],
-      "death": {
-        "earliest": 1855,
-        "latest": 1855,
-        "precision": "day",
-        "value": "1855-11-11"
-      },
-      "entity_type": "person",
-      "external_ids": {
-        "wikidata": "Q6512"
-      },
-      "id": "person-wd-q6512",
-      "last_verified": "2026-08-08",
-      "name_en": "Søren Kierkegaard",
-      "name_native": null,
-      "name_zh": "索伦·克尔凯郭尔",
-      "name_zh_status": "source_label_candidate",
-      "region": "europe",
-      "roles": [
-        "historian"
-      ],
-      "summary_en": "Danish theologian, philosopher, poet and social critic (1813–1855)",
-      "summary_zh": "丹麦神学家、哲学家、诗人（1813—1855）",
       "verification_status": "candidate"
     },
     {

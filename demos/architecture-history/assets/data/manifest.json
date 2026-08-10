@@ -1,7 +1,7 @@
 {
   "catalog_profile": {
     "evidence_by_source_family": {
-      "wikimedia": 12099
+      "wikimedia": 12082
     },
     "periods": {
       "1000_1499": {
@@ -58,7 +58,7 @@
         "works": 161
       },
       "europe": {
-        "entities": 1030,
+        "entities": 1025,
         "verified_entities": 146,
         "works": 345
       },
@@ -99,7 +99,7 @@
       }
     },
     "verification": {
-      "candidate": 2204,
+      "candidate": 2194,
       "verified": 388
     },
     "work_type_mapping": {
@@ -109,14 +109,14 @@
     }
   },
   "counts": {
-    "candidate_entities_and_relations": 2204,
-    "claims": 11654,
+    "candidate_entities_and_relations": 2194,
+    "claims": 11639,
     "contested_entities_and_relations": 0,
     "declined_entities_and_relations": 0,
-    "people": 853,
+    "people": 848,
     "places": 42,
     "practices": 57,
-    "relations": 577,
+    "relations": 572,
     "reviewers": 1,
     "sources": 12,
     "verified_entities_and_relations": 388,
@@ -728,7 +728,6 @@
       }
     },
     "selection_methods": [
-      "bounded_p245_crosswalk_stable_hash",
       "coverage_cell_stable_hash",
       "exact_instance_allowlist_authority",
       "pinned_hydration_fixtures"
@@ -736,23 +735,23 @@
     "status": "partial"
   },
   "data_as_of": "2026-07-28",
-  "data_version": "832a38f8eaf365f387ea21975082edf773927189327fcecedc15983c76e7ef51",
+  "data_version": "aba78f2cadedafcecc06df5e6c14b113ddffeb7c765d5b4a3632c3a5b36924c2",
   "files": {
     "catalog/wikidata-hydration.json": {
       "count": 1,
-      "sha256": "e6a44b7d17cf761edb7168eea8057451127e523339da75fcb997d9d1e88ab579"
+      "sha256": "30ce6089fab9472f440e38482be90be840c5d0c5b12589293fdda4b9c63b0994"
     },
     "claims.json": {
-      "count": 11654,
-      "sha256": "8a7391c1c17940424b7210cc7c14d2d3f10c5337255d2c3060b0f37a113c2c8c"
+      "count": 11639,
+      "sha256": "c437acdc2027fcd05d2d9db1299644d08628755ef65c694ded95b36ccad8facb"
     },
     "methodology/wikidata-coverage-config.json": {
       "count": 1,
       "sha256": "8c0c909625a296587b08e1b3ac108b994b9819bf6728bbde04b3f19ccfed6756"
     },
     "people.json": {
-      "count": 853,
-      "sha256": "d0e0da869da7315a6c363dd5157e51e1fcc7e31038fb26a06966a8899f69076a"
+      "count": 848,
+      "sha256": "ff359bc3bc8f557011b9a3f98dfd0b061492033869dfa268dc146ba3a236df51"
     },
     "places.json": {
       "count": 42,
@@ -763,8 +762,8 @@
       "sha256": "4cd4e00313bb040c22bed3da396c2d77486d6a43bd3fbe159fab369158e99068"
     },
     "relations.json": {
-      "count": 577,
-      "sha256": "c6d40514cae6c33c68ae3b9827d17dc754ca1cc19434b8ea74e4268c1d3ec7b0"
+      "count": 572,
+      "sha256": "25ad65377f8525c795cd7a06ef4c5a10206f46b6a9a26beb1ae8ca5d518309ad"
     },
     "reviewers.json": {
       "count": 1,
@@ -781,10 +780,6 @@
     "source-snapshots/wikidata-hydration-2026-08-08-28bc2ce532a1.json": {
       "count": 1,
       "sha256": "62efec3f2f1cd6e8671fe24e82b5c17554aef66d15d9f0890caf8583b1e6b3a4"
-    },
-    "source-snapshots/wikidata-ulan-crosswalk-2026-08-08-21b60e721f80.json": {
-      "count": 24,
-      "sha256": "837b8299f3f4b206adf6c3b830f27525365fc8f1dea722c45871773cb805a465"
     },
     "source-snapshots/wikidata-work-type-authority-2026-08-08-6e8a235064d4.json": {
       "count": 1,
